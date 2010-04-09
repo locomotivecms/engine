@@ -1,9 +1,4 @@
 begin
-  require "rubygems"
-  require "bundler"
-  
-  Bundler.require :default, :test
-
   require 'rspec/core'
   require 'rspec/core/rake_task'
 rescue MissingSourceFile 
@@ -33,7 +28,7 @@ end
 
 Rake.application.instance_variable_get('@tasks').delete('default')
 
-spec_prereq = :noop #File.exist?(File.join(Rails.root, 'config', 'database.yml')) ? "db:test:prepare" : :noop
+spec_prereq = :noop # we are using mongoid and not ActiveRecord, no need to prepare the test database
 task :noop do
 end
 

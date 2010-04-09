@@ -7,7 +7,7 @@ gem "rails", "3.0.0.beta2"
 gem "liquid"
 gem "bson_ext"
 gem "mongo_ext"
-gem "mongoid", ">= 2.0.0.beta" 
+gem "mongoid", ">= 2.0.0.beta2" 
 gem "warden"
 gem "devise", ">= 1.1.rc0"
 
@@ -22,13 +22,6 @@ group :development do
 end
 
 group :test do
-	gem 'rspec-rails', '>= 2.0.0.beta.4'
+	gem 'rspec-rails', '>= 2.0.0.beta.5'
+	gem 'factory_girl', :git => 'git://github.com/thoughtbot/factory_girl.git', :branch => 'rails3'
 end
-
-# gem 'rspec', '>= 2.0.0.beta.4'
-# gem 'rspec-rails', '>= 2.0.0.beta.4'
-gem 'factory_girl', :git => 'git://github.com/thoughtbot/factory_girl.git', :branch => 'rails3'
-
-
-# gem "shoulda", :git => "git://github.com/sinefunc/shoulda.git", :branch => "rails3"
-# gem "shoulda", :git => "git://github.com/bmaddy/shoulda.git", :branch => "rails3", :require => nil
