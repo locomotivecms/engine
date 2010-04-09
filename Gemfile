@@ -21,9 +21,12 @@ group :development do
 	gem "mongrel_experimental"	
 end
 
+group :test do
+	gem 'rspec-rails', '>= 2.0.0.beta.4'
+end
 
-gem 'rspec', '>= 2.0.0.beta.4'
-gem 'rspec-rails', '>= 2.0.0.beta.4'
+# gem 'rspec', '>= 2.0.0.beta.4'
+# gem 'rspec-rails', '>= 2.0.0.beta.4'
 gem 'factory_girl', :git => 'git://github.com/thoughtbot/factory_girl.git', :branch => 'rails3'
 
 

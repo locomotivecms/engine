@@ -1,4 +1,9 @@
 begin
+  require "rubygems"
+  require "bundler"
+  
+  Bundler.require :default, :test
+
   require 'rspec/core'
   require 'rspec/core/rake_task'
 rescue MissingSourceFile 
