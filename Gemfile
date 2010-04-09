@@ -1,42 +1,31 @@
 # Edit this Gemfile to bundle your application"s dependencies.
 source "http://gemcutter.org"
+source "http://gems.github.com"
 
-gem "rails", "3.0.0.beta"
+gem "rails", "3.0.0.beta2"
 
 gem "liquid"
+gem "bson_ext"
 gem "mongo_ext"
-gem "mongo_mapper"
+gem "mongoid", ">= 2.0.0.beta" 
+gem "warden"
+gem "devise", ">= 1.1.rc0"
 
-# Using mongrel instead of webrick (default server)
-gem "mongrel"
-gem "cgi_multipart_eof_fix"
-gem "fastthread"
-gem "mongrel_experimental"
 
-# Test environment
-group :test do
-	gem "rspec"
-	gem "rspec-rails"
-	gem "factory_girl", :git => "git://github.com/szimek/factory_girl.git", :branch => "rails3"	
-	gem "shoulda", :require => nil
-	gem "remarkable_rails"
-  gem "webrat"
-	gem "cucumber"
+# Development environment
+group :development do
+	# Using mongrel instead of webrick (default server)
+	gem "mongrel"
+	gem "cgi_multipart_eof_fix"
+	gem "fastthread"
+	gem "mongrel_experimental"	
 end
 
 
-## Bundle edge rails:
-# gem "rails", :git => "git://github.com/rails/rails.git"
+gem 'rspec', '>= 2.0.0.beta.4'
+gem 'rspec-rails', '>= 2.0.0.beta.4'
+gem 'factory_girl', :git => 'git://github.com/thoughtbot/factory_girl.git', :branch => 'rails3'
 
-# ActiveRecord requires a database adapter. By default,
-# Rails has selected sqlite3.
-# gem "sqlite3-ruby", :require => "sqlite3"
 
-## Bundle the gems you use:
-# gem "bj"
-# gem "hpricot", "0.6"
-# gem "sqlite3-ruby", :require => "sqlite3"
-# gem "aws-s3", :require => "aws/s3"
-
-## Bundle gems used only in certain environments:
-# gem "rspec", :group => :test
+# gem "shoulda", :git => "git://github.com/sinefunc/shoulda.git", :branch => "rails3"
+# gem "shoulda", :git => "git://github.com/bmaddy/shoulda.git", :branch => "rails3", :require => nil

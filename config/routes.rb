@@ -1,4 +1,6 @@
 Locomotive::Application.routes.draw do |map|
+  # de#vise_for :accounts
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
