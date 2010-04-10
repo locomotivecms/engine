@@ -1,3 +1,3 @@
 Locomotive::Configuration.setup do |config|
-  config.default_domain_name = 'example.com'
+  config.default_domain = 'example.com'
 end

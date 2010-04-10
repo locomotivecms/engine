@@ -15,10 +15,10 @@ gem "devise", ">= 1.1.rc0"
 # Development environment
 group :development do
 	# Using mongrel instead of webrick (default server)
-	gem "mongrel"
-	gem "cgi_multipart_eof_fix"
-	gem "fastthread"
-	gem "mongrel_experimental"	
+	# gem "mongrel"
+	# gem "cgi_multipart_eof_fix"
+	# gem "fastthread"
+	# gem "mongrel_experimental"	
 end
 
 group :test do

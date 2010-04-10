@@ -22,7 +22,8 @@ module Locomotive
   class Configuration
 
     DEFAULT_SETTINGS = {
-      :default_domain_name  => 'localhost'
+      :default_domain  => 'localhost',
+      :forbidden_subdomains => %w{www admin email blog webmail mail support help site sites}
     }
 
     cattr_accessor :settings

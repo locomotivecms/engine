@@ -1,0 +1,5 @@
+en:
+  errors:
+      messages:
+        domain_taken: "{{value}} is already taken"
+        invalid_domain: "{{value}} is invalid"
