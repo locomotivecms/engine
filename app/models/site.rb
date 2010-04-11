@@ -10,7 +10,7 @@ class Site
   ## validations ##
   validates_presence_of     :name, :subdomain
   validates_uniqueness_of   :subdomain
-  validates_exclusion_of    :subdomain, :in => Locomotive::Configuration.forbidden_subdomains
+  validates_exclusion_of    :subdomain, :in => Locomotive.config.reserved_subdomains
   validates_format_of       :subdomain, :with => Locomotive::Regexps::SUBDOMAIN, :allow_blank => true
   validate                  :domains_must_be_valid_and_unique  
   
@@ -28,11 +28,11 @@ class Site
   
   def add_subdomain_to_domains
     self.domains ||= []    
-    (self.domains << "#{self.subdomain}.#{Locomotive::Configuration.default_domain}").uniq!
+    (self.domains << "#{self.subdomain}.#{Locomotive.config.default_domain}").uniq!
   end
   
   def domains_without_subdomain
-    (self.domains || []) - ["#{self.subdomain}.#{Locomotive::Configuration.default_domain}"]
+    (self.domains || []) - ["#{self.subdomain}.#{Locomotive.config.default_domain}"]
   end
   
   protected
