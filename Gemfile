@@ -23,5 +23,7 @@ end
 
 group :test do
 	gem 'rspec-rails', '>= 2.0.0.beta.5'
-	gem 'factory_girl', :git => 'git://github.com/thoughtbot/factory_girl.git', :branch => 'rails3'
+	gem 'factory_girl', :git => 'git://github.com/thoughtbot/factory_girl.git', :branch => 'rails3'	
+	gem 'capybara',         :git => 'git://github.com/jnicklas/capybara.git'
+	gem 'cucumber-rails',   :git => 'git://github.com/aslakhellesoy/cucumber-rails.git'	
 end
