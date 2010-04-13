@@ -3,7 +3,7 @@ class Account
   include Mongoid::Timestamps  
   
   # devise modules
-  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
+  devise :database_authenticatable, :recoverable, :rememberable, :trackable, :validatable #:registerable, 
 
   # attr_accessible :email, :password, :password_confirmation # TODO
   
