@@ -80,6 +80,16 @@ describe Site do
     sites.should be_empty
   end  
   
+  ## Associations ##
+  
+  it 'should have many accounts' do
+    account_1 = Factory(:account)
+    account_2 = Factory(:account, :name => 'homer', :email => 'homer@simpson.net')
+    site = Factory(:site, :accounts => [account_1, account_2, account_1])
+    site.account_ids.should == [account_1.id, account_2.id]
+    site.accounts.should == [account_1, account_2]
+  end
+  
   ## Methods ##
   
   it 'should return domains without subdomain' do
@@ -87,4 +97,5 @@ describe Site do
     site.domains.should == %w{www.acme.net www.acme.com acme.example.com}
     site.domains_without_subdomain.should == %w{www.acme.net www.acme.com}
   end
+  
 end

@@ -1,17 +1,23 @@
 class Account
+  include Mongoid::Document
+  include Mongoid::Timestamps  
   
-  # include MongoMapper::Document
-  
-  ## Attributes
-  # key :name
-  # key :locale  
-  # timestamps!
-  
-  # Include default devise modules. Others available are:
-  # :http_authenticatable, :token_authenticatable, :lockable, :timeoutable and :activatable
-  # devise :registerable, :authenticatable, :confirmable, :recoverable,
-  #        :rememberable, :trackable, :validatable
+  # devise modules
+  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
 
-  # Setup accessible (or protected) attributes for your model
-  # attr_accessible :email, :password, :password_confirmation
+  # attr_accessible :email, :password, :password_confirmation # TODO
+  
+  ## attributes ##
+  field :name
+  field :locale, :default => 'en'
+  
+  ## validations ##
+  validates_presence_of :name
+  
+  ## associations ##
+  
+  def sites
+    Site.where({ :account_ids => self._id })
+  end
+  
 end

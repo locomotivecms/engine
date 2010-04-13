@@ -6,6 +6,7 @@ class Site
   field :name
   field :subdomain, :type => String
   field :domains, :type => Array, :default => []
+  field :account_ids, :type => Array, :default => []
   
   ## validations ##
   validates_presence_of     :name, :subdomain
@@ -25,6 +26,14 @@ class Site
   add_dirty_methods :domains
   
   ## methods ##
+
+  def accounts
+    Account.criteria.in(:_id => self.account_ids)
+  end
+  
+  def accounts=(models_or_ids)
+    self.account_ids = [*models_or_ids].collect { |object| object.respond_to?(:to_i) ? object : object.id }.uniq
+  end
   
   def add_subdomain_to_domains
     self.domains ||= []    
