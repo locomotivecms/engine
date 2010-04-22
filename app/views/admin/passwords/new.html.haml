@@ -1,0 +1,17 @@
+- title t('.title')
+
+= semantic_form_for(resource, :as => resource_name, :url => password_path(resource_name)) do |f|
+  
+  = f.hidden_field :reset_password_token
+  
+  .inner
+    = flash_message
+  
+    = f.inputs do
+      = f.input :email, :label => t('.email'), :required => false
+    
+    %p.link
+      = link_to t('.link'), new_account_session_path(resource_name)
+        
+  .footer
+    = submit_button_tag t('buttons.send_password')

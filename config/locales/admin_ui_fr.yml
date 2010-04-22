@@ -1,2 +1,21 @@
 fr:
-  hello: 'Bonjour le monde'
+  admin:
+    sessions:
+      new:
+        title: Connexion à
+        link: "J'ai oublié mon mot de passe"
+        email: "Email"
+        password: "Mot de passe"
+    passwords:
+      new:
+        title: Mot de passe oublié
+        link: "&rarr; Retour page de connexion"
+        email: "Votre email"
+      edit:
+        title: Changer mon mot de passe
+        link: "&rarr; Retour page de connexion"
+        
+  buttons:
+    login: Se connecter
+    send_password: Envoyer
+    change_password: Changer

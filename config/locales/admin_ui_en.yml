@@ -1,2 +1,25 @@
 en:
-  hello: "Hello world"
+  admin:
+    sessions:
+      new:
+        title: Login to
+        link: "I forgot my password"
+        email: "Email"
+        password: "Password"
+
+    passwords:
+      new:
+        title: Forgot password
+        link: "&rarr; Back to login page"
+        email: "Your email"
+      edit:
+        title: Update my password
+        link: "&rarr; Back to login page"
+        password: "Your new password"
+        password_confirmation: "Confirmation of your new password"
+        
+  buttons:
+    login: Log in
+    send_password: Send
+    change_password: Update
+      

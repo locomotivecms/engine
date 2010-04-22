@@ -5,17 +5,20 @@ Locomotive::Application.routes.draw do |map|
   end
   
   # admin authentication
-  Devise.register(:accounts, {}) # bypass the devise_for :accounts  
+  Devise.register(:accounts, :controllers => { :sessions => 'admin/sessions', :passwords => 'admin/passwords' }) # bypass the devise_for :accounts  
   scope '/admin' do
-    get 'login' => 'devise/sessions#new', :as => :new_account_session
-    post 'login' => 'devise/sessions#create', :as => :account_session
-    get 'logout' => 'devise/sessions#destroy', :as => :destroy_account_session    
-    resource :password, :only => [:new, :create, :edit, :update], :controller => 'devise/passwords'
+    get 'login' => 'admin/sessions#new', :as => :new_account_session
+    post 'login' => 'admin/sessions#create', :as => :account_session
+    get 'logout' => 'admin/sessions#destroy', :as => :destroy_account_session    
+    resource :password, :only => [:new, :create, :edit, :update], :controller => 'admin/passwords'
   end
   
   # admin interface for each website
   namespace 'admin' do
-    # TODO
+    # get 'login' => 'sessions#new', :as => :new_account_session
+    # post 'login' => 'sessions#create', :as => :account_session
+    # get 'logout' => 'sessions#destroy', :as => :destroy_account_session    
+    # resource :password, :only => [:new, :create, :edit, :update], :controller => 'devise/passwords'    
   end
   
   match '/' => 'pages#show'
