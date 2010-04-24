@@ -1,0 +1,8 @@
+%h1= link_to current_site.name, '#'
+
+#global-actions-bar
+  = t('.welcome', :name => link_to(current_account.name, '#'))
+  %span= '|'
+  = link_to t('.see'), '#'
+  %span= '|'
+  = link_to t('.logout'), destroy_account_session_url, :confirm => t('admin.messages.confirm')

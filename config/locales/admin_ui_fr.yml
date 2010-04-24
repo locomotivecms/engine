@@ -2,7 +2,7 @@ fr:
   admin:
     sessions:
       new:
-        title: Connexion à
+        title: Connexion
         link: "J'ai oublié mon mot de passe"
         email: "Email"
         password: "Mot de passe"

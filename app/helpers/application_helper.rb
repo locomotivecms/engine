@@ -19,6 +19,10 @@ module ApplicationHelper
     end   
   end
   
+  def nocoffee_tag
+    link_to content_tag(:em, 'no') + 'Coffee', 'http://www.nocoffee.fr', :id => 'nocoffee'
+  end
+  
   def submit_button_tag(label)
     content_tag(:button, content_tag(:span, label), :type => 'submit', :class => 'button')
   end

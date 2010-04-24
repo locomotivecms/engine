@@ -1,0 +1,13 @@
+%title= escape_once("#{Locomotive.config.name} &mdash; #{current_site.name}")
+
+= csrf_meta_tag
+
+= stylesheet_link_tag 'blueprint/screen', :media => 'screen'
+/ [if IE]
+  = stylesheet_link_tag('blueprint/ie', :media => 'screen')
+  
+= stylesheet_link_tag 'admin/layout', 'admin/menu', 'admin/buttons', 'admin/formtastic', 'admin/formtastic_changes', 'admin/application', :media => 'screen', :cache => Rails.env.production?
+
+= javascript_include_tag 'jquery', 'jquery.ui', 'rails', :cache => Rails.env.production?
+
+= yield :head

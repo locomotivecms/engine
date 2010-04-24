@@ -1,0 +1,241 @@
+/* ___ menu ___ */
+
+ul#menu {
+	list-style: none;
+	margin: 20px 0 0 0px;
+	padding: 0px;
+	background: transparent url(/images/admin/menu/gray-border.png) no-repeat 0 bottom;
+	height: 41px;
+}
+
+body.assets ul#menu { background-image: url(/images/admin/menu/green-border.png); }
+body.settings ul#menu { background-image: url(/images/admin/menu/blue-border.png); }
+
+ul#menu li {
+	float: left;
+	height: 40px;
+}
+
+ul#menu li a {
+	display: inline-block;
+	padding: 13px 55px 7px 5px;
+	margin-left: 15px;
+	text-decoration: none;
+	color: #787a89;
+	text-shadow: 1px 1px 1px #c5cfd1;
+	font-size: 0.8em;
+	outline: none;
+	height: 19px;
+}
+
+ul#menu li a em { 
+	display: inline-block;	
+	width: 15px;
+	height: 12px;
+	position: relative;
+	top: 2px;
+	margin-right: 4px;
+}
+
+
+ul#menu li.contents { background: url(/images/admin/menu/top-left.png) no-repeat 0 -40px; padding-left: 13px; }
+ul#menu li.contents a { background: url(/images/admin/menu/top.png) repeat-x 0 -40px; margin-left: 0px; padding-right: 5px; padding-left: 5px; }
+ul#menu li.contents a em { background: transparent url(/images/admin/menu/icons/folder.png) no-repeat 0 0; }
+
+body.contents ul#menu li.contents { background-position: 0 0px; }
+body.contents ul#menu li.contents a { background-position: 0 0px; color: white; text-shadow: none; }
+body.contents ul#menu li.contents a em { background-position: 0 -12px; }
+body.settings ul#menu li.contents { background-position: 0 -80px; }
+body.settings ul#menu li.contents a { background-position: 0 -80px; }
+
+ul#menu li.assets { background: url(/images/admin/menu/left.png) no-repeat 0 -40px; padding-left: 35px; }
+ul#menu li.assets a em { background: transparent url(/images/admin/menu/icons/settings.png) no-repeat 0 0; height: 14px; }
+body.contents ul#menu li.assets { background-position: 0 0px; }
+body.assets ul#menu li.assets { background-position: 0 -80px; }
+body.assets ul#menu li.assets a { background-position: right -80px; color: white; text-shadow: none; }
+body.assets ul#menu li.assets a em { background-position: 0 -15px; }
+
+ul#menu li.assets { background: url(/images/admin/menu/left.png) no-repeat 0 -40px; padding-left: 35px; }
+ul#menu li.assets a { background: url(/images/admin/menu/right.png) no-repeat right 0px;  }
+body.contents ul#menu li.assets { background-position: 0 0px; }
+body.settings ul#menu li.assets { background-position: 0 -200px; }
+body.settings ul#menu li.assets a { background-position: right -400px; }
+
+ul#menu li.settings { background: none; }
+ul#menu li.settings a { background: url(/images/admin/menu/right.png) no-repeat right -40px; margin-left: 0px; }
+ul#menu li.settings a em { background: transparent url(/images/admin/menu/icons/settings.png) no-repeat 0 0; height: 14px; }
+body.settings ul#menu li.settings a { background-position: right -440px; color: white; text-shadow: none; }
+body.settings ul#menu li.settings a em { background-position: 0 -30px; }
+body.contents ul#menu li.settings { background-position: 0 0px; }
+body.assets ul#menu li.settings a { background-position: right -120px; }
+
+
+ul#menu li.clear { float: none; height: 1px; }
+
+/* ___ submenu ___ */
+
+#submenu {
+	background: transparent url(/images/admin/menu/shadow.png) repeat-y 0 0;
+	height: 60px;
+	position: relative;
+}
+
+#submenu div.action {
+	position: absolute;
+	top: 18px;
+	right: 22px;
+}
+
+#submenu div.action a {
+	display: block;
+	float: left;
+	height: 20px;
+	color: white;
+	text-decoration: none;
+	font-size: 0.7em;
+	padding-left: 26px;
+	background: transparent url(../../images/admin/buttons/add-left.png) no-repeat 0 0;
+	outline: none;
+}
+
+#submenu div.action a:hover span { text-decoration: underline; }
+
+#submenu div.action a span {
+	display: inline-block;	
+	height: 13px;
+	background: transparent url(../../images/admin/buttons/add-right.png) no-repeat right 0;
+	padding: 1px 12px 10px 0px;
+	text-shadow: 1px 1px 1px #000;
+}
+
+#submenu > ul {
+	width: 950px;
+	height: 46px;
+	list-style: none;
+	margin: 0px 8px 0 8px;
+	padding: 14px 0 0 0px;
+	clear: both;
+}
+
+#submenu > ul > li {
+	display: block;
+	float: left;
+	margin-left: 8px;
+	position: relative;
+	z-index: 999;
+}
+
+#submenu > ul > li > a {
+	display: block;
+	float: left;
+	height: 31px;
+	color: white;
+	text-decoration: none;
+	font-size: 0.8em;
+	padding-left: 15px;
+	background: transparent url(../../images/admin/buttons/emboss-left.png) no-repeat 0 0;
+	outline: none;
+}
+
+#submenu > ul > li > a span {
+	display: inline-block;	
+	height: 17px;
+	background: transparent url(../../images/admin/buttons/emboss-right.png) no-repeat right 0;
+	padding: 4px 28px 10px 0px;
+	text-shadow: 1px 1px 1px #000;
+}
+
+#submenu > ul > li.links a span em {
+	display: inline-block;
+	background: transparent url(/images/admin/menu/arrow.png) no-repeat 0 0;
+	width: 16px;
+	height: 9px;
+	position: relative;
+	top: 2px;
+	left: 4px;
+}
+
+#submenu > ul > li.on a { background-position: 0 -31px; }
+#submenu > ul > li.on a span { background-position: right -31px; }
+#submenu > ul > li.on a span em { background-position: 0 -9px; }
+
+#submenu > ul > li.hover > a { background-position: 0 -186px; color: #8b8d9a; }
+#submenu > ul > li.hover > a span { background-position: right -186px; text-shadow: none; }
+#submenu > ul > li.hover > a span em { background-position: 0 -18px; }
+
+
+body.assets #submenu > ul > li > a { background-position: 0 -62px; }
+body.assets #submenu > ul > li > a span { background-position: right -62px; }
+body.assets #submenu > ul > li.on > a { background-position: 0 -93px; }
+body.assets #submenu > ul > li.on > a span { background-position: right -93px; }
+
+body.settings #submenu > ul > li > a { background-position: 0 -124px; }
+body.settings #submenu > ul > li > a span { background-position: right -124px; }
+body.settings #submenu > ul > li.on > a { background-position: 0 -155px; }
+body.settings #submenu > ul > li.on > a span { background-position: right -155px; }
+
+body.contents #submenu > ul { background: transparent url(/images/admin/menu/gray-bg.png) repeat-x 0 0; }
+body.assets #submenu > ul { background: transparent url(/images/admin/menu/green-bg.png) repeat-x 0 0; }
+body.settings #submenu > ul { background: transparent url(/images/admin/menu/blue-bg.png) repeat-x 0 0; }
+
+/* ___ popup ___ */
+
+#submenu .popup { 
+	z-index: 998;
+	position: absolute;
+	top: 27px;
+	margin-left: -4px;
+	width: 305px; 
+	background: transparent url(/images/admin/menu/popup-footer.png) no-repeat 0 bottom;
+	padding-bottom: 25px;
+}
+
+#submenu .popup a { color: #1f82bc; text-decoration: none; }
+#submenu .popup a:hover { text-decoration: underline; }
+
+#submenu .popup .header {
+	background: transparent url(/images/admin/menu/popup-header.png) no-repeat 0 0;
+	width: 100%;	
+}
+
+#submenu .popup .header p { margin: 0px 15px; padding: 10px 0 0 0px; }
+#submenu .popup .header p a {
+	font-size: 0.8em;	
+	background: transparent url(/images/admin/menu/icons/add.png) no-repeat left 4px;
+	padding-left: 12px;
+}
+
+#submenu .popup .inner {
+	background: transparent url(/images/admin/menu/popup-body.png) repeat-y 0 0;	
+	padding: 6px 15px 0px 15px;
+}
+
+#submenu .popup .inner h2 {
+	font-size: 0.7em;
+	font-weight: bold;
+	color: #1e1f26;
+	border-top: 1px dotted #bbbbbd;
+	padding-top: 6px;
+	margin-bottom: 0px;
+}
+
+#submenu .popup .inner ul {
+	list-style-image: url(/images/admin/menu/icons/bullet.png);
+	margin: 0px 0px 0 15px;
+}
+
+#submenu .popup .inner ul li {
+	position: relative;
+}
+
+#submenu .popup .inner ul li a {
+	font-size: 0.7em;
+}
+
+#submenu .popup .inner ul li span {
+	position: absolute;
+	top: 6px;
+	right: 15px;
+	color: #8b8d9a;
+	font-size: 0.7em;
+}

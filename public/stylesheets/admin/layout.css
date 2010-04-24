@@ -1,0 +1,175 @@
+body { 
+	background: #000 url(/images/admin/background/body.png) repeat 0 0;
+/*	font-family: Arial,Helvetica,sans-serif;*/
+	font-size: 1em;
+}
+
+.container {
+	width: 966px;
+}
+
+#wrapper {
+	background: transparent url(/images/admin/background/light.png) repeat-x 0 0;
+}
+
+#header {
+	position: relative;
+	padding-top: 20px;
+}
+
+#header h1 {
+	margin-bottom: 0px;
+}
+
+#header h1 a {
+	font-size: 0.5em;
+	color: #f0f0f0;
+	text-shadow: 1px 1px 1px #000;
+	text-decoration: none;
+	margin-left: 8px;
+}
+
+#search-bar {
+	position: absolute;
+	top: 15px;
+	right: 0px;
+}
+
+#global-actions-bar {
+	position: absolute;
+	top: 70px;
+	right: 8px;
+	color: #8b8d9a;
+	font-size: 0.7em;
+	text-shadow: 1px 1px 1px #000;
+}
+
+#global-actions-bar a {
+	color: #1F82BC;
+	text-decoration: none;
+}
+
+#global-actions-bar a:hover { text-decoration: underline; }
+
+#global-actions-bar span {
+	font-size: 0.9em;
+	color: #999;
+	margin: 0 1px;
+/*	text-shadow: 1px 1px 1px #000;*/
+}
+
+#content {
+	background: transparent url(/images/admin/menu/shadow.png) repeat-y 0 0;
+}
+
+#content div.inner {
+	margin: 0px 8px;
+	padding: 10px 15px 20px 15px;
+	background: white;
+	min-height: 150px;
+	position: relative;
+}
+
+#content div.inner h2 {
+	padding-bottom: 10px;
+	font-size: 1.3em;
+	font-weight: bold;
+	color: #1e1f26;
+	border-bottom: 1px dotted #bbbbbd;
+}
+
+#content div.inner h2 a.editable { 
+	padding: 2px 25px 2px 6px;
+	text-decoration: none; 
+	color: #1e1f26;
+	outline: none;
+}
+
+#content div.inner h2 a.editable:hover {
+	background: #fffbe5 url(/images/admin/form/pen.png) no-repeat right 5px;
+	border-bottom: 1px dotted #efe4a5;
+}
+
+#content div.inner h3 {
+	background: transparent url(/images/admin/list/item.png) no-repeat 0 0;
+	font-size: 0.9em;
+	font-weight: bold;
+	color: #1e1f26;
+	padding: 7px 0 10px 20px;
+}
+
+#content div.inner p {
+	color: #8b8d9a;
+	font-size: 0.8em;
+}
+
+#content #local-actions-bar {
+	position: absolute;
+	top: 15px;
+	right: 15px;
+}
+
+#content #local-actions-bar a {
+	display: block;
+	float: left;
+	height: 20px;
+	color: #8b8d9a;
+	text-decoration: none;
+	font-size: 0.7em;
+	padding-left: 24px;
+	margin-left: 10px;
+	background: transparent url(/images/admin/buttons/action-left.png) no-repeat 0 0;
+	outline: none;
+}
+
+#content #local-actions-bar a:hover span { text-decoration: underline; }
+
+#content #local-actions-bar a span {
+	display: inline-block;	
+	height: 13px;
+	background: transparent url(/images/admin/buttons/action-right.png) no-repeat right 0;
+	padding: 1px 10px 8px 2px;
+}
+
+/* ___ footer ___ */
+
+#footer {
+	background: transparent url(/images/admin/background/footer.png) no-repeat 0 0;
+}
+
+#footer p {
+	padding: 15px 8px 0 0;
+	font-size: 0.6em;
+	color: #444;
+}
+
+/* ___ Alignements ___ */
+
+.tcenter { text-align: center; }
+.tright { text-align: right; }
+.tleft { text-align: left; }
+.tjustify { text-align: justify; }
+.fright { float: right; }
+
+/* ___ Margins ___ */
+
+.nomargin { margin: 0 !important; }
+.mt30 { margin-top: 30px !important; }
+.mt20 { margin-top: 20px !important; }
+.mb20 { margin-bottom: 20px !important; }
+.m20 { margin: 20px !important; }
+.mt10 { margin-top: 10px !important; }
+.ml10 { margin-left: 10px !important; }
+.mr10 { margin-right: 10px !important; }
+.mb10 { margin-bottom: 10px !important; }
+.m10 { margin: 10px !important; }
+
+/* ___ NoCoffee / Rails Tags ___ */
+
+a#nocoffee { text-decoration: none; font-size: 1.1em; line-height: 20px; color: #505b64; padding-right: 20px; margin: 0 4px; background: transparent url(../../images/nocoffee.gif) no-repeat right 0px; }
+a#nocoffee em { color: #ef3f44; font-weight: normal; font-style: normal; }
+
+a#powered-by { text-decoration: none; font-size: 1.1em; color: #666; }
+a#powered-by:hover{ text-decoration: underline; color: #aaa; }
+
+

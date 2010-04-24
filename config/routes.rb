@@ -15,6 +15,10 @@ Locomotive::Application.routes.draw do |map|
   
   # admin interface for each website
   namespace 'admin' do
+    root :to => 'pages#index'
+    
+    resources :pages
+    
     # get 'login' => 'sessions#new', :as => :new_account_session
     # post 'login' => 'sessions#create', :as => :account_session
     # get 'logout' => 'sessions#destroy', :as => :destroy_account_session    

@@ -1,0 +1,26 @@
+!!! XML
+!!!
+%html{ :xmlns => 'http://www.w3.org/1999/xhtml'  }
+  %head
+    = render 'admin/shared/head'
+  %body{ :class => sections }
+    #wrapper
+      .container
+        #header
+          = render 'admin/shared/header'
+          = render 'admin/shared/menu'
+      
+          #submenu
+            = yield :submenu
+                
+        #content
+          .inner
+            %h2= title
+        
+            #local-actions-bar
+              = yield :buttons
+          
+            = yield
+    
+        #footer
+          = render 'admin/shared/footer'
