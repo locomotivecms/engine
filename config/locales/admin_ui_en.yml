@@ -33,11 +33,26 @@ en:
       footer:
         developed_by: Developed by
         powered_by: and Powered by
+      form_actions:
+        back: Back without saving
+        create: Create
+        update: Update
         
     pages:
       index:
         title: Listing pages
+        no_items: "There are no pages for now. Just click <a href=\"{{url}}\">here</a> to create the first one."
+        new: new page
         
+  formtastic:
+    titles:
+      information: General information
+      meta: Meta
+    hints:
+      page:
+        keywords: "Meta keywords used within the head tag of the page. They are separeted by an empty space. Required for SEO." 
+        description: "Meta description used within the head tag of the page. Required for SEO." 
+      
   buttons:
     login: Log in
     send_password: Send

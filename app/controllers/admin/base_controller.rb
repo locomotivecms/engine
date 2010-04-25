@@ -12,6 +12,18 @@ class Admin::BaseController < ::ApplicationController
   
   protected
   
+  def flash_success!
+    flash[:success] = translate_flash_msg(:successful)
+  end
+
+  def flash_error!
+    flash[:error] = translate_flash_msg(:failed)
+  end
+  
+  def translate_flash_msg(kind)
+    t("#{kind.to_s}_#{action_name}", :scope => [:admin, controller_name.underscore.gsub('/', '.'), :messages])
+  end
+  
   def self.sections(main, sub = nil)
     write_inheritable_attribute(:sections, { :main => main, :sub => sub })
   end

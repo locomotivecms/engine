@@ -19,6 +19,16 @@ module ApplicationHelper
     end   
   end
   
+  def growl_message
+    if not flash.empty?
+      %{
+        $(document).ready(function() {
+          $.growl("#{flash.keys.first}", "#{flash.values.first}");
+        });
+      }.to_s
+    end
+  end
+  
   def nocoffee_tag
     link_to content_tag(:em, 'no') + 'Coffee', 'http://www.nocoffee.fr', :id => 'nocoffee'
   end

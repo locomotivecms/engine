@@ -14,3 +14,9 @@ Factory.define :account do |a|
   a.locale 'en'
 end
 
+## Pages ##
+Factory.define :page do |p|
+  p.association :site, :factory => :site
+  p.title 'Home page'
+  p.path 'index'
+end

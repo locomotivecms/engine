@@ -8,6 +8,9 @@ class Site
   field :domains, :type => Array, :default => []
   field :account_ids, :type => Array, :default => []
   
+  ## associations ##
+  has_many_related :pages
+  
   ## validations ##
   validates_presence_of     :name, :subdomain
   validates_uniqueness_of   :subdomain

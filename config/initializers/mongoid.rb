@@ -11,3 +11,19 @@ Mongoid.configure do |config|
   #   Mongo::Connection.new(host, @settings["slave_two"]["port"], :slave_ok => true).db(name)
   # ]
 end
+
+## various patches
+
+# Enabling scope in validates_uniqueness_of validation
+module Mongoid #:nodoc:
+  module Validations #:nodoc:
+    class UniquenessValidator < ActiveModel::EachValidator
+      def validate_each(document, attribute, value, scope = nil)
+        criteria = { attribute => value, :_id.ne => document._id }        
+        criteria[scope] = document.send(scope) if scope        
+        return if document.class.where(criteria).empty?
+        document.errors.add(attribute, :taken, :default => options[:message], :value => value)
+      end
+    end
+  end
+end

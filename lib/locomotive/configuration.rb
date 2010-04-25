@@ -5,7 +5,8 @@ module Locomotive
     @@defaults = {
       :name             => 'LocomotiveApp',
       :default_domain   => 'rails.local.fr',
-      :reserved_subdomains => %w{www admin email blog webmail mail support help site sites}
+      :reserved_subdomains => %w{www admin email blog webmail mail support help site sites},
+      :forbidden_paths  => %w{layouts snippets stylesheets javascripts assets admin system api}
     }
 
     cattr_accessor :settings

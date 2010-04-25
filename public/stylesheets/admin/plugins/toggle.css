@@ -1,0 +1,42 @@
+.toggleSwitch {
+	position: relative;
+	top: 3px;
+}
+
+div.toggleSwitch span.leftLabel{
+	float: left;
+}
+
+div.toggleSwitch span.leftLabel, div.toggleSwitch span.rightLabel{
+	line-height: 20px;
+	padding: 0 5px;
+	font-size: 0.8em;
+	font-weight: bold;
+}
+
+div.toggleSwitch div.switchArea {
+	float: left;
+	background: transparent url("/images/admin/plugins/toggle_shadow-bg.png") top left no-repeat;
+	width: 64px;
+	height: 24px;
+	cursor: pointer;
+}
+
+div.toggleSwitch span.switchHandle{
+	display: block;
+	background: #aaa;
+	background: transparent url("/images/admin/plugins/toggle_handle-bg.png") top left no-repeat;
+	width: 30px;
+	height: 100%;
+	cursor: pointer;
+	cursor: hand;
+	margin-left: 0;
+}
+
+div.toggleSwitch span.switchHandle.left{
+	background-image: url("/images/admin/plugins/toggle_handle_left-bg.png");
+}
+
+div.toggleSwitch span.switchHandle.right{
+	background-image: url("/images/admin/plugins/toggle_handle_right-bg.png");
+}

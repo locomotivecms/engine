@@ -1,0 +1,11 @@
+.actions
+  .span-12
+    %p
+      = link_to escape_once('&larr;&nbsp;') + t('.back'), back_url
+      
+  .span-12.last
+    %p
+      %button.button.light{ :type => 'submit' }
+        %span= button_label.is_a?(Symbol) ? t(".#{button_label}") : button_label
+        
+  .clear

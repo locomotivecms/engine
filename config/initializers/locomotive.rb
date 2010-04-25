@@ -1,4 +1,5 @@
 require 'lib/locomotive.rb'
+require 'lib/core_ext.rb'
 
 Locomotive.configure do |config|
   config.default_domain = 'example.com'

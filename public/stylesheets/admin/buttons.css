@@ -1,0 +1,62 @@
+.button {
+	display: inline-block;
+	background: transparent url(/images/admin/buttons/dark-gray-left.png) no-repeat 0 0;
+	padding: 0px 0px 0px 2px;
+	font-size: 0.9em;
+	color: white;
+	cursor: pointer;
+	border: none;
+	height: 31px;
+	outline: none;
+}
+
+.button span {
+	display: inline-block;
+	background: transparent url(/images/admin/buttons/dark-gray-right.png) no-repeat right top;
+	position: relative;
+	top: -1px;
+	padding: 3px 9px 9px 4px;
+	line-height: 21px;
+	text-shadow: 1px 1px 1px #000;
+	outline: none;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+	.button { padding-left: 5px; }
+	.button span { top: 0px; }
+}
+
+.button.light {
+	background-image: url(/images/admin/buttons/light-gray-left.png);
+	color: #787a89;
+}
+
+.button.light span {
+	background-image: url(/images/admin/buttons/light-gray-right.png);
+	text-shadow: 1px 1px 1px #fff;
+}
+
+.button.small {
+	background: transparent url(/images/admin/buttons/action-left.png) no-repeat left -40px;
+	color: #787a89;
+	height: 20px;
+	font-size: 0.7em;
+	padding: 0px 0px 0px 12px;
+	color: #8B8D9A !important;
+	text-decoration: none;
+}
+
+.button.small span {
+	background-image: url(/images/admin/buttons/action-right.png);
+	text-shadow: 1px 1px 1px #fff;
+	padding: 0px 12px 10px 0px;
+	top: 0px;
+	color: #8B8D9A;
+}
+
+.button.remove, .button.remove span {
+	color: #ff092c !important;
+	font-size: 1.1em;
+}
+
+.button.remove:hover span { text-decoration: underline; }
