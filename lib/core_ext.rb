@@ -21,4 +21,8 @@ class String
     s
   end
   
+  def slugify!(options = {})
+    replace(self.slugify(options))
+  end
+  
 end

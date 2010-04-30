@@ -3,6 +3,10 @@
 - localize devise emails
 x admin layout
 x logout button
+x slugify page
+x validation page slug
+- sitemap
 - pages section (CRUD)
 - my account section (part of settings)
 - snippets section
+- layouts section

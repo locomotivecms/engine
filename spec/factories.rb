@@ -18,5 +18,5 @@ end
 Factory.define :page do |p|
   p.association :site, :factory => :site
   p.title 'Home page'
-  p.path 'index'
+  p.slug 'index'
 end
