@@ -1,7 +1,10 @@
 - title t('.title')
 
+- content_for :head do
+  = javascript_include_tag 'admin/pages'
+
 - content_for :submenu do
-  = render 'admin/shared/contents_menu'
+  = render 'admin/shared/menu/contents'
 
 - content_for :buttons do
   = admin_button_tag :new, new_admin_page_url, :class => 'add'
@@ -12,6 +15,4 @@
   %p.no-items= t('.no_items', :url => new_admin_page_url)
 - else
   %ul#pages-list
-    - @pages.each do |page|
-      %li
-        = link_to page.title, edit_admin_page_url(page)
+    = render @pages

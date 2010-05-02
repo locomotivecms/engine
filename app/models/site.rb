@@ -10,6 +10,8 @@ class Site
   
   ## associations ##
   has_many_related :pages
+  has_many_related :layouts
+  has_many_related :snippets
   
   ## validations ##
   validates_presence_of     :name, :subdomain

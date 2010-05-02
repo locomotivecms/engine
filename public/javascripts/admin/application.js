@@ -1,4 +1,5 @@
 var I18nLocale = null;
+var CodeMirrorEditors = [];
 
 /* ___ growl ___ */
 
@@ -14,6 +15,29 @@ $.growl.settings.dockCss = {
 	width: '100%',
 	zIndex: 50000
 };
+
+/* ___ codemirror ___ */
+
+var addCodeMirrorEditor = function(type, el, parser) {
+	var parserfile = "parse" + type + ".js";
+	if (parser != undefined) parserfile = parser;
+	if (type == 'liquid') type = 'xml';
+	
+	var editor = CodeMirror.fromTextArea(el.attr('id'), {
+		height: "330px",
+		parserfile: parserfile,
+		stylesheet: ["/stylesheets/admin/plugins/codemirror/" + type + "colors.css", "/stylesheets/admin/plugins/codemirror/liquidcolors.css"],
+		path: "/javascripts/admin/plugins/codemirror/",
+		continuousScanning: 500,
+		reindentOnLoad: true,
+		initCallback: function(editor) {
+			jQuery(editor.frame.contentDocument).keypress(function(event) {
+				jQuery(document).trigger(event);
+			});
+		}
+	});
+	CodeMirrorEditors.push({ 'el': el, 'editor': editor });
+}
 
 /* ___ global ___ */
 
@@ -53,11 +77,14 @@ $(document).ready(function() {
 		var parent = $(this).parent(), content = $(this).next();
 		if (parent.hasClass('folded')) {
 			parent.removeClass('folded');
-			content.slideDown(400, function() {  });
+			content.slideDown('fast', function() {  });
 		} else
-			content.slideUp(400, function() { parent.addClass('folded'); });
+			content.slideUp('fast', function() { parent.addClass('folded'); });
 	});
 	
 	// nifty checkboxes	
 	$('.formtastic li.toggle input[type=checkbox]').checkToggle();
+	
+	// nifty code editor
+	$('code.html textarea').each(function() { addCodeMirrorEditor('liquid', $(this)); });
 });

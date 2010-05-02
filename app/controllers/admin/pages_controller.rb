@@ -3,7 +3,7 @@ class Admin::PagesController < Admin::BaseController
   sections 'contents'
   
   def index
-    @pages = Page.all
+    @pages = current_site.pages.roots
   end
   
   def new
@@ -36,6 +36,19 @@ class Admin::PagesController < Admin::BaseController
       flash_error!
       render :action => "edit"
     end
+  end
+  
+  def sort
+    @page = current_site.pages.find(params[:id])
+    @page.sort_children!(params[:children])
+    
+    render :json => { :message => translate_flash_msg(:successful) }
+  end
+  
+  def get_path
+    page = current_site.pages.build(:parent => current_site.pages.find(params[:parent_id]), :slug => params[:slug].slugify)
+    
+    render :json => { :url => page.url, :slug => page.slug }
   end
   
   def destroy

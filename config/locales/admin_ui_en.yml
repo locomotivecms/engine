@@ -30,6 +30,9 @@ en:
         contents: Contents
         assets: Assets
         settings: Settings
+        pages: Pages
+        layouts: Layouts
+        snippets: Snippets
       footer:
         developed_by: Developed by
         powered_by: and Powered by
@@ -37,6 +40,8 @@ en:
         back: Back without saving
         create: Create
         update: Update
+      attributes:
+        body: Body
         
     pages:
       index:
@@ -44,14 +49,29 @@ en:
         no_items: "There are no pages for now. Just click <a href=\"{{url}}\">here</a> to create the first one."
         new: new page
         
+    layouts:
+      index:
+        title: Listing layouts
+        no_items: "There are no layouts for now. Just click <a href=\"{{url}}\">here</a> to create the first one."
+        new: new layout
+
+    snippets:
+      index:
+        title: Listing snippets
+        no_items: "There are no snippets for now. Just click <a href=\"{{url}}\">here</a> to create the first one."
+        new: new snippet
+        
   formtastic:
     titles:
       information: General information
       meta: Meta
+      code: Code
     hints:
       page:
         keywords: "Meta keywords used within the head tag of the page. They are separeted by an empty space. Required for SEO." 
         description: "Meta description used within the head tag of the page. Required for SEO." 
+      snippet:
+        slug: "You need to know it in order to insert the snippet inside a page or a layout"
       
   buttons:
     login: Log in

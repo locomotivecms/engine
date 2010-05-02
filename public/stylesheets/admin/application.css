@@ -160,8 +160,9 @@ div#uploadAssetsInputQueue { display: none; }
 	background: white;
 }
 
+#pages-list ul { list-style: none; margin: 10px 0 10px 40px; padding: 0; }
+
 #pages-list li {
-	height: 31px;
 	margin-bottom: 10px;	
 	position: relative;
 	clear: both;
@@ -173,6 +174,11 @@ div#uploadAssetsInputQueue { display: none; }
 	background: transparent url(/images/admin/list/item-left.png) no-repeat left 0;
 	height: 31px;
 	width: 18px;
+}
+
+#pages-list ul.folder li em {
+	background-position: left -31px;
+	cursor: move;
 }
 
 #pages-list li .toggler { 
@@ -217,24 +223,8 @@ div#uploadAssetsInputQueue { display: none; }
 	outline: none;
 }
 
-#pages-list li.error .more { top: 16px; }
-
-
-#pages-list li.depth-1 { margin-left: 40px; }
-#pages-list li.depth-1.index { margin-left: 0px; }
-#pages-list li.depth-1.error { border-top: 1px dotted #bbbbbd; padding-top: 10px; margin-left: 0px; }
-
-#pages-list li.depth-2 { margin-left: 80px; }
-#pages-list li.depth-2.index { margin-left: 40px; }
-
-#pages-list li.depth-3 { margin-left: 120px; }
-#pages-list li.depth-3.index { margin-left: 80px; }
-
-#pages-list li.depth-4 { margin-left: 160px; }
-#pages-list li.depth-4.index { margin-left: 120px; }
-
-#pages-list li.depth-5 { margin-left: 200px; }
-#pages-list li.depth-5.index { margin-left: 160px; }
+#pages-list li.not-found { border-top: 1px dotted #bbbbbd; padding-top: 10px; margin-left: 0px; }
+#pages-list li.not-found .more { top: 16px; }
 
 /* ___ Progress bar ___ */
 

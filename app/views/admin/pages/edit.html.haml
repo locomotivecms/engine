@@ -1,52 +1,18 @@
 - title link_to(@page.title.blank? ? @page.title_was : @page.title, '#', :rel => 'page_title', :title => t('.ask_for_title'), :class => 'editable')
 
+- content_for :head do
+  = javascript_include_tag 'admin/pages'
+
 - content_for :submenu do
-  = render 'admin/shared/contents_menu'
+  = render 'admin/shared/menu/contents'
 
 - content_for :buttons do
   = admin_button_tag :show, '#', :class => 'show'
 
 %p= t('.help')
 
-= semantic_form_for @page, :url => admin_page_url(@page), :html => { :class => 'shortcut-enabled' } do |form|
+= semantic_form_for @page, :url => admin_page_url(@page) do |form|
 
   = render 'form', :f => form
   
   = render 'admin/shared/form_actions', :back_url => admin_pages_url, :button_label => :update
-
-
-/ <% content_for :title do %>
-/   <%= link_to @page.title.blank? ? @page.title_was : @page.title, '#', :class => 'editable' %>
-/ <% end %>
-/ 
-/ <% content_for :buttons do %>
-/   <% show_page_button(@page) %>
-/ <% end %>
-/ 
-/ <p><%= t('admin.pages.edit.help') %></p>
-/ 
-/ <% semantic_form_for @page, :url => admin_page_url(@page), :html => { :class => 'save-shortcut' } do |form| %>
-/ 
-/   <%= render :partial => 'form', :locals => { :f => form } %>
-/ 
-/   <div class="actions">
-/     <div class="span-12">
-/       <p>
-/         <%= link_to '&larr;&nbsp;' + t('admin.common.buttons.back'), admin_pages_url %>
-/       </p>
-/     </div>
-/     
-/     <div class="span-12 last">
-/       <p>
-/         <button class="button light" type="submit">
-/           <span><%= t('admin.common.buttons.update') %></span>
-/         </button>
-/       </p>
-/     </div>
-/     <div class="clear"></div>
-/   </div>
-/ <% end %>
-/ 
-/ <% content_for :submenu do %>
-/   <%= render :partial => '/shared/admin/contents_menu' %>
-/ <% end %>

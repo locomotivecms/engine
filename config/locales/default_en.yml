@@ -3,3 +3,4 @@ en:
       messages:
         domain_taken: "{{value}} is already taken"
         invalid_domain: "{{value}} is invalid"
+        missing_content_for_layout: "should contain 'content_for_layout' liquid tag"

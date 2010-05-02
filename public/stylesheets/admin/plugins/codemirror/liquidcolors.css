@@ -1,0 +1,35 @@
+span.liquid-punctuation {
+  color: silver;
+}
+
+span.liquid-bad-punctuation {
+  color: red;
+  text-decoration: underline;
+}
+
+span.liquid-text {
+  color: black;
+}
+
+span.liquid-variable {
+  color: magenta;
+}
+
+span.liquid-string {
+  color: green;
+}
+
+span.liquid-tag-name {
+  color: green;
+  font-weight: bold;
+}
+
+span.liquid-keyword {
+  color: black;
+  font-weight: bold;
+}
+
+span.liquid-tag-name {
+  color: black;
+  font-weight: bold;
+}

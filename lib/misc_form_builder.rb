@@ -20,7 +20,7 @@ class MiscFormBuilder < Formtastic::SemanticFormBuilder
     html += template.capture(&block) || ''
     html += self.errors_on(name) || ''
 
-    template.content_tag(:li, html, :class => "#{options[:css]} #{'error' unless @object.errors[name].empty?}")
+    template.content_tag(:li, template.find_and_preserve(html), :class => "#{options[:css]} #{'error' unless @object.errors[name].empty?}")
   end
   
 end

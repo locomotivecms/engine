@@ -5,8 +5,24 @@ x admin layout
 x logout button
 x slugify page
 x validation page slug
-- sitemap
+x update position when assigning a new parent
+x remove all descendants
+x slug from title
+! update "path" when changing slug (new page too) ?
+x mettre a jour le chemin dans _form si slug et/ou parent change
+x slug for 404 and Index pages can not be modified
+x store node closed or open in cookies
+x snippets section
+x menu items have to be translated
+x layout needs at least content_for_layout
+- validates_uniqueness_of :slug, :scope => :id
+- page parts
+- can not delete index + 404 pages
+- slug unique within a folder
 - pages section (CRUD)
+- refactoring page.rb => create module pagetree
 - my account section (part of settings)
-- snippets section
 - layouts section
+- create 404 + index pages once a site is created
+- refactoring admin crud (pages + layouts + snippets)
+- remove all pages, snippets, ...etc when destroying a website

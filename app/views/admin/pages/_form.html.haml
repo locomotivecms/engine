@@ -2,8 +2,10 @@
   
   = f.input :title
   
-  = f.custom_input :path, :css => 'path' do
-    & /#{f.text_field :path}.html
+  - if not @page.index? and not @page.not_found?
+    = f.input :parent_id, :as => :select, :collection => parent_pages_options, :include_blank => false
+      
+  = f.input :slug, :required => false, :hint => @page.slug.blank? ? '&nbsp;' : @page.url, :input_html => { :data_url => get_path_admin_pages_url, :disabled => @page.index? || @page.not_found? }
   
   = f.custom_input :published, :css => 'toggle' do
     = f.check_box :published

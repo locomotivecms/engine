@@ -17,7 +17,13 @@ Locomotive::Application.routes.draw do |map|
   namespace 'admin' do
     root :to => 'pages#index'
     
-    resources :pages
+    resources :pages do  
+      put :sort, :on => :member
+      get :get_path, :on => :collection 
+    end 
+    
+    resources :layouts
+    resources :snippets
     
     # get 'login' => 'sessions#new', :as => :new_account_session
     # post 'login' => 'sessions#create', :as => :account_session

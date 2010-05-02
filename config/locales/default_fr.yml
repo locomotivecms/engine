@@ -27,3 +27,4 @@ fr:
       even: "doit être pair"
       
       domain_taken: "{{value}} a été déjà pris"
+      missing_content_for_layout: "doit contenir le tag liquid 'content_for_layout'"
