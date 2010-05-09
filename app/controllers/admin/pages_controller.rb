@@ -8,10 +8,11 @@ class Admin::PagesController < Admin::BaseController
   
   def new
     @page = current_site.pages.build
+    @page.parts << PagePart.build_body_part
   end
   
   def edit
-    @page = current_site.pages.find(params[:id])
+    @page = current_site.pages.find(params[:id])  
   end
   
   def create

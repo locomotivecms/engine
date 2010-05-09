@@ -6,4 +6,10 @@ class Admin::SessionsController < Devise::SessionsController
   
   before_filter :require_site
   
+  protected
+  
+  def after_sign_in_path_for(resource)
+    admin_pages_url
+  end
+  
 end

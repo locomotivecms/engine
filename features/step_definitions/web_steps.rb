@@ -6,6 +6,7 @@
 
 
 require 'uri'
+require 'cgi'
 require File.expand_path(File.join(File.dirname(__FILE__), "..", "support", "paths"))
 
 module WithinHelpers
@@ -147,7 +148,8 @@ end
 
 Then /^the "([^\"]*)" field(?: within "([^\"]*)")? should contain "([^\"]*)"$/ do |field, selector, value|
   with_scope(selector) do
-    field_value = find_field(field).value
+    field = find_field(field)
+    field_value = (field.tag_name == 'textarea') ? field.text : field.value
     if field_value.respond_to? :should
       field_value.should =~ /#{value}/
     else
@@ -158,11 +160,12 @@ end
 
 Then /^the "([^\"]*)" field(?: within "([^\"]*)")? should not contain "([^\"]*)"$/ do |field, selector, value|
   with_scope(selector) do
-    field_value = find_field(field).value
+    field = find_field(field)
+    field_value = (field.tag_name == 'textarea') ? field.text : field.value
     if field_value.respond_to? :should_not
       field_value.should_not =~ /#{value}/
     else
-      assert_no_match(/#{value}/, field_value.value)
+      assert_no_match(/#{value}/, field_value)
     end
   end
 end
@@ -199,9 +202,11 @@ Then /^(?:|I )should be on (.+)$/ do |page_name|
 end
 
 Then /^(?:|I )should have the following query string:$/ do |expected_pairs|
-  actual_params   = CGI.parse(URI.parse(current_url).query)
-  expected_params = Hash[expected_pairs.rows_hash.map{|k,v| [k,[v]]}]
- 
+  query = URI.parse(current_url).query
+  actual_params = query ? CGI.parse(query) : {}
+  expected_params = {}
+  expected_pairs.rows_hash.each_pair{|k,v| expected_params[k] = v.split(',')} 
+  
   if actual_params.respond_to? :should
     actual_params.should == expected_params
   else

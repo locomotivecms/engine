@@ -3,7 +3,6 @@ module Admin::PagesHelper
   def parent_pages_options
     roots = current_site.pages.roots.where(:slug.ne => '404').and(:_id.ne => @page.id)
     
-    puts roots.to_a.inspect
     returning [] do |list|
       roots.each do |page|
         list = add_children_to_options(page, list)

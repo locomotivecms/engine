@@ -14,8 +14,10 @@ end
 
 ## various patches
 
-# Enabling scope in validates_uniqueness_of validation
+
 module Mongoid #:nodoc:
+  
+  # Enabling scope in validates_uniqueness_of validation
   module Validations #:nodoc:
     class UniquenessValidator < ActiveModel::EachValidator
       def validate_each(document, attribute, value, scope = nil)
@@ -24,6 +26,16 @@ module Mongoid #:nodoc:
         return if document.class.where(criteria).empty?
         document.errors.add(attribute, :taken, :default => options[:message], :value => value)
       end
+    end
+  end
+  
+  # FIX BUG #71 http://github.com/durran/mongoid/commit/47a97094b32448aa09965c854a24c78803c7f42e
+  module Associations
+    module InstanceMethods      
+      def update_embedded(name)
+        association = send(name)
+        association.to_a.each { |doc| doc.save if doc.changed? || doc.new_record? } unless association.blank?
+      end      
     end
   end
 end

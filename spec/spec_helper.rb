@@ -9,7 +9,7 @@ require 'rspec/rails'
 Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each {|f| require f}
 
 Rspec.configure do |config|
-  config.mock_with :rspec
+  config.mock_with :mocha
   
   config.before(:each) do
     Mongoid.master.collections.each(&:drop)

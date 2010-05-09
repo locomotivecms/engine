@@ -48,13 +48,7 @@ describe Page do
       Factory.build(:page, :slug => 'index', :site => nil).index?.should be_true
       Factory.build(:page, :slug => 'index', :depth => 1, :site => nil).index?.should be_false
     end
-      
-    it 'should add the body part' do
-      page = Factory(:page)
-      page.parts.should_not be_empty
-      page.parts.first.name.should == 'body'
-    end
-    
+          
     it 'should have normalized slug' do
       page = Factory.build(:page, :slug => ' Valid  ité.html ')
       page.valid?
@@ -63,6 +57,120 @@ describe Page do
       page = Factory.build(:page, :title => ' Valid  ité.html ', :slug => nil, :site => page.site)
       page.should be_valid
       page.slug.should == 'Valid_ite'
+    end
+    
+  end
+  
+  describe 'accepts_nested_attributes_for used for parts' do
+    
+    before(:each) do
+      @page = Factory.build(:page)
+      @page.parts.build(:name => 'Main content', :slug => 'layout')
+      @page.parts.build(:name => 'Left column', :slug => 'left_sidebar')
+      @page.parts.build(:name => 'Right column', :slug => 'right_sidebar')
+    end
+    
+    it 'should add parts' do
+      attributes = { '0' => { 'slug' => 'footer', 'name' => 'A custom footer', 'value' => 'End of page' } }
+      @page.parts_attributes = attributes
+      @page.parts.size.should == 4
+      @page.parts.last.slug.should == 'footer'
+      @page.parts.last.disabled.should == false
+    end
+    
+    it 'should update parts' do
+      attributes = { '0' => { 'slug' => 'layout', 'name' => 'A new name', 'value' => 'Hello world' } }
+      @page.parts_attributes = attributes
+      @page.parts.size.should == 3
+      @page.parts.first.slug.should == 'layout'
+      @page.parts.first.name.should == 'A new name'
+      @page.parts.first.value.should == 'Hello world'
+    end
+    
+    it 'should disable parts' do
+      attributes = { '0' => { 'slug' => 'left_sidebar', 'disabled' => 'true' } }
+      @page.parts_attributes = attributes
+      @page.parts.size.should == 3
+      @page.parts.first.disabled.should == true
+      @page.parts[1].disabled.should == true
+      @page.parts[2].disabled.should == true
+    end
+    
+    it 'should add/update/disable parts at the same time' do
+      @page.parts.size.should == 3
+      
+      attributes = {
+        '0' => { 'slug' => 'layout', 'name' => 'Body', 'value' => 'Hello world' },
+        '1' => { 'slug' => 'left_sidebar', 'disabled' => 'true' },
+        '2' => { 'id' => @page.parts[2].id, 'value' => 'Content from right sidebar', 'disabled' => 'false' }
+      }
+      @page.parts_attributes = attributes
+      @page.parts.size.should == 3
+            
+      @page.parts[0].value.should == 'Hello world'
+      @page.parts[1].disabled.should == true
+      @page.parts[2].disabled.should == false    
+    end
+    
+    it 'should update it with success (mongoid bug #71)' do
+      @page.save
+      @page = Page.first
+      
+      @page.parts.size.should == 3      
+      @page.parts_attributes = { '0' => { 'slug' => 'header', 'name' => 'A custom header', 'value' => 'Head of page' } }
+      @page.parts.size.should == 4
+      
+      @page.save      
+      @page = Page.first
+      
+      @page.parts.size.should == 4
+    end
+    
+  end
+  
+  describe 'dealing with page parts' do # DUPLICATED ?
+    
+    before(:each) do
+      @page = Factory.build(:page)
+      @parts = [
+        PagePart.new(:name => 'Main content', :slug => 'layout'),
+        PagePart.new(:name => 'Left column', :slug => 'left_sidebar'),
+        PagePart.new(:name => 'Right column', :slug => 'right_sidebar')
+      ]      
+      @page.send(:update_parts, @parts)
+    end
+        
+    it 'should add new parts from an array of parts' do
+      @page.parts.size.should == 3
+      @page.parts.shift.name.should == 'Main content'
+      @page.parts.shift.name.should == 'Left column'
+      @page.parts.shift.name.should == 'Right column'
+    end
+    
+    it 'should update parts' do
+      @parts[1].name = 'Very left column'
+      @page.send(:update_parts, @parts)
+      @page.parts.size.should == 3
+      @page.parts[1].name.should == 'Very left column'
+      @page.parts[1].slug.should == 'left_sidebar'
+    end
+    
+    it 'should disable parts' do
+      @parts = [@parts.shift, @parts.pop]
+      @page.send(:update_parts, @parts)
+      @page.parts.size.should == 3
+      @page.parts[1].name.should == 'Left column'
+      @page.parts[1].disabled.should be_true
+    end
+    
+    it 'should enable parts previously disabled' do
+      parts_at_first = @parts.clone
+      @parts = [@parts.shift, @parts.pop]
+      @page.send(:update_parts, @parts)
+      @page.send(:update_parts, parts_at_first)
+      @page.parts.size.should == 3
+      @page.parts[1].name.should == 'Left column'
+      @page.parts[1].disabled.should be_true
     end
     
   end
@@ -125,22 +233,21 @@ describe Page do
     
   describe 'acts as list' do
      
-     before(:each) do
-       @home = Factory(:page)
-       @child_1 = Factory(:page, :title => 'Subpage 1', :slug => 'foo', :parent => @home, :site => @home.site)
-       @child_2 = Factory(:page, :title => 'Subpage 2', :slug => 'bar', :parent => @home, :site => @home.site)  
-       @child_3 = Factory(:page, :title => 'Subpage 3', :slug => 'acme', :parent => @home, :site => @home.site)
-     end
+    before(:each) do
+      @home = Factory(:page)
+      @child_1 = Factory(:page, :title => 'Subpage 1', :slug => 'foo', :parent => @home, :site => @home.site)
+      @child_2 = Factory(:page, :title => 'Subpage 2', :slug => 'bar', :parent => @home, :site => @home.site)  
+      @child_3 = Factory(:page, :title => 'Subpage 3', :slug => 'acme', :parent => @home, :site => @home.site)
+    end
      
-     it 'should be at the bottom of the folder once created' do
-       [@child_1, @child_2, @child_3].each_with_index { |c, i| c.position.should == i + 1 }
-     end
+    it 'should be at the bottom of the folder once created' do
+      [@child_1, @child_2, @child_3].each_with_index { |c, i| c.position.should == i + 1 }
+    end
+  
+    it 'should have its position updated if a sibling is removed' do
+      @child_2.destroy
+      [@child_1, @child_3.reload].each_with_index { |c, i| c.position.should == i + 1 }
+    end
      
-     it 'should have its position updated if a sibling is removed' do
-       @child_2.destroy
-       [@child_1, @child_3.reload].each_with_index { |c, i| c.position.should == i + 1 }
-     end
-     
-   end
-      
+  end      
 end

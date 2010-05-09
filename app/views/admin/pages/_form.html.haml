@@ -1,6 +1,12 @@
+- content_for :head do
+  = javascript_include_tag 'admin/plugins/codemirror/codemirror', 'admin/plugins/wslide', 'admin/pages', 'admin/page_parts'
+  = stylesheet_link_tag 'admin/page_parts'
+
 = f.foldable_inputs :name => :information do
   
   = f.input :title
+  
+  = f.input :layout_id, :as => :select, :collection => current_site.layouts.all, :input_html => { :data_url => admin_layout_page_parts_url('_id_to_replace_') }
   
   - if not @page.index? and not @page.not_found?
     = f.input :parent_id, :as => :select, :collection => parent_pages_options, :include_blank => false
@@ -15,57 +21,17 @@
   = f.input :keywords
   = f.input :description
   
+#page-parts
+  .nav
+    - @page.parts.each_with_index do |part, index|
+      = link_to content_tag(:span, part.name), "#parts-#{index + 1}", :id => "control-part-#{part.slug}", :class => "part-#{index} #{'on' if index == 0}", :style => "#{'display: none' if part.disabled?}"
+    .clear
 
-
-
-/ <% f.foldable_inputs :name => :information do %>
-/   <%= f.input :title, :required => false %>
-/   
-/   <% f.custom_input :path, :css => 'path' do %>
-/     /<%= f.text_field :path %>.html
-/   <% end %>
-/   
-/   <% f.custom_input :layout do %>
-/     <%= f.select :layout_id, current_site.layouts.all.collect { |l| [l.name, l.id] }, :include_blank => true %>
-/   <% end %>
-/   
-/   <%= f.input :keywords, :required => false %>  
-/   <%= f.input :description, :required => false %>
-/   
-/   <% f.custom_input :cache_expires_in do %>
-/     <%= f.select :cache_expires_in, options_for_page_cache_expiration %>
-/   <% end %>
-/   
-/   <% f.custom_input :visible, :css => 'checkbox' do %>
-/     <%= f.check_box :visible %>
-/   <% end %>
-/ <% end %>
-/ 
-/ <% unless f.object.new_record? %>
-/   <div id="page-parts">
-/     <div class="jcarousel-control">
-/       <% if body_part? %>
-/       <a class="part-0 on"><%= t('admin.pages.form.body') %></a><span></span><% end -%><% @page.parts.active.each_with_index do |p, index| -%><a class="part-<%= index + (body_part? ? 1 : 0) %> <%= 'on' if !body_part? && index == 0 %>"><%= p.slug.humanize %></a><span></span>
-/       <% end %>
-/     </div>
-/   
-/     <div class="wrapper">
-/       <ul>
-/         <% if body_part? %>
-/         <li><code><%= f.text_area :body %></code></li>
-/         <% end %>
-/       
-/         <% f.fields_for :parts do |g| %>
-/           <% unless g.object.disabled? %>
-/             <li><code><%= g.text_area :body, :class => 'big' %></code></li>
-/           <% end %>
-/         <% end %>
-/       </ul>
-/     </div>
-/   </div>
-/   
-/   <% content_for :head do %>  
-/     <%= javascript_include_tag 'admin/plugins/iphoneSwitch', 'admin/plugins/checkbox', 'admin/plugins/carousel', 'codemirror/codemirror', 'admin/pages' %>
-/     <%= stylesheet_link_tag 'carousel', 'admin/page_parts' %>
-/   <% end %>
-/ <% end %>
+  .wrapper
+    %ul{ :id => "parts" }
+      = f.fields_for :parts do |g|
+        %li{ :style => "#{'display: none' if g.object.disabled?}" }
+          %code= g.text_area :value
+          = g.hidden_field :name
+          = g.hidden_field :slug
+          = g.hidden_field :disabled, :class => 'disabled'

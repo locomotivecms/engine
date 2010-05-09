@@ -5,7 +5,7 @@ development:
   <<: *defaults
   database: locomotive_dev
   
-test:
+test: &test
   <<: *defaults
   database: locomotive_test
 
@@ -15,3 +15,6 @@ production:
   username: user
   password: pass
   database: fanboy
+
+cucumber:
+  <<: *test

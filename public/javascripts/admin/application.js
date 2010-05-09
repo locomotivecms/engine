@@ -24,7 +24,7 @@ var addCodeMirrorEditor = function(type, el, parser) {
 	if (type == 'liquid') type = 'xml';
 	
 	var editor = CodeMirror.fromTextArea(el.attr('id'), {
-		height: "330px",
+		height: "400px",
 		parserfile: parserfile,
 		stylesheet: ["/stylesheets/admin/plugins/codemirror/" + type + "colors.css", "/stylesheets/admin/plugins/codemirror/liquidcolors.css"],
 		path: "/javascripts/admin/plugins/codemirror/",

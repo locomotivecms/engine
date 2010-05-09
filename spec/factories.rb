@@ -35,11 +35,11 @@ Factory.define :layout do |l|
   l.name '1 main column + sidebar'
   l.value %{<html>
     <head>
-      <title>Hello world !</title>
+      <title>My website</title>
     </head>
     <body>
-      <div id="main">\{\{ content_for_layout \}\}</div>
       <div id="sidebar">\{\{ content_for_sidebar "Left Sidebar"\}\}</div>
+      <div id="main">\{\{ content_for_layout \}\}</div>
     </body>
   </html>}
 end

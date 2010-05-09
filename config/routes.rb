@@ -22,7 +22,9 @@ Locomotive::Application.routes.draw do |map|
       get :get_path, :on => :collection 
     end 
     
-    resources :layouts
+    resources :layouts do
+      resources :page_parts, :only => :index
+    end
     resources :snippets
     
     # get 'login' => 'sessions#new', :as => :new_account_session

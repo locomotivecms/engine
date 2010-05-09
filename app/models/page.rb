@@ -13,6 +13,7 @@ class Page
   
   ## associations ##
   belongs_to_related :site
+  belongs_to_related :layout
   embeds_many :parts, :class_name => 'PagePart'
     
   ## callbacks ##
@@ -22,7 +23,7 @@ class Page
   before_save :change_parent
   before_create { |p| p.fix_position(false) }
   before_create :add_to_list_bottom
-  before_create :add_body_part
+  # before_create :add_body_part
   before_destroy :remove_from_list  
   
   ## validations ##
@@ -34,6 +35,7 @@ class Page
   
   ## behaviours ##
   acts_as_tree :order => ['position', 'asc']
+  # accepts_nested_attributes_for :parts, :allow_destroy => true
   
   ## methods ##
   
@@ -45,8 +47,12 @@ class Page
     self.slug == '404' && self.depth.to_i == 0
   end
   
+  def parts_attributes=(attributes)    
+    self.update_parts(attributes.values.map { |attrs| PagePart.new(attrs) })
+  end
+  
   def add_body_part
-    self.parts.build :name => 'body', :value => '---body here---'
+    self.parts.build :name => 'body', :slug => 'layout', :value => '---body here---'
   end
     
   def parent=(owner) # missing in acts_as_tree
@@ -76,10 +82,34 @@ class Page
   
   def ancestors
     return [] if root?
-    self.class.find(self.path.clone << nil) # bug in mongoid (it does not handle array with on element) 
+    self.class.find(self.path.clone << nil) # bug in mongoid (it does not handle array with one element) 
   end
   
   protected
+  
+  def update_parts(parts)
+    performed = []
+    
+    # add / update
+    parts.each do |part|
+      if (existing = self.parts.detect { |p| p.id == part.id || p.slug == part.slug })
+        existing.attributes = part.attributes.delete_if { |k, v| %w{_id slug}.include?(k) }
+      else
+        self.parts << (existing = part)
+      end
+      performed << existing unless existing.disabled?
+    end
+    
+    # disable missing parts
+    (self.parts.map(&:slug) - performed.map(&:slug)).each do |slug|
+      self.parts.detect { |p| p.slug == slug }.disabled = true
+    end
+  end
+  
+  def update_parts!(new_parts)
+    self.update_parts(new_parts)
+    self.save
+  end
   
   def change_parent
     if self.parent_id_changed?

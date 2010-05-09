@@ -1,8 +1,5 @@
 - title link_to(@page.title.blank? ? @page.title_was : @page.title, '#', :rel => 'page_title', :title => t('.ask_for_title'), :class => 'editable')
 
-- content_for :head do
-  = javascript_include_tag 'admin/pages'
-
 - content_for :submenu do
   = render 'admin/shared/menu/contents'
 

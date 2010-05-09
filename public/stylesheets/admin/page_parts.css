@@ -1,0 +1,60 @@
+#page-parts .wrapper {
+	background: #ebedf4 url(/images/admin/form/footer.png) no-repeat 0 bottom;
+	width: 880px;	
+	padding: 20px 20px;
+}
+
+#page-parts { 
+	background: transparent url(/images/admin/form/header.png) no-repeat 0 0;
+}
+
+#page-parts .control {
+	height: 30px;
+}
+
+#page-parts .nav a {
+	float: left;
+	display: block;
+	height: 30px;
+	padding: 0px 0px 0 11px;
+	color: #8b8d9a;
+	text-decoration: none;
+	font-size: 0.8em;
+	cursor: pointer;
+	outline: none;
+}
+
+#page-parts .nav a span {
+	display: inline-block;
+	height: 26px;
+	padding: 4px 11px 0 0px;
+}
+
+#page-parts .nav a:first-child { padding-left: 22px; }
+#page-parts .nav a:first-child span { padding-right: 13px; }
+
+#page-parts .nav a.on {
+	color: #1e1f26;
+	font-weight: bold;
+	background: transparent url(/images/admin/form/header-left-on.png) no-repeat 0 0;
+}
+
+#page-parts .nav a.on span {
+	background: transparent url(/images/admin/form/header-right-on.png) no-repeat right 0;
+}
+
+#page-parts .nav a:first-child.on {
+	background: transparent url(/images/admin/form/header-first-on.png) no-repeat 0 0;
+}
+
+#page-parts .wslide-wrap {
+	border: 1px solid #a6a8b8;
+}
+
+#page-parts code { display: block; background: white; height: 400px; }
+#page-parts code textarea { 
+	width: 880px;
+	height: 400px;
+	background: transparent url(../../images/admin/form/field.png) repeat-x 0 0; 
+	border: 0px;
+}

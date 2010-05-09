@@ -20,7 +20,7 @@ en:
         
     messages:
       confirm: Are you sure ?
-        
+      
     shared:
       header:
         welcome: Welcome, {{name}}
@@ -48,6 +48,9 @@ en:
         title: Listing pages
         no_items: "There are no pages for now. Just click <a href=\"{{url}}\">here</a> to create the first one."
         new: new page
+      messages:
+        successful_create: "Page was successfully created."
+        successful_update: "Page was successfully updated."
         
     layouts:
       index:

@@ -5,7 +5,7 @@ class Admin::LayoutsController < Admin::BaseController
   def index
     @layouts = current_site.layouts
   end
-  
+    
   def new
     @layout = current_site.layouts.build
   end

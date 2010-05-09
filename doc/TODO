@@ -15,14 +15,19 @@ x store node closed or open in cookies
 x snippets section
 x menu items have to be translated
 x layout needs at least content_for_layout
-- validates_uniqueness_of :slug, :scope => :id
-- page parts
-- can not delete index + 404 pages
+x parts js/css:
+  x codemirror
+  x change bg (separator)
+  x when a tab is selected, if we change layout, we should move to the first visible one
+x page parts
+x layout part should be always in first
+x pages section (CRUD)
 - slug unique within a folder
-- pages section (CRUD)
+- validates_uniqueness_of :slug, :scope => :id
 - refactoring page.rb => create module pagetree
 - my account section (part of settings)
 - layouts section
 - create 404 + index pages once a site is created
+- can not delete index + 404 pages
 - refactoring admin crud (pages + layouts + snippets)
 - remove all pages, snippets, ...etc when destroying a website
