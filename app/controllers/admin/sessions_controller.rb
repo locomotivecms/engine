@@ -1,15 +1,17 @@
-class Admin::SessionsController < Devise::SessionsController
+module Admin
+  class SessionsController < Devise::SessionsController
     
-  include Locomotive::Routing::SiteDispatcher
+    include Locomotive::Routing::SiteDispatcher
 
-  layout 'login'
+    layout 'login'
   
-  before_filter :require_site
+    before_filter :require_site
   
-  protected
+    protected
   
-  def after_sign_in_path_for(resource)
-    admin_pages_url
+    def after_sign_in_path_for(resource)
+      admin_pages_url
+    end
+  
   end
-  
 end

@@ -1,9 +1,11 @@
-class Admin::PasswordsController < Devise::PasswordsController
+module Admin
+  class PasswordsController < Devise::PasswordsController
     
-  include Locomotive::Routing::SiteDispatcher
+    include Locomotive::Routing::SiteDispatcher
 
-  layout 'login'
+    layout 'login'
   
-  before_filter :require_site
+    before_filter :require_site
   
+  end
 end

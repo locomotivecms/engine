@@ -1,5 +1,36 @@
 en:
-  admin:
+  admin:    
+    buttons:
+      login: Log in
+      send_password: Send
+      change_password: Update
+      new_item: "+ add"
+                
+    messages:
+      confirm: Are you sure ?
+      
+    shared:
+      header:
+        welcome: Welcome, {{name}}
+        see: See website
+        logout: Log out
+      menu:
+        contents: Contents
+        assets: Assets
+        settings: Settings
+        pages: Pages
+        layouts: Layouts
+        snippets: Snippets
+        account: My account
+        site: Site
+      footer:
+        developed_by: Developed by
+        powered_by: and Powered by
+      form_actions:
+        back: Back without saving
+        create: Create
+        update: Update
+        
     sessions:
       new:
         title: Login
@@ -16,38 +47,17 @@ en:
         title: Update my password
         link: "&rarr; Back to login page"
         password: "Your new password"
-        password_confirmation: "Confirmation of your new password"
-        
-    messages:
-      confirm: Are you sure ?
-      
-    shared:
-      header:
-        welcome: Welcome, {{name}}
-        see: See website
-        logout: Log out
-      menu:
-        contents: Contents
-        assets: Assets
-        settings: Settings
-        pages: Pages
-        layouts: Layouts
-        snippets: Snippets
-      footer:
-        developed_by: Developed by
-        powered_by: and Powered by
-      form_actions:
-        back: Back without saving
-        create: Create
-        update: Update
-      attributes:
-        body: Body
+        password_confirmation: "Confirmation of your new password"        
         
     pages:
       index:
         title: Listing pages
         no_items: "There are no pages for now. Just click <a href=\"{{url}}\">here</a> to create the first one."
         new: new page
+      page:
+        updated_at: updated at
+      edit:
+        show: show
       messages:
         successful_create: "Page was successfully created."
         successful_update: "Page was successfully updated."
@@ -64,20 +74,47 @@ en:
         no_items: "There are no snippets for now. Just click <a href=\"{{url}}\">here</a> to create the first one."
         new: new snippet
         
+    sites:
+      new:
+        title: New site
+        
+    current_sites:
+      edit:
+        new_membership: add account
+        
+    memberships:
+      new:
+        title: New membership
+        help: "Please give the account email to add. If it does not exist, you will be redirected to the account creation form."
+        
+    accounts:
+      new:
+        title: New account
+        
+    my_accounts:
+      edit:
+        new_site: new site
+        en: English
+        fr: French
+        
+        
   formtastic:
     titles:
       information: General information
       meta: Meta
       code: Code
+      credentials: Credentials
+      language: Language
+      sites: Sites
+      access_points: Access points
+      memberships: Accounts
+      membership_email: Account email
     hints:
       page:
         keywords: "Meta keywords used within the head tag of the page. They are separeted by an empty space. Required for SEO." 
         description: "Meta description used within the head tag of the page. Required for SEO." 
       snippet:
         slug: "You need to know it in order to insert the snippet inside a page or a layout"
-      
-  buttons:
-    login: Log in
-    send_password: Send
-    change_password: Update
+      site:
+        domain_name: "ex: locomotiveapp.org"
       

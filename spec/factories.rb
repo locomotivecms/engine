@@ -14,6 +14,12 @@ Factory.define :account do |a|
   a.locale 'en'
 end
 
+## Memberships ##
+Factory.define :membership do |m|
+  m.association :account, :factory => :account
+  m.admin true
+end
+
 ## Pages ##
 Factory.define :page do |p|
   p.association :site, :factory => :site

@@ -55,6 +55,6 @@
 #page-parts code textarea { 
 	width: 880px;
 	height: 400px;
-	background: transparent url(../../images/admin/form/field.png) repeat-x 0 0; 
+	background: transparent url(/images/admin/form/field.png) repeat-x 0 0; 
 	border: 0px;
 }

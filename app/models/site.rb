@@ -6,12 +6,12 @@ class Site
   field :name
   field :subdomain, :type => String
   field :domains, :type => Array, :default => []
-  field :account_ids, :type => Array, :default => []
   
   ## associations ##
   has_many_related :pages
   has_many_related :layouts
   has_many_related :snippets
+  embeds_many :memberships
   
   ## validations ##
   validates_presence_of     :name, :subdomain
@@ -21,23 +21,24 @@ class Site
   validate                  :domains_must_be_valid_and_unique  
   
   ## callbacks ##
+  after_create :create_default_pages!
   before_save :add_subdomain_to_domains
+  after_destroy :destroy_in_cascade!
   
   ## named scopes ##
   named_scope :match_domain, lambda { |domain| { :where => { :domains => domain } } }
-  named_scope :match_domain_with_exclusion_of, lambda { |domain, site| { :where => { :domains => domain, :id.ne => site.id } } }
+  named_scope :match_domain_with_exclusion_of, lambda { |domain, site| { :where => { :domains => domain, :_id.ne => site.id } } }
     
   ## behaviours ##
-  add_dirty_methods :domains
   
   ## methods ##
 
   def accounts
-    Account.criteria.in(:_id => self.account_ids)
+    Account.criteria.in(:_id => self.memberships.collect(&:account_id))
   end
   
-  def accounts=(models_or_ids)
-    self.account_ids = [*models_or_ids].collect { |object| object.respond_to?(:to_i) ? object : object.id }.uniq
+  def admin_memberships
+    self.memberships.find_all { |m| m.admin? }
   end
   
   def add_subdomain_to_domains
@@ -49,19 +50,39 @@ class Site
     (self.domains || []) - ["#{self.subdomain}.#{Locomotive.config.default_domain}"]
   end
   
+  def domains_with_subdomain
+    ((self.domains || []) + ["#{self.subdomain}.#{Locomotive.config.default_domain}"]).uniq
+  end
+  
   protected
   
   def domains_must_be_valid_and_unique
-    return if self.domains.empty? || (!self.new_record? && !self.domains_changed?)
-    
-    (self.domains_without_subdomain - (self.domains_was || [])) .each do |domain|
-      if not self.class.match_domain_with_exclusion_of(domain, self).first.nil?
+    return if self.domains.empty?
+            
+    self.domains_without_subdomain.each do |domain|
+      if not self.class.match_domain_with_exclusion_of(domain, self).empty?
         self.errors.add(:domains, :domain_taken, :value => domain)
       end
       
       if not domain =~ Locomotive::Regexps::DOMAIN
         self.errors.add(:domains, :invalid_domain, :value => domain)
       end
+    end
+  end
+  
+  def create_default_pages!
+    %w{index 404}.each do |slug|
+      self.pages.create({
+        :slug => slug, 
+        :title => I18n.t("attributes.defaults.pages.#{slug}.title"), 
+        :body => I18n.t("attributes.defaults.pages.#{slug}.body")
+      })
+    end
+  end
+  
+  def destroy_in_cascade!
+    %w{pages layouts snippets}.each do |association|
+      self.send(association).destroy_all
     end
   end
   

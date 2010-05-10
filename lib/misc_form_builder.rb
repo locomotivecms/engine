@@ -23,4 +23,13 @@ class MiscFormBuilder < Formtastic::SemanticFormBuilder
     template.content_tag(:li, template.find_and_preserve(html), :class => "#{options[:css]} #{'error' unless @object.errors[name].empty?}")
   end
   
+  def inline_errors_on(method, options = nil)
+    if render_inline_errors?
+      errors = @object.errors[method.to_sym]
+      template.content_tag(:span, [*errors].to_sentence.untaint, :class => 'inline-errors') if errors.present?
+    else
+      nil
+    end
+  end
+  
 end

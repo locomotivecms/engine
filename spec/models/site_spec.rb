@@ -47,9 +47,13 @@ describe Site do
   end
     
   it 'should validate uniqueness of domains' do
-    Factory(:site, :domains => %w{www.acme.net www.acme.com})  
+    Factory(:site, :domains => %w{www.acme.net www.acme.com}) 
+    
     (site = Factory.build(:site, :domains => %w{www.acme.com})).should_not be_valid
     site.errors[:domains].should == ["www.acme.com is already taken"]
+    
+    (site = Factory.build(:site, :subdomain => 'foo', :domains => %w{acme.example.com})).should_not be_valid
+    site.errors[:domains].should == ["acme.example.com is already taken"]
   end
   
   it 'should validate format of domains' do
@@ -83,10 +87,11 @@ describe Site do
   ## Associations ##
   
   it 'should have many accounts' do
-    account_1 = Factory(:account)
-    account_2 = Factory(:account, :name => 'homer', :email => 'homer@simpson.net')
-    site = Factory(:site, :accounts => [account_1, account_2, account_1])
-    site.account_ids.should == [account_1.id, account_2.id]
+    site = Factory.build(:site)
+    account_1, account_2 = Factory(:account), Factory(:account, :name => 'homer', :email => 'homer@simpson.net')
+    site.memberships.build(:account => account_1, :admin => true)
+    site.memberships.build(:account => account_2)
+    site.memberships.size.should == 2
     site.accounts.should == [account_1, account_2]
   end
   
@@ -96,6 +101,43 @@ describe Site do
     site = Factory(:site, :domains => %w{www.acme.net www.acme.com})
     site.domains.should == %w{www.acme.net www.acme.com acme.example.com}
     site.domains_without_subdomain.should == %w{www.acme.net www.acme.com}
+  end
+  
+  describe 'once created' do
+    
+    before(:each) do
+      @site = Factory(:site)
+    end
+    
+    it 'should create index and 404 pages' do
+      @site.pages.size.should == 2
+      @site.pages.first.slug.should == 'index'
+      @site.pages.last.slug.should == '404'
+    end
+    
+  end
+  
+  describe 'delete in cascade' do
+    
+    before(:each) do
+      @site = Factory(:site)
+    end
+    
+    it 'should destroy pages' do
+      @site.pages.expects(:destroy_all)
+      @site.destroy
+    end
+    
+    it 'should destroy layouts' do
+      @site.layouts.expects(:destroy_all)
+      @site.destroy
+    end
+    
+    it 'should destroy snippets' do
+      @site.snippets.expects(:destroy_all)
+      @site.destroy
+    end   
+    
   end
   
 end

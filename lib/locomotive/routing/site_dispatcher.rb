@@ -19,15 +19,20 @@ module Locomotive
         protected
         
         def fetch_site
-          @site = Site.match_domain(request.host).first
+          @current_site ||= Site.match_domain(request.host).first
         end
       
         def current_site
-          @site ||= fetch_site
+          @current_site || fetch_site
         end
       
         def require_site
           redirect_to application_root_url and return false if current_site.nil?
+        end
+        
+        def validate_site_membership
+          return if current_site && current_site.accounts.include?(current_account)          
+          redirect_to application_root_url
         end
         
         def application_root_url

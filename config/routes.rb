@@ -27,11 +27,17 @@ Locomotive::Application.routes.draw do |map|
     end
     resources :snippets
     
-    # get 'login' => 'sessions#new', :as => :new_account_session
-    # post 'login' => 'sessions#create', :as => :account_session
-    # get 'logout' => 'sessions#destroy', :as => :destroy_account_session    
-    # resource :password, :only => [:new, :create, :edit, :update], :controller => 'devise/passwords'    
+    resources :site
+    
+    resource :current_site
+    
+    resources :accounts
+    
+    resource :my_account
+    
+    resources :memberships    
   end
   
+  # magic url
   match '/' => 'pages#show'
 end

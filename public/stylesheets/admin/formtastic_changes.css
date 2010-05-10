@@ -217,7 +217,7 @@ form.formtastic fieldset ol li.item span.actions {
 
 /* ___ editable-list (content type fields and validations) ___ */
 
-form.formtastic fieldset.editable-list ol { padding-left: 20px; }
+form.formtastic fieldset.editable-list ol { padding-left: 20px; padding-right: 20px; width: 880px; }
 
 form.formtastic fieldset.editable-list ol li { margin-left: 0px !important; }
 
@@ -280,6 +280,15 @@ form.formtastic fieldset.editable-list ol li.added input:focus {
 	color: #787a89;
 	background: white url(/images/admin/form/field.png) repeat-x 0 0;
 	border: 1px solid #a6a8b8;
+}
+
+form.formtastic fieldset.editable-list ol li.added .inline-errors {
+	position: relative;
+	top: -1px;
+	padding: 2px 3px; 
+	background: #FFE5E5; 
+	color: #CE2525; 
+	font-size: 0.8em;	
 }
 
 form.formtastic fieldset.editable-list ol li.new {

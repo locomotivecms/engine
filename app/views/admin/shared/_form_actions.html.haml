@@ -1,7 +1,10 @@
 .actions
   .span-12
     %p
-      = link_to escape_once('&larr;&nbsp;') + t('.back'), back_url
+      - if defined?(back_url)
+        = link_to escape_once('&larr;&nbsp;') + t('.back'), back_url
+      - else
+        &nbsp;
       
   .span-12.last
     %p

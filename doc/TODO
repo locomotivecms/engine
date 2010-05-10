@@ -1,6 +1,3 @@
-- scoping
-- devise messages in French
-- localize devise emails
 x admin layout
 x logout button
 x slugify page
@@ -22,12 +19,31 @@ x parts js/css:
 x page parts
 x layout part should be always in first
 x pages section (CRUD)
-- slug unique within a folder
-- validates_uniqueness_of :slug, :scope => :id
-- refactoring page.rb => create module pagetree
-- my account section (part of settings)
-- layouts section
-- create 404 + index pages once a site is created
-- can not delete index + 404 pages
+x my account section (part of settings)
+x add new accounts
+x edit site settings
+x slug unique within a folder
+x layouts section
+x create new site
+x share session accross domains (only subdomains)
+x destroy site
+x remove all pages, snippets, ...etc when destroying a website
+x destroy account
+x can not delete the only one admin account for a site
+x create 404 + index pages once a site is created
+x can not delete index + 404 pages
+x validates_uniqueness_of :slug, :scope => :id
+x domain scoping when authenticating
+
+
+BACKLOG:
+- liquid rendering engine
+- theme assets
+- assets collection
+
+- devise messages in French
+- localize devise emails
 - refactoring admin crud (pages + layouts + snippets)
-- remove all pages, snippets, ...etc when destroying a website
+- refactoring page.rb => create module pagetree
+
+  

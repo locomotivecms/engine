@@ -2,6 +2,10 @@ require 'spec_helper'
  
 describe Page do
   
+  before(:each) do
+    Site.any_instance.stubs(:create_default_pages!).returns(true)
+  end
+  
   it 'should have a valid factory' do
     Factory.build(:page).should be_valid
   end
@@ -26,6 +30,17 @@ describe Page do
     page = Factory(:page)
     (page = Factory.build(:page, :site => page.site)).should_not be_valid
     page.errors[:slug].should == ["is already taken"]
+  end
+  
+  it 'should validate uniqueness of slug within a "folder"' do
+    site = Factory(:site)
+    root = Factory(:page, :slug => 'index', :site => site)
+    child_1 = Factory(:page, :slug => 'first_child', :parent => root, :site => site)
+    (page = Factory.build(:page, :slug => 'first_child', :parent => root, :site => site)).should_not be_valid
+    page.errors[:slug].should == ["is already taken"]
+    
+    page.slug = 'index'
+    page.valid?.should be_true
   end
   
   %w{admin stylesheets images javascripts}.each do |slug|
@@ -57,6 +72,28 @@ describe Page do
       page = Factory.build(:page, :title => ' Valid  ité.html ', :slug => nil, :site => page.site)
       page.should be_valid
       page.slug.should == 'Valid_ite'
+    end
+    
+  end
+  
+  describe 'delete' do
+    
+    before(:each) do 
+      @page = Factory.build(:page)
+    end
+    
+    it 'should delete index page' do
+      @page.stubs(:index?).returns(true)
+      lambda {
+        @page.destroy
+      }.should raise_error(Exception, 'You can not remove index or 404 pages')
+    end
+    
+    it 'should delete 404 page' do
+      @page.stubs(:not_found?).returns(true)
+      lambda {
+        @page.destroy
+      }.should raise_error(Exception, 'You can not remove index or 404 pages')
     end
     
   end

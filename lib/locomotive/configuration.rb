@@ -7,7 +7,8 @@ module Locomotive
       :default_domain   => 'rails.local.fr',
       :reserved_subdomains => %w{www admin email blog webmail mail support help site sites},
       # :forbidden_paths  => %w{layouts snippets stylesheets javascripts assets admin system api},
-      :reserved_slugs  => %w{stylesheets javascripts assets admin images api pages}
+      :reserved_slugs   => %w{stylesheets javascripts assets admin images api pages},
+      :locales          => %w{en fr}
     }
 
     cattr_accessor :settings

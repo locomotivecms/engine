@@ -8,7 +8,7 @@ describe LiquidTemplate do
   
   # Validations ##
   
-  %w{site name slug value}.each do |field|
+  %w{site name value}.each do |field|
     it "should validate presence of #{field}" do
       template = Factory.build(:liquid_template, field.to_sym => nil)
       template.should_not be_valid

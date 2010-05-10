@@ -20,12 +20,30 @@ module Mongoid #:nodoc:
   # Enabling scope in validates_uniqueness_of validation
   module Validations #:nodoc:
     class UniquenessValidator < ActiveModel::EachValidator
-      def validate_each(document, attribute, value, scope = nil)
-        criteria = { attribute => value, :_id.ne => document._id }        
-        criteria[scope] = document.send(scope) if scope        
-        return if document.class.where(criteria).empty?
-        document.errors.add(attribute, :taken, :default => options[:message], :value => value)
+      def validate_each(document, attribute, value)
+        conditions = { attribute => value, :_id.ne => document._id }
+        
+        if options.has_key?(:scope) && !options[:scope].nil?
+          [*options[:scope]].each do |scoped_attr|
+            conditions[scoped_attr] = document.attributes[scoped_attr]
+          end
+        end
+
+        # Rails.logger.debug "conditions = #{conditions.inspect} / #{options[:scope].inspect}"
+        
+        return if document.class.where(conditions).empty?
+
+        # if document.new_record? || key_changed?(document)
+          document.errors.add(attribute, :taken, :default => options[:message], :value => value)
+        # end
       end
+
+      # protected
+      # def key_changed?(document)
+      #   (document.primary_key || {}).each do |key|
+      #     return true if document.send("#{key}_changed?")
+      #   end; false
+      # end
     end
   end
   

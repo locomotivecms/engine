@@ -1,6 +1,5 @@
 class PagePart
   include Mongoid::Document
-  # include Mongoid::Timestamps  
 
   ## fields ##
   field :name, :type => String
@@ -11,8 +10,6 @@ class PagePart
     
   ## associations ##
   embedded_in :page, :inverse_of => :parts
-  
-  # attr_accessor :_delete
   
   ## callbacks ##
   # before_validate  { |p| p.slug ||= p.name.slugify if p.name.present? }  
@@ -25,12 +22,11 @@ class PagePart
   
   ## methods ##
   
-  # def _delete=(value)
-  #   puts "set _delete #{value.inspect}"
-  #   self.attributes[:_destroy] = true if %w(t 1 true).include?(value)
-  # end
-  
   def self.build_body_part
-    self.new(:name => I18n.t('admin.shared.attributes.body'), :slug => 'layout')
+    self.new({
+      :name => I18n.t('attributes.defaults.page_parts.name'), 
+      :value => I18n.t('attributes.defaults.pages.other.body'), 
+      :slug => 'layout'
+    })
   end
 end

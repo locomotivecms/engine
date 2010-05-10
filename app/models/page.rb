@@ -21,21 +21,21 @@ class Page
   before_validate :normalize_slug
   before_save { |p| p.parent_id = nil if p.parent_id.blank? }
   before_save :change_parent
+  before_create { |p| p.parts << PagePart.build_body_part }
   before_create { |p| p.fix_position(false) }
   before_create :add_to_list_bottom
-  # before_create :add_body_part
-  before_destroy :remove_from_list  
+  before_destroy :do_not_remove_index_and_404_pages
+  before_destroy :remove_from_list
   
   ## validations ##
   validates_presence_of     :site, :title, :slug
-  validates_uniqueness_of   :slug, :scope => :site_id
+  validates_uniqueness_of   :slug, :scope => [:site_id, :parent_id]
   validates_exclusion_of    :slug, :in => Locomotive.config.reserved_slugs, :if => Proc.new { |p| p.depth == 0 }
   
   ## named scopes ##
   
   ## behaviours ##
   acts_as_tree :order => ['position', 'asc']
-  # accepts_nested_attributes_for :parts, :allow_destroy => true
   
   ## methods ##
   
@@ -49,10 +49,6 @@ class Page
   
   def parts_attributes=(attributes)    
     self.update_parts(attributes.values.map { |attrs| PagePart.new(attrs) })
-  end
-  
-  def add_body_part
-    self.parts.build :name => 'body', :slug => 'layout', :value => '---body here---'
   end
     
   def parent=(owner) # missing in acts_as_tree
@@ -86,6 +82,17 @@ class Page
   end
   
   protected
+  
+  def do_not_remove_index_and_404_pages
+    # safe_site = self.site rescue nil
+    
+    # return if safe_site.nil?
+    return if (self.site rescue nil).nil?
+    
+    if self.index? || self.not_found?
+      raise I18n.t('errors.messages.protected_page')
+    end
+  end
   
   def update_parts(parts)
     performed = []
@@ -143,6 +150,8 @@ class Page
   end
   
   def remove_from_list
+    return if (self.site rescue nil).nil?
+    
     Page.where(:parent_id => self.parent_id).and(:position.gt => self.position).each do |p|
       p.position -= 1
       p.save

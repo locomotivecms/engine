@@ -1,10 +1,12 @@
-class Admin::PagePartsController < Admin::BaseController
+module Admin
+  class PagePartsController < BaseController
   
-  layout nil
+    layout nil
 
-  def index
-    parts = current_site.layouts.find(params[:layout_id]).parts
-    render :json => { :parts => parts }
-  end
+    def index
+      parts = current_site.layouts.find(params[:layout_id]).parts
+      render :json => { :parts => parts }
+    end
   
+  end
 end

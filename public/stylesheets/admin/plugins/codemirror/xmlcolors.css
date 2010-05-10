@@ -4,7 +4,7 @@
   font-family: monospace;
   font-size: 10pt;
   color: black;
-	background: white url(../../images/admin/form/field.png) repeat-x 0 0 !important;
+	background: white url(/images/admin/form/field.png) repeat-x 0 0 !important;
 }
 
 .editbox p {

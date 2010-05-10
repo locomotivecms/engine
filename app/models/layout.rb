@@ -28,7 +28,7 @@ class Layout < LiquidTemplate
         slug = part[0].strip.downcase
         
         if slug == 'layout'          
-          body = PagePart.new :slug => slug, :name => I18n.t('admin.shared.attributes.body')
+          body = PagePart.new :slug => slug, :name => I18n.t('attributes.defaults.page_parts.name')
         else
           self.parts.build :slug => slug, :name => (part[1] || slug).gsub("\"", '')
         end
