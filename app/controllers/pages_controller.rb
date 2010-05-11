@@ -4,6 +4,9 @@ class PagesController < ActionController::Base
   
   before_filter :require_site
   
-  def show; end
+  def show
+    logger.debug "fullpath = #{request.fullpath}"
+    # @page = current_site.pages.find    
+  end
   
 end

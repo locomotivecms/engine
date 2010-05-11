@@ -35,9 +35,12 @@ Locomotive::Application.routes.draw do |map|
     
     resource :my_account
     
-    resources :memberships    
+    resources :memberships
+    
+    resources :theme_assets
   end
   
   # magic url
   match '/' => 'pages#show'
+  match '*path' => 'pages#show'
 end

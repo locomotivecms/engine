@@ -27,3 +27,9 @@ Locomotive::Application.configure do
     :domain => "example.com"
   }
 end
+
+CarrierWave.configure do |config|
+  config.storage = :file
+  config.root = File.join(Rails.root, 'public')
+end
+

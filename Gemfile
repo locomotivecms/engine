@@ -11,9 +11,11 @@ gem "mongoid", ">= 2.0.0.beta4"
 gem "mongoid_acts_as_tree", :git => 'git://github.com/evansagge/mongoid_acts_as_tree.git'
 gem "warden"
 gem "devise", ">= 1.1.rc0"
-gem "haml", '>= 3.0.0.beta.2', :git => 'git://github.com/nex3/haml.git'
+gem "haml", '>= 3.0.1' #, :git => 'git://github.com/nex3/haml.git'
 gem "formtastic", :git => 'git://github.com/justinfrench/formtastic.git', :branch => 'rails3'	
 gem "mongoid_acts_as_tree", :git => 'git://github.com/evansagge/mongoid_acts_as_tree.git'
+gem "carrierwave", :git => "http://github.com/jnicklas/carrierwave.git"
+gem "rmagick"
 
 
 # Development environment

@@ -5,7 +5,7 @@ class String
   # end
   
   def slugify(options = {})
-    options = { :sep => '_', :without_extension => false, :downcase => false }.merge(options)
+    options = { :sep => '_', :without_extension => false, :downcase => false, :underscore => false }.merge(options)
     # replace accented chars with ther ascii equivalents
     s = ActiveSupport::Inflector.transliterate(self).to_s
     # No more than one slash in a row
@@ -20,6 +20,8 @@ class String
     s.downcase! if options[:downcase]
     # Turn unwanted chars into the seperator
     s.gsub!(/[^a-zA-Z0-9\-_\+\/]+/i, options[:sep])
+    # Underscore
+    s.gsub!(/[\-]/i, '') if options[:underscore]
     s
   end
   

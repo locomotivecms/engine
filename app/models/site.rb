@@ -11,6 +11,7 @@ class Site
   has_many_related :pages
   has_many_related :layouts
   has_many_related :snippets
+  has_many_related :theme_assets
   embeds_many :memberships
   
   ## validations ##
@@ -81,7 +82,7 @@ class Site
   end
   
   def destroy_in_cascade!
-    %w{pages layouts snippets}.each do |association|
+    %w{pages layouts snippets theme_assets}.each do |association|
       self.send(association).destroy_all
     end
   end

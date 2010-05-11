@@ -57,3 +57,8 @@ Factory.define :snippet do |s|
   s.slug 'header'
   s.value %{<title>Acme</title}
 end
+
+## Theme assets ##
+Factory.define :theme_asset do |a|
+  a.association :site
+end

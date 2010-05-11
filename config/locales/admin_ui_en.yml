@@ -23,6 +23,7 @@ en:
         snippets: Snippets
         account: My account
         site: Site
+        theme_assets: Theme files
       footer:
         developed_by: Developed by
         powered_by: and Powered by
@@ -97,6 +98,20 @@ en:
         en: English
         fr: French
         
+    theme_assets:
+      index:
+        title: Listing theme files
+        new: new file
+        css_and_js: Style and javascript
+        images: Images
+        no_items: "There are no files for now. Just click <a href=\"{{url}}\">here</a> to create the first one."
+      new:
+        title: New file
+      edit:
+        title: "Editing {{file}}"      
+      form:
+        choose_file: Choose file
+        choose_plain_text: Choose plain text
         
   formtastic:
     titles:
@@ -109,6 +124,14 @@ en:
       access_points: Access points
       memberships: Accounts
       membership_email: Account email
+      file: File
+      preview: Preview
+    labels:
+      theme_asset:
+        new:
+          source: File
+        edit:
+          source: Replace file
     hints:
       page:
         keywords: "Meta keywords used within the head tag of the page. They are separeted by an empty space. Required for SEO." 
@@ -117,4 +140,8 @@ en:
         slug: "You need to know it in order to insert the snippet inside a page or a layout"
       site:
         domain_name: "ex: locomotiveapp.org"
+      theme_asset:
+        slug: "You do not need to add the extension file (.css or .js)"
+        edit:
+          source: "You can replace it by a file of the same extension"
       

@@ -21,7 +21,7 @@ class Page
   before_validate :normalize_slug
   before_save { |p| p.parent_id = nil if p.parent_id.blank? }
   before_save :change_parent
-  before_create { |p| p.parts << PagePart.build_body_part }
+  before_create { |p| p.parts << PagePart.build_body_part if p.parts.empty? }
   before_create { |p| p.fix_position(false) }
   before_create :add_to_list_bottom
   before_destroy :do_not_remove_index_and_404_pages

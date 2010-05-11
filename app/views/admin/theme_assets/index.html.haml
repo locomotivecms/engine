@@ -1,0 +1,27 @@
+- title t('.title')
+
+- content_for :submenu do
+  = render 'admin/shared/menu/settings'
+
+- content_for :buttons do
+  = admin_button_tag :new, new_admin_theme_asset_url, :class => 'add'
+
+%p= t('.help')
+
+%h3= t('.css_and_js')
+- if @non_image_assets.empty?
+  %p.no-items= t('.no_items', :url => new_admin_theme_asset_url)
+- else
+  %ul.assets
+    = render :partial => 'asset', :collection => @non_image_assets
+    %li.clear
+    
+%br
+
+%h3= t('.images')
+- if @image_assets.empty?
+  %p.no-items= t('.no_items', :url => new_admin_theme_asset_url)
+- else
+  %ul.assets
+    = render :partial => 'asset', :collection => @image_assets
+    %li.clear

@@ -34,6 +34,15 @@ x create 404 + index pages once a site is created
 x can not delete index + 404 pages
 x validates_uniqueness_of :slug, :scope => :id
 x domain scoping when authenticating
+- theme assets
+  x create / update
+  x slug 
+  x filename from slug
+  x can not replace a javascript by a stylesheet
+  - disable version if not image
+- asset collections
+  - assets
+  - custom resizing
 
 
 BACKLOG:
