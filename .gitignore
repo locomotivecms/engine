@@ -6,3 +6,4 @@ tmp/**/*
 rerun.txt
 uploads
 spec/tmp
+public/sites
