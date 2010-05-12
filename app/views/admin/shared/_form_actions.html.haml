@@ -3,8 +3,9 @@
     %p
       - if defined?(back_url)
         = link_to escape_once('&larr;&nbsp;') + t('.back'), back_url
-      - else
-        &nbsp;
+      - elsif defined?(delete_button)
+        = delete_button
+      &nbsp;
       
   .span-12.last
     %p

@@ -44,5 +44,13 @@ module CarrierWave
         record.errors.add attr, options[:message] if record.send("#{attr}_integrity_error")
       end
     end
+    
+    def validates_processing_of(*attrs)
+      options = attrs.last.is_a?(Hash) ? attrs.last : {}
+      options[:message] ||= I18n.t('carrierwave.errors.processing', :default => 'failed to be processed.')
+      validates_each(*attrs) do |record, attr, value|
+        record.errors.add attr, options[:message] if record.send("#{attr}_processing_error")
+      end
+    end
   end
 end

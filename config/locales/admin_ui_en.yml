@@ -68,12 +68,16 @@ en:
         title: Listing layouts
         no_items: "There are no layouts for now. Just click <a href=\"{{url}}\">here</a> to create the first one."
         new: new layout
+      new:
+        title: New layout
 
     snippets:
       index:
         title: Listing snippets
         no_items: "There are no snippets for now. Just click <a href=\"{{url}}\">here</a> to create the first one."
         new: new snippet
+      new:
+        title: New snippet
         
     sites:
       new:
@@ -113,6 +117,24 @@ en:
         choose_file: Choose file
         choose_plain_text: Choose plain text
         
+    asset_collections:
+      index:
+        title: Asset collections
+        new: new collection
+        no_items: "There are no collections for now. Just click <a href=\"{{url}}\">here</a> to create the first one."
+      new:
+        title: New collection
+      edit:
+        help: "The collection name can be updated by clicking it. Uploading several files at once is possible, just click on the 'upload files' button at the right corner."
+        add_asset: add asset
+        destroy: remove collection
+        no_items: "There are no assets for now. Just click <a href=\"{{url}}\">here</a> to create the first one."
+        
+    assets:
+      new:
+        title: New asset
+      
+              
   formtastic:
     titles:
       information: General information
@@ -126,6 +148,7 @@ en:
       membership_email: Account email
       file: File
       preview: Preview
+      options: Advanced options
     labels:
       theme_asset:
         new:

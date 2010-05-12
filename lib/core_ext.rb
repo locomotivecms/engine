@@ -21,7 +21,7 @@ class String
     # Turn unwanted chars into the seperator
     s.gsub!(/[^a-zA-Z0-9\-_\+\/]+/i, options[:sep])
     # Underscore
-    s.gsub!(/[\-]/i, '') if options[:underscore]
+    s.gsub!(/[\-]/i, '_') if options[:underscore]
     s
   end
   

@@ -20,7 +20,7 @@ class ThemeAsset
   
   ## validations ##
   validate :extname_can_not_be_changed
-  validates_presence_of :site
+  validates_presence_of :site, :source
   validates_presence_of :slug, :if => Proc.new { |a| a.new_record? && a.performing_plain_text? }
   validates_integrity_of :source
     
@@ -84,9 +84,7 @@ class ThemeAsset
   
   def extname_can_not_be_changed
     return if self.new_record?
-    
-    Rails.logger.debug "previous = #{self.source.file.original_filename.inspect} / #{self.source_filename.inspect}"
-    
+        
     if File.extname(self.source.file.original_filename) != File.extname(self.source_filename)
       self.errors.add(:source, :extname_changed)
     end

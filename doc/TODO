@@ -41,9 +41,14 @@ x domain scoping when authenticating
   x can not replace a javascript by a stylesheet
   - disable version if not image
 - asset collections
+  x create / update
+  x sort assets
+  x removing assets
   - assets
+  - destroy
   - custom resizing
-
+- assets uploader:
+  - remove old files if new one
 
 BACKLOG:
 - liquid rendering engine

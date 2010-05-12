@@ -1,0 +1,10 @@
+= f.inputs :name => :information do
+  = f.input :name
+  = f.input :source
+
+- if @asset.image?
+  = f.foldable_inputs :name => "#{t('formtastic.titles.preview')} #{image_dimensions_and_size(@asset)}", :class => 'preview' do
+    %li
+      .image
+        .inside
+          = image_tag(@asset.source.url(:preview))

@@ -1,17 +1,11 @@
 # encoding: utf-8
 
-class ThemeAssetUploader < CarrierWave::Uploader::Base
+class AssetUploader < CarrierWave::Uploader::Base
 
   include CarrierWave::RMagick
 
-  # Choose what kind of storage to use for this uploader
-  # storage :file
-  # storage :s3
-
-  # Override the directory where uploaded files will be stored
-  # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
-    "sites/#{model.site_id}/themes/#{model.id}"
+    "sites/#{model.collection.site_id}/assets/#{model.id}"
   end
   
   version :thumb do
@@ -61,23 +55,10 @@ class ThemeAssetUploader < CarrierWave::Uploader::Base
   def self.content_types
     {
       :image      => ['image/jpeg', 'image/pjpeg', 'image/gif', 'image/png', 'image/x-png', 'image/jpg'],
-      :stylesheet => ['text/css'],
-      :javascript => ['text/javascript', 'text/js', 'application/x-javascript']
+      :movie      => [/^video/, 'application/x-shockwave-flash', 'application/x-swf'],
+      :audio      => [/^audio/, 'application/ogg', 'application/x-mp3'],
+      :pdf        => ['application/pdf', 'application/x-pdf']
     }  
   end
-  
-  def extension_white_list
-    %w(jpg jpeg gif png css js)
-  end
-  
-  def filename
-    if model.slug.present?
-      model.filename
-    else
-      extension = File.extname(original_filename)
-      basename = File.basename(original_filename, extension).slugify(:underscore => true)
-      "#{basename}#{extension}"
-    end
-  end
-  
+    
 end
