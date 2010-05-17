@@ -62,3 +62,9 @@ end
 Factory.define :theme_asset do |a|
   a.association :site
 end
+
+## Asset collection ##
+Factory.define :asset_collection do |s|
+  s.association :site, :factory => :site
+  s.name 'Trip to Chicago'
+end

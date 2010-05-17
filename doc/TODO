@@ -49,6 +49,13 @@ x domain scoping when authenticating
   - custom resizing
 - assets uploader:
   - remove old files if new one
+- custom fields:
+	- renaming fields
+	- ui
+	- rename asset_field
+	- apply in asset_field
+	- extract a plugin from custom fields
+	- field position
 
 BACKLOG:
 - liquid rendering engine

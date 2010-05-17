@@ -5,11 +5,14 @@ class AssetCollection
   ## fields ##
   field :name, :type => String
   field :slug, :type => String
+  field :asset_fields_counter, :type => Integer, :default => 0 # FIXME (custom fields)
+  
   
   ## associations ##
   belongs_to_related :site
-  embeds_many :assets
-  # has_many_related :assets
+  embeds_many :assets, :custom_fields => true
+  
+  embeds_many :asset_fields # FIXME (custom fields)
   
   ## callbacks ##
   before_validate :normalize_slug

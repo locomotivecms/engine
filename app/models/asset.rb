@@ -24,5 +24,5 @@ class Asset
       self.content_type == type
     end  
   end
-  
+    
 end
