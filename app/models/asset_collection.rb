@@ -14,6 +14,9 @@ class AssetCollection
   
   embeds_many :asset_fields # FIXME (custom fields)
   
+  ## behaviours ##
+  accepts_nested_attributes_for :asset_fields # FIXME (custom fields)
+  
   ## callbacks ##
   before_validate :normalize_slug
   before_save :store_asset_positions!

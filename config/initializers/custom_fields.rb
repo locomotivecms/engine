@@ -25,6 +25,8 @@ module Mongoid #:nodoc:
       alias_method_chain :build, :custom_field_settings
       
       def target_custom_field_association?
+        return unless @association_name.ends_with?('_fields')
+        
         target_name = @association_name.gsub(/_fields$/, '').pluralize
         # puts "target_name = #{target_name} / #{@parent.associations.key?(target_name).inspect} / #{@parent.inspect} / #{@parent.associations.inspect}"
         if @parent.associations.key?(target_name)
@@ -47,13 +49,13 @@ module Mongoid #:nodoc:
         
         if self.custom_fields?(object, association_name)
           # puts "custom fields = #{object.asset_fields.inspect}"
-          puts "(((((((("
+          # puts "(((((((("
           object.send(self.custom_fields_association_name(association_name)).each do |field|
             # puts "field = #{field.inspect}"
             # self.class.send(:set_field, field.name, { :type => field.field_type })
             field.apply(self, association_name)
           end
-          puts "))))))))"
+          # puts "))))))))"
         end
       end
       
