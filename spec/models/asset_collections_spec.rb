@@ -15,133 +15,112 @@ describe AssetCollection do
       puts "first field index = #{@collection.asset_fields.first._index}"
     end
     
-    # context 'define core attributes' do
-    #         
-    #   it 'should have an unique name' do
-    #     @collection.asset_fields.first._name.should == "custom_field_1"
-    #     @collection.asset_fields.last._name.should == "custom_field_2"        
-    #   end    
-    #   
-    #   it 'should have an unique alias' do
-    #     @collection.asset_fields.first._alias.should == "description"
-    #     @collection.asset_fields.last._alias.should == "active"
-    #   end  
-    #         
-    # end
-    # 
-    # context 'build and save' do
-    # 
-    #   it 'should build asset' do
-    #     asset = @collection.assets.build
-    #     lambda {
-    #       asset.description
-    #       asset.active
-    #     }.should_not raise_error
-    #   end
-    #   
-    #   it 'should assign values to newly built asset' do
-    #     asset = build_asset(@collection)
-    #     asset.description.should == 'Lorem ipsum'
-    #     asset.active.should == true
-    #   end
-    #       
-    #   it 'should save asset' do
-    #     asset = build_asset(@collection)
-    #     asset.save and @collection.reload
-    #     asset = @collection.assets.first
-    #     asset.description.should == 'Lorem ipsum'
-    #     asset.active.should == true
-    #   end
-    #   
-    #   it 'should not modify assets from another collection' do
-    #     asset = build_asset(@collection)
-    #     asset.save and @collection.reload
-    #     new_collection = AssetCollection.new
-    #     lambda { new_collection.assets.build.description }.should raise_error
-    #   end
-    # 
-    # end
-    # 
-    # context 'modifying fields' do
-    #   
-    #   before(:each) do
-    #     @asset = build_asset(@collection).save
-    #   end
-    #   
-    #   it 'should add new field' do
-    #     @collection.asset_fields.build :label => 'Active at', :name => 'active_at', :kind => 'Date'
-    #     @collection.upsert(false)
-    #     @collection.reload
-    #     asset = @collection.assets.first
-    #     lambda { asset.active_at }.should_not raise_error
-    #   end
-    #   
-    #   it 'should remove field' do
-    #     @collection.asset_fields.clear
-    #     @collection.upsert(false)    
-    #     @collection.reload
-    #     asset = @collection.assets.first
-    #     lambda { asset.active }.should raise_error
-    #   end
-    #   
-    #   it 'should rename field label' do
-    #     @collection.asset_fields.first.label = 'Simple description'
-    #     @collection.asset_fields.first._alias = nil
-    #     @collection.upsert(false)
-    #     @collection.reload
-    #     asset = @collection.assets.first
-    #     asset.simple_description.should == 'Lorem ipsum'
-    #   end
-    #   
-    # end
+    context 'define core attributes' do
+            
+      it 'should have an unique name' do
+        @collection.asset_fields.first._name.should == "custom_field_1"
+        @collection.asset_fields.last._name.should == "custom_field_2"        
+      end    
+      
+      it 'should have an unique alias' do
+        @collection.asset_fields.first._alias.should == "description"
+        @collection.asset_fields.last._alias.should == "active"
+      end  
+            
+    end
+    
+    context 'build and save' do
+    
+      it 'should build asset' do
+        asset = @collection.assets.build
+        lambda {
+          asset.description
+          asset.active
+        }.should_not raise_error
+      end
+      
+      it 'should assign values to newly built asset' do
+        asset = build_asset(@collection)
+        asset.description.should == 'Lorem ipsum'
+        asset.active.should == true
+      end
+          
+      it 'should save asset' do
+        asset = build_asset(@collection)
+        asset.save and @collection.reload
+        asset = @collection.assets.first
+        asset.description.should == 'Lorem ipsum'
+        asset.active.should == true
+      end
+      
+      it 'should not modify assets from another collection' do
+        asset = build_asset(@collection)
+        asset.save and @collection.reload
+        new_collection = AssetCollection.new
+        lambda { new_collection.assets.build.description }.should raise_error
+      end
+    
+    end
+    
+    context 'modifying fields' do
+      
+      before(:each) do
+        @asset = build_asset(@collection).save
+      end
+      
+      it 'should add new field' do
+        @collection.asset_fields.build :label => 'Active at', :name => 'active_at', :kind => 'Date'
+        @collection.upsert(false)
+        @collection.reload
+        asset = @collection.assets.first
+        lambda { asset.active_at }.should_not raise_error
+      end
+      
+      it 'should remove field' do
+        @collection.asset_fields.clear
+        @collection.upsert(false)    
+        @collection.reload
+        asset = @collection.assets.first
+        lambda { asset.active }.should raise_error
+      end
+      
+      it 'should rename field label' do
+        @collection.asset_fields.first.label = 'Simple description'
+        @collection.asset_fields.first._alias = nil
+        @collection.upsert(false)
+        @collection.reload
+        asset = @collection.assets.first
+        asset.simple_description.should == 'Lorem ipsum'
+      end
+      
+    end
     
     context 'managing from hash' do
       
       before(:each) do
-        # @collection.asset_fields.clear
-        # @collection.stubs(:validate).returns(true)
-        # @collection.stubs(:valid?).returns(true)
-        @collection.site = Factory(:site)
+        site = Factory.build(:site)
+        Site.stubs(:find).returns(site)
+        @collection.site = site
       end
       
-      # it 'should add new field' do
-      #   @collection.asset_fields.clear
-      #   @collection.asset_fields_attributes = { 'NEW_RECORD' => { 'label' => 'Tagline', 'kind' => 'String' } }
-      #   @collection.asset_fields.first.label.should == 'Tagline'
-      # end
-      # 
-      # it 'should add new field' do
-      #   @collection.asset_fields.build :label => 'Title'
-      #   @collection.asset_fields_attributes = { '0' => { 'label' => 'A title', 'kind' => 'String' }, '-1' => { 'label' => 'Tagline', 'kind' => 'String' } }
-      #   @collection.asset_fields.size.should == 2
-      #   @collection.asset_fields.first.label.should == 'A title'
-      #   @collection.asset_fields.last.label.should == 'Tagline'
-      # end
-      # 
-      # it 'should rename field'
-      
-      it 'should remove field' do        
+      it 'should add new field' do
+        @collection.asset_fields.clear
+        @collection.asset_fields.build :label => 'Title'
+        @collection.asset_fields_attributes = { '0' => { 'label' => 'A title', 'kind' => 'String' }, '-1' => { 'label' => 'Tagline', 'kind' => 'String' } }
+        @collection.asset_fields.size.should == 2
+        @collection.asset_fields.first.label.should == 'A title'
+        @collection.asset_fields.last.label.should == 'Tagline'
+      end
+            
+      it 'should update/remove fields' do        
         @collection.asset_fields.build :label => 'Title', :kind => 'String'
-        # puts @collection.asset_fields.collect { |d| d._index }.inspect        
-        @collection.save
-        @collection = AssetCollection.first
-        foo = @collection.asset_fields
-        @collection.asset_fields.size.should == 3
+        @collection.save; @collection = AssetCollection.first
         @collection.update_attributes(:asset_fields_attributes => { 
-        # @collection.asset_fields_attributes = {
-          '0' => { 'label' => 'My Description', 'kind' => 'Text', '_destroy' => "1", "id" => foo[0].id  }, 
-          '1' => { 'label' => 'Active', 'kind' => 'Boolean', '_destroy' => "0", "id" => foo[1].id },
-          '2' => { 'label' => 'My Title !', 'kind' => 'String', "id" => foo[2].id } 
-        # }
+          '0' => { 'label' => 'My Description', 'kind' => 'Text', '_destroy' => "1" }, 
+          '1' => { 'label' => 'Active', 'kind' => 'Boolean', '_destroy' => "0" },
+          '2' => { 'label' => 'My Title !', 'kind' => 'String' } 
         })
-        
-        puts @collection.raw_attributes.inspect
-        
-        # @collection.save
         @collection = AssetCollection.first
-        # @collection.reload
-        puts "________________ #{@collection.asset_fields.class.inspect}"
-        puts @collection.asset_fields.inspect
         @collection.asset_fields.size.should == 1
         @collection.asset_fields.first.label.should == 'My Title !'
       end

@@ -1,6 +1,7 @@
 class AssetCollection  
   include Mongoid::Document
   include Mongoid::Timestamps
+  include Mongoid::CustomFields
   
   ## fields ##
   field :name, :type => String
@@ -15,6 +16,8 @@ class AssetCollection
   embeds_many :asset_fields # FIXME (custom fields)
   
   ## behaviours ##
+  custom_fields_for :assets
+  
   accepts_nested_attributes_for :asset_fields, :allow_destroy => true # FIXME (custom fields)
   
   ## callbacks ##
