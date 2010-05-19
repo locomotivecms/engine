@@ -57,6 +57,9 @@ x domain scoping when authenticating
 	- extract a plugin from custom fields
 	- field position
 	- nested attributes
+	- keep tracks of all custom fields (adding / editing assets)
+	- custom fields -> metadata keys
+	- duplicate fields
 
 BACKLOG:
 - liquid rendering engine

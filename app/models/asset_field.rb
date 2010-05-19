@@ -12,6 +12,8 @@ class AssetField
   ## validations ##
   validates_presence_of :label, :kind
   
+  embedded_in :asset_collection, :inverse_of => :asset_fields
+    
   ## methods ##
   
   def field_type
@@ -49,7 +51,7 @@ class AssetField
   end
   
   def increment_counter!
-    next_value = self._parent.send(:"#{self.association_name}_counter") + 1
+    next_value = (self._parent.send(:"#{self.association_name}_counter") || 0) + 1
     self._parent.send(:"#{self.association_name}_counter=", next_value)
     next_value
   end

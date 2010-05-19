@@ -32,6 +32,11 @@ en:
         create: Create
         update: Update
         
+    custom_fields:
+      kind:
+        string: Simple Input
+        text: Text
+        
     sessions:
       new:
         title: Login
@@ -149,6 +154,7 @@ en:
       file: File
       preview: Preview
       options: Advanced options
+      custom_fields: Custom fields
     labels:
       theme_asset:
         new:

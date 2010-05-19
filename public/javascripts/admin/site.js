@@ -1,20 +1,20 @@
 $(document).ready(function() {
 	
-	var defaultValue = $('fieldset.editable-list li.new input[type=text]').val();
+	var defaultValue = $('fieldset.editable-list li.template input[type=text]').val();
 
 	/* __ fields ___ */
-	$('fieldset.editable-list li.new input[type=text]').focus(function() {
-		if ($(this).hasClass('void') && $(this).parents('li').hasClass('new'))
+	$('fieldset.editable-list li.template input[type=text]').focus(function() {
+		if ($(this).hasClass('void') && $(this).parents('li').hasClass('template'))
 			$(this).val('').removeClass('void');
 	});	
 
-	$('fieldset.editable-list li.new button').click(function() {
-		var lastRow = $(this).parents('li.new');
+	$('fieldset.editable-list li.template button').click(function() {
+		var lastRow = $(this).parents('li.template');
 		
 		var currentValue = lastRow.find('input.label').val();
 		if (currentValue == defaultValue || currentValue == '') return;
 				
-		var newRow = lastRow.clone(true).removeClass('new').addClass('added').insertBefore(lastRow);
+		var newRow = lastRow.clone(true).removeClass('template').addClass('added').insertBefore(lastRow);
 	
 		// should copy the value of the select box
 		var input = newRow.find('input.label')

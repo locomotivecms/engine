@@ -5,9 +5,9 @@ source "http://gems.github.com"
 gem "rails", "3.0.0.beta3"
 
 gem "liquid"
-gem "bson_ext", '0.20.1'
+gem "bson_ext", ">= 1.0.1"
 gem "mongo_ext"
-gem "mongoid", ">= 2.0.0.beta4" 
+gem "mongoid", ">= 2.0.0.beta6" 
 gem "mongoid_acts_as_tree", :git => 'git://github.com/evansagge/mongoid_acts_as_tree.git'
 gem "warden"
 gem "devise", ">= 1.1.rc0"

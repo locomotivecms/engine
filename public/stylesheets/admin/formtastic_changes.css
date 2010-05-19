@@ -302,13 +302,13 @@ form.formtastic fieldset.editable-list ol li.added .inline-errors {
 	font-size: 0.8em;	
 }
 
-form.formtastic fieldset.editable-list ol li.new {
+form.formtastic fieldset.editable-list ol li.template {
 	height: 42px;
 	background-image: url(/images/admin/form/big_item.png);
 	padding-top: 10px;
 }
 
-form.formtastic fieldset.editable-list ol li.new input {
+form.formtastic fieldset.editable-list ol li.template input {
 	display: inline;
 	margin-left: 10px;
 	padding: 4px; 
@@ -321,28 +321,28 @@ form.formtastic fieldset.editable-list ol li.new input {
 	top: 1px;
 }
 
-form.formtastic fieldset.editable-list ol li.new select {
+form.formtastic fieldset.editable-list ol li.template select {
 	display: inline;
 }
 
-form.formtastic fieldset.editable-list ol li.new span.handle {
+form.formtastic fieldset.editable-list ol li.template span.handle {
 	display: none;
 }
 
-form.formtastic fieldset.editable-list ol li.new span.actions {
+form.formtastic fieldset.editable-list ol li.template span.actions {
 	width: auto;
 	top: 10px;
 }
 
-form.formtastic fieldset.editable-list ol li.new span.actions a.remove {
+form.formtastic fieldset.editable-list ol li.template span.actions a.remove {
 	display: none;
 }
 
-form.formtastic fieldset.editable-list ol li.new span.actions button {
+form.formtastic fieldset.editable-list ol li.template span.actions button {
 	display: inline;
 }
 
-form.formtastic fieldset.editable-list ol li.new span.actions button span {
+form.formtastic fieldset.editable-list ol li.template span.actions button span {
 	font-size: 0.8em;
 }
 

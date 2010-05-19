@@ -24,7 +24,7 @@
       %span.actions
         = link_to image_tag('admin/form/icons/trash.png'), '#', :class => 'remove first', :confirm => t('admin.messages.confirm')
         
-  %li.item.new
+  %li.item.template
     %em
       http://
     = text_field_tag 'label', t('formtastic.hints.site.domain_name'), :class => 'string label void'

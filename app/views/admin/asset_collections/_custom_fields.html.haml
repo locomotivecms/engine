@@ -1,0 +1,43 @@
+= f.foldable_inputs :name => :custom_fields, :class => 'editable-list fields off' do
+  - f.object.ordered_asset_fields.each do |field|
+    = f.fields_for :asset_fields, field, :child_index => field._index do |g|  
+      %li{ :class => "item added #{'error' unless field.errors.empty?}"}
+        %span.handle
+          = image_tag 'admin/form/icons/drag.png'
+        
+        = g.hidden_field :position, :class => 'position'
+      
+        = g.text_field :label
+      
+        &mdash;
+      
+        %em= t("admin.custom_fields.kind.#{field.kind.downcase}")
+      
+        = g.select :kind, options_for_field_kind
+      
+        &nbsp;
+      
+        %span.actions
+          = link_to image_tag('admin/form/icons/trash.png'), '#', :class => 'remove first', :confirm => t('admin.messages.confirm')
+    
+  = f.fields_for :asset_fields, @collection.asset_fields.build(:label => 'field name'), :child_index => '-1' do |g| 
+    %li{ :class => 'item template' }
+      %span.handle
+        = image_tag 'admin/form/icons/drag.png'
+    
+      = g.hidden_field :position, :class => 'position'
+    
+      = g.text_field :label, :class => 'string label void'
+  
+      &mdash;
+  
+      %em
+  
+      = g.select :kind, options_for_field_kind
+  
+      &nbsp;
+  
+      %span.actions
+        = link_to image_tag('admin/form/icons/trash.png'), '#', :class => 'remove first', :confirm => t('admin.messages.confirm')
+        %button{ :class => 'button light add', :type => 'button' }
+          %span= t('admin.buttons.new_item')

@@ -15,7 +15,7 @@ class AssetCollection
   embeds_many :asset_fields # FIXME (custom fields)
   
   ## behaviours ##
-  accepts_nested_attributes_for :asset_fields # FIXME (custom fields)
+  accepts_nested_attributes_for :asset_fields, :allow_destroy => true # FIXME (custom fields)
   
   ## callbacks ##
   before_validate :normalize_slug
@@ -37,6 +37,10 @@ class AssetCollection
   
   def assets_order=(order)
     @assets_order = order
+  end
+  
+  def ordered_asset_fields # FIXME (custom fields)
+    self.asset_fields.sort { |a, b| (a.position || 0) <=> (b.position || 0) }
   end
     
   protected
