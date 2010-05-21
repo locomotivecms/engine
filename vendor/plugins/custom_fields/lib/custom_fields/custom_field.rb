@@ -40,7 +40,7 @@ module CustomFields
     protected
   
     def set_unique_name!
-      self._name = "custom_field_#{self.increment_counter!}"
+      self._name ||= "custom_field_#{self.increment_counter!}"
     end
     
     def set_alias
