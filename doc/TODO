@@ -51,11 +51,11 @@ x domain scoping when authenticating
   - remove old files if new one
 - custom fields:
 	x renaming fields
-	- ui
-	- rename asset_field
-	- apply in asset_field
-	- extract a plugin from custom fields
-	- field position
+  x extract a plugin from custom fields	
+	x ui
+	x field position
+	x rename asset_field
+	- apply in asset_field	
 	- nested attributes
 	- keep tracks of all custom fields (adding / editing assets)
 	- custom fields -> metadata keys

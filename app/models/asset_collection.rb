@@ -5,20 +5,14 @@ class AssetCollection
   
   ## fields ##
   field :name, :type => String
-  field :slug, :type => String
-  # field :asset_fields_counter, :type => Integer, :default => 0 # FIXME (custom fields)
-  
+  field :slug, :type => String  
   
   ## associations ##
   belongs_to_related :site
-  embeds_many :assets #, :custom_fields => true # FIXME (custom fields)
-  
-  # embeds_many :asset_fields # FIXME (custom fields)
+  embeds_many :assets
   
   ## behaviours ##
   custom_fields_for :assets
-  
-  # accepts_nested_attributes_for :asset_fields, :allow_destroy => true # FIXME (custom fields)
   
   ## callbacks ##
   before_validate :normalize_slug
@@ -42,8 +36,8 @@ class AssetCollection
     @assets_order = order
   end
   
-  def ordered_asset_fields # FIXME (custom fields)
-    self.asset_fields.sort { |a, b| (a.position || 0) <=> (b.position || 0) }
+  def ordered_asset_custom_fields # FIXME (custom fields)
+    self.asset_custom_fields.sort { |a, b| (a.position || 0) <=> (b.position || 0) }
   end
     
   protected

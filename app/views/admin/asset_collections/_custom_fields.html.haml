@@ -1,6 +1,6 @@
 = f.foldable_inputs :name => :custom_fields, :class => 'editable-list fields off' do
-  - f.object.ordered_asset_fields.each do |field|
-    = f.fields_for :asset_fields, field, :child_index => field._index do |g|  
+  - f.object.ordered_asset_custom_fields.each do |field|
+    = f.fields_for :asset_custom_fields, field, :child_index => field._index do |g|  
       %li{ :class => "item added #{'error' unless field.errors.empty?}"}
         %span.handle
           = image_tag 'admin/form/icons/drag.png'
@@ -20,7 +20,7 @@
         %span.actions
           = link_to image_tag('admin/form/icons/trash.png'), '#', :class => 'remove first', :confirm => t('admin.messages.confirm')
     
-  = f.fields_for :asset_fields, @collection.asset_fields.build(:label => 'field name'), :child_index => '-1' do |g| 
+  = f.fields_for :asset_custom_fields, @collection.asset_custom_fields.build(:label => 'field name'), :child_index => '-1' do |g| 
     %li{ :class => 'item template' }
       %span.handle
         = image_tag 'admin/form/icons/drag.png'
