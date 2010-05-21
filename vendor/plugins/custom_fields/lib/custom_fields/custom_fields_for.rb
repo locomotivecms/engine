@@ -27,9 +27,14 @@ module CustomFields
       def custom_fields_for(collection_name)
         puts "settings custom fields for #{collection_name}"
         
-        class_eval <<-EOV
-          
+        singular_name = collection_name.to_s.singularize
         
+        class_eval <<-EOV
+          field :#{singular_name}_custom_fields_counter, :type => Integer, :default => 0
+          
+          embeds_many :#{singular_name}_custom_fields, :class_name => "::CustomFields::CustomField"
+          
+          accepts_nested_attributes_for :#{singular_name}_custom_fields, :allow_destroy => true
         EOV
       end
       

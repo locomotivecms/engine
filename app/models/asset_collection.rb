@@ -6,19 +6,19 @@ class AssetCollection
   ## fields ##
   field :name, :type => String
   field :slug, :type => String
-  field :asset_fields_counter, :type => Integer, :default => 0 # FIXME (custom fields)
+  # field :asset_fields_counter, :type => Integer, :default => 0 # FIXME (custom fields)
   
   
   ## associations ##
   belongs_to_related :site
-  embeds_many :assets, :custom_fields => true
+  embeds_many :assets #, :custom_fields => true # FIXME (custom fields)
   
-  embeds_many :asset_fields # FIXME (custom fields)
+  # embeds_many :asset_fields # FIXME (custom fields)
   
   ## behaviours ##
   custom_fields_for :assets
   
-  accepts_nested_attributes_for :asset_fields, :allow_destroy => true # FIXME (custom fields)
+  # accepts_nested_attributes_for :asset_fields, :allow_destroy => true # FIXME (custom fields)
   
   ## callbacks ##
   before_validate :normalize_slug

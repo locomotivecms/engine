@@ -10,21 +10,21 @@ describe AssetCollection do
     
     before(:each) do
       @collection = Factory.build(:asset_collection, :site => nil)
-      @collection.asset_fields.build :label => 'My Description', :_alias => 'description', :kind => 'Text'
-      @collection.asset_fields.build :label => 'Active', :kind => 'Boolean'
-      puts "first field index = #{@collection.asset_fields.first._index}"
+      @collection.asset_custom_fields.build :label => 'My Description', :_alias => 'description', :kind => 'Text'
+      @collection.asset_custom_fields.build :label => 'Active', :kind => 'Boolean'
+      puts "first field index = #{@collection.asset_custom_fields.first._index}"
     end
     
     context 'define core attributes' do
             
       it 'should have an unique name' do
-        @collection.asset_fields.first._name.should == "custom_field_1"
-        @collection.asset_fields.last._name.should == "custom_field_2"        
+        @collection.asset_custom_fields.first._name.should == "custom_field_1"
+        @collection.asset_custom_fields.last._name.should == "custom_field_2"        
       end    
       
       it 'should have an unique alias' do
-        @collection.asset_fields.first._alias.should == "description"
-        @collection.asset_fields.last._alias.should == "active"
+        @collection.asset_custom_fields.first._alias.should == "description"
+        @collection.asset_custom_fields.last._alias.should == "active"
       end  
             
     end
@@ -69,7 +69,7 @@ describe AssetCollection do
       end
       
       it 'should add new field' do
-        @collection.asset_fields.build :label => 'Active at', :name => 'active_at', :kind => 'Date'
+        @collection.asset_custom_fields.build :label => 'Active at', :name => 'active_at', :kind => 'Date'
         @collection.upsert(false)
         @collection.reload
         asset = @collection.assets.first
@@ -77,7 +77,7 @@ describe AssetCollection do
       end
       
       it 'should remove field' do
-        @collection.asset_fields.clear
+        @collection.asset_custom_fields.clear
         @collection.upsert(false)    
         @collection.reload
         asset = @collection.assets.first
@@ -85,8 +85,8 @@ describe AssetCollection do
       end
       
       it 'should rename field label' do
-        @collection.asset_fields.first.label = 'Simple description'
-        @collection.asset_fields.first._alias = nil
+        @collection.asset_custom_fields.first.label = 'Simple description'
+        @collection.asset_custom_fields.first._alias = nil
         @collection.upsert(false)
         @collection.reload
         asset = @collection.assets.first
@@ -104,25 +104,25 @@ describe AssetCollection do
       end
       
       it 'should add new field' do
-        @collection.asset_fields.clear
-        @collection.asset_fields.build :label => 'Title'
-        @collection.asset_fields_attributes = { '0' => { 'label' => 'A title', 'kind' => 'String' }, '-1' => { 'label' => 'Tagline', 'kind' => 'String' } }
-        @collection.asset_fields.size.should == 2
-        @collection.asset_fields.first.label.should == 'A title'
-        @collection.asset_fields.last.label.should == 'Tagline'
+        @collection.asset_custom_fields.clear
+        @collection.asset_custom_fields.build :label => 'Title'
+        @collection.asset_custom_fields_attributes = { '0' => { 'label' => 'A title', 'kind' => 'String' }, '-1' => { 'label' => 'Tagline', 'kind' => 'String' } }
+        @collection.asset_custom_fields.size.should == 2
+        @collection.asset_custom_fields.first.label.should == 'A title'
+        @collection.asset_custom_fields.last.label.should == 'Tagline'
       end
             
       it 'should update/remove fields' do        
-        @collection.asset_fields.build :label => 'Title', :kind => 'String'
+        @collection.asset_custom_fields.build :label => 'Title', :kind => 'String'
         @collection.save; @collection = AssetCollection.first
-        @collection.update_attributes(:asset_fields_attributes => { 
+        @collection.update_attributes(:asset_custom_fields_attributes => { 
           '0' => { 'label' => 'My Description', 'kind' => 'Text', '_destroy' => "1" }, 
           '1' => { 'label' => 'Active', 'kind' => 'Boolean', '_destroy' => "0" },
           '2' => { 'label' => 'My Title !', 'kind' => 'String' } 
         })
         @collection = AssetCollection.first
-        @collection.asset_fields.size.should == 1
-        @collection.asset_fields.first.label.should == 'My Title !'
+        @collection.asset_custom_fields.size.should == 1
+        @collection.asset_custom_fields.first.label.should == 'My Title !'
       end
       
     end

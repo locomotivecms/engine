@@ -12,7 +12,7 @@ class AssetField
   ## validations ##
   validates_presence_of :label, :kind
   
-  embedded_in :asset_collection, :inverse_of => :asset_fields
+  embedded_in :asset_collection, :inverse_of => :asset_custom_fields
     
   ## methods ##
   
