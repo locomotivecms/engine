@@ -9,10 +9,52 @@ describe AssetCollection do
   describe 'custom fields (beta)' do
     
     before(:each) do
-      @collection = Factory.build(:asset_collection, :site => nil)
+      site = Factory.build(:site)
+      Site.stubs(:find).returns(site)
+      @collection = Factory.build(:asset_collection, :site => site)
       @collection.asset_custom_fields.build :label => 'My Description', :_alias => 'description', :kind => 'Text'
       @collection.asset_custom_fields.build :label => 'Active', :kind => 'Boolean'
-      puts "first field index = #{@collection.asset_custom_fields.first._index}"
+    end
+    
+    context 'unit' do
+      
+      before(:each) do
+        @field = CustomFields::CustomField.new(:kind => 'String')
+      end
+      
+      it 'should tell if it is a String' do
+        @field.string?.should be_true
+      end
+      
+      it 'should tell if it is a Text' do
+        @field.kind = 'Text'
+        @field.text?.should be_true
+      end
+      
+    end
+    
+    context 'validation' do
+      
+      %w{label kind}.each do |key|
+        it "should validate presence of #{key}" do
+          field = @collection.asset_custom_fields.build({ :label => 'Shortcut', :kind => 'String' }.merge(key.to_sym => nil))
+          field.should_not be_valid
+          field.errors[key.to_sym].should == ["can't be blank"]
+        end
+      end
+      
+      it 'should not have unique label' do
+        field = @collection.asset_custom_fields.build :label => 'Active', :kind => 'Boolean'
+        field.should_not be_valid
+        field.errors[:label].should == ["is already taken"]
+      end
+      
+      it 'should invalidate parent if custom field is not valid' do
+        field = @collection.asset_custom_fields.build
+        @collection.should_not be_valid
+        @collection.asset_custom_fields.last.errors[:label].should == ["can't be blank"]
+      end
+      
     end
     
     context 'define core attributes' do
@@ -36,6 +78,7 @@ describe AssetCollection do
         lambda {
           asset.description
           asset.active
+          asset.custom_fields.size.should == 2
         }.should_not raise_error
       end
       
@@ -97,11 +140,11 @@ describe AssetCollection do
     
     context 'managing from hash' do
       
-      before(:each) do
-        site = Factory.build(:site)
-        Site.stubs(:find).returns(site)
-        @collection.site = site
-      end
+      # before(:each) do
+      #   site = Factory.build(:site)
+      #   Site.stubs(:find).returns(site)
+      #   @collection.site = site
+      # end
       
       it 'should add new field' do
         @collection.asset_custom_fields.clear

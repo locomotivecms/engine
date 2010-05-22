@@ -6,6 +6,11 @@ module Mongoid #:nodoc:
         parentize_without_custom_fields(object, association_name)
         
         if self.custom_fields?(object, association_name)
+          self.class.send(:define_method, :custom_fields) do
+            fields = object.send(self.custom_fields_association_name(association_name))
+            fields.sort { |a, b| (a.position || 0) <=> (b.position || 0) }
+          end
+          
           object.send(self.custom_fields_association_name(association_name)).each do |field|
             field.apply(self, association_name)
           end
@@ -20,7 +25,7 @@ module Mongoid #:nodoc:
       
       def custom_fields?(object, association_name)
         object.respond_to?(custom_fields_association_name(association_name)) &&
-        object.associations[association_name] 
+        object.associations[association_name]
       end      
     end    
   end

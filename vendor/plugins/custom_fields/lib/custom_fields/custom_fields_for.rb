@@ -8,19 +8,19 @@ module CustomFields
     
     # Enhance an embedded collection by providing methods to manage custom fields
     #
-    # class Person
-    #   embeds_many :addresses
-    #   custom_fields_for :addresses
+    # class Company
+    #   embeds_many :employees
+    #   custom_fields_for :employees
     # end
     #
-    # class Address
-    #    embedded_in :person, :inverse_of => :addresses
-    #    field :street, String
+    # class Employee
+    #    embedded_in :company, :inverse_of => :employees
+    #    field :name, String
     # end
     #
-    # person.address_fields.build :label => 'Floor', :kind => 'String'
+    # company.employee_custom_fields.build :label => 'His/her position', :_alias => 'position', :kind => 'String'
     #
-    # person.addresses.build :street => 'Laflin Street', :floor => '42'
+    # company.employees.build :name => 'Mickael Scott', :position => 'Regional manager'
     #
     module ClassMethods
       
@@ -34,7 +34,13 @@ module CustomFields
           
           embeds_many :#{singular_name}_custom_fields, :class_name => "::CustomFields::CustomField"
           
+          validates_associated :#{singular_name}_custom_fields
+          
           accepts_nested_attributes_for :#{singular_name}_custom_fields, :allow_destroy => true
+          
+          def ordered_#{singular_name}_custom_fields
+            self.#{singular_name}_custom_fields.sort { |a, b| (a.position || 0) <=> (b.position || 0) }
+          end
         EOV
       end
       

@@ -35,11 +35,7 @@ class AssetCollection
   def assets_order=(order)
     @assets_order = order
   end
-  
-  def ordered_asset_custom_fields # FIXME (custom fields)
-    self.asset_custom_fields.sort { |a, b| (a.position || 0) <=> (b.position || 0) }
-  end
-    
+      
   protected
   
   def normalize_slug

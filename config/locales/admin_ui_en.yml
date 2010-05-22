@@ -155,6 +155,7 @@ en:
       preview: Preview
       options: Advanced options
       custom_fields: Custom fields
+      other_fields: Other information
     labels:
       theme_asset:
         new:

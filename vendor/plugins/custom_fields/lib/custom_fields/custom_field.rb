@@ -13,8 +13,15 @@ module CustomFields
       
     ## validations ##
     validates_presence_of :label, :kind
+    validate :uniqueness_of_label
       
     ## methods ##
+    
+    %w{String Text Email Boolean Date File}.each do |kind|
+      define_method "#{kind.downcase}?" do
+        self.kind == kind
+      end
+    end
   
     def field_type
       case self.kind
@@ -25,7 +32,10 @@ module CustomFields
     end
   
     def apply(object, association_name)
+      return unless self.valid?
+      
       object.class.send(:set_field, self._name, { :type => self.field_type })
+      
       object.class_eval <<-EOF
         alias :#{self.safe_alias} :#{self._name}
         alias :#{self.safe_alias}= :#{self._name}=
@@ -38,6 +48,13 @@ module CustomFields
     end
   
     protected
+    
+    def uniqueness_of_label
+      duplicate = self.siblings.detect { |f| f.label == self.label && f._id != self._id }
+      if not duplicate.nil?
+        self.errors.add(:label, :taken)
+      end
+    end
   
     def set_unique_name!
       self._name ||= "custom_field_#{self.increment_counter!}"
@@ -56,7 +73,7 @@ module CustomFields
     end
   
     def siblings
-      self._parent.associations[self.association_name]
+      self._parent.send(self.association_name)
     end
   end
   
