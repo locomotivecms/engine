@@ -1,0 +1,15 @@
+- title t('.title')
+
+- content_for :head do
+  = javascript_include_tag 'admin/content_types.js'
+
+- content_for :submenu do
+  = render 'admin/shared/menu/contents'
+
+%p= t('.help')
+
+= semantic_form_for @content_type, :url => admin_content_types_url do |f|
+
+  = render 'form', :f => f
+  
+  = render 'admin/shared/form_actions', :back_url => admin_pages_url, :button_label => :create

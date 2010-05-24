@@ -15,7 +15,7 @@ class LiquidTemplate
   
   ## validations ##
   validates_presence_of   :site, :name, :slug, :value
-  validates_uniqueness_of :slug, :scope => [:site_id, :_type]
+  validates_uniqueness_of :slug, :scope => :site_id  #[:site_id, :_type]
   
   protected
   

@@ -9,6 +9,7 @@ describe AssetCollection do
   describe 'custom fields (beta)' do
     
     before(:each) do
+      Site.any_instance.stubs(:create_default_pages!).returns(true)
       site = Factory.build(:site)
       Site.stubs(:find).returns(site)
       @collection = Factory.build(:asset_collection, :site => site)
@@ -139,13 +140,7 @@ describe AssetCollection do
     end
     
     context 'managing from hash' do
-      
-      # before(:each) do
-      #   site = Factory.build(:site)
-      #   Site.stubs(:find).returns(site)
-      #   @collection.site = site
-      # end
-      
+            
       it 'should add new field' do
         @collection.asset_custom_fields.clear
         @collection.asset_custom_fields.build :label => 'Title'

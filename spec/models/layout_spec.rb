@@ -38,7 +38,7 @@ describe Layout do
       @layout.pages << page
       @layout.save
     end
-
+  
     it 'should add parts to pages if layout changes' do
       @layout.value = @layout.value + "..." 
       page = Factory.build(:page, :layout => @layout, :site => nil)

@@ -17,24 +17,23 @@ class Layout < LiquidTemplate
   
   def build_parts_from_value
     if self.value_changed? || self.new_record?
-      self.parts.clear
-
-      body = nil
-
-      self.value.scan(Locomotive::Regexps::CONTENT_FOR).each do |part|
-        part[1].strip!
-        part[1] = nil if part[1].empty?
+      self.value.scan(Locomotive::Regexps::CONTENT_FOR).each do |attributes|
+        slug = attributes[0].strip.downcase
+        name = attributes[1].strip.gsub("\"", '')    
+        name = nil if name.empty?
+        name ||= I18n.t('attributes.defaults.page_parts.name') if slug == 'layout'
         
-        slug = part[0].strip.downcase
-        
-        if slug == 'layout'          
-          body = PagePart.new :slug => slug, :name => I18n.t('attributes.defaults.page_parts.name')
+        if part = self.parts.detect { |p| p.slug == slug }
+          part.name = name if name.present?
         else
-          self.parts.build :slug => slug, :name => (part[1] || slug).gsub("\"", '')
-        end
+          self.parts.build :slug => slug, :name => name || slug
+        end        
       end
       
-      self.parts.insert(0, body) if body
+      # body always first
+      body = self.parts.detect { |p| p.slug == 'layout' }
+      self.parts.delete(body)
+      self.parts.insert(0, body)
       
       @_update_pages = true if self.value_changed?
     end

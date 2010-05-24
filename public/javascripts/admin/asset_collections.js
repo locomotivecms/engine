@@ -1,6 +1,6 @@
 $(document).ready(function() {
 	
-	// automatic slug from snippet name
+	// automatic slug from collection name
 	$('#asset_collection_name').keypress(function() {
 		var input = $(this);
 		var slug = $('#asset_collection_slug');
@@ -21,7 +21,7 @@ $(document).ready(function() {
 		var ids = jQuery.map(list.sortable('toArray'), function(e) { 
 			return e.match(/asset-(\w+)/)[1];
 		}).join(',');
-		$('#asset_collection_assets_order').val(ids || '0');
+		$('#asset_collection_assets_order').val(ids || '');
 	}
 	
 	$('ul.assets.sortable').sortable({

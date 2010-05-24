@@ -13,10 +13,10 @@ module Admin::BaseHelper
   end
   
   def admin_submenu_item(name, url, options = {}, &block)
-    default_options = { :i18n => true, :css => '' }
+    default_options = { :i18n => true, :css => name.dasherize.downcase }
     default_options.merge!(options)
         
-    css = "#{name.dasherize.downcase} #{'on' if name == sections(:sub)} #{'links' if block_given?} #{options[:css]}"
+    css = "#{'on' if name == sections(:sub)} #{'links' if block_given?} #{options[:css]}"
     
     label_link = default_options[:i18n] ? t("admin.shared.menu.#{name}") : name
     # if block_given?

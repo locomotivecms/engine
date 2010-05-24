@@ -1,0 +1,17 @@
+- title t('.title', :type => @content_type.name)
+
+- content_for :submenu do
+  = render 'admin/shared/menu/contents'
+
+- content_for :buttons do
+  = admin_button_tag :edit, edit_admin_content_type_url(@content_type), :class => 'edit'
+  = admin_button_tag :download, '#', :class => 'download'
+  = admin_button_tag :new, new_admin_content_url(@content_type.slug), :class => 'new'
+
+- if @content_type.description.present? 
+  %p= @content_type.description
+
+- if @contents.empty?
+  %p.no-items= t('.no_items', :url => new_admin_content_url(@content_type.slug))
+- else
+  foo bar

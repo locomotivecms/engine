@@ -1,2 +1,9 @@
 %ul
   = admin_submenu_item 'pages', admin_pages_url
+
+  - current_site.content_types.each do |content_type|
+    - item_on = (content_type.slug == @content_type.slug) rescue nil
+    = admin_submenu_item content_type.name, admin_contents_url(content_type.slug), :i18n => false, :css => (item_on ? 'on' : '')
+	
+.action
+  = link_to content_tag(:span, t('admin.content_types.index.new')), new_admin_content_type_url

@@ -28,11 +28,11 @@ module Mongoid #:nodoc:
             conditions[scoped_attr] = document.attributes[scoped_attr]
           end
         end
-
-        # Rails.logger.debug "conditions = #{conditions.inspect} / #{options[:scope].inspect}"
+      
+        Rails.logger.debug "conditions = #{conditions.inspect} / #{options[:scope].inspect}"
         
         return if document.class.where(conditions).empty?
-
+      
         # if document.new_record? || key_changed?(document)
           document.errors.add(attribute, :taken, :default => options[:message], :value => value)
         # end

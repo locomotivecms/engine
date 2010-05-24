@@ -1,3 +1,25 @@
+BOARD:
+  - content types / models (CRUD)
+  - contents (CRUD)
+
+BACKLOG:
+- liquid rendering engine
+- theme assets
+- assets collection
+- custom models
+- asset collections: custom resizing if image
+
+- devise messages in French
+- localize devise emails
+- refactoring admin crud (pages + layouts + snippets)
+- refactoring page.rb => create module pagetree
+- refactoring: CustomFields::CustomField => CustomFields::Field
+
+BUGS:
+- theme assets: disable version if not image
+- assets uploader: remove old files if new one
+
+DONE:
 x admin layout
 x logout button
 x slugify page
@@ -34,22 +56,18 @@ x create 404 + index pages once a site is created
 x can not delete index + 404 pages
 x validates_uniqueness_of :slug, :scope => :id
 x domain scoping when authenticating
-- theme assets
+x theme assets
   x create / update
   x slug 
   x filename from slug
   x can not replace a javascript by a stylesheet
-  - disable version if not image
-- asset collections
+x asset collections
   x create / update
   x sort assets
   x removing assets
-  - assets
-  - destroy
-  - custom resizing
-- assets uploader:
-  - remove old files if new one
-- custom fields:
+  x assets
+  x destroy
+x custom fields:
 	x renaming fields
   x extract a plugin from custom fields	
 	x ui
@@ -57,18 +75,4 @@ x domain scoping when authenticating
 	x rename asset_field
   x nested attributes
   x keep tracks of all custom fields (adding / editing assets) + order them
-	x duplicate fields  
-	- apply in asset_field (in order to handle Date, File, ...etc)
-
-BACKLOG:
-- liquid rendering engine
-- theme assets
-- assets collection
-- custom models
-
-- devise messages in French
-- localize devise emails
-- refactoring admin crud (pages + layouts + snippets)
-- refactoring page.rb => create module pagetree
-
-  
+	x duplicate fields

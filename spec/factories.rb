@@ -63,8 +63,15 @@ Factory.define :theme_asset do |a|
   a.association :site
 end
 
-## Asset collection ##
+## Asset collections ##
 Factory.define :asset_collection do |s|
   s.association :site, :factory => :site
   s.name 'Trip to Chicago'
 end
+
+## Content types ##
+Factory.define :content_type do |t|
+  t.association :site, :factory => :site
+  t.name 'My project'
+end
+

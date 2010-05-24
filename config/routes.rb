@@ -41,7 +41,11 @@ Locomotive::Application.routes.draw do |map|
     
     resources :asset_collections
 
-    resources :assets, :path => "asset_collections/:collection_id" 
+    resources :assets, :path => "asset_collections/:collection_id/assets" 
+    
+    resources :content_types
+    
+    resources :contents, :path => "content_types/:slug/contents"
     
   end
   
