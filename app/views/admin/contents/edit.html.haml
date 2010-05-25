@@ -1,0 +1,15 @@
+- title t('.title', :type => @content_type.name.capitalize)
+
+- content_for :submenu do
+  = render 'admin/shared/menu/contents'
+
+- content_for :buttons do
+  = admin_button_tag t('admin.contents.index.edit'), edit_admin_content_type_url(@content_type), :class => 'edit'
+
+%p= @content_type.description
+
+= semantic_form_for @content, :url => admin_content_url(@content_type.slug, @content), :html => { :multipart => true } do |form|
+
+  = render 'form', :f => form
+
+  = render 'admin/shared/form_actions', :back_url => admin_contents_url(@content_type.slug), :button_label => :update

@@ -1,13 +1,14 @@
 class ContentType  
   include Mongoid::Document
   include Mongoid::Timestamps
-  # include Mongoid::CustomFields
+  include Mongoid::CustomFields
   
   ## fields ##
   field :name
   field :description
   field :slug
   field :order_by
+  field :highlighted_field_name
   
   ## associations ##
   belongs_to_related :site
@@ -21,9 +22,25 @@ class ContentType
   validates_uniqueness_of :slug, :scope => :site
   
   ## behaviours ##
-  # custom_fields_for :contents
+  custom_fields_for :contents
   
   ## methods ##
+  
+  def ordered_contents
+    self.contents.sort { |a, b| (a.position || 0) <=> (b.position || 0) }
+  end
+  
+  def contents_order
+    self.ordered_contents.collect(&:id).join(',')
+  end
+  
+  def contents_order=(order)
+    @contents_order = order
+  end
+  
+  def highlighted_field
+    self.content_custom_fields.detect { |f| f._name == self.highlighted_field_name }
+  end
   
   protected
   

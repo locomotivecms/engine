@@ -1,6 +1,9 @@
 BOARD:
   - content types / models (CRUD)
+    - require a custom field at least
+    - pre-select the first custom field as the highlighted one
   - contents (CRUD)
+    - sort contents
 
 BACKLOG:
 - liquid rendering engine

@@ -1,8 +1,11 @@
-- title t('.title', :type => @content_type.name)
+- title t('.title', :type => @content_type.name.capitalize)
 
 - content_for :submenu do
   = render 'admin/shared/menu/contents'
-
+    
+- content_for :head do
+  = javascript_include_tag 'admin/contents'
+  
 - content_for :buttons do
   = admin_button_tag :edit, edit_admin_content_type_url(@content_type), :class => 'edit'
   = admin_button_tag :download, '#', :class => 'download'
@@ -14,4 +17,21 @@
 - if @contents.empty?
   %p.no-items= t('.no_items', :url => new_admin_content_url(@content_type.slug))
 - else
-  foo bar
+  %ul{ :id => 'contents-list', :class => "list #{'sortable' if @content_type.order_by == 'position'}" }
+    - @contents.each do |content|
+      %li.content{ :id => "content-#{content._id}" }
+        - if @content_type.order_by == 'position'
+          %em
+        %strong
+          = link_to content.send(@content_type.highlighted_field_name), edit_admin_content_path(@content_type.slug, content)
+        .more
+          %span
+            = t('admin.contents.index.updated_at')
+          = l content.updated_at, :format => :short rescue 'n/a'
+          
+          = link_to image_tag('admin/list/icons/trash.png'), admin_content_path(@content_type.slug, content), :class => 'remove', :confirm => t('admin.messages.confirm'), :method => :delete
+        
+= form_tag sort_admin_contents_path(@content_type.slug), :method => :put, :class => 'formtastic' do
+  = hidden_field_tag :order
+
+  = render 'admin/shared/form_actions', :delete_button => link_to(content_tag(:span, t('.destroy')), admin_content_type_url(@content_type), :confirm => t('admin.messages.confirm'), :method => :delete, :class => 'button small remove'), :button_label => :update

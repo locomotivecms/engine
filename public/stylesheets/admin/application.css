@@ -54,6 +54,14 @@ ul.list li {
 	background: transparent url(/images/admin/list/item.png) no-repeat 0 0;
 }
 
+ul.list li em {
+	display: block;
+	float: left;
+	background: transparent url(/images/admin/list/item-left.png) no-repeat left 0;
+	height: 31px;
+	width: 18px;
+}
+
 ul.list li strong a {
 	position: relative;
 	top: 2px;
@@ -150,6 +158,22 @@ ul.assets li.asset div.actions {
 div#asset-uploader { display: inline-block; margin-left: 10px; }
 div#asset-uploader span.spinner { position: relative; top: -3px; display: none; }
 div#uploadAssetsInputQueue { display: none; }
+
+/* ___ contents ___ */
+
+#contents-list li { background: none; }
+
+#contents-list li em {
+	background-position: left -31px;
+	cursor: move;
+}
+
+#contents-list li strong {
+	margin-left: 18px;
+	display: block;
+	height: 31px;
+	background: transparent url(/images/admin/list/item-right.png) no-repeat right 0;
+}
 
 
 /* ___ pages ___ */

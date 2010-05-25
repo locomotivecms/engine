@@ -45,8 +45,9 @@ Locomotive::Application.routes.draw do |map|
     
     resources :content_types
     
-    resources :contents, :path => "content_types/:slug/contents"
-    
+    resources :contents, :path => "content_types/:slug/contents" do
+      put :sort, :on => :collection
+    end
   end
   
   # magic urls

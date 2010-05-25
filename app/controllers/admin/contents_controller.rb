@@ -18,7 +18,7 @@ module Admin
     end
   
     def create
-      @content = @content_type.contents.build(params[:content])
+      @content = @content_type.contents.build(params[:content_instance])
 
       if @content.save
         flash_success!
@@ -32,7 +32,7 @@ module Admin
     def update
       @content = @content_type.contents.find(params[:id])
       
-      if @content.update_attributes(params[:content])
+      if @content.update_attributes(params[:content_instance])
         flash_success!
         redirect_to edit_admin_content_url(@content_type.slug, @content)
       else
@@ -40,6 +40,10 @@ module Admin
         render :action => "edit"
       end
     end
+    
+    def sort
+      
+    end    
   
     def destroy
       @content = @content_type.contents.find(params[:id])

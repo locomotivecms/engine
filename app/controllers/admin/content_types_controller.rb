@@ -34,7 +34,7 @@ module Admin
         render :action => "edit"
       end
     end
-  
+    
     def destroy
       @content_type = current_site.content_types.find(params[:id])
 

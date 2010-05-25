@@ -1,0 +1,10 @@
+- highlighted_field_name = @content.content_type.highlighted_field_name
+
+= f.inputs :name => :other_fields do
+  - @content.custom_fields.each do |field|
+    - required = highlighted_field_name == field._name
+  
+    - if field.string?
+      = f.input field._alias.to_sym, :label => field.label, :required => required
+    - elsif field.text?
+      = f.input field._alias.to_sym, :label => field.label, :as => :text, :required => required
