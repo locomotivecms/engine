@@ -8,7 +8,6 @@
   
 - content_for :buttons do
   = admin_button_tag :edit, edit_admin_content_type_url(@content_type), :class => 'edit'
-  = admin_button_tag :download, '#', :class => 'download'
   = admin_button_tag :new, new_admin_content_url(@content_type.slug), :class => 'new'
 
 - if @content_type.description.present? 
@@ -17,11 +16,10 @@
 - if @contents.empty?
   %p.no-items= t('.no_items', :url => new_admin_content_url(@content_type.slug))
 - else
-  %ul{ :id => 'contents-list', :class => "list #{'sortable' if @content_type.order_by == 'position'}" }
+  %ul{ :id => 'contents-list', :class => "list #{'sortable' if @content_type.order_by == '_position_in_list'}" }
     - @contents.each do |content|
       %li.content{ :id => "content-#{content._id}" }
-        - if @content_type.order_by == 'position'
-          %em
+        %em
         %strong
           = link_to content.send(@content_type.highlighted_field_name), edit_admin_content_path(@content_type.slug, content)
         .more

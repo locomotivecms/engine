@@ -6,7 +6,7 @@ module Admin
     before_filter :set_content_type    
   
     def index
-      @contents = @content_type.contents
+      @contents = @content_type.ordered_contents
     end
   
     def new
@@ -42,7 +42,11 @@ module Admin
     end
     
     def sort
+      @content_type.sort_contents!(params[:order])
       
+      flash_success!
+      
+      redirect_to admin_contents_url(@content_type.slug)
     end    
   
     def destroy

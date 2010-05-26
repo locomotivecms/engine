@@ -1,5 +1,7 @@
 - highlighted_field_name = @content.content_type.highlighted_field_name
 
+- puts "current custom fields = #{@content.custom_fields.inspect}"
+
 = f.inputs :name => :other_fields do
   - @content.custom_fields.each do |field|
     - required = highlighted_field_name == field._name

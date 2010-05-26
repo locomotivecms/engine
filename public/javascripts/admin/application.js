@@ -44,6 +44,18 @@ var addCodeMirrorEditor = function(type, el, parser) {
 $(document).ready(function() {
 	I18nLocale = $('meta[name=locale]').attr('content');
 	
+	// sub menu links
+	$('#submenu ul li.links').hover(function() {
+		$(this).addClass('hover');
+		$(this).find('.popup').show();
+	}, function() {
+		$(this).removeClass('hover');
+		$(this).find('.popup').hide();
+	});
+	
+	if ((css = $('#submenu > ul').attr('class')) != '')
+		$('#submenu > ul > li.' + css).addClass('on');
+	
 	// form
 	$('.formtastic li input, .formtastic li textarea').focus(function() {
 		$('.formtastic li.error p.inline-errors').fadeOut(200);

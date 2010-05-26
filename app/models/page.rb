@@ -33,6 +33,7 @@ class Page
   validates_exclusion_of    :slug, :in => Locomotive.config.reserved_slugs, :if => Proc.new { |p| p.depth == 0 }
   
   ## named scopes ##
+  named_scope :latest_updated, :order_by => [[:updated_at, :desc]], :limit => Locomotive.config.lastest_items_nb
   
   ## behaviours ##
   acts_as_tree :order => ['position', 'asc']

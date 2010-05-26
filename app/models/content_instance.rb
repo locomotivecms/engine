@@ -3,13 +3,16 @@ class ContentInstance
   include Mongoid::Timestamps
   
   ## fields (dynamic fields) ##
-  field :position, :type => Integer, :default => 0
+  field :_position_in_list, :type => Integer, :default => 0
   
   ## validations ##
   validate :require_highlighted_field
   
   ## associations ##
   embedded_in :content_type, :inverse_of => :contents
+  
+  ## named scopes ##
+  named_scope :latest_updated, :order_by => [[:updated_at, :desc]], :limit => Locomotive.config.lastest_items_nb
   
   ## methods ##
   

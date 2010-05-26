@@ -1,9 +1,27 @@
 %ul
-  = admin_submenu_item 'pages', admin_pages_url
+  = admin_submenu_item 'pages', admin_pages_url do
+    .header
+      %p= link_to t('admin.pages.index.new'), new_admin_page_url
+    .inner
+      %h2= t('admin.pages.index.lastest_items')
+      %ul
+        - current_site.pages.latest_updated.each do |page|
+          %li
+            = link_to truncate(page.title, :length => 40), edit_admin_page_url(page)
+            %span= time_ago_in_words(page.updated_at)
 
   - current_site.content_types.each do |content_type|
     - item_on = (content_type.slug == @content_type.slug) rescue nil
-    = admin_submenu_item content_type.name, admin_contents_url(content_type.slug), :i18n => false, :css => (item_on ? 'on' : '')
-	
+    = admin_submenu_item content_type.name, admin_contents_url(content_type.slug), :i18n => false, :css => (item_on ? 'on' : '') do
+      .header
+        %p= link_to t('admin.contents.index.new'), new_admin_content_url(content_type.slug)
+      .inner
+        %h2= t('admin.contents.index.lastest_items')
+        %ul
+          - content_type.contents.latest_updated.each do |content|
+            %li
+              = link_to truncate(content.send(content_type.highlighted_field_name), :length => 40), edit_admin_content_path(content_type.slug, content)
+              %span= time_ago_in_words(content.updated_at)
+        
 .action
   = link_to content_tag(:span, t('admin.content_types.index.new')), new_admin_content_type_url

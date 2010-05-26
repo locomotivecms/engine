@@ -16,10 +16,12 @@ class ContentType
 
   ## callbacks ##
   before_validate :normalize_slug
+  before_save :set_default_values
   
   ## validations ##
   validates_presence_of :site, :name, :slug
   validates_uniqueness_of :slug, :scope => :site
+  validates_size_of :content_custom_fields, :minimum => 1, :message => :array_too_short
   
   ## behaviours ##
   custom_fields_for :contents
@@ -27,15 +29,15 @@ class ContentType
   ## methods ##
   
   def ordered_contents
-    self.contents.sort { |a, b| (a.position || 0) <=> (b.position || 0) }
+    column = self.order_by.to_sym
+    self.contents.sort { |a, b| (a.send(column) || 0) <=> (b.send(column) || 0) }
   end
   
-  def contents_order
-    self.ordered_contents.collect(&:id).join(',')
-  end
-  
-  def contents_order=(order)
-    @contents_order = order
+  def sort_contents!(order)
+    order.split(',').each_with_index do |id, position|
+      self.contents.find(id)._position_in_list = position
+    end
+    self.save
   end
   
   def highlighted_field
@@ -43,6 +45,11 @@ class ContentType
   end
   
   protected
+  
+  def set_default_values
+    self.order_by ||= 'updated_at'
+    self.highlighted_field_name ||= self.content_custom_fields.first._name
+  end
   
   def normalize_slug
     self.slug = self.name.clone if self.slug.blank? && self.name.present?    

@@ -19,15 +19,13 @@ module Admin::BaseHelper
     css = "#{'on' if name == sections(:sub)} #{'links' if block_given?} #{options[:css]}"
     
     label_link = default_options[:i18n] ? t("admin.shared.menu.#{name}") : name
-    # if block_given?
-    #   popup = content_tag(:div, capture(&block), :class => 'popup', :style => 'display: none')
-    #   link = link_to(content_tag(:span, label_link + content_tag(:em)), url)
-    #   concat(content_tag(:li, link + popup, :class => css))
-    # else
-    #   html = content_tag(:li, link_to(content_tag(:span, label_link), url), :class => css)
-    # end
-    
-    content_tag(:li, link_to(content_tag(:span, label_link), url), :class => css)
+    if block_given?
+      popup = content_tag(:div, capture(&block), :class => 'popup', :style => 'display: none')
+      link = link_to(content_tag(:span, preserve(label_link + content_tag(:em))), url)
+      content_tag(:li, link + popup, :class => css)
+    else
+      content_tag(:li, link_to(content_tag(:span, label_link), url), :class => css)
+    end
   end
   
 end

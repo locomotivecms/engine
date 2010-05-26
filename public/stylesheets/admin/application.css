@@ -163,7 +163,7 @@ div#uploadAssetsInputQueue { display: none; }
 
 #contents-list li { background: none; }
 
-#contents-list li em {
+#contents-list.sortable li em {
 	background-position: left -31px;
 	cursor: move;
 }

@@ -9,6 +9,7 @@ $(document).ready(function() {
 	}
 
 	$('ul#contents-list.sortable').sortable({
+		handle: 'em',
 		items: 'li.content',
 		stop: function(event, ui) { updateContentsOrder(); }
 	});

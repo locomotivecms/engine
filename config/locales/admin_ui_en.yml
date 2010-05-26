@@ -60,6 +60,7 @@ en:
         title: Listing pages
         no_items: "There are no pages for now. Just click <a href=\"{{url}}\">here</a> to create the first one."
         new: new page
+        lastest_items: Lastest pages
       page:
         updated_at: updated at
       edit:
@@ -153,15 +154,17 @@ en:
       form:
         order_by:
           updated_at: 'By "updated at" date'
-          position: Manually
+          position_in_list: Manually
         
     contents:
       index:
         title: 'Listing "{{type}}"'
         edit: edit model
+        destroy: remove model
         download: download items
         new: new item
         no_items: "There are no items for now. Just click <a href=\"{{url}}\">here</a> to create the first one."
+        lastest_items: "Lastest items"
       new:
         title: '{{type}} &mdash; new item' 
       edit:

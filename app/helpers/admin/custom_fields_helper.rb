@@ -8,7 +8,7 @@ module Admin::CustomFieldsHelper
   end
   
   def options_for_order_by(content_type, collection_name)
-    options = %w{updated_at position}.map do |type|
+    options = %w{updated_at _position_in_list}.map do |type|
       [t("admin.content_types.form.order_by.#{type.gsub(/^_/, '')}"), type]
     end
     options + options_for_highlighted_field(content_type, collection_name)
