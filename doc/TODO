@@ -1,11 +1,8 @@
-BOARD:
-  - contents sub menu => BUG
+BOARD:  
+- liquid rendering engine
 
 BACKLOG:
-- liquid rendering engine
 - theme assets
-- assets collection
-- custom models
 - asset collections: custom resizing if image
 
 - devise messages in French
@@ -17,6 +14,7 @@ BACKLOG:
 BUGS:
 - theme assets: disable version if not image
 - assets uploader: remove old files if new one
+
 
 DONE:
 x admin layout
@@ -80,3 +78,4 @@ x content types / models (CRUD)
   x pre-select the first custom field as the highlighted one
 x contents (CRUD)
   x sort contents
+x contents sub menu => BUG

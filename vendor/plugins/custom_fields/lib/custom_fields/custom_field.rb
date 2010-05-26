@@ -34,8 +34,12 @@ module CustomFields
     def apply(object, association_name)
       return unless self.valid?
       
-      object.class.send(:set_field, self._name, { :type => self.field_type })
+      # trick mongoid
+      object.class_eval { def meta; (class << self; self; end); end }
+      object.meta.fields = object.fields.clone 
+      object.meta.send(:define_method, :fields) { self.meta.fields }
       
+      object.meta.field self._name, :type => self.field_type
       object.class_eval <<-EOF
         alias :#{self.safe_alias} :#{self._name}
         alias :#{self.safe_alias}= :#{self._name}=
