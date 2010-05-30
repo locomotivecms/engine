@@ -22,6 +22,10 @@ class PagePart
   
   ## methods ##
   
+  def template
+    "{% capture content_for_#{self.slug} %}#{self.value}{% endcapture %}"
+  end
+  
   def self.build_body_part
     self.new({
       :name => I18n.t('attributes.defaults.page_parts.name'), 
@@ -29,4 +33,5 @@ class PagePart
       :slug => 'layout'
     })
   end
+  
 end

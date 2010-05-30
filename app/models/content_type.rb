@@ -28,9 +28,14 @@ class ContentType
   
   ## methods ##
   
-  def ordered_contents
+  def ordered_contents(conditions = {})
     column = self.order_by.to_sym
-    self.contents.sort { |a, b| (a.send(column) || 0) <=> (b.send(column) || 0) }
+    
+    (if conditions.nil? || conditions.empty?
+      self.contents
+    else
+      self.contents.where(conditions)
+    end).sort { |a, b| (a.send(column) || 0) <=> (b.send(column) || 0) }
   end
   
   def sort_contents!(order)

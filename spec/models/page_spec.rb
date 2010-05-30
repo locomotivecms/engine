@@ -248,15 +248,15 @@ describe Page do
       archives.children.last.children.first.depth.should == 3
     end
     
-    it 'should generate a route / url from parents' do
-      @home.route.should == 'index'
+    it 'should generate a path / url from parents' do
+      @home.fullpath.should == 'index'
       @home.url.should == 'http://acme.example.com/index.html'
       
-      @child_1.route.should == 'foo'
+      @child_1.fullpath.should == 'foo'
       @child_1.url.should == 'http://acme.example.com/foo.html'
       
       nested_page = Factory(:page, :title => 'Sub sub page 1', :slug => 'bar', :parent => @child_1, :site => @home.site)
-      nested_page.route.should == 'foo/bar'
+      nested_page.fullpath.should == 'foo/bar'
       nested_page.url.should == 'http://acme.example.com/foo/bar.html'
     end
     
@@ -286,5 +286,44 @@ describe Page do
       [@child_1, @child_3.reload].each_with_index { |c, i| c.position.should == i + 1 }
     end
      
-  end      
+  end
+  
+  context 'rendering' do
+   
+    before(:each) do
+      @page = Factory.build(:page, :site => nil)      
+      @page.parts.build :slug => 'layout', :value => 'Hello world !'
+      @page.parts.build :slug => 'sidebar', :value => 'A sidebar...'
+      @page.send(:store_template)
+      @layout = Factory.build(:layout, :site => nil)
+      @layout.send(:store_template)
+      @context = Liquid::Context.new
+    end
+   
+    context 'without layout' do
+       
+       it 'should render the body part' do
+         @page.render(@context).should == 'Hello world !'
+       end
+       
+    end
+    
+    context 'with layout' do
+      
+      it 'should render both the body and sidebar parts' do
+        @page.layout = @layout        
+        @page.render(@context).should == %{<html>
+    <head>
+      <title>My website</title>
+    </head>
+    <body>
+      <div id="sidebar">A sidebar...</div>
+      <div id="main">Hello world !</div>
+    </body>
+  </html>}
+      end
+      
+    end
+    
+  end 
 end

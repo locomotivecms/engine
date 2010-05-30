@@ -84,6 +84,8 @@ en:
         new: new snippet
       new:
         title: New snippet
+      edit:
+        title: Editing snippet
         
     sites:
       new:
@@ -118,7 +120,8 @@ en:
       new:
         title: New file
       edit:
-        title: "Editing {{file}}"      
+        title: "Editing {{file}}"
+        help: "You can use it by copying/pasting the following url: {{url}}"
       form:
         choose_file: Choose file
         choose_plain_text: Choose plain text

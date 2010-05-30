@@ -55,7 +55,7 @@ Factory.define :snippet do |s|
   s.association :site, :factory => :site
   s.name 'My website title'
   s.slug 'header'
-  s.value %{<title>Acme</title}
+  s.value %{<title>Acme</title>}
 end
 
 ## Theme assets ##

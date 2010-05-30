@@ -1,5 +1,6 @@
 # require 'locomotive/patches'
 require 'locomotive/configuration'
+require 'locomotive/liquid'
 
 module Locomotive
 

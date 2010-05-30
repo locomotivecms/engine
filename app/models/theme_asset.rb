@@ -3,8 +3,8 @@ class ThemeAsset
   include Mongoid::Timestamps
   
   ## fields ##
-  field :slug, :type => String
-  field :content_type, :type => String
+  field :slug
+  field :content_type
   field :width, :type => Integer
   field :height, :type => Integer
   field :size, :type => Integer
@@ -22,6 +22,7 @@ class ThemeAsset
   validate :extname_can_not_be_changed
   validates_presence_of :site, :source
   validates_presence_of :slug, :if => Proc.new { |a| a.new_record? && a.performing_plain_text? }
+  validates_uniqueness_of :slug, :scope => [:site_id, :content_type]
   validates_integrity_of :source
     
   ## accessors ##
@@ -67,6 +68,10 @@ class ThemeAsset
     else
       "#{self.slug}#{File.extname(self.source.file.original_filename)}"
     end    
+  end
+  
+  def to_liquid
+    { :url => self.source.url }.merge(self.attributes)
   end
     
   protected

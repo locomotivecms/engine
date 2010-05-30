@@ -14,7 +14,7 @@ describe Layout do
     layout.errors[:value].should == ["should contain 'content_for_layout' liquid tag"]
   end
   
-  describe 'page parts' do
+  context 'dealing with page parts' do
     
     before(:each) do
       @layout = Factory.build(:layout)
@@ -45,6 +45,18 @@ describe Layout do
       page.expects(:update_parts!)
       @layout.pages << page
       @layout.save
+    end
+    
+  end
+  
+  context 'parsing liquid template' do
+    
+    before(:each) do
+      @layout = Factory.build(:layout)
+    end
+    
+    it 'should not raise an error if template is empty' do
+      @layout.template.should be_nil
     end
     
   end

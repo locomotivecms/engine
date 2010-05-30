@@ -6,7 +6,7 @@
 - content_for :buttons do
   = admin_button_tag t('admin.theme_assets.index.new'), new_admin_theme_asset_url, :class => 'add'
 
-%p= t('.help')
+%p= t('.help', :url => @asset.source.url)
 
 = semantic_form_for @asset, :url => admin_theme_asset_url(@asset), :html => { :multipart => true } do |form|
 

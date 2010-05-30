@@ -17,16 +17,16 @@ $(document).ready(function() {
 	$('#parts code textarea').each(function() { addCodeMirrorEditor('liquid', $(this)); });
 		
 	var refreshParts = function(parts) {
-		console.log('refreshParts');
+		// console.log('refreshParts');
 		$('#page-parts .nav a').removeClass('enabled');
 		
 		$(parts).each(function() {
-			console.log("iterating..." + this.slug);
+			// console.log("iterating..." + this.slug);
 			var control = $('#control-part-' + this.slug);
 			
 			// adding missing part
 			if (control.size() == 0) {
-				console.log('adding part');
+				// console.log('adding part');
 				var nbParts = $('#page-parts .nav a').size();
 				$('#page-parts .nav .clear').before('<a id="control-part-' + this.slug + '" class="enabled part-' + nbParts + '" href="#parts-' + (nbParts + 1) + '"><span>' + this.name + '</span></a>');
 				
@@ -75,7 +75,7 @@ $(document).ready(function() {
 			return ;
 		
 		var url = $('#page_layout_id').attr('data_url').replace('_id_to_replace_', $('#page_layout_id').val());
-		$.get(url, '', function(data) { refreshParts(data.parts) }, 'json');
+		$.get(url, '', function(data) { refreshParts(data.parts); }, 'json');
 	}
 		
 	$('#page_layout_id').change(loadPartsFromLayout);

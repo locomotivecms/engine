@@ -33,6 +33,7 @@ class Site
   named_scope :match_domain_with_exclusion_of, lambda { |domain, site| { :where => { :domains => domain, :_id.ne => site.id } } }
     
   ## behaviours ##
+  liquid_methods :name
   
   ## methods ##
 
@@ -56,7 +57,7 @@ class Site
   def domains_with_subdomain
     ((self.domains || []) + ["#{self.subdomain}.#{Locomotive.config.default_domain}"]).uniq
   end
-  
+    
   protected
   
   def domains_must_be_valid_and_unique

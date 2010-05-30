@@ -23,7 +23,7 @@ module Mongoid #:nodoc:
       alias_method_chain :parentize, :custom_fields
       
       def custom_fields_association_name(association_name)
-        "#{association_name.singularize}_custom_fields".to_sym
+        "#{association_name.to_s.singularize}_custom_fields".to_sym
       end
       
       def custom_fields?(object, association_name)

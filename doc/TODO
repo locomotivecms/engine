@@ -1,20 +1,24 @@
 BOARD:  
-- liquid rendering engine
+- theme assets
+- theme assets picker (???)
 
 BACKLOG:
-- theme assets
-- asset collections: custom resizing if image
+- file type (icons)
 
 - devise messages in French
 - localize devise emails
 - refactoring admin crud (pages + layouts + snippets)
 - refactoring page.rb => create module pagetree
+
 - refactoring: CustomFields::CustomField => CustomFields::Field
+- optimization custom_fields: use dynamic class for a collection instead of modifying the metaclass each time we build an item
 
 BUGS:
 - theme assets: disable version if not image
 - assets uploader: remove old files if new one
 
+NICE TO HAVE:
+- asset collections: custom resizing if image
 
 DONE:
 x admin layout
@@ -79,3 +83,6 @@ x content types / models (CRUD)
 x contents (CRUD)
   x sort contents
 x contents sub menu => BUG
+x liquid rendering engine
+x contents pagination
+x how to disable a page part in layout ? (BUG)

@@ -17,12 +17,18 @@ class Asset
   ## validations ##
   validates_presence_of :name, :source
   
+  ## behaviours ##
+
   ## methods ##
   
   %w{image stylesheet javascript pdf video audio}.each do |type|
     define_method("#{type}?") do
       self.content_type == type
     end  
+  end
+  
+  def to_liquid
+    { :url => self.source.url }.merge(self.attributes)
   end
     
 end

@@ -8,6 +8,7 @@ en:
         protected_page: "You can not remove index or 404 pages"
         extname_changed: "New file does not have the original extension"
         array_too_short: "is too small (minimum element number is {{count}})"
+        liquid_syntax_error: "Syntax error in page parts, please check the syntax"
         
   attributes:
     defaults:
@@ -22,3 +23,7 @@ en:
           body: "Content goes here"
       page_parts:
         name: "Body"
+        
+  pagination:
+    previous: "&laquo; Previous"
+    next: "Next &raquo;"

@@ -6,10 +6,12 @@ class Page
   ## fields ##
   field :title
   field :slug
+  field :fullpath
   field :published, :type => Boolean, :default => false
   field :keywords
   field :description
   field :position, :type => Integer
+  field :template, :type => Binary
   
   ## associations ##
   belongs_to_related :site
@@ -19,6 +21,8 @@ class Page
   ## callbacks ##
   before_validate :reset_parent
   before_validate :normalize_slug
+  before_validate :store_template
+  before_save { |p| p.fullpath = p.fullpath(true) }
   before_save { |p| p.parent_id = nil if p.parent_id.blank? }
   before_save :change_parent
   before_create { |p| p.parts << PagePart.build_body_part if p.parts.empty? }
@@ -34,6 +38,8 @@ class Page
   
   ## named scopes ##
   named_scope :latest_updated, :order_by => [[:updated_at, :desc]], :limit => Locomotive.config.lastest_items_nb
+  named_scope :index, :where => { :slug => 'index', :depth => 0 }
+  named_scope :not_found, :where => { :slug => '404', :depth => 0 }
   
   ## behaviours ##
   acts_as_tree :order => ['position', 'asc']
@@ -65,21 +71,42 @@ class Page
       child.save
     end
   end
-  
-  def route
-    return self.slug if self.index? || self.not_found?    
-    slugs = self.self_and_ancestors.map(&:slug)
-    slugs.shift
-    File.join slugs
+
+  def fullpath(force = false)
+    if read_attribute(:fullpath).present? && !force
+      return read_attribute(:fullpath)
+    end
+    
+    if self.index? || self.not_found?
+      self.slug
+    else
+      slugs = self.self_and_ancestors.map(&:slug)
+      slugs.shift
+      File.join slugs
+    end
   end
   
   def url
-    "http://#{self.site.domains.first}/#{self.route}.html"
+    "http://#{self.site.domains.first}/#{self.fullpath}.html"
+  end
+  
+  def template
+    Marshal.load(read_attribute(:template).to_s) rescue nil
   end
   
   def ancestors
     return [] if root?
     self.class.find(self.path.clone << nil) # bug in mongoid (it does not handle array with one element) 
+  end
+  
+  def render(context)
+    self.template.render(context)
+                
+    if self.layout
+      self.layout.template.render(context)
+    else
+      Liquid::Template.parse("{{ content_for_layout }}").render(context)
+    end
   end
   
   protected
@@ -163,4 +190,14 @@ class Page
     self.slug = self.title.clone if self.slug.blank? && self.title.present?    
     self.slug.slugify!(:without_extension => true) if self.slug.present?
   end
+  
+  def store_template
+    begin
+      parsed_template = Liquid::Template.parse(self.parts.enabled.map(&:template).join(''))
+      self.template = BSON::Binary.new(Marshal.dump(parsed_template))
+    rescue Liquid::SyntaxError => error
+      self.errors.add :template, :liquid_syntax_error
+    end
+  end
+  
 end

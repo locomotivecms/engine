@@ -13,6 +13,7 @@ class AssetCollection
   
   ## behaviours ##
   custom_fields_for :assets
+  liquid_methods :name, :ordered_assets
   
   ## callbacks ##
   before_validate :normalize_slug

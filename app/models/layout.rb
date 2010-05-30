@@ -12,11 +12,13 @@ class Layout < LiquidTemplate
   validates_format_of :value, :with => Locomotive::Regexps::CONTENT_FOR_LAYOUT, :message => :missing_content_for_layout
   
   ## methods ##
-  
+    
   protected
   
   def build_parts_from_value
     if self.value_changed? || self.new_record?
+      self.parts.each { |p| p.disabled = true }
+      
       self.value.scan(Locomotive::Regexps::CONTENT_FOR).each do |attributes|
         slug = attributes[0].strip.downcase
         name = attributes[1].strip.gsub("\"", '')    
@@ -25,6 +27,7 @@ class Layout < LiquidTemplate
         
         if part = self.parts.detect { |p| p.slug == slug }
           part.name = name if name.present?
+          part.disabled = false
         else
           self.parts.build :slug => slug, :name => name || slug
         end        
