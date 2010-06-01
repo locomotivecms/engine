@@ -1,4 +1,5 @@
-class ContentInstance  
+class ContentInstance
+
   include Mongoid::Document
   include Mongoid::Timestamps
   

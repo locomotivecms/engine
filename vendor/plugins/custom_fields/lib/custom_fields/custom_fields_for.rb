@@ -25,8 +25,6 @@ module CustomFields
     module ClassMethods
       
       def custom_fields_for(collection_name)
-        puts "settings custom fields for #{collection_name}"
-        
         singular_name = collection_name.to_s.singularize
         
         class_eval <<-EOV

@@ -1,7 +1,6 @@
-class ContentType  
-  include Mongoid::Document
-  include Mongoid::Timestamps
-  include Mongoid::CustomFields
+class ContentType
+  
+  include Locomotive::Mongoid::Document
   
   ## fields ##
   field :name

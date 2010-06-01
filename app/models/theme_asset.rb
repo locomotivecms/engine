@@ -1,6 +1,6 @@
 class ThemeAsset
-  include Mongoid::Document
-  include Mongoid::Timestamps
+  
+  include Locomotive::Mongoid::Document
   
   ## fields ##
   field :slug

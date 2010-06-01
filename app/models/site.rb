@@ -1,6 +1,6 @@
-class Site  
-  include Mongoid::Document
-  include Mongoid::Timestamps
+class Site
+  
+  include Locomotive::Mongoid::Document
   
   ## fields ##
   field :name

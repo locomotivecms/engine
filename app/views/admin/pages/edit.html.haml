@@ -4,7 +4,7 @@
   = render 'admin/shared/menu/contents'
 
 - content_for :buttons do
-  = admin_button_tag :show, '#', :class => 'show'
+  = admin_button_tag :show, "/#{@page.fullpath}", :class => 'show'
 
 %p= t('.help')
 

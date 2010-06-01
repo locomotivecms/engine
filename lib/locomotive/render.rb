@@ -23,8 +23,13 @@ module Locomotive
         path.gsub!(/^\//, '')
         path = 'index' if path.blank?
         
-        current_site.pages.where(:fullpath => path).first ||
-        current_site.pages.not_found.first
+        if page = current_site.pages.where(:fullpath => path).first
+          if not page.published? and current_account.nil?
+            page = nil
+          end
+        end
+
+        page || current_site.pages.not_found.first
       end
       
       def locomotive_context

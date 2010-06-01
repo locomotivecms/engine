@@ -1,4 +1,5 @@
 class PagePart
+  
   include Mongoid::Document
 
   ## fields ##

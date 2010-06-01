@@ -1,10 +1,10 @@
 module Locomotive
   
   module Liquid
-  
-    # Works only with snippets 
+      
     class DbFileSystem
         
+      # Works only with snippets 
       def read_template_file(site, template_path)
         raise FileSystemError, "Illegal snippet name '#{template_path}'" unless template_path =~ /^[^.\/][a-zA-Z0-9_\/]+$/
     

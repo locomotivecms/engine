@@ -8,7 +8,6 @@ module Mongoid
   module CustomFields  
     extend ActiveSupport::Concern
     included do
-      puts "loading from CustomFieldsFor"
       include ::CustomFields::CustomFieldsFor
     end  
   end

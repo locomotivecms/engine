@@ -1,6 +1,6 @@
 class Account
-  include Mongoid::Document
-  include Mongoid::Timestamps  
+  
+  include Locomotive::Mongoid::Document
   
   # devise modules
   devise :database_authenticatable, :recoverable, :rememberable, :trackable, :validatable

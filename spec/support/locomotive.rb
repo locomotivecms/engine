@@ -7,7 +7,7 @@ module Locomotive
    
     include Locomotive::Render
    
-    attr_accessor :output, :current_site
+    attr_accessor :output, :current_site, :current_account
    
     def render(options = {})
       self.output = options[:text]
@@ -20,6 +20,7 @@ module Locomotive
     def request
       @request ||= TestRequest.new
     end
+
   end
   
   class TestResponse

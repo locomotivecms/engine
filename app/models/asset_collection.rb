@@ -1,7 +1,6 @@
-class AssetCollection  
-  include Mongoid::Document
-  include Mongoid::Timestamps
-  include Mongoid::CustomFields
+class AssetCollection
+  
+  include Locomotive::Mongoid::Document
   
   ## fields ##
   field :name, :type => String

@@ -1,4 +1,5 @@
-class Asset
+class Asset 
+  
   include Mongoid::Document
   include Mongoid::Timestamps
   

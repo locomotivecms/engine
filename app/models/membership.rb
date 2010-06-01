@@ -1,6 +1,6 @@
 class Membership
-  include Mongoid::Document
-  include Mongoid::Timestamps
+  
+  include Locomotive::Mongoid::Document
   
   ## fields ##
   field :admin, :type => Boolean, :default => false

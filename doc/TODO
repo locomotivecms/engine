@@ -2,20 +2,24 @@ BOARD:
 - theme assets
 - theme assets picker (???)
 
+- assets uploader: remove old files if new one
+- theme assets: disable version if not image
+
 BACKLOG:
-- file type (icons)
 
 - devise messages in French
 - localize devise emails
 - refactoring admin crud (pages + layouts + snippets)
-- refactoring page.rb => create module pagetree
 
+- new types for custom field
+  - file
+  - boolean
+  - date
 - refactoring: CustomFields::CustomField => CustomFields::Field
 - optimization custom_fields: use dynamic class for a collection instead of modifying the metaclass each time we build an item
 
 BUGS:
-- theme assets: disable version if not image
-- assets uploader: remove old files if new one
+- when assigning new layout, disabled parts show up :-( (js problem)
 
 NICE TO HAVE:
 - asset collections: custom resizing if image
@@ -86,3 +90,5 @@ x contents sub menu => BUG
 x liquid rendering engine
 x contents pagination
 x how to disable a page part in layout ? (BUG)
+x non published page (redirect to 404 ?)
+x refactoring page.rb => create module pagetree
