@@ -1,6 +1,8 @@
 module Admin
   class ThemeAssetsController < BaseController
 
+    include ActionView::Helpers::TextHelper
+
     sections 'settings', 'theme_assets'
    
     def index
@@ -22,24 +24,33 @@ module Admin
     end
     
     def create
-      # logger.debug "request = #{request.inspect}"
-      # logger.debug "file size = #{request.env['rack.input'].inspect}"
+      params[:theme_asset] = { :source => params[:file] } if params[:file]
       
-      # File.cp(request.env['rack.input'], '/Users/didier/Desktop/FOO')
+      @asset = current_site.theme_assets.build(params[:theme_asset])
       
-      if params[:file]
-        # params[:theme_asset][:source] = request.env['rack.input']
-        @asset = current_site.theme_assets.build(:source => params[:file])
-      else
-        @asset = current_site.theme_assets.build(params[:theme_asset])
-      end
-
-      if @asset.save
-        flash_success!
-        redirect_to edit_admin_theme_asset_url(@asset)
-      else
-        flash_error!
-        render :action => 'new'
+      respond_to do |format|
+        if @asset.save
+          format.html do
+            flash_success!
+            redirect_to edit_admin_theme_asset_url(@asset)
+          end
+          format.json do
+            render :json => { 
+              :status => 'success', 
+              :name => truncate(@asset.slug, :length => 22),
+              :url => @asset.source.url,
+              :vignette_url => @asset.vignette_url
+            }
+          end
+        else
+          format.html do
+            flash_error!
+            render :action => 'new'
+          end
+          format.json do
+            render :json => { :status => 'error' }
+          end
+        end
       end
     end
     

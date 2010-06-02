@@ -30,7 +30,7 @@ class AssetUploader < CarrierWave::Uploader::Base
   def set_content_type
     value = :other
     
-    content_type = File.mime_type?(original_filename) if file.content_type == 'application/octet-stream'
+    content_type = file.content_type == 'application/octet-stream' ? File.mime_type?(original_filename) : file.content_type
     
     self.class.content_types.each_pair do |type, rules|
       rules.each do |rule|
@@ -59,7 +59,9 @@ class AssetUploader < CarrierWave::Uploader::Base
       :image      => ['image/jpeg', 'image/pjpeg', 'image/gif', 'image/png', 'image/x-png', 'image/jpg'],
       :movie      => [/^video/, 'application/x-shockwave-flash', 'application/x-swf'],
       :audio      => [/^audio/, 'application/ogg', 'application/x-mp3'],
-      :pdf        => ['application/pdf', 'application/x-pdf']
+      :pdf        => ['application/pdf', 'application/x-pdf'],
+      :stylesheet => ['text/css'],
+      :javascript => ['text/javascript', 'text/js', 'application/x-javascript']      
     }  
   end
     

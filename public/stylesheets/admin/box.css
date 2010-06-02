@@ -11,3 +11,4 @@ div.asset-picker h2 {
 }
 
 div.asset-picker ul { overflow: auto; height: 471px; }
+div.asset-picker ul li.new-asset { display: none; }

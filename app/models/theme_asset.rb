@@ -2,6 +2,9 @@ class ThemeAsset
   
   include Locomotive::Mongoid::Document
   
+  ## Extensions ##  
+  include Models::Extensions::Asset::Vignette
+  
   ## fields ##
   field :slug
   field :content_type

@@ -1,10 +1,12 @@
 BOARD:  
-- theme assets picker (???)
-  x lightbox (http://fancybox.net/api)
-  x select it
-  - flash upload (http://www.plupload.com/example_custom.php)
 - theme assets: disable version if not image
-- refactor theme assets / assets uploaders
+- refactoring: CustomFields::CustomField => CustomFields::Field
+- new types for custom field
+  - file
+  - boolean
+  - date
+- optimization custom_fields: use dynamic class for a collection instead of modifying the metaclass each time we build an item
+
 
 BACKLOG:
 
@@ -14,15 +16,6 @@ BACKLOG:
 - cucumber features for admin pages
 - refactoring admin crud (pages + layouts + snippets)
 
-- icons for mime type
-
-- new types for custom field
-  - file
-  - boolean
-  - date
-- refactoring: CustomFields::CustomField => CustomFields::Field
-- optimization custom_fields: use dynamic class for a collection instead of modifying the metaclass each time we build an item
-
 - deploy on Heroku
 
 BUGS:
@@ -31,6 +24,7 @@ BUGS:
 NICE TO HAVE:
 - asset collections: custom resizing if image
 - super_finder
+- better icons for mime type
 
 DONE:
 x admin layout
@@ -102,3 +96,8 @@ x non published page (redirect to 404 ?)
 x refactoring page.rb => create module pagetree
 ! assets uploader: remove old files if new one (BUG non )
 x CodeMirror: switch js -> css -> js .... (http://marijn.haverbeke.nl/codemirror/manual.html)
+x theme assets picker (???)
+  x lightbox (http://fancybox.net/api)
+  x select it
+  x flash upload (http://www.plupload.com/example_custom.php)
+x refactor theme assets / assets uploaders

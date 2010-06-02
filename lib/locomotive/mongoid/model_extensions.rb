@@ -1,0 +1,1 @@
+Dir[File.join(Rails.root, 'app', 'models', 'extensions', '**', '*.rb')].each { |lib| require lib }

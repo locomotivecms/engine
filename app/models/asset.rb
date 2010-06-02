@@ -3,6 +3,9 @@ class Asset
   include Mongoid::Document
   include Mongoid::Timestamps
   
+  ## Extensions ##  
+  include Models::Extensions::Asset::Vignette
+  
   ## fields ##
   field :name, :type => String
   field :content_type, :type => String

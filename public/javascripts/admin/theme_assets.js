@@ -20,6 +20,19 @@ var enableFileOrTextToggling = function() {
 	});
 }
 
+var copyLinkToEditor = function(link, event) {
+	var editor = CodeMirrorEditors[0].editor;
+	var handle = editor.cursorLine(), position = editor.cursorPosition(handle).character;
+	var text = 'url("' + link.attr('href') + '")';
+
+	editor.insertIntoLine(handle, position, text);
+
+	event.stopPropagation();
+	event.preventDefault();
+	
+	$.fancybox.close();
+}
+
 var setupUploader = function() {
 	var multipartParams = {};
 	multipartParams[$('meta[name=csrf-param]').attr('content')] = $('meta[name=csrf-token]').attr('content');
@@ -39,18 +52,41 @@ var setupUploader = function() {
 		uploader.start();
 	});
 	
+	uploader.bind('FileUploaded', function(up, file, response) {
+		var json = JSON.parse(response.response);
+		
+		if (json.status == 'success') {
+			var asset = $('.asset-picker ul li.new-asset')
+				.clone()
+				.insertBefore($('.asset-picker ul li.clear'))
+				.addClass('asset');
+			
+			asset.find('h4 a').attr('href', json.url).html(json.name).bind('click', function(e) {
+				copyLinkToEditor($(this), e);
+			});
+			asset.find('.image .inside img').attr('src', json.vignette_url);
+			
+			if ($('.asset-picker ul li.asset').length % 3 == 0)
+				asset.addClass('last');
+			
+			asset.removeClass('new-asset');
+			
+			$('.asset-picker ul').scrollTo($('li.asset:last'), 400);
+		}
+	});
+		
 	uploader.init();
 }
 
 $(document).ready(function() {
 	enableFileOrTextToggling();
 	
-	// $('code.stylesheet textarea').each(function() {
-	// 	addCodeMirrorEditor(null, $(this), ["tokenizejavascript.js", "parsejavascript.js", "parsecss.js"]);
-	// });
-	// $('code.javascript textarea').each(function() { 
-	// 	addCodeMirrorEditor(null, $(this), ["parsecss.js", "tokenizejavascript.js", "parsejavascript.js"]); 
-	// });
+	$('code.stylesheet textarea').each(function() {
+		addCodeMirrorEditor(null, $(this), ["tokenizejavascript.js", "parsejavascript.js", "parsecss.js"]);
+	});
+	$('code.javascript textarea').each(function() { 
+		addCodeMirrorEditor(null, $(this), ["parsecss.js", "tokenizejavascript.js", "parsejavascript.js"]); 
+	});
 	
 	$('select#theme_asset_content_type').bind('change', function() {
 		var editor = CodeMirrorEditors[0].editor;
@@ -61,20 +97,7 @@ $(document).ready(function() {
 		'onComplete': function() {
 			setupUploader();
 			
-			$('ul.assets h4 a').bind('click', function(e) {
-				var editor = CodeMirrorEditors[0].editor;
-				var handle = editor.cursorLine(), position = editor.cursorPosition(handle).character;
-				var text = 'url("' + $(this).attr('href') + '")';
-
-				editor.insertIntoLine(handle, position, text);
-
-				e.stopPropagation();
-				e.preventDefault();
-				
-				$.fancybox.close();
-			});
+			$('ul.assets h4 a').bind('click', function(e) { copyLinkToEditor($(this), e); });
 		}
 	});
-	
-	$('a#asset-picker-link').click();
 });
