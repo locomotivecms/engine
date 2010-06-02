@@ -1,0 +1,13 @@
+/* custom styles for fancybox */
+
+div.asset-picker { width: 470px; position: relative; }
+div.asset-picker .actions { position: absolute; right: 4px; top: 0px; }
+div.asset-picker h2 {
+	border-bottom:1px dotted #BBBBBD;
+	color:#1E1F26;
+	font-size:1.1em;
+	font-weight:bold;
+	padding-bottom:10px;
+}
+
+div.asset-picker ul { overflow: auto; height: 471px; }

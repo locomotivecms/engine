@@ -10,6 +10,8 @@
 var JSParser = Editor.Parser = (function() {
   // Token types that can be considered to be atoms.
   var atomicTypes = {"atom": true, "number": true, "variable": true, "string": true, "regexp": true};
+  // Setting that can be used to have JSON data indent properly.
+  var json = false;
   // Constructor for the lexical context objects.
   function JSLexical(indented, column, type, align, prev, info) {
     // indentation at start of this line
@@ -58,7 +60,7 @@ var JSParser = Editor.Parser = (function() {
     // semicolon. Actions at the end of the stack go first. It is
     // initialized with an infinitely looping action that consumes
     // whole statements.
-    var cc = [statements];
+    var cc = [json ? singleExpr : statements];
     // Context contains information about the current local scope, the
     // variables defined in that, and the scopes above it.
     var context = null;
@@ -224,6 +226,9 @@ var JSParser = Editor.Parser = (function() {
     function statements(type){
       return pass(statement, statements);
     }
+    function singleExpr(type){
+      return pass(expression, statements);
+    }
     // Dispatches various types of statements based on the type of the
     // current token.
     function statement(type){
@@ -282,7 +287,7 @@ var JSParser = Editor.Parser = (function() {
         if (type == ",") cont(what, proceed);
         else if (type == end) cont();
         else cont(expect(end));
-      };
+      }
       return function commaSeparated(type) {
         if (type == end) cont();
         else pass(what, proceed);
@@ -337,5 +342,11 @@ var JSParser = Editor.Parser = (function() {
     return parser;
   }
 
-  return {make: parseJS, electricChars: "{}:"};
+  return {
+    make: parseJS,
+    electricChars: "{}:",
+    configure: function(obj) {
+      if (obj.json != null) json = obj.json;
+    }
+  };
 })();

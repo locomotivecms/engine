@@ -6,7 +6,7 @@
 
 = stylesheet_link_tag 'blueprint/screen', :media => 'screen'
 / [if IE]
-  = stylesheet_link_tag('blueprint/ie', :media => 'screen')
+  = stylesheet_link_tag 'blueprint/ie', :media => 'screen'
   
 = stylesheet_link_tag 'admin/layout', 'admin/plugins/toggle', 'admin/menu', 'admin/buttons', 'admin/formtastic', 'admin/formtastic_changes', 'admin/application', :media => 'screen', :cache => Rails.env.production?
 

@@ -21,12 +21,15 @@ $.growl.settings.dockCss = {
 var addCodeMirrorEditor = function(type, el, parser) {
 	var parserfile = "parse" + type + ".js";
 	if (parser != undefined) parserfile = parser;
-	if (type == 'liquid') type = 'xml';
+	// if (type == 'liquid') type = 'xml';
 	
 	var editor = CodeMirror.fromTextArea(el.attr('id'), {
 		height: "400px",
 		parserfile: parserfile,
-		stylesheet: ["/stylesheets/admin/plugins/codemirror/" + type + "colors.css", "/stylesheets/admin/plugins/codemirror/liquidcolors.css"],
+		stylesheet: [
+			"/stylesheets/admin/plugins/codemirror/csscolors.css", 
+			"/stylesheets/admin/plugins/codemirror/javascriptcolors.css", 
+			"/stylesheets/admin/plugins/codemirror/liquidcolors.css"],
 		path: "/javascripts/admin/plugins/codemirror/",
 		continuousScanning: 500,
 		reindentOnLoad: true,

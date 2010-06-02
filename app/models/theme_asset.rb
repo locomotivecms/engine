@@ -64,6 +64,7 @@ class ThemeAsset
   
   def filename
     if not self.image?
+      # TODO: fix that for handling not image / stylesheets / javascripts assets
       "#{self.slug}.#{self.stylesheet? ? 'css' : 'js'}"  
     else
       "#{self.slug}#{File.extname(self.source.file.original_filename)}"

@@ -1,7 +1,11 @@
-%li{ :class => "asset #{'last' if (asset_counter + 1) % 6 == 0}"}
-  %h4= link_to truncate(asset.slug, :length => 22), edit_admin_theme_asset_path(asset)
+- per_row ||= 6
+- edit_mode = defined?(edit).nil? ? true: edit
+
+%li{ :class => "asset #{'last' if (asset_counter + 1) % per_row == 0}"}
+  %h4= link_to truncate(asset.slug, :length => 22), edit_mode ? edit_admin_theme_asset_path(asset) : asset.source.url
   .image
     .inside
       = vignette_tag(asset)
-  .actions
-    = link_to image_tag('admin/list/icons/cross.png'), admin_theme_asset_path(asset), :class => 'remove', :confirm => t('admin.messages.confirm'), :method => :delete
+  - if edit_mode
+    .actions
+      = link_to image_tag('admin/list/icons/cross.png'), admin_theme_asset_path(asset), :class => 'remove', :confirm => t('admin.messages.confirm'), :method => :delete

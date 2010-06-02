@@ -34,7 +34,7 @@ var indentUnit = 2;
   }
 
   window.highlightText = function(string, callback, parser) {
-    var parser = (parser || Editor.Parser).make(stringStream(normaliseString(string)));
+    parser = (parser || Editor.Parser).make(stringStream(normaliseString(string)));
     var line = [];
     if (callback.nodeType == 1) {
       var node = callback;

@@ -36,7 +36,7 @@ MirrorFrame.prototype = {
 
     var first = true;
     do {
-      var cursor = this.mirror.getSearchCursor(text, first);
+      var cursor = this.mirror.getSearchCursor(text, first, true);
       first = false;
       while (cursor.findNext()) {
         cursor.select();

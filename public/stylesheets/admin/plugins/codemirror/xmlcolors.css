@@ -1,10 +1,13 @@
+html {
+  cursor: text;
+}
+
 .editbox {
   margin: .4em;
   padding: 0;
   font-family: monospace;
   font-size: 10pt;
   color: black;
-	background: white url(/images/admin/form/field.png) repeat-x 0 0 !important;
 }
 
 .editbox p {
@@ -44,7 +47,7 @@ span.xml-entity {
 }
 
 span.xml-error {
-  color: #F00;
+ color: #F00 !important;
 }
 
 span.xml-text {

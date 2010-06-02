@@ -121,10 +121,10 @@ ul.assets li.asset h4 { margin: 0px; height: 30px; }
 
 ul.assets li.asset h4 a {
 	position: relative;
-	top: 6px;
+	top: 7px;
 	left: 12px;
 	font-weight: bold;
-	font-size: 0.7em;
+	font-size: 0.6em;
 	color: #1f82bc;
 	text-decoration: none;
 }

@@ -54,6 +54,11 @@
 	color: #8B8D9A;
 }
 
+.button.small.add {
+	padding-left: 24px;
+	background-position: 0 0;
+}
+
 .button.remove, .button.remove span {
 	color: #ff092c !important;
 	font-size: 1.1em;

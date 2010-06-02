@@ -1,5 +1,6 @@
 - content_for :head do
-  = javascript_include_tag 'admin/plugins/codemirror/codemirror', 'admin/theme_assets.js'
+  = javascript_include_tag 'admin/plugins/codemirror/codemirror', 'admin/plugins/fancybox', 'admin/plugins/plupload/plupload.full.js', 'admin/theme_assets.js'
+  = stylesheet_link_tag 'admin/plugins/fancybox', 'admin/box'
 
 = f.hidden_field :performing_plain_text
 
@@ -22,12 +23,14 @@
           = f.select :content_type, ["stylesheet", "javascript"]
           
       = f.custom_input :plain_text, :css => 'full', :with_label => false do
-        %code{ :class => (@asset.new_record? || (@asset.size && @asset.size > 40000) ? 'nude' : @asset.content_type) }
+        %code{ :class => (@asset.size && @asset.size > 40000 ? 'nude' : (@asset.content_type || 'stylesheet')) }
           = f.text_area :plain_text
+          %li.more
+            = link_to t('.picker_link'), admin_theme_assets_path, :id => 'asset-picker-link'
             
     %span.alt
       = t('admin.theme_assets.form.choose_file')
-
+      
 - if @asset.image?
   = f.foldable_inputs :name => "#{t('formtastic.titles.preview')} #{image_dimensions_and_size(@asset)}", :class => 'preview' do
     %li

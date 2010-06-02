@@ -36,11 +36,13 @@ class ThemeAssetUploader < CarrierWave::Uploader::Base
   def set_content_type
     value = :other
     
+    content_type = File.mime_type?(original_filename) if file.content_type == 'application/octet-stream'
+    
     self.class.content_types.each_pair do |type, rules|
       rules.each do |rule|
         case rule
-        when String then value = type if file.content_type == rule
-        when Regexp then value = type if (file.content_type =~ rule) == 0
+        when String then value = type if content_type == rule
+        when Regexp then value = type if (content_type =~ rule) == 0
         end
       end
     end

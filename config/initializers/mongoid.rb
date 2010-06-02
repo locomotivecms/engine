@@ -29,7 +29,7 @@ module Mongoid #:nodoc:
           end
         end
       
-        Rails.logger.debug "conditions = #{conditions.inspect} / #{options[:scope].inspect}"
+        # Rails.logger.debug "conditions = #{conditions.inspect} / #{options[:scope].inspect}"
         
         return if document.class.where(conditions).empty?
       

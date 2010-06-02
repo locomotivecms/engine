@@ -3,6 +3,7 @@ require 'locomotive/configuration'
 require 'locomotive/liquid'
 require 'locomotive/mongoid'
 
+
 module Locomotive
 
   class << self
