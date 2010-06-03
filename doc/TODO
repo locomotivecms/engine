@@ -1,9 +1,11 @@
 BOARD:  
-- make an engine:
-  - move initializers to lib/...
+x make an engine:
+  x move initializers to lib/...
   - write doc about setting up the parent app
   x helpers do not work
-- theme assets: disable version if not image
+  
+- deploy on Heroku   
+  
 - refactoring: CustomFields::CustomField => CustomFields::Field
 - new types for custom field
   - file
@@ -20,7 +22,7 @@ BACKLOG:
 - cucumber features for admin pages
 - refactoring admin crud (pages + layouts + snippets)
 
-- deploy on Heroku
+- theme assets: disable version if not image
 
 BUGS:
 - when assigning new layout, disabled parts show up :-( (js problem)

@@ -1,3 +1,5 @@
+require 'mongoid'
+
 File.open(File.join(Rails.root, 'config/database.yml'), 'r') do |f|
   @settings = YAML.load(f)[Rails.env]
 end

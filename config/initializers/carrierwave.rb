@@ -1,3 +1,4 @@
+require 'carrierwave'
 require 'carrierwave/orm/mongoid'
 
 module CarrierWave

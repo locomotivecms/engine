@@ -14,7 +14,16 @@ begin
   Jeweler::Tasks.new do |gem|
     gem.name = "locomotive_cms"
     gem.summary = "Locomotive cms engine"
-    gem.files = Dir["Gemfile", "{lib}/**/*", "{app}/**/*", "{config}/**/*", 
+    gem.author = ['Didier Lafforgue']
+    gem.email = ["didier@nocoffee.fr"]  
+    gem.date = Date.today
+    gem.description = "a brand new CMS system with super sexy UI and cool features"
+    gem.homepage = %q{http://github.com/did/locomotive}
+    gem.files = Dir[
+      "Gemfile", 
+      "{lib}/**/*", 
+      "{app}/**/*", 
+      "{config}/**/*", 
       "{public}/stylesheets/**/*", "{public}/javascripts/**/*", "{public}/images/**/*", 
       "{vendor}/**/*"]
     # other fields that would normally go in your gemspec
