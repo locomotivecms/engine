@@ -12,7 +12,7 @@ gem "mongoid_acts_as_tree", ">= 0.1.2"
 gem "warden"
 gem "devise", ">= 1.1.rc0"
 gem "haml", '>= 3.0.1'
-gem "rmagick"
+# gem "rmagick"
 gem "aws"
 gem "jeweler"
 gem "mimetype-fu", :require => "mimetype_fu"

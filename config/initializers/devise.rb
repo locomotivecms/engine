@@ -1,5 +1,32 @@
 require 'devise'
 
+## patches ##
+
+module Devise
+  module Models
+    class << self
+      def hook(base)
+        if base.is_a?(Module)
+          base.class_eval do
+            attr_accessor :devise_modules
+            def devise_modules
+              @devise_modules ||= []
+            end
+          end
+        else
+          base.class_eval do
+            class_attribute :devise_modules, :instance_writer => false
+            self.devise_modules ||= []
+          end
+        end
+      end
+      alias :included :hook
+      alias :extended :hook
+    end
+  end
+end
+
+
 # Use this hook to configure devise mailer, warden hooks and so forth. The first
 # four configuration values can also be set straight in your models.
 Devise.setup do |config|
