@@ -121,7 +121,7 @@ ul.assets li.asset h4 { margin: 0px; height: 30px; }
 
 ul.assets li.asset h4 a {
 	position: relative;
-	top: 7px;
+	top: 0px;
 	left: 12px;
 	font-weight: bold;
 	font-size: 0.6em;

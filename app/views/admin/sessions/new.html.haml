@@ -2,14 +2,14 @@
 
 = semantic_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
   .inner
-    = flash_message
+    = login_flash_message
 
     = f.inputs do
       = f.input :email, :label => t('.email'), :required => false
       = f.input :password, :label => t('.password'), :required => false
 
     %p.link
-      = link_to t('.link'), new_password_path(resource_name)
+      = link_to t('.link'), new_password_path
         
   .footer
-    = submit_button_tag t('admin.buttons.login')
+    = login_button_tag t('admin.buttons.login')

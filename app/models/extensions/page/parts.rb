@@ -1,9 +1,6 @@
-module Models
-  
-  module Extensions
-    
-    module Page
-      
+module Models  
+  module Extensions    
+    module Page      
       module Parts  
 
         extend ActiveSupport::Concern
@@ -50,12 +47,8 @@ module Models
             self.save
           end
           
-        end
-        
-      end
-      
-    end
-    
-  end
-  
+        end        
+      end      
+    end    
+  end  
 end

@@ -1,5 +1,4 @@
-module Locomotive
-  
+module Locomotive  
   class Configuration
 
     @@defaults = {
@@ -8,7 +7,8 @@ module Locomotive
       :reserved_subdomains => %w{www admin email blog webmail mail support help site sites},
       # :forbidden_paths  => %w{layouts snippets stylesheets javascripts assets admin system api},
       :reserved_slugs   => %w{stylesheets javascripts assets admin images api pages},
-      :locales          => %w{en fr}
+      :locales          => %w{en fr},
+      :cookie_key       => '_locomotive_session'
     }
 
     cattr_accessor :settings
@@ -62,8 +62,6 @@ module Locomotive
       else
         send(:[], name.to_sym, &block)
       end    
-    end
+    end    
   end
-  
-  
 end

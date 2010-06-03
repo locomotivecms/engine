@@ -1,7 +1,5 @@
-module Locomotive
-  
-  module Liquid
-  
+module Locomotive  
+  module Liquid  
     module Drops
   
       class AssetCollections < ::Liquid::Drop  
@@ -17,7 +15,5 @@ module Locomotive
       end
     
     end
-  
   end
-
 end

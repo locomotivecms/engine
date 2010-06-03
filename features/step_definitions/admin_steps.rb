@@ -1,7 +1,6 @@
 Before('@site_up') do
   create_site_and_admin_account
   create_layout_samples
-  create_index_page
 end
 
 Before('@authenticated') do
@@ -44,6 +43,8 @@ end
 def create_site_and_admin_account
   @site = Factory(:site, :name => 'Locomotive test website', :subdomain => 'test')  
   @admin = Factory(:account, { :name => 'Admin', :email => 'admin@locomotiveapp.org' })
+  @site.memberships.build :account => @admin, :admin => true
+  @site.save
 end
 
 def create_layout_samples
@@ -55,9 +56,5 @@ def create_layout_samples
       <div id="main">\{\{ content_for_layout \}\}</div>
     </body>
   </html>})
-  Factory(:layout, :site => @site)
-end
-
-def create_index_page
-  Factory(:page, :site => @site, :layout => @site.layouts.last, :parts => [PagePart.new(:slug => 'layout', :name => 'Body', :value => 'Hello world')])
+  Factory(:layout, :site => @site)   
 end

@@ -166,7 +166,7 @@ body {
 
 /* ___ NoCoffee / Rails Tags ___ */
 
-a#nocoffee { text-decoration: none; font-size: 1.1em; line-height: 20px; color: #505b64; padding-right: 20px; margin: 0 4px; background: transparent url(../../images/nocoffee.gif) no-repeat right 0px; }
+a#nocoffee { text-decoration: none; font-size: 1.1em; line-height: 20px; color: #505b64; padding-right: 20px; margin: 0 4px; background: transparent url(../../images/admin/nocoffee.gif) no-repeat right 0px; }
 a#nocoffee em { color: #ef3f44; font-weight: normal; font-style: normal; }
 
 a#powered-by { text-decoration: none; font-size: 1.1em; color: #666; }

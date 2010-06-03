@@ -7,3 +7,8 @@ rerun.txt
 uploads
 spec/tmp
 public/sites
+public/uploads
+pkg
+*.gemspec
+rails_3_gems
+doc/performance.txt

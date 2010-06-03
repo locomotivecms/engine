@@ -1,9 +1,6 @@
 module Locomotive
-
-  module Liquid
-  
-    module Filters
-  
+  module Liquid  
+    module Filters  
       module Html
     
         # Write the link to a stylesheet resource
@@ -112,7 +109,6 @@ module Locomotive
     
       ::Liquid::Template.register_filter(Html)
       
-    end
-  
+    end  
   end
 end

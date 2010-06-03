@@ -1,9 +1,6 @@
-module Locomotive
-    
-  module Liquid
-    
-    module Drops
-  
+module Locomotive    
+  module Liquid    
+    module Drops  
       class Content < Base
     
         @@forbidden_attributes = %w{_id _version _index}
@@ -16,10 +13,7 @@ module Locomotive
           end
         end
         
-      end
-  
+      end  
     end
-
-  end
-  
+  end  
 end

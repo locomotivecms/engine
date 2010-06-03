@@ -1,9 +1,6 @@
-module Locomotive
-  
-  module Liquid
-    
-    module Drops
-    
+module Locomotive  
+  module Liquid    
+    module Drops    
       class Stylesheets < ::Liquid::Drop  
   
         def initialize(site)
@@ -17,8 +14,6 @@ module Locomotive
   
       end
       
-    end
-  
+    end  
   end
-
 end

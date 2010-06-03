@@ -1,7 +1,5 @@
-module Locomotive
-  
-  module Liquid
-      
+module Locomotive  
+  module Liquid      
     module LiquifyTemplate
       
       def self.included(base)
@@ -53,10 +51,7 @@ module Locomotive
           end
         end
         
-      end
-      
-    end
-          
-  end
-  
+      end      
+    end          
+  end  
 end

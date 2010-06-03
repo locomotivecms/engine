@@ -1,9 +1,6 @@
-module Models
-  
-  module Extensions
-    
-    module Asset
-      
+module Models  
+  module Extensions    
+    module Asset      
       module Vignette
         
         def vignette_url
@@ -37,10 +34,7 @@ module Models
           File.join("admin", "icons", "filetype", size.to_s, filename + ".png")
         end
         
-      end
-      
-    end
-    
-  end
-  
+      end      
+    end    
+  end  
 end

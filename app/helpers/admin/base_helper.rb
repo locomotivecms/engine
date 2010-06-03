@@ -1,4 +1,13 @@
 module Admin::BaseHelper
+  
+  def title(title = nil)
+    if title.nil?
+      @content_for_title
+    else
+      @content_for_title = title
+      ''
+    end
+  end  
     
   def admin_menu_item(name, url)
     label = content_tag(:em) + escape_once('&nbsp;') + t("admin.shared.menu.#{name}")
@@ -26,6 +35,20 @@ module Admin::BaseHelper
     else
       content_tag(:li, link_to(content_tag(:span, label_link), url), :class => css)
     end
+  end
+  
+  def growl_message
+    if not flash.empty?
+      %{
+        $(document).ready(function() {
+          $.growl("#{flash.keys.first}", "#{flash.values.first}");
+        });
+      }.to_s
+    end
+  end
+
+  def nocoffee_tag
+    link_to content_tag(:em, 'no') + 'Coffee', 'http://www.nocoffee.fr', :id => 'nocoffee'
   end
   
 end

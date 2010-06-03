@@ -1,9 +1,6 @@
-module Models
-  
-  module Extensions
-    
-    module Page
-      
+module Models  
+  module Extensions    
+    module Page      
       module Render
 
         def render(context)
@@ -16,10 +13,7 @@ module Models
           end
         end
         
-      end
-      
-    end
-    
-  end
-  
+      end      
+    end    
+  end  
 end

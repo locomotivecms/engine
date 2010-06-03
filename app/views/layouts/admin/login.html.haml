@@ -4,9 +4,9 @@
   %head
     %title= escape_once("#{Locomotive.config.name} &mdash; #{current_site.name}")
     
-    = stylesheet_link_tag 'blueprint/screen', 'admin/login', :media => 'screen'
+    = stylesheet_link_tag 'admin/blueprint/screen', 'admin/login', :media => 'screen'
     / [if IE]
-      = stylesheet_link_tag('blueprint/ie', :media => 'screen')
+      = stylesheet_link_tag('admin/blueprint/ie', :media => 'screen')
       
   %body
     #wrapper

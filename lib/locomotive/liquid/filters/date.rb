@@ -1,9 +1,6 @@
-module Locomotive
-  
-  module Liquid
-    
-    module Filters
-  
+module Locomotive  
+  module Liquid    
+    module Filters  
       module Date
     
         def localized_date(input, *args)
@@ -27,10 +24,7 @@ module Locomotive
     
       end
   
-      ::Liquid::Template.register_filter(Date)
-      
-    end
-    
-  end
-  
+      ::Liquid::Template.register_filter(Date)      
+    end    
+  end  
 end

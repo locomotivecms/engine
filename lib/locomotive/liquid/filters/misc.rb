@@ -1,9 +1,6 @@
 module Locomotive
-
   module Liquid
-    
-    module Filters
-  
+    module Filters  
       module Misc
     
         def underscore(input)
@@ -28,8 +25,6 @@ module Locomotive
         
       ::Liquid::Template.register_filter(Misc)
       
-    end
-    
+    end    
   end
-
 end

@@ -1,12 +1,9 @@
 # Code taken from Mephisto sources (http://mephistoblog.com/)
-
 module Locomotive
-
-  module Liquid
-    
-    module Drops
-  
+  module Liquid    
+    module Drops  
       class Base < ::Liquid::Drop
+        
         class_inheritable_reader :liquid_attributes
         write_inheritable_attribute :liquid_attributes, []
         attr_reader :source
@@ -43,13 +40,11 @@ module Locomotive
 
         protected
         
-          def liquify(*records, &block)
-            self.class.liquify(*records, &block)
-          end
-      end
-    
+        def liquify(*records, &block)
+          self.class.liquify(*records, &block)
+        end
+          
+      end    
     end
-  
   end
-
 end

@@ -1,9 +1,6 @@
-module Models
-  
-  module Extensions
-    
-    module Page
-      
+module Models  
+  module Extensions    
+    module Page      
       module Tree  
 
         extend ActiveSupport::Concern
@@ -93,12 +90,8 @@ module Models
             end
           end
           
-        end
-        
-      end
-      
-    end
-    
-  end
-  
+        end        
+      end      
+    end    
+  end  
 end

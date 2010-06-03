@@ -1,4 +1,8 @@
 BOARD:  
+- make an engine:
+  - move initializers to lib/...
+  - write doc about setting up the parent app
+  x helpers do not work
 - theme assets: disable version if not image
 - refactoring: CustomFields::CustomField => CustomFields::Field
 - new types for custom field
@@ -20,6 +24,7 @@ BACKLOG:
 
 BUGS:
 - when assigning new layout, disabled parts show up :-( (js problem)
+- password resets
 
 NICE TO HAVE:
 - asset collections: custom resizing if image

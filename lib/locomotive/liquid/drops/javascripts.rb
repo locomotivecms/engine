@@ -1,9 +1,6 @@
-module Locomotive
-  
-  module Liquid
-    
-    module Drops
-    
+module Locomotive  
+  module Liquid    
+    module Drops    
       class Javascripts < ::Liquid::Drop
   
         def initialize(site)
@@ -16,9 +13,6 @@ module Locomotive
         end
   
       end
-      
     end
-  
   end
-
 end

@@ -1,9 +1,6 @@
 module Locomotive
-
   module Liquid
-    
     module Tags
-  
       class WithScope < ::Liquid::Block
     
         def initialize(tag_name, markup, tokens)
@@ -36,10 +33,7 @@ module Locomotive
         end
       end
   
-      ::Liquid::Template.register_tag('with_scope', WithScope)
-    
-    end
-  
-  end
-  
+      ::Liquid::Template.register_tag('with_scope', WithScope)    
+    end  
+  end  
 end

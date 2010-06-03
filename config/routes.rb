@@ -1,4 +1,5 @@
-Locomotive::Application.routes.draw do |map|
+# Locomotive::Application.routes.draw do |map|
+Rails.application.routes.draw do |map|
   
   constraints(Locomotive::Routing::DefaultConstraint) do
     root :to => 'home#show'
@@ -51,6 +52,6 @@ Locomotive::Application.routes.draw do |map|
   end
   
   # magic urls
-  match '/' => 'pages#show'
-  match '*path' => 'pages#show'
+  match '/' => 'admin/rendering#show'
+  match '*path' => 'admin/rendering#show'
 end

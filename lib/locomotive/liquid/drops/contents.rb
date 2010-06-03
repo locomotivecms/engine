@@ -1,9 +1,6 @@
 module Locomotive
-
   module Liquid
-
     module Drops
-
       class Contents < ::Liquid::Drop
     
         def initialize(site)
@@ -59,12 +56,8 @@ module Locomotive
             :total_pages      => @collection.total_pages,
             :per_page         => @collection.per_page
           }
-        end
-        
+        end        
       end
-  
-    end
-    
+    end    
   end
-
 end
