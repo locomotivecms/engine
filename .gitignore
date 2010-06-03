@@ -8,6 +8,8 @@ uploads
 spec/tmp
 public/sites
 public/uploads
+public/stylesheets/all.css
+public/javascripts/all.js
 pkg
 *.gemspec
 rails_3_gems

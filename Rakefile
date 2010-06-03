@@ -14,16 +14,16 @@ begin
   Jeweler::Tasks.new do |gem|
     gem.name = "locomotive_cms"
     gem.summary = "Locomotive cms engine"
-    gem.author = ['Didier Lafforgue']
-    gem.email = ["didier@nocoffee.fr"]  
+    gem.authors = ['Didier Lafforgue']
+    gem.email = ['didier@nocoffee.fr']
     gem.date = Date.today
     gem.description = "a brand new CMS system with super sexy UI and cool features"
     gem.homepage = %q{http://github.com/did/locomotive}
     gem.files = Dir[
       "Gemfile", 
-      "{lib}/**/*", 
       "{app}/**/*", 
-      "{config}/**/*", 
+      "{config}/**/*",
+      "{lib}/**/*",
       "{public}/stylesheets/**/*", "{public}/javascripts/**/*", "{public}/images/**/*", 
       "{vendor}/**/*"]
     # other fields that would normally go in your gemspec
@@ -35,6 +35,7 @@ begin
       end
     end    
   end
+  Jeweler::GemcutterTasks.new
 rescue
   puts "Jeweler or one of its dependencies is not installed."
 end

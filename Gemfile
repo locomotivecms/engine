@@ -13,6 +13,7 @@ gem "warden"
 gem "devise", ">= 1.1.rc0"
 gem "haml", '>= 3.0.1'
 gem "rmagick"
+gem "aws"
 gem "jeweler"
 gem "mimetype-fu", :require => "mimetype_fu"
 gem "formtastic-rails3", :require => "formtastic"
