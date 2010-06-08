@@ -71,6 +71,8 @@ var setupUploader = function() {
 			
 			asset.removeClass('new-asset');
 			
+			$('.asset-picker p.no-items').hide();
+			
 			$('.asset-picker ul').scrollTo($('li.asset:last'), 400);
 		}
 	});

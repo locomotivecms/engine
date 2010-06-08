@@ -1,23 +1,33 @@
-require 'rake'
-require 'rake/testtask'
-require 'rake/rdoctask'
+require "rubygems"
+require "rake"
+require "rake/rdoctask"
+require "rspec"
+require "rspec/core/rake_task"
 
-desc 'Default: run unit tests.'
-task :default => :test
-
-desc 'Test the custom_field plugin.'
-Rake::TestTask.new(:test) do |t|
-  t.libs << 'lib'
-  t.libs << 'test'
-  t.pattern = 'test/**/*_test.rb'
-  t.verbose = true
-end
-
-desc 'Generate documentation for the custom_field plugin.'
+desc 'Generate documentation for the custom_fields plugin.'
 Rake::RDocTask.new(:rdoc) do |rdoc|
   rdoc.rdoc_dir = 'rdoc'
-  rdoc.title    = 'CustomField'
+  rdoc.title    = 'CustomFields'
   rdoc.options << '--line-numbers' << '--inline-source'
   rdoc.rdoc_files.include('README')
   rdoc.rdoc_files.include('lib/**/*.rb')
 end
+
+# Spec::Rake::SpecTask.new(:rcov) do |spec|
+#   spec.libs << 'lib' << 'spec'
+#   spec.pattern = 'spec/**/*_spec.rb'
+#   spec.rcov = true
+# end
+
+Rspec::Core::RakeTask.new('spec:unit') do |spec|
+  spec.pattern = "spec/unit/**/*_spec.rb"
+  # spec.pattern = "spec/unit/custom_fields_for_spec.rb"
+end
+
+Rspec::Core::RakeTask.new('spec:integration') do |spec|
+  spec.pattern = "spec/integration/**/*_spec.rb"
+end
+
+task :spec => [:check_dependencies, 'spec:unit', 'spec:integration']
+
+task :default => :spec

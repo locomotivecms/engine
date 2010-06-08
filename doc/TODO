@@ -6,13 +6,10 @@ x make an engine:
   
 - deploy on Heroku   
   
-- refactoring: CustomFields::CustomField => CustomFields::Field
-- new types for custom field
-  - file
-  - boolean
-  - date
-- optimization custom_fields: use dynamic class for a collection instead of modifying the metaclass each time we build an item
-
+x refactoring: CustomFields::CustomField => CustomFields::Field
+- new custom field type
+  - category
+x optimization custom_fields: use dynamic class for a collection instead of modifying the metaclass each time we build an item
 
 BACKLOG:
 
@@ -24,9 +21,16 @@ BACKLOG:
 
 - theme assets: disable version if not image
 
+- new custom field types
+  - file
+  - boolean
+  - date
+  
+- refactor slugify method (use parameterize + create a module)
+
 BUGS:
 - when assigning new layout, disabled parts show up :-( (js problem)
-- password resets
+- password resets (url is not handled correctly)
 
 NICE TO HAVE:
 - asset collections: custom resizing if image

@@ -1,0 +1,8 @@
+.box-wrapper
+  #edit-custom-field
+    %h2= t('.title')
+
+    = form_tag '#', :class => 'formtastic' do
+      = fields_for CustomFields::Field.new, :builder => Formtastic::SemanticFormHelper.builder do |g|
+        = g.inputs :name => :information do
+          = g.input :_alias

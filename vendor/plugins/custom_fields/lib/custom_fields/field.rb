@@ -1,8 +1,12 @@
 module CustomFields
 
-  class CustomField
-    include Mongoid::Document
-    include Mongoid::Timestamps
+  class Field
+    include ::Mongoid::Document
+    include ::Mongoid::Timestamps
+    
+    # types ##
+    include Types::Default
+    include Types::Category
   
     ## fields ##
     field :label, :type => String
@@ -17,7 +21,7 @@ module CustomFields
       
     ## methods ##
     
-    %w{String Text Email Boolean Date File}.each do |kind|
+    %w{String Text Category}.each do |kind|
       define_method "#{kind.downcase}?" do
         self.kind == kind
       end
@@ -25,27 +29,42 @@ module CustomFields
   
     def field_type
       case self.kind
-        when 'String', 'Text', 'Email' then String
+        when 'String', 'Text', 'Category' then String
         else
           self.kind.constantize
       end
     end
-  
-    def apply(object, association_name)
+    
+    def apply(klass)
       return unless self.valid?
       
-      # trick mongoid
-      object.class_eval { def meta; (class << self; self; end); end }
-      object.meta.fields = object.fields.clone 
-      object.meta.send(:define_method, :fields) { self.meta.fields }
+      klass.field self._name, :type => self.field_type
       
-      object.meta.field self._name, :type => self.field_type
-      object.class_eval <<-EOF
-        alias :#{self.safe_alias} :#{self._name}
-        alias :#{self.safe_alias}= :#{self._name}=
-      EOF
+      case self.kind
+      when 'Category'
+        apply_category_type(klass)
+      else
+        apply_default_type(klass)
+      end
     end
   
+    # def apply_to_object(object)
+    #   return unless self.valid?
+    #   
+    #   # trick mongoid: fields are now on a the singleton class level also called metaclass
+    #   self.singleton_class.fields = self.fields.clone 
+    #   self.singleton_class.send(:define_method, :fields) { self.singleton_class.fields }
+    # 
+    #   object.singleton_class.field self._name, :type => self.field_type
+    # 
+    #   case self.kind
+    #   when 'Category'
+    #     apply_category_type(object)
+    #   else
+    #     apply_default_type(object)
+    #   end
+    # end
+    
     def safe_alias
       self.set_alias
       self._alias 
@@ -66,8 +85,7 @@ module CustomFields
     
     def set_alias
       return if self.label.blank? && self._alias.blank?
-      self._alias ||= self.label.clone
-      self._alias.slugify!(:downcase => true, :underscore => true)
+      self._alias = (self._alias || self.label).parameterize('_').downcase
     end
   
     def increment_counter!

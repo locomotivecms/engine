@@ -32,4 +32,13 @@ class MiscFormBuilder < Formtastic::SemanticFormBuilder
     end
   end
   
+  def normalize_model_name(name)
+    if name =~ /(.+)\/(.+)/
+      [$1, $2]
+    else
+      super
+    end
+  end
+  
+  
 end

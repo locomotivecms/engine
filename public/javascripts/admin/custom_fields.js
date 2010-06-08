@@ -110,4 +110,25 @@ $(document).ready(function() {
 		axis: 'y',
 		update: refreshPosition
 	});
+	
+	// edit in depth custom field 
+	$('fieldset.fields li.item span.actions a.edit').click(function() {
+		var link = $(this);
+		$.fancybox({ 
+			titleShow: false,
+			content: $(link.attr('href')).parent().html(),
+			onComplete: function() {
+				$('#fancybox-wrap form').submit(function(e) {
+					$.fancybox.close();
+					e.preventDefault();
+					e.stopPropagation();
+				});
+				
+				$('#fancybox-wrap #custom_fields_custom_field__alias').val(link.parent().prevAll('.alias').val());
+			},
+			onCleanup: function() {
+				link.parent().prevAll('.alias').val($('#fancybox-wrap #custom_fields_custom_field__alias').val());
+			}
+		})
+	});
 });

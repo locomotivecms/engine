@@ -226,8 +226,9 @@ form.formtastic fieldset ol li.item span.actions {
 	position: absolute;
 	top: 7px;
 	right: 10px;
-	width: 16px;
+	width: 50px;
 	height: 16px;
+	text-align:right;
 }
 
 /* ___ editable-list (content type fields and validations) ___ */
@@ -336,6 +337,10 @@ form.formtastic fieldset.editable-list ol li.template span.handle {
 form.formtastic fieldset.editable-list ol li.template span.actions {
 	width: auto;
 	top: 10px;
+}
+
+form.formtastic fieldset.editable-list ol li.template span.actions a.edit {
+	display: none;
 }
 
 form.formtastic fieldset.editable-list ol li.template span.actions a.remove {

@@ -30,7 +30,7 @@ module CustomFields
         class_eval <<-EOV
           field :#{singular_name}_custom_fields_counter, :type => Integer, :default => 0
           
-          embeds_many :#{singular_name}_custom_fields, :class_name => "::CustomFields::CustomField"
+          embeds_many :#{singular_name}_custom_fields, :class_name => "::CustomFields::Field"
           
           validates_associated :#{singular_name}_custom_fields
           
@@ -39,6 +39,7 @@ module CustomFields
           def ordered_#{singular_name}_custom_fields
             self.#{singular_name}_custom_fields.sort { |a, b| (a.position || 0) <=> (b.position || 0) }
           end
+          
         EOV
       end
       

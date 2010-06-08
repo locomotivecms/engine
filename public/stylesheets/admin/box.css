@@ -1,8 +1,10 @@
 /* custom styles for fancybox */
 
-div.asset-picker { width: 470px; position: relative; }
-div.asset-picker .actions { position: absolute; right: 4px; top: 0px; }
-div.asset-picker h2 {
+/* ___ common ___ */
+
+.box-wrapper { display: none; }
+
+#fancybox-inner h2 {
 	border-bottom:1px dotted #BBBBBD;
 	color:#1E1F26;
 	font-size:1.1em;
@@ -10,5 +12,28 @@ div.asset-picker h2 {
 	padding-bottom:10px;
 }
 
+#fancybox-inner form.formtastic legend span {
+	background-image: url("/images/admin/form/header-small.png");
+	width: 450px;
+}
+
+#fancybox-inner form.formtastic ol {
+	background-image: url("/images/admin/form/footer-small.png");
+}
+
+
+/* ___ asset picker ___ */
+
+div.asset-picker { width: 470px; position: relative; }
+div.asset-picker .actions { position: absolute; right: 4px; top: 0px; }
+
+div.asset-picker p.no-items { background-image: url("/images/admin/list/none-small.png"); }
+
 div.asset-picker ul { overflow: auto; height: 471px; }
 div.asset-picker ul li.new-asset { display: none; }
+
+/* ___ custom fields ___ */
+
+#edit-custom-field {
+	width: 470px;
+}

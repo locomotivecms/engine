@@ -1,13 +1,15 @@
 - content_for :head do
-  = javascript_include_tag 'admin/custom_fields'
+  = javascript_include_tag 'admin/plugins/fancybox', 'admin/custom_fields'
+  = stylesheet_link_tag 'admin/plugins/fancybox', 'admin/box'
 
 = f.inputs :name => :information do
   = f.input :name
   = f.input :slug
   = f.input :description
   
-= render 'admin/shared/custom_fields', :f => f, :collection_name => 'contents'
+= render 'admin/custom_fields/index', :f => f, :collection_name => 'contents'
 
 = f.foldable_inputs :name => :options, :class => 'switchable' do
   = f.input :highlighted_field_name, :as => :select, :collection => options_for_highlighted_field(f.object, 'contents'), :include_blank => false
   = f.input :order_by, :as => :select, :collection => options_for_order_by(f.object, 'contents'), :include_blank => false
+  

@@ -45,7 +45,7 @@ module Admin
         flash[:error] = e.to_s
       end
 
-      redirect_to admin_content_types_url
+      redirect_to admin_pages_url
     end
       
   end

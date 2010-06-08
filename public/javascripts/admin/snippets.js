@@ -7,7 +7,7 @@ $(document).ready(function() {
 	
 		if (!slug.hasClass('filled')) {
 			setTimeout(function() {
-				slug.val(input.val().replace(/\s/g, '_').toLowerCase());
+				slug.val(input.val().replace(/[\s']/g, '_').toLowerCase());
 			}, 50);
 		}
 	});

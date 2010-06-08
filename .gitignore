@@ -14,3 +14,4 @@ pkg
 *.gemspec
 rails_3_gems
 doc/performance.txt
+doc/production.sh

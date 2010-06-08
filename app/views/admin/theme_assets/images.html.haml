@@ -6,10 +6,10 @@
   
   - if @image_assets.empty?
     %p.no-items= t('.no_items')
-  - else
-    %ul.assets
-      = render 'asset', :asset => current_site.theme_assets.build, :edit => false
-      
-      = render :partial => 'asset', :collection => @image_assets, :locals => { :per_row => 3, :edit => false }
-      
-      %li.clear
+
+  %ul.assets
+    = render 'asset', :asset => current_site.theme_assets.build, :edit => false
+    
+    = render :partial => 'asset', :collection => @image_assets, :locals => { :per_row => 3, :edit => false }
+    
+    %li.clear

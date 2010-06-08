@@ -49,6 +49,7 @@ Rails.application.routes.draw do |map|
     resources :contents, :path => "content_types/:slug/contents" do
       put :sort, :on => :collection
     end
+
   end
   
   # magic urls

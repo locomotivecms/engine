@@ -33,9 +33,12 @@ en:
         update: Update
         
     custom_fields:
+      edit:
+        title: Editing custom field
       kind:
         string: Simple Input
         text: Text
+        select: Select
         
     sessions:
       new:
@@ -172,8 +175,7 @@ en:
         title: '{{type}} &mdash; new item' 
       edit:
         title: '{{type}} &mdash; editing item' 
-        
-              
+                      
   formtastic:
     titles:
       information: General information
@@ -196,6 +198,10 @@ en:
           source: File
         edit:
           source: Replace file
+      custom_fields:
+        custom_field:
+          _alias: Alias
+          
     hints:
       page:
         keywords: "Meta keywords used within the head tag of the page. They are separeted by an empty space. Required for SEO." 

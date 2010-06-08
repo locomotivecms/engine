@@ -53,6 +53,8 @@ class ThemeAsset
   end
   
   def performing_plain_text?
+    return true if !self.new_record? && !self.image? && self.errors.empty?
+    
     !(self.performing_plain_text.blank? || self.performing_plain_text == 'false' || self.performing_plain_text == false)
   end
   

@@ -11,19 +11,13 @@ gem "mongoid", ">= 2.0.0.beta6"
 gem "mongoid_acts_as_tree", ">= 0.1.2"
 gem "warden"
 gem "devise", ">= 1.1.rc0"
-gem "haml", '>= 3.0.1'
-# gem "rmagick"
+gem "haml", ">= 3.0.1"
+gem "rmagick", "2.12.2"
 gem "aws"
 gem "jeweler"
 gem "mimetype-fu", :require => "mimetype_fu"
 gem "formtastic-rails3", :require => "formtastic"
 gem "carrierwave-rails3", :require => "carrierwave"
-
-# gem 'formtastic-rails3', :require => 'formtastic', :path => 'rails_3_gems/formtastic'
-# gem "formtastic", :git => 'git://github.com/justinfrench/formtastic.git', :branch => 'rails3'
-# gem "carrierwave", :git => "http://github.com/jnicklas/carrierwave.git"
-# gem "carrierwave", :path => 'rails_3_gems/carrierwave'
-
 
 # Development environment
 group :development do

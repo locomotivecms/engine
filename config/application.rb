@@ -5,6 +5,7 @@ require File.expand_path('../boot', __FILE__)
 require "action_controller/railtie"
 require "action_mailer/railtie"
 require "active_resource/railtie"
+require "mongoid/railtie"
 
 # Auto-require default libraries and those for the current Rails environment.
 Bundler.require :default, Rails.env
