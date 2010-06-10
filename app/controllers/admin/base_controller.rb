@@ -5,7 +5,7 @@ module Admin
   
     layout 'admin/application'
   
-    before_filter :authenticate_account!
+    before_filter :authenticate_admin!
       
     before_filter :require_site
     
@@ -48,7 +48,7 @@ module Admin
     end
   
     def set_locale
-      I18n.locale = current_account.locale
+      I18n.locale = current_admin.locale
     end
   
   end

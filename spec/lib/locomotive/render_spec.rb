@@ -61,7 +61,7 @@ describe 'Locomotive rendering system' do
       
       before(:each) do
         @page.published = false
-        @controller.current_account = nil
+        @controller.current_admin = nil
       end
     
       it 'should return the 404 page if the page has not been published yet' do
@@ -72,7 +72,7 @@ describe 'Locomotive rendering system' do
       end
       
       it 'should not return the 404 page if the page has not been published yet and admin is logged in' do
-        @controller.current_account = true
+        @controller.current_admin = true
         @controller.request.fullpath = '/contact'
         @controller.current_site.pages.expects(:where).with({ :fullpath => 'contact' }).returns([@page])
         @controller.send(:locomotive_page).should == @page

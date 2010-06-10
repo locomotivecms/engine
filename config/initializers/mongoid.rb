@@ -15,21 +15,10 @@ module Mongoid #:nodoc:
           end
         end
       
-        # Rails.logger.debug "conditions = #{conditions.inspect} / #{options[:scope].inspect}"
-        
         return if document.class.where(conditions).empty?
       
-        # if document.new_record? || key_changed?(document)
-          document.errors.add(attribute, :taken, :default => options[:message], :value => value)
-        # end
+        document.errors.add(attribute, :taken, :default => options[:message], :value => value)
       end
-
-      # protected
-      # def key_changed?(document)
-      #   (document.primary_key || {}).each do |key|
-      #     return true if document.send("#{key}_changed?")
-      #   end; false
-      # end
     end
   end
   
@@ -40,6 +29,16 @@ module Mongoid #:nodoc:
         association = send(name)
         association.to_a.each { |doc| doc.save if doc.changed? || doc.new_record? } unless association.blank?
       end      
+    end
+  end
+  
+  # FIX BUG about accepts_nested_attributes_for  
+  module Document
+    module InstanceMethods
+      def remove(child)
+        name = child.association_name
+        @attributes.remove(name, child.raw_attributes)
+      end
     end
   end
 end

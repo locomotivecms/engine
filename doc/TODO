@@ -1,16 +1,15 @@
 BOARD:  
   
 - deploy on Heroku
-- password resets (url is not handled correctly)
-- mongoid hack for nested attributes
+- convert 2 plugins into gems (mongo_session_store / actionmailer_with_request)
   
 BACKLOG:
 
-- devise messages in French
-- localize devise emails
-
-- cucumber features for admin pages
-- refactoring admin crud (pages + layouts + snippets)
+- localize application in French
+  - admin
+  - devise
+  - carrierwave
+  - localize devise emails
 
 - theme assets: disable version if not image
 
@@ -18,8 +17,10 @@ BACKLOG:
   - file
   - boolean
   - date
-  
+
+- refactoring admin crud (pages + layouts + snippets)
 - refactor slugify method (use parameterize + create a module)
+- cucumber features for admin pages
 
 BUGS:
 
@@ -118,3 +119,5 @@ x make an engine:
   x helpers do not work
 x missing translation in english
 x api security option in content types
+x password resets (url is not handled correctly)
+x mongoid hack for nested attributes

@@ -37,23 +37,11 @@ require 'factory_girl'
 require 'spec/factories'
 
 Before do
-  Mongoid.master.collections.each(&:drop)
+  Mongoid.master.collections.select { |c| c.name != 'system.indexes' }.each(&:drop)
 end
 
 Locomotive.configure do |config|
   config.default_domain = 'example.com'
 end
-
-# class ActionController::Integration::Session
-#   def reset_with_test_subdomain!
-#     self.reset_without_test_subdomain!
-#     self.host = "test.example.com"
-#   end  
-#   alias_method_chain :reset!, :test_subdomain  
-# end
-# 
-# class ActionDispatch::Integration::Session
-#   DEFAULT_HOST = 'test.example.com'
-# end
 
 Capybara.default_host = 'test.example.com'

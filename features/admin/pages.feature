@@ -8,7 +8,7 @@ Feature: Manage Skills
 Scenario: Pages list is not accessible for non authenticated accounts
   Given I am not authenticated
   When I go to pages
-  Then I should see "Login"
+  Then I should see "Log in"
 
 Scenario: Creating a valid page
   When I go to pages

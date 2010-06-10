@@ -3,6 +3,8 @@ require 'locomotive/configuration'
 require 'locomotive/liquid'
 require 'locomotive/mongoid'
 
+require 'mongo_session_store/mongoid'
+
 module Locomotive
   
   class << self
@@ -26,7 +28,7 @@ module Locomotive
     
     ActionMailer::Base.default_url_options[:host] = Locomotive.config.default_domain + (Rails.env.development? ? ':3000' : '')
 
-    Rails.application.config.session_store :cookie_store, {
+    Rails.application.config.session_store :mongoid_store, {
       :key => Locomotive.config.cookie_key,
       :domain => ".#{Locomotive.config.default_domain}"
     }

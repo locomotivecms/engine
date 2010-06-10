@@ -11,9 +11,9 @@ module NavigationHelpers
     when /the home\s?page/
       '/'
     when /login/
-      new_account_session_path
+      new_admin_session_path
     when /logout/
-      destroy_account_session_path
+      destroy_admin_session_path
     when /pages/
       admin_pages_path
 

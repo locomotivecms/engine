@@ -40,6 +40,6 @@
     %li{ :class => "item #{'last' if index == @site.memberships.size - 1}" }
       %strong= account.name
       %em= account.email
-      - if account != current_account
+      - if account != current_admin
         %span.actions
           = link_to image_tag('admin/form/icons/trash.png'), admin_membership_url(membership), :class => 'remove first', :confirm => t('admin.messages.confirm'), :method => :delete

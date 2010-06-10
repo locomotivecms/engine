@@ -12,6 +12,6 @@ Rspec.configure do |config|
   config.mock_with :mocha
   
   config.before(:each) do
-    Mongoid.master.collections.each(&:drop)
+    Mongoid.master.collections.select { |c| c.name != 'system.indexes' }.each(&:drop)
   end
 end

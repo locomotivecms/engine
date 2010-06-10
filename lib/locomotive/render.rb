@@ -24,7 +24,7 @@ module Locomotive
         path = 'index' if path.blank?
         
         if page = current_site.pages.where(:fullpath => path).first
-          if not page.published? and current_account.nil?
+          if not page.published? and current_admin.nil?
             page = nil
           end
         end

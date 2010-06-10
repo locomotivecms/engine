@@ -6,14 +6,14 @@ Feature: Login
 
 Scenario: Successful authentication
   When I go to login
-  And I fill in "account_email" with "admin@locomotiveapp.org"
-  And I fill in "account_password" with "easyone"
+  And I fill in "admin_email" with "admin@locomotiveapp.org"
+  And I fill in "admin_password" with "easyone"
   And I press "Log in"
   Then I should see "Listing pages"
   
 Scenario: Failed authentication
   When I go to login
-  And I fill in "account_email" with "admin@locomotiveapp.org"
-  And I fill in "account_password" with ""
+  And I fill in "admin_email" with "admin@locomotiveapp.org"
+  And I fill in "admin_password" with ""
   And I press "Log in"
   Then I should not see "Listing pages"

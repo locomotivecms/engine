@@ -11,7 +11,7 @@ module Admin
       @site = Site.new(params[:site])
 
       if @site.save
-        @site.memberships.create :account => @current_account, :admin => true
+        @site.memberships.create :account => @current_admin, :admin => true
         flash_success!
         redirect_to edit_admin_my_account_url
       else
@@ -21,7 +21,7 @@ module Admin
     end
   
     def destroy
-      @site = current_account.sites.detect { |s| s._id == params[:id] }
+      @site = current_admin.sites.detect { |s| s._id == params[:id] }
     
       if @site != current_site
         @site.destroy

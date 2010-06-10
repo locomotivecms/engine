@@ -10,14 +10,14 @@ end
 ### Authentication
 
 Given /^I am not authenticated$/ do
-  visit('/admin/logout')
+  visit('/admin/sign_out')
 end
 
 
 Given /^I am an authenticated user$/ do
   Given %{I go to login}
-  And %{I fill in "account_email" with "admin@locomotiveapp.org"}
-  And %{I fill in "account_password" with "easyone"}
+  And %{I fill in "admin_email" with "admin@locomotiveapp.org"}
+  And %{I fill in "admin_password" with "easyone"}
   And %{I press "Log in"}
 end
 

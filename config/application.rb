@@ -40,10 +40,14 @@ module Locomotive
     #   g.template_engine :erb
     #   g.test_framework  :test_unit, :fixture => true
     # end
+    
+    # Configure the default encoding used in templates for Ruby 1.9.
+    config.encoding = "utf-8"
 
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters << :password    
-    
-    config.secret_token = '968a457262807c64e3ed5609882e17a774b917f5bcf2d308bd37eac4ba4d416d5692e6b13d77523fddb94c1dd603f160db8492b86b5e0203240bf339fe2aeae4'
+        
+    # config.action_controller.session_store :cookie_store, { :key => "_myapp_session" }
+    # config.secret_token = '968a457262807c64e3ed5609882e17a774b917f5bcf2d308bd37eac4ba4d416d5692e6b13d77523fddb94c1dd603f160db8492b86b5e0203240bf339fe2aeae4'    
   end
 end
