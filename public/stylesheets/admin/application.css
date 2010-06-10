@@ -149,7 +149,7 @@ ul.assets li.asset div.image div.inside {
 
 ul.assets li.asset div.actions {
 	position: absolute;
-	top: 8px;
+	top: 4px;
 	right: 12px;
 }
 
@@ -234,7 +234,7 @@ div#uploadAssetsInputQueue { display: none; }
 
 #pages-list li .more {
 	position: absolute;
-	top: 3px;
+	top: 6px;
 	right: 20px;
 	font-size: 0.7em;
 	color: #8b8d9a;

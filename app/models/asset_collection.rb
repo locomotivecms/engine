@@ -3,8 +3,8 @@ class AssetCollection
   include Locomotive::Mongoid::Document
   
   ## fields ##
-  field :name, :type => String
-  field :slug, :type => String  
+  field :name
+  field :slug
   
   ## associations ##
   belongs_to_related :site

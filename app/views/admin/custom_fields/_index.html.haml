@@ -2,7 +2,7 @@
 - custom_fields = f.object.send(collection_name.to_sym)
 - ordered_custom_fields = f.object.send(:"ordered_#{collection_name}")
 
-= f.foldable_inputs :name => :custom_fields, :class => 'editable-list fields off' do
+= f.foldable_inputs :name => :custom_fields, :class => 'editable-list fields' do
   - ordered_custom_fields.each do |field|
     = f.fields_for collection_name.to_sym, field, :child_index => field._index do |g|  
       %li{ :class => "item added #{'error' unless field.errors.empty?}"}

@@ -66,8 +66,8 @@ describe AssetCollection do
       end    
       
       it 'should have an unique alias' do
-        @collection.asset_custom_fields.first._alias.should == "description"
-        @collection.asset_custom_fields.last._alias.should == "active"
+        @collection.asset_custom_fields.first.safe_alias.should == "description"
+        @collection.asset_custom_fields.last.safe_alias.should == "active"
       end  
             
     end
@@ -75,7 +75,6 @@ describe AssetCollection do
     context 'build and save' do
     
       it 'should build asset' do
-        puts "___ TEST #1 ___"
         asset = @collection.assets.build
         lambda {
           asset.description
@@ -85,14 +84,12 @@ describe AssetCollection do
       end
       
       it 'should assign values to newly built asset' do
-        puts "___ TEST #2 ___"
         asset = build_asset(@collection)
         asset.description.should == 'Lorem ipsum'
         asset.active.should == true
       end
           
       it 'should save asset' do
-        puts "___ TEST #3 ___"
         asset = build_asset(@collection)
         asset.save and @collection.reload
         asset = @collection.assets.first
@@ -101,7 +98,6 @@ describe AssetCollection do
       end
       
       it 'should not modify assets from another collection' do
-        puts "___ TEST #4 ___"
         asset = build_asset(@collection)
         asset.save and @collection.reload
         new_collection = AssetCollection.new

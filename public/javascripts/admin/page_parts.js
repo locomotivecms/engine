@@ -23,7 +23,7 @@ $(document).ready(function() {
 		$(parts).each(function() {
 			// console.log("iterating..." + this.slug);
 			var control = $('#control-part-' + this.slug);
-			
+						
 			// adding missing part
 			if (control.size() == 0) {
 				// console.log('adding part');
@@ -42,10 +42,15 @@ $(document).ready(function() {
 				var wrapper = $('#parts-' + index);
 				
 				// updating part
-				control.html('<span>' + this.name + '</span>').addClass('enabled').show();
-				wrapper.find('input.disabled').val('false');
-				wrapper.show();
-			}			
+				wrapper.find('input.disabled').val(this.disabled == true ? 'true' : 'false');
+				if (this.disabled == false) {
+					control.html('<span>' + this.name + '</span>').addClass('enabled').show();
+					wrapper.show();
+				} else {
+					control.hide();
+					wrapper.hide();
+				}
+			}
 	 	});
 	
 		// removing or hiding parts

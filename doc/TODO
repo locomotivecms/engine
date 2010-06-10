@@ -1,12 +1,8 @@
 BOARD:  
-x make an engine:
-  x move initializers to lib/...
-  - write doc about setting up the parent app
-  x helpers do not work
   
 - deploy on Heroku
-
-- missing translation in english
+- password resets (url is not handled correctly)
+- mongoid hack for nested attributes
   
 BACKLOG:
 
@@ -26,8 +22,7 @@ BACKLOG:
 - refactor slugify method (use parameterize + create a module)
 
 BUGS:
-- when assigning new layout, disabled parts show up :-( (js problem)
-- password resets (url is not handled correctly)
+
 
 NICE TO HAVE:
 - asset collections: custom resizing if image
@@ -117,3 +112,9 @@ x new custom field type: category
   x model
   x ui
   x liquid
+x [BUG] when assigning new layout, disabled parts show up :-( (js problem)
+x make an engine:
+  x move initializers to lib/...
+  x helpers do not work
+x missing translation in english
+x api security option in content types

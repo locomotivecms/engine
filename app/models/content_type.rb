@@ -8,6 +8,7 @@ class ContentType
   field :slug
   field :order_by
   field :highlighted_field_name
+  field :api_enabled, :type => Boolean, :default => false
   
   ## associations ##
   belongs_to_related :site

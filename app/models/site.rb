@@ -4,7 +4,7 @@ class Site
   
   ## fields ##
   field :name
-  field :subdomain, :type => String
+  field :subdomain
   field :domains, :type => Array, :default => []
   
   ## associations ##

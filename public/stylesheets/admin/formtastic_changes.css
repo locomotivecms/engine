@@ -224,7 +224,7 @@ form.formtastic fieldset ol li.item em {
 
 form.formtastic fieldset ol li.item span.actions {
 	position: absolute;
-	top: 7px;
+	top: 5px;
 	right: 10px;
 	width: 50px;
 	height: 16px;

@@ -3,11 +3,11 @@ class PagePart
   include Mongoid::Document
 
   ## fields ##
-  field :name, :type => String
-  field :slug, :type => String
-  field :value, :type => String
+  field :name
+  field :slug
+  field :value
   field :disabled, :type => Boolean, :default => false
-  field :value, :type => String
+  field :value
     
   ## associations ##
   embedded_in :page, :inverse_of => :parts
