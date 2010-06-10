@@ -49,7 +49,10 @@ Rails.application.routes.draw do |map|
     resources :contents, :path => "content_types/:slug/contents" do
       put :sort, :on => :collection
     end
-
+    
+    resources :api_contents, :path => "api/:slug/contents", :controller => 'api_contents', :only => [:create]
+    
+    resources :custom_fields, :path => "content_types/:slug/fields"
   end
   
   # magic urls

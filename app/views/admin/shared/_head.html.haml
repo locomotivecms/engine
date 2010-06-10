@@ -10,7 +10,7 @@
   
 = stylesheet_link_tag 'admin/layout', 'admin/plugins/toggle', 'admin/menu', 'admin/buttons', 'admin/formtastic', 'admin/formtastic_changes', 'admin/application', :media => 'screen', :cache => Rails.env.production?
 
-= javascript_include_tag 'admin/jquery', 'admin/jquery.ui', 'admin/rails', 'admin/plugins/toggle', 'admin/plugins/growl', 'admin/plugins/cookie', 'admin/application', :cache => Rails.env.production?
+= javascript_include_tag 'admin/jquery', 'admin/jquery.ui', 'admin/rails', 'admin/utils', 'admin/plugins/toggle', 'admin/plugins/growl', 'admin/plugins/cookie', 'admin/application', :cache => Rails.env.production?
 
 %script{ :type => 'text/javascript' }
   = find_and_preserve(growl_message)

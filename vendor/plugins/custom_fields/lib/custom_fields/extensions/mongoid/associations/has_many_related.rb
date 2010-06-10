@@ -12,6 +12,8 @@ module Mongoid #:nodoc:
           custom_fields = parent.send(:"ordered_#{custom_fields_association_name(options.name)}")
           
           klass = options.klass.to_klass_with_custom_fields(custom_fields)
+          klass._parent = parent
+          klass.association_name = options.name
           
           options.instance_eval <<-EOF
             def klass=(klass); @klass = klass; end

@@ -11,6 +11,10 @@ module Mongoid #:nodoc
         object.respond_to?(custom_fields_association_name(association_name))
       end
       
+      def klass
+        @klass
+      end
+      
     end
   end
 end

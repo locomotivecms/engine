@@ -124,10 +124,16 @@ $(document).ready(function() {
 					e.stopPropagation();
 				});
 				
-				$('#fancybox-wrap #custom_fields_custom_field__alias').val(link.parent().prevAll('.alias').val());
+				var alias = link.parent().prevAll('.alias').val();
+				if (alias == '') alias = makeSlug(link.parent().prevAll('.label').val());
+				$('#fancybox-wrap #custom_fields_field__alias').val(alias);
+				
+				var hint = link.parent().prevAll('.hint').val();
+				$('#fancybox-wrap #custom_fields_field_hint').val(hint);
 			},
 			onCleanup: function() {
-				link.parent().prevAll('.alias').val($('#fancybox-wrap #custom_fields_custom_field__alias').val());
+				link.parent().prevAll('.alias').val($('#fancybox-wrap #custom_fields_field__alias').val());
+				link.parent().prevAll('.hint').val($('#fancybox-wrap #custom_fields_field_hint').val());
 			}
 		})
 	});

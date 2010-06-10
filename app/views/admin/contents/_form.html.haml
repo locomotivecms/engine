@@ -1,3 +1,7 @@
+- content_for :head do
+  = javascript_include_tag 'admin/plugins/json2', 'admin/plugins/fancybox', 'admin/custom_fields/category', 'admin/contents'
+  = stylesheet_link_tag 'admin/plugins/fancybox', 'admin/box'
+
 - highlighted_field_name = @content.content_type.highlighted_field_name
 
 = f.inputs :name => :other_fields do
@@ -5,6 +9,12 @@
     - required = highlighted_field_name == field._name
   
     - if field.string?
-      = f.input field._alias.to_sym, :label => field.label, :required => required
+      = f.input field._alias.to_sym, :label => field.label, :hint => field.hint, :required => required
     - elsif field.text?
-      = f.input field._alias.to_sym, :label => field.label, :as => :text, :required => required
+      = f.input field._alias.to_sym, :label => field.label, :hint => field.hint, :as => :text, :required => required
+    - elsif field.category?
+      = f.custom_input field._alias.to_sym, :label => field.label, :hint => field.hint, :css => 'toggle' do
+        = f.select field._name.to_sym, field.ordered_category_items.collect { |item| [item.name, item.id] }
+        %button.button.light.edit-categories-link{ :type => 'button', :'data-url' =>  edit_admin_custom_field_path(@content_type.slug, field) }
+          %span= t('.edit_categories')
+        

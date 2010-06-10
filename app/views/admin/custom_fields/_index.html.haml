@@ -12,6 +12,8 @@
         = g.hidden_field :position, :class => 'position'
         
         = g.hidden_field :_alias, :class => 'alias'
+        
+        = g.hidden_field :hint, :class => 'hint'
       
         = g.text_field :label
       
@@ -27,7 +29,7 @@
           = link_to image_tag('admin/form/pen.png'), '#edit-custom-field', :class => 'edit first'
           = link_to image_tag('admin/form/icons/trash.png'), '#', :class => 'remove', :confirm => t('admin.messages.confirm')
     
-  = f.fields_for collection_name.to_sym, custom_fields.build(:label => 'field name'), :child_index => '-1' do |g|   
+  = f.fields_for collection_name.to_sym, custom_fields.build(:label => 'field name', :_alias => ''), :child_index => '-1' do |g|   
     %li{ :class => 'item template' }
       %span.handle
         = image_tag 'admin/form/icons/drag.png'
@@ -35,6 +37,8 @@
       = g.hidden_field :position, :class => 'position'
       
       = g.hidden_field :_alias, :class => 'alias'
+      
+      = g.hidden_field :hint, :class => 'hint'
     
       = g.text_field :label, :class => 'string label void'
   

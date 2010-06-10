@@ -38,7 +38,11 @@ en:
       kind:
         string: Simple Input
         text: Text
-        select: Select
+        category: Select
+      edit_category:
+        title: Edit options
+        help: Manage the list of options for your select box.
+        collection_label: List of options
         
     sessions:
       new:
@@ -174,7 +178,9 @@ en:
       new:
         title: '{{type}} &mdash; new item' 
       edit:
-        title: '{{type}} &mdash; editing item' 
+        title: '{{type}} &mdash; editing item'
+      form:
+        edit_categories: Edit options
                       
   formtastic:
     titles:

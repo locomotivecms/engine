@@ -3,6 +3,9 @@ class ContentInstance
   include Mongoid::Document
   include Mongoid::Timestamps
   
+  ## extensions ##
+  include CustomFields::ProxyClassEnabler
+  
   ## fields (dynamic fields) ##
   field :_position_in_list, :type => Integer, :default => 0
   
@@ -16,6 +19,10 @@ class ContentInstance
   named_scope :latest_updated, :order_by => [[:updated_at, :desc]], :limit => Locomotive.config.lastest_items_nb
   
   ## methods ##
+  
+  def to_liquid
+    Locomotive::Liquid::Drops::Content.new(self)
+  end
   
   protected
   

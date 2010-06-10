@@ -9,10 +9,11 @@ module CustomFields
     include Types::Category
   
     ## fields ##
-    field :label, :type => String
-    field :_alias, :type => String # need it for instance in: > asset.description (description being a custom field)
-    field :_name, :type => String
-    field :kind, :type => String
+    field :label
+    field :_alias # need it for instance in: > asset.description (description being a custom field)
+    field :_name
+    field :kind
+    field :hint
     field :position, :type => Integer, :default => 0
       
     ## validations ##
@@ -47,23 +48,6 @@ module CustomFields
         apply_default_type(klass)
       end
     end
-  
-    # def apply_to_object(object)
-    #   return unless self.valid?
-    #   
-    #   # trick mongoid: fields are now on a the singleton class level also called metaclass
-    #   self.singleton_class.fields = self.fields.clone 
-    #   self.singleton_class.send(:define_method, :fields) { self.singleton_class.fields }
-    # 
-    #   object.singleton_class.field self._name, :type => self.field_type
-    # 
-    #   case self.kind
-    #   when 'Category'
-    #     apply_category_type(object)
-    #   else
-    #     apply_default_type(object)
-    #   end
-    # end
     
     def safe_alias
       self.set_alias
@@ -85,7 +69,7 @@ module CustomFields
     
     def set_alias
       return if self.label.blank? && self._alias.blank?
-      self._alias = (self._alias || self.label).parameterize('_').downcase
+      self._alias = (self._alias.blank? ? self.label : self._alias).parameterize('_').downcase
     end
   
     def increment_counter!

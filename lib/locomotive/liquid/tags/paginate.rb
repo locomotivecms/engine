@@ -24,7 +24,7 @@ module Locomotive
             @collection_name = $1
             @per_page = $2.to_i
           else
-            raise SyntaxError.new("Syntax Error in 'paginate' - Valid syntax: paginate [collection] by [number]")
+            raise ::Liquid::SyntaxError.new("Syntax Error in 'paginate' - Valid syntax: paginate [collection] by [number]")
           end
     
           super

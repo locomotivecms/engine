@@ -2,6 +2,27 @@ require 'spec_helper'
 
 describe CustomFields::CustomFieldsFor do
     
+  context '#proxy class'  do
+    
+    before(:each) do
+      @project = Project.new
+      @klass = @project.tasks.klass
+    end
+    
+    it 'returns the proxy class in the association' do
+      @klass.should == @project.tasks.build.class
+    end
+    
+    it 'has a link to the parent' do
+      @klass._parent.should == @project
+    end
+    
+    it 'has the association name which references to' do
+      @klass.association_name.should == 'tasks'
+    end
+    
+  end
+    
   context 'with embedded collection' do
     
     context '#association' do
@@ -13,7 +34,7 @@ describe CustomFields::CustomFieldsFor do
       it 'has custom fields for embedded collection' do
         @project.respond_to?(:task_custom_fields).should be_true
       end
-      
+            
     end
   
     context '#building' do

@@ -24,31 +24,20 @@ module Locomotive
     
         def first
           content = @content_type.ordered_contents(@context['with_scope']).first
-          build_content_drop(content) unless content.nil?
         end
     
         def last
           content = @content_type.ordered_contents(@context['with_scope']).last
-          build_content_drop(content) unless content.nil?
         end
     
         def each(&block)
           @collection ||= @content_type.ordered_contents(@context['with_scope'])
-          to_content_drops.each(&block)
-        end
-    
-        def to_content_drops
-          @collection.map { |c| build_content_drop(c) }
-        end
-        
-        def build_content_drop(content)
-          Locomotive::Liquid::Drops::Content.new(content)
         end
     
         def paginate(options = {})
           @collection ||= @content_type.ordered_contents(@context['with_scope']).paginate(options)
           {
-            :collection       => to_content_drops,
+            :collection       => @collection,
             :current_page     => @collection.current_page,
             :previous_page    => @collection.previous_page,
             :next_page        => @collection.next_page,
@@ -56,7 +45,16 @@ module Locomotive
             :total_pages      => @collection.total_pages,
             :per_page         => @collection.per_page
           }
-        end        
+        end
+        
+        def api
+          { 'create' => @context.registers[:controller].send('admin_api_contents_url', @content_type.slug) }
+        end
+        
+        def before_method(meth)
+          klass = @content_type.contents.klass # delegate to the proxy class
+          klass.send(meth)
+        end
       end
     end    
   end

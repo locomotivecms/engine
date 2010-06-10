@@ -4,13 +4,10 @@ x make an engine:
   - write doc about setting up the parent app
   x helpers do not work
   
-- deploy on Heroku   
-  
-x refactoring: CustomFields::CustomField => CustomFields::Field
-- new custom field type
-  - category
-x optimization custom_fields: use dynamic class for a collection instead of modifying the metaclass each time we build an item
+- deploy on Heroku
 
+- missing translation in english
+  
 BACKLOG:
 
 - devise messages in French
@@ -36,6 +33,8 @@ NICE TO HAVE:
 - asset collections: custom resizing if image
 - super_finder
 - better icons for mime type
+- hint for custom fields (super easy to do !)
+- tiny mce or similar for custom field text type.
 
 DONE:
 x admin layout
@@ -112,3 +111,9 @@ x theme assets picker (???)
   x select it
   x flash upload (http://www.plupload.com/example_custom.php)
 x refactor theme assets / assets uploaders
+x refactoring: CustomFields::CustomField => CustomFields::Field
+x optimization custom_fields: use dynamic class for a collection instead of modifying the metaclass each time we build an item
+x new custom field type: category
+  x model
+  x ui
+  x liquid

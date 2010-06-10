@@ -6,3 +6,4 @@
       = fields_for CustomFields::Field.new, :builder => Formtastic::SemanticFormHelper.builder do |g|
         = g.inputs :name => :information do
           = g.input :_alias
+          = g.input :hint

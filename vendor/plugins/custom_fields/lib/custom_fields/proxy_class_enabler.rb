@@ -12,7 +12,7 @@ module CustomFields
       
         klass = Class.new(self)
         klass.class_eval <<-EOF
-          cattr_accessor :custom_fields
+          cattr_accessor :custom_fields, :_parent, :association_name
         
           def self.model_name
             @_model_name ||= ActiveModel::Name.new(self.superclass)

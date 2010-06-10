@@ -13,5 +13,15 @@ $(document).ready(function() {
 		items: 'li.content',
 		stop: function(event, ui) { updateContentsOrder(); }
 	});
-	
+		
+	$('button.edit-categories-link').click(function() {
+		var link = $(this);
+		$.fancybox({ 
+			titleShow: false,
+			href: link.attr('data-url'),
+			padding: 0,
+			onComplete: function() { SetupCustomFieldCategoryEditor(link.prev()); },
+			onCleanup: function() { console.log('closing...'); }
+		})
+	});
 });
