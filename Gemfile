@@ -9,7 +9,7 @@ gem "bson_ext", ">= 1.0.1"
 gem "mongo_ext"
 gem "mongoid", ">= 2.0.0.beta6" 
 gem "mongoid_acts_as_tree", ">= 0.1.2"
-gem "mongo_session_store", :git => 'git://github.com/nmerouze/mongo_session_store.git'
+gem "mongo_session_store", "2.0.0.pre"
 gem "warden"
 gem "devise", ">= 1.1.rc1"
 gem "haml", "3.0.1"
@@ -19,6 +19,7 @@ gem "jeweler"
 gem "mimetype-fu", :require => "mimetype_fu"
 gem "formtastic-rails3", :require => "formtastic"
 gem "carrierwave-rails3", :require => "carrierwave"
+gem "actionmailer-with-request", :require => 'actionmailer_with_request'
 
 # Development environment
 group :development do

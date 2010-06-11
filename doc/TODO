@@ -1,7 +1,6 @@
 BOARD:  
   
 - deploy on Heroku
-- convert 2 plugins into gems (mongo_session_store / actionmailer_with_request)
   
 BACKLOG:
 
@@ -121,3 +120,4 @@ x missing translation in english
 x api security option in content types
 x password resets (url is not handled correctly)
 x mongoid hack for nested attributes
+x convert 2 plugins into gems (mongo_session_store / actionmailer_with_request)
