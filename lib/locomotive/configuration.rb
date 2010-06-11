@@ -8,7 +8,8 @@ module Locomotive
       # :forbidden_paths  => %w{layouts snippets stylesheets javascripts assets admin system api},
       :reserved_slugs   => %w{stylesheets javascripts assets admin images api pages},
       :locales          => %w{en fr},
-      :cookie_key       => '_locomotive_session'
+      :cookie_key       => '_locomotive_session',
+      :enable_logs      => false
     }
 
     cattr_accessor :settings
