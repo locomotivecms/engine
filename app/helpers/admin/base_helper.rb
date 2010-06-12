@@ -7,7 +7,7 @@ module Admin::BaseHelper
       @content_for_title = title
       ''
     end
-  end  
+  end
     
   def admin_menu_item(name, url)
     label = content_tag(:em) + escape_once('&nbsp;') + t("admin.shared.menu.#{name}")

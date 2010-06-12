@@ -56,7 +56,6 @@ var SetupCustomFieldCategoryEditor = function(target) {
 	/* ___ submit ___ */
 	
 	var updateSelectOptions = function(list) {
-		console.log('updateSelectOptions [begin]');
 		var options = '';
 		var selectedValue = target.val();
 		for (var i = 0; i < list.length; i++) {
@@ -64,7 +63,6 @@ var SetupCustomFieldCategoryEditor = function(target) {
 		}
 		target.html(options);
 		target.val(selectedValue);
-		console.log('updateSelectOptions [end]');
 	};
 	
 	$('#edit-custom-field-category .popup-actions button').click(function(e) {
@@ -76,7 +74,6 @@ var SetupCustomFieldCategoryEditor = function(target) {
 			data: form.serialize(),
 			url: form.attr('action'),
 			success: function(data) {
-				console.log("success");
 				if (data.error == null) {
 					list = data.category_items.sort(function(a, b) { return (a.position - b.position); });
 					updateSelectOptions(list);

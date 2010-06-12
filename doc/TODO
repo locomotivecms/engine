@@ -1,6 +1,10 @@
 BOARD:  
-  
+
 - deploy on Heroku
+  - observers to add / remove domains
+- truncate nom dans le menu de contents
+x comment console.log
+- missing translation for the edit categories popup
   
 BACKLOG:
 
@@ -12,6 +16,7 @@ BACKLOG:
 
 - theme assets: disable version if not image
 
+- migrate content_instance to its collection
 - new custom field types
   - file
   - boolean

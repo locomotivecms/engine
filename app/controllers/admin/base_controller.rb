@@ -4,7 +4,7 @@ module Admin
     include Locomotive::Routing::SiteDispatcher
   
     layout 'admin/application'
-  
+    
     before_filter :authenticate_admin!
       
     before_filter :require_site
@@ -15,6 +15,11 @@ module Admin
   
     helper_method :sections
   
+    # https://rails.lighthouseapp.com/projects/8994/tickets/1905-apphelpers-within-plugin-not-being-mixed-in
+    Dir[File.dirname(__FILE__) + "/../../helpers/**/*_helper.rb"].each do |file|
+      helper "admin/#{File.basename(file, '.rb').gsub(/_helper$/, '')}"
+    end
+    
     protected
   
     def flash_success!(options = {})

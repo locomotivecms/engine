@@ -21,7 +21,7 @@ $(document).ready(function() {
 			href: link.attr('data-url'),
 			padding: 0,
 			onComplete: function() { SetupCustomFieldCategoryEditor(link.prev()); },
-			onCleanup: function() { console.log('closing...'); }
+			onCleanup: function() { }
 		})
 	});
 });
