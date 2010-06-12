@@ -10,7 +10,7 @@
       - elsif field.text?
         = f.input field._alias.to_sym, :label => field.label, :as => :text
 
-- if @asset.image?
+- if @asset.image? && @asset.valid?
   = f.foldable_inputs :name => "#{t('formtastic.titles.preview')} #{image_dimensions_and_size(@asset)}", :class => 'preview' do
     %li
       .image

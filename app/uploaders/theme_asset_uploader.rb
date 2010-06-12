@@ -29,14 +29,4 @@ class ThemeAssetUploader < AssetUploader
     %w(jpg jpeg gif png css js)
   end
   
-  def filename
-    if model.slug.present?
-      model.filename
-    else
-      extension = File.extname(original_filename)
-      basename = File.basename(original_filename, extension).slugify(:underscore => true)
-      "#{basename}#{extension}"
-    end
-  end
-  
 end

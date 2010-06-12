@@ -7,7 +7,7 @@
       %ul
         - current_site.pages.latest_updated.each do |page|
           %li
-            = link_to truncate(page.title, :length => 40), edit_admin_page_url(page)
+            = link_to truncate(page.title, :length => 30), edit_admin_page_url(page)
             %span= time_ago_in_words(page.updated_at)
 
   - current_site.content_types.each do |content_type|
@@ -20,7 +20,7 @@
         %ul
           - content_type.contents.latest_updated.each do |content|
             %li
-              = link_to truncate(content.send(content_type.highlighted_field_name), :length => 40), edit_admin_content_path(content_type.slug, content)
+              = link_to truncate(content.send(content_type.highlighted_field_name), :length => 30), edit_admin_content_path(content_type.slug, content)
               %span= time_ago_in_words(content.updated_at)
         
 .action

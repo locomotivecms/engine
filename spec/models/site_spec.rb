@@ -20,13 +20,13 @@ describe Site do
     site.errors[:subdomain].should == ["can't be blank"]
   end
     
-  %w{test foo_bar test42}.each do |subdomain|
+  %w{test test42}.each do |subdomain|
     it "should accept subdomain like '#{subdomain}'" do
       Factory.build(:site, :subdomain => subdomain).should be_valid
     end
   end
   
-  ['-', '_test', 'test_', 't est', '42', '42test'].each do |subdomain|
+  ['-', '_test', 'test_', 't est', '42', '42test', 'foo_bar'].each do |subdomain|
     it "should not accept subdomain like '#{subdomain}'" do
       (site = Factory.build(:site, :subdomain => subdomain)).should_not be_valid
       site.errors[:subdomain].should == ['is invalid']

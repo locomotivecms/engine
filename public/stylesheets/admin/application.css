@@ -121,7 +121,7 @@ ul.assets li.asset h4 { margin: 0px; height: 30px; }
 
 ul.assets li.asset h4 a {
 	position: relative;
-	top: 0px;
+	top: 6px;
 	left: 12px;
 	font-weight: bold;
 	font-size: 0.6em;
@@ -149,7 +149,7 @@ ul.assets li.asset div.image div.inside {
 
 ul.assets li.asset div.actions {
 	position: absolute;
-	top: 4px;
+	top: 7px;
 	right: 12px;
 }
 

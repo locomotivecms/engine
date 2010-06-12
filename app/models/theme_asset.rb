@@ -41,7 +41,7 @@ class ThemeAsset
   
   def plain_text
     @plain_text ||= (if self.stylesheet? || self.javascript?
-      File.read(self.source.path)
+      self.source.read
     else
       nil
     end)
@@ -63,17 +63,8 @@ class ThemeAsset
     
     self.source = CarrierWave::SanitizedFile.new({ 
       :tempfile => StringIO.new(self.plain_text),
-      :filename => self.filename
+      :filename => "#{self.slug}.#{self.stylesheet? ? 'css' : 'js'}"
     })
-  end
-  
-  def filename
-    if not self.image?
-      # TODO: fix that for handling not image / stylesheets / javascripts assets
-      "#{self.slug}.#{self.stylesheet? ? 'css' : 'js'}"  
-    else
-      "#{self.slug}#{File.extname(self.source.file.original_filename)}"
-    end    
   end
   
   def to_liquid
