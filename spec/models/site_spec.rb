@@ -2,6 +2,10 @@ require 'spec_helper'
  
 describe Site do
   
+  before(:each) do
+    Locomotive.stubs(:add_heroku_domain).returns(true)
+  end
+  
   it 'should have a valid factory' do
     Factory.build(:site).should be_valid
   end

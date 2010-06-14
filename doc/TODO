@@ -1,8 +1,7 @@
 BOARD:  
 
 - deploy on Heroku
-  - observers to add / remove domains  
-- "field name" for alias / hint for custom fields  
+  - observers to add / remove domains (http://groups.google.com/group/heroku/browse_thread/thread/148d6ea68e4574fb/4d8f1c8545d52bda?lnk=gst&q=heroku+gem+api#4d8f1c8545d52bda)
   
 BACKLOG:
 
@@ -23,8 +22,11 @@ BACKLOG:
 - refactor slugify method (use parameterize + create a module)
 - cucumber features for admin pages
 
+- Heroku / S3 / Worker
+
 BUGS:
 
+- custom fields: accepts_nested_attributes weird behaviour when creating new content type + adding random fields
 
 NICE TO HAVE:
 - asset collections: custom resizing if image
@@ -129,3 +131,6 @@ x [BUG] asset vignette: name + icon not vertically aligned
 x truncate nom dans le menu de contents
 x site subdomain regexp [a-z][A-Z][0-9]
 ! migrate content_instance to its own collection => http://www.mongodb.org/display/DOCS/Advanced+Queries#AdvancedQueries-%24sliceoperator
+x [BUG] "field name" for alias / hint for custom fields  
+x [BUG] can not remove custom fields at creation if object is invalid
+x internal logger

@@ -9,4 +9,18 @@ Locomotive.configure do |config|
   
   # tell if logs are enabled. Useful for debug purpose.
   config.enable_logs = true
+  
+  # tell if the application is hosted on Heroku.
+  # Locomotive uses heroku api to add / remove domains.
+  # there are 2 ways of passing heroku credentials to Locomotive
+  #   - from ENV variables: HEROKU_LOGIN & HEROKU_PASSWORD
+  #   - from this file
+  #
+  # Notes: 
+  #   - IMPORTANT: behaviours related to this option will only be applied in production  
+  #   - credentials coming from this file take precedence over ENV variables
+  # 
+  # Ex:
+  # config.heroku = { :name => '<my heroku app name>', :login => 'john@doe.net', :password => 'easy' }
+  config.heroku = false
 end

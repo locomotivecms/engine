@@ -3,13 +3,14 @@ module Locomotive
 
     @@defaults = {
       :name             => 'LocomotiveApp',
-      :default_domain   => 'rails.local.fr',
+      :default_domain   => 'example.com',
       :reserved_subdomains => %w{www admin email blog webmail mail support help site sites},
       # :forbidden_paths  => %w{layouts snippets stylesheets javascripts assets admin system api},
       :reserved_slugs   => %w{stylesheets javascripts assets admin images api pages},
       :locales          => %w{en fr},
       :cookie_key       => '_locomotive_session',
-      :enable_logs      => false
+      :enable_logs      => false,
+      :heroku           => false
     }
 
     cattr_accessor :settings

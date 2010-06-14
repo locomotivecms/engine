@@ -39,6 +39,8 @@ en:
         string: Simple Input
         text: Text
         category: Select
+      edit_field:
+        title: Edit field
       edit_category:
         title: Edit options
         help: Manage the list of options for your select box.

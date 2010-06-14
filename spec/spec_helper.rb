@@ -12,6 +12,7 @@ Rspec.configure do |config|
   config.mock_with :mocha
   
   config.before(:each) do
+    Locomotive.config.heroku = false
     Mongoid.master.collections.select { |c| c.name != 'system.indexes' }.each(&:drop)
   end
 end

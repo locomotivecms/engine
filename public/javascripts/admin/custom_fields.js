@@ -44,16 +44,16 @@ $(document).ready(function() {
 
 	$('fieldset.fields li.template button').click(function() {
 		var lastRow = $(this).parents('li.template');
+		
+		var label = lastRow.find('input.label').val().trim();
+		if (label == '' || label == defaultValue) return false;
+		
 		var newRow = lastRow.clone(true).removeClass('template').addClass('added new').insertBefore(lastRow);
 
 		var dateFragment = '[' + new Date().getTime() + ']';
 		newRow.find('input, select').each(function(index) {
 			$(this).attr('name', $(this).attr('name').replace('[-1]', dateFragment));
 		});
-
-		// should copy the value of the select box
-		var input = newRow.find('input.label');
-		if (lastRow.find('input.label').val() == '') input.val("undefined");
 
 		var select = newRow.find('select')
 			.val(lastRow.find('select').val())
@@ -73,9 +73,8 @@ $(document).ready(function() {
 				select.show();
 			});
 
-		// then reset the form
-		lastRow.find('input').val(defaultValue).addClass('void');
-		lastRow.find('select').val('input');
+		// then "reset" the form
+		lastRow.find('input.label').val(defaultValue).addClass('void');
 
 		// warn the sortable widget about the new row
 		$("fieldset.fields ol").sortable('refresh');
@@ -124,7 +123,7 @@ $(document).ready(function() {
 					e.stopPropagation();
 				});
 				
-				var alias = link.parent().prevAll('.alias').val();
+				var alias = link.parent().prevAll('.alias').val().trim();
 				if (alias == '') alias = makeSlug(link.parent().prevAll('.label').val());
 				$('#fancybox-wrap #custom_fields_field__alias').val(alias);
 				
@@ -132,8 +131,10 @@ $(document).ready(function() {
 				$('#fancybox-wrap #custom_fields_field_hint').val(hint);
 			},
 			onCleanup: function() {
-				link.parent().prevAll('.alias').val($('#fancybox-wrap #custom_fields_field__alias').val());
-				link.parent().prevAll('.hint').val($('#fancybox-wrap #custom_fields_field_hint').val());
+				var alias = $('#fancybox-wrap #custom_fields_field__alias').val().trim();
+				if (alias != '') link.parent().prevAll('.alias').val(alias);
+				var hint = $('#fancybox-wrap #custom_fields_field_hint').val().trim();
+				if (hint != '') link.parent().prevAll('.hint').val(hint);
 			}
 		})
 	});

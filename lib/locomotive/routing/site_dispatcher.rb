@@ -19,7 +19,7 @@ module Locomotive
         protected
         
         def fetch_site
-          logger.info "[fetch site] host = #{request.host} / #{request.env['HTTP_HOST']}" if Locomotive.config.enable_logs
+          Locomotive.logger "[fetch site]  host = #{request.host} / #{request.env['HTTP_HOST']}"
           @current_site ||= Site.match_domain(request.host).first
         end
       

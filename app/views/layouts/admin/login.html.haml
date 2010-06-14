@@ -4,7 +4,7 @@
   %head
     %title= escape_once("#{Locomotive.config.name} &mdash; #{current_site.name}")
     
-    = stylesheet_link_tag 'admin/blueprint/screen', 'admin/login', :media => 'screen'
+    = stylesheet_link_tag 'admin/blueprint/screen', 'admin/login', :media => 'screen', :cache => Rails.env.production? && !Locomotive.config.heroku
     / [if IE]
       = stylesheet_link_tag('admin/blueprint/ie', :media => 'screen')
       
