@@ -20,4 +20,14 @@ module Admin::PagesHelper
     list
   end
   
+  def options_for_page_cache_expiration
+    [
+      [t('.expiration.never'), 0],
+      [t('.expiration.hour'), 1.hour],
+      [t('.expiration.day'), 1.day],
+      [t('.expiration.week'), 1.week],
+      [t('.expiration.month'), 1.month]
+    ]
+  end
+  
 end

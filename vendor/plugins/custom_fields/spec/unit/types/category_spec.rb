@@ -67,6 +67,11 @@ describe CustomFields::Types::Category do
         @groups[2][:items].size.should == 2
       end
       
+      it 'passes method to retrieve items' do
+        @project.class.expects(:ordered)
+        @project.class.group_by_global_category(:ordered)
+      end
+      
     end
         
   end

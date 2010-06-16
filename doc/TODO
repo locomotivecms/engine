@@ -1,7 +1,7 @@
 BOARD:  
 
-- deploy on Heroku
-  - observers to add / remove domains (http://groups.google.com/group/heroku/browse_thread/thread/148d6ea68e4574fb/4d8f1c8545d52bda?lnk=gst&q=heroku+gem+api#4d8f1c8545d52bda)
+- new custom field types
+  - boolean
   
 BACKLOG:
 
@@ -13,16 +13,15 @@ BACKLOG:
 
 - theme assets: disable version if not image
 
-- new custom field types
+- new custom field types:
   - file
-  - boolean
   - date
 
 - refactoring admin crud (pages + layouts + snippets)
 - refactor slugify method (use parameterize + create a module)
 - cucumber features for admin pages
 
-- Heroku / S3 / Worker
+- tiny mce or similar for custom field text type.
 
 BUGS:
 
@@ -32,8 +31,8 @@ NICE TO HAVE:
 - asset collections: custom resizing if image
 - super_finder
 - better icons for mime type
-- hint for custom fields (super easy to do !)
-- tiny mce or similar for custom field text type.
+- traffic statistics
+- Heroku / S3 / Worker (not so sure finally)
 
 DONE:
 x admin layout
@@ -134,3 +133,11 @@ x site subdomain regexp [a-z][A-Z][0-9]
 x [BUG] "field name" for alias / hint for custom fields  
 x [BUG] can not remove custom fields at creation if object is invalid
 x internal logger
+x deploy on Heroku
+  x observers to add / remove domains (http://groups.google.com/group/heroku/browse_thread/thread/148d6ea68e4574fb/4d8f1c8545d52bda?lnk=gst&q=heroku+gem+api#4d8f1c8545d52bda)
+x varnish caching (only with Heroku ?)
+x page not included in liquid templates
+x redirect to referer url when updating site
+x [BUG] items non sorted in a category
+x contents grouped by "category" in the admin
+x hint for custom fields (super easy to do !)

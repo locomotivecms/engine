@@ -13,21 +13,13 @@
 - if @content_type.description.present? 
   %p= @content_type.description
 
-- if @contents.empty?
-  %p.no-items= t('.no_items', :url => new_admin_content_url(@content_type.slug))
+- if @content_type.groupable?
+  - @contents.each do |group|  
+    %h3= group[:name] || t('.category_noname')
+    = render 'list', :contents => group[:items]  
+    %br
 - else
-  %ul{ :id => 'contents-list', :class => "list #{'sortable' if @content_type.order_by == '_position_in_list'}" }
-    - @contents.each do |content|
-      %li.content{ :id => "content-#{content._id}" }
-        %em
-        %strong
-          = link_to content.send(@content_type.highlighted_field_name), edit_admin_content_path(@content_type.slug, content)
-        .more
-          %span
-            = t('admin.contents.index.updated_at')
-          = l content.updated_at, :format => :short rescue 'n/a'
-          
-          = link_to image_tag('admin/list/icons/trash.png'), admin_content_path(@content_type.slug, content), :class => 'remove', :confirm => t('admin.messages.confirm'), :method => :delete
+  = render 'list', :contents => @contents
         
 = form_tag sort_admin_contents_path(@content_type.slug), :method => :put, :class => 'formtastic' do
   = hidden_field_tag :order

@@ -3,6 +3,11 @@
 
 = f.foldable_inputs :name => :information, :style => "#{'display: none' unless @site.new_record?}" do
   = f.input :name, :required => false
+  
+= f.foldable_inputs :name => :meta do
+
+  = f.input :meta_keywords
+  = f.input :meta_description
 
 = f.foldable_inputs :name => :access_points, :class => 'editable-list off' do
   
@@ -42,4 +47,4 @@
       %em= account.email
       - if account != current_admin
         %span.actions
-          = link_to image_tag('admin/form/icons/trash.png'), admin_membership_url(membership), :class => 'remove first', :confirm => t('admin.messages.confirm'), :method => :delete
+          = link_to image_tag('admin/form/icons/trash.png'), admin_membership_url(membership), :class => 'remove first', :confirm => t('admin.messages.confirm'), :method => :delete        

@@ -13,4 +13,6 @@ class Project
   custom_fields_for :people
   custom_fields_for :tasks
   
+  named_scope :ordered, :order_by => [[:name, :asc]]
+  
 end

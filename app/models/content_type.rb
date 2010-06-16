@@ -8,6 +8,7 @@ class ContentType
   field :slug
   field :order_by
   field :highlighted_field_name
+  field :group_by_field_name
   field :api_enabled, :type => Boolean, :default => false
   
   ## associations ##
@@ -28,6 +29,26 @@ class ContentType
   
   ## methods ##
   
+  def groupable?
+    self.group_by_field && group_by_field.category?
+  end
+  
+  def list_or_group_contents
+    if self.groupable?
+      groups = self.contents.klass.send(:"group_by_#{self.group_by_field._alias}", :ordered_contents)
+
+      # look for items with no category or unknown ones
+      items_without_category = self.contents.find_all { |c| !self.group_by_field.category_ids.include?(c.send(self.group_by_field_name)) }
+      if not items_without_category.empty?
+        groups << { :name => nil, :items => items_without_category }
+      else
+        groups
+      end
+    else
+      self.ordered_contents
+    end
+  end
+  
   def ordered_contents(conditions = {})
     column = self.order_by.to_sym
     
@@ -47,6 +68,10 @@ class ContentType
   
   def highlighted_field
     self.content_custom_fields.detect { |f| f._name == self.highlighted_field_name }
+  end
+  
+  def group_by_field
+    @group_by_field ||= self.content_custom_fields.detect { |f| f._name == self.group_by_field_name }
   end
   
   protected

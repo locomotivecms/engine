@@ -84,8 +84,16 @@ en:
         successful_create: "Page was successfully created."
         successful_update: "Page was successfully updated."
         successful_destroy: "Page was successfully deleted."
+        successful_sort: "Pages were successfully sorted."
         failed_create: "Page was not created."
         failed_update: "Page was not updated."
+      form:
+        expiration:
+          never: Never
+          hour: 1 hour
+          day: 1 day
+          week: 1 week
+          month: 1 month
         
     layouts:
       index:
@@ -264,10 +272,12 @@ en:
         edit: edit model
         destroy: remove model
         download: download items
-        new: new item
-        no_items: "There are no items for now. Just click <a href=\"{{url}}\">here</a> to create the first one."
+        new: new item        
+        category_noname: "No name"
         lastest_items: "Lastest items"
         updated_at: "Updated at"
+      list:
+        no_items: "There are no items for now. Just click <a href=\"{{url}}\">here</a> to create the first one."
       new:
         title: '{{type}} &mdash; new item' 
       edit:
@@ -297,6 +307,7 @@ en:
       options: Advanced options
       custom_fields: Custom fields
       other_fields: Other information
+      presentation: Presentation
     labels:
       theme_asset:
         new:
@@ -311,6 +322,8 @@ en:
       page:
         keywords: "Meta keywords used within the head tag of the page. They are separeted by an empty space. Required for SEO." 
         description: "Meta description used within the head tag of the page. Required for SEO." 
+        published: "Only authenticated accounts can view unpublished pages."
+        cache_expires_in: "Cache the page for better performance. Pressing shift-reload in the browser will regenerate the page."
       snippet:
         slug: "You need to know it in order to insert the snippet inside a page or a layout"
       site:

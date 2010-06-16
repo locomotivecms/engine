@@ -6,6 +6,8 @@ class Site
   field :name
   field :subdomain
   field :domains, :type => Array, :default => []
+  field :meta_keywords
+  field :meta_description
   
   ## associations ##
   has_many_related :pages
@@ -33,7 +35,7 @@ class Site
   named_scope :match_domain_with_exclusion_of, lambda { |domain, site| { :where => { :domains => domain, :_id.ne => site.id } } }
     
   ## behaviours ##
-  liquid_methods :name
+  liquid_methods :name, :meta_keywords, :meta_description
   
   ## methods ##
 

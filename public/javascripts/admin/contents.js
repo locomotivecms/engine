@@ -1,9 +1,11 @@
 $(document).ready(function() {
 	
 	var updateContentsOrder = function() {
-		var list = $('ul#contents-list.sortable');
-		var ids = jQuery.map(list.sortable('toArray'), function(e) { 
-			return e.match(/content-(\w+)/)[1];
+		var lists = $('ul#contents-list.sortable');
+		var ids = jQuery.map(lists, function(list) {
+				return(jQuery.map($(list).sortable('toArray'), function(el) { 
+					return el.match(/content-(\w+)/)[1];
+				}).join(','));
 		}).join(',');
 		$('#order').val(ids || '');
 	}

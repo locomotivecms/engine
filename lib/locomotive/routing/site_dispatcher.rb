@@ -1,17 +1,13 @@
 module Locomotive
-  
-  module Routing
-  
+  module Routing  
     module SiteDispatcher
     
-      def self.included(base)
-        base.class_eval do
-          include Locomotive::Routing::SiteDispatcher::InstanceMethods
+      extend ActiveSupport::Concern
+    
+      included do
+        before_filter :fetch_site
         
-          before_filter :fetch_site
-          
-          helper_method :current_site
-        end
+        helper_method :current_site
       end
 
       module InstanceMethods
@@ -42,8 +38,6 @@ module Locomotive
         
       end
     
-    end
-  
-  end
-  
+    end  
+  end  
 end

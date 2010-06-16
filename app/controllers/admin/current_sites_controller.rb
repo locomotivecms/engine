@@ -21,11 +21,10 @@ module Admin
     protected
     
     def new_host_if_subdomain_changed
-      host_from_site = "#{@site.subdomain}.#{Locomotive.config.default_domain}"
-      if request.host == host_from_site
+      if @site.domains.include?(request.host)
         {}
       else
-        { :host => "#{host_from_site}:#{request.port}" }
+        { :host => "#{@site.subdomain}.#{Locomotive.config.default_domain}:#{request.port}" }
       end
     end
   

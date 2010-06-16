@@ -32,17 +32,6 @@ module Admin
     
       redirect_to edit_admin_my_account_url
     end
-    
-    protected
-    
-    def new_host_if_subdomain_changed
-      host_from_site = "#{@site.subdomain}.#{Locomotive.config.default_domain}"
-      if request.host == host_from_site
-        {}
-      else
-        { :host => "#{host_from_site}:#{request.port}" }
-      end
-    end
   
   end
 end

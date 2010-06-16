@@ -21,4 +21,11 @@ module Admin::CustomFieldsHelper
     collection.map { |field| [field.label, field._name] }
   end
   
+  def options_for_group_by_field(content_type, collection_name)
+    custom_fields_collection_name = "ordered_#{collection_name.singularize}_custom_fields".to_sym
+    collection = content_type.send(custom_fields_collection_name)
+    collection.delete_if { |f| not f.category? }
+    collection.map { |field| [field.label, field._name] }
+  end
+  
 end

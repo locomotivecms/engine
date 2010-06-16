@@ -12,8 +12,7 @@ class Page
   field :slug
   field :fullpath
   field :published, :type => Boolean, :default => false
-  field :keywords
-  field :description
+  field :cache_expires_in, :type => Integer, :default => 0
   
   ## associations ##
   belongs_to_related :site
@@ -36,6 +35,7 @@ class Page
   named_scope :not_found, :where => { :slug => '404', :depth => 0, :published => true }
   
   ## behaviours ##
+  liquid_methods :title, :fullpath
   liquify_template :joined_parts
   
   ## methods ##

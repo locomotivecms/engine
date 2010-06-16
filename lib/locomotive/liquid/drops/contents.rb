@@ -53,7 +53,11 @@ module Locomotive
         
         def before_method(meth)
           klass = @content_type.contents.klass # delegate to the proxy class
-          klass.send(meth)
+          if (meth.to_s =~ /^group_by_.+$/) == 0
+            klass.send(meth, :ordered_contents)
+          else
+            klass.send(meth)
+          end
         end
       end
     end    

@@ -6,7 +6,7 @@ module Admin
     before_filter :set_content_type    
   
     def index
-      @contents = @content_type.ordered_contents
+      @contents = @content_type.list_or_group_contents
     end
   
     def new

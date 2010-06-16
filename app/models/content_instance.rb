@@ -15,6 +15,9 @@ class ContentInstance
   ## associations ##
   embedded_in :content_type, :inverse_of => :contents
   
+  ## callbacks ##
+  before_create :add_to_list_bottom
+  
   ## named scopes ##
   named_scope :latest_updated, :order_by => [[:updated_at, :desc]], :limit => Locomotive.config.lastest_items_nb
   
@@ -25,6 +28,11 @@ class ContentInstance
   end
   
   protected
+  
+  def add_to_list_bottom
+    Rails.logger.debug "add_to_list_bottom"
+    self._position_in_list = self.content_type.contents.size
+  end
   
   def require_highlighted_field
     _alias = self.content_type.highlighted_field._alias.to_sym

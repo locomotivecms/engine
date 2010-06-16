@@ -1,15 +1,10 @@
 module Locomotive
-  
   module Routing
-  
     class DefaultConstraint
    
       def self.matches?(request)
         domain, subdomain = domain_and_subdomain(request)
         subdomain = 'www' if subdomain.blank?
-        
-        # puts "domain = #{domain} / #{Locomotive.config.default_domain.inspect}"
-        # puts "subdomain = #{subdomain} / #{Locomotive.config.reserved_subdomains.inspect}"
         
         domain == Locomotive.config.default_domain && Locomotive.config.reserved_subdomains.include?(subdomain)
       end
@@ -38,8 +33,7 @@ module Locomotive
         parts = request.host.split('.')
         parts[0..-(tld_length+2)]
       end
-    end
-    
-  end
-  
+      
+    end    
+  end  
 end

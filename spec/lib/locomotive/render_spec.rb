@@ -16,12 +16,21 @@ describe 'Locomotive rendering system' do
       @controller.send(:prepare_and_set_response, 'Hello world !')
     end
     
-    it 'should have a html content type' do
-      @controller.response.headers["Content-Type"].should == 'text/html; charset=utf-8'
+    it 'sets the content type to html' do
+      @controller.response.headers['Content-Type'].should == 'text/html; charset=utf-8'
     end
     
-    it 'should display the output' do
+    it 'displays the output' do
       @controller.output.should == 'Hello world !'
+    end
+    
+    it 'does not set the cache' do
+      @controller.response.headers['Cache-Control'].should be_nil
+    end
+    
+    it 'sets the cache' do
+      @controller.send(:prepare_and_set_response, 'Hello world !', 3600)
+      @controller.response.headers['Cache-Control'].should == 'public, max-age=3600'
     end
   
   end

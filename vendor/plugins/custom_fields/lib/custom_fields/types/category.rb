@@ -18,6 +18,14 @@ module CustomFields
           self.category_items.sort { |a, b| (a.position || 0) <=> (b.position || 0) }
         end
         
+        def category_names
+          self.category_items.collect(&:name)
+        end
+        
+        def category_ids
+          self.category_items.collect(&:_id)
+        end
+        
         def apply_category_type(klass)
           klass.cattr_accessor :"#{self.safe_alias}_items"
           
@@ -28,11 +36,13 @@ module CustomFields
               self.#{self.safe_alias}_items.collect(&:name)
             end
             
-            def self.group_by_#{self.safe_alias}
+            def self.group_by_#{self.safe_alias}(list_method = nil)
               groups = (if self.embedded?
-                self._parent.send(self.association_name).all
+                list_method ||= self.association_name
+                self._parent.send(list_method)
               else
-                self.all
+                list_method ||= :all
+                self.send(list_method)
               end).to_a.group_by(&:#{self._name})
               
               self.#{self.safe_alias}_items.collect do |category|

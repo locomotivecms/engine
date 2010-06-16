@@ -32,10 +32,9 @@ module Locomotive
     
     ActionMailer::Base.default_url_options[:host] = self.config.default_domain + (Rails.env.development? ? ':3000' : '')
 
-    # cookies stored in mongodb
+    # cookies stored in mongodb (mongoid_store)
     Rails.application.config.session_store :mongoid_store, {
-      :key => Locomotive.config.cookie_key,
-      :domain => ".#{Locomotive.config.default_domain}"
+      :key => Locomotive.config.cookie_key
     }
     
     # Heroku support

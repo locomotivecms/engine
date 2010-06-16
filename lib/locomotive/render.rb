@@ -8,13 +8,13 @@ module Locomotive
       protected
       
       def render_locomotive_page
-        page = locomotive_page
+        @page = locomotive_page
         
-        redirect_to application_root_url and return if page.nil?
+        redirect_to application_root_url and return if @page.nil?
         
-        output = page.render(locomotive_context)
+        output = @page.render(locomotive_context)
         
-        prepare_and_set_response(output)
+        prepare_and_set_response(output, @page.cache_expires_in || 0)
       end
             
       def locomotive_page
@@ -35,6 +35,7 @@ module Locomotive
       def locomotive_context
         assigns = {
           'site'              => current_site,
+          'page'              => @page,
           'asset_collections' => Locomotive::Liquid::Drops::AssetCollections.new(current_site),
           'stylesheets'       => Locomotive::Liquid::Drops::Stylesheets.new(current_site),
           'javascripts'       => Locomotive::Liquid::Drops::Javascripts.new(current_site),
@@ -42,13 +43,14 @@ module Locomotive
           'current_page'      => self.params[:page]
         }
         
-        registers = { :controller => self, :site => current_site }
+        registers = { :controller => self, :site => current_site, :page => @page }
           
         ::Liquid::Context.new(assigns, registers)
       end
       
-      def prepare_and_set_response(output)
-        response.headers["Content-Type"] = 'text/html; charset=utf-8'
+      def prepare_and_set_response(output, cache_expiration = 0)
+        response.headers['Cache-Control'] = "public, max-age=#{cache_expiration}" if cache_expiration > 0
+        response.headers['Content-Type'] = 'text/html; charset=utf-8'
         render :text => output, :layout => false, :status => :ok
       end      
       
