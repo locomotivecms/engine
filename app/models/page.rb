@@ -35,7 +35,7 @@ class Page
   named_scope :not_found, :where => { :slug => '404', :depth => 0, :published => true }
   
   ## behaviours ##
-  liquid_methods :title, :fullpath
+  # liquid_methods :title, :fullpath
   liquify_template :joined_parts
   
   ## methods ##
@@ -64,6 +64,10 @@ class Page
   
   def url
     "http://#{self.site.domains.first}/#{self.fullpath}.html"
+  end
+  
+  def to_liquid(options = {})
+    Locomotive::Liquid::Drops::Page.new(self)
   end
     
   protected

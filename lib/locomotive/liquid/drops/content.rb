@@ -2,9 +2,7 @@ module Locomotive
   module Liquid    
     module Drops  
       class Content < Base
-    
-        @@forbidden_attributes = %w{_id _version _index}
-    
+        
         def before_method(meth)
           return '' if @source.nil?
       

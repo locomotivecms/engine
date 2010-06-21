@@ -1,5 +1,6 @@
 BOARD:  
 
+- access page children in liquid
 - new custom field types
   - boolean
   
@@ -16,12 +17,15 @@ BACKLOG:
 - new custom field types:
   - file
   - date
+  - belongs_to => association
 
 - refactoring admin crud (pages + layouts + snippets)
 - refactor slugify method (use parameterize + create a module)
 - cucumber features for admin pages
 
 - tiny mce or similar for custom field text type.
+
+- sitemap
 
 BUGS:
 

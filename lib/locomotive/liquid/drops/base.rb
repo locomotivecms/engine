@@ -4,6 +4,8 @@ module Locomotive
     module Drops  
       class Base < ::Liquid::Drop
         
+        @@forbidden_attributes = %w{_id _version _index}
+        
         class_inheritable_reader :liquid_attributes
         write_inheritable_attribute :liquid_attributes, []
         attr_reader :source
