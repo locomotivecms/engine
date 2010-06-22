@@ -1,4 +1,17 @@
 // edit category collection
+$(document).ready(function() {
+	$('button.edit-categories-link').click(function() {
+		var link = $(this);
+		$.fancybox({ 
+			titleShow: false,
+			href: link.attr('data-url'),
+			padding: 0,
+			onComplete: function() { SetupCustomFieldCategoryEditor(link.prev()); },
+			onCleanup: function() { }
+		})
+	});
+});
+
 var SetupCustomFieldCategoryEditor = function(target) {
 	
 	var refreshPosition = function() {

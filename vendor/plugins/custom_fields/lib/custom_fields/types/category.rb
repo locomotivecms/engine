@@ -10,6 +10,8 @@ module CustomFields
         validates_associated :category_items
         
         accepts_nested_attributes_for :category_items, :allow_destroy => true
+        
+        register_type :category, String
       end
       
       module InstanceMethods

@@ -1,9 +1,8 @@
 BOARD:  
 
-- access page children in liquid
-- new custom field types
-  - boolean
-  
+- refactoring admin crud (pages + layouts + snippets)
+- refactor slugify method (use parameterize + create a module)
+    
 BACKLOG:
 
 - localize application in French
@@ -19,11 +18,7 @@ BACKLOG:
   - date
   - belongs_to => association
 
-- refactoring admin crud (pages + layouts + snippets)
-- refactor slugify method (use parameterize + create a module)
 - cucumber features for admin pages
-
-- tiny mce or similar for custom field text type.
 
 - sitemap
 
@@ -36,112 +31,13 @@ NICE TO HAVE:
 - super_finder
 - better icons for mime type
 - traffic statistics
-- Heroku / S3 / Worker (not so sure finally)
+- Worker => Heroku / S3 (not so sure finally)
 
 DONE:
-x admin layout
-x logout button
-x slugify page
-x validation page slug
-x update position when assigning a new parent
-x remove all descendants
-x slug from title
-! update "path" when changing slug (new page too) ?
-x mettre a jour le chemin dans _form si slug et/ou parent change
-x slug for 404 and Index pages can not be modified
-x store node closed or open in cookies
-x snippets section
-x menu items have to be translated
-x layout needs at least content_for_layout
-x parts js/css:
-  x codemirror
-  x change bg (separator)
-  x when a tab is selected, if we change layout, we should move to the first visible one
-x page parts
-x layout part should be always in first
-x pages section (CRUD)
-x my account section (part of settings)
-x add new accounts
-x edit site settings
-x slug unique within a folder
-x layouts section
-x create new site
-x share session accross domains (only subdomains)
-x destroy site
-x remove all pages, snippets, ...etc when destroying a website
-x destroy account
-x can not delete the only one admin account for a site
-x create 404 + index pages once a site is created
-x can not delete index + 404 pages
-x validates_uniqueness_of :slug, :scope => :id
-x domain scoping when authenticating
-x theme assets
-  x create / update
-  x slug 
-  x filename from slug
-  x can not replace a javascript by a stylesheet
-x asset collections
-  x create / update
-  x sort assets
-  x removing assets
-  x assets
-  x destroy
-x custom fields:
-	x renaming fields
-  x extract a plugin from custom fields	
-	x ui
-	x field position
-	x rename asset_field
-  x nested attributes
-  x keep tracks of all custom fields (adding / editing assets) + order them
-	x duplicate fields
-x content types / models (CRUD)
-  x require a custom field at least
-  x pre-select the first custom field as the highlighted one
-x contents (CRUD)
-  x sort contents
-x contents sub menu => BUG
-x liquid rendering engine
-x contents pagination
-x how to disable a page part in layout ? (BUG)
-x non published page (redirect to 404 ?)
-x refactoring page.rb => create module pagetree
-! assets uploader: remove old files if new one (BUG non )
-x CodeMirror: switch js -> css -> js .... (http://marijn.haverbeke.nl/codemirror/manual.html)
-x theme assets picker (???)
-  x lightbox (http://fancybox.net/api)
-  x select it
-  x flash upload (http://www.plupload.com/example_custom.php)
-x refactor theme assets / assets uploaders
-x refactoring: CustomFields::CustomField => CustomFields::Field
-x optimization custom_fields: use dynamic class for a collection instead of modifying the metaclass each time we build an item
-x new custom field type: category
-  x model
-  x ui
-  x liquid
-x [BUG] when assigning new layout, disabled parts show up :-( (js problem)
-x make an engine:
-  x move initializers to lib/...
-  x helpers do not work
-x missing translation in english
-x api security option in content types
-x password resets (url is not handled correctly)
-x mongoid hack for nested attributes
-x convert 2 plugins into gems (mongo_session_store / actionmailer_with_request)
-x comment console.log
-x upload files in S3
-x [BUG] asset vignette: name + icon not vertically aligned
-x truncate nom dans le menu de contents
-x site subdomain regexp [a-z][A-Z][0-9]
-! migrate content_instance to its own collection => http://www.mongodb.org/display/DOCS/Advanced+Queries#AdvancedQueries-%24sliceoperator
-x [BUG] "field name" for alias / hint for custom fields  
-x [BUG] can not remove custom fields at creation if object is invalid
-x internal logger
-x deploy on Heroku
-  x observers to add / remove domains (http://groups.google.com/group/heroku/browse_thread/thread/148d6ea68e4574fb/4d8f1c8545d52bda?lnk=gst&q=heroku+gem+api#4d8f1c8545d52bda)
-x varnish caching (only with Heroku ?)
-x page not included in liquid templates
-x redirect to referer url when updating site
-x [BUG] items non sorted in a category
-x contents grouped by "category" in the admin
-x hint for custom fields (super easy to do !)
+
+x tiny mce or similar for custom field text type.
+x refactor custom field types
+x new custom field types
+  x boolean
+x enable/disable text formatting
+x custom fields for asset collections

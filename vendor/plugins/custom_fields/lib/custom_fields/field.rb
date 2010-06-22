@@ -6,11 +6,14 @@ module CustomFields
     
     # types ##
     include Types::Default
+    include Types::String
+    include Types::Text
     include Types::Category
+    include Types::Boolean
   
     ## fields ##
     field :label
-    field :_alias # need it for instance in: > asset.description (description being a custom field)
+    field :_alias
     field :_name
     field :kind
     field :hint
@@ -22,18 +25,8 @@ module CustomFields
       
     ## methods ##
     
-    %w{String Text Category}.each do |kind|
-      define_method "#{kind.downcase}?" do
-        self.kind == kind
-      end
-    end
-  
     def field_type
-      case self.kind
-        when 'String', 'Text', 'Category' then String
-        else
-          self.kind.constantize
-      end
+      self.class.field_types[self.kind.to_sym]
     end
     
     def apply(klass)
@@ -41,9 +34,10 @@ module CustomFields
       
       klass.field self._name, :type => self.field_type
       
-      case self.kind
-      when 'Category'
-        apply_category_type(klass)
+      apply_method_name = :"apply_#{self.kind.downcase}_type"
+      
+      if self.respond_to?(apply_method_name)
+        self.send(apply_method_name, klass)
       else
         apply_default_type(klass)
       end

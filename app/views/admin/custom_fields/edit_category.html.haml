@@ -4,7 +4,7 @@
 
     %p= t('.help')
 
-    = semantic_form_for @field, :as => :custom_field, :url => admin_custom_field_url(@content_type.slug, @field) do |f|
+    = semantic_form_for @field, :as => :custom_field, :url => admin_custom_field_url(@parent.model_name.underscore, @parent.slug, @field) do |f|
       = f.foldable_inputs :name => t('.collection_label'), :class => 'editable-list off' do
         - @field.ordered_category_items.each do |item|
           = f.fields_for :category_items, item, :child_index => item._index do |g|  

@@ -4,7 +4,7 @@ module Admin
     sections 'settings'
   
     def index
-      @layouts = current_site.layouts
+      @layouts = current_site.layouts.order_by([[:name, :asc]])
     end
     
     def new

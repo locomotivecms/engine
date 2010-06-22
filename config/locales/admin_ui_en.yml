@@ -39,12 +39,18 @@ en:
         string: Simple Input
         text: Text
         category: Select
+        boolean: Checkbox
+      text_formatting:
+        none: None
+        html: HTML
       edit_field:
         title: Edit field
       edit_category:
         title: Edit options
         help: Manage the list of options for your select box.
         collection_label: List of options
+      custom_form:
+        edit_categories: Edit options
         
     sessions:
       new:
@@ -282,8 +288,6 @@ en:
         title: '{{type}} &mdash; new item' 
       edit:
         title: '{{type}} &mdash; editing item'
-      form:
-        edit_categories: Edit options
       messages:
         successful_create: "Content was successfully created."
         successful_update: "Content was successfully updated."
@@ -294,7 +298,7 @@ en:
   formtastic:
     titles:
       information: General information
-      meta: Meta
+      meta: SEO Metadata
       code: Code
       credentials: Credentials
       language: Language
@@ -308,6 +312,7 @@ en:
       custom_fields: Custom fields
       other_fields: Other information
       presentation: Presentation
+      attributes: Attributes
     labels:
       theme_asset:
         new:
@@ -332,4 +337,8 @@ en:
         slug: "You do not need to add the extension file (.css or .js)"
         edit:
           source: "You can replace it by a file of the same extension"
+      custom_fields:
+        field:
+          _alias: "Property available in liquid templates"
+          hint: "Text displayed in the model form just below the field"
       

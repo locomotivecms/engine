@@ -21,6 +21,14 @@
 	background-image: url("/images/admin/form/footer-popup.png");
 }
 
+#fancybox-inner form.formtastic fieldset ol li label {
+	width: 20%;
+}
+
+#fancybox-inner form.formtastic fieldset ol li p.inline-hints {
+	margin-left: 30%;
+}
+
 #fancybox-inner form.formtastic .editable-list ol {
 	width: 433px;
 }

@@ -1,5 +1,4 @@
 $(document).ready(function() {
-	
 	var updateContentsOrder = function() {
 		var lists = $('ul#contents-list.sortable');
 		var ids = jQuery.map(lists, function(list) {
@@ -15,15 +14,6 @@ $(document).ready(function() {
 		items: 'li.content',
 		stop: function(event, ui) { updateContentsOrder(); }
 	});
-		
-	$('button.edit-categories-link').click(function() {
-		var link = $(this);
-		$.fancybox({ 
-			titleShow: false,
-			href: link.attr('data-url'),
-			padding: 0,
-			onComplete: function() { SetupCustomFieldCategoryEditor(link.prev()); },
-			onCleanup: function() { }
-		})
-	});
+			
+	$('textarea.html').tinymce(TinyMceDefaultSettings);
 });

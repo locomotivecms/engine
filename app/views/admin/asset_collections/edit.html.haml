@@ -26,7 +26,7 @@
     = f.input :name
     = f.input :slug, :required => false
     
-  = render 'admin/custom_fields/index', :f => f, :collection_name => 'assets'
+  = render 'admin/custom_fields/index', :form => f, :collection_name => 'assets'
     
   = render 'admin/shared/form_actions', :delete_button => link_to(content_tag(:span, t('.destroy')), admin_asset_collection_url(@collection), :confirm => t('admin.messages.confirm'), :method => :delete, :class => 'button small remove'), :button_label => :update
   

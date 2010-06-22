@@ -1,14 +1,13 @@
+- content_for :head do
+  = javascript_include_tag 'admin/plugins/tiny_mce/tinymce', 'admin/plugins/json2', 'admin/plugins/fancybox', 'admin/custom_fields/category', 'admin/assets'
+  = stylesheet_link_tag 'admin/plugins/fancybox', 'admin/box'
+
 = f.inputs :name => :information do
   = f.input :name
   = f.input :source
 
 - unless @asset.custom_fields.empty?
-  = f.inputs :name => :other_fields do
-    - @asset.custom_fields.each do |field|
-      - if field.string?
-        = f.input field._alias.to_sym, :label => field.label
-      - elsif field.text?
-        = f.input field._alias.to_sym, :label => field.label, :as => :text
+  = render 'admin/custom_fields/custom_form', :form => f, :title => :other_fields, :parent => @collection
 
 - if @asset.image? && @asset.valid?
   = f.foldable_inputs :name => "#{t('formtastic.titles.preview')} #{image_dimensions_and_size(@asset)}", :class => 'preview' do

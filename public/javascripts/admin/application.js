@@ -43,6 +43,17 @@ var addCodeMirrorEditor = function(type, el, parser) {
 	CodeMirrorEditors.push({ 'el': el, 'editor': editor });
 }
 
+/* ___ tinyMCE ___ */
+
+var TinyMceDefaultSettings = {
+	script_url : '/javascripts/admin/plugins/tiny_mce/tiny_mce.js',
+	theme : 'advanced',
+	skin : 'locomotive',
+	theme_advanced_buttons1 : 'code,|,bold,italic,|,strikethrough,justifyleft,justifycenter,justifyright,justifyfull,|,bullist,numlist,|,outdent,indent,blockquote,|,link,unlink',
+	theme_advanced_buttons2 : 'formatselect,fontselect,fontsizeselect,|,undo,redo',
+	theme_advanced_buttons3 : ''
+};
+
 /* ___ global ___ */
 
 $(document).ready(function() {

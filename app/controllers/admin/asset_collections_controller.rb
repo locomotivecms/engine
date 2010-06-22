@@ -60,7 +60,7 @@ module Admin
     protected 
   
     def set_collections
-      @collections = current_site.asset_collections
+      @collections = current_site.asset_collections.order_by([[:name, :asc]])
     end
   end
 end

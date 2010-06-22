@@ -1,8 +1,7 @@
 module Admin::CustomFieldsHelper
     
   def options_for_field_kind(selected = nil)
-    # %w{String Text Boolean Email File Date}
-    options = %w{String Text Category}.map do |kind|
+    options = %w{String Text Category Boolean}.map do |kind|
       [t("admin.custom_fields.kind.#{kind.downcase}"), kind]
     end    
   end
@@ -26,6 +25,12 @@ module Admin::CustomFieldsHelper
     collection = content_type.send(custom_fields_collection_name)
     collection.delete_if { |f| not f.category? }
     collection.map { |field| [field.label, field._name] }
+  end
+  
+  def options_for_text_formatting
+    options = %w{none html}.map do |option|
+      [t("admin.custom_fields.text_formatting.#{option}"), option]
+    end
   end
   
 end

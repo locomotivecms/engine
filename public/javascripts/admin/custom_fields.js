@@ -123,18 +123,32 @@ $(document).ready(function() {
 					e.stopPropagation();
 				});
 				
-				var alias = link.parent().prevAll('.alias').val().trim();
+				var parent = link.parent();
+				
+				if (parent.prevAll('select').val() == 'Text') {
+					var formatting = parent.prevAll('.text-formatting').val();
+					$('#fancybox-wrap #custom_fields_field_text_formatting').val(formatting);
+					$('#fancybox-wrap #custom_fields_field_text_formatting_input').show();
+				} else {
+					$('#fancybox-wrap #custom_fields_field_text_formatting_input').hide();
+				}
+				
+				var alias = parent.prevAll('.alias').val().trim();
 				if (alias == '') alias = makeSlug(link.parent().prevAll('.label').val());
 				$('#fancybox-wrap #custom_fields_field__alias').val(alias);
 				
-				var hint = link.parent().prevAll('.hint').val();
+				var hint = parent.prevAll('.hint').val();
 				$('#fancybox-wrap #custom_fields_field_hint').val(hint);
 			},
 			onCleanup: function() {
+				var parent = link.parent();
+				
 				var alias = $('#fancybox-wrap #custom_fields_field__alias').val().trim();
-				if (alias != '') link.parent().prevAll('.alias').val(alias);
+				if (alias != '') parent.prevAll('.alias').val(alias);
 				var hint = $('#fancybox-wrap #custom_fields_field_hint').val().trim();
-				if (hint != '') link.parent().prevAll('.hint').val(hint);
+				if (hint != '') parent.prevAll('.hint').val(hint);
+				var formatting = $('#fancybox-wrap #custom_fields_field_text_formatting').val();
+				parent.prevAll('.text-formatting').val(formatting);
 			}
 		})
 	});

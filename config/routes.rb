@@ -36,17 +36,17 @@ Rails.application.routes.draw do |map|
     
     resources :asset_collections
 
-    resources :assets, :path => "asset_collections/:collection_id/assets" 
+    resources :assets, :path => 'asset_collections/:collection_id/assets' 
     
     resources :content_types
     
-    resources :contents, :path => "content_types/:slug/contents" do
+    resources :contents, :path => 'content_types/:slug/contents' do
       put :sort, :on => :collection
     end
     
-    resources :api_contents, :path => "api/:slug/contents", :controller => 'api_contents', :only => [:create]
+    resources :api_contents, :path => 'api/:slug/contents', :controller => 'api_contents', :only => [:create]
     
-    resources :custom_fields, :path => "content_types/:slug/fields"
+    resources :custom_fields, :path => 'custom/:parent/:slug/fields'
   end
   
   # magic urls

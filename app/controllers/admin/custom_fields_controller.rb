@@ -3,15 +3,15 @@ module Admin
    
     layout false
     
-    before_filter :set_content_type
+    before_filter :set_parent_and_fields
     
     def edit
-      @field = @content_type.content_custom_fields.find(params[:id])
+      @field = @fields.find(params[:id])
       render :action => "edit_#{@field.kind.downcase}"
     end
     
     def update
-      @field = @content_type.content_custom_fields.find(params[:id])
+      @field = @fields.find(params[:id])
       @field.updated_at = Time.now # forces mongoid to save the object
       
       params[:custom_field][:category_items_attributes].delete('-1')
@@ -25,8 +25,14 @@ module Admin
     
     protected
     
-    def set_content_type
-      @content_type = current_site.content_types.where(:slug => params[:slug]).first
+    def set_parent_and_fields
+      if params[:parent] == 'asset_collection'
+        @parent = current_site.asset_collections.where(:slug => params[:slug]).first
+        @fields = @parent.asset_custom_fields        
+      else
+        @parent = current_site.content_types.where(:slug => params[:slug]).first
+        @fields = @parent.content_custom_fields
+      end
     end
     
   end

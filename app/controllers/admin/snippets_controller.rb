@@ -4,7 +4,7 @@ module Admin
     sections 'settings'
   
     def index
-      @snippets = current_site.snippets
+      @snippets = current_site.snippets.order_by([[:name, :asc]])
     end
   
     def new

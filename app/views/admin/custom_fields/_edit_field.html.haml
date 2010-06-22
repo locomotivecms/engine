@@ -4,6 +4,7 @@
 
     = form_tag '#', :class => 'formtastic' do
       = fields_for CustomFields::Field.new, :builder => Formtastic::SemanticFormHelper.builder do |g|
-        = g.inputs :name => :information do
+        = g.inputs :name => :attributes do
           = g.input :_alias
           = g.input :hint
+          = g.input :text_formatting, :as => 'select', :collection => options_for_text_formatting, :include_blank => false

@@ -16,6 +16,16 @@ describe CustomFields::Types::Category do
       @field.respond_to?(:apply_category_type).should be_true
     end
     
+    it 'returns true if it is a Category' do
+      @field.kind = 'category'
+      @field.category?.should be_true
+    end
+    
+    it 'returns false if it is not a Category' do
+      @field.kind = 'string'
+      @field.category?.should be_false
+    end
+    
   end
   
   context 'on target class' do
