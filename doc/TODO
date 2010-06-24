@@ -1,5 +1,8 @@
 BOARD:  
 
+- asset picker (content instance)
+- theme asset picker when editing layout
+
 - refactoring admin crud (pages + layouts + snippets)
 - refactor slugify method (use parameterize + create a module)
     
@@ -41,3 +44,4 @@ x new custom field types
   x boolean
 x enable/disable text formatting
 x custom fields for asset collections
+x [BUG] impossible to remove many assets in an asset collection

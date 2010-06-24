@@ -9,9 +9,9 @@
 
 %p= t('.help')
 
-= semantic_form_for @content_type, :url => admin_content_type_url(@content_type) do |form|
+= semantic_form_for @content_type, :url => admin_content_type_url(@content_type) do |f|
 
-  = render 'form', :f => form
+  = render 'form', :f => f
   
   = render 'admin/shared/form_actions', :back_url => admin_contents_url(@content_type.slug), :button_label => :update
   

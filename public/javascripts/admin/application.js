@@ -49,8 +49,8 @@ var TinyMceDefaultSettings = {
 	script_url : '/javascripts/admin/plugins/tiny_mce/tiny_mce.js',
 	theme : 'advanced',
 	skin : 'locomotive',
-	theme_advanced_buttons1 : 'code,|,bold,italic,|,strikethrough,justifyleft,justifycenter,justifyright,justifyfull,|,bullist,numlist,|,outdent,indent,blockquote,|,link,unlink',
-	theme_advanced_buttons2 : 'formatselect,fontselect,fontsizeselect,|,undo,redo',
+	theme_advanced_buttons1 : 'code,|,bold,italic,|,strikethrough,justifyleft,justifycenter,justifyright,justifyfull,|,bullist,numlist,|,outdent,indent,blockquote,|,link,unlink,|,formatselect,fontselect,fontsizeselect',
+	theme_advanced_buttons2 : '',
 	theme_advanced_buttons3 : ''
 };
 
@@ -72,8 +72,8 @@ $(document).ready(function() {
 		$('#submenu > ul > li.' + css).addClass('on');
 	
 	// form
-	$('.formtastic li input, .formtastic li textarea').focus(function() {
-		$('.formtastic li.error p.inline-errors').fadeOut(200);
+	$('.formtastic li input, .formtastic li textarea, .formtastic li code').focus(function() {		
+		$('.formtastic li.error:not(.code) p.inline-errors').fadeOut(200);
 		if ($(this).parent().hasClass('error')) {
 			$(this).nextAll('p.inline-errors').show();
 		}				

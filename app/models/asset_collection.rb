@@ -50,7 +50,7 @@ class AssetCollection
       self.assets.find(asset_id).position = index
     end
     
-    self.assets.each do |asset|
+    self.assets.clone.each do |asset|
       if !@assets_order.split(',').include?(asset._id)
         self.assets.delete(asset) 
         asset.send(:delete)

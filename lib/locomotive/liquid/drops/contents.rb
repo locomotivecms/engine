@@ -32,6 +32,7 @@ module Locomotive
     
         def each(&block)
           @collection ||= @content_type.ordered_contents(@context['with_scope'])
+          @collection.each(&block)
         end
     
         def paginate(options = {})

@@ -22,6 +22,7 @@ module Admin
         flash_success!
         redirect_to edit_admin_layout_url(@layout)
       else
+        logger.debug "===> #{@layout.errors.inspect}"
         flash_error!
         render :action => 'new'
       end

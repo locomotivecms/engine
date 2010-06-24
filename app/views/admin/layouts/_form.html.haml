@@ -2,7 +2,7 @@
   = f.input :name
   
 = f.inputs :name => :code do
-  = f.custom_input :value, :css => 'full', :with_label => false do
+  = f.custom_input :value, :css => 'code full', :with_label => false do
     %code{ :class => 'html' }
       = f.text_area :value
       
