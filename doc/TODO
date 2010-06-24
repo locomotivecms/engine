@@ -1,10 +1,12 @@
 BOARD:  
 
 - asset picker (content instance)
-- theme asset picker when editing layout
 
 - refactoring admin crud (pages + layouts + snippets)
 - refactor slugify method (use parameterize + create a module)
+
+- missing key: en, admin, theme_assets, images, no_items
+    
     
 BACKLOG:
 
@@ -35,6 +37,8 @@ NICE TO HAVE:
 - better icons for mime type
 - traffic statistics
 - Worker => Heroku / S3 (not so sure finally)
+- theme asset picker when editing layout
+- page with regexp url ?
 
 DONE:
 

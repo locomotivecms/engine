@@ -35,7 +35,7 @@ group :test do
 	gem 'rspec-rails', '2.0.0.beta.11'
 	gem 'factory_girl', :git => 'git://github.com/thoughtbot/factory_girl.git', :branch => 'rails3'	
 	gem 'capybara' #, :git => 'git://github.com/jnicklas/capybara.git'
-	gem 'cucumber', '0.7.3'    
+	gem 'cucumber' #, '0.7.3'    
 	gem 'cucumber-rails'
 	gem 'spork'
 	gem 'launchy'
