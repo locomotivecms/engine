@@ -30,6 +30,28 @@ module Mongoid #:nodoc:
         association.to_a.each { |doc| doc.save if doc.changed? || doc.new_record? } unless association.blank?
       end      
     end
+    
+    class EmbedsMany < Proxy
+      
+      def nested_build(attributes, options = {})
+        deleted_indexes = []
+        attributes.each do |index, attrs|
+          if document = detect { |document| document._index == index.to_i }
+            if options && options[:allow_destroy] && attrs['_destroy']
+              deleted_indexes << document._index
+              @target.delete(document)
+              document.destroy
+            else
+              document.write_attributes(attrs)
+              document._index = index.to_i - deleted_indexes.collect { |i| i < index.to_i }.size
+            end
+          else
+            build(attrs)
+          end
+        end
+      end
+      
+    end
   end
   
   # FIX BUG about accepts_nested_attributes_for  
@@ -41,4 +63,6 @@ module Mongoid #:nodoc:
       end
     end
   end
+  
+  
 end

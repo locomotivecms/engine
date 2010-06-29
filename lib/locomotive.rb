@@ -3,6 +3,7 @@ require 'locomotive/configuration'
 require 'locomotive/logger'
 require 'locomotive/liquid'
 require 'locomotive/mongoid'
+require 'locomotive/carrierwave'
 require 'locomotive/heroku'
 
 require 'mongo_session_store/mongoid'
