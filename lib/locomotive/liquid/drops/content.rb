@@ -7,9 +7,11 @@ module Locomotive
           return '' if @source.nil?
       
           if not @@forbidden_attributes.include?(meth.to_s)
-            @source.send(meth)
+            value = @source.send(meth)
           end
         end
+        
+        
         
       end  
     end

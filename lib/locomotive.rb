@@ -5,6 +5,7 @@ require 'locomotive/liquid'
 require 'locomotive/mongoid'
 require 'locomotive/carrierwave'
 require 'locomotive/heroku'
+require 'locomotive/custom_fields'
 
 require 'mongo_session_store/mongoid'
 

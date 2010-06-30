@@ -11,6 +11,7 @@ module CustomFields
     include Types::Category
     include Types::Boolean
     include Types::Date
+    include Types::File
   
     ## fields ##
     field :label
@@ -33,7 +34,7 @@ module CustomFields
     def apply(klass)
       return unless self.valid?
       
-      klass.field self._name, :type => self.field_type
+      klass.field self._name, :type => self.field_type if self.field_type
       
       apply_method_name = :"apply_#{self.kind.downcase}_type"
       

@@ -1,6 +1,7 @@
 $:.unshift File.expand_path(File.dirname(__FILE__))
 
 require 'active_support'
+require 'carrierwave/orm/mongoid'
 
 require 'custom_fields/extensions/mongoid/document'
 require 'custom_fields/extensions/mongoid/associations/proxy'
@@ -12,6 +13,7 @@ require 'custom_fields/types/text'
 require 'custom_fields/types/category'
 require 'custom_fields/types/boolean'
 require 'custom_fields/types/date'
+require 'custom_fields/types/file'
 require 'custom_fields/proxy_class_enabler'
 require 'custom_fields/field'
 require 'custom_fields/custom_fields_for'

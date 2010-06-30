@@ -41,6 +41,7 @@ en:
         category: Select
         boolean: Checkbox
         date: Date
+        file: File        
       text_formatting:
         none: None
         html: HTML
@@ -52,6 +53,7 @@ en:
         collection_label: List of options
       custom_form:
         edit_categories: Edit options
+        delete_file: Delete file
         
     sessions:
       new:
@@ -208,6 +210,7 @@ en:
         choose_plain_text: Choose plain text
       images:
         title: Listing images
+        no_items: "There are no files for now."
       messages:
         successful_create: "File was successfully created."
         successful_update: "File was successfully updated."

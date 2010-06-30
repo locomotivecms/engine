@@ -14,7 +14,7 @@ module CustomFields
           
           klass.class_eval <<-EOF
             def #{self.safe_alias}
-              self.#{self._name}.strftime(I18n.t('date.formats.default'))
+              self.#{self._name}.strftime(I18n.t('date.formats.default')) rescue nil
             end
             
             def #{self.safe_alias}=(value)

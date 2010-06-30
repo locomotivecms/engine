@@ -22,7 +22,7 @@ module CustomFields
 
         def register_type(kind, klass = ::String)
           self.field_types ||= {}
-          self.field_types[kind.to_sym] = klass
+          self.field_types[kind.to_sym] = klass unless klass.nil?
           
           self.class_eval <<-EOF
             def #{kind.to_s}?

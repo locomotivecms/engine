@@ -385,6 +385,17 @@ form.content_instance fieldset ol li.text textarea {
 	width: 75%;
 }
 
+form.content_instance fieldset ol li.file p {
+	margin: 5px 0 0 20%;
+}
+
+form.content_instance fieldset ol li.file p a {
+	text-decoration: none;
+	color: #333;
+}
+
+form.content_instance fieldset ol li.file p a:hover { text-decoration: underline; }
+
 /* ___ my account ___ */
 
 form.formtastic fieldset.language li.full span {

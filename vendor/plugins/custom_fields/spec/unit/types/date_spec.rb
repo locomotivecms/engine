@@ -42,6 +42,12 @@ describe CustomFields::Types::Date do
       @project.field_1.should == @date
     end
     
+    it 'sets nil value' do
+      @project.started_at = nil
+      @project.started_at.should be_nil
+      @project.field_1.should be_nil
+    end
+    
   end
   
   def build_project_with_date

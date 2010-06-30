@@ -1,16 +1,11 @@
 BOARD:  
 
-- asset picker (content instance)
-
 - refactoring admin crud (pages + layouts + snippets)
 - refactor slugify method (use parameterize + create a module)
-
-- missing key: en, admin, theme_assets, images, no_items
-    
     
 BACKLOG:
 
-- localize application in French
+- localize application in French (tork)
   - admin
   - devise
   - carrierwave
@@ -37,6 +32,7 @@ NICE TO HAVE:
 - traffic statistics
 - Worker => Heroku / S3 (not so sure finally)
 - theme asset picker when editing layout
+- asset picker (content instance)
 - page with regexp url ?
 
 DONE:
@@ -49,3 +45,8 @@ x enable/disable text formatting
 x custom fields for asset collections
 x [BUG] impossible to remove many assets in an asset collection
 x new custom field type: date
+x missing key: en, admin, theme_assets, images, no_items
+x new custom field type: file
+  x update custom_fields plugin
+  x locomotive ui
+  x liquid templates
