@@ -19,3 +19,352 @@ fr:
     login: Se connecter
     send_password: Envoyer
     change_password: Changer
+
+fr:
+  admin:    
+    buttons:
+      login: Se connecter
+      send_password: Envoyer
+      change_password: Mettre à jour
+      new_item: "+ ajouter"
+
+    messages:
+      confirm: "Êtes-vous sûr(e) ?"
+
+    shared:
+      header:
+        welcome: Bonjour, {{name}}
+        see: Voir le site web
+        logout: Se déconnecter
+      menu:
+        contents: Contenu
+        assets: Média
+        settings: Paramètres
+        pages: Pages
+        layouts: Gabarits
+        snippets: Snippets
+        account: Mon compte
+        site: Site
+        theme_assets: Fichiers Thème
+      footer:
+        developed_by: Service développé par
+        powered_by: et propulsé par
+      form_actions:
+        back: Retour sans sauvegarder
+        create: Créer
+        update: Mettre à jour
+
+    custom_fields:
+      edit:
+        title: Editer champ personnalisé
+      kind:
+        string: Texte
+        text: Zone de texte
+        category: Liste déroulante
+        boolean: Case à cocher
+        date: Date
+        file: Fichier
+      text_formatting:
+        none: Aucun
+        html: HTML
+      edit_field:
+        title: Editer champ
+      edit_category:
+        title: Editer options
+        help: Gèrer la liste des options de votre liste déroulante
+        collection_label: List des options
+      custom_form:
+        edit_categories: Editer options
+        delete_file: Supprimer fichier
+
+    sessions:
+      new:
+        title: Connexion
+        link: "J'ai oublié mon mot de passe"
+        email: "Email"
+        password: "Mot de passe"
+
+    passwords:
+      new:
+        title: "Mot de passe oublié"
+        link: "&rarr; Retour page de connexion"
+        email: "Votre email"
+      edit:
+        title: Changer mon mot de passe
+        link: "&rarr; Retour page de connexion"
+        password: "Votre email"
+        password_confirmation: "Confirmation nouveau mot de passe"
+
+    pages:
+      index:
+        title: Liste des pages
+        help: "Les pages sont organisées sous forme d'un arbre. Vous pouvez classes les pages ainsi que les dossiers."
+        no_items: "Il n'existe pas de page. Vous pouvez commencer par créer une <a href='{{url}}'>ici</a>."
+        new: nouvelle page
+        lastest_items: Dernières pages
+      new:
+        title: Nouvelle page
+        help: "Remplissez le formulaire ci-dessous pour créer votre page. Attention, par défaut, la page n'est pas publiée."
+      page:
+        updated_at: Mise à jour le
+      edit:
+        show: voir
+        help: "Le titre de la page est modifiable en cliquant dessus."
+        ask_for_title: "Veuillez entrer le nouveau titre"
+      messages:
+        successful_create: "La page a été créée avec succès."
+        successful_update: "La page a été mise à jour avec succès."
+        successful_destroy: "La page a été supprimée avec succès."
+        successful_sort: "Les pages ont été ordonnées avec succès."
+        failed_create: "La page n'a pas été créée."
+        failed_update: "La page n'a pas été mise à jour."
+      form:
+        expiration:
+          never: Jamais
+          hour: 1 heure
+          day: 1 jour
+          week: 1 semaine
+          month: 1 mois
+
+  #   layouts:
+  #     index:
+  #       title: Listing layouts
+  #       help: "Layouts give the look of a page (1, 2 or many columns)."
+  #       no_items: "There are no layouts for now. Just click <a href=\"{{url}}\">here</a> to create the first one."
+  #       new: new layout
+  #     new:
+  #       title: New layout
+  #       help: "Fill in the form below to create your layout."
+  #     edit:
+  #       title: Editing layout
+  #       help: "Fill in the form below to update your layout."
+  #       new: new layout
+  #     layout:
+  #       updated_at: Updated at
+  #     messages:
+  #       successful_create: "Layout was successfully created."
+  #       successful_update: "Layout was successfully updated."
+  #       successful_destroy: "Layout was successfully deleted."
+  #       failed_create: "Layout was not created."
+  #       failed_update: "Layout was not updated."
+  # 
+  #   snippets:
+  #     index:
+  #       title: Listing snippets
+  #       help: "Snippets are portion of HTML code which can be found at different places within the site (such as a footer)."
+  #       no_items: "There are no snippets for now. Just click <a href=\"{{url}}\">here</a> to create the first one."
+  #       new: new snippet
+  #     new:
+  #       title: New snippet
+  #       help: "Fill in the form below to update your snippet."
+  #     edit:
+  #       title: Editing snippet
+  #       help: "Fill in the form below to update your snippet."
+  #     snippet:
+  #       updated_at: Updated at
+  #     messages:
+  #       successful_create: "Snippet was successfully created."
+  #       successful_update: "Snippet was successfully updated."
+  #       successful_destroy: "Snippet was successfully deleted."
+  #       failed_create: "Snippet was not created."
+  #       failed_update: "Snippet was not updated."
+  # 
+  #   sites:
+  #     new:
+  #       title: New site
+  #       help: "Fill in the form below to create your new site."
+  #     messages:
+  #       successful_create: "Site was successfully created."
+  #       failed_create: "Site was not created."
+  # 
+  #   current_sites:
+  #     edit:
+  #       new_membership: add account
+  #       help: "The site name can be updated by clicking it."
+  #       ask_for_name: "Please type the new site name"
+  #     messages:
+  #       successful_update: "My site was successfully updated."
+  #       failed_update: "My site was not updated."
+  # 
+  #   memberships:
+  #     new:
+  #       title: New membership
+  #       help: "Please give the account email to add. If it does not exist, you will be redirected to the account creation form."
+  #     messages:
+  #       successful_create: "Membership was successfully created."
+  #       failed_create: "Membership was not created."
+  # 
+  #   accounts:
+  #     new:
+  #       title: New account
+  #     messages:
+  #       successful_create: "Account was successfully created."
+  #       failed_create: "Account was not created."
+  # 
+  #   my_accounts:
+  #     edit:
+  #       help: "Your name can be updated by clicking it."
+  #       new_site: new site
+  #       en: English
+  #       fr: French
+  #       ask_for_name: "Please type your new name"
+  #     messages:
+  #       successful_update: "My account was successfully updated."
+  #       failed_update: "My account was not updated."
+  # 
+  #   theme_assets:
+  #     index:
+  #       title: Listing theme files
+  #       help: "Theme assets represent files needed by layouts and snippets. If you need to manage an image gallery, go to the Assets section instead."
+  #       new: new file
+  #       css_and_js: Style and javascript
+  #       images: Images
+  #       no_items: "There are no files for now. Just click <a href=\"{{url}}\">here</a> to create the first one."
+  #     new:
+  #       title: New file
+  #       help: "You have the choice to either upload any file or to copy/paste a stylesheet or a javascript in plain text."
+  #     edit:
+  #       title: "Editing {{file}}"
+  #       help: "You can use it by copying/pasting the following url: {{url}}"
+  #     form:
+  #       picker_link: Insert a file into the code
+  #       choose_file: Choose file
+  #       choose_plain_text: Choose plain text
+  #     images:
+  #       title: Listing images
+  #       no_items: "There are no files for now."
+  #     messages:
+  #       successful_create: "File was successfully created."
+  #       successful_update: "File was successfully updated."
+  #       successful_destroy: "File was successfully deleted."
+  #       failed_create: "File was not created."
+  #       failed_update: "File was not updated."
+  # 
+  #   asset_collections:
+  #     index:
+  #       title: Asset collections
+  #       help: "The collection name can be updated by clicking it. You can customize assets in a collection by adding new fields."
+  #       new: new collection
+  #       no_items: "There are no collections for now. Just click <a href=\"{{url}}\">here</a> to create the first one."
+  #     new:
+  #       title: New collection
+  #       help: "For now, just type a name. Other settings will come once the form is sent."
+  #     edit:
+  #       help: "The collection name can be updated by clicking it. You can customize assets in a collection by adding new fields."
+  #       add_asset: add asset
+  #       destroy: remove collection
+  #       no_items: "There are no assets for now. Just click <a href=\"{{url}}\">here</a> to create the first one."
+  #       ask_for_name: "Please type the new name"
+  #     messages:
+  #       successful_create: "Collection was successfully created."
+  #       successful_update: "Collection was successfully updated."
+  #       successful_destroy: "Collection was successfully deleted."
+  #       failed_create: "Collection was not created."
+  #       failed_update: "Collection was not updated."
+  # 
+  #   assets:
+  #     new:
+  #       title: New asset
+  #       help: "Fill in the form below to create your asset."
+  #     edit:
+  #       title: Edit asset
+  #       help: "Fill in the form below to update your asset."
+  #     messages:
+  #       successful_create: "Asset was successfully created."
+  #       successful_update: "Asset was successfully updated."
+  #       successful_destroy: "Asset was successfully deleted."
+  #       failed_create: "Asset was not created."
+  #       failed_update: "Asset was not updated."
+  # 
+  #   content_types:
+  #     index:
+  #       new: new model
+  #     new:
+  #       title: New model
+  #       help: "Create your own data model (Projects, People, ...etc). Your model should have one field at least. The items created from this content type would have their first field mandatory."
+  #     edit:
+  #       title: Editing model
+  #       help: "Your model should have one field at least. The items created from this content type would have their first field mandatory."
+  #       show_items: show items
+  #       new_item: new item
+  #     form:
+  #       order_by:
+  #         updated_at: 'By "updated at" date'
+  #         position_in_list: Manually
+  #     messages:
+  #       successful_create: "Model was successfully created."
+  #       successful_update: "Model was successfully updated."
+  #       successful_destroy: "Model was successfully deleted."
+  #       failed_create: "Model was not created."
+  #       failed_update: "Model was not updated."
+  # 
+  #   contents:
+  #     index:
+  #       title: 'Listing "{{type}}"'
+  #       edit: edit model
+  #       destroy: remove model
+  #       download: download items
+  #       new: new item        
+  #       category_noname: "No name"
+  #       lastest_items: "Lastest items"
+  #       updated_at: "Updated at"
+  #     list:
+  #       no_items: "There are no items for now. Just click <a href=\"{{url}}\">here</a> to create the first one."
+  #     new:
+  #       title: '{{type}} &mdash; new item' 
+  #     edit:
+  #       title: '{{type}} &mdash; editing item'
+  #     messages:
+  #       successful_create: "Content was successfully created."
+  #       successful_update: "Content was successfully updated."
+  #       successful_destroy: "Content was successfully deleted."
+  #       failed_create: "Content was not created."
+  #       failed_update: "Content was not updated."
+  # 
+  # formtastic:
+  #   titles:
+  #     information: General information
+  #     meta: SEO Metadata
+  #     code: Code
+  #     credentials: Credentials
+  #     language: Language
+  #     sites: Sites
+  #     access_points: Access points
+  #     memberships: Accounts
+  #     membership_email: Account email
+  #     file: File
+  #     preview: Preview
+  #     options: Advanced options
+  #     custom_fields: Custom fields
+  #     other_fields: Other information
+  #     presentation: Presentation
+  #     attributes: Attributes
+  #   labels:
+  #     theme_asset:
+  #       new:
+  #         source: File
+  #       edit:
+  #         source: Replace file
+  #     custom_fields:
+  #       field:
+  #         _alias: Alias
+  # 
+  #   hints:
+  #     page:
+  #       keywords: "Meta keywords used within the head tag of the page. They are separeted by an empty space. Required for SEO." 
+  #       description: "Meta description used within the head tag of the page. Required for SEO." 
+  #       published: "Only authenticated accounts can view unpublished pages."
+  #       cache_expires_in: "Cache the page for better performance. Pressing shift-reload in the browser will regenerate the page."
+  #     snippet:
+  #       slug: "You need to know it in order to insert the snippet inside a page or a layout"
+  #     site:
+  #       domain_name: "ex: locomotiveapp.org"
+  #     theme_asset:
+  #       slug: "You do not need to add the extension file (.css or .js)"
+  #       edit:
+  #         source: "You can replace it by a file of the same extension"
+  #     custom_fields:
+  #       field:
+  #         _alias: "Property available in liquid templates"
+  #         hint: "Text displayed in the model form just below the field"
+  # 

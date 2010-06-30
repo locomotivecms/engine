@@ -25,8 +25,8 @@
       = f.custom_input :plain_text, :css => 'full', :with_label => false do
         %code{ :class => (@asset.size && @asset.size > 40000 ? 'nude' : (@asset.content_type || 'stylesheet')) }
           = f.text_area :plain_text
-          %li.more
-            = link_to t('.picker_link'), admin_theme_assets_path, :id => 'asset-picker-link'
+        .more
+          = link_to t('.picker_link'), admin_theme_assets_path, :id => 'asset-picker-link'
             
     %span.alt
       = t('admin.theme_assets.form.choose_file')

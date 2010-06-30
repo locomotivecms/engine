@@ -27,4 +27,129 @@ fr:
       even: "doit être pair"
       
       domain_taken: "{{value}} a été déjà pris"
+      invalid_domain: "{{value}} n'est pas valide"
       missing_content_for_layout: "doit contenir le tag liquid 'content_for_layout'"
+      needs_admin_account: "Un minimum d'un scompte admin est requis"
+      protected_page: "Vous ne pouvez pas supprimer les pages index et 404"
+      extname_changed: "Nouveau fichier n'a pas l'extension original"
+      array_too_short: "est trop petit (le nombre minimum d'éléments est {{count}})"
+      liquid_syntax_error: "Erreur de syntaxe dans les sections de page, veuillez vérifier la syntaxe"
+      
+  attributes:
+    defaults:
+      pages:
+        index:
+          title: "Page d'accueil"
+          body: "Contenu de la page d'accueil"
+        "404":
+          title: "Page non trouvée"
+          body: "Contenu de la page d'erreur 404"
+        other:
+          body: "Le contenu va ici"
+      page_parts:
+        name: "Corps"
+
+  pagination:
+    previous: "&laquo; Précédent"
+    next: "Suivant &raquo;" 
+  date:
+    formats:
+      default: "%d/%m/%Y"
+      short: "%e %b"
+      long: "%e %B %Y"
+      long_ordinal: "%e %B %Y"
+      only_day: "%e"
+
+    day_names: [dimanche, lundi, mardi, mercredi, jeudi, vendredi, samedi]
+    abbr_day_names: [dim, lun, mar, mer, jeu, ven, sam]
+    month_names: [~, janvier, février, mars, avril, mai, juin, juillet, août, septembre, octobre, novembre, décembre]
+    abbr_month_names: [~, jan., fév., mar., avr., mai, juin, juil., août, sept., oct., nov., déc.]
+    order: [ :day, :month, :year ]
+
+  pagination:
+    previous: "&laquo; Précédent"
+    next: "Suivant &raquo;"
+
+  time:
+    formats:
+      default: "%d %B %Y %H:%M"
+      time: "%H:%M"
+      short: "%d %b %H:%M"
+      long: "%A %d %B %Y %H:%M:%S %Z"
+      long_ordinal: "%A %d %B %Y %H:%M:%S %Z"
+      only_second: "%S"
+    am: 'am'
+    pm: 'pm'
+
+  datetime:
+    distance_in_words:
+      half_a_minute: "une demi-minute"
+      less_than_x_seconds:
+        zero:  "moins d'une seconde"
+        one:   "moins de 1 seconde"
+        other: "moins de {{count}} secondes"
+      x_seconds:
+        one:   "1 seconde"
+        other: "{{count}} secondes"
+      less_than_x_minutes:
+        zero:  "moins d'une minute"
+        one:   "moins de 1 minute"
+        other: "moins de {{count}} minutes"
+      x_minutes:
+        one:   "1 minute"
+        other: "{{count}} minutes"
+      about_x_hours:
+        one:   "environ une heure"
+        other: "environ {{count}} heures"
+      x_days:
+        one:   "1 jour"
+        other: "{{count}} jours"
+      about_x_months:
+        one:   "environ un mois"
+        other: "environ {{count}} mois"
+      x_months:
+        one:   "1 mois"
+        other: "{{count}} mois"
+      about_x_years:
+        one:   "environ un an"
+        other: "environ {{count}} ans"
+      over_x_years:
+        one:   "plus d'un an"
+        other: "plus de {{count}} ans"
+    prompts:
+      year:   "Année"
+      month:  "Mois"
+      day:    "Jour"
+      hour:   "Heure"
+      minute: "Minute"
+      second: "Seconde"
+
+  number:
+    format:
+      precision: 3
+      separator: ','
+      delimiter: ' '
+    currency:
+      format:
+        unit: '€'
+        precision: 2
+        format: '%n %u'
+    human:
+      format:
+        precision: 2
+      storage_units: 
+        format: '%n %u'
+        units:
+          byte: 'Octet'
+          kb: 'ko'
+          mb: 'Mo'
+          gb: 'Go'
+          tb: 'To'
+
+  support:
+    array:
+      sentence_connector: 'et'
+      skip_last_comma: true
+      words_connector: ", "
+      two_words_connector: " et "
+      last_word_connector: " et "

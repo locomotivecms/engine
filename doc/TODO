@@ -2,19 +2,19 @@ BOARD:
 
 - refactoring admin crud (pages + layouts + snippets)
 - refactor slugify method (use parameterize + create a module)
-    
-BACKLOG:
 
 - localize application in French (tork)
-  - admin
-  - devise
-  - carrierwave
-  - localize devise emails
+  x default
+  x devise
+  x carrierwave
+  x localize devise emails
+  - admin  
+    
+BACKLOG:
 
 - theme assets: disable version if not image
 
 - new custom field types:
-  - file
   - belongs_to => association
 
 - cucumber features for admin pages

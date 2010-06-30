@@ -146,10 +146,9 @@ form.formtastic fieldset ol li.code p.inline-errors {
 	background-image: none;
 }
 
-form.formtastic fieldset ol li.more { text-align: right; width: auto; margin-right: 20px; line-height: 0.6em; }
-form.formtastic fieldset ol li.more a { text-decoration: none; color: #787A89; font-size: 0.7em; }
-form.formtastic fieldset ol li.more a:hover { text-decoration: underline; }
-
+form.formtastic fieldset ol .more { text-align: right; width: auto; margin: 10px 20px 0 0; line-height: 0.6em; }
+form.formtastic fieldset ol .more a { text-decoration: none; color: #787A89; font-size: 0.7em; }
+form.formtastic fieldset ol .more a:hover { text-decoration: underline; }
 
 /*form.formtastic hr { border-top: 2px solid #ccc; }*/
 

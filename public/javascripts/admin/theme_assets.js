@@ -38,7 +38,7 @@ var setupUploader = function() {
 	multipartParams[$('meta[name=csrf-param]').attr('content')] = $('meta[name=csrf-token]').attr('content');
 	
 	var uploader = new plupload.Uploader({
-		runtimes : 'html5,flash',
+		runtimes : (jQuery.browser.webkit == true ? 'flash' : 'html5,flash'),
 		container: 'theme-images',
 		browse_button : 'upload-link',
 		max_file_size : '5mb',
