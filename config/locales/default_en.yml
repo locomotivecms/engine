@@ -1,4 +1,8 @@
 en:
+  date:
+    formats:
+      default: "%m/%d/%Y"
+  
   errors:
       messages:
         domain_taken: "{{value}} is already taken"

@@ -40,6 +40,7 @@ en:
         text: Text
         category: Select
         boolean: Checkbox
+        date: Date
       text_formatting:
         none: None
         html: HTML

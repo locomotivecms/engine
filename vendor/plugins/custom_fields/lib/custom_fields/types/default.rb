@@ -20,7 +20,7 @@ module CustomFields
       
       module ClassMethods
 
-        def register_type(kind, klass = String)
+        def register_type(kind, klass = ::String)
           self.field_types ||= {}
           self.field_types[kind.to_sym] = klass
           

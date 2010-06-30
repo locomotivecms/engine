@@ -1,7 +1,7 @@
 module Admin::CustomFieldsHelper
     
   def options_for_field_kind(selected = nil)
-    options = %w{String Text Category Boolean}.map do |kind|
+    options = %w{String Text Category Boolean Date}.map do |kind|
       [t("admin.custom_fields.kind.#{kind.downcase}"), kind]
     end    
   end

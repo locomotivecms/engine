@@ -10,6 +10,7 @@ module CustomFields
     include Types::Text
     include Types::Category
     include Types::Boolean
+    include Types::Date
   
     ## fields ##
     field :label
@@ -26,7 +27,7 @@ module CustomFields
     ## methods ##
     
     def field_type
-      self.class.field_types[self.kind.to_sym]
+      self.class.field_types[self.kind.downcase.to_sym]
     end
     
     def apply(klass)

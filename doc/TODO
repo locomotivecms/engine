@@ -20,7 +20,6 @@ BACKLOG:
 
 - new custom field types:
   - file
-  - date
   - belongs_to => association
 
 - cucumber features for admin pages
@@ -49,3 +48,4 @@ x new custom field types
 x enable/disable text formatting
 x custom fields for asset collections
 x [BUG] impossible to remove many assets in an asset collection
+x new custom field type: date

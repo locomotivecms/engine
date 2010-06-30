@@ -16,4 +16,7 @@ $(document).ready(function() {
 	});
 			
 	$('textarea.html').tinymce(TinyMceDefaultSettings);
+	
+	$.datepicker.setDefaults($.datepicker.regional[I18nLocale]);
+	$('input[type=text].date').datepicker($.datepicker.regional[I18nLocale]);
 });
