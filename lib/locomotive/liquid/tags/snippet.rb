@@ -1,7 +1,5 @@
 module Locomotive
-  
   module Liquid
-    
     module Tags
       
       class Snippet < ::Liquid::Include
@@ -33,10 +31,7 @@ module Locomotive
         end
       end
 
-      ::Liquid::Template.register_tag('include', Snippet)  
-    
-    end
-  
+      ::Liquid::Template.register_tag('include', Snippet)
+    end  
   end
-
 end

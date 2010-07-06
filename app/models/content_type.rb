@@ -21,7 +21,7 @@ class ContentType
   
   ## validations ##
   validates_presence_of :site, :name, :slug
-  validates_uniqueness_of :slug, :scope => :site
+  validates_uniqueness_of :slug, :scope => :site_id
   validates_size_of :content_custom_fields, :minimum => 1, :message => :array_too_short
   
   ## behaviours ##

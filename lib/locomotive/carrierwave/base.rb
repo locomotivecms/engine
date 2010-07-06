@@ -5,7 +5,7 @@ module CarrierWave
       def to_liquid
         {
           :url      => self.url,
-          :filename => File.basename(self.url),
+          :filename => (File.basename(self.url) rescue ''),
           :size     => self.size
         }.stringify_keys
       end

@@ -24,7 +24,7 @@ module Locomotive
             @collection_name = $1
             @per_page = $2.to_i
           else
-            raise ::Liquid::SyntaxError.new("Syntax Error in 'paginate' - Valid syntax: paginate [collection] by [number]")
+            raise ::Liquid::SyntaxError.new("Syntax Error in 'paginate' - Valid syntax: paginate <collection> by <number>")
           end
     
           super
@@ -34,7 +34,7 @@ module Locomotive
           context.stack do
             collection = context[@collection_name]
       
-            raise ArgumentError.new("Cannot paginate array '#{@collection_name}'. Not found.") if collection.nil?
+            raise ::Liquid::ArgumentError.new("Cannot paginate array '#{@collection_name}'. Not found.") if collection.nil?
       
             pagination = collection.paginate({
               :page       => context['current_page'],

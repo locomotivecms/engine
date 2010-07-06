@@ -9,6 +9,7 @@ module Admin
       assets = current_site.theme_assets.all
       @non_image_assets = assets.find_all { |a| a.stylesheet? || a.javascript? }
       @image_assets = assets.find_all { |a| a.image? }
+      @flash_assets = assets.find_all { |a| a.movie? }
       
       if request.xhr?
         render :action => 'images', :layout => false

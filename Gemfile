@@ -21,6 +21,7 @@ gem 'formtastic-rails3', :require => 'formtastic'
 gem 'carrierwave-rails3', :require => 'carrierwave'
 gem 'actionmailer-with-request', :require => 'actionmailer_with_request'
 gem 'heroku'
+gem 'httparty', '0.6.0'
 
 # Development environment
 group :development do

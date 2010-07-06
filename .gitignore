@@ -9,7 +9,10 @@ spec/tmp
 public/sites
 public/uploads
 public/stylesheets/all.css
+public/stylesheets/plugins
 public/javascripts/all.js
+public/javascripts/plugins
+public/images/plugins
 pkg
 *.gemspec
 rails_3_gems

@@ -3,23 +3,24 @@ BOARD:
 - refactoring admin crud (pages + layouts + snippets)
 - refactor slugify method (use parameterize + create a module)
 
-- localize application in French (tork)
+- localize application in French
   x default
   x devise
   x carrierwave
   x localize devise emails
   - admin  
+  
+- rss parser
     
 BACKLOG:
 
+- notify accounts when new instance of models (opt): none, one or many accounts. Used for contact form.
 - theme assets: disable version if not image
-
 - new custom field types:
   - belongs_to => association
-
 - cucumber features for admin pages
-
 - sitemap
+- validation for custom fields
 
 BUGS:
 

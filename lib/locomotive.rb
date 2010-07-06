@@ -6,6 +6,7 @@ require 'locomotive/mongoid'
 require 'locomotive/carrierwave'
 require 'locomotive/heroku'
 require 'locomotive/custom_fields'
+require 'locomotive/httparty'
 
 require 'mongo_session_store/mongoid'
 

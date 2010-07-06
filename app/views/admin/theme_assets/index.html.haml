@@ -25,3 +25,12 @@
   %ul.assets
     = render :partial => 'asset', :collection => @image_assets
     %li.clear
+
+
+- if not @flash_assets.empty?
+  %br
+
+  %h3= t('.flash')
+  %ul.assets
+    = render :partial => 'asset', :collection => @flash_assets
+    %li.clear
