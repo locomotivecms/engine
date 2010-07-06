@@ -175,6 +175,7 @@ en:
     accounts:
       new:
         title: New account
+        help: "Fill in the form below to add a new account."
       messages:
         successful_create: "Account was successfully created."
         failed_create: "Account was not created."
@@ -329,13 +330,13 @@ en:
           
     hints:
       page:
-        keywords: "Meta keywords used within the head tag of the page. They are separeted by an empty space. Required for SEO." 
-        description: "Meta description used within the head tag of the page. Required for SEO." 
         published: "Only authenticated accounts can view unpublished pages."
         cache_expires_in: "Cache the page for better performance. Pressing shift-reload in the browser will regenerate the page."
       snippet:
         slug: "You need to know it in order to insert the snippet inside a page or a layout"
       site:
+        meta_keywords: "Meta keywords used within the head tag of the page. They are separeted by an empty space. Required for SEO." 
+        meta_description: "Meta description used within the head tag of the page. Required for SEO."         
         domain_name: "ex: locomotiveapp.org"
       theme_asset:
         slug: "You do not need to add the extension file (.css or .js)"

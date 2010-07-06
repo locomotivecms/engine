@@ -48,6 +48,52 @@ fr:
           body: "Le contenu va ici"
       page_parts:
         name: "Corps"
+        
+  activemodel:
+    attributes:
+      page:
+        title: Titre
+        layout_id: Gabarit
+        parent: Parent
+        slug: Raccourci
+        published: Publiée
+        cache_expires_in: Cache expire dans
+      content_type:
+        name: Nom
+        description: Description
+        slug: Raccourci
+        order_by: Ordonner
+        highlighted_field_name: Champ mis en avant
+        group_by_field_name: Champ pour grouper
+        api_enabled: Activation API
+      asset_collection:
+        name: Nom
+        slug: Raccourci
+      asset:
+        name: Nom
+        source: Fichier
+      account:
+        email: Email
+        name: Nom
+        language: Langue
+        new_password: "Nouveau mot de passe"
+        new_password_confirmation: "Confirmation nouveau mot de passe"
+      layout:
+        name: Nom
+        body: Code
+      snippet:
+        body: Code
+        slug: Raccourci
+        name: Nom
+      theme_asset:
+        content_type: Type du fichier
+      site:
+        name: Nom du site
+        domain_name: Domaine
+        subdomain: Sous-domaine
+        restricted_access: Activer ?
+        access_login: Identifiant  
+        access_password: "Mot de passe"
 
   pagination:
     previous: "&laquo; Précédent"

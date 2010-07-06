@@ -3,14 +3,8 @@ BOARD:
 - refactoring admin crud (pages + layouts + snippets)
 - refactor slugify method (use parameterize + create a module)
 
-- localize application in French
-  x default
-  x devise
-  x carrierwave
-  x localize devise emails
-  - admin  
-  
-- rss parser
+- change credits in the admin footer
+- change action icons according to the right action [Sacha] 
     
 BACKLOG:
 
@@ -51,3 +45,10 @@ x new custom field type: file
   x update custom_fields plugin
   x locomotive ui
   x liquid templates
+x rss parser
+x localize application in French
+  x default
+  x devise
+  x carrierwave
+  x localize devise emails
+  x admin
