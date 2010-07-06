@@ -4,7 +4,7 @@ source 'http://gems.github.com'
 
 gem 'rails', '3.0.0.beta3'
 
-gem 'liquid'
+gem 'liquid', '2.0.0'
 gem 'bson_ext', '>= 1.0.1'
 gem 'mongo_ext'
 gem 'mongoid', '2.0.0.beta6' 

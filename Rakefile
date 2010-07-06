@@ -24,7 +24,7 @@ begin
       "{app}/**/*", 
       "{config}/**/*",
       "{lib}/**/*",
-      "{public}/stylesheets/**/*", "{public}/javascripts/**/*", "{public}/images/**/*", 
+      "{public}/stylesheets/admin/**/*", "{public}/javascripts/admin/**/*", "{public}/images/admin/**/*", 
       "{vendor}/**/*"]
     # other fields that would normally go in your gemspec
     # like authors, email and has_rdoc can also be included here
