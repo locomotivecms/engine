@@ -16,7 +16,7 @@ module Models
           
           ## callbacks ##
           before_validate :reset_parent
-          before_save { |p| p.parent_id = nil if p.parent_id.blank? }
+          before_save { |p| p.send(:write_attribute, :parent_id, nil) if p.parent_id.blank? }
           before_save :change_parent
           before_create { |p| p.send(:fix_position, false) }
           before_create :add_to_list_bottom
@@ -60,11 +60,11 @@ module Models
 
           def hacked_fix_position(perform_save = true)
             if parent.nil?
-              self[parent_id_field] = nil
+              self.write_attribute parent_id_field, nil
               self[path_field] = []
               self[depth_field] = 0
             else
-              self[parent_id_field] = parent._id
+              self.write_attribute parent_id_field, parent._id
               self[path_field] = parent[path_field] + [parent._id]
               self[depth_field] = parent[depth_field] + 1
               self.save if perform_save

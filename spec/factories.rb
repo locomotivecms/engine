@@ -44,7 +44,7 @@ Factory.define :layout do |l|
       <title>My website</title>
     </head>
     <body>
-      <div id="sidebar">\{\{ content_for_sidebar "Left Sidebar"\}\}</div>
+      <div id="sidebar">\{\{ content_for_left_sidebar \}\}</div>
       <div id="main">\{\{ content_for_layout \}\}</div>
     </body>
   </html>}

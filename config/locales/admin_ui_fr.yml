@@ -47,8 +47,7 @@ fr:
         site: Site
         theme_assets: Fichiers Thème
       footer:
-        developed_by: Service développé par
-        powered_by: et propulsé par
+        who_is_behind: "Service développé par {{development}} et désigné par <a href=\"http://www.sachagreif.com\">Sacha Greif</a>"
       form_actions:
         back: Retour sans sauvegarder
         create: Créer
@@ -301,7 +300,7 @@ fr:
   
     contents:
       index:
-        title: 'Liste "{{type}}"'
+        title: 'Liste des "{{type}}"'
         edit: éditer modèle
         destroy: supprimer modèle
         download: télécharger éléments

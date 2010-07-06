@@ -293,7 +293,7 @@ describe Page do
     before(:each) do
       @page = Factory.build(:page, :site => nil)      
       @page.parts.build :slug => 'layout', :value => 'Hello world !'
-      @page.parts.build :slug => 'sidebar', :value => 'A sidebar...'
+      @page.parts.build :slug => 'left_sidebar', :value => 'A sidebar...'
       @page.send(:store_template)
       @layout = Factory.build(:layout, :site => nil)
       @layout.send(:store_template)

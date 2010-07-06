@@ -1,20 +1,40 @@
 h1. Locomotive CMS
 
-Locomotive is a simple but powerful CMS based on liquid templates and mongodb database. If we have to give only 4 main features to describe our application, there will be:
+Locomotive is a simple but powerful CMS based on liquid templates and mongodb database. At my company ("NoCoffee":http://www.nocoffee.fr), we use it for our clients when they request a simple website.
+
+If we have to give only 5 main features to describe our application, there will be:
 
 * managing as many websites as you want with one application instance
 * nice looking UI (see http://www.locomotiveapp.org for some screenshots)
 * flexible content types
-* inline editing
+* playing smoothly with Heroku and MongoHQ
+* inline editing (coming soon)
 
 h2. Strategy / Development status
 
 We already developed a fully functional prototype in Rails 2.3.2 with both active record / mongomapper and it worked quite well. We are even using it for some client websites.
 Now, our goal is to port our prototype to Rails 3 and migrate from mongomapper to mongoid. Besides, we put a lot of efforts to make it as robust as we can by writing better specs than we wrote for the prototype at first.
 
+h2. Gems
+
+Here is a short list of main gems used in the application.
+
+* Rails 3 (beta 3)
+* Mongoid
+* Liquid
+* Devise
+* Carrierwave
+* Haml
+
 h2. Installation
 
-TODO
+See the "official website":http://www.locomotiveapp.org
+
+h2. Credits
+
+Many thanks to "Sacha Greif":http://www.sachagreif.com for his great work on the user interface and the LocomotiveApp website front page.
+
+"Rodrigo Alvarez":http://blog.codecaster.es/ for his plugin named Congo which gave us a good starting point and for his availability for (very late) tech discussions.
 
 h2. Contact
 

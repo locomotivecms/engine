@@ -21,9 +21,8 @@ class Layout < LiquidTemplate
       
       self.value.scan(Locomotive::Regexps::CONTENT_FOR).each do |attributes|
         slug = attributes[0].strip.downcase
-        name = attributes[1].strip.gsub("\"", '')    
-        name = nil if name.empty?
-        name ||= I18n.t('attributes.defaults.page_parts.name') if slug == 'layout'
+        name = slug.humanize
+        name = I18n.t('attributes.defaults.page_parts.name') if slug == 'layout'
         
         if part = self.parts.detect { |p| p.slug == slug }
           part.name = name if name.present?

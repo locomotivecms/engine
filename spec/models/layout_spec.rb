@@ -27,8 +27,8 @@ describe Layout do
       @layout.parts.first.name.should == 'Body'
       @layout.parts.first.slug.should == 'layout'
       
-      @layout.parts.last.name.should == 'Left Sidebar'
-      @layout.parts.last.slug.should == 'sidebar'
+      @layout.parts.last.name.should == 'Left sidebar'
+      @layout.parts.last.slug.should == 'left_sidebar'
     end
     
     it 'should not add parts to pages if layout does not change' do

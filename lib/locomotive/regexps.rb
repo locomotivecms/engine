@@ -7,7 +7,7 @@ module Locomotive
     
     CONTENT_FOR         = /\{\{\s*content_for_([a-zA-Z]{1}[a-zA-Z_0-9]*)(\s+.*)?\s*\}\}/
     
-    CONTENT_FOR_LAYOUT  = /\{\{\s*content_for_layout\s*\}\}/
+    CONTENT_FOR_LAYOUT  = /\{\{\s*content_for_layout\s*/
     
   end
 end

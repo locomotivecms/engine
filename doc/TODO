@@ -3,7 +3,6 @@ BOARD:
 - refactoring admin crud (pages + layouts + snippets)
 - refactor slugify method (use parameterize + create a module)
 
-- change credits in the admin footer
 - change action icons according to the right action [Sacha] 
     
 BACKLOG:
@@ -52,3 +51,6 @@ x localize application in French
   x carrierwave
   x localize devise emails
   x admin
+x change credits in the admin footer
+x license
+x textile filter

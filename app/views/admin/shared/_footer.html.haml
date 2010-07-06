@@ -1,5 +1,2 @@
-%p.tright
-  = t('.developed_by')
-  = nocoffee_tag
-  = t('.powered_by')
-  = link_to 'Ruby on Rails', 'http://www.rubyonrails.com', :id => 'powered-by'
+%p.tcenter
+  = t('.who_is_behind', :development => nocoffee_tag)

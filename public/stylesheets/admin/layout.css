@@ -134,13 +134,23 @@ body {
 /* ___ footer ___ */
 
 #footer {
+	padding-top: 10px;
 	background: transparent url(/images/admin/background/footer.png) no-repeat 0 0;
 }
 
 #footer p {
 	padding: 15px 8px 0 0;
-	font-size: 0.6em;
-	color: #444;
+	font-size: 0.8em;
+	color: #E6E6E6;
+}
+
+#footer p a {
+	color: #1F82BC;
+	text-decoration: none;
+}
+
+#footer p a:hover {
+	text-decoration: underline;
 }
 
 /* ___ Alignements ___ */
@@ -166,10 +176,4 @@ body {
 
 /* ___ NoCoffee / Rails Tags ___ */
 
-a#nocoffee { text-decoration: none; font-size: 1.1em; line-height: 20px; color: #505b64; padding-right: 20px; margin: 0 4px; background: transparent url(../../images/admin/nocoffee.gif) no-repeat right 0px; }
-a#nocoffee em { color: #ef3f44; font-weight: normal; font-style: normal; }
-
-a#powered-by { text-decoration: none; font-size: 1.1em; color: #666; }
-a#powered-by:hover{ text-decoration: underline; color: #aaa; }
-
-
+a#nocoffee { color: #b0b4c0 !important; text-decoration: none; line-height: 20px; padding-right: 20px; margin: 0 4px; background: transparent url(../../images/admin/nocoffee.png) no-repeat right 0px; }

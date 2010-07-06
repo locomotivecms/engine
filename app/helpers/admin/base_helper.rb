@@ -48,7 +48,7 @@ module Admin::BaseHelper
   end
 
   def nocoffee_tag
-    link_to content_tag(:em, 'no') + 'Coffee', 'http://www.nocoffee.fr', :id => 'nocoffee'
+    link_to 'noCoffee', 'http://www.nocoffee.fr', :id => 'nocoffee'
   end
   
 end
