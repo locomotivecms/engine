@@ -4,7 +4,7 @@ Locomotive.configure do |config|
 end
 
 module Locomotive
-  class TestController
+  class TestController < ApplicationController
    
     include Locomotive::Render
    
@@ -15,26 +15,20 @@ module Locomotive
     end
     
     def response
-      @response ||= TestResponse.new
+      @_response ||= TestResponse.new
     end
     
     def request
-      @request ||= TestRequest.new
+      @_request ||= TestRequest.new
     end
 
   end
   
-  class TestResponse
-    
-    attr_accessor :headers
-    
-    def initialize
-      self.headers = {}
-    end
+  class TestResponse < ActionDispatch::TestResponse
     
   end
   
-  class TestRequest
+  class TestRequest < ActionDispatch::TestRequest
     
     attr_accessor :fullpath
     

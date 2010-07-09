@@ -3,7 +3,11 @@ BOARD:
 - refactoring admin crud (pages + layouts + snippets)
 - refactor slugify method (use parameterize + create a module)
 
-- change action icons according to the right action [Sacha] 
+- change action icons according to the right action [Sacha]
+- page redirection (option)
+- send email when new content added thru api
+- sitemap
+- save layout / snippet / page / stylesheet / javascript with CMD + S (ajax)
     
 BACKLOG:
 
@@ -12,7 +16,6 @@ BACKLOG:
 - new custom field types:
   - belongs_to => association
 - cucumber features for admin pages
-- sitemap
 - validation for custom fields
 
 BUGS:
@@ -54,3 +57,5 @@ x localize application in French
 x change credits in the admin footer
 x license
 x textile filter
+x [bug] varnish can not be refreshed in heroku so "max-age" has to be disabled => modify cache strategy
+x "remember me" should always be enabled

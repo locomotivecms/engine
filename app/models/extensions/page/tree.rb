@@ -23,7 +23,6 @@ module Models
           before_destroy :remove_from_list
 
           # Fixme (Didier L.): Instances methods are defined before the include itself
-          alias :ancestors :hacked_ancestors
           alias :fix_position :hacked_fix_position
         end 
         
@@ -42,12 +41,7 @@ module Models
             self.fix_position(false)
             self.instance_variable_set :@_will_move, true
           end
-          
-          def hacked_ancestors
-            return [] if root?
-            self.class.find(self.path.clone << nil) # bug in mongoid (it does not handle array with one element) 
-          end          
-          
+                    
           protected
           
           def change_parent

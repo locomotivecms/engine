@@ -25,8 +25,7 @@ en:
         site: Site
         theme_assets: Theme files
       footer:
-        developed_by: Developed by
-        powered_by: and Powered by
+        who_is_behind: "Service developed by {{development}} and designed by <a href=\"http://www.sachagreif.com\">Sacha Greif</a>"
       form_actions:
         back: Back without saving
         create: Create
@@ -97,8 +96,9 @@ en:
         failed_create: "Page was not created."
         failed_update: "Page was not updated."
       form:
-        expiration:
-          never: Never
+        cache_strategy:
+          none: None
+          simple: Simple
           hour: 1 hour
           day: 1 day
           week: 1 week
@@ -331,7 +331,7 @@ en:
     hints:
       page:
         published: "Only authenticated accounts can view unpublished pages."
-        cache_expires_in: "Cache the page for better performance. Pressing shift-reload in the browser will regenerate the page."
+        cache_strategy: "Cache the page for better performance. The 'Simple' choice is a good compromise."
       snippet:
         slug: "You need to know it in order to insert the snippet inside a page or a layout"
       site:

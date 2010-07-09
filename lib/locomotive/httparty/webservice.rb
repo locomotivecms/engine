@@ -17,8 +17,9 @@ module Locomotive
 
         puts "[WebService] consuming #{path}, #{options.inspect}"
 
-        self.get(path, options)
+        self.get(path, options).try(:underscore_keys)
       end
+      
     end
   end
 end

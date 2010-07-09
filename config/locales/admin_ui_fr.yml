@@ -118,8 +118,9 @@ fr:
         failed_create: "La page n'a pas été créée."
         failed_update: "La page n'a pas été mise à jour."
       form:
-        expiration:
-          never: Jamais
+        cache_strategy:
+          none: Aucun
+          simple: Simple
           hour: 1 heure
           day: 1 jour
           week: 1 semaine
@@ -352,7 +353,7 @@ fr:
     hints:
       page:
         published: "Seuls les administrateurs authentifiés peuvent voir une page non publiée."
-        cache_expires_in: "Cache la page pour de meilleure performance. Presser la touche SHIFT et le bouton \"Rafraichir\" dans le navigateur rechargera la page."
+        cache_strategy: "Cache la page pour de meilleure performance. L'option 'Simple' est le meilleur compromis."
       snippet:
         slug: "Utilisé pour insérer le snippet dans une page ou un gabarit."
       site:

@@ -57,7 +57,7 @@ fr:
         parent: Parent
         slug: Raccourci
         published: Publiée
-        cache_expires_in: Cache expire dans
+        cache_strategy: Cache
       content_type:
         name: Nom
         description: Description

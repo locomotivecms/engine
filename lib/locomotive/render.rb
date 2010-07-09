@@ -14,7 +14,7 @@ module Locomotive
         
         output = @page.render(locomotive_context)
         
-        prepare_and_set_response(output, @page.cache_expires_in || 0)
+        prepare_and_set_response(output)
       end
             
       def locomotive_page
@@ -48,9 +48,17 @@ module Locomotive
         ::Liquid::Context.new(assigns, registers)
       end
       
-      def prepare_and_set_response(output, cache_expiration = 0)
-        response.headers['Cache-Control'] = "public, max-age=#{cache_expiration}" if cache_expiration > 0
+      def prepare_and_set_response(output)
         response.headers['Content-Type'] = 'text/html; charset=utf-8'
+
+        if @page.with_cache?
+          fresh_when :etag => @page, :last_modified => @page.updated_at.utc, :public => true
+          
+          if @page.cache_strategy != 'simple' # varnish
+            response.cache_control[:max_age] = @page.cache_strategy
+          end
+        end
+          
         render :text => output, :layout => false, :status => :ok
       end      
       

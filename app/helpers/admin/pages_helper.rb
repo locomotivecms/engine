@@ -20,13 +20,14 @@ module Admin::PagesHelper
     list
   end
   
-  def options_for_page_cache_expiration
+  def options_for_page_cache_strategy
     [
-      [t('.expiration.never'), 0],
-      [t('.expiration.hour'), 1.hour],
-      [t('.expiration.day'), 1.day],
-      [t('.expiration.week'), 1.week],
-      [t('.expiration.month'), 1.month]
+      [t('.cache_strategy.none'), 'none'],  
+      [t('.cache_strategy.simple'), 'simple'],
+      [t('.cache_strategy.hour'), 1.hour.to_s],
+      [t('.cache_strategy.day'), 1.day.to_s],
+      [t('.cache_strategy.week'), 1.week.to_s],
+      [t('.cache_strategy.month'), 1.month.to_s]
     ]
   end
   

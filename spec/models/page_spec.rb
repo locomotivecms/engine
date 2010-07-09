@@ -74,6 +74,11 @@ describe Page do
       page.slug.should == 'Valid_ite'
     end
     
+    it 'has no cache strategy' do
+      page = Factory.build(:page, :site => nil)
+      page.with_cache?.should == false
+    end
+    
   end
   
   describe 'delete' do

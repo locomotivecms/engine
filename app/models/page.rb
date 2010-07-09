@@ -12,7 +12,7 @@ class Page
   field :slug
   field :fullpath
   field :published, :type => Boolean, :default => false
-  field :cache_expires_in, :type => Integer, :default => 0
+  field :cache_strategy, :default => 'none'
   
   ## associations ##
   belongs_to_related :site
@@ -35,7 +35,6 @@ class Page
   named_scope :not_found, :where => { :slug => '404', :depth => 0, :published => true }
   
   ## behaviours ##
-  # liquid_methods :title, :fullpath
   liquify_template :joined_parts
   
   ## methods ##
@@ -66,6 +65,10 @@ class Page
     "http://#{self.site.domains.first}/#{self.fullpath}.html"
   end
   
+  def with_cache?
+    self.cache_strategy != 'none'
+  end
+  
   def to_liquid(options = {})
     Locomotive::Liquid::Drops::Page.new(self)
   end
@@ -73,9 +76,6 @@ class Page
   protected
   
   def do_not_remove_index_and_404_pages
-    # safe_site = self.site rescue nil
-    
-    # return if safe_site.nil?
     return if (self.site rescue nil).nil?
     
     if self.index? || self.not_found?

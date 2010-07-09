@@ -8,11 +8,13 @@ describe 'Locomotive rendering system' do
     @site = Factory.build(:site)
     Site.stubs(:find).returns(@site)
     @controller.current_site = @site
+    @page = Factory.build(:page, :site => nil, :published => true)
   end
 
   context 'setting the response' do
     
     before(:each) do
+      @controller.instance_variable_set(:@page, @page)
       @controller.send(:prepare_and_set_response, 'Hello world !')
     end
     
@@ -27,20 +29,26 @@ describe 'Locomotive rendering system' do
     it 'does not set the cache' do
       @controller.response.headers['Cache-Control'].should be_nil
     end
+        
+    it 'sets the cache by simply using etag' do
+      @page.cache_strategy = 'simple'
+      @page.stubs(:updated_at).returns(Time.now)
+      @controller.send(:prepare_and_set_response, 'Hello world !')
+      @controller.response.to_a # force to build headers
+      @controller.response.headers['Cache-Control'].should == 'public'
+    end
     
-    it 'sets the cache' do
-      @controller.send(:prepare_and_set_response, 'Hello world !', 3600)
-      @controller.response.headers['Cache-Control'].should == 'public, max-age=3600'
+    it 'sets the cache for Varnish' do
+      @page.cache_strategy = '3600'
+      @page.stubs(:updated_at).returns(Time.now)
+      @controller.send(:prepare_and_set_response, 'Hello world !')
+      @controller.response.to_a # force to build headers
+      @controller.response.headers['Cache-Control'].should == 'max-age=3600, public'
     end
   
   end
   
   context 'when retrieving page' do
-    
-    before(:each) do
-      @page = Factory.build(:page, :site => nil, :published => true)
-      @controller
-    end
     
     it 'should retrieve the index page /' do
       @controller.request.fullpath = '/'

@@ -16,7 +16,7 @@
   = f.custom_input :published, :css => 'toggle' do
     = f.check_box :published
     
-  = f.input :cache_expires_in, :as => :select, :collection => options_for_page_cache_expiration, :include_blank => false
+  = f.input :cache_strategy, :as => :select, :collection => options_for_page_cache_strategy, :include_blank => false
   
 #page-parts
   .nav
