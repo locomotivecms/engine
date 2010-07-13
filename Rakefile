@@ -18,7 +18,7 @@ begin
     gem.email = ['didier@nocoffee.fr']
     gem.date = Date.today
     gem.description = "a brand new CMS system with super sexy UI and cool features (alpha version for now)"
-    gem.homepage = %q{http://github.com/did/locomotive}
+    gem.homepage = %q{http://www.locomotiveapp.org}
     gem.files = Dir[
       "Gemfile", 
       "{app}/**/*", 
