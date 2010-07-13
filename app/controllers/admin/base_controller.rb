@@ -1,7 +1,4 @@
-require 'locomotive/admin_responder'
-
 module Admin
-  # class BaseController < ::ApplicationController
   class BaseController < InheritedResources::Base
     
     include Locomotive::Routing::SiteDispatcher
@@ -25,7 +22,7 @@ module Admin
         
     self.responder = Locomotive::AdminResponder # custom responder
     
-    defaults :route_prefix => 'admin'    
+    defaults :route_prefix => 'admin'
     
     respond_to :html
     

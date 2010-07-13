@@ -1,4 +1,4 @@
-- title link_to(@site.name.blank? ? @site.name_was : @site.name, '#', :rel => 'site_name', :title => t('.ask_for_name'), :class => 'editable')
+- title link_to(@site.name.blank? ? @site.name_was : @site.name, '#', :rel => 'current_site_name', :title => t('.ask_for_name'), :class => 'editable')
 
 - content_for :submenu do
   = render 'admin/shared/menu/settings'
@@ -8,7 +8,7 @@
 
 %p= t('.help')
 
-= semantic_form_for @site, :url => admin_current_site_url, :html => { :class => 'save-with-shortcut' } do |f|
+= semantic_form_for @site, :as => :current_site, :url => admin_current_site_url, :html => { :class => 'save-with-shortcut' } do |f|
 
   = render 'form', :f => f
       

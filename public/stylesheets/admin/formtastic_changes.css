@@ -13,7 +13,6 @@ form.formtastic legend {
 	margin: 0;
 	float: left;
 	white-space: normal;
-	*margin-left: -7px;
 	position: relative;
 }
 
@@ -289,7 +288,7 @@ form.formtastic fieldset.editable-list ol li.added input {
 	color: #17171D;
 	font-size: 0.9em;
 	font-weight: bold;
-	cursor: normal;
+	cursor: pointer;
 }
 
 form.formtastic fieldset.editable-list ol li.added input:hover {

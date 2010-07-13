@@ -122,8 +122,6 @@ body {
 	-webkit-border-radius: 10px;
 }
 
-#content #local-actions-bar a:hover { text-decoration: underline; }
-
 #content #local-actions-bar a em {
 	position: absolute;
 	display: block;	
@@ -134,10 +132,16 @@ body {
 	background: transparent url(/images/admin/icons/actions.png) no-repeat 0 0;
 }
 
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+	#content #local-actions-bar a em { top: 4px; }
+}
+
 #content #local-actions-bar a.show em { background-position: 0 0; }
 #content #local-actions-bar a.edit em { background-position: 0 -16px; top: 2px; left: 12px; }
 #content #local-actions-bar a.download em { background-position: 0 -32px; }
 #content #local-actions-bar a.new em { background-position: 0 -48px; left: 13px; }
+
+#content #local-actions-bar a:hover { text-decoration: none; color: #333; }
 
 /* ___ footer ___ */
 

@@ -2,6 +2,7 @@ BOARD:
 
 - refactor slugify method (use parameterize + create a module)
 - send email when new content added thru api
+- publish event when saving form in ajax (for instance, in order to update account name or site name)
     
 BACKLOG:
 

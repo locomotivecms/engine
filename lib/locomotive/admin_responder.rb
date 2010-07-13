@@ -1,7 +1,9 @@
+require 'responders'
+
 module Locomotive
   class AdminResponder < ::ActionController::Responder
     
-    include Responders::FlashResponder
+    include ::Responders::FlashResponder
     
     def api_behavior(error)
       raise error unless resourceful?
