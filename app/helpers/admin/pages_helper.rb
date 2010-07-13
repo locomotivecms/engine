@@ -1,5 +1,18 @@
 module Admin::PagesHelper
   
+  def page_main_url(page)
+    url = '' 
+    
+    if page.site.domains.empty? 
+      url = main_site_url(page.site)
+    else
+      url = "http://#{current_site.domains.first}"
+      url += ":#{request.port}" if request.port != 80
+    end
+    
+    File.join(url, page.fullpath)
+  end  
+  
   def parent_pages_options
     roots = current_site.pages.roots.where(:slug.ne => '404').and(:_id.ne => @page.id)
     

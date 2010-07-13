@@ -5,7 +5,7 @@
 
 %p= t('.help')
 
-= semantic_form_for @asset, :url => admin_theme_assets_url, :html => { :multipart => true } do |form|
+= semantic_form_for @theme_asset, :url => admin_theme_assets_url, :html => { :multipart => true } do |form|
 
   = render 'form', :f => form
   

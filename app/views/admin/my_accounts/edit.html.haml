@@ -8,7 +8,7 @@
 
 %p= t('.help')
 
-= semantic_form_for @account, :url => admin_my_account_url do |f|
+= semantic_form_for @account, :as => :my_account, :url => admin_my_account_url do |f|
 
   = f.foldable_inputs :name => :information, :style => 'display: none' do
     = f.input :name

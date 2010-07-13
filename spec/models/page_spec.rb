@@ -81,24 +81,26 @@ describe Page do
     
   end
   
-  describe 'delete' do
+  describe '#deleting' do
     
     before(:each) do 
       @page = Factory.build(:page)
     end
     
-    it 'should delete index page' do
+    it 'does not delete the index page' do
       @page.stubs(:index?).returns(true)
       lambda {
-        @page.destroy
-      }.should raise_error(Exception, 'You can not remove index or 404 pages')
+        @page.destroy.should be_false
+        @page.errors.first == 'You can not remove index or 404 pages'
+      }.should_not change(Page, :count)
     end
     
-    it 'should delete 404 page' do
+    it 'does not delete the 404 page' do
       @page.stubs(:not_found?).returns(true)
       lambda {
-        @page.destroy
-      }.should raise_error(Exception, 'You can not remove index or 404 pages')
+        @page.destroy.should be_false
+        @page.errors.first == 'You can not remove index or 404 pages'
+      }.should_not change(Page, :count)
     end
     
   end
@@ -323,7 +325,7 @@ describe Page do
     </head>
     <body>
       <div id="sidebar">A sidebar...</div>
-      <div id="main">Hello world !</div>
+      <div id="main"><p>Hello world !</p></div>
     </body>
   </html>}
       end

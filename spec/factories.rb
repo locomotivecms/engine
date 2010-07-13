@@ -45,7 +45,7 @@ Factory.define :layout do |l|
     </head>
     <body>
       <div id="sidebar">\{\{ content_for_left_sidebar \}\}</div>
-      <div id="main">\{\{ content_for_layout \}\}</div>
+      <div id="main">\{\{ content_for_layout | textile \}\}</div>
     </body>
   </html>}
 end

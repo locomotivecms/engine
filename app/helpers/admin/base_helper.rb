@@ -50,5 +50,5 @@ module Admin::BaseHelper
   def nocoffee_tag
     link_to 'noCoffee', 'http://www.nocoffee.fr', :id => 'nocoffee'
   end
-  
+    
 end

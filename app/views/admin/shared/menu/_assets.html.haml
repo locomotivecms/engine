@@ -1,6 +1,6 @@
 %ul
-  - @collections.each do |c|
-    %li{ :class => "#{'on' if @collection.id == c.id}" }
+  - @asset_collections.each do |c|
+    %li{ :class => "#{'on' if @asset_collection.id == c.id}" }
       = link_to content_tag(:span, truncate(c.name, :length => 20)), edit_admin_asset_collection_url(c)
 
 .action

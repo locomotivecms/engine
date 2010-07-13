@@ -5,7 +5,7 @@ module Admin::AssetsHelper
   end
     
   def image_dimensions_and_size(asset)
-    content_tag(:small, "#{asset.width}px x #{@asset.height}px | #{number_to_human_size(asset.size)}")
+    content_tag(:small, "#{asset.width}px x #{asset.height}px | #{number_to_human_size(asset.size)}")
   end
   
   def allow_plain_text_editing?(asset)

@@ -1,0 +1,17 @@
+===============================================================================
+
+Locomotive initializer has been added to your application. Your db/seeds.rb file has also been updated.
+
+  1. Take a look at this to match your environment.
+  
+  2. Uncomment added code in db/seeds.rb if necessary
+  
+Note: do not forget to run rake db:seed if you modify your db/seeds.rb file.
+  
+Once it is done, the next step is to install assets:
+
+  bundle exec rails g locomotive:copy_assets
+  
+Fire your application server and launch a browser !
+
+===============================================================================

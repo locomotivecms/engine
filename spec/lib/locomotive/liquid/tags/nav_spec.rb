@@ -28,13 +28,22 @@ describe Locomotive::Liquid::Tags::Nav do
       output.should == '<ul id="nav"><li id="sub-child-1" class="link on"><a href="/child_2/sub_child_1">Child #2.1</a></li><li id="sub-child-2" class="link"><a href="/child_2/sub_child_2">Child #2.2</a></li></ul>'
     end
     
+    it 'adds an icon before the link' do
+      render_nav('site', {}, 'icon: true').should match /<li id="child-1" class="link"><a href="\/child_1"><span><\/span>Child #1<\/a>/
+      render_nav('site', {}, 'icon: before').should match /<li id="child-1" class="link"><a href="\/child_1"><span><\/span>Child #1<\/a>/
+    end
+    
+    it 'adds an icon after the link' do
+      render_nav('site', {}, 'icon: after').should match /<li id="child-1" class="link"><a href="\/child_1">Child #1<span><\/span><\/a><\/li>/
+    end    
+    
   end
   
-  def render_nav(source = 'site', registers = {})
+  def render_nav(source = 'site', registers = {}, template_option = '')
     registers = { :site => @site, :page => @home }.merge(registers)
     liquid_context = ::Liquid::Context.new({}, registers)
     
-    output = Liquid::Template.parse("{% nav #{source} %}").render(liquid_context)
+    output = Liquid::Template.parse("{% nav #{source} #{template_option} %}").render(liquid_context)
     output.gsub(/\n\s{0,}/, '')
   end
     

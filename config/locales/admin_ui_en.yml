@@ -88,13 +88,6 @@ en:
         show: show
         help: "The page title can be updated by clicking it."
         ask_for_title: "Please type the new page title"
-      messages:
-        successful_create: "Page was successfully created."
-        successful_update: "Page was successfully updated."
-        successful_destroy: "Page was successfully deleted."
-        successful_sort: "Pages were successfully sorted."
-        failed_create: "Page was not created."
-        failed_update: "Page was not updated."
       form:
         cache_strategy:
           none: None
@@ -119,12 +112,6 @@ en:
         new: new layout
       layout:
         updated_at: Updated at
-      messages:
-        successful_create: "Layout was successfully created."
-        successful_update: "Layout was successfully updated."
-        successful_destroy: "Layout was successfully deleted."
-        failed_create: "Layout was not created."
-        failed_update: "Layout was not updated."
 
     snippets:
       index:
@@ -140,45 +127,27 @@ en:
         help: "Fill in the form below to update your snippet."
       snippet:
         updated_at: Updated at
-      messages:
-        successful_create: "Snippet was successfully created."
-        successful_update: "Snippet was successfully updated."
-        successful_destroy: "Snippet was successfully deleted."
-        failed_create: "Snippet was not created."
-        failed_update: "Snippet was not updated."
         
     sites:
       new:
         title: New site
         help: "Fill in the form below to create your new site."
-      messages:
-        successful_create: "Site was successfully created."
-        failed_create: "Site was not created."
         
     current_sites:
       edit:
         new_membership: add account
         help: "The site name can be updated by clicking it."
         ask_for_name: "Please type the new site name"
-      messages:
-        successful_update: "My site was successfully updated."
-        failed_update: "My site was not updated."
         
     memberships:
       new:
         title: New membership
         help: "Please give the account email to add. If it does not exist, you will be redirected to the account creation form."
-      messages:
-        successful_create: "Membership was successfully created."
-        failed_create: "Membership was not created."
-        
+                
     accounts:
       new:
         title: New account
         help: "Fill in the form below to add a new account."
-      messages:
-        successful_create: "Account was successfully created."
-        failed_create: "Account was not created."
         
     my_accounts:
       edit:
@@ -187,9 +156,6 @@ en:
         en: English
         fr: French
         ask_for_name: "Please type your new name"
-      messages:
-        successful_update: "My account was successfully updated."
-        failed_update: "My account was not updated."
         
     theme_assets:
       index:
@@ -212,12 +178,6 @@ en:
       images:
         title: Listing images
         no_items: "There are no files for now."
-      messages:
-        successful_create: "File was successfully created."
-        successful_update: "File was successfully updated."
-        successful_destroy: "File was successfully deleted."
-        failed_create: "File was not created."
-        failed_update: "File was not updated."
         
     asset_collections:
       index:
@@ -234,12 +194,6 @@ en:
         destroy: remove collection
         no_items: "There are no assets for now. Just click <a href=\"{{url}}\">here</a> to create the first one."
         ask_for_name: "Please type the new name"
-      messages:
-        successful_create: "Collection was successfully created."
-        successful_update: "Collection was successfully updated."
-        successful_destroy: "Collection was successfully deleted."
-        failed_create: "Collection was not created."
-        failed_update: "Collection was not updated."
         
     assets:
       new:
@@ -248,12 +202,6 @@ en:
       edit:
         title: Edit asset
         help: "Fill in the form below to update your asset."
-      messages:
-        successful_create: "Asset was successfully created."
-        successful_update: "Asset was successfully updated."
-        successful_destroy: "Asset was successfully deleted."
-        failed_create: "Asset was not created."
-        failed_update: "Asset was not updated."
     
     content_types:
       index:
@@ -270,12 +218,6 @@ en:
         order_by:
           updated_at: 'By "updated at" date'
           position_in_list: Manually
-      messages:
-        successful_create: "Model was successfully created."
-        successful_update: "Model was successfully updated."
-        successful_destroy: "Model was successfully deleted."
-        failed_create: "Model was not created."
-        failed_update: "Model was not updated."
         
     contents:
       index:
@@ -293,13 +235,7 @@ en:
         title: '{{type}} &mdash; new item' 
       edit:
         title: '{{type}} &mdash; editing item'
-      messages:
-        successful_create: "Content was successfully created."
-        successful_update: "Content was successfully updated."
-        successful_destroy: "Content was successfully deleted."
-        failed_create: "Content was not created."
-        failed_update: "Content was not updated."
-                      
+        
   formtastic:
     titles:
       information: General information

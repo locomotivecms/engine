@@ -15,8 +15,10 @@ module Locomotive
         def initialize(tag_name, markup, tokens)
           if markup =~ Syntax
             @site_or_page = $1 || 'page'
+            @options = {}
+            markup.scan(::Liquid::TagAttributes) { |key, value| @options[key.to_sym] = value }
           else
-            raise ::Liquid::SyntaxError.new("Syntax Error in 'nav' - Valid syntax: nav <page|site>")
+            raise ::Liquid::SyntaxError.new("Syntax Error in 'nav' - Valid syntax: nav <page|site> <options>")
           end
               
           super
@@ -26,8 +28,6 @@ module Locomotive
           @current_page = context.registers[:page]
           
           source = context.registers[@site_or_page.to_sym]
-          
-          # puts "[Nav] source = #{source.inspect}"
           
           if source.respond_to?(:name) # site ?
             source = source.pages.first # start from home page
@@ -46,9 +46,12 @@ module Locomotive
         def render_child_link(page)
           selected = @current_page._id == page._id ? ' on' : ''
           
+          icon = @options[:icon] ? '<span></span>' : ''
+          label = %{#{icon if @options[:icon] != 'after' }#{page.title}#{icon if @options[:icon] == 'after' }}
+          
           %{
             <li id="#{page.slug.dasherize}" class="link#{selected}">
-              <a href="/#{page.fullpath}">#{page.title}</a>
+              <a href="/#{page.fullpath}">#{label}</a>
             </li>
           }.strip
         end

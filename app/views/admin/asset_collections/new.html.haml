@@ -8,7 +8,7 @@
 
 %p= t('.help')
 
-= semantic_form_for @collection, :url => admin_asset_collections_url do |f|
+= semantic_form_for @asset_collection, :url => admin_asset_collections_url do |f|
 
   = f.inputs :name => :information do
     = f.input :name

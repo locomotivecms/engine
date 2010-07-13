@@ -11,10 +11,7 @@ class PagePart
     
   ## associations ##
   embedded_in :page, :inverse_of => :parts
-  
-  ## callbacks ##
-  # before_validate  { |p| p.slug ||= p.name.slugify if p.name.present? }  
-  
+    
   ## validations ##
   validates_presence_of :name, :slug
   

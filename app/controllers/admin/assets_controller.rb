@@ -5,43 +5,23 @@ module Admin
     
     before_filter :set_collections_and_current_collection
     
-    def new
-      @asset = @collection.assets.build
-    end
-
-    def edit
-      @asset = @collection.assets.find(params[:id])
-    end
-
     def create
-      @asset = @collection.assets.build(params[:asset])
-
-      if @asset.save
-        flash_success!
-        redirect_to edit_admin_asset_collection_url(@collection)
-      else
-        flash_error!
-        render :action => 'new'
-      end
+      create! { edit_admin_asset_collection_url(@asset_collection) }
     end
-
+    
     def update
-      @asset = @collection.assets.find(params[:id])
-
-      if @asset.update_attributes(params[:asset])
-        flash_success!
-        redirect_to edit_admin_asset_collection_url(@collection)
-      else
-        flash_error!
-        render :action => 'edit'
-      end
+      update! { edit_admin_asset_collection_url(@asset_collection) }
     end
-  
+    
     protected 
+    
+    def begin_of_association_chain
+      @asset_collection
+    end
   
     def set_collections_and_current_collection
-      @collections = current_site.asset_collections
-      @collection = @collections.find(params[:collection_id])
+      @asset_collections = current_site.asset_collections
+      @asset_collection = @asset_collections.find(params[:collection_id])
     end
     
   end

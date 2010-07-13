@@ -1,4 +1,4 @@
-- title link_to(@collection.name.blank? ? @collection.name_was : @collection.name, '#', :rel => 'asset_collection_name', :title => t('.ask_for_name'), :class => 'editable')
+- title link_to(@asset_collection.name.blank? ? @asset_collection.name_was : @asset_collection.name, '#', :rel => 'asset_collection_name', :title => t('.ask_for_name'), :class => 'editable')
 
 - content_for :head do
   = javascript_include_tag 'admin/plugins/fancybox', 'admin/asset_collections', 'admin/custom_fields'
@@ -10,16 +10,16 @@
 %p= t('.help')
 
 - content_for :buttons do
-  = admin_button_tag :add_asset, new_admin_asset_url(@collection), :class => 'add'
+  = admin_button_tag :add_asset, new_admin_asset_url(@asset_collection), :class => 'add'
   
-%p.no-items{ :style => "#{'display: none' unless @collection.assets.empty? }" }
-  = t('.no_items', :url => new_admin_asset_url(@collection))
+%p.no-items{ :style => "#{'display: none' unless @asset_collection.assets.empty? }" }
+  = t('.no_items', :url => new_admin_asset_url(@asset_collection))
     
 %ul#assets.assets.sortable
-  = render :partial => 'asset', :collection => @collection.ordered_assets
+  = render :partial => 'asset', :collection => @asset_collection.ordered_assets
   %li.clear
   
-= semantic_form_for @collection, :url => admin_asset_collection_url(@collection), :html => { :multipart => true } do |f|
+= semantic_form_for @asset_collection, :url => admin_asset_collection_url(@asset_collection), :html => { :multipart => true } do |f|
   = f.hidden_field :assets_order
   
   = f.foldable_inputs :name => :options do
@@ -28,6 +28,6 @@
     
   = render 'admin/custom_fields/index', :form => f, :collection_name => 'assets'
     
-  = render 'admin/shared/form_actions', :delete_button => link_to(content_tag(:span, t('.destroy')), admin_asset_collection_url(@collection), :confirm => t('admin.messages.confirm'), :method => :delete, :class => 'button small remove'), :button_label => :update
+  = render 'admin/shared/form_actions', :delete_button => link_to(content_tag(:span, t('.destroy')), admin_asset_collection_url(@asset_collection), :confirm => t('admin.messages.confirm'), :method => :delete, :class => 'button small remove'), :button_label => :update
   
 = render 'admin/custom_fields/edit_field'

@@ -80,6 +80,9 @@ $(document).ready(function() {
 	});
 	$('.formtastic li.error input').eq(0).focus();
 	
+	// save form in AJAX
+	$('form.save-with-shortcut').saveWithShortcut();
+	
 	// editable title (page, ...etc)
 	$('#content h2 a.editable').each(function() {
 		var target = $('#' + $(this).attr('rel')), 

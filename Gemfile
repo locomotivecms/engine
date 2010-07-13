@@ -23,6 +23,7 @@ gem 'actionmailer-with-request', :require => 'actionmailer_with_request'
 gem 'heroku'
 gem 'httparty', '0.6.0'
 gem 'RedCloth'
+gem 'inherited_resources', '1.1.2'
 
 # Development environment
 group :development do

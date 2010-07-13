@@ -3,36 +3,23 @@ module Admin
     
     sections 'settings'
     
-    def new
-      @membership = current_site.memberships.build
-    end
-
     def create
       @membership = current_site.memberships.build(params[:membership])
 
-      case @membership.action_to_take
+      case @membership.process!
       when :create_account
         redirect_to new_admin_account_url(:email => @membership.email)
       when :save_it
-        current_site.save
-        flash_success!
-        redirect_to edit_admin_site_url
+        respond_with @membership, :location => edit_admin_current_site_url
       when :error
-        flash_error! :now => true
-        render :action => 'new'
+        respond_with @membership, :flash => true
       when :nothing
-        flash[:error] = translate_flash_msg(:already_saved)
-        redirect_to edit_admin_site_url
+        respond_with @membership, :alert => t('flash.admin.memberships.create.already_created'), :location => edit_admin_current_site_url
       end
     end
 
     def destroy
-      current_site.memberships.find(params[:id]).destroy
-      current_site.save
-
-      flash_success!
-
-      redirect_to edit_admin_site_url
+      destroy! { edit_admin_current_site_url }
     end
   
   end

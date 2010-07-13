@@ -8,7 +8,7 @@
   
 %p= @content_type.description
 
-= semantic_form_for @content, :url => admin_contents_url(@content_type.slug), :html => { :multipart => true } do |form|
+= semantic_form_for @content, :as => :content, :url => admin_contents_url(@content_type.slug), :html => { :multipart => true } do |form|
 
   = render 'form', :f => form
   

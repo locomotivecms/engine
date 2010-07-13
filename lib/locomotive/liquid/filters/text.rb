@@ -4,7 +4,7 @@ module Locomotive
       module Text
     
         def textile(input)
-          RedCloth.new(input).to_html
+          ::RedCloth.new(input).to_html
         end
     
       end

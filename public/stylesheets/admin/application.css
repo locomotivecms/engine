@@ -7,7 +7,7 @@ div.notice {
 	height: 90px;
 }
 
-div.notice.error {
+div.notice.error, div.notice.alert {
 	background-image: url(/images/admin/form/growl-error.png);
 }
 

@@ -26,7 +26,7 @@ $(document).ready(function() {
 			params += '&_method=put';
 			
 			$.post($(this).attr('data_url'), params, function(data) {
-				$.growl('success', data.message);
+				$.growl('success', data.notice);
 			}, 'json');
 		} 
 	});

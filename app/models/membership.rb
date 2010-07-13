@@ -21,14 +21,17 @@ class Membership
     self.account = Account.where(:email => email).first
   end
   
-  def action_to_take
+  def process!
     if @email.blank?
+      self.errors.add_on_blank(:email)
       :error
     elsif self.account.nil?
       :create_account
     elsif self.site.memberships.find_all { |m| m.account_id == self.account_id }.size > 1
+      self.errors.add(:base, 'Already created')
       :nothing
     else
+      self.save
       :save_it
     end
   end

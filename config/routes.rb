@@ -49,6 +49,9 @@ Rails.application.routes.draw do |map|
     resources :custom_fields, :path => 'custom/:parent/:slug/fields'
   end
   
+  # sitemap
+  match '/sitemap.xml' => 'admin/sitemaps#show', :format => 'xml'
+  
   # magic urls
   match '/' => 'admin/rendering#show'
   match '*path' => 'admin/rendering#show'

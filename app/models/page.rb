@@ -33,6 +33,7 @@ class Page
   named_scope :latest_updated, :order_by => [[:updated_at, :desc]], :limit => Locomotive.config.lastest_items_nb
   named_scope :index, :where => { :slug => 'index', :depth => 0, :published => true }
   named_scope :not_found, :where => { :slug => '404', :depth => 0, :published => true }
+  named_scope :published, :where => { :published => true }
   
   ## behaviours ##
   liquify_template :joined_parts
@@ -45,6 +46,10 @@ class Page
   
   def not_found?
     self.slug == '404' && self.depth.to_i == 0
+  end
+  
+  def index_or_not_found?
+    self.index? || self.not_found?
   end
   
   def fullpath(force = false)
@@ -79,8 +84,10 @@ class Page
     return if (self.site rescue nil).nil?
     
     if self.index? || self.not_found?
-      raise I18n.t('errors.messages.protected_page')
+      self.errors[:base] << I18n.t('errors.messages.protected_page')
     end
+    
+    self.errors.empty?
   end
       
   def normalize_slug  

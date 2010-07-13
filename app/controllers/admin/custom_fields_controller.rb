@@ -19,7 +19,7 @@ module Admin
       if @field.update_attributes(params[:custom_field])
         render :json => @field.attributes
       else
-        render :json => { :error => translate_flash_msg(:successful) }
+        render :json => { :error => t('flash.admin.custom_fields.update.alert') }
       end
     end
     

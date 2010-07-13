@@ -1,6 +1,9 @@
+require 'locomotive/admin_responder'
+
 module Admin
-  class BaseController < ::ApplicationController
-  
+  # class BaseController < ::ApplicationController
+  class BaseController < InheritedResources::Base
+    
     include Locomotive::Routing::SiteDispatcher
   
     layout 'admin/application'
@@ -14,27 +17,23 @@ module Admin
     before_filter :set_locale
   
     helper_method :sections
-  
+    
     # https://rails.lighthouseapp.com/projects/8994/tickets/1905-apphelpers-within-plugin-not-being-mixed-in
     Dir[File.dirname(__FILE__) + "/../../helpers/**/*_helper.rb"].each do |file|
       helper "admin/#{File.basename(file, '.rb').gsub(/_helper$/, '')}"
     end
+        
+    self.responder = Locomotive::AdminResponder # custom responder
+    
+    defaults :route_prefix => 'admin'    
+    
+    respond_to :html
     
     protected
-  
-    def flash_success!(options = {})
-      msg = translate_flash_msg(:successful)
-      (options.has_key?(:now) && options[:now] ? flash.now : flash)[:success] = msg
-    end
-
-    def flash_error!(options = { :now => true })
-      msg = translate_flash_msg(:failed)
-      (options.has_key?(:now) && options[:now] ? flash.now : flash)[:error] = msg
-    end
-  
-    def translate_flash_msg(kind)
-      t("#{kind.to_s}_#{action_name}", :scope => [:admin, controller_name.underscore.gsub('/', '.'), :messages])
-    end
+    
+    def begin_of_association_chain
+      current_site
+    end    
   
     def self.sections(main, sub = nil)
       before_filter do |c|
@@ -55,6 +54,6 @@ module Admin
     def set_locale
       I18n.locale = current_admin.locale
     end
-  
+      
   end
 end

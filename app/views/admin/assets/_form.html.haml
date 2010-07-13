@@ -7,7 +7,7 @@
   = f.input :source
 
 - unless @asset.custom_fields.empty?
-  = render 'admin/custom_fields/custom_form', :form => f, :title => :other_fields, :parent => @collection
+  = render 'admin/custom_fields/custom_form', :form => f, :title => :other_fields, :parent => @asset_collection
 
 - if @asset.image? && @asset.valid?
   = f.foldable_inputs :name => "#{t('formtastic.titles.preview')} #{image_dimensions_and_size(@asset)}", :class => 'preview' do

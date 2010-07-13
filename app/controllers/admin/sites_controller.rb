@@ -3,35 +3,28 @@ module Admin
   
     sections 'settings'
   
-    def new
-      @site = Site.new
-    end
-    
     def create
       @site = Site.new(params[:site])
-
-      if @site.save
-        @site.memberships.create :account => @current_admin, :admin => true
-        flash_success!
-        redirect_to edit_admin_my_account_url
-      else
-        flash_error!
-        render :action => 'new'
-      end
+      @site.memberships.build :account => @current_admin, :admin => true
+      
+      create! { edit_admin_my_account_url }
     end
-  
+      
     def destroy
       @site = current_admin.sites.detect { |s| s._id == params[:id] }
-    
+
       if @site != current_site
         @site.destroy
-        flash_success!
       else
-        flash_error!
+        @site.errors.add(:base, 'Can not destroy the site you are logging in now')
       end
     
-      redirect_to edit_admin_my_account_url
+      respond_with @site, :location => edit_admin_my_account_url
     end
-  
+    
+    protected
+    
+    def begin_of_association_chain; nil; end # not related directly to current_site
+    
   end
 end

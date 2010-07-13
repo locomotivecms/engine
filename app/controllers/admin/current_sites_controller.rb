@@ -2,23 +2,20 @@ module Admin
   class CurrentSitesController < BaseController
   
     sections 'settings', 'site'
-  
-    def edit
-      @site = current_site
-    end
+    
+    actions :edit, :update
     
     def update
-      @site = current_site
-      if @site.update_attributes(params[:site])
-        flash_success!
-        redirect_to edit_admin_current_site_url(new_host_if_subdomain_changed)
-      else
-        flash_error!
-        render :action => :edit
+      update! do |success, failure|
+        success.html { redirect_to edit_admin_current_site_url(new_host_if_subdomain_changed) }
       end
     end
       
     protected
+    
+    def resource
+      @site = current_site
+    end
     
     def new_host_if_subdomain_changed
       if @site.domains.include?(request.host)
