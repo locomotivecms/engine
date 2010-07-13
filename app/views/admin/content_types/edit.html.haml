@@ -5,7 +5,7 @@
 
 - content_for :buttons do
   = admin_button_tag :show_items, admin_contents_url(@content_type.slug), :class => 'show'
-  = admin_button_tag :new_item, new_admin_content_url(@content_type.slug), :class => 'show'
+  = admin_button_tag :new_item, new_admin_content_url(@content_type.slug), :class => 'new'
 
 %p= t('.help')
 

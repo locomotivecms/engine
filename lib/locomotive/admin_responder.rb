@@ -12,7 +12,7 @@ module Locomotive
       if get?
         display resource
       elsif has_errors?
-        display({ :errors => resource.errors, :alert => flash[:alert] }, :status => :unprocessable_entity)
+        display({ :errors => resource.errors, :model => controller.send(:resource_instance_name), :alert => controller.flash[:alert] })
       elsif post?
         display resource, :status => :created, :location => resource_location
       else

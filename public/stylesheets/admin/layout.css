@@ -105,31 +105,39 @@ body {
 
 #content #local-actions-bar {
 	position: absolute;
-	top: 15px;
+	top: 13px;
 	right: 15px;
 }
 
 #content #local-actions-bar a {
-	display: block;
-	float: left;
-	height: 20px;
+	position: relative;
+	padding: 2px 10px 3px 31px;
 	color: #8b8d9a;
 	text-decoration: none;
 	font-size: 0.7em;
-	padding-left: 24px;
 	margin-left: 10px;
-	background: transparent url(/images/admin/buttons/action-left.png) no-repeat 0 0;
+	background-color: #ebedf4;
 	outline: none;
+	-moz-border-radius : 10px;
+	-webkit-border-radius: 10px;
 }
 
-#content #local-actions-bar a:hover span { text-decoration: underline; }
+#content #local-actions-bar a:hover { text-decoration: underline; }
 
-#content #local-actions-bar a span {
-	display: inline-block;	
-	height: 13px;
-	background: transparent url(/images/admin/buttons/action-right.png) no-repeat right 0;
-	padding: 1px 10px 8px 2px;
+#content #local-actions-bar a em {
+	position: absolute;
+	display: block;	
+	top: 5px;
+	left: 10px;
+	height: 16px;
+	width: 16px;
+	background: transparent url(/images/admin/icons/actions.png) no-repeat 0 0;
 }
+
+#content #local-actions-bar a.show em { background-position: 0 0; }
+#content #local-actions-bar a.edit em { background-position: 0 -16px; top: 2px; left: 12px; }
+#content #local-actions-bar a.download em { background-position: 0 -32px; }
+#content #local-actions-bar a.new em { background-position: 0 -48px; left: 13px; }
 
 /* ___ footer ___ */
 

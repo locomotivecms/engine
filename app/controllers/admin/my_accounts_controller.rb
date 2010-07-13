@@ -5,6 +5,8 @@ module Admin
     
     actions :edit, :update
     
+    respond_to :json, :only => :update
+    
     def update
       update! { edit_admin_my_account_url }
     end

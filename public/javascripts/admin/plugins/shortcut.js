@@ -8,19 +8,8 @@ jQuery.fn.saveWithShortcut = function() {
 		form.find('li.error').removeClass('error');
 	}
 	
-	// var updateFromWyMeditor = function() {
-	// 	if (jQuery.wymeditors == undefined)
-	// 		return;
-	// 	var i = 0;
-	// 	while (jQuery.wymeditors(i) != undefined) {
-	// 		var editor = jQuery.wymeditors(i);
-	// 		editor.box().prev().val(editor.html());
-	// 		i++;
-	// 	}
-	// };
-	
 	var updateFromCodeMirror = function() {
-		if (CodeMirror == undefined)
+		if (typeof CodeMirror == undefined)
 			return;		
 		jQuery.each(CodeMirrorEditors, function() { 
 			this.el.val(this.editor.getCode());
@@ -38,16 +27,15 @@ jQuery.fn.saveWithShortcut = function() {
 	
 		if (data.alert != undefined) {	
 			$.growl('error', data.alert);
-			for (var i = 0; i < data.errors.length; i++) {
-				var type = data.errors[i][0], value = data.errors[i][1];
-				var node = form.find('li:has(#' + data.model + '_' + type + ')');
+			for (var field in data.errors) {
+				var error = data.errors[field];
+				var node = form.find('li:has(#' + data.model + '_' + field + ')');
 				node.addClass('error');
-				node.append("<p class='inline-errors'>" + value + "</p>");
+				node.append("<p class='inline-errors'>" + error + "</p>");
 			}
 			form.find('li.error input').eq(0).focus();
 		} else {
 			$.growl('success', data.notice);
-			// $.publish('form.saved.success', [data]);
 		}
 	};
 	
@@ -56,7 +44,6 @@ jQuery.fn.saveWithShortcut = function() {
 		
 		jQuery(document).bind('keypress.shortcut', function(event) {
 			if (!(event.which == 115 && (event.ctrlKey || event.metaKey))) return true;
-			// updateFromWyMeditor();
 			updateFromCodeMirror();
 			save(form);
 			event.preventDefault();

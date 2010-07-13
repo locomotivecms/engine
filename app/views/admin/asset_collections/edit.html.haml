@@ -10,7 +10,7 @@
 %p= t('.help')
 
 - content_for :buttons do
-  = admin_button_tag :add_asset, new_admin_asset_url(@asset_collection), :class => 'add'
+  = admin_button_tag :add_asset, new_admin_asset_url(@asset_collection), :class => 'new'
   
 %p.no-items{ :style => "#{'display: none' unless @asset_collection.assets.empty? }" }
   = t('.no_items', :url => new_admin_asset_url(@asset_collection))
@@ -28,6 +28,6 @@
     
   = render 'admin/custom_fields/index', :form => f, :collection_name => 'assets'
     
-  = render 'admin/shared/form_actions', :delete_button => link_to(content_tag(:span, t('.destroy')), admin_asset_collection_url(@asset_collection), :confirm => t('admin.messages.confirm'), :method => :delete, :class => 'button small remove'), :button_label => :update
+  = render 'admin/shared/form_actions', :delete_button => link_to(content_tag(:em, escape_once('&nbsp;')) + t('.destroy'), admin_asset_collection_url(@asset_collection), :confirm => t('admin.messages.confirm'), :method => :delete, :class => 'button small remove'), :button_label => :update
   
 = render 'admin/custom_fields/edit_field'

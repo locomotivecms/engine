@@ -110,13 +110,6 @@ fr:
         show: voir
         help: "Le titre de la page est modifiable en cliquant dessus."
         ask_for_title: "Veuillez entrer le nouveau titre"
-      messages:
-        successful_create: "La page a été créée avec succès."
-        successful_update: "La page a été mise à jour avec succès."
-        successful_destroy: "La page a été supprimée avec succès."
-        successful_sort: "Les pages ont été ordonnées avec succès."
-        failed_create: "La page n'a pas été créée."
-        failed_update: "La page n'a pas été mise à jour."
       form:
         cache_strategy:
           none: Aucun
@@ -141,12 +134,6 @@ fr:
         new: nouveau gabarit
       layout:
         updated_at: Mis à jour le
-      messages:
-        successful_create: "Le gabarit a été crée avec succès."
-        successful_update: "Le gabarit a été mis à jour avec succès."
-        successful_destroy: "Le gabarit a été supprimé avec succès."
-        failed_create: "Le gabarit n'a pas été crée."
-        failed_update: "Le gabarit n'a pas été mis à jour."
   
     snippets:
       index:
@@ -162,45 +149,27 @@ fr:
         help: "Remplissez le formulaire ci-dessous pour mettre à jour votre snippet."
       snippet:
         updated_at: Mis à jour le
-      messages:
-        successful_create: "Le snippet a été crée avec succès."
-        successful_update: "Le snippet a été mis à jour avec succès."
-        successful_destroy: "Le snippet a été supprimé avec succès."
-        failed_create: "Le snippet n'a pas été crée."
-        failed_update: "Le snippet n'a pas été mis à jour."
   
     sites:
       new:
         title: "Nouveau site"
         help: "Remplissez le formulaire ci-dessous pour créer votre nouveau site."
-      messages:
-        successful_create: "Le site a été crée avec succès."
-        failed_create: "Le site n'a pas été crée."
   
     current_sites:
       edit:
         new_membership: ajouter compte
         help: "Le nom du site est modifiable en cliquant dessus."
         ask_for_name: "Veuillez entrer le nouveau nom"
-      messages:
-        successful_update: "Le site a été mis à jour avec succès."
-        failed_update: "Le site n'a pas été mis à jour."
   
     memberships:
       new:
         title: "Ajout d'un compte"
         help: "Donnez l'adresse email du compte à ajouter. S'il n'existe pas, vous serez redirigé(e) vers le formulaire de création d'un compte."
-      messages:
-        successful_create: "Le compte a été ajouté avec succès."
-        failed_create: "Le compte n'a pas été ajouté."
   
     accounts:
       new:
         title: Nouveau compte
         help: "Remplissez le formulaire ci-dessous pour ajouter un nouveau compte."
-      messages:
-        successful_create: "Le compte a été crée avec succès."
-        failed_create: "Le compte n'a pas été crée."
   
     my_accounts:
       edit:
@@ -209,9 +178,6 @@ fr:
         en: en Anglais
         fr: en Français
         ask_for_name: "Veuillez entrer le nouveau nom"
-      messages:
-        successful_update: "Mon compte a été mis à jour avec succès."
-        failed_update: "compte site n'a pas été mis à jour."
   
     theme_assets:
       index:
@@ -234,12 +200,6 @@ fr:
       images:
         title: Liste des images
         no_items: "Il n'y a pas d'images."
-      messages:
-        successful_create: "Le fichier a été crée avec succès."
-        successful_update: "Le fichier a été mis à jour avec succès."
-        successful_destroy: "Le fichier a été supprimé avec succès."
-        failed_create: "Le fichier n'a pas été crée."
-        failed_update: "Le fichier n'a pas été mis à jour."
   
     asset_collections:
       index:
@@ -256,12 +216,6 @@ fr:
         destroy: supprimer collection
         no_items: "Il n'existe pas de médias. Vous pouvez commencer par créer un <a href='{{url}}'>ici</a>."
         ask_for_name: "Veuillez entrer le nouveau nom"
-      messages:
-        successful_create: "La collection a été créée avec succès."
-        successful_update: "La collection a été mise à jour avec succès."
-        successful_destroy: "La collection a été supprimée avec succès."
-        failed_create: "La collection n'a pas été créée."
-        failed_update: "La collection n'a pas été mise à jour."
   
     assets:
       new:
@@ -270,12 +224,6 @@ fr:
       edit:
         title: "Edition média"
         help: "Remplissez le formulaire ci-dessous pour mettre à jour votre média."
-      messages:
-        successful_create: "Le média a été crée avec succès."
-        successful_update: "Le média a été mis à jour avec succès."
-        successful_destroy: "Le média a été supprimé avec succès."
-        failed_create: "Le média n'a pas été crée."
-        failed_update: "Le média n'a pas été mis à jour."
   
     content_types:
       index:
@@ -292,12 +240,6 @@ fr:
         order_by:
           updated_at: 'Par date de mise à jour'
           position_in_list: Manuellement
-      messages:
-        successful_create: "Le modèle a été crée avec succès."
-        successful_update: "Le modèle a été mis à jour avec succès."
-        successful_destroy: "Le modèle a été supprimé avec succès."
-        failed_create: "Le modèle n'a pas été crée."
-        failed_update: "Le modèle n'a pas été mis à jour."
   
     contents:
       index:
@@ -315,12 +257,6 @@ fr:
         title: '{{type}} &mdash; nouvel élément' 
       edit:
         title: '{{type}} &mdash; édition élément'
-      messages:
-        successful_create: "L'élément a été crée avec succès."
-        successful_update: "L'élément a été mis à jour avec succès."
-        successful_destroy: "L'élément a été supprimé avec succès."
-        failed_create: "L'élément a été crée avec succès."
-        failed_update: "L'élément a été supprimé avec succès."
   
   formtastic:
     titles:

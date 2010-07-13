@@ -26,29 +26,30 @@ describe Membership do
     before(:each) do      
       @membership = Factory.build(:membership, :site => Factory.build(:site))
       @account = Factory.build(:account)
+      @account.stubs(:save).returns(true)
       Account.stubs(:where).returns([@account])
       Account.stubs(:find).returns(@account)
     end
     
     it 'should tell error' do
-      @membership.action_to_take.should == :error
+      @membership.process!.should == :error
     end
     
     it 'should tell we need to create a new account' do
       Account.stubs(:where).returns([])
       @membership.email = 'homer@simpson'
-      @membership.action_to_take.should == :create_account
+      @membership.process!.should == :create_account
     end
     
     it 'should tell nothing to do' do
       @membership.email = 'bart@simpson.net'
       @membership.site.stubs(:memberships).returns([@membership, @membership])
-      @membership.action_to_take.should == :nothing
+      @membership.process!.should == :nothing
     end
     
     it 'should tell membership has to be saved' do
       @membership.email = 'bart@simpson.net'
-      @membership.action_to_take.should == :save_it
+      @membership.process!.should == :save_it
     end
   end
   

@@ -48,12 +48,12 @@ body.contents ul#menu li.contents a em { background-position: 0 -12px; }
 body.settings ul#menu li.contents { background-position: 0 -80px; }
 body.settings ul#menu li.contents a { background-position: 0 -80px; }
 
-ul#menu li.assets { background: url(/images/admin/menu/left.png) no-repeat 0 -40px; padding-left: 35px; }
-ul#menu li.assets a em { background: transparent url(/images/admin/menu/icons/settings.png) no-repeat 0 0; height: 14px; }
+ul#menu li.assets { background: url(/images/admin/menu/left.png) no-repeat 0 -40px; padding-left: 40px; }
+ul#menu li.assets a em { background: transparent url(/images/admin/menu/icons/assets.png) no-repeat 0 0; height: 20px; width: 20px; float: left; top: 0px; }
 body.contents ul#menu li.assets { background-position: 0 0px; }
 body.assets ul#menu li.assets { background-position: 0 -80px; }
 body.assets ul#menu li.assets a { background-position: right -80px; color: white; text-shadow: none; }
-body.assets ul#menu li.assets a em { background-position: 0 -15px; }
+body.assets ul#menu li.assets a em { background-position: 0 -20px; }
 
 ul#menu li.assets { background: url(/images/admin/menu/left.png) no-repeat 0 -40px; padding-left: 35px; }
 ul#menu li.assets a { background: url(/images/admin/menu/right.png) no-repeat right 0px;  }

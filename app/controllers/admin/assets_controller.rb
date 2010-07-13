@@ -5,6 +5,8 @@ module Admin
     
     before_filter :set_collections_and_current_collection
     
+    respond_to :json, :only => :update
+    
     def create
       create! { edit_admin_asset_collection_url(@asset_collection) }
     end

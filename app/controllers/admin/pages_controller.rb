@@ -29,29 +29,3 @@ module Admin
     
   end
 end
-
-# DEPRECATED
-
-# def edit
-#   @page = current_site.pages.find(params[:id])  
-# end
-#
-# def create
-#   @page = current_site.pages.create(params[:page])
-#   
-#   respond_with(@page, :location => (edit_admin_page_url(@page) rescue nil))
-# end
-#   
-# def update
-#   @page = current_site.pages.find(params[:id])
-#   @page.update_attributes(params[:page])
-#   
-#   respond_with(@page, :location => edit_admin_page_url(@page))
-# end
-#
-# def destroy
-#   @page = current_site.pages.find(params[:id])
-#   @page.destroy
-#   
-#   respond_with(@page, :alert => @page.errors.full_messages.first, :location => admin_pages_url)
-# end

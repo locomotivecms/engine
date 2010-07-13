@@ -37,31 +37,26 @@
 }
 
 .button.small {
-	background: transparent url(/images/admin/buttons/action-left.png) no-repeat left -40px;
+	background: #ebedf4;
+	outline: none;
+	-moz-border-radius : 10px;
+	-webkit-border-radius: 10px;
 	color: #787a89;
 	height: 20px;
 	font-size: 0.7em;
-	padding: 0px 0px 0px 12px;
+	padding: 0px 12px 0px 12px;
 	color: #8B8D9A !important;
 	text-decoration: none;
-}
-
-.button.small span {
-	background-image: url(/images/admin/buttons/action-right.png);
-	text-shadow: 1px 1px 1px #fff;
-	padding: 0px 12px 10px 0px;
-	top: 0px;
 	color: #8B8D9A;
+	text-shadow: 1px 1px 1px #fff;
 }
 
 .button.small.add {
-	padding-left: 24px;
-	background-position: 0 0;
 }
 
-.button.remove, .button.remove span {
+.button.remove {
 	color: #ff092c !important;
 	font-size: 1.1em;
 }
 
-.button.remove:hover span { text-decoration: underline; }
+.button.remove:hover { text-decoration: underline; }

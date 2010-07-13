@@ -4,11 +4,11 @@
   = render 'admin/shared/menu/settings'
 
 - content_for :buttons do
-  = admin_button_tag t('admin.theme_assets.index.new'), new_admin_theme_asset_url, :class => 'add'
+  = admin_button_tag t('admin.theme_assets.index.new'), new_admin_theme_asset_url, :class => 'new'
 
 %p= t('.help', :url => @theme_asset.source.url)
 
-= semantic_form_for @theme_asset, :url => admin_theme_asset_url(@theme_asset), :html => { :multipart => true } do |form|
+= semantic_form_for @theme_asset, :url => admin_theme_asset_url(@theme_asset), :html => { :multipart => true, :class => 'save-with-shortcut' } do |form|
 
   = render 'form', :f => form
 

@@ -4,11 +4,11 @@
   = render 'admin/shared/menu/settings'
 
 - content_for :buttons do
-  = admin_button_tag t('.new_membership'), new_admin_membership_url, :class => 'add'
+  = admin_button_tag t('.new_membership'), new_admin_membership_url, :class => 'new'
 
 %p= t('.help')
 
-= semantic_form_for @site, :url => admin_current_site_url do |f|
+= semantic_form_for @site, :url => admin_current_site_url, :html => { :class => 'save-with-shortcut' } do |f|
 
   = render 'form', :f => f
       

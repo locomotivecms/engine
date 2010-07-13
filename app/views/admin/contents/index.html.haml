@@ -24,4 +24,4 @@
 = form_tag sort_admin_contents_path(@content_type.slug), :method => :put, :class => 'formtastic' do
   = hidden_field_tag :order
 
-  = render 'admin/shared/form_actions', :delete_button => link_to(content_tag(:span, t('.destroy')), admin_content_type_url(@content_type), :confirm => t('admin.messages.confirm'), :method => :delete, :class => 'button small remove'), :button_label => :update
+  = render 'admin/shared/form_actions', :delete_button => link_to(content_tag(:em, escape_once('&nbsp;')) + t('.destroy'), admin_content_type_url(@content_type), :confirm => t('admin.messages.confirm'), :method => :delete, :class => 'button small remove'), :button_label => :update

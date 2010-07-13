@@ -5,6 +5,8 @@ module Admin
     
     actions :edit, :update
     
+    respond_to :json, :only => :update
+    
     def update
       update! do |success, failure|
         success.html { redirect_to edit_admin_current_site_url(new_host_if_subdomain_changed) }

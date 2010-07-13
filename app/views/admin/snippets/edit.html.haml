@@ -4,11 +4,11 @@
   = render 'admin/shared/menu/settings'
 
 - content_for :buttons do
-  = admin_button_tag t('admin.snippets.index.new'), new_admin_snippet_url, :class => 'add'
+  = admin_button_tag t('admin.snippets.index.new'), new_admin_snippet_url, :class => 'new'
 
 %p= t('.help')
 
-= semantic_form_for @snippet, :url => admin_snippet_url(@snippet) do |form|
+= semantic_form_for @snippet, :url => admin_snippet_url(@snippet), :html => { :class => 'save-with-shortcut' } do |form|
 
   = render 'form', :f => form
 

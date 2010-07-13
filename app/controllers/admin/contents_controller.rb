@@ -4,6 +4,8 @@ module Admin
     sections 'contents'
     
     before_filter :set_content_type
+    
+    respond_to :json, :only => :update
   
     def index
       @contents = @content_type.list_or_group_contents

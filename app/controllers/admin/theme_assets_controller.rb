@@ -5,7 +5,7 @@ module Admin
 
     sections 'settings', 'theme_assets'
    
-    respond_to :json, :only => :create
+    respond_to :json, :only => [:create, :update]
    
     def index
       assets = current_site.theme_assets.all

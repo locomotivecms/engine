@@ -1,12 +1,7 @@
 BOARD:  
 
 - refactor slugify method (use parameterize + create a module)
-
-- save layout / snippet / page / stylesheet / javascript with CMD + S (ajax)
-- change action icons according to the right action [Sacha]
-- page redirection (option)
 - send email when new content added thru api
-- flash messages in French
     
 BACKLOG:
 
@@ -30,6 +25,7 @@ NICE TO HAVE:
 - theme asset picker when editing layout
 - asset picker (content instance)
 - page with regexp url ?
+- page redirection (option)
 
 DONE:
 
@@ -60,3 +56,6 @@ x [bug] varnish can not be refreshed in heroku so "max-age" has to be disabled =
 x "remember me" should always be enabled
 x sitemap
 x refactoring admin crud (pages + layouts + snippets)
+x flash messages in French
+x save layout / snippet / page / stylesheet / javascript with CMD + S (ajax)
+x change action icons according to the right action [Sacha]

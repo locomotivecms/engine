@@ -7,11 +7,11 @@
   = render 'admin/shared/menu/settings'
 
 - content_for :buttons do
-  = admin_button_tag :new, new_admin_layout_url, :class => 'add'
+  = admin_button_tag :new, new_admin_layout_url, :class => 'new'
 
 %p= t('.help')
 
-= semantic_form_for @layout, :url => admin_layout_url(@layout) do |form|
+= semantic_form_for @layout, :url => admin_layout_url(@layout), :html => { :class => 'save-with-shortcut' } do |form|
 
   = render 'form', :f => form
 

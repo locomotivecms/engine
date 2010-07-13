@@ -3,10 +3,10 @@ en:
     admin:
       pages:
         create:
-          notice: "Page was successfully created"
+          notice: "Page was successfully created."
           alert: "Page was not created."
         update:
-          notice: "Page was successfully updated"
+          notice: "Page was successfully updated."
           alert: "Page was not updated."
         sort:
           notice: "Pages were successfully sorted."
