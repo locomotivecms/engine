@@ -1,3 +1,0 @@
-[submodule "vendor/plugins/remarkable_mongo"]
-	path = vendor/plugins/remarkable_mongo
-	url = git@github.com:did/remarkable_mongo.git
