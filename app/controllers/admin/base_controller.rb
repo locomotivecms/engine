@@ -2,7 +2,7 @@ module Admin
   class BaseController < InheritedResources::Base
     
     include Locomotive::Routing::SiteDispatcher
-  
+    
     layout 'admin/application'
     
     before_filter :authenticate_admin!

@@ -11,9 +11,6 @@ require 'locomotive/inherited_resources'
 require 'locomotive/admin_responder'
 
 require 'redcloth'
-require 'inherited_resources'
-require 'inherited_resources/responder'
-require 'inherited_resources/actions' # required otherwise actions won't be included in Admin base controller
 require 'mongo_session_store/mongoid'
 
 module Locomotive

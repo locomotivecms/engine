@@ -1,7 +1,11 @@
+require 'inherited_resources'
+require 'inherited_resources/actions'
+require 'inherited_resources/responder'
+
 module InheritedResources
   # redirect to edit_resource_url instead of resource_url
   module Actions
-    
+
     def create(options={}, &block)
       object = build_resource
 
@@ -24,19 +28,19 @@ module InheritedResources
       respond_with_dual_blocks(object, options, &block)
     end
     alias :update! :update
-    
+
     # DELETE /resources/1
     def destroy(options={}, &block)
       object = resource
       options[:location] ||= collection_url rescue nil
 
       destroy_resource(object)
-            
+        
       options[:alert] = object.errors.full_messages.first # display the first error if present
-      
+  
       respond_with_dual_blocks(object, options, &block)
     end
     alias :destroy! :destroy
-        
+    
   end
 end
