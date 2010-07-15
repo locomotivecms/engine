@@ -2,6 +2,7 @@
 	background: #ebedf4 url(/images/admin/form/footer.png) no-repeat 0 bottom;
 	width: 880px;	
 	padding: 20px 20px;
+	border-top: 1px solid #C2C4D2;
 }
 
 #page-parts { 
@@ -10,6 +11,12 @@
 
 #page-parts .control {
 	height: 30px;
+}
+
+#page-parts .nav { 
+	position: relative;
+	top: 1px;
+	z-index: 990;
 }
 
 #page-parts .nav a {

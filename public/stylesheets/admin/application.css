@@ -117,7 +117,7 @@ ul.assets li.asset.last {
 	margin-right: 0px;
 }
 
-ul.assets li.asset h4 { margin: 0px; height: 30px; }
+ul.assets li.asset h4 { margin: 0px; height: 30px; border-bottom: 1px solid #C2C4D2; }
 
 ul.assets li.asset h4 a {
 	position: relative;

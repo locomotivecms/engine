@@ -1,7 +1,7 @@
 $(document).ready(function() {
 	
 	var defaultValue = $('fieldset.editable-list li.template input[type=text]').val();
-
+	
 	/* __ fields ___ */
 	$('fieldset.editable-list li.template input[type=text]').focus(function() {
 		if ($(this).hasClass('void') && $(this).parents('li').hasClass('template'))
@@ -32,5 +32,8 @@ $(document).ready(function() {
 		e.preventDefault();
 		e.stopPropagation();
 	});
-
+	
+	$.subscribe('form.saved.success', function(event, data) {
+		$('#header h1 a').html($('#current_site_name').val());
+	}, []);
 });

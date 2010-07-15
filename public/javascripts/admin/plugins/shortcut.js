@@ -36,6 +36,7 @@ jQuery.fn.saveWithShortcut = function() {
 			form.find('li.error input').eq(0).focus();
 		} else {
 			$.growl('success', data.notice);
+			$.publish('form.saved.success', [data]);
 		}
 	};
 	

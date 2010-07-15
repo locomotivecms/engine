@@ -2,8 +2,7 @@ BOARD:
 
 - refactor slugify method (use parameterize + create a module)
 - send email when new content added thru api
-- publish event when saving form in ajax (for instance, in order to update account name or site name)
-- switch to list (theme assets / assets ?). delete all in once (with checkbox) or see details (updated_at, size, ...etc)
+- page templatized (bound to a model)
     
 BACKLOG:
 
@@ -13,6 +12,7 @@ BACKLOG:
   - belongs_to => association
 - cucumber features for admin pages
 - validation for custom fields
+- switch to list (theme assets / assets ?). delete all in once (with checkbox) or see details (updated_at, size, ...etc)
 
 BUGS:
 
@@ -61,3 +61,4 @@ x refactoring admin crud (pages + layouts + snippets)
 x flash messages in French
 x save layout / snippet / page / stylesheet / javascript with CMD + S (ajax)
 x change action icons according to the right action [Sacha]
+x publish event when saving form in ajax (for instance, in order to update account name or site name)
