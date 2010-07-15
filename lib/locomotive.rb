@@ -10,7 +10,6 @@ require 'locomotive/httparty'
 require 'locomotive/inherited_resources'
 require 'locomotive/admin_responder'
 
-require 'redcloth'
 require 'mongo_session_store/mongoid'
 
 module Locomotive

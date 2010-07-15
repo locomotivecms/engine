@@ -45,8 +45,6 @@ class AssetUploader < CarrierWave::Uploader::Base
       end
     end
     
-    puts "content_type = #{value}"
-    
     model.content_type = value
   end
   

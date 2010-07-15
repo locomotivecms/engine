@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{locomotive_cms}
-  s.version = "0.0.3.0"
+  s.version = "0.0.3.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Didier Lafforgue"]
-  s.date = %q{2010-07-14}
+  s.date = %q{2010-07-15}
   s.description = %q{a brand new CMS system with super sexy UI and cool features (alpha version for now)}
   s.email = ["didier@nocoffee.fr"]
   s.extra_rdoc_files = [
