@@ -44,7 +44,7 @@ module Locomotive
           end
         end
 
-        page || current_site.pages.not_found.first
+        page || current_site.pages.not_found.published.first
       end
       
       def locomotive_context

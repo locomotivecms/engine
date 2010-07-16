@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{locomotive_cms}
-  s.version = "0.0.3.1"
+  s.version = "0.0.3.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Didier Lafforgue"]
-  s.date = %q{2010-07-15}
+  s.date = %q{2010-07-16}
   s.description = %q{a brand new CMS system with super sexy UI and cool features (alpha version for now)}
   s.email = ["didier@nocoffee.fr"]
   s.extra_rdoc_files = [
@@ -56,6 +56,7 @@ Gem::Specification.new do |s|
      "app/models/extensions/asset/vignette.rb",
      "app/models/extensions/page/parts.rb",
      "app/models/extensions/page/render.rb",
+     "app/models/extensions/page/templatized.rb",
      "app/models/extensions/page/tree.rb",
      "app/models/layout.rb",
      "app/models/liquid_template.rb",
@@ -523,6 +524,7 @@ Gem::Specification.new do |s|
      "public/images/admin/plugins/toggle_handle_right-bg.png",
      "public/images/admin/plugins/toggle_shadow-bg.png",
      "public/images/admin/rails.png",
+     "public/javascripts/admin/account.js",
      "public/javascripts/admin/application.js",
      "public/javascripts/admin/asset_collections.js",
      "public/javascripts/admin/assets.js",
@@ -570,6 +572,7 @@ Gem::Specification.new do |s|
      "public/javascripts/admin/plugins/plupload/plupload.silverlight.xap",
      "public/javascripts/admin/plugins/scrollTo.js",
      "public/javascripts/admin/plugins/shortcut.js",
+     "public/javascripts/admin/plugins/subscribe.js",
      "public/javascripts/admin/plugins/tiny_mce/langs/en.js",
      "public/javascripts/admin/plugins/tiny_mce/license.txt",
      "public/javascripts/admin/plugins/tiny_mce/plugins/advhr/css/advhr.css",
