@@ -11,7 +11,9 @@ module Locomotive
           end
         end
         
-        
+        def highlighted_field_value
+          @source.highlighted_field_value
+        end
         
       end  
     end

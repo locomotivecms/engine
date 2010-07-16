@@ -290,6 +290,7 @@ fr:
       page:
         published: "Seuls les administrateurs authentifiés peuvent voir une page non publiée."
         cache_strategy: "Cache la page pour de meilleure performance. L'option 'Simple' est le meilleur compromis."
+        templatized: "Utilise la page comme un template pour un modèle défini."
       snippet:
         slug: "Utilisé pour insérer le snippet dans une page ou un gabarit."
       site:

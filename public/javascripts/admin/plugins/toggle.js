@@ -64,6 +64,8 @@
 					$(element).parent().css("background-color", settings.off_bg_color);
 					$(element).parent().parent().prev().removeAttr("checked");
 					$(element).removeClass("left").addClass("right");
+					
+					$.publish('toggle.' + $(element).parent().parent().prev().attr('id') + '.unchecked', []);
 				});
 			
 			}else{
@@ -78,6 +80,7 @@
 					$(element).parent().parent().prev().attr("checked","checked");
 					$(element).removeClass("right").addClass("left");
 					
+					$.publish('toggle.' + $(element).parent().parent().prev().attr('id') + '.checked', []);
 				});
 			
 			}

@@ -52,19 +52,19 @@ describe 'Locomotive rendering system' do
     
     it 'should retrieve the index page /' do
       @controller.request.fullpath = '/'
-      @controller.current_site.pages.expects(:where).with({ :fullpath => 'index' }).returns([@page])
+      @controller.current_site.pages.expects(:any_in).with({ :fullpath => %w{index} }).returns([@page])
       @controller.send(:locomotive_page).should_not be_nil
     end
     
     it 'should also retrieve the index page (index.html)' do
       @controller.request.fullpath = '/index.html'
-      @controller.current_site.pages.expects(:where).with({ :fullpath => 'index' }).returns([@page])
+      @controller.current_site.pages.expects(:any_in).with({ :fullpath => %w{index} }).returns([@page])
       @controller.send(:locomotive_page).should_not be_nil
     end
     
     it 'should retrieve it based on the full path' do
       @controller.request.fullpath = '/about_us/team.html'
-      @controller.current_site.pages.expects(:where).with({ :fullpath => 'about_us/team' }).returns([@page])
+      @controller.current_site.pages.expects(:any_in).with({ :fullpath => %w{about_us/team about_us/content_type_template} }).returns([@page])
       @controller.send(:locomotive_page).should_not be_nil
     end
     
@@ -74,6 +74,31 @@ describe 'Locomotive rendering system' do
       @controller.send(:locomotive_page).should be_true
     end
     
+    context 'templatized page' do
+      
+      before(:each) do
+        @content_type = Factory.build(:content_type, :site => nil)
+        @page.templatized = true        
+        @page.content_type = @content_type
+        @controller.request.fullpath = '/projects/edeneo.html'
+        @controller.current_site.pages.expects(:any_in).with({ :fullpath => %w{projects/edeneo projects/content_type_template} }).returns([@page])
+      end
+      
+      it 'sets the content_instance variable' do
+        @content_type.contents.stubs(:where).returns([42])
+        @controller.send(:locomotive_page).should_not be_nil
+        @controller.instance_variable_get(:@content_instance).should == 42
+      end
+      
+      it 'returns the 404 page if the instance does not exist' do
+        @content_type.contents.stubs(:where).returns([])
+        @controller.current_site.pages.expects(:not_found).returns([true])
+        @controller.send(:locomotive_page).should be_true
+        @controller.instance_variable_get(:@content_instance).should be_nil
+      end
+      
+    end
+        
     context 'non published page' do
       
       before(:each) do
@@ -83,7 +108,7 @@ describe 'Locomotive rendering system' do
     
       it 'should return the 404 page if the page has not been published yet' do
         @controller.request.fullpath = '/contact'        
-        @controller.current_site.pages.expects(:where).with({ :fullpath => 'contact' }).returns([@page])
+        @controller.current_site.pages.expects(:any_in).with({ :fullpath => %w{contact content_type_template} }).returns([@page])
         @controller.current_site.pages.expects(:not_found).returns([true])
         @controller.send(:locomotive_page).should be_true
       end
@@ -91,7 +116,7 @@ describe 'Locomotive rendering system' do
       it 'should not return the 404 page if the page has not been published yet and admin is logged in' do
         @controller.current_admin = true
         @controller.request.fullpath = '/contact'
-        @controller.current_site.pages.expects(:where).with({ :fullpath => 'contact' }).returns([@page])
+        @controller.current_site.pages.expects(:any_in).with({ :fullpath => %w{contact content_type_template} }).returns([@page])
         @controller.send(:locomotive_page).should == @page
       end
       

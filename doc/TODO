@@ -2,7 +2,7 @@ BOARD:
 
 - refactor slugify method (use parameterize + create a module)
 - send email when new content added thru api
-- page templatized (bound to a model)
+- shortcut for jquery include tag 
     
 BACKLOG:
 
@@ -62,3 +62,4 @@ x flash messages in French
 x save layout / snippet / page / stylesheet / javascript with CMD + S (ajax)
 x change action icons according to the right action [Sacha]
 x publish event when saving form in ajax (for instance, in order to update account name or site name)
+x page templatized (bound to a model)

@@ -1,4 +1,4 @@
-%li{ :id => "item-#{page.id}", :class => "#{'not-found' if page.not_found? }"}
+%li{ :id => "item-#{page.id}", :class => "#{'not-found' if page.not_found? } #{'templatized' if page.templatized?}"}
   - if not page.index? and not page.children.empty?
     = image_tag 'admin/list/icons/node_closed.png', :class => 'toggler'
   %em

@@ -117,7 +117,7 @@ ul.assets li.asset.last {
 	margin-right: 0px;
 }
 
-ul.assets li.asset h4 { margin: 0px; height: 30px; border-bottom: 1px solid #C2C4D2; }
+ul.assets li.asset h4 { margin: 0px; height: 30px; border-bottom: 1px solid #ccced7; }
 
 ul.assets li.asset h4 a {
 	position: relative;
@@ -203,6 +203,11 @@ div#uploadAssetsInputQueue { display: none; }
 #pages-list ul.folder li em {
 	background-position: left -31px;
 	cursor: move;
+}
+
+#pages-list ul.folder li.templatized em {
+	background-position: left -62px;
+	cursor: pointer;
 }
 
 #pages-list li .toggler { 

@@ -31,6 +31,19 @@ $(document).ready(function() {
 		} 
 	});
 	
+	// templatized feature
+	
+	$.subscribe('toggle.page_templatized.checked', function(event, data) {
+		$('#page_slug_input').hide();
+		$('#page_content_type_id_input').show();
+	}, []);
+	
+	$.subscribe('toggle.page_templatized.unchecked', function(event, data) {
+		$('#page_slug_input').show();
+		$('#page_slug').val(makeSlug($('#page_title').val())).addClass('touched');
+		$('#page_content_type_id_input').hide();
+	}, []);
+	
 	// automatic slug from page title
 	$('#page_title').keypress(function() {
 		var input = $(this);

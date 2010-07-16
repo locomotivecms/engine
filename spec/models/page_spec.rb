@@ -333,4 +333,26 @@ describe Page do
     end
     
   end 
+  
+  describe 'templatized extension' do
+    
+    before(:each) do
+      @page = Factory.build(:page, :site => nil, :templatized => true, :content_type_id => 42)
+      ContentType.stubs(:find).returns(Factory.build(:content_type, :site => nil))
+    end
+    
+    it 'is considered as a templatized page' do
+      @page.templatized?.should be_true
+    end
+    
+    it 'fills in the slug field' do
+      @page.valid?
+      @page.slug.should == 'content_type_template'
+    end
+    
+    it 'does forget to set the content type id' do
+      @page.content_type_id.should == '42'
+    end    
+    
+  end
 end

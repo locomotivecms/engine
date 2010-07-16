@@ -6,6 +6,7 @@ class Page
   include Models::Extensions::Page::Tree
   include Models::Extensions::Page::Parts
   include Models::Extensions::Page::Render
+  include Models::Extensions::Page::Templatized
   
   ## fields ##
   field :title
@@ -31,8 +32,8 @@ class Page
   
   ## named scopes ##
   named_scope :latest_updated, :order_by => [[:updated_at, :desc]], :limit => Locomotive.config.lastest_items_nb
-  named_scope :index, :where => { :slug => 'index', :depth => 0, :published => true }
-  named_scope :not_found, :where => { :slug => '404', :depth => 0, :published => true }
+  named_scope :index, :where => { :slug => 'index', :depth => 0 }
+  named_scope :not_found, :where => { :slug => '404', :depth => 0 }
   named_scope :published, :where => { :published => true }
   
   ## behaviours ##

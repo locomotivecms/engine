@@ -23,9 +23,24 @@ module Locomotive
         path.gsub!(/^\//, '')
         path = 'index' if path.blank?
         
-        if page = current_site.pages.where(:fullpath => path).first
+        if path != 'index'
+          dirname = File.dirname(path).gsub(/^\.$/, '') # also look for templatized page path
+          path = [path, File.join(dirname, 'content_type_template').gsub(/^\//, '')]
+        end
+        
+        # TODO: path is not correctly built + find content instance in order to render a 404 page if not found
+        
+        if page = current_site.pages.any_in(:fullpath => [*path]).first
           if not page.published? and current_admin.nil?
             page = nil
+          else
+            if page.templatized?
+              @content_instance = page.content_type.contents.where(:_slug => File.basename(path.first)).first
+              
+              if @content_instance.nil? # content instance not found
+                page = nil
+              end
+            end
           end
         end
 
@@ -42,6 +57,11 @@ module Locomotive
           'contents'          => Locomotive::Liquid::Drops::Contents.new(current_site),
           'current_page'      => self.params[:page]
         }
+        
+        if @page.templatized? # add instance from content type
+          assigns['content_instance'] = @content_instance
+          assigns[@page.content_type.slug.singularize] = @content_instance # just here to help to write readable liquid code
+        end
         
         registers = { :controller => self, :site => current_site, :page => @page }
           

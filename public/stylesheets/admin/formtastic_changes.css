@@ -80,7 +80,7 @@ form.formtastic fieldset.inputs ol {
 	padding-top: 15px; 
 	padding-bottom: 5px;
 	background: #ebedf4 url(/images/admin/form/footer.png) no-repeat 0 bottom;
-	border-top: 1px solid #C2C4D2;
+	border-top: 1px solid #ccced7;
 }
 
 @media screen and (-webkit-min-device-pixel-ratio:0) {
