@@ -163,7 +163,9 @@ en:
         help: "Theme assets represent files needed by layouts and snippets. If you need to manage an image gallery, go to the Assets section instead."
         new: new file
         css_and_js: Style and javascript
+        fonts: Fonts
         images: Images
+        flashes: Flash
         no_items: "There are no files for now. Just click <a href=\"{{url}}\">here</a> to create the first one."
       new:
         title: New file
@@ -235,6 +237,9 @@ en:
         title: '{{type}} &mdash; new item' 
       edit:
         title: '{{type}} &mdash; editing item'
+        
+    image_picker:
+      link: Insert an image into the code
         
   formtastic:
     titles:

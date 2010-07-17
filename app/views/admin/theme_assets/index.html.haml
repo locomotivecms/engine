@@ -30,7 +30,7 @@
 - if not @flash_assets.empty?
   %br
 
-  %h3= t('.flash')
+  %h3= t('.flashes')
   %ul.assets
     = render :partial => 'asset', :collection => @flash_assets
     %li.clear
@@ -38,7 +38,7 @@
 - if not @font_assets.empty?
   %br
 
-  %h3= t('.flash')
+  %h3= t('.fonts')
   %ul.assets
     = render :partial => 'asset', :collection => @font_assets
     %li.clear

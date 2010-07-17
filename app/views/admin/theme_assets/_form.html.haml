@@ -1,6 +1,6 @@
 - content_for :head do
-  = javascript_include_tag 'admin/plugins/json2', 'admin/plugins/scrollTo', 'admin/plugins/codemirror/codemirror', 'admin/plugins/fancybox', 'admin/plugins/plupload/plupload.full.js', 'admin/theme_assets.js'
-  = stylesheet_link_tag 'admin/plugins/fancybox', 'admin/box'
+  = javascript_include_tag 'admin/plugins/codemirror/codemirror', 'admin/theme_assets.js'
+  = image_picker_include_tags
 
 = f.hidden_field :performing_plain_text
 
@@ -8,7 +8,7 @@
   = f.inputs :name => :information do
     = f.input :source
 
-  - if @theme_asset.new_record? || !@theme_asset.image?
+  - if @theme_asset.new_record? || @theme_asset.stylesheet_or_javascript?
     %span.alt
       = t('admin.theme_assets.form.choose_plain_text')
 
@@ -26,7 +26,7 @@
         %code{ :class => (@theme_asset.size && @theme_asset.size > 40000 ? 'nude' : (@theme_asset.content_type || 'stylesheet')) }
           = f.text_area :plain_text
         .more
-          = link_to t('.picker_link'), admin_theme_assets_path, :id => 'asset-picker-link'
+          = link_to t('admin.image_picker.link'), admin_theme_assets_path, :id => 'image-picker-link'
             
     %span.alt
       = t('admin.theme_assets.form.choose_file')

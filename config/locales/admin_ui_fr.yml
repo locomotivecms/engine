@@ -186,6 +186,8 @@ fr:
         new: nouveau fichier
         css_and_js: Style et javascript
         images: Images
+        flashes: Flash
+        fonts: Polices
         no_items: "Il n'existe pas de fichiers. Vous pouvez commencer par créer un <a href='{{url}}'>ici</a>."
       new:
         title: Nouveau fichier
@@ -194,7 +196,6 @@ fr:
         title: "Edition {{file}}"
         help: "Vous pouvez utiliser ce fichier grâce a l'url suivante: {{url}}"
       form:
-        picker_link: Insérer un fichier dans le code
         choose_file: Choisir fichier
         choose_plain_text: Passer en mode texte
       images:
@@ -257,6 +258,9 @@ fr:
         title: '{{type}} &mdash; nouvel élément' 
       edit:
         title: '{{type}} &mdash; édition élément'
+        
+    image_picker:
+      link: Insérer une image dans le code
   
   formtastic:
     titles:

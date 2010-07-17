@@ -57,7 +57,7 @@ class ThemeAsset
   end
   
   def performing_plain_text?
-    return true if !self.new_record? && !self.stylesheet_or_javascript? && self.errors.empty?
+    return true if !self.new_record? && self.stylesheet_or_javascript? && self.errors.empty?
     
     !(self.performing_plain_text.blank? || self.performing_plain_text == 'false' || self.performing_plain_text == false)
   end

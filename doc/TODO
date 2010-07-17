@@ -25,7 +25,6 @@ NICE TO HAVE:
 - better icons for mime type
 - traffic statistics
 - Worker => Heroku / S3 (not so sure finally)
-- theme asset picker when editing layout
 - asset picker (content instance)
 - page with regexp url ?
 - page redirection (option)
@@ -64,3 +63,4 @@ x save layout / snippet / page / stylesheet / javascript with CMD + S (ajax)
 x change action icons according to the right action [Sacha]
 x publish event when saving form in ajax (for instance, in order to update account name or site name)
 x page templatized (bound to a model)
+x theme asset picker when editing layout / snippet
