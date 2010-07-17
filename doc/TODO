@@ -2,10 +2,11 @@ BOARD:
 
 - refactor slugify method (use parameterize + create a module)
 - send email when new content added thru api
-- shortcut for jquery include tag 
+- templatized: do not display content with visible / active set to false
     
 BACKLOG:
 
+- rack app to map pretty asset url to S3
 - notify accounts when new instance of models (opt): none, one or many accounts. Used for contact form.
 - theme assets: disable version if not image
 - new custom field types:

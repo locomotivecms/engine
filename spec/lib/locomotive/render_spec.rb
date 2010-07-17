@@ -70,7 +70,8 @@ describe 'Locomotive rendering system' do
     
     it 'should return the 404 page if the page does not exist' do
       @controller.request.fullpath = '/contact'
-      @controller.current_site.pages.expects(:not_found).returns([true])
+      (klass = Page).expects(:published).returns([true])
+      @controller.current_site.pages.expects(:not_found).returns(klass)
       @controller.send(:locomotive_page).should be_true
     end
     
@@ -92,7 +93,8 @@ describe 'Locomotive rendering system' do
       
       it 'returns the 404 page if the instance does not exist' do
         @content_type.contents.stubs(:where).returns([])
-        @controller.current_site.pages.expects(:not_found).returns([true])
+        (klass = Page).expects(:published).returns([true])
+        @controller.current_site.pages.expects(:not_found).returns(klass)
         @controller.send(:locomotive_page).should be_true
         @controller.instance_variable_get(:@content_instance).should be_nil
       end
@@ -109,7 +111,8 @@ describe 'Locomotive rendering system' do
       it 'should return the 404 page if the page has not been published yet' do
         @controller.request.fullpath = '/contact'        
         @controller.current_site.pages.expects(:any_in).with({ :fullpath => %w{contact content_type_template} }).returns([@page])
-        @controller.current_site.pages.expects(:not_found).returns([true])
+        (klass = Page).expects(:published).returns([true])
+        @controller.current_site.pages.expects(:not_found).returns(klass)
         @controller.send(:locomotive_page).should be_true
       end
       

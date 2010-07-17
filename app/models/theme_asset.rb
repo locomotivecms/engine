@@ -33,14 +33,18 @@ class ThemeAsset
   
   ## methods ##
   
-  %w{movie image stylesheet javascript}.each do |type|
+  %w{movie image stylesheet javascript font}.each do |type|
     define_method("#{type}?") do
       self.content_type == type
     end  
   end
   
+  def stylesheet_or_javascript?
+    self.stylesheet? || self.javascript?
+  end
+  
   def plain_text
-    @plain_text ||= (if self.stylesheet? || self.javascript?
+    @plain_text ||= (if self.stylesheet_or_javascript?
       self.source.read
     else
       nil
@@ -53,7 +57,7 @@ class ThemeAsset
   end
   
   def performing_plain_text?
-    return true if !self.new_record? && !self.image? && !self.movie? && self.errors.empty?
+    return true if !self.new_record? && !self.stylesheet_or_javascript? && self.errors.empty?
     
     !(self.performing_plain_text.blank? || self.performing_plain_text == 'false' || self.performing_plain_text == false)
   end

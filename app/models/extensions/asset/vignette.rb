@@ -29,6 +29,8 @@ module Models
             filename = "CSS"
           elsif !(mime_type =~ /javascript/).nil?
             filename = "JAVA"
+          elsif !(mime_type =~ /font/).nil?
+            filename = "FON"
           end
 
           File.join("admin", "icons", "filetype", size.to_s, filename + ".png")

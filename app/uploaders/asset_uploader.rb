@@ -65,7 +65,8 @@ class AssetUploader < CarrierWave::Uploader::Base
       :audio      => [/^audio/, 'application/ogg', 'application/x-mp3'],
       :pdf        => ['application/pdf', 'application/x-pdf'],
       :stylesheet => ['text/css'],
-      :javascript => ['text/javascript', 'text/js', 'application/x-javascript', 'application/javascript']
+      :javascript => ['text/javascript', 'text/js', 'application/x-javascript', 'application/javascript'],
+      :font       => ['application/x-font-ttf', 'application/vnd.ms-fontobject']
     }  
   end
     

@@ -26,7 +26,7 @@ class ThemeAssetUploader < AssetUploader
   end
   
   def extension_white_list
-    %w(jpg jpeg gif png css js swf flv)
+    %w(jpg jpeg gif png css js swf flv ttf eot)
   end
   
 end
