@@ -13,7 +13,11 @@ class ContentType
   
   ## associations ##
   belongs_to_related :site
-  embeds_many :contents, :class_name => 'ContentInstance'
+  embeds_many :contents, :class_name => 'ContentInstance' do
+    def visible
+      @target.find_all { |c| c.visible? }
+    end
+  end
 
   ## callbacks ##
   before_validate :normalize_slug

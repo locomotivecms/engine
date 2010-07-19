@@ -37,7 +37,7 @@ module Locomotive
             if page.templatized?
               @content_instance = page.content_type.contents.where(:_slug => File.basename(path.first)).first
               
-              if @content_instance.nil? # content instance not found
+              if @content_instance.nil? || (!@content_instance.visible? && current_admin.nil?) # content instance not found or not visible
                 page = nil
               end
             end

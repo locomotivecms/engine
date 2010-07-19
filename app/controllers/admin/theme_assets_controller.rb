@@ -12,7 +12,6 @@ module Admin
       @non_image_assets = assets.find_all { |a| a.stylesheet? || a.javascript? }
       @image_assets = assets.find_all { |a| a.image? }
       @flash_assets = assets.find_all { |a| a.movie? }
-      @font_assets = assets.find_all { |a| a.font? }
       
       if request.xhr?
         render :action => 'images', :layout => false and return

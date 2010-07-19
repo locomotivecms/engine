@@ -1,6 +1,6 @@
 module Admin::PagesHelper
   
-  def page_main_url(page)
+  def page_main_url(page, content = nil)
     url = '' 
     
     if page.site.domains.empty? 
@@ -10,7 +10,11 @@ module Admin::PagesHelper
       url += ":#{request.port}" if request.port != 80
     end
     
-    File.join(url, page.fullpath)
+    if content.nil?
+      File.join(url, page.fullpath)
+    else
+      File.join(url, page.fullpath.gsub('/content_type_template', ''), content._slug) 
+    end
   end  
   
   def parent_pages_options

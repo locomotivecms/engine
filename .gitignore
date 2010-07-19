@@ -13,6 +13,7 @@ public/stylesheets/plugins
 public/javascripts/all.js
 public/javascripts/plugins
 public/images/plugins
+public/fonts
 pkg
 rails_3_gems
 doc/performance.txt
