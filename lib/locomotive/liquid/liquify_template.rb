@@ -21,7 +21,7 @@ module Locomotive
 
         def liquify_template(source = :value)
           field :serialized_template, :type => Binary
-          before_validate :store_template
+          before_validation :store_template
           
           class_eval <<-EOV
             def liquify_template_source

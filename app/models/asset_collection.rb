@@ -15,7 +15,7 @@ class AssetCollection
   liquid_methods :name, :ordered_assets
   
   ## callbacks ##
-  before_validate :normalize_slug
+  before_validation :normalize_slug
   before_save :store_asset_positions!
   
   ## validations ##

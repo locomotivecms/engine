@@ -2,8 +2,8 @@ source 'http://gemcutter.org'
 
 gem 'bson_ext', '>= 1.0.1'
 gem 'mongo_ext'
-gem 'mongoid', '2.0.0.beta6'
-gem 'activesupport', '3.0.0.beta3'
+gem 'mongoid-locomotive'
+gem 'activesupport', '~>3.0.0.beta'
 gem 'carrierwave-rails3', :require => 'carrierwave'
 
 group :test do

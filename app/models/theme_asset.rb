@@ -17,8 +17,8 @@ class ThemeAsset
   belongs_to_related :site
   
   ## callbacks ##
-  before_validate :sanitize_slug
-  before_validate :store_plain_text
+  before_validation :sanitize_slug
+  before_validation :store_plain_text
   before_save     :set_slug
   
   ## validations ##

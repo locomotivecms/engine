@@ -1,6 +1,6 @@
 # encoding: utf-8
-module Mongoid #:nodoc:
-  module Document
+module Mongoid #:nodoc
+  module Hierarchy #:nodoc
     module InstanceMethods
       
       def parentize_with_custom_fields(object, association_name)

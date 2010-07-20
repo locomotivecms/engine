@@ -15,7 +15,7 @@ module Models
           acts_as_tree :order => ['position', 'asc']
           
           ## callbacks ##
-          before_validate :reset_parent
+          before_validation :reset_parent
           before_save { |p| p.send(:write_attribute, :parent_id, nil) if p.parent_id.blank? }
           before_save :change_parent
           before_create { |p| p.send(:fix_position, false) }

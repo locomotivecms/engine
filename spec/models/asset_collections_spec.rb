@@ -15,7 +15,7 @@ describe AssetCollection do
       @collection = Factory.build(:asset_collection, :site => site)
       @collection.asset_custom_fields.build :label => 'My Description', :_alias => 'description', :kind => 'Text'
       @collection.asset_custom_fields.build :label => 'Active', :kind => 'Boolean'
-      # AssetCollection.collection.logger = Logger.new($stdout)
+      # AssetCollection.logger = Logger.new($stdout)
       # AssetCollection.db.connection.instance_variable_set(:@logger, Logger.new($stdout))
     end
     
@@ -143,7 +143,7 @@ describe AssetCollection do
     
     context 'managing from hash' do
             
-      it 'should add new field' do
+      it 'adds new field' do
         @collection.asset_custom_fields.clear
         @collection.asset_custom_fields.build :label => 'Title'
         @collection.asset_custom_fields_attributes = { '0' => { 'label' => 'A title', 'kind' => 'String' }, '-1' => { 'label' => 'Tagline', 'kind' => 'String' } }
@@ -152,12 +152,12 @@ describe AssetCollection do
         @collection.asset_custom_fields.last.label.should == 'Tagline'
       end
             
-      it 'should update/remove fields' do        
+      it 'updates/removes fields' do
         @collection.asset_custom_fields.build :label => 'Title', :kind => 'String'
         @collection.save; @collection = AssetCollection.first
         @collection.update_attributes(:asset_custom_fields_attributes => { 
-          '0' => { 'label' => 'My Description', 'kind' => 'Text', '_destroy' => "1" }, 
-          '1' => { 'label' => 'Active', 'kind' => 'Boolean', '_destroy' => "0" },
+          '0' => { 'label' => 'My Description', 'kind' => 'Text', '_destroy' => '1' }, 
+          '1' => { 'label' => 'Active', 'kind' => 'Boolean', '_destroy' => '0' },
           '2' => { 'label' => 'My Title !', 'kind' => 'String' },
           'new_record' => { 'label' => 'Published at', 'kind' => 'String' } 
         })

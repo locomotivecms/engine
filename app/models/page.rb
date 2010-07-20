@@ -21,7 +21,7 @@ class Page
   embeds_many :parts, :class_name => 'PagePart'
     
   ## callbacks ##
-  before_validate :normalize_slug
+  before_validation :normalize_slug
   before_save { |p| p.fullpath = p.fullpath(true) }
   before_destroy :do_not_remove_index_and_404_pages
   

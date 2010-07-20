@@ -5,13 +5,13 @@ en:
   
   errors:
       messages:
-        domain_taken: "{{value}} is already taken"
-        invalid_domain: "{{value}} is invalid"
+        domain_taken: "%{value} is already taken"
+        invalid_domain: "%{value} is invalid"
         missing_content_for_layout: "should contain 'content_for_layout' liquid tag"
         needs_admin_account: "One admin account is required at least"
         protected_page: "You can not remove index or 404 pages"
         extname_changed: "New file does not have the original extension"
-        array_too_short: "is too small (minimum element number is {{count}})"
+        array_too_short: "is too small (minimum element number is %{count})"
         liquid_syntax_error: "Syntax error in page parts, please check the syntax"
         
   attributes:

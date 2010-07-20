@@ -20,7 +20,7 @@ class ContentType
   end
 
   ## callbacks ##
-  before_validate :normalize_slug
+  before_validation :normalize_slug
   before_save :set_default_values
   
   ## validations ##

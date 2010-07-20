@@ -3,9 +3,9 @@ $:.unshift File.expand_path(File.dirname(__FILE__))
 require 'active_support'
 require 'carrierwave/orm/mongoid'
 
-require 'custom_fields/extensions/mongoid/document'
+require 'custom_fields/extensions/mongoid/hierarchy'
 require 'custom_fields/extensions/mongoid/associations/proxy'
-require 'custom_fields/extensions/mongoid/associations/has_many_related'
+require 'custom_fields/extensions/mongoid/associations/references_many'
 require 'custom_fields/extensions/mongoid/associations/embeds_many'
 require 'custom_fields/types/default'
 require 'custom_fields/types/string'

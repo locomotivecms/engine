@@ -20,7 +20,7 @@ module CustomFields
     #
     # company.employee_custom_fields.build :label => 'His/her position', :_alias => 'position', :kind => 'String'
     #
-    # company.employees.build :name => 'Mickael Scott', :position => 'Regional manager'
+    # company.employees.build :name => 'Michael Scott', :position => 'Regional manager'
     #
     module ClassMethods
       
