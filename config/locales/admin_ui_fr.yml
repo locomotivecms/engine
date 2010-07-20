@@ -33,7 +33,7 @@ fr:
 
     shared:
       header:
-        welcome: Bonjour, {{name}}
+        welcome: Bonjour, %{name}
         see: Voir le site web
         logout: Se déconnecter
       menu:
@@ -47,7 +47,7 @@ fr:
         site: Site
         theme_assets: Fichiers Thème
       footer:
-        who_is_behind: "Service développé par {{development}} et désigné par <a href=\"http://www.sachagreif.com\">Sacha Greif</a>"
+        who_is_behind: "Service développé par %{development} et désigné par <a href=\"http://www.sachagreif.com\">Sacha Greif</a>"
       form_actions:
         back: Retour sans sauvegarder
         create: Créer
@@ -98,7 +98,7 @@ fr:
       index:
         title: Liste des pages
         help: "Les pages sont organisées sous forme d'un arbre. Vous pouvez classes les pages ainsi que les dossiers."
-        no_items: "Il n'existe pas de page. Vous pouvez commencer par créer une <a href='{{url}}'>ici</a>."
+        no_items: "Il n'existe pas de page. Vous pouvez commencer par créer une <a href='%{url}'>ici</a>."
         new: nouvelle page
         lastest_items: Dernières pages
       new:
@@ -123,7 +123,7 @@ fr:
       index:
         title: Liste gabarits
         help: "Les gabarits permettent de définir le squelette d'une page (1, 2 ou plusieurs colonnes)."
-        no_items: "Il n'existe pas de gabarit. Vous pouvez commencer par créer un <a href='{{url}}'>ici</a>."
+        no_items: "Il n'existe pas de gabarit. Vous pouvez commencer par créer un <a href='%{url}'>ici</a>."
         new: nouveau gabarit
       new:
         title: Nouveau gabarit
@@ -139,7 +139,7 @@ fr:
       index:
         title: Liste des snippets
         help: "Les snippets sont des bouts de code HTML qui se répetent à travers le site (tel que le bas-de-page par exemple)."
-        no_items: "Il n'existe pas de snippet. Vous pouvez commencer par créer un <a href='{{url}}'>ici</a>."
+        no_items: "Il n'existe pas de snippet. Vous pouvez commencer par créer un <a href='%{url}'>ici</a>."
         new: nouveau snippet
       new:
         title: "Nouveau snippet"
@@ -188,13 +188,13 @@ fr:
         images: Images
         flashes: Flash
         fonts: Polices
-        no_items: "Il n'existe pas de fichiers. Vous pouvez commencer par créer un <a href='{{url}}'>ici</a>."
+        no_items: "Il n'existe pas de fichiers. Vous pouvez commencer par créer un <a href='%{url}'>ici</a>."
       new:
         title: Nouveau fichier
         help: "Vous avez le choix de soit uploader n'importe quel fichier ou bien soit de copier/coller du code css ou javascript."
       edit:
-        title: "Edition {{file}}"
-        help: "Vous pouvez utiliser ce fichier grâce a l'url suivante: {{url}}"
+        title: "Edition %{file}"
+        help: "Vous pouvez utiliser ce fichier grâce a l'url suivante: %{url}"
       form:
         choose_file: Choisir fichier
         choose_plain_text: Passer en mode texte
@@ -207,7 +207,7 @@ fr:
         title: Collections
         help: "Le nom de la collection est modifiable en cliquant dessus. Vous pouvez personnaliser une collection en ajoutant d'autres champs à vos médias."
         new: nouvelle collection
-        no_items: "Il n'existe pas de collections. Vous pouvez commencer par créer une <a href='{{url}}'>ici</a>."
+        no_items: "Il n'existe pas de collections. Vous pouvez commencer par créer une <a href='%{url}'>ici</a>."
       new:
         title: Nouvelle collection
         help: "Pour le moment, veuillez rentrer le nom. Les autres options viendront dans le formulaire suivant."
@@ -215,7 +215,7 @@ fr:
         help: "Le nom de la collection est modifiable en cliquant dessus. Vous pouvez personnaliser une collection en ajoutant d'autres champs à vos médias."
         add_asset: ajouter média
         destroy: supprimer collection
-        no_items: "Il n'existe pas de médias. Vous pouvez commencer par créer un <a href='{{url}}'>ici</a>."
+        no_items: "Il n'existe pas de médias. Vous pouvez commencer par créer un <a href='%{url}'>ici</a>."
         ask_for_name: "Veuillez entrer le nouveau nom"
   
     assets:
@@ -244,7 +244,7 @@ fr:
   
     contents:
       index:
-        title: 'Liste des "{{type}}"'
+        title: 'Liste des "%{type}"'
         edit: éditer modèle
         destroy: supprimer modèle
         download: télécharger éléments
@@ -253,11 +253,11 @@ fr:
         lastest_items: "Eléments récents"
         updated_at: "Mis à jour le"
       list:
-        no_items: "Il n'existe pas d'éléments. Vous pouvez commencer par créer un <a href='{{url}}'>ici</a>"
+        no_items: "Il n'existe pas d'éléments. Vous pouvez commencer par créer un <a href='%{url}'>ici</a>"
       new:
-        title: '{{type}} &mdash; nouvel élément' 
+        title: '%{type} &mdash; nouvel élément' 
       edit:
-        title: '{{type}} &mdash; édition élément'
+        title: '%{type} &mdash; édition élément'
         
     image_picker:
       link: Insérer une image dans le code

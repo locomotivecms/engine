@@ -3,7 +3,7 @@ module Mongoid #:nodoc:
   module Associations #:nodoc:
     # Represents an relational one-to-many association with an object in a
     # separate collection or database.
-    class HasManyRelated < Proxy
+    class ReferencesMany < Proxy
       
       def initialize_with_custom_fields(parent, options, target_array = nil)
         if custom_fields?(parent, options.name)

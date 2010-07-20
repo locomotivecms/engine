@@ -22,7 +22,7 @@ describe Layout do
     
     it 'should have 2 parts' do
       @layout.send(:build_parts_from_value)
-      @layout.parts.count.should == 2
+      @layout.parts.size.should == 2
       
       @layout.parts.first.name.should == 'Body'
       @layout.parts.first.slug.should == 'layout'
@@ -38,7 +38,7 @@ describe Layout do
       @layout.pages << page
       @layout.save
     end
-  
+      
     it 'should add parts to pages if layout changes' do
       @layout.value = @layout.value + "..." 
       page = Factory.build(:page, :layout => @layout, :site => nil)

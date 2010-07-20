@@ -34,7 +34,6 @@ Capybara.default_selector = :css
 ActionController::Base.allow_rescue = false
 
 require 'factory_girl'
-require 'spec/factories'
 
 Before do
   Mongoid.master.collections.select { |c| c.name != 'system.indexes' }.each(&:drop)

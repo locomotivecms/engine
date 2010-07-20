@@ -11,7 +11,7 @@ en:
       
     shared:
       header:
-        welcome: Welcome, {{name}}
+        welcome: Welcome, %{name}
         see: See website
         logout: Log out
       menu:
@@ -25,7 +25,7 @@ en:
         site: Site
         theme_assets: Theme files
       footer:
-        who_is_behind: "Service developed by {{development}} and designed by <a href=\"http://www.sachagreif.com\">Sacha Greif</a>"
+        who_is_behind: "Service developed by %{development} and designed by <a href=\"http://www.sachagreif.com\">Sacha Greif</a>"
       form_actions:
         back: Back without saving
         create: Create
@@ -76,7 +76,7 @@ en:
       index:
         title: Listing pages
         help: "Pages are organized as a tree. You can order pages as well as folders"
-        no_items: "There are no pages for now. Just click <a href=\"{{url}}\">here</a> to create the first one."
+        no_items: "There are no pages for now. Just click <a href=\"%{url}\">here</a> to create the first one."
         new: new page
         lastest_items: Lastest pages
       new:
@@ -101,7 +101,7 @@ en:
       index:
         title: Listing layouts
         help: "Layouts give the look of a page (1, 2 or many columns)."
-        no_items: "There are no layouts for now. Just click <a href=\"{{url}}\">here</a> to create the first one."
+        no_items: "There are no layouts for now. Just click <a href=\"%{url}\">here</a> to create the first one."
         new: new layout
       new:
         title: New layout
@@ -117,7 +117,7 @@ en:
       index:
         title: Listing snippets
         help: "Snippets are portion of HTML code which can be found at different places within the site (such as a footer)."
-        no_items: "There are no snippets for now. Just click <a href=\"{{url}}\">here</a> to create the first one."
+        no_items: "There are no snippets for now. Just click <a href=\"%{url}\">here</a> to create the first one."
         new: new snippet
       new:
         title: New snippet
@@ -166,13 +166,13 @@ en:
         fonts: Fonts
         images: Images
         flashes: Flash
-        no_items: "There are no files for now. Just click <a href=\"{{url}}\">here</a> to create the first one."
+        no_items: "There are no files for now. Just click <a href=\"%{url}\">here</a> to create the first one."
       new:
         title: New file
         help: "You have the choice to either upload any file or to copy/paste a stylesheet or a javascript in plain text."
       edit:
-        title: "Editing {{file}}"
-        help: "You can use it by copying/pasting the following url: {{url}}"
+        title: "Editing %{file}"
+        help: "You can use it by copying/pasting the following url: %{url}"
       form:
         picker_link: Insert a file into the code
         choose_file: Choose file
@@ -186,7 +186,7 @@ en:
         title: Asset collections
         help: "The collection name can be updated by clicking it. You can customize assets in a collection by adding new fields."
         new: new collection
-        no_items: "There are no collections for now. Just click <a href=\"{{url}}\">here</a> to create the first one."
+        no_items: "There are no collections for now. Just click <a href=\"%{url}\">here</a> to create the first one."
       new:
         title: New collection
         help: "For now, just type a name. Other settings will come once the form is sent."
@@ -194,7 +194,7 @@ en:
         help: "The collection name can be updated by clicking it. You can customize assets in a collection by adding new fields."
         add_asset: add asset
         destroy: remove collection
-        no_items: "There are no assets for now. Just click <a href=\"{{url}}\">here</a> to create the first one."
+        no_items: "There are no assets for now. Just click <a href=\"%{url}\">here</a> to create the first one."
         ask_for_name: "Please type the new name"
         
     assets:
@@ -223,7 +223,7 @@ en:
         
     contents:
       index:
-        title: 'Listing "{{type}}"'
+        title: 'Listing "%{type}"'
         edit: edit model
         destroy: remove model
         download: download items
@@ -232,11 +232,11 @@ en:
         lastest_items: "Lastest items"
         updated_at: "Updated at"
       list:
-        no_items: "There are no items for now. Just click <a href=\"{{url}}\">here</a> to create the first one."
+        no_items: "There are no items for now. Just click <a href=\"%{url}\">here</a> to create the first one."
       new:
-        title: '{{type}} &mdash; new item' 
+        title: '%{type} &mdash; new item' 
       edit:
-        title: '{{type}} &mdash; editing item'
+        title: '%{type} &mdash; editing item'
         
     image_picker:
       link: Insert an image into the code

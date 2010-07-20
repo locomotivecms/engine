@@ -13,7 +13,7 @@ module Models
           
           field :content_type_visible_column
           
-          before_validate :set_slug_if_templatized
+          before_validation :set_slug_if_templatized
         end
         
         module InstanceMethods

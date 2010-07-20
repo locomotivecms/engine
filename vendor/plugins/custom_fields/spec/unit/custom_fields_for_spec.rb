@@ -30,7 +30,7 @@ describe CustomFields::CustomFieldsFor do
       before(:each) do
         @project = Project.new
       end
-
+  
       it 'has custom fields for embedded collection' do
         @project.respond_to?(:task_custom_fields).should be_true
       end
@@ -87,7 +87,7 @@ describe CustomFields::CustomFieldsFor do
       end
       
       it 'returns a new document whose Class is different from the original one' do
-        @person.class.should_not == Task
+        @person.class.should_not == Person
       end
       
       it 'returns a new document with custom field' do

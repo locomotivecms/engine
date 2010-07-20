@@ -11,7 +11,7 @@ class LiquidTemplate
   belongs_to_related :site
   
   ## callbacks ##
-  before_validate :normalize_slug
+  before_validation :normalize_slug
   
   ## validations ##
   validates_presence_of   :site, :name, :slug, :value
