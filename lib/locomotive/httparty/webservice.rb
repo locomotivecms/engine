@@ -15,7 +15,7 @@ module Locomotive
 
         path ||= '/'
 
-        puts "[WebService] consuming #{path}, #{options.inspect}"
+        # puts "[WebService] consuming #{path}, #{options.inspect}"
 
         self.get(path, options).try(:underscore_keys)
       end

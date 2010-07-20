@@ -29,7 +29,7 @@ module Locomotive
           
           source = context.registers[@site_or_page.to_sym]
           
-          puts "#{@site_or_page.to_sym} / source = #{source.inspect}"
+          # puts "#{@site_or_page.to_sym} / source = #{source.inspect}"
           
           if source.respond_to?(:name) # site ?
             source = source.pages.index.first # start from home page
