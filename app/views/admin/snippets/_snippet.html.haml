@@ -1,7 +1,7 @@
 %li
   %strong= link_to snippet.name, edit_admin_snippet_path(snippet)
   .more
-    %span= t('.updated_at')
+    %span!= t('.updated_at')
     = l snippet.updated_at, :format => :short
-    
+
     = link_to image_tag('admin/list/icons/trash.png'), admin_snippet_path(snippet), :class => 'remove', :confirm => t('admin.messages.confirm'), :method => :delete

@@ -1,7 +1,7 @@
 %h1= link_to current_site.name, '#'
 
 #global-actions-bar
-  = preserve(t('.welcome', :name => link_to(current_admin.name, edit_admin_my_account_url)))
+  != t('.welcome', :name => link_to(current_admin.name, edit_admin_my_account_url))
   %span= '|'
   = link_to t('.see'), main_site_url
   %span= '|'

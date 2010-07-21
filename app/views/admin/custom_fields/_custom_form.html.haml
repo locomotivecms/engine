@@ -3,7 +3,7 @@
 = form.inputs :name => title || :attributes do
   - form.object.custom_fields.each do |field|
     - required = highlighted_field_name == field._name
-  
+
     - if field.string?
       = form.input field._alias.to_sym, :label => field.label, :hint => field.hint, :required => required
     - elsif field.text?
@@ -12,7 +12,7 @@
       = form.custom_input field._alias.to_sym, :label => field.label, :hint => field.hint, :css => 'toggle' do
         = form.select field._name.to_sym, field.ordered_category_items.collect { |item| [item.name, item.id] }
         %button.button.light.edit-categories-link{ :type => 'button', :'data-url' => edit_admin_custom_field_path(parent.model_name.underscore, parent.slug, field) }
-          %span= t('.edit_categories')
+          %span!= t('.edit_categories')
     - elsif field.boolean?
       = form.custom_input field._alias.to_sym, :label => field.label, :hint => field.hint, :css => 'toggle' do
         = form.check_box field._alias.to_sym
@@ -27,5 +27,5 @@
               = link_to File.basename(form.object.send(field._name).url), form.object.send(field._name).url
             %span
               &nbsp;/&nbsp;
-              = t('.delete_file')
+              != t('.delete_file')
               = form.check_box :"remove_#{field._name}"

@@ -1,5 +1,5 @@
 - if contents.empty?
-  %p.no-items= t('.no_items', :url => new_admin_content_url(@content_type.slug))
+  %p.no-items!= t('.no_items', :url => new_admin_content_url(@content_type.slug))
 - else
   %ul{ :id => 'contents-list', :class => "list #{'sortable' if @content_type.order_by == '_position_in_list'}" }
     - contents.each do |content|
@@ -9,7 +9,7 @@
           = link_to content.send(@content_type.highlighted_field_name), edit_admin_content_path(@content_type.slug, content)
         .more
           %span
-            = t('admin.contents.index.updated_at')
+            != t('admin.contents.index.updated_at')
           = l content.updated_at, :format => :short rescue 'n/a'
-          
+
           = link_to image_tag('admin/list/icons/trash.png'), admin_content_path(@content_type.slug, content), :class => 'remove', :confirm => t('admin.messages.confirm'), :method => :delete

@@ -6,10 +6,10 @@
 - content_for :buttons do
   = admin_button_tag :new, new_admin_layout_url, :class => 'new'
 
-%p= t('.help')
+%p!= t('.help')
 
 - if @layouts.empty?
-  %p.no-items= t('.no_items', :url => new_admin_layout_url)
+  %p.no-items!= t('.no_items', :url => new_admin_layout_url)
 - else
   %ul#layouts-list.list
     = render @layouts

@@ -1,15 +1,15 @@
 #theme-images.asset-picker
-  %h2= t('.title')
-  
+  %h2!= t('.title')
+
   .actions
     = admin_button_tag t('admin.theme_assets.index.new'), admin_theme_assets_url(:json), :class => 'button small add', :id => 'upload-link'
-  
+
   - if @image_assets.empty?
-    %p.no-items= t('.no_items')
+    %p.no-items!= t('.no_items')
 
   %ul.assets
     = render 'asset', :asset => current_site.theme_assets.build, :edit => false
-    
+
     = render :partial => 'asset', :collection => @image_assets, :locals => { :per_row => 3, :edit => false }
-    
+
     %li.clear

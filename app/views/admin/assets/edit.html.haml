@@ -6,7 +6,7 @@
 - content_for :buttons do
   = admin_button_tag t('admin.asset_collections.edit.add_asset'), new_admin_asset_url(@asset_collection), :class => 'new'
 
-%p= t('.help')
+%p!= t('.help')
 
 = semantic_form_for @asset, :url => admin_asset_url(@asset_collection, @asset), :html => { :multipart => true, :class => 'save-with-shortcut' } do |form|
 

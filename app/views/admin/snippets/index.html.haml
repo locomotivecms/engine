@@ -6,10 +6,10 @@
 - content_for :buttons do
   = admin_button_tag :new, new_admin_snippet_url, :class => 'new'
 
-%p= t('.help')
+%p!= t('.help')
 
 - if @snippets.empty?
-  %p.no-items= t('.no_items', :url => new_admin_snippet_url)
+  %p.no-items!= t('.no_items', :url => new_admin_snippet_url)
 - else
   %ul#snippets-list.list
     = render @snippets

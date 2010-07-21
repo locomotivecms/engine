@@ -5,7 +5,7 @@
   = f.input :name, :required => false
 
 = f.foldable_inputs :name => :access_points, :class => 'editable-list off' do
-  
+
   = f.custom_input :subdomain, :css => 'path' do
     %em
       http://
@@ -13,8 +13,8 @@
     \.
     %em
       = application_domain
-  
-  - @site.domains_without_subdomain.each_with_index do |name, index|  
+
+  - @site.domains_without_subdomain.each_with_index do |name, index|
     %li{ :class => "item added #{'last' if index == @site.domains.size - 1}"}
       %em
         http://
@@ -23,7 +23,7 @@
       = error_on_domain(@site, name)
       %span.actions
         = link_to image_tag('admin/form/icons/trash.png'), '#', :class => 'remove first', :confirm => t('admin.messages.confirm')
-        
+
   %li.item.template
     %em
       http://
@@ -32,4 +32,4 @@
     %span.actions
       = link_to image_tag('admin/form/icons/trash.png'), '#', :class => 'remove first', :confirm => t('admin.messages.confirm')
       %button{ :class => 'button light add', :type => 'button' }
-        %span= t('admin.buttons.new_item')
+        %span!= t('admin.buttons.new_item')

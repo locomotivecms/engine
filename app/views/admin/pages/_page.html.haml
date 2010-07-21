@@ -3,14 +3,14 @@
     = image_tag 'admin/list/icons/node_closed.png', :class => 'toggler'
   %em
   %strong= link_to truncate(page.title, :length => 80), edit_admin_page_url(page)
-  
-  .more    
-    %span= t('.updated_at')
+
+  .more
+    %span!= t('.updated_at')
     = l page.updated_at, :format => :short
-		
+
     - if not page.index? and not page.not_found?
       = link_to image_tag('admin/list/icons/trash.png'), admin_page_url(page), :class => 'remove', :confirm => t('admin.messages.confirm'), :method => :delete
-    
+
   - if not page.children.empty?
     %ul{ :id => "folder-#{page._id}", :class => "folder depth-#{(page.depth || 0) + 1}", :data_url => sort_admin_page_url(page), :style => "display: #{cookies["folder-#{page._id}"] || 'block'}" }
       = render page.children

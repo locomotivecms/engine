@@ -10,27 +10,27 @@
 
   - if @theme_asset.new_record? || @theme_asset.stylesheet_or_javascript?
     %span.alt
-      = t('admin.theme_assets.form.choose_plain_text')
+      != t('admin.theme_assets.form.choose_plain_text')
 
 - if allow_plain_text_editing?(@theme_asset)
   #text-selector{ :class => "selector #{'hidden' if !@theme_asset.performing_plain_text?}", :style => "#{'display: none' if !@theme_asset.performing_plain_text?}" }
     = f.inputs :name => :code, :class => 'inputs code' do
-      
+
       - if @theme_asset.new_record?
         = f.input :slug
-        
+
         = f.custom_input :content_type do
           = f.select :content_type, ["stylesheet", "javascript"]
-          
+
       = f.custom_input :plain_text, :css => 'full', :with_label => false do
         %code{ :class => (@theme_asset.size && @theme_asset.size > 40000 ? 'nude' : (@theme_asset.content_type || 'stylesheet')) }
           = f.text_area :plain_text
         .more
           = link_to t('admin.image_picker.link'), admin_theme_assets_path, :id => 'image-picker-link'
-            
+
     %span.alt
-      = t('admin.theme_assets.form.choose_file')
-      
+      != t('admin.theme_assets.form.choose_file')
+
 - if @theme_asset.image?
   = f.foldable_inputs :name => "#{t('formtastic.titles.preview')} #{image_dimensions_and_size(@theme_asset)}", :class => 'preview' do
     %li

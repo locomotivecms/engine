@@ -6,13 +6,13 @@
 
   .inner
     = login_flash_message
-    
+
     = f.inputs do
       = f.input :password, :label => t('.password'), :required => false
       = f.input :password_confirmation, :label => t('.password_confirmation'), :required => false
-  
+
     %p.link
-      = link_to t('.link'), new_admin_session_path
-        
+      = link_to preserve(t('.link')), new_admin_session_path
+
   .footer
     = login_button_tag t('admin.buttons.change_password')

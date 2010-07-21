@@ -3,7 +3,7 @@
     .header
       %p= link_to t('admin.pages.index.new'), new_admin_page_url
     .inner
-      %h2= t('admin.pages.index.lastest_items')
+      %h2!= t('admin.pages.index.lastest_items')
       %ul
         - current_site.pages.latest_updated.each do |page|
           %li
@@ -16,12 +16,12 @@
       .header
         %p= link_to t('admin.contents.index.new'), new_admin_content_url(content_type.slug)
       .inner
-        %h2= t('admin.contents.index.lastest_items')
+        %h2!= t('admin.contents.index.lastest_items')
         %ul
           - content_type.contents.latest_updated.each do |content|
             %li
               = link_to truncate(content.send(content_type.highlighted_field_name), :length => 30), edit_admin_content_path(content_type.slug, content)
               %span= time_ago_in_words(content.updated_at)
-        
+
 .action
   = link_to content_tag(:span, t('admin.content_types.index.new')), new_admin_content_type_url

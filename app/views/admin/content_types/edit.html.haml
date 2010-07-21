@@ -7,12 +7,12 @@
   = admin_button_tag :show_items, admin_contents_url(@content_type.slug), :class => 'show'
   = admin_button_tag :new_item, new_admin_content_url(@content_type.slug), :class => 'new'
 
-%p= t('.help')
+%p!= t('.help')
 
 = semantic_form_for @content_type, :url => admin_content_type_url(@content_type) do |f|
 
   = render 'form', :f => f
-  
+
   = render 'admin/shared/form_actions', :back_url => admin_contents_url(@content_type.slug), :button_label => :update
-  
+
 = render 'admin/custom_fields/edit_field'
