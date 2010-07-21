@@ -1,14 +1,14 @@
 en:
-  admin:    
+  admin:
     buttons:
       login: Log in
       send_password: Send
       change_password: Update
       new_item: "+ add"
-                
+
     messages:
       confirm: Are you sure ?
-      
+
     shared:
       header:
         welcome: Welcome, %{name}
@@ -30,7 +30,7 @@ en:
         back: Back without saving
         create: Create
         update: Update
-        
+
     custom_fields:
       edit:
         title: Editing custom field
@@ -40,7 +40,7 @@ en:
         category: Select
         boolean: Checkbox
         date: Date
-        file: File        
+        file: File
       text_formatting:
         none: None
         html: HTML
@@ -53,7 +53,7 @@ en:
       custom_form:
         edit_categories: Edit options
         delete_file: Delete file
-        
+
     sessions:
       new:
         title: Login
@@ -70,8 +70,8 @@ en:
         title: Update my password
         link: "&rarr; Back to login page"
         password: "Your new password"
-        password_confirmation: "Confirmation of your new password"        
-        
+        password_confirmation: "Confirmation of your new password"
+
     pages:
       index:
         title: Listing pages
@@ -96,7 +96,7 @@ en:
           day: 1 day
           week: 1 week
           month: 1 month
-        
+
     layouts:
       index:
         title: Listing layouts
@@ -127,28 +127,28 @@ en:
         help: "Fill in the form below to update your snippet."
       snippet:
         updated_at: Updated at
-        
+
     sites:
       new:
         title: New site
         help: "Fill in the form below to create your new site."
-        
+
     current_sites:
       edit:
         new_membership: add account
         help: "The site name can be updated by clicking it."
         ask_for_name: "Please type the new site name"
-        
+
     memberships:
       new:
         title: New membership
         help: "Please give the account email to add. If it does not exist, you will be redirected to the account creation form."
-                
+
     accounts:
       new:
         title: New account
         help: "Fill in the form below to add a new account."
-        
+
     my_accounts:
       edit:
         help: "Your name can be updated by clicking it."
@@ -156,7 +156,7 @@ en:
         en: English
         fr: French
         ask_for_name: "Please type your new name"
-        
+
     theme_assets:
       index:
         title: Listing theme files
@@ -180,7 +180,7 @@ en:
       images:
         title: Listing images
         no_items: "There are no files for now."
-        
+
     asset_collections:
       index:
         title: Asset collections
@@ -196,7 +196,7 @@ en:
         destroy: remove collection
         no_items: "There are no assets for now. Just click <a href=\"%{url}\">here</a> to create the first one."
         ask_for_name: "Please type the new name"
-        
+
     assets:
       new:
         title: New asset
@@ -204,7 +204,7 @@ en:
       edit:
         title: Edit asset
         help: "Fill in the form below to update your asset."
-    
+
     content_types:
       index:
         new: new model
@@ -220,27 +220,27 @@ en:
         order_by:
           updated_at: 'By "updated at" date'
           position_in_list: Manually
-        
+
     contents:
       index:
         title: 'Listing "%{type}"'
         edit: edit model
         destroy: remove model
         download: download items
-        new: new item        
+        new: new item
         category_noname: "No name"
         lastest_items: "Lastest items"
         updated_at: "Updated at"
       list:
         no_items: "There are no items for now. Just click <a href=\"%{url}\">here</a> to create the first one."
       new:
-        title: '%{type} &mdash; new item' 
+        title: '%{type} &mdash; new item'
       edit:
         title: '%{type} &mdash; editing item'
-        
+
     image_picker:
       link: Insert an image into the code
-        
+
   formtastic:
     titles:
       information: General information
@@ -268,7 +268,7 @@ en:
       custom_fields:
         field:
           _alias: Alias
-          
+
     hints:
       page:
         published: "Only authenticated accounts can view unpublished pages."
@@ -277,8 +277,8 @@ en:
       snippet:
         slug: "You need to know it in order to insert the snippet inside a page or a layout"
       site:
-        meta_keywords: "Meta keywords used within the head tag of the page. They are separeted by an empty space. Required for SEO." 
-        meta_description: "Meta description used within the head tag of the page. Required for SEO."         
+        meta_keywords: "Meta keywords used within the head tag of the page. They are separeted by an empty space. Required for SEO."
+        meta_description: "Meta description used within the head tag of the page. Required for SEO."
         domain_name: "ex: locomotiveapp.org"
       theme_asset:
         slug: "You do not need to add the extension file (.css or .js)"
@@ -288,4 +288,4 @@ en:
         field:
           _alias: "Property available in liquid templates"
           hint: "Text displayed in the model form just below the field"
-      
+

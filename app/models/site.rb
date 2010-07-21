@@ -34,9 +34,6 @@ class Site
   named_scope :match_domain, lambda { |domain| { :where => { :domains => domain } } }
   named_scope :match_domain_with_exclusion_of, lambda { |domain, site| { :where => { :domains => domain, :_id.ne => site.id } } }
     
-  ## behaviours ##
-  liquid_methods :name, :meta_keywords, :meta_description
-  
   ## methods ##
 
   def accounts

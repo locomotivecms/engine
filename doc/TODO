@@ -1,8 +1,8 @@
-BOARD:  
+BOARD:
 
 - refactor slugify method (use parameterize + create a module)
 - send email when new content added thru api
-    
+
 BACKLOG:
 
 - rack app to map pretty asset url to S3

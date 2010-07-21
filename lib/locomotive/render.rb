@@ -28,8 +28,6 @@ module Locomotive
           path = [path, File.join(dirname, 'content_type_template').gsub(/^\//, '')]
         end
         
-        # TODO: path is not correctly built + find content instance in order to render a 404 page if not found
-        
         if page = current_site.pages.any_in(:fullpath => [*path]).first
           if not page.published? and current_admin.nil?
             page = nil
