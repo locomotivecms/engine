@@ -14,14 +14,14 @@ fr:
       edit:
         title: Changer mon mot de passe
         link: "&rarr; Retour page de connexion"
-        
+
   buttons:
     login: Se connecter
     send_password: Envoyer
     change_password: Changer
 
 fr:
-  admin:    
+  admin:
     buttons:
       login: Se connecter
       send_password: Envoyer
@@ -134,7 +134,7 @@ fr:
         new: nouveau gabarit
       layout:
         updated_at: Mis à jour le
-  
+
     snippets:
       index:
         title: Liste des snippets
@@ -149,28 +149,28 @@ fr:
         help: "Remplissez le formulaire ci-dessous pour mettre à jour votre snippet."
       snippet:
         updated_at: Mis à jour le
-  
+
     sites:
       new:
         title: "Nouveau site"
         help: "Remplissez le formulaire ci-dessous pour créer votre nouveau site."
-  
+
     current_sites:
       edit:
         new_membership: ajouter compte
         help: "Le nom du site est modifiable en cliquant dessus."
         ask_for_name: "Veuillez entrer le nouveau nom"
-  
+
     memberships:
       new:
         title: "Ajout d'un compte"
         help: "Donnez l'adresse email du compte à ajouter. S'il n'existe pas, vous serez redirigé(e) vers le formulaire de création d'un compte."
-  
+
     accounts:
       new:
         title: Nouveau compte
         help: "Remplissez le formulaire ci-dessous pour ajouter un nouveau compte."
-  
+
     my_accounts:
       edit:
         help: "Votre nom est modifiable en cliquant dessus."
@@ -178,7 +178,7 @@ fr:
         en: en Anglais
         fr: en Français
         ask_for_name: "Veuillez entrer le nouveau nom"
-  
+
     theme_assets:
       index:
         title: Liste des fichiers du thème
@@ -194,14 +194,14 @@ fr:
         help: "Vous avez le choix de soit uploader n'importe quel fichier ou bien soit de copier/coller du code css ou javascript."
       edit:
         title: "Edition %{file}"
-        help: "Vous pouvez utiliser ce fichier grâce a l'url suivante: %{url}"
+        help: "Vous pouvez insérer le raccourci suivant dans vos feuilles de style: <strong>%{shortcut_url}</strong> OU utiliser directement l'url : %{url}"
       form:
         choose_file: Choisir fichier
         choose_plain_text: Passer en mode texte
       images:
         title: Liste des images
         no_items: "Il n'y a pas d'images."
-  
+
     asset_collections:
       index:
         title: Collections
@@ -217,7 +217,7 @@ fr:
         destroy: supprimer collection
         no_items: "Il n'existe pas de médias. Vous pouvez commencer par créer un <a href='%{url}'>ici</a>."
         ask_for_name: "Veuillez entrer le nouveau nom"
-  
+
     assets:
       new:
         title: "Nouveau média"
@@ -225,7 +225,7 @@ fr:
       edit:
         title: "Edition média"
         help: "Remplissez le formulaire ci-dessous pour mettre à jour votre média."
-  
+
     content_types:
       index:
         new: nouveau modèle
@@ -241,27 +241,27 @@ fr:
         order_by:
           updated_at: 'Par date de mise à jour'
           position_in_list: Manuellement
-  
+
     contents:
       index:
         title: 'Liste des "%{type}"'
         edit: éditer modèle
         destroy: supprimer modèle
         download: télécharger éléments
-        new: nouvel élément     
+        new: nouvel élément
         category_noname: "Pas de nom"
         lastest_items: "Eléments récents"
         updated_at: "Mis à jour le"
       list:
         no_items: "Il n'existe pas d'éléments. Vous pouvez commencer par créer un <a href='%{url}'>ici</a>"
       new:
-        title: '%{type} &mdash; nouvel élément' 
+        title: '%{type} &mdash; nouvel élément'
       edit:
         title: '%{type} &mdash; édition élément'
-        
+
     image_picker:
       link: Insérer une image dans le code
-  
+
   formtastic:
     titles:
       information: Informations générales
@@ -289,7 +289,7 @@ fr:
       custom_fields:
         field:
           _alias: Alias
-  
+
     hints:
       page:
         published: "Seuls les administrateurs authentifiés peuvent voir une page non publiée."

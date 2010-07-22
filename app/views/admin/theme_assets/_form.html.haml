@@ -7,6 +7,7 @@
 #file-selector{ :class => "selector #{'hidden' if @theme_asset.performing_plain_text?}" }
   = f.inputs :name => :information do
     = f.input :source
+    = f.input :slug
 
   - if @theme_asset.new_record? || @theme_asset.stylesheet_or_javascript?
     %span.alt

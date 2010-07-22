@@ -1,69 +1,81 @@
-$(document).ready(function() {
-	
-	var copyLinkToEditor = function(link, event) {
-		var editor = CodeMirrorEditors[0].editor;
-		var handle = editor.cursorLine(), position = editor.cursorPosition(handle).character;
+$.fn.imagepicker = function(options) {
 
-		editor.insertIntoLine(handle, position, link.attr('href'));
+  var defaults = {
+    insertFn: null
+  };
+  var options = $.extend(defaults, options);
 
-		event.stopPropagation();
-		event.preventDefault();
+  var copyLinkToEditor = function(link, event) {
+    var editor = CodeMirrorEditors[0].editor;
+    var handle = editor.cursorLine(), position = editor.cursorPosition(handle).character;
 
-		$.fancybox.close();
-	}
+    var value = options.insertFn != null ? options.insertFn(link) : link.attr('href');
 
-	var setupUploader = function() {
-		var multipartParams = {};
-		multipartParams[$('meta[name=csrf-param]').attr('content')] = $('meta[name=csrf-token]').attr('content');
+    editor.insertIntoLine(handle, position, value);
 
-		var uploader = new plupload.Uploader({
-			runtimes : (jQuery.browser.webkit == true ? 'flash' : 'html5,flash'),
-			container: 'theme-images',
-			browse_button : 'upload-link',
-			max_file_size : '5mb',
-			url : $('a#upload-link').attr('href'),
-			flash_swf_url : '/javascripts/admin/plugins/plupload/plupload.flash.swf',
-			multipart: true,
-			multipart_params: multipartParams 
-		});
+    event.stopPropagation();
+    event.preventDefault();
 
-		uploader.bind('QueueChanged', function() {
-			uploader.start();
-		});
+    $.fancybox.close();
+  }
 
-		uploader.bind('FileUploaded', function(up, file, response) {
-			var json = JSON.parse(response.response);
+  var setupUploader = function() {
+    var multipartParams = {};
+    multipartParams[$('meta[name=csrf-param]').attr('content')] = $('meta[name=csrf-token]').attr('content');
 
-			if (json.status == 'success') {
-				var asset = $('.asset-picker ul li.new-asset')
-					.clone()
-					.insertBefore($('.asset-picker ul li.clear'))
-					.addClass('asset');
+    var uploader = new plupload.Uploader({
+      runtimes : (jQuery.browser.webkit == true ? 'flash' : 'html5,flash'),
+      container: 'theme-images',
+      browse_button : 'upload-link',
+      max_file_size : '5mb',
+      url : $('a#upload-link').attr('href'),
+      flash_swf_url : '/javascripts/admin/plugins/plupload/plupload.flash.swf',
+      multipart: true,
+      multipart_params: multipartParams
+    });
 
-				asset.find('h4 a').attr('href', json.url).html(json.name).bind('click', function(e) {
-					copyLinkToEditor($(this), e);
-				});
-				asset.find('.image .inside img').attr('src', json.vignette_url);
+    uploader.bind('QueueChanged', function() {
+      uploader.start();
+    });
 
-				if ($('.asset-picker ul li.asset').length % 3 == 0)
-					asset.addClass('last');
+    uploader.bind('FileUploaded', function(up, file, response) {
+      var json = JSON.parse(response.response);
 
-				asset.removeClass('new-asset');
+      if (json.status == 'success') {
+        var asset = $('.asset-picker ul li.new-asset')
+          .clone()
+          .insertBefore($('.asset-picker ul li.clear'))
+          .addClass('asset');
 
-				$('.asset-picker p.no-items').hide();
+        asset.find('h4 a').attr('href', json.url)
+          .attr('data-slug', json.slug)
+          .attr('data-shortcut-url', json.shortcut_url)
+          .html(json.name).bind('click', function(e) {
+          copyLinkToEditor($(this), e);
+        });
+        asset.find('.image .inside img').attr('src', json.vignette_url);
 
-				$('.asset-picker ul').scrollTo($('li.asset:last'), 400);
-			}
-		});
+        if ($('.asset-picker ul li.asset').length % 3 == 0)
+          asset.addClass('last');
 
-		uploader.init();
-	}
+        asset.removeClass('new-asset');
 
-	$('a#image-picker-link').fancybox({
-		'onComplete': function() {
-			setupUploader();
-			
-			$('ul.assets h4 a').bind('click', function(e) { copyLinkToEditor($(this), e); });
-		}
-	});
-});
+        $('.asset-picker p.no-items').hide();
+
+        $('.asset-picker ul').scrollTo($('li.asset:last'), 400);
+      }
+    });
+
+    uploader.init();
+  }
+
+  return this.each(function() {
+    $(this).fancybox({
+      'onComplete': function() {
+        setupUploader();
+
+        $('ul.assets h4 a').bind('click', function(e) { copyLinkToEditor($(this), e); });
+      }
+    });
+  });
+};

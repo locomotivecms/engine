@@ -1,13 +1,10 @@
 BOARD:
 
 - refactor slugify method (use parameterize + create a module)
-- send email when new content added thru api
 
 BACKLOG:
 
-- rack app to map pretty asset url to S3
 - notify accounts when new instance of models (opt): none, one or many accounts. Used for contact form.
-- theme assets: disable version if not image
 - new custom field types:
   - belongs_to => association
 - cucumber features for admin pages
@@ -28,6 +25,7 @@ NICE TO HAVE:
 - page with regexp url ?
 - page redirection (option)
 - automatic update !
+- import / export site
 
 DONE:
 
@@ -65,3 +63,5 @@ x publish event when saving form in ajax (for instance, in order to update accou
 x page templatized (bound to a model)
 x theme asset picker when editing layout / snippet
 x templatized: do not display content with visible / active set to false
+x theme assets: disable version if not image (handled by the new version of Carrierwave)
+x rack app to map pretty asset url to S3 => shortcut urls instead

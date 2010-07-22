@@ -1,38 +1,43 @@
 /* ___ file or text ___ */
 
 var enableFileOrTextToggling = function() {
-	$('div.hidden').hide();
-	
-	$('span.alt').click(function(event) {
-		event.preventDefault();
+  $('div.hidden').hide();
 
-		if ($("div#file-selector").is(":hidden")) {
-			$("div#text-selector").slideUp("normal", function() {
-				$("div#file-selector").slideDown();
-				$("input#theme_asset_performing_plain_text").val(false);
-			});
+  $('span.alt').click(function(event) {
+    event.preventDefault();
+
+    if ($("div#file-selector").is(":hidden")) {
+      $("div#text-selector").slideUp("normal", function() {
+        $("div#file-selector").slideDown();
+        $("input#theme_asset_performing_plain_text").val(false);
+      });
     } else {
-			$("div#file-selector").slideUp("normal", function() {
-				$("div#text-selector").slideDown();
-				$("input#theme_asset_performing_plain_text").val(true);
-			});
+      $("div#file-selector").slideUp("normal", function() {
+        $("div#text-selector").slideDown();
+        $("input#theme_asset_performing_plain_text").val(true);
+      });
     }
-	});
+  });
 }
 
 $(document).ready(function() {
-	enableFileOrTextToggling();
-	
-	$('code.stylesheet textarea').each(function() {
-		addCodeMirrorEditor(null, $(this), ["tokenizejavascript.js", "parsejavascript.js", "parsecss.js"]);
-	});
-	$('code.javascript textarea').each(function() { 
-		addCodeMirrorEditor(null, $(this), ["parsecss.js", "tokenizejavascript.js", "parsejavascript.js"]); 
-	});
-	
-	$('select#theme_asset_content_type').bind('change', function() {
-		var editor = CodeMirrorEditors[0].editor;
-		editor.setParser($(this).val() == 'stylesheet' ? 'CSSParser' : 'JSParser');
-	});
-	
+  enableFileOrTextToggling();
+
+  $('code.stylesheet textarea').each(function() {
+    addCodeMirrorEditor(null, $(this), ["tokenizejavascript.js", "parsejavascript.js", "parsecss.js"]);
+  });
+  $('code.javascript textarea').each(function() {
+    addCodeMirrorEditor(null, $(this), ["parsecss.js", "tokenizejavascript.js", "parsejavascript.js"]);
+  });
+
+  $('select#theme_asset_content_type').bind('change', function() {
+    var editor = CodeMirrorEditors[0].editor;
+    editor.setParser($(this).val() == 'stylesheet' ? 'CSSParser' : 'JSParser');
+  });
+
+  $('a#image-picker-link').imagepicker({
+    insertFn: function(link) {
+      return link.attr('data-shortcut-url');
+    }
+  });
 });

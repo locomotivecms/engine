@@ -1,74 +1,74 @@
 /* ___ application messages ___ */
 
 div.notice {
-	background: transparent url(/images/admin/form/growl-notice.png) repeat-x 0 0;
-	position: relative;
-	width: 100%;
-	height: 90px;
+  background: transparent url(/images/admin/form/growl-notice.png) repeat-x 0 0;
+  position: relative;
+  width: 100%;
+  height: 90px;
 }
 
 div.notice.error, div.notice.alert {
-	background-image: url(/images/admin/form/growl-error.png);
+  background-image: url(/images/admin/form/growl-error.png);
 }
 
 div.notice p {
-	position: relative;
-	top: 35px;
-	margin: 0px;
-	text-align: center;
-	font-size: 1.5em;
-	text-shadow: 1px 1px 1px #333;
-	color: #fff;
+  position: relative;
+  top: 35px;
+  margin: 0px;
+  text-align: center;
+  font-size: 1.5em;
+  text-shadow: 1px 1px 1px #333;
+  color: #fff;
 }
 
 /* ___ list ___ */
 
 p.no-items {
-	padding: 15px 0px;
-	background: transparent url(/images/admin/list/none.png) no-repeat 0 0;
-	text-align: center;
-	color: #9d8963 !important;
-	font-size: 1.1em !important;
+  padding: 15px 0px;
+  background: transparent url(/images/admin/list/none.png) no-repeat 0 0;
+  text-align: center;
+  color: #9d8963 !important;
+  font-size: 1.1em !important;
 }
 
-p.no-items a { 
-	color: #ff2900;
-	text-decoration: none;
+p.no-items a {
+  color: #ff2900;
+  text-decoration: none;
 }
 
 p.no-items a:hover {
-	text-decoration: underline;
+  text-decoration: underline;
 }
 
 ul.list {
-	list-style: none;
-	margin: 0px 0 20px 0;
-	background: white;
+  list-style: none;
+  margin: 0px 0 20px 0;
+  background: white;
 }
 
 ul.list li {
-	height: 31px;
-	margin-bottom: 10px;	
-	position: relative;
-	clear: both;
-	background: transparent url(/images/admin/list/item.png) no-repeat 0 0;
+  height: 31px;
+  margin-bottom: 10px;
+  position: relative;
+  clear: both;
+  background: transparent url(/images/admin/list/item.png) no-repeat 0 0;
 }
 
 ul.list li em {
-	display: block;
-	float: left;
-	background: transparent url(/images/admin/list/item-left.png) no-repeat left 0;
-	height: 31px;
-	width: 18px;
+  display: block;
+  float: left;
+  background: transparent url(/images/admin/list/item-left.png) no-repeat left 0;
+  height: 31px;
+  width: 18px;
 }
 
 ul.list li strong a {
-	position: relative;
-	top: 2px;
-	left: 15px;
-	text-decoration: none;
-	color: #1f82bc;
-	font-size: 0.9em;
+  position: relative;
+  top: 2px;
+  left: 15px;
+  text-decoration: none;
+  color: #1f82bc;
+  font-size: 0.9em;
 }
 
 ul.list.sortable li strong a { left: 10px; }
@@ -76,81 +76,81 @@ ul.list.sortable li strong a { left: 10px; }
 ul.list li strong a:hover { text-decoration: underline; }
 
 ul.list li div.more {
-	position: absolute;
-	top: 3px;
-	right: 15px;
-	font-size: 0.7em;
-	color: #8b8d9a;
+  position: absolute;
+  top: 3px;
+  right: 15px;
+  font-size: 0.7em;
+  color: #8b8d9a;
 }
 
 ul.list li div.more a {
-	margin-left: 10px;
-	position: relative;
-	top: 4px;
+  margin-left: 10px;
+  position: relative;
+  top: 4px;
 }
 
 ul.list li span.handle {
-	position: relative;
-	top: 5px;
-	margin: 0 0 0 15px;
-	cursor: move;
+  position: relative;
+  top: 5px;
+  margin: 0 0 0 15px;
+  cursor: move;
 }
 
 /* ___ assets ___ */
 
 ul.assets {
-	list-style: none;
-	margin: 0px;
-	padding: 0px;
+  list-style: none;
+  margin: 0px;
+  padding: 0px;
 }
 
 ul.assets li.asset {
-	position: relative;
-	float: left;
-	width: 139px;
-	height: 140px;
-	background: transparent url(/images/admin/list/thumb.png) no-repeat 0 0;
-	margin: 0 17px 17px 0;
+  position: relative;
+  float: left;
+  width: 139px;
+  height: 140px;
+  background: transparent url(/images/admin/list/thumb.png) no-repeat 0 0;
+  margin: 0 17px 17px 0;
 }
 
 ul.assets li.asset.last {
-	margin-right: 0px;
+  margin-right: 0px;
 }
 
-ul.assets li.asset h4 { margin: 0px; height: 30px; border-bottom: 1px solid #ccced7; }
+ul.assets li.asset h4 { margin: 0px; height: 30px; border-bottom: 1px solid #ccced7; position: relative; }
 
 ul.assets li.asset h4 a {
-	position: relative;
-	top: 6px;
-	left: 12px;
-	font-weight: bold;
-	font-size: 0.6em;
-	color: #1f82bc;
-	text-decoration: none;
+  position: absolute;
+  top: 7px;
+  left: 12px;
+  font-weight: bold;
+  font-size: 0.6em;
+  color: #1f82bc;
+  text-decoration: none;
 }
 
 ul.assets li.asset h4 a:hover { text-decoration: underline; }
 
 ul.assets li.asset div.image {
-	width: 80px;
-	height: 80px;
-	border: 4px solid #fff;
-	margin: 10px 0 0 24px;
-	background: transparent url(/images/admin/list/empty.png) repeat 0 0;
+  width: 80px;
+  height: 80px;
+  border: 4px solid #fff;
+  margin: 10px 0 0 24px;
+  background: transparent url(/images/admin/list/empty.png) repeat 0 0;
 }
 
 ul.assets li.asset div.image div.inside {
-	display: table-cell;
-	vertical-align: middle;
-	text-align: center;
-	width: 80px;
-	height: 80px;
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+  width: 80px;
+  height: 80px;
 }
 
 ul.assets li.asset div.actions {
-	position: absolute;
-	top: 7px;
-	right: 12px;
+  position: absolute;
+  top: 4px;
+  right: 12px;
 }
 
 /* ___ asset collections ___ */
@@ -164,73 +164,73 @@ div#uploadAssetsInputQueue { display: none; }
 #contents-list li { background: none; }
 
 #contents-list.sortable li em {
-	background-position: left -31px;
-	cursor: move;
+  background-position: left -31px;
+  cursor: move;
 }
 
 #contents-list li strong {
-	margin-left: 18px;
-	display: block;
-	height: 31px;
-	background: transparent url(/images/admin/list/item-right.png) no-repeat right 0;
+  margin-left: 18px;
+  display: block;
+  height: 31px;
+  background: transparent url(/images/admin/list/item-right.png) no-repeat right 0;
 }
 
 
 /* ___ pages ___ */
 
 #pages-list {
-	list-style: none;
-	margin: 0px 0 20px 0;
-	background: white;
+  list-style: none;
+  margin: 0px 0 20px 0;
+  background: white;
 }
 
 #pages-list ul { list-style: none; margin: 10px 0 10px 40px; padding: 0; }
 
 #pages-list li {
-	margin-bottom: 10px;	
-	position: relative;
-	clear: both;
+  margin-bottom: 10px;
+  position: relative;
+  clear: both;
 }
 
 #pages-list li em {
-	display: block;
-	float: left;
-	background: transparent url(/images/admin/list/item-left.png) no-repeat left 0;
-	height: 31px;
-	width: 18px;
+  display: block;
+  float: left;
+  background: transparent url(/images/admin/list/item-left.png) no-repeat left 0;
+  height: 31px;
+  width: 18px;
 }
 
 #pages-list ul.folder li em {
-	background-position: left -31px;
-	cursor: move;
+  background-position: left -31px;
+  cursor: move;
 }
 
 #pages-list ul.folder li.templatized em {
-	background-position: left -62px;
-	cursor: pointer;
+  background-position: left -62px;
+  cursor: pointer;
 }
 
-#pages-list li .toggler { 
-	position: absolute;
-	top: 9px;
-	left: -15px;
-	cursor: pointer;
+#pages-list li .toggler {
+  position: absolute;
+  top: 9px;
+  left: -15px;
+  cursor: pointer;
 }
 
 #pages-list li strong {
-	margin-left: 18px;
-	display: block;
-	height: 31px;
-	background: transparent url(/images/admin/list/item-right.png) no-repeat right 0;
+  margin-left: 18px;
+  display: block;
+  height: 31px;
+  background: transparent url(/images/admin/list/item-right.png) no-repeat right 0;
 }
 
 #pages-list li strong a {
-	position: relative;
-	top: 3px;
-	text-decoration: none;
-	color: #1f82bc;
-	font-size: 0.9em;
-	padding-left: 6px;
+  position: relative;
+  top: 3px;
+  text-decoration: none;
+  color: #1f82bc;
+  font-size: 0.9em;
+  padding-left: 6px;
 }
 
 #pages-list li strong a:hover { text-decoration: underline; }
@@ -238,18 +238,18 @@ div#uploadAssetsInputQueue { display: none; }
 #pages-list li.hidden strong a { font-style: italic; font-weight: normal; }
 
 #pages-list li .more {
-	position: absolute;
-	top: 6px;
-	right: 20px;
-	font-size: 0.7em;
-	color: #8b8d9a;
+  position: absolute;
+  top: 6px;
+  right: 20px;
+  font-size: 0.7em;
+  color: #8b8d9a;
 }
 
 #pages-list li .more a {
-	position: relative;
-	top: 3px;
-	margin-left: 10px;
-	outline: none;
+  position: relative;
+  top: 3px;
+  margin-left: 10px;
+  outline: none;
 }
 
 #pages-list li.not-found { border-top: 1px dotted #bbbbbd; padding-top: 10px; margin-left: 0px; }

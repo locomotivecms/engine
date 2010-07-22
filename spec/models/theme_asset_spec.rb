@@ -64,7 +64,7 @@ describe ThemeAsset do
     
     before(:each) do
       ThemeAsset.any_instance.stubs(:site_id).returns('test')
-      @asset = Factory.build(:theme_asset)
+      @asset = Factory.build(:theme_asset, :site => Factory.build(:site))
       @asset.performing_plain_text = true
       @asset.slug = 'a file'
       @asset.plain_text = "Lorem ipsum"
@@ -82,6 +82,24 @@ describe ThemeAsset do
       @asset.valid?.should be_true
       @asset.javascript?.should be_true
       @asset.source.should_not be_nil
+    end
+    
+    context 'shortcut urls' do
+      
+      before(:each) do
+        @image = Factory.build(:theme_asset, :source => FixturedAsset.open('5k.png'))
+        @image.source.stubs(:url).returns('5k.png')
+        @asset.stubs(:stylesheet?).returns(true)
+        @asset.site.theme_assets.stubs(:where).returns([@image])
+        @asset.plain_text = 'body { background-image: url("/theme/images/5k.png"); } h1 { background-image: url("/images/5k.png"); }'
+        @asset.store_plain_text
+      end
+      
+      it 'replaces shortcut url if present' do
+        @asset.plain_text.should == 'body { background-image: url("/theme/images/5k.png"); } h1 { background-image: url("/images/5k.png"); }'
+        @asset.source.read.should == 'body { background-image: url("5k.png"); } h1 { background-image: url("/images/5k.png"); }'
+      end
+      
     end
     
   end

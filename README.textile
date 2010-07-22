@@ -19,7 +19,7 @@ h2. Gems
 
 Here is a short list of main gems used in the application.
 
-* Rails 3 (beta 3)
+* Rails 3 (beta 4)
 * Mongoid
 * Liquid
 * Devise
@@ -30,11 +30,16 @@ h2. Installation
 
 See the "official website":http://www.locomotiveapp.org
 
+h2. Team
+
+* Developers: "Didier Lafforgue":http://www.nocoffee.fr, "Jacques Crocker":http://www.railsjedi.com
+* UI Designer: "Sacha Greif":http://www.sachagreif.com
+
 h2. Credits
 
-Many thanks to "Sacha Greif":http://www.sachagreif.com for his great work on the user interface and the LocomotiveApp website front page.
-
 "Rodrigo Alvarez":http://blog.codecaster.es/ for his plugin named Congo which gave us a good starting point and for his availability for (very late) tech discussions.
+
+"Emmanuel Grard":http://www.grardesign.com designed the awesome locomotive illustration in the LocomotiveApp.org landing page.
 
 h2. Contact
 

@@ -172,7 +172,7 @@ en:
         help: "You have the choice to either upload any file or to copy/paste a stylesheet or a javascript in plain text."
       edit:
         title: "Editing %{file}"
-        help: "You can use it by copying/pasting the following url: %{url}"
+        help: "You can insert the following shortcut url in your stylesheets: <strong>%{shortcut_url}</strong> OR use the direct url <strong>%{url}</strong>"
       form:
         picker_link: Insert a file into the code
         choose_file: Choose file
