@@ -9,19 +9,19 @@
         #header
           = render 'admin/shared/header'
           = render 'admin/shared/menu'
-      
+
           #submenu
             = yield :submenu
-                
+
         #content
           .inner
-            %h2= title
-        
+            %h2!= title
+
             #local-actions-bar
               &nbsp;
               = yield :buttons
-          
+
             = yield
-    
+
         #footer
           = render 'admin/shared/footer'
