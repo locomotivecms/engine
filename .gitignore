@@ -22,3 +22,4 @@ doc/production.sh
 doc/DONE
 *.gem
 tmp/*
+.rvmrc
