@@ -35,6 +35,10 @@ group :development do
   gem 'mongrel_experimental'
 end
 
+group :test, :development do
+  gem "ruby-debug"
+end
+
 group :test do
   gem 'rspec-rails', '2.0.0.beta.11'
   gem 'factory_girl_rails'
