@@ -9,7 +9,7 @@
 - content_for :buttons do
   = admin_button_tag t('.new_site'), new_admin_site_url, :class => 'new'
 
-%p!= t('.help')
+%p= t('.help')
 
 = semantic_form_for @account, :as => :my_account, :url => admin_my_account_url, :html => { :class => 'save-with-shortcut' } do |f|
 
@@ -19,9 +19,9 @@
   = f.foldable_inputs :name => :credentials do
     = f.input :email
     = f.custom_input :password, :label => :new_password do
-      = f.password_field :password
+      = f.password_field :password, :autocomplete => "off"
     = f.custom_input :password_confirmation, :label => :new_password_confirmation do
-      = f.password_field :password_confirmation
+      = f.password_field :password_confirmation, :autocomplete => "off"
 
   = f.foldable_inputs :name => :sites, :class => 'sites off' do
     - @account.sites.each do |site|
@@ -37,9 +37,10 @@
     = f.custom_input :language, { :css => 'full', :with_label => false } do
       - Locomotive.config.locales.each do |locale|
         %span
-          = image_tag "admin/icons/flags/#{locale}.png"
-          = f.radio_button :locale, locale
-          &nbsp;
-          = t(".#{locale}")
+          %label
+            = image_tag "admin/icons/flags/#{locale}.png"
+            = f.radio_button :locale, locale
+            &nbsp;
+            = t(".#{locale}")
 
   = render 'admin/shared/form_actions', :button_label => :update
