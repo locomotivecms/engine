@@ -5,44 +5,44 @@
 .box-wrapper { display: none; }
 
 #fancybox-inner h2 {
-	border-bottom:1px dotted #BBBBBD;
-	color:#1E1F26;
-	font-size:1.1em;
-	font-weight:bold;
-	padding-bottom:10px;
+  border-bottom:1px dotted #BBBBBD;
+  color:#1E1F26;
+  font-size:1.1em;
+  font-weight:bold;
+  padding-bottom:10px;
 }
 
 #fancybox-inner form.formtastic legend span {
-	background-image: url("/images/admin/form/header-popup.png");
-	width: 453px;
+  background-image: url("/images/admin/form/header-popup.png");
+  width: 453px;
 }
 
 #fancybox-inner form.formtastic ol {
-	background-image: url("/images/admin/form/footer-popup.png");
+  background-image: url("/images/admin/form/footer-popup.png");
 }
 
 #fancybox-inner form.formtastic fieldset ol li label {
-	width: 20%;
+  width: 20%;
 }
 
 #fancybox-inner form.formtastic fieldset ol li p.inline-hints {
-	margin-left: 30%;
+  margin-left: 30%;
 }
 
 #fancybox-inner form.formtastic .editable-list ol {
-	width: 433px;
+  width: 433px;
 }
 
 #fancybox-inner form.formtastic .editable-list li {
-	width: 413px;
+  width: 413px;
 }
 
 #fancybox-inner form.formtastic .editable-list li {
-	background-image: url("/images/admin/form/item-popup.png");
+  background-image: url("/images/admin/form/item-popup.png");
 }
 
-#fancybox-inner form.formtastic .editable-list li.template { 
-	background-image: url("/images/admin/form/big_item-popup.png");
+#fancybox-inner form.formtastic .editable-list li.template {
+  background-image: url("/images/admin/form/big_item-popup.png");
 }
 
 #fancybox-inner p { color:#8B8D9A; font-size:0.8em; }
@@ -60,39 +60,39 @@ div.asset-picker ul li.new-asset { display: none; }
 /* ___ custom fields ___ */
 
 #edit-custom-field {
-	width: 473px;
+  width: 473px;
 }
 
 #edit-custom-field-category {
-	width: 493px;
+  width: 493px;
 }
 
 #edit-custom-field-category .inner {
-	padding: 10px 10px 61px 10px;
+  padding: 10px 10px 61px 10px;
 }
 
 /* ___ form action ___ */
 
 #fancybox-inner .popup-actions {
-	position: absolute;
-	left: 0px;
-	bottom: 0px;
-	height: 61px;
-	width: 100%;
-	background: #8b8d9a;
+  position: absolute;
+  left: 0px;
+  bottom: 0px;
+  height: 61px;
+  width: 100%;
+  background: #8b8d9a;
 }
 
 #fancybox-inner .popup-actions p {
-	padding: 15px;
-	margin: 0px;
-	text-align: right;
+  padding: 15px;
+  margin: 0px;
+  text-align: right;
 }
 
 /*#fancybox-inner .actions a {
-	color: #fff;
-	text-decoration: none;
-	font-size: 0.8em;
-	position: relative;
-	top: 4px;
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.8em;
+  position: relative;
+  top: 4px;
 }*/
 

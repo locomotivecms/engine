@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	
-	$('textarea.html').tinymce(TinyMceDefaultSettings);
-	
+
+  $('textarea.html').tinymce(TinyMceDefaultSettings);
+
 });

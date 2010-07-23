@@ -1,40 +1,40 @@
 /* ___ menu ___ */
 
 ul#menu {
-	list-style: none;
-	margin: 20px 0 0 0px;
-	padding: 0px;
-	background: transparent url(/images/admin/menu/gray-border.png) no-repeat 0 bottom;
-	height: 41px;
+  list-style: none;
+  margin: 20px 0 0 0px;
+  padding: 0px;
+  background: transparent url(/images/admin/menu/gray-border.png) no-repeat 0 bottom;
+  height: 41px;
 }
 
 body.assets ul#menu { background-image: url(/images/admin/menu/green-border.png); }
 body.settings ul#menu { background-image: url(/images/admin/menu/blue-border.png); }
 
 ul#menu li {
-	float: left;
-	height: 40px;
+  float: left;
+  height: 40px;
 }
 
 ul#menu li a {
-	display: inline-block;
-	padding: 13px 55px 7px 5px;
-	margin-left: 15px;
-	text-decoration: none;
-	color: #787a89;
-	text-shadow: 1px 1px 1px #c5cfd1;
-	font-size: 0.8em;
-	outline: none;
-	height: 19px;
+  display: inline-block;
+  padding: 13px 55px 7px 5px;
+  margin-left: 15px;
+  text-decoration: none;
+  color: #787a89;
+  text-shadow: 1px 1px 1px #c5cfd1;
+  font-size: 0.8em;
+  outline: none;
+  height: 19px;
 }
 
-ul#menu li a em { 
-	display: inline-block;	
-	width: 15px;
-	height: 12px;
-	position: relative;
-	top: 2px;
-	margin-right: 4px;
+ul#menu li a em {
+  display: inline-block;
+  width: 15px;
+  height: 12px;
+  position: relative;
+  top: 2px;
+  margin-right: 4px;
 }
 
 
@@ -75,84 +75,84 @@ ul#menu li.clear { float: none; height: 1px; }
 /* ___ submenu ___ */
 
 #submenu {
-	background: transparent url(/images/admin/menu/shadow.png) repeat-y 0 0;
-	height: 60px;
-	position: relative;
+  background: transparent url(/images/admin/menu/shadow.png) repeat-y 0 0;
+  height: 60px;
+  position: relative;
 }
 
 #submenu div.action {
-	position: absolute;
-	top: 18px;
-	right: 22px;
+  position: absolute;
+  top: 18px;
+  right: 22px;
 }
 
 #submenu div.action a {
-	display: block;
-	float: left;
-	height: 20px;
-	color: white;
-	text-decoration: none;
-	font-size: 0.7em;
-	padding-left: 26px;
-	background: transparent url(../../images/admin/buttons/add-left.png) no-repeat 0 0;
-	outline: none;
+  display: block;
+  float: left;
+  height: 20px;
+  color: white;
+  text-decoration: none;
+  font-size: 0.7em;
+  padding-left: 26px;
+  background: transparent url(../../images/admin/buttons/add-left.png) no-repeat 0 0;
+  outline: none;
 }
 
 #submenu div.action a:hover span { text-decoration: underline; }
 
 #submenu div.action a span {
-	display: inline-block;	
-	height: 13px;
-	background: transparent url(../../images/admin/buttons/add-right.png) no-repeat right 0;
-	padding: 1px 12px 10px 0px;
-	text-shadow: 1px 1px 1px #000;
+  display: inline-block;
+  height: 13px;
+  background: transparent url(../../images/admin/buttons/add-right.png) no-repeat right 0;
+  padding: 1px 12px 10px 0px;
+  text-shadow: 1px 1px 1px #000;
 }
 
 #submenu > ul {
-	width: 950px;
-	height: 46px;
-	list-style: none;
-	margin: 0px 8px 0 8px;
-	padding: 14px 0 0 0px;
-	clear: both;
+  width: 950px;
+  height: 46px;
+  list-style: none;
+  margin: 0px 8px 0 8px;
+  padding: 14px 0 0 0px;
+  clear: both;
 }
 
 #submenu > ul > li {
-	display: block;
-	float: left;
-	margin-left: 8px;
-	position: relative;
-	z-index: 999;
+  display: block;
+  float: left;
+  margin-left: 8px;
+  position: relative;
+  z-index: 999;
 }
 
 #submenu > ul > li > a {
-	display: block;
-	float: left;
-	height: 31px;
-	color: white;
-	text-decoration: none;
-	font-size: 0.8em;
-	padding-left: 15px;
-	background: transparent url(../../images/admin/buttons/emboss-left.png) no-repeat 0 0;
-	outline: none;
+  display: block;
+  float: left;
+  height: 31px;
+  color: white;
+  text-decoration: none;
+  font-size: 0.8em;
+  padding-left: 15px;
+  background: transparent url(../../images/admin/buttons/emboss-left.png) no-repeat 0 0;
+  outline: none;
 }
 
 #submenu > ul > li > a span {
-	display: inline-block;	
-	height: 17px;
-	background: transparent url(../../images/admin/buttons/emboss-right.png) no-repeat right 0;
-	padding: 4px 28px 10px 0px;
-	text-shadow: 1px 1px 1px #000;
+  display: inline-block;
+  height: 17px;
+  background: transparent url(../../images/admin/buttons/emboss-right.png) no-repeat right 0;
+  padding: 4px 28px 10px 0px;
+  text-shadow: 1px 1px 1px #000;
 }
 
 #submenu > ul > li.links a span em {
-	display: inline-block;
-	background: transparent url(/images/admin/menu/arrow.png) no-repeat 0 0;
-	width: 16px;
-	height: 9px;
-	position: relative;
-	top: 2px;
-	left: 4px;
+  display: inline-block;
+  background: transparent url(/images/admin/menu/arrow.png) no-repeat 0 0;
+  width: 16px;
+  height: 9px;
+  position: relative;
+  top: 2px;
+  left: 4px;
 }
 
 #submenu > ul > li.on a { background-position: 0 -31px; }
@@ -180,62 +180,62 @@ body.settings #submenu > ul { background: transparent url(/images/admin/menu/blu
 
 /* ___ popup ___ */
 
-#submenu .popup { 
-	z-index: 998;
-	position: absolute;
-	top: 27px;
-	margin-left: -4px;
-	width: 305px; 
-	background: transparent url(/images/admin/menu/popup-footer.png) no-repeat 0 bottom;
-	padding-bottom: 25px;
+#submenu .popup {
+  z-index: 998;
+  position: absolute;
+  top: 27px;
+  margin-left: -4px;
+  width: 305px;
+  background: transparent url(/images/admin/menu/popup-footer.png) no-repeat 0 bottom;
+  padding-bottom: 25px;
 }
 
 #submenu .popup a { color: #1f82bc; text-decoration: none; }
 #submenu .popup a:hover { text-decoration: underline; }
 
 #submenu .popup .header {
-	background: transparent url(/images/admin/menu/popup-header.png) no-repeat 0 0;
-	width: 100%;	
+  background: transparent url(/images/admin/menu/popup-header.png) no-repeat 0 0;
+  width: 100%;
 }
 
 #submenu .popup .header p { margin: 0px 15px; padding: 10px 0 0 0px; }
 #submenu .popup .header p a {
-	font-size: 0.8em;	
-	background: transparent url(/images/admin/menu/icons/add.png) no-repeat left 4px;
-	padding-left: 12px;
+  font-size: 0.8em;
+  background: transparent url(/images/admin/menu/icons/add.png) no-repeat left 4px;
+  padding-left: 12px;
 }
 
 #submenu .popup .inner {
-	background: transparent url(/images/admin/menu/popup-body.png) repeat-y 0 0;	
-	padding: 6px 15px 0px 15px;
+  background: transparent url(/images/admin/menu/popup-body.png) repeat-y 0 0;
+  padding: 6px 15px 0px 15px;
 }
 
 #submenu .popup .inner h2 {
-	font-size: 0.7em;
-	font-weight: bold;
-	color: #1e1f26;
-	border-top: 1px dotted #bbbbbd;
-	padding-top: 6px;
-	margin-bottom: 0px;
+  font-size: 0.7em;
+  font-weight: bold;
+  color: #1e1f26;
+  border-top: 1px dotted #bbbbbd;
+  padding-top: 6px;
+  margin-bottom: 0px;
 }
 
 #submenu .popup .inner ul {
-	list-style-image: url(/images/admin/menu/icons/bullet.png);
-	margin: 0px 0px 0 15px;
+  list-style-image: url(/images/admin/menu/icons/bullet.png);
+  margin: 0px 0px 0 15px;
 }
 
 #submenu .popup .inner ul li {
-	position: relative;
+  position: relative;
 }
 
 #submenu .popup .inner ul li a {
-	font-size: 0.7em;
+  font-size: 0.7em;
 }
 
 #submenu .popup .inner ul li span {
-	position: absolute;
-	top: 6px;
-	right: 15px;
-	color: #8b8d9a;
-	font-size: 0.7em;
+  position: absolute;
+  top: 6px;
+  right: 15px;
+  color: #8b8d9a;
+  font-size: 0.7em;
 }
