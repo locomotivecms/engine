@@ -1,6 +1,6 @@
-module Liquid  
-  module Locomotive  
-    module Tags    
+module Liquid
+  module Locomotive
+    module Tags
       class Jquery < ::Liquid::Tag
 
         def render(context)
@@ -10,8 +10,8 @@ module Liquid
           }
         end
       end
-  
-      ::Liquid::Template.register_tag('jQuery', Jquery)    
-    end  
-  end  
+
+      ::Liquid::Template.register_tag('jQuery', Jquery)
+    end
+  end
 end

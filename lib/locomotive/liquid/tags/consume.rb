@@ -1,4 +1,4 @@
-module Locomotive  
+module Locomotive
   module Liquid
       module Tags
       # Consume web services as easy as pie directly in liquid !
@@ -12,7 +12,7 @@ module Locomotive
       # {% endconsume %}
       #
       class Consume < ::Liquid::Block
-        
+
         Syntax = /(#{::Liquid::VariableSignature}+)\s*from\s*(#{::Liquid::QuotedString}+)/
 
         def initialize(tag_name, markup, tokens)
@@ -27,19 +27,19 @@ module Locomotive
             raise ::Liquid::SyntaxError.new("Syntax Error in 'consume' - Valid syntax: consume <var> from \"<url>\" [username: value, password: value]")
           end
 
-          super      
+          super
         end
 
         def render(context)
           context.stack do
             context.scopes.last[@target.to_s] = Locomotive::Httparty::Webservice.consume(@url, @options.symbolize_keys)
-            
+
             render_all(@nodelist, context)
           end
-        end 
-        
+        end
+
       end
-      
+
       ::Liquid::Template.register_tag('consume', Consume)
     end
   end

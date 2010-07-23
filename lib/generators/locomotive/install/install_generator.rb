@@ -8,7 +8,7 @@ module Locomotive
     def copy_initializer
       template 'locomotive.rb', 'config/initializers/locomotive.rb'
     end
-    
+
     def seed_db
       append_file 'db/seeds.rb', %{
 # Uncomment the following lines if you want to create the first website / account
@@ -17,7 +17,7 @@ module Locomotive
 #site.memberships.build :account => account, :admin => true
 #site.save!}
     end
-    
+
     def show_readme
       readme 'README'
     end

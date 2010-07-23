@@ -1,5 +1,5 @@
 module Locomotive
-  
+
   module Liquid
 
       module Tags
@@ -14,11 +14,11 @@ module Locomotive
       #   {% endfor %}
       #  {% endpaginate %}
       #
-      
+
       class Paginate < ::Liquid::Block
-  
+
         Syntax = /(#{::Liquid::Expression}+)\s+by\s+([0-9]+)/
-  
+
         def initialize(tag_name, markup, tokens)
           if markup =~ Syntax
             @collection_name = $1
@@ -26,24 +26,24 @@ module Locomotive
           else
             raise ::Liquid::SyntaxError.new("Syntax Error in 'paginate' - Valid syntax: paginate <collection> by <number>")
           end
-    
+
           super
         end
-  
+
         def render(context)
           context.stack do
             collection = context[@collection_name]
-      
+
             raise ::Liquid::ArgumentError.new("Cannot paginate array '#{@collection_name}'. Not found.") if collection.nil?
-      
+
             pagination = collection.paginate({
               :page       => context['current_page'],
               :per_page   => @per_page }).stringify_keys!
-      
+
             page_count, current_page = pagination['total_pages'], pagination['current_page']
-      
-            path = context['page'].path rescue '/' 
-      
+
+            path = context['page'].path rescue '/'
+
             pagination['previous'] = link(I18n.t('pagination.previous'), current_page - 1, path) if pagination['previous_page']
             pagination['next'] = link(I18n.t('pagination.next'), current_page + 1, path) if pagination['next_page']
             pagination['parts'] = []
@@ -69,20 +69,20 @@ module Locomotive
 
                 hellip_break = false
               end
-            end        
-      
+            end
+
             context['paginate'] = pagination
-      
+
             render_all(@nodelist, context)
           end
         end
-  
-        private  
-  
+
+        private
+
         def window_size
           3
         end
-  
+
         def no_link(title)
           { 'title' => title, 'is_link' => false, 'hellip_break' => title == '&hellip;' }
         end
@@ -94,7 +94,7 @@ module Locomotive
 
       ::Liquid::Template.register_tag('paginate', Paginate)
     end
-    
+
   end
-  
+
 end

@@ -1,9 +1,9 @@
 module Locomotive
-  
+
   module Mongoid
-  
+
     module Document
-    
+
       extend ActiveSupport::Concern
 
       included do
@@ -12,9 +12,9 @@ module Locomotive
         include ::Mongoid::CustomFields
         include Locomotive::Liquid::LiquifyTemplate
       end
-    
+
     end
-  
+
   end
-  
+
 end

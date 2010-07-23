@@ -1,6 +1,6 @@
-module Models  
-  module Extensions    
-    module Page      
+module Models
+  module Extensions
+    module Page
       module Render
 
         def render(context)
@@ -12,8 +12,8 @@ module Models
             ::Liquid::Template.parse("{{ content_for_layout }}").render(context)
           end
         end
-        
-      end      
-    end    
-  end  
+
+      end
+    end
+  end
 end

@@ -7,16 +7,16 @@ class AssetUploader < CarrierWave::Uploader::Base
   def store_dir
     "sites/#{model.collection.site_id}/assets/#{model.id}"
   end
-  
+
   def cache_dir
     "#{Rails.root}/tmp/uploads"
   end
-  
+
   version :thumb do
     process :resize_to_fill => [50, 50]
     process :convert => 'png'
   end
-  
+
   version :medium do
     process :resize_to_fill => [80, 80]
     process :convert => 'png'
@@ -24,18 +24,18 @@ class AssetUploader < CarrierWave::Uploader::Base
 
   version :preview do
     process :resize_to_fit => [880, 1100]
-    process :convert => 'png'    
+    process :convert => 'png'
   end
-  
-  process :set_content_type  
+
+  process :set_content_type
   process :set_size
   process :set_width_and_height
 
   def set_content_type
     value = :other
-    
+
     content_type = file.content_type == 'application/octet-stream' ? File.mime_type?(original_filename) : file.content_type
-    
+
     self.class.content_types.each_pair do |type, rules|
       rules.each do |rule|
         case rule
@@ -44,20 +44,20 @@ class AssetUploader < CarrierWave::Uploader::Base
         end
       end
     end
-    
+
     model.content_type = value
   end
-  
+
   def set_size
     model.size = file.size
   end
-  
+
   def set_width_and_height
     if model.image?
       model.width, model.height = `identify -format "%wx%h" #{file.path}`.split(/x/).collect(&:to_i)
     end
   end
-    
+
   def self.content_types
     {
       :image      => ['image/jpeg', 'image/pjpeg', 'image/gif', 'image/png', 'image/x-png', 'image/jpg'],
@@ -67,7 +67,7 @@ class AssetUploader < CarrierWave::Uploader::Base
       :stylesheet => ['text/css'],
       :javascript => ['text/javascript', 'text/js', 'application/x-javascript', 'application/javascript'],
       :font       => ['application/x-font-ttf', 'application/vnd.ms-fontobject']
-    }  
+    }
   end
-    
+
 end

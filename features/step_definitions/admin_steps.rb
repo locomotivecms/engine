@@ -41,7 +41,7 @@ end
 ## Common
 
 def create_site_and_admin_account
-  @site = Factory(:site, :name => 'Locomotive test website', :subdomain => 'test')  
+  @site = Factory(:site, :name => 'Locomotive test website', :subdomain => 'test')
   @admin = Factory(:account, { :name => 'Admin', :email => 'admin@locomotiveapp.org' })
   @site.memberships.build :account => @admin, :admin => true
   @site.save
@@ -56,5 +56,5 @@ def create_layout_samples
       <div id="main">\{\{ content_for_layout \}\}</div>
     </body>
   </html>})
-  Factory(:layout, :site => @site)   
+  Factory(:layout, :site => @site)
 end

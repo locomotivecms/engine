@@ -1,28 +1,28 @@
-module Models  
-  module Extensions    
-    module Page      
-      module Parts  
+module Models
+  module Extensions
+    module Page
+      module Parts
 
         extend ActiveSupport::Concern
 
         included do
-                              
+
           before_create { |p| p.parts << PagePart.build_body_part if p.parts.empty? }
-          
-        end 
-        
+
+        end
+
         module InstanceMethods
-          
-          def parts_attributes=(attributes)    
+
+          def parts_attributes=(attributes)
             self.update_parts(attributes.values.map { |attrs| PagePart.new(attrs) })
           end
-          
+
           def joined_parts
             self.parts.enabled.map(&:template).join('')
           end
-          
+
           protected
-          
+
           def update_parts(parts)
             performed = []
 
@@ -46,9 +46,9 @@ module Models
             self.update_parts(new_parts)
             self.save
           end
-          
-        end        
-      end      
-    end    
-  end  
+
+        end
+      end
+    end
+  end
 end

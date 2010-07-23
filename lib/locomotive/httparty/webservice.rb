@@ -1,7 +1,7 @@
 module Locomotive
   module Httparty
     class Webservice
-      
+
       include ::HTTParty
 
       def self.consume(url, options = {})
@@ -19,7 +19,7 @@ module Locomotive
 
         self.get(path, options).try(:underscore_keys)
       end
-      
+
     end
   end
 end

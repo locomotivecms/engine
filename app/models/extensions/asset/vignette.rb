@@ -1,8 +1,8 @@
-module Models  
-  module Extensions    
-    module Asset      
+module Models
+  module Extensions
+    module Asset
       module Vignette
-        
+
         def vignette_url
           if self.image?
             if self.width < 80 && self.height < 80
@@ -16,9 +16,9 @@ module Models
             mime_type_to_url(:medium)
           end
         end
-        
+
         protected
-        
+
         def mime_type_to_url(size)
           mime_type = File.mime_type?(self.source_filename)
           filename = "unknown"
@@ -35,8 +35,8 @@ module Models
 
           File.join("admin", "icons", "filetype", size.to_s, filename + ".png")
         end
-        
-      end      
-    end    
-  end  
+
+      end
+    end
+  end
 end

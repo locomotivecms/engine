@@ -20,11 +20,11 @@ begin
     gem.description = "a brand new CMS system with super sexy UI and cool features (alpha version for now)"
     gem.homepage = %q{http://www.locomotiveapp.org}
     gem.files = Dir[
-      "Gemfile", 
-      "{app}/**/*", 
+      "Gemfile",
+      "{app}/**/*",
       "{config}/**/*",
       "{lib}/**/*",
-      "{public}/stylesheets/admin/**/*", "{public}/javascripts/admin/**/*", "{public}/images/admin/**/*", 
+      "{public}/stylesheets/admin/**/*", "{public}/javascripts/admin/**/*", "{public}/images/admin/**/*",
       "{vendor}/**/*"]
     # other fields that would normally go in your gemspec
     # like authors, email and has_rdoc can also be included here
@@ -33,7 +33,7 @@ begin
       if dep.groups.include?(:default)
         gem.add_dependency(dep.name, dep.requirement.to_s)
       end
-    end    
+    end
   end
   Jeweler::GemcutterTasks.new
 rescue Exception => e

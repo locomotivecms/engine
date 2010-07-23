@@ -35,12 +35,12 @@ module InheritedResources
       options[:location] ||= collection_url rescue nil
 
       destroy_resource(object)
-        
+
       options[:alert] = object.errors.full_messages.first # display the first error if present
-  
+
       respond_with_dual_blocks(object, options, &block)
     end
     alias :destroy! :destroy
-    
+
   end
 end

@@ -1,4 +1,4 @@
-module Locomotive  
+module Locomotive
   class Configuration
 
     @@defaults = {
@@ -18,7 +18,7 @@ module Locomotive
     def initialize
       @@settings = self.class.get_from_hash(@@defaults)
     end
-    
+
     def self.settings
       @@settings
     end
@@ -43,7 +43,7 @@ module Locomotive
 
   # specialized hash for storing configuration settings
   class ConfigurationHash < Hash
-    # ensure that default entries always produce 
+    # ensure that default entries always produce
     # instances of the ConfigurationHash class
     def default(key=nil)
       include?(key) ? self[key] : self[key] = self.class.new
@@ -59,11 +59,11 @@ module Locomotive
     # i.e. params.id === params[:id]
     # note: all keys are converted to symbols
     def method_missing(name, *args, &block)
-      if name.to_s.ends_with? '=' 
+      if name.to_s.ends_with? '='
         send :[]=, name.to_s.chomp('=').to_sym, *args
       else
         send(:[], name.to_sym, &block)
-      end    
-    end    
+      end
+    end
   end
 end

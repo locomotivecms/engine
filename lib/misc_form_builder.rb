@@ -1,21 +1,21 @@
 class MiscFormBuilder < Formtastic::SemanticFormBuilder
-  
+
   @@all_fields_required_by_default = false
-  
+
   def foldable_inputs(*args, &block)
     opts = args.extract_options!
-    
+
     unfolded = !(opts[:class] || '').index('off').nil? || @object.new_record? || !@object.errors.empty?
-    
+
     opts[:class] = (opts[:class] || '') + " inputs foldable #{'folded' unless unfolded}"
     args.push(opts)
     self.inputs(*args, &block)
   end
-  
+
   def custom_input(name, options = {}, &block)
     default_options = { :css => '', :with_label => true, :label => nil }
     options = default_options.merge(options)
-    
+
     html = options[:with_label] ? self.label(options[:label] || name) : ''
     html += template.capture(&block) || ''
     html += inline_hints_for(name, options) || ''
@@ -23,7 +23,7 @@ class MiscFormBuilder < Formtastic::SemanticFormBuilder
 
     template.content_tag(:li, template.find_and_preserve(html), :class => "#{options[:css]} #{'error' unless @object.errors[name].empty?}")
   end
-  
+
   def inline_errors_on(method, options = nil)
     if render_inline_errors?
       errors = @object.errors[method.to_sym]
@@ -32,7 +32,7 @@ class MiscFormBuilder < Formtastic::SemanticFormBuilder
       nil
     end
   end
-  
+
   def normalize_model_name(name)
     if name =~ /(.+)\/(.+)/
       [$1, $2]
@@ -40,6 +40,6 @@ class MiscFormBuilder < Formtastic::SemanticFormBuilder
       super
     end
   end
-  
-  
+
+
 end

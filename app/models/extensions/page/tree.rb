@@ -1,19 +1,19 @@
-module Models  
-  module Extensions    
-    module Page      
-      module Tree  
+module Models
+  module Extensions
+    module Page
+      module Tree
 
         extend ActiveSupport::Concern
 
         included do
           include Mongoid::Acts::Tree
-          
+
           ## fields ##
           field :position, :type => Integer
-          
+
           ## behaviours ##
           acts_as_tree :order => ['position', 'asc']
-          
+
           ## callbacks ##
           before_validation :reset_parent
           before_save { |p| p.send(:write_attribute, :parent_id, nil) if p.parent_id.blank? }
@@ -24,10 +24,10 @@ module Models
 
           # Fixme (Didier L.): Instances methods are defined before the include itself
           alias :fix_position :hacked_fix_position
-        end 
-        
+        end
+
         module InstanceMethods
-          
+
           def sort_children!(ids)
             ids.each_with_index do |id, position|
               child = self.children.detect { |p| p._id == id }
@@ -35,15 +35,15 @@ module Models
               child.save
             end
           end
-          
+
           def parent=(owner) # missing in acts_as_tree
             @_parent = owner
             self.fix_position(false)
             self.instance_variable_set :@_will_move, true
           end
-                    
+
           protected
-          
+
           def change_parent
             if self.parent_id_changed?
               self.fix_position(false)
@@ -63,15 +63,15 @@ module Models
               self[depth_field] = parent[depth_field] + 1
               self.save if perform_save
             end
-          end          
-          
+          end
+
           def reset_parent
             if self.parent_id_changed?
               @_parent = nil
             end
           end
-          
-          def add_to_list_bottom  
+
+          def add_to_list_bottom
             self.position = (::Page.where(:_id.ne => self._id).and(:parent_id => self.parent_id).max(:position) || 0) + 1
           end
 
@@ -83,9 +83,9 @@ module Models
               p.save
             end
           end
-          
-        end        
-      end      
-    end    
-  end  
+
+        end
+      end
+    end
+  end
 end

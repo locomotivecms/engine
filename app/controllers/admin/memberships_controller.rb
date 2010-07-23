@@ -1,8 +1,8 @@
 module Admin
   class MembershipsController < BaseController
-    
+
     sections 'settings'
-    
+
     def create
       @membership = current_site.memberships.build(params[:membership])
 
@@ -21,6 +21,6 @@ module Admin
     def destroy
       destroy! { edit_admin_current_site_url }
     end
-  
+
   end
 end

@@ -14,7 +14,7 @@ module Spec
         end
 
         def negative_failure_message
-            "#{@model.class} expected to be invalid but was valid.\n" 
+            "#{@model.class} expected to be invalid but was valid.\n"
           end
 
         def description

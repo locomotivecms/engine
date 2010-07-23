@@ -2,9 +2,9 @@ require 'responders'
 
 module Locomotive
   class AdminResponder < ::ActionController::Responder
-    
+
     include ::Responders::FlashResponder
-    
+
     def api_behavior(error)
       raise error unless resourceful?
 
@@ -20,9 +20,9 @@ module Locomotive
       else
         display({ :notice => controller.flash[:notice] })
       end
-      
+
       controller.flash.discard # reset flash messages !
     end
-    
+
   end
 end
