@@ -3,7 +3,7 @@
 - content_for :submenu do
   = render 'admin/shared/menu/contents'
 
-- content_for :buttons do  
+- content_for :buttons do
   = admin_button_tag t('admin.contents.index.edit'), edit_admin_content_type_url(@content_type), :class => 'edit'
   = admin_button_tag t('admin.contents.index.new'), new_admin_content_url(@content_type.slug), :class => 'new'
 

@@ -2,25 +2,25 @@
 
 - content_for :submenu do
   = render 'admin/shared/menu/contents'
-    
+
 - content_for :head do
   = javascript_include_tag 'admin/contents'
-  
+
 - content_for :buttons do
   = admin_button_tag :edit, edit_admin_content_type_url(@content_type), :class => 'edit'
   = admin_button_tag :new, new_admin_content_url(@content_type.slug), :class => 'new'
 
-- if @content_type.description.present? 
+- if @content_type.description.present?
   %p= @content_type.description
 
 - if @content_type.groupable?
-  - @contents.each do |group|  
+  - @contents.each do |group|
     %h3= group[:name] || t('.category_noname')
-    = render 'list', :contents => group[:items]  
+    = render 'list', :contents => group[:items]
     %br
 - else
   = render 'list', :contents => @contents
-        
+
 = form_tag sort_admin_contents_path(@content_type.slug), :method => :put, :class => 'formtastic' do
   = hidden_field_tag :order
 

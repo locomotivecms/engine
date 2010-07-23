@@ -5,10 +5,10 @@
 = f.inputs :name => :information do
   = f.input :name
   = f.input :slug, :required => false
-  
+
 = f.inputs :name => :code do
   = f.custom_input :value, :css => 'full', :with_label => false do
     %code{ :class => 'html' }
       = f.text_area :value
     .more
-      = link_to t('admin.image_picker.link'), admin_theme_assets_path, :id => 'image-picker-link'    
+      = link_to t('admin.image_picker.link'), admin_theme_assets_path, :id => 'image-picker-link'

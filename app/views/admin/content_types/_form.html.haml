@@ -6,7 +6,7 @@
   = f.input :name
   = f.input :slug
   = f.input :description
-  
+
 = render 'admin/custom_fields/index', :form => f, :collection_name => 'contents'
 
 - unless f.object.new_record?
@@ -18,5 +18,5 @@
     = f.input :order_by, :as => :select, :collection => options_for_order_by(f.object, 'contents'), :include_blank => false
     = f.custom_input :api_enabled, :css => 'toggle' do
       = f.check_box :api_enabled
-      
-  
+
+
