@@ -15,12 +15,15 @@ require 'cucumber/web/tableish'
 require 'capybara/rails'
 require 'capybara/cucumber'
 require 'capybara/session'
-require 'cucumber/rails/capybara_javascript_emulation' # Lets you click links with onclick javascript handlers without using @culerity or @javascript
+
+require 'capybara/envjs'
+
 # Capybara defaults to XPath selectors rather than Webrat's default of CSS3. In
 # order to ease the transition to Capybara we set the default here. If you'd
 # prefer to use XPath just remove this line and adjust any selectors in your
 # steps to use the XPath syntax.
 Capybara.default_selector = :css
+Capybara.javascript_driver = :envjs
 
 # If you set this to false, any error raised from within your app will bubble
 # up to your step definition and out to cucumber unless you catch it somewhere
@@ -35,12 +38,19 @@ ActionController::Base.allow_rescue = false
 
 require 'factory_girl'
 
-Before do
-  Mongoid.master.collections.select { |c| c.name != 'system.indexes' }.each(&:drop)
-end
-
 Locomotive.configure do |config|
   config.default_domain = 'example.com'
 end
 
 Capybara.default_host = 'test.example.com'
+
+# How to clean your database when transactions are turned off. See
+# http://github.com/bmabey/database_cleaner for more info.
+begin
+  require 'database_cleaner'
+  require 'database_cleaner/cucumber'
+  DatabaseCleaner.strategy = :truncation
+  DatabaseCleaner.orm = "mongoid"
+rescue LoadError => ignore_if_database_cleaner_not_present
+  puts "Database Cleaner not Present"
+end
