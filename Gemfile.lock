@@ -55,6 +55,7 @@ GEM
       http_connection
       uuidtools
       xml-simple
+    bcrypt-ruby (2.1.2)
     bson (1.0.4)
     bson_ext (1.0.4)
     builder (2.1.2)
@@ -80,8 +81,9 @@ GEM
       cucumber (>= 0.8.0)
     culerity (0.2.10)
     daemons (1.1.0)
-    devise (1.1.rc1)
-      warden (~> 0.10.3)
+    devise (1.1.rc2)
+      bcrypt-ruby (~> 2.1.2)
+      warden (~> 0.10.7)
     diff-lcs (1.1.2)
     erubis (2.6.6)
       abstract (>= 1.0.0)
@@ -226,7 +228,7 @@ DEPENDENCIES
   cgi_multipart_eof_fix
   cucumber
   cucumber-rails
-  devise (= 1.1.rc1)
+  devise (= 1.1.rc2)
   factory_girl_rails
   fastthread
   formtastic!

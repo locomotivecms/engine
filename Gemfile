@@ -11,7 +11,7 @@ gem 'mongoid', "2.0.0.beta11"
 gem 'mongoid_acts_as_tree', '0.1.5'
 gem 'mongo_session_store', '2.0.0.pre'
 gem 'warden'
-gem 'devise', '1.1.rc1'
+gem 'devise', '1.1.rc2'
 gem 'haml', '3.0.13'
 gem 'rmagick', '2.12.2'
 gem 'aws'
