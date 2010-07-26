@@ -1,5 +1,4 @@
 .bundle
-Gemfile.lock
 db/*.sqlite3
 log/*.log
 tmp/**/*
@@ -23,3 +22,5 @@ doc/DONE
 *.gem
 tmp/*
 .rvmrc
+Capfile
+config/deploy.rb
