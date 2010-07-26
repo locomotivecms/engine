@@ -1,10 +1,10 @@
 @site_up
 @authenticated
 Feature: Manage Skills
-	In order to manage pages
-	As an administrator
-	I want to add/edit/delete pages of my site
-	
+  In order to manage pages
+  As an administrator
+  I want to add/edit/delete pages of my site
+
 Scenario: Pages list is not accessible for non authenticated accounts
   Given I am not authenticated
   When I go to pages

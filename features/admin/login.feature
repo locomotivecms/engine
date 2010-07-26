@@ -9,7 +9,6 @@ Scenario: Successful authentication
   And I fill in "admin_email" with "admin@locomotiveapp.org"
   And I fill in "admin_password" with "easyone"
   And I press "Log in"
-  And Show me the page
   Then I should see "Listing pages"
 
 Scenario: Failed authentication
