@@ -137,14 +137,6 @@ GEM
       mongo (~> 1.0.5)
       tzinfo (~> 0.3.22)
       will_paginate (~> 3.0.pre)
-    mongoid-locomotive (2.0.0.beta9)
-      activemodel (~> 3.0.0.beta)
-      bson (~> 1.0.4)
-      bson_ext (~> 1.0.4)
-      bundler
-      mongo (~> 1.0.5)
-      tzinfo (~> 0.3.22)
-      will_paginate (~> 3.0.pre)
     mongoid_acts_as_tree (0.1.5)
       bson (>= 0.20.1)
       mongoid (<= 2.0.0)
@@ -249,7 +241,7 @@ DEPENDENCIES
   mocha!
   mongo_ext
   mongo_session_store (= 2.0.0.pre)
-  mongoid-locomotive
+  mongoid (= 2.0.0.beta11)
   mongoid_acts_as_tree (= 0.1.5)
   mongrel
   mongrel_experimental

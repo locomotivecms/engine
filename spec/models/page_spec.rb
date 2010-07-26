@@ -351,7 +351,7 @@ describe Page do
     end
 
     it 'does forget to set the content type id' do
-      @page.content_type_id.should == '42'
+      @page.content_type_id.should == 42
     end
 
   end

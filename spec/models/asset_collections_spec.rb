@@ -116,7 +116,7 @@ describe AssetCollection do
 
       it 'should add new field' do
         @collection.asset_custom_fields.build :label => 'Active at', :name => 'active_at', :kind => 'Date'
-        @collection.upsert(false)
+        @collection.upsert(:validate => false)
         @collection.reload
         asset = @collection.assets.first
         lambda { asset.active_at }.should_not raise_error
@@ -124,7 +124,7 @@ describe AssetCollection do
 
       it 'should remove field' do
         @collection.asset_custom_fields.clear
-        @collection.upsert(false)
+        @collection.upsert(:validate => false)
         @collection.reload
         asset = @collection.assets.first
         lambda { asset.active }.should raise_error
@@ -133,7 +133,7 @@ describe AssetCollection do
       it 'should rename field label' do
         @collection.asset_custom_fields.first.label = 'Simple description'
         @collection.asset_custom_fields.first._alias = nil
-        @collection.upsert(false)
+        @collection.upsert(:validate => false)
         @collection.reload
         asset = @collection.assets.first
         asset.simple_description.should == 'Lorem ipsum'
@@ -157,7 +157,7 @@ describe AssetCollection do
         @collection.save; @collection = AssetCollection.first
         @collection.update_attributes(:asset_custom_fields_attributes => {
           '0' => { 'label' => 'My Description', 'kind' => 'Text', '_destroy' => '1' },
-          '1' => { 'label' => 'Active', 'kind' => 'Boolean', '_destroy' => '0' },
+          '1' => { 'label' => 'Active', 'kind' => 'Boolean', '_destroy' => '1' },
           '2' => { 'label' => 'My Title !', 'kind' => 'String' },
           'new_record' => { 'label' => 'Published at', 'kind' => 'String' }
         })

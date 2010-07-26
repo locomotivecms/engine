@@ -7,8 +7,7 @@ gem 'rails', '3.0.0.beta4'
 gem 'liquid', '2.0.0'
 gem 'bson_ext', '>= 1.0.1'
 gem 'mongo_ext'
-gem 'mongoid-locomotive'
-# gem 'mongoid', "2.0.0.beta11"
+gem 'mongoid', "2.0.0.beta11"
 gem 'mongoid_acts_as_tree', '0.1.5'
 gem 'mongo_session_store', '2.0.0.pre'
 gem 'warden'
