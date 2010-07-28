@@ -5,6 +5,7 @@ en:
       send_password: Send
       change_password: Update
       new_item: "+ add"
+      switch_to_site: Go
 
     messages:
       confirm: Are you sure ?
@@ -240,6 +241,11 @@ en:
 
     image_picker:
       link: Insert an image into the code
+
+    cross_domain_sessions:
+      new:
+        title: Cross-domain authentication
+        notice: You will be redirected to the website in a couple of seconds.
 
   formtastic:
     titles:

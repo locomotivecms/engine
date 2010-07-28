@@ -34,6 +34,9 @@ $(document).ready(function() {
   });
 
   $.subscribe('form.saved.success', function(event, data) {
-    $('#header h1 a').html($('#current_site_name').val());
+    var value = $('#current_site_name').val();
+    $('#header h1 a.single').html(value);
+    $('#header h1 a span.ui-selectmenu-status').html(value);
+    $('#site-selector-menu li.ui-selectmenu-item-selected a').html(value);
   }, []);
 });

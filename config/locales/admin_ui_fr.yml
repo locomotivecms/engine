@@ -27,6 +27,7 @@ fr:
       send_password: Envoyer
       change_password: Mettre à jour
       new_item: "+ ajouter"
+      switch_to_site: Aller
 
     messages:
       confirm: "Êtes-vous sûr(e) ?"
@@ -261,6 +262,11 @@ fr:
 
     image_picker:
       link: Insérer une image dans le code
+
+    cross_domain_sessions:
+      new:
+        title: Transfert vers un autre site
+        notice: Vous allez être redirigé(e) vers le site dans quelques secondes.
 
   formtastic:
     titles:

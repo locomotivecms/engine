@@ -31,7 +31,7 @@ module Locomotive
 
         def validate_site_membership
           return if current_site && current_site.accounts.include?(current_admin)
-          redirect_to application_root_url
+          sign_out_and_redirect(current_admin)
         end
 
         def application_root_url

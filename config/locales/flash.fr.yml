@@ -12,7 +12,7 @@ fr:
           notice: "Les pages ont été ordonnées avec succès."
         destroy:
           notice: "La page a été supprimée avec succès."
-    
+
       contents:
         create:
           notice: "L'élément a été crée avec succès."
@@ -24,7 +24,7 @@ fr:
           notice: "Les éléments ont été ordonnés avec succès."
         destroy:
           notice: "L'élément a été supprimé avec succès."
-          
+
       content_types:
         create:
           notice: "Le modèle a été crée avec succès."
@@ -34,12 +34,12 @@ fr:
           alert: "Le modèle n'a pas été mis à jour."
         destroy:
           notice: "Le modèle a été supprimé avec succès."
-          
+
       current_sites:
         update:
           notice: "Mon site a été mis à jour avec succès."
           alert: "Mon site n'a pas été mis à jour."
-          
+
       layouts:
         create:
           notice: "Le gabarit a été crée avec succès."
@@ -49,7 +49,7 @@ fr:
           alert: "Le gabarit n'a pas été mis à jour."
         destroy:
           notice: "Le gabarit a été supprimé avec succès."
-      
+
       snippets:
         create:
           notice: "Le snippet a été crée avec succès."
@@ -59,7 +59,7 @@ fr:
           alert: "Le snippet n'a pas été mis à jour."
         destroy:
           notice: "Le snippet a été supprimé avec succès."
-          
+
       accounts:
         create:
           notice: "Le compte a été crée avec succès."
@@ -69,20 +69,20 @@ fr:
         update:
           notice: "Mon compte a été mis à jour avec succès."
           alert: "Mon compte n'a pas été mis à jour."
-          
+
       sites:
         create:
           notice: "Le site a été crée avec succès."
           alert: "Le site n'a pas été crée."
         destroy:
           notice: "Le site a été supprimé avec succès."
-          
+
       memberships:
         create:
           notice: "Le compte a été ajouté avec succès."
           alert: "Le compte n'a pas été ajouté."
           already_created: "Le compte a déjà été ajouté pour ce site."
-          
+
       asset_collections:
         create:
           notice: "La collection a été créée avec succès."
@@ -92,7 +92,7 @@ fr:
           alert: "La collection n'a pas été mise à jour."
         destroy:
           notice: "La collection a été supprimée avec succès."
-          
+
       assets:
         create:
           notice: "Le média a été crée avec succès."
@@ -100,7 +100,7 @@ fr:
         update:
           notice: "Le média a été mis à jour avec succès."
           alert: "Le média n'a pas été mis à jour."
-          
+
       theme_assets:
         create:
           notice: "Le fichier a été crée avec succès."
@@ -110,7 +110,11 @@ fr:
           alert: "Le fichier n'a pas été mis à jour."
         destroy:
           notice: "Le fichier a été supprimé avec succès."
-          
+
       custom_fields:
         update:
           alert: "Champ non mis à jour."
+
+      cross_domain_sessions:
+        create:
+          alert: "Vous devez vous authentifier"

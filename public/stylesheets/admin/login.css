@@ -72,6 +72,13 @@ body { background: #000 url(/images/admin/background/body.png) repeat 0 0; }
   color: #CE2525;
 }
 
+#panel p.notice {
+  font-size: 1.2em;
+  color: #222;
+  margin: 15px 49px 0 49px;
+  text-align: center;
+}
+
 #panel p.link {
   margin: 15px 0 0 49px;
 }

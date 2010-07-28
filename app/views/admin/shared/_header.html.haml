@@ -1,4 +1,9 @@
-%h1= link_to current_site.name, '#'
+%h1
+  - if current_admin.sites.size > 1
+    = select_tag 'site', options_for_select(current_admin.sites.collect { |site| [site.name, new_admin_cross_domain_session_path(:id => site.id)] }, new_admin_cross_domain_session_path(:id => current_site.id)), :id => 'site-selector'
+  - else
+    = link_to current_site.name, admin_root_url, :class => 'single'
+
 
 #global-actions-bar
   != t('.welcome', :name => link_to(current_admin.name, edit_admin_my_account_url))

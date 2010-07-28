@@ -19,10 +19,11 @@ body {
 
 #header h1 {
   margin-bottom: 0px;
+  font-size: 100%;
 }
 
-#header h1 a {
-  font-size: 0.5em;
+#header h1 a.single {
+  font-size: 1.5em;
   color: #f0f0f0;
   text-shadow: 1px 1px 1px #000;
   text-decoration: none;

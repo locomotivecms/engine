@@ -22,7 +22,7 @@ Rails.application.routes.draw do |map|
     end
     resources :snippets
 
-    resources :site
+    resources :sites
 
     resource :current_site
 
@@ -47,6 +47,8 @@ Rails.application.routes.draw do |map|
     resources :api_contents, :path => 'api/:slug/contents', :controller => 'api_contents', :only => [:create]
 
     resources :custom_fields, :path => 'custom/:parent/:slug/fields'
+
+    resources :cross_domain_sessions, :only => [:new, :create]
   end
 
   # sitemap

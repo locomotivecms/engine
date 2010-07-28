@@ -12,7 +12,7 @@ en:
           notice: "Pages were successfully sorted."
         destroy:
           notice: "Page was successfully deleted."
-    
+
       contents:
         create:
           notice: "Content was successfully created."
@@ -24,7 +24,7 @@ en:
           notice: "Contents were successfully sorted."
         destroy:
           notice: "Content was successfully deleted."
-          
+
       content_types:
         create:
           notice: "Model was successfully created."
@@ -34,12 +34,12 @@ en:
           alert: "Model was not updated."
         destroy:
           notice: "Model was successfully deleted."
-          
+
       current_sites:
         update:
           notice: "My site was successfully updated."
           alert: "My site was not updated."
-          
+
       layouts:
         create:
           notice: "Layout was successfully created."
@@ -49,7 +49,7 @@ en:
           alert: "Layout was not updated."
         destroy:
           notice: "Layout was successfully deleted."
-      
+
       snippets:
         create:
           notice: "Snippet was successfully created."
@@ -59,7 +59,7 @@ en:
           alert: "Snippet was not updated."
         destroy:
           notice: "Snippet was successfully deleted."
-          
+
       accounts:
         create:
           notice: "Account was successfully created."
@@ -69,20 +69,20 @@ en:
         update:
           notice: "My account was successfully updated."
           alert: "My account was not updated."
-          
+
       sites:
         create:
           notice: "Site was successfully created."
           alert: "Site was not created."
         destroy:
           notice: "Site was successfully deleted."
-          
+
       memberships:
         create:
           notice: "Membership was successfully created."
           alert: "Membership was not created."
           already_created: "Account was already added the current site."
-          
+
       asset_collections:
         create:
           notice: "Collection was successfully created."
@@ -92,7 +92,7 @@ en:
           alert: "Collection was not updated."
         destroy:
           notice: "Collection was successfully deleted."
-          
+
       assets:
         create:
           notice: "Asset was successfully created."
@@ -100,7 +100,7 @@ en:
         update:
           notice: "Asset was successfully updated."
           alert: "Asset was not updated."
-          
+
       theme_assets:
         create:
           notice: "File was successfully created."
@@ -110,7 +110,11 @@ en:
           alert: "File was not updated."
         destroy:
           notice: "File was successfully deleted."
-          
+
       custom_fields:
         update:
           alert: "Field not updated"
+
+      cross_domain_sessions:
+        create:
+          alert: "You need to sign in"

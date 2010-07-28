@@ -1,6 +1,11 @@
 BOARD:
 
 - refactor slugify method (use parameterize + create a module)
+- site selector (cross domain authentication)
+  x code
+  - tests (rspec + cucumber)
+- nice 404 page => if logged in, link to create the page
+- nice error page
 
 BACKLOG:
 
