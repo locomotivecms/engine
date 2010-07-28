@@ -121,7 +121,7 @@ $(document).ready(function() {
 
   // site selector
   $('#site-selector').selectmenu({ style: 'dropdown', width: 300, offsetTop: 8, change: function(event, ui) {
-    window.location.href = ui.value;
+    $('#site-selector').parent().submit();
   } });
 
 });

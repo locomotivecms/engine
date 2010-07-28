@@ -12,10 +12,12 @@ module Admin
     before_filter :authenticate_admin!, :only => :new
 
     def new
-      site = current_admin.sites.detect { |s| s._id.to_s == params[:id] }
-      @target = site.domains_without_subdomain.first || site.domains_with_subdomain.first
-
-      current_admin.reset_switch_site_token!
+      if site = current_admin.sites.detect { |s| s._id.to_s == params[:target_id] }
+        @target = site.domains_without_subdomain.first || site.domains_with_subdomain.first
+        current_admin.reset_switch_site_token!
+      else
+        redirect_to admin_pages_path
+      end
     end
 
     def create

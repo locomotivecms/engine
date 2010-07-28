@@ -3,6 +3,10 @@ Before('@site_up') do
   create_layout_samples
 end
 
+Before('@another_site_up') do
+  add_new_site
+end
+
 Before('@authenticated') do
   Given %{I am an authenticated user}
 end
@@ -38,13 +42,26 @@ Then /^I should have "(.*)" in the (.*) page (.*)$/ do |content, page_slug, slug
   part.value.should == content
 end
 
-## Common
+### Cross-domain authentication
+
+When /^I forget to press the button on the cross-domain notice page$/ do
+  @admin.updated_at = 2.minutes.ago
+  Mongoid::Persistence::Update.new(@admin).send(:update)
+end
+
+### Common
 
 def create_site_and_admin_account
   @site = Factory(:site, :name => 'Locomotive test website', :subdomain => 'test')
   @admin = Factory(:account, { :name => 'Admin', :email => 'admin@locomotiveapp.org' })
   @site.memberships.build :account => @admin, :admin => true
   @site.save
+end
+
+def add_new_site
+  @another_site = Factory.build(:site, :name => 'Locomotive test website #2', :subdomain => 'test2')
+  @another_site.memberships.build :account => @admin, :admin => true
+  @another_site.save
 end
 
 def create_layout_samples

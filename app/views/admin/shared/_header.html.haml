@@ -1,6 +1,8 @@
 %h1
   - if current_admin.sites.size > 1
-    = select_tag 'site', options_for_select(current_admin.sites.collect { |site| [site.name, new_admin_cross_domain_session_path(:id => site.id)] }, new_admin_cross_domain_session_path(:id => current_site.id)), :id => 'site-selector'
+    = form_tag new_admin_cross_domain_session_url, :method => 'get' do
+      = select_tag 'target_id', options_for_select(current_admin.sites.collect { |site| [site.name, site.id] }, current_site.id), :id => 'site-selector'
+      = submit_tag 'Switch', :style => 'display: none'
   - else
     = link_to current_site.name, admin_root_url, :class => 'single'
 
