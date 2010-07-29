@@ -32,6 +32,16 @@ en:
         create: Create
         update: Update
 
+    errors:
+      "500":
+        title: Application Error
+        notice: "Sorry, "
+        link: "&rarr; Back to the application"
+      "404":
+        title: Page not found
+        notice: "The page you requested does not exist."
+        link: "&rarr; Back to the application"
+
     custom_fields:
       edit:
         title: Editing custom field

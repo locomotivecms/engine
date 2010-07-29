@@ -1,98 +1,153 @@
-/* custom styles for fancybox */
+body { background: #000 url(/images/admin/background/body.png) repeat 0 0; }
 
-/* ___ common ___ */
-
-.box-wrapper { display: none; }
-
-#fancybox-inner h2 {
-  border-bottom:1px dotted #BBBBBD;
-  color:#1E1F26;
-  font-size:1.1em;
-  font-weight:bold;
-  padding-bottom:10px;
+#wrapper {
+  background: transparent url(/images/admin/box/wrapper_bg.png) repeat-x 0 0;
+  min-height: 400px;
 }
 
-#fancybox-inner form.formtastic legend span {
-  background-image: url("/images/admin/form/header-popup.png");
-  width: 453px;
+#light {
+  background: transparent url(/images/admin/box/light_bg.png) no-repeat center 0;
+  min-height: 400px;
+  padding-top: 100px;
 }
 
-#fancybox-inner form.formtastic ol {
-  background-image: url("/images/admin/form/footer-popup.png");
+#panel {
+  background: transparent url(/images/admin/box/top_panel_bg.png) no-repeat center 0;
+  width: 356px;
+  height: 344px;
+  padding: 9px 0px 0 0px;
 }
 
-#fancybox-inner form.formtastic fieldset ol li label {
-  width: 20%;
-}
-
-#fancybox-inner form.formtastic fieldset ol li p.inline-hints {
-  margin-left: 30%;
-}
-
-#fancybox-inner form.formtastic .editable-list ol {
-  width: 433px;
-}
-
-#fancybox-inner form.formtastic .editable-list li {
-  width: 413px;
-}
-
-#fancybox-inner form.formtastic .editable-list li {
-  background-image: url("/images/admin/form/item-popup.png");
-}
-
-#fancybox-inner form.formtastic .editable-list li.template {
-  background-image: url("/images/admin/form/big_item-popup.png");
-}
-
-#fancybox-inner p { color:#8B8D9A; font-size:0.8em; }
-
-/* ___ asset picker ___ */
-
-div.asset-picker { width: 470px; position: relative; }
-div.asset-picker .actions { position: absolute; right: 4px; top: 0px; }
-
-div.asset-picker p.no-items { background-image: url("/images/admin/list/none-small.png"); }
-
-div.asset-picker ul { overflow: auto; height: 471px; }
-div.asset-picker ul li.new-asset { display: none; }
-
-/* ___ custom fields ___ */
-
-#edit-custom-field {
-  width: 473px;
-}
-
-#edit-custom-field-category {
-  width: 493px;
-}
-
-#edit-custom-field-category .inner {
-  padding: 10px 10px 61px 10px;
-}
-
-/* ___ form action ___ */
-
-#fancybox-inner .popup-actions {
-  position: absolute;
-  left: 0px;
-  bottom: 0px;
-  height: 61px;
-  width: 100%;
-  background: #8b8d9a;
-}
-
-#fancybox-inner .popup-actions p {
-  padding: 15px;
+#panel h1 {
+  height: 41px;
   margin: 0px;
-  text-align: right;
+  padding: 20px 0px 0 0;
+  font-size: 1.8em;
+  color: white;
+  text-align: center;
+  text-shadow: 1px 1px 1px #000;
 }
 
-/*#fancybox-inner .actions a {
-  color: #fff;
+#panel .inner {
+  background: transparent url(/images/admin/box/content_panel_bg.png) repeat-y center 0;
+  padding: 5px 0px 20px 0px;
+}
+
+#panel fieldset {
+  border: 0px;
+  padding: 0px;
+  margin: 0px;
+}
+
+#panel fieldset ol {
+  width: 260px;
+  list-style: none;
+  padding: 0px;
+  margin: 0px auto 0 auto;
+}
+
+#panel fieldset ol li {
+  margin-top: 20px;
+}
+
+#panel fieldset ol li label {
+  display: block;
+  font-size: 1.2em;
+  color: #222;
+}
+
+#panel fieldset ol li input {
+  background: white url(/images/admin/box/input_bg.png) no-repeat 0 0;
+  width: 246px;
+  padding: 7px;
+  border: 0px;
+  font-size: 1.2em;
+  color: #222;
+}
+
+#panel fieldset ol li p.inline-errors {
+  padding: 3px 5px;
+  margin: 5px 0px;
+  background: #FFE5E5;
+  color: #CE2525;
+}
+
+#panel p.notice {
+  font-size: 1.2em;
+  color: #222;
+  margin: 15px 49px 0 49px;
+  text-align: center;
+}
+
+#panel p.link {
+  margin: 15px 0 0 49px;
+}
+
+#panel p.link a {
+  color: #1f82bc;
   text-decoration: none;
-  font-size: 0.8em;
+}
+
+#panel p.link a:hover {
+  text-decoration: underline;
+}
+
+#panel p.tright {
+  text-align: right;
+  margin-right: 20px;
+}
+
+#panel div.footer {
+  background: transparent url(/images/admin/box/bottom_panel_bg.png) no-repeat center 0;
+  text-align: right;
+  margin: 0px 0px 0 0px;
+  padding: 22px 0;
+}
+
+#panel div.footer .button {
+  display: inline-block;
+  background: transparent url(/images/admin/box/buttons/left_bg.png) no-repeat 0 0;
+  margin: 0 38px 0 0;
+  padding: 0px 0px 0px 2px;
+  font-size: 1.1em;
+  color: white;
+  cursor: pointer;
+  border: none;
+  height: 31px;
+}
+
+#panel div.footer .button span {
+  display: inline-block;
+  background: transparent url(/images/admin/box/buttons/right_bg.png) no-repeat right top;
   position: relative;
-  top: 4px;
-}*/
+  top: -1px;
+  padding: 3px 9px 9px 4px;
+  line-height: 21px;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  #panel div.footer .button { padding-left: 5px; }
+  #panel div.footer .button span { top: 0px; padding-right: 10px; }
+}
+
+/* ___ Messages ___ */
+
+div.application-message {
+  font-size: 1.2em;
+  font-weight: bold;
+  padding: 8px;
+  margin: 10px 20px 0 20px;
+  text-align: justify;
+}
+
+div#flash-alert {
+  background: #FFE5E5;
+  color: #CE2525;
+}
+
+div#flash-notice {
+  background: #c7ff99;
+  color: #58852b;
+}
+
 

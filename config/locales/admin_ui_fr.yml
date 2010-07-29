@@ -1,27 +1,15 @@
 fr:
   admin:
-    sessions:
-      new:
-        title: Connexion
-        link: "J'ai oublié mon mot de passe"
-        email: "Email"
-        password: "Mot de passe"
-    passwords:
-      new:
-        title: Mot de passe oublié
-        link: "&rarr; Retour page de connexion"
-        email: "Votre email"
-      edit:
-        title: Changer mon mot de passe
-        link: "&rarr; Retour page de connexion"
+    errors:
+      "500":
+        title: Erreur applicative
+        notice: "Oups, nous sommes désolés pour le problème rencontré."
+        link: "&rarr; Retour application"
+      "404":
+        title: Page non trouvée
+        notice: "La page que vous avez demandée n'existe pas."
+        link: "&rarr; Retour application"
 
-  buttons:
-    login: Se connecter
-    send_password: Envoyer
-    change_password: Changer
-
-fr:
-  admin:
     buttons:
       login: Se connecter
       send_password: Envoyer

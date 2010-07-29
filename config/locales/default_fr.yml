@@ -25,7 +25,7 @@ fr:
       less_than_or_equal_to: "doit être inférieur ou égal à %{count}"
       odd: "doit être impair"
       even: "doit être pair"
-      
+
       domain_taken: "%{value} a été déjà pris"
       invalid_domain: "%{value} n'est pas valide"
       missing_content_for_layout: "doit contenir le tag liquid 'content_for_layout'"
@@ -34,7 +34,7 @@ fr:
       extname_changed: "Nouveau fichier n'a pas l'extension original"
       array_too_short: "est trop petit (le nombre minimum d'éléments est %{count})"
       liquid_syntax_error: "Erreur de syntaxe dans les sections de page, veuillez vérifier la syntaxe"
-      
+
   attributes:
     defaults:
       pages:
@@ -48,7 +48,7 @@ fr:
           body: "Le contenu va ici"
       page_parts:
         name: "Corps"
-        
+
   activemodel:
     attributes:
       page:
@@ -56,6 +56,7 @@ fr:
         layout_id: Gabarit
         parent: Parent
         slug: Raccourci
+        templatized: Templatisée
         published: Publiée
         cache_strategy: Cache
       content_type:
@@ -92,12 +93,12 @@ fr:
         domain_name: Domaine
         subdomain: Sous-domaine
         restricted_access: Activer ?
-        access_login: Identifiant  
+        access_login: Identifiant
         access_password: "Mot de passe"
 
   pagination:
     previous: "&laquo; Précédent"
-    next: "Suivant &raquo;" 
+    next: "Suivant &raquo;"
   date:
     formats:
       default: "%d/%m/%Y"
@@ -183,7 +184,7 @@ fr:
     human:
       format:
         precision: 2
-      storage_units: 
+      storage_units:
         format: '%n %u'
         units:
           byte: 'Octet'

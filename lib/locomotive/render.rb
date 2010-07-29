@@ -8,13 +8,17 @@ module Locomotive
       protected
 
       def render_locomotive_page
-        @page = locomotive_page
+        if request.fullpath =~ /^\/admin\//
+          render :template => "/admin/errors/404", :layout => 'admin/box', :status => 404
+        else
+          @page = locomotive_page
 
-        redirect_to application_root_url and return if @page.nil?
+          redirect_to application_root_url and return if @page.nil?
 
-        output = @page.render(locomotive_context)
+          output = @page.render(locomotive_context)
 
-        prepare_and_set_response(output)
+          prepare_and_set_response(output)
+        end
       end
 
       def locomotive_page

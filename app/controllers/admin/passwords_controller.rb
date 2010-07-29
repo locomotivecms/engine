@@ -3,7 +3,7 @@ module Admin
 
     include Locomotive::Routing::SiteDispatcher
 
-    layout 'admin/login'
+    layout 'admin/box'
 
     before_filter :require_site
 

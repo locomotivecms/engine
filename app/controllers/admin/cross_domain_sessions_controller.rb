@@ -1,7 +1,7 @@
 module Admin
   class CrossDomainSessionsController < BaseController
 
-    layout 'admin/login'
+    layout 'admin/box'
 
     skip_before_filter :verify_authenticity_token
 
@@ -26,8 +26,7 @@ module Admin
         sign_in(account)
         redirect_to admin_pages_path
       else
-        flash[:alert] = t('flash.admin.cross_domain_sessions.create.alert')
-        redirect_to new_admin_session_path
+        redirect_to new_admin_session_path, :alert => t('flash.admin.cross_domain_sessions.create.alert')
       end
     end
 

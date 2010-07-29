@@ -1,11 +1,6 @@
 BOARD:
 
 - refactor slugify method (use parameterize + create a module)
-- site selector (cross domain authentication)
-  x code
-  - tests (rspec + cucumber)
-- nice 404 page => if logged in, link to create the page
-- nice error page
 
 BACKLOG:
 
@@ -31,6 +26,7 @@ NICE TO HAVE:
 - page redirection (option)
 - automatic update !
 - import / export site
+- page not found (front) => if logged in, link to create the page
 
 DONE:
 
@@ -70,3 +66,6 @@ x theme asset picker when editing layout / snippet
 x templatized: do not display content with visible / active set to false
 x theme assets: disable version if not image (handled by the new version of Carrierwave)
 x rack app to map pretty asset url to S3 => shortcut urls instead
+x site selector (cross domain authentication)
+x nice error page
+x nice 404 page (admin section)
