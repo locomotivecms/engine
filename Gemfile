@@ -1,12 +1,11 @@
 # Edit this Gemfile to bundle your application's dependencies.
 source 'http://gemcutter.org'
-source 'http://gems.github.com'
 
 gem 'rails', '3.0.0.beta4'
 
 gem 'liquid', '2.0.0'
 gem 'bson_ext', '>= 1.0.1'
-gem 'mongoid', "2.0.0.beta11"
+gem 'mongoid', "2.0.0.beta.15"
 gem 'mongoid_acts_as_tree', '0.1.5'
 gem 'mongo_session_store', '2.0.0.pre'
 gem 'warden'
@@ -16,7 +15,7 @@ gem 'rmagick', '2.12.2'
 gem 'aws'
 gem 'mimetype-fu', :require => 'mimetype_fu'
 gem "formtastic", :git => "http://github.com/justinfrench/formtastic.git", :branch => "rails3"
-gem 'carrierwave-rails3', :require => 'carrierwave'
+gem "carrierwave", "0.5.0.beta2"
 gem 'actionmailer-with-request', :require => 'actionmailer_with_request'
 gem 'heroku'
 gem 'httparty', '0.6.1'

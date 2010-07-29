@@ -69,7 +69,8 @@ GEM
     capybara-envjs (0.1.6)
       capybara (>= 0.3.9)
       envjs (>= 0.3.7)
-    carrierwave-rails3 (0.4.5)
+    carrierwave (0.5.0.beta2)
+      activesupport (>= 3.0.0.beta4)
     cgi_multipart_eof_fix (2.5.0)
     columnize (0.3.1)
     configuration (1.1.0)
@@ -233,7 +234,7 @@ DEPENDENCIES
   bson_ext (>= 1.0.1)
   capybara
   capybara-envjs (>= 0.1.5)
-  carrierwave-rails3
+  carrierwave (= 0.5.0.beta2)
   cgi_multipart_eof_fix
   cucumber
   cucumber-rails
@@ -252,7 +253,7 @@ DEPENDENCIES
   mimetype-fu
   mocha!
   mongo_session_store (= 2.0.0.pre)
-  mongoid (= 2.0.0.beta11)
+  mongoid (= 2.0.0.beta.15)
   mongoid_acts_as_tree (= 0.1.5)
   mongrel
   mongrel_experimental
