@@ -252,7 +252,7 @@ DEPENDENCIES
   mimetype-fu
   mocha!
   mongo_session_store (= 2.0.0.pre)
-  mongoid (= 2.0.0.beta11)
+  mongoid (= 2.0.0.beta.14)
   mongoid_acts_as_tree (= 0.1.5)
   mongrel
   mongrel_experimental
