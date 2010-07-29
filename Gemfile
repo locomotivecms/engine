@@ -1,7 +1,7 @@
 # Edit this Gemfile to bundle your application's dependencies.
-source 'http://gemcutter.org'
+source 'http://rubygems.org'
 
-gem 'rails', '3.0.0.beta4'
+gem 'rails', '3.0.0.rc'
 
 gem 'liquid', '2.0.0'
 gem 'bson_ext', '>= 1.0.1'
@@ -29,7 +29,7 @@ group :development do
   gem 'mongrel'
   gem 'cgi_multipart_eof_fix'
   gem 'fastthread'
-  gem 'mongrel_experimental'
+  # gem 'mongrel_experimental'
 end
 
 group :test, :development do

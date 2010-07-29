@@ -9,6 +9,9 @@ require 'locomotive/custom_fields'
 require 'locomotive/httparty'
 require 'locomotive/inherited_resources'
 require 'locomotive/admin_responder'
+require 'locomotive/routing'
+require 'locomotive/regexps'
+require 'locomotive/render'
 
 require 'mongo_session_store/mongoid'
 

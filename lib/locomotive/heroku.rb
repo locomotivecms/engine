@@ -1,4 +1,5 @@
 require 'heroku'
+require 'locomotive/heroku/custom_domain'
 
 module Locomotive
   module Heroku
