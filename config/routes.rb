@@ -1,5 +1,5 @@
 # Locomotive::Application.routes.draw do |map|
-Rails.application.routes.draw do |map|
+Rails.application.routes.draw do
 
   constraints(Locomotive::Routing::DefaultConstraint) do
     root :to => 'home#show'
