@@ -1,9 +1,28 @@
 GIT
+  remote: git://github.com/durran/mongoid.git
+  revision: 8f38586
+  specs:
+    mongoid (2.0.0.beta.14)
+      activemodel (= 3.0.0.rc)
+      bson (= 1.0.4)
+      mongo (= 1.0.6)
+      tzinfo (= 0.3.22)
+      will_paginate (~> 3.0.pre)
+
+GIT
   remote: git://github.com/floehopper/mocha.git
   revision: d1715ff
   specs:
     mocha (0.9.8.20090918115329)
       rake
+
+GIT
+  remote: git://github.com/plataformatec/devise.git
+  revision: c31b1f2
+  specs:
+    devise (1.2.0)
+      bcrypt-ruby (~> 2.1.2)
+      warden (~> 0.10.7)
 
 GIT
   remote: http://github.com/justinfrench/formtastic.git
@@ -85,9 +104,6 @@ GEM
     culerity (0.2.10)
     daemons (1.1.0)
     database_cleaner (0.5.2)
-    devise (1.1.rc2)
-      bcrypt-ruby (~> 2.1.2)
-      warden (~> 0.10.7)
     diff-lcs (1.1.2)
     envjs (0.3.7)
       johnson (>= 2.0.0.pre3)
@@ -140,12 +156,6 @@ GEM
       bson (>= 1.0.4)
     mongo_session_store (2.0.0.pre)
       actionpack (~> 3.0)
-    mongoid (2.0.0.beta.15)
-      activemodel (= 3.0.0.rc)
-      bson (= 1.0.4)
-      mongo (= 1.0.6)
-      tzinfo (= 0.3.22)
-      will_paginate (~> 3.0.pre)
     mongoid_acts_as_tree (0.1.5)
       bson (>= 0.20.1)
       mongoid (<= 2.0.0)
@@ -187,9 +197,9 @@ GEM
     rspec-expectations (2.0.0.beta.19)
       diff-lcs (>= 1.1.2)
     rspec-mocks (2.0.0.beta.19)
-    rspec-rails (2.0.0.beta.18)
-      rspec (>= 2.0.0.beta.14)
-      webrat (>= 0.7.0)
+    rspec-rails (2.0.0.beta.19)
+      rspec (= 2.0.0.beta.19)
+      webrat (>= 0.7.2.beta.1)
     ruby-debug (0.10.3)
       columnize (>= 0.1)
       ruby-debug-base (~> 0.10.3.0)
@@ -213,7 +223,7 @@ GEM
     uuidtools (2.1.1)
     warden (0.10.7)
       rack (>= 1.0.0)
-    webrat (0.7.1)
+    webrat (0.7.2.beta.1)
       nokogiri (>= 1.2.0)
       rack (>= 1.0)
       rack-test (>= 0.5.3)
@@ -236,7 +246,7 @@ DEPENDENCIES
   cucumber
   cucumber-rails
   database_cleaner
-  devise (= 1.1.rc2)
+  devise!
   factory_girl_rails
   fastthread
   formtastic!
@@ -250,12 +260,12 @@ DEPENDENCIES
   mimetype-fu
   mocha!
   mongo_session_store (= 2.0.0.pre)
-  mongoid (= 2.0.0.beta.15)
+  mongoid!
   mongoid_acts_as_tree (= 0.1.5)
   mongrel
   rails (= 3.0.0.rc)
   rmagick (= 2.12.2)
-  rspec-rails (= 2.0.0.beta.18)
+  rspec-rails (= 2.0.0.beta.19)
   ruby-debug
   spork
   warden

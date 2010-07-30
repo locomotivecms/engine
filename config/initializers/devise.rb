@@ -121,12 +121,6 @@ Devise.setup do |config|
   # are using only default views.
   config.scoped_views = true
 
-  # By default, devise detects the role accessed based on the url. So whenever
-  # accessing "/users/sign_in", it knows you are accessing an User. This makes
-  # routes as "/sign_in" not possible, unless you tell Devise to use the default
-  # scope, setting true below.
-  config.use_default_scope = true
-
   # Configure the default scope used by Devise. By default it's the first devise
   # role declared in your routes.
   config.default_scope = :account
