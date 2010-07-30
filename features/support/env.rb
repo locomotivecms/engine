@@ -44,13 +44,7 @@ end
 
 Capybara.default_host = 'test.example.com'
 
-# How to clean your database when transactions are turned off. See
-# http://github.com/bmabey/database_cleaner for more info.
-begin
-  require 'database_cleaner'
-  require 'database_cleaner/cucumber'
-  DatabaseCleaner.strategy = :truncation
-  DatabaseCleaner.orm = "mongoid"
-rescue LoadError => ignore_if_database_cleaner_not_present
-  puts "Database Cleaner not Present"
-end
+require 'database_cleaner'
+require 'database_cleaner/cucumber'
+DatabaseCleaner.strategy = :truncation
+DatabaseCleaner.orm = "mongoid"
