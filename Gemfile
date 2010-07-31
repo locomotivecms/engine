@@ -14,7 +14,7 @@ gem 'mongo_session_store', '2.0.0.pre'
 gem 'warden'
 # gem 'devise', '1.1.rc2'
 gem 'devise', :git => "git://github.com/plataformatec/devise.git"
-gem 'haml', '3.0.13'
+gem 'haml', '3.0.15'
 gem 'rmagick', '2.12.2'
 gem 'aws'
 gem 'mimetype-fu', :require => 'mimetype_fu'

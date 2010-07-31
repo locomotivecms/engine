@@ -128,7 +128,7 @@ GEM
       trollop (~> 1.16.2)
     git (1.2.5)
     growl-glue (1.0.7)
-    haml (3.0.13)
+    haml (3.0.15)
     has_scope (0.5.0)
     heroku (1.9.13)
       json_pure (>= 1.2.0, < 1.5.0)
@@ -261,7 +261,7 @@ DEPENDENCIES
   fastthread
   formtastic!
   growl-glue
-  haml (= 3.0.13)
+  haml (= 3.0.15)
   heroku
   httparty (= 0.6.1)
   inherited_resources (= 1.1.2)
