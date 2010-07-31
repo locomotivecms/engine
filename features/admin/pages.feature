@@ -1,6 +1,6 @@
 @site_up
 @authenticated
-Feature: Manage Skills
+Feature: Manage Pages
   In order to manage pages
   As an administrator
   I want to add/edit/delete pages of my site
