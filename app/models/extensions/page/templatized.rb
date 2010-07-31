@@ -7,7 +7,7 @@ module Models
 
         included do
 
-          belongs_to_related :content_type
+          referenced_in :content_type
 
           field :templatized, :type => Boolean, :default => false
 

@@ -12,7 +12,7 @@ class ContentType
   field :api_enabled, :type => Boolean, :default => false
 
   ## associations ##
-  belongs_to_related :site
+  referenced_in :site
   embeds_many :contents, :class_name => 'ContentInstance' do
     def visible
       @target.find_all { |c| c.visible? }

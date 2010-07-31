@@ -10,12 +10,12 @@ class Site
   field :meta_description
 
   ## associations ##
-  has_many_related :pages
-  has_many_related :layouts
-  has_many_related :snippets
-  has_many_related :theme_assets
-  has_many_related :asset_collections
-  has_many_related :content_types
+  references_many :pages
+  references_many :layouts
+  references_many :snippets
+  references_many :theme_assets
+  references_many :asset_collections
+  references_many :content_types
   embeds_many :memberships
 
   ## validations ##

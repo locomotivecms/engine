@@ -16,8 +16,8 @@ class Page
   field :cache_strategy, :default => 'none'
 
   ## associations ##
-  belongs_to_related :site
-  belongs_to_related :layout
+  referenced_in :site
+  referenced_in :layout
   embeds_many :parts, :class_name => 'PagePart'
 
   ## callbacks ##

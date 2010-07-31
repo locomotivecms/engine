@@ -6,7 +6,7 @@ class Membership
   field :admin, :type => Boolean, :default => false
 
   ## associations ##
-  belongs_to_related :account
+  referenced_in :account
   embedded_in :site, :inverse_of => :memberships
 
   ## validations ##

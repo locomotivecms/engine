@@ -15,7 +15,7 @@ class ThemeAsset
   mount_uploader :source, ThemeAssetUploader
 
   ## associations ##
-  belongs_to_related :site
+  referenced_in :site
 
   ## callbacks ##
   before_validation :sanitize_slug

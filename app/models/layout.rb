@@ -1,7 +1,7 @@
 class Layout < LiquidTemplate
 
   ## associations ##
-  has_many_related :pages
+  references_many :pages
   embeds_many :parts, :class_name => 'PagePart'
 
   ## callbacks ##
