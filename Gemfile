@@ -41,6 +41,7 @@ end
 
 group :test do
   gem "autotest"
+  gem "growl-glue"
   gem 'rspec-rails', '2.0.0.beta.19'
   gem 'factory_girl_rails'
   gem "pickle", :git => "http://github.com/codegram/pickle.git"
