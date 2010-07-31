@@ -25,6 +25,12 @@ GIT
       warden (~> 0.10.7)
 
 GIT
+  remote: http://github.com/codegram/pickle.git
+  revision: 2834204
+  specs:
+    pickle (0.3.0)
+
+GIT
   remote: http://github.com/justinfrench/formtastic.git
   revision: 4481341
   branch: rails3
@@ -165,6 +171,9 @@ GEM
       fastthread (>= 1.0.1)
       gem_plugin (>= 0.2.3)
     nokogiri (1.4.3.1)
+    pickle-mongoid (0.1.6)
+      mongoid (>= 2.0.0.beta.7)
+      pickle (>= 0.3.0)
     polyglot (0.3.1)
     rack (1.2.1)
     rack-mount (0.6.9)
@@ -263,6 +272,8 @@ DEPENDENCIES
   mongoid!
   mongoid_acts_as_tree (= 0.1.5)
   mongrel
+  pickle!
+  pickle-mongoid
   rails (= 3.0.0.rc)
   rmagick (= 2.12.2)
   rspec-rails (= 2.0.0.beta.19)

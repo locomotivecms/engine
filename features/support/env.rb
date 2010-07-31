@@ -36,15 +36,8 @@ Capybara.javascript_driver = :envjs
 # of your scenarios, as this makes it hard to discover errors in your application.
 ActionController::Base.allow_rescue = false
 
-require 'factory_girl'
-
 Locomotive.configure do |config|
   config.default_domain = 'example.com'
 end
 
 Capybara.default_host = 'test.example.com'
-
-require 'database_cleaner'
-require 'database_cleaner/cucumber'
-DatabaseCleaner.strategy = :truncation
-DatabaseCleaner.orm = "mongoid"

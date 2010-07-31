@@ -43,6 +43,8 @@ group :test do
   gem "autotest"
   gem 'rspec-rails', '2.0.0.beta.19'
   gem 'factory_girl_rails'
+  gem "pickle", :git => "http://github.com/codegram/pickle.git"
+  gem "pickle-mongoid"
   gem 'capybara'
   gem "capybara-envjs", ">= 0.1.5"
   gem 'database_cleaner'
