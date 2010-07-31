@@ -70,7 +70,7 @@ def create_layout_samples
       <title>My website</title>
     </head>
     <body>
-      <div id="main">\{\{ content_for_layout \}\}</div>
+      <div id="main">{{ content_for_layout }}</div>
     </body>
   </html>})
   Factory(:layout, :site => @site)
