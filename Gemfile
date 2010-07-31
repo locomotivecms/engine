@@ -47,7 +47,10 @@ group :test do
   gem "pickle", :git => "http://github.com/codegram/pickle.git"
   gem "pickle-mongoid"
   gem 'capybara'
-  gem "capybara-envjs", ">= 0.1.5"
+
+  # would be nice..
+  # gem "capybara-envjs"
+
   gem 'database_cleaner'
   gem 'cucumber'
   gem 'cucumber-rails'

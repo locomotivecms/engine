@@ -3,11 +3,11 @@ General Cucumbering Strategy:
 Admin Pages
   Contents
     Pages
-      - Create a Page
+      - Create a Page (DONE)
       - Create a Sub Page
       - Create another Sub Page
       - Move Sub Pages around (use Selenium for this)
-      - Edit a Page
+      - Edit a Page (DONE)
       - Delete a Page
     Models
       - Create a New Model

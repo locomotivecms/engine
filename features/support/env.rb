@@ -16,14 +16,16 @@ require 'capybara/rails'
 require 'capybara/cucumber'
 require 'capybara/session'
 
-require 'capybara/envjs'
+# envjs doesnt work at the moment
+# require 'capybara/envjs'
 
 # Capybara defaults to XPath selectors rather than Webrat's default of CSS3. In
 # order to ease the transition to Capybara we set the default here. If you'd
 # prefer to use XPath just remove this line and adjust any selectors in your
 # steps to use the XPath syntax.
 Capybara.default_selector = :css
-Capybara.javascript_driver = :envjs
+
+Capybara.javascript_driver = :selenium
 
 # If you set this to false, any error raised from within your app will bubble
 # up to your step definition and out to cucumber unless you catch it somewhere
@@ -41,3 +43,4 @@ Locomotive.configure do |config|
 end
 
 Capybara.default_host = 'test.example.com'
+# Capybara.app_host = 'http://test.example.com'

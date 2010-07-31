@@ -20,8 +20,8 @@ end
 
 Given /^I am an authenticated user$/ do
   Given %{I go to login}
-  And %{I fill in "admin_email" with "admin@locomotiveapp.org"}
-  And %{I fill in "admin_password" with "easyone"}
+  And %{I fill in "Email" with "admin@locomotiveapp.org"}
+  And %{I fill in "Password" with "easyone"}
   And %{I press "Log in"}
 end
 
