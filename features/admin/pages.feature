@@ -16,7 +16,7 @@ Scenario: Creating a valid page
   And I fill in "Title" with "Test"
   And I fill in "Slug" with "test"
   And I select "Home page" from "Parent"
-  And I fill in "page_parts_attributes_0_value" with "Lorem ipsum...."
+  And I fill in "Body" with "Lorem ipsum...."
   And I press "Create"
   Then I should see "Page was successfully created."
   And I should have "Lorem ipsum...." in the test page layout
@@ -25,7 +25,7 @@ Scenario: Updating a valid page
   When I go to pages
   And I follow "Home page"
   And I fill in "Title" with "Home page !"
-  And I fill in "page_parts_attributes_0_value" with "My new content is here"
+  And I fill in "Body" with "My new content is here"
   And I press "Update"
   Then I should see "Page was successfully updated."
   And I should have "My new content is here" in the index page layout
