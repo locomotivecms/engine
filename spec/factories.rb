@@ -55,11 +55,6 @@ Factory.define :page do |p|
   p.site { Site.where(:subdomain => "acme").first || Factory(:site) }
 end
 
-Factory.define "content page", :parent => :page do |p|
-  p.parent { |p| p.site.pages.where(:slug => "index").first }
-end
-
-
 
 # Factory.define "unpub"
 
