@@ -23,7 +23,7 @@ class ContentInstance
   before_create :add_to_list_bottom
 
   ## named scopes ##
-  named_scope :latest_updated, :order_by => [[:updated_at, :desc]], :limit => Locomotive.config.lastest_items_nb
+  scope :latest_updated, :order_by => [[:updated_at, :desc]], :limit => Locomotive.config.lastest_items_nb
 
   ## methods ##
 
