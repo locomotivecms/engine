@@ -3,16 +3,15 @@ Feature: Engine
   I want to be able to view someones created locomotive pages
 
   Background:
-    Given I have the site: "test site" set up with name: "Something2111"
+    Given I have the site: "test site" set up
 
-  @wip
   Scenario: Simple Page
-    Given I have a page created at "/hello_world" with the content:
+    Given I have a simple page created at "hello-world" with the body:
       """
       Hello World
       """
-    When I render "/hello_world"
-    Then output should look like
+    When I view the rendered page at "/hello-world"
+    Then the rendered output should look like:
       """
       Hello World
       """
@@ -32,7 +31,7 @@ Feature: Engine
       """
 
     When I render "/hello_world_layout"
-    Then output should look like
+    Then the rendered output should look like:
       """
       <div class="up_above"></div>
       Hello World

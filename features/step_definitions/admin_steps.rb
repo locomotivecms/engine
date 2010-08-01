@@ -4,7 +4,6 @@ Given /^I am not authenticated$/ do
   visit('/admin/sign_out')
 end
 
-
 Given /^I am an authenticated user$/ do
   Given %{I go to login}
   And %{I fill in "Email" with "admin@locomotiveapp.org"}
@@ -17,16 +16,6 @@ Then /^I am redirected to "([^\"]*)"$/ do |url|
   location = @integration_session.headers["Location"]
   assert_equal url, location
   visit location
-end
-
-### Pages
-
-
-Then /^I should have "(.*)" in the (.*) page (.*)$/ do |content, page_slug, slug|
-  page = @site.pages.where(:slug => page_slug).first
-  part = page.parts.where(:slug => slug).first
-  part.should_not be_nil
-  part.value.should == content
 end
 
 ### Cross-domain authentication
@@ -47,5 +36,4 @@ def create_layout_samples
       <div id="main">{{ content_for_layout }}</div>
     </body>
   </html>})
-  Factory(:layout, :site => @site)
 end
