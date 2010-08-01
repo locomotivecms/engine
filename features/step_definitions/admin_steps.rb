@@ -1,11 +1,3 @@
-Before('@site_up') do
-  create_layout_samples
-end
-
-Before('@another_site_up') do
-  add_new_site
-end
-
 ### Authentication
 
 Given /^I am not authenticated$/ do
@@ -45,12 +37,6 @@ When /^I forget to press the button on the cross-domain notice page$/ do
 end
 
 ### Common
-
-def add_new_site
-  @another_site = Factory.build(:site, :name => 'Locomotive test website #2', :subdomain => 'test2')
-  @another_site.memberships.build :account => @admin, :admin => true
-  @another_site.save
-end
 
 def create_layout_samples
   Factory(:layout, :site => @site, :name => 'One column', :value => %{<html>
