@@ -334,6 +334,32 @@ describe Page do
 
   end
 
+
+  describe "creating a new page" do
+
+    context "with a body" do
+      before do
+        @site = Factory(:site, :subdomain => "somethingweird")
+        @page = Page.create({
+          :slug => "some_slug",
+          :title => "Page Title",
+          :body => "Page Body",
+          :published => true,
+          :site => @site
+        })
+      end
+
+      it "should be valid" do
+        @page.should be_valid
+      end
+
+      it "should render the passed in body attribute of the page" do
+        @page.render(Liquid::Context.new).should == "PageBody"
+      end
+    end
+  end
+
+
   describe 'templatized extension' do
 
     before(:each) do

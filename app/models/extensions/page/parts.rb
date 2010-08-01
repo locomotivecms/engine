@@ -6,9 +6,11 @@ module Models
         extend ActiveSupport::Concern
 
         included do
-
-          before_create { |p| p.parts << PagePart.build_body_part if p.parts.empty? }
-
+          before_validation do |p|
+            if p.parts.empty?
+              p.parts << PagePart.build_body_part(p.try(:body))
+            end
+          end
         end
 
         module InstanceMethods
