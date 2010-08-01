@@ -15,6 +15,9 @@ class Page
   field :published, :type => Boolean, :default => false
   field :cache_strategy, :default => 'none'
 
+  # allows newly pages to have a default body
+  attr_accessor :body
+
   ## associations ##
   referenced_in :site
   referenced_in :layout

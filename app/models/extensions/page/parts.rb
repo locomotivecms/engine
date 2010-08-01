@@ -8,7 +8,7 @@ module Models
         included do
           before_validation do |p|
             if p.parts.empty?
-              p.parts << PagePart.build_body_part(p.try(:body))
+              p.parts << PagePart.build_body_part(p.respond_to?(:body) ? p.body : nil)
             end
           end
         end

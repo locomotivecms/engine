@@ -354,7 +354,7 @@ describe Page do
       end
 
       it "should render the passed in body attribute of the page" do
-        @page.render(Liquid::Context.new).should == "PageBody"
+        @page.render(Liquid::Context.new).should == "Page Body"
       end
     end
   end
