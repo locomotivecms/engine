@@ -8,7 +8,7 @@ gem 'liquid', '2.0.0'
 # gem 'locomotive-liquid'
 
 gem 'bson_ext', '>= 1.0.1'
-gem 'mongoid', :git => "git://github.com/durran/mongoid.git"
+gem 'mongoid', :git => "git://github.com/durran/mongoid.git", :ref => "e387a0d1dc74da057472"
 gem 'mongoid_acts_as_tree', '0.1.5'
 gem 'mongo_session_store', '2.0.0.pre'
 gem 'warden'

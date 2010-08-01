@@ -1,8 +1,9 @@
 GIT
   remote: git://github.com/durran/mongoid.git
-  revision: 8f38586
+  revision: e387a0d
+  ref: e387a0d1dc74da057472
   specs:
-    mongoid (2.0.0.beta.14)
+    mongoid (2.0.0.beta.15)
       activemodel (= 3.0.0.rc)
       bson (= 1.0.4)
       mongo (= 1.0.6)
