@@ -1,14 +1,9 @@
 Before('@site_up') do
-  create_site_and_admin_account
   create_layout_samples
 end
 
 Before('@another_site_up') do
   add_new_site
-end
-
-Before('@authenticated') do
-  Given %{I am an authenticated user}
 end
 
 ### Authentication
@@ -50,13 +45,6 @@ When /^I forget to press the button on the cross-domain notice page$/ do
 end
 
 ### Common
-
-def create_site_and_admin_account
-  @site = Factory(:site, :name => 'Locomotive test website', :subdomain => 'test')
-  @admin = Factory(:account, { :name => 'Admin', :email => 'admin@locomotiveapp.org' })
-  @site.memberships.build :account => @admin, :admin => true
-  @site.save
-end
 
 def add_new_site
   @another_site = Factory.build(:site, :name => 'Locomotive test website #2', :subdomain => 'test2')

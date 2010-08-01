@@ -9,9 +9,15 @@ Factory.define "test site", :parent => :site do |s|
   s.name 'Locomotive test website'
   s.subdomain 'test'
   s.after_build do |site_test|
-    site_test.memberships.build :account => Factory("admin user"), :admin => true
+    site_test.memberships.build :account => Account.where(:name => "Admin").first || Factory("admin user"), :admin => true
   end
 end
+
+Factory.define "another site", :parent => "test site" do |s|
+  s.name "Locomotive test website #2"
+  s.subdomain "test2"
+end
+
 
 # Accounts ##
 Factory.define :account do |a|
@@ -33,11 +39,13 @@ Factory.define "frenchy user", :parent => :account do |a|
   a.locale 'fr'
 end
 
+
 ## Memberships ##
 Factory.define :membership do |m|
   m.association :account, :factory => :account
   m.admin true
 end
+
 
 ## Pages ##
 Factory.define :page do |p|
@@ -46,6 +54,7 @@ Factory.define :page do |p|
   p.slug 'index'
 end
 
+
 ## Liquid templates ##
 Factory.define :liquid_template do |t|
   t.association :site, :factory => :site
@@ -53,6 +62,7 @@ Factory.define :liquid_template do |t|
   t.slug 'simple_one'
   t.value %{simple liquid template}
 end
+
 
 ## Layouts ##
 Factory.define :layout do |l|
@@ -69,6 +79,7 @@ Factory.define :layout do |l|
   </html>}
 end
 
+
 ## Snippets ##
 Factory.define :snippet do |s|
   s.association :site, :factory => :site
@@ -77,16 +88,19 @@ Factory.define :snippet do |s|
   s.value %{<title>Acme</title>}
 end
 
+
 ## Theme assets ##
 Factory.define :theme_asset do |a|
   a.association :site
 end
+
 
 ## Asset collections ##
 Factory.define :asset_collection do |s|
   s.association :site, :factory => :site
   s.name 'Trip to Chicago'
 end
+
 
 ## Content types ##
 Factory.define :content_type do |t|

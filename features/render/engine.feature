@@ -2,6 +2,9 @@ Feature: Engine
   As a website user
   I want to be able to view someones created locomotive pages
 
+  Background:
+    Given I have the site: "test site" set up with name: "Something2111"
+
   @wip
   Scenario: Simple Page
     Given I have a page created at "/hello_world" with the content:
