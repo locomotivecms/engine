@@ -11,7 +11,6 @@ module Locomotive
 
       # see actionpack/lib/action_dispatch/http/url.rb for more information
       def self.domain_and_subdomain(request)
-        subdomain = extract_subdomain(request)
         [extract_domain(request), extract_subdomain(request)]
       end
 

@@ -1,4 +1,6 @@
 require 'database_cleaner'
-require 'database_cleaner/cucumber'
+Before do
+  DatabaseCleaner.clean
+end
 DatabaseCleaner.strategy = :truncation
 DatabaseCleaner.orm = "mongoid"

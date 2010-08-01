@@ -20,13 +20,7 @@ Rspec.configure do |config|
     DatabaseCleaner.strategy = :truncation
     DatabaseCleaner.orm = "mongoid"
   end
-
   config.before(:each) do
-    DatabaseCleaner.start
-  end
-
-  config.after(:each) do
     DatabaseCleaner.clean
   end
-
 end

@@ -1,11 +1,11 @@
 ### Pages
 
 Given /^I have a simple page created at "([^"]*)" with the body:$/ do |slug, page_contents|
-  @page = Factory(:page, :site => @site, :slug => slug, :body => page_contents)
+  @page = Factory("content page", :site => @site, :slug => slug, :body => page_contents)
 end
 
 When /^I view the rendered page at "([^"]*)"$/ do |slug|
-  visit "/#{slug}"
+  visit "http://#{@site.domains.first}/#{slug}"
 end
 
 Then /^I should have "(.*)" in the (.*) page (.*)$/ do |content, page_slug, slug|
