@@ -31,8 +31,8 @@ class Site
   after_destroy :destroy_in_cascade!
 
   ## named scopes ##
-  named_scope :match_domain, lambda { |domain| { :where => { :domains => domain } } }
-  named_scope :match_domain_with_exclusion_of, lambda { |domain, site| { :where => { :domains => domain, :_id.ne => site.id } } }
+  scope :match_domain, lambda { |domain| { :where => { :domains => domain } } }
+  scope :match_domain_with_exclusion_of, lambda { |domain, site| { :where => { :domains => domain, :_id.ne => site.id } } }
 
   ## methods ##
 

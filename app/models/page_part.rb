@@ -16,7 +16,7 @@ class PagePart
   validates_presence_of :name, :slug
 
   ## named scopes ##
-  named_scope :enabled, where(:disabled => false)
+  scope :enabled, where(:disabled => false)
 
   ## methods ##
 

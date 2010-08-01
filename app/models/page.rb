@@ -31,10 +31,10 @@ class Page
   validates_exclusion_of    :slug, :in => Locomotive.config.reserved_slugs, :if => Proc.new { |p| p.depth == 0 }
 
   ## named scopes ##
-  named_scope :latest_updated, :order_by => [[:updated_at, :desc]], :limit => Locomotive.config.lastest_items_nb
-  named_scope :index, :where => { :slug => 'index', :depth => 0 }
-  named_scope :not_found, :where => { :slug => '404', :depth => 0 }
-  named_scope :published, :where => { :published => true }
+  scope :latest_updated, :order_by => [[:updated_at, :desc]], :limit => Locomotive.config.lastest_items_nb
+  scope :index, :where => { :slug => 'index', :depth => 0 }
+  scope :not_found, :where => { :slug => '404', :depth => 0 }
+  scope :published, :where => { :published => true }
 
   ## behaviours ##
   liquify_template :joined_parts
