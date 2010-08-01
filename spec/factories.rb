@@ -5,6 +5,14 @@ Factory.define :site do |s|
   s.created_at Time.now
 end
 
+Factory.define "test site", :parent => :site do |s|
+  s.name 'Locomotive test website'
+  s.subdomain 'test'
+  s.after_build do |site_test|
+    site_test.memberships.build :account => Factory("admin user"), :admin => true
+  end
+end
+
 # Accounts ##
 Factory.define :account do |a|
   a.name 'Bart Simpson'
@@ -12,6 +20,17 @@ Factory.define :account do |a|
   a.password 'easyone'
   a.password_confirmation 'easyone'
   a.locale 'en'
+end
+
+Factory.define "admin user", :parent => :account do |a|
+  a.name "Admin"
+  a.email "admin@locomotiveapp.org"
+end
+
+Factory.define "frenchy user", :parent => :account do |a|
+  a.name "Jean Claude"
+  a.email "jean@frenchy.fr"
+  a.locale 'fr'
 end
 
 ## Memberships ##
