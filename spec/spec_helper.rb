@@ -13,6 +13,14 @@ Rspec.configure do |config|
 
   config.before(:each) do
     Locomotive.config.heroku = false
-    Mongoid.master.collections.select { |c| c.name != 'system.indexes' }.each(&:drop)
+  end
+
+  require 'database_cleaner'
+  config.before(:suite) do
+    DatabaseCleaner.strategy = :truncation
+    DatabaseCleaner.orm = "mongoid"
+  end
+  config.before(:each) do
+    DatabaseCleaner.clean
   end
 end

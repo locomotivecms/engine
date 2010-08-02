@@ -16,14 +16,16 @@ require 'capybara/rails'
 require 'capybara/cucumber'
 require 'capybara/session'
 
-require 'capybara/envjs'
+# envjs doesnt work at the moment
+# require 'capybara/envjs'
 
 # Capybara defaults to XPath selectors rather than Webrat's default of CSS3. In
 # order to ease the transition to Capybara we set the default here. If you'd
 # prefer to use XPath just remove this line and adjust any selectors in your
 # steps to use the XPath syntax.
 Capybara.default_selector = :css
-Capybara.javascript_driver = :envjs
+
+Capybara.javascript_driver = :selenium
 
 # If you set this to false, any error raised from within your app will bubble
 # up to your step definition and out to cucumber unless you catch it somewhere
@@ -36,21 +38,9 @@ Capybara.javascript_driver = :envjs
 # of your scenarios, as this makes it hard to discover errors in your application.
 ActionController::Base.allow_rescue = false
 
-require 'factory_girl'
-
 Locomotive.configure do |config|
   config.default_domain = 'example.com'
 end
 
 Capybara.default_host = 'test.example.com'
-
-# How to clean your database when transactions are turned off. See
-# http://github.com/bmabey/database_cleaner for more info.
-begin
-  require 'database_cleaner'
-  require 'database_cleaner/cucumber'
-  DatabaseCleaner.strategy = :truncation
-  DatabaseCleaner.orm = "mongoid"
-rescue LoadError => ignore_if_database_cleaner_not_present
-  puts "Database Cleaner not Present"
-end
+# Capybara.app_host = 'http://test.example.com'

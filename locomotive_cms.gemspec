@@ -888,7 +888,7 @@ Gem::Specification.new do |s|
      "vendor/plugins/custom_fields/lib/custom_fields.rb",
      "vendor/plugins/custom_fields/lib/custom_fields/custom_fields_for.rb",
      "vendor/plugins/custom_fields/lib/custom_fields/extensions/mongoid/associations/embeds_many.rb",
-     "vendor/plugins/custom_fields/lib/custom_fields/extensions/mongoid/associations/has_many_related.rb",
+     "vendor/plugins/custom_fields/lib/custom_fields/extensions/mongoid/associations/references_many.rb",
      "vendor/plugins/custom_fields/lib/custom_fields/extensions/mongoid/associations/proxy.rb",
      "vendor/plugins/custom_fields/lib/custom_fields/extensions/mongoid/document.rb",
      "vendor/plugins/custom_fields/lib/custom_fields/field.rb",

@@ -8,7 +8,7 @@ class LiquidTemplate
   field :value
 
   ## associations ##
-  belongs_to_related :site
+  referenced_in :site
 
   ## callbacks ##
   before_validation :normalize_slug

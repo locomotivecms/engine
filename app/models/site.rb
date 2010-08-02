@@ -10,12 +10,12 @@ class Site
   field :meta_description
 
   ## associations ##
-  has_many_related :pages
-  has_many_related :layouts
-  has_many_related :snippets
-  has_many_related :theme_assets
-  has_many_related :asset_collections
-  has_many_related :content_types
+  references_many :pages
+  references_many :layouts
+  references_many :snippets
+  references_many :theme_assets
+  references_many :asset_collections
+  references_many :content_types
   embeds_many :memberships
 
   ## validations ##
@@ -31,8 +31,8 @@ class Site
   after_destroy :destroy_in_cascade!
 
   ## named scopes ##
-  named_scope :match_domain, lambda { |domain| { :where => { :domains => domain } } }
-  named_scope :match_domain_with_exclusion_of, lambda { |domain, site| { :where => { :domains => domain, :_id.ne => site.id } } }
+  scope :match_domain, lambda { |domain| { :where => { :domains => domain } } }
+  scope :match_domain_with_exclusion_of, lambda { |domain, site| { :where => { :domains => domain, :_id.ne => site.id } } }
 
   ## methods ##
 
@@ -82,7 +82,8 @@ class Site
       self.pages.create({
         :slug => slug,
         :title => I18n.t("attributes.defaults.pages.#{slug}.title"),
-        :body => I18n.t("attributes.defaults.pages.#{slug}.body")
+        :body => I18n.t("attributes.defaults.pages.#{slug}.body"),
+        :published => true
       })
     end
   end

@@ -16,7 +16,7 @@ class PagePart
   validates_presence_of :name, :slug
 
   ## named scopes ##
-  named_scope :enabled, where(:disabled => false)
+  scope :enabled, where(:disabled => false)
 
   ## methods ##
 
@@ -24,10 +24,10 @@ class PagePart
     "{% capture content_for_#{self.slug} %}#{self.value}{% endcapture %}"
   end
 
-  def self.build_body_part
+  def self.build_body_part(body_content = nil)
     self.new({
       :name => I18n.t('attributes.defaults.page_parts.name'),
-      :value => I18n.t('attributes.defaults.pages.other.body'),
+      :value => body_content || I18n.t('attributes.defaults.pages.other.body'),
       :slug => 'layout'
     })
   end

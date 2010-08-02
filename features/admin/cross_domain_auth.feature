@@ -1,10 +1,12 @@
-@site_up
-@another_site_up
-@authenticated
-Feature:
+Feature: Cross Domain Authentication
   In order to manage a new site I created
   As an administrator signed in another site of mine
   I want to bypass the authentication
+
+Background:
+  Given I have the site: "test site" set up
+  And I have the site: "another site" set up
+  And I am an authenticated user
 
 Scenario: Successful authentication
   When I go to pages

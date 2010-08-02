@@ -61,34 +61,34 @@ describe Account do
     end
 
   end
-  
+
   describe 'cross domain authentication' do
-    
+
     before(:each) do
       @account = Factory.build(:account)
       @account.stubs(:save).returns(true)
     end
-    
+
     it 'sets a token' do
       @account.reset_switch_site_token!.should be_true
       @account.switch_site_token.should_not be_empty
     end
-    
+
     context 'retrieving an account' do
-      
+
       it 'does not find it with an empty token' do
         Account.find_using_switch_site_token(nil).should be_nil
       end
-      
+
       it 'raises an exception if not found' do
         lambda {
           Account.find_using_switch_site_token!(nil)
         }.should raise_error(Mongoid::Errors::DocumentNotFound)
       end
-      
+
     end
-  
-    
+
+
   end
 
 end

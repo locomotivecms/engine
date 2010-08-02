@@ -33,6 +33,7 @@
     %ul{ :id => "parts" }
       = f.fields_for :parts do |g|
         %li{ :style => "#{'display: none' if g.object.disabled?}" }
+          = g.label :value, g.object.name, :style => "display:none"
           %code= g.text_area :value
           = g.hidden_field :name
           = g.hidden_field :slug

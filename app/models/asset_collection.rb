@@ -7,7 +7,7 @@ class AssetCollection
   field :slug
 
   ## associations ##
-  belongs_to_related :site
+  referenced_in :site
   embeds_many :assets
 
   ## behaviours ##
