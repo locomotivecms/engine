@@ -71,3 +71,18 @@ Scenario: Page with Parts
     </div>
     <div class="footer"></div>
     """
+
+@wip
+Scenario: Simple Page with Admin Inline Editing
+  Given a simple page named "hello-world-inline" with the body:
+    """
+    {% block hello %}Hello World{% endblock %}
+    """
+  When And I'm an admin
+  And I view the rendered page at "/hello-world-inline"
+  Then the rendered output shoud look like:
+    """
+    <div class="inline-editing" data-url="/admin/parts/XXXX" data-title="hello">Hello World</div>
+    """
+
+

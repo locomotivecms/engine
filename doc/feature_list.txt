@@ -60,5 +60,16 @@ Authentication Stuff
   - Forgot password
 
 Rendering Features
-  - Go through all the rendering and templating features and spec them out using features
-  - Start with defining the data models, then giving a template snippet, and verify it against the expected output
+  - Basic render (DONE)
+  - using a layout (DONE)
+  - using a layout with multiple parts (DONE)
+
+  - using snippets
+  - referencing images
+  - using data models
+    - loop through data models
+
+
+
+
+
