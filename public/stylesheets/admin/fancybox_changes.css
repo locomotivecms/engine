@@ -2,7 +2,7 @@
 
 /* ___ common ___ */
 
-.box-wrapper { display: none; }
+.fancybox-wrapper { display: none; }
 
 #fancybox-inner h2 {
   border-bottom:1px dotted #BBBBBD;

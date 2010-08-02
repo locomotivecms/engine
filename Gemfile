@@ -1,12 +1,11 @@
 # Edit this Gemfile to bundle your application's dependencies.
-source 'http://gemcutter.org'
-source 'http://gems.github.com'
+source 'http://rubygems.org'
 
-gem 'rails', '3.0.0.beta4'
+gem 'rails', '3.0.0.rc'
 
 gem 'liquid', '2.0.0'
 gem 'bson_ext', '>= 1.0.1'
-gem 'mongoid', '2.0.0.beta.14'
+gem 'mongoid', '2.0.0.beta.15'
 gem 'mongoid_acts_as_tree', '0.1.5'
 gem 'mongo_session_store', '2.0.0.pre'
 gem 'warden'
@@ -15,8 +14,8 @@ gem 'haml', '3.0.13'
 gem 'rmagick', '2.12.2'
 gem 'aws'
 gem 'mimetype-fu', :require => 'mimetype_fu'
-gem 'formtastic-rails3'
-gem 'carrierwave-rails3', :require => 'carrierwave'
+gem 'formtastic-rails3', '1.0.0.beta3', :require => 'formtastic'
+gem 'carrierwave', '0.5.0.beta2'
 gem 'actionmailer-with-request', :require => 'actionmailer_with_request'
 gem 'heroku'
 gem 'httparty', '0.6.1'
@@ -30,7 +29,7 @@ group :development do
   gem 'mongrel'
   gem 'cgi_multipart_eof_fix'
   gem 'fastthread'
-  gem 'mongrel_experimental'
+  # gem 'mongrel_experimental'
 end
 
 group :test, :development do

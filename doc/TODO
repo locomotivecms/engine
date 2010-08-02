@@ -1,6 +1,7 @@
 BOARD:
 
 - refactor slugify method (use parameterize + create a module)
+- [content types] the "display column" selector should not include file types
 
 BACKLOG:
 

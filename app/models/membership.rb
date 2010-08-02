@@ -25,7 +25,7 @@ class Membership
     if @email.blank?
       self.errors.add_on_blank(:email)
       :error
-    elsif self.account.nil?
+    elsif self.account.blank?
       :create_account
     elsif self.site.memberships.find_all { |m| m.account_id == self.account_id }.size > 1
       self.errors.add(:base, 'Already created')

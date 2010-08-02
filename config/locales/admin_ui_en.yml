@@ -35,7 +35,7 @@ en:
     errors:
       "500":
         title: Application Error
-        notice: "Sorry, "
+        notice: "We're sorry, but something went wrong"
         link: "&rarr; Back to the application"
       "404":
         title: Page not found
