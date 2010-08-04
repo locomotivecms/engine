@@ -41,7 +41,7 @@ describe Locomotive::Liquid::Tags::Nav do
 
   def render_nav(source = 'site', registers = {}, template_option = '')
     registers = { :site => @site, :page => @home }.merge(registers)
-    liquid_context = ::Liquid::Context.new({}, registers)
+    liquid_context = ::Liquid::Context.new({}, {}, registers)
 
     output = Liquid::Template.parse("{% nav #{source} #{template_option} %}").render(liquid_context)
     output.gsub(/\n\s{0,}/, '')

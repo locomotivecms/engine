@@ -133,7 +133,7 @@ GEM
       configuration (>= 0.0.5)
       rake (>= 0.8.1)
     linecache (0.43)
-    liquid (2.0.0)
+    liquid (2.1.2)
     mail (2.2.5)
       activesupport (>= 2.3.6)
       mime-types
@@ -252,7 +252,7 @@ DEPENDENCIES
   inherited_resources (= 1.1.2)
   jeweler
   launchy
-  liquid (= 2.0.0)
+  liquid (= 2.1.2)
   mimetype-fu
   mocha!
   mongo_session_store (= 2.0.0.pre)

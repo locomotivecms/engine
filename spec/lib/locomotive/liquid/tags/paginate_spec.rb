@@ -48,7 +48,9 @@ describe Locomotive::Liquid::Tags::Paginate do
   # ___ helpers methods ___ #
 
   def liquid_context(options = {})
-    ::Liquid::Context.new({
+    ::Liquid::Context.new(
+      {},
+      {
       'projects'      => options.has_key?(:collection) ? options[:collection] : PaginatedCollection.new(['Ruby on Rails', 'jQuery', 'mongodb', 'Liquid', 'sqlite3']),
       'current_page'  => options[:page] || 1
     }, {}, true)

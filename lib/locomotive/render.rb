@@ -68,7 +68,7 @@ module Locomotive
 
         registers = { :controller => self, :site => current_site, :page => @page }
 
-        ::Liquid::Context.new(assigns, registers)
+        ::Liquid::Context.new({}, assigns, registers)
       end
 
       def prepare_and_set_response(output)

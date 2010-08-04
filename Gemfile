@@ -3,7 +3,8 @@ source 'http://rubygems.org'
 
 gem 'rails', '3.0.0.rc'
 
-gem 'liquid', '2.0.0'
+# gem 'liquid', '2.0.0'
+gem 'liquid', '2.1.2'
 # i think we'll need to fork our templating language
 # gem 'locomotive-liquid'
 

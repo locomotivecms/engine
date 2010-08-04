@@ -8,7 +8,7 @@ describe Locomotive::Liquid::Tags::Snippet do
     snippet = Factory.build(:snippet, :site => site)
     snippet.send(:store_template)
     site.snippets.stubs(:where).returns([snippet])
-    @context = ::Liquid::Context.new({}, { :site => site })
+    @context = ::Liquid::Context.new({}, {}, { :site => site })
   end
 
   it 'should render it' do
