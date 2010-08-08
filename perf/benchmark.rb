@@ -59,5 +59,8 @@ Benchmark.bm do |bm|
   end
 end
 
-# without liquify (macbook white):                          User     System      Total        Real
-# Rendering page 10k times                                  22.650000   6.220000  28.870000 ( 30.294338)
+# without liquify (macbook white):                          User        System    Total        Real
+# Rendering page 10k times                                  22.650000   6.220000  28.870000   ( 30.294338)
+
+# without liquify (imac 27'):                               User        System    Total        Real
+# Rendering page 10k times                                  13.390000   1.700000  15.090000   ( 15.654966)

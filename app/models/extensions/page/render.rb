@@ -4,9 +4,9 @@ module Models
       module Render
 
         def render(context)
-          # ::Liquid::Template.parse(self.layout_template)
           self.template.render(context)
 
+          # FIXME : old code based on layout / parts
           # self.template.render(context)
           #
           # if self.layout

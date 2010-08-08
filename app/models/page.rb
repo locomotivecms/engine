@@ -15,15 +15,14 @@ class Page
   field :published, :type => Boolean, :default => false
   field :cache_strategy, :default => 'none'
 
-  field :layout_template # FIXME: liquid inheritance
+  field :layout_template # FIXME: added for liquid inheritance
 
   # allows newly pages to have a default body
   attr_accessor :body
 
   ## associations ##
   referenced_in :site
-  referenced_in :layout
-  embeds_many :parts, :class_name => 'PagePart'
+  # referenced_in :layout
 
   ## callbacks ##
   before_validation :normalize_slug

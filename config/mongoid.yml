@@ -8,7 +8,8 @@ defaults: &defaults
 
 development:
   <<: *defaults
-  database: locomotive_dev
+  # database: locomotive_dev
+  database: locomotive_le_dev # FIXME: new db for our tests
 
 test:
   <<: *defaults
