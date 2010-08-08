@@ -4,7 +4,7 @@ class Page
 
   ## Extensions ##
   include Models::Extensions::Page::Tree
-  include Models::Extensions::Page::Parts
+  # include Models::Extensions::Page::Parts
   include Models::Extensions::Page::Render
   include Models::Extensions::Page::Templatized
 
@@ -14,6 +14,8 @@ class Page
   field :fullpath
   field :published, :type => Boolean, :default => false
   field :cache_strategy, :default => 'none'
+
+  field :layout_template # FIXME: liquid inheritance
 
   # allows newly pages to have a default body
   attr_accessor :body
@@ -40,7 +42,8 @@ class Page
   scope :published, :where => { :published => true }
 
   ## behaviours ##
-  liquify_template :joined_parts
+  # liquify_template :joined_parts
+  liquify_template :layout_template
 
   ## methods ##
 

@@ -1,9 +1,9 @@
 ### Pages
 
 # helps create a simple content page (parent: "index") with a slug, contents, and layout
-def create_content_page(page_slug, page_contents, layout = nil)
+def create_content_page(page_slug, page_contents, layout = nil, template = nil)
   @home = @site.pages.where(:slug => "index").first || Factory(:page)
-  page = @site.pages.create(:slug => page_slug, :body => page_contents, :layout => layout, :parent => @home, :title => "some title", :published => true)
+  page = @site.pages.create(:slug => page_slug, :body => page_contents, :layout => layout, :parent => @home, :title => "some title", :published => true, :layout_template => template)
   page.should be_valid
   page
 end
@@ -19,6 +19,10 @@ Given /^a page named "([^"]*)" with the layout "([^"]*)" and the body:$/ do |pag
   raise "Could not find layout: #{layout_name}" unless layout
 
   @page = create_content_page(page_slug, page_contents, layout)
+end
+
+Given /^a page named "([^"]*)" with the template:$/ do |page_slug, template|
+  @page = create_content_page(page_slug, '', nil, template)
 end
 
 # creates a layout

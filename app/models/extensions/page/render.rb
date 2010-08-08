@@ -4,13 +4,16 @@ module Models
       module Render
 
         def render(context)
+          # ::Liquid::Template.parse(self.layout_template)
           self.template.render(context)
 
-          if self.layout
-            self.layout.template.render(context)
-          else
-            ::Liquid::Template.parse("{{ content_for_layout }}").render(context)
-          end
+          # self.template.render(context)
+          #
+          # if self.layout
+          #   self.layout.template.render(context)
+          # else
+          #   ::Liquid::Template.parse("{{ content_for_layout }}").render(context)
+          # end
         end
 
       end

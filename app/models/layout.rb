@@ -5,11 +5,11 @@ class Layout < LiquidTemplate
   embeds_many :parts, :class_name => 'PagePart'
 
   ## callbacks ##
-  before_save :build_parts_from_value
-  after_save :update_parts_in_pages
+  # before_save :build_parts_from_value
+  # after_save :update_parts_in_pages
 
   ## validations ##
-  validates_format_of :value, :with => Locomotive::Regexps::CONTENT_FOR_LAYOUT, :message => :missing_content_for_layout
+  # validates_format_of :value, :with => Locomotive::Regexps::CONTENT_FOR_LAYOUT, :message => :missing_content_for_layout
 
   ## methods ##
 
