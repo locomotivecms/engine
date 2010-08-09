@@ -1,6 +1,50 @@
 class Layout < LiquidTemplate
 
+  ## fields ##
+  # field :blocks, :type => Hash
+
+  # def unmarshalled_blocks
+  #   # puts "self.blocks = #{self.blocks.class.inspect}"
+  #   @unmarshalled_blocks ||= self.blocks.inject({}) do |b, (name, node)|
+  #     # puts "b= #{b.inspect} / name = #{name.inspect} / node = #{node.inspect}"
+  #     b[name] = Marshal.load(node)
+  #     b
+  #   end
+  # end
+
+  protected
+
+
+
+  def after_parse_template
+    blocks = self.find_blocks(self.template.root)
+    self.template.send(:instance_variable_set, :"@parent_blocks", blocks)
+
+    # TODO: include parent blocks in self.template before marshalling it
+
+    # puts "[Layout / blocks] #{self.blocks.inspect}"
+  end
+
+  def find_blocks(node, blocks = {})
+    # puts "[Layout/#{self.slug}] ** find_blocks #{node.class.inspect} / #{blocks.keys.inspect}"
+    if node.respond_to?(:nodelist) && node.nodelist
+      # puts "  ==> find_blocks nodelist = #{node.nodelist.inspect}"
+      node.nodelist.inject(blocks) do |b, node|
+        if node.is_a?(Locomotive::Liquid::Tags::Block)
+          # b[node.name] = Marshal.dump(node)
+          b[node.name] = node
+        end
+        # else
+        self.find_blocks(node, b) # FIXME: add nested blocks
+        # end
+        b
+      end
+    end
+    blocks
+  end
+
   ## associations ##
+
   # references_many :pages
   # embeds_many :parts, :class_name => 'PagePart'
 

@@ -37,15 +37,25 @@ module Locomotive
       module InstanceMethods
 
         def template
-          Marshal.load(read_attribute(:serialized_template).to_s) rescue nil
+          @template ||= Marshal.load(read_attribute(:serialized_template).to_s) rescue nil
         end
 
         protected
 
         def store_template
           begin
-            template = ::Liquid::Template.parse(self.liquify_template_source)
-            self.serialized_template = BSON::Binary.new(Marshal.dump(template))
+            @template = ::Liquid::Template.parse(self.liquify_template_source)
+
+            if self.respond_to?(:after_parse_template) # kind of callback
+              self.send(:after_parse_template)
+            end
+
+            self.serialized_template = BSON::Binary.new(Marshal.dump(@template))
+
+            if self.respond_to?(:after_store_template) # kind of callback
+              self.send(:after_store_template)
+            end
+
           rescue ::Liquid::SyntaxError => error
             self.errors.add :template, :liquid_syntax_error
           end
