@@ -3,14 +3,6 @@
 ENV["RAILS_ENV"] ||= 'test'
 require File.dirname(__FILE__) + "/../config/environment" unless defined?(RAILS_ROOT)
 
-# require File.dirname(__FILE__) + "/../config/application.rb"
-
-# Mongoid.configure do |config|
-#   config.master = Mongo::Connection.new.db("locomotive_perf_test")
-# end
-
-OPTIMIZATION = false
-
 %w{sites pages layouts}.each do |collection|
   Mongoid.master.collection(collection).drop
 end
@@ -36,8 +28,6 @@ layout_with_sidebar = site.layouts.create :name => 'with_sidebar', :value => %{
     </body>
   </html>
 }
-
-# puts layout_with_sidebar.unmarshalled_blocks.inspect
 
 custom_layout_with_sidebar = site.layouts.create :name => 'custom_with_sidebar', :value => %{
   \{% extends 'with_sidebar' %\}

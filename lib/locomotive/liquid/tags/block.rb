@@ -13,13 +13,11 @@ module Locomotive
           else
             raise ::Liquid::SyntaxError.new("Syntax Error in 'block' - Valid syntax: block [name]")
           end
-          # puts "** [Block/initialize] #{tag_name}, #{@name}, #{tokens.inspect}"
 
           super if tokens
         end
 
         def render(context)
-          # puts "** [Block/render] #{@name} / #{@parent.inspect}"
           context.stack do
             context['block'] = Locomotive::Liquid::Drops::Block.new(self)
 

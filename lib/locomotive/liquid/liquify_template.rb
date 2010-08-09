@@ -51,11 +51,6 @@ module Locomotive
             end
 
             self.serialized_template = BSON::Binary.new(Marshal.dump(@template))
-
-            if self.respond_to?(:after_store_template) # kind of callback
-              self.send(:after_store_template)
-            end
-
           rescue ::Liquid::SyntaxError => error
             self.errors.add :template, :liquid_syntax_error
           end
