@@ -86,27 +86,32 @@ Scenario: Page extending a layout with multiple blocks which extends another tem
     <div class="footer"></div>
     """
 
-# Scenario: Simple Page with layout
-#   Given a layout named "above_and_below" with the source:
-#     """
-#     <div class="header"></div>
-#     {{ content_for_layout }}
-#     <div class="footer"></div>
-#     """
-#
-#   And a page named "hello-world-with-layout" with the layout "above_and_below" and the body:
-#     """
-#     Hello World
-#     """
-#
-#   When I view the rendered page at "/hello-world-with-layout"
-#   Then the rendered output should look like:
-#     """
-#     <div class="header"></div>
-#     Hello World
-#     <div class="footer"></div>
-#     """
-#
+Scenario: Simple Page with layout
+  Given a layout named "above_and_below" with the source:
+    """
+    <div class="header"></div>
+    <div class="body">
+      {% block body %}{% endblock %}
+    </div>
+    <div class="footer"></div>
+    """
+
+  And a page named "hello-world-with-layout" with the template:
+    """
+    {% extends 'above_and_below' %}
+    {% block body %}Hello World{% endblock %}
+    """
+
+  When I view the rendered page at "/hello-world-with-layout"
+  Then the rendered output should look like:
+    """
+    <div class="header"></div>
+    <div class="body">
+      Hello World
+    </div>
+    <div class="footer"></div>
+    """
+
 # Scenario: Page with Parts
 #   Given a layout named "layout_with_sidebar" with the source:
 #     """
