@@ -17,9 +17,6 @@ class Page
 
   field :layout_template # FIXME: added for liquid inheritance
 
-  # allows newly pages to have a default body
-  attr_accessor :body
-
   ## associations ##
   referenced_in :site
 

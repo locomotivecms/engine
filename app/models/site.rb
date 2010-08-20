@@ -83,7 +83,7 @@ class Site
       self.pages.create({
         :slug => slug,
         :title => I18n.t("attributes.defaults.pages.#{slug}.title"),
-        :body => I18n.t("attributes.defaults.pages.#{slug}.body"),
+        :layout_template => I18n.t("attributes.defaults.pages.#{slug}.body"),
         :published => true
       })
     end

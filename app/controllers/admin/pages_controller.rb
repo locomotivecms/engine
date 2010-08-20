@@ -11,7 +11,7 @@ module Admin
 
     def new
       @page = current_site.pages.build
-      @page.parts << PagePart.build_body_part
+      # @page.parts << PagePart.build_body_part
     end
 
     def sort

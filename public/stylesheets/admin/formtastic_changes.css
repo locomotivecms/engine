@@ -137,6 +137,8 @@ form.formtastic fieldset ol li p.inline-errors {
   font-size: 0.7em !important;
 }
 
+form.formtastic fieldset ol li.code label { display: none; }
+
 form.formtastic fieldset ol li.code p.inline-errors {
   display: block;
   float: right;

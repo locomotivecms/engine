@@ -42,14 +42,11 @@ When /^I view the rendered page at "([^"]*)"$/ do |path|
 end
 
 # checks to see if a string is in the slug
-Then /^I should have "(.*)" in the (.*) page (.*)$/ do |content, page_slug, part_slug|
+Then /^I should have "(.*)" in the (.*) page$/ do |content, page_slug|
   page = @site.pages.where(:slug => page_slug).first
   raise "Could not find page: #{page_slug}" unless page
 
-  part = page.parts.where(:slug => part_slug).first
-  raise "Could not find part: #{part_slug} within page: #{page_slug}" unless part
-
-  part.value.should == content
+  page.layout_template.should == content
 end
 
 # checks if the rendered body matches a string
