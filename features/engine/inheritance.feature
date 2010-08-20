@@ -8,7 +8,7 @@ Background:
   Given I have the site: "test site" set up
 
 Scenario: Liquid Inheritance with a single block
-  Given a layout named "above_and_below" with the source:
+  Given a page named "above-and-below" with the template:
     """
     <div class="header"></div>
     <div class="body">
@@ -19,7 +19,7 @@ Scenario: Liquid Inheritance with a single block
 
   And a page named "hello-world-with-layout" with the template:
     """
-    {% extends 'above_and_below' %}
+    {% extends 'above-and-below' %}
     {% block body %}Hello World{% endblock %}
     """
 
@@ -34,7 +34,7 @@ Scenario: Liquid Inheritance with a single block
     """
 
 Scenario: Liquid Inheritance with multiple blocks
-  Given a layout named "layout_with_sidebar" with the source:
+  Given a page named "layout-with-sidebar" with the template:
     """
     <div class="header"></div>
     <div class="content">
@@ -49,7 +49,7 @@ Scenario: Liquid Inheritance with multiple blocks
     """
   And a page named "hello-world-multiblocks" with the template:
     """
-    {% extends 'layout_with_sidebar' %}
+    {% extends 'layout-with-sidebar' %}
     {% block body %}Hello world{% endblock %}
     """
   When I view the rendered page at "/hello-world-multiblocks"
@@ -68,7 +68,7 @@ Scenario: Liquid Inheritance with multiple blocks
     """
 
 Scenario: Multiple inheritance (layout extending another layout)
-  Given a layout named "layout_with_sidebar" with the source:
+  Given a page named "layout-with-sidebar" with the template:
     """
     <div class="header"></div>
     <div class="content">
@@ -79,15 +79,15 @@ Scenario: Multiple inheritance (layout extending another layout)
     </div>
     <div class="footer"></div>
     """
-  And a layout named "custom_layout_with_sidebar" with the source:
+  And a page named "custom-layout-with-sidebar" with the template:
     """
-    {% extends 'layout_with_sidebar' %}
+    {% extends 'layout-with-sidebar' %}
     {% block sidebar %}Custom sidebar{% endblock %}
     {% block body %}Hello{% endblock %}
     """
   And a page named "hello-world-multiblocks" with the template:
     """
-    {% extends 'custom_layout_with_sidebar' %}
+    {% extends 'custom-layout-with-sidebar' %}
     {% block body %}{{ block.super }} world{% endblock %}
     """
   When I view the rendered page at "/hello-world-multiblocks"
@@ -103,9 +103,8 @@ Scenario: Multiple inheritance (layout extending another layout)
     <div class="footer"></div>
     """
 
-
 Scenario: Page extending a layout with multiple embedded blocks which extends another template
-  Given a layout named "layout_with_sidebar" with the source:
+  Given a page named "layout-with-sidebar" with the template:
     """
     <div class="header"></div>
     <div class="content">
@@ -116,14 +115,14 @@ Scenario: Page extending a layout with multiple embedded blocks which extends an
     </div>
     <div class="footer"></div>
     """
-  And a layout named "custom_layout_with_sidebar" with the source:
+  And a page named "custom-layout-with-sidebar" with the template:
     """
-    {% extends 'layout_with_sidebar' %}
+    {% extends 'layout-with-sidebar' %}
     {% block body %}{{ block.super }} {% block main %}mister{% endblock %}{% endblock %}
     """
   And a page named "hello-world-multiblocks" with the template:
     """
-    {% extends 'custom_layout_with_sidebar' %}
+    {% extends 'custom-layout-with-sidebar' %}
     {% block main %}{{ block.super }} Jacques{% endblock %}
     """
   When I view the rendered page at "/hello-world-multiblocks"

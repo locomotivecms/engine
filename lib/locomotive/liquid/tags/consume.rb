@@ -15,7 +15,7 @@ module Locomotive
 
         Syntax = /(#{::Liquid::VariableSignature}+)\s*from\s*(#{::Liquid::QuotedString}+)/
 
-        def initialize(tag_name, markup, tokens)
+        def initialize(tag_name, markup, tokens, context)
           if markup =~ Syntax
             @target = $1
             @url = $2.gsub(/['"]/, '')

@@ -1,4 +1,7 @@
+# @deprecated
 class Layout < LiquidTemplate
+
+  # acts_as_tree
 
   protected
 

@@ -44,7 +44,11 @@ module Locomotive
 
         def store_template
           begin
-            @template = ::Liquid::Template.parse(self.liquify_template_source)
+            # puts "self.liquify_template_source = #{self.liquify_template_source.inspect}"
+            @template = ::Liquid::Template.parse(self.liquify_template_source, { :site => self.site })
+            @template.root.context.clear
+            # puts "@template = #{@template.inspect}"
+            # @template = Locomotive::Liquid::Template.parse(self)
 
             if self.respond_to?(:after_parse_template) # kind of callback
               self.send(:after_parse_template)

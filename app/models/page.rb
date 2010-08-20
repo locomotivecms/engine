@@ -67,7 +67,7 @@ class Page
       self.slug
     else
       slugs = self.self_and_ancestors.map(&:slug)
-      slugs.shift
+      slugs.shift unless slugs.size == 1
       File.join slugs
     end
   end

@@ -3,7 +3,7 @@ module Locomotive
     module Tags
       class WithScope < ::Liquid::Block
 
-        def initialize(tag_name, markup, tokens)
+        def initialize(tag_name, markup, tokens, context)
           @attributes = {}
           markup.scan(::Liquid::TagAttributes) do |key, value|
             @attributes[key] = value

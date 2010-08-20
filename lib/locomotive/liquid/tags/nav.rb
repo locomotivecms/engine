@@ -12,7 +12,7 @@ module Locomotive
 
         Syntax = /(#{::Liquid::Expression}+)?/
 
-        def initialize(tag_name, markup, tokens)
+        def initialize(tag_name, markup, tokens, context)
           if markup =~ Syntax
             @site_or_page = $1 || 'page'
             @options = {}

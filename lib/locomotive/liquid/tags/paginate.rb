@@ -19,7 +19,7 @@ module Locomotive
 
         Syntax = /(#{::Liquid::Expression}+)\s+by\s+([0-9]+)/
 
-        def initialize(tag_name, markup, tokens)
+        def initialize(tag_name, markup, tokens, context)
           if markup =~ Syntax
             @collection_name = $1
             @per_page = $2.to_i

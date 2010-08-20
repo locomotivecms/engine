@@ -3,17 +3,14 @@ source 'http://rubygems.org'
 
 gem 'rails', '3.0.0.rc'
 
-# gem 'liquid', '2.0.0'
-gem 'liquid', '2.1.2'
-# i think we'll need to fork our templating language
-# gem 'locomotive-liquid'
+gem 'liquid', :git => 'git://github.com/locomotivecms/liquid.git', :ref => 'a41213c77cbc81dab87d'
 
 gem 'bson_ext', '>= 1.0.1'
-gem 'mongoid', :git => "git://github.com/durran/mongoid.git", :ref => "e387a0d1dc74da057472"
+gem 'mongoid', :git => 'git://github.com/durran/mongoid.git', :ref => 'e387a0d1dc74da057472'
 gem 'mongoid_acts_as_tree', '0.1.5'
 gem 'mongo_session_store', '2.0.0.pre'
 gem 'warden'
-gem 'devise', :git => "git://github.com/plataformatec/devise.git"
+gem 'devise', :git => 'git://github.com/plataformatec/devise.git'
 gem 'haml', '3.0.15'
 gem 'rmagick', '2.12.2'
 gem 'aws'
@@ -40,16 +37,16 @@ group :test, :development do
 end
 
 group :test do
-  gem "autotest"
-  gem "growl-glue"
+  gem 'autotest'
+  gem 'growl-glue'
   gem 'rspec-rails', '2.0.0.beta.19'
   gem 'factory_girl_rails'
-  gem "pickle", :git => "http://github.com/codegram/pickle.git"
-  gem "pickle-mongoid"
+  gem 'pickle', :git => 'http://github.com/codegram/pickle.git'
+  gem 'pickle-mongoid'
   gem 'capybara'
 
   # would be nice..
-  # gem "capybara-envjs"
+  # gem 'capybara-envjs'
 
   gem 'database_cleaner'
   gem 'cucumber'
