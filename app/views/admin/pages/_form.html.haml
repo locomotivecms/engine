@@ -6,8 +6,6 @@
 
   = f.input :title
 
-  / = f.input :layout_id, :as => :select, :collection => current_site.layouts.all.to_a, :input_html => { :data_url => admin_layout_page_parts_url('_id_to_replace_') }
-
   - if not @page.index? and not @page.not_found?
     = f.input :parent_id, :as => :select, :collection => parent_pages_options, :include_blank => false
 

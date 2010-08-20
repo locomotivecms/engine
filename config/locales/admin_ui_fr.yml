@@ -30,7 +30,6 @@ fr:
         assets: Média
         settings: Paramètres
         pages: Pages
-        layouts: Gabarits
         snippets: Snippets
         account: Mon compte
         site: Site
@@ -107,22 +106,6 @@ fr:
           day: 1 jour
           week: 1 semaine
           month: 1 mois
-
-    layouts:
-      index:
-        title: Liste gabarits
-        help: "Les gabarits permettent de définir le squelette d'une page (1, 2 ou plusieurs colonnes)."
-        no_items: "Il n'existe pas de gabarit. Vous pouvez commencer par créer un <a href='%{url}'>ici</a>."
-        new: nouveau gabarit
-      new:
-        title: Nouveau gabarit
-        help: "Remplissez le formulaire ci-dessous pour créer votre gabarit."
-      edit:
-        title: Edition gabarit
-        help: "Remplissez le formulaire ci-dessous pour mettre à jour votre gabarit."
-        new: nouveau gabarit
-      layout:
-        updated_at: Mis à jour le
 
     snippets:
       index:
@@ -290,7 +273,7 @@ fr:
         cache_strategy: "Cache la page pour de meilleure performance. L'option 'Simple' est le meilleur compromis."
         templatized: "Utilise la page comme un template pour un modèle défini."
       snippet:
-        slug: "Utilisé pour insérer le snippet dans une page ou un gabarit."
+        slug: "Utilisé pour insérer le snippet dans une page."
       site:
         meta_keywords: "Mots-clés utilisés à l'intérieur de la balise HEAD. Ils sont séparés par un espace. Requis pour un meilleur référencement."
         meta_description: "Description utilisée à l'intérieur de la balise HEAD. Requis pour un meilleur référencement."

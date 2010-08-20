@@ -17,8 +17,9 @@ $(document).ready(function() {
     var newRow = lastRow.clone(true).removeClass('template').addClass('added').insertBefore(lastRow);
 
     // should copy the value of the select box
+    var input_name = $('input#current_site_subdomain').attr('name').split('[')[0];
     var input = newRow.find('input.label')
-      .attr('name', 'site[domains][]');
+      .attr('name', input_name + '[domains][]');
     if (lastRow.find('input.label').val() == '') input.val("undefined");
 
     // then reset the form

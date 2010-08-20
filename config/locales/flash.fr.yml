@@ -40,16 +40,6 @@ fr:
           notice: "Mon site a été mis à jour avec succès."
           alert: "Mon site n'a pas été mis à jour."
 
-      layouts:
-        create:
-          notice: "Le gabarit a été crée avec succès."
-          alert: "Le gabarit n'a pas été crée."
-        update:
-          notice: "Le gabarit a été mis à jour avec succès."
-          alert: "Le gabarit n'a pas été mis à jour."
-        destroy:
-          notice: "Le gabarit a été supprimé avec succès."
-
       snippets:
         create:
           notice: "Le snippet a été crée avec succès."

@@ -17,9 +17,6 @@ Rails.application.routes.draw do
       get :get_path, :on => :collection
     end
 
-    resources :layouts do
-      resources :page_parts, :only => :index
-    end
     resources :snippets
 
     resources :sites

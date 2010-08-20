@@ -7,21 +7,21 @@ describe Locomotive::Liquid::Tags::Consume do
     it 'validates a basic syntax' do
       markup = 'blog from "http://blog.locomotiveapp.org"'
       lambda do
-        Locomotive::Liquid::Tags::Consume.new('consume', markup, ["{% endconsume %}"])
+        Locomotive::Liquid::Tags::Consume.new('consume', markup, ["{% endconsume %}"], {})
       end.should_not raise_error
     end
 
     it 'validates more complex syntax with attributes' do
       markup = 'blog from "http://www.locomotiveapp.org" username: "john", password: "easyone"'
       lambda do
-        Locomotive::Liquid::Tags::Consume.new('consume', markup, ["{% endconsume %}"])
+        Locomotive::Liquid::Tags::Consume.new('consume', markup, ["{% endconsume %}"], {})
       end.should_not raise_error
     end
 
     it 'raises an error if the syntax is incorrect' do
       markup = 'blog from http://www.locomotiveapp.org'
       lambda do
-        Locomotive::Liquid::Tags::Consume.new('consume', markup, ["{% endconsume %}"])
+        Locomotive::Liquid::Tags::Consume.new('consume', markup, ["{% endconsume %}"], {})
       end.should raise_error
     end
 

@@ -1,7 +1,0 @@
-%li
-  %strong= link_to layout.name, edit_admin_layout_path(layout)
-  .more
-    %span!= t('.updated_at')
-    = l layout.updated_at, :format => :short
-
-    = link_to image_tag('admin/list/icons/trash.png'), admin_layout_path(layout), :class => 'remove', :confirm => t('admin.messages.confirm'), :method => :delete

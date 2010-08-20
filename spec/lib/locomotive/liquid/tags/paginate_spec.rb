@@ -5,14 +5,14 @@ describe Locomotive::Liquid::Tags::Paginate do
   it 'should have a valid syntax' do
     markup = "contents.projects by 5"
     lambda do
-      Locomotive::Liquid::Tags::Paginate.new('paginate', markup, ["{% endpaginate %}"])
+      Locomotive::Liquid::Tags::Paginate.new('paginate', markup, ["{% endpaginate %}"], {})
     end.should_not raise_error
   end
 
   it 'should raise an error if the syntax is incorrect' do
     ["contents.projects by a", "contents.projects", "contents.projects 5"].each do |markup|
       lambda do
-        Locomotive::Liquid::Tags::Paginate.new('paginate', markup, ["{% endpaginate %}"])
+        Locomotive::Liquid::Tags::Paginate.new('paginate', markup, ["{% endpaginate %}"], {})
       end.should raise_error
     end
   end

@@ -28,7 +28,6 @@ fr:
 
       domain_taken: "%{value} a été déjà pris"
       invalid_domain: "%{value} n'est pas valide"
-      missing_content_for_layout: "doit contenir le tag liquid 'content_for_layout'"
       needs_admin_account: "Un minimum d'un scompte admin est requis"
       protected_page: "Vous ne pouvez pas supprimer les pages index et 404"
       extname_changed: "Nouveau fichier n'a pas l'extension original"
@@ -53,7 +52,6 @@ fr:
     attributes:
       page:
         title: Titre
-        layout_id: Gabarit
         parent: Parent
         slug: Raccourci
         templatized: Templatisée
@@ -79,9 +77,6 @@ fr:
         language: Langue
         new_password: "Nouveau mot de passe"
         new_password_confirmation: "Confirmation nouveau mot de passe"
-      layout:
-        name: Nom
-        body: Code
       snippet:
         body: Code
         slug: Raccourci

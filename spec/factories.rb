@@ -67,41 +67,41 @@ Factory.define :liquid_template do |t|
 end
 
 
-## Layouts ##
-Factory.define :layout do |l|
-  l.name '1 main column + sidebar'
-  l.value %{<html>
-    <head>
-      <title>My website</title>
-    </head>
-    <body>
-      <div id="sidebar">
-        \{% block sidebar %\}
-        DEFAULT SIDEBAR CONTENT
-        \{% endblock %\}
-      </div>
-      <div id="main">
-        \{% block main %\}
-          DEFAULT MAIN CONTENT
-        \{% endblock %\}
-      </div>
-    </body>
-  </html>}
-  l.site { Site.where(:subdomain => "acme").first || Factory(:site) }
-end
-
-Factory.define :base_layout, :parent => :layout do |l|
-  l.name '1 main column + sidebar'
-  l.value %{<html>
-    <head>
-      <title>My website</title>
-    </head>
-    <body>
-      <div id="sidebar">\{\{ content_for_left_sidebar \}\}</div>
-      <div id="main">\{\{ content_for_layout | textile \}\}</div>
-    </body>
-  </html>}
-end
+# ## Layouts ##
+# Factory.define :layout do |l|
+#   l.name '1 main column + sidebar'
+#   l.value %{<html>
+#     <head>
+#       <title>My website</title>
+#     </head>
+#     <body>
+#       <div id="sidebar">
+#         \{% block sidebar %\}
+#         DEFAULT SIDEBAR CONTENT
+#         \{% endblock %\}
+#       </div>
+#       <div id="main">
+#         \{% block main %\}
+#           DEFAULT MAIN CONTENT
+#         \{% endblock %\}
+#       </div>
+#     </body>
+#   </html>}
+#   l.site { Site.where(:subdomain => "acme").first || Factory(:site) }
+# end
+#
+# Factory.define :base_layout, :parent => :layout do |l|
+#   l.name '1 main column + sidebar'
+#   l.value %{<html>
+#     <head>
+#       <title>My website</title>
+#     </head>
+#     <body>
+#       <div id="sidebar">\{\{ content_for_left_sidebar \}\}</div>
+#       <div id="main">\{\{ content_for_layout | textile \}\}</div>
+#     </body>
+#   </html>}
+# end
 
 
 ## Snippets ##

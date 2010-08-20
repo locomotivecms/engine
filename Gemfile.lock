@@ -1,21 +1,15 @@
 GIT
-  remote: git://github.com/durran/mongoid.git
-  revision: e387a0d
-  ref: e387a0d1dc74da057472
-  specs:
-    mongoid (2.0.0.beta.15)
-      activemodel (= 3.0.0.rc)
-      bson (= 1.0.4)
-      mongo (= 1.0.6)
-      tzinfo (= 0.3.22)
-      will_paginate (~> 3.0.pre)
-
-GIT
   remote: git://github.com/floehopper/mocha.git
   revision: d1715ff
   specs:
     mocha (0.9.8.20090918115329)
       rake
+
+GIT
+  remote: git://github.com/locomotivecms/custom_fields.git
+  revision: d393307
+  specs:
+    custom_fields (0.0.0.1)
 
 GIT
   remote: git://github.com/locomotivecms/liquid.git
@@ -152,10 +146,16 @@ GEM
       treetop (>= 1.4.5)
     mime-types (1.16)
     mimetype-fu (0.1.2)
-    mongo (1.0.6)
+    mongo (1.0.7)
       bson (>= 1.0.4)
     mongo_session_store (2.0.0.pre)
       actionpack (~> 3.0)
+    mongoid (2.0.0.beta.16)
+      activemodel (= 3.0.0.rc)
+      bson (= 1.0.4)
+      mongo (= 1.0.7)
+      tzinfo (= 0.3.22)
+      will_paginate (~> 3.0.pre)
     mongoid_acts_as_tree (0.1.5)
       bson (>= 0.20.1)
       mongoid (<= 2.0.0)
@@ -246,6 +246,7 @@ DEPENDENCIES
   cgi_multipart_eof_fix
   cucumber
   cucumber-rails
+  custom_fields!
   database_cleaner
   devise!
   factory_girl_rails
@@ -262,7 +263,7 @@ DEPENDENCIES
   mimetype-fu
   mocha!
   mongo_session_store (= 2.0.0.pre)
-  mongoid!
+  mongoid (= 2.0.0.beta.16)
   mongoid_acts_as_tree (= 0.1.5)
   mongrel
   pickle!

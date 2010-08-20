@@ -20,7 +20,6 @@ en:
         assets: Assets
         settings: Settings
         pages: Pages
-        layouts: Layouts
         snippets: Snippets
         account: My account
         site: Site
@@ -107,22 +106,6 @@ en:
           day: 1 day
           week: 1 week
           month: 1 month
-
-    layouts:
-      index:
-        title: Listing layouts
-        help: "Layouts give the look of a page (1, 2 or many columns)."
-        no_items: "There are no layouts for now. Just click <a href=\"%{url}\">here</a> to create the first one."
-        new: new layout
-      new:
-        title: New layout
-        help: "Fill in the form below to create your layout."
-      edit:
-        title: Editing layout
-        help: "Fill in the form below to update your layout."
-        new: new layout
-      layout:
-        updated_at: Updated at
 
     snippets:
       index:
@@ -291,7 +274,7 @@ en:
         cache_strategy: "Cache the page for better performance. The 'Simple' choice is a good compromise."
         templatized: "Use the page as a template for a model you defined."
       snippet:
-        slug: "You need to know it in order to insert the snippet inside a page or a layout"
+        slug: "You need to know it in order to insert the snippet inside a page"
       site:
         meta_keywords: "Meta keywords used within the head tag of the page. They are separeted by an empty space. Required for SEO."
         meta_description: "Meta description used within the head tag of the page. Required for SEO."

@@ -6,7 +6,7 @@ gem 'rails', '3.0.0.rc'
 gem 'liquid', :git => 'git://github.com/locomotivecms/liquid.git', :ref => 'a41213c77cbc81dab87d'
 
 gem 'bson_ext', '>= 1.0.1'
-gem 'mongoid', :git => 'git://github.com/durran/mongoid.git', :ref => 'e387a0d1dc74da057472'
+gem 'mongoid', '2.0.0.beta.16'
 gem 'mongoid_acts_as_tree', '0.1.5'
 gem 'mongo_session_store', '2.0.0.pre'
 gem 'warden'
@@ -22,6 +22,7 @@ gem 'heroku'
 gem 'httparty', '0.6.1'
 gem 'RedCloth'
 gem 'inherited_resources', '1.1.2'
+gem 'custom_fields', :git => 'git://github.com/locomotivecms/custom_fields.git'
 gem 'jeweler'
 
 # Development environment

@@ -22,7 +22,6 @@ class Page
 
   ## associations ##
   referenced_in :site
-  # referenced_in :layout
 
   ## callbacks ##
   before_validation :normalize_slug

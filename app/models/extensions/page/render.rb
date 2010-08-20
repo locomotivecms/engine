@@ -5,15 +5,6 @@ module Models
 
         def render(context)
           self.template.render(context)
-
-          # FIXME : old code based on layout / parts
-          # self.template.render(context)
-          #
-          # if self.layout
-          #   self.layout.template.render(context)
-          # else
-          #   ::Liquid::Template.parse("{{ content_for_layout }}").render(context)
-          # end
         end
 
       end

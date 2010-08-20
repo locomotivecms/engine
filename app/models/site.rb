@@ -11,11 +11,10 @@ class Site
 
   ## associations ##
   references_many :pages
-  references_many :layouts
-  references_many :snippets
-  references_many :theme_assets
-  references_many :asset_collections
-  references_many :content_types
+  references_many :snippets, :dependent => :destroy
+  references_many :theme_assets, :dependent => :destroy
+  references_many :asset_collections, :dependent => :destroy
+  references_many :content_types, :dependent => :destroy
   embeds_many :memberships
 
   ## validations ##
@@ -28,11 +27,13 @@ class Site
   ## callbacks ##
   after_create :create_default_pages!
   before_save :add_subdomain_to_domains
-  after_destroy :destroy_in_cascade!
+  after_destroy :destroy_pages
 
   ## named scopes ##
-  scope :match_domain, lambda { |domain| { :where => { :domains => domain } } }
-  scope :match_domain_with_exclusion_of, lambda { |domain, site| { :where => { :domains => domain, :_id.ne => site.id } } }
+  scope :match_domain, lambda { |domain| { :any_in => { :domains => [*domain] } } }
+  scope :match_domain_with_exclusion_of, lambda { |domain, site|
+    { :any_in => { :domains => [*domain] }, :where => { :_id.ne => site.id } }
+  }
 
   ## methods ##
 
@@ -67,7 +68,7 @@ class Site
     return if self.domains.empty?
 
     self.domains_without_subdomain.each do |domain|
-      if not self.class.match_domain_with_exclusion_of(domain, self).empty?
+      if self.class.match_domain_with_exclusion_of(domain, self).any?
         self.errors.add(:domains, :domain_taken, :value => domain)
       end
 
@@ -88,10 +89,9 @@ class Site
     end
   end
 
-  def destroy_in_cascade!
-    %w{pages layouts snippets theme_assets asset_collections content_types}.each do |association|
-      self.send(association).destroy_all
-    end
+  def destroy_pages
+    # pages is a tree so we just need to delete the root (as well as the page not found page)
+    self.pages.index.first.try(:destroy) && self.pages.not_found.first.try(:destroy)
   end
 
 end

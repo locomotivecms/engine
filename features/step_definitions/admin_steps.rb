@@ -27,13 +27,13 @@ end
 
 ### Common
 
-def create_layout_samples
-  Factory(:layout, :site => @site, :name => 'One column', :value => %{<html>
-    <head>
-      <title>My website</title>
-    </head>
-    <body>
-      <div id="main">{{ content_for_layout }}</div>
-    </body>
-  </html>})
-end
+# def create_layout_samples
+#   Factory(:layout, :site => @site, :name => 'One column', :value => %{<html>
+#     <head>
+#       <title>My website</title>
+#     </head>
+#     <body>
+#       <div id="main">{{ content_for_layout }}</div>
+#     </body>
+#   </html>})
+# end

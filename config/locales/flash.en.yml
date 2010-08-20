@@ -40,16 +40,6 @@ en:
           notice: "My site was successfully updated."
           alert: "My site was not updated."
 
-      layouts:
-        create:
-          notice: "Layout was successfully created."
-          alert: "Layout was not created."
-        update:
-          notice: "Layout was successfully updated."
-          alert: "Layout was not updated."
-        destroy:
-          notice: "Layout was successfully deleted."
-
       snippets:
         create:
           notice: "Snippet was successfully created."

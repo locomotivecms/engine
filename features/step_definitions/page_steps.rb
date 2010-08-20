@@ -17,29 +17,24 @@ Given /^a page named "([^"]*)" with the template:$/ do |page_slug, template|
   @page = create_content_page(page_slug, '', template)
 end
 
-# creates a layout
-Given /^a layout named "([^"]*)" with the source:$/ do |layout_name, layout_body|
-  @layout = Factory(:layout, :name => layout_name, :value => layout_body, :site => @site)
-end
-
-# creates a part within a page
-Given /^the page named "([^"]*)" has the part "([^"]*)" with the content:$/ do |page_slug, part_slug, part_contents|
-  page = @site.pages.where(:slug => page_slug).first
-  raise "Could not find page: #{page_slug}" unless page
-
-  # find or crate page part
-  part = page.parts.where(:slug => part_slug).first
-  unless part
-    part = page.parts.build(:name => part_slug.titleize, :slug => part_slug)
-  end
-
-  # set part value
-  part.value = part_contents
-  part.should be_valid
-
-  # save page with embedded part
-  page.save
-end
+# # creates a part within a page
+# Given /^the page named "([^"]*)" has the part "([^"]*)" with the content:$/ do |page_slug, part_slug, part_contents|
+#   page = @site.pages.where(:slug => page_slug).first
+#   raise "Could not find page: #{page_slug}" unless page
+# 
+#   # find or crate page part
+#   part = page.parts.where(:slug => part_slug).first
+#   unless part
+#     part = page.parts.build(:name => part_slug.titleize, :slug => part_slug)
+#   end
+# 
+#   # set part value
+#   part.value = part_contents
+#   part.should be_valid
+# 
+#   # save page with embedded part
+#   page.save
+# end
 
 # try to render a page by slug
 When /^I view the rendered page at "([^"]*)"$/ do |path|
