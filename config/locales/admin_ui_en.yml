@@ -245,7 +245,7 @@ en:
       information: General information
       meta: SEO Metadata
       code: Code
-      layout_template: Layout
+      raw_template: Layout
       credentials: Credentials
       language: Language
       sites: Sites

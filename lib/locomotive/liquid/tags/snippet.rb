@@ -4,10 +4,21 @@ module Locomotive
 
       class Snippet < ::Liquid::Include
 
-        def render(context)
-          site = context.registers[:site]
+        attr_accessor :partial
 
-          partial = ::Liquid::Template.file_system.read_template_file(site, context[@template_name])
+        def initialize(tag_name, markup, tokens, context)
+          super
+
+          snippet = context[:site].snippets.where(:slug => @template_name.gsub('\'', '')).first
+
+          if snippet
+            @partial = ::Liquid::Template.parse(snippet.template, context)
+            @partial.root.context.clear
+          end
+        end
+
+        def render(context)
+          return '' if @partial.nil?
 
           variable = context[@variable_name || @template_name[1..-2]]
 
@@ -19,11 +30,11 @@ module Locomotive
             output = (if variable.is_a?(Array)
               variable.collect do |variable|
                 context[@template_name[1..-2]] = variable
-                partial.render(context)
+                @partial.render(context)
               end
             else
               context[@template_name[1..-2]] = variable
-              partial.render(context)
+              @partial.render(context)
             end)
 
             output

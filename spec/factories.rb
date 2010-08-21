@@ -56,59 +56,11 @@ Factory.define :page do |p|
 end
 
 
-# Factory.define "unpub"
-
-## Liquid templates ##
-Factory.define :liquid_template do |t|
-  t.name 'Simple one'
-  t.slug 'simple_one'
-  t.value %{simple liquid template}
-  t.site { Site.where(:subdomain => "acme").first || Factory(:site) }
-end
-
-
-# ## Layouts ##
-# Factory.define :layout do |l|
-#   l.name '1 main column + sidebar'
-#   l.value %{<html>
-#     <head>
-#       <title>My website</title>
-#     </head>
-#     <body>
-#       <div id="sidebar">
-#         \{% block sidebar %\}
-#         DEFAULT SIDEBAR CONTENT
-#         \{% endblock %\}
-#       </div>
-#       <div id="main">
-#         \{% block main %\}
-#           DEFAULT MAIN CONTENT
-#         \{% endblock %\}
-#       </div>
-#     </body>
-#   </html>}
-#   l.site { Site.where(:subdomain => "acme").first || Factory(:site) }
-# end
-#
-# Factory.define :base_layout, :parent => :layout do |l|
-#   l.name '1 main column + sidebar'
-#   l.value %{<html>
-#     <head>
-#       <title>My website</title>
-#     </head>
-#     <body>
-#       <div id="sidebar">\{\{ content_for_left_sidebar \}\}</div>
-#       <div id="main">\{\{ content_for_layout | textile \}\}</div>
-#     </body>
-#   </html>}
-# end
-
-
 ## Snippets ##
 Factory.define :snippet do |s|
   s.name 'My website title'
   s.slug 'header'
-  s.value %{<title>Acme</title>}
+  s.template %{<title>Acme</title>}
   s.site { Site.where(:subdomain => "acme").first || Factory(:site) }
 end
 

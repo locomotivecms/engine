@@ -5,6 +5,7 @@ class Page
   ## Extensions ##
   include Models::Extensions::Page::Tree
   # include Models::Extensions::Page::Parts
+  include Models::Extensions::Page::Parse
   include Models::Extensions::Page::Render
   include Models::Extensions::Page::Templatized
 
@@ -12,10 +13,9 @@ class Page
   field :title
   field :slug
   field :fullpath
+  field :raw_template
   field :published, :type => Boolean, :default => false
   field :cache_strategy, :default => 'none'
-
-  field :layout_template # FIXME: added for liquid inheritance
 
   ## associations ##
   referenced_in :site
@@ -35,10 +35,6 @@ class Page
   scope :index, :where => { :slug => 'index', :depth => 0 }
   scope :not_found, :where => { :slug => '404', :depth => 0 }
   scope :published, :where => { :published => true }
-
-  ## behaviours ##
-  # liquify_template :joined_parts
-  liquify_template :layout_template
 
   ## methods ##
 

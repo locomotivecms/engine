@@ -1,4 +1,4 @@
-Feature: Engine
+Feature: Inheritance
   As a designer
   I want to be able to build more complex page html layouts
   with shared template code

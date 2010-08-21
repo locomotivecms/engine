@@ -11,7 +11,7 @@ puts "Starting test..."
 
 site = Site.create :name => 'Benchmark Website', :subdomain => 'benchmark'
 
-simple = site.pages.create :title => 'Simple', :slug => 'simple', :layout_template => %{
+simple = site.pages.create :title => 'Simple', :slug => 'simple', :raw_template => %{
   <html>
     <head></head>
     <body>
@@ -29,7 +29,7 @@ simple = site.pages.create :title => 'Simple', :slug => 'simple', :layout_templa
   </html>
 }
 
-base = site.pages.create :title => 'Base page', :slug => 'base', :layout_template => %{
+base = site.pages.create :title => 'Base page', :slug => 'base', :raw_template => %{
   <html>
     <head></head>
     <body>
@@ -47,13 +47,13 @@ base = site.pages.create :title => 'Base page', :slug => 'base', :layout_templat
   </html>
 }
 
-page_1 = site.pages.create :title => 'Page 1', :slug => 'page_1', :layout_template => %{
+page_1 = site.pages.create :title => 'Page 1', :slug => 'page_1', :raw_template => %{
   {% extends base %}
   {% block sidebar %}A sidebar here{% endblock %}
   {% block body %}<div class="wrapper">{% block main %}DEFAULT MAIN CONTENT{% endblock %}</div>{% endblock %}
 }
 
-page_2 = site.pages.create :title => 'Page 2', :slug => 'page_2', :layout_template => %{
+page_2 = site.pages.create :title => 'Page 2', :slug => 'page_2', :raw_template => %{
   {% extends page_1 %}
   {% block sidebar %}{{ block.super }} / INDEX sidebar{% endblock %}
   {% block main %}Lorem ipsum{% endblock %}

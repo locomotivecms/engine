@@ -10,7 +10,6 @@ module Locomotive
         include ::Mongoid::Document
         include ::Mongoid::Timestamps
         include ::Mongoid::CustomFields
-        include Locomotive::Liquid::LiquifyTemplate
       end
 
     end

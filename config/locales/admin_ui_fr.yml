@@ -244,7 +244,7 @@ fr:
       information: Informations générales
       meta: SEO Metadata
       code: Code
-      layout_template: Gabarit
+      raw_template: Gabarit
       credentials: Informations de connexion
       language: Langue
       sites: Sites
