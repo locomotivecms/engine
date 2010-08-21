@@ -24,3 +24,4 @@ tmp/*
 .rvmrc
 Capfile
 config/deploy.rb
+perf/test.rb

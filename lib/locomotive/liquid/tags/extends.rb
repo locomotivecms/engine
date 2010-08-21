@@ -3,8 +3,6 @@ module Locomotive
     module Tags
       class Extends < ::Liquid::Extends
 
-        class PageNotFound < ::Liquid::Error; end
-
         def parse_parent_template(context)
           page = context[:site].pages.where(:fullpath => @template_name.gsub("'", '')).first
 

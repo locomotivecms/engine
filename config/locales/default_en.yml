@@ -11,7 +11,8 @@ en:
         protected_page: "You can not remove index or 404 pages"
         extname_changed: "New file does not have the original extension"
         array_too_short: "is too small (minimum element number is %{count})"
-        liquid_syntax_error: "Syntax error in page parts, please check the syntax"
+        liquid_syntax: "Liquid Syntax error, please check the syntax"
+        liquid_extend: "The page extends a template which does not exist"
 
   attributes:
     defaults:

@@ -26,8 +26,11 @@ module Models
                 @template.root.context.clear
 
                 self.serialized_template = BSON::Binary.new(Marshal.dump(@template))
+
               rescue ::Liquid::SyntaxError => error
-                self.errors.add :template, :liquid_syntax_error
+                self.errors.add :template, :liquid_syntax
+              rescue ::Locomotive::Liquid::PageNotFound => error
+                self.errors.add :template, :liquid_extend
               end
             end
           end

@@ -32,7 +32,8 @@ fr:
       protected_page: "Vous ne pouvez pas supprimer les pages index et 404"
       extname_changed: "Nouveau fichier n'a pas l'extension original"
       array_too_short: "est trop petit (le nombre minimum d'éléments est %{count})"
-      liquid_syntax_error: "Erreur de syntaxe dans les sections de page, veuillez vérifier la syntaxe"
+      liquid_syntax: "Erreur de syntaxe dans les sections de page, veuillez vérifier la syntaxe"
+      liquid_extend: "La page étend le contenu d'une page qui n'existe pas"
 
   attributes:
     defaults:
