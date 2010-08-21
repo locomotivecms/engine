@@ -245,7 +245,7 @@ en:
       information: General information
       meta: SEO Metadata
       code: Code
-      raw_template: Layout
+      raw_template: Template
       credentials: Credentials
       language: Language
       sites: Sites
@@ -260,6 +260,8 @@ en:
       presentation: Presentation
       attributes: Attributes
     labels:
+      page:
+        raw_template: Template
       theme_asset:
         new:
           source: File

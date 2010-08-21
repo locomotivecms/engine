@@ -13,6 +13,8 @@ class Snippet
   ## callbacks ##
   before_validation :normalize_slug
 
+  # TODO: after_save callback to let pages embedding this snippet know about the changes the user has just made.
+
   ## validations ##
   validates_presence_of   :site, :name, :slug, :template
   validates_uniqueness_of :slug, :scope => :site_id

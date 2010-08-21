@@ -9,6 +9,8 @@ module Models
           field :serialized_template, :type => Binary
 
           before_validation :serialize_template
+
+          validate :template_must_be_valid
         end
 
         module InstanceMethods
@@ -19,20 +21,36 @@ module Models
 
           protected
 
+          def parse
+            @template = ::Liquid::Template.parse(self.raw_template, { :site => self.site, :page => self })
+            @template.root.context.clear
+
+            # TODO: walk thru the document tree to get parents as well as used snippets
+          end
+
           def serialize_template
             if self.new_record? || self.raw_template_changed?
+              @parsing_errors = []
+
               begin
-                @template = ::Liquid::Template.parse(self.raw_template, { :site => self.site })
-                @template.root.context.clear
+                self.parse
 
                 self.serialized_template = BSON::Binary.new(Marshal.dump(@template))
 
+                # TODO: let other pages inheriting from that one and modify them in consequences
+
+                # TODO: build array of parent pages
+
               rescue ::Liquid::SyntaxError => error
-                self.errors.add :template, :liquid_syntax
+                @parsing_errors << :liquid_syntax
               rescue ::Locomotive::Liquid::PageNotFound => error
-                self.errors.add :template, :liquid_extend
+                @parsing_errors << :liquid_extend
               end
             end
+          end
+
+          def template_must_be_valid
+            @parsing_errors.try(:each) { |msg| self.errors.add :template, msg }
           end
 
         end
