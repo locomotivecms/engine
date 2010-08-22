@@ -3,16 +3,26 @@ module Locomotive
     module Tags
       class Extends < ::Liquid::Extends
 
+        attr_accessor :page_id
+
         def parse_parent_template(context)
           page = nil
 
           if @template_name == 'parent'
-            page = context[:page].parent
+            if context[:cached_parent]
+              page = context[:cached_parent]
+              context[:cached_parent] = nil
+            else
+              page = context[:page].parent
+            end
           else
-            page = context[:site].pages.where(:fullpath => @template_name.gsub("'", '')).first
+            path = @template_name.gsub("'", '')
+            page = context[:cached_pages].try(:[], path) || context[:site].pages.where(:fullpath => path).first
           end
 
           raise PageNotFound.new("Page with fullpath '#{@template_name}' was not found") if page.nil?
+
+          @page_id = page.id
 
           template = page.template
 

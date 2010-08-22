@@ -1,7 +1,8 @@
 # require "rubygems"
 # require "ruby-prof"
 ENV["RAILS_ENV"] ||= 'test'
-require File.dirname(__FILE__) + "/../config/environment" unless defined?(RAILS_ROOT)
+
+require "./" + File.dirname(__FILE__) + "/../config/environment" unless defined?(RAILS_ROOT)
 
 %w{sites pages layouts}.each do |collection|
   Mongoid.master.collection(collection).drop
