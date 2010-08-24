@@ -41,8 +41,11 @@ class Snippet
   end
 
   def _change_snippet_inside_template(node)
-    if node.is_a?(Locomotive::Liquid::Tags::Snippet)
-      node.refresh(self)
+    case node
+    when Locomotive::Liquid::Tags::Snippet
+      node.refresh(self) if node.slug == self.slug
+    when Locomotive::Liquid::Tags::Block
+      self._change_snippet_inside_template(node.parent) if node.parent
     else
       if node.respond_to?(:nodelist)
         node.nodelist.each do |child|

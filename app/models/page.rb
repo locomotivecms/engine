@@ -4,7 +4,7 @@ class Page
 
   ## Extensions ##
   include Models::Extensions::Page::Tree
-  # include Models::Extensions::Page::Parts
+  include Models::Extensions::Page::EditableElements
   include Models::Extensions::Page::Parse
   include Models::Extensions::Page::Render
   include Models::Extensions::Page::Templatized

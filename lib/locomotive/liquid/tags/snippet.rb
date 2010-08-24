@@ -12,6 +12,8 @@ module Locomotive
 
           @slug = @template_name.gsub('\'', '')
 
+          context[:snippets] << @slug
+
           snippet = context[:site].snippets.where(:slug => @slug).first
 
           self.refresh(snippet, context) if snippet
