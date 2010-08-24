@@ -4,17 +4,17 @@ module Locomotive
 
       class Snippet < ::Liquid::Include
 
+        attr_accessor :slug
         attr_accessor :partial
 
         def initialize(tag_name, markup, tokens, context)
           super
 
-          snippet = context[:site].snippets.where(:slug => @template_name.gsub('\'', '')).first
+          @slug = @template_name.gsub('\'', '')
 
-          if snippet
-            @partial = ::Liquid::Template.parse(snippet.template, context)
-            @partial.root.context.clear
-          end
+          snippet = context[:site].snippets.where(:slug => @slug).first
+
+          self.refresh(snippet, context) if snippet
         end
 
         def render(context)
@@ -40,6 +40,18 @@ module Locomotive
             output
           end
         end
+
+        def refresh(snippet, context = {})
+          if snippet.destroyed?
+            @snippet_id = nil
+            @partial = nil
+          else
+            @snippet_id = snippet.id
+            @partial = ::Liquid::Template.parse(snippet.template, context)
+            @partial.root.context.clear
+          end
+        end
+
       end
 
       ::Liquid::Template.register_tag('include', Snippet)

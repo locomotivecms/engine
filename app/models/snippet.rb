@@ -12,6 +12,8 @@ class Snippet
 
   ## callbacks ##
   before_validation :normalize_slug
+  after_save :update_templates
+  after_destroy :update_templates
 
   # TODO: after_save callback to let pages embedding this snippet know about the changes the user has just made.
 
@@ -26,6 +28,28 @@ class Snippet
   def normalize_slug
     self.slug = self.name.clone if self.slug.blank? && self.name.present?
     self.slug.slugify!(:without_extension => true, :downcase => true) if self.slug.present?
+  end
+
+  def update_templates
+    pages = self.site.pages.any_in(:snippet_dependencies => [self.slug]).to_a
+
+    pages.each do |page|
+      self._change_snippet_inside_template(page.template.root)
+
+      page.send(:_serialize_template) && page.save
+    end
+  end
+
+  def _change_snippet_inside_template(node)
+    if node.is_a?(Locomotive::Liquid::Tags::Snippet)
+      node.refresh(self)
+    else
+      if node.respond_to?(:nodelist)
+        node.nodelist.each do |child|
+          self._change_snippet_inside_template(child)
+        end
+      end
+    end
   end
 
 

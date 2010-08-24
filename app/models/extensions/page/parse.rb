@@ -8,6 +8,7 @@ module Models
         included do
           field :serialized_template, :type => Binary
           field :template_dependencies, :type => Array, :default => []
+          field :snippet_dependencies, :type => Array, :default => []
 
           before_validation :serialize_template
           after_save :update_template_descendants
@@ -25,22 +26,13 @@ module Models
 
           protected
 
-          def parse(context = {})
-            @template = ::Liquid::Template.parse(self.raw_template, { :site => self.site, :page => self }.merge(context))
-            @template.root.context.clear
-
-            self.template_dependencies = parent_templates(@template.root)
-
-            # TODO: snippets dependencies
-          end
-
           def serialize_template
             if self.new_record? || self.raw_template_changed?
               @template_changed = true
 
               @parsing_errors = []
               begin
-                self._serialize_template
+                self._parse_and_serialize_template
               rescue ::Liquid::SyntaxError => error
                 @parsing_errors << :liquid_syntax
               rescue ::Locomotive::Liquid::PageNotFound => error
@@ -49,25 +41,44 @@ module Models
             end
           end
 
-          def _serialize_template(context = {})
+          def _parse_and_serialize_template(context = {})
             self.parse(context)
+            self._serialize_template
+          end
+
+          def _serialize_template
             self.serialized_template = BSON::Binary.new(Marshal.dump(@template))
+          end
+
+          def parse(context = {})
+            @template = ::Liquid::Template.parse(self.raw_template, { :site => self.site, :page => self }.merge(context))
+            @template.root.context.clear
+
+            dependencies = all_dependencies(@template.root, { :templates => [], :snippets => [] })
+
+            self.template_dependencies = dependencies[:templates]
+            self.snippet_dependencies = dependencies[:snippets]
           end
 
           def template_must_be_valid
             @parsing_errors.try(:each) { |msg| self.errors.add :template, msg }
           end
 
-          def parent_templates(node, templates = [])
-            templates << node.page_id if node.is_a?(Locomotive::Liquid::Tags::Extends)
+          def all_dependencies(node, dependencies = {})
+            case node
+            when Locomotive::Liquid::Tags::Extends
+              dependencies[:templates] << node.page_id
+            when Locomotive::Liquid::Tags::Snippet
+              dependencies[:snippets] << node.slug
+            end
 
-            if node.respond_to?(:nodelist)
+            if node.respond_to?(:nodelist) && node.nodelist
               node.nodelist.each do |child|
-                self.parent_templates(child, templates)
+                self.all_dependencies(child, dependencies)
               end
             end
 
-            templates
+            dependencies
           end
 
           def update_template_descendants
@@ -93,7 +104,7 @@ module Models
             end
 
             direct_descendants.each do |page|
-              page.send(:_serialize_template, { :cached_parent => self, :cached_pages => cached })
+              page.send(:_parse_and_serialize_template, { :cached_parent => self, :cached_pages => cached })
 
               page.send(:_update_direct_template_descendants, descendants, cached)
             end
