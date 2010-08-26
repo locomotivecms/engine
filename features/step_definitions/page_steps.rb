@@ -36,6 +36,14 @@ end
 #   page.save
 # end
 
+
+# update a page
+When /^I update the "([^"]*)" page with the template:$/ do |page_slug, template|
+  puts "*************"
+  page = @site.pages.where(:slug => page_slug).first
+  page.update_attributes :raw_template => template
+end
+
 # try to render a page by slug
 When /^I view the rendered page at "([^"]*)"$/ do |path|
   visit "http://#{@site.domains.first}#{path}"

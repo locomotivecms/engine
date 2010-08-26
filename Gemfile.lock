@@ -13,14 +13,14 @@ GIT
 
 GIT
   remote: git://github.com/locomotivecms/liquid.git
-  revision: dbcc0b1
-  ref: dbcc0b1d9c189b3e3a13
+  revision: f299f8b
+  ref: f299f8b7ff6ea102bfb3
   specs:
     liquid (2.1.3)
 
 GIT
   remote: git://github.com/plataformatec/devise.git
-  revision: 219c05c
+  revision: c6002bb
   specs:
     devise (1.2.0)
       bcrypt-ruby (~> 2.1.2)

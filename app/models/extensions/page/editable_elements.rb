@@ -11,6 +11,10 @@ module Models
 
         module InstanceMethods
 
+          def editable_elements_grouped_by_blocks
+            self.editable_elements.group_by(&:block)
+          end
+
           def find_editable_element(block, slug)
             self.editable_elements.detect { |el| el.block == block && el.slug == slug }
           end

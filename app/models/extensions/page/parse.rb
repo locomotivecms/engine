@@ -56,65 +56,58 @@ module Models
 
             default_context = { :site => self.site, :page => self, :templates => [], :snippets => [] }
 
-            @template = ::Liquid::Template.parse(self.raw_template, default_context.merge(context))
+            context = default_context.merge(context)
+
+            # puts "*** enter context = #{context.object_id}"
+
+            @template = ::Liquid::Template.parse(self.raw_template, context)
+
+            # puts "*** exit context = #{context.object_id}"
+
             self.template_dependencies = context[:templates]
             self.snippet_dependencies = context[:snippets]
 
+            # puts "*** [#{self.fullpath}] template_dependencies = #{self.template_dependencies.inspect}"
+
             @template.root.context.clear
-            #
-            # dependencies = all_dependencies(@template.root, { :templates => [], :snippets => [] })
-            #
-            # self.template_dependencies = dependencies[:templates]
-            # self.snippet_dependencies = dependencies[:snippets]
           end
 
           def template_must_be_valid
             @parsing_errors.try(:each) { |msg| self.errors.add :template, msg }
           end
 
-          # def all_dependencies(node, dependencies = {})
-          #   case node
-          #   when Locomotive::Liquid::Tags::Extends
-          #     dependencies[:templates] << node.page_id
-          #   when Locomotive::Liquid::Tags::Snippet
-          #     dependencies[:snippets] << node.slug
-          #   end
-          #
-          #   if node.respond_to?(:nodelist) && node.nodelist
-          #     node.nodelist.each do |child|
-          #       self.all_dependencies(child, dependencies)
-          #     end
-          #   end
-          #
-          #   dependencies
-          # end
-
           def update_template_descendants
             return unless @template_changed == true
 
             # we admit at this point that the current template is up-to-date
-            descendants = self.site.pages.any_in(:template_dependencies => [self.id]).to_a
+            template_descendants = self.site.pages.any_in(:template_dependencies => [self.id]).to_a
 
             # group them by fullpath for better performance
-            cached = descendants.inject({}) { |memo, page| memo[page.fullpath] = page; memo }
+            cached = template_descendants.inject({}) { |memo, page| memo[page.fullpath] = page; memo }
 
-            self._update_direct_template_descendants(descendants, cached)
+            # puts "*** [#{self.fullpath}] #{template_descendants.collect(&:fullpath).inspect}"
+
+            self._update_direct_template_descendants(template_descendants, cached)
 
             # finally save them all
-            descendants.map(&:save)
+            template_descendants.map(&:save)
 
             # puts "** first descendant = #{descendants.first.object_id} / #{descendants.first.template.inspect}"
           end
 
-          def _update_direct_template_descendants(descendants, cached)
-            direct_descendants = descendants.select do |page|
-              (page.template_dependencies - self.template_dependencies).size == 1
+          def _update_direct_template_descendants(template_descendants, cached)
+            # puts "*** [#{self.fullpath}] _update_direct_template_descendants"
+            direct_descendants = template_descendants.select do |page|
+              # puts "*** \t\t[#{self.fullpath}] _update_direct_template_descendants (#{page.template_dependencies.inspect})"
+              ((page.template_dependencies || [])- (self.template_dependencies || [])).size == 1
             end
+
+            # puts "*** [#{self.fullpath}] direct = #{direct_descendants.inspect}"
 
             direct_descendants.each do |page|
               page.send(:_parse_and_serialize_template, { :cached_parent => self, :cached_pages => cached })
 
-              page.send(:_update_direct_template_descendants, descendants, cached)
+              page.send(:_update_direct_template_descendants, template_descendants, cached)
             end
           end
 

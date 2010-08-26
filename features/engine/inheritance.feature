@@ -16,13 +16,11 @@ Scenario: Liquid Inheritance with a single block
     </div>
     <div class="footer"></div>
     """
-
   And a page named "hello-world-with-layout" with the template:
     """
     {% extends 'above-and-below' %}
     {% block body %}Hello World{% endblock %}
     """
-
   When I view the rendered page at "/hello-world-with-layout"
   Then the rendered output should look like:
     """
@@ -31,6 +29,26 @@ Scenario: Liquid Inheritance with a single block
       Hello World
     </div>
     <div class="footer"></div>
+    """
+
+Scenario: Update a parent page and see modifications in descendants
+  Given a page named "base" with the template:
+    """
+    My application say: {% block something %}Lorem ipsum{% endblock %}
+    """
+  And a page named "hello-world" with the template:
+    """
+    {% extends 'base' %}
+    {% block something %}Hello World{% endblock %}
+    """
+  When I update the "base" page with the template:
+    """
+    My application says: {% block something %}Lorem ipsum{% endblock %}
+    """
+  When I view the rendered page at "/hello-world"
+  Then the rendered output should look like:
+    """
+    My application says: Hello World
     """
 
 Scenario: Liquid Inheritance with multiple blocks

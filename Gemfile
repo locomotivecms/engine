@@ -3,7 +3,7 @@ source 'http://rubygems.org'
 
 gem 'rails', '3.0.0.rc'
 
-gem 'liquid', :git => 'git://github.com/locomotivecms/liquid.git', :ref => 'dbcc0b1d9c189b3e3a13'
+gem 'liquid', :git => 'git://github.com/locomotivecms/liquid.git', :ref => 'f299f8b7ff6ea102bfb3'
 
 gem 'bson_ext', '>= 1.0.1'
 gem 'mongoid', '2.0.0.beta.16'

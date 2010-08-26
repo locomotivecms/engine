@@ -21,7 +21,7 @@ Scenario: Modified short text element
     """
     My application says {% editable_short_text 'a_sentence', hint: 'please enter a new sentence' %}Hello world{% endeditable_short_text %}
     """
-  And the editable element "a_sentence" with the content "Bonjour" in the "hello-world" page
+  And the editable element "a_sentence" in the "hello-world" page with the content "Bonjour"
   When I view the rendered page at "/hello-world"
   Then the rendered output should look like:
     """
@@ -52,4 +52,20 @@ Scenario: Not modified short text element inside a block and with page inheritan
   Then the rendered output should look like:
     """
     My application says Hello world
+    """
+
+Scenario: Modified short text element inside a block and with page inheritance
+  Given a page named "hello-world" with the template:
+    """
+    {% block main %}My application says {% editable_short_text 'a_sentence' %}Hello world{% endeditable_short_text %}{% endblock %}
+    """
+  Given a page named "another-hello-world" with the template:
+    """
+    {% extends hello-world %}
+    """
+  And the editable element "a_sentence" for the "main" block in the "another-hello-world" page with the content "Bonjour"
+  When I view the rendered page at "/another-hello-world"
+  Then the rendered output should look like:
+    """
+    My application says Bonjour
     """

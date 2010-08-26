@@ -7,10 +7,12 @@ module Locomotive
 
         def initialize(tag_name, markup, tokens, context)
           if markup =~ Syntax
-            @template_name = $1
+            @template_name = $1.gsub('\'', '').strip
           else
             raise SyntaxError.new("Error in tag 'extends' - Valid syntax: extends [template]")
           end
+
+          @context = context
 
           retrieve_parent_page
 
@@ -18,6 +20,8 @@ module Locomotive
           @context[:page].merge_editable_elements_from_page(@context[:parent_page])
 
           super
+
+          # puts "** after extends, @context[:templates] = #{@context[:templates].inspect}"
         end
 
         private
@@ -36,7 +40,9 @@ module Locomotive
           end
 
           @context[:snippets] = page.snippet_dependencies
-          @context[:templates] = [*page.template_dependencies] + [@page_id]
+          @context[:templates] = ([*page.template_dependencies] + [@page_id]).compact
+
+          # puts "@context[:templates] = #{[*page.template_dependencies].inspect} + #{[@page_id].inspect} = #{@context[:templates].inspect}"
 
           template
         end
@@ -44,18 +50,19 @@ module Locomotive
         def retrieve_parent_page
           if @template_name == 'parent'
             if @context[:cached_parent]
-              @context[:parent] = @context[:cached_parent]
+              @context[:parent_page] = @context[:cached_parent]
               @context[:cached_parent] = nil
             else
               @context[:parent_page] = @context[:page].parent
             end
           else
-            path = @template_name.gsub("'", '')
-            @context[:parent_page] = @context[:cached_pages].try(:[], path) ||
-              @context[:site].pages.where(:fullpath => path).first
+            @context[:parent_page] = @context[:cached_pages].try(:[], @template_name) ||
+              @context[:site].pages.where(:fullpath => @template_name).first
           end
 
           raise PageNotFound.new("Page with fullpath '#{@template_name}' was not found") if @context[:parent_page].nil?
+
+          # puts "** @page_id = #{@context[:parent_page].id}"
 
           @page_id = @context[:parent_page].id
         end

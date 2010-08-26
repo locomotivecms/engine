@@ -16,7 +16,7 @@ module Locomotive
 
           super
 
-          puts "@nodelist = #{@nodelist.inspect}"
+          # puts "@nodelist = #{@nodelist.inspect}"
 
           @context[:page].add_or_update_editable_element({
             :block => @context[:current_block].try(:name),
@@ -29,7 +29,7 @@ module Locomotive
 
         def render(context)
           current_page = context.registers[:page]
-          puts "[EditableShortText] rendering #{context['block'].inspect} / #{current_page.editable_elements.inspect}"
+          # puts "[EditableShortText] rendering #{current_page.editable_elements.inspect}"
 
           element = current_page.find_editable_element(context['block'].try(:name), @slug)
 
