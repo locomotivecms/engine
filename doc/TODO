@@ -1,5 +1,11 @@
 BOARD:
 
+x bug editable_xxx disabled for nil block
+- duplicated block name
+
+
+
+
 - refactor slugify method (use parameterize + create a module)
 - [content types] the "display column" selector should not include file types
 

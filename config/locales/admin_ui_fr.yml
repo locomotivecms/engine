@@ -99,6 +99,7 @@ fr:
         help: "Le titre de la page est modifiable en cliquant dessus."
         ask_for_title: "Veuillez entrer le nouveau titre"
       form:
+        default_block: Défaut
         cache_strategy:
           none: Aucun
           simple: Simple

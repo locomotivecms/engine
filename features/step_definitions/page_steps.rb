@@ -39,9 +39,9 @@ end
 
 # update a page
 When /^I update the "([^"]*)" page with the template:$/ do |page_slug, template|
-  puts "*************"
   page = @site.pages.where(:slug => page_slug).first
-  page.update_attributes :raw_template => template
+  page.raw_template = template
+  page.save!
 end
 
 # try to render a page by slug

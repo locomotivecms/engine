@@ -1,25 +1,26 @@
-#page-parts .wrapper {
+#editable-elements .wrapper {
   background: #ebedf4 url(/images/admin/form/footer.png) no-repeat 0 bottom;
   width: 880px;
-  padding: 20px 20px;
+  padding: 10px 20px 0px 20px;
   border-top: 1px solid #ccced7;
 }
 
-#page-parts {
+#editable-elements {
   background: transparent url(/images/admin/form/header.png) no-repeat 0 0;
+  margin-bottom: 20px;
 }
 
-#page-parts .control {
+#editable-elements .control {
   height: 30px;
 }
 
-#page-parts .nav {
+#editable-elements .nav {
   position: relative;
   top: 1px;
   z-index: 990;
 }
 
-#page-parts .nav a {
+#editable-elements .nav a {
   float: left;
   display: block;
   height: 30px;
@@ -31,37 +32,32 @@
   outline: none;
 }
 
-#page-parts .nav a span {
+#editable-elements .nav a span {
   display: inline-block;
   height: 26px;
   padding: 4px 11px 0 0px;
 }
 
-#page-parts .nav a:first-child { padding-left: 22px; }
-#page-parts .nav a:first-child span { padding-right: 13px; }
+#editable-elements .nav a:first-child { padding-left: 22px; }
+#editable-elements .nav a:first-child span { padding-right: 13px; }
 
-#page-parts .nav a.on {
+#editable-elements .nav a.on {
   color: #1e1f26;
   font-weight: bold;
   background: transparent url(/images/admin/form/header-left-on.png) no-repeat 0 0;
 }
 
-#page-parts .nav a.on span {
+#editable-elements .nav a.on span {
   background: transparent url(/images/admin/form/header-right-on.png) no-repeat right 0;
 }
 
-#page-parts .nav a:first-child.on {
+#editable-elements .nav a:first-child.on {
   background: transparent url(/images/admin/form/header-first-on.png) no-repeat 0 0;
 }
 
-#page-parts .wslide-wrap {
-  border: 1px solid #a6a8b8;
-}
+#editable-elements .wrapper ul li fieldset { margin-bottom: 0px; }
 
-#page-parts code { display: block; background: white; height: 400px; }
-#page-parts code textarea {
-  width: 880px;
-  height: 400px;
-  background: transparent url(/images/admin/form/field.png) repeat-x 0 0;
-  border: 0px;
-}
+#editable-elements .wrapper ul li fieldset ol { margin-top: 0px; border-top: 0px; background: #EBEDF4; }
+#editable-elements .wrapper ul li fieldset ol li label { padding-left: 0px; padding-right: 3em; }
+#editable-elements .wrapper ul li fieldset ol li p.inline-hints { margin-left: 20%; }
+

@@ -1,6 +1,6 @@
 - content_for :head do
-  = javascript_include_tag 'admin/plugins/codemirror/codemirror', 'admin/plugins/wslide', 'admin/pages', 'admin/page_parts'
-  = stylesheet_link_tag 'admin/page_parts'
+  = javascript_include_tag 'admin/plugins/codemirror/codemirror', 'admin/plugins/wslide', 'admin/pages', 'admin/editable_elements'
+  = stylesheet_link_tag 'admin/editable_elements'
 
 = f.foldable_inputs :name => :information do
 
@@ -21,6 +21,35 @@
 
   = f.input :cache_strategy, :as => :select, :collection => options_for_page_cache_strategy, :include_blank => false
 
+#editable-elements
+  - grouped_editable_elements = @page.editable_elements_grouped_by_blocks
+
+  .nav
+    - grouped_editable_elements.keys.each_with_index do |name, index|
+      = link_to content_tag(:span, name.try(:humanize) || t('.default_block')), "#block-#{index}", :id => "block-nav-#{index}", :class => "#{'on' if index == 0}"
+    .clear
+
+  .wrapper
+    %ul{ :id => "blocks" }
+      - grouped_editable_elements.keys.each_with_index do |name, index|
+        - elements = grouped_editable_elements[name]
+        %li{ :id => "block-#{index}", :class => 'block', :style => "display: #{index == 0 ? 'block' : 'none' }" }
+          %fieldset.inputs
+            %ol
+              - elements.each_with_index do |el, index|
+                = f.fields_for 'editable_elements', el, :child_index => el._index do |g|
+                  = g.input :content, :label => el.slug.humanize, :hint => el.hint
+
+      /
+      /
+      / = f.fields_for :editable_elements do |g|
+      /   %li
+      /     = g.label :value, g.object.name, :style => "display:none"
+      /     %code= g.text_area :value
+      /     = g.hidden_field :name
+      /     = g.hidden_field :slug
+      /     = g.hidden_field :disabled, :class => 'disabled'
+
 = f.foldable_inputs :name => :raw_template do
   = f.custom_input :value, :css => 'code full', :with_label => false do
     = f.label :raw_template
@@ -28,19 +57,3 @@
       = f.text_area :raw_template
     / .more
     /   = link_to t('admin.image_picker.link'), admin_theme_assets_path, :id => 'image-picker-link'
-
-/ #page-parts
-/   .nav
-/     - @page.parts.each_with_index do |part, index|
-/       = link_to content_tag(:span, part.name), "#parts-#{index + 1}", :id => "control-part-#{part.slug}", :class => "part-#{index} #{'on' if index == 0}", :style => "#{'display: none' if part.disabled?}"
-/     .clear
-/
-/   .wrapper
-/     %ul{ :id => "parts" }
-/       = f.fields_for :parts do |g|
-/         %li{ :style => "#{'display: none' if g.object.disabled?}" }
-/           = g.label :value, g.object.name, :style => "display:none"
-/           %code= g.text_area :value
-/           = g.hidden_field :name
-/           = g.hidden_field :slug
-/           = g.hidden_field :disabled, :class => 'disabled'

@@ -9,6 +9,7 @@ class EditableElement
     field :default_content
     field :hint
     field :disabled, :type => Boolean, :default => false
+    field :from_parent, :type => Boolean, :default => false
 
     ## associations ##
     embedded_in :page, :inverse_of => :editable_elements

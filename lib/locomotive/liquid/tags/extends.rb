@@ -12,6 +12,8 @@ module Locomotive
             raise SyntaxError.new("Error in tag 'extends' - Valid syntax: extends [template]")
           end
 
+          puts "** [Extends] #{context[:page].fullpath}"
+
           @context = context
 
           retrieve_parent_page
@@ -35,8 +37,9 @@ module Locomotive
           blocks = find_blocks(template.root.nodelist)
 
           blocks.each_value do |block|
+            puts "*** [Extends] merging #{block.name} / #{@context.object_id}"
             block.send(:instance_variable_set, :"@context", @context)
-            block.end_tag
+            block.send(:register_current_block)
           end
 
           @context[:snippets] = page.snippet_dependencies

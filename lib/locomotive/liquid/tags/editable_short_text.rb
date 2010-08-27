@@ -17,13 +17,15 @@ module Locomotive
           super
 
           # puts "@nodelist = #{@nodelist.inspect}"
+          puts "context = #{context.object_id} / #{@context[:page]}"
 
-          @context[:page].add_or_update_editable_element({
+          context[:page].add_or_update_editable_element({
             :block => @context[:current_block].try(:name),
             :slug => @slug,
             :hint => @options[:hint],
             :default_content => @nodelist.first.to_s,
-            :disabled => false
+            :disabled => false,
+            :from_parent => false
           })
         end
 

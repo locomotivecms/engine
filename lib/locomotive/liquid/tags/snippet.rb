@@ -12,11 +12,11 @@ module Locomotive
 
           @slug = @template_name.gsub('\'', '')
 
-          context[:snippets] << @slug
+          @context[:snippets] << @slug
 
-          snippet = context[:site].snippets.where(:slug => @slug).first
+          snippet = @context[:site].snippets.where(:slug => @slug).first
 
-          self.refresh(snippet, context) if snippet
+          self.refresh(snippet) if snippet
         end
 
         def render(context)
@@ -49,7 +49,7 @@ module Locomotive
             @partial = nil
           else
             @snippet_id = snippet.id
-            @partial = ::Liquid::Template.parse(snippet.template, context)
+            @partial = ::Liquid::Template.parse(snippet.template, @context.clone)
             @partial.root.context.clear
           end
         end
