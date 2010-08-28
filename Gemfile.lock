@@ -13,18 +13,10 @@ GIT
 
 GIT
   remote: git://github.com/locomotivecms/liquid.git
-  revision: f299f8b
-  ref: f299f8b7ff6ea102bfb3
+  revision: 7ce591f
+  ref: 7ce591f38ab826875337
   specs:
     liquid (2.1.3)
-
-GIT
-  remote: git://github.com/plataformatec/devise.git
-  revision: c6002bb
-  specs:
-    devise (1.2.0)
-      bcrypt-ruby (~> 2.1.2)
-      warden (~> 0.10.7)
 
 GIT
   remote: http://github.com/codegram/pickle.git
@@ -99,6 +91,9 @@ GEM
     culerity (0.2.12)
     daemons (1.1.0)
     database_cleaner (0.5.2)
+    devise (1.1.2)
+      bcrypt-ruby (~> 2.1.2)
+      warden (~> 0.10.7)
     diff-lcs (1.1.2)
     erubis (2.6.6)
       abstract (>= 1.0.0)
@@ -248,7 +243,7 @@ DEPENDENCIES
   cucumber-rails
   custom_fields!
   database_cleaner
-  devise!
+  devise (= 1.1.2)
   factory_girl_rails
   fastthread
   formtastic-rails3 (= 1.0.0.beta3)

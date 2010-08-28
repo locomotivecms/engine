@@ -17,6 +17,10 @@ module Models
             self.editable_elements.each { |el| el.disabled = true if el.from_parent? && el.block == block }
           end
 
+          def disable_all_editable_elements
+            self.editable_elements.each { |el| el.disabled = true }
+          end
+
           def editable_element_blocks
             self.editable_elements.collect(&:block)
           end
@@ -38,11 +42,6 @@ module Models
             else
               self.editable_elements.build(attributes)
             end
-          end
-
-          def disable_all_editable_elements
-            # TODO: only if block != blank
-            self.editable_elements.each { |el| el.disabled = true }
           end
 
           def enable_editable_elements(block)

@@ -4,6 +4,7 @@ describe Locomotive::Liquid::Tags::EditableShortText do
 
   it 'should have a valid syntax' do
     markup = "'title', hint: 'Simple short text'"
+    Locomotive::Liquid::Tags::EditableShortText.any_instance.stubs(:end_tag).returns(true)
     lambda do
       Locomotive::Liquid::Tags::EditableShortText.new('editable_short_text', markup, ["{% endeditable_short_text %}"], {})
     end.should_not raise_error

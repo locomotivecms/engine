@@ -15,11 +15,11 @@ module Locomotive
           end
 
           super
+          # puts "context = #{context.object_id} / #{@context[:page]}"
+        end
 
-          # puts "@nodelist = #{@nodelist.inspect}"
-          puts "context = #{context.object_id} / #{@context[:page]}"
-
-          context[:page].add_or_update_editable_element({
+        def end_tag
+          @context[:page].add_or_update_editable_element({
             :block => @context[:current_block].try(:name),
             :slug => @slug,
             :hint => @options[:hint],

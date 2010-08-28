@@ -115,8 +115,7 @@ describe Site do
   
     it 'should create index and 404 pages' do
       @site.pages.size.should == 2
-      @site.pages.first.slug.should == 'index'
-      @site.pages.last.slug.should == '404'
+      @site.pages.map(&:fullpath).sort.should == %w{404 index}
     end
   
   end

@@ -11,7 +11,18 @@ module Admin
 
     def new
       @page = current_site.pages.build
-      # @page.parts << PagePart.build_body_part
+    end
+
+    def update
+      update! do |success, failure|
+        success.json do
+          render :json => {
+            :notice => t('flash.admin.pages.update.notice'),
+            :editable_elements => @page.template_changed ?
+              render_to_string(:partial => 'admin/pages/editable_elements.html.haml') : ''
+          }
+        end
+      end
     end
 
     def sort

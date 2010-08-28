@@ -1,17 +1,18 @@
 BOARD:
 
+x liquid inheritance
 x bug editable_xxx disabled for nil block
-- duplicated block name
-
-
-
+! duplicated block name
+x display liquid errors
+x theme assets selector in page editor
+x saving page in ajax
+- editable_long_text tag
+- editable_file tag
 
 - refactor slugify method (use parameterize + create a module)
 - [content types] the "display column" selector should not include file types
 
 - add dom_id and css_class fields in page (body structure ?)
-- liquid inheritance:
-
 
 BACKLOG:
 

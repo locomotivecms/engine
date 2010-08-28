@@ -9,10 +9,10 @@ module Locomotive
           if markup =~ Syntax
             @template_name = $1.gsub('\'', '').strip
           else
-            raise SyntaxError.new("Error in tag 'extends' - Valid syntax: extends [template]")
+            raise ::Liquid::SyntaxError.new("Error in tag 'extends' - Valid syntax: extends [template]")
           end
 
-          puts "** [Extends] #{context[:page].fullpath}"
+          # puts "** [Extends] #{context[:page].fullpath}"
 
           @context = context
 
@@ -37,7 +37,7 @@ module Locomotive
           blocks = find_blocks(template.root.nodelist)
 
           blocks.each_value do |block|
-            puts "*** [Extends] merging #{block.name} / #{@context.object_id}"
+            # puts "*** [Extends] merging #{block.name} / #{@context.object_id}"
             block.send(:instance_variable_set, :"@context", @context)
             block.send(:register_current_block)
           end

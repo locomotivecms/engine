@@ -46,8 +46,6 @@ fr:
           body: "Contenu de la page d'erreur 404"
         other:
           body: "Le contenu va ici"
-      page_parts:
-        name: "Corps"
 
   activemodel:
     attributes:

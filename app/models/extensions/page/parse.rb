@@ -10,6 +10,8 @@ module Models
           field :template_dependencies, :type => Array, :default => []
           field :snippet_dependencies, :type => Array, :default => []
 
+          attr_reader :template_changed
+
           before_validation :serialize_template
           after_save :update_template_descendants
 
@@ -58,11 +60,11 @@ module Models
 
             context = default_context.merge(context)
 
-            puts "*** [#{self.fullpath}] enter context = #{context.object_id} / #{context[:page].fullpath}"
+            # puts "*** [#{self.fullpath}] enter context = #{context.object_id} / #{context[:page].fullpath}"
 
             @template = ::Liquid::Template.parse(self.raw_template, context)
 
-            puts "*** exit context = #{context.object_id}"
+            # puts "*** exit context = #{context.object_id}"
 
             self.template_dependencies = context[:templates]
             self.snippet_dependencies = context[:snippets]
@@ -85,7 +87,7 @@ module Models
             # group them by fullpath for better performance
             cached = template_descendants.inject({}) { |memo, page| memo[page.fullpath] = page; memo }
 
-            puts "*** [#{self.fullpath}] #{template_descendants.collect(&:fullpath).inspect}"
+            # puts "*** [#{self.fullpath}] #{template_descendants.collect(&:fullpath).inspect}"
 
             self._update_direct_template_descendants(template_descendants, cached)
 
@@ -96,13 +98,13 @@ module Models
           end
 
           def _update_direct_template_descendants(template_descendants, cached)
-            puts "*** [#{self.fullpath}] _update_direct_template_descendants"
+            # puts "*** [#{self.fullpath}] _update_direct_template_descendants"
             direct_descendants = template_descendants.select do |page|
-              puts "*** \t\t[#{self.fullpath}] _update_direct_template_descendants (#{page.template_dependencies.inspect})"
+              # puts "*** \t\t[#{self.fullpath}] _update_direct_template_descendants (#{page.template_dependencies.inspect})"
               ((page.template_dependencies || [])- (self.template_dependencies || [])).size == 1
             end
 
-            puts "*** [#{self.fullpath}] direct = #{direct_descendants.inspect}"
+            # puts "*** [#{self.fullpath}] direct = #{direct_descendants.inspect}"
 
             direct_descendants.each do |page|
               page.send(:_parse_and_serialize_template, { :cached_parent => self, :cached_pages => cached })

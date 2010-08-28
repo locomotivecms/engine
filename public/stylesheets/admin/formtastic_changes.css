@@ -141,10 +141,10 @@ form.formtastic fieldset ol li.code label { display: none; }
 
 form.formtastic fieldset ol li.code p.inline-errors {
   display: block;
-  float: right;
+  float: left;
   margin: 4px 16px 0 0;
   position: relative;
-  left: 0px;
+  left: 20px;
   background-image: none;
 }
 
