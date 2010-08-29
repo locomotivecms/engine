@@ -3,6 +3,7 @@ class EditableElement
     include Mongoid::Document
 
     ## fields ##
+    field :kind
     field :slug
     field :block
     field :content
@@ -22,5 +23,9 @@ class EditableElement
     def content
       self.read_attribute(:content).blank? ? self.default_content : self.read_attribute(:content)
     end
+
+    def short_text?; self.kind == 'ShortText'; end
+
+    def long_text?; self.kind == 'LongText'; end
 
 end

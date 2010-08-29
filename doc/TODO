@@ -6,7 +6,8 @@ x bug editable_xxx disabled for nil block
 x display liquid errors
 x theme assets selector in page editor
 x saving page in ajax
-- editable_long_text tag
+x editable_long_text tag
+- blocking issue when modifying the parent of 2 templates => one of the 2 children has reference of the first child
 - editable_file tag
 
 - refactor slugify method (use parameterize + create a module)

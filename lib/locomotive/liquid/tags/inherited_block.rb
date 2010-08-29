@@ -32,30 +32,9 @@ module Locomotive
 
         protected
 
-        # def register_current_block
-        #   @context[:blocks] ||= {}
-        #
-        #   block = @context[:blocks][@name]
-        #
-        #   if block
-        #     # needed for the block.super statement
-        #     # puts "[BLOCK #{@name}|end_tag] nodelist #{@nodelist.inspect}"
-        #     block.add_parent(@nodelist)
-        #
-        #     @parent = block.parent
-        #     @nodelist = block.nodelist
-        #
-        #     # puts "[BLOCK #{@name}|end_tag] direct parent #{block.parent.inspect}"
-        #   else
-        #     # register it
-        #     # puts "[BLOCK #{@name}|end_tag] register it"
-        #     @context[:blocks][@name] = self
-        #   end
-        # end
-
         def contains_super?(nodelist)
           nodelist.any? do |node|
-            if node.is_a?(String) && node =~ /\{\{\s*block.super\s*\}\}/
+            if node.is_a?(::Liquid::Variable) && node.name == 'block.super'
               true
             elsif node.respond_to?(:nodelist) && !node.is_a?(Locomotive::Liquid::Tags::InheritedBlock)
               contains_super?(node.nodelist)
