@@ -3,54 +3,18 @@ module Locomotive
     module Tags
       class Extends < ::Liquid::Extends
 
-        attr_accessor :page_id # parent page id
-
-        def initialize(tag_name, markup, tokens, context)
-          if markup =~ Syntax
-            @template_name = $1.gsub('\'', '').strip
-          else
-            raise ::Liquid::SyntaxError.new("Error in tag 'extends' - Valid syntax: extends [template]")
-          end
-
-          # puts "** [Extends] #{context[:page].fullpath}"
-
-          @context = context
-
-          retrieve_parent_page
-
-          # before parsing the embedded tokens, get editable elements from parent page
-          @context[:page].merge_editable_elements_from_page(@context[:parent_page])
-
+        def prepare_parsing
           super
 
-          # puts "** after extends, @context[:templates] = #{@context[:templates].inspect}"
+          parent_page = @context[:parent_page]
+
+          @context[:snippets] = parent_page.snippet_dependencies
+          @context[:templates] = ([*parent_page.template_dependencies] + [parent_page.id]).compact
         end
 
         private
 
         def parse_parent_template
-          page = @context[:parent_page]
-
-          template = page.template
-
-          # merge blocks ?
-          blocks = find_blocks(template.root.nodelist)
-
-          blocks.each_value do |block|
-            # puts "*** [Extends] merging #{block.name} / #{@context.object_id}"
-            block.send(:instance_variable_set, :"@context", @context)
-            block.send(:register_current_block)
-          end
-
-          @context[:snippets] = page.snippet_dependencies
-          @context[:templates] = ([*page.template_dependencies] + [@page_id]).compact
-
-          # puts "@context[:templates] = #{[*page.template_dependencies].inspect} + #{[@page_id].inspect} = #{@context[:templates].inspect}"
-
-          template
-        end
-
-        def retrieve_parent_page
           if @template_name == 'parent'
             if @context[:cached_parent]
               @context[:parent_page] = @context[:cached_parent]
@@ -65,9 +29,9 @@ module Locomotive
 
           raise PageNotFound.new("Page with fullpath '#{@template_name}' was not found") if @context[:parent_page].nil?
 
-          # puts "** @page_id = #{@context[:parent_page].id}"
+          @context[:page].merge_editable_elements_from_page(@context[:parent_page])
 
-          @page_id = @context[:parent_page].id
+          @context[:parent_page].template
         end
 
       end

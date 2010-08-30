@@ -3,9 +3,10 @@ source 'http://rubygems.org'
 
 gem 'rails', '3.0.0.rc'
 
-gem 'liquid', :git => 'git://github.com/locomotivecms/liquid.git', :ref => '7ce591f38ab826875337'
+# gem 'liquid', :path => '../gems/liquid' # local
+gem 'liquid', :git => 'git://github.com/locomotivecms/liquid.git', :ref => '9ec570927f5281e1f397'
 
-gem 'bson_ext', '>= 1.0.1'
+gem 'bson_ext', '1.0.4'
 gem 'mongoid', '2.0.0.beta.16'
 gem 'mongoid_acts_as_tree', '0.1.5'
 gem 'mongo_session_store', '2.0.0.pre'
@@ -42,7 +43,8 @@ group :test do
   gem 'growl-glue'
   gem 'rspec-rails', '2.0.0.beta.19'
   gem 'factory_girl_rails'
-  gem 'pickle', :git => 'http://github.com/codegram/pickle.git'
+  # gem 'pickle', :git => 'http://github.com/codegram/pickle.git'
+  gem 'pickle', :git => 'http://github.com/ianwhite/pickle.git'
   gem 'pickle-mongoid'
   gem 'capybara'
 

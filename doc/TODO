@@ -7,13 +7,13 @@ x display liquid errors
 x theme assets selector in page editor
 x saving page in ajax
 x editable_long_text tag
-- blocking issue when modifying the parent of 2 templates => one of the 2 children has reference of the first child
+x blocking issue when modifying the parent of 2 templates => one of the 2 children has reference of the first child
 - editable_file tag
 
 - refactor slugify method (use parameterize + create a module)
 - [content types] the "display column" selector should not include file types
 
-- add dom_id and css_class fields in page (body structure ?)
+! add dom_id and css_class fields in page (body structure ?)
 
 BACKLOG:
 

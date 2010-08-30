@@ -13,16 +13,20 @@ GIT
 
 GIT
   remote: git://github.com/locomotivecms/liquid.git
-  revision: 7ce591f
-  ref: 7ce591f38ab826875337
+  revision: 9ec5709
+  ref: 9ec570927f5281e1f397
   specs:
     liquid (2.1.3)
 
 GIT
-  remote: http://github.com/codegram/pickle.git
-  revision: 2834204
+  remote: http://github.com/ianwhite/pickle.git
+  revision: 65ba8b7
   specs:
-    pickle (0.3.0)
+    pickle (0.4.2)
+      cucumber (>= 0.8)
+      rake
+      rspec (>= 1.3)
+      yard
 
 GEM
   remote: http://rubygems.org/
@@ -226,6 +230,7 @@ GEM
       rack-test (>= 0.5.3)
     will_paginate (3.0.pre2)
     xml-simple (1.0.12)
+    yard (0.6.0)
 
 PLATFORMS
   ruby
@@ -235,7 +240,7 @@ DEPENDENCIES
   actionmailer-with-request
   autotest
   aws
-  bson_ext (>= 1.0.1)
+  bson_ext (= 1.0.4)
   capybara
   carrierwave (= 0.5.0.beta2)
   cgi_multipart_eof_fix

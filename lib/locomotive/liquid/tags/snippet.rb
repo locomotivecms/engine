@@ -12,7 +12,7 @@ module Locomotive
 
           @slug = @template_name.gsub('\'', '')
 
-          @context[:snippets] << @slug
+          (@context[:snippets] << @slug).uniq!
 
           snippet = @context[:site].snippets.where(:slug => @slug).first
 
