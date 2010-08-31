@@ -1,19 +1,5 @@
 BOARD:
 
-x liquid inheritance
-x bug editable_xxx disabled for nil block
-! duplicated block name
-x display liquid errors
-x theme assets selector in page editor
-x saving page in ajax
-x editable_long_text tag
-x blocking issue when modifying the parent of 2 templates => one of the 2 children has reference of the first child
-x editable_file tag
-x stylish file field
-x remove not used editable element all in once
-x default content from parent editable element
-x unable to upload/remove editable file
-
 - refactor slugify method (use parameterize + create a module)
 - [content types] the "display column" selector should not include file types
 
@@ -86,3 +72,16 @@ x rack app to map pretty asset url to S3 => shortcut urls instead
 x site selector (cross domain authentication)
 x nice error page
 x nice 404 page (admin section)
+x liquid inheritance
+x bug editable_xxx disabled for nil block
+! duplicated block name
+x display liquid errors
+x theme assets selector in page editor
+x saving page in ajax
+x editable_long_text tag
+x blocking issue when modifying the parent of 2 templates => one of the 2 children has reference of the first child
+x editable_file tag
+x stylish file field
+x remove not used editable element all in once
+x default content from parent editable element
+x unable to upload/remove editable file
