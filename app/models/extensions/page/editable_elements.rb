@@ -62,8 +62,6 @@ module Models
 
           def merge_editable_elements_from_page(source)
             source.editable_elements.each do |el|
-              puts "\t*** merging #{el.class} / #{el.slug} / #{el.block} / #{el.disabled?} / #{el.from_parent?}"
-
               next if el.disabled?
 
               existing_el = self.find_editable_element(el.block, el.slug)
@@ -72,8 +70,7 @@ module Models
                 new_attributes = el.attributes.merge(:from_parent => true)
                 new_attributes[:default_content] = el.content
 
-                foo = self.editable_elements.build(new_attributes, el.class)
-                puts "\t\t***  building #{foo.inspect} / #{foo.valid?} / #{foo.errors.full_messages.inspect}"
+                self.editable_elements.build(new_attributes, el.class)
               else
                 existing_el.attributes = { :disabled => false, :default_content => el.content }
               end
@@ -82,8 +79,6 @@ module Models
 
           def remove_disabled_editable_elements
             return unless self.editable_elements.any? { |el| el.disabled? }
-
-            puts "*** removing #{self.editable_elements.find_all { |el| el.disabled? }.size} elements"
 
             # super fast way to remove useless elements all in once (TODO callbacks)
             self.collection.update(self._selector, '$pull' => { 'editable_elements' => { 'disabled' => true } })

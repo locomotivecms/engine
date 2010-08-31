@@ -93,11 +93,9 @@ module Models
             end
 
             direct_descendants.each do |page|
-              puts "*** #{page.fullpath} descendant of #{self.fullpath}"
               page.send(:_parse_and_serialize_template, { :cached_parent => self, :cached_pages => cached })
 
               page.send(:_update_direct_template_descendants, template_descendants, cached)
-              puts "-------- done -----------"
             end
           end
 
