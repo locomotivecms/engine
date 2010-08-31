@@ -99,6 +99,7 @@ en:
         help: "The page title can be updated by clicking it."
         ask_for_title: "Please type the new page title"
       form:
+        delete_file: Delete file
         default_block: Default
         cache_strategy:
           none: None

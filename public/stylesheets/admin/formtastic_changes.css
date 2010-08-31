@@ -380,22 +380,22 @@ form.formtastic fieldset.validations ol li.added em.key {
   width: 180px;
 }
 
-/* ___ content instance ___ */
+/* ___ content instance / editable elements___ */
 
 form.content_instance fieldset ol li.text textarea {
   width: 75%;
 }
 
-form.content_instance fieldset ol li.file p {
+form.formtastic fieldset ol li.file p.remove {
   margin: 5px 0 0 20%;
 }
 
-form.content_instance fieldset ol li.file p a {
+form.formtastic fieldset ol li.file p.remove a {
   text-decoration: none;
   color: #333;
 }
 
-form.content_instance fieldset ol li.file p a:hover { text-decoration: underline; }
+form.formtastic fieldset ol li.file p.remove a:hover { text-decoration: underline; }
 
 /* ___ my account ___ */
 

@@ -114,3 +114,16 @@ Scenario: Combine inheritance and update
     Another Main
     Default sidebar title
     """
+
+Scenario: Insert editable files
+  Given a page named "hello-world" with the template:
+    """
+    My application file is {% editable_file 'a_file', hint: 'please enter a new file' %}/default.pdf{% endeditable_file %}
+    """
+  When I view the rendered page at "/hello-world"
+  Then the rendered output should look like:
+    """
+    My application file is /default.pdf
+    """
+
+

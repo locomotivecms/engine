@@ -8,6 +8,8 @@ module Locomotive
 
           parent_page = @context[:parent_page]
 
+          @context[:page].merge_editable_elements_from_page(parent_page)
+
           @context[:snippets] = parent_page.snippet_dependencies
           @context[:templates] = ([*parent_page.template_dependencies] + [parent_page.id]).compact
         end
@@ -28,8 +30,6 @@ module Locomotive
           end
 
           raise PageNotFound.new("Page with fullpath '#{@template_name}' was not found") if @context[:parent_page].nil?
-
-          @context[:page].merge_editable_elements_from_page(@context[:parent_page])
 
           @context[:parent_page].template
         end

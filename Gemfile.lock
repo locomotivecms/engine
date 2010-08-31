@@ -12,13 +12,6 @@ GIT
     custom_fields (0.0.0.1)
 
 GIT
-  remote: git://github.com/locomotivecms/liquid.git
-  revision: 9ec5709
-  ref: 9ec570927f5281e1f397
-  specs:
-    liquid (2.1.3)
-
-GIT
   remote: http://github.com/ianwhite/pickle.git
   revision: 65ba8b7
   specs:
@@ -27,6 +20,11 @@ GIT
       rake
       rspec (>= 1.3)
       yard
+
+PATH
+  remote: /Users/didier/Desktop/NoCoffee/LocomotiveCMS/gems/liquid
+  specs:
+    liquid (2.1.3)
 
 GEM
   remote: http://rubygems.org/

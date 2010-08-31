@@ -8,7 +8,7 @@
 
 %p!= t('.help')
 
-= semantic_form_for @page, :url => admin_page_url(@page), :html => { :class => 'save-with-shortcut' } do |form|
+= semantic_form_for @page, :url => admin_page_url(@page), :html => { :class => 'save-with-shortcut', :multipart => true } do |form|
 
   = render 'form', :f => form
 

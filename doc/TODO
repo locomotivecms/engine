@@ -8,7 +8,11 @@ x theme assets selector in page editor
 x saving page in ajax
 x editable_long_text tag
 x blocking issue when modifying the parent of 2 templates => one of the 2 children has reference of the first child
-- editable_file tag
+x editable_file tag
+x stylish file field
+x remove not used editable element all in once
+x default content from parent editable element
+x unable to upload/remove editable file
 
 - refactor slugify method (use parameterize + create a module)
 - [content types] the "display column" selector should not include file types
