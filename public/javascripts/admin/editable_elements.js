@@ -20,6 +20,8 @@ $(document).ready(function() {
     if (data.editable_elements != '') {
       $('#editable-elements').replaceWith(data.editable_elements);
       enableNav();
+
+      $('textarea.html').tinymce(TinyMceDefaultSettings);
     }
   }, []);
 
