@@ -16,6 +16,19 @@ module Mongoid #:nodoc:
   end
 end
 
+module Mongoid #:nodoc:
+  module Validations #:nodoc:
+    class AssociatedValidator < ActiveModel::EachValidator
+      def validate_each(document, attribute, value)
+        values = value.is_a?(Array) ? value : [ value ]
+        return if values.collect { |doc| doc.nil? || doc.valid? }.all?
+        document.errors.add(attribute, :invalid, options.merge(:value => value)) # was causing "can't modify frozen hash"
+      end
+    end
+  end
+end
+
+
 # http://github.com/emk/mongoid/blob/503e346b1b7b250d682a12332ad9d5872f1575e6/lib/mongoid/atomicity.rb
 module Mongoid #:nodoc:
   module Atomicity #:nodoc:

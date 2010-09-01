@@ -1,18 +1,17 @@
 # Edit this Gemfile to bundle your application's dependencies.
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.0.rc'
+gem 'rails', '3.0.0'
 
-# gem 'liquid', :path => '../gems/liquid' # local
 gem 'liquid', :git => 'git://github.com/locomotivecms/liquid.git', :ref => 'b03cdc289ac36c339545'
 
-gem 'bson_ext', '1.0.4'
-gem 'mongoid', '2.0.0.beta.16'
+gem 'bson_ext', '= 1.0.4'
+gem 'mongoid', '2.0.0.beta.17'
 gem 'mongoid_acts_as_tree', '0.1.5'
 gem 'mongo_session_store', '2.0.0.pre'
 gem 'warden'
 gem 'devise', '1.1.2' #:git => 'git://github.com/plataformatec/devise.git'
-gem 'haml', '3.0.15'
+gem 'haml', '3.0.18'
 gem 'rmagick', '2.12.2'
 gem 'aws'
 gem 'mimetype-fu', :require => 'mimetype_fu'
@@ -43,7 +42,6 @@ group :test do
   gem 'growl-glue'
   gem 'rspec-rails', '2.0.0.beta.19'
   gem 'factory_girl_rails'
-  # gem 'pickle', :git => 'http://github.com/codegram/pickle.git'
   gem 'pickle', :git => 'http://github.com/ianwhite/pickle.git'
   gem 'pickle-mongoid'
   gem 'capybara'
