@@ -17,12 +17,12 @@ module Locomotive
 
           output = @page.render(locomotive_context)
 
-          prepare_and_set_response(output)
+          self.prepare_and_set_response(output)
         end
       end
 
       def locomotive_page
-        path = request.fullpath.clone
+        path = (params[:path] || request.fullpath).clone
         path.gsub!(/\.[a-zA-Z][a-zA-Z0-9]{2,}$/, '')
         path.gsub!(/^\//, '')
         path = 'index' if path.blank?
@@ -66,7 +66,7 @@ module Locomotive
           assigns[@page.content_type.slug.singularize] = @content_instance # just here to help to write readable liquid code
         end
 
-        registers = { :controller => self, :site => current_site, :page => @page }
+        registers = { :controller => self, :site => current_site, :page => @page, :inline_editor => self.editing_page? }
 
         ::Liquid::Context.new({}, assigns, registers)
       end
@@ -83,6 +83,10 @@ module Locomotive
         end
 
         render :text => output, :layout => false, :status => :ok
+      end
+
+      def editing_page?
+        self.params[:editing] == true
       end
 
     end

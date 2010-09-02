@@ -1,5 +1,21 @@
 BOARD:
 
+- inline editing (http://www.aloha-editor.com/wiki/index.php/Aloha_PHP_Example)
+  - editable elements should wrap a tag: div, h1, ...etc (default span)
+  - save automatically (callback) => store modifications
+  - admin buttons
+    - edit page
+    - save / cancel
+    - back to back-office => admin settings of the page
+    - duplicate page ?
+    (- super bonus statistics)
+  - also save contents ?
+  - edit images (upload new ones, ...etc)
+  - google analytics tags (only visible in non edit mode)
+- create a repo for a tool "a la" vision
+- write my first tutorial about locomotive
+- add images / files inside long text element (back-office side at first ?)
+
 - refactor slugify method (use parameterize + create a module)
 - [content types] the "display column" selector should not include file types
 

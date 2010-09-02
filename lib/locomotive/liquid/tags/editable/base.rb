@@ -35,7 +35,7 @@ module Locomotive
             element = current_page.find_editable_element(context['block'].try(:name), @slug)
 
             if element
-              render_element(element)
+              render_element(context, element)
             else
               Locomotive.logger "[editable element] missing element #{context[:block].name} / #{@slug}"
               ''

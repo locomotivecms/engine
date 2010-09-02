@@ -6,6 +6,18 @@ module Locomotive
 
           protected
 
+          def render_element(context, element)
+            if context.registers[:inline_editor]
+              %{
+                <div class='editable-long-text' data-page-id='#{element.page.id}' data-element-id='#{element.id}'>
+                  #{element.content}
+                </div>
+              }
+            else
+              element.content
+            end
+          end
+
           def document_type
             EditableLongText
           end

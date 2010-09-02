@@ -6,7 +6,7 @@ module Locomotive
 
           protected
 
-          def render_element(element)
+          def render_element(context, element)
             element.source? ? element.source.url : element.default_content
           end
 

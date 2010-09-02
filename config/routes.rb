@@ -53,5 +53,6 @@ Rails.application.routes.draw do
 
   # magic urls
   match '/' => 'admin/rendering#show'
+  match '*path/edit' => 'admin/rendering#show', :defaults => { :editing => true }
   match '*path' => 'admin/rendering#show'
 end

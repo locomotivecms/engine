@@ -6,8 +6,20 @@ module Locomotive
 
           protected
 
-          def render_element(element)
-            element.content
+          # def render_element(context, element)
+          #   element.content
+          # end
+
+          def render_element(context, element)
+            if context.registers[:inline_editor]
+              %{
+                <span class='editable-short-text' data-page-id='#{element.page.id}' data-element-id='#{element.id}'>
+                  #{element.content}
+                </span>
+              }
+            else
+              element.content
+            end
           end
 
           def document_type
