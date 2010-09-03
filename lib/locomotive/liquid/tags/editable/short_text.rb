@@ -13,7 +13,7 @@ module Locomotive
           def render_element(context, element)
             if context.registers[:inline_editor]
               %{
-                <span class='editable-short-text' data-page-id='#{element.page.id}' data-element-id='#{element.id}'>
+                <span class='editable-short-text' data-element-id='#{element.id}' data-element-index='#{element._index}'>
                   #{element.content}
                 </span>
               }

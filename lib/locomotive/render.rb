@@ -66,7 +66,13 @@ module Locomotive
           assigns[@page.content_type.slug.singularize] = @content_instance # just here to help to write readable liquid code
         end
 
-        registers = { :controller => self, :site => current_site, :page => @page, :inline_editor => self.editing_page? }
+        registers = {
+          :controller     => self,
+          :site           => current_site,
+          :page           => @page,
+          :inline_editor  => self.editing_page?,
+          :current_admin  => current_admin
+        }
 
         ::Liquid::Context.new({}, assigns, registers)
       end
@@ -86,7 +92,7 @@ module Locomotive
       end
 
       def editing_page?
-        self.params[:editing] == true
+        self.params[:editing] == true && current_admin
       end
 
     end

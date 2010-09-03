@@ -1,0 +1,76 @@
+#page-toolbar {
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  height: 28px;
+  background: transparent url('/images/admin/inline_editor/bg.png') repeat-x 0 0;
+  padding: 0 10px;
+  font-family: Helvetica;
+  -webkit-box-shadow: -3px 3px 12px #818181;
+}
+
+#page-toolbar ul {
+  margin-top: 3px;
+  list-style: none;
+}
+
+#page-toolbar ul li.link {
+  float: left;
+  margin-right: 5px;
+}
+
+#page-toolbar ul li.link a {
+  display: block;
+  background: transparent url('/images/admin/inline_editor/action-left.png') no-repeat 0 0;
+  height: 21px;
+  padding-left: 24px;
+  text-decoration: none;
+  color: #fff;
+}
+
+#page-toolbar ul li.link a:hover span { text-decoration: underline; }
+
+#page-toolbar ul li.save a { background-position: 0 -21px; }
+#page-toolbar ul li.cancel a { background-position: 0 -42px; }
+#page-toolbar ul li.copy a { background-position: 0 -63px; }
+#page-toolbar ul li.edit a { background-position: 0 -84px; }
+#page-toolbar ul li.back a { background-position: 0 -105px; }
+
+#page-toolbar ul li.link a span {
+  display: block;
+  background: transparent url('/images/admin/inline_editor/action-right.png') no-repeat right 0;
+  height: 20px;
+  padding: 1px 14px 0 2px;
+  text-shadow: 1px 1px 1px #000;
+}
+
+#page-toolbar ul li.drawer {
+  float: left;
+  margin: 0 10px 0 5px;
+}
+
+#page-toolbar ul li.drawer a {
+  display: block;
+  position: relative;
+  top: 6px;
+  width: 10px;
+  height: 10px;
+  background: transparent url('/images/admin/inline_editor/drawer.png') no-repeat 0 0;
+  text-decoration: none;
+}
+
+#page-toolbar ul li.drawer a.off {
+  background-position: 0 -10px;
+}
+
+#page-toolbar ul li.sep { float: left; margin: 0 15px 0 10px; }
+
+#page-toolbar ul li.sep span {
+  display: block;
+  height: 21px;
+  width: 1px;
+  background: #3a3b40;
+  border-left: 1px solid #56575e;
+}
+
+#page-toolbar ul li.clear { clear: both; }
