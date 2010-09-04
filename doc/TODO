@@ -13,6 +13,7 @@ BOARD:
   - edit images (upload new ones, ...etc)
   - google analytics tags (only visible in non edit mode)
   - locale
+  - trim short text content
 - global regions: keyword in editable element
 - create a repo for a tool "a la" vision
 - write my first tutorial about locomotive

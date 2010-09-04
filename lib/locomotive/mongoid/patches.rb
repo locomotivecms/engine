@@ -28,7 +28,6 @@ module Mongoid #:nodoc:
   end
 end
 
-
 # http://github.com/emk/mongoid/blob/503e346b1b7b250d682a12332ad9d5872f1575e6/lib/mongoid/atomicity.rb
 module Mongoid #:nodoc:
   module Atomicity #:nodoc:
