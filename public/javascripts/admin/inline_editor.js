@@ -1,5 +1,27 @@
 var foo = bar = null;
+
+var locale = 'en';
+
 // var foo = null;
+
+var allTranslations = {
+  'en': {
+    'home': 'admin',
+    'edit': 'edit',
+    'save': 'save',
+    'cancel': 'cancel',
+    'back': 'edition done',
+    'saving': 'saving'
+  },
+  'fr': {
+    'home': 'admin',
+    'edit': 'editer',
+    'save': 'sauver',
+    'cancel': 'annuler',
+    'back': 'fin mode edition',
+    'saving': 'sauvegarde en cours'
+  }
+}
 
 var prepareForm = function(jEvent, aEvent) {
   // console.log('foo !!!');
@@ -25,9 +47,10 @@ var prepareForm = function(jEvent, aEvent) {
   var input = $('#page-toolbar form #editable-' + index);
 
   input.attr('name', input.attr('name').replace('_index', 'content'));
-  input.val(aEvent.editable.getContents());
+  input.val(aEvent.editable.getContents().replace(/^\s*/, "").replace(/\s*$/, ""));
 
-
+  $('#page-toolbar').css('right', 0);
+  $('#page-toolbar .drawer a').removeClass('off');
 
   // foo = $(this);
 
@@ -39,13 +62,18 @@ var prepareForm = function(jEvent, aEvent) {
   // foo = ui;
 }
 
+var displaySpinner = function() {
+  $('#page-toolbar li.save, #page-toolbar li.cancel, #page-toolbar li.sep:eq(1)').hide();
+  $('#page-toolbar .spinner').show();
+};
+
 var resetForm = function() {
   $('#page-toolbar form input.auto').each(function() {
     $(this).attr('name', $(this).attr('name').replace('content', '_index'));
     $(this).val('');
   });
 
-  $('#page-toolbar li.save, #page-toolbar li.cancel, #page-toolbar li.sep:eq(1)').hide();
+  $('#page-toolbar li.save, #page-toolbar li.cancel, #page-toolbar li.sep:eq(1), #page-toolbar li.spinner').hide();
 }
 
 if (typeof GENTICS != 'undefined') {
@@ -88,6 +116,7 @@ var buildPageToolbar = function() {
   var showPageUrl = $('meta[name=page-url]').attr('content');
   var editPageUrl = $('meta[name=edit-page-url]').attr('content');
   var nbElements = parseInt($('meta[name=page-elements-count]').attr('content'));
+  var translations = allTranslations[locale];
 
   editingMode = typeof showPageUrl != 'undefined';
   var style = editingMode ? '' : "style='display: none'"
@@ -100,13 +129,14 @@ var buildPageToolbar = function() {
   $('body').prepend("<div id='page-toolbar'>\
     <ul>\
       <li class='drawer'><a href='#'><span>&nbsp;</span></a></li>\
-      <li class='link home'><a href='" + editPageUrl + "'><span>admin</span></a></li>\
+      <li class='link home'><a href='" + editPageUrl + "'><span>" + translations['home'] + "</span></a></li>\
       <li class='sep'><span>&nbsp;</span></li>\
-      <li class='link edit' style='" + (editingMode ? 'display: none' : '') + "'><a href='#'><span>edit</span></a></li>\
-      <li class='link save' style='display: none'><a href='#'><span>save</span></a></li>\
-      <li class='link cancel' style='display: none'><a href='#'><span>cancel</span></a></li>\
+      <li class='link edit' style='" + (editingMode ? 'display: none' : '') + "'><a href='#'><span>" + translations['edit'] + "</span></a></li>\
+      <li class='link save' style='display: none'><a href='#'><span>" + translations['save'] + "</span></a></li>\
+      <li class='link cancel' style='display: none'><a href='#'><span>" + translations['cancel'] + "</span></a></li>\
+      <li class='link spinner' style='display: none'><a href='#'><span><img src='/images/admin/form/spinner.gif' /><em>" + translations['saving'] + "</em></span></a></li>\
       <li class='sep' style='display: none'><span>&nbsp;</span></li>\
-      <li class='link back' style='" + (editingMode ? '' : 'display: none') + "'><a href='#'><span>back</span></a></li>\
+      <li class='link back' style='" + (editingMode ? '' : 'display: none') + "'><a href='#'><span>" + translations['back'] + "</span></a></li>\
     </ul>\
     <form action='" + showPageUrl + "' accept-charset='UTF-8' method='post'>\
       " + formContentHTML + "\
@@ -119,14 +149,15 @@ var buildPageToolbar = function() {
     e.stopPropagation();
     e.preventDefault();
   }).bind('ajax:complete', function() {
-    console.log('ajax:complete');
+    // console.log('ajax:complete');
     resetForm();
+  }).bind('ajax:loading', function() {
+    // console.log('ajax:failure');
+    displaySpinner();
   }).bind('ajax:failure', function() {
-    console.log('ajax:failure');
+    // console.log('ajax:failure');
     resetForm();
   });
-
-
 
   // events: save
   $('#page-toolbar').find('.save').click(function(e) {
@@ -138,6 +169,7 @@ var buildPageToolbar = function() {
   $('#page-toolbar').find('.edit').click(function() {
     url = window.location.href;
     if (url.charAt(url.length - 1) == '/') url += 'index';
+    url = url.replace('#', '');
     window.location.href =  url + '/edit';
   });
 
@@ -154,28 +186,40 @@ var buildPageToolbar = function() {
   });
 
   // drawer
-  $('#page-toolbar').find('.drawer a').eq(0).click(function() {
+  $('#page-toolbar .drawer a').eq(0).click(function(e) {
     var self = $(this);
     var max = $('#page-toolbar').width() - 17;
 
     if ($(this).hasClass('off'))
       $('#page-toolbar').animate({ 'right': 0 }, 300, function() {
         self.removeClass('off');
+        $.cookie('inline_editor_off', '0');
       });
     else
       $('#page-toolbar').animate({ 'right': -max }, 300, function() {
         self.addClass('off');
+        $.cookie('inline_editor_off', '1');
       });
+
+    e.stopPropagation(); e.preventDefault();
   });
 }
 
 jQuery(document).ready(function($) {
 
+  locale = $('meta[name=locale]').attr('content');
+
   buildPageToolbar();
+
+  if ($.cookie('inline_editor_off') == '1') {
+    var max = $('#page-toolbar').width() - 17;
+    $('#page-toolbar').css('right', -max);
+    $('#page-toolbar .drawer a').addClass('off');
+  }
 
   if (editingMode) {
     // set locale
-    GENTICS.Aloha.settings['i18n'] = { 'current': $('meta[name=locale]').attr('content') };
+    GENTICS.Aloha.settings['i18n'] = { 'current': locale };
 
     // add 'edit' at the end of each url of the page
     $('a').each(function() {

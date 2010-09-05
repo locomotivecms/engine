@@ -1,20 +1,23 @@
 BOARD:
 
 - inline editing (http://www.aloha-editor.com/wiki/index.php/Aloha_PHP_Example)
-  - editable elements should wrap a tag: div, h1, ...etc (default span)
-  - save automatically (callback) => store modifications
-  - admin buttons
-    - edit page
-    - save / cancel
-    - back to back-office => admin settings of the page
-    - duplicate page ?
+  x spinner
+  x save automatically (callback) => store modifications
+  x admin buttons
+    x edit page
+    x save / cancel
+    x back to back-office => admin settings of the page
+    (- duplicate page ?)
     (- super bonus statistics)
+  x locale
+  x store page toolbar status in cookie
+  x trim short text content
+  - namespace js functions
+  - editable elements should wrap a tag: div, h1, ...etc (default span)
   - also save contents ?
   - edit images (upload new ones, ...etc)
   - google analytics tags (only visible in non edit mode)
-  - locale
-  - trim short text content
-- global regions: keyword in editable element
+- global regions: keyword in editable element (http://www.mongodb.org/display/DOCS/Updating)
 - create a repo for a tool "a la" vision
 - write my first tutorial about locomotive
 - add images / files inside long text element (back-office side at first ?)

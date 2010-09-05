@@ -401,7 +401,7 @@ form.formtastic fieldset ol li.file p.remove a:hover { text-decoration: underlin
 
 form.formtastic fieldset.language li.full span {
   margin: 0 20px;
-  font-size: 0.8em;
+  font-size: 1em;
   font-weight: bold;
 }
 

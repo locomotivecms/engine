@@ -6,7 +6,7 @@ module Liquid
         def render(context)
           if context.registers[:current_admin]
             output = %{
-              <meta name="locale" content="#{I18n.locale}" />
+              <meta name="locale" content="#{context.registers[:current_admin].locale}" />
               <meta name="page-fullpath" content="/#{context.registers[:page].fullpath}" />
               <meta name="edit-page-url" content="#{context.registers[:controller].send(:edit_admin_page_url, context.registers[:page])}" />
             }
@@ -32,6 +32,7 @@ module Liquid
             else
               output << %{
                 <script src="/javascripts/admin/jquery.js" type="text/javascript"></script>
+                <script src="/javascripts/admin/plugins/cookie.js" type="text/javascript"></script>
               }
             end
 
