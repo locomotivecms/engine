@@ -38,6 +38,7 @@ module Liquid
 
             output << %{
               <script src="/javascripts/admin/rails.js" type="text/javascript"></script>
+              <script type="text/javascript" src="/javascripts/admin/inline_editor_toolbar.js"></script>
               <script type="text/javascript" src="/javascripts/admin/inline_editor.js"></script>
               <link href="/stylesheets/admin/inline_editor.css" media="screen" rel="stylesheet" type="text/css" />
             }
