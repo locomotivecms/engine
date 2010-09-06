@@ -6,10 +6,6 @@ module Locomotive
 
           protected
 
-          # def render_element(context, element)
-          #   element.content
-          # end
-
           def render_element(context, element)
             if context.registers[:inline_editor]
               %{

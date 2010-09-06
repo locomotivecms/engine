@@ -49,16 +49,24 @@ var addCodeMirrorEditor = function(type, el, parser) {
 var TinyMceDefaultSettings = {
   script_url : '/javascripts/admin/plugins/tiny_mce/tiny_mce.js',
   theme : 'advanced',
-  skin : 'locomotive',
-  theme_advanced_buttons1 : 'code,|,bold,italic,|,strikethrough,justifyleft,justifycenter,justifyright,justifyfull,|,bullist,numlist,|,outdent,indent,blockquote,|,link,unlink,|,formatselect,fontselect,fontsizeselect',
-  theme_advanced_buttons2 : '',
-  theme_advanced_buttons3 : ''
+  skin : 'cirkuit',
+  plugins: 'safari,inlinepopups,advimage',
+  theme_advanced_buttons1 : 'code,|,bold,italic,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,|,bullist,numlist,|,outdent,indent,blockquote,|,link,unlink,|,image',
+  theme_advanced_buttons2 : 'formatselect,fontselect,fontsizeselect',
+  theme_advanced_buttons3 : '',
+  theme_advanced_toolbar_location : "top",
+  theme_advanced_toolbar_align : "left",
+  height: '300',
+  width: '710',
+  inlinepopups_skin: 'locomotive'
 };
 
 /* ___ global ___ */
 
 $(document).ready(function() {
   I18nLocale = $('meta[name=locale]').attr('content');
+
+  TinyMceDefaultSettings['language'] = I18nLocale;
 
   // sub menu links
   $('#submenu ul li.links').hover(function() {

@@ -107,6 +107,11 @@ form.formtastic fieldset ol li input[type=password] {
   border: 1px solid #a6a8b8;
 }
 
+form.formtastic fieldset ol li.text textarea.html {
+  height: 300px;
+  width: 46%;
+}
+
 form.formtastic fieldset ol li p.inline-hints {  margin-left: 20%; }
 form.formtastic fieldset ol li p.inline-hints a { color: #1f82bc; }
 

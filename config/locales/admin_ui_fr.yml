@@ -59,7 +59,7 @@ fr:
       edit_category:
         title: Editer options
         help: Gèrer la liste des options de votre liste déroulante
-        collection_label: List des options
+        collection_label: Liste des options
       custom_form:
         edit_categories: Editer options
         delete_file: Supprimer fichier

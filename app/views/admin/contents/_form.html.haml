@@ -1,5 +1,5 @@
 - content_for :head do
   = javascript_include_tag 'admin/plugins/tiny_mce/tinymce', 'admin/plugins/json2', 'admin/plugins/fancybox', 'admin/custom_fields/category', 'admin/contents'
-  = stylesheet_link_tag 'admin/plugins/fancybox', 'admin/box'
+  = stylesheet_link_tag 'admin/plugins/fancybox', 'admin/fancybox_changes'
 
 = render 'admin/custom_fields/custom_form', :form => f, :title => :attributes, :parent => @content_type
