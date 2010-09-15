@@ -5,7 +5,7 @@ body {
 /*  font-family:Verdana, Arial, Helvetica, sans-serif; font-size:11px;*/
   background: #fff;
   padding:0;
-  margin:8px 8px 0 8px;
+  margin: 8px 10px 0 10px;
   padding-bottom: 120px;
 }
 
@@ -27,6 +27,10 @@ body {
   text-align: right;
 }
 
+.mceMiddle span {
+  background: red !important;
+}
+
 .mceActionPanel input {
   color: #787A89;
   text-shadow: 1px 1px 1px #fff;
@@ -35,10 +39,9 @@ body {
   -webkit-border-radius: 5px;
   border-radius: 5px;
   box-shadow: 1px 1px 1px #333;
-  padding: 8px 9px;
-  margin-right: 20px;
+  padding: 6px 9px 8px;
+  margin: 5px 20px 0 0;
   font-size: 1em;
-  font-family: 'Lucida Grande';
   border: 0px;
   background-image: -webkit-gradient(
       linear,
@@ -54,6 +57,7 @@ body {
       rgb(235,237,244) 47%,
       rgb(235,237,244) 70%
   );
+  cursor: pointer;
 }
 
 

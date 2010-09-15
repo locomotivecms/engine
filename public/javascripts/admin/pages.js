@@ -77,10 +77,11 @@ $(document).ready(function() {
     }
   }, 2000);
 
-  $('a#image-picker-link').imagepicker({
-    insertFn: function(link) {
-      return "{{ theme_images." + link.attr('data-slug') + " }}";
-    }
-  });
+  if (typeof $.fn.imagepicker != 'undefined')
+    $('a#image-picker-link').imagepicker({
+      insertFn: function(link) {
+        return "{{ theme_images." + link.attr('data-slug') + " }}";
+      }
+    });
 
 });

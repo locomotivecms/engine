@@ -33,7 +33,7 @@
 
 /* Middle */
 .locomotive .mceMiddle { top: 0px; width: 100%; height: 100%; }
-.locomotive .mceMiddle span { top: 47px; position: relative; background: #fff; }
+.locomotive .mceMiddle span { top: 47px; position: relative; background: transparent; }
 
 /* Bottom */
 .locomotive .mceBottom { bottom: 0px; width: 100%; height: 1px; background: #8b8d9a; }

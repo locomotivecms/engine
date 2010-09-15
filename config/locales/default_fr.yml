@@ -28,7 +28,7 @@ fr:
 
       domain_taken: "%{value} a été déjà pris"
       invalid_domain: "%{value} n'est pas valide"
-      needs_admin_account: "Un minimum d'un scompte admin est requis"
+      needs_admin_account: "Un minimum d'un compte admin est requis"
       protected_page: "Vous ne pouvez pas supprimer les pages index et 404"
       extname_changed: "Nouveau fichier n'a pas l'extension original"
       array_too_short: "est trop petit (le nombre minimum d'éléments est %{count})"

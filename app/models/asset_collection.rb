@@ -5,6 +5,7 @@ class AssetCollection
   ## fields ##
   field :name
   field :slug
+  field :internal, :type => Boolean, :default => false
 
   ## associations ##
   referenced_in :site
@@ -22,6 +23,9 @@ class AssetCollection
   validates_presence_of :site, :name, :slug
   validates_uniqueness_of :slug, :scope => :site_id
 
+  ## named scopes ##
+  scope :internal, :where => { :internal => true }
+
   ## methods ##
 
   def ordered_assets
@@ -34,6 +38,10 @@ class AssetCollection
 
   def assets_order=(order)
     @assets_order = order
+  end
+
+  def self.find_or_create_internal(site)
+    site.asset_collections.internal.first || site.asset_collections.create(:name => t('.system_name'), :slug => 'system', :internal => true)
   end
 
   protected

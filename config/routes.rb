@@ -35,6 +35,8 @@ Rails.application.routes.draw do
 
     resources :assets, :path => 'asset_collections/:collection_id/assets'
 
+    resources :images
+
     resources :content_types
 
     resources :contents, :path => 'content_types/:slug/contents' do

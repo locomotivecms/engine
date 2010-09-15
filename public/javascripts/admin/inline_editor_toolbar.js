@@ -125,6 +125,9 @@ var InlineEditorToolbar = {
     this.element.find('ul li a').click(function(e) {
       var classArray = $(this).parent().attr('class').split(' ');
       switch(classArray[1] || classArray[0]) {
+        case 'home':
+          window.location.href = $(this).attr('href'); break;
+
         case 'edit': // passing in editing mode
           var url = window.location.href.replace(/\/$/, '/index').replace('#', '');
           window.location.href = url + '/edit'; break;
