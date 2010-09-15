@@ -23,7 +23,7 @@
     %li{ :class => "item added #{'last' if index == @site.domains.size - 1}"}
       %em
         http://
-      = text_field_tag 'site[domains][]', name
+      = text_field_tag 'current_site[domains][]', name
       &nbsp;
       = error_on_domain(@site, name)
       %span.actions
