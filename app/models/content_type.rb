@@ -19,6 +19,9 @@ class ContentType
     end
   end
 
+  ## indexes ##
+  index [[:site_id, Mongo::ASCENDING], [:slug, Mongo::ASCENDING]]
+
   ## callbacks ##
   before_validation :normalize_slug
   before_save :set_default_values

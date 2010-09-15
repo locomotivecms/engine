@@ -17,6 +17,9 @@ class Site
   references_many :content_types, :dependent => :destroy
   embeds_many :memberships
 
+  ## indexes
+  index :domains
+
   ## validations ##
   validates_presence_of     :name, :subdomain
   validates_uniqueness_of   :subdomain

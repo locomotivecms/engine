@@ -17,6 +17,10 @@ class ThemeAsset
   ## associations ##
   referenced_in :site
 
+  ## indexes ##
+  index :site_id
+  index [[:content_type, Mongo::ASCENDING], [:slug, Mongo::ASCENDING], [:site_id, Mongo::ASCENDING]]
+
   ## callbacks ##
   before_validation :sanitize_slug
   before_validation :store_plain_text

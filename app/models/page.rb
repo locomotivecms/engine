@@ -20,6 +20,11 @@ class Page
   ## associations ##
   referenced_in :site
 
+  ## indexes ##
+  index :site_id
+  index :parent_id
+  index [[:fullpath, Mongo::ASCENDING], [:site_id, Mongo::ASCENDING]]
+
   ## callbacks ##
   before_validation :normalize_slug
   before_save { |p| p.fullpath = p.fullpath(true) }
