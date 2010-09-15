@@ -19,7 +19,7 @@ module Admin
     protected
 
     def set_collections
-      @asset_collections = current_site.asset_collections.order_by([[:name, :asc]])
+      @asset_collections = current_site.asset_collections.not_internal.order_by([[:name, :asc]])
     end
   end
 end

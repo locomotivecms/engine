@@ -25,6 +25,7 @@ class AssetCollection
 
   ## named scopes ##
   scope :internal, :where => { :internal => true }
+  scope :not_internal, :where => { :internal => false }
 
   ## methods ##
 
@@ -41,7 +42,7 @@ class AssetCollection
   end
 
   def self.find_or_create_internal(site)
-    site.asset_collections.internal.first || site.asset_collections.create(:name => t('.system_name'), :slug => 'system', :internal => true)
+    site.asset_collections.internal.first || site.asset_collections.create(:name => 'system', :slug => 'system', :internal => true)
   end
 
   protected
