@@ -13,12 +13,16 @@ module Locomotive
         else
           @page = locomotive_page
 
-          redirect_to application_root_url and return if @page.nil?
+          render_no_page_error and return if @page.nil?
 
           output = @page.render(locomotive_context)
 
           self.prepare_and_set_response(output)
         end
+      end
+
+      def render_no_page_error
+        render :template => "/admin/errors/no_page", :layout => false
       end
 
       def locomotive_page

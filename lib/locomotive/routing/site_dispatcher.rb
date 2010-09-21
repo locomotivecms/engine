@@ -26,16 +26,16 @@ module Locomotive
         end
 
         def require_site
-          redirect_to application_root_url and return false if current_site.nil?
+          render_no_site_error and return false if current_site.nil?
+        end
+
+        def render_no_site_error
+          render :template => "/admin/errors/no_site", :layout => false
         end
 
         def validate_site_membership
           return if current_site && current_site.accounts.include?(current_admin)
           sign_out_and_redirect(current_admin)
-        end
-
-        def application_root_url
-          root_url(:host => Locomotive.config.default_domain, :port => request.port)
         end
 
       end
