@@ -3,7 +3,7 @@ module Admin
 
     include Locomotive::Routing::SiteDispatcher
 
-    layout 'admin/application'
+    layout '/admin/layouts/application'
 
     before_filter :authenticate_admin!
 

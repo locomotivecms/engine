@@ -9,7 +9,7 @@ module Locomotive
 
       def render_locomotive_page
         if request.fullpath =~ /^\/admin\//
-          render :template => "/admin/errors/404", :layout => 'admin/box', :status => 404
+          render :template => "/admin/errors/404", :layout => '/admin/layouts/box', :status => 404
         else
           @page = locomotive_page
 
