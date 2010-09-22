@@ -156,8 +156,9 @@ en:
     theme_assets:
       index:
         title: Listing theme files
-        help: "Theme assets represent files needed by layouts and snippets. If you need to manage an image gallery, go to the Assets section instead."
+        help: "The theme files section is the place where you manage the files needed by your layout, ...etc. If you need to manage an image gallery, go to the Assets section instead."
         new: new file
+        snippets: Snippets
         css_and_js: Style and javascript
         fonts: Fonts
         images: Images

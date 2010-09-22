@@ -24,6 +24,8 @@ gem 'RedCloth'
 gem 'inherited_resources', '1.1.2'
 gem 'custom_fields', :git => 'git://github.com/locomotivecms/custom_fields.git'
 gem 'jeweler'
+gem 'delayed_job', '2.1.0.pre2'
+gem 'delayed_job_mongoid', '1.0.0.rc'
 
 # Development environment
 group :development do

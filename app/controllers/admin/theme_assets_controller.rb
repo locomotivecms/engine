@@ -10,13 +10,15 @@ module Admin
     respond_to :json, :only => [:create, :update]
 
     def index
-      assets = current_site.theme_assets.all
+      assets = current_site.theme_assets.all.to_a
       @non_image_assets = assets.find_all { |a| a.stylesheet? || a.javascript? }
       @image_assets = assets.find_all { |a| a.image? }
       @flash_assets = assets.find_all { |a| a.movie? }
 
       if request.xhr?
         render :action => 'images', :layout => false and return
+      else
+        @snippets = current_site.snippets.order_by([[:name, :asc]]).all.to_a
       end
     end
 

@@ -156,8 +156,9 @@ fr:
     theme_assets:
       index:
         title: Liste des fichiers du thème
-        help: "Les fichiers du thème sont utilisés par les gabarits et les snippets. Si vous avez besoin d'une galerie d'images, la section Média est plus adéquate."
+        help: "Les fichiers du thème sont utilisés pour construire le gabarit de vos pages. Si vous avez besoin d'une galerie d'images, la section Média est plus adéquate."
         new: nouveau fichier
+        snippets: Snippets
         css_and_js: Style et javascript
         images: Images
         flashes: Flash

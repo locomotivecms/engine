@@ -120,6 +120,22 @@ div#uploadAssetsInputQueue { display: none; }
   background: transparent url(/images/admin/list/item-right.png) no-repeat right 0;
 }
 
+/* ___ snippets ___ */
+
+#snippets-list { margin-left: 40px; }
+
+#snippets-list li { background: none; }
+
+#snippets-list li em {
+  background-position: left 0px;
+}
+
+#snippets-list li strong {
+  margin-left: 18px;
+  display: block;
+  height: 31px;
+  background: transparent url(/images/admin/list/item-right.png) no-repeat right 0;
+}
 
 /* ___ pages ___ */
 
