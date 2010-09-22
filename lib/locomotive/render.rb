@@ -22,7 +22,7 @@ module Locomotive
       end
 
       def locomotive_page
-        path = (params[:path] || request.fullpath).clone
+        path = (params[:path] || request.fullpath).clone # TODO: params[:path] is more consistent
         path.gsub!(/\.[a-zA-Z][a-zA-Z0-9]{2,}$/, '')
         path.gsub!(/^\//, '')
         path = 'index' if path.blank?
@@ -56,7 +56,7 @@ module Locomotive
           'asset_collections' => Locomotive::Liquid::Drops::AssetCollections.new(current_site),
           'stylesheets'       => Locomotive::Liquid::Drops::Stylesheets.new(current_site),
           'javascripts'       => Locomotive::Liquid::Drops::Javascripts.new(current_site),
-          'theme_images'      => Locomotive::Liquid::Drops::ThemeImages.new(current_site),
+          'images'            => Locomotive::Liquid::Drops::ThemeImages.new(current_site),
           'contents'          => Locomotive::Liquid::Drops::Contents.new(current_site),
           'current_page'      => self.params[:page]
         }
