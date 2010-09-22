@@ -26,6 +26,7 @@ gem 'custom_fields', :git => 'git://github.com/locomotivecms/custom_fields.git'
 gem 'jeweler'
 gem 'delayed_job', '2.1.0.pre2'
 gem 'delayed_job_mongoid', '1.0.0.rc'
+gem 'rubyzip'
 
 # Development environment
 group :development do
@@ -39,22 +40,22 @@ group :test, :development do
   gem 'ruby-debug'
 end
 
-group :test do
-  gem 'autotest'
-  gem 'growl-glue'
-  gem 'rspec-rails', '2.0.0.beta.19'
-  gem 'factory_girl_rails'
-  gem 'pickle', :git => 'http://github.com/ianwhite/pickle.git'
-  gem 'pickle-mongoid'
-  gem 'capybara'
-
-  # would be nice..
-  # gem 'capybara-envjs'
-
-  gem 'database_cleaner'
-  gem 'cucumber'
-  gem 'cucumber-rails'
-  gem 'spork'
-  gem 'launchy'
-  gem 'mocha', :git => 'git://github.com/floehopper/mocha.git'
-end
+# group :test do
+#   gem 'autotest'
+#   gem 'growl-glue'
+#   gem 'rspec-rails', '2.0.0.beta.19'
+#   gem 'factory_girl_rails'
+#   gem 'pickle', :git => 'http://github.com/ianwhite/pickle.git'
+#   gem 'pickle-mongoid'
+#   gem 'capybara'
+#
+#   # would be nice..
+#   # gem 'capybara-envjs'
+#
+#   gem 'database_cleaner'
+#   gem 'cucumber'
+#   gem 'cucumber-rails'
+#   gem 'spork'
+#   gem 'launchy'
+#   gem 'mocha', :git => 'git://github.com/floehopper/mocha.git'
+# end

@@ -18,10 +18,11 @@ BOARD:
   - edit images (upload new ones, ...etc) => wait for aloha or send them an email ?
 x customize tinyMCE: no html popup => div popup, nice icons
 x add images / files inside long text element (back-office side at first ?)
+x create a repo for a tool "a la" vision
 - global regions: keyword in editable element (http://www.mongodb.org/display/DOCS/Updating)
-- create a repo for a tool "a la" vision
 - write my first tutorial about locomotive
 - asset collections => liquid
+- apply http://github.com/flori/json/commit/2c0f8d2c9b15a33b8d10ffcb1959aef54d320b57
 
 - refactor slugify method (use parameterize + create a module)
 - [content types] the "display column" selector should not include file types

@@ -12,6 +12,7 @@ require 'locomotive/admin_responder'
 require 'locomotive/routing'
 require 'locomotive/regexps'
 require 'locomotive/render'
+require 'locomotive/import'
 
 require 'mongo_session_store/mongoid'
 

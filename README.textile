@@ -8,7 +8,7 @@ If we have to give only 5 main features to describe our application, there will 
 * nice looking UI (see http://www.locomotiveapp.org for some screenshots)
 * flexible content types
 * playing smoothly with Heroku and MongoHQ
-* inline editing (coming soon)
+* inline editing (beta)
 
 h2. Strategy / Development status
 
@@ -19,12 +19,13 @@ h2. Gems
 
 Here is a short list of main gems used in the application.
 
-* Rails 3 RC
-* Mongoid 2.0.0.beta 16 (with MongoDB 1.6)
+* Rails 3.0
+* Mongoid 2.0.0.beta 17 (with MongoDB 1.6)
 * Liquid
 * Devise
 * Carrierwave
 * Haml
+* Delayed job
 
 h2. Installation
 
