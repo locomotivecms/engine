@@ -34,7 +34,7 @@ group :development do
 end
 
 group :test, :development do
-  gem 'ruby-debug'
+  gem 'ruby-debug19'
 end
 
 group :test do
