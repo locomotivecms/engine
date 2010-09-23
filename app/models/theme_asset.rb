@@ -24,7 +24,8 @@ class ThemeAsset
   ## callbacks ##
   before_validation :sanitize_slug
   before_validation :store_plain_text
-  before_save     :set_slug
+  # before_validation :escape_shortcut_urls
+  before_save :set_slug
 
   ## validations ##
   validate :extname_can_not_be_changed
@@ -69,30 +70,22 @@ class ThemeAsset
   end
 
   def store_plain_text
-    return if self.plain_text.blank?
+    return if !self.stylesheet_or_javascript? || self.plain_text.blank?
 
-    # replace /theme/<content_type>/<slug> occurences by the real amazon S3 url or local files
-    sanitized_source = self.plain_text.gsub(/(\/theme\/([a-z]+)\/([a-z_\-0-9]+)\.[a-z]{2,3})/) do |url|
-      content_type, slug = url.split('/')[2..-1]
+    sanitized_source = self.escape_shortcut_urls(self.plain_text)
 
-      content_type = content_type.singularize
-      slug = slug.split('.').first
-
-      if asset = self.site.theme_assets.where(:content_type => content_type, :slug => slug).first
-        asset.source.url
-      else
-        url
-      end
+    if self.source.nil?
+      self.source = CarrierWave::SanitizedFile.new({
+        :tempfile => StringIO.new(sanitized_source),
+        :filename => "#{self.slug}.#{self.stylesheet? ? 'css' : 'js'}"
+      })
+    else
+      self.source.file.instance_variable_set(:@file, StringIO.new(sanitized_source))
     end
-
-    self.source = CarrierWave::SanitizedFile.new({
-      :tempfile => StringIO.new(sanitized_source),
-      :filename => "#{self.slug}.#{self.stylesheet? ? 'css' : 'js'}"
-    })
   end
 
-  def shortcut_url # ex: /theme/stylesheets/application.css is a shortcut for a theme asset (content_type => stylesheet, slug => 'application')
-    File.join('/theme', self.content_type.pluralize, "#{self.slug}#{File.extname(self.source_filename)}")
+  def shortcut_url # ex: /stylesheets/application.css is a shortcut for a theme asset (content_type => stylesheet, slug => 'application')
+    File.join(self.content_type.pluralize, "#{self.slug}#{File.extname(self.source_filename)}")
   rescue
     ''
   end
@@ -103,8 +96,25 @@ class ThemeAsset
 
   protected
 
+  def escape_shortcut_urls(text) # replace /<content_type>/<slug> occurences by the real amazon S3 url or local files
+    return if text.blank?
+
+    text.gsub(/(\/(stylesheets|javascripts|images)\/([a-z_\-0-9]+)\.[a-z]{2,3})/) do |url|
+      content_type, slug = url.split('/')[1..-1]
+
+      content_type = content_type.singularize
+      slug = slug.split('.').first
+
+      if asset = self.site.theme_assets.where(:content_type => content_type, :slug => slug).first
+        asset.source.url
+      else
+        url
+      end
+    end
+  end
+
   def sanitize_slug
-    self.slug.slugify!(:underscore => true) if self.slug.present?
+    self.slug.parameterize! if self.slug.present?
   end
 
   def set_slug

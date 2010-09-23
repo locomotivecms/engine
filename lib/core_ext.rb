@@ -29,6 +29,10 @@ class String
     replace(self.slugify(options))
   end
 
+  def parameterize!(sep = '_')
+    replace(self.parameterize(sep))
+  end
+
 end
 
 ## Hash

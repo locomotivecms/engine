@@ -36,9 +36,9 @@ group :development do
   gem 'fastthread'
 end
 
-group :test, :development do
-  gem 'ruby-debug'
-end
+# group :test, :development do
+#   gem 'ruby-debug'
+# end
 
 # group :test do
 #   gem 'autotest'

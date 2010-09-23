@@ -22,7 +22,8 @@ class ThemeAssetUploader < AssetUploader
   end
 
   def store_dir
-    "sites/#{model.site_id}/themes/#{model.id}"
+    # "sites/#{model.site_id}/themes/#{model.id}"
+    "sites/#{model.site_id}/theme/"
   end
 
   def extension_white_list

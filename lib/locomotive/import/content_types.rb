@@ -2,7 +2,9 @@ module Locomotive
   module Import
     module ContentTypes
 
-      def self.process(database, site, theme_path)
+      def self.process(context)
+        site, database = context[:site], context[:database]
+
         content_types = database['site']['content_types']
 
         return if content_types.nil?
@@ -16,7 +18,7 @@ module Locomotive
 
           content_type.save
 
-          puts "content_type = #{content_type.inspect}"
+          # puts "content_type = #{content_type.inspect}"
 
           site.reload
         end

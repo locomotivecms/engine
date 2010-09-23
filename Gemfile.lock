@@ -56,7 +56,6 @@ GEM
     carrierwave (0.5.0.beta2)
       activesupport (>= 3.0.0.beta4)
     cgi_multipart_eof_fix (2.5.0)
-    columnize (0.3.1)
     configuration (1.1.0)
     crack (0.1.8)
     daemons (1.1.0)
@@ -99,7 +98,6 @@ GEM
     launchy (0.3.7)
       configuration (>= 0.0.5)
       rake (>= 0.8.1)
-    linecache (0.43)
     mail (2.2.6.1)
       activesupport (>= 2.3.6)
       mime-types
@@ -148,11 +146,6 @@ GEM
     rest-client (1.4.2)
       mime-types (>= 1.16)
     rmagick (2.12.2)
-    ruby-debug (0.10.3)
-      columnize (>= 0.1)
-      ruby-debug-base (~> 0.10.3.0)
-    ruby-debug-base (0.10.3)
-      linecache (>= 0.3)
     rubyforge (2.0.4)
       json_pure (>= 1.1.7)
     rubyzip (0.9.4)
@@ -195,6 +188,5 @@ DEPENDENCIES
   mongrel
   rails (= 3.0.0)
   rmagick (= 2.12.2)
-  ruby-debug
   rubyzip
   warden

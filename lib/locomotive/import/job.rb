@@ -17,9 +17,21 @@ module Locomotive
 
         raise "No database.yml found in the theme zipfile" if @database.nil?
 
-        Locomotive::Import::Site.process(@database, @site, @theme_path)
+        context = {
+          :database => @database,
+          :site => @site,
+          :theme_path => @theme_path
+        }
 
-        Locomotive::Import::ContentTypes.process(@database, @site, @theme_path)
+        Locomotive::Import::Site.process(context)
+
+        Locomotive::Import::ContentTypes.process(context)
+
+        # Locomotive::Import::Assets.process(context)
+
+        # Locomotive::Import::Snippets.process(context)
+
+        Locomotive::Import::Pages.process(context)
       end
 
       protected
@@ -39,11 +51,9 @@ module Locomotive
               next
             end
 
-            puts entry.name
-            #
-            # FileUtils.mkdir_p(File.dirname(File.join(destination_path, entry.name)))
-            #
-            # zipfile.extract(entry, File.join(destination_path, entry.name))
+            FileUtils.mkdir_p(File.dirname(File.join(destination_path, entry.name)))
+
+            zipfile.extract(entry, File.join(destination_path, entry.name))
           end
         end
 
