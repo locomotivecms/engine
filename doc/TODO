@@ -23,6 +23,13 @@ x create a repo for a tool "a la" vision
 - write my first tutorial about locomotive
 - asset collections => liquid
 - apply http://github.com/flori/json/commit/2c0f8d2c9b15a33b8d10ffcb1959aef54d320b57
+- snippet dependencies => do not work correctly
+- images tag to write
+- import tool:
+	- disable sub tasks by passing options
+	- select field (see custom fields and nocoffee theme) ?
+	- exceptions
+	- page to import theme
 
 - refactor slugify method (use parameterize + create a module)
 - [content types] the "display column" selector should not include file types

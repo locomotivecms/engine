@@ -8,9 +8,12 @@ module Locomotive
         Dir[File.join(theme_path, 'snippets', '*')].each do |snippet_path|
 
           name = File.basename(snippet_path, File.extname(snippet_path)).parameterize('_')
+          
+          snippet = site.snippets.where(:slug => name).first || site.snippets.build(:name => name)
 
-          snippet = site.snippets.create! :name => name, :template => File.read(snippet_path)
-
+          snippet.template = File.read(snippet_path) # = site.snippets.create! :name => name, :template => 
+          
+          snippet.save!
           # puts "snippet = #{snippet.inspect}"
         end
       end

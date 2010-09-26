@@ -125,7 +125,9 @@ class ThemeAsset
   end
 
   def extname_can_not_be_changed
-    return if self.new_record?
+    return if self.new_record? || self.source.file.original_filename.nil?
+    
+    puts "filename => #{self.source_filename} / source file => #{self.source.file.inspect}"
 
     if File.extname(self.source.file.original_filename) != File.extname(self.source_filename)
       self.errors.add(:source, :extname_changed)

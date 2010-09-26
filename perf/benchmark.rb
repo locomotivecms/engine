@@ -81,6 +81,9 @@ end
 # # empty page (imac 27'):                                    User        System    Total        Real
 # Rendering page 10k times                                    21.390000   1.820000  23.210000   ( 24.120529)
 
+# # empty page (mac mini core 2 duo / 2Go):                   User        System    Total        Real
+# Rendering a simple page 10k times                           17.130000   0.420000  17.550000   ( 19.459768)
+
 # # page with inherited template (imac 27'):                  User        System    Total        Real
 # Rendering page 10k times                                    85.840000   7.600000  93.440000   ( 97.841248)
 
@@ -89,3 +92,8 @@ end
 
 # # with locomotive liquid (imac 27'):                        User        System    Total        Real
 # Rendering page 10k times                                    38.750000   3.050000  41.800000   ( 42.880022)
+
+# # with locomotive liquid (mac mini core 2 duo / 2Go):       User        System    Total        Real
+# Rendering a complex page 10k times                          30.840000   0.530000  31.370000   ( 32.847565)
+
+

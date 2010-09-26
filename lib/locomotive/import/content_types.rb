@@ -16,9 +16,7 @@ module Locomotive
 
           self.add_or_update_fields(content_type, attributes['fields'])
 
-          content_type.save
-
-          # puts "content_type = #{content_type.inspect}"
+          content_type.save!
 
           site.reload
         end
@@ -34,7 +32,7 @@ module Locomotive
 
       def self.add_or_update_fields(content_type, fields)
         fields.each do |name, data|
-          attributes = { :_name => name, :kind => 'String' }.merge(data).symbolize_keys
+          attributes = { :label => name.humanize, :_name => name, :kind => 'String' }.merge(data).symbolize_keys
 
           field = content_type.content_custom_fields.detect { |f| f._name == attributes[:_name] }
 

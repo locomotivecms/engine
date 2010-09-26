@@ -61,7 +61,7 @@ module Models
             context = default_context.merge(context)
 
             @template = ::Liquid::Template.parse(self.raw_template, context)
-
+            
             self.template_dependencies = context[:templates]
             self.snippet_dependencies = context[:snippets]
 

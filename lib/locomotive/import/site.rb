@@ -10,8 +10,6 @@ module Locomotive
         site.attributes = attributes
 
         site.save!
-
-        puts "site errors = #{site.errors.inspect}"
       end
 
     end

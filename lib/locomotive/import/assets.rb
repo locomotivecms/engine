@@ -19,6 +19,7 @@ module Locomotive
             slug = File.basename(asset_path, File.extname(asset_path)).parameterize('_')
 
             asset = site.theme_assets.where(:content_type => kind.singularize, :slug => slug).first
+            
             asset ||= site.theme_assets.build
 
             asset.attributes = { :source => File.open(asset_path), :performing_plain_text => false }
@@ -36,7 +37,7 @@ module Locomotive
       end
 
       def self.add_other_assets(site, theme_path)
-        collection = AssetCollection.find_or_create_internal(current_site)
+        collection = AssetCollection.find_or_create_internal(site)
 
         Dir[File.join(theme_path, 'public', 'samples', '*')].each do |asset_path|
 

@@ -26,11 +26,14 @@ class Snippet
   protected
 
   def normalize_slug
+    # TODO: refactor it
     self.slug = self.name.clone if self.slug.blank? && self.name.present?
     self.slug.slugify!(:without_extension => true, :downcase => true) if self.slug.present?
   end
 
   def update_templates
+    return unless (self.site rescue nil) # not run if the site is being destroyed
+    
     pages = self.site.pages.any_in(:snippet_dependencies => [self.slug]).to_a
 
     pages.each do |page|
@@ -44,7 +47,7 @@ class Snippet
     case node
     when Locomotive::Liquid::Tags::Snippet
       node.refresh(self) if node.slug == self.slug
-    when Locomotive::Liquid::Tags::Block
+    when Locomotive::Liquid::Tags::InheritedBlock
       self._change_snippet_inside_template(node.parent) if node.parent
     else
       if node.respond_to?(:nodelist)

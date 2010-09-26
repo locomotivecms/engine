@@ -22,14 +22,14 @@ module Locomotive
           :site => @site,
           :theme_path => @theme_path
         }
-
+        
         Locomotive::Import::Site.process(context)
 
         Locomotive::Import::ContentTypes.process(context)
 
         # Locomotive::Import::Assets.process(context)
 
-        # Locomotive::Import::Snippets.process(context)
+        Locomotive::Import::Snippets.process(context)
 
         Locomotive::Import::Pages.process(context)
       end
@@ -39,6 +39,8 @@ module Locomotive
       def unzip!
         Zip::ZipFile.open(@theme_file) do |zipfile|
           destination_path = File.join(Rails.root, 'tmp', 'themes', @site.id.to_s)
+          
+          FileUtils.rm_r destination_path, :force => true          
 
           zipfile.each do |entry|
             next if entry.name =~ /__MACOSX/
