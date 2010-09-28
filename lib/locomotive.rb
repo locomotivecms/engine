@@ -1,3 +1,5 @@
+require 'mimetype_fu'
+
 # require 'locomotive/patches'
 require 'locomotive/version'
 require 'locomotive/configuration'
