@@ -22,7 +22,7 @@ gem "heroku"
 gem "httparty", ">= 0.6.1"
 gem "RedCloth"
 gem "inherited_resources", ">= 1.1.2"
-gem "custom_fields"
+gem "custom_fields", :git => "http://github.com/locomotivecms/custom_fields.git"
 
 
 # The rest of the dependencies are for use when in the locomotive dev environment

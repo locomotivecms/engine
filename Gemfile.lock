@@ -16,6 +16,15 @@ GIT
       yard
 
 GIT
+  remote: http://github.com/locomotivecms/custom_fields.git
+  revision: eba381b6196c80f2bf8807741297218402df429e
+  specs:
+    custom_fields (0.0.0.3)
+      activesupport (>= 3.0.0)
+      carrierwave
+      mongoid (>= 2.0.0.beta.18)
+
+GIT
   remote: http://github.com/mongoid/mongoid.git
   revision: bc177989f4c4020ec7b16c8ce7cbdea51eba4034
   specs:
@@ -90,7 +99,6 @@ GEM
     cucumber-rails (0.3.2)
       cucumber (>= 0.8.0)
     culerity (0.2.12)
-    custom_fields (0.0.0.1)
     daemons (1.1.0)
     database_cleaner (0.5.2)
     devise (1.1.2)
@@ -226,7 +234,7 @@ DEPENDENCIES
   cgi_multipart_eof_fix
   cucumber (= 0.8.5)
   cucumber-rails
-  custom_fields
+  custom_fields!
   database_cleaner
   devise (= 1.1.2)
   factory_girl_rails
