@@ -30,6 +30,7 @@ en:
         back: Back without saving
         create: Create
         update: Update
+        send: Send
 
     errors:
       "500":
@@ -131,6 +132,7 @@ en:
 
     current_sites:
       edit:
+        import: import
         new_membership: add account
         help: "The site name can be updated by clicking it."
         ask_for_name: "Please type the new site name"
@@ -243,6 +245,20 @@ en:
         title: Cross-domain authentication
         notice: You will be redirected to the website in a couple of seconds.
 
+    imports:
+      new:
+        title: Import
+        help: "Be careful when you upload a new theme for your existing website, your current data could be modified or even removed."
+      show:
+        title: Import in progress
+        help: "Your site is being updated from the theme zip file you have just uploaded. It lasts a couple of seconds."
+        steps:
+          site: Site information
+          content_types: Custom content types
+          assets: Theme files
+          snippets: Snippets
+          pages: Pages
+
   formtastic:
     titles:
       information: General information
@@ -262,6 +278,7 @@ en:
       other_fields: Other information
       presentation: Presentation
       attributes: Attributes
+      upload: Upload
     labels:
       page:
         raw_template: Template
@@ -273,6 +290,9 @@ en:
       custom_fields:
         field:
           _alias: Alias
+      import:
+        new:
+          source: File
 
     hints:
       page:
@@ -293,4 +313,6 @@ en:
         field:
           _alias: "Property available in liquid templates"
           hint: "Text displayed in the model form just below the field"
+      import:
+        source: "A zipfile containing a database.yml along with assets and templates"
 

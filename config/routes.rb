@@ -48,6 +48,8 @@ Rails.application.routes.draw do
     resources :custom_fields, :path => 'custom/:parent/:slug/fields'
 
     resources :cross_domain_sessions, :only => [:new, :create]
+
+    resource :import, :only => [:new, :show, :create]
   end
 
   # sitemap

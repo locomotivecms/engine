@@ -108,3 +108,8 @@ fr:
       cross_domain_sessions:
         create:
           alert: "Vous devez vous authentifier"
+
+      imports:
+        create:
+          notice: "Votre site est en train d'être mis à jour"
+          alert: "L'import n'a pas pu se faire"

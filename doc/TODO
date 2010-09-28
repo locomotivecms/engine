@@ -19,17 +19,17 @@ BOARD:
 x customize tinyMCE: no html popup => div popup, nice icons
 x add images / files inside long text element (back-office side at first ?)
 x create a repo for a tool "a la" vision
+x asset collections => liquid
+x images tag to write
+! apply http://github.com/flori/json/commit/2c0f8d2c9b15a33b8d10ffcb1959aef54d320b57
+x import tool:
+  x select field (see custom fields and nocoffee theme) ?
+  x disable sub tasks by passing options
+  x exceptions
+  x page to import theme
 - global regions: keyword in editable element (http://www.mongodb.org/display/DOCS/Updating)
 - write my first tutorial about locomotive
-- asset collections => liquid
-- apply http://github.com/flori/json/commit/2c0f8d2c9b15a33b8d10ffcb1959aef54d320b57
 - snippet dependencies => do not work correctly
-- images tag to write
-- import tool:
-  x select field (see custom fields and nocoffee theme) ?
-  - disable sub tasks by passing options
-  - exceptions
-  - page to import theme
 
 - refactor slugify method (use parameterize + create a module)
 - [content types] the "display column" selector should not include file types

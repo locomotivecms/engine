@@ -128,7 +128,7 @@ $(document).ready(function() {
   $('code.html textarea').each(function() { addCodeMirrorEditor('liquid', $(this)); });
 
   // site selector
-  $('#site-selector').selectmenu({ style: 'dropdown', width: 300, offsetTop: 8, change: function(event, ui) {
+  $('#site-selector').selectmenu({ style: 'dropdown', width: 395, offsetTop: 8, change: function(event, ui) {
     $('#site-selector').parent().submit();
   } });
 

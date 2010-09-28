@@ -108,3 +108,8 @@ en:
       cross_domain_sessions:
         create:
           alert: "You need to sign in"
+
+      imports:
+        create:
+          notice: "Your site is being updated"
+          alert: "Import was not done"

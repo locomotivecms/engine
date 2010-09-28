@@ -3,21 +3,16 @@ module Locomotive
     module Drops
       class Contents < ::Liquid::Drop
 
-        def initialize(site)
-          @site = site
-        end
-
         def before_method(meth)
-          type = @site.content_types.where(:slug => meth.to_s).first
-          ProxyCollection.new(@site, type)
+          type = @context.registers[:site].content_types.where(:slug => meth.to_s).first
+          ProxyCollection.new(type)
         end
 
       end
 
       class ProxyCollection < ::Liquid::Drop
 
-        def initialize(site, content_type)
-          @site = site
+        def initialize(content_type)
           @content_type = content_type
           @collection = nil
         end

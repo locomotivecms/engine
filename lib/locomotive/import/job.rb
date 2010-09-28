@@ -4,15 +4,23 @@ module Locomotive
   module Import
     class Job
 
+      # attr_accessor :theme_file, :site, :enabled
+
       def initialize(theme_file, site = nil, enabled = {})
         raise "Theme zipfile not found" unless File.exists?(theme_file)
 
         @theme_file = theme_file
         @site = site
-        @enabled = Hash.new(true).merge(enabled)
+        @enabled = enabled
+      end
+
+      def before(worker)
+        @worker = worker
       end
 
       def perform
+        puts "theme_file = #{@theme_file} / #{@site.present?} / #{@enabled.inspect}"
+
         self.unzip!
 
         raise "No database.yml found in the theme zipfile" if @database.nil?
@@ -21,31 +29,35 @@ module Locomotive
           :database => @database,
           :site => @site,
           :theme_path => @theme_path,
-          :error => nil
+          :error => nil,
+          :worker => @worker
         }
 
-        begin
-          %w(site content_types assets snippets pages).each do |part|
-            if @enabled[part]
-              "Locomotive::Import::#{part.camelize}".constantize.process(context)
-            else
-              puts "skipping #{part}"
-            end
+        %w(site content_types assets snippets pages).each do |step|
+          if @enabled[step] != false
+            @worker.update_attributes :step => step
+            puts "@worker...#{@worker.failed_at.inspect} / #{@worker.failed?.inspect}"
+            "Locomotive::Import::#{step.camelize}".constantize.process(context)
+          else
+            puts "skipping #{step}"
           end
-        rescue Exception => e
-          context[:error] = e.message
         end
 
-        context
-        # Locomotive::Import::Site.process(context)
+
+        # rescue Exception => e
+        #   context[:error] = e.message
+        # end
         #
-        # Locomotive::Import::ContentTypes.process(context)
-        #
-        # Locomotive::Import::Assets.process(context)
-        #
-        # Locomotive::Import::Snippets.process(context)
-        #
-        # Locomotive::Import::Pages.process(context)
+        # context
+        # # Locomotive::Import::Site.process(context)
+        # #
+        # # Locomotive::Import::ContentTypes.process(context)
+        # #
+        # # Locomotive::Import::Assets.process(context)
+        # #
+        # # Locomotive::Import::Snippets.process(context)
+        # #
+        # # Locomotive::Import::Pages.process(context)
       end
 
       protected
@@ -62,7 +74,7 @@ module Locomotive
             if entry.name =~ /database.yml$/
 
               @database = YAML.load(zipfile.read(entry.name))
-              @theme_path= File.join(destination_path, entry.name.gsub('database.yml', ''))
+              @theme_path = File.join(destination_path, entry.name.gsub('database.yml', ''))
 
               next
             end

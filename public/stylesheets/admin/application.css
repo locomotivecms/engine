@@ -221,3 +221,44 @@ div#uploadAssetsInputQueue { display: none; }
 #progressbar-wrapper { margin: 40px 0; height: 30px; }
 #progressbar-wrapper #progressbar { height: 100%; }
 
+/* ___ import steps ___ */
+
+#import-steps { margin: 0px 200px; }
+
+#import-steps li { background: none; }
+
+#import-steps li em {
+  background-position: left 0px;
+}
+
+#import-steps li strong {
+  margin-left: 18px;
+  display: block;
+  height: 31px;
+  background: transparent url(/images/admin/list/item-right.png) no-repeat right 0;
+}
+
+#import-steps li strong a { color: #b7baca; }
+
+#import-steps li .more .states {
+  position: relative;
+  top: 4px;
+  height: 16px;
+  width: 16px;
+  background: transparent url(/images/admin/list/icons/states.png) no-repeat 0 0;
+}
+
+#import-steps li.done .more .states {
+  background-position: 0 -16px;
+}
+
+#import-steps li.failed .more .states {
+  background-position: 0 -32px;
+}
+
+#import-steps li.done strong a {
+  color: #1F82BC;
+}
+
+
+

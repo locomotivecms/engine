@@ -53,11 +53,11 @@ module Locomotive
         assigns = {
           'site'              => current_site,
           'page'              => @page,
-          'asset_collections' => Locomotive::Liquid::Drops::AssetCollections.new(current_site),
-          'stylesheets'       => Locomotive::Liquid::Drops::Stylesheets.new(current_site),
-          'javascripts'       => Locomotive::Liquid::Drops::Javascripts.new(current_site),
-          'images'            => Locomotive::Liquid::Drops::ThemeImages.new(current_site),
-          'contents'          => Locomotive::Liquid::Drops::Contents.new(current_site),
+          'asset_collections' => Locomotive::Liquid::Drops::AssetCollections.new,
+          'stylesheets'       => Locomotive::Liquid::Drops::ThemeAssets::Stylesheets.new,
+          'javascripts'       => Locomotive::Liquid::Drops::ThemeAssets::Javascripts.new,
+          'images'            => Locomotive::Liquid::Drops::ThemeAssets::Images.new,
+          'contents'          => Locomotive::Liquid::Drops::Contents.new,
           'current_page'      => self.params[:page]
         }
 
@@ -71,7 +71,6 @@ module Locomotive
           :site           => current_site,
           :page           => @page,
           :inline_editor  => self.editing_page?,
-          :theme_uploader => ThemeAssetUploader.new(current_site.theme_assets.build),
           :current_admin  => current_admin
         }
 
