@@ -2,7 +2,28 @@
 source :rubygems
 
 # add in all the runtime dependencies
-gemspec
+
+gem "rails", ">= 3.0.0"
+gem "locomotive_liquid", ">= 2.1.3"
+gem "bson_ext", ">= 1.0.8"
+gem "mongoid", :git => 'http://github.com/mongoid/mongoid.git'
+gem "mongoid_acts_as_tree", "= 0.1.5"
+gem "mongo_session_store", "= 2.0.0.pre"
+gem "warden"
+gem "devise", "= 1.1.2"
+gem "haml", "= 3.0.18"
+gem "rmagick", "= 2.12.2"
+gem "aws"
+gem "mimetype-fu"
+gem "formtastic", ">= 1.1.0"
+gem "carrierwave", ">= 0.5.0"
+gem "actionmailer-with-request"
+gem "heroku"
+gem "httparty", ">= 0.6.1"
+gem "RedCloth"
+gem "inherited_resources", ">= 1.1.2"
+gem "custom_fields"
+
 
 # The rest of the dependencies are for use when in the locomotive dev environment
 

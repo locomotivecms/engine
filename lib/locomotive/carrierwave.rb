@@ -3,4 +3,6 @@ require 'locomotive/carrierwave/base'
 require 'locomotive/carrierwave/patches'
 
 # register missing mime types
-EXTENSIONS[:eot] = 'application/vnd.ms-fontobject'
+
+# what does this do?
+# EXTENSIONS[:eot] = 'application/vnd.ms-fontobject'

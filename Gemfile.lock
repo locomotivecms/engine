@@ -15,30 +15,15 @@ GIT
       rspec (>= 1.3)
       yard
 
-PATH
-  remote: .
+GIT
+  remote: http://github.com/mongoid/mongoid.git
+  revision: bc177989f4c4020ec7b16c8ce7cbdea51eba4034
   specs:
-    locomotive_cms (0.0.3.3)
-      RedCloth
-      actionmailer-with-request
-      aws
-      bson_ext (>= 1.0.8)
-      carrierwave (>= 0.5.0)
-      custom_fields
-      devise (= 1.1.2)
-      formtastic (>= 1.1.0)
-      haml (= 3.0.18)
-      heroku
-      httparty (>= 0.6.1)
-      inherited_resources (>= 1.1.2)
-      locomotive_liquid (>= 2.1.3)
-      mimetype-fu
-      mongo_session_store (= 2.0.0.pre)
-      mongoid (>= 2.0.0.beta.18)
-      mongoid_acts_as_tree (= 0.1.5)
-      rails (>= 3.0.0)
-      rmagick (= 2.12.2)
-      warden
+    mongoid (2.0.0.beta.18)
+      activemodel (~> 3.0)
+      mongo (= 1.0.9)
+      tzinfo (~> 0.3.22)
+      will_paginate (~> 3.0.pre)
 
 GEM
   remote: http://rubygems.org/
@@ -158,12 +143,6 @@ GEM
       bson (>= 1.0.5)
     mongo_session_store (2.0.0.pre)
       actionpack (~> 3.0)
-    mongoid (2.0.0.beta11)
-      activemodel (~> 3.0.0.beta)
-      bson (~> 1.0.4)
-      mongo (~> 1.0.5)
-      tzinfo (~> 0.3.22)
-      will_paginate (~> 3.0.pre)
     mongoid_acts_as_tree (0.1.5)
       bson (>= 0.20.1)
       mongoid (<= 2.0.0)
@@ -259,12 +238,11 @@ DEPENDENCIES
   httparty (>= 0.6.1)
   inherited_resources (>= 1.1.2)
   launchy
-  locomotive_cms!
   locomotive_liquid (>= 2.1.3)
   mimetype-fu
   mocha!
   mongo_session_store (= 2.0.0.pre)
-  mongoid (>= 2.0.0.beta.18)
+  mongoid!
   mongoid_acts_as_tree (= 0.1.5)
   mongrel
   pickle!
