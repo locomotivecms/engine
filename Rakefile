@@ -1,42 +1,18 @@
-# Add your own tasks in files placed in lib/tasks ending in .rake,
-# for example lib/tasks/capistrano.rake, and they will automatically be available to Rake.
-
 require File.expand_path('../config/application', __FILE__)
 
 require 'rake'
 require 'rake/testtask'
 require 'rake/rdoctask'
+require 'rake/gempackagetask'
 
 Locomotive::Application.load_tasks
 
-begin
-  require "jeweler"
-  Jeweler::Tasks.new do |gem|
-    gem.name = "locomotive_cms"
-    gem.summary = "Locomotive cms engine"
-    gem.authors = ['Didier Lafforgue']
-    gem.email = ['didier@nocoffee.fr']
-    gem.date = Date.today
-    gem.description = "a brand new CMS system with super sexy UI and cool features (alpha version for now)"
-    gem.homepage = %q{http://www.locomotiveapp.org}
-    gem.files = Dir[
-      "Gemfile",
-      "{app}/**/*",
-      "{config}/**/*",
-      "{lib}/**/*",
-      "{public}/stylesheets/admin/**/*", "{public}/javascripts/admin/**/*", "{public}/images/admin/**/*",
-      "{vendor}/**/*"]
-    # other fields that would normally go in your gemspec
-    # like authors, email and has_rdoc can also be included here
-    bundle = Bundler::Definition.build('Gemfile', 'Gemfile.lock', false)
-    bundle.dependencies.each do |dep|
-      if dep.groups.include?(:default)
-        gem.add_dependency(dep.name, dep.requirement.to_s)
-      end
-    end
-  end
-  Jeweler::GemcutterTasks.new
-rescue Exception => e
-  puts "Jeweler or one of its dependencies is not installed. #{e.inspect}"
+gemspec = eval(File.read('locomotive_cms.gemspec'))
+Rake::GemPackageTask.new(gemspec) do |pkg|
+  pkg.gem_spec = gemspec
 end
 
+desc "build the gem and release it to rubygems.org"
+task :release => :gem do
+  sh "gem push pkg/locomotive_cms-#{gemspec.version}.gem"
+end
