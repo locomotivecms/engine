@@ -96,12 +96,12 @@ GEM
     columnize (0.3.1)
     configuration (1.1.0)
     crack (0.1.8)
-    cucumber (0.9.0)
+    cucumber (0.8.5)
       builder (~> 2.1.2)
       diff-lcs (~> 1.1.2)
-      gherkin (~> 2.2.2)
-      json (~> 1.4.6)
-      term-ansicolor (~> 1.0.5)
+      gherkin (~> 2.1.4)
+      json_pure (~> 1.4.3)
+      term-ansicolor (~> 1.0.4)
     cucumber-rails (0.3.2)
       cucumber (>= 0.8.0)
     culerity (0.2.12)
@@ -126,9 +126,7 @@ GEM
       activesupport (>= 2.3.0)
       i18n (>= 0.4.0)
     gem_plugin (0.2.3)
-    gherkin (2.2.4)
-      json (~> 1.4.6)
-      term-ansicolor (~> 1.0.5)
+    gherkin (2.1.5)
       trollop (~> 1.16.2)
     growl-glue (1.0.7)
     haml (3.0.18)
@@ -144,7 +142,6 @@ GEM
     inherited_resources (1.1.2)
       has_scope (~> 0.5.0)
       responders (~> 0.6.0)
-    json (1.4.6)
     json_pure (1.4.6)
     launchy (0.3.7)
       configuration (>= 0.0.5)
@@ -248,7 +245,7 @@ DEPENDENCIES
   capybara
   carrierwave (>= 0.5.0)
   cgi_multipart_eof_fix
-  cucumber
+  cucumber (= 0.8.5)
   cucumber-rails
   custom_fields
   database_cleaner

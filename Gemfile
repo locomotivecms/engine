@@ -6,7 +6,6 @@ gemspec
 
 # The rest of the dependencies are for use when in the locomotive dev environment
 
-# Development environment
 group :development do
   # Using mongrel instead of webrick (default server)
   gem 'mongrel'
@@ -27,7 +26,7 @@ group :test do
   gem 'capybara'
 
   gem 'database_cleaner'
-  gem 'cucumber'
+  gem 'cucumber', "0.8.5"
   gem 'cucumber-rails'
   gem 'spork'
   gem 'launchy'
