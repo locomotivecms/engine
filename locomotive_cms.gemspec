@@ -30,7 +30,7 @@ Gem::Specification.new do |s|
   s.add_dependency "aws"
   s.add_dependency "mimetype-fu"
   s.add_dependency "formtastic", ">= 1.1.0"
-  s.add_dependency "carrierwave", ">= 0.5.0"
+  s.add_dependency "carrierwave", "0.5.0.beta2"
   s.add_dependency "actionmailer-with-request"
   s.add_dependency "heroku"
   s.add_dependency "httparty", ">= 0.6.1"
