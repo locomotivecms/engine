@@ -71,6 +71,7 @@ module Locomotive
           :site           => current_site,
           :page           => @page,
           :inline_editor  => self.editing_page?,
+          :theme_uploader => ThemeAssetUploader.new(current_site.theme_assets.build),
           :current_admin  => current_admin
         }
 

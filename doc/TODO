@@ -26,10 +26,10 @@ x create a repo for a tool "a la" vision
 - snippet dependencies => do not work correctly
 - images tag to write
 - import tool:
-	- disable sub tasks by passing options
-	- select field (see custom fields and nocoffee theme) ?
-	- exceptions
-	- page to import theme
+  x select field (see custom fields and nocoffee theme) ?
+  - disable sub tasks by passing options
+  - exceptions
+  - page to import theme
 
 - refactor slugify method (use parameterize + create a module)
 - [content types] the "display column" selector should not include file types

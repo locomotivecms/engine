@@ -4,12 +4,12 @@ module Locomotive
   module Import
     class Job
 
-      def initialize(theme_file, site = nil, options = {})
+      def initialize(theme_file, site = nil, enabled = {})
         raise "Theme zipfile not found" unless File.exists?(theme_file)
 
         @theme_file = theme_file
         @site = site
-        @options = Hash.new(true).merge(options)
+        @enabled = Hash.new(true).merge(enabled)
       end
 
       def perform
@@ -20,18 +20,32 @@ module Locomotive
         context = {
           :database => @database,
           :site => @site,
-          :theme_path => @theme_path
+          :theme_path => @theme_path,
+          :error => nil
         }
-        
-        Locomotive::Import::Site.process(context)
 
-        Locomotive::Import::ContentTypes.process(context)
+        begin
+          %w(site content_types assets snippets pages).each do |part|
+            if @enabled[part]
+              "Locomotive::Import::#{part.camelize}".constantize.process(context)
+            else
+              puts "skipping #{part}"
+            end
+          end
+        rescue Exception => e
+          context[:error] = e.message
+        end
 
+        context
+        # Locomotive::Import::Site.process(context)
+        #
+        # Locomotive::Import::ContentTypes.process(context)
+        #
         # Locomotive::Import::Assets.process(context)
-
-        Locomotive::Import::Snippets.process(context)
-
-        Locomotive::Import::Pages.process(context)
+        #
+        # Locomotive::Import::Snippets.process(context)
+        #
+        # Locomotive::Import::Pages.process(context)
       end
 
       protected
@@ -39,8 +53,8 @@ module Locomotive
       def unzip!
         Zip::ZipFile.open(@theme_file) do |zipfile|
           destination_path = File.join(Rails.root, 'tmp', 'themes', @site.id.to_s)
-          
-          FileUtils.rm_r destination_path, :force => true          
+
+          FileUtils.rm_r destination_path, :force => true
 
           zipfile.each do |entry|
             next if entry.name =~ /__MACOSX/
