@@ -22,7 +22,6 @@ Gem::Specification.new do |s|
   s.add_dependency "bson_ext", ">= 1.0.8"
   s.add_dependency "mongoid", ">= 2.0.0.beta.18"
   s.add_dependency "mongoid_acts_as_tree", "= 0.1.5"
-  s.add_dependency "mongo_session_store", "= 2.0.0.pre"
   s.add_dependency "warden"
   s.add_dependency "devise", "= 1.1.2"
   s.add_dependency "haml", "= 3.0.18"

@@ -8,7 +8,6 @@ gem "locomotive_liquid", ">= 2.1.3"
 gem "bson_ext", ">= 1.0.8"
 gem "mongoid", :git => 'http://github.com/mongoid/mongoid.git'
 gem "mongoid_acts_as_tree", "= 0.1.5"
-gem "mongo_session_store", "= 2.0.0.pre"
 gem "warden"
 gem "devise", "= 1.1.2"
 gem "haml", "= 3.0.18"

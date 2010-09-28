@@ -16,7 +16,7 @@ require 'locomotive/routing'
 require 'locomotive/regexps'
 require 'locomotive/render'
 
-require 'mongo_session_store/mongoid'
+require 'locomotive/session_store'
 
 module Locomotive
 
