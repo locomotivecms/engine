@@ -27,9 +27,10 @@ x import tool:
   x disable sub tasks by passing options
   x exceptions
   x page to import theme
+x snippet dependencies => do not work correctly
 - global regions: keyword in editable element (http://www.mongodb.org/display/DOCS/Updating)
 - write my first tutorial about locomotive
-- snippet dependencies => do not work correctly
+
 
 - refactor slugify method (use parameterize + create a module)
 - [content types] the "display column" selector should not include file types

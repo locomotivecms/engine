@@ -32,12 +32,14 @@ class Snippet
   end
 
   def update_templates
-    return unless (self.site rescue nil) # not run if the site is being destroyed
-    
+    return unless (self.site rescue false) # not run if the site is being destroyed
+
     pages = self.site.pages.any_in(:snippet_dependencies => [self.slug]).to_a
 
     pages.each do |page|
       self._change_snippet_inside_template(page.template.root)
+
+      page.instance_variable_set(:@template_changed, true)
 
       page.send(:_serialize_template) && page.save
     end
