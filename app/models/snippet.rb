@@ -53,7 +53,7 @@ class Snippet
       self._change_snippet_inside_template(node.parent) if node.parent
     else
       if node.respond_to?(:nodelist)
-        node.nodelist.each do |child|
+        (node.nodelist || []).each do |child|
           self._change_snippet_inside_template(child)
         end
       end

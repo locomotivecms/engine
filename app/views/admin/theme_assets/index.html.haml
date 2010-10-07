@@ -13,34 +13,38 @@
 - if @snippets.empty?
   %p.no-items!= t('.no_items', :url => new_admin_snippet_url)
 - else
-  %ul#snippets-list.list
+  %ul.list.theme-assets
     = render @snippets
 
 %br
 
 %h3!= t('.css_and_js')
-- if @non_image_assets.empty?
+- if @js_and_css_assets.empty?
   %p.no-items!= t('.no_items', :url => new_admin_theme_asset_url)
 - else
-  %ul.assets
-    = render :partial => 'asset', :collection => @non_image_assets
-    %li.clear
+  %ul.list.theme-assets
+    = render :partial => 'asset', :collection => @js_and_css_assets
 
 %br
 
 %h3!= t('.images')
-- if @image_assets.empty?
+- if @assets[:images].nil?
   %p.no-items!= t('.no_items', :url => new_admin_theme_asset_url)
 - else
-  %ul.assets
-    = render :partial => 'asset', :collection => @image_assets
-    %li.clear
+  %ul.list.theme-assets
+    = render :partial => 'asset', :collection => @assets[:images]
 
-
-- if not @flash_assets.empty?
+- if @assets[:fonts]
   %br
 
-  %h3!= t('.flashes')
-  %ul.assets
-    = render :partial => 'asset', :collection => @flash_assets
-    %li.clear
+  %h3!= t('.fonts')
+  %ul.list.theme-assets
+    = render :partial => 'asset', :collection => @assets[:fonts]
+
+- if @assets[:media]
+  %br
+
+  %h3!= t('.media')
+  %ul.list.theme-assets
+    = render :partial => 'asset', :collection => @assets[:media]
+

@@ -22,12 +22,23 @@ x create a repo for a tool "a la" vision
 x asset collections => liquid
 x images tag to write
 ! apply http://github.com/flori/json/commit/2c0f8d2c9b15a33b8d10ffcb1959aef54d320b57
-x import tool:
+x snippet dependencies => do not work correctly
+? google analytics tag
+- import tool:
   x select field (see custom fields and nocoffee theme) ?
   x disable sub tasks by passing options
   x exceptions
   x page to import theme
-x snippet dependencies => do not work correctly
+  x contents: group_by, oder_by, api_enabled
+  ? asset collections
+  ? fonts
+  ? folders for theme assets
+  ? theme assets whitelist
+  - add samples ?
+x mask internal asset_collections
+- refactor ui for the theme assets page
+- proxy for fonts
+- order yaml file (http://www.ruby-forum.com/topic/120295)
 - global regions: keyword in editable element (http://www.mongodb.org/display/DOCS/Updating)
 - write my first tutorial about locomotive
 

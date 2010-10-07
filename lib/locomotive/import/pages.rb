@@ -30,7 +30,7 @@ module Locomotive
 
         site, pages, theme_path = context[:site], context[:database]['site']['pages'], context[:theme_path]
 
-        template = File.read(File.join(theme_path, 'templates', "#{fullpath}.liquid"))
+        template = File.read(File.join(theme_path, 'templates', "#{fullpath}.liquid")) rescue "Unable to find #{fullpath}.liquid"
 
         self.build_parent_template(template, context)
 
@@ -95,9 +95,9 @@ module Locomotive
 
         return site.pages.index.first if segments.size == 1
 
-        (segments.last == 'index' ? 2 : 1).times { segments.pop }
+        segments.pop
 
-        parent_fullpath = File.join(segments.join('/'), 'index').gsub(/^\//, '')
+        parent_fullpath = segments.join('/').gsub(/^\//, '')
 
         # look for a local index page in db
         parent = site.pages.where(:fullpath => parent_fullpath).first

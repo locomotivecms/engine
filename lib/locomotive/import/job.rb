@@ -33,10 +33,10 @@ module Locomotive
           :worker => @worker
         }
 
-        %w(site content_types assets snippets pages).each do |step|
+        %w(site content_types assets asset_collections snippets pages).each do |step|
           if @enabled[step] != false
-            @worker.update_attributes :step => step
-            puts "@worker...#{@worker.failed_at.inspect} / #{@worker.failed?.inspect}"
+            @worker.update_attributes :step => step if @worker
+            # puts "@worker...#{@worker.failed_at.inspect} / #{@worker.failed?.inspect}"
             "Locomotive::Import::#{step.camelize}".constantize.process(context)
           else
             puts "skipping #{step}"

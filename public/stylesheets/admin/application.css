@@ -53,7 +53,6 @@ ul.list li {
   margin-bottom: 10px;
   position: relative;
   clear: both;
-  background: transparent url(/images/admin/list/item.png) no-repeat 0 0;
 }
 
 ul.list li em {
@@ -64,6 +63,13 @@ ul.list li em {
   width: 18px;
 }
 
+ul.list li strong {
+  margin-left: 18px;
+  display: block;
+  height: 31px;
+  background: transparent url(/images/admin/list/item-right.png) no-repeat right 0;
+}
+
 ul.list li strong a {
   position: relative;
   top: 2px;
@@ -71,6 +77,7 @@ ul.list li strong a {
   text-decoration: none;
   color: #1f82bc;
   font-size: 0.9em;
+  text-shadow: 1px 1px 1px #fff;
 }
 
 ul.list.sortable li strong a { left: 10px; }
@@ -98,11 +105,67 @@ ul.list li span.handle {
   cursor: move;
 }
 
+
+/*ul.list li {
+  height: 31px;
+  margin-bottom: 10px;
+  position: relative;
+  clear: both;
+  background: transparent url(/images/admin/list/item.png) no-repeat 0 0;
+}
+
+ul.list li em {
+  display: block;
+  float: left;
+  background: transparent url(/images/admin/list/item-left.png) no-repeat left 0;
+  height: 31px;
+  width: 18px;
+}
+
+ul.list li strong a {
+  position: relative;
+  top: 2px;
+  left: 15px;
+  text-decoration: none;
+  color: #1f82bc;
+  font-size: 0.9em;
+  text-shadow: 1px 1px 1px #fff;
+}
+
+ul.list.sortable li strong a { left: 10px; }
+
+ul.list li strong a:hover { text-decoration: underline; }
+
+ul.list li div.more {
+  position: absolute;
+  top: 3px;
+  right: 15px;
+  font-size: 0.7em;
+  color: #8b8d9a;
+}
+
+ul.list li div.more a {
+  margin-left: 10px;
+  position: relative;
+  top: 4px;
+}
+
+ul.list li span.handle {
+  position: relative;
+  top: 5px;
+  margin: 0 0 0 15px;
+  cursor: move;
+}
+*/
 /* ___ asset collections ___ */
 
 div#asset-uploader { display: inline-block; margin-left: 10px; }
 div#asset-uploader span.spinner { position: relative; top: -3px; display: none; }
 div#uploadAssetsInputQueue { display: none; }
+
+/* ___ theme assets ___ */
+
+ul.theme-assets { margin-left: 40px; }
 
 /* ___ contents ___ */
 
@@ -122,7 +185,7 @@ div#uploadAssetsInputQueue { display: none; }
 
 /* ___ snippets ___ */
 
-#snippets-list { margin-left: 40px; }
+/*#snippets-list { margin-left: 40px; }
 
 #snippets-list li { background: none; }
 
@@ -136,7 +199,7 @@ div#uploadAssetsInputQueue { display: none; }
   height: 31px;
   background: transparent url(/images/admin/list/item-right.png) no-repeat right 0;
 }
-
+*/
 /* ___ pages ___ */
 
 #pages-list {
@@ -192,6 +255,7 @@ div#uploadAssetsInputQueue { display: none; }
   color: #1f82bc;
   font-size: 0.9em;
   padding-left: 6px;
+  text-shadow: 1px 1px 1px #fff;
 }
 
 #pages-list li strong a:hover { text-decoration: underline; }
@@ -225,7 +289,7 @@ div#uploadAssetsInputQueue { display: none; }
 
 #import-steps { margin: 0px 200px; }
 
-#import-steps li { background: none; }
+/*#import-steps li { background: none; }
 
 #import-steps li em {
   background-position: left 0px;
@@ -236,7 +300,7 @@ div#uploadAssetsInputQueue { display: none; }
   display: block;
   height: 31px;
   background: transparent url(/images/admin/list/item-right.png) no-repeat right 0;
-}
+}*/
 
 #import-steps li strong a { color: #b7baca; }
 

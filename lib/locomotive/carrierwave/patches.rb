@@ -39,17 +39,21 @@ module CarrierWave
   module Mongoid
     def validates_integrity_of(*attrs)
       options = attrs.last.is_a?(Hash) ? attrs.last : {}
-      options[:message] ||= I18n.t('carrierwave.errors.integrity', :default => 'is not an allowed type of file.')
       validates_each(*attrs) do |record, attr, value|
-        record.errors.add attr, options[:message] if record.send("#{attr}_integrity_error")
+        if record.send("#{attr}_integrity_error")
+          message = options[:message] || I18n.t('carrierwave.errors.integrity', :default => 'is not an allowed type of file.')
+          record.errors.add attr, message
+        end
       end
     end
 
     def validates_processing_of(*attrs)
       options = attrs.last.is_a?(Hash) ? attrs.last : {}
-      options[:message] ||= I18n.t('carrierwave.errors.processing', :default => 'failed to be processed.')
       validates_each(*attrs) do |record, attr, value|
-        record.errors.add attr, options[:message] if record.send("#{attr}_processing_error")
+        if record.send("#{attr}_processing_error")
+          message = options[:message] || I18n.t('carrierwave.errors.processing', :default => 'failed to be processed.')
+          record.errors.add attr, message
+        end
       end
     end
   end

@@ -1,14 +1,3 @@
-/ - per_row = local_assigns[:per_row] || 6
-/ - snippet_counter = local_assigns[:snippet_counter] || 0
-/
-/ %li{ :class => "asset #{'last' if (snippet_counter + 1) % per_row == 0}"}
-/   %h4= link_to truncate(snippet.slug, :length => 18), edit_admin_snippet_path(snippet)
-/   .image
-/     .inside
-/       / = vignette_tag(asset)
-/   .actions
-/     = link_to image_tag('admin/list/icons/cross.png'), admin_snippet_path(snippet), :class => 'remove', :confirm => t('admin.messages.confirm'), :method => :delete
-
 %li
   %em
   %strong= link_to snippet.name, edit_admin_snippet_path(snippet)

@@ -164,8 +164,10 @@ en:
         css_and_js: Style and javascript
         fonts: Fonts
         images: Images
-        flashes: Flash
+        media: Media
         no_items: "There are no files for now. Just click <a href=\"%{url}\">here</a> to create the first one."
+      asset:
+        updated_at: Updated at
       new:
         title: New file
         help: "You have the choice to either upload any file or to copy/paste a stylesheet or a javascript in plain text."

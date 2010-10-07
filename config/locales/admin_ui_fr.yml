@@ -163,9 +163,11 @@ fr:
         snippets: Snippets
         css_and_js: Style et javascript
         images: Images
-        flashes: Flash
+        media: Media
         fonts: Polices
         no_items: "Il n'existe pas de fichiers. Vous pouvez commencer par créer un <a href='%{url}'>ici</a>."
+      asset:
+        updated_at: Mis à jour le
       new:
         title: Nouveau fichier
         help: "Vous avez le choix de soit uploader n'importe quel fichier ou bien soit de copier/coller du code css ou javascript."

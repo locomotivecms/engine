@@ -10,10 +10,11 @@ module Admin
     respond_to :json, :only => [:create, :update]
 
     def index
-      assets = current_site.theme_assets.all.to_a
-      @non_image_assets = assets.find_all { |a| a.stylesheet? || a.javascript? }
-      @image_assets = assets.find_all { |a| a.image? }
-      @flash_assets = assets.find_all { |a| a.movie? }
+      @assets = current_site.theme_assets.visible.all.order_by([[:slug, :asc]]).group_by { |a| a.folder.split('/').first.to_sym }
+      @js_and_css_assets = (@assets[:javascripts] || []) + (@assets[:stylesheets] || [])
+      # @non_image_assets = assets.find_all { |a| a.stylesheet? || a.javascript? }
+      # @image_assets = assets.find_all { |a| a.image? }
+      # @flash_assets = assets.find_all { |a| a.movie? }
 
       if request.xhr?
         render :action => 'images', :layout => false and return
@@ -31,9 +32,7 @@ module Admin
             :status       => 'success',
             :name         => truncate(@theme_asset.slug, :length => 22),
             :slug         => @theme_asset.slug,
-            :url          => @theme_asset.source.url,
-            :vignette_url => @theme_asset.vignette_url,
-            :shortcut_url => @theme_asset.shortcut_url
+            :url          => @theme_asset.source.url
           }
         end
         failure.json { render :json => { :status => 'error' } }

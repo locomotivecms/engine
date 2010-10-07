@@ -9,7 +9,7 @@ module Locomotive
             content_type = self.class.name.demodulize.underscore.singularize
 
             asset = ThemeAsset.new(:site => @context.registers[:site], :content_type => content_type)
-            ThemeAssetUploader.new(asset).store_path(meth.gsub('__', '.'))
+            '/' + ThemeAssetUploader.new(asset).store_path(meth.gsub('__', '.'))
           end
 
         end
