@@ -11,6 +11,10 @@ module Locomotive
           end
         end
 
+        def url
+          @source.source.url
+        end
+
       end
     end
   end

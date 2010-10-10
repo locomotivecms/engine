@@ -30,14 +30,16 @@ x snippet dependencies => do not work correctly
   x exceptions
   x page to import theme
   x contents: group_by, oder_by, api_enabled
-  ? asset collections
-  ? fonts
-  ? folders for theme assets
-  ? theme assets whitelist
+  x folders for theme assets
+  x theme assets whitelist
+  x fonts
+  x asset collections
   - add samples ?
 x mask internal asset_collections
-- refactor ui for the theme assets page
+x refactor ui for the theme assets page
+x fix assets liquid tags / filters
 - proxy for fonts
+- fix tests
 - order yaml file (http://www.ruby-forum.com/topic/120295)
 - global regions: keyword in editable element (http://www.mongodb.org/display/DOCS/Updating)
 - write my first tutorial about locomotive

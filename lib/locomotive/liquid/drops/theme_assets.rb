@@ -6,9 +6,10 @@ module Locomotive
         class Base < ::Liquid::Drop
 
           def before_method(meth)
-            content_type = self.class.name.demodulize.underscore.singularize
+            content_type = self.class.name.demodulize.underscore #.singularize
 
-            asset = ThemeAsset.new(:site => @context.registers[:site], :content_type => content_type)
+            asset = ThemeAsset.new(:site => @context.registers[:site], :folder => content_type)
+
             '/' + ThemeAssetUploader.new(asset).store_path(meth.gsub('__', '.'))
           end
 

@@ -7,6 +7,14 @@ module Locomotive
         # input: url of the css file
         def stylesheet_tag(input)
           return '' if input.nil?
+
+          unless input =~ /^(\/|http:)/
+            stylesheet = ThemeAsset.new(:site => @context.registers[:site], :folder => 'stylesheets')
+            input = '/' + ThemeAssetUploader.new(stylesheet).store_path(input)
+          end
+
+          # puts "stylesheet_tag context ? #{@context}"
+
           input = "#{input}.css" unless input.ends_with?('.css')
           %{<link href="#{input}" media="screen" rel="stylesheet" type="text/css" />}
         end
@@ -15,6 +23,12 @@ module Locomotive
         # input: url of the javascript file
         def javascript_tag(input)
           return '' if input.nil?
+
+          unless input =~ /^(\/|http:)/
+            javascript = ThemeAsset.new(:site => @context.registers[:site], :folder => 'javascripts')
+            input = '/' + ThemeAssetUploader.new(javascript).store_path(input)
+          end
+
           input = "#{input}.js" unless input.ends_with?('.js')
            %{<script src="#{input}" type="text/javascript"></script>}
         end

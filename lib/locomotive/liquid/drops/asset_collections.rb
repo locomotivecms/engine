@@ -5,13 +5,13 @@ module Locomotive
       class AssetCollections < ::Liquid::Drop
 
         def before_method(meth)
-          collection = @context.registers[:site].asset_collections.where(:slug => meth.to_s)
-          AssetCollection.new(collection)
+          collection = @context.registers[:site].asset_collections.where(:slug => meth.to_s).first
+          AssetCollectionProxy.new(collection)
         end
 
       end
 
-      class AssetCollection < ::Liquid::Drop
+      class AssetCollectionProxy < ::Liquid::Drop
 
         def initialize(collection)
           @collection = collection

@@ -27,10 +27,9 @@ class AssetUploader < CarrierWave::Uploader::Base
     process :convert => 'png'
   end
 
+  process :set_content_type
+  process :set_size
   process :set_width_and_height
-
-  after :cache, :set_size
-  after :cache, :set_content_type
 
   def set_content_type(*args)
     value = :other

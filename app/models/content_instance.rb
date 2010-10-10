@@ -29,6 +29,10 @@ class ContentInstance
 
   alias :visible? :_visible?
 
+  def site_id  # needed by the uploader of custom fields
+    self.content_type.site_id
+  end
+
   def visible?
     self._visible || self._visible.nil?
   end
