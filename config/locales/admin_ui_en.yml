@@ -159,6 +159,7 @@ en:
       index:
         title: Listing theme files
         help: "The theme files section is the place where you manage the files needed by your layout, ...etc. If you need to manage an image gallery, go to the Assets section instead."
+        all: all assets
         new: new file
         snippets: Snippets
         css_and_js: Style and javascript

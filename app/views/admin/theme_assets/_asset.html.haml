@@ -1,4 +1,4 @@
-%li
+%li{ :class => "#{'hidden' if asset.hidden?}" }
   %em
   %strong= link_to asset.local_path, edit_admin_theme_asset_path(asset)
   .more

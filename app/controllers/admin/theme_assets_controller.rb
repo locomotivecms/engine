@@ -10,7 +10,8 @@ module Admin
     respond_to :json, :only => [:create, :update]
 
     def index
-      @assets = current_site.theme_assets.visible.all.order_by([[:slug, :asc]]).group_by { |a| a.folder.split('/').first.to_sym }
+      @assets = current_site.theme_assets.visible(params[:all]).order_by([[:slug, :asc]])
+      @assets = @assets.group_by { |a| a.folder.split('/').first.to_sym }
       @js_and_css_assets = (@assets[:javascripts] || []) + (@assets[:stylesheets] || [])
 
       if request.xhr?

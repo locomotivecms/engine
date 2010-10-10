@@ -26,23 +26,18 @@ class ThemeAsset
 
   ## validations ##
   validates_presence_of :site, :source
-  validates_presence_of :plain_text_name, :if => Proc.new { |a| puts "===> performing_plain_text? = #{a.performing_plain_text?}"; a.performing_plain_text? }
+  validates_presence_of :plain_text_name, :if => Proc.new { |a| a.performing_plain_text? }
   validates_uniqueness_of :local_path, :scope => :site_id
   validates_integrity_of :source
   validate :content_type_can_not_changed
 
   ## named scopes ##
-  scope :visible, :where => { :hidden => false }
+  scope :visible, lambda { |all| all ? {} : { :where => { :hidden => false } } }
 
   ## accessors ##
-  attr_accessor :plain_text_name, :plain_text, :performing_plain_text #, :new_file
+  attr_accessor :plain_text_name, :plain_text, :performing_plain_text
 
   ## methods ##
-
-  # def source=(new_file)
-  #   super
-  #   @new_source = true
-  # end
 
   %w{movie image stylesheet javascript font}.each do |type|
     define_method("#{type}?") do
@@ -68,18 +63,7 @@ class ThemeAsset
 
   def plain_text
     @plain_text ||= self.source.read
-    # puts "\tperforming plain text ? #{self.performing_plain_text?}"
-    # if not self.performing_plain_text? #not @plain_text_changed
-    #   @plain_text = self.source.read #rescue nil
-    # end
-    # @plain_text
   end
-
-  # def plain_text=(source)
-  #   # @plain_text_changed = true
-  #   # self.performing_plain_text = true unless source.blank?
-  #   @plain_text = source
-  # end
 
   def performing_plain_text?
     Boolean.set(self.performing_plain_text) || false
@@ -91,11 +75,6 @@ class ThemeAsset
     return if !self.stylesheet_or_javascript? || self.plain_text_name.blank? || data.blank?
 
     sanitized_source = self.escape_shortcut_urls(data)
-
-    puts "================"
-    puts "\tperforming plain text ? #{self.performing_plain_text?}"
-    puts "\data = #{data[0..100]}"
-    # puts self.source.instance_variable_get(:@original_file).inspect
 
     self.source = CarrierWave::SanitizedFile.new({
       :tempfile => StringIO.new(sanitized_source),
@@ -126,7 +105,6 @@ class ThemeAsset
   end
 
   def build_local_path
-    # puts "self.source_filename = #{self.source_filename} / #{self.safe_source_filename} / #{File.join(self.folder, self.safe_source_filename)}"
     self.local_path = File.join(self.folder, self.safe_source_filename)
   end
 
