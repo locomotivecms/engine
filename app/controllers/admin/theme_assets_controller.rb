@@ -12,15 +12,17 @@ module Admin
     def index
       @assets = current_site.theme_assets.visible.all.order_by([[:slug, :asc]]).group_by { |a| a.folder.split('/').first.to_sym }
       @js_and_css_assets = (@assets[:javascripts] || []) + (@assets[:stylesheets] || [])
-      # @non_image_assets = assets.find_all { |a| a.stylesheet? || a.javascript? }
-      # @image_assets = assets.find_all { |a| a.image? }
-      # @flash_assets = assets.find_all { |a| a.movie? }
 
       if request.xhr?
         render :action => 'images', :layout => false and return
       else
         @snippets = current_site.snippets.order_by([[:name, :asc]]).all.to_a
       end
+    end
+
+    def edit
+      resource.performing_plain_text = true if resource.stylesheet_or_javascript?
+      edit!
     end
 
     def create

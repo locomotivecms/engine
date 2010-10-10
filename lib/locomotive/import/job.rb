@@ -4,8 +4,6 @@ module Locomotive
   module Import
     class Job
 
-      # attr_accessor :theme_file, :site, :enabled
-
       def initialize(theme_file, site = nil, enabled = {})
         raise "Theme zipfile not found" unless File.exists?(theme_file)
 

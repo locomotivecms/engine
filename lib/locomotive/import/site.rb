@@ -5,7 +5,7 @@ module Locomotive
       def self.process(context)
         site, database = context[:site], context[:database]
 
-        attributes = database['site'].clone.delete_if { |name, value| %w{pages content_types asset_collections}.include?(name) }
+        attributes = database['site'].clone.delete_if { |name, value| %w{pages assets content_types asset_collections}.include?(name) }
 
         site.attributes = attributes
 

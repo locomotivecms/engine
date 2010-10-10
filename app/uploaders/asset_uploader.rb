@@ -27,11 +27,12 @@ class AssetUploader < CarrierWave::Uploader::Base
     process :convert => 'png'
   end
 
-  process :set_content_type
-  process :set_size
   process :set_width_and_height
 
-  def set_content_type
+  after :cache, :set_size
+  after :cache, :set_content_type
+
+  def set_content_type(*args)
     value = :other
 
     content_type = file.content_type == 'application/octet-stream' ? File.mime_type?(original_filename) : file.content_type
@@ -48,7 +49,7 @@ class AssetUploader < CarrierWave::Uploader::Base
     model.content_type = value
   end
 
-  def set_size
+  def set_size(*args)
     model.size = file.size
   end
 
