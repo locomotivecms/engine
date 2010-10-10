@@ -4,7 +4,7 @@
 
 = f.hidden_field :performing_plain_text
 
-#file-selector{ :class => "selector #{'hidden' if @theme_asset.performing_plain_text?}" }
+#file-selector{ :class => "selector #{'hidden' if @theme_asset.stylesheet_or_javascript?}" }
   = f.inputs :name => :information do
     = f.input :source
 
@@ -13,7 +13,7 @@
       != t('admin.theme_assets.form.choose_plain_text')
 
 - if allow_plain_text_editing?(@theme_asset)
-  #text-selector{ :class => "selector #{'hidden' if !@theme_asset.performing_plain_text?}", :style => "#{'display: none' if !@theme_asset.performing_plain_text?}" }
+  #text-selector{ :class => "selector #{'hidden' if !@theme_asset.stylesheet_or_javascript?}", :style => "#{'display: none' if !@theme_asset.stylesheet_or_javascript?}" }
     = f.inputs :name => :code, :class => 'inputs code' do
 
       - if @theme_asset.new_record?
@@ -30,13 +30,6 @@
 
     %span.alt
       != t('admin.theme_assets.form.choose_file')
-
-/ - if @theme_asset.image?
-/   = f.foldable_inputs :name => "#{t('formtastic.titles.preview')} #{image_dimensions_and_size(@theme_asset)}", :class => 'preview' do
-/     %li
-/       .image
-/         .inside
-/           = image_tag(@theme_asset.source.url(:preview))
 
 = f.foldable_inputs :name => :options do
   = f.input :folder

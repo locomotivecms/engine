@@ -67,10 +67,12 @@ class ThemeAsset
   end
 
   def plain_text
-    if not self.performing_plain_text? #not @plain_text_changed
-      @plain_text ||= self.source.read rescue nil
-    end
-    @plain_text
+    @plain_text ||= self.source.read
+    # puts "\tperforming plain text ? #{self.performing_plain_text?}"
+    # if not self.performing_plain_text? #not @plain_text_changed
+    #   @plain_text = self.source.read #rescue nil
+    # end
+    # @plain_text
   end
 
   # def plain_text=(source)
@@ -84,11 +86,15 @@ class ThemeAsset
   end
 
   def store_plain_text
-    return if !self.stylesheet_or_javascript? || self.plain_text_name.blank? || self.plain_text.blank?
+    data = self.performing_plain_text? ? self.plain_text : self.source.read
 
-    sanitized_source = self.escape_shortcut_urls(self.plain_text)
+    return if !self.stylesheet_or_javascript? || self.plain_text_name.blank? || data.blank?
 
-    # puts "================"
+    sanitized_source = self.escape_shortcut_urls(data)
+
+    puts "================"
+    puts "\tperforming plain text ? #{self.performing_plain_text?}"
+    puts "\data = #{data[0..100]}"
     # puts self.source.instance_variable_get(:@original_file).inspect
 
     self.source = CarrierWave::SanitizedFile.new({
