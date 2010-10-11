@@ -4,6 +4,7 @@ module Admin
     include ActionView::Helpers::SanitizeHelper
     extend ActionView::Helpers::SanitizeHelper::ClassMethods
     include ActionView::Helpers::TextHelper
+    include ActionView::Helpers::NumberHelper
 
     sections 'settings', 'theme_assets'
 
@@ -15,6 +16,7 @@ module Admin
       @js_and_css_assets = (@assets[:javascripts] || []) + (@assets[:stylesheets] || [])
 
       if request.xhr?
+        @images = @assets[:images]
         render :action => 'images', :layout => false and return
       else
         @snippets = current_site.snippets.order_by([[:name, :asc]]).all.to_a
@@ -33,9 +35,10 @@ module Admin
         success.json do
           render :json => {
             :status       => 'success',
-            :name         => truncate(@theme_asset.slug, :length => 22),
-            :slug         => @theme_asset.slug,
-            :url          => @theme_asset.source.url
+            :url          => @theme_asset.source.url,
+            :local_path   => @theme_asset.local_path(true),
+            :size         => number_to_human_size(@theme_asset.size),
+            :date         => l(@theme_asset.updated_at, :format => :short)
           }
         end
         failure.json { render :json => { :status => 'error' } }

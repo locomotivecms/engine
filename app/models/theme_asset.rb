@@ -49,6 +49,14 @@ class ThemeAsset
     self.stylesheet? || self.javascript?
   end
 
+  def local_path(short = false)
+    if short
+      self.read_attribute(:local_path).gsub(/^#{self.content_type.pluralize}\//, '')
+    else
+      self.read_attribute(:local_path)
+    end
+  end
+
   def plain_text_name
     if not @plain_text_name_changed
       @plain_text_name ||= self.safe_source_filename

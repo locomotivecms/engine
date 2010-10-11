@@ -1,4 +1,3 @@
-# require 'locomotive/patches'
 require 'locomotive/configuration'
 require 'locomotive/logger'
 require 'locomotive/liquid'
@@ -14,6 +13,7 @@ require 'locomotive/regexps'
 require 'locomotive/render'
 require 'locomotive/import'
 require 'locomotive/delayed_job'
+require 'locomotive/middlewares'
 
 require 'mongo_session_store/mongoid'
 

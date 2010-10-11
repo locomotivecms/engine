@@ -5,7 +5,7 @@ module Locomotive
       #
       # Usage:
       #
-      # {% consume blog from 'http://nocoffee.tumblr.com/api/read.json?num=3' username: 'john', password: 'easy', format: 'json' %}
+      # {% consume blog from 'http://nocoffee.tumblr.com/api/read.json?num=3' username: 'john', password: 'easy', format: 'json', expires_in: 3000 %}
       #   {% for post in blog.posts %}
       #     {{ post.title }}
       #   {% endfor %}
@@ -23,6 +23,8 @@ module Locomotive
             markup.scan(::Liquid::TagAttributes) do |key, value|
               @options[key] = value if key != 'http'
             end
+            @expires_in = (@options.delete('expires_in') || 0).to_i
+            @cache_key = Digest::SHA1.hexdigest(@target)
           else
             raise ::Liquid::SyntaxError.new("Syntax Error in 'consume' - Valid syntax: consume <var> from \"<url>\" [username: value, password: value]")
           end
@@ -31,10 +33,18 @@ module Locomotive
         end
 
         def render(context)
-          context.stack do
-            context.scopes.last[@target.to_s] = Locomotive::Httparty::Webservice.consume(@url, @options.symbolize_keys)
+          render_all_and_cache_it(context)
+        end
 
-            render_all(@nodelist, context)
+        protected
+
+        def render_all_and_cache_it(context)
+          Rails.cache.fetch(@cache_key, :expires_in => @expires_in) do
+            context.stack do
+              context.scopes.last[@target.to_s] = Locomotive::Httparty::Webservice.consume(@url, @options.symbolize_keys)
+
+              render_all(@nodelist, context)
+            end
           end
         end
 

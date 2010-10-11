@@ -49,13 +49,16 @@
 
 /* ___ asset picker ___ */
 
-div.asset-picker { width: 470px; position: relative; }
+div.asset-picker { width: 720px; position: relative; }
 div.asset-picker .actions { position: absolute; right: 4px; top: 0px; }
 
 div.asset-picker p.no-items { background-image: url("/images/admin/list/none-small.png"); }
 
 div.asset-picker ul { overflow: auto; height: 471px; }
 div.asset-picker ul li.new-asset { display: none; }
+
+div.asset-picker ul { margin: 0px; }
+div.asset-picker ul li .more { top: 8px; }
 
 /* ___ custom fields ___ */
 
