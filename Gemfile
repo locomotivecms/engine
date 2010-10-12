@@ -37,26 +37,26 @@ group :development do
   gem 'fastthread'
 end
 
-# group :test, :development do
-#   gem 'ruby-debug'
-# end
+group :test, :development do
+  gem 'ruby-debug'
+end
 
-# group :test do
-#   gem 'autotest'
-#   gem 'growl-glue'
-#   gem 'rspec-rails', '2.0.0.beta.19'
-#   gem 'factory_girl_rails'
-#   gem 'pickle', :git => 'http://github.com/ianwhite/pickle.git'
-#   gem 'pickle-mongoid'
-#   gem 'capybara'
-#
-#   # would be nice..
-#   # gem 'capybara-envjs'
-#
-#   gem 'database_cleaner'
-#   gem 'cucumber'
-#   gem 'cucumber-rails'
-#   gem 'spork'
-#   gem 'launchy'
-#   gem 'mocha', :git => 'git://github.com/floehopper/mocha.git'
-# end
+group :test do
+  gem 'autotest'
+  gem 'growl-glue'
+  gem 'rspec-rails', '2.0.0.beta.19'
+  gem 'factory_girl_rails'
+  gem 'pickle', :git => 'http://github.com/ianwhite/pickle.git'
+  gem 'pickle-mongoid'
+  gem 'capybara'
+
+  # would be nice..
+  # gem 'capybara-envjs'
+
+  gem 'database_cleaner'
+  gem 'cucumber'
+  gem 'cucumber-rails'
+  gem 'spork'
+  gem 'launchy'
+  gem 'mocha', :git => 'git://github.com/floehopper/mocha.git'
+end

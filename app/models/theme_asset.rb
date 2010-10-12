@@ -21,8 +21,8 @@ class ThemeAsset
 
   ## callbacks ##
   before_validation :store_plain_text
-  before_validation :sanitize_folder
-  before_validation :build_local_path
+  before_save :sanitize_folder
+  before_save :build_local_path
 
   ## validations ##
   validates_presence_of :site, :source

@@ -23,10 +23,28 @@ describe ThemeAsset do
         @asset.height.should == 32
       end
 
-      it 'should have a slug' do
+    end
+
+    describe 'local path and folder' do
+
+      it 'should set the local path based on the content type' do
         @asset.source = FixturedAsset.open('5k.png')
         @asset.save
-        @asset.slug.should == '5k'
+        @asset.local_path.should == 'images/5k.png'
+      end
+
+      it 'should set the local path based on the folder' do
+        @asset.folder = 'trash'
+        @asset.source = FixturedAsset.open('5k.png')
+        @asset.save
+        @asset.local_path.should == 'images/trash/5k.png'
+      end
+
+      it 'should set sanitize the local path' do
+        @asset.folder = '/images/à la poubelle'
+        @asset.source = FixturedAsset.open('5k.png')
+        @asset.save
+        @asset.local_path.should == 'images/a_la_poubelle/5k.png'
       end
 
     end
@@ -64,10 +82,12 @@ describe ThemeAsset do
 
     before(:each) do
       ThemeAsset.any_instance.stubs(:site_id).returns('test')
-      @asset = Factory.build(:theme_asset, :site => Factory.build(:site))
-      @asset.performing_plain_text = true
-      @asset.slug = 'a file'
-      @asset.plain_text = "Lorem ipsum"
+      @asset = Factory.build(:theme_asset, {
+        :site => Factory.build(:site),
+        :plain_text_name => 'test',
+        :plain_text => 'Lorem ipsum',
+        :performing_plain_text => true
+      })
     end
 
     it 'should handle stylesheet' do
@@ -82,24 +102,6 @@ describe ThemeAsset do
       @asset.valid?.should be_true
       @asset.javascript?.should be_true
       @asset.source.should_not be_nil
-    end
-
-    context 'shortcut urls' do
-
-      before(:each) do
-        @image = Factory.build(:theme_asset, :source => FixturedAsset.open('5k.png'))
-        @image.source.stubs(:url).returns('5k.png')
-        @asset.stubs(:stylesheet?).returns(true)
-        @asset.site.theme_assets.stubs(:where).returns([@image])
-        @asset.plain_text = 'body { background-image: url("/theme/images/5k.png"); } h1 { background-image: url("/images/5k.png"); }'
-        @asset.store_plain_text
-      end
-
-      it 'replaces shortcut url if present' do
-        @asset.plain_text.should == 'body { background-image: url("/theme/images/5k.png"); } h1 { background-image: url("/images/5k.png"); }'
-        @asset.source.read.should == 'body { background-image: url("5k.png"); } h1 { background-image: url("/images/5k.png"); }'
-      end
-
     end
 
   end

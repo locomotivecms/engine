@@ -40,8 +40,8 @@ x refactor ui for the theme assets page
 x fix assets liquid tags / filters
 x upload and insert new images in a css or js from the ui is broken
 x proxy for fonts (http://markevans.github.com/dragonfly/file.Rails3.html)
-- order yaml file (http://www.ruby-forum.com/topic/120295)
-- fix tests
+x order yaml file (http://www.ruby-forum.com/topic/120295)
+x fix tests
 - global regions: keyword in editable element (http://www.mongodb.org/display/DOCS/Updating)
 - write my first tutorial about locomotive
 
