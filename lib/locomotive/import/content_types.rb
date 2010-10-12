@@ -39,8 +39,10 @@ module Locomotive
       end
 
       def self.add_or_update_fields(content_type, fields)
-        fields.each do |name, data|
-          attributes = { :_alias => name, :label => name.humanize, :kind => 'string' }.merge(data).symbolize_keys
+        fields.each_with_index do |data, position|
+          name, data = data.keys.first, data.values.first
+
+          attributes = { :_alias => name, :label => name.humanize, :kind => 'string', :position => position }.merge(data).symbolize_keys
 
           field = content_type.content_custom_fields.detect { |f| f._alias == attributes[:_alias] }
 

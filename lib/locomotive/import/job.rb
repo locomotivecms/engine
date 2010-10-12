@@ -33,29 +33,12 @@ module Locomotive
 
         %w(site content_types assets asset_collections snippets pages).each do |step|
           if @enabled[step] != false
-            @worker.update_attributes :step => step if @worker
-            # puts "@worker...#{@worker.failed_at.inspect} / #{@worker.failed?.inspect}"
             "Locomotive::Import::#{step.camelize}".constantize.process(context)
+            @worker.update_attributes :step => step if @worker
           else
             puts "skipping #{step}"
           end
         end
-
-
-        # rescue Exception => e
-        #   context[:error] = e.message
-        # end
-        #
-        # context
-        # # Locomotive::Import::Site.process(context)
-        # #
-        # # Locomotive::Import::ContentTypes.process(context)
-        # #
-        # # Locomotive::Import::Assets.process(context)
-        # #
-        # # Locomotive::Import::Snippets.process(context)
-        # #
-        # # Locomotive::Import::Pages.process(context)
       end
 
       protected

@@ -111,5 +111,5 @@ en:
 
       imports:
         create:
-          notice: "Your site is being updated"
-          alert: "Import was not done"
+          notice: "Your site is being updated."
+          alert: "The import was not done."

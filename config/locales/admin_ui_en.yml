@@ -259,8 +259,12 @@ en:
           site: Site information
           content_types: Custom content types
           assets: Theme files
+          asset_collections: Asset collections
           snippets: Snippets
           pages: Pages
+        messages:
+          success: "Your site was successfully updated."
+          failure: "The import did not work."
 
   formtastic:
     titles:

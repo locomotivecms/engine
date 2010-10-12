@@ -1,4 +1,3 @@
-var foo = null;
 var I18nLocale = null;
 var CodeMirrorEditors = [];
 

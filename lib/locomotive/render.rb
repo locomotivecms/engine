@@ -54,9 +54,6 @@ module Locomotive
           'site'              => current_site,
           'page'              => @page,
           'asset_collections' => Locomotive::Liquid::Drops::AssetCollections.new,
-          'stylesheets'       => Locomotive::Liquid::Drops::ThemeAssets::Stylesheets.new,
-          'javascripts'       => Locomotive::Liquid::Drops::ThemeAssets::Javascripts.new,
-          'theme_images'      => Locomotive::Liquid::Drops::ThemeAssets::Images.new,
           'contents'          => Locomotive::Liquid::Drops::Contents.new,
           'current_page'      => self.params[:page]
         }

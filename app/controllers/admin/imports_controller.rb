@@ -12,7 +12,10 @@ module Admin
         format.html do
           redirect_to new_admin_import_url if @job.nil?
         end
-        format.json { render :json => { :step => @job.nil? ? 'done' : @job.step, :failed => @job.try(:failed?) } }
+        format.json { render :json => {
+          :step => @job.nil? ? 'done' : @job.step,
+          :failed => @job && @job.last_error.present?
+        } }
       end
 
     end
@@ -22,7 +25,7 @@ module Admin
     def create
       if params[:zipfile].blank?
         @error = t('errors.messages.blank')
-        flash[:alert] = t('flash.admin.imports.create.error')
+        flash[:alert] = t('flash.admin.imports.create.alert')
         render 'new'
       else
         path = self.store_zipfile!
@@ -30,7 +33,7 @@ module Admin
         job = Locomotive::Import::Job.new(path, current_site)
         Delayed::Job.enqueue job, { :site => current_site, :job_type => 'import' }
 
-        flash[:notice] = t('flash.admin.imports.create.alert')
+        flash[:notice] = t('flash.admin.imports.create.notice')
 
         redirect_to admin_import_url
       end

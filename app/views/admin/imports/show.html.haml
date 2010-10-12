@@ -8,8 +8,8 @@
 
 %p!= t('.help')
 
-%ul{ :id => 'import-steps', :class => 'list', 'data-url' => admin_import_url(:json) }
-  - %w(site content_types assets snippets pages).each do |step|
+%ul{ :id => 'import-steps', :class => 'list', :'data-url' => admin_import_url(:json), :'data-success-message' => t('.message.success'), :'data-failure-message' => t('.message.failure') }
+  - %w(site content_types assets asset_collections snippets pages).each do |step|
     %li{ :id => "#{step}-step" }
       %em
       %strong

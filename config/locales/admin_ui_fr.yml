@@ -258,8 +258,12 @@ fr:
           site: Informations sur le site
           content_types: Modèles de données personnalisés
           assets: Fichiers du thème
+          asset_collections: Collections de média
           snippets: Snippets
           pages: Pages
+        messages:
+          success: "Votre site a été mis à jour avec succès."
+          failure: "L'import n'a pas fonctionné."
 
   formtastic:
     titles:

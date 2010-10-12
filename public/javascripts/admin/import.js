@@ -5,21 +5,28 @@ $(document).ready(function() {
     dataType: 'json',
     minTimeout: 100
   }, function(data) {
-    var steps = ['site', 'content_types', 'assets', 'snippets', 'pages'];
+    var steps = ['site', 'content_types', 'assets', 'asset_collections', 'snippets', 'pages'];
 
     var currentIndex = data.step == 'done' ? steps.length - 1 : steps.indexOf(data.step);
 
-    // console.log('data.step = ' + data.step + ', ' + currentIndex + ', ' + data.failed);
+    for (var i = 0; i < steps.length; i++) {
+      var state = null;
 
-    for (var i = 0; i <= currentIndex; i++) {
-      var state = 'done';
+      if (i <= currentIndex) state = 'done';
+      if (i == currentIndex + 1 && data.failed) state = 'failed';
 
-      if (i == currentIndex && data.failed) state = 'failed';
-
-      $('#import-steps li:eq(' + i + ')').addClass(state);
+      if (state != null)
+        $('#import-steps li:eq(' + i + ')').addClass(state);
     }
 
-    // if (state == 'failed' || currentIndex == steps.length) # TODO
+    if (data.step == 'done')
+      $.growl('notice', $('#import-steps').attr('data-success-message'));
+
+    if (data.failed)
+      $.growl('alert', $('#import-steps').attr('data-failure-message'));
+
+    if (data.step == 'done' || data.failed)
+      $('#import-steps').smartupdaterStop();
   });
 
 });
