@@ -6,19 +6,6 @@ GIT
       rake
 
 GIT
-  remote: git://github.com/locomotivecms/custom_fields.git
-  revision: 89c4d7d
-  specs:
-    custom_fields (0.0.0.2)
-
-GIT
-  remote: git://github.com/locomotivecms/liquid.git
-  revision: b03cdc2
-  ref: b03cdc289ac36c339545
-  specs:
-    liquid (2.1.3)
-
-GIT
   remote: http://github.com/ianwhite/pickle.git
   revision: 65ba8b7337f38d0ab4c153b3ab687e13de7086c7
   specs:
@@ -27,12 +14,6 @@ GIT
       rake
       rspec (>= 1.3)
       yard
-
-PATH
-  remote: /Users/didier/Desktop/NoCoffee/LocomotiveCMS/gems/carrierwave
-  specs:
-    carrierwave (0.5.0)
-      activesupport (~> 3.0)
 
 GEM
   remote: http://rubygems.org/
@@ -74,8 +55,8 @@ GEM
       uuidtools
       xml-simple
     bcrypt-ruby (2.1.2)
-    bson (1.0.4)
-    bson_ext (1.0.4)
+    bson (1.1)
+    bson_ext (1.1)
     builder (2.1.2)
     capybara (0.3.9)
       culerity (>= 0.2.4)
@@ -84,6 +65,8 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       selenium-webdriver (>= 0.0.3)
+    carrierwave (0.5.0)
+      activesupport (~> 3.0.0)
     cgi_multipart_eof_fix (2.5.0)
     childprocess (0.0.7)
       ffi (~> 0.6.3)
@@ -99,6 +82,10 @@ GEM
     cucumber-rails (0.3.2)
       cucumber (>= 0.8.0)
     culerity (0.2.12)
+    custom_fields (1.0.0.beta)
+      activesupport (>= 3.0.0)
+      carrierwave
+      mongoid (>= 2.0.0.beta.18)
     daemons (1.1.0)
     database_cleaner (0.5.2)
     delayed_job (2.1.0.pre2)
@@ -132,10 +119,10 @@ GEM
     growl-glue (1.0.7)
     haml (3.0.18)
     has_scope (0.5.0)
-    heroku (1.10.6)
+    heroku (1.10.14)
       json_pure (>= 1.2.0, < 1.5.0)
       launchy (~> 0.3.2)
-      rest-client (~> 1.4.0)
+      rest-client (>= 1.4.0, < 1.7.0)
     http_connection (1.3.1)
     httparty (0.6.1)
       crack (= 0.1.8)
@@ -153,25 +140,27 @@ GEM
       configuration (>= 0.0.5)
       rake (>= 0.8.1)
     linecache (0.43)
-    mail (2.2.6.1)
+    locomotive_carrierwave (0.5.0.1)
+      activesupport (~> 3.0)
+    locomotive_liquid (2.2.2)
+    locomotive_mongoid_acts_as_tree (0.1.5.1)
+      bson (>= 0.20.1)
+      mongoid (<= 2.0.0.beta.19)
+    mail (2.2.7)
       activesupport (>= 2.3.6)
       mime-types
       treetop (>= 1.4.5)
     mime-types (1.16)
     mimetype-fu (0.1.2)
-    mongo (1.0.7)
-      bson (>= 1.0.4)
-    mongo_session_store (2.0.0.pre)
+    mongo (1.0.9)
+      bson (>= 1.0.5)
+    mongo_session_store (2.0.0)
       actionpack (~> 3.0)
-    mongoid (2.0.0.beta.17)
-      activemodel (~> 3.0.0)
-      bson (= 1.0.4)
-      mongo (= 1.0.7)
+    mongoid (2.0.0.beta.19)
+      activemodel (~> 3.0)
+      mongo (= 1.0.9)
       tzinfo (~> 0.3.22)
       will_paginate (~> 3.0.pre)
-    mongoid_acts_as_tree (0.1.5)
-      bson (>= 0.20.1)
-      mongoid (<= 2.0.0)
     mongrel (1.1.5)
       cgi_multipart_eof_fix (>= 2.4)
       daemons (>= 1.0.3)
@@ -202,7 +191,7 @@ GEM
       thor (~> 0.14.0)
     rake (0.8.7)
     responders (0.6.2)
-    rest-client (1.4.2)
+    rest-client (1.6.1)
       mime-types (>= 1.16)
     rmagick (2.12.2)
     rspec (2.0.0.beta.19)
@@ -231,7 +220,7 @@ GEM
       rubyzip
     spork (0.8.4)
     term-ansicolor (1.0.5)
-    thor (0.14.2)
+    thor (0.14.3)
     treetop (1.4.8)
       polyglot (>= 0.3.1)
     tzinfo (0.3.23)
@@ -254,13 +243,12 @@ DEPENDENCIES
   actionmailer-with-request
   autotest
   aws
-  bson_ext (= 1.0.4)
+  bson_ext (= 1.1)
   capybara
-  carrierwave!
   cgi_multipart_eof_fix
   cucumber
   cucumber-rails
-  custom_fields!
+  custom_fields (= 1.0.0.beta)
   database_cleaner
   delayed_job (= 2.1.0.pre2)
   delayed_job_mongoid (= 1.0.0.rc)
@@ -275,12 +263,13 @@ DEPENDENCIES
   inherited_resources (= 1.1.2)
   jeweler
   launchy
-  liquid!
+  locomotive_carrierwave
+  locomotive_liquid (= 2.2.2)
+  locomotive_mongoid_acts_as_tree (= 0.1.5.1)
   mimetype-fu
   mocha!
-  mongo_session_store (= 2.0.0.pre)
-  mongoid (= 2.0.0.beta.17)
-  mongoid_acts_as_tree (= 0.1.5)
+  mongo_session_store (= 2.0.0)
+  mongoid (= 2.0.0.beta.19)
   mongrel
   pickle!
   pickle-mongoid
