@@ -287,8 +287,6 @@ en:
       attributes: Attributes
       upload: Upload
     labels:
-      page:
-        raw_template: Template
       theme_asset:
         new:
           source: File

@@ -1,4 +1,4 @@
-sou rce :rubygems
+source :rubygems
 
 # add in all the runtime dependencies
 

@@ -120,8 +120,9 @@ describe Page do
 
     it 'should add sub pages' do
       child_2 = Factory(:page, :title => 'Subpage 2', :slug => 'bar', :parent => @home, :site => @home.site)
-      Page.first.children.count.should == 2
-      Page.first.children.should == [@child_1, child_2]
+      @home = Page.find(@home.id)
+      @home.children.count.should == 2
+      @home.children.should == [@child_1, child_2]
     end
 
     it 'should move its children accordingly' do
