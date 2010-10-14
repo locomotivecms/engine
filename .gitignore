@@ -26,3 +26,4 @@ Capfile
 config/deploy.rb
 perf/test.rb
 gem_graph.png
+sites/
