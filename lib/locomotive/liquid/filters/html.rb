@@ -7,7 +7,19 @@ module Locomotive
         # input: url of the css file
         def stylesheet_tag(input)
           return '' if input.nil?
+
+          unless input =~ /^(\/|http:)/
+            segments = "stylesheets/#{input}".split('/')
+
+            filename, folder = segments.pop, segments.join('/')
+
+            stylesheet = ThemeAsset.new(:site => @context.registers[:site], :folder => folder)
+
+            input = '/' + ThemeAssetUploader.new(stylesheet).store_path(filename)
+          end
+
           input = "#{input}.css" unless input.ends_with?('.css')
+
           %{<link href="#{input}" media="screen" rel="stylesheet" type="text/css" />}
         end
 
@@ -15,16 +27,41 @@ module Locomotive
         # input: url of the javascript file
         def javascript_tag(input)
           return '' if input.nil?
+
+          unless input =~ /^(\/|http:)/
+            segments = "javascripts/#{input}".split('/')
+
+            filename, folder = segments.pop, segments.join('/')
+
+            javascript = ThemeAsset.new(:site => @context.registers[:site], :folder => folder)
+
+            input = '/' + ThemeAssetUploader.new(javascript).store_path(filename)
+          end
+
           input = "#{input}.js" unless input.ends_with?('.js')
+
            %{<script src="#{input}" type="text/javascript"></script>}
         end
 
+        def theme_image_url(input)
+          return '' if input.nil?
+
+          input = "images/#{input}" unless input.starts_with?('/')
+
+          segments = input.split('/')
+
+          filename, folder = segments.pop, segments.join('/')
+
+          image = ThemeAsset.new(:site => @context.registers[:site], :folder => folder)
+
+          '/' + ThemeAssetUploader.new(image).store_path(filename)
+        end
 
         # Write an image tag
         # input: url of the image OR asset drop
         def image_tag(input, *args)
           image_options = inline_options(args_to_options(args))
-          "<img src=\"#{File.join('/', get_path_from_asset(input))}\" #{image_options}/>"
+          "<img src=\"#{File.join('/', get_url_from_asset(input))}\" #{image_options}/>"
         end
 
         # Embed a flash movie into a page
@@ -32,7 +69,7 @@ module Locomotive
         # width: width (in pixel or in %) of the embedded movie
         # height: height (in pixel or in %) of the embedded movie
         def flash_tag(input, *args)
-          path = get_path_from_asset(input)
+          path = get_url_from_asset(input)
           embed_options = inline_options(args_to_options(args))
           %{
             <object #{embed_options}>
@@ -100,9 +137,9 @@ module Locomotive
           (options.stringify_keys.to_a.collect { |a, b| "#{a}=\"#{b}\"" }).join(' ') << ' '
         end
 
-        # Get the path to be used in html tags such as image_tag, flash_tag, ...etc
+        # Get the url to be used in html tags such as image_tag, flash_tag, ...etc
         # input: url (String) OR asset drop
-        def get_path_from_asset(input)
+        def get_url_from_asset(input)
           input.respond_to?(:url) ? input.url : input
         end
       end

@@ -29,7 +29,9 @@ Rails.application.routes.draw do
 
     resources :memberships
 
-    resources :theme_assets
+    resources :theme_assets do
+      get :all, :action => 'index', :on => :collection, :defaults => { :all => true }
+    end
 
     resources :asset_collections
 
@@ -48,6 +50,8 @@ Rails.application.routes.draw do
     resources :custom_fields, :path => 'custom/:parent/:slug/fields'
 
     resources :cross_domain_sessions, :only => [:new, :create]
+
+    resource :import, :only => [:new, :show, :create]
   end
 
   # sitemap

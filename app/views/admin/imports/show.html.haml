@@ -1,0 +1,19 @@
+- content_for :head do
+  = javascript_include_tag 'admin/plugins/json2', 'admin/plugins/smartupdater', 'admin/import'
+
+- title t('.title')
+
+- content_for :submenu do
+  = render 'admin/shared/menu/settings'
+
+%p!= t('.help')
+
+%ul{ :id => 'import-steps', :class => 'list', :'data-url' => admin_import_url(:json), :'data-success-message' => t('.message.success'), :'data-failure-message' => t('.message.failure') }
+  - %w(site content_types assets asset_collections snippets pages).each do |step|
+    %li{ :id => "#{step}-step" }
+      %em
+      %strong
+        = link_to t(".steps.#{step}"), '#'
+      .more
+        .states
+          &nbsp;

@@ -53,7 +53,6 @@ ul.list li {
   margin-bottom: 10px;
   position: relative;
   clear: both;
-  background: transparent url(/images/admin/list/item.png) no-repeat 0 0;
 }
 
 ul.list li em {
@@ -64,6 +63,13 @@ ul.list li em {
   width: 18px;
 }
 
+ul.list li strong {
+  margin-left: 18px;
+  display: block;
+  height: 31px;
+  background: transparent url(/images/admin/list/item-right.png) no-repeat right 0;
+}
+
 ul.list li strong a {
   position: relative;
   top: 2px;
@@ -71,6 +77,7 @@ ul.list li strong a {
   text-decoration: none;
   color: #1f82bc;
   font-size: 0.9em;
+  text-shadow: 1px 1px 1px #fff;
 }
 
 ul.list.sortable li strong a { left: 10px; }
@@ -104,6 +111,12 @@ div#asset-uploader { display: inline-block; margin-left: 10px; }
 div#asset-uploader span.spinner { position: relative; top: -3px; display: none; }
 div#uploadAssetsInputQueue { display: none; }
 
+/* ___ theme assets ___ */
+
+ul.theme-assets { margin-left: 40px; }
+
+ul.theme-assets li.hidden strong a { font-style: italic; color: #8B8D9A; font-weight: normal; }
+
 /* ___ contents ___ */
 
 #contents-list li { background: none; }
@@ -120,6 +133,7 @@ div#uploadAssetsInputQueue { display: none; }
   background: transparent url(/images/admin/list/item-right.png) no-repeat right 0;
 }
 
+/* ___ snippets ___ */
 
 /* ___ pages ___ */
 
@@ -176,6 +190,7 @@ div#uploadAssetsInputQueue { display: none; }
   color: #1f82bc;
   font-size: 0.9em;
   padding-left: 6px;
+  text-shadow: 1px 1px 1px #fff;
 }
 
 #pages-list li strong a:hover { text-decoration: underline; }
@@ -204,4 +219,32 @@ div#uploadAssetsInputQueue { display: none; }
 
 #progressbar-wrapper { margin: 40px 0; height: 30px; }
 #progressbar-wrapper #progressbar { height: 100%; }
+
+/* ___ import steps ___ */
+
+#import-steps { margin: 0px 200px; }
+
+#import-steps li strong a { color: #b7baca; }
+
+#import-steps li .more .states {
+  position: relative;
+  top: 4px;
+  height: 16px;
+  width: 16px;
+  background: transparent url(/images/admin/list/icons/states.png) no-repeat 0 0;
+}
+
+#import-steps li.done .more .states {
+  background-position: 0 -16px;
+}
+
+#import-steps li.failed .more .states {
+  background-position: 0 -32px;
+}
+
+#import-steps li.done strong a {
+  color: #1F82BC;
+}
+
+
 

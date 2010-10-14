@@ -40,6 +40,7 @@ fr:
         back: Retour sans sauvegarder
         create: Créer
         update: Mettre à jour
+        send: Envoyer
 
     custom_fields:
       edit:
@@ -131,6 +132,7 @@ fr:
 
     current_sites:
       edit:
+        import: importer
         new_membership: ajouter compte
         help: "Le nom du site est modifiable en cliquant dessus."
         ask_for_name: "Veuillez entrer le nouveau nom"
@@ -156,13 +158,17 @@ fr:
     theme_assets:
       index:
         title: Liste des fichiers du thème
-        help: "Les fichiers du thème sont utilisés par les gabarits et les snippets. Si vous avez besoin d'une galerie d'images, la section Média est plus adéquate."
+        help: "Les fichiers du thème sont utilisés pour construire le gabarit de vos pages. Si vous avez besoin d'une galerie d'images, la section Média est plus adéquate."
+        all: tous les fichiers
         new: nouveau fichier
+        snippets: Snippets
         css_and_js: Style et javascript
         images: Images
-        flashes: Flash
+        media: Media
         fonts: Polices
         no_items: "Il n'existe pas de fichiers. Vous pouvez commencer par créer un <a href='%{url}'>ici</a>."
+      asset:
+        updated_at: Mis à jour le
       new:
         title: Nouveau fichier
         help: "Vous avez le choix de soit uploader n'importe quel fichier ou bien soit de copier/coller du code css ou javascript."
@@ -241,6 +247,24 @@ fr:
         title: Transfert vers un autre site
         notice: Vous allez être redirigé(e) vers le site dans quelques secondes.
 
+    imports:
+      new:
+        title: Import
+        help: "Faites attention quand vous envoyez un nouveau theme sur votre site, les données de celui-ci pourront être modifiées voire même supprimées."
+      show:
+        title: Import en cours
+        help: "Votre site est en train d'être mis à jour à partir du fichier zip précédemment envoyé sur le serveur. Cette opération peut durer quelques secondes."
+        steps:
+          site: Informations sur le site
+          content_types: Modèles de données personnalisés
+          assets: Fichiers du thème
+          asset_collections: Collections de média
+          snippets: Snippets
+          pages: Pages
+        messages:
+          success: "Votre site a été mis à jour avec succès."
+          failure: "L'import n'a pas fonctionné."
+
   formtastic:
     titles:
       information: Informations générales
@@ -260,6 +284,7 @@ fr:
       other_fields: Autres informations
       presentation: Présentation
       attributes: Propriétés
+      upload: Envoi au serveur
     labels:
       theme_asset:
         new:
@@ -269,6 +294,9 @@ fr:
       custom_fields:
         field:
           _alias: Alias
+      import:
+        new:
+          source: Fichier
 
     hints:
       page:
@@ -289,3 +317,5 @@ fr:
         field:
           _alias: "Champ utilisable dans les templates liquid"
           hint: "Texte affiché dans le formulaire de l'élément juste en dessous du champ."
+      import:
+        source: "Un fichier zip contenant database.yml, les fichiers du thème et les templates de page"

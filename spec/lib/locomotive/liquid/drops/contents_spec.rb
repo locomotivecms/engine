@@ -24,10 +24,10 @@ describe Locomotive::Liquid::Drops::Contents do
 
   def render_template(template = '', assigns = {})
     assigns = {
-      'contents' => Locomotive::Liquid::Drops::Contents.new(@site)
+      'contents' => Locomotive::Liquid::Drops::Contents.new
     }.merge(assigns)
 
-    Liquid::Template.parse(template).render assigns
+    Liquid::Template.parse(template).render(::Liquid::Context.new({}, assigns, { :site => @site }))
   end
 
 end

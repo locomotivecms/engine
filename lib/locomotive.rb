@@ -1,7 +1,6 @@
 require 'mimetype_fu'
-
-# require 'locomotive/patches'
 require 'locomotive/version'
+require 'locomotive/core_ext'
 require 'locomotive/configuration'
 require 'locomotive/logger'
 require 'locomotive/liquid'
@@ -15,6 +14,9 @@ require 'locomotive/admin_responder'
 require 'locomotive/routing'
 require 'locomotive/regexps'
 require 'locomotive/render'
+require 'locomotive/import'
+require 'locomotive/delayed_job'
+require 'locomotive/middlewares'
 
 require 'locomotive/session_store'
 

@@ -1,0 +1,21 @@
+- title t('.title')
+
+- content_for :submenu do
+  = render 'admin/shared/menu/settings'
+
+%p!= t('.help')
+
+= form_tag admin_import_url, :multipart => true, :class => 'formtastic import' do
+
+  %fieldset.inputs
+    %legend
+      %span= t('formtastic.titles.upload')
+    %ol
+      %li{ :class => "file #{'error' if @error} required" }
+        = label_tag 'zipfile', t('formtastic.labels.import.new.source')
+        = file_field_tag 'zipfile'
+        - if @error
+          %p.inline-errors= @error
+        %p.inline-hints= t('formtastic.hints.import.source')
+
+  = render 'admin/shared/form_actions', :button_label => :send

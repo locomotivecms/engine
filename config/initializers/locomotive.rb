@@ -1,5 +1,4 @@
 require File.dirname(__FILE__) + '/../../lib/locomotive.rb'
-require File.dirname(__FILE__) + '/../../lib/core_ext.rb'
 
 Locomotive.configure do |config|
   # if not defined, locomotive will use example.com as main domain name. Remove prefix www from your domain name.

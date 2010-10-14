@@ -7,6 +7,7 @@
   padding: 0 10px;
   font-family: Helvetica;
   -webkit-box-shadow: -3px 3px 12px #818181;
+  z-index: 999;
 }
 
 #page-toolbar ul {
@@ -26,6 +27,7 @@
   padding-left: 24px;
   text-decoration: none;
   color: #fff;
+  outline: none;
 }
 
 #page-toolbar ul li.link a:hover span { text-decoration: underline; }

@@ -1,12 +1,13 @@
-- per_row = local_assigns[:per_row] || 6
-- asset_counter = local_assigns[:asset_counter] || 0
 - edit = local_assigns.key?(:edit) ? edit : true
 
-%li{ :class => "#{asset.new_record? ? 'new-asset' : 'asset'} #{'last' if (asset_counter + 1) % per_row == 0}"}
-  %h4= link_to truncate(asset.slug, :length => 18), edit ? edit_admin_theme_asset_path(asset) : asset.source.url, :"data-slug" => asset.slug, :"data-shortcut-url" => asset.shortcut_url
-  .image
-    .inside
-      = vignette_tag(asset)
-  - if edit
-    .actions
-      = link_to image_tag('admin/list/icons/cross.png'), admin_theme_asset_path(asset), :class => 'remove', :confirm => t('admin.messages.confirm'), :method => :delete
+%li{ :class => "#{asset.new_record? ? 'new-asset' : 'asset'} #{'hidden' if asset.hidden?}" }
+  %em
+  %strong= link_to asset.local_path(!edit), edit ? edit_admin_theme_asset_path(asset) : asset.source.url, :'data-local-path' => asset.local_path
+  .more
+    %span.size= number_to_human_size(asset.size)
+    &mdash;
+    %span!= t('.updated_at')
+    %span.date= l asset.updated_at, :format => :short
+
+    - if edit
+      = link_to image_tag('admin/list/icons/trash.png'), admin_theme_asset_path(asset), :class => 'remove', :confirm => t('admin.messages.confirm'), :method => :delete

@@ -4,12 +4,12 @@
   .actions
     = admin_button_tag t('admin.theme_assets.index.new'), admin_theme_assets_url(:json), :class => 'button small add', :id => 'upload-link'
 
-  - if @image_assets.empty?
+  - if @images.empty?
     %p.no-items!= t('.no_items')
 
-  %ul.assets
-    = render 'asset', :asset => current_site.theme_assets.build, :edit => false
+  %ul.list.theme-assets
+    = render 'asset', :asset => current_site.theme_assets.build(:updated_at => Time.now, :local_path => 'images/new.jpg', :content_type => 'image'), :edit => false
 
-    = render :partial => 'asset', :collection => @image_assets, :locals => { :per_row => 3, :edit => false }
+    = render :partial => 'asset', :collection => @images, :locals => { :edit => false }
 
     %li.clear

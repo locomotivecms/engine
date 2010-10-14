@@ -53,11 +53,8 @@ module Locomotive
         assigns = {
           'site'              => current_site,
           'page'              => @page,
-          'asset_collections' => Locomotive::Liquid::Drops::AssetCollections.new(current_site),
-          'stylesheets'       => Locomotive::Liquid::Drops::Stylesheets.new(current_site),
-          'javascripts'       => Locomotive::Liquid::Drops::Javascripts.new(current_site),
-          'images'            => Locomotive::Liquid::Drops::ThemeImages.new(current_site),
-          'contents'          => Locomotive::Liquid::Drops::Contents.new(current_site),
+          'asset_collections' => Locomotive::Liquid::Drops::AssetCollections.new,
+          'contents'          => Locomotive::Liquid::Drops::Contents.new,
           'current_page'      => self.params[:page]
         }
 

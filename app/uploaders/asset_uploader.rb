@@ -31,7 +31,7 @@ class AssetUploader < CarrierWave::Uploader::Base
   process :set_size
   process :set_width_and_height
 
-  def set_content_type
+  def set_content_type(*args)
     value = :other
 
     content_type = file.content_type == 'application/octet-stream' ? File.mime_type?(original_filename) : file.content_type
@@ -48,7 +48,7 @@ class AssetUploader < CarrierWave::Uploader::Base
     model.content_type = value
   end
 
-  def set_size
+  def set_size(*args)
     model.size = file.size
   end
 
@@ -61,12 +61,12 @@ class AssetUploader < CarrierWave::Uploader::Base
   def self.content_types
     {
       :image      => ['image/jpeg', 'image/pjpeg', 'image/gif', 'image/png', 'image/x-png', 'image/jpg'],
-      :movie      => [/^video/, 'application/x-shockwave-flash', 'application/x-swf'],
+      :video      => [/^video/, 'application/x-shockwave-flash', 'application/x-swf'],
       :audio      => [/^audio/, 'application/ogg', 'application/x-mp3'],
       :pdf        => ['application/pdf', 'application/x-pdf'],
       :stylesheet => ['text/css'],
       :javascript => ['text/javascript', 'text/js', 'application/x-javascript', 'application/javascript'],
-      :font       => ['application/x-font-ttf', 'application/vnd.ms-fontobject']
+      :font       => ['application/x-font-ttf', 'application/vnd.ms-fontobject', 'image/svg+xml', 'application/x-woff']
     }
   end
 

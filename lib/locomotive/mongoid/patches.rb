@@ -1,8 +1,8 @@
 require 'mongoid'
+# require 'mongoid/document'
 
 ## various patches
 module Mongoid #:nodoc:
-
   module Document
 
     def update_child_with_noname(child, clear = false)
@@ -13,8 +13,20 @@ module Mongoid #:nodoc:
 
     alias_method_chain :update_child, :noname
 
+    # module ClassMethods
+    #
+    #   def instantiate(attrs = nil, allocating = false) # used by carrierwave to back up the original file
+    #     document = super
+    #     document.send(:run_callbacks, :initialize) do
+    #       document
+    #     end
+    #   end
+    #
+    # end
+
   end
 end
+
 
 module Mongoid #:nodoc:
   module Validations #:nodoc:

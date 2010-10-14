@@ -5,7 +5,8 @@ module CustomFields
       class FileUploader < ::CarrierWave::Uploader::Base
 
         def store_dir
-          "sites/#{model.content_type.site_id}/contents/#{model.id}/files"
+          puts
+          "sites/#{model.site_id}/contents/#{model.class.model_name.underscore}/#{model.id}/files"
         end
 
         def cache_dir

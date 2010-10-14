@@ -30,6 +30,7 @@ en:
         back: Back without saving
         create: Create
         update: Update
+        send: Send
 
     errors:
       "500":
@@ -131,6 +132,7 @@ en:
 
     current_sites:
       edit:
+        import: import
         new_membership: add account
         help: "The site name can be updated by clicking it."
         ask_for_name: "Please type the new site name"
@@ -156,19 +158,23 @@ en:
     theme_assets:
       index:
         title: Listing theme files
-        help: "Theme assets represent files needed by layouts and snippets. If you need to manage an image gallery, go to the Assets section instead."
+        help: "The theme files section is the place where you manage the files needed by your layout, ...etc. If you need to manage an image gallery, go to the Assets section instead."
+        all: all assets
         new: new file
+        snippets: Snippets
         css_and_js: Style and javascript
         fonts: Fonts
         images: Images
-        flashes: Flash
+        media: Media
         no_items: "There are no files for now. Just click <a href=\"%{url}\">here</a> to create the first one."
+      asset:
+        updated_at: Updated at
       new:
         title: New file
         help: "You have the choice to either upload any file or to copy/paste a stylesheet or a javascript in plain text."
       edit:
         title: "Editing %{file}"
-        help: "You can insert the following shortcut url in your stylesheets: <strong>%{shortcut_url}</strong> OR use the direct url <strong>%{url}</strong>"
+        help: "This asset is accessible from the following url: <strong>%{url}</strong>"
       form:
         picker_link: Insert a file into the code
         choose_file: Choose file
@@ -242,6 +248,24 @@ en:
         title: Cross-domain authentication
         notice: You will be redirected to the website in a couple of seconds.
 
+    imports:
+      new:
+        title: Import
+        help: "Be careful when you upload a new theme for your existing website, your current data could be modified or even removed."
+      show:
+        title: Import in progress
+        help: "Your site is being updated from the theme zip file you have just uploaded. It lasts a couple of seconds."
+        steps:
+          site: Site information
+          content_types: Custom content types
+          assets: Theme files
+          asset_collections: Asset collections
+          snippets: Snippets
+          pages: Pages
+        messages:
+          success: "Your site was successfully updated."
+          failure: "The import did not work."
+
   formtastic:
     titles:
       information: General information
@@ -261,6 +285,7 @@ en:
       other_fields: Other information
       presentation: Presentation
       attributes: Attributes
+      upload: Upload
     labels:
       page:
         raw_template: Template
@@ -272,6 +297,9 @@ en:
       custom_fields:
         field:
           _alias: Alias
+      import:
+        new:
+          source: File
 
     hints:
       page:
@@ -292,4 +320,6 @@ en:
         field:
           _alias: "Property available in liquid templates"
           hint: "Text displayed in the model form just below the field"
+      import:
+        source: "A zipfile containing a database.yml along with assets and templates"
 

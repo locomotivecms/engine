@@ -1,12 +1,14 @@
 module Admin
   class SnippetsController < BaseController
 
-    sections 'settings'
+    sections 'settings', 'theme_assets'
 
     respond_to :json, :only => :update
 
-    def index
-      @snippets = current_site.snippets.order_by([[:name, :asc]])
+    def destroy
+      destroy! do |format|
+        format.html { redirect_to admin_theme_assets_url }
+      end
     end
 
   end

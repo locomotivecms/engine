@@ -47,13 +47,13 @@ $.fn.imagepicker = function(options) {
           .insertBefore($('.asset-picker ul li.clear'))
           .addClass('asset');
 
-        asset.find('h4 a').attr('href', json.url)
-          .attr('data-slug', json.slug)
-          .attr('data-shortcut-url', json.shortcut_url)
-          .html(json.name).bind('click', function(e) {
+        asset.find('strong a').attr('href', json.url)
+          .attr('data-local-path', json.local_path)
+          .html(json.local_path).bind('click', function(e) {
           copyLinkToEditor($(this), e);
         });
-        asset.find('.image .inside img').attr('src', json.vignette_url);
+        asset.find('.more .size').html(json.size);
+        asset.find('.more .date').html(json.date);
 
         if ($('.asset-picker ul li.asset').length % 3 == 0)
           asset.addClass('last');
@@ -74,7 +74,7 @@ $.fn.imagepicker = function(options) {
       'onComplete': function() {
         setupUploader();
 
-        $('ul.assets h4 a').bind('click', function(e) { copyLinkToEditor($(this), e); });
+        $('ul.theme-assets strong a').bind('click', function(e) { copyLinkToEditor($(this), e); });
       }
     });
   });

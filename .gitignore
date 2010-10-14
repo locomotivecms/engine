@@ -25,5 +25,9 @@ tmp/*
 Capfile
 config/deploy.rb
 perf/test.rb
+<<<<<<< HEAD
 gem_graph.png
 sites/
+=======
+sites
+>>>>>>> theme

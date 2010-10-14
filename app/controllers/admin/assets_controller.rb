@@ -22,8 +22,8 @@ module Admin
     end
 
     def set_collections_and_current_collection
-      @asset_collections = current_site.asset_collections
-      @asset_collection = @asset_collections.find(params[:collection_id])
+      @asset_collections = current_site.asset_collections.not_internal.order_by([[:name, :asc]])
+      @asset_collection = current_site.asset_collections.find(params[:collection_id])
     end
 
   end

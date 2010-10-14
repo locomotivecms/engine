@@ -32,8 +32,12 @@ class Asset
     end
   end
 
+  def site_id # needed by the uploader of custom fields
+    self.collection.site_id
+  end
+
   def to_liquid
-    { :url => self.source.url }.merge(self.attributes)
+    Locomotive::Liquid::Drops::Asset.new(self)
   end
 
 end
