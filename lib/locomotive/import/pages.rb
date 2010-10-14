@@ -13,8 +13,6 @@ module Locomotive
 
           fullpath = template_path.gsub(File.join(theme_path, 'templates'), '').gsub('.liquid', '').gsub(/^\//, '')
 
-          # puts "=========== #{fullpath} ================="
-
           next if %w(index 404).include?(fullpath)
 
           self.add_page(fullpath, context)
@@ -36,8 +34,6 @@ module Locomotive
 
         parent = self.find_parent(fullpath, context)
 
-        # puts "updating..... #{fullpath} / #{template}"
-
         page = site.pages.where(:fullpath => fullpath).first || site.pages.build
 
         attributes = {
@@ -54,9 +50,6 @@ module Locomotive
 
         page.attributes = attributes
 
-        # do not parse liquid templates now
-        # page.instance_variable_set(:@template_changed, false)
-
         page.save!
 
         site.reload
@@ -67,28 +60,19 @@ module Locomotive
       end
 
       def self.build_parent_template(template, context)
-        # puts "building parent_template #{template.blank?}"
-
         # just check if the template contains the extends keyword
-        # template
         fullpath = template.scan(/\{% extends (\w+) %\}/).flatten.first
 
         if fullpath # inheritance detected
           fullpath.gsub!("'", '')
 
-          # puts "found parent_template #{fullpath}"
-
           return if fullpath == 'parent'
 
           self.add_page(fullpath, context)
-        else
-          # puts "no parent_template found #{fullpath}"
         end
       end
 
       def self.find_parent(fullpath, context)
-        # puts "finding parent for #{fullpath}"
-
         site = context[:site]
 
         segments = fullpath.split('/')
@@ -108,16 +92,14 @@ module Locomotive
       def self.add_index_and_404(context)
         site, pages, theme_path = context[:site], context[:database]['site']['pages'], context[:theme_path]
 
-        %w(index 404).each do |slug|
+        %w(index 404).each_with_index do |slug, position|
           page = site.pages.where({ :slug => slug, :depth => 0 }).first
-
-          # puts "building system page (#{slug}) => #{page.inspect}"
 
           page ||= sites.pages.build(:slug => slug, :parent => nil)
 
           template = File.read(File.join(theme_path, 'templates', "#{slug}.liquid"))
 
-          page.attributes = { :raw_template => template }.merge(pages[slug] || {})
+          page.attributes = { :raw_template => template, :position => position }.merge(pages[slug] || {})
 
           page.save! rescue nil # TODO better error handling
 

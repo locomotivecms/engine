@@ -27,6 +27,7 @@ module Locomotive
             asset ||= site.theme_assets.build(:folder => folder)
 
             asset.attributes = { :source => File.open(asset_path), :performing_plain_text => false, :hidden => !visible }
+
             asset.save!
 
             site.reload
