@@ -1,47 +1,14 @@
 BOARD:
 
 - inline editing (http://www.aloha-editor.com/wiki/index.php/Aloha_PHP_Example)
-  x spinner
-  x save automatically (callback) => store modifications
-  x admin buttons
-    x edit page
-    x save / cancel
-    x back to back-office => admin settings of the page
-    (- duplicate page ?)
-    (- super bonus statistics)
-  x locale
-  x store page toolbar status in cookie
-  x trim short text content
-  x namespace js functions
   - html view in the aloha popup
   - editable elements should wrap a tag: div, h1, ...etc (default span)
   - edit images (upload new ones, ...etc) => wait for aloha or send them an email ?
-x customize tinyMCE: no html popup => div popup, nice icons
-x add images / files inside long text element (back-office side at first ?)
-x create a repo for a tool "a la" vision
-x asset collections => liquid
-x images tag to write
-! apply http://github.com/flori/json/commit/2c0f8d2c9b15a33b8d10ffcb1959aef54d320b57
-x snippet dependencies => do not work correctly
-? google analytics tag
+
 - import tool:
-  x select field (see custom fields and nocoffee theme) ?
-  x disable sub tasks by passing options
-  x exceptions
-  x page to import theme
-  x contents: group_by, oder_by, api_enabled
-  x folders for theme assets
-  x theme assets whitelist
-  x fonts
-  x asset collections
-  - add samples ?
-x mask internal asset_collections
-x refactor ui for the theme assets page
-x fix assets liquid tags / filters
-x upload and insert new images in a css or js from the ui is broken
-x proxy for fonts (http://markevans.github.com/dragonfly/file.Rails3.html)
-x order yaml file (http://www.ruby-forum.com/topic/120295)
-x fix tests
+  - add samples option
+  - remove existing pages / contents option
+
 - global regions: keyword in editable element (http://www.mongodb.org/display/DOCS/Updating)
 - write my first tutorial about locomotive
 
@@ -65,6 +32,7 @@ BUGS:
 - custom fields: accepts_nested_attributes weird behaviour when creating new content type + adding random fields
 
 NICE TO HAVE:
+- import / export site
 - asset collections: custom resizing if image
 - super_finder
 - better icons for mime type
@@ -74,7 +42,6 @@ NICE TO HAVE:
 - page with regexp url ?
 - page redirection (option)
 - automatic update !
-- import / export site
 - page not found (front) => if logged in, link to create the page
 
 DONE:
@@ -131,3 +98,41 @@ x stylish file field
 x remove not used editable element all in once
 x default content from parent editable element
 x unable to upload/remove editable file
+x customize tinyMCE: no html popup => div popup, nice icons
+x add images / files inside long text element (back-office side at first ?)
+x create a repo for a tool "a la" vision
+x asset collections => liquid
+x images tag to write
+! apply http://github.com/flori/json/commit/2c0f8d2c9b15a33b8d10ffcb1959aef54d320b57
+x snippet dependencies => do not work correctly
+? google analytics tag
+x mask internal asset_collections
+x refactor ui for the theme assets page
+x fix assets liquid tags / filters
+x upload and insert new images in a css or js from the ui is broken
+x proxy for fonts (http://markevans.github.com/dragonfly/file.Rails3.html)
+x order yaml file (http://www.ruby-forum.com/topic/120295)
+x fix tests
+x inline editing (http://www.aloha-editor.com/wiki/index.php/Aloha_PHP_Example)
+  x spinner
+  x save automatically (callback) => store modifications
+  x admin buttons
+    x edit page
+    x save / cancel
+    x back to back-office => admin settings of the page
+    (- duplicate page ?)
+    (- super bonus statistics)
+  x locale
+  x store page toolbar status in cookie
+  x trim short text content
+  x namespace js functions
+x import tool:
+  x select field (see custom fields and nocoffee theme) ?
+  x disable sub tasks by passing options
+  x exceptions
+  x page to import theme
+  x contents: group_by, oder_by, api_enabled
+  x folders for theme assets
+  x theme assets whitelist
+  x fonts
+  x asset collections
