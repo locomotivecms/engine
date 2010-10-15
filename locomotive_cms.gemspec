@@ -18,12 +18,12 @@ Gem::Specification.new do |s|
   s.rubyforge_project         = "nowarning"
 
   s.add_dependency "rails", ">= 3.0.0"
-  s.add_dependency "locomotive_liquid", ">= 2.1.3"
-  s.add_dependency "bson_ext", ">= 1.0.8"
-  s.add_dependency "mongoid", ">= 2.0.0.beta.18"
-  s.add_dependency "mongoid_acts_as_tree", "= 0.1.5"
+  s.add_dependency "locomotive_liquid", "2.2.2"
+  s.add_dependency "bson_ext", "1.1.1"
+  s.add_dependency "mongoid", "2.0.0.beta.19"
+  s.add_dependency "locomotive_mongoid_acts_as_tree", "0.1.5.1"
   s.add_dependency "warden"
-  s.add_dependency "devise", "= 1.1.2"
+  s.add_dependency "devise", "= 1.1.3"
   s.add_dependency "haml", "= 3.0.18"
   s.add_dependency "rmagick", "= 2.12.2"
   s.add_dependency "aws"
@@ -35,7 +35,10 @@ Gem::Specification.new do |s|
   s.add_dependency "httparty", ">= 0.6.1"
   s.add_dependency "RedCloth"
   s.add_dependency "inherited_resources", ">= 1.1.2"
-  s.add_dependency "custom_fields"
+  s.add_dependency "delayed_job", "2.1.0.pre2"
+  s.add_dependency "delayed_job_mongoid", "1.0.0.rc"
+  s.add_dependency "custom_fields", "1.0.0.beta"
+  s.add_dependency "rubyzip"
 
   s.files        = Dir[ "Gemfile",
                         "{app}/**/*",

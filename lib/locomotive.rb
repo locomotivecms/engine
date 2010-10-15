@@ -1,4 +1,5 @@
 require 'mimetype_fu'
+
 require 'locomotive/version'
 require 'locomotive/core_ext'
 require 'locomotive/configuration'
@@ -17,7 +18,6 @@ require 'locomotive/render'
 require 'locomotive/import'
 require 'locomotive/delayed_job'
 require 'locomotive/middlewares'
-
 require 'locomotive/session_store'
 
 module Locomotive
