@@ -20,7 +20,7 @@ gem 'rmagick', '= 2.12.2'
 gem 'locomotive_carrierwave', :require => 'carrierwave'
 
 gem 'custom_fields', '1.0.0.beta'
-gem 'aws'
+gem 'fog'
 gem 'mimetype-fu'
 gem 'actionmailer-with-request'
 gem 'heroku'

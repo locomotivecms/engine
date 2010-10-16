@@ -13,9 +13,7 @@ module Locomotive
 
             filename, folder = segments.pop, segments.join('/')
 
-            stylesheet = ThemeAsset.new(:site => @context.registers[:site], :folder => folder)
-
-            input = '/' + ThemeAssetUploader.new(stylesheet).store_path(filename)
+            input = asset_url(folder, filename)
           end
 
           input = "#{input}.css" unless input.ends_with?('.css')
@@ -33,9 +31,10 @@ module Locomotive
 
             filename, folder = segments.pop, segments.join('/')
 
-            javascript = ThemeAsset.new(:site => @context.registers[:site], :folder => folder)
-
-            input = '/' + ThemeAssetUploader.new(javascript).store_path(filename)
+            input = asset_url(folder, filename)
+            # javascript = ThemeAsset.new(:site => @context.registers[:site], :folder => folder)
+            #
+            # input = '/' + ThemeAssetUploader.new(javascript).store_path(filename)
           end
 
           input = "#{input}.js" unless input.ends_with?('.js')
@@ -52,9 +51,7 @@ module Locomotive
 
           filename, folder = segments.pop, segments.join('/')
 
-          image = ThemeAsset.new(:site => @context.registers[:site], :folder => folder)
-
-          '/' + ThemeAssetUploader.new(image).store_path(filename)
+          asset_url(folder, filename)
         end
 
         # Write an image tag
@@ -141,6 +138,13 @@ module Locomotive
         # input: url (String) OR asset drop
         def get_url_from_asset(input)
           input.respond_to?(:url) ? input.url : input
+        end
+
+        def asset_url(folder, filename)
+          asset = ThemeAsset.new(:site => @context.registers[:site], :folder => folder)
+          uploader = ThemeAssetUploader.new(asset)
+          uploader.retrieve_from_store!(filename)
+          uploader.url
         end
       end
 
