@@ -1,5 +1,8 @@
-puts "...Locomotive engine loaded"
+puts "...loading Locomotive engine"
 
+require 'rails'
+require 'heroku'
+require 'inherited_resources'
 require 'mimetype_fu'
 require 'liquid'
 require 'devise'
@@ -12,9 +15,16 @@ require 'redcloth'
 require 'actionmailer_with_request'
 require 'zip/zipfilesystem'
 require 'custom_fields'
+require 'delayed_job_mongoid'
+
+$:.unshift File.dirname(__FILE__)
 
 module Locomotive
   class Engine < Rails::Engine
+
+    rake_tasks do
+      load "railties/tasks.rake"
+    end
 
   end
 end

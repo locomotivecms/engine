@@ -1,3 +1,4 @@
+require 'responders'
 require 'inherited_resources'
 require 'inherited_resources/actions'
 require 'inherited_resources/responder'

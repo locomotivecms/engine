@@ -1,4 +1,5 @@
 require 'heroku'
+require 'heroku/client'
 require 'locomotive/heroku/custom_domain'
 
 module Locomotive

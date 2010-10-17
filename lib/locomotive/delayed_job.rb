@@ -1,5 +1,4 @@
-require 'delayed_job'
-require 'delayed/backend/mongoid'
+require 'delayed_job_mongoid'
 
 module Delayed
   module Backend

@@ -29,7 +29,7 @@ Gem::Specification.new do |s|
   s.add_dependency "fog"
   s.add_dependency "mimetype-fu"
   s.add_dependency "formtastic", ">= 1.1.0"
-  s.add_dependency "locomotive_carrierwave"
+  s.add_dependency "locomotive_carrierwave", "0.5.0.1.beta1"
   s.add_dependency "actionmailer-with-request"
   s.add_dependency "heroku"
   s.add_dependency "httparty", ">= 0.6.1"
