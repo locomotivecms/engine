@@ -1,3 +1,3 @@
 module Locomotive #:nodoc
-  VERSION = "0.0.4.beta1"
+  VERSION = "0.0.4.beta3"
 end
