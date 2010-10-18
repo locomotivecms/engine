@@ -43,7 +43,7 @@ module Admin
 
     def store_zipfile!
       file = CarrierWave::SanitizedFile.new(params[:zipfile])
-      file.move_to(File.join(Rails.root, 'tmp', 'files', current_site.id.to_s))
+      file.copy_to(File.join(Rails.root, 'tmp', 'files', current_site.id.to_s, file.filename))
       file.path
     end
 
