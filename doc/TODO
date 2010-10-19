@@ -13,6 +13,7 @@ BOARD:
 - write my first tutorial about locomotive
 
 - rewrite the unzip process (for the import)
+- bug with asset collections (assets disappear if we save the collection ?!)
 
 - refactor slugify method (use parameterize + create a module)
 - [content types] the "display column" selector should not include file types

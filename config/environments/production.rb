@@ -46,3 +46,5 @@ Locomotive::Application.configure do
 
   config.active_support.deprecation = :notify
 end
+
+# TODO: Put your carrierwave config down here

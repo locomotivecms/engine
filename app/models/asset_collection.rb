@@ -53,14 +53,16 @@ class AssetCollection
   end
 
   def store_asset_positions!
-    return if @assets_order.nil?
+    return if @assets_order.blank?
 
-    @assets_order.split(',').each_with_index do |asset_id, index|
+    ids = @assets_order.split(',').collect { |id| BSON::ObjectId(id) }
+
+    ids.each_with_index do |asset_id, index|
       self.assets.find(asset_id).position = index
     end
 
     self.assets.clone.each do |asset|
-      if !@assets_order.split(',').include?(asset._id)
+      if !ids.include?(asset._id)
         self.assets.delete(asset)
         asset.send(:delete)
       end

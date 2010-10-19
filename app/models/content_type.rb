@@ -68,7 +68,7 @@ class ContentType
 
   def sort_contents!(order)
     order.split(',').each_with_index do |id, position|
-      self.contents.find(id)._position_in_list = position
+      self.contents.find(BSON::ObjectId(id))._position_in_list = position
     end
     self.save
   end

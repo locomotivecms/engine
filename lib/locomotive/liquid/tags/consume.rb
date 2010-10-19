@@ -39,7 +39,7 @@ module Locomotive
         protected
 
         def render_all_and_cache_it(context)
-          Rails.cache.fetch(@cache_key, :expires_in => @expires_in) do
+          Rails.cache.fetch(@cache_key, :expires_in => @expires_in, :force => @expires_in == 0) do
             context.stack do
               context.scopes.last[@target.to_s] = Locomotive::Httparty::Webservice.consume(@url, @options.symbolize_keys)
 

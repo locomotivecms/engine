@@ -4,10 +4,10 @@ module Locomotive
   module Import
     class Job
 
-      def initialize(theme_file, site = nil, enabled = {})
-        raise "Theme zipfile not found" unless File.exists?(theme_file)
+      def initialize(identifier, site = nil, enabled = {})
+        raise "Theme identifier not found" if identifier.blank?
 
-        @theme_file = theme_file
+        @identifier = identifier
         @site = site
         @enabled = enabled
       end
@@ -17,7 +17,7 @@ module Locomotive
       end
 
       def perform
-        puts "theme_file = #{@theme_file} / #{@site.present?} / #{@enabled.inspect}"
+        self.log "theme identifier #{@identifier} / enabled steps = #{@enabled.inspect}"
 
         self.unzip!
 
@@ -33,21 +33,72 @@ module Locomotive
 
         %w(site content_types assets asset_collections snippets pages).each do |step|
           if @enabled[step] != false
+            self.log "performing '#{step}' step"
             "Locomotive::Import::#{step.camelize}".constantize.process(context)
             @worker.update_attributes :step => step if @worker
           else
-            puts "skipping #{step}"
+            self.log "skipping #{step}"
           end
         end
       end
 
+      def success(worker)
+        self.log 'deleting original zip file'
+
+        uploader = ThemeUploader.new(@site)
+
+        uploader.retrieve_from_store!(@identifier)
+
+        uploader.remove!
+
+        self.log 'deleting working folder'
+
+        FileUtils.rm_rf(themes_folder) rescue nil
+      end
+
       protected
 
-      def unzip!
-        Zip::ZipFile.open(@theme_file) do |zipfile|
-          destination_path = File.join(Rails.root, 'tmp', 'themes', @site.id.to_s)
+      def log(message)
+        puts "\t[import_theme] #{message}"
+      end
 
-          FileUtils.rm_r destination_path, :force => true
+      def themes_folder
+        File.join(Rails.root, 'tmp', 'themes', @site.id.to_s)
+      end
+
+      def prepare_folder
+        FileUtils.rm_rf self.themes_folder if File.exists?(self.themes_folder)
+
+        FileUtils.mkdir_p(self.themes_folder)
+      end
+
+      def retrieve_zip_file
+        uploader = ThemeUploader.new(@site)
+
+        uploader.retrieve_from_store!(@identifier)
+
+        if uploader.file.respond_to?(:url)
+          self.log 'file from remote storage'
+
+          @theme_file = File.join(self.themes_folder, @identifier)
+
+          File.open(@theme_file, 'w') { |f| f.write(uploader.file.read) }
+        else # local filesystem
+          self.log 'file from local storage'
+
+          @theme_file = uploader.path
+        end
+      end
+
+      def unzip!
+        self.prepare_folder
+
+        self.retrieve_zip_file
+
+        self.log "unzip #{@theme_file}"
+
+        Zip::ZipFile.open(@theme_file) do |zipfile|
+          destination_path = self.themes_folder
 
           zipfile.each do |entry|
             next if entry.name =~ /__MACOSX/

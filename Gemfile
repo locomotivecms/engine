@@ -17,9 +17,9 @@ gem 'formtastic', '>= 1.1.0'
 gem 'inherited_resources', '>= 1.1.2'
 
 gem 'rmagick', '= 2.12.2'
-gem 'locomotive_carrierwave', :require => 'carrierwave'
+gem 'locomotive_carrierwave', '0.5.0.1.beta2', :require => 'carrierwave'
 
-gem 'custom_fields', '1.0.0.beta'
+gem 'custom_fields', '1.0.0.beta2'
 gem 'fog', '0.3.7'
 gem 'mimetype-fu'
 gem 'actionmailer-with-request'
