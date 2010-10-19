@@ -29,7 +29,7 @@ Gem::Specification.new do |s|
   s.add_dependency "fog"
   s.add_dependency "mimetype-fu"
   s.add_dependency "formtastic", ">= 1.1.0"
-  s.add_dependency "locomotive_carrierwave", "0.5.0.1.beta1"
+  s.add_dependency "locomotive_carrierwave", "0.5.0.1.beta2"
   s.add_dependency "actionmailer-with-request"
   s.add_dependency "heroku"
   s.add_dependency "httparty", ">= 0.6.1"
@@ -37,7 +37,7 @@ Gem::Specification.new do |s|
   s.add_dependency "inherited_resources", ">= 1.1.2"
   s.add_dependency "delayed_job", "2.1.0.pre2"
   s.add_dependency "delayed_job_mongoid", "1.0.0.rc"
-  s.add_dependency "custom_fields", "1.0.0.beta"
+  s.add_dependency "custom_fields", "1.0.0.beta2"
   s.add_dependency "rubyzip"
 
   s.files        = Dir[ "Gemfile",

@@ -12,8 +12,9 @@ BOARD:
 - global regions: keyword in editable element (http://www.mongodb.org/display/DOCS/Updating)
 - write my first tutorial about locomotive
 
-- rewrite the unzip process (for the import)
-- bug with asset collections (assets disappear if we save the collection ?!)
+- cosmetic / ui bugs:
+  - increase the input field for domain names
+  - drag&drop for assets ('last' class issue)
 
 - refactor slugify method (use parameterize + create a module)
 - [content types] the "display column" selector should not include file types
@@ -138,3 +139,5 @@ x import tool:
   x theme assets whitelist
   x fonts
   x asset collections
+x rewrite the unzip process (for the import)
+x bug with asset collections (assets disappear if we save the collection ?!)

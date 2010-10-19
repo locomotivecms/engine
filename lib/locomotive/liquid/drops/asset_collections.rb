@@ -18,19 +18,19 @@ module Locomotive
         end
 
         def first
-          @collection.assets.first
+          @collection.ordered_assets.first
         end
 
         def last
-          @collection.assets.last
+          @collection.ordered_assets.last
         end
 
         def each(&block)
-          @collection.assets.each(&block)
+          @collection.ordered_assets.each(&block)
         end
 
         def paginate(options = {})
-          paginated_collection = @collection.assets.paginate(options)
+          paginated_collection = @collection.ordered_assets.paginate(options)
           {
             :collection       => paginated_collection,
             :current_page     => paginated_collection.current_page,
