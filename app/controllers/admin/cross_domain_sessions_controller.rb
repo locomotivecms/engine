@@ -1,7 +1,7 @@
 module Admin
   class CrossDomainSessionsController < BaseController
 
-    layout 'admin/box'
+    layout '/admin/layouts/box'
 
     skip_before_filter :verify_authenticity_token
 

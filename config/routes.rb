@@ -1,9 +1,9 @@
 # Locomotive::Application.routes.draw do |map|
 Rails.application.routes.draw do
 
-  constraints(Locomotive::Routing::DefaultConstraint) do
-    root :to => 'home#show'
-  end
+  # constraints(Locomotive::Routing::DefaultConstraint) do
+  #   root :to => 'home#show'
+  # end
 
   # admin authentication
   devise_for :admin, :class_name => 'Account', :controllers => { :sessions => 'admin/sessions', :passwords => 'admin/passwords' }
