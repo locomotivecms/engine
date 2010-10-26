@@ -18,29 +18,15 @@ module Locomotive
         end
 
         def first
-          content = @content_type.ordered_contents(@context['with_scope']).first
+          self.collection.first
         end
 
         def last
-          content = @content_type.ordered_contents(@context['with_scope']).last
+          self.collection.last
         end
 
         def each(&block)
-          @collection ||= @content_type.ordered_contents(@context['with_scope'])
-          @collection.each(&block)
-        end
-
-        def paginate(options = {})
-          @collection ||= @content_type.ordered_contents(@context['with_scope']).paginate(options)
-          {
-            :collection       => @collection,
-            :current_page     => @collection.current_page,
-            :previous_page    => @collection.previous_page,
-            :next_page        => @collection.next_page,
-            :total_entries    => @collection.total_entries,
-            :total_pages      => @collection.total_pages,
-            :per_page         => @collection.per_page
-          }
+          self.collection.each(&block)
         end
 
         def api
@@ -54,6 +40,25 @@ module Locomotive
           else
             klass.send(meth)
           end
+        end
+
+        protected
+
+        def paginate(options = {})
+          @collection ||= self.collection.paginate(options)
+          {
+            :collection       => @collection,
+            :current_page     => @collection.current_page,
+            :previous_page    => @collection.previous_page,
+            :next_page        => @collection.next_page,
+            :total_entries    => @collection.total_entries,
+            :total_pages      => @collection.total_pages,
+            :per_page         => @collection.per_page
+          }
+        end
+
+        def collection
+          @collection ||= @content_type.ordered_contents(@context['with_scope']) # remove per_page, page keys
         end
       end
     end

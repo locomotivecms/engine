@@ -16,6 +16,9 @@ BOARD:
   - increase the input field for domain names
   - drag&drop for assets ('last' class issue)
 
+- api
+  - handle html request (for now, it's just json)
+
 - refactor slugify method (use parameterize + create a module)
 - [content types] the "display column" selector should not include file types
 
