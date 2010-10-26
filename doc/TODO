@@ -22,6 +22,15 @@ BOARD:
 - refactor slugify method (use parameterize + create a module)
 - [content types] the "display column" selector should not include file types
 
+- installation guide
+  - detect if new installation
+  - no-site error redirects to the first step
+  - steps:
+    0/ welcome: domains, ...etc
+    1/ Create account
+    2/ Create new site (name, subdomain)
+    3/ Import theme (worker or list of sites from fs)
+
 ! add dom_id and css_class fields in page (body structure ?)
 
 BACKLOG:
