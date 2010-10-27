@@ -65,6 +65,11 @@ body { background: #000 url(/images/admin/background/body.png) repeat 0 0; }
   color: #222;
 }
 
+#panel fieldset ol li input[type=file] {
+  background: none;
+  padding: 0px;
+}
+
 #panel fieldset ol li p.inline-errors {
   padding: 3px 5px;
   margin: 5px 0px;

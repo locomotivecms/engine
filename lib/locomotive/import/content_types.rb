@@ -10,7 +10,7 @@ module Locomotive
         return if content_types.nil?
 
         content_types.each do |name, attributes|
-          puts "....content_type = #{attributes['slug']}"
+          puts "\t\t....content_type = #{attributes['slug']}"
 
           content_type = site.content_types.where(:slug => attributes['slug']).first
 

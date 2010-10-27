@@ -25,4 +25,7 @@ Locomotive.configure do |config|
   # Ex:
   # config.heroku = { :name => '<my heroku app name>', :login => 'john@doe.net', :password => 'easy' }
   config.heroku = false
+
+  # default locale (for now, only en and fr are supported)
+  config.default_locale = :en
 end

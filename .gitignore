@@ -14,6 +14,7 @@ public/javascripts/all.js
 public/javascripts/plugins
 public/images/plugins
 public/fonts
+public/sites_previous
 pkg
 rails_3_gems
 doc/performance.txt

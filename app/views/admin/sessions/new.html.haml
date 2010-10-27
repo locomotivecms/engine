@@ -4,7 +4,7 @@
   = f.hidden_field :remember_me, :value => 'true'
 
   .inner
-    = login_flash_message
+    = box_flash_message
 
     = f.inputs do
       = f.input :email, :label => t('.email'), :required => false
@@ -14,4 +14,4 @@
       = link_to t('.link'), new_admin_password_path
 
   .footer
-    = login_button_tag t('admin.buttons.login')
+    = box_button_tag t('admin.buttons.login')

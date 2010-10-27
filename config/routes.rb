@@ -1,9 +1,9 @@
 # Locomotive::Application.routes.draw do |map|
 Rails.application.routes.draw do
 
-  # constraints(Locomotive::Routing::DefaultConstraint) do
-  #   root :to => 'home#show'
-  # end
+  constraints(Locomotive::Routing::DefaultConstraint) do
+    root :to => 'admin/sessions#new'
+  end
 
   # admin authentication
   devise_for :admin, :class_name => 'Account', :controllers => { :sessions => 'admin/sessions', :passwords => 'admin/passwords' }
@@ -52,6 +52,11 @@ Rails.application.routes.draw do
     resources :cross_domain_sessions, :only => [:new, :create]
 
     resource :import, :only => [:new, :show, :create]
+
+    # installation guide
+    match '/installation' => 'installation#show', :defaults => { :step => 1 }, :as => :installation
+    match '/installation/:step' => 'installation#show', :as => :installation_step
+
   end
 
   # sitemap

@@ -58,7 +58,7 @@ module Locomotive
         # input: url of the image OR asset drop
         def image_tag(input, *args)
           image_options = inline_options(args_to_options(args))
-          "<img src=\"#{File.join('/', get_url_from_asset(input))}\" #{image_options}/>"
+          "<img src=\"#{get_url_from_asset(input)}\" #{image_options}/>"
         end
 
         # Embed a flash movie into a page

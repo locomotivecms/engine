@@ -1,0 +1,50 @@
+#panel .inner {
+  padding-left: 20px;
+  padding-right: 20px;
+  color: #222;
+}
+
+#panel .inner p.explanations {
+  margin-top: 10px;
+  font-size: 1.2em;
+}
+
+#panel .inner p.explanations a {
+  color: #1F82BC;
+  text-decoration: none;
+}
+
+#panel .inner p.explanations a:hover {
+  text-decoration: underline;
+}
+
+#panel .inner p.done {
+  margin: 20px 0px 15px;
+  font-size: 1.2em;
+}
+
+#panel .inner p {
+  margin-bottom: 5px;
+  text-align: justify;
+}
+
+#panel .inner dl {
+  margin-bottom: 0px;
+  font-size: 1.2em;
+}
+
+#panel .inner dt {
+  margin-bottom: 7px;
+}
+
+#panel .inner dt em {
+  margin-left: 10px;
+  font-size: 1.1em;
+  color: #666;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+#panel .inner dd p {
+
+}
+

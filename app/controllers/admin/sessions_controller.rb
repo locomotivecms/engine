@@ -7,7 +7,7 @@ module Admin
 
     before_filter :require_site
 
-    helper 'admin/base', 'admin/login'
+    helper 'admin/base', 'admin/box'
 
     protected
 

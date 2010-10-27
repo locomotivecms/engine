@@ -20,7 +20,7 @@ module Locomotive
       end
 
       def self.add_page(fullpath, context)
-        puts "....adding #{fullpath}"
+        puts "\t\t....adding #{fullpath}"
 
         page = context[:done][fullpath]
 

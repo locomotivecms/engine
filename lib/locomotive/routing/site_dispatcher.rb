@@ -17,7 +17,7 @@ module Locomotive
         protected
 
         def fetch_site
-          Locomotive.logger "[fetch site]  host = #{request.host} / #{request.env['HTTP_HOST']}"
+          Locomotive.logger "[fetch site] host = #{request.host} / #{request.env['HTTP_HOST']}"
           @current_site ||= Site.match_domain(request.host).first
         end
 
@@ -26,6 +26,8 @@ module Locomotive
         end
 
         def require_site
+          redirect_to admin_installation_url and return false if Account.count == 0 || Site.count == 0
+
           render_no_site_error and return false if current_site.nil?
         end
 

@@ -7,8 +7,6 @@ module Admin
 
     skip_before_filter :validate_site_membership
 
-    skip_before_filter :set_locale, :only => :create
-
     before_filter :authenticate_admin!, :only => :new
 
     def new

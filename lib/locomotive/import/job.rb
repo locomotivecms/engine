@@ -4,12 +4,13 @@ module Locomotive
   module Import
     class Job
 
-      def initialize(identifier, site = nil, enabled = {})
-        raise "Theme identifier not found" if identifier.blank?
-
-        @identifier = identifier
+      def initialize(zipfile, site, enabled = {})
         @site = site
         @enabled = enabled
+
+        @identifier = self.store_zipfile(zipfile)
+
+        raise "Theme identifier not found" if @identifier.blank?
       end
 
       def before(worker)
@@ -72,7 +73,23 @@ module Locomotive
         FileUtils.mkdir_p(self.themes_folder)
       end
 
-      def retrieve_zip_file
+      def store_zipfile(zipfile)
+        return nil if zipfile.blank?
+
+        file = CarrierWave::SanitizedFile.new(zipfile)
+
+        uploader = ThemeUploader.new(@site)
+
+        begin
+          uploader.store!(file)
+        rescue CarrierWave::IntegrityError
+          return nil
+        end
+
+        uploader.identifier
+      end
+
+      def retrieve_zipfile
         uploader = ThemeUploader.new(@site)
 
         uploader.retrieve_from_store!(@identifier)
@@ -93,7 +110,7 @@ module Locomotive
       def unzip!
         self.prepare_folder
 
-        self.retrieve_zip_file
+        self.retrieve_zipfile
 
         self.log "unzip #{@theme_file}"
 

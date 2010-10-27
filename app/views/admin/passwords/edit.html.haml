@@ -5,7 +5,7 @@
   = f.hidden_field :reset_password_token
 
   .inner
-    = login_flash_message
+    = box_flash_message
 
     = f.inputs do
       = f.input :password, :label => t('.password'), :required => false
@@ -15,4 +15,4 @@
       = link_to preserve(t('.link')), new_admin_session_path
 
   .footer
-    = login_button_tag t('admin.buttons.change_password')
+    = box_button_tag t('admin.buttons.change_password')

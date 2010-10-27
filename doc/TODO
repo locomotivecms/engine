@@ -8,19 +8,25 @@ BOARD:
 - import tool:
   - add samples option
   - remove existing pages / contents option
+  - do not override existing site name
+  - page templatized (tied to content type)
+  - samples
 
-- global regions: keyword in editable element (http://www.mongodb.org/display/DOCS/Updating)
-- write my first tutorial about locomotive
-
-- cosmetic / ui bugs:
+- cosmetic / ui bugs / bugs:
   - increase the input field for domain names
   - drag&drop for assets ('last' class issue)
+  - paginate is not working
+  - segmentation with with_scope
+  - asset whitelist
 
 - api
   - handle html request (for now, it's just json)
 
 - refactor slugify method (use parameterize + create a module)
 - [content types] the "display column" selector should not include file types
+
+- global regions: keyword in editable element (http://www.mongodb.org/display/DOCS/Updating)
+- write my first tutorial about locomotive
 
 - installation guide
   - detect if new installation

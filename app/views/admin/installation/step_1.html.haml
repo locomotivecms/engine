@@ -1,0 +1,23 @@
+- content_for :head_title do
+  = t('admin.installation.common.title')
+
+- title t('.title')
+
+= stylesheet_link_tag 'admin/installation'
+
+.inner
+  %p.explanations
+    = t('.explanations')
+
+  %dl
+    %dt!= t('.database.label', :name => Mongoid.config.database.name)
+    %dd
+      %p.notes!= t('.database.notes')
+
+    %dt!= t('.default_domain.label', :name => Locomotive.config.default_domain)
+    %dd
+      %p.notes!= t('.default_domain.notes', :domain => Locomotive.config.default_domain)
+
+
+.footer
+  = next_installation_step_link(2)

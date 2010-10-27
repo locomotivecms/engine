@@ -17,45 +17,25 @@ module Admin
           :failed => @job && @job.last_error.present?
         } }
       end
-
     end
 
     def new; end
 
     def create
-      identifier = store_zipfile!
+      begin
+        job = Locomotive::Import::Job.new(params[:zipfile], current_site)
 
-      if identifier
-        job = Locomotive::Import::Job.new(identifier, current_site)
         Delayed::Job.enqueue job, { :site => current_site, :job_type => 'import' }
 
         flash[:notice] = t('flash.admin.imports.create.notice')
 
         redirect_to admin_import_url
-      else
+      rescue
         @error = t('errors.messages.invalid_theme_file')
         flash[:alert] = t('flash.admin.imports.create.alert')
 
         render 'new'
       end
-    end
-
-    protected
-
-    def store_zipfile!
-      return nil if params[:zipfile].blank?
-
-      file = CarrierWave::SanitizedFile.new(params[:zipfile])
-
-      uploader = ThemeUploader.new(current_site)
-
-      begin
-        uploader.store!(file)
-      rescue CarrierWave::IntegrityError
-        return nil
-      end
-
-      uploader.identifier
     end
 
   end

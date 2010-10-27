@@ -1,0 +1,22 @@
+- content_for :head_title do
+  = t('admin.installation.common.title')
+
+- title t('.title')
+
+= stylesheet_link_tag 'admin/installation'
+
+= semantic_form_for(@site, :url => admin_installation_step_url(3), :html => { :multipart => true }) do |f|
+  .inner
+    %p.explanations
+      != t('.explanations')
+
+    = f.inputs do
+      = f.input :name, :required => false
+      = f.input :subdomain, :required => false
+
+      %li{ :class => 'string optional', :id => 'zipfile_input' }
+        %label{ :for => 'zipfile' }= t('formtastic.labels.import.new.source')
+        = file_field_tag 'zipfile'
+
+  .footer
+    = box_button_tag t('.next')

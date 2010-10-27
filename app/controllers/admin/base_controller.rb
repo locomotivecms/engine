@@ -49,7 +49,7 @@ module Admin
     end
 
     def set_locale
-      I18n.locale = current_admin.locale
+      I18n.locale = current_admin.locale rescue Locomotive.config.default_locale
     end
 
   end

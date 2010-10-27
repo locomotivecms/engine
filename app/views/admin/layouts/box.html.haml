@@ -2,7 +2,7 @@
 !!!
 %html{ :xmlns => 'http://www.w3.org/1999/xhtml'  }
   %head
-    %title= escape_once("#{Locomotive.config.name} &mdash; #{current_site.name}")
+    %title= yield(:head_title) || escape_once("#{Locomotive.config.name} &mdash; #{current_site.name}")
 
     = javascript_include_tag 'admin/jquery'
 
@@ -10,10 +10,12 @@
     / [if IE]
       = stylesheet_link_tag('admin/blueprint/ie', :media => 'screen')
 
-  %body
+    = yield :head
+
+  %body{ :class => @controller.controller_name }
     #wrapper
       #light.container
         #panel.container
-          %h1= title
+          %h1!= title
 
           = yield

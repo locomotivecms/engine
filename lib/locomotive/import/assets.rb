@@ -28,7 +28,11 @@ module Locomotive
 
             asset.attributes = { :source => File.open(asset_path), :performing_plain_text => false, :hidden => !visible }
 
-            asset.save!
+            begin
+              asset.save!
+            rescue Exception => e
+              puts "\t\t !!! asset_path = #{asset_path}, folder = #{folder}, error = #{e.message}"
+            end
 
             site.reload
           end

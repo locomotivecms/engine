@@ -10,7 +10,8 @@ module Locomotive
       :locales          => %w{en fr},
       :cookie_key       => '_locomotive_session',
       :enable_logs      => false,
-      :heroku           => false
+      :heroku           => false,
+      :default_locale   => :en
     }
 
     cattr_accessor :settings
