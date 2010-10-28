@@ -38,6 +38,20 @@ class ContentInstance
     self._visible || self._visible.nil?
   end
 
+  def aliased_attributes # TODO: move it to the custom_fields gem
+    hash = { :created_at => self.created_at, :updated_at => self.updated_at }
+
+    self.custom_fields.each do |field|
+      case field.kind
+      when 'file' then hash[field._alias] = self.send(field._name.to_sym).url
+      else
+        hash[field._alias] = self.send(field._name.to_sym)
+      end
+    end
+
+    hash
+  end
+
   def to_liquid
     Locomotive::Liquid::Drops::Content.new(self)
   end

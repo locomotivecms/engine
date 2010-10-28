@@ -16,6 +16,7 @@ require 'actionmailer_with_request'
 require 'zip/zipfilesystem'
 require 'custom_fields'
 require 'delayed_job_mongoid'
+require 'will_paginate'
 
 $:.unshift File.dirname(__FILE__)
 

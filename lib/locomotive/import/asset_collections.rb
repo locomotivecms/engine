@@ -1,22 +1,24 @@
 module Locomotive
   module Import
-    module AssetCollections
+    class AssetCollections < Base
 
-      def self.process(context)
-        site, database = context[:site], context[:database]
-
+      def process
         asset_collections = database['site']['asset_collections']
 
         return if asset_collections.nil?
 
         asset_collections.each do |name, attributes|
-          puts "....asset_collection = #{attributes['slug']}"
+          self.log "slug = #{attributes['slug']}"
 
           asset_collection = site.asset_collections.where(:slug => attributes['slug']).first
 
-          asset_collection ||= self.build_asset_collection(site, attributes.merge(:name => name))
+          asset_collection ||= self.build_asset_collection(attributes.merge(:name => name))
 
           self.add_or_update_fields(asset_collection, attributes['fields'])
+
+          if options[:samples] && attributes['assets']
+            self.insert_samples(asset_collection, attributes['assets'].symbolize_keys)
+          end
 
           asset_collection.save!
 
@@ -24,7 +26,9 @@ module Locomotive
         end
       end
 
-      def self.build_asset_collection(site, data)
+      protected
+
+      def build_asset_collection(data)
         attributes = { :internal => false }.merge(data)
 
         attributes.delete_if { |name, value| %w{fields assets}.include?(name) }
@@ -32,7 +36,7 @@ module Locomotive
         site.asset_collections.build(attributes)
       end
 
-      def self.add_or_update_fields(asset_collection, fields)
+      def add_or_update_fields(asset_collection, fields)
         fields.each_with_index do |data, position|
           name, data = data.keys.first, data.values.first
 
@@ -45,6 +49,34 @@ module Locomotive
           field.send(:set_unique_name!) if field.new_record?
 
           field.attributes = attributes
+        end
+      end
+
+      def insert_samples(asset_collection, assets)
+        assets.each_with_index do |data, position|
+          value, attributes = data.is_a?(Array) ? [data.first, data.last] : [data.keys.first, data.values.first]
+
+          url = attributes.delete('url')
+
+          # build with default attributes
+          asset = asset_collection.assets.build(:name => value, :position => position, :url => self.open_sample_asset(url))
+
+          attributes.each do |name, value|
+            field = asset_collection.asset_custom_fields.detect { |f| f._alias == name }
+
+            value = (case field.kind.downcase
+            when 'file'     then self.open_sample_asset(value)
+            when 'boolean'  then Boolean.set(value)
+            else
+              value
+            end)
+
+            asset.send("#{name}=", value)
+          end
+
+          asset.save
+
+          self.log "insert asset '#{name}'"
         end
       end
 

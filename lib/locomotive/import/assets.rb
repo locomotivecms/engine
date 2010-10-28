@@ -1,24 +1,26 @@
 module Locomotive
   module Import
-    module Assets
+    class Assets < Base
 
-      def self.process(context)
-        site, theme_path = context[:site], context[:theme_path]
+      def process
+        whitelist = self.build_regexps_in_withlist(database['site']['assets']['whitelist']) rescue nil
 
-        whitelist = self.build_regexps_in_withlist(context[:database]['site']['assets']['whitelist']) rescue nil
+        self.log "white list = #{whitelist.inspect}"
 
-        self.add_theme_assets(site, theme_path, whitelist)
+        self.add_theme_assets(whitelist)
 
-        self.add_other_assets(site, theme_path)
+        self.add_other_assets
       end
 
-      def self.add_theme_assets(site, theme_path, whitelist)
+      protected
+
+      def add_theme_assets(whitelist)
         %w(images media fonts javascripts stylesheets).each do |kind|
           Dir[File.join(theme_path, 'public', kind, '**/*')].each do |asset_path|
 
             next if File.directory?(asset_path)
 
-            visible = self.check_against_whitelist(whitelist, asset_path.gsub(File.join(theme_path, 'public'), ''))
+            visible = self.check_against_whitelist(whitelist, asset_path.gsub(File.join(theme_path, 'public'), '').gsub(/^\//, ''))
 
             folder = asset_path.gsub(File.join(theme_path, 'public'), '').gsub(File.basename(asset_path), '').gsub(/^\//, '').gsub(/\/$/, '')
 
@@ -31,7 +33,7 @@ module Locomotive
             begin
               asset.save!
             rescue Exception => e
-              puts "\t\t !!! asset_path = #{asset_path}, folder = #{folder}, error = #{e.message}"
+              self.log "!ERROR! = #{e.message}, #{asset_path}"
             end
 
             site.reload
@@ -39,7 +41,7 @@ module Locomotive
         end
       end
 
-      def self.add_other_assets(site, theme_path)
+      def add_other_assets
         collection = AssetCollection.find_or_create_internal(site)
 
         Dir[File.join(theme_path, 'public', 'samples', '*')].each do |asset_path|
@@ -52,7 +54,7 @@ module Locomotive
         end
       end
 
-      def self.build_regexps_in_withlist(rules)
+      def build_regexps_in_withlist(rules)
         rules.collect do |rule|
           if rule.start_with?('^')
             Regexp.new(rule.gsub('/', '\/'))
@@ -62,7 +64,7 @@ module Locomotive
         end
       end
 
-      def self.check_against_whitelist(whitelist, path)
+      def check_against_whitelist(whitelist, path)
         (whitelist || []).each do |rule|
           case rule
             when Regexp

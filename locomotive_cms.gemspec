@@ -39,6 +39,7 @@ Gem::Specification.new do |s|
   s.add_dependency "delayed_job_mongoid", "1.0.0.rc"
   s.add_dependency "custom_fields", "1.0.0.beta2"
   s.add_dependency "rubyzip"
+  s.add_dependency "will_paginate"
 
   s.files        = Dir[ "Gemfile",
                         "{app}/**/*",

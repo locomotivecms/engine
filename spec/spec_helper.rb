@@ -21,6 +21,8 @@ Rspec.configure do |config|
     DatabaseCleaner.orm = "mongoid"
   end
   config.before(:each) do
-    DatabaseCleaner.clean
+    if self.described_class != Locomotive::Import::Job
+      DatabaseCleaner.clean
+    end
   end
 end

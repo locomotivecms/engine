@@ -5,22 +5,24 @@ BOARD:
   - editable elements should wrap a tag: div, h1, ...etc (default span)
   - edit images (upload new ones, ...etc) => wait for aloha or send them an email ?
 
-- import tool:
-  - add samples option
-  - remove existing pages / contents option
-  - do not override existing site name
-  - page templatized (tied to content type)
-  - samples
+x import tool:
+  x asset whitelist
+  x do not override existing site name
+  x add samples option
+    x content types
+    x asset collections
+  x page templatized (tied to content type)
+  x remove existing pages / contents option => reset
 
 - cosmetic / ui bugs / bugs:
+  x segmentation with with_scope
+  x paginate is not working
+  - assets within custom contents are not deleted when the whole content type gets destroyed (after_destroy callback ?)
   - increase the input field for domain names
   - drag&drop for assets ('last' class issue)
-  - paginate is not working
-  - segmentation with with_scope
-  - asset whitelist
 
-- api
-  - handle html request (for now, it's just json)
+x api
+  x handle html request (for now, it's just json)
 
 - refactor slugify method (use parameterize + create a module)
 - [content types] the "display column" selector should not include file types
@@ -28,14 +30,13 @@ BOARD:
 - global regions: keyword in editable element (http://www.mongodb.org/display/DOCS/Updating)
 - write my first tutorial about locomotive
 
-- installation guide
-  - detect if new installation
-  - no-site error redirects to the first step
-  - steps:
-    0/ welcome: domains, ...etc
-    1/ Create account
-    2/ Create new site (name, subdomain)
-    3/ Import theme (worker or list of sites from fs)
+x installation guide
+  x detect if new installation
+  x no-site error redirects to the first step
+  x steps:
+    x welcome: domains, ...etc
+    x Create account
+    x Create new site (name, subdomain) / Import theme (worker or list of sites from fs)
 
 ! add dom_id and css_class fields in page (body structure ?)
 

@@ -1,11 +1,9 @@
 module Locomotive
   module Import
-    module Site
+    class Site < Base
 
-      def self.process(context)
-        site, database = context[:site], context[:database]
-
-        attributes = database['site'].clone.delete_if { |name, value| %w{pages assets content_types asset_collections}.include?(name) }
+      def process
+        attributes = database['site'].clone.delete_if { |name, value| %w{name pages assets content_types asset_collections}.include?(name) }
 
         site.attributes = attributes
 

@@ -4,9 +4,15 @@ module Locomotive
   module Import
     class Job
 
-      def initialize(zipfile, site, enabled = {})
+      include Logger
+
+      def initialize(zipfile, site, options = {})
         @site = site
-        @enabled = enabled
+        @options = {
+          :reset    => false,
+          :samples  => false,
+          :enabled  => {}
+        }.merge(options)
 
         @identifier = self.store_zipfile(zipfile)
 
@@ -18,7 +24,7 @@ module Locomotive
       end
 
       def perform
-        self.log "theme identifier #{@identifier} / enabled steps = #{@enabled.inspect}"
+        self.log "theme identifier #{@identifier}"
 
         self.unzip!
 
@@ -32,10 +38,11 @@ module Locomotive
           :worker => @worker
         }
 
+        self.reset! if @options[:reset]
+
         %w(site content_types assets asset_collections snippets pages).each do |step|
-          if @enabled[step] != false
-            self.log "performing '#{step}' step"
-            "Locomotive::Import::#{step.camelize}".constantize.process(context)
+          if @options[:enabled][step] != false
+            "Locomotive::Import::#{step.camelize}".constantize.process(context, @options)
             @worker.update_attributes :step => step if @worker
           else
             self.log "skipping #{step}"
@@ -58,10 +65,6 @@ module Locomotive
       end
 
       protected
-
-      def log(message)
-        puts "\t[import_theme] #{message}"
-      end
 
       def themes_folder
         File.join(Rails.root, 'tmp', 'themes', @site.id.to_s)
@@ -134,6 +137,13 @@ module Locomotive
           end
         end
 
+      end
+
+      def reset!
+        @site.pages.destroy_all
+        @site.theme_assets.destroy_all
+        @site.content_types.destroy_all
+        @site.asset_collections.destroy_all
       end
 
     end

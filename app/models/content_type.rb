@@ -62,7 +62,16 @@ class ContentType
     (if conditions.nil? || conditions.empty?
       self.contents
     else
-      self.contents.where(conditions)
+      conditions_with_names = {}
+
+      conditions.each do |key, value|
+        # convert alias (key) to name
+        field = self.content_custom_fields.detect { |f| f._alias == key }
+
+        conditions_with_names[field._name.to_sym] = value
+      end
+
+      self.contents.where(conditions_with_names)
     end).sort { |a, b| (a.send(column) || 0) <=> (b.send(column) || 0) }
   end
 

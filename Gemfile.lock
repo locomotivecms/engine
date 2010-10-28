@@ -266,3 +266,4 @@ DEPENDENCIES
   rubyzip
   spork
   warden
+  will_paginate

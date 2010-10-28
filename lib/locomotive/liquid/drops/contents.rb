@@ -45,7 +45,7 @@ module Locomotive
         protected
 
         def paginate(options = {})
-          @collection ||= self.collection.paginate(options)
+          @collection = self.collection.paginate(options)
           {
             :collection       => @collection,
             :current_page     => @collection.current_page,
@@ -58,7 +58,7 @@ module Locomotive
         end
 
         def collection
-          @collection ||= @content_type.ordered_contents(@context['with_scope']) # remove per_page, page keys
+          @collection ||= @content_type.ordered_contents(@context['with_scope'])
         end
       end
     end

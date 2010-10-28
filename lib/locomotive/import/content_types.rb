@@ -1,20 +1,16 @@
 module Locomotive
   module Import
-    module ContentTypes
+    class ContentTypes < Base
 
-      def self.process(context)
-        site, database = context[:site], context[:database]
-
-        content_types = database['site']['content_types']
-
+      def process
         return if content_types.nil?
 
         content_types.each do |name, attributes|
-          puts "\t\t....content_type = #{attributes['slug']}"
+          self.log "[content_types] slug = #{attributes['slug']}"
 
           content_type = site.content_types.where(:slug => attributes['slug']).first
 
-          content_type ||= self.build_content_type(site, attributes.merge(:name => name))
+          content_type ||= self.build_content_type(attributes.merge(:name => name))
 
           self.add_or_update_fields(content_type, attributes['fields'])
 
@@ -24,13 +20,23 @@ module Locomotive
 
           self.set_group_by_value(content_type)
 
+          if options[:samples] && attributes['contents']
+            self.insert_samples(content_type, attributes['contents'])
+          end
+
           content_type.save!
 
           site.reload
         end
       end
 
-      def self.build_content_type(site, data)
+      protected
+
+      def content_types
+        database['site']['content_types']
+      end
+
+      def build_content_type(data)
         attributes = { :order_by => '_position_in_list', :group_by_field_name => data.delete('group_by') }.merge(data)
 
         attributes.delete_if { |name, value| %w{fields contents}.include?(name) }
@@ -38,7 +44,7 @@ module Locomotive
         site.content_types.build(attributes)
       end
 
-      def self.add_or_update_fields(content_type, fields)
+      def add_or_update_fields(content_type, fields)
         fields.each_with_index do |data, position|
           name, data = data.keys.first, data.values.first
 
@@ -54,13 +60,39 @@ module Locomotive
         end
       end
 
-      def self.set_highlighted_field_name(content_type)
+      def insert_samples(content_type, contents)
+        contents.each_with_index do |data, position|
+          value, attributes = data.is_a?(Array) ? [data.first, data.last] : [data.keys.first, data.values.first]
+
+          # build with default attributes
+          content = content_type.contents.build(content_type.highlighted_field_name.to_sym => value, :_position_in_list => position)
+
+          attributes.each do |name, value|
+            field = content_type.content_custom_fields.detect { |f| f._alias == name }
+
+            value = (case field.kind.downcase
+            when 'file'     then self.open_sample_asset(value)
+            when 'boolean'  then Boolean.set(value)
+            else
+              value
+            end)
+
+            content.send("#{name}=", value)
+          end
+
+          content.save
+
+          self.log "insert content '#{value}'"
+        end
+      end
+
+      def set_highlighted_field_name(content_type)
         field = content_type.content_custom_fields.detect { |f| f._alias == content_type.highlighted_field_name }
 
         content_type.highlighted_field_name = field._name if field
       end
 
-      def self.set_order_by_value(content_type)
+      def set_order_by_value(content_type)
         order_by = (case content_type.order_by
         when 'manually', '_position_in_list' then '_position_in_list'
         when 'date', 'updated_at' then 'updated_at'
@@ -71,7 +103,7 @@ module Locomotive
         content_type.order_by = order_by || '_position_in_list'
       end
 
-      def self.set_group_by_value(content_type)
+      def set_group_by_value(content_type)
         return if content_type.group_by_field_name.blank?
 
         field = content_type.content_custom_fields.detect { |f| f._alias == content_type.group_by_field_name }

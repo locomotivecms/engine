@@ -42,11 +42,12 @@ module Admin
         @site.save
 
         if @site.valid?
-          # begin
-            job = Locomotive::Import::Job.new(params[:zipfile], @site)
+          begin
+            job = Locomotive::Import::Job.new(params[:zipfile], @site, { :samples => true })
             Delayed::Job.enqueue job, { :site => @site, :job_type => 'import' }
-          # rescue;
-          # end # not a big deal if it did not work
+          rescue Exception => e
+            logger.error "Import failed because of #{e.message}"
+          end
 
           redirect_to admin_session_url(:host => Site.first.domains.first, :port => request.port)
         else

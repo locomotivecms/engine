@@ -60,7 +60,7 @@ module Locomotive
           'asset_collections' => Locomotive::Liquid::Drops::AssetCollections.new,
           'contents'          => Locomotive::Liquid::Drops::Contents.new,
           'current_page'      => self.params[:page]
-        }
+        }.merge(flash.stringify_keys) # data from api
 
         if @page.templatized? # add instance from content type
           assigns['content_instance'] = @content_instance
@@ -79,6 +79,8 @@ module Locomotive
       end
 
       def prepare_and_set_response(output)
+        flash.discard
+
         response.headers['Content-Type'] = 'text/html; charset=utf-8'
 
         if @page.with_cache?
