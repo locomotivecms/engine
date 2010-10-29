@@ -32,7 +32,7 @@ module Admin
 
     def set_content_type
       @content_type = current_site.content_types.where(:slug => params[:slug]).first
-      render :json => { :error => 'Api not enabled'} and return false unless @content_type.api_enabled
+      render :json => { :error => 'Api not enabled' } and return false unless @content_type.api_enabled
     end
 
   end

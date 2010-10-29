@@ -24,9 +24,18 @@ $(document).ready(function() {
     $('#asset_collection_assets_order').val(ids || '');
   }
 
+  var setLastClassForAssets = function() {
+    $('ul.assets li.last').removeClass('last');
+    var i = parseInt($('ul.assets li.asset').size() / 6);
+    while (i > 0) {
+      $('ul.assets li.asset:eq(' + (i * 6 - 1) + ')').addClass('last');
+      i--;
+    }
+  }
+
   $('ul.assets.sortable').sortable({
     items: 'li.asset',
-    stop: function(event, ui) { updateAssetsOrder(); }
+    stop: function(event, ui) { updateAssetsOrder(); setLastClassForAssets(); }
   });
 
   $('ul.assets.sortable li div.actions a.remove').click(function(e) {
@@ -37,12 +46,7 @@ $(document).ready(function() {
 
       if ($('ul.assets li.asset').size() == 0) $('p.no-items').show();
 
-      $('ul.assets li.last').removeClass('last');
-      var i = parseInt($('ul.assets li.asset').size() / 6);
-      while (i > 0) {
-        $('ul.assets li.asset:eq(' + (i * 6 - 1) + ')').addClass('last');
-        i--;
-      }
+      setLastClassForAssets();
     }
     e.preventDefault();
     e.stopPropagation();

@@ -50,15 +50,19 @@ class Site
 
   def add_subdomain_to_domains
     self.domains ||= []
-    (self.domains << "#{self.subdomain}.#{Locomotive.config.default_domain}").uniq!
+    (self.domains << self.full_subdomain).uniq!
   end
 
   def domains_without_subdomain
-    (self.domains || []) - ["#{self.subdomain}.#{Locomotive.config.default_domain}"]
+    (self.domains || []) - [self.full_subdomain]
   end
 
   def domains_with_subdomain
-    ((self.domains || []) + ["#{self.subdomain}.#{Locomotive.config.default_domain}"]).uniq
+    ((self.domains || []) + [self.full_subdomain]).uniq
+  end
+
+  def full_subdomain
+    "#{self.subdomain}.#{Locomotive.config.default_domain}"
   end
 
   def to_liquid

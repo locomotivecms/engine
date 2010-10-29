@@ -11,7 +11,12 @@ module Admin
 
     def new
       if site = current_admin.sites.detect { |s| s._id.to_s == params[:target_id] }
-        @target = site.domains_without_subdomain.first || site.domains_with_subdomain.first
+        if Rails.env == 'development'
+          @target = site.full_subdomain
+        else
+          @target = site.domains_without_subdomain.first || site.full_subdomain
+        end
+
         current_admin.reset_switch_site_token!
       else
         redirect_to admin_pages_path

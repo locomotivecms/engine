@@ -82,7 +82,7 @@ module Locomotive
 
           content.save
 
-          self.log "insert content '#{value}'"
+          self.log "insert content '#{content.send(content_type.highlighted_field_name.to_sym)}'"
         end
       end
 

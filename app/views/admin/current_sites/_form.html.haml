@@ -23,7 +23,7 @@
     %li{ :class => "item added #{'last' if index == @site.domains.size - 1}"}
       %em
         http://
-      = text_field_tag 'current_site[domains][]', name
+      = text_field_tag 'current_site[domains][]', name, :class => 'string label void domain'
       &nbsp;
       = error_on_domain(@site, name)
       %span.actions
@@ -32,7 +32,7 @@
   %li.item.template
     %em
       http://
-    = text_field_tag 'label', t('formtastic.hints.site.domain_name'), :class => 'string label void'
+    = text_field_tag 'label', t('formtastic.hints.site.domain_name'), :class => 'string label void domain'
     &nbsp;
     %span.actions
       = link_to image_tag('admin/form/icons/trash.png'), '#', :class => 'remove first', :confirm => t('admin.messages.confirm')

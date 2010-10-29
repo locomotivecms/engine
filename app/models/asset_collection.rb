@@ -18,6 +18,7 @@ class AssetCollection
   ## callbacks ##
   before_validation :normalize_slug
   before_save :store_asset_positions!
+  after_destroy :remove_uploaded_files
 
   ## validations ##
   validates_presence_of :site, :name, :slug
@@ -68,4 +69,13 @@ class AssetCollection
       end
     end
   end
+
+  def remove_uploaded_files # callbacks are not called on each asset so we do it manually
+    self.assets.each do |asset|
+      self.asset_custom_fields.each do |field|
+        asset.send(:"remove_#{field._name}!") if field.kind == 'file'
+      end
+    end
+  end
+
 end

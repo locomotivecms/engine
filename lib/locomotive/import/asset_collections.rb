@@ -17,7 +17,7 @@ module Locomotive
           self.add_or_update_fields(asset_collection, attributes['fields'])
 
           if options[:samples] && attributes['assets']
-            self.insert_samples(asset_collection, attributes['assets'].symbolize_keys)
+            self.insert_samples(asset_collection, attributes['assets'])
           end
 
           asset_collection.save!
@@ -59,7 +59,7 @@ module Locomotive
           url = attributes.delete('url')
 
           # build with default attributes
-          asset = asset_collection.assets.build(:name => value, :position => position, :url => self.open_sample_asset(url))
+          asset = asset_collection.assets.build(:name => value, :position => position, :source => self.open_sample_asset(url))
 
           attributes.each do |name, value|
             field = asset_collection.asset_custom_fields.detect { |f| f._alias == name }
@@ -76,7 +76,7 @@ module Locomotive
 
           asset.save
 
-          self.log "insert asset '#{name}'"
+          self.log "insert asset '#{asset.name}'"
         end
       end
 

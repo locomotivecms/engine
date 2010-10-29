@@ -299,6 +299,10 @@ form.formtastic fieldset.editable-list ol li.added input {
   cursor: pointer;
 }
 
+form.formtastic fieldset.editable-list ol li.added input.domain {
+  width: 250px;
+}
+
 form.formtastic fieldset.editable-list ol li.added input:hover {
   background: #fffbe5;
   border: 1px dotted #efe4a5;

@@ -5,40 +5,15 @@ BOARD:
   - editable elements should wrap a tag: div, h1, ...etc (default span)
   - edit images (upload new ones, ...etc) => wait for aloha or send them an email ?
 
-x import tool:
-  x asset whitelist
-  x do not override existing site name
-  x add samples option
-    x content types
-    x asset collections
-  x page templatized (tied to content type)
-  x remove existing pages / contents option => reset
-
-- cosmetic / ui bugs / bugs:
-  x segmentation with with_scope
-  x paginate is not working
-  - assets within custom contents are not deleted when the whole content type gets destroyed (after_destroy callback ?)
-  - increase the input field for domain names
-  - drag&drop for assets ('last' class issue)
-
-x api
-  x handle html request (for now, it's just json)
+- import tools
+  - give choice to reset site / add samples
+  - french translatations
 
 - refactor slugify method (use parameterize + create a module)
 - [content types] the "display column" selector should not include file types
 
 - global regions: keyword in editable element (http://www.mongodb.org/display/DOCS/Updating)
 - write my first tutorial about locomotive
-
-x installation guide
-  x detect if new installation
-  x no-site error redirects to the first step
-  x steps:
-    x welcome: domains, ...etc
-    x Create account
-    x Create new site (name, subdomain) / Import theme (worker or list of sites from fs)
-
-! add dom_id and css_class fields in page (body structure ?)
 
 BACKLOG:
 
@@ -160,3 +135,27 @@ x import tool:
   x asset collections
 x rewrite the unzip process (for the import)
 x bug with asset collections (assets disappear if we save the collection ?!)
+x import tool:
+  x asset whitelist
+  x do not override existing site name
+  x add samples option
+    x content types
+    x asset collections
+  x page templatized (tied to content type)
+  x remove existing pages / contents option => reset
+x cosmetic / ui bugs / bugs:
+  x segmentation fault with with_scope
+  x paginate is not working
+  x redirection in dev does not work correctly for cross domain
+  x drag&drop for assets ('last' class issue)
+  x increase the input field width for domain names
+  x assets within custom contents are not deleted when the whole content type gets destroyed (after_destroy callback ?)
+x api
+  x handle html request (for now, it's just json)
+x installation guide
+  x detect if new installation
+  x no-site error redirects to the first step
+  x steps:
+    x welcome: domains, ...etc
+    x Create account
+    x Create new site (name, subdomain) / Import theme (worker or list of sites from fs)

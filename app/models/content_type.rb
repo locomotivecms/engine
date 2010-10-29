@@ -25,6 +25,7 @@ class ContentType
   ## callbacks ##
   before_validation :normalize_slug
   before_save :set_default_values
+  after_destroy :remove_uploaded_files
 
   ## validations ##
   validates_presence_of :site, :name, :slug
@@ -100,6 +101,14 @@ class ContentType
   def normalize_slug
     self.slug = self.name.clone if self.slug.blank? && self.name.present?
     self.slug.slugify! if self.slug.present?
+  end
+
+  def remove_uploaded_files # callbacks are not called on each content so we do it manually
+    self.contents.each do |content|
+      self.content_custom_fields.each do |field|
+        content.send(:"remove_#{field._name}!") if field.kind == 'file'
+      end
+    end
   end
 
 end

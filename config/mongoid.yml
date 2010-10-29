@@ -8,8 +8,10 @@ defaults: &defaults
 
 development:
   <<: *defaults
-  database: locomotive_dev_tmp
+  database: locomotive_dev
+  # database: locomotive_dev_tmp
   # database: locomotive_hosting_production
+
 
 test:
   <<: *defaults
