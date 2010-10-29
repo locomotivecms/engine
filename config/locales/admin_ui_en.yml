@@ -278,7 +278,7 @@ en:
           notes: "All the mongodb connection settings can be found in the <b>config/mongoid.yml</b> file of your application."
         default_domain:
           label: "Default domain name: <em>%{name}</em>"
-          notes: "Basically, Locomotive is a multi websites platform. Each site instance has a default entry based on the default domain name. Obviously, you are free to map other domains to your site instance working like aliases. <br/>The default domain name value can be found in the <b>config/initializers/locomotive.rb</b> file."
+          notes: "Basically, Locomotive is a multi websites platform. Each site instance has a default entry, also called subdomain and based on the default domain name. Obviously, you are free to map other domains to your site instance working like aliases. <br/>The default domain name value can be found in the <b>config/initializers/locomotive.rb</b> file."
       step_2:
         title: "Step 2/3 &mdash; Create account"
         name: Account name
@@ -288,7 +288,7 @@ en:
         done: "You have already added an account:<br/><strong>%{name}</strong>, <em>%{email}</em>"
         next: Create account
       step_3:
-        title: "Step 3/3 &mdash; Create site"
+        title: "Step 3/3 &mdash; Create first site"
         explanations: "This is the last step of the installation. You can upload a theme as a zip file. We have free available themes <a href=\"http://www.locomotivecms.com/docs/themes\">here</a>."
         next: Create site
 

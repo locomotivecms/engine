@@ -13,6 +13,8 @@ module Admin
 
     before_filter :is_step_already_done?
 
+    before_filter :allow_installation?
+
     def show
       request.get? ? self.handle_get : self.handle_post
     end
@@ -66,6 +68,10 @@ module Admin
       else
         true
       end
+    end
+
+    def allow_installation?
+      redirect_to admin_pages_url if Site.count > 0 && Account.count > 0
     end
 
   end
