@@ -325,6 +325,8 @@ en:
       import:
         new:
           source: File
+          samples: Copy samples
+          reset: Reset site
 
     hints:
       page:
@@ -347,4 +349,6 @@ en:
           hint: "Text displayed in the model form just below the field"
       import:
         source: "A zipfile containing a database.yml along with assets and templates"
+        samples: "If enabled, the import process will also copy contents and assets"
+        reset: "If enabled, all the data of your site will be destroyed before importing the new site"
 

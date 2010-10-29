@@ -18,12 +18,12 @@
           %p.inline-errors= @error
         %p.inline-hints= t('formtastic.hints.import.source')
 
-      %li.input
+      %li.input.toggle
         = label_tag 'samples', t('formtastic.labels.import.new.samples')
         = check_box_tag 'samples'
         %p.inline-hints= t('formtastic.hints.import.samples')
 
-      %li.input
+      %li.input.toggle
         = label_tag 'reset', t('formtastic.labels.import.new.reset')
         = check_box_tag 'reset'
         %p.inline-hints= t('formtastic.hints.import.reset')

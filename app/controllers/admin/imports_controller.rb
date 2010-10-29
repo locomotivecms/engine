@@ -23,7 +23,10 @@ module Admin
 
     def create
       begin
-        job = Locomotive::Import::Job.new(params[:zipfile], current_site)
+        job = Locomotive::Import::Job.new(params[:zipfile], current_site, {
+          :samples  => Boolean.set(params[:samples]),
+          :reset    => Boolean.set(params[:reset])
+        })
 
         Delayed::Job.enqueue job, { :site => current_site, :job_type => 'import' }
 

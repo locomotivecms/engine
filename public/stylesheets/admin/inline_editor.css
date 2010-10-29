@@ -6,7 +6,8 @@
   background: transparent url('/images/admin/inline_editor/bg.png') repeat-x 0 0;
   padding: 0 10px;
   font-family: Helvetica;
-  -webkit-box-shadow: -3px 3px 12px #818181;
+  -webkit-box-shadow: -3px 3px 12px rgba(0, 0, 0, 0.4);
+  -moz-box-shadow: -3px 3px 12px rgba(0, 0, 0, 0.4);
   z-index: 999;
 }
 
@@ -23,13 +24,17 @@
 #page-toolbar ul li.link a {
   display: block;
   background: transparent url('/images/admin/inline_editor/action-left.png') no-repeat 0 0;
-  height: 21px;
+  height: 19px;
+  line-height: 19px;
   padding-left: 24px;
   text-decoration: none;
   color: #fff;
   outline: none;
+  border: 0px;
+  font-size: 12px;
 }
 
+#page-toolbar ul li.link a:active { border: 0px; text-decoration: none; color: #fff; top: 0px; }
 #page-toolbar ul li.link a:hover span { text-decoration: underline; }
 
 #page-toolbar ul li.save a { background-position: 0 -21px; }
@@ -42,7 +47,7 @@
 #page-toolbar ul li.link a span {
   display: block;
   background: transparent url('/images/admin/inline_editor/action-right.png') no-repeat right 0;
-  height: 20px;
+  height: 19px;
   padding: 1px 10px 0 2px;
   text-shadow: 1px 1px 1px #000;
 }
@@ -60,11 +65,16 @@
   height: 10px;
   background: transparent url('/images/admin/inline_editor/drawer.png') no-repeat 0 0;
   text-decoration: none;
+  border: 0px;
+  padding: 0px;
+  margin: 0px;
 }
 
 #page-toolbar ul li.drawer a.off {
   background-position: 0 -10px;
 }
+
+#page-toolbar ul li.drawer a:active { border: 0px; text-decoration: none; top: 6px; padding: 0px; }
 
 #page-toolbar ul li.spinner a {
   padding-left: 24px;
@@ -88,3 +98,8 @@
 }
 
 #page-toolbar ul li.clear { clear: both; }
+
+/* ___ aloha ___ */
+
+.x-tab-panel a.x-tab-right { border-bottom: 0px; padding-bottom: 0px; }
+.x-tab-panel input[type=text] { border: 1px solid gray; border-spacing: 2px; -webkit-border-radius: 0px; -webkit-box-shadow: none; background: #fff; color: #000; padding: 2px; }

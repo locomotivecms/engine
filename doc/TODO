@@ -5,10 +5,6 @@ BOARD:
   - editable elements should wrap a tag: div, h1, ...etc (default span)
   - edit images (upload new ones, ...etc) => wait for aloha or send them an email ?
 
-- import tools
-  - give choice to reset site / add samples
-  - french translatations
-
 - refactor slugify method (use parameterize + create a module)
 - [content types] the "display column" selector should not include file types
 
@@ -143,6 +139,8 @@ x import tool:
     x asset collections
   x page templatized (tied to content type)
   x remove existing pages / contents option => reset
+  x give choice to reset site / add samples
+  x french translatations
 x cosmetic / ui bugs / bugs:
   x segmentation fault with with_scope
   x paginate is not working

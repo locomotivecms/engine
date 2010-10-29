@@ -297,6 +297,8 @@ fr:
       import:
         new:
           source: Fichier
+          samples: Copier contenu
+          reset: Remettre à zéro
 
     hints:
       page:
@@ -319,3 +321,5 @@ fr:
           hint: "Texte affiché dans le formulaire de l'élément juste en dessous du champ."
       import:
         source: "Un fichier zip contenant database.yml, les fichiers du thème et les templates de page"
+        samples: "Si activé, les contenus et les média seront aussi copiés lors de l'import"
+        reset: "Si activé, toutes les données de votre site seront détruites avant l'import du nouveau site"

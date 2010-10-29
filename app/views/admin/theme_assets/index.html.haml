@@ -12,7 +12,7 @@
 
 %h3!= t('.snippets')
 - if @snippets.empty?
-  %p.no-items!= t('.no_items', :url => new_admin_snippet_url)
+  %p.no-items!= t('admin.snippets.index.no_items', :url => new_admin_snippet_url)
 - else
   %ul.list.theme-assets
     = render @snippets
