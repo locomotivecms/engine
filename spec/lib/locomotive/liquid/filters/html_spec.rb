@@ -45,12 +45,12 @@ describe Locomotive::Liquid::Filters::Html do
     javascript_tag('/trash/main').should == result
   end
 
-  it 'should return an image tag without paramaters' do
-    image_tag('foo.jpg').should == "<img src=\"/foo.jpg\" />"
+  it 'should return an image tag without parameters' do
+    image_tag('foo.jpg').should == "<img src=\"foo.jpg\" />"
   end
 
   it 'should return an image tag with size' do
-    image_tag('foo.jpg', 'width:100', 'height:50').should == "<img src=\"/foo.jpg\" height=\"50\" width=\"100\" />"
+    image_tag('foo.jpg', 'width:100', 'height:50').should == "<img src=\"foo.jpg\" height=\"50\" width=\"100\" />"
   end
 
   it 'should return a flash tag without parameters' do

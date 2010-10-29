@@ -37,7 +37,7 @@ module Locomotive
       end
 
       def build_content_type(data)
-        attributes = { :order_by => '_position_in_list', :group_by_field_name => data.delete('group_by') }.merge(data)
+        attributes = { :group_by_field_name => data.delete('group_by') }.merge(data)
 
         attributes.delete_if { |name, value| %w{fields contents}.include?(name) }
 
@@ -93,12 +93,16 @@ module Locomotive
       end
 
       def set_order_by_value(content_type)
+        self.log "order by #{content_type.order_by}"
+
         order_by = (case content_type.order_by
         when 'manually', '_position_in_list' then '_position_in_list'
         when 'date', 'updated_at' then 'updated_at'
         else
           content_type.content_custom_fields.detect { |f| f._alias == content_type.order_by }._name rescue nil
         end)
+
+        self.log "order by (after) #{order_by}"
 
         content_type.order_by = order_by || '_position_in_list'
       end
