@@ -26,6 +26,8 @@ module Locomotive
 
         template = File.read(File.join(theme_path, 'templates', "#{fullpath}.liquid")) rescue "Unable to find #{fullpath}.liquid"
 
+        self.replace_images!(template)
+
         self.build_parent_template(template)
 
         parent = self.find_parent(fullpath)
@@ -97,7 +99,11 @@ module Locomotive
 
           template = File.read(File.join(theme_path, 'templates', "#{slug}.liquid"))
 
-          page.attributes = { :raw_template => template, :position => position }.merge(self.pages[slug] || {})
+          self.replace_images!(template)
+
+          page.attributes = { :raw_template => template }.merge(self.pages[slug] || {})
+
+          page.position = position
 
           page.save! rescue nil # TODO better error handling
 
@@ -107,8 +113,39 @@ module Locomotive
         end
       end
 
+      def replace_images!(template)
+        return if template.blank?
+
+        template.gsub!(/\/samples\/(.*\.[a-zA-Z0-9]{3})/) do |match|
+          name = $1
+
+          collection = AssetCollection.find_or_create_internal(site)
+
+          if asset = collection.assets.detect { |a| a.source_filename == name }
+            asset.source.url
+          else
+            match
+          end
+        end
+      end
+
       def pages
-        context[:database]['site']['pages']
+        @pages ||= self.retrieve_pages
+      end
+
+      def retrieve_pages
+        pages = context[:database]['site']['pages']
+
+        if pages.is_a?(Array) # ordered list of pages
+          tmp = {}
+          pages.each_with_index do |data, position|
+            attributes = (data.values.first || {}).merge(:position => position)
+            tmp[data.keys.first.to_s] = attributes
+          end
+          pages = tmp
+        end
+
+        pages
       end
 
     end

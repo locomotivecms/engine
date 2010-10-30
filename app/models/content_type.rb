@@ -94,7 +94,7 @@ class ContentType
   protected
 
   def set_default_values
-    self.order_by ||= 'updated_at'
+    self.order_by ||= 'created_at'
     self.highlighted_field_name ||= self.content_custom_fields.first._name
   end
 

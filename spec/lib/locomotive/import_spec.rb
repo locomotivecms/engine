@@ -27,7 +27,7 @@ describe Locomotive::Import::Job do
 
     it 'converts correctly the order_by option for content types' do
       content_type = @site.content_types.where(:slug => 'messages').first
-      content_type.order_by.should == 'updated_at'
+      content_type.order_by.should == 'created_at'
     end
 
     it 'adds samples coming with content types' do

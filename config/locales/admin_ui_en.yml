@@ -220,6 +220,7 @@ en:
         new_item: new item
       form:
         order_by:
+          created_at: 'By "created at" date'
           updated_at: 'By "updated at" date'
           position_in_list: Manually
 

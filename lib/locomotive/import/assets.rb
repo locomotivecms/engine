@@ -48,6 +48,8 @@ module Locomotive
 
           next if File.directory?(asset_path)
 
+          self.log "other asset = #{asset_path}"
+
           name = File.basename(asset_path, File.extname(asset_path)).parameterize('_')
 
           collection.assets.create! :name => name, :source => File.open(asset_path)

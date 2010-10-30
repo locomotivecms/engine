@@ -83,10 +83,13 @@ module Locomotive
 
           options = args_to_options(args)
 
+          previous_label = options[:previous_label] || I18n.t('pagination.previous')
+          next_label = options[:next_label] || I18n.t('pagination.next')
+
           previous_link = (if paginate['previous'].blank?
-            "<span class=\"disabled prev_page\">#{I18n.t('pagination.previous')}</span>"
+            "<span class=\"disabled prev_page\">#{previous_label}</span>"
           else
-            "<a href=\"#{paginate['previous']['url']}\" class=\"prev_page\">#{I18n.t('pagination.previous')}</a>"
+            "<a href=\"#{paginate['previous']['url']}\" class=\"prev_page\">#{previous_label}</a>"
           end)
 
           links = ""
@@ -101,9 +104,9 @@ module Locomotive
           end
 
           next_link = (if paginate['next'].blank?
-            "<span class=\"disabled next_page\">#{I18n.t('pagination.next')}</span>"
+            "<span class=\"disabled next_page\">#{next_label}</span>"
           else
-            "<a href=\"#{paginate['next']['url']}\" class=\"next_page\">#{I18n.t('pagination.next')}</a>"
+            "<a href=\"#{paginate['next']['url']}\" class=\"next_page\">#{next_label}</a>"
           end)
 
           %{<div class="pagination #{options[:css]}">

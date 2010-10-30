@@ -18,14 +18,16 @@
 
 #page-toolbar ul li.link {
   float: left;
-  margin-right: 5px;
+  margin: 0 0 0 5px;
+  background: transparent;
+  padding: 0px;
 }
 
 #page-toolbar ul li.link a {
   display: block;
   background: transparent url('/images/admin/inline_editor/action-left.png') no-repeat 0 0;
-  height: 19px;
-  line-height: 19px;
+  height: 20px;
+  line-height: 20px;
   padding-left: 24px;
   text-decoration: none;
   color: #fff;

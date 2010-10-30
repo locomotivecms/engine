@@ -44,10 +44,7 @@ module Models
           end
 
           def hacked_descendants
-            # workorund for mongoid unexpected behavior
-            _new_record_var = self.instance_variable_get(:@new_record)
-            _new_record = _new_record_var != false
-            return [] if _new_record
+            return [] if new_record?
             self.class.all_in(path_field => [self._id]).order_by tree_order
          end
 
@@ -56,6 +53,7 @@ module Models
           def change_parent
             if self.parent_id_changed?
               self.fix_position(false)
+              self.position = nil # make it move to bottom
               self.add_to_list_bottom
               self.instance_variable_set :@_will_move, true
             end
@@ -81,7 +79,7 @@ module Models
           end
 
           def add_to_list_bottom
-            self.position = (::Page.where(:_id.ne => self._id).and(:parent_id => self.parent_id).max(:position) || 0) + 1
+            self.position ||= (::Page.where(:_id.ne => self._id).and(:parent_id => self.parent_id).max(:position) || 0) + 1
           end
 
           def remove_from_list

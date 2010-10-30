@@ -219,6 +219,7 @@ fr:
         new_item: nouvel élément
       form:
         order_by:
+          created_at: 'Par date création'
           updated_at: 'Par date de mise à jour'
           position_in_list: Manuellement
 

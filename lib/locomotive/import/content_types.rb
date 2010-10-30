@@ -97,7 +97,7 @@ module Locomotive
 
         order_by = (case content_type.order_by
         when 'manually', '_position_in_list' then '_position_in_list'
-        when 'date', 'updated_at' then 'updated_at'
+        when 'default', 'created_at' then 'created_at'
         else
           content_type.content_custom_fields.detect { |f| f._alias == content_type.order_by }._name rescue nil
         end)

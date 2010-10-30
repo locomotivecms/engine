@@ -6,7 +6,6 @@ BOARD:
   - edit images (upload new ones, ...etc) => wait for aloha or send them an email ?
 
 - refactor slugify method (use parameterize + create a module)
-- [content types] the "display column" selector should not include file types
 
 - global regions: keyword in editable element (http://www.mongodb.org/display/DOCS/Updating)
 - write my first tutorial about locomotive
@@ -157,3 +156,13 @@ x installation guide
     x welcome: domains, ...etc
     x Create account
     x Create new site (name, subdomain) / Import theme (worker or list of sites from fs)
+x import:
+  x ordered pages ?
+  x order_by for content_types ? created_at, updated_at
+x liquid:
+  x nav
+    x no_wrapper option
+    x regexp to get rid of some pages
+  x filters
+    x default_pagination: labels
+x [content types] the "display column" selector should not include file types

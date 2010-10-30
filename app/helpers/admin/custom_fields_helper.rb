@@ -7,7 +7,7 @@ module Admin::CustomFieldsHelper
   end
 
   def options_for_order_by(content_type, collection_name)
-    options = %w{updated_at _position_in_list}.map do |type|
+    options = %w{created_at updated_at _position_in_list}.map do |type|
       [t("admin.content_types.form.order_by.#{type.gsub(/^_/, '')}"), type]
     end
     options + options_for_highlighted_field(content_type, collection_name)
@@ -16,7 +16,7 @@ module Admin::CustomFieldsHelper
   def options_for_highlighted_field(content_type, collection_name)
     custom_fields_collection_name = "ordered_#{collection_name.singularize}_custom_fields".to_sym
     collection = content_type.send(custom_fields_collection_name)
-    collection.delete_if { |f| f.label == 'field name' }
+    collection.delete_if { |f| f.label == 'field name' || f.kind == 'file' }
     collection.map { |field| [field.label, field._name] }
   end
 

@@ -17,6 +17,8 @@ module Locomotive
             @site_or_page = $1 || 'page'
             @options = {}
             markup.scan(::Liquid::TagAttributes) { |key, value| @options[key.to_sym] = value }
+
+            @options[:exclude] = Regexp.new(@options[:exclude].gsub(/"|'/, '')) if @options[:exclude]
           else
             raise ::Liquid::SyntaxError.new("Syntax Error in 'nav' - Valid syntax: nav <page|site> <options>")
           end
@@ -29,21 +31,32 @@ module Locomotive
 
           source = context.registers[@site_or_page.to_sym]
 
-          # puts "#{@site_or_page.to_sym} / source = #{source.inspect}"
-
           if source.respond_to?(:name) # site ?
             source = source.pages.index.first # start from home page
           else
             source = source.parent || source
           end
 
-          output = %{<ul id="nav">}
-          output += source.children.map { |p| render_child_link(p) }.join("\n")
-          output += %{</ul>}
+          output = source.children.map { |p| include_page?(p) ? render_child_link(p) : ''  }.join("\n")
+
+           if @options[:no_wrapper] != 'true'
+             output = %{<ul id="nav">\n#{output}</ul>}
+           end
+
           output
         end
 
         private
+
+        def include_page?(page)
+          if page.templatized?
+            false
+          elsif @options[:exclude]
+            (page.fullpath =~ @options[:exclude]).nil?
+          else
+            true
+          end
+        end
 
         def render_child_link(page)
           selected = @current_page._id == page._id ? ' on' : ''
