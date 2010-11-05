@@ -35,13 +35,14 @@ gem 'rubyzip'
 
 group :development do
   # Using mongrel instead of webrick (default server)
-  gem 'mongrel'
+  gem 'mongrel', ">= 1.2.0.pre2"
   gem 'cgi_multipart_eof_fix'
   gem 'fastthread'
 end
 
 group :test, :development do
-  gem 'ruby-debug'
+  gem "ruby-debug", :platforms => :mri_18
+  gem "ruby-debug19", :platforms => :mri_19
 end
 
 group :test do
