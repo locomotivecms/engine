@@ -134,7 +134,7 @@ module Locomotive
         # <key1>="<value1>", <key2>="<value2", ...etc
         def inline_options(options = {})
           return '' if options.empty?
-          (options.stringify_keys.to_a.collect { |a, b| "#{a}=\"#{b}\"" }).join(' ') << ' '
+          (options.stringify_keys.sort.to_a.collect { |a, b| "#{a}=\"#{b}\"" }).join(' ') << ' '
         end
 
         # Get the url to be used in html tags such as image_tag, flash_tag, ...etc

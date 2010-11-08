@@ -31,7 +31,7 @@ module Models
 
           def sort_children!(ids)
             ids.each_with_index do |id, position|
-              child = self.children.detect { |p| p._id == id }
+              child = self.children.detect { |p| p._id == BSON::ObjectId(id) }
               child.position = position
               child.save
             end

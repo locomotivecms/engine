@@ -34,14 +34,9 @@ module Locomotive
       end
     end
 
-    def normalize_model_name(name)
-      if name =~ /(.+)\/(.+)/
-        [$1, $2]
-      else
-        super
-      end
+    def model_name
+      @object.present? ? (@object.class.name || @object.class.model_name) : @object_name.to_s.classify
     end
-
 
   end
 end

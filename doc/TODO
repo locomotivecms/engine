@@ -5,6 +5,8 @@ BOARD:
   - editable elements should wrap a tag: div, h1, ...etc (default span)
   - edit images (upload new ones, ...etc) => wait for aloha or send them an email ?
 
+- ruby 1.9.2
+- jammit: assets
 - refactor slugify method (use parameterize + create a module)
 
 - global regions: keyword in editable element (http://www.mongodb.org/display/DOCS/Updating)
