@@ -1,5 +1,5 @@
 - content_for :head do
-  = javascript_include_tag 'admin/site'
+  = include_javascripts :site
 
 = f.foldable_inputs :name => :information, :style => "#{'display: none' unless @site.new_record?}" do
   = f.input :name, :required => false

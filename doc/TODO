@@ -1,42 +1,43 @@
 BOARD:
 
+x jammit-s3: assets
+- copy assets.yml config file when using it as gem
+- import theme without delayed_job
+
+BACKLOG:
+
 - inline editing (http://www.aloha-editor.com/wiki/index.php/Aloha_PHP_Example)
   - html view in the aloha popup
   - editable elements should wrap a tag: div, h1, ...etc (default span)
   - edit images (upload new ones, ...etc) => wait for aloha or send them an email ?
 
 - ruby 1.9.2
-- jammit: assets
 - refactor slugify method (use parameterize + create a module)
+- validation for custom fields
+- notify accounts when new instance of models (opt): none, one or many accounts. Used for contact form.
 
 - global regions: keyword in editable element (http://www.mongodb.org/display/DOCS/Updating)
 - write my first tutorial about locomotive
-
-BACKLOG:
-
-- notify accounts when new instance of models (opt): none, one or many accounts. Used for contact form.
 - new custom field types:
   - belongs_to => association
-- cucumber features for admin pages
-- validation for custom fields
-- switch to list (theme assets / assets ?). delete all in once (with checkbox) or see details (updated_at, size, ...etc)
+- cucumber features for admin pages (in progress)
 
 BUGS:
 
 - custom fields: accepts_nested_attributes weird behaviour when creating new content type + adding random fields
 
 NICE TO HAVE:
-- import / export site
+- export site
 - asset collections: custom resizing if image
 - super_finder
 - better icons for mime type
 - traffic statistics
-- Worker => Heroku / S3 (not so sure finally)
 - asset picker (content instance)
 - page with regexp url ?
 - page redirection (option)
 - automatic update !
 - page not found (front) => if logged in, link to create the page
+- switch to list (theme assets / assets ?). delete all in once (with checkbox) or see details (updated_at, size, ...etc)
 
 DONE:
 
@@ -168,3 +169,4 @@ x liquid:
   x filters
     x default_pagination: labels
 x [content types] the "display column" selector should not include file types
+x Worker => Heroku / S3 (not so sure finally)

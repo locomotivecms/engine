@@ -15,7 +15,9 @@ $(document).ready(function() {
     stop: function(event, ui) { updateContentsOrder(); }
   });
 
-  $('textarea.html').tinymce(TinyMceDefaultSettings);
+  try {
+    $('textarea.html').tinymce(TinyMceDefaultSettings);
+  } catch (e) { /* tinymce not loaded */ }
 
   $.datepicker.setDefaults($.datepicker.regional[I18nLocale]);
   $('input[type=text].date').datepicker($.datepicker.regional[I18nLocale]);

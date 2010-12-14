@@ -174,7 +174,7 @@ en:
         help: "You have the choice to either upload any file or to copy/paste a stylesheet or a javascript in plain text."
       edit:
         title: "Editing %{file}"
-        help: "This asset is accessible from the following url: <strong>%{url}</strong>"
+        help: "This asset is accessible from the following url: <a href='%{url}'>%{url}</a>"
       form:
         picker_link: Insert a file into the code
         choose_file: Choose file

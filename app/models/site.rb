@@ -40,6 +40,10 @@ class Site
 
   ## methods ##
 
+  def domains=(array)
+    array = [] if array.blank?; super(array)
+  end
+
   def accounts
     Account.criteria.in(:_id => self.memberships.collect(&:account_id))
   end

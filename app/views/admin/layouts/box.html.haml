@@ -4,11 +4,11 @@
   %head
     %title= yield(:head_title) || escape_once("#{Locomotive.config.name} &mdash; #{current_site.name}")
 
-    = javascript_include_tag 'admin/jquery'
+    = include_javascripts :box
+    = include_stylesheets :box, :media => 'screen'
 
-    = stylesheet_link_tag 'admin/blueprint/screen', 'admin/box', :media => 'screen', :cache => Rails.env.production? && !Locomotive.config.heroku
     / [if IE]
-      = stylesheet_link_tag('admin/blueprint/ie', :media => 'screen')
+      = include_stylesheets :ie, :media => 'screen'
 
     = yield :head
 

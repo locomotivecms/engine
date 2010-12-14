@@ -1,6 +1,6 @@
 - content_for :head do
-  = javascript_include_tag 'admin/plugins/codemirror/codemirror', 'admin/theme_assets.js'
-  = image_picker_include_tags
+  = include_javascripts :image_picker, :theme_assets
+  = include_stylesheets :fancybox
 
 = f.hidden_field :performing_plain_text
 

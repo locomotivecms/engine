@@ -12,10 +12,4 @@ module Admin::AssetsHelper
     asset.new_record? || asset.stylesheet? || asset.javascript?
   end
 
-  def image_picker_include_tags
-    html = javascript_include_tag 'admin/plugins/json2', 'admin/plugins/scrollTo', 'admin/plugins/codemirror/codemirror', 'admin/plugins/fancybox', 'admin/plugins/plupload/plupload.full', 'admin/plugins/imagepicker'
-    html += stylesheet_link_tag 'admin/plugins/fancybox', 'admin/fancybox_changes'
-    html
-  end
-
 end

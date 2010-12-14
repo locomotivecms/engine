@@ -4,7 +4,7 @@
   = render 'admin/shared/menu/contents'
 
 - content_for :head do
-  = javascript_include_tag 'admin/contents'
+  = include_javascripts :contents
 
 - content_for :buttons do
   = admin_button_tag :edit, edit_admin_content_type_url(@content_type), :class => 'edit'

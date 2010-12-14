@@ -175,7 +175,7 @@ form.formtastic div.actions p {
 }
 
 form.formtastic div.actions a {
-  color: #fff;
+  color: #fff !important;
   text-decoration: none;
   font-size: 0.8em;
   position: relative;

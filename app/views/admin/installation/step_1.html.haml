@@ -3,7 +3,8 @@
 
 - title t('.title')
 
-= stylesheet_link_tag 'admin/installation'
+- content_for :head do
+  = include_stylesheets :installation
 
 .inner
   %p.explanations

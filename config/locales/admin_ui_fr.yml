@@ -174,7 +174,7 @@ fr:
         help: "Vous avez le choix de soit uploader n'importe quel fichier ou bien soit de copier/coller du code css ou javascript."
       edit:
         title: "Edition %{file}"
-        help: "Vous pouvez insérer le raccourci suivant dans vos feuilles de style: <strong>%{shortcut_url}</strong> OU utiliser directement l'url : %{url}"
+        help: "L'url du fichier est <a href='%{url}'>%{url}</a>"
       form:
         choose_file: Choisir fichier
         choose_plain_text: Passer en mode texte

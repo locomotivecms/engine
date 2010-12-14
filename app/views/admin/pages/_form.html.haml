@@ -1,7 +1,6 @@
 - content_for :head do
-  = javascript_include_tag 'admin/plugins/tiny_mce/tinymce', 'admin/plugins/codemirror/codemirror', 'admin/pages', 'admin/editable_elements'
-  = stylesheet_link_tag 'admin/editable_elements'
-  = image_picker_include_tags
+  = include_javascripts :image_picker, :edit_page
+  = include_stylesheets :editable_elements, :fancybox
 
 = f.foldable_inputs :name => :information do
 

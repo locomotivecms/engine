@@ -1,6 +1,6 @@
 - content_for :head do
-  = javascript_include_tag 'admin/plugins/codemirror/codemirror', 'admin/snippets.js'
-  = image_picker_include_tags
+  = include_javascripts :image_picker, :snippets
+  = include_stylesheets :fancybox
 
 = f.inputs :name => :information do
   = f.input :name

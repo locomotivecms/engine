@@ -20,6 +20,7 @@ Rspec.configure do |config|
     DatabaseCleaner.strategy = :truncation
     DatabaseCleaner.orm = "mongoid"
   end
+
   config.before(:each) do
     if self.described_class != Locomotive::Import::Job
       DatabaseCleaner.clean

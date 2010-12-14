@@ -1,6 +1,8 @@
 module Admin
   class CurrentSitesController < BaseController
 
+    defaults :instance_name => 'site'
+
     sections 'settings', 'site'
 
     actions :edit, :update

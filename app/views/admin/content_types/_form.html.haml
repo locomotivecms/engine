@@ -1,6 +1,6 @@
 - content_for :head do
-  = javascript_include_tag 'admin/plugins/fancybox', 'admin/custom_fields'
-  = stylesheet_link_tag 'admin/plugins/fancybox', 'admin/fancybox_changes'
+  = include_javascripts :custom_fields
+  = include_stylesheets :fancybox
 
 = f.inputs :name => :information do
   = f.input :name

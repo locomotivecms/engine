@@ -105,6 +105,15 @@ body {
   font-size: 0.8em;
 }
 
+#content div.inner p a {
+  color: #1F82BC;
+  text-decoration: none;
+}
+
+#content div.inner p a:hover {
+  text-decoration: underline;
+}
+
 #content #local-actions-bar {
   position: absolute;
   top: 13px;

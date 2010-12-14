@@ -47,6 +47,6 @@ module Locomotive
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters << :password
 
-    config.middleware.insert_after ::ActionDispatch::Static, '::Locomotive::Middlewares::Fonts', :path => %r{^/fonts}
+    config.middleware.insert_after Rack::Lock, '::Locomotive::Middlewares::Fonts', :path => %r{^/fonts}
   end
 end

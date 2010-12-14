@@ -1,6 +1,8 @@
 module Admin
   class SitesController < BaseController
 
+    defaults :instance_name => 'site'
+
     sections 'settings'
 
     def create

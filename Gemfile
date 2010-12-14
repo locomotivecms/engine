@@ -8,7 +8,7 @@ gem 'warden'
 gem 'devise', '= 1.1.3'
 
 gem 'mongoid', '2.0.0.beta.19'
-gem 'bson_ext', '1.1.2'
+gem 'bson_ext', '1.1.4'
 gem 'locomotive_mongoid_acts_as_tree', '0.1.5.1', :require => 'mongoid_acts_as_tree'
 gem 'will_paginate'
 
@@ -30,14 +30,13 @@ gem 'RedCloth'
 gem 'delayed_job', '2.1.0.pre2'
 gem 'delayed_job_mongoid', '1.0.0.rc'
 gem 'rubyzip'
+gem 'jammit-s3'
 
 # The rest of the dependencies are for use when in the locomotive dev environment
 
 group :development do
-  # Using mongrel instead of webrick (default server)
-  gem 'mongrel', ">= 1.2.0.pre2"
-  gem 'cgi_multipart_eof_fix'
-  gem 'fastthread'
+  # Using unicorn_rails instead of webrick (default server)
+  gem 'unicorn'
 end
 
 group :test, :development do

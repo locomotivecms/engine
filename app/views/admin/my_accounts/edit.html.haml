@@ -1,7 +1,7 @@
 - title link_to(@account.name.blank? ? @account.name_was : @account.name, '#', :rel => 'my_account_name', :title => t('.ask_for_name'), :class => 'editable')
 
 - content_for :head do
-  = javascript_include_tag 'admin/account'
+  = include_javascripts :account
 
 - content_for :submenu do
   = render 'admin/shared/menu/settings'
