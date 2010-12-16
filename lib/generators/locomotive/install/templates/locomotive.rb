@@ -23,4 +23,9 @@ Locomotive.configure do |config|
   # Ex:
   # config.heroku = { :name => '<my heroku app name>', :login => 'john@doe.net', :password => 'easy' }
   config.heroku = false
+
+  # Locomotive uses the DelayedJob gem for the theme import module.
+  # In case you want to deploy to Heroku, you will have to pay for an extra dyno.
+  # If you do not mind about importing theme without DelayedJob, disable it.
+  config.delayed_job = true
 end

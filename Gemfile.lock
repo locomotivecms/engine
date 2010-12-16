@@ -54,7 +54,7 @@ GEM
       ZenTest (>= 4.4.1)
     bcrypt-ruby (2.1.2)
     bson (1.1.5)
-    bson_ext (1.1.4)
+    bson_ext (1.1.5)
     builder (2.1.2)
     capybara (0.4.0)
       celerity (>= 0.7.9)
@@ -261,7 +261,7 @@ DEPENDENCIES
   RedCloth
   actionmailer-with-request
   autotest
-  bson_ext (= 1.1.4)
+  bson_ext (= 1.1.5)
   capybara
   cucumber (= 0.8.5)
   cucumber-rails

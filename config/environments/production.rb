@@ -46,13 +46,3 @@ Locomotive::Application.configure do
 
   config.active_support.deprecation = :notify
 end
-
-# TODO: Put your carrierwave config down here
-
-CarrierWave.configure do |config|
-  config.storage = :s3
-  config.s3_access_key_id = 'AKIAIPXDQKLBLIOF34VA'
-  config.s3_secret_access_key = 'BjyBbrd4L2Q3cydeaqlKq6Il18IkHbvXV/NpqQJH'
-  config.s3_bucket = 'locomotivehosting'
-  config.s3_cname = 'cdn.locomotivehosting.com'
-end

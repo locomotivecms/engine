@@ -21,7 +21,7 @@ module Admin
           format.json { render :json => { :content => @content, :errors => @content.errors } }
           format.html do
             flash[@content_type.slug.singularize] = @content.aliased_attributes
-            flash[:errors] = content.errors
+            flash['errors'] = @content.errors_to_hash
             redirect_to params[:error_callback]
           end
         end

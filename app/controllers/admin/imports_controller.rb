@@ -23,16 +23,14 @@ module Admin
 
     def create
       begin
-        job = Locomotive::Import::Job.new(params[:zipfile], current_site, {
+        Locomotive::Import::Job.run!(params[:zipfile], current_site, {
           :samples  => Boolean.set(params[:samples]),
           :reset    => Boolean.set(params[:reset])
         })
 
-        Delayed::Job.enqueue job, { :site => current_site, :job_type => 'import' }
-
         flash[:notice] = t('flash.admin.imports.create.notice')
 
-        redirect_to admin_import_url
+        redirect_to Locomotive.config.delayed_job ? admin_import_url : new_admin_import_url
       rescue
         @error = t('errors.messages.invalid_theme_file')
         flash[:alert] = t('flash.admin.imports.create.alert')

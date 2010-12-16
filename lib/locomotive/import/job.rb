@@ -53,7 +53,7 @@ module Locomotive
       def success(worker)
         self.log 'deleting original zip file'
 
-        uploader = ThemeUploader.new(@site)
+        uploader = self.get_uploader(@site)
 
         uploader.retrieve_from_store!(@identifier)
 
@@ -62,6 +62,16 @@ module Locomotive
         self.log 'deleting working folder'
 
         FileUtils.rm_rf(themes_folder) rescue nil
+      end
+
+      def self.run!(zipfile, site, options = {})
+        job = self.new(zipfile, site, options)
+
+        if Locomotive.config.delayed_job
+          Delayed::Job.enqueue job, { :site => site, :job_type => 'import' }
+        else
+          job.perform
+        end
       end
 
       protected
@@ -81,7 +91,7 @@ module Locomotive
 
         file = CarrierWave::SanitizedFile.new(zipfile)
 
-        uploader = ThemeUploader.new(@site)
+        uploader = self.get_uploader(@site)
 
         begin
           uploader.store!(file)
@@ -93,7 +103,7 @@ module Locomotive
       end
 
       def retrieve_zipfile
-        uploader = ThemeUploader.new(@site)
+        uploader = self.get_uploader(@site)
 
         uploader.retrieve_from_store!(@identifier)
 
@@ -136,7 +146,6 @@ module Locomotive
             zipfile.extract(entry, File.join(destination_path, entry.name))
           end
         end
-
       end
 
       def reset!
@@ -144,6 +153,13 @@ module Locomotive
         @site.theme_assets.destroy_all
         @site.content_types.destroy_all
         @site.asset_collections.destroy_all
+      end
+
+      def get_uploader(site)
+        unless Locomotive.config.delayed_job
+          ThemeUploader.storage = :file
+        end
+        @uploader ||= ThemeUploader.new(site)
       end
 
     end

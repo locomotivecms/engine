@@ -1,8 +1,12 @@
 ===============================================================================
 
-The Locomotive initializer has been added to your application.
+The Locomotive Engine has been correctly installed in your Rails application.
 
-  1. Edit the config/initializers/locomotive.rb file (+ the config/mongoid.yml one)
+  1. Edit the main config files:
+
+    - config/initializers/locomotive.rb
+    - config/initializers/carrierwave.rb
+    - config/mongoid.yml
 
   2. Launch the server
 
@@ -15,5 +19,9 @@ The Locomotive initializer has been added to your application.
   4. Follow the installation wizzard steps
 
   5. Enjoy !
+
+  Note: If you want to use DelayedJob, be sure to launch it:
+
+    > rake jobs:work
 
 ===============================================================================

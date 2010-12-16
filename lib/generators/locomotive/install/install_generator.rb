@@ -8,11 +8,13 @@ module Locomotive
     end
 
     def copy_assets
-       directory 'public', 'public', :recursive => true
-       copy_file 'config/assets.yml', 'config/assets.yml'
-     end
+      directory 'public', 'public', :recursive => true
+      copy_file 'config/assets.yml', 'config/assets.yml'
+    end
 
-    def copy_initializer
+    def copy_initializers
+      copy_file 'config/initializers/carrierwave.rb', 'config/initializers/carrierwave.rb'
+
       @source_paths = nil # reset it for the find_in_source_paths method
 
       Locomotive::InstallGenerator.source_root(File.expand_path('../templates', __FILE__))

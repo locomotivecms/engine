@@ -11,6 +11,7 @@ module Locomotive
       :cookie_key       => '_locomotive_session',
       :enable_logs      => false,
       :heroku           => false,
+      :delayed_job      => true,
       :default_locale   => :en
     }
 

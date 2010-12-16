@@ -52,6 +52,10 @@ class ContentInstance
     hash
   end
 
+  def errors_to_hash
+    Hash.new.replace(self.errors)
+  end
+
   def to_liquid
     Locomotive::Liquid::Drops::Content.new(self)
   end
