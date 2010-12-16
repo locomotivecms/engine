@@ -1,7 +1,7 @@
 BOARD:
 
 x jammit-s3: assets
-- copy assets.yml config file when using it as gem
+- copy assets.yml config file when using it as gem (http://asciicasts.com/episodes/218-making-generators-in-rails-3)
 - import theme without delayed_job
 
 BACKLOG:

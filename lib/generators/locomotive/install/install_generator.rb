@@ -1,21 +1,27 @@
 module Locomotive
   class InstallGenerator < Rails::Generators::Base
 
-    def self.source_root
-      @_locomotive_source_root ||= File.expand_path('../templates', __FILE__)
+    source_root File.expand_path('../../../../../', __FILE__)
+
+    def copy_mongoid_config
+      copy_file 'config/mongoid.yml', 'config/mongoid.yml'
     end
 
+    def copy_assets
+       directory 'public', 'public', :recursive => true
+       copy_file 'config/assets.yml', 'config/assets.yml'
+     end
+
     def copy_initializer
+      @source_paths = nil # reset it for the find_in_source_paths method
+
+      Locomotive::InstallGenerator.source_root(File.expand_path('../templates', __FILE__))
+
       template 'locomotive.rb', 'config/initializers/locomotive.rb'
     end
 
-    def seed_db
-      append_file 'db/seeds.rb', %{
-# Uncomment the following lines if you want to create the first website / account
-#account = Account.create! :name => 'Admin', :email => 'admin@example.com', :password => 'locomotive', :password_confirmation => 'locomotive'
-#site = Site.new :name => 'Locomotive test website', :subdomain => 'test'
-#site.memberships.build :account => account, :admin => true
-#site.save!}
+    def remove_index_html
+      remove_file 'public/index.html'
     end
 
     def show_readme

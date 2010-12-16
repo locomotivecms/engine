@@ -1,17 +1,19 @@
 ===============================================================================
 
-Locomotive initializer has been added to your application. Your db/seeds.rb file has also been updated.
+The Locomotive initializer has been added to your application.
 
-  1. Take a look at this to match your environment.
-  
-  2. Uncomment added code in db/seeds.rb if necessary
-  
-Note: do not forget to run rake db:seed if you modify your db/seeds.rb file.
-  
-Once it is done, the next step is to install assets:
+  1. Edit the config/initializers/locomotive.rb file (+ the config/mongoid.yml one)
 
-  bundle exec rails g locomotive:copy_assets
-  
-Fire your application server and launch a browser !
+  2. Launch the server
+
+    > unicorn_rails
+
+  3. Open your browser
+
+    > open localhost:8080
+
+  4. Follow the installation wizzard steps
+
+  5. Enjoy !
 
 ===============================================================================
