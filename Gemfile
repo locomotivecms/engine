@@ -49,7 +49,7 @@ group :test do
   gem 'growl-glue'
   gem 'rspec-rails', '>= 2.0.0.beta.18'
   gem 'factory_girl_rails'
-  gem 'pickle', :git => 'http://github.com/ianwhite/pickle.git'
+  gem 'pickle'
   gem 'capybara'
 
   gem 'database_cleaner'
