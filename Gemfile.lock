@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/floehopper/mocha.git
-  revision: 80f28aa72397c814e26a1893b576e768287b3c59
+  revision: 1ed96f77a967b497746176e0b8a46746f5b4d722
   specs:
     mocha (0.9.10.20101125155727)
       rake
@@ -70,7 +70,7 @@ GEM
       term-ansicolor (~> 1.0.4)
     cucumber-rails (0.3.2)
       cucumber (>= 0.8.0)
-    culerity (0.2.12)
+    culerity (0.2.13)
     custom_fields (1.0.0.beta2)
       activesupport (>= 3.0.0)
       locomotive_carrierwave
@@ -254,6 +254,7 @@ PLATFORMS
 
 DEPENDENCIES
   RedCloth
+  ZenTest
   actionmailer-with-request
   autotest
   bson_ext (= 1.1.5)
@@ -284,7 +285,7 @@ DEPENDENCIES
   pickle
   rails (>= 3.0.0)
   rmagick (= 2.12.2)
-  rspec-rails (>= 2.0.0.beta.18)
+  rspec-rails (= 2.3.1)
   ruby-debug
   ruby-debug19
   rubyzip

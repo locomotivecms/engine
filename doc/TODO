@@ -3,6 +3,9 @@ BOARD:
 x jammit-s3: assets
 x copy assets.yml config file when using it as gem (http://asciicasts.com/episodes/218-making-generators-in-rails-3)
 x import theme without delayed_job
+x rspec 2.3
+- ruby 1.9.2:
+  - DelayedJob not working
 
 BACKLOG:
 

@@ -46,8 +46,9 @@ end
 
 group :test do
   gem 'autotest'
+  gem 'ZenTest'
   gem 'growl-glue'
-  gem 'rspec-rails', '>= 2.0.0.beta.18'
+  gem 'rspec-rails', '2.3.1'
   gem 'factory_girl_rails'
   gem 'pickle'
   gem 'capybara'
