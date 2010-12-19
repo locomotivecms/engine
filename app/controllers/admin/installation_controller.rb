@@ -45,7 +45,9 @@ module Admin
 
         if @site.valid?
           # begin
+          unless params[:zipfile].blank?
             Locomotive::Import::Job.run!(params[:zipfile], @site, { :samples => true })
+          end
           # rescue Exception => e
           #   logger.error "Import failed because of #{e.message}"
           # end

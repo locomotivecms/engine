@@ -29,7 +29,7 @@ Locomotive.configure do |config|
   # Locomotive uses the DelayedJob gem for the theme import module.
   # In case you want to deploy to Heroku, you will have to pay for an extra dyno.
   # If you do not mind about importing theme without DelayedJob, disable it.
-  config.delayed_job = true
+  config.delayed_job = false
 
   # default locale (for now, only en and fr are supported)
   config.default_locale = :en
