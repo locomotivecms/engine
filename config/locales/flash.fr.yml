@@ -111,5 +111,6 @@ fr:
 
       imports:
         create:
+          done: "Votre site a été mis à jour"
           notice: "Votre site est en train d'être mis à jour"
           alert: "L'import n'a pas pu se faire"

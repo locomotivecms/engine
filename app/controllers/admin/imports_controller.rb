@@ -28,7 +28,7 @@ module Admin
           :reset    => Boolean.set(params[:reset])
         })
 
-        flash[:notice] = t('flash.admin.imports.create.notice')
+        flash[:notice] = t("flash.admin.imports.create.#{Locomotive.config.delayed_job ? 'notice' : 'done'}")
 
         redirect_to Locomotive.config.delayed_job ? admin_import_url : new_admin_import_url
       rescue

@@ -44,13 +44,13 @@ module Admin
         @site.save
 
         if @site.valid?
-          # begin
-          unless params[:zipfile].blank?
-            Locomotive::Import::Job.run!(params[:zipfile], @site, { :samples => true })
+          begin
+            unless params[:zipfile].blank?
+              Locomotive::Import::Job.run!(params[:zipfile], @site, { :samples => true })
+            end
+          rescue Exception => e
+            logger.error "Import failed because of #{e.message}"
           end
-          # rescue Exception => e
-          #   logger.error "Import failed because of #{e.message}"
-          # end
 
           redirect_to admin_session_url(:host => Site.first.domains.first, :port => request.port)
         else

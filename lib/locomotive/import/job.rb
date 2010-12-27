@@ -17,6 +17,8 @@ module Locomotive
         @identifier = self.store_zipfile(zipfile)
 
         raise "Theme identifier not found" if @identifier.blank?
+
+        @uploader = nil # fix issue with Ruby 1.9.2 and serialization
       end
 
       def before(worker)
@@ -95,11 +97,10 @@ module Locomotive
 
         begin
           uploader.store!(file)
+          uploader.identifier
         rescue CarrierWave::IntegrityError
-          return nil
+          nil
         end
-
-        uploader.identifier
       end
 
       def retrieve_zipfile
