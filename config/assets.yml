@@ -1,8 +1,8 @@
 embed_assets: off
 
 s3_bucket: <%= ENV['S3_BUCKET'] %>
-s3_access_key_id: <%= ENV['S3_ACCESS_KEY_ID'] %>
-s3_secret_access_key: <%= ENV['S3_SECRET_ACCESS_KEY'] %>
+s3_access_key_id: <%= ENV['S3_KEY_ID'] %>
+s3_secret_access_key: <%= ENV['S3_SECRET_KEY'] %>
 
 javascripts:
   box:
@@ -71,6 +71,7 @@ stylesheets:
   box:
     - public/stylesheets/admin/blueprint/screen.css
     - public/stylesheets/admin/box.css
+    - public/stylesheets/admin/safari.css
   common:
     - public/stylesheets/admin/blueprint/screen.css
     - public/stylesheets/admin/layout.css
@@ -82,6 +83,7 @@ stylesheets:
     - public/stylesheets/admin/formtastic.css
     - public/stylesheets/admin/formtastic_changes.css
     - public/stylesheets/admin/application.css
+    - public/stylesheets/admin/safari.css
   fancybox:
     - public/stylesheets/admin/plugins/fancybox.css
     - public/stylesheets/admin/fancybox_changes.css

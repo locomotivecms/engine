@@ -130,11 +130,6 @@ body { background: #000 url(/images/admin/background/body.png) repeat 0 0; }
   line-height: 21px;
 }
 
-@media screen and (-webkit-min-device-pixel-ratio:0) {
-  #panel div.footer .button { padding-left: 5px; }
-  #panel div.footer .button span { top: 0px; padding-right: 10px; }
-}
-
 /* ___ Messages ___ */
 
 div.application-message {

@@ -2,6 +2,10 @@ Locomotive.configure do |config|
   # if not defined, locomotive will use example.com as main domain name. Remove prefix www from your domain name.
   # Ex:
   # config.default_domain = Rails.env.production? ? 'mydomain.com' : 'example.com'
+  #
+  # If you use locomotive for a single site in Heroku, use "heroku.com" as default domain name.
+  # Your heroku app name (<app_name>.heroku.name) will be used as the sub domain name in Locomotive
+  # during the installation wizzard.
   config.default_domain = 'mydomain.com'
 
   # configure how many items we display in sub menu in the "Contents" section.
@@ -27,5 +31,8 @@ Locomotive.configure do |config|
   # Locomotive uses the DelayedJob gem for the theme import module.
   # In case you want to deploy to Heroku, you will have to pay for an extra dyno.
   # If you do not mind about importing theme without DelayedJob, disable it.
-  config.delayed_job = true
+  config.delayed_job = false
+
+  # default locale (for now, only en and fr are supported)
+  config.default_locale = :en
 end

@@ -21,11 +21,6 @@
   outline: none;
 }
 
-@media screen and (-webkit-min-device-pixel-ratio:0) {
-  .button { padding-left: 5px; }
-  .button span { top: 0px; }
-}
-
 .button.light {
   background-image: url(/images/admin/buttons/light-gray-left.png);
   color: #787a89;

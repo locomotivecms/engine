@@ -16,7 +16,7 @@ module Admin
       @js_and_css_assets = (@assets[:javascripts] || []) + (@assets[:stylesheets] || [])
 
       if request.xhr?
-        @images = @assets[:images]
+        @images = @assets[:images] || []
         render :action => 'images', :layout => false and return
       else
         @snippets = current_site.snippets.order_by([[:name, :asc]]).all.to_a

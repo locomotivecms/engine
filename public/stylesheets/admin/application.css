@@ -27,7 +27,7 @@ div.notice p {
 
 p.no-items {
   padding: 15px 0px;
-  background: transparent url(/images/admin/list/none.png) no-repeat 0 0;
+  background: transparent url(/images/admin/list/none.png) no-repeat center 0;
   text-align: center;
   color: #9d8963 !important;
   font-size: 1.1em !important;

@@ -18,7 +18,8 @@ require 'httparty'
 require 'redcloth'
 require 'delayed_job_mongoid'
 require 'zip/zipfilesystem'
-require 'jammit'
+# require 'jammit'
+require 'jammit-s3'
 
 $:.unshift File.dirname(__FILE__)
 

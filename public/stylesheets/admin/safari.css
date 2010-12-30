@@ -1,0 +1,15 @@
+@media screen and/*!YUI-Compresser */(-webkit-min-device-pixel-ratio:0) {
+
+  #panel div.footer .button { padding-left: 5px; }
+  #panel div.footer .button span { top: 0px; padding-right: 10px; }
+
+  .button { padding-left: 5px; }
+  .button span { top: 0px; }
+
+  form.formtastic fieldset.foldable legend span em { top: 0px; }
+  form.formtastic fieldset.foldable.folded legend span em { top: 0px; }
+
+  form.formtastic fieldset.inputs ol { margin-top: 30px; }
+
+  #content #local-actions-bar a em { top: 4px; }
+}

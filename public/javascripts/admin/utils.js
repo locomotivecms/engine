@@ -9,6 +9,8 @@ function makeSlug(val, sep) { // code largely inspired by http://www.thewebsitet
   return val.toLowerCase();
 }
 
-String.prototype.trim = function() {
-  return this.replace(/^\s+/g, '').replace(/\s+$/g, '');
-}
+(function() {
+  String.prototype.trim = function() {
+    return this.replace(/^\s+/g, '').replace(/\s+$/g, '');
+  }
+})();

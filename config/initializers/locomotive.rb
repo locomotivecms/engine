@@ -4,6 +4,10 @@ Locomotive.configure do |config|
   # if not defined, locomotive will use example.com as main domain name. Remove prefix www from your domain name.
   # Ex:
   # config.default_domain = Rails.env.production? ? 'mydomain.com' : 'example.com'
+  #
+  # If you use locomotive for a single site in Heroku, use "heroku.com" as default domain name.
+  # Your heroku app name (<app_name>.heroku.name) will be used as the sub domain name in Locomotive
+  # during the installation wizzard.
   config.default_domain = 'example.com'
 
   # configure how many items we display in sub menu in the "Contents" section.

@@ -6,6 +6,8 @@ x import theme without delayed_job
 x rspec 2.3
 x ruby 1.9.2:
   x DelayedJob not working
+x new version of Aloha-Editor
+- locomotive gem: test with staging
 
 BACKLOG:
 

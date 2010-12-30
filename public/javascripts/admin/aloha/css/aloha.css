@@ -4,7 +4,9 @@
 * aloha-sales@gentics.com
 * Licensed unter the terms of http://www.aloha-editor.com/license.html
 */
-.GENTICS_editable {}
+.GENTICS_editable {
+	min-height: 1.2em;
+}
 
 .GENTICS_editable_active .GENTICS_block {
 	background-color: #B7D6FA !important;
@@ -20,22 +22,53 @@
 	display: none;
 }
 
+.GENTICS_block .GENTICS_block .GENTICS_editicon {
+	margin-top: 15px;
+}
+
+.GENTICS_block .GENTICS_block .GENTICS_block .GENTICS_editicon {
+	margin-top: 30px;
+}
+
+.GENTICS_block .GENTICS_block .GENTICS_block .GENTICS_block .GENTICS_editicon {
+	margin-top: 45px;
+}
+
 /*
  * Ext JS fixes
  */
-.GENTICS_floatingmenu table, .GENTICS_floatingmenu tr, .GENTICS_floatingmenu td, .ext-root table, .ext-root tr, .ext-root td {
+.GENTICS_floatingmenu table, .GENTICS_floatingmenu tr, .GENTICS_floatingmenu td, 
+.ext-root tr:nth-child(2n), .ext-root tr:nth-child(3n), .ext-root tr:nth-child(4n), .ext-root tr:nth-child(5n),
+.ext-root table, .ext-root tr, .ext-root td, 
+.x-layer table, .x-layer tr, .x-layer td,
+.x-window table, .x-window tr, .x-window td {
 	border: 0;
 	padding: 0;
 	margin: 0;
+background-color: transparent;
 }
 .GENTICS_floatingmenu table, .GENTICS_floatingmenu tr, .GENTICS_floatingmenu td {
 	width: 0;
 	height: 0;
 }
 
+/* fixes modal dialog border issues in GCN backend */
+table.x-toolbar-ct {
+        border: 0px;
+}
+
+table.x-toolbar-ct td {
+        border: 0px;
+}
+
+table.x-toolbar-ct table {
+        border: 0px;
+}
+
 /* 
  * Floating Menu 
  */
+
 .GENTICS_floatingmenu .x-tab-panel-header {
 	border-width: 0px 0px 1px 0px;
 	background: none;
@@ -86,6 +119,22 @@
 	z-index: 8800;
 }
 
+.x-combo-selected {
+	background-color: Highlight !important;
+}
+
+.x-tree-root-ct {
+	padding: 0px;
+}
+
+.x-tree-node {
+	list-style: none;
+}
+
+.x-tree-node-ct {
+	padding: 0px;
+}
+
 /*hide dotted browser border on focus*/
 .GENTICS_button a:focus {
 	outline: none;
@@ -93,6 +142,10 @@
 
 button.GENTICS_button {
 	background: url(../images/base.png) no-repeat !important;
+}
+
+button.GENTICS_button_big {
+	background: url(../images/base_big.png) no-repeat !important;
 }
 
 /*buttons for format plugin*/
@@ -239,13 +292,20 @@ button.GENTICS_button_deleteRows {
 button.GENTICS_button_deleteColumns {
 	background-position: -192px 0 !important;
 }
-
+/* iks test buttons */
 button.GENTICS_button_addPerson {
 	background-position: -224px 0 !important;
 }
 
 button.GENTICS_button_addEvent {
 	background-position: -208px 0 !important;
+}
+
+button.GENTICS_button_abbr {
+	background-position: -336px 0px !important;
+}
+button.GENTICS_button_tree {
+	background-position: -0 0 !important;
 }
 
 /*button status hover of format plugin*/
@@ -406,3 +466,4 @@ ul.GENTICS_multisplit-expanded {
 ul.GENTICS_multisplit button.GENTICS_button_removeFormat {
 	background-image: url(../images/removeformat.png) !important;
 }
+
