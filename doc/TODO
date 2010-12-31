@@ -7,7 +7,7 @@ x rspec 2.3
 x ruby 1.9.2:
   x DelayedJob not working
 x new version of Aloha-Editor
-- locomotive gem: test with staging
+x locomotive gem: test with staging
 
 BACKLOG:
 
@@ -16,7 +16,6 @@ BACKLOG:
   - editable elements should wrap a tag: div, h1, ...etc (default span)
   - edit images (upload new ones, ...etc) => wait for aloha or send them an email ?
 
-- ruby 1.9.2
 - refactor slugify method (use parameterize + create a module)
 - validation for custom fields
 - notify accounts when new instance of models (opt): none, one or many accounts. Used for contact form.
