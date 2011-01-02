@@ -27,7 +27,67 @@ module Models
           alias :descendants :hacked_descendants
         end
 
+        module ClassMethods
+
+          # Warning: used only in read-only
+          def quick_tree(site)
+            pages = site.pages.minimal_attributes.order_by([[:depth, :asc], [:position, :asc]]).to_a
+
+            puts "pages size = #{pages.size}"
+
+            tmp = []
+
+            while !pages.empty?
+              tmp << _quick_tree(pages.delete_at(0), pages)
+            end
+
+            tmp
+          end
+
+          def _quick_tree(current_page, pages)
+            puts "_build_tree [current_page = #{current_page.title}] / #{pages.size}"
+            i, children = 0, []
+
+            while !pages.empty?
+              puts "...#{i}"
+              page = pages[i]
+
+              break if page.nil?
+
+              if page.parent_id == current_page.id
+                page = pages.delete_at(i)
+
+                children << _quick_tree(page, pages)
+              else
+                i += 1
+              end
+            end
+
+            current_page.instance_eval do
+              def children=(list); @children = list; end
+              def children; @children || []; end
+            end
+
+            current_page.children = children
+
+            puts "children size for #{current_page.title} = #{current_page.children.size}"
+
+            current_page
+          end
+
+        end
+
         module InstanceMethods
+
+          def children?
+            self.class.where(self.parent_id_field => self.id).count
+          end
+
+          def children_with_minimal_attributes
+            self.class.where(self.parent_id_field => self.id).
+              order_by(self.tree_order).
+              minimal_attributes
+          end
 
           def sort_children!(ids)
             ids.each_with_index do |id, position|

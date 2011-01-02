@@ -1,12 +1,14 @@
 module Locomotive
   module Liquid
     module Tags
-      # Display the children pages of the site or the current page. If not precised, nav is applied on the current page.
+      # Display the children pages of the site, current page or the parent page. If not precised, nav is applied on the current page.
       # The html output is based on the ul/li tags.
       #
       # Usage:
       #
       # {% nav site %} => <ul class="nav"><li class="on"><a href="/features">Features</a></li></ul>
+      #
+      # {% nav site, no_wrapper: true, exclude: 'contact|about', id: 'main-nav' }
       #
       class Nav < ::Liquid::Tag
 
@@ -14,7 +16,7 @@ module Locomotive
 
         def initialize(tag_name, markup, tokens, context)
           if markup =~ Syntax
-            @site_or_page = $1 || 'page'
+            @source = ($1 || 'page').gsub(/"|'/, '')
             @options = {}
             markup.scan(::Liquid::TagAttributes) { |key, value| @options[key.to_sym] = value }
 
@@ -29,15 +31,26 @@ module Locomotive
         def render(context)
           @current_page = context.registers[:page]
 
-          source = context.registers[@site_or_page.to_sym]
-
-          if source.respond_to?(:name) # site ?
-            source = source.pages.index.first # start from home page
+          children = (case @source
+          when 'site'     then context.registers[:site].pages.index.minimal_attributes.first # start from home page
+          when 'parent'   then @current_page.parent || @current_page
+          when 'page'     then @current_page
           else
-            source = source.parent || source
+            context.registers[:site].pages.fullpath(@source).minimal_attributes.first
+          end).children_with_minimal_attributes
+
+          children_output = []
+
+          children.each_with_index do |p, index|
+            if include_page?(p)
+              css = ''
+              css = 'first' if index == 0
+              css = 'last' if index == children.size - 1
+              children_output << render_child_link(p, css)
+            end
           end
 
-          output = source.children.map { |p| include_page?(p) ? render_child_link(p) : ''  }.join("\n")
+          output = children_output.join("\n")
 
            if @options[:no_wrapper] != 'true'
              output = %{<ul id="nav">\n#{output}</ul>}
@@ -49,7 +62,7 @@ module Locomotive
         private
 
         def include_page?(page)
-          if page.templatized?
+          if page.templatized? || !page.published?
             false
           elsif @options[:exclude]
             (page.fullpath =~ @options[:exclude]).nil?
@@ -58,14 +71,15 @@ module Locomotive
           end
         end
 
-        def render_child_link(page)
-          selected = @current_page._id == page._id ? ' on' : ''
+        def render_child_link(page, css)
+          # selected = @current_page._id == page._id ? ' on' : ''
+          selected = @current_page.fullpath =~ /^#{page.fullpath}/ ? ' on' : ''
 
           icon = @options[:icon] ? '<span></span>' : ''
           label = %{#{icon if @options[:icon] != 'after' }#{page.title}#{icon if @options[:icon] == 'after' }}
 
           %{
-            <li id="#{page.slug.dasherize}" class="link#{selected}">
+            <li id="#{page.slug.dasherize}" class="link#{selected} #{css}">
               <a href="/#{page.fullpath}">#{label}</a>
             </li>
           }.strip

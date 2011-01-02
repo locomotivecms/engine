@@ -1,5 +1,7 @@
 %li{ :id => "item-#{page.id}", :class => "#{'not-found' if page.not_found? } #{'templatized' if page.templatized?}"}
-  - if not page.index? and not page.children.empty?
+  - with_children = !page.children.empty?
+
+  - if not page.index? and with_children
     = image_tag 'admin/list/icons/node_closed.png', :class => 'toggler'
   %em
   %strong= link_to truncate(page.title, :length => 80), edit_admin_page_url(page)
@@ -11,6 +13,6 @@
     - if not page.index? and not page.not_found?
       = link_to image_tag('admin/list/icons/trash.png'), admin_page_url(page), :class => 'remove', :confirm => t('admin.messages.confirm'), :method => :delete
 
-  - if not page.children.empty?
+  - if with_children
     %ul{ :id => "folder-#{page._id}", :class => "folder depth-#{(page.depth || 0) + 1}", :data_url => sort_admin_page_url(page), :style => "display: #{cookies["folder-#{page._id}"] || 'block'}" }
       = render page.children

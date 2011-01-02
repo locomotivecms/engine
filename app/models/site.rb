@@ -40,6 +40,10 @@ class Site
 
   ## methods ##
 
+  def all_pages_in_once
+    Page.quick_tree(self)
+  end
+
   def domains=(array)
     array = [] if array.blank?; super(array)
   end

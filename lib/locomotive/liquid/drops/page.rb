@@ -19,6 +19,10 @@ module Locomotive
           @fullpath ||= @source.fullpath
         end
 
+        def depth
+          @source.depth
+        end
+
       end
     end
   end
