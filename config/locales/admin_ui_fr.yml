@@ -291,7 +291,7 @@ fr:
         next: Créer compte
       step_3:
         title: "Étape 3/3 &mdash; Créer premier site"
-        explanations: "C'est la dernière étape de l'installation. Vous pouvez uploader un theme sous forme d'un fichier zip. Nous avons quelques themes disponibles <a href=\"http://www.locomotivecms.com/docs/themes\">ici</a>."
+        explanations: "C'est la dernière étape de l'installation. Vous pouvez uploader un theme sous forme d'un fichier zip. Nous avons quelques themes disponibles <a href=\"http://www.locomotivecms.com/support/themes\">ici</a>."
         next: Créer site
 
   formtastic:

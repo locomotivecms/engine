@@ -8,18 +8,25 @@ defaults: &defaults
 
 development:
   <<: *defaults
-  database: locomotive_dev
+  database: locomotive_staging_dev
 
 test:
   <<: *defaults
-  database: locomotive_test
+  database: locomotive_staging_test
 
 # set these environment variables on your prod server
 production:
   <<: *defaults
-  database: locomotive_prod
-  host: <%= ENV['MONGOID_HOST'] %>
-  port: <%= ENV['MONGOID_PORT'] %>
-  username: <%= ENV['MONGOID_USERNAME'] %>
-  password: <%= ENV['MONGOID_PASSWORD'] %>
-  database: <%= ENV['MONGOID_DATABASE'] %>
+  database: locomotive_staging_prod
+
+  # other settings for production
+
+  # host: <%= ENV['MONGOID_HOST'] %>
+  # port: <%= ENV['MONGOID_PORT'] %>
+  # username: <%= ENV['MONGOID_USERNAME'] %>
+  # password: <%= ENV['MONGOID_PASSWORD'] %>
+  # database: <%= ENV['MONGOID_DATABASE'] %>
+
+  # heroku
+  # uri: <%= ENV['MONGOHQ_URL'] %>
+

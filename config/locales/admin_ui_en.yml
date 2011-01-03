@@ -290,7 +290,7 @@ en:
         next: Create account
       step_3:
         title: "Step 3/3 &mdash; Create first site"
-        explanations: "This is the last step of the installation. You can upload a theme as a zip file. We have free available themes <a href=\"http://www.locomotivecms.com/docs/themes\">here</a>."
+        explanations: "This is the last step of the installation. You can upload a theme as a zip file. We have free available themes <a href=\"http://www.locomotivecms.com/support/themes\">here</a>."
         next: Create site
 
 
