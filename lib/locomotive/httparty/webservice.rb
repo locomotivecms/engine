@@ -17,7 +17,18 @@ module Locomotive
 
         # puts "[WebService] consuming #{path}, #{options.inspect}"
 
-        self.get(path, options).try(:underscore_keys)
+        response = self.get(path, options)
+
+        if response.code == 200
+          if response.respond_to?(:each)
+            response.collect(&:underscore_keys)
+          else
+            response.try(:underscore_keys)
+          end
+        else
+          nil
+        end
+
       end
 
     end

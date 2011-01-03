@@ -30,7 +30,8 @@ describe Locomotive::Liquid::Tags::Consume do
   context '#rendering' do
 
     it 'puts the response into the liquid variable' do
-      Locomotive::Httparty::Webservice.stubs(:get).returns({ 'title' => 'Locomotive rocks !' })
+      response = mock('response', :code => 200, :underscore_keys => { 'title' => 'Locomotive rocks !' })
+      Locomotive::Httparty::Webservice.stubs(:get).returns(response)
       template = "{% consume blog from \"http://blog.locomotiveapp.org/api/read\" %}{{ blog.title }}{% endconsume %}"
       Liquid::Template.parse(template).render.should == 'Locomotive rocks !'
     end
