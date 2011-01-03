@@ -33,8 +33,6 @@ module Models
           def quick_tree(site)
             pages = site.pages.minimal_attributes.order_by([[:depth, :asc], [:position, :asc]]).to_a
 
-            puts "pages size = #{pages.size}"
-
             tmp = []
 
             while !pages.empty?
@@ -45,11 +43,9 @@ module Models
           end
 
           def _quick_tree(current_page, pages)
-            puts "_build_tree [current_page = #{current_page.title}] / #{pages.size}"
             i, children = 0, []
 
             while !pages.empty?
-              puts "...#{i}"
               page = pages[i]
 
               break if page.nil?
@@ -69,8 +65,6 @@ module Models
             end
 
             current_page.children = children
-
-            puts "children size for #{current_page.title} = #{current_page.children.size}"
 
             current_page
           end
@@ -113,8 +107,12 @@ module Models
           def change_parent
             if self.parent_id_changed?
               self.fix_position(false)
-              self.position = nil # make it move to bottom
-              self.add_to_list_bottom
+
+              unless self.parent_id_was.nil?
+                self.position = nil # make it move to bottom
+                self.add_to_list_bottom
+              end
+
               self.instance_variable_set :@_will_move, true
             end
           end

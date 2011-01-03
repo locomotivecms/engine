@@ -17,10 +17,10 @@ module Locomotive
         def initialize(tag_name, markup, tokens, context)
           if markup =~ Syntax
             @source = ($1 || 'page').gsub(/"|'/, '')
-            @options = {}
-            markup.scan(::Liquid::TagAttributes) { |key, value| @options[key.to_sym] = value }
+            @options = { :id => 'nav' }
+            markup.scan(::Liquid::TagAttributes) { |key, value| @options[key.to_sym] = value.gsub(/"|'/, '') }
 
-            @options[:exclude] = Regexp.new(@options[:exclude].gsub(/"|'/, '')) if @options[:exclude]
+            @options[:exclude] = Regexp.new(@options[:exclude]) if @options[:exclude]
           else
             raise ::Liquid::SyntaxError.new("Syntax Error in 'nav' - Valid syntax: nav <page|site> <options>")
           end
@@ -29,6 +29,30 @@ module Locomotive
         end
 
         def render(context)
+          children_output = []
+
+          entries = fetch_entries(context)
+
+          entries.each_with_index do |p, index|
+            css = []
+            css << 'first' if index == 0
+            css << 'last' if index == entries.size - 1
+
+            children_output << render_entry_link(p, css.join(' '))
+          end
+
+          output = children_output.join("\n")
+
+          if @options[:no_wrapper] != 'true'
+            output = %{<ul id="#{@options[:id]}">\n#{output}</ul>}
+          end
+
+          output
+        end
+
+        private
+
+        def fetch_entries(context)
           @current_page = context.registers[:page]
 
           children = (case @source
@@ -37,29 +61,10 @@ module Locomotive
           when 'page'     then @current_page
           else
             context.registers[:site].pages.fullpath(@source).minimal_attributes.first
-          end).children_with_minimal_attributes
+          end).children_with_minimal_attributes.to_a
 
-          children_output = []
-
-          children.each_with_index do |p, index|
-            if include_page?(p)
-              css = ''
-              css = 'first' if index == 0
-              css = 'last' if index == children.size - 1
-              children_output << render_child_link(p, css)
-            end
-          end
-
-          output = children_output.join("\n")
-
-           if @options[:no_wrapper] != 'true'
-             output = %{<ul id="nav">\n#{output}</ul>}
-           end
-
-          output
+          children.delete_if { |p| !include_page?(p) }
         end
-
-        private
 
         def include_page?(page)
           if page.templatized? || !page.published?
@@ -71,8 +76,7 @@ module Locomotive
           end
         end
 
-        def render_child_link(page, css)
-          # selected = @current_page._id == page._id ? ' on' : ''
+        def render_entry_link(page, css)
           selected = @current_page.fullpath =~ /^#{page.fullpath}/ ? ' on' : ''
 
           icon = @options[:icon] ? '<span></span>' : ''

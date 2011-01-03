@@ -31,7 +31,9 @@ module Admin
         flash[:notice] = t("flash.admin.imports.create.#{Locomotive.config.delayed_job ? 'notice' : 'done'}")
 
         redirect_to Locomotive.config.delayed_job ? admin_import_url : new_admin_import_url
-      rescue
+      rescue Exception => e
+        logger.error "[Locomotive import] #{e.message}"
+
         @error = t('errors.messages.invalid_theme_file')
         flash[:alert] = t('flash.admin.imports.create.alert')
 

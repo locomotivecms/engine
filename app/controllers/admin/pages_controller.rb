@@ -6,7 +6,6 @@ module Admin
     respond_to :json, :only => [:update, :sort, :get_path]
 
     def index
-      # @pages = current_site.pages.roots.minimal_attributes
       @pages = current_site.all_pages_in_once
     end
 

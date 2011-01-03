@@ -36,7 +36,8 @@ module Locomotive
           :title        => fullpath.split('/').last.humanize,
           :slug         => fullpath.split('/').last,
           :parent       => parent,
-          :raw_template => template
+          :raw_template => template,
+          :published    => true
         }.merge(self.pages[fullpath] || {}).symbolize_keys
 
         # templatized ?
@@ -54,7 +55,7 @@ module Locomotive
 
         page.save!
 
-        self.log "adding #{page.fullpath}"
+        self.log "adding #{page.fullpath} / #{page.position}"
 
         site.reload
 
@@ -137,10 +138,23 @@ module Locomotive
         pages = context[:database]['site']['pages']
 
         if pages.is_a?(Array) # ordered list of pages
-          tmp = {}
-          pages.each_with_index do |data, position|
+          tmp, positions = {}, Hash.new(0)
+          pages.each do |data|
+            position = nil
+            fullpath = data.keys.first.to_s
+
+            unless %w(index 404).include?(fullpath)
+              (segments = fullpath.split('/')).pop
+              position_key = segments.empty? ? 'index' : segments.join('/')
+
+              position = positions[position_key]
+
+              positions[position_key] += 1
+            end
+
             attributes = (data.values.first || {}).merge(:position => position)
-            tmp[data.keys.first.to_s] = attributes
+
+            tmp[fullpath] = attributes
           end
           pages = tmp
         end

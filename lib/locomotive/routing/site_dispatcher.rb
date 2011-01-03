@@ -26,9 +26,11 @@ module Locomotive
         end
 
         def require_site
+          return true if current_site
+
           redirect_to admin_installation_url and return false if Account.count == 0 || Site.count == 0
 
-          render_no_site_error and return false if current_site.nil?
+          render_no_site_error and return false
         end
 
         def render_no_site_error
