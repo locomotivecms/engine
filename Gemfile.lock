@@ -128,10 +128,6 @@ GEM
     jammit (0.5.4)
       closure-compiler (>= 0.1.0)
       yui-compressor (>= 0.9.1)
-    jammit-s3 (0.5.4.3)
-      jammit (>= 0.5.4)
-      mimemagic (>= 0.1.7)
-      s3 (>= 0.3.7)
     json (1.4.6)
     json_pure (1.4.6)
     kgio (2.1.1)
@@ -143,6 +139,10 @@ GEM
       ruby_core_source (>= 0.1.4)
     locomotive_carrierwave (0.5.0.1.beta2)
       activesupport (~> 3.0)
+    locomotive_jammit-s3 (0.5.4.4)
+      jammit (>= 0.5.4)
+      mimemagic (>= 0.1.7)
+      s3 (>= 0.3.7)
     locomotive_liquid (2.2.2)
     locomotive_mongoid_acts_as_tree (0.1.5.1)
       bson (>= 0.20.1)
@@ -274,9 +274,9 @@ DEPENDENCIES
   heroku
   httparty (>= 0.6.1)
   inherited_resources (>= 1.1.2)
-  jammit-s3
   launchy
   locomotive_carrierwave (= 0.5.0.1.beta2)
+  locomotive_jammit-s3
   locomotive_liquid (= 2.2.2)
   locomotive_mongoid_acts_as_tree (= 0.1.5.1)
   mimetype-fu

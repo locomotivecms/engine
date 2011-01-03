@@ -9,11 +9,7 @@ module Locomotive
           return '' if input.nil?
 
           unless input =~ /^(\/|http:)/
-            segments = "stylesheets/#{input}".split('/')
-
-            filename, folder = segments.pop, segments.join('/')
-
-            input = asset_url(folder, filename)
+            input = asset_url("stylesheets/#{input}")
           end
 
           input = "#{input}.css" unless input.ends_with?('.css')
@@ -27,14 +23,7 @@ module Locomotive
           return '' if input.nil?
 
           unless input =~ /^(\/|http:)/
-            segments = "javascripts/#{input}".split('/')
-
-            filename, folder = segments.pop, segments.join('/')
-
-            input = asset_url(folder, filename)
-            # javascript = ThemeAsset.new(:site => @context.registers[:site], :folder => folder)
-            #
-            # input = '/' + ThemeAssetUploader.new(javascript).store_path(filename)
+            input = asset_url("javascripts/#{input}")
           end
 
           input = "#{input}.js" unless input.ends_with?('.js')
@@ -47,11 +36,7 @@ module Locomotive
 
           input = "images/#{input}" unless input.starts_with?('/')
 
-          segments = input.split('/')
-
-          filename, folder = segments.pop, segments.join('/')
-
-          asset_url(folder, filename)
+          asset_url(input)
         end
 
         # Write an image tag
@@ -143,12 +128,10 @@ module Locomotive
           input.respond_to?(:url) ? input.url : input
         end
 
-        def asset_url(folder, filename)
-          asset = ThemeAsset.new(:site => @context.registers[:site], :folder => folder)
-          uploader = ThemeAssetUploader.new(asset)
-          uploader.retrieve_from_store!(filename)
-          uploader.url
+        def asset_url(path)
+          ThemeAssetUploader.url_for(@context.registers[:site], path)
         end
+
       end
 
       ::Liquid::Template.register_filter(Html)

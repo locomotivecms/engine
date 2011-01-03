@@ -1,15 +1,11 @@
-require 'rack/utils'
-
 module Locomotive
   module Middlewares
     class Fonts
-      include Rack::Utils
 
       def initialize(app, opts = {})
         @app = app
         @path_regexp = opts[:path] || %r{^/fonts/}
-        @file_server = ::Rack::File.new(opts[:root] || "#{Rails.root}/public")
-        @expires_in = opts[:expires_in] || 24.hour
+        @expires_in = opts[:expires_in] || 24.hour # varnish
       end
 
       def call(env)
@@ -19,13 +15,9 @@ module Locomotive
           if site.nil?
             @app.call(env)
           else
-            env["PATH_INFO"] = ::File.join('/', 'sites', site.id.to_s, 'theme', env["PATH_INFO"])
+            body = ThemeAssetUploader.build(site, env["PATH_INFO"]).read.to_s
 
-            response = @file_server.call(env)
-
-            response[1]['Cache-Control'] = "public; max-age=#{@expires_in}" # varnish
-
-            response
+            [200, { 'Cache-Control' => "public; max-age=#{@expires_in}" }, [body]]
           end
         else
           @app.call(env)

@@ -18,4 +18,15 @@ class ThemeAssetUploader < AssetUploader
     %w(jpg jpeg gif png css js swf flv eot svg ttf woff otf ico)
   end
 
+  def self.url_for(site, path)
+    build(site, path).url
+  end
+
+  def self.build(site, path)
+    asset = ThemeAsset.new(:site => site, :folder => File.dirname(path))
+    uploader = ThemeAssetUploader.new(asset)
+    uploader.retrieve_from_store!(File.basename(path))
+    uploader
+  end
+
 end

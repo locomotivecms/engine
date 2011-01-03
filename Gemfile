@@ -30,7 +30,7 @@ gem 'RedCloth'
 gem 'delayed_job', '2.1.2'
 gem 'delayed_job_mongoid', '1.0.1'
 gem 'rubyzip'
-gem 'jammit-s3'
+gem 'locomotive_jammit-s3', :require => 'jammit-s3'
 
 # The rest of the dependencies are for use when in the locomotive dev environment
 
