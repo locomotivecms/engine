@@ -8,16 +8,16 @@ defaults: &defaults
 
 development:
   <<: *defaults
-  database: locomotive_staging_dev
+  database: locomotive_dev
 
 test:
   <<: *defaults
-  database: locomotive_staging_test
+  database: locomotive_test
 
 # set these environment variables on your prod server
 production:
   <<: *defaults
-  database: locomotive_staging_prod
+  database: locomotive_prod
 
   # other settings for production
 

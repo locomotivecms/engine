@@ -8,10 +8,10 @@ x ruby 1.9.2:
   x DelayedJob not working
 x new version of Aloha-Editor
 x locomotive gem: test with staging
-- nav tag:
-  - site | page | parent
-  - retrieve only important page information from mongodb
-- published by default when importing pages
+x nav tag:
+  x site | page | parent
+  x retrieve only important page information from mongodb
+x published by default when importing pages
 
 BACKLOG:
 

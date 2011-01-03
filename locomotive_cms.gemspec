@@ -44,7 +44,7 @@ Gem::Specification.new do |s|
   s.add_dependency "delayed_job", "2.1.2"
   s.add_dependency "delayed_job_mongoid", "1.0.1"
   s.add_dependency "rubyzip"
-  s.add_dependency "jammit-s3"
+  s.add_dependency "locomotive_jammit-s3"
 
   s.files        = Dir[ "Gemfile",
                         "{app}/**/*",
