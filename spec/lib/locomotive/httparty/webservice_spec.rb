@@ -5,7 +5,7 @@ describe Locomotive::Httparty::Webservice do
   context '#consuming' do
 
     before(:each) do
-      @response = mock('response', :code => 200, :underscore_keys => [])
+      @response = mock('response', :code => 200, :underscore_keys => {})
     end
 
     it 'sets the base uri from a simple url' do

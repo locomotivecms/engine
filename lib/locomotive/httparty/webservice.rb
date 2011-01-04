@@ -20,10 +20,10 @@ module Locomotive
         response = self.get(path, options)
 
         if response.code == 200
-          if response.respond_to?(:each)
-            response.collect(&:underscore_keys)
+          if response.respond_to?(:underscore_keys)
+            response.underscore_keys
           else
-            response.try(:underscore_keys)
+            response.collect(&:underscore_keys)
           end
         else
           nil
