@@ -22,7 +22,7 @@ module Locomotive
       html += inline_hints_for(name, options) || ''
       html += self.errors_on(name) || ''
 
-      template.content_tag(:li, template.find_and_preserve(html), :class => "#{options[:css]} #{'error' unless @object.errors[name].empty?}")
+      template.content_tag(:li, template.find_and_preserve(html), :style => "#{options[:style]}", :class => "#{options[:css]} #{'error' unless @object.errors[name].empty?}")
     end
 
     def inline_errors_on(method, options = nil)
