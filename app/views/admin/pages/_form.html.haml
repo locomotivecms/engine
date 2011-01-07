@@ -11,7 +11,7 @@
 
   = f.input :slug, :required => false, :hint => @page.slug.blank? ? '&nbsp;' : @page.url, :input_html => { :data_url => get_path_admin_pages_url, :disabled => @page.index? || @page.not_found? }, :wrapper_html => { :style => "#{'display: none' if @page.templatized?}" }
 
-  = f.custom_input :templatized, :css => 'toggle' do
+  = f.custom_input :templatized, :css => 'toggle', :style => "#{'display: none' if @page.redirect?}" do
     = f.check_box :templatized
 
   = f.input :content_type_id, :as => :select, :collection => current_site.content_types.all.to_a, :include_blank => false, :wrapper_html => { :style => "#{'display: none' unless @page.templatized?}" }
@@ -19,7 +19,12 @@
   = f.custom_input :published, :css => 'toggle' do
     = f.check_box :published
 
-  = f.input :cache_strategy, :as => :select, :collection => options_for_page_cache_strategy, :include_blank => false
+  = f.custom_input :redirect, :css => 'toggle', :style => "#{'display: none' if @page.templatized?}" do
+    = f.check_box :redirect
+
+  = f.input :cache_strategy, :as => :select, :collection => options_for_page_cache_strategy, :include_blank => false, :wrapper_html => { :style => "#{'display: none' if @page.redirect?}" }
+
+  = f.input :redirect_url, :required => true, :wrapper_html => { :style => "#{'display: none' unless @page.redirect?}" }
 
 = render 'editable_elements', :page => @page
 

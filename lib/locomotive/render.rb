@@ -13,6 +13,8 @@ module Locomotive
         else
           @page = locomotive_page
 
+          redirect_to(@page.redirect_url) and return if @page.present? && @page.redirect?
+
           render_no_page_error and return if @page.nil?
 
           output = @page.render(locomotive_context)

@@ -75,6 +75,22 @@ describe 'Locomotive rendering system' do
       @controller.send(:locomotive_page).should be_true
     end
 
+    context 'redirect page' do
+
+      before(:each) do
+        @page.redirect = true
+        @page.redirect_url = 'http://www.example.com/'
+        @controller.request.fullpath = '/contact'
+        @controller.current_site.pages.expects(:any_in).with({ :fullpath => %w{contact content_type_template} }).returns([@page])
+      end
+
+      it 'redirects to the redirect_url' do
+        @controller.expects(:redirect_to).with('http://www.example.com/').returns(true)
+        @controller.send(:render_locomotive_page)
+      end
+
+    end
+
     context 'templatized page' do
 
       before(:each) do

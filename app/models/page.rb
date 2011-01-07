@@ -8,6 +8,7 @@ class Page
   include Models::Extensions::Page::Parse
   include Models::Extensions::Page::Render
   include Models::Extensions::Page::Templatized
+  include Models::Extensions::Page::Redirect
 
   ## fields ##
   field :title

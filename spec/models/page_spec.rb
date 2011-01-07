@@ -205,4 +205,29 @@ describe Page do
     end
 
   end
+
+  describe 'redirect extension' do
+
+    before(:each) do
+      @page = Factory.build(:page, :site => nil, :redirect=> true, :redirect_url => 'http://www.google.com/')
+    end
+
+    it 'is considered as a redirect page' do
+      @page.redirect?.should be_true
+    end
+
+    it 'validates the redirect_url if redirect is set' do
+      @page.redirect_url = nil
+      @page.should_not be_valid
+      @page.errors[:redirect_url].should == ["can't be blank"]
+    end
+
+    it 'should validate format of redirect_url' do
+      @page.redirect_url = "invalid url with spaces"
+      @page.should_not be_valid
+      @page.errors[:redirect_url].should == ["is invalid"]
+
+    end
+
+  end
 end
