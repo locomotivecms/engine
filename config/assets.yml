@@ -82,6 +82,7 @@ stylesheets:
     - public/stylesheets/admin/buttons.css
     - public/stylesheets/admin/formtastic.css
     - public/stylesheets/admin/formtastic_changes.css
+    - public/stylesheets/admin/assets.css
     - public/stylesheets/admin/application.css
     - public/stylesheets/admin/safari.css
   fancybox:
