@@ -12,6 +12,7 @@ x nav tag:
   x site | page | parent
   x retrieve only important page information from mongodb
 x published by default when importing pages
+x page redirection
 
 BACKLOG:
 
@@ -42,7 +43,6 @@ NICE TO HAVE:
 - traffic statistics
 - asset picker (content instance)
 - page with regexp url ?
-- page redirection (option)
 - automatic update !
 - page not found (front) => if logged in, link to create the page
 - switch to list (theme assets / assets ?). delete all in once (with checkbox) or see details (updated_at, size, ...etc)

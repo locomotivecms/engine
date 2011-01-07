@@ -19,7 +19,9 @@ module Locomotive
         def parse_parent_template
           if @template_name == 'parent'
             if @context[:cached_parent]
-              @context[:parent_page] = @context[:cached_parent]
+              @context[:parent_page] = @context[:cached_parent] #.clone # parent must not be modified
+
+              @context[:cached_parent].instance_variable_set(:@template, nil) # force to reload the template
               @context[:cached_parent] = nil
             else
               @context[:parent_page] = @context[:page].parent
@@ -31,7 +33,12 @@ module Locomotive
 
           raise PageNotFound.new("Page with fullpath '#{@template_name}' was not found") if @context[:parent_page].nil?
 
-          @context[:parent_page].template
+          # be sure to work with a copy of the parent template otherwise there will be conflicts
+          parent_template = @context[:parent_page].template.clone
+
+          @context[:parent_page].instance_variable_set(:@template, parent_template)
+
+          parent_template
         end
 
       end
