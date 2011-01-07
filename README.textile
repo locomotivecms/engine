@@ -30,7 +30,14 @@ Here is a short list of main gems used in the application.
 
 h2. Installation
 
-See the "official website":http://www.locomotivecms.com
+-See the "official website":http://www.locomotivecms.com-
+
+* Create a rails app
+* Reference this repository in your gemfile
+
+    gem 'locomotive_cms', :git => 'git@github.com:dirkkelly/locomotive.git'
+    
+_you will also need to specify unicorn if you're going to use it_
 
 h2. Team
 
