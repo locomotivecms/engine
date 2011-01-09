@@ -9,7 +9,7 @@ module Locomotive
 
       def render_locomotive_page
         if request.fullpath =~ /^\/admin\//
-          render :template => "/admin/errors/404", :layout => '/admin/layouts/box', :status => 404
+          render :template => "/admin/errors/404", :layout => '/admin/layouts/box', :status => :not_found
         else
           @page = locomotive_page
 
@@ -52,7 +52,7 @@ module Locomotive
           end
         end
 
-        page || current_site.pages.not_found.published.first
+        page || not_found_page
       end
 
       def locomotive_context
@@ -93,11 +93,19 @@ module Locomotive
           end
         end
 
-        render :text => output, :layout => false, :status => :ok
+        render :text => output, :layout => false, :status => page_status
+      end
+
+      def not_found_page
+        current_site.pages.not_found.published.first
       end
 
       def editing_page?
         self.params[:editing] == true && current_admin
+      end
+
+      def page_status
+        @page == not_found_page ? :not_found : :ok
       end
 
     end
