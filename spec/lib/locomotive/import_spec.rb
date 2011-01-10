@@ -53,7 +53,7 @@ describe Locomotive::Import::Job do
     end
 
     it 'inserts all the pages' do
-      @site.pages.count.should == 8
+      @site.pages.count.should == 9
     end
 
     it 'inserts the index and 404 pages' do
@@ -65,6 +65,12 @@ describe Locomotive::Import::Job do
       page = @site.pages.where(:templatized => true).first
       page.should_not be_nil
       page.fullpath.should == 'portfolio/content_type_template'
+    end
+
+    it 'inserts redirection page' do
+      page = @site.pages.where(:redirect => true).first
+      page.should_not be_nil
+      page.redirect_url.should == 'http://blog.locomotivecms.com'
     end
 
     after(:all) do

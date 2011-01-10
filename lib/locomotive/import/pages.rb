@@ -15,9 +15,20 @@ module Locomotive
 
           self.add_page(fullpath)
         end
+
+        # make sure all the pages were processed (redirection pages without template for instance)
+        self.pages.each { |fullpath, attributes| self.add_page_without_template(fullpath.to_s) }
       end
 
       protected
+
+      def add_page_without_template(fullpath)
+        page = context[:done][fullpath]
+
+        return page if page # already added, so skip it
+
+        self._save_page!(fullpath, nil)
+      end
 
       def add_page(fullpath)
         page = context[:done][fullpath]
@@ -30,6 +41,10 @@ module Locomotive
 
         self.build_parent_template(template)
 
+        self._save_page!(fullpath, template)
+      end
+
+      def _save_page!(fullpath, template)
         parent = self.find_parent(fullpath)
 
         attributes = {
@@ -42,20 +57,22 @@ module Locomotive
 
         # templatized ?
         if content_type_slug = attributes.delete(:content_type)
-          fullpath.gsub!(/\/template$/, '/content_type_template')
           attributes.merge!({
             :templatized  => true,
             :content_type => site.content_types.where(:slug => content_type_slug).first
           })
         end
 
-        page = site.pages.where(:fullpath => fullpath).first || site.pages.build
+        # redirection page ?
+        attributes[:redirect] = true if attributes[:redirect_url].present?
+
+        page = site.pages.where(:fullpath => self.sanitize_fullpath(fullpath)).first || site.pages.build
 
         page.attributes = attributes
 
         page.save!
 
-        self.log "adding #{page.fullpath} / #{page.position}"
+        self.log "adding #{page.fullpath} (#{template.blank? ? 'without' : 'with'} template) / #{page.position}"
 
         site.reload
 
@@ -160,6 +177,10 @@ module Locomotive
         end
 
         pages
+      end
+
+      def sanitize_fullpath(fullpath)
+        fullpath.gsub(/\/template$/, '/content_type_template')
       end
 
     end
