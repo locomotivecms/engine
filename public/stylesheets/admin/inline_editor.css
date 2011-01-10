@@ -89,7 +89,7 @@
   left: 7px;
 }
 
-#page-toolbar ul li.sep { float: left; margin: 0 15px 0 10px; }
+#page-toolbar ul li.sep { float: left; margin: 0 15px 0 10px; width: auto !important; background: none !important; }
 
 #page-toolbar ul li.sep span {
   display: block;

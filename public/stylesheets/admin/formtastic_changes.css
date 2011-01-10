@@ -171,6 +171,8 @@ form.formtastic div.actions a {
   top: 4px;
 }
 
+form.formtastic div.actions a.remove { color: #ff092c !important; }
+
 form.formtastic div.actions p a:hover { text-decoration: underline; }
 
 form.formtastic div.actions .last p { text-align: right; }
