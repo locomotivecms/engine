@@ -22,6 +22,10 @@ describe 'Locomotive rendering system' do
       @controller.response.headers['Content-Type'].should == 'text/html; charset=utf-8'
     end
 
+    it 'sets the status to 200 OK' do
+      @controller.status.should == :ok
+    end
+
     it 'displays the output' do
       @controller.output.should == 'Hello world !'
     end
@@ -44,6 +48,12 @@ describe 'Locomotive rendering system' do
       @controller.send(:prepare_and_set_response, 'Hello world !')
       @controller.response.to_a # force to build headers
       @controller.response.headers['Cache-Control'].should == 'max-age=3600, public'
+    end
+
+    it 'sets the status to 404 not found when no page is found' do
+      @controller.expects(:not_found_page).times(1..100).returns(@page)
+      @controller.send(:prepare_and_set_response, 'Hello world !')
+      @controller.status.should == :not_found
     end
 
   end
