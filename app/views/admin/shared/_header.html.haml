@@ -4,7 +4,7 @@
       = select_tag 'target_id', options_for_select(current_admin.sites.collect { |site| [truncate(site.name, :length => 32), site.id] }, current_site.id), :id => 'site-selector'
       = submit_tag 'Switch', :style => 'display: none'
   - else
-    = link_to current_site.name, admin_root_url, :class => 'single'
+    = link_to current_site.name, admin_pages_url, :class => 'single'
 
 
 #global-actions-bar

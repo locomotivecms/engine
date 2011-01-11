@@ -8,9 +8,13 @@ Rails.application.routes.draw do
   # admin authentication
   devise_for :admin, :class_name => 'Account', :controllers => { :sessions => 'admin/sessions', :passwords => 'admin/passwords' }
 
+  as :admin do
+    get '/admin' => 'admin/sessions#new'
+  end
+
   # admin interface for each website
   namespace 'admin' do
-    root :to => 'pages#index'
+    root :to => 'sessions#new'
 
     resources :pages do
       put :sort, :on => :member

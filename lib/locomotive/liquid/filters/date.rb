@@ -4,13 +4,17 @@ module Locomotive
       module Date
 
         def localized_date(input, *args)
-          format, locale = args[0], args[1] || 'en'
+          format, locale = args[0], args[1] rescue 'en'
 
           return input.to_s if format.to_s.empty?
 
           if input.is_a?(String)
-            fragments = ::Date._strptime(input, I18n.t('date.formats.default'))
-            date = ::Date.new(fragments[:year], fragments[:mon], fragments[:mday])
+            begin
+              fragments = ::Date._strptime(input, I18n.t('date.formats.default'))
+              date = ::Date.new(fragments[:year], fragments[:mon], fragments[:mday])
+            rescue
+              date = Time.parse(input)
+            end
           else
             date = input
           end
