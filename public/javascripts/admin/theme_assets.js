@@ -24,10 +24,10 @@ $(document).ready(function() {
   enableFileOrTextToggling();
 
   $('code.stylesheet textarea').each(function() {
-    addCodeMirrorEditor(null, $(this), ["tokenizejavascript.js", "parsejavascript.js", "parsecss.js"]);
+    addCodeMirrorEditor(null, $(this), 'CSS');
   });
   $('code.javascript textarea').each(function() {
-    addCodeMirrorEditor(null, $(this), ["parsecss.js", "tokenizejavascript.js", "parsejavascript.js"]);
+    addCodeMirrorEditor(null, $(this), 'JS');
   });
 
   $('select#theme_asset_content_type').bind('change', function() {

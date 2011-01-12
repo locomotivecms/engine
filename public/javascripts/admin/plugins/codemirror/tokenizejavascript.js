@@ -101,7 +101,7 @@ var tokenizeJavaScript = (function() {
     }
     function readRegexp() {
       nextUntilUnescaped(source, "/");
-      source.nextWhileMatches(/[gi]/);
+      source.nextWhileMatches(/[gimy]/); // 'y' is "sticky" option in Mozilla
       return {type: "regexp", style: "js-string"};
     }
     // Mutli-line comments are tricky. We want to return the newlines

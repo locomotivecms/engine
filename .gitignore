@@ -6,6 +6,7 @@ tmp/**/*
 rerun.txt
 uploads
 spec/tmp
+public/assets
 public/sites
 public/uploads
 public/stylesheets/all.css
@@ -29,4 +30,3 @@ config/deploy.rb
 perf/test.rb
 gem_graph.png
 sites/
-

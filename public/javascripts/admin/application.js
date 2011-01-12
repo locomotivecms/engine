@@ -19,27 +19,26 @@ $.growl.settings.dockCss = {
 /* ___ codemirror ___ */
 
 var addCodeMirrorEditor = function(type, el, parser) {
-  if (type == 'liquid') type = 'xml';
-  var parserfile = "parse" + type + ".js";
-  if (parser != undefined) parserfile = parser;
+  parser = (parser || 'Liquid') + 'Parser';
 
   var editor = CodeMirror.fromTextArea(el.attr('id'), {
     height: "400px",
-    parserfile: parserfile,
     stylesheet: [
       "/stylesheets/admin/plugins/codemirror/csscolors.css",
       "/stylesheets/admin/plugins/codemirror/xmlcolors.css",
       "/stylesheets/admin/plugins/codemirror/javascriptcolors.css",
       "/stylesheets/admin/plugins/codemirror/liquidcolors.css"],
-    path: "/javascripts/admin/plugins/codemirror/",
+    basefiles: '/javascripts/admin/plugins/codemirror/codemirror_base.min.js',
     continuousScanning: 500,
     reindentOnLoad: true,
     initCallback: function(editor) {
-      jQuery(editor.frame.contentDocument).keypress(function(event) {
+      jQuery(editor.frame.contentDocument).keydown(function(event) {
         jQuery(document).trigger(event);
       });
+      editor.setParser(parser);
     }
   });
+
   CodeMirrorEditors.push({ 'el': el, 'editor': editor });
 }
 
@@ -88,6 +87,9 @@ $(document).ready(function() {
   });
   $('.formtastic li.error input').eq(0).focus();
 
+  // nifty code editor
+  $('code.html textarea').each(function() { addCodeMirrorEditor('liquid', $(this)); });
+
   // save form in AJAX
   $('form.save-with-shortcut').saveWithShortcut();
 
@@ -122,9 +124,6 @@ $(document).ready(function() {
 
   // nifty checkboxes
   $('.formtastic li.toggle input[type=checkbox]').checkToggle();
-
-  // nifty code editor
-  $('code.html textarea').each(function() { addCodeMirrorEditor('liquid', $(this)); });
 
   // site selector
   $('#site-selector').selectmenu({ style: 'dropdown', width: 395, offsetTop: 8, change: function(event, ui) {

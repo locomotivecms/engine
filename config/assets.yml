@@ -57,7 +57,7 @@ javascripts:
   image_picker:
     - public/javascripts/admin/plugins/json2.js
     - public/javascripts/admin/plugins/scrollTo.js
-    - public/javascripts/admin/plugins/codemirror/codemirror.js
+    - public/javascripts/admin/plugins/codemirror/codemirror.min.js
     - public/javascripts/admin/plugins/fancybox.js
     - public/javascripts/admin/plugins/plupload/plupload.full.js
     - public/javascripts/admin/plugins/imagepicker.js

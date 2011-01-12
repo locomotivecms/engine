@@ -34,11 +34,14 @@ function matcher(regexp){
   return function(value){return regexp.test(value);};
 }
 
-// Test whether a DOM node has a certain CSS class. Much faster than
-// the MochiKit equivalent, for some reason.
-function hasClass(element, className){
+// Test whether a DOM node has a certain CSS class.
+function hasClass(element, className) {
   var classes = element.className;
   return classes && new RegExp("(^| )" + className + "($| )").test(classes);
+}
+function removeClass(element, className) {
+  element.className = element.className.replace(new RegExp(" " + className + "\\b", "g"), "");
+  return element;
 }
 
 // Insert a DOM node after another node.
