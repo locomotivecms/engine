@@ -43,8 +43,7 @@ jQuery.fn.saveWithShortcut = function() {
 	return this.each(function() {
 		var form = jQuery(this);
 		
-		jQuery(document).bind('keypress.shortcut', function(event) {
-			if (!(event.which == 115 && (event.ctrlKey || event.metaKey))) return true;
+		$.cmd('S', function() {
 			updateFromCodeMirror();
 			save(form);
 			event.preventDefault();

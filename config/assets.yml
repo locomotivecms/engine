@@ -12,6 +12,7 @@ javascripts:
     - public/javascripts/admin/jquery.ui.js
     - public/javascripts/admin/rails.js
     - public/javascripts/admin/utils.js
+    - public/javascripts/admin/plugins/cmd.js
     - public/javascripts/admin/plugins/subscribe.js
     - public/javascripts/admin/plugins/shortcut.js
     - public/javascripts/admin/plugins/toggle.js
