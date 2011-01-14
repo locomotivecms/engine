@@ -19,14 +19,18 @@ module Locomotive
           end
 
           def end_tag
-            @context[:page].add_or_update_editable_element({
-              :block => @context[:current_block].try(:name),
-              :slug => @slug,
-              :hint => @options[:hint],
-              :default_content => @nodelist.first.to_s,
-              :disabled => false,
-              :from_parent => false
-            }, document_type)
+            super
+            
+            if @context[:page].present?
+              @context[:page].add_or_update_editable_element({
+                :block => @context[:current_block].try(:name),
+                :slug => @slug,
+                :hint => @options[:hint],
+                :default_content => @nodelist.first.to_s,
+                :disabled => false,
+                :from_parent => false
+              }, document_type)
+            end
           end
 
           def render(context)
