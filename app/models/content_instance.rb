@@ -60,6 +60,10 @@ class ContentInstance
     Locomotive::Liquid::Drops::Content.new(self)
   end
 
+  def highlighted_field_value
+    self.send(self.content_type.highlighted_field._name)
+  end
+
   protected
 
   def set_slug
@@ -82,10 +86,6 @@ class ContentInstance
     if self.send(_alias).blank?
       self.errors.add(_alias, :blank)
     end
-  end
-
-  def highlighted_field_value
-    self.send(self.content_type.highlighted_field._name)
   end
 
   def highlighted_field_alias
