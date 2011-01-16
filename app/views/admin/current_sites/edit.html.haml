@@ -1,4 +1,4 @@
-- title link_to(@site.name.blank? ? @site.name_was : @site.name, '#', :rel => 'current_site_name', :title => t('.ask_for_name'), :class => 'editable')
+- title link_to(@site.name.blank? ? @site.name_was : @site.name, '#', :rel => 'site_name', :title => t('.ask_for_name'), :class => 'editable')
 
 - content_for :submenu do
   = render 'admin/shared/menu/settings'
