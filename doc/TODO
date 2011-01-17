@@ -1,18 +1,5 @@
 BOARD:
 
-x jammit-s3: assets
-x copy assets.yml config file when using it as gem (http://asciicasts.com/episodes/218-making-generators-in-rails-3)
-x import theme without delayed_job
-x rspec 2.3
-x ruby 1.9.2:
-  x DelayedJob not working
-x new version of Aloha-Editor
-x locomotive gem: test with staging
-x nav tag:
-  x site | page | parent
-  x retrieve only important page information from mongodb
-x published by default when importing pages
-x page redirection
 
 BACKLOG:
 
@@ -178,3 +165,16 @@ x liquid:
     x default_pagination: labels
 x [content types] the "display column" selector should not include file types
 x Worker => Heroku / S3 (not so sure finally)
+x jammit-s3: assets
+x copy assets.yml config file when using it as gem (http://asciicasts.com/episodes/218-making-generators-in-rails-3)
+x import theme without delayed_job
+x rspec 2.3
+x ruby 1.9.2:
+  x DelayedJob not working
+x new version of Aloha-Editor
+x locomotive gem: test with staging
+x nav tag:
+  x site | page | parent
+  x retrieve only important page information from mongodb
+x published by default when importing pages
+x page redirection
