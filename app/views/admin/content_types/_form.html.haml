@@ -1,5 +1,5 @@
 - content_for :head do
-  = include_javascripts :custom_fields
+  = include_javascripts :content_types, :custom_fields
   = include_stylesheets :fancybox
 
 = f.inputs :name => :information do
@@ -18,5 +18,9 @@
     = f.input :order_by, :as => :select, :collection => options_for_order_by(f.object, 'contents'), :include_blank => false
     = f.custom_input :api_enabled, :css => 'toggle' do
       = f.check_box :api_enabled
+    = hidden_field_tag 'content_type[api_accounts][]', ''
+    = f.input :api_accounts, :as => :select, :collection => current_site.accounts.collect { |a| ["#{a.name} <#{a.email}>", a.id] }, :include_blank => false, :multiple => true, :wrapper_html => { :class => 'multiple', :style => (f.object.api_enabled? ? '' : 'display: none') }
+
+
 
 

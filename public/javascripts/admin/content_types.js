@@ -13,4 +13,20 @@ $(document).ready(function() {
   });
 
   $('#content_type_slug').keypress(function() { $(this).addClass('filled'); });
+
+  // api enabled ?
+
+  console.log('subscribing...');
+
+  $.subscribe('toggle.content_type_api_enabled.checked', function(event, data) {
+    console.log('checked');
+    $('#content_type_api_accounts_input').show();
+  }, []);
+
+  $.subscribe('toggle.content_type_api_enabled.unchecked', function(event, data) {
+    console.log('unchecked');
+    $('#content_type_api_accounts_input').hide();
+  }, []);
+
+
 });

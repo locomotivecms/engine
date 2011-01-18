@@ -1,4 +1,4 @@
-require 'devise'
+require 'locomotive'
 
 ## patches ##
 
@@ -31,7 +31,7 @@ end
 # four configuration values can also be set straight in your models.
 Devise.setup do |config|
   # Configure the e-mail address which will be shown in DeviseMailer.
-  config.mailer_sender = "support@locomotiveapp.org"
+  config.mailer_sender = Locomotive.config.mailer_sender
 
   # ==> Configuration for any authentication mechanism
   # Configure which keys are used when authenticating an user. By default is

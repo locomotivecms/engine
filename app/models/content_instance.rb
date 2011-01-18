@@ -21,6 +21,7 @@ class ContentInstance
   before_save :set_slug
   before_save :set_visibility
   before_create :add_to_list_bottom
+  after_create :send_notifications
 
   ## named scopes ##
   scope :latest_updated, :order_by => [[:updated_at, :desc]], :limit => Locomotive.config.lastest_items_nb
@@ -90,6 +91,20 @@ class ContentInstance
 
   def highlighted_field_alias
     self.content_type.highlighted_field._alias.to_sym
+  end
+
+  def send_notifications
+    return unless self.content_type.api_enabled?
+
+    accounts = self.content_type.site.accounts.to_a
+
+    self.content_type.api_accounts.each do |account_id|
+      next if account_id.blank?
+
+      account = accounts.detect { |a| a.id.to_s == account_id.to_s }
+
+      Admin::Notifications.new_content_instance(account, self).deliver
+    end
   end
 
 end

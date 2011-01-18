@@ -1,0 +1,65 @@
+en:
+  formtastic:
+    titles:
+      information: General information
+      meta: SEO Metadata
+      code: Code
+      raw_template: Template
+      credentials: Credentials
+      language: Language
+      sites: Sites
+      access_points: Access points
+      memberships: Accounts
+      membership_email: Account email
+      file: File
+      preview: Preview
+      options: Advanced options
+      custom_fields: Custom fields
+      other_fields: Other information
+      presentation: Presentation
+      attributes: Attributes
+      upload: Upload
+    labels:
+      theme_asset:
+        new:
+          source: File
+        edit:
+          source: Replace file
+      custom_fields:
+        field:
+          _alias: Alias
+      import:
+        new:
+          source: File
+          samples: Copy samples
+          reset: Reset site
+      content_type:
+        api_accounts: Notified Accounts
+
+    hints:
+      page:
+        published: "Only authenticated accounts can view unpublished pages."
+        cache_strategy: "Cache the page for better performance. The 'Simple' choice is a good compromise."
+        templatized: "Use the page as a template for a model you defined."
+      snippet:
+        slug: "You need to know it in order to insert the snippet inside a page"
+      site:
+        meta_keywords: "Meta keywords used within the head tag of the page. They are separeted by an empty space. Required for SEO."
+        meta_description: "Meta description used within the head tag of the page. Required for SEO."
+        domain_name: "ex: locomotiveapp.org"
+      theme_asset:
+        slug: "You do not need to add the extension file (.css or .js)"
+        edit:
+          source: "You can replace it by a file of the same extension"
+      custom_fields:
+        field:
+          _alias: "Property available in liquid templates"
+          hint: "Text displayed in the model form just below the field"
+      import:
+        source: "A zipfile containing a database.yml along with assets and templates"
+        samples: "If enabled, the import process will also copy contents and assets"
+        reset: "If enabled, all the data of your site will be destroyed before importing the new site"
+      content_type:
+        api_enabled: "It is used to let people from outside to create new instances (example: messages in a contact form)"
+        api_accounts: "A notification email will be sent to each of the accounts listed above when a new instance is created"
+

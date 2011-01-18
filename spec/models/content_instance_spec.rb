@@ -60,6 +60,34 @@ describe ContentInstance do
 
   end
 
+  describe '#api' do
+
+    before(:each) do
+      @account_1 = Factory.build('admin user', :id => '1')
+      @account_2 = Factory.build('frenchy user', :id => '2')
+
+      @content_type.api_enabled = true
+      @content_type.api_accounts = ['', @account_1.id, @account_2.id]
+
+      Site.any_instance.stubs(:accounts).returns([@account_1, @account_2])
+
+      @content = build_content
+    end
+
+    it 'does not send email notifications if the api is disabled' do
+      @content_type.api_enabled = false
+      Admin::Notifications.expects(:new_content_instance).never
+      @content.save
+    end
+
+    it 'sends email notifications when a new instance is created' do
+      Admin::Notifications.expects(:new_content_instance).with(@account_1, @content).returns(mock('mailer', :deliver => true))
+      Admin::Notifications.expects(:new_content_instance).with(@account_2, @content).returns(mock('mailer', :deliver => true))
+      @content.save
+    end
+
+  end
+
   def build_content(options = {})
     @content_type.contents.build({ :title => 'Locomotive', :description => 'Lorem ipsum....' }.merge(options))
   end

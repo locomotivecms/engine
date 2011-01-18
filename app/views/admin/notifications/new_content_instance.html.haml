@@ -1,0 +1,17 @@
+%p= t('.title', :name => @account.name, :date => I18n.l(Time.now), :locale => @account.locale)
+
+%hr
+
+%p
+  %b= t('.type', :type => @content.content_type.name, :locale => @account.locale)
+  %br
+  %i= @content.content_type.description
+
+%hr
+
+%ul
+  - @content.custom_fields.each do |field|
+    %li
+      %strong= field.label
+      &nbsp;-&nbsp;
+      %i= @content.send(field._name)

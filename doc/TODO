@@ -1,5 +1,10 @@
 BOARD:
 
+x notify accounts when new instance of models (opt): none, one or many accounts. Used for contact form.
+  x implementation
+  x emails
+  x tests
+- fix bug issue about (custom fields)
 
 BACKLOG:
 
@@ -10,7 +15,6 @@ BACKLOG:
 
 - refactor slugify method (use parameterize + create a module)
 - validation for custom fields
-- notify accounts when new instance of models (opt): none, one or many accounts. Used for contact form.
 
 - global regions: keyword in editable element (http://www.mongodb.org/display/DOCS/Updating)
 - write my first tutorial about locomotive

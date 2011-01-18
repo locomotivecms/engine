@@ -114,6 +114,8 @@ form.formtastic fieldset ol li code.nude textarea {
 
 form.formtastic fieldset ol li select { font-size: 0.9em; position: relative; top: 2px; color: #787a89; }
 
+form.formtastic fieldset ol li.multiple select { width: 45%; }
+
 form.formtastic fieldset ol li.error input,
 form.formtastic fieldset ol li.error textarea,
 form.formtastic fieldset ol li.error code iframe { border: 2px solid #ec3f48 !important; }

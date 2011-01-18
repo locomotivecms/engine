@@ -12,7 +12,8 @@ module Locomotive
       :enable_logs      => false,
       :heroku           => false,
       :delayed_job      => true,
-      :default_locale   => :en
+      :default_locale   => :en,
+      :mailer_sender    => 'support@example.com'
     }
 
     cattr_accessor :settings

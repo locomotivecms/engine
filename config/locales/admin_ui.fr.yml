@@ -42,6 +42,12 @@ fr:
         update: Mettre à jour
         send: Envoyer
 
+    notifications:
+      new_content_instance:
+        subject: "[%{type}] nouveau"
+        title: "Bonjour %{name}, nous voulions vous faire savoir qu'une nouvelle instance a été créée le %{date}"
+        type: "Modèle: %{type}"
+
     custom_fields:
       edit:
         title: Editer champ personnalisé
@@ -293,62 +299,3 @@ fr:
         title: "Étape 3/3 &mdash; Créer premier site"
         explanations: "C'est la dernière étape de l'installation. Vous pouvez uploader un theme sous forme d'un fichier zip. Nous avons quelques themes disponibles <a href=\"http://www.locomotivecms.com/support/themes\">ici</a>."
         next: Créer site
-
-  formtastic:
-    titles:
-      information: Informations générales
-      meta: SEO Metadata
-      code: Code
-      raw_template: Gabarit
-      credentials: Informations de connexion
-      language: Langue
-      sites: Sites
-      access_points: Points d'accès
-      memberships: Comptes
-      membership_email: Email compte
-      file: Fichier
-      preview: Aperçu
-      options: Options avancées
-      custom_fields: Champs personnalisés
-      other_fields: Autres informations
-      presentation: Présentation
-      attributes: Propriétés
-      upload: Envoi au serveur
-    labels:
-      theme_asset:
-        new:
-          source: Fichier
-        edit:
-          source: Nouveau fichier
-      custom_fields:
-        field:
-          _alias: Alias
-      import:
-        new:
-          source: Fichier
-          samples: Copier contenu
-          reset: Remettre à zéro
-
-    hints:
-      page:
-        published: "Seuls les administrateurs authentifiés peuvent voir une page non publiée."
-        cache_strategy: "Cache la page pour de meilleure performance. L'option 'Simple' est le meilleur compromis."
-        templatized: "Utilise la page comme un template pour un modèle défini."
-      snippet:
-        slug: "Utilisé pour insérer le snippet dans une page."
-      site:
-        meta_keywords: "Mots-clés utilisés à l'intérieur de la balise HEAD. Ils sont séparés par un espace. Requis pour un meilleur référencement."
-        meta_description: "Description utilisée à l'intérieur de la balise HEAD. Requis pour un meilleur référencement."
-        domain_name: "ex: locomotiveapp.org"
-      theme_asset:
-        slug: "Vous n'avez pas besoin de mettre l'extension du fichier (.css ou .js)"
-        edit:
-          source: "Vous pouvez le remplacer par un fichier avec la meme extension."
-      custom_fields:
-        field:
-          _alias: "Champ utilisable dans les templates liquid"
-          hint: "Texte affiché dans le formulaire de l'élément juste en dessous du champ."
-      import:
-        source: "Un fichier zip contenant database.yml, les fichiers du thème et les templates de page"
-        samples: "Si activé, les contenus et les média seront aussi copiés lors de l'import"
-        reset: "Si activé, toutes les données de votre site seront détruites avant l'import du nouveau site"
