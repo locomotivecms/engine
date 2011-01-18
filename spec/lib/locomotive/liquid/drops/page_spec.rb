@@ -4,18 +4,21 @@ describe Locomotive::Liquid::Drops::Page do
 
   before(:each) do
     @home = Factory.build(:page)
-    @home.stubs(:children).returns([
-      Page.new(:title => 'Child #1'),
-      Page.new(:title => 'Child #2'),
-      Page.new(:title => 'Child #3')
-      ])
-    @home.children.last.stubs(:children).returns([
-      Page.new(:title => 'Child #3.1'),
-      Page.new(:title => 'Child #3.2')
-      ])
   end
 
-  context '#rendering' do
+  context '#rendering tree' do
+
+    before(:each) do
+      @home.stubs(:children).returns([
+        Page.new(:title => 'Child #1'),
+        Page.new(:title => 'Child #2'),
+        Page.new(:title => 'Child #3')
+        ])
+      @home.children.last.stubs(:children).returns([
+        Page.new(:title => 'Child #3.1'),
+        Page.new(:title => 'Child #3.2')
+        ])
+    end
 
     context '#children' do
 
@@ -33,6 +36,22 @@ describe Locomotive::Liquid::Drops::Page do
         content.should == 'Child #3.1,Child #3.2,'
       end
 
+    end
+
+  end
+
+  context '#rendering page title' do
+
+    it 'renders the title of a normal page' do
+      render_template('{{ home.title }}').should == 'Home page'
+    end
+
+    it 'renders the content instance highlighted field instead for a templatized page' do
+      templatized = Factory.build(:page, :title => 'Lorem ipsum template', :templatized => true)
+
+      content_instance = Locomotive::Liquid::Drops::Content.new(mock('content_instance', :highlighted_field_value => 'Locomotive rocks !'))
+
+      render_template('{{ page.title }}', 'page' => templatized, 'content_instance' => content_instance).should == 'Locomotive rocks !'
     end
 
   end

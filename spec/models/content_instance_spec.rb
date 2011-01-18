@@ -52,6 +52,14 @@ describe ContentInstance do
 
   end
 
+  describe '#requirements' do
+
+    it 'has public access to the highlighted field value' do
+      build_content.highlighted_field_value.should == 'Locomotive'
+    end
+
+  end
+
   def build_content(options = {})
     @content_type.contents.build({ :title => 'Locomotive', :description => 'Lorem ipsum....' }.merge(options))
   end

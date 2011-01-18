@@ -34,6 +34,10 @@ class ContentInstance
     self.content_type.site_id
   end
 
+  def highlighted_field_value
+    self.send(self.content_type.highlighted_field._name)
+  end
+
   def visible?
     self._visible || self._visible.nil?
   end
@@ -58,10 +62,6 @@ class ContentInstance
 
   def to_liquid
     Locomotive::Liquid::Drops::Content.new(self)
-  end
-
-  def highlighted_field_value
-    self.send(self.content_type.highlighted_field._name)
   end
 
   protected
