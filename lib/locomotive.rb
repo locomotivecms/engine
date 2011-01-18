@@ -1,4 +1,5 @@
 require 'mimetype_fu'
+require 'devise'
 
 require 'locomotive/version'
 require 'locomotive/core_ext'
@@ -52,6 +53,9 @@ module Locomotive
 
     # Heroku support
     self.enable_heroku if self.heroku?
+
+    # Devise
+    Devise.mailer_sender = self.config.mailer_sender
   end
 
   def self.logger(message)

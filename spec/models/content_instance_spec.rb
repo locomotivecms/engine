@@ -80,6 +80,12 @@ describe ContentInstance do
       @content.save
     end
 
+    it 'does not send email notifications if no api accounts' do
+      @content_type.api_accounts = nil
+      Admin::Notifications.expects(:new_content_instance).never
+      @content.save
+    end
+
     it 'sends email notifications when a new instance is created' do
       Admin::Notifications.expects(:new_content_instance).with(@account_1, @content).returns(mock('mailer', :deliver => true))
       Admin::Notifications.expects(:new_content_instance).with(@account_2, @content).returns(mock('mailer', :deliver => true))

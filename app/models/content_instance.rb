@@ -94,7 +94,7 @@ class ContentInstance
   end
 
   def send_notifications
-    return unless self.content_type.api_enabled?
+    return unless self.content_type.api_enabled? && !self.content_type.api_accounts.blank?
 
     accounts = self.content_type.site.accounts.to_a
 
