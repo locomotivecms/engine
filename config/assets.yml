@@ -89,9 +89,6 @@ stylesheets:
   fancybox:
     - public/stylesheets/admin/plugins/fancybox.css
     - public/stylesheets/admin/fancybox_changes.css
-  custom_fields:
-    - public/stylesheets/admin/plugins/fancybox.css
-    - public/stylesheets/admin/box.css
   installation:
     - public/stylesheets/admin/installation.css
   editable_elements:
