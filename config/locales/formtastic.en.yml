@@ -21,6 +21,8 @@ en:
       upload: Upload
     labels:
       theme_asset:
+        plain_text_name: File name
+        content_type: File type
         new:
           source: File
         edit:

@@ -1,10 +1,5 @@
 BOARD:
 
-x notify accounts when new instance of models (opt): none, one or many accounts. Used for contact form.
-  x implementation
-  x emails
-  x tests
-- fix bug issue about (custom fields)
 
 BACKLOG:
 
@@ -182,3 +177,8 @@ x nav tag:
   x retrieve only important page information from mongodb
 x published by default when importing pages
 x page redirection
+x notify accounts when new instance of models (opt): none, one or many accounts. Used for contact form.
+  x implementation
+  x emails
+  x tests
+x fix bug issue about (custom fields)

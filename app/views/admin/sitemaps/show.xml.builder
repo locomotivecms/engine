@@ -13,12 +13,14 @@ xml.urlset "xmlns" => "http://www.sitemaps.org/schemas/sitemap/0.9" do
         page.content_type.contents.visible.each do |c|
           xml.url do
             xml.loc page_main_url(page, c)
+            xml.lastmod page.updated_at
             xml.priority 0.9
           end
         end
       else
         xml.url do
           xml.loc page_main_url(page)
+          xml.lastmod page.updated_at
           xml.priority 0.9
         end
       end
