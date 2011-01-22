@@ -7,6 +7,8 @@ module Admin
 
     respond_to :xml
 
+    helper 'admin/pages'
+
     def show
       @pages = current_site.pages.published
       @host = request.host
