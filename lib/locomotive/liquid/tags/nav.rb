@@ -53,7 +53,8 @@ module Locomotive
         end
 
         private
-
+        
+        # Determines root node for the list
         def fetch_entries(context)
           @current_page = context.registers[:page]
 
@@ -68,16 +69,7 @@ module Locomotive
           children.delete_if { |p| !include_page?(p) }
         end
 
-        def include_page?(page)
-          if page.templatized? || !page.published?
-            false
-          elsif @options[:exclude]
-            (page.fullpath =~ @options[:exclude]).nil?
-          else
-            true
-          end
-        end
-
+        # Returns a list element, a link to the page and its children
         def render_entry_link(page,css,depth)
           selected = @current_page.fullpath =~ /^#{page.fullpath}/ ? ' on' : ''
 
@@ -92,10 +84,11 @@ module Locomotive
           output.strip
         end
         
+        # Recursively creates a nested unordered list for the depth specified
         def render_entry_children(page,depth)
           output = %{}
           
-          children = page.children_with_minimal_attributes.reject { |c| c.templatized? }
+          children = page.children_with_minimal_attributes.reject { |c| !include_page?(c) }
           if children.present?
             output = %{<ul id="#{@options[:id]}-#{page.slug.dasherize}">}
             children.each do |c, page|
@@ -109,6 +102,17 @@ module Locomotive
           end
           
           output
+        end
+        
+        # Determines whether or not a page should be a part of the menu
+        def include_page?(page)
+          if page.templatized? || !page.published?
+            false
+          elsif @options[:exclude]
+            (page.fullpath =~ @options[:exclude]).nil?
+          else
+            true
+          end
         end
 
         ::Liquid::Template.register_tag('nav', Nav)
