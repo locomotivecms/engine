@@ -13,7 +13,8 @@ describe Locomotive::Liquid::Tags::Nav do
 
     other_children = [
       Page.new(:title => 'Child #2.1', :fullpath => 'child_2/sub_child_1', :slug => 'sub_child_1', :published => true),
-      Page.new(:title => 'Child #2.2', :fullpath => 'child_2/sub_child_2', :slug => 'sub_child_2', :published => true)
+      Page.new(:title => 'Child #2.2', :fullpath => 'child_2/sub_child_2', :slug => 'sub_child_2', :published => true),
+      Page.new(:title => 'Templatized #2.3', :fullpath => 'child_2/sub_child_template_3', :slug => 'sub_child_template_3', :published => true, :templatized => true)
       ]
     @home.children.last.stubs(:children_with_minimal_attributes).returns(other_children)
     @home.children.last.stubs(:children).returns(other_children)
@@ -43,11 +44,19 @@ describe Locomotive::Liquid::Tags::Nav do
     
     it 'renders children to depth' do
       output = render_nav('site', {}, 'depth: 2')
+      
       output.should match /<ul id="nav">/
       output.should match /<li id="child-1" class="link first">/
       output.should match /<\/a><ul id="nav-child-2">/
       output.should match /<li id="sub-child-1" class="link first">/
+      output.should match /<li id="sub-child-2" class="link last">/
       output.should match /<\/a><\/li><\/ul><\/li><\/ul>/
+    end
+    
+    it 'does not render templatized pages' do
+      output = render_nav('site', {}, 'depth: 2')
+      
+      output.should_not match /sub-child-template-3/
     end
 
     it 'adds an icon before the link' do

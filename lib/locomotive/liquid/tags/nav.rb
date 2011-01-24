@@ -95,7 +95,7 @@ module Locomotive
         def render_entry_children(page,depth)
           output = %{}
           
-          children = page.children
+          children = page.children_with_minimal_attributes.reject { |c| c.templatized? }
           if children.present?
             output = %{<ul id="#{@options[:id]}-#{page.slug.dasherize}">}
             children.each do |c, page|
