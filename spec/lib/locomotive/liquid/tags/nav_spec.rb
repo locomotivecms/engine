@@ -40,6 +40,15 @@ describe Locomotive::Liquid::Tags::Nav do
       output = render_nav 'parent', { :page => page }
       output.should == '<ul id="nav"><li id="sub-child-1" class="link on first"><a href="/child_2/sub_child_1">Child #2.1</a></li><li id="sub-child-2" class="link last"><a href="/child_2/sub_child_2">Child #2.2</a></li></ul>'
     end
+    
+    it 'renders children to depth' do
+      output = render_nav('site', {}, 'depth: 2')
+      output.should match /<ul id="nav">/
+      output.should match /<li id="child-1" class="link first">/
+      output.should match /<\/a><ul id="nav-child-2">/
+      output.should match /<li id="sub-child-1" class="link first">/
+      output.should match /<\/a><\/li><\/ul><\/li><\/ul>/
+    end
 
     it 'adds an icon before the link' do
       render_nav('site', {}, 'icon: true').should match /<li id="child-1" class="link first"><a href="\/child_1"><span><\/span>Child #1<\/a>/
