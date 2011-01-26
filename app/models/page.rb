@@ -87,7 +87,7 @@ class Page
   protected
 
   def do_not_remove_index_and_404_pages
-    return if (self.site rescue nil).nil?
+    return if self.site.nil? || self.site.destroyed?
 
     if self.index? || self.not_found?
       self.errors[:base] << I18n.t('errors.messages.protected_page')

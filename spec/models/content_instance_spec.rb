@@ -63,8 +63,8 @@ describe ContentInstance do
   describe '#api' do
 
     before(:each) do
-      @account_1 = Factory.build('admin user', :id => '1')
-      @account_2 = Factory.build('frenchy user', :id => '2')
+      @account_1 = Factory.build('admin user', :id => fake_bson_id('1'))
+      @account_2 = Factory.build('frenchy user', :id => fake_bson_id('2'))
 
       @content_type.api_enabled = true
       @content_type.api_accounts = ['', @account_1.id, @account_2.id]
@@ -96,6 +96,10 @@ describe ContentInstance do
 
   def build_content(options = {})
     @content_type.contents.build({ :title => 'Locomotive', :description => 'Lorem ipsum....' }.merge(options))
+  end
+
+  def fake_bson_id(id)
+    BSON::ObjectId(id.to_s.rjust(24, '0'))
   end
 
 end

@@ -41,7 +41,7 @@ class ThemeAsset
 
   %w{movie image stylesheet javascript font}.each do |type|
     define_method("#{type}?") do
-      self.content_type == type
+      self.content_type.to_s == type
     end
   end
 
@@ -51,7 +51,7 @@ class ThemeAsset
 
   def local_path(short = false)
     if short
-      self.read_attribute(:local_path).gsub(/^#{self.content_type.pluralize}\//, '')
+      self.read_attribute(:local_path).gsub(/^#{self.content_type.to_s.pluralize}\//, '')
     else
       self.read_attribute(:local_path)
     end
@@ -101,14 +101,14 @@ class ThemeAsset
   end
 
   def sanitize_folder
-    self.folder = self.content_type.pluralize if self.folder.blank?
+    self.folder = self.content_type.to_s.pluralize if self.folder.blank?
 
     # no accents, no spaces, no leading and ending trails
     self.folder = ActiveSupport::Inflector.transliterate(self.folder).gsub(/(\s)+/, '_').gsub(/^\//, '').gsub(/\/$/, '').downcase
 
     # folder should begin by a root folder
     if (self.folder =~ /^(stylesheets|javascripts|images|media|fonts)/).nil?
-      self.folder = File.join(self.content_type.pluralize, self.folder)
+      self.folder = File.join(self.content_type.to_s.pluralize, self.folder)
     end
   end
 

@@ -9,14 +9,14 @@ describe Locomotive::Liquid::Filters::Html do
   end
 
   it 'should return a link tag for a stylesheet file' do
-    result = "<link href=\"/sites/42/theme/stylesheets/main.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />"
+    result = "<link href=\"/sites/000000000000000000000042/theme/stylesheets/main.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />"
     stylesheet_tag('main.css').should == result
     stylesheet_tag('main').should == result
     stylesheet_tag(nil).should == ''
   end
 
   it 'should return a link tag for a stylesheet file with folder' do
-    result = "<link href=\"/sites/42/theme/stylesheets/trash/main.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />"
+    result = "<link href=\"/sites/000000000000000000000042/theme/stylesheets/trash/main.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />"
     stylesheet_tag('trash/main.css').should == result
   end
 
@@ -27,14 +27,14 @@ describe Locomotive::Liquid::Filters::Html do
   end
 
   it 'should return a script tag for a javascript file' do
-    result = %{<script src="/sites/42/theme/javascripts/main.js" type="text/javascript"></script>}
+    result = %{<script src="/sites/000000000000000000000042/theme/javascripts/main.js" type="text/javascript"></script>}
     javascript_tag('main.js').should == result
     javascript_tag('main').should == result
     javascript_tag(nil).should == ''
   end
 
   it 'should return a script tag for a javascript file with folder' do
-    result = %{<script src="/sites/42/theme/javascripts/trash/main.js" type="text/javascript"></script>}
+    result = %{<script src="/sites/000000000000000000000042/theme/javascripts/trash/main.js" type="text/javascript"></script>}
     javascript_tag('trash/main.js').should == result
     javascript_tag('trash/main').should == result
   end
@@ -107,14 +107,19 @@ describe Locomotive::Liquid::Filters::Html do
   end
 
   def build_context
-    Site.any_instance.stubs(:id).returns(42)
     klass = Class.new
     klass.class_eval do
       def registers
-        { :site => Factory.build(:site) }
+        { :site => Factory.build(:site, :id => fake_bson_id(42)) }
+      end
+
+      def fake_bson_id(id)
+        BSON::ObjectId(id.to_s.rjust(24, '0'))
       end
     end
     klass.new
   end
+
+
 
 end

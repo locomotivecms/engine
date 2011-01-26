@@ -28,7 +28,7 @@ class Asset
 
   %w{image stylesheet javascript pdf video audio}.each do |type|
     define_method("#{type}?") do
-      self.content_type == type
+      self.content_type.to_s == type
     end
   end
 

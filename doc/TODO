@@ -1,9 +1,10 @@
 BOARD:
 
-- add metadata to sites
+- moving to mongoid 2.0.0 rc.6
 
 BACKLOG:
 
+- add metadata to sites
 - validation for custom fields
 - new custom field types:
   - belongs_to => association

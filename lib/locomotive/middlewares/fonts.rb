@@ -15,7 +15,7 @@ module Locomotive
           if site.nil?
             @app.call(env)
           else
-            body = ThemeAssetUploader.build(site, env["PATH_INFO"]).read.to_s
+            body = ThemeAssetUploader.build(site, env['PATH_INFO']).read.to_s
 
             [200, { 'Cache-Control' => "public; max-age=#{@expires_in}" }, [body]]
           end
@@ -27,9 +27,11 @@ module Locomotive
       protected
 
       def fetch_site(domain_name)
-        Rails.cache.fetch(domain_name, :expires_in => @expires_in) do
-          Site.match_domain(domain_name).first
+        site_id = Rails.cache.fetch(domain_name, :expires_in => @expires_in) do
+          Site.match_domain(domain_name).only(:id).first._id.to_s rescue ''
         end
+
+        site_id.blank? ? nil : Site.new(:id => site_id)
       end
     end
   end
