@@ -113,7 +113,13 @@ module Locomotive
 
           @theme_file = File.join(self.themes_folder, @identifier)
 
-          File.open(@theme_file, 'w') { |f| f.write(uploader.file.read) }
+          if RUBY_VERSION =~ /1\.9/
+            bytes = uploader.file.read.force_encoding('UTF-8')
+          else
+            bytes = uploader.file.read
+          end
+
+          File.open(@theme_file, 'w') { |f| f.write(bytes) }
         else # local filesystem
           self.log 'file from local storage'
 

@@ -70,7 +70,11 @@ class ThemeAsset
   end
 
   def plain_text
-    @plain_text ||= self.source.read
+    if RUBY_VERSION =~ /1\.9/
+      @plain_text ||= self.source.read.force_encoding('UTF-8')
+    else
+      @plain_text ||= self.source.read
+    end
   end
 
   def performing_plain_text?
