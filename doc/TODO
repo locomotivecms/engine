@@ -1,6 +1,9 @@
 BOARD:
 
 - moving to mongoid 2.0.0 rc.6
+  - accepts_nested_attributes (javascript part)
+  - check the theme uploader
+  - release new version of CustomFields, ActsAsTree gems
 
 BACKLOG:
 
@@ -14,11 +17,14 @@ BACKLOG:
   - editable elements should wrap a tag: div, h1, ...etc (default span)
   - edit images (upload new ones, ...etc) => wait for aloha or send them an email ?
 
-- refactor slugify method (use parameterize + create a module)
-
 - global regions: keyword in editable element (http://www.mongodb.org/display/DOCS/Updating)
 - write my first tutorial about locomotive
 - cucumber features for admin pages (in progress)
+
+REFACTORING:
+
+  - refactor slugify method (use parameterize + create a module)
+  - move content_type and content_instances in the CustomFields plugin (much more appropriate)
 
 BUGS:
 
