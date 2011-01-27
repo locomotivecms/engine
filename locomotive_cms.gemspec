@@ -34,7 +34,7 @@ Gem::Specification.new do |s|
   s.add_dependency "rmagick", "= 2.12.2"
   s.add_dependency "locomotive_carrierwave", "0.5.0.1.beta2"
 
-  s.add_dependency "custom_fields", "1.0.0.beta4"
+  s.add_dependency "custom_fields", "1.0.0.beta.4"
   s.add_dependency "fog"
   s.add_dependency "mimetype-fu"
   s.add_dependency "actionmailer-with-request"
