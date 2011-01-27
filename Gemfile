@@ -22,7 +22,7 @@ gem 'rmagick', '= 2.12.2'
 gem 'locomotive_carrierwave', '0.5.0.1.beta2', :require => 'carrierwave'
 
 # gem 'custom_fields', :path => '../gems/custom_fields' #'1.0.0.beta2'
-gem 'custom_fields', '1.0.0.beta3'
+gem 'custom_fields', '1.0.0.beta.4'
 gem 'fog', '0.3.7'
 gem 'mimetype-fu'
 gem 'actionmailer-with-request'
