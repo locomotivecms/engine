@@ -5,21 +5,6 @@ GIT
     mocha (0.9.10.20101125155727)
       rake
 
-PATH
-  remote: ../gems/acts_as_tree
-  specs:
-    locomotive_mongoid_acts_as_tree (0.1.5.2)
-      bson (>= 0.20.1)
-      mongoid (>= 2.0.0.rc.6)
-
-PATH
-  remote: ../gems/custom_fields
-  specs:
-    custom_fields (1.0.0.beta.3)
-      activesupport (>= 3.0.0)
-      locomotive_carrierwave
-      mongoid (>= 2.0.0.beta.18)
-
 GEM
   remote: http://rubygems.org/
   specs:
@@ -86,6 +71,10 @@ GEM
     cucumber-rails (0.3.2)
       cucumber (>= 0.8.0)
     culerity (0.2.15)
+    custom_fields (1.0.0.beta.3)
+      activesupport (>= 3.0.0)
+      locomotive_carrierwave
+      mongoid (>= 2.0.0.beta.18)
     daemons (1.1.0)
     database_cleaner (0.6.0)
     delayed_job (2.1.2)
@@ -155,6 +144,9 @@ GEM
       mimemagic (>= 0.1.7)
       s3 (>= 0.3.7)
     locomotive_liquid (2.2.2)
+    locomotive_mongoid_acts_as_tree (0.1.5.2)
+      bson (>= 0.20.1)
+      mongoid (>= 2.0.0.rc.6)
     mail (2.2.15)
       activesupport (>= 2.3.6)
       i18n (>= 0.4.0)
@@ -269,7 +261,7 @@ DEPENDENCIES
   capybara
   cucumber (= 0.8.5)
   cucumber-rails
-  custom_fields!
+  custom_fields (= 1.0.0.beta3)
   database_cleaner
   delayed_job (= 2.1.2)
   delayed_job_mongoid (= 1.0.2)
@@ -286,7 +278,7 @@ DEPENDENCIES
   locomotive_carrierwave (= 0.5.0.1.beta2)
   locomotive_jammit-s3
   locomotive_liquid (= 2.2.2)
-  locomotive_mongoid_acts_as_tree!
+  locomotive_mongoid_acts_as_tree (= 0.1.5.2)
   mimetype-fu
   mocha!
   mongoid (= 2.0.0.rc.6)
