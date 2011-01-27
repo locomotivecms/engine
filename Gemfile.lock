@@ -281,7 +281,7 @@ DEPENDENCIES
   locomotive_mongoid_acts_as_tree (= 0.1.5.2)
   mimetype-fu
   mocha!
-  mongoid (= 2.0.0.rc.6)
+  mongoid (~> 2.0.0.rc.6)
   pickle
   rails (>= 3.0.0)
   rmagick (= 2.12.2)

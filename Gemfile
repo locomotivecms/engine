@@ -7,7 +7,7 @@ gem 'rails', '>= 3.0.0'
 gem 'warden'
 gem 'devise', '= 1.1.3'
 
-gem 'mongoid', '2.0.0.rc.6'
+gem 'mongoid', '~> 2.0.0.rc.6'
 gem 'bson_ext', '1.2.0'
 # gem 'locomotive_mongoid_acts_as_tree', :path => '../gems/acts_as_tree', :require => 'mongoid_acts_as_tree'  # '0.1.5.1', :require => 'mongoid_acts_as_tree'
 gem 'locomotive_mongoid_acts_as_tree', '0.1.5.2', :require => 'mongoid_acts_as_tree'
