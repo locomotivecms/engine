@@ -11,6 +11,7 @@
             %span= time_ago_in_words(page.updated_at)
 
   - current_site.content_types.each do |content_type|
+    - next if content_type.new_record?
     - item_on = (content_type.slug == @content_type.slug) rescue nil
     = admin_submenu_item content_type.name, admin_contents_url(content_type.slug), :i18n => false, :css => (item_on ? 'on' : '') do
       .header

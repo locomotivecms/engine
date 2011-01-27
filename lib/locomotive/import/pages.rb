@@ -97,7 +97,7 @@ module Locomotive
       def find_parent(fullpath)
         segments = fullpath.split('/')
 
-        return site.pages.index.first if segments.size == 1
+        return site.pages.root.first if segments.size == 1
 
         segments.pop
 

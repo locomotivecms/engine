@@ -56,7 +56,7 @@ module Locomotive
           @current_page = context.registers[:page]
 
           children = (case @source
-          when 'site'     then context.registers[:site].pages.index.minimal_attributes.first # start from home page
+          when 'site'     then context.registers[:site].pages.root.minimal_attributes.first # start from home page
           when 'parent'   then @current_page.parent || @current_page
           when 'page'     then @current_page
           else

@@ -19,7 +19,7 @@ describe Locomotive::Liquid::Tags::Nav do
     @home.children.last.stubs(:children).returns(other_children)
 
     pages = [@home]
-    pages.stubs(:index).returns(pages)
+    pages.stubs(:root).returns(pages)
     pages.stubs(:minimal_attributes).returns(pages) # iso
     @site = Factory.build(:site)
     @site.stubs(:pages).returns(pages)

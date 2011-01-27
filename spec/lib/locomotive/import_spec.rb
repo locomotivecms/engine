@@ -57,7 +57,7 @@ describe Locomotive::Import::Job do
     end
 
     it 'inserts the index and 404 pages' do
-      @site.pages.index.first.should_not be_nil
+      @site.pages.root.first.should_not be_nil
       @site.pages.not_found.first.should_not be_nil
     end
 

@@ -6,7 +6,7 @@ module Locomotive
         liquid_attributes << :name << :meta_keywords << :meta_description
 
         def index
-          @index ||= @source.pages.index.first
+          @index ||= @source.pages.root.first
         end
 
       end
