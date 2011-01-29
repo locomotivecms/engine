@@ -37,6 +37,8 @@ module Locomotive
       end
 
       def add_or_update_fields(asset_collection, fields)
+        return if fields.blank?
+
         fields.each_with_index do |data, position|
           name, data = data.keys.first, data.values.first
 

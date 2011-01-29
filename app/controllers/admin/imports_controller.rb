@@ -32,7 +32,7 @@ module Admin
 
         redirect_to Locomotive.config.delayed_job ? admin_import_url : new_admin_import_url
       rescue Exception => e
-        logger.error "[Locomotive import] #{e.message}"
+        logger.error "[Locomotive import] #{e.message} / #{e.backtrace}"
 
         @error = t('errors.messages.invalid_theme_file')
         flash[:alert] = t('flash.admin.imports.create.alert')
