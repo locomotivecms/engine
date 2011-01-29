@@ -6,7 +6,7 @@
   = f.input :name
   = f.input :source
 
-- unless @asset.custom_fields.empty?
+- unless @asset.custom_fields.blank?
   = render 'admin/custom_fields/custom_form', :form => f, :title => :other_fields, :parent => @asset_collection
 
 - if @asset.image? && @asset.valid?
