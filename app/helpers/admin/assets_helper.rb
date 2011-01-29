@@ -9,7 +9,15 @@ module Admin::AssetsHelper
   end
 
   def allow_plain_text_editing?(asset)
-    asset.new_record? || asset.stylesheet? || asset.javascript?
+    asset.new_record? || asset.stylesheet_or_javascript?
+  end
+
+  def display_plain_text?(asset)
+    if asset.new_record?
+      asset.performing_plain_text?
+    else
+      asset.stylesheet_or_javascript?
+    end
   end
 
 end
