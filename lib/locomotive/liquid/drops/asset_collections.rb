@@ -42,6 +42,10 @@ module Locomotive
           }
         end
 
+        def size
+          @collection.assets.size
+        end
+
         def before_method(meth)
           return '' if @collection.nil?
           @collection.send(meth)
