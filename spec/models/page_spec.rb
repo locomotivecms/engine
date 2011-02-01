@@ -205,6 +205,18 @@ describe Page do
     end
 
   end
+  
+  describe 'unlisted extension' do
+    
+    before(:each) do
+      @page = Factory.build(:page, :site => nil, :unlisted => true, :content_type_id => 42)
+    end
+    
+    it 'is considered as a unlisted page' do
+      @page.unlisted?.should be_true
+    end
+    
+  end
 
   describe 'redirect extension' do
 

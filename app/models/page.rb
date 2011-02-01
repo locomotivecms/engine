@@ -9,6 +9,7 @@ class Page
   include Models::Extensions::Page::Render
   include Models::Extensions::Page::Templatized
   include Models::Extensions::Page::Redirect
+  include Models::Extensions::Page::Unlisted
 
   ## fields ##
   field :title
