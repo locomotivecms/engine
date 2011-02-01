@@ -106,7 +106,7 @@ module Locomotive
         
         # Determines whether or not a page should be a part of the menu
         def include_page?(page)
-          if page.unlisted? || page.templatized? || !page.published?
+          if !page.listed? || page.templatized? || !page.published?
             false
           elsif @options[:exclude]
             (page.fullpath =~ @options[:exclude]).nil?
