@@ -206,14 +206,16 @@ describe Page do
 
   end
   
-  describe 'unlisted extension' do
+  describe 'listed extension' do
     
-    before(:each) do
-      @page = Factory.build(:page, :site => nil, :unlisted => true, :content_type_id => 42)
+    it 'is considered as a visible page' do
+      @page = Factory.build(:page, :site => nil, :content_type_id => 42)
+      @page.listed?.should be_true
     end
-    
-    it 'is considered as a unlisted page' do
-      @page.unlisted?.should be_true
+        
+    it 'is not considered as a visible page' do
+      @page = Factory.build(:page, :site => nil, :listed => false, :content_type_id => 42)
+      @page.listed?.should be_false
     end
     
   end
