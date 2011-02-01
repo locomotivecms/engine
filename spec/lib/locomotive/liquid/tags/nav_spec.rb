@@ -15,8 +15,9 @@ describe Locomotive::Liquid::Tags::Nav do
       Page.new(:title => 'Child #2.1', :fullpath => 'child_2/sub_child_1', :slug => 'sub_child_1', :published => true),
       Page.new(:title => 'Child #2.2', :fullpath => 'child_2/sub_child_2', :slug => 'sub_child_2', :published => true),
       Page.new(:title => 'Unpublished #2.2', :fullpath => 'child_2/sub_child_unpublishd_2', :slug => 'sub_child_unpublished_2', :published => false),
-      Page.new(:title => 'Templatized #2.3', :fullpath => 'child_2/sub_child_template_3',   :slug => 'sub_child_template_3',    :published => true,   :templatized => true)
-      ]
+      Page.new(:title => 'Templatized #2.3', :fullpath => 'child_2/sub_child_template_3',   :slug => 'sub_child_template_3',    :published => true,   :templatized => true),
+      Page.new(:title => 'Unlisted    #2.4', :fullpath => 'child_2/sub_child_unlisted_4',   :slug => 'sub_child_unlisted_4',    :published => true,   :unlisted => true)
+    ]
     @home.children.last.stubs(:children_with_minimal_attributes).returns(other_children)
     @home.children.last.stubs(:children).returns(other_children)
 
@@ -64,6 +65,12 @@ describe Locomotive::Liquid::Tags::Nav do
       output = render_nav('site', {}, 'depth: 2')
       
       output.should_not match /sub-child-unpublished-3/
+    end
+    
+    it 'does not render unlisted pages' do
+      output = render_nav('site', {}, 'depth: 2')
+      
+      output.should_not match /sub-child-unlisted-3/
     end
     
     it 'does not render nested excluded pages' do
