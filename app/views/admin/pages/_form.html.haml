@@ -19,6 +19,9 @@
   = f.custom_input :published, :css => 'toggle' do
     = f.check_box :published
 
+  = f.custom_input :unlisted, :css => 'toggle', :style => "#{'display: none' if @page.templatized?}" do
+    = f.check_box :unlisted
+      
   = f.custom_input :redirect, :css => 'toggle', :style => "#{'display: none' if @page.templatized?}" do
     = f.check_box :redirect
 

@@ -43,6 +43,7 @@ en:
         published: "Only authenticated accounts can view unpublished pages."
         cache_strategy: "Cache the page for better performance. The 'Simple' choice is a good compromise."
         templatized: "Use the page as a template for a model you defined."
+        unlisted: "Hide the page from any generated menus, it will still be accessible directly"
       snippet:
         slug: "You need to know it in order to insert the snippet inside a page"
       site:
