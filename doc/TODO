@@ -1,7 +1,12 @@
 BOARD:
 
+- add metadata to sites
 
 BACKLOG:
+
+- validation for custom fields
+- new custom field types:
+  - belongs_to => association
 
 - inline editing (http://www.aloha-editor.com/wiki/index.php/Aloha_PHP_Example)
   - html view in the aloha popup
@@ -9,12 +14,9 @@ BACKLOG:
   - edit images (upload new ones, ...etc) => wait for aloha or send them an email ?
 
 - refactor slugify method (use parameterize + create a module)
-- validation for custom fields
 
 - global regions: keyword in editable element (http://www.mongodb.org/display/DOCS/Updating)
 - write my first tutorial about locomotive
-- new custom field types:
-  - belongs_to => association
 - cucumber features for admin pages (in progress)
 
 BUGS:
