@@ -5,7 +5,7 @@ module Locomotive
       def process
         context[:done] = {} # initialize the hash storing pages already processed
 
-        self.add_index_and_404
+        self.add_page('index')
 
         Dir[File.join(theme_path, 'templates', '**/*')].each do |template_path|
 
@@ -15,6 +15,8 @@ module Locomotive
 
           self.add_page(fullpath)
         end
+
+        self.add_page('404')
 
         # make sure all the pages were processed (redirection pages without template for instance)
         self.pages.each { |fullpath, attributes| self.add_page_without_template(fullpath.to_s) }
@@ -95,6 +97,8 @@ module Locomotive
       end
 
       def find_parent(fullpath)
+        return nil if %w(index 404).include?(fullpath) # avoid cyclic issue
+
         segments = fullpath.split('/')
 
         return site.pages.root.first if segments.size == 1
@@ -107,28 +111,6 @@ module Locomotive
         parent = site.pages.where(:fullpath => parent_fullpath).first
 
         parent || self.add_page(parent_fullpath)
-      end
-
-      def add_index_and_404
-        %w(index 404).each_with_index do |slug, position|
-          page = site.pages.where({ :slug => slug, :depth => 0 }).first
-
-          page ||= sites.pages.build(:slug => slug, :parent => nil)
-
-          template = File.read(File.join(theme_path, 'templates', "#{slug}.liquid"))
-
-          self.replace_images!(template)
-
-          page.attributes = { :raw_template => template }.merge(self.pages[slug] || {})
-
-          page.position = position
-
-          page.save! rescue nil # TODO better error handling
-
-          site.reload
-
-          context[:done][slug] = page
-        end
       end
 
       def replace_images!(template)
@@ -160,7 +142,9 @@ module Locomotive
             position = nil
             fullpath = data.keys.first.to_s
 
-            unless %w(index 404).include?(fullpath)
+            if %w(index 404).include?(fullpath)
+              position = fullpath == 'index' ? 0 : 1
+            else
               (segments = fullpath.split('/')).pop
               position_key = segments.empty? ? 'index' : segments.join('/')
 

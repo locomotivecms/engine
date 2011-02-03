@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/floehopper/mocha.git
-  revision: ef4439904bb8476a661ec184a406e7f19714642e
+  revision: cc436649221e1895b5fc392247ce108db5ba8244
   specs:
     mocha (0.9.10.20101125155727)
       rake
@@ -157,7 +157,7 @@ GEM
     mimetype-fu (0.1.2)
     mongo (1.2.0)
       bson (>= 1.2.0)
-    mongoid (2.0.0.rc.6)
+    mongoid (2.0.0.rc.7)
       activemodel (~> 3.0)
       mongo (~> 1.2)
       tzinfo (~> 0.3.22)
