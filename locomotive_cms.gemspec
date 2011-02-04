@@ -17,21 +17,20 @@ Gem::Specification.new do |s|
   s.required_rubygems_version = ">= 1.3.6"
   s.rubyforge_project         = "nowarning"
 
-  s.add_dependency "rails", ">= 3.0.0"
+  s.add_dependency "rails", ">= 3.0.3"
   s.add_dependency "warden"
-  s.add_dependency "devise", "= 1.1.3"
-  s.add_dependency "mongoid", "~> 2.0.0.rc.6"
-  s.add_dependency "bson_ext", "= 1.2.0"
+  s.add_dependency "devise", "1.1.3"
+  s.add_dependency "mongoid", "~> 2.0.0.rc.7"
+  s.add_dependency "bson_ext", "~> 1.2.0"
   s.add_dependency "locomotive_mongoid_acts_as_tree", "0.1.5.2"
   s.add_dependency "will_paginate"
 
-  s.add_dependency "haml", "= 3.0.18"
+  s.add_dependency "haml", "3.0.25"
   s.add_dependency "locomotive_liquid", "2.2.2"
-  s.add_dependency "formtastic", ">= 1.1.0"
-  s.add_dependency "inherited_resources", "1.1.2"
+  s.add_dependency "formtastic", "~> 1.2.3"
+  s.add_dependency "inherited_resources", "~> 1.1.2"
 
-
-  s.add_dependency "rmagick", "= 2.12.2"
+  s.add_dependency "rmagick", "2.12.2"
   s.add_dependency "locomotive_carrierwave", "0.5.0.1.beta2"
 
   s.add_dependency "custom_fields", "1.0.0.beta.4"

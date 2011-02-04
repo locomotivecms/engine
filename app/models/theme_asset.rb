@@ -20,7 +20,6 @@ class ThemeAsset
   index [[:site_id, Mongo::ASCENDING], [:local_path, Mongo::ASCENDING]]
 
   ## callbacks ##
-  after_initialize  :set_performing_plain_text_boolean
   before_validation :store_plain_text
   before_validation :sanitize_folder
   before_validation :build_local_path
@@ -105,11 +104,6 @@ class ThemeAsset
   end
 
   protected
-
-  def set_performing_plain_text_boolean
-    self.performing_plain_text = true if self.stylesheet_or_javascript?
-  end
-
 
   def safe_source_filename
     self.source_filename || self.source.send(:original_filename) rescue nil

@@ -24,6 +24,11 @@ module Admin
       end
     end
 
+    def edit
+      resource.performing_plain_text = true if resource.stylesheet_or_javascript?
+      edit!
+    end
+
     def create
       create! do |success, failure|
         success.json do
