@@ -28,7 +28,7 @@ gem 'heroku'
 gem 'httparty', '>= 0.6.1'
 gem 'RedCloth'
 gem 'delayed_job', '2.1.2'
-gem 'delayed_job_mongoid', '1.0.1'
+gem 'delayed_job_mongoid', :git => 'https://github.com/collectiveidea/delayed_job_mongoid.git', :ref => 'a4ae3fcff4f8b17f8ead'
 gem 'rubyzip'
 gem 'locomotive_jammit-s3', :require => 'jammit-s3'
 

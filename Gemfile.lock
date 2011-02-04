@@ -5,6 +5,15 @@ GIT
     mocha (0.9.10.20101125155727)
       rake
 
+GIT
+  remote: https://github.com/collectiveidea/delayed_job_mongoid.git
+  revision: a4ae3fcff4f8b17f8ead1a2095f29cff8ebe5b01
+  ref: a4ae3fcff4f8b17f8ead
+  specs:
+    delayed_job_mongoid (1.0.2)
+      delayed_job (~> 2.1.1)
+      mongoid (~> 2.0.0.beta)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -80,9 +89,6 @@ GEM
     delayed_job (2.1.2)
       activesupport (~> 3.0)
       daemons
-    delayed_job_mongoid (1.0.1)
-      delayed_job (~> 2.1.1)
-      mongoid (~> 2.0)
     devise (1.1.3)
       bcrypt-ruby (~> 2.1.2)
       warden (~> 0.10.7)
@@ -264,7 +270,7 @@ DEPENDENCIES
   custom_fields (= 1.0.0.beta2)
   database_cleaner
   delayed_job (= 2.1.2)
-  delayed_job_mongoid (= 1.0.1)
+  delayed_job_mongoid!
   devise (= 1.1.3)
   factory_girl_rails
   fog (= 0.3.7)
