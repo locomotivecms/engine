@@ -91,12 +91,16 @@ module Locomotive
       def store_zipfile(zipfile)
         return nil if zipfile.blank?
 
-        file = CarrierWave::SanitizedFile.new(zipfile)
-
         uploader = self.get_uploader(@site)
 
         begin
-          uploader.store!(file)
+          if zipfile.is_a?(String) && zipfile =~ /^http:\/\//
+            uploader.download!(zipfile)
+            uploader.store!
+          else
+            file = CarrierWave::SanitizedFile.new(zipfile)
+            uploader.store!(file)
+          end
           uploader.identifier
         rescue CarrierWave::IntegrityError
           nil
