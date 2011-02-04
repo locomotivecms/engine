@@ -35,7 +35,7 @@ Gem::Specification.new do |s|
   s.add_dependency "locomotive_carrierwave", "0.5.0.1.beta2"
 
   s.add_dependency "custom_fields", "1.0.0.beta2"
-  s.add_dependency "fog"
+  s.add_dependency "fog", '0.2.30'
   s.add_dependency "mimetype-fu"
   s.add_dependency "actionmailer-with-request"
   s.add_dependency "heroku"
