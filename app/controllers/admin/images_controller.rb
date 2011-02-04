@@ -26,7 +26,7 @@ module Admin
         render :json => image_to_json(a)
       rescue Exception => e
         # Rails.logger.info e.backtrace.join("\n")
-        render :json => { :status => 'error' }
+        render :json => { :status => 'error', :backtrace => e.backtrace.join("\n") }
       end
     end
 
