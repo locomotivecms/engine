@@ -273,7 +273,7 @@ DEPENDENCIES
   delayed_job_mongoid!
   devise (= 1.1.3)
   factory_girl_rails
-  fog (= 0.3.7)
+  fog
   formtastic (>= 1.1.0)
   growl-glue
   haml (= 3.0.18)
