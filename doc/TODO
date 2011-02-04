@@ -1,9 +1,9 @@
 BOARD:
 
-- moving to mongoid 2.0.0 rc.6
-  - accepts_nested_attributes (javascript part)
-  - check the theme uploader
-  - release new version of CustomFields, ActsAsTree gems
+x moving to mongoid 2.0.0 rc.6
+  x accepts_nested_attributes (javascript part)
+  x check the theme uploader
+  x release new version of CustomFields, ActsAsTree gems
 
 BACKLOG:
 

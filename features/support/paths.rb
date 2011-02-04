@@ -16,6 +16,8 @@ module NavigationHelpers
       destroy_admin_session_path
     when /pages/
       admin_pages_path
+    when /theme assets/
+      admin_theme_assets_path
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:

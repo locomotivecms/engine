@@ -44,3 +44,5 @@ end
 
 Capybara.default_host = 'test.example.com'
 # Capybara.app_host = 'http://test.example.com'
+
+require File.expand_path(File.dirname(__FILE__) + '/../../spec/support/carrierwave')

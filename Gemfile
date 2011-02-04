@@ -2,26 +2,24 @@ source :rubygems
 
 # add in all the runtime dependencies
 
-gem 'rails', '>= 3.0.0'
+gem 'rails', '>= 3.0.3'
 
 gem 'warden'
 gem 'devise', '= 1.1.3'
 
 gem 'mongoid', '~> 2.0.0.rc.6'
 gem 'bson_ext', '1.2.0'
-# gem 'locomotive_mongoid_acts_as_tree', :path => '../gems/acts_as_tree', :require => 'mongoid_acts_as_tree'  # '0.1.5.1', :require => 'mongoid_acts_as_tree'
 gem 'locomotive_mongoid_acts_as_tree', '0.1.5.2', :require => 'mongoid_acts_as_tree'
 gem 'will_paginate'
 
-gem 'haml', '= 3.0.18'
+gem 'haml', '3.0.25'
 gem 'locomotive_liquid', '2.2.2', :require => 'liquid'
-gem 'formtastic', '~> 1.1.0'
-gem 'inherited_resources', '1.1.2'
+gem 'formtastic', '~> 1.2.3'
+gem 'inherited_resources', '~> 1.1.2'
 
-gem 'rmagick', '= 2.12.2'
+gem 'rmagick', '2.12.2'
 gem 'locomotive_carrierwave', '0.5.0.1.beta2', :require => 'carrierwave'
 
-# gem 'custom_fields', :path => '../gems/custom_fields' #'1.0.0.beta2'
 gem 'custom_fields', '1.0.0.beta.4'
 gem 'fog', '0.3.7'
 gem 'mimetype-fu'

@@ -10,9 +10,10 @@ module Admin
 
     respond_to :json, :only => [:create, :update]
 
+    before_filter :sanitize_params, :only => [:create, :update]
+
     def index
-      @assets = current_site.theme_assets.visible(params[:all]).order_by([[:slug, :asc]])
-      @assets = @assets.group_by { |a| a.folder.split('/').first.to_sym }
+      @assets = ThemeAsset.all_grouped_by_folder(current_site, params[:all])
       @js_and_css_assets = (@assets[:javascripts] || []) + (@assets[:stylesheets] || [])
 
       if request.xhr?
@@ -23,14 +24,7 @@ module Admin
       end
     end
 
-    def edit
-      resource.performing_plain_text = true if resource.stylesheet_or_javascript?
-      edit!
-    end
-
     def create
-      params[:theme_asset] = { :source => params[:file] } if params[:file]
-
       create! do |success, failure|
         success.json do
           render :json => {
@@ -43,6 +37,15 @@ module Admin
         end
         failure.json { render :json => { :status => 'error' } }
       end
+    end
+
+    protected
+
+    def sanitize_params
+      params[:theme_asset] = { :source => params[:file] } if params[:file]
+
+      performing_plain_text = params[:theme_asset][:performing_plain_text]
+      params[:theme_asset].delete(:content_type) if performing_plain_text.blank? || performing_plain_text == 'false'
     end
 
   end

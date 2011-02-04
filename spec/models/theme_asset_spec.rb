@@ -51,12 +51,22 @@ describe ThemeAsset do
 
     end
 
-    describe 'file is not allowed' do
+    describe '#validation' do
 
-      it 'should not be valid' do
+      it 'does not accept text file' do
         @asset.source = FixturedAsset.open('wrong.txt')
         @asset.valid?.should be_false
         @asset.errors[:source].should_not be_blank
+      end
+
+      it 'is not valid if another file with the same path exists' do
+        @asset.source = FixturedAsset.open('5k.png')
+        @asset.save!
+
+        another_asset = Factory.build(:theme_asset, :site => @asset.site)
+        another_asset.source = FixturedAsset.open('5k.png')
+        another_asset.valid?.should be_false
+        another_asset.errors[:local_path].should_not be_blank
       end
 
     end
