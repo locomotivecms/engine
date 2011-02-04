@@ -17,13 +17,16 @@ module Admin
     end
 
     def create
-      params[:asset] = { :name => params[:name], :source => params[:file] } if params[:file]
+      params[:asset] = { :name => params[:name], :source => params[:file], :collection => begin_of_association_chain } if params[:file]
 
-      create! do |success, failure|
-        success.json do
-          render :json => image_to_json(@asset)
-        end
-        failure.json { render :json => { :status => 'error' } }
+      a = Asset.new(params[:asset])
+
+      begin
+        a.save!
+        render :json => image_to_json(a)
+      rescue Exception => e
+        # Rails.logger.info e.backtrace.join("\n")
+        render :json => { :status => 'error' }
       end
     end
 
