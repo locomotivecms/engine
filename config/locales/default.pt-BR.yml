@@ -1,0 +1,32 @@
+pt-BR:
+  date:
+    formats:
+      default: "%d/%m/%Y"
+
+  errors:
+      messages:
+        domain_taken: "%{value} já está em uso."
+        invalid_domain: "%{value} é inválido."
+        needs_admin_account: "Uma conta de administrador é necessário pelo menos."
+        protected_page: "Você não pode remover a página inicial e a do erro 404"
+        extname_changed: "Novo arquivos não tem a mesma extensão que o original"
+        array_too_short: "é muito pequeno (mínimo de elementos é %{count})"
+        liquid_syntax: "Erro de sintaxe do Liquid, por favor verifique a sintaxe"
+        liquid_extend: "A página extende um template que não existe."
+        invalid_theme_file: "não pode ser vazio ou não é um arquivo zip"
+
+  attributes:
+    defaults:
+      pages:
+        index:
+          title: "'Página Inicial"
+          body: "Conteúdo da página inicial"
+        "404":
+          title: "Página não encontrada"
+          body: "Conteúdo da página de erro 404"
+        other:
+          body: "Conteúdo vai aqui"
+
+  pagination:
+    previous: "&laquo; Anterior"
+    next: "Próximo &raquo;"

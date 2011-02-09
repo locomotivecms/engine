@@ -1,0 +1,301 @@
+pt-BR:
+  admin:
+    buttons:
+      login: Entrar
+      send_password: Enviar
+      change_password: Mudar
+      new_item: "+ adicionar"
+      switch_to_site: Ir
+
+    messages:
+      confirm: Você tem certeza ?
+
+    shared:
+      header:
+        welcome: Bem-Vindo, %{name}
+        see: Ver websiste
+        logout: Sair
+      menu:
+        contents: Conteúdos
+        assets: Arquivos
+        settings: Configurações
+        pages: Páginas
+        snippets: Blocos de código
+        account: Minha Conta
+        site: Site
+        theme_assets: Arquivos do Tema
+      footer:
+        who_is_behind: "Desenvovido por %{development} e desenhado por <a href=\"http://www.sachagreif.com\">Sacha Greif</a>"
+      form_actions:
+        back: Voltar sem salvar
+        create: Criar
+        update: Atualizar
+        send: Enviar
+
+    errors:
+      "500":
+        title: Erro de aplicação
+        notice: "Desculpe-nos, algo não está funcionando como deveria"
+        link: "&rarr; Voltar a aplicação"
+      "404":
+        title: Página não encontrada
+        notice: "A página requisitada não existe."
+        link: "&rarr; Voltar a aplicação"
+
+    notifications:
+      new_content_instance:
+        subject: " Novo [%{type}] "
+        title: "Olá %{name}, apenas informando que uma nova instância foi criada em %{date}"
+        type: "Modelo: %{type}"
+
+    custom_fields:
+      edit:
+        title: Editando campo customizado
+      kind:
+        string: Texto Simples
+        text: Texto
+        category: Caixa de Seleção
+        boolean: Checkbox
+        date: Data
+        file: Arquivo
+      text_formatting:
+        none: Nenhum
+        html: HTML
+      edit_field:
+        title: Edita campo
+      edit_category:
+        title: Editar opções
+        help: Gerenciar a lista de opções da sua caixa de seleçõa.
+        collection_label: Lista de opções
+      custom_form:
+        edit_categories: Editar opções
+        delete_file: Excluir arquivo
+
+    sessions:
+      new:
+        title: Login
+        link: "Esqueci minha senha"
+        email: "Email"
+        password: "Senha"
+
+    passwords:
+      new:
+        title: Esqueci minha senha
+        link: "&rarr; Voltar a página de login"
+        email: "Seu email"
+      edit:
+        title: Atualizar minha senha
+        link: "&rarr; Voltar a página de login"
+        password: "Sua nova senha"
+        password_confirmation: "Confirmação da sua nova senha"
+
+    pages:
+      index:
+        title: Listando páginas
+        help: "As páginas são organizadas como uma árvore. Você pode reordenar as páginas como se fossem pastas"
+        no_items: "Não existe nenhuma página ainda. Clique <a href=\"%{url}\">aqui</a> para criar a primeira."
+        new: nova página
+        lastest_items: Últmas páginas
+      new:
+        title: Nova página
+        help: "Por favor, preencha o formulário a seguir para criar sua página. Atenção: Por padrão a página não é publicada."
+      page:
+        updated_at: atualizada em
+      edit:
+        show: mostrar
+        help: "O título da página pode ser alterado clicando nele."
+        ask_for_title: "Por favor preencha o novo título"
+      form:
+        delete_file: Excluir arquivo
+        default_block: Padrão
+        cache_strategy:
+          none: Nenhum
+          simple: Simples
+          hour: 1 hora
+          day: 1 dia
+          week: 1 semana
+          month: 1 mês
+
+    snippets:
+      index:
+        title: Listando Blocos de Código
+        help: "Blocos de código são alguns códigos HTML que pode sem encontrados em diferentes lugares do site e podem ser reutilizados ( como o rodapé )."
+        no_items: "Você ainda não tem blocos de código. Clique <a href=\"%{url}\">aqui</a> para criar o primeiro."
+        new: novo bloco
+      new:
+        title: Novo bloco
+        help: "Preecha o formulário a seguirar para atulizar o seu bloco de código."
+      edit:
+        title: Editing snippet
+        help: "Preecha o formulário a seguirar para atulizar o seu bloco de código."
+      snippet:
+        updated_at: Atualizado em
+
+    sites:
+      new:
+        title: Novo site
+        help: "Preencha o formulário a seguir para criar um novo site."
+
+    current_sites:
+      edit:
+        import: importar
+        new_membership: adicionar conta
+        help: "O nome do site pode ser alterado clicando nele."
+        ask_for_name: "Por favor, digite o novo nome do site"
+
+    memberships:
+      new:
+        title: Novo usuário
+        help: "Por favor, forneça o e-mail que deseja adicionar. Se ele não exister, você será redirecionado para o formulário de criação."
+
+    accounts:
+      new:
+        title: Nova conta
+        help: "Preencha o formulário a seguir para criar uma nova conta."
+
+    my_accounts:
+      edit:
+        help: "Seu nome pode ser atualizado clicando nele."
+        new_site: novo site
+        en: Inglês
+        fr: Francês
+        pt-BR: "Português do Brasil"
+        ask_for_name: "Por favor preencha o novo nome"
+
+    theme_assets:
+      index:
+        title: Listando arquivos do tema
+        help: "Nesta seção todos os arquivos relacionados a layout são armazenados e gerenciados. Se você precisa de uma galeria de imagens, vá a seção de Arquivos."
+        all: todos arquivos
+        new: novo arquivo
+        snippets: Blocos
+        css_and_js: CSS e Javascript
+        fonts: Fontes
+        images: Imagens
+        media: Mídia
+        no_items: "Ainda não existem arquivos. Clique <a href=\"%{url}\">aqui</a> para criar o primeiro."
+      asset:
+        updated_at: Atualizado em
+      new:
+        title: Novo arquivo
+        help: "Você pode escolher em enviar qualquer arquivo ou copiar/colar um arquivo de css/javascript em texto."
+      edit:
+        title: "Editando %{file}"
+        help: "Esse arquivo pode ser acessado pela seguinte URL: <a href='%{url}'>%{url}</a>"
+      form:
+        picker_link: Insira um arquivo no código
+        choose_file: Escolha um arquivo
+        choose_plain_text: Escolher texto plano
+      images:
+        title: Listando imagens
+        no_items: "Não existem imagens ainda."
+
+    asset_collections:
+      index:
+        title: Coleções de arquivos
+        help: "O nome da coleção pode ser alterado clicando nele. Você pode customizar os arquivos nas coleções adicionando campos."
+        new: nova coleção
+        no_items: "Não existem coleções ainda. Clique <a href=\"%{url}\">aqui</a> para criar a primeira."
+      new:
+        title: Nova Coleção
+        help: "Por enquanto, apenas insira o nome. Outras opções irão aparecer após o formulário ser enviado."
+      edit:
+        help: "O nome da coleção pode ser alterado clicando nele. Você pode customizar os arquivos nas coleções adicionando campos."
+        add_asset: adicionar arquivo
+        destroy: excluir coleção
+        no_items: "Não existem coleções ainda. Clique <a href=\"%{url}\">aqui</a> para criar a primeira."
+        ask_for_name: Por favor preencha o novo nome"
+
+    assets:
+      new:
+        title: Novo arquivo
+        help: "Preencha o formulário a seguir para criar o seu arquivo."
+      edit:
+        title: Editar arquivo
+        help: "Preencha o formulário a seguir para atualizar o seu arquivo."
+
+    content_types:
+      index:
+        new: novo modelo
+      new:
+        title: Novo modelo
+        help: "Crie o seu próprio modelo de dados (Projetos, Pessoas, ...etc). Seu modelo deve conter um campo pelo menos. Os itens criados a partir desse tipo de conteúdo terão seu primeiro campo como obrigatório."
+      edit:
+        title: Editar modelo
+        help: "Seu modelo deve conter um campo pelo menos. Os itens criados a partir desse tipo de conteúdo terão seu primeiro campo como obrigatório."
+        show_items: mostrar itens
+        new_item: novo item
+      form:
+        order_by:
+          created_at: 'Por "criado em" data'
+          updated_at: 'Por "atualizado em" data'
+          position_in_list: Manual
+
+    contents:
+      index:
+        title: 'Listando "%{type}"'
+        edit: editar modelo
+        destroy: excluir modelo
+        download: download dos itens
+        new: novo item
+        category_noname: "Sem nome"
+        lastest_items: "Últimos itens"
+        updated_at: "Atualizado em"
+      list:
+        no_items: "Não existem itens ainda. Clique <a href=\"%{url}\">aqui</a> para criar o primeiro."
+      new:
+        title: '%{type} &mdash; novo item'
+      edit:
+        title: '%{type} &mdash; editando item'
+
+    image_picker:
+      link: Insira uma imagem no código
+
+    cross_domain_sessions:
+      new:
+        title: Autenticação por mútiplos domínios.
+        notice: Você será redirecionado para o site em alguns segundos.
+
+    imports:
+      new:
+        title: Importar
+        help: "Tenha cuidado ao enviar um novo tema ao seu site que já existe, seus dados atuais podem ser atualizados ou até removidos."
+      show:
+        title: Importação em progresso
+        help: "Seu site está sendo atualizado pelo arquivo zip enviado. Irá demorar alguns segundos."
+        steps:
+          site: Informações do site
+          content_types: Tipos de Conteúdo customizados
+          assets: Arquivos do Tema
+          asset_collections: Coleções de Arquivos
+          snippets: Blocos
+          pages: Páginas
+        messages:
+          success: "Seu site foi atualizado com sucesso"
+          failure: "A importação não funcionou."
+
+    installation:
+      common:
+        title: Primeira instalação do Locomotive
+        next: Próximo
+      step_1:
+        title: Passo 1/3
+        explanations: "Este é o primeiro passo da instalação do Locomotive. Por favor , leia com atenção o que está escrito"
+        database:
+          label: "Nome da Base de Dados: <em>%{name}</em>"
+          notes: "Todas as configurações de conexão do mongodb podem ser encontradas no arquivo <b>config/mongoid.yml</b> da sua aplicação."
+        default_domain:
+          label: "Domínio padrão: <em>%{name}</em>"
+          notes: "Basicamente, Locomotive é uma plataforma multi-site. Cada instância de site tem uma entrada padrão, , também chamada de sub-domínio e baseada no dominio principal. Obviamente, você pode mapear outros domínios para a instância do seu site , como uma referência. <br/>O nome do domínio principal pode ser encontrado no arquivo <b>config/initializers/locomotive.rb</b>."
+      step_2:
+        title: "Passo 2/3 &mdash; Criar conta"
+        name: Nome da Conta
+        email: Email
+        password: Senha
+        password_confirmation: Confirmação da Senha
+        done: "Você ja adicionou uma conta com:<br/><strong>%{name}</strong>, <em>%{email}</em>"
+        next: Criar Conta
+      step_3:
+        title: "Passo 3/3 &mdash; Criar primeiro site"
+        explanations: "Este é o último passo da instalação. Você pode enviar um tema como um arquivo zip. Nós temos alguns temas de graça para download <a href=\"http://www.locomotivecms.com/support/themes\">aqui</a>."
+        next: Criar Site

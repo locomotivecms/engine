@@ -1,0 +1,4 @@
+pt-BR:
+  carrierwave:
+    errors:
+      integrity: 'não é um tipo de arquivo compatível.'
