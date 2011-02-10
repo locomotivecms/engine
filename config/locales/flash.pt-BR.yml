@@ -3,114 +3,114 @@ pt-BR:
     admin:
       pages:
         create:
-          notice: "Page was successfully created."
-          alert: "Page was not created."
+          notice: "Página criada com sucesso."
+          alert: "Página não foi criada."
         update:
-          notice: "Page was successfully updated."
-          alert: "Page was not updated."
+          notice: "Página atualizada com sucesso."
+          alert: "Página não foi atualizada."
         sort:
-          notice: "Pages were successfully sorted."
+          notice: "Páginas foram ordenadas com sucesso."
         destroy:
-          notice: "Page was successfully deleted."
+          notice: "Páginas foram apagadas com sucesso."
 
       contents:
         create:
-          notice: "Content was successfully created."
-          alert: "Content was not created."
+          notice: "Conteúdo criado com sucesso."
+          alert: "Conteúdo não foi criado."
         update:
-          notice: "Content was successfully updated."
-          alert: "Content was not updated."
+          notice: "Conteúdo foi atualizado com sucesso."
+          alert: "Conteúdo não foi atualizado."
         sort:
-          notice: "Contents were successfully sorted."
+          notice: "Conteúdos foram ordenados com sucesso."
         destroy:
-          notice: "Content was successfully deleted."
+          notice: "Conteúdos foram apagados com sucesso."
 
       content_types:
         create:
-          notice: "Model was successfully created."
-          alert: "Model was not created."
+          notice: "Modelo foi criado com sucesso."
+          alert: "Modelo não foi criado."
         update:
-          notice: "Model was successfully updated."
-          alert: "Model was not updated."
+          notice: "Modelo foi atualizado com sucesso."
+          alert: "Modelo não foi atualizado."
         destroy:
-          notice: "Model was successfully deleted."
+          notice: "Modelo foi apagado com sucesso."
 
       current_sites:
         update:
-          notice: "My site was successfully updated."
-          alert: "My site was not updated."
+          notice: "Meu site foi atualizado com sucesso."
+          alert: "Meu site não foi atualizado."
 
       snippets:
         create:
-          notice: "Snippet was successfully created."
-          alert: "Snippet was not created."
+          notice: "Fragmento foi criado com sucesso."
+          alert: "Fragmento não foi criado."
         update:
-          notice: "Snippet was successfully updated."
-          alert: "Snippet was not updated."
+          notice: "Fragmento foi atualizado com sucesso." 
+          alert: "Fragmento não foi atualizado."
         destroy:
-          notice: "Snippet was successfully deleted."
+          notice: "Fragmento foi apagado com sucesso."
 
       accounts:
         create:
-          notice: "Account was successfully created."
-          alert: "Account was not created."
+          notice: "Conta foi criada com sucesso."
+          alert: "Conta não foi criada."
 
       my_accounts:
         update:
-          notice: "My account was successfully updated."
-          alert: "My account was not updated."
+          notice: "Minha conta foi atualizada com sucesso." 
+          alert: "Minha conta não foi atualizada."
 
       sites:
         create:
-          notice: "Site was successfully created."
-          alert: "Site was not created."
+          notice: "Site foi criado com sucesso."
+          alert: "Site não foi criado com sucesso."
         destroy:
-          notice: "Site was successfully deleted."
+          notice: "Site foi apagado com sucesso."
 
       memberships:
         create:
-          notice: "Membership was successfully created."
-          alert: "Membership was not created."
-          already_created: "Account was already added the current site."
+          notice: "Adesão foi criada com sucesso."
+          alert: "Adesão não foi criada."
+          already_created: "Conta já foi adicionada ao site atual."
 
       asset_collections:
         create:
-          notice: "Collection was successfully created."
-          alert: "Collection was not created."
+          notice: "Coleção criada com sucesso."
+          alert: "Coleção não foi criada."
         update:
-          notice: "Collection was successfully updated."
-          alert: "Collection was not updated."
+          notice: "Coleção foi atualizada com sucesso."
+          alert: "Coleção não foi atualizada."
         destroy:
-          notice: "Collection was successfully deleted."
+          notice: "Coleção foi apagada com sucesso."
 
       assets:
         create:
-          notice: "Asset was successfully created."
-          alert: "Asset was not created."
+          notice: "Asset foi criada com sucesso."
+          alert: "Asset não foi criada."
         update:
-          notice: "Asset was successfully updated."
-          alert: "Asset was not updated."
+          notice: "Asset foi atualizada com sucesso."
+          alert: "Asset não foi atualizada."
 
       theme_assets:
         create:
-          notice: "File was successfully created."
-          alert: "File was not created."
+          notice: "Arquivo foi criado com sucesso."
+          alert: "Arquivo não foi criado." 
         update:
-          notice: "File was successfully updated."
-          alert: "File was not updated."
+          notice: "Arquivo foi atualizado com sucesso."
+          alert: "Arquivo não foi atualizado."
         destroy:
-          notice: "File was successfully deleted."
+          notice: "Arquivo foi apagado com sucesso."
 
       custom_fields:
         update:
-          alert: "Field not updated"
+          alert: "Campo não foi atualizado."
 
       cross_domain_sessions:
         create:
-          alert: "You need to sign in"
+          alert: "Você precisa fazer o login"
 
       imports:
         create:
-          done: "Your site was successfully updated."
-          notice: "Your site is being updated."
-          alert: "The import was not done."
+          done: "Seu site foi atualizado com sucesso."
+          notice: "Seu site está sento atualizado."
+          alert: "A importação não foi feita."

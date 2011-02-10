@@ -1,67 +1,66 @@
 pt-BR:
   formtastic:
     titles:
-      information: General information
+      information: Informação geral
       meta: SEO Metadata
-      code: Code
+      code: Código
       raw_template: Template
-      credentials: Credentials
-      language: Language
+      credentials: Credenciais
+      language: Língua
       sites: Sites
-      access_points: Access points
-      memberships: Accounts
-      membership_email: Account email
-      file: File
-      preview: Preview
-      options: Advanced options
-      custom_fields: Custom fields
-      other_fields: Other information
-      presentation: Presentation
-      attributes: Attributes
+      access_points: Pontos de acesso
+      memberships: Contas
+      membership_email: Conta de email
+      file: Arquivo
+      preview: Pré-visualizar
+      options: Opções avançadas
+      custom_fields: Compos customizáveis
+      other_fields: Outras informações
+      presentation: Apresentação
+      attributes: Atributos
       upload: Upload
     labels:
       theme_asset:
-        plain_text_name: File name
-        content_type: File type
+        plain_text_name: Nome do arquivo
+        content_type: Tipo do arquivo
         new:
-          source: File
+          source: Arquivo
         edit:
-          source: Replace file
+          source: Substituir arquivo
       custom_fields:
         field:
-          _alias: Alias
+          _alias: Apelido
       import:
         new:
-          source: File
-          samples: Copy samples
-          reset: Reset site
+          source: Arquivo
+          samples: Amostras de cópia
+          reset: Reiniciar site
       content_type:
-        api_accounts: Notified Accounts
+        api_accounts: Contas notificadas
 
     hints:
       page:
-        published: "Only authenticated accounts can view unpublished pages."
-        cache_strategy: "Cache the page for better performance. The 'Simple' choice is a good compromise."
-        templatized: "Use the page as a template for a model you defined."
+        published: "Apenas contas autenticadas podem ver páginas não publicadas."
+        cache_strategy: "Faça o Cache da página para obter melhor desempenho. A escolha do "Simples" é um bom compromisso"
+        templatized: "Utilize a página como template para o modelo definido."
       snippet:
-        slug: "You need to know it in order to insert the snippet inside a page"
+        slug: "Você precisa saber a ordem para inserir fragmentos dentro da página."
       site:
-        meta_keywords: "Meta keywords used within the head tag of the page. They are separeted by an empty space. Required for SEO."
-        meta_description: "Meta description used within the head tag of the page. Required for SEO."
+        meta_keywords: "Palavras chave usadas dentro da tag 'head' da página. Elas são separadas por um espaço em branco. Requerido para SEO."
+        meta_description: "Descrição chave usada dentro da tag 'head' da página. Requerido para SEO."
         domain_name: "ex: locomotiveapp.org"
       theme_asset:
-        slug: "You do not need to add the extension file (.css or .js)"
+        slug: "Você não precisa adicionar as extensões do arquivo (.css or .js)"
         edit:
-          source: "You can replace it by a file of the same extension"
+          source: "Você pode substituir por um arquivo com a mesma extensão."
       custom_fields:
         field:
-          _alias: "Property available in liquid templates"
-          hint: "Text displayed in the model form just below the field"
+          _alias: "Propriedades disponíveis em templates líquidos."
+          hint: "Texto mostrado no formulário de modelo está abaixo do campo."
       import:
-        source: "A zipfile containing a database.yml along with assets and templates"
-        samples: "If enabled, the import process will also copy contents and assets"
-        reset: "If enabled, all the data of your site will be destroyed before importing the new site"
+        source: "Um arquivo .zip contendo um database.yml com assets and templates"
+        samples: "Se habilitado, a importação também irá copiar conteúdos e assets."
+        reset: "Se habilitado, todos os dados do site serão apagados antes da importação do novo site."
       content_type:
-        api_enabled: "It is used to let people from outside to create new instances (example: messages in a contact form)"
-        api_accounts: "A notification email will be sent to each of the accounts listed above when a new instance is created"
-
+        api_enabled: "Ele é utilizado para permitir que pessoas de fora criem novas instâncias (exemplo: mensagens no formulário de contato)"
+        api_accounts: "Um email de notificação será enviado para conta listada acima quando uma nova instância for criada."
