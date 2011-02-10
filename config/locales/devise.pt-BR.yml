@@ -47,9 +47,8 @@ pt-BR:
     mailer:
       common:
         hello: Olá
-
       confirmation_instructions:
-        you_can_confirm_your_account_through_the_link_below: "Você pode confirmar sua conta através do link abaixo.'
+        you_can_confirm_your_account_through_the_link_below: "Você pode confirmar sua conta através do link abaixo."
         confirm_my_account: "Confirmar minha conta"
       reset_password_instructions:
         reset_password_instruction: "Alguém solicitou um link para alterar sua senha e você poderá fazer isto através do link abaixo:"
