@@ -31,7 +31,7 @@ pt-BR:
       admin:
         signed_up: 'Você logou com sucesso.'
         updated: 'Atualização da conta feita com sucesso.'
-        destroyed: 'Sua conta foi cancelada com sucesso. Logo logo esperamos te ver por aqui. Tchau!
+        destroyed: 'Sua conta foi cancelada com sucesso. Logo logo esperamos te ver por aqui. Tchau!'
     unlocks:
       admin:
         send_instructions: 'Você receberá um email com as intruções de como desbloquear sua conta em poucos minutos.'
