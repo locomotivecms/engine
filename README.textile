@@ -35,7 +35,7 @@ See the "official website":http://www.locomotivecms.com
 h2. Team
 
 * Developers: "Didier Lafforgue":http://www.nocoffee.fr, "Jacques Crocker":http://www.railsjedi.com
-* Contributors: "Dirk Kelly":http://www.dirkkelly.com, "Mario Visic":http://www.mariovisic.com
+* Contributors: "Dirk Kelly":http://www.dirkkelly.com, "Mario Visic":http://www.mariovisic.com, "Raphael Costa":http://raphaelcosta.net (Brazilian Portuguese translations)
 * UI Designer: "Sacha Greif":http://www.sachagreif.com
 
 h2. Credits
