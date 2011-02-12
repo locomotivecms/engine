@@ -1,0 +1,4 @@
+button.addlink.tooltip=Inserir Link
+button.removelink.tooltip=Remover Link
+newlink.defaulttext=Novo Link
+floatingmenu.tab.link=Link

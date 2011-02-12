@@ -1,5 +1,5 @@
-/* French initialisation for the jQuery UI date picker plugin. */
-/* Written by Keith Wood (kbwood@virginbroadband.com.au) and Stéphane Nahmani (sholby@sholby.net). */
+/* Brazilian Portuguese initialisation for the jQuery UI date picker plugin. */
+/* Written by Raphael Costa (raphael@experia.com.br)  */
 jQuery(function($){
 	$.datepicker.regional['pt-BR'] = {
 		closeText: 'Fechar',

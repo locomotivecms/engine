@@ -44,7 +44,7 @@ pt-BR:
     defaults:
       pages:
         index:
-          title: "'Página Inicial"
+          title: "Página Inicial"
           body: "Conteúdo da página inicial"
         "404":
           title: "Página não encontrada"
