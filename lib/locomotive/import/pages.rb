@@ -57,6 +57,10 @@ module Locomotive
           :published    => true
         }.merge(self.pages[fullpath] || {}).symbolize_keys
 
+        if %w(index 404).include?(fullpath)
+          attributes[:position] = fullpath == 'index' ? 0 : 1
+        end
+
         # templatized ?
         if content_type_slug = attributes.delete(:content_type)
           attributes.merge!({
@@ -142,9 +146,9 @@ module Locomotive
             position = nil
             fullpath = data.keys.first.to_s
 
-            if %w(index 404).include?(fullpath)
-              position = fullpath == 'index' ? 0 : 1
-            else
+            unless %w(index 404).include?(fullpath)
+            #   position = fullpath == 'index' ? 0 : 1
+            # else
               (segments = fullpath.split('/')).pop
               position_key = segments.empty? ? 'index' : segments.join('/')
 
