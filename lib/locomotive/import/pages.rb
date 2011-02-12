@@ -61,6 +61,8 @@ module Locomotive
           attributes[:position] = fullpath == 'index' ? 0 : 1
         end
 
+        attributes[:position] = attributes[:position].to_i
+
         # templatized ?
         if content_type_slug = attributes.delete(:content_type)
           attributes.merge!({
@@ -101,7 +103,7 @@ module Locomotive
       end
 
       def find_parent(fullpath)
-        return nil if %w(index 404).include?(fullpath) # avoid cyclic issue
+        return nil if %w(index 404).include?(fullpath) # avoid cyclic issue with the index page
 
         segments = fullpath.split('/')
 
