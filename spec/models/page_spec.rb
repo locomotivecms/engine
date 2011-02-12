@@ -205,6 +205,20 @@ describe Page do
     end
 
   end
+  
+  describe 'listed extension' do
+    
+    it 'is considered as a visible page' do
+      @page = Factory.build(:page, :site => nil, :content_type_id => 42)
+      @page.listed?.should be_true
+    end
+        
+    it 'is not considered as a visible page' do
+      @page = Factory.build(:page, :site => nil, :listed => false, :content_type_id => 42)
+      @page.listed?.should be_false
+    end
+    
+  end
 
   describe 'redirect extension' do
 

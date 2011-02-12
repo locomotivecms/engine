@@ -9,6 +9,7 @@ class Page
   include Models::Extensions::Page::Render
   include Models::Extensions::Page::Templatized
   include Models::Extensions::Page::Redirect
+  include Models::Extensions::Page::Listed
 
   ## fields ##
   field :title
@@ -42,7 +43,7 @@ class Page
   scope :not_found, :where => { :slug => '404', :depth => 0 }
   scope :published, :where => { :published => true }
   scope :fullpath, lambda { |fullpath| { :where => { :fullpath => fullpath } } }
-  scope :minimal_attributes, :only => %w(title slug fullpath position depth published templatized parent_id created_at updated_at)
+  scope :minimal_attributes, :only => %w(title slug fullpath position depth published templatized listed parent_id created_at updated_at)
 
   ## methods ##
 

@@ -22,7 +22,7 @@ fr:
 
     shared:
       header:
-        welcome: Bonjour, %{name}
+        welcome: "Bonjour, %{name}"
         see: Voir le site web
         logout: Se déconnecter
       menu:

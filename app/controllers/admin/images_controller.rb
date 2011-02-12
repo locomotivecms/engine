@@ -23,8 +23,12 @@ module Admin
         success.json do
           render :json => image_to_json(@asset)
         end
-        failure.json { render :json => { :status => 'error' } }
+        failure.json do
+          render :json => { :status => 'error' }
+        end
       end
+    rescue Exception => e
+      render :json => { :status => 'error', :message => e.message }
     end
 
     protected

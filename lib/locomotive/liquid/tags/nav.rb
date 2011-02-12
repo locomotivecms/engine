@@ -4,11 +4,13 @@ module Locomotive
       # Display the children pages of the site, current page or the parent page. If not precised, nav is applied on the current page.
       # The html output is based on the ul/li tags.
       #
+      # Passing through depth will control how many nested children are output
+      #
       # Usage:
       #
       # {% nav site %} => <ul class="nav"><li class="on"><a href="/features">Features</a></li></ul>
       #
-      # {% nav site, no_wrapper: true, exclude: 'contact|about', id: 'main-nav' }
+      # {% nav site, no_wrapper: true, depth: 1, exclude: 'contact|about', id: 'main-nav' }
       #
       class Nav < ::Liquid::Tag
 
@@ -17,7 +19,7 @@ module Locomotive
         def initialize(tag_name, markup, tokens, context)
           if markup =~ Syntax
             @source = ($1 || 'page').gsub(/"|'/, '')
-            @options = { :id => 'nav' }
+            @options = { :id => 'nav', :depth => 1 }
             markup.scan(::Liquid::TagAttributes) { |key, value| @options[key.to_sym] = value.gsub(/"|'/, '') }
 
             @options[:exclude] = Regexp.new(@options[:exclude]) if @options[:exclude]
@@ -38,7 +40,7 @@ module Locomotive
             css << 'first' if index == 0
             css << 'last' if index == entries.size - 1
 
-            children_output << render_entry_link(p, css.join(' '))
+            children_output << render_entry_link(p,css.join(' '), 1)
           end
 
           output = children_output.join("\n")
@@ -52,6 +54,7 @@ module Locomotive
 
         private
 
+        # Determines root node for the list
         def fetch_entries(context)
           @current_page = context.registers[:page]
 
@@ -66,27 +69,50 @@ module Locomotive
           children.delete_if { |p| !include_page?(p) }
         end
 
+        # Returns a list element, a link to the page and its children
+        def render_entry_link(page,css,depth)
+          selected = @current_page.fullpath =~ /^#{page.fullpath}/ ? ' on' : ''
+
+          icon = @options[:icon] ? '<span></span>' : ''
+          label = %{#{icon if @options[:icon] != 'after' }#{page.title}#{icon if @options[:icon] == 'after' }}
+
+          output  = %{<li id="#{page.slug.dasherize}" class="link#{selected} #{css}">}
+          output << %{<a href="/#{page.fullpath}">#{label}</a>}
+          output << render_entry_children(page,depth.succ) if (depth.succ <= @options[:depth].to_i)
+          output << %{</li>}
+
+          output.strip
+        end
+
+        # Recursively creates a nested unordered list for the depth specified
+        def render_entry_children(page,depth)
+          output = %{}
+
+          children = page.children_with_minimal_attributes.reject { |c| !include_page?(c) }
+          if children.present?
+            output = %{<ul id="#{@options[:id]}-#{page.slug.dasherize}">}
+            children.each do |c, page|
+              css = []
+              css << 'first' if children.first == c
+              css << 'last'  if children.last  == c
+
+              output << render_entry_link(c,css.join(' '),depth)
+            end
+            output << %{</ul>}
+          end
+
+          output
+        end
+
+        # Determines whether or not a page should be a part of the menu
         def include_page?(page)
-          if page.templatized? || !page.published?
+          if !page.listed? || page.templatized? || !page.published?
             false
           elsif @options[:exclude]
             (page.fullpath =~ @options[:exclude]).nil?
           else
             true
           end
-        end
-
-        def render_entry_link(page, css)
-          selected = @current_page.fullpath =~ /^#{page.fullpath}/ ? ' on' : ''
-
-          icon = @options[:icon] ? '<span></span>' : ''
-          label = %{#{icon if @options[:icon] != 'after' }#{page.title}#{icon if @options[:icon] == 'after' }}
-
-          %{
-            <li id="#{page.slug.dasherize}" class="link#{selected} #{css}">
-              <a href="/#{page.fullpath}">#{label}</a>
-            </li>
-          }.strip
         end
 
         ::Liquid::Template.register_tag('nav', Nav)

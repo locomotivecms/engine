@@ -31,18 +31,20 @@ $(document).ready(function() {
       }, 'json');
     }
   });
-
+  
   // templatized feature
 
   $.subscribe('toggle.page_templatized.checked', function(event, data) {
     $('#page_slug_input').hide();
     $('#page_redirect').parent('li').hide();
+    $('#page_listed').parent('li').hide();
     $('#page_content_type_id_input').show();
   }, []);
 
   $.subscribe('toggle.page_templatized.unchecked', function(event, data) {
     $('#page_slug_input').show();
     $('#page_redirect').parent('li').show();
+    $('#page_listed').parent('li').show();
     $('#page_slug').val(makeSlug($('#page_title').val())).addClass('touched');
     $('#page_content_type_id_input').hide();
   }, []);

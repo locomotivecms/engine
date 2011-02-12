@@ -56,7 +56,8 @@ var TinyMceDefaultSettings = {
   theme_advanced_toolbar_align : "left",
   height: '300',
   width: '710',
-  inlinepopups_skin: 'locomotive'
+  inlinepopups_skin: 'locomotive',
+  convert_urls: false
 };
 
 /* ___ global ___ */

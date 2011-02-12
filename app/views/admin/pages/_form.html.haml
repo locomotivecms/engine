@@ -9,16 +9,19 @@
   - if not @page.index? and not @page.not_found?
     = f.input :parent_id, :as => :select, :collection => parent_pages_options, :include_blank => false
 
-  = f.input :slug, :required => false, :hint => @page.slug.blank? ? '&nbsp;' : @page.url, :input_html => { :data_url => get_path_admin_pages_url, :disabled => @page.index? || @page.not_found? }, :wrapper_html => { :style => "#{'display: none' if @page.templatized?}" }
-
+  = f.input :slug, :required => false, :hint => @page.slug.blank? ? '&nbsp;' : @page.url, :input_html => { :data_url => get_path_admin_pages_url, :disabled => @page.index? || @page.not_found? }, :wrapper_html => { :style => "#{'display: none' if @page.templatized?}; height: 50px" }
+  
+  = f.input :content_type_id, :as => :select, :collection => current_site.content_types.all.to_a, :include_blank => false, :wrapper_html => { :style => "#{'display: none' unless @page.templatized?}; height: 50px" }
+  
   = f.custom_input :templatized, :css => 'toggle', :style => "#{'display: none' if @page.redirect?}" do
     = f.check_box :templatized
-
-  = f.input :content_type_id, :as => :select, :collection => current_site.content_types.all.to_a, :include_blank => false, :wrapper_html => { :style => "#{'display: none' unless @page.templatized?}" }
 
   = f.custom_input :published, :css => 'toggle' do
     = f.check_box :published
 
+  = f.custom_input :listed, :css => 'toggle' do
+    = f.check_box :listed
+      
   = f.custom_input :redirect, :css => 'toggle', :style => "#{'display: none' if @page.templatized?}" do
     = f.check_box :redirect
 

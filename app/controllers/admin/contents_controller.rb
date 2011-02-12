@@ -12,9 +12,9 @@ module Admin
     end
 
     def create
-      create! do |success, failure|
-        success.html { redirect_to edit_admin_content_url(@content_type.slug, @content) }
-      end
+      @content = @content_type.contents.create(params[:content])
+      
+      respond_with(@content, :location => edit_admin_content_url(@content_type.slug, @content))
     end
 
     def update

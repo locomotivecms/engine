@@ -46,6 +46,8 @@ fr:
         published: "Seuls les administrateurs authentifiés peuvent voir une page non publiée."
         cache_strategy: "Cache la page pour de meilleure performance. L'option 'Simple' est le meilleur compromis."
         templatized: "Utilise la page comme un template pour un modèle défini."
+        listed: "Controle si la page doit être visible depuis les menus automatiquement générés."
+        content_type_id: "Le type du contenu pour lequel cette page est un template."
       snippet:
         slug: "Utilisé pour insérer le snippet dans une page."
       site:

@@ -52,6 +52,13 @@ module ActionDispatch
           Marshal.load(packed.unpack("m*").first)
         end
 
+        def destroy(env)
+          session = @@session_class.first(:conditions => { :_id => env[SESSION_RECORD_KEY].id })
+          session.destroy
+
+          env[SESSION_RECORD_KEY] = nil
+        end
+
     end
   end
 end
