@@ -159,6 +159,7 @@ en:
         new_site: new site
         en: English
         fr: French
+        pt-BR: "Brazilian Portuguese"
         ask_for_name: "Please type your new name"
 
     theme_assets:

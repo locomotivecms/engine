@@ -3,3 +3,5 @@ floatingmenu.tab.insert=Insertion
 yes=Oui
 no=Non
 cancel=Annuler
+repository.no_item_found=Aucun élément trouvé.
+repository.loading=Chargement

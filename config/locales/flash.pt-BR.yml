@@ -1,0 +1,116 @@
+pt-BR:
+  flash:
+    admin:
+      pages:
+        create:
+          notice: "Página criada com sucesso."
+          alert: "Página não foi criada."
+        update:
+          notice: "Página atualizada com sucesso."
+          alert: "Página não foi atualizada."
+        sort:
+          notice: "Páginas foram ordenadas com sucesso."
+        destroy:
+          notice: "Páginas foram apagadas com sucesso."
+
+      contents:
+        create:
+          notice: "Conteúdo criado com sucesso."
+          alert: "Conteúdo não foi criado."
+        update:
+          notice: "Conteúdo foi atualizado com sucesso."
+          alert: "Conteúdo não foi atualizado."
+        sort:
+          notice: "Conteúdos foram ordenados com sucesso."
+        destroy:
+          notice: "Conteúdos foram apagados com sucesso."
+
+      content_types:
+        create:
+          notice: "Modelo foi criado com sucesso."
+          alert: "Modelo não foi criado."
+        update:
+          notice: "Modelo foi atualizado com sucesso."
+          alert: "Modelo não foi atualizado."
+        destroy:
+          notice: "Modelo foi apagado com sucesso."
+
+      current_sites:
+        update:
+          notice: "Meu site foi atualizado com sucesso."
+          alert: "Meu site não foi atualizado."
+
+      snippets:
+        create:
+          notice: "Fragmento foi criado com sucesso."
+          alert: "Fragmento não foi criado."
+        update:
+          notice: "Fragmento foi atualizado com sucesso." 
+          alert: "Fragmento não foi atualizado."
+        destroy:
+          notice: "Fragmento foi apagado com sucesso."
+
+      accounts:
+        create:
+          notice: "Conta foi criada com sucesso."
+          alert: "Conta não foi criada."
+
+      my_accounts:
+        update:
+          notice: "Minha conta foi atualizada com sucesso." 
+          alert: "Minha conta não foi atualizada."
+
+      sites:
+        create:
+          notice: "Site foi criado com sucesso."
+          alert: "Site não foi criado com sucesso."
+        destroy:
+          notice: "Site foi apagado com sucesso."
+
+      memberships:
+        create:
+          notice: "Adesão foi criada com sucesso."
+          alert: "Adesão não foi criada."
+          already_created: "Conta já foi adicionada ao site atual."
+
+      asset_collections:
+        create:
+          notice: "Coleção criada com sucesso."
+          alert: "Coleção não foi criada."
+        update:
+          notice: "Coleção foi atualizada com sucesso."
+          alert: "Coleção não foi atualizada."
+        destroy:
+          notice: "Coleção foi apagada com sucesso."
+
+      assets:
+        create:
+          notice: "Asset foi criada com sucesso."
+          alert: "Asset não foi criada."
+        update:
+          notice: "Asset foi atualizada com sucesso."
+          alert: "Asset não foi atualizada."
+
+      theme_assets:
+        create:
+          notice: "Arquivo foi criado com sucesso."
+          alert: "Arquivo não foi criado." 
+        update:
+          notice: "Arquivo foi atualizado com sucesso."
+          alert: "Arquivo não foi atualizado."
+        destroy:
+          notice: "Arquivo foi apagado com sucesso."
+
+      custom_fields:
+        update:
+          alert: "Campo não foi atualizado."
+
+      cross_domain_sessions:
+        create:
+          alert: "Você precisa fazer o login"
+
+      imports:
+        create:
+          done: "Seu site foi atualizado com sucesso."
+          notice: "Seu site está sento atualizado."
+          alert: "A importação não foi feita."

@@ -1,0 +1,61 @@
+pt-BR:
+  errors:
+    messages:
+      not_found: "não encontrado"
+      already_confirmed: "já foi confirmado"
+      not_locked: "não está bloqueado"
+
+  devise:
+    failure:
+      admin:
+        unauthenticated: 'Você precisa se cadasstrar ou fazer o login antes de continuar.'
+        unconfirmed: 'Você deve confirmar sua conta antes de continuar.'
+        locked: 'Sua conta está bloquada.'
+        invalid: 'Email ou senha inválidos.'
+        invalid_token: 'Autenticação inválida.'
+        timeout: 'Sua sessão expirou. Por favor, faça o login novamente para continuar.'
+        inactive: 'Sua conta não foi ativada ainda.'
+    sessions:
+      admin:
+        signed_in: 'Login feito com sucesso.'
+        signed_out: 'Logout feito com sucesso.'
+    passwords:
+      admin:
+        send_instructions: 'Você receberá um email com as instruções sobre como alterar sua senha em poucos minutos.'
+        updated: 'Sua senha foi alterada com sucesso. Você está logado.'
+    confirmations:
+      admin:
+        send_instructions: 'Você receberá um email com as instruções sobre como confirmar sua conta em poucos minutos.'
+        confirmed: 'Sua conta foi confirmada com sucesso. Você está logado.'
+    registrations:
+      admin:
+        signed_up: 'Você logou com sucesso.'
+        updated: 'Atualização da conta feita com sucesso.'
+        destroyed: 'Sua conta foi cancelada com sucesso. Logo logo esperamos te ver por aqui. Tchau!'
+    unlocks:
+      admin:
+        send_instructions: 'Você receberá um email com as intruções de como desbloquear sua conta em poucos minutos.'
+        unlocked: 'Sua conta foi desbloqueada com sucesso. Você está logado.'
+    mailer:
+      admin:
+        confirmation_instructions: 'Instruções de confirmação'
+        reset_password_instructions: 'Instruções para resetar a senha.'
+        unlock_instructions: 'Instruções de desbloqueio'
+        
+        
+  admin:
+    mailer:
+      common:
+        hello: Olá
+      confirmation_instructions:
+        you_can_confirm_your_account_through_the_link_below: "Você pode confirmar sua conta através do link abaixo."
+        confirm_my_account: "Confirmar minha conta"
+      reset_password_instructions:
+        reset_password_instruction: "Alguém solicitou um link para alterar sua senha e você poderá fazer isto através do link abaixo:"
+        change_my_password: "Alterar minha senha"
+        wrong_request_instruction: "Se você não solicitou isto, por favor ignore este email."
+        unchange_password_message: "Sua senha não irá ser alterada até que você acesse o link acima e crie uma nova senha."
+      unlock_instructions:
+        locked_account_message: "Sua conta foi bloqueada devido a excessiva tentativa de logins sem sucesso."
+        unlock_account_instruction: "Clique no link abaixo para desbloquear sua conta:"
+        unlock_my_account: "Desbloquear minha conta"

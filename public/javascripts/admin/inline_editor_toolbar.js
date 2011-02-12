@@ -165,6 +165,14 @@ var InlineEditorToolbar = {
       'cancel': 'annuler',
       'back': 'fin mode edition',
       'saving': 'sauvegarde en cours'
+    },
+		'pt-BR': {
+      'home': 'admin',
+      'edit': 'editar',
+      'save': 'salvar',
+      'cancel': 'cancelar',
+      'back': 'terminar edição',
+      'saving': 'salvando'
     }
   }
 };

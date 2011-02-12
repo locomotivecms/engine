@@ -1,0 +1,66 @@
+pt-BR:
+  formtastic:
+    titles:
+      information: Informação geral
+      meta: SEO Metadata
+      code: Código
+      raw_template: Template
+      credentials: Credenciais
+      language: Língua
+      sites: Sites
+      access_points: Pontos de acesso
+      memberships: Contas
+      membership_email: Conta de email
+      file: Arquivo
+      preview: Pré-visualizar
+      options: Opções avançadas
+      custom_fields: Compos customizáveis
+      other_fields: Outras informações
+      presentation: Apresentação
+      attributes: Atributos
+      upload: Upload
+    labels:
+      theme_asset:
+        plain_text_name: Nome do arquivo
+        content_type: Tipo do arquivo
+        new:
+          source: Arquivo
+        edit:
+          source: Substituir arquivo
+      custom_fields:
+        field:
+          _alias: Apelido
+      import:
+        new:
+          source: Arquivo
+          samples: Amostras de cópia
+          reset: Reiniciar site
+      content_type:
+        api_accounts: Contas notificadas
+
+    hints:
+      page:
+        published: "Apenas contas autenticadas podem ver páginas não publicadas."
+        cache_strategy: 'Faça o Cache da página para obter melhor desempenho. A escolha do "Simples" é um bom compromisso'
+        templatized: "Utilize a página como template para o modelo definido."
+      snippet:
+        slug: "Você precisa saber a ordem para inserir fragmentos dentro da página."
+      site:
+        meta_keywords: "Palavras chave usadas dentro da tag 'head' da página. Elas são separadas por um espaço em branco. Requerido para SEO."
+        meta_description: "Descrição chave usada dentro da tag 'head' da página. Requerido para SEO."
+        domain_name: "ex: locomotiveapp.org"
+      theme_asset:
+        slug: "Você não precisa adicionar as extensões do arquivo (.css or .js)"
+        edit:
+          source: "Você pode substituir por um arquivo com a mesma extensão."
+      custom_fields:
+        field:
+          _alias: "Propriedades disponíveis em templates líquidos."
+          hint: "Texto mostrado no formulário de modelo está abaixo do campo."
+      import:
+        source: "Um arquivo .zip contendo um database.yml com assets and templates"
+        samples: "Se habilitado, a importação também irá copiar conteúdos e assets."
+        reset: "Se habilitado, todos os dados do site serão apagados antes da importação do novo site."
+      content_type:
+        api_enabled: "Ele é utilizado para permitir que pessoas de fora criem novas instâncias (exemplo: mensagens no formulário de contato)"
+        api_accounts: "Um email de notificação será enviado para conta listada acima quando uma nova instância for criada."

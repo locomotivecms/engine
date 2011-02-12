@@ -25,6 +25,9 @@ if (typeof GENTICS != 'undefined') {
           '.editable-short-text' : [ ]
         }
       }
+    },
+    i18n: {
+      available: ['en', 'fr', 'pt-BR']
     }
   };
 
@@ -36,7 +39,7 @@ jQuery(document).ready(function($) {
   InlineEditorToolbar.initialize();
 
   if (InlineEditorToolbar.editingMode) {
-    GENTICS.Aloha.settings['i18n'] = { 'current': InlineEditorToolbar.locale };
+    GENTICS.Aloha.settings.i18n['current'] = InlineEditorToolbar.locale;
 
     // add 'edit' at the end of each url of the page
     $('a').each(function() {
