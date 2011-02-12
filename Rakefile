@@ -16,3 +16,5 @@ desc "build the gem and release it to rubygems.org"
 task :release => :gem do
   sh "gem push pkg/locomotive_cms-#{gemspec.version}.gem"
 end
+
+task :default => [:spec, :cucumber]

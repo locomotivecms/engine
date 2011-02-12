@@ -5,12 +5,6 @@ GIT
     mocha (0.9.11.20110203233621)
       rake
 
-PATH
-  remote: /Users/didier/Desktop/carrierwave
-  specs:
-    carrierwave (0.5.1)
-      activesupport (~> 3.0)
-
 GEM
   remote: http://rubygems.org/
   specs:
@@ -62,7 +56,7 @@ GEM
       selenium-webdriver (>= 0.0.27)
       xpath (~> 0.1.3)
     celerity (0.8.7)
-    childprocess (0.1.6)
+    childprocess (0.1.7)
       ffi (~> 0.6.3)
     closure-compiler (1.0.0)
     columnize (0.3.2)
@@ -143,7 +137,7 @@ GEM
     linecache (0.43)
     linecache19 (0.5.11)
       ruby_core_source (>= 0.1.4)
-    locomotive_carrierwave (0.5.0.1)
+    locomotive_carrierwave (0.5.0.1.beta2)
       activesupport (~> 3.0)
     locomotive_jammit-s3 (0.5.4.4)
       jammit (>= 0.5.4)
@@ -264,7 +258,6 @@ DEPENDENCIES
   autotest
   bson_ext (~> 1.2.1)
   capybara
-  carrierwave!
   cucumber (= 0.8.5)
   cucumber-rails
   custom_fields (= 1.0.0.beta.4)
@@ -281,6 +274,7 @@ DEPENDENCIES
   httparty (>= 0.6.1)
   inherited_resources (~> 1.1.2)
   launchy
+  locomotive_carrierwave (= 0.5.0.1.beta2)
   locomotive_jammit-s3
   locomotive_liquid (= 2.2.2)
   locomotive_mongoid_acts_as_tree (= 0.1.5.5)
