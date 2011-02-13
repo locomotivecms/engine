@@ -1,9 +1,8 @@
 GIT
   remote: git://github.com/floehopper/mocha.git
-  revision: 4fb88aea21f12c4fb7a8b14e8b58c5d9bb6829a8
+  revision: 6f18b724c50a89a1fad954dc32a8a590dbb877ca
   specs:
-    mocha (0.9.11.20110203233621)
-      rake
+    mocha (0.9.12.20110213002255)
 
 GEM
   remote: http://rubygems.org/
