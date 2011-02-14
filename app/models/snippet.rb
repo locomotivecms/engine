@@ -15,8 +15,6 @@ class Snippet
   after_save :update_templates
   after_destroy :update_templates
 
-  # TODO: after_save callback to let pages embedding this snippet know about the changes the user has just made.
-
   ## validations ##
   validates_presence_of   :site, :name, :slug, :template
   validates_uniqueness_of :slug, :scope => :site_id
