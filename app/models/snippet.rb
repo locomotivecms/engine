@@ -41,7 +41,7 @@ class Snippet
 
       page.instance_variable_set(:@template_changed, true)
 
-      page.send(:_serialize_template) && page.save
+      page.send(:_parse_and_serialize_template) && page.save
     end
   end
 
