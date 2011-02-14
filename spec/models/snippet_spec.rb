@@ -16,4 +16,20 @@ describe Snippet do
     end
   end
 
+  describe '#update_templates' do
+  
+    before :each do
+      @site    = Factory(:site, :subdomain => 'omg')
+      @snippet = Factory(:snippet, :site => @site, :slug => 'my_test_snippet', :template => 'a testing template')
+      @page    = Factory(:page, :site => @site, :slug => 'my_page_here', :raw_template => "{% include 'my_test_snippet'  %}")
+    end
+
+    it 'should update any templates with the new snippet template' do
+      @snippet.update_attributes(:template => 'a new template')
+      @page = Page.last # Reload the page
+      @page.render({}).should == 'a new template'
+    end
+
+  end
+
 end
