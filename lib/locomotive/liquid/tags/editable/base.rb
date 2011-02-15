@@ -28,7 +28,8 @@ module Locomotive
                 :hint => @options[:hint],
                 :default_content => @nodelist.first.to_s,
                 :disabled => false,
-                :from_parent => false
+                :from_parent => false,
+                :inheritable => @options[:inheritable].presence || true
               }, document_type)
             end
           end

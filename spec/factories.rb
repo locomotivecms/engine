@@ -90,3 +90,8 @@ Factory.define :content_type do |t|
   t.site { Site.where(:subdomain => "acme").first || Factory(:site) }
 end
 
+## Editable Elements ##
+Factory.define :editable_element do |ee|
+  ee.slug 'input'
+  ee.page { Factory(:page) }
+end
