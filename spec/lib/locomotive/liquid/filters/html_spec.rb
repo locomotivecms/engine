@@ -44,6 +44,14 @@ describe Locomotive::Liquid::Filters::Html do
     javascript_tag('/trash/main.js').should == result
     javascript_tag('/trash/main').should == result
   end
+  
+  it 'should return an image tag for a given theme file without parameters' do
+    theme_image_tag('foo.jpg').should == "<img src=\"/sites/000000000000000000000042/theme/images/foo.jpg\" />"
+  end
+  
+  it 'should return an image tag for a given theme file with size' do
+    theme_image_tag('foo.jpg', 'width:100', 'height:100').should == "<img src=\"/sites/000000000000000000000042/theme/images/foo.jpg\" height=\"100\" width=\"100\" />"
+  end
 
   it 'should return an image tag without parameters' do
     image_tag('foo.jpg').should == "<img src=\"foo.jpg\" />"
