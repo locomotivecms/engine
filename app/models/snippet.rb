@@ -15,8 +15,6 @@ class Snippet
   after_save :update_templates
   after_destroy :update_templates
 
-  # TODO: after_save callback to let pages embedding this snippet know about the changes the user has just made.
-
   ## validations ##
   validates_presence_of   :site, :name, :slug, :template
   validates_uniqueness_of :slug, :scope => :site_id
@@ -50,15 +48,14 @@ class Snippet
     when Locomotive::Liquid::Tags::Snippet
       node.refresh(self) if node.slug == self.slug
     when Locomotive::Liquid::Tags::InheritedBlock
-      self._change_snippet_inside_template(node.parent) if node.parent
-    else
-      if node.respond_to?(:nodelist)
-        (node.nodelist || []).each do |child|
-          self._change_snippet_inside_template(child)
-        end
+      _change_snippet_inside_template(node.parent) if node.parent
+    end
+    # Walk the children of this entry if they're available.
+    if node.respond_to?(:nodelist)
+      (node.nodelist || []).each do |child|
+        self._change_snippet_inside_template(child)
       end
     end
   end
-
 
 end
