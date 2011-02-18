@@ -39,7 +39,7 @@ class ThemeAsset
 
   ## methods ##
 
-  %w{movie image stylesheet javascript font}.each do |type|
+  %w{media image stylesheet javascript font}.each do |type|
     define_method("#{type}?") do
       self.content_type.to_s == type
     end
@@ -116,7 +116,7 @@ class ThemeAsset
     self.folder = ActiveSupport::Inflector.transliterate(self.folder).gsub(/(\s)+/, '_').gsub(/^\//, '').gsub(/\/$/, '').downcase
 
     # folder should begin by a root folder
-    if (self.folder =~ /^(stylesheets|javascripts|images|media|fonts)/).nil?
+    if (self.folder =~ /^(stylesheets|javascripts|images|medias|fonts)/).nil?
       self.folder = File.join(self.content_type.to_s.pluralize, self.folder)
     end
   end
@@ -132,7 +132,7 @@ class ThemeAsset
   def escape_shortcut_urls(text)
     return if text.blank?
 
-    text.gsub(/[("'](\/(stylesheets|javascripts|images|media)\/((.+)\/)*([a-z_\-0-9]+)\.[a-z]{2,3})[)"']/) do |path|
+    text.gsub(/[("'](\/(stylesheets|javascripts|images|medias)\/((.+)\/)*([a-z_\-0-9]+)\.[a-z]{2,3})[)"']/) do |path|
 
       sanitized_path = path.gsub(/[("')]/, '').gsub(/^\//, '')
 

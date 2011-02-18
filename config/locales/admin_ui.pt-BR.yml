@@ -172,7 +172,7 @@ pt-BR:
         css_and_js: CSS e Javascript
         fonts: Fontes
         images: Imagens
-        media: Mídia
+        medias: Mídia
         no_items: "Ainda não existem arquivos. Clique <a href=\"%{url}\">aqui</a> para criar o primeiro."
       asset:
         updated_at: Atualizado em

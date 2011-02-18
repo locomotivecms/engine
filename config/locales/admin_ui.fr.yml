@@ -171,7 +171,7 @@ fr:
         snippets: Snippets
         css_and_js: Style et javascript
         images: Images
-        media: Media
+        medias: Médias
         fonts: Polices
         no_items: "Il n'existe pas de fichiers. Vous pouvez commencer par créer un <a href='%{url}'>ici</a>."
       asset:

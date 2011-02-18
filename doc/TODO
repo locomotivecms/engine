@@ -1,13 +1,15 @@
 BOARD:
 
-x moving to mongoid 2.0.0 rc.6
-  x accepts_nested_attributes (javascript part)
-  x check the theme uploader
-  x release new version of CustomFields, ActsAsTree gems
+- duostack version
+- bugs
+  - editable_elements slug becomes nil
+- pull requests #31 et #32
+- editable_elements: inheritable: false (Mattias)
+- 2 different sites on the same main domain (one in www, the other one in something else) (Raphael Costa)
 
 BACKLOG:
 
-- add metadata to sites
+
 - validation for custom fields
 - new custom field types:
   - belongs_to => association
@@ -191,3 +193,8 @@ x notify accounts when new instance of models (opt): none, one or many accounts.
   x emails
   x tests
 x fix bug issue about (custom fields)
+x moving to mongoid 2.0.0 rc.6
+  x accepts_nested_attributes (javascript part)
+  x check the theme uploader
+  x release new version of CustomFields, ActsAsTree gems
+x add metadata to sites

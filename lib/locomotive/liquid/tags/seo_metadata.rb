@@ -10,7 +10,7 @@ module Locomotive
           }
         end
 
-        # Removees whitespace and quote charactets from the input
+        # Removes whitespace and quote charactets from the input
         def sanitized_string(string)
           string.strip.gsub(/"/, '')
         end

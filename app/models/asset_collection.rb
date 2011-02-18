@@ -54,7 +54,7 @@ class AssetCollection
   end
 
   def store_asset_positions!
-    return if @assets_order.blank?
+    return if @assets_order.nil?
 
     ids = @assets_order.split(',').collect { |id| BSON::ObjectId(id) }
 
