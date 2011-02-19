@@ -16,4 +16,39 @@ describe Snippet do
     end
   end
 
+  describe '#update_templates' do
+  
+    before :each do
+      @site    = Factory(:site, :subdomain => 'omg')
+      @snippet = Factory(:snippet, :site => @site, :slug => 'my_test_snippet', :template => 'a testing template')
+    end
+
+    context 'with a normal top level snippet' do
+
+      before :each do
+        @page = Factory(:page, :site => @site, :slug => 'my_page_here', :raw_template => "{% include 'my_test_snippet'  %}")
+      end
+
+      it 'updates templates with the new snippet template' do
+        @snippet.update_attributes(:template => 'a new template')
+        Page.find(@page.id).render({}).should == 'a new template'
+      end
+
+    end
+
+    context 'for snippets inside of a block' do
+
+      before :each do
+        @page = Factory(:page, :site => @site, :slug => 'my_page_here', :raw_template => "{% block main %}{% include 'my_test_snippet'  %}{% endblock %}")
+      end
+
+      it 'updates templates with the new snippet template' do
+        @snippet.update_attributes(:template => 'a new template')
+        Page.find(@page.id).render({}).should == 'a new template'
+      end
+
+    end
+
+  end
+
 end
