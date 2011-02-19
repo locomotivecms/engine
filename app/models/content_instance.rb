@@ -13,6 +13,7 @@ class ContentInstance
 
   ## validations ##
   validate :require_highlighted_field
+  validate :require_required_fields
 
   ## associations ##
   embedded_in :content_type, :inverse_of => :contents
@@ -88,6 +89,15 @@ class ContentInstance
       self.errors.add(_alias, :blank)
     end
   end
+  
+  def require_required_fields
+    self.custom_fields.each do |field|
+      next if field.required == false or field._alias.to_s == self.highlighted_field_alias.to_s
+      
+      self.errors.add(field._alias, :blank) if self.send(field._alias).blank?
+      
+    end
+  end 
 
   def highlighted_field_alias
     self.content_type.highlighted_field._alias.to_sym

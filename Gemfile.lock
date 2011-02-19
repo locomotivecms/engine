@@ -4,9 +4,8 @@ GIT
   specs:
     mocha (0.9.12.20110213002255)
 
-GIT
-  remote: git://github.com/pollingj/custom_fields.git
-  revision: f6ebae8bf5ed3aa3cfde99f4dafcc8ca0600cd1a
+PATH
+  remote: ~/dev/custom_fields
   specs:
     custom_fields (1.0.0.beta.4)
       activesupport (>= 3.0.0)

@@ -5,8 +5,9 @@ describe ContentInstance do
   before(:each) do
     Site.any_instance.stubs(:create_default_pages!).returns(true)
     @content_type = Factory.build(:content_type)
-    @content_type.content_custom_fields.build :label => 'Title', :kind => 'String'
+    @content_type.content_custom_fields.build :label => 'Title', :kind => 'String', :required => true
     @content_type.content_custom_fields.build :label => 'Description', :kind => 'Text'
+    @content_type.content_custom_fields.build :label => 'Date', :kind => 'Date', :required => true
     @content_type.content_custom_fields.build :label => 'Visible ?', :kind => 'Text', :_alias => 'visible'
     @content_type.highlighted_field_name = 'custom_field_1'
   end
@@ -23,6 +24,12 @@ describe ContentInstance do
       content = build_content :title => nil
       content.should_not be_valid
       content.errors[:title].should == ["can't be blank"]
+    end
+
+    it 'requires presence of date' do
+      content = build_content :date => nil
+      content.should_not be_valid
+      content.errors[:date].should == ["can't be blank"]
     end
 
   end
@@ -95,7 +102,7 @@ describe ContentInstance do
   end
 
   def build_content(options = {})
-    @content_type.contents.build({ :title => 'Locomotive', :description => 'Lorem ipsum....' }.merge(options))
+    @content_type.contents.build({ :title => 'Locomotive', :description => 'Lorem ipsum....', :date => DateTime.now }.merge(options))
   end
 
   def fake_bson_id(id)
