@@ -4,11 +4,20 @@ GIT
   specs:
     mocha (0.9.12.20110213002255)
 
+GIT
+  remote: git://github.com/pollingj/custom_fields.git
+  revision: a590dc37aebfad75d87566996ef462718d6833a0
+  specs:
+    custom_fields (1.0.0.beta.4)
+      activesupport (>= 3.0.0)
+      locomotive_carrierwave
+      mongoid (~> 2.0.0.rc.6)
+
 GEM
   remote: http://rubygems.org/
   specs:
     RedCloth (4.2.7)
-    ZenTest (4.4.2)
+    ZenTest (4.5.0)
     abstract (1.0.0)
     actionmailer (3.0.4)
       actionpack (= 3.0.4)
@@ -70,10 +79,6 @@ GEM
     cucumber-rails (0.3.2)
       cucumber (>= 0.8.0)
     culerity (0.2.15)
-    custom_fields (1.0.0.beta.4)
-      activesupport (>= 3.0.0)
-      locomotive_carrierwave
-      mongoid (~> 2.0.0.rc.6)
     daemons (1.1.0)
     database_cleaner (0.6.3)
     delayed_job (2.1.2)
@@ -88,7 +93,7 @@ GEM
     diff-lcs (1.1.2)
     erubis (2.6.6)
       abstract (>= 1.0.0)
-    excon (0.5.4)
+    excon (0.5.5)
     factory_girl (1.3.3)
     factory_girl_rails (1.0.1)
       factory_girl (~> 1.3)
@@ -259,7 +264,7 @@ DEPENDENCIES
   capybara
   cucumber (= 0.8.5)
   cucumber-rails
-  custom_fields (= 1.0.0.beta.4)
+  custom_fields!
   database_cleaner
   delayed_job (= 2.1.2)
   delayed_job_mongoid (= 1.0.2)
