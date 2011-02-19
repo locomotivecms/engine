@@ -6,7 +6,7 @@ GIT
 
 GIT
   remote: git://github.com/pollingj/custom_fields.git
-  revision: a590dc37aebfad75d87566996ef462718d6833a0
+  revision: f6ebae8bf5ed3aa3cfde99f4dafcc8ca0600cd1a
   specs:
     custom_fields (1.0.0.beta.4)
       activesupport (>= 3.0.0)
