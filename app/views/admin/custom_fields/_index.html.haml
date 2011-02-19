@@ -29,6 +29,8 @@
 
         = g.check_box :required, :class => 'required'
 
+        = g.label :required
+
         %span.actions
           = link_to image_tag('admin/form/pen.png'), '#edit-custom-field', :class => 'edit first'
           = link_to image_tag('admin/form/icons/trash.png'), '#', :class => 'remove', :confirm => t('admin.messages.confirm')
@@ -57,6 +59,8 @@
       &nbsp;
 
       = g.check_box :required, :class => 'required'
+
+      = g.label :required
 
       %span.actions
         = link_to image_tag('admin/form/pen.png'), '#edit-custom-field', :class => 'edit first'

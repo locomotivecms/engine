@@ -13,8 +13,8 @@ module Admin
 
     def create
       @content = @content_type.contents.create(params[:content])
-      
-      respond_with(@content, :location => edit_admin_content_url(@content_type.slug, @content))
+      redirect_url = @content.valid? == true ? edit_admin_content_url(@content_type.slug, @content) : new_admin_content_url
+      respond_with(@content, :location => redirect_url)
     end
 
     def update
