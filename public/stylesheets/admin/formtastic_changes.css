@@ -493,3 +493,13 @@ div.formError {
 
 div.fieldWithErrors { display: inline; }
 
+form.formtastic fieldset.fields input[type=checkbox], form.formtastic fieldset.editable-list ol li.template input[type=checkbox]{
+  margin-left: 20px;
+  width: 20px;
+}
+
+form.formtastic fieldset.fields label {
+  display: inline;
+  float: none;
+  padding: 0;
+}
