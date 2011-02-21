@@ -40,7 +40,7 @@ Factory.define "frenchy user", :parent => :account do |a|
 end
 
 Factory.define "brazillian user", :parent => :account do |a|
-  a.name "José Carlos"
+  a.name "Jose Carlos"
   a.email "jose@carlos.com.br"
   a.locale 'pt-BR'
 end
