@@ -38,11 +38,11 @@ module Locomotive
         end
 
         def validate_site_membership
-          unless current_site.present? && current_site.accounts.include?(current_admin)
-            sign_out(current_admin)
-            flash[:alert] = I18n.t(:no_membership, :scope => [:devise, :failure, :admin])
-            redirect_to new_admin_session_url
-          end
+          return true if current_site.present? && current_site.accounts.include?(current_admin)
+
+          sign_out(current_admin)
+          flash[:alert] = I18n.t(:no_membership, :scope => [:devise, :failure, :admin])
+          redirect_to new_admin_session_url and return false
         end
 
       end
