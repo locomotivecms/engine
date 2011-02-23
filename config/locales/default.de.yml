@@ -1,0 +1,197 @@
+de:
+  errors:
+    # The default format use in full error messages.
+    format: "%{attribute} %{message}"
+
+    # The values :model, :attribute and :value are always available for interpolation
+    # The value :count is available when applicable. Can be used for pluralization.
+    messages:
+      inclusion: "n'est pas inclus(e) dans la liste"
+      exclusion: "n'est pas disponible"
+      invalid: "n'est pas valide"
+      confirmation: "ne concorde pas avec la confirmation"
+      accepted: "doit être accepté(e)"
+      empty: "doit être rempli(e)"
+      blank: "doit être rempli(e)"
+      too_long: "est trop long (pas plus de %{count} caractères)"
+      too_short: "est trop court (au moins %{count} caractères)"
+      wrong_length: "ne fait pas la bonne longueur (doit comporter %{count} caractères)"
+      taken: "n'est pas disponible"
+      not_a_number: "ist keine Zahl"
+      greater_than: "doit être supérieur à %{count}"
+      greater_than_or_equal_to: "doit être supérieur ou égal à %{count}"
+      equal_to: "doit être égal à %{count}"
+      less_than: "doit être inférieur à %{count}"
+      less_than_or_equal_to: "doit être inférieur ou égal à %{count}"
+      odd: "doit être impair"
+      even: "doit être pair"
+
+      domain_taken: "%{value} wird bereits verwendet"
+      invalid_domain: "%{value} ist ungültig"
+      needs_admin_account: "Ein Admin-Account wird mindestens benötigt"
+      protected_page: "Du kannst keine Index oder 404 Seiten löschen"
+      extname_changed: "Die neue Datei hat nicht die originale Dateiendung"
+      array_too_short: "ist zu kurz (minimale Element-Zahl ist %{count})"
+      liquid_syntax: "Liquid Syntax-Fehler, bitte überprüfe die Syntax"
+      liquid_extend: "Die Seite verwendet eine Vorlage, die gar nicht existiert"
+      invalid_theme_file: "darf nicht leer sein oder ist keine zip-Datei"
+
+  attributes:
+    defaults:
+      pages:
+        index:
+          title: "Startseite"
+          body: "Inhalt der Startseite"
+        "404":
+          title: "Seite nicht gefunden"
+          body: "Inhalt der 404 Seite"
+        other:
+          body: "Inhalte kommen hier rein"
+
+  activemodel:
+    attributes:
+      page:
+        title: Titel
+        parent: Parent
+        slug: Slug
+        templatized: Templatisée
+        published: Veröffentlicht
+        cache_strategy: Cache
+      content_type:
+        name: Name
+        description: Beschreibung
+        slug: Slug
+        order_by: Sortieren nach
+        highlighted_field_name: Champ mis en avant
+        group_by_field_name: Champ pour grouper
+        api_enabled: Activation API
+      asset_collection:
+        name: Nom
+        slug: Raccourci
+      asset:
+        name: Nom
+        source: Fichier
+      account:
+        email: Email
+        name: Nom
+        language: Langue
+        new_password: "Neues Passwort"
+        new_password_confirmation: "Confirmation nouveau mot de passe"
+      snippet:
+        body: Code
+        slug: Raccourci
+        name: Nom
+      theme_asset:
+        content_type: Type du fichier
+      site:
+        name: Nom du site
+        domain_name: Domaine
+        subdomain: Sous-domaine
+        restricted_access: Activer ?
+        access_login: Identifiant
+        access_password: "Mot de passe"
+
+  pagination:
+    previous: "&laquo; Précédent"
+    next: "Suivant &raquo;"
+  date:
+    formats:
+      default: "%d/%m/%Y"
+      short: "%e %b"
+      long: "%e %B %Y"
+      long_ordinal: "%e %B %Y"
+      only_day: "%e"
+
+    day_names: [Sonntag, Montag, Dienstag, Mittwoch, Donnerstag, Freitag, Samstag]
+    abbr_day_names: [Son, Mon, Die, Mit, Don, Fre, Sam]
+    month_names: [~, Januar, Februar, März, April, Mai, Juni, Juli, August, September, Oktober, November, Dezember]
+    abbr_month_names: [~, Jan., Feb., Mär., Apr., Mai, Juni, Juli, Aug., Sept., Okt., Nov., Dez.]
+    order: [ :day, :month, :year ]
+
+  pagination:
+    previous: "&laquo; Zurück"
+    next: "Vor &raquo;"
+
+  time:
+    formats:
+      default: "%d %B %Y %H:%M"
+      time: "%H:%M"
+      short: "%d %b %H:%M"
+      long: "%A %d %B %Y %H:%M:%S %Z"
+      long_ordinal: "%A %d %B %Y %H:%M:%S %Z"
+      only_second: "%S"
+    am: 'am'
+    pm: 'pm'
+
+  datetime:
+    distance_in_words:
+      half_a_minute: "une demi-minute"
+      less_than_x_seconds:
+        zero:  "moins d'une seconde"
+        one:   "moins de 1 seconde"
+        other: "moins de %{count} secondes"
+      x_seconds:
+        one:   "1 seconde"
+        other: "%{count} secondes"
+      less_than_x_minutes:
+        zero:  "moins d'une minute"
+        one:   "moins de 1 minute"
+        other: "moins de %{count} minutes"
+      x_minutes:
+        one:   "1 minute"
+        other: "%{count} minutes"
+      about_x_hours:
+        one:   "environ une heure"
+        other: "environ %{count} heures"
+      x_days:
+        one:   "1 jour"
+        other: "%{count} jours"
+      about_x_months:
+        one:   "environ un mois"
+        other: "environ %{count} mois"
+      x_months:
+        one:   "1 mois"
+        other: "%{count} mois"
+      about_x_years:
+        one:   "environ un an"
+        other: "environ %{count} ans"
+      over_x_years:
+        one:   "plus d'un an"
+        other: "plus de %{count} ans"
+    prompts:
+      year:   "Jahr"
+      month:  "Monat"
+      day:    "Tag"
+      hour:   "Stunde"
+      minute: "Minute"
+      second: "Sekunde"
+
+  number:
+    format:
+      precision: 3
+      separator: ','
+      delimiter: ' '
+    currency:
+      format:
+        unit: '€'
+        precision: 2
+        format: '%n %u'
+    human:
+      format:
+        precision: 2
+      storage_units:
+        format: '%n %u'
+        units:
+          byte: 'Byte'
+          kb: 'KB'
+          mb: 'MB'
+          gb: 'GB'
+          tb: 'TB'
+
+  support:
+    array:
+      sentence_connector: 'und'
+      skip_last_comma: true
+      words_connector: ", "
+      two_words_connector: " und "
+      last_word_connector: " und "

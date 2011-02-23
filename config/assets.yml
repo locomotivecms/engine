@@ -19,6 +19,7 @@ javascripts:
     - public/javascripts/admin/plugins/growl.js
     - public/javascripts/admin/plugins/cookie.js
     - public/javascripts/admin/plugins/selectmenu.js
+    - public/javascripts/admin/locales/datepicker_de.js    
     - public/javascripts/admin/locales/datepicker_fr.js
     - public/javascripts/admin/locales/datepicker_pt-BR.js
     - public/javascripts/admin/application.js

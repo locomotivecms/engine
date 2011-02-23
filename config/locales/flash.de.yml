@@ -1,0 +1,116 @@
+de:
+  flash:
+    admin:
+      pages:
+        create:
+          notice: "Seite wurde erfolgreich erstellt."
+          alert: "Seite wurde nicht erstellt."
+        update:
+          notice: "Seite wurde erfolreich aktualisiert."
+          alert: "Seite wurde nicht aktualisiert."
+        sort:
+          notice: "Seiten wurden erfolgreich sortiert."
+        destroy:
+          notice: "Seite wurde erfolgreich gelöscht."
+
+      contents:
+        create:
+          notice: "Inhalt wurde erfolgreich erstellt."
+          alert: "Inhalt wurde nicht erstellt."
+        update:
+          notice: "Inhalt wurde erfolreich aktualisiert."
+          alert: "Inhalt wurde nicht aktualisiert."
+        sort:
+          notice: "Inhalte wurden erfolgreich sortiert."
+        destroy:
+          notice: "Inhalt wurde erfolgreich gelöscht."
+
+      content_types:
+        create:
+          notice: "Baustein wurde erfolgreich erstellt."
+          alert: "Baustein wurde nicht erstellt."
+        update:
+          notice: "Baustein wurde erfolreich aktualisiert."
+          alert: "Baustein wurde nicht aktualisiert."
+        destroy:
+          notice: "Baustein wurde erfolgreich gelöscht."
+
+      current_sites:
+        update:
+          notice: "Meine Webseite wurde erfolreich aktualisiert."
+          alert: "Meine Webseite wurde nicht aktualisiert."
+
+      snippets:
+        create:
+          notice: "Snippet wurde erfolgreich erstellt."
+          alert: "Snippet wurde nicht erstellt."
+        update:
+          notice: "Snippet wurde erfolreich aktualisiert."
+          alert: "Snippet wurde nicht aktualisiert."
+        destroy:
+          notice: "Snippet wurde erfolgreich gelöscht."
+
+      accounts:
+        create:
+          notice: "Account wurde erfolgreich erstellt."
+          alert: "Account wurde nicht erstellt."
+
+      my_accounts:
+        update:
+          notice: "Mein Account wurde erfolreich aktualisiert."
+          alert: "Mein Account wurde nicht aktualisiert."
+
+      sites:
+        create:
+          notice: "Webseite wurde erfolgreich erstellt."
+          alert: "Webseite wurde nicht erstellt."
+        destroy:
+          notice: "Webseite wurde erfolgreich gelöscht."
+
+      memberships:
+        create:
+          notice: "Account wurde erfolgreich erstellt."
+          alert: "Account wurde nicht erstellt."
+          already_created: "Account wurde bereits zu dieser Webseite hinzugefügt."
+
+      asset_collections:
+        create:
+          notice: "Sammlung wurde erfolgreich erstellt."
+          alert: "Sammlung wurde nicht erstellt."
+        update:
+          notice: "Sammlung wurde erfolreich aktualisiert."
+          alert: "Sammlung wurde nicht aktualisiert."
+        destroy:
+          notice: "Sammlung wurde erfolgreich gelöscht."
+
+      assets:
+        create:
+          notice: "Asset wurde erfolgreich erstellt."
+          alert: "Asset wurde nicht erstellt."
+        update:
+          notice: "Asset wurde erfolreich aktualisiert."
+          alert: "Asset wurde nicht aktualisiert."
+
+      theme_assets:
+        create:
+          notice: "Datei wurde erfolgreich erstellt."
+          alert: "Datei wurde nicht erstellt."
+        update:
+          notice: "Datei wurde erfolreich aktualisiert."
+          alert: "Datei wurde nicht aktualisiert."
+        destroy:
+          notice: "Datei wurde erfolgreich gelöscht."
+
+      custom_fields:
+        update:
+          alert: "Feld nicht aktualisiert"
+
+      cross_domain_sessions:
+        create:
+          alert: "Du musst dich einloggen"
+
+      imports:
+        create:
+          done: "Deine Webseite wurde erfolreich aktualisiert."
+          notice: "Deine Webseite wird aktualisiert."
+          alert: "Der Import war nicht erfolgreich."
