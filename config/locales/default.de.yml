@@ -6,25 +6,25 @@ de:
     # The values :model, :attribute and :value are always available for interpolation
     # The value :count is available when applicable. Can be used for pluralization.
     messages:
-      inclusion: "n'est pas inclus(e) dans la liste"
-      exclusion: "n'est pas disponible"
-      invalid: "n'est pas valide"
+      inclusion: "nicht in der Liste inbegriffen"
+      exclusion: "nicht verfügbar"
+      invalid: "ungültig"
       confirmation: "ne concorde pas avec la confirmation"
-      accepted: "doit être accepté(e)"
-      empty: "doit être rempli(e)"
-      blank: "doit être rempli(e)"
-      too_long: "est trop long (pas plus de %{count} caractères)"
-      too_short: "est trop court (au moins %{count} caractères)"
-      wrong_length: "ne fait pas la bonne longueur (doit comporter %{count} caractères)"
-      taken: "n'est pas disponible"
+      accepted: "akzeptiert"
+      empty: "leer"
+      blank: "leer"
+      too_long: "zu lang (nicht mehr als %{count} Zeichen)"
+      too_short: "zu kurz (mindestens %{count} Zeichen)"
+      wrong_length: "ungültige Länge (muss %{count} Zeichen lang sein)"
+      taken: "nicht verfügbar"
       not_a_number: "ist keine Zahl"
-      greater_than: "doit être supérieur à %{count}"
-      greater_than_or_equal_to: "doit être supérieur ou égal à %{count}"
-      equal_to: "doit être égal à %{count}"
-      less_than: "doit être inférieur à %{count}"
-      less_than_or_equal_to: "doit être inférieur ou égal à %{count}"
-      odd: "doit être impair"
-      even: "doit être pair"
+      greater_than: "größer als %{count}"
+      greater_than_or_equal_to: "gleich oder größer als %{count}"
+      equal_to: "gleich %{count}"
+      less_than: "weniger als %{count}"
+      less_than_or_equal_to: "gleich oder weniger als %{count}"
+      odd: "ungerade"
+      even: "gerade"
 
       domain_taken: "%{value} wird bereits verwendet"
       invalid_domain: "%{value} ist ungültig"
@@ -54,7 +54,7 @@ de:
         title: Titel
         parent: Parent
         slug: Slug
-        templatized: Templatisée
+        templatized: Templatized
         published: Veröffentlicht
         cache_strategy: Cache
       content_type:
@@ -62,38 +62,38 @@ de:
         description: Beschreibung
         slug: Slug
         order_by: Sortieren nach
-        highlighted_field_name: Champ mis en avant
-        group_by_field_name: Champ pour grouper
-        api_enabled: Activation API
+        highlighted_field_name: Hervorgehobener Feld-Name
+        group_by_field_name: Gruppierung nach Feld-Name
+        api_enabled: API aktiviert
       asset_collection:
-        name: Nom
-        slug: Raccourci
+        name: Name
+        slug: Slug
       asset:
-        name: Nom
-        source: Fichier
+        name: Name
+        source: Quelle
       account:
         email: Email
-        name: Nom
-        language: Langue
+        name: Name
+        language: Sprache
         new_password: "Neues Passwort"
-        new_password_confirmation: "Confirmation nouveau mot de passe"
+        new_password_confirmation: "Bestätigung des neuen Passworts"
       snippet:
         body: Code
-        slug: Raccourci
-        name: Nom
+        slug: Slug
+        name: Name
       theme_asset:
-        content_type: Type du fichier
+        content_type: Inhalts-Typ
       site:
-        name: Nom du site
-        domain_name: Domaine
-        subdomain: Sous-domaine
-        restricted_access: Activer ?
-        access_login: Identifiant
-        access_password: "Mot de passe"
+        name: Name der Webseite
+        domain_name: Domain
+        subdomain: Subdomain
+        restricted_access: Aktiviert ?
+        access_login: Benutzernamen
+        access_password: "Passwort"
 
   pagination:
-    previous: "&laquo; Précédent"
-    next: "Suivant &raquo;"
+    previous: "&laquo; Zurück"
+    next: "Vor &raquo;"
   date:
     formats:
       default: "%d/%m/%Y"
@@ -103,7 +103,7 @@ de:
       only_day: "%e"
 
     day_names: [Sonntag, Montag, Dienstag, Mittwoch, Donnerstag, Freitag, Samstag]
-    abbr_day_names: [Son, Mon, Die, Mit, Don, Fre, Sam]
+    abbr_day_names: [So, Mo, Di, Mi, Do, Fr, Sa]
     month_names: [~, Januar, Februar, März, April, Mai, Juni, Juli, August, September, Oktober, November, Dezember]
     abbr_month_names: [~, Jan., Feb., Mär., Apr., Mai, Juni, Juli, Aug., Sept., Okt., Nov., Dez.]
     order: [ :day, :month, :year ]
@@ -120,73 +120,106 @@ de:
       long: "%A %d %B %Y %H:%M:%S %Z"
       long_ordinal: "%A %d %B %Y %H:%M:%S %Z"
       only_second: "%S"
-    am: 'am'
-    pm: 'pm'
+    am: 'vormittags'
+    pm: 'nachmittags'
 
   datetime:
     distance_in_words:
-      half_a_minute: "une demi-minute"
+      half_a_minute: 'eine halbe Minute'
       less_than_x_seconds:
-        zero:  "moins d'une seconde"
-        one:   "moins de 1 seconde"
-        other: "moins de %{count} secondes"
+        one: 'weniger als eine Sekunde'
+        other: 'weniger als %{count} Sekunden'
       x_seconds:
-        one:   "1 seconde"
-        other: "%{count} secondes"
+        one: 'eine Sekunde'
+        other: '%{count} Sekunden'
       less_than_x_minutes:
-        zero:  "moins d'une minute"
-        one:   "moins de 1 minute"
-        other: "moins de %{count} minutes"
+        one: 'weniger als eine Minute'
+        other: 'weniger als %{count} Minuten'
       x_minutes:
-        one:   "1 minute"
-        other: "%{count} minutes"
+        one: 'eine Minute'
+        other: '%{count} Minuten'
       about_x_hours:
-        one:   "environ une heure"
-        other: "environ %{count} heures"
+        one: 'etwa eine Stunde'
+        other: 'etwa %{count} Stunden'
       x_days:
-        one:   "1 jour"
-        other: "%{count} jours"
+        one: 'ein Tag'
+        other: '%{count} Tage'
       about_x_months:
-        one:   "environ un mois"
-        other: "environ %{count} mois"
+        one: 'etwa ein Monat'
+        other: 'etwa %{count} Monate'
       x_months:
-        one:   "1 mois"
-        other: "%{count} mois"
+        one: 'ein Monat'
+        other: '%{count} Monate'
+      almost_x_years:
+        one: 'fast ein Jahr'
+        other: 'fast %{count} Jahre'
       about_x_years:
-        one:   "environ un an"
-        other: "environ %{count} ans"
+        one: 'etwa ein Jahr'
+        other: 'etwa %{count} Jahre'
       over_x_years:
-        one:   "plus d'un an"
-        other: "plus de %{count} ans"
+        one: 'mehr als ein Jahr'
+        other: 'mehr als %{count} Jahre'
     prompts:
-      year:   "Jahr"
-      month:  "Monat"
-      day:    "Tag"
-      hour:   "Stunde"
-      minute: "Minute"
-      second: "Sekunde"
-
+      second: "Sekunden"
+      minute: "Minuten"
+      hour: "Stunden"
+      day: "Tag"
+      month: "Monat"
+      year: "Jahr"
+      
   number:
     format:
-      precision: 3
+      precision: 2
       separator: ','
-      delimiter: ' '
+      delimiter: '.'
+      significant: false
+      strip_insignificant_zeros: false
     currency:
       format:
         unit: '€'
+        format: '%n%u'
+        separator: ","
+        delimiter: ""
         precision: 2
-        format: '%n %u'
+        significant: false
+        strip_insignificant_zeros: false
+    percentage:
+      format:
+        delimiter: ""
+    precision:
+      format:
+        delimiter: ""
     human:
       format:
-        precision: 2
+        delimiter: ""
+        precision: 1
+        significant: true
+        strip_insignificant_zeros: true
       storage_units:
-        format: '%n %u'
+        # Storage units output formatting.
+        # %u is the storage unit, %n is the number (default: 2 MB)
+        format: "%n %u"
         units:
-          byte: 'Byte'
-          kb: 'KB'
-          mb: 'MB'
-          gb: 'GB'
-          tb: 'TB'
+          byte:
+            one: "Byte"
+            other: "Bytes"
+          kb: "KB"
+          mb: "MB"
+          gb: "GB"
+          tb: "TB"
+      decimal_units:
+        format: "%n %u"
+        units:
+          unit: ""
+          thousand: Tausend
+          million: Millionen
+          billion:
+            one: Milliarde
+            others: Milliarden
+          trillion: Billionen
+          quadrillion:
+            one: Billiarde
+            others: Billiarden
 
   support:
     array:
