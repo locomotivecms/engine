@@ -10,7 +10,7 @@ Locomotive.configure do |config|
   # during the installation wizzard.
   # Ex:
   # config.default_domain = Rails.env.production? ? 'heroku.com' : 'example.com'
-  config.default_domain = 'example.com'
+  config.default_domain = 'getbenga.dev'
 
   # configure how many items we display in sub menu in the "Contents" section.
   config.lastest_items_nb = 5
@@ -37,7 +37,7 @@ Locomotive.configure do |config|
   # If you do not mind about importing theme without DelayedJob, disable it.
   config.delayed_job = false
 
-  # default locale (for now, only en, fr and pt-BR are supported)
+  # default locale (for now, only en, de, fr and pt-BR are supported)
   config.default_locale = :en
 
   # Configure the e-mail address which will be shown in the DeviseMailer, NotificationMailer, ...etc

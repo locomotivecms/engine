@@ -1,0 +1,62 @@
+de:
+  errors:
+    messages:
+      not_found: "nicht gefunden"
+      already_confirmed: "wurde bereits bestätigt"
+      not_locked: "wurde nicht gesperrt"
+
+  devise:
+    failure:
+      admin:
+        unauthenticated: 'Du musst dich einloggen oder registrieren bevor es weiter geht.'
+        unconfirmed: 'Du musst deinen Account aktivieren bevor es weiter geht.'
+        locked: 'Dein Account ist gesperrt.'
+        invalid: 'Ungültige Email oder falsches Passwort.'
+        invalid_token: 'Ungültiges Authentifizierungs-Merkmal.'
+        timeout: 'Deine Session ist abgelaufe. Bitte logge dich erneut ein, dann geht es weiter.'
+        inactive: 'Dein Account wurde noch nicht aktiviert.'
+    sessions:
+      admin:
+        signed_in: 'Willkommen zu Hause!'
+        signed_out: 'Bis zum nächsten Mal.'
+    passwords:
+      admin:
+        send_instructions: 'Du bekommst in ein paar Minuten eine Email mit einer genauen Anleitung, wie du dein Passwort zurücksetzen kannst.'
+        updated: 'Dein Passwort wurde erfolgreich geändert. Du bist nun eingeloggt.'
+    confirmations:
+      admin:
+        send_instructions: 'Du bekommst in ein paar Minuten eine Email mit einer genauen Anleitung, wie du deinen Account aktivieren kannst.'
+        confirmed: 'Dein Account wurde erfolgreich aktiviert. Du bist nun eingeloggt.'
+    registrations:
+      admin:
+        signed_up: 'Du hast dich erfolgreich registriert.'
+        updated: 'Du hast deinen Account erfolgreich aktualisiert.'
+        destroyed: 'Tschüss! Dein Account wurder erfolgreich gelöscht. Hoffentlich sehen wir dich bald wieder!'
+    unlocks:
+      admin:
+        send_instructions: 'Du bekommst in ein paar Minuten eine Email mit einer genauen Anleitung, wie du deinen Account entsperren kannst.'
+        unlocked: 'Dein Account wurder erfolgreich entsperrt. Du bist nun eingeloggt.'
+    mailer:
+      admin:
+        confirmation_instructions: 'Anleitung zur Aktivierung'
+        reset_password_instructions: 'Anleitung zum Zurücksetzen deines Passworts'
+        unlock_instructions: 'Anleitung zur Entsperrung'
+        
+        
+  admin:
+    mailer:
+      common:
+        hello: Hallo
+
+      confirmation_instructions:
+        you_can_confirm_your_account_through_the_link_below: "Du kannst deinen Account mit folgenden Link aktivieren:"
+        confirm_my_account: "Aktivieren deinen Account"
+      reset_password_instructions:
+        reset_password_instruction: "Irgendwer hat eine Anfrage zur Änderung deines Passworts beantragt. Mit folgendem Link kannst du genau das erreichen:"
+        change_my_password: "Ändere mein Passwort"
+        wrong_request_instruction: "Wenn du diese nicht selbst angefordert hast, dann ignoriere diese Email bitte."
+        unchange_password_message: "Dein Passwort ändert sich nicht, bevor du auf den Link klickst und ein neues erstellst."
+      unlock_instructions:
+        locked_account_message: "Dein Account wurde leider gesperrt, weil unzählige Male vergeblich versucht wurde sich einzuloggen."
+        unlock_account_instruction: "Klicke auf den folgenden Link, um deinen Account zu entsperren:"
+        unlock_my_account: "Entsperre meinen Account"
