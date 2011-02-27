@@ -35,17 +35,17 @@ See the "official website":http://www.locomotivecms.com
 h2. Team
 
 * Developers: "Didier Lafforgue":http://www.nocoffee.fr, "Jacques Crocker":http://www.railsjedi.com
-* Contributors: "Dirk Kelly":http://www.dirkkelly.com, "Mario Visic":http://www.mariovisic.com, "Raphael Costa":http://raphaelcosta.net (Brazilian Portuguese translations)
+* Contributors: "Dirk Kelly":http://www.dirkkelly.com, "Mario Visic":http://www.mariovisic.com, "Raphael Costa":http://raphaelcosta.net (Brazilian Portuguese translation), "Bernd Hauser":http://www.designhunger.de (German translation)
 * UI Designer: "Sacha Greif":http://www.sachagreif.com
 
 h2. Credits
 
 "Rodrigo Alvarez":http://blog.codecaster.es/ for his plugin named Congo which gave us a good starting point and for his availability for (very late) tech discussions.
 
-"Emmanuel Grard":http://www.grardesign.com designed the awesome locomotive illustration in the LocomotiveApp.org landing page.
+"Emmanuel Grard":http://www.grardesign.com designed the awesome locomotive illustration in the locomotivecms.com landing page.
 
 h2. Contact
 
 Feel free to contact me at didier at nocoffee dot fr.
 
-Copyright (c) 2010 NoCoffee, released under the MIT license
+Copyright (c) 2011 NoCoffee, released under the MIT license
