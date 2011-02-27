@@ -158,8 +158,9 @@ fr:
         help: "Votre nom est modifiable en cliquant dessus."
         new_site: nouveau site
         en: en Anglais
+        de: en Allemand
         fr: en Français
-        pt-BR: "en Portugaise"
+        pt-BR: "en Portugais"
         ask_for_name: "Veuillez entrer le nouveau nom"
 
     theme_assets:
