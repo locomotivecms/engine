@@ -1,0 +1,50 @@
+- title t('.title')
+
+- content_for :submenu do
+  = render 'admin/shared/menu/settings'
+
+- content_for :buttons do
+  = admin_button_tag t('admin.theme_assets.index.all'), all_admin_theme_assets_url, :class => 'show'
+  = admin_button_tag t('admin.snippets.index.new'), new_admin_snippet_url, :class => 'new'
+  = admin_button_tag :new, new_admin_theme_asset_url, :class => 'new'
+
+%p!= t('.help')
+
+%h3!= t('.snippets')
+- if @snippets.empty?
+  %p.no-items!= t('admin.snippets.index.no_items', :url => new_admin_snippet_url)
+- else
+  %ul.list.theme-assets
+    = render @snippets
+
+%br
+
+%h3!= t('.css_and_js')
+- if @js_and_css_assets.empty?
+  %p.no-items!= t('.no_items', :url => new_admin_theme_asset_url)
+- else
+  %ul.list.theme-assets
+    = render :partial => 'asset', :collection => @js_and_css_assets
+
+%br
+
+%h3!= t('.images')
+- if @assets[:images].nil?
+  %p.no-items!= t('.no_items', :url => new_admin_theme_asset_url)
+- else
+  %ul.list.theme-assets
+    = render :partial => 'asset', :collection => @assets[:images]
+
+- if @assets[:fonts]
+  %br
+
+  %h3!= t('.fonts')
+  %ul.list.theme-assets
+    = render :partial => 'asset', :collection => @assets[:fonts]
+
+- if @assets[:medias]
+  %br
+
+  %h3!= t('.medias')
+  %ul.list.theme-assets
+    = render :partial => 'asset', :collection => @assets[:medias]
