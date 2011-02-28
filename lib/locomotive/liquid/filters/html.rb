@@ -43,10 +43,8 @@ module Locomotive
         # input: name of file including folder
         # example: 'about/myphoto.jpg' | theme_image # <img src="images/about/myphoto.jpg" />
         def theme_image_tag(input, *args)
-          return '' if input.nil?
-          input = "images/#{input}" unless input.starts_with?('/')
           image_options = inline_options(args_to_options(args))
-          "<img src=\"#{asset_url(input)}\" #{image_options}/>"
+          "<img src=\"#{theme_image_url(input)}\" #{image_options}/>"
         end
 
         # Write an image tag
