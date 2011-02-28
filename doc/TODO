@@ -1,9 +1,12 @@
 BOARD:
 
+x pull requests #31 et #32
 - duostack version
 - bugs
   - editable_elements slug becomes nil
-- pull requests #31 et #32
+  - uploading videos http://groups.google.com/group/carrierwave/browse_thread/thread/6e211d98f1ff4bc0/51717c2167695ca2?lnk=gst&q=version#51717c2167695ca2
+  - editable_elements not updated (doesn't use index anymore)
+  - custom_fields not deleted (doesn't use index anymore)
 - editable_elements: inheritable: false (Mattias)
 - 2 different sites on the same main domain (one in www, the other one in something else) (Raphael Costa)
 

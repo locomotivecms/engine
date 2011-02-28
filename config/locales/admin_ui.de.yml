@@ -1,0 +1,302 @@
+de:
+  admin:
+    buttons:
+      login: Einloggen
+      send_password: Senden
+      change_password: Update
+      new_item: "+ hinzufügen"
+      switch_to_site: Los
+
+    messages:
+      confirm: Bist du sicher ?
+
+    shared:
+      header:
+        welcome: Willkommen, %{name}
+        see: Webseite ansehen
+        logout: Ausloggen
+      menu:
+        contents: Inhalte
+        assets: Assets
+        settings: Einstellungen
+        pages: Seiten
+        snippets: Snippets
+        account: Mein Account
+        site: Webseite
+        theme_assets: Templates
+      footer:
+        who_is_behind: "Dienst entwickelt von %{development} und entworfen von <a href=\"http://www.sachagreif.com\">Sacha Greif</a>"
+      form_actions:
+        back: Ohne Speichern zurück
+        create: Neu
+        update: Speichern
+        send: Senden
+
+    errors:
+      "500":
+        title: Anwendungs-Fehler
+        notice: "Entschuldigung, irgendetwas ist hier schief gelaufen."
+        link: "&rarr; Zurück zur Anwendung"
+      "404":
+        title: Seite nicht gefunden
+        notice: "Die angefragte Seite existiert nicht."
+        link: "&rarr; Zurück zur Anwendung"
+
+    notifications:
+      new_content_instance:
+        subject: "[%{type}] neu"
+        title: "Hi %{name}, nur damit du Bescheid weist, dass eine neue Instanz am %{date} erstellt wurde."
+        type: "Model: %{type}"
+
+    custom_fields:
+      edit:
+        title: Benutzerdefinierte Felder bearbeiten
+      kind:
+        string: Einfache Texteingabe
+        text: Text
+        category: Auswahlbox
+        boolean: Checkbox
+        date: Datum
+        file: Datei
+      text_formatting:
+        none: Keine
+        html: HTML
+      edit_field:
+        title: Feld bearbeiten
+      edit_category:
+        title: Bearbeitungs-Optionen
+        help: Organisiere alle Optionen für die Auswahlbox.
+        collection_label: Liste der Optionen
+      custom_form:
+        edit_categories: Bearbeitungs-Optionen
+        delete_file: Datei löschen
+
+    sessions:
+      new:
+        title: Login
+        link: "Ich habe mein Passwort vergessen"
+        email: "Email"
+        password: "Passwort"
+
+    passwords:
+      new:
+        title: Passwort vergessen
+        link: "&rarr; Zurück zur Login-Seite"
+        email: "Deine Email"
+      edit:
+        title: Passwort bearbeiten
+        link: "&rarr; Zurück zur Login-Seite"
+        password: "Dein neues Passwort"
+        password_confirmation: "Wiederholung deines neuen Passworts"
+
+    pages:
+      index:
+        title: Seiten anzeigen
+        help: "Seiten sind als Baum organisiert. Du kannst die Seiten also wie Ordner sortieren und verschachteln."
+        no_items: "Momentan gibt es keine Seiten. Klicke einfach <a href='%{url}'>hier</a>, um die erste Seite zu erstellen."
+        new: neue Seite
+        lastest_items: Neueste Seiten
+      new:
+        title: Neue Seite
+        help: "Fülle das folgende Formular aus, um eine neue Seite zu erstellen. Nur zur Info: Die Seite wird nicht standardmäßig publiziert!"
+      page:
+        updated_at: bearbeitet am
+      edit:
+        show: anzeigen
+        help: "Der Seiten-Titel kann durch anklicken bearbeitet werden."
+        ask_for_title: "Bitte gib den neuen Seiten-Titel ein"
+      form:
+        delete_file: Datei löschen
+        default_block: Standard
+        cache_strategy:
+          none: Keine
+          simple: Einfach
+          hour: 1 Stunde
+          day: 1 Tag
+          week: 1 Woche
+          month: 1 Monat
+
+    snippets:
+      index:
+        title: Snipptes anzeigen
+        help: "Snippets sind HTML-Code Ausschnitte, die an verschiedenen Stellen der Webseite eingesetzt werden können (z.B. die Fußzeile)."
+        no_items: "Momentan gibt es keine Snippets. Klicke einfach <a href='%{url}'>hier</a>, um das erste Snippet zu erstellen."
+        new: neues Snippet
+      new:
+        title: Neues Snippet
+        help: "Fülle das folgende Formular aus, um ein neues Snippet zu erstellen."
+      edit:
+        title: Snippet bearbeiten
+        help: "Fülle das folgende Formular aus, um dein Snippet zu aktualisieren."
+      snippet:
+        updated_at: Aktualisiert am
+
+    sites:
+      new:
+        title: Neue Webseite
+        help: "Fülle das folgende Formular aus, um eine neue Webseite zu erstellen."
+
+    current_sites:
+      edit:
+        import: Importieren
+        new_membership: Account hinzufügen
+        help: "Der Name der Webseite kann durch anklicken bearbeitet werden."
+        ask_for_name: "Bitte gib den neuen Namen der Webseite an"
+
+    memberships:
+      new:
+        title: Neuer Account
+        help: "Bitte gib eine Email für den neuen Account an. Wenn diese noch nicht registriert ist, wirst du zu einem Formular zur Erstellung weitergeleitet."
+
+    accounts:
+      new:
+        title: Neuer Account
+        help: "Fülle das folgende Formular aus, um einen neuen Account anzulegen."
+
+    my_accounts:
+      edit:
+        help: "Deinen Namen kannst du durch darauf klicken ändern."
+        new_site: Neue Webseite
+        en: Englisch
+        de: Deutsch
+        fr: Französisch
+        pt-BR: "Bras. Portugisisch"
+        ask_for_name: "Bitte gib deinen neuen Namen an"
+
+    theme_assets:
+      index:
+        title: Template-Dateien
+        help: "In diesem Bereich kannst du alle Dateien organisieren, die für dein Layout verwendet werden. Wenn du eine Bilder-Galerie organisieren möchtest, dann gehe dazu in den Assets-Abschnitt."
+        all: alle Assets
+        new: neue Datei
+        snippets: Snippets
+        css_and_js: Style und Javascript
+        fonts: Fonts
+        images: Bilder
+        medias: Medien
+        no_items: "Momentan gibt es keine Dateien. Klicke einfach <a href='%{url}'>hier</a>, um die erste Datei zu erstellen."
+      asset:
+        updated_at: Aktualisiert am
+      new:
+        title: Neue Datei
+        help: "Du hast die Wahl entweder eine neue Datei hochzuladen oder ein bestehendes Stylesheet / Javascript als Text einzufügen."
+      edit:
+        title: "Bearbeite %{file}"
+        help: "Dieses Asset kann über folgende URL erreicht werden: <a href='%{url}'>%{url}</a>"
+      form:
+        picker_link: Füge eine Datei in den Code ein
+        choose_file: Datei auswählen
+        choose_plain_text: Text einfügen
+      images:
+        title: Bilder anzeigen
+        no_items: "Momentan gibt es keine Bilder."
+
+    asset_collections:
+      index:
+        title: Asset Sammlung
+        help: "Der Name der Sammlung kann durch darauf klicken bearbeitet werden. Du kannst Assets in einer Sammlung bearbeiten, indem du neue Felder hinzufügst."
+        new: neue Sammlung
+        no_items: "Momentan gibt es keine Sammlungen. Klicke einfach <a href='%{url}'>hier</a>, um eine neue Sammlung zu erstellen."
+      new:
+        title: Neue Kollektion
+        help: "Gib erst mal einen Namen ein. Alle anderen Einstellungen kannst du vornehmen, sobald das Formular abgesendet ist."
+      edit:
+        help: "Der Name der Sammlung kann durch darauf klicken bearbeitet werden. Du kannst Assets in einer Sammlung bearbeiten, indem du neue Felder hinzufügst."
+        add_asset: Asset hinzufügen
+        destroy: Sammlung löschen
+        no_items: "Momentan gibt es keine Assets. Klicke einfach <a href='%{url}'>hier</a>, um das erste Asset zu erstellen."
+        ask_for_name: "Gib den neuen Namen ein"
+
+    assets:
+      new:
+        title: Neues Asset
+        help: "Fülle das folgende Formular aus, um dein Asset zu erstellen."
+      edit:
+        title: Asset bearbeiten
+        help: "Fülle das folgende Formular aus, um dein Asset zu aktualisieren."
+
+    content_types:
+      index:
+        new: Neuer Baustein
+      new:
+        title: Neuer Baustein
+        help: "Erstelle deine eigenen Baustein (Projekte, Leute, ...usw). Dein Baustein muss mindestens ein Feld haben. Das erste Feld ist dabei immer verpflichtend auszufüllen."
+      edit:
+        title: Vorlage bearbeiten
+        help: "Deine Vorlage muss mindestens ein Feld haben. Das erste Feld ist dabei immer verpflichtend auszufüllen."
+        show_items: zeige Elemente
+        new_item: neues Element
+      form:
+        order_by:
+          created_at: '"Erstellt am" Datum'
+          updated_at: '"Aktualisiert am" Datum'
+          position_in_list: Manuell
+
+    contents:
+      index:
+        title: '"%{type}" anzeigen'
+        edit: Bausteine bearbeiten
+        destroy: Baustein löschen
+        download: Elemente herunterladen
+        new: neues Element
+        category_noname: "Kein Name"
+        lastest_items: "Neueste Elemente"
+        updated_at: "Aktualisiert am"
+      list:
+        no_items: "Momentan gibt es keine Elemente. Klicke einfach <a href='%{url}'>hier</a>, um das erste Element zu erstellen."
+      new:
+        title: '%{type} &mdash; neues Element'
+      edit:
+        title: '%{type} &mdash; Element bearbeiten'
+
+    image_picker:
+      link: Füge ein Bild in den Code ein
+
+    cross_domain_sessions:
+      new:
+        title: Cross-Domain Authentifizierung
+        notice: Du wirst zu der Webseite in ein paar Sekunden weitergeleitet.
+
+    imports:
+      new:
+        title: Import
+        help: "Passe bitte auf, wenn du ein neues Template für deine bestehende Webseite hochlädst. Deine bestehenden Daten könnten verändert oder gelöscht werden!"
+      show:
+        title: Import am Laufen
+        help: "Deine Webseite wird gerade mit deinem hochgeladenen Template aktualisiert. Bitte habe noch ein paar Sekunden Geduld."
+        steps:
+          site: Webseiten-Informationen
+          content_types: Benutzerdefinierte Inhalts-Typen
+          assets: Template-Dateien
+          asset_collections: Asset-Sammlung
+          snippets: Snippets
+          pages: Seiten
+        messages:
+          success: "Deine Webseite wurde erfolgreich aktualisiert."
+          failure: "Der Import war leider nicht erfolgreich."
+
+    installation:
+      common:
+        title: Erst-Installation von getbenga
+        next: Weiter
+      step_1:
+        title: Schritt 1/3
+        explanations: Dies ist der erste Schritt zur Installation von getbenga. Bitte lies die folgenden Texte genau durch.
+        database:
+          label: "Datenbank-Name: <em>%{name}</em>"
+          notes: "All Verbindungseinstellungen für mongodb findest du in der <b>config/mongoid.yml</b> Datei."
+        default_domain:
+          label: "Standard Domain-Name: <em>%{name}</em>"
+          notes: "Basically, Locomotive is a multi websites platform. Each site instance has a default entry, also called subdomain and based on the default domain name. Obviously, you are free to map other domains to your site instance working like aliases. <br/>The default domain name value can be found in the <b>config/initializers/locomotive.rb</b> file."
+      step_2:
+        title: "Schritt 2/3 &mdash; Account erstellen"
+        name: Account-Name
+        email: Email
+        password: Passwort
+        password_confirmation: Passwort-Bestätigung
+        done: "Du hast bereits einen Account hinzugefügt:<br/><strong>%{name}</strong>, <em>%{email}</em>"
+        next: Account erstellen
+      step_3:
+        title: "Schritt 3/3 &mdash; Erstelle deine erste Webseite"
+        explanations: "Dies ist der letzte Schritt der Installation. Du kannst nun ein fertiges Template als zip-Datei hochladen. <a href=\'http://www.locomotivecms.com/support/themes\'>Hier</a> findest du ein paar kostenlose Templates, die du gerne kostenlos verwenden kannst."
+        next: Webseite erstellen

@@ -158,6 +158,7 @@ pt-BR:
         help: "Seu nome pode ser atualizado clicando nele."
         new_site: novo site
         en: Inglês
+        de: Alemão
         fr: Francês
         pt-BR: "Português do Brasil"
         ask_for_name: "Por favor preencha o novo nome"

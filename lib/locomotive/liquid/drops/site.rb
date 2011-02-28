@@ -9,6 +9,10 @@ module Locomotive
           @index ||= @source.pages.root.first
         end
 
+        def pages
+          @pages ||= @source.pages.to_a.collect(&:to_liquid)
+        end
+
       end
     end
   end

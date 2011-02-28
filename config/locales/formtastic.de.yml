@@ -1,0 +1,68 @@
+de:
+  formtastic:
+    titles:
+      information: Allgemeine Informationen
+      meta: Suchmaschinen-Metadaten
+      code: Code
+      raw_template: Vorlage
+      credentials: Persönliche Daten
+      language: Sprache
+      sites: Webseiten
+      access_points: Domains
+      memberships: Accounts
+      membership_email: Account Email
+      file: Datei
+      preview: Vorschau
+      options: Fortgeschrittene Optionen
+      custom_fields: Benutzerdefinierte Felder
+      other_fields: Weitere Informationen
+      presentation: Anzeige
+      attributes: Attribute
+      upload: Upload
+    labels:
+      theme_asset:
+        plain_text_name: Datei-Name
+        content_type: Datei-Typ
+        new:
+          source: Datei
+        edit:
+          source: Datei ersetzen
+      custom_fields:
+        field:
+          _alias: Alias
+      import:
+        new:
+          source: Datei
+          samples: Beispiele kopieren
+          reset: Webseite zurücksetzen
+      content_type:
+        api_accounts: Benachrichtigte Accounts
+
+    hints:
+      page:
+        published: "Nur authentifizierte Accounts können nicht publizierte Seiten ansehen."
+        cache_strategy: "Cache die Seiten, um eine bessere Geschwindigkeit zu erzielen. Die 'Einfach' Option ist ein guter Kompromiss."
+        templatized: "Nutze diese Seite als Vorlage für einen Baustein, den du erstellt hast."
+        listed: "Regele, ob die Seite in den generierten Menüs angezeigt werden soll."
+        content_type_id: "Der Baustein für den diese Seite als Vorlage dienen soll."
+      snippet:
+        slug: "You need to know it in order to insert the snippet inside a page"
+      site:
+        meta_keywords: "Meta-Schlagworte, die im HEAD-Berecih der Webseite genutzt werden. Die einzelnen Wörter werden durch eine Leertaste getrennt. Diese werden für die Suchmaschinen benötigt."
+        meta_description: "Meta-Beschreibung, die im HEAD-Bereich der Webseite genutzt wird. Diese wird für die Suchmaschinen benötigt."
+        domain_name: "z.B: getbenga.com"
+      theme_asset:
+        slug: "Du musst die Dateiendung nicht angeben (.css or .js)"
+        edit:
+          source: "Du kannst diese Datei durch eine Datei mit gleicher Dateiendung ersetzen"
+      custom_fields:
+        field:
+          _alias: "Merkmal verfügbar in den liquid-Templates"
+          hint: "Hilfe-Text, der im Formular des Bausteins direkt unter dem jeweiligen Feld angezeigt wird"
+      import:
+        source: "Eine zip-Datei, die eine databse.yml, Assets und Templates enthält"
+        samples: "Bei Aktivierung werden auch Inhalte und Assets importiert"
+        reset: "Bei Aktivierung werden alle Daten deiner Webseite gelöscht, bevor die neue Webseite importiert wird"
+      content_type:
+        api_enabled: "Dies wird genutzt, um Besuchern deiner Webseite die Möglichkeit zu geben neue Elemente zu erstellen (z.B: Nachrichten in einem Kontakt-Formular)"
+        api_accounts: "Sobald ein Besucher ein neues Element erstellt, wird eine Benachrichtigungs-Email an alle unten aufgeführten Accounts gesendet"

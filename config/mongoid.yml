@@ -1,5 +1,6 @@
 defaults: &defaults
   host: localhost
+  port: 27017
   # slaves:
   #   - host: slave1.local
   #     port: 27018
