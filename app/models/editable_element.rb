@@ -8,7 +8,7 @@ class EditableElement
     field :default_content
     field :hint
     field :disabled, :type => Boolean, :default => false
-    field :inheritable, :type => Boolean, :default => true
+    field :assignable, :type => Boolean, :default => true
     field :from_parent, :type => Boolean, :default => false
 
     ## associations ##
