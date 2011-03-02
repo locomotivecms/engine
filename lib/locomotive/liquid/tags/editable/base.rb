@@ -26,7 +26,7 @@ module Locomotive
                 :block => @context[:current_block].try(:name),
                 :slug => @slug,
                 :hint => @options[:hint],
-                :default_content => @nodelist.first.to_s,
+                :default_content => default_content,
                 :assignable => @options[:assignable],
                 :disabled => false,
                 :from_parent => false
@@ -55,6 +55,15 @@ module Locomotive
 
           def document_type
             raise 'FIXME: has to be overidden'
+          end
+          
+          
+          def default_content
+            if @options[:default].present?
+              @context[:page].send(@options[:default])
+            else
+              @nodelist.first.to_s
+            end
           end
 
         end
