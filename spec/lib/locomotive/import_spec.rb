@@ -53,7 +53,7 @@ describe Locomotive::Import::Job do
     end
 
     it 'inserts all the pages' do
-      @site.pages.count.should == 9
+      @site.pages.count.should == 11
     end
 
     it 'inserts the index and 404 pages' do
