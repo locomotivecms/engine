@@ -62,7 +62,7 @@ module Models
 
           def merge_editable_elements_from_page(source)
             source.editable_elements.each do |el|
-              next if el.disabled?
+              next if el.disabled? or !el.inheritable?
 
               existing_el = self.find_editable_element(el.block, el.slug)
 
