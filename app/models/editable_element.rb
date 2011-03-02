@@ -6,6 +6,7 @@ class EditableElement
     field :slug
     field :block
     field :default_content
+    field :default_attribute
     field :hint
     field :disabled, :type => Boolean, :default => false
     field :assignable, :type => Boolean, :default => true

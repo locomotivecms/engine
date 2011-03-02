@@ -26,6 +26,7 @@ module Locomotive
                 :block => @context[:current_block].try(:name),
                 :slug => @slug,
                 :hint => @options[:hint],
+                :default_attribute => @options[:default],
                 :default_content => default_content,
                 :assignable => @options[:assignable],
                 :disabled => false,
