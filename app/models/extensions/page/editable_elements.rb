@@ -68,8 +68,12 @@ module Models
 
               if existing_el.nil? # new one from parents
                 new_attributes = el.attributes.merge(:from_parent => true)
-                new_attributes[:default_content] = el.content
-
+                if new_attributes['default_attribute'].present?
+                  new_attributes['default_content'] = self.send(new_attributes['default_attribute']) || el.content
+                else
+                  new_attributes['default_content'] = el.content
+                end
+                
                 self.editable_elements.build(new_attributes, el.class)
               else
                 existing_el.attributes = { :disabled => false, :default_content => el.content }
