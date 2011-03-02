@@ -9,7 +9,7 @@ module Locomotive
           def initialize(tag_name, markup, tokens, context)
             if markup =~ Syntax
               @slug = $1.gsub('\'', '')
-              @options = {}
+              @options = { :inheritable => true }
               markup.scan(::Liquid::TagAttributes) { |key, value| @options[key.to_sym] = value.gsub(/^'/, '').gsub(/'$/, '') }
             else
               raise ::Liquid::SyntaxError.new("Syntax Error in 'editable_xxx' - Valid syntax: editable_xxx <slug>(, <options>)")
@@ -27,6 +27,7 @@ module Locomotive
                 :slug => @slug,
                 :hint => @options[:hint],
                 :default_content => @nodelist.first.to_s,
+                :inheritable => @options[:inheritable],
                 :disabled => false,
                 :from_parent => false
               }, document_type)
