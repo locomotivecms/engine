@@ -75,8 +75,10 @@ module Models
                 end
                 
                 self.editable_elements.build(new_attributes, el.class)
-              else
+              elsif existing_el.default_attribute.nil?
                 existing_el.attributes = { :disabled => false, :default_content => el.content }
+              else
+                existing_el.attributes = { :disabled => false }
               end
             end
           end
