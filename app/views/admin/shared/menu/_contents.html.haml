@@ -10,7 +10,7 @@
             = link_to truncate(page.title, :length => 25), edit_admin_page_url(page)
             %span= time_ago_in_words(page.updated_at)
 
-  - current_site.content_types.each do |content_type|
+  - current_site.content_types.to_a.each do |content_type|
     - next if content_type.new_record?
     - item_on = (content_type.slug == @content_type.slug) rescue nil
     = admin_submenu_item content_type.name, admin_contents_url(content_type.slug), :i18n => false, :css => (item_on ? 'on' : '') do
@@ -25,4 +25,4 @@
               %span= time_ago_in_words(content.updated_at)
 
 .action
-  = link_to content_tag(:span, t('admin.content_types.index.new')), new_admin_content_type_url
+  = link_to content_tag(:em) + content_tag(:span, t('admin.content_types.index.new')), new_admin_content_type_url

@@ -68,11 +68,11 @@ $(document).ready(function() {
   TinyMceDefaultSettings['language'] = I18nLocale;
 
   // sub menu links
-  $('#submenu ul li.links').hover(function() {
-    $(this).addClass('hover');
+  $('#submenu ul li.hoverable').hover(function() {
+    $(this).find('a').addClass('hover');
     $(this).find('.popup').show();
   }, function() {
-    $(this).removeClass('hover');
+    $(this).find('a').removeClass('hover');
     $(this).find('.popup').hide();
   });
 

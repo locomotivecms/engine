@@ -61,6 +61,7 @@ body {
 
 #content {
   background: transparent url(/images/admin/menu/shadow.png) repeat-y 0 0;
+  margin-top: -1px;
 }
 
 #content div.inner {

@@ -26,6 +26,8 @@ BACKLOG:
 - write my first tutorial about locomotive
 - cucumber features for admin pages (in progress)
 
+- code completion ? http://blog.quplo.com/2010/06/common-sense-code-completion/
+
 REFACTORING:
 
   - refactor slugify method (use parameterize + create a module)
