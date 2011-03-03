@@ -2,6 +2,7 @@ fr:
   formtastic:
     titles:
       information: Informations générales
+      advanced_options: Options avancées
       meta: SEO Metadata
       code: Code
       raw_template: Gabarit
@@ -40,6 +41,16 @@ fr:
           reset: Remettre à zéro
       content_type:
         api_accounts: Comptes à notifier
+      page:
+        title: Titre
+        parent_id: Dossier
+        slug: Raccourci URL
+        published: Publiée
+        templatized: Templatisée
+        listed: Menu
+        redirect: Redirection
+        redirect_url: Url de redirection
+        cache_strategy: Cache
 
     hints:
       page:
