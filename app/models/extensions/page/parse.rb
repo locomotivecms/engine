@@ -37,7 +37,7 @@ module Models
               begin
                 self._parse_and_serialize_template
               rescue ::Liquid::SyntaxError => error
-                @parsing_errors << :liquid_syntax
+                @parsing_errors << I18n.t(:liquid_syntax, :fullpath => self.fullpath, :error => error.to_s,:scope => [:errors, :messages])
               rescue ::Locomotive::Liquid::PageNotFound => error
                 @parsing_errors << I18n.t(:liquid_extend, :fullpath => self.fullpath,:scope => [:errors, :messages])
               end
