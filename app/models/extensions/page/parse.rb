@@ -39,7 +39,7 @@ module Models
               rescue ::Liquid::SyntaxError => error
                 @parsing_errors << :liquid_syntax
               rescue ::Locomotive::Liquid::PageNotFound => error
-                @parsing_errors << :liquid_extend
+                @parsing_errors << I18n.t(:liquid_extend, :fullpath => self.fullpath,:scope => [:errors, :messages])
               end
             end
           end
