@@ -51,13 +51,6 @@ pt-BR:
     custom_fields:
       edit:
         title: Editando campo customizado
-      kind:
-        string: Texto Simples
-        text: Texto
-        category: Caixa de Seleção
-        boolean: Checkbox
-        date: Data
-        file: Arquivo
       text_formatting:
         none: Nenhum
         html: HTML

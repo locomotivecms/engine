@@ -51,13 +51,6 @@ en:
     custom_fields:
       edit:
         title: Editing custom field
-      kind:
-        string: Simple Input
-        text: Text
-        category: Select
-        boolean: Checkbox
-        date: Date
-        file: File
       text_formatting:
         none: None
         html: HTML
@@ -70,6 +63,9 @@ en:
       custom_form:
         edit_categories: Edit options
         delete_file: Delete file
+      index:
+        is_required: is required
+        default_label: Field name
 
     sessions:
       new:

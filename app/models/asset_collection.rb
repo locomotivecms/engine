@@ -9,7 +9,7 @@ class AssetCollection
 
   ## associations ##
   referenced_in :site
-  embeds_many :assets
+  embeds_many :assets, :validate => false
 
   ## behaviours ##
   custom_fields_for :assets

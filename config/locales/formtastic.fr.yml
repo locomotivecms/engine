@@ -41,16 +41,6 @@ fr:
           reset: Remettre à zéro
       content_type:
         api_accounts: Comptes à notifier
-      page:
-        title: Titre
-        parent_id: Dossier
-        slug: Raccourci URL
-        published: Publiée
-        templatized: Templatisée
-        listed: Menu
-        redirect: Redirection
-        redirect_url: Url de redirection
-        cache_strategy: Cache
 
     hints:
       page:
@@ -78,5 +68,6 @@ fr:
         samples: "Si activé, les contenus et les média seront aussi copiés lors de l'import"
         reset: "Si activé, toutes les données de votre site seront détruites avant l'import du nouveau site"
       content_type:
+        slug: Nom utilisé dans les templates liquid afin d'accéder aux enregistrements de ce modèle
         api_enabled: "Utilisé pour autoriser la création de nouvelles instances de l'extérieur (ex.: les messages dans un formulaire de contact)"
         api_accounts: "Un email de notification sera envoyé à chaque compte listé ci-dessus lors de la création d'une nouvelle instance"

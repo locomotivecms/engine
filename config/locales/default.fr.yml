@@ -46,16 +46,20 @@ fr:
           title: "Page non trouvée"
           body: "Contenu de la page d'erreur 404"
         other:
-          body: "Le contenu va ici"
+          body: "{% extends 'parent' %}"
 
-  activemodel:
+  mongoid:
     attributes:
       page:
         title: Titre
-        parent: Parent
+        parent: Dossier parent
+        parent_id: Dossier parent
         slug: Raccourci
+        listed: Menu
         templatized: Templatisée
         published: Publiée
+        redirect: Redirection
+        redirect_url: Url de redirection
         cache_strategy: Cache
       content_type:
         name: Nom
@@ -72,11 +76,11 @@ fr:
         name: Nom
         source: Fichier
       account:
-        email: Email
+        email: E-mail
         name: Nom
         language: Langue
-        new_password: "Nouveau mot de passe"
-        new_password_confirmation: "Confirmation nouveau mot de passe"
+        password: "Nouveau mot de passe"
+        password_confirmation: "Confirmation nouveau mot de passe"
       snippet:
         body: Code
         slug: Raccourci
@@ -90,6 +94,12 @@ fr:
         restricted_access: Activer ?
         access_login: Identifiant
         access_password: "Mot de passe"
+      custom_fields:
+        field:
+          _alias: Alias
+          hint: Aide
+          required: Requis ?
+          text_formatting: Formattage
 
   pagination:
     previous: "&laquo; Précédent"

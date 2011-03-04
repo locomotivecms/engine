@@ -51,13 +51,6 @@ de:
     custom_fields:
       edit:
         title: Benutzerdefinierte Felder bearbeiten
-      kind:
-        string: Einfache Texteingabe
-        text: Text
-        category: Auswahlbox
-        boolean: Checkbox
-        date: Datum
-        file: Datei
       text_formatting:
         none: Keine
         html: HTML

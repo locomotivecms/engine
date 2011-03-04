@@ -51,13 +51,6 @@ fr:
     custom_fields:
       edit:
         title: Editer champ personnalisé
-      kind:
-        string: Texte
-        text: Zone de texte
-        category: Liste déroulante
-        boolean: Case à cocher
-        date: Date
-        file: Fichier
       text_formatting:
         none: Aucun
         html: HTML
@@ -70,6 +63,9 @@ fr:
       custom_form:
         edit_categories: Editer options
         delete_file: Supprimer fichier
+      index:
+        is_required: est obligatoire
+        default_label: Nom du champ
 
     sessions:
       new:

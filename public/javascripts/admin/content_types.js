@@ -16,15 +16,15 @@ $(document).ready(function() {
 
   // api enabled ?
 
-  console.log('subscribing...');
+  // console.log('subscribing...');
 
   $.subscribe('toggle.content_type_api_enabled.checked', function(event, data) {
-    console.log('checked');
+    // console.log('checked');
     $('#content_type_api_accounts_input').show();
   }, []);
 
   $.subscribe('toggle.content_type_api_enabled.unchecked', function(event, data) {
-    console.log('unchecked');
+    // console.log('unchecked');
     $('#content_type_api_accounts_input').hide();
   }, []);
 

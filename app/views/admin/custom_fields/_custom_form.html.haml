@@ -2,7 +2,7 @@
 
 = form.inputs :name => title || :attributes do
   - form.object.custom_fields.each do |field|
-    - required = highlighted_field_name == field._name
+    - required = highlighted_field_name == field._name || field.required
 
     - if field.string?
       = form.input field._alias.to_sym, :label => field.label, :hint => field.hint, :required => required

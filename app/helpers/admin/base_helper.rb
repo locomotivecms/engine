@@ -39,6 +39,14 @@ module Admin::BaseHelper
     end
   end
 
+  def collection_to_js(collection, options = {})
+    js = collection.collect { |object| object.to_json }
+
+    options_to_js = options.to_json.gsub(/^\{/, '').gsub(/\}$/, '')
+
+    "new Object({ \"collection\": [#{js.join(', ')}], #{options_to_js} })"
+  end
+
   def growl_message
     if not flash.empty?
       %{

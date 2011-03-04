@@ -266,18 +266,29 @@ form.formtastic fieldset.editable-list ol li.added select {
 }
 
 form.formtastic fieldset.editable-list ol li.added em {
+  display: inline-block;
+  position: relative;
+  top: -1px;
   color: #8b8d9a;
   font-size: 0.9em;
   font-style: italic;
   margin-left: 3px;
+  border: 1px solid transparent;
+  padding: 2px 5px;
+  height: 18px;
+  line-height: 16px;
 }
-form.formtastic fieldset.editable-list ol li.added em { border: 1px solid transparent; padding: 2px 5px; }
 form.formtastic fieldset.editable-list ol li.added em:hover {
   background: #fffbe5;
   border: 1px dotted #efe4a5;
   cursor: pointer;
   color: #17171D;
   font-weight: bold;
+}
+
+form.formtastic fieldset.editable-list ol li.added select,
+form.formtastic fieldset.editable-list ol li.added em {
+  width: 120px;
 }
 
 form.formtastic fieldset.editable-list ol li.added input {
@@ -325,7 +336,11 @@ form.formtastic fieldset.editable-list ol li.template {
   padding-top: 10px;
 }
 
-form.formtastic fieldset.editable-list ol li.template input {
+form.formtastic fieldset.editable-list ol li.template em {
+  display: none;
+}
+
+form.formtastic fieldset.editable-list ol li.template input[type=text] {
   display: inline;
   margin-left: 10px;
   padding: 4px;
@@ -340,6 +355,7 @@ form.formtastic fieldset.editable-list ol li.template input {
 
 form.formtastic fieldset.editable-list ol li.template select {
   display: inline;
+  top: -1px;
 }
 
 form.formtastic fieldset.editable-list ol li.template span.handle {
@@ -365,6 +381,25 @@ form.formtastic fieldset.editable-list ol li.template span.actions button {
 
 form.formtastic fieldset.editable-list ol li.template span.actions button span {
   font-size: 0.8em;
+}
+
+/* ___ custom fields: inherits from editable-list ___ */
+
+form.formtastic fieldset.fields input[type=checkbox] {
+  margin: 0 0 0 20px;
+  width: 20px;
+}
+
+form.formtastic fieldset.fields label {
+  display: inline;
+  float: none;
+  padding: 0px;
+  font-weight: normal;
+  color: #8B8D9A;
+}
+
+form.formtastic fieldset.fields li.required label {
+  font-weight: bold;
 }
 
 /* ___ editable-list (content type validations) ___ */

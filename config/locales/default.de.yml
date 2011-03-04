@@ -48,7 +48,7 @@ de:
         other:
           body: "Inhalte kommen hier rein"
 
-  activemodel:
+  mongoid:
     attributes:
       page:
         title: Titel
@@ -166,7 +166,7 @@ de:
       day: "Tag"
       month: "Monat"
       year: "Jahr"
-      
+
   number:
     format:
       precision: 2
