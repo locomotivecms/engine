@@ -25,7 +25,7 @@ en:
           title: "Page not found"
           body: "Content of the 404 page"
         other:
-          body: "Content goes here"
+          body: "{% extends 'parent' %}"
 
   pagination:
     previous: "&laquo; Previous"

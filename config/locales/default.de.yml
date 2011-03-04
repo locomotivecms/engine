@@ -46,7 +46,7 @@ de:
           title: "Seite nicht gefunden"
           body: "Inhalt der 404 Seite"
         other:
-          body: "Inhalte kommen hier rein"
+          body: "{% extends 'parent' %}"
 
   mongoid:
     attributes:

@@ -50,7 +50,7 @@ pt-BR:
           title: "Página não encontrada"
           body: "Conteúdo da página de erro 404"
         other:
-          body: "Conteúdo vai aqui"
+          body: "{% extends 'parent' %}"
 
   mongoid:
     attributes:

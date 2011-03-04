@@ -28,6 +28,7 @@ class Page
   index [[:fullpath, Mongo::ASCENDING], [:site_id, Mongo::ASCENDING]]
 
   ## callbacks ##
+  after_initialize :set_default_raw_template
   before_validation :normalize_slug
   before_save { |p| p.fullpath = p.fullpath(true) }
   before_destroy :do_not_remove_index_and_404_pages
@@ -100,6 +101,10 @@ class Page
   def normalize_slug
     self.slug = self.title.clone if self.slug.blank? && self.title.present?
     self.slug.slugify!(:without_extension => true) if self.slug.present?
+  end
+
+  def set_default_raw_template
+    self.raw_template ||= I18n.t('attributes.defaults.pages.other.body')
   end
 
 end
