@@ -117,6 +117,7 @@ describe AssetCollection do
       it 'should add new field' do
         @collection.asset_custom_fields.build :label => 'Active at', :name => 'active_at', :kind => 'Date'
         @collection.upsert(:validate => false)
+        @collection.invalidate_asset_klass
         @collection.reload
         asset = @collection.assets.first
         lambda { asset.active_at }.should_not raise_error
@@ -125,6 +126,7 @@ describe AssetCollection do
       it 'should remove field' do
         @collection.asset_custom_fields.clear
         @collection.upsert(:validate => false)
+        @collection.invalidate_asset_klass
         @collection.reload
         asset = @collection.assets.first
         lambda { asset.active_at }.should raise_error
@@ -135,6 +137,7 @@ describe AssetCollection do
         @collection.asset_custom_fields.first._alias = nil
         @collection.upsert(:validate => false)
 
+        @collection.invalidate_asset_klass
         @collection.reload
 
         asset = @collection.assets.first
