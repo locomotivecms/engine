@@ -4,20 +4,6 @@ GIT
   specs:
     mocha (0.9.12.20110213002255)
 
-PATH
-  remote: ../gems/carrierwave
-  specs:
-    locomotive_carrierwave (0.5.0.1.beta3)
-      activesupport (~> 3.0)
-
-PATH
-  remote: ../gems/custom_fields
-  specs:
-    custom_fields (1.0.0.beta.4)
-      activesupport (>= 3.0.4)
-      locomotive_carrierwave
-      mongoid (~> 2.0.0.rc.7)
-
 GEM
   remote: http://rubygems.org/
   specs:
@@ -84,6 +70,10 @@ GEM
     cucumber-rails (0.3.2)
       cucumber (>= 0.8.0)
     culerity (0.2.15)
+    custom_fields (1.0.0.beta.5)
+      activesupport (>= 3.0.4)
+      locomotive_carrierwave
+      mongoid (~> 2.0.0.rc.7)
     daemons (1.1.0)
     database_cleaner (0.6.4)
     delayed_job (2.1.2)
@@ -146,6 +136,8 @@ GEM
     linecache (0.43)
     linecache19 (0.5.11)
       ruby_core_source (>= 0.1.4)
+    locomotive_carrierwave (0.5.0.1.beta3)
+      activesupport (~> 3.0)
     locomotive_jammit-s3 (0.5.4.4)
       jammit (>= 0.5.4)
       mimemagic (>= 0.1.7)
@@ -267,7 +259,7 @@ DEPENDENCIES
   capybara
   cucumber (= 0.8.5)
   cucumber-rails
-  custom_fields!
+  custom_fields (= 1.0.0.beta.5)
   database_cleaner
   delayed_job (= 2.1.2)
   delayed_job_mongoid (= 1.0.2)
@@ -281,7 +273,7 @@ DEPENDENCIES
   httparty (>= 0.6.1)
   inherited_resources (~> 1.1.2)
   launchy
-  locomotive_carrierwave!
+  locomotive_carrierwave (= 0.5.0.1.beta3)
   locomotive_jammit-s3
   locomotive_liquid (= 2.2.2)
   locomotive_mongoid_acts_as_tree (= 0.1.5.5)
@@ -289,7 +281,7 @@ DEPENDENCIES
   mocha!
   mongoid (~> 2.0.0.rc.7)
   pickle
-  rails (>= 3.0.4)
+  rails (>= 3.0.5)
   rmagick (= 2.12.2)
   rspec-rails (= 2.3.1)
   ruby-debug
