@@ -41,6 +41,10 @@ fr:
           reset: Remettre à zéro
       content_type:
         api_accounts: Comptes à notifier
+      account:
+        edit:
+          password: Nouveau mot de passe
+          password_confirmation: Confirmation nouveau mot de passe
 
     hints:
       page:

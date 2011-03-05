@@ -38,6 +38,10 @@ en:
           reset: Reset site
       content_type:
         api_accounts: Notified Accounts
+      account:
+        edit:
+          password: New password
+          password_confirmation: New password confirmation
 
     hints:
       page:

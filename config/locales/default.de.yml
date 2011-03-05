@@ -75,8 +75,8 @@ de:
         email: Email
         name: Name
         language: Sprache
-        new_password: "Neues Passwort"
-        new_password_confirmation: "Bestätigung des neuen Passworts"
+        password: Passwort
+        password_confirmation: Bestätigung des Passworts
       snippet:
         body: Code
         slug: Slug

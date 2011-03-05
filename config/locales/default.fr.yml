@@ -79,8 +79,8 @@ fr:
         email: E-mail
         name: Nom
         language: Langue
-        password: "Nouveau mot de passe"
-        password_confirmation: "Confirmation nouveau mot de passe"
+        password: Mot de passe
+        password_confirmation: Confirmation mot de passe
       snippet:
         body: Code
         slug: Raccourci

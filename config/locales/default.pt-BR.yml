@@ -79,8 +79,8 @@ pt-BR:
         email: Email
         name: Nome
         language: Lingugaem
-        new_password: "Nova senha"
-        new_password_confirmation: "Confirmação da nova senha"
+        password: Senha
+        password_confirmation: Confirmação da senha
       snippet:
         body: Código
         slug: slug
