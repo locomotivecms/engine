@@ -1,7 +1,15 @@
 module Admin::AssetsHelper
 
   def vignette_tag(asset)
-    image_tag(asset.vignette_url)
+    if asset.image?
+      html, css = image_tag(asset.vignette_url), 'image'
+    else
+      css = "icon #{asset.content_type}"
+      html = asset.content_type.to_s == 'other' ? truncate(asset.extname, :length => 3) : asset.content_type
+      html = '?' if html.blank?
+    end
+
+    content_tag(:div, content_tag(:div, html, :class => 'inside'), :class => css)
   end
 
   def image_dimensions_and_size(asset)

@@ -32,6 +32,11 @@ class Asset
     end
   end
 
+  def extname
+    return nil unless self.source?
+    File.extname(self.source_filename).gsub(/^\./, '')
+  end
+
   def site_id # needed by the uploader of custom fields
     self.collection.site_id
   end

@@ -50,7 +50,8 @@
         border-top: 1px solid rgba(0, 0, 0, 0.3);
         padding: 0px 16px 0px 16px;
         height: 26px;
-        line-height: 22px; }
+        line-height: 22px;
+        outline: none; }
         #submenu > ul > li > a span {
           color: #fff;
           font-size: 0.8em;
@@ -115,7 +116,8 @@
       height: 22px;
       line-height: 20px;
       text-decoration: none;
-      border: 1px solid transparent; }
+      border: 1px solid transparent;
+      outline: none; }
       #submenu > .action a em {
         display: inline-block;
         position: relative;

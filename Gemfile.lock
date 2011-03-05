@@ -5,6 +5,12 @@ GIT
     mocha (0.9.12.20110213002255)
 
 PATH
+  remote: ../gems/carrierwave
+  specs:
+    locomotive_carrierwave (0.5.0.1.beta3)
+      activesupport (~> 3.0)
+
+PATH
   remote: ../gems/custom_fields
   specs:
     custom_fields (1.0.0.beta.4)
@@ -118,10 +124,10 @@ GEM
     growl-glue (1.0.7)
     haml (3.0.25)
     has_scope (0.5.0)
-    heroku (1.18.0)
-      json (~> 1.5.1)
-      launchy (~> 0.3.2)
-      rest-client (>= 1.4.0, < 1.7.0)
+    heroku (1.6.3)
+      json (>= 1.1.0)
+      launchy (>= 0.3.2)
+      rest-client (>= 1.2.0, < 2.0.0)
     httparty (0.7.4)
       crack (= 0.1.8)
     i18n (0.5.0)
@@ -134,14 +140,12 @@ GEM
     json (1.5.1)
     json_pure (1.4.6)
     kgio (2.3.2)
-    launchy (0.3.7)
+    launchy (0.4.0)
       configuration (>= 0.0.5)
       rake (>= 0.8.1)
     linecache (0.43)
     linecache19 (0.5.11)
       ruby_core_source (>= 0.1.4)
-    locomotive_carrierwave (0.5.0.1.beta2)
-      activesupport (~> 3.0)
     locomotive_jammit-s3 (0.5.4.4)
       jammit (>= 0.5.4)
       mimemagic (>= 0.1.7)
@@ -277,7 +281,7 @@ DEPENDENCIES
   httparty (>= 0.6.1)
   inherited_resources (~> 1.1.2)
   launchy
-  locomotive_carrierwave (= 0.5.0.1.beta2)
+  locomotive_carrierwave!
   locomotive_jammit-s3
   locomotive_liquid (= 2.2.2)
   locomotive_mongoid_acts_as_tree (= 0.1.5.5)
