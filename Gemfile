@@ -21,7 +21,7 @@ gem 'rmagick', '2.12.2'
 gem 'locomotive_carrierwave', '0.5.0.1.beta2', :require => 'carrierwave'
 # gem 'carrierwave', :path => '/Users/didier/Desktop/carrierwave'
 
-gem 'custom_fields', :path => '~/dev/custom_fields' # :git => 'git://github.com/pollingj/custom_fields.git'
+gem 'custom_fields', :git => 'git://github.com/pollingj/custom_fields.git'
 gem 'fog', '0.3.7'
 gem 'mimetype-fu'
 gem 'actionmailer-with-request'
