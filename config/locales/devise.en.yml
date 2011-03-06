@@ -12,6 +12,7 @@ en:
         unconfirmed: 'You have to confirm your account before continuing.'
         locked: 'Your account is locked.'
         invalid: 'Invalid email or password.'
+        no_membership: 'Your account is not a member of this site, please contact the site administrator to gain access.'
         invalid_token: 'Invalid authentication token.'
         timeout: 'Your session expired, please sign in again to continue.'
         inactive: 'Your account was not activated yet.'

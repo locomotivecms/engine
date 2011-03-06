@@ -37,7 +37,7 @@ Locomotive.configure do |config|
   # If you do not mind about importing theme without DelayedJob, disable it.
   config.delayed_job = false
 
-  # default locale (for now, only en, fr and pt-BR are supported)
+  # default locale (for now, only en, de, fr and pt-BR are supported)
   config.default_locale = :en
 
   # Configure the e-mail address which will be shown in the DeviseMailer, NotificationMailer, ...etc

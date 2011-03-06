@@ -1,0 +1,230 @@
+de:
+  errors:
+    # The default format use in full error messages.
+    format: "%{attribute} %{message}"
+
+    # The values :model, :attribute and :value are always available for interpolation
+    # The value :count is available when applicable. Can be used for pluralization.
+    messages:
+      inclusion: "nicht in der Liste inbegriffen"
+      exclusion: "nicht verfügbar"
+      invalid: "ungültig"
+      confirmation: "ne concorde pas avec la confirmation"
+      accepted: "akzeptiert"
+      empty: "leer"
+      blank: "leer"
+      too_long: "zu lang (nicht mehr als %{count} Zeichen)"
+      too_short: "zu kurz (mindestens %{count} Zeichen)"
+      wrong_length: "ungültige Länge (muss %{count} Zeichen lang sein)"
+      taken: "nicht verfügbar"
+      not_a_number: "ist keine Zahl"
+      greater_than: "größer als %{count}"
+      greater_than_or_equal_to: "gleich oder größer als %{count}"
+      equal_to: "gleich %{count}"
+      less_than: "weniger als %{count}"
+      less_than_or_equal_to: "gleich oder weniger als %{count}"
+      odd: "ungerade"
+      even: "gerade"
+
+      domain_taken: "%{value} wird bereits verwendet"
+      invalid_domain: "%{value} ist ungültig"
+      needs_admin_account: "Ein Admin-Account wird mindestens benötigt"
+      protected_page: "Du kannst keine Index oder 404 Seiten löschen"
+      extname_changed: "Die neue Datei hat nicht die originale Dateiendung"
+      array_too_short: "ist zu kurz (minimale Element-Zahl ist %{count})"
+      liquid_syntax: "Liquid Syntax-Fehler, bitte überprüfe die Syntax"
+      liquid_extend: "Die Seite verwendet eine Vorlage, die gar nicht existiert"
+      invalid_theme_file: "darf nicht leer sein oder ist keine zip-Datei"
+
+  attributes:
+    defaults:
+      pages:
+        index:
+          title: "Startseite"
+          body: "Inhalt der Startseite"
+        "404":
+          title: "Seite nicht gefunden"
+          body: "Inhalt der 404 Seite"
+        other:
+          body: "Inhalte kommen hier rein"
+
+  activemodel:
+    attributes:
+      page:
+        title: Titel
+        parent: Parent
+        slug: Slug
+        templatized: Templatized
+        published: Veröffentlicht
+        cache_strategy: Cache
+      content_type:
+        name: Name
+        description: Beschreibung
+        slug: Slug
+        order_by: Sortieren nach
+        highlighted_field_name: Hervorgehobener Feld-Name
+        group_by_field_name: Gruppierung nach Feld-Name
+        api_enabled: API aktiviert
+      asset_collection:
+        name: Name
+        slug: Slug
+      asset:
+        name: Name
+        source: Quelle
+      account:
+        email: Email
+        name: Name
+        language: Sprache
+        new_password: "Neues Passwort"
+        new_password_confirmation: "Bestätigung des neuen Passworts"
+      snippet:
+        body: Code
+        slug: Slug
+        name: Name
+      theme_asset:
+        content_type: Inhalts-Typ
+      site:
+        name: Name der Webseite
+        domain_name: Domain
+        subdomain: Subdomain
+        restricted_access: Aktiviert ?
+        access_login: Benutzernamen
+        access_password: "Passwort"
+
+  pagination:
+    previous: "&laquo; Zurück"
+    next: "Vor &raquo;"
+  date:
+    formats:
+      default: "%d/%m/%Y"
+      short: "%e %b"
+      long: "%e %B %Y"
+      long_ordinal: "%e %B %Y"
+      only_day: "%e"
+
+    day_names: [Sonntag, Montag, Dienstag, Mittwoch, Donnerstag, Freitag, Samstag]
+    abbr_day_names: [So, Mo, Di, Mi, Do, Fr, Sa]
+    month_names: [~, Januar, Februar, März, April, Mai, Juni, Juli, August, September, Oktober, November, Dezember]
+    abbr_month_names: [~, Jan., Feb., Mär., Apr., Mai, Juni, Juli, Aug., Sept., Okt., Nov., Dez.]
+    order: [ :day, :month, :year ]
+
+  pagination:
+    previous: "&laquo; Zurück"
+    next: "Vor &raquo;"
+
+  time:
+    formats:
+      default: "%d %B %Y %H:%M"
+      time: "%H:%M"
+      short: "%d %b %H:%M"
+      long: "%A %d %B %Y %H:%M:%S %Z"
+      long_ordinal: "%A %d %B %Y %H:%M:%S %Z"
+      only_second: "%S"
+    am: 'vormittags'
+    pm: 'nachmittags'
+
+  datetime:
+    distance_in_words:
+      half_a_minute: 'eine halbe Minute'
+      less_than_x_seconds:
+        one: 'weniger als eine Sekunde'
+        other: 'weniger als %{count} Sekunden'
+      x_seconds:
+        one: 'eine Sekunde'
+        other: '%{count} Sekunden'
+      less_than_x_minutes:
+        one: 'weniger als eine Minute'
+        other: 'weniger als %{count} Minuten'
+      x_minutes:
+        one: 'eine Minute'
+        other: '%{count} Minuten'
+      about_x_hours:
+        one: 'etwa eine Stunde'
+        other: 'etwa %{count} Stunden'
+      x_days:
+        one: 'ein Tag'
+        other: '%{count} Tage'
+      about_x_months:
+        one: 'etwa ein Monat'
+        other: 'etwa %{count} Monate'
+      x_months:
+        one: 'ein Monat'
+        other: '%{count} Monate'
+      almost_x_years:
+        one: 'fast ein Jahr'
+        other: 'fast %{count} Jahre'
+      about_x_years:
+        one: 'etwa ein Jahr'
+        other: 'etwa %{count} Jahre'
+      over_x_years:
+        one: 'mehr als ein Jahr'
+        other: 'mehr als %{count} Jahre'
+    prompts:
+      second: "Sekunden"
+      minute: "Minuten"
+      hour: "Stunden"
+      day: "Tag"
+      month: "Monat"
+      year: "Jahr"
+      
+  number:
+    format:
+      precision: 2
+      separator: ','
+      delimiter: '.'
+      significant: false
+      strip_insignificant_zeros: false
+    currency:
+      format:
+        unit: '€'
+        format: '%n%u'
+        separator: ","
+        delimiter: ""
+        precision: 2
+        significant: false
+        strip_insignificant_zeros: false
+    percentage:
+      format:
+        delimiter: ""
+    precision:
+      format:
+        delimiter: ""
+    human:
+      format:
+        delimiter: ""
+        precision: 1
+        significant: true
+        strip_insignificant_zeros: true
+      storage_units:
+        # Storage units output formatting.
+        # %u is the storage unit, %n is the number (default: 2 MB)
+        format: "%n %u"
+        units:
+          byte:
+            one: "Byte"
+            other: "Bytes"
+          kb: "KB"
+          mb: "MB"
+          gb: "GB"
+          tb: "TB"
+      decimal_units:
+        format: "%n %u"
+        units:
+          unit: ""
+          thousand: Tausend
+          million: Millionen
+          billion:
+            one: Milliarde
+            others: Milliarden
+          trillion: Billionen
+          quadrillion:
+            one: Billiarde
+            others: Billiarden
+
+  support:
+    array:
+      sentence_connector: 'und'
+      skip_last_comma: true
+      words_connector: ", "
+      two_words_connector: " und "
+      last_word_connector: " und "

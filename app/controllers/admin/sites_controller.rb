@@ -13,7 +13,7 @@ module Admin
     end
 
     def destroy
-      @site = current_admin.sites.detect { |s| s._id == params[:id] }
+      @site = current_admin.sites.find(params[:id])
 
       if @site != current_site
         @site.destroy

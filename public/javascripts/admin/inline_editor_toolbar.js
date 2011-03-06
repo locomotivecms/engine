@@ -158,6 +158,14 @@ var InlineEditorToolbar = {
       'back': 'edition done',
       'saving': 'saving'
     },
+    'de': {
+      'home': 'admin',
+      'edit': 'bearbeiten',
+      'save': 'speichern',
+      'cancel': 'schließen',
+      'back': 'bearbeiten abschließen',
+      'saving': 'am Speichern'
+    },    
     'fr': {
       'home': 'admin',
       'edit': 'editer',
