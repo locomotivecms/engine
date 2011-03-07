@@ -1,5 +1,15 @@
 /* ___ rounded ___ */
 
+@mixin clearfix {
+  &:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+  };
+}
+
 @mixin rounded($side, $radius: 10px, $important: false) {
   @if $important == true {
     $important: !important; }

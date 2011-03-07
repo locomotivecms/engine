@@ -34,7 +34,7 @@ module Admin
       rescue Exception => e
         logger.error "[Locomotive import] #{e.message} / #{e.backtrace}"
 
-        @error = t('errors.messages.invalid_theme_file')
+        @error = e.message
         flash[:alert] = t('flash.admin.imports.create.alert')
 
         render 'new'

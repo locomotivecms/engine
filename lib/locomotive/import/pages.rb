@@ -91,13 +91,10 @@ module Locomotive
 
       def build_parent_template(template)
         # just check if the template contains the extends keyword
-        fullpath = template.scan(/\{% extends (\w+) %\}/).flatten.first
+        fullpath = template.scan(/\{% extends \'?([\w|\/]+)\'? %\}/).flatten.first
 
         if fullpath # inheritance detected
-          fullpath.gsub!("'", '')
-
           return if fullpath == 'parent'
-
           self.add_page(fullpath)
         end
       end

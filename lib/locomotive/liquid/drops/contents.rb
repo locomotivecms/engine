@@ -28,6 +28,18 @@ module Locomotive
         def each(&block)
           self.collection.each(&block)
         end
+        
+        def size
+          self.collection.size
+        end
+       
+        def empty?
+          self.collection.empty?
+        end
+       
+        def any?
+          self.collection.any?
+        end
 
         def api
           { 'create' => @context.registers[:controller].send('admin_api_contents_url', @content_type.slug) }

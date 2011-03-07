@@ -9,7 +9,7 @@ module Locomotive
           def initialize(tag_name, markup, tokens, context)
             if markup =~ Syntax
               @slug = $1.gsub('\'', '')
-              @options = {}
+              @options = { :assignable => true }
               markup.scan(::Liquid::TagAttributes) { |key, value| @options[key.to_sym] = value.gsub(/^'/, '').gsub(/'$/, '') }
             else
               raise ::Liquid::SyntaxError.new("Syntax Error in 'editable_xxx' - Valid syntax: editable_xxx <slug>(, <options>)")
@@ -26,7 +26,9 @@ module Locomotive
                 :block => @context[:current_block].try(:name),
                 :slug => @slug,
                 :hint => @options[:hint],
-                :default_content => @nodelist.first.to_s,
+                :default_attribute => @options[:default],
+                :default_content => default_content,
+                :assignable => @options[:assignable],
                 :disabled => false,
                 :from_parent => false
               }, document_type)
@@ -37,11 +39,11 @@ module Locomotive
             current_page = context.registers[:page]
 
             element = current_page.find_editable_element(context['block'].try(:name), @slug)
-
-            if element
+            
+            if element.present?
               render_element(context, element)
             else
-              Locomotive.logger "[editable element] missing element #{context[:block].name} / #{@slug}"
+              Locomotive.logger "[editable element] missing element `#{context['block'].try(:name)}` / #{@slug} on #{current_page.fullpath}"
               ''
             end
           end
@@ -54,6 +56,15 @@ module Locomotive
 
           def document_type
             raise 'FIXME: has to be overidden'
+          end
+          
+          
+          def default_content
+            if @options[:default].present?
+              @context[:page].send(@options[:default])
+            else
+              @nodelist.first.to_s
+            end
           end
 
         end

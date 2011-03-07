@@ -62,17 +62,23 @@ module Models
 
           def merge_editable_elements_from_page(source)
             source.editable_elements.each do |el|
-              next if el.disabled?
+              next if el.disabled? or !el.assignable?
 
               existing_el = self.find_editable_element(el.block, el.slug)
 
               if existing_el.nil? # new one from parents
                 new_attributes = el.attributes.merge(:from_parent => true)
-                new_attributes[:default_content] = el.content
-
+                if new_attributes['default_attribute'].present?
+                  new_attributes['default_content'] = self.send(new_attributes['default_attribute']) || el.content
+                else
+                  new_attributes['default_content'] = el.content
+                end
+                
                 self.editable_elements.build(new_attributes, el.class)
-              else
+              elsif existing_el.default_attribute.nil?
                 existing_el.attributes = { :disabled => false, :default_content => el.content }
+              else
+                existing_el.attributes = { :disabled => false }
               end
             end
           end

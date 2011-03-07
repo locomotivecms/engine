@@ -8,7 +8,8 @@
   position: relative;
   top: -1px;
   z-index: 998;
-  height: 60px;
+  min-height: 60px;
+  width: 950px;
   margin: 0px;
   padding: 0 8px;
   background: transparent url(/images/admin/menu/shadow.png) repeat-y 0 0;
@@ -24,12 +25,24 @@
     border-top-right-radius: 3px ;
     -moz-border-radius-top-right: 3px ;
     -webkit-border-top-right-radius: 3px ;
-    height: 60px; }
+    width: 826px;
+    padding-right: 124px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    min-height: 44px; }
+    #submenu > ul:after {
+      content: ".";
+      display: block;
+      height: 0;
+      clear: both;
+      visibility: hidden; }
     #submenu > ul a {
       text-decoration: none; }
     #submenu > ul > li {
-      margin: 15px 7px 0 8px;
-      float: left; }
+      margin: 7px 7px 7px 8px;
+      height: 30px;
+      float: left;
+      position: relative; }
       #submenu > ul > li.hoverable > a span em {
         display: inline-block;
         background: transparent url(/images/admin/menu/icons.png) no-repeat 0 -16px;
@@ -101,10 +114,9 @@
     position: absolute;
     top: 0px;
     right: 22px;
-    height: 60px;
+    height: 100%;
     padding-left: 20px;
-    z-index: 1;
-    background: transparent url(/images/admin/menu/submenu/action-border.png) repeat-y left 0; }
+    z-index: 1; }
     #submenu > .action a {
       margin-top: 18px;
       display: inline-block;
@@ -136,7 +148,7 @@
         border-color: black; }
   #submenu .popup {
     position: absolute;
-    top: 42px;
+    top: 26px;
     min-width: 250px;
     background: #fff;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
@@ -311,7 +323,7 @@ body.contents #submenu > ul {
       background: -moz-linear-gradient(0% 100% 90deg, #212229, #1e1e24);
       background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#1e1e24), to(#212229)); }
 body.contents #submenu > .action {
-  background-image: url(/images/admin/menu/submenu/black-action-border.png) !important; }
+  background: transparent url(/images/admin/menu/submenu/action-border.png) repeat-y left 0; }
 
 #menu li.assets a em {
   position: relative;
