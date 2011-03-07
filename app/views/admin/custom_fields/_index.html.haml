@@ -1,61 +1,48 @@
 - collection_name = "#{collection_name.singularize}_custom_fields"
 - custom_fields = form.object.send(collection_name.to_sym)
 - ordered_custom_fields = form.object.send(:"ordered_#{collection_name}")
+- field_klass = "#{form.object.class.name}#{collection_name.classify}".gsub(/CustomField$/, 'Field').constantize
 
 = form.foldable_inputs :name => :custom_fields, :class => 'editable-list fields' do
-  - ordered_custom_fields.each do |field|
-    = form.fields_for collection_name.to_sym, field, :child_index => field._index do |g|
-      %li{ :class => "item added #{'new' if form.object.new_record?} #{'error' unless field.errors.empty?}"}
-        %span.handle
-          = image_tag 'admin/form/icons/drag.png'
 
-        = g.hidden_field :position, :class => 'position'
-
-        = g.hidden_field :_alias, :class => 'alias'
-
-        = g.hidden_field :hint, :class => 'hint'
-
-        = g.hidden_field :text_formatting, :class => 'text-formatting'
-
-        = g.text_field :label, :class => 'label'
-
-        &mdash;
-
-        %em= t("admin.custom_fields.kind.#{field.kind.downcase}")
-
-        = g.select :kind, options_for_field_kind
-
-        &nbsp;
-
-        %span.actions
-          = link_to image_tag('admin/form/pen.png'), '#edit-custom-field', :class => 'edit first'
-          = link_to image_tag('admin/form/icons/trash.png'), '#', :class => 'remove', :confirm => t('admin.messages.confirm')
-
-  = form.fields_for collection_name.to_sym, custom_fields.build(:label => 'field name', :_alias => ''), :child_index => '-1' do |g|
-    %li{ :class => 'item template' }
+  %script{ :type => 'text/x-mustache-template', :name => 'template', :'data-base-input-name' => "#{form.object.class.name.underscore}[#{collection_name}_attributes]" }
+    %li{ :class => "item {{behaviour_flag}} {{new_record_flag}} {{errors_flag}} {{required_flag}}" }
       %span.handle
         = image_tag 'admin/form/icons/drag.png'
 
-      = g.hidden_field :position, :class => 'position'
+      {{#if_existing_record}}
+      %input{ :name => '{{base_name}}[id]', :value => '{{{id}}}', :type => 'hidden', :'data-field' => 'id' }
+      %input{ :name => '{{base_name}}[_destroy]', :value => '0', :type => 'hidden', :'data-field' => '_destroy' }
+      {{/if_existing_record}}
 
-      = g.hidden_field :_alias, :class => 'alias'
+      %input{ :name => '{{base_name}}[position]', :value => '{{{position}}}', :type => 'hidden', :'data-field' => 'position' }
 
-      = g.hidden_field :hint, :class => 'hint'
+      %input{ :name => '{{base_name}}[_alias]', :value => '{{{_alias}}}', :type => 'hidden', :'data-field' => '_alias' }
 
-      = g.hidden_field :text_formatting, :class => 'text-formatting'
+      %input{ :name => '{{base_name}}[hint]', :value => '{{{hint}}}', :type => 'hidden', :'data-field' => 'hint' }
 
-      = g.text_field :label, :class => 'string label void'
+      %input{ :name => '{{base_name}}[text_formatting]', :value => '{{{text_formatting}}}', :type => 'hidden', :'data-field' => 'text_formatting' }
+
+      %input{ :name => '{{base_name}}[label]', :value => '{{{label}}}', :type => 'text', :'data-field' => 'label' }
 
       &mdash;
 
-      %em
+      %em {{kind_name}}
 
-      = g.select :kind, options_for_field_kind
+      = select_tag '{{base_name}}[kind]', options_for_select(options_for_field_kind), :'data-field' => 'kind'
 
       &nbsp;
+
+      %input{ :name => '{{base_name}}[required]', :value => '0', :type => 'hidden', :'data-field' => 'hidden_required' }
+      %input{ :name => '{{base_name}}[required]', :'{{required_checked}}' => '{{required_checked}}', :value => '1', :type => 'checkbox', :'data-field' => 'required', :id => '{{base_dom_id}}_required' }
+
+      %label{ :for => "{{{base_dom_id}}}_required" }= t('.is_required')
 
       %span.actions
         = link_to image_tag('admin/form/pen.png'), '#edit-custom-field', :class => 'edit first'
         = link_to image_tag('admin/form/icons/trash.png'), '#', :class => 'remove', :confirm => t('admin.messages.confirm')
         %button{ :class => 'button light add', :type => 'button' }
           %span!= t('admin.buttons.new_item')
+
+  %script{ :type => 'text/javascript', :name => 'data' }
+    != collection_to_js(ordered_custom_fields, :template => field_klass.new(:label => t('.default_label'), :_alias => '', :kind => 'string').to_hash)

@@ -6,6 +6,7 @@ describe Page do
 
   before(:each) do
     Site.any_instance.stubs(:create_default_pages!).returns(true)
+    Page.any_instance.stubs(:set_default_raw_template).returns(true)
   end
 
   it 'should have a valid factory' do
@@ -205,19 +206,19 @@ describe Page do
     end
 
   end
-  
+
   describe 'listed extension' do
-    
+
     it 'is considered as a visible page' do
       @page = Factory.build(:page, :site => nil, :content_type_id => 42)
       @page.listed?.should be_true
     end
-        
+
     it 'is not considered as a visible page' do
       @page = Factory.build(:page, :site => nil, :listed => false, :content_type_id => 42)
       @page.listed?.should be_false
     end
-    
+
   end
 
   describe 'redirect extension' do

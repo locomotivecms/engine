@@ -12,13 +12,11 @@ module Admin
     end
 
     def create
-      @content = @content_type.contents.create(params[:content])
-      
-      respond_with(@content, :location => edit_admin_content_url(@content_type.slug, @content))
+      create! { edit_admin_content_url(@content_type.slug, @content.id) }
     end
 
     def update
-      update! { edit_admin_content_url(@content_type.slug, @content) }
+      update! { edit_admin_content_url(@content_type.slug, @content.id) }
     end
 
     def sort

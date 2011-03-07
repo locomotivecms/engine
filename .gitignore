@@ -27,6 +27,6 @@ tmp/*
 .rvmrc
 Capfile
 config/deploy.rb
-perf/test.rb
+perf/*.rb
 gem_graph.png
 sites/

@@ -12,17 +12,17 @@ class AssetUploader < CarrierWave::Uploader::Base
     "#{Rails.root}/tmp/uploads"
   end
 
-  version :thumb do
+  version :thumb, :if => :image? do
     process :resize_to_fill => [50, 50]
     process :convert => 'png'
   end
 
-  version :medium do
+  version :medium, :if => :image? do
     process :resize_to_fill => [80, 80]
     process :convert => 'png'
   end
 
-  version :preview do
+  version :preview, :if => :image? do
     process :resize_to_fit => [880, 1100]
     process :convert => 'png'
   end
@@ -56,6 +56,10 @@ class AssetUploader < CarrierWave::Uploader::Base
     if model.image?
       model.width, model.height = `identify -format "%wx%h" #{file.path}`.split(/x/).collect(&:to_i)
     end
+  end
+
+  def image?
+    model.image?
   end
 
   def self.content_types

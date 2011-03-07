@@ -2,6 +2,7 @@ fr:
   formtastic:
     titles:
       information: Informations générales
+      advanced_options: Options avancées
       meta: SEO Metadata
       code: Code
       raw_template: Gabarit
@@ -40,6 +41,10 @@ fr:
           reset: Remettre à zéro
       content_type:
         api_accounts: Comptes à notifier
+      account:
+        edit:
+          password: Nouveau mot de passe
+          password_confirmation: Confirmation nouveau mot de passe
 
     hints:
       page:
@@ -58,6 +63,11 @@ fr:
         plain_text_name: "Vous n'avez pas besoin de mettre l'extension du fichier (.css ou .js)"
         edit:
           source: "Vous pouvez le remplacer par un fichier avec la meme extension."
+      asset:
+        new:
+          source: "Tous les types de fichier sont acceptés."
+        edit:
+          source: "Le fichier actuel est accessible ici %{url}"
       custom_fields:
         field:
           _alias: "Champ utilisable dans les templates liquid"
@@ -67,5 +77,6 @@ fr:
         samples: "Si activé, les contenus et les média seront aussi copiés lors de l'import"
         reset: "Si activé, toutes les données de votre site seront détruites avant l'import du nouveau site"
       content_type:
+        slug: Nom utilisé dans les templates liquid afin d'accéder aux enregistrements de ce modèle
         api_enabled: "Utilisé pour autoriser la création de nouvelles instances de l'extérieur (ex.: les messages dans un formulaire de contact)"
         api_accounts: "Un email de notification sera envoyé à chaque compte listé ci-dessus lors de la création d'une nouvelle instance"

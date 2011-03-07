@@ -56,6 +56,10 @@ module Locomotive
 
     # Devise
     Devise.mailer_sender = self.config.mailer_sender
+
+    # Load all the dynamic classes (custom fields)
+    ContentType.all.collect(&:fetch_content_klass)
+    AssetCollection.all.collect(&:fetch_asset_klass)
   end
 
   def self.logger(message)

@@ -14,11 +14,14 @@ class ContentType
 
   ## associations ##
   referenced_in :site
-  embeds_many :contents, :class_name => 'ContentInstance' do
+  embeds_many :contents, :class_name => 'ContentInstance', :validate => false do
     def visible
       @target.find_all { |c| c.visible? }
     end
   end
+
+  ## named scopes ##
+  scope :first_by_slug, lambda { |slug| where(:slug => slug) }
 
   ## indexes ##
   index [[:site_id, Mongo::ASCENDING], [:slug, Mongo::ASCENDING]]

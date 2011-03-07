@@ -18,10 +18,8 @@
 
   = f.foldable_inputs :name => :credentials do
     = f.input :email
-    = f.custom_input :password, :label => :new_password do
-      = f.password_field :password, :autocomplete => "off"
-    = f.custom_input :password_confirmation, :label => :new_password_confirmation do
-      = f.password_field :password_confirmation, :autocomplete => "off"
+    = f.input :password, :input_html => { :autocomplete => "off" }
+    = f.input :password_confirmation, :input_html => { :autocomplete => "off" }
 
   = f.foldable_inputs :name => :sites, :class => 'sites off' do
     - @account.sites.each do |site|

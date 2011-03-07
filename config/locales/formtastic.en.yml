@@ -2,6 +2,7 @@ en:
   formtastic:
     titles:
       information: General information
+      advanced_options: Advanced options
       meta: SEO Metadata
       code: Code
       raw_template: Template
@@ -37,6 +38,10 @@ en:
           reset: Reset site
       content_type:
         api_accounts: Notified Accounts
+      account:
+        edit:
+          password: New password
+          password_confirmation: New password confirmation
 
     hints:
       page:
@@ -55,6 +60,11 @@ en:
         slug: "You do not need to add the extension file (.css or .js)"
         edit:
           source: "You can replace it by a file of the same extension"
+      asset:
+        new:
+          source: "All file types are accepted."
+        edit:
+          source: "The current file is available here %{url}"
       custom_fields:
         field:
           _alias: "Property available in liquid templates"

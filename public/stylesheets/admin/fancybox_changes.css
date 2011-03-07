@@ -45,7 +45,7 @@
   background-image: url("/images/admin/form/big_item-popup.png");
 }
 
-#fancybox-inner p { color:#8B8D9A; font-size:0.8em; }
+#fancybox-inner p { color: #8B8D9A; font-size: 0.8em; }
 
 /* ___ asset picker ___ */
 
@@ -63,6 +63,7 @@ div.asset-picker ul li .more { top: 8px; }
 /* ___ custom fields ___ */
 
 #edit-custom-field {
+  padding: 10px;
   width: 473px;
 }
 

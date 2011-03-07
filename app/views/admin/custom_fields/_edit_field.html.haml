@@ -7,4 +7,9 @@
         = g.inputs :name => :attributes do
           = g.input :_alias
           = g.input :hint
-          = g.input :text_formatting, :as => 'select', :collection => options_for_text_formatting, :include_blank => false
+          = g.input :text_formatting, :as => 'select', :collection => options_for_text_formatting, :include_blank => false, :wrapper_html => { :style => 'display: none' }
+
+  .popup-actions
+    %p
+      %button.button.light{ :type => 'submit' }
+        %span= t('admin.shared.form_actions.update')

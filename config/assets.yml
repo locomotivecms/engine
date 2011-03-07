@@ -19,12 +19,13 @@ javascripts:
     - public/javascripts/admin/plugins/growl.js
     - public/javascripts/admin/plugins/cookie.js
     - public/javascripts/admin/plugins/selectmenu.js
-    - public/javascripts/admin/locales/datepicker_de.js    
+    - public/javascripts/admin/locales/datepicker_de.js
     - public/javascripts/admin/locales/datepicker_fr.js
     - public/javascripts/admin/locales/datepicker_pt-BR.js
     - public/javascripts/admin/application.js
   custom_fields:
     - public/javascripts/admin/plugins/fancybox.js
+    - public/javascripts/admin/plugins/mustache.js
     - public/javascripts/admin/custom_fields.js
   edit_custom_fields:
     - public/javascripts/admin/plugins/tiny_mce/tinymce.js
@@ -33,6 +34,7 @@ javascripts:
     - public/javascripts/admin/custom_fields/category.js
   asset_collections:
     - public/javascripts/admin/plugins/fancybox.js
+    - public/javascripts/admin/plugins/mustache.js
     - public/javascripts/admin/custom_fields.js
     - public/javascripts/admin/asset_collections.js
   assets:

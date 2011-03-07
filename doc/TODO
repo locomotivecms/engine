@@ -1,27 +1,21 @@
 BOARD:
 
-x pull requests #31 et #32
+- pull request #44
+- integrate new home
+- editable_elements: inheritable: false (Mattias) => seems to be fixed by Dirk's last pull request (#44)
 - duostack version
-- bugs
-  - editable_elements slug becomes nil
-  - uploading videos http://groups.google.com/group/carrierwave/browse_thread/thread/6e211d98f1ff4bc0/51717c2167695ca2?lnk=gst&q=version#51717c2167695ca2
-  - editable_elements not updated (doesn't use index anymore)
-  - custom_fields not deleted (doesn't use index anymore)
-- editable_elements: inheritable: false (Mattias)
 - 2 different sites on the same main domain (one in www, the other one in something else) (Raphael Costa)
+- seo section for the page form: seo title, seo keywords, seo description
 
 BACKLOG:
 
-
-- validation for custom fields
-- new custom field types:
-  - belongs_to => association
-
+- custom_fields:
+  - validation: regexp (pre-defined regexps ?)
+  - new type: belongs_to => association
 - inline editing (http://www.aloha-editor.com/wiki/index.php/Aloha_PHP_Example)
   - html view in the aloha popup
   - editable elements should wrap a tag: div, h1, ...etc (default span)
   - edit images (upload new ones, ...etc) => wait for aloha or send them an email ?
-
 - global regions: keyword in editable element (http://www.mongodb.org/display/DOCS/Updating)
 - write my first tutorial about locomotive
 - cucumber features for admin pages (in progress)
@@ -33,19 +27,18 @@ REFACTORING:
 
 BUGS:
 
-- custom fields: accepts_nested_attributes weird behaviour when creating new content type + adding random fields
-
 NICE TO HAVE:
 - export site
 - asset collections: custom resizing if image
 - super_finder
-- better icons for mime type
 - traffic statistics
 - asset picker (content instance)
 - page with regexp url ?
 - automatic update !
 - page not found (front) => if logged in, link to create the page
 - switch to list (theme assets / assets ?). delete all in once (with checkbox) or see details (updated_at, size, ...etc)
+- resizing images on the fly
+- code completion ? http://blog.quplo.com/2010/06/common-sense-code-completion/
 
 DONE:
 
@@ -201,3 +194,13 @@ x moving to mongoid 2.0.0 rc.6
   x check the theme uploader
   x release new version of CustomFields, ActsAsTree gems
 x add metadata to sites
+x pull requests #31 et #32
+x password / new_password
+x bugs
+  x custom_fields not deleted (doesn't use index anymore)
+  ? editable_elements slug becomes nil
+  x editable_elements not updated (doesn't use index anymore)
+  x uploading videos http://groups.google.com/group/carrierwave/browse_thread/thread/6e211d98f1ff4bc0/51717c2167695ca2?lnk=gst&q=version#51717c2167695ca2
+x custom fields: accepts_nested_attributes weird behaviour when creating new content type + adding random fields
+x better icons for mime type (css3)
+x validation for custom fields: required done

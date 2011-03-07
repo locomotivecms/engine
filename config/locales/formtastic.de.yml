@@ -37,6 +37,10 @@ de:
           reset: Webseite zurücksetzen
       content_type:
         api_accounts: Benachrichtigte Accounts
+      account:
+        edit:
+          password: "Neues Passwort"
+          password_confirmation: "Bestätigung des neuen Passworts"
 
     hints:
       page:

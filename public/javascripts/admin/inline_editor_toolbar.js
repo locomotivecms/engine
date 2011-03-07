@@ -54,14 +54,15 @@ var InlineEditorToolbar = {
 
   updateForm: function(jEvent, aEvent) {
     InlineEditorToolbar.element.find('li.save, li.cancel, li.sep:eq(1)').show();
-    InlineEditorToolbar.element.find('')
 
+    var content = aEvent.editable.getContents().replace(/^\s*/, "").replace(/\s*$/, "");
     var editableObj = $(aEvent.editable.obj[0]);
-    var index = editableObj.attr('data-element-index');
-    var input = InlineEditorToolbar.form.find('#editable-' + index);
+    var dataId = editableObj.attr('data-element-id');
+    var idInput = InlineEditorToolbar.form.find('#editable-id');
+    var contentInput = InlineEditorToolbar.form.find('#editable-content');
 
-    input.attr('name', input.attr('name').replace('_index', 'content'));
-    input.val(aEvent.editable.getContents().replace(/^\s*/, "").replace(/\s*$/, ""));
+    idInput.attr('name', 'page[editable_elements_attributes][0][id]').val(dataId);
+    contentInput.attr('name', 'page[editable_elements_attributes][0][content]').val(content);
 
     InlineEditorToolbar.show(true, false);
   },
@@ -89,10 +90,9 @@ var InlineEditorToolbar = {
     var editPageUrl = $('meta[name=edit-page-url]').attr('content');
     var nbElements = parseInt($('meta[name=page-elements-count]').attr('content'));
 
-    var formContentHTML = "<input type='hidden' name='_method' value='put' />";
-    for (var i = 0; i < nbElements; i++) {
-      formContentHTML += "<input class='auto' id='editable-" + i + "' type='hidden' name='page[editable_elements_attributes][" + i + "][_index]' value='' />";
-    }
+    var formContentHTML = "<input type='hidden' name='_method' value='put' />\
+      <input class='auto' id='editable-id' type='hidden' name='_id' value='' />\
+      <input class='auto' id='editable-content' type='hidden' name='_content' value='' />";
 
     $('body').prepend("<div id='page-toolbar'>\
       <ul>\
@@ -165,7 +165,7 @@ var InlineEditorToolbar = {
       'cancel': 'schließen',
       'back': 'bearbeiten abschließen',
       'saving': 'am Speichern'
-    },    
+    },
     'fr': {
       'home': 'admin',
       'edit': 'editer',
@@ -174,7 +174,7 @@ var InlineEditorToolbar = {
       'back': 'fin mode edition',
       'saving': 'sauvegarde en cours'
     },
-		'pt-BR': {
+    'pt-BR': {
       'home': 'admin',
       'edit': 'editar',
       'save': 'salvar',

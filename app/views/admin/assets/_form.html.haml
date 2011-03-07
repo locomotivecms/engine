@@ -4,7 +4,7 @@
 
 = f.inputs :name => :information do
   = f.input :name
-  = f.input :source
+  = f.input :source, :hint => preserve(t("formtastic.hints.asset.#{action_name}.source", :url => link_to(@asset.source_filename, @asset.source.url)))
 
 - unless @asset.custom_fields.blank?
   = render 'admin/custom_fields/custom_form', :form => f, :title => :other_fields, :parent => @asset_collection

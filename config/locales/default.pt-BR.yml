@@ -2,7 +2,7 @@ pt-BR:
   errors:
     # The default format use in full error messages.
     format: "%{attribute} %{message}"
-    
+
     messages:
       inclusion: "não está incluído na lista"
       exclusion: "não está disponível"
@@ -23,7 +23,7 @@ pt-BR:
       less_than_or_equal_to: "deve ser menor ou igual a %{count}"
       odd: "deve ser ímpar"
       even: "deve ser par"
-      
+
       domain_taken: "%{value} já está em uso."
       invalid_domain: "%{value} é inválido."
       needs_admin_account: "Uma conta de administrador é necessário pelo menos."
@@ -33,8 +33,8 @@ pt-BR:
       liquid_syntax: "Erro de sintaxe do Liquid, por favor verifique a sintaxe"
       liquid_extend: "A página extende um template que não existe."
       invalid_theme_file: "não pode ser vazio ou não é um arquivo zip"
-    
-    
+
+
   date:
     formats:
       default: "%d/%m/%Y"
@@ -50,9 +50,9 @@ pt-BR:
           title: "Página não encontrada"
           body: "Conteúdo da página de erro 404"
         other:
-          body: "Conteúdo vai aqui"
-  
-  activemodel:
+          body: "{% extends 'parent' %}"
+
+  mongoid:
     attributes:
       page:
         title: Título
@@ -79,8 +79,8 @@ pt-BR:
         email: Email
         name: Nome
         language: Lingugaem
-        new_password: "Nova senha"
-        new_password_confirmation: "Confirmação da nova senha"
+        password: Senha
+        password_confirmation: Confirmação da senha
       snippet:
         body: Código
         slug: slug
@@ -94,7 +94,7 @@ pt-BR:
         restricted_access: Restrito ?
         access_login: Login
         access_password: "senha"
-    
+
   pagination:
     previous: "&laquo; Anterior"
     next: "Próximo &raquo;"
@@ -106,15 +106,15 @@ pt-BR:
       long: "%e %B %Y"
       long_ordinal: "%e %B %Y"
       only_day: "%e"
-  
+
     day_names: [Domingo, Segunda, Terça, Quarta, Quinta, Sexta, Sábado]
     abbr_day_names: [Dom, Seg, Ter, Qua, Qui, Sex, Sáb]
-    
+
     month_names: [~, Janeiro, Fevereiro, Março, Abril, Maio, Junho, Julho, Agosto, Setembro, Outubro, Novembro, Dezembro]
     abbr_month_names: [~, Jan, Fev, Mar, Abr, Mai, Jun, Jul, Ago, Set, Out, Nov, Dez]
     order: [ :day, :month, :year ]
-    
-    
+
+
   time:
     formats:
       default: "%d %B %Y %H:%M"
@@ -125,54 +125,54 @@ pt-BR:
       only_second: "%S"
     am: 'am'
     pm: 'pm'
-    
+
   datetime:
     distance_in_words:
       half_a_minute: 'meio minuto'
       less_than_x_seconds:
         one: 'menos de 1 segundo'
         other: 'menos de %{count} segundos'
-    
+
       x_seconds:
         one: '1 segundo'
         other: '%{count} segundos'
-    
+
       less_than_x_minutes:
         one: 'menos de um minuto'
         other: 'menos de %{count} minutos'
-    
+
       x_minutes:
         one: '1 minuto'
         other: '%{count} minutos'
-    
+
       about_x_hours:
         one: 'aproximadamente 1 hora'
         other: 'aproximadamente %{count} horas'
-    
+
       x_days:
         one: '1 dia'
         other: '%{count} dias'
-    
+
       about_x_months:
         one: 'aproximadamente 1 mês'
         other: 'aproximadamente %{count} meses'
-    
+
       x_months:
         one: '1 mês'
         other: '%{count} meses'
-    
+
       about_x_years:
         one: 'aproximadamente 1 ano'
         other: 'aproximadamente %{count} anos'
-    
+
       over_x_years:
         one: 'mais de 1 ano'
         other: 'mais de %{count} anos'
-    
+
       almost_x_years:
         one: 'quase 1 ano'
         other: 'quase %{count} anos'
-    
+
     prompts:
       year:   "Ano"
       month:  "Mês"
@@ -180,8 +180,8 @@ pt-BR:
       hour:   "Hora"
       minute: "Minuto"
       second: "Segundos"
-      
-      
+
+
   number:
     format:
       precision: 3
@@ -203,7 +203,7 @@ pt-BR:
           mb: 'Mb'
           gb: 'Gb'
           tb: 'Tb'
-          
+
   support:
     array:
       sentence_connector: ' e '
@@ -211,4 +211,3 @@ pt-BR:
       words_connector: ", "
       two_words_connector: " e "
       last_word_connector: " e "
-      

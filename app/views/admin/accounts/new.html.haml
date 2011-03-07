@@ -8,15 +8,11 @@
 = semantic_form_for @account, :url => admin_accounts_url do |f|
 
   = f.foldable_inputs :name => :information do
-    = f.input :name, :required => false
+    = f.input :name
 
   = f.foldable_inputs :name => :credentials do
-    = f.input :email, :required => false
-
-    = f.custom_input :password, :label => :new_password do
-      = f.password_field :password
-
-    = f.custom_input :password_confirmation, :label => :new_password_confirmation do
-      = f.password_field :password_confirmation
+    = f.input :email
+    = f.input :password, :input_html => { :autocomplete => "off" }
+    = f.input :password_confirmation, :input_html => { :autocomplete => "off" }
 
   = render 'admin/shared/form_actions', :back_url => edit_admin_current_site_url, :button_label => :create

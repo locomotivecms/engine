@@ -37,6 +37,10 @@ pt-BR:
           reset: Reiniciar site
       content_type:
         api_accounts: Contas notificadas
+      account:
+        edit:
+          password: Nova senha
+          password_confirmation: Confirmação da nova senha
 
     hints:
       page:
