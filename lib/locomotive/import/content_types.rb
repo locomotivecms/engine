@@ -28,6 +28,10 @@ module Locomotive
 
           site.reload
         end
+
+        # invalidate the cache of the dynamic classes (custom fields)
+        ContentType.all.collect(&:invalidate_content_klass)
+        AssetCollection.all.collect(&:invalidate_asset_klass)
       end
 
       protected
