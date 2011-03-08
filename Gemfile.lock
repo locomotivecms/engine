@@ -77,7 +77,7 @@ GEM
     cucumber-rails (0.3.2)
       cucumber (>= 0.8.0)
     culerity (0.2.15)
-    custom_fields (1.0.0.beta.5)
+    custom_fields (1.0.0.beta.6)
       activesupport (>= 3.0.4)
       locomotive_carrierwave
       mongoid (~> 2.0.0.rc.7)
@@ -264,7 +264,7 @@ DEPENDENCIES
   capybara
   cucumber (= 0.8.5)
   cucumber-rails
-  custom_fields (= 1.0.0.beta.5)
+  custom_fields (= 1.0.0.beta.6)
   database_cleaner
   delayed_job (= 2.1.4)
   delayed_job_mongoid (= 1.0.2)
