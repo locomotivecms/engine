@@ -11,7 +11,6 @@ module Admin
 
     def show
       @pages = current_site.pages.published
-      @host = request.host
     end
 
   end

@@ -2,7 +2,7 @@ xml.instruct!
 xml.urlset "xmlns" => "http://www.sitemaps.org/schemas/sitemap/0.9" do
 
   xml.url do
-    xml.loc "http://#{@host}"
+    xml.loc "http://#{request.host}#{":#{request.port}" if request.port != 80}"
     xml.priority 1.0
   end
 
@@ -12,15 +12,15 @@ xml.urlset "xmlns" => "http://www.sitemaps.org/schemas/sitemap/0.9" do
 
         page.content_type.contents.visible.each do |c|
           xml.url do
-            xml.loc page_main_url(page, c)
-            xml.lastmod page.updated_at
+            xml.loc page_main_url(page, { :content => c, :host => true })
+            xml.lastmod c.updated_at.to_date.to_s('%Y-%m-%d')
             xml.priority 0.9
           end
         end
       else
         xml.url do
-          xml.loc page_main_url(page)
-          xml.lastmod page.updated_at
+          xml.loc page_main_url(page, { :host => true })
+          xml.lastmod page.updated_at.to_date.to_s('%Y-%m-%d')
           xml.priority 0.9
         end
       end
