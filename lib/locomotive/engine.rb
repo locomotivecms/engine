@@ -16,7 +16,7 @@ require 'actionmailer_with_request'
 require 'heroku'
 require 'httparty'
 require 'redcloth'
-#require 'delayed_job_mongoid'
+require 'delayed_job_mongoid'
 require 'zip/zipfilesystem'
 require 'jammit-s3'
 

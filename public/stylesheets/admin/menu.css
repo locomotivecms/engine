@@ -8,8 +8,7 @@
   position: relative;
   top: -1px;
   z-index: 998;
-  min-height: 60px;
-  width: 950px;
+  height: 60px;
   margin: 0px;
   padding: 0 8px;
   background: transparent url(/images/admin/menu/shadow.png) repeat-y 0 0;
@@ -25,24 +24,12 @@
     border-top-right-radius: 3px ;
     -moz-border-radius-top-right: 3px ;
     -webkit-border-top-right-radius: 3px ;
-    width: 826px;
-    padding-right: 124px;
-    padding-top: 8px;
-    padding-bottom: 8px;
-    min-height: 44px; }
-    #submenu > ul:after {
-      content: ".";
-      display: block;
-      height: 0;
-      clear: both;
-      visibility: hidden; }
+    height: 60px; }
     #submenu > ul a {
       text-decoration: none; }
     #submenu > ul > li {
-      margin: 7px 7px 7px 8px;
-      height: 30px;
-      float: left;
-      position: relative; }
+      margin: 15px 7px 0 8px;
+      float: left; }
       #submenu > ul > li.hoverable > a span em {
         display: inline-block;
         background: transparent url(/images/admin/menu/icons.png) no-repeat 0 -16px;
@@ -114,9 +101,10 @@
     position: absolute;
     top: 0px;
     right: 22px;
-    height: 100%;
+    height: 60px;
     padding-left: 20px;
-    z-index: 1; }
+    z-index: 1;
+    background: transparent url(/images/admin/menu/submenu/action-border.png) repeat-y left 0; }
     #submenu > .action a {
       margin-top: 18px;
       display: inline-block;
@@ -148,7 +136,7 @@
         border-color: black; }
   #submenu .popup {
     position: absolute;
-    top: 26px;
+    top: 42px;
     min-width: 250px;
     background: #fff;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
@@ -197,6 +185,7 @@
           color: #8b8d9a;
           font-size: 0.7em; }
       #submenu .popup ul.big-links {
+        list-style: none;
         margin: 0px; }
         #submenu .popup ul.big-links li {
           margin: 10px 0; }
@@ -207,7 +196,7 @@
             padding: 3px 10px;
             background: #ebedf4;
             font-weight: bold;
-            font-size: 14px; }
+            font-size: 0.8em; }
     #submenu .popup .footer {
       background: #ebedf4;
       padding: 8px 16px;
@@ -323,7 +312,7 @@ body.contents #submenu > ul {
       background: -moz-linear-gradient(0% 100% 90deg, #212229, #1e1e24);
       background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#1e1e24), to(#212229)); }
 body.contents #submenu > .action {
-  background: transparent url(/images/admin/menu/submenu/action-border.png) repeat-y left 0; }
+  background-image: url(/images/admin/menu/submenu/black-action-border.png) !important; }
 
 #menu li.assets a em {
   position: relative;

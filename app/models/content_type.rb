@@ -21,7 +21,8 @@ class ContentType
   end
 
   ## named scopes ##
-  scope :first_by_slug, lambda { |slug| where(:slug => slug) }
+  scope :ordered, :order_by => :updated_at.desc
+
 
   ## indexes ##
   index [[:site_id, Mongo::ASCENDING], [:slug, Mongo::ASCENDING]]

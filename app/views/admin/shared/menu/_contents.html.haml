@@ -10,19 +10,23 @@
             = link_to truncate(page.title, :length => 25), edit_admin_page_url(page)
             %span= time_ago_in_words(page.updated_at)
 
-  - current_site.content_types.to_a.each do |content_type|
-    - next if content_type.new_record?
-    - item_on = (content_type.slug == @content_type.slug) rescue nil
-    = admin_submenu_item content_type.name, admin_contents_url(content_type.slug), :i18n => false, :css => (item_on ? 'on' : '') do
-      .header
-        %p= link_to t('admin.contents.index.new'), new_admin_content_url(content_type.slug)
-      .inner
-        %h2!= t('admin.contents.index.lastest_items')
-        %ul
-          - content_type.contents.latest_updated.each do |content|
-            %li
-              = link_to truncate(content.send(content_type.highlighted_field_name), :length => 30), edit_admin_content_path(content_type.slug, content)
-              %span= time_ago_in_words(content.updated_at)
+  - each_content_type_menu_item do |content_type|
+    .header
+      %p= link_to t('admin.contents.index.new'), new_admin_content_url(content_type.slug)
+    .inner
+      %h2!= t('admin.contents.index.lastest_items')
+      %ul
+        - content_type.contents.latest_updated.each do |content|
+          %li
+            = link_to truncate(content.send(content_type.highlighted_field_name), :length => 20), edit_admin_content_path(content_type.slug, content)
+            %span= time_ago_in_words(content.updated_at)
+
+  - other_content_types do |content_types|
+    .inner
+      %ul.big-links
+        - content_types.each do |content_type|
+          %li
+            = link_to truncate(content_type.name, :length => 20), admin_contents_url(content_type.slug)
 
 .action
   = link_to content_tag(:em) + content_tag(:span, t('admin.content_types.index.new')), new_admin_content_type_url
