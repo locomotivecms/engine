@@ -18,7 +18,7 @@
       %ul
         - content_type.contents.latest_updated.each do |content|
           %li
-            = link_to truncate(content.send(content_type.highlighted_field_name), :length => 20), edit_admin_content_path(content_type.slug, content)
+            = link_to truncate(content.send(content_type.highlighted_field_name).to_s, :length => 20), edit_admin_content_path(content_type.slug, content)
             %span= time_ago_in_words(content.updated_at)
 
   - other_content_types do |content_types|
