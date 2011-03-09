@@ -14,6 +14,13 @@ $(document).ready(function() {
 
   $('#content_type_slug').keypress(function() { $(this).addClass('filled'); });
 
+  $('#content_type_order_by').change(function() {
+    if ($(this).val() != '_position_in_list')
+      $('#content_type_order_direction_input').show();
+    else
+      $('#content_type_order_direction_input').hide();
+  });
+
   // api enabled ?
 
   // console.log('subscribing...');

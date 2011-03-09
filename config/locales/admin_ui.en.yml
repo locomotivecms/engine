@@ -227,6 +227,9 @@ en:
           created_at: 'By "created at" date'
           updated_at: 'By "updated at" date'
           position_in_list: Manually
+        order_direction:
+          asc: Ascending
+          desc: Descending
 
     contents:
       index:

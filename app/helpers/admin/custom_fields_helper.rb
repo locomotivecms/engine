@@ -1,7 +1,7 @@
 module Admin::CustomFieldsHelper
 
   def options_for_field_kind
-    options = %w{string text category boolean date file}.map do |kind|
+    %w(string text category boolean date file).map do |kind|
       [t("custom_fields.kind.#{kind}"), kind]
     end
   end
@@ -11,6 +11,12 @@ module Admin::CustomFieldsHelper
       [t("admin.content_types.form.order_by.#{type.gsub(/^_/, '')}"), type]
     end
     options + options_for_highlighted_field(content_type, collection_name)
+  end
+
+  def options_for_order_direction
+    %w(asc desc).map do |direction|
+      [t("admin.content_types.form.order_direction.#{direction}"), direction]
+    end
   end
 
   def options_for_highlighted_field(content_type, collection_name)
@@ -28,7 +34,7 @@ module Admin::CustomFieldsHelper
   end
 
   def options_for_text_formatting
-    options = %w{none html}.map do |option|
+    options = %w(none html).map do |option|
       [t("admin.custom_fields.text_formatting.#{option}"), option]
     end
   end

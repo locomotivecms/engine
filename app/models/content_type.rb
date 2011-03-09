@@ -7,6 +7,7 @@ class ContentType
   field :description
   field :slug
   field :order_by
+  field :order_direction, :default => 'asc'
   field :highlighted_field_name
   field :group_by_field_name
   field :api_enabled, :type => Boolean, :default => false
@@ -46,6 +47,14 @@ class ContentType
     self.group_by_field && group_by_field.category?
   end
 
+  def order_manually?
+    self.order_by == '_position_in_list'
+  end
+
+  def asc_order?
+    self.order_direction.blank? || self.order_direction == 'asc'
+  end
+
   def list_or_group_contents
     if self.groupable?
       groups = self.contents.klass.send(:"group_by_#{self.group_by_field._alias}", :ordered_contents)
@@ -65,7 +74,7 @@ class ContentType
   def ordered_contents(conditions = {})
     column = self.order_by.to_sym
 
-    (if conditions.nil? || conditions.empty?
+    list = (if conditions.nil? || conditions.empty?
       self.contents
     else
       conditions_with_names = {}
@@ -79,6 +88,10 @@ class ContentType
 
       self.contents.where(conditions_with_names)
     end).sort { |a, b| (a.send(column) || 0) <=> (b.send(column) || 0) }
+
+    return list if self.order_manually?
+
+    self.asc_order? ? list : list.reverse
   end
 
   def sort_contents!(order)

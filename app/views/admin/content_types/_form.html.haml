@@ -16,6 +16,7 @@
 
   = f.foldable_inputs :name => :options, :class => 'switchable' do
     = f.input :order_by, :as => :select, :collection => options_for_order_by(f.object, 'contents'), :include_blank => false
+    = f.input :order_direction, :as => :select, :collection => options_for_order_direction, :include_blank => false, :wrapper_html => { :style => "#{'display: none' if f.object.order_manually?}" }
     = f.custom_input :api_enabled, :css => 'toggle' do
       = f.check_box :api_enabled
     = hidden_field_tag 'content_type[api_accounts][]', ''

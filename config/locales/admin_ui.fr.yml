@@ -226,6 +226,9 @@ fr:
           created_at: 'Par date création'
           updated_at: 'Par date de mise à jour'
           position_in_list: Manuellement
+        order_direction:
+          asc: Ascendant
+          desc: Descendant
 
     contents:
       index:
