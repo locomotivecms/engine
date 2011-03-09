@@ -1,10 +1,9 @@
 BOARD:
 
-x pull request #44
+- bugs:
+  - #50
+  - #51
 ~ editable_elements: inheritable: false (Mattias) => seems to be fixed by Dirk's last pull request (#44) => content tag
-x bug on dates (https://github.com/locomotivecms/engine/issues#issue/48)
-x generated sitemaps are invalid (url + date)
-- integrate new locomotivecms home
 - duostack version
 - 2 different sites on the same main domain (one in www, the other one in something else) (Raphael Costa)
 - seo section for the page form: seo title, seo keywords, seo description
@@ -207,3 +206,7 @@ x bugs
 x custom fields: accepts_nested_attributes weird behaviour when creating new content type + adding random fields
 x better icons for mime type (css3)
 x validation for custom fields: required done
+x pull request #44
+x bug on dates (https://github.com/locomotivecms/engine/issues#issue/48)
+x generated sitemaps are invalid (url + date)
+x integrate new locomotivecms home

@@ -61,9 +61,10 @@ en:
         edit:
           source: "You can replace it by a file of the same extension"
       asset:
-        new:
-          source: "All file types are accepted."
+        source: "All file types are accepted."
         edit:
+          source: "The current file is available here %{url}"
+        update:
           source: "The current file is available here %{url}"
       custom_fields:
         field:
