@@ -82,7 +82,7 @@ GEM
       locomotive_carrierwave
       mongoid (~> 2.0.0.rc.7)
     daemons (1.1.0)
-    database_cleaner (0.6.4)
+    database_cleaner (0.6.5)
     delayed_job (2.1.4)
       activesupport (~> 3.0)
       daemons
