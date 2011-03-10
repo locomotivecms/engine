@@ -37,7 +37,7 @@ Gem::Specification.new do |s|
   s.add_dependency "fog", "0.3.7"
   s.add_dependency "mimetype-fu"
   s.add_dependency "actionmailer-with-request"
-  s.add_dependency "heroku", "1.18.2"
+  s.add_dependency "heroku", "1.18.3"
   s.add_dependency "httparty", ">= 0.6.1"
   s.add_dependency "RedCloth", "4.2.7"
   s.add_dependency "delayed_job", "2.1.4"
