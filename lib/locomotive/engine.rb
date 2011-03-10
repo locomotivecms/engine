@@ -1,6 +1,7 @@
 puts "...loading Locomotive engine"
 
 require 'rails'
+# require 'json/pure'
 require 'devise'
 require 'mongoid'
 require 'mongoid_acts_as_tree'
