@@ -46,4 +46,41 @@ describe ContentType do
 
   end
 
+  context '#ordered_contents' do
+
+    before(:each) do
+      @content_type = Factory.build(:content_type, :order_by => 'created_at')
+      @content_1 = stub('content_1', :name => 'Did', :_position_in_list => 2)
+      @content_2 = stub('content_2', :name => 'Sacha', :_position_in_list => 1)
+      @content_type.stubs(:contents).returns([@content_1, @content_2])
+    end
+
+    it 'orders with the ASC direction by default' do
+      @content_type.asc_order?.should == true
+    end
+
+    it 'has a getter for manual order' do
+      @content_type.order_manually?.should == false
+      @content_type.order_by = '_position_in_list'
+      @content_type.order_manually?.should == true
+    end
+
+    it 'returns a list of contents ordered manually' do
+      @content_type.order_by = '_position_in_list'
+      @content_type.ordered_contents.collect(&:name).should == %w(Sacha Did)
+    end
+
+    it 'returns a list of contents ordered by a column specified by order_by (ASC)' do
+      @content_type.order_by = 'name'
+      @content_type.ordered_contents.collect(&:name).should == %w(Did Sacha)
+    end
+
+    it 'returns a list of contents ordered by a column specified by order_by (DESC)' do
+      @content_type.order_by = 'name'
+      @content_type.order_direction = 'desc'
+      @content_type.ordered_contents.collect(&:name).should == %w(Sacha Did)
+    end
+
+  end
+
 end
