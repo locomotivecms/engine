@@ -54,7 +54,8 @@ class AssetUploader < CarrierWave::Uploader::Base
 
   def set_width_and_height
     if model.image?
-      model.width, model.height = `identify -format "%wx%h" #{file.path}`.split(/x/).collect(&:to_i)
+      magick = ::Magick::Image.read(current_path).first
+      model.width, model.height = magick.columns, magick.rows
     end
   end
 
