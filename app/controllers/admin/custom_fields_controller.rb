@@ -12,12 +12,9 @@ module Admin
 
     def update
       @field = @fields.find(params[:id])
-      @field.updated_at = Time.now # forces mongoid to save the object
-
-      params[:custom_field][:category_items_attributes].delete('-1')
 
       if @field.update_attributes(params[:custom_field])
-        render :json => @field.attributes
+        render :json => @field.to_json
       else
         render :json => { :error => t('flash.admin.custom_fields.update.alert') }
       end

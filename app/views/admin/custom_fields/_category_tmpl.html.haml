@@ -1,0 +1,17 @@
+%script{ :id => 'category-tmpl', :type => 'text/x-mustache-template', :'data-base-input-name' => "custom_field[category_items_attributes]" }
+  %li{ :class => "item {{behaviour_flag}} {{new_record_flag}} {{errors_flag}} {{required_flag}}" }
+    %span.handle
+      = image_tag 'admin/form/icons/drag.png'
+
+    {{#if_existing_record}}
+    %input{ :name => '{{base_name}}[id]', :value => '{{{id}}}', :type => 'hidden', :'data-field' => 'id' }
+    %input{ :name => '{{base_name}}[_destroy]', :value => '0', :type => 'hidden', :'data-field' => '_destroy' }
+    {{/if_existing_record}}
+
+    %input{ :name => '{{base_name}}[position]', :value => '{{{position}}}', :type => 'hidden', :'data-field' => 'position' }
+    %input{ :name => '{{base_name}}[name]', :value => '{{{name}}}', :type => 'text', :'data-field' => 'name' }
+
+    %span.actions
+      = link_to image_tag('admin/form/icons/trash.png'), '#', :class => 'remove', :confirm => t('admin.messages.confirm')
+      %button{ :class => 'button light add', :type => 'button' }
+        %span!= t('admin.buttons.new_item')

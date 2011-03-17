@@ -17,7 +17,7 @@ require 'locomotive/routing'
 require 'locomotive/regexps'
 require 'locomotive/render'
 require 'locomotive/import'
-#require 'locomotive/delayed_job'
+require 'locomotive/delayed_job'
 require 'locomotive/middlewares'
 require 'locomotive/session_store'
 

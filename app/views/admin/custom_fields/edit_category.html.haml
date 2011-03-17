@@ -5,39 +5,13 @@
     %p!= t('.help')
 
     = semantic_form_for @field, :as => :custom_field, :url => admin_custom_field_url(@parent.class.model_name.underscore, @parent.slug, @field) do |f|
-      = f.foldable_inputs :name => t('.collection_label'), :class => 'editable-list off' do
-        - @field.ordered_category_items.each do |item|
-          = f.fields_for :category_items, item, :child_index => item._index do |g|
-            %li{ :class => "item added #{'error' unless item.errors.empty?}"}
-              %span.handle
-                = image_tag 'admin/form/icons/drag.png'
 
-              = g.hidden_field :position, :class => 'position'
+      = f.foldable_inputs :name => t('.collection_label'), :class => 'editable-list off'
 
-              = g.text_field :name
-
-              &nbsp;
-
-              %span.actions
-                = link_to image_tag('admin/form/icons/trash.png'), '#', :class => 'remove', :confirm => t('admin.messages.confirm')
-
-        = f.fields_for :category_items, @field.category_items.build, :child_index => '-1' do |g|
-          %li{ :class => 'item template' }
-            %span.handle
-              = image_tag 'admin/form/icons/drag.png'
-
-            = g.hidden_field :position, :class => 'position'
-
-            = g.text_field :name, :class => 'string name'
-
-            &nbsp;
-
-            %span.actions
-              = link_to image_tag('admin/form/icons/trash.png'), '#', :class => 'remove', :confirm => t('admin.messages.confirm')
-              %button{ :class => 'button light add', :type => 'button' }
-                %span!= t('admin.buttons.new_item')
+    %script{ :type => 'text/javascript', :name => 'data' }
+      != "var categories = #{collection_to_js(@field.ordered_category_items, :template => CustomFields::Types::Category::Item.new)};"
 
   .popup-actions
     %p
-      %button.button.light{ :type => 'button' }
-        %span!= t('admin.shared.form_actions.update')
+      %button.button.light{ :type => 'submit' }
+        %span= t('admin.shared.form_actions.update')
