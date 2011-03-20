@@ -24,7 +24,6 @@ class ContentType
   ## named scopes ##
   scope :ordered, :order_by => :updated_at.desc
 
-
   ## indexes ##
   index [[:site_id, Mongo::ASCENDING], [:slug, Mongo::ASCENDING]]
 

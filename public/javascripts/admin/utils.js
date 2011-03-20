@@ -14,3 +14,11 @@ function makeSlug(val, sep) { // code largely inspired by http://www.thewebsitet
     return this.replace(/^\s+/g, '').replace(/\s+$/g, '');
   }
 })();
+
+Object.size = function(obj) {
+  var size = 0, key;
+  for (key in obj) {
+    if (obj.hasOwnProperty(key)) size++;
+  }
+  return size;
+};

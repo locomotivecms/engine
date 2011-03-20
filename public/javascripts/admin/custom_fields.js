@@ -57,7 +57,7 @@ $(document).ready(function() {
         content: $(link.attr('href')).parent().html(),
         padding: 0,
         onComplete: function() {
-          $('#fancybox-wrap .actions button[type=submit]').click(function(e) {
+          $('#fancybox-wrap .popup-actions button[type=submit]').click(function(e) {
             $.each(attributes, function(index, name) {
               var val = domBoxAttrVal(name).trim();
               if (val != '') domFieldVal(domField, name, val);
@@ -148,7 +148,7 @@ $(document).ready(function() {
     field = $.extend({
       behaviour_flag: function() { return options.is_template ? 'template' : 'added' },
       new_record_flag: function() { return this.new_record == true && options.is_template == false ? 'new' : '' },
-      errors_flag: function() { return this.errors.length > 0 ? 'error' : '' },
+      errors_flag: function() { return Object.size(this.errors) > 0 ? 'error' : '' },
       required_flag: function() { return this.required ? 'required' : ''; },
       base_name: function() { return options.is_template ? '' : baseInputName + "[" + index + "]"; },
       base_dom_id: function() { return options.is_template ? 'custom_field_template' : 'custom_field_' + index; },

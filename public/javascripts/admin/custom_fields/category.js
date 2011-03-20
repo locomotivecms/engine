@@ -108,7 +108,7 @@ var SetupCustomFieldCategoryEditor = function(target) {
     category = $.extend({
       behaviour_flag: function() { return options.is_template ? 'template' : 'added' },
       new_record_flag: function() { return this.new_record == true && options.is_template == false ? 'new' : '' },
-      errors_flag: function() { return this.errors && this.errors.length > 0 ? 'error' : '' },
+      errors_flag: function() { return this.errors && Object.size(this.errors) > 0 ? 'error' : '' },
       base_name: function() { return options.is_template ? '' : baseInputName + "[" + index + "]"; },
       base_dom_id: function() { return options.is_template ? 'category_template' : 'category_' + index; },
       if_existing_record: function() { return this.new_record == false }
