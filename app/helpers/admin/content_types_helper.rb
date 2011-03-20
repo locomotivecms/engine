@@ -7,23 +7,20 @@ module Admin::ContentTypesHelper
 
     @content_types = current_site.content_types.ordered.
       limit(:contents => Locomotive.config.lastest_items_nb).
-      only(:name, :slug, :highlighted_field_name, :updated_at).to_a
-      # only(:name, :slug, :highlighted_field_name, :content_custom_fields_updated_at).to_a
+      only(:name, :slug, :highlighted_field_name, :content_custom_fields_version).to_a
 
     if @content_type && @content_type.persisted? && @content_types.index(@content_type) >= MAX_DISPLAYED_CONTENTS
       @content_types.delete(@content_type)
       @content_types.insert(0, @content_type)
     end
 
-    # # be sure, we've got the custom klass up-to-date, otherwise it will fail miserably
-    # @content_types.each do |content_type|
-    #   # puts "content_type custom_fields !!! ? #{content_type.name} / #{content_type.content_klass.try(:built_at).inspect} / #{content_type.content_custom_fields_updated_at.try(:utc)}"
-    #   if content_type.content_klass_out_of_date?
-    #     puts "RELOADED #{content_type.name}"
-    #     content_type.reload
-    #     content_type.invalidate_content_klass
-    #   end
-    # end
+    # be sure, we've got the custom klass up-to-date, otherwise it will fail miserably
+    @content_types.each do |content_type|
+      if content_type.content_klass_out_of_date?
+        content_type.reload
+        content_type.invalidate_content_klass
+      end
+    end
 
     @content_types
   end
