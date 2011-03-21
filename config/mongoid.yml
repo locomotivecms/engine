@@ -31,3 +31,5 @@ production:
   # heroku
   # uri: <%= ENV['MONGOHQ_URL'] %>
 
+  # bushido (mongohq_url will also work)
+  # uri: <%= ENV['MONGODB_URL'] %>
