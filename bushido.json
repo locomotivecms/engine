@@ -1,0 +1,7 @@
+{
+    "platform": "rails",
+    "platform_version": 3,
+    "ruby_version": "1.9.2",
+    "sql": false,
+    "mongodb": true
+}
