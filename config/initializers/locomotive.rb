@@ -32,6 +32,14 @@ Locomotive.configure do |config|
   # config.heroku = { :name => '<my heroku app name>', :login => 'john@doe.net', :password => 'easy' }
   config.heroku = false
 
+  # tell if the application is hosted on Bushido.
+  # If enabled, there's no further configuration needed.
+  # Bushido will take care of eveything
+  #
+  # Ex:
+  # config.bushido = true
+  config.bushido = false
+
   # Locomotive uses the DelayedJob gem for the theme import module.
   # In case you want to deploy to Heroku, you will have to pay for an extra dyno.
   # If you do not mind about importing theme without DelayedJob, disable it.
@@ -41,5 +49,5 @@ Locomotive.configure do |config|
   config.default_locale = :en
 
   # Configure the e-mail address which will be shown in the DeviseMailer, NotificationMailer, ...etc
-  config.mailer_sender = 'support@example.com'
+  config.mailer_sender = ENV['BUSHIDO_DOMAIN'] ? "support@#{ENV['BUSHIDO_DOMAIN']}" : 'support@example.com'
 end
