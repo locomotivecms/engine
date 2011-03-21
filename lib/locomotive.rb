@@ -9,6 +9,7 @@ require 'locomotive/liquid'
 require 'locomotive/mongoid'
 require 'locomotive/carrierwave'
 require 'locomotive/heroku'
+require 'locomotive/bushido'
 require 'locomotive/custom_fields'
 require 'locomotive/httparty'
 require 'locomotive/inherited_resources'
@@ -24,6 +25,7 @@ require 'locomotive/session_store'
 module Locomotive
 
   include Locomotive::Heroku
+  include Locomotive::Bushido
 
   class << self
     attr_accessor :config
@@ -51,8 +53,11 @@ module Locomotive
       :key => Locomotive.config.cookie_key
     }
 
-    # Heroku support
+    # Hosting-platform support
     self.enable_heroku if self.heroku?
+
+    # Bushido support
+    self.enable_bushido if self.bushido?
 
     # Devise
     Devise.mailer_sender = self.config.mailer_sender
