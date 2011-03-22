@@ -38,7 +38,7 @@ Locomotive.configure do |config|
   #
   # Ex:
   # config.bushido = true
-  config.bushido = false
+  config.bushido = ENV['HOSTING_PLATFORM'] == 'bushido'
 
   # Locomotive uses the DelayedJob gem for the theme import module.
   # In case you want to deploy to Heroku, you will have to pay for an extra dyno.
