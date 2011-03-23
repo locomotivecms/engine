@@ -74,6 +74,8 @@ module Locomotive
           attributes.each do |name, value|
             field = content_type.content_custom_fields.detect { |f| f._alias == name }
 
+            next if field.nil? # the attribute name is not related to a field (name misspelled ?)
+
             value = (case field.kind.downcase
             when 'file'     then self.open_sample_asset(value)
             when 'boolean'  then Boolean.set(value)
