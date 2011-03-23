@@ -25,7 +25,7 @@ require 'locomotive/session_store'
 module Locomotive
 
   include Locomotive::Heroku
-  include Locomotive::Bushido
+  include Locomotive::BushidoSupport
 
   class << self
     attr_accessor :config

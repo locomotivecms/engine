@@ -1,5 +1,5 @@
 module Locomotive
-  module Bushido
+  module BushidoSupport
     module CustomDomain
 
       extend ActiveSupport::Concern
