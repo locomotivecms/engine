@@ -52,6 +52,10 @@ GEM
     bson (1.2.4)
     bson_ext (1.2.4)
     builder (2.1.2)
+    bushido (0.0.10)
+      highline (>= 1.6.1)
+      json (>= 1.4.6)
+      rest-client (>= 1.6.1)
     capybara (0.4.0)
       celerity (>= 0.7.9)
       culerity (>= 0.2.4)
@@ -125,6 +129,7 @@ GEM
       json (~> 1.5.1)
       launchy (~> 0.3.2)
       rest-client (>= 1.4.0, < 1.7.0)
+    highline (1.6.1)
     httparty (0.7.4)
       crack (= 0.1.8)
     i18n (0.5.0)
@@ -258,6 +263,7 @@ DEPENDENCIES
   actionmailer-with-request
   autotest
   bson_ext (~> 1.2.1)
+  bushido
   capybara
   cucumber (= 0.8.5)
   cucumber-rails

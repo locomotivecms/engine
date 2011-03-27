@@ -8,8 +8,7 @@ require 'locomotive/logger'
 require 'locomotive/liquid'
 require 'locomotive/mongoid'
 require 'locomotive/carrierwave'
-require 'locomotive/heroku'
-require 'locomotive/bushido'
+require 'locomotive/deployment'
 require 'locomotive/custom_fields'
 require 'locomotive/httparty'
 require 'locomotive/inherited_resources'
@@ -24,8 +23,8 @@ require 'locomotive/session_store'
 
 module Locomotive
 
-  include Locomotive::Heroku
-  include Locomotive::BushidoSupport
+  include Locomotive::Deployment::Heroku
+  include Locomotive::Deployment::Bushido
 
   class << self
     attr_accessor :config
