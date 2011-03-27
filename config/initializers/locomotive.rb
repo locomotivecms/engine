@@ -10,7 +10,7 @@ Locomotive.configure do |config|
   # during the installation wizzard.
   # Ex:
   # config.default_domain = Rails.env.production? ? 'heroku.com' : 'example.com'
-  config.default_domain = 'example.com'
+  config.default_domain = ENV["APP_TLD"] || 'example.com'
 
   # configure how many items we display in sub menu in the "Contents" section.
   config.lastest_items_nb = 5
@@ -32,6 +32,14 @@ Locomotive.configure do |config|
   # config.heroku = { :name => '<my heroku app name>', :login => 'john@doe.net', :password => 'easy' }
   config.heroku = false
 
+  # tell if the application is hosted on Bushido.
+  # If enabled, there's no further configuration needed.
+  # Bushido will take care of eveything
+  #
+  # Ex:
+  # config.bushido = true
+  config.bushido = ENV['HOSTING_PLATFORM'] == 'bushido'
+
   # Locomotive uses the DelayedJob gem for the theme import module.
   # In case you want to deploy to Heroku, you will have to pay for an extra dyno.
   # If you do not mind about importing theme without DelayedJob, disable it.
@@ -41,5 +49,5 @@ Locomotive.configure do |config|
   config.default_locale = :en
 
   # Configure the e-mail address which will be shown in the DeviseMailer, NotificationMailer, ...etc
-  config.mailer_sender = 'support@example.com'
+  config.mailer_sender = ENV['BUSHIDO_DOMAIN'] ? "support@#{ENV['BUSHIDO_DOMAIN']}" : 'support@example.com'
 end
