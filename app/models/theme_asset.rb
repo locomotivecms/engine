@@ -113,7 +113,7 @@ class ThemeAsset
     self.folder = self.content_type.to_s.pluralize if self.folder.blank?
 
     # no accents, no spaces, no leading and ending trails
-    self.folder = ActiveSupport::Inflector.transliterate(self.folder).gsub(/(\s)+/, '_').gsub(/^\//, '').gsub(/\/$/, '').downcase
+    self.folder = ActiveSupport::Inflector.transliterate(self.folder).gsub(/(\s)+/, '_').gsub(/^\//, '').gsub(/\/$/, '')
 
     # folder should begin by a root folder
     if (self.folder =~ /^(stylesheets|javascripts|images|medias|fonts)/).nil?
