@@ -7,6 +7,8 @@ module Locomotive
 
         included do
 
+          validate :subdomain_availability
+
           after_save :add_bushido_domains
           after_destroy :remove_bushido_domains
 
@@ -16,6 +18,12 @@ module Locomotive
         module InstanceMethods
 
           protected
+
+          def subdomain_availability
+            unless ::Bushido::App.check_subdomain_availability?(self.subdomain)
+              self.errors.add(:subdomain, :exclusion)
+            end
+          end
 
           def add_subdomain_to_domains_with_bushido
             unless self.domains_change.nil?
