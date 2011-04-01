@@ -1,9 +1,9 @@
 require 'heroku'
 require 'heroku/client'
-require 'locomotive/deployment/heroku/custom_domain'
+require 'locomotive/hosting/heroku/custom_domain'
 
 module Locomotive
-  module Deployment
+  module Hosting
     module Heroku
 
       extend ActiveSupport::Concern
@@ -18,11 +18,16 @@ module Locomotive
       module ClassMethods
 
         def heroku?
-          !self.config.heroku.nil? && self.config.heroku.respond_to?(:[])
+          self.config.hosting == :heroku ||
+          (self.config.hosting == :auto && ENV['HEROKU_SLUG'].present?)
         end
 
         def enable_heroku
-          raise 'Heroku application name is mandatory' if self.config.heroku[:name].blank?
+          # raise 'Heroku application name is mandatory' if self.config.heroku[:name].blank?
+          self.config.domain = 'heroku.com'
+
+          self.config.heroku ||= {}
+          self.config.heroku[:name] = ENV['APP_NAME']
 
           self.open_heroku_connection
           self.enhance_site_model
@@ -33,13 +38,14 @@ module Locomotive
 
         def open_heroku_connection
           login = self.config.heroku[:login] || ENV['HEROKU_LOGIN']
-          password = self.config.heroku[:password] || ENV['HEROKU_PASSWORD']
+          password = self.config.heroku[:password] rescue ENV['HEROKU_PASSWORD']
 
           self.heroku_connection = ::Heroku::Client.new(login, password)
         end
 
         def enhance_site_model
-          Site.send :include, Locomotive::Deployment::Heroku::CustomDomain
+          Site.send :include, Extensions::Site::SubdomainDomains
+          Site.send :include, Locomotive::Hosting::Heroku::CustomDomain
         end
 
         # manage domains

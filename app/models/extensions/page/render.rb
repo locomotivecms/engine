@@ -1,13 +1,11 @@
-module Models
-  module Extensions
-    module Page
-      module Render
+module Extensions
+  module Page
+    module Render
 
-        def render(context)
-          self.template.render(context)
-        end
-
+      def render(context)
+        self.template.render(context)
       end
+
     end
   end
 end

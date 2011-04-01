@@ -3,18 +3,20 @@ module Locomotive
 
     @@defaults = {
       :name             => 'LocomotiveApp',
-      :default_domain   => 'example.com',
-      :reserved_subdomains => %w{www admin email blog webmail mail support help site sites},
+      :domain           => 'example.com',
+      # :multi_sites      => false,
+      # :default_domain   => 'example.com',
+      # :reserved_subdomains => %w{www admin email blog webmail mail support help site sites},
       # :forbidden_paths  => %w{layouts snippets stylesheets javascripts assets admin system api},
       :reserved_slugs   => %w{stylesheets javascripts assets admin images api pages edit},
       :locales          => %w{en de fr pt-BR},
       :cookie_key       => '_locomotive_session',
       :enable_logs      => false,
-      :heroku           => false,
-      :bushido          => false,
+      # :heroku           => false,
+      # :bushido          => false,
       :delayed_job      => true,
       :default_locale   => :en,
-      :mailer_sender    => 'support@example.com'
+      :mailer_sender    => 'support' #support@example.com'
     }
 
     cattr_accessor :settings

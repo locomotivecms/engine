@@ -1,32 +1,28 @@
-module Models
-  module Extensions
-    module Page
-      module Templatized
+module Extensions
+  module Page
+    module Templatized
 
-        extend ActiveSupport::Concern
+      extend ActiveSupport::Concern
 
-        included do
+      included do
 
-          referenced_in :content_type
+        referenced_in :content_type
 
-          field :templatized, :type => Boolean, :default => false
+        field :templatized, :type => Boolean, :default => false
 
-          field :content_type_visible_column
+        field :content_type_visible_column
 
-          before_validation :set_slug_if_templatized
-        end
+        before_validation :set_slug_if_templatized
+      end
 
-        module InstanceMethods
+      module InstanceMethods
 
-          def set_slug_if_templatized
-            self.slug = 'content_type_template' if self.templatized?
-          end
-
+        def set_slug_if_templatized
+          self.slug = 'content_type_template' if self.templatized?
         end
 
       end
+
     end
   end
 end
-
-

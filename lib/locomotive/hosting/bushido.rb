@@ -1,8 +1,8 @@
 require 'bushido'
-require 'locomotive/deployment/bushido/custom_domain'
+require 'locomotive/hosting/bushido/custom_domain'
 
 module Locomotive
-  module Deployment
+  module Hosting
     module Bushido
 
       extend ActiveSupport::Concern
@@ -17,19 +17,22 @@ module Locomotive
       module ClassMethods
 
         def bushido?
-          ENV["HOSTING_PLATFORM"] == 'bushido'
+          self.config.hosting == :bushido ||
+          (self.config.hosting == :auto && ENV['HOSTING_PLATFORM'] == 'bushido')
         end
 
         def enable_bushido
+          self.config.domain = ENV['APP_TLD']
+
           self.enhance_site_model
 
           self.bushido_domains = ::Bushido::App.domains
           self.bushido_subdomain = ::Bushido::App.subdomain
         end
 
-
         def enhance_site_model
-          Site.send :include, Locomotive::Deployment::Bushido::CustomDomain
+          Site.send :include, Extensions::Site::SubdomainDomains
+          Site.send :include, Locomotive::Hosting::Bushido::CustomDomain
         end
 
         # manage domains

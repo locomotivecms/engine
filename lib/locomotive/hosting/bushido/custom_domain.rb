@@ -1,5 +1,5 @@
 module Locomotive
-  module Deployment
+  module Hosting
     module Bushido
       module CustomDomain
 
@@ -20,14 +20,14 @@ module Locomotive
           protected
 
           def subdomain_availability
-            unless ::Bushido::App.check_subdomain_availability?(self.subdomain)
+            unless ::Bushido::App.subdomain_available?(self.subdomain)
               self.errors.add(:subdomain, :exclusion)
             end
           end
 
           def add_subdomain_to_domains_with_bushido
             unless self.domains_change.nil?
-              full_subdomain = "#{self.subdomain}.#{Locomotive.config.default_domain}"
+              full_subdomain = "#{self.subdomain}.#{Locomotive.config.domain}"
               @bushido_domains_change = {
                 :added    => self.domains_change.last - self.domains_change.first - [full_subdomain],
                 :removed  => self.domains_change.first - self.domains_change.last - [full_subdomain]
