@@ -9,7 +9,7 @@ de:
       inclusion: "nicht in der Liste inbegriffen"
       exclusion: "nicht verfügbar"
       invalid: "ungültig"
-      confirmation: "ne concorde pas avec la confirmation"
+      confirmation: "stimmt nicht mit der Bestätigung überein"
       accepted: "akzeptiert"
       empty: "leer"
       blank: "leer"
@@ -32,8 +32,8 @@ de:
       protected_page: "Du kannst keine Index oder 404 Seiten löschen"
       extname_changed: "Die neue Datei hat nicht die originale Dateiendung"
       array_too_short: "ist zu kurz (minimale Element-Zahl ist %{count})"
-      liquid_syntax: "Liquid Syntax-Fehler, bitte überprüfe die Syntax"
-      liquid_extend: "Die Seite verwendet eine Vorlage, die gar nicht existiert"
+      liquid_syntax: "Liquid Syntax-Fehler, bitte überprüfe die Syntax ('%{error}'/'%{fullpath}')"
+      liquid_extend: "Die Seite '%{fullpath}' verwendet eine Vorlage, die gar nicht existiert"
       invalid_theme_file: "darf nicht leer sein oder ist keine zip-Datei"
 
   attributes:
@@ -46,9 +46,9 @@ de:
           title: "Seite nicht gefunden"
           body: "Inhalt der 404 Seite"
         other:
-          body: "Inhalte kommen hier rein"
+          body: "{% extends 'parent' %}"
 
-  activemodel:
+  mongoid:
     attributes:
       page:
         title: Titel
@@ -56,12 +56,16 @@ de:
         slug: Slug
         templatized: Templatized
         published: Veröffentlicht
+        listed: Im Menü
+        redirect: Umleitung
+        redirect_url: Umleitungs-URL
         cache_strategy: Cache
       content_type:
         name: Name
         description: Beschreibung
         slug: Slug
         order_by: Sortieren nach
+        order_direction: Reihenfolge
         highlighted_field_name: Hervorgehobener Feld-Name
         group_by_field_name: Gruppierung nach Feld-Name
         api_enabled: API aktiviert
@@ -75,8 +79,8 @@ de:
         email: Email
         name: Name
         language: Sprache
-        new_password: "Neues Passwort"
-        new_password_confirmation: "Bestätigung des neuen Passworts"
+        password: Passwort
+        password_confirmation: Bestätigung des Passworts
       snippet:
         body: Code
         slug: Slug
@@ -96,7 +100,7 @@ de:
     next: "Vor &raquo;"
   date:
     formats:
-      default: "%d/%m/%Y"
+      default: "%d.%m.%Y"
       short: "%e %b"
       long: "%e %B %Y"
       long_ordinal: "%e %B %Y"
@@ -166,7 +170,7 @@ de:
       day: "Tag"
       month: "Monat"
       year: "Jahr"
-      
+
   number:
     format:
       precision: 2

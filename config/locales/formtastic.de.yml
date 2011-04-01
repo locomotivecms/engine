@@ -2,6 +2,7 @@ de:
   formtastic:
     titles:
       information: Allgemeine Informationen
+      advanced_options: Fortgeschrittene Optionen
       meta: Suchmaschinen-Metadaten
       code: Code
       raw_template: Vorlage
@@ -37,6 +38,10 @@ de:
           reset: Webseite zurücksetzen
       content_type:
         api_accounts: Benachrichtigte Accounts
+      account:
+        edit:
+          password: "Neues Passwort"
+          password_confirmation: "Bestätigung des neuen Passworts"
 
     hints:
       page:
@@ -55,6 +60,13 @@ de:
         slug: "Du musst die Dateiendung nicht angeben (.css or .js)"
         edit:
           source: "Du kannst diese Datei durch eine Datei mit gleicher Dateiendung ersetzen"
+      asset:
+        source: "Es werden alle Datei-Typen akzeptiert."
+        edit:
+          source: "Die aktuelle Datei liegt hier %{url}"
+        update:
+          source: "Die aktuelle Datei liegt hier %{url}"
+          
       custom_fields:
         field:
           _alias: "Merkmal verfügbar in den liquid-Templates"

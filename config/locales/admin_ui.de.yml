@@ -17,13 +17,14 @@ de:
         logout: Ausloggen
       menu:
         contents: Inhalte
-        assets: Assets
+        assets: Galerien
         settings: Einstellungen
         pages: Seiten
         snippets: Snippets
         account: Mein Account
         site: Webseite
         theme_assets: Templates
+        bookings: Buchungen
       footer:
         who_is_behind: "Dienst entwickelt von %{development} und entworfen von <a href=\"http://www.sachagreif.com\">Sacha Greif</a>"
       form_actions:
@@ -45,31 +46,28 @@ de:
     notifications:
       new_content_instance:
         subject: "[%{type}] neu"
-        title: "Hi %{name}, nur damit du Bescheid weist, dass eine neue Instanz am %{date} erstellt wurde."
+        title: "Hi %{firstname}, nur damit du Bescheid weißt! Am %{date} wurde folgende neue Instanz erstellt."
         type: "Model: %{type}"
 
     custom_fields:
       edit:
         title: Benutzerdefinierte Felder bearbeiten
-      kind:
-        string: Einfache Texteingabe
-        text: Text
-        category: Auswahlbox
-        boolean: Checkbox
-        date: Datum
-        file: Datei
       text_formatting:
         none: Keine
         html: HTML
       edit_field:
         title: Feld bearbeiten
       edit_category:
-        title: Bearbeitungs-Optionen
+        title: Optionen
         help: Organisiere alle Optionen für die Auswahlbox.
         collection_label: Liste der Optionen
       custom_form:
-        edit_categories: Bearbeitungs-Optionen
+        edit_categories: Optionen
         delete_file: Datei löschen
+      index:
+        is_required: ist erforderlich
+        default_label: Feld-Name
+        
 
     sessions:
       new:
@@ -166,8 +164,8 @@ de:
     theme_assets:
       index:
         title: Template-Dateien
-        help: "In diesem Bereich kannst du alle Dateien organisieren, die für dein Layout verwendet werden. Wenn du eine Bilder-Galerie organisieren möchtest, dann gehe dazu in den Assets-Abschnitt."
-        all: alle Assets
+        help: "In diesem Bereich kannst du alle Dateien organisieren, die für dein Layout verwendet werden. Wenn du eine Bilder-Galerie organisieren möchtest, dann gehe dazu in den Galerien-Abschnitt."
+        all: alle Dateien
         new: neue Datei
         snippets: Snippets
         css_and_js: Style und Javascript
@@ -182,7 +180,7 @@ de:
         help: "Du hast die Wahl entweder eine neue Datei hochzuladen oder ein bestehendes Stylesheet / Javascript als Text einzufügen."
       edit:
         title: "Bearbeite %{file}"
-        help: "Dieses Asset kann über folgende URL erreicht werden: <a href='%{url}'>%{url}</a>"
+        help: "Diese Datei kann über folgende URL erreicht werden: <a href='%{url}'>%{url}</a>"
       form:
         picker_link: Füge eine Datei in den Code ein
         choose_file: Datei auswählen
@@ -193,27 +191,43 @@ de:
 
     asset_collections:
       index:
-        title: Asset Sammlung
-        help: "Der Name der Sammlung kann durch darauf klicken bearbeitet werden. Du kannst Assets in einer Sammlung bearbeiten, indem du neue Felder hinzufügst."
-        new: neue Sammlung
-        no_items: "Momentan gibt es keine Sammlungen. Klicke einfach <a href='%{url}'>hier</a>, um eine neue Sammlung zu erstellen."
+        title: Galerie
+        help: "Der Name der Galerie kann durch darauf klicken bearbeitet werden. Du kannst die Bilder in einer Galerie bearbeiten, indem du neue Felder hinzufügst."
+        new: neue Galerie
+        no_items: "Momentan gibt es keine Galerien. Klicke einfach <a href='%{url}'>hier</a>, um eine neue Galerie zu erstellen."
       new:
-        title: Neue Kollektion
+        title: Neue Galerie
         help: "Gib erst mal einen Namen ein. Alle anderen Einstellungen kannst du vornehmen, sobald das Formular abgesendet ist."
       edit:
-        help: "Der Name der Sammlung kann durch darauf klicken bearbeitet werden. Du kannst Assets in einer Sammlung bearbeiten, indem du neue Felder hinzufügst."
-        add_asset: Asset hinzufügen
-        destroy: Sammlung löschen
-        no_items: "Momentan gibt es keine Assets. Klicke einfach <a href='%{url}'>hier</a>, um das erste Asset zu erstellen."
+        help: "Der Name der Galerie kann durch darauf klicken bearbeitet werden. Du kannst Bilder in einer Galerie bearbeiten, indem du neue Felder hinzufügst."
+        add_asset: Bild hinzufügen
+        destroy: Galerie löschen
+        no_items: "Momentan gibt es keine Bilder. Klicke einfach <a href='%{url}'>hier</a>, um das erste Bild zu erstellen."
         ask_for_name: "Gib den neuen Namen ein"
 
     assets:
       new:
-        title: Neues Asset
-        help: "Fülle das folgende Formular aus, um dein Asset zu erstellen."
+        title: Neues Bild
+        help: "Fülle das folgende Formular aus, um dein Bild zu erstellen."
       edit:
-        title: Asset bearbeiten
-        help: "Fülle das folgende Formular aus, um dein Asset zu aktualisieren."
+        title: Bild bearbeiten
+        help: "Fülle das folgende Formular aus, um dein Bild zu aktualisieren."
+        
+    bookings:
+      index:
+        title: Buchungen
+        help: "Der Name der Buchung kann durch darauf klicken bearbeitet werden."
+        new: neue Buchung
+        no_items: "Momentan gibt es keine Buchungen. Klicke einfach <a href='%{url}'>hier</a>, um eine neue Buchung zu erstellen."
+        lastest_items: Letzte Buchungen
+        updated_at: bearbeitet am
+      new:
+        title: Neue Buchung
+        help: "Gib erst mal einen Namen ein. Alle anderen Einstellungen kannst du vornehmen, sobald das Formular abgesendet ist."
+      edit:
+        help: "Der Name der Buchung kann durch darauf klicken bearbeitet werden."
+        destroy: Buchung löschen
+        ask_for_name: "Gib den neuen Namen ein"        
 
     content_types:
       index:
@@ -231,11 +245,15 @@ de:
           created_at: '"Erstellt am" Datum'
           updated_at: '"Aktualisiert am" Datum'
           position_in_list: Manuell
+        order_direction:
+          asc: Aufsteigend
+          desc: Absteigend
+          
 
     contents:
       index:
         title: '"%{type}" anzeigen'
-        edit: Bausteine bearbeiten
+        edit: Baustein bearbeiten
         destroy: Baustein löschen
         download: Elemente herunterladen
         new: neues Element
@@ -268,7 +286,7 @@ de:
           site: Webseiten-Informationen
           content_types: Benutzerdefinierte Inhalts-Typen
           assets: Template-Dateien
-          asset_collections: Asset-Sammlung
+          asset_collections: Galerien
           snippets: Snippets
           pages: Seiten
         messages:
@@ -290,7 +308,9 @@ de:
           notes: "Basically, Locomotive is a multi websites platform. Each site instance has a default entry, also called subdomain and based on the default domain name. Obviously, you are free to map other domains to your site instance working like aliases. <br/>The default domain name value can be found in the <b>config/initializers/locomotive.rb</b> file."
       step_2:
         title: "Schritt 2/3 &mdash; Account erstellen"
-        name: Account-Name
+        name: Nachname
+        firstname: Vorname
+        company: Unternehmen        
         email: Email
         password: Passwort
         password_confirmation: Passwort-Bestätigung
