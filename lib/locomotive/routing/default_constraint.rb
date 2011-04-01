@@ -3,10 +3,14 @@ module Locomotive
     class DefaultConstraint
 
       def self.matches?(request)
-        domain, subdomain = domain_and_subdomain(request)
-        subdomain = 'www' if subdomain.blank?
+        if Locomotive.multi_sites_enabled?
+          domain, subdomain = domain_and_subdomain(request)
+          subdomain = 'www' if subdomain.blank?
 
-        domain == Locomotive.config.default_domain && Locomotive.config.reserved_subdomains.include?(subdomain)
+          domain == Locomotive.config.domain && Locomotive.config.multi_sites.reserved_subdomains.include?(subdomain)
+        else
+          false
+        end
       end
 
       # see actionpack/lib/action_dispatch/http/url.rb for more information

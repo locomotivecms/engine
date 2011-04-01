@@ -18,7 +18,12 @@ module Locomotive
 
         def fetch_site
           Locomotive.logger "[fetch site] host = #{request.host} / #{request.env['HTTP_HOST']}"
-          @current_site ||= Site.match_domain(request.host).first
+
+          if Locomotive.multi_sites_enabled?
+            @current_site ||= Site.match_domain(request.host).first
+          else
+            @current_site ||= Site.first
+          end
         end
 
         def current_site
@@ -34,7 +39,7 @@ module Locomotive
         end
 
         def render_no_site_error
-          render :template => "/admin/errors/no_site", :layout => false
+          render :template => '/admin/errors/no_site', :layout => false
         end
 
         def validate_site_membership

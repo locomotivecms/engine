@@ -1,5 +1,5 @@
 module Locomotive
-  module Deployment
+  module Hosting
     module Heroku
       module CustomDomain
 
@@ -19,7 +19,7 @@ module Locomotive
 
           def add_subdomain_to_domains_with_heroku
             unless self.domains_change.nil?
-              full_subdomain = "#{self.subdomain}.#{Locomotive.config.default_domain}"
+              full_subdomain = "#{self.subdomain}.#{Locomotive.config.domain}"
               @heroku_domains_change = {
                 :added    => self.domains_change.last - self.domains_change.first - [full_subdomain],
                 :removed  => self.domains_change.first - self.domains_change.last - [full_subdomain]
