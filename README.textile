@@ -1,8 +1,4 @@
-h1. This isn't the main fork, look undering http://github.com/locomotivecms/engine for the main project.
-
 h1. Locomotive CMS
-
-
 
 Locomotive is a simple but powerful CMS based on liquid templates and mongodb database. At my company ("NoCoffee":http://www.nocoffee.fr), we use it for our clients when they request a simple website.
 

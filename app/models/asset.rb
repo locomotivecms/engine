@@ -4,7 +4,7 @@ class Asset
   include Mongoid::Timestamps
 
   ## Extensions ##
-  include Extensions::Asset::Vignette
+  include Models::Extensions::Asset::Vignette
   include CustomFields::ProxyClassEnabler
 
   ## fields ##

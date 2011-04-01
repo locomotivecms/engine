@@ -8,7 +8,8 @@ require 'locomotive/logger'
 require 'locomotive/liquid'
 require 'locomotive/mongoid'
 require 'locomotive/carrierwave'
-require 'locomotive/hosting'
+require 'locomotive/heroku'
+require 'locomotive/bushido'
 require 'locomotive/custom_fields'
 require 'locomotive/httparty'
 require 'locomotive/inherited_resources'
@@ -23,8 +24,8 @@ require 'locomotive/session_store'
 
 module Locomotive
 
-  include Locomotive::Hosting::Heroku
-  include Locomotive::Hosting::Bushido
+  include Locomotive::Heroku
+  include Locomotive::BushidoSupport
 
   class << self
     attr_accessor :config
@@ -37,31 +38,29 @@ module Locomotive
 
   def self.configure
     self.config ||= Configuration.new
-
     yield(self.config)
 
     after_configure
   end
 
   def self.after_configure
-    # ActionMailer::Base.default_url_options[:host] = self.config.default_domain + (Rails.env.development? ? ':3000' : '')
+    raise '[Error] Locomotive needs a default domain name' if Locomotive.config.default_domain.blank?
 
-    # multi sites support
-    self.configure_multi_sites
-
-    # hosting platform
-    self.configure_hosting
-
-    # Devise
-    mail_address = self.config.mailer_sender
-    Devise.mailer_sender = mail_address =~ /.+@.+/ ? mail_address : "#{mail_address}@#{Locomotive.config.domain}"
+    ActionMailer::Base.default_url_options[:host] = self.config.default_domain + (Rails.env.development? ? ':3000' : '')
 
     # cookies stored in mongodb (mongoid_store)
     Rails.application.config.session_store :mongoid_store, {
-      :key => self.config.cookie_key
+      :key => Locomotive.config.cookie_key
     }
 
-    self.define_various_helpers
+    # Hosting-platform support
+    self.enable_heroku if self.heroku?
+
+    # Bushido support
+    self.enable_bushido if self.bushido?
+
+    # Devise
+    Devise.mailer_sender = self.config.mailer_sender
 
     # Load all the dynamic classes (custom fields)
     begin
@@ -72,44 +71,8 @@ module Locomotive
     end
   end
 
-  def self.configure_multi_sites
-    if self.multi_sites_enabled?
-      domain_name = self.config.multi_sites.domain
-
-      raise '[Error] Locomotive needs a domain name when used as a multi sites platform' if domain_name.blank?
-
-      # Site.send :include, Extensions::Site::SubdomainDomains
-
-      self.config.domain = domain_name
-    end
-  end
-
-  def self.configure_hosting
-    if Rails.env.production?
-      # Heroku support
-      self.enable_heroku if self.heroku?
-
-      # Bushido support
-      self.enable_bushido if self.bushido?
-    end
-  end
-
-  def self.define_various_helpers
-    if self.multi_sites_enabled?
-      self.config.manage_subdomain = self.config.manage_domains = true
-    else
-      # FIXME: (Did) modify the code below if Locomotive handles a new hosting solution
-      self.config.manage_domains = self.heroku? || self.bushido?
-      self.config.manage_subdomain = self.bushido?
-    end
-  end
-
-  def self.multi_sites_enabled?
-    self.config.multi_sites != false
-  end
-
   def self.logger(message)
-    if self.config.enable_logs == true
+    if Locomotive.config.enable_logs == true
       Rails.logger.info(message)
     end
   end

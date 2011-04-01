@@ -3,13 +3,13 @@ class Page
   include Locomotive::Mongoid::Document
 
   ## Extensions ##
-  include Extensions::Page::Tree
-  include Extensions::Page::EditableElements
-  include Extensions::Page::Parse
-  include Extensions::Page::Render
-  include Extensions::Page::Templatized
-  include Extensions::Page::Redirect
-  include Extensions::Page::Listed
+  include Models::Extensions::Page::Tree
+  include Models::Extensions::Page::EditableElements
+  include Models::Extensions::Page::Parse
+  include Models::Extensions::Page::Render
+  include Models::Extensions::Page::Templatized
+  include Models::Extensions::Page::Redirect
+  include Models::Extensions::Page::Listed
 
   ## fields ##
   field :title
