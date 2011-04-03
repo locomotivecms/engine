@@ -2,6 +2,9 @@ class Site
 
   include Locomotive::Mongoid::Document
 
+  ## Extensions ##
+  extend Extensions::Site::SubdomainDomains
+
   ## fields ##
   field :name
   field :meta_keywords
@@ -21,6 +24,9 @@ class Site
   ## callbacks ##
   after_create :create_default_pages!
   after_destroy :destroy_pages
+
+  ## behaviours ##
+  enable_subdomain_n_domains_if_multi_sites
 
   ## methods ##
 

@@ -1,5 +1,4 @@
 require File.dirname(__FILE__) + '/../../lib/locomotive.rb'
-# require_or_load 'extensions/site/subdomain_domains'
 
 Locomotive.configure do |config|
 
@@ -61,64 +60,4 @@ Locomotive.configure do |config|
   # config.mailer_sender = 'support'
   # # => 'support@heroku.com' (Heroku), 'support@bushi.do' (Bushido), 'support@example.com' (Dev) or 'support@<your_hosting_platform>' (Multi-sites)
   config.mailer_sender = 'support'
-
-  # ===================================================
-
-  # do |deployment|
-  #
-  #   # the possible options are: server, heroku, bushido or auto (default)
-  #   # if you select 'auto', Locomotive will look after specific ENV variables to check
-  #   # the matching platform (Heroku and Bushido set their own ENV variable).
-  #   deployment.target = :auto
-  #
-  #   # in case you select heroku, it requires your Heroku credentials in order to manage domains.
-  #   # If you do not want to store the credentials here, you can add them directly into the Heroku ENV
-  #   # (see Heroku documentation)
-  #   # deployment.heroku = {
-  #   #   :login      => '<your_heroku_login>'
-  #   #   :password   => '<your_heroku_password>'
-  #   # }
-  # end
-  #
-
-  # # define the domain name used in production.cn
-  # deployment.domain = 'example.com'
-
-
-  # set the default domain name used in development/test. By default, 'example.com' is used.
-  # config.local_domain = 'example.com'
-
-  # Locomotive can serve one single site or many. The "many sites" option requires more constraints for
-  # the domain name (see config.domain for more explanation)
-  #
-  # Ex:
-  # config.site_mode = :single
-  # or
-  # config.site_mode = :many
-  # config.site_mode = :single
-
-  # if not defined, locomotive will use example.com as main domain name. Remove prefix www from your domain name.
-  # Ex:
-  # config.default_domain = Rails.env.production? ? 'mydomain.com' : 'example.com'
-  #
-  # If you use locomotive for a single site in Heroku, use "heroku.com" as default domain name.bzc,
-
-  # tell if the application is hosted on Bushido.
-  # If enabled, there's no further configuration needed.
-  # Bushido will take care of eveything
-  #
-  # Ex:
-  # config.bushido = true
-  # config.bushido = ENV['HOSTING_PLATFORM'] == 'bushido'
-
-  # Locomotive uses the DelayedJob gem for the theme import module.
-  # In case you want to deploy to Heroku, you will have to pay for an extra dyno.
-  # If you do not mind about importing theme without DelayedJob, disable it.
-  # config.delayed_job = false
-  #
-  # # default locale (for now, only en, de, fr and pt-BR are supported)
-  # config.default_locale = :en
-  #
-  # # Configure the e-mail address which will be shown in the DeviseMailer, NotificationMailer, ...etc
-  # config.mailer_sender = ENV['BUSHIDO_DOMAIN'] ? "support@#{ENV['BUSHIDO_DOMAIN']}" : 'support@example.com'
 end

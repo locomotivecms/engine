@@ -2,35 +2,35 @@ module Extensions
   module Site
     module SubdomainDomains
 
-      unloadable
+      def enable_subdomain_n_domains_if_multi_sites
+        if Locomotive.config.multi_sites? || Locomotive.config.manage_subdomain_n_domains?
 
-      extend ActiveSupport::Concern
+          ## fields ##
+          field :subdomain
+          field :domains, :type => Array, :default => []
 
-      included do
+          ## indexes
+          index :domains
 
-        ## fields ##
-        field :subdomain
-        field :domains, :type => Array, :default => []
+          ## validations ##
+          validates_presence_of     :subdomain
+          validates_uniqueness_of   :subdomain
+          validates_exclusion_of    :subdomain, :in => Locomotive.config.multi_sites.reserved_subdomains
+          validates_format_of       :subdomain, :with => Locomotive::Regexps::SUBDOMAIN, :allow_blank => true
+          validate                  :domains_must_be_valid_and_unique
 
-        ## indexes
-        index :domains
+          ## callbacks ##
+          before_save :add_subdomain_to_domains
 
-        ## validations ##
-        validates_presence_of     :subdomain
-        validates_uniqueness_of   :subdomain
-        validates_exclusion_of    :subdomain, :in => Locomotive.config.multi_sites.reserved_subdomains
-        validates_format_of       :subdomain, :with => Locomotive::Regexps::SUBDOMAIN, :allow_blank => true
-        validate                  :domains_must_be_valid_and_unique
+          ## named scopes ##
+          scope :match_domain, lambda { |domain| { :any_in => { :domains => [*domain] } } }
+          scope :match_domain_with_exclusion_of, lambda { |domain, site|
+            { :any_in => { :domains => [*domain] }, :where => { :_id.ne => site.id } }
+          }
 
-        ## callbacks ##
-        before_save :add_subdomain_to_domains
+          send :include, InstanceMethods
 
-        ## named scopes ##
-        scope :match_domain, lambda { |domain| { :any_in => { :domains => [*domain] } } }
-        scope :match_domain_with_exclusion_of, lambda { |domain, site|
-          { :any_in => { :domains => [*domain] }, :where => { :_id.ne => site.id } }
-        }
-
+        end
       end
 
       module InstanceMethods
@@ -53,7 +53,7 @@ module Extensions
         end
 
         def full_subdomain
-          "#{self.subdomain}.#{Locomotive.config.default_domain}"
+          "#{self.subdomain}.#{Locomotive.config.domain}"
         end
 
         protected

@@ -177,7 +177,7 @@ GEM
     mimetype-fu (0.1.2)
     mongo (1.2.4)
       bson (>= 1.2.4)
-    mongoid (2.0.0)
+    mongoid (2.0.0.rc.7)
       activemodel (~> 3.0)
       mongo (~> 1.2)
       tzinfo (~> 0.3.22)
@@ -256,7 +256,7 @@ GEM
     treetop (1.4.9)
       polyglot (>= 0.3.1)
     trollop (1.16.2)
-    tzinfo (0.3.25)
+    tzinfo (0.3.26)
     unicorn (3.5.0)
       kgio (~> 2.3)
       rack
@@ -299,7 +299,7 @@ DEPENDENCIES
   locomotive_mongoid_acts_as_tree (= 0.1.5.5)
   mimetype-fu
   mocha!
-  mongoid (~> 2.0.0.rc.7)
+  mongoid (= 2.0.0.rc.7)
   pickle
   rails (>= 3.0.5)
   rmagick (= 2.12.2)

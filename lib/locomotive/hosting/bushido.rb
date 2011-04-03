@@ -24,14 +24,13 @@ module Locomotive
         def enable_bushido
           self.config.domain = ENV['APP_TLD']
 
-          self.enhance_site_model
+          self.enhance_site_model_with_bushido
 
           self.bushido_domains = ::Bushido::App.domains
           self.bushido_subdomain = ::Bushido::App.subdomain
         end
 
-        def enhance_site_model
-          Site.send :include, Extensions::Site::SubdomainDomains
+        def enhance_site_model_with_bushido
           Site.send :include, Locomotive::Hosting::Bushido::CustomDomain
         end
 

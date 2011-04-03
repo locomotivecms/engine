@@ -3,7 +3,7 @@ module Locomotive
     class DefaultConstraint
 
       def self.matches?(request)
-        if Locomotive.multi_sites_enabled?
+        if Locomotive.config.multi_sites?
           domain, subdomain = domain_and_subdomain(request)
           subdomain = 'www' if subdomain.blank?
 
