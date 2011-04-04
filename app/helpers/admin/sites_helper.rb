@@ -8,7 +8,7 @@ module Admin::SitesHelper
 
   def main_site_url(site = current_site, options = {})
     # TODO: to be refactored
-    if multi_sites_enabled?
+    if multi_sites?
       url = "http://#{site.subdomain}.#{Locomotive.config.domain}"
       url += ":#{request.port}" if request.port != 80
     else
@@ -27,15 +27,15 @@ module Admin::SitesHelper
   end
 
   def manage_subdomain_or_domains?
-    Locomotive.config.manage_subdomain || Locomotive.config.manage_domains
+    Locomotive.config.manage_subdomain? || Locomotive.config.manage_domains?
   end
 
   def manage_domains?
-    Locomotive.config.manage_domains
+    Locomotive.config.manage_domains?
   end
 
-  def multi_sites_enabled?
-    Locomotive.multi_sites_enabled?
+  def multi_sites?
+    Locomotive.config.multi_sites?
   end
 
 end

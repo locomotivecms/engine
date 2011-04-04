@@ -44,8 +44,6 @@ module Locomotive
   end
 
   def self.after_configure
-    # ActionMailer::Base.default_url_options[:host] = self.config.default_domain + (Rails.env.development? ? ':3000' : '')
-
     # multi sites support
     self.configure_multi_sites
 
@@ -61,7 +59,7 @@ module Locomotive
       :key => self.config.cookie_key
     }
 
-    self.define_various_helpers
+    self.define_subdomain_and_domains_options
 
     # Load all the dynamic classes (custom fields)
     begin
@@ -73,39 +71,31 @@ module Locomotive
   end
 
   def self.configure_multi_sites
-    if self.multi_sites_enabled?
+    if self.config.multi_sites?
       domain_name = self.config.multi_sites.domain
 
       raise '[Error] Locomotive needs a domain name when used as a multi sites platform' if domain_name.blank?
-
-      # Site.send :include, Extensions::Site::SubdomainDomains
 
       self.config.domain = domain_name
     end
   end
 
   def self.configure_hosting
-    if Rails.env.production?
-      # Heroku support
-      self.enable_heroku if self.heroku?
+    # Heroku support
+    self.enable_heroku if self.heroku?
 
-      # Bushido support
-      self.enable_bushido if self.bushido?
-    end
+    # Bushido support
+    self.enable_bushido if self.bushido?
   end
 
-  def self.define_various_helpers
-    if self.multi_sites_enabled?
+  def self.define_subdomain_and_domains_options
+    if self.config.multi_sites?
       self.config.manage_subdomain = self.config.manage_domains = true
     else
-      # FIXME: (Did) modify the code below if Locomotive handles a new hosting solution
+      # Note: (Did) modify the code below if Locomotive handles a new hosting solution
       self.config.manage_domains = self.heroku? || self.bushido?
       self.config.manage_subdomain = self.bushido?
     end
-  end
-
-  def self.multi_sites_enabled?
-    self.config.multi_sites != false
   end
 
   def self.logger(message)

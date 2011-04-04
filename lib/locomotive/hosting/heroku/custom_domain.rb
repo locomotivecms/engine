@@ -6,7 +6,6 @@ module Locomotive
         extend ActiveSupport::Concern
 
         included do
-
           after_save :add_heroku_domains
           after_destroy :remove_heroku_domains
 

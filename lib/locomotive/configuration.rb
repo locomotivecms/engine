@@ -2,21 +2,24 @@ module Locomotive
   class Configuration
 
     @@defaults = {
-      :name             => 'LocomotiveApp',
-      :domain           => 'example.com',
-      # :multi_sites      => false,
-      # :default_domain   => 'example.com',
-      # :reserved_subdomains => %w{www admin email blog webmail mail support help site sites},
-      # :forbidden_paths  => %w{layouts snippets stylesheets javascripts assets admin system api},
-      :reserved_slugs   => %w{stylesheets javascripts assets admin images api pages edit},
-      :locales          => %w{en de fr pt-BR},
-      :cookie_key       => '_locomotive_session',
-      :enable_logs      => false,
-      # :heroku           => false,
-      # :bushido          => false,
-      :delayed_job      => true,
-      :default_locale   => :en,
-      :mailer_sender    => 'support' #support@example.com'
+      :name                   => 'LocomotiveApp',
+      :domain                 => 'example.com',
+      # :multi_sites          => false,
+      # :default_domain       => 'example.com',
+      # :reserved_subdomains  => %w{www admin email blog webmail mail support help site sites},
+      # :forbidden_paths      => %w{layouts snippets stylesheets javascripts assets admin system api},
+      :reserved_slugs         => %w{stylesheets javascripts assets admin images api pages edit},
+      :locales                => %w{en de fr pt-BR},
+      :cookie_key             => '_locomotive_session',
+      :enable_logs            => false,
+      # :heroku               => false,
+      # :bushido              => false,
+      :hosting                => :auto,
+      :delayed_job            => true,
+      :default_locale         => :en,
+      :mailer_sender          => 'support', #support@example.com'
+      :manage_subdomain       => false,
+      :manage_manage_domains  => false
     }
 
     cattr_accessor :settings
@@ -27,6 +30,22 @@ module Locomotive
 
     def self.settings
       @@settings
+    end
+
+    def multi_sites?
+      self.multi_sites != false
+    end
+
+    def manage_subdomain?
+      self.manage_subdomain == true
+    end
+
+    def manage_domains?
+      self.manage_domains == true
+    end
+
+    def manage_subdomain_n_domains?
+      self.manage_subdomain? && self.manage_domains?
     end
 
     def method_missing(name, *args, &block)

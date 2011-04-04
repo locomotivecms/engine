@@ -23,14 +23,16 @@ module Locomotive
         end
 
         def enable_heroku
-          # raise 'Heroku application name is mandatory' if self.config.heroku[:name].blank?
           self.config.domain = 'heroku.com'
 
           self.config.heroku ||= {}
           self.config.heroku[:name] = ENV['APP_NAME']
 
+          raise 'Heroku application name is mandatory' if self.config.heroku[:name].blank?
+
           self.open_heroku_connection
-          self.enhance_site_model
+
+          self.enhance_site_model_with_heroku
 
           # "cache" domains for better performance
           self.heroku_domains = self.heroku_connection.list_domains(self.config.heroku[:name]).collect { |h| h[:domain] }
@@ -38,13 +40,12 @@ module Locomotive
 
         def open_heroku_connection
           login = self.config.heroku[:login] || ENV['HEROKU_LOGIN']
-          password = self.config.heroku[:password] rescue ENV['HEROKU_PASSWORD']
+          password = self.config.heroku[:password] || ENV['HEROKU_PASSWORD']
 
           self.heroku_connection = ::Heroku::Client.new(login, password)
         end
 
-        def enhance_site_model
-          Site.send :include, Extensions::Site::SubdomainDomains
+        def enhance_site_model_with_heroku
           Site.send :include, Locomotive::Hosting::Heroku::CustomDomain
         end
 
