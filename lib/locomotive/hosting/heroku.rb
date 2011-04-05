@@ -35,6 +35,8 @@ module Locomotive
 
           self.enhance_site_model_with_heroku
 
+          puts "HEROKU NAME = #{ENV['APP_NAME'].inspect} / #{ENV.inspect}"
+
           # "cache" domains for better performance
           self.heroku_domains = self.heroku_connection.list_domains(self.config.heroku[:name]).collect { |h| h[:domain] }
         end
