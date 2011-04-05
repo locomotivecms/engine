@@ -21,7 +21,7 @@ Gem::Specification.new do |s|
   s.add_dependency "warden"
   s.add_dependency "devise", "1.1.3"
   s.add_dependency "mongoid", "2.0.0.rc.7"
-  s.add_dependency "bson_ext", "~> 1.2.0"
+  s.add_dependency "bson_ext", "~> 1.3.0"
   s.add_dependency "locomotive_mongoid_acts_as_tree", "0.1.5.5"
   s.add_dependency "will_paginate"
 
@@ -37,6 +37,7 @@ Gem::Specification.new do |s|
   s.add_dependency "fog", "0.3.7"
   s.add_dependency "mimetype-fu"
   s.add_dependency "actionmailer-with-request"
+  s.add_dependency "bushido"
   s.add_dependency "heroku", "1.18.2"
   s.add_dependency "httparty", ">= 0.6.1"
   s.add_dependency "RedCloth", "4.2.7"

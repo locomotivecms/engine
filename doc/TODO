@@ -4,6 +4,7 @@ x bugs:
   x #50
   x #51
 ~ editable_elements: inheritable: false (Mattias) => seems to be fixed by Dirk's last pull request (#44) => content tag
+- bushido version
 - upgrade warning if new version of locomotive (maybe based on the commit id)
 - duostack version
 - 2 different sites on the same main domain (one in www, the other one in something else) (Raphael Costa)
