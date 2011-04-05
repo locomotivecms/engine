@@ -1,5 +1,6 @@
 require 'bushido'
 require 'locomotive/hosting/bushido/custom_domain'
+require 'locomotive/hosting/bushido/first_installation'
 
 module Locomotive
   module Hosting
@@ -22,7 +23,7 @@ module Locomotive
         end
 
         def enable_bushido
-          self.config.domain = ENV['APP_TLD']
+          self.config.domain = ENV['APP_TLD'] unless self.config.multi_sites?
 
           self.enhance_site_model_with_bushido
 
@@ -32,6 +33,7 @@ module Locomotive
 
         def enhance_site_model_with_bushido
           Site.send :include, Locomotive::Hosting::Bushido::CustomDomain
+          Site.send :include, Locomotive::Hosting::Bushido::FirstInstallation
         end
 
         # manage domains
@@ -45,7 +47,6 @@ module Locomotive
           end
         end
 
-
         def remove_bushido_domain(name)
           Locomotive.logger "[remove bushido domain] #{name}"
           ::Bushido::App.remove_domain(name)
@@ -54,7 +55,6 @@ module Locomotive
             self.bushido_domains.delete(name)
           end
         end
-
 
         def set_bushido_subdomain(name)
           Locomotive.logger "[set bushido subdomain] #{name}.bushi.do"

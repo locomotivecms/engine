@@ -4,16 +4,12 @@ module Locomotive
     @@defaults = {
       :name                   => 'LocomotiveApp',
       :domain                 => 'example.com',
-      # :multi_sites          => false,
-      # :default_domain       => 'example.com',
-      # :reserved_subdomains  => %w{www admin email blog webmail mail support help site sites},
+      :reserved_subdomains    => %w{www admin email blog webmail mail support help site sites},
       # :forbidden_paths      => %w{layouts snippets stylesheets javascripts assets admin system api},
       :reserved_slugs         => %w{stylesheets javascripts assets admin images api pages edit},
       :locales                => %w{en de fr pt-BR},
       :cookie_key             => '_locomotive_session',
       :enable_logs            => false,
-      # :heroku               => false,
-      # :bushido              => false,
       :hosting                => :auto,
       :delayed_job            => true,
       :default_locale         => :en,
@@ -48,6 +44,18 @@ module Locomotive
       self.manage_subdomain? && self.manage_domains?
     end
 
+    def reserved_domains
+      if self.multi_sites?
+        if self.multi_sites.reserved_subdomains.blank?
+          @@defaults[:reserved_subdomains]
+        else
+          self.multi_sites.reserved_subdomains
+        end
+      else
+        []
+      end
+    end
+
     def method_missing(name, *args, &block)
       self.settings.send(name, *args, &block)
     end
@@ -77,7 +85,14 @@ module Locomotive
     # retrieves the specified key and yields it
     # if a block is provided
     def [](key, &block)
-      block_given? ? yield(super(key)) : super(key)
+      if block_given?
+        self.delete(key) unless super(key).respond_to?(:keys)
+        yield(super(key))
+      else
+        super(key)
+      end
+
+      # block_given? ? yield(super(key)) : super(key)
     end
 
     # provides member-based access to keys

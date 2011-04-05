@@ -6,10 +6,12 @@ module Locomotive
         extend ActiveSupport::Concern
 
         included do
-
           validate :subdomain_availability
 
+          before_save :check_subdomain_change
+
           after_save :add_bushido_domains
+          after_update :record_new_subdomain
           after_destroy :remove_bushido_domains
 
           alias_method_chain :add_subdomain_to_domains, :bushido
@@ -51,6 +53,17 @@ module Locomotive
           def remove_bushido_domains
             self.domains_without_subdomain.each do |name|
               Locomotive.remove_bushido_domain(name)
+            end
+          end
+
+          def check_subdomain_change
+            @new_bushido_subdomain = !Locomotive.config.multi_sites? && self.subdomain_changed?
+            true
+          end
+
+          def record_new_subdomain
+            if @new_bushido_subdomain == true
+              Locomotive.set_bushido_subdomain(self.subdomain)
             end
           end
 

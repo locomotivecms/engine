@@ -273,23 +273,14 @@ de:
         title: Erst-Installation von getbenga
         next: Weiter
       step_1:
-        title: Schritt 1/3
-        explanations: Dies ist der erste Schritt zur Installation von getbenga. Bitte lies die folgenden Texte genau durch.
-        database:
-          label: "Datenbank-Name: <em>%{name}</em>"
-          notes: "All Verbindungseinstellungen für mongodb findest du in der <b>config/mongoid.yml</b> Datei."
-        default_domain:
-          label: "Standard Domain-Name: <em>%{name}</em>"
-          notes: "Basically, Locomotive is a multi websites platform. Each site instance has a default entry, also called subdomain and based on the default domain name. Obviously, you are free to map other domains to your site instance working like aliases. <br/>The default domain name value can be found in the <b>config/initializers/locomotive.rb</b> file."
-      step_2:
-        title: "Schritt 2/3 &mdash; Account erstellen"
+        title: "Schritt 1/2 &mdash; Account erstellen"
         name: Account-Name
         email: Email
         password: Passwort
         password_confirmation: Passwort-Bestätigung
         done: "Du hast bereits einen Account hinzugefügt:<br/><strong>%{name}</strong>, <em>%{email}</em>"
         next: Account erstellen
-      step_3:
-        title: "Schritt 3/3 &mdash; Erstelle deine erste Webseite"
+      step_2:
+        title: "Schritt 2/2 &mdash; Erstelle deine erste Webseite"
         explanations: "Dies ist der letzte Schritt der Installation. Du kannst nun ein fertiges Template als zip-Datei hochladen. <a href=\'http://www.locomotivecms.com/support/themes\'>Hier</a> findest du ein paar kostenlose Templates, die du gerne kostenlos verwenden kannst."
         next: Webseite erstellen

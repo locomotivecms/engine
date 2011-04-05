@@ -4,6 +4,7 @@ class Site
 
   ## Extensions ##
   extend Extensions::Site::SubdomainDomains
+  extend Extensions::Site::FirstInstallation
 
   ## fields ##
   field :name
@@ -19,7 +20,7 @@ class Site
   embeds_many :memberships
 
   ## validations ##
-  validates_presence_of     :name
+  validates_presence_of :name
 
   ## callbacks ##
   after_create :create_default_pages!

@@ -7,7 +7,7 @@ module Locomotive
           domain, subdomain = domain_and_subdomain(request)
           subdomain = 'www' if subdomain.blank?
 
-          domain == Locomotive.config.domain && Locomotive.config.multi_sites.reserved_subdomains.include?(subdomain)
+          domain == Locomotive.config.domain && Locomotive.config.reserved_subdomains.include?(subdomain)
         else
           false
         end

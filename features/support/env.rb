@@ -44,4 +44,4 @@ Capybara.default_host = 'test.example.com'
 require File.expand_path(File.dirname(__FILE__) + '/../../spec/support/carrierwave')
 require File.expand_path(File.dirname(__FILE__) + '/../../spec/support/locomotive')
 
-Locomotive.configure_for_test
+Locomotive.configure_for_test(true)

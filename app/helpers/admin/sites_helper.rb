@@ -30,6 +30,10 @@ module Admin::SitesHelper
     Locomotive.config.manage_subdomain? || Locomotive.config.manage_domains?
   end
 
+  def manage_subdomain?
+    Locomotive.config.manage_subdomain?
+  end
+
   def manage_domains?
     Locomotive.config.manage_domains?
   end

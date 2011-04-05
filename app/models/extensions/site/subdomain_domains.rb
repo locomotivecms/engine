@@ -3,7 +3,9 @@ module Extensions
     module SubdomainDomains
 
       def enable_subdomain_n_domains_if_multi_sites
-        if Locomotive.config.multi_sites? || Locomotive.config.manage_subdomain_n_domains?
+        # puts "multi_sites? #{Locomotive.config.multi_sites?} / manage_domains? #{Locomotive.config.manage_domains?} / heroku? #{Locomotive.heroku?} / bushido? #{Locomotive.bushido?}"
+
+        if Locomotive.config.multi_sites? || Locomotive.config.manage_domains?
 
           ## fields ##
           field :subdomain
@@ -15,7 +17,7 @@ module Extensions
           ## validations ##
           validates_presence_of     :subdomain
           validates_uniqueness_of   :subdomain
-          validates_exclusion_of    :subdomain, :in => Locomotive.config.multi_sites.reserved_subdomains
+          validates_exclusion_of    :subdomain, :in => Locomotive.config.reserved_subdomains
           validates_format_of       :subdomain, :with => Locomotive::Regexps::SUBDOMAIN, :allow_blank => true
           validate                  :domains_must_be_valid_and_unique
 
@@ -29,7 +31,6 @@ module Extensions
           }
 
           send :include, InstanceMethods
-
         end
       end
 
