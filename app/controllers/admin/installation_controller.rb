@@ -34,7 +34,7 @@ module Admin
       when 1 # create account
         @account = Account.create(params[:account])
         if @account.valid?
-          redirect_to admin_installation_step_url(3)
+          redirect_to admin_installation_step_url(2)
         else
           render 'step_1'
         end

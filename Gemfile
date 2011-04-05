@@ -8,7 +8,7 @@ gem 'warden'
 gem 'devise', '= 1.1.3'
 
 gem 'mongoid', '2.0.0.rc.7'
-gem 'bson_ext', '~> 1.2.1'
+gem 'bson_ext', '~> 1.3.0'
 gem 'locomotive_mongoid_acts_as_tree', '0.1.5.5', :require => 'mongoid_acts_as_tree'
 gem 'will_paginate'
 
@@ -24,7 +24,7 @@ gem 'custom_fields', '1.0.0.beta.9'
 gem 'fog', '0.3.7'
 gem 'mimetype-fu'
 gem 'actionmailer_with_request', :git => 'git://github.com/eric1234/actionmailer_with_request.git'
-gem 'heroku', '1.18.2'
+gem 'heroku', '1.19.1' # '1.18.2'
 gem 'bushido'
 gem 'httparty', '>= 0.6.1'
 gem 'RedCloth', '4.2.7'
@@ -32,6 +32,7 @@ gem 'delayed_job', '2.1.4'
 gem 'delayed_job_mongoid', '1.0.2'
 gem 'rubyzip'
 gem 'locomotive_jammit-s3', :require => 'jammit-s3'
+gem 'SystemTimer', :platforms => :ruby_18
 
 # The rest of the dependencies are for use when in the locomotive dev environment
 
