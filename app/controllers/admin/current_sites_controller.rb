@@ -22,7 +22,7 @@ module Admin
     end
 
     def new_host_if_subdomain_changed
-      if @site.domains.include?(request.host)
+      if !Locomotive.config.multi_sites? || @site.domains.include?(request.host)
         {}
       else
         { :host => "#{@site.subdomain}.#{Locomotive.config.default_domain}:#{request.port}" }

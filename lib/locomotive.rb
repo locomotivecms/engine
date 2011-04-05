@@ -44,6 +44,8 @@ module Locomotive
   end
 
   def self.after_configure
+    self.define_subdomain_and_domains_options
+
     # multi sites support
     self.configure_multi_sites
 
@@ -58,8 +60,6 @@ module Locomotive
     Rails.application.config.session_store :mongoid_store, {
       :key => self.config.cookie_key
     }
-
-    self.define_subdomain_and_domains_options
 
     # Load all the dynamic classes (custom fields)
     begin

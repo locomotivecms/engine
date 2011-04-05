@@ -22,15 +22,16 @@
     = f.input :password, :input_html => { :autocomplete => "off" }
     = f.input :password_confirmation, :input_html => { :autocomplete => "off" }
 
-  = f.foldable_inputs :name => :sites, :class => 'sites off' do
-    - @account.sites.each do |site|
-      %li{ :class => 'item' }
-        %strong= link_to site.name, main_site_url(site, :uri => true)
-        %em= site.domains.join(', ')
+  - if multi_sites?
+    = f.foldable_inputs :name => :sites, :class => 'sites off' do
+      - @account.sites.each do |site|
+        %li{ :class => 'item' }
+          %strong= link_to site.name, main_site_url(site, :uri => true)
+          %em= site.domains.join(', ')
 
-        - if admin_on?(site) && site != current_site
-          %span{ :class => 'actions' }
-            = link_to image_tag('admin/form/icons/trash.png'), admin_site_url(site), :class => 'remove first', :confirm => t('admin.messages.confirm'), :method => :delete
+          - if admin_on?(site) && site != current_site
+            %span{ :class => 'actions' }
+              = link_to image_tag('admin/form/icons/trash.png'), admin_site_url(site), :class => 'remove first', :confirm => t('admin.messages.confirm'), :method => :delete
 
   = f.foldable_inputs :name => :language, :class => 'language' do
     = f.custom_input :language, { :css => 'full', :with_label => false } do

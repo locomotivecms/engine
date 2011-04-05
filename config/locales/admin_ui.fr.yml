@@ -278,25 +278,14 @@ fr:
         title: Première installation de Locomotive
         next: Suivant
       step_1:
-        title: "Étape 1/3"
-        explanations: "Voici la première étape de l'installation de Locomotive. Veuillez lire attentivement ce qui est écrit ci-dessous."
-        database:
-          label: "Nom base de données: <em>%{name}</em>"
-          notes: "Les paramètres de la connection à MongoDB se trouvent dans le fichier <b>config/mongoid.yml</b> de votre application."
-        default_domain:
-          label: "Nom du domaine par défaut: <em>%{name}</em>"
-          notes:
-            "Locomotive est une plate-forme multi-sites. Chaque instance de site a une entrée par défaut appelée aussi sous-domaine et qui est aussi fonction du nom de domaine par défaut. Evidemment, vous êtes libres d'associer d'autres noms de domaines, sortes d'alias.
-            <br/>La valeur du nom de domaine par défaut se trouve dans le fichier <b>config/initializers/locomotive.rb</b>."
-      step_2:
-        title: "Étape 2/3 &mdash; Créer un compte"
+        title: "Étape 1/2 &mdash; Créer un compte"
         name: Nom du compte
         email: E-mail
         password: Mot de passe
         password_confirmation: Confirmation mot de passe
         done: "Vous avez déjà ajouté un compte:<br/><strong>%{name}</strong>, <em>%{email}</em>"
         next: Créer compte
-      step_3:
-        title: "Étape 3/3 &mdash; Créer premier site"
+      step_2:
+        title: "Étape 2/2 &mdash; Créer votre premier site"
         explanations: "C'est la dernière étape de l'installation. Vous pouvez uploader un theme sous forme d'un fichier zip. Nous avons quelques themes disponibles <a href=\"http://www.locomotivecms.com/support/themes\">ici</a>."
         next: Créer site

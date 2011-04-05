@@ -1,6 +1,7 @@
 require 'heroku'
 require 'heroku/client'
 require 'locomotive/hosting/heroku/custom_domain'
+require 'locomotive/hosting/heroku/first_installation'
 
 module Locomotive
   module Hosting
@@ -23,7 +24,7 @@ module Locomotive
         end
 
         def enable_heroku
-          self.config.domain = 'heroku.com'
+          self.config.domain = 'heroku.com' unless self.config.multi_sites?
 
           self.config.heroku ||= {}
           self.config.heroku[:name] = ENV['APP_NAME']
@@ -47,6 +48,7 @@ module Locomotive
 
         def enhance_site_model_with_heroku
           Site.send :include, Locomotive::Hosting::Heroku::CustomDomain
+          Site.send :include, Locomotive::Hosting::Heroku::FirstInstallation
         end
 
         # manage domains
