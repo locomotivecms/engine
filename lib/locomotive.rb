@@ -35,6 +35,10 @@ module Locomotive
     end
   end
 
+  def self.engine?
+    self.const_defined?('Engine')
+  end
+
   def self.configure
     self.config ||= Configuration.new
 
