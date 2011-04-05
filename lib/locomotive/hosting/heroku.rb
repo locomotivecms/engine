@@ -35,7 +35,7 @@ module Locomotive
 
           self.enhance_site_model_with_heroku
 
-          puts "HEROKU NAME = #{ENV['APP_NAME'].inspect} / #{ENV.inspect}"
+          puts "HEROKU NAME = #{self.config.heroku[:name]} / #{ENV['APP_NAME'].inspect} / #{ENV.inspect}"
 
           # "cache" domains for better performance
           self.heroku_domains = self.heroku_connection.list_domains(self.config.heroku[:name]).collect { |h| h[:domain] }
@@ -44,6 +44,8 @@ module Locomotive
         def open_heroku_connection
           login = self.config.heroku[:login] || ENV['HEROKU_LOGIN']
           password = self.config.heroku[:password] || ENV['HEROKU_PASSWORD']
+
+          puts "LOGIN = #{login} / PASSWORD = #{password}"
 
           self.heroku_connection = ::Heroku::Client.new(login, password)
         end
