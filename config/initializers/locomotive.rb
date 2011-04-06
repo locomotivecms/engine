@@ -47,3 +47,6 @@ Locomotive.configure do |config|
   # # => 'support@heroku.com' (Heroku), 'support@bushi.do' (Bushido), 'support@example.com' (Dev) or 'support@<your_hosting_platform>' (Multi-sites)
   config.mailer_sender = 'support'
 end unless Locomotive.engine?
+
+puts "Bushido ? #{Locomotive.bushido?} / #{Locomotive.config.manage_subdomain?}"
+
