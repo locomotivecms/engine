@@ -13,13 +13,13 @@ module Locomotive
     end
 
     def copy_initializers
-      copy_file 'config/initializers/carrierwave.rb', 'config/initializers/carrierwave.rb'
-
       @source_paths = nil # reset it for the find_in_source_paths method
 
       Locomotive::InstallGenerator.source_root(File.expand_path('../templates', __FILE__))
 
       template 'locomotive.rb', 'config/initializers/locomotive.rb'
+
+      template 'carrierwave.rb', 'config/initializers/carrierwave.rb'
     end
 
     def remove_index_html
