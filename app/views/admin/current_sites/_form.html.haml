@@ -9,6 +9,10 @@
   = f.input :meta_keywords
   = f.input :meta_description
 
+%p 
+  = Locomotive.config.manage_subdomain?.inspect
+  = Locomotive.bushido?
+
 - if manage_subdomain_or_domains?
   = f.foldable_inputs :name => :access_points, :class => 'editable-list off' do
 
