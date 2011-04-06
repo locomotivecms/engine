@@ -46,7 +46,7 @@ describe 'Bushido support' do
   context '#enabled' do
 
     it 'tells bushido is enabled from ENV' do
-      ENV['HOSTING_PLATFORM'] = 'bushido'
+      ENV['APP_TLD'] = 'bushi.do'
       Locomotive.config.hosting = :auto
       Locomotive.bushido?.should be_true
     end
@@ -165,7 +165,7 @@ describe 'Bushido support' do
   end
 
   after(:all) do
-    ENV['HOSTING_PLATFORM'] = ENV['APP_TLD'] = nil
+    ENV['APP_TLD'] = nil
     Locomotive.configure_for_test(true)
   end
 

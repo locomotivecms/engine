@@ -4,8 +4,8 @@ class EditableFileUploader < ::CarrierWave::Uploader::Base
     "sites/#{model.page.site_id}/pages/#{model.page.id}/files"
   end
 
-  def cache_dir
-    "#{Rails.root}/tmp/uploads"
-  end
+  # def cache_dir
+  #   "#{Rails.root}/tmp/uploads"
+  # end
 
 end

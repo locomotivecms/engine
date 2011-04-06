@@ -8,7 +8,7 @@ module Locomotive
         included do
           validate :subdomain_availability
 
-          before_save :check_subdomain_change
+          before_update :check_subdomain_change
 
           after_save :add_bushido_domains
           after_update :record_new_subdomain
@@ -22,6 +22,8 @@ module Locomotive
           protected
 
           def subdomain_availability
+            return true if self.new_record?
+
             unless ::Bushido::App.subdomain_available?(self.subdomain)
               self.errors.add(:subdomain, :exclusion)
             end
