@@ -14,7 +14,7 @@
     = f.inputs do
       = f.input :name, :required => true
 
-      - if manage_subdomain?
+      - if multi_sites?
         = f.input :subdomain, :required => true
 
       %li{ :class => 'string optional', :id => 'zipfile_input' }

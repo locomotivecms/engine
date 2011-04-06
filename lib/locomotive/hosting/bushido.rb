@@ -19,7 +19,7 @@ module Locomotive
 
         def bushido?
           self.config.hosting == :bushido ||
-          (self.config.hosting == :auto && ENV['HOSTING_PLATFORM'] == 'bushido')
+          (self.config.hosting == :auto && ENV['APP_TLD'] == 'bushi.do')
         end
 
         def enable_bushido
