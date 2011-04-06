@@ -50,3 +50,5 @@ end unless Locomotive.engine?
 
 puts "Bushido ? #{Locomotive.bushido?} / #{Locomotive.config.manage_subdomain?}"
 puts ENV.inspect
+
+Site.destroy_all
