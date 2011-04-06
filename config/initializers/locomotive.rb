@@ -13,7 +13,7 @@ Locomotive.configure do |config|
   # if you select 'auto', Locomotive will look after specific ENV variables to check
   # the matching platform (Heroku and Bushido set their own ENV variables).
   #
-  config.hosting = :auto
+  config.hosting = :bushido
 
   # In case you host Locomotive in Heroku, the engine uses the heroku api to add / remove domains.
   # there are 2 ways of passing heroku credentials to Locomotive
