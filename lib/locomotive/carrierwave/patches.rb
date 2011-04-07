@@ -33,6 +33,26 @@ module CarrierWave
 
   end
 
+  module Uploader
+
+    class Base
+
+      # alias :super_store_dir :store_dir
+
+      def build_store_dir(*args)
+        default_dir = self.class.store_dir
+
+        if default_dir.blank? || default_dir == 'uploads'
+          File.join(args)
+        else
+          File.join([default_dir] + args)
+        end
+      end
+
+    end
+
+  end
+
 end
 
 module CarrierWave

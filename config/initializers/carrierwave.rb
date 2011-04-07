@@ -21,6 +21,7 @@ CarrierWave.configure do |config|
     if Locomotive.bushido?
       config.storage = :file
       config.root = File.join(Rails.root, 'public', 'store')
+      config.store_dir = 'store'
     else
       config.storage = :s3
       config.s3_access_key_id = ENV['S3_KEY_ID']
