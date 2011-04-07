@@ -7,7 +7,7 @@ class ThemeAssetUploader < AssetUploader
   process :set_width_and_height
 
   def store_dir
-    File.join('sites', (model.site_id_was || model.site_id).to_s, 'theme', model.folder_was || model.folder)
+    self.build_store_dir('sites', (model.site_id_was || model.site_id).to_s, 'theme', model.folder_was || model.folder)
   end
 
   def stale_model?

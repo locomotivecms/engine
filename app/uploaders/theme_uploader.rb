@@ -2,7 +2,7 @@ class ThemeUploader < ::CarrierWave::Uploader::Base
 
   def store_dir
     if Locomotive.config.delayed_job
-      "sites/#{model.id}/tmp/themes"
+      self.build_store_dir('sites', model.id, 'tmp', 'themes')
     else
       "#{Rails.root}/tmp/themes"
     end

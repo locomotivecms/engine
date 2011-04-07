@@ -5,7 +5,7 @@ class AssetUploader < CarrierWave::Uploader::Base
   include CarrierWave::RMagick
 
   def store_dir
-    "sites/#{model.collection.site_id}/assets/#{model.id}"
+    self.build_store_dir('sites', model.collection.site_id, 'assets', model.id)
   end
 
   # def cache_dir

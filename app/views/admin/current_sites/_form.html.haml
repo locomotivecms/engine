@@ -21,7 +21,7 @@
     = f.custom_input :subdomain, :css => 'path' do
       %em
         http://
-      = f.text_field :subdomain, :disabled => (manage_subdomain? ? '' : 'disabled')
+      = f.text_field :subdomain, :readonly => !manage_subdomain?
       \.
       %em
         = application_domain
