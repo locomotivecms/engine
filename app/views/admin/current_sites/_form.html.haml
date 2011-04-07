@@ -12,6 +12,7 @@
 %p 
   = Locomotive.config.manage_subdomain?.inspect
   = Locomotive.bushido?
+  = Locomotive.config.manage_domain?.inspect
   = ENV.inspect
 
 - if manage_subdomain_or_domains?
