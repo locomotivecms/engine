@@ -22,7 +22,7 @@ module Locomotive
           protected
 
           def subdomain_availability
-            return true if self.new_record?
+            return true if self.new_record? || !self.subdomain_changed?
 
             unless ::Bushido::App.subdomain_available?(self.subdomain)
               self.errors.add(:subdomain, :exclusion)
