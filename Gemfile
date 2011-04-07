@@ -8,7 +8,7 @@ gem 'warden'
 gem 'devise', '= 1.1.3'
 
 gem 'mongoid', '2.0.0.rc.7'
-gem 'bson_ext', '~> 1.2.1'
+gem 'bson_ext', '1.3.0'
 gem 'locomotive_mongoid_acts_as_tree', '0.1.5.5', :require => 'mongoid_acts_as_tree'
 gem 'will_paginate'
 
