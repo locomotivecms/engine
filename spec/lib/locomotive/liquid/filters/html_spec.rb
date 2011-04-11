@@ -25,6 +25,24 @@ describe Locomotive::Liquid::Filters::Html do
     stylesheet_tag('/trash/main.css').should == result
     stylesheet_tag('/trash/main').should == result
   end
+  
+  it 'should return a link tag for a stylesheet file and media attribute set to print' do
+    result = "<link href=\"/sites/000000000000000000000042/theme/stylesheets/main.css\" media=\"print\" rel=\"stylesheet\" type=\"text/css\" />"
+    stylesheet_tag('main.css','print').should == result
+    stylesheet_tag('main','print').should == result
+    stylesheet_tag(nil).should == ''
+  end
+
+  it 'should return a link tag for a stylesheet file with folder and media attribute set to print' do
+    result = "<link href=\"/sites/000000000000000000000042/theme/stylesheets/trash/main.css\" media=\"print\" rel=\"stylesheet\" type=\"text/css\" />"
+    stylesheet_tag('trash/main.css','print').should == result
+  end
+
+  it 'should return a link tag for a stylesheet file without touching the url and media attribute set to print' do
+    result = "<link href=\"/trash/main.css\" media=\"print\" rel=\"stylesheet\" type=\"text/css\" />"
+    stylesheet_tag('/trash/main.css','print').should == result
+    stylesheet_tag('/trash/main','print').should == result
+  end
 
   it 'should return a script tag for a javascript file' do
     result = %{<script src="/sites/000000000000000000000042/theme/javascripts/main.js" type="text/javascript"></script>}
