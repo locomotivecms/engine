@@ -42,7 +42,7 @@ Locomotive.configure do |config|
   config.delayed_job = false
 
   # configure how many items we display in sub menu in the "Contents" section.
-  config.lastest_items_nb = 5
+  # config.lastest_items_nb = 5
 
   # default locale (for now, only en, de, fr and pt-BR are supported)
   config.default_locale = :en

@@ -7,16 +7,16 @@ Locomotive.configure do |config|
   # your own domain name (ex: locomotivehosting.com).
   #
   # Ex:
-  # config.multi_sites do |multi_sites|
-  #   # each new website you add will have a default entry based on a subdomain
-  #   # and the multi_site_domain value (ex: website_1.locomotivehosting.com).
-  #   multi_sites.domain = 'example.com' #'myhostingplatform.com'
-  #
-  #   # define the reserved subdomains
-  #   # Ex:
-  #   multi_sites.reserved_subdomains = %w(www admin email blog webmail mail support help site sites)
-  # end
-  config.multi_sites = false
+  config.multi_sites do |multi_sites|
+    # each new website you add will have a default entry based on a subdomain
+    # and the multi_site_domain value (ex: website_1.locomotivehosting.com).
+    multi_sites.domain = 'example.com' #'myhostingplatform.com'
+
+    # define the reserved subdomains
+    # Ex:
+    multi_sites.reserved_subdomains = %w(www admin email blog webmail mail support help site sites)
+  end
+  # config.multi_sites = false
 
   # configure the hosting target for the production environment. Locomotive can be installed in:
   # - your own server
@@ -44,7 +44,7 @@ Locomotive.configure do |config|
   config.delayed_job = false
 
   # configure how many items we display in sub menu in the "Contents" section.
-  config.lastest_items_nb = 5
+  # config.lastest_items_nb = 5
 
   # default locale (for now, only en, de, fr and pt-BR are supported)
   config.default_locale = :en
@@ -60,4 +60,4 @@ Locomotive.configure do |config|
   # config.mailer_sender = 'support'
   # # => 'support@heroku.com' (Heroku), 'support@bushi.do' (Bushido), 'support@example.com' (Dev) or 'support@<your_hosting_platform>' (Multi-sites)
   config.mailer_sender = 'support'
-end unless Locomotive.engine?
+end unless Locomotive.engine? || Rails.env.test?

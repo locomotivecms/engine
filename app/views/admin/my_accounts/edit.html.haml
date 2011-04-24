@@ -26,7 +26,7 @@
     = f.foldable_inputs :name => :sites, :class => 'sites off' do
       - @account.sites.each do |site|
         %li{ :class => 'item' }
-          %strong= link_to site.name, main_site_url(site, :uri => true)
+          %strong= link_to site.name, site_url(site)
           %em= site.domains.join(', ')
 
           - if admin_on?(site) && site != current_site

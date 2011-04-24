@@ -2,7 +2,7 @@ require 'carrierwave/test/matchers'
 
 CarrierWave.configure do |config|
   config.storage = :file
-  config.store_dir = "spec/tmp/uploads"
+  # config.store_dir = "spec/tmp/uploads"
   config.cache_dir = "spec/tmp/cache"
   config.root = File.join(Rails.root, 'spec', 'tmp')
 end

@@ -1,13 +1,11 @@
 module Admin
-  class SitemapsController < ActionController::Base
+  class SitemapsController < BaseController
 
-    include Locomotive::Routing::SiteDispatcher
+    skip_before_filter :authenticate_admin!, :validate_site_membership, :set_locale
 
     before_filter :require_site
 
     respond_to :xml
-
-    helper 'admin/pages'
 
     def show
       @pages = current_site.pages.published

@@ -145,18 +145,6 @@ describe Page do
       archives.children.last.children.first.depth.should == 3
     end
 
-    it 'should generate a path / url from parents' do
-      @home.fullpath.should == 'index'
-      @home.url.should == 'http://acme.example.com/index.html'
-
-      @child_1.fullpath.should == 'foo'
-      @child_1.url.should == 'http://acme.example.com/foo.html'
-
-      nested_page = Factory(:page, :title => 'Sub sub page 1', :slug => 'bar', :parent => @child_1, :site => @home.site)
-      nested_page.fullpath.should == 'foo/bar'
-      nested_page.url.should == 'http://acme.example.com/foo/bar.html'
-    end
-
     it 'should destroy descendants as well' do
       Factory(:page, :title => 'Sub Subpage 1', :slug => 'bar', :parent_id => @child_1._id, :site => @home.site)
       @child_1.destroy

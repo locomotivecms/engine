@@ -79,6 +79,7 @@ module Mongoid #:nodoc:
         # limit for embedded collections ?
         if limits && limits.size > 0
           limits.each do |field, limit|
+            next if limit.blank?
             options[:fields][field] = { '$slice' => limit }
           end
         end

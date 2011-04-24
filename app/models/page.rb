@@ -74,10 +74,6 @@ class Page
     end
   end
 
-  def url
-    "http://#{self.site.domains.first}/#{self.fullpath}.html"
-  end
-
   def with_cache?
     self.cache_strategy != 'none'
   end

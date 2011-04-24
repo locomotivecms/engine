@@ -15,7 +15,8 @@ module Locomotive
       :default_locale         => :en,
       :mailer_sender          => 'support', #support@example.com'
       :manage_subdomain       => false,
-      :manage_manage_domains  => false
+      :manage_manage_domains  => false,
+      :lastest_items_nb       => 5
     }
 
     cattr_accessor :settings

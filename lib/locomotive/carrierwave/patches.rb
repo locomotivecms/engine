@@ -37,15 +37,13 @@ module CarrierWave
 
     class Base
 
-      # alias :super_store_dir :store_dir
-
       def build_store_dir(*args)
         default_dir = self.class.store_dir
 
         if default_dir.blank? || default_dir == 'uploads'
-          File.join(args)
+          File.join(args.map(&:to_s))
         else
-          File.join([default_dir] + args)
+          File.join([default_dir] + args.map(&:to_s))
         end
       end
 

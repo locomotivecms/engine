@@ -52,6 +52,7 @@ module Admin
 
           redirect_to last_url
         else
+          logger.error "Unable to create the first website: #{@site.errors.inspect}"
           render 'step_2'
         end
       end

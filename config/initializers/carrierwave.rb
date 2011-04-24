@@ -20,7 +20,7 @@ CarrierWave.configure do |config|
   when :production
     if Locomotive.bushido?
       config.storage = :file
-      config.root = File.join(Rails.root, 'public', 'store')
+      config.root = File.join(Rails.root, 'public')
       config.store_dir = 'store'
     else
       config.storage = :s3

@@ -15,5 +15,9 @@ module Admin
       admin_pages_url
     end
 
+    def after_sign_out_path_for(resource)
+      request.protocol + request.host_with_port
+    end
+
   end
 end

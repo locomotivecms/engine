@@ -41,7 +41,7 @@ module Locomotive
         def add_bushido_domain(name)
           Locomotive.logger "[add bushido domain] #{name}"
           ::Bushido::App.add_domain(name)
-
+          
           if ::Bushido::Command.last_command_successful?
             self.bushido_domains << name
           end
@@ -50,7 +50,7 @@ module Locomotive
         def remove_bushido_domain(name)
           Locomotive.logger "[remove bushido domain] #{name}"
           ::Bushido::App.remove_domain(name)
-
+          
           if ::Bushido::Command.last_command_successful?
             self.bushido_domains.delete(name)
           end
