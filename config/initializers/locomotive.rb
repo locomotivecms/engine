@@ -34,7 +34,7 @@ Locomotive.configure do |config|
   #   - from ENV variables: HEROKU_LOGIN & HEROKU_PASSWORD
   #   - from this file, see the example below and uncomment it if needed
   # config.heroku = {
-  #   :login      => '<your_heroku_login>'
+  #   :login      => '<your_heroku_login>',
   #   :password   => '<your_heroku_password>'
   # }
 
