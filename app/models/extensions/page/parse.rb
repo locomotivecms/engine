@@ -94,6 +94,7 @@ module Models
 
             direct_descendants.each do |page|
               unless visited.include? page.id
+                visited.push(page.id)
                 page.send(:_parse_and_serialize_template, { :cached_parent => self, :cached_pages => cached })
 
                 page.send(:_update_direct_template_descendants, template_descendants, cached, visited)
