@@ -5,13 +5,6 @@ GIT
     mocha (0.9.12.20110213002255)
 
 GIT
-  remote: git://github.com/weppos/actionmailer_with_request.git
-  revision: 93aac62e8551405c966d0f7876bbb534ce472c17
-  specs:
-    actionmailer_with_request (0.3.0)
-      rails (>= 3)
-
-GIT
   remote: https://github.com/wunderbread/xpath.git
   revision: d04da707886287e7dfe82705fda5b3d4f65e94c3
   specs:
@@ -32,6 +25,8 @@ GEM
     actionmailer (3.0.7)
       actionpack (= 3.0.7)
       mail (~> 2.2.15)
+    actionmailer-with-request (0.3.0)
+      rails (>= 3)
     actionpack (3.0.7)
       activemodel (= 3.0.7)
       activesupport (= 3.0.7)
@@ -168,7 +163,7 @@ GEM
     locomotive_liquid (2.2.2)
     locomotive_mongoid_acts_as_tree (0.1.5.5)
       mongoid (~> 2.0.0.rc.7)
-    mail (2.2.17)
+    mail (2.2.19)
       activesupport (>= 2.3.6)
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
@@ -257,7 +252,7 @@ GEM
     treetop (1.4.9)
       polyglot (>= 0.3.1)
     trollop (1.16.2)
-    tzinfo (0.3.26)
+    tzinfo (0.3.27)
     unicorn (3.6.0)
       kgio (~> 2.3)
       rack
@@ -274,7 +269,7 @@ DEPENDENCIES
   RedCloth (= 4.2.7)
   SystemTimer
   ZenTest
-  actionmailer_with_request!
+  actionmailer-with-request
   autotest
   bson_ext (~> 1.3.0)
   bushido
