@@ -5,7 +5,7 @@ module Locomotive
 
         # Write the link to a stylesheet resource
         # input: url of the css file
-        def stylesheet_tag(input,media='screen')
+        def stylesheet_tag(input,media = 'screen')
           return '' if input.nil?
 
           unless input =~ /^(\/|http:)/
@@ -38,7 +38,7 @@ module Locomotive
 
           asset_url(input)
         end
-        
+
         # Write a theme image tag
         # input: name of file including folder
         # example: 'about/myphoto.jpg' | theme_image # <img src="images/about/myphoto.jpg" />
