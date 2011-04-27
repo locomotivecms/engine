@@ -9,7 +9,7 @@ de:
       inclusion: "nicht in der Liste inbegriffen"
       exclusion: "nicht verfügbar"
       invalid: "ungültig"
-      confirmation: "ne concorde pas avec la confirmation"
+      confirmation: "stimmt nicht mit der Bestätigung überein"
       accepted: "akzeptiert"
       empty: "leer"
       blank: "leer"
@@ -56,12 +56,16 @@ de:
         slug: Slug
         templatized: Templatized
         published: Veröffentlicht
+        listed: Im Menü
+        redirect: Umleitung
+        redirect_url: Umleitungs-URL
         cache_strategy: Cache
       content_type:
         name: Name
         description: Beschreibung
         slug: Slug
         order_by: Sortieren nach
+        order_direction: Reihenfolge
         highlighted_field_name: Hervorgehobener Feld-Name
         group_by_field_name: Gruppierung nach Feld-Name
         api_enabled: API aktiviert
@@ -96,7 +100,7 @@ de:
     next: "Vor &raquo;"
   date:
     formats:
-      default: "%d/%m/%Y"
+      default: "%d.%m.%Y"
       short: "%e %b"
       long: "%e %B %Y"
       long_ordinal: "%e %B %Y"

@@ -288,7 +288,7 @@ form.formtastic fieldset.editable-list ol li.added em:hover {
 
 form.formtastic fieldset.editable-list ol li.added select,
 form.formtastic fieldset.editable-list ol li.added em {
-  width: 120px;
+  width: 150px;
 }
 
 form.formtastic fieldset.editable-list ol li.added input {
