@@ -11,7 +11,12 @@
           = render 'admin/shared/menu'
 
           #submenu
-            = yield :submenu
+            %ul
+              = yield :submenu
+              
+            - if content_for? :actions
+              .action
+                = yield :actions
 
         #content
           .inner

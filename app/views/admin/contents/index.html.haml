@@ -3,6 +3,9 @@
 - content_for :submenu do
   = render 'admin/shared/menu/contents'
 
+- content_for :actions do
+  = render 'admin/shared/actions/contents'
+
 - content_for :head do
   = include_javascripts :contents
 
