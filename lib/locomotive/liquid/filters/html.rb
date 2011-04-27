@@ -5,7 +5,7 @@ module Locomotive
 
         # Write the link to a stylesheet resource
         # input: url of the css file
-        def stylesheet_tag(input)
+        def stylesheet_tag(input,media='screen')
           return '' if input.nil?
 
           unless input =~ /^(\/|http:)/
@@ -14,7 +14,7 @@ module Locomotive
 
           input = "#{input}.css" unless input.ends_with?('.css')
 
-          %{<link href="#{input}" media="screen" rel="stylesheet" type="text/css" />}
+          %{<link href="#{input}" media="#{media}" rel="stylesheet" type="text/css" />}
         end
 
         # Write the link to javascript resource
