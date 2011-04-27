@@ -32,7 +32,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency "json_pure", "1.5.1"
   s.add_dependency "bushido"
-  s.add_dependency "heroku", "1.19.1" # "1.18.2"
+  s.add_dependency "heroku", "1.19.1"
 
   s.add_dependency "rmagick", "2.12.2"
   s.add_dependency "locomotive_carrierwave", "0.5.0.1.beta3"
