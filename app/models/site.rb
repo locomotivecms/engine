@@ -12,11 +12,11 @@ class Site
   field :meta_description
 
   ## associations ##
-  references_many :pages
-  references_many :snippets, :dependent => :destroy
-  references_many :theme_assets, :dependent => :destroy
-  references_many :asset_collections, :dependent => :destroy
-  references_many :content_types, :dependent => :destroy
+  references_many :pages, :validate => false
+  references_many :snippets, :dependent => :destroy, :validate => false
+  references_many :theme_assets, :dependent => :destroy, :validate => false
+  references_many :asset_collections, :dependent => :destroy, :validate => false
+  references_many :content_types, :dependent => :destroy, :validate => false
   embeds_many :memberships
 
   ## validations ##

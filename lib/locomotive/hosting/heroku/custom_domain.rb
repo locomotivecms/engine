@@ -18,10 +18,12 @@ module Locomotive
 
           def add_subdomain_to_domains_with_heroku
             unless self.domains_change.nil?
+              old_full_subdomain = "#{self.subdomain_was}.#{Locomotive.config.domain}"
               full_subdomain = "#{self.subdomain}.#{Locomotive.config.domain}"
+
               @heroku_domains_change = {
-                :added    => self.domains_change.last - self.domains_change.first - [full_subdomain],
-                :removed  => self.domains_change.first - self.domains_change.last - [full_subdomain]
+                :added    => self.domains_change.last - self.domains_change.first - [old_full_subdomain] - [full_subdomain],
+                :removed  => self.domains_change.first - self.domains_change.last - [old_full_subdomain] - [full_subdomain]
               }
             end
 
