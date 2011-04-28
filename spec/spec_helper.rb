@@ -10,6 +10,9 @@ Dir[Rails.root.join('spec/support/**/*.rb')].each {|f| require f}
 Locomotive.configure_for_test
 
 RSpec.configure do |config|
+
+  config.include(Locomotive::RSpec::Matchers)
+
   # == Mock Framework
   #
   # If you prefer to use mocha, flexmock or RR, uncomment the appropriate line:
@@ -43,35 +46,3 @@ RSpec.configure do |config|
     end
   end
 end
-
-
-# # This file is copied to ~/spec when you run 'ruby script/generate rspec'
-# # from the project root directory.
-# ENV["RAILS_ENV"] ||= 'test'
-# require File.dirname(__FILE__) + "/../config/environment" unless defined?(RAILS_ROOT)
-# require 'rspec/rails'
-#
-# # Requires supporting files with custom matchers and macros, etc,
-# # in ./support/ and its subdirectories.
-# Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each {|f| require f}
-#
-# Rspec.configure do |config|
-#   config.expect_with :rspec
-#   config.mock_with :mocha
-#
-#   config.before(:each) do
-#     Locomotive.config.heroku = false
-#   end
-#
-#   require 'database_cleaner'
-#   config.before(:suite) do
-#     DatabaseCleaner.strategy = :truncation
-#     DatabaseCleaner.orm = "mongoid"
-#   end
-#
-#   config.before(:each) do
-#     if self.described_class != Locomotive::Import::Job
-#       DatabaseCleaner.clean
-#     end
-#   end
-# end

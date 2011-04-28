@@ -17,9 +17,10 @@ describe 'Bushido support' do
     end
 
     it 'does not add instance methods to Site' do
-      Site.instance_methods.include?('add_bushido_domains').should be_false
-      Site.instance_methods.include?('remove_bushido_domains').should be_false
-      Site.methods.include?('create_first_one_with_bushido').should be_false
+      Site.should_not include_instance_method :add_bushido_domains
+      Site.should_not include_instance_method :remove_bushido_domains
+
+      Site.should_not include_class_method :create_first_one_with_bushido
     end
 
   end
@@ -37,8 +38,8 @@ describe 'Bushido support' do
     end
 
     it 'does not add methods to Site' do
-      Site.instance_methods.include?('add_bushido_domains').should be_false
-      Site.instance_methods.include?('remove_bushido_domains').should be_false
+      Site.should_not include_instance_method :add_bushido_domains
+      Site.should_not include_instance_method :remove_bushido_domains
     end
 
   end
@@ -53,7 +54,7 @@ describe 'Bushido support' do
 
     it 'adds a method to automatically create a site with Bushido settings' do
       configure_locomotive_with_bushido
-      Site.methods.include?('create_first_one_with_bushido').should be_true
+      Site.should include_class_method :create_first_one_with_bushido
     end
 
     it 'tells bushido is enabled when forcing it' do
