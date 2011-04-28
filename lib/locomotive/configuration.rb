@@ -11,7 +11,7 @@ module Locomotive
       :cookie_key             => '_locomotive_session',
       :enable_logs            => false,
       :hosting                => :auto,
-      :delayed_job            => true,
+      :delayed_job            => false,
       :default_locale         => :en,
       :mailer_sender          => 'support', #support@example.com'
       :manage_subdomain       => false,

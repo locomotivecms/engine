@@ -38,9 +38,11 @@ Locomotive.configure do |config|
   #   :password   => '<your_heroku_password>'
   # }
 
-  # Locomotive uses the DelayedJob gem for the theme import module.
+  # Locomotive uses the DelayedJob gem for the site import module.
   # In case you want to deploy to Heroku, you will have to pay for an extra dyno.
   # If you do not mind about importing theme without DelayedJob, disable it.
+  #
+  # Warning: this option is not used if you deploy on bushi.do and we set automatically the value to true.
   config.delayed_job = false
 
   # configure how many items we display in sub menu in the "Contents" section.
