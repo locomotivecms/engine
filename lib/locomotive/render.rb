@@ -61,7 +61,8 @@ module Locomotive
           'page'              => @page,
           'asset_collections' => Locomotive::Liquid::Drops::AssetCollections.new,
           'contents'          => Locomotive::Liquid::Drops::Contents.new,
-          'current_page'      => self.params[:page]
+          'current_page'      => self.params[:page],
+          'params'            => self.params
         }.merge(flash.stringify_keys) # data from api
 
         if @page.templatized? # add instance from content type

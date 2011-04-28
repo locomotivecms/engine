@@ -82,13 +82,13 @@ module Locomotive
           previous_link = (if paginate['previous'].blank?
             "<span class=\"disabled prev_page\">#{previous_label}</span>"
           else
-            "<a href=\"/#{paginate['previous']['url']}\" class=\"prev_page\">#{previous_label}</a>"
+            "<a href=\"#{absolute_url(paginate['previous']['url'])}\" class=\"prev_page\">#{previous_label}</a>"
           end)
 
           links = ""
           paginate['parts'].each do |part|
             links << (if part['is_link']
-              "<a href=\"/#{part['url']}\">#{part['title']}</a>"
+              "<a href=\"#{absolute_url(part['url'])}\">#{part['title']}</a>"
             elsif part['hellip_break']
               "<span class=\"gap\">#{part['title']}</span>"
             else
@@ -99,7 +99,7 @@ module Locomotive
           next_link = (if paginate['next'].blank?
             "<span class=\"disabled next_page\">#{next_label}</span>"
           else
-            "<a href=\"/#{paginate['next']['url']}\" class=\"next_page\">#{next_label}</a>"
+            "<a href=\"#{absolute_url(paginate['next']['url'])}\" class=\"next_page\">#{next_label}</a>"
           end)
 
           %{<div class="pagination #{options[:css]}">
@@ -138,6 +138,10 @@ module Locomotive
 
         def asset_url(path)
           ThemeAssetUploader.url_for(@context.registers[:site], path)
+        end
+
+        def absolute_url(url)
+          url.starts_with('/') ? url : "/#{url}"
         end
 
       end

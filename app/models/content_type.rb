@@ -82,7 +82,14 @@ class ContentType
         # convert alias (key) to name
         field = self.content_custom_fields.detect { |f| f._alias == key }
 
-        conditions_with_names[field._name.to_sym] = value
+        case field.kind.to_sym
+        when :category
+          if (category_item = field.category_items.where(:name => value).first).present?
+            conditions_with_names[field._name.to_sym] = category_item._id
+          end
+        else
+          conditions_with_names[field._name.to_sym] = value
+        end
       end
 
       self.contents.where(conditions_with_names)

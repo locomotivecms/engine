@@ -13,21 +13,21 @@ module Locomotive
 
         def render(context)
           context.stack do
-            context['with_scope'] = decode(@attributes)
+            context['with_scope'] = decode(@attributes, context)
             render_all(@nodelist, context)
           end
         end
 
         private
 
-        def decode(attributes)
+        def decode(attributes, context)
           attributes.each_pair do |key, value|
             attributes[key] = (case value
             when /true|false/ then value == 'true'
             when /[0-9]+/ then value.to_i
             when /'(\S+)'/ then $1
             else
-              value
+              context[value]
             end)
           end
         end
