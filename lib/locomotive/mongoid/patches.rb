@@ -89,4 +89,20 @@ module Mongoid #:nodoc:
 
     end
   end
+
+
+  # without callback feature
+  module Callbacks
+
+    module ClassMethods
+
+      def without_callback(*args, &block)
+        skip_callback(*args)
+        yield
+        set_callback(*args)
+      end
+
+    end
+
+  end
 end

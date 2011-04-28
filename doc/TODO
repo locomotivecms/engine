@@ -7,7 +7,7 @@ x bugs:
 - bushido version
 - upgrade warning if new version of locomotive (maybe based on the commit id)
 - duostack version
-- 2 different sites on the same main domain (one in www, the other one in something else) (Raphael Costa)
+x 2 different sites on the same main domain (one in www, the other one in something else) (Raphael Costa)
 - seo section for the page form: seo title, seo keywords, seo description
 - icon for redirection page in the pages section (back-office)
 - write my first tutorial about locomotive

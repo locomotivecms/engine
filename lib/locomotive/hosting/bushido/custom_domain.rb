@@ -31,12 +31,9 @@ module Locomotive
 
           def add_subdomain_to_domains_with_bushido
             unless self.domains_change.nil?
-              old_full_subdomain = "#{self.subdomain_was}.#{Locomotive.config.domain}"
-              full_subdomain = "#{self.subdomain}.#{Locomotive.config.domain}"
-
               @bushido_domains_change = {
-                :added    => self.domains_change.last - self.domains_change.first - [old_full_subdomain] - [full_subdomain],
-                :removed  => self.domains_change.first - self.domains_change.last - [old_full_subdomain] - [full_subdomain]
+                :added    => self.domains_change.last - self.domains_change.first - [self.full_subdomain_was] - [self.full_subdomain],
+                :removed  => self.domains_change.first - self.domains_change.last - [self.full_subdomain_was] - [self.full_subdomain]
               }
             end
 

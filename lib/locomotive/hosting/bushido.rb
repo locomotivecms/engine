@@ -27,6 +27,8 @@ module Locomotive
 
           self.enhance_site_model_with_bushido
 
+          self.setup_smtp_settings
+
           self.bushido_domains = ::Bushido::App.domains
           self.bushido_subdomain = ::Bushido::App.subdomain
         end
@@ -36,12 +38,25 @@ module Locomotive
           Site.send :include, Locomotive::Hosting::Bushido::FirstInstallation
         end
 
+        def setup_smtp_settings
+          ActionMailer::Base.delivery_method = :smtp
+          ActionMailer::Base.smtp_settings = {
+            :authentication         => ENV['SMTP_AUTHENTICATION'],
+            :address                => ENV['SMTP_SERVER'],
+            :port                   => ENV['SMTP_PORT'],
+            :domain                 => ENV['SMTP_DOMAIN'],
+            :user_name              => ENV['SMTP_USER'],
+            :password               => ENV['SMTP_PASSWORD'],
+            :enable_starttls_auto   => ENV['SMTP_TLS'].to_s == 'true'
+          }
+        end
+
         # manage domains
 
         def add_bushido_domain(name)
           Locomotive.logger "[add bushido domain] #{name}"
           ::Bushido::App.add_domain(name)
-          
+
           if ::Bushido::Command.last_command_successful?
             self.bushido_domains << name
           end
@@ -50,7 +65,7 @@ module Locomotive
         def remove_bushido_domain(name)
           Locomotive.logger "[remove bushido domain] #{name}"
           ::Bushido::App.remove_domain(name)
-          
+
           if ::Bushido::Command.last_command_successful?
             self.bushido_domains.delete(name)
           end
@@ -64,6 +79,7 @@ module Locomotive
             self.bushido_subdomain = name
           end
         end
+
       end
     end
   end

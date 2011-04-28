@@ -37,9 +37,11 @@ class Snippet
     pages.each do |page|
       self._change_snippet_inside_template(page.template.root)
 
-      page.instance_variable_set(:@template_changed, true)
+      page.send(:_serialize_template)
 
-      page.send(:_serialize_template) && page.save
+      Page.without_callback(:save, :after, :update_template_descendants) do
+        page.save(:validate => false)
+      end
     end
   end
 

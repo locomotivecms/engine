@@ -46,7 +46,7 @@ module Extensions
         end
 
         def domains_without_subdomain
-          (self.domains || []) - [self.full_subdomain]
+          (self.domains || []) - [self.full_subdomain_was] - [self.full_subdomain]
         end
 
         def domains_with_subdomain
@@ -55,6 +55,10 @@ module Extensions
 
         def full_subdomain
           "#{self.subdomain}.#{Locomotive.config.domain}"
+        end
+
+        def full_subdomain_was
+          "#{self.subdomain_was}.#{Locomotive.config.domain}"
         end
 
         protected
