@@ -50,10 +50,12 @@ en:
         templatized: "Use the page as a template for a model you defined."
         listed: "Control whether to show the page from generated menus."
         content_type_id: "The type of content this page will be a template for."
+        meta_keywords: "Overrides the site's meta keywords used within the head tag of the page. They are separated by a comma."
+        meta_description: "Overrides the site's meta description used within the head tag of the page."
       snippet:
         slug: "You need to know it in order to insert the snippet inside a page"
       site:
-        meta_keywords: "Meta keywords used within the head tag of the page. They are separeted by an empty space. Required for SEO."
+        meta_keywords: "Meta keywords used within the head tag of the page. They are separated by a comma. Required for SEO."
         meta_description: "Meta description used within the head tag of the page. Required for SEO."
         domain_name: "ex: locomotiveapp.org"
       theme_asset:

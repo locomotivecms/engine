@@ -2,6 +2,7 @@ module Locomotive
   module Liquid
     module Drops
       class Page < Base
+        delegate :meta_keywords, :meta_description, :to => "@source"
 
         def title
           @source.templatized? ? @context['content_instance'].highlighted_field_value : @source.title
