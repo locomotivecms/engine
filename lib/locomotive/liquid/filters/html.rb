@@ -5,7 +5,7 @@ module Locomotive
 
         # Write the link to a stylesheet resource
         # input: url of the css file
-        def stylesheet_tag(input,media = 'screen')
+        def stylesheet_tag(input, media = 'screen')
           return '' if input.nil?
 
           unless input =~ /^(\/|http:)/
