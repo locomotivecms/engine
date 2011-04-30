@@ -35,6 +35,8 @@ module Locomotive
 
           self.enhance_site_model_with_heroku
 
+          self.apply_patches
+
           # "cache" domains for better performance
           self.heroku_domains = self.heroku_connection.list_domains(self.config.heroku[:name]).collect { |h| h[:domain] }
         end
@@ -49,6 +51,14 @@ module Locomotive
         def enhance_site_model_with_heroku
           Site.send :include, Locomotive::Hosting::Heroku::CustomDomain
           Site.send :include, Locomotive::Hosting::Heroku::FirstInstallation
+        end
+
+        def apply_patches
+          # for various reasons, Heroku can modify the behaviour of an application by changing the gem versions (json/pure for instance)
+          # so the purpose of this method is to correct those potential differences.
+
+          # http://blog.ethanvizitei.com/2010/11/json-pure-ruins-my-morning.html
+          Fixnum.class_eval { def to_json(options = nil); to_s; end }
         end
 
         # manage domains
