@@ -80,15 +80,27 @@ module Extensions
           # group them by fullpath for better performance
           cached = template_descendants.inject({}) { |memo, page| memo[page.fullpath] = page; memo }
 
-          template_descendants.each do |page|
-            page.send(:_parse_and_serialize_template, { :cached_parent => self, :cached_pages => cached })
-          end
+          self._update_direct_template_descendants(template_descendants.clone, cached)
 
           # finally save them all
           ::Page.without_callback(:save, :after, :update_template_descendants) do
             template_descendants.each do |page|
               page.save(:validate => false)
             end
+          end
+        end
+
+        def _update_direct_template_descendants(template_descendants, cached)
+          direct_descendants = template_descendants.select do |page|
+            ((self.template_dependencies || []) + [self._id]) == (page.template_dependencies || [])
+          end
+
+          direct_descendants.each do |page|
+            page.send(:_parse_and_serialize_template, { :cached_parent => self, :cached_pages => cached })
+
+            template_descendants.delete(page) # no need to loop over it next time
+
+            page.send(:_update_direct_template_descendants, template_descendants, cached) # move down
           end
         end
 
