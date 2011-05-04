@@ -22,6 +22,7 @@ javascripts:
     - public/javascripts/admin/locales/datepicker_de.js
     - public/javascripts/admin/locales/datepicker_fr.js
     - public/javascripts/admin/locales/datepicker_pt-BR.js
+    - public/javascripts/admin/locales/datepicker_it.js
     - public/javascripts/admin/application.js
   custom_fields:
     - public/javascripts/admin/plugins/fancybox.js

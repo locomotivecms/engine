@@ -157,6 +157,7 @@ en:
         de: German
         fr: French
         pt-BR: "Brazilian Portuguese"
+        it: Italian
         ask_for_name: "Please type your new name"
 
     theme_assets:

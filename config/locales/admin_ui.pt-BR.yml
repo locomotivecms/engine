@@ -154,6 +154,7 @@ pt-BR:
         de: Alemão
         fr: Francês
         pt-BR: "Português do Brasil"
+        it: Italiano        
         ask_for_name: "Por favor preencha o novo nome"
 
     theme_assets:

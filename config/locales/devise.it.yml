@@ -1,0 +1,63 @@
+it:
+  errors:
+    messages:
+      not_found: "non trovato"
+      already_confirmed: "era già stato confermato"
+      not_locked: "non è stato bloccato"
+
+  devise:
+    failure:
+      admin:
+        unauthenticated: "E' necessario accedere o registrati prima di continuare."
+        unconfirmed: "E' necessario confermare l'account prima di continuare."
+        locked: 'Il tuo account è bloccato.'
+        invalid: 'Email o password non validi.'
+        no_membership: "Il tuo account non è un membro di questo sito, si prega di contattare l'amministratore del sito per ottenere l'accesso."
+        invalid_token: 'Token di autenticazione non valido.'
+        timeout: 'La tua sessione è scaduta, si prega di accedere nuovamente per continuare.'
+        inactive: 'Il tuo account non è stato ancora attivato.'
+    sessions:
+      admin:
+        signed_in: 'Login eseguito con successo.'
+        signed_out: 'Logout eseguito con successo.'
+    passwords:
+      admin:
+        send_instructions: 'Entro qualche minuti riceverai una email con le istruzioni su come reimpostare la password.'
+        updated: 'La tua password è stata cambiata con successo. Ora sei collegato.'
+    confirmations:
+      admin:
+        send_instructions: 'Entro qualche minuti riceverai un messaggio email con le istruzioni per confermare il tuo account.'
+        confirmed: 'Il tuo account è stato confermato. Ora sei collegato.'
+    registrations:
+      admin:
+        signed_up: 'Registrazione eseguita correttamente.'
+        updated: 'Il tuo account è stato aggiornato.'
+        destroyed: "Arrivederci! L'account è stato eliminato. Speriamo di rivederci presto."
+    unlocks:
+      admin:
+        send_instructions: 'Entro qualche minuti riceverai un messaggio email con le istruzioni per sbloccare il tuo account.'
+        unlocked: 'Il tuo account è stato correttamente sbloccato. Ora sei collegato.'
+    mailer:
+      admin:
+        confirmation_instructions: 'Istruzioni per la conferma'
+        reset_password_instructions: 'Istruzioni per reimpostare la password'
+        unlock_instructions: "Istruzioni per lo sblocco dell'account"
+        
+        
+  admin:
+    mailer:
+      common:
+        hello: Ciao
+
+      confirmation_instructions:
+        you_can_confirm_your_account_through_the_link_below: "Puoi confermare il tuo account attraverso il seguente link:"
+        confirm_my_account: "Confermare il mio account"
+      reset_password_instructions:
+        reset_password_instruction: "Qualcuno ha richiesto un link per cambiare la tua passowrd, puoi farlo attraverso il seguente link:"
+        change_my_password: "Cambiare la mia password"
+        wrong_request_instruction: "Se non l'hai richiesto, ti preghiamo di ignorare questa mail."
+        unchange_password_message: "La tua password non verrà cambiata fino a quando non avrai seguito il link qui sopra e non ne avrai creata una di nuova."
+      unlock_instructions:
+        locked_account_message: "Il tuo account è stato bloccato a causa di un numero eccessivo di tentativi falliti di accesso."
+        unlock_account_instruction: "Segui il link qui sotto per sbloccare il tuo account:"
+        unlock_my_account: "Sbloccare il mio account"
