@@ -260,7 +260,7 @@ it:
     imports:
       new:
         title: Importa
-        help: "Fai attenzione quando carichi un nuovo tema per il tui sito, gli attuali dati potrebbero essere modificati o eliminati."
+        help: "Fai attenzione quando carichi un nuovo tema per il tuo sito, gli attuali dati potrebbero essere modificati o eliminati."
       show:
         title: Import in esecuzione
         help: "Il tuo sito sta per essere aggiornato con il tema che hai appena caricato. Ci vorranno alcuni secondi."

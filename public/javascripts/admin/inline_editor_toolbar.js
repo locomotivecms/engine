@@ -181,6 +181,14 @@ var InlineEditorToolbar = {
       'cancel': 'cancelar',
       'back': 'terminar edição',
       'saving': 'salvando'
+    },
+    'it': {
+      'home': 'admin',
+      'edit': 'modifica',
+      'save': 'salva',
+      'cancel': 'annulla',
+      'back': 'fine modifica',
+      'saving': 'sto salvando'
     }
   }
 };

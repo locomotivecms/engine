@@ -58,8 +58,8 @@ it:
     attributes:
       page:
         title: Titolo
-        parent: Padre
-        parent_id: ID Padre
+        parent: Pagina superiore
+        parent_id: Pagina superiore
         slug: Slug
         listed: In menù
         templatized: Templatized
