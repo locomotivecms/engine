@@ -4,7 +4,6 @@ describe Locomotive::Liquid::Filters::Imagetransform do
 
   before :all do
     @context = Liquid::Context.new
-    @page    = Factory.build(:page)
   end
 
   describe '#transform' do
@@ -13,7 +12,13 @@ describe Locomotive::Liquid::Filters::Imagetransform do
 
       context 'when there is already a processed image' do
 
-        it 'should return the location of the image'
+        before :all do
+          @template = Liquid::Template.parse('{{ "image.jpg" | transform: "400x900" }}')
+        end
+
+        it 'should return the location of the image' do
+          @template.render(@context).should == 'image_400_900.jpg'
+        end
 
         it 'should not process the image again'
 
@@ -39,8 +44,8 @@ describe Locomotive::Liquid::Filters::Imagetransform do
         @template = Liquid::Template.parse('{{ "image.jpg" | transform: "invalid" }}')
       end
 
-      it 'should return the given input' do
-        @template.render(@context).should == 'image.jpg'
+      it 'should return a liquid error' do
+        @template.render(@context).should == 'Liquid error: invalid format for transform on image.jpg'
       end
 
     end
@@ -52,7 +57,7 @@ describe Locomotive::Liquid::Filters::Imagetransform do
       end
 
       it 'should return a liquid error' do
-        @template.render(@context).should include 'Liquid error'
+        @template.render(@context).should include 'Liquid error: wrong number of arguments'
       end
 
     end
