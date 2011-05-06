@@ -3,8 +3,8 @@ module Locomotive
     module Filters
       module Imagetransform
 
-        def transform(input, options={})
-
+        def transform(input, transform_string)
+          input
         end
 
       end

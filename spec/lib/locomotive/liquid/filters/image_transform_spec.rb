@@ -2,10 +2,9 @@ require 'spec_helper'
 
 describe Locomotive::Liquid::Filters::Imagetransform do
 
-  include Locomotive::Liquid::Filters::Imagetransform
-
-  before(:each) do
-    @context = build_context
+  before :all do
+    @context = Liquid::Context.new
+    @page    = Factory.build(:page)
   end
 
   describe '#transform' do
@@ -36,24 +35,28 @@ describe Locomotive::Liquid::Filters::Imagetransform do
 
     context 'when an invalid transform is given' do
 
-      it 'should return the given input'
+      before :all do
+        @template = Liquid::Template.parse('{{ "image.jpg" | transform: "invalid" }}')
+      end
+
+      it 'should return the given input' do
+        @template.render(@context).should == 'image.jpg'
+      end
 
     end
 
-  end
+    context 'when no transform string is given' do
 
-  def build_context
-    klass = Class.new
-    klass.class_eval do
-      def registers
-        { :site => Factory.build(:site, :id => fake_bson_id(42)) }
+      before :all do
+        @template = Liquid::Template.parse('{{ "image.jpg" | transform }}')
       end
 
-      def fake_bson_id(id)
-        BSON::ObjectId(id.to_s.rjust(24, '0'))
+      it 'should return a liquid error' do
+        @template.render(@context).should include 'Liquid error'
       end
+
     end
-    klass.new
+
   end
 
 end
