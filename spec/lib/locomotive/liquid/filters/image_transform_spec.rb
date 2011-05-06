@@ -3,7 +3,8 @@ require 'spec_helper'
 describe Locomotive::Liquid::Filters::Imagetransform do
 
   before :all do
-    @context = Liquid::Context.new
+    @asset   = Factory.build(:theme_asset)
+    @context = Liquid::Context.new({},{ 'asset' => @asset })
   end
 
   describe '#transform' do
@@ -13,7 +14,7 @@ describe Locomotive::Liquid::Filters::Imagetransform do
       context 'when there is already a processed image' do
 
         before :all do
-          @template = Liquid::Template.parse('{{ "image.jpg" | transform: "400x900" }}')
+          @template = Liquid::Template.parse('{{ asset | transform: "400x900" }}')
         end
 
         it 'should return the location of the image' do
@@ -41,11 +42,11 @@ describe Locomotive::Liquid::Filters::Imagetransform do
     context 'when an invalid transform is given' do
 
       before :all do
-        @template = Liquid::Template.parse('{{ "image.jpg" | transform: "invalid" }}')
+        @template = Liquid::Template.parse('{{ asset | transform: "invalid" }}')
       end
 
       it 'should return a liquid error' do
-        @template.render(@context).should == 'Liquid error: invalid format for transform on image.jpg'
+        @template.render(@context).should == 'Liquid error: invalid format for transform'
       end
 
     end
@@ -53,7 +54,7 @@ describe Locomotive::Liquid::Filters::Imagetransform do
     context 'when no transform string is given' do
 
       before :all do
-        @template = Liquid::Template.parse('{{ "image.jpg" | transform }}')
+        @template = Liquid::Template.parse('{{ asset | transform }}')
       end
 
       it 'should return a liquid error' do

@@ -4,13 +4,12 @@ module Locomotive
       module Imagetransform
 
         def transform(input, transform_string)
-          transform_settings = interpolate_transform(input, transform_string)
-          
+          transform_settings = interpolate_transform(transform_string)
         end
 
         protected
 
-        def interpolate_transform(input, transform_string)
+        def interpolate_transform(transform_string)
 
           matches   = transform_string.match(/\b(\d*)x?(\d*)\b([\>\<\#\@\%^!])?/i)
           width     = matches[0].to_i || 0
@@ -18,7 +17,7 @@ module Locomotive
           modifyer  = matches[3]      || '#'
 
           unless width > 0 && height > 0 && modifyers[modifyer].present?
-            raise "invalid format for transform on #{input}"
+            raise "invalid format for transform"
           end
 
         end
