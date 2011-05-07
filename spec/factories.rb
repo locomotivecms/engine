@@ -45,6 +45,12 @@ Factory.define "brazillian user", :parent => :account do |a|
   a.locale 'pt-BR'
 end
 
+Factory.define "italian user", :parent => :account do |a|
+  a.name "Paolo Rossi"
+  a.email "paolo@paolo-rossi.it"
+  a.locale 'it'
+end
+
 
 ## Memberships ##
 Factory.define :membership do |m|
