@@ -1,0 +1,245 @@
+it:
+  errors:
+    # The default format use in full error messages.
+    format: "%{attribute} %{message}"
+
+    # The values :model, :attribute and :value are always available for interpolation
+    # The value :count is available when applicable. Can be used for pluralization.
+    messages:
+      inclusion: "non è incluso nella lista"
+      exclusion: "è riservato"
+      invalid: "non è valido"
+      confirmation: "non coincide con la conferma"
+      accepted: "deve essere accettata"
+      empty: "non può essere vuoto"
+      blank: "non può essere lasciato in bianco"
+      too_long:
+        one: "è troppo lungo (il massimo è 1 carattere)"
+        other: "è troppo lungo (il massimo è %{count} caratteri)"
+      too_short:
+        one:  "è troppo corto (il minimo è 1 carattere)"
+        other:  "è troppo corto (il minimo è %{count} caratteri)"
+      wrong_length:
+        one: "è della lunghezza sbagliata (deve essere di 1 carattere)"
+        other: "è della lunghezza sbagliata (deve essere di %{count} caratteri)"
+      not_a_number: "non è un numero"
+      not_an_integer: "non è un intero"
+      greater_than: "deve essere superiore a %{count}"
+      greater_than_or_equal_to: "deve essere superiore o uguale a %{count}"
+      equal_to: "deve essere uguale a %{count}"
+      less_than: "deve essere meno di %{count}"
+      less_than_or_equal_to: "deve essere meno o uguale a %{count}"
+      odd: "deve essere dispari"
+      even: "deve essere pari"
+
+      domain_taken: "%{value} già in uso"
+      invalid_domain: "%{value} non valido"
+      needs_admin_account: "E' richiesto almeno un account di amministratore"
+      protected_page: "Non è possibile eliminare le pagine index e 404"
+      extname_changed: "Il nuovo file non ha l'estesione originale"
+      array_too_short: "troppo corto (il numero minimo di elementi è %{count})"
+      liquid_syntax: "Errore nella sintassi Liquid ('%{error}' in '%{fullpath}')"
+      liquid_extend: "La pagina '%{fullpath}' estende un template che non esiste"
+      invalid_theme_file: "non può essere vuoto o non è un file zip"
+
+  attributes:
+    defaults:
+      pages:
+        index:
+          title: "Pagina home"
+          body: "Contenuto della pagina home"
+        "404":
+          title: "Pagia non trovata"
+          body: "Contenuto della pagina 404"
+        other:
+          body: "{% extends 'parent' %}"
+
+  mongoid:
+    attributes:
+      page:
+        title: Titolo
+        parent: Pagina superiore
+        parent_id: Pagina superiore
+        slug: Slug
+        listed: In menù
+        templatized: Templatized
+        published: Pubblicata
+        redirect: Redirezione
+        redirect_url: Url di redirezione
+        cache_strategy: Cache
+      content_type:
+        name: Nome
+        description: Descrizione
+        slug: Slug
+        order_by: Ordinamento
+        highlighted_field_name: Campo evidenziato
+        group_by_field_name: Raggruppa per nome campo
+        api_enabled: API Attiva
+      asset_collection:
+        name: Nome
+        slug: Slug
+      asset:
+        name: Nome
+        source: Sorgente
+      account:
+        email: Email
+        name: Nome
+        language: Lingua
+        password: Password
+        password_confirmation: Conferma password
+      snippet:
+        body: Corpo
+        slug: Slug
+        name: Nome
+      theme_asset:
+        content_type: Tipo di file
+      site:
+        name: Nome del sito
+        domain_name: Dominio
+        subdomain: Sottodominio
+        restricted_access: Accesso ristretto
+        access_login: Login
+        access_password: Password
+      custom_fields:
+        field:
+          _alias: Alias
+          hint: Aiuto
+          required: Obbligatorio
+          text_formatting: Formattazione
+
+  pagination:
+    previous: "&laquo; Precedente"
+    next: "Successiva &raquo;"
+    
+  date:
+    formats:
+      default: "%d/%m/%Y"
+      short: "%d %b"
+      long: "%d %B %Y"
+      long_ordinal: "%d %B %Y"
+      only_day: "%e"
+
+    day_names: [Domenica, Lunedì, Martedì, Mercoledì, Giovedì, Venerdì, Sabato]
+    abbr_day_names: [Dom, Lun, Mar, Mer, Gio, Ven, Sab]
+    month_names: [~, Gennaio, Febbraio, Marzo, Aprile, Maggio, Giugno, Luglio, Agosto, Settembre, Ottobre, Novembre, Dicembre]
+    abbr_month_names: [~, Gen, Feb, Mar, Apr, Mag, Giu, Lug, Ago, Set, Ott, Nov, Dic]
+    order: [ :day, :month, :year ]
+
+  time:
+    formats:
+      default: "%a %d %b %Y, %H:%M:%S %z"
+      time: "%H:%M"
+      short: "%d %b %H:%M"
+      long: "%d %B %Y %H:%M"
+      long_ordinal: "%d %B %Y %H:%M"
+      only_second: "%S"
+    am: 'am'
+    pm: 'pm'
+
+  datetime:
+    distance_in_words:
+      half_a_minute: "mezzo minuto"
+      less_than_x_seconds:
+        one:  "meno di un secondo"
+        other: "meno di %{count} secondi"
+      x_seconds:
+        one:  "1 secondo"
+        other: "%{count} secondi"
+      less_than_x_minutes:
+        one:  "meno di un minuto"
+        other: "meno di %{count} minuti"
+      x_minutes:
+        one:  "1 minuto"
+        other: "%{count} minuti"
+      about_x_hours:
+        one:  "circa un'ora"
+        other: "circa %{count} ore"
+      x_days:
+        one:  "1 giorno"
+        other: "%{count} giorni"
+      about_x_months:
+        one:  "circa un mese"
+        other: "circa %{count} mesi"
+      x_months:
+        one:  "1 mese"
+        other: "%{count} mesi"
+      about_x_years:
+        one:  "circa un anno"
+        other: "circa %{count} anni"
+      over_x_years:
+        one:  "oltre un anno"
+        other: "oltre %{count} anni"
+      almost_x_years:
+        one:   "circa 1 anno"
+        other: "circa %{count} anni"
+    prompts:
+      year:   "Anno"
+      month:  "Mese"
+      day:    "Giorno"
+      hour:   "Ora"
+      minute: "Minuto"
+      second: "Secondi"
+
+  number:
+    format:
+      delimiter: ""
+      precision: 2
+      significant: false
+      strip_insignificant_zeros: false
+      separator: "."
+
+    currency:
+      format:
+        format: "%n %u"
+        unit: "€"
+        separator: "."
+        delimiter: ","
+        precision: 2
+        significant: false
+        strip_insignificant_zeros: false
+
+    percentage:
+      format:
+        delimiter: ""
+        # precision:
+
+    precision:
+      format:
+        # separator:
+        delimiter: ""
+        # precision:
+
+    human:
+      format:
+        # separator:
+        delimiter: ""
+        precision: 1
+        significant: true
+        strip_insignificant_zeros: true
+      storage_units:
+        format: "%n %u"
+        units:
+          byte:
+            one:   "Byte"
+            other: "Byte"
+          kb: "Kb"
+          mb: "Mb"
+          gb: "Gb"
+          tb: "Tb"
+      decimal_units:
+        format: "%n %u"
+        units:
+          unit: ""
+          thousand: "Mila"
+          million: "Milioni"
+          billion: "Miliardi"
+          trillion: "Bilioni"
+          quadrillion: "Biliardi"
+
+  support:
+    array:
+      sentence_connector: 'e'
+      skip_last_comma: true
+      words_connector: ", "
+      two_words_connector: " e "
+      last_word_connector: " e "      

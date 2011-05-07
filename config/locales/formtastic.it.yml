@@ -1,0 +1,80 @@
+it:
+  formtastic:
+    titles:
+      information: Informazioni generali
+      advanced_options: Opzioni avanzate
+      meta: SEO Metadata
+      code: Codice
+      raw_template: Template
+      credentials: Credenziali
+      language: Lingua
+      sites: Siti
+      access_points: Punti di accesso
+      memberships: Account
+      membership_email: Email account
+      file: File
+      preview: Anteprima
+      options: Opzioni avanzate
+      custom_fields: Campi personalizzati
+      other_fields: Altre informazioni
+      presentation: Presentazione
+      attributes: Attributi
+      upload: Caricamento
+    labels:
+      theme_asset:
+        plain_text_name: Nome file
+        content_type: Tipo file
+        new:
+          source: File
+        edit:
+          source: Sostituire file
+      custom_fields:
+        field:
+          _alias: Alias
+      import:
+        new:
+          source: File
+          samples: Copy samples
+          reset: Reimposta sito
+      content_type:
+        api_accounts: Notified Accounts
+      account:
+        edit:
+          password: Nuova password
+          password_confirmation: Conferma nuova password
+
+    hints:
+      page:
+        published: "Solo gli account autenticati possono visualizzare le pagine non pubblicate."
+        cache_strategy: "Attiva il cache della pagina per miglirare le prestazioni. L'opzione 'Semplice' è un buon compromesso."
+        templatized: "Utilizzare la pagina come template per un modello che hai definito."
+        listed: "Determina se la pagina deve essere mostrata nei menù generati."
+        content_type_id: "Il tipo di contenuto di cui questa pagina sarà il template."
+      snippet:
+        slug: "hai bisogno di conoscerlo al fine di inserire il frammento all'interno di una pagina"
+      site:
+        meta_keywords: "Meta keywords usate all'interno del tag head della pagina. Sono separate da spazio. Richieste per la SEO."
+        meta_description: "Meta description usata all'interno del tag head della pagina. Richiesta per la SEO."
+        domain_name: "es.: locomotiveapp.org"
+      theme_asset:
+        slug: "Devi aggiungere l'estensione del file (.css o .js)"
+        edit:
+          source: "Può essere sostituito da un file con la stessa estensione"
+      asset:
+        source: "Sono accettati tutti i tipi di file."
+        edit:
+          source: "Il corrente file è disponibile qui %{url}"
+        update:
+          source: "Il corrente file è disponibile qui %{url}"
+      custom_fields:
+        field:
+          _alias: "Proprietà disponibile nei tamplate liquid"
+          hint: "Testo visualizzato nel form del modello appena sotto il campo"
+      import:
+        source: "Un file zip contenente il database.yml insieme a risorse e template"
+        samples: "Se attivato, il processo di import copierà anche contenuti e risorse"
+        reset: "Se attivato, tutti i dati del tuo sito saranno cancellati prima di importare il nuovo sito"
+      content_type:
+        api_enabled: "E' usato per lasciare che i visitatori, da fuori, possano creare nuove istanze (per esempio: i messaggi da un form 'contattaci')"
+        api_accounts: "Quando viene creata una nuova istanza, una mail di notifica verrà inviata a tutti gli account elencati qui sopra"
+

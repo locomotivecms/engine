@@ -48,7 +48,7 @@ Locomotive.configure do |config|
   # configure how many items we display in sub menu in the "Contents" section.
   # config.lastest_items_nb = 5
 
-  # default locale (for now, only en, de, fr and pt-BR are supported)
+  # default locale (for now, only en, de, fr, pt-BR and it are supported)
   config.default_locale = :en
 
   # tell if logs are enabled. Useful for debug purpose.
