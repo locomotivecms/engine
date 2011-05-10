@@ -1,0 +1,293 @@
+it:
+  admin:
+    buttons:
+      login: Entra
+      send_password: Invia
+      change_password: Aggiorna
+      new_item: "+ aggiungi"
+      switch_to_site: Vai
+
+    messages:
+      confirm: Sicuro?
+
+    shared:
+      header:
+        welcome: Benvenuto, %{name}
+        see: Vedi il sito web
+        logout: Esci
+      menu:
+        contents: Contenuti
+        assets: Risorse
+        settings: Impostazioni
+        pages: Pagine
+        snippets: Frammenti
+        account: Mio account
+        site: Sito
+        theme_assets: Files del tema
+      footer:
+        who_is_behind: "Servizio sviluppato da %{development} e desig di <a href=\"http://www.sachagreif.com\">Sacha Greif</a>"
+      form_actions:
+        back: Indietro senza salvare
+        create: Crea
+        update: Salva
+        send: Invia
+
+    errors:
+      "500":
+        title: Errore dell'applicazione
+        notice: "Siamo spiacenti, quancosa è andato storto"
+        link: "&rarr; Ritorna all'applicazione"
+      "404":
+        title: Pagina non trovata
+        notice: "La pagina che hai richiesto non esiste."
+        link: "&rarr; Ritorna all'applicazione"
+
+    notifications:
+      new_content_instance:
+        subject: "[%{type}] nuovo/a"
+        title: "Ciao %{name}, solo per farti sapere che una nuova istanza è stata creata il %{date}"
+        type: "Modello: %{type}"
+
+    custom_fields:
+      edit:
+        title: Modifica campo personalizzato
+      text_formatting:
+        none: Nessuno
+        html: HTML
+      edit_field:
+        title: Modifica campo
+      edit_category:
+        title: Modifica opzioni
+        help: Amministra la lista opzioni del select box.
+        collection_label: Lista delle opzioni
+      custom_form:
+        edit_categories: Modifica opzioni
+        delete_file: Elimina file
+      index:
+        is_required: è richiesto
+        default_label: Nome campo
+
+    sessions:
+      new:
+        title: Login
+        link: "Ho dimenticato la password"
+        email: "Email"
+        password: "Password"
+
+    passwords:
+      new:
+        title: Password dimenticata
+        link: "&rarr; Torna alla pagina di login"
+        email: "La tua email"
+      edit:
+        title: Cambia password
+        link: "&rarr; Torna alla pagina di login"
+        password: "Nuova password"
+        password_confirmation: "Conferma la nuova password"
+
+    pages:
+      index:
+        title: Lista pagine
+        help: "Le pagine sono organizzate ad albero. Puoi ordinarle come se fossero delle cartelle"
+        no_items: "Per ora non ci sono pagine. Clicca <a href=\"%{url}\">qui</a> per creare la prima pagina."
+        new: nuova pagina
+        lastest_items: Ultime pagine
+      new:
+        title: Nuova pagina
+        help: "Prego, compila il seguente modulo per creare la tua pagina. Fai attenzione, per default, la pagina non è pubblicata."
+      page:
+        updated_at: modificato il
+      edit:
+        show: mostra
+        help: "Il titolo della pagina si può cambitare cliccandoci sopra."
+        ask_for_title: "Prego, digita il nuovo titolo della pagina"
+      form:
+        delete_file: Elimina file
+        default_block: Default
+        cache_strategy:
+          none: Nessuna
+          simple: Semplice
+          hour: 1 ora
+          day: 1 giorno
+          week: 1 settimana
+          month: 1 mese
+
+    snippets:
+      index:
+        title: Lista frammenti
+        help: "I frammenti sono prozioni di codice HTML che possono essere collocati in diverse posizioni all'interno del sito (come ad esempio il footer)."
+        no_items: "Per ora non ci sono frammenti. Clicca <a href=\"%{url}\">qui</a> per creare il primo."
+        new: nuovo frammento
+      new:
+        title: Nuovo frammento
+        help: "Compila il modulo sottostante per creare il frammento."
+      edit:
+        title: Modifica frammento
+        help: "Compila il modulo sottostante per modificare il frammento."
+      snippet:
+        updated_at: modificato il
+
+    sites:
+      new:
+        title: Nuovo sito
+        help: "Compila il modulo sottostante per creare il nuovo sito."
+
+    current_sites:
+      edit:
+        import: importa
+        new_membership: aggiungi account
+        help: "Il nome del sito si può modificare cliccandoci sopra."
+        ask_for_name: "Prego, digita il nuovo nome del sito"
+
+    memberships:
+      new:
+        title: Nuova partecipazione
+        help: "Prego, indica l'email dell'account da aggiungere. Se questo non esiste, sarai rediretto al modulo di creazione account."
+
+    accounts:
+      new:
+        title: Nuovo account
+        help: "Compila il modulo sottostante per aggiugere un nuovo account."
+
+    my_accounts:
+      edit:
+        help: "Puoi modificare il tuo nome cliccandoci sopra."
+        new_site: nuovo sito
+        en: Inglese
+        de: Tedesco
+        fr: Francese
+        pt-BR: "Portoghese Brasiliano"
+        it: Italiano
+        ask_for_name: "Prego, digita il tuo nome"
+
+    theme_assets:
+      index:
+        title: Lista file del tema
+        help: "La sezione di file del tema è il luogo in cui si amministrano i file necessari al layout, ...ecc. Se devi invece amministrare una galleria immagini, vai nella sezione Risorse."
+        all: tutte le risorse
+        new: nuovo file
+        snippets: Frammenti
+        css_and_js: Style e javascript
+        fonts: Fonts
+        images: Immagini
+        medias: Media
+        no_items: "Per ora non ci sono file. Clicca <a href=\"%{url}\">qui</a> per creare il primo."
+      asset:
+        updated_at: Modificato il
+      new:
+        title: Nuovo file
+        help: "Puoi scegliere se caricare ogni file o usare il copia/incolla per inserire uno stylesheet o un javascript in testo semplice."
+      edit:
+        title: "Modifica %{file}"
+        help: "Questa risorsa è accessibile dal seguente url: <a href='%{url}'>%{url}</a>"
+      form:
+        picker_link: Inserisci un file nel codice
+        choose_file: Scegli il file
+        choose_plain_text: Scegli il testo
+      images:
+        title: Lista immagini
+        no_items: "Per ora non ci sono file."
+
+    asset_collections:
+      index:
+        title: Collezioni di risorse
+        help: "Puoi cambiare il nome della collezione cliccandoci sopra. Puoi personalizzare le risorse in una collezione aggiugendo nuovi campi."
+        new: nuov collezione
+        no_items: "Per ora non ci sono collezioni. Clicca <a href=\"%{url}\">qui</a> per creare la prima."
+      new:
+        title: Nuova collezione
+        help: "Per ora inserisci solo in nome. Altre opzioni appariranno dopo aver inviato il modulo."
+      edit:
+        help: "Puoi cambiare il nome della collezione cliccandoci sopra. Puoi personalizzare le risorse in una collezione aggiugendo nuovi campi."
+        add_asset: aggiungi risorsa
+        destroy: elimina collezione
+        no_items: "Per ora non ci sono risorse. Clicca <a href=\"%{url}\">qui</a> per creare la prima."
+        ask_for_name: "Prego, digita il nuovo nome"
+
+    assets:
+      new:
+        title: Nuova risorsa
+        help: "Compila il seguente modulo per creare la nuova risorsa."
+      edit:
+        title: Modifica risorsa
+        help: "Compila il seguente modulo per modificare la risorsa."
+
+    content_types:
+      index:
+        new: nuovo modello
+      new:
+        title: Nuovo modello
+        help: "Crea il tuo nuovo modello di dato (Progetti, Persone, ...etc). Il tuo modello deve avere almeno un campo. Gli elementi creati da questo tipo di contenuto hanno il loro primo campo obbligatorio."
+      edit:
+        title: Modifica modello
+        help: "Il tuo modello deve avere almeno un campo. Gli elementi creati da questo tipo di contenuto hanno il loro primo campo obbligatorio."
+        show_items: mostra elementi
+        new_item: nuovo elemento
+      form:
+        order_by:
+          created_at: 'Per data di creazione'
+          updated_at: 'Per data di modifica'
+          position_in_list: Manualmente
+        order_direction:
+          asc: Ascendente
+          desc: Discendente
+
+    contents:
+      index:
+        title: 'Lista "%{type}"'
+        edit: modifica modello
+        destroy: elimina modello
+        download: scarica elementi
+        new: nuovo elemento
+        category_noname: "Senza nome"
+        lastest_items: "Ultimi elementi"
+        updated_at: "modificato il"
+      list:
+        no_items: "Per ora non ci sono elementi. Clicca <a href=\"%{url}\">qui</a> per creare il primo."
+      new:
+        title: '%{type} &mdash; nuovo elemento'
+      edit:
+        title: '%{type} &mdash; modifica elemento'
+
+    image_picker:
+      link: Inserisci un immagine nel codice
+
+    cross_domain_sessions:
+      new:
+        title: Autenticazione cross-domain
+        notice: Sarai rediretto al sito web in pochi secondi.
+
+    imports:
+      new:
+        title: Importa
+        help: "Fai attenzione quando carichi un nuovo tema per il tuo sito, gli attuali dati potrebbero essere modificati o eliminati."
+      show:
+        title: Import in esecuzione
+        help: "Il tuo sito sta per essere aggiornato con il tema che hai appena caricato. Ci vorranno alcuni secondi."
+        steps:
+          site: Informazioni sito
+          content_types: Tipi di contenuti personalizzati
+          assets: File del tema
+          asset_collections: Collezioni di risorse
+          snippets: Frammenti
+          pages: Pagine
+        messages:
+          success: "Il tuo sito è stato aggiornato correttamente."
+          failure: "L'import non è andato a buon fine."
+
+    installation:
+      common:
+        title: Prima installazine di Locomotive
+        next: Prossimo
+      step_1:
+        title: "Passo 1/2 &mdash; Creazione account"
+        name: Nome account
+        email: Email
+        password: Password
+        password_confirmation: Conferma password
+        done: "Hai già aggiuto un account:<br/><strong>%{name}</strong>, <em>%{email}</em>"
+        next: Crea account
+      step_2:
+        title: "Passo 2/2 &mdash; Creazione del tuo primo sito"
+        explanations: "Questo è l'ultimo passo dell'installazione. Puoi caricare un tema come file zip. Noi abbiao dei temi gratuiti <a href=\"http://www.locomotivecms.com/support/themes\">qui</a>."
+        next: Crea sito

@@ -19,7 +19,7 @@ h2. Gems
 
 Here is a short list of main gems used in the application.
 
-* Rails 3.0.3
+* Rails 3.0.5
 * Mongoid 2.0.0.rc.7 (with MongoDB 1.6)
 * Liquid
 * Devise
@@ -35,7 +35,7 @@ See the "official website":http://www.locomotivecms.com
 h2. Team
 
 * Developers: "Didier Lafforgue":http://www.nocoffee.fr, "Jacques Crocker":http://www.railsjedi.com
-* Contributors: "Dirk Kelly":http://www.dirkkelly.com, "Mario Visic":http://www.mariovisic.com, "Raphael Costa":http://raphaelcosta.net (Brazilian Portuguese translation), "Bernd Hauser":http://www.designhunger.de (German translation)
+* Contributors: "Dirk Kelly":http://www.dirkkelly.com, "Mario Visic":http://www.mariovisic.com, "Raphael Costa":http://raphaelcosta.net (Brazilian Portuguese translation), "Bernd Hauser":http://www.designhunger.de (German translation), "Andrea Frigido":http://www.frisoft.it (Italian translation)
 * UI Designer: "Sacha Greif":http://www.sachagreif.com
 
 h2. Credits
