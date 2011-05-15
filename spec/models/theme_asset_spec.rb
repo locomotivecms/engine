@@ -4,6 +4,14 @@ require 'spec_helper'
 
 describe ThemeAsset do
 
+  before :all do
+    ThemeAssetUploader.enable_processing = true
+  end
+
+  after :all do
+    ThemeAssetUploader.enable_processing = false
+  end
+
   describe 'attaching a file' do
 
     before(:each) do
