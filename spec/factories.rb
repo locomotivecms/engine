@@ -89,6 +89,11 @@ Factory.define :asset_collection do |s|
   s.site { Site.where(:subdomain => "acme").first || Factory(:site) }
 end
 
+# Assets
+Factory.define :asset do |a|
+  a.name 'Photo'
+end
+
 
 ## Content types ##
 Factory.define :content_type do |t|
