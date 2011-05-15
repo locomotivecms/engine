@@ -1,0 +1,1 @@
+require 'dragonfly/rails/images'

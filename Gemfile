@@ -34,6 +34,10 @@ gem 'rubyzip'
 gem 'locomotive_jammit-s3', :require => 'jammit-s3'
 gem 'SystemTimer', :platforms => :ruby_18
 
+# Dynamically resizing images on the fly and caching
+gem 'dragonfly',  '~> 0.9.1'
+gem 'rack-cache', :require => 'rack/cache'
+
 # The rest of the dependencies are for use when in the locomotive dev environment
 
 group :development do
