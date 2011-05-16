@@ -3,53 +3,49 @@ require 'spec_helper'
 describe Locomotive::Liquid::Filters::Resize do
 
   before :all do
-    @asset_url  = '/path/to/image.jpg'
-    @asset      = Factory.create(:asset, :collection => Factory.build(:asset_collection), :source => FixturedAsset.open('5k.png'))
-    @asset_path = "/sites/#{@asset.collection.site_id}/assets/#{@asset.id}"
-    @context    = Liquid::Context.new({}, { 'asset' => @asset, 'asset_url' => @asset_url })
-  end
-
-  after :all do
-    # Cleanup
-    @asset.destroy
+    @site        = Factory.create(:site)
+    @asset_url   = '/path/to/image.jpg'
+    @theme_asset = Factory.create(:theme_asset, :source => FixturedAsset.open('5k.png'), :site => @site)
+    @asset       = Factory.create(:asset, :collection => Factory.build(:asset_collection), :source => FixturedAsset.open('5k.png'))
+    @asset_path  = "/sites/#{@asset.collection.site_id}/assets/#{@asset.id}"
+    @context     = Liquid::Context.new( { }, { 'asset' => @asset, 'asset_url' => @asset_url, 'theme_asset' => @theme_asset }, { :site => @site })
+    @app         = Dragonfly[:images]
   end
 
   describe '#resize' do
 
     context 'when an asset is given' do
 
-      context 'when only a height is given' do
+      context 'which has an uploader using the local filesystem' do
 
         before :all do
-          @template = Liquid::Template.parse('{{ asset | resize: "height:900" }}')
+          @asset.source.class.storage = :file
+          @template = Liquid::Template.parse('{{ asset | resize: "900x100" }}')
         end
 
         it 'should return the location of the resized image' do
-          @template.render(@context).should == "#{@asset_path}/5k_x900.png"
+          @template.render(@context).should =~ /media\/.*\/5k.png/
+        end
+
+        it 'should use the current path of the asset to generate a location' do
+          @template.render(@context).should == @app.fetch_file(@asset.source.current_path).thumb('900x100').url
         end
 
       end
 
-      context 'when only a width is given' do
+      context 'which has an uploader using a remote file system' do
 
         before :all do
-          @template = Liquid::Template.parse('{{ asset | resize: "width:400px" }}')
+          @asset.source.class.storage = :s3
+          @template = Liquid::Template.parse('{{ asset | resize: "200x110" }}')
         end
 
         it 'should return the location of the resized image' do
-          @template.render(@context).should == "#{@asset_path}/5k_400x.png"
+          @template.render(@context).should =~ /media\/.*\/5k.png/
         end
 
-      end
-
-      context 'when both a width and height are given' do
-
-        before :all do
-          @template = Liquid::Template.parse('{{ asset | resize: "width:400px", "height:900" }}')
-        end
-
-        it 'should return the location of the resized image' do
-          @template.render(@context).should == "#{@asset_path}/5k_400x900.png"
+        it 'should use the url of the asset to generate a location' do
+          @template.render(@context).should == @app.fetch_url(@asset.source.url).thumb('200x110').url
         end
 
       end
@@ -58,64 +54,44 @@ describe Locomotive::Liquid::Filters::Resize do
 
     context 'when an asset url string is given' do
 
-      context 'when only a height is given' do
-
-        before :all do
-          @template = Liquid::Template.parse('{{ asset_url | resize: "height:900" }}')
-        end
-
-        it 'should return the location of the resized image' do
-          @template.render(@context).should == '/path/to/image_x900.jpg'
-        end
-
+      before :all do
+        @template = Liquid::Template.parse('{{ asset_url | resize: "40x30" }}')
       end
 
-      context 'when only a width is given' do
-
-        before :all do
-          @template = Liquid::Template.parse('{{ asset_url | resize: "width:400px" }}')
-        end
-
-        it 'should return the location of the resized image' do
-          @template.render(@context).should == '/path/to/image_400x.jpg'
-        end
-
+      it 'should return the location of the resized image' do
+        @template.render(@context).should =~ /media\/.*\/image.jpg/
       end
 
-      context 'when both a width and height are given' do
-
-        before :all do
-          @template = Liquid::Template.parse('{{ asset_url | resize: "width:400px", "height:900" }}')
-        end
-
-        it 'should return the location of the resized image' do
-          @template.render(@context).should == '/path/to/image_400x900.jpg'
-        end
-
+      it 'should use the path in the public folder to generate a location' do
+        @template.render(@context).should == @app.fetch_file("public/#{@asset_url}").thumb('40x30').url
       end
 
     end
 
-    context 'when no height and width is given' do
+    context 'when a theme asset is given' do
 
       before :all do
-        @template = Liquid::Template.parse('{{ asset | resize }}')
+        @template = Liquid::Template.parse('{{ theme_asset | resize: "300x400" }}')
       end
 
-      it 'should return a liquid error' do
-        @template.render(@context).should include 'Liquid error: width or height is required'
+      it 'should return the location of the resized image' do
+        @template.render(@context).should =~ /media\/.*\/5k.png/
+      end
+
+      it 'should use the path of the theme asset to generate a location' do
+        @template.render(@context).should == @app.fetch_file(@theme_asset.source.current_path).thumb('40x30').url
       end
 
     end
 
-    context 'when an invalid width or height is given' do
+    context 'when no resize string is given' do
 
       before :all do
-        @template = Liquid::Template.parse('{{ asset | resize: "width: NaNpx" }}')
+        @template = Liquid::Template.parse('{{ asset | resize: }}')
       end
 
       it 'should return a liquid error' do
-        @template.render(@context).should include 'Liquid error: width or height is required'
+        @template.render(@context).should include 'Liquid error: wrong number of arguments'
       end
 
     end
