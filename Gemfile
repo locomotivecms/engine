@@ -2,12 +2,12 @@ source :rubygems
 
 # add in all the runtime dependencies
 
-gem 'rails', '>= 3.0.5'
+gem 'rails', '>= 3.0.7'
 
 gem 'warden'
 gem 'devise', '= 1.1.3'
 
-gem 'mongoid', '2.0.0.rc.7'
+gem 'mongoid', '~> 2.0.1'
 gem 'bson_ext', '~> 1.3.0'
 gem 'locomotive_mongoid_acts_as_tree', '0.1.5.5', :require => 'mongoid_acts_as_tree'
 gem 'will_paginate'
@@ -20,7 +20,7 @@ gem 'inherited_resources', '~> 1.1.2'
 gem 'rmagick', '2.12.2'
 gem 'locomotive_carrierwave', '0.5.0.1.beta3', :require => 'carrierwave'
 
-gem 'custom_fields', '1.0.0.beta.10'
+gem 'custom_fields', '1.0.0.beta.11'
 gem 'fog', '0.3.7'
 gem 'mimetype-fu'
 gem 'actionmailer-with-request', :require => 'actionmailer_with_request'
