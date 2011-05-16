@@ -2,6 +2,7 @@ module Locomotive
   module Liquid
     module Drops
       class Content < Base
+        delegate :meta_keywords, :meta_description, :to => "@source"
 
         def before_method(meth)
           return '' if @source.nil?

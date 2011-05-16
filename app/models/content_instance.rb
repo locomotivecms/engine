@@ -5,6 +5,7 @@ class ContentInstance
 
   ## extensions ##
   include CustomFields::ProxyClassEnabler
+  include Extensions::Shared::Seo
 
   ## fields (dynamic fields) ##
   field :_slug
@@ -28,6 +29,8 @@ class ContentInstance
   scope :latest_updated, :order_by => :updated_at.desc, :limit => Locomotive.config.lastest_items_nb
 
   ## methods ##
+
+  delegate :site, :to => :content_type
 
   alias :visible? :_visible?
   alias :_permalink :_slug

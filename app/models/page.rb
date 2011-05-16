@@ -10,6 +10,7 @@ class Page
   include Extensions::Page::Templatized
   include Extensions::Page::Redirect
   include Extensions::Page::Listed
+  include Extensions::Shared::Seo
 
   ## fields ##
   field :title

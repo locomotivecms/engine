@@ -93,6 +93,13 @@ describe ContentInstance do
     end
 
   end
+  
+  describe '#site' do
+    it 'delegates to the content type' do
+      @content_type.expects(:site)
+      build_content.site
+    end
+  end
 
   def build_content(options = {})
     @content_type.contents.build({ :title => 'Locomotive', :description => 'Lorem ipsum....' }.merge(options))
@@ -101,5 +108,4 @@ describe ContentInstance do
   def fake_bson_id(id)
     BSON::ObjectId(id.to_s.rjust(24, '0'))
   end
-
 end

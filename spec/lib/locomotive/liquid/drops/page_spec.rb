@@ -3,7 +3,8 @@ require 'spec_helper'
 describe Locomotive::Liquid::Drops::Page do
 
   before(:each) do
-    @home = Factory.build(:page)
+    site = Factory.build(:site)
+    @home = Factory.build(:page, :site => site, :meta_keywords => 'Libidinous, Angsty', :meta_description => "Quite the combination.")
   end
 
   context '#rendering tree' do
@@ -54,6 +55,16 @@ describe Locomotive::Liquid::Drops::Page do
       render_template('{{ page.title }}', 'page' => templatized, 'content_instance' => content_instance).should == 'Locomotive rocks !'
     end
 
+  end
+
+  describe 'meta_keywords' do
+    subject { render_template('{{ home.meta_keywords }}') }
+    it { should == @home.meta_keywords }
+  end
+
+  describe 'meta_description' do
+    subject { render_template('{{ home.meta_description }}') }
+    it { should == @home.meta_description }
   end
 
   def render_template(template = '', assigns = {})
