@@ -4,17 +4,20 @@ $(document).ready(function() {
   $('#pages-list ul.folder img.toggler').click(function(e) {
     var toggler = $(this);
     var children = toggler.parent().find('> ul.folder');
-    if (children.is(':visible')) {
-      children.slideUp('fast', function() {
-        toggler.attr('src', toggler.attr('src').replace('open', 'closed'));
-        $.cookie(children.attr('id'), 'none');
-      });
-    } else {
-      children.slideDown('fast', function() {
-        toggler.attr('src', toggler.attr('src').replace('closed', 'open'));
-        $.cookie(children.attr('id'), 'block');
-      });
-    }
+    
+    children.each(function(){
+      if ($(this).is(':visible')) {
+        $(this).slideUp('fast', function() {
+          toggler.attr('src', toggler.attr('src').replace('open', 'closed'));
+          $.cookie($(this).attr('id'), 'none');
+        });
+      } else {
+        $(this).slideDown('fast', function() {
+          toggler.attr('src', toggler.attr('src').replace('closed', 'open'));
+          $.cookie($(this).attr('id'), 'block');
+        });
+      }
+    });
   });
 
   // sortable folder items
