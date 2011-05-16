@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Locomotive::Liquid::Filters::Resize do
 
-  before :all do
+  before :each do
     @site        = Factory.create(:site)
     @asset_url   = '/path/to/image.jpg'
     @theme_asset = Factory.create(:theme_asset, :source => FixturedAsset.open('5k.png'), :site => @site)
@@ -18,7 +18,7 @@ describe Locomotive::Liquid::Filters::Resize do
 
       context 'which has an uploader using the local filesystem' do
 
-        before :all do
+        before :each do
           @asset.source.class.storage = :file
           @template = Liquid::Template.parse('{{ asset | resize: "900x100" }}')
         end
@@ -35,9 +35,13 @@ describe Locomotive::Liquid::Filters::Resize do
 
       context 'which has an uploader using a remote file system' do
 
-        before :all do
+        before :each do
           @asset.source.class.storage = :s3
           @template = Liquid::Template.parse('{{ asset | resize: "200x110" }}')
+        end
+
+        after :each do
+          @asset.source.class.storage = :file # Reset to file
         end
 
         it 'should return the location of the resized image' do
@@ -54,7 +58,7 @@ describe Locomotive::Liquid::Filters::Resize do
 
     context 'when an asset url string is given' do
 
-      before :all do
+      before :each do
         @template = Liquid::Template.parse('{{ asset_url | resize: "40x30" }}')
       end
 
@@ -70,7 +74,7 @@ describe Locomotive::Liquid::Filters::Resize do
 
     context 'when a theme asset is given' do
 
-      before :all do
+      before :each do
         @template = Liquid::Template.parse('{{ theme_asset | resize: "300x400" }}')
       end
 
@@ -79,14 +83,14 @@ describe Locomotive::Liquid::Filters::Resize do
       end
 
       it 'should use the path of the theme asset to generate a location' do
-        @template.render(@context).should == @app.fetch_file(@theme_asset.source.current_path).thumb('40x30').url
+        @template.render(@context).should == @app.fetch_file(@theme_asset.source.current_path).thumb('300x400').url
       end
 
     end
 
     context 'when no resize string is given' do
 
-      before :all do
+      before :each do
         @template = Liquid::Template.parse('{{ asset | resize: }}')
       end
 
