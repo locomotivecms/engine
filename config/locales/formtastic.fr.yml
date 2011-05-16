@@ -53,10 +53,12 @@ fr:
         templatized: "Utilise la page comme un template pour un modèle défini."
         listed: "Controle si la page doit être visible depuis les menus automatiquement générés."
         content_type_id: "Le type du contenu pour lequel cette page est un template."
+        meta_keywords: "Redéfinit les mots-clés du site. Utilisés à l'intérieur de la balise HEAD. Ils sont séparés par une virgule."
+        meta_description: "Redéfinit la description du site. Utilisée à l'intérieur de la balise HEAD."
       snippet:
         slug: "Utilisé pour insérer le snippet dans une page."
       site:
-        meta_keywords: "Mots-clés utilisés à l'intérieur de la balise HEAD. Ils sont séparés par un espace. Requis pour un meilleur référencement."
+        meta_keywords: "Mots-clés utilisés à l'intérieur de la balise HEAD. Ils sont séparés par une virgule. Requis pour un meilleur référencement."
         meta_description: "Description utilisée à l'intérieur de la balise HEAD. Requis pour un meilleur référencement."
         domain_name: "ex: locomotiveapp.org"
       theme_asset:
