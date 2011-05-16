@@ -5,14 +5,15 @@ source :rubygems
 gem 'rails', '>= 3.0.7'
 
 gem 'warden'
-gem 'devise', '= 1.1.3'
+gem 'devise', '1.3.4'
 
 gem 'mongoid', '~> 2.0.1'
 gem 'bson_ext', '~> 1.3.0'
 gem 'locomotive_mongoid_acts_as_tree', '0.1.5.5', :require => 'mongoid_acts_as_tree'
 gem 'will_paginate'
 
-gem 'haml', '3.0.25'
+gem 'haml', '3.1.1'
+gem 'sass', '3.1.1'
 gem 'locomotive_liquid', '2.2.2', :require => 'liquid'
 gem 'formtastic', '~> 1.2.3'
 gem 'inherited_resources', '~> 1.1.2'
@@ -21,7 +22,7 @@ gem 'rmagick', '2.12.2'
 gem 'locomotive_carrierwave', '0.5.0.1.beta3', :require => 'carrierwave'
 
 gem 'custom_fields', '1.0.0.beta.11'
-gem 'fog', '0.3.7'
+gem 'fog', '0.7.2'
 gem 'mimetype-fu'
 gem 'actionmailer-with-request', :require => 'actionmailer_with_request'
 gem 'heroku', '1.19.1'
