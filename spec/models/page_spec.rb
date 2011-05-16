@@ -229,8 +229,6 @@ describe Page do
       @page.redirect_url = "invalid url with spaces"
       @page.should_not be_valid
       @page.errors[:redirect_url].should == ["is invalid"]
-
     end
-
   end
 end

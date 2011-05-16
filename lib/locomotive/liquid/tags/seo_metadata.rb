@@ -5,8 +5,8 @@ module Locomotive
 
         def render(context)
           %{
-            <meta name="description" content="#{sanitized_string(context.registers[:site].meta_description)}" />
-            <meta name="keywords" content="#{sanitized_string(context.registers[:site].meta_keywords)}" />
+            <meta name="description" content="#{sanitized_string(meta_description(context))}" />
+            <meta name="keywords" content="#{sanitized_string(meta_keywords(context))}" />
           }
         end
 
@@ -15,6 +15,19 @@ module Locomotive
           string.strip.gsub(/"/, '')
         end
 
+        def meta_description(context)
+          object = metadata_object(context)
+          object.try(:meta_description).blank? ? context.registers[:site].meta_description : object.meta_description
+        end
+
+        def meta_keywords(context)
+          object = metadata_object(context)
+          object.try(:meta_keywords).blank? ? context.registers[:site].meta_keywords : object.meta_keywords
+        end
+
+        def metadata_object(context)
+          context['content_instance'] || context['page']
+        end
       end
 
       ::Liquid::Template.register_tag('seo_metadata', SEOMetadata)
