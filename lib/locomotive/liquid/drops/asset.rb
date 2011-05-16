@@ -15,10 +15,6 @@ module Locomotive
           @source.source.url
         end
 
-        def path
-          @source.source.path
-        end
-
       end
     end
   end
