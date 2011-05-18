@@ -56,6 +56,7 @@ javascripts:
     - public/javascripts/admin/account.js
   pages:
     - public/javascripts/admin/pages.js
+    - public/javascripts/admin/menu_toggler.js
   edit_page:
     - public/javascripts/admin/plugins/tiny_mce/tinymce.js
     - public/javascripts/admin/editable_elements.js

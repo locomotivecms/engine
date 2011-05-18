@@ -1,24 +1,7 @@
 $(document).ready(function() {
 
   // open / close folder
-  $('#pages-list ul.folder img.toggler').click(function(e) {
-    var toggler = $(this);
-    var children = toggler.parent().find('> ul.folder');
-    
-    children.each(function(){
-      if ($(this).is(':visible')) {
-        $(this).slideUp('fast', function() {
-          toggler.attr('src', toggler.attr('src').replace('open', 'closed'));
-          $.cookie($(this).attr('id'), 'none');
-        });
-      } else {
-        $(this).slideDown('fast', function() {
-          toggler.attr('src', toggler.attr('src').replace('closed', 'open'));
-          $.cookie($(this).attr('id'), 'block');
-        });
-      }
-    });
-  });
+  $('#pages-list ul.folder img.toggler').toggleMe();
 
   // sortable folder items
   $('#pages-list ul.folder').sortable({
