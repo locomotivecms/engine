@@ -34,6 +34,7 @@ javascripts:
     - public/javascripts/admin/plugins/fancybox.js
     - public/javascripts/admin/plugins/mustache.js
     - public/javascripts/admin/custom_fields/category.js
+    - public/javascripts/admin/custom_fields/has_many.js
   asset_collections:
     - public/javascripts/admin/plugins/fancybox.js
     - public/javascripts/admin/plugins/mustache.js

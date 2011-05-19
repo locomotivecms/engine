@@ -40,8 +40,10 @@ class ContentInstance
   end
 
   def highlighted_field_value
-    self.send(self.content_type.highlighted_field._name)
+    self.send(self.content_type.highlighted_field_name)
   end
+
+  alias :_label :highlighted_field_value
 
   def visible?
     self._visible || self._visible.nil?

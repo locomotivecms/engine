@@ -1,7 +1,7 @@
 module Admin::CustomFieldsHelper
 
   def options_for_field_kind
-    %w(string text category boolean date file).map do |kind|
+    %w(string text category boolean date file has_one has_many).map do |kind|
       [t("custom_fields.kind.#{kind}"), kind]
     end
   end
@@ -37,6 +37,21 @@ module Admin::CustomFieldsHelper
     options = %w(none html).map do |option|
       [t("admin.custom_fields.text_formatting.#{option}"), option]
     end
+  end
+
+  def options_for_association_target
+    current_site.content_types.collect { |c| [c.name, c.content_klass.to_s] }
+  end
+
+  def options_for_has_one(field)
+    target_contents_from_field(field).collect { |c| [c._label, c._id] }
+  end
+
+  alias :options_for_has_many :options_for_has_one
+
+  def target_contents_from_field(field)
+    content_type = field.target.constantize._parent
+    content_type.ordered_contents
   end
 
 end
