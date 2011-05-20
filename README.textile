@@ -40,7 +40,7 @@ h2. Team
 
 h2. Support
 
-Bernd Hauser from "Design Hunger":http://www.designhunger.de funded the following feature: *has_one* / *has_many* between content types.
+Bernd Hauser from "designhunger":http://www.designhunger.de funded the following feature: *has_one* / *has_many* between content types.
 
 h2. Credits
 
