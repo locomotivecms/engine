@@ -53,6 +53,14 @@ class ContentInstance
     Hash.new.replace(self.errors)
   end
 
+  def reload_parent!
+    self.class.reload_parent!
+  end
+
+  def self.reload_parent!
+    self._parent = self._parent.reload
+  end
+
   def to_liquid
     Locomotive::Liquid::Drops::Content.new(self)
   end
