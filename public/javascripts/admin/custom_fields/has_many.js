@@ -110,6 +110,8 @@ $(document).ready(function() {
 
         registerElementEvents(context, data, domElement);
 
+        context.error.hide();
+
         context.list.sortable('refresh');
       }
     }
@@ -119,10 +121,11 @@ $(document).ready(function() {
 
       var context = {
         list: wrapper.find('ul'),
-        empty: wrapper.find('p'),
+        empty: wrapper.find('p:first'),
         template: wrapper.find('script[name=template]').html(),
         baseInputName: wrapper.find('script[name=template]').attr('data-base-input-name'),
-        data: eval(wrapper.find('script[name=data]').html())
+        data: eval(wrapper.find('script[name=data]').html()),
+        error: wrapper.parent().find('p.inline-errors')
       };
 
       // sortable list
@@ -149,6 +152,9 @@ $(document).ready(function() {
 
         addElement(context, data);
       }
+
+      if (context.error.size() > 0)
+        context.error.show();
     });
   };
 })(jQuery);

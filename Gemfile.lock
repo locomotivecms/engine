@@ -1,8 +1,17 @@
 GIT
   remote: git://github.com/floehopper/mocha.git
-  revision: f1d182ea33fe08cbc187df90f12013814ae59da8
+  revision: 7dd9512a874f89b8037d7320fe7988c222f439e1
   specs:
     mocha (0.9.12.20110213002255)
+
+GIT
+  remote: git://github.com/locomotivecms/custom_fields.git
+  revision: 340cb76589e64920a1378a0801cbd28e7029fc2b
+  specs:
+    custom_fields (1.0.0.beta.11)
+      activesupport (>= 3.0.7)
+      locomotive_carrierwave
+      mongoid (~> 2.0.1)
 
 GIT
   remote: https://github.com/wunderbread/xpath.git
@@ -10,14 +19,6 @@ GIT
   specs:
     xpath (0.1.2)
       nokogiri (~> 1.4)
-
-PATH
-  remote: ../gems/custom_fields
-  specs:
-    custom_fields (1.0.0.beta.11)
-      activesupport (>= 3.0.7)
-      locomotive_carrierwave
-      mongoid (~> 2.0.1)
 
 GEM
   remote: http://rubygems.org/

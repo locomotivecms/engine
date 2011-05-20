@@ -80,7 +80,7 @@ $(document).ready(function() {
     $('#submenu > ul > li.' + css).addClass('on');
 
   // form
-  $('.formtastic li input, .formtastic li textarea, .formtastic li code').focus(function() {
+  $('.formtastic li input, .formtastic li textarea, .formtastic li code, .formtastic li select').focus(function() {
     $('.formtastic li.error:not(.code) p.inline-errors').fadeOut(200);
     if ($(this).parent().hasClass('error')) {
       $(this).nextAll('p.inline-errors').show();
