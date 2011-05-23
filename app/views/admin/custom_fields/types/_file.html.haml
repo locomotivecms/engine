@@ -1,0 +1,10 @@
+= form.custom_input field._alias.to_sym, :label => field.label, :hint => field.hint, :css => 'file' do
+  = form.file_field field._name.to_sym
+  - if form.object.send(:"#{field._name}?")
+    %p.remove
+      %strong
+        = link_to File.basename(form.object.send(field._name).url), form.object.send(field._name).url
+      %span
+        &nbsp;/&nbsp;
+        != t('.delete_file')
+        = form.check_box :"remove_#{field._name}"

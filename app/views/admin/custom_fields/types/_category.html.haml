@@ -1,0 +1,4 @@
+= form.custom_input field._alias.to_sym, :label => field.label, :hint => field.hint, :css => 'toggle' do
+  = form.select field._name.to_sym, field.ordered_category_items.collect { |item| [item.name, item.id] }
+  %button.button.light.edit-categories-link{ :type => 'button', :'data-url' => edit_admin_custom_field_path(parent.class.model_name.underscore, parent.slug, field) }
+    %span!= t('.edit_categories')

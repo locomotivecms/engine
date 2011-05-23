@@ -4,35 +4,6 @@
   - form.object.custom_fields.each do |field|
     - required = highlighted_field_name == field._name || field.required
 
-    - if field.string?
-      = form.input field._alias.to_sym, :label => field.label, :hint => field.hint, :required => required
-
-    - elsif field.text?
-      = form.input field._alias.to_sym, :label => field.label, :hint => field.hint, :as => :text, :required => required, :input_html => { :class => field.text_formatting }
-
-    - elsif field.category?
-      = form.custom_input field._alias.to_sym, :label => field.label, :hint => field.hint, :css => 'toggle' do
-        = form.select field._name.to_sym, field.ordered_category_items.collect { |item| [item.name, item.id] }
-        %button.button.light.edit-categories-link{ :type => 'button', :'data-url' => edit_admin_custom_field_path(parent.class.model_name.underscore, parent.slug, field) }
-          %span!= t('.edit_categories')
-
-    - elsif field.boolean?
-      = form.custom_input field._alias.to_sym, :label => field.label, :hint => field.hint, :css => 'toggle' do
-        = form.check_box field._alias.to_sym
-
-    - elsif field.date?
-      = form.input field._alias.to_sym, :label => field.label, :hint => field.hint, :input_html => { :class => 'date' }
-
-    - elsif field.file?
-      = form.custom_input field._alias.to_sym, :label => field.label, :hint => field.hint, :css => 'file' do
-        = form.file_field field._name.to_sym
-        - if form.object.send(:"#{field._name}?")
-          %p.remove
-            %strong
-              = link_to File.basename(form.object.send(field._name).url), form.object.send(field._name).url
-            %span
-              &nbsp;/&nbsp;
-              != t('.delete_file')
-              = form.check_box :"remove_#{field._name}"
+    = render "/admin/custom_fields/types/#{field.kind}", :form => form, :parent => parent, :field => field, :required => required
 
 = render '/admin/custom_fields/category_tmpl'

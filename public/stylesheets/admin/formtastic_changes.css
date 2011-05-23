@@ -434,6 +434,85 @@ form.formtastic fieldset ol li.file p.remove a {
 
 form.formtastic fieldset ol li.file p.remove a:hover { text-decoration: underline; }
 
+form.formtastic fieldset ol li.has-many p {
+  font-style: italic;
+  margin-bottom: 5px;
+}
+
+form.formtastic fieldset ol li.has-many ul {
+  width: 736px;
+  margin-left: 20%;
+}
+
+form.formtastic fieldset ol li.has-many ul li.item {
+  background: transparent url(/images/admin/form/item-popup.png) no-repeat 0 0;
+  width: 413px;
+  margin: 0 0 10px 0;
+}
+
+form.formtastic fieldset ol li.has-many ul li.item strong {
+  font-size: 0.9em;
+  font-weight: bold;
+  color: #17171d;
+  position: relative;
+  top: -1px;
+  left: 10px;
+}
+
+form.formtastic fieldset ol li.has-many ul li.item span.handle {
+  cursor: move;
+  position: relative;
+  top: 1px;
+}
+
+form.formtastic fieldset ol li.has-many ul li.added span.actions a.remove {
+  display: inline;
+}
+
+form.formtastic fieldset ol li.has-many ul li.added span.actions button {
+  display: none;
+}
+
+form.formtastic fieldset ol li.has-many ul li.sep {
+  border-top: 1px solid #ccc;
+  height: 2px;
+  margin: 5px 0 7px;
+  width: 433px;
+}
+
+form.formtastic fieldset ol li.has-many ul li.template {}
+
+form.formtastic fieldset ol li.has-many ul li.template select {
+  display: inline;
+  top: -1px;
+}
+
+form.formtastic fieldset ol li.has-many ul li.template span.handle {
+  display: none;
+}
+
+form.formtastic fieldset ol li.has-many ul li.template span.actions {
+  width: auto;
+  top: 0px;
+}
+
+form.formtastic fieldset ol li.has-many ul li.template span.actions a.remove {
+  display: none;
+}
+
+form.formtastic fieldset ol li.has-many ul li.template span.actions button {
+  display: inline;
+  position: relative;
+  top: 1px;
+  right: 3px;
+}
+
+form.formtastic fieldset ol li.has-many ul li.template span.actions button span {
+  font-size: 0.8em;
+}
+
+
+
 /* ___ my account ___ */
 
 form.formtastic fieldset.language li.full span {

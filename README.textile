@@ -19,8 +19,8 @@ h2. Gems
 
 Here is a short list of main gems used in the application.
 
-* Rails 3.0.5
-* Mongoid 2.0.0.rc.7 (with MongoDB 1.6)
+* Rails 3.0.7
+* Mongoid 2.0.1 (with MongoDB 1.6)
 * Liquid
 * Devise
 * Carrierwave
@@ -37,6 +37,10 @@ h2. Team
 * Developers: "Didier Lafforgue":http://www.nocoffee.fr, "Jacques Crocker":http://www.railsjedi.com
 * Contributors: "Dirk Kelly":http://www.dirkkelly.com, "Mario Visic":http://www.mariovisic.com, "Raphael Costa":http://raphaelcosta.net (Brazilian Portuguese translation), "Bernd Hauser":http://www.designhunger.de (German translation), "Andrea Frigido":http://www.frisoft.it (Italian translation)
 * UI Designer: "Sacha Greif":http://www.sachagreif.com
+
+h2. Support
+
+Bernd Hauser from "designhunger":http://www.designhunger.de funded the following feature: *has_one* / *has_many* between content types.
 
 h2. Credits
 

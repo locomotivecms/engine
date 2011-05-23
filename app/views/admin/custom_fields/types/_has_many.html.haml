@@ -1,0 +1,33 @@
+- field.target.constantize.reload_parent! # to make sure all the contents from the parent are loaded
+
+= form.custom_input field._alias.to_sym, :label => field.label, :hint => field.hint, :css => 'has-many' do
+
+  .has-many-selector
+
+    %p{ :style => form.object.send(field._alias.to_sym).empty? ? '' : 'display: none'  }
+      = t('.empty')
+
+    %ul
+
+    %script{ :type => 'text/x-mustache-template', :name => 'template', :'data-base-input-name' => "content[#{field._alias.to_sym}]" }
+      %li{ :class => "item {{behaviour_flag}}" }
+        %span.handle
+          = image_tag 'admin/form/icons/drag.png'
+
+        {{^if_template}}
+        %input{ :name => '{{base_name}}[]', :value => '{{{id}}}', :type => 'hidden', :'data-field' => 'id' }
+        {{/if_template}}
+
+        %strong {{label}}
+
+        {{#if_template}}
+        = select_tag 'label', ''
+        {{/if_template}}
+
+        %span.actions
+          = link_to image_tag('admin/form/icons/trash.png'), '#', :class => 'remove'
+          %button{ :class => 'button light mini add', :type => 'button' }
+            %span!= t('admin.buttons.new_item')
+
+    %script{ :type => 'text/javascript', :name => 'data' }
+      != collection_to_js(options_for_has_many(field), :taken_ids => form.object.send(field._alias.to_sym).ids)
