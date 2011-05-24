@@ -22,7 +22,7 @@ describe Locomotive::Import::Job do
     it 'adds content types' do
       @site.content_types.count.should == 2
       content_type = @site.content_types.where(:slug => 'projects').first
-      content_type.content_custom_fields.size.should == 6
+      content_type.content_custom_fields.size.should == 7
     end
 
     it 'converts correctly the order_by option for content types' do
