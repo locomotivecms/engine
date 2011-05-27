@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/floehopper/mocha.git
-  revision: adeb8ae0189963cf3024f2b37d5348a7feaae11e
+  revision: 6da1242f26b12a24c4fcf67bf5921a25bc1bc88d
   specs:
     mocha (0.9.12.20110213002255)
 
@@ -15,7 +15,6 @@ PATH
   remote: ../gems/bushido_stub
   specs:
     bushido_stub (0.0.1)
-      activesupport
 
 GEM
   remote: http://rubygems.org/
@@ -64,7 +63,7 @@ GEM
     bson (1.3.1)
     bson_ext (1.3.1)
     builder (2.1.2)
-    bushido (0.0.12)
+    bushido (0.0.14)
       highline (>= 1.6.1)
       json (>= 1.4.6)
       rest-client (>= 1.6.1)

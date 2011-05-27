@@ -40,12 +40,12 @@ gem 'SystemTimer', :platforms => :ruby_18
 group :development do
   # Using unicorn_rails instead of webrick (default server)
   gem 'unicorn'
-  gem 'bushido_stub', :path => '../gems/bushido_stub'
 end
 
 group :test, :development do
   gem 'ruby-debug', :platforms => :mri_18
   gem 'ruby-debug19', :platforms => :mri_19
+  gem 'bushido_stub', :path => '../gems/bushido_stub'
 end
 
 group :production do

@@ -31,3 +31,4 @@ perf/*.rb
 gem_graph.png
 sites/
 permanent
+doc/bushido

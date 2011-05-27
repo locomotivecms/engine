@@ -5,14 +5,17 @@ require 'net/http'
 namespace :bushido do
   desc "Prepare an app to run on the Bushido hosting platform, only called during the initial installation. Called just before booting the app."
   task :install => :environment do
+
+    # re-built assets
     Jammit.package!
 
     if ENV['BUSHIDO_USER_EMAIL'] && ENV['BUSHIDO_USER_ID']
       # already logged in in Bushido
       account = Account.create!({
-        :email      => ENV['BUSHIDO_USER_EMAIL'],
-        :name       => ENV['BUSHIDO_USER_NAME'] || ENV['BUSHIDO_USER_EMAIL'].split('@').first,
-        :password   => ActiveSupport::SecureRandom.base64(6)
+        :email            => ENV['BUSHIDO_USER_EMAIL'],
+        :name             => ENV['BUSHIDO_USER_NAME'] || ENV['BUSHIDO_USER_EMAIL'].split('@').first,
+        :bushido_user_id  => ENV['BUSHIDO_USER_ID'],
+        :password         => ActiveSupport::SecureRandom.base64(6)
       })
     else
       # create an anonymous account right away
@@ -44,14 +47,40 @@ namespace :bushido do
     when Net::HTTPSuccess, Net::HTTPFound
       `curl -L -s -o #{template_local_path} #{template_url}`
 
+      tmp, Locomotive.config.delayed_job = Locomotive.config.delayed_job, false # disable DJ during this import
+
       Locomotive::Import::Job.run!(File.open(template_local_path), site, { :samples => true })
+
+      Locomotive.config.delayed_job = tmp # restore DJ flag
     else
       # do nothing
     end
   end
 
+  desc "Perform custom actions triggered by the Bushido hosting platform."
+  task :message => :environment do
+    event = ::Bushido::App.last_event
+
+    puts "processing...#{event.inspect}"
+
+    case event.category.to_s
+    when 'user'
+      case event.name.to_s
+      when 'create'
+        # an user has just claimed his application
+        account = Account.order_by(:created_at).first
+
+        account.email = event.data['email']
+        account.bushido_user_id = event.data['id']
+
+        account.save!
+      end
+    end
+  end
+
   desc "Prepare an app to run on the Bushido hosting platform, called on every update. Called just before booting the app."
   task :update do
+    # re-built assets
     Jammit.package!
   end
 end
