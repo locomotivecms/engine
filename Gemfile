@@ -45,7 +45,9 @@ end
 group :test, :development do
   gem 'ruby-debug', :platforms => :mri_18
   gem 'ruby-debug19', :platforms => :mri_19
+
   # gem 'bushido_stub', :path => '../gems/bushido_stub'
+  gem 'bushido'
 end
 
 group :production do
