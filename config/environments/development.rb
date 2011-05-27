@@ -30,11 +30,10 @@ Locomotive::Application.configure do
 
   # set up the bushido stub (uncomment it)
   # config.bushido_stub_env = false
-
-  config.bushido_stub_env = {
-    'APP_TLD'               => 'bushi.do',
-    'BUSHIDO_APP'           => 'san_francisco',
-    'BUSHIDO_HOST'          => 'bushi.do',
-    'LOCOMOTIVE_SITE_NAME'  => 'Locomotive TEST'
-  }
+  # config.bushido_stub_env = {
+  #   'APP_TLD'               => 'bushi.do',
+  #   'BUSHIDO_APP'           => 'san_francisco',
+  #   'BUSHIDO_HOST'          => 'bushi.do',
+  #   'LOCOMOTIVE_SITE_NAME'  => 'Locomotive TEST'
+  # }
 end
