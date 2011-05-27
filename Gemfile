@@ -27,7 +27,6 @@ gem 'fog', '0.3.7'
 gem 'mimetype-fu'
 gem 'actionmailer-with-request', :require => 'actionmailer_with_request'
 gem 'heroku', '1.19.1'
-gem 'bushido'
 gem 'httparty', '>= 0.6.1'
 gem 'RedCloth', '4.2.7'
 gem 'delayed_job', '2.1.4'
@@ -41,11 +40,16 @@ gem 'SystemTimer', :platforms => :ruby_18
 group :development do
   # Using unicorn_rails instead of webrick (default server)
   gem 'unicorn'
+  gem 'bushido_stub', :path => '../gems/bushido_stub'
 end
 
 group :test, :development do
-  gem "ruby-debug", :platforms => :mri_18
-  gem "ruby-debug19", :platforms => :mri_19
+  gem 'ruby-debug', :platforms => :mri_18
+  gem 'ruby-debug19', :platforms => :mri_19
+end
+
+group :production do
+  gem 'bushido'
 end
 
 group :test do

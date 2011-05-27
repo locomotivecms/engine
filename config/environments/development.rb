@@ -27,4 +27,14 @@ Locomotive::Application.configure do
     :port => 1025,
     :domain => "example.com"
   }
+
+  # set up the bushido stub (uncomment it)
+  # config.bushido_stub_env = false
+
+  config.bushido_stub_env = {
+    'APP_TLD'               => 'bushi.do',
+    'BUSHIDO_APP'           => 'san_francisco',
+    'BUSHIDO_HOST'          => 'bushi.do',
+    'LOCOMOTIVE_SITE_NAME'  => 'Locomotive TEST'
+  }
 end

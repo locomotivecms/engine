@@ -29,7 +29,7 @@ module Locomotive
 
           self.setup_smtp_settings
 
-          self.config.delayed_job = true # force the use of delayed_job
+          self.config.delayed_job = false #true # force the use of delayed_job
 
           self.bushido_domains = ::Bushido::App.domains
           self.bushido_subdomain = ::Bushido::App.subdomain
