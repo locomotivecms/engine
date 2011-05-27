@@ -19,31 +19,27 @@ module Locomotive
         def call(env)
           status, headers, response = @app.call(env)
 
-          if env["PATH_INFO"] =~ /^\/admin\//
-            content = ""
-            response.each { |part| content += part }
+          content = ""
+          response.each { |part| content += part }
 
-            # "claiming" bar + stats ?
-            content.gsub!(/<\/body>/i, <<-STR
-                <script type="text/javascript">
-                  var _bushido_app = '#{@bushido_app_name}';
-                  var _bushido_claimed = #{@bushido_claimed.to_s};
-                  (function() {
-                    var bushido = document.createElement('script'); bushido.type = 'text/javascript'; bushido.async = true;
-                    bushido.src = '#{BUSHIDO_JS_URL}';
-                    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(bushido, s);
-                  })();
-                </script>
-              </body>
-            STR
-            )
+          # "claiming" bar + stats ?
+          content.gsub!(/<\/body>/i, <<-STR
+              <script type="text/javascript">
+                var _bushido_app = '#{@bushido_app_name}';
+                var _bushido_claimed = #{@bushido_claimed.to_s};
+                (function() {
+                  var bushido = document.createElement('script'); bushido.type = 'text/javascript'; bushido.async = true;
+                  bushido.src = '#{BUSHIDO_JS_URL}';
+                  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(bushido, s);
+                })();
+              </script>
+            </body>
+          STR
+          )
 
-            headers['content-length'] = bytesize(content).to_s
+          headers['content-length'] = bytesize(content).to_s
 
-            [status, headers, [content]]
-          else
-            [status, headers, response]
-          end
+          [status, headers, [content]]
         end
 
       end
