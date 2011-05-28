@@ -5,7 +5,7 @@ module Admin
 
     skip_before_filter :require_site
 
-    skip_before_filter :authenticate_admin!
+    skip_before_filter :require_admin
 
     skip_before_filter :verify_authenticity_token
 

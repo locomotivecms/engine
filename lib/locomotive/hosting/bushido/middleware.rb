@@ -13,7 +13,7 @@ module Locomotive
         def initialize(app, opts = {})
           @app = app
           @bushido_app_name = ENV['BUSHIDO_APP']
-          @bushido_claimed = ENV['BUSHIDO_CLAIMED'] && ENV['BUSHIDO_CLAIMED'].to_s.downcase == 'true'
+          @bushido_claimed = ::Locomotive.bushido_app_claimed?
         end
 
         def call(env)
