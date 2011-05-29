@@ -15,7 +15,7 @@ module Locomotive
             if ::Locomotive.bushido_app_claimed?
               require_admin_without_bushido
             else
-              # open back-office for everybody as long as the application has not been claimed
+              # open back-office for everybody as long as the application is not claimed
               sign_in(Account.order_by(:created_at).first)
             end
           end

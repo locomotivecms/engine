@@ -36,6 +36,7 @@ en:
           source: File
           samples: Copy samples
           reset: Reset site
+          default_site_template: "Use the default site template. Click <a href='#'>here</a> to upload a site template as a zip file instead."
       content_type:
         api_accounts: Notified Accounts
       account:
