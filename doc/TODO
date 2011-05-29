@@ -15,7 +15,7 @@ BACKLOG:
   - edit images (upload new ones, ...etc) => wait for aloha or send them an email ?
 - global regions: keyword in editable element (http://www.mongodb.org/display/DOCS/Updating)
 - cucumber features for admin pages (in progress)
-(- duostack version)
+(- duostack/doutcloud version)
 - icon for redirection page in the pages section (back-office)
 - write my first tutorial about locomotive
 - upgrade warning if new version of locomotive (maybe based on the commit id)
