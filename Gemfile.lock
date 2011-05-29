@@ -1,4 +1,11 @@
 GIT
+  remote: git://github.com/did/bushido_stub.git
+  revision: 6b83b2c4847832ffe7a213e725d2ceb7f864e360
+  specs:
+    bushido_stub (0.0.1)
+      activesupport (>= 3.0.7)
+
+GIT
   remote: git://github.com/floehopper/mocha.git
   revision: 6da1242f26b12a24c4fcf67bf5921a25bc1bc88d
   specs:
@@ -10,11 +17,6 @@ GIT
   specs:
     xpath (0.1.2)
       nokogiri (~> 1.4)
-
-PATH
-  remote: ../gems/bushido_stub
-  specs:
-    bushido_stub (0.0.1)
 
 GEM
   remote: http://rubygems.org/
