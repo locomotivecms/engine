@@ -58,7 +58,7 @@ namespace :bushido do
   end
 
   desc "Perform custom actions triggered by the Bushido hosting platform."
-  task :message => :environment do
+  task :event => :environment do
     event = ::Bushido::App.last_event
 
     puts "processing...#{event.inspect}"
