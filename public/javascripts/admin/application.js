@@ -49,6 +49,7 @@ var TinyMceDefaultSettings = {
   theme : 'advanced',
   skin : 'locomotive',
   plugins: 'safari,inlinepopups,locoimage',
+  extended_valid_elements: 'iframe[width|height|frameborder|allowfullscreen|src|title]',
   theme_advanced_buttons1 : 'code,|,bold,italic,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,|,bullist,numlist,|,outdent,indent,blockquote,|,link,unlink',
   theme_advanced_buttons2 : 'formatselect,fontselect,fontsizeselect,|,image',
   theme_advanced_buttons3 : '',
