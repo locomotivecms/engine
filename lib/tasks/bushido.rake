@@ -66,7 +66,7 @@ namespace :bushido do
     case event.category.to_s
     when 'app'
       case event.name.to_s
-      when 'claim'
+      when 'claimed'
         # an user has just claimed his application
         account = Account.order_by(:created_at).first
 
