@@ -59,19 +59,19 @@ namespace :bushido do
 
   desc "Perform custom actions triggered by the Bushido hosting platform."
   task :event => :environment do
-    event = ::Bushido::App.last_event
+    event = ::Bushido::Event.last
 
     puts "processing...#{event.inspect}"
 
     case event.category.to_s
-    when 'user'
+    when 'app'
       case event.name.to_s
-      when 'create'
+      when 'claim'
         # an user has just claimed his application
         account = Account.order_by(:created_at).first
 
-        account.email = event.data['email']
-        account.bushido_user_id = event.data['id']
+        account.email = event.data['bushido_user_email']
+        account.bushido_user_id = event.data['bushido_user_id']
 
         account.save!
       end
