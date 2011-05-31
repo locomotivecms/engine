@@ -7,7 +7,7 @@ module Admin
 
     skip_before_filter :validate_site_membership
 
-    before_filter :authenticate_admin!, :only => :new
+    before_filter :require_admin, :only => :new
 
     def new
       if site = current_admin.sites.detect { |s| s._id.to_s == params[:target_id] }

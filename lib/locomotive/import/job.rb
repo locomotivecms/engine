@@ -70,6 +70,7 @@ module Locomotive
         job = self.new(zipfile, site, options)
 
         if Locomotive.config.delayed_job
+          puts "delayed::JOB !"
           Delayed::Job.enqueue job, { :site => site, :job_type => 'import' }
         else
           job.perform

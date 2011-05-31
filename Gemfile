@@ -27,7 +27,6 @@ gem 'fog', '0.3.7'
 gem 'mimetype-fu'
 gem 'actionmailer-with-request', :require => 'actionmailer_with_request'
 gem 'heroku', '1.19.1'
-gem 'bushido'
 gem 'httparty', '>= 0.6.1'
 gem 'RedCloth', '4.2.7'
 gem 'delayed_job', '2.1.4'
@@ -44,8 +43,16 @@ group :development do
 end
 
 group :test, :development do
-  gem "ruby-debug", :platforms => :mri_18
-  gem "ruby-debug19", :platforms => :mri_19
+  gem 'ruby-debug', :platforms => :mri_18
+  gem 'ruby-debug19', :platforms => :mri_19
+
+  gem 'bushido_stub', :git => 'git://github.com/did/bushido_stub.git'
+  # :path => '../gems/bushido_stub'
+  # gem 'bushido'
+end
+
+group :production do
+  gem 'bushido'
 end
 
 group :test do
