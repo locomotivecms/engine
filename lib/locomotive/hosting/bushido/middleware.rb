@@ -29,7 +29,7 @@ module Locomotive
                 var _bushido_claimed = #{@bushido_claimed.to_s};
                 (function() {
                   var bushido = document.createElement('script'); bushido.type = 'text/javascript'; bushido.async = true;
-                  bushido.src = '#{BUSHIDO_JS_URL}';
+                  bushido.src = '#{BUSHIDO_JS_URL}?#{::Bushido::VERSION.gsub('.', '')}';
                   var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(bushido, s);
                 })();
               </script>
