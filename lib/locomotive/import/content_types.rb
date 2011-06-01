@@ -79,7 +79,7 @@ module Locomotive
             value = (case field.kind.downcase
             when 'file'     then self.open_sample_asset(value)
             when 'boolean'  then Boolean.set(value)
-            when 'date'     then Date.parse(value)
+            when 'date'     then value.is_a?(Date) ? value : Date.parse(value)
             when 'category'
               if field.category_items.detect { |item| item.name == value }.nil?
                 field.category_items.build :name => value

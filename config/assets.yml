@@ -7,6 +7,9 @@ s3_secret_access_key: <%= ENV['S3_SECRET_KEY'] %>
 javascripts:
   box:
     - public/javascripts/admin/jquery.js
+  installation:
+    - public/javascripts/admin/jquery.js
+    - public/javascripts/admin/installation.js
   common:
     - public/javascripts/admin/jquery.js
     - public/javascripts/admin/jquery.ui.js

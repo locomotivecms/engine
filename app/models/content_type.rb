@@ -18,7 +18,7 @@ class ContentType
   embeds_many :contents, :class_name => 'ContentInstance', :validate => false do
     def visible
       @target.find_all { |c| c.visible? }
-    end
+    end    
   end
 
   ## named scopes ##
@@ -68,6 +68,10 @@ class ContentType
     else
       self.ordered_contents
     end
+  end
+  
+  def latest_updated_contents
+    self.contents.latest_updated.reject { |c| !c.persisted? }
   end
 
   def ordered_contents(conditions = {})

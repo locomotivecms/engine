@@ -5,7 +5,7 @@ module Admin
 
     layout '/admin/layouts/application'
 
-    before_filter :authenticate_admin!
+    before_filter :require_admin
 
     before_filter :require_site
 
@@ -27,6 +27,10 @@ module Admin
     respond_to :html
 
     protected
+
+    def require_admin
+      authenticate_admin!
+    end
 
     def begin_of_association_chain
       current_site
