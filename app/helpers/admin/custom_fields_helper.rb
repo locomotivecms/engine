@@ -40,7 +40,9 @@ module Admin::CustomFieldsHelper
   end
 
   def options_for_association_target
-    current_site.content_types.collect { |c| [c.name, c.content_klass.to_s] }
+    current_site.content_types.collect do |c|
+      c.persisted? ? [c.name, c.content_klass.to_s] : nil
+    end.compact
   end
 
   def options_for_has_one(field)

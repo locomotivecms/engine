@@ -38,9 +38,11 @@ it:
       protected_page: "Non è possibile eliminare le pagine index e 404"
       extname_changed: "Il nuovo file non ha l'estesione originale"
       array_too_short: "troppo corto (il numero minimo di elementi è %{count})"
-      liquid_syntax: "Errore nella sintassi Liquid ('%{error}' in '%{fullpath}')"
-      liquid_extend: "La pagina '%{fullpath}' estende un template che non esiste"
+      liquid_syntax: "Errore nella sintassi Liquid ('%{error}')"
       invalid_theme_file: "non può essere vuoto o non è un file zip"
+      page:
+        liquid_syntax: "Errore nella sintassi Liquid ('%{error}' in '%{fullpath}')"
+        liquid_extend: "La pagina '%{fullpath}' estende un template che non esiste"
 
   attributes:
     defaults:
@@ -110,7 +112,7 @@ it:
   pagination:
     previous: "&laquo; Precedente"
     next: "Successiva &raquo;"
-    
+
   date:
     formats:
       default: "%d/%m/%Y"
@@ -242,4 +244,4 @@ it:
       skip_last_comma: true
       words_connector: ", "
       two_words_connector: " e "
-      last_word_connector: " e "      
+      last_word_connector: " e "

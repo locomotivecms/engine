@@ -38,6 +38,7 @@ en:
           reset: Reset site
           default_site_template: "Use the default site template. Click <a href='#'>here</a> to upload a site template as a zip file instead."
       content_type:
+        raw_item_template: Item template
         api_accounts: Notified Accounts
       account:
         edit:
@@ -78,6 +79,7 @@ en:
         samples: "If enabled, the import process will also copy contents and assets"
         reset: "If enabled, all the data of your site will be destroyed before importing the new site"
       content_type:
+        raw_item_template: "You can customize the text displayed for each item in the list. Simply use Liquid. Ex: {{ content.name }})"
         api_enabled: "It is used to let people from outside to create new instances (example: messages in a contact form)"
         api_accounts: "A notification email will be sent to each of the accounts listed above when a new instance is created"
 
