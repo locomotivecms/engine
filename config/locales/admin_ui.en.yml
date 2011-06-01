@@ -259,8 +259,8 @@ en:
 
     imports:
       new:
-        title: Import
-        help: "Be careful when you upload a new theme for your existing website, your current data could be modified or even removed."
+        title: Import site template
+        help: "Be careful when you upload a new template for your existing website, your current data could be modified or even removed."
       show:
         title: Import in progress
         help: "Your site is being updated from the theme zip file you have just uploaded. It lasts a couple of seconds."
@@ -289,5 +289,6 @@ en:
         next: Create account
       step_2:
         title: "Step 2/2 &mdash; Create your first site"
-        explanations: "This is the last step of the installation. You can upload a theme as a zip file. We have free available themes <a href=\"http://www.locomotivecms.com/support/themes\">here</a>."
+        explanations: "If you already uploaded the default site template (see instructions), you can use it right away. Or you can upload a site template as a zip file (free available templates <a href=\"http://www.locomotivecms.com/support/themes\">here</a>)."
+        back_to_default_template: "Click <a href='#'>here</a> to select the default site template instead"
         next: Create site

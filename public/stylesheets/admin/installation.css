@@ -4,18 +4,18 @@
   color: #222;
 }
 
-#panel .inner p.explanations {
-  margin-top: 10px;
-  font-size: 1.2em;
-}
-
-#panel .inner p.explanations a {
+#panel .inner a {
   color: #1F82BC;
   text-decoration: none;
 }
 
-#panel .inner p.explanations a:hover {
+#panel .inner a:hover {
   text-decoration: underline;
+}
+
+#panel .inner p.explanations {
+  margin-top: 10px;
+  font-size: 1.2em;
 }
 
 #panel .inner p.done {
@@ -45,6 +45,18 @@
 }
 
 #panel .inner dd p {
+}
 
+/* ___ custom ___ */
+
+#panel fieldset ol li.question input[type=checkbox] {
+  display: inline;
+  width: auto;
+  margin-right: 10px;
+}
+
+#panel fieldset ol li.question label {
+  display: inline;
+  font-weight: normal;
 }
 

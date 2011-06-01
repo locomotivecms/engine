@@ -8,7 +8,6 @@ require 'locomotive/logger'
 require 'locomotive/liquid'
 require 'locomotive/mongoid'
 require 'locomotive/carrierwave'
-require 'locomotive/hosting'
 require 'locomotive/custom_fields'
 require 'locomotive/httparty'
 require 'locomotive/inherited_resources'
@@ -20,6 +19,7 @@ require 'locomotive/import'
 require 'locomotive/delayed_job'
 require 'locomotive/middlewares'
 require 'locomotive/session_store'
+require 'locomotive/hosting'
 
 module Locomotive
 
@@ -37,6 +37,14 @@ module Locomotive
 
   def self.engine?
     self.const_defined?('Engine')
+  end
+
+  def self.default_site_template_present?
+    File.exists?(self.default_site_template_path)
+  end
+
+  def self.default_site_template_path
+    File.join(Rails.root, 'tmp/default_site_template.zip')
   end
 
   def self.configure
@@ -58,7 +66,7 @@ module Locomotive
 
     # Devise
     mail_address = self.config.mailer_sender
-    Devise.mailer_sender = mail_address =~ /.+@.+/ ? mail_address : "#{mail_address}@#{Locomotive.config.domain}"
+    ::Devise.mailer_sender = mail_address =~ /.+@.+/ ? mail_address : "#{mail_address}@#{Locomotive.config.domain}"
 
     # cookies stored in mongodb (mongoid_store)
     Rails.application.config.session_store :mongoid_store, {
@@ -96,7 +104,7 @@ module Locomotive
     if self.config.multi_sites?
       self.config.manage_subdomain = self.config.manage_domains = true
     else
-      # Note: (Did) modify the code below if Locomotive handles a new hosting solution
+      # Note: (Did) modify the code below if Locomotive handles a new hosting solution (not a perfect solution though)
       self.config.manage_domains = self.heroku? || self.bushido?
       self.config.manage_subdomain = self.bushido?
     end
