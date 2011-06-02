@@ -15,6 +15,17 @@ Background:
   "yield"
   """
 
+
+Scenario: Creating a Snippet
+  When I go to theme assets
+  And I follow "new snippet"
+  And I fill in "Name" with "Banner"
+  And I fill in "Slug" with "banner"
+  And I fill in "snippet_template" with "banner"
+  And I press "Create"
+  Then I should see "Snippet was successfully created."
+  And I should have "banner" in the banner snippet
+
 Scenario: Updating a Snippet that includes another snippet
   Given a snippet named "other" with the template: 
   """
