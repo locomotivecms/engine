@@ -14,12 +14,12 @@ Background:
   """
   "yield"
   """
-  And a snippet named "other" with the template: 
+
+Scenario: Updating a Snippet that includes another snippet
+  Given a snippet named "other" with the template: 
   """
   "other"
   """
-
-Scenario: Updating a Snippet that includes another snippet
   When I go to theme assets
   And I follow "yield"
   And I fill in "snippet_template" with "{% include 'other' %}"
