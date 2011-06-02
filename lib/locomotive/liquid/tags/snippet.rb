@@ -12,12 +12,14 @@ module Locomotive
 
           @slug = @template_name.gsub('\'', '')
 
-          @context[:snippets] = [] if @context[:snippets].nil? 
-          (@context[:snippets] << @slug).uniq!
+          if @context[:snippets].present?
+            (@context[:snippets] << @slug).uniq! 
+          else
+            @context[:snippets] = [@slug]
+          end
 
           if @context[:site].present?
             snippet = @context[:site].snippets.where(:slug => @slug).first
-
             self.refresh(snippet) if snippet
           end
         end
