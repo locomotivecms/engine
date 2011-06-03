@@ -34,7 +34,8 @@ module Locomotive
                   bushido.src = '#{BUSHIDO_JS_URL}?#{::Bushido::VERSION.gsub('.', '')}';
                   var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(bushido, s);
                 })();
-              </script>
+              </script>     
+              <script type="text/javascript" src="/javascripts/mixpanel.js"></script>
             </body>
           STR
           )
