@@ -61,6 +61,10 @@ Rails.application.routes.draw do
 
   # sitemap
   match '/sitemap.xml' => 'admin/sitemaps#show', :format => 'xml'
+  
+  # robots.txt
+  
+  match '/robots.txt' => 'admin/robots#show', :format => 'txt'
 
   # magic urls
   match '/' => 'admin/rendering#show'
