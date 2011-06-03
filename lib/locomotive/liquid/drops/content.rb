@@ -4,6 +4,10 @@ module Locomotive
       class Content < Base
         delegate :meta_keywords, :meta_description, :to => '@source'
 
+        def _id
+          @source._id.to_s
+        end
+
         def before_method(meth)
           return '' if @source.nil?
 
