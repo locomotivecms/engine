@@ -68,7 +68,7 @@ module Admin::ContentTypesHelper
   end
 
   def content_label_for(content)
-    if content._parent.item_template.nil?
+    if content._parent.raw_item_template.blank?
       content._label # default one
     else
       assigns = {
