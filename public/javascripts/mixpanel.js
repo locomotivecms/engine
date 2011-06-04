@@ -1,5 +1,5 @@
 var mpq = [];
-mpq.push(["init", "YOUR TOKEN"]);
+mpq.push(["init", _bushido_metrics_token]);
 (function() {
 var mp = document.createElement("script"); mp.type = "text/javascript"; mp.async = true;
 mp.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + "//api.mixpanel.com/site_media/js/api/mixpanel.js";
@@ -7,7 +7,6 @@ var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(mp
 })();
 
 $(function(){
-  console.log('doc ready event');
   var section = $('body')[0].className;
   
   var props = {
