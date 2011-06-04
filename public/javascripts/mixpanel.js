@@ -14,12 +14,22 @@ $(function(){
     ,claimed: window._bushido_claimed
   };
 
-  mpq.push(["track_links", $('div#header h1 a.single'), 'big site name header click', props]);
-  mpq.push(["track_links", $('li.contents a'), "Contents", props]);
-  mpq.push(["track_links", $('li.assets a'), "Assets", props]);
-  mpq.push(["track_links", $('li.settings a'), "Settings", props]);
-
-
+  mpq.push(["track_links", $('div#header h1 a.single'), 'big site name header click', props ]);
+  mpq.push(["track_links", $('div#global-actions-bar a:first'), 'account settings click', props ]);
+  mpq.push(["track_links", $('div#global-actions-bar a:eq(1)'), "see website", props ]);
+  mpq.push(["track_links", $('div#global-actions-bar a:eq(2)'), "log out", props ]);
+  mpq.push(["track_links", $('li.contents a'), "Contents",  props]);
+  mpq.push(["track_links", $('li.assets a'), "Assets", props ]);
+  mpq.push(["track_links", $('li.settings a'), "Settings", props ]);
+  mpq.push(["track_links", $('#local-actions-bar a.new'), "generic new page", props ]);
+  mpq.push(["track_links", $('div.action a'), $('div.action a span').text(), props ]);
+  mpq.push(["track_links", $('div.action a'), $('div.action a span'), props ]);
+  mpq.push(["track_links", $('body div.span-12 p a'), 'contents back without saving', props ]);
+  mpq.push(["track_links", $('div#content div.inner a'), "Page hiearchy title click", props ]);
+  mpq.push(["track_links", $('p.no-items a'), "no assets, click here", props ]);
+  
+  mpq.push(["track_links", $('#bushi_banner_claim'), "BUSHI CLAIM CLICK!!!!!", props ]);
+  
   $('body.contents div#submenu li:first').each(function(){
     var $this = $(this);
     $this.bind('mouseover', function(){
