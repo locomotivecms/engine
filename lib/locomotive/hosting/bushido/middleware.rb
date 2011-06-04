@@ -35,7 +35,6 @@ module Locomotive
                   var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(bushido, s);
                 })();
               </script>     
-              <script type="text/javascript" src="/javascripts/mixpanel.js"></script>
             </body>
           STR
           )
