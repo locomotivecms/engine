@@ -192,7 +192,7 @@ it:
       index:
         title: Collezioni di risorse
         help: "Puoi cambiare il nome della collezione cliccandoci sopra. Puoi personalizzare le risorse in una collezione aggiugendo nuovi campi."
-        new: nuov collezione
+        new: nuova collezione
         no_items: "Per ora non ci sono collezioni. Clicca <a href=\"%{url}\">qui</a> per creare la prima."
       new:
         title: Nuova collezione
