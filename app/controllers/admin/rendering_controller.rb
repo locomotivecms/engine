@@ -1,7 +1,7 @@
 module Admin
   class RenderingController < ActionController::Metal
 
-    # Logging
+    # Logging Support
     include AbstractController::Logger
 
     # Rendering and redirection support
