@@ -13,6 +13,10 @@
   = f.foldable_inputs :name => :presentation, :class => 'switchable' do
     = f.input :highlighted_field_name, :as => :select, :collection => options_for_highlighted_field(f.object, 'contents'), :include_blank => false
     = f.input :group_by_field_name, :as => :select, :collection => options_for_group_by_field(f.object, 'contents')
+    = f.custom_input :raw_item_template, :css => 'small-code' do
+      %code{ :class => 'html' }
+        = f.text_area :raw_item_template, :class => 'small'
+      = f.errors_on :item_template
 
   = f.foldable_inputs :name => :options, :class => 'switchable' do
     = f.input :order_by, :as => :select, :collection => options_for_order_by(f.object, 'contents'), :include_blank => false

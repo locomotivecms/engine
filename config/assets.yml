@@ -49,6 +49,7 @@ javascripts:
     - public/javascripts/admin/plugins/tiny_mce/tinymce.js
     - public/javascripts/admin/contents.js
   content_types:
+    - public/javascripts/admin/plugins/codemirror/codemirror.min.js
     - public/javascripts/admin/content_types.js
   site:
     - public/javascripts/admin/site.js

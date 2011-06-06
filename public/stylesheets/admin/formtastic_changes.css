@@ -144,6 +144,18 @@ form.formtastic fieldset ol li.code p.inline-errors {
   background-image: none;
 }
 
+form.formtastic fieldset ol li.small-code code { margin: 0px; display: inline-block; width: 75%;  }
+form.formtastic fieldset ol li.small-code p.inline-errors {
+  position: relative;
+  display: block !important;
+  float: none;
+  margin-left: 20%;
+  width: 45%;
+  margin: 0.5em 0px 0px 20%;
+  left: 0px;
+}
+
+
 form.formtastic fieldset ol .more { text-align: right; width: auto; margin: 10px 20px 0 0; line-height: 0.6em; }
 form.formtastic fieldset ol .more a { text-decoration: none; color: #787A89; font-size: 0.7em; }
 form.formtastic fieldset ol .more a:hover { text-decoration: underline; }

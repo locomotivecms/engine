@@ -22,7 +22,7 @@ var addCodeMirrorEditor = function(type, el, parser) {
   parser = (parser || 'Liquid') + 'Parser';
 
   var editor = CodeMirror.fromTextArea(el.attr('id'), {
-    height: "400px",
+    height: el.hasClass('small') ? '60px' : '400px',
     stylesheet: [
       "/stylesheets/admin/plugins/codemirror/csscolors.css",
       "/stylesheets/admin/plugins/codemirror/xmlcolors.css",

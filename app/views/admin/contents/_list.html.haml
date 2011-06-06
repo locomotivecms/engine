@@ -6,7 +6,7 @@
       %li.content{ :id => "content-#{content._id}" }
         %em
         %strong
-          = link_to content.send(@content_type.highlighted_field_name), edit_admin_content_path(@content_type.slug, content)
+          = link_to content_label_for(content), edit_admin_content_path(@content_type.slug, content)
         .more
           %span
             != t('admin.contents.index.updated_at')
