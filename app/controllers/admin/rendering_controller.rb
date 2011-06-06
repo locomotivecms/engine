@@ -1,9 +1,6 @@
 module Admin
   class RenderingController < ActionController::Metal
 
-    # Logging Support
-    include AbstractController::Logger
-
     # Rendering and redirection support
     include ActionController::Redirecting
     include ActionController::Rendering
@@ -13,9 +10,8 @@ module Admin
     include Devise::Controllers::Helpers
     include Rails.application.routes.url_helpers
 
-    # Flash and CSRF form support
+    # Flash support
     include ActionController::Flash
-    include ActionController::RequestForgeryProtection
 
     # Before filters
     include AbstractController::Callbacks
