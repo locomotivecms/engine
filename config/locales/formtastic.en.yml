@@ -4,6 +4,7 @@ en:
       information: General information
       advanced_options: Advanced options
       meta: SEO Metadata
+      robots_txt: robots.txt File
       code: Code
       raw_template: Template
       credentials: Credentials

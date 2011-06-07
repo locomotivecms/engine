@@ -41,6 +41,13 @@
           %button{ :class => 'button light add', :type => 'button' }
             %span!= t('admin.buttons.new_item')
 
+= f.foldable_inputs :name => :robots_txt do
+  = f.custom_input :value, :css => 'code full', :with_label => false do
+    = f.label :robots_txt
+    %code{ :class => 'html' }
+      = f.text_area :robots_txt
+    = f.errors_on :template
+
 = f.foldable_inputs :name => :memberships, :class => 'memberships' do
   - @site.memberships.each_with_index do |membership, index|
     - account = membership.account

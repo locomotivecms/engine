@@ -10,6 +10,7 @@ class Site
   field :name
   field :meta_keywords
   field :meta_description
+  field :robots_txt
 
   ## associations ##
   references_many :pages, :validate => false
