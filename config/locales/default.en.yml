@@ -11,9 +11,11 @@ en:
         protected_page: "You can not remove index or 404 pages"
         extname_changed: "New file does not have the original extension"
         array_too_short: "is too small (minimum element number is %{count})"
-        liquid_syntax: "Liquid Syntax error ('%{error}' on '%{fullpath}')"
-        liquid_extend: "The page '%{fullpath}' extends a template which does not exist"
+        liquid_syntax: "Liquid Syntax error ('%{error}')"
         invalid_theme_file: "can't be blank or isn't a zip file"
+        page:
+          liquid_syntax: "Liquid Syntax error ('%{error}' on '%{fullpath}')"
+          liquid_extend: "The page '%{fullpath}' extends a template which does not exist"
 
   attributes:
     defaults:

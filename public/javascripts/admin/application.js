@@ -22,7 +22,7 @@ var addCodeMirrorEditor = function(type, el, parser) {
   parser = (parser || 'Liquid') + 'Parser';
 
   var editor = CodeMirror.fromTextArea(el.attr('id'), {
-    height: "400px",
+    height: el.hasClass('small') ? '60px' : '400px',
     stylesheet: [
       "/stylesheets/admin/plugins/codemirror/csscolors.css",
       "/stylesheets/admin/plugins/codemirror/xmlcolors.css",
@@ -81,7 +81,7 @@ $(document).ready(function() {
     $('#submenu > ul > li.' + css).addClass('on');
 
   // form
-  $('.formtastic li input, .formtastic li textarea, .formtastic li code').focus(function() {
+  $('.formtastic li input, .formtastic li textarea, .formtastic li code, .formtastic li select').focus(function() {
     $('.formtastic li.error:not(.code) p.inline-errors').fadeOut(200);
     if ($(this).parent().hasClass('error')) {
       $(this).nextAll('p.inline-errors').show();

@@ -2,6 +2,9 @@ class ContentType
 
   include Locomotive::Mongoid::Document
 
+  ## extensions ##
+  include Extensions::ContentType::ItemTemplate
+
   ## fields ##
   field :name
   field :description
@@ -68,6 +71,10 @@ class ContentType
     else
       self.ordered_contents
     end
+  end
+
+  def latest_updated_contents
+    self.contents.latest_updated.reject { |c| !c.persisted? }
   end
 
   def ordered_contents(conditions = {})

@@ -1,6 +1,9 @@
 require 'bushido'
 require 'locomotive/hosting/bushido/custom_domain'
 require 'locomotive/hosting/bushido/first_installation'
+require 'locomotive/hosting/bushido/account_ext'
+require 'locomotive/hosting/bushido/middleware'
+require 'locomotive/hosting/bushido/devise'
 
 module Locomotive
   module Hosting
@@ -22,22 +25,35 @@ module Locomotive
           (self.config.hosting == :auto && ENV['APP_TLD'] == 'bushi.do')
         end
 
+        def bushido_app_claimed?
+          ENV['BUSHIDO_CLAIMED'].present? && ENV['BUSHIDO_CLAIMED'].to_s.downcase == 'true'
+        end
+
         def enable_bushido
           self.config.domain = ENV['APP_TLD'] unless self.config.multi_sites?
 
-          self.enhance_site_model_with_bushido
+          self.enhance_models_with_bushido
+
+          self.disable_authentication_for_not_claimed_app
 
           self.setup_smtp_settings
 
-          self.config.delayed_job = true # force the use of delayed_job
+          self.add_middleware
+
+          self.config.delayed_job = true # force to use delayed_job
 
           self.bushido_domains = ::Bushido::App.domains
           self.bushido_subdomain = ::Bushido::App.subdomain
         end
 
-        def enhance_site_model_with_bushido
+        def enhance_models_with_bushido
           Site.send :include, Locomotive::Hosting::Bushido::CustomDomain
           Site.send :include, Locomotive::Hosting::Bushido::FirstInstallation
+          Account.send :include, Locomotive::Hosting::Bushido::AccountExt
+        end
+
+        def disable_authentication_for_not_claimed_app
+          Admin::BaseController.send :include, Locomotive::Hosting::Bushido::Devise
         end
 
         def setup_smtp_settings
@@ -51,6 +67,12 @@ module Locomotive
             :password               => ENV['SMTP_PASSWORD'],
             :enable_starttls_auto   => ENV['SMTP_TLS'].to_s == 'true'
           }
+        end
+
+        def add_middleware
+          ::Locomotive::Application.configure do |config|
+            config.middleware.use '::Locomotive::Hosting::Bushido::Middleware'
+          end
         end
 
         # manage domains

@@ -1,3 +1,8 @@
+# Custom options for CustomFields
+CustomFields.options = {
+  :reserved_aliases => Mongoid.destructive_fields + %w(created_at updated_at)
+}
+
 # Set correct paths
 module CustomFields
   module Types
@@ -16,5 +21,4 @@ module CustomFields
     end
   end
 end
-
 

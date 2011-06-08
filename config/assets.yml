@@ -7,6 +7,9 @@ s3_secret_access_key: <%= ENV['S3_SECRET_KEY'] %>
 javascripts:
   box:
     - public/javascripts/admin/jquery.js
+  installation:
+    - public/javascripts/admin/jquery.js
+    - public/javascripts/admin/installation.js
   common:
     - public/javascripts/admin/jquery.js
     - public/javascripts/admin/jquery.ui.js
@@ -34,6 +37,7 @@ javascripts:
     - public/javascripts/admin/plugins/fancybox.js
     - public/javascripts/admin/plugins/mustache.js
     - public/javascripts/admin/custom_fields/category.js
+    - public/javascripts/admin/custom_fields/has_many.js
   asset_collections:
     - public/javascripts/admin/plugins/fancybox.js
     - public/javascripts/admin/plugins/mustache.js
@@ -45,6 +49,7 @@ javascripts:
     - public/javascripts/admin/plugins/tiny_mce/tinymce.js
     - public/javascripts/admin/contents.js
   content_types:
+    - public/javascripts/admin/plugins/codemirror/codemirror.min.js
     - public/javascripts/admin/content_types.js
   site:
     - public/javascripts/admin/site.js

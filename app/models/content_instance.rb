@@ -5,6 +5,7 @@ class ContentInstance
 
   ## extensions ##
   include CustomFields::ProxyClassEnabler
+  include Extensions::Shared::Seo
 
   ## fields (dynamic fields) ##
   field :_slug
@@ -24,10 +25,11 @@ class ContentInstance
   after_create :send_notifications
 
   ## named scopes ##
-  scope :persisted, where(:updated_at.ne => nil)
   scope :latest_updated, :order_by => :updated_at.desc, :limit => Locomotive.config.lastest_items_nb
 
   ## methods ##
+
+  delegate :site, :to => :content_type
 
   alias :visible? :_visible?
   alias :_permalink :_slug
@@ -37,8 +39,10 @@ class ContentInstance
   end
 
   def highlighted_field_value
-    self.send(self.content_type.highlighted_field._name)
+    self.send(self.content_type.highlighted_field_name)
   end
+
+  alias :_label :highlighted_field_value
 
   def visible?
     self._visible || self._visible.nil?
@@ -46,6 +50,14 @@ class ContentInstance
 
   def errors_to_hash
     Hash.new.replace(self.errors)
+  end
+
+  def reload_parent!
+    self.class.reload_parent!
+  end
+
+  def self.reload_parent!
+    self._parent = self._parent.reload
   end
 
   def to_liquid

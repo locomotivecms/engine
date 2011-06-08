@@ -1,3 +1,7 @@
+/* ___ AUTOMATICALLY GENERATED: see admin/button.scss for the source file */
+/* ___ rounded ___ */
+/* ___ box shadow ___ */
+/* ___ others ___ */
 .button {
   display: inline-block;
   background: transparent url(/images/admin/buttons/dark-gray-left.png) no-repeat 0 0;
@@ -7,49 +11,51 @@
   cursor: pointer;
   border: none;
   height: 31px;
-  outline: none;
-}
-
-.button span {
-  display: inline-block;
-  background: transparent url(/images/admin/buttons/dark-gray-right.png) no-repeat right top;
-  position: relative;
-  top: -1px;
-  padding: 3px 9px 9px 4px;
-  line-height: 21px;
-  text-shadow: 1px 1px 1px #000;
-  outline: none;
-}
-
-.button.light {
-  background-image: url(/images/admin/buttons/light-gray-left.png);
-  color: #787a89;
-}
-
-.button.light span {
-  background-image: url(/images/admin/buttons/light-gray-right.png);
-  text-shadow: 1px 1px 1px #fff;
-}
-
-.button.small {
-  background: #ebedf4;
-  outline: none;
-  -moz-border-radius : 10px;
-  -webkit-border-radius: 10px;
-  height: 20px;
-  font-size: 0.7em;
-  padding: 0px 12px 0px 12px;
-  color: #8B8D9A !important;
-  text-decoration: none;
-  text-shadow: 1px 1px 1px #fff;
-}
-
-.button.small.add {
-}
-
-.button.remove {
-  color: #ff092c !important;
-  font-size: 1.1em;
-}
-
-.button.remove:hover { text-decoration: underline; }
+  outline: none; }
+  .button span {
+    display: inline-block;
+    background: transparent url(/images/admin/buttons/dark-gray-right.png) no-repeat right top;
+    position: relative;
+    top: -1px;
+    padding: 3px 9px 9px 4px;
+    line-height: 21px;
+    text-shadow: 1px 1px 1px #000;
+    outline: none; }
+  .button.light {
+    background-image: url(/images/admin/buttons/light-gray-left.png);
+    color: #787a89; }
+    .button.light span {
+      background-image: url(/images/admin/buttons/light-gray-right.png);
+      text-shadow: 1px 1px 1px #fff; }
+  .button.small {
+    background: #ebedf4;
+    outline: none;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    height: 20px;
+    font-size: 0.7em;
+    padding: 0px 12px 0px 12px;
+    color: #8B8D9A !important;
+    text-decoration: none;
+    text-shadow: 1px 1px 1px #fff; }
+  .button.mini.add {
+    background: transparent;
+    height: 20px;
+    background: #e1e4ed;
+    background: -moz-linear-gradient(0% 100% 90deg, #d7dbe7, #ebedf4);
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#ebedf4), to(#d7dbe7));
+    border-radius: 4px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4);
+    -moz-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4);
+    -webkit-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4); }
+    .button.mini.add span {
+      background: none;
+      line-height: 10px;
+      padding: 0px 5px 0 0; }
+  .button.remove {
+    color: #ff092c !important;
+    font-size: 1.1em; }
+    .button.remove:hover {
+      text-decoration: underline; }

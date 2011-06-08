@@ -1,0 +1,126 @@
+/* ___ AUTOMATICALLY GENERATED: see admin/button.scss for the source file */
+
+@import "helpers";
+
+.button {
+  display: inline-block;
+  background: transparent url(/images/admin/buttons/dark-gray-left.png) no-repeat 0 0;
+  padding: 0px 0px 0px 2px;
+  font-size: 0.9em;
+  color: white;
+  cursor: pointer;
+  border: none;
+  height: 31px;
+  outline: none;
+
+  span {
+    display: inline-block;
+    background: transparent url(/images/admin/buttons/dark-gray-right.png) no-repeat right top;
+    position: relative;
+    top: -1px;
+    padding: 3px 9px 9px 4px;
+    line-height: 21px;
+    text-shadow: 1px 1px 1px #000;
+    outline: none;
+  }
+
+  &.light {
+    background-image: url(/images/admin/buttons/light-gray-left.png);
+    color: #787a89;
+
+    span {
+      background-image: url(/images/admin/buttons/light-gray-right.png);
+      text-shadow: 1px 1px 1px #fff;
+    }
+  }
+
+  &.small {
+    background: #ebedf4;
+    outline: none;
+    -moz-border-radius : 10px;
+    -webkit-border-radius: 10px;
+    height: 20px;
+    font-size: 0.7em;
+    padding: 0px 12px 0px 12px;
+    color: #8B8D9A !important;
+    text-decoration: none;
+    text-shadow: 1px 1px 1px #fff;
+  }
+
+  &.mini.add {
+    background: transparent;
+    height: 20px;
+    @include linear-background-gradient(#ebedf4, #d7dbe7);
+    @include full-rounded(4px);
+    @include box-shadow(1px, 1px, 1px, rgba(0, 0, 0, 0.4));
+
+    span {
+      background: none;
+      line-height: 10px;
+      padding: 0px 5px 0 0;
+    }
+  }
+
+  &.remove {
+    color: #ff092c !important;
+    font-size: 1.1em;
+
+    &:hover { text-decoration: underline; }
+  }
+}
+
+// .button {
+//   display: inline-block;
+//   background: transparent url(/images/admin/buttons/dark-gray-left.png) no-repeat 0 0;
+//   padding: 0px 0px 0px 2px;
+//   font-size: 0.9em;
+//   color: white;
+//   cursor: pointer;
+//   border: none;
+//   height: 31px;
+//   outline: none;
+// }
+//
+// .button span {
+//   display: inline-block;
+//   background: transparent url(/images/admin/buttons/dark-gray-right.png) no-repeat right top;
+//   position: relative;
+//   top: -1px;
+//   padding: 3px 9px 9px 4px;
+//   line-height: 21px;
+//   text-shadow: 1px 1px 1px #000;
+//   outline: none;
+// }
+//
+// .button.light {
+//   background-image: url(/images/admin/buttons/light-gray-left.png);
+//   color: #787a89;
+// }
+//
+// .button.light span {
+//   background-image: url(/images/admin/buttons/light-gray-right.png);
+//   text-shadow: 1px 1px 1px #fff;
+// }
+//
+// .button.small {
+//   background: #ebedf4;
+//   outline: none;
+//   -moz-border-radius : 10px;
+//   -webkit-border-radius: 10px;
+//   height: 20px;
+//   font-size: 0.7em;
+//   padding: 0px 12px 0px 12px;
+//   color: #8B8D9A !important;
+//   text-decoration: none;
+//   text-shadow: 1px 1px 1px #fff;
+// }
+//
+// .button.small.add {
+// }
+//
+// .button.remove {
+//   color: #ff092c !important;
+//   font-size: 1.1em;
+// }
+//
+// .button.remove:hover { text-decoration: underline; }

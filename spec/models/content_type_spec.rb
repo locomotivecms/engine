@@ -17,20 +17,20 @@ describe ContentType do
     # Validations ##
 
     %w{site name}.each do |field|
-      it "should validate presence of #{field}" do
+      it "requires the presence of #{field}" do
         content_type = Factory.build(:content_type, field.to_sym => nil)
         content_type.should_not be_valid
         content_type.errors[field.to_sym].should == ["can't be blank"]
       end
     end
 
-    it 'should validate presence of slug' do
+    it 'requires the presence of slug' do
       content_type = Factory.build(:content_type, :name => nil, :slug => nil)
       content_type.should_not be_valid
       content_type.errors[:slug].should == ["can't be blank"]
     end
 
-    it 'should validate uniqueness of slug' do
+    it 'is not valid if slug is not unique' do
       content_type = Factory.build(:content_type)
       content_type.content_custom_fields.build :label => 'anything', :kind => 'String'
       content_type.save
@@ -38,12 +38,21 @@ describe ContentType do
       content_type.errors[:slug].should == ["is already taken"]
     end
 
-    it 'should validate size of content custom fields' do
+    it 'is not valid if there is not at least one field' do
       content_type = Factory.build(:content_type)
       content_type.should_not be_valid
       content_type.errors[:content_custom_fields].should == ["is too small (minimum element number is 1)"]
     end
-
+    
+    %w(created_at updated_at).each do |_alias|
+      it "does not allow #{_alias} as alias" do 
+        content_type = Factory.build(:content_type)
+        field = content_type.content_custom_fields.build :label => 'anything', :kind => 'String', :_alias => _alias
+        field.valid?.should be_false
+        field.errors[:_alias].should == ['is reserved']        
+      end
+    end
+    
   end
 
   context '#ordered_contents' do

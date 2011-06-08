@@ -1,0 +1,4 @@
+- field.target.constantize.reload_parent! # to make sure all the contents from the parent are loaded
+
+= form.input field._alias.to_sym, :label => field.label, :hint => field.hint, :input_html => { :class => 'has_one' }, :as => :select, :collection => options_for_has_one(field), :selected => form.object.send(field._alias.to_sym).try(:_id)
+
