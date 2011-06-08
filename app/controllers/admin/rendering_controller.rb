@@ -22,7 +22,10 @@ module Admin
 
     before_filter :require_site
 
+    helper 'admin/base'
+
     def show
+    append_view_path Rails.root.join('app', 'views')
       render_locomotive_page
     end
 
