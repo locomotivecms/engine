@@ -6,10 +6,26 @@ GIT
       activesupport (>= 3.0.7)
 
 GIT
+  remote: git://github.com/did/carrierwave.git
+  revision: 00a41fb1952c4d75c8eafa0cf20f3d32712b53e4
+  branch: mongoid
+  specs:
+    carrierwave (0.5.4)
+      activesupport (~> 3.0)
+
+GIT
   remote: git://github.com/floehopper/mocha.git
   revision: 6da1242f26b12a24c4fcf67bf5921a25bc1bc88d
   specs:
     mocha (0.9.12.20110213002255)
+
+GIT
+  remote: git://github.com/locomotivecms/custom_fields.git
+  revision: 441e2fc23e9d69b5328c30c3fb75bf6cb3d97950
+  specs:
+    custom_fields (1.0.0.beta.15)
+      activesupport (>= 3.0.7)
+      mongoid (= 2.0.2)
 
 GIT
   remote: https://github.com/wunderbread/xpath.git
@@ -17,19 +33,6 @@ GIT
   specs:
     xpath (0.1.2)
       nokogiri (~> 1.4)
-
-PATH
-  remote: ../gems/carrierwave_did
-  specs:
-    carrierwave (0.5.4)
-      activesupport (~> 3.0)
-
-PATH
-  remote: ../gems/custom_fields
-  specs:
-    custom_fields (1.0.0.beta.15)
-      activesupport (>= 3.0.7)
-      mongoid (= 2.0.2)
 
 GEM
   remote: http://rubygems.org/
@@ -291,7 +294,7 @@ DEPENDENCIES
   carrierwave!
   cucumber (= 0.8.5)
   cucumber-rails
-  custom_fields (= 1.0.0.beta.15)!
+  custom_fields!
   database_cleaner
   delayed_job (= 2.1.4)
   delayed_job_mongoid (= 1.0.2)
