@@ -4,26 +4,29 @@ source :rubygems
 
 gem 'rake', '0.8.7'
 
-gem 'rails', '>= 3.0.7'
+gem 'rails', '>= 3.0.8'
 
 gem 'warden'
-gem 'devise', '= 1.1.3'
+gem 'devise', '1.3.4'
 
 gem 'mongoid', '~> 2.0.2'
 gem 'bson_ext', '~> 1.3.0'
 gem 'locomotive_mongoid_acts_as_tree', '0.1.5.7', :require => 'mongoid_acts_as_tree'
 gem 'will_paginate'
 
-gem 'haml', '3.0.25'
+gem 'haml', '3.1.2'
+gem 'sass', '3.1.2'
 gem 'locomotive_liquid', '2.2.2', :require => 'liquid'
 gem 'formtastic', '~> 1.2.3'
 gem 'inherited_resources', '~> 1.1.2'
 
 gem 'rmagick', '2.12.2'
-gem 'locomotive_carrierwave', '0.5.0.1.beta3', :require => 'carrierwave'
+gem 'carrierwave', :path => '../gems/carrierwave_did'
+# gem 'locomotive_carrierwave', '0.5.0.1.beta3', :require => 'carrierwave'
 
-gem 'custom_fields', '1.0.0.beta.15'
-gem 'fog', '0.3.7'
+# gem 'custom_fields', '1.0.0.beta.15'
+gem 'custom_fields', '1.0.0.beta.15', :path => '../gems/custom_fields'
+gem 'fog', '0.8.2'
 gem 'mimetype-fu'
 gem 'actionmailer-with-request', :require => 'actionmailer_with_request'
 gem 'heroku', '1.19.1'

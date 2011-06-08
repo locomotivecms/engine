@@ -99,11 +99,11 @@ module Locomotive
             uploader.download!(zipfile)
             uploader.store!
           else
-            file = CarrierWave::SanitizedFile.new(zipfile)
+            file = ::CarrierWave::SanitizedFile.new(zipfile)
             uploader.store!(file)
           end
           uploader.identifier
-        rescue CarrierWave::IntegrityError
+        rescue ::CarrierWave::IntegrityError
           nil
         end
       end
