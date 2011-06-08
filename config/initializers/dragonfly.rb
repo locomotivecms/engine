@@ -4,7 +4,7 @@ Dragonfly[:images].configure do |c|
 
   # Convert absolute location needs to be specified
   # to avoid issues with Phusion Passenger not using $PATH
-  convert = `which convert`.presence || "/usr/local/bin/convert"
+  convert = `which convert`.strip.presence || "/usr/local/bin/convert"
   c.convert_command  = convert
   c.identify_command = convert
 
