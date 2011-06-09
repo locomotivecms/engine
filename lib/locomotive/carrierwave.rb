@@ -1,5 +1,4 @@
-require 'carrierwave/orm/mongoid'
-# require 'locomotive/carrierwave/base'
+require 'locomotive/carrierwave/base'
 require 'locomotive/carrierwave/asset'
 require 'locomotive/carrierwave/patches'
 

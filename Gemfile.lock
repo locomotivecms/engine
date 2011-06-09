@@ -6,26 +6,10 @@ GIT
       activesupport (>= 3.0.7)
 
 GIT
-  remote: git://github.com/did/carrierwave.git
-  revision: 00a41fb1952c4d75c8eafa0cf20f3d32712b53e4
-  branch: mongoid
-  specs:
-    carrierwave (0.5.4)
-      activesupport (~> 3.0)
-
-GIT
   remote: git://github.com/floehopper/mocha.git
-  revision: 6da1242f26b12a24c4fcf67bf5921a25bc1bc88d
+  revision: d03843e763f4e5ceadb66bcb4c530d6c5d0cb293
   specs:
     mocha (0.9.12.20110213002255)
-
-GIT
-  remote: git://github.com/locomotivecms/custom_fields.git
-  revision: 441e2fc23e9d69b5328c30c3fb75bf6cb3d97950
-  specs:
-    custom_fields (1.0.0.beta.15)
-      activesupport (>= 3.0.7)
-      mongoid (= 2.0.2)
 
 GIT
   remote: https://github.com/wunderbread/xpath.git
@@ -109,6 +93,9 @@ GEM
     cucumber-rails (0.3.2)
       cucumber (>= 0.8.0)
     culerity (0.2.15)
+    custom_fields (1.0.0.beta.17)
+      activesupport (>= 3.0.7)
+      mongoid (= 2.0.2)
     daemons (1.1.3)
     database_cleaner (0.6.7)
     delayed_job (2.1.4)
@@ -152,7 +139,7 @@ GEM
     heroku (1.19.1)
       activesupport (>= 2.1.0)
       launchy (~> 0.3.2)
-      rest-client (< 1.7.0, >= 1.4.0)
+      rest-client (>= 1.4.0, < 1.7.0)
     highline (1.6.2)
     httparty (0.7.8)
       crack (= 0.1.8)
@@ -171,6 +158,8 @@ GEM
     linecache (0.43)
     linecache19 (0.5.12)
       ruby_core_source (>= 0.1.4)
+    locomotive_carrierwave (0.5.4.beta1)
+      activesupport (~> 3.0)
     locomotive_jammit-s3 (0.5.4.4)
       jammit (>= 0.5.4)
       mimemagic (>= 0.1.7)
@@ -269,7 +258,7 @@ GEM
       polyglot (>= 0.3.1)
     trollop (1.16.2)
     tzinfo (0.3.27)
-    unicorn (3.6.2)
+    unicorn (3.7.0)
       kgio (~> 2.3)
       rack
     warden (1.0.4)
@@ -291,10 +280,9 @@ DEPENDENCIES
   bushido
   bushido_stub!
   capybara
-  carrierwave!
   cucumber (= 0.8.5)
   cucumber-rails
-  custom_fields!
+  custom_fields (= 1.0.0.beta.17)
   database_cleaner
   delayed_job (= 2.1.4)
   delayed_job_mongoid (= 1.0.2)
@@ -308,6 +296,7 @@ DEPENDENCIES
   httparty (>= 0.6.1)
   inherited_resources (~> 1.1.2)
   launchy
+  locomotive_carrierwave (= 0.5.4.beta1)
   locomotive_jammit-s3
   locomotive_liquid (= 2.2.2)
   locomotive_mongoid_acts_as_tree (= 0.1.5.7)

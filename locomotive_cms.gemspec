@@ -25,8 +25,8 @@ Gem::Specification.new do |s|
   s.add_dependency "locomotive_mongoid_acts_as_tree", "0.1.5.7"
   s.add_dependency "will_paginate"
 
-  s.add_dependency "haml", "3.1.1"
-  s.add_dependency "sass", "3.1.1"
+  s.add_dependency "haml", "3.1.2"
+  s.add_dependency "sass", "3.1.2"
   s.add_dependency "locomotive_liquid", "2.2.2"
   s.add_dependency "formtastic", "~> 1.2.3"
   s.add_dependency "inherited_resources", "~> 1.1.2"
@@ -36,10 +36,9 @@ Gem::Specification.new do |s|
   s.add_dependency "heroku", "1.19.1"
 
   s.add_dependency "rmagick", "2.12.2"
-  # s.add_dependency "locomotive_carrierwave", "0.5.0.1.beta3"
-  s.add_dependency "carrierwave"
+  s.add_dependency "locomotive_carrierwave", "0.5.4.beta1"
 
-  s.add_dependency "custom_fields", "1.0.0.beta.15"
+  s.add_dependency "custom_fields", "1.0.0.beta.17"
   s.add_dependency "fog", "0.8.2"
   s.add_dependency "mimetype-fu"
   s.add_dependency "actionmailer-with-request"

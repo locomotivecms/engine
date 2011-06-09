@@ -62,14 +62,6 @@ module Locomotive
             model.image?
           end
 
-          def to_liquid
-            {
-              :url      => self.url,
-              :filename => (File.basename(self.url) rescue ''),
-              :size     => self.size
-            }.stringify_keys
-          end
-
         end
 
       end
