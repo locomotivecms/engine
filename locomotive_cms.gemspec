@@ -17,7 +17,7 @@ Gem::Specification.new do |s|
   s.required_rubygems_version = ">= 1.3.6"
   s.rubyforge_project         = "nowarning"
 
-  s.add_dependency "rails", ">= 3.0.7"
+  s.add_dependency "rails", ">= 3.0.8"
   s.add_dependency "warden"
   s.add_dependency "devise", "1.3.4"
   s.add_dependency "mongoid", "2.0.2"
@@ -36,7 +36,7 @@ Gem::Specification.new do |s|
   s.add_dependency "heroku", "1.19.1"
 
   s.add_dependency "rmagick", "2.12.2"
-  s.add_dependency "locomotive_carrierwave", "0.5.4.beta1"
+  s.add_dependency "locomotive_carrierwave", "0.5.4.beta2"
 
   s.add_dependency "custom_fields", "1.0.0.beta.17"
   s.add_dependency "fog", "0.8.2"
