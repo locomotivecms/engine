@@ -21,7 +21,8 @@ gem 'formtastic', '~> 1.2.3'
 gem 'inherited_resources', '~> 1.1.2'
 
 gem 'rmagick', '2.12.2'
-gem 'locomotive_carrierwave', '0.5.4.beta1'
+gem 'locomotive_carrierwave', '0.5.4.beta2'
+# gem 'locomotive_carrierwave', :path => '../gems/carrierwave_did'
 
 gem 'custom_fields', '1.0.0.beta.17'
 gem 'fog', '0.8.2'
@@ -44,12 +45,11 @@ group :development do
 end
 
 group :test, :development do
+  gem 'linecache', '0.43', :platforms => :mri_18
   gem 'ruby-debug', :platforms => :mri_18
   gem 'ruby-debug19', :platforms => :mri_19
 
   gem 'bushido_stub', :git => 'git://github.com/did/bushido_stub.git'
-  # :path => '../gems/bushido_stub'
-  # gem 'bushido'
 end
 
 group :production do
