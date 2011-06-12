@@ -22,7 +22,6 @@ gem 'inherited_resources', '~> 1.1.2'
 
 gem 'rmagick', '2.12.2'
 gem 'locomotive_carrierwave', '0.5.4.beta2'
-# gem 'locomotive_carrierwave', :path => '../gems/carrierwave_did'
 
 gem 'custom_fields', '1.0.0.beta.17'
 gem 'fog', '0.8.2'
