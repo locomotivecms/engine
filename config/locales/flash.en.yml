@@ -1,116 +1,116 @@
-en:
+nl:
   flash:
     admin:
       pages:
         create:
-          notice: "Page was successfully created."
-          alert: "Page was not created."
+          notice: "Pagina is gemaakt."
+          alert: "Pagina is niet gemaakt."
         update:
-          notice: "Page was successfully updated."
-          alert: "Page was not updated."
+          notice: "Pagina is gewijzigd."
+          alert: "Pagina is niet gewijzigd."
         sort:
-          notice: "Pages were successfully sorted."
+          notice: "Pagina's zijn ingedeeld."
         destroy:
-          notice: "Page was successfully deleted."
+          notice: "Pagina is verwijderd."
 
       contents:
         create:
-          notice: "Content was successfully created."
-          alert: "Content was not created."
+          notice: "Inhoud is gemaakt."
+          alert: "Inhoud is niet gemaakt."
         update:
-          notice: "Content was successfully updated."
-          alert: "Content was not updated."
+          notice: "Inhoud is gewijzigd."
+          alert: "Inhoud is niet gewijzigd."
         sort:
-          notice: "Contents were successfully sorted."
+          notice: "Inhoud is ingedeeld."
         destroy:
-          notice: "Content was successfully deleted."
+          notice: "Inhoud is verwijderd."
 
       content_types:
         create:
-          notice: "Model was successfully created."
-          alert: "Model was not created."
+          notice: "Model is gemaakt."
+          alert: "Model is niet gemaakt."
         update:
-          notice: "Model was successfully updated."
-          alert: "Model was not updated."
+          notice: "Model is gewijzigd."
+          alert: "Model is niet gewijzigd."
         destroy:
-          notice: "Model was successfully deleted."
+          notice: "Model is verwijderd."
 
       current_sites:
         update:
-          notice: "My site was successfully updated."
-          alert: "My site was not updated."
+          notice: "Mijn website is gewijzigd."
+          alert: "Mijn website gewijzigd."
 
       snippets:
         create:
-          notice: "Snippet was successfully created."
-          alert: "Snippet was not created."
+          notice: "Fragment is gemaakt."
+          alert: "Fragment is niet gemaakt."
         update:
-          notice: "Snippet was successfully updated."
-          alert: "Snippet was not updated."
+          notice: "Fragment is gewijzigd."
+          alert: "Fragment is niet gewijzigd."
         destroy:
-          notice: "Snippet was successfully deleted."
+          notice: "Fragment is verwijderd."
 
       accounts:
         create:
-          notice: "Account was successfully created."
-          alert: "Account was not created."
+          notice: "Account is gemaakt."
+          alert: "Account is niet gemaakt."
 
       my_accounts:
         update:
-          notice: "My account was successfully updated."
-          alert: "My account was not updated."
+          notice: "Mijn account is gewijzigd."
+          alert: "Mijn account is niet gewijzigd."
 
       sites:
         create:
-          notice: "Site was successfully created."
-          alert: "Site was not created."
+          notice: "Website is gemaakt."
+          alert: "Website is niet gemaakt."
         destroy:
-          notice: "Site was successfully deleted."
+          notice: "Website is verwijderd."
 
       memberships:
         create:
-          notice: "Membership was successfully created."
-          alert: "Membership was not created."
-          already_created: "Account was already added the current site."
+          notice: "Lidmaatschap is gemaakt."
+          alert: "Lidmaatschap is niet gemaakt."
+          already_created: "Lidmaatschap is al gemaakt voor de website."
 
-      asset_collections:
+      asset_collection:
         create:
-          notice: "Collection was successfully created."
-          alert: "Collection was not created."
+          notice: "Verzameling is gemaakt."
+          alert: "Verzameling is niet gemaakt."
         update:
-          notice: "Collection was successfully updated."
-          alert: "Collection was not updated."
+          notice: "Verzameling is gewijzigd."
+          alert: "Verzameling is niet gewijzigd."
         destroy:
-          notice: "Collection was successfully deleted."
+          notice: "Verzameling is verwijderd."
 
       assets:
         create:
-          notice: "Asset was successfully created."
-          alert: "Asset was not created."
+          notice: "Bronbestand is gemaakt."
+          alert: "Bronbestand is niet gemaakt."
         update:
-          notice: "Asset was successfully updated."
-          alert: "Asset was not updated."
+          notice: "Bronbestand is gewijzigd."
+          alert: "Bronbestand is niet gewijzigd."
 
       theme_assets:
         create:
-          notice: "File was successfully created."
-          alert: "File was not created."
+          notice: "Bestand is gemaakt."
+          alert: "Bestand is niet gemaakt."
         update:
-          notice: "File was successfully updated."
-          alert: "File was not updated."
+          notice: "Bestand is gewijzigd."
+          alert: "Bestand is niet gewijzigd."
         destroy:
-          notice: "File was successfully deleted."
+          notice: "Bestand is verwijderd."
 
       custom_fields:
         update:
-          alert: "Field not updated"
+          alert: "Veld is niet gewijzigd"
 
       cross_domain_sessions:
         create:
-          alert: "You need to sign in"
+          alert: "U moet inloggen"
 
       imports:
         create:
-          done: "Your site was successfully updated."
-          notice: "Your site is being updated."
-          alert: "The import was not done."
+          done: "Uw website is gewijzigd."
+          notice: "Uw website wordt momenteel gewijzigd."
+          alert: "Het importeren is niet afgerond."

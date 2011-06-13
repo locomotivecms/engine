@@ -1,63 +1,63 @@
-en:
+nl:
   errors:
     messages:
-      not_found: "not found"
-      already_confirmed: "was already confirmed"
-      not_locked: "was not locked"
+      not_found: "niet gevonden"
+      already_confirmed: "is reeds bevestigd"
+      not_locked: "was niet geblokkeerd"
 
   devise:
     failure:
       admin:
-        unauthenticated: 'You need to sign in or sign up before continuing.'
-        unconfirmed: 'You have to confirm your account before continuing.'
-        locked: 'Your account is locked.'
-        invalid: 'Invalid email or password.'
-        no_membership: 'Your account is not a member of this site, please contact the site administrator to gain access.'
-        invalid_token: 'Invalid authentication token.'
-        timeout: 'Your session expired, please sign in again to continue.'
-        inactive: 'Your account was not activated yet.'
+        unauthenticated: 'U moet inloggen of aanmelden om verder te gaan.'
+        unconfirmed: 'U moet uw account bevestigen om verder te gaan.'
+        locked: 'Uw account is geblokkeerd.'
+        invalid: 'Onjuiste e-mail of wachtwoord.'
+        no_membership: 'Uw account is geen lid van deze website. Neem contact op met de website administrator om toegang te krijgen.'
+        invalid_token: 'Ongeldige authenticatie bewijs.'
+        timeout: 'Uw sessie is beeindigd. Log opnieuw in.'
+        inactive: 'Uw account is nog niet geactiveerd.'
     sessions:
       admin:
-        signed_in: 'Signed in successfully.'
-        signed_out: 'Signed out successfully.'
+        signed_in: 'U bent ingelogd.'
+        signed_out: 'U bent uitgelogd.'
     passwords:
       admin:
-        send_instructions: 'You will receive an email with instructions about how to reset your password in a few minutes.'
-        updated: 'Your password was changed successfully. You are now signed in.'
+        send_instructions: 'U ontvangt binnen enkele minuten een e-mail met instructies om uw wachtwoord te resetten.'
+        updated: 'Uw wachtwoord is gewijzigd. U bent nu ingelogd.'
     confirmations:
       admin:
-        send_instructions: 'You will receive an email with instructions about how to confirm your account in a few minutes.'
-        confirmed: 'Your account was successfully confirmed. You are now signed in.'
+        send_instructions: 'U ontvangt binnen enkele minuten een e-mail met instructies om uw account te bevestigen.'
+        confirmed: 'Uw account is bevestigd. U kunt nu inloggen.'
     registrations:
       admin:
-        signed_up: 'You have signed up successfully.'
-        updated: 'You updated your account successfully.'
-        destroyed: 'Bye! Your account was successfully cancelled. We hope to see you again soon.'
+        signed_up: 'U bent aangemeld.'
+        updated: 'Uw account is gewijzigd.'
+        destroyed: 'Dag! Uw account is opgeheven. We hopen u binnenkort weer te zien.'
     unlocks:
       admin:
-        send_instructions: 'You will receive an email with instructions about how to unlock your account in a few minutes.'
-        unlocked: 'Your account was successfully unlocked. You are now signed in.'
+        send_instructions: 'U ontvangt binnen enkele minuten een e-mail met instructies om uw account te openen.'
+        unlocked: 'Uw account is geopend. U bent nu ingelogd'
     mailer:
       admin:
-        confirmation_instructions: 'Confirmation instructions'
-        reset_password_instructions: 'Reset password instructions'
-        unlock_instructions: 'Unlock Instructions'
+        confirmation_instructions: 'Bevestiging instructies'
+        reset_password_instructions: 'Reset wachtwoord instructies'
+        unlock_instructions: 'Opening Instructies'
         
         
   admin:
     mailer:
       common:
-        hello: Hello
+        hello: Hallo
 
       confirmation_instructions:
-        you_can_confirm_your_account_through_the_link_below: "You can confirm your account through the link below:"
-        confirm_my_account: "Confirm my account"
+        you_can_confirm_your_account_through_the_link_below: "U kunt uw account bevestigen door op onderstaande link te klikken:"
+        confirm_my_account: "Bevestig mijn account"
       reset_password_instructions:
-        reset_password_instruction: "Someone has requested a link to change your password, and you can do this through the link below:"
-        change_my_password: "Change my password"
-        wrong_request_instruction: "If you didn't request this, please ignore this email."
-        unchange_password_message: "Your password won't change until you access the link above and create a new one."
+        reset_password_instruction: "Iemand heeft een link aangevraagd om uw wachtwoord te veranderen. U kunt dit doen door op onderstaande link te klikken:"
+        change_my_password: "Wijzig mijn wachtwoord"
+        wrong_request_instruction: "Als u dit niet gevraagd heeft, negeer deze e-mail."
+        unchange_password_message: "Uw wachtwoord zal niet wijzigen tot u bovenstaande link heeft bezocht en een nieuw wachtwoord heeft aangemaakt."
       unlock_instructions:
-        locked_account_message: "Your account has been locked due to an excessive amount of unsuccessful sign in attempts."
-        unlock_account_instruction: "Click the link below to unlock your account:"
-        unlock_my_account: "Unlock my account"
+        locked_account_message: "Uw account is geblokkeerd door een aantal mislukte inlogpogingen."
+        unlock_account_instruction: "Klik op onderstaande link om uw account te openen:"
+        unlock_my_account: "Open mijn account"

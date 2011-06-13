@@ -32,3 +32,4 @@ gem_graph.png
 sites/
 permanent
 doc/bushido
+*.tmproj
