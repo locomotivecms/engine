@@ -14,6 +14,8 @@ class Account
   field :locale, :default => 'en'
   field :switch_site_token
 
+  field :developer, :default => true
+
   ## validations ##
   validates_presence_of :name
 

@@ -7,7 +7,8 @@
   = render 'admin/shared/actions/contents'
 
 - content_for :buttons do
-  = admin_button_tag t('admin.contents.index.edit'), edit_admin_content_type_url(@content_type), :class => 'edit'
+  - if admin_is_developer
+    = admin_button_tag t('admin.contents.index.edit'), edit_admin_content_type_url(@content_type), :class => 'edit'
   = admin_button_tag t('admin.contents.index.new'), new_admin_content_url(@content_type.slug), :class => 'new'
 
 %p= @content_type.description

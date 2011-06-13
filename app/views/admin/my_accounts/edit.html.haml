@@ -17,6 +17,10 @@
   = f.foldable_inputs :name => :information, :style => 'display: none' do
     = f.input :name
 
+  = f.foldable_inputs :name => 'Role' do
+    = f.custom_input :developer, :css => 'toggle' do
+      = f.check_box :developer, :default=>true
+
   = f.foldable_inputs :name => :credentials do
     = f.input :email
     = f.input :password, :input_html => { :autocomplete => "off" }

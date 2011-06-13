@@ -45,7 +45,10 @@
   - @site.memberships.each_with_index do |membership, index|
     - account = membership.account
     %li{ :class => "item #{'last' if index == @site.memberships.size - 1}" }
-      %strong= account.name
+      %strong
+        = account.name
+        - if account.developer
+          (Developer)
       %em= account.email
       - if account != current_admin
         %span.actions

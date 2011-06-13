@@ -1,1 +1,2 @@
-= link_to content_tag(:em) + content_tag(:span, t('admin.content_types.index.new')), new_admin_content_type_url
+- if admin_is_developer
+  = link_to content_tag(:em) + content_tag(:span, t('admin.content_types.index.new')), new_admin_content_type_url

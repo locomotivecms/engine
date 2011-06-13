@@ -4,5 +4,8 @@ module Admin::AccountsHelper
     site.memberships.detect { |a| a.admin? && a.account == current_admin }
   end
 
-end
+  def admin_is_developer
+    current_admin.developer == "1"
+  end
 
+end

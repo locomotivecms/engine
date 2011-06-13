@@ -10,7 +10,8 @@
   = include_javascripts :contents
 
 - content_for :buttons do
-  = admin_button_tag :edit, edit_admin_content_type_url(@content_type), :class => 'edit'
+  - if admin_is_developer
+    = admin_button_tag :edit, edit_admin_content_type_url(@content_type), :class => 'edit'
   = admin_button_tag :new, new_admin_content_url(@content_type.slug), :class => 'new'
 
 - if @content_type.description.present?
@@ -27,4 +28,8 @@
 = form_tag sort_admin_contents_path(@content_type.slug), :method => :put, :class => 'formtastic' do
   = hidden_field_tag :order
 
-  = render 'admin/shared/form_actions', :delete_button => link_to(content_tag(:em, escape_once('&nbsp;')) + t('.destroy'), admin_content_type_url(@content_type), :confirm => t('admin.messages.confirm'), :method => :delete, :class => 'button small remove'), :button_label => :update
+  - if admin_is_developer
+    = render 'admin/shared/form_actions', :delete_button => link_to(content_tag(:em, escape_once('&nbsp;')) + t('.destroy'), admin_content_type_url(@content_type), :confirm => t('admin.messages.confirm'), :method => :delete, :class => 'button small remove'), :button_label => :update
+  - else
+    = render 'admin/shared/form_actions', :button_label => :update
+  
