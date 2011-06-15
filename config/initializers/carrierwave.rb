@@ -18,17 +18,11 @@ CarrierWave.configure do |config|
     config.root = File.join(Rails.root, 'public')
 
   when :production
-    if Locomotive.bushido?
-      config.storage = :file
-      config.root = File.join(Rails.root, 'public')
-      config.store_dir = 'store'
-    else
-      config.storage = :s3
-      config.s3_access_key_id = ENV['S3_KEY_ID']
-      config.s3_secret_access_key = ENV['S3_SECRET_KEY']
-      config.s3_bucket = ENV['S3_BUCKET']
-      # config.s3_cname = 'ENV['S3_CNAME']
-    end
+    config.storage = :s3
+    config.s3_access_key_id = ENV['S3_KEY_ID']
+    config.s3_secret_access_key = ENV['S3_SECRET_KEY']
+    config.s3_bucket = ENV['S3_BUCKET']
+    # config.s3_cname = 'ENV['S3_CNAME']
   end
 
 end unless Locomotive.engine?
