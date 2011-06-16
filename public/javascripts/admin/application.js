@@ -19,27 +19,30 @@ $.growl.settings.dockCss = {
 /* ___ codemirror ___ */
 
 var addCodeMirrorEditor = function(type, el, parser) {
-  parser = (parser || 'Liquid') + 'Parser';
+  // workaround to catch an error when editing model
+  if ( this['CodeMirror'] != undefined ) {
+    parser = (parser || 'Liquid') + 'Parser';
 
-  var editor = CodeMirror.fromTextArea(el.attr('id'), {
-    height: el.hasClass('small') ? '60px' : '400px',
-    stylesheet: [
-      "/stylesheets/admin/plugins/codemirror/csscolors.css",
-      "/stylesheets/admin/plugins/codemirror/xmlcolors.css",
-      "/stylesheets/admin/plugins/codemirror/javascriptcolors.css",
-      "/stylesheets/admin/plugins/codemirror/liquidcolors.css"],
-    basefiles: '/javascripts/admin/plugins/codemirror/codemirror_base.min.js',
-    continuousScanning: 500,
-    reindentOnLoad: true,
-    initCallback: function(editor) {
-      jQuery(editor.frame.contentDocument).keydown(function(event) {
-        jQuery(document).trigger(event);
-      });
-      editor.setParser(parser);
-    }
-  });
+    var editor = CodeMirror.fromTextArea(el.attr('id'), {
+      height: el.hasClass('small') ? '60px' : '400px',
+      stylesheet: [
+        "/stylesheets/admin/plugins/codemirror/csscolors.css",
+        "/stylesheets/admin/plugins/codemirror/xmlcolors.css",
+        "/stylesheets/admin/plugins/codemirror/javascriptcolors.css",
+        "/stylesheets/admin/plugins/codemirror/liquidcolors.css"],
+      basefiles: '/javascripts/admin/plugins/codemirror/codemirror_base.min.js',
+      continuousScanning: 500,
+      reindentOnLoad: true,
+      initCallback: function(editor) {
+        jQuery(editor.frame.contentDocument).keydown(function(event) {
+          jQuery(document).trigger(event);
+        });
+        editor.setParser(parser);
+      }
+    });
 
-  CodeMirrorEditors.push({ 'el': el, 'editor': editor });
+    CodeMirrorEditors.push({ 'el': el, 'editor': editor });
+  }
 }
 
 /* ___ tinyMCE ___ */
