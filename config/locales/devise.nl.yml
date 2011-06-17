@@ -1,0 +1,63 @@
+en:
+  errors:
+    messages:
+      not_found: "not found"
+      already_confirmed: "was already confirmed"
+      not_locked: "was not locked"
+
+  devise:
+    failure:
+      admin:
+        unauthenticated: 'You need to sign in or sign up before continuing.'
+        unconfirmed: 'You have to confirm your account before continuing.'
+        locked: 'Your account is locked.'
+        invalid: 'Invalid email or password.'
+        no_membership: 'Your account is not a member of this site, please contact the site administrator to gain access.'
+        invalid_token: 'Invalid authentication token.'
+        timeout: 'Your session expired, please sign in again to continue.'
+        inactive: 'Your account was not activated yet.'
+    sessions:
+      admin:
+        signed_in: 'Signed in successfully.'
+        signed_out: 'Signed out successfully.'
+    passwords:
+      admin:
+        send_instructions: 'You will receive an email with instructions about how to reset your password in a few minutes.'
+        updated: 'Your password was changed successfully. You are now signed in.'
+    confirmations:
+      admin:
+        send_instructions: 'You will receive an email with instructions about how to confirm your account in a few minutes.'
+        confirmed: 'Your account was successfully confirmed. You are now signed in.'
+    registrations:
+      admin:
+        signed_up: 'You have signed up successfully.'
+        updated: 'You updated your account successfully.'
+        destroyed: 'Bye! Your account was successfully cancelled. We hope to see you again soon.'
+    unlocks:
+      admin:
+        send_instructions: 'You will receive an email with instructions about how to unlock your account in a few minutes.'
+        unlocked: 'Your account was successfully unlocked. You are now signed in.'
+    mailer:
+      admin:
+        confirmation_instructions: 'Confirmation instructions'
+        reset_password_instructions: 'Reset password instructions'
+        unlock_instructions: 'Unlock Instructions'
+        
+        
+  admin:
+    mailer:
+      common:
+        hello: Hello
+
+      confirmation_instructions:
+        you_can_confirm_your_account_through_the_link_below: "You can confirm your account through the link below:"
+        confirm_my_account: "Confirm my account"
+      reset_password_instructions:
+        reset_password_instruction: "Someone has requested a link to change your password, and you can do this through the link below:"
+        change_my_password: "Change my password"
+        wrong_request_instruction: "If you didn't request this, please ignore this email."
+        unchange_password_message: "Your password won't change until you access the link above and create a new one."
+      unlock_instructions:
+        locked_account_message: "Your account has been locked due to an excessive amount of unsuccessful sign in attempts."
+        unlock_account_instruction: "Click the link below to unlock your account:"
+        unlock_my_account: "Unlock my account"
