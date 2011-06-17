@@ -3,12 +3,7 @@ class Asset
   include Mongoid::Document
   include Mongoid::Timestamps
 
-  ## Extensions ##
-  include Extensions::Asset::Vignette
-  include CustomFields::ProxyClassEnabler
-
   ## fields ##
-  field :name, :type => String
   field :content_type, :type => String
   field :width, :type => Integer
   field :height, :type => Integer
@@ -17,10 +12,10 @@ class Asset
   mount_uploader :source, AssetUploader
 
   ## associations ##
-  embedded_in :collection, :class_name => 'AssetCollection', :inverse_of => :assets
+  referenced_in :site
 
   ## validations ##
-  validates_presence_of :name, :source
+  validates_presence_of :source
 
   ## behaviours ##
 
@@ -35,10 +30,6 @@ class Asset
   def extname
     return nil unless self.source?
     File.extname(self.source_filename).gsub(/^\./, '')
-  end
-
-  def site_id # needed by the uploader of custom fields
-    self.collection.site_id
   end
 
   def to_liquid

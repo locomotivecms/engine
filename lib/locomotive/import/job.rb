@@ -30,7 +30,7 @@ module Locomotive
 
         self.unzip!
 
-        raise "No database.yml found in the theme zipfile" if @database.nil?
+        raise "No config/compiled_site.yml found in the theme zipfile" if @database.nil?
 
         context = {
           :database => @database,
@@ -42,7 +42,7 @@ module Locomotive
 
         self.reset! if @options[:reset]
 
-        %w(site content_types assets asset_collections snippets pages).each do |step|
+        %w(site content_types assets snippets pages).each do |step|
           if @options[:enabled][step] != false
             "Locomotive::Import::#{step.camelize}".constantize.process(context, @options)
             @worker.update_attributes :step => step if @worker
@@ -145,10 +145,10 @@ module Locomotive
           zipfile.each do |entry|
             next if entry.name =~ /__MACOSX/
 
-            if entry.name =~ /database.yml$/
+            if entry.name =~ /config\/compiled_site.yml$/
 
               @database = YAML.load(zipfile.read(entry.name))
-              @theme_path = File.join(destination_path, entry.name.gsub('database.yml', ''))
+              @theme_path = File.join(destination_path, entry.name.gsub('config/compiled_site.yml', ''))
 
               next
             end

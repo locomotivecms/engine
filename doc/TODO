@@ -1,8 +1,18 @@
 BOARD:
 
+x bushido version
+  x default template
 ~ editable_elements: inheritable: false (Mattias) => seems to be fixed by Dirk's last pull request (#44) => content tag
-- bushido version
-  - default template
+- remove asset_collections
+  x site templates
+  - helpers
+  - tinyMCE plugin
+  - vignette.rb
+  - code
+  - ui
+  - rake task
+  - internal collection
+    - assign same _id
 
 BACKLOG:
 

@@ -76,7 +76,7 @@ module Locomotive
     # Load all the dynamic classes (custom fields)
     begin
       ContentType.all.collect(&:fetch_content_klass)
-      AssetCollection.all.collect(&:fetch_asset_klass)
+      # AssetCollection.all.collect(&:fetch_asset_klass)
     rescue ::Mongoid::Errors::InvalidDatabase => e
       # let assume it's because of the first install (meaning no config.yml file)
     end

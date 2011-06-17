@@ -15,7 +15,7 @@ class Site
   references_many :pages, :validate => false
   references_many :snippets, :dependent => :destroy, :validate => false
   references_many :theme_assets, :dependent => :destroy, :validate => false
-  references_many :asset_collections, :dependent => :destroy, :validate => false
+  references_many :assets, :dependent => :destroy, :validate => false
   references_many :content_types, :dependent => :destroy, :validate => false
   embeds_many :memberships
 
