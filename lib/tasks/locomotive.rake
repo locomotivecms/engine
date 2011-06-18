@@ -1,6 +1,6 @@
-require 'locomotive'
-
 # encoding: utf-8
+
+require 'locomotive'
 
 namespace :locomotive do
 
