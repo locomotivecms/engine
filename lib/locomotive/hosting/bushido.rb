@@ -71,7 +71,7 @@ module Locomotive
 
         def add_middleware
           ::Locomotive::Application.configure do |config|
-            config.middleware.use '::Locomotive::Hosting::Bushido::Middleware'
+            config.middleware.use ::Locomotive::Hosting::Bushido::Middleware
           end
         end
 
