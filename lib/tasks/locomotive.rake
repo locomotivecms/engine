@@ -17,34 +17,31 @@ namespace :locomotive do
     task :remove_asset_collections => :environment do
       puts "Processing #{AssetCollection.count} asset collection(s)..."
 
+      Asset.destroy_all # TODO
+
       AssetCollection.all.each do |collection|
         site = Site.find(collection.attributes['site_id'])
 
         if collection.internal?
           # internal collection => create simple assets without associated to a collection
 
-          # collection.assets.each do |tmp_asset|
-          #   puts "tmp asset = #{tmp_asset.inspect} / #{tmp_asset.source.url.inspect}"
-          #
-          #   sanitized_attributes = tmp_asset.attributes.dup
-          #   # sanitized_attributes.delete_if { |k, v| [:name, :source_filename].include?(k) }
-          #   sanitized_attributes[:_id] = tmp_asset._id
-          #
-          #   asset = site.assets.build(sanitized_attributes)
-          #
-          #   # asset.source = tmp_asset.source.file
-          #
-          #   asset.save!
-          #
-          #   puts "asset = #{asset.inspect} / #{asset.source.url.inspect}"
-          #
-          #   # asset.destroy
-          # end
+          collection.assets.each do |tmp_asset|
+            # puts "tmp asset = #{tmp_asset.inspect} / #{tmp_asset.source.url.inspect}" TODO
+
+            sanitized_attributes = tmp_asset.attributes.dup
+            sanitized_attributes[:_id] = tmp_asset._id
+
+            asset = site.assets.build(sanitized_attributes)
+
+            asset.save(:validate => false)
+
+            # puts "asset = #{asset.inspect} / #{asset.source.url.inspect}" TODO
+          end
         else
           collection.fetch_asset_klass.class_eval { def self.model_name; 'Asset'; end }
 
           # create content_types reflection of an asset collection
-          ContentType.where(:slug => collection.slug).all.collect(&:destroy)
+          ContentType.where(:slug => collection.slug).all.collect(&:destroy) # TODO
 
           content_type = site.content_types.build({
             :name => collection.name,
@@ -72,9 +69,6 @@ namespace :locomotive do
           content_type.highlighted_field_name = field._name
           content_type.save
 
-          # puts "new content_type = #{content_type.inspect} /\n\n #{content_type.content_custom_fields.inspect}\n\n"
-          # puts "collection asset name = #{collection.fetch_asset_klass.inspect}"
-
           # insert data
           collection.ordered_assets.each do |asset|
             attributes = (if asset.custom_fields.blank?
@@ -93,8 +87,6 @@ namespace :locomotive do
 
             attributes.merge!(:name => asset.name, :_position_in_list => asset.position)
 
-            # puts "attributes = #{attributes.inspect}"
-
             content = content_type.contents.build(attributes)
 
             content._id = asset._id
@@ -102,13 +94,10 @@ namespace :locomotive do
             content.source = asset.source.file
 
             content.save(:validate => false)
-
-            # puts "content = #{content.inspect} / #{content.source.url} / #{asset.source.url}"
-            # puts "source (large) #{content.custom_field_9?} / #{content.custom_field_9.url} / #{asset.source.url}"
-            # puts "custom_field_4 (thumb) #{content.custom_field_4?} / #{content.custom_field_4.url} / #{asset.custom_field_4.url}"
-            # puts "====="
           end
         end
+
+        puts "...the collection named '#{collection.slug}' for the '#{site.name}' site has been migrated with success !"
       end
     end
 

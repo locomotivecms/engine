@@ -3,6 +3,10 @@ class Asset
   include Mongoid::Document
   include Mongoid::Timestamps
 
+  ## extensions ##
+  include Extensions::Asset::Types
+  include Extensions::Asset::Vignette
+
   ## fields ##
   field :content_type, :type => String
   field :width, :type => Integer
@@ -20,12 +24,6 @@ class Asset
   ## behaviours ##
 
   ## methods ##
-
-  %w{image stylesheet javascript pdf media}.each do |type|
-    define_method("#{type}?") do
-      self.content_type.to_s == type
-    end
-  end
 
   def extname
     return nil unless self.source?

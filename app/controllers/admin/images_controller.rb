@@ -34,11 +34,7 @@ module Admin
     protected
 
     def collection
-      @assets ||= begin_of_association_chain.assets
-    end
-
-    def begin_of_association_chain
-      @asset_collection ||= AssetCollection.find_or_create_internal(current_site)
+      @assets ||= begin_of_association_chain.assets.only_image
     end
 
     def image_to_json(image)

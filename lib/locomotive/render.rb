@@ -107,7 +107,7 @@ module Locomotive
       end
 
       def page_status
-        @page == not_found_page ? :not_found : :ok
+        @page.not_found? ? :not_found : :ok
       end
 
     end

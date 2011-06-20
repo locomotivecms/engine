@@ -2,6 +2,9 @@ class ThemeAsset
 
   include Locomotive::Mongoid::Document
 
+  ## extensions ##
+  include Extensions::Asset::Types
+
   ## fields ##
   field :local_path
   field :content_type
@@ -38,12 +41,6 @@ class ThemeAsset
   attr_accessor :plain_text_name, :plain_text, :performing_plain_text
 
   ## methods ##
-
-  %w{media image stylesheet javascript font}.each do |type|
-    define_method("#{type}?") do
-      self.content_type.to_s == type
-    end
-  end
 
   def stylesheet_or_javascript?
     self.stylesheet? || self.javascript?

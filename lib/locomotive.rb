@@ -5,6 +5,7 @@ require 'locomotive/version'
 require 'locomotive/core_ext'
 require 'locomotive/configuration'
 require 'locomotive/logger'
+require 'locomotive/dragonfly'
 require 'locomotive/liquid'
 require 'locomotive/mongoid'
 require 'locomotive/carrierwave'
@@ -23,8 +24,9 @@ require 'locomotive/hosting'
 
 module Locomotive
 
-  include Locomotive::Hosting::Heroku
-  include Locomotive::Hosting::Bushido
+  extend Locomotive::Hosting::Heroku
+  extend Locomotive::Hosting::Bushido
+  extend Locomotive::Hosting::Default
 
   class << self
     attr_accessor :config
@@ -76,7 +78,6 @@ module Locomotive
     # Load all the dynamic classes (custom fields)
     begin
       ContentType.all.collect(&:fetch_content_klass)
-      # AssetCollection.all.collect(&:fetch_asset_klass)
     rescue ::Mongoid::Errors::InvalidDatabase => e
       # let assume it's because of the first install (meaning no config.yml file)
     end

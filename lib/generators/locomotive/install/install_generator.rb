@@ -20,6 +20,8 @@ module Locomotive
       template 'locomotive.rb', 'config/initializers/locomotive.rb'
 
       template 'carrierwave.rb', 'config/initializers/carrierwave.rb'
+
+      template 'dragonfly.rb', 'config/initializers/dragonfly.rb'
     end
 
     def remove_index_html
