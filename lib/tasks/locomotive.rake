@@ -15,7 +15,7 @@ namespace :locomotive do
 
     desc 'Remove asset collections and convert them into content types'
     task :remove_asset_collections => :environment do
-      puts "asset_collection # ? #{AssetCollection.count}"
+      puts "Processing #{AssetCollection.count} asset collection(s)..."
 
       AssetCollection.all.each do |collection|
         site = Site.find(collection.attributes['site_id'])
@@ -23,55 +23,72 @@ namespace :locomotive do
         if collection.internal?
           # internal collection => create simple assets without associated to a collection
 
-          collection.assets.each do |tmp_asset|
-
-            sanitized_attributes = tmp_asset.attributes.dup
-            sanitized_attributes.delete_if { |k, v| [:name, :source_filename].include?(k) }
-            sanitized_attributes[:_id] = tmp_asset._id
-
-            asset = site.assets.build(sanitized_attributes)
-
-            asset.source = tmp_asset.source.file
-
-            asset.save!
-
-            puts "asset = #{asset.inspect}"
-
-            asset.destroy
-          end
+          # collection.assets.each do |tmp_asset|
+          #   puts "tmp asset = #{tmp_asset.inspect} / #{tmp_asset.source.url.inspect}"
+          #
+          #   sanitized_attributes = tmp_asset.attributes.dup
+          #   # sanitized_attributes.delete_if { |k, v| [:name, :source_filename].include?(k) }
+          #   sanitized_attributes[:_id] = tmp_asset._id
+          #
+          #   asset = site.assets.build(sanitized_attributes)
+          #
+          #   # asset.source = tmp_asset.source.file
+          #
+          #   asset.save!
+          #
+          #   puts "asset = #{asset.inspect} / #{asset.source.url.inspect}"
+          #
+          #   # asset.destroy
+          # end
         else
+          collection.fetch_asset_klass.class_eval { def self.model_name; 'Asset'; end }
+
           # create content_types reflection of an asset collection
+          ContentType.where(:slug => collection.slug).all.collect(&:destroy)
 
           content_type = site.content_types.build({
             :name => collection.name,
             :slug => collection.slug,
-            :order_by => 'manually'
+            :order_by => '_position_in_list'
           })
 
-          # add default custom fields
-          content_type.content_custom_fields.build(:label => 'Name', :slug => 'name', :kind => 'string', :required => true)
-          content_type.content_custom_fields.build(:label => 'Source', :slug => 'source', :kind => 'file', :required => true)
+          content_type._id = collection._id
 
           # extra custom fields
-          collection.asset_custom_fields.each do |field|
-            content_type.content_custom_fields.build(field.attributes)
+          collection.asset_custom_fields.each_with_index do |field, i|
+            content_type.content_custom_fields.build(field.attributes.merge(:position => i + 3))
           end
 
-          # puts "new content_type = #{content_type.inspect}"
+          # add default custom fields
+          content_type.content_custom_fields.build(:label => 'Name', :_alias => 'name', :kind => 'string', :required => true, :position => 1)
+          content_type.content_custom_fields.build(:label => 'Source', :_alias => 'source', :kind => 'file', :required => true, :position => 2)
 
-          # puts "valid ? #{content_type.valid?.inspect}"
+          content_type.save!
 
+          content_type = ContentType.find(content_type._id) # hard reload
+
+          # set the highlighted field name
+          field = content_type.content_custom_fields.detect { |f| f._alias == 'name' }
+          content_type.highlighted_field_name = field._name
           content_type.save
-          content_type = ContentType.find(content_type._id)
+
+          # puts "new content_type = #{content_type.inspect} /\n\n #{content_type.content_custom_fields.inspect}\n\n"
+          # puts "collection asset name = #{collection.fetch_asset_klass.inspect}"
 
           # insert data
-          # puts "collection.assets = #{collection.ordered_assets.inspect} / #{collection.ordered_assets.class}"
-
           collection.ordered_assets.each do |asset|
             attributes = (if asset.custom_fields.blank?
               { :created_at => asset.created_at, :updated_at => asset.updated_at }
             else
-              asset.aliased_attributes
+              {}.tap do |h|
+                asset.custom_fields.each do |field|
+                  case field.kind
+                  when 'file' then h["#{field._name}"] = asset.send("#{field._name}".to_sym)
+                  else
+                    h[field._alias] = asset.send(field._name.to_sym)
+                  end
+                end
+              end
             end)
 
             attributes.merge!(:name => asset.name, :_position_in_list => asset.position)
@@ -80,14 +97,17 @@ namespace :locomotive do
 
             content = content_type.contents.build(attributes)
 
+            content._id = asset._id
+
             content.source = asset.source.file
 
-            content.save!
+            content.save(:validate => false)
 
-            puts "content = #{content.inspect}"
+            # puts "content = #{content.inspect} / #{content.source.url} / #{asset.source.url}"
+            # puts "source (large) #{content.custom_field_9?} / #{content.custom_field_9.url} / #{asset.source.url}"
+            # puts "custom_field_4 (thumb) #{content.custom_field_4?} / #{content.custom_field_4.url} / #{asset.custom_field_4.url}"
+            # puts "====="
           end
-
-          content_type.destroy
         end
       end
     end
@@ -149,7 +169,5 @@ class TmpAsset
   field :position, :type => Integer, :default => 0
   mount_uploader :source, TmpAssetUploader
   embedded_in :collection, :class_name => 'AssetCollection', :inverse_of => :assets
-  def site_id
-    self.collection.site_id
-  end
+  def site_id; self.collection.site_id; end
 end
