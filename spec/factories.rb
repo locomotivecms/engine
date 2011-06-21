@@ -77,16 +77,15 @@ Factory.define :snippet do |s|
 end
 
 
-## Theme assets ##
-Factory.define :theme_asset do |a|
+## Assets ##
+Factory.define :asset do |a|
   a.site { Site.where(:subdomain => "acme").first || Factory(:site) }
 end
 
 
-## Asset collections ##
-Factory.define :asset_collection do |s|
-  s.name 'Trip to Chicago'
-  s.site { Site.where(:subdomain => "acme").first || Factory(:site) }
+## Theme assets ##
+Factory.define :theme_asset do |a|
+  a.site { Site.where(:subdomain => "acme").first || Factory(:site) }
 end
 
 

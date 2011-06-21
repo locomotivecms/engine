@@ -162,9 +162,9 @@ module Locomotive
 
       def reset!
         @site.pages.destroy_all
+        @site.assets.destroy_all
         @site.theme_assets.destroy_all
         @site.content_types.destroy_all
-        @site.asset_collections.destroy_all
       end
 
       def get_uploader(site)

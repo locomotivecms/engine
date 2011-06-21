@@ -92,7 +92,7 @@ class ThemeAsset
   end
 
   def to_liquid
-    { :url => self.source.url }.merge(self.attributes)
+    { :url => self.source.url }.merge(self.attributes).stringify_keys
   end
 
   def self.all_grouped_by_folder(site, include_all = true)

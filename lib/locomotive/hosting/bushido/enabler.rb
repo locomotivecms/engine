@@ -66,9 +66,7 @@ module Locomotive
           end
 
           def add_middlewares
-            Rails.application.configure do |config|
-              config.middleware.use '::Locomotive::Hosting::Bushido::Middleware'
-            end
+            Rails.application.config.middleware.use '::Locomotive::Hosting::Bushido::Middleware'
           end
 
           # manage domains

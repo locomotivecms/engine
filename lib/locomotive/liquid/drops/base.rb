@@ -8,18 +8,18 @@ module Locomotive
 
         class_inheritable_reader :liquid_attributes
         write_inheritable_attribute :liquid_attributes, []
-        attr_reader :source
-        delegate :hash, :to => :source
+        attr_reader :_source
+        delegate :hash, :to => :_source
 
         def initialize(source)
           unless source.nil?
-            @source = source
-            @liquid = liquid_attributes.flatten.inject({}) { |h, k| h.update k.to_s => @source.send(k) }
+            @_source = source
+            @liquid = liquid_attributes.flatten.inject({}) { |h, k| h.update k.to_s => @_source.send(k) }
           end
         end
 
         def id
-          (@source.respond_to?(:id) ? @source.id : nil) || 'new'
+          (@_source.respond_to?(:id) ? @_source.id : nil) || 'new'
         end
 
         def before_method(method)

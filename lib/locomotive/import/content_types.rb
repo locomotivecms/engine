@@ -43,7 +43,6 @@ module Locomotive
 
         # invalidate the cache of the dynamic classes (custom fields)
         site.content_types.all.collect { |c| c.invalidate_content_klass; c.fetch_content_klass }
-        site.asset_collections.all.collect { |c| c.invalidate_content_klass; c.fetch_content_klass }
       end
 
       protected

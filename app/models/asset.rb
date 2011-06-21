@@ -31,7 +31,7 @@ class Asset
   end
 
   def to_liquid
-    Locomotive::Liquid::Drops::Asset.new(self)
+    { :url => self.source.url }.merge(self.attributes).stringify_keys
   end
 
 end
