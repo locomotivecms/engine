@@ -28,7 +28,7 @@ ul.assets li.asset h4 a {
   font-size: 0.7em;
 }
 
-ul.assets li.asset .image img {
+ul.assets li.asset .inside {
   cursor: pointer;
 }
 

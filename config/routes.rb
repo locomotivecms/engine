@@ -35,7 +35,7 @@ Rails.application.routes.draw do
 
     resources :assets # TODO
 
-    resources :images
+    resources :images, :controller => 'assets', :defaults => { :image => true }
 
     resources :content_types
 

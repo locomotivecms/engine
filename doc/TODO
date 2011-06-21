@@ -5,14 +5,17 @@ x bushido version
 ~ editable_elements: inheritable: false (Mattias) => seems to be fixed by Dirk's last pull request (#44) => content tag
 - remove asset_collections
   x site templates
+  x tinyMCE plugin
+  x vignette.rb
+  x code
   - helpers
-  - tinyMCE plugin
-  - vignette.rb
-  - code
   - ui
-  - rake task
-  - internal collection
-    - assign same _id
+  x rake task
+  x internal collection
+    x assign same _id
+- pull request locomedia
+- SEO: support and support/ should be 2 different pages. Remove trailing slash
+- BUG: has_many. Delete an author
 
 BACKLOG:
 

@@ -64,7 +64,7 @@ group :test do
   gem 'rspec-rails', '2.3.1'
   gem 'factory_girl_rails'
   gem 'pickle'
-  gem 'xpath', '0.1.3' #            :git => 'https://github.com/wunderbread/xpath.git'
+  gem 'xpath', '0.1.3'
   gem 'capybara'
 
   gem 'database_cleaner'
