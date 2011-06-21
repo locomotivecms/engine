@@ -17,9 +17,10 @@ x remove asset_collections
 x pick up a theme_asset
 x pull request locomedia
 x refactor slugify method (use parameterize + create a module)
+x contents permalink (UI)
+- BUG: has_one / has_many. Delete an author
 - bushido changes in the master
 - SEO: support and support/ should be 2 different pages. Remove trailing slash
-- BUG: has_many. Delete an author
 - edit sidebar (inline editor). Unable to reset it
 
 BACKLOG:

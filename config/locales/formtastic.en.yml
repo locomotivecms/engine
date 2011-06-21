@@ -40,6 +40,8 @@ en:
       content_type:
         raw_item_template: Item template
         api_accounts: Notified Accounts
+      content_instance:
+        _slug: Permalink
       account:
         edit:
           password: New password
@@ -74,6 +76,8 @@ en:
         field:
           _alias: "Property available in liquid templates"
           hint: "Text displayed in the model form just below the field"
+      content_instance:
+        _slug: "Property used to generate the url of a page working as a template for this content type (ex: \"template_page/{{ your_object._permalink }})\"."
       import:
         source: "A zipfile containing a database.yml along with assets and templates"
         samples: "If enabled, the import process will also copy contents and assets"

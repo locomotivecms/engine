@@ -25,7 +25,7 @@ gem 'locomotive_carrierwave', '0.5.4.beta2'
 gem 'dragonfly',  '~> 0.9.1'
 gem 'rack-cache', :require => 'rack/cache'
 
-gem 'custom_fields', '1.0.0.beta.17'
+gem 'custom_fields', '1.0.0.beta.19'
 gem 'fog', '0.8.2'
 gem 'mimetype-fu'
 gem 'actionmailer-with-request', :require => 'actionmailer_with_request'

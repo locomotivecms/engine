@@ -40,7 +40,7 @@ Gem::Specification.new do |s|
   s.add_dependency "dragonfly", "~> 0.9.1"
   s.add_dependency "rack-cache"
 
-  s.add_dependency "custom_fields", "1.0.0.beta.17"
+  s.add_dependency "custom_fields", "1.0.0.beta.19"
   s.add_dependency "fog", "0.8.2"
   s.add_dependency "mimetype-fu"
   s.add_dependency "actionmailer-with-request"
