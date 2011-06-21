@@ -31,7 +31,7 @@ $(document).ready(function() {
       }, 'json');
     }
   });
-  
+
   // templatized feature
 
   $.subscribe('toggle.page_templatized.checked', function(event, data) {
@@ -99,7 +99,7 @@ $(document).ready(function() {
   if (typeof $.fn.imagepicker != 'undefined')
     $('a#image-picker-link').imagepicker({
       insertFn: function(link) {
-        return "{{ '" + link.attr('data-local-path') + "' | theme_image_url }}";
+        return "{{ '/" + link.attr('data-local-path') + "' | theme_image_url }}";
       }
     });
 

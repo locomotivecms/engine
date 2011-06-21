@@ -4,7 +4,7 @@ x bushido version
   x default template
 ~ editable_elements: inheritable: false (Mattias) => seems to be fixed by Dirk's last pull request (#44) => content tag
 x locomedia tinyMCE plugin (Bernd)
-- remove asset_collections
+x remove asset_collections
   x site templates
   x tinyMCE plugin
   x vignette.rb
@@ -14,9 +14,11 @@ x locomedia tinyMCE plugin (Bernd)
   x rake task
   x internal collection
     x assign same _id
-- pull request locomedia
+x pick up a theme_asset
+x pull request locomedia
 - SEO: support and support/ should be 2 different pages. Remove trailing slash
 - BUG: has_many. Delete an author
+- bushido changes in the master
 
 BACKLOG:
 
