@@ -26,7 +26,7 @@ class Snippet
   def normalize_slug
     # TODO: refactor it
     self.slug = self.name.clone if self.slug.blank? && self.name.present?
-    self.slug.slugify!(:without_extension => true, :downcase => true) if self.slug.present?
+    self.slug.permalink! if self.slug.present?
   end
 
   def update_templates

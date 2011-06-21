@@ -16,9 +16,11 @@ x remove asset_collections
     x assign same _id
 x pick up a theme_asset
 x pull request locomedia
+x refactor slugify method (use parameterize + create a module)
+- bushido changes in the master
 - SEO: support and support/ should be 2 different pages. Remove trailing slash
 - BUG: has_many. Delete an author
-- bushido changes in the master
+- edit sidebar (inline editor). Unable to reset it
 
 BACKLOG:
 
@@ -35,11 +37,16 @@ BACKLOG:
 - icon for redirection page in the pages section (back-office)
 - write my first tutorial about locomotive
 - upgrade warning if new version of locomotive (maybe based on the commit id)
+- deploying workflow:
+  - roll back a bad update
+  - conflicts with content types
+  - dev -> staging -> production
+  - sync data
+  - import only theme assets
 
 
 REFACTORING:
 
-  - refactor slugify method (use parameterize + create a module)
   - move content_type and content_instances in the CustomFields plugin (much more appropriate)
 
 BUGS:

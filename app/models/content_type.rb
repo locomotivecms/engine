@@ -131,7 +131,7 @@ class ContentType
 
   def normalize_slug
     self.slug = self.name.clone if self.slug.blank? && self.name.present?
-    self.slug.slugify! if self.slug.present?
+    self.slug.permalink! if self.slug.present?
   end
 
   def remove_uploaded_files # callbacks are not called on each content so we do it manually
