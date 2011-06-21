@@ -39,6 +39,7 @@ ul.assets li.asset div.icon, ul.assets li.asset div.image {
   box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
   -moz-box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
   -webkit-box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
 }
 
 ul.assets li.asset div.image {
