@@ -188,22 +188,6 @@ it:
         title: Lista immagini
         no_items: "Per ora non ci sono file."
 
-    asset_collections:
-      index:
-        title: Collezioni di risorse
-        help: "Puoi cambiare il nome della collezione cliccandoci sopra. Puoi personalizzare le risorse in una collezione aggiugendo nuovi campi."
-        new: nuov collezione
-        no_items: "Per ora non ci sono collezioni. Clicca <a href=\"%{url}\">qui</a> per creare la prima."
-      new:
-        title: Nuova collezione
-        help: "Per ora inserisci solo in nome. Altre opzioni appariranno dopo aver inviato il modulo."
-      edit:
-        help: "Puoi cambiare il nome della collezione cliccandoci sopra. Puoi personalizzare le risorse in una collezione aggiugendo nuovi campi."
-        add_asset: aggiungi risorsa
-        destroy: elimina collezione
-        no_items: "Per ora non ci sono risorse. Clicca <a href=\"%{url}\">qui</a> per creare la prima."
-        ask_for_name: "Prego, digita il nuovo nome"
-
     assets:
       new:
         title: Nuova risorsa
@@ -268,7 +252,6 @@ it:
           site: Informazioni sito
           content_types: Tipi di contenuti personalizzati
           assets: File del tema
-          asset_collections: Collezioni di risorse
           snippets: Frammenti
           pages: Pagine
         messages:

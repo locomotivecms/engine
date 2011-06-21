@@ -190,22 +190,6 @@ de:
         title: Bilder anzeigen
         no_items: "Momentan gibt es keine Bilder."
 
-    asset_collections:
-      index:
-        title: Galerie
-        help: "Der Name der Galerie kann durch darauf klicken bearbeitet werden. Du kannst die Bilder in einer Galerie bearbeiten, indem du neue Felder hinzufügst."
-        new: neue Galerie
-        no_items: "Momentan gibt es keine Galerien. Klicke einfach <a href='%{url}'>hier</a>, um eine neue Galerie zu erstellen."
-      new:
-        title: Neue Galerie
-        help: "Gib erst mal einen Namen ein. Alle anderen Einstellungen kannst du vornehmen, sobald das Formular abgesendet ist."
-      edit:
-        help: "Der Name der Galerie kann durch darauf klicken bearbeitet werden. Du kannst Bilder in einer Galerie bearbeiten, indem du neue Felder hinzufügst."
-        add_asset: Bild hinzufügen
-        destroy: Galerie löschen
-        no_items: "Momentan gibt es keine Bilder. Klicke einfach <a href='%{url}'>hier</a>, um das erste Bild zu erstellen."
-        ask_for_name: "Gib den neuen Namen ein"
-
     assets:
       new:
         title: Neues Bild
@@ -287,7 +271,6 @@ de:
           site: Webseiten-Informationen
           content_types: Benutzerdefinierte Inhalts-Typen
           assets: Template-Dateien
-          asset_collections: Galerien
           snippets: Snippets
           pages: Seiten
         messages:

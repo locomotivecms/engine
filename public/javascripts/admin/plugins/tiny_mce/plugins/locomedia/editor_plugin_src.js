@@ -9,10 +9,10 @@
  */
 
 (function() {
-  tinymce.create('tinymce.plugins.LocoMediafilePlugin', {
+  tinymce.create('tinymce.plugins.LocoMediaPlugin', {
     init : function(ed, url) {
       // Register commands
-      ed.addCommand('locoMediafile', function() {
+      ed.addCommand('locoMedia', function() {
         ed.windowManager.open({
           file : url + '/dialog.htm',
           width : 645,
@@ -24,16 +24,16 @@
       });
 
       // Register buttons
-      ed.addButton('mediafile', {
-        title : 'locomediafile.image_desc',
-        cmd : 'locoMediaFile'
+      ed.addButton('locomedia', {
+        title : 'locomedia.image_desc',
+        cmd : 'locoMedia'
       });
     },
 
     getInfo : function() {
       return {
         longname : 'Locomotive Media File',
-        author : 'Locomotive Engine',
+        author : 'Didier Lafforgue',
         authorurl : 'http://www.locomotivecms.com',
         infourl : 'http://www.locomotivecms.com',
         version : tinymce.majorVersion + "." + tinymce.minorVersion
@@ -42,5 +42,5 @@
   });
 
   // Register plugin
-  tinymce.PluginManager.add('locomedia', tinymce.plugins.LocoMediafilePlugin);
+  tinymce.PluginManager.add('locomedia', tinymce.plugins.LocoMediaPlugin);
 })();

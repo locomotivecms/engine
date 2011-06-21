@@ -23,13 +23,8 @@ module Admin
     protected
 
     def set_parent_and_fields
-      if params[:parent] == 'asset_collection'
-        @parent = current_site.asset_collections.where(:slug => params[:slug]).first
-        @fields = @parent.asset_custom_fields
-      else
-        @parent = current_site.content_types.where(:slug => params[:slug]).first
-        @fields = @parent.content_custom_fields
-      end
+      @parent = current_site.content_types.where(:slug => params[:slug]).first
+      @fields = @parent.content_custom_fields
     end
 
   end

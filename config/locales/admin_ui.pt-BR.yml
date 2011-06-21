@@ -154,7 +154,7 @@ pt-BR:
         de: Alemão
         fr: Francês
         pt-BR: "Português do Brasil"
-        it: Italiano        
+        it: Italiano
         ask_for_name: "Por favor preencha o novo nome"
 
     theme_assets:
@@ -184,22 +184,6 @@ pt-BR:
       images:
         title: Listando imagens
         no_items: "Não existem imagens ainda."
-
-    asset_collections:
-      index:
-        title: Coleções de arquivos
-        help: "O nome da coleção pode ser alterado clicando nele. Você pode customizar os arquivos nas coleções adicionando campos."
-        new: nova coleção
-        no_items: "Não existem coleções ainda. Clique <a href=\"%{url}\">aqui</a> para criar a primeira."
-      new:
-        title: Nova Coleção
-        help: "Por enquanto, apenas insira o nome. Outras opções irão aparecer após o formulário ser enviado."
-      edit:
-        help: "O nome da coleção pode ser alterado clicando nele. Você pode customizar os arquivos nas coleções adicionando campos."
-        add_asset: adicionar arquivo
-        destroy: excluir coleção
-        no_items: "Não existem coleções ainda. Clique <a href=\"%{url}\">aqui</a> para criar a primeira."
-        ask_for_name: Por favor preencha o novo nome"
 
     assets:
       new:
@@ -262,7 +246,6 @@ pt-BR:
           site: Informações do site
           content_types: Tipos de Conteúdo customizados
           assets: Arquivos do Tema
-          asset_collections: Coleções de Arquivos
           snippets: Blocos
           pages: Páginas
         messages:

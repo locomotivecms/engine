@@ -4,8 +4,6 @@ module Admin
     include ActionView::Helpers::SanitizeHelper
     include ActionView::Helpers::TextHelper
 
-    # defaults :collection_name => 'assets', :instance_name => 'asset'
-
     respond_to :json, :only => [:index, :create, :destroy]
 
     def index
@@ -50,8 +48,7 @@ module Admin
         :content_type => asset.content_type,
         :url          => asset.source.url,
         :vignette_url => asset.vignette_url,
-        :destroy_url  => admin_asset_url(asset, :json),
-
+        :destroy_url  => admin_asset_url(asset, :json)
       }
     end
 

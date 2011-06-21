@@ -187,22 +187,6 @@ fr:
         title: Liste des images
         no_items: "Il n'y a pas d'images."
 
-    asset_collections:
-      index:
-        title: Collections
-        help: "Le nom de la collection est modifiable en cliquant dessus. Vous pouvez personnaliser une collection en ajoutant d'autres champs à vos médias."
-        new: nouvelle collection
-        no_items: "Il n'existe pas de collections. Vous pouvez commencer par créer une <a href='%{url}'>ici</a>."
-      new:
-        title: Nouvelle collection
-        help: "Pour le moment, veuillez rentrer le nom. Les autres options viendront dans le formulaire suivant."
-      edit:
-        help: "Le nom de la collection est modifiable en cliquant dessus. Vous pouvez personnaliser une collection en ajoutant d'autres champs à vos médias."
-        add_asset: ajouter média
-        destroy: supprimer collection
-        no_items: "Il n'existe pas de médias. Vous pouvez commencer par créer un <a href='%{url}'>ici</a>."
-        ask_for_name: "Veuillez entrer le nouveau nom"
-
     assets:
       new:
         title: "Nouveau média"
@@ -267,7 +251,6 @@ fr:
           site: Informations sur le site
           content_types: Modèles de données personnalisés
           assets: Fichiers du thème
-          asset_collections: Collections de média
           snippets: Snippets
           pages: Pages
         messages:

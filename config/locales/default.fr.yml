@@ -71,11 +71,7 @@ fr:
         highlighted_field_name: Champ mis en avant
         group_by_field_name: Champ pour grouper
         api_enabled: Activation API
-      asset_collection:
-        name: Nom
-        slug: Raccourci
       asset:
-        name: Nom
         source: Fichier
       account:
         email: E-mail

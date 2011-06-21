@@ -33,7 +33,7 @@ Rails.application.routes.draw do
       get :all, :action => 'index', :on => :collection, :defaults => { :all => true }
     end
 
-    resources :assets # TODO
+    resources :assets
 
     resources :images, :controller => 'assets', :defaults => { :image => true }
 

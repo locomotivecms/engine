@@ -188,22 +188,6 @@ en:
         title: Listing images
         no_items: "There are no files for now."
 
-    asset_collections:
-      index:
-        title: Asset collections
-        help: "The collection name can be updated by clicking it. You can customize assets in a collection by adding new fields."
-        new: new collection
-        no_items: "There are no collections for now. Just click <a href=\"%{url}\">here</a> to create the first one."
-      new:
-        title: New collection
-        help: "For now, just type a name. Other settings will come once the form is sent."
-      edit:
-        help: "The collection name can be updated by clicking it. You can customize assets in a collection by adding new fields."
-        add_asset: add asset
-        destroy: remove collection
-        no_items: "There are no assets for now. Just click <a href=\"%{url}\">here</a> to create the first one."
-        ask_for_name: "Please type the new name"
-
     assets:
       new:
         title: New asset
@@ -268,7 +252,6 @@ en:
           site: Site information
           content_types: Custom content types
           assets: Theme files
-          asset_collections: Asset collections
           snippets: Snippets
           pages: Pages
         messages:
