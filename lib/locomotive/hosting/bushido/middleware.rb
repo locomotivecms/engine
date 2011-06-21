@@ -19,10 +19,10 @@ module Locomotive
             content = ""
             response.each { |part| content += part }
 
-            # "claiming" bar + stats ?
-            content.gsub!(/<\/body>/i, <<-STR
-                <script type="text/javascript">bushido.enableChat();</script>
-              </body>
+            # enable chat
+            content.gsub!(/<\/head>/i, <<-STR
+                <script type="text/javascript">var _bushido_chat = true;</script>
+              </head>
             STR
             )
 
