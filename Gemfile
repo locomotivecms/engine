@@ -4,7 +4,7 @@ source :rubygems
 
 gem 'rake', '0.8.7'
 
-gem 'rails', '>= 3.0.8'
+gem 'rails', '3.0.9'
 
 gem 'warden'
 gem 'devise', '1.3.4'
@@ -64,7 +64,7 @@ group :test do
   gem 'rspec-rails', '2.3.1'
   gem 'factory_girl_rails'
   gem 'pickle'
-  gem 'xpath',            :git => 'https://github.com/wunderbread/xpath.git'
+  gem 'xpath', '0.1.3' #            :git => 'https://github.com/wunderbread/xpath.git'
   gem 'capybara'
 
   gem 'database_cleaner'
