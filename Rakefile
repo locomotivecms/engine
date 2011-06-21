@@ -1,7 +1,7 @@
 require File.expand_path('../config/application', __FILE__)
 
 require 'rake'
-require 'rake/testtask'
+# require 'rake/testtask'
 require 'rake/rdoctask'
 require 'rake/gempackagetask'
 
@@ -17,4 +17,4 @@ task :release => :gem do
   sh "gem push pkg/locomotive_cms-#{gemspec.version}.gem"
 end
 
-task :default => [:spec, :cucumber]
+task :default => [:rspec, :cucumber]

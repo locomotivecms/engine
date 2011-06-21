@@ -4,7 +4,7 @@ source :rubygems
 
 gem 'rake', '0.8.7'
 
-gem 'rails', '>= 3.0.7'
+gem 'rails', '3.0.7'
 
 gem 'warden'
 gem 'devise', '= 1.1.3'
@@ -42,15 +42,11 @@ group :development do
   gem 'unicorn'
 end
 
-group :test, :development do
+group :development, :test do
   gem 'ruby-debug', :platforms => :mri_18
   gem 'ruby-debug19', :platforms => :mri_19
 
   gem 'bushido_stub', :git => 'git://github.com/did/bushido_stub.git'
-end
-
-group :production do
-  gem 'bushido'
 end
 
 group :test do
@@ -60,7 +56,7 @@ group :test do
   gem 'rspec-rails', '2.3.1'
   gem 'factory_girl_rails'
   gem 'pickle'
-  gem 'xpath',            :git => 'https://github.com/wunderbread/xpath.git'
+  gem 'xpath', '0.1.3'
   gem 'capybara'
 
   gem 'database_cleaner'
@@ -70,3 +66,8 @@ group :test do
   gem 'launchy'
   gem 'mocha', :git => 'git://github.com/floehopper/mocha.git'
 end
+
+group :production do
+  gem 'bushido'
+end
+

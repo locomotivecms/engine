@@ -7,16 +7,9 @@ GIT
 
 GIT
   remote: git://github.com/floehopper/mocha.git
-  revision: 6da1242f26b12a24c4fcf67bf5921a25bc1bc88d
+  revision: d03843e763f4e5ceadb66bcb4c530d6c5d0cb293
   specs:
     mocha (0.9.12.20110213002255)
-
-GIT
-  remote: https://github.com/wunderbread/xpath.git
-  revision: d04da707886287e7dfe82705fda5b3d4f65e94c3
-  specs:
-    xpath (0.1.2)
-      nokogiri (~> 1.4)
 
 GEM
   remote: http://rubygems.org/
@@ -65,11 +58,11 @@ GEM
     bson (1.3.1)
     bson_ext (1.3.1)
     builder (2.1.2)
-    bushido (0.0.17)
+    bushido (0.0.27)
       highline (>= 1.6.1)
       json (>= 1.4.6)
       rest-client (>= 1.6.1)
-    capybara (0.4.0)
+    capybara (0.4.1.2)
       celerity (>= 0.7.9)
       culerity (>= 0.2.4)
       mime-types (>= 1.16)
@@ -77,12 +70,12 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       selenium-webdriver (>= 0.0.27)
-      xpath (~> 0.1.2)
+      xpath (~> 0.1.3)
     celerity (0.8.9)
     childprocess (0.1.9)
       ffi (~> 1.0.6)
-    columnize (0.3.2)
-    configuration (1.2.0)
+    columnize (0.3.3)
+    configuration (1.3.1)
     crack (0.1.8)
     cucumber (0.8.5)
       builder (~> 2.1.2)
@@ -97,7 +90,7 @@ GEM
       activesupport (>= 3.0.7)
       locomotive_carrierwave
       mongoid (= 2.0.2)
-    daemons (1.1.3)
+    daemons (1.1.4)
     database_cleaner (0.6.7)
     delayed_job (2.1.4)
       activesupport (~> 3.0)
@@ -139,7 +132,7 @@ GEM
     heroku (1.19.1)
       activesupport (>= 2.1.0)
       launchy (~> 0.3.2)
-      rest-client (>= 1.4.0, < 1.7.0)
+      rest-client (< 1.7.0, >= 1.4.0)
     highline (1.6.2)
     httparty (0.7.8)
       crack (= 0.1.8)
@@ -149,13 +142,14 @@ GEM
       responders (~> 0.6.0)
     jammit (0.6.3)
       yui-compressor (>= 0.9.3)
-    json (1.5.1)
+    json (1.5.3)
     json_pure (1.4.6)
-    kgio (2.4.1)
+    kgio (2.5.0)
     launchy (0.3.7)
       configuration (>= 0.0.5)
       rake (>= 0.8.1)
-    linecache (0.43)
+    linecache (0.46)
+      rbx-require-relative (> 0.0.4)
     linecache19 (0.5.12)
       ruby_core_source (>= 0.1.4)
     locomotive_carrierwave (0.5.0.1.beta3)
@@ -208,6 +202,7 @@ GEM
       rake (>= 0.8.7)
       thor (~> 0.14.4)
     rake (0.8.7)
+    rbx-require-relative (0.0.5)
     responders (0.6.4)
     rest-client (1.6.3)
       mime-types (>= 1.16)
@@ -255,13 +250,15 @@ GEM
     treetop (1.4.9)
       polyglot (>= 0.3.1)
     trollop (1.16.2)
-    tzinfo (0.3.27)
-    unicorn (3.6.2)
+    tzinfo (0.3.28)
+    unicorn (3.7.0)
       kgio (~> 2.3)
       rack
     warden (0.10.7)
       rack (>= 1.0.0)
     will_paginate (2.3.15)
+    xpath (0.1.3)
+      nokogiri (~> 1.3)
     yui-compressor (0.9.6)
       POpen4 (>= 0.1.4)
 
@@ -302,7 +299,7 @@ DEPENDENCIES
   mocha!
   mongoid (~> 2.0.2)
   pickle
-  rails (>= 3.0.7)
+  rails (= 3.0.7)
   rake (= 0.8.7)
   rmagick (= 2.12.2)
   rspec-rails (= 2.3.1)
@@ -313,4 +310,4 @@ DEPENDENCIES
   unicorn
   warden
   will_paginate
-  xpath!
+  xpath (= 0.1.3)
