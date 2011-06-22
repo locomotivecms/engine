@@ -22,8 +22,12 @@ x BUG: has_one / has_many. Delete an author
 x bushido changes in the master
 ? edit sidebar (inline editor). Unable to reset it
 x SEO: support and support/ should be 2 different pages. Remove trailing slash
-- Httparty (issue #...)
+x issue #91: httparty
+- issue #90: seo metadata
 - Has_one => group by in the select
+- better hints:
+  - notify the user that after changing the page title, they still have to click "update" for the change to be saved
+  -
 
 
 BACKLOG:
