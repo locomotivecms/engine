@@ -21,7 +21,9 @@ x contents permalink (UI)
 x BUG: has_one / has_many. Delete an author
 x bushido changes in the master
 ? edit sidebar (inline editor). Unable to reset it
-- SEO: support and support/ should be 2 different pages. Remove trailing slash
+x SEO: support and support/ should be 2 different pages. Remove trailing slash
+- Httparty (issue #...)
+- Has_one => group by in the select
 
 
 BACKLOG:

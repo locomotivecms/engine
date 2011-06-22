@@ -47,5 +47,6 @@ module Locomotive
     config.filter_parameters << :password
 
     config.middleware.insert_after Rack::Lock, '::Locomotive::Middlewares::Fonts', :path => %r{^/fonts}
+    config.middleware.insert_after Rack::Lock, '::Locomotive::Middlewares::SeoTrailingSlash'
   end
 end

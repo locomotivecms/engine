@@ -85,7 +85,7 @@ describe 'Locomotive rendering system' do
       @controller.send(:locomotive_page).should be_true
     end
 
-    context 'redirect page' do
+    context 'redirect' do
 
       before(:each) do
         @page.redirect = true
