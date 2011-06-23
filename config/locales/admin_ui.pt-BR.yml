@@ -60,9 +60,11 @@ pt-BR:
         title: Editar opções
         help: Gerenciar a lista de opções da sua caixa de seleçõa.
         collection_label: Lista de opções
-      custom_form:
-        edit_categories: Editar opções
-        delete_file: Excluir arquivo
+      types:
+        category:
+          edit_categories: Editar opções
+        file:
+          delete_file: Excluir arquivo
 
     sessions:
       new:

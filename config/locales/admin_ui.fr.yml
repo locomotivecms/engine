@@ -60,9 +60,11 @@ fr:
         title: Editer options
         help: Gèrer la liste des options de votre liste déroulante
         collection_label: Liste des options
-      custom_form:
-        edit_categories: Editer options
-        delete_file: Supprimer fichier
+      types:
+        category:
+          edit_categories: Editer options
+        file:
+          delete_file: Supprimer fichier
       index:
         is_required: est obligatoire
         default_label: Nom du champ

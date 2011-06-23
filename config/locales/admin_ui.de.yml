@@ -61,9 +61,11 @@ de:
         title: Optionen
         help: Organisiere alle Optionen für die Auswahlbox.
         collection_label: Liste der Optionen
-      custom_form:
-        edit_categories: Optionen
-        delete_file: Datei löschen
+      types:
+        category:
+          edit_categories: Optionen
+        file:
+          delete_file: Datei löschen
       index:
         is_required: ist erforderlich
         default_label: Feld-Name

@@ -60,9 +60,11 @@ en:
         title: Edit options
         help: Manage the list of options for your select box.
         collection_label: List of options
-      custom_form:
-        edit_categories: Edit options
-        delete_file: Delete file
+      types:
+        category:
+          edit_categories: Edit options
+        file:
+          delete_file: Delete file
       index:
         is_required: is required
         default_label: Field name

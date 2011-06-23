@@ -60,9 +60,11 @@ it:
         title: Modifica opzioni
         help: Amministra la lista opzioni del select box.
         collection_label: Lista delle opzioni
-      custom_form:
-        edit_categories: Modifica opzioni
-        delete_file: Elimina file
+      types:
+        category:
+          edit_categories: Modifica opzioni
+        file:
+          delete_file: Elimina file
       index:
         is_required: è richiesto
         default_label: Nome campo
