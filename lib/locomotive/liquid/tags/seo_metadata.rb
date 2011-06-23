@@ -10,9 +10,11 @@ module Locomotive
           }
         end
 
+        protected
+
         # Removes whitespace and quote charactets from the input
         def sanitized_string(string)
-          string.strip.gsub(/"/, '')
+          string ? string.strip.gsub(/"/, '') : ''
         end
 
         def meta_description(context)
