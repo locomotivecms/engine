@@ -3,7 +3,7 @@ module Locomotive
     module Drops
       class Site < Base
 
-        liquid_attributes << :name << :meta_keywords << :meta_description
+        liquid_attributes << :name << :seo_title << :meta_keywords << :meta_description
 
         def index
           @index ||= self._source.pages.root.first

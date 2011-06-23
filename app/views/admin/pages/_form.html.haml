@@ -11,8 +11,9 @@
 
   = f.input :slug, :required => false, :hint => @page.slug.blank? ? '&nbsp;' : page_url(@page), :input_html => { :data_url => get_path_admin_pages_url, :disabled => @page.index? || @page.not_found? }, :wrapper_html => { :style => "#{'display: none' if @page.templatized?}; height: 50px" }
 
-= f.foldable_inputs :name => :meta do
+= f.foldable_inputs :name => :seo do
 
+  = f.input :seo_title
   = f.input :meta_keywords
   = f.input :meta_description
 

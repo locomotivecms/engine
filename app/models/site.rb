@@ -5,11 +5,11 @@ class Site
   ## Extensions ##
   extend Extensions::Site::SubdomainDomains
   extend Extensions::Site::FirstInstallation
+  extend Extensions::Site::FirstInstallation
+  include Extensions::Shared::Seo
 
   ## fields ##
   field :name
-  field :meta_keywords
-  field :meta_description
 
   ## associations ##
   references_many :pages, :validate => false

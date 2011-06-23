@@ -63,6 +63,7 @@ fr:
         redirect: Redirection
         redirect_url: Url de redirection
         cache_strategy: Cache
+        seo_title: Titre SEO
       content_type:
         name: Nom
         description: Description

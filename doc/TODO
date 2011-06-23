@@ -24,6 +24,7 @@ x bushido changes in the master
 x SEO: support and support/ should be 2 different pages. Remove trailing slash
 x issue #91: httparty
 x issue #90: seo metadata
+- issue #57: seo page title
 - Has_one => group by in the select
 - convert existing templates (the 2 of the themes section)
 - better hints:

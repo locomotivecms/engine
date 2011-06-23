@@ -4,6 +4,7 @@ en:
       information: General information
       advanced_options: Advanced options
       meta: SEO Metadata
+      seo: SEO settings
       code: Code
       raw_template: Template
       credentials: Credentials
@@ -46,6 +47,8 @@ en:
         edit:
           password: New password
           password_confirmation: New password confirmation
+      page:
+        seo_title: Title
 
     hints:
       page:
@@ -54,6 +57,7 @@ en:
         templatized: "Use the page as a template for a model you defined."
         listed: "Control whether to show the page from generated menus."
         content_type_id: "The type of content this page will be a template for."
+        seo_title: "Define a page title which should be used as the value for the title tag in the head section."
         meta_keywords: "Overrides the site's meta keywords used within the head tag of the page. They are separated by a comma."
         meta_description: "Overrides the site's meta description used within the head tag of the page."
       snippet:
@@ -78,6 +82,9 @@ en:
           hint: "Text displayed in the model form just below the field"
       content_instance:
         _slug: "Property used to generate the url of a page working as a template for this content type (ex: \"template_page/{{ your_object._permalink }})\"."
+        seo_title: "The value you fill in will replace the SEO title of the templatized page related to your model."
+        meta_keywords: "Overrides the site's meta keywords used within the head tag of the page. They are separated by a comma."
+        meta_description: "Overrides the site's meta description used within the head tag of the page."
       import:
         source: "A zipfile containing a database.yml along with assets and templates"
         samples: "If enabled, the import process will also copy contents and assets"
