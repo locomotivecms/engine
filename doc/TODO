@@ -27,11 +27,12 @@ x issue #90: seo metadata
 x issue #57: seo page title
 x issue #56
 x tweak ui: form, quick link to edit a model in the popup menu
-- Has_one => group by in the select
-- convert existing templates (the 2 of the themes section)
+x Has_one => group by in the select
 - better hints:
   - notify the user that after changing the page title, they still have to click "update" for the change to be saved
   - created_by ASC => "Creation date ascending"
+- cancan: authors / designers
+- convert existing templates (the 2 of the themes section)
 - bug heroku: unable to upload a new file
 
 BACKLOG:
