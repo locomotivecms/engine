@@ -12,6 +12,7 @@
 - each_content_type_menu_item do |content_type|
   .header
     %p= link_to t('admin.contents.index.new'), new_admin_content_url(content_type.slug)
+    %p.edit= link_to t('admin.contents.index.edit'), edit_admin_content_type_url(content_type)
   .inner
     %h2!= t('admin.contents.index.lastest_items')
     %ul

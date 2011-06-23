@@ -80,7 +80,7 @@ form.formtastic fieldset.inputs ol {
 
 form.formtastic fieldset ol li { width: 100%; position: relative; margin-bottom: 1.3em; }
 
-form.formtastic fieldset ol li label { text-align: left; padding: 0.3em 2em 0 20px; font-size: 0.8em; color: #17171b; width: 15%; }
+form.formtastic fieldset ol li label { text-align: left; padding: 0.4em 2em 0 20px; font-size: 0.8em; width: 15%; color: #585a69; text-shadow: #fff 0px 1px; }
 
 form.formtastic fieldset ol li.string input,
 form.formtastic fieldset ol li.password input,
@@ -88,12 +88,16 @@ form.formtastic fieldset ol li.numeric input,
 form.formtastic fieldset ol li.text textarea,
 form.formtastic fieldset ol li code textarea,
 form.formtastic fieldset ol li input[type=password] {
-  padding: 4px;
+  padding: 4px 5px;
   font-size: 0.9em;
+  font-weight: bold;
   width: 45%;
-  color: #787a89;
+  color: #17171b;
   background: white url(/images/admin/form/field.png) repeat-x 0 0;
   border: 1px solid #a6a8b8;
+  -webkit-box-shadow: #f1f1f1 0px 1px;
+  -moz-box-shadow: #f1f1f1 0px 1px;
+  box-shadow: #f1f1f1 0px 1px;
 }
 
 form.formtastic fieldset ol li.text textarea.html {

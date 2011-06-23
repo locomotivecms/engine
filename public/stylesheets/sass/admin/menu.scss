@@ -184,6 +184,14 @@
         background: transparent url(/images/admin/menu/popup/add.png) no-repeat left 4px;
         padding-left: 12px;
       }
+
+      &.edit {
+        padding-top: 0px;
+
+        a {
+          background: transparent url(/images/admin/menu/popup/bullet.png) no-repeat left 5px;
+        }
+      }
     }
 
     ul {
