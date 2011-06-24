@@ -101,7 +101,7 @@ en:
         updated_at: updated at
       edit:
         show: show
-        help: "The page title can be updated by clicking it."
+        help: "The page title can be updated by clicking it. To apply your changes, click on the \"Update\" button."
         ask_for_title: "Please type the new page title"
       form:
         delete_file: Delete file
@@ -211,8 +211,8 @@ en:
         new_item: new item
       form:
         order_by:
-          created_at: 'By "created at" date'
-          updated_at: 'By "updated at" date'
+          created_at: 'By creation date'
+          updated_at: 'By updating date'
           position_in_list: Manually
         order_direction:
           asc: Ascending

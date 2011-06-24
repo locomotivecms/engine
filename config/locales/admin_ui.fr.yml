@@ -101,7 +101,7 @@ fr:
         updated_at: Mise à jour le
       edit:
         show: voir
-        help: "Le titre de la page est modifiable en cliquant dessus."
+        help: "Le titre de la page est modifiable en cliquant dessus. Pour appliquer votre modification, cliquez après sur le bouton \"Modifier\""
         ask_for_title: "Veuillez entrer le nouveau titre"
       form:
         delete_file: Supprimer fichier
@@ -210,7 +210,7 @@ fr:
         new_item: nouvel élément
       form:
         order_by:
-          created_at: 'Par date création'
+          created_at: 'Par date de création'
           updated_at: 'Par date de mise à jour'
           position_in_list: Manuellement
         order_direction:
