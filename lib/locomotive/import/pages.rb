@@ -5,24 +5,54 @@ module Locomotive
       def process
         context[:done] = {} # initialize the hash storing pages already processed
 
+        pages_to_add = []
+        pages_that_encountered_errors = []
+
         Dir[File.join(theme_path, 'app', 'views', 'pages', '**/*')].each do |template_path|
 
           fullpath = template_path.gsub(File.join(theme_path, 'app', 'views', 'pages'), '').gsub('.liquid', '').gsub(/^\//, '')
 
           next if %w(index 404).include?(fullpath)
 
-          self.add_page(fullpath)
+          pages_to_add << fullpath
         end
         
-        self.add_page('404')
+        pages_to_add << '404'
+        pages_to_add << 'index'
 
-        self.add_page('index')
+        pages_that_encountered_errors = self.add_pages(pages_to_add)
+        
+        unless pages_that_encountered_errors.empty?
+          number_of_pages_added = pages_to_add.length - pages_that_encountered_errors.length
+          while number_of_pages_added > 0
+            number_of_pages_added_last_iteration = number_of_pages_added
+            
+            pages_to_add = pages_that_encountered_errors.clone
+            pages_that_encountered_errors = self.add_pages(pages_to_add)
+            
+            number_of_pages_added = pages_to_add.length - pages_that_encountered_errors.length
+          end
+        end
 
         # make sure all the pages were processed (redirection pages without template for instance)
         self.pages.each { |fullpath, attributes| self.add_page_without_template(fullpath.to_s) }
       end
 
       protected
+      
+      def add_pages(pages_to_add)
+        pages_that_encountered_errors = []
+        
+        pages_to_add.each do |page|
+          begin
+            self.add_page(page)
+          rescue
+            pages_that_encountered_errors << page
+          end
+        end        
+        
+        pages_that_encountered_errors
+      end
 
       def add_page_without_template(fullpath)
         page = context[:done][fullpath]
