@@ -24,6 +24,7 @@ $(document).ready(function() {
     'update': function(event, ui) {
       var params = $(this).sortable('serialize', { 'key': 'children[]' });
       params += '&_method=put';
+      params += '&' + $('meta[name=csrf-param]').attr('content') + '=' + $('meta[name=csrf-token]').attr('content');
 
       $.post($(this).attr('data_url'), params, function(data) {
         var error = typeof(data.error) != 'undefined';

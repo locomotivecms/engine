@@ -7,8 +7,11 @@ module Admin
 
     respond_to :json, :only => :update
 
+    # before_filter :authorize
+
     def index
       @contents = @content_type.list_or_group_contents
+      authorize! :index, ContentInstance
     end
 
     def create

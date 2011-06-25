@@ -3,7 +3,8 @@ class Membership
   include Locomotive::Mongoid::Document
 
   ## fields ##
-  field :admin, :type => Boolean, :default => false
+  # field :admin, :type => Boolean, :default => false
+  field :role, :default => 'author'
 
   ## associations ##
   referenced_in :account, :validate => false
@@ -12,7 +13,16 @@ class Membership
   ## validations ##
   validates_presence_of :account
 
+  ## callbacks ##
+  before_save :define_role
+
   ## methods ##
+
+  Ability::ROLES.each do |_role|
+    define_method("#{_role}?") do
+      self.role == _role
+    end
+  end
 
   def email; @email; end
 
@@ -34,6 +44,16 @@ class Membership
       self.save
       :save_it
     end
+  end
+
+  def ability
+    @ability ||= Ability.new(self.account, self.site)
+  end
+
+  protected
+
+  def define_role
+    self.role = Ability::ROLES.include?(role.downcase) ? role.downcase : Ability::ROLES.first
   end
 
 end

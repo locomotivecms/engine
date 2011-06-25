@@ -31,9 +31,22 @@ x Has_one => group by in the select
 x better hints:
   x notify the user that after changing the page title, they still have to click "update" for the change to be saved
   x created_by ASC => "Creation date ascending"
-- cancan: authors / designers
+- cancan: (authors / designers / admin)
+  x model
+  x ui
+  - controllers / views:
+    - page
+    - asset
+    - content type
+    - site
+    - account
+    - snippet
+    - theme asset
+- better ui: increase text field length + refactor error message
 - convert existing templates (the 2 of the themes section)
-- bug heroku: unable to upload a new file
+- bugs
+  - heroku: unable to upload a new file
+  - import
 
 BACKLOG:
 

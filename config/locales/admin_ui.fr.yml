@@ -138,7 +138,7 @@ fr:
       edit:
         import: importer
         new_membership: ajouter compte
-        help: "Le nom du site est modifiable en cliquant dessus."
+        help: "Le nom du site est modifiable en cliquant dessus. Pour appliquer votre modification, cliquez après sur le bouton \"Modifier\""
         ask_for_name: "Veuillez entrer le nouveau nom"
 
     memberships:
@@ -153,7 +153,7 @@ fr:
 
     my_accounts:
       edit:
-        help: "Votre nom est modifiable en cliquant dessus."
+        help: "Votre nom est modifiable en cliquant dessus. Pour appliquer votre modification, cliquez après sur le bouton \"Modifier\""
         new_site: nouveau site
         en: en Anglais
         de: en Allemand

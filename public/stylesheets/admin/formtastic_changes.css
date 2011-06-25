@@ -24,6 +24,7 @@ form.formtastic legend span {
   color: #1e1f26;
   font-size: 0.7em;
   padding: 4px 0 0 20px;
+  text-shadow: #fff 0px 1px;
 }
 
 form.formtastic legend span small {
@@ -246,6 +247,28 @@ form.formtastic fieldset ol li.item em {
   color: #757575;
 }
 
+form.formtastic fieldset ol li em.editable {
+  display: inline-block;
+  position: relative;
+  top: -1px;
+  color: #8b8d9a;
+  font-size: 0.9em;
+  font-style: italic;
+  margin-left: 3px;
+  border: 1px solid transparent;
+  padding: 2px 5px;
+  height: 18px;
+  line-height: 16px;
+}
+
+form.formtastic fieldset ol li em.editable:hover {
+  background: #fffbe5;
+  border: 1px dotted #efe4a5;
+  cursor: pointer;
+  color: #17171D;
+  font-weight: bold;
+}
+
 form.formtastic fieldset ol li.item span.actions {
   position: absolute;
   top: 5px;
@@ -279,27 +302,6 @@ form.formtastic fieldset.editable-list ol li.added select {
   display: none;
   position: relative;
   top: -1px;
-}
-
-form.formtastic fieldset.editable-list ol li.added em {
-  display: inline-block;
-  position: relative;
-  top: -1px;
-  color: #8b8d9a;
-  font-size: 0.9em;
-  font-style: italic;
-  margin-left: 3px;
-  border: 1px solid transparent;
-  padding: 2px 5px;
-  height: 18px;
-  line-height: 16px;
-}
-form.formtastic fieldset.editable-list ol li.added em:hover {
-  background: #fffbe5;
-  border: 1px dotted #efe4a5;
-  cursor: pointer;
-  color: #17171D;
-  font-weight: bold;
 }
 
 form.formtastic fieldset.editable-list ol li.added select,
@@ -550,6 +552,42 @@ form.formtastic fieldset.language li.full span input {
 
 form.formtastic fieldset.email li.full input {
   margin-left: 20px;
+}
+
+form.formtastic fieldset.memberships ol li .role {
+  position: absolute;
+  top: 2px;
+  right: 30px;
+  width: 170px;
+  text-align: left;
+}
+
+form.formtastic fieldset.memberships ol li .role em {
+  display: inline-block;
+  position: relative;
+  top: -1px;
+  color: #757575;
+  font-size: 0.8em;
+  padding: 2px 5px 2px 17px;
+  height: 18px;
+  line-height: 16px;
+  margin-left: 0px;
+}
+
+form.formtastic fieldset.memberships ol li .role em.locked {
+  background: transparent url(/images/admin/icons/membership_lock.png) no-repeat 1px 3px;
+}
+
+form.formtastic fieldset.memberships ol li .role em.editable {
+  background: transparent url(/images/admin/icons/membership_edit.png) no-repeat left 3px;
+}
+
+form.formtastic fieldset.memberships ol li .role em.editable { font-style: normal; font-size: 0.8em; }
+form.formtastic fieldset.memberships ol li .role em.editable:hover { color: #000; font-style: normal; background: #fffbe5; padding-left: 5px; }
+
+form.formtastic fieldset.memberships ol li select {
+  position: relative;
+  top: -1px;
 }
 
 /* ___ assets ___ */

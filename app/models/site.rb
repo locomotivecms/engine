@@ -28,6 +28,7 @@ class Site
 
   ## behaviours ##
   enable_subdomain_n_domains_if_multi_sites
+  accepts_nested_attributes_for :memberships
 
   ## methods ##
 

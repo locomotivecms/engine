@@ -154,17 +154,19 @@
       text-decoration: none; }
       #submenu .popup a:hover {
         text-decoration: underline; }
+    #submenu .popup .header {
+      border-bottom: 1px dotted #bbbbbd;
+      padding-bottom: 6px;
+      margin: 0px 16px; }
     #submenu .popup .inner {
       padding: 8px 16px; }
     #submenu .popup h2 {
       font-size: 0.7em;
       font-weight: bold;
       color: #1e1f26;
-      border-top: 1px dotted #bbbbbd;
-      padding-top: 6px;
       margin-bottom: 0px; }
     #submenu .popup p {
-      margin: 0px 15px;
+      margin: 0px;
       padding: 10px 0 0 0px; }
       #submenu .popup p a {
         font-size: 0.8em;

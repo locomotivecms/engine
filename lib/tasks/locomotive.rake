@@ -13,6 +13,22 @@ namespace :locomotive do
 
   namespace :upgrade do
 
+    desc 'Set roles to the existing users'
+    task :set_roles => :environment do
+      Site.all.each do |site|
+        site.memberships.each do |membership|
+          if membership.attributes['admin'] == true
+            puts "...[#{site.name}] #{membership.account.name} has now the admin role"
+            membership.role = 'admin'
+          else
+            puts "...[#{site.name}] #{membership.account.name} has now the author role"
+            membership.role = 'author'
+          end
+        end
+        site.save
+      end
+    end
+
     desc 'Remove asset collections and convert them into content types'
     task :remove_asset_collections => :environment do
       puts "Processing #{AssetCollection.count} asset collection(s)..."

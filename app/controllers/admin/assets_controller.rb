@@ -15,7 +15,7 @@ module Admin
     end
 
     def create
-      params[:asset] = { :name => params[:name], :source => params[:file] } if params[:file]
+      @asset = current_site.assets.build(:name => params[:name], :source => params[:file])
 
       create! do |success, failure|
         success.json do

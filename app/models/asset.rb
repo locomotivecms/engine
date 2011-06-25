@@ -25,6 +25,8 @@ class Asset
 
   ## methods ##
 
+  alias :name :source_filename
+
   def extname
     return nil unless self.source?
     File.extname(self.source_filename).gsub(/^\./, '')

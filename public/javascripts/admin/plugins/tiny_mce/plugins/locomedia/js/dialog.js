@@ -15,6 +15,13 @@ var MediafileDialog = {
   init : function(ed) {
     var self = this;
 
+    with(window.parent) {
+      var csrf_token = $('meta[name=csrf-token]').attr('content'),
+          csrf_param = $('meta[name=csrf-param]').attr('content');
+    }
+
+    $.fn.setCsrfSettings(csrf_token, csrf_param);
+
     formElement = $(document.forms[0]);
 
     listElement = formElement.find('ul');
@@ -153,13 +160,6 @@ var MediafileDialog = {
 
     asset.find('.actions a')
       .attr('href', data.destroy_url)
-      .bind('click', function(e) {
-        if (confirm($(this).attr('data-confirm'))) {
-          self.showSpinner('destroying');
-          $(this).callRemote();
-        }
-        e.preventDefault(); e.stopPropagation();
-      })
       .bind('ajax:success', function(event, data) {
         self._destroyAsset(asset);
       });
