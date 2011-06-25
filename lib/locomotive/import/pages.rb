@@ -5,10 +5,6 @@ module Locomotive
       def process
         context[:done] = {} # initialize the hash storing pages already processed
 
-        self.add_page('404')
-
-        self.add_page('index')
-
         Dir[File.join(theme_path, 'app', 'views', 'pages', '**/*')].each do |template_path|
 
           fullpath = template_path.gsub(File.join(theme_path, 'app', 'views', 'pages'), '').gsub('.liquid', '').gsub(/^\//, '')
@@ -17,6 +13,10 @@ module Locomotive
 
           self.add_page(fullpath)
         end
+        
+        self.add_page('404')
+
+        self.add_page('index')
 
         # make sure all the pages were processed (redirection pages without template for instance)
         self.pages.each { |fullpath, attributes| self.add_page_without_template(fullpath.to_s) }
