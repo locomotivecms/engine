@@ -76,5 +76,55 @@ describe Locomotive::Import::Job do
     end
 
   end
+  
+  context 'with locomotive editor default theme' do
+    def import(options)
+      job = Locomotive::Import::Job.new(FixturedTheme.duplicate_and_open('default-from-editor.zip'), @site, options)
+      job.perform
+
+      job.success nil
+    end
+    
+    before(:all) do
+      @site = Factory(:site)
+    end
+    
+    it 'should just import without errors' do
+      import({ :samples => false, :reset => false })
+    end
+    
+    it 'should grab samples without errors' do
+      import({ :samples => true, :reset => false })
+    end
+    
+    it 'should reset site without error' do
+      import({ :samples => false, :reset => true })
+    end
+
+    it 'should grab samples and reset site without errors' do
+      import({ :samples => true, :reset => true })
+    end
+    
+    after(:all) do
+      Site.destroy_all
+    end
+  end
+  
+  context 'with layouts-folder theme' do
+    before(:all) do
+      @site = Factory(:site)
+    end
+    
+    it 'should run without errors' do
+      job = Locomotive::Import::Job.new(FixturedTheme.duplicate_and_open('layouts-folder.zip'), @site, { :samples => false, :reset => false })
+      job.perform
+
+      job.success nil
+    end
+
+    after(:all) do
+      Site.destroy_all
+    end
+  end
 
 end
