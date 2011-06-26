@@ -35,9 +35,9 @@ x better hints:
   x model
   x ui
   - controllers / views:
-    - page
-    - asset
-    - content type
+    x page
+    x content / content type
+    x asset
     - site
     - account
     - snippet

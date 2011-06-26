@@ -26,7 +26,7 @@ $(document).ready(function() {
       params += '&_method=put';
       params += '&' + $('meta[name=csrf-param]').attr('content') + '=' + $('meta[name=csrf-token]').attr('content');
 
-      $.post($(this).attr('data_url'), params, function(data) {
+      $.post($(this).attr('data-url'), params, function(data) {
         var error = typeof(data.error) != 'undefined';
         $.growl((error ? 'error' : 'success'), (error ? data.error : data.notice));
       }, 'json');
@@ -82,7 +82,7 @@ $(document).ready(function() {
 
   var lookForSlugAndUrl = function() {
     params = 'parent_id=' + $('#page_parent_id').val() + "&slug=" + $('#page_slug').val();
-    $.get($('#page_slug').attr('data_url'), params, function(data) {
+    $.get($('#page_slug').attr('data-url'), params, function(data) {
       $('#page_slug_input .inline-hints').html(data.url).effect('highlight');
     }, 'json');
   };

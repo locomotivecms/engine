@@ -165,38 +165,6 @@ form.formtastic fieldset ol .more { text-align: right; width: auto; margin: 10px
 form.formtastic fieldset ol .more a { text-decoration: none; color: #787A89; font-size: 0.7em; }
 form.formtastic fieldset ol .more a:hover { text-decoration: underline; }
 
-/*form.formtastic hr { border-top: 2px solid #ccc; }*/
-
-/*form.formtastic fieldset.buttons { padding-left: 28%; padding-bottom: 20px; }*/
-
-form.formtastic div.actions {
-  position: relative;
-  top: 27px;
-  left: -15px;
-  width: 950px;
-  background: #8b8d9a;
-}
-
-form.formtastic div.actions p {
-  padding: 15px;
-  margin: 0px;
-}
-
-form.formtastic div.actions a {
-  color: #fff !important;
-  text-decoration: none;
-  font-size: 0.8em;
-  position: relative;
-  top: 4px;
-}
-
-form.formtastic div.actions a.remove { color: #ff092c !important; }
-
-form.formtastic div.actions p a:hover { text-decoration: underline; }
-
-form.formtastic div.actions .last p { text-align: right; }
-
-
 /* ___ pages ___ */
 
 form.formtastic fieldset ol li.path em {

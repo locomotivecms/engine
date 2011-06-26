@@ -107,8 +107,8 @@ class ContentType
     self.asc_order? ? list : list.reverse
   end
 
-  def sort_contents!(order)
-    order.split(',').each_with_index do |id, position|
+  def sort_contents!(ids)
+    ids.each_with_index do |id, position|
       self.contents.find(BSON::ObjectId(id))._position_in_list = position
     end
     self.save

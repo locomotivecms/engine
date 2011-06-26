@@ -5,13 +5,14 @@ module Admin
 
     before_filter :set_content_type
 
-    respond_to :json, :only => :update
+    respond_to :json, :only => [:update, :sort]
 
-    # before_filter :authorize
+    skip_load_and_authorize_resource
+
+    before_filter :authorize_content
 
     def index
       @contents = @content_type.list_or_group_contents
-      authorize! :index, ContentInstance
     end
 
     def create
@@ -23,7 +24,7 @@ module Admin
     end
 
     def sort
-      @content_type.sort_contents!(params[:order])
+      @content_type.sort_contents!(params[:children])
 
       respond_with(@content_type, :location => admin_contents_url(@content_type.slug))
     end
@@ -40,6 +41,10 @@ module Admin
 
     def begin_of_association_chain
       set_content_type
+    end
+
+    def authorize_content
+      authorize! params[:action].to_sym, ContentInstance
     end
 
   end
