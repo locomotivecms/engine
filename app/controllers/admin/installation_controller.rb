@@ -15,6 +15,8 @@ module Admin
 
     before_filter :allow_installation?
 
+    skip_load_and_authorize_resource
+
     def show
       request.get? ? self.handle_get : self.handle_post
     end

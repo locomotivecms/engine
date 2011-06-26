@@ -32,6 +32,10 @@ class Ability
     can :sort, Page
 
     can :manage, [ContentInstance, Asset]
+
+    can :touch, Site do |site|
+      site == @site
+    end
   end
 
   def setup_designer_permissions!
@@ -43,9 +47,9 @@ class Ability
 
     can :manage, ThemeAsset
 
-    can :import, Site
-
-    can :point,  Site
+    can :manage, Site do |site|
+      site == @site
+    end
 
     can :manage, Membership
   end

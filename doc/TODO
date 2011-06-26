@@ -34,15 +34,17 @@ x better hints:
 - cancan: (authors / designers / admin)
   x model
   x ui
-  - controllers / views:
+  x controllers / views:
     x page
     x content / content type
     x asset
-    - site
-    - account
-    - snippet
-    - theme asset
+    x site
+    x account
+    x snippet
+    x theme asset
+  - spec
 - better ui: increase text field length + refactor error message
+- enable rack-cache only for a specific url
 - convert existing templates (the 2 of the themes section)
 - bugs
   - heroku: unable to upload a new file

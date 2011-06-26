@@ -5,6 +5,10 @@ module Admin
 
     actions :show, :new, :create
 
+    skip_load_and_authorize_resource
+
+    before_filter :authorize_import
+
     def show
       @job = Delayed::Job.where({ :job_type => 'import', :site_id => current_site.id }).last
 
@@ -39,6 +43,12 @@ module Admin
 
         render 'new'
       end
+    end
+
+    protected
+
+    def authorize_import
+      authorize! 'new', Site
     end
 
   end

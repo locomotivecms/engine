@@ -5,6 +5,8 @@ module Admin
 
     before_filter :set_parent_and_fields
 
+    skip_load_and_authorize_resource
+
     def edit
       @field = @fields.find(params[:id])
       render :action => "edit_#{@field.kind.downcase}"

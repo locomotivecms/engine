@@ -41,7 +41,7 @@
           %button{ :class => 'button light add', :type => 'button' }
             %span!= t('admin.buttons.new_item')
 
-- if current_ability.can?(:touch, Membership)
+- if can?(:manage, Membership)
 
   = f.foldable_inputs :name => :memberships, :class => 'memberships off' do
     = f.semantic_fields_for :memberships do |fm|
@@ -53,7 +53,7 @@
 
         %em.email= account.email
 
-        - if current_admin != account && current_ability.can?(:touch, Membership)
+        - if current_admin != account
           .role
             %em.editable= t("admin.memberships.roles.#{membership.role}")
 

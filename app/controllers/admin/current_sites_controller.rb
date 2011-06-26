@@ -7,6 +7,10 @@ module Admin
 
     actions :edit, :update
 
+    skip_load_and_authorize_resource
+
+    load_and_authorize_resource :class => 'Site'
+
     respond_to :json, :only => :update
 
     def update

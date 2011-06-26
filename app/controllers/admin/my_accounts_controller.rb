@@ -7,6 +7,8 @@ module Admin
 
     respond_to :json, :only => :update
 
+    skip_load_and_authorize_resource
+
     def update
       update! { edit_admin_my_account_url }
     end
