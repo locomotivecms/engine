@@ -44,6 +44,8 @@ module Locomotive
               end
             end
 
+            puts "content_type => #{value} / #{original_filename.inspect}"
+
             model.content_type = value
           end
 

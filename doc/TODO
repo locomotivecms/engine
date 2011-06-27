@@ -31,7 +31,7 @@ x Has_one => group by in the select
 x better hints:
   x notify the user that after changing the page title, they still have to click "update" for the change to be saved
   x created_by ASC => "Creation date ascending"
-- cancan: (authors / designers / admin)
+x cancan: (authors / designers / admin)
   x model
   x ui
   x controllers / views:
@@ -42,7 +42,7 @@ x better hints:
     x account
     x snippet
     x theme asset
-  - spec
+  x features / specs
 - better ui: increase text field length + refactor error message
 - enable rack-cache only for a specific url
 - convert existing templates (the 2 of the themes section)

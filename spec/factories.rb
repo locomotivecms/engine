@@ -9,7 +9,7 @@ Factory.define "test site", :parent => :site do |s|
   s.name 'Locomotive test website'
   s.subdomain 'test'
   s.after_build do |site_test|
-    site_test.memberships.build :account => Account.where(:name => "Admin").first || Factory("admin user"), :admin => true
+    site_test.memberships.build :account => Account.where(:name => "Admin").first || Factory("admin user"), :role => 'admin'
   end
 end
 
@@ -54,8 +54,23 @@ end
 
 ## Memberships ##
 Factory.define :membership do |m|
-  m.admin true
-  m.account{ Account.where(:name => "Bart Simpson").first || Factory(:account) }
+  m.role 'admin'
+  m.account { Account.where(:name => "Bart Simpson").first || Factory('admin user') }
+end
+
+Factory.define :admin, :parent => :membership do |m|
+  m.role 'admin'
+  m.account { Factory('admin user', :locale => 'en') }
+end
+
+Factory.define :designer, :parent => :membership do |m|
+  m.role 'designer'
+  m.account { Factory('frenchy user', :locale => 'en') }
+end
+
+Factory.define :author, :parent => :membership do |m|
+  m.role 'author'
+  m.account { Factory('brazillian user', :locale => 'en') }
 end
 
 

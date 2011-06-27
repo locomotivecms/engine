@@ -29,9 +29,7 @@ module Admin
     respond_to :html
 
     rescue_from CanCan::AccessDenied do |exception|
-      puts "exception = #{exception.inspect}"
-
-      logger.debug "[CanCan::AccessDenied] #{exception.inspect}"
+      ::Locomotive::Logger.info "[CanCan::AccessDenied] #{exception.inspect}"
 
       if request.xhr?
         render :json => { :error => exception.message }

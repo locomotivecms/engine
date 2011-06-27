@@ -103,14 +103,14 @@ describe ThemeAsset do
     end
 
     it 'should handle stylesheet' do
-      @asset.content_type = 'stylesheet'
+      @asset.plain_text_type = 'stylesheet'
       @asset.valid?.should be_true
       @asset.stylesheet?.should be_true
       @asset.source.should_not be_nil
     end
 
     it 'should handle javascript' do
-      @asset.content_type = 'javascript'
+      @asset.plain_text_type = 'javascript'
       @asset.valid?.should be_true
       @asset.javascript?.should be_true
       @asset.source.should_not be_nil

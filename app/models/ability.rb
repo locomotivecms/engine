@@ -1,7 +1,7 @@
 class Ability
   include CanCan::Ability
 
-  ROLES = %w(admin author designer)
+  ROLES = %w(admin designer author)
 
   def initialize(account, site)
     @account, @site = account, site
@@ -45,11 +45,17 @@ class Ability
 
     can :manage, ContentType
 
+    can :manage, Snippet
+
     can :manage, ThemeAsset
 
     can :manage, Site do |site|
       site == @site
     end
+
+    can :import, Site
+
+    can :point, Site
 
     can :manage, Membership
   end

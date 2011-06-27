@@ -42,4 +42,12 @@ Then /^the rendered output should look like:$/ do |body_contents|
   page.body.should == body_contents
 end
 
+Then /^I should see delete page buttons$/ do
+  page.has_css?("ul#pages-list li .more a.remove").should be_true
+end
+
+Then /^I should not see delete page buttons$/ do
+  page.has_css?("ul#pages-list li .more a.remove").should be_false
+end
+
 

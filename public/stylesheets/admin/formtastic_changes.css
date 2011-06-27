@@ -165,6 +165,11 @@ form.formtastic fieldset ol .more { text-align: right; width: auto; margin: 10px
 form.formtastic fieldset ol .more a { text-decoration: none; color: #787A89; font-size: 0.7em; }
 form.formtastic fieldset ol .more a:hover { text-decoration: underline; }
 
+form.formtastic fieldset ol .more a.picture {
+  padding-left: 23px;
+  background: transparent url(/images/admin/icons/asset_add.png) no-repeat left 1px;
+}
+
 /* ___ pages ___ */
 
 form.formtastic fieldset ol li.path em {
@@ -558,7 +563,7 @@ form.formtastic fieldset.memberships ol li select {
   top: -1px;
 }
 
-/* ___ assets ___ */
+/* ___ theme assets ___ */
 
 .selector {
   position: relative;
@@ -572,7 +577,11 @@ form.formtastic fieldset.memberships ol li select {
   font-size: 0.7em;
   text-decoration: none;
   cursor: pointer;
+  padding-left: 20px;
+  background: transparent url(/images/admin/icons/asset_switch.png) no-repeat left 2px;
 }
+
+.selector span.alt:hover { text-decoration: underline; }
 
 
 form.formtastic fieldset.file li.full input {

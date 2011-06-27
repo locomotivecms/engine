@@ -48,7 +48,7 @@ module Admin
     protected
 
     def authorize_import
-      authorize! 'new', Site
+      authorize! :import, Site
     end
 
   end

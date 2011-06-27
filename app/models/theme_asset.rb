@@ -26,6 +26,7 @@ class ThemeAsset
   before_validation :store_plain_text
   before_validation :sanitize_folder
   before_validation :build_local_path
+  after_save        :test
 
   ## validations ##
   validates_presence_of :site, :source
@@ -38,7 +39,7 @@ class ThemeAsset
   scope :visible, lambda { |all| all ? {} : { :where => { :hidden => false } } }
 
   ## accessors ##
-  attr_accessor :plain_text_name, :plain_text, :performing_plain_text
+  attr_accessor :plain_text_name, :plain_text, :plain_text_type, :performing_plain_text
 
   ## methods ##
 
@@ -74,16 +75,28 @@ class ThemeAsset
     end
   end
 
+  def plain_text_type
+    @plain_text_type || (stylesheet_or_javascript? ? self.content_type : nil)
+  end
+
   def performing_plain_text?
     Boolean.set(self.performing_plain_text) || false
   end
 
   def store_plain_text
+    self.content_type ||= @plain_text_type if self.performing_plain_text?
+
+    puts "content_type = #{content_type.inspect}"
+
     data = self.performing_plain_text? ? self.plain_text : self.source.read
 
     return if !self.stylesheet_or_javascript? || self.plain_text_name.blank? || data.blank?
 
     sanitized_source = self.escape_shortcut_urls(data)
+
+    puts "filename = #{self.plain_text_name}.#{self.stylesheet? ? 'css' : 'js'}"
+
+    puts "sanitized_source = #{sanitized_source.inspect}"
 
     self.source = CarrierWave::SanitizedFile.new({
       :tempfile => StringIO.new(sanitized_source),
@@ -143,6 +156,10 @@ class ThemeAsset
 
   def content_type_can_not_changed
     self.errors.add(:source, :extname_changed) if !self.new_record? && self.content_type_changed?
+  end
+
+  def test
+    puts "self.safe_source_filename = #{self.safe_source_filename} / #{self.source_filename}"
   end
 
 end

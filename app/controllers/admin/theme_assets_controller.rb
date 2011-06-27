@@ -44,6 +44,13 @@ module Admin
       end
     end
 
+    def update
+      update! do |success, failure|
+        @theme_asset = ThemeAsset.find(@theme_asset._id)
+        puts "---> @theme_asset = #{@theme_asset.source_filename} / #{@theme_asset.inspect}"
+      end
+    end
+
     protected
 
     def sanitize_params
