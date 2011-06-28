@@ -23,6 +23,7 @@ require 'zip/zipfilesystem'
 require 'jammit-s3'
 require 'dragonfly'
 require 'cancan'
+require 'RMagick'
 
 $:.unshift File.dirname(__FILE__)
 
