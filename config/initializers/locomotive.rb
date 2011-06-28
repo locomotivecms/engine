@@ -75,5 +75,3 @@ Locomotive.configure do |config|
   # Note: by default, rack/cache is disabled in the Heroku platform
 
 end unless Locomotive.engine? || Rails.env.test?
-
-# Rails.application.middleware.use '::Locomotive::Middlewares::SeoTrailingSlash'

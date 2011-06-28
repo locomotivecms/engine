@@ -5,6 +5,9 @@ rescue MissingSourceFile
   module Rspec
     module Core
       class RakeTask
+
+        include ::Rake::DSL
+
         def initialize(name)
           task name do
             # if rspec-rails is a configured gem, this will output helpful material and exit ...

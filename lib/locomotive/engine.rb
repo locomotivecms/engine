@@ -21,6 +21,7 @@ require 'redcloth'
 require 'delayed_job_mongoid'
 require 'zip/zipfilesystem'
 require 'jammit-s3'
+require 'dragonfly'
 
 $:.unshift File.dirname(__FILE__)
 
