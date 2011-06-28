@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title>{#locomedia_dlg.dialog_title}</title>
+
+  <script type="text/javascript" src="../../tiny_mce_popup.js"></script>
+
+  <script type="text/javascript" src="/javascripts/admin/jquery.js"></script>
+  <script type="text/javascript" src="/javascripts/admin/rails.js"></script>
+
+  <script src="/javascripts/admin/plugins/plupload/src/plupload.js" type="text/javascript"></script>
+  <script src="/javascripts/admin/plugins/plupload/plupload.gears.min.js" type="text/javascript"></script>
+  <script src="/javascripts/admin/plugins/plupload/src/flash.js" type="text/javascript"></script>
+  <script src="/javascripts/admin/plugins/plupload/plupload.html4.min.js" type="text/javascript"></script>
+  <script src="/javascripts/admin/plugins/plupload/plupload.html5.min.js" type="text/javascript"></script>
+  <script src="/javascripts/admin/plugins/plupload/jquery.plupload.queue.min.js" type="text/javascript"></script>
+  <script src="/javascripts/admin/plugins/plupload/jquery.plupload.queue.min.js" type="text/javascript"></script>
+  <script src="/javascripts/admin/plugins/scrollTo.js" type="text/javascript"></script>
+
+  <script type="text/javascript" src="js/dialog.js"></script>
+
+  <link href="/stylesheets/admin/assets.css" rel="stylesheet" type="text/css" />
+  <link href="css/style.css" rel="stylesheet" type="text/css" />
+</head>
+<body id="locomedia" style="display: none">
+
+  <div id="spinner">
+    <div class="overlay"></div>
+    <div class="text loading">{#locomedia_dlg.loading}</div>
+    <div class="text uploading" style="display: none">{#locomedia_dlg.uploading}</div>
+    <div class="text destroying" style="display: none">{#locomedia_dlg.destroying}</div>
+  </div>
+
+  <p class="no-items" style="display: none">{#locomedia_dlg.no_items}</p>
+
+  <form onsubmit="insertAction();return false;" action="#">
+    <div id="images">
+      <ul class="assets">
+        <li class="new-asset">
+          <h4><a href="#">NoName</a></h4>
+          <div class="icon">
+            <div class="inside">
+            </div>
+          </div>
+          <div class="actions">
+            <a href="#" class="remove" data-remote="true" data-confirm="{#locomedia_dlg.confirm}" data-method="delete" rel="nofollow">
+              <img src="/images/admin/list/icons/cross.png">
+            </a>
+          </div>
+        </li>
+        <li class="clear"></li>
+      </ul>
+    </div>
+
+    <div class="mceActionPanel">
+      <a href="/admin/assets.json" id="upload-link">{#locomedia_dlg.upload}</a>
+      <input type="button" id="cancel" name="cancel" value="{#cancel}" onclick="tinyMCEPopup.close();" />
+    </div>
+  </form>
+</body>
+</html>

@@ -51,7 +51,7 @@ describe 'Locomotive rendering system' do
     end
 
     it 'sets the status to 404 not found when no page is found' do
-      @controller.expects(:not_found_page).returns(@page)
+      @page.stubs(:not_found?).returns(true)
       @controller.send(:prepare_and_set_response, 'Hello world !')
       @controller.status.should == :not_found
     end
@@ -85,7 +85,7 @@ describe 'Locomotive rendering system' do
       @controller.send(:locomotive_page).should be_true
     end
 
-    context 'redirect page' do
+    context 'redirect' do
 
       before(:each) do
         @page.redirect = true

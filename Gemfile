@@ -4,7 +4,7 @@ source :rubygems
 
 gem 'rake', '0.8.7'
 
-gem 'rails', '>= 3.0.8'
+gem 'rails', '3.0.9'
 
 gem 'warden'
 gem 'devise', '1.3.4'
@@ -21,9 +21,12 @@ gem 'formtastic', '~> 1.2.3'
 gem 'inherited_resources', '~> 1.1.2'
 
 gem 'rmagick', '2.12.2'
-gem 'locomotive_carrierwave', '0.5.4.beta2'
+gem 'locomotive_carrierwave', '0.5.4.beta3'
+gem 'dragonfly',  '~> 0.9.1'
+gem 'rack-cache', :require => 'rack/cache'
 
-gem 'custom_fields', '1.0.0.beta.18'
+gem 'custom_fields', '1.0.0.beta.19'
+gem 'cancan'
 gem 'fog', '0.8.2'
 gem 'mimetype-fu'
 gem 'actionmailer-with-request', :require => 'actionmailer_with_request'

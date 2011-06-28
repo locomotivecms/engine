@@ -1,3 +1,5 @@
+require 'uri'
+
 module Locomotive
   module Httparty
     class Webservice
@@ -7,7 +9,11 @@ module Locomotive
       def self.consume(url, options = {})
         url = HTTParty.normalize_base_uri(url)
 
-        options[:base_uri], path = url.scan(/^(http[s]?:\/\/.+\.[a-z]{2,})(\/.+)*/).first
+        uri = URI.parse(url)
+        options[:base_uri] = "#{uri.scheme}://#{uri.host}"
+        options[:base_uri] += ":#{uri.port}" if uri.port != 80
+        path = uri.request_uri
+
         options.delete(:format) if options[:format] == 'default'
 
         username, password = options.delete(:username), options.delete(:password)

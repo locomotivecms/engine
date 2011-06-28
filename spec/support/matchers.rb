@@ -93,6 +93,35 @@ module Locomotive
         IncludeClassMethod.new(meth)
       end
 
+      class PermissionsMatcher
+        def initialize(permission, member)
+          @permission = permission
+          @member     = member
+        end
+
+        def matches?(target)
+          @target = target
+          @member.ability.can? @permission, @target
+        end
+
+        def failure_message_for_should
+          "expected #{show_object(@member)} to allow '#{@permission}' permission on #{show_object(@target)}"
+        end
+
+        def failure_message_for_should_not
+          "expected #{show_object(@member)} not to allow '#{@permission}' permission on #{show_object(@target)}"
+        end
+
+        protected
+
+        def show_object(object)
+          "#{object.class.name}(#{object.id.inspect})"
+        end
+      end
+
+      def allow_permission_from(permission, member)
+        PermissionsMatcher.new(permission, member)
+      end
     end
   end
 end

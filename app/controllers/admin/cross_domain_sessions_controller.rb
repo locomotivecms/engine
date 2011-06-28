@@ -9,6 +9,8 @@ module Admin
 
     before_filter :require_admin, :only => :new
 
+    skip_load_and_authorize_resource
+
     def new
       if site = current_admin.sites.detect { |s| s._id.to_s == params[:target_id] }
         if Rails.env == 'development'

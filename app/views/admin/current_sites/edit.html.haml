@@ -3,9 +3,10 @@
 - content_for :submenu do
   = render 'admin/shared/menu/settings'
 
-- content_for :buttons do
-  = admin_button_tag :import, new_admin_import_url, :class => 'new'
-  = admin_button_tag t('.new_membership'), new_admin_membership_url, :class => 'new'
+- if can?(:manage, @site)
+  - content_for :buttons do
+    = admin_button_tag :import, new_admin_import_url, :class => 'new'
+    = admin_button_tag t('.new_membership'), new_admin_membership_url, :class => 'new'
 
 %p!= t('.help')
 

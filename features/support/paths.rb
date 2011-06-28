@@ -14,10 +14,22 @@ module NavigationHelpers
       new_admin_session_path
     when /logout/
       destroy_admin_session_path
-    when /pages/
+    when /pages( list)?/
       admin_pages_path
+    when /new page/
+      new_admin_page_path
+    when /"(.*)" edition page/
+      page = Site.first.pages.where(:slug => $1).first
+      edit_admin_page_path(page)
     when /theme assets/
       admin_theme_assets_path
+    when /site settings/
+      edit_admin_current_site_path
+    when /import page/
+      new_admin_import_path
+    when /the "(.*)" model edition page/
+      content_type = Site.first.content_types.where(:name => $1).first
+      edit_admin_content_type_path(content_type)
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:

@@ -33,11 +33,9 @@ Rails.application.routes.draw do
       get :all, :action => 'index', :on => :collection, :defaults => { :all => true }
     end
 
-    resources :asset_collections
+    resources :assets
 
-    resources :assets, :path => 'asset_collections/:collection_id/assets'
-
-    resources :images
+    resources :images, :controller => 'assets', :defaults => { :image => true }
 
     resources :content_types
 

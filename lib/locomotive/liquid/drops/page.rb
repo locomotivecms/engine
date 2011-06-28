@@ -2,26 +2,26 @@ module Locomotive
   module Liquid
     module Drops
       class Page < Base
-        delegate :meta_keywords, :meta_description, :to => "@source"
+        delegate :seo_title, :meta_keywords, :meta_description, :to => "_source"
 
         def title
-          @source.templatized? ? @context['content_instance'].highlighted_field_value : @source.title
+          self._source.templatized? ? @context['content_instance'].highlighted_field_value : self._source.title
         end
 
         def slug
-          @source.templatized? ? @source.content_type.slug.singularize : @source.slug
+          self._source.templatized? ? self._source.content_type.slug.singularize : self._source.slug
         end
 
         def children
-          @children ||= liquify(*@source.children)
+          @children ||= liquify(*self._source.children)
         end
 
         def fullpath
-          @fullpath ||= @source.fullpath
+          @fullpath ||= self._source.fullpath
         end
 
         def depth
-          @source.depth
+          self._source.depth
         end
 
       end

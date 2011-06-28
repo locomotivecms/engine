@@ -3,6 +3,12 @@ jQuery(function ($) {
         csrf_param = $('meta[name=csrf-param]').attr('content');
 
     $.fn.extend({
+
+        setCsrfSettings: function(token, param) {
+          csrf_token = token;
+          csrf_param = param;
+        },
+
         /**
          * Triggers a custom event on an element and returns the event result
          * this is used to get around not being able to ensure callbacks are placed
@@ -32,6 +38,10 @@ jQuery(function ($) {
             } else {
                 if (el.triggerAndReturn('ajax:before')) {
                     var data = el.is('form') ? el.serializeArray() : [];
+
+                    if (!el.is('form') && method != 'GET')
+                      data.push({ 'name': csrf_param, 'value': csrf_token });
+
                     $.ajax({
                         url: url,
                         data: data,

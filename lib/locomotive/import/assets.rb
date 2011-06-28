@@ -42,8 +42,6 @@ module Locomotive
       end
 
       def add_other_assets
-        collection = AssetCollection.find_or_create_internal(site)
-
         Dir[File.join(theme_path, 'public', 'samples', '*')].each do |asset_path|
 
           next if File.directory?(asset_path)
@@ -52,7 +50,7 @@ module Locomotive
 
           name = File.basename(asset_path, File.extname(asset_path)).parameterize('_')
 
-          collection.assets.create! :name => name, :source => File.open(asset_path)
+          self.site.assets.create! :name => name, :source => File.open(asset_path)
         end
       end
 

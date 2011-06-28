@@ -33,7 +33,7 @@ module Admin
     end
 
     def get_path
-      page = current_site.pages.build(:parent => current_site.pages.find(params[:parent_id]), :slug => params[:slug].slugify)
+      page = current_site.pages.build(:parent => current_site.pages.find(params[:parent_id]), :slug => params[:slug].permalink)
 
       render :json => { :url => page_url(page), :slug => page.slug }
     end

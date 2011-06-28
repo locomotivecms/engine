@@ -5,6 +5,7 @@ require 'locomotive/version'
 require 'locomotive/core_ext'
 require 'locomotive/configuration'
 require 'locomotive/logger'
+require 'locomotive/dragonfly'
 require 'locomotive/liquid'
 require 'locomotive/mongoid'
 require 'locomotive/carrierwave'
@@ -23,8 +24,9 @@ require 'locomotive/hosting'
 
 module Locomotive
 
-  include Locomotive::Hosting::Heroku
-  include Locomotive::Hosting::Bushido
+  extend Locomotive::Hosting::Heroku
+  extend Locomotive::Hosting::Bushido
+  extend Locomotive::Hosting::Default
 
   class << self
     attr_accessor :config
@@ -73,13 +75,26 @@ module Locomotive
       :key => self.config.cookie_key
     }
 
+    # add middlewares (dragonfly, font, seo, ...etc)
+    self.add_middlewares
+
     # Load all the dynamic classes (custom fields)
     begin
       ContentType.all.collect(&:fetch_content_klass)
-      AssetCollection.all.collect(&:fetch_asset_klass)
     rescue ::Mongoid::Errors::InvalidDatabase => e
       # let assume it's because of the first install (meaning no config.yml file)
     end
+  end
+
+  def self.add_middlewares
+    self.app_middleware.insert 0, 'Dragonfly::Middleware', :images
+
+    if self.rack_cache?
+      self.app_middleware.insert_before 'Dragonfly::Middleware', '::Locomotive::Middlewares::Cache', self.config.rack_cache
+    end
+
+    self.app_middleware.insert_before Rack::Lock, '::Locomotive::Middlewares::Fonts', :path => %r{^/fonts}
+    self.app_middleware.use '::Locomotive::Middlewares::SeoTrailingSlash'
   end
 
   def self.configure_multi_sites
@@ -114,6 +129,17 @@ module Locomotive
     if self.config.enable_logs == true
       Rails.logger.info(message)
     end
+  end
+
+  # rack_cache: needed by default
+  def self.rack_cache?
+    self.config.rack_cache != false
+  end
+
+  protected
+
+  def self.app_middleware
+    Rails.application.middleware
   end
 
 end

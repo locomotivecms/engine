@@ -1,8 +1,59 @@
 BOARD:
 
+x bushido version
+  x default template
 ~ editable_elements: inheritable: false (Mattias) => seems to be fixed by Dirk's last pull request (#44) => content tag
-- bushido version
-  - default template
+x locomedia tinyMCE plugin (Bernd)
+x remove asset_collections
+  x site templates
+  x tinyMCE plugin
+  x vignette.rb
+  x code
+  x helpers
+  x ui
+  x rake task
+  x internal collection
+    x assign same _id
+x pick up a theme_asset
+x pull request locomedia
+x refactor slugify method (use parameterize + create a module)
+x contents permalink (UI)
+x BUG: has_one / has_many. Delete an author
+x bushido changes in the master
+? edit sidebar (inline editor). Unable to reset it
+x SEO: support and support/ should be 2 different pages. Remove trailing slash
+x issue #91: httparty
+x issue #90: seo metadata
+x issue #57: seo page title
+x issue #56
+x tweak ui: form, quick link to edit a model in the popup menu
+x Has_one => group by in the select
+x better hints:
+  x notify the user that after changing the page title, they still have to click "update" for the change to be saved
+  x created_by ASC => "Creation date ascending"
+x cancan: (authors / designers / admin)
+  x model
+  x ui
+  x controllers / views:
+    x page
+    x content / content type
+    x asset
+    x site
+    x account
+    x snippet
+    x theme asset
+  x features / specs
+x enable rack-cache only for a specific url
+- convert existing templates (the 2 of the themes section)
+
+=> MERGE
+
+- bugs
+  - heroku: unable to upload a new file
+  - import
+  - delete an item
+- liquid tag: Date.today (now), add a test to compare 2 dates
+- better ui: increase text field length + refactor error message
 
 BACKLOG:
 
@@ -19,11 +70,16 @@ BACKLOG:
 - icon for redirection page in the pages section (back-office)
 - write my first tutorial about locomotive
 - upgrade warning if new version of locomotive (maybe based on the commit id)
+- deploying workflow:
+  - roll back a bad update
+  - conflicts with content types
+  - dev -> staging -> production
+  - sync data
+  - import only theme assets
 
 
 REFACTORING:
 
-  - refactor slugify method (use parameterize + create a module)
   - move content_type and content_instances in the CustomFields plugin (much more appropriate)
 
 BUGS:

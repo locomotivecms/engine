@@ -4,6 +4,7 @@ fr:
       information: Informations générales
       advanced_options: Options avancées
       meta: SEO Metadata
+      seo: Paramètres SEO
       code: Code
       raw_template: Gabarit
       credentials: Informations de connexion
@@ -42,10 +43,14 @@ fr:
       content_type:
         raw_item_template: Template d'affichage
         api_accounts: Comptes à notifier
+      content_instance:
+        _slug: Permalink
       account:
         edit:
           password: Nouveau mot de passe
           password_confirmation: Confirmation nouveau mot de passe
+      page:
+        seo_title: Titre
 
     hints:
       page:
@@ -54,6 +59,7 @@ fr:
         templatized: "Utilise la page comme un template pour un modèle défini."
         listed: "Controle si la page doit être visible depuis les menus automatiquement générés."
         content_type_id: "Le type du contenu pour lequel cette page est un template."
+        seo_title: "Définit un titre de page à mettre dans la balise TITLE de la page. Laissez le blanc pour utiliser la valeur par défaut (voir configuration du site)."
         meta_keywords: "Redéfinit les mots-clés du site. Utilisés à l'intérieur de la balise HEAD. Ils sont séparés par une virgule."
         meta_description: "Redéfinit la description du site. Utilisée à l'intérieur de la balise HEAD."
       snippet:
@@ -76,6 +82,11 @@ fr:
         field:
           _alias: "Champ utilisable dans les templates liquid"
           hint: "Texte affiché dans le formulaire de l'élément juste en dessous du champ."
+      content_instance:
+        _slug: "Propriété utilisée pour générer l'url d'une page faisant office de template pour ce modèle (ex: \"template_de_la_page/{{ votre_object._permalink }})\"."
+        seo_title: "La valeur que vous rentrez sera utilisée comme titre SEO pour la page faisant office de template pour ce modèle."
+        meta_keywords: "Redéfinit les mots-clés du site. Utilisés à l'intérieur de la balise HEAD. Ils sont séparés par une virgule."
+        meta_description: "Redéfinit la description du site. Utilisée à l'intérieur de la balise HEAD."
       import:
         source: "Un fichier zip contenant database.yml, les fichiers du thème et les templates de page"
         samples: "Si activé, les contenus et les média seront aussi copiés lors de l'import"

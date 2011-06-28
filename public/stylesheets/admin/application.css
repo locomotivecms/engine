@@ -244,5 +244,13 @@ ul.theme-assets li.hidden strong a { font-style: italic; color: #8B8D9A; font-we
   color: #1F82BC;
 }
 
+/* paragraph (for help for example) */
+
+p span.code {
+  background: #EBEDF4;
+  color: #8B8D9A;
+  text-shadow: #fff 0px 1px;
+  padding: 2px 3px;
+}
 
 

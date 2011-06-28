@@ -59,8 +59,10 @@ $(document).ready(function() {
         onComplete: function() {
           $('#fancybox-wrap .popup-actions button[type=submit]').click(function(e) {
             $.each(attributes, function(index, name) {
-              var val = domBoxAttrVal(name).trim();
-              if (val != '') domFieldVal(domField, name, val);
+              try {
+                var val = domBoxAttrVal(name).trim();
+                if (val != '') domFieldVal(domField, name, val);
+              } catch(e) {}
             });
             domBoxAttr('text_formatting').parent().hide();
 

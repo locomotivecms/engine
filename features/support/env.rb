@@ -16,6 +16,8 @@ require 'capybara/rails'
 require 'capybara/cucumber'
 require 'capybara/session'
 
+require 'ruby-debug'
+
 # envjs doesnt work at the moment
 # require 'capybara/envjs'
 

@@ -72,11 +72,7 @@ de:
         highlighted_field_name: Hervorgehobener Feld-Name
         group_by_field_name: Gruppierung nach Feld-Name
         api_enabled: API aktiviert
-      asset_collection:
-        name: Name
-        slug: Slug
       asset:
-        name: Name
         source: Quelle
       account:
         email: Email

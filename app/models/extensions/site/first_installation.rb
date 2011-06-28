@@ -6,7 +6,7 @@ module Extensions
       def create_first_one(attributes)
         site = self.new(attributes)
 
-        site.memberships.build :account => Account.first, :admin => true
+        site.memberships.build :account => Account.first, :role => 'admin'
 
         site.save
 

@@ -164,25 +164,37 @@
       &:hover { text-decoration: underline; }
     }
 
+    .header {
+      border-bottom: 1px dotted #bbbbbd;
+      padding-bottom: 6px;
+      margin: 0px 16px;
+    }
+
     .inner { padding: 8px 16px; }
 
     h2 {
       font-size: 0.7em;
       font-weight: bold;
       color: #1e1f26;
-      border-top: 1px dotted #bbbbbd;
-      padding-top: 6px;
       margin-bottom: 0px;
     }
 
     p {
-      margin: 0px 15px;
+      margin: 0px;
       padding: 10px 0 0 0px;
 
       a {
         font-size: 0.8em;
         background: transparent url(/images/admin/menu/popup/add.png) no-repeat left 4px;
         padding-left: 12px;
+      }
+
+      &.edit {
+        padding-top: 0px;
+
+        a {
+          background: transparent url(/images/admin/menu/popup/bullet.png) no-repeat left 5px;
+        }
       }
     }
 

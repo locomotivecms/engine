@@ -12,3 +12,7 @@ Given /^I have the site: "([^"]*)" set up(?: with #{capture_fields})?$/ do |site
   @admin.should_not be_nil
 end
 
+Given /^I have a designer and an author$/ do
+  Factory(:designer, :site => Site.first)
+  Factory(:author, :site => Site.first)
+end
