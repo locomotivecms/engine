@@ -33,10 +33,5 @@ module Locomotive
       load "railties/tasks.rake"
     end
 
-    # initializer "serving fonts" do |app|
-    #   app.middleware.insert_after Rack::Lock, '::Locomotive::Middlewares::Fonts', :path => %r{^/fonts}
-    #   app.middleware.insert_after Rack::Lock, '::Locomotive::Middlewares::SeoTrailingSlash'
-    # end
-
   end
 end
