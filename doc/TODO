@@ -3,6 +3,7 @@ BOARD:
 x bushido version
   x default template
 ~ editable_elements: inheritable: false (Mattias) => seems to be fixed by Dirk's last pull request (#44) => content tag
+x resizing images on the fly
 x locomedia tinyMCE plugin (Bernd)
 x remove asset_collections
   x site templates
@@ -49,9 +50,9 @@ x enable rack-cache only for a specific url
 => MERGE
 
 - bugs
-  - heroku: unable to upload a new file
-  - import
-  - delete an item
+  - heroku: unable to upload a new file => okay
+  - import => okay
+  - delete an item => okay
 - liquid tag: Date.today (now), add a test to compare 2 dates
 - better ui: increase text field length + refactor error message
 
@@ -86,7 +87,7 @@ BUGS:
 
 NICE TO HAVE:
 - export site
-- asset collections: custom resizing if image
+
 - super_finder
 - traffic statistics
 - asset picker (content instance)
@@ -94,7 +95,6 @@ NICE TO HAVE:
 - automatic update !
 - page not found (front) => if logged in, link to create the page
 - switch to list (theme assets / assets ?). delete all in once (with checkbox) or see details (updated_at, size, ...etc)
-- resizing images on the fly
 - code completion ? http://blog.quplo.com/2010/06/common-sense-code-completion/
 
 DONE:
@@ -268,3 +268,4 @@ x integrate new locomotivecms home
 x seo section for the page form: seo title, seo keywords, seo description
 x bugs: #50, #51
 x 2 different sites on the same main domain (one in www, the other one in something else) (Raphael Costa)
+! asset collections: custom resizing if image

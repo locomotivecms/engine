@@ -33,13 +33,12 @@ end
 Then /^I should have "(.*)" in the (.*) page$/ do |content, page_slug|
   page = @site.pages.where(:slug => page_slug).first
   raise "Could not find page: #{page_slug}" unless page
-
   page.raw_template.should == content
 end
 
 # checks if the rendered body matches a string
 Then /^the rendered output should look like:$/ do |body_contents|
-  page.body.should == body_contents
+  page.source.should == body_contents
 end
 
 Then /^I should see delete page buttons$/ do

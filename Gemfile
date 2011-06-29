@@ -2,7 +2,7 @@ source :rubygems
 
 # add in all the runtime dependencies
 
-gem 'rake', '0.8.7'
+gem 'rake', '0.9.2'
 
 gem 'rails', '3.0.9'
 
@@ -42,8 +42,9 @@ gem 'SystemTimer', :platforms => :ruby_18
 # The rest of the dependencies are for use when in the locomotive dev environment
 
 group :development do
-  # Using unicorn_rails instead of webrick (default server)
-  gem 'unicorn'
+  gem 'unicorn' # Using unicorn_rails instead of webrick (default server)
+
+  gem 'rspec-rails', '2.3.1' # in order to have rspec tasks and generators
 end
 
 group :test, :development do
@@ -52,6 +53,8 @@ group :test, :development do
   gem 'ruby-debug19', :platforms => :mri_19
 
   gem 'bushido_stub', :git => 'git://github.com/did/bushido_stub.git'
+
+  gem 'cucumber-rails', '1.0.2'
 end
 
 group :production do
@@ -65,12 +68,10 @@ group :test do
   gem 'rspec-rails', '2.3.1'
   gem 'factory_girl_rails'
   gem 'pickle'
-  gem 'xpath', '0.1.3'
+  gem 'xpath', '~> 0.1.4'
   gem 'capybara'
-
   gem 'database_cleaner'
-  gem 'cucumber', '0.8.5'
-  gem 'cucumber-rails'
+
   gem 'spork'
   gem 'launchy'
   gem 'mocha', :git => 'git://github.com/floehopper/mocha.git'
