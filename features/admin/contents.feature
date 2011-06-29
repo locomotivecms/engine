@@ -50,3 +50,5 @@ Scenario: Destroy an entry
   And I follow image link "Delete"
   Then I should see "Content was successfully deleted."
   And I should not see "My sexy project"
+
+Scenario: Group entries by category

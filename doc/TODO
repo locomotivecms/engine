@@ -55,6 +55,7 @@ x enable rack-cache only for a specific url
 - liquid tag: Date.today (now), add a test to compare 2 dates
 - tinyMCE => fullscreen
 - icon for redirection page in the pages section (back-office)
+- more cucumber tests for the content types
 
 => MERGE
 
@@ -76,7 +77,6 @@ BACKLOG:
 - global regions: keyword in editable element (http://www.mongodb.org/display/DOCS/Updating)
 - cucumber features for admin pages (in progress)
 (- duostack/doutcloud version)
-
 - write my first tutorial about locomotive
 - upgrade warning if new version of locomotive (maybe based on the commit id)
 - deploying workflow:
