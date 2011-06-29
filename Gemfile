@@ -44,7 +44,7 @@ gem 'SystemTimer', :platforms => :ruby_18
 group :development do
   gem 'unicorn' # Using unicorn_rails instead of webrick (default server)
 
-  gem 'rspec-rails', '2.3.1' # in order to have rspec tasks and generators
+  gem 'rspec-rails', '2.6.1' # in order to have rspec tasks and generators
 end
 
 group :test, :development do
@@ -65,7 +65,7 @@ group :test do
   gem 'autotest'
   gem 'ZenTest'
   gem 'growl-glue'
-  gem 'rspec-rails', '2.3.1'
+  gem 'rspec-rails', '2.6.1'
   gem 'factory_girl_rails'
   gem 'pickle'
   gem 'xpath', '~> 0.1.4'
