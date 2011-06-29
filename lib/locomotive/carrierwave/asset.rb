@@ -30,6 +30,7 @@ module Locomotive
 
         module InstanceMethods
 
+          include ::CarrierWave::RMagick
           def set_content_type(*args)
             value = :other
 
