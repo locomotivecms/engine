@@ -45,7 +45,16 @@ x cancan: (authors / designers / admin)
     x theme asset
   x features / specs
 x enable rack-cache only for a specific url
+- check hosting:
+  x heroku
+  - bushi.do
+    - deploy => okay
+    - unable to reach the console
+    - unable to set a new subdomain
 - convert existing templates (the 2 of the themes section)
+- liquid tag: Date.today (now), add a test to compare 2 dates
+- tinyMCE => fullscreen
+- icon for redirection page in the pages section (back-office)
 
 => MERGE
 
@@ -53,7 +62,6 @@ x enable rack-cache only for a specific url
   - heroku: unable to upload a new file => okay
   - import => okay
   - delete an item => okay
-- liquid tag: Date.today (now), add a test to compare 2 dates
 - better ui: increase text field length + refactor error message
 
 BACKLOG:
@@ -68,7 +76,7 @@ BACKLOG:
 - global regions: keyword in editable element (http://www.mongodb.org/display/DOCS/Updating)
 - cucumber features for admin pages (in progress)
 (- duostack/doutcloud version)
-- icon for redirection page in the pages section (back-office)
+
 - write my first tutorial about locomotive
 - upgrade warning if new version of locomotive (maybe based on the commit id)
 - deploying workflow:

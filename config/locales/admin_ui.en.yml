@@ -6,6 +6,7 @@ en:
       change_password: Update
       new_item: "+ add"
       switch_to_site: Go
+      delete: "Delete"
 
     messages:
       confirm: Are you sure ?

@@ -16,6 +16,7 @@ fr:
       change_password: Mettre à jour
       new_item: "+ ajouter"
       switch_to_site: Aller
+      delete: "Supprimer"
 
     messages:
       confirm: "Êtes-vous sûr(e) ?"
