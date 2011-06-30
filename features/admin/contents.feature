@@ -5,9 +5,18 @@ Feature: Manage Contents
 
 Background:
   Given I have the site: "test site" set up
-  And I have a custom project model
+  And I have a custom model named "Projects" with
+    | label       | kind      | required        |
+    | Name        | string    | true            |
+    | Description | text      | false           |
+    | Category    | category  | false           |
+  And I have "Design, Development" as "Category" values of the "Projects" model
   And I am an authenticated user
-  And I have a project entry with "My sexy project" as name and "Lorem ipsum" as description
+  And I have entries for "Projects" with
+    | name              | description             | category        |
+    | My sexy project   | Lorem ipsum             | Development     |
+    | Foo project       | Lorem ipsum...          | Design          |
+    | Bar project       | Lorem ipsum...          | Design          |
 
 Scenario:
   When I go to the "Projects" model list page
@@ -52,3 +61,10 @@ Scenario: Destroy an entry
   And I should not see "My sexy project"
 
 Scenario: Group entries by category
+  When I go to the "Projects" model list page
+  Then I should not see "Development"
+  And I should not see "Design"
+  When I change the presentation of the "Projects" model by grouping items by "Category"
+  And I go to the "Projects" model list page
+  Then I should see "Development"
+  And I should see "Design"

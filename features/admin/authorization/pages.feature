@@ -5,7 +5,10 @@ Feature: Pages
 
 Background:
   Given I have the site: "test site" set up
-  And I have a custom project model
+  And I have a custom model named "Projects" with
+    | label       | kind      | required        |
+    | Name        | string    | true            |
+    | Description | text      | false           |
   And I have a designer and an author
   And a page named "hello-world" with the template:
     """
