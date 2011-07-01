@@ -64,7 +64,8 @@ module Locomotive
           'current_page'      => self.params[:page],
           'params'            => self.params,
           'url'               => request.url,
-          'now'               => Date.today
+          'now'               => Time.now,
+          'today'             => Date.today
         }.merge(flash.stringify_keys) # data from api
 
         if @page.templatized? # add instance from content type

@@ -1,4 +1,4 @@
-= form.custom_input field._alias.to_sym, :label => field.label, :hint => field.hint, :css => 'file' do
+= form.custom_input field._alias.to_sym, :label => field.label, :hint => field.hint, :css => 'file', :required => required do
   = form.file_field field._name.to_sym
   - if form.object.send(:"#{field._name}?")
     %p.remove

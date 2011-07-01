@@ -5,7 +5,7 @@ $(document).ready(function() {
       var index = parseInt($(this).attr('href').match(/block-(.+)/)[1]);
 
       $('#editable-elements .wrapper ul li.block').hide();
-      $('#block-' + index).show();
+      $('#block-' + index).show().find('fieldset').trigger('refresh');
 
       $(this).parent().find('.on').removeClass('on');
       $(this).addClass('on');

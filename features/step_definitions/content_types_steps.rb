@@ -13,7 +13,7 @@ Given %r{^I have "([^"]*)" as "([^"]*)" values of the "([^"]*)" model$} do |valu
   field = content_type.content_custom_fields.detect { |f| f.label == field }
   field.should_not be_nil
 
-  if field.kind == 'category'
+  if field.category?
     values.split(',').collect(&:strip).each do |name|
       field.category_items.build :name => name
     end

@@ -52,16 +52,20 @@ $(document).ready(function() {
 
   // redirect feature
 
+  var advancedSettingsFieldset = $('.formtastic.page fieldset#advanced-options');
+
   $.subscribe('toggle.page_redirect.checked', function(event, data) {
     $('#page_templatized').parent('li').hide();
     $('#page_cache_strategy_input').hide();
     $('#page_redirect_url_input').show();
+    advancedSettingsFieldset.trigger('refresh');
   }, []);
 
  $.subscribe('toggle.page_redirect.unchecked', function(event, data) {
     $('#page_templatized').parent('li').show();
     $('#page_cache_strategy_input').show();
     $('#page_redirect_url_input').hide();
+    advancedSettingsFieldset.trigger('refresh');
   }, []);
 
   // automatic slug from page title

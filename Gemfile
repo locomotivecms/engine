@@ -25,7 +25,7 @@ gem 'locomotive_carrierwave', '0.5.4.beta3'
 gem 'dragonfly',  '~> 0.9.1'
 gem 'rack-cache', :require => 'rack/cache'
 
-gem 'custom_fields', '1.0.0.beta.19'
+gem 'custom_fields', '1.0.0.beta.20'
 gem 'cancan'
 gem 'fog', '0.8.2'
 gem 'mimetype-fu'

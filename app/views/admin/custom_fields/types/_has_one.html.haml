@@ -2,5 +2,5 @@
 
 - selected_id = form.object.send(field._alias.to_sym).try(:_id)
 
-= form.input field._alias.to_sym, :label => field.label, :hint => field.hint, :input_html => { :class => 'has_one' }, :as => :select, :collection => options_for_has_one(field, selected_id), :selected => selected_id
+= form.input field._alias.to_sym, :label => field.label, :hint => field.hint, :input_html => { :class => 'has_one' }, :as => :select, :collection => options_for_has_one(field, selected_id), :selected => selected_id, :required => required
 

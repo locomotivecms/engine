@@ -45,17 +45,21 @@ x cancan: (authors / designers / admin)
     x theme asset
   x features / specs
 x enable rack-cache only for a specific url
-- check hosting:
+x more cucumber tests for the content types
+x check hosting:
   x heroku
-  - bushi.do
-    - deploy => okay
-    - unable to reach the console
-    - unable to set a new subdomain
-- convert existing templates (the 2 of the themes section)
-- liquid tag: Date.today (now), add a test to compare 2 dates
+  x bushi.do
+    x unable to reach the console
+    x deploy => okay
+    x unable to set a new subdomain
+x liquid tag: Date.today (now), add a test to compare 2 dates
+x better ui: increase text field length (auto sizable ?) + refactor error message
 - tinyMCE => fullscreen
 - icon for redirection page in the pages section (back-office)
-- more cucumber tests for the content types
+- rake task to import a remote template
+- bug: duplicate fields (new entry) when errors in the content type form
+- test and/or convert existing templates (the 2 of the themes section)
+
 
 => MERGE
 
@@ -63,7 +67,7 @@ x enable rack-cache only for a specific url
   - heroku: unable to upload a new file => okay
   - import => okay
   - delete an item => okay
-- better ui: increase text field length + refactor error message
+- overide sort for contents
 
 BACKLOG:
 
