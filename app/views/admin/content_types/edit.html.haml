@@ -7,8 +7,8 @@
   = render 'admin/shared/actions/contents'
 
 - content_for :buttons do
-  = admin_button_tag :show_items, admin_contents_url(@content_type.slug), :class => 'show'
-  = admin_button_tag :new_item, new_admin_content_url(@content_type.slug), :class => 'new'
+  = admin_button_tag :show_items, admin_contents_url(@content_type.slug_was), :class => 'show'
+  = admin_button_tag :new_item, new_admin_content_url(@content_type.slug_was), :class => 'new'
 
 %p!= t('.help')
 
@@ -16,6 +16,6 @@
 
   = render 'form', :f => f
 
-  = render 'admin/shared/form_actions', :back_url => admin_contents_url(@content_type.slug), :button_label => :update
+  = render 'admin/shared/form_actions', :back_url => admin_contents_url(@content_type.slug_was), :button_label => :update
 
 = render 'admin/custom_fields/edit_field'

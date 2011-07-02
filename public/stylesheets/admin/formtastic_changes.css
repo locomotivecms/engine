@@ -465,8 +465,10 @@ form.formtastic fieldset ol li.has-many ul li.added span.actions button {
 form.formtastic fieldset ol li.has-many ul li.sep {
   border-top: 1px solid #ccc;
   height: 2px;
+  padding: 0px;
   margin: 5px 0 7px;
   width: 433px;
+  background: none;
 }
 
 form.formtastic fieldset ol li.has-many ul li.template {}

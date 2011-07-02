@@ -53,21 +53,20 @@ x check hosting:
     x deploy => okay
     x unable to set a new subdomain
 x liquid tag: Date.today (now), add a test to compare 2 dates
-x better ui: increase text field length (auto sizable ?) + refactor error message
+? better ui: increase text field length (auto sizable ?) + refactor error message
+  - trigger refresh at startup
+x bugs
+  x heroku: unable to upload a new file => okay
+  x import => okay
+  x delete an item => okay
+- bug: duplicate fields (new entry) when errors in the content type form
+- overide sort for contents
+- rake task to import a remote template
 - tinyMCE => fullscreen
 - icon for redirection page in the pages section (back-office)
-- rake task to import a remote template
-- bug: duplicate fields (new entry) when errors in the content type form
 - test and/or convert existing templates (the 2 of the themes section)
 
-
 => MERGE
-
-- bugs
-  - heroku: unable to upload a new file => okay
-  - import => okay
-  - delete an item => okay
-- overide sort for contents
 
 BACKLOG:
 

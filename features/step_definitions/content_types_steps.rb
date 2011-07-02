@@ -37,3 +37,7 @@ When %r{^I change the presentation of the "([^"]*)" model by grouping items by "
   content_type.group_by_field_name = field._name
   content_type.save.should be_true
 end
+
+Then /^I should not see (\d+) times the "([^"]*)" field$/ do |n, field|
+  page.all(:css, "#content_#{field.underscore.downcase}_input").size.should == n
+end
