@@ -59,14 +59,17 @@ x bugs
   x heroku: unable to upload a new file => okay
   x import => okay
   x delete an item => okay
-- bug: duplicate fields (new entry) when errors in the content type form
-- overide sort for contents
+x bug: duplicate fields (new entry) when errors in the content type form
 - rake task to import a remote template
 - tinyMCE => fullscreen
-- icon for redirection page in the pages section (back-office)
-- test and/or convert existing templates (the 2 of the themes section)
 
 => MERGE
+
+- overide sort for contents
+- icon for redirection page in the pages section (back-office)
+- test and/or convert existing templates (the 2 of the themes section)
+- [bushido] guiders / welcome page / devise cas authentication (SSO)
+
 
 BACKLOG:
 

@@ -85,8 +85,8 @@ GEM
       capybara (>= 1.0.0)
       cucumber (~> 1.0.0)
       nokogiri (>= 1.4.6)
-    custom_fields (1.0.0.beta.20)
-      activesupport (>= 3.0.7)
+    custom_fields (1.0.0.beta.21)
+      activesupport (~> 3.0.9)
       mongoid (= 2.0.2)
     daemons (1.1.4)
     database_cleaner (0.6.7)
@@ -283,7 +283,7 @@ DEPENDENCIES
   cancan
   capybara
   cucumber-rails (= 1.0.2)
-  custom_fields (= 1.0.0.beta.20)
+  custom_fields (= 1.0.0.beta.21)
   database_cleaner
   delayed_job (= 2.1.4)
   delayed_job_mongoid (= 1.0.2)

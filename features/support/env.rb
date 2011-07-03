@@ -22,11 +22,10 @@ require 'capybara/session'
 Capybara.configure do |config|
   config.run_server         = false
   config.default_selector   = :css
-  config.app_host           = 'http://test.example.com'
+  config.app_host           = 'http://test.example.com:8080'
 end
 
-Capybara.javascript_driver = :rack_test # :selenium
-
+# Capybara.javascript_driver = :rack_test
 
 # Stop endless errors like
 # ~/.rvm/gems/ruby-1.9.2-p0@global/gems/rack-1.2.1/lib/rack/utils.rb:16:

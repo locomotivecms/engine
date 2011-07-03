@@ -11,11 +11,12 @@ Background:
     | Description | text      | false           |
   And I am an authenticated user
 
-Scenario: I do not want my content form to have n duplicate fields if I submit n times the content type form with errors (bug)
+@javascript
+Scenario: I do not want my content form to have n duplicated fields if I submit n times the content type form with errors (bug)
   When I go to the "Projects" model edition page
   And I fill in "Name" with ""
   And I press "Update"
   And I press "Update"
   And I press "Update"
   When I follow "new item"
-  Then I should not see 4 times the "Name" field
+  Then I should see once the "Name" field
