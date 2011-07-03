@@ -60,8 +60,8 @@ x bugs
   x import => okay
   x delete an item => okay
 x bug: duplicate fields (new entry) when errors in the content type form
-- rake task to import a remote template
-- tinyMCE => fullscreen
+x tinyMCE => fullscreen
+- rake task to import a remote template / export ?
 
 => MERGE
 

@@ -48,9 +48,9 @@ var TinyMceDefaultSettings = {
   script_url : '/javascripts/admin/plugins/tiny_mce/tiny_mce.js',
   theme : 'advanced',
   skin : 'locomotive',
-  plugins: 'safari,inlinepopups,locomedia',
+  plugins: 'safari,inlinepopups,locomedia,fullscreen',
   extended_valid_elements: 'iframe[width|height|frameborder|allowfullscreen|src|title]',
-  theme_advanced_buttons1 : 'code,|,bold,italic,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,|,bullist,numlist,|,outdent,indent,blockquote,|,link,unlink',
+  theme_advanced_buttons1 : 'fullscreen,code,|,bold,italic,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,|,bullist,numlist,|,outdent,indent,blockquote,|,link,unlink',
   theme_advanced_buttons2 : 'formatselect,fontselect,fontsizeselect,|,locomedia',
   theme_advanced_buttons3 : '',
   theme_advanced_toolbar_location : "top",
@@ -58,7 +58,11 @@ var TinyMceDefaultSettings = {
   height: '300',
   width: '710',
   inlinepopups_skin: 'locomotive',
-  convert_urls: false
+  convert_urls: false,
+  fullscreen_new_window : false,
+  fullscreen_settings : {
+    theme_advanced_path_location : "top"
+  }
 };
 
 /* ___ global ___ */
