@@ -1,0 +1,286 @@
+require 'fileutils'
+
+# Just a simple helper class to export quickly an existing and live locomotive website.
+# FIXME: will be replaced by the API in the next months
+module Locomotive
+  class Export
+
+    @@instance = nil
+
+    def initialize(site)
+      @site           = site
+      @target_folder  = File.join(Rails.root, 'tmp', 'export', Time.now.to_i)
+      @site_hash      = {} # used to generate the site.yml and compiled_site.yml files
+
+      self.create_target_folder
+    end
+
+    def run!
+      self.initialize_site_hash
+
+      self.log('copying assets')
+      self.copy_assets
+
+      self.log('copying theme assets')
+      self.copy_theme_assets
+
+      self.log('copying pages')
+      self.copy_pages
+
+      self.log('copying snippets')
+      self.copy_snippets
+
+      self.log('copying content types')
+      self.copy_content_types
+
+      self.log('copying config files')
+      self.copy_config_files
+
+      @target_folder
+    end
+
+    # returns the path to the zipfile
+    def self.run!(site)
+      @@instance = self.new(site)
+      @@instance.run!
+    end
+
+    protected
+
+    def create_target_folder
+      FileUtils.mkdir_p(@target_folder)
+      %w(app/content_types app/views/snippets app/views/pages config data public).each do |f|
+        FileUtils.mkdir_p(File.join(@target_folder, f))
+      end
+    end
+
+    def initialize_site_hash
+      attributes = self.extract_attributes(@site, %w(name locale seo_title meta_description meta_keywords))
+
+      attributes['pages'] = []
+      attributes['content_types'] = {}
+
+      @site_hash = { 'site' => attributes }
+    end
+
+    def copy_config_files
+      File.open(File.join(self.config_folder, 'compiled_site.yml'), 'w') do |f|
+        f.write(yaml(@site_hash))
+      end
+
+      @site_hash.delete(content_types)
+
+      File.open(File.join(self.config_folder, 'site.yml'), 'w') do |f|
+        f.write(yaml(@site_hash))
+      end
+    end
+
+    def copy_pages
+      @site.all_pages_in_once.each { |p| self._copy_pages(p) }
+    end
+
+    def copy_snippets
+      @site.snippets.each do |snippet|
+        File.open(File.join(self.snippets_folder, snippet.slug), 'w') do |f|
+          f.write(snippet.template)
+        end
+      end
+    end
+
+    def copy_content_types
+      @site.content_types.each do |content_type|
+        attributes = self.extract_attributes(content_type, %w(description slug order_by order_direction highlighted_field_name group_by_field_name api_enabled))
+
+        # custom_fields
+        fields = []
+        content_type.content_custom_fields.each do |field|
+          fields << {
+            field._alias => self.extract_attributes(field, %w(label kind hints target))
+          }
+        end
+
+        attributes['fields'] = fields
+
+        @site_hash['site']['content_types'][content_type.name] = attributes.clone
+
+        # [structure] copy it into its own file
+        attributes['name'] = content_type.name
+
+        File.open(File.join(self.content_types_folder, "#{content_type.slug}.yml"), 'w') do |f|
+          f.write(self.yaml(attributes))
+        end
+
+        # data
+        data = self.extract_contents(content_type)
+
+        # [data] copy them into their own file
+        File.open(File.join(self.content_data_folder, "#{content_type.slug}.yml"), 'w') do |f|
+          f.write(self.yaml(data))
+        end
+
+        @site_hash['site']['content_types'][content_type.name]['contents'] = data
+      end
+    end
+
+    def copy_theme_assets
+      @site.theme_assets.each do |theme_asset|
+        target_path = File.join(self.public_folder, theme_asset.local_path)
+
+        self.copy_file_from_an_uploader(theme_asset.source, target_path) do |bytes|
+          if theme_asset.stylesheet_or_javascript?
+            base_url = theme_asset.source.url.gsub(theme_asset.local_path)
+            bytes.gsub!(base_url, '/')
+          else
+            bytes
+          end
+        end
+      end
+    end
+
+    def copy_assets
+      @site.assets.each do |asset|
+        target_path = File.join(self.samples_folder, asset.source_filename)
+        self.copy_file_from_an_uploader(asset.source, target_path)
+      end
+    end
+
+    protected
+
+    def _copy_pages(page)
+      attributes = self.extract_attributes(page, %w{title seo_title meta_description meta_keywords listed redirect_url content_type published})
+
+      unless page.redirected?
+        # add editable elements
+        page.editable_elements.each do |element|
+          next if element.disabled? || (element.from_parent && element.default_content == element.content)
+
+          el_attributes = self.extract_attributes(element, %w{slug block hint})
+
+          case element
+          when EditableShortText, EditableLongText
+            el_attributes['content'] = self.replace_asset_urls_in(element.content)
+          when EditableImage
+            filepath = File.join('/', 'samples', element.source_filename)
+            self.copy_file_from_an_uploader(element.source, File.join(self.samples_folder, filepath))
+            el_attributes['content'] = filepath
+          end
+
+          (attributes['editable_elements'] ||= []) << el_attributes
+        end
+
+        File.open(File.join(self.pages_folder, "#{page.fullpath}.liquid"), 'w') do |f|
+          f.write(self.replace_asset_urls_in(page.raw_template))
+        end
+      end
+
+      @site_hash['site']['pages'] << { page.fullpath => attributes }
+
+      page.children.each { |p| self._copy_pages(p) }
+    end
+
+    def extract_attributes(object, fields)
+      object.attributes.select { |k, v| fields.include?(k) }
+    end
+
+    def pages_folder
+      File.join(@target_folder, 'app', 'views', 'pages')
+    end
+
+    def snippets_folder
+      File.join(@target_folder, 'app', 'views', 'snippets')
+    end
+
+    def content_types_folder
+      File.join(@target_folder, 'app', 'content_types')
+    end
+
+    def config_folder
+      File.join(@target_folder, 'config')
+    end
+
+    def content_data_folder
+      File.join(@target_folder, 'data')
+    end
+
+    def public_folder
+      File.join(@target_folder, 'public')
+    end
+
+    def samples_folder
+      File.join(@target_folder, 'public', 'samples')
+    end
+
+    def copy_file_from_an_uploader(uploader, target_path, &block)
+      FileUtils.mkdir_p(File.dirname(target_path))
+      File.open(target_path, 'w') do |f|
+        bytes = uploader.read
+
+        bytes = block.call(bytes) if block_given?
+
+        bytes = bytes.force_encoding('UTF-8') if RUBY_VERSION =~ /1\.9/
+        f.write(bytes)
+      end
+    end
+
+    def extract_contents(content_type)
+      data = []
+
+      highlighted_field_name = content_type.highlighted_field_name
+
+      content_type.contents.each do |content|
+        hash = { content.highlighted_field_value => {} }
+
+        content.custom_fields.each do |field|
+          next if field._name == highlighted_field_name
+
+          case field.kind
+          when 'file'
+            uploader = content.send(field._name)
+            filepath = File.join('/samples', content_type.slug, content.send("#{field._name}_filename"))
+
+            self.copy_file_from_an_uploader(uploader, File.join(self.public_folder, filepath))
+
+            hash[field._alias] = filepath
+          when 'text'
+            value = self.replace_asset_urls_in(content.send(field._name.to_sym))
+            hash[field._alias] = value
+          else
+            hash[field._alias] = content.send(field._name.to_sym)
+          end
+        end
+
+        data << hash
+      end
+
+      data
+    end
+
+    def replace_asset_urls_in(text)
+      base_url = AssetUploader.new(Asset.new(:site => @site)).store_dir
+      base_url.split('/').pop
+      base_url.join('/')
+
+      changed_text = text.gsub(%r(#{base_url}/[a-z0-9]{10,}/), 'samples')
+
+      changed_text.starts_with?('/') ? changed_text : "/#{changed_text}"
+    end
+
+    def yaml(hash_or_array)
+      method = hash_or_array.respond_to?(:ya2yaml) ? :ya2yaml : :to_yaml
+      string = (if hash_or_array.respond_to?(:keys)
+        hash_or_array.dup.stringify_keys!
+      else
+        hash_or_array
+      end).send(method)
+      string.gsub('!ruby/symbol ', ':').sub('---', '').split("\n").map(&:rstrip).join("\n").strip
+    end
+
+    def log(message, domain = '')
+      head = "[export_template][#{site.name}]"
+      head += "[#{domain}]" unless domain.blank?
+      ::Locomotive::Logger.info "\t#{head} #{message}"
+    end
+
+  end
+
+end
