@@ -34,6 +34,12 @@ module Locomotive
       end
     end
 
+    def error_sentence(errors, options = {}) #:nodoc:
+      error_class = options[:error_class] || default_inline_error_class
+      error_msg = template.content_tag(:p, Formtastic::Util.html_safe(errors.to_sentence.untaint))
+      template.content_tag(:div, error_msg, :class => error_class)
+    end
+
     # FIXME (Did): allows to pass attributes to the I18n translation key
     def inline_hints_for(method, options) #:nodoc:
       options[:hint] = localized_string(method, options[:hint], :hint, options[:hint_options] || {})

@@ -7,6 +7,8 @@ module Admin
 
     respond_to :xml
 
+    skip_load_and_authorize_resource
+
     def show
       @pages = current_site.pages.published
     end

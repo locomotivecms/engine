@@ -59,11 +59,13 @@ module Locomotive
         assigns = {
           'site'              => current_site,
           'page'              => @page,
-          'asset_collections' => Locomotive::Liquid::Drops::AssetCollections.new,
+          'asset_collections' => Locomotive::Liquid::Drops::AssetCollections.new, # depracated, will be removed shortly
           'contents'          => Locomotive::Liquid::Drops::Contents.new,
           'current_page'      => self.params[:page],
           'params'            => self.params,
-          'url'               => request.url
+          'url'               => request.url,
+          'now'               => Time.now,
+          'today'             => Date.today
         }.merge(flash.stringify_keys) # data from api
 
         if @page.templatized? # add instance from content type
@@ -107,7 +109,7 @@ module Locomotive
       end
 
       def page_status
-        @page == not_found_page ? :not_found : :ok
+        @page.not_found? ? :not_found : :ok
       end
 
     end

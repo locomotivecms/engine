@@ -5,12 +5,13 @@
 
 - content_for :submenu do
   = render 'admin/shared/menu/contents'
-  
+
 - content_for :actions do
   = render 'admin/shared/actions/contents'
 
-- content_for :buttons do
-  = admin_button_tag :new, new_admin_page_url, :class => 'new'
+- if can? :create, Page
+  - content_for :buttons do
+    = admin_button_tag :new, new_admin_page_url, :class => 'new'
 
 %p!= t('.help')
 

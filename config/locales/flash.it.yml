@@ -73,16 +73,6 @@ it:
           alert: "La partecipazione non è stata creata."
           already_created: "L'account è già stato aggiunto al corrente sito."
 
-      asset_collections:
-        create:
-          notice: "La collezione è stata creata con successo."
-          alert: "La collezione non è stata creata."
-        update:
-          notice: "La collezione è stata modificata con successo."
-          alert: "La collezione non è stata modificata."
-        destroy:
-          notice: "La collezione è stata eliminata con successo."
-
       assets:
         create:
           notice: "La risorsa è stata creata con successo."
@@ -109,7 +99,7 @@ it:
         create:
           alert: "Devi accedere"
 
-      imports:
+      import:
         create:
           done: "Il tuo sito è stato modificato con successo."
           notice: "Il tuo sito è in fase di aggiornamento."

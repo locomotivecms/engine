@@ -49,8 +49,8 @@ module Admin
     def sanitize_params
       params[:theme_asset] = { :source => params[:file] } if params[:file]
 
-      performing_plain_text = params[:theme_asset][:performing_plain_text]
-      params[:theme_asset].delete(:content_type) if performing_plain_text.blank? || performing_plain_text == 'false'
+      # performing_plain_text = params[:theme_asset][:performing_plain_text]
+      # params[:theme_asset].delete(:content_type) if performing_plain_text.blank? || performing_plain_text == 'false'
     end
 
   end

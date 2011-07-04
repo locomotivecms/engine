@@ -54,7 +54,7 @@ module ActionDispatch
 
         def destroy(env)
           session = @@session_class.first(:conditions => { :_id => env[SESSION_RECORD_KEY].id })
-          session.destroy
+          session.try(:destroy)
 
           env[SESSION_RECORD_KEY] = nil
         end

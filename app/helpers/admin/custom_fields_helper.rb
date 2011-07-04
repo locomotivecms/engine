@@ -45,15 +45,43 @@ module Admin::CustomFieldsHelper
     end.compact
   end
 
-  def options_for_has_one(field)
-    target_contents_from_field(field).collect { |c| [c._label, c._id] }
+  def options_for_has_one(field, value)
+    self.options_for_has_one_or_has_many(field) do |groups|
+      grouped_options_for_select(groups.collect do |g|
+        if g[:items].empty?
+          nil
+        else
+          [g[:name], g[:items].collect { |c| [c._label, c._id] }]
+        end
+      end.compact, value)
+    end
   end
 
-  alias :options_for_has_many :options_for_has_one
+  def options_for_has_many(field)
+    self.options_for_has_one_or_has_many(field)
+  end
 
-  def target_contents_from_field(field)
+  def options_for_has_one_or_has_many(field, &block)
     content_type = field.target.constantize._parent
-    content_type.ordered_contents
+
+    if content_type.groupable?
+      grouped_contents = content_type.list_or_group_contents
+
+      if block_given?
+        block.call(grouped_contents)
+      else
+        grouped_contents.collect do |g|
+          if g[:items].empty?
+            nil
+          else
+            { :name => g[:name], :items => g[:items].collect { |c| [c._label, c._id] } }
+          end
+        end.compact
+      end
+    else
+      contents = content_type.ordered_contents
+      contents.collect { |c| [c._label, c._id] }
+    end
   end
 
 end
