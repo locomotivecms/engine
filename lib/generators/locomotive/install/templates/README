@@ -6,6 +6,7 @@ The Locomotive Engine has been correctly installed in your Rails application.
 
     - config/initializers/locomotive.rb
     - config/initializers/carrierwave.rb
+    - config/initializers/dragonfly.rb
     - config/mongoid.yml
 
   2. Launch the server

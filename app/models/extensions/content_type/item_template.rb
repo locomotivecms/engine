@@ -42,14 +42,6 @@ module Extensions
           @item_parsing_errors.try(:each) { |msg| self.errors.add :item_template, msg }
         end
 
-        # def item_template
-        #   self.read_attribute(:default_item_template) || self.default_item_template
-        # end
-        #
-        # def default_item_template
-        #   '{{ content.highlighted_field_value }}'
-        # end
-
       end
 
     end

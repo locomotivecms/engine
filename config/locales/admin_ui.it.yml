@@ -60,9 +60,11 @@ it:
         title: Modifica opzioni
         help: Amministra la lista opzioni del select box.
         collection_label: Lista delle opzioni
-      custom_form:
-        edit_categories: Modifica opzioni
-        delete_file: Elimina file
+      types:
+        category:
+          edit_categories: Modifica opzioni
+        file:
+          delete_file: Elimina file
       index:
         is_required: è richiesto
         default_label: Nome campo
@@ -189,22 +191,6 @@ it:
         title: Lista immagini
         no_items: "Per ora non ci sono file."
 
-    asset_collections:
-      index:
-        title: Collezioni di risorse
-        help: "Puoi cambiare il nome della collezione cliccandoci sopra. Puoi personalizzare le risorse in una collezione aggiugendo nuovi campi."
-        new: nuov collezione
-        no_items: "Per ora non ci sono collezioni. Clicca <a href=\"%{url}\">qui</a> per creare la prima."
-      new:
-        title: Nuova collezione
-        help: "Per ora inserisci solo in nome. Altre opzioni appariranno dopo aver inviato il modulo."
-      edit:
-        help: "Puoi cambiare il nome della collezione cliccandoci sopra. Puoi personalizzare le risorse in una collezione aggiugendo nuovi campi."
-        add_asset: aggiungi risorsa
-        destroy: elimina collezione
-        no_items: "Per ora non ci sono risorse. Clicca <a href=\"%{url}\">qui</a> per creare la prima."
-        ask_for_name: "Prego, digita il nuovo nome"
-
     assets:
       new:
         title: Nuova risorsa
@@ -258,7 +244,7 @@ it:
         title: Autenticazione cross-domain
         notice: Sarai rediretto al sito web in pochi secondi.
 
-    imports:
+    import:
       new:
         title: Importa
         help: "Fai attenzione quando carichi un nuovo tema per il tuo sito, gli attuali dati potrebbero essere modificati o eliminati."
@@ -269,7 +255,6 @@ it:
           site: Informazioni sito
           content_types: Tipi di contenuti personalizzati
           assets: File del tema
-          asset_collections: Collezioni di risorse
           snippets: Frammenti
           pages: Pagine
         messages:

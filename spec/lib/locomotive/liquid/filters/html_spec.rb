@@ -25,7 +25,7 @@ describe Locomotive::Liquid::Filters::Html do
     stylesheet_tag('/trash/main.css').should == result
     stylesheet_tag('/trash/main').should == result
   end
-  
+
   it 'should return a link tag for a stylesheet file and media attribute set to print' do
     result = "<link href=\"/sites/000000000000000000000042/theme/stylesheets/main.css\" media=\"print\" rel=\"stylesheet\" type=\"text/css\" />"
     stylesheet_tag('main.css','print').should == result
@@ -145,7 +145,5 @@ describe Locomotive::Liquid::Filters::Html do
     end
     klass.new
   end
-
-
 
 end

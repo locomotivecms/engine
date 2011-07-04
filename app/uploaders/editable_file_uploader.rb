@@ -4,8 +4,4 @@ class EditableFileUploader < ::CarrierWave::Uploader::Base
     self.build_store_dir('sites', model.page.site_id, 'pages', model.page.id, 'files')
   end
 
-  # def cache_dir
-  #   "#{Rails.root}/tmp/uploads"
-  # end
-
 end

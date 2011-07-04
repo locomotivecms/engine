@@ -70,11 +70,11 @@ describe Page do
     it 'should have normalized slug' do
       page = Factory.build(:page, :slug => ' Valid  ité.html ')
       page.valid?
-      page.slug.should == 'Valid_ite'
+      page.slug.should == 'valid-ite-html'
 
       page = Factory.build(:page, :title => ' Valid  ité.html ', :slug => nil, :site => page.site)
       page.should be_valid
-      page.slug.should == 'Valid_ite'
+      page.slug.should == 'valid-ite-html'
     end
 
     it 'has no cache strategy' do

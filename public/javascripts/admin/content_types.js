@@ -25,15 +25,18 @@ $(document).ready(function() {
 
   // console.log('subscribing...');
 
+  var lastFieldset = $('.formtastic.content_type fieldset').last();
+
   $.subscribe('toggle.content_type_api_enabled.checked', function(event, data) {
     // console.log('checked');
     $('#content_type_api_accounts_input').show();
+    lastFieldset.trigger('refresh');
   }, []);
 
   $.subscribe('toggle.content_type_api_enabled.unchecked', function(event, data) {
     // console.log('unchecked');
     $('#content_type_api_accounts_input').hide();
+    lastFieldset.trigger('refresh');
   }, []);
-
 
 });

@@ -24,6 +24,7 @@ form.formtastic legend span {
   color: #1e1f26;
   font-size: 0.7em;
   padding: 4px 0 0 20px;
+  text-shadow: #fff 0px 1px;
 }
 
 form.formtastic legend span small {
@@ -78,9 +79,17 @@ form.formtastic fieldset.inputs ol {
   border-top: 1px solid #ccced7;
 }
 
-form.formtastic fieldset ol li { width: 100%; position: relative; margin-bottom: 1.3em; }
+form.formtastic fieldset ol li { width: 100%; position: relative; margin-bottom: 0.8em; }
 
-form.formtastic fieldset ol li label { text-align: left; padding: 0.3em 2em 0 20px; font-size: 0.8em; color: #17171b; width: 15%; }
+form.formtastic fieldset.inputs ol li {
+  background: url("/images/admin/form/input-sep.png") repeat-x 0 bottom;
+  margin-bottom: 0.7em;
+  padding-bottom: 1em;
+}
+
+form.formtastic fieldset.inputs ol li.last { background: none; margin-bottom: 0.8em; padding-bottom: 0px; }
+
+form.formtastic fieldset ol li label { text-align: left; padding: 0.4em 2em 0 20px; font-size: 0.8em; width: 15%; color: #585a69; text-shadow: #fff 0px 1px; }
 
 form.formtastic fieldset ol li.string input,
 form.formtastic fieldset ol li.password input,
@@ -88,12 +97,22 @@ form.formtastic fieldset ol li.numeric input,
 form.formtastic fieldset ol li.text textarea,
 form.formtastic fieldset ol li code textarea,
 form.formtastic fieldset ol li input[type=password] {
-  padding: 4px;
+  padding: 4px 5px;
   font-size: 0.9em;
-  width: 45%;
-  color: #787a89;
+  font-weight: bold;
+  width: 700px;
+  color: #17171b;
   background: white url(/images/admin/form/field.png) repeat-x 0 0;
-  border: 1px solid #a6a8b8;
+  border: 1px solid #d1d6e6;
+  -webkit-box-shadow: #f1f1f1 0px 1px;
+  -moz-box-shadow: #f1f1f1 0px 1px;
+  box-shadow: #f1f1f1 0px 1px;
+}
+
+form.formtastic fieldset ol li.string.highlighted input {
+  font-size: 1.1em;
+  width: 696px;
+  padding: 6px 7px;
 }
 
 form.formtastic fieldset ol li.text textarea.html {
@@ -101,96 +120,57 @@ form.formtastic fieldset ol li.text textarea.html {
   width: 46%;
 }
 
+form.formtastic fieldset ol li.date input {
+  width: 80px;
+}
+
 form.formtastic fieldset ol li p.inline-hints {  margin-left: 20%; }
 form.formtastic fieldset ol li p.inline-hints a { color: #1f82bc; }
 
-form.formtastic fieldset ol li code { display: block; border: 1px solid #a6a8b8; margin: 10px 20px 0 20px; }
+form.formtastic fieldset ol li code { display: block; border: 1px solid #d1d6e6; margin: 10px 20px 0 20px; }
 form.formtastic fieldset ol li code.nude textarea {
   width: 870px;
   border: 0px;
 }
 
-/*form.formtastic fieldset ol li code.html iframe { width: 46% !important; }*/
-
 form.formtastic fieldset ol li select { font-size: 0.9em; position: relative; top: 2px; color: #787a89; }
 
 form.formtastic fieldset ol li.multiple select { width: 45%; }
 
-form.formtastic fieldset ol li.error input,
-form.formtastic fieldset ol li.error textarea,
-form.formtastic fieldset ol li.error code iframe { border: 2px solid #ec3f48 !important; }
-form.formtastic fieldset ol li.error code { border: none; }
-form.formtastic fieldset ol li p.inline-errors {
-  display: none;
-  position: absolute;
-  top: 0px;
-  left: 630px;
-  width: 250px;
+form.formtastic fieldset ol li div.inline-errors {
+  background: transparent url(/images/admin/form/error-arrow.png) no-repeat 17px 0;
+  margin: 2px 0 0 20%;
+  padding: 8px 0 0 0;
+}
+
+form.formtastic fieldset ol li div.inline-errors p {
+  display: inline-block;
+  width: auto;
   margin: 0px;
-  padding: 6px 5px 8px 25px;
-  background: #ec3f48 url(/images/admin/form/error-arrow.png) no-repeat 0 0;
+  padding: 3px 12px 4px 30px;
   color: #fff !important;
-  font-size: 0.7em !important;
+  text-shadow: #000 0px 1px;
+  font-size: 0.9em;
+  padding-left: 30px;
+  background: #cd0f19 url(/images/admin/form/icons/error.png) no-repeat 10px 6px;
 }
 
 form.formtastic fieldset ol li.code label { display: none; }
 
-form.formtastic fieldset ol li.code p.inline-errors {
-  display: block;
-  float: left;
-  margin: 4px 16px 0 0;
-  position: relative;
-  left: 20px;
-  background-image: none;
+form.formtastic fieldset ol li.code div.inline-errors {
+  margin-left: 20px;
 }
 
 form.formtastic fieldset ol li.small-code code { margin: 0px; display: inline-block; width: 75%;  }
-form.formtastic fieldset ol li.small-code p.inline-errors {
-  position: relative;
-  display: block !important;
-  float: none;
-  margin-left: 20%;
-  width: 45%;
-  margin: 0.5em 0px 0px 20%;
-  left: 0px;
-}
-
 
 form.formtastic fieldset ol .more { text-align: right; width: auto; margin: 10px 20px 0 0; line-height: 0.6em; }
 form.formtastic fieldset ol .more a { text-decoration: none; color: #787A89; font-size: 0.7em; }
 form.formtastic fieldset ol .more a:hover { text-decoration: underline; }
 
-/*form.formtastic hr { border-top: 2px solid #ccc; }*/
-
-/*form.formtastic fieldset.buttons { padding-left: 28%; padding-bottom: 20px; }*/
-
-form.formtastic div.actions {
-  position: relative;
-  top: 27px;
-  left: -15px;
-  width: 950px;
-  background: #8b8d9a;
+form.formtastic fieldset ol .more a.picture {
+  padding-left: 23px;
+  background: transparent url(/images/admin/icons/asset_add.png) no-repeat left 1px;
 }
-
-form.formtastic div.actions p {
-  padding: 15px;
-  margin: 0px;
-}
-
-form.formtastic div.actions a {
-  color: #fff !important;
-  text-decoration: none;
-  font-size: 0.8em;
-  position: relative;
-  top: 4px;
-}
-
-form.formtastic div.actions a.remove { color: #ff092c !important; }
-
-form.formtastic div.actions p a:hover { text-decoration: underline; }
-
-form.formtastic div.actions .last p { text-align: right; }
-
 
 /* ___ pages ___ */
 
@@ -242,6 +222,28 @@ form.formtastic fieldset ol li.item em {
   color: #757575;
 }
 
+form.formtastic fieldset ol li em.editable {
+  display: inline-block;
+  position: relative;
+  top: -1px;
+  color: #8b8d9a;
+  font-size: 0.9em;
+  font-style: italic;
+  margin-left: 3px;
+  border: 1px solid transparent;
+  padding: 2px 5px;
+  height: 18px;
+  line-height: 16px;
+}
+
+form.formtastic fieldset ol li em.editable:hover {
+  background: #fffbe5;
+  border: 1px dotted #efe4a5;
+  cursor: pointer;
+  color: #17171D;
+  font-weight: bold;
+}
+
 form.formtastic fieldset ol li.item span.actions {
   position: absolute;
   top: 5px;
@@ -277,27 +279,6 @@ form.formtastic fieldset.editable-list ol li.added select {
   top: -1px;
 }
 
-form.formtastic fieldset.editable-list ol li.added em {
-  display: inline-block;
-  position: relative;
-  top: -1px;
-  color: #8b8d9a;
-  font-size: 0.9em;
-  font-style: italic;
-  margin-left: 3px;
-  border: 1px solid transparent;
-  padding: 2px 5px;
-  height: 18px;
-  line-height: 16px;
-}
-form.formtastic fieldset.editable-list ol li.added em:hover {
-  background: #fffbe5;
-  border: 1px dotted #efe4a5;
-  cursor: pointer;
-  color: #17171D;
-  font-weight: bold;
-}
-
 form.formtastic fieldset.editable-list ol li.added select,
 form.formtastic fieldset.editable-list ol li.added em {
   width: 150px;
@@ -330,7 +311,7 @@ form.formtastic fieldset.editable-list ol li.added input:focus {
   font-weight: normal;
   color: #787a89;
   background: white url(/images/admin/form/field.png) repeat-x 0 0;
-  border: 1px solid #a6a8b8;
+  border: 1px solid #d1d6e6;
 }
 
 form.formtastic fieldset.editable-list ol li.added .inline-errors {
@@ -431,10 +412,6 @@ form.formtastic fieldset.validations ol li.added em.key {
 
 /* ___ content instance / editable elements___ */
 
-form.content_instance fieldset ol li.text textarea {
-  width: 75%;
-}
-
 form.formtastic fieldset ol li.file p.remove {
   margin: 5px 0 0 20%;
 }
@@ -488,8 +465,10 @@ form.formtastic fieldset ol li.has-many ul li.added span.actions button {
 form.formtastic fieldset ol li.has-many ul li.sep {
   border-top: 1px solid #ccc;
   height: 2px;
+  padding: 0px;
   margin: 5px 0 7px;
   width: 433px;
+  background: none;
 }
 
 form.formtastic fieldset ol li.has-many ul li.template {}
@@ -548,7 +527,43 @@ form.formtastic fieldset.email li.full input {
   margin-left: 20px;
 }
 
-/* ___ assets ___ */
+form.formtastic fieldset.memberships ol li .role {
+  position: absolute;
+  top: 2px;
+  right: 30px;
+  width: 170px;
+  text-align: left;
+}
+
+form.formtastic fieldset.memberships ol li .role em {
+  display: inline-block;
+  position: relative;
+  top: -1px;
+  color: #757575;
+  font-size: 0.8em;
+  padding: 2px 5px 2px 17px;
+  height: 18px;
+  line-height: 16px;
+  margin-left: 0px;
+}
+
+form.formtastic fieldset.memberships ol li .role em.locked {
+  background: transparent url(/images/admin/icons/membership_lock.png) no-repeat 1px 3px;
+}
+
+form.formtastic fieldset.memberships ol li .role em.editable {
+  background: transparent url(/images/admin/icons/membership_edit.png) no-repeat left 3px;
+}
+
+form.formtastic fieldset.memberships ol li .role em.editable { font-style: normal; font-size: 0.8em; }
+form.formtastic fieldset.memberships ol li .role em.editable:hover { color: #000; font-style: normal; background: #fffbe5; padding-left: 5px; }
+
+form.formtastic fieldset.memberships ol li select {
+  position: relative;
+  top: -1px;
+}
+
+/* ___ theme assets ___ */
 
 .selector {
   position: relative;
@@ -562,7 +577,11 @@ form.formtastic fieldset.email li.full input {
   font-size: 0.7em;
   text-decoration: none;
   cursor: pointer;
+  padding-left: 20px;
+  background: transparent url(/images/admin/icons/asset_switch.png) no-repeat left 2px;
 }
+
+.selector span.alt:hover { text-decoration: underline; }
 
 
 form.formtastic fieldset.file li.full input {

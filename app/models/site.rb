@@ -5,17 +5,17 @@ class Site
   ## Extensions ##
   extend Extensions::Site::SubdomainDomains
   extend Extensions::Site::FirstInstallation
+  extend Extensions::Site::FirstInstallation
+  include Extensions::Shared::Seo
 
   ## fields ##
   field :name
-  field :meta_keywords
-  field :meta_description
 
   ## associations ##
   references_many :pages, :validate => false
   references_many :snippets, :dependent => :destroy, :validate => false
   references_many :theme_assets, :dependent => :destroy, :validate => false
-  references_many :asset_collections, :dependent => :destroy, :validate => false
+  references_many :assets, :dependent => :destroy, :validate => false
   references_many :content_types, :dependent => :destroy, :validate => false
   embeds_many :memberships
 
@@ -28,6 +28,7 @@ class Site
 
   ## behaviours ##
   enable_subdomain_n_domains_if_multi_sites
+  accepts_nested_attributes_for :memberships
 
   ## methods ##
 

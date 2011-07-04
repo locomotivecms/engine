@@ -16,7 +16,7 @@ $(document).ready(function() {
 
   $('a#image-picker-link').imagepicker({
     insertFn: function(link) {
-      return "{{ '" + link.attr('data-local-path') + "' | theme_image_url }}";
+      return "{{ '/" + link.attr('data-local-path') + "' | theme_image_url }}";
     }
   });
 });

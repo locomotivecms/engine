@@ -3,6 +3,9 @@
 var enableFileOrTextToggling = function() {
   $('div.hidden').hide();
 
+  var fileSelectorFieldset = $('div#file-selector fieldset');
+  var textSelectorFieldset = $('div#text-selector fieldset');
+
   $('span.alt').click(function(event) {
     event.preventDefault();
 
@@ -10,11 +13,13 @@ var enableFileOrTextToggling = function() {
       $("div#text-selector").slideUp("normal", function() {
         $("div#file-selector").slideDown();
         $("input#theme_asset_performing_plain_text").val(false);
+        fileSelectorFieldset.trigger('refresh');
       });
     } else {
       $("div#file-selector").slideUp("normal", function() {
         $("div#text-selector").slideDown();
         $("input#theme_asset_performing_plain_text").val(true);
+        textSelectorFieldset.trigger('refresh');
       });
     }
   });

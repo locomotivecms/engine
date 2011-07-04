@@ -19,7 +19,7 @@ h2. Gems
 
 Here is a short list of main gems used in the application.
 
-* Rails 3.0.7
+* Rails 3.0.9
 * Mongoid 2.0.2 (with MongoDB 1.6)
 * Liquid
 * Devise

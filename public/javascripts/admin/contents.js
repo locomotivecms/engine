@@ -1,18 +1,20 @@
 $(document).ready(function() {
-  var updateContentsOrder = function() {
-    var lists = $('ul#contents-list.sortable');
-    var ids = jQuery.map(lists, function(list) {
-        return(jQuery.map($(list).sortable('toArray'), function(el) {
-          return el.match(/content-(\w+)/)[1];
-        }).join(','));
-    }).join(',');
-    $('#order').val(ids || '');
-  }
 
+  // sortable items
   $('ul#contents-list.sortable').sortable({
-    handle: 'em',
-    items: 'li.content',
-    stop: function(event, ui) { updateContentsOrder(); }
+    'handle': 'em',
+    'items': 'li.content',
+    'axis': 'y',
+    'update': function(event, ui) {
+      var params = $(this).sortable('serialize', { 'key': 'children[]' });
+      params += '&_method=put';
+      params += '&' + $('meta[name=csrf-param]').attr('content') + '=' + $('meta[name=csrf-token]').attr('content');
+
+      $.post($(this).attr('data-url'), params, function(data) {
+        var error = typeof(data.error) != 'undefined';
+        $.growl((error ? 'error' : 'success'), (error ? data.error : data.notice));
+      }, 'json');
+    }
   });
 
   try {

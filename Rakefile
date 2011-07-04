@@ -1,20 +1,21 @@
 require File.expand_path('../config/application', __FILE__)
 
+require 'rubygems'
+
 require 'rake'
-# require 'rake/testtask'
-require 'rake/rdoctask'
-require 'rake/gempackagetask'
+require 'rdoc/task'
+require 'rubygems/package_task'
 
 Locomotive::Application.load_tasks
 
 gemspec = eval(File.read('locomotive_cms.gemspec'))
-Rake::GemPackageTask.new(gemspec) do |pkg|
+Gem::PackageTask.new(gemspec) do |pkg|
   pkg.gem_spec = gemspec
 end
 
-desc "build the gem and release it to rubygems.org"
+desc 'build the gem and release it to rubygems.org'
 task :release => :gem do
-  sh "gem push pkg/locomotive_cms-#{gemspec.version}.gem"
+  sh "gem push pkg/custom_fields-#{gemspec.version}.gem"
 end
 
-task :default => [:rspec, :cucumber]
+task :default => [:spec, :cucumber]

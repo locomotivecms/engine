@@ -33,11 +33,7 @@ Rails.application.routes.draw do
       get :all, :action => 'index', :on => :collection, :defaults => { :all => true }
     end
 
-    resources :asset_collections
-
-    resources :assets, :path => 'asset_collections/:collection_id/assets'
-
-    resources :images
+    resources :assets
 
     resources :content_types
 
@@ -51,7 +47,9 @@ Rails.application.routes.draw do
 
     resources :cross_domain_sessions, :only => [:new, :create]
 
-    resource :import, :only => [:new, :show, :create]
+    resource :import, :only => [:new, :show, :create], :controller => 'import'
+
+    resource :export, :only => [:new], :controller => 'export'
 
     # installation guide
     match '/installation' => 'installation#show', :defaults => { :step => 1 }, :as => :installation

@@ -6,6 +6,7 @@ en:
       change_password: Update
       new_item: "+ add"
       switch_to_site: Go
+      delete: "Delete"
 
     messages:
       confirm: Are you sure ?
@@ -60,9 +61,11 @@ en:
         title: Edit options
         help: Manage the list of options for your select box.
         collection_label: List of options
-      custom_form:
-        edit_categories: Edit options
-        delete_file: Delete file
+      types:
+        category:
+          edit_categories: Edit options
+        file:
+          delete_file: Delete file
       index:
         is_required: is required
         default_label: Field name
@@ -99,7 +102,7 @@ en:
         updated_at: updated at
       edit:
         show: show
-        help: "The page title can be updated by clicking it."
+        help: "The page title can be updated by clicking it. To apply your changes, click on the \"Update\" button."
         ask_for_title: "Please type the new page title"
       form:
         delete_file: Delete file
@@ -123,7 +126,7 @@ en:
         help: "Fill in the form below to update your snippet."
       edit:
         title: Editing snippet
-        help: "Fill in the form below to update your snippet."
+        help: "Include your snippet in your page templates with the following liquid code : <span class='code'>{% include '%{slug}' %}</span>."
       snippet:
         updated_at: Updated at
 
@@ -134,12 +137,17 @@ en:
 
     current_sites:
       edit:
+        export: export
         import: import
         new_membership: add account
-        help: "The site name can be updated by clicking it."
+        help: "The site name can be updated by clicking it. To apply your changes, click on the \"Update\" button."
         ask_for_name: "Please type the new site name"
 
     memberships:
+      roles:
+        admin: Administrator
+        designer: Designer
+        author: Author
       new:
         title: New membership
         help: "Please give the account email to add. If it does not exist, you will be redirected to the account creation form."
@@ -151,7 +159,7 @@ en:
 
     my_accounts:
       edit:
-        help: "Your name can be updated by clicking it."
+        help: "Your name can be updated by clicking it. To apply your changes, click on the \"Update\" button."
         new_site: new site
         en: English
         de: German
@@ -164,7 +172,7 @@ en:
     theme_assets:
       index:
         title: Listing theme files
-        help: "The theme files section is the place where you manage the files needed by your layout, ...etc. If you need to manage an image gallery, go to the Assets section instead."
+        help: "The theme files section is the place where you manage the files needed by your layout, snippets...etc. If you need to manage an image gallery, create a new content type instead.<br/><b>Warning:</b> you may not see all the assets depending on your rights."
         all: all assets
         new: new file
         snippets: Snippets
@@ -172,7 +180,7 @@ en:
         fonts: Fonts
         images: Images
         medias: Medias
-        no_items: "There are no files for now. Just click <a href=\"%{url}\">here</a> to create the first one."
+        no_items: "There are no files for now."
       asset:
         updated_at: Updated at
       new:
@@ -180,7 +188,10 @@ en:
         help: "You have the choice to either upload any file or to copy/paste a stylesheet or a javascript in plain text."
       edit:
         title: "Editing %{file}"
-        help: "This asset is accessible from the following url: <a href='%{url}'>%{url}</a>"
+        help: "This asset is accessible directly from the following url: <a href='%{url}'>%{url}</a>"
+        help_image: "Include your image in your page templates or snippets with the following liquid code : <span class='code'>{{ '%{path}' | theme_image_tag }}</span>.<br/>Your current image dimensions : <b>%{width}px x %{height}px</b>.<br/>"
+        help_javascript: "Include your javascript file in your page templates or snippets with the following code : <span class='code'>{{ '%{path}' | javascript_tag }}</span>.<br/>"
+        help_stylesheet: "Include your stylesheet file in your page templates or snippets with the following code : <span class='code'>{{ '%{path}' | stylesheet_tag }}</span>.<br/>"
       form:
         picker_link: Insert a file into the code
         choose_file: Choose file
@@ -188,22 +199,6 @@ en:
       images:
         title: Listing images
         no_items: "There are no files for now."
-
-    asset_collections:
-      index:
-        title: Asset collections
-        help: "The collection name can be updated by clicking it. You can customize assets in a collection by adding new fields."
-        new: new collection
-        no_items: "There are no collections for now. Just click <a href=\"%{url}\">here</a> to create the first one."
-      new:
-        title: New collection
-        help: "For now, just type a name. Other settings will come once the form is sent."
-      edit:
-        help: "The collection name can be updated by clicking it. You can customize assets in a collection by adding new fields."
-        add_asset: add asset
-        destroy: remove collection
-        no_items: "There are no assets for now. Just click <a href=\"%{url}\">here</a> to create the first one."
-        ask_for_name: "Please type the new name"
 
     assets:
       new:
@@ -226,8 +221,8 @@ en:
         new_item: new item
       form:
         order_by:
-          created_at: 'By "created at" date'
-          updated_at: 'By "updated at" date'
+          created_at: 'By creation date'
+          updated_at: 'By updating date'
           position_in_list: Manually
         order_direction:
           asc: Ascending
@@ -258,7 +253,7 @@ en:
         title: Cross-domain authentication
         notice: You will be redirected to the website in a couple of seconds.
 
-    imports:
+    import:
       new:
         title: Import site template
         help: "Be careful when you upload a new template for your existing website, your current data could be modified or even removed."
@@ -269,7 +264,6 @@ en:
           site: Site information
           content_types: Custom content types
           assets: Theme files
-          asset_collections: Asset collections
           snippets: Snippets
           pages: Pages
         messages:

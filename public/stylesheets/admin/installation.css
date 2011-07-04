@@ -60,3 +60,22 @@
   font-weight: normal;
 }
 
+#panel fieldset ol li div.inline-errors {
+  background: transparent url(/images/admin/form/error-arrow.png) no-repeat 17px 0;
+  margin: 2px 0 0 0;
+  padding: 8px 0 0 0;
+}
+
+#panel fieldset ol li div.inline-errors p {
+  display: inline-block;
+  width: auto;
+  margin: 0px;
+  padding: 3px 12px 4px 30px;
+  color: #fff !important;
+  text-shadow: #000 0px 1px;
+  font-size: 0.9em;
+  padding-left: 30px;
+  background: #cd0f19 url(/images/admin/form/icons/error.png) no-repeat 10px 6px;
+}
+
+
