@@ -16,8 +16,8 @@ es:
         see: Ver Sitio
         logout: Salir
       menu:
-        contents: Modelos
-        assets: Contenidos
+        contents: Contenido
+        assets: Colecciones
         settings: Ajustes
         pages: Páginas
         snippets: Fragmentos
