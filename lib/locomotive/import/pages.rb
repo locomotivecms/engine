@@ -122,9 +122,7 @@ module Locomotive
         template.gsub!(/\/samples\/(.*\.[a-zA-Z0-9]{3})/) do |match|
           name = $1
 
-          collection = AssetCollection.find_or_create_internal(site)
-
-          if asset = collection.assets.detect { |a| a.source_filename == name }
+          if asset = site.assets.where(:source_filename => name).first
             asset.source.url
           else
             match

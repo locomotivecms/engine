@@ -15,7 +15,8 @@
         = label_tag 'zipfile', t('formtastic.labels.import.new.source')
         = file_field_tag 'zipfile'
         - if @error
-          %p.inline-errors= @error
+          .inline-errors
+            %p= @error
         %p.inline-hints= t('formtastic.hints.import.source')
 
       %li.input.toggle
