@@ -1,0 +1,5 @@
+es:
+  carrierwave:
+    errors:
+      integrity: 'no es un tipo de fichero válido.'
+

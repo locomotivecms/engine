@@ -158,6 +158,7 @@ it:
         fr: Francese
         pt-BR: "Portoghese Brasiliano"
         it: Italiano
+        es: Spagnolo
         ask_for_name: "Prego, digita il tuo nome"
 
     theme_assets:

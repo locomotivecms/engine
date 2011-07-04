@@ -158,6 +158,7 @@ fr:
         fr: en Français
         pt-BR: "en Portugais"
         it: "en Italien"
+        es: en Espagnol
         ask_for_name: "Veuillez entrer le nouveau nom"
 
     theme_assets:
