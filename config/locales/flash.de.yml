@@ -99,7 +99,7 @@ de:
         create:
           alert: "Du musst dich einloggen"
 
-      imports:
+      import:
         create:
           done: "Deine Webseite wurde erfolreich aktualisiert."
           notice: "Deine Webseite wird aktualisiert."

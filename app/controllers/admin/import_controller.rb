@@ -1,5 +1,5 @@
 module Admin
-  class ImportsController < BaseController
+  class ImportController < BaseController
 
     sections 'settings', 'site'
 
@@ -32,7 +32,7 @@ module Admin
           :reset    => Boolean.set(params[:reset])
         })
 
-        flash[:notice] = t("flash.admin.imports.create.#{Locomotive.config.delayed_job ? 'notice' : 'done'}")
+        flash[:notice] = t("flash.admin.import.create.#{Locomotive.config.delayed_job ? 'notice' : 'done'}")
 
         redirect_to Locomotive.config.delayed_job ? admin_import_url : new_admin_import_url
       rescue Exception => e

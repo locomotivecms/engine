@@ -138,6 +138,7 @@ fr:
 
     current_sites:
       edit:
+        export: exporter
         import: importer
         new_membership: ajouter compte
         help: "Le nom du site est modifiable en cliquant dessus. Pour appliquer votre modification, cliquez après sur le bouton \"Modifier\""
@@ -249,7 +250,7 @@ fr:
         title: Transfert vers un autre site
         notice: Vous allez être redirigé(e) vers le site dans quelques secondes.
 
-    imports:
+    import:
       new:
         title: Importer template de site
         help: "Faites attention quand vous envoyez un nouveau template sur votre site, les données de celui-ci pourront être modifiées voire même supprimées."

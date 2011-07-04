@@ -11,6 +11,23 @@ namespace :locomotive do
     puts '...done'
   end
 
+  desc 'Import a remote template described by its URL -- 2 options: SITE=name or id, RESET=by default false'
+  task :import => :environment do
+    url, site_name_or_id, reset = ENV['URL'], ENV['SITE'], Boolean.set(ENV['RESET']) || false
+
+    if url.blank? || (url =~ /https?:\/\//).nil?
+      raise "URL is missing or it is not a valid http url."
+    end
+
+    site = Site.find(site_name_or_id) || Site.where(:name => site_name_or_id).first || Site.first
+
+    if site.nil?
+      raise "No site found. Please give a correct value (name or id) for the SITE env variable."
+    end
+
+    ::Locomotive::Import::Job.run!(url, site, { :samples => true, :reset => reset })
+  end
+
   namespace :upgrade do
 
     desc 'Set roles to the existing users'
@@ -33,7 +50,7 @@ namespace :locomotive do
     task :remove_asset_collections => :environment do
       puts "Processing #{AssetCollection.count} asset collection(s)..."
 
-      Asset.destroy_all # TODO
+      Asset.destroy_all
 
       AssetCollection.all.each do |collection|
         site = Site.find(collection.attributes['site_id'])

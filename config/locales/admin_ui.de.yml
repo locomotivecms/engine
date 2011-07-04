@@ -262,7 +262,7 @@ de:
         title: Cross-Domain Authentifizierung
         notice: Du wirst zu der Webseite in ein paar Sekunden weitergeleitet.
 
-    imports:
+    import:
       new:
         title: Import
         help: "Passe bitte auf, wenn du ein neues Template für deine bestehende Webseite hochlädst. Deine bestehenden Daten könnten verändert oder gelöscht werden!"

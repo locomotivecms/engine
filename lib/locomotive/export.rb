@@ -1,4 +1,5 @@
 require 'fileutils'
+require 'zip/zip'
 
 # Just a simple helper class to export quickly an existing and live locomotive website.
 # FIXME: will be replaced by the API in the next months
@@ -7,9 +8,10 @@ module Locomotive
 
     @@instance = nil
 
-    def initialize(site)
+    def initialize(site, filename = nil)
       @site           = site
-      @target_folder  = File.join(Rails.root, 'tmp', 'export', Time.now.to_i)
+      @filename       = filename || Time.now.to_i.to_s
+      @target_folder  = File.join(Rails.root, 'tmp', 'export', filename)
       @site_hash      = {} # used to generate the site.yml and compiled_site.yml files
 
       self.create_target_folder
@@ -36,18 +38,32 @@ module Locomotive
       self.log('copying config files')
       self.copy_config_files
 
-      @target_folder
+      self.log('generating the zip file')
+      self.zip_it!
     end
 
     # returns the path to the zipfile
-    def self.run!(site)
-      @@instance = self.new(site)
+    def self.run!(site, filename = nil)
+      @@instance = self.new(site, filename)
       @@instance.run!
     end
 
     protected
 
+    def zip_it!
+      "#{@target_folder}.zip".tap do |dst|
+        FileUtils.rm(dst, :force => true)
+        ::Zip::ZipFile.open(dst, ::Zip::ZipFile::CREATE) do |zipfile|
+          Dir[File.join(@target_folder, '**/*')].each do |file|
+            entry = file.gsub(@target_folder + '/', '')
+            zipfile.add(entry, file)
+          end
+        end
+      end
+    end
+
     def create_target_folder
+      FileUtils.rmdir(@target_folder)
       FileUtils.mkdir_p(@target_folder)
       %w(app/content_types app/views/snippets app/views/pages config data public).each do |f|
         FileUtils.mkdir_p(File.join(@target_folder, f))
@@ -68,7 +84,7 @@ module Locomotive
         f.write(yaml(@site_hash))
       end
 
-      @site_hash.delete(content_types)
+      @site_hash['site'].delete('content_types')
 
       File.open(File.join(self.config_folder, 'site.yml'), 'w') do |f|
         f.write(yaml(@site_hash))
@@ -76,7 +92,7 @@ module Locomotive
     end
 
     def copy_pages
-      @site.all_pages_in_once.each { |p| self._copy_pages(p) }
+      Page.quick_tree(@site, false).each { |p| self._copy_pages(p) }
     end
 
     def copy_snippets
@@ -89,13 +105,13 @@ module Locomotive
 
     def copy_content_types
       @site.content_types.each do |content_type|
-        attributes = self.extract_attributes(content_type, %w(description slug order_by order_direction highlighted_field_name group_by_field_name api_enabled))
+        attributes = self.extract_attributes(content_type, %w(name description slug order_by order_direction highlighted_field_name group_by_field_name api_enabled))
 
         # custom_fields
         fields = []
         content_type.content_custom_fields.each do |field|
           fields << {
-            field._alias => self.extract_attributes(field, %w(label kind hints target))
+            field._alias => self.extract_attributes(field, %w(label kind hint target))
           }
         end
 
@@ -104,8 +120,6 @@ module Locomotive
         @site_hash['site']['content_types'][content_type.name] = attributes.clone
 
         # [structure] copy it into its own file
-        attributes['name'] = content_type.name
-
         File.open(File.join(self.content_types_folder, "#{content_type.slug}.yml"), 'w') do |f|
           f.write(self.yaml(attributes))
         end
@@ -128,8 +142,8 @@ module Locomotive
 
         self.copy_file_from_an_uploader(theme_asset.source, target_path) do |bytes|
           if theme_asset.stylesheet_or_javascript?
-            base_url = theme_asset.source.url.gsub(theme_asset.local_path)
-            bytes.gsub!(base_url, '/')
+            base_url = theme_asset.source.url.gsub(theme_asset.local_path, '')
+            bytes.gsub(base_url, '/')
           else
             bytes
           end
@@ -149,7 +163,9 @@ module Locomotive
     def _copy_pages(page)
       attributes = self.extract_attributes(page, %w{title seo_title meta_description meta_keywords listed redirect_url content_type published})
 
-      unless page.redirected?
+      unless page.redirect?
+        attributes.delete('redirect_url')
+
         # add editable elements
         page.editable_elements.each do |element|
           next if element.disabled? || (element.from_parent && element.default_content == element.content)
@@ -159,9 +175,9 @@ module Locomotive
           case element
           when EditableShortText, EditableLongText
             el_attributes['content'] = self.replace_asset_urls_in(element.content)
-          when EditableImage
+          when EditableFile
             filepath = File.join('/', 'samples', element.source_filename)
-            self.copy_file_from_an_uploader(element.source, File.join(self.samples_folder, filepath))
+            self.copy_file_from_an_uploader(element.source, File.join(self.public_folder, filepath))
             el_attributes['content'] = filepath
           end
 
@@ -179,7 +195,7 @@ module Locomotive
     end
 
     def extract_attributes(object, fields)
-      object.attributes.select { |k, v| fields.include?(k) }
+      object.attributes.select { |k, v| fields.include?(k) }.delete_if { |k, v| v.blank? }
     end
 
     def pages_folder
@@ -215,6 +231,8 @@ module Locomotive
       File.open(target_path, 'w') do |f|
         bytes = uploader.read
 
+        bytes ||= ''
+
         bytes = block.call(bytes) if block_given?
 
         bytes = bytes.force_encoding('UTF-8') if RUBY_VERSION =~ /1\.9/
@@ -228,7 +246,7 @@ module Locomotive
       highlighted_field_name = content_type.highlighted_field_name
 
       content_type.contents.each do |content|
-        hash = { content.highlighted_field_value => {} }
+        hash = {}
 
         content.custom_fields.each do |field|
           next if field._name == highlighted_field_name
@@ -249,7 +267,7 @@ module Locomotive
           end
         end
 
-        data << hash
+        data << { content.highlighted_field_value => hash }
       end
 
       data
@@ -257,12 +275,10 @@ module Locomotive
 
     def replace_asset_urls_in(text)
       base_url = AssetUploader.new(Asset.new(:site => @site)).store_dir
-      base_url.split('/').pop
-      base_url.join('/')
+      (base_url = base_url.split('/')).pop
+      base_url = base_url.join('/')
 
-      changed_text = text.gsub(%r(#{base_url}/[a-z0-9]{10,}/), 'samples')
-
-      changed_text.starts_with?('/') ? changed_text : "/#{changed_text}"
+      text.gsub(%r(#{base_url}/[a-z0-9]{10,}/), "#{base_url.starts_with?('http') ? '/' : ''}samples/")
     end
 
     def yaml(hash_or_array)
@@ -276,7 +292,7 @@ module Locomotive
     end
 
     def log(message, domain = '')
-      head = "[export_template][#{site.name}]"
+      head = "[export_template][#{@site.name}]"
       head += "[#{domain}]" unless domain.blank?
       ::Locomotive::Logger.info "\t#{head} #{message}"
     end

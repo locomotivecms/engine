@@ -243,7 +243,7 @@ it:
         title: Autenticazione cross-domain
         notice: Sarai rediretto al sito web in pochi secondi.
 
-    imports:
+    import:
       new:
         title: Importa
         help: "Fai attenzione quando carichi un nuovo tema per il tuo sito, gli attuali dati potrebbero essere modificati o eliminati."

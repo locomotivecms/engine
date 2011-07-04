@@ -61,9 +61,8 @@ x bugs
   x delete an item => okay
 x bug: duplicate fields (new entry) when errors in the content type form
 x tinyMCE => fullscreen
-- export site:
-  - generate database.yml
-- rake task to import a remote template
+x export site
+x rake task to import a remote template
 
 => MERGE
 
@@ -71,6 +70,7 @@ x tinyMCE => fullscreen
 - icon for redirection page in the pages section (back-office)
 - test and/or convert existing templates (the 2 of the themes section)
 - [bushido] guiders / welcome page / devise cas authentication (SSO)
+- remove withelist for assets since we've now roles
 
 
 BACKLOG:

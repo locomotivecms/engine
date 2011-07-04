@@ -99,7 +99,7 @@ fr:
         create:
           alert: "Vous devez vous authentifier"
 
-      imports:
+      import:
         create:
           done: "Votre site a été mis à jour"
           notice: "Votre site est en train d'être mis à jour"

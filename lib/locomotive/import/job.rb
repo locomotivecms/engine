@@ -95,7 +95,7 @@ module Locomotive
         uploader = self.get_uploader(@site)
 
         begin
-          if zipfile.is_a?(String) && zipfile =~ /^http:\/\//
+          if zipfile.is_a?(String) && zipfile =~ /^https?:\/\//
             uploader.download!(zipfile)
             uploader.store!
           else

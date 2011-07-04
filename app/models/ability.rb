@@ -55,6 +55,8 @@ class Ability
 
     can :import, Site
 
+    can :export, Site
+
     can :point, Site
 
     can :manage, Membership

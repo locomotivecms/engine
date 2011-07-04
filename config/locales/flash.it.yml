@@ -99,7 +99,7 @@ it:
         create:
           alert: "Devi accedere"
 
-      imports:
+      import:
         create:
           done: "Il tuo sito è stato modificato con successo."
           notice: "Il tuo sito è in fase di aggiornamento."

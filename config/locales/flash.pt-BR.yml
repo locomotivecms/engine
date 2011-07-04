@@ -99,7 +99,7 @@ pt-BR:
         create:
           alert: "Você precisa fazer o login"
 
-      imports:
+      import:
         create:
           done: "Seu site foi atualizado com sucesso."
           notice: "Seu site está sento atualizado."

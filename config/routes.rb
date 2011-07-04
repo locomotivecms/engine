@@ -35,8 +35,6 @@ Rails.application.routes.draw do
 
     resources :assets
 
-    resources :images, :controller => 'assets', :defaults => { :image => true }
-
     resources :content_types
 
     resources :contents, :path => 'content_types/:slug/contents' do
@@ -49,7 +47,9 @@ Rails.application.routes.draw do
 
     resources :cross_domain_sessions, :only => [:new, :create]
 
-    resource :import, :only => [:new, :show, :create]
+    resource :import, :only => [:new, :show, :create], :controller => 'import'
+
+    resource :export, :only => [:new], :controller => 'export'
 
     # installation guide
     match '/installation' => 'installation#show', :defaults => { :step => 1 }, :as => :installation
