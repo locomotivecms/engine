@@ -63,14 +63,14 @@ x bug: duplicate fields (new entry) when errors in the content type form
 x tinyMCE => fullscreen
 x export site
 x rake task to import a remote template
-
-=> MERGE
+x MERGE
+x remove withelist for assets since we've got now roles
+- test and/or convert existing templates (the 2 of the themes section)
 
 - overide sort for contents
 - icon for redirection page in the pages section (back-office)
-- test and/or convert existing templates (the 2 of the themes section)
 - [bushido] guiders / welcome page / devise cas authentication (SSO)
-- remove withelist for assets since we've now roles
+
 
 
 BACKLOG:

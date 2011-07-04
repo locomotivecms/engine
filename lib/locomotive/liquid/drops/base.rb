@@ -1,4 +1,4 @@
-# Code taken from Mephisto sources (http://mephistoblog.com/)
+# Liquify taken from Mephisto sources (http://mephistoblog.com/)
 module Locomotive
   module Liquid
     module Drops
@@ -6,24 +6,14 @@ module Locomotive
 
         @@forbidden_attributes = %w{_id _version _index}
 
-        class_inheritable_reader :liquid_attributes
-        write_inheritable_attribute :liquid_attributes, []
         attr_reader :_source
-        delegate :hash, :to => :_source
 
         def initialize(source)
-          unless source.nil?
-            @_source = source
-            @liquid = liquid_attributes.flatten.inject({}) { |h, k| h.update k.to_s => @_source.send(k) }
-          end
+          @_source = source
         end
 
         def id
           (@_source.respond_to?(:id) ? @_source.id : nil) || 'new'
-        end
-
-        def before_method(method)
-          @liquid[method.to_s]
         end
 
         # converts an array of records to an array of liquid drops

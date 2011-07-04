@@ -1,6 +1,6 @@
 - edit = local_assigns.key?(:edit) ? edit : true
 
-%li{ :class => "#{asset.new_record? ? 'new-asset' : 'asset'} #{'hidden' if asset.hidden?}" }
+%li{ :class => (asset.new_record? ? 'new-asset' : 'asset') }
   %em
   %strong= link_to asset.local_path(!edit), edit ? edit_admin_theme_asset_path(asset) : asset.source.url, :'data-local-path' => asset.local_path
   .more

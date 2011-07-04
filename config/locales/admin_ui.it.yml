@@ -166,7 +166,6 @@ it:
       index:
         title: Lista file del tema
         help: "La sezione di file del tema è il luogo in cui si amministrano i file necessari al layout, ...ecc. Se devi invece amministrare una galleria immagini, vai nella sezione Risorse."
-        all: tutte le risorse
         new: nuovo file
         snippets: Frammenti
         css_and_js: Style e javascript

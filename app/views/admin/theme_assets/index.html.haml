@@ -4,7 +4,6 @@
   = render 'admin/shared/menu/settings'
 
 - content_for :buttons do
-  = admin_button_tag t('admin.theme_assets.index.all'), all_admin_theme_assets_url, :class => 'show' if can?(:manage, ThemeAsset)
   = admin_button_tag t('admin.snippets.index.new'), new_admin_snippet_url, :class => 'new' if can?(:manage, Snippet)
   = admin_button_tag :new, new_admin_theme_asset_url, :class => 'new' if can?(:manage, ThemeAsset)
 

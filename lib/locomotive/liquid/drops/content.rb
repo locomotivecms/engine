@@ -2,6 +2,7 @@ module Locomotive
   module Liquid
     module Drops
       class Content < Base
+
         delegate :seo_title, :meta_keywords, :meta_description, :to => '_source'
 
         def _id

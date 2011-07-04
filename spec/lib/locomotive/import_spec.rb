@@ -46,14 +46,6 @@ describe Locomotive::Import::Job do
       @site.theme_assets.count.should == 10
     end
 
-    it 'hides some theme assets' do
-      asset = @site.theme_assets.where(:local_path => 'stylesheets/style.css').first
-      asset.hidden.should == false
-
-      asset = @site.theme_assets.where(:local_path => 'stylesheets/ie7.css').first
-      asset.hidden.should == true
-    end
-
     it 'inserts all the pages' do
       @site.pages.count.should == 11
     end

@@ -11,12 +11,11 @@ Background:
     Given I am not authenticated
     When I go to theme assets
     Then I should see "Log in"
-  
+
   Scenario: Accessing theme assets as an Admin
     Given I am an authenticated "admin"
     When I go to theme assets
-    Then I should see "all assets"
-    And I should see "new snippet"
+    Then I should see "new snippet"
     And I should see "new file"
     And I should see "Snippets"
     And I should see "Style and javascript"
@@ -25,8 +24,7 @@ Background:
   Scenario: Accessing theme assets as a Designer
     Given I am an authenticated "designer"
     When I go to theme assets
-    Then I should see "all assets"
-    And I should see "new snippet"
+    Then I should see "new snippet"
     And I should see "new file"
     And I should see "Snippets"
     And I should see "Style and javascript"
@@ -35,8 +33,7 @@ Background:
   Scenario: Accessing theme assets as an Author
     Given I am an authenticated "author"
     When I go to theme assets
-    Then I should not see "all assets"
-    And I should not see "new snippet"
+    Then I should not see "new snippet"
     And I should not see "new file"
     And I should not see "Snippets"
     And I should not see "Style and javascript"

@@ -169,7 +169,6 @@ fr:
       index:
         title: Liste des fichiers du thème
         help: "Les fichiers du thème sont utilisés pour construire le gabarit de vos pages. Si vous avez besoin d'une galerie d'images, créer un modèle sera plus adéquate.<br/><b>Attention : </b> Suivant les droits que vous avez, il se peut que vous ne puissiez pas voir tous les fichiers."
-        all: tous les fichiers
         new: nouveau fichier
         snippets: Snippets
         css_and_js: Style et javascript

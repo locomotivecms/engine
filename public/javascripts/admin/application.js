@@ -130,4 +130,5 @@ $(document).ready(function() {
   $('.formtastic fieldset.inputs').bind('refresh', function(e) { $(this).find('ol li:not(.item)').removeClass('last').filter(':visible').last().addClass('last'); })
     .trigger('refresh');
 
+  $('.formtastic fieldset.inputs ol li:not(.item)').last().addClass('last');
 });

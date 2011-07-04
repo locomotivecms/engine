@@ -163,7 +163,6 @@ pt-BR:
       index:
         title: Listando arquivos do tema
         help: "Nesta seção todos os arquivos relacionados a layout são armazenados e gerenciados. Se você precisa de uma galeria de imagens, vá a seção de Arquivos."
-        all: todos arquivos
         new: novo arquivo
         snippets: Blocos
         css_and_js: CSS e Javascript

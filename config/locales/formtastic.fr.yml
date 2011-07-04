@@ -27,7 +27,6 @@ fr:
         plain_text_name: Nom du fichier
         content_type: Type du fichier
         folder: Dossier
-        hidden: Caché
         new:
           source: Fichier
         edit:

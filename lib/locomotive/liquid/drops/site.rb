@@ -3,14 +3,14 @@ module Locomotive
     module Drops
       class Site < Base
 
-        liquid_attributes << :name << :seo_title << :meta_keywords << :meta_description
+        delegate :name, :seo_title, :meta_keywords, :meta_description, :to => '_source'
 
         def index
           @index ||= self._source.pages.root.first
         end
 
         def pages
-          @pages ||= self._source.pages.to_a.collect(&:to_liquid)
+          @pages ||= liquify(*self._source.pages)
         end
 
       end

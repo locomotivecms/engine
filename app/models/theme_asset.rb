@@ -12,7 +12,6 @@ class ThemeAsset
   field :height, :type => Integer
   field :size, :type => Integer
   field :folder, :default => nil
-  field :hidden, :type => Boolean, :default => false
   mount_uploader :source, ThemeAssetUploader
 
   ## associations ##
@@ -35,7 +34,6 @@ class ThemeAsset
   validate :content_type_can_not_changed
 
   ## named scopes ##
-  scope :visible, lambda { |all| all ? {} : { :where => { :hidden => false } } }
 
   ## accessors ##
   attr_accessor :plain_text_name, :plain_text, :plain_text_type, :performing_plain_text
@@ -101,8 +99,8 @@ class ThemeAsset
     { :url => self.source.url }.merge(self.attributes).stringify_keys
   end
 
-  def self.all_grouped_by_folder(site, include_all = true)
-    assets = site.theme_assets.visible(include_all).order_by([[:slug, :asc]])
+  def self.all_grouped_by_folder(site)
+    assets = site.theme_assets.order_by([[:slug, :asc]])
     assets.group_by { |a| a.folder.split('/').first.to_sym }
   end
 

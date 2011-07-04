@@ -168,7 +168,6 @@ de:
       index:
         title: Template-Dateien
         help: "In diesem Bereich kannst du alle Dateien organisieren, die für dein Layout verwendet werden. Wenn du eine Bilder-Galerie organisieren möchtest, dann gehe dazu in den Galerien-Abschnitt."
-        all: alle Dateien
         new: neue Datei
         snippets: Snippets
         css_and_js: Style und Javascript
