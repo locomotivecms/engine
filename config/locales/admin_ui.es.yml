@@ -259,7 +259,7 @@ es:
         title: Autenticación multi-dominio
         notice: Será redirigido al sitio web en un par de segundos.
 
-    imports:
+    import:
       new:
         title: Importar plantilla de sitio web
         help: "Tenga cuidado al subir una nueva plantilla a un sitio web existente; los datos existentes podrían ser modificados o incluso borrados."
