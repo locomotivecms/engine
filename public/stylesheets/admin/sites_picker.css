@@ -43,7 +43,7 @@
       color: #aaa;
       text-shadow: #000 0px 1px;
       background: transparent url(/images/admin/plugins/sites_picker_entry_bg.png) repeat-x 0 bottom;
-      padding: 3px 8px 4px 8px;
+      padding: 2px 8px 6px 8px;
       cursor: pointer; }
       #sites-picker ul li a {
         text-decoration: none;
