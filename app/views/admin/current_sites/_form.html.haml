@@ -66,3 +66,11 @@
         - else
           .role
             %em.locked= t("admin.memberships.roles.#{membership.role}")
+
+- if can?(:manage, current_site)
+
+  = f.foldable_inputs :name => :robots_txt do
+    = f.custom_input :robots_txt, :css => 'code full', :with_label => false do
+      = f.label :robots_txt
+      %code{ :class => 'html' }
+        = f.text_area :robots_txt, :class => 'small'

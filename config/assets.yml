@@ -45,6 +45,7 @@ javascripts:
     - public/javascripts/admin/content_types.js
   site:
     - public/javascripts/admin/site.js
+    - public/javascripts/admin/plugins/codemirror/codemirror.min.js
   import:
     - public/javascripts/admin/plugins/json2.js
     - public/javascripts/admin/plugins/smartupdater.js

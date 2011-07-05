@@ -22,3 +22,9 @@ Then /^I should be a administrator of the "([^"]*)" site$/ do |name|
   m = site.memberships.detect { |m| m.account_id == @admin._id && m.admin? }
   m.should_not be_nil
 end
+
+# sets the robot_txt for a site
+
+Given /^a robot_txt set to "([^"]*)"$/ do |value|
+  @site.update_attributes(:robots_txt => value)
+end

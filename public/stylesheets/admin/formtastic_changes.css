@@ -126,6 +126,7 @@ form.formtastic fieldset ol li.date input {
 
 form.formtastic fieldset ol li p.inline-hints {  margin-left: 20%; }
 form.formtastic fieldset ol li p.inline-hints a { color: #1f82bc; }
+form.formtastic fieldset ol li p.inline-hints .code { background-color: #c8cad0; color: #5E5F64; text-shadow: rgba(255, 255, 255, 0.8) 0px 1px; }
 
 form.formtastic fieldset ol li code { display: block; border: 1px solid #d1d6e6; margin: 10px 20px 0 20px; }
 form.formtastic fieldset ol li code.nude textarea {
@@ -161,7 +162,7 @@ form.formtastic fieldset ol li.code div.inline-errors {
   margin-left: 20px;
 }
 
-form.formtastic fieldset ol li.small-code code { margin: 0px; display: inline-block; width: 75%;  }
+form.formtastic fieldset ol li.small-code code { margin: 0px; display: inline-block; width: 75%; }
 
 form.formtastic fieldset ol .more { text-align: right; width: auto; margin: 10px 20px 0 0; line-height: 0.6em; }
 form.formtastic fieldset ol .more a { text-decoration: none; color: #787A89; font-size: 0.7em; }
@@ -170,6 +171,10 @@ form.formtastic fieldset ol .more a:hover { text-decoration: underline; }
 form.formtastic fieldset ol .more a.picture {
   padding-left: 23px;
   background: transparent url(/images/admin/icons/asset_add.png) no-repeat left 1px;
+}
+
+form.formtastic fieldset li.full .inline-errors, form.formtastic fieldset li.full .inline-hints {
+  margin-left: 20px;
 }
 
 /* ___ pages ___ */
@@ -522,10 +527,6 @@ form.formtastic fieldset.language li.full span input {
 /* ___ membership ___ */
 
 form.formtastic fieldset.email li.full input {
-  margin-left: 20px;
-}
-
-form.formtastic fieldset.email li.full .inline-errors {
   margin-left: 20px;
 }
 

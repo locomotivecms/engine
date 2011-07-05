@@ -5,6 +5,7 @@ fr:
       advanced_options: Options avancées
       meta: SEO Metadata
       seo: Paramètres SEO
+      robots_txt: Fichier Robots.txt
       code: Code
       raw_template: Gabarit
       credentials: Informations de connexion

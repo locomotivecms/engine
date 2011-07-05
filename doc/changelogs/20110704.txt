@@ -25,4 +25,5 @@ Here is a pretty exhaustive list of what the BIG MERGE includes:
   - slight modifications on forms: separator between fields, text shadow, error message redesigned, ...etc
   - quick link to edit directly a model from the submenu
 - new sites picker (if the multi_sites mode is enabled and correctly set up)
+- the robots.txt can be edited directly from the back-office (site settings).
 - a lot of internal refactoring as well as a ton of bug corrections
