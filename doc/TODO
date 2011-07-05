@@ -66,7 +66,7 @@ x rake task to import a remote template
 x MERGE
 x remove withelist for assets since we've got now roles
 x admin role is not correctly set when creating a new website
-- the required star for file field is not shown
+x the required star for file field is not shown
 - test and/or convert existing templates (the 2 of the themes section)
 - tooltip to explain the difference between 1.) Admin 2.) Author 3.) Designer?
 

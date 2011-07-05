@@ -3,7 +3,7 @@
   = include_stylesheets :fancybox
 
 = f.inputs :name => :information do
-  = f.input :name
+  = f.input :name, :wrapper_html => { :class => 'highlighted' }
   = f.input :slug, :required => false
 
 = f.inputs :name => :code do

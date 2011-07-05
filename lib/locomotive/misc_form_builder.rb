@@ -17,7 +17,7 @@ module Locomotive
       default_options = { :css => '', :with_label => true, :label => nil }
       options = default_options.merge(options)
 
-      html = options[:with_label] ? self.label(options[:label] || name) : ''
+      html = options[:with_label] ? self.label(options[:label] || name, { :required => options[:required] }) : ''
       html += template.capture(&block) || ''
       html += inline_hints_for(name, options) || ''
       html += self.errors_on(name) || ''
