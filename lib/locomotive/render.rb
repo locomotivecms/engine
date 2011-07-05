@@ -64,7 +64,7 @@ module Locomotive
           'current_page'      => self.params[:page],
           'params'            => self.params,
           'url'               => request.url,
-          'now'               => Time.now,
+          'now'               => Time.now.utc,
           'today'             => Date.today
         }.merge(flash.stringify_keys) # data from api
 

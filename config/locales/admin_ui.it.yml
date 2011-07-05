@@ -161,6 +161,7 @@ it:
         pt-BR: "Portoghese Brasiliano"
         it: Italiano
         nl: Olandese
+        es: Spagnolo
         ask_for_name: "Prego, digita il tuo nome"
 
     theme_assets:

@@ -1,0 +1,63 @@
+es:
+  errors:
+    messages:
+      not_found: "no encontrado"
+      already_confirmed: "ya estaba confirmado"
+      not_locked: "no estaba cerrado"
+
+  devise:
+    failure:
+      admin:
+        unauthenticated: 'Debe crear una cuenta o acceder con una cuenta existente para continuar.'
+        unconfirmed: 'Debe confirmar su cuenta para continuar.'
+        locked: 'Su cuenta está bloqueada.'
+        invalid: 'Email o clave no válidos.'
+        no_membership: 'Su cuenta no es miembro de este sitio. Por favor contacte con su administrador para obtener acceso.'
+        invalid_token: 'Token de autenticación no válido.'
+        timeout: 'Su sesión ha expirado. Por favor inicie una nueva sesión para continuar.'
+        inactive: 'Su cuenta no está activa.'
+    sessions:
+      admin:
+        signed_in: 'Sesión iniciada con éxito.'
+        signed_out: 'Sesión finalizada con éxito.'
+    passwords:
+      admin:
+        send_instructions: 'Recibirá un email con instrucciones para resetear su clave en unos minutos.'
+        updated: 'Su clave ha sido cambiada. Se ha iniciado una sesión.'
+    confirmations:
+      admin:
+        send_instructions: 'Recibirá un email con instrucciones para activar su clave en unos minutos.'
+        confirmed: 'Su cuenta ha sido activada. Se ha iniciado una sesión.'
+    registrations:
+      admin:
+        signed_up: 'Creación de cuenta realizada con éxito.'
+        updated: 'Se ha actualizado su cuenta con éxito.'
+        destroyed: '¡Hasta pronto! Su cuenta ha sido eliminada. Esperamos verle de nuevo.'
+    unlocks:
+      admin:
+        send_instructions: 'Recibirá un email con instrucciones para desbloquear su cuenta en unos minutos.'
+        unlocked: 'Su cuenta ha sido desbloqueada. Se ha iniciado una sesión.'
+    mailer:
+      admin:
+        confirmation_instructions: 'Instrucciones de activación'
+        reset_password_instructions: 'Instrucciones de reseteo de clave'
+        unlock_instructions: 'Instrucciones de desbloqueo'
+
+
+  admin:
+    mailer:
+      common:
+        hello: Hola
+
+      confirmation_instructions:
+        you_can_confirm_your_account_through_the_link_below: "Puede activar su cuenta con el siguiente enlace:"
+        confirm_my_account: "Activar mi cuenta"
+      reset_password_instructions:
+        reset_password_instruction: "Alguien ha pedido que se resetee su clave. Puede realizarlo con el siguiente enlace:"
+        change_my_password: "Cambiar mi clave"
+        wrong_request_instruction: "Si usted no pidió este cambio, por favor ignore este email."
+        unchange_password_message: "Su clave no cambiará hasta que acceda al enlace de más arriba para actualizarla."
+      unlock_instructions:
+        locked_account_message: "Su clave fue bloqueada debido a un excesivo número de accesos fallidos."
+        unlock_account_instruction: "Haga click en el siguiente enlace para desbloquear su cuenta:"
+        unlock_my_account: "Desbloquear mi cuenta"

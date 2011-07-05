@@ -28,5 +28,5 @@ Here is a pretty exhaustive list of what the BIG MERGE includes:
 - the robots.txt can be edited directly from the back-office (site settings) (ticket #57)
 - 2 new languages:
   - dutch (#92)
-  - spanish (#??)
+  - spanish (#103)
 - a lot of internal refactoring as well as a ton of bug corrections

@@ -31,7 +31,7 @@ describe Locomotive::Liquid::Drops::Content do
     end
 
     describe 'more recent than' do
-      subject { @content.published_at = 1.days.since; render_template('{% if content.published_at > today %}In the future{% endif %}') }
+      subject { @content.published_at = (Time.now + 1.days); render_template('{% if content.published_at > today %}In the future{% endif %}') }
       it { should == 'In the future' }
     end
 

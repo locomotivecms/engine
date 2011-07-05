@@ -1,0 +1,219 @@
+es:
+  errors:
+    # The default format use in full error messages.
+    format: "%{attribute} %{message}"
+
+    # The values :model, :attribute and :value are always available for interpolation
+    # The value :count is available when applicable. Can be used for pluralization.
+    messages:
+      inclusion: "no está incluido en la lista"
+      exclusion: "está reservado"
+      invalid: "no es válido"
+      confirmation: "no coincide con la confirmación"
+      accepted: "debe ser aceptado"
+      empty: "no puede estar vacío"
+      blank: "no puede estar en blanco"
+      too_long: "es demasiado largo (%{count} caracteres máximo)"
+      too_short: "es demasiado corto (%{count} caracteres mínimo)"
+      wrong_length: "no tiene la longitud correcta (%{count} caracteres exactos)"
+      taken: "ya está en uso"
+      not_a_number: "no es un número"
+      greater_than: "debe ser mayor que %{count}"
+      greater_than_or_equal_to: "debe ser mayor que o igual a %{count}"
+      equal_to: "debe ser igual a %{count}"
+      less_than: "debe ser menor que %{count}"
+      less_than_or_equal_to: "debe ser menor que o igual a %{count}"
+      odd: "debe ser impar"
+      even: "debe ser par"
+
+      domain_taken: "%{value} ya está siendo utilizado en otro sitio"
+      invalid_domain: "%{value} no es válido"
+      needs_admin_account: "Se necesita al menos una cuenta de administrador"
+      protected_page: "Las páginas index y 404 no se pueden borrar"
+      extname_changed: "El nuevo fichero no tiene la misma extensión del antiguo"
+      array_too_short: "es demasiado pequeño (como mínimo debe tener %{count} elementos)"
+      liquid_syntax: "Error de sintaxis de Liquid ('%{error}')"
+      invalid_theme_file: "debe tener contenido o no es un fichero zip válido"
+      page:
+        liquid_syntax: "Error de sintaxis Liquid. Por favor verifique la sintaxis ('%{error}'/'%{fullpath}')"
+        liquid_extend: "La página '%{fullpath}' extiende el contenido de una página que no existe"
+
+  attributes:
+    defaults:
+      pages:
+        index:
+          title: "Página de inicio"
+          body: "Contenido de la página de inicio"
+        "404":
+          title: "Página no encontrada"
+          body: "Contenido de la página no encontrada"
+        other:
+          body: "{% extends 'parent' %}"
+
+  mongoid:
+    attributes:
+      page:
+        title: Título
+        parent: Padre
+        parent_id: Padre
+        slug: Enlace
+        listed: Menu
+        templatized: Templatizada
+        published: Publicada
+        redirect: Redirección
+        redirect_url: Url de redirección
+        cache_strategy: Cache
+      content_type:
+        name: Nombre
+        description: Descripción
+        slug: Enlace
+        order_by: Ordenación
+        highlighted_field_name: Campo destacado
+        group_by_field_name: Champ para agrupar
+        api_enabled: API activada
+      asset_collection:
+        name: Nombre
+        slug: Enlace
+      asset:
+        name: Nombre
+        source: Fichero
+      account:
+        email: E-mail
+        name: Nombre
+        language: Idioma
+        password: Clave
+        password_confirmation: Repetición de la Clave
+      snippet:
+        body: Código
+        slug: Enlace
+        name: Nombre
+      theme_asset:
+        content_type: Tipo de Fichero
+      site:
+        name: Nombre del sitio
+        domain_name: Dominio
+        subdomain: Subdominio
+        restricted_access: "¿Activar?"
+        access_login: Identificador
+        access_password: "Clave"
+      custom_fields:
+        field:
+          _alias: Alias
+          hint: Ayuda
+          required: Obligatorio
+          text_formatting: Formato
+
+  pagination:
+    previous: "&laquo; Anterior"
+    next: "Siguiente &raquo;"
+
+  date:
+    formats:
+      default: "%d/%m/%Y"
+      short: "%e-%b"
+      long: "%e-%B-%Y"
+      long_ordinal: "%e de %B de %Y"
+      only_day: "%e"
+
+    day_names: [Domingo, Lunes, Martes, Miércoles, Jueves, Viernes, Sábado]
+    abbr_day_names: [Dom, Lun, Mar, Mie, Jue, Vie, Sab]
+    month_names: [~, Enero, Febrero, Marzo, Abril, Mayo, Junio, Julio, Agosto, Setiembre, Octubre, Noviembre, Diciembre]
+    abbr_month_names: [~, Ene, Feb, Mar, Abr, May, Jun, Jul, Ago, Set, Oct, Nov, Dic]
+    order: [ :year, :month, :day ]
+
+  time:
+    formats:
+      default: "%A, %d de %B de %Y %H:%M:%S %z"
+      time: "%H:%M"
+      short: "%d de %b %H:%M"
+      long: "%d de %B de %Y %H:%M"
+      long_ordinal: "%A %d %B %Y %H:%M:%S %Z"
+      only_second: "%S"
+    am: "am"
+    pm: "pm"
+
+
+  datetime:
+    distance_in_words:
+      half_a_minute: "medio minuto"
+      less_than_x_seconds:
+        one:  "menos de 1 segundo"
+        other: "menos de %{count} segundos"
+      x_seconds:
+        one:  "1 segundo"
+        other: "%{count} segundos"
+      less_than_x_minutes:
+        one:  "menos de 1 minuto"
+        other: "menos de %{count} minutos"
+      x_minutes:
+        one:  "1 minuto"
+        other: "%{count} minutos"
+      about_x_hours:
+        one:  "alrededor de 1 hora"
+        other: "alrededor de %{count} horas"
+      x_days:
+        one:  "1 día"
+        other: "%{count} días"
+      about_x_months:
+        one:  "alrededor de 1 mes"
+        other: "alrededor de %{count} meses"
+      x_months:
+        one:  "1 mes"
+        other: "%{count} meses"
+      about_x_years:
+        one:  "alrededor de 1 año"
+        other: "alrededor de %{count} años"
+      over_x_years:
+        one:  "más de 1 año"
+        other: "más de %{count} años"
+      almost_x_years:
+        one:   "casi 1 año"
+        other: "casi %{count} años"
+    prompts:
+      year:   "Año"
+      month:  "Mes"
+      day:    "Día"
+      hour:   "Hora"
+      minute: "Minuto"
+      second: "Segundo"
+
+  number:
+    format:
+      separator: ","
+      delimiter: "."
+      precision: 3
+    currency:
+      format:
+        format: "%n %u"
+        unit: "€"
+        separator: ","
+        delimiter: "."
+        precision: 2
+    percentage:
+      format:
+        delimiter: ""
+    precision:
+      format:
+        delimiter: ""
+    human:
+      format:
+        delimiter: ""
+        precision: 1
+      storage_units:
+        format: "%n %u"
+        units:
+          byte:
+            one: "Byte"
+            other: "Bytes"
+          kb: "KB"
+          mb: "MB"
+          gb: "GB"
+          tb: "TB"
+
+  support:
+    array:
+      sentence_connector: 'y'
+      skip_last_comma: true
+      words_connector: ", "
+      two_words_connector: " y "
+      last_word_connector: " y "
