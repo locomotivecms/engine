@@ -510,9 +510,19 @@ form.formtastic fieldset ol li.has-many ul li.template span.actions button span 
 /* ___ my account ___ */
 
 form.formtastic fieldset.language li.full span {
-  margin: 0 20px;
+  display: inline-block;
+  width: 180px;
+  margin: 0 15px;
   font-size: 1em;
   font-weight: bold;
+}
+
+form.formtastic fieldset.language li.full span label {
+  float: none;
+  display: inline;
+  width: auto;
+  margin: 0px;
+  padding: 0px;
 }
 
 form.formtastic fieldset.language li.full span img {
@@ -521,7 +531,7 @@ form.formtastic fieldset.language li.full span img {
 }
 
 form.formtastic fieldset.language li.full span input {
-  margin-left: 5px;
+  margin-right: 2px;
 }
 
 /* ___ membership ___ */

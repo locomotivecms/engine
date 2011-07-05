@@ -170,6 +170,7 @@ en:
         fr: French
         pt-BR: "Brazilian Portuguese"
         it: Italian
+        nl: Dutch
         ask_for_name: "Please type your new name"
 
     theme_assets:

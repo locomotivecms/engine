@@ -37,10 +37,11 @@
     = f.custom_input :language, { :css => 'full', :with_label => false } do
       - Locomotive.config.locales.each do |locale|
         %span
-          %label
+          = f.radio_button :locale, locale
+          %label{ :for => "my_account_locale_#{locale.downcase}" }
             = image_tag "admin/icons/flags/#{locale}.png"
-            = f.radio_button :locale, locale
-            &nbsp;
             = t(".#{locale}")
+          / &nbsp;
+
 
   = render 'admin/shared/form_actions', :button_label => :update
