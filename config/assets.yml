@@ -21,7 +21,6 @@ javascripts:
     - public/javascripts/admin/plugins/toggle.js
     - public/javascripts/admin/plugins/growl.js
     - public/javascripts/admin/plugins/cookie.js
-    - public/javascripts/admin/plugins/selectmenu.js
     - public/javascripts/admin/locales/datepicker_de.js
     - public/javascripts/admin/locales/datepicker_fr.js
     - public/javascripts/admin/locales/datepicker_pt-BR.js
@@ -82,12 +81,12 @@ stylesheets:
     - public/stylesheets/admin/layout.css
     - public/stylesheets/admin/jquery/ui.css
     - public/stylesheets/admin/plugins/toggle.css
-    - public/stylesheets/admin/plugins/selectmenu.css
     - public/stylesheets/admin/menu.css
     - public/stylesheets/admin/buttons.css
     - public/stylesheets/admin/formtastic.css
     - public/stylesheets/admin/formtastic_changes.css
     - public/stylesheets/admin/assets.css
+    - public/stylesheets/admin/sites_picker.css
     - public/stylesheets/admin/application.css
     - public/stylesheets/admin/safari.css
   fancybox:

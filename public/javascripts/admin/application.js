@@ -122,11 +122,16 @@ $(document).ready(function() {
   // nifty checkboxes
   $('.formtastic li.toggle input[type=checkbox]').checkToggle();
 
-  // site selector
-  $('#site-selector').selectmenu({ style: 'dropdown', width: 395, offsetTop: 8, change: function(event, ui) {
-    $('#site-selector').parent().submit();
-  } });
+  // sites picker
+  (function() {
+    var link    = $('#sites-picker-link');
+    var picker  = $('#sites-picker');
+    var left    = link.position().left + link.parent().position().left - (picker.width() - link.width());
+    picker.css('left', left);
+  })();
+  $('#sites-picker-link').click(function(e) { $('#sites-picker').toggle(); e.stopPropagation(); e.preventDefault(); });
 
+  // separator between form fields
   $('.formtastic fieldset.inputs').bind('refresh', function(e) { $(this).find('ol li:not(.item)').removeClass('last').filter(':visible').last().addClass('last'); })
     .trigger('refresh');
 

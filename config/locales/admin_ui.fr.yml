@@ -25,6 +25,7 @@ fr:
       header:
         welcome: "Bonjour, %{name}"
         see: Voir le site web
+        switch: Passer à un autre site
         logout: Se déconnecter
       menu:
         contents: Contenu
@@ -48,6 +49,9 @@ fr:
         subject: "[%{type}] nouveau"
         title: "Bonjour %{name}, nous voulions vous faire savoir qu'une nouvelle instance a été créée le %{date}"
         type: "Modèle: %{type}"
+
+    sites_picker:
+      new: + nouveau site
 
     custom_fields:
       edit:
@@ -145,6 +149,10 @@ fr:
         ask_for_name: "Veuillez entrer le nouveau nom"
 
     memberships:
+      roles:
+        admin: Administrateur
+        designer: Designeur
+        author: Auteur
       new:
         title: "Ajout d'un compte"
         help: "Donnez l'adresse email du compte à ajouter. S'il n'existe pas, vous serez redirigé(e) vers le formulaire de création d'un compte."

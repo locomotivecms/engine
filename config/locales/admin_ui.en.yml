@@ -15,6 +15,7 @@ en:
       header:
         welcome: Welcome, %{name}
         see: See website
+        switch: Switch to another site
         logout: Log out
       menu:
         contents: Contents
@@ -48,6 +49,9 @@ en:
         subject: "[%{type}] new"
         title: "Hi %{name}, just to let you know that a new instance has been created on %{date}"
         type: "Model: %{type}"
+
+    sites_picker:
+      new: + new site
 
     custom_fields:
       edit:
