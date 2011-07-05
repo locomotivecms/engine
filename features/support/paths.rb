@@ -25,6 +25,8 @@ module NavigationHelpers
       admin_theme_assets_path
     when /site settings/
       edit_admin_current_site_path
+    when /account settings/
+      edit_admin_my_account_path
     when /import page/
       new_admin_import_path
     when /export page/

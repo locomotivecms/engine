@@ -65,7 +65,10 @@ x export site
 x rake task to import a remote template
 x MERGE
 x remove withelist for assets since we've got now roles
+- admin role is not correctly set when creating a new website
 - test and/or convert existing templates (the 2 of the themes section)
+- the required star for file field is not shown
+- tooltip to explain the difference between 1.) Admin 2.) Author 3.) Designer?
 
 - overide sort for contents
 - icon for redirection page in the pages section (back-office)
@@ -93,7 +96,7 @@ BACKLOG:
   - dev -> staging -> production
   - sync data
   - import only theme assets
-
+- endless pagination
 
 REFACTORING:
 

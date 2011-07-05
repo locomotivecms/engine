@@ -3,7 +3,6 @@ class Membership
   include Locomotive::Mongoid::Document
 
   ## fields ##
-  # field :admin, :type => Boolean, :default => false
   field :role, :default => 'author'
 
   ## associations ##
