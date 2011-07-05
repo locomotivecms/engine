@@ -5,7 +5,8 @@
   - with_children = !children.empty?
 
   - if not page.index? and with_children
-    = image_tag 'admin/list/icons/node_closed.png', :class => 'toggler'
+    = admin_item_toggler(page)
+
   %em
   %strong= link_to truncate(page.title, :length => 80), edit_admin_page_url(page)
 

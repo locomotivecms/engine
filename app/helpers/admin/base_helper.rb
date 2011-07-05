@@ -39,6 +39,10 @@ module Admin::BaseHelper
     end
   end
 
+  def admin_item_toggler(object)
+    image_tag("admin/list/icons/node_#{(cookies["folder-#{object._id}"] != 'none') ? 'open' : 'closed'}.png", :class => 'toggler')
+  end
+
   def collection_to_js(collection, options = {})
     js = collection.collect { |object| object.to_json }
 

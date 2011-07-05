@@ -1,7 +1,8 @@
 $(document).ready(function() {
 
   // open / close folder
-  $('#pages-list ul.folder img.toggler').toggleMe();
+  if (typeof $.fn.toggleMe != 'undefined')
+    $('#pages-list ul.folder img.toggler').toggleMe();
 
   // sortable folder items
   $('#pages-list ul.folder').sortable({
