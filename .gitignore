@@ -6,6 +6,7 @@ tmp/**/*
 rerun.txt
 uploads
 spec/tmp
+spec/fixtures/themes/default
 public/assets
 public/sites
 public/uploads
@@ -32,3 +33,4 @@ gem_graph.png
 sites/
 permanent
 doc/bushido
+
