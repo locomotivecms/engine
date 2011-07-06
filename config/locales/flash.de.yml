@@ -35,7 +35,7 @@ de:
         destroy:
           notice: "Baustein wurde erfolgreich gelöscht."
 
-      current_sites:
+      current_site:
         update:
           notice: "Meine Webseite wurde erfolreich aktualisiert."
           alert: "Meine Webseite wurde nicht aktualisiert."
@@ -55,7 +55,7 @@ de:
           notice: "Account wurde erfolgreich erstellt."
           alert: "Account wurde nicht erstellt."
 
-      my_accounts:
+      my_account:
         update:
           notice: "Mein Account wurde erfolreich aktualisiert."
           alert: "Mein Account wurde nicht aktualisiert."

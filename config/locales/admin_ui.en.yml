@@ -139,7 +139,7 @@ en:
         title: New site
         help: "Fill in the form below to create your new site."
 
-    current_sites:
+    current_site:
       edit:
         export: export
         import: import
@@ -161,7 +161,7 @@ en:
         title: New account
         help: "Fill in the form below to add a new account."
 
-    my_accounts:
+    my_account:
       edit:
         help: "Your name can be updated by clicking it. To apply your changes, click on the \"Update\" button."
         new_site: new site

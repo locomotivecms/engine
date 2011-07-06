@@ -140,7 +140,7 @@ fr:
         title: "Nouveau site"
         help: "Remplissez le formulaire ci-dessous pour créer votre nouveau site."
 
-    current_sites:
+    current_site:
       edit:
         export: exporter
         import: importer
@@ -162,7 +162,7 @@ fr:
         title: Nouveau compte
         help: "Remplissez le formulaire ci-dessous pour ajouter un nouveau compte."
 
-    my_accounts:
+    my_account:
       edit:
         help: "Votre nom est modifiable en cliquant dessus. Pour appliquer votre modification, cliquez après sur le bouton \"Modifier\""
         new_site: nouveau site

@@ -1,5 +1,5 @@
 module Admin
-  class MyAccountsController < BaseController
+  class MyAccountController < BaseController
 
     sections 'settings', 'account'
 

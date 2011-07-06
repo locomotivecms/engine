@@ -35,7 +35,7 @@ en:
         destroy:
           notice: "Model was successfully deleted."
 
-      current_sites:
+      current_site:
         update:
           notice: "My site was successfully updated."
           alert: "My site was not updated."
@@ -55,7 +55,7 @@ en:
           notice: "Account was successfully created."
           alert: "Account was not created."
 
-      my_accounts:
+      my_account:
         update:
           notice: "My account was successfully updated."
           alert: "My account was not updated."

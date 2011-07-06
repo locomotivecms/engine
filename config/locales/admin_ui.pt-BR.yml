@@ -131,7 +131,7 @@ pt-BR:
         title: Novo site
         help: "Preencha o formulário a seguir para criar um novo site."
 
-    current_sites:
+    current_site:
       edit:
         import: importar
         new_membership: adicionar conta
@@ -148,7 +148,7 @@ pt-BR:
         title: Nova conta
         help: "Preencha o formulário a seguir para criar uma nova conta."
 
-    my_accounts:
+    my_account:
       edit:
         help: "Seu nome pode ser atualizado clicando nele."
         new_site: novo site

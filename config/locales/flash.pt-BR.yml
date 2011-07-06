@@ -35,7 +35,7 @@ pt-BR:
         destroy:
           notice: "Modelo foi apagado com sucesso."
 
-      current_sites:
+      current_site:
         update:
           notice: "Meu site foi atualizado com sucesso."
           alert: "Meu site não foi atualizado."
@@ -55,7 +55,7 @@ pt-BR:
           notice: "Conta foi criada com sucesso."
           alert: "Conta não foi criada."
 
-      my_accounts:
+      my_account:
         update:
           notice: "Minha conta foi atualizada com sucesso."
           alert: "Minha conta não foi atualizada."

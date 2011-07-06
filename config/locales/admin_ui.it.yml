@@ -134,7 +134,7 @@ it:
         title: Nuovo sito
         help: "Compila il modulo sottostante per creare il nuovo sito."
 
-    current_sites:
+    current_site:
       edit:
         import: importa
         new_membership: aggiungi account
@@ -151,7 +151,7 @@ it:
         title: Nuovo account
         help: "Compila il modulo sottostante per aggiugere un nuovo account."
 
-    my_accounts:
+    my_account:
       edit:
         help: "Puoi modificare il tuo nome cliccandoci sopra."
         new_site: nuovo sito

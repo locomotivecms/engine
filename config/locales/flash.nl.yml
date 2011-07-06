@@ -35,7 +35,7 @@ nl:
         destroy:
           notice: "Model is verwijderd."
 
-      current_sites:
+      current_site:
         update:
           notice: "Mijn website is gewijzigd."
           alert: "Mijn website gewijzigd."
@@ -55,7 +55,7 @@ nl:
           notice: "Account is gemaakt."
           alert: "Account is niet gemaakt."
 
-      my_accounts:
+      my_account:
         update:
           notice: "Mijn account is gewijzigd."
           alert: "Mijn account is niet gewijzigd."
