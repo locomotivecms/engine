@@ -174,17 +174,25 @@ module Locomotive
 
           case element
           when EditableShortText, EditableLongText
-            el_attributes['content'] = self.replace_asset_urls_in(element.content)
+            el_attributes['content'] = self.replace_asset_urls_in(element.content || '')
           when EditableFile
-            filepath = File.join('/', 'samples', element.source_filename)
-            self.copy_file_from_an_uploader(element.source, File.join(self.public_folder, filepath))
-            el_attributes['content'] = filepath
+            unless element.source_filename.blank?
+              filepath = File.join('/', 'samples', element.source_filename)
+              self.copy_file_from_an_uploader(element.source, File.join(self.public_folder, filepath))
+              el_attributes['content'] = filepath
+            else
+              el_attributes['content'] = '' # not sure if we run into this
+            end
           end
 
           (attributes['editable_elements'] ||= []) << el_attributes
         end
 
-        File.open(File.join(self.pages_folder, "#{page.fullpath}.liquid"), 'w') do |f|
+        page_templatepath = File.join(self.pages_folder, "#{page.fullpath}.liquid")
+
+        FileUtils.mkdir_p(File.dirname(page_templatepath))
+
+        File.open(page_templatepath, 'w') do |f|
           f.write(self.replace_asset_urls_in(page.raw_template))
         end
       end

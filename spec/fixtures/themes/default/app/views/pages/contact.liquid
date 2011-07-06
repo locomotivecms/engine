@@ -1,0 +1,29 @@
+{% extends parent %}
+
+{% block content %}
+  <section id="contact">
+
+    <h2 class="contact">{{ page.title }}</h2>
+
+    {% editable_long_text 'contact text', hint: 'Text displayed just above the form' %}
+    <p>I whistled for a cab and when it came near the license plate said fresh and had dice in the mirror, if anything I could say that this cab was rare but I thought nah, <a href="/">forget it</a>, yo home to Bel-Air! I pulled up to the house about seven or eight I yelled to the cabbie yo home, smell you later, looked at my kingdom I was finally there to sit on my throne as the prince of Bel-Air</p>
+    {% endeditable_long_text %}
+
+    <form id="contactform" action="{{ contents.messages.api.create }}.html" method="post">
+      <input type="hidden" name="success_callback" value="/contact/success" />
+      <input type="hidden" name="error_callback" value="/contact/error" />
+
+      <p><label for="name">Name</label></p>
+      <input type="text" id=name name="content[name]" placeholder="First and last name" required tabindex="1" />
+
+      <p><label for="email">Email</label></p>
+      <input type="text" id=email name="content[email]" placeholder="example@domain.com" required tabindex="2" />
+
+      <p><label for="comment">Your Message</label></p>
+      <textarea name="content[message]" id="comment" tabindex="4" required></textarea>
+
+      <input name="submit" type="submit" id="submit" tabindex="5" value="Send Message" />
+    </form>
+
+  </section>
+{% endblock %}

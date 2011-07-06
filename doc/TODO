@@ -68,8 +68,9 @@ x remove withelist for assets since we've got now roles
 x admin role is not correctly set when creating a new website
 x the required star for file field is not shown
 x Rights to set roles (ticket #104)
+x export: problems with templatized pages (source => multi levels pages)
+- do not rename files for fonts
 - test and/or convert existing templates (the 2 of the themes section)
-- export: problems with templatized pages
 - tooltip to explain the difference between 1.) Admin 2.) Author 3.) Designer?
 
 - overide sort for contents

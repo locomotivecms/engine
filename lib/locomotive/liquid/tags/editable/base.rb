@@ -20,7 +20,7 @@ module Locomotive
 
           def end_tag
             super
-            
+
             if @context[:page].present?
               @context[:page].add_or_update_editable_element({
                 :block => @context[:current_block].try(:name),
@@ -39,7 +39,7 @@ module Locomotive
             current_page = context.registers[:page]
 
             element = current_page.find_editable_element(context['block'].try(:name), @slug)
-            
+
             if element.present?
               unless element.default_content.present?
                 element.default_content = render_default_content(context)
@@ -60,7 +60,7 @@ module Locomotive
           def document_type
             raise 'FIXME: has to be overidden'
           end
-          
+
           def default_content_option
             result = nil
             if @options[:default].present?
@@ -68,12 +68,9 @@ module Locomotive
             end
             result
           end
-          
+
           def render_default_content(context)
-            puts "Old: #{@nodelist.first.to_s}"
-            result = render_all(@nodelist, context)
-            puts "New: #{result.inspect}"
-            result
+            render_all(@nodelist, context)
           end
         end
 

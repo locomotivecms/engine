@@ -1,0 +1,26 @@
+{% extends parent %}
+
+{% block content %}
+  <section id="work">
+
+    <h2 class="work">{{ project.name }}</h2>
+
+    <p><b>Client</b>: {{ project.client.name }}</p>
+
+    <a class="featured" href="{{ project.url }}">
+      <img src="{{ project.banner.url }}" alt="Visit website" />
+    </a>
+
+    <div class="text">
+      {{ project.description }}
+    </div>
+
+    <h3>Our team</h3>
+
+    <ul>
+      {% for person in project.team %}
+      <li>{{ person.name }} <em>({{ person.position }})</em></li>
+      {% endfor %}
+    </ul>
+  </section>
+{% endblock %}

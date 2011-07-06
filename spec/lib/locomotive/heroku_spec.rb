@@ -2,6 +2,10 @@ require 'spec_helper'
 
 describe 'Heroku support' do
 
+  before(:all) do
+    Site.destroy_all
+  end
+
   before(:each) do
     ::Heroku::Client.any_instance.stubs(:post).returns(true)
     ::Heroku::Client.any_instance.stubs(:delete).returns(true)
