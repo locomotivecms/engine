@@ -35,7 +35,7 @@ fr:
         destroy:
           notice: "Le modèle a été supprimé avec succès."
 
-      current_sites:
+      current_site:
         update:
           notice: "Mon site a été mis à jour avec succès."
           alert: "Mon site n'a pas été mis à jour."
@@ -55,7 +55,7 @@ fr:
           notice: "Le compte a été crée avec succès."
           alert: "Le compte n'a pas été crée."
 
-      my_accounts:
+      my_account:
         update:
           notice: "Mon compte a été mis à jour avec succès."
           alert: "Mon compte n'a pas été mis à jour."

@@ -60,9 +60,18 @@ class Ability
     can :point, Site
 
     can :manage, Membership
+
+    cannot :change_role, Membership do |membership|
+      @membership.account_id == membership.account_id || # can not edit myself
+      membership.admin? # can not modify an administrator
+    end
   end
 
   def setup_admin_permissions!
     can :manage, :all
+
+    cannot :change_role, Membership do |membership|
+      @membership.account_id == membership.account_id # can not edit myself
+    end
   end
 end

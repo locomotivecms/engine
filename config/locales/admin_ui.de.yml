@@ -136,7 +136,7 @@ de:
         title: Neue Webseite
         help: "Fülle das folgende Formular aus, um eine neue Webseite zu erstellen."
 
-    current_sites:
+    current_site:
       edit:
         import: Importieren
         new_membership: Account hinzufügen
@@ -153,7 +153,7 @@ de:
         title: Neuer Account
         help: "Fülle das folgende Formular aus, um einen neuen Account anzulegen."
 
-    my_accounts:
+    my_account:
       edit:
         help: "Deinen Namen kannst du durch darauf klicken ändern."
         new_site: Neue Webseite

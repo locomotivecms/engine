@@ -35,7 +35,7 @@ it:
         destroy:
           notice: "Il modello è stato eliminato con successo."
 
-      current_sites:
+      current_site:
         update:
           notice: "Il mio sito è stato modificato con successo."
           alert: "Il mio sito non è stato modificato."
@@ -55,7 +55,7 @@ it:
           notice: "L'account è stato creato con successo."
           alert: "L'account non è stato creato."
 
-      my_accounts:
+      my_account:
         update:
           notice: "Il mio acccount è stato modificato con successo."
           alert: "Il mio account non è stato modificato."

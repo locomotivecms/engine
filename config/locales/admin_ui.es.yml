@@ -133,7 +133,7 @@ es:
         title: Nuevo sitio
         help: "Rellene el siguiente formulario para crear su nuevo sitio."
 
-    current_sites:
+    current_site:
       edit:
         import: importar
         new_membership: añadir cuenta
@@ -150,7 +150,7 @@ es:
         title: Nueva cuenta
         help: "Rellene el siguiente formulario para añadir una nueva cuenta."
 
-    my_accounts:
+    my_account:
       edit:
         help: "Para cambiar su nombre, haga click en él."
         new_site: nuevo sitio

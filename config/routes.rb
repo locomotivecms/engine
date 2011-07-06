@@ -21,11 +21,11 @@ Rails.application.routes.draw do
 
     resources :sites
 
-    resource :current_site
+    resource :current_site, :controller => 'current_site'
 
     resources :accounts
 
-    resource :my_account
+    resource :my_account, :controller => 'my_account'
 
     resources :memberships
 

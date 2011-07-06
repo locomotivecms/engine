@@ -1,5 +1,5 @@
 module Admin
-  class CurrentSitesController < BaseController
+  class CurrentSiteController < BaseController
 
     defaults :instance_name => 'site'
 

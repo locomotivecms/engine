@@ -132,7 +132,7 @@ nl:
         title: Nieuwe website
         help: "Vul onderstaande formulier in om uw nieuwe website aan te maken."
 
-    current_sites:
+    current_site:
       edit:
         import: importeren
         new_membership: voeg account toe
@@ -149,7 +149,7 @@ nl:
         title: Nieuw account
         help: "Vul onderstaande formulier in om een nieuw account aan te maken"
 
-    my_accounts:
+    my_account:
       edit:
         help: "Uw naam kan gewijzigd worden door het aan te klikken"
         new_site: nieuwe website

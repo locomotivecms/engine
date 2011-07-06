@@ -35,7 +35,7 @@ es:
         destroy:
           notice: "Modelo eliminado con éxito."
 
-      current_sites:
+      current_site:
         update:
           notice: "Sitio actualizado con éxito."
           alert: "El sitio se pudo actualizar."
@@ -55,7 +55,7 @@ es:
           notice: "Cuenta creada con éxito."
           alert: "La cuenta no se pudo crear."
 
-      my_accounts:
+      my_account:
         update:
           notice: "Información de cuenta actualizada con éxito."
           alert: "Mi información de cuenta no se pudo actualizar."
