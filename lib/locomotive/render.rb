@@ -24,7 +24,7 @@ module Locomotive
       end
 
       def render_no_page_error
-        render :template => "/admin/errors/no_page", :layout => false
+        render :template => "/admin/errors/no_page", :layout => nil
       end
 
       def locomotive_page
@@ -97,7 +97,7 @@ module Locomotive
           end
         end
 
-        render :text => output, :layout => false, :status => page_status
+        render :text => output, :layout => nil, :status => page_status
       end
 
       def not_found_page
