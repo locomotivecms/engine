@@ -3,10 +3,16 @@
 - content_for :submenu do
   = render 'admin/shared/menu/settings'
 
-- content_for :buttons do
-  = admin_button_tag t('admin.theme_assets.index.new'), new_admin_theme_asset_url, :class => 'new'
+- if can?(:manage, ThemeAsset)
+  - content_for :buttons do
+    = admin_button_tag t('admin.theme_assets.index.new'), new_admin_theme_asset_url, :class => 'new'
 
-%p!= t('.help', :url => @theme_asset.source.url)
+%p
+  - if %w(image javascript stylesheet).include?(@theme_asset.content_type.to_s)
+    != t(".help_#{@theme_asset.content_type}", :path => @theme_asset.local_path(true), :width => @theme_asset.width, :height => @theme_asset.height)
+
+  != t('.help', :url => @theme_asset.source.url)
+
 
 = semantic_form_for @theme_asset, :url => admin_theme_asset_url(@theme_asset), :html => { :multipart => true, :class => 'save-with-shortcut' } do |form|
 

@@ -7,12 +7,28 @@ $(document).ready(function() {
   $.fn.hasManySelector = function(options) {
 
     var populateSelect = function(context) {
-      context.select.find('option').remove();
+      context.select.find('optgroup, option').remove();
 
       for (var i = 0; i < context.data.collection.length; i++) {
         var obj = context.data.collection[i];
-        if ($.inArray(obj[1], context.data.taken_ids) == -1)
-          context.select.append(new Option(obj[0], obj[1], true, true));
+
+        if (typeof(obj.name) != 'undefined') {  // grouped items
+          var optgroup = $('<optgroup/>').attr('label', obj.name);
+          var size = 0;
+
+          for (var j = 0; j < obj.items.length; j++) {
+            var innerObj = obj.items[j];
+            if ($.inArray(innerObj[1], context.data.taken_ids) == -1) {
+              optgroup.append(new Option(innerObj[0], innerObj[1], true, true));
+              size++;
+            }
+          }
+
+          if (size > 0) context.select.append(optgroup);
+        } else {
+          if ($.inArray(obj[1], context.data.taken_ids) == -1)
+            context.select.append(new Option(obj[0], obj[1], true, true));
+        }
       }
 
       if (context.select.find('option').size() == 0)
@@ -146,8 +162,22 @@ $(document).ready(function() {
 
         for (var j = 0; j < context.data.collection.length; j++) {
           var current = context.data.collection[j];
-          if (data.id == current[1])
-            data.label = current[0];
+
+          if (typeof(current.name) == 'undefined') {
+            if (data.id == current[1]) {
+              data.label = current[0];
+              break;
+            }
+          } else { // loop thru the groups
+            for (var k = 0; k < current.items.length; k++) {
+              var localCurrent = current.items[k];
+
+              if (data.id == localCurrent[1]) {
+                data.label = localCurrent[0];
+                break;
+              }
+            }
+          }
         }
 
         addElement(context, data);

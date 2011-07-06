@@ -4,28 +4,28 @@ module Locomotive
       module Date
 
         def localized_date(input, *args)
-          format, locale = args[0], args[1] rescue 'en'
+          return '' if input.blank?
 
-          return input.to_s if format.to_s.empty?
+          format, locale = args
+
+          locale ||= I18n.locale
+          format ||= I18n.t('date.formats.default', :locale => locale)
 
           if input.is_a?(String)
             begin
-              fragments = ::Date._strptime(input, I18n.t('date.formats.default'))
-              date = ::Date.new(fragments[:year], fragments[:mon], fragments[:mday])
+              fragments = ::Date._strptime(input, format)
+              input = ::Date.new(fragments[:year], fragments[:mon], fragments[:mday])
             rescue
-              date = Time.parse(input)
+              input = Time.parse(input)
             end
-          else
-            date = input
           end
 
-          if date.respond_to?(:strftime)
-            I18n.locale = locale
-            I18n.l date, :format => format
-          else
-            input
-          end
+          return input.to_s unless input.respond_to?(:strftime)
+
+          I18n.l input, :format => format, :locale => locale
         end
+
+        alias :format_date :localized_date
 
       end
 

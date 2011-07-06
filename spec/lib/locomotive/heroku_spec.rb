@@ -35,7 +35,7 @@ describe 'Heroku support' do
     end
 
     it 'has a nil connection' do
-      Locomotive.heroku_connection.should be_nil
+      Locomotive.respond_to?(:heroku_connection).should be_false
     end
 
     it 'tells heroku is disabled' do

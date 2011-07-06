@@ -17,7 +17,7 @@ module Locomotive
       default_options = { :css => '', :with_label => true, :label => nil }
       options = default_options.merge(options)
 
-      html = options[:with_label] ? self.label(options[:label] || name) : ''
+      html = options[:with_label] ? self.label(options[:label] || name, { :required => options[:required] }) : ''
       html += template.capture(&block) || ''
       html += inline_hints_for(name, options) || ''
       html += self.errors_on(name) || ''
@@ -32,6 +32,12 @@ module Locomotive
       else
         nil
       end
+    end
+
+    def error_sentence(errors, options = {}) #:nodoc:
+      error_class = options[:error_class] || default_inline_error_class
+      error_msg = template.content_tag(:p, Formtastic::Util.html_safe(errors.to_sentence.untaint))
+      template.content_tag(:div, error_msg, :class => error_class)
     end
 
     # FIXME (Did): allows to pass attributes to the I18n translation key

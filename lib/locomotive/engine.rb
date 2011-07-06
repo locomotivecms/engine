@@ -21,6 +21,9 @@ require 'redcloth'
 require 'delayed_job_mongoid'
 require 'zip/zipfilesystem'
 require 'jammit-s3'
+require 'dragonfly'
+require 'cancan'
+require 'RMagick'
 
 $:.unshift File.dirname(__FILE__)
 
@@ -31,10 +34,6 @@ module Locomotive
 
     rake_tasks do
       load "railties/tasks.rake"
-    end
-
-    initializer "serving fonts" do |app|
-      app.middleware.insert_after Rack::Lock, '::Locomotive::Middlewares::Fonts', :path => %r{^/fonts}
     end
 
   end

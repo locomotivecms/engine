@@ -1,0 +1,279 @@
+nl:
+  admin:
+    buttons:
+      login: Inloggen
+      send_password: Verstuur
+      change_password: Wijzig
+      new_item: "+ voeg toe"
+      switch_to_site: Ga
+
+    messages:
+      confirm: Weet u het zeker ?
+
+    shared:
+      header:
+        welcome: Welkom, %{name}
+        see: Bekijk website
+        logout: Uitloggen
+      menu:
+        contents: Inhoud
+        assets: Bronmaterialen
+        settings: Instellingen
+        pages: Pagina's
+        snippets: Fragmenten
+        account: Mijn account
+        site: Site
+        theme_assets: Thema bestanden
+      footer:
+        who_is_behind: "Service ontwikkeld door %{development} en vormgegeven door <a href=\"http://www.sachagreif.com\">Sacha Greif</a>"
+      form_actions:
+        back: Terug zonder opslaan
+        create: Maak
+        update: Update
+        send: Verstuur
+
+    errors:
+      "500":
+        title: Applicatie fout
+        notice: "Sorry, maar er ging iets fout"
+        link: "&rarr; Terug naar de applicatie"
+      "404":
+        title: Pagina niet gevonden
+        notice: "De pagina die u opvroeg, bestaat niet."
+        link: "&rarr; Terug naar de applicatie"
+
+    notifications:
+      new_content_instance:
+        subject: "[%{type}] nieuw"
+        title: "Hallo %{name}, dit bericht is om te laten weten dat er een nieuwe instantie is gemaakt op %{date}"
+        type: "Model: %{type}"
+
+    custom_fields:
+      edit:
+        title: Bewerk aangepast veld
+      text_formatting:
+        none: Geen
+        html: HTML
+      edit_field:
+        title: Bewerk veld
+      edit_category:
+        title: Bewerk opties
+        help: Beheer de lijst met opties voor uw select box.
+        collection_label: Lijst met opties
+      custom_form:
+        edit_categories: Bewerk opties
+        delete_file: Verwijder bestand
+      index:
+        is_required: is verplicht
+        default_label: Veldnaam
+
+    sessions:
+      new:
+        title: Inloggen
+        link: "Ik ben mijn wachtwoord vergeten"
+        email: "E-mail"
+        password: "Wachtwoord"
+
+    passwords:
+      new:
+        title: Wachtwoord vergeten
+        link: "&rarr; Terug naar de inlogpagina"
+        email: "Uw e-mail"
+      edit:
+        title: Update mijn wachtwoord
+        link: "&rarr; Terug naar de inlogpagina"
+        password: "Uw nieuwe wachtwoord"
+        password_confirmation: "Bevestiging van uw nieuwe wachtwoord"
+
+    pages:
+      index:
+        title: Pagina overzicht
+        help: "Pagina's zijn georganiseerd als een boom. U kunt zowel pagina's als mappen ordenen"
+        no_items: "Er zijn momenteel geen pagina's. Klik <a href=\"%{url}\">hier</a> om de eerste pagina te maken."
+        new: Nieuwe pagina
+        lastest_items: Laatste pagina's
+      new:
+        title: Nieuwe pagina
+        help: "Voer onderstaande formulier in om uw pagina te maken. Opgelet, de pagina is niet gepubliseerd"
+      page:
+        updated_at: gewijzigd op
+      edit:
+        show: toon
+        help: "De paginatitel kan gewijzigd worden door er op te klikken."
+        ask_for_title: "Typ de nieuwe paginatitel in"
+      form:
+        delete_file: Verwijder bestand
+        default_block: Standaard
+        cache_strategy:
+          none: Geen
+          simple: Simpel
+          hour: 1 uur
+          day: 1 dag
+          week: 1 week
+          month: 1 maand
+
+    snippets:
+      index:
+        title: Overzicht fragmenten
+        help: "Fragmenten zijn stukken HTML code, welke gevonden kunnen worden op verschillende delen van de website (zoals een voettekst)."
+        no_items: "Er zijn momenteel geen fragmenten Klik <a href=\"%{url}\">here</a> om de eerste te maken."
+        new: nieuw fragment
+      new:
+        title: Nieuw fragment
+        help: "Vul onderstaande formulier in om het fragment te wijzigen."
+      edit:
+        title: Wijzig fragment
+        help: "Vul onderstaande formulier in om het fragment te wijzigen."
+      snippet:
+        updated_at: Gewijzigd op
+
+    sites:
+      new:
+        title: Nieuwe website
+        help: "Vul onderstaande formulier in om uw nieuwe website aan te maken."
+
+    current_site:
+      edit:
+        import: importeren
+        new_membership: voeg account toe
+        help: "De website kan worden gewijzigd door er op te klikken."
+        ask_for_name: "Voer de nieuwe website naam in."
+
+    memberships:
+      new:
+        title: Nieuw lidmaatschap
+        help: "Geef het emailaccount op dat u wilt toevoegen. Als het account niet bestaat, dan wordt u doorgestuurd naar het aanmaakformulier."
+
+    accounts:
+      new:
+        title: Nieuw account
+        help: "Vul onderstaande formulier in om een nieuw account aan te maken"
+
+    my_account:
+      edit:
+        help: "Uw naam kan gewijzigd worden door het aan te klikken"
+        new_site: nieuwe website
+        en: Engels
+        de: Duits
+        fr: Frans
+        pt-BR: "Braziliaans Portugees"
+        it: Italiaans
+        nl: Nederlands
+        ask_for_name: "Voer uw nieuwe naam in"
+
+    theme_assets:
+      index:
+        title: Overzicht thema bestanden
+        help: "De thema bestanden sectie is de plaats waar je bestanden kan beheren die benodigd zijn voor de opmaak, ...etc. Ga naar de bronbestanden sectie als u een afbeeldingen wilt beheren."
+        all: alle brondbestanden
+        new: nieuw bestand
+        snippets: Fragmenten
+        css_and_js: Stijlen en javascripts
+        fonts: Lettertypes
+        images: Afbeeldingen
+        medias: Media
+        no_items: "Er zijn momenteel geen bestanden. Klik <a href=\"%{url}\">hier</a> om de eerste aan te maken."
+      asset:
+        updated_at: Gewijzigd op
+      new:
+        title: Nieuw bestand
+        help: "U heeft de keuze om of een bestand te uploaden of om een stylesheet of javascript in platte tekst te te kopiëren/plakken."
+      edit:
+        title: "Bewerk %{file}"
+        help: "Dit bronbestand is alleen toegankelijk via de volgende url: <a href='%{url}'>%{url}</a>"
+      form:
+        picker_link: Plaats een bestand in de code
+        choose_file: Kies bestand
+        choose_plain_text: Kies platte tekst
+      images:
+        title: Overzicht afbeeldingen
+        no_items: "Er zijn momenteel geen bestanden."
+
+    assets:
+      new:
+        title: Nieuw bronbestand
+        help: "Vul onderstaande formulier in om een nieuw bronbestand te maken."
+      edit:
+        title: Wijzig bronbestand
+        help: "Vul onderstaande formulier in om uw bronbestand te wijzigen."
+
+    content_types:
+      index:
+        new: nieuw model
+      new:
+        title: Nieuw model
+        help: "Maak uw eigen data model aan (Projecten, Mensen, ...etc). Uw model moet tenminste 1 veld bevatten. Het eerste veld moet verplicht zijn voor de items gemaakt voor dit content type."
+      edit:
+        title: Wijzig model
+        help: "Uw data model moet tenminste 1 veld bevatten. Het eerste veld moet verplicht zijn voor de items gemaakt voor dit content type."
+        show_items: toon items
+        new_item: nieuw item
+      form:
+        order_by:
+          created_at: 'Door "gemaakt op" datum'
+          updated_at: 'Door "gewijzigd op" datum'
+          position_in_list: Handmatig
+        order_direction:
+          asc: Oplopend
+          desc: Aflopend
+
+    contents:
+      index:
+        title: 'Toon "%{type}"'
+        edit: wijzig model
+        destroy: verwijder model
+        download: download items
+        new: nieuw item
+        category_noname: "Geen naam"
+        lastest_items: "Laatste items"
+        updated_at: "Gewijzigd op"
+      list:
+        no_items: "Er zijn momenteel geen items. Klik hier <a href=\"%{url}\">here</a> om de eerste te maken."
+      new:
+        title: '%{type} &mdash; nieuw item'
+      edit:
+        title: '%{type} &mdash; wijzig item'
+
+    image_picker:
+      link: Voeg een afbeelding toe aan de code
+
+    cross_domain_sessions:
+      new:
+        title: Authenticatie voor verschillende domeinen
+        notice: U wordt binnen enkele seconden doorgestuurd naar de website.
+
+    imports:
+      new:
+        title: Importeer website template
+        help: "Wees voorzichtig wanneer je een nieuwe template upload voor uw bestaande website, omdat de bestaande data kan worden aangepast of verwijderd."
+      show:
+        title: Importeren in uitvoering
+        help: "Uw website wordt momenteel gewijzigd door het thema .zip-bestand die u zojuist heeft geupload. Dit duurt een aantal seconden."
+        steps:
+          site: Website informatie
+          content_types: aangepaste content typen
+          assets: Thema bestanden
+          asset_collections: Bronbestand verzamelingen
+          snippets: Fragmenten
+          pages: Pagina's'
+        messages:
+          success: "Uw website is succesvol gewijzigd."
+          failure: "Het importeren is niet gelukt."
+
+    installation:
+      common:
+        title: Eerste Locomotive Installatie
+        next: Volgende
+      step_1:
+        title: "Stap 1/2 &mdash; Account aanmaken"
+        name: Account naam
+        email: E-mail
+        password: Wachtwoord
+        password_confirmation: Wachtwoord bevestiging
+        done: "U heeft al een account toegevoegd:<br/><strong>%{name}</strong>, <em>%{email}</em>"
+        next: Account aanmaken
+      step_2:
+        title: "Stap 2/2 &mdash; Maak u eerste website"
+        explanations: "U kunt de template gelijk gebruiken, als u reeds de standaard website template heeft geupload. Of u kunt een website template uploaden als .zip bestand (gratis beschikbare templates <a href=\"http://www.locomotivecms.com/support/themes\">hier</a>)."
+        back_to_default_template: "Klik <a href='#'>here</a> om de standaard website te selecteren"
+        next: Maak website aan

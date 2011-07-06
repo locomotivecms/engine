@@ -5,7 +5,7 @@ $(document).ready(function() {
     dataType: 'json',
     minTimeout: 100
   }, function(data) {
-    var steps = ['site', 'content_types', 'assets', 'asset_collections', 'snippets', 'pages'];
+    var steps = ['site', 'content_types', 'assets', 'snippets', 'pages'];
 
     var currentIndex = data.step == 'done' ? steps.length - 1 : steps.indexOf(data.step);
 

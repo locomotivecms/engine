@@ -48,16 +48,21 @@ var TinyMceDefaultSettings = {
   script_url : '/javascripts/admin/plugins/tiny_mce/tiny_mce.js',
   theme : 'advanced',
   skin : 'locomotive',
-  plugins: 'safari,inlinepopups,locoimage',
-  theme_advanced_buttons1 : 'code,|,bold,italic,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,|,bullist,numlist,|,outdent,indent,blockquote,|,link,unlink',
-  theme_advanced_buttons2 : 'formatselect,fontselect,fontsizeselect,|,image',
+  plugins: 'safari,inlinepopups,locomedia,fullscreen',
+  extended_valid_elements: 'iframe[width|height|frameborder|allowfullscreen|src|title]',
+  theme_advanced_buttons1 : 'fullscreen,code,|,bold,italic,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,|,bullist,numlist,|,outdent,indent,blockquote,|,link,unlink',
+  theme_advanced_buttons2 : 'formatselect,fontselect,fontsizeselect,|,locomedia',
   theme_advanced_buttons3 : '',
   theme_advanced_toolbar_location : "top",
   theme_advanced_toolbar_align : "left",
   height: '300',
   width: '710',
   inlinepopups_skin: 'locomotive',
-  convert_urls: false
+  convert_urls: false,
+  fullscreen_new_window : false,
+  fullscreen_settings : {
+    theme_advanced_path_location : "top"
+  }
 };
 
 /* ___ global ___ */
@@ -78,15 +83,6 @@ $(document).ready(function() {
 
   if ((css = $('#submenu > ul').attr('class')) != '')
     $('#submenu > ul > li.' + css).addClass('on');
-
-  // form
-  $('.formtastic li input, .formtastic li textarea, .formtastic li code, .formtastic li select').focus(function() {
-    $('.formtastic li.error:not(.code) p.inline-errors').fadeOut(200);
-    if ($(this).parent().hasClass('error')) {
-      $(this).nextAll('p.inline-errors').show();
-    }
-  });
-  $('.formtastic li.error input').eq(0).focus();
 
   // nifty code editor
   $('code.html textarea').each(function() { addCodeMirrorEditor('liquid', $(this)); });
@@ -118,7 +114,7 @@ $(document).ready(function() {
     var parent = $(this).parent(), content = $(this).next();
     if (parent.hasClass('folded')) {
       parent.removeClass('folded');
-      content.slideDown('fast', function() {  });
+      content.slideDown('fast', function() { parent.trigger('refresh'); });
     } else
       content.slideUp('fast', function() { parent.addClass('folded'); });
   });
@@ -126,9 +122,21 @@ $(document).ready(function() {
   // nifty checkboxes
   $('.formtastic li.toggle input[type=checkbox]').checkToggle();
 
-  // site selector
-  $('#site-selector').selectmenu({ style: 'dropdown', width: 395, offsetTop: 8, change: function(event, ui) {
-    $('#site-selector').parent().submit();
-  } });
+  // sites picker
+  (function() {
+    var link    = $('#sites-picker-link');
+    var picker  = $('#sites-picker');
 
+    if (picker.empty()) return;
+
+    var left    = link.position().left + link.parent().position().left - (picker.width() - link.width());
+    picker.css('left', left);
+  })();
+  $('#sites-picker-link').click(function(e) { $('#sites-picker').toggle(); e.stopPropagation(); e.preventDefault(); });
+
+  // separator between form fields
+  $('.formtastic fieldset.inputs').bind('refresh', function(e) { $(this).find('ol li:not(.item)').removeClass('last').filter(':visible').last().addClass('last'); })
+    .trigger('refresh');
+
+  $('.formtastic fieldset.inputs ol li:not(.item)').last().addClass('last');
 });

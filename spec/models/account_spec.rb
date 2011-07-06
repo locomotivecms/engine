@@ -33,7 +33,7 @@ describe Account do
     account = Factory(:account)
     site_1 = Factory(:site, :memberships => [Membership.new(:account => account)])
     site_2 = Factory(:site, :subdomain => 'foo', :memberships => [Membership.new(:account => account)])
-    account.sites.should == [site_1, site_2]
+    account.reload.sites.to_a.should == [site_1, site_2]
   end
 
   describe 'deleting' do

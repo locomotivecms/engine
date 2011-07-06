@@ -12,4 +12,6 @@
   form.formtastic fieldset.inputs ol { margin-top: 30px; }
 
   #content #local-actions-bar a em { top: 4px; }
+
+  #sites-picker ul li { padding: 3px 8px 4px 8px; }
 }

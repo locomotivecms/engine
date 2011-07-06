@@ -13,7 +13,7 @@ module Admin
     before_filter :sanitize_params, :only => [:create, :update]
 
     def index
-      @assets = ThemeAsset.all_grouped_by_folder(current_site, params[:all])
+      @assets = ThemeAsset.all_grouped_by_folder(current_site)
       @js_and_css_assets = (@assets[:javascripts] || []) + (@assets[:stylesheets] || [])
 
       if request.xhr?
@@ -48,9 +48,6 @@ module Admin
 
     def sanitize_params
       params[:theme_asset] = { :source => params[:file] } if params[:file]
-
-      performing_plain_text = params[:theme_asset][:performing_plain_text]
-      params[:theme_asset].delete(:content_type) if performing_plain_text.blank? || performing_plain_text == 'false'
     end
 
   end

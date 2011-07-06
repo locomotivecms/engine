@@ -21,11 +21,11 @@ Rails.application.routes.draw do
 
     resources :sites
 
-    resource :current_site
+    resource :current_site, :controller => 'current_site'
 
     resources :accounts
 
-    resource :my_account
+    resource :my_account, :controller => 'my_account'
 
     resources :memberships
 
@@ -33,11 +33,7 @@ Rails.application.routes.draw do
       get :all, :action => 'index', :on => :collection, :defaults => { :all => true }
     end
 
-    resources :asset_collections
-
-    resources :assets, :path => 'asset_collections/:collection_id/assets'
-
-    resources :images
+    resources :assets
 
     resources :content_types
 
@@ -51,7 +47,9 @@ Rails.application.routes.draw do
 
     resources :cross_domain_sessions, :only => [:new, :create]
 
-    resource :import, :only => [:new, :show, :create]
+    resource :import, :only => [:new, :show, :create], :controller => 'import'
+
+    resource :export, :only => [:new], :controller => 'export'
 
     # installation guide
     match '/installation' => 'installation#show', :defaults => { :step => 1 }, :as => :installation
@@ -61,6 +59,9 @@ Rails.application.routes.draw do
 
   # sitemap
   match '/sitemap.xml' => 'admin/sitemaps#show', :format => 'xml'
+
+  # robots.txt
+  match '/robots.txt' => 'admin/robots#show', :format => 'txt'
 
   # magic urls
   match '/' => 'admin/rendering#show'

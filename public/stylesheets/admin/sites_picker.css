@@ -1,0 +1,61 @@
+/* ___ AUTOMATICALLY GENERATED: see admin/sites_picker.scss for the source file */
+/* ___ rounded ___ */
+/* ___ box shadow ___ */
+/* ___ others ___ */
+#sites-picker {
+  position: absolute;
+  top: 97px;
+  padding: 0px 0 0 0;
+  border-radius: 4px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.17), 3px 3px 5px 0 rgba(0, 0, 0, 0.41);
+  -moz-box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.17), 3px 3px 5px 0 rgba(0, 0, 0, 0.41);
+  -webkit-box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.17), 3px 3px 5px 0 rgba(0, 0, 0, 0.41);
+  border: 1px solid #000;
+  background: #32333b;
+  min-width: 160px;
+  z-index: 999;
+  font-size: 12px; }
+  #sites-picker p {
+    margin-bottom: 0px;
+    padding: 0 8px; }
+    #sites-picker p, #sites-picker p a {
+      color: #fff;
+      text-shadow: #000 0px 1px; }
+    #sites-picker p a {
+      text-decoration: none; }
+      #sites-picker p a:hover {
+        text-decoration: underline; }
+    #sites-picker p.action {
+      margin-top: 0px;
+      padding: 2px 8px 4px 8px;
+      text-align: right;
+      font-size: 11px; }
+  #sites-picker ul {
+    padding: 0px;
+    margin: 0px;
+    list-style: none;
+    margin: 1px 0 0 0; }
+    #sites-picker ul a {
+      text-decoration: none; }
+    #sites-picker ul li {
+      color: #aaa;
+      text-shadow: #000 0px 1px;
+      background: transparent url(/images/admin/plugins/sites_picker_entry_bg.png) repeat-x 0 bottom;
+      padding: 2px 8px 6px 8px;
+      cursor: pointer; }
+      #sites-picker ul li a {
+        text-decoration: none;
+        color: #aaa; }
+      #sites-picker ul li:hover, #sites-picker ul li:hover a {
+        color: #fff; }
+  #sites-picker:before {
+    content: " ";
+    display: block;
+    width: 21px;
+    height: 13px;
+    position: absolute;
+    top: -11px;
+    right: 20px;
+    background: transparent url(/images/admin/plugins/sites_picker_top_arrow.png) no-repeat 0 0; }

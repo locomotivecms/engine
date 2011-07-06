@@ -3,7 +3,7 @@
   = include_stylesheets :fancybox
 
 = f.inputs :name => :information do
-  = f.input :name
+  = f.input :name, :wrapper_html => { :class => 'highlighted' }
   = f.input :slug, :required => false
 
 = f.inputs :name => :code do
@@ -11,4 +11,4 @@
     %code{ :class => 'html' }
       = f.text_area :template
     .more
-      = link_to t('admin.image_picker.link'), admin_theme_assets_path, :id => 'image-picker-link'
+      = link_to t('admin.image_picker.link'), admin_theme_assets_path, :id => 'image-picker-link', :class => 'picture'

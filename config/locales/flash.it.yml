@@ -35,7 +35,7 @@ it:
         destroy:
           notice: "Il modello è stato eliminato con successo."
 
-      current_sites:
+      current_site:
         update:
           notice: "Il mio sito è stato modificato con successo."
           alert: "Il mio sito non è stato modificato."
@@ -55,7 +55,7 @@ it:
           notice: "L'account è stato creato con successo."
           alert: "L'account non è stato creato."
 
-      my_accounts:
+      my_account:
         update:
           notice: "Il mio acccount è stato modificato con successo."
           alert: "Il mio account non è stato modificato."
@@ -72,16 +72,6 @@ it:
           notice: "La partecipazione è stata creata con successo."
           alert: "La partecipazione non è stata creata."
           already_created: "L'account è già stato aggiunto al corrente sito."
-
-      asset_collections:
-        create:
-          notice: "La collezione è stata creata con successo."
-          alert: "La collezione non è stata creata."
-        update:
-          notice: "La collezione è stata modificata con successo."
-          alert: "La collezione non è stata modificata."
-        destroy:
-          notice: "La collezione è stata eliminata con successo."
 
       assets:
         create:
@@ -109,7 +99,7 @@ it:
         create:
           alert: "Devi accedere"
 
-      imports:
+      import:
         create:
           done: "Il tuo sito è stato modificato con successo."
           notice: "Il tuo sito è in fase di aggiornamento."

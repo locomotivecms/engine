@@ -1,0 +1,34 @@
+nl:
+  date:
+    formats:
+      default: "%m/%d/%Y"
+
+  errors:
+      messages:
+        domain_taken: "%{value} is reeds genomen"
+        invalid_domain: "%{value} is ongeldig"
+        needs_admin_account: "Eén admin account is op zijn minst vereist"
+        protected_page: "U kunt geen index of 404 pagina's verwijderen"
+        extname_changed: "Het nieuwe bestand heeft niet de originele extensie"
+        array_too_short: "is te klein (minimum element nummer is %{count})"
+        liquid_syntax: "Liquid Syntax error ('%{error}')"
+        invalid_theme_file: "kan niet leeg zijn of is geen .zip bestand"
+        page:
+          liquid_syntax: "Liquid Syntax error ('%{error}' op '%{fullpath}')"
+          liquid_extend: "De pagina '%{fullpath}' breid een template uit die niet bestaat"
+
+  attributes:
+    defaults:
+      pages:
+        index:
+          title: "Home page"
+          body: "Inhoud van de home page"
+        "404":
+          title: "Pagina niet gevonden"
+          body: "Inhoud van de 404 pagina"
+        other:
+          body: "{% breid 'parent' uit %}"
+
+  pagination:
+    previous: "&laquo; Vorige"
+    next: "Volgende &raquo;"

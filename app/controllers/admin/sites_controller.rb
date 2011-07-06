@@ -7,7 +7,7 @@ module Admin
 
     def create
       @site = Site.new(params[:site])
-      @site.memberships.build :account => @current_admin, :admin => true
+      @site.memberships.build :account => @current_admin, :role => 'admin'
 
       create! { edit_admin_my_account_url }
     end

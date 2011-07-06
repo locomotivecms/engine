@@ -46,7 +46,7 @@ Locomotive.configure do |config|
   # configure how many items we display in sub menu in the "Contents" section.
   # config.lastest_items_nb = 5
 
-  # default locale (for now, only en, de, fr and pt-BR are supported)
+  # default locale (for now, only en, de, fr, pt-BR and it are supported)
   config.default_locale = :en
 
   # tell if logs are enabled. Useful for debug purpose.
@@ -60,4 +60,16 @@ Locomotive.configure do |config|
   # config.mailer_sender = 'support'
   # # => 'support@heroku.com' (Heroku), 'support@bushi.do' (Bushido), 'support@example.com' (Dev) or 'support@<your_hosting_platform>' (Multi-sites)
   config.mailer_sender = 'support'
+
+  # Rack-cache settings, mainly used for the inline resizing image module. Default options:
+  # config.rack_cache = {
+  #   :verbose     => true,
+  #   :metastore   => URI.encode("file:#{Rails.root}/tmp/dragonfly/cache/meta"), # URI encoded in case of spaces
+  #   :entitystore => URI.encode("file:#{Rails.root}/tmp/dragonfly/cache/body")
+  # }
+  # If you do want to disable it for good, just use the following syntax
+  # config.rack_cache = false
+  #
+  # Note: by default, rack/cache is disabled in the Heroku platform
+
 end

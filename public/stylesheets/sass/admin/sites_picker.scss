@@ -1,0 +1,82 @@
+/* ___ AUTOMATICALLY GENERATED: see admin/sites_picker.scss for the source file */
+
+@import "helpers";
+
+#sites-picker {
+
+  position: absolute;
+  top: 97px;
+
+  padding: 0px 0 0 0;
+
+  @include popup-box;
+
+  border: 1px solid #000;
+
+  background: rgba(50, 51, 59, 1);
+
+  min-width: 160px;
+
+  z-index: 999;
+
+  font-size: 12px;
+
+  p {
+    margin-bottom: 0px;
+
+    padding: 0 8px;
+
+    &, a {
+      color: #fff;
+      text-shadow: #000 0px 1px;
+    }
+
+    a {
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    &.action {
+      margin-top: 0px;
+      padding: 2px 8px 4px 8px;
+      text-align: right;
+      font-size: 11px;
+    }
+  }
+
+  ul {
+    @include reset;
+
+    margin: 1px 0 0 0;
+
+    li {
+      color: #aaa;
+      text-shadow: #000 0px 1px;
+      background: transparent url(/images/admin/plugins/sites_picker_entry_bg.png) repeat-x 0 bottom;
+      padding: 2px 8px 6px 8px;
+      cursor: pointer;
+
+      a {
+        text-decoration: none;
+        color: #aaa;
+      }
+
+      &:hover {
+        &, a { color: #fff; }
+      }
+    }
+  }
+
+  &:before {
+    content: " ";
+    display: block;
+    width: 21px;
+    height: 13px;
+    position: absolute;
+    top: -11px;
+    right: 20px;
+    background: transparent url(/images/admin/plugins/sites_picker_top_arrow.png) no-repeat 0 0;
+  }
+}

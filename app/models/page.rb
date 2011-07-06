@@ -97,7 +97,7 @@ class Page
 
   def normalize_slug
     self.slug = self.title.clone if self.slug.blank? && self.title.present?
-    self.slug.slugify!(:without_extension => true) if self.slug.present?
+    self.slug.permalink! if self.slug.present?
   end
 
   def set_default_raw_template

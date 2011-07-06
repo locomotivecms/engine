@@ -1,0 +1,281 @@
+es:
+  admin:
+    buttons:
+      login: Iniciar sesión
+      send_password: Enviar
+      change_password: Cambiar
+      new_item: "+ añadir"
+      switch_to_site: Ir
+
+    messages:
+      confirm: Por favor confirme
+
+    shared:
+      header:
+        welcome: Bienvenido, %{name}
+        see: Ver Sitio
+        logout: Salir
+      menu:
+        contents: Contenido
+        assets: Colecciones
+        settings: Ajustes
+        pages: Páginas
+        snippets: Fragmentos
+        account: Mi Cuenta
+        site: Sitio
+        theme_assets: Ficheros del Tema
+      footer:
+        who_is_behind: "Servicio desarrollado por %{development} y diseñado por <a href=\"http://www.sachagreif.com\">Sacha Greif</a>"
+      form_actions:
+        back: Volver sin guardar
+        create: Crear
+        update: Actualizar
+        send: Enviar
+
+    errors:
+      "500":
+        title: Error de aplicación
+        notice: "Lo sentimos, pero algo hubo un error en la aplicación"
+        link: "&rarr; Volver"
+      "404":
+        title: Página no encontrada
+        notice: "La página requerida no existe."
+        link: "&rarr; Volver"
+
+    notifications:
+      new_content_instance:
+        subject: "[%{type}] nuevo"
+        title: "Hola %{name}, queremos hacerte saber que una nueva instancia se creó el día %{date}"
+        type: "Modelo: %{type}"
+
+    custom_fields:
+      edit:
+        title: Editando campo personalizado
+      text_formatting:
+        none: Ninguno
+        html: HTML
+      edit_field:
+        title: Editar campo
+      edit_category:
+        title: Editar opciones
+        help: Gestionar la lista de opciones que aparecerán en la lista desplegable.
+        collection_label: Lista de opciones
+      custom_form:
+        edit_categories: Editar opciones
+        delete_file: Borrar fichero
+      index:
+        is_required: requerido
+        default_label: Nombre del campo
+
+    sessions:
+      new:
+        title: Inicio de sesión
+        link: "Olvidé mi clave"
+        email: "Email"
+        password: "Clave"
+
+    passwords:
+      new:
+        title: Clave olvidada
+        link: "&rarr; Volver a la página de inicio"
+        email: "Su email"
+      edit:
+        title: Cambiar my clave
+        link: "&rarr; Volver a la página de inicio de sesióne"
+        password: "Su nueva clave"
+        password_confirmation: "Repita la nueva clave"
+
+    pages:
+      index:
+        title: Mostrando páginas
+        help: "Las páginas se organizan en forma de árbol. Puede reordenar páginas y carpetas."
+        no_items: "No se ha creado ninguna página aún. Pulse <a href=\"%{url}\">aquí</a> to para crear la primera."
+
+        new: Nueva página
+        lastest_items: Últimas páginas
+      new:
+        title: Nueva página
+        help: "Por favor rellene el formulario de más abajo para crear su página. ¡Atención! Las páginas, por defecto, están 'no publicadas'."
+      page:
+        updated_at: última actualización
+      edit:
+        show: mostrar
+        help: "El título de la página se puede cambiar haciendo click en él."
+        ask_for_title: "Por favor escriba el nuevo título"
+      form:
+        delete_file: Borrar fichero
+        default_block: Por defecto
+        cache_strategy:
+          none: Ninguna
+          simple: Simple
+          hour: 1 hora
+          day: 1 día
+          week: 1 semana
+          month: 1 mes
+
+    snippets:
+      index:
+        title: Mostrando fragmentos
+        help: "Los Fragmentos son trozos de código HTML que pueden ser utilizados en varios lugares del sitio web (por ejemplo un pie de página)."
+        no_items: "Por ahora no hay fragmentos. Haga click <a href=\"%{url}\">aquí</a> para crear el primero."
+        new: nuevo fragmento
+      new:
+        title: New fragmento
+        help: "Rellene el siguiente formulario para crear el fragmento."
+      edit:
+        title: Editando fragmento
+        help: "Rellene el siguiente formulario para actualizar el fragmento."
+      snippet:
+        updated_at: Última actualización
+
+    sites:
+      new:
+        title: Nuevo sitio
+        help: "Rellene el siguiente formulario para crear su nuevo sitio."
+
+    current_site:
+      edit:
+        import: importar
+        new_membership: añadir cuenta
+        help: "El nombre del sitio puede actualizarse haciendo click en él."
+        ask_for_name: "Por favor escriba el nuevo nombre del sitio"
+
+    memberships:
+      new:
+        title: Nueva cuenta
+        help: "Por favor escriba el email de la cuenta que a añadir. Si no está en el sistema, se le redirigirá al formulario de creación de cuentas."
+
+    accounts:
+      new:
+        title: Nueva cuenta
+        help: "Rellene el siguiente formulario para añadir una nueva cuenta."
+
+    my_account:
+      edit:
+        help: "Para cambiar su nombre, haga click en él."
+        new_site: nuevo sitio
+        en: Inglés
+        de: Alemán
+        fr: Francés
+        pt-BR: "Portugués (Brasil)"
+        it: Italiano
+        nl: holandés
+        es: Español
+        ask_for_name: "Por favor escriba su nuevo nombre"
+
+    theme_assets:
+      index:
+        title: Mostrando ficheros del tema
+        help: "La sección de ficheros del tema sirve para gestionar los ficheros necesitados por su diseño, ... etc. Si necesita gestionar una galería de imágenes, utilice la sección de 'Media' en lugar de la de ficheros del tema."
+        all: todos los ficheros
+        new: nuevo fichero
+        snippets: Fragmentos
+        css_and_js: Estilo y Javascript
+        fonts: Fuentes
+        images: Imágenes
+        medias: Media
+        no_items: "Por ahora no hay ficheros. Haga click <a href=\"%{url}\">aquí</a> para crear el primero."
+      asset:
+        updated_at: Última actualización
+      new:
+        title: Nuevo Fichero
+        help: "Tiene la opción de subir un fichero desde su disco duro o copiar y pegar el contenido de una hoja de estilos o javascript."
+      edit:
+        title: "Editando %{file}"
+        help: "Este fichero está accesible en la siguiente url: <a href='%{url}'>%{url}</a>"
+      form:
+        picker_link: Insertar un fichero en el código
+        choose_file: Elegir un fichero
+        choose_plain_text: Elegir texto plano
+      images:
+        title: Mostrando imágenes
+        no_items: "No hay ficheros por ahora."
+
+    assets:
+      new:
+        title: Nuevo contenido multi-media
+        help: "Rellene el siguiente formulario para crear el contenido multi-media."
+      edit:
+        title: Editando contenido multi-media
+        help: "Rellene el siguiente formulario para actualizar el contenido multi-media."
+
+    content_types:
+      index:
+        new: nuevo modelo
+      new:
+        title: Nuevo modelo
+        help: "Cree su propio modelo de datos (Proyecto, Persona, ...etc). Su modelo debería tener al menos un campo obligatorio."
+      edit:
+        title: Editando modelo
+        help: "Su modelo debe tener al menos un campo obligatorio."
+        show_items: enseñar elementos
+        new_item: nuevo elemento
+      form:
+        order_by:
+          created_at: 'Por fecha de creación'
+          updated_at: 'Por fecha de última modificación'
+          position_in_list: Manualmente
+        order_direction:
+          asc: Ascendente
+          desc: Descendente
+
+    contents:
+      index:
+        title: 'Mostrando "%{type}"'
+        edit: editar modelo
+        destroy: borrar modelo
+        download: descargar elementos
+        new: nuevo elemento
+        category_noname: "Sin nombre"
+        lastest_items: "Últimos elementos"
+        updated_at: "Última actualización"
+      list:
+        no_items: "No hay ningún elemento. Haga click <a href=\"%{url}\">aquí</a> para crear el primero."
+      new:
+        title: '%{type} &mdash; nuevo elemento'
+      edit:
+        title: '%{type} &mdash; editando elemento'
+
+    image_picker:
+      link: Insertar una imagen el el código
+
+    cross_domain_sessions:
+      new:
+        title: Autenticación multi-dominio
+        notice: Será redirigido al sitio web en un par de segundos.
+
+    import:
+      new:
+        title: Importar plantilla de sitio web
+        help: "Tenga cuidado al subir una nueva plantilla a un sitio web existente; los datos existentes podrían ser modificados o incluso borrados."
+      show:
+        title: Importación en progreso
+        help: "Su sitio web está siendo importado desde el fichero zip que ha subido. La importación dura algunos segundos."
+        steps:
+          site: Información del Sitio
+          content_types: Modelos
+          assets: Contenido multi-media
+          asset_collections: Colecciones
+          snippets: Fragmentos
+          pages: Páginas
+        messages:
+          success: "El sitio web se ha actualizado con éxito."
+          failure: "La importación no se pudo realizar."
+
+    installation:
+      common:
+        title: Instalación inicial de Locomotive
+        next: Siguiente
+      step_1:
+        title: "Paso 1/2 &mdash; Crear cuenta"
+        name: Nombre de la cuenta
+        email: Email
+        password: Clave
+        password_confirmation: Repetición de la clave
+        done: "Ya se ha añadido una cuenta:<br/><strong>%{name}</strong>, <em>%{email}</em>"
+        next: Crear cuenta
+      step_2:
+        title: "Paso 2/2 &mdash; Crear el primer sitio"
+        explanations: "Si ya ha subido una primera plantilla de sitio (ver instrucciones), puede empezar a utilizarla ahora mismo. En caso contrario, puede subir una nueva (hay plantillas gratuitas <a href=\"http://www.locomotivecms.com/support/themes\">aquí</a>)."
+        back_to_default_template: "Haga click <a href='#'>aquí</a> para elegir la plantilla por defecto"
+        next: Crear sitio

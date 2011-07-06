@@ -63,6 +63,7 @@ fr:
         redirect: Redirection
         redirect_url: Url de redirection
         cache_strategy: Cache
+        seo_title: Titre SEO
       content_type:
         name: Nom
         description: Description
@@ -71,11 +72,7 @@ fr:
         highlighted_field_name: Champ mis en avant
         group_by_field_name: Champ pour grouper
         api_enabled: Activation API
-      asset_collection:
-        name: Nom
-        slug: Raccourci
       asset:
-        name: Nom
         source: Fichier
       account:
         email: E-mail

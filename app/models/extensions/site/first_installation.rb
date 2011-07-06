@@ -6,7 +6,7 @@ module Extensions
       def create_first_one(attributes)
         site = self.new(attributes)
 
-        site.memberships.build :account => Account.first, :admin => true
+        site.memberships.build :account => Account.first, :role => 'admin'
 
         site.save
 
@@ -27,7 +27,7 @@ module Extensions
         begin
           Locomotive::Import::Job.run!(source, site, { :samples => true })
         rescue Exception => e
-          logger.error "The import of the site template failed because of #{e.message}"
+          Rails.logger.error "The import of the site template failed because of #{e.message}"
         end
       end
 

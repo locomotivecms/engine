@@ -25,6 +25,15 @@
   width: 20%;
 }
 
+#fancybox-inner form.formtastic fieldset ol li.string input,
+#fancybox-inner form.formtastic fieldset ol li.password input,
+#fancybox-inner form.formtastic fieldset ol li.numeric input,
+#fancybox-inner form.formtastic fieldset ol li.text textarea,
+#fancybox-inner form.formtastic fieldset ol li code textarea,
+#fancybox-inner form.formtastic fieldset ol li input[type=password] {
+  width: 45%;
+}
+
 #fancybox-inner form.formtastic fieldset ol li p.inline-hints {
   margin-left: 30%;
 }

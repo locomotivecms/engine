@@ -12,7 +12,7 @@ describe Locomotive::Liquid::Drops::Contents do
     render_template '{{ contents.projects }}'
   end
 
-  context '#group_by' do
+  describe '#group_by' do
 
     it 'orders contents' do
       @site.content_types.stubs(:where).returns([@content_type])
