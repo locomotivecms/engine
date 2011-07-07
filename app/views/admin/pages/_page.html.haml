@@ -1,4 +1,4 @@
-%li{ :id => "item-#{page.id}", :class => "#{'not-found' if page.not_found? } #{'templatized' if page.templatized?}"}
+%li{ :id => "item-#{page.id}", :class => "#{'not-found' if page.not_found? } #{'templatized' if page.templatized?} #{'redirect' if page.redirect?}"}
 
   - children = can?(:manage, page) ? page.children : page.children.find_all { |p| !p.templatized? }
 

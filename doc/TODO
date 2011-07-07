@@ -69,12 +69,12 @@ x admin role is not correctly set when creating a new website
 x the required star for file field is not shown
 x Rights to set roles (ticket #104)
 x export: problems with templatized pages (source => multi levels pages)
-- do not rename files for fonts
-- test and/or convert existing templates (the 2 of the themes section)
+x do not rename files for fonts
+x icon for redirection page in the pages section (back-office)
 - tooltip to explain the difference between 1.) Admin 2.) Author 3.) Designer?
+- test and/or convert existing templates (the 2 of the themes section)
 
 - overide sort for contents
-- icon for redirection page in the pages section (back-office)
 - [bushido] guiders / welcome page / devise cas authentication (SSO)
 
 

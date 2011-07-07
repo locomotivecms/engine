@@ -162,11 +162,6 @@ ul.theme-assets li.hidden strong a { font-style: italic; color: #8B8D9A; font-we
   cursor: move;
 }
 
-#pages-list ul.folder li.templatized em {
-  background-position: left -62px;
-  cursor: pointer;
-}
-
 #pages-list li .toggler {
   position: absolute;
   top: 9px;
@@ -183,7 +178,7 @@ ul.theme-assets li.hidden strong a { font-style: italic; color: #8B8D9A; font-we
 
 #pages-list li strong a {
   position: relative;
-  top: 3px;
+  top: 2px;
   text-decoration: none;
   color: #1f82bc;
   font-size: 0.9em;
@@ -195,12 +190,24 @@ ul.theme-assets li.hidden strong a { font-style: italic; color: #8B8D9A; font-we
 
 #pages-list li.hidden strong a { font-style: italic; font-weight: normal; }
 
+#pages-list ul.folder li.templatized strong a {
+  padding-right: 24px;
+  background: transparent url(/images/admin/list/icons/template.png) no-repeat right 2px;
+}
+
+#pages-list ul.folder li.redirect strong a {
+  padding-right: 24px;
+  background: transparent url(/images/admin/list/icons/redirect.png) no-repeat right 1px;
+}
+
 #pages-list li .more {
   position: absolute;
-  top: 6px;
+  top: 0px;
   right: 20px;
   font-size: 0.7em;
   color: #8b8d9a;
+  height: 31px;
+  line-height: 31px;
 }
 
 #pages-list li .more a {
@@ -211,7 +218,7 @@ ul.theme-assets li.hidden strong a { font-style: italic; color: #8B8D9A; font-we
 }
 
 #pages-list li.not-found { border-top: 1px dotted #bbbbbd; padding-top: 10px; margin-left: 0px; }
-#pages-list li.not-found .more { top: 16px; }
+#pages-list li.not-found .more { top: 10px; }
 
 /* ___ Progress bar ___ */
 
