@@ -56,7 +56,7 @@ var TinyMceDefaultSettings = {
   theme_advanced_toolbar_location : "top",
   theme_advanced_toolbar_align : "left",
   height: '300',
-  width: '710',
+  width: '709',
   inlinepopups_skin: 'locomotive',
   convert_urls: false,
   fullscreen_new_window : false,

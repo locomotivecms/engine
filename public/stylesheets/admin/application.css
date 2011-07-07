@@ -192,12 +192,12 @@ ul.theme-assets li.hidden strong a { font-style: italic; color: #8B8D9A; font-we
 
 #pages-list ul.folder li.templatized strong a {
   padding-right: 24px;
-  background: transparent url(/images/admin/list/icons/template.png) no-repeat right 2px;
+  background: transparent url(/images/admin/list/icons/template.png) no-repeat right 3px;
 }
 
 #pages-list ul.folder li.redirect strong a {
   padding-right: 24px;
-  background: transparent url(/images/admin/list/icons/redirect.png) no-repeat right 1px;
+  background: transparent url(/images/admin/list/icons/redirect.png) no-repeat right 2px;
 }
 
 #pages-list li .more {

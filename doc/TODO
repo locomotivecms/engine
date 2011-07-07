@@ -74,7 +74,6 @@ x icon for redirection page in the pages section (back-office)
 - tooltip to explain the difference between 1.) Admin 2.) Author 3.) Designer?
 - test and/or convert existing templates (the 2 of the themes section)
 
-- overide sort for contents
 - [bushido] guiders / welcome page / devise cas authentication (SSO)
 
 
@@ -99,6 +98,7 @@ BACKLOG:
   - sync data
   - import only theme assets
 - endless pagination
+- overide sort for contents
 
 REFACTORING:
 

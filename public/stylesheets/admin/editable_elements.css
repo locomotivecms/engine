@@ -61,4 +61,5 @@
 #editable-elements .wrapper ul li fieldset ol li label { padding-left: 0px; padding-right: 3em; }
 #editable-elements .wrapper ul li fieldset ol li p.remove,
 #editable-elements .wrapper ul li fieldset ol li p.inline-hints { margin-left: 13.3em; }
+#editable-elements .wrapper ul li fieldset ol li input[type=text] { width: 695px; }
 
