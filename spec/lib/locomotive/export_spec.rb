@@ -24,6 +24,17 @@ describe Locomotive::Export do
       Dir[File.join(self.zip_folder, 'app', 'views', 'pages', '**/*.liquid')].size.should == 10
     end
 
+    it 'includes snippets' do
+      self.unzip
+      Dir[File.join(self.zip_folder, 'app', 'views', 'snippets', '*.liquid')].size.should == 1
+    end
+
+    it 'has yaml files describing the content types as well as their data' do
+      self.unzip
+      Dir[File.join(self.zip_folder, 'app', 'content_types', '*.yml')].size.should == 4
+      Dir[File.join(self.zip_folder, 'data', '*.yml')].size.should == 4
+    end
+
     def import_it
       job = Locomotive::Import::Job.new(FixturedTheme.duplicate_and_open('default.zip'), @site, { :samples => true, :reset => true })
       job.perform
@@ -35,7 +46,7 @@ describe Locomotive::Export do
     end
 
     def zip_folder
-      File.join(File.dirname(@zip_file), 'acme-website')
+      File.join(File.dirname(@zip_file), 'locomotive-test-website-2')
     end
 
     def unzip
@@ -51,6 +62,7 @@ describe Locomotive::Export do
     end
 
     after(:all) do
+      FileUtils.rm_rf(self.zip_folder) if File.exists?(self.zip_folder)
       Site.destroy_all
     end
 

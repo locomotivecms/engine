@@ -11,6 +11,15 @@ namespace :locomotive do
     puts '...done'
   end
 
+  desc 'Rebuild the serialized template of all the site pages'
+  task :rebuild_serialized_page_templates do
+    Page.all.each do |page|
+      next unless page.template.nil?
+      page.send :_parse_and_serialize_template
+      page.save
+    end
+  end
+
   desc 'Import a remote template described by its URL -- 2 options: SITE=name or id, RESET=by default false'
   task :import => :environment do
     url, site_name_or_id, reset = ENV['URL'], ENV['SITE'], Boolean.set(ENV['RESET']) || false

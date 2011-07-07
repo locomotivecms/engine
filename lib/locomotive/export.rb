@@ -97,7 +97,7 @@ module Locomotive
 
     def copy_snippets
       @site.snippets.each do |snippet|
-        File.open(File.join(self.snippets_folder, snippet.slug), 'w') do |f|
+        File.open(File.join(self.snippets_folder, "#{snippet.slug}.liquid"), 'w') do |f|
           f.write(snippet.template)
         end
       end
@@ -262,13 +262,15 @@ module Locomotive
           case field.kind
           when 'file'
             uploader = content.send(field._name)
-            filepath = File.join('/samples', content_type.slug, content.send("#{field._name}_filename"))
-
-            self.copy_file_from_an_uploader(uploader, File.join(self.public_folder, filepath))
-
+            unless uploader.blank?
+              filepath = File.join('/samples', content_type.slug, content.send("#{field._name}_filename"))
+              self.copy_file_from_an_uploader(uploader, File.join(self.public_folder, filepath))
+            else
+              filepath = nil
+            end
             hash[field._alias] = filepath
           when 'text'
-            value = self.replace_asset_urls_in(content.send(field._name.to_sym))
+            value = self.replace_asset_urls_in(content.send(field._name.to_sym) || '')
             hash[field._alias] = value
           else
             hash[field._alias] = content.send(field._name.to_sym)

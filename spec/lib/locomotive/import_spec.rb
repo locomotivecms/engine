@@ -67,6 +67,10 @@ describe Locomotive::Import::Job do
       page.redirect_url.should == 'http://blog.locomotivecms.com'
     end
 
+    it 'inserts snippets' do
+      @site.snippets.count.should == 1
+    end
+
     after(:all) do
       Site.destroy_all
     end
