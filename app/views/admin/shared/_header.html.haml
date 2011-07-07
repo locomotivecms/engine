@@ -9,6 +9,8 @@
     %span= '|'
     = link_to t('.switch'), '#', :id => 'sites-picker-link'
   %span= '|'
+  = link_to 'Help', '#guider=help', :id => "tutorial"
+  %span= '|'
   = link_to t('.logout'), destroy_admin_session_url, :confirm => t('admin.messages.confirm')
 
 
