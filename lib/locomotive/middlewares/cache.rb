@@ -7,7 +7,7 @@ module Locomotive
       def initialize(app, opts = {}, &block)
         url_format = Locomotive::Dragonfly.app.configuration[:url_format]
 
-        base_format = url_format.split('/:').first
+        base_format = url_format.split('/:').first rescue '/images/dynamic'
 
         @regexp = %r{^#{base_format}/}
         @app = app
