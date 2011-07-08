@@ -9,9 +9,9 @@ module Locomotive
 
         self.add_page('index')
 
-        Dir[File.join(theme_path, 'templates', '**/*')].each do |template_path|
+        Dir[File.join(theme_path, 'app', 'views', 'pages', '**/*')].each do |template_path|
 
-          fullpath = template_path.gsub(File.join(theme_path, 'templates'), '').gsub('.liquid', '').gsub(/^\//, '')
+          fullpath = template_path.gsub(File.join(theme_path, 'app', 'views', 'pages'), '').gsub('.liquid', '').gsub(/^\//, '')
 
           next if %w(index 404).include?(fullpath)
 
@@ -37,7 +37,7 @@ module Locomotive
 
         return page if page # already added, so skip it
 
-        template = File.read(File.join(theme_path, 'templates', "#{fullpath}.liquid")) rescue "Unable to find #{fullpath}.liquid"
+        template = File.read(File.join(theme_path, 'app', 'views', 'pages', "#{fullpath}.liquid")) rescue "Unable to find #{fullpath}.liquid"
 
         self.replace_images!(template)
 
@@ -122,9 +122,7 @@ module Locomotive
         template.gsub!(/\/samples\/(.*\.[a-zA-Z0-9]{3})/) do |match|
           name = $1
 
-          collection = AssetCollection.find_or_create_internal(site)
-
-          if asset = collection.assets.detect { |a| a.source_filename == name }
+          if asset = site.assets.where(:source_filename => name).first
             asset.source.url
           else
             match
@@ -146,8 +144,6 @@ module Locomotive
             fullpath = data.keys.first.to_s
 
             unless %w(index 404).include?(fullpath)
-            #   position = fullpath == 'index' ? 0 : 1
-            # else
               (segments = fullpath.split('/')).pop
               position_key = segments.empty? ? 'index' : segments.join('/')
 

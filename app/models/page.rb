@@ -45,7 +45,7 @@ class Page
   scope :not_found, :where => { :slug => '404', :depth => 0 }
   scope :published, :where => { :published => true }
   scope :fullpath, lambda { |fullpath| { :where => { :fullpath => fullpath } } }
-  scope :minimal_attributes, :only => %w(title slug fullpath position depth published templatized listed parent_id created_at updated_at)
+  scope :minimal_attributes, :only => %w(title slug fullpath position depth published templatized redirect listed parent_id created_at updated_at)
 
   ## methods ##
 
@@ -97,7 +97,7 @@ class Page
 
   def normalize_slug
     self.slug = self.title.clone if self.slug.blank? && self.title.present?
-    self.slug.slugify!(:without_extension => true) if self.slug.present?
+    self.slug.permalink! if self.slug.present?
   end
 
   def set_default_raw_template

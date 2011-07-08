@@ -43,14 +43,19 @@ describe Membership do
 
     it 'should tell nothing to do' do
       @membership.email = 'bart@simpson.net'
-      @membership.site.stubs(:memberships).returns([@membership, @membership])
-      @membership.process!.should == :nothing
+      @membership.site.stubs(:memberships).returns([self.build_membership(@account), self.build_membership])
+      @membership.process!.should == :already_created
     end
 
     it 'should tell membership has to be saved' do
       @membership.email = 'bart@simpson.net'
       @membership.process!.should == :save_it
     end
+
+    def build_membership(account = nil)
+      Factory.build(:membership, :site => Factory.build(:site), :account => account || Factory.build(:account))
+    end
+
   end
 
 end

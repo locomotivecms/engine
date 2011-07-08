@@ -46,4 +46,29 @@ $(document).ready(function() {
     $('#header h1 a span.ui-selectmenu-status').html(value);
     $('#site-selector-menu li.ui-selectmenu-item-selected a').html(value);
   }, []);
+
+  // account roles
+  $('.membership .role em.editable').click(function() {
+    $(this).hide();
+    $(this).next().show();
+  });
+
+  $('.membership .role select').each(function() {
+    var select = $(this);
+    select.hover(function() {
+      clearTimeout($.data(select, 'timer'));
+    },
+    function() {
+      $.data(select, 'timer', setTimeout(function() {
+        select.hide();
+        select.prev().show();
+      }, 1000));
+    }).change(function() {
+      select.hide().prev()
+        .show()
+        .html(select[0].options[select[0].options.selectedIndex].text);
+    });
+  }).hide();
+
+
 });

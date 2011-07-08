@@ -12,4 +12,9 @@
   form.formtastic fieldset.inputs ol { margin-top: 30px; }
 
   #content #local-actions-bar a em { top: 4px; }
+
+  #sites-picker ul li { padding: 3px 8px 4px 8px; }
+
+  #pages-list ul.folder li.templatized strong a { background-position: right 2px; }
+  #pages-list ul.folder li.redirect strong a { background-position: right 1px; }
 }

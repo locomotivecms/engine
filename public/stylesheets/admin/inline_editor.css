@@ -16,6 +16,8 @@
 #page-toolbar ul {
   margin-top: 3px;
   list-style: none;
+  padding: 0px;
+  -moz-padding-start: 0px;
 }
 
 #page-toolbar ul li.link {

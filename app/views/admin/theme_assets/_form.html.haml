@@ -19,19 +19,17 @@
       - if @theme_asset.new_record?
         = f.input :plain_text_name
 
-        = f.custom_input :content_type do
-          = f.select :content_type, %w(stylesheet javascript)
+        = f.custom_input :plain_text_type do
+          = f.select :plain_text_type, %w(stylesheet javascript)
 
       = f.custom_input :plain_text, :css => 'full', :with_label => false do
         %code{ :class => (@theme_asset.size && @theme_asset.size > 40000 ? 'nude' : (@theme_asset.content_type || 'stylesheet')) }
           = f.text_area :plain_text
         .more
-          = link_to t('admin.image_picker.link'), admin_theme_assets_path, :id => 'image-picker-link'
+          = link_to t('admin.image_picker.link'), admin_theme_assets_path, :id => 'image-picker-link', :class => 'picture'
 
     %span.alt
       != t('admin.theme_assets.form.choose_file')
 
 = f.foldable_inputs :name => :options do
   = f.input :folder
-  = f.custom_input :hidden, :css => 'toggle' do
-    = f.check_box :hidden

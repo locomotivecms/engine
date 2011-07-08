@@ -2,8 +2,9 @@
 
 = form.inputs :name => title || :attributes do
   - form.object.custom_fields.each do |field|
-    - required = highlighted_field_name == field._name || field.required
+    - highlighted = highlighted_field_name == field._name
+    - required = highlighted || field.required
 
-    = render "/admin/custom_fields/types/#{field.kind}", :form => form, :parent => parent, :field => field, :required => required
+    = render "/admin/custom_fields/types/#{field.kind}", :form => form, :parent => parent, :field => field, :required => required, :highlighted => highlighted
 
 = render '/admin/custom_fields/category_tmpl'

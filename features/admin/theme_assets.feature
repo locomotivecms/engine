@@ -30,6 +30,17 @@ Scenario: Uploading a stylesheet
   And I should see "Code"
   And I should see "stylesheets/main.css"
 
+Scenario: Updating a stylesheet
+  Given a stylesheet asset named "application"
+  When I go to theme assets
+  And I follow "stylesheets/application.css"
+  And I fill in "theme_asset[plain_text]" with "Lorem ipsum (updated)"
+  And I press "Update"
+  Then I should see "File was successfully updated."
+  And I should see "Editing application.css"
+  And I should see "application.css"
+  And I should see "Lorem ipsum (updated)" as theme asset code
+
 Scenario: Uploading a javascript
   When I go to theme assets
   And I follow "new file"
@@ -39,6 +50,14 @@ Scenario: Uploading a javascript
   Then I should see "File was successfully created."
   And I should see "Code"
   And I should see "javascripts/test/application.js"
+
+Scenario: Updating a javascript
+  Given a javascript asset named "application"
+  When I go to theme assets
+  And I follow "javascripts/application.js"
+  And I fill in "theme_asset[plain_text]" with "Lorem ipsum (updated)"
+  And I press "Update"
+  Then I should see "File was successfully updated."
 
 Scenario: Uploading an image which already exists
   When I go to theme assets

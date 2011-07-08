@@ -15,7 +15,7 @@ Scenario: Pages list is not accessible for non authenticated accounts
 Scenario: Creating a valid page
   When I go to pages
   And I follow "new page"
-  And I fill in "Title" with "Test"
+  And I fill in "page_title" with "Test"
   And I fill in "Slug" with "test"
   And I select "Home page" from "Parent"
   And I fill in "Raw template" with "Lorem ipsum...."
@@ -26,7 +26,7 @@ Scenario: Creating a valid page
 Scenario: Updating a valid page
   When I go to pages
   And I follow "Home page"
-  And I fill in "Title" with "Home page !"
+  And I fill in "page_title" with "Home page !"
   And I fill in "Raw template" with "My new content is here"
   And I press "Update"
   Then I should see "Page was successfully updated."

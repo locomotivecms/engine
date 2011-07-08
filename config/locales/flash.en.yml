@@ -35,7 +35,7 @@ en:
         destroy:
           notice: "Model was successfully deleted."
 
-      current_sites:
+      current_site:
         update:
           notice: "My site was successfully updated."
           alert: "My site was not updated."
@@ -55,7 +55,7 @@ en:
           notice: "Account was successfully created."
           alert: "Account was not created."
 
-      my_accounts:
+      my_account:
         update:
           notice: "My account was successfully updated."
           alert: "My account was not updated."
@@ -72,16 +72,6 @@ en:
           notice: "Membership was successfully created."
           alert: "Membership was not created."
           already_created: "Account was already added the current site."
-
-      asset_collections:
-        create:
-          notice: "Collection was successfully created."
-          alert: "Collection was not created."
-        update:
-          notice: "Collection was successfully updated."
-          alert: "Collection was not updated."
-        destroy:
-          notice: "Collection was successfully deleted."
 
       assets:
         create:
@@ -109,7 +99,7 @@ en:
         create:
           alert: "You need to sign in"
 
-      imports:
+      import:
         create:
           done: "Your site was successfully updated."
           notice: "Your site is being updated."

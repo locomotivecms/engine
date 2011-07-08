@@ -14,12 +14,14 @@ class ContentInstance
 
   ## validations ##
   validate :require_highlighted_field
+  validate :validate_uniqueness_of_slug
+  validates_presence_of :_slug
 
   ## associations ##
   embedded_in :content_type, :inverse_of => :contents
 
   ## callbacks ##
-  before_save :set_slug
+  before_validation :set_slug
   before_save :set_visibility
   before_create :add_to_list_bottom
   after_create :send_notifications
@@ -67,8 +69,8 @@ class ContentInstance
   protected
 
   def set_slug
-    _alias = self.highlighted_field_alias
-    self._slug = self.send(_alias).parameterize('_')
+    self._slug = self.highlighted_field_value.clone if self._slug.blank? && self.highlighted_field_value.present?
+    self._slug.permalink! if self._slug.present?
   end
 
   def set_visibility
@@ -77,7 +79,6 @@ class ContentInstance
   end
 
   def add_to_list_bottom
-    Rails.logger.debug "add_to_list_bottom"
     self._position_in_list = self.content_type.contents.size
   end
 
@@ -85,6 +86,12 @@ class ContentInstance
     _alias = self.highlighted_field_alias
     if self.send(_alias).blank?
       self.errors.add(_alias, :blank)
+    end
+  end
+
+  def validate_uniqueness_of_slug
+    if self._parent.contents.any? { |c| c._id != self._id && c._slug == self._slug }
+      self.errors.add(:_slug, :taken)
     end
   end
 

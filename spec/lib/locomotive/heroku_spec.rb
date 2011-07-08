@@ -2,6 +2,10 @@ require 'spec_helper'
 
 describe 'Heroku support' do
 
+  before(:all) do
+    Site.destroy_all
+  end
+
   before(:each) do
     ::Heroku::Client.any_instance.stubs(:post).returns(true)
     ::Heroku::Client.any_instance.stubs(:delete).returns(true)
@@ -35,7 +39,7 @@ describe 'Heroku support' do
     end
 
     it 'has a nil connection' do
-      Locomotive.heroku_connection.should be_nil
+      Locomotive.respond_to?(:heroku_connection).should be_false
     end
 
     it 'tells heroku is disabled' do

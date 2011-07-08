@@ -5,6 +5,8 @@ module Admin
 
     before_filter :set_parent_and_fields
 
+    skip_load_and_authorize_resource
+
     def edit
       @field = @fields.find(params[:id])
       render :action => "edit_#{@field.kind.downcase}"
@@ -23,13 +25,8 @@ module Admin
     protected
 
     def set_parent_and_fields
-      if params[:parent] == 'asset_collection'
-        @parent = current_site.asset_collections.where(:slug => params[:slug]).first
-        @fields = @parent.asset_custom_fields
-      else
-        @parent = current_site.content_types.where(:slug => params[:slug]).first
-        @fields = @parent.content_custom_fields
-      end
+      @parent = current_site.content_types.where(:slug => params[:slug]).first
+      @fields = @parent.content_custom_fields
     end
 
   end

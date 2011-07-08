@@ -5,6 +5,7 @@ module Admin
 
     def create
       @membership = current_site.memberships.build(params[:membership])
+      @membership.role = 'author' # force author by default
 
       case @membership.process!
       when :create_account
@@ -13,7 +14,7 @@ module Admin
         respond_with @membership, :location => edit_admin_current_site_url
       when :error
         respond_with @membership, :flash => true
-      when :nothing
+      when :already_created
         respond_with @membership, :alert => t('flash.admin.memberships.create.already_created'), :location => edit_admin_current_site_url
       end
     end

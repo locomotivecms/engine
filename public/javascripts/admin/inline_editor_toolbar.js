@@ -84,6 +84,9 @@ var InlineEditorToolbar = {
   /* ___ internal methods ___ */
 
   _buildHTML: function() {
+    var csrf_token = $('meta[name=csrf-token]').attr('content'),
+        csrf_param = $('meta[name=csrf-param]').attr('content');
+
     var labels = this._translations[this.locale];
 
     var showPageUrl = $('meta[name=page-url]').attr('content');
@@ -93,6 +96,10 @@ var InlineEditorToolbar = {
     var formContentHTML = "<input type='hidden' name='_method' value='put' />\
       <input class='auto' id='editable-id' type='hidden' name='_id' value='' />\
       <input class='auto' id='editable-content' type='hidden' name='_content' value='' />";
+
+    if (csrf_param != null && csrf_token != null) {
+      formContentHTML += '<input name="' + csrf_param + '" value="' + csrf_token + '" type="hidden" />';
+    }
 
     $('body').prepend("<div id='page-toolbar'>\
       <ul>\

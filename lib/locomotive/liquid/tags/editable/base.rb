@@ -20,14 +20,14 @@ module Locomotive
 
           def end_tag
             super
-            
+
             if @context[:page].present?
               @context[:page].add_or_update_editable_element({
                 :block => @context[:current_block].try(:name),
                 :slug => @slug,
                 :hint => @options[:hint],
                 :default_attribute => @options[:default],
-                :default_content => default_content,
+                :default_content => default_content_option,
                 :assignable => @options[:assignable],
                 :disabled => false,
                 :from_parent => false
@@ -39,8 +39,11 @@ module Locomotive
             current_page = context.registers[:page]
 
             element = current_page.find_editable_element(context['block'].try(:name), @slug)
-            
+
             if element.present?
+              unless element.default_content.present?
+                element.default_content = render_default_content(context)
+              end
               render_element(context, element)
             else
               Locomotive.logger "[editable element] missing element `#{context['block'].try(:name)}` / #{@slug} on #{current_page.fullpath}"
@@ -57,16 +60,18 @@ module Locomotive
           def document_type
             raise 'FIXME: has to be overidden'
           end
-          
-          
-          def default_content
+
+          def default_content_option
+            result = nil
             if @options[:default].present?
-              @context[:page].send(@options[:default])
-            else
-              @nodelist.first.to_s
+              result = @context[:page].send(@options[:default])
             end
+            result
           end
 
+          def render_default_content(context)
+            render_all(@nodelist, context)
+          end
         end
 
       end

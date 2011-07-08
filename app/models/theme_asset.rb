@@ -2,6 +2,9 @@ class ThemeAsset
 
   include Locomotive::Mongoid::Document
 
+  ## extensions ##
+  include Extensions::Asset::Types
+
   ## fields ##
   field :local_path
   field :content_type
@@ -9,7 +12,6 @@ class ThemeAsset
   field :height, :type => Integer
   field :size, :type => Integer
   field :folder, :default => nil
-  field :hidden, :type => Boolean, :default => false
   mount_uploader :source, ThemeAssetUploader
 
   ## associations ##
@@ -32,18 +34,11 @@ class ThemeAsset
   validate :content_type_can_not_changed
 
   ## named scopes ##
-  scope :visible, lambda { |all| all ? {} : { :where => { :hidden => false } } }
 
   ## accessors ##
-  attr_accessor :plain_text_name, :plain_text, :performing_plain_text
+  attr_accessor :plain_text_name, :plain_text, :plain_text_type, :performing_plain_text
 
   ## methods ##
-
-  %w{media image stylesheet javascript font}.each do |type|
-    define_method("#{type}?") do
-      self.content_type.to_s == type
-    end
-  end
 
   def stylesheet_or_javascript?
     self.stylesheet? || self.javascript?
@@ -77,11 +72,17 @@ class ThemeAsset
     end
   end
 
+  def plain_text_type
+    @plain_text_type || (stylesheet_or_javascript? ? self.content_type : nil)
+  end
+
   def performing_plain_text?
     Boolean.set(self.performing_plain_text) || false
   end
 
   def store_plain_text
+    self.content_type ||= @plain_text_type if self.performing_plain_text?
+
     data = self.performing_plain_text? ? self.plain_text : self.source.read
 
     return if !self.stylesheet_or_javascript? || self.plain_text_name.blank? || data.blank?
@@ -95,11 +96,11 @@ class ThemeAsset
   end
 
   def to_liquid
-    { :url => self.source.url }.merge(self.attributes)
+    { :url => self.source.url }.merge(self.attributes).stringify_keys
   end
 
-  def self.all_grouped_by_folder(site, include_all = true)
-    assets = site.theme_assets.visible(include_all).order_by([[:slug, :asc]])
+  def self.all_grouped_by_folder(site)
+    assets = site.theme_assets.order_by([[:slug, :asc]])
     assets.group_by { |a| a.folder.split('/').first.to_sym }
   end
 

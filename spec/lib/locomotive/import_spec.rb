@@ -20,9 +20,9 @@ describe Locomotive::Import::Job do
     end
 
     it 'adds content types' do
-      @site.content_types.count.should == 2
+      @site.content_types.count.should == 4
       content_type = @site.content_types.where(:slug => 'projects').first
-      content_type.content_custom_fields.size.should == 7
+      content_type.content_custom_fields.size.should == 9
     end
 
     it 'converts correctly the order_by option for content types' do
@@ -38,18 +38,12 @@ describe Locomotive::Import::Job do
       content.name.should == 'Locomotive App'
       content.thumbnail.url.should_not be_nil
       content.featured.should == true
+      content.client.name.should == 'My client #1'
+      content.team.first.name.should == 'Michael Scott'
     end
 
     it 'inserts theme assets' do
       @site.theme_assets.count.should == 10
-    end
-
-    it 'hides some theme assets' do
-      asset = @site.theme_assets.where(:local_path => 'stylesheets/style.css').first
-      asset.hidden.should == false
-
-      asset = @site.theme_assets.where(:local_path => 'stylesheets/ie7.css').first
-      asset.hidden.should == true
     end
 
     it 'inserts all the pages' do
@@ -71,6 +65,10 @@ describe Locomotive::Import::Job do
       page = @site.pages.where(:redirect => true).first
       page.should_not be_nil
       page.redirect_url.should == 'http://blog.locomotivecms.com'
+    end
+
+    it 'inserts snippets' do
+      @site.snippets.count.should == 1
     end
 
     after(:all) do

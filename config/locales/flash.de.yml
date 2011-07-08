@@ -35,7 +35,7 @@ de:
         destroy:
           notice: "Baustein wurde erfolgreich gelöscht."
 
-      current_sites:
+      current_site:
         update:
           notice: "Meine Webseite wurde erfolreich aktualisiert."
           alert: "Meine Webseite wurde nicht aktualisiert."
@@ -55,7 +55,7 @@ de:
           notice: "Account wurde erfolgreich erstellt."
           alert: "Account wurde nicht erstellt."
 
-      my_accounts:
+      my_account:
         update:
           notice: "Mein Account wurde erfolreich aktualisiert."
           alert: "Mein Account wurde nicht aktualisiert."
@@ -72,16 +72,6 @@ de:
           notice: "Account wurde erfolgreich erstellt."
           alert: "Account wurde nicht erstellt."
           already_created: "Account wurde bereits zu dieser Webseite hinzugefügt."
-
-      asset_collections:
-        create:
-          notice: "Sammlung wurde erfolgreich erstellt."
-          alert: "Sammlung wurde nicht erstellt."
-        update:
-          notice: "Sammlung wurde erfolreich aktualisiert."
-          alert: "Sammlung wurde nicht aktualisiert."
-        destroy:
-          notice: "Sammlung wurde erfolgreich gelöscht."
 
       assets:
         create:
@@ -109,7 +99,7 @@ de:
         create:
           alert: "Du musst dich einloggen"
 
-      imports:
+      import:
         create:
           done: "Deine Webseite wurde erfolreich aktualisiert."
           notice: "Deine Webseite wird aktualisiert."

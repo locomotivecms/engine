@@ -35,7 +35,7 @@ fr:
         destroy:
           notice: "Le modèle a été supprimé avec succès."
 
-      current_sites:
+      current_site:
         update:
           notice: "Mon site a été mis à jour avec succès."
           alert: "Mon site n'a pas été mis à jour."
@@ -55,7 +55,7 @@ fr:
           notice: "Le compte a été crée avec succès."
           alert: "Le compte n'a pas été crée."
 
-      my_accounts:
+      my_account:
         update:
           notice: "Mon compte a été mis à jour avec succès."
           alert: "Mon compte n'a pas été mis à jour."
@@ -72,16 +72,6 @@ fr:
           notice: "Le compte a été ajouté avec succès."
           alert: "Le compte n'a pas été ajouté."
           already_created: "Le compte a déjà été ajouté pour ce site."
-
-      asset_collections:
-        create:
-          notice: "La collection a été créée avec succès."
-          alert: "La collection n'a pas été créée."
-        update:
-          notice: "La collection a été mise à jour avec succès."
-          alert: "La collection n'a pas été mise à jour."
-        destroy:
-          notice: "La collection a été supprimée avec succès."
 
       assets:
         create:
@@ -109,7 +99,7 @@ fr:
         create:
           alert: "Vous devez vous authentifier"
 
-      imports:
+      import:
         create:
           done: "Votre site a été mis à jour"
           notice: "Votre site est en train d'être mis à jour"
