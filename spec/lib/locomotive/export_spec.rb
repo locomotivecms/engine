@@ -5,7 +5,7 @@ describe Locomotive::Export do
   context '#content_type' do
 
     before(:each) do
-      site = Factory.build(:site)
+      site = Factory.build('another site')
       Site.stubs(:find).returns(site)
       project_type = build_project_type(site)
       project_type.contents.build(:title => 'Project #1', :description => 'Lorem ipsum', :active => true)
