@@ -127,7 +127,7 @@ $(document).ready(function() {
     var link    = $('#sites-picker-link');
     var picker  = $('#sites-picker');
 
-    if (picker.empty()) return;
+    if (picker.size() == 0) return;
 
     var left    = link.position().left + link.parent().position().left - (picker.width() - link.width());
     picker.css('left', left);

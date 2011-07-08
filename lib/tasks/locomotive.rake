@@ -55,6 +55,14 @@ namespace :locomotive do
       end
     end
 
+    desc "Index page is sometimes after the 404 error page. Fix this"
+    task :place_index_before_404 => :environment do
+      Site.all.each do |site|
+        site.pages.root.first.update_attribute :position, 0
+        site.pages.not_found.first.update_attribute :position, 1
+      end
+    end
+
     desc 'Remove asset collections and convert them into content types'
     task :remove_asset_collections => :environment do
       puts "Processing #{AssetCollection.count} asset collection(s)..."
