@@ -2,6 +2,7 @@
 
 class AssetUploader < CarrierWave::Uploader::Base
 
+  include CarrierWave::RMagick
   include Locomotive::CarrierWave::Uploader::Asset
 
   def store_dir
