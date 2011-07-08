@@ -20,9 +20,9 @@ require 'capybara/cucumber'
 require 'capybara/session'
 
 Capybara.configure do |config|
-  config.run_server         = false
   config.default_selector   = :css
-  config.app_host           = 'http://test.example.com:8080'
+  config.server_port        = 9886
+  config.app_host           = 'http://test.example.com:9886'
 end
 
 # Capybara.javascript_driver = :rack_test
