@@ -101,6 +101,7 @@ $(document).ready(function() {
       var newValue = prompt(hint, $(this).html());
       if (newValue && newValue != '') {
         $(this).html(newValue);
+        try{guiders.next();}catch(ex){}
         target.val(newValue);
       }
       event.preventDefault();

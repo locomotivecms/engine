@@ -3,6 +3,8 @@ embed_assets: off
 s3_bucket: <%= ENV['S3_BUCKET'] %>
 s3_access_key_id: <%= ENV['S3_KEY_ID'] %>
 s3_secret_access_key: <%= ENV['S3_SECRET_KEY'] %>
+compress_assets: off
+package_assets: off
 
 javascripts:
   box:
@@ -26,6 +28,8 @@ javascripts:
     - public/javascripts/admin/locales/datepicker_pt-BR.js
     - public/javascripts/admin/locales/datepicker_it.js
     - public/javascripts/admin/application.js
+    - public/javascripts/admin/guiders-1.1.0.js
+    - public/javascripts/admin/tutorial.js
   custom_fields:
     - public/javascripts/admin/plugins/fancybox.js
     - public/javascripts/admin/plugins/mustache.js
@@ -91,6 +95,7 @@ stylesheets:
     - public/stylesheets/admin/sites_picker.css
     - public/stylesheets/admin/application.css
     - public/stylesheets/admin/safari.css
+    - public/stylesheets/admin/guiders-1.1.0.css
   fancybox:
     - public/stylesheets/admin/plugins/fancybox.css
     - public/stylesheets/admin/fancybox_changes.css
