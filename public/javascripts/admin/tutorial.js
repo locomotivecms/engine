@@ -7,6 +7,26 @@ $(document).ready(function(){
   */
   if(window.location.pathname == "/admin/pages"){
     
+    $('#new_page_tutorial').click(function(){
+      if($('#newpage').length > 0){
+        guiders.hideAll();
+        guiders.show('newpage');
+      }else{
+        window.location = "/admin/pages#guider=newpage"
+      }
+      return false;
+    });
+
+    guiders.createGuider({
+      attachTo: "#newpage",
+      buttons: [{name: "Close", onclick: guiders.hideAll}],
+      description: "Click above to make a new page",
+      id: "newpage",
+      position: 6,
+      width: 200,
+      title: "Make a new page",
+    });
+    
     guiders.createGuider({
       attachTo: "undefined",
       description: "Thank you for choosing LocomotiveCMS!, <br /><br />\
@@ -23,7 +43,7 @@ $(document).ready(function(){
     });
   
     guiders.createGuider({
-      attachTo: "#help_ele",
+      attachTo: "#help",
       buttons: [],
       description: "Click 'help' in the future to start these guides",
       id: "welcome",
@@ -33,7 +53,6 @@ $(document).ready(function(){
       height: 100,
       title: ""
     });
-  
   
     guiders.createGuider({
       attachTo: "ul.folder:first li",
@@ -48,10 +67,11 @@ $(document).ready(function(){
     
     guiders.createGuider({
       attachTo: "undefined",
-      description: "A page is a collection of content on your site that can be reached at a web address <br /></br> For this example we will edit the 'About Us' page. To do that you would click on the page name.",
+      description: "A page is a collection of content on your site that can be reached at a web address <br /></br>\
+      For this example we will edit the '"+$('ul.folder:first li a:first').text()+"' page. To do that you would click on the page name.",
       buttons: [{name: "Quit", onclick: guiders.hideAll},
-                {name: "Next", onclick: function(){
-                  window.location = $('ul.folder:first li a').attr('href') + "#guider=editpagewelcome"
+                {name: "Next - Edit "+$('ul.folder:first li a:first').text()+"", onclick: function(){
+                  window.location = $('ul.folder:first li a:first').attr('href') + "#guider=editpagewelcome"
                 }
               }],
       id: "pagewelcome",
@@ -60,6 +80,78 @@ $(document).ready(function(){
       title: "What is a page?",
       onShow: function(){
         guiders.show('pagepointer')
+      }
+    });
+    
+    guiders.createGuider({
+      attachTo: 'li.hoverable:last',
+      buttons: [],
+      description: "These are models.<br /> You can hover over to edit them.",
+      id: "modelpointer",
+      next: "editpagewelcome",
+      width: 240,
+      position: 3,
+      title: ""
+    });
+    
+    guiders.createGuider({
+      attachTo: 'div.action span',
+      buttons: [],
+      description: "You can click here to make a new model",
+      id: "newmodelpointer",
+      next: "editpagewelcome",
+      position: 6,
+      width: 200,
+      title: ""
+    });
+    
+    guiders.createGuider({
+      attachTo: "undefined",
+      description: "What is a model?<br />\
+      The concept of a model within locomotiveCMS is a peice of content that you might reuse through out your site.\
+      Some example models could be: Blog posts, Products, Events, Locations, Photos<br /></br />\
+      For this next section of the guide. We will edit our event model",
+      buttons: [{name: "Quit", onclick: guiders.hideAll},
+                {name: "Next - Edit an Event", onclick: function(){
+                  /*
+                  *
+                  * This is really britle 
+                  *
+                  */
+                  window.location = $('.inner:eq(3) li:first a').attr('href');
+                }}],
+      id: "modelwelcome",
+      next: "newmodel",
+      overlay: true,
+      title: "Lets talk about Models...",
+      onShow: function(){
+        guiders.show("modelpointer");
+        guiders.show('newmodelpointer');
+      }
+    });
+    
+    guiders.createGuider({
+      attachTo: 'li.settings',
+      buttons: [],
+      description: "Click this tab to edit your settings.",
+      id: "settingspointer",
+      position: 3,
+      width: 200,
+      title: ""
+    });
+    
+    guiders.createGuider({
+      attachTo: "undefined",
+      description: "LocomotiveCMS has several features that you can adjust in the settings panel. Lets head there now!",
+      buttons: [{name: "Quit", onclick: guiders.hideAll},
+                {name: "Next - Goto Settings", onclick: function(){
+                  window.location = $('li.settings').attr('href');
+                }}],
+      id: "settingswelcome",
+      overlay: true,
+      title: "How To Change Your Settings",
+      onShow: function(){
+        guiders.show("settingspointer");
       }
     });
   
@@ -71,7 +163,7 @@ $(document).ready(function(){
   * /admin/pages/edit 
   *
   */
-  if(window.location.pathname.indexOf('edit') !== -1){
+  if(window.location.pathname.match('admin/pages/.+\/edit') != null){
     guiders.createGuider({
       attachTo: "undefined",
       description:     "You are now editing the '"+$('a.editable:first').text()+"' page. Lets start by changing the title of this page.",
@@ -86,41 +178,179 @@ $(document).ready(function(){
     guiders.createGuider({
       attachTo: "a.editable:first",
       buttons: [],
-      description: "",
+      title: "",
       id: "editpagetitle",
-      next: "help",
+      next: "greatjob",
       position: 6,
-      width: 250,
+      width: 200,
       height: 100,
-      title: "Click here to edit the page title"
+      description: "Click here to edit the page title"
     });
-  
+    
     guiders.createGuider({
-      description: "A page is a collection of content on your site that can be reached by an address",
+      attachTo: "undefined",
+      description:     "You just changed the title of this page. Lets continue by editing the page content.",
       buttons: [{name: "Quit", onclick: guiders.hideAll},
                 {name: "Next"}],
-      id: "pagetitle",
-      next: "editpagecontent",
-      title: "How to Change a Page Title"
+      id: "greatjob",
+      next: "savepageedit",
+      overlay: true,
+      title: "Great Job!"
+    });  
+    
+    // guiders.createGuider({
+    //   attachTo: "li.text:first label",
+    //   description: "You can edit the content of your page in this text box",
+    //   id: "pageeditcontent",
+    //   next: "savepageedit",
+    //   position: 6,
+    //   title: "Edit the content of the page"
+    // });
+  
+    guiders.createGuider({
+      buttons: [],
+      attachTo: "button.light:last",
+      description: "Click this update button to save any changes you've made to the page.",
+      id: "savepageedit",
+      next: "help",
+      position: 12,
+      title: "Save Your Work",
+      onShow: function(){
+        $('form.save-with-shortcut').attr('action', 
+        $('form.save-with-shortcut').attr('action')+"#guider=editsavesuccess");
+      }
+    });
+    
+    guiders.createGuider({
+      attachTo: "undefined",
+      description:     "Great work! you've update this page. You can review your work by checking out the 'frontend' of the site.",
+      buttons: [{name: "Quit", onclick: guiders.hideAll},
+                {name: "Next"}],
+      id: "editsavesuccess",
+      next: "viewsite2",
+      overlay: true, 
+      title: "Page Saved Successfully!"
+    });
+    
+    guiders.createGuider({
+      attachTo: "#viewsite_ele",
+      buttons: [],
+      description: "This will open a new tab in your browser and take you to the 'frontend' of your site. The frontend is what other visitors to your sit will see. Come back to this tab in your browser to continue the guide.",
+      id: "viewsite2",
+      next: "editfinish",
+      position: 6,
+      width: 280,
+      title: "Click Here To View Your Site",
+      onShow: function(){
+        console.log("binding click for view site", $('#viewsite_ele'));
+        $('#viewsite_ele').bind('click', function(){
+          console.log("viewsite click!");
+          guiders.next();
+          //should probably unbind this to prevent double clicking
+        });
+      }
+    });
+    
+    guiders.createGuider({
+      attachTo: "undefined",
+      description: "Congratulations. You've just edited a page using LocomotiveCMS! Moving on, we will now move onto models. Lets return to the admin home.",
+      buttons: [{name: "Quit", onclick: guiders.hideAll},
+                {name: "Next - Goto Admin Home", onclick: function(){
+                  window.location = "/admin/pages#guider=modelwelcome"
+                }}],
+      id: "editfinish",
+      overlay: true,
+      title: "Done editing."
     });
   
   }
   
+  /*
+  *
+  * Content edits
+  *
+  */
+  if(window.location.pathname.match('admin/content_types/events/contents/.+/edit') != null){
+    
+  }
+  
+  
+  /*
+  *
+  * Settings page
+  *
+  */
+  if(window.location.pathname.match("admin/current_site/edit") != null){
+    
+    guiders.createGuider({
+      attachTo: "undefined",
+      description: "Welcome to the Settings page. Here you can create new user accounts to use LocomotiveCMS, Edit SEO options, and more. We will start by changing the subomain of our site.",
+      buttons: [{name: "Quit", onclick: guiders.hideAll},
+                {name: "Next"}],
+      id: "settingseditwelcome",
+      next: "editsubdomain",
+      overlay: true,
+      title: "The Settings Page"
+    });
+    
+    guiders.createGuider({
+      attachTo: "#site_subdomain",
+      description: "Edit this field to change the subdomain of your site",
+      buttons: [],
+      id: "editsubdomain",
+      next: "settingssave",
+      position: 12,
+      onShow: function(){
+        $('#site_subdomain').bind('change', function(){
+          guiders.next();
+        });
+      }
+    });
+        
+    guiders.createGuider({
+      buttons: [],
+      attachTo: "button.light:last",
+      description: "Click this update button to save any changes you've made to the settings.",
+      id: "settingssave",
+      position: 12,
+      title: "Save Your Work",
+      onShow: function(){
+        $('form.save-with-shortcut').attr('action', 
+        $('form.save-with-shortcut').attr('action')+"#guider=settingssavesuccess");
+      }
+    });
+    
+    guiders.createGuider({
+      attachTo: "undefined",
+      description: "You've Successfully updated your LocomotiveCMS settings",
+      buttons: [{name: "Quit", onclick: guiders.hideAll},
+                {name: "Next"}],
+      id: "settingssavesuccess",
+      next: "editsubdomain",
+      overlay: true,
+      title: "Great Work!"
+    });
+  }
+  
+  
+  /*
+  *
+  * Global 
+  *
+  */
   guiders.createGuider({
-    attachTo: "#help_ele",
+    attachTo: "#help",
     buttons: [{name: "Quit", onclick: guiders.hideAll}],
     description: "How To:<ul>\
     <li><a id='newpage' class='tutorial' href=\"/admin/pages#guider=newpage\">Make a new Page</a></li>\
     <li><a id='viewsite' class='tutorial' href=\"\">View Your Site</a></li>\
-    <li><a id='editpagetutorial' class='tutorial' href=\"\">Edit A Page</a></li>\
-    <li><a id='editpagetutorial' class='tutorial' href=\"\">Create Content</a></li>\
-    <li><a id='editpagetutorial' class='tutorial' href=\"\">Save Your Site</a></li>\
-    <li><a id='editpagetutorial' class='tutorial' href=\"\">Edit a a Content instance</a></li>\
+    <li><a id='pagewelcome' class='tutorial' href=\"\">Edit A Page</a></li>\
+    <li><a id='modelwelcome' class='tutorial' href=\"\">Edit a a Content instance</a></li>\
     <li><a id='editpagetutorial' class='tutorial' href=\"\">Edit your site's settings</a></li></ul>",
     id: "help",
     position: 6,
     width: 200,
-    title: "Locomotive Tutorials",
+    title: "Locomotive Guides",
   });
   
   $(".tutorial").click(function(){
@@ -129,36 +359,26 @@ $(document).ready(function(){
     return false;
   });
   
-  $('#new_page_tutorial').click(function(){
-    if($('#newpage').length > 0){
-      guiders.hideAll();
-      guiders.show('newpage');
-    }else{
-      window.location = "/admin/pages#guider=newpage"
-    }
-    return false;
-  });
-  
-  guiders.createGuider({
-    attachTo: "#newpage",
-    buttons: [{name: "Quit", onclick: guiders.hideAll}],
-    description: "Click above to make a new page",
-    id: "newpage",
-    position: 6,
-    width: 200,
-    title: "Make a new page",
-  });
-  
   guiders.createGuider({
     attachTo: "#viewsite_ele",
-    buttons: [{name: "Quit", onclick: guiders.hideAll}],
+    buttons: [{name: "Close", onclick: guiders.hideAll}],
     description: "This will take you to the 'frontend' of your site. Where you can see what users visiting your site see.",
     id: "viewsite",
     position: 6,
-    width: 250,
+    width: 280,
     title: "Click Here To View Your Site",
   });
   
+  guiders.createGuider({
+    attachTo: "undefined",
+    description: "You've gone through the LocomotiveCMS guide! For more info on LocomotiveCMS,\
+    checkout out <a href='http://www.locomotivecms.com/support/'>The LocomotiveCMS support pages</a>",
+    buttons: [{name: "Quit", onclick: guiders.hideAll},
+              {name: "Next"}],
+    id: "congratulations",
+    overlay: true,
+    title: "Congratulations!"
+  });
   
   
   
