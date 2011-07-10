@@ -70,7 +70,7 @@ body { background: #000 url(/images/admin/background/body.png) repeat 0 0; }
   padding: 0px;
 }
 
-#panel fieldset ol li p.inline-errors {
+#panel fieldset ol li div.inline-errors p {
   padding: 3px 5px;
   margin: 5px 0px;
   background: #FFE5E5;

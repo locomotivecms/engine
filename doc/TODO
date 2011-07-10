@@ -71,9 +71,8 @@ x Rights to set roles (ticket #104)
 x export: problems with templatized pages (source => multi levels pages)
 x do not rename files for fonts
 x icon for redirection page in the pages section (back-office)
-- test and/or convert existing templates (the 2 of the themes section)
 - installed on heroku with source
-
+- test and/or convert existing templates (the 2 of the themes section)
 
 BACKLOG:
 
