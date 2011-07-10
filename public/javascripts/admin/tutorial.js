@@ -293,7 +293,7 @@ $(document).ready(function(){
       title: "Save Your Work",
       onShow: function(){
         $('form.save-with-shortcut').attr('action', 
-        $('form.save-with-shortcut').attr('action')+"#guider=editsavesuccess");
+        $('form.save-with-shortcut').attr('action')+"#guider=modelsavesuccess");
       }
     });
     
@@ -386,7 +386,7 @@ $(document).ready(function(){
     <li><a id='viewsite' class='tutorial' href=\"\">View Your Site</a></li>\
     <li><a id='pagewelcome' class='tutorial' href=\"\">Edit A Page</a></li>\
     <li><a id='modelwelcome' class='tutorial' href=\"\">Edit a a Content instance</a></li>\
-    <li><a id='editpagetutorial' class='tutorial' href=\"\">Edit your site's settings</a></li></ul>",
+    <li><a id='settingswelcome' class='tutorial' href=\"\">Edit your site's settings</a></li></ul>",
     id: "help",
     position: 6,
     width: 200,
