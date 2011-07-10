@@ -70,6 +70,8 @@ GEM
       rack-test (>= 0.5.4)
       selenium-webdriver (~> 0.2.0)
       xpath (~> 0.1.4)
+    carrierwave (0.5.5)
+      activesupport (~> 3.0)
     childprocess (0.1.9)
       ffi (~> 1.0.6)
     columnize (0.3.3)
@@ -152,8 +154,6 @@ GEM
     linecache (0.43)
     linecache19 (0.5.12)
       ruby_core_source (>= 0.1.4)
-    locomotive_carrierwave (0.5.4.beta3)
-      activesupport (~> 3.0)
     locomotive_jammit-s3 (0.5.4.4)
       jammit (>= 0.5.4)
       mimemagic (>= 0.1.7)
@@ -282,6 +282,7 @@ DEPENDENCIES
   bushido_stub!
   cancan
   capybara
+  carrierwave (~> 0.5.5)
   cucumber-rails (= 1.0.2)
   custom_fields (= 1.0.0.beta.21)
   database_cleaner
@@ -299,7 +300,6 @@ DEPENDENCIES
   inherited_resources (~> 1.1.2)
   launchy
   linecache (= 0.43)
-  locomotive_carrierwave (= 0.5.4.beta3)
   locomotive_jammit-s3
   locomotive_liquid (= 2.2.2)
   locomotive_mongoid_acts_as_tree (= 0.1.5.7)
