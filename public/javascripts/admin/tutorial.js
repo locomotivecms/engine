@@ -110,7 +110,7 @@ $(document).ready(function(){
       description: "What is a model?<br />\
       The concept of a model within locomotiveCMS is a peice of content that you might reuse through out your site.\
       Some example models could be: Blog posts, Products, Events, Locations, Photos<br /></br />\
-      For this next section of the guide. We will edit our event model",
+      For this next section of the guide. We will edit our Event model. '"+$('.inner:eq(3) li:first a').text()+"' ",
       buttons: [{name: "Quit", onclick: guiders.hideAll},
                 {name: "Next - Edit an Event", onclick: function(){
                   /*
@@ -118,7 +118,7 @@ $(document).ready(function(){
                   * This is really britle 
                   *
                   */
-                  window.location = $('.inner:eq(3) li:first a').attr('href');
+                  window.location = $('.inner:eq(3) li:first a').attr('href') + "#guider=editmodelwelcome";
                 }}],
       id: "modelwelcome",
       next: "newmodel",
@@ -131,7 +131,7 @@ $(document).ready(function(){
     });
     
     guiders.createGuider({
-      attachTo: 'li.settings',
+      attachTo: 'li.settings a',
       buttons: [],
       description: "Click this tab to edit your settings.",
       id: "settingspointer",
@@ -145,7 +145,7 @@ $(document).ready(function(){
       description: "LocomotiveCMS has several features that you can adjust in the settings panel. Lets head there now!",
       buttons: [{name: "Quit", onclick: guiders.hideAll},
                 {name: "Next - Goto Settings", onclick: function(){
-                  window.location = $('li.settings').attr('href');
+                  window.location = $('li.settings a').attr('href') + "#guider=settingseditwelcome";
                 }}],
       id: "settingswelcome",
       overlay: true,
@@ -256,7 +256,7 @@ $(document).ready(function(){
       description: "Congratulations. You've just edited a page using LocomotiveCMS! Moving on, we will now move onto models. Lets return to the admin home.",
       buttons: [{name: "Quit", onclick: guiders.hideAll},
                 {name: "Next - Goto Admin Home", onclick: function(){
-                  window.location = "/admin/pages#guider=modelwelcome"
+                  window.location = "/admin/pages#guider=modelwelcome";
                 }}],
       id: "editfinish",
       overlay: true,
@@ -272,6 +272,43 @@ $(document).ready(function(){
   */
   if(window.location.pathname.match('admin/content_types/events/contents/.+/edit') != null){
     
+    guiders.createGuider({
+      attachTo: "undefined",
+      description: "You are now edting an instance of our event model.\
+      Make some changes to this event model and it will be reflected everywhere the data is used throught the site.",
+      buttons: [{name: "Quit", onclick: guiders.hideAll},
+                {name: "Next"}],
+      id: "editmodelwelcome",
+      next: "savemodel",
+      overlay: true,
+      title: "Editing an Event model"
+    });
+    
+    guiders.createGuider({
+      buttons: [],
+      attachTo: "button.light:last",
+      description: "Click this update button to save any changes you've made to the page.",
+      id: "savemodel",
+      position: 12,
+      title: "Save Your Work",
+      onShow: function(){
+        $('form.save-with-shortcut').attr('action', 
+        $('form.save-with-shortcut').attr('action')+"#guider=editsavesuccess");
+      }
+    });
+    
+    guiders.createGuider({
+      attachTo: "undefined",
+      description: "You've Successfully updated this model",
+      buttons: [{name: "Quit", onclick: guiders.hideAll},
+                {name: "Next - Goto Admin Home", onclick: function(){
+                  window.location = "/admin/pages#guider=settingswelcome";
+                }}],
+      id: "modelsavesuccess",
+      overlay: true,
+      title: "Great Work!"
+    });
+    
   }
   
   
@@ -281,6 +318,8 @@ $(document).ready(function(){
   *
   */
   if(window.location.pathname.match("admin/current_site/edit") != null){
+    
+    
     
     guiders.createGuider({
       attachTo: "undefined",
@@ -299,6 +338,7 @@ $(document).ready(function(){
       buttons: [],
       id: "editsubdomain",
       next: "settingssave",
+      title: '',
       position: 12,
       onShow: function(){
         $('#site_subdomain').bind('change', function(){
@@ -316,7 +356,7 @@ $(document).ready(function(){
       title: "Save Your Work",
       onShow: function(){
         $('form.save-with-shortcut').attr('action', 
-        $('form.save-with-shortcut').attr('action')+"#guider=settingssavesuccess");
+        $('form.save-with-shortcut').attr('action')+"#guider=modelsavesuccess");
       }
     });
     
@@ -373,8 +413,7 @@ $(document).ready(function(){
     attachTo: "undefined",
     description: "You've gone through the LocomotiveCMS guide! For more info on LocomotiveCMS,\
     checkout out <a href='http://www.locomotivecms.com/support/'>The LocomotiveCMS support pages</a>",
-    buttons: [{name: "Quit", onclick: guiders.hideAll},
-              {name: "Next"}],
+    buttons: [{name: "Finished!", onclick: guiders.hideAll}],
     id: "congratulations",
     overlay: true,
     title: "Congratulations!"
