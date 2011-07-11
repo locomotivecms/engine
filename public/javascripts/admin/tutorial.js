@@ -53,9 +53,22 @@ $(document).ready(function(){
       height: 100,
       title: ""
     });
+    
+    var pagehook = (function(){
+      var possibles = ['ul.folder:first li', 
+                       'ul#pages-list li']; 
+      for(var i = 0; i<possibles.length; i++){
+        console.log("checking possibles", i, possibles[i]);
+        if($(possibles[i]).length > 0){
+          return possibles[i];
+        }
+      }
+    }());
+    
+    console.log('lol page hook', pagehook);
   
     guiders.createGuider({
-      attachTo: "ul.folder:first li",
+      attachTo: pagehook,
       buttons: [],
       description: "These are pages. You can click on the page name to edit it.",
       id: "pagepointer",
@@ -68,10 +81,10 @@ $(document).ready(function(){
     guiders.createGuider({
       attachTo: "undefined",
       description: "A page is a collection of content on your site that can be reached at a web address <br /></br>\
-      For this example we will edit the '"+$('ul.folder:first li a:first').text()+"' page. To do that you would click on the page name.",
+      For this example we will edit the '"+$(pagehook+' a:first').text()+"' page. To do that you would click on the page name.",
       buttons: [{name: "Quit", onclick: guiders.hideAll},
-                {name: "Next - Edit "+$('ul.folder:first li a:first').text()+"", onclick: function(){
-                  window.location = $('ul.folder:first li a:first').attr('href') + "#guider=editpagewelcome"
+                {name: "Next - Edit "+$(pagehook+' a:first').text()+"", onclick: function(){
+                  window.location = $(pagehook+' a:first').attr('href') + "#guider=editpagewelcome"
                 }
               }],
       id: "pagewelcome",
@@ -105,27 +118,47 @@ $(document).ready(function(){
       title: ""
     });
     
+    
+    var modelhook = (function(){
+      
+    }());
+    
     guiders.createGuider({
       attachTo: "undefined",
-      description: "What is a model?<br />\
-      The concept of a model within locomotiveCMS is a peice of content that you might reuse through out your site.\
-      Some example models could be: Blog posts, Products, Events, Locations, Photos<br /></br />\
-      For this next section of the guide. We will edit our Event model. '"+$('.inner:eq(3) li:first a').text()+"' ",
+      description: (function(){
+        var ret = "What is a model?<br />\
+        The concept of a model within locomotiveCMS is a peice of content that you might reuse through out your site.\
+        Some example models could be: Blog posts, Products, Events, Locations, Photos<br /></br />"
+        
+        if($('li.hoverable').length > 1){
+          ret += "For this next section of the guide. We will edit our Event model. '"+$('.inner:eq(3) li:first a').text()+"' ";
+        }else{
+          ret += "For this next section of the guide, lets make a new model";
+        }
+        
+        return ret;
+      }()),
       buttons: [{name: "Quit", onclick: guiders.hideAll},
                 {name: "Next - Edit an Event", onclick: function(){
-                  /*
-                  *
-                  * This is really britle 
-                  *
-                  */
-                  window.location = $('.inner:eq(3) li:first a').attr('href') + "#guider=editmodelwelcome";
+                  if($('li.hoverable').length < 1){
+                    guiders.next();
+                  }else{
+                    /*
+                    *
+                    * This is really britle 
+                    *
+                    */
+                    window.location = $('.inner:eq(3) li:first a').attr('href') + "#guider=editmodelwelcome";
+                  }
                 }}],
       id: "modelwelcome",
       next: "newmodel",
       overlay: true,
       title: "Lets talk about Models...",
       onShow: function(){
-        guiders.show("modelpointer");
+        if($('li.hoverable').length > 1){
+          guiders.show("modelpointer");
+        }
         guiders.show('newmodelpointer');
       }
     });
