@@ -1,7 +1,6 @@
 #editable-elements .wrapper {
   background: #ebedf4 url(/images/admin/form/footer.png) no-repeat 0 bottom;
-  width: 880px;
-  padding: 10px 20px 0px 20px;
+  padding: 10px 0px 16px 0px;
   border-top: 1px solid #ccced7;
 }
 
@@ -58,8 +57,3 @@
 #editable-elements .wrapper ul li fieldset { margin-bottom: 0px; }
 
 #editable-elements .wrapper ul li fieldset ol { margin-top: 0px; border-top: 0px; background: #EBEDF4; }
-#editable-elements .wrapper ul li fieldset ol li label { padding-left: 0px; padding-right: 3em; }
-#editable-elements .wrapper ul li fieldset ol li p.remove,
-#editable-elements .wrapper ul li fieldset ol li p.inline-hints { margin-left: 13.3em; }
-#editable-elements .wrapper ul li fieldset ol li input[type=text] { width: 695px; }
-

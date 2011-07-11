@@ -50,7 +50,7 @@ module Locomotive
       self.manage_subdomain? && self.manage_domains?
     end
 
-    def reserved_domains
+    def reserved_subdomains
       if self.multi_sites?
         if self.multi_sites.reserved_subdomains.blank?
           @@defaults[:reserved_subdomains]

@@ -2,7 +2,64 @@ require 'spec_helper'
 
 describe Locomotive::Export do
 
-  context 'when successful' do
+  context '#content_type' do
+
+    before(:each) do
+      site = Factory.build('another site')
+      Site.stubs(:find).returns(site)
+      project_type = build_project_type(site)
+      project_type.contents.build(:title => 'Project #1', :description => 'Lorem ipsum', :active => true)
+      project_type.contents.build(:title => 'Project #2', :description => 'More Lorem ipsum', :active => false)
+
+      team_type = build_team_type(site, project_type)
+      team_type.contents.build(:name => 'Ben', :projects => project_type.contents, :current_project => project_type.contents.first)
+      team_type.contents.build(:name => 'Zach', :current_project => project_type.contents.last)
+
+      @project_data = ::Locomotive::Export.new(site).send(:extract_contents, project_type)
+      @team_data = ::Locomotive::Export.new(site).send(:extract_contents, team_type)
+    end
+
+    it 'includes the exact number of contents' do
+      @project_data.size.should == 2
+      @project_data.collect { |n| n.keys.first }.should == ['Project #1', 'Project #2']
+    end
+
+    it 'deals with real booleans' do
+      @project_data.first.values.first['active'].should be_true
+    end
+
+    it 'stores the list of highlighted values in a has_many relationship' do
+      @team_data.first.values.first['projects'].size.should == 2
+      @team_data.first.values.first['projects'].should == ['Project #1', 'Project #2']
+      @team_data.last.values.first['projects'].should == []
+    end
+
+    it 'stores a highlighted value in a has_one relationship' do
+      @team_data.collect { |n| n.values.first['current_project'] }.should == ['Project #1', 'Project #2']
+    end
+
+    def build_project_type(site)
+      Factory.build(:content_type, :site => site, :highlighted_field_name => 'custom_field_1').tap do |content_type|
+        content_type.content_custom_fields.build :label => 'Title', :_alias => 'title', :kind => 'string'
+        content_type.content_custom_fields.build :label => 'My Description', :_alias => 'description', :kind => 'text'
+        content_type.content_custom_fields.build :label => 'Active', :kind => 'boolean'
+      end
+    end
+
+    def build_team_type(site, project_type)
+      Object.send(:remove_const, 'TestProject') rescue nil
+      klass = Object.const_set('TestProject', Class.new { def self.embedded?; false; end })
+      content_type = Factory.build(:content_type, :site => site, :name => 'team', :highlighted_field_name => 'custom_field_1')
+      content_type.content_custom_fields.build :label => 'Name', :_alias => 'name', :kind => 'string'
+      content_type.content_custom_fields.build :label => 'Projects', :kind => 'has_many', :_alias => 'projects', :target => 'TestProject'
+      content_type.content_custom_fields.build :label => 'Bio', :_alias => 'bio', :kind => 'text'
+      content_type.content_custom_fields.build :label => 'Current Project', :kind => 'has_one', :_alias => 'current_project', :target => 'TestProject'
+      content_type
+    end
+
+  end
+
+  context '#zipfile' do
 
     before(:all) do
       @site = Factory('another site')

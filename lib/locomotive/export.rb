@@ -11,7 +11,7 @@ module Locomotive
     def initialize(site, filename = nil)
       @site           = site
       @filename       = filename || Time.now.to_i.to_s
-      @target_folder  = File.join(Rails.root, 'tmp', 'export', filename)
+      @target_folder  = File.join(Rails.root, 'tmp', 'export', @filename)
       @site_hash      = {} # used to generate the site.yml and compiled_site.yml files
 
       self.create_target_folder
@@ -259,7 +259,7 @@ module Locomotive
         content.custom_fields.each do |field|
           next if field._name == highlighted_field_name
 
-          case field.kind
+          value = (case field.kind
           when 'file'
             uploader = content.send(field._name)
             unless uploader.blank?
@@ -268,13 +268,18 @@ module Locomotive
             else
               filepath = nil
             end
-            hash[field._alias] = filepath
+            filepath
           when 'text'
-            value = self.replace_asset_urls_in(content.send(field._name.to_sym) || '')
-            hash[field._alias] = value
+            self.replace_asset_urls_in(content.send(field._name.to_sym) || '')
+          when 'has_one'
+            content.send(field.safe_alias.to_sym).highlighted_field_value
+          when 'has_many'
+            content.send(field.safe_alias.to_sym).collect(&:highlighted_field_value)
           else
-            hash[field._alias] = content.send(field._name.to_sym)
-          end
+            content.send(field.safe_alias.to_sym)
+          end)
+
+          hash[field._alias] = value
         end
 
         data << { content.highlighted_field_value => hash }
