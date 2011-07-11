@@ -6,6 +6,7 @@ it:
       change_password: Aggiorna
       new_item: "+ aggiungi"
       switch_to_site: Vai
+      delete: "Elimina"
 
     messages:
       confirm: Sicuro?
@@ -14,6 +15,7 @@ it:
       header:
         welcome: Benvenuto, %{name}
         see: Vedi il sito web
+        switch: Passa ad un altro sito
         logout: Esci
       menu:
         contents: Contenuti
@@ -47,6 +49,9 @@ it:
         subject: "[%{type}] nuovo/a"
         title: "Ciao %{name}, solo per farti sapere che una nuova istanza è stata creata il %{date}"
         type: "Modello: %{type}"
+
+    sites_picker:
+      new: + nuovo sito
 
     custom_fields:
       edit:
@@ -136,12 +141,17 @@ it:
 
     current_site:
       edit:
+        export: esporta
         import: importa
         new_membership: aggiungi account
         help: "Il nome del sito si può modificare cliccandoci sopra."
         ask_for_name: "Prego, digita il nuovo nome del sito"
 
     memberships:
+      roles:
+        admin: Amministratore
+        designer: Designer
+        author: Autore
       new:
         title: Nuova partecipazione
         help: "Prego, indica l'email dell'account da aggiungere. Se questo non esiste, sarai rediretto al modulo di creazione account."
@@ -183,6 +193,9 @@ it:
       edit:
         title: "Modifica %{file}"
         help: "Questa risorsa è accessibile dal seguente url: <a href='%{url}'>%{url}</a>"
+        help_image: "Includi la tua immagine nei tuoi template o frammenti con il seguente codice: <span class='code'>{{ '%{path}' | theme_image_tag }}</span>.<br/>L'attuale dimensione dell'immmagine : <b>%{width}px x %{height}px</b>.<br/>"
+        help_javascript: "Includi il tuo file javascript nei template o frammenti con il seguente codice: <span class='code'>{{ '%{path}' | javascript_tag }}</span>.<br/>"
+        help_stylesheet: "Includi il tuo stylesheet nei template o frammenti con il seguente codice: <span class='code'>{{ '%{path}' | stylesheet_tag }}</span>.<br/>"
       form:
         picker_link: Inserisci un file nel codice
         choose_file: Scegli il file
@@ -276,4 +289,5 @@ it:
       step_2:
         title: "Passo 2/2 &mdash; Creazione del tuo primo sito"
         explanations: "Questo è l'ultimo passo dell'installazione. Puoi caricare un tema come file zip. Noi abbiao dei temi gratuiti <a href=\"http://www.locomotivecms.com/support/themes\">qui</a>."
+        back_to_default_template: "Invece clicca <a href='#'>qui</a> per selezionare il modello di sito predefinito"
         next: Crea sito
