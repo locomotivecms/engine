@@ -36,7 +36,7 @@ Gem::Specification.new do |s|
   s.add_dependency "heroku", "1.19.1"
 
   s.add_dependency "rmagick", "2.12.2"
-  s.add_dependency "locomotive_carrierwave", "0.5.4.beta3"
+  s.add_dependency "carrierwave", "~> 0.5.5"
   s.add_dependency "dragonfly", "~> 0.9.1"
   s.add_dependency "rack-cache"
 
