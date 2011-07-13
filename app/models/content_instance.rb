@@ -69,7 +69,7 @@ class ContentInstance
   protected
 
   def set_slug
-    self._slug = self.highlighted_field_value.clone if self._slug.blank? && self.highlighted_field_value.present?
+    self._slug = self.highlighted_field_value.dup if self._slug.blank? && self.highlighted_field_value.present?
     self._slug.permalink! if self._slug.present?
   end
 

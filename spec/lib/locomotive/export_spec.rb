@@ -31,7 +31,7 @@ describe Locomotive::Export do
     it 'stores the list of highlighted values in a has_many relationship' do
       @team_data.first.values.first['projects'].size.should == 2
       @team_data.first.values.first['projects'].should == ['Project #1', 'Project #2']
-      @team_data.last.values.first['projects'].should == []
+      @team_data.last.values.first['projects'].should be_nil
     end
 
     it 'stores a highlighted value in a has_one relationship' do

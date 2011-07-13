@@ -70,7 +70,7 @@ module Locomotive
           end
 
           def render_default_content(context)
-            render_all(@nodelist, context)
+            render_all(@nodelist, context).join(' ')
           end
         end
 

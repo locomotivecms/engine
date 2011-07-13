@@ -63,7 +63,7 @@ module Locomotive
     end
 
     def create_target_folder
-      FileUtils.rmdir(@target_folder)
+      FileUtils.rm_rf(@target_folder)
       FileUtils.mkdir_p(@target_folder)
       %w(app/content_types app/views/snippets app/views/pages config data public).each do |f|
         FileUtils.mkdir_p(File.join(@target_folder, f))
@@ -105,13 +105,15 @@ module Locomotive
 
     def copy_content_types
       @site.content_types.each do |content_type|
-        attributes = self.extract_attributes(content_type, %w(name description slug order_by order_direction highlighted_field_name group_by_field_name api_enabled))
+        attributes = self.extract_attributes(content_type, %w(name description slug order_by order_direction group_by_field_name api_enabled))
+
+        attributes['highlighted_field_name'] = content_type.highlighted_field._alias
 
         # custom_fields
         fields = []
         content_type.content_custom_fields.each do |field|
           fields << {
-            field._alias => self.extract_attributes(field, %w(label kind hint target))
+            field._alias => self.extract_attributes(field, %w(label kind hint target required))
           }
         end
 
@@ -165,6 +167,10 @@ module Locomotive
 
       unless page.redirect?
         attributes.delete('redirect_url')
+
+        if page.templatized?
+          attributes['content_type'] = page.content_type.slug
+        end
 
         # add editable elements
         page.editable_elements.each do |element|
@@ -279,7 +285,7 @@ module Locomotive
             content.send(field.safe_alias.to_sym)
           end)
 
-          hash[field._alias] = value
+          hash[field._alias] = value unless value.blank?
         end
 
         data << { content.highlighted_field_value => hash }

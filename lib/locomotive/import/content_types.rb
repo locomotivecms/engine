@@ -130,6 +130,8 @@ module Locomotive
             content.send("#{name}=", value)
           end
 
+          content.send(:set_slug)
+
           content.save(:validate => false)
 
           contents_with_associations << [content, associations] unless associations.empty?
