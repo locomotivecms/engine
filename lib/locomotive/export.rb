@@ -163,9 +163,11 @@ module Locomotive
     protected
 
     def _copy_pages(page)
-      attributes = self.extract_attributes(page, %w{title seo_title meta_description meta_keywords listed redirect_url content_type published})
+      attributes = self.extract_attributes(page, %w{title seo_title meta_description meta_keywords redirect_url content_type published})
 
-      unless page.redirect?
+      attributes['listed'] = page.listed? # in some cases, page.listed can be nil
+
+      unless page.raw_template.blank?
         attributes.delete('redirect_url')
 
         if page.templatized?
