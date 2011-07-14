@@ -78,7 +78,7 @@ describe Locomotive::Export do
 
     it 'has the exact number of pages from the original site' do
       self.unzip
-      Dir[File.join(self.zip_folder, 'app', 'views', 'pages', '**/*.liquid')].size.should == 10
+      Dir[File.join(self.zip_folder, 'app', 'views', 'pages', '**/*.liquid')].size.should == 11
     end
 
     it 'includes snippets' do
