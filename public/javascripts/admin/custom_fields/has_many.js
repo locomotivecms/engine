@@ -27,7 +27,11 @@ $(document).ready(function() {
           if (size > 0) context.select.append(optgroup);
         } else {
           if ($.inArray(obj[1], context.data.taken_ids) == -1)
-            context.select.append(new Option(obj[0], obj[1], true, true));
+          {
+            var option = new Option("", obj[1], true, true);
+            $(option).text(obj[0]);
+            context.select.append(option);
+          }
         }
       }
 
