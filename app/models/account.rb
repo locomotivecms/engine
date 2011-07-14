@@ -9,7 +9,7 @@ class Account
 
   ## attributes ##
   field :name
-  field :locale, :default => 'en'
+  field :locale, :default => Locomotive.config.default_locale.to_s or 'en'
   field :switch_site_token
 
   ## validations ##
