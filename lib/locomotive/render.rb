@@ -66,7 +66,7 @@ module Locomotive
           'url'               => request.url,
           'now'               => Time.now.utc,
           'today'             => Date.today
-        }.merge(flash.stringify_keys) # data from api
+        }.merge(Locomotive.config.context_assign_extensions).merge(flash.stringify_keys) # data from api
 
         if @page.templatized? # add instance from content type
           assigns['content_instance'] = @content_instance

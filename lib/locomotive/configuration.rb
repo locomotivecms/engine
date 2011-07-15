@@ -21,7 +21,8 @@ module Locomotive
         :verbose     => true,
         :metastore   => URI.encode("file:#{Rails.root}/tmp/dragonfly/cache/meta"), # URI encoded in case of spaces
         :entitystore => URI.encode("file:#{Rails.root}/tmp/dragonfly/cache/body")
-      }
+      },
+      :context_assign_extensions => {  }
     }
 
     cattr_accessor :settings
