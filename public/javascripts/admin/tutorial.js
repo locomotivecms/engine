@@ -110,7 +110,7 @@ $(document).ready(function(){
     guiders.createGuider({
       attachTo: 'div.action span',
       buttons: [],
-      description: "You can click here to make a new model",
+      description: "Click here to make a new model",
       id: "newmodelpointer",
       next: "editpagewelcome",
       position: 6,
@@ -118,11 +118,23 @@ $(document).ready(function(){
       title: ""
     });
     
+    guiders.createGuider({
+      attachTo: 'div.action span',
+      buttons: [],
+      description: "Click here to make a new model",
+      id: "newmodelpointer-next",
+      next: "editpagewelcome",
+      position: 6,
+      width: 200,
+      title: "",
+      onShow: function(){
+        console.log("updating new model url");
+        $('div.action a').attr('href',
+        $('div.action a').attr('href') + "#guider=newmodelwelcome");
+      }
+    });
     
-    var modelhook = (function(){
-      
-    }());
-    
+        
     guiders.createGuider({
       attachTo: "undefined",
       description: (function(){
@@ -139,18 +151,24 @@ $(document).ready(function(){
         return ret;
       }()),
       buttons: [{name: "Quit", onclick: guiders.hideAll},
-                {name: "Next - Edit an Event", onclick: function(){
-                  if($('li.hoverable').length < 1){
-                    guiders.next();
+                (function(){
+                  if($('liv.hoverable').length < 1){
+                    return {
+                      name: "Next - Create a Model",
+                      onclick: function(){
+                        guiders.hideAll();
+                        guiders.show('newmodelpointer-next');
+                      }
+                    };
                   }else{
-                    /*
-                    *
-                    * This is really britle 
-                    *
-                    */
-                    window.location = $('.inner:eq(3) li:first a').attr('href') + "#guider=editmodelwelcome";
+                    return  {
+                      name: "Next - Edit an Event",
+                      onclick: function(){
+                       window.location = $('.inner:eq(3) li:first a').attr('href') + "#guider=editmodelwelcome";  
+                      }
+                    };
                   }
-                }}],
+                }())],
       id: "modelwelcome",
       next: "newmodel",
       overlay: true,
@@ -268,7 +286,7 @@ $(document).ready(function(){
     guiders.createGuider({
       attachTo: "#viewsite_ele",
       buttons: [],
-      description: "This will open a new tab in your browser and take you to the 'frontend' of your site. The frontend is what other visitors to your sit will see. Come back to this tab in your browser to continue the guide.",
+      description: "This will open a new tab in your browser and take you to the 'frontend' of your site. The frontend is what other visitors to your site will see. Come back to this tab in your browser to continue the guide.",
       id: "viewsite2",
       next: "editfinish",
       position: 6,
@@ -296,6 +314,74 @@ $(document).ready(function(){
       title: "Done editing."
     });
   
+  }
+  
+  /*
+  *
+  * New model
+  *
+  */
+  if(window.location.pathname.match('admin/content_types/new') != null ||
+     window.location.pathname.match('admin/content_types/.+/edit')){
+      
+      guiders.createGuider({
+        attachTo: "undefined",
+        description: "A model is how you define the content on your site. Lots of sites have: Blog Posts, Products, Photo Albums, Events.\
+        These are all differnt models.<br /><br />\
+        Models have fields. Fields are properties of a model. For example a Blog Post, has fields of: Author, Title, Content.<br /></br/>\
+        Try creating your own model and saving it!",
+        buttons: [{name: "Quit", onclick: guiders.hideAll},
+                  {name: "Next"}],
+        id: "newmodelwelcome",
+        next: "createmodel",
+        overlay: true,
+        title: "Lets create a new model!"
+      }); 
+      
+      guiders.createGuider({
+        buttons: [],
+        attachTo: "button.light:first",
+        description: "Click this button to create your new model!",
+        id: "createmodel",
+        next: "help",
+        position: 9,
+        title: "Save Your Work",
+        onShow: function(){
+          $('#new_content_type').attr('action', 
+          $('#new_content_type').attr('action')+"#guider=newmodelsuccess");
+        }
+      });
+      
+      guiders.createGuider({
+        attachTo: "undefined",
+        description: (function(){ 
+          if($('.inline-errors').length > 0){
+              return "Looks like you forgot something. Please Check out the errors and try again!";
+            }else{
+              return "You've Successfully created a model! Moving on. Lets adjust the settings of your LocomotiveCMS";
+            } 
+        }),
+        buttons: [{name: "Quit", onclick: guiders.hideAll},
+                  {name: "Next - Settings", onclick: function(){
+                    window.location = "/admin/pages#guider=settingswelcome";
+                  }}],
+        id: "newmodelsuccess",
+        next: "editsubdomain",
+        overlay: true,
+        title: (function(){ 
+          if($('.inline-errors').length > 0){
+              return "Uh oh.";
+            }else{
+              return "Great Work! You Made A New Model.";
+            } 
+        }),
+        onShow: (function(){ 
+          if($('.inline-errors').length > 0){
+              guiders.show('createmodel');
+            }
+        })
+      });
+      
   }
   
   /*
@@ -351,9 +437,7 @@ $(document).ready(function(){
   *
   */
   if(window.location.pathname.match("admin/current_site/edit") != null){
-    
-    
-    
+
     guiders.createGuider({
       attachTo: "undefined",
       description: "Welcome to the Settings page. Here you can create new user accounts to use LocomotiveCMS, Edit SEO options, and more. We will start by changing the subomain of our site.",
@@ -415,11 +499,11 @@ $(document).ready(function(){
     attachTo: "#help",
     buttons: [{name: "Quit", onclick: guiders.hideAll}],
     description: "How To:<ul>\
-    <li><a id='newpage' class='tutorial' href=\"/admin/pages#guider=newpage\">Make a new Page</a></li>\
-    <li><a id='viewsite' class='tutorial' href=\"\">View Your Site</a></li>\
-    <li><a id='pagewelcome' class='tutorial' href=\"\">Edit A Page</a></li>\
-    <li><a id='modelwelcome' class='tutorial' href=\"\">Edit a a Content instance</a></li>\
-    <li><a id='settingswelcome' class='tutorial' href=\"\">Edit your site's settings</a></li></ul>",
+    <li><a id='newpage' class='tutorial' href=\"/admin/pages\">Make a new Page</a></li>\
+    <li><a id='viewsite' class='tutorial' href=\"#\">View Your Site</a></li>\
+    <li><a id='pagewelcome' class='tutorial' href=\"/admin/pages\">Edit A Page</a></li>\
+    <li><a id='modelwelcome' class='tutorial' href=\"/admin/pages\">Edit a a Content instance</a></li>\
+    <li><a id='settingseditwelcome' class='tutorial' href=\"/admin/current_site/edit\">Edit your site's settings</a></li></ul>",
     id: "help",
     position: 6,
     width: 200,
@@ -427,8 +511,14 @@ $(document).ready(function(){
   });
   
   $(".tutorial").click(function(){
+    var $this = $(this);
     guiders.hideAll();
-    guiders.show($(this).attr('id'));
+    if($this.attr('href') != '#'){
+      window.location = $this.attr('href') + "#guider=" + $this.attr('id');
+      window.location.refresh;
+    }else{
+      guiders.show($this.attr('id'));
+    }
     return false;
   });
   
