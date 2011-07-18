@@ -64,17 +64,20 @@ $(document).ready(function(){
         }
       }
     }());
-    
-    console.log('lol page hook', pagehook);
-  
+      
     guiders.createGuider({
       attachTo: pagehook,
-      buttons: [],
+      buttons: [{name: "Quit", onclick: guiders.hideAll},
+                {name: "Next - Edit "+$(pagehook+' a:first').text()+"", onclick: function(){
+                  window.location = $(pagehook+' a:first').attr('href') + "#guider=editpagewelcome"
+                }
+              }],
       description: "These are pages. You can click on the page name to edit it.",
       id: "pagepointer",
       next: "editpagewelcome",
       width: 200,
       position: 9,
+      overlay: true,
       title: ""
     });
     
@@ -83,17 +86,14 @@ $(document).ready(function(){
       description: "A page is a collection of content on your site that can be reached at a web address <br /></br>\
       For this example we will edit the '"+$(pagehook+' a:first').text()+"' page. To do that you would click on the page name.",
       buttons: [{name: "Quit", onclick: guiders.hideAll},
-                {name: "Next - Edit "+$(pagehook+' a:first').text()+"", onclick: function(){
-                  window.location = $(pagehook+' a:first').attr('href') + "#guider=editpagewelcome"
-                }
-              }],
+                {name: "Next"}],
       id: "pagewelcome",
-      next: "editpagewelcome",
+      next: "pagepointer",
       overlay: true,
-      title: "What is a page?",
-      onShow: function(){
-        guiders.show('pagepointer')
-      }
+      title: "What is a page?"// ,
+      //       onShow: function(){
+      //         guiders.show('pagepointer')
+      //       }
     });
     
     guiders.createGuider({
@@ -225,7 +225,10 @@ $(document).ready(function(){
       overlay: true,
       title: "Editing A Page"
     });
-  
+    
+    
+    var page_title = 'Guide Demo Page';
+    
     guiders.createGuider({
       attachTo: "a.editable:first",
       buttons: [],
@@ -235,7 +238,7 @@ $(document).ready(function(){
       position: 6,
       width: 200,
       height: 100,
-      description: "Click here to edit the page title"
+      description: "Click here to edit the page title. <br /><br /> Change the title to '"+page_title+"'"
     });
     
     guiders.createGuider({
