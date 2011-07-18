@@ -12,7 +12,7 @@ namespace :locomotive do
   end
 
   desc 'Rebuild the serialized template of all the site pages'
-  task :rebuild_serialized_page_templates do
+  task :rebuild_serialized_page_templates => :environment do
     Page.all.each do |page|
       next unless page.template.nil?
       page.send :_parse_and_serialize_template
