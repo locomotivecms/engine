@@ -29,8 +29,6 @@ module Locomotive
             rescue Exception => e
               self.log "!ERROR! = #{e.message}, #{asset_path}"
             end
-
-            # site.reload
           end
         end
       end

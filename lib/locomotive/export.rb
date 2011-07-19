@@ -211,7 +211,11 @@ module Locomotive
     end
 
     def extract_attributes(object, fields)
-      object.attributes.select { |k, v| fields.include?(k) }.delete_if { |k, v| v.blank? }
+      if RUBY_VERSION =~ /1\.9/
+        object.attributes.select { |k, v| fields.include?(k) }
+      else
+        object.attributes.reject { |k, v| !fields.include?(k) }
+      end.delete_if { |k, v| v.blank? }
     end
 
     def pages_folder
