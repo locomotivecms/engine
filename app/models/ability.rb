@@ -49,6 +49,8 @@ class Ability
 
     can :manage, ThemeAsset
 
+    can :manage, Asset
+
     can :manage, Site do |site|
       site == @site
     end
