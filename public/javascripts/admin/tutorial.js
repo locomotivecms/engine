@@ -170,15 +170,20 @@ $(document).ready(function(){
                   }
                 }())],
       id: "modelwelcome",
-      next: "newmodel",
+      next: (function(){
+        if($('li.hoverable').length > 1){
+          return "modelpointer";
+        }
+          return 'newmodelpointer';
+      }()),
       overlay: true,
       title: "Lets talk about Models...",
-      onShow: function(){
-        if($('li.hoverable').length > 1){
-          guiders.show("modelpointer");
-        }
-        guiders.show('newmodelpointer');
-      }
+      // onShow: function(){
+      //   if($('li.hoverable').length > 1){
+      //     guiders.show("modelpointer");
+      //   }
+      //   //guiders.show('newmodelpointer');
+      // }
     });
     
     guiders.createGuider({
@@ -208,13 +213,32 @@ $(document).ready(function(){
   
   }
   
-  
   /*
   *
   * /admin/pages/edit 
   *
   */
   if(window.location.pathname.match('admin/pages/.+\/edit') != null){
+    
+    /*
+    * We have to delay the creation of this guider
+    * so TinyMCE can render it
+    */
+    window.onload = function(){
+      window.setTimeout(function(){
+        guiders.createGuider({
+          attachTo: '#page_editable_elements_attributes_1_content_ifr',
+          title: "Edit the content of the page",
+          description: "You can edit the content of your page in this text box. Go Ahead, add somethign like 'locomotiveCMS rocks!'. We'll wait for you.",
+          buttons: [],
+          id: "pageeditcontent",
+          next: "savepageedit",
+          position: 9,
+          width: 300
+        });
+      }, 2000);
+    };
+    
     guiders.createGuider({
       attachTo: "undefined",
       description:     "You are now editing the '"+$('a.editable:first').text()+"' page. Lets start by changing the title of this page.",
@@ -247,24 +271,15 @@ $(document).ready(function(){
       buttons: [{name: "Quit", onclick: guiders.hideAll},
                 {name: "Next"}],
       id: "greatjob",
-      next: "savepageedit",
+      next: "pageeditcontent",
       overlay: true,
       title: "Great Job!"
     });  
     
-    // guiders.createGuider({
-    //   attachTo: "li.text:first label",
-    //   description: "You can edit the content of your page in this text box",
-    //   id: "pageeditcontent",
-    //   next: "savepageedit",
-    //   position: 6,
-    //   title: "Edit the content of the page"
-    // });
-  
     guiders.createGuider({
       buttons: [],
       attachTo: "button.light:last",
-      description: "Click this update button to save any changes you've made to the page.",
+      description: "Click this save button to save any changes you've made to the page.",
       id: "savepageedit",
       next: "help",
       position: 12,
@@ -286,6 +301,17 @@ $(document).ready(function(){
       title: "Page Saved Successfully!"
     });
     
+    function viewSiteClick(e){
+      var $this = $(e.target);
+      e.preventDefault();
+      window.open($this.attr('href'),"_blank");
+      //console.log("viewsite click!");
+      guiders.next();
+      $this.unbind('click', viewSiteClick);
+      return false;
+      //should probably unbind this to prevent double clicking
+    }
+    
     guiders.createGuider({
       attachTo: "#viewsite_ele",
       buttons: [],
@@ -297,11 +323,7 @@ $(document).ready(function(){
       title: "Click Here To View Your Site",
       onShow: function(){
         console.log("binding click for view site", $('#viewsite_ele'));
-        $('#viewsite_ele').bind('click', function(){
-          console.log("viewsite click!");
-          guiders.next();
-          //should probably unbind this to prevent double clicking
-        });
+        $('#viewsite_ele').bind('click', viewSiteClick);
       }
     });
     
