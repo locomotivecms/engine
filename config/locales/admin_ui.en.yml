@@ -31,7 +31,7 @@ en:
       form_actions:
         back: Back without saving
         create: Create
-        update: Update
+        update: Save
         send: Send
 
     errors:
@@ -106,7 +106,7 @@ en:
         updated_at: updated at
       edit:
         show: show
-        help: "The page title can be updated by clicking it. To apply your changes, click on the \"Update\" button."
+        help: "The page title can be updated by clicking it. To apply your changes, click on the \"Save\" button."
         ask_for_title: "Please type the new page title"
       form:
         delete_file: Delete file
@@ -144,7 +144,7 @@ en:
         export: export
         import: import
         new_membership: add account
-        help: "The site name can be updated by clicking it. To apply your changes, click on the \"Update\" button."
+        help: "The site name can be updated by clicking it. To apply your changes, click on the \"Save\" button."
         ask_for_name: "Please type the new site name"
 
     memberships:
@@ -163,7 +163,7 @@ en:
 
     my_account:
       edit:
-        help: "Your name can be updated by clicking it. To apply your changes, click on the \"Update\" button."
+        help: "Your name can be updated by clicking it. To apply your changes, click on the \"Save\" button."
         new_site: new site
         en: English
         de: German
