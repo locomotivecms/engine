@@ -13,10 +13,18 @@ namespace :locomotive do
 
   desc 'Rebuild the serialized template of all the site pages'
   task :rebuild_serialized_page_templates => :environment do
-    Page.all.each do |page|
-      next unless page.template.nil?
-      page.send :_parse_and_serialize_template
-      page.save
+    Site.all.each do |site|
+      pages = site.pages.to_a
+      while !pages.empty? do
+        page = pages.pop
+        begin
+          page.send :_parse_and_serialize_template
+          page.save
+          puts "[#{site.name}] processing...#{page.title}"
+        rescue TypeError => e
+          pages.insert(0, page)
+        end
+      end
     end
   end
 
