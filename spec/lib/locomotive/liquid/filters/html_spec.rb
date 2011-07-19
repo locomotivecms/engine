@@ -8,6 +8,24 @@ describe Locomotive::Liquid::Filters::Html do
     @context = build_context
   end
 
+  it 'should return a url for a stylesheet file' do
+    result = "/sites/000000000000000000000042/theme/stylesheets/main.css"
+    stylesheet_url('main.css').should == result
+    stylesheet_url('main').should == result
+    stylesheet_url(nil).should == ''
+  end
+
+  it 'should return a url for a stylesheet file with folder' do
+    result = "/sites/000000000000000000000042/theme/stylesheets/trash/main.css"
+    stylesheet_url('trash/main.css').should == result
+  end
+
+  it 'should return a url for a stylesheet file without touching the url' do
+    result = "/trash/main.css"
+    stylesheet_url('/trash/main.css').should == result
+    stylesheet_url('/trash/main').should == result
+  end
+
   it 'should return a link tag for a stylesheet file' do
     result = "<link href=\"/sites/000000000000000000000042/theme/stylesheets/main.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />"
     stylesheet_tag('main.css').should == result
@@ -42,6 +60,25 @@ describe Locomotive::Liquid::Filters::Html do
     result = "<link href=\"/trash/main.css\" media=\"print\" rel=\"stylesheet\" type=\"text/css\" />"
     stylesheet_tag('/trash/main.css','print').should == result
     stylesheet_tag('/trash/main','print').should == result
+  end
+
+  it 'should return a url for a javascript file' do
+    result = "/sites/000000000000000000000042/theme/javascripts/main.js" 
+    javascript_url('main.js').should == result
+    javascript_url('main').should == result
+    javascript_url(nil).should == ''
+  end
+
+  it 'should return a url for a javascript file with folder' do
+    result = "/sites/000000000000000000000042/theme/javascripts/trash/main.js"
+    javascript_url('trash/main.js').should == result
+    javascript_url('trash/main').should == result
+  end
+
+  it 'should return a url for a javascript file without touching the url' do
+    result = "/trash/main.js"
+    javascript_url('/trash/main.js').should == result
+    javascript_url('/trash/main').should == result
   end
 
   it 'should return a script tag for a javascript file' do
