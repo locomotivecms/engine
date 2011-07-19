@@ -105,6 +105,10 @@ var MediafileDialog = {
       ]
     });
 
+    uploader.bind('BeforeUpload', function(up, file) {
+      file.name = unescape(encodeURIComponent(file.name));
+    });
+
     uploader.bind('QueueChanged', function() {
       self.showSpinner('uploading');
       uploader.start();
