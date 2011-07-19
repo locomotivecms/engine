@@ -32,6 +32,12 @@ describe Locomotive::Liquid::Filters::Html do
     stylesheet_url('http://cdn.example.com/trash/main').should == result
   end
 
+  it 'should return a url for a stylesheet file without touching the url that starts with "https:"' do
+    result = "https://cdn.example.com/trash/main.css"
+    stylesheet_url('https://cdn.example.com/trash/main.css').should == result
+    stylesheet_url('https://cdn.example.com/trash/main').should == result
+  end
+
   it 'should return a link tag for a stylesheet file' do
     result = "<link href=\"/sites/000000000000000000000042/theme/stylesheets/main.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />"
     stylesheet_tag('main.css').should == result
@@ -56,6 +62,12 @@ describe Locomotive::Liquid::Filters::Html do
     stylesheet_tag('http://cdn.example.com/trash/main').should == result
   end
 
+  it 'should return a link tag for a stylesheet file without touching the url that starts with "https:"' do
+    result = "<link href=\"https://cdn.example.com/trash/main.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />"
+    stylesheet_tag('https://cdn.example.com/trash/main.css').should == result
+    stylesheet_tag('https://cdn.example.com/trash/main').should == result
+  end
+
   it 'should return a link tag for a stylesheet file and media attribute set to print' do
     result = "<link href=\"/sites/000000000000000000000042/theme/stylesheets/main.css\" media=\"print\" rel=\"stylesheet\" type=\"text/css\" />"
     stylesheet_tag('main.css','print').should == result
@@ -78,6 +90,12 @@ describe Locomotive::Liquid::Filters::Html do
     result = "<link href=\"http://cdn.example.com/trash/main.css\" media=\"print\" rel=\"stylesheet\" type=\"text/css\" />"
     stylesheet_tag('http://cdn.example.com/trash/main.css','print').should == result
     stylesheet_tag('http://cdn.example.com/trash/main','print').should == result
+  end
+
+  it 'should return a link tag for a stylesheet file without touching the url that starts with "https:" and media attribute set to print' do
+    result = "<link href=\"https://cdn.example.com/trash/main.css\" media=\"print\" rel=\"stylesheet\" type=\"text/css\" />"
+    stylesheet_tag('https://cdn.example.com/trash/main.css','print').should == result
+    stylesheet_tag('https://cdn.example.com/trash/main','print').should == result
   end
 
   it 'should return a url for a javascript file' do
@@ -105,6 +123,12 @@ describe Locomotive::Liquid::Filters::Html do
     javascript_url('http://cdn.example.com/trash/main').should == result
   end
 
+  it 'should return a url for a javascript file without touching the url that starts with "https:"' do
+    result = "https://cdn.example.com/trash/main.js"
+    javascript_url('https://cdn.example.com/trash/main.js').should == result
+    javascript_url('https://cdn.example.com/trash/main').should == result
+  end
+
   it 'should return a script tag for a javascript file' do
     result = %{<script src="/sites/000000000000000000000042/theme/javascripts/main.js" type="text/javascript"></script>}
     javascript_tag('main.js').should == result
@@ -128,6 +152,12 @@ describe Locomotive::Liquid::Filters::Html do
     result = %{<script src="http://cdn.example.com/trash/main.js" type="text/javascript"></script>}
     javascript_tag('http://cdn.example.com/trash/main.js').should == result
     javascript_tag('http://cdn.example.com/trash/main').should == result
+  end
+
+  it 'should return a script tag for a javascript file without touching the url that starts with "https:"' do
+    result = %{<script src="https://cdn.example.com/trash/main.js" type="text/javascript"></script>}
+    javascript_tag('https://cdn.example.com/trash/main.js').should == result
+    javascript_tag('https://cdn.example.com/trash/main').should == result
   end
 
   it 'should return an image tag for a given theme file without parameters' do
