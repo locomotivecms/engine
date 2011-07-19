@@ -62,6 +62,11 @@ var TinyMceDefaultSettings = {
   fullscreen_new_window : false,
   fullscreen_settings : {
     theme_advanced_path_location : "top"
+  },
+  onchange_callback: function(){
+    if($('#pageeditcontent:visible').length > 0){
+      guiders.next();
+    }
   }
 };
 
