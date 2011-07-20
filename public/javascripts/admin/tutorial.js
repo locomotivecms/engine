@@ -97,13 +97,17 @@ $(document).ready(function(){
     });
     
     guiders.createGuider({
-      attachTo: 'li.hoverable:last',
-      buttons: [],
-      description: "These are models.<br /> You can hover over to edit them.",
+      attachTo: 'li.hoverable:eq(2)',
+      buttons: [{name: "Quit", onclick: guiders.hideAll},
+                {name: "Next - Edit an Event",
+                            onclick: function(){
+                             window.location = $('li.hoverable:eq(2) li:first a').attr('href') + "#guider=editmodelwelcome";  
+                            }}],
+      description: "These are models.<br /> You can hover over to edit them. For this next section of the guide. We will edit an Event model. '"+$('.inner:eq(3) li:first a').text()+"' ",
       id: "modelpointer",
       next: "editpagewelcome",
       width: 240,
-      position: 3,
+      position: 4,
       title: ""
     });
     
@@ -114,6 +118,7 @@ $(document).ready(function(){
       id: "newmodelpointer",
       next: "editpagewelcome",
       position: 6,
+      overlay: true,
       width: 200,
       title: ""
     });
@@ -151,24 +156,25 @@ $(document).ready(function(){
         return ret;
       }()),
       buttons: [{name: "Quit", onclick: guiders.hideAll},
-                (function(){
-                  if($('liv.hoverable').length < 1){
-                    return {
-                      name: "Next - Create a Model",
-                      onclick: function(){
-                        guiders.hideAll();
-                        guiders.show('newmodelpointer-next');
-                      }
-                    };
-                  }else{
-                    return  {
-                      name: "Next - Edit an Event",
-                      onclick: function(){
-                       window.location = $('.inner:eq(3) li:first a').attr('href') + "#guider=editmodelwelcome";  
-                      }
-                    };
-                  }
-                }())],
+                {name: "Next"}],
+                // (function(){
+                //                   if($('li.hoverable').length < 1){
+                //                     return {
+                //                       name: "Next - Create a Model",
+                //                       onclick: function(){
+                //                         guiders.hideAll();
+                //                         guiders.show('newmodelpointer-next');
+                //                       }
+                //                     };
+                //                   }else{
+                //                     return  {
+                //                       name: "Next - Edit an Event",
+                //                       onclick: function(){
+                //                        window.location = $('li.hoverable:eq(2) li:first a').attr('href') + "#guider=editmodelwelcome";  
+                //                       }
+                //                     };
+                //                   }
+                //                 }())],
       id: "modelwelcome",
       next: (function(){
         if($('li.hoverable').length > 1){
@@ -302,10 +308,11 @@ $(document).ready(function(){
     });
     
     function viewSiteClick(e){
+      console.log("viewsite click!");
       var $this = $(e.target);
       e.preventDefault();
       window.open($this.attr('href'),"_blank");
-      //console.log("viewsite click!");
+      $this.attr('href', '#');
       guiders.next();
       $this.unbind('click', viewSiteClick);
       return false;
@@ -462,7 +469,17 @@ $(document).ready(function(){
   *
   */
   if(window.location.pathname.match("admin/current_site/edit") != null){
+    
+    /*
+    * We have to delay the creation of this guider
+    * so TinyMCE can render it
+    */
+    window.onload = function(){
+      window.setTimeout(function(){
 
+      }, 2000);
+    };
+    
     guiders.createGuider({
       attachTo: "undefined",
       description: "Welcome to the Settings page. Here you can create new user accounts to use LocomotiveCMS, Edit SEO options, and more. We will start by changing the subomain of our site.",
@@ -498,17 +515,17 @@ $(document).ready(function(){
       title: "Save Your Work",
       onShow: function(){
         $('form.save-with-shortcut').attr('action', 
-        $('form.save-with-shortcut').attr('action')+"#guider=modelsavesuccess");
+        $('form.save-with-shortcut').attr('action')+"#guider=settingssavesuccess");
       }
     });
     
     guiders.createGuider({
       attachTo: "undefined",
-      description: "You've Successfully updated your LocomotiveCMS settings",
+      description: "You've Successfully updated your LocomotiveCMS settings. Dosen't that feel awesome?",
       buttons: [{name: "Quit", onclick: guiders.hideAll},
                 {name: "Next"}],
       id: "settingssavesuccess",
-      next: "editsubdomain",
+      next: "congratulations",
       overlay: true,
       title: "Great Work!"
     });
@@ -566,7 +583,6 @@ $(document).ready(function(){
     overlay: true,
     title: "Congratulations!"
   });
-  
   
   
 });
