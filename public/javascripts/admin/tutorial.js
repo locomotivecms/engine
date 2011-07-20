@@ -226,24 +226,24 @@ $(document).ready(function(){
   */
   if(window.location.pathname.match('admin/pages/.+\/edit') != null){
     
-    /*
-    * We have to delay the creation of this guider
-    * so TinyMCE can render it
-    */
-    window.onload = function(){
-      window.setTimeout(function(){
-        guiders.createGuider({
-          attachTo: '#page_editable_elements_attributes_1_content_ifr',
-          title: "Edit the content of the page",
-          description: "You can edit the content of your page in this text box. Go Ahead, add somethign like 'locomotiveCMS rocks!'. We'll wait for you.",
-          buttons: [],
-          id: "pageeditcontent",
-          next: "savepageedit",
-          position: 9,
-          width: 300
-        });
-      }, 2000);
-    };
+    // /*
+    // * We have to delay the creation of this guider
+    // * so TinyMCE can render it
+    // */
+    // window.onload = function(){
+    //   window.setTimeout(function(){
+    //     guiders.createGuider({
+    //       attachTo: '#page_editable_elements_attributes_1_content_ifr',
+    //       title: "Edit the content of the page",
+    //       description: "You can edit the content of your page in this text box. Go Ahead, add somethign like 'locomotiveCMS rocks!'. We'll wait for you.",
+    //       buttons: [],
+    //       id: "pageeditcontent",
+    //       next: "savepageedit",
+    //       position: 9,
+    //       width: 300
+    //     });
+    //   }, 2000);
+    // };
     
     guiders.createGuider({
       attachTo: "undefined",
@@ -287,7 +287,6 @@ $(document).ready(function(){
       attachTo: "button.light:last",
       description: "Click this save button to save any changes you've made to the page.",
       id: "savepageedit",
-      next: "help",
       position: 12,
       title: "Save Your Work",
       onShow: function(){
@@ -470,16 +469,6 @@ $(document).ready(function(){
   */
   if(window.location.pathname.match("admin/current_site/edit") != null){
     
-    /*
-    * We have to delay the creation of this guider
-    * so TinyMCE can render it
-    */
-    window.onload = function(){
-      window.setTimeout(function(){
-
-      }, 2000);
-    };
-    
     guiders.createGuider({
       attachTo: "undefined",
       description: "Welcome to the Settings page. Here you can create new user accounts to use LocomotiveCMS, Edit SEO options, and more. We will start by changing the subomain of our site.",
@@ -521,13 +510,20 @@ $(document).ready(function(){
     
     guiders.createGuider({
       attachTo: "undefined",
+      title: "Great Work!",
       description: "You've Successfully updated your LocomotiveCMS settings. Dosen't that feel awesome?",
       buttons: [{name: "Quit", onclick: guiders.hideAll},
-                {name: "Next"}],
+                {name: "Next", onclick: function(){
+                  if($('#bushi_banner').length > 0){
+                    guiders.hideAll();
+                    guiders.show("bushi_banner_guide");
+                  }else{
+                    guiders.hideAll();
+                    guiders.show("congratulations");
+                  }
+                }}],
       id: "settingssavesuccess",
-      next: "congratulations",
-      overlay: true,
-      title: "Great Work!"
+       overlay: true
     });
   }
   
@@ -578,11 +574,27 @@ $(document).ready(function(){
     attachTo: "undefined",
     description: "You've gone through the LocomotiveCMS guide! For more info on LocomotiveCMS,\
     checkout out <a href='http://www.locomotivecms.com/support/'>The LocomotiveCMS support pages</a>",
-    buttons: [{name: "Finished!", onclick: guiders.hideAll}],
+    buttons:[{name: "Finished!", onclick: guiders.hideAll}],
     id: "congratulations",
+    next: "bushi_banner",
     overlay: true,
     title: "Congratulations!"
   });
   
+  window.onload = function(){
+    window.setTimeout(function(){
+      guiders.createGuider({
+        attachTo: "#bushi_banner",
+        description: "You may have noticed the bar at the top of your site. Its provided by Bushido. Bushido are friends of LocomotiveCMS. They are our official hosting partner.\
+        <br /><br /> They will keep your LocomotiveCMS site up and running. If you want to keep your LocomotiveCMS site, they have a short signup processes above. Check it out!",
+        buttons: [{name: "Next"}],
+        id: "bushi_banner_guide",
+        overlay: true,
+        title: "One more Thing...",
+        next: "congratulations",
+        position: 6
+      });
+    }, 1000);
+  };
   
 });
