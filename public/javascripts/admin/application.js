@@ -63,9 +63,29 @@ var TinyMceDefaultSettings = {
   fullscreen_settings : {
     theme_advanced_path_location : "top"
   },
+  /*
+  *
+  * These are call backs aide in the guider creation
+  *
+  */
   onchange_callback: function(){
     if($('#pageeditcontent:visible').length > 0){
       guiders.next();
+    }
+  },
+  oninit: function(){
+    if(typeof window.guiders !== 'undefined' &&
+       window.location.pathname.match('admin/pages/.+\/edit') != null){
+      guiders.createGuider({
+        attachTo: '#page_editable_elements_attributes_1_content_ifr',
+        title: "Edit the content of the page",
+        description: "You can edit the content of your page in this text box. Go Ahead, add somethign like 'locomotiveCMS rocks!'. We'll wait for you.",
+        buttons: [],
+        id: "pageeditcontent",
+        next: "savepageedit",
+        position: 9,
+        width: 300
+      });
     }
   }
 };
