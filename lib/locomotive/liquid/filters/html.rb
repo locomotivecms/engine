@@ -8,7 +8,7 @@ module Locomotive
         def stylesheet_url(input)
           return '' if input.nil?
 
-          unless input =~ /^(\/|http:)/
+          unless input =~ /^(\/|https?:)/
             input = asset_url("stylesheets/#{input}")
           end
 
@@ -32,7 +32,7 @@ module Locomotive
         def javascript_url(input)
           return '' if input.nil?
 
-          unless input =~ /^(\/|http:)/
+          unless input =~ /^(\/|https?:)/
             input = asset_url("javascripts/#{input}")
           end
 
