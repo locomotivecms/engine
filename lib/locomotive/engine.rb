@@ -36,5 +36,9 @@ module Locomotive
       load "railties/tasks.rake"
     end
 
+    def self.models_dir
+      "#{config.root}/app/models/"
+    end
+
   end
 end

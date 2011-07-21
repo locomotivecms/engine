@@ -74,4 +74,9 @@ Locomotive.configure do |config|
   #
   # Note: by default, rack/cache is disabled in the Heroku platform
 
+
+  config.context_assign_extensions = {
+      'hello_world' => 'Hello World!'
+  }
+
 end unless Locomotive.engine? || Rails.env.test?
