@@ -1,3 +1,7 @@
+if (typeof window.console === 'undefined') {
+  window.console = { log: function() { return false; } };
+}
+
 function makeSlug(val, sep) { // code largely inspired by http://www.thewebsitetailor.com/jquery-slug-plugin/
   if (typeof val == 'undefined') return('');
   if (typeof sep == 'undefined') sep = '_';

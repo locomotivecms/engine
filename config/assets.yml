@@ -1,10 +1,10 @@
 embed_assets: off
+# compress_assets: off
+# package_assets: off
 
 s3_bucket: <%= ENV['S3_BUCKET'] %>
 s3_access_key_id: <%= ENV['S3_KEY_ID'] %>
 s3_secret_access_key: <%= ENV['S3_SECRET_KEY'] %>
-# compress_assets: off
-# package_assets: off
 
 javascripts:
   box:

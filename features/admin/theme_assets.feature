@@ -35,7 +35,7 @@ Scenario: Updating a stylesheet
   When I go to theme assets
   And I follow "stylesheets/application.css"
   And I fill in "theme_asset[plain_text]" with "Lorem ipsum (updated)"
-  And I press "Update"
+  And I press "Save"
   Then I should see "File was successfully updated."
   And I should see "Editing application.css"
   And I should see "application.css"
@@ -56,7 +56,7 @@ Scenario: Updating a javascript
   When I go to theme assets
   And I follow "javascripts/application.js"
   And I fill in "theme_asset[plain_text]" with "Lorem ipsum (updated)"
-  And I press "Update"
+  And I press "Save"
   Then I should see "File was successfully updated."
 
 Scenario: Uploading an image which already exists

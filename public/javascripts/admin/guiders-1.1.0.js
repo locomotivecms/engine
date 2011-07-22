@@ -11,14 +11,14 @@
  *
  * Questions about Guiders or Optimizely?
  * Email us at jeff+pickhardt@optimizely.com or hello@optimizely.com.
- * 
+ *
  * Enjoy!
  */
 
 var guiders = (function($){
   var guiders = {
     version: "1.1.0",
-    
+
     _defaultSettings: {
       attachTo: null,
       buttons: [{name: "Close"}],
@@ -136,21 +136,21 @@ var guiders = (function($){
       }
       return guiders._guiders[id];
     },
-    
+
     _showOverlay: function() {
       $("#guider_overlay").fadeIn("fast");
     },
-    
+
     _hideOverlay: function() {
       $("#guider_overlay").fadeOut("fast");
     },
-    
+
     _initializeOverlay: function() {
       if ($("#guider_overlay").length === 0) {
         $("<div id=\"guider_overlay\"></div>").hide().appendTo("body");
       }
     },
-    
+
     _styleArrow: function(myGuider) {
       var position = myGuider.position || 0;
       if (!position) {
@@ -215,7 +215,7 @@ var guiders = (function($){
         }
       }
     },
-    
+
     next: function() {
       var currentGuider = guiders._guiders[guiders._currentGuiderID];
       if (typeof currentGuider === "undefined") {
@@ -261,7 +261,7 @@ var guiders = (function($){
 
       guiders._guiders[myGuider.id] = myGuider;
       guiders._lastCreatedGuiderID = myGuider.id;
-      
+
       /**
        * If the URL of the current window is of the form
        * http://www.myurl.com/mypage.html#guider=id
@@ -270,7 +270,7 @@ var guiders = (function($){
       if (myGuider.isHashable) {
         guiders._showIfHashed(myGuider);
       }
-      
+
       return guiders;
     },
 
@@ -288,19 +288,19 @@ var guiders = (function($){
       if (!id && guiders._lastCreatedGuiderID) {
         id = guiders._lastCreatedGuiderID;
       }
-      
+
       var myGuider = guiders._guiderById(id);
       if (myGuider.overlay) {
         guiders._showOverlay();
       }
-      
+
       guiders._attach(myGuider);
-      
+
       // You can use an onShow function to take some action before the guider is shown.
       if (myGuider.onShow) {
         myGuider.onShow(myGuider);
       }
-      
+
       myGuider.elem.fadeIn("fast");
 
       var windowHeight = $(window).height();

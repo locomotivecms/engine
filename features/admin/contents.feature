@@ -42,7 +42,7 @@ Scenario: Update an existing entry
   When I go to the "Projects" model list page
   And I follow "My sexy project"
   When I fill in "Name" with "My other sexy project (UPDATED)"
-  And I press "Update"
+  And I press "Save"
   Then I should see "Content was successfully updated."
   When I go to the "Projects" model list page
   Then I should see "My other sexy project (UPDATED)"
@@ -51,7 +51,7 @@ Scenario: Update an invalid entry
   When I go to the "Projects" model list page
   And I follow "My sexy project"
   When I fill in "Name" with ""
-  And I press "Update"
+  And I press "Save"
   Then I should not see "Content was successfully updated."
 
 Scenario: Destroy an entry

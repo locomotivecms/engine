@@ -1,12 +1,12 @@
 $(document).ready(function(){
-  
+
   /*
   *
   * /admin/pages
   *
   */
   if(window.location.pathname == "/admin/pages"){
-    
+
     $('#new_page_tutorial').click(function(){
       if($('#newpage').length > 0){
         guiders.hideAll();
@@ -26,7 +26,7 @@ $(document).ready(function(){
       width: 200,
       title: "Make a new page",
     });
-    
+
     guiders.createGuider({
       attachTo: "undefined",
       description: "Thank you for choosing LocomotiveCMS!, <br /><br />\
@@ -41,7 +41,7 @@ $(document).ready(function(){
       overlay: true,
       title: "Welcome to Locomotive CMS"
     });
-  
+
     guiders.createGuider({
       attachTo: "#help",
       buttons: [],
@@ -53,10 +53,10 @@ $(document).ready(function(){
       height: 100,
       title: ""
     });
-    
+
     var pagehook = (function(){
-      var possibles = ['ul.folder:first li', 
-                       'ul#pages-list li']; 
+      var possibles = ['ul.folder:first li',
+                       'ul#pages-list li'];
       for(var i = 0; i<possibles.length; i++){
         console.log("checking possibles", i, possibles[i]);
         if($(possibles[i]).length > 0){
@@ -64,7 +64,7 @@ $(document).ready(function(){
         }
       }
     }());
-      
+
     guiders.createGuider({
       attachTo: pagehook,
       buttons: [{name: "Quit", onclick: guiders.hideAll},
@@ -80,7 +80,7 @@ $(document).ready(function(){
       overlay: true,
       title: ""
     });
-    
+
     guiders.createGuider({
       attachTo: "undefined",
       description: "A page is a collection of content on your site that can be reached at a web address <br /></br>\
@@ -95,13 +95,13 @@ $(document).ready(function(){
       //         guiders.show('pagepointer')
       //       }
     });
-    
+
     guiders.createGuider({
       attachTo: 'li.hoverable:eq(2)',
       buttons: [{name: "Quit", onclick: guiders.hideAll},
                 {name: "Next - Edit an Event",
                             onclick: function(){
-                             window.location = $('li.hoverable:eq(2) li:first a').attr('href') + "#guider=editmodelwelcome";  
+                             window.location = $('li.hoverable:eq(2) li:first a').attr('href') + "#guider=editmodelwelcome";
                             }}],
       description: "These are models.<br /> You can hover over to edit them. For this next section of the guide. We will edit an Event model. '"+$('.inner:eq(3) li:first a').text()+"' ",
       id: "modelpointer",
@@ -110,7 +110,7 @@ $(document).ready(function(){
       position: 4,
       title: ""
     });
-    
+
     guiders.createGuider({
       attachTo: 'div.action span',
       buttons: [],
@@ -122,7 +122,7 @@ $(document).ready(function(){
       width: 200,
       title: ""
     });
-    
+
     guiders.createGuider({
       attachTo: 'div.action span',
       buttons: [],
@@ -138,21 +138,21 @@ $(document).ready(function(){
         $('div.action a').attr('href') + "#guider=newmodelwelcome");
       }
     });
-    
-        
+
+
     guiders.createGuider({
       attachTo: "undefined",
       description: (function(){
         var ret = "What is a model?<br />\
         The concept of a model within locomotiveCMS is a peice of content that you might reuse through out your site.\
         Some example models could be: Blog posts, Products, Events, Locations, Photos<br /></br />"
-        
+
         if($('li.hoverable').length > 1){
           ret += "For this next section of the guide. We will edit our Event model. '"+$('.inner:eq(3) li:first a').text()+"' ";
         }else{
           ret += "For this next section of the guide, lets make a new model";
         }
-        
+
         return ret;
       }()),
       buttons: [{name: "Quit", onclick: guiders.hideAll},
@@ -170,7 +170,7 @@ $(document).ready(function(){
                 //                     return  {
                 //                       name: "Next - Edit an Event",
                 //                       onclick: function(){
-                //                        window.location = $('li.hoverable:eq(2) li:first a').attr('href') + "#guider=editmodelwelcome";  
+                //                        window.location = $('li.hoverable:eq(2) li:first a').attr('href') + "#guider=editmodelwelcome";
                 //                       }
                 //                     };
                 //                   }
@@ -191,7 +191,7 @@ $(document).ready(function(){
       //   //guiders.show('newmodelpointer');
       // }
     });
-    
+
     guiders.createGuider({
       attachTo: 'li.settings a',
       buttons: [],
@@ -201,7 +201,7 @@ $(document).ready(function(){
       width: 200,
       title: ""
     });
-    
+
     guiders.createGuider({
       attachTo: "undefined",
       description: "LocomotiveCMS has several features that you can adjust in the settings panel. Lets head there now!",
@@ -216,16 +216,16 @@ $(document).ready(function(){
         guiders.show("settingspointer");
       }
     });
-  
+
   }
-  
+
   /*
   *
-  * /admin/pages/edit 
+  * /admin/pages/edit
   *
   */
   if(window.location.pathname.match('admin/pages/.+\/edit') != null){
-    
+
     // /*
     // * We have to delay the creation of this guider
     // * so TinyMCE can render it
@@ -244,7 +244,7 @@ $(document).ready(function(){
     //     });
     //   }, 2000);
     // };
-    
+
     guiders.createGuider({
       attachTo: "undefined",
       description:     "You are now editing the '"+$('a.editable:first').text()+"' page. Lets start by changing the title of this page.",
@@ -255,10 +255,10 @@ $(document).ready(function(){
       overlay: true,
       title: "Editing A Page"
     });
-    
-    
+
+
     var page_title = 'Guide Demo Page';
-    
+
     guiders.createGuider({
       attachTo: "a.editable:first",
       buttons: [],
@@ -270,7 +270,7 @@ $(document).ready(function(){
       height: 100,
       description: "Click here to edit the page title. <br /><br /> Change the title to '"+page_title+"'"
     });
-    
+
     guiders.createGuider({
       attachTo: "undefined",
       description:     "You just changed the title of this page. Lets continue by editing the page content.",
@@ -280,8 +280,8 @@ $(document).ready(function(){
       next: "pageeditcontent",
       overlay: true,
       title: "Great Job!"
-    });  
-    
+    });
+
     guiders.createGuider({
       buttons: [],
       attachTo: "button.light:last",
@@ -290,11 +290,11 @@ $(document).ready(function(){
       position: 12,
       title: "Save Your Work",
       onShow: function(){
-        $('form.save-with-shortcut').attr('action', 
+        $('form.save-with-shortcut').attr('action',
         $('form.save-with-shortcut').attr('action')+"#guider=editsavesuccess");
       }
     });
-    
+
     guiders.createGuider({
       attachTo: "undefined",
       description:     "Great work! you've update this page. You can review your work by checking out the 'frontend' of the site.",
@@ -302,10 +302,10 @@ $(document).ready(function(){
                 {name: "Next"}],
       id: "editsavesuccess",
       next: "viewsite2",
-      overlay: true, 
+      overlay: true,
       title: "Page Saved Successfully!"
     });
-    
+
     function viewSiteClick(e){
       console.log("viewsite click!");
       var $this = $(e.target);
@@ -317,9 +317,9 @@ $(document).ready(function(){
       return false;
       //should probably unbind this to prevent double clicking
     }
-    
+
     guiders.createGuider({
-      attachTo: "#viewsite_ele",
+      attachTo: "#viewsite",
       buttons: [],
       description: "This will open a new tab in your browser and take you to the 'frontend' of your site. The frontend is what other visitors to your site will see. Come back to this tab in your browser to continue the guide.",
       id: "viewsite2",
@@ -328,11 +328,11 @@ $(document).ready(function(){
       width: 280,
       title: "Click Here To View Your Site",
       onShow: function(){
-        console.log("binding click for view site", $('#viewsite_ele'));
-        $('#viewsite_ele').bind('click', viewSiteClick);
+        console.log("binding click for view site", $('#viewsite'));
+        $('#viewsite').bind('click', viewSiteClick);
       }
     });
-    
+
     guiders.createGuider({
       attachTo: "undefined",
       description: "Congratulations. You've just edited a page using LocomotiveCMS! Moving on, we will now move onto models. Lets return to the admin home.",
@@ -344,9 +344,9 @@ $(document).ready(function(){
       overlay: true,
       title: "Done editing."
     });
-  
+
   }
-  
+
   /*
   *
   * New model
@@ -354,7 +354,7 @@ $(document).ready(function(){
   */
   if(window.location.pathname.match('admin/content_types/new') != null ||
      window.location.pathname.match('admin/content_types/.+/edit')){
-      
+
       guiders.createGuider({
         attachTo: "undefined",
         description: "A model is how you define the content on your site. Lots of sites have: Blog Posts, Products, Photo Albums, Events.\
@@ -367,8 +367,8 @@ $(document).ready(function(){
         next: "createmodel",
         overlay: true,
         title: "Lets create a new model!"
-      }); 
-      
+      });
+
       guiders.createGuider({
         buttons: [],
         attachTo: "button.light:first",
@@ -378,19 +378,19 @@ $(document).ready(function(){
         position: 9,
         title: "Save Your Work",
         onShow: function(){
-          $('#new_content_type').attr('action', 
+          $('#new_content_type').attr('action',
           $('#new_content_type').attr('action')+"#guider=newmodelsuccess");
         }
       });
-      
+
       guiders.createGuider({
         attachTo: "undefined",
-        description: (function(){ 
+        description: (function(){
           if($('.inline-errors').length > 0){
               return "Looks like you forgot something. Please Check out the errors and try again!";
             }else{
               return "You've Successfully created a model! Moving on. Lets adjust the settings of your LocomotiveCMS";
-            } 
+            }
         }),
         buttons: [{name: "Quit", onclick: guiders.hideAll},
                   {name: "Next - Settings", onclick: function(){
@@ -399,29 +399,29 @@ $(document).ready(function(){
         id: "newmodelsuccess",
         next: "editsubdomain",
         overlay: true,
-        title: (function(){ 
+        title: (function(){
           if($('.inline-errors').length > 0){
               return "Uh oh.";
             }else{
               return "Great Work! You Made A New Model.";
-            } 
+            }
         }),
-        onShow: (function(){ 
+        onShow: (function(){
           if($('.inline-errors').length > 0){
               guiders.show('createmodel');
             }
         })
       });
-      
+
   }
-  
+
   /*
   *
   * Content edits
   *
   */
   if(window.location.pathname.match('admin/content_types/events/contents/.+/edit') != null){
-    
+
     guiders.createGuider({
       attachTo: "undefined",
       description: "You are now edting an instance of our event model.\
@@ -433,7 +433,7 @@ $(document).ready(function(){
       overlay: true,
       title: "Editing an Event model"
     });
-    
+
     guiders.createGuider({
       buttons: [],
       attachTo: "button.light:last",
@@ -442,11 +442,11 @@ $(document).ready(function(){
       position: 12,
       title: "Save Your Work",
       onShow: function(){
-        $('form.save-with-shortcut').attr('action', 
+        $('form.save-with-shortcut').attr('action',
         $('form.save-with-shortcut').attr('action')+"#guider=modelsavesuccess");
       }
     });
-    
+
     guiders.createGuider({
       attachTo: "undefined",
       description: "You've Successfully updated this model",
@@ -458,17 +458,17 @@ $(document).ready(function(){
       overlay: true,
       title: "Great Work!"
     });
-    
+
   }
-  
-  
+
+
   /*
   *
   * Settings page
   *
   */
   if(window.location.pathname.match("admin/current_site/edit") != null){
-    
+
     guiders.createGuider({
       attachTo: "undefined",
       description: "Welcome to the Settings page. Here you can create new user accounts to use LocomotiveCMS, Edit SEO options, and more. We will start by changing the subomain of our site.",
@@ -479,7 +479,7 @@ $(document).ready(function(){
       overlay: true,
       title: "The Settings Page"
     });
-    
+
     guiders.createGuider({
       attachTo: "#site_subdomain",
       description: "Edit this field to change the subdomain of your site",
@@ -494,7 +494,7 @@ $(document).ready(function(){
         });
       }
     });
-        
+
     guiders.createGuider({
       buttons: [],
       attachTo: "button.light:last",
@@ -503,11 +503,11 @@ $(document).ready(function(){
       position: 12,
       title: "Save Your Work",
       onShow: function(){
-        $('form.save-with-shortcut').attr('action', 
+        $('form.save-with-shortcut').attr('action',
         $('form.save-with-shortcut').attr('action')+"#guider=settingssavesuccess");
       }
     });
-    
+
     guiders.createGuider({
       attachTo: "undefined",
       title: "Great Work!",
@@ -526,11 +526,11 @@ $(document).ready(function(){
        overlay: true
     });
   }
-  
-  
+
+
   /*
   *
-  * Global 
+  * Global
   *
   */
   guiders.createGuider({
@@ -547,7 +547,7 @@ $(document).ready(function(){
     width: 200,
     title: "Locomotive Guides",
   });
-  
+
   $(".tutorial").click(function(){
     var $this = $(this);
     guiders.hideAll();
@@ -559,9 +559,9 @@ $(document).ready(function(){
     }
     return false;
   });
-  
+
   guiders.createGuider({
-    attachTo: "#viewsite_ele",
+    attachTo: "#viewsite",
     buttons: [{name: "Close", onclick: guiders.hideAll}],
     description: "This will take you to the 'frontend' of your site. Where you can see what users visiting your site see.",
     id: "viewsite",
@@ -569,7 +569,7 @@ $(document).ready(function(){
     width: 280,
     title: "Click Here To View Your Site",
   });
-  
+
   guiders.createGuider({
     attachTo: "undefined",
     description: "You've gone through the LocomotiveCMS guide! For more info on LocomotiveCMS,\
@@ -580,7 +580,7 @@ $(document).ready(function(){
     overlay: true,
     title: "Congratulations!"
   });
-  
+
   window.onload = function(){
     window.setTimeout(function(){
       guiders.createGuider({
@@ -596,5 +596,5 @@ $(document).ready(function(){
       });
     }, 1000);
   };
-  
+
 });
