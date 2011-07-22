@@ -19,9 +19,7 @@ module Locomotive
               sign_in(Account.order_by(:created_at).first)
             end
           end
-
         end
-
       end
     end
   end
