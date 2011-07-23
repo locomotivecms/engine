@@ -58,7 +58,6 @@ $(document).ready(function(){
       var possibles = ['ul.folder:first li',
                        'ul#pages-list li'];
       for(var i = 0; i<possibles.length; i++){
-        console.log("checking possibles", i, possibles[i]);
         if($(possibles[i]).length > 0){
           return possibles[i];
         }
@@ -551,9 +550,9 @@ $(document).ready(function(){
   $(".tutorial").click(function(){
     var $this = $(this);
     guiders.hideAll();
-    if($this.attr('href') != '#'){
+    if($this.attr('href') != '#' && window.location.pathname != $this.attr('href')){
       window.location = $this.attr('href') + "#guider=" + $this.attr('id');
-      window.location.refresh;
+      window.location.reload();
     }else{
       guiders.show($this.attr('id'));
     }
@@ -583,17 +582,19 @@ $(document).ready(function(){
 
   window.onload = function(){
     window.setTimeout(function(){
-      guiders.createGuider({
-        attachTo: "#bushi_banner",
-        description: "You may have noticed the bar at the top of your site. Its provided by Bushido. Bushido are friends of LocomotiveCMS. They are our official hosting partner.\
-        <br /><br /> They will keep your LocomotiveCMS site up and running. If you want to keep your LocomotiveCMS site, they have a short signup processes above. Check it out!",
-        buttons: [{name: "Next"}],
-        id: "bushi_banner_guide",
-        overlay: true,
-        title: "One more Thing...",
-        next: "congratulations",
-        position: 6
-      });
+      if($('#bushi_banner').length > 0){
+        guiders.createGuider({
+          attachTo: "#bushi_banner",
+          description: "You may have noticed the bar at the top of your site. Its provided by Bushido. Bushido are friends of LocomotiveCMS. They are our official hosting partner.\
+          <br /><br /> They will keep your LocomotiveCMS site up and running. If you want to keep your LocomotiveCMS site, they have a short signup processes above. Check it out!",
+          buttons: [{name: "Next"}],
+          id: "bushi_banner_guide",
+          overlay: true,
+          title: "One more Thing...",
+          next: "congratulations",
+          position: 6
+        });
+      }
     }, 1000);
   };
 
