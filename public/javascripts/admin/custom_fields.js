@@ -50,7 +50,7 @@ $(document).ready(function() {
     // edit
     domField.find('a.edit').click(function(e) {
       var link = $(this);
-      var attributes = ['_alias', 'hint', 'text_formatting', 'target'];
+      var attributes = ['_alias', 'hint', 'text_formatting', 'target', 'reverse_lookup'];
 
       $.fancybox({
         titleShow: false,
@@ -61,7 +61,9 @@ $(document).ready(function() {
             $.each(attributes, function(index, name) {
               try {
                 var val = domBoxAttrVal(name).trim();
-                if (val != '') domFieldVal(domField, name, val);
+
+                // TODO: change this "if" once we have the dropdown working
+                if (val != '' || name == 'reverse_lookup') domFieldVal(domField, name, val);
               } catch(e) {}
             });
             domBoxAttr('text_formatting').parent().hide();
@@ -80,6 +82,8 @@ $(document).ready(function() {
           if (domFieldVal(domField, 'kind').toLowerCase() == 'text') domBoxAttr('text_formatting').parents('li').show();
           if (domFieldVal(domField, 'kind').toLowerCase() == 'has_one' ||
               domFieldVal(domField, 'kind').toLowerCase() == 'has_many') domBoxAttr('target').parents('li').show();
+          if (domFieldVal(domField, 'kind').toLowerCase() == 'has_many')
+            domBoxAttr('reverse_lookup').parents('li').show();
 
           // Push bar down to the bottom of the content if needed
           var fancybox_height = $('#fancybox-wrap').height();
@@ -89,7 +93,6 @@ $(document).ready(function() {
             $('#fancybox-wrap .popup-actions').removeClass('bottom');
         }
       });
-
       e.preventDefault(); e.stopPropagation();
     });
 
