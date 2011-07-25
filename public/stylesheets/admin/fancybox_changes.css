@@ -89,10 +89,13 @@ div.asset-picker ul li .more { top: 8px; }
 #fancybox-inner .popup-actions {
   position: absolute;
   left: 0px;
-  bottom: 0px;
   height: 61px;
   width: 100%;
   background: #8b8d9a;
+}
+
+#fancybox-inner .popup-actions.bottom {
+  bottom: 0px;
 }
 
 #fancybox-inner .popup-actions p {

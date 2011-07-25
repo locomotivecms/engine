@@ -11,7 +11,7 @@
     %script{ :type => 'text/javascript', :name => 'data' }
       != "var categories = #{collection_to_js(@field.ordered_category_items, :template => CustomFields::Types::Category::Item.new)};"
 
-  .popup-actions
+  .popup-actions.bottom
     %p
       %button.button.light{ :type => 'submit' }
         %span= t('admin.shared.form_actions.update')
