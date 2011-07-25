@@ -16,6 +16,7 @@ en:
         welcome: Welcome, %{name}
         see: See website
         switch: Switch to another site
+        help: Help
         logout: Log out
       menu:
         contents: Contents

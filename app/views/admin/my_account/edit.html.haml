@@ -4,7 +4,7 @@
   = include_javascripts :account
 
 - content_for :submenu do
-  = render 'admin/shared/menu/settings'
+  = render_cell 'admin/settings_menu', :show
 
 - if multi_sites?
   - content_for :buttons do

@@ -1,7 +1,7 @@
 - title t('.title')
 
 - content_for :submenu do
-  = render 'admin/shared/menu/settings'
+  = render_cell 'admin/settings_menu', :show
 
 - content_for :buttons do
   = admin_button_tag t('admin.snippets.index.new'), new_admin_snippet_url, :class => 'new' if can?(:manage, Snippet)

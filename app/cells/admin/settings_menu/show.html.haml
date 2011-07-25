@@ -1,0 +1,4 @@
+- @list.each do |item|
+  %li
+    = link_to item[:url], :class => item[:class] do
+      %span= item[:label]

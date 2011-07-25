@@ -8,6 +8,7 @@ gem 'rails', '3.0.9'
 
 gem 'warden'
 gem 'devise', '1.3.4'
+gem 'devise_cas_authenticatable', :git => 'git://github.com/Bushido/devise_cas_authenticatable.git'
 
 gem 'mongoid', '~> 2.0.2'
 gem 'bson_ext', '~> 1.3.0'
@@ -38,6 +39,7 @@ gem 'delayed_job_mongoid', '1.0.2'
 gem 'rubyzip'
 gem 'locomotive_jammit-s3', :require => 'jammit-s3'
 gem 'SystemTimer', :platforms => :ruby_18
+gem 'cells'
 
 # The rest of the dependencies are for use when in the locomotive dev environment
 

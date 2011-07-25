@@ -16,7 +16,7 @@ module Locomotive
 
     # Add additional load paths for your own custom dirs
     # config.load_paths += %W( #{config.root}/extras )
-    config.autoload_paths += %W( #{config.root}/app/models/extensions #{config.root}/app/models/extensions/site #{config.root}/app/models/extensions/page #{config.root}/app/models/extensions/asset)
+    config.autoload_paths += %W( #{config.root}/app/models/extensions #{config.root}/app/models/extensions/site #{config.root}/app/models/extensions/page #{config.root}/app/models/extensions/asset #{config.root}/app/cells/admin)
 
     # Only load the plugins named here, in the order given (default is alphabetical).
     # :all can be used as a placeholder for all plugins not explicitly named

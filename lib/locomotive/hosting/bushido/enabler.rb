@@ -22,24 +22,42 @@ module Locomotive
         module ClassMethods
 
           def bushido_app_claimed?
-            ENV['BUSHIDO_CLAIMED'].present? && ENV['BUSHIDO_CLAIMED'].to_s.downcase == 'true'
+            ENV['BUSHIDO_CLAIMED'].present? && Boolean.set(ENV['BUSHIDO_CLAIMED'])
           end
 
           def enable_bushido!
             self.config.domain = ENV['APP_TLD'] unless self.config.multi_sites?
 
+            self.config.devise_modules = [:cas_authenticatable, :rememberable, :trackable]
+
             self.enhance_models
 
             self.disable_authentication_for_not_claimed_app
+
+            self.setup_cas_client
 
             self.setup_smtp_settings
 
             self.add_middlewares
 
+            self.tweak_ui
+
             self.config.delayed_job = true # force to use delayed_job
 
             self.bushido_domains = ::Bushido::App.domains
             self.bushido_subdomain = ::Bushido::App.subdomain
+          end
+
+          def tweak_ui
+            edit_account_url = 'https://auth.bushi.do/users/edit'
+
+            ::Admin::GlobalActionsCell.update_for(:bushido) do |menu|
+              menu.modify :welcome, :url => edit_account_url
+            end
+
+            ::Admin::SettingsMenuCell.update_for(:bushido) do |menu|
+              menu.modify :account, :url => edit_account_url
+            end
           end
 
           def enhance_models
@@ -50,6 +68,19 @@ module Locomotive
 
           def disable_authentication_for_not_claimed_app
             Admin::BaseController.send :include, Locomotive::Hosting::Bushido::Devise
+          end
+
+          def setup_cas_client
+            ::Devise.setup do |config|
+              config.cas_base_url = 'https://auth.bushi.do/cas'
+              config.cas_logout_url = 'https://auth.bushi.do/cas/logout'
+            end
+
+            Admin::SessionsController.class_eval do
+              def new
+                redirect_to admin_pages_url
+              end
+            end
           end
 
           def setup_smtp_settings

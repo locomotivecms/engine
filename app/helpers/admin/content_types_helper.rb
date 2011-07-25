@@ -45,7 +45,7 @@ module Admin::ContentTypesHelper
       url = admin_contents_url(content_type.slug)
       css = @content_type && content_type.slug == @content_type.slug ? 'on' : ''
 
-      html = admin_submenu_item(label, url, :i18n => false, :css => css) do
+      html = admin_content_menu_item(label, url, :i18n => false, :css => css) do
         yield(content_type)
       end
 

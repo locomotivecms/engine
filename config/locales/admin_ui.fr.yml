@@ -26,6 +26,7 @@ fr:
         welcome: "Bonjour, %{name}"
         see: Voir le site web
         switch: Passer à un autre site
+        help: Aide
         logout: Se déconnecter
       menu:
         contents: Contenu
