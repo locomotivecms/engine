@@ -1,7 +1,7 @@
 %h1
   = link_to current_site.name, admin_pages_url, :class => 'single'
 
-= render_cell 'admin/global_actions', :show, :current_admin => current_admin
+= render_cell 'admin/global_actions', :show, :current_admin => current_admin, :current_site_url => current_site_url
 
 - if multi_sites? && current_admin.sites.size > 1
   #sites-picker{ :style => 'display: none' }

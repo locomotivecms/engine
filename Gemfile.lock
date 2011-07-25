@@ -1,4 +1,13 @@
 GIT
+  remote: git://github.com/Bushido/devise_cas_authenticatable.git
+  revision: 0e5a949fba02629b4ee18a59c0ff410cea523829
+  specs:
+    devise_cas_authenticatable (1.0.0.alpha10)
+      devise
+      devise (>= 1.0.6)
+      rubycas-client (>= 2.2.1)
+
+GIT
   remote: git://github.com/did/bushido_stub.git
   revision: 87f64541b4444dd3ff9fd1c1c44ac20c549ce2c6
   specs:
@@ -72,6 +81,9 @@ GEM
       xpath (~> 0.1.4)
     carrierwave (0.5.5)
       activesupport (~> 3.0)
+    cells (3.6.4)
+      actionpack (~> 3.0)
+      railties (~> 3.0)
     childprocess (0.1.9)
       ffi (~> 1.0.6)
     columnize (0.3.3)
@@ -241,6 +253,8 @@ GEM
     ruby-hmac (0.4.0)
     ruby_core_source (0.1.5)
       archive-tar-minitar (>= 0.5.2)
+    rubycas-client (2.2.1)
+      activesupport
     rubyzip (0.9.4)
     s3 (0.3.8)
       proxies (~> 0.2.0)
@@ -283,12 +297,14 @@ DEPENDENCIES
   cancan
   capybara
   carrierwave (~> 0.5.5)
+  cells
   cucumber-rails (= 1.0.2)
   custom_fields (= 1.0.0.beta.21)
   database_cleaner
   delayed_job (= 2.1.4)
   delayed_job_mongoid (= 1.0.2)
   devise (= 1.3.4)
+  devise_cas_authenticatable!
   dragonfly (~> 0.9.1)
   factory_girl_rails
   fog (= 0.8.2)
