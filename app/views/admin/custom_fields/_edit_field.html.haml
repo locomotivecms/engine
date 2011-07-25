@@ -10,7 +10,7 @@
           = g.input :text_formatting, :as => 'select', :collection => options_for_text_formatting, :include_blank => false, :wrapper_html => { :style => 'display: none' }
           = g.input :target, :as => 'select', :collection => options_for_association_target, :include_blank => false, :wrapper_html => { :style => 'display: none' }
 
-  .popup-actions
+  .popup-actions.bottom
     %p
       %button.button.light{ :type => 'submit' }
         %span= t('admin.shared.form_actions.update')

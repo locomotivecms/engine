@@ -80,8 +80,16 @@ $(document).ready(function() {
           if (domFieldVal(domField, 'kind').toLowerCase() == 'text') domBoxAttr('text_formatting').parents('li').show();
           if (domFieldVal(domField, 'kind').toLowerCase() == 'has_one' ||
               domFieldVal(domField, 'kind').toLowerCase() == 'has_many') domBoxAttr('target').parents('li').show();
+
+          // Push bar down to the bottom of the content if needed
+          var fancybox_height = $('#fancybox-wrap').height();
+          var content_height = $('#fancybox-inner #edit-custom-field').height()
+            + $('#fancybox-inner .popup-actions').height();
+          if (fancybox_height < content_height)
+            $('#fancybox-wrap .popup-actions').removeClass('bottom');
         }
       });
+
       e.preventDefault(); e.stopPropagation();
     });
 
