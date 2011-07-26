@@ -126,10 +126,11 @@ module Locomotive
     end
   end
 
-  def self.logger(message)
-    if self.config.enable_logs == true
-      Rails.logger.info(message)
-    end
+  def self.log(*args)
+    level   = args.size == 1 ? 'info' : args.first
+    message = args.size == 1 ? args.first : args.last
+
+    ::Locomotive::Logger.send(level.to_sym, message)
   end
 
   # rack_cache: needed by default

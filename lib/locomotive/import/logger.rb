@@ -5,7 +5,7 @@ module Locomotive
       def log(message, domain = '')
         head = "[import_template]"
         head += "[#{domain}]" unless domain.blank?
-        ::Locomotive::Logger.info "\t#{head} #{message}"
+        ::Locomotive.log "\t#{head} #{message}"
       end
 
     end

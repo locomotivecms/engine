@@ -56,7 +56,7 @@ group :test, :development do
   gem 'ruby-debug', :platforms => :mri_18
   gem 'ruby-debug19', :platforms => :mri_19
 
-  gem 'bushido_stub', :git => 'git://github.com/did/bushido_stub.git'
+  gem 'bushido_stub', '0.0.3'
 
   gem 'cucumber-rails', '1.0.2'
 end

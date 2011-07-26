@@ -1,4 +1,5 @@
 require 'bushido'
+require 'locomotive/hosting/bushido/hooks'
 require 'locomotive/hosting/bushido/custom_domain'
 require 'locomotive/hosting/bushido/first_installation'
 require 'locomotive/hosting/bushido/account_ext'
@@ -26,8 +27,6 @@ module Locomotive
           end
 
           def enable_bushido!
-            require './lib/locomotive/hosting/bushido/hooks'
-
             self.config.domain = ENV['APP_TLD'] unless self.config.multi_sites?
 
             self.config.devise_modules = [:cas_authenticatable, :rememberable, :trackable]
@@ -37,6 +36,8 @@ module Locomotive
             self.disable_authentication_for_not_claimed_app
 
             self.setup_cas_client
+
+            self.subscribe_to_events
 
             self.setup_smtp_settings
 
@@ -74,9 +75,10 @@ module Locomotive
 
           def setup_cas_client
             ::Devise.setup do |config|
-              config.cas_base_url     = 'https://auth.bushi.do/cas'
-              config.cas_logout_url   = 'https://auth.bushi.do/cas/logout'
-              config.cas_create_user  = false
+              config.cas_base_url         = 'https://auth.bushi.do/cas'
+              config.cas_logout_url       = 'https://auth.bushi.do/cas/logout'
+              config.cas_create_user      = false
+              config.cas_username_column  = :email
             end
 
             Admin::SessionsController.class_eval do
@@ -106,7 +108,7 @@ module Locomotive
           # manage domains
 
           def add_bushido_domain(name)
-            Locomotive.logger "[add bushido domain] #{name}"
+            Locomotive.log "[add bushido domain] #{name}"
             ::Bushido::App.add_domain(name)
 
             if ::Bushido::Command.last_command_successful?
@@ -115,7 +117,7 @@ module Locomotive
           end
 
           def remove_bushido_domain(name)
-            Locomotive.logger "[remove bushido domain] #{name}"
+            Locomotive.log "[remove bushido domain] #{name}"
             ::Bushido::App.remove_domain(name)
 
             if ::Bushido::Command.last_command_successful?
@@ -124,7 +126,7 @@ module Locomotive
           end
 
           def set_bushido_subdomain(name)
-            Locomotive.logger "[set bushido subdomain] #{name}.bushi.do"
+            Locomotive.log "[set bushido subdomain] #{name}.bushi.do"
             ::Bushido::App.set_subdomain(name)
 
             if ::Bushido::Command.last_command_successful?

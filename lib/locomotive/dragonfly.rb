@@ -21,7 +21,7 @@ module Locomotive
         end
 
       else
-        Locomotive.logger.warning "Unable to resize on the fly: #{source.inspect}"
+        Locomotive.log :error, "Unable to resize on the fly: #{source.inspect}"
         return
       end
 

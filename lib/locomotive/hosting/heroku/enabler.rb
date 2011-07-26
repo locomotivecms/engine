@@ -60,13 +60,13 @@ module Locomotive
           # manage domains
 
           def add_heroku_domain(name)
-            Locomotive.logger "[add heroku domain] #{name}"
+            Locomotive.log "[add heroku domain] #{name}"
             self.heroku_connection.add_domain(self.config.heroku[:name], name)
             self.heroku_domains << name
           end
 
           def remove_heroku_domain(name)
-            Locomotive.logger "[remove heroku domain] #{name}"
+            Locomotive.log "[remove heroku domain] #{name}"
             self.heroku_connection.remove_domain(self.config.heroku[:name], name)
             self.heroku_domains.delete(name)
           end
