@@ -75,13 +75,38 @@ module Locomotive
         attributes[:redirect] = true if attributes[:redirect_url].present?
 
         # Don't want the editable elements to be imported: they will be regenerated
-        attributes.delete(:editable_elements)
+        editable_elements_attributes = attributes.delete(:editable_elements)
 
         page = site.pages.where(:fullpath => self.sanitize_fullpath(fullpath)).first || site.pages.build
 
         page.attributes = attributes
 
         page.save!
+        
+        unless editable_elements_attributes.nil?
+          page.editable_elements.each do |editable_element|
+            editable_elements_attributes.each do |attributes|
+              if editable_element.block == attributes['block'] && editable_element.slug == attributes['slug']
+                if editable_element.respond_to?(:source)
+                  # editable_file, update file
+                  unless attributes['content'].blank?
+                    full_path = File.join(File.join(theme_path,'public',attributes['content']))
+                    if File.exists?(full_path)
+                      file = File.open(full_path)
+                      editable_element.source = file
+                      editable_element.save!
+                      file.close
+                    end
+                  end
+                else  
+                  # update content value
+                  editable_element.update_attribute(:content, attributes['content'])
+                end
+                break
+              end
+            end
+          end
+        end
 
         self.log "adding #{page.fullpath} (#{template.blank? ? 'without' : 'with'} template) / #{page.position}"
 
