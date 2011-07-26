@@ -38,8 +38,8 @@ module Locomotive
           end
 
           def open_heroku_connection
-            login = self.config.heroku[:login] || ENV['HEROKU_LOGIN']
-            password = self.config.heroku[:password] || ENV['HEROKU_PASSWORD']
+            login = ENV['HEROKU_LOGIN'] || self.config.heroku[:login]
+            password = ENV['HEROKU_PASSWORD'] || self.config.heroku[:password]
 
             self.heroku_connection = ::Heroku::Client.new(login, password)
           end

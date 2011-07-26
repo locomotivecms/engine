@@ -28,6 +28,6 @@ Scenario: Updating a valid page
   And I follow "Home page"
   And I fill in "page_title" with "Home page !"
   And I fill in "Raw template" with "My new content is here"
-  And I press "Update"
+  And I press "Save"
   Then I should see "Page was successfully updated."
   And I should have "My new content is here" in the index page

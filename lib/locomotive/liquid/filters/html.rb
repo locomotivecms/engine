@@ -3,18 +3,42 @@ module Locomotive
     module Filters
       module Html
 
-        # Write the link to a stylesheet resource
-        # input: url of the css file
-        def stylesheet_tag(input, media = 'screen')
+        # Write the url to a stylesheet resource
+        # input: name of the css file
+        def stylesheet_url(input)
           return '' if input.nil?
 
-          unless input =~ /^(\/|http:)/
+          unless input =~ /^(\/|https?:)/
             input = asset_url("stylesheets/#{input}")
           end
 
           input = "#{input}.css" unless input.ends_with?('.css')
 
+          input
+        end
+
+        # Write the link to a stylesheet resource
+        # input: url of the css file
+        def stylesheet_tag(input, media = 'screen')
+          return '' if input.nil?
+
+          input = stylesheet_url(input)
+
           %{<link href="#{input}" media="#{media}" rel="stylesheet" type="text/css" />}
+        end
+
+        # Write the url to javascript resource
+        # input: name of the javascript file
+        def javascript_url(input)
+          return '' if input.nil?
+
+          unless input =~ /^(\/|https?:)/
+            input = asset_url("javascripts/#{input}")
+          end
+
+          input = "#{input}.js" unless input.ends_with?('.js')
+
+          input
         end
 
         # Write the link to javascript resource
@@ -22,13 +46,9 @@ module Locomotive
         def javascript_tag(input)
           return '' if input.nil?
 
-          unless input =~ /^(\/|http:)/
-            input = asset_url("javascripts/#{input}")
-          end
+          input = javascript_url(input)
 
-          input = "#{input}.js" unless input.ends_with?('.js')
-
-           %{<script src="#{input}" type="text/javascript"></script>}
+          %{<script src="#{input}" type="text/javascript"></script>}
         end
 
         def theme_image_url(input)

@@ -4,18 +4,17 @@ module Admin
     sections 'settings'
 
     def create
-      @membership = current_site.memberships.build(params[:membership])
-      @membership.role = 'author' # force author by default
+      resource.role = 'author' # force author by default
 
-      case @membership.process!
+      case resource.process!
       when :create_account
-        redirect_to new_admin_account_url(:email => @membership.email)
+        redirect_to new_admin_account_url(:email => resource.email)
       when :save_it
-        respond_with @membership, :location => edit_admin_current_site_url
+        respond_with resource, :location => edit_admin_current_site_url
       when :error
-        respond_with @membership, :flash => true
+        respond_with resource, :flash => true
       when :already_created
-        respond_with @membership, :alert => t('flash.admin.memberships.create.already_created'), :location => edit_admin_current_site_url
+        respond_with resource, :alert => t('flash.admin.memberships.create.already_created'), :location => edit_admin_current_site_url
       end
     end
 

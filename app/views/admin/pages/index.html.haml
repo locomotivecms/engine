@@ -11,7 +11,7 @@
 
 - if can? :create, Page
   - content_for :buttons do
-    = admin_button_tag :new, new_admin_page_url, :class => 'new'
+    = admin_button_tag :new, new_admin_page_url, :class => 'new', :id => 'newpage'
 
 %p!= t('.help')
 

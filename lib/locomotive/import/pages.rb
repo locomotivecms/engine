@@ -104,6 +104,9 @@ module Locomotive
         # redirection page ?
         attributes[:redirect] = true if attributes[:redirect_url].present?
 
+        # Don't want the editable elements to be imported: they will be regenerated
+        attributes.delete(:editable_elements)
+
         page = site.pages.where(:fullpath => self.sanitize_fullpath(fullpath)).first || site.pages.build
 
         page.attributes = attributes

@@ -29,8 +29,6 @@ module Locomotive
             rescue Exception => e
               self.log "!ERROR! = #{e.message}, #{asset_path}"
             end
-
-            site.reload
           end
         end
       end
@@ -42,21 +40,20 @@ module Locomotive
 
           self.log "other asset = #{asset_path}"
 
-          name = File.basename(asset_path, File.extname(asset_path)).parameterize('_')
+          asset = site.assets.where(:source_filename => File.basename(asset_path)).first
 
-          self.site.assets.create! :name => name, :source => File.open(asset_path)
-        end
-      end
+          asset ||= self.site.assets.build
 
-      def build_regexps_in_withlist(rules)
-        rules.collect do |rule|
-          if rule.start_with?('^')
-            Regexp.new(rule.gsub('/', '\/'))
-          else
-            rule
+          asset.attributes = { :source => File.open(asset_path) }
+
+          begin
+            asset.save!
+          rescue Exception => e
+            self.log "!ERROR! = #{e.message}, #{asset_path}"
           end
         end
       end
+
     end
   end
 end

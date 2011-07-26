@@ -4,10 +4,12 @@
 #global-actions-bar
   != t('.welcome', :name => link_to(current_admin.name, edit_admin_my_account_url))
   %span= '|'
-  = link_to t('.see'), current_site_url
+  = link_to t('.see'), current_site_url, :id => 'viewsite', :target => '_blank'
   - if multi_sites? && current_admin.sites.size > 1
     %span= '|'
     = link_to t('.switch'), '#', :id => 'sites-picker-link'
+  %span= '|'
+  = link_to 'Help', '#', :class => 'tutorial', :id => 'help'
   %span= '|'
   = link_to t('.logout'), destroy_admin_session_url, :confirm => t('admin.messages.confirm')
 
