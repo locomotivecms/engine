@@ -8,7 +8,7 @@ gem 'rails', '3.0.9'
 
 gem 'warden'
 gem 'devise', '1.3.4'
-gem 'devise_bushido_authenticatable', '1.0.0.alpha10'
+gem 'devise_bushido_authenticatable', '1.0.0.alpha10', :require => 'devise_cas_authenticatable'
 
 gem 'mongoid', '~> 2.0.2'
 gem 'bson_ext', '~> 1.3.0'

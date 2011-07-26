@@ -10,7 +10,6 @@ defaults: &defaults
 development:
   <<: *defaults
   database: locomotive_dev
-  # database: locomotive_cas_dev
 
 test:
   <<: *defaults
