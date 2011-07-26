@@ -99,7 +99,7 @@ var guiders = (function($){
       var attachToHeight = myGuider.attachTo.innerHeight();
       var attachToWidth = myGuider.attachTo.innerWidth();
 
-      console.log(myGuider);
+      // console.log(myGuider);
 
       var top = base.top;
       var left = base.left;
