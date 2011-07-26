@@ -78,6 +78,6 @@ group :test do
 end
 
 group :production do
-  gem 'bushido', :git => 'git://github.com/Bushido/bushidogem.git'
+  gem 'bushido', '0.0.31'
 end
 
