@@ -59,7 +59,7 @@ module Admin::ContentTypesHelper
     if types.size > MAX_DISPLAYED_CONTENTS
       sliced = types[MAX_DISPLAYED_CONTENTS, types.size - MAX_DISPLAYED_CONTENTS]
 
-      html = admin_submenu_item('...', '#', :i18n => false) do
+      html = admin_content_menu_item('...', '#', :i18n => false) do
         yield(sliced)
       end
 
