@@ -1,5 +1,5 @@
 Bushido::Data.listen("app.claimed") do |data|
-  puts "Saving #{account.inspect} with incoming data #{data.inspect}"
+  puts "Saving #{Account.first.inspect} with incoming data #{data.inspect}"
 
   account = Account.first
   account.email = data["email"]
