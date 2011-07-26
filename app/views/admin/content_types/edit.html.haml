@@ -18,4 +18,4 @@
 
   = render 'admin/shared/form_actions', :back_url => admin_contents_url(@content_type.slug_was), :button_label => :update
 
-= render 'admin/custom_fields/edit_field'
+= render 'admin/custom_fields/edit_field', :content_type => @content_type

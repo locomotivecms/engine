@@ -5,6 +5,7 @@ $(document).ready(function() {
   var template = wrapper.find('script[name=template]').html();
   var baseInputName = wrapper.find('script[name=template]').attr('data-base-input-name');
   var data = eval(wrapper.find('script[name=data]').html());
+  var reverse_lookup_data = eval($('script[name=reverse_lookups]').html());
   var index = 0;
 
   var domFieldVal = function(domField, fieldName, val) {
@@ -62,7 +63,6 @@ $(document).ready(function() {
               try {
                 var val = domBoxAttrVal(name).trim();
 
-                // TODO: change this "if" once we have the dropdown working
                 if (val != '' || name == 'reverse_lookup') domFieldVal(domField, name, val);
               } catch(e) {}
             });
@@ -91,6 +91,35 @@ $(document).ready(function() {
             + $('#fancybox-inner .popup-actions').height();
           if (fancybox_height < content_height)
             $('#fancybox-wrap .popup-actions').removeClass('bottom');
+
+          // Set up the reverse_lookup dropdown to be populated
+          function populate_reverse_lookup() {
+            // Get the reverse_lookup dropdown
+            var dropdown = $('#fancybox-inner #edit-custom-field #custom_fields_field_reverse_lookup');
+            dropdown.find('option').remove();
+
+            // Get the target content_type
+            var my_target_dropdown = $('#fancybox-inner #edit-custom-field #custom_fields_field_target')[0];
+            var my_target = my_target_dropdown.options[my_target_dropdown.selectedIndex].value;
+
+            // Add the initial blank entry
+            dropdown.append($('<option>'));
+
+            // Go through the collection and add the appropriate elements
+            collection = reverse_lookup_data['collection'];
+            for (var i = 0; i < collection.length; i++) {
+              element = collection[i];
+              if (element['content_type'] === my_target) {
+                var op = $('<option>', { value: element['field'] });
+                op.text(element['field_name']);
+                dropdown.append(op);
+              }
+            }
+          }
+
+          // Populate...
+          populate_reverse_lookup();
+          $('#fancybox-inner #edit-custom-field #custom_fields_field_target').change(populate_reverse_lookup);
         }
       });
       e.preventDefault(); e.stopPropagation();

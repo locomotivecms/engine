@@ -45,6 +45,23 @@ module Admin::CustomFieldsHelper
     end.compact
   end
 
+  def options_for_reverse_lookups(my_content_type)
+    opts = []
+    ContentType.all.each do |ct|
+      ct.content_custom_fields.each do |cf|
+        if cf.kind == 'has_one' && cf.target == my_content_type.content_klass.to_s
+          opts << {
+            :content_type => ct.content_klass.to_s,
+            :field_name => cf.label,
+            :field => cf._alias,
+          }
+        end
+      end
+    end
+
+    return opts
+  end
+
   def options_for_has_one(field, value)
     self.options_for_has_one_or_has_many(field) do |groups|
       grouped_options_for_select(groups.collect do |g|
