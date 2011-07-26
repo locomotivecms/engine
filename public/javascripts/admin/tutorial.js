@@ -480,25 +480,33 @@ $(document).ready(function(){
       buttons: [{name: "Quit", onclick: guiders.hideAll},
                 {name: "Next"}],
       id: "settingseditwelcome",
-      next: "editsubdomain",
+      next: (function(){
+        if($('#site_subdomain').length > 0){
+          return "editsubdomain";
+        }else{
+          return "settingssave";
+        }
+      }()),
       overlay: true,
       title: "The Settings Page"
     });
 
-    guiders.createGuider({
-      attachTo: "#site_subdomain",
-      description: "Edit this field to change the subdomain of your site",
-      buttons: [],
-      id: "editsubdomain",
-      next: "settingssave",
-      title: '',
-      position: 12,
-      onShow: function(){
-        $('#site_subdomain').bind('change', function(){
-          guiders.next();
-        });
-      }
-    });
+    if($('#site_subdomain').length > 0){
+      guiders.createGuider({
+        attachTo: "#site_subdomain",
+        description: "Edit this field to change the subdomain of your site",
+        buttons: [],
+        id: "editsubdomain",
+        next: "settingssave",
+        title: '',
+        position: 12,
+        onShow: function(){
+          $('#site_subdomain').bind('change', function(){
+            guiders.next();
+          });
+        }
+      });
+    }
 
     guiders.createGuider({
       buttons: [],
