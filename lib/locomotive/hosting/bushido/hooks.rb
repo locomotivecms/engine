@@ -1,7 +1,7 @@
-Bushido::Data.listen("app.claimed") do |data|
-  puts "Saving #{Account.first.inspect} with incoming data #{data.inspect}"
+Bushido::Data.listen("app.claimed") do |event|
+  puts "Saving #{Account.first.inspect} with incoming data #{event.inspect}"
 
   account = Account.first
-  account.email = data["email"]
+  account.email = event["data"].try(:[], "email")
   account.save
 end
