@@ -26,6 +26,8 @@ module Locomotive
           end
 
           def enable_bushido!
+            require './lib/locomotive/hosting/bushido/hooks'
+
             self.config.domain = ENV['APP_TLD'] unless self.config.multi_sites?
 
             self.config.devise_modules = [:cas_authenticatable, :rememberable, :trackable]

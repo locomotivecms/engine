@@ -1,4 +1,14 @@
 GIT
+  remote: git://github.com/Bushido/bushidogem.git
+  revision: 42dee66bb6a89d6e65e2b474289d37b0790a9913
+  specs:
+    bushido (0.0.30)
+      highline (>= 1.6.1)
+      json (>= 1.4.6)
+      orm_adapter (~> 0.0.3)
+      rest-client (>= 1.6.1)
+
+GIT
   remote: git://github.com/Bushido/devise_cas_authenticatable.git
   revision: 0e5a949fba02629b4ee18a59c0ff410cea523829
   specs:
@@ -67,10 +77,6 @@ GEM
     bson (1.3.1)
     bson_ext (1.3.1)
     builder (2.1.2)
-    bushido (0.0.30)
-      highline (>= 1.6.1)
-      json (>= 1.4.6)
-      rest-client (>= 1.6.1)
     cancan (1.6.5)
     capybara (1.0.0)
       mime-types (>= 1.16)
@@ -296,7 +302,7 @@ DEPENDENCIES
   actionmailer-with-request
   autotest
   bson_ext (~> 1.3.0)
-  bushido
+  bushido!
   bushido_stub!
   cancan
   capybara
