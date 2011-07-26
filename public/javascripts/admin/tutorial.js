@@ -26,7 +26,7 @@ $(document).ready(function(){
         width: 200,
         title: "Make a new page",
       });
-      
+
       guiders.createGuider({
         attachTo: "undefined",
         description: "Thank you for choosing LocomotiveCMS!, <br /><br />\
@@ -41,7 +41,7 @@ $(document).ready(function(){
         overlay: true,
         title: "Welcome to Locomotive CMS"
       });
-    
+
     guiders.createGuider({
       attachTo: "#help",
       buttons: [],
@@ -53,7 +53,7 @@ $(document).ready(function(){
       height: 100,
       title: ""
     });
-    
+
     var pagehook = (function(){
       var possibles = ['ul.folder:first li',
                        'ul#pages-list li'];
@@ -63,7 +63,7 @@ $(document).ready(function(){
         }
       }
     }());
-    
+
     guiders.createGuider({
       attachTo: pagehook,
       buttons: [{name: "Quit", onclick: guiders.hideAll},
@@ -79,7 +79,7 @@ $(document).ready(function(){
       overlay: true,
       title: ""
     });
-    
+
      guiders.createGuider({
        attachTo: "undefined",
        description: "A page is a collection of content on your site that can be reached at a web address <br /></br>\
@@ -94,7 +94,7 @@ $(document).ready(function(){
        //         guiders.show('pagepointer')
        //       }
      });
-     
+
      guiders.createGuider({
          attachTo: (function(){
            if($('li.hoverable:eq(2)').length > 0){
@@ -115,7 +115,7 @@ $(document).ready(function(){
          position: 4,
          title: ""
        });
-     
+
      guiders.createGuider({
        attachTo: 'div.action span',
        buttons: [],
@@ -127,7 +127,7 @@ $(document).ready(function(){
        width: 200,
        title: ""
      });
-     
+
      guiders.createGuider({
        attachTo: 'div.action span',
        buttons: [],
@@ -138,26 +138,26 @@ $(document).ready(function(){
        width: 200,
        title: "",
        onShow: function(){
-         console.log("updating new model url");
+         // console.log("updating new model url");
          $('div.action a').attr('href',
          $('div.action a').attr('href') + "#guider=newmodelwelcome");
        }
      });
-    
-     
+
+
      guiders.createGuider({
        attachTo: "undefined",
        description: (function(){
          var ret = "What is a model?<br />\
          The concept of a model within locomotiveCMS is a peice of content that you might reuse through out your site.\
          Some example models could be: Blog posts, Products, Events, Locations, Photos<br /></br />"
-     
+
          if($('li.hoverable').length > 1){
            ret += "For this next section of the guide. We will edit our Event model. '"+$('.inner:eq(3) li:first a').text()+"' ";
          }else{
            ret += "For this next section of the guide, lets make a new model";
          }
-     
+
          return ret;
        }()),
        buttons: [{name: "Quit", onclick: guiders.hideAll},
@@ -196,7 +196,7 @@ $(document).ready(function(){
        //   //guiders.show('newmodelpointer');
        // }
      });
-     
+
      guiders.createGuider({
        attachTo: 'li.settings a',
        buttons: [],
@@ -206,7 +206,7 @@ $(document).ready(function(){
        width: 200,
        title: ""
      });
-     
+
      guiders.createGuider({
        attachTo: "undefined",
        description: "LocomotiveCMS has several features that you can adjust in the settings panel. Lets head there now!",
@@ -312,7 +312,7 @@ $(document).ready(function(){
     });
 
     function viewSiteClick(e){
-      console.log("viewsite click!");
+      // console.log("viewsite click!");
       var $this = $(e.target);
       e.preventDefault();
       window.open($this.attr('href'),"_blank");
@@ -333,7 +333,7 @@ $(document).ready(function(){
       width: 280,
       title: "Click Here To View Your Site",
       onShow: function(){
-        console.log("binding click for view site", $('#viewsite'));
+        // console.log("binding click for view site", $('#viewsite'));
         $('#viewsite').bind('click', viewSiteClick);
       }
     });
