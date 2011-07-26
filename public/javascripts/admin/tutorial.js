@@ -18,30 +18,30 @@ $(document).ready(function(){
     });
 
     guiders.createGuider({
-      attachTo: "#newpage",
-      buttons: [{name: "Close", onclick: guiders.hideAll}],
-      description: "Click above to make a new page",
-      id: "newpage",
-      position: 6,
-      width: 200,
-      title: "Make a new page",
-    });
-
-    guiders.createGuider({
-      attachTo: "undefined",
-      description: "Thank you for choosing LocomotiveCMS!, <br /><br />\
-      This guide will help you get up and running.\
-      We will walk you through some common tasks of LocomotiveCMS.\
-      This guide can be reached at any time by clicking the \"Help\" link<br /><br />\
-      Lets start by editing a page.",
-      buttons: [{name: "Quit", onclick: guiders.hideAll},
-                {name: "Next"}],
-      id: "welcome",
-      next: "pagewelcome",
-      overlay: true,
-      title: "Welcome to Locomotive CMS"
-    });
-
+        attachTo: "#newpage",
+        buttons: [{name: "Close", onclick: guiders.hideAll}],
+        description: "Click above to make a new page",
+        id: "newpage",
+        position: 6,
+        width: 200,
+        title: "Make a new page",
+      });
+      
+      guiders.createGuider({
+        attachTo: "undefined",
+        description: "Thank you for choosing LocomotiveCMS!, <br /><br />\
+        This guide will help you get up and running.\
+        We will walk you through some common tasks of LocomotiveCMS.\
+        This guide can be reached at any time by clicking the \"Help\" link<br /><br />\
+        Lets start by editing a page.",
+        buttons: [{name: "Quit", onclick: guiders.hideAll},
+                  {name: "Next"}],
+        id: "welcome",
+        next: "pagewelcome",
+        overlay: true,
+        title: "Welcome to Locomotive CMS"
+      });
+    
     guiders.createGuider({
       attachTo: "#help",
       buttons: [],
@@ -53,7 +53,7 @@ $(document).ready(function(){
       height: 100,
       title: ""
     });
-
+    
     var pagehook = (function(){
       var possibles = ['ul.folder:first li',
                        'ul#pages-list li'];
@@ -63,7 +63,7 @@ $(document).ready(function(){
         }
       }
     }());
-
+    
     guiders.createGuider({
       attachTo: pagehook,
       buttons: [{name: "Quit", onclick: guiders.hideAll},
@@ -79,142 +79,148 @@ $(document).ready(function(){
       overlay: true,
       title: ""
     });
-
-    guiders.createGuider({
-      attachTo: "undefined",
-      description: "A page is a collection of content on your site that can be reached at a web address <br /></br>\
-      For this example we will edit the '"+$(pagehook+' a:first').text()+"' page. To do that you would click on the page name.",
-      buttons: [{name: "Quit", onclick: guiders.hideAll},
-                {name: "Next"}],
-      id: "pagewelcome",
-      next: "pagepointer",
-      overlay: true,
-      title: "What is a page?"// ,
-      //       onShow: function(){
-      //         guiders.show('pagepointer')
-      //       }
-    });
-
-    guiders.createGuider({
-      attachTo: 'li.hoverable:eq(2)',
-      buttons: [{name: "Quit", onclick: guiders.hideAll},
-                {name: "Next - Edit an Event",
-                            onclick: function(){
-                             window.location = $('li.hoverable:eq(2) li:first a').attr('href') + "#guider=editmodelwelcome";
-                            }}],
-      description: "These are models.<br /> You can hover over to edit them. For this next section of the guide. We will edit an Event model. '"+$('.inner:eq(3) li:first a').text()+"' ",
-      id: "modelpointer",
-      next: "editpagewelcome",
-      width: 240,
-      position: 4,
-      title: ""
-    });
-
-    guiders.createGuider({
-      attachTo: 'div.action span',
-      buttons: [],
-      description: "Click here to make a new model",
-      id: "newmodelpointer",
-      next: "editpagewelcome",
-      position: 6,
-      overlay: true,
-      width: 200,
-      title: ""
-    });
-
-    guiders.createGuider({
-      attachTo: 'div.action span',
-      buttons: [],
-      description: "Click here to make a new model",
-      id: "newmodelpointer-next",
-      next: "editpagewelcome",
-      position: 6,
-      width: 200,
-      title: "",
-      onShow: function(){
-        console.log("updating new model url");
-        $('div.action a').attr('href',
-        $('div.action a').attr('href') + "#guider=newmodelwelcome");
-      }
-    });
-
-
-    guiders.createGuider({
-      attachTo: "undefined",
-      description: (function(){
-        var ret = "What is a model?<br />\
-        The concept of a model within locomotiveCMS is a peice of content that you might reuse through out your site.\
-        Some example models could be: Blog posts, Products, Events, Locations, Photos<br /></br />"
-
-        if($('li.hoverable').length > 1){
-          ret += "For this next section of the guide. We will edit our Event model. '"+$('.inner:eq(3) li:first a').text()+"' ";
-        }else{
-          ret += "For this next section of the guide, lets make a new model";
-        }
-
-        return ret;
-      }()),
-      buttons: [{name: "Quit", onclick: guiders.hideAll},
-                {name: "Next"}],
-                // (function(){
-                //                   if($('li.hoverable').length < 1){
-                //                     return {
-                //                       name: "Next - Create a Model",
-                //                       onclick: function(){
-                //                         guiders.hideAll();
-                //                         guiders.show('newmodelpointer-next');
-                //                       }
-                //                     };
-                //                   }else{
-                //                     return  {
-                //                       name: "Next - Edit an Event",
-                //                       onclick: function(){
-                //                        window.location = $('li.hoverable:eq(2) li:first a').attr('href') + "#guider=editmodelwelcome";
-                //                       }
-                //                     };
-                //                   }
-                //                 }())],
-      id: "modelwelcome",
-      next: (function(){
-        if($('li.hoverable').length > 1){
-          return "modelpointer";
-        }
-          return 'newmodelpointer';
-      }()),
-      overlay: true,
-      title: "Lets talk about Models...",
-      // onShow: function(){
-      //   if($('li.hoverable').length > 1){
-      //     guiders.show("modelpointer");
-      //   }
-      //   //guiders.show('newmodelpointer');
-      // }
-    });
-
-    guiders.createGuider({
-      attachTo: 'li.settings a',
-      buttons: [],
-      description: "Click this tab to edit your settings.",
-      id: "settingspointer",
-      position: 3,
-      width: 200,
-      title: ""
-    });
-
-    guiders.createGuider({
-      attachTo: "undefined",
-      description: "LocomotiveCMS has several features that you can adjust in the settings panel. Lets head there now!",
-      buttons: [{name: "Quit", onclick: guiders.hideAll},
-                {name: "Next - Goto Settings", onclick: function(){
-                  window.location = $('li.settings a').attr('href') + "#guider=settingseditwelcome";
-                }}],
-      id: "settingswelcome",
-      overlay: true,
-      title: "How To Change Your Settings",
-      onShow: function(){
-        guiders.show("settingspointer");
-      }
-    });
+    
+     guiders.createGuider({
+       attachTo: "undefined",
+       description: "A page is a collection of content on your site that can be reached at a web address <br /></br>\
+       For this example we will edit the '"+$(pagehook+' a:first').text()+"' page. To do that you would click on the page name.",
+       buttons: [{name: "Quit", onclick: guiders.hideAll},
+                 {name: "Next"}],
+       id: "pagewelcome",
+       next: "pagepointer",
+       overlay: true,
+       title: "What is a page?"// ,
+       //       onShow: function(){
+       //         guiders.show('pagepointer')
+       //       }
+     });
+     
+     guiders.createGuider({
+         attachTo: (function(){
+           if($('li.hoverable:eq(2)').length > 0){
+             return 'li.hoverable:eq(2)';
+           }else{
+             return 'li.hoverable:first';
+           }
+         }()),
+         buttons: [{name: "Quit", onclick: guiders.hideAll},
+                   {name: "Next - Edit an Event",
+                               onclick: function(){
+                                window.location = $('li.hoverable:eq(2) li:first a').attr('href') + "#guider=editmodelwelcome";
+                               }}],
+         description: "These are models.<br /> You can hover over to edit them. For this next section of the guide. We will edit an Event model. '"+$('.inner:eq(3) li:first a').text()+"' ",
+         id: "modelpointer",
+         next: "editpagewelcome",
+         width: 240,
+         position: 4,
+         title: ""
+       });
+     
+     guiders.createGuider({
+       attachTo: 'div.action span',
+       buttons: [],
+       description: "Click here to make a new model",
+       id: "newmodelpointer",
+       next: "editpagewelcome",
+       position: 6,
+       overlay: true,
+       width: 200,
+       title: ""
+     });
+     
+     guiders.createGuider({
+       attachTo: 'div.action span',
+       buttons: [],
+       description: "Click here to make a new model",
+       id: "newmodelpointer-next",
+       next: "editpagewelcome",
+       position: 6,
+       width: 200,
+       title: "",
+       onShow: function(){
+         console.log("updating new model url");
+         $('div.action a').attr('href',
+         $('div.action a').attr('href') + "#guider=newmodelwelcome");
+       }
+     });
+    
+     
+     guiders.createGuider({
+       attachTo: "undefined",
+       description: (function(){
+         var ret = "What is a model?<br />\
+         The concept of a model within locomotiveCMS is a peice of content that you might reuse through out your site.\
+         Some example models could be: Blog posts, Products, Events, Locations, Photos<br /></br />"
+     
+         if($('li.hoverable').length > 1){
+           ret += "For this next section of the guide. We will edit our Event model. '"+$('.inner:eq(3) li:first a').text()+"' ";
+         }else{
+           ret += "For this next section of the guide, lets make a new model";
+         }
+     
+         return ret;
+       }()),
+       buttons: [{name: "Quit", onclick: guiders.hideAll},
+                 {name: "Next"}],
+                 // (function(){
+                 //                   if($('li.hoverable').length < 1){
+                 //                     return {
+                 //                       name: "Next - Create a Model",
+                 //                       onclick: function(){
+                 //                         guiders.hideAll();
+                 //                         guiders.show('newmodelpointer-next');
+                 //                       }
+                 //                     };
+                 //                   }else{
+                 //                     return  {
+                 //                       name: "Next - Edit an Event",
+                 //                       onclick: function(){
+                 //                        window.location = $('li.hoverable:eq(2) li:first a').attr('href') + "#guider=editmodelwelcome";
+                 //                       }
+                 //                     };
+                 //                   }
+                 //                 }())],
+       id: "modelwelcome",
+       next: (function(){
+         if($('li.hoverable').length > 1){
+           return "modelpointer";
+         }
+           return 'newmodelpointer';
+       }()),
+       overlay: true,
+       title: "Lets talk about Models...",
+       // onShow: function(){
+       //   if($('li.hoverable').length > 1){
+       //     guiders.show("modelpointer");
+       //   }
+       //   //guiders.show('newmodelpointer');
+       // }
+     });
+     
+     guiders.createGuider({
+       attachTo: 'li.settings a',
+       buttons: [],
+       description: "Click this tab to edit your settings.",
+       id: "settingspointer",
+       position: 3,
+       width: 200,
+       title: ""
+     });
+     
+     guiders.createGuider({
+       attachTo: "undefined",
+       description: "LocomotiveCMS has several features that you can adjust in the settings panel. Lets head there now!",
+       buttons: [{name: "Quit", onclick: guiders.hideAll},
+                 {name: "Next - Goto Settings", onclick: function(){
+                   window.location = $('li.settings a').attr('href') + "#guider=settingseditwelcome";
+                 }}],
+       id: "settingswelcome",
+       overlay: true,
+       title: "How To Change Your Settings",
+       onShow: function(){
+         guiders.show("settingspointer");
+       }
+     });
 
   }
 
