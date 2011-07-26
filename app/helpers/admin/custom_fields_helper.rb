@@ -57,15 +57,29 @@ module Admin::CustomFieldsHelper
     end
   end
 
-  def options_for_has_many(field)
-    self.options_for_has_one_or_has_many(field)
+  def options_for_has_many(field, object=nil)
+    self.options_for_has_one_or_has_many(field, object)
   end
 
-  def options_for_has_one_or_has_many(field, &block)
+  def filter_options_for_reverse_has_many(contents, reverse_lookup, object)
+    # Only display items which don't belong to a different object
+    contents.reject do |c|
+      owner = c.send(reverse_lookup.to_sym)
+      owner && owner != object
+    end
+  end
+
+  def options_for_has_one_or_has_many(field, object=nil, &block)
     content_type = field.target.constantize._parent
 
     if content_type.groupable?
       grouped_contents = content_type.list_or_group_contents
+
+      if field.reverse_has_many?
+        grouped_contents.each do |g|
+          g[:items] = filter_options_for_reverse_has_many(g[:items], field.reverse_lookup, object)
+        end
+      end
 
       if block_given?
         block.call(grouped_contents)
@@ -80,6 +94,11 @@ module Admin::CustomFieldsHelper
       end
     else
       contents = content_type.ordered_contents
+
+      if field.reverse_has_many?
+        contents = filter_options_for_reverse_has_many(contents, field.reverse_lookup, object)
+      end
+
       contents.collect { |c| [c._label, c._id] }
     end
   end

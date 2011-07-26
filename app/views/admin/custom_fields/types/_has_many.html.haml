@@ -30,4 +30,4 @@
             %span!= t('admin.buttons.new_item')
 
     %script{ :type => 'text/javascript', :name => 'data' }
-      != collection_to_js(options_for_has_many(field), :taken_ids => form.object.send(field._alias.to_sym).ids)
+      != collection_to_js(options_for_has_many(field, form.object), :taken_ids => form.object.send(field._alias.to_sym).ids)
