@@ -1,4 +1,4 @@
-Bushido::Hooks.listen("app.claimed") do |data|
+Bushido::Data.listen("app.claimed") do |data|
   puts "Saving #{account.inspect} with incoming data #{data.inspect}"
 
   account = Account.first
