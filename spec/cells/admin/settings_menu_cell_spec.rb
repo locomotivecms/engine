@@ -8,10 +8,13 @@ module Resetter
     @@original_settings_menu_cell_klass
   end
 
-  def self.reset_settings_menu_cell_klass
+  def self.reset_settings_menu_cell_klass(stubs = false)
     ::Admin.send(:remove_const, 'SettingsMenuCell')
     ::Admin.const_set('SettingsMenuCell', self.original_settings_menu_cell_klass.clone)
-    ::Admin::SettingsMenuCell.any_instance.stubs(:sections).returns({ :main => 'settings', :sub => 'site' })
+
+    if stubs
+      ::Admin::SettingsMenuCell.any_instance.stubs(:sections).returns({ :main => 'settings', :sub => 'site' })
+    end
   end
 
 end
@@ -53,6 +56,7 @@ describe Admin::SettingsMenuCell, :type => :cells do
 
     before(:all) do
       Resetter.reset_settings_menu_cell_klass
+      ::Admin::SettingsMenuCell.any_instance.stubs(:sections).returns({ :main => 'settings', :sub => 'site' })
     end
 
     it 'has 3 items' do
@@ -80,7 +84,7 @@ describe Admin::SettingsMenuCell, :type => :cells do
   describe 'add a new menu item' do
 
     before(:each) do
-      Resetter.reset_settings_menu_cell_klass
+      Resetter.reset_settings_menu_cell_klass(true)
       Admin::SettingsMenuCell.update_for(:add) { |m| m.add(:my_link, :label => 'My link', :url => 'http://www.locomotivecms.com') }
     end
 
@@ -97,7 +101,7 @@ describe Admin::SettingsMenuCell, :type => :cells do
   describe 'remove a new menu item' do
 
     before(:each) do
-      Resetter.reset_settings_menu_cell_klass
+      Resetter.reset_settings_menu_cell_klass(true)
       Admin::SettingsMenuCell.update_for(:remove) { |m| m.remove(:theme_assets) }
     end
 
