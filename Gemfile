@@ -47,6 +47,8 @@ group :development do
   gem 'unicorn' # Using unicorn_rails instead of webrick (default server)
 
   gem 'rspec-rails', '2.6.1' # in order to have rspec tasks and generators
+
+  gem 'rspec-cells'
 end
 
 group :test, :development do
