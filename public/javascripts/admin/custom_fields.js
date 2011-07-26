@@ -73,9 +73,12 @@ $(document).ready(function() {
           });
 
           // copy current val to the form in the box
+          var reverse_lookup_initial_val;
           $.each(attributes, function(index, name) {
             var val = domFieldVal(domField, name).trim();
             if (val == '' && name == '_alias') val = makeSlug(domFieldVal(domField, 'label'));
+
+            if (name == 'reverse_lookup') reverse_lookup_initial_val = val;
 
             domBoxAttrVal(name, val);
           });
@@ -92,10 +95,12 @@ $(document).ready(function() {
           if (fancybox_height < content_height)
             $('#fancybox-wrap .popup-actions').removeClass('bottom');
 
+          // Get the reverse_lookup dropdown
+          var dropdown = $('#fancybox-inner #edit-custom-field #custom_fields_field_reverse_lookup');
+
           // Set up the reverse_lookup dropdown to be populated
           function populate_reverse_lookup() {
-            // Get the reverse_lookup dropdown
-            var dropdown = $('#fancybox-inner #edit-custom-field #custom_fields_field_reverse_lookup');
+            // Clear the reverse_lookup dropdown
             dropdown.find('option').remove();
 
             // Get the target content_type
@@ -120,6 +125,9 @@ $(document).ready(function() {
           // Populate...
           populate_reverse_lookup();
           $('#fancybox-inner #edit-custom-field #custom_fields_field_target').change(populate_reverse_lookup);
+
+          // Set initial value
+          dropdown.val(reverse_lookup_initial_val);
         }
       });
       e.preventDefault(); e.stopPropagation();
