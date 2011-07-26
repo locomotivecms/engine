@@ -3,5 +3,6 @@ Bushido::Data.listen("app.claimed") do |event|
 
   account = Account.first
   account.email = event["data"].try(:[], "email")
+  account.username = account.email
   account.save
 end
