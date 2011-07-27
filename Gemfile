@@ -78,6 +78,6 @@ group :test do
 end
 
 group :production do
-  gem 'bushido', '0.0.31'
+  gem 'bushido', '0.0.34'
 end
 
