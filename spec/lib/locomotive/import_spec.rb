@@ -55,18 +55,28 @@ describe Locomotive::Import::Job do
       @site.pages.not_found.first.should_not be_nil
     end
 
+    it 'sets the editable text for a page from the site config file' do
+      page = @site.pages.where(:title => 'Contact').first
+      page.find_editable_element('content', 'address').content.should == '<p>Our office address: 215 Vine Street, Scranton, PA 18503</p>'
+    end
+
+    it 'sets the editable file for a page from the site config file' do
+      page = @site.pages.where(:title => 'Contact').first
+      page.find_editable_element('content', 'office').source_filename.should == 'office.jpg'
+    end
+    
     it 'inserts templatized page' do
       page = @site.pages.where(:templatized => true).first
       page.should_not be_nil
       page.fullpath.should == 'portfolio/content_type_template'
     end
-
+    
     it 'inserts redirection page' do
       page = @site.pages.where(:redirect => true).first
       page.should_not be_nil
       page.redirect_url.should == 'http://blog.locomotivecms.com'
     end
-
+    
     it 'inserts snippets' do
       @site.snippets.count.should == 1
     end

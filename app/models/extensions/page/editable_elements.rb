@@ -67,10 +67,13 @@ module Extensions
 
             if existing_el.nil? # new one from parents
               new_attributes = el.attributes.merge(:from_parent => true)
+
               if new_attributes['default_attribute'].present?
                 new_attributes['default_content'] = self.send(new_attributes['default_attribute']) || el.content
               else
-                new_attributes['default_content'] = el.content
+                if el.respond_to?(:content) # only for text
+                  new_attributes['default_content'] = el.content
+                end
               end
 
               self.editable_elements.build(new_attributes, el.class)

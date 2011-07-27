@@ -82,30 +82,9 @@ module Locomotive
         page.attributes = attributes
 
         page.save!
-        
+
         unless editable_elements_attributes.nil?
-          page.editable_elements.each do |editable_element|
-            editable_elements_attributes.each do |attributes|
-              if editable_element.block == attributes['block'] && editable_element.slug == attributes['slug']
-                if editable_element.respond_to?(:source)
-                  # editable_file, update file
-                  unless attributes['content'].blank?
-                    full_path = File.join(File.join(theme_path,'public',attributes['content']))
-                    if File.exists?(full_path)
-                      file = File.open(full_path)
-                      editable_element.source = file
-                      editable_element.save!
-                      file.close
-                    end
-                  end
-                else  
-                  # update content value
-                  editable_element.update_attribute(:content, attributes['content'])
-                end
-                break
-              end
-            end
-          end
+          self.assign_editable_elements(page, editable_elements_attributes)
         end
 
         self.log "adding #{page.fullpath} (#{template.blank? ? 'without' : 'with'} template) / #{page.position}"
@@ -115,6 +94,28 @@ module Locomotive
         context[:done][fullpath] = page
 
         page
+      end
+
+      def assign_editable_elements(page, elements)
+        page.reload # editable elements are not synchronized otherwise
+
+        elements.each do |attributes|
+          element = page.find_editable_element(attributes['block'], attributes['slug'])
+
+          next if element.nil?
+
+          if element.respond_to?(:source)
+            asset_path = File.join(theme_path, 'public', attributes['content'])
+
+            if File.exists?(asset_path)
+              element.source = File.open(asset_path)
+            end
+          else
+            element.content = attributes['content']
+          end
+        end
+
+        page.save!
       end
 
       def build_parent_template(template)
@@ -148,7 +149,7 @@ module Locomotive
         return if template.blank?
 
         template.gsub!(/\/samples\/(.*\.[a-zA-Z0-9]{3})/) do |match|
-          name = $1
+          name = File.basename($1)
 
           if asset = site.assets.where(:source_filename => name).first
             asset.source.url
