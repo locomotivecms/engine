@@ -14,4 +14,8 @@
     %li
       %strong= field.label
       &nbsp;-&nbsp;
-      %i= @content.send(field._name)
+      %i
+        - if field.file?
+          = link_to File.basename(@content.send(field._name).url), @content.send(field._name).url
+        - else
+          = @content.send(field._alias)

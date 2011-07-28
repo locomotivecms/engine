@@ -28,15 +28,15 @@ module Locomotive
         def each(&block)
           self.collection.each(&block)
         end
-        
+
         def size
           self.collection.size
         end
-       
+
         def empty?
           self.collection.empty?
         end
-       
+
         def any?
           self.collection.any?
         end
@@ -47,6 +47,7 @@ module Locomotive
 
         def before_method(meth)
           klass = @content_type.contents.klass # delegate to the proxy class
+
           if (meth.to_s =~ /^group_by_.+$/) == 0
             klass.send(meth, :ordered_contents)
           else
@@ -73,6 +74,7 @@ module Locomotive
           @collection ||= @content_type.ordered_contents(@context['with_scope'])
         end
       end
+
     end
   end
 end
