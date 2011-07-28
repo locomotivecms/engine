@@ -76,7 +76,6 @@ Locomotive.configure do |config|
 
 
   config.context_assign_extensions = {
-      'hello_world' => 'Hello World!'
   }
 
 end unless Locomotive.engine? || Rails.env.test?
