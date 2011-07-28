@@ -14,7 +14,13 @@ module Locomotive
 
           content_type = site.content_types.where(:slug => attributes['slug']).first
 
-          content_type ||= self.build_content_type(attributes.merge(:name => name))
+          content_type_name = attributes['name'] || name
+
+          if content_type.nil?
+            content_type = self.build_content_type(attributes.merge(:name => content_type_name))
+          else
+            self.update_attributes(content_type, attributes.merge(:name => content_type_name))
+          end
 
           self.add_or_update_fields(content_type, attributes['fields'])
 
@@ -50,13 +56,22 @@ module Locomotive
       def content_types
         database['site']['content_types']
       end
-
-      def build_content_type(data)
+      
+      def cleanse_attributes(data)
         attributes = { :group_by_field_name => data.delete('group_by') }.merge(data)
 
         attributes.delete_if { |name, value| %w{fields contents}.include?(name) }
+        attributes
+      end
 
+      def build_content_type(data)
+        attributes = cleanse_attributes(data)
         site.content_types.build(attributes)
+      end
+      
+      def update_attributes(content_type, data)
+        attributes = cleanse_attributes(data)
+        content_type.update(attributes)
       end
 
       def add_or_update_fields(content_type, fields)
