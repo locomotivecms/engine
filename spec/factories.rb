@@ -18,6 +18,18 @@ Factory.define "another site", :parent => "test site" do |s|
   s.subdomain "test2"
 end
 
+Factory.define "existing site", :parent => "site" do |s|
+  s.name "Locomotive site with existing models"
+  s.subdomain "models"
+  s.after_build do |site_with_models|
+    site_with_models.content_types.build(
+      :slug => 'projects', 
+      :name => 'Existing name', 
+      :description => 'Existing description',
+      :order_by => 'created_at')
+  end
+end
+
 
 # Accounts ##
 Factory.define :account do |a|
