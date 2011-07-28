@@ -5,6 +5,7 @@ $(document).ready(function() {
   var template = wrapper.find('script[name=template]').html();
   var baseInputName = wrapper.find('script[name=template]').attr('data-base-input-name');
   var data = eval(wrapper.find('script[name=data]').html());
+  var reverse_lookup_data = eval($('script[name=reverse_lookups]').html());
   var index = 0;
 
   var domFieldVal = function(domField, fieldName, val) {
@@ -50,7 +51,7 @@ $(document).ready(function() {
     // edit
     domField.find('a.edit').click(function(e) {
       var link = $(this);
-      var attributes = ['_alias', 'hint', 'text_formatting', 'target'];
+      var attributes = ['_alias', 'hint', 'text_formatting', 'target', 'reverse_lookup'];
 
       $.fancybox({
         titleShow: false,
@@ -61,7 +62,8 @@ $(document).ready(function() {
             $.each(attributes, function(index, name) {
               try {
                 var val = domBoxAttrVal(name).trim();
-                if (val != '') domFieldVal(domField, name, val);
+
+                if (val != '' || name == 'reverse_lookup') domFieldVal(domField, name, val);
               } catch(e) {}
             });
             domBoxAttr('text_formatting').parent().hide();
@@ -71,15 +73,61 @@ $(document).ready(function() {
           });
 
           // copy current val to the form in the box
+          var reverse_lookup_initial_val;
           $.each(attributes, function(index, name) {
             var val = domFieldVal(domField, name).trim();
             if (val == '' && name == '_alias') val = makeSlug(domFieldVal(domField, 'label'));
+
+            if (name == 'reverse_lookup') reverse_lookup_initial_val = val;
 
             domBoxAttrVal(name, val);
           });
           if (domFieldVal(domField, 'kind').toLowerCase() == 'text') domBoxAttr('text_formatting').parents('li').show();
           if (domFieldVal(domField, 'kind').toLowerCase() == 'has_one' ||
               domFieldVal(domField, 'kind').toLowerCase() == 'has_many') domBoxAttr('target').parents('li').show();
+          if (domFieldVal(domField, 'kind').toLowerCase() == 'has_many')
+            domBoxAttr('reverse_lookup').parents('li').show();
+
+          // Push bar down to the bottom of the content if needed
+          var fancybox_height = $('#fancybox-wrap').height();
+          var content_height = $('#fancybox-inner #edit-custom-field').height()
+            + $('#fancybox-inner .popup-actions').height();
+          if (fancybox_height < content_height)
+            $('#fancybox-wrap .popup-actions').removeClass('bottom');
+
+          // Get the reverse_lookup dropdown
+          var dropdown = $('#fancybox-inner #edit-custom-field #custom_fields_field_reverse_lookup');
+
+          // Set up the reverse_lookup dropdown to be populated
+          function populate_reverse_lookup() {
+            // Clear the reverse_lookup dropdown
+            dropdown.find('option').remove();
+
+            // Get the target content_type
+            var my_target_dropdown = $('#fancybox-inner #edit-custom-field #custom_fields_field_target')[0];
+            var my_target = my_target_dropdown.options[my_target_dropdown.selectedIndex].value;
+
+            // Add the initial blank entry
+            dropdown.append($('<option>'));
+
+            // Go through the collection and add the appropriate elements
+            collection = reverse_lookup_data['collection'];
+            for (var i = 0; i < collection.length; i++) {
+              element = collection[i];
+              if (element['content_type'] === my_target) {
+                var op = $('<option>', { value: element['field'] });
+                op.text(element['field_name']);
+                dropdown.append(op);
+              }
+            }
+          }
+
+          // Populate...
+          populate_reverse_lookup();
+          $('#fancybox-inner #edit-custom-field #custom_fields_field_target').change(populate_reverse_lookup);
+
+          // Set initial value
+          dropdown.val(reverse_lookup_initial_val);
         }
       });
       e.preventDefault(); e.stopPropagation();
