@@ -62,7 +62,7 @@ $(document).ready(function() {
 
     if (!slug.hasClass('filled')) {
       setTimeout(function() {
-        slug.val(makeSlug(input.val())).addClass('touched');
+        slug.val(makeSlug(input.val(), '-')).addClass('touched');
       }, 50);
     }
   });
