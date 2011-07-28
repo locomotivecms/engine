@@ -29,6 +29,7 @@ module Locomotive
 
       def locomotive_page
         path = (params[:path] || request.fullpath).clone # TODO: params[:path] is more consistent
+        path = path.split('?').first # take everything before the query string or the lookup fails
         path.gsub!(/\.[a-zA-Z][a-zA-Z0-9]{2,}$/, '')
         path.gsub!(/^\//, '')
         path = 'index' if path.blank?
