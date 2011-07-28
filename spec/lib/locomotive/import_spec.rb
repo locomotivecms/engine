@@ -86,7 +86,7 @@ describe Locomotive::Import::Job do
     before(:all) do
       @site = Factory("existing site")
 
-      job = Locomotive::Import::Job.new(FixturedTheme.duplicate_and_open('default.zip'), @site, { :samples => true, :reset => true })
+      job = Locomotive::Import::Job.new(FixturedTheme.duplicate_and_open('default.zip'), @site, { :samples => true, :reset => false })
       job.perform
 
       job.success nil
