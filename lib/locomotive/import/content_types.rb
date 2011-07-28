@@ -71,7 +71,7 @@ module Locomotive
       
       def update_attributes(content_type, data)
         attributes = cleanse_attributes(data)
-        content_type.update(attributes)
+        content_type.update_attributes!(attributes)
       end
 
       def add_or_update_fields(content_type, fields)
