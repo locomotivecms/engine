@@ -35,6 +35,10 @@ describe Locomotive::Import::Job do
       content_type.contents.size.should == 5
 
       content = content_type.contents.first
+      content._permalink.should == 'locomotivecms'
+      content.seo_title.should == 'My open source CMS'
+      content.meta_description.should == 'bla bla bla'
+      content.meta_keywords.should == 'cms ruby engine mongodb'
       content.name.should == 'Locomotive App'
       content.thumbnail.url.should_not be_nil
       content.featured.should == true
@@ -64,19 +68,19 @@ describe Locomotive::Import::Job do
       page = @site.pages.where(:title => 'Contact').first
       page.find_editable_element('content', 'office').source_filename.should == 'office.jpg'
     end
-    
+
     it 'inserts templatized page' do
       page = @site.pages.where(:templatized => true).first
       page.should_not be_nil
       page.fullpath.should == 'portfolio/content_type_template'
     end
-    
+
     it 'inserts redirection page' do
       page = @site.pages.where(:redirect => true).first
       page.should_not be_nil
       page.redirect_url.should == 'http://blog.locomotivecms.com'
     end
-    
+
     it 'inserts snippets' do
       @site.snippets.count.should == 1
     end
