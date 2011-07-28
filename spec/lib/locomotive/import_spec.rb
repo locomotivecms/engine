@@ -24,6 +24,11 @@ describe Locomotive::Import::Job do
       content_type = @site.content_types.where(:slug => 'projects').first
       content_type.content_custom_fields.size.should == 9
     end
+    
+    it 'correctly imports content type names' do
+      content_type = @site.content_types.where(:slug => 'projects').first
+      content_type.name.should == 'My projects'
+    end
 
     it 'converts correctly the order_by option for content types' do
       content_type = @site.content_types.where(:slug => 'messages').first
@@ -75,6 +80,35 @@ describe Locomotive::Import::Job do
       Site.destroy_all
     end
 
+  end
+  
+  context 'with an existing site' do
+    before(:all) do
+      @site = Factory("existing site")
+
+      job = Locomotive::Import::Job.new(FixturedTheme.duplicate_and_open('default.zip'), @site, { :samples => true, :reset => true })
+      job.perform
+
+      job.success nil
+    end
+    
+    context 'updates to content_type attributes' do
+      before(:all) do
+        @projects = content_type = @site.content_types.where(:slug => 'projects').first
+      end
+    
+      it 'includes new name' do
+        @projects.name.should == 'My projects'
+      end
+    
+      it 'includes new description' do
+        @projects.description.should == 'My portfolio'
+      end
+      
+      it 'includes new order by' do
+        @projects.order_by.should == '_position_in_list'
+      end
+    end
   end
   
   context 'with locomotive editor default theme' do
