@@ -9,7 +9,7 @@ module Locomotive
 
       def render_locomotive_page
         if request.fullpath =~ /^\/admin\//
-          render :template => "/admin/errors/404", :layout => '/admin/layouts/box', :status => :not_found
+          render :template => '/admin/errors/404', :layout => '/admin/layouts/box', :status => :not_found
         else
           @page = locomotive_page
 
@@ -24,13 +24,15 @@ module Locomotive
       end
 
       def render_no_page_error
-        render :template => "/admin/errors/no_page", :layout => false
+        render :template => '/admin/errors/no_page', :layout => false
       end
 
       def locomotive_page
         path = (params[:path] || request.fullpath).clone # TODO: params[:path] is more consistent
-        path.gsub!(/\.[a-zA-Z][a-zA-Z0-9]{2,}$/, '')
-        path.gsub!(/^\//, '')
+        path = path.split('?').first # take everything before the query string or the lookup fails
+        path.gsub!(/\.[a-zA-Z][a-zA-Z0-9]{2,}$/, '') # remove the page extension
+        path.gsub!(/^\//, '') # remove the leading slash
+
         path = 'index' if path.blank?
 
         if path != 'index'
