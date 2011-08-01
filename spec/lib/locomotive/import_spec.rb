@@ -40,6 +40,10 @@ describe Locomotive::Import::Job do
       content_type.contents.size.should == 5
 
       content = content_type.contents.first
+      content._permalink.should == 'locomotivecms'
+      content.seo_title.should == 'My open source CMS'
+      content.meta_description.should == 'bla bla bla'
+      content.meta_keywords.should == 'cms ruby engine mongodb'
       content.name.should == 'Locomotive App'
       content.thumbnail.url.should_not be_nil
       content.featured.should == true
@@ -58,6 +62,16 @@ describe Locomotive::Import::Job do
     it 'inserts the index and 404 pages' do
       @site.pages.root.first.should_not be_nil
       @site.pages.not_found.first.should_not be_nil
+    end
+
+    it 'sets the editable text for a page from the site config file' do
+      page = @site.pages.where(:title => 'Contact').first
+      page.find_editable_element('content', 'address').content.should == '<p>Our office address: 215 Vine Street, Scranton, PA 18503</p>'
+    end
+
+    it 'sets the editable file for a page from the site config file' do
+      page = @site.pages.where(:title => 'Contact').first
+      page.find_editable_element('content', 'office').source_filename.should == 'office.jpg'
     end
 
     it 'inserts templatized page' do
@@ -110,7 +124,7 @@ describe Locomotive::Import::Job do
       end
     end
   end
-  
+
   context 'with locomotive editor default theme' do
     def import(options)
       job = Locomotive::Import::Job.new(FixturedTheme.duplicate_and_open('default-from-editor.zip'), @site, options)
@@ -160,5 +174,4 @@ describe Locomotive::Import::Job do
       Site.destroy_all
     end
   end
-
 end

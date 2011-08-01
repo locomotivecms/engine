@@ -149,6 +149,11 @@ describe ContentInstance do
     end
   end
 
+  after(:all) do
+    ENV['APP_TLD'] = nil
+    Locomotive.configure_for_test(true)
+  end
+
   def build_content(options = {})
     @content_type.contents.build({ :title => 'Locomotive', :description => 'Lorem ipsum....' }.merge(options))
   end

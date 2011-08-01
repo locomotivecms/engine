@@ -1,7 +1,7 @@
 - title t('.title')
 
 - content_for :submenu do
-  = render 'admin/shared/menu/settings'
+  = render_cell 'admin/settings_menu', :show
 
 %p!= t('.help')
 
@@ -9,10 +9,13 @@
 
   = f.foldable_inputs :name => :information do
     = f.input :name
+    - unless f.object.respond_to?(:password)
+      = f.input :email
 
-  = f.foldable_inputs :name => :credentials do
-    = f.input :email
-    = f.input :password, :input_html => { :autocomplete => "off" }
-    = f.input :password_confirmation, :input_html => { :autocomplete => "off" }
+  - if f.object.respond_to?(:password)
+    = f.foldable_inputs :name => :credentials do
+      = f.input :email
+      = f.input :password, :input_html => { :autocomplete => "off" }
+      = f.input :password_confirmation, :input_html => { :autocomplete => "off" }
 
   = render 'admin/shared/form_actions', :back_url => edit_admin_current_site_url, :button_label => :create

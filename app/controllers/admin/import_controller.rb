@@ -39,7 +39,7 @@ module Admin
         logger.error "[Locomotive import] #{e.message} / #{e.backtrace}"
 
         @error = e.message
-        flash[:alert] = t('flash.admin.imports.create.alert')
+        flash[:alert] = t('flash.admin.import.create.alert')
 
         render 'new'
       end

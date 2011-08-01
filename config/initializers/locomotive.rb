@@ -63,6 +63,11 @@ Locomotive.configure do |config|
   # # => 'support@heroku.com' (Heroku), 'support@bushi.do' (Bushido), 'support@example.com' (Dev) or 'support@<your_hosting_platform>' (Multi-sites)
   config.mailer_sender = 'support'
 
+  # allow apps using the engine to add their own Liquid drops, variables and similar available
+  # in Liquid templates, extending the assigns used while rendering.
+  # follow the Dependency Injection pattern
+  # config.context_assign_extensions = {}
+
   # Rack-cache settings, mainly used for the inline resizing image module. Default options:
   # config.rack_cache = {
   #   :verbose     => true,

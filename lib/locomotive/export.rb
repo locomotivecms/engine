@@ -321,7 +321,7 @@ module Locomotive
     def log(message, domain = '')
       head = "[export_template][#{@site.name}]"
       head += "[#{domain}]" unless domain.blank?
-      ::Locomotive::Logger.info "\t#{head} #{message}"
+      ::Locomotive.log "\t#{head} #{message}"
     end
 
   end

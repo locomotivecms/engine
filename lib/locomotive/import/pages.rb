@@ -105,13 +105,17 @@ module Locomotive
         attributes[:redirect] = true if attributes[:redirect_url].present?
 
         # Don't want the editable elements to be imported: they will be regenerated
-        attributes.delete(:editable_elements)
+        editable_elements_attributes = attributes.delete(:editable_elements)
 
         page = site.pages.where(:fullpath => self.sanitize_fullpath(fullpath)).first || site.pages.build
 
         page.attributes = attributes
 
         page.save!
+
+        unless editable_elements_attributes.nil?
+          self.assign_editable_elements(page, editable_elements_attributes)
+        end
 
         self.log "adding #{page.fullpath} (#{template.blank? ? 'without' : 'with'} template) / #{page.position}"
 
@@ -120,6 +124,28 @@ module Locomotive
         context[:done][fullpath] = page
 
         page
+      end
+
+      def assign_editable_elements(page, elements)
+        page.reload # editable elements are not synchronized otherwise
+
+        elements.each do |attributes|
+          element = page.find_editable_element(attributes['block'], attributes['slug'])
+
+          next if element.nil?
+
+          if element.respond_to?(:source)
+            asset_path = File.join(theme_path, 'public', attributes['content'])
+
+            if File.exists?(asset_path)
+              element.source = File.open(asset_path)
+            end
+          else
+            element.content = attributes['content']
+          end
+        end
+
+        page.save!
       end
 
       def build_parent_template(template)
@@ -153,7 +179,7 @@ module Locomotive
         return if template.blank?
 
         template.gsub!(/\/samples\/(.*\.[a-zA-Z0-9]{3})/) do |match|
-          name = $1
+          name = File.basename($1)
 
           if asset = site.assets.where(:source_filename => name).first
             asset.source.url

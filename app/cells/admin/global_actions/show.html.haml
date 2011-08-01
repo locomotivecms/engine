@@ -1,0 +1,12 @@
+#global-actions-bar
+  - @list.each_with_index do |item, index|
+
+    - i18n_options = item.delete(:i18n_options)
+
+    - if index > 0
+      %span= '|'
+
+    - if i18n_options
+      != t(i18n_options[:key], i18n_options[:arg] => link_to(i18n_options[:value], item[:url]))
+    - else
+      = link_to item[:label], item[:url], item.delete_if { |k, v| %w(label url).include?(k) }

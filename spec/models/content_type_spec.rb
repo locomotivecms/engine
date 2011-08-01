@@ -260,6 +260,11 @@ describe ContentType do
 
   end
 
+  after(:all) do
+    ENV['APP_TLD'] = nil
+    Locomotive.configure_for_test(true)
+  end
+
   def build_content(content_type)
     content_type.contents.build(:name => 'Asset on steroids', :description => 'Lorem ipsum', :active => true)
   end

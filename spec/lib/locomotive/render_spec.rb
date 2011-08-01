@@ -93,6 +93,12 @@ describe 'Locomotive rendering system' do
       @controller.send(:locomotive_page).should_not be_nil
     end
 
+    it 'does not include the query string' do
+      @controller.request.fullpath = '/about_us/team.html?some=params&we=use'
+      @controller.current_site.pages.expects(:any_in).with({ :fullpath => %w{about_us/team about_us/content_type_template} }).returns([@page])
+      @controller.send(:locomotive_page).should_not be_nil
+    end
+
     it 'should return the 404 page if the page does not exist' do
       @controller.request.fullpath = '/contact'
       (klass = Page).expects(:published).returns([true])
@@ -175,6 +181,11 @@ describe 'Locomotive rendering system' do
 
     end
 
+  end
+
+  after(:all) do
+    ENV['APP_TLD'] = nil
+    Locomotive.configure_for_test(true)
   end
 
 end

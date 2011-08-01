@@ -115,7 +115,19 @@ module Locomotive
           associations = []
 
           # build with default attributes
-          content = content_type.contents.build(content_type.highlighted_field_name.to_sym => value, :_position_in_list => position)
+          content = content_type.contents.where(content_type.highlighted_field_name.to_sym => value).first
+
+          if content.nil?
+            content = content_type.contents.build(content_type.highlighted_field_name.to_sym => value, :_position_in_list => position)
+          end
+
+          %w(_permalink seo_title meta_description meta_keywords).each do |attribute|
+            new_value = attributes.delete(attribute)
+
+            next if new_value.blank?
+
+            content.send("#{attribute}=".to_sym, new_value)
+          end
 
           attributes.each do |name, value|
             field = content_type.content_custom_fields.detect { |f| f._alias == name }

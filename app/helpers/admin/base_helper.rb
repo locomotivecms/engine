@@ -9,21 +9,7 @@ module Admin::BaseHelper
     end
   end
 
-  def admin_menu_item(name, url)
-    index = controller.instance_variable_get(:@menu_index) || 1
-    controller.instance_variable_set(:@menu_index, index + 1)
-    label = content_tag(:em, escape_once('&nbsp;')) + content_tag(:span, t("admin.shared.menu.#{name}"))
-    content_tag(:li, content_tag(:span) + link_to(label, url), :class => "item #{'first' if index == 1} item-#{index} #{name.dasherize}")
-  end
-
-  def admin_button_tag(text, url, options = {})
-    text = text.is_a?(Symbol) ? t(".#{text}") : text
-    link_to(url, options) do
-      content_tag(:em, escape_once('&nbsp;')) + text
-    end
-  end
-
-  def admin_submenu_item(name, url, options = {}, &block)
+  def admin_content_menu_item(name, url, options = {}, &block)
     default_options = { :i18n => true, :css => name.dasherize.downcase }
     default_options.merge!(options)
 
@@ -36,6 +22,13 @@ module Admin::BaseHelper
       content_tag(:li, link + popup, :class => 'hoverable')
     else
       content_tag(:li, link_to(content_tag(:span, label_link), url, :class => css))
+    end
+  end
+
+  def admin_button_tag(text, url, options = {})
+    text = text.is_a?(Symbol) ? t(".#{text}") : text
+    link_to(url, options) do
+      content_tag(:em, escape_once('&nbsp;')) + text
     end
   end
 

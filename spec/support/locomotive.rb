@@ -30,7 +30,7 @@ def Locomotive.configure_for_test(force = false)
       Object.send(:remove_const, 'Site') if Object.const_defined?('Site')
       load 'site.rb'
 
-      Factory.factories.clear
+      FactoryGirl.factories.clear
       load File.join(Rails.root, 'spec', 'factories.rb')
     end
   end

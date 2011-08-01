@@ -1,4 +1,4 @@
-= admin_submenu_item 'pages', admin_pages_url do
+= admin_content_menu_item 'pages', admin_pages_url do
   - if can? :manage, @page
     .header
       %p= link_to t('admin.pages.index.new'), new_admin_page_url

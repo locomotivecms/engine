@@ -46,7 +46,7 @@ module Locomotive
               end
               render_element(context, element)
             else
-              Locomotive.logger "[editable element] missing element `#{context['block'].try(:name)}` / #{@slug} on #{current_page.fullpath}"
+              Locomotive.log :error, "[editable element] missing element `#{context['block'].try(:name)}` / #{@slug} on #{current_page.fullpath}"
               ''
             end
           end

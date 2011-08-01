@@ -19,6 +19,16 @@ module CustomFields
 
       end
     end
+
+    module Category
+      class Item
+
+        def to_liquid
+          { 'id' => self._id, 'name' => self.name }
+        end
+
+      end
+    end
   end
 end
 
