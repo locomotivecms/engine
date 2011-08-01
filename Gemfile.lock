@@ -126,11 +126,7 @@ GEM
       net-ssh (>= 2.1.3)
       nokogiri (>= 1.4.4)
       ruby-hmac
-<<<<<<< HEAD
-    formatador (0.1.5)
-=======
     formatador (0.2.0)
->>>>>>> 333934c022052a1f2f88f4169cea51ddcec9e466
     formtastic (1.2.4)
       actionpack (>= 2.3.7)
       activesupport (>= 2.3.7)
