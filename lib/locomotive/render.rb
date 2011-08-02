@@ -13,6 +13,8 @@ module Locomotive
         else
           @page = locomotive_page
 
+          render_access_denied_error and return if @page.authentication_required? && !signed_in?
+
           redirect_to(@page.redirect_url) and return if @page.present? && @page.redirect?
 
           render_no_page_error and return if @page.nil?
@@ -25,6 +27,10 @@ module Locomotive
 
       def render_no_page_error
         render :template => "/admin/errors/no_page", :layout => false
+      end
+
+      def render_access_denied_error
+        render :template => "/admin/errors/access_denied", :layout => false
       end
 
       def locomotive_page

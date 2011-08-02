@@ -19,6 +19,7 @@ class Page
   field :raw_template
   field :published, :type => Boolean, :default => false
   field :cache_strategy, :default => 'none'
+  field :authentication_required, :type => Boolean, :default => false
 
   ## associations ##
   referenced_in :site
