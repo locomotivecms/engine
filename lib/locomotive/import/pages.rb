@@ -135,10 +135,12 @@ module Locomotive
           next if element.nil?
 
           if element.respond_to?(:source)
-            asset_path = File.join(theme_path, 'public', attributes['content'])
+            unless attributes['content'].blank?
+              asset_path = File.join(theme_path, 'public', attributes['content'])
 
-            if File.exists?(asset_path)
-              element.source = File.open(asset_path)
+              if File.exists?(asset_path)
+                element.source = File.open(asset_path)
+              end
             end
           else
             element.content = attributes['content']

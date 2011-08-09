@@ -16,6 +16,7 @@ it:
         welcome: Benvenuto, %{name}
         see: Vedi il sito web
         switch: Passa ad un altro sito
+        help: Aiuto
         logout: Esci
       menu:
         contents: Contenuti

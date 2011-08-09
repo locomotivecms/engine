@@ -73,6 +73,11 @@ describe Locomotive::Import::Job do
       page = @site.pages.where(:title => 'Contact').first
       page.find_editable_element('content', 'office').source_filename.should == 'office.jpg'
     end
+    
+    it 'sets the empty editable file for a page from the site config file' do
+      page = @site.pages.where(:title => 'Contact').first
+      page.find_editable_element('content', 'office2').source_filename.should be_nil
+    end
 
     it 'inserts templatized page' do
       page = @site.pages.where(:templatized => true).first
