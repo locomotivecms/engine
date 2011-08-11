@@ -28,6 +28,10 @@ CarrierWave.configure do |config|
       config.s3_secret_access_key = ENV['S3_SECRET_KEY']
       config.s3_bucket = ENV['S3_BUCKET']
       # config.s3_cname = 'ENV['S3_CNAME']
+
+      # settings for the local filesystem
+      # config.storage = :file
+      # config.root = File.join(Rails.root, 'public')
     end
   end
 
