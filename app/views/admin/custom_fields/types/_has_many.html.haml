@@ -25,9 +25,11 @@
         {{/if_template}}
 
         %span.actions
+          - if field.reverse_lookup?
+            = link_to image_tag('admin/form/pen.png'), '#', :class => 'edit first'
           = link_to image_tag('admin/form/icons/trash.png'), '#', :class => 'remove'
           %button{ :class => 'button light mini add', :type => 'button' }
             %span!= t('admin.buttons.new_item')
 
     %script{ :type => 'text/javascript', :name => 'data' }
-      != collection_to_js(options_for_has_many(field), :taken_ids => form.object.send(field._alias.to_sym).ids)
+      != has_many_data_to_js(field, form.object)

@@ -34,6 +34,9 @@ module NavigationHelpers
     when /the "(.*)" model list page/
       content_type = Site.first.content_types.where(:name => $1).first
       admin_contents_path(content_type.slug)
+    when /the "(.*)" model creation page/
+      content_type = Site.first.content_types.where(:name => $1).first
+      new_admin_content_path(content_type.slug)
     when /the "(.*)" model edition page/
       content_type = Site.first.content_types.where(:name => $1).first
       edit_admin_content_type_path(content_type)

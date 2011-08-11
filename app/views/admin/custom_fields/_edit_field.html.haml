@@ -9,8 +9,12 @@
           = g.input :hint
           = g.input :text_formatting, :as => 'select', :collection => options_for_text_formatting, :include_blank => false, :wrapper_html => { :style => 'display: none' }
           = g.input :target, :as => 'select', :collection => options_for_association_target, :include_blank => false, :wrapper_html => { :style => 'display: none' }
+          = g.input :reverse_lookup, :as => 'select', :collection => [], :include_blank => true, :wrapper_html => { :style => 'display: none' }
 
   .popup-actions
     %p
       %button.button.light{ :type => 'submit' }
         %span= t('admin.shared.form_actions.update')
+
+  %script{ :type => 'text/javascript', :name => 'reverse_lookups' }
+    != collection_to_js(options_for_reverse_lookups(content_type))

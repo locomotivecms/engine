@@ -1,6 +1,14 @@
 - field.target.constantize.reload_parent! # to make sure all the contents from the parent are loaded
 
-- selected_id = form.object.send(field._alias.to_sym).try(:_id)
+- if breadcrumb_root && params[:breadcrumb_alias] == field._alias
 
-= form.input field._alias.to_sym, :label => field.label, :hint => field.hint, :input_html => { :class => 'has_one' }, :as => :select, :collection => options_for_has_one(field, selected_id), :selected => selected_id, :required => required
+  = form.hidden_field field._name.to_sym
+
+  = hidden_field_tag 'breadcrumb_alias', field._alias
+
+- else
+
+  - selected_id = form.object.send(field._alias.to_sym).try(:_id)
+
+  = form.input field._alias.to_sym, :label => field.label, :hint => field.hint, :input_html => { :class => 'has_one' }, :as => :select, :collection => options_for_has_one(field, selected_id), :selected => selected_id, :required => required
 

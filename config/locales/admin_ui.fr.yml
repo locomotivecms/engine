@@ -71,6 +71,8 @@ fr:
           edit_categories: Editer options
         file:
           delete_file: Supprimer fichier
+        has_many:
+          empty: Vide
       index:
         is_required: est obligatoire
         default_label: Nom du champ
@@ -248,9 +250,16 @@ fr:
       list:
         no_items: "Il n'existe pas d'éléments. Vous pouvez commencer par créer un <a href='%{url}'>ici</a>"
       new:
-        title: '%{type} &mdash; nouvel élément'
+        title:
+          default: '%{type} &mdash; nouvel élément'
+          breadcrumb: '%{root} &raquo; %{type} &mdash; nouvel élément'
       edit:
-        title: '%{type} &mdash; édition élément'
+        title:
+          default: '%{type} &mdash; édition élément'
+          breadcrumb: '%{root} &raquo; %{type} &mdash; édition élément'
+      form:
+        has_many:
+          new_item: Nouvel élément
 
     image_picker:
       link: Insérer une image dans le code

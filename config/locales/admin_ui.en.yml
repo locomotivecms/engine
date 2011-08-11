@@ -71,6 +71,8 @@ en:
           edit_categories: Edit options
         file:
           delete_file: Delete file
+        has_many:
+          empty: Empty
       index:
         is_required: is required
         default_label: Field name
@@ -246,9 +248,16 @@ en:
       list:
         no_items: "There are no items for now. Just click <a href=\"%{url}\">here</a> to create the first one."
       new:
-        title: '%{type} &mdash; new item'
+        title:
+          default: '%{type} &mdash; new item'
+          breadcrumb: '%{root} &raquo; %{type} &mdash; new item'
       edit:
-        title: '%{type} &mdash; editing item'
+        title:
+          default: '%{type} &mdash; editing item'
+          breadcrumb: '%{root} &raquo; %{type} &mdash; editing item'
+      form:
+        has_many:
+          new_item: New item
 
     image_picker:
       link: Insert an image into the code

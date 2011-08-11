@@ -17,6 +17,11 @@ function makeSlug(val, sep) { // code largely inspired by http://www.thewebsitet
   String.prototype.trim = function() {
     return this.replace(/^\s+/g, '').replace(/\s+$/g, '');
   }
+
+  String.prototype.repeat = function(num) {
+    for (var i = 0, buf = ""; i < num; i++) buf += this;
+    return buf;
+  }
 })();
 
 Object.size = function(obj) {

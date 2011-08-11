@@ -80,9 +80,17 @@ body {
   border-bottom: 1px dotted #bbbbbd;
 }
 
+#content div.inner h2 a {
+  color: #1F82BC;
+  text-decoration: none;
+}
+
+#content div.inner h2 a:hover {
+  text-decoration: underline;
+}
+
 #content div.inner h2 a.editable {
   padding: 2px 25px 2px 6px;
-  text-decoration: none;
   color: #1e1f26;
   outline: none;
 }
@@ -90,6 +98,7 @@ body {
 #content div.inner h2 a.editable:hover {
   background: #fffbe5 url(/images/admin/form/pen.png) no-repeat right 5px;
   border-bottom: 1px dotted #efe4a5;
+  text-decoration: none;
 }
 
 #content div.inner h3 {
