@@ -21,7 +21,7 @@ BACKLOG:
   - sync data
   - import only theme assets
 - endless pagination
-- overide sort for contents
+- override sort for contents
 - tooltip to explain the difference between 1.) Admin 2.) Author 3.) Designer?
 - [bushido] guiders / welcome page / devise cas authentication (SSO)
 

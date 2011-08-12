@@ -42,7 +42,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'dragonfly', '~> 0.9.1'
   s.add_dependency 'rack-cache'
 
-  s.add_dependency 'custom_fields', '1.0.0.beta.21'
+  s.add_dependency 'custom_fields', '1.0.0.beta.22'
   s.add_dependency 'cancan', '~> 1.6.0'
   s.add_dependency 'fog', '0.8.2'
   s.add_dependency 'mimetype-fu'

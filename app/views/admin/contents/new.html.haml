@@ -1,8 +1,11 @@
-- title t('.title', :type => @content_type.name.capitalize)
+- if breadcrumb_root
+  - title t('.title.breadcrumb', :root => link_to(breadcrumb_root._label, breadcrumb_url), :type => @content_type.name.capitalize)
+- else
+  - title t('.title.default', :type => @content_type.name.capitalize)
 
 - content_for :submenu do
   = render 'admin/shared/menu/contents'
-  
+
 - content_for :actions do
   = render 'admin/shared/actions/contents'
 
@@ -16,4 +19,4 @@
 
   = render 'form', :f => form
 
-  = render 'admin/shared/form_actions', :back_url => admin_contents_url(@content_type.slug), :button_label => :create
+  = render 'admin/shared/form_actions', :back_url => back_url, :button_label => :create

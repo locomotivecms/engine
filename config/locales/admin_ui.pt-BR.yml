@@ -226,9 +226,16 @@ pt-BR:
       list:
         no_items: "Não existem itens ainda. Clique <a href=\"%{url}\">aqui</a> para criar o primeiro."
       new:
-        title: '%{type} &mdash; novo item'
+        title:
+          default: '%{type} &mdash; novo item'
+          breadcrumb: '%{root} &raquo; %{type} &mdash; novo item'
       edit:
-        title: '%{type} &mdash; editando item'
+        title:
+          default: '%{type} &mdash; editando item'
+          breadcrumb: '%{root} &raquo; %{type} &mdash; editando item'
+      form:
+        has_many:
+          new_item: Novo item
 
     image_picker:
       link: Insira uma imagem no código

@@ -9,6 +9,14 @@ $(document).ready(function() {
     var populateSelect = function(context) {
       context.select.find('optgroup, option').remove();
 
+      if (context.data.new_item) {
+        var newItemInfo = context.data.new_item;
+        var option = new Option(newItemInfo.label, newItemInfo.url, true, true);
+        context.select.append(option);
+
+        context.select.append(new Option('-'.repeat(newItemInfo.label.length), '', false, false));
+      }
+
       for (var i = 0; i < context.data.collection.length; i++) {
         var obj = context.data.collection[i];
 
@@ -19,7 +27,7 @@ $(document).ready(function() {
           for (var j = 0; j < obj.items.length; j++) {
             var innerObj = obj.items[j];
             if ($.inArray(innerObj[1], context.data.taken_ids) == -1) {
-              optgroup.append(new Option(innerObj[0], innerObj[1], true, true));
+              optgroup.append(new Option(innerObj[0], innerObj[1], false, false));
               size++;
             }
           }
@@ -28,7 +36,7 @@ $(document).ready(function() {
         } else {
           if ($.inArray(obj[1], context.data.taken_ids) == -1)
           {
-            var option = new Option("", obj[1], true, true);
+            var option = new Option("", obj[1], false, false);
             $(option).text(obj[0]);
             context.select.append(option);
           }
@@ -71,6 +79,15 @@ $(document).ready(function() {
     }
 
     var registerElementEvents = function(context, data, domElement) {
+      // edit
+      domElement.find('a.edit').click(function(e) {
+        var url = context.data.edit_item_url.replace(/\/42\//, '/' + data.id + '/');
+
+        window.location.href = url;
+
+        e.preventDefault(); e.stopPropagation();
+      })
+
       // remove
       domElement.find('a.remove').click(function(e) {
         domElement.remove();
@@ -90,6 +107,14 @@ $(document).ready(function() {
           id: context.select.val(),
           label: context.select.find('option:selected').text()
         };
+
+        if (newElement.id == '') return;
+
+        if (newElement.id.match(/^http:\/\//)) {
+          window.location.href = newElement.id;
+          e.preventDefault(); e.stopPropagation();
+          return;
+        }
 
         addId(context, newElement.id);
 

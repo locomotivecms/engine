@@ -230,9 +230,16 @@ nl:
       list:
         no_items: "Er zijn momenteel geen items. Klik hier <a href=\"%{url}\">here</a> om de eerste te maken."
       new:
-        title: '%{type} &mdash; nieuw item'
+        title:
+          default: '%{type} &mdash; nieuw item'
+          breadcrumb: '%{root} &raquo; %{type} &mdash; nieuw item'
       edit:
-        title: '%{type} &mdash; wijzig item'
+        title:
+          default: '%{type} &mdash; wijzig item'
+          breadcrumb: '%{root} &raquo; %{type} &mdash; wijzig item'
+      form:
+        has_many:
+          new_item: Nieuw item
 
     image_picker:
       link: Voeg een afbeelding toe aan de code

@@ -232,9 +232,16 @@ es:
       list:
         no_items: "No hay ningún elemento. Haga click <a href=\"%{url}\">aquí</a> para crear el primero."
       new:
-        title: '%{type} &mdash; nuevo elemento'
+        title:
+          default: '%{type} &mdash; nuevo elemento'
+          breadcrumb: '%{root} &raquo; %{type} &mdash; nuevo elemento'
       edit:
-        title: '%{type} &mdash; editando elemento'
+        title:
+          default: '%{type} &mdash; editando elemento'
+          breadcrumb: '%{root} &raquo; %{type} &mdash; editando elemento'
+      form:
+        has_many:
+          new_item: Nuevo elemento
 
     image_picker:
       link: Insertar una imagen el el código

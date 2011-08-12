@@ -11,16 +11,26 @@ module Admin
 
     before_filter :authorize_content
 
+    helper_method :breadcrumb_root, :breadcrumb_url, :back_url
+
     def index
       @contents = @content_type.list_or_group_contents
     end
 
+    def new
+      new! { @content.attributes = params[:content] }
+    end
+
     def create
-      create! { edit_admin_content_url(@content_type.slug, @content.id) }
+      create! { after_create_or_update_url }
+    end
+
+    def edit
+      edit! { @content.attributes = params[:content] }
     end
 
     def update
-      update! { edit_admin_content_url(@content_type.slug, @content.id) }
+      update! { after_create_or_update_url }
     end
 
     def sort
@@ -43,8 +53,30 @@ module Admin
       set_content_type
     end
 
+    def after_create_or_update_url
+      if params[:breadcrumb_alias].blank?
+        edit_admin_content_url(@content_type.slug, @content.id)
+      else
+        self.breadcrumb_url
+      end
+    end
+
     def authorize_content
       authorize! params[:action].to_sym, ContentInstance
+    end
+
+    def breadcrumb_root
+      return nil if params[:breadcrumb_alias].blank?
+
+      @breadcrumb_root ||= resource.send(params[:breadcrumb_alias].to_sym)
+    end
+
+    def breadcrumb_url
+      edit_admin_content_url(self.breadcrumb_root._parent.slug, self.breadcrumb_root)
+    end
+
+    def back_url
+      self.breadcrumb_root ? self.breadcrumb_url : admin_contents_url(@content_type.slug)
     end
 
   end

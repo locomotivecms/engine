@@ -237,7 +237,6 @@ de:
           asc: Aufsteigend
           desc: Absteigend
 
-
     contents:
       index:
         title: '"%{type}" anzeigen'
@@ -251,9 +250,16 @@ de:
       list:
         no_items: "Momentan gibt es keine Elemente. Klicke einfach <a href='%{url}'>hier</a>, um das erste Element zu erstellen."
       new:
-        title: '%{type} &mdash; neues Element'
+        title:
+          default: '%{type} &mdash; neues Element'
+          breadcrumb: '%{root} &raquo; %{type} &mdash; Element bearbeiten'
       edit:
-        title: '%{type} &mdash; Element bearbeiten'
+        title:
+          default: '%{type} &mdash; editing item'
+          breadcrumb: '%{root} &raquo; %{type} &mdash; Element bearbeiten'
+      form:
+        has_many:
+          new_item: Neues Element
 
     image_picker:
       link: Füge ein Bild in den Code ein

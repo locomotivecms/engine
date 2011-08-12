@@ -492,6 +492,7 @@ form.formtastic fieldset ol li.has-many ul li.template span.actions {
   top: 0px;
 }
 
+form.formtastic fieldset ol li.has-many ul li.template span.actions a.edit,
 form.formtastic fieldset ol li.has-many ul li.template span.actions a.remove {
   display: none;
 }

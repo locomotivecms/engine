@@ -5,6 +5,7 @@ $(document).ready(function() {
   var template = wrapper.find('script[name=template]').html();
   var baseInputName = wrapper.find('script[name=template]').attr('data-base-input-name');
   var data = eval(wrapper.find('script[name=data]').html());
+  var reverseLookupData = eval($('script[name=reverse_lookups]').html());
   var index = 0;
 
   var domFieldVal = function(domField, fieldName, val) {
@@ -18,6 +19,39 @@ $(document).ready(function() {
 
   var domBoxAttrVal = function(fieldName, val) {
     return (typeof(val) == 'undefined' ? domBoxAttr(fieldName).val() : domBoxAttr(fieldName).val(val));
+  }
+
+  var setupReverseLookupDropdown = function(currentVal) {
+    var dropdown = $('#fancybox-inner #edit-custom-field #custom_fields_field_reverse_lookup');
+
+    // Get the target content_type
+    var targetClassEl = $('#fancybox-inner #edit-custom-field #custom_fields_field_target');
+
+    var callback = function() {
+      // Clear the reverse_lookup dropdown
+      dropdown.find('option').remove();
+
+      // Add the initial blank entry
+      dropdown.append($('<option>'));
+
+      // Go through the collection and add the appropriate elements
+      collection = reverseLookupData['collection'];
+      for (var i = 0; i < collection.length; i++) {
+        element = collection[i];
+        if (element.klass === targetClassEl.val()) {
+          var option = $('<option>', { value: element.name });
+          option.text(element.label);
+          dropdown.append(option);
+        }
+      }
+    }
+
+    callback(); // first call
+
+    targetClassEl.change(callback);
+
+    // Set initial value
+    dropdown.val(currentVal);
   }
 
   /* ___ Register all the different events when a field is added (destroy, edit details, ...etc) ___ */
@@ -50,7 +84,7 @@ $(document).ready(function() {
     // edit
     domField.find('a.edit').click(function(e) {
       var link = $(this);
-      var attributes = ['_alias', 'hint', 'text_formatting', 'target'];
+      var attributes = ['_alias', 'hint', 'text_formatting', 'target', 'reverse_lookup'];
 
       $.fancybox({
         titleShow: false,
@@ -61,7 +95,7 @@ $(document).ready(function() {
             $.each(attributes, function(index, name) {
               try {
                 var val = domBoxAttrVal(name).trim();
-                if (val != '') domFieldVal(domField, name, val);
+                if (val != '' || name == 'reverse_lookup') domFieldVal(domField, name, val);
               } catch(e) {}
             });
             domBoxAttr('text_formatting').parent().hide();
@@ -70,16 +104,28 @@ $(document).ready(function() {
             e.preventDefault(); e.stopPropagation();
           });
 
+          var reverseLookupInitialVal = null;
+
           // copy current val to the form in the box
           $.each(attributes, function(index, name) {
             var val = domFieldVal(domField, name).trim();
             if (val == '' && name == '_alias') val = makeSlug(domFieldVal(domField, 'label'));
 
+            if (name == 'reverse_lookup') reverseLookupInitialVal = val;
+
             domBoxAttrVal(name, val);
           });
+
           if (domFieldVal(domField, 'kind').toLowerCase() == 'text') domBoxAttr('text_formatting').parents('li').show();
           if (domFieldVal(domField, 'kind').toLowerCase() == 'has_one' ||
               domFieldVal(domField, 'kind').toLowerCase() == 'has_many') domBoxAttr('target').parents('li').show();
+          if (domFieldVal(domField, 'kind').toLowerCase() == 'has_many')
+            domBoxAttr('reverse_lookup').parents('li').show();
+
+          // Configure the reverse_lookup dropdown and populate it
+          setupReverseLookupDropdown(reverseLookupInitialVal);
+
+          setTimeout($.fancybox.resize, 1500);
         }
       });
       e.preventDefault(); e.stopPropagation();
