@@ -10,6 +10,10 @@ When /^I wait until "([^"]*)" is visible$/ do |selector|
   page.has_css?("#{selector}", :visible => true)
 end
 
+When /^I wait until ([^"]*) is visible$/ do |locator|
+  page.has_css?(selector_for(locator), :visible => true)
+end
+
 Then /^"([^"]*)" should( not)? be an option for "([^"]*)"(?: within "([^\"]*)")?$/ do |value, negate, field, selector|
   with_scope(selector) do
     expectation = negate ? :should_not : :should

@@ -19,6 +19,9 @@ module HtmlSelectorsHelpers
     
     when "the list of items"
       ".has-many-selector"
+      
+    when "the has many selector"
+      ".has-many-selector ul li.template"
     
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
