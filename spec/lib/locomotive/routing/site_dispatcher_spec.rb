@@ -70,7 +70,7 @@ describe Locomotive::Routing::SiteDispatcher do
       before :each do
         @controller.expects(:current_site).returns(true)
       end
-    
+
       it 'returns true' do
         @controller.send(:require_site).should be_true
       end
@@ -87,7 +87,7 @@ describe Locomotive::Routing::SiteDispatcher do
         @controller.stubs(:admin_installation_url).returns('/admin/install/url/')
         @controller.stubs(:redirect_to).with('/admin/install/url/')
       end
-    
+
       it 'returns false' do
         @controller.send(:require_site).should be_false
       end
@@ -98,7 +98,7 @@ describe Locomotive::Routing::SiteDispatcher do
       end
 
     end
-    
+
     context 'when there are no sites' do
 
       before :each do
@@ -110,7 +110,7 @@ describe Locomotive::Routing::SiteDispatcher do
         @controller.stubs(:admin_installation_url).returns('/admin/install/url/')
         @controller.stubs(:redirect_to).with('/admin/install/url/')
       end
-    
+
       it 'returns false' do
         @controller.send(:require_site).should be_false
       end
@@ -131,7 +131,7 @@ describe Locomotive::Routing::SiteDispatcher do
         @controller.instance_variable_set('@_response', ActionDispatch::Response.new)
         @controller.expects(:current_site).returns(false)
       end
-    
+
       it 'returns false' do
         @controller.send(:require_site).should be_false
       end
@@ -243,5 +243,9 @@ describe Locomotive::Routing::SiteDispatcher do
     end
 
   end
+
+  # after(:all) do
+  #   Locomotive.configure_for_test(true)
+  # end
 
 end

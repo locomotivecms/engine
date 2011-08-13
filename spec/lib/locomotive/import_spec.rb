@@ -2,6 +2,11 @@ require 'spec_helper'
 
 describe Locomotive::Import::Job do
 
+  # before(:all) do
+  #   # Site.destroy_all
+  #   # Locomotive.configure_for_test(true)
+  # end
+
   context 'when successful' do
 
     before(:all) do
@@ -24,7 +29,7 @@ describe Locomotive::Import::Job do
       content_type = @site.content_types.where(:slug => 'projects').first
       content_type.content_custom_fields.size.should == 9
     end
-    
+
     it 'correctly imports content type names' do
       content_type = @site.content_types.where(:slug => 'projects').first
       content_type.name.should == 'My projects'
@@ -73,7 +78,7 @@ describe Locomotive::Import::Job do
       page = @site.pages.where(:title => 'Contact').first
       page.find_editable_element('content', 'office').source_filename.should == 'office.jpg'
     end
-    
+
     it 'sets the empty editable file for a page from the site config file' do
       page = @site.pages.where(:title => 'Contact').first
       page.find_editable_element('content', 'office2').source_filename.should be_nil
@@ -100,7 +105,7 @@ describe Locomotive::Import::Job do
     end
 
   end
-  
+
   context 'with an existing site' do
     before(:all) do
       @site = Factory("existing site")
@@ -110,25 +115,24 @@ describe Locomotive::Import::Job do
 
       job.success nil
     end
-    
+
     context 'updates to content_type attributes' do
       before(:all) do
         @projects = content_type = @site.content_types.where(:slug => 'projects').first
       end
-    
+
       it 'includes new name' do
         @projects.name.should == 'My projects'
       end
-    
+
       it 'includes new description' do
         @projects.description.should == 'My portfolio'
       end
-      
+
       it 'includes new order by' do
         @projects.order_by.should == '_position_in_list'
       end
     end
   end
-  
 
 end

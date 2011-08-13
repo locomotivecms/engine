@@ -1,9 +1,9 @@
 GIT
   remote: git://github.com/floehopper/mocha.git
-  revision: 0ce0adc9f104a0ae2ddca400696c8694e85f1b93
+  revision: f417066f7f1b7d66cf5c72f28380675bde0cc424
   specs:
     mocha (0.9.12)
-      metaid (~> 1.0)
+      metaclass (~> 0.0.1)
 
 GEM
   remote: http://rubygems.org/
@@ -170,7 +170,7 @@ GEM
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
-    metaid (1.0)
+    metaclass (0.0.1)
     mime-types (1.16)
     mimemagic (0.1.8)
     mimetype-fu (0.1.2)

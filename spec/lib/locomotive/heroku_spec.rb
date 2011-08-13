@@ -2,10 +2,6 @@ require 'spec_helper'
 
 describe 'Heroku support' do
 
-  before(:all) do
-    Site.destroy_all
-  end
-
   before(:each) do
     ::Heroku::Client.any_instance.stubs(:post).returns(true)
     ::Heroku::Client.any_instance.stubs(:delete).returns(true)
@@ -99,7 +95,9 @@ describe 'Heroku support' do
 
       before(:each) do
         configure_locomotive_with_heroku
-        (@site = Factory.build(:site)).stubs(:valid?).returns(true)
+        # (@site = Factory.stub(:site)).stubs(:valid?).returns(true)
+        @site = Factory.build('valid site')
+        # (@site = Site.new(:name => 'foobar', :subdomain => 'acme')).stubs(:valid?).returns(true)
       end
 
       it 'calls add_heroku_domains after saving a site' do
@@ -178,7 +176,6 @@ describe 'Heroku support' do
   end
 
   after(:all) do
-    ENV['HEROKU_SLUG'] = ENV['APP_NAME'] = ENV['HEROKU_LOGIN'] = ENV['HEROKU_PASSWORD'] = nil
     Locomotive.configure_for_test(true)
   end
 

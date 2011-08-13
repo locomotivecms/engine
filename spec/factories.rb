@@ -23,11 +23,15 @@ Factory.define "existing site", :parent => "site" do |s|
   s.subdomain "models"
   s.after_build do |site_with_models|
     site_with_models.content_types.build(
-      :slug => 'projects', 
-      :name => 'Existing name', 
+      :slug => 'projects',
+      :name => 'Existing name',
       :description => 'Existing description',
       :order_by => 'created_at')
   end
+end
+
+Factory.define "valid site", :parent => "site" do |s|
+  # s.after_build { |valid_site| valid_site.stubs(:valid?).returns(true) }
 end
 
 

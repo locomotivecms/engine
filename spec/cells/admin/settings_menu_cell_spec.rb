@@ -1,21 +1,5 @@
 require 'spec_helper'
 
-module Resetter
-
-  @@original_settings_menu_cell_klass = Admin::SettingsMenuCell
-
-  def self.original_settings_menu_cell_klass
-    @@original_settings_menu_cell_klass
-  end
-
-  def self.reset_settings_menu_cell_klass
-    ::Admin.send(:remove_const, 'SettingsMenuCell')
-    ::Admin.const_set('SettingsMenuCell', self.original_settings_menu_cell_klass.clone)
-    ::Admin::SettingsMenuCell.any_instance.stubs(:sections).returns({ :main => 'settings', :sub => 'site' })
-  end
-
-end
-
 describe Admin::SettingsMenuCell do
 
   render_views
@@ -25,7 +9,7 @@ describe Admin::SettingsMenuCell do
   describe 'show menu' do
 
     before(:each) do
-      Resetter.reset_settings_menu_cell_klass
+      CellsResetter.new_settings_menu_cell_klass({ :main => 'settings', :sub => 'site' })
     end
 
     it 'has 3 items' do
@@ -49,7 +33,7 @@ describe Admin::SettingsMenuCell do
   describe 'add a new menu item' do
 
     before(:each) do
-      Resetter.reset_settings_menu_cell_klass
+      CellsResetter.new_settings_menu_cell_klass({ :main => 'settings', :sub => 'site' })
       Admin::SettingsMenuCell.update_for(:testing_add) { |m| m.add(:my_link, :label => 'My link', :url => 'http://www.locomotivecms.com') }
     end
 
@@ -66,7 +50,7 @@ describe Admin::SettingsMenuCell do
   describe 'remove a new menu item' do
 
     before(:each) do
-      Resetter.reset_settings_menu_cell_klass
+      CellsResetter.new_settings_menu_cell_klass({ :main => 'settings', :sub => 'site' })
       Admin::SettingsMenuCell.update_for(:testing_remove) { |m| m.remove(:theme_assets) }
     end
 
@@ -83,7 +67,7 @@ describe Admin::SettingsMenuCell do
   describe 'modify an existing menu item' do
 
     before(:each) do
-      Resetter.reset_settings_menu_cell_klass
+      CellsResetter.new_settings_menu_cell_klass({ :main => 'settings', :sub => 'site' })
       Admin::SettingsMenuCell.update_for(:testing_update) { |m| m.modify(:theme_assets, { :label => 'Modified !' }) }
     end
 
@@ -96,6 +80,10 @@ describe Admin::SettingsMenuCell do
       menu.should have_link('Modified !')
     end
 
+  end
+
+  after(:all) do
+   CellsResetter.clean!
   end
 
 end
