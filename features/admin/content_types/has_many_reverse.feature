@@ -36,26 +36,26 @@ Scenario: I do not see the "Add Item" button for new parent
 Scenario: I attach already created items for an existing parent and save it
   When I go to the "Clients" model list page
   And I follow "Apple Inc"
-  And I wait until ".has-many-selector ul li.template" is visible
+  And I wait until the has many selector is visible
   Then "My sexy project" should be an option for "label"
   When I select "My sexy project" from "label"
   And I press "+ add"
   And "My sexy project" should not be an option for "label"
   When I press "Save"
-  And I wait until ".has-many-selector ul li.template" is visible
+  And I wait until the has many selector is visible
   Then "My sexy project" should not be an option for "label"
 
 @javascript
 Scenario: I create a new item and attach it
   When I go to the "Clients" model list page
   And I follow "Apple Inc"
-  And I wait until ".has-many-selector ul li.template" is visible
+  And I wait until the has many selector is visible
   And I press "+ add"
   Then I should see "Apple Inc » Projects — new item"
   And I should not see "Client" within the main form
   When I fill in "Name" with "iPad"
   And I press "Create"
   Then I should see "Content was successfully created."
-  When I wait until ".has-many-selector ul li.template" is visible
+  When I wait until the has many selector is visible
   Then I should see "iPad"
   And "iPad" should not be an option for "label"
