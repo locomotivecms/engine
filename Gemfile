@@ -22,7 +22,7 @@ gem 'formtastic', '~> 1.2.3'
 gem 'inherited_resources', '~> 1.1.2'
 
 gem 'rmagick', '2.12.2', :require => 'RMagick'
-gem 'carrierwave', '~> 0.5.5'
+gem 'carrierwave', '0.5.6'
 gem 'dragonfly',  '~> 0.9.1'
 gem 'rack-cache', :require => 'rack/cache'
 

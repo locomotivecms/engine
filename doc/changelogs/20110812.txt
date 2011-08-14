@@ -5,4 +5,4 @@
 - rake task to create an admin account for the first site (#158)
 - Adding indexes for pages to avoid "Mongo::OperationFailure: too much data" errors (#159)
 - better spanish translations (#161, #162)
--
+- fix carrierwave version to 0.5.6 (#163)
