@@ -16,6 +16,10 @@ module Locomotive
         def parent
           @parent ||= self._source.parent.to_liquid
         end
+        
+        def breadcrumbs
+          @breadcrumbs ||= liquify(*self._source.self_and_ancestors)
+        end
 
         def children
           @children ||= liquify(*self._source.children)
