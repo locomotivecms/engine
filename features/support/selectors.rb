@@ -13,7 +13,16 @@ module HtmlSelectorsHelpers
 
     when "the main form"
       "form.formtastic"
-
+    
+    when "the list of added items"
+      ".has-many-selector li.item.added"
+    
+    when "the list of items"
+      ".has-many-selector"
+      
+    when "the has many selector"
+      ".has-many-selector ul li.template"
+    
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #
