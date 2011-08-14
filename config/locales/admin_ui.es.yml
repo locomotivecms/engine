@@ -6,9 +6,9 @@ es:
         notice: "Oups! Ha habido un error en la aplicación. Lo sentimos."
         link: "&rarr; Volver al inicio"
       "404":
-        title: Page non trouvée
-        notice: "La page que vous avez demandée n'existe pas."
-        link: "&rarr; Retour application"
+        title: Página no encontrada
+        notice: "La página requerida no existe."
+        link: "&rarr; Volver"
 
     buttons:
       login: Iniciar sesión
