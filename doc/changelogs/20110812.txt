@@ -1,0 +1,3 @@
+- implement the reverse has_many feature based on the great work of Alex Sanford (#142)
+- fix a couple of bugs: #152
+- improve the installation procedure about setting carrierwave up (#144)

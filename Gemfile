@@ -72,7 +72,7 @@ group :test do
   gem 'capybara'
   gem 'database_cleaner'
 
-  gem 'spork'
+  gem 'spork', '~> 0.9.0.rc'
   gem 'launchy'
   gem 'mocha', :git => 'git://github.com/floehopper/mocha.git'
 end
