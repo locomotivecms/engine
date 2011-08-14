@@ -1,6 +1,7 @@
 # encoding: utf-8
 
 require 'locomotive'
+require 'highline/import'
 
 namespace :locomotive do
 
@@ -43,6 +44,21 @@ namespace :locomotive do
     end
 
     ::Locomotive::Import::Job.run!(url, site, { :samples => true, :reset => reset })
+  end
+
+  desc 'Add a new admin user (NOTE: currently only supports adding user to first site)'
+  task :add_admin => :environment do
+    name = ask('Display name: ') { |q| q.echo = true }
+    email = ask('Email address: ') { |q| q.echo = true }
+    password = ask('Password: ') { |q| q.echo = '*' }
+    password_confirm = ask('Confirm password: ') { |q| q.echo = '*' }
+
+    account = Account.create :email => email, :password => password, :password_confirmation => password_confirm, :name => name
+
+    # TODO: this should be changed to work for multi-sites (see desc)
+    site = Site.first
+    site.memberships.build :account => account, :role => 'admin'
+    site.save!
   end
 
   namespace :upgrade do
