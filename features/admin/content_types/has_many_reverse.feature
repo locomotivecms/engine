@@ -44,12 +44,6 @@ Scenario: I attach already created items for an existing parent and save it
   When I press "Save"
   And I wait until the has many selector is visible
   Then "My sexy project" should not be an option for "label"
-  When I go to the "Clients" model list page
-  And I follow "Apple Inc"
-  And I wait until the has many selector is visible
-  Then "My sexy project" should not be an option for "label"
-  And I should not see "Empty" within the list of items
-
 
 @javascript
 Scenario: I create a new item and attach it
@@ -65,8 +59,3 @@ Scenario: I create a new item and attach it
   When I wait until the has many selector is visible
   Then I should see "iPad"
   And "iPad" should not be an option for "label"
-  When I go to the "Clients" model list page
-  And I follow "Apple Inc"
-  And I wait until the has many selector is visible
-  Then "iPad" should not be an option for "label"
-  And I should not see "Empty" within the list of items

@@ -32,7 +32,7 @@ Scenario: I view a client without any projects
   And I follow "Alpha, Inc"
   And I wait until the has many selector is visible
   Then I should see "Empty" within the list of items
-  
+
 @javascript
 Scenario: I add a project to a client
   When I go to the "Clients" model list page
@@ -43,9 +43,11 @@ Scenario: I add a project to a client
   When I press "Save"
   And I wait until the has many selector is visible
   Then I should see "Fun project" within the list of added items
-  And I should not see "Empty" within the list of items
-  When I go to the "Clients" model list page
-  And I follow "Beta, Inc"
-  And I wait until the has many selector is visible
-  Then I should see "Fun project" within the list of added items
-  And I should not see "Empty" within the list of items
+  And "Fun project" should not be an option for "label"
+  #
+  # And I should not see "Empty" within the list of items
+  # When I go to the "Clients" model list page
+  # And I follow "Beta, Inc"
+  # And I wait until the has many selector is visible
+  # Then I should see "Fun project" within the list of added items
+  # And I should not see "Empty" within the list of items
