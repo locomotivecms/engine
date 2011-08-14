@@ -10,6 +10,10 @@ module Extensions
         ## fields ##
         field :position, :type => Integer
 
+        ## indexes ##
+        index :position
+        index [[:depth, :asc], [:position, :asc]]
+
         ## behaviours ##
         acts_as_tree :order => ['position', 'asc']
 
