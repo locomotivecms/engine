@@ -98,6 +98,14 @@ Factory.define :page do |p|
   p.site { Site.where(:subdomain => "acme").first || Factory(:site) }
 end
 
+Factory.define :sub_page, :parent => :page do |p|
+  p.title 'Subpage'
+  p.slug 'subpage'
+  p.published true
+  p.site { Site.where(:subdomain => "acme").first || Factory(:site) }
+  p.parent { Page.where(:slug => "index").first || Factory(:page) }
+end
+
 
 ## Snippets ##
 Factory.define :snippet do |s|
