@@ -12,6 +12,14 @@ module Locomotive
         def slug
           self._source.templatized? ? self._source.content_type.slug.singularize : self._source.slug
         end
+        
+        def parent
+          @parent ||= self._source.parent.to_liquid
+        end
+        
+        def breadcrumbs
+          @breadcrumbs ||= liquify(*self._source.self_and_ancestors)
+        end
 
         def children
           @children ||= liquify(*self._source.children)
