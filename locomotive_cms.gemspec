@@ -24,7 +24,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'mongoid', '2.0.2'
   s.add_dependency 'bson_ext', '~> 1.3.0'
   s.add_dependency 'locomotive_mongoid_acts_as_tree', '0.1.5.7'
-  s.add_dependency 'will_paginate'
+  s.add_dependency 'will_paginate', '~> 3.0.0'
 
   s.add_dependency 'haml', '3.1.2'
   s.add_dependency 'sass', '3.1.2'
