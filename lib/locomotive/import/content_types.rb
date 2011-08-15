@@ -56,7 +56,7 @@ module Locomotive
       def content_types
         database['site']['content_types']
       end
-      
+
       def cleanse_attributes(data)
         attributes = { :group_by_field_name => data.delete('group_by') }.merge(data)
 
@@ -68,7 +68,7 @@ module Locomotive
         attributes = cleanse_attributes(data)
         site.content_types.build(attributes)
       end
-      
+
       def update_attributes(content_type, data)
         attributes = cleanse_attributes(data)
         content_type.update_attributes!(attributes)
@@ -77,6 +77,8 @@ module Locomotive
       def add_or_update_fields(content_type, fields)
         fields.each_with_index do |data, position|
           name, data = data.keys.first, data.values.first
+
+          reverse_lookup = data.delete('reverse')
 
           attributes = { :_alias => name, :label => name.humanize, :kind => 'string', :position => position }.merge(data).symbolize_keys
 
@@ -88,7 +90,9 @@ module Locomotive
 
           field.attributes = attributes
 
-          field[:kind] = field[:kind].downcase # old versions of the kind are capitalized
+          field[:kind] = field[:kind].downcase # old versions of the kind field are capitalized
+
+          field[:tmp_reverse_lookup] = reverse_lookup # use the ability in mongoid to set free attributes on the fly
         end
       end
 
@@ -97,9 +101,16 @@ module Locomotive
           content_type.content_custom_fields.each do |field|
             next unless ['has_many', 'has_one'].include?(field.kind)
 
-            target_content_type = site.content_types.where(:name => field.target).first
+            target_content_type = site.content_types.where(:slug => field.target).first
 
-            field.target = target_content_type.content_klass.to_s if target_content_type
+            if target_content_type
+              field.target = target_content_type.content_klass.to_s
+
+              if field[:tmp_reverse_lookup]
+                field.reverse_lookup = field[:tmp_reverse_lookup]
+                field.reverse_lookup = field.safe_reverse_lookup # make sure we store the true value
+              end
+            end
           end
 
           content_type.save

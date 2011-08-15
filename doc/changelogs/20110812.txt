@@ -6,3 +6,4 @@
 - Adding indexes for pages to avoid "Mongo::OperationFailure: too much data" errors (#159)
 - better spanish translations (#161, #162)
 - fix carrierwave version to 0.5.6 (#163)
+- has_many target is not exported correctly (issue #165) + fix the import module as well

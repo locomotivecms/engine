@@ -44,10 +44,3 @@ Scenario: I add a project to a client
   And I wait until the has many selector is visible
   Then I should see "Fun project" within the list of added items
   And "Fun project" should not be an option for "label"
-  #
-  # And I should not see "Empty" within the list of items
-  # When I go to the "Clients" model list page
-  # And I follow "Beta, Inc"
-  # And I wait until the has many selector is visible
-  # Then I should see "Fun project" within the list of added items
-  # And I should not see "Empty" within the list of items
