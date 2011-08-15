@@ -40,6 +40,29 @@ describe Locomotive::Liquid::Drops::Page do
     end
 
   end
+  
+  context '#parent' do
+    before(:each) do
+      @sub_page = Factory.build(:sub_page, :meta_keywords => 'Sub Libidinous, Angsty', :meta_description => "Sub Quite the combination.")
+    end
+    
+    it 'renders title of parent page' do
+      content = render_template '{{ sub_page.parent.title }}', {'sub_page' => @sub_page}
+      content.should == "Home page"
+    end
+          
+  end
+  
+  context '#breadcrumbs' do
+    before(:each) do
+      @sub_page = Factory.build(:sub_page, :meta_keywords => 'Sub Libidinous, Angsty', :meta_description => "Sub Quite the combination.")
+    end
+    
+    it 'renders breadcrumbs of current page' do
+      content = render_template '{% for crumb in sub_page.breadcrumbs %}{{ crumb.title}},{% endfor %}', {'sub_page' => @sub_page}
+      content.should == 'Home page,Subpage,'
+    end
+  end
 
   context '#rendering page title' do
 
