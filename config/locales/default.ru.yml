@@ -40,16 +40,16 @@ ru:
         title: Имя
         parent: Родитель
         slug: Ссылка
-        templatized: Templatized
-        published: Veröffentlicht
-        listed: Im Menü
-        redirect: Umleitung
-        redirect_url: Umleitungs-URL
-        cache_strategy: Cache
+        templatized: Шаблонизирована
+        published: Опубликована
+        listed: Меню
+        redirect: Перенаправлена
+        redirect_url: Адрес перенаправления
+        cache_strategy: Стратегия кеширования
       content_type:
-        name: Name
-        description: Beschreibung
-        slug: Slug
+        name: Имя
+        description: Описание
+        slug: Ссылка
         order_by: Sortieren nach
         order_direction: Reihenfolge
         highlighted_field_name: Hervorgehobener Feld-Name
@@ -61,12 +61,12 @@ ru:
         email: Email
         name: Name
         language: Sprache
-        password: Passwort
+        password: Пароль
         password_confirmation: Bestätigung des Passworts
       snippet:
-        body: Code
-        slug: Slug
-        name: Name
+        body: Код
+        slug: Ссылка
+        name: Название
       theme_asset:
         content_type: Inhalts-Typ
       site:
