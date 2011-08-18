@@ -255,6 +255,8 @@ GEM
     rubyzip (0.9.4)
     s3 (0.3.8)
       proxies (~> 0.2.0)
+    sanitize (2.0.3)
+      nokogiri (>= 1.4.4, < 1.6)
     sass (3.1.2)
     selenium-webdriver (2.4.0)
       childprocess (>= 0.2.1)
@@ -331,6 +333,7 @@ DEPENDENCIES
   ruby-debug
   ruby-debug19
   rubyzip
+  sanitize
   sass (= 3.1.2)
   spork (~> 0.9.0.rc)
   unicorn
