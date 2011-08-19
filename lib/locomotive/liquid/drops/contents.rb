@@ -29,9 +29,15 @@ module Locomotive
           self.collection.each(&block)
         end
 
+        def each_with_index(&block)
+          self.collection.each_with_index(&block)
+        end
+
         def size
           self.collection.size
         end
+
+        alias :length :size
 
         def empty?
           self.collection.empty?
