@@ -1,7 +1,9 @@
+require 'sanitize'
 module Admin
   class ApiContentsController < ActionController::Base
 
     include Locomotive::Routing::SiteDispatcher
+    
 
     before_filter :require_site
 
