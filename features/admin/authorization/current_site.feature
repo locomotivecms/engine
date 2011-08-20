@@ -30,7 +30,7 @@ Background:
     Given I am an authenticated "designer"
     When I go to site settings
     Then I should see "import"
-    And I should see "add account"
+    And I should not see "add account"
     And I should see "SEO settings"
     And I should see "Access points"
     And I should not see the role dropdown on myself
