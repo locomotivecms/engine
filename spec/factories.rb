@@ -1,136 +1,141 @@
-## Site ##
-Factory.define :site do |s|
-  s.name 'Acme Website'
-  s.subdomain 'acme'
-  s.created_at Time.now
-end
+FactoryGirl.define do
 
-Factory.define "test site", :parent => :site do |s|
-  s.name 'Locomotive test website'
-  s.subdomain 'test'
-  s.after_build do |site_test|
-    site_test.memberships.build :account => Account.where(:name => "Admin").first || Factory("admin user"), :role => 'admin'
+  ## Site ##
+  factory :site do
+    name 'Acme Website'
+    subdomain 'acme'
+    created_at Time.now
+
+    factory "test site" do
+      name 'Locomotive test website'
+      subdomain 'test'
+
+      after_build do |site_test|
+        site_test.memberships.build :account => Account.where(:name => "Admin").first || Factory("admin user"), :role => 'admin'
+      end
+
+      factory "another site" do
+        name "Locomotive test website #2"
+        subdomain "test2"
+      end
+
+    end
+
+    factory "existing site" do
+      name "Locomotive site with existing models"
+      subdomain "models"
+      after_build do |site_with_models|
+        site_with_models.content_types.build(
+          :slug => 'projects',
+          :name => 'Existing name',
+          :description => 'Existing description',
+          :order_by => 'created_at')
+      end
+
+    end
+
+    factory "valid site" do
+      # after_build { |valid_site| valid_site.stubs(:valid?).returns(true) }
+    end
+
   end
-end
 
-Factory.define "another site", :parent => "test site" do |s|
-  s.name "Locomotive test website #2"
-  s.subdomain "test2"
-end
+  # Accounts ##
+  factory :account do
+    name 'Bart Simpson'
+    email 'bart@simpson.net'
+    password 'easyone'
+    password_confirmation 'easyone'
+    locale 'en'
 
-Factory.define "existing site", :parent => "site" do |s|
-  s.name "Locomotive site with existing models"
-  s.subdomain "models"
-  s.after_build do |site_with_models|
-    site_with_models.content_types.build(
-      :slug => 'projects',
-      :name => 'Existing name',
-      :description => 'Existing description',
-      :order_by => 'created_at')
+    factory "admin user" do
+      name "Admin"
+      email "admin@locomotiveapp.org"
+    end
+
+    factory "frenchy user" do
+      name "Jean Claude"
+      email "jean@frenchy.fr"
+      locale 'fr'
+    end
+
+    factory "brazillian user" do
+      name "Jose Carlos"
+      email "jose@carlos.com.br"
+      locale 'pt-BR'
+    end
+
+    factory "italian user" do
+      name "Paolo Rossi"
+      email "paolo@paolo-rossi.it"
+      locale 'it'
+    end
+
   end
+
+  ## Memberships ##
+  factory :membership do
+    role 'admin'
+    account { Account.where(:name => "Bart Simpson").first || Factory('admin user') }
+
+    factory :admin do
+      role 'admin'
+      account { Factory('admin user', :locale => 'en') }
+    end
+
+    factory :designer do
+      role 'designer'
+      account { Factory('frenchy user', :locale => 'en') }
+    end
+
+    factory :author do
+      role 'author'
+      account { Factory('brazillian user', :locale => 'en') }
+    end
+
+  end
+
+  ## Pages ##
+  factory :page do
+    title 'Home page'
+    slug 'index'
+    published true
+    site { Site.where(:subdomain => "acme").first || Factory(:site) }
+
+    factory :sub_page do
+      title 'Subpage'
+      slug 'subpage'
+      published true
+      site { Site.where(:subdomain => "acme").first || Factory(:site) }
+      parent { Page.where(:slug => "index").first || Factory(:page) }
+    end
+
+  end
+
+  ## Snippets ##
+  factory :snippet do
+    name 'My website title'
+    slug 'header'
+    template %{<title>Acme</title>}
+    site { Site.where(:subdomain => "acme").first || Factory(:site) }
+  end
+
+
+  ## Assets ##
+  factory :asset do
+    site { Site.where(:subdomain => "acme").first || Factory(:site) }
+  end
+
+
+  ## Theme assets ##
+  factory :theme_asset do
+    site { Site.where(:subdomain => "acme").first || Factory(:site) }
+  end
+
+  ## Content types ##
+  factory :content_type do
+    name 'My project'
+    site { Site.where(:subdomain => "acme").first || Factory(:site) }
+  end
+
 end
-
-Factory.define "valid site", :parent => "site" do |s|
-  # s.after_build { |valid_site| valid_site.stubs(:valid?).returns(true) }
-end
-
-
-# Accounts ##
-Factory.define :account do |a|
-  a.name 'Bart Simpson'
-  a.email 'bart@simpson.net'
-  a.password 'easyone'
-  a.password_confirmation 'easyone'
-  a.locale 'en'
-end
-
-Factory.define "admin user", :parent => :account do |a|
-  a.name "Admin"
-  a.email "admin@locomotiveapp.org"
-end
-
-Factory.define "frenchy user", :parent => :account do |a|
-  a.name "Jean Claude"
-  a.email "jean@frenchy.fr"
-  a.locale 'fr'
-end
-
-Factory.define "brazillian user", :parent => :account do |a|
-  a.name "Jose Carlos"
-  a.email "jose@carlos.com.br"
-  a.locale 'pt-BR'
-end
-
-Factory.define "italian user", :parent => :account do |a|
-  a.name "Paolo Rossi"
-  a.email "paolo@paolo-rossi.it"
-  a.locale 'it'
-end
-
-
-## Memberships ##
-Factory.define :membership do |m|
-  m.role 'admin'
-  m.account { Account.where(:name => "Bart Simpson").first || Factory('admin user') }
-end
-
-Factory.define :admin, :parent => :membership do |m|
-  m.role 'admin'
-  m.account { Factory('admin user', :locale => 'en') }
-end
-
-Factory.define :designer, :parent => :membership do |m|
-  m.role 'designer'
-  m.account { Factory('frenchy user', :locale => 'en') }
-end
-
-Factory.define :author, :parent => :membership do |m|
-  m.role 'author'
-  m.account { Factory('brazillian user', :locale => 'en') }
-end
-
-
-## Pages ##
-Factory.define :page do |p|
-  p.title 'Home page'
-  p.slug 'index'
-  p.published true
-  p.site { Site.where(:subdomain => "acme").first || Factory(:site) }
-end
-
-Factory.define :sub_page, :parent => :page do |p|
-  p.title 'Subpage'
-  p.slug 'subpage'
-  p.published true
-  p.site { Site.where(:subdomain => "acme").first || Factory(:site) }
-  p.parent { Page.where(:slug => "index").first || Factory(:page) }
-end
-
-
-## Snippets ##
-Factory.define :snippet do |s|
-  s.name 'My website title'
-  s.slug 'header'
-  s.template %{<title>Acme</title>}
-  s.site { Site.where(:subdomain => "acme").first || Factory(:site) }
-end
-
-
-## Assets ##
-Factory.define :asset do |a|
-  a.site { Site.where(:subdomain => "acme").first || Factory(:site) }
-end
-
-
-## Theme assets ##
-Factory.define :theme_asset do |a|
-  a.site { Site.where(:subdomain => "acme").first || Factory(:site) }
-end
-
-
-## Content types ##
-Factory.define :content_type do |t|
-  t.name 'My project'
-  t.site { Site.where(:subdomain => "acme").first || Factory(:site) }
-end
-
