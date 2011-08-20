@@ -2,7 +2,7 @@
 
 # helps create a theme asset
 def create_plain_text_asset(name, type)
-  asset = Factory.build(:theme_asset, {
+  asset = FactoryGirl.build(:theme_asset, {
     :site => @site,
     :plain_text_name => name,
     :plain_text => 'Lorem ipsum',

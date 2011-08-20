@@ -5,7 +5,7 @@
 # - I have the site: "some site" set up with name: "Something", domain: "test2"
 #
 Given /^I have the site: "([^"]*)" set up(?: with #{capture_fields})?$/ do |site_factory, fields|
-  @site = Factory(site_factory, parse_fields(fields))
+  @site = FactoryGirl.create(site_factory, parse_fields(fields))
   @site.should_not be_nil
 
   @admin = @site.memberships.first.account
@@ -13,8 +13,8 @@ Given /^I have the site: "([^"]*)" set up(?: with #{capture_fields})?$/ do |site
 end
 
 Given /^I have a designer and an author$/ do
-  Factory(:designer, :site => Site.first)
-  Factory(:author, :site => Site.first)
+  FactoryGirl.create(:designer, :site => Site.first)
+  FactoryGirl.create(:author, :site => Site.first)
 end
 
 Then /^I should be a administrator of the "([^"]*)" site$/ do |name|
