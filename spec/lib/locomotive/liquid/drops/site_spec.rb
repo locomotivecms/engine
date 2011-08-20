@@ -3,9 +3,9 @@ require 'spec_helper'
 describe Locomotive::Liquid::Drops::Site do
 
   before(:each) do
-    @site = Factory.build(:site)
-    page_1 = Factory.build(:page, :site => @site)
-    page_2 = Factory.build(:page, :site => @site, :title => 'About us', :slug => 'about_us')
+    @site = FactoryGirl.build(:site)
+    page_1 = FactoryGirl.build(:page, :site => @site)
+    page_2 = FactoryGirl.build(:page, :site => @site, :title => 'About us', :slug => 'about_us')
     @site.stubs(:pages).returns([page_1, page_2])
   end
 

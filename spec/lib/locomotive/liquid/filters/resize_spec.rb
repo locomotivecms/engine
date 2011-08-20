@@ -3,10 +3,10 @@ require 'spec_helper'
 describe Locomotive::Liquid::Filters::Resize do
 
   before :each do
-    @site             = Factory.create(:site)
-    @theme_asset      = Factory.create(:theme_asset, :source => FixturedAsset.open('5k.png'), :site => @site)
+    @site             = FactoryGirl.create(:site)
+    @theme_asset      = FactoryGirl.create(:theme_asset, :source => FixturedAsset.open('5k.png'), :site => @site)
     @theme_asset_path = "/sites/#{@theme_asset.site_id}/theme/images/5k.png"
-    @asset            = Factory.create(:asset, :source => FixturedAsset.open('5k.png'), :site => @site)
+    @asset            = FactoryGirl.create(:asset, :source => FixturedAsset.open('5k.png'), :site => @site)
     @asset_url        = @asset.source.url
     @asset_path       = "/sites/#{@asset.site_id}/assets/#{@asset.id}/5k.png"
     @context          = Liquid::Context.new( { }, { 'asset_url' => @asset_url, 'theme_asset' => @theme_asset.to_liquid }, { :site => @site })

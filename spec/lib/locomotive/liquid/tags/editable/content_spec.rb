@@ -27,8 +27,8 @@ describe Locomotive::Liquid::Tags::Editable::Content do
     context 'inheriting from a parent' do
     
       before :each do
-        @parent = Factory.build(:page)
-        @child = Factory.build(:page)
+        @parent = FactoryGirl.build(:page)
+        @child = FactoryGirl.build(:page)
       
         @child.stubs(:parent).returns(@parent)
       end
@@ -58,7 +58,7 @@ describe Locomotive::Liquid::Tags::Editable::Content do
     context 'reading from the same page' do
       
       before :each do
-        @page = Factory.build(:page)
+        @page = FactoryGirl.build(:page)
       end
       
       it 'should return the previously defined field' do

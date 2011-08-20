@@ -26,7 +26,7 @@ describe Locomotive::Routing::SiteDispatcher do
 
     before :each do
       @request    = Object.new
-      @site       = Factory.build(:site)
+      @site       = FactoryGirl.build(:site)
 
       @controller.stubs(:request).returns(@request)
       @request.stubs(:host).returns('host')
@@ -48,7 +48,7 @@ describe Locomotive::Routing::SiteDispatcher do
   describe '#current_site' do
 
     before :each do
-      @site = Factory.build(:site)
+      @site = FactoryGirl.build(:site)
     end
 
     it 'returns the current site instance if available' do
@@ -157,8 +157,8 @@ describe Locomotive::Routing::SiteDispatcher do
   describe '#validate_site_membership' do
 
     before :each do
-      @account = Factory.build(:account)
-      @site    = Factory.build(:site)
+      @account = FactoryGirl.build(:account)
+      @site    = FactoryGirl.build(:site)
       @request = ActionDispatch::Request.new({})
 
       @controller.instance_variable_set('@_response', ActionDispatch::Response.new)

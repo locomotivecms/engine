@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Admin::ApiContentsController do
 
   before(:each) do
-    @site = Factory('existing site')
+    @site = FactoryGirl.create('existing site')
     @site.content_types.first.tap do |content_type|
       content_type.content_custom_fields.build :label => 'Name', :kind => 'string', :required => true
       content_type.content_custom_fields.build :label => 'Description', :kind => 'text'

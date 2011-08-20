@@ -36,8 +36,6 @@ Capybara.configure do |config|
   config.default_selector   = :css
   config.server_port        = 9886
   config.app_host           = 'http://test.example.com:9886'
-
-  ensure_host_resolution(config.app_host)
 end
 
 # Capybara.javascript_driver = :rack_test
