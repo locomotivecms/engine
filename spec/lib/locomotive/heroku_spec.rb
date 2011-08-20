@@ -95,8 +95,8 @@ describe 'Heroku support' do
 
       before(:each) do
         configure_locomotive_with_heroku
-        # (@site = Factory.stub(:site)).stubs(:valid?).returns(true)
-        @site = Factory.build('valid site')
+        # (@site = FactoryGirl.stub(:site)).stubs(:valid?).returns(true)
+        @site = FactoryGirl.build('valid site')
         # (@site = Site.new(:name => 'foobar', :subdomain => 'acme')).stubs(:valid?).returns(true)
       end
 

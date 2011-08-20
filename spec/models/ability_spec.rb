@@ -3,12 +3,12 @@ require 'spec_helper'
 describe Ability do
 
   before :each do
-    @site = Factory(:site)
-    @account = Factory(:account)
+    @site = FactoryGirl.create(:site)
+    @account = FactoryGirl.create(:account)
 
-    @admin  = Factory(:membership, :account => Factory.stub(:account), :site => Factory.stub(:site))
-    @designer  = Factory(:membership, :account => Factory.stub(:account), :site => @site, :role => %(designer))
-    @author = Factory(:membership, :account => Factory.stub(:account), :site => @site, :role => %(author))
+    @admin  = FactoryGirl.create(:membership, :account => FactoryGirl.build(:account), :site => FactoryGirl.build(:site))
+    @designer  = FactoryGirl.create(:membership, :account => FactoryGirl.build(:account), :site => @site, :role => %(designer))
+    @author = FactoryGirl.create(:membership, :account => FactoryGirl.build(:account), :site => @site, :role => %(author))
   end
 
   context 'pages' do

@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Locomotive::Liquid::Tags::SEO do
 
   let(:site) do
-    Factory.build(:site, :seo_title => 'Site title (SEO)', :meta_description => 'A short site description', :meta_keywords => 'test only cat dog')
+    FactoryGirl.build(:site, :seo_title => 'Site title (SEO)', :meta_description => 'A short site description', :meta_keywords => 'test only cat dog')
   end
 
   describe 'rendering' do
@@ -80,7 +80,7 @@ describe Locomotive::Liquid::Tags::SEO do
     context "when content instance" do
 
       let(:content_type) do
-        Factory.build(:content_type, :site => site).tap do |ct|
+        FactoryGirl.build(:content_type, :site => site).tap do |ct|
           ct.content_custom_fields.build :label => 'anything', :kind => 'String'
         end
       end

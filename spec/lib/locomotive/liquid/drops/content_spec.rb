@@ -3,8 +3,8 @@ require 'spec_helper'
 describe Locomotive::Liquid::Drops::Content do
 
   before(:each) do
-    @site = Factory.build(:site)
-    content_type = Factory.build(:content_type)
+    @site = FactoryGirl.build(:site)
+    content_type = FactoryGirl.build(:content_type)
     content_type.content_custom_fields.build :label => 'anything', :kind => 'string'
     content_type.content_custom_fields.build :label => 'published_at', :kind => 'date'
     @content = content_type.contents.build({

@@ -8,7 +8,7 @@ describe Asset do
 
     before(:each) do
       Asset.any_instance.stubs(:site_id).returns('test')
-      @asset = Factory.build(:asset)
+      @asset = FactoryGirl.build(:asset)
     end
 
     it 'should process picture' do
@@ -28,7 +28,7 @@ describe Asset do
   describe 'vignette' do
 
     before(:each) do
-      @asset = Factory.build(:asset, :source => FixturedAsset.open('5k.png'))
+      @asset = FactoryGirl.build(:asset, :source => FixturedAsset.open('5k.png'))
     end
 
     it 'does not resize image smaller than 50x50' do

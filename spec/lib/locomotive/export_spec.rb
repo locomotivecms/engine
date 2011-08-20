@@ -5,7 +5,7 @@ describe Locomotive::Export do
   context '#content_type' do
 
     before(:each) do
-      site = Factory.build('another site')
+      site = FactoryGirl.build('another site')
       Site.stubs(:find).returns(site)
       project_type = build_project_type(site)
       project_type.contents.build(:title => 'Project #1', :description => 'Lorem ipsum', :active => true)
@@ -39,7 +39,7 @@ describe Locomotive::Export do
     end
 
     def build_project_type(site)
-      Factory.build(:content_type, :site => site, :highlighted_field_name => 'custom_field_1').tap do |content_type|
+      FactoryGirl.build(:content_type, :site => site, :highlighted_field_name => 'custom_field_1').tap do |content_type|
         content_type.content_custom_fields.build :label => 'Title', :_alias => 'title', :kind => 'string'
         content_type.content_custom_fields.build :label => 'My Description', :_alias => 'description', :kind => 'text'
         content_type.content_custom_fields.build :label => 'Active', :kind => 'boolean'
@@ -49,7 +49,7 @@ describe Locomotive::Export do
     def build_team_type(site, project_type)
       Object.send(:remove_const, 'TestProject') rescue nil
       klass = Object.const_set('TestProject', Class.new { def self.embedded?; false; end })
-      content_type = Factory.build(:content_type, :site => site, :name => 'team', :highlighted_field_name => 'custom_field_1')
+      content_type = FactoryGirl.build(:content_type, :site => site, :name => 'team', :highlighted_field_name => 'custom_field_1')
       content_type.content_custom_fields.build :label => 'Name', :_alias => 'name', :kind => 'string'
       content_type.content_custom_fields.build :label => 'Projects', :kind => 'has_many', :_alias => 'projects', :target => 'TestProject'
       content_type.content_custom_fields.build :label => 'Bio', :_alias => 'bio', :kind => 'text'
@@ -62,7 +62,7 @@ describe Locomotive::Export do
   context '#zipfile' do
 
     before(:all) do
-      @site = Factory('another site')
+      @site = FactoryGirl.create('another site')
 
       # first import a brand new site
       self.import_it

@@ -54,7 +54,7 @@ describe Locomotive::Liquid::Tags::Paginate do
       'projects'      => options.has_key?(:collection) ? options[:collection] : PaginatedCollection.new(['Ruby on Rails', 'jQuery', 'mongodb', 'Liquid', 'sqlite3']),
       'current_page'  => options[:page] || 1
     }, {
-      :page           => Factory.build(:page)
+      :page           => FactoryGirl.build(:page)
     }, true)
   end
 

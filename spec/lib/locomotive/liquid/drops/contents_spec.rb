@@ -3,8 +3,8 @@ require 'spec_helper'
 describe Locomotive::Liquid::Drops::Contents do
 
   before(:each) do
-    @site = Factory.build(:site)
-    @content_type = Factory.build(:content_type, :site => @site, :slug => 'projects')
+    @site = FactoryGirl.build(:site)
+    @content_type = FactoryGirl.build(:content_type, :site => @site, :slug => 'projects')
   end
 
   it 'retrieves a content type from a slug' do

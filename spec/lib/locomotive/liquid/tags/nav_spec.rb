@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Locomotive::Liquid::Tags::Nav do
 
   before(:each) do
-    @home = Factory.build(:page)
+    @home = FactoryGirl.build(:page)
     home_children = [
       Page.new(:title => 'Child #1', :fullpath => 'child_1', :slug => 'child_1', :published => true),
       Page.new(:title => 'Child #2', :fullpath => 'child_2', :slug => 'child_2', :published => true)
@@ -24,7 +24,7 @@ describe Locomotive::Liquid::Tags::Nav do
     pages = [@home]
     pages.stubs(:root).returns(pages)
     pages.stubs(:minimal_attributes).returns(pages) # iso
-    @site = Factory.build(:site)
+    @site = FactoryGirl.build(:site)
     @site.stubs(:pages).returns(pages)
   end
 
