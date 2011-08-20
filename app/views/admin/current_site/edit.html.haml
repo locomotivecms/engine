@@ -3,10 +3,11 @@
 - content_for :submenu do
   = render_cell 'admin/settings_menu', :show
 
-- if can?(:manage, @site)
-  - content_for :buttons do
+- content_for :buttons do
+  - if can?(:manage, @site)
     = admin_button_tag :export, new_admin_export_url, :class => 'new'
     = admin_button_tag :import, new_admin_import_url, :class => 'new'
+  - if can?(:create, Account)
     = admin_button_tag t('.new_membership'), new_admin_membership_url, :class => 'new'
 
 %p!= t('.help')
