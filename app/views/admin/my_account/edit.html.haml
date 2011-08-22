@@ -8,7 +8,7 @@
 
 - if multi_sites?
   - content_for :buttons do
-    = admin_button_tag t('.new_site'), new_admin_site_url, :class => 'new' if can?(:manage, Site)
+    = admin_button_tag t('.new_site'), new_admin_site_url, :class => 'new' if can?(:create, Site)
 
 %p= t('.help')
 

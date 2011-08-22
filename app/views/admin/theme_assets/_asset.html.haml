@@ -9,5 +9,5 @@
     %span!= t('.updated_at')
     %span.date= l asset.updated_at, :format => :short
 
-    - if edit
+    - if edit && can?(:destroy, asset)
       = link_to image_tag('admin/list/icons/trash.png'), admin_theme_asset_path(asset), :class => 'remove', :confirm => t('admin.messages.confirm'), :method => :delete
