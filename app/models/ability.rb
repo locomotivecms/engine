@@ -61,6 +61,8 @@ class Ability
 
     can :point, Site
 
+    cannot :create, Site
+
     can :manage, Membership
 
     cannot :change_role, Membership do |membership|

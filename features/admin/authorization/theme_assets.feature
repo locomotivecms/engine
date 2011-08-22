@@ -6,6 +6,7 @@ Feature: Theme Assets
 Background:
   Given I have the site: "test site" set up
   And I have a designer and an author
+  And I have an image theme asset named "dog.png"
 
   Scenario: As an unauthenticated user
     Given I am not authenticated
@@ -20,6 +21,8 @@ Background:
     And I should see "Snippets"
     And I should see "Style and javascript"
     And I should see "Images"
+    And I should see "dog.png"
+    And I should see a delete image button
 
   Scenario: Accessing theme assets as a Designer
     Given I am an authenticated "designer"
@@ -29,6 +32,8 @@ Background:
     And I should see "Snippets"
     And I should see "Style and javascript"
     And I should see "Images"
+    And I should see "dog.png"
+    And I should see a delete image button
 
   Scenario: Accessing theme assets as an Author
     Given I am an authenticated "author"
@@ -38,3 +43,5 @@ Background:
     And I should not see "Snippets"
     And I should not see "Style and javascript"
     And I should see "Images"
+    And I should see "dog.png"
+    And I should not see a delete image button
