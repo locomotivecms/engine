@@ -103,7 +103,7 @@ module Locomotive
           end
         end
 
-        render :text => output, :layout => false, :status => page_status
+        render :text => output, :layout => false, :status => page_status unless performed?
       end
 
       def not_found_page
