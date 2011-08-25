@@ -23,14 +23,16 @@ module Locomotive
 
             if @context[:page].present?
               @context[:page].add_or_update_editable_element({
-                :block => @context[:current_block].try(:name),
-                :slug => @slug,
-                :hint => @options[:hint],
-                :default_attribute => @options[:default],
-                :default_content => default_content_option,
-                :assignable => @options[:assignable],
-                :disabled => false,
-                :from_parent => false
+                :block                => @context[:current_block].try(:name),
+                :slug                 => @slug,
+                :hint                 => @options[:hint],
+                :priority             => @options[:priority] || 0,
+                :default_attribute    => @options[:default],
+                :default_content      => default_content_option,
+                :assignable           => @options[:assignable],
+                :disabled             => false,
+                :from_parent          => false,
+                :_type                => self.document_type.to_s
               }, document_type)
             end
           end

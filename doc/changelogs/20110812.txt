@@ -8,5 +8,4 @@
 - fix carrierwave version to 0.5.6 (#163)
 - has_many target is not exported correctly (issue #165) + fix the import module as well
 - XSS vulnerability when adding new content from the api_contents_controller (#170)
-- small bugs: #169
--
+- small bugs: #169, #171, #179

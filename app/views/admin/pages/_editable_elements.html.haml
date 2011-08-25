@@ -15,7 +15,7 @@
             %li{ :id => "block-#{index}", :class => 'block', :style => "display: #{index == 0 ? 'block' : 'none' }" }
               %fieldset.inputs
                 %ol
-                  - elements.each_with_index do |el, index|
+                  - elements.each do |el|
                     = f.fields_for 'editable_elements', el, :child_index => el._index do |g|
                       - case el
                         - when EditableLongText

@@ -8,8 +8,9 @@ class EditableElement
     field :default_content
     field :default_attribute
     field :hint
-    field :disabled, :type => Boolean, :default => false
-    field :assignable, :type => Boolean, :default => true
+    field :priority,    :type => Integer, :default => 0
+    field :disabled,    :type => Boolean, :default => false
+    field :assignable,  :type => Boolean, :default => true
     field :from_parent, :type => Boolean, :default => false
 
     ## associations ##
@@ -17,6 +18,9 @@ class EditableElement
 
     ## validations ##
     validates_presence_of :slug
+
+    ## scopes ##
+    scope :by_priority, :order_by => [[:priority, :desc]]
 
     ## methods ##
 

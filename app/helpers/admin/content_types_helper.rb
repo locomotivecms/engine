@@ -1,5 +1,3 @@
-require 'ruby-debug'
-
 module Admin::ContentTypesHelper
 
   MAX_DISPLAYED_CONTENTS = 4
