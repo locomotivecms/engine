@@ -22,7 +22,7 @@ module Admin::CustomFieldsHelper
   def options_for_highlighted_field(content_type, collection_name)
     custom_fields_collection_name = "ordered_#{collection_name.singularize}_custom_fields".to_sym
     collection = content_type.send(custom_fields_collection_name)
-    collection.delete_if { |f| f.label == 'field name' || f.kind == 'file' }
+    collection.delete_if { |f| f.label == 'field name' || %w(file has_one has_many).include?(f.kind) }
     collection.map { |field| [field.label, field._name] }
   end
 
@@ -40,9 +40,7 @@ module Admin::CustomFieldsHelper
   end
 
   def options_for_association_target
-    current_site.content_types.collect do |c|
-      c.persisted? ? [c.name, c.content_klass.to_s] : nil
-    end.compact
+    current_site.reload.content_types.collect { |c| [c.name, c.content_klass.to_s] }
   end
 
   def options_for_reverse_lookups(my_content_type)
