@@ -8,7 +8,7 @@ describe ThemeAsset do
 
     before(:each) do
       ThemeAsset.any_instance.stubs(:site_id).returns('test')
-      @asset = Factory.build(:theme_asset)
+      @asset = FactoryGirl.build(:theme_asset)
     end
 
     describe 'file is a picture' do
@@ -63,7 +63,7 @@ describe ThemeAsset do
         @asset.source = FixturedAsset.open('5k.png')
         @asset.save!
 
-        another_asset = Factory.build(:theme_asset, :site => @asset.site)
+        another_asset = FactoryGirl.build(:theme_asset, :site => @asset.site)
         another_asset.source = FixturedAsset.open('5k.png')
         another_asset.valid?.should be_false
         another_asset.errors[:local_path].should_not be_blank
@@ -94,8 +94,8 @@ describe ThemeAsset do
 
     before(:each) do
       ThemeAsset.any_instance.stubs(:site_id).returns('test')
-      @asset = Factory.build(:theme_asset, {
-        :site => Factory.build(:site),
+      @asset = FactoryGirl.build(:theme_asset, {
+        :site => FactoryGirl.build(:site),
         :plain_text_name => 'test',
         :plain_text => 'Lorem ipsum',
         :performing_plain_text => true

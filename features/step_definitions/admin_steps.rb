@@ -5,7 +5,7 @@ Given /^I am not authenticated$/ do
 end
 
 Given /^I am an authenticated "([^"]*)"$/ do |role|
-  @member = Site.first.memberships.where(:role => role.downcase).first || Factory(role.downcase.to_sym, :site => Site.first)
+  @member = Site.first.memberships.where(:role => role.downcase).first || FactoryGirl.create(role.downcase.to_sym, :site => Site.first)
 
   Given %{I go to login}
   And %{I fill in "Email" with "#{@member.account.email}"}

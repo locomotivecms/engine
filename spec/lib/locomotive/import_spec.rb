@@ -2,15 +2,10 @@ require 'spec_helper'
 
 describe Locomotive::Import::Job do
 
-  # before(:all) do
-  #   # Site.destroy_all
-  #   # Locomotive.configure_for_test(true)
-  # end
-
   context 'when successful' do
 
     before(:all) do
-      @site = Factory(:site)
+      @site = FactoryGirl.create(:site)
 
       job = Locomotive::Import::Job.new(FixturedTheme.duplicate_and_open('default.zip'), @site, { :samples => true, :reset => true })
       job.perform
@@ -115,7 +110,7 @@ describe Locomotive::Import::Job do
 
   context 'with an existing site' do
     before(:all) do
-      @site = Factory("existing site")
+      @site = FactoryGirl.create('existing site')
 
       job = Locomotive::Import::Job.new(FixturedTheme.duplicate_and_open('default.zip'), @site, { :samples => true, :reset => false })
       job.perform

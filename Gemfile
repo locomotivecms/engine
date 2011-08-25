@@ -33,7 +33,7 @@ gem 'mimetype-fu'
 gem 'actionmailer-with-request', :require => 'actionmailer_with_request'
 gem 'heroku', '1.19.1'
 gem 'httparty', '>= 0.6.1'
-gem 'RedCloth', '4.2.7'
+gem 'RedCloth', '4.2.8'
 gem 'delayed_job', '2.1.4'
 gem 'delayed_job_mongoid', '1.0.2'
 gem 'rubyzip'
@@ -68,7 +68,7 @@ group :test do
   gem 'ZenTest'
   gem 'growl-glue'
   gem 'rspec-rails', '2.6.1'
-  gem 'factory_girl_rails'
+  gem 'factory_girl_rails', '~> 1.1'
   gem 'pickle'
   gem 'xpath', '~> 0.1.4'
   gem 'capybara'
@@ -76,7 +76,7 @@ group :test do
 
   gem 'spork', '~> 0.9.0.rc'
   gem 'launchy'
-  gem 'mocha', :git => 'git://github.com/floehopper/mocha.git'
+  gem 'mocha', '0.9.12' # :git => 'git://github.com/floehopper/mocha.git'
 end
 
 group :production do

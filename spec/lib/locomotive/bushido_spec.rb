@@ -66,7 +66,7 @@ describe 'Bushido support' do
 
       before(:each) do
         configure_locomotive_with_bushido
-        @site = Factory.build('test site')
+        @site = FactoryGirl.build('test site')
         @account = @site.memberships.first.account
         Account.stubs(:first).returns(@account)
       end
@@ -83,7 +83,7 @@ describe 'Bushido support' do
 
       before(:each) do
         configure_locomotive_with_bushido
-        @site = Factory.build('valid site')
+        @site = FactoryGirl.build('valid site')
       end
 
       it 'calls add_bushido_domains after saving a site' do
