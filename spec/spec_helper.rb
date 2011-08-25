@@ -86,7 +86,6 @@ end
 
 Spork.each_run do
   # This code will be run each time you run your specs.
-  Locomotive.configure_for_test(true)
   Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 
   # loading ruby file directly breaks the tests
