@@ -3,9 +3,9 @@ ru:
     buttons:
       login: Войти
       send_password: Отправить
-      change_password: Update
-      new_item: "+ add"
-      switch_to_site: Go
+      change_password: Изменить
+      new_item: "+ добавить"
+      switch_to_site: Сайт
       delete: "Удалить"
 
     messages:
@@ -15,12 +15,12 @@ ru:
       header:
         welcome: Привет, %{name}
         see: Сайт
-        switch: Switch to another site
+        switch: К другому сайту
         help: Справка
         logout: Выйти
       menu:
         contents: Содержимое
-        assets: Assets
+        assets: Файлы
         settings: Настройки
         pages: Страницы
         snippets: Сниппеты
@@ -37,45 +37,45 @@ ru:
 
     errors:
       "500":
-        title: Application Error
-        notice: "We're sorry, but something went wrong"
-        link: "&rarr; Back to the application"
+        title: Ошибка Приложения
+        notice: "Мы сожалеем, но что-то пошло не так"
+        link: "&rarr; Назад в приложение"
       "404":
-        title: Page not found
-        notice: "The page you requested does not exist."
-        link: "&rarr; Back to the application"
+        title: Страница не найдена
+        notice: "Запрашиваемая страница не существует."
+        link: "&rarr; Назад в приложение"
 
     notifications:
       new_content_instance:
-        subject: "[%{type}] new"
-        title: "Hi %{name}, just to let you know that a new instance has been created on %{date}"
-        type: "Model: %{type}"
+        subject: "[%{type}] новый"
+        title: "Привет %{name}, просто сообщаем, что новый элемент был создан %{date}"
+        type: "Модель: %{type}"
 
     sites_picker:
       new: + new site
 
     custom_fields:
       edit:
-        title: Editing custom field
+        title: Редактирование пользовательского поля
       text_formatting:
         none: None
         html: HTML
       edit_field:
-        title: Edit field
+        title: Редактировать поле
       edit_category:
-        title: Edit options
+        title: Редактировать опции
         help: Manage the list of options for your select box.
         collection_label: List of options
       types:
         category:
           edit_categories: Edit options
         file:
-          delete_file: Delete file
+          delete_file: Удалить файл
         has_many:
           empty: Empty
       index:
-        is_required: is required
-        default_label: Field name
+        is_required: является обязательным
+        default_label: Название поля
 
     sessions:
       new:
@@ -90,10 +90,10 @@ ru:
         link: "&rarr; Назад к странице входа"
         email: "Ваш email"
       edit:
-        title: Update my password
-        link: "&rarr; Back to login page"
-        password: "Your new password"
-        password_confirmation: "Confirmation of your new password"
+        title: Изменить мой пароль
+        link: "&rarr; Назад к странице логина"
+        password: "Ваш новый пароль"
+        password_confirmation: "Подтверждение нового пароля"
 
     pages:
       index:
@@ -113,7 +113,7 @@ ru:
         ask_for_title: "Пожалуйста введите новое имя страницы"
       form:
         delete_file: Удалить файл
-        default_block: Default
+        default_block: По умолчанию
         cache_strategy:
           none: Нет
           simple: Простая
@@ -135,7 +135,7 @@ ru:
         title: Редактирование сниппета
         help: "Include your snippet in your page templates with the following liquid code : <span class='code'>{% include '%{slug}' %}</span>."
       snippet:
-        updated_at: Updated at
+        updated_at: Обновлено
 
     sites:
       new:
@@ -152,9 +152,9 @@ ru:
 
     memberships:
       roles:
-        admin: Administrator
-        designer: Designer
-        author: Author
+        admin: Администратор
+        designer: Дизайнер
+        author: Автор
       new:
         title: New membership
         help: "Please give the account email to add. If it does not exist, you will be redirected to the account creation form."
