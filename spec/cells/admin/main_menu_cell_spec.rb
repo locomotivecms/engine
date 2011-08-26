@@ -1,21 +1,5 @@
 require 'spec_helper'
 
-module Resetter
-
-  @@original_main_menu_cell_klass = Admin::MainMenuCell
-
-  def self.original_main_menu_cell_klass
-    @@original_main_menu_cell_klass
-  end
-
-  def self.reset_main_menu_cell_klass
-    ::Admin.send(:remove_const, 'MainMenuCell')
-    ::Admin.const_set('MainMenuCell', self.original_main_menu_cell_klass.clone)
-    ::Admin::MainMenuCell.any_instance.stubs(:sections).returns({ :main => 'settings', :sub => 'site' })
-  end
-
-end
-
 describe Admin::MainMenuCell do
 
   render_views
@@ -25,7 +9,7 @@ describe Admin::MainMenuCell do
   describe 'show menu' do
 
     before(:each) do
-      Resetter.reset_main_menu_cell_klass
+      CellsResetter.new_main_menu_cell_klass({ :main => 'settings', :sub => 'site' })
     end
 
     it 'has 2 items' do
@@ -45,7 +29,7 @@ describe Admin::MainMenuCell do
   describe 'add a new menu item' do
 
     before(:each) do
-      Resetter.reset_main_menu_cell_klass
+      CellsResetter.new_main_menu_cell_klass({ :main => 'settings', :sub => 'site' })
       Admin::MainMenuCell.update_for(:testing_add) { |m| m.add(:my_link, :label => 'Shop', :url => 'http://www.locomotivecms.com') }
     end
 
@@ -62,7 +46,7 @@ describe Admin::MainMenuCell do
   describe 'remove a new menu item' do
 
     before(:each) do
-      Resetter.reset_main_menu_cell_klass
+      CellsResetter.new_main_menu_cell_klass({ :main => 'settings', :sub => 'site' })
       Admin::MainMenuCell.update_for(:testing_remove) { |m| m.remove(:settings) }
     end
 
@@ -79,7 +63,7 @@ describe Admin::MainMenuCell do
   describe 'modify an existing menu item' do
 
     before(:each) do
-      Resetter.reset_main_menu_cell_klass
+      CellsResetter.new_main_menu_cell_klass({ :main => 'settings', :sub => 'site' })
       Admin::MainMenuCell.update_for(:testing_update) { |m| m.modify(:settings, { :label => 'Modified !' }) }
     end
 
@@ -92,6 +76,10 @@ describe Admin::MainMenuCell do
       menu.should have_link('Modified !')
     end
 
+  end
+
+  after(:all) do
+    CellsResetter.clean!
   end
 
 end

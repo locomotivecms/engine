@@ -25,6 +25,8 @@ def Locomotive.configure_for_test(force = false)
     config.enable_logs = true
 
     if force
+      ENV['APP_TLD'] = ENV['HEROKU_SLUG'] = ENV['APP_NAME'] = ENV['HEROKU_LOGIN'] = ENV['HEROKU_PASSWORD'] = nil
+
       Locomotive.define_subdomain_and_domains_options
 
       Object.send(:remove_const, 'Site') if Object.const_defined?('Site')

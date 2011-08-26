@@ -121,7 +121,6 @@ var InlineEditorToolbar = {
 
   _bindEvents: function() {
     var self = this;
-    var fullpath = $('meta[name=page-fullpath]').attr('content');
 
     this.form.live('submit', function (e) { $(this).callRemote(); e.stopPropagation(); e.preventDefault();
     }).bind('ajax:complete', function() { self.resetForm();
@@ -146,7 +145,8 @@ var InlineEditorToolbar = {
           window.location.href = window.location.href; break;
 
         case 'back': // back to the non edition mode
-          window.location.href = fullpath; break;
+          var url = window.location.href.replace(/\/edit$/, '');
+          window.location.href = url; break;
 
         case 'drawer': // expand / shrink toolbar
           self.toggle(); break;

@@ -2,7 +2,7 @@
 
 # helps create a simple content page (parent: "index") with a slug, contents, and template
 def create_content_page(page_slug, page_contents, template = nil)
-  @home = @site.pages.where(:slug => "index").first || Factory(:page)
+  @home = @site.pages.where(:slug => "index").first || FactoryGirl.create(:page)
   page = @site.pages.create(:slug => page_slug, :body => page_contents, :parent => @home, :title => "some title", :published => true, :raw_template => template)
   page.should be_valid
   page

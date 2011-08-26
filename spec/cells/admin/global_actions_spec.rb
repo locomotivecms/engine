@@ -1,31 +1,15 @@
 require 'spec_helper'
 
-module Resetter
-
-  @@original_global_actions_cell_klass = Admin::GlobalActionsCell
-
-  def self.original_global_actions_cell_klass
-    @@original_global_actions_cell_klass
-  end
-
-  def self.reset_global_actions_cell_klass
-    ::Admin.send(:remove_const, 'GlobalActionsCell')
-    ::Admin.const_set('GlobalActionsCell', self.original_global_actions_cell_klass.clone)
-    ::Admin::GlobalActionsCell.any_instance.stubs(:sections).returns({ :main => 'settings', :sub => 'site' })
-  end
-
-end
-
 describe Admin::GlobalActionsCell do
 
   render_views
 
-  let(:menu) { render_cell('admin/global_actions', :show, :current_admin => Factory.build('admin user'), :current_site_url => 'http://www.yahoo.fr') }
+  let(:menu) { render_cell('admin/global_actions', :show, :current_admin => FactoryGirl.build('admin user'), :current_site_url => 'http://www.yahoo.fr') }
 
   describe 'show menu' do
 
     before(:each) do
-      Resetter.reset_global_actions_cell_klass
+      CellsResetter.new_global_actions_cell_klass({ :main => 'settings', :sub => 'site' })
     end
 
     it 'has 3 links' do
@@ -49,7 +33,7 @@ describe Admin::GlobalActionsCell do
   describe 'add a new menu item' do
 
     before(:each) do
-      Resetter.reset_global_actions_cell_klass
+      CellsResetter.new_global_actions_cell_klass({ :main => 'settings', :sub => 'site' })
       Admin::GlobalActionsCell.update_for(:testing_add) { |m| m.add(:my_link, :label => 'My link', :url => 'http://www.locomotivecms.com') }
     end
 
@@ -66,7 +50,7 @@ describe Admin::GlobalActionsCell do
   describe 'remove a new menu item' do
 
     before(:each) do
-      Resetter.reset_global_actions_cell_klass
+      CellsResetter.new_global_actions_cell_klass({ :main => 'settings', :sub => 'site' })
       Admin::GlobalActionsCell.update_for(:testing_remove) { |m| m.remove(:see) }
     end
 
@@ -83,7 +67,7 @@ describe Admin::GlobalActionsCell do
   describe 'modify an existing menu item' do
 
     before(:each) do
-      Resetter.reset_global_actions_cell_klass
+      CellsResetter.new_global_actions_cell_klass({ :main => 'settings', :sub => 'site' })
       Admin::GlobalActionsCell.update_for(:testing_update) { |m| m.modify(:see, { :label => 'Modified !' }) }
     end
 
@@ -96,6 +80,10 @@ describe Admin::GlobalActionsCell do
       menu.should have_link('Modified !')
     end
 
+  end
+
+  after(:all) do
+   CellsResetter.clean!
   end
 
 end

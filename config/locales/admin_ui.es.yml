@@ -1,11 +1,22 @@
 es:
   admin:
+    errors:
+      "500":
+        title: Error de Aplicación
+        notice: "Oups! Ha habido un error en la aplicación. Lo sentimos."
+        link: "&rarr; Volver al inicio"
+      "404":
+        title: Página no encontrada
+        notice: "La página requerida no existe."
+        link: "&rarr; Volver"
+
     buttons:
       login: Iniciar sesión
       send_password: Enviar
       change_password: Cambiar
       new_item: "+ añadir"
       switch_to_site: Ir
+      delete: Borrar
 
     messages:
       confirm: Por favor confirme
@@ -14,6 +25,8 @@ es:
       header:
         welcome: Bienvenido, %{name}
         see: Ver Sitio
+        switch: Cambiar de sitio
+        help: Ayuda
         logout: Salir
       menu:
         contents: Contenido
@@ -31,16 +44,6 @@ es:
         create: Crear
         update: Actualizar
         send: Enviar
-
-    errors:
-      "500":
-        title: Error de aplicación
-        notice: "Lo sentimos, pero algo hubo un error en la aplicación"
-        link: "&rarr; Volver"
-      "404":
-        title: Página no encontrada
-        notice: "La página requerida no existe."
-        link: "&rarr; Volver"
 
     notifications:
       new_content_instance:
@@ -60,9 +63,13 @@ es:
         title: Editar opciones
         help: Gestionar la lista de opciones que aparecerán en la lista desplegable.
         collection_label: Lista de opciones
-      custom_form:
-        edit_categories: Editar opciones
-        delete_file: Borrar fichero
+      types:
+        category:
+          edit_categories: Editar opciones
+        file:
+          delete_file: Borrar fichero
+        has_many:
+          empty: Vacío
       index:
         is_required: requerido
         default_label: Nombre del campo
@@ -135,12 +142,17 @@ es:
 
     current_site:
       edit:
+        export: exportar
         import: importar
         new_membership: añadir cuenta
         help: "El nombre del sitio puede actualizarse haciendo click en él."
         ask_for_name: "Por favor escriba el nuevo nombre del sitio"
 
     memberships:
+      roles:
+        admin: Administrador
+        designer: Diseñador
+        author: Autor
       new:
         title: Nueva cuenta
         help: "Por favor escriba el email de la cuenta que a añadir. Si no está en el sistema, se le redirigirá al formulario de creación de cuentas."
@@ -174,7 +186,7 @@ es:
         fonts: Fuentes
         images: Imágenes
         medias: Media
-        no_items: "Por ahora no hay ficheros. Haga click <a href=\"%{url}\">aquí</a> para crear el primero."
+        no_items: "Por ahora no hay ficheros."
       asset:
         updated_at: Última actualización
       new:
@@ -183,6 +195,9 @@ es:
       edit:
         title: "Editando %{file}"
         help: "Este fichero está accesible en la siguiente url: <a href='%{url}'>%{url}</a>"
+        help_image: "Para insertar una imagen de la plantilla en sus páginas o Snippets utilice el siguiente código Liquid: <span class='code'>{{ '%{path}' | theme_image_tag }}</span>.<br/>. La imagen tiene las siguientes dimensiones : <b>%{width}px x %{height}px</b>.<br/>"
+        help_javascript: "Para insertar un fichero javascript en la plantilla de sus páginas utilice el siguiente código Liquid : <span class='code'>{{ '%{path}' | javascript_tag }}</span>.<br/>"
+        help_stylesheet: "Para insertar una hoja de estilos en la plantilla de sus páginas utilice el siguiente código Liquid : <span class='code'>{{ '%{path}' | stylesheet_tag }}</span>.<br/>"
       form:
         picker_link: Insertar un fichero en el código
         choose_file: Elegir un fichero

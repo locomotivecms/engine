@@ -7,6 +7,10 @@ module Admin
 
     before_filter :set_content_type
 
+    before_filter :block_content_type_with_disabled_api
+
+    before_filter :sanitize_content_params, :only => :create
+
     def create
       @content = @content_type.contents.build(params[:content])
 
@@ -32,7 +36,22 @@ module Admin
 
     def set_content_type
       @content_type = current_site.content_types.where(:slug => params[:slug]).first
-      render :json => { :error => 'Api not enabled' } and return false unless @content_type.api_enabled
+    end
+
+    def block_content_type_with_disabled_api
+      unless @content_type.api_enabled?
+        respond_to do |format|
+          format.json { render :json => { :error => 'Api not enabled' }, :status => :forbidden  }
+          format.html { render :text => 'Api not enabled', :status => :forbidden }
+        end
+        return false
+      end
+    end
+
+    def sanitize_content_params
+      (params[:content] || {}).each do |key, value|
+        params[:content][key] = Sanitize.clean(value, Sanitize::Config::BASIC)
+      end
     end
 
   end

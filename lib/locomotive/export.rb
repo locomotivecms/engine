@@ -112,9 +112,19 @@ module Locomotive
         # custom_fields
         fields = []
         content_type.content_custom_fields.each do |field|
-          fields << {
-            field._alias => self.extract_attributes(field, %w(label kind hint target required))
-          }
+          field_attributes = self.extract_attributes(field, %w(label kind hint required))
+
+          if field.target.present?
+            target_klass = field['target'].constantize
+
+            field_attributes['target'] = target_klass._parent.slug
+
+            if field['reverse_lookup'].present?
+              field_attributes['reverse'] = target_klass.custom_field_name_to_alias(field['reverse_lookup'])
+            end
+          end
+
+          fields << { field._alias => field_attributes }
         end
 
         attributes['fields'] = fields
@@ -284,9 +294,11 @@ module Locomotive
           when 'text'
             self.replace_asset_urls_in(content.send(field._name.to_sym) || '')
           when 'has_one'
-            content.send(field.safe_alias.to_sym).highlighted_field_value
+            content.send(field.safe_alias.to_sym).highlighted_field_value rescue nil # no bound object
           when 'has_many'
-            content.send(field.safe_alias.to_sym).collect(&:highlighted_field_value)
+            unless field.reverse_has_many?
+              content.send(field.safe_alias.to_sym).collect(&:highlighted_field_value)
+            end
           else
             content.send(field.safe_alias.to_sym)
           end)

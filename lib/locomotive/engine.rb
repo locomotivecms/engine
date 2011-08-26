@@ -25,6 +25,7 @@ require 'dragonfly'
 require 'cancan'
 require 'RMagick'
 require 'cells'
+require 'sanitize'
 
 $:.unshift File.dirname(__FILE__)
 

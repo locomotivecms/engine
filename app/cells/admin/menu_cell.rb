@@ -45,6 +45,7 @@ class Admin::MenuCell < Cell::Base
       block.call(MenuProxy.new(self))
     end
 
+    # Note: this might cause "stack level too deep" if called twice for the same name
     alias_method_chain :build_list, name.to_sym
   end
 

@@ -7,7 +7,7 @@ module Admin::ContentTypesHelper
 
     @content_types = current_site.content_types.ordered.
       limit(:contents => Locomotive.config.lastest_items_nb).
-      only(:name, :slug, :highlighted_field_name, :content_custom_fields_version, :order_by, :serialized_item_template).to_a
+      only(:site_id, :name, :slug, :highlighted_field_name, :content_custom_fields_version, :order_by, :serialized_item_template, :raw_item_template).to_a
 
     if @content_type && @content_type.persisted? && @content_types.index(@content_type) >= MAX_DISPLAYED_CONTENTS
       @content_types.delete(@content_type)

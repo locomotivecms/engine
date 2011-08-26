@@ -1,6 +1,6 @@
 Given %r{^I have a custom model named "([^"]*)" with$} do |name, fields|
   site = Site.first
-  content_type = Factory.build(:content_type, :site => site, :name => name)
+  content_type = FactoryGirl.build(:content_type, :site => site, :name => name)
   fields.hashes.each do |field|
     if (target_name = field.delete('target')).present?
       target_content_type = site.content_types.where(:name => target_name).first

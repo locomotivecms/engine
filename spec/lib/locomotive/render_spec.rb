@@ -6,10 +6,10 @@ describe 'Locomotive rendering system' do
   before(:each) do
     @controller = Locomotive::TestController.new
     Site.any_instance.stubs(:create_default_pages!).returns(true)
-    @site = Factory.build(:site)
+    @site = FactoryGirl.build(:site)
     Site.stubs(:find).returns(@site)
     @controller.current_site = @site
-    @page = Factory.build(:page, :site => nil, :published => true)
+    @page = FactoryGirl.build(:page, :site => nil, :published => true)
   end
 
   context '#liquid_context' do
@@ -125,7 +125,7 @@ describe 'Locomotive rendering system' do
     context 'templatized page' do
 
       before(:each) do
-        @content_type = Factory.build(:content_type, :site => nil)
+        @content_type = FactoryGirl.build(:content_type, :site => nil)
         @content = @content_type.contents.build(:_visible => true)
         @page.templatized = true
         @page.content_type = @content_type

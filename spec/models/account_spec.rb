@@ -3,14 +3,14 @@ require 'spec_helper'
 describe Account do
 
   it 'should have a valid factory' do
-    Factory.build(:account).should be_valid
+    FactoryGirl.build(:account).should be_valid
   end
 
   ## Validations ##
 
   %w{name email password}.each do |attr|
     it "should validate presence of #{attr}" do
-      account = Factory.build(:account, attr.to_sym => nil)
+      account = FactoryGirl.build(:account, attr.to_sym => nil)
       account.should_not be_valid
       account.errors[attr.to_sym].should include("can't be blank")
     end
@@ -22,26 +22,26 @@ describe Account do
   end
 
   it "should validate uniqueness of email" do
-    Factory(:account)
-    (account = Factory.build(:account)).should_not be_valid
+    FactoryGirl.create(:account)
+    (account = FactoryGirl.build(:account)).should_not be_valid
     account.errors[:email].should == ["is already taken"]
   end
 
   ## Associations ##
 
   it 'should own many sites' do
-    account = Factory(:account)
-    site_1 = Factory(:site, :memberships => [Membership.new(:account => account)])
-    site_2 = Factory(:site, :subdomain => 'foo', :memberships => [Membership.new(:account => account)])
+    account = FactoryGirl.create(:account)
+    site_1 = FactoryGirl.create(:site, :memberships => [Membership.new(:account => account)])
+    site_2 = FactoryGirl.create(:site, :subdomain => 'foo', :memberships => [Membership.new(:account => account)])
     account.reload.sites.to_a.should == [site_1, site_2]
   end
 
   describe 'deleting' do
 
     before(:each) do
-      @account = Factory.build(:account)
-      @site_1 = Factory.build(:site, :subdomain => 'foo', :memberships => [Factory.build(:membership, :account => @account)])
-      @site_2 = Factory.build(:site, :subdomain => 'bar', :memberships => [Factory.build(:membership, :account => @account)])
+      @account = FactoryGirl.build(:account)
+      @site_1 = FactoryGirl.build(:site, :subdomain => 'foo', :memberships => [FactoryGirl.build(:membership, :account => @account)])
+      @site_2 = FactoryGirl.build(:site, :subdomain => 'bar', :memberships => [FactoryGirl.build(:membership, :account => @account)])
       @account.stubs(:sites).returns([@site_1, @site_2])
       Site.any_instance.stubs(:save).returns(true)
     end
@@ -65,7 +65,7 @@ describe Account do
   describe 'cross domain authentication' do
 
     before(:each) do
-      @account = Factory.build(:account)
+      @account = FactoryGirl.build(:account)
       @account.stubs(:save).returns(true)
     end
 

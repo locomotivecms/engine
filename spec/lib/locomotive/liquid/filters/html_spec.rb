@@ -99,7 +99,7 @@ describe Locomotive::Liquid::Filters::Html do
   end
 
   it 'should return a url for a javascript file' do
-    result = "/sites/000000000000000000000042/theme/javascripts/main.js" 
+    result = "/sites/000000000000000000000042/theme/javascripts/main.js"
     javascript_url('main.js').should == result
     javascript_url('main').should == result
     javascript_url(nil).should == ''
@@ -233,7 +233,7 @@ describe Locomotive::Liquid::Filters::Html do
     klass = Class.new
     klass.class_eval do
       def registers
-        { :site => Factory.build(:site, :id => fake_bson_id(42)) }
+        { :site => FactoryGirl.build(:site, :id => fake_bson_id(42)) }
       end
 
       def fake_bson_id(id)

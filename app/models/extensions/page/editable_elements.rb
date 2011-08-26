@@ -32,7 +32,7 @@ module Extensions
         end
 
         def editable_elements_grouped_by_blocks
-          all_enabled = self.editable_elements.reject { |el| el.disabled? }
+          all_enabled = self.editable_elements.by_priority.reject { |el| el.disabled? }
           groups = all_enabled.group_by(&:block)
           groups.delete_if { |block, elements| elements.empty? }
         end

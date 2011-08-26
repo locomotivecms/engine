@@ -26,7 +26,7 @@ describe Locomotive::Routing::SiteDispatcher do
 
     before :each do
       @request    = Object.new
-      @site       = Factory.build(:site)
+      @site       = FactoryGirl.build(:site)
 
       @controller.stubs(:request).returns(@request)
       @request.stubs(:host).returns('host')
@@ -48,7 +48,7 @@ describe Locomotive::Routing::SiteDispatcher do
   describe '#current_site' do
 
     before :each do
-      @site = Factory.build(:site)
+      @site = FactoryGirl.build(:site)
     end
 
     it 'returns the current site instance if available' do
@@ -70,7 +70,7 @@ describe Locomotive::Routing::SiteDispatcher do
       before :each do
         @controller.expects(:current_site).returns(true)
       end
-    
+
       it 'returns true' do
         @controller.send(:require_site).should be_true
       end
@@ -87,7 +87,7 @@ describe Locomotive::Routing::SiteDispatcher do
         @controller.stubs(:admin_installation_url).returns('/admin/install/url/')
         @controller.stubs(:redirect_to).with('/admin/install/url/')
       end
-    
+
       it 'returns false' do
         @controller.send(:require_site).should be_false
       end
@@ -98,7 +98,7 @@ describe Locomotive::Routing::SiteDispatcher do
       end
 
     end
-    
+
     context 'when there are no sites' do
 
       before :each do
@@ -110,7 +110,7 @@ describe Locomotive::Routing::SiteDispatcher do
         @controller.stubs(:admin_installation_url).returns('/admin/install/url/')
         @controller.stubs(:redirect_to).with('/admin/install/url/')
       end
-    
+
       it 'returns false' do
         @controller.send(:require_site).should be_false
       end
@@ -131,7 +131,7 @@ describe Locomotive::Routing::SiteDispatcher do
         @controller.instance_variable_set('@_response', ActionDispatch::Response.new)
         @controller.expects(:current_site).returns(false)
       end
-    
+
       it 'returns false' do
         @controller.send(:require_site).should be_false
       end
@@ -157,8 +157,8 @@ describe Locomotive::Routing::SiteDispatcher do
   describe '#validate_site_membership' do
 
     before :each do
-      @account = Factory.build(:account)
-      @site    = Factory.build(:site)
+      @account = FactoryGirl.build(:account)
+      @site    = FactoryGirl.build(:site)
       @request = ActionDispatch::Request.new({})
 
       @controller.instance_variable_set('@_response', ActionDispatch::Response.new)
@@ -243,5 +243,9 @@ describe Locomotive::Routing::SiteDispatcher do
     end
 
   end
+
+  # after(:all) do
+  #   Locomotive.configure_for_test(true)
+  # end
 
 end

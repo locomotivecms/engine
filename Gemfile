@@ -13,7 +13,7 @@ gem 'devise_bushido_authenticatable', '1.0.0.alpha10', :require => 'devise_cas_a
 gem 'mongoid', '~> 2.0.2'
 gem 'bson_ext', '~> 1.3.0'
 gem 'locomotive_mongoid_acts_as_tree', '0.1.5.7', :require => 'mongoid_acts_as_tree'
-gem 'will_paginate'
+gem 'will_paginate', '~> 3.0.0'
 
 gem 'haml', '3.1.2'
 gem 'sass', '3.1.2'
@@ -22,24 +22,26 @@ gem 'formtastic', '~> 1.2.3'
 gem 'inherited_resources', '~> 1.1.2'
 
 gem 'rmagick', '2.12.2', :require => 'RMagick'
-gem 'carrierwave', '~> 0.5.5'
+gem 'carrierwave', '0.5.6'
 gem 'dragonfly',  '~> 0.9.1'
 gem 'rack-cache', :require => 'rack/cache'
 
-gem 'custom_fields', '1.0.0.beta.22'
+gem 'custom_fields', '1.0.0.beta.24'
 gem 'cancan'
 gem 'fog', '0.8.2'
 gem 'mimetype-fu'
 gem 'actionmailer-with-request', :require => 'actionmailer_with_request'
 gem 'heroku', '1.19.1'
 gem 'httparty', '>= 0.6.1'
-gem 'RedCloth', '4.2.7'
+gem 'RedCloth', '4.2.8'
 gem 'delayed_job', '2.1.4'
 gem 'delayed_job_mongoid', '1.0.2'
 gem 'rubyzip'
 gem 'locomotive_jammit-s3', :require => 'jammit-s3'
 gem 'SystemTimer', :platforms => :ruby_18
 gem 'cells'
+gem 'sanitize'
+gem 'highline'
 
 # The rest of the dependencies are for use when in the locomotive dev environment
 
@@ -66,15 +68,15 @@ group :test do
   gem 'ZenTest'
   gem 'growl-glue'
   gem 'rspec-rails', '2.6.1'
-  gem 'factory_girl_rails'
+  gem 'factory_girl_rails', '~> 1.1'
   gem 'pickle'
   gem 'xpath', '~> 0.1.4'
   gem 'capybara'
   gem 'database_cleaner'
 
-  gem 'spork'
+  gem 'spork', '~> 0.9.0.rc'
   gem 'launchy'
-  gem 'mocha', :git => 'git://github.com/floehopper/mocha.git'
+  gem 'mocha', '0.9.12' # :git => 'git://github.com/floehopper/mocha.git'
 end
 
 group :production do

@@ -24,7 +24,7 @@ module CustomFields
       class Item
 
         def to_liquid
-          { 'id' => self._id, 'name' => self.name }
+          { 'id' => self._id.to_s, 'name' => self.name }
         end
 
       end
