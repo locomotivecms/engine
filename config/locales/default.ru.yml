@@ -5,22 +5,22 @@ ru:
 
   errors:
       messages:
-        domain_taken: "%{value} is already taken"
-        invalid_domain: "%{value} is invalid"
-        needs_admin_account: "One admin account is required at least"
-        protected_page: "You can not remove index or 404 pages"
-        extname_changed: "New file does not have the original extension"
-        array_too_short: "is too small (minimum element number is %{count})"
-        liquid_syntax: "Liquid Syntax error ('%{error}')"
-        invalid_theme_file: "can't be blank or isn't a zip file"
+        domain_taken: "%{value} уже занято"
+        invalid_domain: "%{value} имеет неверное значение"
+        needs_admin_account: "Обязателен хотя бы один аккаунт администратора"
+        protected_page: "Вы не можете удалять стартовую или 404 страницы"
+        extname_changed: "Новый файл не имеет оригинального расширения"
+        array_too_short: "слишком мал (минимальное число элементов %{count})"
+        liquid_syntax: "Ошибка синтаксиса Liquid ('%{error}')"
+        invalid_theme_file: "не может быть пустым или не является zip файлом"
 
         too_short: "слишком короткий (не менее %{count} символов)"
         blank: "не может быть пустым"
         invalid: "имеет неверное значение"
         confirmation: "не совпадает с подтверждением"
         page:
-          liquid_syntax: "Liquid Syntax error ('%{error}' on '%{fullpath}')"
-          liquid_extend: "The page '%{fullpath}' extends a template which does not exist"
+          liquid_syntax: "Ошибка синтаксиса Liquid ('%{error}' в '%{fullpath}')"
+          liquid_extend: "Страница '%{fullpath}' расширяет шаблон, который не существует"
 
   attributes:
     defaults:
@@ -32,7 +32,7 @@ ru:
           title: "Страница не найдена"
           body: "Содержимое страницы 404"
         other:
-          body: "{% extends 'parent' %}"
+          body: "{% расширяет 'parent' %}"
 
   mongoid:
     attributes:
@@ -59,10 +59,10 @@ ru:
         source: Файл
       account:
         email: Email
-        name: Name
-        language: Sprache
+        name: Имя
+        language: Язык
         password: Пароль
-        password_confirmation: Bestätigung des Passworts
+        password_confirmation: Подтверждение пароля
       snippet:
         body: Код
         slug: Ссылка
@@ -78,8 +78,8 @@ ru:
         access_password: "Пароль"
 
   pagination:
-    previous: "&laquo; Previous"
-    next: "Next &raquo;"
+    previous: "&laquo; Предыдущая"
+    next: "Следующая &raquo;"
 
   date:
     formats:
