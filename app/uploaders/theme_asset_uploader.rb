@@ -9,7 +9,7 @@ class ThemeAssetUploader < CarrierWave::Uploader::Base
   end
 
   def extension_white_list
-    %w(jpg jpeg gif png css js swf flv eot svg ttf woff otf ico)
+    %w(jpg jpeg gif png css js swf flv eot svg ttf woff otf ico htc)
   end
 
   def self.url_for(site, path)
