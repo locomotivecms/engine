@@ -64,15 +64,15 @@ ru:
         title: Редактировать поле
       edit_category:
         title: Редактировать опции
-        help: Manage the list of options for your select box.
-        collection_label: List of options
+        help: Управляйте списком опций для поля выбора select.
+        collection_label: Списко опций
       types:
         category:
-          edit_categories: Edit options
+          edit_categories: Редактировать опции
         file:
           delete_file: Удалить файл
         has_many:
-          empty: Empty
+          empty: Пусто
       index:
         is_required: является обязательным
         default_label: Название поля
@@ -125,7 +125,7 @@ ru:
     snippets:
       index:
         title: Список сниппетов
-        help: "Snippets are portion of HTML code which can be found at different places within the site (such as a footer)."
+        help: "Сниппеты это куски HTML кода, которые могут быть использованы в разных местах в рамках сайта (таких, как \"футер\" к примеру)."
         no_items: "Пока нет ни одного сниппета. Нажмите <a href=\"%{url}\">здесь</a> для создания первого сниппета."
         new: новый сниппет
       new:
@@ -133,22 +133,22 @@ ru:
         help: "Заполните форму, приведенную ниже, для изменения сниппета."
       edit:
         title: Редактирование сниппета
-        help: "Include your snippet in your page templates with the following liquid code : <span class='code'>{% include '%{slug}' %}</span>."
+        help: "Включите ваш сниппет в шаблоны страницы с помощью следующего кода liquid : <span class='code'>{% include '%{slug}' %}</span>."
       snippet:
         updated_at: Обновлено
 
     sites:
       new:
-        title: New site
+        title: Новый сайт
         help: "Заполните форму, приведенную ниже, чтобы создать новый сайт."
 
     current_site:
       edit:
         export: экспорт
         import: импорт
-        new_membership: add account
-        help: "The site name can be updated by clicking it. To apply your changes, click on the \"Save\" button."
-        ask_for_name: "Please type the new site name"
+        new_membership: добавить аккаунт
+        help: "Название сайта может быть изменено, если кликнуть на нем. Чтобы применить изменения, нажмите кнопку \"Save\"."
+        ask_for_name: "Пожалуйста введите новое имя сайта"
 
     memberships:
       roles:
@@ -156,31 +156,31 @@ ru:
         designer: Дизайнер
         author: Автор
       new:
-        title: New membership
-        help: "Please give the account email to add. If it does not exist, you will be redirected to the account creation form."
+        title: Новая учетная запись
+        help: "Пожалуйста для добавления предоставьте email аккаунта. Если он не существует, вы будете перенаправлены на форму создания аккаунта."
 
     accounts:
       new:
-        title: New account
+        title: Новый аккаунт
         help: "Заполните форму, приведенную ниже, чтобы добавить новый аккаунт."
 
     my_account:
       edit:
         help: "Вы можете изменить логин просто кликнув на нем. Чтобы применить изменения, нажмите кнопку \"Сохранить\"."
-        new_site: new site
+        new_site: новый сайт
         en: Английский
         de: Немецкий
         fr: Французский
-        pt-BR: "Brazilian Portuguese"
+        pt-BR: "Бразильский - Португальский"
         it: Итальянский
-        nl: Dutch
+        nl: Голландский
         es: Испанский
         ask_for_name: "Пожалуйста введите ваш новый логин"
 
     theme_assets:
       index:
         title: Список файлов темы
-        help: "The theme files section is the place where you manage the files needed by your layout, snippets...etc. If you need to manage an image gallery, create a new content type instead.<br/><b>Warning:</b> you may not see all the assets depending on your rights."
+        help: "Секция файлов темы это место, где вы можете управлять файлами, необходимыми для вашего шаблона, сниппетов и т.д. Если вам необходимо управление галереей изображений, создайте новый тип контента.<br/><b>Внимание:</b> вы можете не увидеть всех файлов - в зависимости от ваших прав."
         new: новый файл
         snippets: Сниппеты
         css_and_js: Стили и javascript
@@ -192,48 +192,48 @@ ru:
         updated_at: Обновлено
       new:
         title: Новый файл
-        help: "You have the choice to either upload any file or to copy/paste a stylesheet or a javascript in plain text."
+        help: "У вас есть выбор - либо загрузить файл, либо копировать/вставить стиль CSS или javascript в виде текста."
       edit:
         title: "Редактирование %{file}"
-        help: "This asset is accessible directly from the following url: <a href='%{url}'>%{url}</a>"
-        help_image: "Include your image in your page templates or snippets with the following liquid code : <span class='code'>{{ '%{path}' | theme_image_tag }}</span>.<br/>Your current image dimensions : <b>%{width}px x %{height}px</b>.<br/>"
-        help_javascript: "Include your javascript file in your page templates or snippets with the following code : <span class='code'>{{ '%{path}' | javascript_tag }}</span>.<br/>"
-        help_stylesheet: "Include your stylesheet file in your page templates or snippets with the following code : <span class='code'>{{ '%{path}' | stylesheet_tag }}</span>.<br/>"
+        help: "Этот файл доступен по следующему url: <a href='%{url}'>%{url}</a>"
+        help_image: "Включите ваше изображение в шаблоны страницы или сниппеты с помощью следующего liquid кода : <span class='code'>{{ '%{path}' | theme_image_tag }}</span>.<br/>Your current image dimensions : <b>%{width}px x %{height}px</b>.<br/>"
+        help_javascript: "Включите ваш javascript файл в шаблоны страницы или сниппеты с помощью следующего кода : <span class='code'>{{ '%{path}' | javascript_tag }}</span>.<br/>"
+        help_stylesheet: "Включите ваш файл стилей CSS в шаблоны страницы или сниппеты с помощью следующего кода : <span class='code'>{{ '%{path}' | stylesheet_tag }}</span>.<br/>"
       form:
-        picker_link: Insert a file into the code
-        choose_file: Choose file
-        choose_plain_text: Choose plain text
+        picker_link: Вставить файл в код
+        choose_file: Выбрать файл
+        choose_plain_text: Выбрать простой текст
       images:
-        title: Listing images
-        no_items: "There are no files for now."
+        title: Список изображений
+        no_items: "Пока нет ни одного файла."
 
     assets:
       new:
-        title: New asset
+        title: Новый файл
         help: "Заполните форму, приведенную ниже, для создания файла (asset)."
       edit:
-        title: Edit asset
+        title: Редактировать файл
         help: "Заполните форму, приведенную ниже, для изменения файла."
 
     content_types:
       index:
         new: новая модель
       new:
-        title: New model
-        help: "Create your own data model (Projects, People, ...etc). Your model should have one field at least. The items created from this content type would have their first field mandatory."
+        title: Новая модель
+        help: "Создайте ваши собственные модели данных (Проекты, Персоны, ...и т.д.). Модель должна иметь по крайней мере одно поле. Элементы, созданные из этого типа содержимого, будут иметь первое поле как обязательное."
       edit:
         title: Редактирование модели
-        help: "Your model should have one field at least. The items created from this content type would have their first field mandatory."
+        help: "Ваша модель должна иметь по крайней мере одно поле. Элементы, созданные из этого типа содержимого, будут иметь это поле как обязательное."
         show_items: смотреть элементы
         new_item: новый элемент
       form:
         order_by:
-          created_at: 'By creation date'
-          updated_at: 'By updating date'
-          position_in_list: Manually
+          created_at: 'По дате создания'
+          updated_at: 'По дате обновления'
+          position_in_list: Вручную
         order_direction:
-          asc: Ascending
-          desc: Descending
+          asc: По возрастанию
+          desc: По убыванию
 
     contents:
       index:
@@ -242,47 +242,47 @@ ru:
         destroy: удалить модель
         download: скачать элементы
         new: новый элемент
-        category_noname: "No name"
+        category_noname: "Без имени"
         lastest_items: "Элементы за последнее время"
         updated_at: "Обновлено"
       list:
         no_items: "На данный момент нет ни одного элемента. Нажмите <a href=\"%{url}\">здесь</a> для создания первого элемента."
       new:
         title:
-          default: '%{type} &mdash; new item'
-          breadcrumb: '%{root} &raquo; %{type} &mdash; new item'
+          default: '%{type} &mdash; новый элемент'
+          breadcrumb: '%{root} &raquo; %{type} &mdash; новый элемент'
       edit:
         title:
-          default: '%{type} &mdash; editing item'
-          breadcrumb: '%{root} &raquo; %{type} &mdash; editing item'
+          default: '%{type} &mdash; редактирование элемента'
+          breadcrumb: '%{root} &raquo; %{type} &mdash; редактирование элемента'
       form:
         has_many:
-          new_item: New item
+          new_item: Новый элемент
 
     image_picker:
       link: Вставить изображение в код
 
     cross_domain_sessions:
       new:
-        title: Cross-domain authentication
-        notice: You will be redirected to the website in a couple of seconds.
+        title: Кроссдоменная аутентификация
+        notice: Вы будете перенаправлены на вебсайт в течение нескольких секунд.
 
     import:
       new:
-        title: Import site template
-        help: "Be careful when you upload a new template for your existing website, your current data could be modified or even removed."
+        title: Импортировать шаблон сайта
+        help: "Будьте осторожны при загрузке нового шаблона для существующего сайта, ваши текущие данные могут быть изменены или даже удалены."
       show:
-        title: Import in progress
-        help: "Your site is being updated from the theme zip file you have just uploaded. It lasts a couple of seconds."
+        title: Выполняется импорт
+        help: "Ваш сайт обновляется из zip файла темы, который вы только что загрузили. Это займет несколько секунд."
         steps:
-          site: Site information
-          content_types: Custom content types
-          assets: Theme files
+          site: Информация сайта
+          content_types: Пользовательские типы содержимого
+          assets: Файлы темы
           snippets: Сниппеты
           pages: Страницы
         messages:
-          success: "Your site was successfully updated."
-          failure: "The import did not work."
+          success: "Ваш сайт был успешно обновлен."
+          failure: "Импорт не работает."
 
     installation:
       common:
