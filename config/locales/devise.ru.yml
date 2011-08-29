@@ -35,13 +35,13 @@ ru:
         destroyed: 'До свидания! Ваш аккаунт был успешно отменен. Мы надеемся скоро увидеть вас снова.'
     unlocks:
       admin:
-        send_instructions: 'You will receive an email with instructions about how to unlock your account in a few minutes.'
-        unlocked: 'Your account was successfully unlocked. You are now signed in.'
+        send_instructions: 'Вам будет отправлено письмо с инструкциями о том, как разблокировать ваш аккаунт, в течение нескольких минут.'
+        unlocked: 'Ваша учетная запись была успешно разблокирована. Вы вошли в систему.'
     mailer:
       admin:
-        confirmation_instructions: 'Confirmation instructions'
-        reset_password_instructions: 'Reset password instructions'
-        unlock_instructions: 'Unlock Instructions'
+        confirmation_instructions: 'Инструкции подтверждения'
+        reset_password_instructions: 'Инструкции по сбросу пароля'
+        unlock_instructions: 'Инструкции по разблокированию'
         
         
   admin:
@@ -50,14 +50,14 @@ ru:
         hello: Здравствуйте
 
       confirmation_instructions:
-        you_can_confirm_your_account_through_the_link_below: "You can confirm your account through the link below:"
-        confirm_my_account: "Confirm my account"
+        you_can_confirm_your_account_through_the_link_below: "Вы можете подтвердить ваш аккаунт с помощью ссылки, расположенной ниже:"
+        confirm_my_account: "Подтвердить мой аккаунт"
       reset_password_instructions:
-        reset_password_instruction: "Someone has requested a link to change your password, and you can do this through the link below:"
-        change_my_password: "Change my password"
-        wrong_request_instruction: "If you didn't request this, please ignore this email."
-        unchange_password_message: "Your password won't change until you access the link above and create a new one."
+        reset_password_instruction: "Кто-то запросил ссылку для изменения вашего пароля, и вы можете сделать это через ссылку, приведенную ниже:"
+        change_my_password: "Изменить мой пароль"
+        wrong_request_instruction: "Если вы не запрашивали это, пожалуйста проигнорируйте это письмо."
+        unchange_password_message: "Ваш пароль не будет изменен до тех пор, пока вы не получите доступ к ссылке, приведенной выше, и создатите новую."
       unlock_instructions:
-        locked_account_message: "Your account has been locked due to an excessive amount of unsuccessful sign in attempts."
-        unlock_account_instruction: "Click the link below to unlock your account:"
-        unlock_my_account: "Unlock my account"
+        locked_account_message: "Ваша учетная запись была заблокирована из-за чрезмерного количества безуспешных попыток входа."
+        unlock_account_instruction: "Нажмите ссылку ниже, чтобы разблокировать ваш аккаунт:"
+        unlock_my_account: "Разблокировать мой аккаунт"
