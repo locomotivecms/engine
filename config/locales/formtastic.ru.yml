@@ -11,20 +11,20 @@ ru:
       credentials: Учетная запись
       language: Язык
       sites: Сайты
-      access_points: Access points
+      access_points: Точки доступа
       memberships: Учетные записи
-      membership_email: Account email
+      membership_email: Email аккаунта
       file: Файл
-      preview: Preview
+      preview: Предпросмотр
       options: Дополнительные настройки
-      custom_fields: Custom fields
-      other_fields: Other information
-      presentation: Presentation
-      attributes: Attributes
-      upload: Upload
+      custom_fields: Пользовательские поля
+      other_fields: Другая информация
+      presentation: Представление
+      attributes: Аттрибуты
+      upload: Загрузить
     labels:
       theme_asset:
-        plain_text_name: File name
+        plain_text_name: Имя файла
         content_type: Тип файла
         new:
           source: Файл
@@ -32,68 +32,68 @@ ru:
           source: Заменить файл
       custom_fields:
         field:
-          _alias: Alias
+          _alias: Алиас
       import:
         new:
           source: Файл
-          samples: Copy samples
-          reset: Reset site
-          default_site_template: "Use the default site template. Click <a href='#'>here</a> to upload a site template as a zip file instead."
+          samples: Копировать образцы
+          reset: Сбросить сайт
+          default_site_template: "Используйте шаблон сайта по умолчанию. Нажмите <a href='#'>здесь</a> для загрузки шаблона сайта в виде zip файла."
       content_type:
-        item_template: Item template
-        api_accounts: Notified Accounts
+        item_template: Шаблон элемента
+        api_accounts: Уведомленные аккаунты
       content_instance:
-        _slug: Permalink
+        _slug: Постоянная ссылка
       account:
         edit:
           password: Новый пароль
           password_confirmation: Подтверждение нового пароля
       page:
-        seo_title: Title
+        seo_title: Название
 
     hints:
       page:
-        published: "Only authenticated accounts can view unpublished pages."
-        cache_strategy: "Cache the page for better performance. The 'Simple' choice is a good compromise."
-        templatized: "Use the page as a template for a model you defined."
-        listed: "Control whether to show the page from generated menus."
-        content_type_id: "The type of content this page will be a template for."
-        seo_title: "Define a page title which should be used as the value for the title tag in the head section. Leave it empty if you want to use the default value from the site settings."
-        meta_keywords: "Overrides the site's meta keywords used within the head tag of the page. They are separated by a comma."
-        meta_description: "Overrides the site's meta description used within the head tag of the page."
+        published: "Только аутентифицированным пользователям разрешается просматривать неопубликованные страницы."
+        cache_strategy: "Кэшировать страницу для лучшей производительности. Вариант 'Простое' является хорошим компромиссом."
+        templatized: "Используйте страницу в качестве шаблона для определенной вами модели."
+        listed: "Контролируйте возможность показа страницы из сгенерированных меню."
+        content_type_id: "Тип содержимого, для которого эта страница будет выступать в качестве шаблона."
+        seo_title: "Определите заголовок страницы, который будет использоваться как значение тэга title в секции head. Оставьте пустым, если вы хотите использовать значение по умолчанию из настроек сайта."
+        meta_keywords: "Переопределяет meta keywords сайта, используемые внутри тэга head страницы. Они разделены запятыми."
+        meta_description: "Переопределяет meta description сайта, используемые внутри тэга head страницы."
       snippet:
-        slug: "You need to know it in order to insert the snippet inside a page"
+        slug: "Вам необходимо знать это для вставки сниппета в страницу"
       site:
-        seo_title: "Define a global value here which should be used as the value for the title tag in the head section."
-        meta_keywords: "Meta keywords used within the head tag of the page. They are separated by a comma. Required for SEO."
-        meta_description: "Meta description used within the head tag of the page. Required for SEO."
+        seo_title: "Задайте глобальное значение здесь, которое будет использовано как значение для тэга title в секции head."
+        meta_keywords: "Meta keywords используются внутри тэга head страницы. Они разделяются запятыми. Требуется для SEO."
+        meta_description: "Meta description используются для тэга head страницы. Необходимо для SEO."
         domain_name: "ex: locomotiveapp.org"
         robots_txt: "Содержимое файла <span class='code'>/robots.txt</span>. См. <a href='http://www.w3.org/TR/html4/appendix/notes.html#h-B.4.1.1'>url</a> для получения большей информации."
       theme_asset:
-        slug: "You do not need to add the extension file (.css or .js)"
+        slug: "Ва не нужно добавлять расширение файла (.css or .js)"
         edit:
-          source: "You can replace it by a file of the same extension"
+          source: "Вы можете заменить это файлом, имеющим такое же расширение"
       asset:
-        source: "All file types are accepted."
+        source: "Все типы файлов приняты."
         edit:
-          source: "The current file is available here %{url}"
+          source: "Текущий файл доступен здесь %{url}"
         update:
-          source: "The current file is available here %{url}"
+          source: "Текущий файл доступен здесь %{url}"
       custom_fields:
         field:
-          _alias: "Property available in liquid templates"
-          hint: "Text displayed in the model form just below the field"
+          _alias: "Свойство, доступное в шаблонах liquid"
+          hint: "Текст, отображенный в форме модели, находится ниже поля"
       content_instance:
-        _slug: "Property used to generate the url of a page working as a template for this content type (ex: \"template_page/{{ your_object._permalink }})\"."
-        seo_title: "The value you fill in will replace the SEO title of the templatized page related to your model."
-        meta_keywords: "Overrides the site's meta keywords used within the head tag of the page. They are separated by a comma."
-        meta_description: "Overrides the site's meta description used within the head tag of the page."
+        _slug: "Свойство, используемое для генерации ссылки (url) на страницу, работающей как шаблон для этого типа содержимого (ex: \"template_page/{{ your_object._permalink }})\"."
+        seo_title: "Значение, вводимое вами, будет заменять SEO заголовок шаблонизированной страницы, связанной с вашей моделью."
+        meta_keywords: "Переопределяет meta keywords сайта, используемые внутри тэга head страницы. Разделяются запятыми."
+        meta_description: "Переопределяет meta description сайта, используемые внутри тэга head страницы."
       import:
-        source: "A zipfile containing a database.yml along with assets and templates"
-        samples: "If enabled, the import process will also copy contents and assets"
-        reset: "If enabled, all the data of your site will be destroyed before importing the new site"
+        source: "Файл zip, содержащий database.yml вместе с файлами и шаблонами"
+        samples: "Если включено, процесс импорта также скопирует содержимое и файлы"
+        reset: "Если включено, все данные вашего сайта будут уничтожены перед импортом нового сайта"
       content_type:
-        item_template: "You can customize the text displayed for each item in the list. Simply use Liquid. Ex: {{ content.name }})"
-        api_enabled: "It is used to let people from outside to create new instances (example: messages in a contact form)"
-        api_accounts: "A notification email will be sent to each of the accounts listed above when a new instance is created"
+        item_template: "Вы можете задавать текст, отображаемый для каждого элемента в списке. Просто используйте Liquid. Пр.: {{ content.name }})"
+        api_enabled: "Это используется для того, чтобы дать людям извне возможность создавать новые экземляры (пример: сообщения в форме контакта)"
+        api_accounts: "Письмо с уведомлением будет отправлено на каждый аккаунт из списка выше, когда создан новый экземпляр"
 
