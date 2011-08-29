@@ -1,0 +1,4 @@
+ru:
+  carrierwave:
+    errors:
+      integrity: 'не допустимый тип файла.'
