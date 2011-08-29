@@ -1,7 +1,4 @@
-ru:
-  date:
-    formats:
-      default: "%m/%d/%Y"
+ru:  
 
   errors:
       messages:
@@ -50,11 +47,11 @@ ru:
         name: Имя
         description: Описание
         slug: Ссылка
-        order_by: Sortieren nach
-        order_direction: Reihenfolge
-        highlighted_field_name: Hervorgehobener Feld-Name
-        group_by_field_name: Gruppierung nach Feld-Name
-        api_enabled: API aktiviert
+        order_by: Сортировать по
+        order_direction: Направление сортировки
+        highlighted_field_name: Выделенное имя поля
+        group_by_field_name: Группировка по имени поля
+        api_enabled: API включен
       asset:
         source: Файл
       account:
@@ -68,13 +65,13 @@ ru:
         slug: Ссылка
         name: Название
       theme_asset:
-        content_type: Inhalts-Typ
+        content_type: Тип содержимого
       site:
         name: Имя сайта
         domain_name: Домен
         subdomain: Поддомен
-        restricted_access: Aktiviert ?
-        access_login: Benutzernamen
+        restricted_access: Активный ?
+        access_login: Имя пользователя
         access_password: "Пароль"
 
   pagination:
