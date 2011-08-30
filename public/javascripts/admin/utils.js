@@ -31,3 +31,10 @@ Object.size = function(obj) {
   }
   return size;
 };
+
+// Make a DOM option for a select box. This code works around a bug in IE
+function makeOption(text, value, defaultSelected, selected) {
+  var option = new Option('', value, defaultSelected, selected);
+  $(option).text(text);
+  return option;
+}

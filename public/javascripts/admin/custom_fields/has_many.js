@@ -11,10 +11,10 @@ $(document).ready(function() {
 
       if (context.data.new_item) {
         var newItemInfo = context.data.new_item;
-        var option = new Option(newItemInfo.label, newItemInfo.url, true, true);
+        var option = makeOption(newItemInfo.label, newItemInfo.url, true, true);
         context.select.append(option);
 
-        context.select.append(new Option('-'.repeat(newItemInfo.label.length), '', false, false));
+        context.select.append(makeOption('-'.repeat(newItemInfo.label.length), '', false, false));
       }
 
       for (var i = 0; i < context.data.collection.length; i++) {
@@ -27,7 +27,7 @@ $(document).ready(function() {
           for (var j = 0; j < obj.items.length; j++) {
             var innerObj = obj.items[j];
             if ($.inArray(innerObj[1], context.data.taken_ids) == -1) {
-              optgroup.append(new Option(innerObj[0], innerObj[1], false, false));
+              optgroup.append(makeOption(innerObj[0], innerObj[1], false, false));
               size++;
             }
           }
@@ -36,8 +36,7 @@ $(document).ready(function() {
         } else {
           if ($.inArray(obj[1], context.data.taken_ids) == -1)
           {
-            var option = new Option("", obj[1], false, false);
-            $(option).text(obj[0]);
+            var option = makeOption(obj[0], obj[1], false, false);
             context.select.append(option);
           }
         }
