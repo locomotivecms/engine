@@ -84,7 +84,7 @@ module Admin::CustomFieldsHelper
   end
 
   def options_for_has_one_or_has_many(field, content = nil, &block)
-    content_type = field.target.constantize._parent
+    content_type = field.target.constantize._parent.reload
 
     if content_type.groupable?
       grouped_contents = content_type.list_or_group_contents
