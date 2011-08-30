@@ -69,7 +69,7 @@ class Page
     if self.index? || self.not_found?
       self.slug
     else
-      slugs = self.self_and_ancestors.map(&:slug)
+      slugs = self.self_and_ancestors.sort_by(&:depth).map(&:slug)
       slugs.shift unless slugs.size == 1
       File.join slugs
     end
