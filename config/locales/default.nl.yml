@@ -1,7 +1,143 @@
 nl:
-  date:
+  number:
+    format:
+      separator: ","
+      precision: 2
+      delimiter: .
+    human:
+      storage_units:
+        format: "%n %u"
+        units:
+          kb: KB
+          tb: TB
+          gb: GB
+          byte:
+            one: Byte
+            other: Bytes
+          mb: MB
+    currency:
+      format:
+        format: "%u %n"
+        unit: !binary |
+          4oKs
+
+        separator: .
+        precision: 2
+        delimiter: .
+
+  time:
+    am: "'s ochtends"
     formats:
-      default: "%m/%d/%Y"
+      default: "%a %d %b %Y %H:%M:%S %Z"
+      time: "%H:%M"
+      short: "%d %b %H:%M"
+      only_second: "%S"
+      datetime:
+        formats:
+          default: "%d-%m-%YT%H:%M:%S%Z"
+      long: "%d %B %Y %H:%M"
+    pm: "'s middages"
+  date:
+    month_names:
+    -
+    - Januari
+    - Februari
+    - Maart
+    - April
+    - Mei
+    - Juni
+    - Juli
+    - Augustus
+    - September
+    - Oktober
+    - November
+    - December
+    abbr_day_names:
+    - Zon
+    - Maa
+    - Din
+    - Woe
+    - Don
+    - Vri
+    - Zat
+    order:
+    - :day
+    - :month
+    - :year
+    formats:
+      only_day: "%e"
+      default: "%d/%m/%Y"
+      short: "%e %b"
+      long: "%e %B %Y"
+    day_names:
+    - Zondag
+    - Maandag
+    - Dinsdag
+    - Woensdag
+    - Donderdag
+    - Vrijdag
+    - Zaterdag
+    abbr_month_names:
+    -
+    - Jan
+    - Feb
+    - Mar
+    - Apr
+    - Mei
+    - Jun
+    - Jul
+    - Aug
+    - Sep
+    - Okt
+    - Nov
+    - Dec
+  support:
+    array:
+      words_connector: ","
+      last_word_connector: ", en"
+      two_words_connector: en
+  datetime:
+    format:
+      default: "%Y-%m-%dT%H:%M:%S%Z"
+    prompts:
+      minute: Minuut
+      second: Seconden
+      month: Maand
+      hour: Uur
+      day: Dag
+      year: Jaar
+    distance_in_words:
+      less_than_x_minutes:
+        one: "minder dan \xC3\xA9\xC3\xA9n minuut"
+        other: minder dan {{count}} minuten
+      x_days:
+        one: 1 dag
+        other: "{{count}} dagen"
+      x_seconds:
+        one: 1 seconde
+        other: "{{count}} seconden"
+      about_x_hours:
+        one: "ongeveer \xC3\xA9\xC3\xA9n uur"
+        other: ongeveer {{count}} uur
+      less_than_x_seconds:
+        one: "minder dan \xC3\xA9\xC3\xA9n seconde"
+        other: minder dan {{count}} seconden
+      x_months:
+        one: 1 maand
+        other: "{{count}} maanden"
+      x_minutes:
+        one: 1 minuut
+        other: "{{count}} minuten"
+      about_x_years:
+        one: "ongeveer \xC3\xA9\xC3\xA9n jaar"
+        other: ongeveer {{count}} jaren
+      about_x_months:
+        one: "ongeveer \xC3\xA9\xC3\xA9n maand"
+        other: ongeveer {{count}} maanden
+      over_x_years:
+        one: "langer dan \xC3\xA9\xC3\xA9n jaar"
+        other: langer {{count}} jaar
+      half_a_minute: halve minuut
 
   errors:
       messages:
@@ -27,7 +163,7 @@ nl:
           title: "Pagina niet gevonden"
           body: "Inhoud van de 404 pagina"
         other:
-          body: "{% breid 'parent' uit %}"
+          body: "{% extends 'parent' %}"
 
   pagination:
     previous: "&laquo; Vorige"
