@@ -4,7 +4,7 @@ source :rubygems
 
 gem 'rake', '0.9.2'
 
-gem 'rails', '3.0.9'
+gem 'rails', '3.0.10'
 
 gem 'warden'
 gem 'devise', '1.3.4'
@@ -26,7 +26,7 @@ gem 'carrierwave', '0.5.6'
 gem 'dragonfly',  '~> 0.9.1'
 gem 'rack-cache', :require => 'rack/cache'
 
-gem 'custom_fields', '1.0.0.beta.24'
+gem 'custom_fields', '1.0.0.beta.25'
 gem 'cancan'
 gem 'fog', '0.8.2'
 gem 'mimetype-fu'
