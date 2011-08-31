@@ -174,8 +174,6 @@ var MediafileDialog = {
     asset.removeClass('new-asset');
 
     $('p.no-items').hide();
-
-    $('ul').scrollTo($('li.asset:last'), 400);
   },
 
   _destroyAsset: function(asset) {
