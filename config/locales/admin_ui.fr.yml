@@ -176,6 +176,8 @@ fr:
         it: "en Italien"
         nl: "en Hollandais"
         es: en Espagnol
+        ru: en Russe
+
         ask_for_name: "Veuillez entrer le nouveau nom"
 
     theme_assets:

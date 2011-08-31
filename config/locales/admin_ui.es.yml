@@ -173,6 +173,7 @@ es:
         it: Italiano
         nl: holandés
         es: Español
+        ru: Ruso
         ask_for_name: "Por favor escriba su nuevo nombre"
 
     theme_assets:

@@ -9,3 +9,5 @@
 - has_many target is not exported correctly (issue #165) + fix the import module as well
 - XSS vulnerability when adding new content from the api_contents_controller (#170)
 - small bugs: #169, #171, #179
+- russian version (#188)
+-

@@ -175,6 +175,7 @@ en:
         it: Italian
         nl: Dutch
         es: Spanish
+        ru: Russian
         ask_for_name: "Please type your new name"
 
     theme_assets:

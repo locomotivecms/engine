@@ -173,6 +173,7 @@ it:
         it: Italiano
         nl: Olandese
         es: Spagnolo
+        ru: Russo
         ask_for_name: "Prego, digita il tuo nome"
 
     theme_assets:

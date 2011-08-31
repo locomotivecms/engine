@@ -19,8 +19,8 @@ h2. Gems
 
 Here is a short list of main gems used in the application.
 
-* Rails 3.0.9
-* Mongoid 2.0.2 (with MongoDB 1.6)
+* Rails 3.0.10
+* Mongoid 2.0.2 (with MongoDB 1.8)
 * Liquid
 * Devise
 * Carrierwave
@@ -34,8 +34,8 @@ See the "official website":http://www.locomotivecms.com
 
 h2. Team
 
-* Developers: "Didier Lafforgue":http://www.nocoffee.fr, "Jacques Crocker":http://www.railsjedi.com
-* Contributors: "Dirk Kelly":http://www.dirkkelly.com, "Mario Visic":http://www.mariovisic.com, "Raphael Costa":http://raphaelcosta.net (Brazilian Portuguese translation), "Bernd Hauser":http://www.designhunger.de (German translation), "Andrea Frigido":http://www.frisoft.it (Italian translation), "Enrique García":https://github.com/kikito (Spanish translation), "Lars Smit":https://github.com/larssmit (Dutch translation)
+* Developers: "Didier Lafforgue":http://www.nocoffee.fr, "Jacques Crocker":http://www.railsjedi.com, "Mario Visic":http://www.mariovisic.com
+* Contributors: "Dirk Kelly":http://www.dirkkelly.com, "Raphael Costa":http://raphaelcosta.net (Brazilian Portuguese translation), "Bernd Hauser":http://www.designhunger.de (German translation), "Andrea Frigido":http://www.frisoft.it (Italian translation), "Enrique García":https://github.com/kikito (Spanish translation), "Lars Smit":https://github.com/larssmit (Dutch translation), "PitOn":https://github.com/GarPit (Russian translation)
 * UI Designer: "Sacha Greif":http://www.sachagreif.com
 * IE maintainer: "Alex Sanford":https://github.com/alexsanford
 

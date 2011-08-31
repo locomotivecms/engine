@@ -164,6 +164,7 @@ de:
         it: "Italienisch"
         nl: "Holländer"
         es: "Spanisch"
+        ru: "Russisch"
         ask_for_name: "Bitte gib deinen neuen Namen an"
 
     theme_assets:
