@@ -33,4 +33,6 @@ gem_graph.png
 sites/
 permanent
 doc/bushido
+*.swp
+
 

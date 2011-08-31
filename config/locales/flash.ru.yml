@@ -1,0 +1,106 @@
+ru:
+  flash:
+    admin:
+      pages:
+        create:
+          notice: "Страница успешно создана."
+          alert: "Страница не создана."
+        update:
+          notice: "Страница успешно обновлена."
+          alert: "Страница не обновлена."
+        sort:
+          notice: "Страницы успешно отсортированы."
+        destroy:
+          notice: "Страницы успешно удалены."
+
+      contents:
+        create:
+          notice: "Контент успешно создан."
+          alert: "Контент не создан."
+        update:
+          notice: "Контент успешно обновлен."
+          alert: "Контент не обновлен."
+        sort:
+          notice: "Содержимое успешно отсортировано."
+        destroy:
+          notice: "Содержимое успешно удалено."
+
+      content_types:
+        create:
+          notice: "Модель успешно создана."
+          alert: "Модель не создана."
+        update:
+          notice: "Модель успешно обновлена."
+          alert: "Модель не обновлена."
+        destroy:
+          notice: "Модель успешно удалена."
+
+      current_site:
+        update:
+          notice: "Мой сайт успешно обновлен."
+          alert: "Мой сайт не обновлен."
+
+      snippets:
+        create:
+          notice: "Сниппет успешно создан."
+          alert: "Сниппет не создан."
+        update:
+          notice: "Сниппет успешно обновлен."
+          alert: "Сниппет не обновлен."
+        destroy:
+          notice: "Сниппет успешно удален."
+
+      accounts:
+        create:
+          notice: "Аккаунт успешно создан."
+          alert: "Аккаунт не создан."
+
+      my_account:
+        update:
+          notice: "Мой аккаунт успешно обновлен."
+          alert: "Мой аккаунт не обновлен."
+
+      sites:
+        create:
+          notice: "Сайт успешно создан."
+          alert: "Сайт не создан."
+        destroy:
+          notice: "Сайт успешно удален."
+
+      memberships:
+        create:
+          notice: "Учетная запись успешно создана."
+          alert: "Учетная запись не создана."
+          already_created: "Учетная запись уже добавлена в текущий сайт."
+
+      assets:
+        create:
+          notice: "Файл успешно создан."
+          alert: "Файл не создан."
+        update:
+          notice: "Файл успешно обновлен."
+          alert: "Файл не обновлен."
+
+      theme_assets:
+        create:
+          notice: "Файл успешно создан."
+          alert: "Файл не создан."
+        update:
+          notice: "Файл успешно обновлен."
+          alert: "Файл не обновлен."
+        destroy:
+          notice: "Файл успешно удален."
+
+      custom_fields:
+        update:
+          alert: "Поле не обновлено"
+
+      cross_domain_sessions:
+        create:
+          alert: "Вам необходимо войти"
+
+      import:
+        create:
+          done: "Ваш сайт успешно обновлен"
+          notice: "Ваш сайт обновляется"
+          alert: "Импорт не завершен."
