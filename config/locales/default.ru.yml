@@ -1,0 +1,281 @@
+ru:  
+
+  errors:
+      messages:
+        domain_taken: "%{value} уже занято"
+        invalid_domain: "%{value} имеет неверное значение"
+        needs_admin_account: "Обязателен хотя бы один аккаунт администратора"
+        protected_page: "Вы не можете удалять стартовую или 404 страницы"
+        extname_changed: "Новый файл не имеет оригинального расширения"
+        array_too_short: "слишком мал (минимальное число элементов %{count})"
+        liquid_syntax: "Ошибка синтаксиса Liquid ('%{error}')"
+        invalid_theme_file: "не может быть пустым или не является zip файлом"
+
+        too_short: "слишком короткий (не менее %{count} символов)"
+        blank: "не может быть пустым"
+        invalid: "имеет неверное значение"
+        confirmation: "не совпадает с подтверждением"
+        page:
+          liquid_syntax: "Ошибка синтаксиса Liquid ('%{error}' в '%{fullpath}')"
+          liquid_extend: "Страница '%{fullpath}' расширяет шаблон, который не существует"
+
+  attributes:
+    defaults:
+      pages:
+        index:
+          title: "Стартовая страница"
+          body: "Содержимое стартовой страницы"
+        "404":
+          title: "Страница не найдена"
+          body: "Содержимое страницы 404"
+        other:
+          body: "{% расширяет 'parent' %}"
+
+  mongoid:
+    attributes:
+      page:
+        title: Имя
+        parent: Родитель
+        slug: Ссылка
+        templatized: Шаблонизирована
+        published: Опубликована
+        listed: Меню
+        redirect: Перенаправлена
+        redirect_url: Адрес перенаправления
+        cache_strategy: Стратегия кеширования
+      content_type:
+        name: Имя
+        description: Описание
+        slug: Ссылка
+        order_by: Сортировать по
+        order_direction: Направление сортировки
+        highlighted_field_name: Выделенное имя поля
+        group_by_field_name: Группировка по имени поля
+        api_enabled: API включен
+      asset:
+        source: Файл
+      account:
+        email: Email
+        name: Имя
+        language: Язык
+        password: Пароль
+        password_confirmation: Подтверждение пароля
+      snippet:
+        body: Код
+        slug: Ссылка
+        name: Название
+      theme_asset:
+        content_type: Тип содержимого
+      site:
+        name: Имя сайта
+        domain_name: Домен
+        subdomain: Поддомен
+        restricted_access: Активный ?
+        access_login: Имя пользователя
+        access_password: "Пароль"
+
+  pagination:
+    previous: "&laquo; Предыдущая"
+    next: "Следующая &raquo;"
+
+  date:
+    formats:
+      # Форматы указываются в виде, поддерживаемом strftime.
+      # По умолчанию используется default.
+      # Можно добавлять собственные форматы
+      #
+      #
+      # Use the strftime parameters for formats.
+      # When no format has been given, it uses default.
+      # You can provide other formats here if you like!
+      default: "%d.%m.%Y"
+      short: "%d %b"
+      long: "%d %B %Y"
+    
+    # Названия дней недели -- контекстные и отдельностоящие
+    day_names: [воскресенье, понедельник, вторник, среда, четверг, пятница, суббота]
+    standalone_day_names: [Воскресенье, Понедельник, Вторник, Среда, Четверг, Пятница, Суббота]
+    abbr_day_names: [Вс, Пн, Вт, Ср, Чт, Пт, Сб]
+
+    # Названия месяцев -- сокращенные и полные, плюс отдельностоящие.
+    # Не забудьте nil в начале массиве (~)
+    # 
+    #
+    # Don't forget the nil at the beginning; there's no such thing as a 0th month
+    month_names: [~, января, февраля, марта, апреля, мая, июня, июля, августа, сентября, октября, ноября, декабря]
+    standalone_month_names: [~, Январь, Февраль, Март, Апрель, Май, Июнь, Июль, Август, Сентябрь, Октябрь, Ноябрь, Декабрь]
+    abbr_month_names: [~, янв., февр., марта, апр., мая, июня, июля, авг., сент., окт., нояб., дек.]
+    standalone_abbr_month_names: [~, янв., февр., март, апр., май, июнь, июль, авг., сент., окт., нояб., дек.]
+    
+    # Порядок компонентов даты для хелперов
+    #
+    #
+    # Used in date_select and datime_select.
+    order: 
+      - :day
+      - :month
+      - :year
+
+  time:
+    # Форматы времени
+    formats:
+      default: "%a, %d %b %Y, %H:%M:%S %z"
+      short: "%d %b, %H:%M"
+      long: "%d %B %Y, %H:%M"
+    
+    # am/pm решено перевести как "утра/вечера" :)
+    am: "утра"
+    pm: "вечера"
+
+  number:
+    # Используется в number_with_delimiter()
+    # Также является установками по умолчанию для 'currency', 'percentage', 'precision', 'human'
+    #
+    # Used in number_with_delimiter()
+    # These are also the defaults for 'currency', 'percentage', 'precision', and 'human'
+    format:
+      # Sets the separator between the units, for more precision (e.g. 1.0 / 2.0 == 0.5)
+      separator: "."
+      # Delimets thousands (e.g. 1,000,000 is a million) (always in groups of three)
+      delimiter: " "
+      # Number of decimals, behind the separator (the number 1 with a precision of 2 gives: 1.00)
+      precision: 3
+      
+    # Used in number_to_currency()
+    currency:
+      format:
+        # Формат отображения валюты и обозначение самой валюты
+        #
+        #
+        # Where is the currency sign? %u is the currency unit, %n the number (default: $5.00)
+        format: "%n %u"
+        unit: "руб."
+        # These three are to override number.format and are optional
+        separator: "."
+        delimiter: " "
+        precision: 2
+        
+    # Used in number_to_percentage()
+    percentage:
+      format:
+        # These three are to override number.format and are optional
+        # separator: 
+        delimiter: ""
+        
+    # Used in number_to_precision()
+    precision:
+      format:
+        # These three are to override number.format and are optional
+        # separator:
+        delimiter: ""
+        # precision:
+        
+    # Used in number_to_human_size()
+    human:
+      format:
+        # These three are to override number.format and are optional
+        # separator: 
+        delimiter: ""
+        precision: 1
+      
+      # Rails 2.2
+      # storage_units: [байт, КБ, МБ, ГБ, ТБ]
+      
+      # Rails 2.3
+      storage_units:
+        # Storage units output formatting.
+        # %u is the storage unit, %n is the number (default: 2 MB)
+        format: "%n %u"
+        units:
+          byte:
+            one:   "байт"
+            few:   "байта"
+            many:  "байт"
+            other: "байта"
+          kb: "КБ"
+          mb: "МБ"
+          gb: "ГБ"
+          tb: "ТБ"
+
+  # Используется в хелперах distance_of_time_in_words(), distance_of_time_in_words_to_now(), time_ago_in_words()
+  #
+  #
+  # Used in distance_of_time_in_words(), distance_of_time_in_words_to_now(), time_ago_in_words()
+  datetime:
+    distance_in_words:
+      half_a_minute: "меньше минуты"
+      less_than_x_seconds:
+        one:   "меньше %{count} секунды"
+        few:   "меньше %{count} секунд"
+        many:  "меньше %{count} секунд"
+        other: "меньше %{count} секунды"
+      x_seconds:
+        one:   "%{count} секунда"
+        few:   "%{count} секунды"
+        many:  "%{count} секунд"
+        other: "%{count} секунды"
+      less_than_x_minutes:
+        one:   "меньше %{count} минуты"
+        few:   "меньше %{count} минут"
+        many:  "меньше %{count} минут"
+        other: "меньше %{count} минуты"
+      x_minutes:
+        one:   "%{count} минуту"
+        few:   "%{count} минуты"
+        many:  "%{count} минут"
+        other: "%{count} минуты"
+      about_x_hours:
+        one:   "около %{count} часа"
+        few:   "около %{count} часов"
+        many:  "около %{count} часов"
+        other: "около %{count} часа"
+      x_days:
+        one:   "%{count} день"
+        few:   "%{count} дня"
+        many:  "%{count} дней"
+        other: "%{count} дня"
+      about_x_months:
+        one:   "около %{count} месяца"
+        few:   "около %{count} месяцев"
+        many:  "около %{count} месяцев"
+        other: "около %{count} месяца"
+      x_months:
+        one:   "%{count} месяц"
+        few:   "%{count} месяца"
+        many:  "%{count} месяцев"
+        other: "%{count} месяца"
+      about_x_years:
+        one:   "около %{count} года"
+        few:   "около %{count} лет"
+        many:  "около %{count} лет"
+        other: "около %{count} лет"
+      over_x_years:
+        one:   "больше %{count} года"
+        few:   "больше %{count} лет"
+        many:  "больше %{count} лет"
+        other: "больше %{count} лет"
+      almost_x_years:
+        one:   "почти %{count} год"
+        few:   "почти %{count} года"
+        many:  "почти %{count} лет"
+        other: "почти %{count} лет"
+    prompts:
+      year:   "Год"
+      month:  "Месяц"
+      day:    "День"
+      hour:   "Часов"
+      minute: "Минут"
+      second: "Секунд"
+
+
+  # Used in array.to_sentence.
+  support:
+    array:
+      # Rails 2.2
+      sentence_connector: "и"
+      skip_last_comma: true
+      
+      # Rails 2.3
+      words_connector: ", "
+      two_words_connector: " и "
+      last_word_connector: " и "

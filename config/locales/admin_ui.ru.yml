@@ -1,0 +1,303 @@
+ru:
+  admin:
+    buttons:
+      login: Войти
+      send_password: Отправить
+      change_password: Изменить
+      new_item: "+ добавить"
+      switch_to_site: Сайт
+      delete: "Удалить"
+
+    messages:
+      confirm: Вы уверены ?
+
+    shared:
+      header:
+        welcome: Привет, %{name}
+        see: Сайт
+        switch: К другому сайту
+        help: Справка
+        logout: Выйти
+      menu:
+        contents: Содержимое
+        assets: Файлы
+        settings: Настройки
+        pages: Страницы
+        snippets: Сниппеты
+        account: Аккаунт
+        site: Сайт
+        theme_assets: Файлы темы
+      footer:
+        who_is_behind: "Service developed by %{development} and designed by <a href=\"http://www.sachagreif.com\">Sacha Greif</a>"
+      form_actions:
+        back: Назад без сохранения
+        create: Создать
+        update: Сохранить
+        send: Отправить
+
+    errors:
+      "500":
+        title: Ошибка Приложения
+        notice: "Мы сожалеем, но что-то пошло не так"
+        link: "&rarr; Назад в приложение"
+      "404":
+        title: Страница не найдена
+        notice: "Запрашиваемая страница не существует."
+        link: "&rarr; Назад в приложение"
+
+    notifications:
+      new_content_instance:
+        subject: "[%{type}] новый"
+        title: "Привет %{name}, просто сообщаем, что новый элемент был создан %{date}"
+        type: "Модель: %{type}"
+
+    sites_picker:
+      new: + new site
+
+    custom_fields:
+      edit:
+        title: Редактирование пользовательского поля
+      text_formatting:
+        none: None
+        html: HTML
+      edit_field:
+        title: Редактировать поле
+      edit_category:
+        title: Редактировать опции
+        help: Управляйте списком опций для поля выбора select.
+        collection_label: Списко опций
+      types:
+        category:
+          edit_categories: Редактировать опции
+        file:
+          delete_file: Удалить файл
+        has_many:
+          empty: Пусто
+      index:
+        is_required: является обязательным
+        default_label: Название поля
+
+    sessions:
+      new:
+        title: Войти
+        link: "Я забыл свой пароль"
+        email: "Email"
+        password: "Пароль"
+
+    passwords:
+      new:
+        title: Забыли пароль
+        link: "&rarr; Назад к странице входа"
+        email: "Ваш email"
+      edit:
+        title: Изменить мой пароль
+        link: "&rarr; Назад к странице логина"
+        password: "Ваш новый пароль"
+        password_confirmation: "Подтверждение нового пароля"
+
+    pages:
+      index:
+        title: Список страниц
+        help: "Страницы организованы в виде дерева. Вы можете сортировать как страницы, так и папки"
+        no_items: "There are no pages for now. Just click <a href=\"%{url}\">here</a> to create the first one."
+        new: новая страница
+        lastest_items: Страницы за последнее время
+      new:
+        title: Новая страница
+        help: "Заполните форму, приведенную ниже, для создания страницы. Будьте осторожны, по умолчанию, страница не опубликована."
+      page:
+        updated_at: обновлено
+      edit:
+        show: смотреть
+        help: "Заголовок страницы может быть изменен, если кликнуть на нем. Чтобы применить изменения, нажмите кнопку \"Сохранить\"."
+        ask_for_title: "Пожалуйста введите новое имя страницы"
+      form:
+        delete_file: Удалить файл
+        default_block: По умолчанию
+        cache_strategy:
+          none: Нет
+          simple: Простая
+          hour: 1 час
+          day: 1 день
+          week: 1 неделя
+          month: 1 месяц
+
+    snippets:
+      index:
+        title: Список сниппетов
+        help: "Сниппеты это куски HTML кода, которые могут быть использованы в разных местах в рамках сайта (таких, как \"футер\" к примеру)."
+        no_items: "Пока нет ни одного сниппета. Нажмите <a href=\"%{url}\">здесь</a> для создания первого сниппета."
+        new: новый сниппет
+      new:
+        title: Новый сниппет
+        help: "Заполните форму, приведенную ниже, для изменения сниппета."
+      edit:
+        title: Редактирование сниппета
+        help: "Включите ваш сниппет в шаблоны страницы с помощью следующего кода liquid : <span class='code'>{% include '%{slug}' %}</span>."
+      snippet:
+        updated_at: Обновлено
+
+    sites:
+      new:
+        title: Новый сайт
+        help: "Заполните форму, приведенную ниже, чтобы создать новый сайт."
+
+    current_site:
+      edit:
+        export: экспорт
+        import: импорт
+        new_membership: добавить аккаунт
+        help: "Название сайта может быть изменено, если кликнуть на нем. Чтобы применить изменения, нажмите кнопку \"Save\"."
+        ask_for_name: "Пожалуйста введите новое имя сайта"
+
+    memberships:
+      roles:
+        admin: Администратор
+        designer: Дизайнер
+        author: Автор
+      new:
+        title: Новая учетная запись
+        help: "Пожалуйста для добавления предоставьте email аккаунта. Если он не существует, вы будете перенаправлены на форму создания аккаунта."
+
+    accounts:
+      new:
+        title: Новый аккаунт
+        help: "Заполните форму, приведенную ниже, чтобы добавить новый аккаунт."
+
+    my_account:
+      edit:
+        help: "Вы можете изменить логин просто кликнув на нем. Чтобы применить изменения, нажмите кнопку \"Сохранить\"."
+        new_site: новый сайт
+        en: Английский
+        de: Немецкий
+        fr: Французский
+        pt-BR: "Бразильский - Португальский"
+        it: Итальянский
+        nl: Голландский
+        es: Испанский
+        ask_for_name: "Пожалуйста введите ваш новый логин"
+
+    theme_assets:
+      index:
+        title: Список файлов темы
+        help: "Секция файлов темы это место, где вы можете управлять файлами, необходимыми для вашего шаблона, сниппетов и т.д. Если вам необходимо управление галереей изображений, создайте новый тип контента.<br/><b>Внимание:</b> вы можете не увидеть всех файлов - в зависимости от ваших прав."
+        new: новый файл
+        snippets: Сниппеты
+        css_and_js: Стили и javascript
+        fonts: Шрифты
+        images: Изображения
+        medias: Медиа
+        no_items: "Пока нет ни одного файла."
+      asset:
+        updated_at: Обновлено
+      new:
+        title: Новый файл
+        help: "У вас есть выбор - либо загрузить файл, либо копировать/вставить стиль CSS или javascript в виде текста."
+      edit:
+        title: "Редактирование %{file}"
+        help: "Этот файл доступен по следующему url: <a href='%{url}'>%{url}</a>"
+        help_image: "Включите ваше изображение в шаблоны страницы или сниппеты с помощью следующего liquid кода : <span class='code'>{{ '%{path}' | theme_image_tag }}</span>.<br/>Your current image dimensions : <b>%{width}px x %{height}px</b>.<br/>"
+        help_javascript: "Включите ваш javascript файл в шаблоны страницы или сниппеты с помощью следующего кода : <span class='code'>{{ '%{path}' | javascript_tag }}</span>.<br/>"
+        help_stylesheet: "Включите ваш файл стилей CSS в шаблоны страницы или сниппеты с помощью следующего кода : <span class='code'>{{ '%{path}' | stylesheet_tag }}</span>.<br/>"
+      form:
+        picker_link: Вставить файл в код
+        choose_file: Выбрать файл
+        choose_plain_text: Выбрать простой текст
+      images:
+        title: Список изображений
+        no_items: "Пока нет ни одного файла."
+
+    assets:
+      new:
+        title: Новый файл
+        help: "Заполните форму, приведенную ниже, для создания файла (asset)."
+      edit:
+        title: Редактировать файл
+        help: "Заполните форму, приведенную ниже, для изменения файла."
+
+    content_types:
+      index:
+        new: новая модель
+      new:
+        title: Новая модель
+        help: "Создайте ваши собственные модели данных (Проекты, Персоны, ...и т.д.). Модель должна иметь по крайней мере одно поле. Элементы, созданные из этого типа содержимого, будут иметь первое поле как обязательное."
+      edit:
+        title: Редактирование модели
+        help: "Ваша модель должна иметь по крайней мере одно поле. Элементы, созданные из этого типа содержимого, будут иметь это поле как обязательное."
+        show_items: смотреть элементы
+        new_item: новый элемент
+      form:
+        order_by:
+          created_at: 'По дате создания'
+          updated_at: 'По дате обновления'
+          position_in_list: Вручную
+        order_direction:
+          asc: По возрастанию
+          desc: По убыванию
+
+    contents:
+      index:
+        title: 'Список "%{type}"'
+        edit: редактировать модель
+        destroy: удалить модель
+        download: скачать элементы
+        new: новый элемент
+        category_noname: "Без имени"
+        lastest_items: "Элементы за последнее время"
+        updated_at: "Обновлено"
+      list:
+        no_items: "На данный момент нет ни одного элемента. Нажмите <a href=\"%{url}\">здесь</a> для создания первого элемента."
+      new:
+        title:
+          default: '%{type} &mdash; новый элемент'
+          breadcrumb: '%{root} &raquo; %{type} &mdash; новый элемент'
+      edit:
+        title:
+          default: '%{type} &mdash; редактирование элемента'
+          breadcrumb: '%{root} &raquo; %{type} &mdash; редактирование элемента'
+      form:
+        has_many:
+          new_item: Новый элемент
+
+    image_picker:
+      link: Вставить изображение в код
+
+    cross_domain_sessions:
+      new:
+        title: Кроссдоменная аутентификация
+        notice: Вы будете перенаправлены на вебсайт в течение нескольких секунд.
+
+    import:
+      new:
+        title: Импортировать шаблон сайта
+        help: "Будьте осторожны при загрузке нового шаблона для существующего сайта, ваши текущие данные могут быть изменены или даже удалены."
+      show:
+        title: Выполняется импорт
+        help: "Ваш сайт обновляется из zip файла темы, который вы только что загрузили. Это займет несколько секунд."
+        steps:
+          site: Информация сайта
+          content_types: Пользовательские типы содержимого
+          assets: Файлы темы
+          snippets: Сниппеты
+          pages: Страницы
+        messages:
+          success: "Ваш сайт был успешно обновлен."
+          failure: "Импорт не работает."
+
+    installation:
+      common:
+        title: Первая установка Locomotive
+        next: Следующий шаг
+      step_1:
+        title: "Шаг 1/2 &mdash; Создайте аккаунт"
+        name: Логин
+        email: Email
+        password: Пароль
+        password_confirmation: Подтверждение пароля
+        done: "Вы уже добавили учетную запись:<br/><strong>%{name}</strong>, <em>%{email}</em>"
+        next: Создать аккаунт
+      step_2:
+        title: "Шаг 2/2 &mdash; Создайте первый сайт"
+        explanations: "Если вы уже загрузили шаблон сайта по умолчанию (см. инструкцию), вы можете использовать его прямо сейчас. Или вы можете загрузить шаблон сайта как zip файл (доступные бесплатные шаблоны <a href=\"http://www.locomotivecms.com/support/themes\">здесь</a>)."
+        back_to_default_template: "Нажмите <a href='#'>здесь</a> для выбора шаблона сайта по умолчанию"
+        next: Создать сайт
