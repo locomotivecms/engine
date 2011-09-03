@@ -13,14 +13,13 @@ Feature: Engine
     """
     <html>
       <head>{% inline_editor %}</head>
-      <body>{% editable_short_text 'a_sentence' %} owns this website{% endeditable_short_text %}</body>
+      <body>{% editable_short_text 'owner' %}Tom{% endeditable_short_text %} owns this website</body>
     </html>
     """
     When I view the rendered page at "/about"
     Then I should see "edit"
     When I follow "edit"
-    And I type the content "Mario" into the first editable short field
-    And I press "save"
-    When I view the rendered page at "/about"
+    And I type the content "Mario" into the first editable field
+    And I follow "save"
+    And I view the rendered page at "/about"
     Then I should see "Mario owns this website"
-
