@@ -111,7 +111,7 @@ module Locomotive
       end
 
       def editing_page?
-        self.params[:editing] == true && current_admin
+        @editing
       end
 
       def page_status
