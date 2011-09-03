@@ -1,7 +1,3 @@
-Given /^a simple page named "([^"]*)" with the body:$/ do |page_slug, page_contents|
-  @page = create_content_page(page_slug, page_contents)
-end
-
 # modify an editable element
 Given /^the editable element "([^"]*)" in the "([^"]*)" page with the content "([^"]*)"$/ do |slug, page_slug, content|
   page = @site.pages.where(:slug => page_slug).first
@@ -15,3 +11,14 @@ Given /^the editable element "([^"]*)" for the "([^"]*)" block in the "([^"]*)" 
   page.find_editable_element(block, slug).content = content
   page.save!
 end
+
+When /^I type the content "([^"]*)" into the first editable field$/ do |content|
+  page.execute_script %{
+    $(document).ready(function() {
+      editable = GENTICS.Aloha.editables[0];
+      editable.obj.text('#{content}');
+      editable.blur();
+    });
+  }
+end
+

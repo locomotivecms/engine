@@ -26,7 +26,12 @@ end
 
 # try to render a page by slug
 When /^I view the rendered page at "([^"]*)"$/ do |path|
-  visit "http://#{@site.domains.first}#{path}"
+  # If we're running selenium then we need to use a differnt port
+  if Capybara.current_driver == :selenium
+    visit "http://#{@site.domains.first}:#{Capybara.server_port}#{path}"
+  else
+    visit "http://#{@site.domains.first}#{path}"
+  end
 end
 
 # checks to see if a string is in the slug
