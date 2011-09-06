@@ -12,7 +12,7 @@ module Extensions
 
         ## indexes ##
         index :position
-        index [[:depth, :asc], [:position, :asc]]
+        index [[:depth, Mongo::ASCENDING], [:position, Mongo::ASCENDING]]
 
         ## behaviours ##
         acts_as_tree :order => ['position', 'asc']
