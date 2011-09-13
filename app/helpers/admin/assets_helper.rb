@@ -5,7 +5,7 @@ module Admin::AssetsHelper
       html, css = image_tag(asset.vignette_url), 'image'
     else
       css = "icon #{asset.content_type}"
-      html = asset.content_type.to_s == 'other' ? truncate(asset.extname, :length => 3) : asset.content_type
+      html = asset.content_type.to_s == 'other' ? truncate(asset.extname, :length => 6) : asset.content_type
       html = '?' if html.blank?
     end
 
