@@ -27,6 +27,7 @@ javascripts:
     - public/javascripts/admin/locales/datepicker_fr.js
     - public/javascripts/admin/locales/datepicker_pt-BR.js
     - public/javascripts/admin/locales/datepicker_it.js
+    - public/javascripts/admin/plugins/codemirror-compressed.js
     - public/javascripts/admin/application.js
     - public/javascripts/admin/guiders-1.1.0.js
     - public/javascripts/admin/tutorial.js
@@ -45,11 +46,9 @@ javascripts:
     - public/javascripts/admin/plugins/tiny_mce/tinymce.js
     - public/javascripts/admin/contents.js
   content_types:
-    - public/javascripts/admin/plugins/codemirror/codemirror.min.js
     - public/javascripts/admin/content_types.js
   site:
     - public/javascripts/admin/site.js
-    - public/javascripts/admin/plugins/codemirror/codemirror.min.js
   import:
     - public/javascripts/admin/plugins/json2.js
     - public/javascripts/admin/plugins/smartupdater.js
@@ -66,7 +65,6 @@ javascripts:
   image_picker:
     - public/javascripts/admin/plugins/json2.js
     - public/javascripts/admin/plugins/scrollTo.js
-    - public/javascripts/admin/plugins/codemirror/codemirror.min.js
     - public/javascripts/admin/plugins/fancybox.js
     - public/javascripts/admin/plugins/plupload/plupload.full.js
     - public/javascripts/admin/plugins/imagepicker.js
@@ -96,6 +94,8 @@ stylesheets:
     - public/stylesheets/admin/application.css
     - public/stylesheets/admin/safari.css
     - public/stylesheets/admin/guiders-1.1.0.css
+    - public/stylesheets/admin/plugins/codemirror/codemirror.css
+    - public/stylesheets/admin/plugins/codemirror/default.css
   fancybox:
     - public/stylesheets/admin/plugins/fancybox.css
     - public/stylesheets/admin/fancybox_changes.css
