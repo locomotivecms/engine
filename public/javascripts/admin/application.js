@@ -34,6 +34,10 @@ var addCodeMirrorEditor = function(type, el, mode) {
   CodeMirrorEditors.push({ 'el': el, 'editor': editor });
 }
 
+var refreshCodeMirrorEditors = function() {
+  for (i in CodeMirrorEditors){ CodeMirrorEditors[i].editor.refresh(); }
+}
+
 /* Codemirror 1 function version
 var addCodeMirrorEditor = function(type, el, parser) {
   parser = (parser || 'Liquid') + 'Parser';
@@ -157,7 +161,7 @@ $(document).ready(function() {
     var parent = $(this).parent(), content = $(this).next();
     if (parent.hasClass('folded')) {
       parent.removeClass('folded');
-      content.slideDown('fast', function() { parent.trigger('refresh'); });
+      content.slideDown('fast', function() { parent.trigger('refresh'); refreshCodeMirrorEditors(); });
     } else
       content.slideUp('fast', function() { parent.addClass('folded'); });
   });
