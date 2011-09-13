@@ -29,17 +29,22 @@ $(document).ready(function() {
   enableFileOrTextToggling();
 
   $('code.stylesheet textarea').each(function() {
-    addCodeMirrorEditor(null, $(this), 'CSS');
+    addCodeMirrorEditor(null, $(this), 'stylesheet');
   });
   $('code.javascript textarea').each(function() {
-    addCodeMirrorEditor(null, $(this), 'JS');
+    addCodeMirrorEditor(null, $(this), 'javascript');
   });
-
+  $('code.coffeescript textarea').each(function() {
+    addCodeMirrorEditor(null, $(this), 'coffeescript');
+  });
+  
+  /*
   $('select#theme_asset_content_type').bind('change', function() {
     var editor = CodeMirrorEditors[0].editor;
     editor.setParser($(this).val() == 'stylesheet' ? 'CSSParser' : 'JSParser');
   });
-
+  */
+  
   $('a#image-picker-link').imagepicker({
     insertFn: function(link) {
       return link.attr('href');
