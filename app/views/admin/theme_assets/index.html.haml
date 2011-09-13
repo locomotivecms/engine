@@ -29,6 +29,13 @@
 
   %br
 
+%h3!= t('.coffeescripts')
+- if @assets[:coffeescripts].nil?
+  %p.no-items!= t('.no_items', :url => new_admin_theme_asset_url)
+- else
+  %ul.list.theme-assets
+    = render :partial => 'asset', :collection => @assets[:coffeescripts]
+
 %h3!= t('.images')
 - if @assets[:images].nil?
   %p.no-items!= t('.no_items', :url => new_admin_theme_asset_url)

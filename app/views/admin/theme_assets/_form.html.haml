@@ -20,7 +20,7 @@
         = f.input :plain_text_name
 
         = f.custom_input :plain_text_type do
-          = f.select :plain_text_type, %w(stylesheet javascript)
+          = f.select :plain_text_type, %w(stylesheet javascript coffeescript)
 
       = f.custom_input :plain_text, :css => 'full', :with_label => false do
         %code{ :class => (@theme_asset.size && @theme_asset.size > 40000 ? 'nude' : (@theme_asset.content_type || 'stylesheet')) }

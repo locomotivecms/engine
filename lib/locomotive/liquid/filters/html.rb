@@ -51,6 +51,27 @@ module Locomotive
           %{<script src="#{input}" type="text/javascript"></script>}
         end
 
+        # Coffeescript
+        def coffeescript_url(input)
+          return '' if input.nil?
+
+          unless input =~ /^(\/|https?:)/
+            input = asset_url("coffeescripts/#{input}")
+          end
+
+          input = "#{input}.coffee" unless input.ends_with?('.coffee')
+
+          input
+        end
+
+        def coffeescript_tag(input)
+          return '' if input.nil?
+
+          input = coffeescript_url(input)
+
+          %{<script src="#{input}" type="text/coffeescript"></script>}
+        end
+
         def theme_image_url(input)
           return '' if input.nil?
 
