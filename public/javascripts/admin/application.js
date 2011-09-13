@@ -18,6 +18,23 @@ $.growl.settings.dockCss = {
 
 /* ___ codemirror ___ */
 
+var addCodeMirrorEditor = function(type, el, mode) {
+  if (!mode) mode = 'htmlmixed';
+  if (mode == 'nude') mode = undefined;
+  var editor = CodeMirror.fromTextArea(el.get()[0], {
+    height: el.hasClass('small') ? '60px' : '400px',
+    autoMatchParens: false,
+    lineNumbers: false,
+    mode: mode,
+    passDelay: 50,
+    tabMode: "shift",
+    theme: "default"
+  });
+  
+  CodeMirrorEditors.push({ 'el': el, 'editor': editor });
+}
+
+/* Codemirror 1 function version
 var addCodeMirrorEditor = function(type, el, parser) {
   parser = (parser || 'Liquid') + 'Parser';
 
@@ -41,7 +58,7 @@ var addCodeMirrorEditor = function(type, el, parser) {
 
   CodeMirrorEditors.push({ 'el': el, 'editor': editor });
 }
-
+*/
 /* ___ tinyMCE ___ */
 
 var TinyMceDefaultSettings = {
