@@ -7,6 +7,8 @@ describe Admin::ApiContentsController do
     @site.content_types.first.tap do |content_type|
       content_type.content_custom_fields.build :label => 'Name', :kind => 'string', :required => true
       content_type.content_custom_fields.build :label => 'Description', :kind => 'text'
+      content_type.content_custom_fields.build :label => 'File', :kind => 'file'
+      content_type.content_custom_fields.build :label => 'Active', :kind => 'boolean'
     end.save
 
     controller.stubs(:require_site).returns(true)
@@ -62,6 +64,15 @@ describe Admin::ApiContentsController do
         content = @site.reload.content_types.first.contents.first
 
         content.name.should == "Hacked"
+      end
+
+      it 'does not sanitize non string params' do
+        lambda {
+          post 'create', default_post_params(:content => {
+            :active => true,
+            :file => ActionDispatch::Http::UploadedFile.new(:tempfile => FixturedAsset.open('5k.png'), :filename => '5k.png', :content_type => 'image/png')
+          })
+        }.should_not raise_exception
       end
 
     end
