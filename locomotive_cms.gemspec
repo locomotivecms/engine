@@ -49,7 +49,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'fog', '0.8.2'
   s.add_dependency 'mimetype-fu'
   s.add_dependency 'actionmailer-with-request'
-  s.add_dependency 'httparty', '>= 0.6.1'
+  s.add_dependency 'httparty', '0.7.8'
   s.add_dependency 'RedCloth', '4.2.8'
   s.add_dependency 'delayed_job', '2.1.4'
   s.add_dependency 'delayed_job_mongoid', '1.0.2'

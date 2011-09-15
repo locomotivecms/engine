@@ -306,7 +306,7 @@ DEPENDENCIES
   haml (= 3.1.2)
   heroku (= 1.19.1)
   highline
-  httparty (>= 0.6.1)
+  httparty (= 0.7.8)
   inherited_resources (~> 1.1.2)
   launchy
   linecache (= 0.43)
