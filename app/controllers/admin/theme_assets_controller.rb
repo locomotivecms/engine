@@ -1,6 +1,5 @@
 module Admin
   class ThemeAssetsController < BaseController
-    require 'coffee-script'
 
     include ActionView::Helpers::SanitizeHelper
     extend ActionView::Helpers::SanitizeHelper::ClassMethods
