@@ -1,3 +1,5 @@
+require 'coffee-script'
+
 module Admin
   class ThemeAssetsController < BaseController
 
