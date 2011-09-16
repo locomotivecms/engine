@@ -50,6 +50,14 @@ class ContentInstance
   def visible?
     self._visible || self._visible.nil?
   end
+  
+  def next
+    content_type.contents.where(:_position_in_list => _position_in_list + 1).first()
+  end
+  
+  def previous
+    content_type.contents.where(:_position_in_list => _position_in_list - 1).first()
+  end
 
   def errors_to_hash
     Hash.new.replace(self.errors)

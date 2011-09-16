@@ -8,6 +8,32 @@ module Locomotive
         def _id
           self._source._id.to_s
         end
+        
+        # Returns the next content for the parent content type.
+        # If no content is found, nil is returned.
+        #
+        # Usage:
+        #
+        # {% if article.next %}
+        # <a href="/articles/{{ article.next._permalink }}">Read next article</a>
+        # {% endif %}
+        #
+        def next
+          self._source.next.to_liquid
+        end
+        
+        # Returns the previous content for the parent content type.
+        # If no content is found, nil is returned.
+        #
+        # Usage:
+        #
+        # {% if article.previous %}
+        # <a href="/articles/{{ article.previous._permalink }}">Read previous article</a>
+        # {% endif %}
+        #
+        def previous
+          self._source.previous.to_liquid
+        end
 
         def before_method(meth)
           return '' if self._source.nil?
