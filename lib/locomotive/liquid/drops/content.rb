@@ -8,6 +8,14 @@ module Locomotive
         def _id
           self._source._id.to_s
         end
+        
+        def next
+          self._source.next.to_liquid
+        end
+        
+        def previous
+          self._source.previous.to_liquid
+        end
 
         def before_method(meth)
           return '' if self._source.nil?
