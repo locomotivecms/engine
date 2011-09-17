@@ -22,6 +22,9 @@ module HtmlSelectorsHelpers
       
     when "the has many selector"
       ".has-many-selector ul li.template"
+
+    when 'the role'
+      '.role'
     
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:

@@ -125,6 +125,15 @@ describe Ability do
       end
     end
 
+    context 'granting admin' do
+      it 'should allow only admins to grant admin role' do
+        should     allow_permission_from :grant_admin, @admin
+        should_not allow_permission_from :grant_admin, @designer
+        should_not allow_permission_from :grant_admin, @author
+      end
+
+    end
+
   end
 
 end

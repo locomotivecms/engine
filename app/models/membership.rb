@@ -11,6 +11,7 @@ class Membership
 
   ## validations ##
   validates_presence_of :account
+  validate :can_change_role, :if => :role_changed?
 
   ## callbacks ##
   before_save :define_role
@@ -53,6 +54,20 @@ class Membership
 
   def define_role
     self.role = Ability::ROLES.include?(role.downcase) ? role.downcase : Ability::ROLES.first
+  end
+
+  # Users should not be able to set the role of another user to be higher than
+  # their own. A designer for example should not be able to set another user to
+  # be an administrator
+  def can_change_role
+    current_site       = Thread.current[:site]
+    current_membership = current_site.memberships.where(:account_id => Thread.current[:admin].id).first if current_site.present?
+
+    if current_membership.present?
+      # The role cannot be set higher than the current one (we use the index in
+      # the roles array to check role presidence)
+      errors.add(:role, :invalid) if Ability::ROLES.index(role) < Ability::ROLES.index(current_membership.role)
+    end
   end
 
 end
