@@ -2,7 +2,7 @@ Then /^I should see the role dropdown on the "([^"]*)"$/ do |user|
   find(:css, "li.membership[data-role=#{user}] select").should be_present
 end
 
-Then /^I should not the role dropdown on the "([^"]*)" without the "([^"]*)" option$/ do |user, option|
+Then /^I should see the role dropdown on the "([^"]*)" without the "([^"]*)" option$/ do |user, option|
   find(:css, "li.membership[data-role=#{user}] select").text.should_not include option
 end
 
