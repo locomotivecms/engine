@@ -2,9 +2,9 @@
   formtastic:
     titles:
       information: Generell informasjon
-      advanced_options: Avanserte inst.
+      advanced_options: Avanserte innstillinger
       meta: Søkemotor Metadata
-      seo: Søkemotorinst.
+      seo: Søkemotorinnstillinger
       robots_txt: Robots.txt -filen
       code: Kode
       raw_template: Mal
@@ -16,7 +16,7 @@
       membership_email: Kontoepost
       file: Fil
       preview: Forhåndsvis
-      options: Avanserte inst.
+      options: Avanserte innstillinger
       custom_fields: Tilpassede felt
       other_fields: Annen informasjon
       presentation: Presentasjon

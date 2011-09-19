@@ -174,7 +174,7 @@ en:
         pt-BR: "Brazilian Portuguese"
         it: Italian
         nl: Dutch
-        no: Norwegian
+        "no": Norwegian
         es: Spanish
         ru: Russian
         ask_for_name: "Please type your new name"

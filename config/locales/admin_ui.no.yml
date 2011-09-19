@@ -104,7 +104,7 @@
         lastest_items: Siste sider
       new:
         title: Ny side
-        help: "Flyll ut skjemaet nedenfor for å opprette en ny side. Publisering er skrudd av som standard."
+        help: "Fyll ut skjemaet nedenfor for å opprette en ny side. Publisering er skrudd av som standard."
       page:
         updated_at: sist oppdatert
       edit:
@@ -174,7 +174,7 @@
         pt-BR: "Brasiliansk Portugisisk"
         it: Italiensk
         nl: Nederlandsk
-        no: Norsk
+        "no": Norsk
         es: Spansk
         ru: Russisk
         ask_for_name: "Rediger navnet ditt"
