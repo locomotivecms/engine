@@ -1,0 +1,34 @@
+"no":
+  date:
+    formats:
+      default: "%d.%m.%Y"
+
+  errors:
+      messages:
+        domain_taken: "%{value} finnes fra før"
+        invalid_domain: "%{value} er ugyldig"
+        needs_admin_account: "Det må være minst en administratorkonto"
+        protected_page: "Du kan ikke fjerne index eller 404 sidene"
+        extname_changed: "Den nye filen har ikke den originale filtypen"
+        array_too_short: "er for liten (minimumsvalg er %{count})"
+        liquid_syntax: "Liquid Syntax error ('%{error}')"
+        invalid_theme_file: "er enten blank eller ikke en zip-fil"
+        page:
+          liquid_syntax: "Liquid Syntax error ('%{error}' on '%{fullpath}')"
+          liquid_extend: "The page '%{fullpath}' extends a template which does not exist"
+
+  attributes:
+    defaults:
+      pages:
+        index:
+          title: "Startside"
+          body: "Innholdet i startsiden"
+        "404":
+          title: "Siden finnes ikke"
+          body: "Innholdet i 404-siden"
+        other:
+          body: "{% extends 'parent' %}"
+
+  pagination:
+    previous: "&laquo; Forrige"
+    next: "Neste &raquo;"
