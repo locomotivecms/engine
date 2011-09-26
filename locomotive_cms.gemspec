@@ -17,7 +17,7 @@ Gem::Specification.new do |s|
   s.required_rubygems_version = '>= 1.3.6'
   s.rubyforge_project         = 'nowarning'
 
-  s.add_dependency 'rails', '>= 3.0.10'
+  s.add_dependency 'rails', '~> 3.0.10'
   s.add_dependency 'warden'
   s.add_dependency 'devise', '1.3.4'
   s.add_dependency 'devise_bushido_authenticatable', '1.0.0.alpha10'
