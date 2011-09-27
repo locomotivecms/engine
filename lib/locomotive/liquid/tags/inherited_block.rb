@@ -7,7 +7,7 @@ module Locomotive
           super
           
           if !self.contains_super?(@nodelist) # then disable all editable_elements coming from the parent block too and not used
-            @context[:page].disable_parent_editable_elements(@name)
+            @context[:page].disable_parent_editable_elements(@name) unless @context[:page].nil?
           end
         end
 
