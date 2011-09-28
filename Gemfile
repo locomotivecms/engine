@@ -11,7 +11,7 @@ gem 'devise', '1.3.4'
 gem 'devise_bushido_authenticatable', '1.0.0.alpha10', :require => 'devise_cas_authenticatable'
 
 gem 'mongoid', '~> 2.0.2'
-gem 'bson_ext', '~> 1.3.0'
+gem 'bson_ext', '~> 1.4.0'
 gem 'locomotive_mongoid_acts_as_tree', '0.1.5.7', :require => 'mongoid_acts_as_tree'
 gem 'will_paginate', '~> 3.0.0'
 
