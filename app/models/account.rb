@@ -47,12 +47,12 @@ class Account
 
   def remove_memberships!
     self.sites.each do |site|
-      site.memberships.delete_if { |m| m.account_id == self._id }
+      membership = site.memberships.where(:account_id => self._id).first
 
-      if site.admin_memberships.empty?
+      if site.admin_memberships.size == 1 && membership.admin?
         raise I18n.t('errors.messages.needs_admin_account')
       else
-        site.save
+        membership.destroy
       end
     end
   end

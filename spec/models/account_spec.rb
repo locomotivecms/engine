@@ -47,13 +47,14 @@ describe Account do
     end
 
     it 'should also delete memberships' do
-      Site.any_instance.stubs(:admin_memberships).returns(['junk'])
+      Site.any_instance.stubs(:admin_memberships).returns(['junk', 'dirt'])
+      @site_1.memberships.first.expects(:destroy)
+      @site_2.memberships.first.expects(:destroy)
       @account.destroy
-      @site_1.memberships.should be_empty
-      @site_2.memberships.should be_empty
     end
 
     it 'should raise an exception if account is the only remaining admin' do
+      @site_1.memberships.first.stubs(:admin?).returns(true)
       @site_1.stubs(:admin_memberships).returns(['junk'])
       lambda {
         @account.destroy
