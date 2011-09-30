@@ -78,7 +78,6 @@ de:
           source: "Die aktuelle Datei liegt hier %{url}"
         update:
           source: "Die aktuelle Datei liegt hier %{url}"
-
       custom_fields:
         field:
           _alias: "Merkmal verfügbar in den liquid-Templates"
@@ -93,6 +92,6 @@ de:
         samples: "Bei Aktivierung werden auch Inhalte und Assets importiert"
         reset: "Bei Aktivierung werden alle Daten deiner Webseite gelöscht, bevor die neue Webseite importiert wird"
       content_type:
-        item_template: "Du kannst den Text für jeden Baustein einfach anpassen. Benutze einfach folgendes in Liquid : ({{ content.name }})"
+        item_template: "Du kannst den Text für jeden Baustein einfach anpassen. Benutze einfach folgendes in Liquid : {{ content.name }})"
         api_enabled: "Dies wird genutzt, um Besuchern deiner Webseite die Möglichkeit zu geben neue Elemente zu erstellen (z.B: Nachrichten in einem Kontakt-Formular)"
         api_accounts: "Sobald ein Besucher ein neues Element erstellt, wird eine Benachrichtigungs-Email an alle unten aufgeführten Accounts gesendet"
