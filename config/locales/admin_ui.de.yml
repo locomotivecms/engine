@@ -49,7 +49,7 @@ de:
     notifications:
       new_content_instance:
         subject: "[%{type}] neu"
-        title: "Hi %{firstname}, nur damit du Bescheid weißt! Am %{date} wurde folgende neue Instanz erstellt."
+        title: "Hi %{name}, nur damit du Bescheid weißt! Am %{date} wurde folgende neue Instanz erstellt."
         type: "Model: %{type}"
 
     sites_picker:
