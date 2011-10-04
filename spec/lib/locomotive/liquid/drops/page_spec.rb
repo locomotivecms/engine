@@ -79,6 +79,16 @@ describe Locomotive::Liquid::Drops::Page do
     end
 
   end
+  
+  describe 'published?' do
+    subject { render_template('{{ home.published? }}') }
+    it { should == @home.published?.to_s }
+  end
+  
+  describe 'listed?' do
+    subject { render_template('{{ home.listed? }}') }
+    it { should == @home.listed?.to_s }
+  end
 
   describe 'meta_keywords' do
     subject { render_template('{{ home.meta_keywords }}') }
