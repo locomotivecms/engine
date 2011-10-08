@@ -29,7 +29,7 @@ ru:
           title: "Страница не найдена"
           body: "Содержимое страницы 404"
         other:
-          body: "{% расширяет 'parent' %}"
+          body: "{% extends 'parent' %}"
 
   mongoid:
     attributes:

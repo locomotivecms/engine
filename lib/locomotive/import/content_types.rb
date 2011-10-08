@@ -210,7 +210,7 @@ module Locomotive
       end
 
       def set_highlighted_field_name(content_type)
-        field = content_type.content_custom_fields.detect { |f| f._alias == content_type.highlighted_field_name }
+        field = content_type.content_custom_fields.detect { |f| f._alias == content_type.highlighted_field_name.to_s }
 
         content_type.highlighted_field_name = field._name if field
       end

@@ -35,7 +35,7 @@ Background:
     And I should see "Access points"
     And I should not see the role dropdown on myself
     And I should not see the role dropdown on the "admin"
-    And I should see the role dropdown on the "author"
+    And I should see the role dropdown on the "author" without the "Administrator" option
     And I should not see delete on the "admin"
     And I should not see delete on myself
     And I should see delete on the "author"

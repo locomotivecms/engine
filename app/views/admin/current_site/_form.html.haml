@@ -54,11 +54,14 @@
 
         %em.email= account.email
 
-        - if can?(:change_role, membership)
+        - if can?(:update, membership)
           .role
             %em.editable= t("admin.memberships.roles.#{membership.role}")
 
-            = fm.select :role, Ability::ROLES.collect { |r| [t("admin.memberships.roles.#{r}"), r] }, :include_blank => false
+            - if can?(:grant_admin, membership)
+              = fm.select :role, Ability::ROLES.map { |r| [t("admin.memberships.roles.#{r}"), r] }, :include_blank => false
+            - else
+              = fm.select :role, (Ability::ROLES - ['admin']).map { |r| [t("admin.memberships.roles.#{r}"), r] }, :include_blank => false
 
           %span.actions
             = link_to image_tag('admin/form/icons/trash.png'), admin_membership_url(membership), :class => 'remove first', :confirm =>t('admin.messages.confirm'), :method => :delete

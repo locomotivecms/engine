@@ -15,6 +15,8 @@ module Admin
 
     before_filter :set_locale
 
+    before_filter :set_current_thread_variables
+
     helper_method :sections, :current_site_url, :site_url, :page_url, :current_ability
 
     # https://rails.lighthouseapp.com/projects/8994/tickets/1905-apphelpers-within-plugin-not-being-mixed-in
@@ -41,6 +43,11 @@ module Admin
     end
 
     protected
+
+    def set_current_thread_variables
+      Thread.current[:admin] = current_admin
+      Thread.current[:site]  = current_site
+    end
 
     def current_ability
       @current_ability ||= Ability.new(current_admin, current_site)

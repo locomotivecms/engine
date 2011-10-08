@@ -1,5 +1,9 @@
 Then /^I should see the role dropdown on the "([^"]*)"$/ do |user|
-  find(:css, "li.membership[data-role=#{user}] select").text.should == 'AdministratorDesignerAuthor'
+  find(:css, "li.membership[data-role=#{user}] select").should be_present
+end
+
+Then /^I should see the role dropdown on the "([^"]*)" without the "([^"]*)" option$/ do |user, option|
+  find(:css, "li.membership[data-role=#{user}] select").text.should_not include option
 end
 
 Then /^I should see the role dropdown on myself$/ do
@@ -32,4 +36,8 @@ end
 
 Then /^I should not see any delete buttons$/ do
  page.has_css?('li.membership .actions a.remove').should be_false
+end
+
+When /^I select the "([^"]*)" role for the "author" user/ do |role|
+  Given %{I select "#{role}" from "site[memberships_attributes][2][role]"}
 end

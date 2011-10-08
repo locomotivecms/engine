@@ -42,6 +42,34 @@ describe ContentInstance do
 
   end
 
+  describe "#navigation" do
+    before(:each) do
+      %w(first second third).each_with_index do |item,index|
+        content = build_content({:title => item.to_s})
+        content._position_in_list = index
+        instance_variable_set "@#{item}", content
+      end
+    end
+
+    it 'should find previous item when available' do
+      @second.previous.custom_field_1.should == "first"
+      @second.previous._position_in_list.should == 0
+    end
+
+    it 'should find next item when available' do
+      @second.next.custom_field_1.should == "third"
+      @second.next._position_in_list.should == 2
+    end
+
+    it 'should return nil when fetching previous item on first in list' do
+      @first.previous.should == nil
+    end
+
+    it 'should return nil when fetching next item on last in list' do
+      @third.next.should == nil
+    end
+  end
+
   describe '#permalink' do
 
     before(:each) do
