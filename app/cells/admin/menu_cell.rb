@@ -4,7 +4,7 @@ class Admin::MenuCell < Cell::Base
 
   delegate :sections, :to => :parent_controller
 
-  attr_accessor :list
+  attr_accessor :list, :current_ability
 
   def initialize(*args)
     super
@@ -12,6 +12,7 @@ class Admin::MenuCell < Cell::Base
   end
 
   def show(args = {})
+    self.current_ability = args[:current_ability]
     self.build_list
     render
   end

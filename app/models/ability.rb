@@ -28,9 +28,7 @@ class Ability
   end
 
   def setup_author_permissions!
-    can :touch, [Page, ThemeAsset]
-    can :sort, Page
-
+    can [:touch, :sort], Page
     can :manage, [ContentInstance, Asset]
 
     can :touch, Site do |site|

@@ -1,7 +1,7 @@
 - title t('.title')
 
 - content_for :submenu do
-  = render_cell 'admin/settings_menu', :show
+  = render_cell 'admin/settings_menu', :show, :current_ability => current_ability
 
 %p!= t('.help')
 
