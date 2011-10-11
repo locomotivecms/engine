@@ -15,13 +15,13 @@
 
 = render 'editable_elements', :page => @page
 
-= f.foldable_inputs :name => :seo do
-
-  = f.input :seo_title
-  = f.input :meta_keywords
-  = f.input :meta_description
-
 - if can?(:manage, @page)
+
+  = f.foldable_inputs :name => :seo do
+
+    = f.input :seo_title
+    = f.input :meta_keywords
+    = f.input :meta_description
 
   = f.foldable_inputs :name => :advanced_options, :id => 'advanced-options' do
 
