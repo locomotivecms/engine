@@ -28,7 +28,7 @@ de:
         theme_assets: Templates
         bookings: Buchungen
       footer:
-        who_is_behind: "Dienst entwickelt von %{development} und entworfen von <a href=\"http://www.sachagreif.com\">Sacha Greif</a>"
+        who_is_behind: "Dienst entwickelt von %{development}"
       form_actions:
         back: Ohne Speichern zurück
         create: Neu
