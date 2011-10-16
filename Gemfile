@@ -64,8 +64,8 @@ group :test, :development do
 end
 
 group :test do
-  gem 'autotest'
-  gem 'ZenTest'
+  gem 'autotest', :platforms => :mri
+  gem 'ZenTest', :platforms => :mri
   gem 'growl-glue'
   gem 'rspec-rails', '2.6.1'
   gem 'factory_girl_rails', '~> 1.1'
