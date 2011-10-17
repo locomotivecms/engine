@@ -1,0 +1,106 @@
+"no":
+  flash:
+    admin:
+      pages:
+        create:
+          notice: "Siden har blitt opprettet."
+          alert: "Siden kunne ikke opprettes."
+        update:
+          notice: "Siden har blitt oppdatert."
+          alert: "Siden kunne ikke oppdateres."
+        sort:
+          notice: "Sidene har blitt sortert."
+        destroy:
+          notice: "Siden har blitt slettet."
+
+      contents:
+        create:
+          notice: "Innholdet har blitt opprettet."
+          alert: "Innholdet kunne ikke opprettes."
+        update:
+          notice: "Innholdet har blitt oppdatert."
+          alert: "Innholdet kunne ikke opprettes."
+        sort:
+          notice: "Innholdet har blitt sortert."
+        destroy:
+          notice: "Innholdet har blitt slettet."
+
+      content_types:
+        create:
+          notice: "Modellen har blitt opprettet."
+          alert: "Modellen kunne ikke opprettes."
+        update:
+          notice: "Modellen har blitt oppdatert."
+          alert: "Modellen kunne ikke oppdateres."
+        destroy:
+          notice: "Modellen har blitt slettet."
+
+      current_site:
+        update:
+          notice: "Din side har blitt oppdatert."
+          alert: "Siden kunne ikke oppdateres."
+
+      snippets:
+        create:
+          notice: "HTML-snutten har blitt opprettet."
+          alert: "HTML-snutten kunne ikke opprettes."
+        update:
+          notice: "HTML-snutten har blitt oppdatert."
+          alert: "HTML-snutten kunne ikke oppdateres."
+        destroy:
+          notice: "HTML-snutten har blitt slettet."
+
+      accounts:
+        create:
+          notice: "Kontoen har blitt opprettet."
+          alert: "Kontoen kunne ikke opprettes."
+
+      my_account:
+        update:
+          notice: "Kontoen har blitt oppdatert."
+          alert: "Kontoen kunne ikke oppdateres."
+
+      sites:
+        create:
+          notice: "Nettsiden har blitt opprettet."
+          alert: "Nettsiden kunne ikke opprettes."
+        destroy:
+          notice: "Nettsiden har blitt slettet."
+
+      memberships:
+        create:
+          notice: "Medlemskap har blitt opprettet."
+          alert: "Medlemskap kunne ikke opprettes."
+          already_created: "Kontoen er allerede lagt til for denne siden."
+
+      assets:
+        create:
+          notice: "Asset har blitt opprettet."
+          alert: "Asset kunne ikke opprettes."
+        update:
+          notice: "Asset har blitt oppdatert."
+          alert: "Asset kunne ikke oppdateres."
+
+      theme_assets:
+        create:
+          notice: "Filen har blitt opprettet."
+          alert: "Filen kunne ikke opprettes."
+        update:
+          notice: "Filen har blitt oppdatert."
+          alert: "Filen kunne ikke oppdateres."
+        destroy:
+          notice: "Filen har blitt slettet."
+
+      custom_fields:
+        update:
+          alert: "Feltet ble ikke oppdatert"
+
+      cross_domain_sessions:
+        create:
+          alert: "Du må logge inn"
+
+      import:
+        create:
+          done: "Siden har blitt opprettet"
+          notice: "Siden har blitt oppdatert"
+          alert: "Importen kunne ikke gjennomføres"

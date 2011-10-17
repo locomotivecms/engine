@@ -1,0 +1,63 @@
+"no":
+  errors:
+    messages:
+      not_found: "finnes ikke"
+      already_confirmed: "er allerede bekreftet"
+      not_locked: "er ikke låst"
+
+  devise:
+    failure:
+      admin:
+        unauthenticated: 'Du må logge inn eller registrere deg før du kan fortsette.'
+        unconfirmed: 'Kontoen må aktiveres før du kan fortsette.'
+        locked: 'Brukerkontoen er sperret.'
+        invalid: 'Ugyldig epost eller passord.'
+        no_membership: 'Kontoen din er ikke medlem av denne siden, kontakt administrator for å få tilgang.'
+        invalid_token: 'Invalid authentication token.'
+        timeout: 'Innloggingen har utløpt. Logg inn på nytt for å fortsette.'
+        inactive: 'Kontoen din er ikke aktivert ennå.'
+    sessions:
+      admin:
+        signed_in: 'Du er nå logget inn.'
+        signed_out: 'Du har blitt logget ut.'
+    passwords:
+      admin:
+        send_instructions: 'Du vil motta en epost med instruksjoner for hvordan du kan tilbakestille passordet i løpet av kort tid.'
+        updated: 'Passordendringen var vellykket. Du er nå logget inn.'
+    confirmations:
+      admin:
+        send_instructions: 'Du vil motta en epost med instrusksjoner for hvordan brukerkontoen aktiveres i løpet av kort tid.'
+        confirmed: 'Aktiveringen av brukerkontoen var vellykket. Du er nå logget inn.'
+    registrations:
+      admin:
+        signed_up: 'Registreringen var vellykket.'
+        updated: 'Oppdateringen av kontoen var vellykket'
+        destroyed: 'Kontoen din har blitt kansellert. Vi håper å se deg igjen en annen gang.'
+    unlocks:
+      admin:
+        send_instructions: 'Du vil motta en epost med instruksjoner for hvordan du kan åpne kontoen i løpet av kort tid.'
+        unlocked: 'Kontoen har blitt åpnet og du er nå logget inn.'
+    mailer:
+      admin:
+        confirmation_instructions: 'Bekreftelsesinstrukser'
+        reset_password_instructions: 'Instrukser for tilbakestilling av passord'
+        unlock_instructions: 'Instrukser for åpning'
+        
+        
+  admin:
+    mailer:
+      common:
+        hello: Hallo
+
+      confirmation_instructions:
+        you_can_confirm_your_account_through_the_link_below: "Du kan bekrefte kontoen ved å trykke på denne linken:"
+        confirm_my_account: "Bekreft kontoen"
+      reset_password_instructions:
+        reset_password_instruction: "Passordet kan resettes ved hjelp av denne linken:"
+        change_my_password: "Endre passord"
+        wrong_request_instruction: "Hvis du ikke har bedt om dette så kan du ignorere denne eposten."
+        unchange_password_message: "Passordet blir ikke endret før du trykker på linken ovenfor og ber om nytt passord."
+      unlock_instructions:
+        locked_account_message: "Kontoen har blitt sperret pga. for mange misslykkede innloggingsforsøk."
+        unlock_account_instruction: "Trykk på denne linken for å åpne kontoen:"
+        unlock_my_account: "Åpne konto"

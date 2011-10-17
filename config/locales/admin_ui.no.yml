@@ -1,0 +1,307 @@
+"no":
+  admin:
+    buttons:
+      login: Logg inn
+      send_password: Send
+      change_password: Endre
+      new_item: "+ ny"
+      switch_to_site: Vis
+      delete: "Slett"
+
+    messages:
+      confirm: Er du sikker?
+
+    shared:
+      header:
+        welcome: Velkommen, %{name}
+        see: Vis nettsiden
+        switch: Bytt til en annen nettside
+        help: Hjelp
+        logout: Logg ut
+      menu:
+        contents: Innhold
+        assets: Assets
+        settings: Innstillinger
+        pages: Sider
+        snippets: Snutter
+        account: Min konto
+        site: Siden
+        theme_assets: Temafiler
+      footer:
+        who_is_behind: "Tjenesten utviklet av %{development} og designet av <a href=\"http://www.sachagreif.com\">Sacha Greif</a>"
+      form_actions:
+        back: Tilbake uten å lagre
+        create: Opprett
+        update: Lagre
+        send: Send
+
+    errors:
+      "500":
+        title: Applikasjonsfeil
+        notice: "Vi beklager, noe gikk galt"
+        link: "&rarr; Tilbake til applikasjonen"
+      "404":
+        title: Siden finnes ikke
+        notice: "Siden som ble forsøkt åpnet finnes ikke."
+        link: "&rarr; Tilbake til applikasjonen"
+
+    notifications:
+      new_content_instance:
+        subject: "[%{type}] ny"
+        title: "Hei %{name}, varsler om at en ny instanse ble opprettet %{date}"
+        type: "Modell: %{type}"
+
+    sites_picker:
+      new: + ny nettside
+
+    custom_fields:
+      edit:
+        title: Redigerer tilpasset felt
+      text_formatting:
+        none: Ingen
+        html: HTML
+      edit_field:
+        title: Rediger felt
+      edit_category:
+        title: Rediger innstillinger
+        help: Rediger listen med innstillinger i select-boksen
+        collection_label: Liste med innstillinger
+      types:
+        category:
+          edit_categories: Rediger innstillinger
+        file:
+          delete_file: Slett fil
+        has_many:
+          empty: Tom
+      index:
+        is_required: er nødvendig
+        default_label: Feltnavn
+
+    sessions:
+      new:
+        title: Innlogging
+        link: "Glemt passordet?"
+        email: "Epost"
+        password: "Passord"
+
+    passwords:
+      new:
+        title: Glemt passord
+        link: "&rarr; Tilbake til innlogging"
+        email: "Din epostadresse"
+      edit:
+        title: Endre passord
+        link: "&rarr; Tilbake til innlogging"
+        password: "Nytt passord"
+        password_confirmation: "Bekreft passordet"
+
+    pages:
+      index:
+        title: Sideoversikt
+        help: "Sidene er organisert i en trestruktur. Du kan sortere både sider og mapper."
+        no_items: "Det har ikke blitt opprettet noen sider ennå. Klikk <a href=\"%{url}\">her</a> for lage den første."
+        new: ny side
+        lastest_items: Siste sider
+      new:
+        title: Ny side
+        help: "Fyll ut skjemaet nedenfor for å opprette en ny side. Publisering er skrudd av som standard."
+      page:
+        updated_at: sist oppdatert
+      edit:
+        show: vis
+        help: "Tittelen til siden kan oppdateres ved å klikke på den. For å lagre endringene, klikk på \"Lagre\" -knappen."
+        ask_for_title: "Endre tittelen"
+      form:
+        delete_file: Slett fil
+        default_block: Standard
+        cache_strategy:
+          none: Ingen
+          simple: Enkel
+          hour: 1 time
+          day: 1 dag
+          week: 1 uke
+          month: 1 måned
+
+    snippets:
+      index:
+        title: HTML snutter
+        help: "Snutter brukes til HTML-kode som skal repeteres flere steder i nettsiden (f.eks. en footer)"
+        no_items: "Det har ikke opprettet noen snutter ennå. Klikk <a href=\"%{url}\">her</a> for å lage den første."
+        new: Ny HTML-snutt
+      new:
+        title: Ny HTML-snutt
+        help: "Fyll ut skjemaet nedenfor for å oppdatere snutten."
+      edit:
+        title: Redigerer HTML-snutt
+        help: "Dette er liquid-syntaksen for å inkludere denne snutten i en mal: <span class='code'>{% include '%{slug}' %}</span>."
+      snippet:
+        updated_at: Sist oppdatert
+
+    sites:
+      new:
+        title: Ny nettside
+        help: "Fyll ut skjemaet nedenfor for å opprette en ny nettside."
+
+    current_site:
+      edit:
+        export: eksporter
+        import: importer
+        new_membership: nytt medlemskap
+        help: "Navnet på siden kan oppdateres ved å trykke på det. For å lagre endringen, trykk på \"Lagre\" -knappen."
+        ask_for_name: "Rediger navnet"
+
+    memberships:
+      roles:
+        admin: Administrator
+        designer: Designer
+        author: Forfatter
+      new:
+        title: Nytt medlemsskap
+        help: "Oppgi epostadressen til brukerkontoen. Hvis denne ikke finnes blir du sendt til skjemaet for å opprette ny konto."
+
+    accounts:
+      new:
+        title: Ny brukerkonto
+        help: "Fyll ut skjemaet nedenfor for å opprette en ny brukerkonto."
+
+    my_account:
+      edit:
+        help: "Navnet ditt kan endres ved å trykke på det. For å lagre endringen, trykk på  \"Lagre\" -knappen."
+        new_site: ny nettside
+        en: Engelsk
+        de: Tysk
+        fr: Fransk
+        pt-BR: "Brasiliansk Portugisisk"
+        it: Italiensk
+        nl: Nederlandsk
+        "no": Norsk
+        es: Spansk
+        ru: Russisk
+        ask_for_name: "Rediger navnet ditt"
+
+    theme_assets:
+      index:
+        title: Temafiler
+        help: "I denne seksjonen kan du håndtere alle layout-relaterte filer. Hvis du trenger et bildegalleri så opprett en ny innholdstype i stedet.<br/><b>Advarsel:</b> hvis det er enkelte filer du ikke ser så kan dette skyldes manglende rettigheter."
+        new: ny fil
+        snippets: HTML-snutter
+        css_and_js: Stilark og javascript
+        fonts: Fonter
+        images: Bilder
+        medias: Media
+        no_items: "Det er ingen filer her ennå."
+      asset:
+        updated_at: Sist oppdatert
+      new:
+        title: Ny fil
+        help: "Du kan enten laste opp en fil eller opprette kopiere inn koden som klartekst"
+      edit:
+        title: "Redigerer %{file}"
+        help: "Denne filen er tilgjengelig fra følgende url: <a href='%{url}'>%{url}</a>"
+        help_image: "Bruk følgende liquid-syntax for å inkludere bildet i en mal: <span class='code'>{{ '%{path}' | theme_image_tag }}</span>.<br/>Nåværende bildedimensjoner: <b>%{width}px x %{height}px</b>.<br/>"
+        help_javascript: "Inkluder javascript-filer i malene med følgende kode: <span class='code'>{{ '%{path}' | javascript_tag }}</span>.<br/>"
+        help_stylesheet: "Inkluder stilarkene i malene med følgende kode: <span class='code'>{{ '%{path}' | stylesheet_tag }}</span>.<br/>"
+      form:
+        picker_link: Sett inn en fil i koden
+        choose_file: Velg fil
+        choose_plain_text: Velg klartekst
+      images:
+        title: Bilder
+        no_items: "Det er ingen filer her ennå."
+
+    assets:
+      new:
+        title: New asset
+        help: "Fill in the form below to create your asset."
+      edit:
+        title: Edit asset
+        help: "Fill in the form below to update your asset."
+
+    content_types:
+      index:
+        new: Ny modell
+      new:
+        title: Ny modell
+        help: "Lag din egen datamodell (Prosjekter, Ansatte, ...etc). Modellen må ha minst ett felt. Det første feltet vil være obligatorisk for elementer som opprettes av denne innholdstypen."
+      edit:
+        title: Rediger modellen
+        help: "Modellen må ha minst ett felt. Det første feltet vil være obligatorisk for elementer som opprettes av denne innholdstypen."
+        show_items: vis elementer
+        new_item: nytt element
+      form:
+        order_by:
+          created_at: 'Etter dato opprettet'
+          updated_at: 'Etter dato oppdatert'
+          position_in_list: Manuell
+        order_direction:
+          asc: Stigende
+          desc: Synkende
+
+    contents:
+      index:
+        title: 'Viser alle "%{type}"'
+        edit: rediger modell
+        destroy: fjern modell
+        download: last ned elementer
+        new: nytt element
+        category_noname: "Navn mangler"
+        lastest_items: "Siste elementer"
+        updated_at: "Sist oppdatert"
+      list:
+        no_items: "Det har ikke blitt opprettet noen elementer her ennå. Klikk <a href=\"%{url}\">her</a> for å opprette det første."
+      new:
+        title:
+          default: '%{type} &mdash; nytt element'
+          breadcrumb: '%{root} &raquo; %{type} &mdash; nytt element'
+      edit:
+        title:
+          default: '%{type} &mdash; rediger element'
+          breadcrumb: '%{root} &raquo; %{type} &mdash; rediger element'
+      form:
+        has_many:
+          new_item: Nytt element
+
+    image_picker:
+      link: Sett inn et bilde i koden
+
+    cross_domain_sessions:
+      new:
+        title: Cross-domain authentication
+        notice: Du blir sendt videre til nettsiden i løpet av noen få sekunder.
+
+    import:
+      new:
+        title: Importer en mal for siden
+        help: "Be careful when you upload a new template for your existing website, your current data could be modified or even removed."
+        help: "Vær forsiktig hvis du laster opp en ny mal til en ekisterende side. Dataene dine kan bli slettet eller endret."
+      show:
+        title: Import pågår
+        help: "Your site is being updated from the theme zip file you have just uploaded. It lasts a couple of seconds."
+        help: "Siden blir oppdatert fra temafilen som ble lastet opp. Dette vil ta noen sekunder."
+        steps:
+          site: Sideinformasjon
+          content_types: Tilpassede innholdstyper
+          assets: Temafiler
+          snippets: HTML-snutter
+          pages: Sider
+        messages:
+          success: "Importen var velykket og siden har blitt oppdatert."
+          failure: "Importen kunne ikke gjennomføres."
+
+    installation:
+      common:
+        title: Locomotive førstegangsoppsett
+        next: Neste
+      step_1:
+        title: "Steg 1/2 &mdash; Lag brukerkonto"
+        name: Kontonavn
+        email: Epost
+        password: Passord
+        password_confirmation: Bekreft passord
+        done: "Du har allerede opprettet en konto:<br/><strong>%{name}</strong>, <em>%{email}</em>"
+        next: Opprett konto
+      step_2:
+        title: "Steg 2/2 &mdash; Lag din første nettside"
+        explanations: "Hvis du allerede har lastet opp standardmalen (se instruksjoner), så kan du bruke denne med en gang. Du kan også laste opp en sidemal som en zip-fil (gratis maler finnes <a href=\"http://www.locomotivecms.com/support/themes\">her</a>)."
+        back_to_default_template: "Trykk <a href='#'>her</a> for å velge standardmalen i stedet"
+        next: Opprett side
