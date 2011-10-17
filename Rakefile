@@ -69,3 +69,11 @@ task :spec_nix do
 
   sh "bundle exec rspec #{files}"
 end
+
+task :travis do
+  ["rspec spec", "cucumber -b"].each do |cmd|
+    puts "Starting to run #{cmd}..."
+    system("export DISPLAY=:99.0 && bundle exec #{cmd}")
+    raise "#{cmd} failed!" unless $?.exitstatus == 0
+  end
+end
