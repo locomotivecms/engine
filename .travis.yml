@@ -1,0 +1,10 @@
+script: "bundle exec rake travis"
+before_script: "sh -e /etc/init.d/xvfb start"
+rvm:
+  - 1.9.2
+  - 1.9.3
+notifications:
+  email:
+    - didier@nocoffee.fr
+    - mario@mariovisic.com
+  irc: "irc.freenode.org#locomotivecms"
