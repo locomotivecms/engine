@@ -60,7 +60,7 @@ group :test, :development do
 
   gem 'bushido_stub', '0.0.3'
 
-  gem 'cucumber-rails', '1.0.2'
+  gem 'cucumber-rails'
 end
 
 group :test do
