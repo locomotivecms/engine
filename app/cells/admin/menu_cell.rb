@@ -40,13 +40,17 @@ class Admin::MenuCell < Cell::Base
     method_name = "build_list_with_#{name}".to_sym
     previous_method_name = "build_list_without_#{name}".to_sym
 
-    self.send(:define_method, method_name) do
-      self.send(previous_method_name)
-      block.call(MenuProxy.new(self))
-    end
+    unless self.instance_methods.include?(method_name) # prevents the method to be called twice which will raise a "stack level too deep" exception
 
-    # Note: this might cause "stack level too deep" if called twice for the same name
-    alias_method_chain :build_list, name.to_sym
+      self.send(:define_method, method_name) do
+        self.send(previous_method_name)
+        block.call(MenuProxy.new(self))
+      end
+
+      # Note: this might cause "stack level too deep" if called twice for the same name
+      alias_method_chain :build_list, name.to_sym
+
+    end
   end
 
   protected
