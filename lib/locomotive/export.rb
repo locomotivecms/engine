@@ -221,11 +221,13 @@ module Locomotive
     end
 
     def extract_attributes(object, fields)
+      attributes = object.attributes.select { |k, v| fields.include?(k) && !v.blank? }
+
       if RUBY_VERSION =~ /1\.9/
-        object.attributes.select { |k, v| fields.include?(k) }
+        attributes
       else
-        object.attributes.reject { |k, v| !fields.include?(k) }
-      end.delete_if { |k, v| v.blank? }
+        attributes.inject({}) { |memo, pair| memo.merge(pair.first => pair.last) }
+      end
     end
 
     def pages_folder
