@@ -38,7 +38,7 @@ module Locomotive
 
             pagination = collection.send(:paginate, {
               :page       => context['current_page'],
-              :per_page   => @per_page }).stringify_keys
+              :per_page   => @per_page }).to_liquid.stringify_keys
 
             page_count, current_page = pagination['total_pages'], pagination['current_page']
 
