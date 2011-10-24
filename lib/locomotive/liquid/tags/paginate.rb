@@ -43,6 +43,7 @@ module Locomotive
             page_count, current_page = pagination['total_pages'], pagination['current_page']
 
             path = context.registers[:page].fullpath
+            path = context['path']
 
             pagination['previous'] = link(I18n.t('pagination.previous'), current_page - 1, path) if pagination['previous_page']
             pagination['next'] = link(I18n.t('pagination.next'), current_page + 1, path) if pagination['next_page']
