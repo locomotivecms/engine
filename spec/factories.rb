@@ -138,4 +138,7 @@ FactoryGirl.define do
     site { Site.where(:subdomain => "acme").first || Factory(:site) }
   end
 
+  factory :content_instance do
+  end
+
 end
