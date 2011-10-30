@@ -6,7 +6,7 @@ body {
 
 p.no-items {
   padding: 18px 0px;
-  background: transparent url(/images/admin/list/none-small.png) no-repeat center 0;
+  background: transparent url(/assets/locomotive//list/none-small.png) no-repeat center 0;
   text-align: center;
   color: #9d8963 !important;
   font-size: 1.1em !important;
@@ -43,7 +43,7 @@ ul.assets li.new-asset {
 #upload-link {
   float: left;
   display: block;
-  background: transparent url("/images/admin/buttons/dark-gray-bg.png") repeat-x 0 0;
+  background: transparent url(/assets/locomotive//buttons/dark-gray-bg.png) repeat-x 0 0;
   outline: none;
   -moz-border-radius : 4px;
   -webkit-border-radius: 4px;

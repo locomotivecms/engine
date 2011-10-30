@@ -20,7 +20,7 @@ form.formtastic legend span {
   display: block;
   width: 900px;
   height: 26px;
-  background: transparent url(/assets/admin/form/header.png) no-repeat 0 0px;
+  background: transparent url(/assets/locomotive//form/header.png) no-repeat 0 0px;
   color: #1e1f26;
   font-size: 0.7em;
   padding: 4px 0 0 20px;
@@ -47,15 +47,15 @@ form.formtastic fieldset.foldable legend span em {
   position: relative;
   top: 8px;
   left: 10px;
-  background: transparent url(/assets/admin/form/folded-arrow-on.png) no-repeat 0 0px;
+  background: transparent url(/assets/locomotive//form/folded-arrow-on.png) no-repeat 0 0px;
 }
 
-form.formtastic fieldset.foldable.folded legend span { background-image: url(/assets/admin/form/folded.png); }
+form.formtastic fieldset.foldable.folded legend span { background-image: url(/assets/locomotive//form/folded.png); }
 form.formtastic fieldset.foldable.folded legend span em {
   width: 6px;
   height: 9px;
   top: 6px;
-  background-image: url(/assets/admin/form/folded-arrow-off.png);
+  background-image: url(/assets/locomotive//form/folded-arrow-off.png);
 }
 
 form.formtastic fieldset.foldable ol {
@@ -75,14 +75,14 @@ form.formtastic fieldset.inputs ol {
   margin: 30px 0 0 0;
   padding-top: 15px;
   padding-bottom: 5px;
-  background: #ebedf4 url(/assets/admin/form/footer.png) no-repeat 0 bottom;
+  background: #ebedf4 url(/assets/locomotive//form/footer.png) no-repeat 0 bottom;
   border-top: 1px solid #ccced7;
 }
 
 form.formtastic fieldset ol li { width: 100%; position: relative; margin-bottom: 0.8em; }
 
 form.formtastic fieldset.inputs ol li {
-  background: url("/images/admin/form/input-sep.png") repeat-x 0 bottom;
+  background: url(/assets/locomotive//form/input-sep.png) repeat-x 0 bottom;
   margin-bottom: 0.7em;
   padding-bottom: 1em;
 }
@@ -102,7 +102,7 @@ form.formtastic fieldset ol li input[type=password] {
   font-weight: bold;
   width: 700px;
   color: #17171b;
-  background: white url(/assets/admin/form/field.png) repeat-x 0 0;
+  background: white url(/assets/locomotive//form/field.png) repeat-x 0 0;
   border: 1px solid #d1d6e6;
   -webkit-box-shadow: #f1f1f1 0px 1px;
   -moz-box-shadow: #f1f1f1 0px 1px;
@@ -139,7 +139,7 @@ form.formtastic fieldset ol li select { font-size: 0.9em; position: relative; to
 form.formtastic fieldset ol li.multiple select { width: 45%; }
 
 form.formtastic fieldset ol li div.inline-errors {
-  background: transparent url(/assets/admin/form/error-arrow.png) no-repeat 17px 0;
+  background: transparent url(/assets/locomotive//form/error-arrow.png) no-repeat 17px 0;
   margin: 2px 0 0 20%;
   padding: 8px 0 0 0;
 }
@@ -153,7 +153,7 @@ form.formtastic fieldset ol li div.inline-errors p {
   text-shadow: #000 0px 1px;
   font-size: 0.9em;
   padding-left: 30px;
-  background: #cd0f19 url(/assets/admin/form/icons/error.png) no-repeat 10px 6px;
+  background: #cd0f19 url(/assets/locomotive//form/icons/error.png) no-repeat 10px 6px;
 }
 
 form.formtastic fieldset ol li.code label { display: none; }
@@ -170,7 +170,7 @@ form.formtastic fieldset ol .more a:hover { text-decoration: underline; }
 
 form.formtastic fieldset ol .more a.picture {
   padding-left: 23px;
-  background: transparent url(/assets/admin/icons/asset_add.png) no-repeat left 1px;
+  background: transparent url(/assets/locomotive//icons/asset_add.png) no-repeat left 1px;
 }
 
 form.formtastic fieldset li.full .inline-errors, form.formtastic fieldset li.full .inline-hints {
@@ -201,7 +201,7 @@ form.formtastic fieldset ol li.path.error input {
 
 form.formtastic fieldset ol li.item {
   position: relative;
-  background: transparent url(/assets/admin/form/item.png) no-repeat 0 0;
+  background: transparent url(/assets/locomotive//form/item.png) no-repeat 0 0;
   height: 25px;
   width: 861px;
   margin: 0px 0px 10px 20px;
@@ -315,7 +315,7 @@ form.formtastic fieldset.editable-list ol li.added input:focus {
   font-size: 0.9em;
   font-weight: normal;
   color: #787a89;
-  background: white url(/assets/admin/form/field.png) repeat-x 0 0;
+  background: white url(/assets/locomotive//form/field.png) repeat-x 0 0;
   border: 1px solid #d1d6e6;
 }
 
@@ -330,7 +330,7 @@ form.formtastic fieldset.editable-list ol li.added .inline-errors {
 
 form.formtastic fieldset.editable-list ol li.template {
   height: 42px;
-  background-image: url(/assets/admin/form/big_item.png);
+  background-image: url(/assets/locomotive//form/big_item.png);
   padding-top: 10px;
 }
 
@@ -345,7 +345,7 @@ form.formtastic fieldset.editable-list ol li.template input[type=text] {
   font-size: 0.9em;
   width: 180px;
   color: #787a89;
-  background: white url(/assets/admin/form/field.png) repeat-x 0 0;
+  background: white url(/assets/locomotive//form/field.png) repeat-x 0 0;
   border: 1px solid #a6a8b8;
   position: relative;
   top: 1px;
@@ -439,7 +439,7 @@ form.formtastic fieldset ol li.has-many ul {
 }
 
 form.formtastic fieldset ol li.has-many ul li.item {
-  background: transparent url(/assets/admin/form/item-popup.png) no-repeat 0 0;
+  background: transparent url(/assets/locomotive//form/item-popup.png) no-repeat 0 0;
   width: 413px;
   margin: 0 0 10px 0;
 }
@@ -562,11 +562,11 @@ form.formtastic fieldset.memberships ol li .role em {
 }
 
 form.formtastic fieldset.memberships ol li .role em.locked {
-  background: transparent url(/assets/admin/icons/membership_lock.png) no-repeat 1px 3px;
+  background: transparent url(/assets/locomotive//icons/membership_lock.png) no-repeat 1px 3px;
 }
 
 form.formtastic fieldset.memberships ol li .role em.editable {
-  background: transparent url(/assets/admin/icons/membership_edit.png) no-repeat left 3px;
+  background: transparent url(/assets/locomotive//icons/membership_edit.png) no-repeat left 3px;
 }
 
 form.formtastic fieldset.memberships ol li .role em.editable { font-style: normal; font-size: 0.8em; }
@@ -592,7 +592,7 @@ form.formtastic fieldset.memberships ol li select {
   text-decoration: none;
   cursor: pointer;
   padding-left: 20px;
-  background: transparent url(/assets/admin/icons/asset_switch.png) no-repeat left 2px;
+  background: transparent url(/assets/locomotive//icons/asset_switch.png) no-repeat left 2px;
 }
 
 .selector span.alt:hover { text-decoration: underline; }
@@ -613,7 +613,7 @@ form.formtastic fieldset.preview li .image {
   width: 870px;
   margin: 10px 20px 0px 20px;
   border: 4px solid white;
-  background: transparent url(/assets/admin/list/empty.png) repeat 0 0;
+  background: transparent url(/assets/locomotive//list/empty.png) repeat 0 0;
   overflow: hidden;
 }
 
@@ -642,7 +642,7 @@ div.formError {
   position: relative;
   top: -2px;
   display: inline;
-  background: #CE2525 url(/assets/admin/left_arrow_red.png) no-repeat 0px center;
+  background: #CE2525 url(/assets/locomotive//left_arrow_red.png) no-repeat 0px center;
   color: white;
   font-size: 12px;
   font-weight: normal;

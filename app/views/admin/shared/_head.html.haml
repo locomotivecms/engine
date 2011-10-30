@@ -4,9 +4,12 @@
 
 %meta{ :name => 'locale', :content => I18n.locale }
 
-= include_javascripts :common
+= stylesheet_link_tag    'locomotive', :media => 'screen'
+= javascript_include_tag 'locomotive'
 
-= include_stylesheets :common, :media => 'screen'
+/ = include_javascripts :common
+/
+/ = include_stylesheets :common, :media => 'screen'
 
 / [if IE]
   = include_stylesheets :ie, :media => 'screen'

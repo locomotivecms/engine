@@ -1,11 +1,11 @@
 #editable-elements .wrapper {
-  background: #ebedf4 url(/assets/admin/form/footer.png) no-repeat 0 bottom;
+  background: #ebedf4 url(/assets/locomotive//form/footer.png) no-repeat 0 bottom;
   padding: 10px 0px 16px 0px;
   border-top: 1px solid #ccced7;
 }
 
 #editable-elements {
-  background: transparent url(/assets/admin/form/header.png) no-repeat 0 0;
+  background: transparent url(/assets/locomotive//form/header.png) no-repeat 0 0;
   margin-bottom: 20px;
 }
 
@@ -43,15 +43,15 @@
 #editable-elements .nav a.on {
   color: #1e1f26;
   font-weight: bold;
-  background: transparent url(/assets/admin/form/header-left-on.png) no-repeat 0 0;
+  background: transparent url(/assets/locomotive//form/header-left-on.png) no-repeat 0 0;
 }
 
 #editable-elements .nav a.on span {
-  background: transparent url(/assets/admin/form/header-right-on.png) no-repeat right 0;
+  background: transparent url(/assets/locomotive//form/header-right-on.png) no-repeat right 0;
 }
 
 #editable-elements .nav a:first-child.on {
-  background: transparent url(/assets/admin/form/header-first-on.png) no-repeat 0 0;
+  background: transparent url(/assets/locomotive//form/header-first-on.png) no-repeat 0 0;
 }
 
 #editable-elements .wrapper ul li fieldset { margin-bottom: 0px; }

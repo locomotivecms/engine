@@ -13,12 +13,12 @@
 }
 
 #fancybox-inner form.formtastic legend span {
-  background-image: url(/assets/admin/form/header-popup.png);
+  background-image: url(/assets/locomotive//form/header-popup.png);
   width: 453px;
 }
 
 #fancybox-inner form.formtastic ol {
-  background-image: url(/assets/admin/form/footer-popup.png);
+  background-image: url(/assets/locomotive//form/footer-popup.png);
 }
 
 #fancybox-inner form.formtastic fieldset ol li label {
@@ -47,11 +47,11 @@
 }
 
 #fancybox-inner form.formtastic .editable-list li {
-  background-image: url(/assets/admin/form/item-popup.png);
+  background-image: url(/assets/locomotive//form/item-popup.png);
 }
 
 #fancybox-inner form.formtastic .editable-list li.template {
-  background-image: url(/assets/admin/form/big_item-popup.png);
+  background-image: url(/assets/locomotive//form/big_item-popup.png);
 }
 
 #fancybox-inner p { color: #8B8D9A; font-size: 0.8em; }
@@ -61,7 +61,7 @@
 div.asset-picker { width: 720px; position: relative; }
 div.asset-picker .actions { position: absolute; right: 4px; top: 0px; }
 
-div.asset-picker p.no-items { background-image: url(/assets/admin/list/none-small.png); }
+div.asset-picker p.no-items { background-image: url(/assets/locomotive//list/none-small.png); }
 
 div.asset-picker ul { overflow: auto; height: 471px; }
 div.asset-picker ul li.new-asset { display: none; }

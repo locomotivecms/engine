@@ -4,7 +4,7 @@
   font-family: monospace;
   font-size: 10pt;
   color: black;
-  background: white url(/assets/admin/form/field.png) repeat-x 0 0 !important;
+  background: white url(/assets/locomotive//form/field.png) repeat-x 0 0 !important;
 }
 
 pre.code, .editbox {

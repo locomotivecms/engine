@@ -1,0 +1,4 @@
+# Assets / ThemeAssets / EditableImage / ContentType
+
+-> script to change images/ in the url to assets/
+

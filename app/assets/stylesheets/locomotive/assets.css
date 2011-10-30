@@ -9,7 +9,7 @@ ul.assets li.asset {
   float: left;
   width: 139px;
   height: 140px;
-  background: transparent url(/assets/admin/list/thumb.png) no-repeat 0 0;
+  background: transparent url(/assets/locomotive//list/thumb.png) no-repeat 0 0;
   margin: 0 17px 17px 0;
 }
 
@@ -42,7 +42,7 @@ ul.assets li.asset div.icon, ul.assets li.asset div.image {
 }
 
 ul.assets li.asset div.image {
-  background: transparent url(/assets/admin/list/empty.png) repeat 0 0;
+  background: transparent url(/assets/locomotive//list/empty.png) repeat 0 0;
 }
 
 ul.assets li.asset div.image .inside {

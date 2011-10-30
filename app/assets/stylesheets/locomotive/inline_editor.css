@@ -5,7 +5,7 @@
   top: 0px;
   right: 0px;
   height: 28px;
-  background: transparent url(/assets/admin/inline_editor/bg.png) repeat-x 0 0;
+  background: transparent url(/assets/locomotive//inline_editor/bg.png) repeat-x 0 0;
   padding: 0 10px;
   font-family: Helvetica;
   -webkit-box-shadow: -3px 3px 12px rgba(0, 0, 0, 0.4);
@@ -29,7 +29,7 @@
 
 #page-toolbar ul li.link a {
   display: block;
-  background: transparent url(/assets/admin/inline_editor/action-left.png) no-repeat 0 0;
+  background: transparent url(/assets/locomotive//inline_editor/action-left.png) no-repeat 0 0;
   height: 18px;
   line-height: 20px;
   padding-left: 24px;
@@ -52,7 +52,7 @@
 
 #page-toolbar ul li.link a span {
   display: block;
-  background: transparent url(/assets/admin/inline_editor/action-right.png) no-repeat right 0;
+  background: transparent url(/assets/locomotive//inline_editor/action-right.png) no-repeat right 0;
   height: 19px;
   padding: 1px 10px 0 2px;
   text-shadow: 1px 1px 1px #000;
@@ -69,7 +69,7 @@
   top: 6px;
   width: 10px;
   height: 10px;
-  background: transparent url(/assets/admin/inline_editor/drawer.png) no-repeat 0 0;
+  background: transparent url(/assets/locomotive//inline_editor/drawer.png) no-repeat 0 0;
   text-decoration: none;
   border: 0px;
   padding: 0px;

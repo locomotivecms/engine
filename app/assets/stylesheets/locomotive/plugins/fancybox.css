@@ -39,7 +39,7 @@
   left: 0;
   width: 40px;
   height: 480px;
-  background-image: url(/assets/admin/plugins/fancybox/fancybox.png);
+  background-image: url(/assets/locomotive//plugins/fancybox/fancybox.png);
 }
 
 #fancybox-overlay {
@@ -110,7 +110,7 @@
   right: -15px;
   width: 30px;
   height: 30px;
-  background-image: url(/assets/admin/plugins/fancybox/fancybox.png);
+  background-image: url(/assets/locomotive//plugins/fancybox/fancybox.png);
   background-position: -40px 0px;
   cursor: pointer;
   z-index: 1103;
@@ -180,7 +180,7 @@
 
 #fancybox-title-over {
   padding: 10px;
-  background-image: url(/assets/admin/plugins/fancybox/fancy_title_over.png);
+  background-image: url(/assets/locomotive//plugins/fancybox/fancy_title_over.png);
   display: block;
 }
 
@@ -195,7 +195,7 @@
 
 #fancybox-title-left {
   padding-left: 15px;
-  background-image: url(/assets/admin/plugins/fancybox/fancybox.png);
+  background-image: url(/assets/locomotive//plugins/fancybox/fancybox.png);
   background-position: -40px -90px;
   background-repeat: no-repeat;
 }
@@ -203,14 +203,14 @@
 #fancybox-title-main {
   font-weight: bold;
   line-height: 29px;
-  background-image: url(/assets/admin/plugins/fancybox/fancybox-x.png);
+  background-image: url(/assets/locomotive//plugins/fancybox/fancybox-x.png);
   background-position: 0px -40px;
   color: #FFF;
 }
 
 #fancybox-title-right {
   padding-left: 15px;
-  background-image: url(/assets/admin/plugins/fancybox/fancybox.png);
+  background-image: url(/assets/locomotive//plugins/fancybox/fancybox.png);
   background-position: -55px -90px;
   background-repeat: no-repeat;
 }
@@ -222,7 +222,7 @@
   width: 35%;
   cursor: pointer;
   outline: none;
-  background-image: url(/assets/admin/plugins/fancybox/blank.gif);
+  background-image: url(/assets/locomotive//plugins/fancybox/blank.gif);
   z-index: 1102;
   display: none;
 }
@@ -248,12 +248,12 @@
 }
 
 #fancybox-left-ico {
-  background-image: url(/assets/admin/plugins/fancybox/fancybox.png);
+  background-image: url(/assets/locomotive//plugins/fancybox/fancybox.png);
   background-position: -40px -30px;
 }
 
 #fancybox-right-ico {
-  background-image: url(/assets/admin/plugins/fancybox/fancybox.png);
+  background-image: url(/assets/locomotive//plugins/fancybox/fancybox.png);
   background-position: -40px -60px;
 }
 
@@ -284,13 +284,13 @@
   top: -20px;
   left: 0;
   width: 100%;
-  background-image: url(/assets/admin/plugins/fancybox/fancybox-x.png);
+  background-image: url(/assets/locomotive//plugins/fancybox/fancybox-x.png);
 }
 
 #fancy-bg-ne {
   top: -20px;
   right: -20px;
-  background-image: url(/assets/admin/plugins/fancybox/fancybox.png);
+  background-image: url(/assets/locomotive//plugins/fancybox/fancybox.png);
   background-position: -40px -162px;
 }
 
@@ -298,14 +298,14 @@
   top: 0;
   right: -20px;
   height: 100%;
-  background-image: url(/assets/admin/plugins/fancybox/fancybox-y.png);
+  background-image: url(/assets/locomotive//plugins/fancybox/fancybox-y.png);
   background-position: -20px 0px;
 }
 
 #fancy-bg-se {
   bottom: -20px;
   right: -20px;
-  background-image: url(/assets/admin/plugins/fancybox/fancybox.png);
+  background-image: url(/assets/locomotive//plugins/fancybox/fancybox.png);
   background-position: -40px -182px;
 }
 
@@ -313,14 +313,14 @@
   bottom: -20px;
   left: 0;
   width: 100%;
-  background-image: url(/assets/admin/plugins/fancybox/fancybox-x.png);
+  background-image: url(/assets/locomotive//plugins/fancybox/fancybox-x.png);
   background-position: 0px -20px;
 }
 
 #fancy-bg-sw {
   bottom: -20px;
   left: -20px;
-  background-image: url(/assets/admin/plugins/fancybox/fancybox.png);
+  background-image: url(/assets/locomotive//plugins/fancybox/fancybox.png);
   background-position: -40px -142px;
 }
 
@@ -328,13 +328,13 @@
   top: 0;
   left: -20px;
   height: 100%;
-  background-image: url(/assets/admin/plugins/fancybox/fancybox-y.png);
+  background-image: url(/assets/locomotive//plugins/fancybox/fancybox-y.png);
 }
 
 #fancy-bg-nw {
   top: -20px;
   left: -20px;
-  background-image: url(/assets/admin/plugins/fancybox/fancybox.png);
+  background-image: url(/assets/locomotive//plugins/fancybox/fancybox.png);
   background-position: -40px -122px;
 }
 
