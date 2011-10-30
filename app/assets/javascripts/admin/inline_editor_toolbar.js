@@ -109,7 +109,7 @@ var InlineEditorToolbar = {
         <li class='link edit' style='" + (this.editingMode ? 'display: none' : '') + "'><a href='#'><span>" + labels['edit'] + "</span></a></li>\
         <li class='link save' style='display: none'><a href='#'><span>" + labels['save'] + "</span></a></li>\
         <li class='link cancel' style='display: none'><a href='#'><span>" + labels['cancel'] + "</span></a></li>\
-        <li class='link spinner' style='display: none'><a href='#'><span><img src='/images/admin/form/spinner.gif' /><em>" + labels['saving'] + "</em></span></a></li>\
+        <li class='link spinner' style='display: none'><a href='#'><span><img src='/assets/admin/form/spinner.gif' /><em>" + labels['saving'] + "</em></span></a></li>\
         <li class='sep' style='display: none'><span>&nbsp;</span></li>\
         <li class='link back' style='" + (this.editingMode ? '' : 'display: none') + "'><a href='#'><span>" + labels['back'] + "</span></a></li>\
       </ul>\

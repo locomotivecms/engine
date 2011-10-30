@@ -61,7 +61,7 @@
 }
 
 #panel fieldset ol li div.inline-errors {
-  background: transparent url(/images/admin/form/error-arrow.png) no-repeat 17px 0;
+  background: transparent url(/assets/admin/form/error-arrow.png) no-repeat 17px 0;
   margin: 2px 0 0 0;
   padding: 8px 0 0 0;
 }
@@ -75,7 +75,7 @@
   text-shadow: #000 0px 1px;
   font-size: 0.9em;
   padding-left: 30px;
-  background: #cd0f19 url(/images/admin/form/icons/error.png) no-repeat 10px 6px;
+  background: #cd0f19 url(/assets/admin/form/icons/error.png) no-repeat 10px 6px;
 }
 
 

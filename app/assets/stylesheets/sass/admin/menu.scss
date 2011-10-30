@@ -12,14 +12,14 @@
   height: 60px;
   margin: 0px;
   padding: 0 8px;
-  background: transparent url(/images/admin/menu/shadow.png) repeat-y 0 0;
+  background: transparent url(/assets/admin/menu/shadow.png) repeat-y 0 0;
 
   /* ___ submenu items ___ */
 
   & > ul {
     @include reset;
     border-top: 1px solid rgba(255, 255, 255, 0.4);
-    background: transparent url(/images/admin/menu/submenu/shadow.png) repeat-x 0 0;
+    background: transparent url(/assets/admin/menu/submenu/shadow.png) repeat-x 0 0;
     @include rounded(top-right, 3px);
 
     height: 60px;
@@ -31,7 +31,7 @@
       &.hoverable > a span {
         em {
           display: inline-block;
-          background: transparent url(/images/admin/menu/icons.png) no-repeat 0 -16px;
+          background: transparent url(/assets/admin/menu/icons.png) no-repeat 0 -16px;
           width: 12px;
           height: 7px;
           position: relative;
@@ -94,7 +94,7 @@
             @include absolute-position(bottom, 0px, right, -11px);
             width: 13px;
             height: 13px;
-            background: transparent url(/images/admin/menu/popup/bottom-right-corner.png) no-repeat 0 0;
+            background: transparent url(/assets/admin/menu/popup/bottom-right-corner.png) no-repeat 0 0;
           }
         }
       }
@@ -108,7 +108,7 @@
     height: 60px;
     padding-left: 20px;
     z-index: 1;
-    background: transparent url(/images/admin/menu/submenu/action-border.png) repeat-y left 0;
+    background: transparent url(/assets/admin/menu/submenu/action-border.png) repeat-y left 0;
 
     a {
       margin-top: 18px;
@@ -185,7 +185,7 @@
 
       a {
         font-size: 0.8em;
-        background: transparent url(/images/admin/menu/popup/add.png) no-repeat left 4px;
+        background: transparent url(/assets/admin/menu/popup/add.png) no-repeat left 4px;
         padding-left: 12px;
       }
 
@@ -193,13 +193,13 @@
         padding-top: 0px;
 
         a {
-          background: transparent url(/images/admin/menu/popup/bullet.png) no-repeat left 5px;
+          background: transparent url(/assets/admin/menu/popup/bullet.png) no-repeat left 5px;
         }
       }
     }
 
     ul {
-      list-style-image: url(/images/admin/menu/popup/bullet.png);
+      list-style-image: url(/assets/admin/menu/popup/bullet.png);
       margin: 0px 0px 0 15px;
 
       li {
@@ -248,7 +248,7 @@
 
 @mixin black-submenu {
   & > ul {
-    background: #23242b url(/images/admin/menu/submenu/black-bg.png) repeat-x 0 0;
+    background: #23242b url(/assets/admin/menu/submenu/black-bg.png) repeat-x 0 0;
     border-color: rgba(255, 255, 255, 0.2);
     & > li > a {
       border: 1px solid rgba(0, 0, 0, 0.2);
@@ -266,7 +266,7 @@
   }
 
   & > .action {
-    background-image: url(/images/admin/menu/submenu/black-action-border.png) !important;
+    background-image: url(/assets/admin/menu/submenu/black-action-border.png) !important;
   }
 }
 
@@ -347,7 +347,7 @@
     }
 
     & > span {
-      background: transparent url(/images/admin/menu/left.png) no-repeat 0 0;
+      background: transparent url(/assets/admin/menu/left.png) no-repeat 0 0;
       width: 40px;
       height: 39px;
       background-position: 0 -39px;
@@ -359,7 +359,7 @@
     }
 
     a {
-      background: transparent url(/images/admin/menu/right.png) no-repeat right 0px;
+      background: transparent url(/assets/admin/menu/right.png) no-repeat right 0px;
       padding: 0px 52px 0 2px;
       height: 39px;
       line-height: 26px;
@@ -368,7 +368,7 @@
       em, span { display: inline-block; position: relative; }
 
       em {
-        background: transparent url(/images/admin/menu/icons.png) no-repeat 0px 0px;
+        background: transparent url(/assets/admin/menu/icons.png) no-repeat 0px 0px;
       }
 
       span {

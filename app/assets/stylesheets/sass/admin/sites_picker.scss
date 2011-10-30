@@ -54,7 +54,7 @@
     li {
       color: #aaa;
       text-shadow: #000 0px 1px;
-      background: transparent url(/images/admin/plugins/sites_picker_entry_bg.png) repeat-x 0 bottom;
+      background: transparent url(/assets/admin/plugins/sites_picker_entry_bg.png) repeat-x 0 bottom;
       padding: 2px 8px 6px 8px;
       cursor: pointer;
 
@@ -77,6 +77,6 @@
     position: absolute;
     top: -11px;
     right: 20px;
-    background: transparent url(/images/admin/plugins/sites_picker_top_arrow.png) no-repeat 0 0;
+    background: transparent url(/assets/admin/plugins/sites_picker_top_arrow.png) no-repeat 0 0;
   }
 }

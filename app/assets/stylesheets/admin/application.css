@@ -1,14 +1,14 @@
 /* ___ application messages ___ */
 
 div.notice {
-  background: transparent url(/images/admin/form/growl-notice.png) repeat-x 0 0;
+  background: transparent url(/assets/admin/form/growl-notice.png) repeat-x 0 0;
   position: relative;
   width: 100%;
   height: 90px;
 }
 
 div.notice.error, div.notice.alert {
-  background-image: url(/images/admin/form/growl-error.png);
+  background-image: url(/assets/admin/form/growl-error.png);
 }
 
 div.notice p {
@@ -25,7 +25,7 @@ div.notice p {
 
 p.no-items {
   padding: 15px 0px;
-  background: transparent url(/images/admin/list/none.png) no-repeat center 0;
+  background: transparent url(/assets/admin/list/none.png) no-repeat center 0;
   text-align: center;
   color: #9d8963 !important;
   font-size: 1.1em !important;
@@ -56,7 +56,7 @@ ul.list li {
 ul.list li em {
   display: block;
   float: left;
-  background: transparent url(/images/admin/list/item-left.png) no-repeat left 0;
+  background: transparent url(/assets/admin/list/item-left.png) no-repeat left 0;
   height: 31px;
   width: 18px;
 }
@@ -65,7 +65,7 @@ ul.list li strong {
   margin-left: 18px;
   display: block;
   height: 31px;
-  background: transparent url(/images/admin/list/item-right.png) no-repeat right 0;
+  background: transparent url(/assets/admin/list/item-right.png) no-repeat right 0;
 }
 
 ul.list li strong a {
@@ -128,7 +128,7 @@ ul.theme-assets li.hidden strong a { font-style: italic; color: #8B8D9A; font-we
   margin-left: 18px;
   display: block;
   height: 31px;
-  background: transparent url(/images/admin/list/item-right.png) no-repeat right 0;
+  background: transparent url(/assets/admin/list/item-right.png) no-repeat right 0;
 }
 
 /* ___ snippets ___ */
@@ -152,7 +152,7 @@ ul.theme-assets li.hidden strong a { font-style: italic; color: #8B8D9A; font-we
 #pages-list li em {
   display: block;
   float: left;
-  background: transparent url(/images/admin/list/item-left.png) no-repeat left 0;
+  background: transparent url(/assets/admin/list/item-left.png) no-repeat left 0;
   height: 31px;
   width: 18px;
 }
@@ -173,7 +173,7 @@ ul.theme-assets li.hidden strong a { font-style: italic; color: #8B8D9A; font-we
   margin-left: 18px;
   display: block;
   height: 31px;
-  background: transparent url(/images/admin/list/item-right.png) no-repeat right 0;
+  background: transparent url(/assets/admin/list/item-right.png) no-repeat right 0;
 }
 
 #pages-list li strong a {
@@ -192,12 +192,12 @@ ul.theme-assets li.hidden strong a { font-style: italic; color: #8B8D9A; font-we
 
 #pages-list ul.folder li.templatized > strong a {
   padding-right: 24px;
-  background: transparent url(/images/admin/list/icons/template.png) no-repeat right 3px;
+  background: transparent url(/assets/admin/list/icons/template.png) no-repeat right 3px;
 }
 
 #pages-list ul.folder li.redirect > strong a {
   padding-right: 24px;
-  background: transparent url(/images/admin/list/icons/redirect.png) no-repeat right 2px;
+  background: transparent url(/assets/admin/list/icons/redirect.png) no-repeat right 2px;
 }
 
 #pages-list li .more {
@@ -236,7 +236,7 @@ ul.theme-assets li.hidden strong a { font-style: italic; color: #8B8D9A; font-we
   top: 4px;
   height: 16px;
   width: 16px;
-  background: transparent url(/images/admin/list/icons/states.png) no-repeat 0 0;
+  background: transparent url(/assets/admin/list/icons/states.png) no-repeat 0 0;
 }
 
 #import-steps li.done .more .states {

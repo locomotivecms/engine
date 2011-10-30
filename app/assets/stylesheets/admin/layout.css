@@ -1,5 +1,5 @@
 body {
-  background: #000 url(/images/admin/background/body.png) repeat 0 0;
+  background: #000 url(/assets/admin/background/body.png) repeat 0 0;
 /*  font-family: Arial,Helvetica,sans-serif;*/
   font-size: 1em;
 }
@@ -9,7 +9,7 @@ body {
 }
 
 #wrapper {
-  background: transparent url(/images/admin/background/light.png) repeat-x 0 0;
+  background: transparent url(/assets/admin/background/light.png) repeat-x 0 0;
 }
 
 #header {
@@ -60,7 +60,7 @@ body {
 }
 
 #content {
-  background: transparent url(/images/admin/menu/shadow.png) repeat-y 0 0;
+  background: transparent url(/assets/admin/menu/shadow.png) repeat-y 0 0;
   margin-top: -1px;
 }
 
@@ -96,13 +96,13 @@ body {
 }
 
 #content div.inner h2 a.editable:hover {
-  background: #fffbe5 url(/images/admin/form/pen.png) no-repeat right 5px;
+  background: #fffbe5 url(/assets/admin/form/pen.png) no-repeat right 5px;
   border-bottom: 1px dotted #efe4a5;
   text-decoration: none;
 }
 
 #content div.inner h3 {
-  background: transparent url(/images/admin/list/item.png) no-repeat 0 0;
+  background: transparent url(/assets/admin/list/item.png) no-repeat 0 0;
   font-size: 0.9em;
   font-weight: bold;
   color: #1e1f26;
@@ -150,7 +150,7 @@ body {
   left: 10px;
   height: 16px;
   width: 16px;
-  background: transparent url(/images/admin/icons/actions.png) no-repeat 0 0;
+  background: transparent url(/assets/admin/icons/actions.png) no-repeat 0 0;
 }
 
 #content #local-actions-bar a.show em { background-position: 0 0; }
@@ -191,7 +191,7 @@ body {
 
 #footer {
   padding-top: 10px;
-  background: transparent url(/images/admin/background/footer.png) no-repeat 0 0;
+  background: transparent url(/assets/admin/background/footer.png) no-repeat 0 0;
 }
 
 #footer p {
@@ -232,4 +232,4 @@ body {
 
 /* ___ NoCoffee / Rails Tags ___ */
 
-a#nocoffee { color: #b0b4c0 !important; text-decoration: none; line-height: 20px; padding-right: 20px; margin: 0 4px; background: transparent url(../../images/admin/nocoffee.png) no-repeat right 0px; }
+a#nocoffee { color: #b0b4c0 !important; text-decoration: none; line-height: 20px; padding-right: 20px; margin: 0 4px; background: transparent url(/assets/admin/nocoffee.png) no-repeat right 0px; }

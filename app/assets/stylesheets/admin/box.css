@@ -1,18 +1,18 @@
-body { background: #000 url(/images/admin/background/body.png) repeat 0 0; }
+body { background: #000 url(/assets/admin/background/body.png) repeat 0 0; }
 
 #wrapper {
-  background: transparent url(/images/admin/box/wrapper_bg.png) repeat-x 0 0;
+  background: transparent url(/assets/admin/box/wrapper_bg.png) repeat-x 0 0;
   min-height: 400px;
 }
 
 #light {
-  background: transparent url(/images/admin/box/light_bg.png) no-repeat center 0;
+  background: transparent url(/assets/admin/box/light_bg.png) no-repeat center 0;
   min-height: 400px;
   padding-top: 100px;
 }
 
 #panel {
-  background: transparent url(/images/admin/box/top_panel_bg.png) no-repeat center 0;
+  background: transparent url(/assets/admin/box/top_panel_bg.png) no-repeat center 0;
   width: 356px;
   height: 344px;
   padding: 9px 0px 0 0px;
@@ -29,7 +29,7 @@ body { background: #000 url(/images/admin/background/body.png) repeat 0 0; }
 }
 
 #panel .inner {
-  background: transparent url(/images/admin/box/content_panel_bg.png) repeat-y center 0;
+  background: transparent url(/assets/admin/box/content_panel_bg.png) repeat-y center 0;
   padding: 5px 0px 20px 0px;
 }
 
@@ -57,7 +57,7 @@ body { background: #000 url(/images/admin/background/body.png) repeat 0 0; }
 }
 
 #panel fieldset ol li input {
-  background: white url(/images/admin/box/input_bg.png) no-repeat 0 0;
+  background: white url(/assets/admin/box/input_bg.png) no-repeat 0 0;
   width: 246px;
   padding: 7px;
   border: 0px;
@@ -103,7 +103,7 @@ body { background: #000 url(/images/admin/background/body.png) repeat 0 0; }
 }
 
 #panel div.footer {
-  background: transparent url(/images/admin/box/bottom_panel_bg.png) no-repeat center 0;
+  background: transparent url(/assets/admin/box/bottom_panel_bg.png) no-repeat center 0;
   text-align: right;
   margin: 0px 0px 0 0px;
   padding: 22px 0;
@@ -111,7 +111,7 @@ body { background: #000 url(/images/admin/background/body.png) repeat 0 0; }
 
 #panel div.footer .button {
   display: inline-block;
-  background: transparent url(/images/admin/box/buttons/left_bg.png) no-repeat 0 0;
+  background: transparent url(/assets/admin/box/buttons/left_bg.png) no-repeat 0 0;
   margin: 0 38px 0 0;
   padding: 0px 0px 0px 2px;
   font-size: 1.1em;
@@ -123,7 +123,7 @@ body { background: #000 url(/images/admin/background/body.png) repeat 0 0; }
 
 #panel div.footer .button span {
   display: inline-block;
-  background: transparent url(/images/admin/box/buttons/right_bg.png) no-repeat right top;
+  background: transparent url(/assets/admin/box/buttons/right_bg.png) no-repeat right top;
   position: relative;
   top: -1px;
   padding: 3px 9px 9px 4px;

@@ -4,7 +4,7 @@
 /* ___ others ___ */
 .button {
   display: inline-block;
-  background: transparent url(/images/admin/buttons/dark-gray-left.png) no-repeat 0 0;
+  background: transparent url(/assets/admin/buttons/dark-gray-left.png) no-repeat 0 0;
   padding: 0px 0px 0px 2px;
   font-size: 0.9em;
   color: white;
@@ -14,7 +14,7 @@
   outline: none; }
   .button span {
     display: inline-block;
-    background: transparent url(/images/admin/buttons/dark-gray-right.png) no-repeat right top;
+    background: transparent url(/assets/admin/buttons/dark-gray-right.png) no-repeat right top;
     position: relative;
     top: -1px;
     padding: 3px 9px 9px 4px;
@@ -22,10 +22,10 @@
     text-shadow: 1px 1px 1px #000;
     outline: none; }
   .button.light {
-    background-image: url(/images/admin/buttons/light-gray-left.png);
+    background-image: url(/assets/admin/buttons/light-gray-left.png);
     color: #787a89; }
     .button.light span {
-      background-image: url(/images/admin/buttons/light-gray-right.png);
+      background-image: url(/assets/admin/buttons/light-gray-right.png);
       text-shadow: 1px 1px 1px #fff; }
   .button.small {
     background: #ebedf4;
