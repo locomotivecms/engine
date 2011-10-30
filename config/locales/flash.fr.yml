@@ -1,6 +1,6 @@
 fr:
   flash:
-    admin:
+    locomotive:
       pages:
         create:
           notice: "La page a été créée avec succès."

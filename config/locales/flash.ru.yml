@@ -1,6 +1,6 @@
 ru:
   flash:
-    admin:
+    locomotive:
       pages:
         create:
           notice: "Страница успешно создана."

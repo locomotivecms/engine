@@ -1,5 +1,5 @@
 ru:
-  admin:
+  locomotive:
     buttons:
       login: Войти
       send_password: Отправить
@@ -152,7 +152,7 @@ ru:
 
     memberships:
       roles:
-        admin: Администратор
+        locomotive: Администратор
         designer: Дизайнер
         author: Автор
       new:

@@ -1,0 +1,20 @@
+defaults: &defaults
+  host: localhost
+  port: 27017
+  # slaves:
+  #   - host: slave1.local
+  #     port: 27018
+  #   - host: slave2.local
+  #     port: 27019
+
+development:
+  <<: *defaults
+  database: locomotive_engine_dev
+
+test:
+  <<: *defaults
+  database: locomotive_engine_test
+
+production:
+  <<: *defaults
+  database: locomotive_engine_production

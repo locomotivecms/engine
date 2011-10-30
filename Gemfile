@@ -11,7 +11,7 @@ gem 'cancan',               '~> 1.6.7'
 
 gem 'mongoid',              '~> 2.3.2'
 gem 'bson_ext',             '~> 1.3.1'
-gem 'locomotive_mongoid_acts_as_tree', '0.1.5.7', :require => 'mongoid_acts_as_tree'
+gem 'locomotive_mongoid_acts_as_tree', '0.1.5.7', :require => 'mongoid_acts_as_tree', :path => '../gems/acts_as_tree' # TODO: REPLACE IT
 gem 'custom_fields',        '~> 1.1.0.rc1'
 gem 'will_paginate',        '~> 3.0.2'
 
@@ -42,7 +42,7 @@ gem 'rubyzip'
 
 gem 'actionmailer-with-request', '~> 0.3.0', :require => 'actionmailer_with_request'
 gem 'httparty',             '~> 0.8.1'
-gem 'delayed_job',          '~> 3.0.0.pre2'
+gem 'delayed_job',          '~> 2.1.1'
 gem 'delayed_job_mongoid',  '~> 1.0.4'
 gem 'SystemTimer',          :platforms => :ruby_18
 

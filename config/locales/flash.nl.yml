@@ -1,6 +1,6 @@
 nl:
   flash:
-    admin:
+    locomotive:
       pages:
         create:
           notice: "Pagina is gemaakt."

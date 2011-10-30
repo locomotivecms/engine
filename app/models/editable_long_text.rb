@@ -1,3 +1,0 @@
-class EditableLongText < EditableShortText
-
-end

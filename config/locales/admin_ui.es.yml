@@ -1,5 +1,5 @@
 es:
-  admin:
+  locomotive:
     errors:
       "500":
         title: Error de Aplicación
@@ -150,7 +150,7 @@ es:
 
     memberships:
       roles:
-        admin: Administrador
+        locomotive: Administrador
         designer: Diseñador
         author: Autor
       new:

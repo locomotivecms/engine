@@ -1,5 +1,4 @@
-require 'mimetype_fu'
-require 'devise'
+require 'locomotive/engine'
 
 require 'locomotive/version'
 require 'locomotive/core_ext'
@@ -72,11 +71,11 @@ module Locomotive
     self.add_middlewares
 
     # Load all the dynamic classes (custom fields)
-    begin
-      ContentType.all.collect(&:fetch_content_klass)
-    rescue ::Mongoid::Errors::InvalidDatabase => e
-      # let assume it's because of the first install (meaning no config.yml file)
-    end
+    # begin
+    #   ContentType.all.collect(&:fetch_content_klass)
+    # rescue ::Mongoid::Errors::InvalidDatabase => e
+    #   # let assume it's because of the first install (meaning no config.yml file)
+    # end
   end
 
   def self.add_middlewares

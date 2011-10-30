@@ -1,6 +1,6 @@
 "no":
   flash:
-    admin:
+    locomotive:
       pages:
         create:
           notice: "Siden har blitt opprettet."

@@ -84,7 +84,7 @@ describe Locomotive::Routing::SiteDispatcher do
 
         @controller.instance_variable_set('@_response', ActionDispatch::Response.new)
         @controller.expects(:current_site).returns(false)
-        @controller.stubs(:admin_installation_url).returns('/admin/install/url/')
+        @controller.stubs(:locomotive_installation_url).returns('/admin/install/url/')
         @controller.stubs(:redirect_to).with('/admin/install/url/')
       end
 
@@ -107,7 +107,7 @@ describe Locomotive::Routing::SiteDispatcher do
 
         @controller.instance_variable_set('@_response', ActionDispatch::Response.new)
         @controller.expects(:current_site).returns(false)
-        @controller.stubs(:admin_installation_url).returns('/admin/install/url/')
+        @controller.stubs(:locomotive_installation_url).returns('/admin/install/url/')
         @controller.stubs(:redirect_to).with('/admin/install/url/')
       end
 
@@ -163,9 +163,9 @@ describe Locomotive::Routing::SiteDispatcher do
 
       @controller.instance_variable_set('@_response', ActionDispatch::Response.new)
       @controller.stubs(:request).returns(@request)
-      @controller.stubs(:current_admin).returns(@account)
+      @controller.stubs(:current_account).returns(@account)
       @controller.stubs(:sign_out).with(@account)
-      @controller.stubs(:new_admin_session_url).returns('/new/admin/session')
+      @controller.stubs(:new_locomotive_session_url).returns('/new/admin/session')
     end
 
     context 'when a site is present' do

@@ -1,5 +1,5 @@
 fr:
-  admin:
+  locomotive:
     errors:
       "500":
         title: Erreur applicative
@@ -153,7 +153,7 @@ fr:
 
     memberships:
       roles:
-        admin: Administrateur
+        locomotive: Administrateur
         designer: Designeur
         author: Auteur
       new:

@@ -1,5 +1,5 @@
 "no":
-  admin:
+  locomotive:
     buttons:
       login: Logg inn
       send_password: Send
@@ -152,7 +152,7 @@
 
     memberships:
       roles:
-        admin: Administrator
+        locomotive: Administrator
         designer: Designer
         author: Forfatter
       new:
