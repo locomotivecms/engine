@@ -48,7 +48,7 @@ module Locomotive
         end
 
         def api
-          { 'create' => @context.registers[:controller].send('locomotive_api_contents_url', @content_type.slug) }
+          { 'create' => @context.registers[:controller].send('api_contents_url', @content_type.slug) }
         end
 
         def before_method(meth)

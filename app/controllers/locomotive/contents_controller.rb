@@ -36,11 +36,11 @@ module Locomotive
     def sort
       @content_type.sort_contents!(params[:children])
 
-      respond_with(@content_type, :location => locomotive_contents_url(@content_type.slug))
+      respond_with(@content_type, :location => contents_url(@content_type.slug))
     end
 
     def destroy
-      destroy! { locomotive_contents_url(@content_type.slug) }
+      destroy! { contents_url(@content_type.slug) }
     end
 
     protected
@@ -55,7 +55,7 @@ module Locomotive
 
     def after_create_or_update_url
       if params[:breadcrumb_alias].blank?
-        edit_locomotive_content_url(@content_type.slug, @content.id)
+        edit_content_url(@content_type.slug, @content.id)
       else
         self.breadcrumb_url
       end
@@ -72,11 +72,11 @@ module Locomotive
     end
 
     def breadcrumb_url
-      edit_locomotive_content_url(self.breadcrumb_root._parent.slug, self.breadcrumb_root)
+      edit_content_url(self.breadcrumb_root._parent.slug, self.breadcrumb_root)
     end
 
     def back_url
-      self.breadcrumb_root ? self.breadcrumb_url : locomotive_contents_url(@content_type.slug)
+      self.breadcrumb_root ? self.breadcrumb_url : contents_url(@content_type.slug)
     end
 
   end

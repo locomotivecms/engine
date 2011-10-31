@@ -39,7 +39,7 @@ MONGODB locomotive_engine_dev['$cmd'].find({:create=>"locomotive_accounts"}).lim
 MONGODB locomotive_engine_dev['$cmd'].find({"count"=>"locomotive_accounts", "query"=>{}, "fields"=>nil}).limit(-1)
 Completed 500 Internal Server Error in 89ms
 
-NameError (undefined local variable or method `locomotive_installation_url' for #<Locomotive::RenderingController:0x000001053927d0>):
+NameError (undefined local variable or method `installation_url' for #<Locomotive::RenderingController:0x000001053927d0>):
   
 
 Rendered /Users/didier/.rvm/gems/ruby-1.9.2-p290/gems/actionpack-3.1.1/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.3ms)
@@ -56,7 +56,7 @@ MONGODB locomotive_engine_dev['locomotive_sites'].find({}).limit(-1).sort([[:_id
 MONGODB locomotive_engine_dev['$cmd'].find({"count"=>"locomotive_accounts", "query"=>{}, "fields"=>nil}).limit(-1)
 Completed 500 Internal Server Error in 96ms
 
-NameError (undefined local variable or method `locomotive_installation_url' for #<Locomotive::RenderingController:0x000001055b5918>):
+NameError (undefined local variable or method `installation_url' for #<Locomotive::RenderingController:0x000001055b5918>):
   
 
 Rendered /Users/didier/.rvm/gems/ruby-1.9.2-p290/gems/actionpack-3.1.1/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.3ms)
@@ -74,7 +74,7 @@ MONGODB locomotive_engine_dev['locomotive_sites'].find({}).limit(-1).sort([[:_id
 MONGODB locomotive_engine_dev['$cmd'].find({"count"=>"locomotive_accounts", "query"=>{}, "fields"=>nil}).limit(-1)
 Completed 500 Internal Server Error in 32ms
 
-NameError (undefined local variable or method `locomotive_installation_url' for #<Locomotive::RenderingController:0x000001071f32d8>):
+NameError (undefined local variable or method `installation_url' for #<Locomotive::RenderingController:0x000001071f32d8>):
   
 
 Rendered /Users/didier/.rvm/gems/ruby-1.9.2-p290/gems/actionpack-3.1.1/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.4ms)
@@ -92,7 +92,7 @@ MONGODB locomotive_engine_dev['locomotive_sites'].find({}).limit(-1).sort([[:_id
 MONGODB locomotive_engine_dev['$cmd'].find({"count"=>"locomotive_accounts", "query"=>{}, "fields"=>nil}).limit(-1)
 Completed 500 Internal Server Error in 96ms
 
-NameError (undefined local variable or method `locomotive_installation_url' for #<Locomotive::RenderingController:0x00000105249c98>):
+NameError (undefined local variable or method `installation_url' for #<Locomotive::RenderingController:0x00000105249c98>):
   
 
 Rendered /Users/didier/.rvm/gems/ruby-1.9.2-p290/gems/actionpack-3.1.1/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.3ms)
@@ -110,7 +110,7 @@ MONGODB locomotive_engine_dev['locomotive_sites'].find({}).limit(-1).sort([[:_id
 MONGODB locomotive_engine_dev['$cmd'].find({"count"=>"locomotive_accounts", "query"=>{}, "fields"=>nil}).limit(-1)
 Completed 500 Internal Server Error in 54ms
 
-NameError (undefined local variable or method `locomotive_installation_url' for #<Locomotive::RenderingController:0x000001071eb7b8>):
+NameError (undefined local variable or method `installation_url' for #<Locomotive::RenderingController:0x000001071eb7b8>):
   
 
 Rendered /Users/didier/.rvm/gems/ruby-1.9.2-p290/gems/actionpack-3.1.1/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.5ms)
@@ -127,7 +127,7 @@ MONGODB locomotive_engine_dev['locomotive_sites'].find({}).limit(-1).sort([[:_id
 MONGODB locomotive_engine_dev['$cmd'].find({"count"=>"locomotive_accounts", "query"=>{}, "fields"=>nil}).limit(-1)
 Completed 500 Internal Server Error in 98ms
 
-NameError (undefined local variable or method `locomotive_installation_url' for #<Locomotive::RenderingController:0x0000010522cb20>):
+NameError (undefined local variable or method `installation_url' for #<Locomotive::RenderingController:0x0000010522cb20>):
   
 
 Rendered /Users/didier/.rvm/gems/ruby-1.9.2-p290/gems/actionpack-3.1.1/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.3ms)
@@ -147,7 +147,7 @@ MONGODB locomotive_engine_dev['locomotive_sites'].find({}).limit(-1).sort([[:_id
 MONGODB locomotive_engine_dev['$cmd'].find({"count"=>"locomotive_accounts", "query"=>{}, "fields"=>nil}).limit(-1)
 Completed 500 Internal Server Error in 33ms
 
-NameError (undefined local variable or method `locomotive_installation_url' for #<Locomotive::RenderingController:0x00000107225170>):
+NameError (undefined local variable or method `installation_url' for #<Locomotive::RenderingController:0x00000107225170>):
   
 
 Rendered /Users/didier/.rvm/gems/ruby-1.9.2-p290/gems/actionpack-3.1.1/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.8ms)
@@ -173,7 +173,7 @@ MONGODB locomotive_engine_dev['system.namespaces'].find({})
 MONGODB locomotive_engine_dev['$cmd'].find({"count"=>"locomotive_accounts", "query"=>{}, "fields"=>nil}).limit(-1)
 Completed 500 Internal Server Error in 148ms
 
-NameError (undefined local variable or method `locomotive_installation_url' for #<Locomotive::RenderingController:0x00000105828c40>):
+NameError (undefined local variable or method `installation_url' for #<Locomotive::RenderingController:0x00000105828c40>):
   
 
 Rendered /Users/didier/.rvm/gems/ruby-1.9.2-p290/gems/actionpack-3.1.1/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.4ms)
@@ -191,7 +191,7 @@ MONGODB locomotive_engine_dev['locomotive_sites'].find({}).limit(-1).sort([[:_id
 MONGODB locomotive_engine_dev['$cmd'].find({"count"=>"locomotive_accounts", "query"=>{}, "fields"=>nil}).limit(-1)
 Completed 500 Internal Server Error in 31ms
 
-NameError (undefined local variable or method `locomotive_installation_url' for #<Locomotive::RenderingController:0x00000105ebc930>):
+NameError (undefined local variable or method `installation_url' for #<Locomotive::RenderingController:0x00000105ebc930>):
   
 
 Rendered /Users/didier/.rvm/gems/ruby-1.9.2-p290/gems/actionpack-3.1.1/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.2ms)
@@ -209,7 +209,7 @@ MONGODB locomotive_engine_dev['locomotive_sites'].find({}).limit(-1).sort([[:_id
 MONGODB locomotive_engine_dev['$cmd'].find({"count"=>"locomotive_accounts", "query"=>{}, "fields"=>nil}).limit(-1)
 Completed 500 Internal Server Error in 30ms
 
-NameError (undefined local variable or method `locomotive_installation_url' for #<Locomotive::RenderingController:0x000001082cdbf8>):
+NameError (undefined local variable or method `installation_url' for #<Locomotive::RenderingController:0x000001082cdbf8>):
   
 
 Rendered /Users/didier/.rvm/gems/ruby-1.9.2-p290/gems/actionpack-3.1.1/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.3ms)
@@ -227,7 +227,7 @@ MONGODB locomotive_engine_dev['locomotive_sites'].find({}).limit(-1).sort([[:_id
 MONGODB locomotive_engine_dev['$cmd'].find({"count"=>"locomotive_accounts", "query"=>{}, "fields"=>nil}).limit(-1)
 Completed 500 Internal Server Error in 35ms
 
-NameError (undefined local variable or method `locomotive_installation_url' for #<Locomotive::RenderingController:0x000001045c6278>):
+NameError (undefined local variable or method `installation_url' for #<Locomotive::RenderingController:0x000001045c6278>):
   
 
 Rendered /Users/didier/.rvm/gems/ruby-1.9.2-p290/gems/actionpack-3.1.1/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.3ms)
@@ -245,7 +245,7 @@ MONGODB locomotive_engine_dev['locomotive_sites'].find({}).limit(-1).sort([[:_id
 MONGODB locomotive_engine_dev['$cmd'].find({"count"=>"locomotive_accounts", "query"=>{}, "fields"=>nil}).limit(-1)
 Completed 500 Internal Server Error in 38ms
 
-NameError (undefined local variable or method `locomotive_installation_url' for #<Locomotive::RenderingController:0x000001082a56a8>):
+NameError (undefined local variable or method `installation_url' for #<Locomotive::RenderingController:0x000001082a56a8>):
   
 
 Rendered /Users/didier/.rvm/gems/ruby-1.9.2-p290/gems/actionpack-3.1.1/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.4ms)
@@ -263,9 +263,200 @@ MONGODB locomotive_engine_dev['locomotive_sites'].find({}).limit(-1).sort([[:_id
 MONGODB locomotive_engine_dev['$cmd'].find({"count"=>"locomotive_accounts", "query"=>{}, "fields"=>nil}).limit(-1)
 Completed 500 Internal Server Error in 96ms
 
-NameError (undefined local variable or method `locomotive_installation_url' for #<Locomotive::RenderingController:0x000001044dcba0>):
+NameError (undefined local variable or method `installation_url' for #<Locomotive::RenderingController:0x000001044dcba0>):
   
 
 Rendered /Users/didier/.rvm/gems/ruby-1.9.2-p290/gems/actionpack-3.1.1/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.3ms)
 Rendered /Users/didier/.rvm/gems/ruby-1.9.2-p290/gems/actionpack-3.1.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.8ms)
 Rendered /Users/didier/.rvm/gems/ruby-1.9.2-p290/gems/actionpack-3.1.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (4.2ms)
+MongoDB logging. Please note that logging negatively impacts performance and should be disabled for high-performance production apps.
+MONGODB admin['$cmd'].find({:ismaster=>1}).limit(-1)
+
+
+Started GET "/" for 127.0.0.1 at 2011-10-31 20:36:37 +0100
+  Processing by Locomotive::RenderingController#show as HTML
+[LocomotiveCMS] [fetch site] host = localhost / localhost:8080
+MONGODB locomotive_engine_dev['system.namespaces'].find({})
+MONGODB locomotive_engine_dev['locomotive_sites'].find({}).limit(-1).sort([[:_id, :asc]])
+[LocomotiveCMS] [fetch site] host = localhost / localhost:8080
+MONGODB locomotive_engine_dev['locomotive_sites'].find({}).limit(-1).sort([[:_id, :asc]])
+MONGODB locomotive_engine_dev['system.namespaces'].find({})
+MONGODB locomotive_engine_dev['$cmd'].find({"count"=>"locomotive_accounts", "query"=>{}, "fields"=>nil}).limit(-1)
+Redirected to http://localhost:8080/locomotive/installation
+Completed 302 Found in 226ms
+
+
+Started GET "/locomotive/installation" for 127.0.0.1 at 2011-10-31 20:36:37 +0100
+  Processing by Locomotive::InstallationController#show as HTML
+  Parameters: {"step"=>1}
+[LocomotiveCMS] [fetch site] host = localhost / localhost:8080
+MONGODB locomotive_engine_dev['locomotive_sites'].find({}).limit(-1).sort([[:_id, :asc]])
+[LocomotiveCMS] [fetch site] host = localhost / localhost:8080
+MONGODB locomotive_engine_dev['locomotive_sites'].find({}).limit(-1).sort([[:_id, :asc]])
+MONGODB locomotive_engine_dev['locomotive_accounts'].find({}).limit(-1).sort([[:_id, :asc]])
+MONGODB locomotive_engine_dev['$cmd'].find({"count"=>"locomotive_sites", "query"=>{}, "fields"=>nil}).limit(-1)
+Rendered /Users/didier/Desktop/NoCoffee/LocomotiveCMS/engine/app/views/locomotive/installation/step_1.html.haml within /locomotive/layouts/box (406.2ms)
+Completed 500 Internal Server Error in 527ms
+
+ActionView::Template::Error (undefined method `include_stylesheets' for #<#<Class:0x00000107276980>:0x00000107271ef8>):
+    4: - title t('.title')
+    5: 
+    6: - content_for :head do
+    7:   = include_stylesheets :installation
+    8: 
+    9: - if @step_done.blank?
+    10:   = semantic_form_for(@account, :url => installation_step_url(1)) do |f|
+  
+
+Rendered /Users/didier/.rvm/gems/ruby-1.9.2-p290/gems/actionpack-3.1.1/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.6ms)
+Rendered /Users/didier/.rvm/gems/ruby-1.9.2-p290/gems/actionpack-3.1.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.9ms)
+Rendered /Users/didier/.rvm/gems/ruby-1.9.2-p290/gems/actionpack-3.1.1/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (5.6ms)
+MongoDB logging. Please note that logging negatively impacts performance and should be disabled for high-performance production apps.
+MONGODB admin['$cmd'].find({:ismaster=>1}).limit(-1)
+MongoDB logging. Please note that logging negatively impacts performance and should be disabled for high-performance production apps.
+MONGODB admin['$cmd'].find({:ismaster=>1})
+MONGODB admin['$cmd'].find({:ismaster=>1})
+DEPRECATION WARNING: class_inheritable_attribute is deprecated, please use class_attribute method instead. Notice their behavior are slightly different, so refer to class_attribute documentation first. (called from acts_as_tree at /Users/didier/Desktop/NoCoffee/LocomotiveCMS/gems/acts_as_tree/lib/mongoid_acts_as_tree.rb:21)
+MONGODB locomotive_engine_dev['system.namespaces'].find({})
+MONGODB locomotive_engine_dev['locomotive_pages'].find({}).sort([[:_id, :asc]])
+MongoDB logging. Please note that logging negatively impacts performance and should be disabled for high-performance production apps.
+MONGODB admin['$cmd'].find({:ismaster=>1})
+MONGODB admin['$cmd'].find({:ismaster=>1})
+DEPRECATION WARNING: class_inheritable_attribute is deprecated, please use class_attribute method instead. Notice their behavior are slightly different, so refer to class_attribute documentation first. (called from acts_as_tree at /Users/didier/Desktop/NoCoffee/LocomotiveCMS/gems/acts_as_tree/lib/mongoid_acts_as_tree.rb:21)
+MONGODB locomotive_engine_dev['system.namespaces'].find({})
+MONGODB locomotive_engine_dev['locomotive_pages'].find({}).sort([[:_id, :asc]])
+MongoDB logging. Please note that logging negatively impacts performance and should be disabled for high-performance production apps.
+MONGODB admin['$cmd'].find({:ismaster=>1})
+MONGODB admin['$cmd'].find({:ismaster=>1})
+
+
+Started GET "/" for 127.0.0.1 at 2011-11-01 00:41:45 +0100
+  Processing by Locomotive::RenderingController#show as HTML
+[LocomotiveCMS] [fetch site] host = localhost / localhost:8080
+MONGODB locomotive_engine_dev['system.namespaces'].find({})
+MONGODB locomotive_engine_dev['locomotive_sites'].find({}).sort([[:_id, :asc]])
+[LocomotiveCMS] [fetch site] host = localhost / localhost:8080
+MONGODB locomotive_engine_dev['locomotive_sites'].find({}).sort([[:_id, :asc]])
+MONGODB locomotive_engine_dev['system.namespaces'].find({})
+MONGODB locomotive_engine_dev['$cmd'].find({"count"=>"locomotive_accounts", "query"=>{}, "fields"=>nil})
+Redirected to http://localhost:8080/locomotive/installation
+Completed 302 Found in 30ms
+
+
+Started GET "/locomotive/installation" for 127.0.0.1 at 2011-11-01 00:41:46 +0100
+  Processing by Locomotive::InstallationController#show as HTML
+  Parameters: {"step"=>1}
+[LocomotiveCMS] [fetch site] host = localhost / localhost:8080
+MONGODB locomotive_engine_dev['locomotive_sites'].find({}).sort([[:_id, :asc]])
+[LocomotiveCMS] [fetch site] host = localhost / localhost:8080
+MONGODB locomotive_engine_dev['locomotive_sites'].find({}).sort([[:_id, :asc]])
+MONGODB locomotive_engine_dev['locomotive_accounts'].find({}).sort([[:_id, :asc]])
+MONGODB locomotive_engine_dev['$cmd'].find({"count"=>"locomotive_sites", "query"=>{}, "fields"=>nil})
+Rendered /Users/didier/Desktop/NoCoffee/LocomotiveCMS/engine/app/views/locomotive/installation/step_1.html.haml within /locomotive/layouts/box (250.6ms)
+Completed 500 Internal Server Error in 440ms
+
+ActionView::Template::Error (undefined method `include_stylesheets' for #<#<Class:0x000001049e1790>:0x000001049db228>):
+    4: - title t('.title')
+    5: 
+    6: - content_for :head do
+    7:   = include_stylesheets :installation
+    8: 
+    9: - if @step_done.blank?
+    10:   = semantic_form_for(@account, :url => installation_step_url(1)) do |f|
+  
+
+Rendered /Users/didier/.rvm/gems/ruby-1.9.2-p290/gems/actionpack-3.1.1/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.6ms)
+Rendered /Users/didier/.rvm/gems/ruby-1.9.2-p290/gems/actionpack-3.1.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.8ms)
+Rendered /Users/didier/.rvm/gems/ruby-1.9.2-p290/gems/actionpack-3.1.1/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (4.9ms)
+
+
+Started GET "/" for 127.0.0.1 at 2011-11-01 00:43:27 +0100
+  Processing by Locomotive::RenderingController#show as HTML
+[LocomotiveCMS] [fetch site] host = localhost / localhost:8080
+MONGODB locomotive_engine_dev['locomotive_sites'].find({}).sort([[:_id, :asc]])
+[LocomotiveCMS] [fetch site] host = localhost / localhost:8080
+MONGODB locomotive_engine_dev['locomotive_sites'].find({}).sort([[:_id, :asc]])
+MONGODB locomotive_engine_dev['$cmd'].find({"count"=>"locomotive_accounts", "query"=>{}, "fields"=>nil})
+Redirected to http://localhost:8080/locomotive/installation
+Completed 302 Found in 2ms
+
+
+Started GET "/locomotive/installation" for 127.0.0.1 at 2011-11-01 00:43:27 +0100
+  Processing by Locomotive::InstallationController#show as HTML
+  Parameters: {"step"=>1}
+[LocomotiveCMS] [fetch site] host = localhost / localhost:8080
+MONGODB locomotive_engine_dev['locomotive_sites'].find({}).sort([[:_id, :asc]])
+[LocomotiveCMS] [fetch site] host = localhost / localhost:8080
+MONGODB locomotive_engine_dev['locomotive_sites'].find({}).sort([[:_id, :asc]])
+MONGODB locomotive_engine_dev['locomotive_accounts'].find({}).sort([[:_id, :asc]])
+MONGODB locomotive_engine_dev['$cmd'].find({"count"=>"locomotive_sites", "query"=>{}, "fields"=>nil})
+Rendered /Users/didier/Desktop/NoCoffee/LocomotiveCMS/engine/app/views/locomotive/installation/step_1.html.haml within /locomotive/layouts/box (196.0ms)
+Completed 500 Internal Server Error in 208ms
+
+ActionView::Template::Error (undefined method `include_stylesheets' for #<#<Class:0x000001049e1790>:0x0000010434d280>):
+    4: - title t('.title')
+    5: 
+    6: - content_for :head do
+    7:   = include_stylesheets :installation
+    8: 
+    9: - if @step_done.blank?
+    10:   = semantic_form_for(@account, :url => installation_step_url(1)) do |f|
+  
+
+Rendered /Users/didier/.rvm/gems/ruby-1.9.2-p290/gems/actionpack-3.1.1/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.5ms)
+Rendered /Users/didier/.rvm/gems/ruby-1.9.2-p290/gems/actionpack-3.1.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.8ms)
+Rendered /Users/didier/.rvm/gems/ruby-1.9.2-p290/gems/actionpack-3.1.1/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (4.3ms)
+
+
+Started GET "/locomotive/installation" for 127.0.0.1 at 2011-11-01 00:43:29 +0100
+  Processing by Locomotive::InstallationController#show as HTML
+  Parameters: {"step"=>1}
+[LocomotiveCMS] [fetch site] host = localhost / localhost:8080
+MONGODB locomotive_engine_dev['locomotive_sites'].find({}).sort([[:_id, :asc]])
+[LocomotiveCMS] [fetch site] host = localhost / localhost:8080
+MONGODB locomotive_engine_dev['locomotive_sites'].find({}).sort([[:_id, :asc]])
+MONGODB locomotive_engine_dev['locomotive_accounts'].find({}).sort([[:_id, :asc]])
+MONGODB locomotive_engine_dev['$cmd'].find({"count"=>"locomotive_sites", "query"=>{}, "fields"=>nil})
+Rendered /Users/didier/Desktop/NoCoffee/LocomotiveCMS/engine/app/views/locomotive/installation/step_1.html.haml within /locomotive/layouts/box (200.2ms)
+Completed 500 Internal Server Error in 213ms
+
+ActionView::Template::Error (undefined method `include_stylesheets' for #<#<Class:0x000001049e1790>:0x000001049a9db8>):
+    4: - title t('.title')
+    5: 
+    6: - content_for :head do
+    7:   = include_stylesheets :installation
+    8: 
+    9: - if @step_done.blank?
+    10:   = semantic_form_for(@account, :url => installation_step_url(1)) do |f|
+  
+
+Rendered /Users/didier/.rvm/gems/ruby-1.9.2-p290/gems/actionpack-3.1.1/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.7ms)
+Rendered /Users/didier/.rvm/gems/ruby-1.9.2-p290/gems/actionpack-3.1.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.8ms)
+Rendered /Users/didier/.rvm/gems/ruby-1.9.2-p290/gems/actionpack-3.1.1/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (4.9ms)
+
+
+Started GET "/locomotive/installation" for 127.0.0.1 at 2011-11-01 00:43:33 +0100
+  Processing by Locomotive::InstallationController#show as HTML
+  Parameters: {"step"=>1}
+[LocomotiveCMS] [fetch site] host = localhost / localhost:8080
+MONGODB locomotive_engine_dev['locomotive_sites'].find({}).sort([[:_id, :asc]])
+[LocomotiveCMS] [fetch site] host = localhost / localhost:8080
+MONGODB locomotive_engine_dev['locomotive_sites'].find({}).sort([[:_id, :asc]])
+MONGODB locomotive_engine_dev['locomotive_accounts'].find({}).sort([[:_id, :asc]])
+MONGODB locomotive_engine_dev['$cmd'].find({"count"=>"locomotive_sites", "query"=>{}, "fields"=>nil})
+Rendered /Users/didier/Desktop/NoCoffee/LocomotiveCMS/engine/app/views/locomotive/installation/step_1.html.haml within /locomotive/layouts/box (200.1ms)
+Completed 500 Internal Server Error in 213ms
+
+ActionView::Template::Error (undefined method `include_stylesheets' for #<#<Class:0x000001049e1790>:0x00000104ac0490>):
+    4: - title t('.title')
+    5: 
+    6: - content_for :head do
+    7:   = include_stylesheets :installation
+    8: 
+    9: - if @step_done.blank?
+    10:   = semantic_form_for(@account, :url => installation_step_url(1)) do |f|
+  
+
+Rendered /Users/didier/.rvm/gems/ruby-1.9.2-p290/gems/actionpack-3.1.1/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.5ms)
+Rendered /Users/didier/.rvm/gems/ruby-1.9.2-p290/gems/actionpack-3.1.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.8ms)
+Rendered /Users/didier/.rvm/gems/ruby-1.9.2-p290/gems/actionpack-3.1.1/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (4.3ms)

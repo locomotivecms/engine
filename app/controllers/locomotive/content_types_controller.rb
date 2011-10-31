@@ -4,7 +4,7 @@ module Locomotive
     sections 'contents'
 
     def destroy
-      destroy! { locomotive_pages_url }
+      destroy! { pages_url }
     end
 
   end

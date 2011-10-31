@@ -64,7 +64,7 @@
               = fm.select :role, (Ability::ROLES - ['admin']).map { |r| [t("locomotive.memberships.roles.#{r}"), r] }, :include_blank => false
 
           %span.actions
-            = link_to image_tag('admin/form/icons/trash.png'), locomotive_membership_url(membership), :class => 'remove first', :confirm =>t('locomotive.messages.confirm'), :method => :delete
+            = link_to image_tag('admin/form/icons/trash.png'), membership_url(membership), :class => 'remove first', :confirm =>t('locomotive.messages.confirm'), :method => :delete
 
         - else
           .role

@@ -11,12 +11,12 @@
 
 - if can? :create, Page
   - content_for :buttons do
-    = admin_button_tag :new, new_locomotive_page_url, :class => 'new', :id => 'newpage'
+    = admin_button_tag :new, new_page_url, :class => 'new', :id => 'newpage'
 
 %p!= t('.help')
 
 - if @pages.empty?
-  %p.no-items!= t('.no_items', :url => new_locomotive_page_url)
+  %p.no-items!= t('.no_items', :url => new_page_url)
 - else
   %ul#pages-list
     = render @pages

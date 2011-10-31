@@ -11,13 +11,13 @@
 
 - content_for :buttons do
   - if can?(:manage, ContentType)
-    = admin_button_tag t('locomotive.contents.index.edit'), edit_locomotive_content_type_url(@content_type), :class => 'edit'
+    = admin_button_tag t('locomotive.contents.index.edit'), edit_content_type_url(@content_type), :class => 'edit'
 
-  = admin_button_tag t('locomotive.contents.index.new'), new_locomotive_content_url(@content_type.slug), :class => 'new'
+  = admin_button_tag t('locomotive.contents.index.new'), new_content_url(@content_type.slug), :class => 'new'
 
 %p= @content_type.description
 
-= semantic_form_for @content, :as => :content, :url => locomotive_content_url(@content_type.slug, @content), :html => { :multipart => true, :class => 'save-with-shortcut' } do |form|
+= semantic_form_for @content, :as => :content, :url => content_url(@content_type.slug, @content), :html => { :multipart => true, :class => 'save-with-shortcut' } do |form|
 
   = render 'form', :f => form
 

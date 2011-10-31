@@ -2,3 +2,14 @@
 
 -> script to change images/ in the url to assets/
 
+
+- documentation:
+  - http://edgeapi.rubyonrails.org/classes/Rails/Engine.html
+  - http://guides.rubyonrails.org/configuring.html
+  - https://github.com/asee/mixable_engines
+  - http://stackoverflow.com/questions/2964050/rails-engines-extending-functionality
+  - http://dmathieu.com/fr/rails/introduction-aux-rails-engines
+  - https://github.com/radar/forem
+  - https://github.com/sferik/rails_admin
+  - http://railscasts.com/episodes/277-mountable-engines?view=comments
+

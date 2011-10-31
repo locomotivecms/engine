@@ -14,7 +14,7 @@ module Locomotive
 
       respond_to do |format|
         format.html do
-          redirect_to new_locomotive_import_url if @job.nil?
+          redirect_to new_import_url if @job.nil?
         end
         format.json { render :json => {
           :step => @job.nil? ? 'done' : @job.step,
@@ -34,7 +34,7 @@ module Locomotive
 
         flash[:notice] = t("fash.locomotive.import.create.#{Locomotive.config.delayed_job ? 'notice' : 'done'}")
 
-        redirect_to Locomotive.config.delayed_job ? locomotive_import_url : new_locomotive_import_url
+        redirect_to Locomotive.config.delayed_job ? import_url : new_import_url
       rescue Exception => e
         logger.error "[Locomotive import] #{e.message} / #{e.backtrace}"
 

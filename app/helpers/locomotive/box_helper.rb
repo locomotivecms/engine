@@ -15,7 +15,7 @@ module Locomotive::BoxHelper
   end
 
   def next_installation_step_link(step = 1, label = nil)
-    link_to(content_tag(:span, label || t('locomotive.installation.common.next')), locomotive_installation_step_url(step), :class => 'button')
+    link_to(content_tag(:span, label || t('locomotive.installation.common.next')), installation_step_url(step), :class => 'button')
   end
 
 end

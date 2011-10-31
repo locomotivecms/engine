@@ -2,7 +2,7 @@
   %h2!= t('.title')
 
   .actions
-    = admin_button_tag t('locomotive.theme_assets.index.new'), locomotive_theme_assets_url(:json), :class => 'button small add', :id => 'upload-link'
+    = admin_button_tag t('locomotive.theme_assets.index.new'), theme_assets_url(:json), :class => 'button small add', :id => 'upload-link'
 
   - if @images.empty?
     %p.no-items!= t('.no_items')

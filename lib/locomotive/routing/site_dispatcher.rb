@@ -33,7 +33,7 @@ module Locomotive
         def require_site
           return true if current_site
 
-          redirect_to locomotive_installation_url and return false if Account.count == 0 || Site.count == 0
+          redirect_to installation_url and return false if Account.count == 0 || Site.count == 0
 
           render_no_site_error and return false
         end
@@ -47,7 +47,7 @@ module Locomotive
 
           sign_out(current_account)
           flash[:alert] = I18n.t(:no_membership, :scope => [:devise, :failure, :locomotive])
-          redirect_to new_locomotive_session_url and return false
+          redirect_to new_session_url and return false
         end
 
       end

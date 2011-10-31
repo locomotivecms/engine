@@ -1,21 +1,21 @@
-= admin_content_menu_item 'pages', locomotive_pages_url do
+= admin_content_menu_item 'pages', pages_url do
   - if can? :manage, @page
     .header
-      %p= link_to t('locomotive.pages.index.new'), new_locomotive_page_url
+      %p= link_to t('locomotive.pages.index.new'), new_page_url
   .inner
     %h2!= t('locomotive.pages.index.lastest_items')
     %ul
       - current_site.pages.latest_updated.minimal_attributes.each do |page|
         %li
-          = link_to truncate(page.title, :length => 25), edit_locomotive_page_url(page)
+          = link_to truncate(page.title, :length => 25), edit_page_url(page)
           %span= time_ago_in_words(page.updated_at)
 
 - each_content_type_menu_item do |content_type|
   .header
-    %p= link_to t('locomotive.contents.index.new'), new_locomotive_content_url(content_type.slug)
+    %p= link_to t('locomotive.contents.index.new'), new_content_url(content_type.slug)
 
     - if can? :manage, content_type
-      %p.edit= link_to t('locomotive.contents.index.edit'), edit_locomotive_content_type_url(content_type)
+      %p.edit= link_to t('locomotive.contents.index.edit'), edit_content_type_url(content_type)
 
   .inner
     %h2!= t('locomotive.contents.index.lastest_items')
@@ -30,4 +30,4 @@
     %ul.big-links
       - content_types.each do |content_type|
         %li
-          = link_to truncate(content_type.name, :length => 20), locomotive_contents_url(content_type.slug)
+          = link_to truncate(content_type.name, :length => 20), contents_url(content_type.slug)

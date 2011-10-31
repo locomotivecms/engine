@@ -15,7 +15,7 @@ module Locomotive
 
     def update
       update! do |success, failure|
-        success.html { redirect_to edit_locomotive_current_site_url(new_host_if_subdomain_changed) }
+        success.html { redirect_to edit_current_site_url(new_host_if_subdomain_changed) }
       end
     end
 

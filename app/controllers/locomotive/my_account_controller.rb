@@ -10,7 +10,7 @@ module Locomotive
     skip_load_and_authorize_resource
 
     def update
-      update! { edit_locomotive_my_account_url }
+      update! { edit_my_account_url }
     end
 
     protected

@@ -8,14 +8,14 @@ module Liquid
             output = %{
               <meta name="locale" content="#{context.registers[:current_account].locale}" />
               <meta name="page-fullpath" content="/#{context.registers[:page].fullpath}" />
-              <meta name="edit-page-url" content="#{context.registers[:controller].send(:edit_locomotive_page_url, context.registers[:page])}" />
+              <meta name="edit-page-url" content="#{context.registers[:controller].send(:edit_page_url, context.registers[:page])}" />
             }
 
             if context.registers[:inline_editor]
               controller = context.registers[:controller]
 
               output << %{
-                <meta name="page-url" content="#{context.registers[:controller].send(:locomotive_page_url, context.registers[:page], :json)}" />
+                <meta name="page-url" content="#{context.registers[:controller].send(:page_url, context.registers[:page], :json)}" />
                 <meta name="page-elements-count" content="#{context.registers[:page].editable_elements.size}" />
 
                 <script type="text/javascript" src="/javascripts/admin/aloha/aloha.js"></script>

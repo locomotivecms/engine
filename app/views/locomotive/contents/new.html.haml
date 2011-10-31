@@ -11,11 +11,11 @@
 
 - if can?(:manage, ContentType)
   - content_for :buttons do
-    = admin_button_tag t('locomotive.contents.index.edit'), edit_locomotive_content_type_url(@content_type), :class => 'edit'
+    = admin_button_tag t('locomotive.contents.index.edit'), edit_content_type_url(@content_type), :class => 'edit'
 
 %p= @content_type.description
 
-= semantic_form_for @content, :as => :content, :url => locomotive_contents_url(@content_type.slug), :html => { :multipart => true } do |form|
+= semantic_form_for @content, :as => :content, :url => contents_url(@content_type.slug), :html => { :multipart => true } do |form|
 
   = render 'form', :f => form
 

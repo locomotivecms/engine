@@ -42,7 +42,7 @@ module Locomotive::ContentTypesHelper
       item_on = (content_type.slug == @content_type.slug) rescue nil
 
       label = truncate(content_type.name, :length => 15)
-      url = locomotive_contents_url(content_type.slug)
+      url = contents_url(content_type.slug)
       css = @content_type && content_type.slug == @content_type.slug ? 'on' : ''
 
       html = admin_content_menu_item(label, url, :i18n => false, :css => css) do

@@ -36,7 +36,7 @@ module Locomotive
       when 1 # create account
         @account = Account.create(params[:account])
         if @account.valid?
-          redirect_to locomotive_installation_step_url(2)
+          redirect_to installation_step_url(2)
         else
           render 'step_1'
         end
@@ -67,14 +67,14 @@ module Locomotive
     end
 
     def allow_installation?
-      redirect_to locomotive_pages_url if Site.count > 0 && Account.count > 0
+      redirect_to pages_url if Site.count > 0 && Account.count > 0
     end
 
     def last_url
       if Locomotive.config.manage_domains?
-        locomotive_session_url(:host => Site.first.domains.first, :port => request.port)
+        session_url(:host => Site.first.domains.first, :port => request.port)
       else
-        locomotive_session_url
+        session_url
       end
     end
 

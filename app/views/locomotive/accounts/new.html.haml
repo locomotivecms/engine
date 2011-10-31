@@ -5,7 +5,7 @@
 
 %p!= t('.help')
 
-= semantic_form_for @account, :url => locomotive_accounts_url do |f|
+= semantic_form_for @account, :url => accounts_url do |f|
 
   = f.foldable_inputs :name => :information do
     = f.input :name
@@ -18,4 +18,4 @@
       = f.input :password, :input_html => { :autocomplete => "off" }
       = f.input :password_confirmation, :input_html => { :autocomplete => "off" }
 
-  = render 'admin/shared/form_actions', :back_url => edit_locomotive_current_site_url, :button_label => :create
+  = render 'admin/shared/form_actions', :back_url => edit_current_site_url, :button_label => :create

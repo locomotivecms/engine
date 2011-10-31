@@ -5,14 +5,14 @@
 
 - content_for :buttons do
   - if can?(:manage, @site)
-    = admin_button_tag :export, new_locomotive_export_url, :class => 'new'
-    = admin_button_tag :import, new_locomotive_import_url, :class => 'new'
+    = admin_button_tag :export, new_export_url, :class => 'new'
+    = admin_button_tag :import, new_import_url, :class => 'new'
   - if can?(:create, Account)
-    = admin_button_tag t('.new_membership'), new_locomotive_membership_url, :class => 'new'
+    = admin_button_tag t('.new_membership'), new_membership_url, :class => 'new'
 
 %p!= t('.help')
 
-= semantic_form_for @site, :url => locomotive_current_site_url, :html => { :class => 'save-with-shortcut' } do |f|
+= semantic_form_for @site, :url => current_site_url, :html => { :class => 'save-with-shortcut' } do |f|
 
   = render 'form', :f => f
 

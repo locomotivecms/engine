@@ -11,7 +11,7 @@ class Locomotive::GlobalActionsCell < ::Locomotive::MenuCell
   protected
 
   def build_list
-    add :welcome, :url => edit_locomotive_my_account_url, :i18n_options => {
+    add :welcome, :url => edit_my_account_url, :i18n_options => {
       :key    => 'locomotive.shared.header.welcome',
       :arg    => :name,
       :value  => @current_account.name
@@ -24,7 +24,7 @@ class Locomotive::GlobalActionsCell < ::Locomotive::MenuCell
     end
 
     add :help, :url => '#', :class => 'tutorial', :id => 'help'
-    add :logout, :url => destroy_locomotive_session_url, :confirm => t('locomotive.messages.confirm')
+    add :logout, :url => destroy_session_url, :confirm => t('locomotive.messages.confirm')
   end
 
   def localize_label(label, options = {})

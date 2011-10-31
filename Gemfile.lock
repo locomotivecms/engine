@@ -19,6 +19,14 @@ PATH
   specs:
     locomotive_mongoid_acts_as_tree (0.1.5.7)
 
+PATH
+  remote: ../gems/custom_fields
+  specs:
+    custom_fields (1.1.0.rc1)
+      activesupport (~> 3.1.1)
+      carrierwave-mongoid (~> 0.1.3)
+      mongoid (~> 2.3.2)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -61,7 +69,7 @@ GEM
     autotest (4.4.6)
       ZenTest (>= 4.4.1)
     bcrypt-ruby (3.0.1)
-    bson (1.4.1)
+    bson (1.3.1)
     bson_ext (1.3.1)
     builder (3.0.0)
     bushido (0.0.35)
@@ -93,20 +101,16 @@ GEM
       execjs
     coffee-script-source (1.1.2)
     columnize (0.3.4)
-    cucumber (1.1.0)
+    cucumber (1.1.1)
       builder (>= 2.1.2)
       diff-lcs (>= 1.1.2)
-      gherkin (~> 2.5.0)
+      gherkin (~> 2.6.0)
       json (>= 1.4.6)
       term-ansicolor (>= 1.0.6)
     cucumber-rails (1.1.1)
       capybara (>= 1.1.1)
       cucumber (>= 1.1.0)
       nokogiri (>= 1.5.0)
-    custom_fields (1.1.0.rc1)
-      activesupport (~> 3.1.1)
-      carrierwave-mongoid (~> 0.1.3)
-      mongoid (= 2.3.2)
     daemons (1.1.4)
     database_cleaner (0.6.7)
     delayed_job (2.1.4)
@@ -149,7 +153,7 @@ GEM
       activesupport (>= 2.3.7)
       i18n (~> 0.4)
     fssm (0.2.7)
-    gherkin (2.5.4)
+    gherkin (2.6.2)
       json (>= 1.4.6)
     growl-glue (1.0.7)
     haml (3.1.3)
@@ -182,11 +186,11 @@ GEM
     mime-types (1.17.2)
     mimetype-fu (0.1.2)
     mocha (0.9.12)
-    mongo (1.4.1)
-      bson (= 1.4.1)
-    mongoid (2.3.2)
+    mongo (1.3.1)
+      bson (>= 1.3.1)
+    mongoid (2.3.3)
       activemodel (~> 3.1)
-      mongo (~> 1.4)
+      mongo (~> 1.3)
       tzinfo (~> 0.3.22)
     multi_json (1.0.3)
     multi_xml (0.4.1)
@@ -316,6 +320,7 @@ DEPENDENCIES
   ZenTest
   actionmailer-with-request (~> 0.3.0)
   autotest
+  bson (~> 1.3.1)
   bson_ext (~> 1.3.1)
   bushido (= 0.0.35)
   cancan (~> 1.6.7)
@@ -325,7 +330,7 @@ DEPENDENCIES
   coffee-script (~> 2.2.0)
   compass!
   cucumber-rails
-  custom_fields (~> 1.1.0.rc1)
+  custom_fields (~> 1.1.0.rc1)!
   database_cleaner
   delayed_job (~> 2.1.1)
   delayed_job_mongoid (~> 1.0.4)
@@ -347,7 +352,8 @@ DEPENDENCIES
   locomotive_mongoid_acts_as_tree (= 0.1.5.7)!
   mimetype-fu (~> 0.1.2)
   mocha (= 0.9.12)
-  mongoid (~> 2.3.2)
+  mongo (~> 1.3.1)
+  mongoid (~> 2.3.3)
   pickle
   rack-cache (~> 1.1)
   rails (~> 3.1.1)

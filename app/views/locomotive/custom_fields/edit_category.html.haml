@@ -4,7 +4,7 @@
 
     %p!= t('.help')
 
-    = semantic_form_for @field, :as => :custom_field, :url => locomotive_custom_field_url(@parent.class.model_name.underscore, @parent.slug, @field) do |f|
+    = semantic_form_for @field, :as => :custom_field, :url => custom_field_url(@parent.class.model_name.underscore, @parent.slug, @field) do |f|
 
       = f.foldable_inputs :name => t('.collection_label'), :class => 'editable-list off'
 

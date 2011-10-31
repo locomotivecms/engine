@@ -7,7 +7,7 @@ module Locomotive
 
     def destroy
       destroy! do |format|
-        format.html { redirect_to locomotive_theme_assets_url }
+        format.html { redirect_to theme_assets_url }
       end
     end
 

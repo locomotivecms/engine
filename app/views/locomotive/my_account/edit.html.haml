@@ -8,11 +8,11 @@
 
 - if multi_sites?
   - content_for :buttons do
-    = admin_button_tag t('.new_site'), new_locomotive_site_url, :class => 'new' if can?(:create, Site)
+    = admin_button_tag t('.new_site'), new_site_url, :class => 'new' if can?(:create, Site)
 
 %p= t('.help')
 
-= semantic_form_for @account, :as => :my_account, :url => locomotive_my_account_url, :html => { :class => 'save-with-shortcut' } do |f|
+= semantic_form_for @account, :as => :my_account, :url => my_account_url, :html => { :class => 'save-with-shortcut' } do |f|
 
   = f.foldable_inputs :name => :information, :style => 'display: none' do
     = f.input :name
@@ -31,7 +31,7 @@
 
           - if admin_on?(site) && site != current_site
             %span{ :class => 'actions' }
-              = link_to image_tag('admin/form/icons/trash.png'), locomotive_site_url(site), :class => 'remove first', :confirm => t('locomotive.messages.confirm'), :method => :delete
+              = link_to image_tag('admin/form/icons/trash.png'), site_url(site), :class => 'remove first', :confirm => t('locomotive.messages.confirm'), :method => :delete
 
   = f.foldable_inputs :name => :language, :class => 'language' do
     = f.custom_input :language, { :css => 'full', :with_label => false } do

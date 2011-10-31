@@ -129,9 +129,9 @@ module Locomotive::CustomFieldsHelper
       options.merge!(
         :new_item   => {
           :label  => t('locomotive.contents.form.has_many.new_item'),
-          :url    => new_locomotive_content_url(field.target_klass._parent.slug, url_options)
+          :url    => new_content_url(field.target_klass._parent.slug, url_options)
         },
-        :edit_item_url => edit_locomotive_content_url(field.target_klass._parent.slug, 42, url_options)
+        :edit_item_url => edit_content_url(field.target_klass._parent.slug, 42, url_options)
       )
     end
 

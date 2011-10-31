@@ -8,10 +8,10 @@
 
 %p!= t('.help')
 
-= semantic_form_for @content_type, :url => locomotive_content_types_url do |f|
+= semantic_form_for @content_type, :url => content_types_url do |f|
 
   = render 'form', :f => f
 
-  = render 'admin/shared/form_actions', :back_url => locomotive_pages_url, :button_label => :create
+  = render 'admin/shared/form_actions', :back_url => pages_url, :button_label => :create
 
 = render 'admin/custom_fields/edit_field', :content_type => @content_type
