@@ -35,4 +35,4 @@ permanent
 doc/bushido
 *.swp
 .sass-cache/
-
+spec/dummy/tmp/

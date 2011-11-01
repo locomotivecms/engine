@@ -31,7 +31,7 @@ Locomotive::Engine.routes.draw do
     get :all, :action => 'index', :on => :collection, :defaults => { :all => true }
   end
 
-  resources :assets
+  # resources :assets # TODO: conflict name
 
   resources :content_types
 
