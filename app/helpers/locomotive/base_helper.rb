@@ -25,16 +25,16 @@ module Locomotive::BaseHelper
     end
   end
 
-  def admin_button_tag(text, url, options = {})
-    text = text.is_a?(Symbol) ? t(".#{text}") : text
-    link_to(url, options) do
-      content_tag(:em, escape_once('&nbsp;')) + text
-    end
-  end
+  # def admin_button_tag(text, url, options = {})
+  #   text = text.is_a?(Symbol) ? t(".#{text}") : text
+  #   link_to(url, options) do
+  #     content_tag(:em, escape_once('&nbsp;')) + text
+  #   end
+  # end
 
-  def admin_item_toggler(object)
-    image_tag("admin/list/icons/node_#{(cookies["folder-#{object._id}"] != 'none') ? 'open' : 'closed'}.png", :class => 'toggler')
-  end
+  # def admin_item_toggler(object)
+  #   image_tag("admin/list/icons/node_#{(cookies["folder-#{object._id}"] != 'none') ? 'open' : 'closed'}.png", :class => 'toggler')
+  # end
 
   def collection_to_js(collection, options = {})
     js = collection.collect { |object| object.to_json }
@@ -56,6 +56,30 @@ module Locomotive::BaseHelper
 
   def nocoffee_tag
     link_to 'noCoffee', 'http://www.nocoffee.fr', :id => 'nocoffee'
+  end
+
+  # sites
+
+  def application_domain
+    domain = Locomotive.config.domain
+    domain += ":#{request.port}" if request.port != 80
+    domain
+  end
+
+  def manage_subdomain_or_domains?
+    Locomotive.config.manage_subdomain? || Locomotive.config.manage_domains?
+  end
+
+  def manage_subdomain?
+    Locomotive.config.manage_subdomain?
+  end
+
+  def manage_domains?
+    Locomotive.config.manage_domains?
+  end
+
+  def multi_sites?
+    Locomotive.config.multi_sites?
   end
 
 end

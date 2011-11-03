@@ -20,7 +20,7 @@ module Locomotive
     helper_method :sections, :current_site_url, :site_url, :page_url, :current_ability
 
     # https://rails.lighthouseapp.com/projects/8994/tickets/1905-apphelpers-within-plugin-not-being-mixed-in
-    helper Locomotive::BaseHelper, Locomotive::BoxHelper
+    helper Locomotive::BaseHelper #, Locomotive::BoxHelper
     # Dir[File.dirname(__FILE__) + "/../../helpers/**/*_helper.rb"].each do |file|
     #   helper "locomotive/#{File.basename(file, '.rb').gsub(/_helper$/, '')}"
     # end

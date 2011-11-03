@@ -8,7 +8,13 @@ Locomotive::Engine.routes.draw do
   #   get '/admin' => 'admin/sessions#new'
   # end
 
-  root :to => 'sessions#new'
+  # locomotive authentication
+  devise_for :account, :class_name => 'Locomotive::Account', :controllers => { :sessions => 'locomotive/sessions', :passwords => 'locomotive/passwords' } do
+    match '/'         => 'sessions#new'
+    match '/sign_in'  => 'sessions#new'
+  end
+
+  # root :to => 'sessions#new'
 
   resources :pages do
     put :sort, :on => :member

@@ -141,13 +141,13 @@ module Locomotive
           end
 
           def add_to_list_bottom
-            self.position ||= (::Page.where(:_id.ne => self._id).and(:parent_id => self.parent_id).max(:position) || 0) + 1
+            self.position ||= (self.class.where(:_id.ne => self._id).and(:parent_id => self.parent_id).max(:position) || 0) + 1
           end
 
           def remove_from_list
             return if (self.site rescue nil).nil?
 
-            ::Page.where(:parent_id => self.parent_id).and(:position.gt => self.position).each do |p|
+            self.class.where(:parent_id => self.parent_id).and(:position.gt => self.position).each do |p|
               p.position -= 1
               p.save
             end

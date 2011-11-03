@@ -22,7 +22,7 @@ module Locomotive
     field :cache_strategy, :default => 'none'
 
     ## associations ##
-    referenced_in :site
+    referenced_in :site, :class_name => 'Locomotive::Site'
 
     ## indexes ##
     index :site_id
@@ -30,10 +30,10 @@ module Locomotive
     index [[:fullpath, Mongo::ASCENDING], [:site_id, Mongo::ASCENDING]]
 
     ## callbacks ##
-    after_initialize :set_default_raw_template
-    before_validation :normalize_slug
+    after_initialize    :set_default_raw_template
+    before_validation   :normalize_slug
     before_save { |p| p.fullpath = p.fullpath(true) }
-    before_destroy :do_not_remove_index_and_404_pages
+    before_destroy      :do_not_remove_index_and_404_pages
 
     ## validations ##
     validates_presence_of     :site, :title, :slug

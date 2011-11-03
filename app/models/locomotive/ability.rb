@@ -1,4 +1,4 @@
-Locomotive
+module Locomotive
   class Ability
     include CanCan::Ability
 

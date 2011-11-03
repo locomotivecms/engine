@@ -9,12 +9,12 @@ module
     field :template
 
     ## associations ##
-    referenced_in :site
+    referenced_in :site, :class_name => 'Locomotive::Site'
 
     ## callbacks ##
     before_validation :normalize_slug
-    after_save :update_templates
-    after_destroy :update_templates
+    after_save        :update_templates
+    after_destroy     :update_templates
 
     ## validations ##
     validates_presence_of   :site, :name, :slug, :template

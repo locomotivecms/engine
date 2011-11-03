@@ -19,7 +19,7 @@ module Locomotive
     validates_presence_of :_slug
 
     ## associations ##
-    embedded_in :content_type, :inverse_of => :contents
+    embedded_in :content_type, :class_name => 'Locomotive::ContentType', :inverse_of => :contents
 
     ## callbacks ##
     before_validation :set_slug

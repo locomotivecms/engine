@@ -18,8 +18,8 @@ module Locomotive
     field :api_accounts, :type => Array
 
     ## associations ##
-    referenced_in :site
-    embeds_many :contents, :class_name => 'Locomotive::ContentInstance', :validate => false do
+    referenced_in :site,      :class_name => 'Locomotive::Site'
+    embeds_many   :contents,  :class_name => 'Locomotive::ContentInstance', :validate => false do
       def visible
         @target.find_all { |c| c.visible? }
       end
@@ -32,14 +32,14 @@ module Locomotive
     index [[:site_id, Mongo::ASCENDING], [:slug, Mongo::ASCENDING]]
 
     ## callbacks ##
-    before_validation :normalize_slug
-    before_save :set_default_values
-    after_destroy :remove_uploaded_files
+    before_validation   :normalize_slug
+    before_save         :set_default_values
+    after_destroy       :remove_uploaded_files
 
     ## validations ##
-    validates_presence_of :site, :name, :slug
+    validates_presence_of   :site, :name, :slug
     validates_uniqueness_of :slug, :scope => :site_id
-    validates_size_of :content_custom_fields, :minimum => 1, :message => :array_too_short
+    validates_size_of       :content_custom_fields, :minimum => 1, :message => :array_too_short
 
     ## behaviours ##
     custom_fields_for :contents

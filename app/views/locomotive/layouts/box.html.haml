@@ -4,18 +4,11 @@
   %head
     %title= yield(:head_title) || escape_once("#{Locomotive.config.name} &mdash; #{current_site.name}")
 
-    / = javascript_include_tag  'locomotive/box.js'
-    = stylesheet_link_tag     :locomotive_installation, :media => 'screen'
-    / = stylesheet_link_tag     'locomotive/foo', :debug => true #, :media => 'screen'
+    = javascript_include_tag  'locomotive/jquery.js'
+    = stylesheet_link_tag     'locomotive_installation', :media => 'screen'
 
-    / / [if IE]
-    /   = stylesheet_link_tag   'blueprint/ie', :media => 'screen'
-
-    / = include_javascripts :box
-    / = include_stylesheets :box, :media => 'screen'
-    /
-    / / [if IE]
-    /   = include_stylesheets :ie, :media => 'screen'
+    / [if IE]
+      = stylesheet_link_tag   'locomotive/blueprint/ie', :media => 'screen'
 
     = yield :head
 

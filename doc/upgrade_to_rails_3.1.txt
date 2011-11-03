@@ -13,3 +13,7 @@
   - https://github.com/sferik/rails_admin
   - http://railscasts.com/episodes/277-mountable-engines?view=comments
 
+
+- Creer un project sur fulcrum
+- donner droit a Vincent / Mario
+- migrer les stories la-bas

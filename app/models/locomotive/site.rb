@@ -13,19 +13,19 @@ module Locomotive
     field :robots_txt
 
     ## associations ##
-    references_many :pages, :validate => false
-    references_many :snippets, :dependent => :destroy, :validate => false
-    references_many :theme_assets, :dependent => :destroy, :validate => false
-    references_many :assets, :dependent => :destroy, :validate => false
-    references_many :content_types, :dependent => :destroy, :validate => false
-    embeds_many :memberships
+    references_many :pages,         :class_name => 'Locomotive::Page',        :validate => false
+    references_many :snippets,      :class_name => 'Locomotive::Snippet',     :dependent => :destroy, :validate => false
+    references_many :theme_assets,  :class_name => 'Locomotive::ThemeAsset',  :dependent => :destroy, :validate => false
+    references_many :assets,        :class_name => 'Locomotive::Asset',       :dependent => :destroy, :validate => false
+    references_many :content_types, :class_name => 'Locomotive::ContentType', :dependent => :destroy, :validate => false
+    embeds_many     :memberships,   :class_name => 'Locomotive::Membership'
 
     ## validations ##
     validates_presence_of :name
 
     ## callbacks ##
-    after_create :create_default_pages!
-    after_destroy :destroy_pages
+    after_create    :create_default_pages!
+    after_destroy   :destroy_pages
 
     ## behaviours ##
     enable_subdomain_n_domains_if_multi_sites

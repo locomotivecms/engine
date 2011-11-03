@@ -17,7 +17,7 @@ module Locomotive
     mount_uploader :source, AssetUploader
 
     ## associations ##
-    referenced_in :site
+    referenced_in :site, :class_name => 'Locomotive::Site'
 
     ## validations ##
     validates_presence_of :source

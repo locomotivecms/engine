@@ -10,12 +10,12 @@ module Locomotive::BoxHelper
     end
   end
 
-  def box_button_tag(label)
-    content_tag(:button, content_tag(:span, label), :type => 'submit', :class => 'button')
-  end
+  # def box_button_tag(label)
+  #   content_tag(:button, content_tag(:span, label), :type => 'submit', :class => 'button')
+  # end
 
-  def next_installation_step_link(step = 1, label = nil)
-    link_to(content_tag(:span, label || t('locomotive.installation.common.next')), installation_step_url(step), :class => 'button')
-  end
+  # def next_installation_step_link(step = 1, label = nil)
+  #   link_to(content_tag(:span, label || t('locomotive.installation.common.next')), installation_step_url(step), :class => 'button')
+  # end
 
 end

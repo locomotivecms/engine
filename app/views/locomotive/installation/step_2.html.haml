@@ -3,10 +3,6 @@
 
 - title t('.title')
 
-- content_for :head do
-  = include_stylesheets :installation
-  = include_javascripts :installation
-
 = semantic_form_for(@site, :url => installation_step_url(2), :html => { :multipart => true }) do |f|
   .inner
 
@@ -31,4 +27,4 @@
           %p.inline-hints!= t('.back_to_default_template')
 
   .footer
-    = box_button_tag t('.next')
+    = submit_tag t('.next')

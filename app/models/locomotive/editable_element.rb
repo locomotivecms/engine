@@ -15,7 +15,7 @@ module Locomotive
       field :from_parent, :type => Boolean, :default => false
 
       ## associations ##
-      embedded_in :page, :inverse_of => :editable_elements
+      embedded_in :page, :class_name => 'Locomotive::Page', :inverse_of => :editable_elements
 
       ## validations ##
       validates_presence_of :slug

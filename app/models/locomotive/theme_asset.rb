@@ -16,7 +16,7 @@ module Locomotive
     mount_uploader :source, ThemeAssetUploader
 
     ## associations ##
-    referenced_in :site
+    referenced_in :site, :class_name => 'Locomotive::Site'
 
     ## indexes ##
     index :site_id
@@ -28,11 +28,11 @@ module Locomotive
     before_validation :build_local_path
 
     ## validations ##
-    validates_presence_of :site, :source
-    validates_presence_of :plain_text_name, :if => Proc.new { |a| a.performing_plain_text? }
+    validates_presence_of   :site, :source
+    validates_presence_of   :plain_text_name, :if => Proc.new { |a| a.performing_plain_text? }
     validates_uniqueness_of :local_path, :scope => :site_id
-    validates_integrity_of :source
-    validate :content_type_can_not_changed
+    validates_integrity_of  :source
+    validate                :content_type_can_not_changed
 
     ## named scopes ##
 

@@ -7,12 +7,12 @@ module Locomotive
     field :role, :default => 'author'
 
     ## associations ##
-    referenced_in :account, :validate => false
-    embedded_in :site, :inverse_of => :memberships
+    referenced_in :account, :class_name => 'Locomotive::Account', :validate => false
+    embedded_in   :site,    :class_name => 'Locomotive::Site',    :inverse_of => :memberships
 
     ## validations ##
     validates_presence_of :account
-    validate :can_change_role, :if => :role_changed?
+    validate              :can_change_role, :if => :role_changed?
 
     ## callbacks ##
     before_save :define_role
