@@ -41,13 +41,13 @@ module Locomotive
         end
 
         if page = current_site.pages.any_in(:fullpath => [*path]).first
-          if not page.published? and current_account.nil?
+          if not page.published? and current_locomotive_account.nil?
             page = nil
           else
             if page.templatized?
               @content_instance = page.content_type.contents.where(:_slug => File.basename(path.first)).first
 
-              if @content_instance.nil? || (!@content_instance.visible? && current_account.nil?) # content instance not found or not visible
+              if @content_instance.nil? || (!@content_instance.visible? && current_locomotive_account.nil?) # content instance not found or not visible
                 page = nil
               end
             end
@@ -84,7 +84,7 @@ module Locomotive
           :site           => current_site,
           :page           => @page,
           :inline_editor  => self.editing_page?,
-          :current_account  => current_account
+          :current_locomotive_account  => current_locomotive_account
         }
 
         ::Liquid::Context.new({}, assigns, registers)

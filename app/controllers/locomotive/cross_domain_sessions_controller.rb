@@ -1,7 +1,7 @@
 module Locomotive
   class CrossDomainSessionsController < BaseController
 
-    layout '/locomotive/layouts/box'
+    layout '/locomotive/layouts/not_logged_in'
 
     skip_before_filter :verify_authenticity_token
 
@@ -12,14 +12,14 @@ module Locomotive
     skip_load_and_authorize_resource
 
     def new
-      if site = current_account.sites.detect { |s| s._id.to_s == params[:target_id] }
+      if site = current_locomotive_account.sites.detect { |s| s._id.to_s == params[:target_id] }
         if Rails.env == 'development'
           @target = site.full_subdomain
         else
           @target = site.domains_without_subdomain.first || site.full_subdomain
         end
 
-        current_account.reset_switch_site_token!
+        current_locomotive_account.reset_switch_site_token!
       else
         redirect_to admin_pages_path
       end

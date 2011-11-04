@@ -1,6 +1,9 @@
 - content_for :head_title do
   = t('locomotive.installation.common.title')
 
+- content_for :head do
+  = stylesheet_link_tag 'locomotive/installation', :media => 'screen'
+
 - title t('.title')
 
 = semantic_form_for(@site, :url => installation_step_url(2), :html => { :multipart => true }) do |f|

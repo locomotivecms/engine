@@ -16,7 +16,7 @@ module Locomotive
     protected
 
     def resource
-      @account = current_account
+      @account = current_locomotive_account
     end
 
     def begin_of_association_chain; nil; end # not related directly to current_site

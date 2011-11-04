@@ -79,7 +79,7 @@ module Locomotive::ContentTypesHelper
       registers = {
         :controller     => self,
         :site           => current_site,
-        :current_account  => current_account
+        :current_locomotive_account  => current_locomotive_account
       }
 
       preserve(content._parent.item_template.render(::Liquid::Context.new({}, assigns, registers)))

@@ -5,14 +5,14 @@
   = f.hidden_field :reset_password_token
 
   .inner
-    = box_flash_message
+    = flash_message
 
     = f.inputs do
       = f.input :password, :label => t('.password'), :required => false
       = f.input :password_confirmation, :label => t('.password_confirmation'), :required => false
 
     %p.link
-      = link_to preserve(t('.link')), new_admin_session_path
+      = link_to preserve(t('.link')), new_locomotive_account_session_path
 
   .footer
-    = box_button_tag t('locomotive.buttons.change_password')
+    = submit_tag t('locomotive.buttons.change_password')

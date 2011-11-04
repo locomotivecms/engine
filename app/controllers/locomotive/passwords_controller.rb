@@ -3,11 +3,16 @@ module Locomotive
 
     include Locomotive::Routing::SiteDispatcher
 
-    layout '/locomotive/layouts/box'
+    layout '/locomotive/layouts/not_logged_in'
 
     before_filter :require_site
 
-    helper 'locomotive/base', 'locomotive/box'
+    helper 'locomotive/base'
+
+    def edit
+      logger.debug 'I am here'
+      super
+    end
 
   end
 end

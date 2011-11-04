@@ -1,9 +1,9 @@
 class Locomotive::GlobalActionsCell < ::Locomotive::MenuCell
 
-  attr_reader :current_account, :current_site_url
+  attr_reader :current_locomotive_account, :current_site_url
 
   def show(args)
-    @current_account    = args[:current_account]
+    @current_locomotive_account    = args[:current_locomotive_account]
     @current_site_url   = args[:current_site_url]
     super
   end
@@ -14,12 +14,12 @@ class Locomotive::GlobalActionsCell < ::Locomotive::MenuCell
     add :welcome, :url => edit_my_account_url, :i18n_options => {
       :key    => 'locomotive.shared.header.welcome',
       :arg    => :name,
-      :value  => @current_account.name
+      :value  => @current_locomotive_account.name
     }
 
     add :see, :url => current_site_url, :id => 'viewsite', :target => '_blank'
 
-    if Locomotive.config.multi_sites? && current_account.sites.size > 1
+    if Locomotive.config.multi_sites? && current_locomotive_account.sites.size > 1
       add :switch, :url => '#', :id => 'sites-picker-link'
     end
 

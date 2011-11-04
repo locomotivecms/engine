@@ -6,7 +6,9 @@ gem 'rake',                 '0.9.2'
 
 gem 'rails',                '~> 3.1.1'
 
-gem 'devise',               '~> 1.4.9'
+
+gem 'devise',               :path => '../gems/devise' # FIXME: git clone git@github.com:locomotivecms/devise.git; git checkout scoped_mailer
+# gem 'devise',               '~> 1.4.9'
 gem 'cancan',               '~> 1.6.7'
 
 gem 'bson',                 '~> 1.3.1'

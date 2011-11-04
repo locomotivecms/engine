@@ -163,7 +163,7 @@ describe Locomotive::Routing::SiteDispatcher do
 
       @controller.instance_variable_set('@_response', ActionDispatch::Response.new)
       @controller.stubs(:request).returns(@request)
-      @controller.stubs(:current_account).returns(@account)
+      @controller.stubs(:current_locomotive_account).returns(@account)
       @controller.stubs(:sign_out).with(@account)
       @controller.stubs(:new_session_url).returns('/new/admin/session')
     end

@@ -2,7 +2,7 @@
 
 = form_tag cross_domain_sessions_url(:host => @target, :port => request.port), :method => 'post' do
 
-  = hidden_field_tag 'token', current_account.switch_site_token
+  = hidden_field_tag 'token', current_locomotive_account.switch_site_token
 
   .inner
     %p.notice= t('.notice')

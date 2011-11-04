@@ -9,7 +9,7 @@ module Locomotive::BaseHelper
     end
   end
 
-  def admin_content_menu_item(name, url, options = {}, &block)
+  def admin_content_menu_item(name, url, options = {}, &block) # TODO: rename method name (remove admin)
     default_options = { :i18n => true, :css => name.dasherize.downcase }
     default_options.merge!(options)
 
@@ -51,6 +51,19 @@ module Locomotive::BaseHelper
           $.growl("#{flash.keys.first}", "#{flash.values.first}");
         });
       }.to_s
+    end
+  end
+
+  def flash_message
+    if not flash.empty?
+      puts "flash = #{flash.inspect}"
+      first_key = flash.keys.first
+      content_tag :div, flash[first_key],
+        :id => "flash-#{first_key}",
+        :class => 'application-message'
+    else
+      puts "empty :-("
+      ''
     end
   end
 

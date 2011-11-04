@@ -9,12 +9,16 @@ Locomotive::Engine.routes.draw do
   # end
 
   # locomotive authentication
-  devise_for :account, :class_name => 'Locomotive::Account', :controllers => { :sessions => 'locomotive/sessions', :passwords => 'locomotive/passwords' } do
-    match '/'         => 'sessions#new'
-    match '/sign_in'  => 'sessions#new'
+  devise_for :locomotive_account,
+    :mailer       => 'Locomotive::DeviseMailer',
+    :class_name   => 'Locomotive::Account',
+    :path         => '',
+    :path_prefix  => nil,
+    :controllers  => { :sessions => 'locomotive/sessions', :passwords => 'locomotive/passwords' } do
+      match '/'         => 'sessions#new'
   end
 
-  # root :to => 'sessions#new'
+  root :to => 'pages#index'
 
   resources :pages do
     put :sort, :on => :member

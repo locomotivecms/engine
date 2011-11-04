@@ -46,16 +46,16 @@ module Locomotive
     protected
 
     def set_current_thread_variables
-      Thread.current[:account] = current_account
+      Thread.current[:account] = current_locomotive_account
       Thread.current[:site]  = current_site
     end
 
     def current_ability
-      @current_ability ||= Ability.new(current_account, current_site)
+      @current_ability ||= Ability.new(current_locomotive_account, current_site)
     end
 
     def require_account
-      authenticate_account!
+      authenticate_locomotive_account!
     end
 
     def begin_of_association_chain
@@ -79,7 +79,7 @@ module Locomotive
     end
 
     def set_locale
-      I18n.locale = current_account.locale rescue Locomotive.config.default_locale
+      I18n.locale = current_locomotive_account.locale rescue Locomotive.config.default_locale
     end
 
     # ___ site/page urls builder ___

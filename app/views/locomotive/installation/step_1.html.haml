@@ -1,6 +1,9 @@
 - content_for :head_title do
   = t('locomotive.installation.common.title')
 
+- content_for :head do
+  = stylesheet_link_tag 'locomotive_installation', :media => 'screen'
+
 - title t('.title')
 
 - if @step_done.blank?

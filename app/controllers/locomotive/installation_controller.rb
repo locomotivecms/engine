@@ -1,21 +1,11 @@
 module Locomotive
-  class InstallationController < BaseController
+  class InstallationController < ::ApplicationController
 
-    layout '/locomotive/layouts/box'
-
-    skip_before_filter :require_site
-
-    skip_before_filter :require_account
-
-    skip_before_filter :verify_authenticity_token
-
-    skip_before_filter :validate_site_membership
+    layout '/locomotive/layouts/not_logged_in'
 
     before_filter :is_step_already_done?
 
     before_filter :allow_installation?
-
-    skip_load_and_authorize_resource
 
     def show
       request.get? ? self.handle_get : self.handle_post

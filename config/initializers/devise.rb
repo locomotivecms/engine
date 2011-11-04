@@ -1,3 +1,14 @@
+Devise.mailer[:locomotive_account] = 'Locomotive::DeviseMailer'
+
+# require 'devise'
+#
+# puts "overidding Devise::Mailer"
+#
+# # The devise mailer has also to know about the urls built in the engine
+# class Devise::Mailer < ::ActionMailer::Base
+#   include Locomotive::Engine.routes.url_helpers
+# end
+
 # require 'locomotive'
 #
 # # Use this hook to configure devise mailer, warden hooks and so forth. The first

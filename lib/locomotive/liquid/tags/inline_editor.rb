@@ -4,9 +4,9 @@ module Liquid
       class InlineEditor < ::Liquid::Tag
 
         def render(context)
-          if context.registers[:current_account]
+          if context.registers[:current_locomotive_account]
             output = %{
-              <meta name="locale" content="#{context.registers[:current_account].locale}" />
+              <meta name="locale" content="#{context.registers[:current_locomotive_account].locale}" />
               <meta name="page-fullpath" content="/#{context.registers[:page].fullpath}" />
               <meta name="edit-page-url" content="#{context.registers[:controller].send(:edit_page_url, context.registers[:page])}" />
             }
