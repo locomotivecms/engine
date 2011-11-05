@@ -36,10 +36,13 @@ module Locomotive
 
             raise ::Liquid::ArgumentError.new("Cannot paginate array '#{@collection_name}'. Not found.") if collection.nil?
 
-            pagination = collection.send(:paginate, {
-              :page       => context['current_page'],
-              :per_page   => @per_page }).to_liquid.stringify_keys
-
+            if collection.is_a? Array
+              pagination = Kaminari.paginate_array(collection).page(context['current_page']).per(@per_page).to_liquid.stringify_keys
+            else
+              pagination = collection.send(:paginate, {
+                :page       => context['current_page'],
+                :per_page   => @per_page }).to_liquid.stringify_keys
+            end
             page_count, current_page = pagination['total_pages'], pagination['current_page']
 
             path = context['path']

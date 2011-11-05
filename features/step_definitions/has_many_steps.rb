@@ -19,10 +19,14 @@ end
 
 Then /^I should be able to view a paginated list of "([^"]*)" per "([^"]*)"$/ do |parent_model, child_model|
   # Create contents
-  @parent_model.contents.create!(:slug => 'parent', :body => 'Parent')
-  @child_model.contents.create!(:slug => 'one', :body => 'One')
-  @child_model.contents.create!(:slug => 'two', :body => 'Two')
-  @child_model.contents.create!(:slug => 'three', :body => 'Three')
+  article = @parent_model.contents.create!(:slug => 'parent', :body => 'Parent')
+  @child_model.contents.create!(:slug => 'one', :body => 'One', :custom_field_2 => article.id.to_s)
+  @child_model.contents.create!(:slug => 'two', :body => 'Two', :custom_field_2 => article.id.to_s)
+  @child_model.contents.create!(:slug => 'three', :body => 'Three', :custom_field_2 => article.id.to_s)
+
+  @child_model.contents.each do |comment|
+    article.comments << comment
+  end
 
   # Create a page
   raw_template = %{
@@ -41,7 +45,14 @@ Then /^I should be able to view a paginated list of "([^"]*)" per "([^"]*)"$/ do
 
   # The page should have the first two comments
   visit '/hello'
-  page.should have_content 'one'
-  page.should have_content 'two'
-  page.should_not have_content 'three'
+  page.should have_content 'One'
+  page.should have_content 'Two'
+  page.should_not have_content 'Three'
+
+
+  # The second page should have the last comment
+  click_link '2'
+  page.should_not have_content 'One'
+  page.should_not have_content 'Two'
+  page.should     have_content 'Three'
 end
