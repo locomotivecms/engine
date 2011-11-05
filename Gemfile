@@ -15,7 +15,7 @@ gem 'bson', '~> 1.3.1'
 gem 'bson_ext', '~> 1.3.1'
 gem 'mongoid', '~> 2.0.2'
 gem 'locomotive_mongoid_acts_as_tree', '0.1.5.7', :require => 'mongoid_acts_as_tree'
-gem 'will_paginate', '~> 3.0.0'
+gem 'kaminari'
 
 gem 'haml', '3.1.2'
 gem 'sass', '3.1.2'
