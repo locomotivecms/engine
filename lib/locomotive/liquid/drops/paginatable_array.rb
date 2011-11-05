@@ -1,7 +1,7 @@
 class Kaminari::PaginatableArray
   def to_liquid(options = {})
     {
-      :collection       => self.to_a,
+      :collection       => to_a,
       :current_page     => current_page,
       :previous_page    => first_page? ? nil : current_page - 1,
       :next_page        => last_page? ? nil : current_page + 1,

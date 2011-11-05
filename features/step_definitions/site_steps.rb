@@ -13,6 +13,10 @@ Given /^I have the site: "([^"]*)" set up(?: with #{capture_fields})?$/ do |site
   @admin.should_not be_nil
 end
 
+Given /^I have a site setup$/ do
+  Given %{I have the site: "test site" set up}
+end
+
 Given /^I have a designer and an author$/ do
   FactoryGirl.create(:designer, :site => Site.first)
   FactoryGirl.create(:author, :site => Site.first)
