@@ -3,9 +3,6 @@ Feature: Has Many Association
   In order to make dealing with models easier
   I want to be able to display other models that have a has many association
 
-  Background:
-    Given I have the site: "test site" set up
-
   Scenario: Paginating a has many association
-    Given I have an "Articles" model which has many "Comments"
-    Then I should be able to view a paginated list of "Comments" per "Articles"
+    Given I have a site set up
+    Then I should be able to view a paginaed list of a has many association

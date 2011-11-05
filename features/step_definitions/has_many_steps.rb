@@ -17,7 +17,10 @@ Given %r{^I have an? "([^"]*)" model which has many "([^"]*)"$} do |parent_model
   })
 end
 
-Then /^I should be able to view a paginated list of "([^"]*)" per "([^"]*)"$/ do |parent_model, child_model|
+Then /^I should be able to view a paginaed list of a has many association$/ do
+  # Create models
+  Given %{I have an "Articles" model which has many "Comments"}
+
   # Create contents
   article = @parent_model.contents.create!(:slug => 'parent', :body => 'Parent')
   @child_model.contents.create!(:slug => 'one', :body => 'One', :custom_field_2 => article.id.to_s)

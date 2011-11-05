@@ -13,7 +13,7 @@ Given /^I have the site: "([^"]*)" set up(?: with #{capture_fields})?$/ do |site
   @admin.should_not be_nil
 end
 
-Given /^I have a site setup$/ do
+Given /^I have a site set up$/ do
   Given %{I have the site: "test site" set up}
 end
 
