@@ -10,8 +10,10 @@ gem 'warden'
 gem 'devise', '1.3.4'
 gem 'devise_bushido_authenticatable', '1.0.0.alpha10', :require => 'devise_cas_authenticatable'
 
+gem 'mongo', '~> 1.3.1'
+gem 'bson', '~> 1.3.1'
+gem 'bson_ext', '~> 1.3.1'
 gem 'mongoid', '~> 2.0.2'
-gem 'bson_ext', '~> 1.4.0'
 gem 'locomotive_mongoid_acts_as_tree', '0.1.5.7', :require => 'mongoid_acts_as_tree'
 gem 'kaminari'
 
