@@ -10,12 +10,12 @@ Locomotive::Engine.routes.draw do
 
   # locomotive authentication
   devise_for :locomotive_account,
-    :mailer       => 'Locomotive::DeviseMailer',
     :class_name   => 'Locomotive::Account',
     :path         => '',
     :path_prefix  => nil,
+    :failure_app  => 'Locomotive::Devise::FailureApp',
     :controllers  => { :sessions => 'locomotive/sessions', :passwords => 'locomotive/passwords' } do
-      match '/'         => 'sessions#new'
+      match '/' => 'sessions#new'
   end
 
   root :to => 'pages#index'
@@ -60,7 +60,7 @@ Locomotive::Engine.routes.draw do
   resource :export, :only => [:new], :controller => 'export'
 
   # installation guide
-  match '/installation' => 'installation#show', :defaults => { :step => 1 }, :as => :installation
+  match '/installation'       => 'installation#show', :defaults => { :step => 1 }, :as => :installation
   match '/installation/:step' => 'installation#show', :as => :installation_step
 end
 

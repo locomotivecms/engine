@@ -1,5 +1,5 @@
 module Locomotive
-  class SessionsController < Devise::SessionsController
+  class SessionsController < ::Devise::SessionsController
 
     include Locomotive::Routing::SiteDispatcher
 

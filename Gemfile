@@ -6,8 +6,8 @@ gem 'rake',                 '0.9.2'
 
 gem 'rails',                '~> 3.1.1'
 
-
-gem 'devise',               :path => '../gems/devise' # FIXME: git clone git@github.com:locomotivecms/devise.git; git checkout scoped_mailer
+gem 'warden',               :path => '../gems/warden' # FIXME: git clone git@github.com:locomotivecms/warden.git; git checkout scoped_failure_app
+gem 'devise',               :path => '../gems/devise' # FIXME: git clone git@github.com:locomotivecms/devise.git; git checkout simple_scoped_mailer
 # gem 'devise',               '~> 1.4.9'
 gem 'cancan',               '~> 1.6.7'
 

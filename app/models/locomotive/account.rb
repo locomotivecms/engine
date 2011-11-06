@@ -40,6 +40,10 @@ module Locomotive
       self.find_using_switch_site_token(token, age) || raise(Mongoid::Errors::DocumentNotFound.new(self, token))
     end
 
+    def devise_mailer
+      Locomotive::DeviseMailer
+    end
+
     protected
 
     def password_required?

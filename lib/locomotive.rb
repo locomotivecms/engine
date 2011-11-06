@@ -61,7 +61,7 @@ module Locomotive
 
     # Devise
     mail_address = self.config.mailer_sender
-    ::Devise.mailer_sender = mail_address =~ /.+@.+/ ? mail_address : "#{mail_address}@#{Locomotive.config.domain}"
+    # ::Devise.mailer_sender = mail_address =~ /.+@.+/ ? mail_address : "#{mail_address}@#{Locomotive.config.domain}"
 
     # cookies stored in mongodb (mongoid_store)
     Rails.application.config.session_store :mongoid_store, {

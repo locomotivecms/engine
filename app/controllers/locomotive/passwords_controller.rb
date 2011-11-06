@@ -1,5 +1,5 @@
 module Locomotive
-  class PasswordsController < Devise::PasswordsController
+  class PasswordsController < ::Devise::PasswordsController
 
     include Locomotive::Routing::SiteDispatcher
 

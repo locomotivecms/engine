@@ -13,7 +13,7 @@ module Locomotive
       :hosting                => :auto,
       :delayed_job            => false,
       :default_locale         => :en,
-      :mailer_sender          => 'support', #support@example.com'
+      :mailer_sender          => 'support@example.com',
       :manage_subdomain       => false,
       :manage_manage_domains  => false,
       :lastest_items_nb       => 5,
