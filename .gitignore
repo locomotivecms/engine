@@ -36,3 +36,4 @@ doc/bushido
 *.swp
 .sass-cache/
 spec/dummy/tmp/
+spec/dummy/log/*

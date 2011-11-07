@@ -9,6 +9,15 @@ GIT
       sass (~> 3.1)
 
 GIT
+  remote: git://github.com/plataformatec/devise.git
+  revision: 58d61c290a8254e372a7cbbace5cb138085f7c6e
+  specs:
+    devise (1.5.0.dev)
+      bcrypt-ruby (~> 3.0)
+      orm_adapter (~> 0.0.3)
+      warden (~> 1.1)
+
+GIT
   remote: git://github.com/yabawock/handlebars-rails.git
   revision: a09077aa91f10e08403af84586b2f2f0b38d9e2f
   specs:
@@ -26,19 +35,6 @@ PATH
       activesupport (~> 3.1.1)
       carrierwave-mongoid (~> 0.1.3)
       mongoid (~> 2.3.2)
-
-PATH
-  remote: ../gems/devise
-  specs:
-    devise (1.5.0.dev)
-      bcrypt-ruby (~> 3.0)
-      orm_adapter (~> 0.0.3)
-
-PATH
-  remote: ../gems/warden
-  specs:
-    warden (1.1.0)
-      rack (>= 1.0)
 
 GEM
   remote: http://rubygems.org/
@@ -314,6 +310,8 @@ GEM
       kgio (~> 2.4)
       rack
       raindrops (~> 0.6)
+    warden (1.1.0)
+      rack (>= 1.0)
     will_paginate (3.0.2)
     xpath (0.1.4)
       nokogiri (~> 1.3)
@@ -377,6 +375,5 @@ DEPENDENCIES
   spork (~> 0.9.0.rc)
   uglifier (~> 1.0.4)
   unicorn
-  warden!
   will_paginate (~> 3.0.2)
   xpath (~> 0.1.4)
