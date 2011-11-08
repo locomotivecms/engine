@@ -46,9 +46,10 @@ module Locomotive::BaseHelper
 
   def growl_message
     if not flash.empty?
+      first_key = flash.keys.first
       %{
         $(document).ready(function() {
-          $.growl("#{flash.keys.first}", "#{flash.values.first}");
+          $.growl("#{first_key}", "#{flash[first_key]}");
         });
       }.to_s
     end
@@ -56,13 +57,11 @@ module Locomotive::BaseHelper
 
   def flash_message
     if not flash.empty?
-      puts "flash = #{flash.inspect}"
       first_key = flash.keys.first
       content_tag :div, flash[first_key],
         :id => "flash-#{first_key}",
         :class => 'application-message'
     else
-      puts "empty :-("
       ''
     end
   end

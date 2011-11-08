@@ -1,17 +1,18 @@
 - title t('.title')
 
-- content_for :head do
-  = include_javascripts :pages
+/ - content_for :head do
+/   = include_javascripts :pages
 
 - content_for :submenu do
-  = render 'admin/shared/menu/contents'
+  = render 'locomotive/shared/menu/contents'
 
 - content_for :actions do
-  = render 'admin/shared/actions/contents'
+  = render 'locomotive/shared/actions/contents'
 
-- if can? :create, Page
+- if can? :create, Locomotive::Page
   - content_for :buttons do
-    = admin_button_tag :new, new_page_url, :class => 'new', :id => 'newpage'
+    = link_to t('.new'), new_page_url, :class => 'new', :id => 'newpage'
+    / = admin_button_tag :new, new_page_url, :class => 'new', :id => 'newpage'
 
 %p!= t('.help')
 

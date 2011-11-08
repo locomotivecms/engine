@@ -1,13 +1,13 @@
 - title link_to(@site.name.blank? ? @site.name_was : @site.name, '#', :rel => 'site_name', :title => t('.ask_for_name'), :class => 'editable')
 
 - content_for :submenu do
-  = render_cell 'admin/settings_menu', :show
+  = render_cell 'locomotive/settings_menu', :show
 
 - content_for :buttons do
   - if can?(:manage, @site)
     = admin_button_tag :export, new_export_url, :class => 'new'
     = admin_button_tag :import, new_import_url, :class => 'new'
-  - if can?(:create, Account)
+  - if can?(create, Locomotive::Account)
     = admin_button_tag t('.new_membership'), new_membership_url, :class => 'new'
 
 %p!= t('.help')
@@ -16,4 +16,4 @@
 
   = render 'form', :f => f
 
-  = render 'admin/shared/form_actions', :button_label => :update
+  = render 'locomotive/shared/form_actions', :button_label => :update

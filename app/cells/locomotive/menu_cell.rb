@@ -1,6 +1,6 @@
 class Locomotive::MenuCell < Cell::Base
 
-  include ::Rails.application.routes.url_helpers
+  include ::Locomotive::Engine.routes.url_helpers
 
   delegate :sections, :to => :parent_controller
 

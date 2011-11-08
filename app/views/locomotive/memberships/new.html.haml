@@ -1,7 +1,7 @@
 - title t('.title')
 
 - content_for :submenu do
-  = render_cell 'admin/settings_menu', :show
+  = render_cell 'locomotive/settings_menu', :show
 
 %p!= t('.help')
 
@@ -12,4 +12,4 @@
     = f.custom_input :email, { :css => 'string full', :with_label => false } do
       = f.text_field :email
 
-  = render 'admin/shared/form_actions', :back_url => edit_current_site_url, :button_label => :create
+  = render 'locomotive/shared/form_actions', :back_url => edit_current_site_url, :button_label => :create

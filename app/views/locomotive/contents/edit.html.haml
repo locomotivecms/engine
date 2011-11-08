@@ -4,13 +4,13 @@
   - title t('.title.default', :type => @content_type.name.capitalize)
 
 - content_for :submenu do
-  = render 'admin/shared/menu/contents'
+  = render 'locomotive/shared/menu/contents'
 
 - content_for :actions do
-  = render 'admin/shared/actions/contents'
+  = render 'locomotive/shared/actions/contents'
 
 - content_for :buttons do
-  - if can?(:manage, ContentType)
+  - if can?(manage, Locomotive::ContentType)
     = admin_button_tag t('locomotive.contents.index.edit'), edit_content_type_url(@content_type), :class => 'edit'
 
   = admin_button_tag t('locomotive.contents.index.new'), new_content_url(@content_type.slug), :class => 'new'
@@ -21,4 +21,4 @@
 
   = render 'form', :f => form
 
-  = render 'admin/shared/form_actions', :back_url => back_url, :button_label => :update
+  = render 'locomotive/shared/form_actions', :back_url => back_url, :button_label => :update

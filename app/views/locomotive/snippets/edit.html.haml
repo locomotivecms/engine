@@ -1,7 +1,7 @@
 - title t('.title')
 
 - content_for :submenu do
-  = render_cell 'admin/settings_menu', :show
+  = render_cell 'locomotive/settings_menu', :show
 
 - content_for :buttons do
   = admin_button_tag t('locomotive.snippets.index.new'), new_snippet_url, :class => 'new'
@@ -12,4 +12,4 @@
 
   = render 'form', :f => form
 
-  = render 'admin/shared/form_actions', :back_url => theme_assets_url, :button_label => :update
+  = render 'locomotive/shared/form_actions', :back_url => theme_assets_url, :button_label => :update

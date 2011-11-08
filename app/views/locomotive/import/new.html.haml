@@ -1,7 +1,7 @@
 - title t('.title')
 
 - content_for :submenu do
-  = render_cell 'admin/settings_menu', :show
+  = render_cell 'locomotive/settings_menu', :show
 
 %p!= t('.help')
 
@@ -30,4 +30,4 @@
         %p.inline-hints= t('formtastic.hints.import.reset')
 
 
-  = render 'admin/shared/form_actions', :button_label => :send
+  = render 'locomotive/shared/form_actions', :button_label => :send

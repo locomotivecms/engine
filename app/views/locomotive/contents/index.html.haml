@@ -1,16 +1,16 @@
 - title t('.title', :type => @content_type.name.capitalize)
 
 - content_for :submenu do
-  = render 'admin/shared/menu/contents'
+  = render 'locomotive/shared/menu/contents'
 
 - content_for :actions do
-  = render 'admin/shared/actions/contents'
+  = render 'locomotive/shared/actions/contents'
 
 - content_for :head do
   = include_javascripts :contents
 
 - content_for :buttons do
-  - if can?(:manage, ContentType)
+  - if can?(manage, Locomotive::ContentType)
     = admin_button_tag :edit, edit_content_type_url(@content_type), :class => 'edit'
 
   = admin_button_tag :new, new_content_url(@content_type.slug), :class => 'new'
@@ -26,7 +26,7 @@
 - else
   = render 'list', :contents => @contents
 
-- if can?(:manage, ContentType)
+- if can?(manage, Locomotive::ContentType)
   #local-actions-bottom-bar
     %p.tleft
       = link_to(content_tag(:em, escape_once('&nbsp;')) + t('.destroy'), content_type_url(@content_type), :confirm => t('locomotive.messages.confirm'), :method => :delete, :class => 'button small remove')

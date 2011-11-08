@@ -1,10 +1,10 @@
 - title t('.title')
 
 - content_for :submenu do
-  = render 'admin/shared/menu/contents'
+  = render 'locomotive/shared/menu/contents'
 
 - content_for :actions do
-  = render 'admin/shared/actions/contents'
+  = render 'locomotive/shared/actions/contents'
 
 - content_for :buttons do
   = admin_button_tag :show_items, contents_url(@content_type.slug_was), :class => 'show'
@@ -16,6 +16,6 @@
 
   = render 'form', :f => f
 
-  = render 'admin/shared/form_actions', :back_url => contents_url(@content_type.slug_was), :button_label => :update
+  = render 'locomotive/shared/form_actions', :back_url => contents_url(@content_type.slug_was), :button_label => :update
 
-= render 'admin/custom_fields/edit_field', :content_type => @content_type
+= render 'locomotive/custom_fields/edit_field', :content_type => @content_type

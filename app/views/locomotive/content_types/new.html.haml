@@ -1,10 +1,10 @@
 - title t('.title')
 
 - content_for :submenu do
-  = render 'admin/shared/menu/contents'
+  = render 'locomotive/shared/menu/contents'
 
 - content_for :actions do
-  = render 'admin/shared/actions/contents'
+  = render 'locomotive/shared/actions/contents'
 
 %p!= t('.help')
 
@@ -12,6 +12,6 @@
 
   = render 'form', :f => f
 
-  = render 'admin/shared/form_actions', :back_url => pages_url, :button_label => :create
+  = render 'locomotive/shared/form_actions', :back_url => pages_url, :button_label => :create
 
-= render 'admin/custom_fields/edit_field', :content_type => @content_type
+= render 'locomotive/custom_fields/edit_field', :content_type => @content_type

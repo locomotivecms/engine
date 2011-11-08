@@ -7,7 +7,7 @@
   = f.input :slug
   = f.input :description
 
-= render 'admin/custom_fields/index', :form => f, :collection_name => 'contents'
+= render 'locomotive/custom_fields/index', :form => f, :collection_name => 'contents'
 
 - unless f.object.new_record?
   = f.foldable_inputs :name => :presentation, :class => 'switchable' do

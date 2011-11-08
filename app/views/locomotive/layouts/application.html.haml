@@ -2,13 +2,13 @@
 !!!
 %html{ :xmlns => 'http://www.w3.org/1999/xhtml'  }
   %head
-    = render 'admin/shared/head'
+    = render 'locomotive/shared/head'
   %body{ :class => sections }
     #wrapper
       .container
         #header
-          = render 'admin/shared/header'
-          = render_cell 'admin/main_menu', :show
+          = render 'locomotive/shared/header'
+          = render_cell 'locomotive/main_menu', :show
 
           #submenu
             %ul
@@ -29,4 +29,4 @@
             = yield
 
         #footer
-          = render 'admin/shared/footer'
+          = render 'locomotive/shared/footer'
