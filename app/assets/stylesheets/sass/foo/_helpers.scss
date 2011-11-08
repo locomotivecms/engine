@@ -57,6 +57,7 @@
   box-shadow: inset 0 1px 0 0 $color_top, 0 1px 0 0 $color_bottom unquote($important);
   -moz-box-shadow: inset 0 1px 0 0 $color_top, 0 1px 0 0 $color_bottom unquote($important);
   -webkit-box-shadow: inset 0 1px 0 0 $color_top, 0 1px 0 0 $color_bottom unquote($important);
+
 }
 
 @mixin no-box-shadow($important: false) {

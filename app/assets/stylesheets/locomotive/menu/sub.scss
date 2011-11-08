@@ -1,0 +1,249 @@
+@import "helpers";
+
+#submenu {
+  clear: both;
+  position: relative;
+  top: -1px;
+  z-index: 998;
+  height: 60px;
+  margin: 0px;
+  padding: 0 8px;
+  background: transparent image-url("locomotive/menu/shadow.png") repeat-y 0 0;
+
+  /* ___ submenu items ___ */
+
+  & > ul {
+    @include reset;
+    border-top: 1px solid rgba(255, 255, 255, 0.4);
+    background: transparent image-url("locomotive/menu/submenu/shadow.png") repeat-x 0 0;
+    @include border-top-right-radius(3px);
+
+    height: 60px;
+
+    & > li {
+      margin: 15px 7px 0 8px;
+      float: left;
+
+      &.hoverable > a span {
+        em {
+          display: inline-block;
+          background: transparent image-url("locomotive/menu/icons.png") no-repeat 0 -16px;
+          width: 12px;
+          height: 7px;
+          position: relative;
+          top: 0px;
+          left: 6px;
+        }
+      }
+
+      & > a {
+        display: inline-block;
+
+        @include border-radius(16px);
+        @include box-shadow(rgba(255, 255, 255, 0.2) 0 1px 0 0 inset, rgba(255, 255, 255, 0.1) 0 1px 0 0);
+
+        border: 1px solid rgba(0, 0, 0, 0.4);
+        border-top: 1px solid rgba(0, 0, 0, 0.3);
+        padding: 0px 16px 0px 16px;
+        height: 26px;
+        font-size: 16px;
+        line-height: 22px;
+        outline: none;
+
+        span {
+          color: #fff;
+          font-size: 13px;
+          font-weight: normal;
+          text-shadow: 1px 1px 1px #000;
+        }
+
+        &:hover {
+          border: 1px solid rgba(0, 0, 0, 0.9);
+          border-top: 1px solid rgba(0, 0, 0, 0.8);
+        }
+
+        &.on, &:active {
+          border: 1px solid rgba(0, 0, 0, 0.2);
+          border-top: 1px solid rgba(0, 0, 0, 0.4);
+          border-bottom: 1px solid transparent !important;
+          @include box-shadow-with-inset(rgba(0, 0, 0, 0), rgba(255, 255, 255, 0.2));
+        }
+
+        &.hover {
+          background: #fff !important;
+          border-color: transparent !important;
+          border-color-bottom: #fff;
+          padding-bottom: 0px;
+          @include border-left-radius(0px); // !important is missing here
+          position: relative;
+          z-index: 998;
+
+          span {
+            color: #8b8d9a;
+            text-shadow: none;
+            @include no-box-shadow(true);
+          }
+
+          span em {
+            background-position: -12px -16px;
+          }
+
+          & > em {
+            @include absolute-position(bottom, 0px, right, -11px);
+            width: 13px;
+            height: 13px;
+            background: transparent image-url("locomotive/menu/popup/bottom-right-corner.png") no-repeat 0 0;
+          }
+        }
+      }
+    }
+  }
+
+  /* ___ submenu: actions ___ */
+
+  & > .action {
+    @include absolute-position(top, 0px, right, 22px);
+    height: 60px;
+    padding-left: 20px;
+    z-index: 1;
+    background: transparent image-url("locomotive/menu/submenu/action-border.png") repeat-y left 0;
+
+    a {
+      display: inline-block;
+      height: 22px;
+
+      margin-top: 18px;
+      padding: 0px 10px 0 15px;
+
+      background: rgba(0, 0, 0, 0.4);
+
+      @include border-radius(16px);
+      border: 1px solid transparent;
+      outline: none;
+
+      line-height: 20px;
+      text-decoration: none;
+      font-size: 16px;
+
+      em {
+        display: inline-block;
+        position: relative;
+        background: transparent image-url("locomotive/menu/icons.png") no-repeat 0 0px;
+        height: 11px;
+        width: 11px;
+        top: 1px;
+        left: -5px;
+      }
+
+      span {
+        position: relative;
+        top: -2px;
+        color: #fff;
+        font-size: 11px;
+        text-shadow: 1px 1px 1px #000;
+      }
+
+      &:hover {
+        border-color: rgba(0, 0, 0, 1);
+      }
+    }
+  }
+
+  /* ___ submenu: popup ___ */
+
+  .popup {
+    position: absolute;
+    top: 42px;
+    min-width: 250px;
+    background: #fff;
+    @include box-shadow(0px, 0px, 10px, rgba(0, 0, 0, 0.5));
+    @include border-radius(16px);
+    @include border-top-left-radius(0px);
+    z-index: 997;
+
+    a {
+      color: #1f82bc;
+      text-decoration: none;
+      &:hover { text-decoration: underline; }
+    }
+
+    .header {
+      border-bottom: 1px dotted #bbbbbd;
+      padding-bottom: 6px;
+      margin: 0px 16px;
+    }
+
+    .inner { padding: 8px 16px; }
+
+    h2 {
+      font-size: 0.7em;
+      font-weight: bold;
+      color: #1e1f26;
+      margin-bottom: 0px;
+    }
+
+    p {
+      margin: 0px;
+      padding: 10px 0 0 0px;
+
+      a {
+        font-size: 0.8em;
+        background: transparent image-url("locomotive/menu/popup/add.png") no-repeat left 4px;
+        padding-left: 12px;
+      }
+
+      &.edit {
+        padding-top: 0px;
+
+        a {
+          background: transparent image-url("locomotive/menu/popup/bullet.png") no-repeat left 5px;
+        }
+      }
+    }
+
+    ul {
+      list-style-image: image-url("locomotive/menu/popup/bullet.png");
+      margin: 0px 0px 0 15px;
+
+      li {
+        position: relative;
+
+        a { font-size: 0.7em; }
+
+        span {
+          @include absolute-position(top, 6px, right, 15px, inline);
+          color: #8b8d9a;
+          font-size: 0.7em;
+        }
+      }
+
+      &.big-links {
+        list-style: none;
+        margin: 0px;
+
+        li {
+          margin: 10px 0;
+
+          a {
+            @include border-radius(16px);
+            padding: 3px 10px;
+            background: #ebedf4;
+            font-weight: bold;
+            font-size: 0.8em;
+          }
+        }
+      }
+    }
+
+    .footer {
+      background: #ebedf4;
+      padding: 8px 16px;
+      @include border-bottom-radius(16px);
+
+      a {
+        color: #8b8d9a;
+        font-weight: bold;
+      }
+    }
+  }
+}

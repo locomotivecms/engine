@@ -5,10 +5,10 @@
 
 - content_for :buttons do
   - if can?(:manage, @site)
-    = admin_button_tag :export, new_export_url, :class => 'new'
-    = admin_button_tag :import, new_import_url, :class => 'new'
-  - if can?(create, Locomotive::Account)
-    = admin_button_tag t('.new_membership'), new_membership_url, :class => 'new'
+    = local_action_button :export, new_export_url, :class => 'new'
+    = local_action_button :import, new_import_url, :class => 'new'
+  - if can?(:create, Locomotive::Account)
+    = local_action_button t('.new_membership'), new_membership_url, :class => 'new'
 
 %p!= t('.help')
 

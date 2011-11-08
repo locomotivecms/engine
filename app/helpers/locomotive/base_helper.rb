@@ -25,12 +25,12 @@ module Locomotive::BaseHelper
     end
   end
 
-  # def admin_button_tag(text, url, options = {})
-  #   text = text.is_a?(Symbol) ? t(".#{text}") : text
-  #   link_to(url, options) do
-  #     content_tag(:em, escape_once('&nbsp;')) + text
-  #   end
-  # end
+  def local_action_button(text, url, options = {})
+    text = text.is_a?(Symbol) ? t(".#{text}") : text
+    link_to(url, options) do
+      content_tag(:em, escape_once('&nbsp;')) + text
+    end
+  end
 
   # def admin_item_toggler(object)
   #   image_tag("admin/list/icons/node_#{(cookies["folder-#{object._id}"] != 'none') ? 'open' : 'closed'}.png", :class => 'toggler')

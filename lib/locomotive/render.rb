@@ -9,7 +9,7 @@ module Locomotive
 
       def render_locomotive_page
         if request.fullpath =~ /^\/admin\//
-          render :template => '/admin/errors/404', :layout => '/admin/layouts/box', :status => :not_found
+          render :template => '/locomotive/errors/404', :layout => '/admin/layouts/not_logged_in', :status => :not_found
         else
           @page = locomotive_page
 
@@ -24,7 +24,7 @@ module Locomotive
       end
 
       def render_no_page_error
-        render :template => '/admin/errors/no_page', :layout => false
+        render :template => '/locomotive/errors/no_page', :layout => false
       end
 
       def locomotive_page

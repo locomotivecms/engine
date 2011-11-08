@@ -7,7 +7,7 @@
   = render 'locomotive/shared/actions/contents'
 
 - content_for :buttons do
-  = admin_button_tag :show, "/#{@page.fullpath}", :class => 'show'
+  = local_action_button :show, "/#{@page.fullpath}", :class => 'show'
 
 %p!= t('.help')
 

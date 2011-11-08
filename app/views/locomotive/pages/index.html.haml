@@ -11,8 +11,7 @@
 
 - if can? :create, Locomotive::Page
   - content_for :buttons do
-    = link_to t('.new'), new_page_url, :class => 'new', :id => 'newpage'
-    / = admin_button_tag :new, new_page_url, :class => 'new', :id => 'newpage'
+    = local_action_button :new, new_page_url, :class => 'new', :id => 'newpage'
 
 %p!= t('.help')
 

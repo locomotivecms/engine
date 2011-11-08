@@ -4,7 +4,7 @@
   = render_cell 'locomotive/settings_menu', :show
 
 - content_for :buttons do
-  = admin_button_tag t('locomotive.snippets.index.new'), new_snippet_url, :class => 'new'
+  = local_action_button t('locomotive.snippets.index.new'), new_snippet_url, :class => 'new'
 
 %p!= t('.help', :slug => @snippet.slug)
 

@@ -7,8 +7,8 @@
   = render 'locomotive/shared/actions/contents'
 
 - content_for :buttons do
-  = admin_button_tag :show_items, contents_url(@content_type.slug_was), :class => 'show'
-  = admin_button_tag :new_item, new_content_url(@content_type.slug_was), :class => 'new'
+  = local_action_button :show_items, contents_url(@content_type.slug_was), :class => 'show'
+  = local_action_button :new_item, new_content_url(@content_type.slug_was), :class => 'new'
 
 %p!= t('.help')
 

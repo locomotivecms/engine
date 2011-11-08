@@ -9,3 +9,10 @@
     text-decoration: underline;
   }
 }
+
+@mixin locomotive-link {
+  a {
+    @include hover-link;
+    color: #1F82BC;
+  }
+}

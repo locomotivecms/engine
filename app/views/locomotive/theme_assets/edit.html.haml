@@ -3,9 +3,9 @@
 - content_for :submenu do
   = render_cell 'locomotive/settings_menu', :show
 
-- if can?(manage, Locomotive::ThemeAsset)
+- if can?(:manage, Locomotive::ThemeAsset)
   - content_for :buttons do
-    = admin_button_tag t('locomotive.theme_assets.index.new'), new_theme_asset_url, :class => 'new'
+    = local_action_button t('locomotive.theme_assets.index.new'), new_theme_asset_url, :class => 'new'
 
 %p
   - if %w(image javascript stylesheet).include?(@theme_asset.content_type.to_s)

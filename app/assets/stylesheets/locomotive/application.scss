@@ -1,0 +1,115 @@
+@import "compass/css3";
+@import "compass/css3/border-radius";
+@import "compass/css3/images";
+@import "compass/css3/text-shadow";
+@import "helpers";
+
+div.notice {
+  position: relative;
+  width: 100%;
+  height: 90px;
+
+  background: transparent image-url("locomotive/form/growl-notice.png") repeat-x 0 0;
+
+  &.error, &.alert {
+    background-image: image-url("locomotive/form/growl-error.png");
+  }
+
+  p {
+    position: relative;
+    top: 35px;
+
+    margin: 0px;
+
+    color: #fff;
+    text-align: center;
+    font-size: 20px;
+    @include single-text-shadow(#333, 1px, 1px, 1px);
+  }
+}
+
+/* ___ list ___ */
+
+p.no-items {
+  background: #fffbe6;
+  border: 5px solid #eee3a8;
+  @include border-radius(25px);
+
+  padding: 15px 0px;
+
+  text-align: center;
+  color: #9d8963;
+  font-size: 16px !important;
+
+  a {
+    @include hover-link;
+    color: #ff2900;
+  }
+}
+
+ul.list {
+  background: #fff;
+  list-style: none;
+  margin: 0px 0 20px 0;
+
+  li {
+    position: relative;
+    height: 31px;
+    margin-bottom: 10px;
+    clear: both;
+
+    em {
+      display: block;
+      float: left;
+      height: 31px;
+      width: 18px;
+      background: transparent image-url("locomotive/list/item-left.png") no-repeat left 0;
+    }
+
+    strong {
+      display: block;
+      height: 31px;
+      margin-left: 18px;
+      background: transparent image-url("locomotive/list/item-right.png") no-repeat right 0;
+
+      a {
+        position: relative;
+        top: 2px;
+        left: 15px;
+
+        text-decoration: none;
+        color: #1f82bc;
+        font-size: 13px;
+        @include single-text-shadow(#fff, 1px, 1px, 1px);
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+
+    &.sortable li strong a { left: 10px; }
+
+    div.more {
+      position: absolute;
+      top: 3px;
+      right: 15px;
+
+      font-size: 11px;
+      color: #8b8d9a;
+
+      a {
+        position: relative;
+        top: 4px;
+        margin-left: 10px;
+      }
+
+      span.handle {
+        position: relative;
+        top: 5px;
+        margin: 0 0 0 15px;
+        cursor: move;
+      }
+    } // li div.more
+  } // ul.list li
+}

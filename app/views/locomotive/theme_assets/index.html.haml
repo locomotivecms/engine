@@ -4,12 +4,12 @@
   = render_cell 'locomotive/settings_menu', :show
 
 - content_for :buttons do
-  = admin_button_tag t('locomotive.snippets.index.new'), new_snippet_url, :class => 'new' if can?(manage, Locomotive::Snippet)
-  = admin_button_tag :new, new_theme_asset_url, :class => 'new' if can?(manage, Locomotive::ThemeAsset)
+  = local_action_button t('locomotive.snippets.index.new'), new_snippet_url, :class => 'new' if can?(:manage, Locomotive::Snippet)
+  = local_action_button :new, new_theme_asset_url, :class => 'new' if can?(:manage, Locomotive::ThemeAsset)
 
 %p!= t('.help')
 
-- if can?(manage, Locomotive::Snippet)
+- if can?(:manage, Locomotive::Snippet)
   %h3!= t('.snippets')
   - if @snippets.empty?
     %p.no-items!= t('locomotive.snippets.index.no_items', :url => new_snippet_url)
@@ -19,7 +19,7 @@
 
   %br
 
-- if can?(manage, Locomotive::ThemeAsset)
+- if can?(:manage, Locomotive::ThemeAsset)
   %h3!= t('.css_and_js')
   - if @js_and_css_assets.empty?
     %p.no-items!= t('.no_items', :url => new_theme_asset_url)
@@ -36,7 +36,7 @@
   %ul.list.theme-assets
     = render :partial => 'asset', :collection => @assets[:images]
 
-- if can?(manage, Locomotive::ThemeAsset)
+- if can?(:manage, Locomotive::ThemeAsset)
   - if @assets[:fonts]
     %br
 

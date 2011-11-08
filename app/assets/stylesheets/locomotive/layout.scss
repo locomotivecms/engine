@@ -1,0 +1,223 @@
+@import "compass/css3";
+@import "compass/css3/border-radius";
+@import "compass/css3/images";
+@import "compass/css3/text-shadow";
+@import "helpers";
+
+body {
+  background: #000 image-url("locomotive/background/body.png") repeat 0 0;
+  font-size: 12px;
+  font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+
+  /* ___ Alignements ___ */
+
+  .tcenter { text-align: center; }
+  .tright { text-align: right; }
+  .tleft { text-align: left; }
+  .tjustify { text-align: justify; }
+  .fright { float: right; }
+
+  /* ___ Margins ___ */
+
+  .nomargin { margin: 0 !important; }
+  .mt30 { margin-top: 30px !important; }
+  .mt20 { margin-top: 20px !important; }
+  .mb20 { margin-bottom: 20px !important; }
+  .m20 { margin: 20px !important; }
+  .mt10 { margin-top: 10px !important; }
+  .ml10 { margin-left: 10px !important; }
+  .mr10 { margin-right: 10px !important; }
+  .mb10 { margin-bottom: 10px !important; }
+  .m10 { margin: 10px !important; }
+}
+
+#wrapper {
+  background: transparent image-url("locomotive/background/light.png") repeat-x 0 0;
+
+  > .container {
+    width: 966px;
+  }
+
+  #header {
+    position: relative;
+    padding-top: 20px;
+
+    h1 {
+      margin-bottom: 0px;
+      font-size: 100%;
+
+      a {
+        margin-left: 8px;
+
+        font-size: 24px;
+        font-weight: normal;
+        color: #f0f0f0;
+        @include single-text-shadow(#000, 1px, 1px, 1px);
+        text-decoration: none;
+      }
+    } // #header h1
+
+    #global-actions-bar {
+      position: absolute;
+      top: 70px;
+      right: 8px;
+
+      color: #8b8d9a;
+      font-size: 11px;
+      @include single-text-shadow(#000, 1px, 1px, 1px);
+
+      @include locomotive-link;
+
+      span {
+        font-size: 10px;
+        color: #999;
+        margin: 0 1px;
+      }
+    } // #header #global-actions-bar
+  } // #header
+
+  #content {
+    margin-top: -1px;
+
+    > div.inner {
+      position: relative;
+      margin: 0px 8px;
+      padding: 10px 15px 20px 15px;
+
+      background: #fff;
+
+      min-height: 150px;
+
+      h2 {
+        @include locomotive-link;
+
+        padding-bottom: 10px;
+        border-bottom: 1px dotted #bbbbbd;
+
+        font-size: 21px;
+        font-weight: bold;
+        color: #1e1f26;
+
+        a.editable {
+          padding: 2px 25px 2px 6px;
+          color: #1e1f26;
+          outline: none;
+
+          &:hover {
+            background: #fffbe5 image-url("locomotive/form/pen.png") no-repeat right 5px;
+            border-bottom: 1px dotted #efe4a5;
+          }
+        } // h2 a.editable
+      } // > div.inner h2
+
+      h3 {
+        background: transparent image-url("locomotive/list/item.png") no-repeat 0 0;
+
+        padding: 7px 0 10px 20px;
+
+        font-size: 13px;
+        font-weight: bold;
+        color: #1e1f26;
+        @include single-text-shadow(#fff, 1px, 1px, 1px);
+      } // > div.inner h3
+
+      p {
+        color: #8b8d9a;
+        font-size: 13px;
+
+        @include locomotive-link;
+      } // > div.inner p
+    } // #content > div.inner
+
+    #local-actions-bar {
+      position: absolute;
+      top: 13px;
+      right: 15px;
+
+      a {
+        position: relative;
+        padding: 2px 10px 3px 31px;
+
+        background-color: #ebedf4;
+        border: 1px solid #fff;
+        @include border-radius(10px);
+
+        color: #8b8d9a;
+        text-decoration: none;
+        font-size: 11px;
+        margin-left: 10px;
+
+        outline: none;
+
+        em {
+          position: absolute;
+          top: 5px;
+          left: 10px;
+
+          display: block;
+          height: 16px;
+          width: 16px;
+
+          background: transparent image-url("locomotive/icons/actions.png") no-repeat 0 0;
+        }
+
+        &.show em { background-position: 0 0; }
+        &.edit em { background-position: 0 -16px; top: 2px; left: 12px; }
+        &.download em { background-position: 0 -32px; }
+        &.new em { background-position: 0 -48px; top: 4px; left: 13px; }
+
+        &:hover {
+          text-decoration: none;
+          color: #333;
+
+          border: 1px solid rgba(0, 0, 0, 0.6);
+        }
+      } // #local-actions-bar a
+    } // #content #local-actions-bar
+
+    #local-actions-bottom-bar {
+      position: relative;
+      top: 27px;
+      left: -15px;
+      width: 950px;
+
+      background: #8b8d9a;
+
+      p {
+        padding: 15px;
+        margin: 0px;
+
+        a {
+          position: relative;
+          top: 4px;
+
+          @include hover-link;
+          color: #fff;
+          font-size: 12px;
+
+          &.remove { color: #ff092c; }
+        }
+      }
+
+      .last p { text-align: right; }
+    } // #content #local-actions-bottom-bar
+  } // #content
+
+  #footer {
+    padding-top: 10px;
+
+    p {
+      padding: 15px 8px 0 0;
+
+      font-size: 13px;
+      color: #E6E6E6;
+
+      @include locomotive-link;
+    }
+  } // #footer
+
+  /* ___ NoCoffee / Rails Tags ___ */
+
+  a#nocoffee { color: #b0b4c0 !important; text-decoration: none; line-height: 20px; padding-right: 20px; margin: 0 4px; background: transparent image-url("locomotive/nocoffee.png") no-repeat right 0px; }
+
+} // #wrapper

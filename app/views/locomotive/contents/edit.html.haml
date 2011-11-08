@@ -10,10 +10,10 @@
   = render 'locomotive/shared/actions/contents'
 
 - content_for :buttons do
-  - if can?(manage, Locomotive::ContentType)
-    = admin_button_tag t('locomotive.contents.index.edit'), edit_content_type_url(@content_type), :class => 'edit'
+  - if can?(:manage, Locomotive::ContentType)
+    = local_action_button t('locomotive.contents.index.edit'), edit_content_type_url(@content_type), :class => 'edit'
 
-  = admin_button_tag t('locomotive.contents.index.new'), new_content_url(@content_type.slug), :class => 'new'
+  = local_action_button t('locomotive.contents.index.new'), new_content_url(@content_type.slug), :class => 'new'
 
 %p= @content_type.description
 

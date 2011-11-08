@@ -1,6 +1,3 @@
-- content_for :head do
-  = include_javascripts :site
-
 = f.foldable_inputs :name => :information, :style => "#{'display: none' unless @site.new_record?}" do
   = f.input :name, :required => false
 
@@ -9,7 +6,7 @@
   = f.input :meta_keywords
   = f.input :meta_description
 
-- if can?(point, Locomotive::Site)
+- if can?(:point, Locomotive::Site)
   - if manage_subdomain_or_domains?
     = f.foldable_inputs :name => :access_points, :class => 'editable-list off' do
 
@@ -42,7 +39,7 @@
             %button{ :class => 'button light add', :type => 'button' }
               %span!= t('locomotive.buttons.new_item')
 
-- if can?(index, Locomotive::Membership)
+- if can?(:index, Locomotive::Membership)
 
   = f.foldable_inputs :name => :memberships, :class => 'memberships off' do
     = f.semantic_fields_for :memberships do |fm|

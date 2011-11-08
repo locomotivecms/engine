@@ -1,0 +1,56 @@
+@import "helpers";
+
+#menu {
+  @include reset;
+  margin: 20px 0 0 0px;
+
+  li.item {
+    float: left;
+    position: relative;
+    z-index: 994;
+    font-size: 16px;
+
+    & > span, a {
+      float: left;
+      display: block;
+    }
+
+    & > span {
+      background: transparent image-url("locomotive/menu/left.png") no-repeat 0 0;
+      width: 40px;
+      height: 39px;
+      background-position: 0 -39px;
+    }
+
+    &.first > span {
+      width: 18px;
+      background-position: 0 0;
+    }
+
+    a {
+      background: transparent image-url("locomotive/menu/right.png") no-repeat right 0px;
+      padding: 0px 52px 0 2px;
+      height: 39px;
+      line-height: 26px;
+      outline: none;
+
+      em, span { display: inline-block; position: relative; }
+
+      em {
+        background: transparent image-url("locomotive/menu/icons.png") no-repeat 0px 0px;
+      }
+
+      span {
+        top: 9px;
+        left: 6px;
+        color: #787A89;
+        text-shadow: #C5CFD1 1px 1px 1px;
+        font-size: 13px;
+      }
+    }
+
+    @for $i from 2 through 5 {
+      &.item-#{$i} { left: -35px * ($i - 1); z-index: 993 - $i; }
+    }
+  }
+}
