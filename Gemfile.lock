@@ -9,6 +9,15 @@ GIT
       sass (~> 3.1)
 
 GIT
+  remote: git://github.com/locomotivecms/custom_fields.git
+  revision: f7190a9f690de75f8d6ddab1eba10ea82993f670
+  specs:
+    custom_fields (1.1.0.rc1)
+      activesupport (~> 3.1.1)
+      carrierwave-mongoid (~> 0.1.3)
+      mongoid (~> 2.3.2)
+
+GIT
   remote: git://github.com/plataformatec/devise.git
   revision: 58d61c290a8254e372a7cbbace5cb138085f7c6e
   specs:
@@ -27,14 +36,6 @@ PATH
   remote: ../gems/acts_as_tree
   specs:
     locomotive_mongoid_acts_as_tree (0.1.5.7)
-
-PATH
-  remote: ../gems/custom_fields
-  specs:
-    custom_fields (1.1.0.rc1)
-      activesupport (~> 3.1.1)
-      carrierwave-mongoid (~> 0.1.3)
-      mongoid (~> 2.3.2)
 
 GEM
   remote: http://rubygems.org/
@@ -335,7 +336,7 @@ DEPENDENCIES
   coffee-script (~> 2.2.0)
   compass!
   cucumber-rails
-  custom_fields (~> 1.1.0.rc1)!
+  custom_fields!
   database_cleaner
   delayed_job (~> 2.1.1)
   delayed_job_mongoid (~> 1.0.4)
