@@ -1,0 +1,115 @@
+@import "compass/css3";
+@import "compass/css3/border-radius";
+@import "compass/css3/images";
+@import "compass/css3/text-shadow";
+@import "helpers";
+
+form.formtastic {
+
+  fieldset {
+
+    legend {
+      display: block;
+      width: 100%;
+
+      padding: 5px 0px;
+
+      @include border-top-radius(16px);
+      @include background-image(linear-gradient(#ebedf4, #d7dbe7));
+
+      span {
+        padding-left: 20px;
+
+        font-size: 13px;
+        font-weight: bold;
+        @include single-text-shadow(#fff, 1px, 1px, 1px);
+      }
+    } // legend
+
+    ol {
+      margin-bottom: 20px;
+      padding: 0px;
+
+      border-top: 1px solid #ccced7;
+      @include border-bottom-radius(16px);
+      background: #ebedf4;
+
+      > li {
+        margin: 0;
+        padding: 10px 20px 16px 20px;
+
+        background: transparent image-url("locomotive/form/input-sep.png") repeat-x 0 bottom;
+
+        &:last-child {
+          background: none;
+          // padding-bottom: 0px;
+          margin-bottom: 0px;
+        }
+
+        label {
+          width: 160px;
+          padding: 0px 0 0 0px;
+
+          font-size: 13px;
+          text-align: left;
+          color: #585A69;
+          @include single-text-shadow(#fff, 1px, 1px, 1px);
+        }
+
+        p.inline-hints {
+          margin: 5px 0 0 160px;
+
+          a {
+            color: #1f82bc;
+          }
+          .code {
+            background-color: #c8cad0;
+            color: #5E5F64;
+            @include single-text-shadow(rgba(255, 255, 255, 0.8), 0px, 1px, 1px);
+          }
+        } // p.inline-hints
+
+        div.inline-errors {
+          margin: 2px 0 0 160px;
+          padding: 8px 0 0 0;
+
+          background: transparent image-url("locomotive/form/error-arrow.png") no-repeat 17px 0;
+
+          p {
+            display: inline-block;
+            width: auto;
+            margin: 0px;
+            padding: 3px 12px 4px 30px;
+
+            background: #cd0f19 image-url("locomotive//form/icons/error.png") no-repeat 10px 6px;
+
+            color: #fff !important;
+            @include single-text-shadow(#000, 0px, 1px, 1px);
+          }
+        } // div.inline-errors
+
+        &.string {
+          label {
+            padding-top: 2px;
+          }
+
+          input[type=text] {
+            width: 700px;
+            padding: 4px 5px;
+
+            color: #17171B;
+            font-size: 14px;
+            font-weight: bold;
+
+            border: 1px solid #b5b7c4;
+            @include background-image(linear-gradient(top, #f0f0f0, #f9f9f9 25%, #f9f9f9 25%, #ffffff 50%, #ffffff));
+          }
+        } // li.string
+
+
+
+      } // > li
+    } //ol
+  } // fieldset
+}
+

@@ -1,7 +1,5 @@
-require 'responders'
-
 module Locomotive
-  class AdminResponder < ::ActionController::Responder
+  class Responder < ::ActionController::Responder
 
     include ::Responders::FlashResponder
 

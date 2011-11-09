@@ -69,7 +69,10 @@ module Locomotive
           end
 
           def template_must_be_valid
-            @parsing_errors.try(:each) { |msg| self.errors.add :template, msg }
+            @parsing_errors.try(:each) do |msg|
+              self.errors.add :template, msg
+              self.errors.add :raw_template, msg
+            end
           end
 
           def update_template_descendants
@@ -84,7 +87,7 @@ module Locomotive
             self._update_direct_template_descendants(template_descendants.clone, cached)
 
             # finally save them all
-            ::Page.without_callback(:save, :after, :update_template_descendants) do
+            ::Locomotive::Page.without_callback(:save, :after, :update_template_descendants) do
               template_descendants.each do |page|
                 page.save(:validate => false)
               end

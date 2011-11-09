@@ -1,5 +1,5 @@
 module Locomotive
-  class BaseController < InheritedResources::Base
+  class BaseController < ApplicationController
 
     include Locomotive::Routing::SiteDispatcher
 
@@ -25,9 +25,7 @@ module Locomotive
     #   helper "locomotive/#{File.basename(file, '.rb').gsub(/_helper$/, '')}"
     # end
 
-    self.responder = Locomotive::AdminResponder # custom responder
-
-    defaults :route_prefix => 'locomotive'
+    self.responder = Locomotive::Responder # custom responder
 
     respond_to :html
 
@@ -66,15 +64,15 @@ module Locomotive
       before_filter do |c|
         sub = sub.call(c) if sub.respond_to?(:call)
         sections = { :main => main, :sub => sub }
-        c.instance_variable_set(:@admin_sections, sections)
+        c.instance_variable_set(:@locomotive_sections, sections)
       end
     end
 
     def sections(key = nil)
       if !key.nil? && key.to_sym == :sub
-        @admin_sections[:sub] || self.controller_name.dasherize
+        @locomotive_sections[:sub] || self.controller_name.dasherize
       else
-        @admin_sections[:main]
+        @locomotive_sections[:main]
       end
     end
 
@@ -99,7 +97,7 @@ module Locomotive
       url
     end
 
-    def page_url(page, options = {})
+    def public_page_url(page, options = {})
       if content = options.delete(:content)
         File.join(current_site_url, page.fullpath.gsub('content_type_template', ''), content._slug)
       else

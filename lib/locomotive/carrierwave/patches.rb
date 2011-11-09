@@ -1,5 +1,3 @@
-require 'carrierwave'
-
 module CarrierWave
 
   class SanitizedFile

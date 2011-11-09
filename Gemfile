@@ -29,8 +29,8 @@ gem 'rails-backbone',       '0.5.4'
 gem 'handlebars-rails',     :git => 'git://github.com/yabawock/handlebars-rails.git'
 
 gem 'locomotive_liquid',    '2.2.2', :require => 'liquid'
-gem 'formtastic',           '~> 1.2.3' # TODO: UPGRADE IT
-gem 'inherited_resources',  '~> 1.3.0'
+gem 'formtastic',           '~> 2.0.2' # TODO: UPGRADE IT
+gem 'responders',           '~> 0.6.0'
 gem 'cells',                '~> 3.7.0'
 gem 'RedCloth',             '~> 4.2.8'
 gem 'sanitize',             '~> 2.0.3'

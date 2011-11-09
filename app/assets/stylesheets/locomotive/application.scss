@@ -55,6 +55,11 @@ ul.list {
   li {
     position: relative;
     height: 31px;
+
+    background: #ebedf4;
+    @include border-radius(16px);
+    border-bottom: 1px solid #d9d9d9;
+
     margin-bottom: 10px;
     clear: both;
 
@@ -63,14 +68,14 @@ ul.list {
       float: left;
       height: 31px;
       width: 18px;
-      background: transparent image-url("locomotive/list/item-left.png") no-repeat left 0;
+      // background: transparent image-url("locomotive/list/item-left.png") no-repeat left 0;
     }
 
     strong {
       display: block;
       height: 31px;
       margin-left: 18px;
-      background: transparent image-url("locomotive/list/item-right.png") no-repeat right 0;
+      // background: transparent image-url("locomotive/list/item-right.png") no-repeat right 0;
 
       a {
         position: relative;
@@ -113,3 +118,198 @@ ul.list {
     } // li div.more
   } // ul.list li
 }
+
+ul.theme-assets {
+  margin-left: 40px;
+
+  li.hidden strong a { font-style: italic; color: #8B8D9A; font-weight: normal; }
+}
+
+#contents-list li {
+  background: none;
+
+  li {
+    em {
+      background-position: left -31px;
+      cursor: move;
+    }
+
+    strong {
+      display: block;
+      height: 31px;
+
+      margin-left: 18px;
+
+      background: transparent image-url("locomotive/list/item-right.png") no-repeat right 0;
+    }
+  }
+}
+
+#pages-list {
+  margin: 0px 0 20px 0;
+  background: #fff;
+
+  li.sep {
+    margin: 11px 0 10px 0;
+    height: 1px;
+    border-top: 1px dotted #bbbbbd;
+  }
+
+  li.page {
+    .inner {
+      position: relative;
+      margin-bottom: 10px;
+      height: 30px;
+      clear: both;
+
+      background: #ebedf4;
+      @include border-radius(16px);
+      border-bottom: 1px solid #d9d9d9;
+
+      em {
+        display: block;
+        position: absolute;
+        top: 5px;
+        left: 0px;
+
+        height: 22px;
+        width: 18px;
+
+        background: transparent image-url("locomotive/list/item-left.png") no-repeat 0 0;
+      }
+
+      &.toggler {
+        position: absolute;
+        top: 9px;
+        left: -15px;
+        cursor: pointer;
+      }
+
+      a {
+        @include hover-link;
+
+        position: relative;
+        top: 4px;
+        margin-left: 26px;
+
+        color: #1f82bc;
+        font-size: 14px;
+        font-weight: bold;
+        @include single-text-shadow(#fff, 1px, 1px, 1px);
+      }
+
+      &.hidden a { font-style: italic; font-weight: normal; }
+
+      .more {
+        position: absolute;
+        top: 0px;
+        right: 20px;
+
+        font-size: 11px;
+        color: #8b8d9a;
+
+        a {
+          margin-left: 7px;
+          outline: none;
+        }
+      }
+    } // li .inner
+
+    &.index, &.not-found {
+      > .inner {
+        a {
+          margin-left: 20px;
+        }
+
+        .more {
+          padding-top: 7px;
+        }
+      }
+    }
+  } // #pages-list li
+
+  ul {
+    margin: 10px 0 10px 40px;
+
+    li {
+      .more {
+        padding-top: 3px !important;
+      }
+    }
+
+    &.folder {
+      li {
+        em {
+          background-position: left -31px;
+          cursor: move;
+        }
+
+        &.templatized > strong a {
+          padding-right: 24px;
+          background: transparent image-url("locomotive/list/icons/template.png") no-repeat right 3px;
+        }
+
+        &.redirect > strong a {
+          background: transparent image-url("locomotive/list/icons/redirect.png") no-repeat right 2px;
+        }
+      } // ul.folder li
+    } // ul.folder
+  } // ul
+} // #pages-list
+
+/* ___ Progress bar ___ */
+
+#progressbar-wrapper {
+  margin: 40px 0;
+  height: 30px;
+
+  #progressbar {
+    height: 100%;
+  }
+}
+
+/* ___ import steps ___ */
+
+#import-steps {
+  margin: 0px 200px;
+
+  li {
+    strong a { color: #b7baca; }
+
+    .more .states {
+      position: relative;
+      top: 4px;
+      height: 16px;
+      width: 16px;
+      background: transparent image-url("locomotive/list/icons/states.png") no-repeat 0 0;
+    }
+
+    &.done {
+      strong a { color: #1F82BC; }
+
+      .more .states {
+        background-position: 0 -16px;
+      }
+    }
+
+    &.failed .more .states {
+      background-position: 0 -32px;
+    }
+  }
+}
+
+/* ___ paragraph (for help for example) ___ */
+
+p span.code {
+  padding: 2px 3px;
+  background: #EBEDF4;
+
+  color: #8B8D9A;
+  @include single-text-shadow(#fff, 0px, 0px, 1px);
+}
+
+
+
+
+
+

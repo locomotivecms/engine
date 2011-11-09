@@ -1,18 +1,20 @@
 require 'locomotive/engine'
 
+require 'locomotive/dependencies'
+
 require 'locomotive/version'
 require 'locomotive/core_ext'
 require 'locomotive/configuration'
 require 'locomotive/logger'
-require 'locomotive/devise'
+
+require 'locomotive/formtastic'
 require 'locomotive/dragonfly'
 require 'locomotive/liquid'
 require 'locomotive/mongoid'
 require 'locomotive/carrierwave'
 require 'locomotive/custom_fields'
 require 'locomotive/httparty'
-require 'locomotive/inherited_resources'
-require 'locomotive/admin_responder'
+require 'locomotive/responder'
 require 'locomotive/routing'
 require 'locomotive/regexps'
 require 'locomotive/render'
@@ -23,6 +25,7 @@ require 'locomotive/middlewares'
 require 'locomotive/session_store'
 
 module Locomotive
+  extend ActiveSupport::Autoload
 
   class << self
     attr_accessor :config

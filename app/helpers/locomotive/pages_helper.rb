@@ -1,5 +1,12 @@
 module Locomotive::PagesHelper
 
+  def css_for_page(page)
+    %w(index not_found templatized redirect).inject([]) do |memo, state|
+      memo << state.dasherize if page.send(:"#{state}?")
+      memo
+    end.join(' ')
+  end
+
   def parent_pages_options
     roots = current_site.pages.roots.where(:slug.ne => '404').and(:_id.ne => @page.id)
 

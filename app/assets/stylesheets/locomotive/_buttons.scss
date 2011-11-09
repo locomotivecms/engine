@@ -13,9 +13,9 @@
   border: 1px solid #000;
   @include border-radius(5px);
 
-  line-height: 30px;
+  line-height: 17px !important;
 
-  padding: 0 10px;
+  padding: 5px 10px 7px 10px;
 
   @include background-image(linear-gradient(top, #474850, #1f2027));
   @include box-shadow(rgba(0, 0, 0, 0.3) 1px 1px 0px 0px);
@@ -27,6 +27,37 @@
 
   &:hover {
     @include background-image(linear-gradient(top, #575862, #2f303b));
+  }
+
+  &:active {
+    top: 1px;
+  }
+}
+
+@mixin light-button {
+  display: inline-block;
+
+  font-family: "Lucida Grande";
+
+  position: relative;
+  cursor: pointer;
+  line-height: 12px;
+
+  padding: 8px 10px 10px 10px;
+
+  border: 0px;
+  border-top: 1px solid rgba(255, 255, 255, 0.6);
+  @include border-radius(5px);
+  @include background-image(linear-gradient(top, #ebedf4, #d2d6e1));
+  @include box-shadow(rgba(0, 0, 0, 0.3) 1px 1px 0px 0px);
+
+  font-size: 12px;
+  color: #6B6D7A;
+  text-decoration: none;
+  @include text-shadow(rgba(255, 255, 255, 0.8), 0px, 1px, 0px);
+
+  &:hover {
+    @include background-image(linear-gradient(top, #fff, #d7dbe7));
   }
 
   &:active {

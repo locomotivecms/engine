@@ -1,14 +1,6 @@
-# Locomotive::Application.routes.draw do |map|
 Locomotive::Engine.routes.draw do
 
-  # # admin authentication
-  # devise_for :admin, :class_name => 'Account', :controllers => { :sessions => 'admin/sessions', :passwords => 'admin/passwords' }
-  #
-  # as :admin do
-  #   get '/admin' => 'admin/sessions#new'
-  # end
-
-  # locomotive authentication
+  # authentication
   devise_for :locomotive_account,
     :class_name   => 'Locomotive::Account',
     :path         => '',

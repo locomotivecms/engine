@@ -1,32 +1,5 @@
 puts "...loading Locomotive engine"
 
-require 'rails'
-require 'json/pure'
-require 'devise'
-require 'mongoid'
-require 'mongoid/railtie'
-require 'mongoid_acts_as_tree'
-require 'will_paginate'
-require 'haml'
-require 'liquid'
-require 'formtastic'
-require 'inherited_resources'
-require 'carrierwave'
-require 'custom_fields'
-require 'mimetype_fu'
-require 'actionmailer_with_request'
-require 'httparty'
-require 'redcloth'
-require 'delayed_job_mongoid'
-require 'zip/zipfilesystem'
-require 'dragonfly'
-require 'cancan'
-require 'RMagick'
-require 'cells'
-require 'sanitize'
-
-$:.unshift File.dirname(__FILE__)
-
 module Locomotive
   class Engine < Rails::Engine
 

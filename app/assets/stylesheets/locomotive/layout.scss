@@ -3,11 +3,17 @@
 @import "compass/css3/images";
 @import "compass/css3/text-shadow";
 @import "helpers";
+@import "buttons";
 
 body {
   background: #000 image-url("locomotive/background/body.png") repeat 0 0;
   font-size: 12px;
   font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+
+  ul {
+    list-style: none;
+    padding: 0px;
+  }
 
   /* ___ Alignements ___ */
 
@@ -86,6 +92,9 @@ body {
 
       background: #fff;
 
+      @include box-shadow(rgba(0, 0, 0, 0.6) 0px 1px 4px 3px);
+      @include border-bottom-radius(3px);
+
       min-height: 150px;
 
       h2 {
@@ -131,7 +140,7 @@ body {
 
     #local-actions-bar {
       position: absolute;
-      top: 13px;
+      top: 18px;
       right: 15px;
 
       a {
@@ -177,15 +186,19 @@ body {
 
     #local-actions-bottom-bar {
       position: relative;
-      top: 27px;
+      top: 20px;
       left: -15px;
       width: 950px;
 
       background: #8b8d9a;
+      border-top: 1px solid #5f6069;
+      @include border-bottom-radius(3px);
 
       p {
         padding: 15px;
         margin: 0px;
+
+        line-height: 13px;
 
         a {
           position: relative;
@@ -197,6 +210,10 @@ body {
 
           &.remove { color: #ff092c; }
         }
+      }
+
+      input[type=submit] {
+        @include light-button;
       }
 
       .last p { text-align: right; }

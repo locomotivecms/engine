@@ -3,19 +3,29 @@ module Locomotive
 
     sections 'contents'
 
-    respond_to :json, :only => [:update, :sort, :get_path]
+    respond_to  :json, :only => [:update, :sort, :get_path]
 
     def index
       @pages = current_site.all_pages_in_once
+      respond_with(@pages)
     end
 
     def new
       @page = current_site.pages.build
+      respond_with @page
+    end
+
+    def create
+      @page = Page.create(params[:page])
+      respond_with @page
     end
 
     def update
-      update! do |success, failure|
-        success.json do
+      @page = Page.find(params[:id])
+      @page.update_attributes(params[:page])
+      respond_with @page do |format|
+        format.html { redirect_to edit_page_url(@page) }
+        format.json do
           render :json => {
             :notice => t('flash.locomotive.pages.update.notice'),
             :editable_elements => @page.template_changed ?
