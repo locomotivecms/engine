@@ -44,16 +44,16 @@ module Locomotive::BaseHelper
     "new Object({ \"collection\": [#{js.join(', ')}], #{options_to_js} })"
   end
 
-  def growl_message
-    if not flash.empty?
-      first_key = flash.keys.first
-      %{
-        $(document).ready(function() {
-          $.growl("#{first_key}", "#{flash[first_key]}");
-        });
-      }.to_s
-    end
-  end
+  # def growl_message
+  #   if not flash.empty?
+  #     first_key = flash.keys.first
+  #     %{
+  #       $(document).ready(function() {
+  #         $.growl("#{first_key}", "#{flash[first_key]}");
+  #       });
+  #     }.to_s
+  #   end
+  # end
 
   def flash_message
     if not flash.empty?

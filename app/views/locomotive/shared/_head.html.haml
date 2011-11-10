@@ -2,14 +2,26 @@
 
 = csrf_meta_tag
 
-%meta{ :name => 'locale', :content => I18n.locale }
-
 = stylesheet_link_tag     'locomotive', :media => 'screen'
+= javascript_include_tag  'locomotive'
 
 / [if IE]
   = stylesheet_link_tag 'locomotive/ie', :media => 'screen'
 
 %script{ :type => 'text/javascript' }
-  = find_and_preserve(growl_message)
+  :plain
+    window.locale = '#{I18n.locale}';
+
+    Locomotive.current_site     = new Locomotive.Models.Site(#{current_site.to_json});
+    Locomotive.current_account  = new Locomotive.Models.Account(#{current_locomotive_account.to_json});
+
+    $(document).ready(function() {
+
+      window.application_view = new Locomotive.Views.ApplicationView({
+        flash: #{flash.to_json}
+      });
+      window.application_view.render();
+
+    });
 
 = yield :head

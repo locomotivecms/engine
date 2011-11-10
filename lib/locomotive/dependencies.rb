@@ -1,4 +1,3 @@
-require 'json/pure'
 require 'devise'
 require 'mongoid'
 require 'mongoid/railtie'

@@ -5,5 +5,12 @@
 // the compiled file.
 //
 //= require jquery
-//= require_tree locomotive
+//= require jquery-ui
+//= require jquery_ujs
+//= require underscore
+//= require handlebars
+//= require backbone
+//= require backbone_rails_sync
+//= require_tree ../../../vendor/assets/javascripts
+//= require ./locomotive/application
 

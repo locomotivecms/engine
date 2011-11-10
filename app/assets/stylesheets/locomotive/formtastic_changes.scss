@@ -4,9 +4,25 @@
 @import "compass/css3/text-shadow";
 @import "helpers";
 
+@mixin default-input-style {
+  padding: 4px 5px;
+
+  color: #17171B;
+  font-size: 14px;
+  font-weight: bold;
+
+  border: 1px solid #b5b7c4;
+  @include background-image(linear-gradient(top, #f0f0f0, #f9f9f9 25%, #f9f9f9 25%, #ffffff 50%, #ffffff));
+}
+
 form.formtastic {
 
   fieldset {
+    margin-bottom: 20px;
+
+    @include border-bottom-radius(8px);
+    @include box-shadow(rgba(0, 0, 0, 0.2) 0px 1px 0px 0px);
+    background: #ebedf4;
 
     legend {
       display: block;
@@ -14,7 +30,7 @@ form.formtastic {
 
       padding: 5px 0px;
 
-      @include border-top-radius(16px);
+      @include border-top-radius(8px);
       @include background-image(linear-gradient(#ebedf4, #d7dbe7));
 
       span {
@@ -27,12 +43,11 @@ form.formtastic {
     } // legend
 
     ol {
-      margin-bottom: 20px;
+      margin-bottom: 0px;
       padding: 0px;
 
       border-top: 1px solid #ccced7;
-      @include border-bottom-radius(16px);
-      background: #ebedf4;
+      // background: #ebedf4;
 
       > li {
         margin: 0;
@@ -94,19 +109,53 @@ form.formtastic {
           }
 
           input[type=text] {
+            @include default-input-style;
+
             width: 700px;
-            padding: 4px 5px;
+          }
 
-            color: #17171B;
-            font-size: 14px;
-            font-weight: bold;
+          &.highlighted {
+            label {
+              padding-top: 6px;
+            }
 
-            border: 1px solid #b5b7c4;
-            @include background-image(linear-gradient(top, #f0f0f0, #f9f9f9 25%, #f9f9f9 25%, #ffffff 50%, #ffffff));
+            input[type=text] {
+              font-size: 18px;
+            }
           }
         } // li.string
 
+        &.code {
 
+          textarea {
+            @include default-input-style;
+
+            width: 868px;
+            height: 400px;
+          }
+
+          div.inline-errors, p.inline-hints {
+            margin-left: 0px;
+          }
+
+          .more {
+            text-align: right;
+            width: auto;
+            margin: 10px 0px 0 0;
+            line-height: 0.6em;
+
+            a {
+              @include hover-link;
+              color: #787A89;
+
+              &.picture {
+                padding-left: 23px;
+                background: transparent image-url("locomotive/icons/asset_add.png") no-repeat left 1px;
+              }
+            }
+          } // li.code
+
+        }
 
       } // > li
     } //ol

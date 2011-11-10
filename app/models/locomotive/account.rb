@@ -44,6 +44,10 @@ module Locomotive
       Locomotive::DeviseMailer
     end
 
+    def as_json(options = {})
+      super((options || {}).merge(:only => [:name, :email, :memberships]))
+    end
+
     protected
 
     def password_required?

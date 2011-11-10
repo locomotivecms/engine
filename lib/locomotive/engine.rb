@@ -23,6 +23,10 @@ module Locomotive
       Cell::Base.prepend_view_path("#{config.root}/app/cells")
     end
 
+    initializer 'locomotive.action_controller' do |app|
+      ActionController::Base.wrap_parameters :format => [:json]
+    end
+
     rake_tasks do
       load "railties/tasks.rake"
     end

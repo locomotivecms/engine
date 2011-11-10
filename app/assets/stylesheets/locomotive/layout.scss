@@ -148,8 +148,9 @@ body {
         padding: 2px 10px 3px 31px;
 
         background-color: #ebedf4;
-        border: 1px solid #fff;
+        // border: 1px solid #ebedf4;
         @include border-radius(10px);
+        @include box-shadow(rgba(0, 0, 0, 0.4) 1px 1px 0px 0px);
 
         color: #8b8d9a;
         text-decoration: none;
@@ -179,7 +180,12 @@ body {
           text-decoration: none;
           color: #333;
 
-          border: 1px solid rgba(0, 0, 0, 0.6);
+          // border-color: rgba(0, 0, 0, 0.6);
+          // @include box-shadow(#fff 0 0 0 0);
+        }
+
+        &:active {
+          top: 1px;
         }
       } // #local-actions-bar a
     } // #content #local-actions-bar
