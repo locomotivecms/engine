@@ -5,6 +5,10 @@ class Locomotive.Views.ApplicationView extends Backbone.View
   render: ->
     @render_flash_messages(@options.flash)
 
+    if @options.view?
+      @view = new @options.view
+      @view.render()
+
     return @
 
   render_flash_messages: (messages) ->

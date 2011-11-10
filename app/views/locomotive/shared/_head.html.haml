@@ -18,7 +18,8 @@
     $(document).ready(function() {
 
       window.application_view = new Locomotive.Views.ApplicationView({
-        flash: #{flash.to_json}
+        flash:  #{flash.to_json},
+        view:   Locomotive.Views.#{controller.controller_name.camelize}.#{controller.action_name.camelize}View
       });
       window.application_view.render();
 
