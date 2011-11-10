@@ -9,5 +9,4 @@ class Locomotive.Views.ApplicationView extends Backbone.View
 
   render_flash_messages: (messages) ->
     _.each messages, (couple) ->
-      console.log(couple);
       $.growl couple[0], couple[1]

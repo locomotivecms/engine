@@ -12,10 +12,6 @@ module Locomotive
         include ::Mongoid::CustomFields
       end
 
-      # def to_json
-      #
-      # end
-
       def as_json(options={})
         attrs = super(options)
         attrs["id"] = attrs["_id"]
