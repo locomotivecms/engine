@@ -1,7 +1,7 @@
 module Locomotive
   class EditableElement
 
-      include Mongoid::Document
+      include ::Mongoid::Document
 
       ## fields ##
       field :slug

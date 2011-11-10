@@ -1,8 +1,8 @@
 module Locomotive
   class ContentInstance
 
-    include Mongoid::Document
-    include Mongoid::Timestamps
+    include ::Mongoid::Document
+    include ::Mongoid::Timestamps
 
     ## extensions ##
     include CustomFields::ProxyClassEnabler

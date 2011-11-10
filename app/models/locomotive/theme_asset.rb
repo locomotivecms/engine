@@ -13,7 +13,7 @@ module Locomotive
     field :height, :type => Integer
     field :size, :type => Integer
     field :folder, :default => nil
-    mount_uploader :source, ThemeAssetUploader
+    mount_uploader :source, ThemeAssetUploader, :mount_on => :source_filename
 
     ## associations ##
     referenced_in :site, :class_name => 'Locomotive::Site'

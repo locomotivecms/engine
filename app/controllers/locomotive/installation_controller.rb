@@ -7,6 +7,8 @@ module Locomotive
 
     before_filter :allow_installation?
 
+    helper Locomotive::BaseHelper
+
     def show
       request.get? ? self.handle_get : self.handle_post
     end
@@ -62,9 +64,9 @@ module Locomotive
 
     def last_url
       if Locomotive.config.manage_domains?
-        session_url(:host => Site.first.domains.first, :port => request.port)
+        locomotive_account_session_url(:host => Site.first.domains.first, :port => request.port)
       else
-        session_url
+        locomotive_account_session_url
       end
     end
 

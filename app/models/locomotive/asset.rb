@@ -1,8 +1,8 @@
 module Locomotive
   class Asset
 
-    include Mongoid::Document
-    include Mongoid::Timestamps
+    include ::Mongoid::Document
+    include ::Mongoid::Timestamps
 
     ## extensions ##
     include Extensions::Asset::Types
@@ -14,7 +14,7 @@ module Locomotive
     field :height, :type => Integer
     field :size, :type => Integer
     field :position, :type => Integer, :default => 0
-    mount_uploader :source, AssetUploader
+    mount_uploader :source, AssetUploader, :mount_on => :source_filename
 
     ## associations ##
     referenced_in :site, :class_name => 'Locomotive::Site'

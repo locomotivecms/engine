@@ -1,4 +1,4 @@
-module
+module Locomotive
   class Snippet
 
     include Locomotive::Mongoid::Document

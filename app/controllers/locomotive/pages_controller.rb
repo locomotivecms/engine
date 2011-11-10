@@ -16,15 +16,15 @@ module Locomotive
     end
 
     def create
-      @page = Page.create(params[:page])
-      respond_with @page
+      @page = current_site.pages.create(params[:page])
+      respond_with @page, :location => edit_page_url(@page._id)
     end
 
     def update
-      @page = Page.find(params[:id])
+      @page = current_site.pages.find(params[:id])
       @page.update_attributes(params[:page])
       respond_with @page do |format|
-        format.html { redirect_to edit_page_url(@page) }
+        format.html { redirect_to edit_page_url(@page._id) }
         format.json do
           render :json => {
             :notice => t('flash.locomotive.pages.update.notice'),
@@ -35,17 +35,22 @@ module Locomotive
       end
     end
 
+    def destroy
+      @page = current_site.pages.find(params[:id])
+      @page.destroy
+      respond_with @page
+    end
+
     def sort
       @page = current_site.pages.find(params[:id])
       @page.sort_children!(params[:children])
-
       respond_with @page
     end
 
     def get_path
       page = current_site.pages.build(:parent => current_site.pages.find(params[:parent_id]), :slug => params[:slug].permalink)
 
-      render :json => { :url => page_url(page), :slug => page.slug }
+      render :json => { :url => public_page_url(page), :slug => page.slug }
     end
 
   end

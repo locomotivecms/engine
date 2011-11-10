@@ -157,7 +157,7 @@ div#flash-notice {
 
     text-align: right;
 
-    input[type=submit] {
+    input[type=submit], a.button {
       @include black-button;
 
       margin: 0 18px 0 0;

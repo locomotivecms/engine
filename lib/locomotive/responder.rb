@@ -8,6 +8,28 @@ module Locomotive
       super || has_errors?
     end
 
+    def api_behavior(error)
+      puts "api_behavior here"
+
+      super
+
+      puts "api_behavior there"
+    end
+
+    # def api_behavior(error)
+    #   raise error unless resourceful?
+    #
+    #   if get?
+    #     display resource
+    #   elsif post?
+    #     display resource, :status => :created, :location => api_location
+    #   elsif has_empty_resource_definition?
+    #     display empty_resource, :status => :ok
+    #   else
+    #     head :ok
+    #   end
+    # end
+
     def to_json
       if get?
         display resource

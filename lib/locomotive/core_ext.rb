@@ -1,5 +1,8 @@
+# encoding: utf-8
+
 ## String
-class String
+
+class String #:nodoc
 
   def permalink
     self.parameterize('-')
@@ -15,7 +18,7 @@ end
 
 ## Hash
 
-class Hash
+class Hash #:nodoc
 
   def underscore_keys
     new_hash = {}
@@ -43,4 +46,19 @@ class Hash
 
 end
 
+class Boolean #:nodoc
+  BOOLEAN_MAP = {
+    true => true, "true" => true, "TRUE" => true, "1" => true, 1 => true, 1.0 => true,
+    false => false, "false" => false, "FALSE" => false, "0" => false, 0 => false, 0.0 => false
+  }
+
+  def self.set(value)
+    value = BOOLEAN_MAP[value]
+    value.nil? ? nil : value
+  end
+
+  def self.get(value)
+    value
+  end
+end
 
