@@ -7,6 +7,10 @@ module Locomotive::PagesHelper
     end.join(' ')
   end
 
+  def page_toggler(page)
+    image_tag("locomotive/list/icons/node_#{(cookies["folder-#{page._id}"] != 'none') ? 'open' : 'closed'}.png", :class => 'toggler')
+  end
+
   def parent_pages_options
     roots = current_site.pages.roots.where(:slug.ne => '404').and(:_id.ne => @page.id)
 

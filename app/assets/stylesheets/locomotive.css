@@ -6,6 +6,7 @@
 
  *= require_tree ../../../vendor/assets/stylesheets/jquery
  *= require ../../../vendor/assets/stylesheets/blueprint/screen.css
+ *= require ../../../vendor/assets/stylesheets/toggle.css
  *= require formtastic
  *= require_tree ./locomotive
 */

@@ -156,6 +156,15 @@ ul.theme-assets {
   }
 
   li.page {
+    position: relative;
+
+    > .toggler {
+      position: absolute;
+      top: 10px;
+      left: -18px;
+      cursor: pointer;
+    }
+
     .inner {
       position: relative;
       margin-bottom: 10px;
@@ -176,13 +185,6 @@ ul.theme-assets {
         width: 18px;
 
         background: transparent image-url("locomotive/list/item-left.png") no-repeat 0 0;
-      }
-
-      &.toggler {
-        position: absolute;
-        top: 9px;
-        left: -15px;
-        cursor: pointer;
       }
 
       a {

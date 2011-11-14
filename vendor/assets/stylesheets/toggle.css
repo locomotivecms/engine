@@ -16,7 +16,7 @@ div.toggleSwitch span.leftLabel, div.toggleSwitch span.rightLabel{
 
 div.toggleSwitch div.switchArea {
   float: left;
-  background: transparent url(/assets/locomotive//plugins/toggle_shadow-bg.png) top left no-repeat;
+  background: transparent url("./toggle/toggle_shadow-bg.png") top left no-repeat;
   width: 64px;
   height: 24px;
   cursor: pointer;
@@ -25,7 +25,7 @@ div.toggleSwitch div.switchArea {
 div.toggleSwitch span.switchHandle {
   display: block;
   background: #aaa;
-  background: transparent url(/assets/locomotive//plugins/toggle_handle-bg.png) top left no-repeat;
+  background: transparent url("./toggle/toggle_handle-bg.png") top left no-repeat;
   width: 30px;
   height: 100%;
   cursor: pointer;
@@ -34,9 +34,9 @@ div.toggleSwitch span.switchHandle {
 }
 
 div.toggleSwitch span.switchHandle.left {
-  background-image: url(/assets/locomotive//plugins/toggle_handle_left-bg.png);
+  background-image: url("./toggle/toggle_handle_left-bg.png");
 }
 
 div.toggleSwitch span.switchHandle.right {
-  background-image: url(/assets/locomotive//plugins/toggle_handle_right-bg.png);
+  background-image: url("./toggle/toggle_handle_right-bg.png");
 }
