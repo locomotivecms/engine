@@ -38,7 +38,7 @@
     border-color: transparent !important;
     border-color-bottom: #fff;
     padding-bottom: 0px;
-    @include border-left-radius(0px); // !important is missing here
+    @include border-bottom-radius(0px); // !important is missing here
     position: relative;
     z-index: 998;
 
@@ -65,7 +65,6 @@
   clear: both;
   position: relative;
   top: -1px;
-  z-index: 998;
   height: 60px;
   margin: 0px 8px;
   padding: 0 0px;
@@ -117,10 +116,16 @@
 
       display: inline-block;
 
-      margin: 15px 0 0 0;
+      height: 20px;
+      line-height: 20px;
+
+      margin: 18px 0 0 0;
       padding: 0px 10px 0 15px;
 
+      @include border-radius(10px);
+
       text-decoration: none;
+      font-size: 11px;
 
       em {
         display: inline-block;
@@ -128,8 +133,12 @@
         background: transparent image-url("locomotive/menu/icons.png") no-repeat 0 0px;
         height: 11px;
         width: 11px;
-        top: 1px;
+        top: 2px;
         left: -5px;
+      }
+
+      span {
+        font-size: 11px;
       }
     }
   }
@@ -141,7 +150,7 @@
     top: 42px;
     min-width: 250px;
     background: #fff;
-    @include box-shadow(0px, 0px, 10px, rgba(0, 0, 0, 0.5));
+    @include box-shadow(rgba(0, 0, 0, 0.5) 0px 0px 10px 0px);
     @include border-radius(16px);
     @include border-top-left-radius(0px);
     z-index: 997;
@@ -161,7 +170,7 @@
     .inner { padding: 8px 16px; }
 
     h2 {
-      font-size: 0.7em;
+      font-size: 11px;
       font-weight: bold;
       color: #1e1f26;
       margin-bottom: 0px;
@@ -172,7 +181,7 @@
       padding: 10px 0 0 0px;
 
       a {
-        font-size: 0.8em;
+        font-size: 13px;
         background: transparent image-url("locomotive/menu/popup/add.png") no-repeat left 4px;
         padding-left: 12px;
       }
@@ -192,13 +201,15 @@
 
       li {
         position: relative;
+        height: 24px;
+        line-height: 24px;
 
-        a { font-size: 0.7em; }
+        a { font-size: 11px; }
 
         span {
-          @include absolute-position(top, 6px, right, 15px, inline);
+          @include absolute-position(top, -1px, right, 0px, inline);
           color: #8b8d9a;
-          font-size: 0.7em;
+          font-size: 11px;
         }
       }
 
@@ -214,7 +225,7 @@
             padding: 3px 10px;
             background: #ebedf4;
             font-weight: bold;
-            font-size: 0.8em;
+            font-size: 13px;
           }
         }
       }

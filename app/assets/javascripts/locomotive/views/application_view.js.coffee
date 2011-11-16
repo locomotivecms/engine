@@ -5,6 +5,8 @@ class Locomotive.Views.ApplicationView extends Backbone.View
   render: ->
     @render_flash_messages(@options.flash)
 
+    @add_submenu_behaviours()
+
     @center_ui_dialog()
 
     if @options.view?
@@ -20,3 +22,18 @@ class Locomotive.Views.ApplicationView extends Backbone.View
   center_ui_dialog: ->
     $(window).resize ->
       $('.ui-dialog-content:visible').dialog('option', 'position', 'center')
+
+  add_submenu_behaviours: ->
+    # sub menu links
+    $('#submenu ul li.hoverable').hover(
+      ->
+        $(@).find('a').addClass('hover')
+        $(@).find('.popup').show()
+      ->
+        $(@).find('a').removeClass('hover');
+        $(@).find('.popup').hide()
+    )
+
+    css = $('#submenu > ul').attr('class')
+    $("#submenu > ul > li.#{css}").addClass('on') if css != ''
+
