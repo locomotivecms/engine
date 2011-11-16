@@ -57,13 +57,13 @@
       // if it's set to on
       if(checked){
 
-        $(element).animate({marginLeft: '34px'}, 100,
+        $(element).animate({marginLeft: '15px'}, 100,
 
         // callback function
         function(){
           $(element).parent().prev().css("color","#cccccc");
           $(element).parent().next().css("color","#333333");
-          $(element).parent().css("background-color", settings.off_bg_color);
+          $(element).parent().css("background-color", settings.off_bg_color).removeClass('on');
           $(element).parent().parent().prev().removeAttr("checked");
           $(element).removeClass("left").addClass("right");
 
@@ -75,13 +75,13 @@
 
       }else{
 
-        $(element).animate({marginLeft: '0em'}, 100,
+        $(element).animate({marginLeft: '0px'}, 100,
 
         // callback function
         function(){
           $(element).parent().prev().css("color","#333333");
           $(element).parent().next().css("color","#cccccc");
-          $(element).parent().css("background-color", settings.on_bg_color);
+          $(element).parent().css("background-color", settings.on_bg_color).addClass('on');
           $(element).parent().parent().prev().attr("checked","checked");
           $(element).removeClass("right").addClass("left");
 
@@ -103,10 +103,10 @@
       $(this).css('display','none');
 
       // insert the new toggle markup
-      if($(this).attr("checked") == true){
-        $(this).after('<div class="toggleSwitch"><span class="leftLabel">'+settings.on_label+'<\/span><div class="switchArea" style="background-color: '+settings.on_bg_color+'"><span class="switchHandle left" style="margin-left: 0em;"><\/span><\/div><span class="rightLabel" style="color:#cccccc">'+settings.off_label+'<\/span><\/div>');
+      if($(this).attr("checked") == "checked" || $(this).attr("checked") == true){
+        $(this).after('<div class="toggleSwitch"><span class="leftLabel">'+settings.on_label+'<\/span><div class="switchArea on" style="background-color: '+settings.on_bg_color+'"><span class="switchHandle left" style="margin-left: 0em;"><\/span><\/div><span class="rightLabel" style="color:#cccccc">'+settings.off_label+'<\/span><\/div>');
       }else{
-        $(this).after('<div class="toggleSwitch"><span class="leftLabel" style="color:#cccccc;">'+settings.on_label+'<\/span><div class="switchArea" style="background-color: '+settings.off_bg_color+'"><span class="switchHandle right" style="margin-left:34px"><\/span><\/div><span class="rightLabel">'+settings.off_label+'<\/span><\/div>');
+        $(this).after('<div class="toggleSwitch"><span class="leftLabel" style="color:#cccccc;">'+settings.on_label+'<\/span><div class="switchArea" style="background-color: '+settings.off_bg_color+'"><span class="switchHandle right" style="margin-left:15px"><\/span><\/div><span class="rightLabel">'+settings.off_label+'<\/span><\/div>');
       }
 
       // Bind the switchHandle click events to the internal toggle function

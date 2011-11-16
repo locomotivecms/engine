@@ -1,3 +1,6 @@
+- content_for :head do
+  = render :partial => '/locomotive/theme_assets/picker'
+
 - if can?(:manage, @page)
 
   = f.inputs :name => :information do
@@ -19,7 +22,7 @@
 
 - if can?(:manage, @page)
 
-  = f.inputs :name => :advanced_options, :id => 'advanced-options', :class => 'foldable' do
+  = f.inputs :name => :advanced_options, :id => 'advanced-options', :class => 'inputs foldable' do
 
     = f.input :content_type_id, :as => :select, :collection => current_site.content_types.all.to_a, :include_blank => false, :wrapper_html => { :style => "#{'display: none' unless @page.templatized?}" }
 
@@ -35,6 +38,6 @@
 
     = f.input :redirect_url, :required => true, :wrapper_html => { :style => "#{'display: none' unless @page.redirect?}" }
 
-  = f.inputs :name => :raw_template, :class => 'foldable' do
+  = f.inputs :name => :raw_template, :class => 'inputs foldable' do
 
     = f.input :raw_template, :as => :'Locomotive::Code'

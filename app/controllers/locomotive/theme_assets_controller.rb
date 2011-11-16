@@ -1,53 +1,50 @@
 module Locomotive
   class ThemeAssetsController < BaseController
 
-    include ActionView::Helpers::SanitizeHelper
-    extend ActionView::Helpers::SanitizeHelper::ClassMethods
-    include ActionView::Helpers::TextHelper
-    include ActionView::Helpers::NumberHelper
-
     sections 'settings', 'theme_assets'
 
-    respond_to :json, :only => [:create, :update]
-
-    before_filter :sanitize_params, :only => [:create, :update]
+    respond_to :json, :only => [:index, :create, :update]
 
     def index
-      @assets = ThemeAsset.all_grouped_by_folder(current_site)
-      @js_and_css_assets = (@assets[:javascripts] || []) + (@assets[:stylesheets] || [])
-
-      if request.xhr?
-        @images = @assets[:images] || []
-        render :action => 'images', :layout => false and return
-      else
-        @snippets = current_site.snippets.order_by([[:name, :asc]]).all.to_a
+      respond_to do |format|
+        format.html {
+          @assets             = ThemeAsset.all_grouped_by_folder(current_site)
+          @js_and_css_assets  = (@assets[:javascripts] || []) + (@assets[:stylesheets] || [])
+          @snippets           = current_site.snippets.order_by([[:name, :asc]]).all.to_a
+          render
+        }
+        format.json {
+          render :json => current_site.theme_assets.by_content_type(params[:content_type])
+        }
       end
     end
 
-    def edit
-      resource.performing_plain_text = true if resource.stylesheet_or_javascript?
-      edit!
+    def new
+      @asset = current_site.theme_assets.build(params[:id])
+      respond_with @asset
     end
 
     def create
-      create! do |success, failure|
-        success.json do
-          render :json => {
-            :status       => 'success',
-            :url          => @theme_asset.source.url,
-            :local_path   => @theme_asset.local_path(true),
-            :size         => number_to_human_size(@theme_asset.size),
-            :date         => l(@theme_asset.updated_at, :format => :short)
-          }
-        end
-        failure.json { render :json => { :status => 'error' } }
-      end
+      @asset = current_site.theme_assets.create(params[:theme_asset])
+      respond_with @asset, :location => edit_theme_asset_url(@asset._id)
     end
 
-    protected
+    def edit
+      @asset = current_site.theme_assets.find(params[:id])
+      resource.performing_plain_text = true if resource.stylesheet_or_javascript?
+      respond_with @asset
+    end
 
-    def sanitize_params
-      params[:theme_asset] = { :source => params[:file] } if params[:file]
+    def update
+      @asset = current_site.theme_assets.find(params[:id])
+      @asset.update_attributes(params[:theme_asset])
+      respond_with @asset, :location => edit_theme_asset_url(@asset._id)
+    end
+
+    def destroy
+      @asset = current_site.theme_assets.find(params[:id])
+      @asset.destroy
+      respond_with @asset
     end
 
   end

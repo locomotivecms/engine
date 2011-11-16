@@ -1,0 +1,23 @@
+%script{ :type => 'text/html', :id => 'theme_image_picker' }
+
+  %h2!= t('.title')
+
+  .actions.button-wrapper
+    = file_field_tag 'theme_asset[source]'
+    = local_action_button t('locomotive.theme_assets.index.new'), theme_assets_url(:json), :class => 'new', :id => 'upload-link'
+
+  %p.no-items{ :style => 'display: none' }!= t('.no_items')
+
+  %ul.list{ :style => 'display: none' }
+
+%script{ :type => 'text/html', :id => 'theme_asset' }
+
+  %li
+    = link_to '{{local_path}}', '{{url}}'
+    .more
+      %span.size {{size}}
+      &mdash;
+      %span!= t('.updated_at')
+      %span.date {{updated_at}}
+
+

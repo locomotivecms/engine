@@ -16,3 +16,14 @@
     color: #1F82BC;
   }
 }
+
+@mixin default-input-style {
+  padding: 4px 5px;
+
+  color: #17171B;
+  font-size: 14px;
+  font-weight: bold;
+
+  border: 1px solid #b5b7c4;
+  @include background-image(linear-gradient(top, #f0f0f0, #f9f9f9 25%, #f9f9f9 25%, #ffffff 50%, #ffffff));
+}

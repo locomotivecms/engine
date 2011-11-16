@@ -4,17 +4,6 @@
 @import "compass/css3/text-shadow";
 @import "helpers";
 
-@mixin default-input-style {
-  padding: 4px 5px;
-
-  color: #17171B;
-  font-size: 14px;
-  font-weight: bold;
-
-  border: 1px solid #b5b7c4;
-  @include background-image(linear-gradient(top, #f0f0f0, #f9f9f9 25%, #f9f9f9 25%, #ffffff 50%, #ffffff));
-}
-
 form.formtastic {
 
   fieldset {
@@ -47,21 +36,21 @@ form.formtastic {
       padding: 0px;
 
       border-top: 1px solid #ccced7;
-      // background: #ebedf4;
 
-      > li {
+      > li.input {
         margin: 0;
         padding: 10px 20px 16px 20px;
 
         background: transparent image-url("locomotive/form/input-sep.png") repeat-x 0 bottom;
 
-        &:last-child {
+        &:last-child, &.last {
           background: none;
-          // padding-bottom: 0px;
           margin-bottom: 0px;
         }
 
-        label {
+        label, .label {
+          float: left;
+
           width: 160px;
           padding: 0px 0 0 0px;
 
@@ -116,11 +105,11 @@ form.formtastic {
 
           &.highlighted {
             label {
-              padding-top: 6px;
+              padding-top: 7px;
             }
 
             input[type=text] {
-              font-size: 18px;
+              font-size: 20px;
             }
           }
         } // li.string

@@ -15,6 +15,16 @@ module Locomotive
           end
         end
 
+        module ClassMethods
+
+          def by_content_type(content_type)
+            return self.all if content_type.blank?
+
+            self.all.where(:content_type => content_type.to_s)
+          end
+
+        end
+
       end
     end
   end

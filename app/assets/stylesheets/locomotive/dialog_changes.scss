@@ -1,0 +1,80 @@
+@import "compass/css3";
+@import "compass/css3/border-radius";
+@import "compass/css3/images";
+@import "compass/css3/text-shadow";
+@import "buttons";
+
+.ui-widget-overlay {
+  background: #000;
+  opacity: 0.4;
+}
+
+.ui-dialog {
+  font-family: Helvetica, Arial;
+
+  background: #fff;
+  @include box-shadow(rgba(0, 0, 0, 0.2) 0px 0px 10px 3px);
+
+  padding: 10px;
+
+  border: 1px solid #7c7e7f;
+  @include border-radius(6px);
+
+  .ui-dialog-titlebar {
+    display: none;
+  }
+
+  .ui-dialog-content {
+    position: relative;
+
+    text-align: left;
+
+    padding: 0px;
+    background: #fff;
+
+    h2 {
+      padding-bottom: 10px;
+      line-height: 18px;
+      border-bottom: 1px dotted #bbbbbd;
+
+      color: #1E1F26;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .actions {
+      position: absolute;
+      top: -2px;
+      right: 2px;
+
+      a {
+        @include gray-button;
+      }
+
+      &.button-wrapper {
+
+        #theme_asset_sourceUploader {
+          position: absolute;
+          top: 0px;
+          right: 0px;
+        }
+
+        #theme_asset_sourceUploader {
+          z-index: 1001;
+        }
+
+        a {
+          z-index: 1000;
+        }
+      } // .actions.button-wrapper
+
+    } // .actions
+
+    .list {
+      overflow: auto;
+      height: 350px;
+    }
+  }
+
+}
+

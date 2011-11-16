@@ -1,0 +1,29 @@
+module Locomotive
+  class ThemeAssetPresenter < BasePresenter
+
+    def local_path
+      self.source.local_path(true)
+    end
+
+    def url
+      self.source.source.url
+    end
+
+    def size
+      number_to_human_size(self.source.size)
+    end
+
+    def updated_at
+      I18n.l(self.source.updated_at, :format => :short)
+    end
+
+    def as_json
+      {}.tap do |hash|
+        %w(local_path url size updated_at).map(&:to_sym).each do |meth|
+          hash[meth] = self.send(meth)
+        end
+      end
+    end
+
+  end
+end

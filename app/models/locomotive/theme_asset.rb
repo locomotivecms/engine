@@ -100,6 +100,10 @@ module Locomotive
       { :url => self.source.url }.merge(self.attributes).stringify_keys
     end
 
+    def as_json(options = {})
+      Locomotive::ThemeAssetPresenter.new(self).as_json
+    end
+
     def self.all_grouped_by_folder(site)
       assets = site.theme_assets.order_by([[:slug, :asc]])
       assets.group_by { |a| a.folder.split('/').first.to_sym }

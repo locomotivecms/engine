@@ -2,6 +2,11 @@
 
 = csrf_meta_tag
 
+- key = Rails.application.config.session_options[:key]
+
+%meta{ :name => 'key-param', :content => Rails.application.config.session_options[:key] }
+%meta{ :name => 'key-token', :content => cookies[key] }
+
 = stylesheet_link_tag     'locomotive', :media => 'screen'
 = javascript_include_tag  'locomotive'
 

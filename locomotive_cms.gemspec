@@ -30,7 +30,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'sass', '3.1.2'
   s.add_dependency 'locomotive_liquid', '2.2.2'
   s.add_dependency 'formtastic', '~> 1.2.3'
-  s.add_dependency 'inherited_resources', '~> 1.1.2'
+  # s.add_dependency 'inherited_resources', '~> 1.1.2'
   s.add_dependency 'cells'
   s.add_dependency 'highline'
   s.add_dependency 'sanitize'

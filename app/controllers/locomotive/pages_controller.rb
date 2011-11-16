@@ -20,6 +20,11 @@ module Locomotive
       respond_with @page, :location => edit_page_url(@page._id)
     end
 
+    def edit
+      @page = current_site.pages.find(params[:id])
+      respond_with @page
+    end
+
     def update
       @page = current_site.pages.find(params[:id])
       @page.update_attributes(params[:page])

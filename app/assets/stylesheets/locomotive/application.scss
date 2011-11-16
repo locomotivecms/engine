@@ -55,6 +55,7 @@ ul.list {
   li {
     position: relative;
     height: 31px;
+    line-height: 31px;
 
     background: #ebedf4;
     @include border-radius(16px);
@@ -62,6 +63,15 @@ ul.list {
 
     margin-bottom: 10px;
     clear: both;
+
+    a {
+      margin-left: 18px;
+      @include hover-link;
+
+      font-weight: bold;
+      font-size: 14px;
+      color: #1F82BC;
+    }
 
     em {
       display: block;
@@ -97,7 +107,7 @@ ul.list {
 
     div.more {
       position: absolute;
-      top: 3px;
+      top: 0px;
       right: 15px;
 
       font-size: 11px;

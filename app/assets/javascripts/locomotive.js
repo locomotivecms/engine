@@ -11,6 +11,13 @@
 //= require handlebars
 //= require backbone
 //= require backbone_rails_sync
+//= require uploadify
+//= require codemirror
+//= require codemirror/overlay
+//= require codemirror/modes/css
+//= require codemirror/modes/javascript
+//= require codemirror/modes/xml
+//= require codemirror/modes/htmlmixed
 //= require_tree ../../../vendor/assets/javascripts
 //= require ./locomotive/application
 

@@ -4,9 +4,12 @@
  * the top of the compiled file, but it's generally better to create a new file per style scope.
  *= require_self
 
- *= require_tree ../../../vendor/assets/stylesheets/jquery
  *= require ../../../vendor/assets/stylesheets/blueprint/screen.css
- *= require ../../../vendor/assets/stylesheets/toggle.css
+ *= require_tree ../../../vendor/assets/stylesheets/jquery
  *= require formtastic
+ *= require codemirror
+  *= require codemirror/themes/default
+ *= require ../../../vendor/assets/stylesheets/toggle.css
+ *= require ../../../vendor/assets/stylesheets/liquid_mode.css
  *= require_tree ./locomotive
 */

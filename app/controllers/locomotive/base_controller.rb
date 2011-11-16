@@ -56,10 +56,6 @@ module Locomotive
       authenticate_locomotive_account!
     end
 
-    def begin_of_association_chain
-      current_site
-    end
-
     def self.sections(main, sub = nil)
       before_filter do |c|
         sub = sub.call(c) if sub.respond_to?(:call)
