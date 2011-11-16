@@ -41,11 +41,8 @@ module Locomotive
               Locomotive.log "Devise username column: #{::Devise.cas_username_column}="
               Locomotive.log "Removing username: #{event['data'].try(:[], 'ido_id')}"
 
-              ido_id = event['data'].try(:[], 'ido_id') 
-
-              ido_id and
-                Account.exists?(::Devise.cas_username_column => ido_id) and
-                Account.where(::Devise.cas_username_column => ido_id).destroy
+              Account.exists?(::Devise.cas_username_column => event['data'].try(:[], 'ido_id')) and
+                Account.where(::Devise.cas_username_column => event['data'].try(:[], 'ido_id')).destroy
             end
 
           end
