@@ -1,6 +1,8 @@
+#= require ../shared/form_view
+
 Locomotive.Views.Pages ||= {}
 
-class Locomotive.Views.Pages.FormView extends Backbone.View
+class Locomotive.Views.Pages.FormView extends Locomotive.Views.Shared.FormView
 
   el: '#content'
 
@@ -20,8 +22,7 @@ class Locomotive.Views.Pages.FormView extends Backbone.View
       on_select:  @insert_image
 
   render: ->
-    # make title editable (if possible)
-    @make_title_editable()
+    super()
 
     # the url gets modified by different ways so reflect the changes in the UI
     @listen_for_url_changes()
@@ -33,29 +34,10 @@ class Locomotive.Views.Pages.FormView extends Backbone.View
 
     @enable_other_checkboxes()
 
-    @_hide_last_separator()
-
     # liquid code textarea
     @enable_liquid_editing()
 
     return @
-
-  save: (event) ->
-    # by default, follow the default behaviour
-
-  make_title_editable: ->
-    title = @$('h2 a.editable')
-
-    if title.size() > 0
-      target  = @$("##{title.attr('rel')}")
-      target.parent().hide()
-
-      title.click (event) =>
-        event.stopPropagation() & event.preventDefault()
-        newValue = prompt(title.attr('title'), title.html());
-        if newValue && newValue != ''
-          title.html(newValue)
-          target.val(newValue)
 
   open_image_picker: (event) ->
     event.stopPropagation() & event.preventDefault()
@@ -75,6 +57,9 @@ class Locomotive.Views.Pages.FormView extends Backbone.View
       passDelay:        50
       tabMode:          'shift'
       theme:            'default'
+
+  after_inputs_fold: ->
+    @editor.refresh()
 
   fill_default_slug: (event) ->
     unless @filled_slug
@@ -110,19 +95,3 @@ class Locomotive.Views.Pages.FormView extends Backbone.View
   enable_other_checkboxes: ->
     _.each ['published', 'listed'], (exp) =>
       @$('li#page_' + exp + '_input input[type=checkbox]').checkToggle()
-
-  _enable_checkbox: (name, options) ->
-    @$('li#page_' + name + '_input input[type=checkbox]').checkToggle
-      on_callback: =>
-        _.each options.features, (exp) -> @$('li#page_' + exp + '_input').hide()
-        options.on_callback() if options.on_callback?
-        @_hide_last_separator()
-      off_callback: =>
-        _.each options.features, (exp) -> @$('li#page_' + exp + '_input').show()
-        options.off_callback() if options.off_callback?
-        @_hide_last_separator()
-
-  _hide_last_separator: ->
-    _.each @$('fieldset'), (fieldset) =>
-      $(fieldset).find('li.last').removeClass('last')
-      $(_.last($(fieldset).find('li.input:visible'))).addClass('last')

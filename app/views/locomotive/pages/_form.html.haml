@@ -14,15 +14,17 @@
 
 = render 'editable_elements', :page => @page
 
-= f.inputs :name => :seo do
+= f.inputs :name => :seo, :class => "inputs foldable #{'folded' if inputs_folded?(@page)}" do
 
   = f.input :seo_title
+
   = f.input :meta_keywords
+
   = f.input :meta_description
 
 - if can?(:manage, @page)
 
-  = f.inputs :name => :advanced_options, :id => 'advanced-options', :class => 'inputs foldable' do
+  = f.inputs :name => :advanced_options, :id => 'advanced-options', :class => "inputs foldable #{'folded' if inputs_folded?(@page)}" do
 
     = f.input :content_type_id, :as => :select, :collection => current_site.content_types.all.to_a, :include_blank => false, :wrapper_html => { :style => "#{'display: none' unless @page.templatized?}" }
 
@@ -38,6 +40,6 @@
 
     = f.input :redirect_url, :required => true, :wrapper_html => { :style => "#{'display: none' unless @page.redirect?}" }
 
-  = f.inputs :name => :raw_template, :class => 'inputs foldable' do
+  = f.inputs :name => :raw_template, :class => "inputs foldable #{'folded' if inputs_folded?(@page)}" do
 
     = f.input :raw_template, :as => :'Locomotive::Code'

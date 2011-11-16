@@ -29,7 +29,30 @@ form.formtastic {
         font-weight: bold;
         @include single-text-shadow(#fff, 1px, 1px, 1px);
       }
+
+      em {
+        display: inline-block;
+        width: 9px;
+        height: 6px;
+        position: relative;
+        top: 0px;
+        left: 10px;
+        background: transparent image-url("locomotive/form/folded-arrow-on.png") no-repeat 0 0px;
+      }
     } // legend
+
+    &.foldable {
+      span {
+        cursor: pointer;
+      }
+
+      &.folded legend span em {
+        width: 6px;
+        height: 9px;
+        top: 0px;
+        background-image: image-url("locomotive/form/folded-arrow-off.png");
+      }
+    } // .foldable
 
     ol {
       margin-bottom: 0px;

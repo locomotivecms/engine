@@ -9,6 +9,10 @@ module Locomotive::BaseHelper
     end
   end
 
+  def inputs_folded?(resource)
+    resource.persisted? || !resource.errors.empty?
+  end
+
   def admin_content_menu_item(name, url, options = {}, &block) # TODO: rename method name (remove admin)
     default_options = { :i18n => true, :css => name.dasherize.downcase }
     default_options.merge!(options)
