@@ -44,7 +44,7 @@ module Locomotive
               ido_id = event['data'].try(:[], 'ido_id')
 
               ido_id and
-                Account.exists?(::Devise.cas_username_column => ido_id) and
+                Account.exists?(:conditions => {::Devise.cas_username_column => ido_id}) and
                 Account.where(::Devise.cas_username_column => ido_id).destroy
             end
 
