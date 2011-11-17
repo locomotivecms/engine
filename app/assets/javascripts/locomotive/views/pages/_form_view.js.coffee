@@ -37,6 +37,9 @@ class Locomotive.Views.Pages.FormView extends Locomotive.Views.Shared.FormView
     # liquid code textarea
     @enable_liquid_editing()
 
+    # editable elements
+    @enable_editable_elements_nav()
+
     return @
 
   open_image_picker: (event) ->
@@ -60,6 +63,21 @@ class Locomotive.Views.Pages.FormView extends Locomotive.Views.Shared.FormView
 
   after_inputs_fold: ->
     @editor.refresh()
+
+  enable_editable_elements_nav: ->
+    @$('#editable-elements .nav a').click (event) =>
+      event.stopPropagation() & event.preventDefault()
+
+      link = $(event.target).parent()
+
+      index = parseInt(link.attr('href').match(/block-(.+)/)[1])
+
+      @$('#editable-elements .wrapper ul li.block').hide()
+      $("#block-#{index}").show()
+      @_hide_last_separator()
+
+      link.parent().find('.on').removeClass('on')
+      link.addClass('on')
 
   fill_default_slug: (event) ->
     unless @filled_slug

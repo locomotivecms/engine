@@ -59,7 +59,7 @@ ul.list {
 
     background: #ebedf4;
     @include border-radius(16px);
-    border-bottom: 1px solid #d9d9d9;
+    @include box-shadow(rgba(0, 0, 0, 0.2) 0px 1px 0px 0px);
 
     margin-bottom: 10px;
     clear: both;
@@ -181,7 +181,7 @@ ul.theme-assets {
 
       background: #ebedf4;
       @include border-radius(16px);
-      border-bottom: 1px solid #d9d9d9;
+      @include box-shadow(rgba(0, 0, 0, 0.2) 0px 1px 0px 0px);
 
       em {
         display: block;
