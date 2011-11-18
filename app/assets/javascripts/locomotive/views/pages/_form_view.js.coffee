@@ -79,6 +79,8 @@ class Locomotive.Views.Pages.FormView extends Locomotive.Views.Shared.FormView
       link.parent().find('.on').removeClass('on')
       link.addClass('on')
 
+    @$('#editable-elements textarea').tinymce window.TinyMceDefaultSettings
+
   fill_default_slug: (event) ->
     unless @filled_slug
       setTimeout (=> @$('#page_slug').val($(event.target).val().slugify('-')) & @touched_url = true), 30

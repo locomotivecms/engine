@@ -56,7 +56,7 @@
   text-decoration: none;
   @include text-shadow(rgba(255, 255, 255, 0.8), 0px, 1px, 0px);
 
-  &:hover {
+  &:hover, &.hover {
     @include background-image(linear-gradient(top, #fff, #d7dbe7));
   }
 

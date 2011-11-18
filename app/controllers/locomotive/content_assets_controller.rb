@@ -1,5 +1,5 @@
 module Locomotive
-  class AssetsController < BaseController
+  class ContentAssetsController < BaseController
 
     include ActionView::Helpers::SanitizeHelper
     include ActionView::Helpers::TextHelper

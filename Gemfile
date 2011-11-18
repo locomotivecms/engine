@@ -28,6 +28,7 @@ gem 'jquery-rails',         '~> 1.0.16'
 gem 'rails-backbone',       '0.5.4'
 gem 'handlebars-rails',     :git => 'git://github.com/yabawock/handlebars-rails.git'
 gem 'codemirror-rails'
+gem 'tinymce-rails'
 gem 'uploadify-rails',      :git => 'git://github.com/nragaz/uploadify-rails.git'
 gem 'flash_cookie_session', '~> 1.1.1'
 

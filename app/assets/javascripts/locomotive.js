@@ -13,6 +13,7 @@
 //= require backbone_rails_sync
 //= require uploadify
 //= require codemirror
+//= require tinymce-jquery
 //= require codemirror/overlay
 //= require codemirror/modes/css
 //= require codemirror/modes/javascript

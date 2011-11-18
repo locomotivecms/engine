@@ -40,6 +40,6 @@
 
     = f.input :redirect_url, :required => true, :wrapper_html => { :style => "#{'display: none' unless @page.redirect?}" }
 
-  = f.inputs :name => :raw_template, :class => "inputs foldable #{'folded' if inputs_folded?(@page)}" do
+  = f.inputs :name => :raw_template, :class => "inputs foldable" do
 
     = f.input :raw_template, :as => :'Locomotive::Code'

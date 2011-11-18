@@ -13,6 +13,8 @@ class Locomotive.Views.ApplicationView extends Backbone.View
       @view = new @options.view
       @view.render()
 
+    window.TinyMceDefaultSettings.language = window.locale # set the default tinyMCE language
+
     return @
 
   render_flash_messages: (messages) ->

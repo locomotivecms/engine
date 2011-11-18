@@ -1,0 +1,132 @@
+@import "compass/css3";
+@import "compass/css3/border-radius";
+@import "compass/css3/images";
+@import "compass/css3/text-shadow";
+// @import "helpers";
+
+/* Locomotive's version of Clearlooks 2 */
+
+/* Reset */
+// .locomotive, .locomotive div, .locomotive span, .locomotive a { vertical-align:baseline; text-align:left; position:absolute; border:0; padding:0; margin:0; background:transparent; text-decoration:none; font-weight:normal; width:auto; height:auto; display:block; }
+
+/* General */
+.locomotive {
+  position: absolute;
+  direction: ltr;
+  text-align: left;
+
+  width: auto !important;
+  height: auto !important;
+
+  font-family: Helvetica, Arial;
+
+  background: transparent;
+
+  // @include box-shadow(rgba(0, 0, 0, 0.2) 0px 0px 10px 3px);
+
+  .mceWrapper {
+    position: static;
+    // padding: 30px;
+    height: 100%;
+  }
+
+  .mceTop {
+    // position: static;
+    width: 645px;
+    height: 47px;
+
+    background: red;
+    @include border-top-radius(6px);
+    @include box-shadow(rgba(0, 0, 0, 0.2) 0px -3px 10px 3px);
+
+    text-align: left;
+
+    span {
+      display: block;
+      position: relative;
+
+      border-bottom: 1px dotted #BBBBBD;
+      color: #1E1F26;
+      font-size: 18px;
+      font-weight: bold;
+      padding: 0;
+      margin: 0 10px;
+      line-height: 45px;
+    }
+  } // .mceTop
+
+  .mceMiddle {
+    position: static;
+    width: 100%;
+    height: 100%;
+
+    & > span {
+      top: 0px;
+      position: relative;
+      background: transparent;
+    }
+
+    iframe {
+      height: auto !important;
+      @include box-shadow(rgba(0, 0, 0, 0.2) 0px 3px 10px 3px);
+    }
+
+  } // .mceMiddle
+
+  .mceBottom {
+    display: none;
+  }
+
+} // .locomotive
+
+
+.mceEventBlocker {
+  position:fixed;
+  left:0;
+  top:0;
+  width:100%;
+  height:100%;
+}
+.locomotive .mcePlaceHolder { top: 0; left: 0; background: #666; opacity:0.3; -ms-filter:'alpha(opacity=30)'; filter:alpha(opacity=30); }
+.locomotive_modalBlocker { position:fixed; left:0; top:0; width:100%; height:100%; background:#666; opacity:0.3; -ms-filter:'alpha(opacity=30)'; filter:alpha(opacity=30); display:none; }
+
+
+/* Middle */
+// .locomotive .mceMiddle { top: 0px; width: 100%; height: 100%; }
+// .locomotive .mceMiddle span { top: 47px; position: relative; background: transparent; }
+
+/* Bottom */
+// .locomotive .mceBottom { bottom: 0px; width: 100%; height: 1px; background: #8b8d9a; }
+
+/* Move & Close */
+.locomotive a.mceClose { display: none; }
+.locomotive a.mceMove { top: 1px; display: block; width: 100%; height: 35px; cursor: move; }
+
+/* Resize */
+.locomotive .mceResize { top:auto; left:auto; display:none; width:5px; height:5px; }
+.locomotive .mceResizable .mceResize {display:block}
+.locomotive .mceResizable .mceMin, .locomotive .mceMax {display:none}
+.locomotive .mceMinimizable .mceMin {display:block}
+.locomotive .mceMaximizable .mceMax {display:block}
+.locomotive .mceMaximized .mceMed {display:block}
+.locomotive .mceMaximized .mceMax {display:none}
+.locomotive a.mceResizeN {top:0; left:0; width:100%; cursor:n-resize}
+.locomotive a.mceResizeNW {top:0; left:0; cursor:nw-resize}
+.locomotive a.mceResizeNE {top:0; right:0; cursor:ne-resize}
+.locomotive a.mceResizeW {top:0; left:0; height:100%; cursor:w-resize;}
+.locomotive a.mceResizeE {top:0; right:0; height:100%; cursor:e-resize}
+.locomotive a.mceResizeS {bottom:0; left:0; width:100%; cursor:s-resize}
+.locomotive a.mceResizeSW {bottom:0; left:0; cursor:sw-resize}
+.locomotive a.mceResizeSE {bottom:0; right:0; cursor:se-resize}
+
+/* Alert/Confirm */
+.locomotive .mceButton {font-weight:bold; bottom:10px; width:80px; height:30px; background:url(img/button.gif); line-height:30px; vertical-align:middle; text-align:center; outline:0}
+.locomotive .mceMiddle .mceIcon {left:15px; top:35px; width:32px; height:32px}
+.locomotive .mceAlert .mceMiddle span, .locomotive .mceConfirm .mceMiddle span {background:transparent;left:60px; top:35px; width:320px; height:50px; font-weight:bold; overflow:auto; white-space:normal}
+.locomotive a:hover {font-weight:bold;}
+.locomotive .mceAlert .mceMiddle, .locomotive .mceConfirm .mceMiddle {background:#D6D7D5}
+.locomotive .mceAlert .mceOk {left:50%; top:auto; margin-left: -40px}
+.locomotive .mceAlert .mceIcon {background:url(img/alert.gif)}
+.locomotive .mceConfirm .mceOk {left:50%; top:auto; margin-left: -90px}
+.locomotive .mceConfirm .mceCancel {left:50%; top:auto}
+.locomotive .mceConfirm .mceIcon {background:url(img/confirm.gif)}

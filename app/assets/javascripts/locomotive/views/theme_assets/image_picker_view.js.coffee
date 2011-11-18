@@ -12,21 +12,30 @@ class Locomotive.Views.ThemeAssets.ImagePickerView extends Backbone.View
     @collection.bind('reset', @add_assets)
 
   render: ->
+    @_reset()
+
     $(@el).html(ich.theme_image_picker())
 
     @collection.fetch data: { content_type: 'image' }
 
     return @
 
-  create_or_show_dialog: ->
-    @dialog ||= $(@el).dialog
+  create_dialog: ->
+    @dialog = $(@el).dialog
       modal:    true
       width:    600,
-      open: =>
+      create: =>
         $('.ui-widget-overlay').bind 'click', => @close()
 
-        link  = @$('.actions a')
-        el    = @$('.actions input[type=file]')
+        @$('h2').appendTo($(@el).prev())
+        actions = @$('.actions').appendTo($(@el).parent()).addClass('ui-dialog-buttonpane ui-widget-content ui-helper-clearfix')
+
+        actions.find('#close-link').click (event) => @close(event)
+
+      open: =>
+        actions = $(@el).parent().find('.ui-dialog-buttonpane')
+        link    = actions.find('#upload-link')
+        el      = actions.find('input[type=file]')
 
         window.ImageUploadify.build el,
           url:        link.attr('href')
@@ -36,7 +45,7 @@ class Locomotive.Views.ThemeAssets.ImagePickerView extends Backbone.View
           success:    (model) => @add_asset(new Locomotive.Models.ThemeAsset(model))
           error:      (msg)   => @shake()
 
-        @$('.button-wrapper').hover(
+        actions.find('.upload-button-wrapper').hover(
           => link.addClass('hover'),
           => link.removeClass('hover')
         )
@@ -46,7 +55,8 @@ class Locomotive.Views.ThemeAssets.ImagePickerView extends Backbone.View
   open: ->
     $(@el).dialog('open')
 
-  close: ->
+  close: (event) ->
+    event.stopPropagation() & event.preventDefault() if event?
     $(@el).dialog('close')
 
   shake: ->
@@ -67,8 +77,13 @@ class Locomotive.Views.ThemeAssets.ImagePickerView extends Backbone.View
       @$('ul.list').show()
       collection.each @add_asset
 
-    setTimeout (=> @create_or_show_dialog()), 30 # disable flickering
+    setTimeout (=> @create_dialog()), 30 # disable flickering
 
   add_asset: (asset) ->
     @$('ul.list').append(ich.theme_asset(asset.toJSON()))
     @center() if @editor
+
+  _reset: ->
+    $('.ui-widget-overlay').unbind 'click'
+    @$('.actions input[type=file]').remove()
+    @dialog.dialog('destroy') if @dialog?
