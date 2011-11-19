@@ -68,8 +68,7 @@ class Locomotive.Views.Pages.FormView extends Locomotive.Views.Shared.FormView
     @$('#editable-elements .nav a').click (event) =>
       event.stopPropagation() & event.preventDefault()
 
-      link = $(event.target).parent()
-
+      link  = $(event.target)
       index = parseInt(link.attr('href').match(/block-(.+)/)[1])
 
       @$('#editable-elements .wrapper ul li.block').hide()

@@ -5,7 +5,7 @@
     #editable-elements
       .nav
         - grouped_editable_elements.keys.each_with_index do |name, index|
-          = link_to content_tag(:span, name.try(:humanize).gsub('\'', '') || t('locomotive.pages.form.default_block')), "#block-#{index}", :id => "block-nav-#{index}", :class => "#{'on' if index == 0}"
+          = link_to name.try(:humanize).gsub('\'', '') || t('locomotive.pages.form.default_block'), "#block-#{index}", :id => "block-nav-#{index}", :class => "#{'on' if index == 0}"
         .clear
 
       .wrapper

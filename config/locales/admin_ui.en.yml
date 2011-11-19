@@ -185,7 +185,6 @@ en:
         title: Listing theme files
         help: "The theme files section is the place where you manage the files needed by your layout, snippets...etc. If you need to manage an image gallery, create a new content type instead.<br/><b>Warning:</b> you may not see all the assets depending on your rights."
         new: new file
-        upload: Upload files
         snippets: Snippets
         css_and_js: Style and javascript
         fonts: Fonts
@@ -207,17 +206,16 @@ en:
         picker_link: Insert a file into the code
         choose_file: Choose file
         choose_plain_text: Choose plain text
-      images:
-        title: Listing images
-        no_items: "There are no files for now."
+      image_picker:
+        title: "Insert theme image"
+        no_items: "There are no images for now."
+        upload: "Upload theme images"
 
-    assets:
-      new:
-        title: New asset
-        help: "Fill in the form below to create your asset."
-      edit:
-        title: Edit asset
-        help: "Fill in the form below to update your asset."
+    content_assets:
+      picker:
+        title: "Insert media"
+        no_items: "There are no media for now."
+        upload: "Upload media"
 
     content_types:
       index:

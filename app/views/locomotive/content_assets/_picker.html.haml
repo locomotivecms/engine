@@ -1,0 +1,32 @@
+%script{ :type => 'text/html', :id => 'content_asset_picker' }
+
+  %h2!= t('.title')
+
+  %p.no-items{ :style => 'display: none' }!= t('.no_items')
+
+  %ul.list.content-assets{ :style => 'display: none' }
+    %li.clear
+
+  .dialog-actions
+    = link_to t('locomotive.buttons.close'), '#', :id => 'close-link'
+    .upload-button-wrapper
+      = file_field_tag 'content_asset[source]'
+      = link_to t('.upload'), content_assets_url(:json), :class => 'new', :id => 'upload-link'
+
+
+%script{ :type => 'text/html', :id => 'content_asset' }
+
+  %h4
+    = link_to '{{filename}}', '{{url}}'
+  {{#if image}}
+  .image
+    .inside
+      %img{ :src => '{{vignette_url}}' }
+  {{else}}
+  .icon{ :class => '{{content_type}}' }
+    .inside
+      {{content_type_text}}
+  {{/if}}
+
+  .actions
+    = link_to image_tag('locomotive/list/icons/cross.png'), '#', :class => 'remove', :'data-confirm' => t('locomotive.messages.confirm')

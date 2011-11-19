@@ -1,7 +1,7 @@
 # encoding: utf-8
 
 module Locomotive
-  class AssetUploader < ::CarrierWave::Uploader::Base
+  class ContentAssetUploader < ::CarrierWave::Uploader::Base
 
     include Locomotive::CarrierWave::Uploader::Asset
 

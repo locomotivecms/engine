@@ -1,5 +1,5 @@
 module Locomotive
-  class Asset
+  class ContentAsset
 
     include ::Mongoid::Document
     include ::Mongoid::Timestamps
@@ -14,7 +14,7 @@ module Locomotive
     field :height, :type => Integer
     field :size, :type => Integer
     field :position, :type => Integer, :default => 0
-    mount_uploader :source, AssetUploader, :mount_on => :source_filename
+    mount_uploader :source, ContentAssetUploader, :mount_on => :source_filename
 
     ## associations ##
     referenced_in :site, :class_name => 'Locomotive::Site'
@@ -35,6 +35,10 @@ module Locomotive
 
     def to_liquid
       { :url => self.source.url }.merge(self.attributes).stringify_keys
+    end
+
+    def as_json(options = {})
+      Locomotive::ContentAssetPresenter.new(self).as_json
     end
 
   end

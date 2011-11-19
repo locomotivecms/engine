@@ -28,7 +28,7 @@ class Locomotive.Views.ThemeAssets.ImagePickerView extends Backbone.View
         $('.ui-widget-overlay').bind 'click', => @close()
 
         @$('h2').appendTo($(@el).prev())
-        actions = @$('.actions').appendTo($(@el).parent()).addClass('ui-dialog-buttonpane ui-widget-content ui-helper-clearfix')
+        actions = @$('.dialog-actions').appendTo($(@el).parent()).addClass('ui-dialog-buttonpane ui-widget-content ui-helper-clearfix')
 
         actions.find('#close-link').click (event) => @close(event)
 
@@ -81,7 +81,7 @@ class Locomotive.Views.ThemeAssets.ImagePickerView extends Backbone.View
 
   add_asset: (asset) ->
     @$('ul.list').append(ich.theme_asset(asset.toJSON()))
-    @center() if @editor
+    @center() if @dialog?
 
   _reset: ->
     $('.ui-widget-overlay').unbind 'click'

@@ -11,6 +11,10 @@ class Locomotive::BasePresenter
     @source = object
   end
 
+  def id
+    @source._id.to_s
+  end
+
   # def as_json(options = {})
   #   @source.as_json(options)
   # end

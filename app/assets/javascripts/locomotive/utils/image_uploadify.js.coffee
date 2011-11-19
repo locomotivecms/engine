@@ -14,7 +14,7 @@ window.ImageUploadify =
       hideButton:       true
       wmode:            'transparent'
       auto:             true
-      fileExt:          '*.jpg;*.png;*.jpeg;*.gif'
+      fileExt:          options.file_ext || '*.jpg;*.png;*.jpeg;*.gif'
       fileDesc:         'Only .jpg, .png, .jpeg, .gif'
       removeCompleted:  true
       fileDataName:     options.data_name

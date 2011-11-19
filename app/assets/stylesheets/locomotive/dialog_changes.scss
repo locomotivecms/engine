@@ -64,34 +64,6 @@
     padding: 10px;
     background: #fff;
 
-    .actions {
-      position: absolute;
-      top: -22px;
-      right: 2px;
-
-      a {
-        @include gray-button;
-      }
-
-      &.button-wrapper {
-
-        #theme_asset_sourceUploader {
-          position: absolute;
-          top: 0px;
-          right: 0px;
-        }
-
-        #theme_asset_sourceUploader {
-          z-index: 1001;
-        }
-
-        a {
-          z-index: 1000;
-        }
-      } // .actions.button-wrapper
-
-    } // .actions
-
     .list {
       overflow: auto;
       height: 350px;
@@ -112,6 +84,10 @@
     border-top: 1px solid #5F6069;
     background: #8B8D9A;
 
+    a {
+      outline: none;
+    }
+
     a#close-link {
       @include hover-link;
       color: #fff;
@@ -127,13 +103,10 @@
         @include light-button;
       }
 
-      #theme_asset_sourceUploader {
+      #theme_asset_sourceUploader, #content_asset_sourceUploader {
         position: absolute;
         top: 0px;
         right: 0px;
-      }
-
-      #theme_asset_sourceUploader {
         z-index: 1001;
       }
 

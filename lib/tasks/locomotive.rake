@@ -71,6 +71,20 @@ namespace :locomotive do
       end
     end
 
+    desc "Namespace collections"
+    task :namespace_collections do
+      db = Mongoid.config.master['sites'].db
+      db.collections.each do |collection|
+        next if collection.name =~ /^locomotive_/ # already namespaced
+
+        new_name = "locomotive_#{collection.name}"
+        new_name = "locomotive_content_assets" if collection.name =~ /^assets/
+
+        puts "renaming #{collection.name} into #{new_name}"
+        collection.rename_collection new_name
+      end
+    end
+
   end
 
 end

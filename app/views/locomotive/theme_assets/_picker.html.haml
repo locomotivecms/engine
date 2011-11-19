@@ -1,21 +1,21 @@
 %script{ :type => 'text/html', :id => 'theme_image_picker' }
 
-  %h2!= t('locomotive.theme_assets.images.title')
+  %h2!= t('locomotive.theme_assets.image_picker.title')
 
-  %p.no-items{ :style => 'display: none' }!= t('.no_items')
+  %p.no-items{ :style => 'display: none' }!= t('locomotive.theme_assets.image_picker.no_items')
 
   %ul.list{ :style => 'display: none' }
 
-  .actions
+  .dialog-actions
     = link_to t('locomotive.buttons.close'), '#', :id => 'close-link'
     .upload-button-wrapper
       = file_field_tag 'theme_asset[source]'
-      = link_to t('locomotive.theme_assets.index.upload'), theme_assets_url(:json), :class => 'new', :id => 'upload-link'
+      = link_to t('locomotive.theme_assets.image_picker.upload'), theme_assets_url(:json), :class => 'new', :id => 'upload-link'
 
 
 %script{ :type => 'text/html', :id => 'theme_asset' }
 
-  %li
+  %li.item
     = link_to '{{local_path}}', '{{url}}'
     .more
       %span.size {{size}}

@@ -1,4 +1,5 @@
 - content_for :head do
+  = render :partial => '/locomotive/content_assets/picker'
   = render :partial => '/locomotive/theme_assets/picker'
 
 - if can?(:manage, @page)

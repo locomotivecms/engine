@@ -186,7 +186,6 @@ fr:
         title: Liste des fichiers du thème
         help: "Les fichiers du thème sont utilisés pour construire le gabarit de vos pages. Si vous avez besoin d'une galerie d'images, créer un modèle sera plus adéquate.<br/><b>Attention : </b> Suivant les droits que vous avez, il se peut que vous ne puissiez pas voir tous les fichiers."
         new: nouveau fichier
-        upload: Uploader fichiers
         snippets: Snippets
         css_and_js: Style et javascript
         images: Images
@@ -205,21 +204,19 @@ fr:
         help_image: "Utilisez votre image dans le template de vos pages ou snippets avec le code Liquid suivant : <span class='code'>{{ '%{path}' | theme_image_tag }}</span>.<br/>. Votre image a comme dimensions : <b>%{width}px x %{height}px</b>.<br/>"
         help_javascript: "Utilisez votre javascript dans le template de vos pages avec le code Liquid suivant : <span class='code'>{{ '%{path}' | javascript_tag }}</span>.<br/>"
         help_stylesheet: "Utilisez votre stylesheet dans le template de vos pages avec le code Liquid suivant : <span class='code'>{{ '%{path}' | stylesheet_tag }}</span>.<br/>"
-
       form:
         choose_file: Choisir fichier
         choose_plain_text: Passer en mode texte
-      images:
-        title: Liste des images
+      image_picker:
+        title: Insérer une image du thème
         no_items: "Il n'y a pas d'images."
+        upload: "Uploader images du thème"
 
-    assets:
-      new:
-        title: "Nouveau média"
-        help: "Remplissez le formulaire ci-dessous pour créer votre média."
-      edit:
-        title: "Edition média"
-        help: "Remplissez le formulaire ci-dessous pour mettre à jour votre média."
+    content_assets:
+      picker:
+        title: "Insérer un média"
+        no_items: "Il n'y a aucun média."
+        upload: "Uploader média"
 
     content_types:
       index:
