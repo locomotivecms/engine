@@ -1,8 +1,12 @@
 module Locomotive
   class ContentAssetPresenter < BasePresenter
 
+    def full_filename
+      self.source.source_filename
+    end
+
     def filename
-      truncate(self.source.source_filename, :length => 19)
+      truncate(self.source.source_filename, :length => 22)
     end
 
     def short_name
@@ -32,7 +36,7 @@ module Locomotive
 
     def as_json
       {}.tap do |hash|
-        %w(id filename short_name extname content_type content_type_text url vignette_url).map(&:to_sym).each do |meth|
+        %w(id full_filename filename short_name extname content_type content_type_text url vignette_url).map(&:to_sym).each do |meth|
           hash[meth] = self.send(meth)
         end
       end

@@ -17,7 +17,7 @@
 %script{ :type => 'text/html', :id => 'content_asset' }
 
   %h4
-    = link_to '{{filename}}', '{{url}}'
+    = link_to '{{filename}}', '{{url}}', :alt => '{{full_filename}}', :title => '{{full_filename}}'
   {{#if image}}
   .image
     .inside
@@ -29,4 +29,4 @@
   {{/if}}
 
   .actions
-    = link_to image_tag('locomotive/list/icons/cross.png'), '#', :class => 'remove', :'data-confirm' => t('locomotive.messages.confirm')
+    = link_to 'x', '#', :class => 'remove', :'data-confirm' => t('locomotive.messages.confirm')

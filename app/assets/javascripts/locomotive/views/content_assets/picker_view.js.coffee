@@ -82,13 +82,17 @@ class Locomotive.Views.ContentAssets.PickerView extends Backbone.View
     (@_item_views ||= []).push(view)
     @$('ul.list .clear').before(view.render().el)
 
-    @_refresh()
+    @_refresh() & @_move_to_last_asset()
 
   remove_asset: (asset) ->
     view = _.find @_item_views, (tmp) -> tmp.model == asset
     view.remove() if view?
     @_refresh()
     @center()
+
+  _move_to_last_asset: ->
+    limit = @$('ul.list li.clear').position()
+    @$('ul.list').animate(scrollTop: limit.top, 400) if limit?
 
   _refresh: ->
     if @collection.length == 0

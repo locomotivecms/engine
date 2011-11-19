@@ -10,10 +10,10 @@ ul.content-assets {
     position: relative;
     float: left;
     width: 139px;
-    height: 140px;
+    height: 170px;
     clear: none;
 
-    margin: 0 17px 17px 0;
+    margin: 0 10px 10px 0;
 
     @include border-radius(8px);
     @include box-shadow(rgba(0, 0, 0, 0.2) 0px 1px 0px 0px);
@@ -47,10 +47,11 @@ ul.content-assets {
     }
 
     .icon, .image {
-      width: 80px;
-      height: 80px;
+      width: 85px;
+      height: 85px;
       border: 4px solid #fff;
-      margin: 10px 0 5px 24px;
+      margin: 20px 0 0px 22px;
+      cursor: pointer;
 
       @include box-shadow(rgba(0, 0, 0, 0.3) 3px 3px 5px 1px);
     }
@@ -62,8 +63,8 @@ ul.content-assets {
         display: table-cell;
         vertical-align: middle;
         text-align: center;
-        width: 80px;
-        height: 85px;
+        width: 85px;
+        height: 90px;
       }
     } // .image
 
@@ -71,14 +72,14 @@ ul.content-assets {
 
       .inside {
         position: relative;
-        top: 24px;
-        width: 80px;
+        top: 30px;
+        width: 85px;
 
         -webkit-transform: rotate(-45deg);
         -moz-transform: rotate(-45deg);
 
         color: #fff;
-        font-size: 12px;
+        font-size: 14px;
         font-weight: bold;
         text-align: center;
         text-transform: uppercase;
@@ -103,104 +104,24 @@ ul.content-assets {
 
     .actions {
       position: absolute;
-      top: 8px;
-      right: 5px;
+      bottom: 17px;
+      right: 17px;
+
+      a {
+        display: block;
+        width: 16px;
+        height: 16px;
+
+        background: transparent image-url("locomotive/list/icons/trash_off.png") repeat 0 0;
+
+        text-indent: -9999px;
+
+        &:hover{
+          background-image: image-url("locomotive/list/icons/trash.png");
+        }
+      }
     }
 
   } // li.asset
 
 }
-
-// ul.assets {
-//   list-style: none;
-//   margin: 0px;
-//   padding: 0px;
-// }
-//
-// ul.assets li.asset {
-//   position: relative;
-//   float: left;
-//   width: 139px;
-//   height: 140px;
-//   background: transparent url(/assets/locomotive//list/thumb.png) no-repeat 0 0;
-//   margin: 0 17px 17px 0;
-// }
-//
-// ul.assets li.asset.last {
-//   margin-right: 0px;
-// }
-//
-// ul.assets li.asset h4 { margin: 0px; height: 30px; border-bottom: 1px solid #ccced7; position: relative; }
-//
-// ul.assets li.asset h4 a {
-//   position: absolute;
-//   top: 7px;
-//   left: 12px;
-//   font-weight: bold;
-//   font-size: 0.6em;
-//   color: #1f82bc;
-//   text-decoration: none;
-// }
-//
-// ul.assets li.asset h4 a:hover { text-decoration: underline; }
-//
-// ul.assets li.asset div.icon, ul.assets li.asset div.image {
-//   width: 80px;
-//   height: 80px;
-//   border: 4px solid #fff;
-//   margin: 10px 0 0 24px;
-//   box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
-//   -moz-box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
-//   -webkit-box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
-// }
-//
-// ul.assets li.asset div.image {
-//   background: transparent url(/assets/locomotive//list/empty.png) repeat 0 0;
-// }
-//
-// ul.assets li.asset div.image .inside {
-//   display: table-cell;
-//   vertical-align: middle;
-//   text-align: center;
-//   width: 72px;
-//   height: 72px;
-// }
-//
-// ul.assets li.asset div.icon .inside {
-//   position: relative;
-//   top: 24px;
-//   text-align:center;
-//   width: 80px;
-//   -webkit-transform: rotate(-45deg);
-//   -moz-transform: rotate(-45deg);
-//   font-weight: bold;
-//   color: #fff;
-//   text-shadow: 0px 1px 0px #333;
-//   text-transform: uppercase;
-//   font-size: 1.1em;
-// }
-//
-// ul.assets li.asset div.pdf {
-//   background: #e82f2d;
-//   background: -webkit-gradient(linear, left top, right bottom, from(#fc4e42), to(#b9101d));
-//   background: -moz-linear-gradient(-45deg, #fc4e42, #b9101d);
-// }
-//
-// ul.assets li.asset div.media {
-//   background: #6e489c;
-//   background: -webkit-gradient(linear, left top, right bottom, from(#ba89d1), to(#4f317d));
-//   background: -moz-linear-gradient(-45deg, #ba89d1, #4f317d);
-// }
-//
-// ul.assets li.asset div.other {
-//   background: #4a4a50;
-//   background: -webkit-gradient(linear, left top, right bottom, from(#92939a), to(#28282b));
-//   background: -moz-linear-gradient(-45deg, #92939a, #28282b);
-// }
-//
-//
-// ul.assets li.asset div.actions {
-//   position: absolute;
-//   top: 4px;
-//   right: 12px;
-// }

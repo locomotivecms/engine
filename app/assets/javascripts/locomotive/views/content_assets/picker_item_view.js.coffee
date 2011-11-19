@@ -7,8 +7,8 @@ class Locomotive.Views.ContentAssets.PickerItemView extends Backbone.View
   className: 'asset'
 
   events:
-    'click h4 a':     'select_asset'
-    'click a.remove': 'remove_asset'
+    'click h4 a, .icon, .image':  'select_asset'
+    'click a.remove':             'remove_asset'
 
   render: ->
     $(@el).html(ich.content_asset(@model.toJSON()))

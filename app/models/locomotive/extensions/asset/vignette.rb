@@ -5,10 +5,10 @@ module Locomotive
 
         def vignette_url
           if self.image?
-            if self.width < 80 && self.height < 80
+            if self.width < 85 && self.height < 85
               self.source.url
             else
-              Locomotive::Dragonfly.resize_url(self.source, '80x80#')
+              Locomotive::Dragonfly.resize_url(self.source, '85x85#')
             end
           end
         end
