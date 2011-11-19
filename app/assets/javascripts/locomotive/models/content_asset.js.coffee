@@ -4,8 +4,6 @@ class Locomotive.Models.ContentAsset extends Backbone.Model
     @set
       image:  @get('content_type') == 'image'
 
-
-
 class Locomotive.Models.ContentAssetsCollection extends Backbone.Collection
 
   model: Locomotive.Models.ContentAsset

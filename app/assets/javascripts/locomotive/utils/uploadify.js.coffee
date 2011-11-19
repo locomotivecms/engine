@@ -1,4 +1,4 @@
-window.ImageUploadify =
+window.LocomotiveUploadify =
 
   build: (el, options) ->
     multipart_params = @_get_default_multipart_params()
