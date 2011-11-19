@@ -219,9 +219,21 @@ ul.theme-assets {
         font-size: 11px;
         color: #8b8d9a;
 
-        a {
+        a.remove {
+          display: inline-block;
+          width: 16px;
+          height: 16px;
+
           margin-left: 7px;
           outline: none;
+
+          background: transparent image-url("locomotive/list/icons/trash_off.png") repeat 0 0;
+
+          text-indent: -9999px;
+
+          &:hover {
+            background-image: image-url("locomotive/list/icons/trash.png");
+          }
         }
       }
     } // li .inner

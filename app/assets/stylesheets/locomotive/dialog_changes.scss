@@ -39,11 +39,14 @@
     @include border-radius(0px);
     @include border-top-radius(6px);
 
-    .ui-dialog-title, .ui-dialog-titlebar-close {
+    text-align: left;
+
+    .ui-dialog-titlebar-close {
       display: none;
     }
 
-    h2 {
+    .ui-dialog-title {
+      float: none;
       margin: 0px;
 
       line-height: 18px;
@@ -94,7 +97,7 @@
       font-size: 12px;
     }
 
-    .upload-button-wrapper {
+    .button-wrapper {
       position: absolute;
       top: 8px;
       right: 10px;
@@ -103,16 +106,18 @@
         @include light-button;
       }
 
-      #theme_asset_sourceUploader, #content_asset_sourceUploader {
-        position: absolute;
-        top: 0px;
-        right: 0px;
-        z-index: 1001;
-      }
+      &.upload {
+        #theme_asset_sourceUploader, #content_asset_sourceUploader {
+          position: absolute;
+          top: 0px;
+          right: 0px;
+          z-index: 1001;
+        }
 
-      a {
-        z-index: 1000;
-      }
+        a {
+          z-index: 1000;
+        }
+      } // .button-wrapper.upload
     } // .button-wrapper
 
   } // .ui-dialog-buttonpane

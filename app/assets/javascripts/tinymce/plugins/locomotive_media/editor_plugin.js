@@ -1,11 +1,9 @@
 /**
- * editor_plugin_src.js
+ * LocomotiveMedia plugin
  *
- * Copyright 2009, Moxiecode Systems AB
- * Released under LGPL License.
+ * Copyright 2011, Didier Lafforgue
+ * Released under MIT License.
  *
- * License: http://tinymce.moxiecode.com/license
- * Contributing: http://tinymce.moxiecode.com/contributing
  */
 
 (function() {

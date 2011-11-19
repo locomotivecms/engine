@@ -349,6 +349,7 @@
   width: 20px;
   padding: 1px 2px;
   display: block;
+  outline: none;
 }
 
 .locomotiveSkin .mceSplitButton span.mceAction {

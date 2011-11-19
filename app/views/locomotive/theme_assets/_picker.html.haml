@@ -8,7 +8,7 @@
 
   .dialog-actions
     = link_to t('locomotive.buttons.close'), '#', :id => 'close-link'
-    .upload-button-wrapper
+    .button-wrapper.upload
       = file_field_tag 'theme_asset[source]'
       = link_to t('locomotive.theme_assets.image_picker.upload'), theme_assets_url(:json), :class => 'new', :id => 'upload-link'
 

@@ -35,7 +35,8 @@ class Locomotive.Views.Shared.AssetPickerView extends Backbone.View
       create: =>
         $('.ui-widget-overlay').bind 'click', => @close()
 
-        @$('h2').appendTo($(@el).prev())
+        $(@el).prev().find('.ui-dialog-title').html(@$('h2').html())
+        @$('h2').remove()
         actions = @$('.dialog-actions').appendTo($(@el).parent()).addClass('ui-dialog-buttonpane ui-widget-content ui-helper-clearfix')
 
         actions.find('#close-link').click (event) => @close(event)

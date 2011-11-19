@@ -135,6 +135,12 @@ form.formtastic {
               font-size: 20px;
             }
           }
+
+          &.em-inline-hints {
+            p.inline-hints {
+              color: #1F82BC !important;
+            }
+          }
         } // li.string
 
         &.code {

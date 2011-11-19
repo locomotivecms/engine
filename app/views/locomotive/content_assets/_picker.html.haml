@@ -9,7 +9,7 @@
 
   .dialog-actions
     = link_to t('locomotive.buttons.close'), '#', :id => 'close-link'
-    .upload-button-wrapper
+    .button-wrapper.upload
       = file_field_tag 'content_asset[source]'
       = link_to t('.upload'), content_assets_url(:json), :class => 'new', :id => 'upload-link'
 

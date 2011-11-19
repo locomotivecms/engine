@@ -43,6 +43,7 @@
     },
 
     open : function(f, p) {
+      console.log(f);
 
       f = f || {};
       p = p || {};
@@ -149,6 +150,33 @@
       // Load in iframe src
       if (!f.content) {
         iframe.attr( 'src', f.url || f.file );
+        iframe.load(function() {
+          var iframeDom = $(iframe).contents();
+
+          // build the buttonpane of the dialog ui, that way we don't have to rewrite tinyMCE base plugins
+          buttonPane = $('<div></div>').addClass('ui-dialog-buttonpane ui-widget-content ui-helper-clearfix');
+          dialog.after(buttonPane);
+          buttons = $('<div></div>').addClass('button-wrapper').appendTo(buttonPane);
+
+          iframeDom.find('.mceActionPanel').hide().find('input[type=button], input[type=submit]').each(function() {
+            var button = $(this);
+            var link;
+
+            if (button.attr('id') == 'cancel') {
+              link = $('<a></a>').attr('href', '#').attr('id', 'close-link').html(button.val());
+              buttonPane.append(link);
+            } else {
+              link = $('<a></a>').attr('href', '#').addClass('button').html(button.val());
+              buttons.append(link);
+            }
+
+            link.bind('click', function(e) {
+              e.stopPropagation();
+              e.preventDefault();
+              button.trigger('click');
+            });
+          });
+        });
       }
 
       // Add window
