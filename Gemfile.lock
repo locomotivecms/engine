@@ -300,7 +300,6 @@ GEM
       ffi (= 1.0.9)
       json_pure
       rubyzip
-    spork (0.9.0.rc9)
     sprockets (2.0.3)
       hike (~> 1.2)
       rack (~> 1.0)
@@ -383,7 +382,6 @@ DEPENDENCIES
   rubyzip
   sanitize (~> 2.0.3)
   sass-rails (~> 3.1.4)
-  spork (~> 0.9.0.rc)
   tinymce-rails
   uglifier (~> 1.0.4)
   unicorn
