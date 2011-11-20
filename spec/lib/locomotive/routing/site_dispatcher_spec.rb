@@ -147,9 +147,17 @@ describe Locomotive::Routing::SiteDispatcher do
 
   describe '#render_no_site_error' do
 
-    it 'renders the no site template with no layout' do
-      @controller.expects(:render).with(:template => '/admin/errors/no_site', :layout => false)
+    before :each do
+      @controller.instance_variable_set('@_response', ActionDispatch::Response.new)
       @controller.send(:render_no_site_error)
+    end
+
+    it 'should have a no site error message' do
+      @controller.response.body.should include 'No Site'
+    end
+
+    it 'should have a 404 not found status' do
+      @controller.response.should be_not_found
     end
 
   end
