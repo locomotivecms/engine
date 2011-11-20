@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Snippet do
+describe Locomotive::Snippet do
 
   it 'should have a valid factory' do
     FactoryGirl.build(:snippet).should be_valid

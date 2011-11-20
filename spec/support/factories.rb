@@ -11,7 +11,7 @@ FactoryGirl.define do
       # subdomain 'test'
 
       after_build do |site_test|
-        site_test.memberships.build :account => Account.where(:name => "Admin").first || Factory("admin user"), :role => 'admin'
+        site_test.memberships.build :account => Locomotive::Account.where(:name => "Admin").first || Factory("admin user"), :role => 'admin'
       end
 
       factory "another site" do
@@ -100,14 +100,14 @@ FactoryGirl.define do
     title 'Home page'
     slug 'index'
     published true
-    site { Site.where(:subdomain => "acme").first || Factory(:site) }
+    site { Locomotive::Site.where(:subdomain => "acme").first || Factory(:site) }
 
     factory :sub_page do
       title 'Subpage'
       slug 'subpage'
       published true
-      site { Site.where(:subdomain => "acme").first || Factory(:site) }
-      parent { Page.where(:slug => "index").first || Factory(:page) }
+      site { Locomotive::Site.where(:subdomain => "acme").first || Factory(:site) }
+      parent { Locomotive::Page.where(:slug => "index").first || Factory(:page) }
     end
 
   end
@@ -117,25 +117,25 @@ FactoryGirl.define do
     name 'My website title'
     slug 'header'
     template %{<title>Acme</title>}
-    site { Site.where(:subdomain => "acme").first || Factory(:site) }
+    site { Locomotive::Site.where(:subdomain => "acme").first || Factory(:site) }
   end
 
 
   ## Assets ##
   factory :asset, :class => Locomotive::ContentAsset do
-    site { Site.where(:subdomain => "acme").first || Factory(:site) }
+    site { Locomotive::Site.where(:subdomain => "acme").first || Factory(:site) }
   end
 
 
   ## Theme assets ##
   factory :theme_asset, :class => Locomotive::ThemeAsset do
-    site { Site.where(:subdomain => "acme").first || Factory(:site) }
+    site { Locomotive::Site.where(:subdomain => "acme").first || Factory(:site) }
   end
 
   ## Content types ##
   factory :content_type, :class => Locomotive::ContentType do
     name 'My project'
-    site { Site.where(:subdomain => "acme").first || Factory(:site) }
+    site { Locomotive::Site.where(:subdomain => "acme").first || Factory(:site) }
   end
 
   factory :content_instance, :class => Locomotive::ContentInstance do

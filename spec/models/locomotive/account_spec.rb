@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Account do
+describe Locomotive::Account do
 
   it 'should have a valid factory' do
     FactoryGirl.build(:account).should be_valid
@@ -17,7 +17,7 @@ describe Account do
   end
 
   it "should have a default locale" do
-    account = Account.new
+    account = Locomotive::Account.new
     account.locale.should == 'en'
   end
 
@@ -31,8 +31,8 @@ describe Account do
 
   it 'should own many sites' do
     account = FactoryGirl.create(:account)
-    site_1 = FactoryGirl.create(:site, :memberships => [Membership.new(:account => account)])
-    site_2 = FactoryGirl.create(:site, :subdomain => 'foo', :memberships => [Membership.new(:account => account)])
+    site_1 = FactoryGirl.create(:site, :memberships => [Locomotive::Membership.new(:account => account)])
+    site_2 = FactoryGirl.create(:site, :memberships => [Locomotive::Membership.new(:account => account)])
     account.reload.sites.to_a.should == [site_1, site_2]
   end
 
@@ -40,14 +40,14 @@ describe Account do
 
     before(:each) do
       @account = FactoryGirl.build(:account)
-      @site_1 = FactoryGirl.build(:site, :subdomain => 'foo', :memberships => [FactoryGirl.build(:membership, :account => @account)])
-      @site_2 = FactoryGirl.build(:site, :subdomain => 'bar', :memberships => [FactoryGirl.build(:membership, :account => @account)])
+      @site_1 = FactoryGirl.build(:site,:memberships => [FactoryGirl.build(:membership, :account => @account)])
+      @site_2 = FactoryGirl.build(:site,:memberships => [FactoryGirl.build(:membership, :account => @account)])
       @account.stubs(:sites).returns([@site_1, @site_2])
-      Site.any_instance.stubs(:save).returns(true)
+      Locomotive::Site.any_instance.stubs(:save).returns(true)
     end
 
     it 'should also delete memberships' do
-      Site.any_instance.stubs(:admin_memberships).returns(['junk', 'dirt'])
+      Locomotive::Site.any_instance.stubs(:admin_memberships).returns(['junk', 'dirt'])
       @site_1.memberships.first.expects(:destroy)
       @site_2.memberships.first.expects(:destroy)
       @account.destroy
@@ -78,13 +78,13 @@ describe Account do
     context 'retrieving an account' do
 
       it 'does not find it with an empty token' do
-        Account.find_using_switch_site_token(nil).should be_nil
+        Locomotive::Account.find_using_switch_site_token(nil).should be_nil
       end
 
       it 'raises an exception if not found' do
-        lambda {
-          Account.find_using_switch_site_token!(nil)
-        }.should raise_error(Mongoid::Errors::DocumentNotFound)
+        expect {
+          Locomotive::Account.find_using_switch_site_token!(nil)
+        }.to raise_error Mongoid::Errors::DocumentNotFound
       end
 
     end

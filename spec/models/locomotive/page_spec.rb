@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-describe Page do
+describe Locomotive::Page do
 
   before(:each) do
     Site.any_instance.stubs(:create_default_pages!).returns(true)

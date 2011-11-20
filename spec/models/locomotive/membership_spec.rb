@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Membership do
+describe Locomotive::Membership do
 
   it 'should have a valid factory' do
     FactoryGirl.build(:membership, :account => FactoryGirl.build(:account)).should be_valid

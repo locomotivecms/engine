@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe ContentType do
+describe Locomotive::ContentType do
 
   before(:each) do
     Site.any_instance.stubs(:create_default_pages!).returns(true)

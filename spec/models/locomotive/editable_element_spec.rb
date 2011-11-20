@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe EditableElement do
+describe Locomotive::EditableElement do
 
   before(:each) do
     @site = FactoryGirl.create(:site)

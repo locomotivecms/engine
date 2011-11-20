@@ -32,7 +32,7 @@ module Locomotive
       can :touch, [Page, ThemeAsset]
       can :sort, Page
 
-      can :manage, [ContentInstance, Asset]
+      can :manage, [ContentInstance, ContentAsset]
 
       can :touch, Site do |site|
         site == @site
@@ -50,7 +50,7 @@ module Locomotive
 
       can :manage, ThemeAsset
 
-      can :manage, Asset
+      can :manage, ContentAsset
 
       can :manage, Site do |site|
         site == @site

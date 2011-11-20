@@ -29,8 +29,8 @@ def Locomotive.configure_for_test(force = false)
 
       Locomotive.define_subdomain_and_domains_options
 
-      Object.send(:remove_const, 'Site') if Object.const_defined?('Site')
-      load 'site.rb'
+      Object.send(:remove_const, 'Locomotive::Site') if Object.const_defined?('Locomotive::Site')
+      load 'locomotive/site.rb'
 
       FactoryGirl.factories.clear
       load File.join(Rails.root, 'spec', 'factories.rb')

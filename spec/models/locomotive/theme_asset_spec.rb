@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-describe ThemeAsset do
+describe Locomotive::ThemeAsset do
 
   describe 'attaching a file' do
 

@@ -27,7 +27,7 @@ module Locomotive
     end
 
     def reset_switch_site_token!
-      self.switch_site_token = ActiveSupport::SecureRandom.base64(8).gsub("/", "_").gsub(/=+$/, "")
+      self.switch_site_token = SecureRandom.base64(8).gsub("/", "_").gsub(/=+$/, "")
       self.save
     end
 
@@ -37,7 +37,7 @@ module Locomotive
     end
 
     def self.find_using_switch_site_token!(token, age = 1.minute)
-      self.find_using_switch_site_token(token, age) || raise(Mongoid::Errors::DocumentNotFound.new(self, token))
+      self.find_using_switch_site_token(token, age) || raise(::Mongoid::Errors::DocumentNotFound.new(self, token))
     end
 
     def devise_mailer
