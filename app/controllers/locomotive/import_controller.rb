@@ -3,8 +3,6 @@ module Locomotive
 
     sections 'settings', 'site'
 
-    actions :show, :new, :create
-
     skip_load_and_authorize_resource
 
     before_filter :authorize_import
@@ -23,7 +21,8 @@ module Locomotive
       end
     end
 
-    def new; end
+    def new
+    end
 
     def create
       begin

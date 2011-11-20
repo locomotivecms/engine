@@ -1,17 +1,16 @@
 module Locomotive
   class CurrentSiteController < BaseController
 
-    defaults :instance_name => 'site'
-
     sections 'settings', 'site'
-
-    actions :edit, :update
 
     skip_load_and_authorize_resource
 
     load_and_authorize_resource :class => 'Site'
 
     respond_to :json, :only => :update
+
+    def edit
+    end
 
     def update
       update! do |success, failure|

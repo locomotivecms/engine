@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Ability do
+describe Locomotive::Ability do
 
   before :each do
     @site = FactoryGirl.create(:site)
@@ -13,7 +13,7 @@ describe Ability do
 
   context 'pages' do
 
-    subject { Page.new }
+    subject { Locomotive::Page.new }
 
     context 'management' do
       it 'should allow management of pages from (admin, designer, author)' do
@@ -33,7 +33,7 @@ describe Ability do
 
   context 'content instance' do
 
-    subject { ContentInstance.new }
+    subject { Locomotive::ContentInstance.new }
 
     context 'management' do
       it 'should allow management of pages from (admin, designer, author)' do
@@ -47,7 +47,7 @@ describe Ability do
 
   context 'content type' do
 
-    subject { ContentType.new }
+    subject { Locomotive::ContentType.new }
 
     context 'management' do
       it 'should allow management of pages from (admin, designer)' do
@@ -67,7 +67,7 @@ describe Ability do
 
   context 'theme assets' do
 
-    subject { ThemeAsset.new }
+    subject { Locomotive::ThemeAsset.new }
 
     context 'management' do
       it 'should allow management of pages from (admin, designer)' do
@@ -87,7 +87,7 @@ describe Ability do
 
   context 'site' do
 
-    subject { Site.new }
+    subject { Locomotive::Site.new }
 
     context 'management' do
       it 'should allow management of pages from (admin)' do
@@ -115,7 +115,7 @@ describe Ability do
 
   context 'membership' do
 
-    subject { Membership.new }
+    subject { Locomotive::Membership.new }
 
     context 'management' do
       it 'should allow management of memberships from (admin, designer)' do
