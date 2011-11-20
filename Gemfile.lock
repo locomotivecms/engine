@@ -1,21 +1,21 @@
 GIT
   remote: git://github.com/chriseppstein/compass.git
-  revision: 22e2458b77519e8eb8463170c1a1fe4bab105f3e
-  branch: rails31
+  revision: ebd758a7999a74611a3d682ba72c661a83f97498
   specs:
-    compass (0.12.0.alpha.0.22e2458)
+    compass (0.12.alpha.0.ebd758a)
       chunky_png (~> 1.2)
       fssm (>= 0.2.7)
       sass (~> 3.1)
 
 GIT
   remote: git://github.com/locomotivecms/custom_fields.git
-  revision: af88a1602442c1507152426a5dcac662695c55ef
+  revision: e32bf03759e7eac2281e7eb35dc0b70fc684d8ad
+  branch: mongoid_2_3_2
   specs:
     custom_fields (1.1.0.rc1)
       activesupport (~> 3.1.1)
       carrierwave-mongoid (~> 0.1.3)
-      mongoid (~> 2.3.3)
+      mongoid (= 2.3.2)
 
 GIT
   remote: git://github.com/nragaz/uploadify-rails.git
@@ -27,7 +27,7 @@ GIT
 
 GIT
   remote: git://github.com/plataformatec/devise.git
-  revision: e8aabd465216bcb260448056c8ed4580d099a8c9
+  revision: a5aa03b98328d8e1fdb4081a74b3c04ff9593607
   specs:
     devise (1.5.0.dev)
       bcrypt-ruby (~> 3.0)
@@ -40,8 +40,9 @@ GIT
   specs:
     handlebars-rails (0.9.1)
 
-PATH
-  remote: ../gems/acts_as_tree
+GIT
+  remote: git@github.com:locomotivecms/mongoid_acts_as_tree.git
+  revision: ca494d22c3d7946385aba1153c017d9c30e9f9d3
   specs:
     locomotive_mongoid_acts_as_tree (0.1.5.7)
 
@@ -87,8 +88,8 @@ GEM
     autotest (4.4.6)
       ZenTest (>= 4.4.1)
     bcrypt-ruby (3.0.1)
-    bson (1.3.1)
-    bson_ext (1.3.1)
+    bson (1.4.0)
+    bson_ext (1.4.0)
     builder (3.0.0)
     bushido (0.0.35)
       highline (>= 1.6.1)
@@ -120,10 +121,10 @@ GEM
       execjs
     coffee-script-source (1.1.3)
     columnize (0.3.4)
-    cucumber (1.1.2)
+    cucumber (1.1.1)
       builder (>= 2.1.2)
       diff-lcs (>= 1.1.2)
-      gherkin (~> 2.6.2)
+      gherkin (~> 2.6.0)
       json (>= 1.4.6)
       term-ansicolor (>= 1.0.6)
     cucumber-rails (1.2.0)
@@ -178,10 +179,10 @@ GEM
       multi_json
       multi_xml
     i18n (0.6.0)
-    jquery-rails (1.0.17)
+    jquery-rails (1.0.16)
       railties (~> 3.0)
       thor (~> 0.14)
-    json (1.5.4)
+    json (1.6.1)
     json_pure (1.6.1)
     kgio (2.6.0)
     launchy (2.0.5)
@@ -197,11 +198,11 @@ GEM
     mime-types (1.17.2)
     mimetype-fu (0.1.2)
     mocha (0.9.12)
-    mongo (1.3.1)
-      bson (>= 1.3.1)
-    mongoid (2.3.3)
+    mongo (1.4.0)
+      bson (= 1.4.0)
+    mongoid (2.3.2)
       activemodel (~> 3.1)
-      mongo (~> 1.3)
+      mongo (~> 1.4)
       tzinfo (~> 0.3.22)
     multi_json (1.0.3)
     multi_xml (0.4.1)
@@ -284,7 +285,7 @@ GEM
       archive-tar-minitar (>= 0.5.2)
     rubyzip (0.9.4)
     sanitize (2.0.3)
-      nokogiri (< 1.6, >= 1.4.4)
+      nokogiri (>= 1.4.4, < 1.6)
     sass (3.1.10)
     sass-rails (3.1.4)
       actionpack (~> 3.1.0)
@@ -301,7 +302,7 @@ GEM
     sprockets (2.0.3)
       hike (~> 1.2)
       rack (~> 1.0)
-      tilt (!= 1.3.0, ~> 1.1)
+      tilt (~> 1.1, != 1.3.0)
     term-ansicolor (1.0.7)
     thor (0.14.6)
     tilt (1.3.3)
@@ -333,8 +334,7 @@ DEPENDENCIES
   ZenTest
   actionmailer-with-request (~> 0.3.0)
   autotest
-  bson (~> 1.3.1)
-  bson_ext (~> 1.3.1)
+  bson_ext (~> 1.4.0)
   bushido (= 0.0.35)
   cancan (~> 1.6.7)
   capybara
@@ -363,11 +363,10 @@ DEPENDENCIES
   launchy
   linecache (= 0.43)
   locomotive_liquid (= 2.2.2)
-  locomotive_mongoid_acts_as_tree (= 0.1.5.7)!
+  locomotive_mongoid_acts_as_tree!
   mimetype-fu (~> 0.1.2)
   mocha (= 0.9.12)
-  mongo (~> 1.3.1)
-  mongoid (~> 2.3.3)
+  mongoid (~> 2.3.2)
   pickle
   rack-cache (~> 1.1)
   rails (~> 3.1.1)
