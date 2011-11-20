@@ -110,6 +110,10 @@ class Locomotive.Views.Pages.FormView extends Locomotive.Views.Shared.FormView
   enable_redirect_checkbox: ->
     @_enable_checkbox 'redirect',
       features:     ['templatized', 'cache_strategy']
+      on_callback:  =>
+        @$('li#page_redirect_url_input').show()
+      off_callback: =>
+        @$('li#page_redirect_url_input').hide()
 
   enable_other_checkboxes: ->
     _.each ['published', 'listed'], (exp) =>

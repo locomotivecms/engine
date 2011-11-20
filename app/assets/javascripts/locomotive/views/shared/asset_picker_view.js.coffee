@@ -48,7 +48,7 @@ class Locomotive.Views.Shared.AssetPickerView extends Backbone.View
 
         @build_uploader(el, link)
 
-        actions.find('.upload-button-wrapper').hover(
+        actions.find('.button-wrapper').hover(
           => link.addClass('hover'),
           => link.removeClass('hover')
         )
@@ -69,14 +69,15 @@ class Locomotive.Views.Shared.AssetPickerView extends Backbone.View
     $(@el).dialog('option', 'position', 'center')
 
   add_assets: (collection) ->
-    collection.each @add_asset
+    collection.each (asset) =>
+      @add_asset(asset, true)
 
     @_refresh()
 
     setTimeout (=> @create_dialog()), 30 # disable flickering
 
-  add_asset: (asset) ->
-    # please overide add_asset
+  add_asset: (asset, first) ->
+    # please overide add_asset (the 'first' param is to know if it comes from the first collection fetch)
 
   remove_asset: (asset) ->
     # please overide remove_asset

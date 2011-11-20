@@ -24,13 +24,15 @@ class Locomotive.Views.ContentAssets.PickerView extends Locomotive.Views.Shared.
       success:    (model) => @collection.add(model)
       error:      (msg)   => @shake()
 
-  add_asset: (asset) ->
+  add_asset: (asset, first) ->
     view = new Locomotive.Views.ContentAssets.PickerItemView model: asset, parent: @
 
     (@_item_views ||= []).push(view)
     @$('ul.list .clear').before(view.render().el)
 
-    @_refresh() & @_move_to_last_asset()
+    @_refresh()
+
+    @_move_to_last_asset() unless first == true
 
   remove_asset: (asset) ->
     view = _.find @_item_views, (tmp) -> tmp.model == asset
