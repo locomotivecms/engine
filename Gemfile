@@ -13,7 +13,7 @@ gem 'bson_ext',             '~> 1.4.0'
 gem 'mongoid',              '~> 2.3.2'
 gem 'locomotive_mongoid_acts_as_tree', :git => 'git@github.com:locomotivecms/mongoid_acts_as_tree.git'
 gem 'custom_fields',        :git => 'git://github.com/locomotivecms/custom_fields.git', :branch => 'mongoid_2_3_2'
-gem 'will_paginate',        '~> 3.0.2'
+gem 'kaminari'
 
 gem 'haml',                 '~> 3.1.3'
 gem 'sass-rails',           '~> 3.1.4'

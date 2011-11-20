@@ -184,6 +184,8 @@ GEM
       thor (~> 0.14)
     json (1.6.1)
     json_pure (1.6.1)
+    kaminari (0.12.4)
+      rails (>= 3.0.0)
     kgio (2.6.0)
     launchy (2.0.5)
       addressable (~> 2.2.6)
@@ -321,7 +323,6 @@ GEM
       raindrops (~> 0.6)
     warden (1.1.0)
       rack (>= 1.0)
-    will_paginate (3.0.2)
     xpath (0.1.4)
       nokogiri (~> 1.3)
 
@@ -360,6 +361,7 @@ DEPENDENCIES
   highline (~> 1.6.2)
   httparty (~> 0.8.1)
   jquery-rails (~> 1.0.16)
+  kaminari
   launchy
   linecache (= 0.43)
   locomotive_liquid (= 2.2.2)
@@ -386,5 +388,4 @@ DEPENDENCIES
   uglifier (~> 1.0.4)
   unicorn
   uploadify-rails!
-  will_paginate (~> 3.0.2)
   xpath (~> 0.1.4)
