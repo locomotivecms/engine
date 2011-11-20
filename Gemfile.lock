@@ -9,13 +9,12 @@ GIT
 
 GIT
   remote: git://github.com/locomotivecms/custom_fields.git
-  revision: e32bf03759e7eac2281e7eb35dc0b70fc684d8ad
-  branch: mongoid_2_3_2
+  revision: af88a1602442c1507152426a5dcac662695c55ef
   specs:
     custom_fields (1.1.0.rc1)
       activesupport (~> 3.1.1)
       carrierwave-mongoid (~> 0.1.3)
-      mongoid (= 2.3.2)
+      mongoid (~> 2.3.3)
 
 GIT
   remote: git://github.com/nragaz/uploadify-rails.git
@@ -104,7 +103,7 @@ GEM
       rack-test (>= 0.5.4)
       selenium-webdriver (~> 2.0)
       xpath (~> 0.1.4)
-    carrierwave (0.5.7)
+    carrierwave (0.5.8)
       activesupport (~> 3.0)
     carrierwave-mongoid (0.1.3)
       carrierwave (>= 0.5.6)
@@ -202,9 +201,9 @@ GEM
     mocha (0.9.12)
     mongo (1.4.0)
       bson (= 1.4.0)
-    mongoid (2.3.2)
+    mongoid (2.3.3)
       activemodel (~> 3.1)
-      mongo (~> 1.4)
+      mongo (~> 1.3)
       tzinfo (~> 0.3.22)
     multi_json (1.0.3)
     multi_xml (0.4.1)
@@ -367,7 +366,7 @@ DEPENDENCIES
   locomotive_mongoid_acts_as_tree!
   mimetype-fu (~> 0.1.2)
   mocha (= 0.9.12)
-  mongoid (~> 2.3.2)
+  mongoid (~> 2.3.3)
   pickle
   rack-cache (~> 1.1)
   rails (~> 3.1.1)

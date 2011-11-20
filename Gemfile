@@ -10,9 +10,9 @@ gem 'devise',               :git => 'git://github.com/plataformatec/devise.git'#
 gem 'cancan',               '~> 1.6.7'
 
 gem 'bson_ext',             '~> 1.4.0'
-gem 'mongoid',              '~> 2.3.2'
+gem 'mongoid',              '~> 2.3.3'
 gem 'locomotive_mongoid_acts_as_tree', :git => 'git@github.com:locomotivecms/mongoid_acts_as_tree.git'
-gem 'custom_fields',        :git => 'git://github.com/locomotivecms/custom_fields.git', :branch => 'mongoid_2_3_2'
+gem 'custom_fields',        :git => 'git://github.com/locomotivecms/custom_fields.git'
 gem 'kaminari'
 
 gem 'haml',                 '~> 3.1.3'
