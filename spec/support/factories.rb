@@ -1,22 +1,22 @@
 FactoryGirl.define do
 
   ## Site ##
-  factory :site do
+  factory :site, :class => Locomotive::Site do
     name 'Acme Website'
-    subdomain 'acme'
+    # subdomain 'acme'
     created_at Time.now
 
     factory "test site" do
       name 'Locomotive test website'
-      subdomain 'test'
+      # subdomain 'test'
 
       after_build do |site_test|
-        site_test.memberships.build :account => Account.where(:name => "Admin").first || Factory("admin user"), :role => 'admin'
+        site_test.memberships.build :account => Locomotive::Account.where(:name => "Admin").first || Factory("admin user"), :role => 'admin'
       end
 
       factory "another site" do
         name "Locomotive test website #2"
-        subdomain "test2"
+        # subdomain "test2"
       end
 
     end
@@ -41,7 +41,7 @@ FactoryGirl.define do
   end
 
   # Accounts ##
-  factory :account do
+  factory :account, :class => Locomotive::Account do
     name 'Bart Simpson'
     email 'bart@simpson.net'
     password 'easyone'
@@ -74,7 +74,7 @@ FactoryGirl.define do
   end
 
   ## Memberships ##
-  factory :membership do
+  factory :membership, :class => Locomotive::Membership do
     role 'admin'
     account { Account.where(:name => "Bart Simpson").first || Factory('admin user') }
 
@@ -96,46 +96,49 @@ FactoryGirl.define do
   end
 
   ## Pages ##
-  factory :page do
+  factory :page, :class => Locomotive::Page do
     title 'Home page'
     slug 'index'
     published true
-    site { Site.where(:subdomain => "acme").first || Factory(:site) }
+    site { Locomotive::Site.where(:subdomain => "acme").first || Factory(:site) }
 
     factory :sub_page do
       title 'Subpage'
       slug 'subpage'
       published true
-      site { Site.where(:subdomain => "acme").first || Factory(:site) }
-      parent { Page.where(:slug => "index").first || Factory(:page) }
+      site { Locomotive::Site.where(:subdomain => "acme").first || Factory(:site) }
+      parent { Locomotive::Page.where(:slug => "index").first || Factory(:page) }
     end
 
   end
 
   ## Snippets ##
-  factory :snippet do
+  factory :snippet, :class => Locomotive::Snippet do
     name 'My website title'
     slug 'header'
     template %{<title>Acme</title>}
-    site { Site.where(:subdomain => "acme").first || Factory(:site) }
+    site { Locomotive::Site.where(:subdomain => "acme").first || Factory(:site) }
   end
 
 
   ## Assets ##
-  factory :asset do
-    site { Site.where(:subdomain => "acme").first || Factory(:site) }
+  factory :asset, :class => Locomotive::ContentAsset do
+    site { Locomotive::Site.where(:subdomain => "acme").first || Factory(:site) }
   end
 
 
   ## Theme assets ##
-  factory :theme_asset do
-    site { Site.where(:subdomain => "acme").first || Factory(:site) }
+  factory :theme_asset, :class => Locomotive::ThemeAsset do
+    site { Locomotive::Site.where(:subdomain => "acme").first || Factory(:site) }
   end
 
   ## Content types ##
-  factory :content_type do
+  factory :content_type, :class => Locomotive::ContentType do
     name 'My project'
-    site { Site.where(:subdomain => "acme").first || Factory(:site) }
+    site { Locomotive::Site.where(:subdomain => "acme").first || Factory(:site) }
+  end
+
+  factory :content_instance, :class => Locomotive::ContentInstance do
   end
 
 end

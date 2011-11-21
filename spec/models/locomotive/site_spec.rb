@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Site do
+describe Locomotive::Site do
 
   it 'should have a valid factory' do
     FactoryGirl.build(:site).should be_valid

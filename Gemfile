@@ -6,22 +6,18 @@ gem 'rake',                 '0.9.2'
 
 gem 'rails',                '~> 3.1.1'
 
-gem 'devise',               :git => 'git://github.com/plataformatec/devise.git'
-# gem 'devise',               '~> 1.4.9' # FIXME: waiting for the new devise gem coming soon
+gem 'devise',               :git => 'git://github.com/plataformatec/devise.git'# FIXME: waiting for the new devise gem coming soon
 gem 'cancan',               '~> 1.6.7'
 
-gem 'bson',                 '~> 1.3.1'
-gem 'mongo',                '~> 1.3.1'
-gem 'bson_ext',             '~> 1.3.1'
+gem 'bson_ext',             '~> 1.4.0'
 gem 'mongoid',              '~> 2.3.3'
-gem 'locomotive_mongoid_acts_as_tree', '0.1.5.7', :require => 'mongoid_acts_as_tree', :path => '../gems/acts_as_tree' # TODO: REPLACE IT
+gem 'locomotive_mongoid_acts_as_tree', :git => 'git@github.com:locomotivecms/mongoid_acts_as_tree.git'
 gem 'custom_fields',        :git => 'git://github.com/locomotivecms/custom_fields.git'
-#gem 'custom_fields',        '~> 1.1.0.rc1', :path => '../gems/custom_fields'
-gem 'will_paginate',        '~> 3.0.2'
+gem 'kaminari'
 
 gem 'haml',                 '~> 3.1.3'
 gem 'sass-rails',           '~> 3.1.4'
-gem "compass",              :git => 'git://github.com/chriseppstein/compass.git', :branch => 'rails31'
+gem "compass",              :git => 'git://github.com/chriseppstein/compass.git'
 gem 'coffee-script',        '~> 2.2.0'
 gem 'uglifier',             '~> 1.0.4'
 gem 'jquery-rails',         '~> 1.0.16'
@@ -82,7 +78,6 @@ group :test do
   gem 'capybara'
   gem 'database_cleaner'
 
-  gem 'spork', '~> 0.9.0.rc'
   gem 'launchy'
   gem 'mocha', '0.9.12' # :git => 'git://github.com/floehopper/mocha.git'
 end

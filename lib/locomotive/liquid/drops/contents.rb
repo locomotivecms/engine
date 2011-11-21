@@ -64,16 +64,7 @@ module Locomotive
         protected
 
         def paginate(options = {})
-          @collection = self.collection.paginate(options)
-          {
-            :collection       => @collection,
-            :current_page     => @collection.current_page,
-            :previous_page    => @collection.previous_page,
-            :next_page        => @collection.next_page,
-            :total_entries    => @collection.total_entries,
-            :total_pages      => @collection.total_pages,
-            :per_page         => @collection.per_page
-          }
+          @collection = Kaminari.paginate_array(self.collection).page(options[:page]).per(options[:per_page])
         end
 
         def collection

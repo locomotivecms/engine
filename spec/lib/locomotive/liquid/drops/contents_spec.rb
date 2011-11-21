@@ -3,9 +3,6 @@ require 'spec_helper'
 describe Locomotive::Liquid::Drops::Contents do
 
   before(:each) do
-    # Reload the file (needed for spork)
-    load File.join(Rails.root, 'lib', 'locomotive', 'liquid', 'drops', 'contents.rb')
-
     @site = FactoryGirl.build(:site)
     @content_type = FactoryGirl.build(:content_type, :site => @site, :slug => 'projects')
   end

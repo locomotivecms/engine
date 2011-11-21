@@ -66,4 +66,3 @@ end
 Then %r{^I should see once the "([^"]*)" field$} do |field|
   page.should have_css("#content_#{field.underscore.downcase}_input", :count => 1)
 end
-

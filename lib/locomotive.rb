@@ -9,6 +9,7 @@ require 'locomotive/logger'
 
 require 'locomotive/formtastic'
 require 'locomotive/dragonfly'
+require 'locomotive/kaminari'
 require 'locomotive/liquid'
 require 'locomotive/mongoid'
 require 'locomotive/carrierwave'

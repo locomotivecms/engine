@@ -2,12 +2,12 @@
 
 require 'spec_helper'
 
-describe Asset do
+describe Locomotive::ContentAsset do
 
   describe 'attaching a file' do
 
     before(:each) do
-      Asset.any_instance.stubs(:site_id).returns('test')
+      Locomotive::ContentAsset.any_instance.stubs(:site_id).returns('test')
       @asset = FactoryGirl.build(:asset)
     end
 

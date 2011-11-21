@@ -3,11 +3,12 @@ module Locomotive
 
     sections 'settings', 'account'
 
-    actions :edit, :update
-
     respond_to :json, :only => :update
 
     skip_load_and_authorize_resource
+
+    def edit
+    end
 
     def update
       update! { edit_my_account_url }
