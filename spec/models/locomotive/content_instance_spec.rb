@@ -5,7 +5,7 @@ require 'spec_helper'
 describe Locomotive::ContentInstance do
 
   before(:each) do
-    Site.any_instance.stubs(:create_default_pages!).returns(true)
+    Locomotive::Site.any_instance.stubs(:create_default_pages!).returns(true)
     @content_type = FactoryGirl.build(:content_type)
     @content_type.content_custom_fields.build :label => 'Title', :kind => 'String'
     @content_type.content_custom_fields.build :label => 'Description', :kind => 'Text'
@@ -34,7 +34,7 @@ describe Locomotive::ContentInstance do
     end
 
     it 'has an unique permalink' do
-      build_content.save; @content_type = ContentType.find(@content_type._id)
+      build_content.save; @content_type = Locomotive::ContentType.find(@content_type._id)
       content = build_content
       content.should_not be_valid
       content.errors[:_slug].should == ["is already taken"]
