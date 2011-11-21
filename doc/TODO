@@ -1,13 +1,14 @@
 BOARD:
 
 x namespace assets
-- bugs:
+x bugs:
   x toggler
   x advanced options (redirect url missing)
   x locomotive_media (not animating on open)
-- editable_elements => view + mustache template
-- editable_short_text => tinymce
-- editable_image => new formtastic inputs
+  x undefined method `_selector' for #<Locomotive::Page:0x00000107434768>
+x editable_elements => view + handlebar template
+x editable_short_text => tinymce
+- editable_file => new formtastic inputs
 - create/edit page in ajax
 - fix other pages
   - content types

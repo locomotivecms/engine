@@ -1,22 +1,22 @@
-= f.foldable_inputs :name => :information, :style => "#{'display: none' unless @site.new_record?}" do
+= f.inputs :name => :information, :style => "#{'display: none' unless @site.new_record?}" do
   = f.input :name, :required => false
 
-= f.foldable_inputs :name => :seo do
+= f.inputs :name => :seo, :class => "inputs foldable #{'folded' if inputs_folded?(@site)}" do
   = f.input :seo_title
   = f.input :meta_keywords
   = f.input :meta_description
 
 - if can?(:point, Locomotive::Site)
   - if manage_subdomain_or_domains?
-    = f.foldable_inputs :name => :access_points, :class => 'editable-list off' do
+    = f.inputs :name => :access_points do
 
-      = f.custom_input :subdomain, :css => 'path' do
-        %em
-          http://
-        = f.text_field :subdomain, :readonly => !manage_subdomain?
-        \.
-        %em
-          = application_domain
+      / = f.custom_input :subdomain, :css => 'path' do
+      /   %em
+      /     http://
+      /   = f.text_field :subdomain, :readonly => !manage_subdomain?
+      /   \.
+      /   %em
+      /     = application_domain
 
       - if manage_domains?
         - @site.domains_without_subdomain.each_with_index do |name, index|
@@ -41,7 +41,7 @@
 
 - if can?(:index, Locomotive::Membership)
 
-  = f.foldable_inputs :name => :memberships, :class => 'memberships off' do
+  = f.inputs :name => :memberships do
     = f.semantic_fields_for :memberships do |fm|
 
       - membership, account = fm.object, fm.object.account
@@ -69,8 +69,8 @@
 
 - if can?(:manage, current_site)
 
-  = f.foldable_inputs :name => :robots_txt do
-    = f.custom_input :robots_txt, :css => 'code full', :with_label => false do
-      = f.label :robots_txt
-      %code{ :class => 'html' }
-        = f.text_area :robots_txt, :class => 'small'
+  = f.inputs :name => :robots_txt, :class => "inputs foldable #{'folded' if inputs_folded?(@site)}" do
+    / = f.custom_input :robots_txt, :css => 'code full', :with_label => false do
+    /   = f.label :robots_txt
+    /   %code{ :class => 'html' }
+    /     = f.text_area :robots_txt, :class => 'small'

@@ -55,6 +55,21 @@ module Locomotive::BaseHelper
     end
   end
 
+  def backbone_view_class_name
+    action = case controller.action_name
+    when 'create' then 'New'
+    when 'update' then 'Edit'
+    else
+      controller.action_name
+    end.camelize
+
+    "Locomotive.Views.#{controller.controller_name.camelize}.#{action}View"
+  end
+
+  def backbone_view_data
+    content_for?(:backbone_view_data) ? content_for(:backbone_view_data) : 'null'
+  end
+
   def nocoffee_tag
     link_to 'noCoffee', 'http://www.nocoffee.fr', :id => 'nocoffee'
   end

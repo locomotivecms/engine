@@ -1,6 +1,11 @@
 - content_for :head do
-  = render :partial => '/locomotive/content_assets/picker'
-  = render :partial => '/locomotive/theme_assets/picker'
+  = render '/locomotive/content_assets/picker'
+  = render '/locomotive/theme_assets/picker'
+  = render 'editable_elements'
+
+- content_for :backbone_view_data do
+  :plain
+    { page: #{@page.to_json} }
 
 - if can?(:manage, @page)
 
@@ -12,8 +17,6 @@
       = f.input :parent_id, :as => :select, :collection => parent_pages_options, :include_blank => false
 
     = f.input :slug, :required => false, :hint => @page.slug.blank? ? t('.empty_slug') : public_page_url(@page), :input_html => { :'data-url' => get_path_pages_url, :disabled => @page.index? || @page.not_found? }, :wrapper_html => { :style => "#{'display: none' if @page.templatized?};", :class => 'em-inline-hints' }
-
-= render 'editable_elements', :page => @page
 
 = f.inputs :name => :seo, :class => "inputs foldable #{'folded' if inputs_folded?(@page)}" do
 

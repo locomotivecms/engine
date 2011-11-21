@@ -15,7 +15,7 @@ class Locomotive.Views.ContentAssets.PickerView extends Locomotive.Views.Shared.
     @collection.fetch()
 
   build_uploader: (el, link) ->
-    window.LocomotiveUploadify.build el,
+    window.Locomotive.Uploadify.build el,
       url:        link.attr('href')
       data_name:  el.attr('name')
       height:     link.outerHeight()

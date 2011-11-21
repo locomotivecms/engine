@@ -16,10 +16,16 @@ class Locomotive.Views.Pages.FormView extends Locomotive.Views.Shared.FormView
   initialize: ->
     _.bindAll(@, 'insert_image')
 
+    @page = new Locomotive.Models.Page(@options.page)
+
+    window.page = @page
+
     @filled_slug = @touched_url = false
     @image_picker_view = new Locomotive.Views.ThemeAssets.ImagePickerView
       collection: new Locomotive.Models.ThemeAssetsCollection()
       on_select:  @insert_image
+
+    @editable_elements_view = new Locomotive.Views.EditableElements.EditAllView(collection: @page.get('editable_elements'))
 
   render: ->
     super()
@@ -38,7 +44,8 @@ class Locomotive.Views.Pages.FormView extends Locomotive.Views.Shared.FormView
     @enable_liquid_editing()
 
     # editable elements
-    @enable_editable_elements_nav()
+    @render_editable_elements()
+    # @enable_editable_elements_nav()
 
     return @
 
@@ -64,21 +71,8 @@ class Locomotive.Views.Pages.FormView extends Locomotive.Views.Shared.FormView
   after_inputs_fold: ->
     @editor.refresh()
 
-  enable_editable_elements_nav: ->
-    @$('#editable-elements .nav a').click (event) =>
-      event.stopPropagation() & event.preventDefault()
-
-      link  = $(event.target)
-      index = parseInt(link.attr('href').match(/block-(.+)/)[1])
-
-      @$('#editable-elements .wrapper ul li.block').hide()
-      $("#block-#{index}").show()
-      @_hide_last_separator()
-
-      link.parent().find('.on').removeClass('on')
-      link.addClass('on')
-
-    @$('#editable-elements textarea').tinymce window.TinyMceDefaultSettings
+  render_editable_elements: ->
+    @$('.formtastic fieldset.inputs:first').after(@editable_elements_view.render().el)
 
   fill_default_slug: (event) ->
     unless @filled_slug

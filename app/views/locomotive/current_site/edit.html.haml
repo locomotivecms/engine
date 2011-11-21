@@ -12,8 +12,8 @@
 
 %p!= t('.help')
 
-= semantic_form_for @site, :url => current_site_url, :html => { :class => 'save-with-shortcut' } do |f|
+= semantic_form_for @site, :url => current_site_url, :html => { :class => 'save-with-shortcut' } do |form|
 
-  = render 'form', :f => f
+  = render 'form', :f => form
 
   = render 'locomotive/shared/form_actions', :button_label => :update

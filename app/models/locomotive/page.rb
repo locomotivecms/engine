@@ -41,12 +41,12 @@ module Locomotive
     validates_exclusion_of    :slug, :in => Locomotive.config.reserved_slugs, :if => Proc.new { |p| p.depth == 0 }
 
     ## named scopes ##
-    scope :latest_updated, :order_by => [[:updated_at, :desc]], :limit => Locomotive.config.lastest_items_nb
-    scope :root, :where => { :slug => 'index', :depth => 0 }
-    scope :not_found, :where => { :slug => '404', :depth => 0 }
-    scope :published, :where => { :published => true }
-    scope :fullpath, lambda { |fullpath| { :where => { :fullpath => fullpath } } }
-    scope :minimal_attributes, :only => %w(title slug fullpath position depth published templatized redirect listed parent_id created_at updated_at)
+    scope :latest_updated,      :order_by => [[:updated_at, :desc]], :limit => Locomotive.config.lastest_items_nb
+    scope :root,                :where => { :slug => 'index', :depth => 0 }
+    scope :not_found,           :where => { :slug => '404', :depth => 0 }
+    scope :published,           :where => { :published => true }
+    scope :fullpath,            lambda { |fullpath| { :where => { :fullpath => fullpath } } }
+    scope :minimal_attributes,  :only => %w(title slug fullpath position depth published templatized redirect listed parent_id created_at updated_at)
 
     ## methods ##
 
@@ -82,6 +82,10 @@ module Locomotive
 
     def to_liquid
       Locomotive::Liquid::Drops::Page.new(self)
+    end
+
+    def as_json(options = {})
+      Locomotive::PagePresenter.new(self).as_json
     end
 
     protected

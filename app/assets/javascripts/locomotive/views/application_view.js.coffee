@@ -10,10 +10,11 @@ class Locomotive.Views.ApplicationView extends Backbone.View
     @center_ui_dialog()
 
     if @options.view?
-      @view = new @options.view
+      @view = new @options.view(@options.view_data || {})
       @view.render()
 
-    window.TinyMceDefaultSettings.language = window.locale # set the default tinyMCE language
+    window.Locomotive.tinyMCE.defaultSettings.language = window.locale # set the default tinyMCE language
+    window.Locomotive.tinyMCE.minimalSettings.language = window.locale
 
     return @
 

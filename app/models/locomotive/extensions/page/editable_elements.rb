@@ -32,9 +32,12 @@ module Locomotive
             self.editable_elements.collect(&:block)
           end
 
+          def enabled_editable_elements
+            self.editable_elements.by_priority.reject { |el| el.disabled? }
+          end
+
           def editable_elements_grouped_by_blocks
-            all_enabled = self.editable_elements.by_priority.reject { |el| el.disabled? }
-            groups = all_enabled.group_by(&:block)
+            groups = self.enabled_editable_elements.group_by(&:block)
             groups.delete_if { |block, elements| elements.empty? }
           end
 
@@ -90,7 +93,7 @@ module Locomotive
             return unless self.editable_elements.any? { |el| el.disabled? }
 
             # super fast way to remove useless elements all in once (TODO callbacks)
-            self.collection.update(self._selector, '$pull' => { 'editable_elements' => { 'disabled' => true } })
+            self.collection.update(self.atomic_selector, '$pull' => { 'editable_elements' => { 'disabled' => true } })
           end
 
           protected

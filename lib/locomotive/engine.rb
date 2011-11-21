@@ -5,7 +5,7 @@ module Locomotive
 
     isolate_namespace Locomotive
 
-    config.autoload_once_paths += %W( #{config.root}/app/controllers #{config.root}/app/models #{config.root}/app/helpers #{config.root}/app/uploaders)
+    # config.autoload_once_paths += %W( #{config.root}/app/controllers #{config.root}/app/models #{config.root}/app/helpers #{config.root}/app/uploaders)
 
     # initializer 'locomotive.load_controllers_and_models' do |app|
     #   puts "[locomotive/initializer] locomotive.load_controllers_and_models"

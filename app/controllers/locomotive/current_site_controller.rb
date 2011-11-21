@@ -1,11 +1,7 @@
 module Locomotive
   class CurrentSiteController < BaseController
 
-    defaults :instance_name => 'site'
-
     sections 'settings', 'site'
-
-    actions :edit, :update
 
     skip_load_and_authorize_resource
 
@@ -13,17 +9,20 @@ module Locomotive
 
     respond_to :json, :only => :update
 
+    def edit
+      @site = current_site
+      respond_with @site
+    end
+
     def update
-      update! do |success, failure|
-        success.html { redirect_to edit_current_site_url(new_host_if_subdomain_changed) }
+      @site = current_site
+      @site.update_attributes(params[:site])
+      respond_with @site do |format|
+        format.html { redirect_to edit_current_site_url(new_host_if_subdomain_changed) }
       end
     end
 
     protected
-
-    def resource
-      @site = current_site
-    end
 
     def new_host_if_subdomain_changed
       if !Locomotive.config.manage_subdomain? || @site.domains.include?(request.host)

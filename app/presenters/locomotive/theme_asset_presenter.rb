@@ -17,12 +17,8 @@ module Locomotive
       I18n.l(self.source.updated_at, :format => :short)
     end
 
-    def as_json
-      {}.tap do |hash|
-        %w(local_path url size updated_at).map(&:to_sym).each do |meth|
-          hash[meth] = self.send(meth)
-        end
-      end
+    def included_methods
+      super + %w(local_path url size updated_at)
     end
 
   end
