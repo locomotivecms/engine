@@ -9,15 +9,16 @@ class Locomotive.Views.EditableElements.EditAllView extends Backbone.View
   _editable_elements_views: []
 
   render: ->
-    window.foo = @collection
+    if @collection.isEmpty()
+      $(@el).hide()
+    else
+      @blocks = @collection.blocks()
 
-    @blocks = @collection.blocks()
+      $(@el).html(ich.editable_elements_edit(blocks: @blocks))
 
-    $(@el).html(ich.editable_elements_edit(blocks: @blocks))
+      @render_elements()
 
-    @render_elements()
-
-    @enable_nav()
+      @enable_nav()
 
     return @
 

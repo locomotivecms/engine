@@ -2,6 +2,8 @@
 @import "compass/css3/border-radius";
 @import "compass/css3/text-shadow";
 @import "compass/css3/box-shadow";
+@import "buttons";
+@import "helpers";
 
 #editable-elements {
 
@@ -12,16 +14,12 @@
 
     border-bottom: 1px solid #ccced7;
 
-    // padding: 5px 0px;
-
     @include border-top-radius(8px);
     @include background-image(linear-gradient(#ebedf4, #d7dbe7));
 
     a {
       float: left;
       display: block;
-
-      // margin-left: 20px;
 
       line-height: 31px;
       padding: 0px 20px 0 20px;
@@ -61,6 +59,28 @@
   fieldset {
     ol {
       border-top: none;
+
+      li.file {
+        span.file {
+          a:first-child {
+            @include hover-link;
+
+            margin-right: 20px;
+
+            color: #1F82BC;
+
+            &.deleted {
+              text-decoration: line-through;
+            }
+          }
+
+          a.change, a.delete {
+            @include blue-button;
+
+            margin-left: 5px;
+          }
+        }
+      }
     }
   } // fieldset
 

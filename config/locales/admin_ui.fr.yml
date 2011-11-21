@@ -112,7 +112,9 @@ fr:
         help: "Le titre de la page est modifiable en cliquant dessus. Pour appliquer votre modification, cliquez après sur le bouton \"Modifier\""
         ask_for_title: "Veuillez entrer le nouveau titre"
       form:
-        delete_file: Supprimer fichier
+        change_file: changer
+        delete_file: supprimer
+        cancel: annuler
         default_block: Défaut
         cache_strategy:
           none: Aucun

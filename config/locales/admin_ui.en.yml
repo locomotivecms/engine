@@ -113,7 +113,9 @@ en:
         help: "The page title can be updated by clicking it. To apply your changes, click on the \"Save\" button."
         ask_for_title: "Please type the new page title"
       form:
-        delete_file: Delete file
+        change_file: change
+        delete_file: delete
+        cancel: cancel
         default_block: Default
         cache_strategy:
           none: None

@@ -30,7 +30,20 @@
 
   %label{ :for => 'page_editable_elements_attributes_{{index}}_content' } {{label}}
 
-  = file_field_tag 'page[editable_elements_attributes][{{index}}][source]', :id => 'page_editable_elements_attributes_{{index}}_source'
+  %span.file
+    {{#if content}}
+    = link_to '{{filename}}', '{{content}}', :target => '_blank'
+
+    = file_field_tag 'page[editable_elements_attributes][{{index}}][source]', :id => 'page_editable_elements_attributes_{{index}}_source', :style => 'display: none'
+
+    = link_to t('locomotive.pages.form.change_file'), '#', :class => 'change', :'data-alt-label' => t('locomotive.pages.form.cancel')
+    = link_to t('locomotive.pages.form.delete_file'), '#', :class => 'delete', :'data-alt-label' => t('locomotive.pages.form.cancel')
+
+    = hidden_field_tag 'page[editable_elements_attributes][{{index}}][remove_source]', '0', :class => 'remove-flag'
+
+    {{else}}
+    = file_field_tag 'page[editable_elements_attributes][{{index}}][source]', :id => 'page_editable_elements_attributes_{{index}}_source'
+    {{/if}}
 
   {{#if hint}}
   %p.inline-hints {{hint}}

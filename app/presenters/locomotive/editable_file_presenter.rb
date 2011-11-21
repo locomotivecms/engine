@@ -1,14 +1,14 @@
 module Locomotive
   class EditableFilePresenter < EditableElementPresenter
 
-    delegate :url, :to => :source
+    delegate :content, :to => :source
 
     def filename
-      File.basename(self.source.url)
+      File.basename(self.content)
     end
 
     def included_methods
-      super + %w(filename url)
+      super + %w(filename content url)
     end
 
   end

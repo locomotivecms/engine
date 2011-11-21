@@ -106,3 +106,34 @@
     top: 1px;
   }
 }
+
+@mixin blue-button {
+  display: inline-block;
+
+  position: relative;
+
+  cursor: pointer;
+
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  @include border-radius(5px);
+
+  line-height: 19px !important;
+
+  padding: 0px 7px;
+
+  @include background-image(linear-gradient(top, #2abaf1, #228dda));
+  @include box-shadow(rgba(0, 0, 0, 0.3) 1px 1px 0px 0px, rgba(255, 255, 255, 0.5) 0px 1px 0px 0px inset);
+
+  font-size: 12px;
+  color: #fff;
+  text-decoration: none;
+  @include text-shadow(rgba(0, 0, 0, 0.8), 0px, 1px, 0px);
+
+  &:hover {
+    @include background-image(linear-gradient(top, #26a1e9, #0d6893));
+  }
+
+  &:active {
+    top: 1px;
+  }
+}
