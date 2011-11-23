@@ -83,19 +83,23 @@ body {
   } // #header
 
   #content {
-    margin-top: -1px;
+    position: relative;
+    overflow: hidden;
+    z-index: 997;
+
+    padding-bottom: 8px;
 
     > div.inner {
       position: relative;
       margin: 0px 8px;
       padding: 10px 15px 20px 15px;
 
-      z-index: 100;
+      // z-index: 100;
 
       background: #fff;
 
-      @include box-shadow(rgba(0, 0, 0, 0.6) 0px 1px 4px 3px);
-      @include border-bottom-radius(3px);
+      @include box-shadow(rgba(0, 0, 0, 0.3) 0px 0px 6px 4px);
+      @include border-bottom-radius(4px);
 
       min-height: 150px;
 

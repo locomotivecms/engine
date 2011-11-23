@@ -61,7 +61,7 @@ module Locomotive
         assigns = {
           'site'              => current_site,
           'page'              => @page,
-          'asset_collections' => Locomotive::Liquid::Drops::AssetCollections.new, # depracated, will be removed shortly
+          'asset_collections' => Locomotive::Liquid::Drops::AssetCollections.new, # deprecated, will be removed shortly
           'contents'          => Locomotive::Liquid::Drops::Contents.new,
           'current_page'      => self.params[:page],
           'params'            => self.params,
@@ -73,7 +73,7 @@ module Locomotive
 
         assigns.merge!(Locomotive.config.context_assign_extensions)
 
-        assigns.merge!(flash.stringify_keys) # data from api
+        assigns.merge!(flash.to_hash.stringify_keys) # data from api
 
         if @page.templatized? # add instance from content type
           assigns['content_instance'] = @content_instance

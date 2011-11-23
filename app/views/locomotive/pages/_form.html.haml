@@ -3,9 +3,10 @@
   = render '/locomotive/theme_assets/picker'
   = render 'editable_elements'
 
-- content_for :backbone_view_data do
-  :plain
-    { page: #{@page.to_json} }
+- if @page.persisted?
+  - content_for :backbone_view_data do
+    :plain
+      { page: #{@page.to_json} }
 
 - if can?(:manage, @page)
 

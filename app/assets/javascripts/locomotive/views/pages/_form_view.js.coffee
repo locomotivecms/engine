@@ -72,7 +72,7 @@ class Locomotive.Views.Pages.FormView extends Locomotive.Views.Shared.FormView
     @editor.refresh()
 
   render_editable_elements: ->
-    @$('.formtastic fieldset.inputs:first').after(@editable_elements_view.render().el)
+    @$('.formtastic fieldset.inputs:first').before(@editable_elements_view.render().el)
 
   fill_default_slug: (event) ->
     unless @filled_slug

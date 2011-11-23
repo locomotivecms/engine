@@ -8,9 +8,12 @@ x bugs:
   x undefined method `_selector' for #<Locomotive::Page:0x00000107434768>
 x editable_elements => view + handlebar template
 x editable_short_text => tinymce
-- editable_file => new formtastic inputs
+- editable_file =>
+  x backbone / handlebar
+  - new formtastic inputs
+- menu / submenu in full css3 (no images)
 - create/edit page in ajax
-- fix other pages
+- fix other sections
   - content types
   - edit my account
   - create a new site

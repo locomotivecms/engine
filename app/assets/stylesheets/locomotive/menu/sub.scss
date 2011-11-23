@@ -1,88 +1,35 @@
+@import "compass/css3/images";
+@import "compass/css3/border-radius";
+@import "compass/css3/text-shadow";
+@import "compass/css3/box-shadow";
 @import "helpers";
 
-@mixin submenu_link {
-  display: inline-block;
-
-  @include border-radius(16px);
-  @include box-shadow(rgba(255, 255, 255, 0.2) 0 1px 0 0 inset, rgba(255, 255, 255, 0.1) 0 1px 0 0);
-
-  border: 1px solid rgba(0, 0, 0, 0.4);
-  border-top: 1px solid rgba(0, 0, 0, 0.3);
-  padding: 0px 16px 0px 16px;
-  height: 26px;
-  font-size: 16px;
-  line-height: 22px;
-  outline: none;
-
-  span {
-    color: #fff;
-    font-size: 13px;
-    font-weight: normal;
-    text-shadow: 1px 1px 1px #000;
-  }
-
-  &:hover {
-    border: 1px solid rgba(0, 0, 0, 0.9);
-    border-top: 1px solid rgba(0, 0, 0, 0.8);
-  }
-
-  &.on, &:active {
-    border: 1px solid rgba(0, 0, 0, 0.2);
-    border-top: 1px solid rgba(0, 0, 0, 0.4);
-    border-bottom: 1px solid transparent !important;
-    @include box-shadow-with-inset(rgba(0, 0, 0, 0), rgba(255, 255, 255, 0.2));
-  }
-
-  &.hover {
-    background: #fff !important;
-    border-color: transparent !important;
-    border-color-bottom: #fff;
-    padding-bottom: 0px;
-    @include border-bottom-radius(0px); // !important is missing here
-    position: relative;
-    z-index: 998;
-
-    span {
-      color: #8b8d9a;
-      text-shadow: none;
-      @include no-box-shadow(true);
-    }
-
-    span em {
-      background-position: -12px -16px;
-    }
-
-    & > em {
-      @include absolute-position(bottom, 0px, right, -11px);
-      width: 13px;
-      height: 13px;
-      background: transparent image-url("locomotive/menu/popup/bottom-right-corner.png") no-repeat 0 0;
-    }
-  }
-}
-
 #submenu {
-  clear: both;
   position: relative;
-  top: -1px;
-  height: 60px;
-  margin: 0px 8px;
-  padding: 0 0px;
-  @include box-shadow(rgba(0, 0, 0, 0.2) 0px 4px 4px 3px);
 
-  /* ___ submenu items ___ */
+  clear: both;
+
+  z-index: 990;
+  // overflow: hidden;
+
+  height: 58px;
+
+  margin: -1px 8px 0 8px;
+
+  @include border-top-right-radius(4px);
+
+  @include box-shadow(rgba(0, 0, 0, 0.3) 0px -1px 10px 0px, rgba(0, 0, 0, 0.2) 0px 4px 6px 4px, rgba(255, 255, 255, 0.4) 0 1px 0 0 inset);
+  // @include box-shadow(rgba(0, 0, 0, 0.3) 0px -1px 10px 3px, rgba(255, 255, 255, 0.4) 0 1px 0 0 inset);
+
+  @include background-image(linear-gradient(#2478ac, #1c5d86)); // # default = blue
 
   & > ul {
-    @include reset;
-    border-top: 1px solid rgba(255, 255, 255, 0.4);
-    background: transparent image-url("locomotive/menu/submenu/shadow.png") repeat-x 0 0;
-    @include border-top-right-radius(3px);
-
-    height: 60px;
+    height: 58px;
+    margin: 0px;
 
     & > li {
-      margin: 15px 7px 0 8px;
       float: left;
+      margin: 15px 7px 0 8px;
 
       &.hoverable > a span {
         em {
@@ -97,32 +44,90 @@
       }
 
       & > a {
-        @include submenu_link;
-      }
-    }
-  }
+        display: inline-block;
 
-  /* ___ submenu: actions ___ */
+        @include border-radius(16px);
+        @include box-shadow(rgba(255, 255, 255, 0.2) 0 1px 0 0 inset, rgba(255, 255, 255, 0.1) 0 1px 0 0);
+
+        border: 1px solid rgba(0, 0, 0, 0.4);
+        border-top: 1px solid rgba(0, 0, 0, 0.3);
+        padding: 0px 16px 0px 16px;
+        line-height: 26px;
+        outline: none;
+        text-decoration: none;
+
+        span {
+          color: #fff;
+          font-size: 13px;
+          font-weight: normal;
+          @include single-text-shadow(rgba(0, 0, 0, 1), 1px, 1px, 1px);
+        }
+
+        &:hover {
+          border: 1px solid rgba(0, 0, 0, 0.9);
+          border-top: 1px solid rgba(0, 0, 0, 0.8);
+        }
+
+        &.on, &:active {
+          border: 1px solid rgba(0, 0, 0, 0.2);
+          border-top: 1px solid rgba(0, 0, 0, 0.4);
+          border-bottom: 1px solid transparent;
+          @include box-shadow(rgba(0, 0, 0, 0) 0 1px 0 0 inset, rgba(255, 255, 255, 0.2) 0 1px 0 0);
+        }
+
+        &.hover {
+          background: #fff !important;
+          border-color: transparent !important;
+          border-color-bottom: #fff;
+          padding-bottom: 0px;
+          @include border-bottom-radius(0px); // !important is missing here
+          position: relative;
+          z-index: 998;
+
+          span {
+            color: #8b8d9a;
+            text-shadow: none;
+            @include box-shadow(transparent 0 0 0 0);
+          }
+
+          span em {
+            background-position: -12px -16px;
+          }
+
+          & > em {
+            @include absolute-position(bottom, 0px, right, -11px);
+            width: 13px;
+            height: 13px;
+            background: transparent image-url("locomotive/menu/popup/bottom-right-corner.png") no-repeat 0 0;
+          }
+        }
+      } // > a
+
+    } // > li
+  } // > ul
 
   & > .action {
     @include absolute-position(top, 0px, right, 12px);
-    height: 60px;
+    height: 58px;
     padding-left: 20px;
     z-index: 1;
-    background: transparent image-url("locomotive/menu/submenu/action-border.png") repeat-y left 0;
+
+    border-left: 1px solid rgba(0, 0, 0, 0.3);
+    @include box-shadow(rgba(255, 255, 255, 0.1) 1px 0 0 0 inset);
 
     a {
-      @include submenu_link;
-
       display: inline-block;
 
       height: 20px;
       line-height: 20px;
 
-      margin: 18px 0 0 0;
+      margin: 17px 0 0 0;
       padding: 0px 10px 0 15px;
 
       @include border-radius(10px);
+      @include box-shadow(rgba(255, 255, 255, 0.2) 0 1px 0 0 inset, rgba(255, 255, 255, 0.1) 0 1px 0 0);
+      border: 1px solid rgba(0, 0, 0, 0.4);
+      border-top: 1px solid rgba(0, 0, 0, 0.3);
 
       text-decoration: none;
       font-size: 11px;
@@ -138,22 +143,43 @@
       }
 
       span {
+        color: #fff;
         font-size: 11px;
+        @include single-text-shadow(rgba(0, 0, 0, 1), 1px, 1px, 1px);
+      }
+
+      &:hover {
+        border: 1px solid rgba(0, 0, 0, 0.9);
+        border-top: 1px solid rgba(0, 0, 0, 0.8);
+      }
+
+      &.on, &:active {
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        border-top: 1px solid rgba(0, 0, 0, 0.4);
+        border-bottom: 1px solid transparent;
+        @include box-shadow(rgba(0, 0, 0, 0) 0 1px 0 0 inset, rgba(255, 255, 255, 0.2) 0 1px 0 0);
       }
     }
   }
+}
 
-  /* ___ submenu: popup ___ */
+.submenu-popup {
+  position: absolute;
 
-  .popup {
-    position: absolute;
-    top: 42px;
-    min-width: 250px;
+  min-width: 250px;
+  z-index: 999;
+
+  background: transparent;
+
+  .wrapper {
+
     background: #fff;
-    @include box-shadow(rgba(0, 0, 0, 0.5) 0px 0px 10px 0px);
+
+    @include box-shadow(rgba(0, 0, 0, 0.5) 0px 8px 10px 0px);
     @include border-radius(16px);
     @include border-top-left-radius(0px);
-    z-index: 997;
+
+    text-align: left;
 
     a {
       color: #1f82bc;
@@ -242,4 +268,4 @@
       }
     }
   }
-}
+} // submenu-popup

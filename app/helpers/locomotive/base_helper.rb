@@ -13,7 +13,7 @@ module Locomotive::BaseHelper
     resource.persisted? || !resource.errors.empty?
   end
 
-  def admin_content_menu_item(name, url, options = {}, &block) # TODO: rename method name (remove admin)
+  def submenu_entry(name, url, options = {}, &block) # TODO: rename method name (remove admin)
     default_options = { :i18n => true, :css => name.dasherize.downcase }
     default_options.merge!(options)
 

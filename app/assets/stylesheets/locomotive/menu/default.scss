@@ -1,0 +1,67 @@
+@import "colors";
+@import "icons";
+
+#menu {
+  li.contents { @include locomotive-contents-icon; }
+  li.settings { @include locomotive-settings-icon; }
+}
+
+body.contents {
+  #menu li.contents {
+    @include locomotive-black-entry;
+    @include locomotive-contents-icon(true);
+    // @include locomotive_blue_menu;
+    // @include locomotive_green_menu;
+  }
+
+  #submenu {
+    @include locomotive-black-submenu;
+  }
+}
+
+body.settings {
+  #menu li.settings {
+    @include locomotive-blue-entry;
+    // @include locomotive_black_menu;
+    // @include locomotive-orange-entry;
+    @include locomotive-settings-icon(true);
+  }
+
+  #submenu {
+    @include locomotive-blue-submenu;
+    // @include locomotive-orange-submenu;
+  }
+}
+
+
+// @import "helpers";
+//
+// #menu li.contents a em { @include menu-contents-icon; }
+// body.contents {
+//   $color: black;
+//   #menu li.contents {
+//     @include menu-color($color);
+//     em { @include menu-contents-icon(true); }
+//   }
+//   #submenu { @include submenu-color($color); }
+// }
+//
+// #menu li.assets a em { @include menu-assets-icon; }
+// body.assets {
+//   $color: green;
+//   #menu li.assets {
+//     @include menu-color($color);
+//     em { @include menu-assets-icon(true); }
+//   }
+//   #submenu { @include submenu-color($color); }
+// }
+//
+// #menu li.settings a em { @include menu-settings-icon; }
+// body.settings {
+//   $color: blue;
+//   #menu li.settings {
+//     @include menu-color($color);
+//     em { @include menu-settings-icon(true); }
+//   }
+//   #submenu { @include submenu-color($color); }
+// }

@@ -27,15 +27,25 @@ class Locomotive.Views.ApplicationView extends Backbone.View
       $('.ui-dialog-content:visible').dialog('option', 'position', 'center')
 
   add_submenu_behaviours: ->
-    # sub menu links
-    $('#submenu ul li.hoverable').hover(
-      ->
-        $(@).find('a').addClass('hover')
-        $(@).find('.popup').show()
-      ->
-        $(@).find('a').removeClass('hover');
-        $(@).find('.popup').hide()
-    )
+    $('#submenu ul li.hoverable').each ->
+      timer = null
+      link  = $(@)
+      popup = link.find('.popup').removeClass('popup').addClass('submenu-popup').css(
+        top:          link.offset().top + link.height() - 1
+        left:         link.offset().left
+      ).bind('show', ->
+        link.find('a').addClass('hover') & popup.show()
+      ).bind('hide', ->
+        link.find('a').removeClass('hover') & $(@).hide()
+      ).bind('mouseleave', -> popup.trigger('hide')
+      ).bind 'mouseenter', -> clearTimeout(timer)
+
+      $(document.body).append(popup)
+
+      link.hover(
+        -> popup.trigger('show')
+        -> timer = window.setTimeout (-> popup.trigger('hide')), 30
+      )
 
     css = $('#submenu > ul').attr('class')
     $("#submenu > ul > li.#{css}").addClass('on') if css != ''

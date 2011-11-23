@@ -45,7 +45,7 @@ module Locomotive::ContentTypesHelper
       url = contents_url(content_type.slug)
       css = @content_type && content_type.slug == @content_type.slug ? 'on' : ''
 
-      html = admin_content_menu_item(label, url, :i18n => false, :css => css) do
+      html = submenu_entry(label, url, :i18n => false, :css => css) do
         yield(content_type)
       end
 
@@ -59,7 +59,7 @@ module Locomotive::ContentTypesHelper
     if types.size > MAX_DISPLAYED_CONTENTS
       sliced = types[MAX_DISPLAYED_CONTENTS, types.size - MAX_DISPLAYED_CONTENTS]
 
-      html = admin_content_menu_item('...', '#', :i18n => false) do
+      html = submenu_entry('...', '#', :i18n => false) do
         yield(sliced)
       end
 

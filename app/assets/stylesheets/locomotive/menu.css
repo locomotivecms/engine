@@ -4,5 +4,5 @@
  * the top of the compiled file, but it's generally better to create a new file per style scope.
  *= require ./menu/sub.css
  *= require ./menu/main.css
- *= require ./menu/colors.css
+ *= require ./menu/default.css
 */
