@@ -7,7 +7,7 @@ describe Locomotive::ThemeAsset do
   describe 'attaching a file' do
 
     before(:each) do
-      ThemeAsset.any_instance.stubs(:site_id).returns('test')
+      Locomotive::ThemeAsset.any_instance.stubs(:site_id).returns('test')
       @asset = FactoryGirl.build(:theme_asset)
     end
 
@@ -93,7 +93,7 @@ describe Locomotive::ThemeAsset do
   describe 'creating from plain text' do
 
     before(:each) do
-      ThemeAsset.any_instance.stubs(:site_id).returns('test')
+      Locomotive::ThemeAsset.any_instance.stubs(:site_id).returns('test')
       @asset = FactoryGirl.build(:theme_asset, {
         :site => FactoryGirl.build(:site),
         :plain_text_name => 'test',

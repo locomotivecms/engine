@@ -13,8 +13,8 @@ describe Locomotive::Membership do
   end
 
   it 'should assign account from email' do
-    Account.stubs(:where).returns([FactoryGirl.build(:account)])
-    Account.stubs(:find).returns(FactoryGirl.build(:account))
+    Locomotive::Account.stubs(:where).returns([FactoryGirl.build(:account)])
+    Locomotive::Account.stubs(:find).returns(FactoryGirl.build(:account))
     membership = FactoryGirl.build(:membership, :account => nil)
     membership.email = 'bart@simpson.net'
     membership.account.should_not be_nil
@@ -27,8 +27,8 @@ describe Locomotive::Membership do
       @membership = FactoryGirl.build(:membership, :site => FactoryGirl.build(:site))
       @account = FactoryGirl.build(:account)
       @account.stubs(:save).returns(true)
-      Account.stubs(:where).returns([@account])
-      Account.stubs(:find).returns(@account)
+      Locomotive::Account.stubs(:where).returns([@account])
+      Locomotive::Account.stubs(:find).returns(@account)
     end
 
     it 'should tell error' do
@@ -36,7 +36,7 @@ describe Locomotive::Membership do
     end
 
     it 'should tell we need to create a new account' do
-      Account.stubs(:where).returns([])
+      Locomotive::Account.stubs(:where).returns([])
       @membership.email = 'homer@simpson'
       @membership.process!.should == :create_account
     end

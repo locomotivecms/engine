@@ -68,19 +68,19 @@ describe Locomotive::Site do
     site_1 = FactoryGirl.create(:site, :domains => %w{www.acme.net})
     site_2 = FactoryGirl.create(:site, :subdomain => 'test', :domains => %w{www.example.com})
 
-    sites = Site.match_domain('www.acme.net')
+    sites = Locomotive::Site.match_domain('www.acme.net')
     sites.size.should == 1
     sites.first.should == site_1
 
-    sites = Site.match_domain('www.example.com')
+    sites = Locomotive::Site.match_domain('www.example.com')
     sites.size.should == 1
     sites.first.should == site_2
 
-    sites = Site.match_domain('test.example.com')
+    sites = Locomotive::Site.match_domain('test.example.com')
     sites.size.should == 1
     sites.first.should == site_2
 
-    sites = Site.match_domain('www.unknown.com')
+    sites = Locomotive::Site.match_domain('www.unknown.com')
     sites.should be_empty
   end
 
@@ -125,7 +125,7 @@ describe Locomotive::Site do
     it 'should also destroy pages' do
       lambda {
         @site.destroy
-      }.should change(Page, :count).by(-2)
+      }.should change(Locomotive::Page, :count).by(-2)
     end
 
   end

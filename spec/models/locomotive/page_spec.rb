@@ -5,8 +5,8 @@ require 'spec_helper'
 describe Locomotive::Page do
 
   before(:each) do
-    Site.any_instance.stubs(:create_default_pages!).returns(true)
-    Page.any_instance.stubs(:set_default_raw_template).returns(true)
+    Locomotive::Site.any_instance.stubs(:create_default_pages!).returns(true)
+    Locomotive::Page.any_instance.stubs(:set_default_raw_template).returns(true)
   end
 
   it 'should have a valid factory' do
@@ -95,7 +95,7 @@ describe Locomotive::Page do
       lambda {
         @page.destroy.should be_false
         @page.errors.first == 'You can not remove index or 404 pages'
-      }.should_not change(Page, :count)
+      }.should_not change(Locomotive::Page, :count)
     end
 
     it 'does not delete the 404 page' do
@@ -103,7 +103,7 @@ describe Locomotive::Page do
       lambda {
         @page.destroy.should be_false
         @page.errors.first == 'You can not remove index or 404 pages'
-      }.should_not change(Page, :count)
+      }.should_not change(Locomotive::Page, :count)
     end
 
   end
@@ -117,13 +117,13 @@ describe Locomotive::Page do
 
     it 'should add root elements' do
       page_404 = FactoryGirl.create(:page, :title => 'Page not found', :slug => '404', :site => @home.site)
-      Page.roots.count.should == 2
-      Page.roots.should == [@home, page_404]
+      Locomotive::Page.roots.count.should == 2
+      Locomotive::Page.roots.should == [@home, page_404]
     end
 
     it 'should add sub pages' do
       child_2 = FactoryGirl.create(:page, :title => 'Subpage 2', :slug => 'bar', :parent => @home, :site => @home.site)
-      @home = Page.find(@home.id)
+      @home = Locomotive::Page.find(@home.id)
       @home.children.count.should == 2
       @home.children.should == [@child_1, child_2]
     end
@@ -148,7 +148,7 @@ describe Locomotive::Page do
     it 'should destroy descendants as well' do
       FactoryGirl.create(:page, :title => 'Sub Subpage 1', :slug => 'bar', :parent_id => @child_1._id, :site => @home.site)
       @child_1.destroy
-      Page.where(:slug => 'bar').first.should be_nil
+      Locomotive::Page.where(:slug => 'bar').first.should be_nil
     end
 
   end
@@ -177,7 +177,7 @@ describe Locomotive::Page do
 
     before(:each) do
       @page = FactoryGirl.build(:page, :site => nil, :templatized => true, :content_type_id => 42)
-      ContentType.stubs(:find).returns(FactoryGirl.build(:content_type, :site => nil))
+      Locomotive::ContentType.stubs(:find).returns(FactoryGirl.build(:content_type, :site => nil))
     end
 
     it 'is considered as a templatized page' do

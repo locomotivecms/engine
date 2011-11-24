@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Locomotive::ContentType do
 
   before(:each) do
-    Site.any_instance.stubs(:create_default_pages!).returns(true)
+    Locomotive::Site.any_instance.stubs(:create_default_pages!).returns(true)
   end
 
   context 'when validating' do
@@ -96,12 +96,12 @@ describe Locomotive::ContentType do
 
     before(:each) do
       site = FactoryGirl.build(:site)
-      Site.stubs(:find).returns(site)
+      Locomotive::Site.stubs(:find).returns(site)
       @content_type = FactoryGirl.build(:content_type, :site => site, :highlighted_field_name => 'custom_field_1')
       @content_type.content_custom_fields.build :label => 'My Description', :_alias => 'description', :kind => 'text'
       @content_type.content_custom_fields.build :label => 'Active', :kind => 'boolean'
-      # ContentType.logger = Logger.new($stdout)
-      # ContentType.db.connection.instance_variable_set(:@logger, Logger.new($stdout))
+      # Locomotive::ContentType.logger = Logger.new($stdout)
+      # Locomotive::ContentType.db.connection.instance_variable_set(:@logger, Logger.new($stdout))
     end
 
     context 'unit' do
@@ -187,7 +187,7 @@ describe Locomotive::ContentType do
       it 'should not modify contents from another collection' do
         asset = build_content(@content_type)
         asset.save and @content_type.reload
-        new_collection = ContentType.new
+        new_collection = Locomotive::ContentType.new
         lambda { new_collection.contents.build.description }.should raise_error
       end
 
@@ -244,14 +244,14 @@ describe Locomotive::ContentType do
 
       it 'updates/removes fields' do
         field = @content_type.content_custom_fields.build :label => 'Title', :kind => 'String'
-        @content_type.save; @content_type = ContentType.find(@content_type.id)
+        @content_type.save; @content_type = Locomotive::ContentType.find(@content_type.id)
         @content_type.update_attributes(:content_custom_fields_attributes => {
           '0' => { 'id' => lookup_field_id(0), 'label' => 'My Description', 'kind' => 'Text', '_destroy' => '1' },
           '1' => { 'id' => lookup_field_id(1), 'label' => 'Active', 'kind' => 'Boolean', '_destroy' => '1' },
           '2' => { 'id' => lookup_field_id(2), 'label' => 'My Title !', 'kind' => 'String' },
           'new_record' => { 'label' => 'Published at', 'kind' => 'String' }
         })
-        @content_type = ContentType.find(@content_type.id)
+        @content_type = Locomotive::ContentType.find(@content_type.id)
         @content_type.content_custom_fields.size.should == 2
         @content_type.content_custom_fields.first.label.should == 'My Title !'
       end
