@@ -88,7 +88,6 @@ class Locomotive.Views.Pages.FormView extends Locomotive.Views.Shared.FormView
   reset_editable_elements: ->
     console.log('reset_editable_elements')
     @editable_elements_view.remove()
-    # @editable_elements_view = new Locomotive.Views.EditableElements.EditAllView(collection: @model.get('editable_elements'))
     @editable_elements_view.collection = @model.get('editable_elements')
     @render_editable_elements()
 
