@@ -169,13 +169,17 @@
   min-width: 250px;
   z-index: 999;
 
+  overflow: hidden;
+
+  padding: 0px 12px 12px 12px;
+
   background: transparent;
 
   .wrapper {
 
     background: #fff;
 
-    @include box-shadow(rgba(0, 0, 0, 0.5) 0px 8px 10px 0px);
+    @include box-shadow(rgba(0, 0, 0, 0.5) 0px 0px 8px 0px);
     @include border-radius(16px);
     @include border-top-left-radius(0px);
 
