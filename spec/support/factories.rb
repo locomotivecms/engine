@@ -3,12 +3,12 @@ FactoryGirl.define do
   ## Site ##
   factory :site, :class => Locomotive::Site do
     name 'Acme Website'
-    # subdomain 'acme'
+    subdomain 'acme'
     created_at Time.now
 
     factory "test site" do
       name 'Locomotive test website'
-      # subdomain 'test'
+      subdomain 'test'
 
       after_build do |site_test|
         site_test.memberships.build :account => Locomotive::Account.where(:name => "Admin").first || Factory("admin user"), :role => 'admin'
@@ -16,7 +16,7 @@ FactoryGirl.define do
 
       factory "another site" do
         name "Locomotive test website #2"
-        # subdomain "test2"
+        subdomain "test2"
       end
 
     end

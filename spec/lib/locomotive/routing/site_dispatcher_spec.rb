@@ -247,13 +247,6 @@ describe Locomotive::Routing::SiteDispatcher do
       it 'returns false' do
         @controller.send(:validate_site_membership).should be_false
       end
-
     end
-
   end
-
-  # after(:all) do
-  #   Locomotive.configure_for_test(true)
-  # end
-
 end

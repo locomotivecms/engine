@@ -182,10 +182,4 @@ describe 'Locomotive rendering system' do
     end
 
   end
-
-  after(:all) do
-    ENV['APP_TLD'] = nil
-    Locomotive.configure_for_test(true)
-  end
-
 end

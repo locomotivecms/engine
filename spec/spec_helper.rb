@@ -17,6 +17,10 @@ RSpec.configure do |config|
 
   config.mock_with :mocha
 
+  config.before(:suite) do
+    Locomotive.configure_for_test(true)
+  end
+
   config.before(:each) do
     Locomotive.config.heroku = false
   end

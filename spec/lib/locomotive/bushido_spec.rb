@@ -181,9 +181,4 @@ describe 'Bushido support' do
       load 'site.rb'
     end
   end
-
-  after(:all) do
-    Locomotive.configure_for_test(true)
-  end
-
 end

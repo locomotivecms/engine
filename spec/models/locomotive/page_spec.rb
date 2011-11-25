@@ -231,9 +231,4 @@ describe Locomotive::Page do
       @page.errors[:redirect_url].should == ["is invalid"]
     end
   end
-
-  after(:all) do
-    ENV['APP_TLD'] = nil
-    Locomotive.configure_for_test(true)
-  end
 end
