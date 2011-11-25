@@ -28,25 +28,21 @@ form.formtastic {
       span {
         padding-left: 20px;
 
+        line-height: 20px;
+
         font-size: 13px;
         font-weight: bold;
         @include single-text-shadow(#fff, 1px, 1px, 1px);
       }
-
-      em {
-        display: inline-block;
-        width: 9px;
-        height: 6px;
-        position: relative;
-        top: 0px;
-        left: 10px;
-        background: transparent image-url("locomotive/form/folded-arrow-on.png") no-repeat 0 0px;
-      }
     } // legend
 
     &.foldable {
-      span {
+      legend span {
         cursor: pointer;
+
+        padding-right: 15px;
+
+        background: transparent image-url("locomotive/form/folded-arrow-on.png") no-repeat right center;
       }
 
       &.folded legend {
@@ -54,10 +50,7 @@ form.formtastic {
         @include box-shadow(rgba(0, 0, 0, 0.4) 0px 1px 0px 0px);
         border-bottom-width: 1px;
 
-        span em {
-          width: 6px;
-          height: 9px;
-          top: 0px;
+        span {
           background-image: image-url("locomotive/form/folded-arrow-off.png");
         }
       }

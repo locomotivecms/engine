@@ -34,7 +34,6 @@ class Locomotive.Views.Shared.FormView extends Backbone.View
 
   make_inputs_foldable: ->
     self = @
-    @$('.formtastic fieldset.foldable legend span').append '<em>&nbsp;</em>'
     @$('.formtastic fieldset.foldable.folded ol').hide()
     @$('.formtastic fieldset.foldable legend').click ->
       parent  = $(@).parent()
