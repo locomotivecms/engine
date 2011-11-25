@@ -9,9 +9,7 @@ form.formtastic {
   fieldset {
     margin-bottom: 20px;
 
-    @include border-bottom-radius(8px);
-    @include box-shadow(rgba(0, 0, 0, 0.4) 0px 1px 0px 0px);
-    background: #ebedf4;
+    padding-bottom: 1px;
 
     legend {
       display: block;
@@ -19,8 +17,10 @@ form.formtastic {
 
       padding: 5px 0px;
 
+      background: #ebedf4;
+
       border: 1px solid #ccced7;
-      border-bottom: 0px;
+      border-bottom-width: 0px;
 
       @include border-top-radius(8px);
       @include background-image(linear-gradient(#ebedf4, #d7dbe7));
@@ -49,11 +49,17 @@ form.formtastic {
         cursor: pointer;
       }
 
-      &.folded legend span em {
-        width: 6px;
-        height: 9px;
-        top: 0px;
-        background-image: image-url("locomotive/form/folded-arrow-off.png");
+      &.folded legend {
+        @include border-bottom-radius(8px);
+        @include box-shadow(rgba(0, 0, 0, 0.4) 0px 1px 0px 0px);
+        border-bottom-width: 1px;
+
+        span em {
+          width: 6px;
+          height: 9px;
+          top: 0px;
+          background-image: image-url("locomotive/form/folded-arrow-off.png");
+        }
       }
     } // .foldable
 
@@ -61,9 +67,15 @@ form.formtastic {
       margin-bottom: 0px;
       padding: 0px;
 
+      width: 918px;
+
       border: 1px solid #ccced7;
-      border-bottom: 0px;
-      @include box-shadow(rgba(255, 255, 255, 0.5) 0 1px 0 0 inset);
+
+      @include border-bottom-radius(8px);
+      @include box-shadow(rgba(0, 0, 0, 0.4) 0px 1px 0px 0px, rgba(255, 255, 255, 0.5) 0 1px 0 0 inset);
+
+      background: #ebedf4;
+
 
       > li.input {
         margin: 0;
