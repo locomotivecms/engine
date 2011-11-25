@@ -61,7 +61,6 @@ module Locomotive
         assigns = {
           'site'              => current_site,
           'page'              => @page,
-          'asset_collections' => Locomotive::Liquid::Drops::AssetCollections.new, # deprecated, will be removed shortly
           'contents'          => Locomotive::Liquid::Drops::Contents.new,
           'current_page'      => self.params[:page],
           'params'            => self.params,

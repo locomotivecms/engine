@@ -12,7 +12,8 @@ module Locomotive
       if get?
         display resource
       elsif has_errors?
-        with_flash_message(:error) do |message|
+        Rails.logger.debug "--> ERRORS #{resource.errors.inspect}" # FIXME: debug purpose
+        with_flash_message(:alert) do |message|
           display resource.errors, :status => :unprocessable_entity
         end
       elsif post?
@@ -38,7 +39,8 @@ module Locomotive
       set_flash_message!
       message = controller.flash[type]
 
-      controller.headers[:flash] = message
+      controller.headers['X-Message']       = message
+      controller.headers['X-Message-Type']  = type
 
       yield(message) if block_given?
 

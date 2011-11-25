@@ -16,16 +16,18 @@ class Locomotive.Views.Pages.FormView extends Locomotive.Views.Shared.FormView
   initialize: ->
     _.bindAll(@, 'insert_image')
 
-    @page = new Locomotive.Models.Page(@options.page)
+    @model = new Locomotive.Models.Page(@options.page)
 
-    window.page = @page
+    window.foo = @model
 
     @filled_slug = @touched_url = false
     @image_picker_view = new Locomotive.Views.ThemeAssets.ImagePickerView
       collection: new Locomotive.Models.ThemeAssetsCollection()
       on_select:  @insert_image
 
-    @editable_elements_view = new Locomotive.Views.EditableElements.EditAllView(collection: @page.get('editable_elements'))
+    Backbone.ModelBinding.bind @
+
+    @editable_elements_view = new Locomotive.Views.EditableElements.EditAllView(collection: @model.get('editable_elements'))
 
   render: ->
     super()
@@ -45,7 +47,6 @@ class Locomotive.Views.Pages.FormView extends Locomotive.Views.Shared.FormView
 
     # editable elements
     @render_editable_elements()
-    # @enable_editable_elements_nav()
 
     return @
 
@@ -60,19 +61,41 @@ class Locomotive.Views.Pages.FormView extends Locomotive.Views.Shared.FormView
     @image_picker_view.close()
 
   enable_liquid_editing: ->
-    @editor = CodeMirror.fromTextArea @$('#page_raw_template').get()[0],
+    input = @$('#page_raw_template')
+    @editor = CodeMirror.fromTextArea input.get()[0],
       mode:             'liquid'
       autoMatchParens:  false
       lineNumbers:      false
       passDelay:        50
       tabMode:          'shift'
       theme:            'default'
+      onChange: (editor) => @model.set(raw_template: editor.getValue())
 
   after_inputs_fold: ->
     @editor.refresh()
 
+  show_error: (attribute, message, html) ->
+    switch attribute
+      when 'raw_template'
+        @$("#page_raw_template_input .CodeMirror").after(html)
+      else super
+
   render_editable_elements: ->
     @$('.formtastic fieldset.inputs:first').before(@editable_elements_view.render().el)
+    @editable_elements_view.after_render()
+
+  # Remove the editable elements and rebuild them
+  reset_editable_elements: ->
+    console.log('reset_editable_elements')
+    @editable_elements_view.remove()
+    # @editable_elements_view = new Locomotive.Views.EditableElements.EditAllView(collection: @model.get('editable_elements'))
+    @editable_elements_view.collection = @model.get('editable_elements')
+    @render_editable_elements()
+
+  # Just re-connect the model and the views (+ rebuild the files)
+  refresh_editable_elements: ->
+    @editable_elements_view.collection = @model.get('editable_elements')
+    @editable_elements_view.refresh()
 
   fill_default_slug: (event) ->
     unless @filled_slug

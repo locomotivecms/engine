@@ -9,6 +9,8 @@ class Locomotive.Views.EditableElements.EditAllView extends Backbone.View
   _editable_elements_views: []
 
   render: ->
+    window.bar = @
+
     if @collection.isEmpty()
       $(@el).hide()
     else
@@ -21,6 +23,16 @@ class Locomotive.Views.EditableElements.EditAllView extends Backbone.View
       @enable_nav()
 
     return @
+
+  after_render: ->
+    _.each @_editable_elements_views, (view) => view.after_render()
+
+  refresh: ->
+    _.each @_editable_elements_views, (view) =>
+      foo = @collection.get(view.model.get('id'))
+      console.log(foo.cid)
+      view.model = @collection.get(view.model.get('id'))
+      view.refresh()
 
   render_elements: ->
     index = 0
@@ -61,3 +73,9 @@ class Locomotive.Views.EditableElements.EditAllView extends Backbone.View
     _.each @$('fieldset'), (fieldset) =>
       $(fieldset).find('li.last').removeClass('last')
       $(_.last($(fieldset).find('li.input:visible'))).addClass('last')
+
+  remove: ->
+    _.each @_editable_elements_views, (view) => view.remove()
+    @_editable_elements_views.length = 0
+    super
+

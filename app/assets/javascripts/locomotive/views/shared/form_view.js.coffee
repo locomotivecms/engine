@@ -30,7 +30,7 @@ class Locomotive.Views.Shared.FormView extends Backbone.View
         newValue = prompt(title.attr('title'), title.html());
         if newValue && newValue != ''
           title.html(newValue)
-          target.val(newValue)
+          target.val(newValue).trigger('change')
 
   make_inputs_foldable: ->
     self = @
@@ -48,6 +48,18 @@ class Locomotive.Views.Shared.FormView extends Backbone.View
 
   after_inputs_fold: ->
     # overide this method if necessary
+
+  clear_errors: ->
+    @$('div.inline-errors').remove()
+
+  show_errors: (errors) ->
+    for attribute, message of errors
+      html = $("<div class=\"inline-errors\"><p>#{message[0]}</p></div>")
+      @show_error attribute, message[0], html
+
+  show_error: (attribute, message, html) ->
+    input = @$("##{@model.paramRoot}_#{attribute}")
+    input.after(html) if input.size() > 0
 
   _enable_checkbox: (name, options) ->
     @$('li#page_' + name + '_input input[type=checkbox]').checkToggle

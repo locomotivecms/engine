@@ -10,7 +10,6 @@
 //= require underscore
 //= require handlebars
 //= require backbone
-//= require backbone_rails_sync
 //= require uploadify
 //= require codemirror
 //= require tinymce-jquery

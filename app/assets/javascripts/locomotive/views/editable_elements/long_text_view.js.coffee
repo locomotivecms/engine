@@ -1,14 +1,8 @@
+#= require ./short_text_view
+
 Locomotive.Views.EditableElements ||= {}
 
-class Locomotive.Views.EditableElements.LongTextView extends Backbone.View
+class Locomotive.Views.EditableElements.LongTextView extends Locomotive.Views.EditableElements.ShortTextView
 
-  tagName: 'li'
-
-  className: 'text input html'
-
-  render: ->
-    $(@el).html(ich.editable_text_input(@model.toJSON()))
-
-    @$('textarea').tinymce window.Locomotive.tinyMCE.defaultSettings
-
-    return @
+  tinymce_settings: ->
+    window.Locomotive.tinyMCE.defaultSettings

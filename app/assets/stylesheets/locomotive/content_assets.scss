@@ -15,8 +15,10 @@ ul.content-assets {
 
     margin: 0 10px 10px 0;
 
+    border: 1px solid #ccced7;
+
     @include border-radius(8px);
-    @include box-shadow(rgba(0, 0, 0, 0.2) 0px 1px 0px 0px);
+    @include box-shadow(rgba(0, 0, 0, 0.4) 0px 1px 0px 0px);
     background: #ebedf4;
 
     &.last {

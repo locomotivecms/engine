@@ -64,7 +64,7 @@
           $(element).parent().prev().css("color","#cccccc");
           $(element).parent().next().css("color","#333333");
           $(element).parent().css("background-color", settings.off_bg_color).removeClass('on');
-          $(element).parent().parent().prev().removeAttr("checked");
+          $(element).parent().parent().prev().removeAttr("checked").trigger('change');
           $(element).removeClass("left").addClass("right");
 
           if (typeof $.fn.publish != 'undefined')
@@ -82,7 +82,7 @@
           $(element).parent().prev().css("color","#333333");
           $(element).parent().next().css("color","#cccccc");
           $(element).parent().css("background-color", settings.on_bg_color).addClass('on');
-          $(element).parent().parent().prev().attr("checked","checked");
+          $(element).parent().parent().prev().attr("checked", "checked").trigger('change');
           $(element).removeClass("right").addClass("left");
 
           if (typeof $.fn.publish != 'undefined')

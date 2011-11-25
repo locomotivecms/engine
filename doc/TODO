@@ -11,14 +11,17 @@ x editable_short_text => tinymce
 - editable_file =>
   x backbone / handlebar
   - new formtastic inputs
-- menu / submenu in full css3 (no images)
+x menu / submenu in full css3 (no images)
 - create/edit page in ajax
+  x edit
+  - create
 - fix other sections
   - content types
   - edit my account
   - create a new site
   - edit my site
   - theme assets
+- fix css in firefox
 
 
 BACKLOG:

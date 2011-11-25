@@ -3,7 +3,7 @@ module Locomotive
 
     sections 'contents'
 
-    respond_to  :json, :only => [:show, :update, :sort, :get_path]
+    respond_to  :json, :only => [:show, :create, :update, :sort, :get_path]
 
     def index
       @pages = current_site.all_pages_in_once
@@ -33,17 +33,7 @@ module Locomotive
     def update
       @page = current_site.pages.find(params[:id])
       @page.update_attributes(params[:page])
-      puts @page.errors.inspect
       respond_with @page, :location => edit_page_url(@page._id)
-      # do |format|
-      #   format.json do
-      #     render :json => {
-      #       :notice => t('flash.locomotive.pages.update.notice'),
-      #       :editable_elements => @page.template_changed ?
-      #         render_to_string(:partial => 'locomotive/pages/editable_elements.html.haml') : ''
-      #     }
-      #   end
-      # end
     end
 
     def destroy

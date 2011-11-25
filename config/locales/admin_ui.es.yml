@@ -279,7 +279,6 @@ es:
           site: Información del Sitio
           content_types: Modelos
           assets: Contenido multi-media
-          asset_collections: Colecciones
           snippets: Fragmentos
           pages: Páginas
         messages:

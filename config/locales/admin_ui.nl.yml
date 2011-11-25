@@ -262,7 +262,6 @@ nl:
           site: Website informatie
           content_types: aangepaste content typen
           assets: Thema bestanden
-          asset_collections: Bronbestand verzamelingen
           snippets: Fragmenten
           pages: Pagina's'
         messages:

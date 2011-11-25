@@ -73,16 +73,6 @@ es:
           alert: "La afiliaciónMember no se pudo crear."
           already_created: "La cuenta ya estaba añadida al sitio web actual."
 
-      asset_collections:
-        create:
-          notice: "Colección creada con éxito."
-          alert: "La colección no se pudo crear."
-        update:
-          notice: "Colección actualizada con éxito."
-          alert: "La colección no se pudo actualizar."
-        destroy:
-          notice: "Colección eliminada con éxito."
-
       assets:
         create:
           notice: "Contenido multi-media creado con éxito."

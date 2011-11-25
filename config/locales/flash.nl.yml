@@ -73,16 +73,6 @@ nl:
           alert: "Lidmaatschap is niet gemaakt."
           already_created: "Lidmaatschap is al gemaakt voor de website."
 
-      asset_collection:
-        create:
-          notice: "Verzameling is gemaakt."
-          alert: "Verzameling is niet gemaakt."
-        update:
-          notice: "Verzameling is gewijzigd."
-          alert: "Verzameling is niet gewijzigd."
-        destroy:
-          notice: "Verzameling is verwijderd."
-
       assets:
         create:
           notice: "Bronbestand is gemaakt."

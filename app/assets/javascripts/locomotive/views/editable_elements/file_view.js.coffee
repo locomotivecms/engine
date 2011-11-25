@@ -17,7 +17,21 @@ class Locomotive.Views.EditableElements.FileView extends Backbone.View
   render: ->
     $(@el).html(ich.editable_file_input(@model.toJSON()))
 
+    # only in HTML 5
+    @$('input[type=file]').bind 'change', (event) =>
+      input = $(event.target)[0]
+      if input.files?
+        @model.set(source: input.files[0])
+
     return @
+
+  after_render: ->
+    # do nothing
+
+  refresh: ->
+    @$('input[type=file]').unbind 'change'
+    @states = { 'change': false, 'delete': false }
+    @render()
 
   toggle_change: (event) ->
     @_toggle event, 'change',
@@ -31,9 +45,11 @@ class Locomotive.Views.EditableElements.FileView extends Backbone.View
       on_change: =>
         @$('a:first').addClass('deleted') & @$('a.change').hide()
         @$('input[type=hidden].remove-flag').val('1')
+        @model.set('remove_source': true)
       on_cancel: =>
         @$('a:first').removeClass('deleted') & @$('a.change').show()
         @$('input[type=hidden].remove-flag').val('0')
+        @model.set('remove_source': false)
 
   _toggle: (event, state, options) ->
     event.stopPropagation() & event.preventDefault()
@@ -52,20 +68,6 @@ class Locomotive.Views.EditableElements.FileView extends Backbone.View
 
     @states[state] = !@states[state]
 
-
-# toggle_change: (event) ->
-#   event.stopPropagation() & event.preventDefault()
-#
-#   button  = $(event.target)
-#   label   = button.attr('data-cancel-label')
-#
-#   unless @changing
-#     @$('a:first').hide() & @$('input[type=file]').show() & @$('a.delete').hide()
-#   else
-#     @$('a:first').show() & @$('input[type=file]').hide() & @$('a.delete').show()
-#
-#   button.attr('data-alt-label', button.html())
-#
-#   button.html(label)
-#
-#   @changing = !@changing
+  remove: ->
+    @$('input[type=file]').unbind 'change'
+    super

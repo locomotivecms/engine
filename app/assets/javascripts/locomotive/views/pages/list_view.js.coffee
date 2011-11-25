@@ -35,8 +35,7 @@ class Locomotive.Views.Pages.ListView extends Backbone.View
 
   # on_sort: (data) ->
   on_successful_sort: (data, status, xhr) ->
-    window.foo = xhr
-    $.growl('success', xhr.getResponseHeader('Flash'));
+    $.growl('success', xhr.getResponseHeader('X-Message'))
 
   on_failed_sort: (data, status, xhr) ->
-    $.growl('error', xhr.getResponseHeader('Flash'));
+    $.growl('error', xhr.getResponseHeader('X-Message'))
