@@ -10,18 +10,20 @@
   clear: both;
 
   z-index: 990;
-  // overflow: hidden;
 
   height: 58px;
 
-  margin: -1px 8px 0 8px;
+  margin: 0px 8px 0 8px;
+
+  top: -1px;
 
   @include border-top-right-radius(4px);
 
   @include box-shadow(rgba(0, 0, 0, 0.3) 0px -1px 10px 0px, rgba(0, 0, 0, 0.2) 0px 4px 6px 4px, rgba(255, 255, 255, 0.4) 0 1px 0 0 inset);
-  // @include box-shadow(rgba(0, 0, 0, 0.3) 0px -1px 10px 3px, rgba(255, 255, 255, 0.4) 0 1px 0 0 inset);
 
   @include background-image(linear-gradient(#2478ac, #1c5d86)); // # default = blue
+
+  border-bottom: 1px solid #000;
 
   & > ul {
     height: 58px;
