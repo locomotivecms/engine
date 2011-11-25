@@ -10,10 +10,10 @@ module Locomotive::BaseHelper
   end
 
   def inputs_folded?(resource)
-    resource.persisted? || !resource.errors.empty?
+    resource.persisted? && resource.errors.empty?
   end
 
-  def submenu_entry(name, url, options = {}, &block) # TODO: rename method name (remove admin)
+  def submenu_entry(name, url, options = {}, &block)
     default_options = { :i18n => true, :css => name.dasherize.downcase }
     default_options.merge!(options)
 
