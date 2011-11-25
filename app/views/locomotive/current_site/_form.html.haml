@@ -1,3 +1,10 @@
+- content_for :head do
+  = render 'domain'
+
+- content_for :backbone_view_data do
+  :plain
+    { site: #{@site.to_json}, errors: #{@site.errors.to_json} }
+
 = f.inputs :name => :information, :style => "#{'display: none' unless @site.new_record?}" do
   = f.input :name, :required => false
 
@@ -9,35 +16,39 @@
 - if can?(:point, Locomotive::Site)
   - if manage_subdomain_or_domains?
     = f.inputs :name => :access_points do
+      = f.input :subdomain, :as => :'Locomotive::Subdomain', :domain => application_domain, :input_html => { :readonly => !manage_subdomain? }
+
+      - if manage_domains?
+        = f.input :domains, :as => :'Locomotive::Empty'
 
       / = f.custom_input :subdomain, :css => 'path' do
       /   %em
       /     http://
-      /   = f.text_field :subdomain, :readonly => !manage_subdomain?
+      /   = f.text_field :subdomain, :readonly =>
       /   \.
       /   %em
       /     = application_domain
 
-      - if manage_domains?
-        - @site.domains_without_subdomain.each_with_index do |name, index|
-          %li{ :class => "item added #{'last' if index == @site.domains.size - 1}"}
-            %em
-              http://
-            = text_field_tag 'site[domains][]', name, :class => 'string label void domain'
-            &nbsp;
-            = error_on_domain(@site, name)
-            %span.actions
-              = link_to image_tag('admin/form/icons/trash.png'), '#', :class => 'remove first', :confirm => t('locomotive.messages.confirm')
-
-        %li.item.template
-          %em
-            http://
-          = text_field_tag 'label', t('formtastic.hints.site.domain_name'), :class => 'string label void domain'
-          &nbsp;
-          %span.actions
-            = link_to image_tag('admin/form/icons/trash.png'), '#', :class => 'remove first', :confirm => t('locomotive.messages.confirm')
-            %button{ :class => 'button light add', :type => 'button' }
-              %span!= t('locomotive.buttons.new_item')
+      / - if manage_domains?
+      /   - @site.domains_without_subdomain.each_with_index do |name, index|
+      /     %li{ :class => "item added #{'last' if index == @site.domains.size - 1}"}
+      /       %em
+      /         http://
+      /       = text_field_tag 'site[domains][]', name, :class => 'string label void domain'
+      /       &nbsp;
+      /       = error_on_domain(@site, name)
+      /       %span.actions
+      /         = link_to image_tag('admin/form/icons/trash.png'), '#', :class => 'remove first', :confirm => t('locomotive.messages.confirm')
+      /
+      /   %li.item.template
+      /     %em
+      /       http://
+      /     = text_field_tag 'label', t('formtastic.hints.site.domain_name'), :class => 'string label void domain'
+      /     &nbsp;
+      /     %span.actions
+      /       = link_to image_tag('admin/form/icons/trash.png'), '#', :class => 'remove first', :confirm => t('locomotive.messages.confirm')
+      /       %button{ :class => 'button light add', :type => 'button' }
+      /         %span!= t('locomotive.buttons.new_item')
 
 - if can?(:index, Locomotive::Membership)
 

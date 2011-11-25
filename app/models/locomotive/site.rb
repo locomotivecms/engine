@@ -49,6 +49,10 @@ module Locomotive
       Locomotive::Liquid::Drops::Site.new(self)
     end
 
+    def to_json
+      Locomotive::SitePresenter.new(self).as_json
+    end
+
     protected
 
     def create_default_pages!

@@ -22,7 +22,7 @@ class Locomotive.Views.Shared.FormView extends Backbone.View
     title = @$('h2 a.editable')
 
     if title.size() > 0
-      target  = @$("##{title.attr('rel')}")
+      target = @$("##{title.attr('rel')}")
       target.parent().hide()
 
       title.click (event) =>
