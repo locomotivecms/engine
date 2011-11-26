@@ -76,7 +76,7 @@ FactoryGirl.define do
   ## Memberships ##
   factory :membership, :class => Locomotive::Membership do
     role 'admin'
-    account { Account.where(:name => "Bart Simpson").first || Factory('admin user') }
+    account { Locomotive::Account.where(:name => "Bart Simpson").first || Factory('admin user') }
 
     factory :admin do
       role 'admin'

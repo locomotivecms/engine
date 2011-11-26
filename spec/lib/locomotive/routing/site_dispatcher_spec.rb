@@ -39,7 +39,7 @@ describe Locomotive::Routing::SiteDispatcher do
     end
 
     it 'returns the site with matching domain if there is no current site instance' do
-      Site.expects(:match_domain).with('host').returns([@site])
+      Locomotive::Site.expects(:match_domain).with('host').returns([@site])
       @controller.send(:fetch_site).should == @site
     end
 
@@ -80,7 +80,7 @@ describe Locomotive::Routing::SiteDispatcher do
     context 'when there are no accounts' do
 
       before :each do
-        Account.expects(:count).returns(0)
+        Locomotive::Account.expects(:count).returns(0)
 
         @controller.instance_variable_set('@_response', ActionDispatch::Response.new)
         @controller.expects(:current_site).returns(false)
@@ -102,8 +102,8 @@ describe Locomotive::Routing::SiteDispatcher do
     context 'when there are no sites' do
 
       before :each do
-        Account.expects(:count).returns(1)
-        Site.expects(:count).returns(0)
+        Locomotive::Account.expects(:count).returns(1)
+        Locomotive::Site.expects(:count).returns(0)
 
         @controller.instance_variable_set('@_response', ActionDispatch::Response.new)
         @controller.expects(:current_site).returns(false)
@@ -125,8 +125,8 @@ describe Locomotive::Routing::SiteDispatcher do
     context 'when there is no current site' do
 
       before :each do
-        Account.expects(:count).returns(1)
-        Site.expects(:count).returns(1)
+        Locomotive::Account.expects(:count).returns(1)
+        Locomotive::Site.expects(:count).returns(1)
 
         @controller.instance_variable_set('@_response', ActionDispatch::Response.new)
         @controller.expects(:current_site).returns(false)

@@ -21,7 +21,7 @@ describe Locomotive::Liquid::Tags::Editable::Content do
   context 'output' do
 
     before :each do
-      EditableElement.any_instance.stubs(:content).returns("test string")
+      Locomotive::EditableElement.any_instance.stubs(:content).returns("test string")
     end
 
     context 'inheriting from a parent' do

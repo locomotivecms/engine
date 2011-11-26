@@ -5,7 +5,7 @@ describe Locomotive::GlobalActionsCell do
   # as if it were a controller.
   # render_views
 
-  let(:menu) { render_cell('admin/global_actions', :show, :current_locomotive_account => FactoryGirl.build('admin user'), :current_site_url => 'http://www.yahoo.fr') }
+  let(:menu) { render_cell('locomotive/global_actions', :show, :current_locomotive_account => FactoryGirl.build('admin user'), :current_site_url => 'http://www.yahoo.fr') }
 
   describe 'show menu' do
 
@@ -18,7 +18,7 @@ describe Locomotive::GlobalActionsCell do
     end
 
     it 'has a link to edit my account' do
-      menu.should have_link('Admin')
+      menu.should have_link('Locomotive')
     end
 
     it 'has a link to see my website' do
@@ -35,7 +35,7 @@ describe Locomotive::GlobalActionsCell do
 
     before(:each) do
       CellsResetter.new_global_actions_cell_klass({ :main => 'settings', :sub => 'site' })
-      Admin::GlobalActionsCell.update_for(:testing_add) { |m| m.add(:my_link, :label => 'My link', :url => 'http://www.locomotivecms.com') }
+      Locomotive::GlobalActionsCell.update_for(:testing_add) { |m| m.add(:my_link, :label => 'My link', :url => 'http://www.locomotivecms.com') }
     end
 
     it 'has 4 items' do
@@ -52,7 +52,7 @@ describe Locomotive::GlobalActionsCell do
 
     before(:each) do
       CellsResetter.new_global_actions_cell_klass({ :main => 'settings', :sub => 'site' })
-      Admin::GlobalActionsCell.update_for(:testing_remove) { |m| m.remove(:see) }
+      Locomotive::GlobalActionsCell.update_for(:testing_remove) { |m| m.remove(:see) }
     end
 
     it 'has 2 items' do
@@ -69,7 +69,7 @@ describe Locomotive::GlobalActionsCell do
 
     before(:each) do
       CellsResetter.new_global_actions_cell_klass({ :main => 'settings', :sub => 'site' })
-      Admin::GlobalActionsCell.update_for(:testing_update) { |m| m.modify(:see, { :label => 'Modified !' }) }
+      Locomotive::GlobalActionsCell.update_for(:testing_update) { |m| m.modify(:see, { :label => 'Modified !' }) }
     end
 
     it 'still has 3 items' do

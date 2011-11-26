@@ -7,7 +7,7 @@ module Locomotive
 
         included do
 
-          referenced_in :content_type
+          referenced_in :content_type, :class_name => 'Locomotive::ContentType'
 
           field :templatized, :type => Boolean, :default => false
 

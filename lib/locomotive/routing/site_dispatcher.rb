@@ -33,13 +33,13 @@ module Locomotive
         def require_site
           return true if current_site
 
-          redirect_to installation_url and return false if Account.count == 0 || Site.count == 0
+          redirect_to installation_url and return false if Locomotive::Account.count == 0 || Locomotive::Site.count == 0
 
           render_no_site_error and return false
         end
 
         def render_no_site_error
-          render :template => '/admin/errors/no_site', :layout => false, :status => :not_found
+          render :template => '/Locomotive/errors/no_site', :layout => false, :status => :not_found
         end
 
         def validate_site_membership

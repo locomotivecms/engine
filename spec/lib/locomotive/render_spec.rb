@@ -5,9 +5,9 @@ describe 'Locomotive rendering system' do
 
   before(:each) do
     @controller = Locomotive::TestController.new
-    Site.any_instance.stubs(:create_default_pages!).returns(true)
+    Locomotive::Site.any_instance.stubs(:create_default_pages!).returns(true)
     @site = FactoryGirl.build(:site)
-    Site.stubs(:find).returns(@site)
+    Locomotive::Site.stubs(:find).returns(@site)
     @controller.current_site = @site
     @page = FactoryGirl.build(:page, :site => nil, :published => true)
   end
@@ -101,7 +101,7 @@ describe 'Locomotive rendering system' do
 
     it 'should return the 404 page if the page does not exist' do
       @controller.request.fullpath = '/contact'
-      (klass = Page).expects(:published).returns([true])
+      (klass = Locomotive::Page).expects(:published).returns([true])
       @controller.current_site.pages.expects(:not_found).returns(klass)
       @controller.send(:locomotive_page).should be_true
     end
@@ -141,7 +141,7 @@ describe 'Locomotive rendering system' do
 
       it 'returns the 404 page if the instance does not exist' do
         @content_type.contents.stubs(:where).returns([])
-        (klass = Page).expects(:published).returns([true])
+        (klass = Locomotive::Page).expects(:published).returns([true])
         @controller.current_site.pages.expects(:not_found).returns(klass)
         @controller.send(:locomotive_page).should be_true
         @controller.instance_variable_get(:@content_instance).should be_nil
@@ -150,7 +150,7 @@ describe 'Locomotive rendering system' do
       it 'returns the 404 page if the instance is not visible' do
         @content._visible = false
         @content_type.contents.stubs(:where).returns([@content])
-        (klass = Page).expects(:published).returns([true])
+        (klass = Locomotive::Page).expects(:published).returns([true])
         @controller.current_site.pages.expects(:not_found).returns(klass)
         @controller.send(:locomotive_page).should be_true
       end
@@ -167,7 +167,7 @@ describe 'Locomotive rendering system' do
       it 'should return the 404 page if the page has not been published yet' do
         @controller.request.fullpath = '/contact'
         @controller.current_site.pages.expects(:any_in).with({ :fullpath => %w{contact content_type_template} }).returns([@page])
-        (klass = Page).expects(:published).returns([true])
+        (klass = Locomotive::Page).expects(:published).returns([true])
         @controller.current_site.pages.expects(:not_found).returns(klass)
         @controller.send(:locomotive_page).should be_true
       end
