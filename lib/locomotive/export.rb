@@ -20,8 +20,8 @@ module Locomotive
     def run!
       self.initialize_site_hash
 
-      self.log('copying assets')
-      self.copy_assets
+      self.log('copying content assets')
+      self.copy_content_assets
 
       self.log('copying theme assets')
       self.copy_theme_assets
@@ -163,10 +163,10 @@ module Locomotive
       end
     end
 
-    def copy_assets
-      @site.assets.each do |asset|
-        target_path = File.join(self.samples_folder, asset.source_filename)
-        self.copy_file_from_an_uploader(asset.source, target_path)
+    def copy_content_assets
+      @site.content_assets.each do |content_asset|
+        target_path = File.join(self.samples_folder, content_asset.source_filename)
+        self.copy_file_from_an_uploader(content_asset.source, target_path)
       end
     end
 

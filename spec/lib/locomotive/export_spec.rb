@@ -6,7 +6,7 @@ describe Locomotive::Export do
 
     before(:each) do
       site = FactoryGirl.build('another site')
-      Site.stubs(:find).returns(site)
+      Locomotive::Site.stubs(:find).returns(site)
       project_type = build_project_type(site)
       project_type.contents.build(:title => 'Project #1', :description => 'Lorem ipsum', :active => true)
       project_type.contents.build(:title => 'Project #2', :description => 'More Lorem ipsum', :active => false)
@@ -120,7 +120,7 @@ describe Locomotive::Export do
 
     after(:all) do
       FileUtils.rm_rf(self.zip_folder) if File.exists?(self.zip_folder)
-      Site.destroy_all
+      Locomotive::Site.destroy_all
     end
 
   end

@@ -42,7 +42,7 @@ module Locomotive
 
         self.reset! if @options[:reset]
 
-        %w(site content_types assets snippets pages).each do |step|
+        %w(site content_types content_assets snippets pages).each do |step|
           if @options[:enabled][step] != false
             "Locomotive::Import::#{step.camelize}".constantize.process(context, @options)
             @worker.update_attributes :step => step if @worker
@@ -162,7 +162,7 @@ module Locomotive
 
       def reset!
         @site.pages.destroy_all
-        @site.assets.destroy_all
+        @site.content_assets.destroy_all
         @site.theme_assets.destroy_all
         @site.content_types.destroy_all
       end
