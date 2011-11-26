@@ -4,7 +4,7 @@ source 'http://rubygems.org'
 
 gem 'rake',                 '0.9.2'
 
-gem 'rails',                '~> 3.1.1'
+gem 'rails',                '~> 3.1.3'
 
 gem 'devise',               :git => 'git://github.com/plataformatec/devise.git'# FIXME: waiting for the new devise gem coming soon
 gem 'cancan',               '~> 1.6.7'
