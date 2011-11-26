@@ -1,8 +1,9 @@
 require 'spec_helper'
 
-describe Admin::MainMenuCell do
-
-  render_views
+describe Locomotive::MainMenuCell do
+  # FIXME: This does not seem to work correctly, rspec-cells should allow this to be called
+  # as if it were a controller.
+  # render_views
 
   let(:menu) { render_cell('admin/main_menu', :show) }
 

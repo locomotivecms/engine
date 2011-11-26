@@ -50,8 +50,6 @@ gem 'delayed_job',          '~> 2.1.1'
 gem 'delayed_job_mongoid',  '~> 1.0.4'
 gem 'SystemTimer',          :platforms => :ruby_18
 
-
-
 # The rest of the dependencies are for use when in the locomotive dev environment
 
 group :development do
