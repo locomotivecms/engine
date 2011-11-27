@@ -19,7 +19,7 @@ end
 
 Then /^I should be able to view a paginaed list of a has many association$/ do
   # Create models
-  Given %{I have an "Articles" model which has many "Comments"}
+  step %{I have an "Articles" model which has many "Comments"}
 
   # Create contents
   article = @parent_model.contents.create!(:slug => 'parent', :body => 'Parent')

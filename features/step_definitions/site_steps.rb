@@ -14,7 +14,7 @@ Given /^I have the site: "([^"]*)" set up(?: with #{capture_fields})?$/ do |site
 end
 
 Given /^I have a site set up$/ do
-  Given %{I have the site: "test site" set up}
+  step %{I have the site: "test site" set up}
 end
 
 Given /^I have a designer and an author$/ do
