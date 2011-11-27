@@ -11,13 +11,13 @@ describe Locomotive::Liquid::Drops::Page do
 
     before(:each) do
       @home.stubs(:children).returns([
-        Page.new(:title => 'Child #1'),
-        Page.new(:title => 'Child #2'),
-        Page.new(:title => 'Child #3')
+        Locomotive::Page.new(:title => 'Child #1'),
+        Locomotive::Page.new(:title => 'Child #2'),
+        Locomotive::Page.new(:title => 'Child #3')
         ])
       @home.children.last.stubs(:children).returns([
-        Page.new(:title => 'Child #3.1'),
-        Page.new(:title => 'Child #3.2')
+        Locomotive::Page.new(:title => 'Child #3.1'),
+        Locomotive::Page.new(:title => 'Child #3.2')
         ])
     end
 

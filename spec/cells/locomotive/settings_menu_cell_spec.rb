@@ -1,10 +1,11 @@
 require 'spec_helper'
 
-describe Admin::SettingsMenuCell do
+describe Locomotive::SettingsMenuCell do
+  # FIXME: This does not seem to work correctly, rspec-cells should allow this to be called
+  # as if it were a controller.
+  # render_views
 
-  render_views
-
-  let(:menu) { render_cell('admin/settings_menu', :show) }
+  let(:menu) { render_cell('locomotive/settings_menu', :show) }
 
   describe 'show menu' do
 
@@ -34,7 +35,7 @@ describe Admin::SettingsMenuCell do
 
     before(:each) do
       CellsResetter.new_settings_menu_cell_klass({ :main => 'settings', :sub => 'site' })
-      Admin::SettingsMenuCell.update_for(:testing_add) { |m| m.add(:my_link, :label => 'My link', :url => 'http://www.locomotivecms.com') }
+      Locomotive::SettingsMenuCell.update_for(:testing_add) { |m| m.add(:my_link, :label => 'My link', :url => 'http://www.locomotivecms.com') }
     end
 
     it 'has 4 items' do
@@ -51,7 +52,7 @@ describe Admin::SettingsMenuCell do
 
     before(:each) do
       CellsResetter.new_settings_menu_cell_klass({ :main => 'settings', :sub => 'site' })
-      Admin::SettingsMenuCell.update_for(:testing_remove) { |m| m.remove(:theme_assets) }
+      Locomotive::SettingsMenuCell.update_for(:testing_remove) { |m| m.remove(:theme_assets) }
     end
 
     it 'has 2 items' do
@@ -68,7 +69,7 @@ describe Admin::SettingsMenuCell do
 
     before(:each) do
       CellsResetter.new_settings_menu_cell_klass({ :main => 'settings', :sub => 'site' })
-      Admin::SettingsMenuCell.update_for(:testing_update) { |m| m.modify(:theme_assets, { :label => 'Modified !' }) }
+      Locomotive::SettingsMenuCell.update_for(:testing_update) { |m| m.modify(:theme_assets, { :label => 'Modified !' }) }
     end
 
     it 'still has 3 items' do

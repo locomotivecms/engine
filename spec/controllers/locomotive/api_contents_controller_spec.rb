@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Admin::ApiContentsController do
+describe Locomotive::ApiContentsController do
 
   before(:each) do
     @site = FactoryGirl.create('existing site')

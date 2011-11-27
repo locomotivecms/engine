@@ -5,18 +5,18 @@ describe Locomotive::Liquid::Tags::Nav do
   before(:each) do
     @home = FactoryGirl.build(:page)
     home_children = [
-      Page.new(:title => 'Child #1', :fullpath => 'child_1', :slug => 'child_1', :published => true),
-      Page.new(:title => 'Child #2', :fullpath => 'child_2', :slug => 'child_2', :published => true)
+      Locomotive::Page.new(:title => 'Child #1', :fullpath => 'child_1', :slug => 'child_1', :published => true),
+      Locomotive::Page.new(:title => 'Child #2', :fullpath => 'child_2', :slug => 'child_2', :published => true)
     ]
     @home.stubs(:children_with_minimal_attributes).returns(home_children)
     @home.stubs(:children).returns(home_children)
 
     other_children = [
-      Page.new(:title => 'Child #2.1', :fullpath => 'child_2/sub_child_1', :slug => 'sub_child_1', :published => true),
-      Page.new(:title => 'Child #2.2', :fullpath => 'child_2/sub_child_2', :slug => 'sub_child_2', :published => true),
-      Page.new(:title => 'Unpublished #2.2', :fullpath => 'child_2/sub_child_unpublishd_2', :slug => 'sub_child_unpublished_2', :published => false),
-      Page.new(:title => 'Templatized #2.3', :fullpath => 'child_2/sub_child_template_3',   :slug => 'sub_child_template_3',    :published => true,   :templatized => true),
-      Page.new(:title => 'Unlisted    #2.4', :fullpath => 'child_2/sub_child_unlisted_4',   :slug => 'sub_child_unlisted_4',    :published => true,   :listed => false)
+      Locomotive::Page.new(:title => 'Child #2.1', :fullpath => 'child_2/sub_child_1', :slug => 'sub_child_1', :published => true),
+      Locomotive::Page.new(:title => 'Child #2.2', :fullpath => 'child_2/sub_child_2', :slug => 'sub_child_2', :published => true),
+      Locomotive::Page.new(:title => 'Unpublished #2.2', :fullpath => 'child_2/sub_child_unpublishd_2', :slug => 'sub_child_unpublished_2', :published => false),
+      Locomotive::Page.new(:title => 'Templatized #2.3', :fullpath => 'child_2/sub_child_template_3',   :slug => 'sub_child_template_3',    :published => true,   :templatized => true),
+      Locomotive::Page.new(:title => 'Unlisted    #2.4', :fullpath => 'child_2/sub_child_unlisted_4',   :slug => 'sub_child_unlisted_4',    :published => true,   :listed => false)
     ]
     @home.children.last.stubs(:children_with_minimal_attributes).returns(other_children)
     @home.children.last.stubs(:children).returns(other_children)

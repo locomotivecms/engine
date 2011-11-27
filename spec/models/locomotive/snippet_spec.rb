@@ -31,7 +31,7 @@ describe Locomotive::Snippet do
 
       it 'updates templates with the new snippet template' do
         @snippet.update_attributes(:template => 'a new template')
-        Page.find(@page.id).render({}).should == 'a new template'
+        Locomotive::Page.find(@page.id).render({}).should == 'a new template'
       end
 
     end
@@ -44,7 +44,7 @@ describe Locomotive::Snippet do
 
       it 'updates templates with the new snippet template' do
         @snippet.update_attributes(:template => 'a new template')
-        Page.find(@page.id).render({}).should == 'a new template'
+        Locomotive::Page.find(@page.id).render({}).should == 'a new template'
       end
 
     end

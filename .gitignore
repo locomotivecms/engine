@@ -36,6 +36,7 @@ doc/bushido
 *.swp
 .sass-cache/
 spec/dummy/tmp/
+spec/dummy/spec/tmp
 spec/dummy/log/*.log
 app/assets/javascripts/old/
 app/assets/stylesheets/old/

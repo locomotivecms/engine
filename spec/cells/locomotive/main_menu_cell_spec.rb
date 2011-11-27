@@ -1,10 +1,11 @@
 require 'spec_helper'
 
-describe Admin::MainMenuCell do
+describe Locomotive::MainMenuCell do
+  # FIXME: This does not seem to work correctly, rspec-cells should allow this to be called
+  # as if it were a controller.
+  # render_views
 
-  render_views
-
-  let(:menu) { render_cell('admin/main_menu', :show) }
+  let(:menu) { render_cell('locomotive/main_menu', :show) }
 
   describe 'show menu' do
 
@@ -30,7 +31,7 @@ describe Admin::MainMenuCell do
 
     before(:each) do
       CellsResetter.new_main_menu_cell_klass({ :main => 'settings', :sub => 'site' })
-      Admin::MainMenuCell.update_for(:testing_add) { |m| m.add(:my_link, :label => 'Shop', :url => 'http://www.locomotivecms.com') }
+      Locomotive::MainMenuCell.update_for(:testing_add) { |m| m.add(:my_link, :label => 'Shop', :url => 'http://www.locomotivecms.com') }
     end
 
     it 'has 3 items' do
@@ -47,7 +48,7 @@ describe Admin::MainMenuCell do
 
     before(:each) do
       CellsResetter.new_main_menu_cell_klass({ :main => 'settings', :sub => 'site' })
-      Admin::MainMenuCell.update_for(:testing_remove) { |m| m.remove(:settings) }
+      Locomotive::MainMenuCell.update_for(:testing_remove) { |m| m.remove(:settings) }
     end
 
     it 'has only 1 item' do
@@ -64,7 +65,7 @@ describe Admin::MainMenuCell do
 
     before(:each) do
       CellsResetter.new_main_menu_cell_klass({ :main => 'settings', :sub => 'site' })
-      Admin::MainMenuCell.update_for(:testing_update) { |m| m.modify(:settings, { :label => 'Modified !' }) }
+      Locomotive::MainMenuCell.update_for(:testing_update) { |m| m.modify(:settings, { :label => 'Modified !' }) }
     end
 
     it 'still has 2 items' do

@@ -4,7 +4,7 @@ source 'http://rubygems.org'
 
 gem 'rake',                 '0.9.2'
 
-gem 'rails',                '~> 3.1.1'
+gem 'rails',                '~> 3.1.3'
 
 gem 'devise',               :git => 'git://github.com/plataformatec/devise.git'# FIXME: waiting for the new devise gem coming soon
 gem 'cancan',               '~> 1.6.7'
@@ -46,11 +46,9 @@ gem 'rubyzip'
 
 gem 'actionmailer-with-request', '~> 0.3.0', :require => 'actionmailer_with_request'
 gem 'httparty',             '~> 0.8.1'
-gem 'delayed_job',          '~> 2.1.1'
-gem 'delayed_job_mongoid',  '~> 1.0.4'
+gem 'delayed_job',          '~> 3.0.0.pre4'
+gem 'delayed_job_mongoid',  '~> 1.0.6'
 gem 'SystemTimer',          :platforms => :ruby_18
-
-
 
 # The rest of the dependencies are for use when in the locomotive dev environment
 
@@ -63,7 +61,7 @@ end
 group :test, :development do
   # gem 'linecache', '0.43', :platforms => :mri_18
   # gem 'ruby-debug', :platforms => :mri_18
-  # gem 'ruby-debug19', :platforms => :mri_19, :require => 'ruby-debug'
+  # gem 'ruby-debug19', :platforms => :mri_19
   gem 'cucumber-rails'
 end
 

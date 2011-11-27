@@ -9,7 +9,7 @@ module Locomotive
       def call(env)
         path = env['PATH_INFO']
 
-        if !path.starts_with('/admin/') && (match = path.match(%r{(.+)/$}))
+        if !path.starts_with?('/admin/') && (match = path.match(%r{(.+)/$}))
           response = Rack::Response.new
           response.redirect(match[1], 301) # moved permanently
           response.finish

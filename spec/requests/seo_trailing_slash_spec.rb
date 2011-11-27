@@ -3,7 +3,7 @@ require 'spec_helper'
 describe 'Locomotive::Middlewares::SeoTrailingSlash' do
 
   before(:all) do
-    Locomotive::Application.instance.instance_variable_set(:@app, nil) # re-initialize the stack
+    Dummy::Application.instance.instance_variable_set(:@app, nil) # re-initialize the stack
   end
 
   it 'does not process the "/" url' do
