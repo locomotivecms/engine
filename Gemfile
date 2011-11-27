@@ -46,8 +46,8 @@ gem 'rubyzip'
 
 gem 'actionmailer-with-request', '~> 0.3.0', :require => 'actionmailer_with_request'
 gem 'httparty',             '~> 0.8.1'
-gem 'delayed_job',          '~> 2.1.1'
-gem 'delayed_job_mongoid',  '~> 1.0.4'
+gem 'delayed_job',          '~> 3.0.0.pre4'
+gem 'delayed_job_mongoid',  '~> 1.0.6'
 gem 'SystemTimer',          :platforms => :ruby_18
 
 # The rest of the dependencies are for use when in the locomotive dev environment

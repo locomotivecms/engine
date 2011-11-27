@@ -163,7 +163,7 @@ module Locomotive
         end
 
         def absolute_url(url)
-          url.starts_with('/') ? url : "/#{url}"
+          url.starts_with?('/') ? url : "/#{url}"
         end
 
       end
