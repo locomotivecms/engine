@@ -54,7 +54,7 @@ module Locomotive
         def theme_image_url(input)
           return '' if input.nil?
 
-          input = "images/#{input}" unless input.starts_with?('/')
+          input = "images/#{input}" unless input.('/')
 
           asset_url(input)
         end
@@ -163,7 +163,7 @@ module Locomotive
         end
 
         def absolute_url(url)
-          url.starts_with('/') ? url : "/#{url}"
+          url.starts_with?'/') ? url : "/#{url}"
         end
 
       end
