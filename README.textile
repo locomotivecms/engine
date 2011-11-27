@@ -35,6 +35,12 @@ h2. Installation
 
 See the "official website":http://www.locomotivecms.com
 
+h2. Community
+
+* Get help or discuss locomotive CMS at the "LocomotiveCMS Discussion Forums":http://locomotive.vanillaforums.com/
+* Join us on IRC "#locomotivecms at irc.freenode.net!":http://webchat.freenode.net/
+* "Follow us on twitter":http://twitter.com/locomotiveapp
+
 h2. Team
 
 * Developers: "Didier Lafforgue":http://www.nocoffee.fr, "Jacques Crocker":http://www.railsjedi.com, "Mario Visic":http://www.mariovisic.com
