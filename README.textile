@@ -35,6 +35,10 @@ h2. Installation
 
 See the "official website":http://www.locomotivecms.com
 
+h2. Upgrading
+
+If you wish to upgrade your locomotive install from an older version to the current 1.0.0rc1 then "please refer to the upgrade guide":http://www.locomotivecms.com/support/howto/upgrade
+
 h2. Community
 
 * Get help or discuss locomotive CMS at the "LocomotiveCMS Discussion Forums":http://locomotive.vanillaforums.com/
