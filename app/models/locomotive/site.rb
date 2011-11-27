@@ -49,7 +49,7 @@ module Locomotive
       Locomotive::Liquid::Drops::Site.new(self)
     end
 
-    def to_json
+    def as_json(options = {})
       Locomotive::SitePresenter.new(self).as_json
     end
 

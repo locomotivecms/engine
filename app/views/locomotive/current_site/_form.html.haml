@@ -1,5 +1,5 @@
 - content_for :head do
-  = render 'domain'
+  = render 'locomotive/sites/domains'
 
 - content_for :backbone_view_data do
   :plain
@@ -20,35 +20,6 @@
 
       - if manage_domains?
         = f.input :domains, :as => :'Locomotive::Empty'
-
-      / = f.custom_input :subdomain, :css => 'path' do
-      /   %em
-      /     http://
-      /   = f.text_field :subdomain, :readonly =>
-      /   \.
-      /   %em
-      /     = application_domain
-
-      / - if manage_domains?
-      /   - @site.domains_without_subdomain.each_with_index do |name, index|
-      /     %li{ :class => "item added #{'last' if index == @site.domains.size - 1}"}
-      /       %em
-      /         http://
-      /       = text_field_tag 'site[domains][]', name, :class => 'string label void domain'
-      /       &nbsp;
-      /       = error_on_domain(@site, name)
-      /       %span.actions
-      /         = link_to image_tag('admin/form/icons/trash.png'), '#', :class => 'remove first', :confirm => t('locomotive.messages.confirm')
-      /
-      /   %li.item.template
-      /     %em
-      /       http://
-      /     = text_field_tag 'label', t('formtastic.hints.site.domain_name'), :class => 'string label void domain'
-      /     &nbsp;
-      /     %span.actions
-      /       = link_to image_tag('admin/form/icons/trash.png'), '#', :class => 'remove first', :confirm => t('locomotive.messages.confirm')
-      /       %button{ :class => 'button light add', :type => 'button' }
-      /         %span!= t('locomotive.buttons.new_item')
 
 - if can?(:index, Locomotive::Membership)
 
@@ -81,7 +52,4 @@
 - if can?(:manage, current_site)
 
   = f.inputs :name => :robots_txt, :class => "inputs foldable #{'folded' if inputs_folded?(@site)}" do
-    / = f.custom_input :robots_txt, :css => 'code full', :with_label => false do
-    /   = f.label :robots_txt
-    /   %code{ :class => 'html' }
-    /     = f.text_area :robots_txt, :class => 'small'
+    = f.input :robots_txt, :as => :'Locomotive::Code', :picker => false, :wrapper_html => { :class => 'small' }

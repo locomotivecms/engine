@@ -15,11 +15,17 @@ x menu / submenu in full css3 (no images)
 x fix css in firefox
 x update page in ajax
 - fix other sections
-  - content types
-  - edit my account
-  - create a new site
   - edit my site
+    - domains
+    - robots.txt
+    - roles
+    - save
+    - css
+  - create a new site
+  - edit my account
   - theme assets
+  - content types
+
 
 
 

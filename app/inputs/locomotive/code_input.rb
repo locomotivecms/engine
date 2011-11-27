@@ -2,10 +2,17 @@ module Locomotive
   class CodeInput < Formtastic::Inputs::TextInput
 
     def input_wrapping(&block)
+      Rails.logger.debug hint_html.inspect
       template.content_tag(:li,
         [template.capture(&block), error_html, image_picker_html, hint_html].join("\n").html_safe,
         wrapper_html_options
       )
+    end
+
+    def hint_text
+      localized_string(method, options[:hint], :hint).tap do |foo|
+        Rails.logger.debug foo.inspect
+      end
     end
 
     def to_html
@@ -15,6 +22,7 @@ module Locomotive
     end
 
     def image_picker_html
+      return '' if options.delete(:picker) == false
       template.content_tag(:div,
         template.link_to(template.t('locomotive.image_picker.link'), template.theme_assets_path, :id => 'image-picker-link', :class => 'picture'),
         :class => 'more')

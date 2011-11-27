@@ -155,11 +155,19 @@ form.formtastic {
 
         &.code {
 
+          textarea, .CodeMirror-scroll {
+            height: 400px;
+          }
+
           textarea {
             @include default-input-style;
-
             width: 868px;
-            height: 400px;
+          }
+
+          &.small {
+            textarea, .CodeMirror-scroll {
+              height: 60px;
+            }
           }
 
           div.inline-errors, p.inline-hints {
