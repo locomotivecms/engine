@@ -1,5 +1,8 @@
 h1. Locomotive CMS
 
+"!https://secure.travis-ci.org/locomotivecms/engine.png!":http://travis-ci.org/locomotivecms/engine
+
+
 Locomotive is a simple but powerful CMS based on liquid templates and mongodb database. At my company ("NoCoffee":http://www.nocoffee.fr), we use it for our clients when they request a simple website.
 
 If we have to give only 5 main features to describe our application, there will be:
