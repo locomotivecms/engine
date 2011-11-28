@@ -9,10 +9,5 @@ module Locomotive
 
     helper 'locomotive/base'
 
-    def edit
-      logger.debug 'I am here'
-      super
-    end
-
   end
 end

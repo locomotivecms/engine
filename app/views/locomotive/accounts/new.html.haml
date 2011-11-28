@@ -7,13 +7,13 @@
 
 = semantic_form_for @account, :url => accounts_url do |f|
 
-  = f.foldable_inputs :name => :information do
+  = f.inputs :name => :information do
     = f.input :name
     - unless f.object.respond_to?(:password)
       = f.input :email
 
   - if f.object.respond_to?(:password)
-    = f.foldable_inputs :name => :credentials do
+    = f.inputs :name => :credentials do
       = f.input :email
       = f.input :password, :input_html => { :autocomplete => "off" }
       = f.input :password_confirmation, :input_html => { :autocomplete => "off" }

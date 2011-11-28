@@ -4,22 +4,25 @@ module Locomotive
     sections 'settings'
 
     def create
-      resource.role = 'author' # force author by default
+      @membership = current_site.memberships.build(params[:membership])
+      @membership.role = 'author' # force author by default
 
-      case resource.process!
+      case @membership.process!
       when :create_account
-        redirect_to new_account_url(:email => resource.email)
+        redirect_to new_account_url(:email => @membership.email)
       when :save_it
-        respond_with resource, :location => edit_current_site_url
+        respond_with @membership, :location => edit_current_site_url
       when :error
-        respond_with resource, :flash => true
+        respond_with @membership, :flash => true
       when :already_created
-        respond_with resource, :alert => t('flash.locomotive.memberships.create.already_created'), :location => edit_current_site_url
+        respond_with @membership, :alert => t('flash.locomotive.memberships.create.already_created'), :location => edit_current_site_url
       end
     end
 
     def destroy
-      destroy! { edit_current_site_url }
+      @membership = current_site.memberships.find(params[:id])
+      @membership.destroy
+      respond_with @membership, :location => edit_current_site_url
     end
 
   end

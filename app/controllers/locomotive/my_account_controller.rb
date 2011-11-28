@@ -5,22 +5,20 @@ module Locomotive
 
     respond_to :json, :only => :update
 
+    helper 'Locomotive::Accounts'
+
     skip_load_and_authorize_resource
 
     def edit
+      @account = current_locomotive_account
+      respond_with @account
     end
 
     def update
-      update! { edit_my_account_url }
-    end
-
-    protected
-
-    def resource
       @account = current_locomotive_account
+      @account.update_attributes(params[:account])
+      respond_with @account, edit_my_account_url
     end
-
-    def begin_of_association_chain; nil; end # not related directly to current_site
 
   end
 end

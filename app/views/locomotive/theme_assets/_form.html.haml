@@ -1,6 +1,6 @@
 - content_for :head do
-  = include_javascripts :image_picker, :theme_assets
-  = include_stylesheets :fancybox
+  / = include_javascripts :image_picker, :theme_assets
+  / = include_stylesheets :fancybox
 
 = f.hidden_field :performing_plain_text
 
@@ -19,17 +19,12 @@
       - if @theme_asset.new_record?
         = f.input :plain_text_name
 
-        = f.custom_input :plain_text_type do
-          = f.select :plain_text_type, %w(stylesheet javascript)
+        = f.input :plain_text_type, :as => 'select', :collection => %w(stylesheet javascript)
 
-      = f.custom_input :plain_text, :css => 'full', :with_label => false do
-        %code{ :class => (@theme_asset.size && @theme_asset.size > 40000 ? 'nude' : (@theme_asset.content_type || 'stylesheet')) }
-          = f.text_area :plain_text
-        .more
-          = link_to t('locomotive.image_picker.link'), admin_theme_assets_path, :id => 'image-picker-link', :class => 'picture'
+      = f.input :plain_text, :as => :'Locomotive::Code', :type => plain_text_type(@theme_asset)
 
     %span.alt
       != t('locomotive.theme_assets.form.choose_file')
 
-= f.foldable_inputs :name => :options do
+= f.inputs :name => :options, :class => "inputs foldable #{'folded' if inputs_folded?(@asset)}" do
   = f.input :folder

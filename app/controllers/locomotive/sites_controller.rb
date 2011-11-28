@@ -3,11 +3,16 @@ module Locomotive
 
     sections 'settings'
 
+    def new
+      @site = Site.new
+      respond_with @site
+    end
+
     def create
       @site = Site.new(params[:site])
       @site.memberships.build :account => @current_locomotive_account, :role => 'admin'
-
-      create! { edit_my_account_url }
+      @site.save
+      respond_with @site, :location => edit_my_account_url
     end
 
     def destroy
@@ -21,10 +26,6 @@ module Locomotive
 
       respond_with @site, :location => edit_my_account_url
     end
-
-    protected
-
-    def begin_of_association_chain; nil; end # not related directly to current_site
 
   end
 end

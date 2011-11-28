@@ -11,6 +11,7 @@ module Locomotive
 
     def show
       @pages = current_site.pages.published
+      respond_with @pages
     end
 
   end
