@@ -152,7 +152,7 @@ ru:
 
     memberships:
       roles:
-        locomotive: Администратор
+        admin: Администратор
         designer: Дизайнер
         author: Автор
       new:

@@ -95,6 +95,16 @@ form.formtastic {
           }
         }
 
+        span.inline-errors {
+          margin-left: 10px;
+          padding: 2px 3px;
+
+          background: #FFE5E5;
+
+          color: #CE2525;
+          font-size: 13px;
+        }
+
         span.actions {
           position: absolute;
           top: 0px;
@@ -323,44 +333,45 @@ form.formtastic {
               margin-top: 10px;
               margin-bottom: 0px;
             }
+          }
+        } // li.no-label
 
-            &.memberships {
-              em.email {
-                margin-left: 10px;
-              }
+        &#site_memberships_input {
+          .entry {
+            em.email {
+              margin-left: 10px;
+            }
 
-              .role {
-                position: absolute;
-                top: 0px;
-                right: 30px;
-                width: 170px;
+            .role {
+              position: absolute;
+              top: 0px;
+              right: 30px;
+              width: 170px;
 
-                line-height: 30px;
+              line-height: 30px;
 
-                em {
-                  padding-left: 17px;
-                  margin-left: 0px;
-                  background-repeat: no-repeat;
+              em {
+                padding-left: 17px;
+                margin-left: 0px;
+                background-repeat: no-repeat;
 
-                  color: #757575;
-                  font-size: 13px;
-                  font-weight: normal;
+                color: #757575;
+                font-size: 13px;
+                font-weight: normal;
 
-                  &.locked {
-                    background-image: image-url("locomotive/icons/membership_lock.png");
-                    background-position: 1px 0px;
-                  }
+                &.locked {
+                  background-image: image-url("locomotive/icons/membership_lock.png");
+                  background-position: 1px 0px;
+                }
 
-                  &.editable {
-                    background-image: image-url("locomotive//icons/membership_edit.png");
-                    background-position: 0px 3px;
-                  }
+                &.editable {
+                  background-image: image-url("locomotive//icons/membership_edit.png");
+                  background-position: 0px 3px;
                 }
               }
-            } // li.no-label .list.memberships
+            }
           }
-
-        } // li.no-label
+        } // > li#site_memberships_input
 
       } // > li
 

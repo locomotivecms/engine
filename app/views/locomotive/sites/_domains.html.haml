@@ -18,9 +18,5 @@
   %em http://
   = text_field_tag 'site[domains][]', '{{name}}', :id => '', :class => 'path'
 
-  {{#if error}}
-  %span.inline-errors {{error}}
-  {{/if}}
-
   %span.actions
     = link_to 'x', '#', :class => 'remove'

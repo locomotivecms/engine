@@ -29,8 +29,6 @@ class Locomotive.Views.EditableElements.EditAllView extends Backbone.View
 
   refresh: ->
     _.each @_editable_elements_views, (view) =>
-      foo = @collection.get(view.model.get('id'))
-      console.log(foo.cid)
       view.model = @collection.get(view.model.get('id'))
       view.refresh()
 

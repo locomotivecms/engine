@@ -9,6 +9,12 @@ module Locomotive
       end
     end
 
+    def wrapper_html_options
+      super.tap do |opts|
+        opts[:class] += ' no-label' unless render_label?
+      end
+    end
+
     def error_html
       ""
     end
@@ -16,14 +22,6 @@ module Locomotive
     def errors?
       false
     end
-
-    # def hint_html
-    #   ""
-    # end
-    #
-    # def hint?
-    #   false
-    # end
 
   end
 end

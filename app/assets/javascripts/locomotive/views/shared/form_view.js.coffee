@@ -18,6 +18,32 @@ class Locomotive.Views.Shared.FormView extends Backbone.View
   save: (event) ->
     # by default, follow the default behaviour
 
+  save_in_ajax: (event, options) ->
+    event.stopPropagation() & event.preventDefault()
+
+    @clear_errors()
+
+    options ||= { on_success: null, on_error: null }
+
+    previous_attributes = _.clone @model.attributes
+
+    @model.save {},
+      success: (model, response, xhr) =>
+        $.growl('success', xhr.getResponseHeader('X-Message'))
+
+        model.attributes = previous_attributes
+
+        options.on_success(response) if options.on_success
+
+      error: (model, xhr) =>
+        $.growl('error', xhr.getResponseHeader('X-Message'))
+
+        errors = JSON.parse(xhr.responseText)
+
+        @show_errors errors
+
+        options.on_error() if options.on_error
+
   make_title_editable: ->
     title = @$('h2 a.editable')
 
@@ -49,7 +75,7 @@ class Locomotive.Views.Shared.FormView extends Backbone.View
     # overide this method if necessary
 
   clear_errors: ->
-    @$('div.inline-errors').remove()
+    @$('.inline-errors').remove()
 
   show_errors: (errors) ->
     for attribute, message of errors

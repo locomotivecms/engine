@@ -50,7 +50,7 @@ module Locomotive
     end
 
     def as_json(options = {})
-      Locomotive::SitePresenter.new(self).as_json
+      Locomotive::SitePresenter.new(self, options).as_json
     end
 
     protected

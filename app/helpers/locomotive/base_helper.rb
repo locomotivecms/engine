@@ -106,5 +106,17 @@ module Locomotive::BaseHelper
     end
   end
 
+  # memberships
+
+  def options_for_membership_roles(options = {})
+    list = (unless options[:skip_admin]
+      Locomotive::Ability::ROLES.map { |r| [t("locomotive.memberships.roles.#{r}"), r] }
+    else
+      (Locomotive::Ability::ROLES - ['admin']).map { |r| [t("locomotive.memberships.roles.#{r}"), r] }
+    end)
+
+    options_for_select(list)
+  end
+
 
 end
