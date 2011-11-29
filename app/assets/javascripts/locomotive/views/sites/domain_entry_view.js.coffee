@@ -21,5 +21,6 @@ class Locomotive.Views.Site.DomainEntryView extends Backbone.View
 
   remove: (event) ->
     event.stopPropagation() & event.preventDefault()
+    @$('input[type=text]').editableField('destroy')
     @options.parent_view.remove_entry(@model)
     super()

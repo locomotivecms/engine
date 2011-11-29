@@ -3,6 +3,7 @@
 @import "compass/css3/images";
 @import "compass/css3/text-shadow";
 @import "helpers";
+@import "buttons";
 
 form.formtastic {
 
@@ -56,6 +57,93 @@ form.formtastic {
       }
     } // .foldable
 
+    .list {
+      .empty {
+        text-align: left;
+      }
+
+      li, .entry, .new-entry {
+        position: relative;
+        margin-bottom: 10px;
+        height: 30px;
+        line-height: 30px;
+
+        padding: 0 10px;
+
+        background: #fff;
+        @include border-radius(16px);
+        @include box-shadow(rgba(0, 0, 0, 0.2) 0px 1px 0px 0px);
+
+        em {
+          color: #757575;
+          font-size: 11px;
+          font-weight: normal;
+        }
+
+        strong {
+          color: #17171D;
+          font-size: 14px;
+          font-weight: bold;
+        }
+
+        .editable {
+          @include editable;
+          padding-right: 6px;
+
+          &:hover {
+            background-image: none;
+          }
+        }
+
+        span.actions {
+          position: absolute;
+          top: 0px;
+          right: 10px;
+
+          a.add {
+            @include gray-button;
+
+            padding-left: 10px;
+          }
+
+          a.remove {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+
+            position: relative;
+            top: 4px;
+
+            outline: none;
+
+            background: transparent image-url("locomotive/list/icons/trash_off.png") repeat 0 0;
+
+            text-indent: -9999px;
+
+            &:hover {
+              background-image: image-url("locomotive/list/icons/trash.png");
+            }
+          }
+        }
+
+        &:last-child {
+          margin-bottom: 0px;
+        }
+      } // li
+
+      > hr {
+        margin: 10px 0px;
+        height: 1px;
+        line-height: 1px;
+        border: 0px;
+        border-top: 1px solid rgba(0, 0, 0, 0.2);
+        background: transparent;
+      }
+
+      .new-entry {
+      }
+    } // div.list
+
     ol {
       margin-bottom: 0px;
       padding: 0px;
@@ -106,6 +194,10 @@ form.formtastic {
           }
         } // p.inline-hints
 
+        div.list {
+          margin-left: 160px;
+        }
+
         div.inline-errors {
           margin: 2px 0 0 160px;
           padding: 8px 0 0 0;
@@ -125,12 +217,12 @@ form.formtastic {
           }
         } // div.inline-errors
 
-        &.string {
+        &.string, &.password {
           label {
             padding-top: 2px;
           }
 
-          input[type=text] {
+          input[type=text], input[type=password] {
             @include default-input-style;
 
             width: 700px;
@@ -189,11 +281,89 @@ form.formtastic {
                 background: transparent image-url("locomotive/icons/asset_add.png") no-repeat left 1px;
               }
             }
-          } // li.code
+          }
+        } // li.code
 
-        }
+        &.subdomain {
+
+          em {
+            color: #222;
+          }
+
+          input[type=text] {
+            @include path-input-style;
+          }
+
+        } // li.subdomain
+
+        &.empty {
+
+          .list {
+
+            em.editable {
+              font-size: 14px;
+              color: #17171D;
+              font-weight: bold;
+            }
+
+            input[type=text].path {
+              @include path-input-style;
+            }
+          }
+
+        } // li.empty
+
+        &.no-label {
+          padding-top: 6px;
+
+          .list {
+            margin-left: 0;
+
+            .entry {
+              margin-top: 10px;
+              margin-bottom: 0px;
+            }
+
+            &.memberships {
+              em.email {
+                margin-left: 10px;
+              }
+
+              .role {
+                position: absolute;
+                top: 0px;
+                right: 30px;
+                width: 170px;
+
+                line-height: 30px;
+
+                em {
+                  padding-left: 17px;
+                  margin-left: 0px;
+                  background-repeat: no-repeat;
+
+                  color: #757575;
+                  font-size: 13px;
+                  font-weight: normal;
+
+                  &.locked {
+                    background-image: image-url("locomotive/icons/membership_lock.png");
+                    background-position: 1px 0px;
+                  }
+
+                  &.editable {
+                    background-image: image-url("locomotive//icons/membership_edit.png");
+                    background-position: 0px 3px;
+                  }
+                }
+              }
+            } // li.no-label .list.memberships
+          }
+
+        } // li.no-label
 
       } // > li
+
     } //ol
   } // fieldset
 }

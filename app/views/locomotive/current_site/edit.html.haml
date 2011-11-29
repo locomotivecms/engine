@@ -12,7 +12,7 @@
 
 %p!= t('.help')
 
-= semantic_form_for @site, :url => current_site_url, :html => { :class => 'save-with-shortcut' } do |form|
+= semantic_form_for @site, :url => current_site_url do |form|
 
   = render 'form', :f => form
 

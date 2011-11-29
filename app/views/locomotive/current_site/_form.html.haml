@@ -24,30 +24,32 @@
 - if can?(:index, Locomotive::Membership)
 
   = f.inputs :name => :memberships do
-    = f.semantic_fields_for :memberships do |fm|
+    %li{ :class => 'input empty no-label' }
+      .list.memberships
+        = f.semantic_fields_for :memberships do |fm|
 
-      - membership, account = fm.object, fm.object.account
+          - membership, account = fm.object, fm.object.account
 
-      %li.item.membership{ :'data-role' => membership.role }
-        %strong= account.name
+          .entry
+            = fm.hidden_field :_destroy
 
-        %em.email= account.email
+            %strong= account.name
 
-        - if can?(:update, membership)
-          .role
-            %em.editable= t("locomotive.memberships.roles.#{membership.role}")
+            %em.email= account.email
 
-            - if can?(:grant_admin, membership)
-              = fm.select :role, Locomotive::Ability::ROLES.map { |r| [t("locomotive.memberships.roles.#{r}"), r] }, :include_blank => false
+            - if can?(:update, membership)
+              .role
+                - if can?(:grant_admin, membership)
+                  = fm.select :role, Locomotive::Ability::ROLES.map { |r| [t("locomotive.memberships.roles.#{r}"), r] }, :include_blank => false
+                - else
+                  = fm.select :role, (Locomotive::Ability::ROLES - ['admin']).map { |r| [t("locomotive.memberships.roles.#{r}"), r] }, :include_blank => false
+
+              %span.actions
+                = link_to 'x', '#', :class => 'remove'
+
             - else
-              = fm.select :role, (Locomotive::Ability::ROLES - ['admin']).map { |r| [t("locomotive.memberships.roles.#{r}"), r] }, :include_blank => false
-
-          %span.actions
-            = link_to image_tag('admin/form/icons/trash.png'), membership_url(membership), :class => 'remove first', :confirm =>t('locomotive.messages.confirm'), :method => :delete
-
-        - else
-          .role
-            %em.locked= t("locomotive.memberships.roles.#{membership.role}")
+              .role
+                %em.locked= t("locomotive.memberships.roles.#{membership.role}")
 
 - if can?(:manage, current_site)
 

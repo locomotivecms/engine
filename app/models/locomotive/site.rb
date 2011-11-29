@@ -29,7 +29,7 @@ module Locomotive
 
     ## behaviours ##
     enable_subdomain_n_domains_if_multi_sites
-    accepts_nested_attributes_for :memberships
+    accepts_nested_attributes_for :memberships, :allow_destroy => true
 
     ## methods ##
 

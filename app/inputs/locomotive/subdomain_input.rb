@@ -12,6 +12,7 @@ module Locomotive
 
       input_wrapping do
         label_html <<
+        template.content_tag(:em, "http://") <<
         builder.text_field(method, input_html_options) <<
         template.content_tag(:em, ".#{domain}")
       end

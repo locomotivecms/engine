@@ -2,7 +2,7 @@
 
 - content_for :submenu do
   = render 'locomotive/shared/menu/contents'
-  
+
 - content_for :actions do
   = render 'locomotive/shared/actions/contents'
 
@@ -11,7 +11,7 @@
 
 %p!= t('.help')
 
-= semantic_form_for @page, :url => page_url(@page), :html => { :class => 'save-with-shortcut', :multipart => true } do |form|
+= semantic_form_for @page, :url => page_url(@page), :html => { :multipart => true } do |form|
 
   = render 'form', :f => form
 

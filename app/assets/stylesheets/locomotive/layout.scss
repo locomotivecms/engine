@@ -115,15 +115,7 @@ body {
         color: #1e1f26;
 
         a.editable {
-          padding: 2px 25px 2px 6px;
-          color: #1e1f26;
-          outline: none;
-
-          &:hover {
-            text-decoration: none;
-            background: #fffbe5 image-url("locomotive/form/pen.png") no-repeat right 5px;
-            border-bottom: 1px dotted #efe4a5;
-          }
+          @include editable;
         } // h2 a.editable
       } // > div.inner h2
 

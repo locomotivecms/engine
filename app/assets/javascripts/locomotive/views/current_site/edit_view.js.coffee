@@ -7,8 +7,13 @@ class Locomotive.Views.CurrentSite.EditView extends Locomotive.Views.Shared.Form
 
   el: '#content'
 
+  events:
+    'click .memberships a.remove': 'remove_membership'
+
   initialize: ->
     @model = new Locomotive.Models.CurrentSite(@options.site)
+
+    Backbone.ModelBinding.bind @
 
     window.foo = @model
 
@@ -18,6 +23,8 @@ class Locomotive.Views.CurrentSite.EditView extends Locomotive.Views.Shared.Form
     @render_domain_entries()
 
     @enable_liquid_editing()
+
+    @enable_ui_effects()
 
   render_domain_entries: ->
     @domains_view = new Locomotive.Views.Site.DomainsView model: @model, errors: @options.errors
@@ -35,5 +42,12 @@ class Locomotive.Views.CurrentSite.EditView extends Locomotive.Views.Shared.Form
       theme:            'default'
       onChange: (editor) => @model.set(robots_txt: editor.getValue())
 
+  enable_ui_effects: ->
+    @$('#site_domains_input .domain input[type=text]').editableField()
+    @$('.memberships .entry .role select').editableField()
 
+  remove_membership: (event) ->
+    event.stopPropagation() & event.preventDefault()
+    entry = $(event.target).parents('.entry').hide()
+    entry.find('input[type=hidden]').val(1)
 

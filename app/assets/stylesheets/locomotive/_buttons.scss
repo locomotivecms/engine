@@ -75,6 +75,7 @@
 
   color: #8b8d9a;
   text-decoration: none;
+  @include text-shadow(rgba(255, 255, 255, 0.8) 0px 1px 0px);
   font-size: 11px;
   margin-left: 10px;
 

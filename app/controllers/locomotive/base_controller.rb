@@ -17,7 +17,7 @@ module Locomotive
 
     before_filter :set_current_thread_variables
 
-    helper_method :sections, :current_site_url, :site_url, :public_page_url, :current_ability
+    helper_method :sections, :current_site_public_url, :site_url, :public_page_url, :current_ability
 
     # https://rails.lighthouseapp.com/projects/8994/tickets/1905-apphelpers-within-plugin-not-being-mixed-in
     helper Locomotive::BaseHelper, Locomotive::ContentTypesHelper #, Locomotive::BoxHelper
@@ -78,7 +78,7 @@ module Locomotive
 
     # ___ site/page urls builder ___
 
-    def current_site_url
+    def current_site_public_url
       request.protocol + request.host_with_port
     end
 
@@ -95,9 +95,9 @@ module Locomotive
 
     def public_page_url(page, options = {})
       if content = options.delete(:content)
-        File.join(current_site_url, page.fullpath.gsub('content_type_template', ''), content._slug)
+        File.join(current_site_public_url, page.fullpath.gsub('content_type_template', ''), content._slug)
       else
-        File.join(current_site_url, page.fullpath)
+        File.join(current_site_public_url, page.fullpath)
       end
     end
 

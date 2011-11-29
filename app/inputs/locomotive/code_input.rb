@@ -2,7 +2,6 @@ module Locomotive
   class CodeInput < Formtastic::Inputs::TextInput
 
     def input_wrapping(&block)
-      Rails.logger.debug hint_html.inspect
       template.content_tag(:li,
         [template.capture(&block), error_html, image_picker_html, hint_html].join("\n").html_safe,
         wrapper_html_options
@@ -10,9 +9,7 @@ module Locomotive
     end
 
     def hint_text
-      localized_string(method, options[:hint], :hint).tap do |foo|
-        Rails.logger.debug foo.inspect
-      end
+      localized_string(method, options[:hint], :hint)
     end
 
     def to_html

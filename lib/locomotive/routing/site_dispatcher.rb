@@ -47,7 +47,7 @@ module Locomotive
 
           sign_out(current_locomotive_account)
           flash[:alert] = I18n.t(:no_membership, :scope => [:devise, :failure, :locomotive])
-          redirect_to new_session_url and return false
+          redirect_to new_locomotive_account_session_url and return false
         end
 
       end

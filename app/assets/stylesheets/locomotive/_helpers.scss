@@ -27,3 +27,31 @@
   border: 1px solid #b5b7c4;
   @include background-image(linear-gradient(top, #f0f0f0, #f9f9f9 25%, #f9f9f9 25%, #ffffff 50%, #ffffff));
 }
+
+@mixin path-input-style {
+  background: transparent;
+  outline: none;
+
+  margin: 0 5px;
+
+  width: 30%;
+
+  border: none;
+  border-bottom: 1px solid #B5B7C4;
+
+  color: #787A89;
+  font-size: 14px;
+}
+
+@mixin editable {
+  padding: 2px 25px 2px 6px;
+  color: #1e1f26;
+  outline: none;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: none;
+    background: #fffbe5 image-url("locomotive/form/pen.png") no-repeat right 5px;
+    border-bottom: 1px dotted #efe4a5;
+  }
+}

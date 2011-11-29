@@ -16,11 +16,12 @@ x fix css in firefox
 x update page in ajax
 - fix other sections
   - edit my site
+    x css
+    x robots.txt
     - domains
-    - robots.txt
     - roles
     - save
-    - css
+
   - create a new site
   - edit my account
   - theme assets

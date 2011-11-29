@@ -1,7 +1,7 @@
 %h1
   = link_to current_site.name, pages_url
 
-= render_cell 'locomotive/global_actions', :show, :current_locomotive_account => current_locomotive_account, :current_site_url => current_site_url
+= render_cell 'locomotive/global_actions', :show, :current_locomotive_account => current_locomotive_account, :current_site_url => current_site_public_url
 
 - if multi_sites? && current_locomotive_account.sites.size > 1
   #sites-picker{ :style => 'display: none' }
