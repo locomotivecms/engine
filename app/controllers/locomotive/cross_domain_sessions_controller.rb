@@ -31,7 +31,7 @@ module Locomotive
         sign_in(account)
         redirect_to admin_pages_path
       else
-        redirect_to new_admin_session_path, :alert => t('fash.locomotive.cross_domain_sessions.create.alert')
+        redirect_to new_admin_session_path, :alert => t('flash.locomotive.cross_domain_sessions.create.alert')
       end
     end
 

@@ -1,9 +1,10 @@
 - content_for :head do
   = render 'locomotive/sites/domains'
+  = render 'locomotive/sites/memberships'
 
 - content_for :backbone_view_data do
   :plain
-    { site: #{@site.to_json}, errors: #{@site.errors.to_json} }
+    { site: #{@site.to_json(:current_account => current_locomotive_account, :current_site => current_site)}, errors: #{@site.errors.to_json} }
 
 = f.inputs :name => :information, :style => "#{'display: none' unless @site.new_record?}" do
   = f.input :name, :required => false
@@ -24,32 +25,7 @@
 - if can?(:index, Locomotive::Membership)
 
   = f.inputs :name => :memberships do
-    %li{ :class => 'input empty no-label' }
-      .list.memberships
-        = f.semantic_fields_for :memberships do |fm|
-
-          - membership, account = fm.object, fm.object.account
-
-          .entry
-            = fm.hidden_field :_destroy
-
-            %strong= account.name
-
-            %em.email= account.email
-
-            - if can?(:update, membership)
-              .role
-                - if can?(:grant_admin, membership)
-                  = fm.select :role, Locomotive::Ability::ROLES.map { |r| [t("locomotive.memberships.roles.#{r}"), r] }, :include_blank => false
-                - else
-                  = fm.select :role, (Locomotive::Ability::ROLES - ['admin']).map { |r| [t("locomotive.memberships.roles.#{r}"), r] }, :include_blank => false
-
-              %span.actions
-                = link_to 'x', '#', :class => 'remove'
-
-            - else
-              .role
-                %em.locked= t("locomotive.memberships.roles.#{membership.role}")
+    = f.input :memberships, :as => :'Locomotive::Empty', :label => false, :wrapper_html => { :id => 'site_memberships_input' }
 
 - if can?(:manage, current_site)
 

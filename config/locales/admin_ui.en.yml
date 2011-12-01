@@ -157,7 +157,7 @@ en:
 
     memberships:
       roles:
-        locomotive: Administrator
+        admin: Administrator
         designer: Designer
         author: Author
       new:

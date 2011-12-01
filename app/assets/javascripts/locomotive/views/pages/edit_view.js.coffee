@@ -7,8 +7,6 @@ class Locomotive.Views.Pages.EditView extends Locomotive.Views.Pages.FormView
 
     @clear_errors()
 
-    console.log('saving')
-
     @model.save {},
       success: (model, response, xhr) =>
         model._normalize()

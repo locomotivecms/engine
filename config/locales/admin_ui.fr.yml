@@ -155,7 +155,7 @@ fr:
 
     memberships:
       roles:
-        locomotive: Administrateur
+        admin: Administrateur
         designer: Designeur
         author: Auteur
       new:

@@ -17,6 +17,8 @@ class Locomotive.Views.Site.DomainsView extends Backbone.View
 
     @render_entries()
 
+    @enable_ui_effects()
+
     return @
 
   add_entry: (event) ->
@@ -53,10 +55,21 @@ class Locomotive.Views.Site.DomainsView extends Backbone.View
       @$('.empty').show()
     else
       _.each @model.get('domains'), (domain) =>
-        _.each @options.errors.domain || [], (message) =>
-          domain.error = message if message.test /^#{domain.get('name')} /
-
         @_insert_entry(domain)
+
+      @show_errors()
+
+  show_errors: ->
+    _.each @options.errors.domain || [], (message) => @show_error(message)
+
+  show_error: (message) ->
+    _.each (@_entry_views || []), (view) ->
+      if new RegExp("^#{view.model.get('name')}").test message
+        html = $('<span></span>').addClass('inline-errors').html(message)
+        view.$('input[type=text].path').after(html)
+
+  enable_ui_effects: ->
+    @$('.domain input[type=text]').editableField()
 
   _insert_entry: (domain) ->
     view = new Locomotive.Views.Site.DomainEntryView model: domain, parent_view: @

@@ -1,4 +1,4 @@
-Locomotive.Views.CurrentSite ||= {}
+Locomotive.Views.Site ||= {}
 
 class Locomotive.Views.Site.DomainEntryView extends Backbone.View
 
