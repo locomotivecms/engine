@@ -17,7 +17,7 @@ module Locomotive
     def update
       @account = current_locomotive_account
       @account.update_attributes(params[:account])
-      respond_with @account, edit_my_account_url
+      respond_with @account, :location => edit_my_account_url
     end
 
   end

@@ -1,7 +1,8 @@
 - title link_to(@account.name.blank? ? @account.name_was : @account.name, '#', :rel => 'my_account_name', :title => t('.ask_for_name'), :class => 'editable')
 
-- content_for :head do
-  / = include_javascripts :account
+- content_for :backbone_view_data do
+  :plain
+    { account: #{@account.to_json} }
 
 - content_for :submenu do
   = render_cell 'locomotive/settings_menu', :show
@@ -12,35 +13,28 @@
 
 %p= t('.help')
 
-= semantic_form_for @account, :as => :my_account, :url => my_account_url, :html => { :class => 'save-with-shortcut' } do |f|
+= semantic_form_for @account, :url => my_account_url do |f|
 
   = f.inputs :name => :information do
     = f.input :name
+    = f.input :locale, :as => '::Locomotive::Locale'
 
-  = f.inputs :name => :credentials do
+  = f.inputs :name => :credentials, :class => "inputs foldable folded" do
     = f.input :email
-    = f.input :password, :input_html => { :autocomplete => "off" }
-    = f.input :password_confirmation, :input_html => { :autocomplete => "off" }
+    = f.input :password, :input_html => { :autocomplete => 'off' }
+    = f.input :password_confirmation, :input_html => { :autocomplete => 'off' }
 
   - if multi_sites?
-    = f.inputs :name => :sites, :class => 'sites' do
-      %ul.list
-        - @account.sites.each do |site|
-          %li
-            %strong= link_to site.name, site_url(site)
-            %em= site.domains.join(', ')
+    = f.inputs :name => :sites, :class => "sites inputs foldable #{'folded' if inputs_folded?(@account)}" do
+      %li.input.empty.no-label.last
+        .list
+          - @account.sites.each do |site|
+            .entry
+              %strong= link_to site.name, site_url(site)
+              %em= site.domains.join(', ')
 
-            - if admin_on?(site) && site != current_site
-              %span{ :class => 'actions' }
-                = link_to 'x', site_url(site), :class => 'remove first', :confirm => t('locomotive.messages.confirm'), :method => :delete
-
-  = f.inputs :name => :language, :class => 'language' do
-    - Locomotive.config.locales.each do |locale|
-      %span
-        = f.radio_button :locale, locale
-        %label{ :for => "my_account_locale_#{locale.downcase}" }
-          = image_tag "admin/icons/flags/#{locale}.png"
-          = t(".#{locale}")
-        / &nbsp;
+              - if admin_on?(site) && site != current_site
+                %span{ :class => 'actions' }
+                  = link_to 'x', site_url(site), :class => 'remove first', :confirm => t('locomotive.messages.confirm'), :method => :delete
 
   = render 'locomotive/shared/form_actions', :button_label => :update
