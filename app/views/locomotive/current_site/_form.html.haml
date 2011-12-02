@@ -6,8 +6,8 @@
   :plain
     { site: #{@site.to_json(:current_account => current_locomotive_account, :current_site => current_site)}, errors: #{@site.errors.to_json} }
 
-= f.inputs :name => :information, :style => "#{'display: none' unless @site.new_record?}" do
-  = f.input :name, :required => false
+= f.inputs :name => :information, :style => 'display: none' do
+  = f.input :name
 
 = f.inputs :name => :seo, :class => "inputs foldable #{'folded' if inputs_folded?(@site)}" do
   = f.input :seo_title

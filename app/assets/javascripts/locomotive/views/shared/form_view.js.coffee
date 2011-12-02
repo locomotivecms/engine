@@ -29,6 +29,9 @@ class Locomotive.Views.Shared.FormView extends Backbone.View
 
     @model.save {},
       success: (model, response, xhr) =>
+        console.log(response)
+        console.log(xhr)
+
         $.growl('success', xhr.getResponseHeader('X-Message'))
 
         model.attributes = previous_attributes
@@ -37,6 +40,8 @@ class Locomotive.Views.Shared.FormView extends Backbone.View
 
       error: (model, xhr) =>
         $.growl('error', xhr.getResponseHeader('X-Message'))
+
+        console.log(xhr)
 
         errors = JSON.parse(xhr.responseText)
 

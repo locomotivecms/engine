@@ -27,12 +27,12 @@ class Locomotive.Views.CurrentSite.EditView extends Locomotive.Views.Shared.Form
     @enable_liquid_editing()
 
   render_domains: ->
-    @domains_view = new Locomotive.Views.Site.DomainsView model: @model, errors: @options.errors
+    @domains_view = new Locomotive.Views.Sites.DomainsView model: @model, errors: @options.errors
 
     @$('#site_domains_input label').after(@domains_view.render().el)
 
   render_memberships: ->
-    @memberships_view = new Locomotive.Views.Site.MembershipsView model: @model
+    @memberships_view = new Locomotive.Views.Sites.MembershipsView model: @model
 
     @$('#site_memberships_input').append(@memberships_view.render().el)
 

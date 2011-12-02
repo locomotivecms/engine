@@ -1,6 +1,6 @@
-Locomotive.Views.Site ||= {}
+Locomotive.Views.Sites ||= {}
 
-class Locomotive.Views.Site.MembershipsView extends Backbone.View
+class Locomotive.Views.Sites.MembershipsView extends Backbone.View
 
   tagName: 'div'
 
@@ -29,7 +29,7 @@ class Locomotive.Views.Site.MembershipsView extends Backbone.View
     @$('.entry select').editableField()
 
   _insert_entry: (membership, index) ->
-    view = new Locomotive.Views.Site.MembershipEntryView model: membership, parent_view: @, index: index
+    view = new Locomotive.Views.Sites.MembershipEntryView model: membership, parent_view: @, index: index
 
     (@_entry_views ||= []).push(view)
 

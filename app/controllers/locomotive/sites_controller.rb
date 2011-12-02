@@ -3,6 +3,8 @@ module Locomotive
 
     sections 'settings'
 
+    respond_to :json, :only => [:create]
+
     def new
       @site = Site.new
       respond_with @site
