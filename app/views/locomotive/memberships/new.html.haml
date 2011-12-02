@@ -9,7 +9,6 @@
 
   = f.inputs :name => :membership_email, :class => 'inputs email' do
 
-    / = f.input :email, :css => 'string full', :with_label => false } do
-    = f.input :email, :label => false
+    = f.input :email, :label => false, :wrapper_html => { :class => 'no-label' }
 
   = render 'locomotive/shared/form_actions', :back_url => edit_current_site_url, :button_label => :create

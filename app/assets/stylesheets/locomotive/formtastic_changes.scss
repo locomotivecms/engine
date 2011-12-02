@@ -259,7 +259,7 @@ form.formtastic {
               color: #1F82BC !important;
             }
           }
-        } // li.string
+        } // li.string, li.password
 
         &.code {
 
@@ -338,6 +338,18 @@ form.formtastic {
             .entry {
               margin-top: 10px;
               margin-bottom: 0px;
+            }
+          }
+
+          &.string {
+            padding-top: 16px;
+
+            input[type=text] {
+              width: 868px;
+            }
+
+            div.inline-errors {
+              margin-left: 0px;
             }
           }
         } // li.no-label
