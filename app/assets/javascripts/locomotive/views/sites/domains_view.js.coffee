@@ -1,6 +1,6 @@
-Locomotive.Views.Site ||= {}
+Locomotive.Views.Sites ||= {}
 
-class Locomotive.Views.Site.DomainsView extends Backbone.View
+class Locomotive.Views.Sites.DomainsView extends Backbone.View
 
   tagName: 'div'
 
@@ -72,7 +72,7 @@ class Locomotive.Views.Site.DomainsView extends Backbone.View
     @$('.domain input[type=text]').editableField()
 
   _insert_entry: (domain) ->
-    view = new Locomotive.Views.Site.DomainEntryView model: domain, parent_view: @
+    view = new Locomotive.Views.Sites.DomainEntryView model: domain, parent_view: @
 
     (@_entry_views ||= []).push(view)
 

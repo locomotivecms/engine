@@ -1,6 +1,6 @@
-Locomotive.Views.Site ||= {}
+Locomotive.Views.Sites ||= {}
 
-class Locomotive.Views.Site.DomainEntryView extends Backbone.View
+class Locomotive.Views.Sites.DomainEntryView extends Backbone.View
 
   tagName: 'li'
 

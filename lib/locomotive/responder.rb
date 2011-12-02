@@ -9,6 +9,7 @@ module Locomotive
     end
 
     def to_json
+      Rails.logger.debug "TO JSON !!!!"
       if get?
         display resource
       elsif has_errors?

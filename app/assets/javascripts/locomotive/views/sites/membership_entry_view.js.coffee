@@ -1,6 +1,6 @@
-Locomotive.Views.Site ||= {}
+Locomotive.Views.Sites ||= {}
 
-class Locomotive.Views.Site.MembershipEntryView extends Backbone.View
+class Locomotive.Views.Sites.MembershipEntryView extends Backbone.View
 
   className: 'entry'
 

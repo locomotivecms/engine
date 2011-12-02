@@ -1,37 +1,45 @@
 - content_for :head do
-  = include_javascripts :site
+  = render 'locomotive/sites/domains'
 
-= f.foldable_inputs :name => :information, :style => "#{'display: none' unless @site.new_record?}" do
-  = f.input :name, :required => false
+= f.inputs :name => :information do
+  = f.input :name
 
 - if manage_subdomain_or_domains?
-  = f.foldable_inputs :name => :access_points, :class => 'editable-list off' do
-
-    = f.custom_input :subdomain, :css => 'path' do
-      %em
-        http://
-      = f.text_field :subdomain
-      \.
-      %em
-        = application_domain
+  = f.inputs :name => :access_points do
+    = f.input :subdomain, :as => :'Locomotive::Subdomain', :domain => application_domain, :input_html => { :readonly => !manage_subdomain? }
 
     - if manage_domains?
-      - @site.domains_without_subdomain.each_with_index do |name, index|
-        %li{ :class => "item added #{'last' if index == @site.domains.size - 1}" }
-          %em
-            http://
-          = text_field_tag 'site[domains][]', name, :class => 'string label void domain'
-          &nbsp;
-          = error_on_domain(@site, name)
-          %span.actions
-            = link_to image_tag('admin/form/icons/trash.png'), '#', :class => 'remove first', :confirm => t('locomotive.messages.confirm')
+      = f.input :domains, :as => :'Locomotive::Empty'
 
-      %li.item.template
-        %em
-          http://
-        = text_field_tag 'label', t('formtastic.hints.site.domain_name'), :class => 'string label void domain'
-        &nbsp;
-        %span.actions
-          = link_to image_tag('admin/form/icons/trash.png'), '#', :class => 'remove first', :confirm => t('locomotive.messages.confirm')
-          %button{ :class => 'button light add', :type => 'button' }
-            %span!= t('locomotive.buttons.new_item')
+
+/ - if manage_subdomain_or_domains?
+/   = f.foldable_inputs :name => :access_points, :class => 'editable-list off' do
+/
+/     = f.custom_input :subdomain, :css => 'path' do
+/       %em
+/         http://
+/       = f.text_field :subdomain
+/       \.
+/       %em
+/         = application_domain
+/
+/     - if manage_domains?
+/       - @site.domains_without_subdomain.each_with_index do |name, index|
+/         %li{ :class => "item added #{'last' if index == @site.domains.size - 1}" }
+/           %em
+/             http://
+/           = text_field_tag 'site[domains][]', name, :class => 'string label void domain'
+/           &nbsp;
+/           = error_on_domain(@site, name)
+/           %span.actions
+/             = link_to image_tag('admin/form/icons/trash.png'), '#', :class => 'remove first', :confirm => t('locomotive.messages.confirm')
+/
+/       %li.item.template
+/         %em
+/           http://
+/         = text_field_tag 'label', t('formtastic.hints.site.domain_name'), :class => 'string label void domain'
+/         &nbsp;
+/         %span.actions
+/           = link_to image_tag('admin/form/icons/trash.png'), '#', :class => 'remove first', :confirm => t('locomotive.messages.confirm')
+/           %button{ :class => 'button light add', :type => 'button' }
+/             %span!= t('locomotive.buttons.new_item')
