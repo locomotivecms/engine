@@ -28,7 +28,9 @@ class Locomotive.Views.Sites.NewView extends Locomotive.Views.Shared.FormView
     @$('#site_domains_input label').after(@domains_view.render().el)
 
   save: (event) ->
-    @save_in_ajax(event)
+    @save_in_ajax event,
+      on_success: (response, xhr) ->
+        window.location.href = xhr.getResponseHeader('location')
 
   show_error: (attribute, message, html) ->
     if attribute == 'domains'

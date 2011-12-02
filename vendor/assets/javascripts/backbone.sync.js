@@ -47,6 +47,8 @@
       if (typeof(FormData) != 'undefined') { // XHR2
         var formData = new FormData();
 
+        formData.append('xhr', true); // fix a bug with POW which happens to not like empty form
+
         var _buildParams = function(prefix, obj, fn) { // code grabbed from jquery
           if (jQuery.isArray(obj)) {
             jQuery.each(obj, function(i, v) {

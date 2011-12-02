@@ -14,7 +14,7 @@ module Locomotive
         label_html <<
         template.content_tag(:em, "http://") <<
         builder.text_field(method, input_html_options) <<
-        template.content_tag(:em, ".#{domain}")
+        template.content_tag(:em, ".#{domain}", :class => 'error-anchor')
       end
     end
 

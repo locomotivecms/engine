@@ -219,12 +219,16 @@ form.formtastic {
           p {
             display: inline-block;
             width: auto;
+            line-height: 14px;
             margin: 0px;
-            padding: 3px 12px 4px 30px;
+            padding: 3px 12px 4px 27px;
 
-            background: #cd0f19 image-url("locomotive//form/icons/error.png") no-repeat 10px 6px;
+            @include box-shadow(rgba(0, 0, 0, 0.4) 2px 2px 2px 0);
+            @include border-radius(3px);
+            background: #cd0f19 image-url("locomotive/form/icons/error.png") no-repeat 7px center;
 
             color: #fff !important;
+            font-size: 12px;
             @include single-text-shadow(#000, 0px, 1px, 1px);
           }
         } // div.inline-errors

@@ -29,14 +29,13 @@ class Locomotive.Views.Shared.FormView extends Backbone.View
 
     @model.save {},
       success: (model, response, xhr) =>
-        console.log(response)
-        console.log(xhr)
+        window.response = xhr
 
-        $.growl('success', xhr.getResponseHeader('X-Message'))
+        $.growl('success', xhr.getResponseHeader('X-Message')) if xhr.getResponseHeader('X-Message')?
 
         model.attributes = previous_attributes
 
-        options.on_success(response) if options.on_success
+        options.on_success(response, xhr) if options.on_success
 
       error: (model, xhr) =>
         $.growl('error', xhr.getResponseHeader('X-Message'))
@@ -89,7 +88,12 @@ class Locomotive.Views.Shared.FormView extends Backbone.View
 
   show_error: (attribute, message, html) ->
     input = @$("##{@model.paramRoot}_#{attribute}")
-    input.after(html) if input.size() > 0
+
+    return unless input.size() > 0
+
+    anchor = input.parent().find('.error-anchor')
+    anchor = input if anchor.size() == 0
+    anchor.after(html)
 
   _enable_checkbox: (name, options) ->
     @$('li#page_' + name + '_input input[type=checkbox]').checkToggle

@@ -72,7 +72,7 @@ module Locomotive
       else
         slugs = self.self_and_ancestors.sort_by(&:depth).map(&:slug)
         slugs.shift unless slugs.size == 1
-        File.join slugs
+        File.join slugs.compact
       end
     end
 

@@ -9,7 +9,6 @@ module Locomotive
     end
 
     def to_json
-      Rails.logger.debug "TO JSON !!!!"
       if get?
         display resource
       elsif has_errors?
@@ -18,9 +17,8 @@ module Locomotive
           display resource.errors, :status => :unprocessable_entity
         end
       elsif post?
-        with_flash_message do |message|
-          display resource, :location => api_location
-        end
+        set_flash_message!
+        display resource, :location => api_location
       elsif put?
         with_flash_message do |message|
           display resource, :status => :ok, :location => api_location
