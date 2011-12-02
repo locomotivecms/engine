@@ -45,7 +45,7 @@ module Locomotive
     end
 
     def as_json(options = {})
-      super((options || {}).merge(:only => [:name, :email, :memberships]))
+      Locomotive::AccountPresenter.new(self, options).as_json
     end
 
     protected

@@ -47,6 +47,7 @@ fr:
         _slug: Permalink
       account:
         edit:
+          locale: Langue UI
           password: Nouveau mot de passe
           password_confirmation: Confirmation nouveau mot de passe
       page:

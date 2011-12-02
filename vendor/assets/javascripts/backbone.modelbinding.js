@@ -285,6 +285,16 @@ Backbone.ModelBinding = (function(Backbone, _, $){
         var element = view.$(this);
 
         var group_name = config.getBindingValue(element, 'radio');
+
+        // HACK (Did)
+        var attribute_name = group_name;
+        if (model.paramRoot) {
+          regexp = new RegExp('^' + model.paramRoot + "\\[");
+          attribute_name = attribute_name.replace(regexp, '').replace(/\]$/, '');
+        }
+        // console.log(attribute_name);
+        // console.log(group_name);
+
         if (!foundElements[group_name]) {
           foundElements[group_name] = true;
           var bindingAttr = config.getBindingAttr('radio');
@@ -305,7 +315,7 @@ Backbone.ModelBinding = (function(Backbone, _, $){
           var elementChange = function(ev){
             var element = view.$(ev.currentTarget);
             if (element.is(":checked")){
-              setModelValue(group_name, element.val());
+              setModelValue(attribute_name, element.val());
             }
           };
 
@@ -315,7 +325,7 @@ Backbone.ModelBinding = (function(Backbone, _, $){
             modelBinder.registerElementBinding(groupEl, elementChange);
           });
 
-          var attr_value = model.get(group_name);
+          var attr_value = model.get(attribute_name);
           if (typeof attr_value !== "undefined" && attr_value !== null) {
             // set the default value on the form, from the model
             var value_selector = "input[type=radio][" + bindingAttr + "=" + group_name + "][value=" + attr_value + "]";
@@ -324,7 +334,7 @@ Backbone.ModelBinding = (function(Backbone, _, $){
             // set the model to the currently selected radio button
             var value_selector = "input[type=radio][" + bindingAttr + "=" + group_name + "]:checked";
             var value = view.$(value_selector).val();
-            setModelValue(group_name, value);
+            setModelValue(attribute_name, value);
           }
         }
       });

@@ -14,15 +14,15 @@ x editable_short_text => tinymce
 x menu / submenu in full css3 (no images)
 x fix css in firefox
 x update page in ajax
+x edit my site
+  x css
+  x robots.txt
+  x domains
+  x roles
+  x save
 - fix other sections
-  x edit my site
-    x css
-    x robots.txt
-    x domains
-    x roles
-    x save
-  - create a new site
   - edit my account
+  - create a new site
   - theme assets
   - content types
 

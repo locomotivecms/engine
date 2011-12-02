@@ -17,7 +17,7 @@ module Locomotive
 
     before_filter :set_current_thread_variables
 
-    helper_method :sections, :current_site_public_url, :site_url, :public_page_url, :current_ability
+    helper_method :sections, :current_site_public_url, :switch_to_site_url, :public_page_url, :current_ability
 
     # https://rails.lighthouseapp.com/projects/8994/tickets/1905-apphelpers-within-plugin-not-being-mixed-in
     helper Locomotive::BaseHelper, Locomotive::ContentTypesHelper #, Locomotive::BoxHelper
@@ -82,7 +82,7 @@ module Locomotive
       request.protocol + request.host_with_port
     end
 
-    def site_url(site, options = {})
+    def switch_to_site_url(site, options = {})
       options = { :fullpath => true, :protocol => true }.merge(options)
 
       url = "#{site.subdomain}.#{Locomotive.config.domain}"
