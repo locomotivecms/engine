@@ -25,6 +25,11 @@ x edit my site
   x create a new site
   x create a new account
   - theme assets
+    - polish the page
+    - upload many files at once
+    - delete in ajax
+  - site picker
+  - import/export
   - content types
 
 - install a site by default at the first installation (without asking)

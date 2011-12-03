@@ -4,19 +4,12 @@
 @import "compass/css3/box-shadow";
 @import "buttons";
 @import "helpers";
+@import "box";
 
 #editable-elements {
 
   .nav {
-    display: block;
-    width: 918px;
-    height: 31px;
-
-    border: 1px solid #ccced7;
-    border-bottom: 0px;
-
-    @include border-top-radius(8px);
-    @include background-image(linear-gradient(#ebedf4, #d7dbe7));
+    @include box-header;
 
     a {
       float: left;
