@@ -5,11 +5,7 @@ module Locomotive
     include ::Mongoid::Timestamps
 
     ## extensions ##
-    #
-    # FIXME: I cannot find the module below defined in custom fields or the
-    # locomotive CMS engine. Please uncomment when the module is available
-    #
-    # include CustomFields::ProxyClassEnabler
+    include ::Mongoid::TargetCustomFields
     include Extensions::Shared::Seo
 
     ## fields (dynamic fields) ##
