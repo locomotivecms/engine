@@ -23,8 +23,9 @@ x edit my site
 - fix other sections
   x edit my account
   x create a new site
-  x create a new account
+  x create a new accounts
   - theme assets
+    x snippets
     - polish the page
     - upload many files at once
     - delete in ajax

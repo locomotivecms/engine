@@ -20,7 +20,15 @@ module Locomotive
     validates_presence_of   :site, :name, :slug, :template
     validates_uniqueness_of :slug, :scope => :site_id
 
+    ## behaviours ##
+    attr_protected  :id
+    attr_accessible :name, :slug, :template
+
     ## methods ##
+
+    def as_json(options = {})
+      Locomotive::SnippetPresenter.new(self).as_json
+    end
 
     protected
 
