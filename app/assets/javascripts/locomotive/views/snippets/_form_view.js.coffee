@@ -15,6 +15,8 @@ class Locomotive.Views.Snippets.FormView extends Locomotive.Views.Shared.FormVie
 
     @model = new Locomotive.Models.Snippet(@options.snippet)
 
+    window.foo = @model
+
     @image_picker_view = new Locomotive.Views.ThemeAssets.ImagePickerView
       collection: new Locomotive.Models.ThemeAssetsCollection()
       on_select:  @insert_image
@@ -24,10 +26,16 @@ class Locomotive.Views.Snippets.FormView extends Locomotive.Views.Shared.FormVie
   render: ->
     super()
 
+    # slugify the slug field from name
+    @slugify_name()
+
     # liquid code textarea
     @enable_liquid_editing()
 
     return @
+
+  slugify_name: ->
+    @$('#snippet_name').slugify(target: @$('#snippet_slug'))
 
   open_image_picker: (event) ->
     event.stopPropagation() & event.preventDefault()
@@ -48,7 +56,7 @@ class Locomotive.Views.Snippets.FormView extends Locomotive.Views.Shared.FormVie
       passDelay:        50
       tabMode:          'shift'
       theme:            'default'
-      onChange: (editor) => @model.set(raw_template: editor.getValue())
+      onChange: (editor) => @model.set(template: editor.getValue())
 
   after_inputs_fold: ->
     @editor.refresh()

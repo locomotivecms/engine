@@ -12,7 +12,6 @@ module Locomotive
 
     def create
       @snippet = current_site.snippets.create(params[:snippet])
-      Rails.logger.debug "[SNIPPET] creating..."
       respond_with @snippet, :location => edit_snippet_url(@snippet._id)
     end
 
@@ -23,7 +22,7 @@ module Locomotive
 
     def update
       @snippet = current_site.snippets.find(params[:id])
-      @snippet.update_attributes(params[:id])
+      @snippet.update_attributes(params[:snippet])
       respond_with @snippet, :location => edit_snippet_url(@snippet._id)
     end
 
