@@ -17,7 +17,10 @@ $.fn.slugify = function(settings) {
     var source = $(this);
     var newVal = source.val().slugify(settings.sep);
 
-    if (!target.data('touched')) target.val(newVal);
+    if (!target.data('touched')) {
+      target.val(newVal);
+      target.trigger('change');
+    }
   }
 
   target.bind('keyup', function(event) {

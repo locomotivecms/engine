@@ -7,8 +7,6 @@ class Locomotive.Views.Pages.FormView extends Locomotive.Views.Shared.FormView
   el: '#content'
 
   events:
-    'keypress #page_title':         'fill_default_slug'
-    'keypress #page_slug':          'mark_filled_slug'
     'change   #page_parent_id':     'change_page_url'
     'click    a#image-picker-link': 'open_image_picker'
     'submit':                       'save'
@@ -18,7 +16,8 @@ class Locomotive.Views.Pages.FormView extends Locomotive.Views.Shared.FormView
 
     @model = new Locomotive.Models.Page(@options.page)
 
-    @filled_slug = @touched_url = false
+    @touched_url = false
+
     @image_picker_view = new Locomotive.Views.ThemeAssets.ImagePickerView
       collection: new Locomotive.Models.ThemeAssetsCollection()
       on_select:  @insert_image
@@ -29,6 +28,9 @@ class Locomotive.Views.Pages.FormView extends Locomotive.Views.Shared.FormView
 
   render: ->
     super()
+
+    # slugify the slug field from title
+    @slugify_title()
 
     # the url gets modified by different ways so reflect the changes in the UI
     @listen_for_url_changes()
@@ -84,22 +86,18 @@ class Locomotive.Views.Pages.FormView extends Locomotive.Views.Shared.FormView
 
   # Remove the editable elements and rebuild them
   reset_editable_elements: ->
-    console.log('reset_editable_elements')
     @editable_elements_view.remove()
     @editable_elements_view.collection = @model.get('editable_elements')
     @render_editable_elements()
 
-  # Just re-connect the model and the views (+ rebuild the files)
+  # Just re-connect the model and the views (+ redraw the file fields)
   refresh_editable_elements: ->
     @editable_elements_view.collection = @model.get('editable_elements')
     @editable_elements_view.refresh()
 
-  fill_default_slug: (event) ->
-    unless @filled_slug
-      setTimeout (=> @$('#page_slug').val($(event.target).val().slugify('-')) & @touched_url = true), 30
-
-  mark_filled_slug: (event) ->
-    @filled_slug = true
+  slugify_title: ->
+    @$('#page_title').slugify(target: @$('#page_slug'))
+    @$('#page_slug').bind 'change', ((event) => @touched_url = true)
 
   listen_for_url_changes: ->
     setInterval (=> (@change_page_url() & @touched_url = false) if @touched_url), 2000

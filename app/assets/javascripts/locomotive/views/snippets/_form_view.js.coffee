@@ -15,8 +15,6 @@ class Locomotive.Views.Snippets.FormView extends Locomotive.Views.Shared.FormVie
 
     @model = new Locomotive.Models.Snippet(@options.snippet)
 
-    window.foo = @model
-
     @image_picker_view = new Locomotive.Views.ThemeAssets.ImagePickerView
       collection: new Locomotive.Models.ThemeAssetsCollection()
       on_select:  @insert_image
