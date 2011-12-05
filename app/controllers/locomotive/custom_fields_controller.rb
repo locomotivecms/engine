@@ -26,7 +26,7 @@ module Locomotive
 
     def set_parent_and_fields
       @parent = current_site.content_types.where(:slug => params[:slug]).first
-      @fields = @parent.content_custom_fields
+      @fields = @parent.contents_custom_fields
     end
 
   end

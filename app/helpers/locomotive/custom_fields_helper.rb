@@ -47,8 +47,8 @@ module Locomotive::CustomFieldsHelper
     klass_name = my_content_type.content_klass.to_s
 
     [].tap do |options|
-      ContentType.where(:'content_custom_fields.kind' => 'has_one', :'content_custom_fields.target' => klass_name).each do |content_type|
-        content_type.content_custom_fields.find_all { |f| f.has_one? && f.target == klass_name }.each do |field|
+      ContentType.where(:'contents_custom_fields.kind' => 'has_one', :'contents_custom_fields.target' => klass_name).each do |content_type|
+        content_type.contents_custom_fields.find_all { |f| f.has_one? && f.target == klass_name }.each do |field|
           options << {
             :klass  => content_type.content_klass.to_s,
             :label  => field.label,

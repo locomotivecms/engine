@@ -81,7 +81,7 @@ describe Locomotive::Liquid::Tags::SEO do
 
       let(:content_type) do
         FactoryGirl.build(:content_type, :site => site).tap do |ct|
-          ct.content_custom_fields.build :label => 'anything', :kind => 'String'
+          ct.contents_custom_fields.build :label => 'anything', :kind => 'String'
         end
       end
 

@@ -1,7 +1,7 @@
 Then /^I should be able to display paginated models$/ do
   # Create our article model and three articles
   @article_model = FactoryGirl.build(:content_type, :site => @site, :name => 'Articles').tap do |ct|
-    ct.content_custom_fields.build :label => 'Body', :kind => 'string', :required => false
+    ct.contents_custom_fields.build :label => 'Body', :kind => 'string', :required => false
     ct.save!
   end
 
