@@ -22,7 +22,7 @@ module Locomotive
       return '' if options.delete(:picker) == false
       template.content_tag(:div,
         template.link_to(template.t('locomotive.image_picker.link'), template.theme_assets_path, :id => 'image-picker-link', :class => 'picture'),
-        :class => 'more')
+        :class => 'more error-anchor')
     end
 
   end

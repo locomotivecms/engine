@@ -1,6 +1,9 @@
 - content_for :head do
-  / = include_javascripts :image_picker, :snippets
-  / = include_stylesheets :fancybox
+  = render '/locomotive/theme_assets/picker'
+
+- content_for :backbone_view_data do
+  :plain
+    { snippet: #{@snippet.persisted? ? @snippet.to_json : 'null'} }
 
 = f.inputs :name => :information do
   = f.input :name, :wrapper_html => { :class => 'highlighted' }
