@@ -1,15 +1,15 @@
 Given %r{^I have an? "([^"]*)" model which has many "([^"]*)"$} do |parent_model, child_model|
   @parent_model = FactoryGirl.build(:content_type, :site => @site, :name => parent_model).tap do |ct|
-    ct.content_custom_fields.build :label => 'Body', :kind => 'string', :required => false
+    ct.contents_custom_fields.build :label => 'Body', :kind => 'string', :required => false
     ct.save!
   end
   @child_model = FactoryGirl.build(:content_type, :site => @site, :name => child_model).tap do |ct|
-    ct.content_custom_fields.build :label => 'Body', :kind => 'string', :required => false
-    ct.content_custom_fields.build :label => parent_model.singularize, :kind => 'has_one', :required => false, :target => parent_model
+    ct.contents_custom_fields.build :label => 'Body', :kind => 'string', :required => false
+    ct.contents_custom_fields.build :label => parent_model.singularize, :kind => 'has_one', :required => false, :target => parent_model
     ct.save!
   end
 
-  @parent_model.content_custom_fields.build({
+  @parent_model.contents_custom_fields.build({
     :label          => child_model,
     :kind           => 'has_many',
     :target         => @child_model.content_klass.to_s,

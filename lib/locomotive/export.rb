@@ -111,7 +111,7 @@ module Locomotive
 
         # custom_fields
         fields = []
-        content_type.content_custom_fields.each do |field|
+        content_type.contents_custom_fields.each do |field|
           field_attributes = self.extract_attributes(field, %w(label kind hint required))
 
           if field.target.present?

@@ -40,9 +40,9 @@ describe Locomotive::Export do
 
     def build_project_type(site)
       FactoryGirl.build(:content_type, :site => site, :highlighted_field_name => 'custom_field_1').tap do |content_type|
-        content_type.content_custom_fields.build :label => 'Title', :_alias => 'title', :kind => 'string'
-        content_type.content_custom_fields.build :label => 'My Description', :_alias => 'description', :kind => 'text'
-        content_type.content_custom_fields.build :label => 'Active', :kind => 'boolean'
+        content_type.contents_custom_fields.build :label => 'Title', :_alias => 'title', :kind => 'string'
+        content_type.contents_custom_fields.build :label => 'My Description', :_alias => 'description', :kind => 'text'
+        content_type.contents_custom_fields.build :label => 'Active', :kind => 'boolean'
       end
     end
 
@@ -50,10 +50,10 @@ describe Locomotive::Export do
       Object.send(:remove_const, 'TestProject') rescue nil
       klass = Object.const_set('TestProject', Class.new { def self.embedded?; false; end })
       content_type = FactoryGirl.build(:content_type, :site => site, :name => 'team', :highlighted_field_name => 'custom_field_1')
-      content_type.content_custom_fields.build :label => 'Name', :_alias => 'name', :kind => 'string'
-      content_type.content_custom_fields.build :label => 'Projects', :kind => 'has_many', :_alias => 'projects', :target => 'TestProject'
-      content_type.content_custom_fields.build :label => 'Bio', :_alias => 'bio', :kind => 'text'
-      content_type.content_custom_fields.build :label => 'Current Project', :kind => 'has_one', :_alias => 'current_project', :target => 'TestProject'
+      content_type.contents_custom_fields.build :label => 'Name', :_alias => 'name', :kind => 'string'
+      content_type.contents_custom_fields.build :label => 'Projects', :kind => 'has_many', :_alias => 'projects', :target => 'TestProject'
+      content_type.contents_custom_fields.build :label => 'Bio', :_alias => 'bio', :kind => 'text'
+      content_type.contents_custom_fields.build :label => 'Current Project', :kind => 'has_one', :_alias => 'current_project', :target => 'TestProject'
       content_type
     end
 

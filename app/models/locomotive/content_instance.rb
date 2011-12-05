@@ -84,7 +84,7 @@ module Locomotive
     end
 
     def set_visibility
-      field = self.content_type.content_custom_fields.detect { |f| %w{visible active}.include?(f._alias) }
+      field = self.content_type.contents_custom_fields.detect { |f| %w{visible active}.include?(f._alias) }
       self._visible = self.send(field._name) rescue true
     end
 

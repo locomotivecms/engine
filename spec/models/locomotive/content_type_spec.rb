@@ -10,7 +10,7 @@ describe Locomotive::ContentType do
 
     it 'should have a valid factory' do
       content_type = FactoryGirl.build(:content_type)
-      content_type.content_custom_fields.build :label => 'anything', :kind => 'String'
+      content_type.contents_custom_fields.build :label => 'anything', :kind => 'String'
       content_type.should be_valid
     end
 
@@ -32,7 +32,7 @@ describe Locomotive::ContentType do
 
     it 'is not valid if slug is not unique' do
       content_type = FactoryGirl.build(:content_type)
-      content_type.content_custom_fields.build :label => 'anything', :kind => 'String'
+      content_type.contents_custom_fields.build :label => 'anything', :kind => 'String'
       content_type.save
       (content_type = FactoryGirl.build(:content_type, :site => content_type.site)).should_not be_valid
       content_type.errors[:slug].should == ["is already taken"]
@@ -41,13 +41,13 @@ describe Locomotive::ContentType do
     it 'is not valid if there is not at least one field' do
       content_type = FactoryGirl.build(:content_type)
       content_type.should_not be_valid
-      content_type.errors[:content_custom_fields].should == ["is too small (minimum element number is 1)"]
+      content_type.errors[:contents_custom_fields].should == ["is too small (minimum element number is 1)"]
     end
 
     %w(created_at updated_at).each do |_alias|
       it "does not allow #{_alias} as alias" do
         content_type = FactoryGirl.build(:content_type)
-        field = content_type.content_custom_fields.build :label => 'anything', :kind => 'String', :_alias => _alias
+        field = content_type.contents_custom_fields.build :label => 'anything', :kind => 'String', :_alias => _alias
         field.valid?.should be_false
         field.errors[:_alias].should == ['is reserved']
       end
@@ -98,8 +98,8 @@ describe Locomotive::ContentType do
       site = FactoryGirl.build(:site)
       Locomotive::Site.stubs(:find).returns(site)
       @content_type = FactoryGirl.build(:content_type, :site => site, :highlighted_field_name => 'custom_field_1')
-      @content_type.content_custom_fields.build :label => 'My Description', :_alias => 'description', :kind => 'text'
-      @content_type.content_custom_fields.build :label => 'Active', :kind => 'boolean'
+      @content_type.contents_custom_fields.build :label => 'My Description', :_alias => 'description', :kind => 'text'
+      @content_type.contents_custom_fields.build :label => 'Active', :kind => 'boolean'
       # Locomotive::ContentType.logger = Logger.new($stdout)
       # Locomotive::ContentType.db.connection.instance_variable_set(:@logger, Logger.new($stdout))
     end
@@ -125,22 +125,22 @@ describe Locomotive::ContentType do
 
       %w{label kind}.each do |key|
         it "should validate presence of #{key}" do
-          field = @content_type.content_custom_fields.build({ :label => 'Shortcut', :kind => 'String' }.merge(key.to_sym => nil))
+          field = @content_type.contents_custom_fields.build({ :label => 'Shortcut', :kind => 'String' }.merge(key.to_sym => nil))
           field.should_not be_valid
           field.errors[key.to_sym].should == ["can't be blank"]
         end
       end
 
       it 'should not have unique label' do
-        field = @content_type.content_custom_fields.build :label => 'Active', :kind => 'Boolean'
+        field = @content_type.contents_custom_fields.build :label => 'Active', :kind => 'Boolean'
         field.should_not be_valid
         field.errors[:label].should == ["is already taken"]
       end
 
       it 'should invalidate parent if custom field is not valid' do
-        field = @content_type.content_custom_fields.build
+        field = @content_type.contents_custom_fields.build
         @content_type.should_not be_valid
-        @content_type.content_custom_fields.last.errors[:label].should == ["can't be blank"]
+        @content_type.contents_custom_fields.last.errors[:label].should == ["can't be blank"]
       end
 
     end
@@ -148,13 +148,13 @@ describe Locomotive::ContentType do
     context 'define core attributes' do
 
       it 'should have an unique name' do
-        @content_type.content_custom_fields.first._name.should == "custom_field_1"
-        @content_type.content_custom_fields.last._name.should == "custom_field_2"
+        @content_type.contents_custom_fields.first._name.should == "custom_field_1"
+        @content_type.contents_custom_fields.last._name.should == "custom_field_2"
       end
 
       it 'should have an unique alias' do
-        @content_type.content_custom_fields.first.safe_alias.should == "description"
-        @content_type.content_custom_fields.last.safe_alias.should == "active"
+        @content_type.contents_custom_fields.first.safe_alias.should == "description"
+        @content_type.contents_custom_fields.last.safe_alias.should == "active"
       end
 
     end
@@ -200,7 +200,7 @@ describe Locomotive::ContentType do
       end
 
       it 'should add new field' do
-        @content_type.content_custom_fields.build :label => 'Active at', :name => 'active_at', :kind => 'Date'
+        @content_type.contents_custom_fields.build :label => 'Active at', :name => 'active_at', :kind => 'Date'
         @content_type.upsert(:validate => false)
         @content_type.invalidate_content_klass
         @content_type.reload
@@ -209,7 +209,7 @@ describe Locomotive::ContentType do
       end
 
       it 'should remove field' do
-        @content_type.content_custom_fields.clear
+        @content_type.contents_custom_fields.clear
         @content_type.upsert(:validate => false)
         @content_type.invalidate_content_klass
         @content_type.reload
@@ -218,8 +218,8 @@ describe Locomotive::ContentType do
       end
 
       it 'should rename field label' do
-        @content_type.content_custom_fields.first.label = 'Simple description'
-        @content_type.content_custom_fields.first._alias = nil
+        @content_type.contents_custom_fields.first.label = 'Simple description'
+        @content_type.contents_custom_fields.first._alias = nil
         @content_type.upsert(:validate => false)
 
         @content_type.invalidate_content_klass
@@ -234,26 +234,26 @@ describe Locomotive::ContentType do
     context 'managing from hash' do
 
       it 'adds new field' do
-        @content_type.content_custom_fields.clear
-        field = @content_type.content_custom_fields.build :label => 'Title'
-        @content_type.content_custom_fields_attributes = { 0 => { :id => field.id.to_s, 'label' => 'A title', 'kind' => 'String' }, 1 => { 'label' => 'Tagline', 'kind' => 'String' } }
-        @content_type.content_custom_fields.size.should == 2
-        @content_type.content_custom_fields.first.label.should == 'A title'
-        @content_type.content_custom_fields.last.label.should == 'Tagline'
+        @content_type.contents_custom_fields.clear
+        field = @content_type.contents_custom_fields.build :label => 'Title'
+        @content_type.contents_custom_fields_attributes = { 0 => { :id => field.id.to_s, 'label' => 'A title', 'kind' => 'String' }, 1 => { 'label' => 'Tagline', 'kind' => 'String' } }
+        @content_type.contents_custom_fields.size.should == 2
+        @content_type.contents_custom_fields.first.label.should == 'A title'
+        @content_type.contents_custom_fields.last.label.should == 'Tagline'
       end
 
       it 'updates/removes fields' do
-        field = @content_type.content_custom_fields.build :label => 'Title', :kind => 'String'
+        field = @content_type.contents_custom_fields.build :label => 'Title', :kind => 'String'
         @content_type.save; @content_type = Locomotive::ContentType.find(@content_type.id)
-        @content_type.update_attributes(:content_custom_fields_attributes => {
+        @content_type.update_attributes(:contents_custom_fields_attributes => {
           '0' => { 'id' => lookup_field_id(0), 'label' => 'My Description', 'kind' => 'Text', '_destroy' => '1' },
           '1' => { 'id' => lookup_field_id(1), 'label' => 'Active', 'kind' => 'Boolean', '_destroy' => '1' },
           '2' => { 'id' => lookup_field_id(2), 'label' => 'My Title !', 'kind' => 'String' },
           'new_record' => { 'label' => 'Published at', 'kind' => 'String' }
         })
         @content_type = Locomotive::ContentType.find(@content_type.id)
-        @content_type.content_custom_fields.size.should == 2
-        @content_type.content_custom_fields.first.label.should == 'My Title !'
+        @content_type.contents_custom_fields.size.should == 2
+        @content_type.contents_custom_fields.first.label.should == 'My Title !'
       end
 
     end
@@ -265,7 +265,7 @@ describe Locomotive::ContentType do
   end
 
   def lookup_field_id(index)
-    @content_type.content_custom_fields.all[index].id.to_s
+    @content_type.contents_custom_fields.all[index].id.to_s
   end
 
 end

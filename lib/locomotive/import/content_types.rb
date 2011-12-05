@@ -24,7 +24,7 @@ module Locomotive
 
           self.add_or_update_fields(content_type, attributes['fields'])
 
-          if content_type.content_custom_fields.any? { |f| ['has_many', 'has_one'].include?(f.kind) }
+          if content_type.contents_custom_fields.any? { |f| ['has_many', 'has_one'].include?(f.kind) }
             content_types_with_associations << content_type
           end
 
@@ -82,9 +82,9 @@ module Locomotive
 
           attributes = { :_alias => name, :label => name.humanize, :kind => 'string', :position => position }.merge(data).symbolize_keys
 
-          field = content_type.content_custom_fields.detect { |f| f._alias == attributes[:_alias] }
+          field = content_type.contents_custom_fields.detect { |f| f._alias == attributes[:_alias] }
 
-          field ||= content_type.content_custom_fields.build(attributes)
+          field ||= content_type.contents_custom_fields.build(attributes)
 
           field.send(:set_unique_name!) if field.new_record?
 
@@ -98,7 +98,7 @@ module Locomotive
 
       def replace_target(content_types)
         content_types.each do |content_type|
-          content_type.content_custom_fields.each do |field|
+          content_type.contents_custom_fields.each do |field|
             next unless ['has_many', 'has_one'].include?(field.kind)
 
             target_content_type = site.content_types.where(:slug => field.target).first
@@ -141,7 +141,7 @@ module Locomotive
           end
 
           attributes.each do |name, value|
-            field = content_type.content_custom_fields.detect { |f| f._alias == name }
+            field = content_type.contents_custom_fields.detect { |f| f._alias == name }
 
             next if field.nil? # the attribute name is not related to a field (name misspelled ?)
 
@@ -210,7 +210,7 @@ module Locomotive
       end
 
       def set_highlighted_field_name(content_type)
-        field = content_type.content_custom_fields.detect { |f| f._alias == content_type.highlighted_field_name.to_s }
+        field = content_type.contents_custom_fields.detect { |f| f._alias == content_type.highlighted_field_name.to_s }
 
         content_type.highlighted_field_name = field._name if field
       end
@@ -222,7 +222,7 @@ module Locomotive
         when 'manually', '_position_in_list' then '_position_in_list'
         when 'default', 'created_at' then 'created_at'
         else
-          content_type.content_custom_fields.detect { |f| f._alias == content_type.order_by }._name rescue nil
+          content_type.contents_custom_fields.detect { |f| f._alias == content_type.order_by }._name rescue nil
         end)
 
         self.log "order by (after) #{order_by}"
@@ -233,7 +233,7 @@ module Locomotive
       def set_group_by_value(content_type)
         return if content_type.group_by_field_name.blank?
 
-        field = content_type.content_custom_fields.detect { |f| f._alias == content_type.group_by_field_name }
+        field = content_type.contents_custom_fields.detect { |f| f._alias == content_type.group_by_field_name }
 
         content_type.group_by_field_name = field._name if field
       end

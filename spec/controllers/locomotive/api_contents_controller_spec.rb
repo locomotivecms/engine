@@ -5,10 +5,10 @@ describe Locomotive::ApiContentsController do
   before(:each) do
     @site = FactoryGirl.create('existing site')
     @site.content_types.first.tap do |content_type|
-      content_type.content_custom_fields.build :label => 'Name', :kind => 'string', :required => true
-      content_type.content_custom_fields.build :label => 'Description', :kind => 'text'
-      content_type.content_custom_fields.build :label => 'File', :kind => 'file'
-      content_type.content_custom_fields.build :label => 'Active', :kind => 'boolean'
+      content_type.contents_custom_fields.build :label => 'Name', :kind => 'string', :required => true
+      content_type.contents_custom_fields.build :label => 'Description', :kind => 'text'
+      content_type.contents_custom_fields.build :label => 'File', :kind => 'file'
+      content_type.contents_custom_fields.build :label => 'Active', :kind => 'boolean'
     end.save
 
     controller.stubs(:require_site).returns(true)

@@ -7,9 +7,9 @@ describe Locomotive::ContentInstance do
   before(:each) do
     Locomotive::Site.any_instance.stubs(:create_default_pages!).returns(true)
     @content_type = FactoryGirl.build(:content_type)
-    @content_type.content_custom_fields.build :label => 'Title', :kind => 'String'
-    @content_type.content_custom_fields.build :label => 'Description', :kind => 'Text'
-    @content_type.content_custom_fields.build :label => 'Visible ?', :kind => 'Text', :_alias => 'visible'
+    @content_type.contents_custom_fields.build :label => 'Title', :kind => 'String'
+    @content_type.contents_custom_fields.build :label => 'Description', :kind => 'Text'
+    @content_type.contents_custom_fields.build :label => 'Visible ?', :kind => 'Text', :_alias => 'visible'
     @content_type.highlighted_field_name = 'custom_field_1'
   end
 
