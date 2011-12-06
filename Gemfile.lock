@@ -9,7 +9,7 @@ GIT
 
 GIT
   remote: git://github.com/locomotivecms/custom_fields.git
-  revision: af88a1602442c1507152426a5dcac662695c55ef
+  revision: af21782109d5b4f073949f8f123fb56c6c7227ef
   specs:
     custom_fields (1.1.0.rc1)
       activesupport (~> 3.1.1)
