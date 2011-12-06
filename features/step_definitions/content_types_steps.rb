@@ -1,5 +1,5 @@
 Given %r{^I have a custom model named "([^"]*)" with$} do |name, fields|
-  site = Site.first
+  site = Locomotive::Site.first
   content_type = FactoryGirl.build(:content_type, :site => site, :name => name)
   fields.hashes.each do |field|
     if (target_name = field.delete('target')).present?
@@ -14,7 +14,7 @@ Given %r{^I have a custom model named "([^"]*)" with$} do |name, fields|
 end
 
 Given /^I set up a reverse has_many relationship between "([^"]*)" and "([^"]*)"$/ do |name_1, name_2|
-  site = Site.first
+  site = Locomotive::Site.first
 
   content_type_1 = site.content_types.where(:name => name_1).first
   content_type_2 = site.content_types.where(:name => name_2).first
@@ -30,7 +30,7 @@ Given /^I set up a reverse has_many relationship between "([^"]*)" and "([^"]*)"
 end
 
 Given %r{^I have "([^"]*)" as "([^"]*)" values of the "([^"]*)" model$} do |values, field, name|
-  content_type = ContentType.where(:name => name).first
+  content_type = Locomotive::ContentType.where(:name => name).first
   field = content_type.contents_custom_fields.detect { |f| f.label == field }
   field.should_not be_nil
 
@@ -45,7 +45,7 @@ Given %r{^I have "([^"]*)" as "([^"]*)" values of the "([^"]*)" model$} do |valu
 end
 
 Given %r{^I have entries for "([^"]*)" with$} do |name, entries|
-  content_type = ContentType.where(:name => name).first
+  content_type = Locomotive::ContentType.where(:name => name).first
   entries.hashes.each do |entry|
     content_type.contents.create(entry)
   end
@@ -53,7 +53,7 @@ Given %r{^I have entries for "([^"]*)" with$} do |name, entries|
 end
 
 When %r{^I change the presentation of the "([^"]*)" model by grouping items by "([^"]*)"$} do |name, field|
-  content_type = ContentType.where(:name => name).first
+  content_type = Locomotive::ContentType.where(:name => name).first
   field = content_type.contents_custom_fields.detect { |f| f.label == field }
   content_type.group_by_field_name = field._name
   content_type.save.should be_true
