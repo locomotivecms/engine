@@ -29,7 +29,7 @@ describe Locomotive::ApiContentsController do
   describe 'API enabled' do
 
     before(:each) do
-      ContentType.any_instance.stubs(:api_enabled?).returns(true)
+      Locomotive::ContentType.any_instance.stubs(:api_enabled?).returns(true)
     end
 
     it 'saves a content' do

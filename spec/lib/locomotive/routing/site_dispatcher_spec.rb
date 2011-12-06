@@ -2,6 +2,8 @@ require 'spec_helper'
 
 class MyController < ActionController::Base
   include Locomotive::Routing::SiteDispatcher
+
+  include Locomotive::Engine.routes.url_helpers # Required for loading engine routes
 end
 
 describe Locomotive::Routing::SiteDispatcher do
