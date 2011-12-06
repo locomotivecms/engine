@@ -11,8 +11,6 @@ class Locomotive.Views.Pages.EditView extends Locomotive.Views.Pages.FormView
       success: (model, response, xhr) =>
         model._normalize()
 
-        $.growl('success', xhr.getResponseHeader('X-Message'))
-
         if model.get('template_changed') == true
           @reset_editable_elements()
         else
@@ -22,8 +20,6 @@ class Locomotive.Views.Pages.EditView extends Locomotive.Views.Pages.FormView
         errors = JSON.parse(xhr.responseText)
 
         @show_errors errors
-
-        $.growl('error', xhr.getResponseHeader('X-Message'))
 
 
 

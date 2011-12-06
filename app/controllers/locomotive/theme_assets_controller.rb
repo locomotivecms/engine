@@ -3,7 +3,7 @@ module Locomotive
 
     sections 'settings', 'theme_assets'
 
-    respond_to :json, :only => [:index, :create, :update]
+    respond_to :json, :only => [:index, :create, :update, :destroy]
 
     def index
       respond_to do |format|

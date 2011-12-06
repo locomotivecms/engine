@@ -1,5 +1,9 @@
 - title t('.title')
 
+- content_for :backbone_view_data do
+  :plain
+    { snippets: #{@snippets.to_json} }
+
 - content_for :submenu do
   = render_cell 'locomotive/settings_menu', :show
 
@@ -10,14 +14,20 @@
 %p!= t('.help')
 
 - if can?(:manage, Locomotive::Snippet)
-  .box
-    %h3!= t('.snippets')
-    .inner
-      - if @snippets.empty?
-        %p.no-items!= t('locomotive.snippets.index.no_items', :url => new_snippet_url)
-      - else
-        %ul.snippets
-          = render @snippets
+  #snippets-anchor
+
+  - content_for :head do
+    = render '/locomotive/snippets/snippet'
+    = render 'list', :name => 'snippets', :title => t('.snippets'), :empty_message => t('locomotive.snippets.index.no_items', :url => new_snippet_url)
+
+  / .box
+  /   %h3!= t('.snippets')
+  /   .inner
+  /     - if @snippets.empty?
+  /       %p.no-items!= t('locomotive.snippets.index.no_items', :url => new_snippet_url)
+  /     - else
+  /       %ul.snippets
+  /         = render @snippets
 
 - if can?(:manage, Locomotive::ThemeAsset)
   .box

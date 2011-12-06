@@ -11,3 +11,5 @@ window.Locomotive =
   Collections: {}
   Routers: {}
   Views: {}
+
+window.Locomotive.Views.Memberships = {}

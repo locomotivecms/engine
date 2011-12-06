@@ -14,8 +14,6 @@ class Locomotive.Views.MyAccount.EditView extends Locomotive.Views.Shared.FormVi
 
     Backbone.ModelBinding.bind @
 
-    window.foo = @model
-
   render: ->
     super()
 

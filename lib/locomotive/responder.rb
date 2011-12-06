@@ -23,6 +23,10 @@ module Locomotive
         with_flash_message do |message|
           display resource, :status => :ok, :location => api_location
         end
+      elsif delete?
+        with_flash_message do |message|
+          display resource, :status => :ok, :location => api_location
+        end
       elsif has_empty_resource_definition?
         display empty_resource, :status => :ok
       else

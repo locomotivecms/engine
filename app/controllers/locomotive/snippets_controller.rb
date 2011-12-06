@@ -3,7 +3,7 @@ module Locomotive
 
     sections 'settings', 'theme_assets'
 
-    respond_to :json, :only => [:create, :update]
+    respond_to :json, :only => [:create, :update, :destroy]
 
     def new
       @snippet = current_site.snippets.new

@@ -29,19 +29,11 @@ class Locomotive.Views.Shared.FormView extends Backbone.View
 
     @model.save {},
       success: (model, response, xhr) =>
-        window.response = xhr
-
-        $.growl('success', xhr.getResponseHeader('X-Message')) if xhr.getResponseHeader('X-Message')?
-
         model.attributes = previous_attributes
 
         options.on_success(response, xhr) if options.on_success
 
       error: (model, xhr) =>
-        $.growl('error', xhr.getResponseHeader('X-Message'))
-
-        console.log(xhr)
-
         errors = JSON.parse(xhr.responseText)
 
         @show_errors errors
