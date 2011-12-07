@@ -10,7 +10,6 @@ module Locomotive
 
     def create
       @content_asset = current_site.content_assets.create(params[:content_asset])
-      puts @content_asset.errors.inspect
       respond_with @content_asset
     end
 

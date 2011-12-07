@@ -42,6 +42,7 @@ x edit my site
       - list
       - crud
 
+- disallow to click twice on the submit form button
 - message to notify people if their browser is too old
 - install a site by default at the first installation (without asking)
 

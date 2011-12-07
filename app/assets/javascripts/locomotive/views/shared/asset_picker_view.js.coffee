@@ -31,8 +31,9 @@ class Locomotive.Views.Shared.AssetPickerView extends Backbone.View
   create_dialog: ->
     @dialog = $(@el).dialog
       modal:    true
+      zIndex:   998
       width:    650,
-      create: =>
+      create: (event, ui) =>
         $('.ui-widget-overlay').bind 'click', => @close()
 
         $(@el).prev().find('.ui-dialog-title').html(@$('h2').html())
@@ -41,17 +42,12 @@ class Locomotive.Views.Shared.AssetPickerView extends Backbone.View
 
         actions.find('#close-link').click (event) => @close(event)
 
-      open: =>
+      open: (event, ui, extra) =>
         actions = $(@el).parent().find('.ui-dialog-buttonpane')
         el      = actions.find('input[type=file]')
         link    = actions.find('#upload-link')
 
         @build_uploader(el, link)
-
-        actions.find('.button-wrapper').hover(
-          => link.addClass('hover'),
-          => link.removeClass('hover')
-        )
 
     @open()
 

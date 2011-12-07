@@ -102,22 +102,16 @@
       top: 8px;
       right: 10px;
 
+      z-index: 1003;
+
       a {
         @include light-button;
       }
 
-      &.upload {
-        #theme_asset_sourceUploader, #content_asset_sourceUploader {
-          position: absolute;
-          top: 0px;
-          right: 0px;
-          z-index: 1001;
-        }
+      input[type=file] {
+        z-index: 1003;
+      }
 
-        a {
-          z-index: 1000;
-        }
-      } // .button-wrapper.upload
     } // .button-wrapper
 
   } // .ui-dialog-buttonpane

@@ -18,13 +18,17 @@ class Locomotive.Views.ThemeAssets.ImagePickerView extends Locomotive.Views.Shar
     @collection.fetch data: { content_type: 'image' }
 
   build_uploader: (el, link) ->
-    window.Locomotive.Uploadify.build el,
-      url:        link.attr('href')
-      data_name:  el.attr('name')
-      height:     link.outerHeight()
-      width:      link.outerWidth()
-      success:    (model) => @collection.add(model)
-      error:      (msg)   => @shake()
+    link.bind 'click', (event) ->
+      event.stopPropagation() & event.preventDefault()
+      el.click()
+
+    el.bind 'change', (event) =>
+      _.each event.target.files, (file) =>
+        asset = new Locomotive.Models.ThemeAsset(source: file)
+        asset.save {},
+          headers:  { 'X-Flash': true }
+          success:  (model) => @collection.add(model)
+          error:    => @shake()
 
   select_asset: (event) ->
     event.stopPropagation() & event.preventDefault()

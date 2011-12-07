@@ -55,7 +55,7 @@ class Locomotive.Views.ThemeAssets.FormView extends Locomotive.Views.Shared.Form
 
   enable_source_file: ->
     # only in HTML 5
-    @$('#theme_asset_source').bind 'change', (event) =>
+    @$('.formtastic #theme_asset_source').bind 'change', (event) =>
       input = $(event.target)[0]
       if input.files?
         @model.set(source: input.files[0])

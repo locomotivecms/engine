@@ -53,7 +53,7 @@ class Locomotive.Views.Snippets.FormView extends Locomotive.Views.Shared.FormVie
       lineNumbers:      false
       passDelay:        50
       tabMode:          'shift'
-      theme:            'default'
+      theme:            'default medium'
       onChange: (editor) => @model.set(template: editor.getValue())
 
   after_inputs_fold: ->

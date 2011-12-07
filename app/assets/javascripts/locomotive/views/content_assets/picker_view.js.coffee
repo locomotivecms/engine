@@ -15,14 +15,17 @@ class Locomotive.Views.ContentAssets.PickerView extends Locomotive.Views.Shared.
     @collection.fetch()
 
   build_uploader: (el, link) ->
-    window.Locomotive.Uploadify.build el,
-      url:        link.attr('href')
-      data_name:  el.attr('name')
-      height:     link.outerHeight()
-      width:      link.outerWidth()
-      file_ext:   '*.png;*.gif;*.jpg;*.jpeg;*.pdf;*.doc;*.docx;*.xls;*.xlsx;*.txt;*.zip'
-      success:    (model) => @collection.add(model)
-      error:      (msg)   => @shake()
+    link.bind 'click', (event) ->
+      event.stopPropagation() & event.preventDefault()
+      el.click()
+
+    el.bind 'change', (event) =>
+      _.each event.target.files, (file) =>
+        asset = new Locomotive.Models.ContentAsset(source: file)
+        asset.save {},
+          headers:  { 'X-Flash': true }
+          success:  (model, response) => @collection.add(model.prepare())
+          error:    => @shake()
 
   add_asset: (asset, first) ->
     view = new Locomotive.Views.ContentAssets.PickerItemView model: asset, parent: @
