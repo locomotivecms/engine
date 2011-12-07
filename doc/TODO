@@ -24,16 +24,25 @@ x edit my site
   x edit my account
   x create a new site
   x create a new accounts
-  - theme assets
+  x theme assets
     x polish the page
     x snippets
     x delete in ajax
-    - upload many files at once
-  - site picker
+    x upload many files at once
   - import/export
     - QU
+  - site picker
   - content types
+    - change in main menu
+    - manage custom_fields
+      - list
+      - crud
+    - move content instances into their own collection
+    - manage contents
+      - list
+      - crud
 
+- message to notify people if their browser is too old
 - install a site by default at the first installation (without asking)
 
 

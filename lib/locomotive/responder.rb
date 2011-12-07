@@ -12,13 +12,14 @@ module Locomotive
       if get?
         display resource
       elsif has_errors?
-        Rails.logger.debug "--> ERRORS #{resource.errors.inspect}" # FIXME: debug purpose
-        with_flash_message(:alert) do |message|
+        with_flash_message(:alert) do
           display resource.errors, :status => :unprocessable_entity
         end
       elsif post?
-        set_flash_message!
-        display resource, :location => api_location
+        in_header = controller.request.headers['X-Flash'] == 'true'
+        with_flash_message(:notice, in_header) do
+          display resource, :location => api_location
+        end
       elsif put?
         with_flash_message do |message|
           display resource, :status => :ok, :location => api_location
@@ -38,16 +39,22 @@ module Locomotive
 
     protected
 
-    def with_flash_message(type = :notice)
-      set_flash_message!
-      message = controller.flash[type]
+    def with_flash_message(type = :notice, in_header = true)
+      if in_header
+        set_flash_message!
+        message = controller.flash[type]
 
-      controller.headers['X-Message']       = message
-      controller.headers['X-Message-Type']  = type
+        controller.headers['X-Message']       = message
+        controller.headers['X-Message-Type']  = type
 
-      yield(message) if block_given?
+        yield if block_given?
 
-      controller.flash.discard # reset flash messages !
+        controller.flash.discard # reset flash messages !
+      else
+        set_flash_message!
+
+        yield if block_given?
+      end
     end
 
   end

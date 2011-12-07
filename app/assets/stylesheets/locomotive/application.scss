@@ -359,6 +359,16 @@ p span.code {
   @include single-text-shadow(#fff, 0px, 0px, 1px);
 }
 
+/* ___ quick upload ___ */
+
+form.quick-upload {
+  display: inline;
+
+  input[type=file] {
+    visibility: hidden;
+  }
+
+}
 
 
 

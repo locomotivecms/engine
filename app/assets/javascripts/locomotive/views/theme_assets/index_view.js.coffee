@@ -25,23 +25,21 @@ class Locomotive.Views.ThemeAssets.IndexView extends Backbone.View
     return @
 
   build_uploader: ->
-    el    = @$('.quick-upload input[type=file]')
-    link  = @$('.quick-upload a.new')
-    window.Locomotive.Uploadify.build el,
-      url:        link.attr('href')
-      data_name:  el.attr('name')
-      file_ext:   '*.jpg;*.png;*.jpeg;*.gif;*.flv;*.swf;*.ttf;*.js;*.css;*.mp3'
-      height:     link.outerHeight()
-      width:      link.outerWidth()
-      success:    (model) => @add_asset(model)
-      error:      (msg)   =>
-        console.log(msg)
-        $.growl('alert', msg)
+    form  = @$('#theme-assets-quick-upload')
+    input = form.find('input[type=file]')
+    link  = form.find('a.new')
+
+    link.bind 'click', (event) ->
+      event.stopPropagation() & event.preventDefault()
+      input.click()
+
+    input.bind 'change', (event) =>
+      _.each event.target.files, (file) =>
+        asset = new Locomotive.Models.ThemeAsset(source: file)
+        asset.save {}, success: @add_asset, headers: { 'X-Flash': true }
 
   add_asset: (model) ->
-    console.log(model)
-    list_view = @pick_list_view(model.content_type)
-    console.log(list_view)
+    list_view = @pick_list_view(model.get('content_type'))
     list_view.collection.add(model)
 
   render_snippets: ->

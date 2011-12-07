@@ -37,6 +37,7 @@ class Locomotive.Views.Shared.ListView extends Backbone.View
 
     (@_item_views ||= []).push(view)
 
+    @$('.no-items').hide()
     @$('ul').append(view.render().el)
 
   remove_item: (item) ->

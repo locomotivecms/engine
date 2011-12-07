@@ -29,9 +29,10 @@
 
 - content_for :buttons do
   - if can?(:manage, Locomotive::ThemeAsset)
-    .button-wrapper.quick-upload
-      = file_field_tag 'theme_asset[source]'
-      = local_action_button :quick_upload, theme_assets_url(:json), :class => 'new'
+    = form_tag theme_assets_url(:json), :id => 'theme-assets-quick-upload', :class => 'quick-upload' do
+      = file_field_tag 'theme_asset[source]', :multiple => 'multiple'
+      = local_action_button :quick_upload, '#', :class => 'new'
+
   = local_action_button t('locomotive.snippets.index.new'), new_snippet_url, :class => 'new' if can?(:manage, Locomotive::Snippet)
   = local_action_button :new, new_theme_asset_url, :class => 'new' if can?(:manage, Locomotive::ThemeAsset)
 
