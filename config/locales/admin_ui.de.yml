@@ -177,7 +177,7 @@ de:
         css_and_js: Style und Javascript
         fonts: Fonts
         images: Bilder
-        medias: Medien
+        media: Medien
         no_items: "Momentan gibt es keine Dateien. Klicke einfach <a href='%{url}'>hier</a>, um die erste Datei zu erstellen."
       asset:
         updated_at: Aktualisiert am

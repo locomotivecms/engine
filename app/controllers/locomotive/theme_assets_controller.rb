@@ -20,31 +20,31 @@ module Locomotive
     end
 
     def new
-      @asset = current_site.theme_assets.build(params[:id])
-      respond_with @asset
+      @theme_asset = current_site.theme_assets.build(params[:id])
+      respond_with @theme_asset
     end
 
     def create
-      @asset = current_site.theme_assets.create(params[:theme_asset])
-      respond_with @asset, :location => edit_theme_asset_url(@asset._id)
+      @theme_asset = current_site.theme_assets.create(params[:theme_asset])
+      respond_with @theme_asset, :location => edit_theme_asset_url(@theme_asset._id)
     end
 
     def edit
-      @asset = current_site.theme_assets.find(params[:id])
-      resource.performing_plain_text = true if resource.stylesheet_or_javascript?
-      respond_with @asset
+      @theme_asset = current_site.theme_assets.find(params[:id])
+      @theme_asset.performing_plain_text = true if @theme_asset.stylesheet_or_javascript?
+      respond_with @theme_asset
     end
 
     def update
-      @asset = current_site.theme_assets.find(params[:id])
-      @asset.update_attributes(params[:theme_asset])
-      respond_with @asset, :location => edit_theme_asset_url(@asset._id)
+      @theme_asset = current_site.theme_assets.find(params[:id])
+      @theme_asset.update_attributes(params[:theme_asset])
+      respond_with @theme_asset, :location => edit_theme_asset_url(@theme_asset._id)
     end
 
     def destroy
-      @asset = current_site.theme_assets.find(params[:id])
-      @asset.destroy
-      respond_with @asset
+      @theme_asset = current_site.theme_assets.find(params[:id])
+      @theme_asset.destroy
+      respond_with @theme_asset
     end
 
   end

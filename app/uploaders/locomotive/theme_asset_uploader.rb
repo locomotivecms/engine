@@ -18,8 +18,8 @@ module Locomotive
     end
 
     def self.build(site, path)
-      asset = ThemeAsset.new(:site => site, :folder => File.dirname(path))
-      uploader = ThemeAssetUploader.new(asset)
+      asset     = ThemeAsset.new(:site => site, :folder => File.dirname(path))
+      uploader  = ThemeAssetUploader.new(asset)
       uploader.retrieve_from_store!(File.basename(path))
       uploader
     end

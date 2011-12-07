@@ -188,7 +188,7 @@
         css_and_js: Stilark og javascript
         fonts: Fonter
         images: Bilder
-        medias: Media
+        media: Media
         no_items: "Det er ingen filer her ennå."
       asset:
         updated_at: Sist oppdatert

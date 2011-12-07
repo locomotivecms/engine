@@ -193,7 +193,7 @@ en:
         css_and_js: Style and javascript
         fonts: Fonts
         images: Images
-        medias: Medias
+        media: Media
         no_items: "There are no files for now."
       asset:
         updated_at: Updated at

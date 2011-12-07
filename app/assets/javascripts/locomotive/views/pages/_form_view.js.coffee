@@ -74,12 +74,6 @@ class Locomotive.Views.Pages.FormView extends Locomotive.Views.Shared.FormView
   after_inputs_fold: ->
     @editor.refresh()
 
-  show_error: (attribute, message, html) ->
-    switch attribute
-      when 'raw_template'
-        @$("#page_raw_template_input .CodeMirror").after(html)
-      else super
-
   render_editable_elements: ->
     @$('.formtastic fieldset.inputs:first').before(@editable_elements_view.render().el)
     @editable_elements_view.after_render()

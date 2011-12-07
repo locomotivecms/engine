@@ -7,6 +7,10 @@ class Locomotive.Views.ThemeAssets.ImagePickerView extends Locomotive.Views.Shar
   events:
     'click ul.list a':  'select_asset'
 
+  initialize: ->
+    @collection ||= new Locomotive.Models.ThemeAssetsCollection()
+    super
+
   template: ->
     ich.theme_image_picker
 

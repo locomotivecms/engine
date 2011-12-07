@@ -187,7 +187,7 @@ es:
         css_and_js: Estilo y Javascript
         fonts: Fuentes
         images: Imágenes
-        medias: Media
+        media: Media
         no_items: "Por ahora no hay ficheros."
       asset:
         updated_at: Última actualización

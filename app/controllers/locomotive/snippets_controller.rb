@@ -28,7 +28,7 @@ module Locomotive
 
     def destroy
       @snippet = current_site.snippets.find(params[:id])
-      # @snippet.destroy
+      @snippet.destroy
       respond_with @snippet, :location => theme_assets_url
     end
 

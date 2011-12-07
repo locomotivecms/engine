@@ -9,10 +9,10 @@ module Locomotive
     ## fields ##
     field :local_path
     field :content_type
-    field :width, :type => Integer
-    field :height, :type => Integer
-    field :size, :type => Integer
-    field :folder, :default => nil
+    field :width,   :type => Integer
+    field :height,  :type => Integer
+    field :size,    :type => Integer
+    field :folder,  :default => nil
     mount_uploader :source, ThemeAssetUploader, :mount_on => :source_filename
 
     ## associations ##
@@ -23,12 +23,14 @@ module Locomotive
     index [[:site_id, Mongo::ASCENDING], [:local_path, Mongo::ASCENDING]]
 
     ## callbacks ##
+    before_validation :check_for_folder_changes
     before_validation :store_plain_text
     before_validation :sanitize_folder
     before_validation :build_local_path
 
     ## validations ##
-    validates_presence_of   :site, :source
+    validates_presence_of   :site
+    validates_presence_of   :source, :on => :create
     validates_presence_of   :plain_text_name, :if => Proc.new { |a| a.performing_plain_text? }
     validates_uniqueness_of :local_path, :scope => :site_id
     validates_integrity_of  :source
@@ -37,7 +39,8 @@ module Locomotive
     ## named scopes ##
 
     ## accessors ##
-    attr_accessor :plain_text_name, :plain_text, :plain_text_type, :performing_plain_text
+    attr_accessor   :plain_text_name, :plain_text, :plain_text_type, :performing_plain_text
+    attr_accessible :folder, :source, :plain_text_type, :performing_plain_text, :plain_text_name, :plain_text
 
     ## methods ##
 
@@ -82,6 +85,8 @@ module Locomotive
     end
 
     def store_plain_text
+      return if self.persisted? && !self.stylesheet_or_javascript?
+
       self.content_type ||= @plain_text_type if self.performing_plain_text?
 
       data = self.performing_plain_text? ? self.plain_text : self.source.read
@@ -90,7 +95,7 @@ module Locomotive
 
       sanitized_source = self.escape_shortcut_urls(data)
 
-      self.source = CarrierWave::SanitizedFile.new({
+      self.source = ::CarrierWave::SanitizedFile.new({
         :tempfile => StringIO.new(sanitized_source),
         :filename => "#{self.plain_text_name}.#{self.stylesheet? ? 'css' : 'js'}"
       })
@@ -122,7 +127,7 @@ module Locomotive
       self.folder = ActiveSupport::Inflector.transliterate(self.folder).gsub(/(\s)+/, '_').gsub(/^\//, '').gsub(/\/$/, '')
 
       # folder should begin by a root folder
-      if (self.folder =~ /^(stylesheets|javascripts|images|medias|fonts)/).nil?
+      if (self.folder =~ /^(stylesheets|javascripts|images|media|fonts)/).nil?
         self.folder = File.join(self.content_type.to_s.pluralize, self.folder)
       end
     end
@@ -138,7 +143,7 @@ module Locomotive
     def escape_shortcut_urls(text)
       return if text.blank?
 
-      text.gsub(/[("'](\/(stylesheets|javascripts|images|medias)\/(([^;.]+)\/)*([a-z_\-0-9]+)\.[a-z]{2,3})[)"']/) do |path|
+      text.gsub(/[("'](\/(stylesheets|javascripts|images|media)\/(([^;.]+)\/)*([a-z_\-0-9]+)\.[a-z]{2,3})[)"']/) do |path|
 
         sanitized_path = path.gsub(/[("')]/, '').gsub(/^\//, '')
 
@@ -150,8 +155,21 @@ module Locomotive
       end
     end
 
+    def check_for_folder_changes
+      # https://github.com/jnicklas/carrierwave/issues/330
+      # https://github.com/jnicklas/carrierwave-mongoid/issues/23
+      if self.persisted? && self.folder_changed? && !self.source_filename_changed?
+        # a simple way to rename a file
+        old_asset         = self.class.find(self._id)
+        file              = old_asset.source.file
+        file.content_type = File.mime_type?(file.path) if file.content_type.nil?
+        self.source       = file
+        self.changed_attributes['source_filename'] = nil # delete the old file
+      end
+    end
+
     def content_type_can_not_changed
-      self.errors.add(:source, :extname_changed) if !self.new_record? && self.content_type_changed?
+      self.errors.add(:source, :extname_changed) if self.persisted? && self.content_type_changed?
     end
 
   end

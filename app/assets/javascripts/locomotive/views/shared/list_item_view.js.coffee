@@ -1,14 +1,17 @@
-Locomotive.Views.Snippets ||= {}
+Locomotive.Views.Shared ||= {}
 
-class Locomotive.Views.Snippets.ItemView extends Backbone.View
+class Locomotive.Views.Shared.ListItemView extends Backbone.View
 
   tagName: 'li'
 
   events:
     'click a.remove': 'remove_snippet'
 
+  template: ->
+    # please overide template
+
   render: ->
-    $(@el).html(ich.snippet_item(@model.toJSON()))
+    $(@el).html(@template()(@model.toJSON()))
 
     return @
 

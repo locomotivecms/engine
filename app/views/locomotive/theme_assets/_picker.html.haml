@@ -12,7 +12,6 @@
       = file_field_tag 'theme_asset[source]'
       = link_to t('locomotive.theme_assets.image_picker.upload'), theme_assets_url(:json), :class => 'new', :id => 'upload-link'
 
-
 %script{ :type => 'text/html', :id => 'theme_asset' }
 
   %li.item
@@ -22,5 +21,3 @@
       &mdash;
       %span!= t('.updated_at')
       %span.date {{updated_at}}
-
-

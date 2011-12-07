@@ -187,7 +187,7 @@ ru:
         css_and_js: Стили и javascript
         fonts: Шрифты
         images: Изображения
-        medias: Медиа
+        media: Медиа
         no_items: "Пока нет ни одного файла."
       asset:
         updated_at: Обновлено

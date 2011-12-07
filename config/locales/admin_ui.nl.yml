@@ -173,7 +173,7 @@ nl:
         css_and_js: Stijlen en javascripts
         fonts: Lettertypes
         images: Afbeeldingen
-        medias: Media
+        media: Media
         no_items: "Er zijn momenteel geen bestanden. Klik <a href=\"%{url}\">hier</a> om de eerste aan te maken."
       asset:
         updated_at: Gewijzigd op

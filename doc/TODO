@@ -25,12 +25,13 @@ x edit my site
   x create a new site
   x create a new accounts
   - theme assets
-    xpolish the page
+    x polish the page
     x snippets
-    - delete in ajax
+    x delete in ajax
     - upload many files at once
   - site picker
   - import/export
+    - QU
   - content types
 
 - install a site by default at the first installation (without asking)

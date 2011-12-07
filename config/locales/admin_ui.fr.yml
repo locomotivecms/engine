@@ -191,7 +191,7 @@ fr:
         snippets: Snippets
         css_and_js: Style et javascript
         images: Images
-        medias: Médias
+        media: Média
         fonts: Polices
         no_items: "Il n'existe pas de fichiers."
       asset:

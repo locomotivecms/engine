@@ -186,7 +186,7 @@ it:
         css_and_js: Style e javascript
         fonts: Fonts
         images: Immagini
-        medias: Media
+        media: Media
         no_items: "Per ora non ci sono file. Clicca <a href=\"%{url}\">qui</a> per creare il primo."
       asset:
         updated_at: Modificato il
