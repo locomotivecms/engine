@@ -7,7 +7,7 @@ module Locomotive
       include Logger
 
       def initialize(zipfile, site, options = {})
-        @site = site
+        @site_id = site._id.to_s
         @options = {
           :reset    => false,
           :samples  => false,
@@ -18,15 +18,20 @@ module Locomotive
 
         raise "Theme identifier not found" if @identifier.blank?
 
-        @uploader = nil # fix issue with Ruby 1.9.2 and serialization
+        # empty instance variables before serialization (issue with ruby 1.9.2)
+        @uploader = @site = nil
       end
 
       def before(worker)
         @worker = worker
       end
 
+      def site
+        @site ||= Locomotive::Site.find(@site_id)
+      end
+
       def perform
-        self.log "theme identifier #{@identifier}"
+        self.log "theme identifier #{@identifier} / site_id #{@site_id}"
 
         self.unzip!
 
@@ -34,7 +39,7 @@ module Locomotive
 
         context = {
           :database => @database,
-          :site => @site,
+          :site => self.site,
           :theme_path => @theme_path,
           :error => nil,
           :worker => @worker
@@ -42,20 +47,22 @@ module Locomotive
 
         self.reset! if @options[:reset]
 
-        %w(site content_types content_assets snippets pages).each do |step|
+        # %w(site content_types content_assets snippets pages).each do |step|
+        %w(site assets snippets pages).each do |step|
           if @options[:enabled][step] != false
             "Locomotive::Import::#{step.camelize}".constantize.process(context, @options)
             @worker.update_attributes :step => step if @worker
           else
             self.log "skipping #{step}"
           end
+          sleep 10 # FIXME DEBUG PURPOSE
         end
       end
 
       def success(worker)
         self.log 'deleting original zip file'
 
-        uploader = self.get_uploader(@site)
+        uploader = self.get_uploader(self.site)
 
         uploader.retrieve_from_store!(@identifier)
 
@@ -70,8 +77,7 @@ module Locomotive
         job = self.new(zipfile, site, options)
 
         if Locomotive.config.delayed_job
-          puts "delayed::JOB !"
-          Delayed::Job.enqueue job, { :site => site, :job_type => 'import' }
+          Delayed::Job.enqueue job, { :site_id => site._id, :job_type => 'import' }
         else
           job.perform
         end
@@ -80,7 +86,7 @@ module Locomotive
       protected
 
       def themes_folder
-        File.join(Rails.root, 'tmp', 'themes', @site.id.to_s)
+        File.join(Rails.root, 'tmp', 'themes', self.site._id.to_s)
       end
 
       def prepare_folder
@@ -92,7 +98,7 @@ module Locomotive
       def store_zipfile(zipfile)
         return nil if zipfile.blank?
 
-        uploader = self.get_uploader(@site)
+        uploader = self.get_uploader(self.site)
 
         begin
           if zipfile.is_a?(String) && zipfile =~ /^https?:\/\//
@@ -109,7 +115,7 @@ module Locomotive
       end
 
       def retrieve_zipfile
-        uploader = self.get_uploader(@site)
+        uploader = self.get_uploader(self.site)
 
         uploader.retrieve_from_store!(@identifier)
 
@@ -161,10 +167,10 @@ module Locomotive
       end
 
       def reset!
-        @site.pages.destroy_all
-        @site.content_assets.destroy_all
-        @site.theme_assets.destroy_all
-        @site.content_types.destroy_all
+        self.site.pages.destroy_all
+        self.site.content_assets.destroy_all
+        self.site.theme_assets.destroy_all
+        self.site.content_types.destroy_all
       end
 
       def get_uploader(site)

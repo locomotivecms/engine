@@ -5,29 +5,11 @@
 
 %p!= t('.help')
 
-= form_tag import_url, :multipart => true, :class => 'formtastic import' do
+= semantic_form_for @import, :as => 'import', :url => import_url, :html => { :multipart => true } do |f|
 
-  %fieldset.inputs
-    %legend
-      %span= t('formtastic.titles.upload')
-    %ol
-      %li{ :class => "file #{'error' if @error} required" }
-        = label_tag 'zipfile', t('formtastic.labels.import.new.source')
-        = file_field_tag 'zipfile'
-        - if @error
-          .inline-errors
-            %p= @error
-        %p.inline-hints= t('formtastic.hints.import.source')
+  = f.inputs :name => :upload do
+    = f.input :source,  :as => 'file'
+    = f.input :samples, :as => :'Locomotive::Toggle'
+    = f.input :reset,   :as => :'Locomotive::Toggle'
 
-      %li.input.toggle
-        = label_tag 'samples', t('formtastic.labels.import.new.samples')
-        = check_box_tag 'samples'
-        %p.inline-hints= t('formtastic.hints.import.samples')
-
-      %li.input.toggle
-        = label_tag 'reset', t('formtastic.labels.import.new.reset')
-        = check_box_tag 'reset'
-        %p.inline-hints= t('formtastic.hints.import.reset')
-
-
-  = render 'locomotive/shared/form_actions', :button_label => :send
+  = render 'locomotive/shared/form_actions', :back_url => edit_current_site_url, :button_label => :create

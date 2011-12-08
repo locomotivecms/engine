@@ -11,5 +11,10 @@ module Locomotive
       super + %w(name slug template updated_at)
     end
 
+    def as_json_for_html_view
+      methods = included_methods.clone - %w(template)
+      self.as_json(methods)
+    end
+
   end
 end

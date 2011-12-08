@@ -42,7 +42,7 @@ Locomotive.configure do |config|
   # If you do not mind about importing theme without DelayedJob, disable it.
   #
   # Warning: this option is not used if you deploy on bushi.do and we set automatically the value to true.
-  config.delayed_job = false
+  config.delayed_job = true # false
 
   # configure how many items we display in sub menu in the "Contents" section.
   # config.lastest_items_nb = 5

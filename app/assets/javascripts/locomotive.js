@@ -10,7 +10,6 @@
 //= require underscore
 //= require handlebars
 //= require backbone
-//= require uploadify
 //= require codemirror
 //= require tinymce-jquery
 //= require codemirror/overlay

@@ -30,9 +30,10 @@ class Locomotive::BasePresenter
     %w(id created_at updated_at)
   end
 
-  def as_json
+  def as_json(methods = nil)
+    methods ||= self.included_methods
     {}.tap do |hash|
-      self.included_methods.map(&:to_sym).each do |meth|
+      methods.map(&:to_sym).each do |meth|
         hash[meth] = self.send(meth) rescue nil
       end
     end

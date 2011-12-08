@@ -26,8 +26,12 @@ module Locomotive
 
     ## methods ##
 
+    def to_presenter
+      Locomotive::SnippetPresenter.new(self)
+    end
+
     def as_json(options = {})
-      Locomotive::SnippetPresenter.new(self).as_json
+      self.to_presenter.as_json
     end
 
     protected

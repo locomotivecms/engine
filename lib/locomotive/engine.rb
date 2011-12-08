@@ -27,9 +27,5 @@ module Locomotive
       ActionController::Base.wrap_parameters :format => [:json]
     end
 
-    rake_tasks do
-      load "railties/tasks.rake"
-    end
-
   end
 end

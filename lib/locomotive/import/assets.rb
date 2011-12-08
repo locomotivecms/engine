@@ -5,7 +5,7 @@ module Locomotive
       def process
         self.add_theme_assets
 
-        self.add_other_assets
+        self.add_content_assets
       end
 
       protected
@@ -33,16 +33,16 @@ module Locomotive
         end
       end
 
-      def add_other_assets
+      def add_content_assets
         Dir[File.join(theme_path, 'public', 'samples', '*')].each do |asset_path|
 
           next if File.directory?(asset_path)
 
           self.log "other asset = #{asset_path}"
 
-          asset = site.assets.where(:source_filename => File.basename(asset_path)).first
+          asset = site.content_assets.where(:source_filename => File.basename(asset_path)).first
 
-          asset ||= self.site.assets.build
+          asset ||= self.site.content_assets.build
 
           asset.attributes = { :source => File.open(asset_path) }
 

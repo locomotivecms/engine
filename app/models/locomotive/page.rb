@@ -84,8 +84,12 @@ module Locomotive
       Locomotive::Liquid::Drops::Page.new(self)
     end
 
+    def to_presenter
+      Locomotive::PagePresenter.new(self)
+    end
+
     def as_json(options = {})
-      Locomotive::PagePresenter.new(self).as_json
+      self.to_presenter.as_json
     end
 
     protected
