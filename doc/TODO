@@ -29,9 +29,8 @@ x edit my site
     x snippets
     x delete in ajax
     x upload many files at once
-  - import/export
-    - export
-    - replace DJ by QU
+  x import/export
+    x export
   - site picker
   - content types
     - change in main menu

@@ -325,18 +325,21 @@ ul.list {
   margin: 0px 200px;
 
   li {
-    strong a { color: #b7baca; }
+    strong {
+      margin-left: 18px;
+      color: #b7baca;
+    }
 
     .more .states {
       position: relative;
-      top: 4px;
+      top: 7px;
       height: 16px;
       width: 16px;
       background: transparent image-url("locomotive/list/icons/states.png") no-repeat 0 0;
     }
 
     &.done {
-      strong a { color: #1F82BC; }
+      strong { color: #1F82BC; }
 
       .more .states {
         background-position: 0 -16px;

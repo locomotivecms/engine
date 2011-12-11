@@ -41,7 +41,6 @@ module Locomotive
       ## class methods ##
 
       def self.create(attributes = {})
-        puts attributes.inspect
         new(attributes).tap do |job|
           if job.valid?
             begin
@@ -58,6 +57,15 @@ module Locomotive
         Locomotive::Import::Job.run! job.source, job.site, {
           :reset    => job.reset,
           :enabled  => job.enabled
+        }
+      end
+
+      def self.current(site)
+        job = Delayed::Job.where({ :job_type => 'import', :site_id => site.id }).last
+
+        {
+          :step   => job.nil? ? 'done' : job.step,
+          :failed => job && job.last_error.present?
         }
       end
 
