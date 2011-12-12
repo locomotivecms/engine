@@ -9,6 +9,9 @@ class Locomotive.Views.ApplicationView extends Backbone.View
 
     @center_ui_dialog()
 
+    @enable_sites_picker()
+
+    # render page view
     if @options.view?
       @view = new @options.view(@options.view_data || {})
       @view.render()
@@ -49,4 +52,17 @@ class Locomotive.Views.ApplicationView extends Backbone.View
 
     css = $('#submenu > ul').attr('class')
     $("#submenu > ul > li.#{css}").addClass('on') if css != ''
+
+  enable_sites_picker: ->
+    link    = @$('#sites-picker-link')
+    picker  = @$('#sites-picker')
+
+    return if picker.size() == 0
+
+    left = link.position().left + link.parent().position().left - (picker.width() - link.width())
+    picker.css('left', left)
+
+    link.bind 'click', (event) ->
+      event.stopPropagation() & event.preventDefault()
+      picker.toggle()
 

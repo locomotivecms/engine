@@ -4,7 +4,7 @@
   %head
     %title= yield(:head_title) || escape_once("#{Locomotive.config.name} &mdash; #{current_site.name}")
 
-    = javascript_include_tag  'locomotive/jquery.js'
+    = javascript_include_tag  'jquery.js'
     = stylesheet_link_tag     'locomotive/not_logged_in', :media => 'screen'
 
     = yield :head
