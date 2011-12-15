@@ -305,7 +305,7 @@ module Locomotive
             content.send(field.safe_alias.to_sym)
           end)
 
-          hash[field._alias] = value unless value.blank?
+          hash[field._alias] = value if value.present? || value == false # False values should be preserved in the export
         end
 
         data << { content.highlighted_field_value => hash }

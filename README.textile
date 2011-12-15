@@ -1,5 +1,8 @@
 h1. Locomotive CMS
 
+"!https://secure.travis-ci.org/locomotivecms/engine.png!":http://travis-ci.org/locomotivecms/engine
+
+
 Locomotive is a simple but powerful CMS based on liquid templates and mongodb database. At my company ("NoCoffee":http://www.nocoffee.fr), we use it for our clients when they request a simple website.
 
 If we have to give only 5 main features to describe our application, there will be:
@@ -31,6 +34,16 @@ Here is a short list of main gems used in the application.
 h2. Installation
 
 See the "official website":http://www.locomotivecms.com
+
+h2. Upgrading
+
+If you wish to upgrade your locomotive install from an older version to the current 1.0.0rc1 then "please refer to the upgrade guide":http://www.locomotivecms.com/support/howto/upgrade
+
+h2. Community
+
+* Get help or discuss locomotive CMS at the "LocomotiveCMS Discussion Forums":http://locomotive.vanillaforums.com/
+* Join us on IRC "#locomotivecms at irc.freenode.net!":http://webchat.freenode.net/
+* "Follow us on twitter":http://twitter.com/locomotiveapp
 
 h2. Team
 

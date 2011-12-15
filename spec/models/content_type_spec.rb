@@ -89,6 +89,20 @@ describe ContentType do
       @content_type.order_direction = 'desc'
       @content_type.ordered_contents.collect(&:name).should == %w(Sacha Did)
     end
+    
+    it 'returns a list of contents ordered by a Date column when first instance is missing the value' do
+      @content_type = FactoryGirl.build(:content_type, :order_by => 'created_at')
+      @content_type.content_custom_fields.build :label => 'Active at', :name => 'active_at', :kind => 'Date'
+      e = Date.parse('01/01/2001')
+      l = Date.parse('02/02/2002')
+      [nil,e,l].each { |d| @content_type.contents << @content_type.content_klass.new(:active_at => d) }
+      @content_type.order_by = 'active_at'
+      @content_type.order_direction = 'asc'
+      lambda { @content_type.ordered_contents }.should_not raise_error(ArgumentError)
+      @content_type.ordered_contents.map(&:active_at).should == [nil,e,l]
+      @content_type.order_direction = 'desc'
+      @content_type.ordered_contents.map(&:active_at).should == [l,e,nil]
+    end
 
   end
 
