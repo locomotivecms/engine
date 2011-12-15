@@ -25,7 +25,8 @@ describe Locomotive::Export do
     end
 
     it 'deals with real booleans' do
-      @project_data.first.values.first['active'].should be_true
+      @project_data.first.values.first['active'].should === true
+      @project_data.last.values.first['active'].should  === false
     end
 
     it 'stores the list of highlighted values in a has_many relationship' do
