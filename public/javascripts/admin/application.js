@@ -19,7 +19,8 @@ $.growl.settings.dockCss = {
 /* ___ codemirror ___ */
 
 var addCodeMirrorEditor = function(type, el, mode) {
-  if (!mode) mode = 'htmlmixed';
+  //if (!mode) mode = 'htmlmixed';
+  if (!mode) mode = 'liquid';
   if (mode == 'nude') mode = undefined;
   var editor = CodeMirror.fromTextArea(el.get()[0], {
     height: el.hasClass('small') ? '60px' : '400px',
