@@ -31,7 +31,7 @@ x edit my site
     x upload many files at once
   x import/export
     x export
-  - site picker
+  x site picker
   - content types
     - change in main menu
     - manage custom_fields
@@ -42,7 +42,7 @@ x edit my site
       - list
       - crud
 
-- disallow to click twice on the submit form button
+- disallow to click twice on the submit form button (spinner ?)
 - message to notify people if their browser is too old
 - install a site by default at the first installation (without asking)
 

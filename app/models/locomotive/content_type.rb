@@ -18,12 +18,13 @@ module Locomotive
     field :api_accounts, :type => Array
 
     ## associations ##
-    referenced_in :site,      :class_name => 'Locomotive::Site'
-    embeds_many   :contents,  :class_name => 'Locomotive::ContentInstance', :validate => false do
-      def visible
-        @target.find_all { |c| c.visible? }
-      end
-    end
+    belongs_to  :site,      :class_name => 'Locomotive::Site'
+    has_many    :contents
+    # embeds_many   :contents,  :class_name => 'Locomotive::ContentInstance', :validate => false do
+    #   def visible
+    #     @target.find_all { |c| c.visible? }
+    #   end
+    # end
 
     ## named scopes ##
     scope :ordered, :order_by => :updated_at.desc
@@ -135,13 +136,13 @@ module Locomotive
       self.slug.permalink! if self.slug.present?
     end
 
-    def remove_uploaded_files # callbacks are not called on each content so we do it manually
-      self.contents.each do |content|
-        self.contents_custom_fields.each do |field|
-          content.send(:"remove_#{field._name}!") if field.kind == 'file'
-        end
-      end
-    end
+    # def remove_uploaded_files # callbacks are not called on each content so we do it manually
+    #   self.contents.each do |content|
+    #     self.contents_custom_fields.each do |field|
+    #       content.send(:"remove_#{field._name}!") if field.kind == 'file'
+    #     end
+    #   end
+    # end
 
   end
 end

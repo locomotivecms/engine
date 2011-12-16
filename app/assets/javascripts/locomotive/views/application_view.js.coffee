@@ -34,8 +34,8 @@ class Locomotive.Views.ApplicationView extends Backbone.View
       timer = null
       link  = $(@)
       (popup = link.find('.popup')).removeClass('popup').addClass('submenu-popup').css(
-        top:          link.offset().top + link.height() - 2
-        left:         link.offset().left - parseInt(popup.css('padding-left'))
+        top:  link.offset().top + link.height() - 2
+        left: link.offset().left - parseInt(popup.css('padding-left'))
       ).bind('show', ->
         link.find('a').addClass('hover') & popup.show()
       ).bind('hide', ->
