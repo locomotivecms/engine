@@ -14,8 +14,7 @@ class ContentInstance
 
   ## validations ##
   validate :require_highlighted_field
-  validate :validate_uniqueness_of_slug
-  validates_presence_of :_slug
+  validates :_slug, :presence => true, :uniqueness => { :scope => :content_type_id }
 
   ## associations ##
   embedded_in :content_type, :inverse_of => :contents
@@ -77,9 +76,29 @@ class ContentInstance
 
   protected
 
+  # Sets the slug of the instance by using the value of the highlighted field
+  # (if available). If a sibling content instance has the same permalink then a
+  # unique one will be generated
   def set_slug
-    self._slug = self.highlighted_field_value.dup if self._slug.blank? && self.highlighted_field_value.present?
-    self._slug.permalink! if self._slug.present?
+    self._slug = highlighted_field_value.dup if _slug.blank? && highlighted_field_value.present?
+
+    if _slug.present?
+      self._slug.permalink!
+      self._slug = next_unique_slug if slug_already_taken?
+    end
+  end
+
+  # Return the next available unique slug as a string
+  def next_unique_slug
+    slug        = _slug.gsub(/-\d*$/, '')
+    last_slug   = _parent.contents.where(:_id.ne => _id, :_slug => /^#{slug}-?\d*?$/i).order_by(:_slug).last._slug
+    next_number = last_slug.scan(/-(\d)$/).flatten.first.to_i + 1
+
+    [slug, next_number].join('-')
+  end
+
+  def slug_already_taken?
+    _parent.contents.where(:_id.ne => _id, :_slug => _slug).any?
   end
 
   def set_visibility
@@ -95,12 +114,6 @@ class ContentInstance
     _alias = self.highlighted_field_alias
     if self.send(_alias).blank?
       self.errors.add(_alias, :blank)
-    end
-  end
-
-  def validate_uniqueness_of_slug
-    if self._parent.contents.any? { |c| c._id != self._id && c._slug == self._slug }
-      self.errors.add(:_slug, :taken)
     end
   end
 
