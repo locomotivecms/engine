@@ -1,11 +1,10 @@
 module Locomotive
   class ContentInstance
 
-    include ::Mongoid::Document
-    include ::Mongoid::Timestamps
+    include Locomotive::Mongoid::Document
 
     ## extensions ##
-    include ::Mongoid::TargetCustomFields
+    include ::CustomFields::Target
     include Extensions::Shared::Seo
 
     ## fields (dynamic fields) ##

@@ -4,6 +4,7 @@ module Locomotive
     include Locomotive::Mongoid::Document
 
     ## extensions ##
+    include CustomFields::Source
     include Extensions::ContentType::ItemTemplate
 
     ## fields ##
@@ -19,7 +20,7 @@ module Locomotive
 
     ## associations ##
     belongs_to  :site,      :class_name => 'Locomotive::Site'
-    has_many    :contents
+    has_many    :contents,  :class_name => 'Locomotive::ContentInstance'
     # embeds_many   :contents,  :class_name => 'Locomotive::ContentInstance', :validate => false do
     #   def visible
     #     @target.find_all { |c| c.visible? }
@@ -35,7 +36,7 @@ module Locomotive
     ## callbacks ##
     before_validation   :normalize_slug
     before_save         :set_default_values
-    after_destroy       :remove_uploaded_files
+    # after_destroy       :remove_uploaded_files
 
     ## validations ##
     validates_presence_of   :site, :name, :slug
@@ -47,9 +48,9 @@ module Locomotive
 
     ## methods ##
 
-    def groupable?
-      self.group_by_field && group_by_field.category?
-    end
+    # def groupable?
+    #   self.group_by_field && group_by_field.category?
+    # end
 
     def order_manually?
       self.order_by == '_position_in_list'
@@ -59,70 +60,70 @@ module Locomotive
       self.order_direction.blank? || self.order_direction == 'asc'
     end
 
-    def list_or_group_contents
-      if self.groupable?
-        groups = self.contents.klass.send(:"group_by_#{self.group_by_field._alias}", :ordered_contents)
+    # def list_or_group_contents
+    #   if self.groupable?
+    #     groups = self.contents.klass.send(:"group_by_#{self.group_by_field._alias}", :ordered_contents)
+    #
+    #     # look for items with no category or unknown ones
+    #     items_without_category = self.contents.find_all { |c| !self.group_by_field.category_ids.include?(c.send(self.group_by_field_name)) }
+    #     if not items_without_category.empty?
+    #       groups << { :name => nil, :items => items_without_category }
+    #     else
+    #       groups
+    #     end
+    #   else
+    #     self.ordered_contents
+    #   end
+    # end
 
-        # look for items with no category or unknown ones
-        items_without_category = self.contents.find_all { |c| !self.group_by_field.category_ids.include?(c.send(self.group_by_field_name)) }
-        if not items_without_category.empty?
-          groups << { :name => nil, :items => items_without_category }
-        else
-          groups
-        end
-      else
-        self.ordered_contents
-      end
-    end
+    # def latest_updated_contents
+    #   self.contents.latest_updated.reject { |c| !c.persisted? }
+    # end
 
-    def latest_updated_contents
-      self.contents.latest_updated.reject { |c| !c.persisted? }
-    end
+    # def ordered_contents(conditions = {})
+    #   column = self.order_by.to_sym
+    #
+    #   list = (if conditions.nil? || conditions.empty?
+    #     self.contents
+    #   else
+    #     conditions_with_names = {}
+    #
+    #     conditions.each do |key, value|
+    #       # convert alias (key) to name
+    #       field = self.contents_custom_fields.detect { |f| f._alias == key }
+    #
+    #       case field.kind.to_sym
+    #       when :category
+    #         if (category_item = field.category_items.where(:name => value).first).present?
+    #           conditions_with_names[field._name.to_sym] = category_item._id
+    #         end
+    #       else
+    #         conditions_with_names[field._name.to_sym] = value
+    #       end
+    #     end
+    #
+    #     self.contents.where(conditions_with_names)
+    #   end).sort { |a, b| (a.send(column) || 0) <=> (b.send(column) || 0) }
+    #
+    #   return list if self.order_manually?
+    #
+    #   self.asc_order? ? list : list.reverse
+    # end
 
-    def ordered_contents(conditions = {})
-      column = self.order_by.to_sym
+    # def sort_contents!(ids)
+    #   ids.each_with_index do |id, position|
+    #     self.contents.find(BSON::ObjectId(id))._position_in_list = position
+    #   end
+    #   self.save
+    # end
 
-      list = (if conditions.nil? || conditions.empty?
-        self.contents
-      else
-        conditions_with_names = {}
-
-        conditions.each do |key, value|
-          # convert alias (key) to name
-          field = self.contents_custom_fields.detect { |f| f._alias == key }
-
-          case field.kind.to_sym
-          when :category
-            if (category_item = field.category_items.where(:name => value).first).present?
-              conditions_with_names[field._name.to_sym] = category_item._id
-            end
-          else
-            conditions_with_names[field._name.to_sym] = value
-          end
-        end
-
-        self.contents.where(conditions_with_names)
-      end).sort { |a, b| (a.send(column) || 0) <=> (b.send(column) || 0) }
-
-      return list if self.order_manually?
-
-      self.asc_order? ? list : list.reverse
-    end
-
-    def sort_contents!(ids)
-      ids.each_with_index do |id, position|
-        self.contents.find(BSON::ObjectId(id))._position_in_list = position
-      end
-      self.save
-    end
-
-    def highlighted_field
-      self.contents_custom_fields.detect { |f| f._name == self.highlighted_field_name }
-    end
-
-    def group_by_field
-      @group_by_field ||= self.contents_custom_fields.detect { |f| f._name == self.group_by_field_name }
-    end
+    # def highlighted_field
+    #   self.contents_custom_fields.detect { |f| f._name == self.highlighted_field_name }
+    # end
+    #
+    # def group_by_field
+    #   @group_by_field ||= self.contents_custom_fields.detect { |f| f._name == self.group_by_field_name }
+    # end
 
     protected
 

@@ -74,7 +74,7 @@ en:
           delete_file: Delete file
         has_many:
           empty: Empty
-      index:
+      form:
         is_required: is required
         default_label: Field name
 

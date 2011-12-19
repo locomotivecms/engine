@@ -1,0 +1,45 @@
+%script{ :type => 'text/html', :id => 'custom_fields_list' }
+
+  %p.empty{ :style => 'display: none' }!= t('.empty')
+
+  %ul
+
+  %hr
+
+  .new-entry
+
+    = text_field_tag 'label', '', :id => '', :placeholder => t('.default_label')
+
+    = select_tag 'type', options_for_select(options_for_custom_field_type)
+
+    %span.actions
+      = link_to t('locomotive.buttons.new_item'), '#', :class => 'add'
+
+
+%script{ :type => 'text/html', :id => 'custom_field_entry' }
+
+  = f.semantic_fields_for :contents_custom_field, CustomFields::Field.new do |g|
+
+    %span.handle
+      = image_tag 'locomotive/form/icons/drag.png'
+
+    %span.label
+      = g.text_field :label, :class => 'label'
+
+    %span.type
+    = g.select :type, options_for_custom_field_type, {}, { :class => 'type' }
+
+    %span.required
+      = g.check_box :required, :class => 'required'
+
+      = g.label :required, t('.is_required')
+
+    %ol.nested{ :style => 'display: none' }
+
+      = g.input :name, :input_html => { :class => 'name' }
+
+      = g.input :hint, :input_html => { :class => 'hint' }
+
+    %span.actions
+      = link_to 'edit', '#', :class => 'edit'
+      = link_to 'x', '#', :class => 'remove', :confirm => t('locomotive.messages.confirm')

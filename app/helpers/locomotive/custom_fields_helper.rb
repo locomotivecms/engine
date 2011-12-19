@@ -1,8 +1,9 @@
 module Locomotive::CustomFieldsHelper
 
-  def options_for_field_kind
-    %w(string text category boolean date file has_one has_many).map do |kind|
-      [t("custom_fields.kind.#{kind}"), kind]
+  def options_for_custom_field_type
+    # %w(string text category boolean date file has_one has_many).map do |kind|
+    %w(string text category boolean date file).map do |type|
+      [t("custom_fields.kind.#{type}"), type]
     end
   end
 

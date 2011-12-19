@@ -9,12 +9,13 @@ GIT
 
 GIT
   remote: git://github.com/locomotivecms/custom_fields.git
-  revision: af21782109d5b4f073949f8f123fb56c6c7227ef
+  revision: 9cc4a3ca7e2306a59a9ad0c8a837a35d8fc5dfc6
+  branch: experimental
   specs:
-    custom_fields (1.1.0.rc1)
-      activesupport (~> 3.1.1)
+    custom_fields (2.0.0.rc1)
+      activesupport (~> 3.1.3)
       carrierwave-mongoid (~> 0.1.3)
-      mongoid (~> 2.3.3)
+      mongoid (~> 2.3.4)
 
 GIT
   remote: git://github.com/plataformatec/devise.git

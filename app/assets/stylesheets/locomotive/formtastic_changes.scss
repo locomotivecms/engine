@@ -228,7 +228,7 @@ form.formtastic {
 
             color: #fff !important;
             font-size: 12px;
-            @include single-text-shadow(#000, 0px, 1px, 1px);
+            @include single-text-shadow(rgba(0, 0, 0, 0.7), 0px, 1px, 1px);
           }
         } // div.inline-errors
 

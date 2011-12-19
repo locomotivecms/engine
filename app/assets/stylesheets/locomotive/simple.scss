@@ -100,20 +100,25 @@ div#flash-notice {
           } // input
 
           div.inline-errors {
-            background: transparent image-url("locomotive/form/error-arrow.png") no-repeat 17px 0;
             margin: 2px 0 0 0;
             padding: 8px 0 0 0;
+
+            background: transparent image-url("locomotive/form/error-arrow.png") no-repeat 17px 0;
 
             p {
               display: inline-block;
               width: auto;
+              line-height: 14px;
               margin: 0px;
-              padding: 3px 12px 4px 30px;
+              padding: 3px 12px 4px 27px;
+
+              @include box-shadow(rgba(0, 0, 0, 0.4) 2px 2px 2px 0);
+              @include border-radius(3px);
+              background: #cd0f19 image-url("locomotive/form/icons/error.png") no-repeat 7px center;
+
               color: #fff !important;
-              text-shadow: #000 0px 1px;
-              font-size: 11px;
-              padding-left: 30px;
-              background: #cd0f19 image-url("locomotive/form/icons/error.png") no-repeat 10px 6px;
+              font-size: 12px;
+              @include single-text-shadow(rgba(0, 0, 0, 0.7), 0px, 1px, 1px);
             }
           } // div.inline-errors
 
@@ -153,6 +158,7 @@ div#flash-notice {
     padding: 15px 0;
 
     background: #8b8d9a;
+    border-top: 1px solid #5F6069;
     @include border-bottom-radius(3px);
 
     text-align: right;

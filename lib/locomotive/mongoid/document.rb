@@ -9,7 +9,7 @@ module Locomotive
       included do
         include ::Mongoid::Document
         include ::Mongoid::Timestamps
-        include ::Mongoid::CustomFields
+        # include ::Mongoid::CustomFields
       end
 
       def as_json(options={})

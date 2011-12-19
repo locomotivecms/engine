@@ -73,7 +73,7 @@ fr:
           delete_file: Supprimer fichier
         has_many:
           empty: Vide
-      index:
+      form:
         is_required: est obligatoire
         default_label: Nom du champ
 

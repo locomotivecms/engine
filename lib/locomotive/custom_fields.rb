@@ -20,15 +20,15 @@ module CustomFields
       end
     end
 
-    module Category
-      class Item
-
-        def to_liquid
-          { 'id' => self._id.to_s, 'name' => self.name }
-        end
-
-      end
-    end
+    # module Category
+    #   class Item
+    #
+    #     def to_liquid
+    #       { 'id' => self._id.to_s, 'name' => self.name }
+    #     end
+    #
+    #   end
+    # end
   end
 end
 

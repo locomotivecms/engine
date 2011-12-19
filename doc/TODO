@@ -33,11 +33,18 @@ x edit my site
     x export
   x site picker
   - content types
-    - change in main menu
+    x move content instances into their own collection
     - manage custom_fields
-      - list
-      - crud
-    - move content instances into their own collection
+      x automatic name
+      x required
+      x editable plugin: add class depending on the type => surrounding span instead
+      x position
+      x open the nested form
+      x remove an entry
+      - look n feel
+      - show / hide options of a field based on its type
+      - display errors
+    - change in main menu
     - manage contents
       - list
       - crud

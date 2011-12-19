@@ -1,5 +1,23 @@
 module Locomotive::ContentTypesHelper
 
+  def each_content_type_menu_item(&block)
+    current_site.content_types.ordered.only(:site_id, :name, :slug).each do |content_type|
+      next unless content_type.persisted?
+
+      item_on = (content_type.slug == @content_type.slug) rescue nil
+
+      label = truncate(content_type.name, :length => 15)
+      url = contents_url(content_type.slug)
+      css = @content_type && content_type.slug == @content_type.slug ? 'on' : ''
+
+      html = submenu_entry(label, url, :i18n => false, :css => css) do
+        yield(content_type)
+      end
+
+      haml_concat(html)
+    end
+  end
+
   # MAX_DISPLAYED_CONTENTS = 4
   #
   # def fetch_content_types

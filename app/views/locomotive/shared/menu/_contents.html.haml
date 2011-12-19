@@ -18,17 +18,17 @@
     - if can? :manage, content_type
       %p.edit= link_to t('locomotive.contents.index.edit'), edit_content_type_url(content_type)
 
-  .inner
-    %h2!= t('locomotive.contents.index.lastest_items')
-    %ul
-      - content_type.latest_updated_contents.each do |content|
-        %li
-          = link_to truncate(content.send(content_type.highlighted_field_name).to_s, :length => 20), edit_admin_content_path(content_type.slug, content)
-          %span= time_ago_in_words(content.updated_at)
+  / .inner
+  /   %h2!= t('locomotive.contents.index.lastest_items')
+  /   %ul
+  /     - content_type.latest_updated_contents.each do |content|
+  /       %li
+  /         = link_to truncate(content.send(content_type.highlighted_field_name).to_s, :length => 20), edit_admin_content_path(content_type.slug, content)
+  /         %span= time_ago_in_words(content.updated_at)
 
-- other_content_types do |content_types|
-  .inner
-    %ul.big-links
-      - content_types.each do |content_type|
-        %li
-          = link_to truncate(content_type.name, :length => 20), contents_url(content_type.slug)
+/ - other_content_types do |content_types|
+/   .inner
+/     %ul.big-links
+/       - content_types.each do |content_type|
+/         %li
+/           = link_to truncate(content_type.name, :length => 20), contents_url(content_type.slug)

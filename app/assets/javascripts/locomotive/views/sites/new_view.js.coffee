@@ -15,8 +15,6 @@ class Locomotive.Views.Sites.NewView extends Locomotive.Views.Shared.FormView
 
     Backbone.ModelBinding.bind @
 
-    window.foo = @model
-
   render: ->
     super()
 
