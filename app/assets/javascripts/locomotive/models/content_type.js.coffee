@@ -13,7 +13,8 @@ class Locomotive.Models.ContentType extends Backbone.Model
 
   toJSON: ->
     _.tap super, (hash) =>
-      hash.contents_custom_fields = @get('contents_custom_fields').toJSONForSave() if @get('contents_custom_fields')
+      delete hash.contents_custom_fields
+      hash.contents_custom_fields_attributes = @get('contents_custom_fields').toJSONForSave() if @get('contents_custom_fields')
 
 class Locomotive.Models.ContentTypesCollection extends Backbone.Collection
 

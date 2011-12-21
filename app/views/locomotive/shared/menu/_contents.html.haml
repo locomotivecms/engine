@@ -12,14 +12,15 @@
             %span= time_ago_in_words(page.updated_at)
 
 - each_content_type_menu_item do |content_type|
-  .header
-    %p= link_to t('locomotive.contents.index.new'), new_content_url(content_type.slug)
+  .wrapper
+    .header
+      %p= link_to t('locomotive.contents.index.new'), new_content_url(content_type.slug)
 
-    - if can? :manage, content_type
-      %p.edit= link_to t('locomotive.contents.index.edit'), edit_content_type_url(content_type)
+      - if can? :manage, content_type
+        %p.edit= link_to t('locomotive.contents.index.edit'), edit_content_type_url(content_type)
 
-  / .inner
-  /   %h2!= t('locomotive.contents.index.lastest_items')
+    .inner
+      %h2!= t('locomotive.contents.index.lastest_items')
   /   %ul
   /     - content_type.latest_updated_contents.each do |content|
   /       %li

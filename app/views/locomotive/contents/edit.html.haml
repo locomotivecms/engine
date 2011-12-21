@@ -1,7 +1,7 @@
-- if breadcrumb_root
-  - title t('.title.breadcrumb', :root => link_to(breadcrumb_root._label, breadcrumb_url), :type => @content_type.name.capitalize)
-- else
-  - title t('.title.default', :type => @content_type.name.capitalize)
+/ - if breadcrumb_root
+/   - title t('.title.breadcrumb', :root => link_to(breadcrumb_root._label, breadcrumb_url), :type => @content_type.name.capitalize)
+/ - else
+- title t('.title.default', :type => @content_type.name.capitalize)
 
 - content_for :submenu do
   = render 'locomotive/shared/menu/contents'

@@ -23,13 +23,13 @@
     %span.handle
       = image_tag 'locomotive/form/icons/drag.png'
 
-    %span.label
+    %span.label-input
       = g.text_field :label, :class => 'label'
 
-    %span.type
-    = g.select :type, options_for_custom_field_type, {}, { :class => 'type' }
+    %span.type-input
+      = g.select :type, options_for_custom_field_type, {}, { :class => 'type' }
 
-    %span.required
+    %span.required-input
       = g.check_box :required, :class => 'required'
 
       = g.label :required, t('.is_required')
@@ -41,5 +41,5 @@
       = g.input :hint, :input_html => { :class => 'hint' }
 
     %span.actions
-      = link_to 'edit', '#', :class => 'edit'
+      = link_to 'toggle', '#', :class => 'toggle'
       = link_to 'x', '#', :class => 'remove', :confirm => t('locomotive.messages.confirm')

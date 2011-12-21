@@ -14,7 +14,6 @@ describe Locomotive::ContentInstance do
   end
 
   describe '#validation' do
-
     it 'is valid' do
       build_content.should be_valid
     end
@@ -32,14 +31,37 @@ describe Locomotive::ContentInstance do
       content.should_not be_valid
       content.errors[:_slug].should == ["can't be blank"]
     end
+  end
 
-    it 'has an unique permalink' do
-      build_content.save; @content_type = Locomotive::ContentType.find(@content_type._id)
-      content = build_content
-      content.should_not be_valid
-      content.errors[:_slug].should == ["is already taken"]
+  context 'setting the slug' do
+    before :each do
+      build_content(:_slug => 'dogs').tap(&:save!)._slug.should == 'dogs'
     end
 
+    it 'uses the given slug if it is unique' do
+      build_content(:_slug => 'monkeys').tap(&:save!)._slug.should == 'monkeys'
+      build_content(:_slug => 'cats-2').tap(&:save!)._slug.should == 'cats-2'
+    end
+
+    it 'appends a number to the end of the slug if it is not unique' do
+      build_content(:_slug => 'dogs').tap(&:save!)._slug.should == 'dogs-1'
+      build_content(:_slug => 'dogs').tap(&:save!)._slug.should == 'dogs-2'
+      build_content(:_slug => 'dogs-2').tap(&:save!)._slug.should == 'dogs-3'
+      build_content(:_slug => 'dogs-2').tap(&:save!)._slug.should == 'dogs-4'
+    end
+
+    it 'ignores the case of a slug' do
+      build_content(:_slug => 'dogs').tap(&:save!)._slug.should == 'dogs-1'
+      build_content(:_slug => 'DOGS').tap(&:save!)._slug.should == 'dogs-2'
+    end
+
+    it 'correctly handles slugs with multiple numbers' do
+      build_content(:_slug => 'fish-1-2').tap(&:save!)._slug.should == 'fish-1-2'
+      build_content(:_slug => 'fish-1-2').tap(&:save!)._slug.should == 'fish-1-3'
+
+      build_content(:_slug => 'fish-1-hi').tap(&:save!)._slug.should == 'fish-1-hi'
+      build_content(:_slug => 'fish-1-hi').tap(&:save!)._slug.should == 'fish-1-hi-1'
+    end
   end
 
   describe "#navigation" do

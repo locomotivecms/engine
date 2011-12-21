@@ -20,12 +20,7 @@ module Locomotive
 
     ## associations ##
     belongs_to  :site,      :class_name => 'Locomotive::Site'
-    has_many    :contents,  :class_name => 'Locomotive::ContentInstance'
-    # embeds_many   :contents,  :class_name => 'Locomotive::ContentInstance', :validate => false do
-    #   def visible
-    #     @target.find_all { |c| c.visible? }
-    #   end
-    # end
+    has_many    :contents,  :class_name => 'Locomotive::ContentInstance', :dependent => :destroy
 
     ## named scopes ##
     scope :ordered, :order_by => :updated_at.desc
@@ -35,6 +30,7 @@ module Locomotive
 
     ## callbacks ##
     before_validation   :normalize_slug
+    after_validation    :bubble_fields_errors_up
     before_save         :set_default_values
     # after_destroy       :remove_uploaded_files
 
@@ -60,6 +56,14 @@ module Locomotive
       self.order_direction.blank? || self.order_direction == 'asc'
     end
 
+    def to_presenter
+      Locomotive::ContentTypePresenter.new(self)
+    end
+
+    def as_json(options = {})
+      self.to_presenter.as_json
+    end
+
     # def list_or_group_contents
     #   if self.groupable?
     #     groups = self.contents.klass.send(:"group_by_#{self.group_by_field._alias}", :ordered_contents)
@@ -75,11 +79,11 @@ module Locomotive
     #     self.ordered_contents
     #   end
     # end
-
+    #
     # def latest_updated_contents
     #   self.contents.latest_updated.reject { |c| !c.persisted? }
     # end
-
+    #
     # def ordered_contents(conditions = {})
     #   column = self.order_by.to_sym
     #
@@ -103,20 +107,20 @@ module Locomotive
     #     end
     #
     #     self.contents.where(conditions_with_names)
-    #   end).sort { |a, b| (a.send(column) || 0) <=> (b.send(column) || 0) }
+    #   end).sort { |a, b| (a.send(column) && b.send(column)) ? (a.send(column) || 0) <=> (b.send(column) || 0) : 0 }
     #
     #   return list if self.order_manually?
     #
     #   self.asc_order? ? list : list.reverse
     # end
-
+    #
     # def sort_contents!(ids)
     #   ids.each_with_index do |id, position|
     #     self.contents.find(BSON::ObjectId(id))._position_in_list = position
     #   end
     #   self.save
     # end
-
+    #
     # def highlighted_field
     #   self.contents_custom_fields.detect { |f| f._name == self.highlighted_field_name }
     # end
@@ -129,7 +133,7 @@ module Locomotive
 
     def set_default_values
       self.order_by ||= 'created_at'
-      self.highlighted_field_name ||= self.contents_custom_fields.first._name
+      self.highlighted_field_name ||= self.contents_custom_fields.first.name
     end
 
     def normalize_slug
@@ -137,13 +141,16 @@ module Locomotive
       self.slug.permalink! if self.slug.present?
     end
 
-    # def remove_uploaded_files # callbacks are not called on each content so we do it manually
-    #   self.contents.each do |content|
-    #     self.contents_custom_fields.each do |field|
-    #       content.send(:"remove_#{field._name}!") if field.kind == 'file'
-    #     end
-    #   end
-    # end
+    def bubble_fields_errors_up
+      return if self.errors[:contents_custom_fields].empty?
+
+      self.errors.set(:contents_custom_fields, [])
+
+      self.contents_custom_fields.each do |field|
+        next if field.valid?
+        self.errors.add(:contents_custom_fields, field.errors.to_a)
+      end
+    end
 
   end
 end

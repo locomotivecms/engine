@@ -41,9 +41,12 @@ x edit my site
       x position
       x open the nested form
       x remove an entry
-      - look n feel
+      x look n feel
+      x display errors
+      x slugify
+      - other content type options
       - show / hide options of a field based on its type
-      - display errors
+      - refactor highlighted_field (field id instead of name)
     - change in main menu
     - manage contents
       - list

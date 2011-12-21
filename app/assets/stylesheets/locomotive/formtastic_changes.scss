@@ -60,13 +60,17 @@ form.formtastic {
     .list {
       .empty {
         text-align: left;
+        color: #BDBFC9;
+        text-shadow: #fff 1px 1px 1px;
+        font-weight: bold;
+        font-size: 13px;
       }
 
       li, .entry, .new-entry {
         position: relative;
         margin-bottom: 10px;
-        height: 30px;
-        line-height: 30px;
+        height: 31px;
+        line-height: 31px;
 
         padding: 0 10px;
 
@@ -118,7 +122,7 @@ form.formtastic {
             padding-left: 10px;
           }
 
-          a.remove {
+          a.remove, a.toggle {
             display: inline-block;
             width: 16px;
             height: 16px;
@@ -127,13 +131,20 @@ form.formtastic {
             top: 4px;
 
             outline: none;
-
-            background: transparent image-url("locomotive/list/icons/trash_off.png") repeat 0 0;
-
             text-indent: -9999px;
 
-            &:hover {
-              background-image: image-url("locomotive/list/icons/trash.png");
+            &.remove {
+              background: transparent image-url("locomotive/list/icons/trash_off.png") repeat 0 0;
+              &:hover {
+                background-image: image-url("locomotive/list/icons/trash.png");
+              }
+            }
+
+            &.toggle {
+              background: transparent image-url("locomotive/list/icons/toggle_off.png") repeat 0 0;
+              &:hover {
+                background-image: image-url("locomotive/list/icons/toggle.png");
+              }
             }
           }
         }
@@ -382,7 +393,7 @@ form.formtastic {
                 }
 
                 &.editable {
-                  background-image: image-url("locomotive//icons/membership_edit.png");
+                  background-image: image-url("locomotive/icons/membership_edit.png");
                   background-position: 0px 3px;
                 }
               }
@@ -427,7 +438,118 @@ form.formtastic {
           }
         } // > li#account_sites_input
 
+        &#custom_fields_input {
+
+          padding-top: 10px;
+
+          li.custom-field {
+            height: auto;
+
+            .editable {
+              display: inline-block;
+              line-height: 16px;
+            }
+
+            span.handle {
+              position: relative;
+              top: 3px;
+              margin-left: 5px;
+            }
+
+            span.label-input {
+              input[type=text] {
+                float: none;
+                display: inline;
+
+                @include default-input-style;
+                margin-left: 5px;
+                padding: 2px 3px;
+                font-size: 12px;
+              }
+
+              .editable {
+                width: 160px;
+              }
+            }
+
+            span.type-input {
+              display: inline-block;
+              width: 150px;
+
+              .editable {
+                // font-style: italic;
+                color: #585A69;
+                font-weight: normal;
+              }
+            }
+
+            span.required-input {
+              margin-left: 10px;
+
+              label {
+                float: none;
+                width: auto;
+
+                font-weight: normal;
+              }
+            }
+
+          } // li.custom-field
+
+          .new-entry {
+
+            input[type=text] {
+              @include default-input-style;
+              margin-left: 5px;
+              padding: 2px 3px;
+              font-size: 12px;
+            }
+
+          } // .new-entry
+
+        } // > li#custom_fields_input
+
       } // > li
+
+      &.nested {
+        width: 858px;
+        border: none;
+        @include border-radius(0);
+        @include box-shadow(transparent 0 0 0 0);
+        background: transparent;
+
+        > li.input {
+          height: auto;
+          padding-bottom: 5px;
+          padding-left: 29px;
+          background: transparent;
+          border-top: 1px solid #CCC;
+          @include border-radius(0);
+          @include box-shadow(transparent 0 0 0 0);
+
+          label.label {
+            width: 174px;
+            padding-top: 0px;
+            line-height: 28px;
+          }
+
+          &.string, &.password {
+            input[type=text], input[type=password] {
+              width: 623px;
+            }
+
+            p.inline-hints {
+              margin-top: 0px;
+            }
+          } // li.string, li.password
+
+          p.inline-hints {
+            margin-left: 174px;
+          }
+
+        } // li.input
+
+      } // ol.nested
 
     } //ol
   } // fieldset

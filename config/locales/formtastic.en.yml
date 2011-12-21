@@ -80,10 +80,6 @@ en:
           source: "The current file is available here %{url}"
         update:
           source: "The current file is available here %{url}"
-      custom_fields:
-        field:
-          _alias: "Property available in liquid templates"
-          hint: "Text displayed in the model form just below the field"
       content_instance:
         _slug: "Property used to generate the url of a page working as a template for this content type (ex: \"template_page/{{ your_object._permalink }})\"."
         seo_title: "The value you fill in will replace the SEO title of the templatized page related to your model."
@@ -94,7 +90,12 @@ en:
         samples: "If enabled, the import process will also copy contents and assets"
         reset: "If enabled, all the data of your site will be destroyed before importing the new site"
       content_type:
+        name: "We suggest you to type the plural form of the model. Ex: Projects, Recipes, Posts, Articles, ...etc"
+        slug: "It will be used as the name of the collection in the liquid templates. Ex: {{ contents.my_projects }}"
         item_template: "You can customize the text displayed for each item in the list. Simply use Liquid. Ex: {{ content.name }})"
         api_enabled: "It is used to let people from outside to create new instances (example: messages in a contact form)"
         api_accounts: "A notification email will be sent to each of the accounts listed above when a new instance is created"
+        "custom_fields/field":
+          name: "Name of the property for liquid templates. Ex: &#123;&#123; your_object.&lt;name_of_your_field&gt; &#125;&#125;"
+          hint: "Text displayed in the model form just below the field"
 

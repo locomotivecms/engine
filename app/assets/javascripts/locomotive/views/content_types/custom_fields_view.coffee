@@ -72,8 +72,17 @@ class Locomotive.Views.ContentTypes.CustomFieldsView extends Backbone.View
     if @model.get('contents_custom_fields').length == 0
       @$('.empty').show()
     else
-      _.each @model.get('contents_custom_fields'), (custom_field) =>
+      @model.get('contents_custom_fields').each (custom_field) =>
         @_insert_entry(custom_field)
+
+  _insert_entry: (custom_field) ->
+    view = new Locomotive.Views.ContentTypes.CustomFieldEntryView model: custom_field, parent_view: @
+
+    (@_entry_views ||= []).push(view)
+
+    @$('ul').append(view.render().el)
+
+    @refresh_position_entries()
 
   #
   # show_errors: ->
@@ -85,11 +94,4 @@ class Locomotive.Views.ContentTypes.CustomFieldsView extends Backbone.View
   #       html = $('<span></span>').addClass('inline-errors').html(message)
   #       view.$('input[type=text].path').after(html)
 
-  _insert_entry: (custom_field) ->
-    view = new Locomotive.Views.ContentTypes.CustomFieldEntryView model: custom_field, parent_view: @
 
-    (@_entry_views ||= []).push(view)
-
-    @$('ul').append(view.render().el)
-
-    @refresh_position_entries()
