@@ -1,8 +1,14 @@
 class Locomotive.Models.CustomField extends Backbone.Model
 
   initialize: ->
+    @_normalize()
+
     unless @get('name')?
       @set name: @get('label').slugify()
+
+  _normalize: ->
+    @set
+      select_options: new Locomotive.Models.CustomFieldSelectOptionsCollection(@get('select_options'))
 
   toJSONForSave: ->
     _.tap {}, (hash) =>

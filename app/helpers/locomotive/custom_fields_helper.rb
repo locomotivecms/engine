@@ -35,11 +35,11 @@ module Locomotive::CustomFieldsHelper
     end
   end
 
-  # def options_for_text_formatting
-  #   options = %w(none html).map do |option|
-  #     [t("locomotive.custom_fields.text_formatting.#{option}"), option]
-  #   end
-  # end
+  def options_for_text_formatting
+    %w(none html).map do |option|
+      [t("locomotive.custom_fields.text_formatting.#{option}"), option]
+    end
+  end
 
   # def options_for_association_target
   #   current_site.reload.content_types.collect { |c| [c.name, c.content_klass.to_s] }

@@ -45,10 +45,10 @@ x edit my site
       x display errors
       x slugify
       x refactor highlighted_field (field id instead of name)
-      - other content type options
+      x other content type options
       - show / hide options of a field based on its type
-        - select: add/edit/remove options
         - text: formatting
+        - select: add/edit/remove options
     - change in main menu
     - manage contents
       - list

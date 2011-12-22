@@ -41,7 +41,9 @@ en:
           default_site_template: "Use the default site template. Click <a href='#'>here</a> to upload a site template as a zip file instead."
       content_type:
         raw_item_template: Item template
-        api_accounts: Notified Accounts
+        public_form_accounts: Notified Accounts
+        "custom_fields/field":
+          select_options: "Options"
       content_instance:
         _slug: Permalink
       account:

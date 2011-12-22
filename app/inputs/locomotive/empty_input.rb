@@ -9,6 +9,14 @@ module Locomotive
       end
     end
 
+    def association_primary_key
+      begin
+        super
+      rescue Exception => e
+        # does not work correctly with embedded collections
+      end
+    end
+
     def wrapper_html_options
       super.tap do |opts|
         opts[:class] += ' no-label' unless render_label?
