@@ -10,14 +10,44 @@ class Locomotive.Views.ContentTypes.CustomFieldEntryView extends Backbone.View
     'click a.toggle': 'toggle'
     'click a.remove': 'remove'
 
+  initialize: ->
+    @model.bind 'change', (custom_field) =>
+      @switch_to_type() if @model.hasChanged('type')
+
   render: ->
     $(@el).html(ich.custom_field_entry(@model.toJSON()))
 
     Backbone.ModelBinding.bind @, all: 'class'
 
-    @$('span.label-input input[type=text], span.type-input select').editableField()
+    @make_fields_editable()
+
+    @enable_behaviours()
+
+    @switch_to_type()
 
     return @
+
+  enable_behaviours: ->
+    @render_select_options_view()
+
+  switch_to_type: ->
+    @$('li.input.extra').hide() # reset
+
+    switch @model.get('type')
+      when 'select'
+        @$('li.input.select-options').show()
+      when 'text'
+        @$('li.input.text-formatting').show()
+
+  render_select_options_view: ->
+    @select_options_view = new Locomotive.Views.ContentTypes.SelectOptionsView
+      model:      @model
+      collection: @model.get('select_options')
+
+    @$('#content_type_contents_custom_field_select_options_input').append(@select_options_view.render().el)
+
+  make_fields_editable: ->
+    @$('span.label-input input[type=text], span.type-input select').editableField()
 
   toggle: (event) ->
     event.stopPropagation() & event.preventDefault()

@@ -46,12 +46,12 @@ x edit my site
       x slugify
       x refactor highlighted_field (field id instead of name)
       x other content type options
-      - show / hide options of a field based on its type
-        - text: formatting
-        - select: add/edit/remove options
+      x show / hide options of a field based on its type
+        x select: add/edit/remove options
+        x text: formatting
     - change in main menu
     - manage contents
-      - list
+      - list (highlighted field)
       - crud
 
 - disallow to click twice on the submit form button (spinner ?)

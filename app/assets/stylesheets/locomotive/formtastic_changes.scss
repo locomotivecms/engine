@@ -122,7 +122,7 @@ form.formtastic {
             padding-left: 10px;
           }
 
-          a.remove, a.toggle {
+          a.remove, a.toggle, a.drag {
             display: inline-block;
             width: 16px;
             height: 16px;
@@ -141,6 +141,14 @@ form.formtastic {
             }
 
             &.toggle {
+              background: transparent image-url("locomotive/list/icons/toggle_off.png") repeat 0 0;
+              &:hover {
+                background-image: image-url("locomotive/list/icons/toggle.png");
+              }
+            }
+
+            &.drag {
+              cursor: move;
               background: transparent image-url("locomotive/list/icons/toggle_off.png") repeat 0 0;
               &:hover {
                 background-image: image-url("locomotive/list/icons/toggle.png");
@@ -362,7 +370,7 @@ form.formtastic {
         &.no-label {
           padding-top: 6px;
 
-          .list {
+          > .list {
             margin-left: 0;
 
             .entry {
@@ -383,6 +391,49 @@ form.formtastic {
             }
           }
         } // li.no-label
+
+        &.select-options {
+          .list {
+            line-height: auto;
+
+            ul, li, > span.actions {
+              float: left;
+            }
+
+            ul {
+              width: 558px;
+              min-height: 34px;
+
+              li.entry {
+                background: #c2e0f0;
+                @include border-radius(2px);
+
+                padding: 0 55px 0 8px;
+                margin: 2px 10px 8px 0;
+                height: auto;
+
+                color: #29739b;
+                line-height: 24px;
+
+                span.name {
+                  cursor: pointer;
+                  @include text-shadow(#fff 0px 1px 1px);
+                }
+
+                span.actions {
+                  line-height: 20px;
+                  right: 8px;
+                }
+              }
+            } // .list ul
+
+            > span.actions {
+              position: static;
+              margin-left: 15px;
+              line-height: 24px;
+            } // .list .actions
+          }
+        } // li.select-options
 
         &#site_memberships_input {
           .entry {

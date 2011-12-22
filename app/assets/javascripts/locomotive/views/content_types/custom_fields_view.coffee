@@ -38,19 +38,17 @@ class Locomotive.Views.ContentTypes.CustomFieldsView extends Backbone.View
   add_entry: (event) ->
     event.stopPropagation() & event.preventDefault()
 
-    labelInput  = @$('.new-entry input[name=label]')
-    typeInput   = @$('.new-entry select')
+    labelInput  = @$('> .new-entry input[name=label]')
+    typeInput   = @$('> .new-entry select')
 
     if labelInput.val() != ''
       custom_field = new Locomotive.Models.CustomField label: labelInput.val(), type: typeInput.val()
-
-      window.bar = custom_field
 
       @model.get('contents_custom_fields').add(custom_field)
 
       @_insert_entry(custom_field)
 
-      @$('.empty').hide()
+      @$('> .empty').hide()
 
       @sortable_list.sortable('refresh')
 
@@ -66,11 +64,11 @@ class Locomotive.Views.ContentTypes.CustomFieldsView extends Backbone.View
 
     @refresh_position_entries()
 
-    @$('.empty').show() if @model.get('contents_custom_fields').length == 0
+    @$('> .empty').show() if @model.get('contents_custom_fields').length == 0
 
   render_entries: ->
     if @model.get('contents_custom_fields').length == 0
-      @$('.empty').show()
+      @$('> .empty').show()
     else
       @model.get('contents_custom_fields').each (custom_field) =>
         @_insert_entry(custom_field)
@@ -80,18 +78,6 @@ class Locomotive.Views.ContentTypes.CustomFieldsView extends Backbone.View
 
     (@_entry_views ||= []).push(view)
 
-    @$('ul').append(view.render().el)
+    @$('> ul').append(view.render().el)
 
     @refresh_position_entries()
-
-  #
-  # show_errors: ->
-  #   _.each @options.errors.domain || [], (message) => @show_error(message)
-  #
-  # show_error: (message) ->
-  #   _.each (@_entry_views || []), (view) ->
-  #     if new RegExp("^#{view.model.get('name')}").test message
-  #       html = $('<span></span>').addClass('inline-errors').html(message)
-  #       view.$('input[type=text].path').after(html)
-
-

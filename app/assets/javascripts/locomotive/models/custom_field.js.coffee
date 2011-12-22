@@ -13,7 +13,8 @@ class Locomotive.Models.CustomField extends Backbone.Model
   toJSONForSave: ->
     _.tap {}, (hash) =>
       for key, value of @.toJSON()
-        hash[key] = value unless _.include(['type_text', 'created_at', 'updated_at'], key)
+        hash[key] = value unless _.include(['select_options', 'type_text', 'created_at', 'updated_at'], key)
+      hash.select_options_attributes = @get('select_options').toJSONForSave() if @get('select_options')
 
 class Locomotive.Models.CustomFieldsCollection extends Backbone.Collection
 

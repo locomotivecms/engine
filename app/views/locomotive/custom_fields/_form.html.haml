@@ -40,10 +40,28 @@
 
       = g.input :hint, :input_html => { :class => 'hint' }
 
-      = g.input :select_options, :as => :'Locomotive::Empty', :wrapper_html => { :style => 'display: none' }
+      = g.input :select_options, :as => :'Locomotive::Empty', :wrapper_html => { :class => 'extra select-options', :style => 'display: none' }
 
-      = g.input :text_formatting, :as => :select, :collection => options_for_text_formatting, :include_blank => false, :wrapper_html => { :style => 'display: none' }
+      = g.input :text_formatting, :as => :select, :collection => options_for_text_formatting, :include_blank => false, :wrapper_html => { :class => 'extra text-formatting', :style => 'display: none' }
 
     %span.actions
       = link_to 'toggle', '#', :class => 'toggle'
+      = link_to 'x', '#', :class => 'remove', :confirm => t('locomotive.messages.confirm')
+
+
+%script{ :type => 'text/html', :id => 'select_options_list' }
+
+  %ul{ :'data-prompt' => t('.select_options.ask_name') }
+
+  %span.actions
+    = link_to t('locomotive.buttons.new_item'), '#', :class => 'add'
+
+
+%script{ :type => 'text/html', :id => 'select_option_entry' }
+
+  %li.entry
+    %span.name {{name}}
+
+    %span.actions
+      = link_to 'drag', '#', :class => 'drag'
       = link_to 'x', '#', :class => 'remove', :confirm => t('locomotive.messages.confirm')

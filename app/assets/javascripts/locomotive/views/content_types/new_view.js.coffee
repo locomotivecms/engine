@@ -6,3 +6,6 @@ class Locomotive.Views.ContentTypes.NewView extends Locomotive.Views.ContentType
     @save_in_ajax event,
       on_success: (response, xhr) ->
         window.location.href = xhr.getResponseHeader('location')
+
+  enable_liquid_editing: ->
+    true # do nothing
