@@ -7,7 +7,7 @@ Given %r{^I have a custom model named "([^"]*)" with$} do |name, fields|
       field['target'] = target_content_type.content_klass.to_s
     end
 
-    content_type.contents_custom_fields.build field
+    content_type.entries_custom_fields.build field
   end
   content_type.valid?
   content_type.save.should be_true
@@ -19,9 +19,9 @@ Given /^I set up a reverse has_many relationship between "([^"]*)" and "([^"]*)"
   content_type_1 = site.content_types.where(:name => name_1).first
   content_type_2 = site.content_types.where(:name => name_2).first
 
-  content_type_1.contents_custom_fields.build({
+  content_type_1.entries_custom_fields.build({
     :label          => name_2,
-    :kind           => 'has_many',
+    :type           => 'has_many',
     :target         => content_type_2.content_klass.to_s,
     :reverse_lookup => content_type_2.content_klass.custom_field_alias_to_name(name_1.downcase.singularize)
   })
@@ -31,30 +31,30 @@ end
 
 Given %r{^I have "([^"]*)" as "([^"]*)" values of the "([^"]*)" model$} do |values, field, name|
   content_type = Locomotive::ContentType.where(:name => name).first
-  field = content_type.contents_custom_fields.detect { |f| f.label == field }
+  field = content_type.entries_custom_fields.detect { |f| f.label == field }
   field.should_not be_nil
 
-  if field.category?
+  if field.type == 'select'
     values.split(',').collect(&:strip).each do |name|
-      field.category_items.build :name => name
+      field.select_options.build :name => name
     end
     content_type.save.should be_true
   else
-    raise "#{field.kind} field is not supported"
+    raise "#{field.type} field is not supported"
   end
 end
 
 Given %r{^I have entries for "([^"]*)" with$} do |name, entries|
   content_type = Locomotive::ContentType.where(:name => name).first
   entries.hashes.each do |entry|
-    content_type.contents.create(entry)
+    content_type.entries.create(entry)
   end
   content_type.save.should be_true
 end
 
 When %r{^I change the presentation of the "([^"]*)" model by grouping items by "([^"]*)"$} do |name, field|
   content_type = Locomotive::ContentType.where(:name => name).first
-  field = content_type.contents_custom_fields.detect { |f| f.label == field }
+  field = content_type.entries_custom_fields.detect { |f| f.label == field }
   content_type.group_by_field_name = field._name
   content_type.save.should be_true
 end

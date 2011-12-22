@@ -13,7 +13,7 @@ nl:
         destroy:
           notice: "Pagina is verwijderd."
 
-      contents:
+      content_entries:
         create:
           notice: "Inhoud is gemaakt."
           alert: "Inhoud is niet gemaakt."

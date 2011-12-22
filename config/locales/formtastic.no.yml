@@ -32,7 +32,7 @@
           source: Erstatt fil
       custom_fields:
         field:
-          _alias: Alias
+          name: Alias
       import:
         new:
           source: Fil
@@ -42,7 +42,7 @@
       content_type:
         item_template: Elementmal
         api_accounts: Varslede kontoer
-      content_instance:
+      content_entry:
         _slug: Permalink
       account:
         edit:
@@ -81,9 +81,9 @@
           source: "Filen er tilgjengelig her: %{url}"
       custom_fields:
         field:
-          _alias: "Verdi tilgjengelig i liquid-maler"
+          name: "Verdi tilgjengelig i liquid-maler"
           hint: "Tekst som vises i skjemaet rett under feltet"
-      content_instance:
+      content_entry:
         _slug: "Verdien brukes til å generere en url for en side som fungerer som en mal for denne innholdstypen (f.eks: \"template_page/{{ your_object._permalink }})\"."
         seo_title: "Verdien benyttes til å erstatte sidetittelen for malen knyttet til modellen. Leses av søkemotorer."
         meta_keywords: "Overstyrer sidens meta-nøkkelord som benyttes i head-seksjonen på siden og blir lest av søkemotorer. Separeres med komma."

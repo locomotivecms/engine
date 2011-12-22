@@ -44,7 +44,7 @@ de:
         link: "&rarr; Zurück zur Anwendung"
 
     notifications:
-      new_content_instance:
+      new_content_entry:
         subject: "[%{type}] neu"
         title: "Hi %{firstname}, nur damit du Bescheid weißt! Am %{date} wurde folgende neue Instanz erstellt."
         type: "Model: %{type}"
@@ -55,15 +55,7 @@ de:
       text_formatting:
         none: Keine
         html: HTML
-      edit_field:
-        title: Feld bearbeiten
-      edit_category:
-        title: Optionen
-        help: Organisiere alle Optionen für die Auswahlbox.
-        collection_label: Liste der Optionen
       types:
-        category:
-          edit_categories: Optionen
         file:
           delete_file: Datei löschen
       index:
@@ -239,7 +231,7 @@ de:
           asc: Aufsteigend
           desc: Absteigend
 
-    contents:
+    content_entries:
       index:
         title: '"%{type}" anzeigen'
         edit: Baustein bearbeiten
@@ -247,18 +239,14 @@ de:
         download: Elemente herunterladen
         new: neues Element
         category_noname: "Kein Name"
-        lastest_items: "Neueste Elemente"
+        lastest_entries: "Neueste Elemente"
         updated_at: "Aktualisiert am"
       list:
-        no_items: "Momentan gibt es keine Elemente. Klicke einfach <a href='%{url}'>hier</a>, um das erste Element zu erstellen."
+        no_entries: "Momentan gibt es keine Elemente. Klicke einfach <a href='%{url}'>hier</a>, um das erste Element zu erstellen."
       new:
-        title:
-          default: '%{type} &mdash; neues Element'
-          breadcrumb: '%{root} &raquo; %{type} &mdash; Element bearbeiten'
+        title: '%{type} &mdash; neues Element'
       edit:
-        title:
-          default: '%{type} &mdash; editing item'
-          breadcrumb: '%{root} &raquo; %{type} &mdash; Element bearbeiten'
+        title: '%{type} &mdash; editing item'
       form:
         has_many:
           new_item: Neues Element

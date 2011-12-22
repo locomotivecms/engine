@@ -62,7 +62,7 @@ class Locomotive.Views.ContentTypes.FormView extends Locomotive.Views.Shared.For
         target.show()
 
   show_error: (attribute, message, html) ->
-    if attribute == 'contents_custom_fields'
+    if attribute == 'entries_custom_fields'
       return if _.isEmpty(message)
       for _message, index in message
         @custom_fields_view._entry_views[index].show_error(_message[0])

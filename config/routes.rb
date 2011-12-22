@@ -37,7 +37,7 @@ Locomotive::Engine.routes.draw do
 
   resources :content_types
 
-  resources :contents, :path => 'content_types/:slug/contents' do
+  resources :content_entries, :path => 'content_types/:slug/entries' do
     put :sort, :on => :collection
   end
 

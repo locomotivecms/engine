@@ -30,7 +30,7 @@ es:
           source: Reemplazar fichero
       custom_fields:
         field:
-          _alias: Alias
+          name: Alias
       import:
         new:
           source: Fichero
@@ -72,7 +72,7 @@ es:
           source: "El fichero está disponible aquí: %{url}"
       custom_fields:
         field:
-          _alias: "Propiedad disponible en plantillas Liquid"
+          name: "Propiedad disponible en plantillas Liquid"
           hint: "Texto mostrado justo debajo del campo en el formulario de creación"
       import:
         source: "Un fichero zip conteniendo un fichero database.yml con plantillas y contenido multimedia."

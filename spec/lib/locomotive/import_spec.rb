@@ -22,12 +22,12 @@ describe Locomotive::Import::Job do
     it 'adds content types' do
       @site.content_types.count.should == 4
       content_type = @site.content_types.where(:slug => 'projects').first
-      content_type.contents_custom_fields.size.should == 9
+      content_type.entries_custom_fields.size.should == 9
     end
 
     it 'replaces the target and the reverse_lookup values by the correct ones in a has_many relationship' do
       content_type = @site.content_types.where(:slug => 'clients').first
-      field = content_type.contents_custom_fields.last
+      field = content_type.entries_custom_fields.last
       field.target.should match /^ContentContentType/
       field.reverse_lookup.should == 'custom_field_8'
     end
@@ -44,9 +44,9 @@ describe Locomotive::Import::Job do
 
     it 'adds samples coming with content types' do
       content_type = @site.content_types.where(:slug => 'projects').first
-      content_type.contents.size.should == 5
+      content_type.entries.size.should == 5
 
-      content = content_type.contents.first
+      content = content_type.entries.first
       content._permalink.should == 'locomotivecms'
       content.seo_title.should == 'My open source CMS'
       content.meta_description.should == 'bla bla bla'

@@ -100,7 +100,7 @@ it:
         access_password: Password
       custom_fields:
         field:
-          _alias: Alias
+          name: Alias
           hint: Aiuto
           required: Obbligatorio
           text_formatting: Formattazione

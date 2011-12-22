@@ -43,7 +43,7 @@ nl:
         link: "&rarr; Terug naar de applicatie"
 
     notifications:
-      new_content_instance:
+      new_content_entry:
         subject: "[%{type}] nieuw"
         title: "Hallo %{name}, dit bericht is om te laten weten dat er een nieuwe instantie is gemaakt op %{date}"
         type: "Model: %{type}"
@@ -54,14 +54,7 @@ nl:
       text_formatting:
         none: Geen
         html: HTML
-      edit_field:
-        title: Bewerk veld
-      edit_category:
-        title: Bewerk opties
-        help: Beheer de lijst met opties voor uw select box.
-        collection_label: Lijst met opties
       custom_form:
-        edit_categories: Bewerk opties
         delete_file: Verwijder bestand
       index:
         is_required: is verplicht
@@ -219,7 +212,7 @@ nl:
           asc: Oplopend
           desc: Aflopend
 
-    contents:
+    content_entries:
       index:
         title: 'Toon "%{type}"'
         edit: wijzig model
@@ -227,18 +220,14 @@ nl:
         download: download items
         new: nieuw item
         category_noname: "Geen naam"
-        lastest_items: "Laatste items"
+        lastest_entries: "Laatste items"
         updated_at: "Gewijzigd op"
       list:
-        no_items: "Er zijn momenteel geen items. Klik hier <a href=\"%{url}\">here</a> om de eerste te maken."
+        no_entries: "Er zijn momenteel geen items. Klik hier <a href=\"%{url}\">here</a> om de eerste te maken."
       new:
-        title:
-          default: '%{type} &mdash; nieuw item'
-          breadcrumb: '%{root} &raquo; %{type} &mdash; nieuw item'
+        title: '%{type} &mdash; nieuw item'
       edit:
-        title:
-          default: '%{type} &mdash; wijzig item'
-          breadcrumb: '%{root} &raquo; %{type} &mdash; wijzig item'
+        title: '%{type} &mdash; wijzig item'
       form:
         has_many:
           new_item: Nieuw item

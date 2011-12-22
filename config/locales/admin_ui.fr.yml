@@ -46,7 +46,7 @@ fr:
         send: Envoyer
 
     notifications:
-      new_content_instance:
+      new_content_entry:
         subject: "[%{type}] nouveau"
         title: "Bonjour %{name}, nous voulions vous faire savoir qu'une nouvelle instance a été créée le %{date}"
         type: "Modèle: %{type}"
@@ -60,15 +60,7 @@ fr:
       text_formatting:
         none: Aucun
         html: HTML
-      edit_field:
-        title: Editer champ
-      edit_category:
-        title: Editer options
-        help: Gèrer la liste des options de votre liste déroulante
-        collection_label: Liste des options
       types:
-        category:
-          edit_categories: Editer options
         file:
           delete_file: Supprimer fichier
         has_many:
@@ -240,7 +232,7 @@ fr:
           asc: Ascendant
           desc: Descendant
 
-    contents:
+    content_entries:
       index:
         title: 'Liste des "%{type}"'
         edit: éditer modèle
@@ -248,18 +240,14 @@ fr:
         download: télécharger éléments
         new: nouvel élément
         category_noname: "Pas de nom"
-        lastest_items: "Eléments récents"
+        lastest_entries: "Eléments récents"
         updated_at: "Mis à jour le"
       list:
-        no_items: "Il n'existe pas d'éléments. Vous pouvez commencer par créer un <a href='%{url}'>ici</a>"
+        no_entries: "Il n'existe pas d'éléments. Vous pouvez commencer par créer un <a href='%{url}'>ici</a>"
       new:
-        title:
-          default: '%{type} &mdash; nouvel élément'
-          breadcrumb: '%{root} &raquo; %{type} &mdash; nouvel élément'
+        title: '%{type} &mdash; nouvel élément'
       edit:
-        title:
-          default: '%{type} &mdash; édition élément'
-          breadcrumb: '%{root} &raquo; %{type} &mdash; édition élément'
+        title: '%{type} &mdash; édition élément'
       form:
         has_many:
           new_item: Nouvel élément

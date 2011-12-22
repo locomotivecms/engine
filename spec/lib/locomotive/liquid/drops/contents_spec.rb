@@ -14,9 +14,9 @@ describe Locomotive::Liquid::Drops::Contents do
 
   describe '#group_by' do
 
-    it 'orders contents' do
+    it 'orders entries' do
       @site.content_types.stubs(:where).returns([@content_type])
-      @content_type.contents.klass.expects(:group_by_category).with(:ordered_contents)
+      @content_type.entries.klass.expects(:group_by_select_option).with(:ordered_entries)
       render_template '{% for group in contents.projects.group_by_category %} {{ group.name }} {% endfor %}'
     end
 
@@ -52,9 +52,9 @@ describe Locomotive::Liquid::Drops::Contents do
 
   def populate_content_type
     @content_type.order_by = :_slug
-    @content_type.contents.build(:_slug => 'item1')
-    @content_type.contents.build(:_slug => 'item2')
-    @content_type.contents.build(:_slug => 'item3')
+    @content_type.entries.build(:_slug => 'item1')
+    @content_type.entries.build(:_slug => 'item2')
+    @content_type.entries.build(:_slug => 'item3')
   end
 
 end

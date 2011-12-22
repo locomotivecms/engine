@@ -107,12 +107,14 @@ module Locomotive
       @site.content_types.each do |content_type|
         attributes = self.extract_attributes(content_type, %w(name description slug order_by order_direction group_by_field_name api_enabled))
 
-        attributes['highlighted_field_name'] = content_type.highlighted_field._alias
+        attributes['highlighted_field_name'] = content_type.highlighted_field.name
+
+        # TODO: refactoring
 
         # custom_fields
         fields = []
-        content_type.contents_custom_fields.each do |field|
-          field_attributes = self.extract_attributes(field, %w(label kind hint required))
+        content_type.entries_custom_fields.each do |field|
+          field_attributes = self.extract_attributes(field, %w(label type hint required))
 
           if field.target.present?
             target_klass = field['target'].constantize
@@ -124,7 +126,7 @@ module Locomotive
             end
           end
 
-          fields << { field._alias => field_attributes }
+          fields << { field.name => field_attributes }
         end
 
         attributes['fields'] = fields
@@ -275,15 +277,17 @@ module Locomotive
     def extract_contents(content_type)
       data = []
 
+      # TODO (refactoring....)
+
       highlighted_field_name = content_type.highlighted_field_name
 
-      content_type.contents.each do |content|
+      content_type.entries.each do |content|
         hash = {}
 
         content.custom_fields.each do |field|
           next if field._name == highlighted_field_name
 
-          value = (case field.kind
+          value = (case field.type
           when 'file'
             uploader = content.send(field._name)
             unless uploader.blank?
@@ -296,16 +300,16 @@ module Locomotive
           when 'text'
             self.replace_asset_urls_in(content.send(field._name.to_sym) || '')
           when 'has_one'
-            content.send(field.safe_alias.to_sym).highlighted_field_value rescue nil # no bound object
+            content.send(field.name.to_sym).highlighted_field_value rescue nil # no bound object
           when 'has_many'
             unless field.reverse_has_many?
-              content.send(field.safe_alias.to_sym).collect(&:highlighted_field_value)
+              content.send(field.name.to_sym).collect(&:highlighted_field_value)
             end
           else
-            content.send(field.safe_alias.to_sym)
+            content.send(field.name.to_sym)
           end)
 
-          hash[field._alias] = value if value.present? || value == false # False values should be preserved in the export
+          hash[field.name] = value if value.present? || value == false # False values should be preserved in the export
         end
 
         data << { content.highlighted_field_value => hash }

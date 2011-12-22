@@ -33,7 +33,7 @@ describe Locomotive::Ability do
 
   context 'content instance' do
 
-    subject { Locomotive::ContentInstance.new }
+    subject { Locomotive::ContentEntry.new }
 
     context 'management' do
       it 'should allow management of pages from (admin, designer, author)' do

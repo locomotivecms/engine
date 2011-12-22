@@ -7,8 +7,8 @@
   = render 'locomotive/shared/actions/contents'
 
 - content_for :buttons do
-  = local_action_button :show_items, contents_url(@content_type.slug_was), :class => 'show'
-  = local_action_button :new_item, new_content_url(@content_type.slug_was), :class => 'new'
+  = local_action_button :show_items, content_entries_url(@content_type.slug_was), :class => 'show'
+  = local_action_button :new_item, new_content_entry_url(@content_type.slug_was), :class => 'new'
 
 %p!= t('.help')
 
@@ -16,4 +16,4 @@
 
   = render 'form', :f => f
 
-  = render 'locomotive/shared/form_actions', :back_url => contents_url(@content_type.slug_was), :button_label => :update
+  = render 'locomotive/shared/form_actions', :back_url => content_entries_url(@content_type.slug_was), :button_label => :update

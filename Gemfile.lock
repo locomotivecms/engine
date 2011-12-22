@@ -8,16 +8,6 @@ GIT
       sass (~> 3.1)
 
 GIT
-  remote: git://github.com/locomotivecms/custom_fields.git
-  revision: 1a8f26a379193c5a60f926eacadc0a9eee7ab5de
-  branch: experimental
-  specs:
-    custom_fields (2.0.0.rc1)
-      activesupport (~> 3.1.3)
-      carrierwave-mongoid (~> 0.1.3)
-      mongoid (~> 2.3.4)
-
-GIT
   remote: git://github.com/plataformatec/devise.git
   revision: ede004169c6af7416f8c4e3fc29a653bee133f60
   specs:
@@ -37,6 +27,14 @@ GIT
   revision: ca494d22c3d7946385aba1153c017d9c30e9f9d3
   specs:
     locomotive_mongoid_acts_as_tree (0.1.5.7)
+
+PATH
+  remote: ../gems/custom_fields
+  specs:
+    custom_fields (2.0.0.rc1)
+      activesupport (~> 3.1.3)
+      carrierwave-mongoid (~> 0.1.3)
+      mongoid (~> 2.3.4)
 
 GEM
   remote: http://rubygems.org/

@@ -12,29 +12,29 @@ module Locomotive
     before_filter :authorize_content
 
     def index
-      @contents = @content_type.contents
-      respond_with @contents
+      @content_entries = @content_type.entries
+      respond_with @content_entries
     end
 
     def new
-      @content = @content_type.contents.build
+      @content_entry = @content_type.entries.build
       respond_with @content
     end
 
     def create
-      @content = @content_type.contents.create(params[:content])
-      respond_with @content, :location => edit_content_url(@content_type.slug, @content._id)
+      @content_entry = @content_type.entries.create(params[:content_entry])
+      respond_with @content, :location => edit_content_entry_url(@content_type.slug, @content_entry._id)
     end
 
     def edit
-      @content = @content_type.contents.find(params[:id])
+      @content_entry = @content_type.entries.find(params[:id])
       respond_with @content
     end
 
     def update
-      @content = @content_type.contents.find(params[:id])
-      @content.update_attributes(params[:content])
-      respond_with @content, :location => edit_content_url(@content_type.slug, @content._id)
+      @content_entry = @content_type.entries.find(params[:id])
+      @content_entry.update_attributes(params[:content_entry])
+      respond_with @content, :location => edit_content_entry_url(@content_type.slug, @content_entry._id)
     end
 
     def sort
@@ -46,8 +46,8 @@ module Locomotive
     end
 
     def destroy
-      @content = @content_type.contents.find(params[:id])
-      @content.destroy
+      @content_entry = @content_type.entries.find(params[:id])
+      @content_entry.destroy
       respond_with @content, :location => pages_url
     end
 
@@ -58,7 +58,7 @@ module Locomotive
     end
 
     def authorize_content
-      authorize! params[:action].to_sym, ContentInstance
+      authorize! params[:action].to_sym, ContentEntry
     end
 
   end

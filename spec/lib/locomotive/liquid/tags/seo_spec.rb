@@ -81,32 +81,32 @@ describe Locomotive::Liquid::Tags::SEO do
 
       let(:content_type) do
         FactoryGirl.build(:content_type, :site => site).tap do |ct|
-          ct.contents_custom_fields.build :label => 'anything', :kind => 'String'
+          ct.entries_custom_fields.build :label => 'anything', :type => 'String'
         end
       end
 
       context "has seo title" do
-        let(:content) { content_type.contents.build(:seo_title => 'Content title (SEO)', :meta_keywords => 'Libidinous, Angsty', :meta_description => "Quite the combination.") }
-        subject { render_seo_title('content_instance' => content) }
+        let(:content_entry) { content_type.entries.build(:seo_title => 'Content title (SEO)', :meta_keywords => 'Libidinous, Angsty', :meta_description => "Quite the combination.") }
+        subject { render_seo_title('content_entry' => content_entry) }
         it { should include(%Q[<title>Content title (SEO)</title>]) }
       end
 
       context "does not have seo title" do
-        let(:content) { content_type.contents.build }
-        subject { render_seo_title('content_instance' => content) }
+        let(:content_entry) { content_type.entries.build }
+        subject { render_seo_title('content_entry' => content_entry) }
         it { should include(%Q[<title>Site title (SEO)</title>]) }
       end
 
       context "has metadata" do
-        let(:content) { content_type.contents.build(:meta_keywords => 'Libidinous, Angsty', :meta_description => "Quite the combination.") }
-        subject { render_seo_metadata('content_instance' => content) }
-        it { should include(%Q[<meta name="keywords" content="#{content.meta_keywords}" />]) }
-        it { should include(%Q[<meta name="description" content="#{content.meta_description}" />]) }
+        let(:content_entry) { content_type.entries.build(:meta_keywords => 'Libidinous, Angsty', :meta_description => "Quite the combination.") }
+        subject { render_seo_metadata('content_entry' => content_entry) }
+        it { should include(%Q[<meta name="keywords" content="#{content_entry.meta_keywords}" />]) }
+        it { should include(%Q[<meta name="description" content="#{content_entry.meta_description}" />]) }
       end
 
       context "does not have metadata" do
-        let(:content) { content_type.contents.build }
-        subject { render_seo_metadata('content_instance' => content) }
+        let(:content_entry) { content_type.entries.build }
+        subject { render_seo_metadata('content_entry' => content_entry) }
         it { should include(%Q[<meta name="keywords" content="#{site.meta_keywords}" />]) }
         it { should include(%Q[<meta name="description" content="#{site.meta_description}" />]) }
       end

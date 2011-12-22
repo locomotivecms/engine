@@ -30,7 +30,7 @@ de:
           source: Datei ersetzen
       custom_fields:
         field:
-          _alias: Alias
+          name: Alias
       import:
         new:
           source: Datei
@@ -69,7 +69,7 @@ de:
 
       custom_fields:
         field:
-          _alias: "Merkmal verfügbar in den liquid-Templates"
+          name: "Merkmal verfügbar in den liquid-Templates"
           hint: "Hilfe-Text, der im Formular des Bausteins direkt unter dem jeweiligen Feld angezeigt wird"
       import:
         source: "Eine zip-Datei, die eine databse.yml, Assets und Templates enthält"

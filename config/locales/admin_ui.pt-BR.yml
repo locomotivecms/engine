@@ -43,7 +43,7 @@ pt-BR:
         link: "&rarr; Voltar a aplicação"
 
     notifications:
-      new_content_instance:
+      new_content_entry:
         subject: " Novo [%{type}] "
         title: "Olá %{name}, apenas informando que uma nova instância foi criada em %{date}"
         type: "Modelo: %{type}"
@@ -54,15 +54,7 @@ pt-BR:
       text_formatting:
         none: Nenhum
         html: HTML
-      edit_field:
-        title: Edita campo
-      edit_category:
-        title: Editar opções
-        help: Gerenciar a lista de opções da sua caixa de seleçõa.
-        collection_label: Lista de opções
       types:
-        category:
-          edit_categories: Editar opções
         file:
           delete_file: Excluir arquivo
 
@@ -215,7 +207,7 @@ pt-BR:
           updated_at: 'Por "atualizado em" data'
           position_in_list: Manual
 
-    contents:
+    content_entries:
       index:
         title: 'Listando "%{type}"'
         edit: editar modelo
@@ -223,18 +215,14 @@ pt-BR:
         download: download dos itens
         new: novo item
         category_noname: "Sem nome"
-        lastest_items: "Últimos itens"
+        lastest_entries: "Últimos itens"
         updated_at: "Atualizado em"
       list:
-        no_items: "Não existem itens ainda. Clique <a href=\"%{url}\">aqui</a> para criar o primeiro."
+        no_entries: "Não existem itens ainda. Clique <a href=\"%{url}\">aqui</a> para criar o primeiro."
       new:
-        title:
-          default: '%{type} &mdash; novo item'
-          breadcrumb: '%{root} &raquo; %{type} &mdash; novo item'
+        title: '%{type} &mdash; novo item'
       edit:
-        title:
-          default: '%{type} &mdash; editando item'
-          breadcrumb: '%{root} &raquo; %{type} &mdash; editando item'
+        title: '%{type} &mdash; editando item'
       form:
         has_many:
           new_item: Novo item

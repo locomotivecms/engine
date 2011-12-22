@@ -1,5 +1,5 @@
 module Locomotive
-  class ContentInstance
+  class ContentEntry
 
     include Locomotive::Mongoid::Document
 
@@ -72,7 +72,7 @@ module Locomotive
     end
 
     def to_presenter
-      Locomotive::ContentPresenter.new(self)
+      Locomotive::ContentEntryPresenter.new(self)
     end
 
     def as_json(options = {})

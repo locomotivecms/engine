@@ -13,7 +13,7 @@
         destroy:
           notice: "Siden har blitt slettet."
 
-      contents:
+      content_entries:
         create:
           notice: "Innholdet har blitt opprettet."
           alert: "Innholdet kunne ikke opprettes."

@@ -45,9 +45,9 @@ module Locomotive
             page = nil
           else
             if page.templatized?
-              @content_instance = page.content_type.contents.where(:_slug => File.basename(path.first)).first
+              @content_entry = page.content_type.entries.where(:_slug => File.basename(path.first)).first
 
-              if @content_instance.nil? || (!@content_instance.visible? && current_locomotive_account.nil?) # content instance not found or not visible
+              if @content_entry.nil? || (!@content_entry.visible? && current_locomotive_account.nil?) # content instance not found or not visible
                 page = nil
               end
             end
@@ -75,8 +75,8 @@ module Locomotive
         assigns.merge!(flash.to_hash.stringify_keys) # data from api
 
         if @page.templatized? # add instance from content type
-          assigns['content_instance'] = @content_instance
-          assigns[@page.content_type.slug.singularize] = @content_instance # just here to help to write readable liquid code
+          assigns['content_entry'] = @content_entry
+          assigns[@page.content_type.slug.singularize] = @content_entry # just here to help to write readable liquid code
         end
 
         registers = {

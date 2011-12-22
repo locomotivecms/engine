@@ -3,6 +3,8 @@ module Locomotive
     module Drops
       class Contents < ::Liquid::Drop
 
+        # TODO: refactoring
+
         def before_method(meth)
           type = @context.registers[:site].content_types.where(:slug => meth.to_s).first
           ProxyCollection.new(type)
@@ -52,7 +54,7 @@ module Locomotive
         end
 
         def before_method(meth)
-          klass = @content_type.contents.klass # delegate to the proxy class
+          klass = @content_type.entries.klass # delegate to the proxy class
 
           if (meth.to_s =~ /^group_by_.+$/) == 0
             klass.send(meth, :ordered_contents)

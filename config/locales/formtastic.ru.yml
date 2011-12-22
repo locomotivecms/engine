@@ -32,7 +32,7 @@ ru:
           source: Заменить файл
       custom_fields:
         field:
-          _alias: Алиас
+          name: Алиас
       import:
         new:
           source: Файл
@@ -42,7 +42,7 @@ ru:
       content_type:
         item_template: Шаблон элемента
         api_accounts: Уведомленные аккаунты
-      content_instance:
+      content_entry:
         _slug: Постоянная ссылка
       account:
         edit:
@@ -81,9 +81,9 @@ ru:
           source: "Текущий файл доступен здесь %{url}"
       custom_fields:
         field:
-          _alias: "Свойство, доступное в шаблонах liquid"
+          name: "Свойство, доступное в шаблонах liquid"
           hint: "Текст, отображенный в форме модели, находится ниже поля"
-      content_instance:
+      content_entry:
         _slug: "Свойство, используемое для генерации ссылки (url) на страницу, работающей как шаблон для этого типа содержимого (ex: \"template_page/{{ your_object._permalink }})\"."
         seo_title: "Значение, вводимое вами, будет заменять SEO заголовок шаблонизированной страницы, связанной с вашей моделью."
         meta_keywords: "Переопределяет meta keywords сайта, используемые внутри тэга head страницы. Разделяются запятыми."

@@ -5,9 +5,9 @@ describe Locomotive::Liquid::Drops::Content do
   before(:each) do
     @site = FactoryGirl.build(:site)
     content_type = FactoryGirl.build(:content_type)
-    content_type.contents_custom_fields.build :label => 'anything', :kind => 'string'
-    content_type.contents_custom_fields.build :label => 'published_at', :kind => 'date'
-    @content = content_type.contents.build({
+    content_type.entries_custom_fields.build :label => 'anything', :type => 'string'
+    content_type.entries_custom_fields.build :label => 'published_at', :type => 'date'
+    @content = content_type.entries.build({
       :meta_keywords => 'Libidinous, Angsty',
       :meta_description => "Quite the combination.",
       :published_at => Date.today })

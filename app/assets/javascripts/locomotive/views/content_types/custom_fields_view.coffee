@@ -44,7 +44,7 @@ class Locomotive.Views.ContentTypes.CustomFieldsView extends Backbone.View
     if labelInput.val() != ''
       custom_field = new Locomotive.Models.CustomField label: labelInput.val(), type: typeInput.val()
 
-      @model.get('contents_custom_fields').add(custom_field)
+      @model.get('entries_custom_fields').add(custom_field)
 
       @_insert_entry(custom_field)
 
@@ -60,17 +60,17 @@ class Locomotive.Views.ContentTypes.CustomFieldsView extends Backbone.View
 
   remove_entry: (custom_field, view) ->
     @_entry_views = _.reject @_entry_views, (_view) -> _view == view
-    @model.get('contents_custom_fields').remove(custom_field)
+    @model.get('entries_custom_fields').remove(custom_field)
 
     @refresh_position_entries()
 
-    @$('> .empty').show() if @model.get('contents_custom_fields').length == 0
+    @$('> .empty').show() if @model.get('entries_custom_fields').length == 0
 
   render_entries: ->
-    if @model.get('contents_custom_fields').length == 0
+    if @model.get('entries_custom_fields').length == 0
       @$('> .empty').show()
     else
-      @model.get('contents_custom_fields').each (custom_field) =>
+      @model.get('entries_custom_fields').each (custom_field) =>
         @_insert_entry(custom_field)
 
   _insert_entry: (custom_field) ->

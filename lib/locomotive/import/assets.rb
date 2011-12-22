@@ -11,8 +11,8 @@ module Locomotive
       protected
 
       def add_theme_assets
-        %w(images media fonts javascripts stylesheets).each do |kind|
-          Dir[File.join(theme_path, 'public', kind, '**/*')].each do |asset_path|
+        %w(images media fonts javascripts stylesheets).each do |type|
+          Dir[File.join(theme_path, 'public', type, '**/*')].each do |asset_path|
 
             next if File.directory?(asset_path)
 

@@ -1,0 +1,21 @@
+%p= t('.title', :name => @account.name, :date => I18n.l(Time.now), :locale => @account.locale)
+
+%hr
+
+%p
+  %b= t('.type', :type => @content_entry.content_type.name, :locale => @account.locale)
+  %br
+  %i= @content_entry.content_type.description
+
+%hr
+
+%ul
+  - @content_entry.custom_fields.each do |field|
+    %li
+      %strong= field.label
+      &nbsp;-&nbsp;
+      %i
+        - if field.file?
+          = link_to File.basename(@content_entry.send(field.name).url), @content_entry.send(field.name).url
+        - else
+          = @content_entry.send(field.name)

@@ -13,7 +13,7 @@ pt-BR:
         destroy:
           notice: "Páginas foram apagadas com sucesso."
 
-      contents:
+      content_entries:
         create:
           notice: "Conteúdo criado com sucesso."
           alert: "Conteúdo não foi criado."

@@ -138,7 +138,7 @@ FactoryGirl.define do
     site { Locomotive::Site.where(:subdomain => "acme").first || Factory(:site) }
   end
 
-  factory :content_instance, :class => Locomotive::ContentInstance do
+  factory :content_entry, :class => Locomotive::ContentEntry do
   end
 
 end

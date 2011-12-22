@@ -7,7 +7,7 @@ module Locomotive::ContentTypesHelper
       item_on = (content_type.slug == @content_type.slug) rescue nil
 
       label = truncate(content_type.name, :length => 15)
-      url = contents_url(content_type.slug)
+      url = content_entries_url(content_type.slug)
       css = @content_type && content_type.slug == @content_type.slug ? 'on' : ''
 
       html = submenu_entry(label, url, :i18n => false, :css => css) do

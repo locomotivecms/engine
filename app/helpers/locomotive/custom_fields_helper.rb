@@ -2,12 +2,12 @@ module Locomotive::CustomFieldsHelper
 
   def options_for_custom_field_type
     %w(string text select boolean date file).map do |type|
-      [t("custom_fields.kind.#{type}"), type]
+      [t("custom_fields.types.#{type}"), type]
     end
   end
 
   def options_for_highlighted_field(content_type)
-    content_type.ordered_contents_custom_fields.find_all do |field|
+    content_type.ordered_entries_custom_fields.find_all do |field|
       %w(string date select).include?(field.type)
     end.map do |field|
       [field.label, field._id]
@@ -15,7 +15,7 @@ module Locomotive::CustomFieldsHelper
   end
 
   def options_for_group_by_field(content_type)
-    content_type.ordered_contents_custom_fields.find_all do |field|
+    content_type.ordered_entries_custom_fields.find_all do |field|
       %w(select).include?(field.type)
     end.map do |field|
       [field.label, field._id]
@@ -49,8 +49,8 @@ module Locomotive::CustomFieldsHelper
   #   klass_name = my_content_type.content_klass.to_s
   #
   #   [].tap do |options|
-  #     ContentType.where(:'contents_custom_fields.kind' => 'has_one', :'contents_custom_fields.target' => klass_name).each do |content_type|
-  #       content_type.contents_custom_fields.find_all { |f| f.has_one? && f.target == klass_name }.each do |field|
+  #     ContentType.where(:'entries_custom_fields.kind' => 'has_one', :'entries_custom_fields.target' => klass_name).each do |content_type|
+  #       content_type.entries_custom_fields.find_all { |f| f.has_one? && f.target == klass_name }.each do |field|
   #         options << {
   #           :klass  => content_type.content_klass.to_s,
   #           :label  => field.label,

@@ -5,10 +5,10 @@ describe Locomotive::ApiContentsController do
   before(:each) do
     @site = FactoryGirl.create('existing site')
     @site.content_types.first.tap do |content_type|
-      content_type.contents_custom_fields.build :label => 'Name', :kind => 'string', :required => true
-      content_type.contents_custom_fields.build :label => 'Description', :kind => 'text'
-      content_type.contents_custom_fields.build :label => 'File', :kind => 'file'
-      content_type.contents_custom_fields.build :label => 'Active', :kind => 'boolean'
+      content_type.entries_custom_fields.build :label => 'Name', :type => 'string', :required => true
+      content_type.entries_custom_fields.build :label => 'Description', :type => 'text'
+      content_type.entries_custom_fields.build :label => 'File', :type => 'file'
+      content_type.entries_custom_fields.build :label => 'Active', :type => 'boolean'
     end.save
 
     controller.stubs(:require_site).returns(true)
@@ -37,38 +37,38 @@ describe Locomotive::ApiContentsController do
 
       response.should redirect_to('http://www.locomotivecms.com/success')
 
-      @site.reload.content_types.first.contents.size.should == 1
+      @site.reload.content_types.first.entries.size.should == 1
     end
 
     it 'does not save a content if required parameters are missing' do
-      post 'create', default_post_params(:content => { :name => '' })
+      post 'create', default_post_params(:content_entry => { :name => '' })
 
       response.should redirect_to('http://www.locomotivecms.com/failure')
 
-      @site.reload.content_types.first.contents.size.should == 0
+      @site.reload.content_types.first.entries.size.should == 0
     end
 
     describe 'XSS vulnerability' do
 
       it 'sanitizes the params (simple example)' do
-        post 'create', default_post_params(:content => { :name => %(Hacking <script type="text/javascript">alert("You have been hacked")</script>) })
+        post 'create', default_post_params(:content_entry => { :name => %(Hacking <script type="text/javascript">alert("You have been hacked")</script>) })
 
-        content = @site.reload.content_types.first.contents.first
+        entry = @site.reload.content_types.first.entries.first
 
-        content.name.should == "Hacking alert(\"You have been hacked\")"
+        entry.name.should == "Hacking alert(\"You have been hacked\")"
       end
 
       it 'sanitizes the params (more complex example)' do
-        post 'create', default_post_params(:content => { :name => %(<img src=javascript:alert('Hello')><table background="javascript:alert('Hello')">Hacked) })
+        post 'create', default_post_params(:content_entry => { :name => %(<img src=javascript:alert('Hello')><table background="javascript:alert('Hello')">Hacked) })
 
-        content = @site.reload.content_types.first.contents.first
+        entry = @site.reload.content_types.first.entries.first
 
-        content.name.should == "Hacked"
+        entry.name.should == "Hacked"
       end
 
       it 'does not sanitize non string params' do
         lambda {
-          post 'create', default_post_params(:content => {
+          post 'create', default_post_params(:content_entry => {
             :active => true,
             :file => ActionDispatch::Http::UploadedFile.new(:tempfile => FixturedAsset.open('5k.png'), :filename => '5k.png', :content_type => 'image/png')
           })
@@ -82,7 +82,7 @@ describe Locomotive::ApiContentsController do
   def default_post_params(options = {})
     {
       :slug => 'projects',
-      :content => { :name => 'LocomotiveCMS', :description => 'Lorem ipsum' }.merge(options.delete(:content) || {}),
+      :content_entry => { :name => 'LocomotiveCMS', :description => 'Lorem ipsum' }.merge(options.delete(:content_entry) || {}),
       :success_callback => 'http://www.locomotivecms.com/success',
       :error_callback => 'http://www.locomotivecms.com/failure'
     }.merge(options)

@@ -32,7 +32,7 @@ en:
           source: Replace file
       custom_fields:
         field:
-          _alias: Alias
+          name: Alias
       import:
         new:
           source: File
@@ -44,7 +44,7 @@ en:
         public_form_accounts: Notified Accounts
         "custom_fields/field":
           select_options: "Options"
-      content_instance:
+      content_entry:
         _slug: Permalink
       account:
         edit:
@@ -82,7 +82,7 @@ en:
           source: "The current file is available here %{url}"
         update:
           source: "The current file is available here %{url}"
-      content_instance:
+      content_entry:
         _slug: "Property used to generate the url of a page working as a template for this content type (ex: \"template_page/{{ your_object._permalink }})\"."
         seo_title: "The value you fill in will replace the SEO title of the templatized page related to your model."
         meta_keywords: "Overrides the site's meta keywords used within the head tag of the page. They are separated by a comma."

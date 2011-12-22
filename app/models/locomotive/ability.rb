@@ -32,7 +32,7 @@ module Locomotive
       can :touch, [Page, ThemeAsset]
       can :sort, Page
 
-      can :manage, [ContentInstance, ContentAsset]
+      can :manage, [ContentEntry, ContentAsset]
 
       can :touch, Site do |site|
         site == @site
@@ -42,7 +42,7 @@ module Locomotive
     def setup_designer_permissions!
       can :manage, Page
 
-      can :manage, ContentInstance
+      can :manage, ContentEntry
 
       can :manage, ContentType
 

@@ -13,7 +13,7 @@ es:
         destroy:
           notice: "Página borrada con éxito."
 
-      contents:
+      content_entries:
         create:
           notice: "Contenido multimedia creado con éxito."
           alert: "El contenido multimedia no se pudo crear."

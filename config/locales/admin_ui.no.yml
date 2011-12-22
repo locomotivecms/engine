@@ -46,7 +46,7 @@
         link: "&rarr; Tilbake til applikasjonen"
 
     notifications:
-      new_content_instance:
+      new_content_entry:
         subject: "[%{type}] ny"
         title: "Hei %{name}, varsler om at en ny instanse ble opprettet %{date}"
         type: "Modell: %{type}"
@@ -60,15 +60,7 @@
       text_formatting:
         none: Ingen
         html: HTML
-      edit_field:
-        title: Rediger felt
-      edit_category:
-        title: Rediger innstillinger
-        help: Rediger listen med innstillinger i select-boksen
-        collection_label: Liste med innstillinger
       types:
-        category:
-          edit_categories: Rediger innstillinger
         file:
           delete_file: Slett fil
         has_many:
@@ -237,7 +229,7 @@
           asc: Stigende
           desc: Synkende
 
-    contents:
+    content_entries:
       index:
         title: 'Viser alle "%{type}"'
         edit: rediger modell
@@ -245,18 +237,14 @@
         download: last ned elementer
         new: nytt element
         category_noname: "Navn mangler"
-        lastest_items: "Siste elementer"
+        lastest_entries: "Siste elementer"
         updated_at: "Sist oppdatert"
       list:
-        no_items: "Det har ikke blitt opprettet noen elementer her ennå. Klikk <a href=\"%{url}\">her</a> for å opprette det første."
+        no_entries: "Det har ikke blitt opprettet noen elementer her ennå. Klikk <a href=\"%{url}\">her</a> for å opprette det første."
       new:
-        title:
-          default: '%{type} &mdash; nytt element'
-          breadcrumb: '%{root} &raquo; %{type} &mdash; nytt element'
+        title: '%{type} &mdash; nytt element'
       edit:
-        title:
-          default: '%{type} &mdash; rediger element'
-          breadcrumb: '%{root} &raquo; %{type} &mdash; rediger element'
+        title: '%{type} &mdash; rediger element'
       form:
         has_many:
           new_item: Nytt element

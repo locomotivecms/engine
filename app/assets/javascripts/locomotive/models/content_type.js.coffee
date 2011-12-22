@@ -9,12 +9,12 @@ class Locomotive.Models.ContentType extends Backbone.Model
 
   _normalize: ->
     @set
-      contents_custom_fields: new Locomotive.Models.CustomFieldsCollection(@get('contents_custom_fields'))
+      entries_custom_fields: new Locomotive.Models.CustomFieldsCollection(@get('entries_custom_fields'))
 
   toJSON: ->
     _.tap super, (hash) =>
-      delete hash.contents_custom_fields
-      hash.contents_custom_fields_attributes = @get('contents_custom_fields').toJSONForSave() if @get('contents_custom_fields')
+      delete hash.entries_custom_fields
+      hash.entries_custom_fields_attributes = @get('entries_custom_fields').toJSONForSave() if @get('entries_custom_fields')
 
 class Locomotive.Models.ContentTypesCollection extends Backbone.Collection
 

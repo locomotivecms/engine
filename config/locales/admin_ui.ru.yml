@@ -46,7 +46,7 @@ ru:
         link: "&rarr; Назад в приложение"
 
     notifications:
-      new_content_instance:
+      new_content_entry:
         subject: "[%{type}] новый"
         title: "Привет %{name}, просто сообщаем, что новый элемент был создан %{date}"
         type: "Модель: %{type}"
@@ -60,15 +60,7 @@ ru:
       text_formatting:
         none: None
         html: HTML
-      edit_field:
-        title: Редактировать поле
-      edit_category:
-        title: Редактировать опции
-        help: Управляйте списком опций для поля выбора select.
-        collection_label: Списко опций
       types:
-        category:
-          edit_categories: Редактировать опции
         file:
           delete_file: Удалить файл
         has_many:
@@ -236,7 +228,7 @@ ru:
           asc: По возрастанию
           desc: По убыванию
 
-    contents:
+    content_entries:
       index:
         title: 'Список "%{type}"'
         edit: редактировать модель
@@ -244,18 +236,14 @@ ru:
         download: скачать элементы
         new: новый элемент
         category_noname: "Без имени"
-        lastest_items: "Элементы за последнее время"
+        lastest_entries: "Элементы за последнее время"
         updated_at: "Обновлено"
       list:
-        no_items: "На данный момент нет ни одного элемента. Нажмите <a href=\"%{url}\">здесь</a> для создания первого элемента."
+        no_entries: "На данный момент нет ни одного элемента. Нажмите <a href=\"%{url}\">здесь</a> для создания первого элемента."
       new:
-        title:
-          default: '%{type} &mdash; новый элемент'
-          breadcrumb: '%{root} &raquo; %{type} &mdash; новый элемент'
+        title: '%{type} &mdash; новый элемент'
       edit:
-        title:
-          default: '%{type} &mdash; редактирование элемента'
-          breadcrumb: '%{root} &raquo; %{type} &mdash; редактирование элемента'
+        title: '%{type} &mdash; редактирование элемента'
       form:
         has_many:
           new_item: Новый элемент

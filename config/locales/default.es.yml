@@ -95,7 +95,7 @@ es:
         access_password: "Clave"
       custom_fields:
         field:
-          _alias: Alias
+          name: Alias
           hint: Ayuda
           required: Obligatorio
           text_formatting: Formato

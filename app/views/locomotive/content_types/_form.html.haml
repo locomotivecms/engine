@@ -15,7 +15,7 @@
 
 = f.inputs :name => :custom_fields, :class => "inputs foldable" do
 
-  = f.input :contents_custom_fields, :as => :'Locomotive::Empty', :label => false, :wrapper_html => { :id => 'custom_fields_input' }
+  = f.input :entries_custom_fields, :as => :'Locomotive::Empty', :label => false, :wrapper_html => { :id => 'custom_fields_input' }
 
 - if @content_type.persisted?
 

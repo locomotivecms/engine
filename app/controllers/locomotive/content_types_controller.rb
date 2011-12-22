@@ -14,7 +14,6 @@ module Locomotive
 
     def create
       @content_type = current_site.content_types.create(params[:content_type])
-      logger.debug @content_type.contents_custom_fields.inspect
       respond_with @content_type, :location => edit_content_type_url(@content_type._id)
     end
 

@@ -13,7 +13,7 @@ it:
         destroy:
           notice: "La pagina è stata eliminata con successo."
 
-      contents:
+      content_entries:
         create:
           notice: "Il contenuto è stato creato con successo."
           alert: "Il contenuto non è stato creato."

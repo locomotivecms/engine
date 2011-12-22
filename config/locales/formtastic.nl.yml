@@ -30,7 +30,7 @@ nl:
           source: Vervang bestand
       custom_fields:
         field:
-          _alias: Alias
+          name: Alias
       import:
         new:
           source: Bestand
@@ -72,7 +72,7 @@ nl:
           source: "Het huidige bestand is hier beschikbaar %{url}"
       custom_fields:
         field:
-          _alias: "Eigenschap is beschikbaar in liquid templates"
+          name: "Eigenschap is beschikbaar in liquid templates"
           hint: "Net beneden het veld staat de tekst in het model formulier"
       import:
         source: "Een .zip bestand met een database.yml met de bronbestanden en templates"

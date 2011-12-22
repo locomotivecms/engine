@@ -14,13 +14,13 @@
 - each_content_type_menu_item do |content_type|
   .wrapper
     .header
-      %p= link_to t('locomotive.contents.index.new'), new_content_url(content_type.slug)
+      %p= link_to t('locomotive.content_entries.index.new'), new_content_entry_url(content_type.slug)
 
       - if can? :manage, content_type
-        %p.edit= link_to t('locomotive.contents.index.edit'), edit_content_type_url(content_type)
+        %p.edit= link_to t('locomotive.content_entries.index.edit'), edit_content_type_url(content_type)
 
     .inner
-      %h2!= t('locomotive.contents.index.lastest_items')
+      %h2!= t('locomotive.content_entries.index.lastest_items')
   /   %ul
   /     - content_type.latest_updated_contents.each do |content|
   /       %li

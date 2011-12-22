@@ -1,6 +1,8 @@
 module Locomotive
   class ApiContentsController < ActionController::Base
 
+    # FIXME: NEED REFACTORING
+
     include Locomotive::Routing::SiteDispatcher
 
     before_filter :require_site
@@ -12,17 +14,17 @@ module Locomotive
     before_filter :sanitize_content_params, :only => :create
 
     def create
-      @content = @content_type.contents.build(params[:content])
+      @entry = @content_type.entries.build(params[:entry])
 
       respond_to do |format|
-        if @content.save
-          format.json { render :json => { :content => @content } }
+        if @entry.save
+          format.json { render :json => { :entry => @entry } }
           format.html do
-            flash[@content_type.slug.singularize] = @content.aliased_attributes
+            flash[@content_type.slug.singularize] = @entry.aliased_attributes
             redirect_to params[:success_callback]
           end
         else
-          format.json { render :json => { :content => @content, :errors => @content.errors } }
+          format.json { render :json => { :entry => @content, :errors => @content.errors } }
           format.html do
             flash[@content_type.slug.singularize] = @content.aliased_attributes
             flash['errors'] = @content.errors_to_hash

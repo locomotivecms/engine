@@ -1,6 +1,6 @@
 Locomotive.Views.Contents ||= {}
 
-class Locomotive.Views.Contents.NewView extends Locomotive.Views.Contents.FormView
+class Locomotive.Views.ContentEntries.NewView extends Locomotive.Views.ContentEntries.FormView
 
   save: (event) ->
     @save_in_ajax event,

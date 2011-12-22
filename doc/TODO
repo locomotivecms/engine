@@ -53,6 +53,7 @@ x edit my site
     - manage contents
       - list (highlighted field)
       - crud
+    - public_form (previously api something)
 
 - disallow to click twice on the submit form button (spinner ?)
 - message to notify people if their browser is too old

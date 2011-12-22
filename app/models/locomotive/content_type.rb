@@ -20,7 +20,7 @@ module Locomotive
 
     ## associations ##
     belongs_to  :site,      :class_name => 'Locomotive::Site'
-    has_many    :contents,  :class_name => 'Locomotive::ContentInstance', :dependent => :destroy
+    has_many    :entries,   :class_name => 'Locomotive::ContentEntry', :dependent => :destroy
 
     ## named scopes ##
     scope :ordered, :order_by => :updated_at.desc
@@ -37,10 +37,10 @@ module Locomotive
     ## validations ##
     validates_presence_of   :site, :name, :slug
     validates_uniqueness_of :slug, :scope => :site_id
-    validates_size_of       :contents_custom_fields, :minimum => 1, :message => :array_too_short
+    validates_size_of       :entries_custom_fields, :minimum => 1, :message => :array_too_short
 
     ## behaviours ##
-    custom_fields_for :contents
+    custom_fields_for :entries
 
     ## methods ##
 
@@ -49,11 +49,11 @@ module Locomotive
     # end
 
     def highlighted_field
-      self.contents_custom_fields.find(self.highlighted_field_id)
+      self.entries_custom_fields.find(self.highlighted_field_id)
     end
 
     def group_by_field
-      self.contents_custom_fields.find(self.group_by_field_id)
+      self.entries_custom_fields.find(self.group_by_field_id)
     end
 
     def order_manually?
@@ -102,7 +102,7 @@ module Locomotive
     #
     #     conditions.each do |key, value|
     #       # convert alias (key) to name
-    #       field = self.contents_custom_fields.detect { |f| f._alias == key }
+    #       field = self.entries_custom_fields.detect { |f| f._alias == key }
     #
     #       case field.kind.to_sym
     #       when :category
@@ -130,18 +130,18 @@ module Locomotive
     # end
     #
     # def highlighted_field
-    #   self.contents_custom_fields.detect { |f| f._name == self.highlighted_field_name }
+    #   self.entries_custom_fields.detect { |f| f._name == self.highlighted_field_name }
     # end
     #
     # def group_by_field
-    #   @group_by_field ||= self.contents_custom_fields.detect { |f| f._name == self.group_by_field_name }
+    #   @group_by_field ||= self.entries_custom_fields.detect { |f| f._name == self.group_by_field_name }
     # end
 
     protected
 
     def set_default_values
       self.order_by ||= 'created_at'
-      self.highlighted_field_id ||= self.contents_custom_fields.first._id
+      self.highlighted_field_id ||= self.entries_custom_fields.first._id
     end
 
     def normalize_slug
@@ -150,13 +150,13 @@ module Locomotive
     end
 
     def bubble_fields_errors_up
-      return if self.errors[:contents_custom_fields].empty?
+      return if self.errors[:entries_custom_fields].empty?
 
-      self.errors.set(:contents_custom_fields, [])
+      self.errors.set(:entries_custom_fields, [])
 
-      self.contents_custom_fields.each do |field|
+      self.entries_custom_fields.each do |field|
         next if field.valid?
-        self.errors.add(:contents_custom_fields, field.errors.to_a)
+        self.errors.add(:entries_custom_fields, field.errors.to_a)
       end
     end
 

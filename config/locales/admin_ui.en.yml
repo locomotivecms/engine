@@ -47,7 +47,7 @@ en:
         link: "&rarr; Back to the application"
 
     notifications:
-      new_content_instance:
+      new_content_entry:
         subject: "[%{type}] new"
         title: "Hi %{name}, just to let you know that a new instance has been created on %{date}"
         type: "Model: %{type}"
@@ -61,15 +61,7 @@ en:
       text_formatting:
         none: None
         html: HTML
-      edit_field:
-        title: Edit field
-      edit_category:
-        title: Edit options
-        help: Manage the list of options for your select box.
-        collection_label: List of options
       types:
-        category:
-          edit_categories: Edit options
         file:
           delete_file: Delete file
         has_many:
@@ -243,7 +235,7 @@ en:
           asc: Ascending
           desc: Descending
 
-    contents:
+    content_entries:
       index:
         title: 'Listing "%{type}"'
         edit: edit model

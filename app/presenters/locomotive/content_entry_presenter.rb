@@ -1,5 +1,5 @@
 module Locomotive
-  class ContentPresenter < BasePresenter
+  class ContentEntryPresenter < BasePresenter
 
     # delegate :name, :description, :slug, :order_by, :order_direction, :highlighted_field_name, :group_by_field_name, :api_accounts, :to => :source
 
