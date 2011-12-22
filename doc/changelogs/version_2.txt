@@ -4,4 +4,9 @@
 
   - theme_assets.images => theme_assets.image_picker
   - assets => content_assets
-  - EditableXXX => Locomotive::EditableXXX (en mongodb)
+  - EditableXXX => Locomotive::EditableXXX (in mongodb)
+  - content_types:
+    - category => select
+    - highlighted_field_name => highlighted_field_id
+    - api_enabled => public_form_enabled
+    - api_accounts => public_form_accounts

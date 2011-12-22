@@ -44,9 +44,11 @@ x edit my site
       x look n feel
       x display errors
       x slugify
+      x refactor highlighted_field (field id instead of name)
       - other content type options
       - show / hide options of a field based on its type
-      - refactor highlighted_field (field id instead of name)
+        - select: add/edit/remove options
+        - text: formatting
     - change in main menu
     - manage contents
       - list

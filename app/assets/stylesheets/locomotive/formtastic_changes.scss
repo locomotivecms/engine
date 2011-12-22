@@ -307,7 +307,27 @@ form.formtastic {
                 background: transparent image-url("locomotive/icons/asset_add.png") no-repeat left 1px;
               }
             }
+          } // .more
+
+          &.small {
+
+            > textarea, .CodeMirror, .CodeMirror-scroll {
+              height: 60px;
+              width: 706px;
+            }
+
+            .CodeMirror {
+              float: left;
+              margin-top: 0px;
+              margin-bottom: 5px;
+            }
+
+            div.inline-errors, p.inline-hints {
+              margin-left: 160px;
+            }
+
           }
+
         } // li.code
 
         &.subdomain {
@@ -440,7 +460,7 @@ form.formtastic {
 
         &#custom_fields_input {
 
-          padding-top: 10px;
+          padding-top: 17px;
 
           li.custom-field {
             height: auto;
@@ -454,6 +474,7 @@ form.formtastic {
               position: relative;
               top: 3px;
               margin-left: 5px;
+              cursor: move;
             }
 
             span.label-input {

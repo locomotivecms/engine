@@ -40,7 +40,9 @@ module Locomotive
           end
 
           def item_template_must_be_valid
-            @item_parsing_errors.try(:each) { |msg| self.errors.add :item_template, msg }
+            @item_parsing_errors.try(:each) do |msg|
+              %w(item_template raw_item_template).each { |field| self.errors.add field.to_sym, msg }
+            end
           end
 
         end

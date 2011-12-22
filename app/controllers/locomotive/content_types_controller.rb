@@ -5,7 +5,7 @@ module Locomotive
 
     respond_to :json, :only => [:create, :update, :destroy]
 
-    helper 'Locomotive::CustomFields'
+    helper 'Locomotive::Accounts', 'Locomotive::CustomFields'
 
     def new
       @content_type = current_site.content_types.new

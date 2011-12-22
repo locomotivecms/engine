@@ -11,12 +11,12 @@ module Locomotive
     field :name
     field :description
     field :slug
+    field :highlighted_field_id, :type => BSON::ObjectId
+    field :group_by_field_id, :type => BSON::ObjectId
     field :order_by
     field :order_direction, :default => 'asc'
-    field :highlighted_field_name
-    field :group_by_field_name
-    field :api_enabled, :type => Boolean, :default => false
-    field :api_accounts, :type => Array
+    field :public_form_enabled, :type => Boolean, :default => false
+    field :public_form_accounts, :type => Array
 
     ## associations ##
     belongs_to  :site,      :class_name => 'Locomotive::Site'
@@ -47,6 +47,14 @@ module Locomotive
     # def groupable?
     #   self.group_by_field && group_by_field.category?
     # end
+
+    def highlighted_field
+      self.contents_custom_fields.find(self.highlighted_field_id)
+    end
+
+    def group_by_field
+      self.contents_custom_fields.find(self.group_by_field_id)
+    end
 
     def order_manually?
       self.order_by == '_position_in_list'
@@ -133,7 +141,7 @@ module Locomotive
 
     def set_default_values
       self.order_by ||= 'created_at'
-      self.highlighted_field_name ||= self.contents_custom_fields.first.name
+      self.highlighted_field_id ||= self.contents_custom_fields.first._id
     end
 
     def normalize_slug

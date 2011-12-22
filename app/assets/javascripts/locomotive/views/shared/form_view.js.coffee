@@ -91,13 +91,16 @@ class Locomotive.Views.Shared.FormView extends Backbone.View
     anchor.after(html)
 
   _enable_checkbox: (name, options) ->
-    @$('li#page_' + name + '_input input[type=checkbox]').checkToggle
+    options     ||= {}
+    model_name  = options.model_name || @model.paramRoot
+
+    @$("li##{model_name}_#{name}_input input[type=checkbox]").checkToggle
       on_callback: =>
-        _.each options.features, (exp) -> @$('li#page_' + exp + '_input').hide()
+        _.each options.features, (exp) -> @$("li##{model_name}_#{exp}_input").hide()
         options.on_callback() if options.on_callback?
         @_hide_last_separator()
       off_callback: =>
-        _.each options.features, (exp) -> @$('li#page_' + exp + '_input').show()
+        _.each options.features, (exp) -> @$("li##{model_name}_#{exp}_input").show()
         options.off_callback() if options.off_callback?
         @_hide_last_separator()
 

@@ -40,7 +40,7 @@ en:
           reset: Reset site
           default_site_template: "Use the default site template. Click <a href='#'>here</a> to upload a site template as a zip file instead."
       content_type:
-        item_template: Item template
+        raw_item_template: Item template
         api_accounts: Notified Accounts
       content_instance:
         _slug: Permalink
@@ -91,11 +91,11 @@ en:
         reset: "If enabled, all the data of your site will be destroyed before importing the new site"
       content_type:
         name: "We suggest you to type the plural form of the model. Ex: Projects, Recipes, Posts, Articles, ...etc"
-        slug: "It will be used as the name of the collection in the liquid templates. Ex: {{ contents.my_projects }}"
-        item_template: "You can customize the text displayed for each item in the list. Simply use Liquid. Ex: {{ content.name }})"
-        api_enabled: "It is used to let people from outside to create new instances (example: messages in a contact form)"
-        api_accounts: "A notification email will be sent to each of the accounts listed above when a new instance is created"
+        slug: "It will be used as the name of the collection in the liquid templates. Ex: <span class='code'>{{ contents.my_projects }}</span>"
+        raw_item_template: "You can customize the text displayed for each item in the list. Simply use Liquid. Ex: <span class='code'>{{ content.name }})</span>"
+        public_form_enabled: "It is used to let people from outside to create new instances (example: messages in a contact form)"
+        public_form_accounts: "A notification email will be sent to each of the accounts listed above when a new instance is created"
         "custom_fields/field":
-          name: "Name of the property for liquid templates. Ex: &#123;&#123; your_object.&lt;name_of_your_field&gt; &#125;&#125;"
+          name: "Name of the property for liquid templates. Ex: <span class='code'>&#123;&#123; your_object.&lt;name_of_your_field&gt; &#125;&#125;</span>"
           hint: "Text displayed in the model form just below the field"
 
