@@ -11,36 +11,44 @@ module Locomotive
 
     before_filter :authorize_content
 
-    helper_method :breadcrumb_root, :breadcrumb_url, :back_url
-
     def index
-      @contents = @content_type.list_or_group_contents
+      @contents = @content_type.contents
+      respond_with @contents
     end
 
     def new
-      new! { @content.attributes = params[:content] }
+      @content = @content_type.contents.build
+      respond_with @content
     end
 
     def create
-      create! { after_create_or_update_url }
+      @content = @content_type.contents.create(params[:content])
+      respond_with @content, :location => edit_content_url(@content_type.slug, @content._id)
     end
 
     def edit
-      edit! { @content.attributes = params[:content] }
+      @content = @content_type.contents.find(params[:id])
+      respond_with @content
     end
 
     def update
-      update! { after_create_or_update_url }
+      @content = @content_type.contents.find(params[:id])
+      @content.update_attributes(params[:content])
+      respond_with @content, :location => edit_content_url(@content_type.slug, @content._id)
     end
 
     def sort
-      @content_type.sort_contents!(params[:children])
-
-      respond_with(@content_type, :location => contents_url(@content_type.slug))
+      # TODO
+      # @content_type.sort_contents!(params[:children])
+      # @page = current_site.pages.find(params[:id])
+      # @page.sort_children!(params[:children])
+      respond_with @content_type
     end
 
     def destroy
-      destroy! { contents_url(@content_type.slug) }
+      @content = @content_type.contents.find(params[:id])
+      @content.destroy
+      respond_with @content, :location => pages_url
     end
 
     protected
@@ -49,34 +57,8 @@ module Locomotive
       @content_type ||= current_site.content_types.where(:slug => params[:slug]).first
     end
 
-    def begin_of_association_chain
-      set_content_type
-    end
-
-    def after_create_or_update_url
-      if params[:breadcrumb_alias].blank?
-        edit_content_url(@content_type.slug, @content.id)
-      else
-        self.breadcrumb_url
-      end
-    end
-
     def authorize_content
       authorize! params[:action].to_sym, ContentInstance
-    end
-
-    def breadcrumb_root
-      return nil if params[:breadcrumb_alias].blank?
-
-      @breadcrumb_root ||= resource.send(params[:breadcrumb_alias].to_sym)
-    end
-
-    def breadcrumb_url
-      edit_content_url(self.breadcrumb_root._parent.slug, self.breadcrumb_root)
-    end
-
-    def back_url
-      self.breadcrumb_root ? self.breadcrumb_url : contents_url(@content_type.slug)
     end
 
   end

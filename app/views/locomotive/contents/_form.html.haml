@@ -1,10 +1,10 @@
-- content_for :head do
-  = include_javascripts :edit_custom_fields, :contents
-  = include_stylesheets :fancybox
+- content_for :backbone_view_data do
+  :plain
+    { content:      #{@content.persisted? ? @content.to_json : 'null'} }
 
-= render 'locomotive/custom_fields/custom_form', :form => f, :title => :attributes, :parent => @content_type
+/ = render 'locomotive/custom_fields/custom_form', :form => f, :title => :attributes, :parent => @content_type
 
-= f.foldable_inputs :name => :advanced_options do
+= f.inputs :name => :advanced_options, :class => "inputs foldable #{'folded' if inputs_folded?(@content)}" do
 
   = f.input :_slug
   = f.input :seo_title

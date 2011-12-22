@@ -6,22 +6,33 @@
     { content_type: #{@content_type.persisted? ? @content_type.to_json : 'null'} }
 
 = f.inputs :name => :information do
+
   = f.input :name, :wrapper_html => { :class => 'highlighted' }
+
   = f.input :slug
+
   = f.input :description
 
 = f.inputs :name => :custom_fields, :class => "inputs foldable" do
+
   = f.input :contents_custom_fields, :as => :'Locomotive::Empty', :label => false, :wrapper_html => { :id => 'custom_fields_input' }
 
 - if @content_type.persisted?
 
   = f.inputs :name => :presentation, :class => "inputs foldable #{'folded' if inputs_folded?(@content_type)}" do
+
     = f.input :highlighted_field_id, :as => :select, :collection => options_for_highlighted_field(@content_type), :include_blank => false
+
     = f.input :group_by_field_id, :as => :select, :collection => options_for_group_by_field(@content_type)
+
     = f.input :raw_item_template, :as => :'Locomotive::SmallCode'
 
   = f.inputs :name => :options, :class => "inputs foldable #{'folded' if inputs_folded?(@content_type)}" do
+
     = f.input :order_by, :as => :select, :collection => options_for_order_by(@content_type), :include_blank => false
+
     = f.input :order_direction, :as => :select, :collection => options_for_order_direction, :include_blank => false, :wrapper_html => { :style => "#{'display: none' if @content_type.order_manually?}" }
+
     = f.input :public_form_enabled, :as => :'Locomotive::Toggle'
+
     = f.input :public_form_accounts, :as => :select, :collection => options_for_account, :include_blank => false, :multiple => true, :wrapper_html => { :class => 'multiple', :style => (@content_type.public_form_enabled? ? '' : 'display: none') }
