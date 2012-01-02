@@ -20,3 +20,7 @@
 //= require_tree ../../../vendor/assets/javascripts
 //= require ./locomotive/application
 
+$(document).ready(function() {
+  $.datepicker.setDefaults($.datepicker.regional[window.locale]);
+});
+

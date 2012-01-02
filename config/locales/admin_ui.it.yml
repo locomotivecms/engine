@@ -91,7 +91,7 @@ it:
         help: "Le pagine sono organizzate ad albero. Puoi ordinarle come se fossero delle cartelle"
         no_items: "Per ora non ci sono pagine. Clicca <a href=\"%{url}\">qui</a> per creare la prima pagina."
         new: nuova pagina
-        lastest_items: Ultime pagine
+        lastest_entries: Ultime pagine
       new:
         title: Nuova pagina
         help: "Prego, compila il seguente modulo per creare la tua pagina. Fai attenzione, per default, la pagina non è pubblicata."

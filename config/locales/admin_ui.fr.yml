@@ -93,7 +93,7 @@ fr:
         help: "Les pages sont organisées sous forme d'un arbre. Vous pouvez classes les pages ainsi que les dossiers."
         no_items: "Il n'existe pas de page. Vous pouvez commencer par créer une <a href='%{url}'>ici</a>."
         new: nouvelle page
-        lastest_items: Dernières pages
+        lastest_entries: Dernières pages
       new:
         title: Nouvelle page
         help: "Remplissez le formulaire ci-dessous pour créer votre page. Attention, par défaut, la page n'est pas publiée."

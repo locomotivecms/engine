@@ -131,7 +131,7 @@ module Locomotive
           content = content_type.contents.where(content_type.highlighted_field_name.to_sym => value).first
 
           if content.nil?
-            content = content_type.contents.build(content_type.highlighted_field_name.to_sym => value, :_position_in_list => position)
+            content = content_type.contents.build(content_type.highlighted_field_name.to_sym => value, :_position => position)
           end
 
           %w(_permalink seo_title meta_description meta_keywords).each do |attribute|
@@ -221,7 +221,7 @@ module Locomotive
         self.log "order by #{content_type.order_by}"
 
         order_by = (case content_type.order_by
-        when 'manually', '_position_in_list' then '_position_in_list'
+        when 'manually', '_position_in_list', '_position' then '_position'
         when 'default', 'created_at' then 'created_at'
         else
           content_type.entries_custom_fields.detect { |f| f.name == content_type.order_by }._name rescue nil
@@ -229,7 +229,7 @@ module Locomotive
 
         self.log "order by (after) #{order_by}"
 
-        content_type.order_by = order_by || '_position_in_list'
+        content_type.order_by = order_by || '_position'
       end
 
       def set_group_by_value(content_type)

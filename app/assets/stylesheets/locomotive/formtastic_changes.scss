@@ -338,6 +338,44 @@ form.formtastic {
 
         } // li.code
 
+        &.toggle {
+
+          p.inline-hints {
+            margin-top: 9px;
+          }
+
+        } // li.toggle
+
+        &.date {
+
+          input[type=text] {
+            width: 90px;
+          }
+
+        } // li.date
+
+        &.file {
+          span.file {
+            a:first-child {
+              @include hover-link;
+
+              margin-right: 20px;
+
+              color: #1F82BC;
+
+              &.deleted {
+                text-decoration: line-through;
+              }
+            }
+
+            a.change, a.delete {
+              @include blue-button;
+
+              margin-left: 5px;
+            }
+          }
+        } // li.file
+
         &.subdomain {
 
           em {

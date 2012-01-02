@@ -19,7 +19,9 @@ class Locomotive::BasePresenter
   end
 
   def id
-    @source._id.to_s
+    self.source.persisted? || self.source.embedded? ? self.source._id.to_s : nil
+    # self.persisted? ? self.source._id.to_s : nil
+    # self.source._id.to_s
   end
 
   def ability?

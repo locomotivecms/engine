@@ -87,7 +87,7 @@ de:
         help: "Seiten sind als Baum organisiert. Du kannst die Seiten also wie Ordner sortieren und verschachteln."
         no_items: "Momentan gibt es keine Seiten. Klicke einfach <a href='%{url}'>hier</a>, um die erste Seite zu erstellen."
         new: neue Seite
-        lastest_items: Neueste Seiten
+        lastest_entries: Neueste Seiten
       new:
         title: Neue Seite
         help: "Fülle das folgende Formular aus, um eine neue Seite zu erstellen. Nur zur Info: Die Seite wird nicht standardmäßig publiziert!"
@@ -201,7 +201,7 @@ de:
         help: "Der Name der Buchung kann durch darauf klicken bearbeitet werden."
         new: neue Buchung
         no_items: "Momentan gibt es keine Buchungen. Klicke einfach <a href='%{url}'>hier</a>, um eine neue Buchung zu erstellen."
-        lastest_items: Letzte Buchungen
+        lastest_entries: Letzte Buchungen
         updated_at: bearbeitet am
       new:
         title: Neue Buchung

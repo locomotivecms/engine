@@ -1,7 +1,7 @@
 module Locomotive::ContentTypesHelper
 
   def each_content_type_menu_item(&block)
-    current_site.content_types.ordered.only(:site_id, :name, :slug).each do |content_type|
+    current_site.content_types.ordered.only(:site_id, :name, :slug, :label_field_name).each do |content_type|
       next unless content_type.persisted?
 
       item_on = (content_type.slug == @content_type.slug) rescue nil

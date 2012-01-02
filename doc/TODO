@@ -52,7 +52,15 @@ x edit my site
     - change in main menu
     - manage contents
       - list (highlighted field)
+      - slugify
       - crud
+        x new
+          x date
+          x checkbox
+          x html
+          x file
+        x edit
+        - destroy
     - public_form (previously api something)
 
 - disallow to click twice on the submit form button (spinner ?)

@@ -93,7 +93,7 @@
         help: "Sidene er organisert i en trestruktur. Du kan sortere både sider og mapper."
         no_items: "Det har ikke blitt opprettet noen sider ennå. Klikk <a href=\"%{url}\">her</a> for lage den første."
         new: ny side
-        lastest_items: Siste sider
+        lastest_entries: Siste sider
       new:
         title: Ny side
         help: "Fyll ut skjemaet nedenfor for å opprette en ny side. Publisering er skrudd av som standard."

@@ -1,7 +1,7 @@
 - if contents.empty?
   %p.no-items!= t('.no_items', :url => new_content_entry_url(@content_type.slug))
 - else
-  %ul{ :id => 'contents-list', :class => "list #{'sortable' if @content_type.order_by == '_position_in_list'}", :'data-url' => sort_admin_contents_path(@content_type.slug, :json) }
+  %ul{ :id => 'contents-list', :class => "list #{'sortable' if @content_type.order_by == '_position'}", :'data-url' => sort_admin_contents_path(@content_type.slug, :json) }
     - contents.each do |content|
       %li.content{ :id => "content-#{content._id}" }
         %em

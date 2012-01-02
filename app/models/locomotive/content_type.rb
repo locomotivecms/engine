@@ -11,7 +11,8 @@ module Locomotive
     field :name
     field :description
     field :slug
-    field :highlighted_field_id, :type => BSON::ObjectId
+    field :label_field_id, :type => BSON::ObjectId
+    field :label_field_name
     field :group_by_field_id, :type => BSON::ObjectId
     field :order_by
     field :order_direction, :default => 'asc'
@@ -32,7 +33,6 @@ module Locomotive
     before_validation   :normalize_slug
     after_validation    :bubble_fields_errors_up
     before_save         :set_default_values
-    # after_destroy       :remove_uploaded_files
 
     ## validations ##
     validates_presence_of   :site, :name, :slug
@@ -48,16 +48,12 @@ module Locomotive
     #   self.group_by_field && group_by_field.category?
     # end
 
-    def highlighted_field
-      self.entries_custom_fields.find(self.highlighted_field_id)
-    end
-
     def group_by_field
       self.entries_custom_fields.find(self.group_by_field_id)
     end
 
     def order_manually?
-      self.order_by == '_position_in_list'
+      self.order_by == '_position'
     end
 
     def asc_order?
@@ -141,7 +137,8 @@ module Locomotive
 
     def set_default_values
       self.order_by ||= 'created_at'
-      self.highlighted_field_id ||= self.entries_custom_fields.first._id
+      field = self.entries_custom_fields.find(self.label_field_id) rescue self.entries_custom_fields.first
+      self.label_field_name = field.name
     end
 
     def normalize_slug

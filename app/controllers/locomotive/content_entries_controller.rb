@@ -1,11 +1,11 @@
 module Locomotive
-  class ContentsController < BaseController
+  class ContentEntriesController < BaseController
 
     sections 'contents'
 
     before_filter :set_content_type
 
-    respond_to :json, :only => [:update, :sort]
+    respond_to :json, :only => [:edit, :create, :update, :sort]
 
     skip_load_and_authorize_resource
 
@@ -18,23 +18,23 @@ module Locomotive
 
     def new
       @content_entry = @content_type.entries.build
-      respond_with @content
+      respond_with @content_entry
     end
 
     def create
       @content_entry = @content_type.entries.create(params[:content_entry])
-      respond_with @content, :location => edit_content_entry_url(@content_type.slug, @content_entry._id)
+      respond_with @content_entry, :location => edit_content_entry_url(@content_type.slug, @content_entry._id)
     end
 
     def edit
       @content_entry = @content_type.entries.find(params[:id])
-      respond_with @content
+      respond_with @content_entry
     end
 
     def update
       @content_entry = @content_type.entries.find(params[:id])
       @content_entry.update_attributes(params[:content_entry])
-      respond_with @content, :location => edit_content_entry_url(@content_type.slug, @content_entry._id)
+      respond_with @content_entry, :location => edit_content_entry_url(@content_type.slug, @content_entry._id)
     end
 
     def sort
@@ -48,7 +48,7 @@ module Locomotive
     def destroy
       @content_entry = @content_type.entries.find(params[:id])
       @content_entry.destroy
-      respond_with @content, :location => pages_url
+      respond_with @content_entry, :location => pages_url
     end
 
     protected

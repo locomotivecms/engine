@@ -82,7 +82,7 @@ pt-BR:
         help: "As páginas são organizadas como uma árvore. Você pode reordenar as páginas como se fossem pastas"
         no_items: "Não existe nenhuma página ainda. Clique <a href=\"%{url}\">aqui</a> para criar a primeira."
         new: nova página
-        lastest_items: Últmas páginas
+        lastest_entries: Últmas páginas
       new:
         title: Nova página
         help: "Por favor, preencha o formulário a seguir para criar sua página. Atenção: Por padrão a página não é publicada."

@@ -14,7 +14,7 @@
 
 %p= @content_type.description
 
-= semantic_form_for @content, :as => :content, :url => content_entry_url(@content_type.slug, @content), :html => { :multipart => true } do |form|
+= semantic_form_for @content_entry, :as => :content_entry, :url => content_entry_url(@content_type.slug, @content_entry), :html => { :multipart => true } do |form|
 
   = render 'form', :f => form
 

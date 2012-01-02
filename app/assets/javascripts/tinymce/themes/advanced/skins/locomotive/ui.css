@@ -78,9 +78,17 @@
   border: 0;
 }
 
+.locomotiveSkin table.mceLayout tr.mceFirst td.mceToolbar {
+  padding-bottom: 1px;
+}
+
 .locomotiveSkin table.mceLayout tr.mceFirst td {
   border: none;
   background: transparent;
+}
+
+.locomotiveSkin table.mceLayout tr.mceFirst td.mceToolbarStart {
+  display: none;
 }
 
 .locomotiveSkin #mce_fullscreen_toolbargroup {
@@ -92,6 +100,7 @@
 }
 
 .locomotiveSkin table.mceLayout tr.mceLast td {
+  margin-top: 2px;
   border-bottom: 1px solid #CCC;
   background: url('img/toolbarbg.png') center repeat-x;
 /*  background: transparent;*/

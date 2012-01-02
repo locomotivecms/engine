@@ -65,28 +65,6 @@
 
     ol {
       min-height: 400px;
-
-      li.file {
-        span.file {
-          a:first-child {
-            @include hover-link;
-
-            margin-right: 20px;
-
-            color: #1F82BC;
-
-            &.deleted {
-              text-decoration: line-through;
-            }
-          }
-
-          a.change, a.delete {
-            @include blue-button;
-
-            margin-left: 5px;
-          }
-        }
-      }
     }
   } // fieldset
 

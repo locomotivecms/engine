@@ -21,7 +21,7 @@
 
   = f.inputs :name => :presentation, :class => "inputs foldable #{'folded' if inputs_folded?(@content_type)}" do
 
-    = f.input :highlighted_field_id, :as => :select, :collection => options_for_highlighted_field(@content_type), :include_blank => false
+    = f.input :label_field_id, :as => :select, :collection => options_for_label_field(@content_type), :include_blank => false
 
     = f.input :group_by_field_id, :as => :select, :collection => options_for_group_by_field(@content_type)
 

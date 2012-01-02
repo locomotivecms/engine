@@ -4,7 +4,7 @@
       .header
         %p= link_to t('locomotive.pages.index.new'), new_page_url
     .inner
-      %h2!= t('locomotive.pages.index.lastest_items')
+      %h2!= t('locomotive.pages.index.lastest_entries')
       %ul
         - current_site.pages.latest_updated.minimal_attributes.each do |page|
           %li
@@ -20,12 +20,12 @@
         %p.edit= link_to t('locomotive.content_entries.index.edit'), edit_content_type_url(content_type)
 
     .inner
-      %h2!= t('locomotive.content_entries.index.lastest_items')
-  /   %ul
-  /     - content_type.latest_updated_contents.each do |content|
-  /       %li
-  /         = link_to truncate(content.send(content_type.highlighted_field_name).to_s, :length => 20), edit_admin_content_path(content_type.slug, content)
-  /         %span= time_ago_in_words(content.updated_at)
+      %h2!= t('locomotive.content_entries.index.lastest_entries')
+      %ul
+        - content_type.entries.latest_updated.each do |entry|
+          %li
+            = link_to truncate(entry._label(content_type), :length => 20), edit_content_entry_url(content_type.slug, entry)
+            %span= time_ago_in_words(entry.updated_at)
 
 / - other_content_types do |content_types|
 /   .inner

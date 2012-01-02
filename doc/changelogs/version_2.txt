@@ -7,6 +7,12 @@
   - EditableXXX => Locomotive::EditableXXX (in mongodb)
   - content_types:
     - category => select
-    - highlighted_field_name => highlighted_field_id
+    - highlighted_field_name => highlighted_field_id (label_field_id)
     - api_enabled => public_form_enabled
     - api_accounts => public_form_accounts
+  - contents (content_entries now)
+    - _position_in_list => _position
+
+
+collection, selector = Locomotive::ContentType.collection, Locomotive::ContentType.criteria.selector
+collection.update selector, { '$rename' => { 'contents_custom_fields' => 'entries_custom_fields' } }

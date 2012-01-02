@@ -6,9 +6,9 @@ module Locomotive::CustomFieldsHelper
     end
   end
 
-  def options_for_highlighted_field(content_type)
+  def options_for_label_field(content_type)
     content_type.ordered_entries_custom_fields.find_all do |field|
-      %w(string date select).include?(field.type)
+      %w(string date).include?(field.type)
     end.map do |field|
       [field.label, field._id]
     end
@@ -23,10 +23,10 @@ module Locomotive::CustomFieldsHelper
   end
 
   def options_for_order_by(content_type)
-    options = %w{created_at updated_at _position_in_list}.map do |type|
+    options = %w{created_at updated_at _position}.map do |type|
       [t("locomotive.content_types.form.order_by.#{type.gsub(/^_/, '')}"), type]
     end
-    options + options_for_highlighted_field(content_type)
+    options + options_for_label_field(content_type)
   end
 
   def options_for_order_direction

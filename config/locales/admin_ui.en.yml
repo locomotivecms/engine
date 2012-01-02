@@ -28,13 +28,17 @@ en:
         account: My account
         site: Site
         theme_assets: Theme files
-      footer:
-        who_is_behind: "Product developed by %{development} and designed by <a href=\"http://www.sachagreif.com\">Sacha Greif</a>"
+      form:
+        change_file: change
+        delete_file: delete
+        cancel: cancel
       form_actions:
         back: Back without saving
         create: Create
         update: Save
         send: Send
+      footer:
+        who_is_behind: "LocomotiveCMS is developed by %{development} and designed by <a href=\"http://www.sachagreif.com\">Sacha Greif</a>"
 
     errors:
       "500":
@@ -96,7 +100,7 @@ en:
         help: "Pages are organized as a tree. You can order pages as well as folders"
         no_items: "There are no pages for now. Just click <a href=\"%{url}\">here</a> to create the first one."
         new: new page
-        lastest_items: Lastest pages
+        lastest_entries: Lastest pages
       new:
         title: New page
         help: "Please fill in the below form to create your page. Be careful, by default, the page is not published."

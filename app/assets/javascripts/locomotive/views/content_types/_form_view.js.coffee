@@ -56,7 +56,7 @@ class Locomotive.Views.ContentTypes.FormView extends Locomotive.Views.Shared.For
   enable_order_by_toggler: ->
     @$('#content_type_order_by_input').bind 'change', (event) =>
       target = @$('#content_type_order_direction_input')
-      if $(event.target).val() == '_position_in_list'
+      if $(event.target).val() == '_position'
         target.hide()
       else
         target.show()
