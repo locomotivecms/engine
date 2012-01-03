@@ -47,8 +47,8 @@ de:
 
     notifications:
       new_content_instance:
-        subject: "[%{type}] neu"
-        title: "Hi %{name}, nur damit du Bescheid weißt! Am %{date} wurde folgende neue Instanz erstellt."
+        subject: "Nachricht von Ihrer Webseite"
+        title: "Folgende Nachricht wurde über das Kontaktformular Ihrer Webseite gesendet:"
         type: "Model: %{type}"
 
     sites_picker:

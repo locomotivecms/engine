@@ -49,7 +49,7 @@ Locomotive.configure do |config|
   # config.lastest_items_nb = 5
 
   # default locale (for now, only en, de, fr, pt-BR and it are supported)
-  config.default_locale = :en
+  config.default_locale = :de
 
   # tell if logs are enabled. Useful for debug purpose.
   config.enable_logs = true
