@@ -100,7 +100,7 @@ class ContentType
       end
 
       self.contents.where(conditions_with_names)
-    end).sort { |a, b| (a.send(column) || 0) <=> (b.send(column) || 0) }
+    end).sort { |a, b| (a.send(column) && b.send(column)) ? (a.send(column) || 0) <=> (b.send(column) || 0) : 0 }
 
     return list if self.order_manually?
 

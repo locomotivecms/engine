@@ -172,6 +172,7 @@ de:
         pt-BR: "Bras. Portugisisch"
         it: "Italienisch"
         nl: "Holländer"
+        "no": "Norwegisch"
         es: "Spanisch"
         ru: "Russisch"
         ask_for_name: "Bitte gib deinen neuen Namen an"
@@ -301,4 +302,8 @@ de:
           Wenn Du schon eine ein Standard Template hochgeladen hast (siehe Hilfe), kannst Du es gleich benutzen.
           Oder Du kannst ein fertiges Template als zip-Datei hochladen. <a href='http://www.locomotivecms.com/support/themes'>Hier</a> findest du ein paar kostenlose Templates, die du gerne kostenlos verwenden kannst.
         back_to_default_template: "Klick <a href='#'>hier</a> um ein Template auszuwählen"
+        next: Webseite erstellen
+      step_3:
+        title: "Schritt 3/3 &mdash; Erstelle deine erste Webseite"
+        explanations: "Dies ist der letzte Schritt der Installation. Du kannst nun ein fertiges Template als zip-Datei hochladen. <a href=\'http://www.locomotivecms.com/support/themes\'>Hier</a> findest du ein paar kostenlose Templates, die du gerne kostenlos verwenden kannst."
         next: Webseite erstellen

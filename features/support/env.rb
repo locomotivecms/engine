@@ -12,7 +12,6 @@ require 'cucumber/rails'
 require 'cucumber/formatter/unicode' # Remove this line if you don't want Cucumber Unicode support
 require 'cucumber/rails/rspec'
 require 'cucumber/rails/world'
-require 'cucumber/web/tableish'
 
 require 'capybara'
 require 'capybara/rails'

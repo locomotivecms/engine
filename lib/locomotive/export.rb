@@ -221,11 +221,13 @@ module Locomotive
     end
 
     def extract_attributes(object, fields)
+      attributes = object.attributes.select { |k, v| fields.include?(k) && !v.blank? }
+
       if RUBY_VERSION =~ /1\.9/
-        object.attributes.select { |k, v| fields.include?(k) }
+        attributes
       else
-        object.attributes.reject { |k, v| !fields.include?(k) }
-      end.delete_if { |k, v| v.blank? }
+        attributes.inject({}) { |memo, pair| memo.merge(pair.first => pair.last) }
+      end
     end
 
     def pages_folder
@@ -303,7 +305,7 @@ module Locomotive
             content.send(field.safe_alias.to_sym)
           end)
 
-          hash[field._alias] = value unless value.blank?
+          hash[field._alias] = value if value.present? || value == false # False values should be preserved in the export
         end
 
         data << { content.highlighted_field_value => hash }

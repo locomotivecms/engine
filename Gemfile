@@ -10,10 +10,12 @@ gem 'warden'
 gem 'devise', '1.3.4'
 gem 'devise_bushido_authenticatable', '1.0.0.alpha10', :require => 'devise_cas_authenticatable'
 
+gem 'mongo', '~> 1.3.1'
+gem 'bson', '~> 1.3.1'
+gem 'bson_ext', '~> 1.3.1'
 gem 'mongoid', '~> 2.0.2'
-gem 'bson_ext', '~> 1.4.0'
 gem 'locomotive_mongoid_acts_as_tree', '0.1.5.7', :require => 'mongoid_acts_as_tree'
-gem 'will_paginate', '~> 3.0.0'
+gem 'kaminari'
 
 gem 'haml', '3.1.2'
 gem 'sass', '3.1.2'
@@ -34,8 +36,8 @@ gem 'actionmailer-with-request', :require => 'actionmailer_with_request'
 gem 'heroku', '1.19.1'
 gem 'httparty', '0.7.8'
 gem 'RedCloth', '4.2.8'
-gem 'delayed_job', '2.1.4'
-gem 'delayed_job_mongoid', '1.0.2'
+gem 'delayed_job', '3.0.0.pre4'
+gem 'delayed_job_mongoid', '1.0.6'
 gem 'rubyzip'
 gem 'locomotive_jammit-s3', :require => 'jammit-s3'
 gem 'SystemTimer', :platforms => :ruby_18
@@ -56,16 +58,16 @@ end
 group :test, :development do
   gem 'linecache', '0.43', :platforms => :mri_18
   gem 'ruby-debug', :platforms => :mri_18
-  gem 'ruby-debug19', :platforms => :mri_19, :require => 'ruby-debug'
+  gem 'ruby-debug19', :platforms => :mri_19
 
   gem 'bushido_stub', '0.0.3'
 
-  gem 'cucumber-rails', '1.0.2'
+  gem 'cucumber-rails'
 end
 
 group :test do
-  gem 'autotest'
-  gem 'ZenTest'
+  gem 'autotest', :platforms => :mri
+  gem 'ZenTest', :platforms => :mri
   gem 'growl-glue'
   gem 'rspec-rails', '2.6.1'
   gem 'factory_girl_rails', '~> 1.1'

@@ -64,6 +64,5 @@ Then %r{^I should not see (\d+) times the "([^"]*)" field$} do |n, field|
 end
 
 Then %r{^I should see once the "([^"]*)" field$} do |field|
-  page.all(:css, "#content_#{field.underscore.downcase}_input").size.should == 1
+  page.should have_css("#content_#{field.underscore.downcase}_input", :count => 1)
 end
-

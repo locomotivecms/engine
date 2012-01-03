@@ -1,0 +1,13 @@
+script: "bundle exec rake travis"
+before_script: ./bin/ci/before_build.sh
+rvm:
+  - 1.9.2
+  - 1.9.3
+notifications:
+  email:
+    - didier@nocoffee.fr
+    - mario@mariovisic.com
+  irc: "irc.freenode.org#locomotivecms"
+branches:
+  only:
+    - master

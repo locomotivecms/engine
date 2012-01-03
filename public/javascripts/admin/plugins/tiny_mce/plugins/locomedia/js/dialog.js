@@ -93,7 +93,8 @@ var MediafileDialog = {
     }
 
     var uploader = new plupload.Uploader({
-      runtimes : (jQuery.browser.webkit == true ? 'flash' : 'html5,flash'),
+      // runtimes : (jQuery.browser.webkit == true ? 'flash' : 'html5,flash'),
+      runtimes: 'gears,html5,flash',
       browse_button : 'upload-link',
       max_file_size : '10mb',
       url : $('a#upload-link').attr('href'),
@@ -107,6 +108,7 @@ var MediafileDialog = {
 
     uploader.bind('BeforeUpload', function(up, file) {
       file.name = unescape(encodeURIComponent(file.name));
+      console.log(file.name);
     });
 
     uploader.bind('QueueChanged', function() {
@@ -115,6 +117,10 @@ var MediafileDialog = {
     });
 
     uploader.bind('FileUploaded', function(up, file, response) {
+      console.log(up);
+      console.log(file);
+      console.log(response);
+
       var json = JSON.parse(response.response);
 
       if (json.status == 'success')

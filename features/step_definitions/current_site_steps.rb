@@ -7,7 +7,7 @@ Then /^I should see the role dropdown on the "([^"]*)" without the "([^"]*)" opt
 end
 
 Then /^I should see the role dropdown on myself$/ do
-  Then %{I should see the role dropdown on the "#{@member.role}"}
+  step %{I should see the role dropdown on the "#{@member.role}"}
 end
 
 Then /^I should not see the role dropdown on the "([^"]*)"$/ do |user|
@@ -15,7 +15,7 @@ Then /^I should not see the role dropdown on the "([^"]*)"$/ do |user|
 end
 
 Then /^I should not see the role dropdown on myself$/ do
-  Then %{I should not see the role dropdown on the "#{@member.role}"}
+  step %{I should not see the role dropdown on the "#{@member.role}"}
 end
 
 Then /^I should not see any role dropdowns$/ do
@@ -31,7 +31,7 @@ Then /^I should not see delete on the "([^"]*)"$/ do |role|
 end
 
 Then /^I should not see delete on myself$/ do
-  Then %{I should not see delete on the "#{@member.role}"}
+  step %{I should not see delete on the "#{@member.role}"}
 end
 
 Then /^I should not see any delete buttons$/ do
@@ -39,5 +39,5 @@ Then /^I should not see any delete buttons$/ do
 end
 
 When /^I select the "([^"]*)" role for the "author" user/ do |role|
-  Given %{I select "#{role}" from "site[memberships_attributes][2][role]"}
+  step %{I select "#{role}" from "site[memberships_attributes][2][role]"}
 end

@@ -39,7 +39,7 @@ module Locomotive
         end
 
         def render_no_site_error
-          render :template => '/admin/errors/no_site', :layout => false
+          render :template => '/admin/errors/no_site', :layout => false, :status => :not_found
         end
 
         def validate_site_membership
