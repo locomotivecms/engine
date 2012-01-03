@@ -28,7 +28,7 @@ en:
         site: Site
         theme_assets: Theme files
       footer:
-        who_is_behind: "Service developed by %{development} and designed by <a href=\"http://www.sachagreif.com\">Sacha Greif</a>"
+        who_is_behind: "Service developed by %{development}"
       form_actions:
         back: Back without saving
         create: Create

@@ -62,7 +62,7 @@ GEM
       xpath (~> 0.1.4)
     carrierwave (0.5.6)
       activesupport (~> 3.0)
-    cells (3.6.6)
+    cells (3.7.0)
       actionpack (~> 3.0)
       railties (~> 3.0)
     childprocess (0.2.2)
@@ -185,7 +185,7 @@ GEM
       rake
     polyglot (0.3.2)
     proxies (0.2.1)
-    rack (1.2.4)
+    rack (1.2.5)
     rack-cache (1.1)
       rack (>= 0.4)
     rack-mount (0.6.14)
@@ -208,7 +208,8 @@ GEM
       thor (~> 0.14.4)
     raindrops (0.7.0)
     rake (0.9.2)
-    rdoc (3.9.4)
+    rdoc (3.12)
+      json (~> 1.4)
     responders (0.6.4)
     rest-client (1.6.7)
       mime-types (>= 1.16)
@@ -265,7 +266,7 @@ GEM
     treetop (1.4.10)
       polyglot
       polyglot (>= 0.3.1)
-    tzinfo (0.3.29)
+    tzinfo (0.3.31)
     unicorn (4.1.1)
       kgio (~> 2.4)
       rack
@@ -293,7 +294,7 @@ DEPENDENCIES
   cancan
   capybara
   carrierwave (= 0.5.6)
-  cells
+  cells (= 3.7.0)
   cucumber-rails
   custom_fields (= 1.0.0.beta.25)
   database_cleaner

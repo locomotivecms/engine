@@ -4,7 +4,7 @@ class Admin::SettingsMenuCell < ::Admin::SubMenuCell #::Admin::MenuCell
 
   def build_list
     add :site, :url => edit_admin_current_site_url
-    add :theme_assets, :url => admin_theme_assets_url
+    add :theme_assets, :url => admin_theme_assets_url if current_ability.can? :touch, ThemeAsset
     add :account, :url => edit_admin_my_account_url
   end
 

@@ -8,7 +8,7 @@
       .container
         #header
           = render 'admin/shared/header'
-          = render_cell 'admin/main_menu', :show
+          = render_cell 'admin/main_menu', :show, :current_ability => current_ability
 
           #submenu
             %ul

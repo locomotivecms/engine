@@ -1,13 +1,13 @@
 %p= t('.title', :name => @account.name, :date => I18n.l(Time.now), :locale => @account.locale)
 
-%hr
-
-%p
-  %b= t('.type', :type => @content.content_type.name, :locale => @account.locale)
-  %br
-  %i= @content.content_type.description
-
-%hr
+-#%hr
+-#
+-#%p
+-#  %b= t('.type', :type => @content.content_type.name, :locale => @account.locale)
+-#  %br
+-#  %i= @content.content_type.description
+-#
+-#%hr
 
 %ul
   - @content.custom_fields.each do |field|

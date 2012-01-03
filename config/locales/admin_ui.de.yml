@@ -14,6 +14,8 @@ de:
       header:
         welcome: Willkommen, %{name}
         see: Webseite ansehen
+        switch: Zu anderer Seite wechseln
+        help: Hilfe
         logout: Ausloggen
       menu:
         contents: Inhalte
@@ -45,9 +47,12 @@ de:
 
     notifications:
       new_content_instance:
-        subject: "[%{type}] neu"
-        title: "Hi %{firstname}, nur damit du Bescheid weißt! Am %{date} wurde folgende neue Instanz erstellt."
+        subject: "Nachricht von Ihrer Webseite"
+        title: "Folgende Nachricht wurde über das Kontaktformular Ihrer Webseite gesendet:"
         type: "Model: %{type}"
+
+    sites_picker:
+      new: + Neue Webseite
 
     custom_fields:
       edit:
@@ -144,6 +149,10 @@ de:
         ask_for_name: "Bitte gib den neuen Namen der Webseite an"
 
     memberships:
+      roles:
+        admin: Administrator
+        designer: Designer
+        author: Autor
       new:
         title: Neuer Account
         help: "Bitte gib eine Email für den neuen Account an. Wenn diese noch nicht registriert ist, wirst du zu einem Formular zur Erstellung weitergeleitet."
@@ -187,6 +196,9 @@ de:
       edit:
         title: "Bearbeite %{file}"
         help: "Diese Datei kann über folgende URL erreicht werden: <a href='%{url}'>%{url}</a>"
+        help_image: "Du kannst das Bild in Templates oder Snippets mit folgendem Code einbinden : <span class='code'>{{ '%{path}' | theme_image_tag }}</span>.<br/>Aktuelle Breite x Höhe : <b>%{width}px x %{height}px</b>.<br/>"
+        help_javascript: "Du kannst die Javascript Datei in Templates oder Snippets mit folgendem Code einbinden: <span class='code'>{{ '%{path}' | javascript_tag }}</span>.<br/>"
+        help_stylesheet: "Du kannst die CSS Datei in Templates oder Snippets mit folgendem Code einbinden  : <span class='code'>{{ '%{path}' | stylesheet_tag }}</span>.<br/>"
       form:
         picker_link: Füge eine Datei in den Code ein
         choose_file: Datei auswählen
@@ -202,22 +214,6 @@ de:
       edit:
         title: Bild bearbeiten
         help: "Fülle das folgende Formular aus, um dein Bild zu aktualisieren."
-
-    bookings:
-      index:
-        title: Buchungen
-        help: "Der Name der Buchung kann durch darauf klicken bearbeitet werden."
-        new: neue Buchung
-        no_items: "Momentan gibt es keine Buchungen. Klicke einfach <a href='%{url}'>hier</a>, um eine neue Buchung zu erstellen."
-        lastest_items: Letzte Buchungen
-        updated_at: bearbeitet am
-      new:
-        title: Neue Buchung
-        help: "Gib erst mal einen Namen ein. Alle anderen Einstellungen kannst du vornehmen, sobald das Formular abgesendet ist."
-      edit:
-        help: "Der Name der Buchung kann durch darauf klicken bearbeitet werden."
-        destroy: Buchung löschen
-        ask_for_name: "Gib den neuen Namen ein"
 
     content_types:
       index:
@@ -290,27 +286,23 @@ de:
 
     installation:
       common:
-        title: Erst-Installation von getbenga
+        title: Erst-Installation von Locomotive CMS
         next: Weiter
       step_1:
-        title: Schritt 1/3
-        explanations: Dies ist der erste Schritt zur Installation von getbenga. Bitte lies die folgenden Texte genau durch.
-        database:
-          label: "Datenbank-Name: <em>%{name}</em>"
-          notes: "All Verbindungseinstellungen für mongodb findest du in der <b>config/mongoid.yml</b> Datei."
-        default_domain:
-          label: "Standard Domain-Name: <em>%{name}</em>"
-          notes: "Basically, Locomotive is a multi websites platform. Each site instance has a default entry, also called subdomain and based on the default domain name. Obviously, you are free to map other domains to your site instance working like aliases. <br/>The default domain name value can be found in the <b>config/initializers/locomotive.rb</b> file."
-      step_2:
-        title: "Schritt 2/3 &mdash; Account erstellen"
-        name: Nachname
-        firstname: Vorname
-        company: Unternehmen
-        email: Email
+        title: "Schritt 1/2 &mdash; Account erstellen"
+        name: Name
+        email: E-Mail
         password: Passwort
         password_confirmation: Passwort-Bestätigung
         done: "Du hast bereits einen Account hinzugefügt:<br/><strong>%{name}</strong>, <em>%{email}</em>"
         next: Account erstellen
+      step_2:
+        title: "Schritt 2/2 &mdash; Webseite erstellen"
+        explanations: |
+          Wenn Du schon eine ein Standard Template hochgeladen hast (siehe Hilfe), kannst Du es gleich benutzen.
+          Oder Du kannst ein fertiges Template als zip-Datei hochladen. <a href='http://www.locomotivecms.com/support/themes'>Hier</a> findest du ein paar kostenlose Templates, die du gerne kostenlos verwenden kannst.
+        back_to_default_template: "Klick <a href='#'>hier</a> um ein Template auszuwählen"
+        next: Webseite erstellen
       step_3:
         title: "Schritt 3/3 &mdash; Erstelle deine erste Webseite"
         explanations: "Dies ist der letzte Schritt der Installation. Du kannst nun ein fertiges Template als zip-Datei hochladen. <a href=\'http://www.locomotivecms.com/support/themes\'>Hier</a> findest du ein paar kostenlose Templates, die du gerne kostenlos verwenden kannst."
