@@ -38,6 +38,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'cells'
   s.add_dependency 'highline'
   s.add_dependency 'sanitize'
+  s.add_dependency 'coffee-script'
 
   s.add_dependency 'json_pure', '1.5.1'
   s.add_dependency 'bushido'

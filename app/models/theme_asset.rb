@@ -41,7 +41,7 @@ class ThemeAsset
   ## methods ##
 
   def stylesheet_or_javascript?
-    self.stylesheet? || self.javascript?
+    self.stylesheet? || self.javascript? || self.coffeescript?
   end
 
   def local_path(short = false)
@@ -89,9 +89,17 @@ class ThemeAsset
 
     sanitized_source = self.escape_shortcut_urls(data)
 
+    if self.stylesheet?
+      filename = "#{self.plain_text_name}.css"
+    elsif self.javascript?
+      filename = "#{self.plain_text_name}.js"
+    elsif self.coffeescript?
+      filename = "#{self.plain_text_name}.coffee"
+    end
+    
     self.source = CarrierWave::SanitizedFile.new({
       :tempfile => StringIO.new(sanitized_source),
-      :filename => "#{self.plain_text_name}.#{self.stylesheet? ? 'css' : 'js'}"
+      :filename => filename
     })
   end
 
@@ -117,7 +125,7 @@ class ThemeAsset
     self.folder = ActiveSupport::Inflector.transliterate(self.folder).gsub(/(\s)+/, '_').gsub(/^\//, '').gsub(/\/$/, '')
 
     # folder should begin by a root folder
-    if (self.folder =~ /^(stylesheets|javascripts|images|medias|fonts)/).nil?
+    if (self.folder =~ /^(stylesheets|javascripts|coffeescripts|images|medias|fonts)/).nil?
       self.folder = File.join(self.content_type.to_s.pluralize, self.folder)
     end
   end
@@ -133,7 +141,7 @@ class ThemeAsset
   def escape_shortcut_urls(text)
     return if text.blank?
 
-    text.gsub(/[("'](\/(stylesheets|javascripts|images|medias)\/(([^;.]+)\/)*([a-z_\-0-9]+)\.[a-z]{2,3})[)"']/) do |path|
+    text.gsub(/[("'](\/(stylesheets|javascripts|coffeescripts|images|medias)\/(([^;.]+)\/)*([a-z_\-0-9]+)\.[a-z]{2,3,6})[)"']/) do |path|
 
       sanitized_path = path.gsub(/[("')]/, '').gsub(/^\//, '')
 

@@ -1,3 +1,5 @@
+require 'coffee-script'
+
 module Admin
   class ThemeAssetsController < BaseController
 
@@ -12,6 +14,46 @@ module Admin
 
     before_filter :sanitize_params, :only => [:create, :update]
 
+    before_filter :compile, :only => [:update]
+    after_filter :store, :only => [:create, :update]
+
+    def compile
+      if @theme_asset.coffeescript?
+        begin
+          CoffeeScript.compile params[:theme_asset][:plain_text]
+        rescue Exception => e
+          flash[:error] = e.message
+        end
+      end
+    end
+    
+    def store
+      if @theme_asset.coffeescript?
+        begin
+          javascript = CoffeeScript.compile @theme_asset.source.read()
+        rescue Exception => e
+          javascript = "console.log('Error in #{@theme_asset.source.url}: #{e.message}');"
+        end
+        
+        a = ThemeAsset.where(:source_filename=> @theme_asset.source_filename.gsub('.coffee', '.js')).first()
+        if a
+          a.update_attributes({:site => @current_site,
+                               :plain_text_name => @theme_asset.source_filename.gsub('.coffee', '.js'),
+                               :plain_text_type => "javascript",
+                               :plain_text => javascript,
+                               :folder => "javascripts",
+                               :performing_plain_text => true})
+        else
+          ThemeAsset.create!({:site => @current_site,
+                              :plain_text_name => @theme_asset.source_filename.gsub('.coffee', '.js'),
+                              :plain_text_type => "javascript",
+                              :plain_text => javascript,
+                              :folder => "",
+                              :performing_plain_text => true})
+        end
+      end
+    end
+    
     def index
       @assets = ThemeAsset.all_grouped_by_folder(current_site)
       @js_and_css_assets = (@assets[:javascripts] || []) + (@assets[:stylesheets] || [])

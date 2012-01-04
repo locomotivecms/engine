@@ -17,12 +17,13 @@ module Locomotive
 
           def content_types
             {
-              :image      => ['image/jpeg', 'image/pjpeg', 'image/gif', 'image/png', 'image/x-png', 'image/jpg', 'image/x-icon'],
-              :media      => [/^video/, 'application/x-shockwave-flash', 'application/x-swf', /^audio/, 'application/ogg', 'application/x-mp3'],
-              :pdf        => ['application/pdf', 'application/x-pdf'],
-              :stylesheet => ['text/css'],
-              :javascript => ['text/javascript', 'text/js', 'application/x-javascript', 'application/javascript', 'text/x-component'],
-              :font       => ['application/x-font-ttf', 'application/vnd.ms-fontobject', 'image/svg+xml', 'application/x-woff']
+              :image        => ['image/jpeg', 'image/pjpeg', 'image/gif', 'image/png', 'image/x-png', 'image/jpg', 'image/x-icon'],
+              :media        => [/^video/, 'application/x-shockwave-flash', 'application/x-swf', /^audio/, 'application/ogg', 'application/x-mp3'],
+              :pdf          => ['application/pdf', 'application/x-pdf'],
+              :stylesheet   => ['text/css'],
+              :javascript   => ['text/javascript', 'text/js', 'application/x-javascript', 'application/javascript', 'text/x-component'],
+              :coffeescript => ['text/coffeescript', 'application/x-coffeescript', 'application/coffeescript'],
+              :font         => ['application/x-font-ttf', 'application/vnd.ms-fontobject', 'image/svg+xml', 'application/x-woff']
             }
           end
 
@@ -34,8 +35,11 @@ module Locomotive
             value = :other
 
             content_type = file.content_type == 'application/octet-stream' ? File.mime_type?(original_filename) : file.content_type
+            
+            content_type = "text/coffeescript" if content_type.to_s == "unknown/unknown" and original_filename.ends_with?('.coffee')
 
             self.class.content_types.each_pair do |type, rules|
+              
               rules.each do |rule|
                 case rule
                 when String then value = type if content_type == rule

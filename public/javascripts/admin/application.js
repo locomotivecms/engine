@@ -18,6 +18,28 @@ $.growl.settings.dockCss = {
 
 /* ___ codemirror ___ */
 
+var addCodeMirrorEditor = function(type, el, mode) {
+  //if (!mode) mode = 'htmlmixed';
+  if (!mode) mode = 'liquid';
+  if (mode == 'nude') mode = undefined;
+  var editor = CodeMirror.fromTextArea(el.get()[0], {
+    height: el.hasClass('small') ? '60px' : '400px',
+    autoMatchParens: false,
+    lineNumbers: false,
+    mode: mode,
+    passDelay: 50,
+    tabMode: "shift",
+    theme: "default"
+  });
+  
+  CodeMirrorEditors.push({ 'el': el, 'editor': editor });
+}
+
+var refreshCodeMirrorEditors = function() {
+  for (i in CodeMirrorEditors){ CodeMirrorEditors[i].editor.refresh(); }
+}
+
+/* Codemirror 1 function version
 var addCodeMirrorEditor = function(type, el, parser) {
   parser = (parser || 'Liquid') + 'Parser';
 
@@ -41,7 +63,7 @@ var addCodeMirrorEditor = function(type, el, parser) {
 
   CodeMirrorEditors.push({ 'el': el, 'editor': editor });
 }
-
+*/
 /* ___ tinyMCE ___ */
 
 var TinyMceDefaultSettings = {
@@ -140,7 +162,7 @@ $(document).ready(function() {
     var parent = $(this).parent(), content = $(this).next();
     if (parent.hasClass('folded')) {
       parent.removeClass('folded');
-      content.slideDown('fast', function() { parent.trigger('refresh'); });
+      content.slideDown('fast', function() { parent.trigger('refresh'); refreshCodeMirrorEditors(); });
     } else
       content.slideUp('fast', function() { parent.addClass('folded'); });
   });
