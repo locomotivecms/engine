@@ -4,57 +4,47 @@ describe Locomotive::Liquid::Drops::Contents do
 
   before(:each) do
     @site = FactoryGirl.build(:site)
-    @content_type = FactoryGirl.build(:content_type, :site => @site, :slug => 'projects')
+    content_type = FactoryGirl.build(:content_type)
+    content_type.entries_custom_fields.build :label => 'anything', :type => 'string'
+    content_type.entries_custom_fields.build :label => 'published_at', :type => 'date'
+    @content = content_type.entries.build({
+      :meta_keywords => 'Libidinous, Angsty',
+      :meta_description => "Quite the combination.",
+      :published_at => Date.today })
   end
 
-  it 'retrieves a content type from a slug' do
-    @site.content_types.expects(:where).with(:slug => 'projects')
-    render_template '{{ contents.projects }}'
+  describe 'meta_keywords' do
+    subject { render_template('{{ content.meta_keywords }}') }
+    it { should == @content.meta_keywords }
   end
 
-  describe '#group_by' do
-
-    it 'orders entries' do
-      @site.content_types.stubs(:where).returns([@content_type])
-      @content_type.entries.klass.expects(:group_by_select_option).with(:ordered_entries)
-      render_template '{% for group in contents.projects.group_by_category %} {{ group.name }} {% endfor %}'
-    end
-
+  describe 'meta_description' do
+    subject { render_template('{{ content.meta_description }}') }
+    it { should == @content.meta_description }
   end
 
-  describe Locomotive::Liquid::Drops::ProxyCollection do
+  describe 'date comparaison' do
 
-    before(:each) do
-      populate_content_type
-      @proxy_collection = Locomotive::Liquid::Drops::ProxyCollection.new(@content_type)
-      @proxy_collection.context = {}
+    describe 'older than' do
+      subject { @content.published_at = 3.days.ago; render_template('{% if content.published_at < today %}In the past{% endif %}') }
+      it { should == 'In the past' }
     end
 
-    it 'provides its size like an Array' do
-      @proxy_collection.size.should == @proxy_collection.length
+    describe 'more recent than' do
+      subject { @content.published_at = (Time.now + 1.days); render_template('{% if content.published_at > today %}In the future{% endif %}') }
+      it { should == 'In the future' }
     end
 
-    it 'can be enumerated using each_with_index' do
-      @proxy_collection.each_with_index do |item, index|
-        item._slug.should == "item#{index + 1}"
-      end
+    describe 'equality' do
+      subject { render_template('{% if content.published_at == today %}Today{% endif %}') }
+      it { should == 'Today' }
     end
 
   end
 
   def render_template(template = '', assigns = {})
-    assigns = {
-      'contents' => Locomotive::Liquid::Drops::Contents.new
-    }.merge(assigns)
-
+    assigns = { 'content' => @content, 'today' => Date.today }.merge(assigns)
     Liquid::Template.parse(template).render(::Liquid::Context.new({}, assigns, { :site => @site }))
-  end
-
-  def populate_content_type
-    @content_type.order_by = :_slug
-    @content_type.entries.build(:_slug => 'item1')
-    @content_type.entries.build(:_slug => 'item2')
-    @content_type.entries.build(:_slug => 'item3')
   end
 
 end
