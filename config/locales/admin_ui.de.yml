@@ -6,6 +6,7 @@ de:
       change_password: Update
       new_item: "+ hinzufügen"
       switch_to_site: Los
+      delete: "Löschen"
 
     messages:
       confirm: Bist du sicher ?
@@ -14,7 +15,9 @@ de:
       header:
         welcome: Willkommen, %{name}
         see: Webseite ansehen
+        switch: Mandant wechseln
         logout: Ausloggen
+        help: Hilfe
       menu:
         contents: Inhalte
         assets: Galerien
@@ -48,6 +51,9 @@ de:
         subject: "[%{type}] neu"
         title: "Hi %{firstname}, nur damit du Bescheid weißt! Am %{date} wurde folgende neue Instanz erstellt."
         type: "Model: %{type}"
+
+    sites_picker:
+      new: + Neuer Mandant
 
     custom_fields:
       edit:
@@ -144,6 +150,10 @@ de:
         ask_for_name: "Bitte gib den neuen Namen der Webseite an"
 
     memberships:
+      roles:
+        admin: Administrator
+        designer: Designer
+        author: Autor
       new:
         title: Neuer Account
         help: "Bitte gib eine Email für den neuen Account an. Wenn diese noch nicht registriert ist, wirst du zu einem Formular zur Erstellung weitergeleitet."
@@ -187,6 +197,10 @@ de:
       edit:
         title: "Bearbeite %{file}"
         help: "Diese Datei kann über folgende URL erreicht werden: <a href='%{url}'>%{url}</a>"
+        help_image: "Das Bild kann über den folgenden Liquid Code in Seitenvorlagen oder Snipplets eingebunden werden: <span class='code'>{{ '%{path}' | theme_image_tag }}</span>.<br/>Die aktuelle Bildgröße ist: <b>%{width}px x %{height}px</b>.<br/>"
+        help_javascript: "Die Javascript Datei kann über den folgenden Liquid Code in Seitenvorlagen oder Snipplets eingebunden werden: <span class='code'>{{ '%{path}' | javascript_tag }}</span>.<br/>"
+        help_stylesheet: "Die Stylesheet Datei kann über den folgenden Liquid Code in Seitenvorlagen oder Snipplets eingebunden werden: <span class='code'>{{ '%{path}' | stylesheet_tag }}</span>.<br/>"
+
       form:
         picker_link: Füge eine Datei in den Code ein
         choose_file: Datei auswählen
@@ -290,28 +304,19 @@ de:
 
     installation:
       common:
-        title: Erst-Installation von getbenga
+        title: Locomotive CMS Initialisierung
         next: Weiter
       step_1:
-        title: Schritt 1/3
-        explanations: Dies ist der erste Schritt zur Installation von getbenga. Bitte lies die folgenden Texte genau durch.
-        database:
-          label: "Datenbank-Name: <em>%{name}</em>"
-          notes: "All Verbindungseinstellungen für mongodb findest du in der <b>config/mongoid.yml</b> Datei."
-        default_domain:
-          label: "Standard Domain-Name: <em>%{name}</em>"
-          notes: "Basically, Locomotive is a multi websites platform. Each site instance has a default entry, also called subdomain and based on the default domain name. Obviously, you are free to map other domains to your site instance working like aliases. <br/>The default domain name value can be found in the <b>config/initializers/locomotive.rb</b> file."
-      step_2:
-        title: "Schritt 2/3 &mdash; Account erstellen"
+        title: "Schritt 1/2 &mdash; Zugang erstellen"
         name: Nachname
         firstname: Vorname
-        company: Unternehmen
         email: Email
         password: Passwort
         password_confirmation: Passwort-Bestätigung
-        done: "Du hast bereits einen Account hinzugefügt:<br/><strong>%{name}</strong>, <em>%{email}</em>"
-        next: Account erstellen
-      step_3:
-        title: "Schritt 3/3 &mdash; Erstelle deine erste Webseite"
-        explanations: "Dies ist der letzte Schritt der Installation. Du kannst nun ein fertiges Template als zip-Datei hochladen. <a href=\'http://www.locomotivecms.com/support/themes\'>Hier</a> findest du ein paar kostenlose Templates, die du gerne kostenlos verwenden kannst."
+        done: "Du hast bereits einen Zugang erstellt:<br/><strong>%{name}</strong>, <em>%{email}</em>"
+        next: Zugang erstellen
+      step_2:
+        title: "Schritt 2/2 &mdash; Webseite erstellen"
+        explanations: "Wenn Du schon ein Standard Template hochgeladen hast (siehe Hilfe), kannst Du es gleich benutzen. Oder Du kannst ein fertiges Template als zip-Datei hochladen. <a href='http://www.locomotivecms.com/support/themes'>Hier</a> findest du ein paar kostenlose Templates, die du gerne kostenlos verwenden kannst."
+        back_to_default_template: "Klicken Sie <a href='#'>hier</a> um die Standardvorlage zu verwenden."
         next: Webseite erstellen
