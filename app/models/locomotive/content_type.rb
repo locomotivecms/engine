@@ -44,20 +44,33 @@ module Locomotive
 
     ## methods ##
 
-    # def groupable?
-    #   self.group_by_field && group_by_field.category?
-    # end
-
-    def group_by_field
-      self.entries_custom_fields.find(self.group_by_field_id)
-    end
-
     def order_manually?
       self.order_by == '_position'
     end
 
-    def asc_order?
-      self.order_direction.blank? || self.order_direction == 'asc'
+    def order_by_definition
+      direction = self.order_manually? ? 'asc' : self.order_direction || 'asc'
+      [order_by_attribute, direction]
+    end
+
+    def ordered_entries
+      self.entries.order_by([order_by_definition])
+    end
+
+    def groupable?
+      !!self.group_by_field && group_by_field.type == 'select'
+    end
+
+    def group_by_field
+      self.entries_custom_fields.find(self.group_by_field_id) rescue nil
+    end
+
+    def list_or_group_entries
+      if self.groupable?
+        self.entries.group_by_select_option(self.group_by_field.name, self.order_by_definition)
+      else
+        self.ordered_entries
+      end
     end
 
     def to_presenter
@@ -134,6 +147,11 @@ module Locomotive
     # end
 
     protected
+
+    def order_by_attribute
+      return self.order_by if %w(created_at updated_at _position).include?(self.order_by)
+      self.entries_custom_fields.find(self.order_by).name rescue 'created_at'
+    end
 
     def set_default_values
       self.order_by ||= 'created_at'

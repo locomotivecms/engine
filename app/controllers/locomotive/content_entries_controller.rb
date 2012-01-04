@@ -12,7 +12,7 @@ module Locomotive
     before_filter :authorize_content
 
     def index
-      @content_entries = @content_type.entries
+      @content_entries = @content_type.list_or_group_entries
       respond_with @content_entries
     end
 
@@ -38,17 +38,14 @@ module Locomotive
     end
 
     def sort
-      # TODO
-      # @content_type.sort_contents!(params[:children])
-      # @page = current_site.pages.find(params[:id])
-      # @page.sort_children!(params[:children])
+      @content_type.klass_with_custom_fields(:entries).sort_entries!(params[:entries])
       respond_with @content_type
     end
 
     def destroy
       @content_entry = @content_type.entries.find(params[:id])
       @content_entry.destroy
-      respond_with @content_entry, :location => pages_url
+      respond_with @content_entry, :location => content_entries_url(@content_type.slug)
     end
 
     protected

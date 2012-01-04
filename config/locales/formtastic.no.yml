@@ -93,7 +93,7 @@
         samples: "Vil gjøre at importen kopierer innhold og assets"
         reset: "Vil gjøre at alle data slettes for den nye siden importeres."
       content_type:
-        item_template: "Du kan justere teksten som vises for hvert element i listen. Bruk liquid, f.eks: {{ content.name }}"
+        item_template: "Du kan justere teksten som vises for hvert element i listen. Bruk liquid, f.eks: {{ entry.name }}"
         api_enabled: "Brukes for å la sidebrukere opprette ny elementer (f.eks: meldinger i et kontaktskjema)"
         api_accounts: "En varslingsepost vil bli sendt til alle kontoene ovenfor når et nytt element blir opprettet."
 

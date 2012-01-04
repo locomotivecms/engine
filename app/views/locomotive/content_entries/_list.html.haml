@@ -1,15 +1,15 @@
-- if contents.empty?
-  %p.no-items!= t('.no_items', :url => new_content_entry_url(@content_type.slug))
+- if entries.empty?
+  %p.no-items!= t('.no_items', :url => new_content_entry_url(content_type.slug))
 - else
-  %ul{ :id => 'contents-list', :class => "list #{'sortable' if @content_type.order_by == '_position'}", :'data-url' => sort_admin_contents_path(@content_type.slug, :json) }
-    - contents.each do |content|
-      %li.content{ :id => "content-#{content._id}" }
-        %em
-        %strong
-          = link_to content_label_for(content), edit_admin_content_path(@content_type.slug, content)
+  %ul{ :id => 'entries-list', :class => "#{'list' unless content_type.groupable?} #{'sortable' if content_type.order_manually?}", :'data-url' => sort_content_entries_url(content_type.slug, :json) }
+    - entries.each do |entry|
+      %li.item{ :id => "entry-#{entry._id}" }
+        %span.handle
+          = image_tag 'locomotive/form/icons/drag.png'
+        %strong= link_to entry_label(content_type, entry), edit_content_entry_url(content_type.slug, entry)
         .more
           %span
-            != t('locomotive.contents.index.updated_at')
-          = l content.updated_at, :format => :short rescue 'n/a'
+            != t('locomotive.content_entries.index.updated_at')
+          = l entry.updated_at, :format => :short rescue 'n/a'
 
-          = link_to image_tag('admin/list/icons/trash.png', :alt => t('locomotive.buttons.delete')), admin_content_path(@content_type.slug, content), :class => 'remove', :confirm => t('locomotive.messages.confirm'), :method => :delete
+          = link_to 'x', content_entry_url(content_type.slug, entry), :class => 'remove', :confirm => t('locomotive.messages.confirm'), :method => :delete

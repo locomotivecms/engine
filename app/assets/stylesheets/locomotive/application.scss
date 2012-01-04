@@ -102,36 +102,6 @@ ul.list {
       outline: none;
     }
 
-    // em {
-    //   display: block;
-    //   float: left;
-    //   height: 31px;
-    //   width: 18px;
-    // }
-
-    // strong {
-    //   display: block;
-    //   height: 31px;
-    //   margin-left: 18px;
-    //
-    //   a {
-    //     position: relative;
-    //     top: 2px;
-    //     left: 15px;
-    //
-    //     text-decoration: none;
-    //     color: #1f82bc;
-    //     font-size: 13px;
-    //     @include single-text-shadow(#fff, 1px, 1px, 1px);
-    //
-    //     &:hover {
-    //       text-decoration: underline;
-    //     }
-    //   }
-    // }
-
-    // &.sortable li strong a { left: 10px; }
-
     div.more {
       position: absolute;
       top: 0px;
@@ -146,41 +116,68 @@ ul.list {
         margin-left: 10px;
       }
 
-      // span.handle {
-      //   position: relative;
-      //   top: 5px;
-      //   margin: 0 0 0 15px;
-      //   cursor: move;
-      // }
     } // li div.more
   } // ul.list li
 }
 
-// ul.theme-assets {
-//   margin-left: 40px;
-//
-//   li.hidden strong a { font-style: italic; color: #8B8D9A; font-weight: normal; }
-// }
+#entries-list.list {
 
-// #contents-list li {
-//   background: none;
-//
-//   li {
-//     em {
-//       background-position: left -31px;
-//       cursor: move;
-//     }
-//
-//     strong {
-//       display: block;
-//       height: 31px;
-//
-//       margin-left: 18px;
-//
-//       background: transparent image-url("locomotive/list/item-right.png") no-repeat right 0;
-//     }
-//   }
-// }
+  li.item {
+    a {
+      @include single-text-shadow(#fff, 1px, 1px, 1px);
+    }
+
+    span.handle {
+      display: none;
+    }
+
+    .more {
+
+      a.remove {
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+
+        margin-left: 7px;
+        outline: none;
+
+        background: transparent image-url("locomotive/list/icons/trash_off.png") repeat 0 0;
+
+        text-indent: -9999px;
+
+        &:hover {
+          background-image: image-url("locomotive/list/icons/trash.png");
+        }
+      }
+    } // li div.more
+  } // li.item
+
+  &.sortable {
+
+    li.item {
+      span.handle {
+        display: block;
+        position: absolute;
+        top: 5px;
+        left: 0px;
+
+        height: 22px;
+        width: 18px;
+        text-indent: -9999px;
+
+        background: transparent image-url("locomotive/list/item-left.png") no-repeat 0 0;
+
+        cursor: move;
+      }
+
+      a {
+        margin-left: 26px;
+      }
+    } // .sortable li.item
+
+  } // .list.sortable
+
+} // #entries-list.list
 
 #pages-list {
   margin: 0px 0 20px 0;

@@ -93,7 +93,7 @@ it:
         samples: "Se attivato, il processo di import copierà anche contenuti e risorse"
         reset: "Se attivato, tutti i dati del tuo sito saranno cancellati prima di importare il nuovo sito"
       content_type:
-        item_template: "Puoi personalizzare il testo visualizzato per ciascun elemento della lista semplicemente usando Liquid. Ex: {{ content.name }})"
+        item_template: "Puoi personalizzare il testo visualizzato per ciascun elemento della lista semplicemente usando Liquid. Ex: {{ entry.name }})"
         api_enabled: "E' usato per lasciare che i visitatori, da fuori, possano creare nuove istanze (per esempio: i messaggi da un form 'contattaci')"
         api_accounts: "Quando viene creata una nuova istanza, una mail di notifica verrà inviata a tutti gli account elencati qui sopra"
 

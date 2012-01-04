@@ -23,7 +23,7 @@ module Locomotive
     before_validation :set_slug
     before_save       :set_visibility
     before_create     :add_to_list_bottom
-    # after_create      :send_notifications
+    after_create      :send_notifications
 
     ## named scopes ##
     scope :visible, :where => { :_visible => true }
@@ -51,8 +51,17 @@ module Locomotive
       next_or_previous :lt
     end
 
+    def self.sort_entries!(ids)
+      list = self.any_in(:_id => ids.map { |id| BSON::ObjectId.from_string(id.to_s) }).to_a
+      ids.each_with_index do |id, position|
+        if entry = list.detect { |e| e._id.to_s == id.to_s }
+          entry.update_attributes :_position => position
+        end
+      end
+    end
+
     def to_liquid
-      Locomotive::Liquid::Drops::Content.new(self)
+      Locomotive::Liquid::Drops::ContentEntry.new(self)
     end
 
     def to_presenter
@@ -66,37 +75,35 @@ module Locomotive
     protected
 
     def next_or_previous(matcher = :gt)
-      attribute = self.content_type.order_by.to_sym
-      direction = self.content_type.order_direction || 'asc'
+      order_by  = self.content_type.order_by_definition
       criterion = attribute.send(matcher)
 
-      self.class.where(criterion => self.send(attribute)).order_by([[attribute, direction]]).limit(1).first
+      self.class.where(criterion => self.send(attribute)).order_by([order_by]).limit(1).first
     end
 
     # Sets the slug of the instance by using the value of the highlighted field
     # (if available). If a sibling content instance has the same permalink then a
     # unique one will be generated
     def set_slug
-      # self._slug = highlighted_field_value.dup if _slug.blank? && highlighted_field_value.present?
-      #
-      # if _slug.present?
-      #   self._slug.permalink!
-      #   self._slug = next_unique_slug if slug_already_taken?
-      # end
+      self._slug = self._label.dup if self._slug.blank? && self._label.present?
+
+      if self._slug.present?
+        self._slug.permalink!
+        self._slug = self.next_unique_slug if self.slug_already_taken?
+      end
     end
 
     # Return the next available unique slug as a string
     def next_unique_slug
-      # slug        = _slug.gsub(/-\d*$/, '')
-      # last_slug   = _parent.contents.where(:_id.ne => _id, :_slug => /^#{slug}-?\d*?$/i).order_by(:_slug).last._slug
-      # next_number = last_slug.scan(/-(\d)$/).flatten.first.to_i + 1
-      #
-      # [slug, next_number].join('-')
+      slug        = self._slug.gsub(/-\d*$/, '')
+      last_slug   = self.class.where(:_id.ne => self._id, :_slug => /^#{slug}-?\d*?$/i).order_by(:_slug).last._slug
+      next_number = last_slug.scan(/-(\d)$/).flatten.first.to_i + 1
+      [slug, next_number].join('-')
     end
 
-    # def slug_already_taken?
-    #   _parent.contents.where(:_id.ne => _id, :_slug => _slug).any?
-    # end
+    def slug_already_taken?
+      self.class.where(:_id.ne => self._id, :_slug => self._slug).any?
+    end
 
     def set_visibility
       [:visible, :active].each do |meth|
@@ -111,19 +118,15 @@ module Locomotive
       self._position = self.class.max(:_position).to_i + 1
     end
 
-    # def send_notifications
-    #   return unless self.content_type.api_enabled? && !self.content_type.api_accounts.blank?
-    #
-    #   accounts = self.content_type.site.accounts.to_a
-    #
-    #   self.content_type.api_accounts.each do |account_id|
-    #     next if account_id.blank?
-    #
-    #     account = accounts.detect { |a| a.id.to_s == account_id.to_s }
-    #
-    #     Locomotive::Notifications.new_content_instance(account, self).deliver
-    #   end
-    # end
+    def send_notifications
+      return if !self.content_type.public_form_enabled? || self.content_type.public_form_accounts.blank?
+
+      self.content_type.site.accounts.each do |account|
+        next unless self.content_type.public_form_accounts.include?(account._id.to_s)
+
+        Locomotive::Notifications.new_content_entry(account, self).deliver
+      end
+    end
 
   end
 end

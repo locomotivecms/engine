@@ -18,6 +18,22 @@ module Locomotive::ContentTypesHelper
     end
   end
 
+  def entry_label(content_type, entry)
+    if content_type.raw_item_template.blank?
+      entry._label # default one
+    else
+      assigns = { 'site' => current_site, 'entry' => entry }
+
+      registers = {
+        :controller     => self,
+        :site           => current_site,
+        :current_locomotive_account  => current_locomotive_account
+      }
+
+      preserve(content_type.item_template.render(::Liquid::Context.new({}, assigns, registers)))
+    end
+  end
+
   # MAX_DISPLAYED_CONTENTS = 4
   #
   # def fetch_content_types

@@ -20,6 +20,7 @@ class Locomotive.Models.ContentEntry extends Backbone.Model
 
   toJSON: ->
     _.tap super, (hash) =>
+      hash['_slug'] = '' if hash['_slug'] == null # avoid empty hash
       _.each _.keys(hash), (key) =>
         unless _.include(@get('safe_attributes'), key)
           delete hash[key]

@@ -34,7 +34,7 @@ x edit my site
   x site picker
   - content types
     x move content instances into their own collection
-    - manage custom_fields
+    x manage custom_fields
       x automatic name
       x required
       x editable plugin: add class depending on the type => surrounding span instead
@@ -50,17 +50,17 @@ x edit my site
         x select: add/edit/remove options
         x text: formatting
     - change in main menu
-    - manage contents
-      - list (highlighted field)
-      - slugify
-      - crud
+    x manage contents
+      x list (highlighted field)
+      x slugify
+      x crud
         x new
           x date
           x checkbox
           x html
           x file
         x edit
-        - destroy
+        x destroy
     - public_form (previously api something)
 
 - disallow to click twice on the submit form button (spinner ?)

@@ -46,16 +46,16 @@ describe Locomotive::Import::Job do
       content_type = @site.content_types.where(:slug => 'projects').first
       content_type.entries.size.should == 5
 
-      content = content_type.entries.first
-      content._permalink.should == 'locomotivecms'
-      content.seo_title.should == 'My open source CMS'
-      content.meta_description.should == 'bla bla bla'
-      content.meta_keywords.should == 'cms ruby engine mongodb'
-      content.name.should == 'Locomotive App'
-      content.thumbnail.url.should_not be_nil
-      content.featured.should == true
-      content.client.name.should == 'My client #1'
-      content.team.first.name.should == 'Michael Scott'
+      entry = content_type.entries.first
+      entry._permalink.should == 'locomotivecms'
+      entry.seo_title.should == 'My open source CMS'
+      entry.meta_description.should == 'bla bla bla'
+      entry.meta_keywords.should == 'cms ruby engine mongodb'
+      entry.name.should == 'Locomotive App'
+      entry.thumbnail.url.should_not be_nil
+      entry.featured.should == true
+      entry.client.name.should == 'My client #1'
+      entry.team.first.name.should == 'Michael Scott'
     end
 
     it 'inserts theme assets' do

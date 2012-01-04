@@ -94,6 +94,6 @@ fr:
         reset: "Si activé, toutes les données de votre site seront détruites avant l'import du nouveau site"
       content_type:
         slug: Nom utilisé dans les templates liquid afin d'accéder aux enregistrements de ce modèle
-        item_template: "Personnaliser le texte affiché pour chaque élément de la liste. Utilisez simplement du code Liquid. Ex: {{ content.name }}"
+        item_template: "Personnaliser le texte affiché pour chaque élément de la liste. Utilisez simplement du code Liquid. Ex: {{ entry.name }}"
         api_enabled: "Utilisé pour autoriser la création de nouvelles instances de l'extérieur (ex.: les messages dans un formulaire de contact)"
         api_accounts: "Un email de notification sera envoyé à chaque compte listé ci-dessus lors de la création d'une nouvelle instance"

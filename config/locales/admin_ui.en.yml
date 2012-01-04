@@ -250,7 +250,7 @@ en:
         lastest_entries: "Lastest entries"
         updated_at: "Updated at"
       list:
-        no_entries: "There are no entries for now. Just click <a href=\"%{url}\">here</a> to create the first one."
+        no_items: "There are no entries for now. Just click <a href=\"%{url}\">here</a> to create the first one."
       new:
         title: '%{type} &mdash; new entry'
       edit:

@@ -94,7 +94,7 @@ en:
       content_type:
         name: "We suggest you to type the plural form of the model. Ex: Projects, Recipes, Posts, Articles, ...etc"
         slug: "It will be used as the name of the collection in the liquid templates. Ex: <span class='code'>{{ contents.my_projects }}</span>"
-        raw_item_template: "You can customize the text displayed for each item in the list. Simply use Liquid. Ex: <span class='code'>{{ content.name }})</span>"
+        raw_item_template: "You can customize the text displayed for each item in the list. Simply use Liquid. Ex: <span class='code'>{{ entry.name }})</span>"
         public_form_enabled: "It is used to let people from outside to create new instances (example: messages in a contact form)"
         public_form_accounts: "A notification email will be sent to each of the accounts listed above when a new instance is created"
         "custom_fields/field":

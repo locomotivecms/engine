@@ -93,7 +93,7 @@ body {
     > div.inner {
       position: relative;
       margin: 0px 8px;
-      padding: 10px 15px 20px 15px;
+      padding: 10px 15px 66px 15px;
 
       // z-index: 100;
 
@@ -102,7 +102,7 @@ body {
       @include box-shadow(rgba(0, 0, 0, 0.3) 0px 0px 6px 4px);
       @include border-bottom-radius(4px);
 
-      min-height: 150px;
+      min-height: 290px;
 
       h2 {
         @include locomotive-link;
@@ -120,11 +120,9 @@ body {
       } // > div.inner h2
 
       h3 {
-        background: transparent image-url("locomotive/list/item.png") no-repeat 0 0;
-
         padding: 7px 0 10px 20px;
 
-        font-size: 13px;
+        font-size: 14px;
         font-weight: bold;
         color: #1e1f26;
         @include single-text-shadow(#fff, 1px, 1px, 1px);
@@ -149,9 +147,10 @@ body {
     } // #content #local-actions-bar
 
     #local-actions-bottom-bar {
-      position: relative;
-      top: 20px;
-      left: -15px;
+      position: absolute;
+      bottom: 0px;
+      left: 0px;
+      height: 62px;
       width: 950px;
 
       background: #8b8d9a;
@@ -162,8 +161,6 @@ body {
         padding: 15px;
         margin: 0px;
 
-        line-height: 13px;
-
         a {
           position: relative;
           top: 4px;
@@ -172,7 +169,10 @@ body {
           color: #fff;
           font-size: 12px;
 
-          &.remove { color: #ff092c; }
+          &.remove {
+            @include red-button;
+            top: 0px;
+          }
         }
       }
 

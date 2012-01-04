@@ -38,7 +38,7 @@ module Locomotive
     end
 
     def accounts
-      Account.criteria.in(:_id => self.memberships.collect(&:account_id))
+      Account.criteria.in(:_id => self.memberships.map(&:account_id))
     end
 
     def admin_memberships

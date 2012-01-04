@@ -30,4 +30,4 @@
 - if can?(:manage, current_site)
 
   = f.inputs :name => :robots_txt, :class => "inputs foldable #{'folded' if inputs_folded?(@site)}" do
-    = f.input :robots_txt, :as => :'Locomotive::Code', :picker => false, :wrapper_html => { :class => 'small' }
+    = f.input :robots_txt, :as => :'Locomotive::Code', :picker => false, :wrapper_html => { :class => 'small no-label' }

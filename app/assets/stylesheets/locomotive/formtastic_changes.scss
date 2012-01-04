@@ -336,6 +336,13 @@ form.formtastic {
 
           }
 
+          &.no-label {
+            > textarea, .CodeMirror, .CodeMirror-scroll {
+              margin-top: 12px;
+              width: 868px;
+            }
+          }
+
         } // li.code
 
         &.toggle {
@@ -423,10 +430,14 @@ form.formtastic {
             input[type=text] {
               width: 868px;
             }
+          }
 
-            div.inline-errors {
-              margin-left: 0px;
-            }
+          > .inline-hints {
+            margin-left: 0px !important;
+          }
+
+          > .inline-errors {
+            margin-left: 0px !important;
           }
         } // li.no-label
 

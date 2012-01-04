@@ -1,24 +1,20 @@
-Locomotive.Views.Pages ||= {}
+Locomotive.Views.ContentEntries ||= {}
 
-class Locomotive.Views.Pages.ListView extends Backbone.View
+class Locomotive.Views.ContentEntries.IndexView extends Backbone.View
 
-  el: '#pages-list'
+  el: '#content'
 
   render: ->
-    @make_foldable()
-
     @make_sortable()
 
     return @
 
-  make_foldable: ->
-    @$('ul.folder img.toggler').toggleMe()
-
   make_sortable: ->
     self = @
 
-    @$('ul.folder').sortable
-      handle: 'em'
+    @$('ul#entries-list.sortable').sortable
+      handle: 'span.handle'
+      items:  'li.item'
       axis:   'y'
       update: (event, ui) -> self.call_sort $(@)
 
@@ -28,7 +24,7 @@ class Locomotive.Views.Pages.ListView extends Backbone.View
       type:       'post'
       dataType:   'json'
       data:
-        children: (_.map folder.sortable('toArray'), (el) -> el.replace('item-', ''))
+        entries: (_.map folder.sortable('toArray'), (el) -> el.replace('entry-', ''))
         _method:  'put'
       success:    @.on_successful_sort
       error:      @.on_failed_sort

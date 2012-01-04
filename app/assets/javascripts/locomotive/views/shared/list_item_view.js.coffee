@@ -5,7 +5,7 @@ class Locomotive.Views.Shared.ListItemView extends Backbone.View
   tagName: 'li'
 
   events:
-    'click a.remove': 'remove_snippet'
+    'click a.remove': 'remove_item'
 
   template: ->
     # please overide template
@@ -15,7 +15,7 @@ class Locomotive.Views.Shared.ListItemView extends Backbone.View
 
     return @
 
-  remove_snippet: (event) ->
+  remove_item: (event) ->
     event.stopPropagation() & event.preventDefault()
 
     if confirm $(event.target).attr('data-confirm')

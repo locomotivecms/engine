@@ -37,7 +37,7 @@
 @mixin light-button {
   display: inline-block;
 
-  font-family: "Lucida Grande";
+  // font-family: "Lucida Grande";
 
   position: relative;
   cursor: pointer;
@@ -62,6 +62,20 @@
 
   &:active {
     top: 1px;
+  }
+}
+
+@mixin red-button {
+  @include light-button;
+
+  @include background-image(linear-gradient(top, #EE5F5B, #C43C35));
+  @include box-shadow(rgba(0, 0, 0, 0.4) 1px 1px 0px 0px);
+
+  @include text-shadow(rgba(0, 0, 0, 0.7) 0px -1px 0px);
+  color: #fff;
+
+  &:hover, &.hover {
+    background: #C43C35;
   }
 }
 
