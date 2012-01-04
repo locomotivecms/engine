@@ -6,6 +6,7 @@ de:
       change_password: Update
       new_item: "+ hinzufügen"
       switch_to_site: Los
+      delete: "Löschen"
 
     messages:
       confirm: Bist du sicher ?
@@ -14,7 +15,9 @@ de:
       header:
         welcome: Willkommen, %{name}
         see: Webseite ansehen
+        switch: zu anderer Website wechseln
         logout: Ausloggen
+        help: Hilfe
       menu:
         contents: Inhalte
         assets: Galerien
