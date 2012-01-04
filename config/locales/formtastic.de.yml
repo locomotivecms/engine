@@ -5,6 +5,7 @@ de:
       advanced_options: Fortgeschrittene Optionen
       meta: Suchmaschinen-Metadaten
       seo: SEO Einstellungen
+      robots_txt: Robots.txt Datei
       code: Code
       raw_template: Vorlage
       credentials: Persönliche Daten
@@ -37,12 +38,18 @@ de:
           source: Datei
           samples: Beispiele kopieren
           reset: Webseite zurücksetzen
+          default_site_template: "Benutze Standard Webseiten Template. Klicke <a href='#'>hier</a>, um ein anderes Template als zip-Datei hochzuladen."
       content_type:
+        item_template: Baustein Template
         api_accounts: Benachrichtigte Accounts
+      content_instance:
+        _slug: Permalink
       account:
         edit:
           password: "Neues Passwort"
           password_confirmation: "Bestätigung des neuen Passworts"
+      page:
+        seo_title: Titel
 
     hints:
       page:
@@ -51,12 +58,16 @@ de:
         templatized: "Nutze diese Seite als Vorlage für einen Baustein, den du erstellt hast."
         listed: "Regele, ob die Seite in den generierten Menüs angezeigt werden soll."
         content_type_id: "Der Baustein für den diese Seite als Vorlage dienen soll."
-      snippet:
-        slug: "You need to know it in order to insert the snippet inside a page"
-      site:
-        meta_keywords: "Meta-Schlagworte, die im HEAD-Berecih der Webseite genutzt werden. Die einzelnen Wörter werden durch eine Leertaste getrennt. Diese werden für die Suchmaschinen benötigt."
+        seo_title: "Wähle einen Titel für den 'title' Tag im Seiten Header. Lass es leer, wenn der Seitentitel verwendet werden soll."
+        meta_keywords: "Meta-Schlagworte, die im HEAD-Bereich der Webseite genutzt werden. Die einzelnen Wörter werden durch eine Leertaste getrennt. Diese werden für die Suchmaschinen benötigt."
         meta_description: "Meta-Beschreibung, die im HEAD-Bereich der Webseite genutzt wird. Diese wird für die Suchmaschinen benötigt."
-        domain_name: "z.B: getbenga.com"
+      snippet:
+        slug: "Um ein Snippet einzubinden, musst Du diesen Slug benutzen."
+      site:
+        meta_keywords: "Meta-Schlagworte, die im HEAD-Bereich der Webseite genutzt werden. Die einzelnen Wörter werden durch eine Leertaste getrennt. Diese werden für die Suchmaschinen benötigt."
+        meta_description: "Meta-Beschreibung, die im HEAD-Bereich der Webseite genutzt wird. Diese wird für die Suchmaschinen benötigt."
+        domain_name: "z.B: locomotiveapp.org"
+        robots_txt: "Inhalt der <span class='code'>/robots.txt</span> Datei. Siehe auch diese <a href='http://www.w3.org/TR/html4/appendix/notes.html#h-B.4.1.1'>Seite</a> für mehr Informationen."
       theme_asset:
         slug: "Du musst die Dateiendung nicht angeben (.css or .js)"
         edit:
@@ -72,10 +83,16 @@ de:
         field:
           _alias: "Merkmal verfügbar in den liquid-Templates"
           hint: "Hilfe-Text, der im Formular des Bausteins direkt unter dem jeweiligen Feld angezeigt wird"
+      content_instance:
+        _slug:  "Merkmal, was für die Erstellung der URL für diesen Baustein benutzt wird. (ex: \"template_page/{{ your_object._permalink }})\"."
+        seo_title: "Wähle einen Titel für den 'title' Tag im Seiten Header. Lass es leer, wenn der Seitentitel verwendet werden soll."
+        meta_keywords: "Meta-Schlagworte, die im HEAD-Bereich der Webseite genutzt werden. Die einzelnen Wörter werden durch eine Leertaste getrennt. Diese werden für die Suchmaschinen benötigt."
+        meta_description: "Meta-Beschreibung, die im HEAD-Bereich der Webseite genutzt wird. Diese wird für die Suchmaschinen benötigt."
       import:
         source: "Eine zip-Datei, die eine databse.yml, Assets und Templates enthält"
         samples: "Bei Aktivierung werden auch Inhalte und Assets importiert"
         reset: "Bei Aktivierung werden alle Daten deiner Webseite gelöscht, bevor die neue Webseite importiert wird"
       content_type:
+        item_template: "Du kannst den Text für jeden Baustein einfach anpassen. Benutze einfach folgendes in Liquid : ({{ content.name }})"
         api_enabled: "Dies wird genutzt, um Besuchern deiner Webseite die Möglichkeit zu geben neue Elemente zu erstellen (z.B: Nachrichten in einem Kontakt-Formular)"
         api_accounts: "Sobald ein Besucher ein neues Element erstellt, wird eine Benachrichtigungs-Email an alle unten aufgeführten Accounts gesendet"
