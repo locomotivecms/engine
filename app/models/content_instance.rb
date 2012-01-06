@@ -102,11 +102,12 @@ class ContentInstance
     _parent.contents.where(:_id.ne => _id, :_slug => _slug).any?
   end
 
-  # if self.content_type includes a target_field with has_many 
+  # if self.content_type includes a target_field with has_many
   # and the target.content_type has_many types of self
   # it can be seen as an habtm ('has_and_belongs_to_many') relation
   def habtm_relation_targets
     self.content_type.fields_by_kind('has_many').collect do |has_many_field|
+      next unless has_many_field.target_klass
       target_type = has_many_field.target_klass._parent
       target_type.fields_by_kind('has_many').any?{ |f| f.target_klass._parent == self.content_type } ? target_type : nil
     end.compact
