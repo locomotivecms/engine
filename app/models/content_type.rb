@@ -83,28 +83,39 @@ class ContentType
     list = (if conditions.nil? || conditions.empty?
       self.contents
     else
+      # check for order_by: "field [asc|desc]" condition
+      if order_by = ( conditions.delete('order_by') || conditions.delete(:order_by) )
+        column, sort_order = order_by.split
+        column = column.to_sym
+      else
+        sort_order = nil
+      end
+
       conditions_with_names = {}
 
       conditions.each do |key, value|
         # convert alias (key) to name
-        field = self.content_custom_fields.detect { |f| f._alias == key }
+        if field = self.content_custom_fields.detect { |f| f._alias == key }
 
-        case field.kind.to_sym
-        when :category
-          if (category_item = field.category_items.where(:name => value).first).present?
-            conditions_with_names[field._name.to_sym] = category_item._id
+          case field.kind.to_sym
+          when :category
+            if (category_item = field.category_items.where(:name => value).first).present?
+              conditions_with_names[field._name.to_sym] = category_item._id
+            end
+          else
+            conditions_with_names[field._name.to_sym] = value
           end
-        else
-          conditions_with_names[field._name.to_sym] = value
         end
       end
 
-      self.contents.where(conditions_with_names)
+      conditions_with_names.blank? ? self.contents : self.contents.where(conditions_with_names)
     end).sort { |a, b| (a.send(column) && b.send(column)) ? (a.send(column) || 0) <=> (b.send(column) || 0) : 0 }
 
-    return list if self.order_manually?
-
-    self.asc_order? ? list : list.reverse
+    if sort_order.nil?
+      (self.order_manually? || self.asc_order?) ? list : list.reverse
+    else
+      sort_order == 'asc' ? list : list.reverse
+    end
   end
 
   def sort_contents!(ids)
