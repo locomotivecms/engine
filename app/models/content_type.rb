@@ -122,6 +122,10 @@ class ContentType
     @group_by_field ||= self.content_custom_fields.detect { |f| f._name == self.group_by_field_name }
   end
 
+  def fields_by_kind( kind_of = 'has_many' )
+    self.content_custom_fields.where( kind: kind_of ).all.to_a
+  end
+
   protected
 
   def set_default_values
