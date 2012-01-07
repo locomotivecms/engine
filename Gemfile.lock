@@ -218,7 +218,7 @@ GEM
       rspec-core (~> 2.6.0)
       rspec-expectations (~> 2.6.0)
       rspec-mocks (~> 2.6.0)
-    rspec-cells (0.1.0)
+    rspec-cells (0.1.1)
       rails (~> 3.0)
       rspec-rails (~> 2.2)
     rspec-core (2.6.4)
