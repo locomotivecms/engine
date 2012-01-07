@@ -60,16 +60,15 @@ group :test, :development do
   gem 'ruby-debug19', :platforms => :mri_19
 
   gem 'bushido_stub', '0.0.3'
-
-  gem 'cucumber-rails'
 end
 
 group :test do
+  gem 'cucumber-rails', '1.2.0', :require => false
   gem 'autotest', :platforms => :mri
   gem 'ZenTest', :platforms => :mri
   gem 'growl-glue'
   gem 'rspec-rails', '2.6.1'
-  gem 'factory_girl_rails', '~> 1.1'
+  gem 'factory_girl_rails', '~> 1.3.0'
   gem 'pickle'
   gem 'xpath', '~> 0.1.4'
   gem 'capybara'
