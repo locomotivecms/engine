@@ -1,23 +1,50 @@
 module Locomotive::ContentTypesHelper
 
-  def each_content_type_menu_item(&block)
-    current_site.content_types.ordered.only(:site_id, :name, :slug, :label_field_name).each do |content_type|
-      next unless content_type.persisted?
+  # Iterates over the content types with the following rules
+  # - content types are ordered by the updated_at date (DESC)
+  # - each content type has its own submenu if saved recently
+  # - if there are more than ui.max_content_types content types, the extra ones go under "..."
+  # - if a content type is selected and it is part of the extra content types, then
+  #   it will be moved to the first position in the displayed list (with its own submenu)
+  #
+  # @param [ Block ] block The statements responsible to display the menu item from a content type or a list of content types
+  #
+  def each_content_type(&block)
+    visible, others = [], []
 
-      item_on = (content_type.slug == @content_type.slug) rescue nil
+    current_site.content_types.ordered.only(:site_id, :name, :slug, :label_field_name).each_with_index do |content_type, index|
+      next if !content_type.persisted?
 
-      label = truncate(content_type.name, :length => 15)
-      url = content_entries_url(content_type.slug)
-      css = @content_type && content_type.slug == @content_type.slug ? 'on' : ''
-
-      html = submenu_entry(label, url, :i18n => false, :css => css) do
-        yield(content_type)
+      if index >= Locomotive.config.ui.max_content_types
+        if self.is_content_type_selected(content_type)
+          others << visible.delete_at(Locomotive.config.ui.max_content_types - 1) # swap content types
+          visible.insert(0, content_type)
+        else
+          others << content_type # fills the "..." menu
+        end
+        next
       end
 
-      haml_concat(html)
+      visible << content_type
     end
+
+    visible.map { |c| yield(c) }
+    yield(others)
   end
 
+  def is_content_type_selected(content_type)
+    @content_type && content_type.slug == @content_type.slug
+  end
+
+  # Renders the label of a content type entry. If no raw_item_template filled in the content type,
+  # it just calls the _label method of the entry (based on the label_field_id). Otherwise, it
+  # parses and renders the liquid template.
+  #
+  # @param [ ContentType ] content_type The content type for better performance
+  # @param [ ContentEntry] entry The entry we want to display the label
+  #
+  # @return [ String ] The label of the content type entry
+  #
   def entry_label(content_type, entry)
     if content_type.raw_item_template.blank?
       entry._label # default one
@@ -33,91 +60,5 @@ module Locomotive::ContentTypesHelper
       preserve(content_type.item_template.render(::Liquid::Context.new({}, assigns, registers)))
     end
   end
-
-  # MAX_DISPLAYED_CONTENTS = 4
-  #
-  # def fetch_content_types
-  #   return @content_types if @content_types
-  #
-  #   @content_types = current_site.content_types.ordered.
-  #     limit(:contents => Locomotive.config.lastest_items_nb).
-  #     only(:site_id, :name, :slug, :highlighted_field_name, :contents_custom_fields_version, :order_by, :serialized_item_template, :raw_item_template).to_a
-  #
-  #   if @content_type && @content_type.persisted? && @content_types.index(@content_type) >= MAX_DISPLAYED_CONTENTS
-  #     @content_types.delete(@content_type)
-  #     @content_types.insert(0, @content_type)
-  #   end
-  #
-  #   # be sure, we've got the custom klass up-to-date, otherwise it will fail miserably
-  #   @content_types.each do |content_type|
-  #     if content_type.content_klass_out_of_date?
-  #       content_type.reload
-  #       content_type.invalidate_content_klass
-  #     end
-  #   end
-  #
-  #   @content_types
-  # end
-  #
-  # def each_content_type_menu_item(which = :first, &block)
-  #   types = fetch_content_types
-  #   sliced = []
-  #
-  #   if which == :first
-  #     sliced = types[0..MAX_DISPLAYED_CONTENTS - 1]
-  #   elsif types.size > MAX_DISPLAYED_CONTENTS
-  #     sliced = types[MAX_DISPLAYED_CONTENTS, types.size - MAX_DISPLAYED_CONTENTS]
-  #   end
-  #
-  #   return [] if sliced.empty?
-  #
-  #   sliced.each do |content_type|
-  #     next if content_type.new_record?
-  #     item_on = (content_type.slug == @content_type.slug) rescue nil
-  #
-  #     label = truncate(content_type.name, :length => 15)
-  #     url = contents_url(content_type.slug)
-  #     css = @content_type && content_type.slug == @content_type.slug ? 'on' : ''
-  #
-  #     html = submenu_entry(label, url, :i18n => false, :css => css) do
-  #       yield(content_type)
-  #     end
-  #
-  #     haml_concat(html)
-  #   end
-  # end
-  #
-  # def other_content_types(&block)
-  #   types = fetch_content_types
-  #
-  #   if types.size > MAX_DISPLAYED_CONTENTS
-  #     sliced = types[MAX_DISPLAYED_CONTENTS, types.size - MAX_DISPLAYED_CONTENTS]
-  #
-  #     html = submenu_entry('...', '#', :i18n => false) do
-  #       yield(sliced)
-  #     end
-  #
-  #     haml_concat(html)
-  #   end
-  # end
-  #
-  # def content_label_for(content)
-  #   if content._parent.raw_item_template.blank?
-  #     content._label # default one
-  #   else
-  #     assigns = {
-  #       'site'              => current_site,
-  #       'content'           => content.to_liquid
-  #     }
-  #
-  #     registers = {
-  #       :controller     => self,
-  #       :site           => current_site,
-  #       :current_locomotive_account  => current_locomotive_account
-  #     }
-  #
-  #     preserve(content._parent.item_template.render(::Liquid::Context.new({}, assigns, registers)))
-  #   end
-  # end
 
 end

@@ -49,7 +49,7 @@ x edit my site
       x show / hide options of a field based on its type
         x select: add/edit/remove options
         x text: formatting
-    - change in main menu
+    x change in main menu
     x manage contents
       x list (highlighted field)
       x slugify

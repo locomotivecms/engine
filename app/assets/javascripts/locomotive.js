@@ -8,7 +8,6 @@
 //= require jquery-ui
 //= require jquery_ujs
 //= require underscore
-//= require handlebars
 //= require backbone
 //= require codemirror
 //= require tinymce-jquery

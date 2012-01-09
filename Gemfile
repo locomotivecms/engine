@@ -24,7 +24,7 @@ gem 'coffee-script',        '~> 2.2.0'
 gem 'uglifier',             '~> 1.0.4'
 gem 'jquery-rails',         '~> 1.0.16'
 gem 'rails-backbone',       '0.5.4'
-gem 'handlebars-rails',     :git => 'git://github.com/yabawock/handlebars-rails.git'
+# gem 'handlebars-rails',     :git => 'git://github.com/yabawock/handlebars-rails.git'
 gem 'codemirror-rails'
 gem 'tinymce-rails'
 gem 'flash_cookie_session', '~> 1.1.1'
@@ -47,8 +47,7 @@ gem 'rubyzip'
 
 gem 'actionmailer-with-request', '~> 0.3.0', :require => 'actionmailer_with_request'
 gem 'httparty',             '~> 0.8.1'
-gem 'delayed_job',          '~> 3.0.0.pre4'
-gem 'delayed_job_mongoid',  '~> 1.0.7'
+gem 'delayed_job_mongoid',  '~> 1.0.8'
 gem 'SystemTimer',          :platforms => :ruby_18
 
 # The rest of the dependencies are for use when in the locomotive dev environment
