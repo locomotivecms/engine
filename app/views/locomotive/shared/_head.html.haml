@@ -10,9 +10,6 @@
 = stylesheet_link_tag     'locomotive', :media => 'screen'
 = javascript_include_tag  'locomotive'
 
-/ [if IE]
-  = stylesheet_link_tag 'locomotive/ie', :media => 'screen'
-
 %script{ :type => 'text/javascript' }
   :plain
     window.locale = '#{I18n.locale}';
