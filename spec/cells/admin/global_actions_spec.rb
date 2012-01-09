@@ -2,6 +2,8 @@ require 'spec_helper'
 
 describe Admin::GlobalActionsCell do
 
+  render_views
+
   let(:menu) { render_cell('admin/global_actions', :show, :current_admin => FactoryGirl.build('admin user'), :current_site_url => 'http://www.yahoo.fr') }
 
   describe 'show menu' do

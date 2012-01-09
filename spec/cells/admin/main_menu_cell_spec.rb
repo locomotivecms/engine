@@ -2,6 +2,8 @@ require 'spec_helper'
 
 describe Admin::MainMenuCell do
 
+  render_views
+
   let(:menu) { render_cell('admin/main_menu', :show) }
 
   describe 'show menu' do
