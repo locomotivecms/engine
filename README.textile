@@ -48,7 +48,7 @@ h2. Community
 h2. Team
 
 * Developers: "Didier Lafforgue":http://www.nocoffee.fr, "Jacques Crocker":http://www.railsjedi.com, "Mario Visic":http://www.mariovisic.com
-* Contributors: "Dirk Kelly":http://www.dirkkelly.com, "Raphael Costa":http://raphaelcosta.net (Brazilian Portuguese translation), "Bernd Hauser":http://www.designhunger.de (German translation), "Andrea Frigido":http://www.frisoft.it (Italian translation), "Enrique García":https://github.com/kikito (Spanish translation), "Lars Smit":https://github.com/larssmit (Dutch translation), "PitOn":https://github.com/GarPit (Russian translation)
+* Contributors: "Dirk Kelly":http://www.dirkkelly.com, "Raphael Costa":http://raphaelcosta.net (Brazilian Portuguese translation), "Bernd Hauser":http://www.designhunger.de (German translation), "Andrea Frigido":http://www.frisoft.it (Italian translation), "Enrique García":https://github.com/kikito (Spanish translation), "Lars Smit":https://github.com/larssmit (Dutch translation), "PitOn":https://github.com/GarPit (Russian translation), "paulsponagl":https://github.com/paulsponagl
 * UI Designer: "Sacha Greif":http://www.sachagreif.com
 * IE maintainer: "Alex Sanford":https://github.com/alexsanford
 

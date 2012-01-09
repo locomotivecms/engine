@@ -42,7 +42,7 @@
 
       = g.input :select_options, :as => :'Locomotive::Empty', :wrapper_html => { :class => 'extra select-options', :style => 'display: none' }
 
-      = g.input :text_formatting, :as => :select, :collection => options_for_text_formatting, :include_blank => false, :wrapper_html => { :class => 'extra text-formatting', :style => 'display: none' }
+      = g.input :text_formatting, :as => :select, :collection => options_for_text_formatting, :include_blank => false, :wrapper_html => { :class => 'extra text-formatting' }, :input_html => { :class => 'text_formatting' }
 
     %span.actions
       = link_to 'toggle', '#', :class => 'toggle'

@@ -6,7 +6,6 @@ require 'locomotive/version'
 require 'locomotive/core_ext'
 require 'locomotive/configuration'
 require 'locomotive/logger'
-
 require 'locomotive/formtastic'
 require 'locomotive/dragonfly'
 require 'locomotive/kaminari'
@@ -15,7 +14,7 @@ require 'locomotive/mongoid'
 require 'locomotive/carrierwave'
 require 'locomotive/custom_fields'
 require 'locomotive/httparty'
-require 'locomotive/responder'
+require 'locomotive/action_controller'
 require 'locomotive/routing'
 require 'locomotive/regexps'
 require 'locomotive/render'
@@ -76,11 +75,11 @@ module Locomotive
     self.add_middlewares
 
     # Load all the dynamic classes (custom fields)
-    # begin
-    #   ContentType.all.collect(&:fetch_content_klass)
-    # rescue ::Mongoid::Errors::InvalidDatabase => e
-    #   # let assume it's because of the first install (meaning no config.yml file)
-    # end
+    begin
+      ContentType.all.collect { |content_type| content_type.klass_with_custom_fields(:entries) }
+    rescue ::Mongoid::Errors::InvalidDatabase => e
+      # let assume it's because of the first install (meaning no config.yml file)
+    end
   end
 
   def self.add_middlewares

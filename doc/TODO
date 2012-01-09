@@ -8,9 +8,9 @@ x bugs:
   x undefined method `_selector' for #<Locomotive::Page:0x00000107434768>
 x editable_elements => view + handlebar template
 x editable_short_text => tinymce
-- editable_file =>
+x editable_file =>
   x backbone / handlebar
-  - new formtastic inputs
+  x new formtastic inputs
 x menu / submenu in full css3 (no images)
 x fix css in firefox
 x update page in ajax
@@ -61,7 +61,11 @@ x edit my site
           x file
         x edit
         x destroy
-    - public_form (previously api something)
+    x public_form (previously api something)
+    x bug text formatting
+    - use list_or_group_entries instead of ordered_entries
+    - bug ui with contents popup
+    - custom_fields: use the appropriate icon to drag select options
 
 - disallow to click twice on the submit form button (spinner ?)
 - message to notify people if their browser is too old

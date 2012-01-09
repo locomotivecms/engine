@@ -1,23 +1,4 @@
 GIT
-  remote: git://github.com/chriseppstein/compass.git
-  revision: bffba483754cb9381fa51efd8e2a1f0482a21ac6
-  specs:
-    compass (0.12.alpha.4.bffba48)
-      chunky_png (~> 1.2)
-      fssm (>= 0.2.7)
-      sass (~> 3.1)
-
-GIT
-  remote: git://github.com/plataformatec/devise.git
-  revision: a949f9eca24f9d43f516363fbf2f5d004623355e
-  specs:
-    devise (2.0.0.rc)
-      bcrypt-ruby (~> 3.0)
-      orm_adapter (~> 0.0.3)
-      railties (~> 3.1)
-      warden (~> 1.1)
-
-GIT
   remote: git@github.com:locomotivecms/mongoid_acts_as_tree.git
   revision: ca494d22c3d7946385aba1153c017d9c30e9f9d3
   specs:
@@ -29,7 +10,7 @@ PATH
     custom_fields (2.0.0.rc1)
       activesupport (~> 3.1.3)
       carrierwave-mongoid (~> 0.1.3)
-      mongoid (~> 2.3.4)
+      mongoid (~> 2.4.0)
 
 GEM
   remote: http://rubygems.org/
@@ -73,7 +54,8 @@ GEM
       ZenTest (>= 4.4.1)
     bcrypt-ruby (3.0.1)
     bson (1.5.2)
-    bson_ext (1.4.0)
+    bson_ext (1.5.2)
+      bson (= 1.5.2)
     builder (3.0.0)
     bushido (0.0.35)
       highline (>= 1.6.1)
@@ -105,6 +87,10 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.2.0)
+    compass (0.12.alpha.4)
+      chunky_png (~> 1.2)
+      fssm (>= 0.2.7)
+      sass (~> 3.1)
     cucumber (1.1.4)
       builder (>= 2.1.2)
       diff-lcs (>= 1.1.2)
@@ -121,6 +107,10 @@ GEM
     delayed_job_mongoid (1.0.8)
       delayed_job (~> 3.0.0)
       mongoid (>= 2.0)
+    devise (1.5.3)
+      bcrypt-ruby (~> 3.0)
+      orm_adapter (~> 0.0.3)
+      warden (~> 1.1)
     diff-lcs (1.1.3)
     dragonfly (0.9.9)
       rack
@@ -182,7 +172,7 @@ GEM
     mocha (0.9.12)
     mongo (1.5.2)
       bson (= 1.5.2)
-    mongoid (2.3.4)
+    mongoid (2.4.0)
       activemodel (~> 3.1)
       mongo (~> 1.3)
       tzinfo (~> 0.3.22)
@@ -298,7 +288,7 @@ DEPENDENCIES
   ZenTest
   actionmailer-with-request (~> 0.3.0)
   autotest
-  bson_ext (~> 1.4.0)
+  bson_ext (~> 1.5.2)
   bushido (= 0.0.35)
   cancan (~> 1.6.7)
   capybara
@@ -306,12 +296,12 @@ DEPENDENCIES
   cells (~> 3.7.0)
   codemirror-rails
   coffee-script (~> 2.2.0)
-  compass!
+  compass (~> 0.12.alpha.4)
   cucumber-rails
   custom_fields!
   database_cleaner
   delayed_job_mongoid (~> 1.0.8)
-  devise!
+  devise (~> 1.5.3)
   dragonfly (~> 0.9.8)
   factory_girl_rails (~> 1.1)
   flash_cookie_session (~> 1.1.1)
@@ -328,7 +318,8 @@ DEPENDENCIES
   locomotive_mongoid_acts_as_tree!
   mimetype-fu (~> 0.1.2)
   mocha (= 0.9.12)
-  mongoid (~> 2.3.3)
+  mongo (~> 1.5.2)
+  mongoid (~> 2.4.0)
   pickle
   rack-cache (~> 1.1)
   rails (~> 3.1.3)

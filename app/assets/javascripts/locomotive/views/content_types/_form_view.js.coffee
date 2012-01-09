@@ -23,7 +23,7 @@ class Locomotive.Views.ContentTypes.FormView extends Locomotive.Views.Shared.For
 
     @enable_liquid_editing() # turn textarea into editable liquid code zone
 
-    @enable_public_form_checkbox()
+    @enable_public_submission_checkbox()
 
     @enable_order_by_toggler()
 
@@ -48,10 +48,10 @@ class Locomotive.Views.ContentTypes.FormView extends Locomotive.Views.Shared.For
       theme:            'default medium'
       onChange: (editor) => @model.set(raw_item_template: editor.getValue())
 
-  enable_public_form_checkbox: ->
-    @_enable_checkbox 'public_form_enabled',
-      on_callback: => @$('#content_type_public_form_accounts_input').show()
-      off_callback: => @$('#content_type_public_form_accounts_input').hide()
+  enable_public_submission_checkbox: ->
+    @_enable_checkbox 'public_submission_enabled',
+      on_callback: => @$('#content_type_public_submission_accounts_input').show()
+      off_callback: => @$('#content_type_public_submission_accounts_input').hide()
 
   enable_order_by_toggler: ->
     @$('#content_type_order_by_input').bind 'change', (event) =>

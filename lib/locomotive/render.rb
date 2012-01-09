@@ -61,7 +61,8 @@ module Locomotive
         assigns = {
           'site'              => current_site,
           'page'              => @page,
-          'contents'          => Locomotive::Liquid::Drops::Contents.new,
+          'models'            => Locomotive::Liquid::Drops::ContentTypes.new,
+          'contents'          => Locomotive::Liquid::Drops::ContentTypes.new, # DEPRECATED
           'current_page'      => self.params[:page],
           'params'            => self.params,
           'path'              => request.path,
@@ -72,10 +73,12 @@ module Locomotive
 
         assigns.merge!(Locomotive.config.context_assign_extensions)
 
-        assigns.merge!(flash.to_hash.stringify_keys) # data from api
+        Rails.logger.debug flash.to_hash.stringify_keys.inspect
+
+        assigns.merge!(flash.to_hash.stringify_keys) # data from public submissions
 
         if @page.templatized? # add instance from content type
-          assigns['content_entry'] = @content_entry
+          assigns['entry'] = @content_entry
           assigns[@page.content_type.slug.singularize] = @content_entry # just here to help to write readable liquid code
         end
 
@@ -111,7 +114,7 @@ module Locomotive
       end
 
       def editing_page?
-        @editing
+        !!@editing
       end
 
       def page_status
