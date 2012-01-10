@@ -17,7 +17,7 @@
 //= require codemirror/modes/javascript
 //= require codemirror/modes/xml
 //= require codemirror/modes/htmlmixed
-//= require_tree ../../../vendor/assets/javascripts
+//= require locomotive/vendor
 //= require ./locomotive/application
 
 $(document).ready(function() {

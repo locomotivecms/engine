@@ -9,7 +9,6 @@ xml.urlset "xmlns" => "http://www.sitemaps.org/schemas/sitemap/0.9" do
   @pages.each do |page|
     if not page.index_or_not_found?
       if page.templatized?
-
         page.content_type.entries.visible.each do |c|
           xml.url do
             xml.loc page_url(page, { :content => c, :host => true })
