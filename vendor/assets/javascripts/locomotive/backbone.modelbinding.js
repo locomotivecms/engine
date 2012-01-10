@@ -364,26 +364,39 @@ Backbone.ModelBinding = (function(Backbone, _, $){
         }
         // console.log(attribute_name);
 
+        var isArray = _.isArray(model.get(attribute_name))
+
         var modelChange = function(model, val){
-          if (val){
+          var checked = val;
+          if (isArray)
+            checked = _.include(val, element.val());
+
+          if (checked)
             element.attr("checked", "checked");
-          }
-          else{
+          else
             element.removeAttr("checked");
-          }
         };
 
-        var setModelValue = function(attr_name, value){
+        var setModelValue = function(attr_name, checked, value){
           var data = {};
-          data[attr_name] = value;
+          if (isArray) {
+            var array = model.get(attr_name);
+            if (array == null) array = [];
+            if (checked)
+              array.push(value);
+            else
+              array = _.without(array, value);
+            data[attr_name] = array;
+          } else
+            data[attr_name] = value;
           model.set(data);
         };
 
         var elementChange = function(ev){
-          // console.log('[SELECT] elementChange');
+          // console.log('[CHECKBOX] elementChange');
           var changedElement = view.$(ev.target);
           var checked = changedElement.is(":checked")? true : false;
-          setModelValue(attribute_name, checked);
+          setModelValue(attribute_name, checked, changedElement.val());
         };
 
         modelBinder.registerModelBinding(model, attribute_name, modelChange);
@@ -393,16 +406,16 @@ Backbone.ModelBinding = (function(Backbone, _, $){
         if (attr_exists) {
           // set the default value on the form, from the model
           var attr_value = model.get(attribute_name);
-          if (typeof attr_value !== "undefined" && attr_value !== null && attr_value != false) {
+          if (isArray && !_.isArray(attr_value)) attr_value = [];
+          if (typeof attr_value !== "undefined" && attr_value !== null && (attr_value == true || _.include(attr_value, element.val()))) {
             element.attr("checked", "checked");
-          }
-          else{
+          }else{
             element.removeAttr("checked");
           }
         } else {
           // bind the form's value to the model
           var checked = element.is(":checked")? true : false;
-          setModelValue(attribute_name, checked);
+          setModelValue(attribute_name, checked, element.val());
         }
       });
     };

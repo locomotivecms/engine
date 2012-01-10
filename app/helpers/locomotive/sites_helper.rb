@@ -1,11 +1,7 @@
 module Locomotive::SitesHelper
 
-  # def error_on_domain(site, name)
-  #   if (error = (site.errors[:domains] || []).detect { |n| n.include?(name) })
-  #     content_tag(:span, error, :class => 'inline-errors')
-  #   else
-  #     ''
-  #   end
-  # end
+  def ordered_current_site_locales
+    current_site.locales + (Locomotive.config.site_locales - current_site.locales)
+  end
 
 end

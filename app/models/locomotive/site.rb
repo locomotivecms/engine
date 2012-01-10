@@ -4,9 +4,10 @@ module Locomotive
     include Locomotive::Mongoid::Document
 
     ## Extensions ##
-    extend Extensions::Site::SubdomainDomains
-    extend Extensions::Site::FirstInstallation
+    extend  Extensions::Site::SubdomainDomains
+    extend  Extensions::Site::FirstInstallation
     include Extensions::Shared::Seo
+    include Extensions::Site::I18n
 
     ## fields ##
     field :name

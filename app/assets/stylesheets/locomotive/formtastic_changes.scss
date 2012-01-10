@@ -279,6 +279,63 @@ form.formtastic {
           }
         } // li.string, li.password
 
+        &.locale, &.locales {
+          .list {
+            margin-left: 150px;
+          }
+
+          &.locales {
+            label {
+              color: #8B8D9A;
+            }
+          }
+
+          .entry {
+            float: left;
+            width: 212px;
+
+            margin-left: 10px;
+
+            &:first-child {
+              margin-left: 0px;
+            }
+
+            label {
+              float: none;
+              display: inline-block;
+              width: auto;
+              position: relative;
+
+              padding-left: 31px;
+              margin-left: 8px;
+
+              font-weight: normal;
+
+              img {
+                position: absolute;
+                top: 2px;
+                left: 0px;
+              }
+            }
+
+            &.selected {
+              label {
+                color: #585A69;
+              }
+              &:first-child {
+                label {
+                  font-weight: bold;
+                }
+              }
+            } // .entry.selected
+
+          } // .entry
+
+          .inline-hints {
+            clear: both;
+          }
+        } // > li.locale, li.locales
+
         &.code {
 
           textarea, .CodeMirror-scroll {
@@ -520,35 +577,6 @@ form.formtastic {
             }
           }
         } // > li#site_memberships_input
-
-        &#account_locale_input {
-          .entry {
-            float: left;
-            width: 212px;
-
-            margin-right: 10px;
-
-            &:nth-child(3n) {
-              margin-right: 0px;
-            }
-
-            label {
-              float: none;
-              display: inline-block;
-              width: auto;
-              position: relative;
-
-              padding-left: 31px;
-              margin-left: 8px;
-
-              img {
-                position: absolute;
-                top: 2px;
-                left: 0px;
-              }
-            }
-          }
-        } // > li#account_locale_input
 
         &#account_sites_input {
           .entry {

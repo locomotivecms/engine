@@ -6,13 +6,9 @@
   :plain
     { site: #{@site.to_json(:current_account => current_locomotive_account, :current_site => current_site)}, errors: #{@site.errors.to_json} }
 
-= f.inputs :name => :information, :style => 'display: none' do
-  = f.input :name
-
-= f.inputs :name => :seo, :class => "inputs foldable #{'folded' if inputs_folded?(@site)}" do
-  = f.input :seo_title
-  = f.input :meta_keywords
-  = f.input :meta_description
+= f.inputs :name => :information  do
+  = f.input :name, :wrapper_html => { :style => 'display: none' }
+  = f.input :locales, :as => '::Locomotive::Locales', :collection => ordered_current_site_locales, :input_html => { :class => 'locales' }
 
 - if can?(:point, Locomotive::Site)
   - if manage_subdomain_or_domains?
@@ -21,6 +17,12 @@
 
       - if manage_domains?
         = f.input :domains, :as => :'Locomotive::Empty'
+
+
+= f.inputs :name => :seo, :class => "inputs foldable #{'folded' if inputs_folded?(@site)}" do
+  = f.input :seo_title
+  = f.input :meta_keywords
+  = f.input :meta_description
 
 - if can?(:index, Locomotive::Membership)
 

@@ -66,6 +66,10 @@ x edit my site
     - use list_or_group_entries instead of ordered_entries
     - bug ui with contents popup
     - custom_fields: use the appropriate icon to drag select options
+- i18n
+  x add locales a site responds to
+  - locale switcher
+- inline editor
 
 - disallow to click twice on the submit form button (spinner ?)
 - message to notify people if their browser is too old

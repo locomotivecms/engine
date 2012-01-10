@@ -54,6 +54,8 @@ en:
           password_confirmation: New password confirmation
       page:
         seo_title: Title
+      site:
+        locales: Languages
 
     hints:
       page:
@@ -68,6 +70,7 @@ en:
       snippet:
         slug: "You need to know it in order to insert the snippet inside a page"
       site:
+        locales: "Drag&drop a flag to the first position to make it the default one."
         seo_title: "Define a global value here which should be used as the value for the title tag in the head section."
         meta_keywords: "Meta keywords used within the head tag of the page. They are separated by a comma. Required for SEO."
         meta_description: "Meta description used within the head tag of the page. Required for SEO."
