@@ -104,6 +104,7 @@ class ContentInstance
   def set_visibility
     field = self.content_type.content_custom_fields.detect { |f| %w{visible active}.include?(f._alias) }
     self._visible = self.send(field._name) rescue true
+    true
   end
 
   def add_to_list_bottom
