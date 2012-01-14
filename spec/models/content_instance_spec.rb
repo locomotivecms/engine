@@ -138,13 +138,13 @@ describe ContentInstance do
 
     it 'can be visible even if it is nil' do
       @content.visible = nil
-      @content.send(:set_visibility)
+      @content.send(:set_visibility).should be_true
       @content.visible?.should be_true
     end
 
     it 'can not be visible' do
       @content.visible = false
-      @content.send(:set_visibility)
+      @content.send(:set_visibility).should be_true
       @content.visible?.should be_false
     end
 
