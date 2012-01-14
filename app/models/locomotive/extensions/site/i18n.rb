@@ -25,6 +25,10 @@ module Locomotive
             self.locales.first || Locomotive.config.site_locales.first
           end
 
+          def locale_fallbacks(locale)
+            [locale.to_s] + (locales - [locale.to_s])
+          end
+
           # protected
           #
           # def add_missing_locales_for_all_pages

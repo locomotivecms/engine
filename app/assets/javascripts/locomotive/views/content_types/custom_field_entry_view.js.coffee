@@ -28,6 +28,7 @@ class Locomotive.Views.ContentTypes.CustomFieldEntryView extends Backbone.View
     return @
 
   enable_behaviours: ->
+    @$('li.input.toggle input[type=checkbox]').checkToggle()
     @render_select_options_view()
 
   switch_to_type: ->

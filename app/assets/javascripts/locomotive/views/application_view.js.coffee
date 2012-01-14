@@ -11,6 +11,8 @@ class Locomotive.Views.ApplicationView extends Backbone.View
 
     @enable_sites_picker()
 
+    @enable_content_locale_picker()
+
     # render page view
     if @options.view?
       @view = new @options.view(@options.view_data || {})
@@ -65,4 +67,18 @@ class Locomotive.Views.ApplicationView extends Backbone.View
     link.bind 'click', (event) ->
       event.stopPropagation() & event.preventDefault()
       picker.toggle()
+
+  enable_content_locale_picker: ->
+    link    = @$('#content-locale-picker-link')
+    picker  = @$('#content-locale-picker')
+
+    return if picker.size() == 0
+
+    link.bind 'click', (event) ->
+      event.stopPropagation() & event.preventDefault()
+      picker.toggle()
+
+    picker.find('li span.text').bind 'click', (event) ->
+      locale = $(event.target).html()
+      window.addParameterToURL 'content_locale', locale
 

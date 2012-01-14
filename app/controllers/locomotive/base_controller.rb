@@ -15,7 +15,9 @@ module Locomotive
 
     load_and_authorize_resource
 
-    before_filter :set_locale
+    before_filter :set_back_office_locale
+
+    before_filter :set_current_content_locale
 
     before_filter :set_current_thread_variables
 

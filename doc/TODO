@@ -68,8 +68,15 @@ x edit my site
     - custom_fields: use the appropriate icon to drag select options
 - i18n
   x add locales a site responds to
-  - locale switcher
+  x locale switcher
+  - back to default locale (if changed in settings)
+  - front
 - inline editor
+  - remove inline-editor tag
+  - rack
+  - iframe
+- bugs:
+  - unable to toggle the "required" check_boxes for content types
 
 - disallow to click twice on the submit form button (spinner ?)
 - message to notify people if their browser is too old

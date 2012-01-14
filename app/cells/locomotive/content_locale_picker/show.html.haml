@@ -1,0 +1,7 @@
+#content-locale-picker
+  %ul
+    - @locales.each do |locale|
+      %li
+        = image_tag "locomotive/icons/flags/#{locale}.png", :class => 'flag'
+
+        %span.text= locale

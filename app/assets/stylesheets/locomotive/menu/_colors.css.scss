@@ -56,7 +56,7 @@
   @include box-shadow(rgba(0, 0, 0, 0.3) 0px -1px 10px 0px, rgba(0, 0, 0, 0.2) 0px 4px 6px 4px, rgba(255, 255, 255, 0.2) 0 1px 0 0 inset);
   @include background-image(linear-gradient(#3f3f45, #23242b));
 
-  & > ul > li > a, & > .action a {
+  & > ul > li > a, & > .actions .button {
     border: 1px solid rgba(0, 0, 0, 0.2);
     border-top: 1px solid rgba(0, 0, 0, 0.1);
     border-bottom: 1px solid rgba(0, 0, 0, 0.6);
@@ -72,8 +72,8 @@
     }
   }
 
-  & > .action {
-    a:hover {
+  & > .actions {
+    .button:hover {
       border: 1px solid rgba(255, 255, 255, 0.5);
     }
   }
