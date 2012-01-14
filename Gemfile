@@ -13,8 +13,8 @@ gem 'mongo',                '~> 1.5.2'
 gem 'bson_ext',             '~> 1.5.2'
 gem 'mongoid',              '~> 2.4.0'
 gem 'locomotive_mongoid_acts_as_tree', :git => 'git@github.com:locomotivecms/mongoid_acts_as_tree.git'
-gem 'custom_fields',        :path => '../gems/custom_fields' # DEV
-# gem 'custom_fields',        :git => 'git://github.com/locomotivecms/custom_fields.git', :branch => 'experimental'
+# gem 'custom_fields',        :path => '../gems/custom_fields' # DEV
+gem 'custom_fields',        :git => 'git://github.com/locomotivecms/custom_fields.git', :branch => 'experimental'
 gem 'kaminari'
 
 gem 'haml',                 '~> 3.1.3'
@@ -57,19 +57,13 @@ group :development do
   gem 'rspec-cells'
 end
 
-group :test, :development do
-  # gem 'linecache', '0.43', :platforms => :mri_18
-  # gem 'ruby-debug', :platforms => :mri_18
-  # gem 'ruby-debug19', :platforms => :mri_19
-  gem 'cucumber-rails'
-end
-
 group :test do
+  gem 'cucumber-rails', '1.2.0', :require => false
   gem 'autotest', :platforms => :mri
   gem 'ZenTest', :platforms => :mri
   gem 'growl-glue'
   gem 'rspec-rails', '2.6.1'
-  gem 'factory_girl_rails', '~> 1.1'
+  gem 'factory_girl_rails', '~> 1.3.0'
   gem 'pickle'
   gem 'xpath', '~> 0.1.4'
   gem 'capybara'
@@ -82,4 +76,3 @@ end
 group :production do
   gem 'bushido', '0.0.35'
 end
-

@@ -1,16 +1,18 @@
 GIT
-  remote: git@github.com:locomotivecms/mongoid_acts_as_tree.git
-  revision: ca494d22c3d7946385aba1153c017d9c30e9f9d3
-  specs:
-    locomotive_mongoid_acts_as_tree (0.1.5.7)
-
-PATH
-  remote: ../gems/custom_fields
+  remote: git://github.com/locomotivecms/custom_fields.git
+  revision: b187a16acbf581b4eef857d2958a69422407a047
+  branch: experimental
   specs:
     custom_fields (2.0.0.rc1)
       activesupport (~> 3.1.3)
       carrierwave-mongoid (~> 0.1.3)
       mongoid (~> 2.4.0)
+
+GIT
+  remote: git@github.com:locomotivecms/mongoid_acts_as_tree.git
+  revision: ca494d22c3d7946385aba1153c017d9c30e9f9d3
+  specs:
+    locomotive_mongoid_acts_as_tree (0.1.5.7)
 
 GEM
   remote: http://rubygems.org/
@@ -78,10 +80,10 @@ GEM
     cells (3.7.1)
       actionpack (~> 3.0)
       railties (~> 3.0)
-    childprocess (0.2.6)
+    childprocess (0.3.0)
       ffi (~> 1.0.6)
     chunky_png (1.2.5)
-    codemirror-rails (0.3.2)
+    codemirror-rails (2.2)
       railties (~> 3.0)
     coffee-script (2.2.0)
       coffee-script-source
@@ -97,9 +99,9 @@ GEM
       gherkin (~> 2.7.1)
       json (>= 1.4.6)
       term-ansicolor (>= 1.0.6)
-    cucumber-rails (1.2.1)
-      capybara (>= 1.1.2)
-      cucumber (>= 1.1.3)
+    cucumber-rails (1.2.0)
+      capybara (>= 1.1.1)
+      cucumber (>= 1.1.1)
       nokogiri (>= 1.5.0)
     database_cleaner (0.7.0)
     delayed_job (3.0.0)
@@ -112,17 +114,17 @@ GEM
       orm_adapter (~> 0.0.3)
       warden (~> 1.1)
     diff-lcs (1.1.3)
-    dragonfly (0.9.9)
+    dragonfly (0.9.10)
       rack
     ejs (1.0.0)
     erubis (2.7.0)
     excon (0.7.12)
     execjs (1.2.13)
       multi_json (~> 1.0)
-    factory_girl (2.3.2)
+    factory_girl (2.2.0)
       activesupport
-    factory_girl_rails (1.4.0)
-      factory_girl (~> 2.3.0)
+    factory_girl_rails (1.3.0)
+      factory_girl (~> 2.2.0)
       railties (>= 3.0.0)
     ffi (1.0.11)
     flash_cookie_session (1.1.1)
@@ -141,7 +143,7 @@ GEM
     formtastic (2.0.2)
       rails (~> 3.0)
     fssm (0.2.8.1)
-    gherkin (2.7.2)
+    gherkin (2.7.3)
       json (>= 1.4.6)
     growl-glue (1.0.7)
     haml (3.1.4)
@@ -182,7 +184,7 @@ GEM
       net-ssh (>= 1.99.1)
     net-ssh (2.1.4)
     nokogiri (1.5.0)
-    orm_adapter (0.0.5)
+    orm_adapter (0.0.6)
     pickle (0.4.10)
       cucumber (>= 0.8)
       rake
@@ -297,13 +299,13 @@ DEPENDENCIES
   codemirror-rails
   coffee-script (~> 2.2.0)
   compass (~> 0.12.alpha.4)
-  cucumber-rails
+  cucumber-rails (= 1.2.0)
   custom_fields!
   database_cleaner
   delayed_job_mongoid (~> 1.0.8)
   devise (~> 1.5.3)
   dragonfly (~> 0.9.8)
-  factory_girl_rails (~> 1.1)
+  factory_girl_rails (~> 1.3.0)
   flash_cookie_session (~> 1.1.1)
   fog (~> 1.0.0)
   formtastic (~> 2.0.2)
