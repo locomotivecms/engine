@@ -8,6 +8,7 @@ module Locomotive
       # :forbidden_paths      => %w{layouts snippets stylesheets javascripts assets admin system api},
       :reserved_slugs         => %w{stylesheets javascripts assets admin images api pages edit},
       :locales                => %w{en de fr pt-BR it nl no es ru},
+      :site_locales           => %w{en de fr pt-BR it nl no es ru},
       :cookie_key             => '_locomotive_session',
       :enable_logs            => false,
       :hosting                => :auto,
@@ -16,7 +17,10 @@ module Locomotive
       :mailer_sender          => 'support@example.com',
       :manage_subdomain       => false,
       :manage_manage_domains  => false,
-      :lastest_entries_nb     => 5,
+      :ui                     => {
+        :lastest_entries_nb   => 5,
+        :max_content_types    => 2
+      },
       :rack_cache             => {
         :verbose     => true,
         :metastore   => URI.encode("file:#{Rails.root}/tmp/dragonfly/cache/meta"), # URI encoded in case of spaces

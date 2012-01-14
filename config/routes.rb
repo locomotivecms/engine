@@ -41,8 +41,6 @@ Locomotive::Engine.routes.draw do
     put :sort, :on => :collection
   end
 
-  resources :api_contents, :path => 'api/:slug/contents', :controller => 'api_contents', :only => [:create]
-
   resources :custom_fields, :path => 'custom/:parent/:slug/fields'
 
   resources :cross_domain_sessions, :only => [:new, :create]
@@ -58,13 +56,16 @@ end
 
 Rails.application.routes.draw do
   # sitemap
-  match '/sitemap.xml'  => 'locomotive/sitemaps#show', :format => 'xml'
+  match '/sitemap.xml'  => 'locomotive/public/sitemaps#show', :format => 'xml'
 
   # robots.txt
-  match '/robots.txt'   => 'locomotive/robots#show', :format => 'txt'
+  match '/robots.txt'   => 'locomotive/public/robots#show', :format => 'txt'
+
+  # public content entry submissions
+  resources :locomotive_entry_submissions, :controller => 'locomotive/public/content_entries', :path => 'entry_submissions/:slug'
 
   # magic urls
-  match '/'             => 'locomotive/rendering#show'
-  match '*path/edit'    => 'locomotive/rendering#edit'
-  match '*path'         => 'locomotive/rendering#show'
+  match '/'             => 'locomotive/public/rendering#show'
+  match '*path/edit'    => 'locomotive/public/rendering#edit'
+  match '*path'         => 'locomotive/public/rendering#show'
 end

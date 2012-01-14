@@ -2,15 +2,15 @@
 @import "compass/css3/border-radius";
 @import "helpers";
 
-#sites-picker {
+@mixin picker {
 
   position: absolute;
-  top: 97px;
+  // top: 97px;
 
-  margin: 5px 0 0 0;
+  // margin: 5px 0 0 0;
   padding: 0 0 0 0;
-  min-width: 160px;
-  z-index: 999;
+  // min-width: 160px;
+  // z-index: 999;
 
   @include border-radius(4px);
   border: 1px solid #000;

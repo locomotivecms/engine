@@ -17,7 +17,6 @@ class Locomotive.Views.Import.ShowView extends Backbone.View
       @refresh_steps
 
   refresh_steps: (data) =>
-    console.log 'refresh_steps: ....'
     window.foo = data
     window.bar = @
 

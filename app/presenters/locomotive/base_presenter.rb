@@ -1,7 +1,7 @@
 class Locomotive::BasePresenter
 
   include ActionView::Helpers::SanitizeHelper
-  extend ActionView::Helpers::SanitizeHelper::ClassMethods
+  extend  ActionView::Helpers::SanitizeHelper::ClassMethods
   include ActionView::Helpers::TextHelper
   include ActionView::Helpers::NumberHelper
 
@@ -20,8 +20,6 @@ class Locomotive::BasePresenter
 
   def id
     self.source.persisted? || self.source.embedded? ? self.source._id.to_s : nil
-    # self.persisted? ? self.source._id.to_s : nil
-    # self.source._id.to_s
   end
 
   def ability?
@@ -35,8 +33,8 @@ class Locomotive::BasePresenter
   def as_json(methods = nil)
     methods ||= self.included_methods
     {}.tap do |hash|
-      methods.map(&:to_sym).each do |meth|
-        hash[meth] = self.send(meth) rescue nil
+      methods.each do |meth|
+        hash[meth] = self.send(meth.to_sym) rescue nil
       end
     end
   end

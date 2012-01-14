@@ -51,6 +51,11 @@
 
         var _buildParams = function(prefix, obj, fn) { // code grabbed from jquery
           if (jQuery.isArray(obj)) {
+            if (obj.length == 0) { // empty arrays
+              fn(prefix, obj);
+              return;
+            }
+
             jQuery.each(obj, function(i, v) {
               if (/\[\]$/.test(prefix)) { // rbracket
                 fn(prefix, v);

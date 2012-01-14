@@ -4,9 +4,9 @@ module Locomotive
     default :from => Locomotive.config.mailer_sender
 
     def new_content_entry(account, entry)
-      @account, @entry = account, entry
+      @account, @entry, @type = account, entry.to_presenter, entry.content_type
 
-      subject = t('locomotive.notifications.new_content_entry.subject', :type => entry.content_type.name, :locale => account.locale)
+      subject = t('locomotive.notifications.new_content_entry.subject', :type => @type.name, :locale => account.locale)
 
       mail :subject => subject, :to => account.email
     end

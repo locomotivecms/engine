@@ -27,7 +27,7 @@ module Locomotive
 
     ## named scopes ##
     scope :visible, :where => { :_visible => true }
-    scope :latest_updated, :order_by => :updated_at.desc, :limit => Locomotive.config.lastest_entries_nb
+    scope :latest_updated, :order_by => :updated_at.desc, :limit => Locomotive.config.ui.lastest_entries_nb
 
     ## methods ##
 
@@ -64,8 +64,8 @@ module Locomotive
       Locomotive::Liquid::Drops::ContentEntry.new(self)
     end
 
-    def to_presenter
-      Locomotive::ContentEntryPresenter.new(self)
+    def to_presenter(options = {})
+      Locomotive::ContentEntryPresenter.new(self, options)
     end
 
     def as_json(options = {})
@@ -119,10 +119,10 @@ module Locomotive
     end
 
     def send_notifications
-      return if !self.content_type.public_form_enabled? || self.content_type.public_form_accounts.blank?
+      return if !self.content_type.public_submission_enabled? || self.content_type.public_submission_accounts.blank?
 
       self.content_type.site.accounts.each do |account|
-        next unless self.content_type.public_form_accounts.include?(account._id.to_s)
+        next unless self.content_type.public_submission_accounts.include?(account._id.to_s)
 
         Locomotive::Notifications.new_content_entry(account, self).deliver
       end

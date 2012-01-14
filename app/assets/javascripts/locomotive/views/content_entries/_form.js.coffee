@@ -14,8 +14,6 @@ class Locomotive.Views.ContentEntries.FormView extends Locomotive.Views.Shared.F
   initialize: ->
     @model = new Locomotive.Models.ContentEntry(@options.content_entry)
 
-    console.log(@model.urlRoot)
-
     window.foo = @model
 
     Backbone.ModelBinding.bind @
@@ -61,7 +59,6 @@ class Locomotive.Views.ContentEntries.FormView extends Locomotive.Views.Shared.F
     @$('li.input.highlighted > input[type=text]').slugify(target: @$('#content_entry__slug'))
 
   refresh_file_fields: ->
-    console.log('refresh_file_fields')
     _.each @_file_field_views, (view) => view.refresh()
 
   remove: ->

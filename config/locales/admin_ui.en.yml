@@ -222,14 +222,15 @@ en:
     content_types:
       index:
         new: new model
+        edit: edit model
       new:
         title: New model
         help: "Create your own data model (Projects, People, ...etc). Your model should have one field at least. The items created from this content type would have their first field mandatory."
       edit:
         title: Editing model
         help: "Your model should have one field at least. The items created from this content type would have their first field mandatory."
-        show_items: show items
-        new_item: new item
+        show_entries: show entries
+        new_entry: new entry
       form:
         order_by:
           created_at: 'By creation date'

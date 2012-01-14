@@ -24,7 +24,7 @@ module Locomotive
     end
 
     initializer 'locomotive.action_controller' do |app|
-      ActionController::Base.wrap_parameters :format => [:json]
+      ::ActionController::Base.wrap_parameters :format => [:json]
     end
 
   end

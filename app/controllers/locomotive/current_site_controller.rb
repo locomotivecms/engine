@@ -7,6 +7,8 @@ module Locomotive
 
     load_and_authorize_resource :class => 'Site'
 
+    helper 'Locomotive::Sites'
+
     before_filter :filter_attributes
 
     respond_to :json, :only => :update

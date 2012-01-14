@@ -6,25 +6,24 @@ gem 'rake',                 '0.9.2'
 
 gem 'rails',                '~> 3.1.3'
 
-gem 'devise',               :git => 'git://github.com/plataformatec/devise.git'# FIXME: waiting for the new devise gem coming soon
+gem 'devise',               '~> 1.5.3'
 gem 'cancan',               '~> 1.6.7'
 
-gem 'bson_ext',             '~> 1.4.0'
-gem 'mongoid',              '~> 2.3.3'
+gem 'mongo',                '~> 1.5.2'
+gem 'bson_ext',             '~> 1.5.2'
+gem 'mongoid',              '~> 2.4.0'
 gem 'locomotive_mongoid_acts_as_tree', :git => 'git@github.com:locomotivecms/mongoid_acts_as_tree.git'
-# gem 'custom_fields',        :git => 'git://github.com/locomotivecms/custom_fields.git'
 gem 'custom_fields',        :path => '../gems/custom_fields' # DEV
 # gem 'custom_fields',        :git => 'git://github.com/locomotivecms/custom_fields.git', :branch => 'experimental'
 gem 'kaminari'
 
 gem 'haml',                 '~> 3.1.3'
 gem 'sass-rails',           '~> 3.1.4'
-gem "compass",              :git => 'git://github.com/chriseppstein/compass.git'
 gem 'coffee-script',        '~> 2.2.0'
 gem 'uglifier',             '~> 1.0.4'
+gem 'compass',              '~> 0.12.alpha.4'
 gem 'jquery-rails',         '~> 1.0.16'
 gem 'rails-backbone',       '0.5.4'
-gem 'handlebars-rails',     :git => 'git://github.com/yabawock/handlebars-rails.git'
 gem 'codemirror-rails'
 gem 'tinymce-rails'
 gem 'flash_cookie_session', '~> 1.1.1'

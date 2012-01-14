@@ -45,10 +45,16 @@ Locomotive.configure do |config|
   config.delayed_job = true # false
 
   # configure how many items we display in sub menu in the "Contents" section.
-  # config.lastest_entries_nb = 5
+  # config.ui = {
+  #   :lastest_entries_nb => 5,
+  #   :max_content_types  => 4
+  # }
 
   # default locale (for now, only en, de, fr, pt-BR and it are supported)
   config.default_locale = :en
+
+  # available locales suggested to "localize" a site. You will have to pick up at least one among that list.
+  config.site_locales = %w{en de fr pt-BR it nl no es ru}
 
   # tell if logs are enabled. Useful for debug purpose.
   config.enable_logs = true

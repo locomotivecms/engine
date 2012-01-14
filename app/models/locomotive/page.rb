@@ -41,7 +41,7 @@ module Locomotive
     validates_exclusion_of    :slug, :in => Locomotive.config.reserved_slugs, :if => Proc.new { |p| p.depth == 0 }
 
     ## named scopes ##
-    scope :latest_updated,      :order_by => [[:updated_at, :desc]], :limit => Locomotive.config.lastest_entries_nb
+    scope :latest_updated,      :order_by => [[:updated_at, :desc]], :limit => Locomotive.config.ui.lastest_entries_nb
     scope :root,                :where => { :slug => 'index', :depth => 0 }
     scope :not_found,           :where => { :slug => '404', :depth => 0 }
     scope :published,           :where => { :published => true }
@@ -98,7 +98,7 @@ module Locomotive
       return if self.site.nil? || self.site.destroyed?
 
       if self.index? || self.not_found?
-        self.errors[:base] << I18n.t('errors.messages.protected_page')
+        self.errors[:base] << ::I18n.t('errors.messages.protected_page')
       end
 
       self.errors.empty?
@@ -110,7 +110,7 @@ module Locomotive
     end
 
     def set_default_raw_template
-      self.raw_template ||= I18n.t('attributes.defaults.pages.other.body')
+      self.raw_template ||= ::I18n.t('attributes.defaults.pages.other.body')
     end
 
   end

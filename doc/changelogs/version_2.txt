@@ -8,10 +8,13 @@
   - content_types:
     - category => select
     - highlighted_field_name => highlighted_field_id (label_field_id)
-    - api_enabled => public_form_enabled
-    - api_accounts => public_form_accounts
+    - api_enabled => public_submission_enabled
+    - api_accounts => public_submission_accounts
   - contents (content_entries now)
     - _position_in_list => _position
+  - api_contents:
+    - url => entry_submissions
+    - params[:content] => params[:entries]
 
 
 collection, selector = Locomotive::ContentType.collection, Locomotive::ContentType.criteria.selector
