@@ -299,7 +299,7 @@ DEPENDENCIES
   codemirror-rails
   coffee-script (~> 2.2.0)
   compass (~> 0.12.alpha.4)
-  cucumber-rails (= 1.2.0)
+  cucumber-rails
   custom_fields!
   database_cleaner
   delayed_job_mongoid (~> 1.0.8)

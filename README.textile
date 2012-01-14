@@ -45,6 +45,20 @@ h2. Community
 * Join us on IRC "#locomotivecms at irc.freenode.net!":http://webchat.freenode.net/
 * "Follow us on twitter":http://twitter.com/locomotiveapp
 
+h2. Contributing to Locomotive
+
+Locomotive CMS is an open source project, we encourage contributions. If you have found a bug and want to contribute a fix, or have a new feature you would like to add, follow the steps below to get your patch into the project:
+
+* Install ruby and mongoDB
+* Clone the project <code>git clone git@github.com:locomotivecms/engine.git</code>
+* Setup a virtual host entry for <code>test.example.com</code> to point to localhost
+* Run the tests <code>rake</code>
+* Write your failing tests
+* Make the tests pass
+* "Create a GitHub pull request":http://help.github.com/send-pull-requests
+
+For new features (especially large ones) it is best to create a topic on the "discussion forums":http://locomotive.vanillaforums.com/ first to make sure it fits into the goals of the project.
+
 h2. Team
 
 * Developers: "Didier Lafforgue":http://www.nocoffee.fr, "Jacques Crocker":http://www.railsjedi.com, "Mario Visic":http://www.mariovisic.com
