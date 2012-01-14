@@ -2,11 +2,12 @@
   .action
     = link_to content_tag(:em) + content_tag(:span, t('locomotive.content_types.index.new')), new_content_type_url, :class => 'button'
 
-.action
-  = link_to '#', :id => 'content-locale-picker-link', :class => 'button' do
-    %span.hand
-      &nbsp;
+- if current_site.locales.size > 1
+  .action
+    = link_to '#', :id => 'content-locale-picker-link', :class => 'button' do
+      %span.hand
+        &nbsp;
 
-    = image_tag "locomotive/icons/flags/#{current_content_locale}.png", :class => 'flag'
+      = image_tag "locomotive/icons/flags/#{current_content_locale}.png", :class => 'flag'
 
-    %span.text= current_content_locale
+      %span.text= current_content_locale

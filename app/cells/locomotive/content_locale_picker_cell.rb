@@ -4,7 +4,7 @@ class Locomotive::ContentLocalePickerCell < Cell::Base
     site    = args[:site]
     locale  = args[:locale].to_s
 
-    logger.debug "site.locales = #{site.locales.inspect}"
+    logger.debug "site.locales = #{site.locales.inspect} / #{site.locales.size}"
 
     if site.locales.empty? || site.locales.size < 2
       ''
