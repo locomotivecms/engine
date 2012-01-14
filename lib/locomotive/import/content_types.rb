@@ -189,7 +189,7 @@ module Locomotive
           content = content._parent.reload.contents.find(content._id) # target should be updated
 
           associations.each do |association|
-            target_content_type = site.content_types.where(:name => association.target).first
+            target_content_type = site.content_types.where(:slug => association.target).first
 
             next if target_content_type.nil?
 
