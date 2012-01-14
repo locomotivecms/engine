@@ -58,7 +58,7 @@ group :development do
 end
 
 group :test do
-  gem 'cucumber-rails', '1.2.0', :require => false
+  gem 'cucumber-rails'
   gem 'autotest', :platforms => :mri
   gem 'ZenTest', :platforms => :mri
   gem 'growl-glue'
