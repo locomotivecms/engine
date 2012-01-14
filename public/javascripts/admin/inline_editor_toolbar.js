@@ -196,6 +196,14 @@ var InlineEditorToolbar = {
       'cancel': 'annulla',
       'back': 'fine modifica',
       'saving': 'sto salvando'
-    }
+    },
+	'ru': {
+      'home': 'панель управления',
+      'edit': 'редактирование',
+      'save': 'сохранение',
+      'cancel': 'отмена',
+      'back': 'закончить редактирование',
+      'saving': 'сохранение'	
+	}
   }
 };
