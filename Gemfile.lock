@@ -5,7 +5,7 @@ GEM
       Platform (>= 0.4.0)
       open4
     Platform (0.4.0)
-    RedCloth (4.2.8)
+    RedCloth (4.2.9)
     SystemTimer (1.2.3)
     ZenTest (4.6.2)
     abstract (1.0.0)
@@ -281,7 +281,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  RedCloth (= 4.2.8)
+  RedCloth (= 4.2.9)
   SystemTimer
   ZenTest
   actionmailer-with-request

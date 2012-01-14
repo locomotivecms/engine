@@ -54,7 +54,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'mimetype-fu'
   s.add_dependency 'actionmailer-with-request'
   s.add_dependency 'httparty', '0.7.8'
-  s.add_dependency 'RedCloth', '4.2.8'
+  s.add_dependency 'RedCloth', '4.2.9'
   s.add_dependency 'delayed_job_mongoid', '1.0.8'
   s.add_dependency 'rubyzip'
   s.add_dependency 'locomotive_jammit-s3'
