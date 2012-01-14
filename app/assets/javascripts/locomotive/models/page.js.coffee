@@ -2,7 +2,7 @@ class Locomotive.Models.Page extends Backbone.Model
 
   paramRoot: 'page'
 
-  urlRoot: "#{Locomotive.mount_on}/pages"
+  urlRoot: "#{Locomotive.mounted_on}/pages"
 
   initialize: ->
     @_normalize()

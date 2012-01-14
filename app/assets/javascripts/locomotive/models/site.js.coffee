@@ -2,7 +2,7 @@ class Locomotive.Models.Site extends Backbone.Model
 
   paramRoot: 'site'
 
-  urlRoot: "#{Locomotive.mount_on}/sites"
+  urlRoot: "#{Locomotive.mounted_on}/sites"
 
   initialize: ->
     # Be careful, domains_without_subdomain becomes domains
@@ -26,6 +26,6 @@ class Locomotive.Models.Site extends Backbone.Model
 
 class Locomotive.Models.CurrentSite extends Locomotive.Models.Site
 
-  url: "#{Locomotive.mount_on}/current_site"
+  url: "#{Locomotive.mounted_on}/current_site"
 
 

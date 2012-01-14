@@ -5,9 +5,9 @@
 #= require_tree ./views
 
 window.Locomotive =
-  mount_on: '/locomotive'
-  Models: {}
-  Collections: {}
-  Views: {}
+  mounted_on:   '/locomotive' # default path
+  Models:       {}
+  Collections:  {}
+  Views:        {}
 
 window.Locomotive.Views.Memberships = {}

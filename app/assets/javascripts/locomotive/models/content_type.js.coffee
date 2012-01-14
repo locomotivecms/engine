@@ -2,7 +2,7 @@ class Locomotive.Models.ContentType extends Backbone.Model
 
   paramRoot: 'content_type'
 
-  urlRoot: "#{Locomotive.mount_on}/content_types"
+  urlRoot: "#{Locomotive.mounted_on}/content_types"
 
   initialize: ->
     @_normalize()
@@ -20,4 +20,4 @@ class Locomotive.Models.ContentTypesCollection extends Backbone.Collection
 
   model: Locomotive.Models.ContentType
 
-  url: "#{Locomotive.mount_on}/content_types"
+  url: "#{Locomotive.mounted_on}/content_types"

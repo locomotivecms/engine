@@ -2,7 +2,7 @@ class Locomotive.Models.ContentEntry extends Backbone.Model
 
   paramRoot: 'content_entry'
 
-  urlRoot: "#{Locomotive.mount_on}/content_types/:slug/entries"
+  urlRoot: "#{Locomotive.mounted_on}/content_types/:slug/entries"
 
   initialize: ->
     @urlRoot = @urlRoot.replace(':slug', @get('content_type_slug'))
@@ -29,4 +29,4 @@ class Locomotive.Models.ContentEntriesCollection extends Backbone.Collection
 
   model: Locomotive.Models.ContentEntry
 
-  url: "#{Locomotive.mount_on}/content_types/:slug/entries"
+  url: "#{Locomotive.mounted_on}/content_types/:slug/entries"

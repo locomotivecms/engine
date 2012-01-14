@@ -123,6 +123,10 @@ module Locomotive
     self.config.rack_cache != false
   end
 
+  def self.mounted_on
+    Rails.application.routes.named_routes[:locomotive].path
+  end
+
   protected
 
   def self.app_middleware

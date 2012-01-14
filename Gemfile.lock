@@ -1,18 +1,16 @@
 GIT
-  remote: git://github.com/locomotivecms/custom_fields.git
-  revision: b187a16acbf581b4eef857d2958a69422407a047
-  branch: experimental
+  remote: git@github.com:locomotivecms/mongoid_acts_as_tree.git
+  revision: ca494d22c3d7946385aba1153c017d9c30e9f9d3
+  specs:
+    locomotive_mongoid_acts_as_tree (0.1.5.7)
+
+PATH
+  remote: ../gems/custom_fields
   specs:
     custom_fields (2.0.0.rc1)
       activesupport (~> 3.1.3)
       carrierwave-mongoid (~> 0.1.3)
       mongoid (~> 2.4.0)
-
-GIT
-  remote: git@github.com:locomotivecms/mongoid_acts_as_tree.git
-  revision: ca494d22c3d7946385aba1153c017d9c30e9f9d3
-  specs:
-    locomotive_mongoid_acts_as_tree (0.1.5.7)
 
 GEM
   remote: http://rubygems.org/
