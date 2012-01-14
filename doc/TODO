@@ -75,6 +75,8 @@ x edit my site
   - remove inline-editor tag
   - rack
   - iframe
+- bugs:
+  - unable to toggle the "required" check_boxes for content types
 
 - disallow to click twice on the submit form button (spinner ?)
 - message to notify people if their browser is too old

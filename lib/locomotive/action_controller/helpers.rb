@@ -17,8 +17,6 @@ module Locomotive
         end
 
         def set_current_content_locale
-          # I18n.default_site_locale = current_site.default_locale
-
           if params[:content_locale].present?
             session[:content_locale] = params[:content_locale]
           end
