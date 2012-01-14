@@ -34,8 +34,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'sass', '3.1.2'
   s.add_dependency 'locomotive_liquid', '2.2.2'
   s.add_dependency 'formtastic', '~> 1.2.3'
-  # s.add_dependency 'inherited_resources', '~> 1.1.2'
-  s.add_dependency 'cells'
+  s.add_dependency 'cells', '~> 3.7.0'
   s.add_dependency 'highline'
   s.add_dependency 'sanitize'
 
@@ -54,9 +53,8 @@ Gem::Specification.new do |s|
   s.add_dependency 'mimetype-fu'
   s.add_dependency 'actionmailer-with-request'
   s.add_dependency 'httparty', '0.7.8'
-  s.add_dependency 'RedCloth', '4.2.8'
-  s.add_dependency 'delayed_job', '3.0.0.pre4'
-  s.add_dependency 'delayed_job_mongoid', '1.0.6'
+  s.add_dependency 'RedCloth', '4.2.9'
+  s.add_dependency 'delayed_job_mongoid', '1.0.8'
   s.add_dependency 'rubyzip'
   s.add_dependency 'locomotive_jammit-s3'
 

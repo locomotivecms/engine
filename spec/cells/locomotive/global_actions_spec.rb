@@ -5,7 +5,7 @@ describe Locomotive::GlobalActionsCell do
   # as if it were a controller.
   # render_views
 
-  let(:menu) { render_cell('locomotive/global_actions', :show, :current_locomotive_account => FactoryGirl.build('admin user'), :current_site_url => 'http://www.yahoo.fr') }
+  let(:menu) { render_cell('admin/global_actions', :show, :current_admin => FactoryGirl.build('admin user'), :current_site_url => 'http://www.yahoo.fr') }
 
   describe 'show menu' do
 
