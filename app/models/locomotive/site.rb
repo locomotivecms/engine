@@ -56,12 +56,16 @@ module Locomotive
 
     protected
 
+    # FIXME: Currently there is no t/translate method on the I18n module
+    # Extensions::Site::I18n which is breaking the testing. The
+    # namespaced ::I18n should be changed to just I18n when the t()
+    # method is available
     def create_default_pages!
       %w{index 404}.each do |slug|
         self.pages.create({
           :slug => slug,
-          :title => I18n.t("attributes.defaults.pages.#{slug}.title"),
-          :raw_template => I18n.t("attributes.defaults.pages.#{slug}.body"),
+          :title => ::I18n.t("attributes.defaults.pages.#{slug}.title"),
+          :raw_template => ::I18n.t("attributes.defaults.pages.#{slug}.body"),
           :published => true
         })
       end
