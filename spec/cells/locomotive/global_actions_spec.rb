@@ -13,10 +13,8 @@ describe Locomotive::GlobalActionsCell do
       menu.should have_selector('a', :count => 4)
     end
 
-    # FIXME: It seems like this has been removed? Is this test still relavent?
     it 'has a link to edit my account' do
-      pending
-      menu.should have_link('Locomotive')
+      menu.should have_link('Admin')
     end
 
     it 'has a link to see my website' do
