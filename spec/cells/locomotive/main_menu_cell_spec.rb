@@ -14,7 +14,7 @@ describe Locomotive::MainMenuCell do
     end
 
     it 'has 2 items' do
-      menu.should have_selector('li.item', :count => 2)
+      menu.should have_selector('li.entry', :count => 2)
     end
 
     it 'has a link to go to the contents' do
@@ -35,7 +35,7 @@ describe Locomotive::MainMenuCell do
     end
 
     it 'has 3 items' do
-      menu.should have_selector('li.item', :count => 3)
+      menu.should have_selector('li.entry', :count => 3)
     end
 
     it 'has a new link' do
@@ -52,7 +52,7 @@ describe Locomotive::MainMenuCell do
     end
 
     it 'has only 1 item' do
-      menu.should have_selector('li.item', :count => 1)
+      menu.should have_selector('li.entry', :count => 1)
     end
 
     it 'does not have the link to go to the settings' do
@@ -69,7 +69,7 @@ describe Locomotive::MainMenuCell do
     end
 
     it 'still has 2 items' do
-      menu.should have_selector('li.item', :count => 2)
+      menu.should have_selector('li.entry', :count => 2)
     end
 
     it 'has a modified menu item' do
