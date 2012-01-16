@@ -33,7 +33,7 @@ module Locomotive
         path.gsub!(/\.[a-zA-Z][a-zA-Z0-9]{2,}$/, '') # remove the page extension
         path.gsub!(/^\//, '') # remove the leading slash
 
-        path = 'index' if path.blank?
+        path = 'index' if path.blank? || path == 'edit'
 
         if path != 'index'
           dirname = File.dirname(path).gsub(/^\.$/, '') # also look for templatized page path
@@ -73,8 +73,6 @@ module Locomotive
 
         assigns.merge!(Locomotive.config.context_assign_extensions)
 
-        Rails.logger.debug flash.to_hash.stringify_keys.inspect
-
         assigns.merge!(flash.to_hash.stringify_keys) # data from public submissions
 
         if @page.templatized? # add instance from content type
@@ -96,7 +94,8 @@ module Locomotive
       def prepare_and_set_response(output)
         flash.discard
 
-        response.headers['Content-Type'] = 'text/html; charset=utf-8'
+        response.headers['Content-Type']  = 'text/html; charset=utf-8'
+        response.headers['Editable']      = 'true' unless self.editing_page?
 
         if @page.with_cache?
           fresh_when :etag => @page, :last_modified => @page.updated_at.utc, :public => true

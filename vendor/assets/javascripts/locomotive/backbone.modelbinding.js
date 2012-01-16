@@ -413,6 +413,7 @@ Backbone.ModelBinding = (function(Backbone, _, $){
             element.removeAttr("checked");
           }
         } else {
+          // console.log('// bind the form\'s value to the model');
           // bind the form's value to the model
           var checked = element.is(":checked")? true : false;
           setModelValue(attribute_name, checked, element.val());

@@ -43,5 +43,25 @@
     //this will reload the page, it's likely better to store this until finished
     document.location.search = kvp.join('&');
   }
+
+  window.addJavascript = function(doc, src, options) {
+    var script = doc.createElement('script');
+    script.type = 'text/javascript';
+    script.src = src;
+    for (var key in options) {
+      script.setAttribute(key, options[key]);
+    }
+    doc.body.appendChild(script);
+  }
+
+  window.addStylesheet = function(doc, src, options) {
+    var stylesheet = doc.createElement('link');
+    stylesheet.style = 'text/css';
+    stylesheet.href = src;
+    stylesheet.media = 'screen';
+    stylesheet.rel = 'stylesheet';
+    doc.head.appendChild(stylesheet);
+  }
+
 })();
 

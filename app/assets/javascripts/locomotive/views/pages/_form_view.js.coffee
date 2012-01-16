@@ -16,6 +16,8 @@ class Locomotive.Views.Pages.FormView extends Locomotive.Views.Shared.FormView
 
     @model = new Locomotive.Models.Page(@options.page)
 
+    window.foo = @model
+
     @touched_url = false
 
     @image_picker_view = new Locomotive.Views.ThemeAssets.ImagePickerView

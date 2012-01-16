@@ -1,0 +1,50 @@
+!!! XML
+!!!
+%html{ :xmlns => 'http://www.w3.org/1999/xhtml'  }
+  %head
+    %title Locomotive
+
+    = csrf_meta_tag
+
+    - key = Rails.application.config.session_options[:key]
+
+    %meta{ :name => 'key-param', :content => Rails.application.config.session_options[:key] }
+    %meta{ :name => 'key-token', :content => cookies[key] }
+
+    = stylesheet_link_tag     'locomotive/inline_editor', :media => 'screen'
+    = javascript_include_tag  'locomotive/inline_editor'
+
+    %script{ :type => 'text/javascript' }
+      :plain
+        window.locale = '#{I18n.locale}';
+
+        Locomotive.mounted_on       = '#{Locomotive.mounted_on}';
+        Locomotive.current_site     = new Locomotive.Models.Site(#{current_site.to_json});
+        Locomotive.current_account  = new Locomotive.Models.Account(#{current_locomotive_account.to_json});
+
+        $(document).ready(function() {
+
+          window.application_view = new Locomotive.Views.InlinEditor.ApplicationView({
+            flash:      #{flash.to_json}
+          });
+          window.application_view.render();
+
+        });
+
+    %script{ :type => 'text/html', :id => 'toolbar' }
+
+      %h1 {{title}}
+
+      .edit
+        %label Editing mode:
+        = check_box_tag 'edit', '1', false
+
+  %body
+    #page
+      %iframe{ :src => %(#{request.fullpath}?noiframe=true') , :scrolling => 'no', :frameborder => '0' }
+
+    #toolbar
+      .background
+      .inner
+
+

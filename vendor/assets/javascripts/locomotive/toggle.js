@@ -30,11 +30,14 @@
 
     settings = $.extend({
       on_label  : 'Yes',
+      on_label_color : '#cccccc',
       on_bg_color : '#8FE38D',
       off_label : 'No',
+      off_label_color : '#333333',
       off_bg_color: '#F8837C',
       skin_dir  : "skin/",
       bypass_skin : false,
+
       on_callback : function(el) {},
       off_callback : function(el) {}
     }, settings);
@@ -61,8 +64,8 @@
 
         // callback function
         function(){
-          $(element).parent().prev().css("color","#cccccc");
-          $(element).parent().next().css("color","#333333");
+          $(element).parent().prev().css("color",settings.off_label_color);
+          $(element).parent().next().css("color",settings.on_label_color);
           $(element).parent().css("background-color", settings.off_bg_color).removeClass('on');
           $(element).parent().parent().prev().removeAttr("checked").trigger('change');
           $(element).removeClass("left").addClass("right");
@@ -79,8 +82,8 @@
 
         // callback function
         function(){
-          $(element).parent().prev().css("color","#333333");
-          $(element).parent().next().css("color","#cccccc");
+          $(element).parent().prev().css("color",settings.on_label_color);
+          $(element).parent().next().css("color",settings.off_label_color);
           $(element).parent().css("background-color", settings.on_bg_color).addClass('on');
           $(element).parent().parent().prev().attr("checked", "checked").trigger('change');
           $(element).removeClass("right").addClass("left");

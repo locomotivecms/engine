@@ -1,0 +1,16 @@
+body {
+  position: relative;
+  background: transparent;
+  // overflow: hidden;
+}
+
+#page {
+  position: relative;
+  padding-top: 50px;
+
+  iframe {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+}

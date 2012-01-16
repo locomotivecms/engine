@@ -65,7 +65,10 @@ Rails.application.routes.draw do
   resources :locomotive_entry_submissions, :controller => 'locomotive/public/content_entries', :path => 'entry_submissions/:slug'
 
   # magic urls
-  match '/'             => 'locomotive/public/rendering#show'
-  match '*path/edit'    => 'locomotive/public/rendering#edit'
-  match '*path'         => 'locomotive/public/rendering#show'
+  # match '/editable'         => 'locomotive/public/rendering#edit', :path => '/'
+  match '/'             => 'locomotive/public/pages#show'
+  match '/edit'         => 'locomotive/public/pages#edit'
+  match '*path/edit'    => 'locomotive/public/pages#edit'
+  # match '_/*path'       => 'locomotive/public/rendering#show'
+  match '*path'         => 'locomotive/public/pages#show'
 end

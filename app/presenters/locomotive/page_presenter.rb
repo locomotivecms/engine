@@ -1,7 +1,7 @@
 module Locomotive
   class PagePresenter < BasePresenter
 
-    delegate :title, :slug, :fullpath, :raw_template, :published, :template_changed, :cache_strategy, :to => :source
+    delegate :title, :slug, :fullpath, :raw_template, :published, :listed, :templatized, :redirect, :redirect_url, :template_changed, :cache_strategy, :to => :source
 
     def escaped_raw_template
       h(self.source.raw_template)
@@ -12,7 +12,7 @@ module Locomotive
     end
 
     def included_methods
-      super + %w(title slug fullpath raw_template published published cache_strategy template_changed editable_elements)
+      super + %w(title slug fullpath raw_template published listed templatized redirect redirect_url cache_strategy template_changed editable_elements)
     end
 
     def as_json_for_html_view
