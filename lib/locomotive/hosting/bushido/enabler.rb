@@ -29,7 +29,7 @@ module Locomotive
           def enable_bushido!
             self.config.domain = ENV['APP_TLD'] unless self.config.multi_sites?
 
-            self.config.devise_modules = [:cas_authenticatable, :rememberable, :trackable]
+            self.config.devise_modules = [:bushido_authenticatable, :rememberable, :trackable]
 
             self.enhance_models
 

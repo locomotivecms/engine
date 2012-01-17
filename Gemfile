@@ -8,7 +8,7 @@ gem 'rails', '3.0.10'
 
 gem 'warden'
 gem 'devise', '1.3.4'
-gem 'devise_bushido_authenticatable', '1.0.0.alpha10', :require => 'devise_cas_authenticatable'
+gem 'devise_bushido_authenticatable', :git=>"git://github.com/Bushido/devise_cas_authenticatable.git" # '1.0.0.alpha10', :require => 'devise_cas_authenticatable'
 
 gem 'mongo', '~> 1.3.1'
 gem 'bson', '~> 1.3.1'
