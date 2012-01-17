@@ -23,10 +23,12 @@
     return this.replace(/\s/g, sep).replace(alphaNumRegexp, '').replace(avoidDuplicateRegexp, sep).toLowerCase()
   }
 
-  window.addParameterToURL = function(key, value) { // code from http://stackoverflow.com/questions/486896/adding-a-parameter-to-the-url-with-javascript
+  window.addParameterToURL = function(key, value, context) { // code from http://stackoverflow.com/questions/486896/adding-a-parameter-to-the-url-with-javascript
+    if (typeof context == 'undefined') context = document;
+
     key = encodeURIComponent(key); value = encodeURIComponent(value);
 
-    var kvp = document.location.search.substr(1).split('&');
+    var kvp = context.location.search.substr(1).split('&');
 
     var i = kvp.length; var x; while(i--) {
       x = kvp[i].split('=');
@@ -41,7 +43,7 @@
     if (i < 0) { kvp[kvp.length] = [key,value].join('='); }
 
     //this will reload the page, it's likely better to store this until finished
-    document.location.search = kvp.join('&');
+    context.location.search = kvp.join('&');
   }
 
   window.addJavascript = function(doc, src, options) {

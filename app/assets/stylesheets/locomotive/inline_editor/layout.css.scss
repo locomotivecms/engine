@@ -1,7 +1,6 @@
 body {
   position: relative;
   background: transparent;
-  // overflow: hidden;
 }
 
 #page {
@@ -13,4 +12,10 @@ body {
     height: 100%;
     display: block;
   }
+}
+
+#content-locale-picker {
+  position: fixed;
+  top: 46px;
+  right: 70px;
 }

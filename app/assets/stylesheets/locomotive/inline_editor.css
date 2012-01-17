@@ -4,6 +4,6 @@
  * the top of the compiled file, but it's generally better to create a new file per style scope.
  *= require locomotive/blueprint/screen.css
  *= require locomotive/toggle.css
- *= require locomotive/shared/growl.css
+ *= require_tree ./shared
  *= require_tree ./inline_editor
 */

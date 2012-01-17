@@ -30,10 +30,10 @@
 
     settings = $.extend({
       on_label  : 'Yes',
-      on_label_color : '#cccccc',
+      on_label_color : '#333333',
       on_bg_color : '#8FE38D',
       off_label : 'No',
-      off_label_color : '#333333',
+      off_label_color : '#cccccc',
       off_bg_color: '#F8837C',
       skin_dir  : "skin/",
       bypass_skin : false,

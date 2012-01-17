@@ -1,0 +1,7 @@
+= link_to '#', :id => 'content-locale-picker-link', :class => 'button' do
+  %span.hand
+    &nbsp;
+
+  = image_tag "locomotive/icons/flags/#{current_content_locale}.png", :class => 'flag'
+
+  %span.text= current_content_locale

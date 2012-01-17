@@ -306,8 +306,13 @@ en:
     public:
       pages:
         show_toolbar:
-          save_modifications: "Save modifications: "
-          editing_mode: "Editing mode: "
+          statuses:
+            loading: "Loading...."
+            disabled: "Inline Editor disabled"
+          labels:
+            save_changes: "Save changes: "
+            editing_mode: "Editing mode: "
+            lang: "Lang: "
           buttons:
             back: Return to back-office
             confirm: Confirm

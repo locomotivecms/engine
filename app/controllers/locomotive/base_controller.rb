@@ -2,8 +2,9 @@ module Locomotive
   class BaseController < ApplicationController
 
     include Locomotive::Routing::SiteDispatcher
-
-    include Locomotive::ActionController::Helpers
+    include Locomotive::ActionController::LocaleHelpers
+    include Locomotive::ActionController::SectionHelpers
+    include Locomotive::ActionController::UrlHelpers
 
     layout '/locomotive/layouts/application'
 

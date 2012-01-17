@@ -75,14 +75,15 @@ x edit my site
   x rack
   x iframe
   (- remove inline-editor tag)
-  - save editable elements
-  - notification (growl)
+  x save editable elements
+  x notification (growl)
+  x change page
   - i18n
-  - change page
   - aloha:
+    x remove sidebar
     - i18n
     - insert image
-    - remove sidebar
+
 
 
 - bugs:

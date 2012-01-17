@@ -29,22 +29,6 @@
 
         });
 
-    %script{ :type => 'text/html', :id => 'toolbar' }
-
-      %h1 {{title}}
-
-      .back.col
-        = link_to t('.buttons.back'), '#', :class => 'button back'
-
-      .editing-mode.col{ :style => 'display: none' }
-        %label= t('.editing_mode')
-        = check_box_tag 'edit', '1', false
-
-      .element-actions.col{ :style => 'display: none' }
-        %label= t('.save_modifications')
-        = link_to t('.buttons.confirm'), '#', :class => 'button save'
-        = link_to t('.buttons.cancel'), '#', :class => 'button cancel'
-
   %body
     #page
       %iframe{ :src => request.fullpath.gsub('_admin', '_edit'), :scrolling => 'no', :frameborder => '0' }
@@ -52,5 +36,24 @@
     #toolbar
       .background
       .inner
+        %h1{ :class => 'loading', :'data-disabled-status' => t('.statuses.disabled'), :'data-loading-status' => t('.statuses.loading') }= t('.statuses.loading')
 
+        .back.col
+          = link_to image_tag('locomotive/inline_editor/back.png'), '#', :class => 'button back', :title => t('.buttons.back'), :alt => t('.buttons.back')
+
+        - if current_site.locales.size > 1
+          .lang.col
+            %label= t('.labels.lang')
+            = render '/locomotive/shared/locale_picker_link'
+
+        .editing-mode.col
+          %label= t('.labels.editing_mode')
+          = check_box_tag 'edit', '1', false
+
+        .element-actions.col{ :style => 'display: none' }
+          %label= t('.labels.save_changes')
+          = link_to t('.buttons.confirm'), '#', :class => 'button blue save'
+          = link_to t('.buttons.cancel'), '#', :class => 'button cancel'
+
+    = render_cell 'locomotive/content_locale_picker', :show, :site => current_site, :locale => current_content_locale
 

@@ -2,24 +2,22 @@ Locomotive.Views.InlinEditor ||= {}
 
 class Locomotive.Views.InlinEditor.ToolbarView extends Backbone.View
 
-  tagName: 'div'
-
-  className: 'toolbar-view'
+  el: '#toolbar .inner'
 
   events:
     'change .editing-mode input[type=checkbox]':  'toggle_editing_mode'
     'click  .back a':                             'back'
-    'click  .element-actions a.save':             'save_modifications'
-    'click  .element-actions a.cancel':           'cancel_modifications'
-
-  initialize: ->
-    super
+    'click  .element-actions a.save':             'save_changes'
+    'click  .element-actions a.cancel':           'cancel_changes'
 
   render: ->
     super
-    $(@el).html(ich.toolbar(@model.toJSON()))
+
+    console.log('render toolbar')
 
     @enable_editing_mode_checkbox()
+
+    @enable_content_locale_picker()
 
     @
 
@@ -34,7 +32,19 @@ class Locomotive.Views.InlinEditor.ToolbarView extends Backbone.View
 
     @$('.element-actions').show()
 
-  save_modifications: (event) ->
+    @hide_editing_mode_block()
+
+  show_status: (status, growl) ->
+    growl ||= false
+
+    message = @$('h1').attr("data-#{status}-status")
+    @$('h1').html(message).removeClass().addClass(status)
+
+    $.growl('error', message) if growl
+
+    @
+
+  save_changes: (event) ->
     event.stopPropagation() & event.preventDefault()
 
     previous_attributes = _.clone @model.attributes
@@ -43,10 +53,11 @@ class Locomotive.Views.InlinEditor.ToolbarView extends Backbone.View
       success: (model, response, xhr) =>
         model.attributes = previous_attributes
         @$('.element-actions').hide()
+        @show_editing_mode_block()
       error: (model, xhr) =>
         @$('.element-actions').hide()
 
-  cancel_modifications: (event) ->
+  cancel_changes: (event) ->
     event.stopPropagation() & event.preventDefault()
     @options.target[0].contentWindow.location.href = @options.target[0].contentWindow.location.href
 
@@ -54,9 +65,11 @@ class Locomotive.Views.InlinEditor.ToolbarView extends Backbone.View
     event.stopPropagation() & event.preventDefault()
     window.location.href = @model.get('edit_url')
 
-  enable: ->
-    @options.target[0].contentWindow.Aloha.settings.locale = window.locale;
+  show_editing_mode_block: ->
     @$('.editing-mode').show()
+
+  hide_editing_mode_block: ->
+    @$('.editing-mode').hide()
 
   toggle_editing_mode: (event) ->
     return if @editable_elements() == null
@@ -77,16 +90,43 @@ class Locomotive.Views.InlinEditor.ToolbarView extends Backbone.View
       on_label_color:   '#fff'
       off_label_color:  '#bbb'
 
+  enable_content_locale_picker: ->
+    _window = @options.target[0].contentWindow
+    link    = @$('#content-locale-picker-link')
+    picker  = $('#content-locale-picker')
+
+    return if picker.size() == 0
+
+    link.bind 'click', (event) ->
+      event.stopPropagation() & event.preventDefault()
+      picker.toggle()
+
+    picker.find('li').bind 'click', (event) =>
+      current   = @get_locale_attributes(link)
+      selected  = @get_locale_attributes($(event.target).closest('li'))
+
+      @set_locale_attributes(link, selected)
+      @set_locale_attributes($(event.target).closest('li'), current)
+
+      picker.toggle()
+
+      window.addParameterToURL 'content_locale', selected[1], _window.document
+
+  get_locale_attributes: (context) ->
+    [context.find('img').attr('src'), context.find('span.text').html()]
+
+  set_locale_attributes: (context, values) ->
+    context.find('img').attr('src', values[0])
+    context.find('span.text').html(values[1])
+
   refresh: ->
     console.log('refreshing toolbar...')
 
-    @$('h1').html(@model.get('title'))
+    @$('h1').html(@model.get('title')).removeClass()
 
     if @$('.editing-mode input[type=checkbox]').is(':checked')
       @$('.editing-mode div.switchArea').trigger('click')
 
     @$('.element-actions').hide()
 
-
-  remove: ->
-    super
+    @show_editing_mode_block()

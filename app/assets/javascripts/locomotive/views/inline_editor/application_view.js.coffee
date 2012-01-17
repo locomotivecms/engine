@@ -11,66 +11,84 @@ class Locomotive.Views.InlinEditor.ApplicationView extends Backbone.View
 
     @iframe = @$('#page iframe')
 
+    _.bindAll(@, '_$')
+
     @toolbar_view = new Locomotive.Views.InlinEditor.ToolbarView(target: @iframe)
 
   render: ->
     super
 
-    @decorate_iframe()
+    @enable_iframe_autoheight()
+
+    @toolbar_view.render()
+
+  enable_iframe_autoheight: ->
+    iframe = @iframe
+
+    iframe.load =>
+      console.log('iframe loading')
+
+      if @_$('meta[name=inline-editor]').size() > 0
+        # bind the resize event. When the iFrame's size changes, update its height
+        iframe_content = iframe.contents().find('body')
+        iframe_content.resize ->
+          elem = $(this)
+
+          if elem.outerHeight(true) > $('body').outerHeight(true) # Resize the iFrame.
+            iframe.css height: elem.outerHeight(true)
+
+        # Resize the iFrame immediately.
+        iframe_content.resize()
+      else
+        @toolbar_view.show_status('disabled', true).hide_editing_mode_block()
+
+        # keep the user in the admin mode
+        @enhance_iframe_links()
 
   set_page: (attributes) ->
-    @page = new Locomotive.Models.Page(attributes)
+    console.log('set_page')
 
-    window.foo = @page
+    @page = new Locomotive.Models.Page(attributes)
 
     @toolbar_view.model = @page
 
-    if @$('#toolbar .inner .toolbar-view').size() == 0
-      @$('#toolbar .inner').html(@toolbar_view.render().el) # first time we render it
-    else
-      @toolbar_view.refresh()
+    @enhance_iframe()
 
-  decorate_iframe: ->
-    iframe = @iframe
-    iframe.load =>
-      # add js / css
-      doc = iframe[0].contentWindow.document
-      window.addStylesheet doc, '/assets/locomotive/aloha/css/aloha.css'
-      window.addJavascript doc, '/assets/locomotive/utils/aloha_settings.js'
-      window.addJavascript doc, '/assets/locomotive/aloha/lib/aloha.js',
-        'data-aloha-plugins': 'common/format,common/highlighteditables,common/list,common/link,common/undo,common/paste'
-        onload: =>
-          console.log('loading target iframe')
+    @toolbar_view.refresh()
 
-          # wake up the toolbar
-          @toolbar_view.enable()
+  enhance_iframe: ->
+    _window = @iframe[0].contentWindow
+    _window.Aloha.settings.locale = window.locale
 
-          # keep the user in the admin mode
-          _$ = iframe[0].contentWindow.Aloha.jQuery
-          _$('a').each ->
-            link  = _$(this)
-            url   = link.attr('href')
-            if url != '#' && /^(www|http)/.exec(url) == null && /(\/_edit)$/.exec(url) == null
-              url = '/index' if url == '/'
-              if url.indexOf('?') > 0
-                link.attr('href', url.replace('?', '/_edit?'))
-              else
-                link.attr('href', "#{url}/_edit")
+    # set main window title
+    window.document.title = _window.document.title
 
-              link.bind 'click', ->
-                window.history.pushState('Object', 'Title', link.attr('href').replace('_edit', '_admin'))
+    # keep the user in the admin mode
+    @enhance_iframe_links _window.Aloha.jQuery
 
-          # notify the toolbar about changes
-          iframe[0].contentWindow.Aloha.bind 'aloha-editable-deactivated', (event, editable) =>
-            @toolbar_view.notify editable.editable
+    # notify the toolbar about changes
+    _window.Aloha.bind 'aloha-editable-deactivated', (event, editable) =>
+      @toolbar_view.notify editable.editable
 
-      # bind the resize event. When the iFrame's size changes, update its height
-      iframe_content = iframe.contents().find('body')
-      iframe_content.resize ->
-        elem = $(this)
+  enhance_iframe_links: (_jQuery) ->
 
-        if elem.outerHeight(true) > $('body').outerHeight(true) # Resize the iFrame.
-          iframe.css height: elem.outerHeight(true)
+    toolbar_view = @toolbar_view
+    _jQuery     ||= @_$
 
-      # Resize the iFrame immediately.
-      iframe_content.resize()
+    _jQuery('a').each ->
+      link  = _jQuery(this)
+      url   = link.attr('href')
+      if url? && url != '#' && /^(www|http)/.exec(url) == null && /(\/_edit)$/.exec(url) == null
+        url = '/index' if url == '/'
+        if url.indexOf('?') > 0
+          link.attr('href', url.replace('?', '/_edit?'))
+        else
+          link.attr('href', "#{url}/_edit")
+
+        link.bind 'click', ->
+          toolbar_view.show_status 'loading'
+          window.history.pushState('Object', 'Title', link.attr('href').replace('_edit', '_admin'))
+
+  _$: (selector) ->
+    $(selector, @iframe[0].contentWindow.document)
+
