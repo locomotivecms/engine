@@ -133,19 +133,19 @@ describe Locomotive::ContentEntry do
 
     it 'is visible by default' do
       @content_entry._visible?.should be_true
-      @content_entry.visible?.should be_true
+      @content_entry.should be_visible
     end
 
     it 'can be visible even if it is nil' do
       @content_entry.visible = nil
-      @content_entry.send(:set_visibility)
-      @content_entry.visible?.should be_true
+      @content_entry.send(:set_visibility).should be_true
+      @content_entry.should be_visible
     end
 
     it 'can not be visible' do
       @content_entry.visible = false
-      @content_entry.send(:set_visibility)
-      @content_entry.visible?.should be_false
+      @content_entry.send(:set_visibility).should be_true
+      @content_entry.should_not be_visible
     end
 
   end

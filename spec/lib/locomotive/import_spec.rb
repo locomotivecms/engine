@@ -103,7 +103,7 @@ describe Locomotive::Import::Job do
     end
 
     after(:all) do
-      Site.destroy_all
+      Locomotive::Site.destroy_all
     end
 
   end
