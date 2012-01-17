@@ -7,6 +7,9 @@ class Locomotive.Models.Page extends Backbone.Model
   initialize: ->
     @_normalize()
 
+    @set
+      edit_url: "#{Locomotive.mounted_on}/pages/#{@id}/edit"
+
   _normalize: ->
     @set
       editable_elements: new Locomotive.Models.EditableElementsCollection(@get('editable_elements'))

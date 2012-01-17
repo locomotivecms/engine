@@ -8,6 +8,7 @@ class Locomotive.Views.InlinEditor.ToolbarView extends Backbone.View
 
   events:
     'change .editing-mode input[type=checkbox]':  'toggle_editing_mode'
+    'click  .back a':                             'back'
     'click  .element-actions a.save':             'save_modifications'
     'click  .element-actions a.cancel':           'cancel_modifications'
 
@@ -22,8 +23,8 @@ class Locomotive.Views.InlinEditor.ToolbarView extends Backbone.View
 
     @
 
-  change_editable_element: (aloha_editable) ->
-    console.log('changing editable_element...')
+  notify: (aloha_editable) ->
+    console.log('editable_element has been modified...')
 
     window.bar = aloha_editable
 
@@ -47,20 +48,29 @@ class Locomotive.Views.InlinEditor.ToolbarView extends Backbone.View
 
   cancel_modifications: (event) ->
     event.stopPropagation() & event.preventDefault()
-    @options.target[0].contentWindow.location.href = @options.target[0].contentWindow.location.href;
+    @options.target[0].contentWindow.location.href = @options.target[0].contentWindow.location.href
+
+  back: (event) ->
+    event.stopPropagation() & event.preventDefault()
+    window.location.href = @model.get('edit_url')
 
   enable: ->
     @options.target[0].contentWindow.Aloha.settings.locale = window.locale;
     @$('.editing-mode').show()
 
   toggle_editing_mode: (event) ->
+    return if @editable_elements() == null
+
     if $(event.target).is(':checked')
       @editable_elements().aloha()
     else
       @editable_elements().removeClass('aloha-editable-highlight').mahalo()
 
   editable_elements: ->
-    @options.target[0].contentWindow.Aloha.jQuery('.editable-long-text, .editable-short-text')
+    if @options.target[0].contentWindow.Aloha
+      @options.target[0].contentWindow.Aloha.jQuery('.editable-long-text, .editable-short-text')
+    else
+      null
 
   enable_editing_mode_checkbox: ->
     @$('.editing-mode input[type=checkbox]').checkToggle
@@ -68,8 +78,15 @@ class Locomotive.Views.InlinEditor.ToolbarView extends Backbone.View
       off_label_color:  '#bbb'
 
   refresh: ->
-    console.log('refreshing...')
-    @
+    console.log('refreshing toolbar...')
+
+    @$('h1').html(@model.get('title'))
+
+    if @$('.editing-mode input[type=checkbox]').is(':checked')
+      @$('.editing-mode div.switchArea').trigger('click')
+
+    @$('.element-actions').hide()
+
 
   remove: ->
     super

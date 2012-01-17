@@ -33,14 +33,17 @@
 
       %h1 {{title}}
 
+      .back.col
+        = link_to t('.buttons.back'), '#', :class => 'button back'
+
       .editing-mode.col{ :style => 'display: none' }
-        %label Editing mode:
+        %label= t('.editing_mode')
         = check_box_tag 'edit', '1', false
 
-      .element-actions.col
-        %label= t('.update_elements')
-        = link_to t('.save'), '#', :class => 'button save'
-        = link_to t('.cancel'), '#', :class => 'button cancel'
+      .element-actions.col{ :style => 'display: none' }
+        %label= t('.save_modifications')
+        = link_to t('.buttons.confirm'), '#', :class => 'button save'
+        = link_to t('.buttons.cancel'), '#', :class => 'button cancel'
 
   %body
     #page

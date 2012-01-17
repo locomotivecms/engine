@@ -7,7 +7,7 @@ module Liquid
           if context.registers[:current_locomotive_account] && context.registers[:inline_editor]
             %{
               <script type="text/javascript">
-                window.parent.application_view.set_page(#{context.registers[:page].to_json});
+                window.parent.application_view.set_page(#{context.registers[:page].to_presenter.as_json_for_html_view.to_json});
               </script>
             }
           else
