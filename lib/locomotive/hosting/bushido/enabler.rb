@@ -52,7 +52,7 @@ module Locomotive
           end
 
           def tweak_ui
-            edit_account_url = 'https://auth.bushi.do/users/edit'
+            edit_account_url = 'https://bushi.do/account'
 
             ::Admin::GlobalActionsCell.update_for(:bushido) do |menu|
               menu.modify :welcome, :url => edit_account_url
