@@ -3,6 +3,7 @@
 #= require jquery_ujs
 #= require underscore
 #= require backbone
+#= require locomotive/backbone.sync
 #= require locomotive/growl
 #= require locomotive/handlebars
 #= require locomotive/ICanHandlebarz

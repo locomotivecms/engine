@@ -10,5 +10,6 @@
  *= require codemirror/themes/default
  *= require locomotive/toggle.css
  *= require locomotive/liquid_mode.css
+ *= require_tree ./locomotive/shared
  *= require_tree ./locomotive/backoffice
 */

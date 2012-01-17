@@ -48,6 +48,10 @@
     var script = doc.createElement('script');
     script.type = 'text/javascript';
     script.src = src;
+    if (options && options.onload) {
+      script.onload = options.onload;
+      delete(options.onload);
+    }
     for (var key in options) {
       script.setAttribute(key, options[key]);
     }

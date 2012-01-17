@@ -47,7 +47,7 @@
       @include single-text-shadow(#000, 0px, 1px, 0px);
     }
 
-    .edit {
+    .editing-mode {
       float: right;
       margin-right: 10px;
       line-height: 50px;
@@ -61,6 +61,16 @@
         div.switchArea {
           @include box-shadow(rgba(0, 0, 0, 0.8) 0px 1px 0px 0px);
         }
+      }
+    }
+
+    .element-actions {
+      float: right;
+      margin-right: 10px;
+      line-height: 50px;
+
+      a {
+        margin: 0 10px;
       }
     }
   }

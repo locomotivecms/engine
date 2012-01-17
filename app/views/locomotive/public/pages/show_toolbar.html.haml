@@ -24,9 +24,7 @@
 
         $(document).ready(function() {
 
-          window.application_view = new Locomotive.Views.InlinEditor.ApplicationView({
-            flash:      #{flash.to_json}
-          });
+          window.application_view = new Locomotive.Views.InlinEditor.ApplicationView();
           window.application_view.render();
 
         });
@@ -35,13 +33,17 @@
 
       %h1 {{title}}
 
-      .edit
+      .editing-mode{ :style => 'display: none' }
         %label Editing mode:
         = check_box_tag 'edit', '1', false
 
+      .element-actions{ :style => 'display: none' }
+        = link_to t('.save'), '#', :class => 'button save'
+        = link_to t('.cancel'), '#', :class => 'button cancel'
+
   %body
     #page
-      %iframe{ :src => %(#{request.fullpath}?noiframe=true') , :scrolling => 'no', :frameborder => '0' }
+      %iframe{ :src => request.fullpath.gsub('_admin', '_edit'), :scrolling => 'no', :frameborder => '0' }
 
     #toolbar
       .background

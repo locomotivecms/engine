@@ -72,9 +72,19 @@ x edit my site
   - back to default locale (if changed in settings)
   - front
 - inline editor
-  - remove inline-editor tag
-  - rack
-  - iframe
+  x rack
+  x iframe
+  (- remove inline-editor tag)
+  - save editable elements
+  - notification (growl)
+  - i18n
+  - change page
+  - aloha:
+    - i18n
+    - insert image
+    - remove sidebar
+
+
 - bugs:
   - unable to toggle the "required" check_boxes for content types
 

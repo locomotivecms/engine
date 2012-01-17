@@ -7,7 +7,9 @@ class Locomotive.Views.InlinEditor.ToolbarView extends Backbone.View
   className: 'toolbar-view'
 
   events:
-    'change .edit input[type=checkbox]': 'toggle_inline_editing'
+    'change .editing-mode input[type=checkbox]':  'toggle_editing_mode'
+    'click  .element-actions a.save':             'save_modifications'
+    'click  .element-actions a.cancel':           'cancel_modifications'
 
   initialize: ->
     super
@@ -16,12 +18,42 @@ class Locomotive.Views.InlinEditor.ToolbarView extends Backbone.View
     super
     $(@el).html(ich.toolbar(@model.toJSON()))
 
-    @enable_edit_checkbox()
+    @enable_editing_mode_checkbox()
 
     @
 
-  toggle_inline_editing: (event) ->
-    console.log('toggle_inline_editing !!!')
+  change_editable_element: (aloha_editable) ->
+    console.log('changing editable_element...')
+
+    window.bar = aloha_editable
+
+    element_id  = aloha_editable.obj.attr('data-element-id')
+    @model.get('editable_elements').get(element_id).set
+      content: aloha_editable.getContents()
+
+    @$('.element-actions').show()
+
+  save_modifications: (event) ->
+    event.stopPropagation() & event.preventDefault()
+
+    previous_attributes = _.clone @model.attributes
+
+    @model.save {},
+      success: (model, response, xhr) =>
+        model.attributes = previous_attributes
+        @$('.element-actions').hide()
+      error: (model, xhr) =>
+        @$('.element-actions').hide()
+
+  cancel_modifications: (event) ->
+    event.stopPropagation() & event.preventDefault()
+    @options.target[0].contentWindow.location.href = @options.target[0].contentWindow.location.href;
+
+  enable: ->
+    @options.target[0].contentWindow.Aloha.settings.locale = window.locale;
+    @$('.editing-mode').show()
+
+  toggle_editing_mode: (event) ->
     if $(event.target).is(':checked')
       @editable_elements().aloha()
     else
@@ -30,8 +62,8 @@ class Locomotive.Views.InlinEditor.ToolbarView extends Backbone.View
   editable_elements: ->
     @options.target[0].contentWindow.Aloha.jQuery('.editable-long-text, .editable-short-text')
 
-  enable_edit_checkbox: ->
-    @$('.edit input[type=checkbox]').checkToggle
+  enable_editing_mode_checkbox: ->
+    @$('.editing-mode input[type=checkbox]').checkToggle
       on_label_color:   '#fff'
       off_label_color:  '#bbb'
 

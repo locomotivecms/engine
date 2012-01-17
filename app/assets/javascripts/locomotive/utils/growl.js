@@ -10,3 +10,5 @@ $.growl.settings.dockCss = {
   width: '100%',
   zIndex: 50000
 };
+
+// $.growl.settings.displayTimeout = 500;
