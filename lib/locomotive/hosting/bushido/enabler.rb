@@ -75,8 +75,8 @@ module Locomotive
 
           def setup_cas_client
             ::Devise.setup do |config|
-              config.cas_base_url         = 'https://auth.bushi.do/cas'
-              config.cas_logout_url       = 'https://auth.bushi.do/cas/logout'
+              config.cas_base_url         = 'https://bushi.do/cas'
+              config.cas_logout_url       = 'https://bushi.do/cas/logout'
               config.cas_create_user      = false
               config.cas_username_column  = :bushido_user_id
             end
