@@ -2,6 +2,7 @@
 @import "compass/css3/opacity";
 @import "compass/css3/box-shadow";
 @import "compass/css3/text-shadow";
+@import "compass/css3/border-radius";
 
 #toolbar {
   position: fixed;
@@ -20,7 +21,7 @@
     height: 100%;
     width: 100%;
 
-    @include background-image(linear-gradient(#303138, #23242B));
+    @include background-image(linear-gradient(#3F3F45, #23242B));
     @include box-shadow(rgba(0, 0, 0, 0.6) 0px -1px 10px 0px, rgba(0, 0, 0, 0.2) 0px 4px 6px 4px, rgba(255, 255, 255, 0.4) 0 1px 0 0 inset);
     @include opacity(0.95);
   }
@@ -47,9 +48,17 @@
       @include single-text-shadow(#000, 0px, 1px, 0px);
     }
 
+    .col {
+      margin-right: 10px;
+      padding-left: 14px;
+
+      border-left: 1px solid rgba(0, 0, 0, 0.3);
+      @include box-shadow(rgba(255, 255, 255, 0.1) 1px 0 0 0 inset);
+    }
+
     .editing-mode {
       float: right;
-      margin-right: 10px;
+
       line-height: 50px;
 
       .toggleSwitch {
@@ -69,8 +78,54 @@
       margin-right: 10px;
       line-height: 50px;
 
-      a {
-        margin: 0 10px;
+
+      .button {
+        display: inline-block;
+
+        height: 26px;
+        line-height: 26px;
+
+        margin: 0 5px;
+        padding: 0 14px;
+
+        @include border-radius(16px);
+        @include background-image(linear-gradient(#303138, #1e1e24));
+        @include box-shadow(rgba(255, 255, 255, 0.1) 0 1px 0 0 inset, rgba(255, 255, 255, 0.1) 0 1px 0 0);
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.6);
+
+        text-decoration: none;
+        font-size: 13px;
+
+        em {
+          display: inline-block;
+          position: relative;
+          background: transparent image-url("locomotive/menu/icons.png") no-repeat 0 0px;
+          height: 11px;
+          width: 11px;
+          top: 2px;
+          left: -5px;
+        }
+
+        span {
+          color: #fff;
+          font-size: 11px;
+          @include single-text-shadow(rgba(0, 0, 0, 1), 1px, 1px, 1px);
+        }
+
+        &:hover {
+          border: 1px solid rgba(255, 255, 255, 0.5);
+          border-top: 1px solid rgba(255, 255, 255, 0.4);
+        }
+
+        &.on, &:active {
+          border: 1px solid rgba(0, 0, 0, 0.4);
+          border-top: 1px solid rgba(0, 0, 0, 0.6);
+          border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+          @include background-image(linear-gradient(#1e1e24, #212229));
+          @include box-shadow(rgba(0, 0, 0, 0) 0 1px 0 0 inset, rgba(255, 255, 255, 0.2) 0 1px 0 0);
+        }
       }
     }
   }

@@ -33,11 +33,12 @@
 
       %h1 {{title}}
 
-      .editing-mode{ :style => 'display: none' }
+      .editing-mode.col{ :style => 'display: none' }
         %label Editing mode:
         = check_box_tag 'edit', '1', false
 
-      .element-actions{ :style => 'display: none' }
+      .element-actions.col
+        %label= t('.update_elements')
         = link_to t('.save'), '#', :class => 'button save'
         = link_to t('.cancel'), '#', :class => 'button cancel'
 
