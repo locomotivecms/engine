@@ -35,11 +35,12 @@ class Locomotive.Views.ApplicationView extends Backbone.View
     $('#submenu ul li.hoverable').each ->
       timer = null
       link  = $(@)
-      (popup = link.find('.popup')).removeClass('popup').addClass('submenu-popup').css(
-        top:  link.offset().top + link.height() - 2
-        left: link.offset().left - parseInt(popup.css('padding-left'))
+      (popup = link.find('.popup')).removeClass('popup').addClass('submenu-popup'
       ).bind('show', ->
-        link.find('a').addClass('hover') & popup.show()
+        link.find('a').addClass('hover') & popup.css(
+          top:  link.offset().top + link.height() - 2
+          left: link.offset().left - parseInt(popup.css('padding-left'))
+        ).show()
       ).bind('hide', ->
         link.find('a').removeClass('hover') & $(@).hide()
       ).bind('mouseleave', -> popup.trigger('hide')

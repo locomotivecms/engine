@@ -64,8 +64,8 @@ x edit my site
     x public_form (previously api something)
     x bug text formatting
     x custom_fields: use the appropriate icon to drag select options
+    x bug ui with contents popup
     - use list_or_group_entries instead of ordered_entries
-    - bug ui with contents popup
 - i18n
   x add locales a site responds to
   x locale switcher
