@@ -37,7 +37,7 @@ module Locomotive
     ## validations ##
     validates_presence_of   :site, :name, :slug
     validates_uniqueness_of :slug, :scope => :site_id
-    validates_size_of       :entries_custom_fields, :minimum => 1, :message => :array_too_short
+    validates_size_of       :entries_custom_fields, :minimum => 1, :message => :too_few_custom_fields
 
     ## behaviours ##
     custom_fields_for :entries
@@ -103,12 +103,15 @@ module Locomotive
     def bubble_fields_errors_up
       return if self.errors[:entries_custom_fields].empty?
 
-      self.errors.set(:entries_custom_fields, [])
+      hash = { :base => self.errors[:entries_custom_fields] }
 
       self.entries_custom_fields.each do |field|
         next if field.valid?
-        self.errors.add(:entries_custom_fields, field.errors.to_a)
+        key = field.persisted? ? field._id.to_s : field.position.to_i
+        hash[key] = field.errors.to_a
       end
+
+      self.errors.set(:entries_custom_fields, hash)
     end
 
   end

@@ -28,6 +28,8 @@ class Locomotive.Views.ContentTypes.CustomFieldEntryView extends Backbone.View
     return @
 
   enable_behaviours: ->
+    required_input = @$('.required-input input[type=checkbox]')
+    required_input.checkToggle(on_label: required_input.attr('data-on-label'), off_label: required_input.attr('data-off-label'))
     @$('li.input.toggle input[type=checkbox]').checkToggle()
     @render_select_options_view()
 
@@ -48,7 +50,7 @@ class Locomotive.Views.ContentTypes.CustomFieldEntryView extends Backbone.View
     @$('#content_type_contents_custom_field_select_options_input').append(@select_options_view.render().el)
 
   make_fields_editable: ->
-    @$('span.label-input input[type=text], span.type-input select').editableField()
+    @$('.label-input input[type=text], .type-input select').editableField()
 
   toggle: (event) ->
     event.stopPropagation() & event.preventDefault()
@@ -60,13 +62,13 @@ class Locomotive.Views.ContentTypes.CustomFieldEntryView extends Backbone.View
       form.slideUp()
 
   show_error: (message) ->
-    html = $("<span class=\"inline-errors\">#{message}</div>")
-    @$('span.required-input').after(html)
+    html = $("<span class=\"inline-errors\">#{message}</span>")
+    @$('.required-input').after(html)
 
   remove: (event) ->
     event.stopPropagation() & event.preventDefault()
 
     if confirm($(event.target).attr('data-confirm'))
-      @$('span.label-input input[type=text], span.type-input select').editableField('destroy')
+      @$('.label-input input[type=text], .type-input select').editableField('destroy')
       super()
       @options.parent_view.remove_entry(@model, @)

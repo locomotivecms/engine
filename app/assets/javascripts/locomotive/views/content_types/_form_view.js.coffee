@@ -12,8 +12,6 @@ class Locomotive.Views.ContentTypes.FormView extends Locomotive.Views.Shared.For
   initialize: ->
     @model = new Locomotive.Models.ContentType(@options.content_type)
 
-    window.foo = @model
-
     Backbone.ModelBinding.bind @
 
   render: ->
@@ -64,12 +62,20 @@ class Locomotive.Views.ContentTypes.FormView extends Locomotive.Views.Shared.For
         target.show()
 
   show_error: (attribute, message, html) ->
-    if attribute == 'entries_custom_fields'
-      return if _.isEmpty(message)
-      for _message, index in message
-        @custom_fields_view._entry_views[index].show_error(_message[0])
-    else
+    if attribute != 'entries_custom_fields'
       super
+    else
+      return if _.isEmpty(message)
+
+      _.each _.keys(message), (key) =>
+        _messages = message[key]
+
+        if key == 'base'
+          html = $("<div class=\"inline-errors\"><p>#{_messages[0]}</p></div>")
+          @$('#custom_fields_input .list').after(html)
+        else
+          view = @custom_fields_view.find_entry_view(key)
+          view.show_error(_messages[0]) if view?
 
   remove: ->
     @custom_fields_view.remove()

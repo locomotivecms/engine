@@ -20,19 +20,17 @@
 
   = f.semantic_fields_for :contents_custom_field, CustomFields::Field.new do |g|
 
-    %span.handle
+    .handle.col
       = image_tag 'locomotive/form/icons/drag.png'
 
-    %span.label-input
+    .label-input.col
       = g.text_field :label, :class => 'label'
 
-    %span.type-input
+    .type-input.col
       = g.select :type, options_for_custom_field_type, {}, { :class => 'type' }
 
-    %span.required-input
-      = g.check_box :required, :class => 'required'
-
-      = g.label :required, t('.is_required')
+    .required-input.col
+      = g.check_box :required, :class => 'required', :'data-on-label' => t('.required'), :'data-off-label' => t('.optional')
 
     %ol.nested{ :style => 'display: none' }
 
@@ -49,6 +47,8 @@
     %span.actions
       = link_to 'toggle', '#', :class => 'toggle'
       = link_to 'x', '#', :class => 'remove', :confirm => t('locomotive.messages.confirm')
+
+    .clear
 
 
 %script{ :type => 'text/html', :id => 'select_options_list' }

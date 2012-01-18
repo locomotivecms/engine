@@ -63,9 +63,9 @@ x edit my site
         x destroy
     x public_form (previously api something)
     x bug text formatting
+    x custom_fields: use the appropriate icon to drag select options
     - use list_or_group_entries instead of ordered_entries
     - bug ui with contents popup
-    - custom_fields: use the appropriate icon to drag select options
 - i18n
   x add locales a site responds to
   x locale switcher
@@ -84,10 +84,8 @@ x edit my site
     - i18n
     - insert image
 
-
-
 - bugs:
-  - unable to toggle the "required" check_boxes for content types
+  x unable to toggle the "required" check_boxes for content types
 
 - disallow to click twice on the submit form button (spinner ?)
 - message to notify people if their browser is too old

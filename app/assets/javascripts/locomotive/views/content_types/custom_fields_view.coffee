@@ -26,7 +26,7 @@ class Locomotive.Views.ContentTypes.CustomFieldsView extends Backbone.View
 
   make_list_sortable: ->
     @sortable_list = @$('> ul').sortable
-      handle: 'span.handle'
+      handle: '.handle'
       items:  'li.custom-field'
       axis:   'y'
       update: @refresh_position_entries
@@ -34,6 +34,13 @@ class Locomotive.Views.ContentTypes.CustomFieldsView extends Backbone.View
   refresh_position_entries: ->
     _.each @_entry_views, (view) ->
       view.model.set position: $(view.el).index()
+
+  find_entry_view: (key) ->
+    _.find @_entry_views, (view) ->
+      if key.length > 3
+        view.model.id == key
+      else
+        view.model.get('position') == parseInt(key)
 
   add_entry: (event) ->
     event.stopPropagation() & event.preventDefault()

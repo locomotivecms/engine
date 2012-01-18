@@ -75,11 +75,11 @@ class Locomotive.Views.Shared.FormView extends Backbone.View
 
   show_errors: (errors) ->
     for attribute, message of errors
-      if _.isArray(message[0])
-        @show_error attribute, message
-      else
+      if _.isString(message[0])
         html = $("<div class=\"inline-errors\"><p>#{message[0]}</p></div>")
         @show_error attribute, message[0], html
+      else
+        @show_error attribute, message
 
   show_error: (attribute, message, html) ->
     input = @$("##{@model.paramRoot}_#{attribute}")

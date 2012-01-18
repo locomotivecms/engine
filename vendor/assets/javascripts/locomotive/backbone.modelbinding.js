@@ -388,7 +388,7 @@ Backbone.ModelBinding = (function(Backbone, _, $){
               array = _.without(array, value);
             data[attr_name] = array;
           } else
-            data[attr_name] = value;
+            data[attr_name] = checked;
           model.set(data);
         };
 

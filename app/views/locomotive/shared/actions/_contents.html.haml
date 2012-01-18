@@ -5,10 +5,3 @@
 - if current_site.locales.size > 1
   .action
     = render 'locomotive/shared/locale_picker_link'
-    / = link_to '#', :id => 'content-locale-picker-link', :class => 'button' do
-    /   %span.hand
-    /     &nbsp;
-    /
-    /   = image_tag "locomotive/icons/flags/#{current_content_locale}.png", :class => 'flag'
-    /
-    /   %span.text= current_content_locale

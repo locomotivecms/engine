@@ -71,7 +71,8 @@ en:
         has_many:
           empty: Empty
       form:
-        is_required: is required
+        required: Required
+        optional: Optional
         default_label: Field name
         select_options:
           ask_name: "Type the label of the option"
