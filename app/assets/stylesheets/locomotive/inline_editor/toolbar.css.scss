@@ -9,8 +9,10 @@
   top: 0px;
   left: 0px;
 
-  height: 50px;
+  height: 40px;
   width: 100%;
+
+  @include box-shadow(rgba(0, 0, 0, 1) 0px -1px 10px 0px, rgba(0, 0, 0, 0.1) 0px 4px 6px 4px, rgba(255, 255, 255, 0.4) 0 1px 0 0 inset);
 
   .background {
     z-index: 100;
@@ -22,7 +24,6 @@
     width: 100%;
 
     @include background-image(linear-gradient(#3F3F45, #23242B));
-    @include box-shadow(rgba(0, 0, 0, 0.6) 0px -1px 10px 0px, rgba(0, 0, 0, 0.2) 0px 4px 6px 4px, rgba(255, 255, 255, 0.4) 0 1px 0 0 inset);
     @include opacity(0.95);
   }
 
@@ -31,6 +32,8 @@
     height: 100%;
     z-index: 200;
     color: #fff;
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 
     h1 {
       float: left;
@@ -41,7 +44,7 @@
 
       width: 200px;
 
-      line-height: 50px;
+      line-height: 40px;
       font-size: 18px;
       font-weight: bold;
       color: #fff;
@@ -61,8 +64,8 @@
     .col {
       float: right;
 
-      height: 50px;
-      line-height: 50px;
+      height: 40px;
+      line-height: 40px;
 
       margin-right: 10px;
       padding-left: 14px;
@@ -79,14 +82,14 @@
       #content-locale-picker-link {
         @include button;
 
-        top: 7px;
+        top: 8px;
       }
     }
 
     .back {
       a {
         position: relative;
-        top: 9px;
+        top: 7px;
       }
     }
 
