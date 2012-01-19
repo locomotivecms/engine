@@ -121,6 +121,10 @@ class ContentType
   def group_by_field
     @group_by_field ||= self.content_custom_fields.detect { |f| f._name == self.group_by_field_name }
   end
+  
+  def category_names(field)
+    self.content_custom_fields.detect { |f| f._alias == field }.ordered_category_items.map(&:name)
+  end
 
   protected
 
