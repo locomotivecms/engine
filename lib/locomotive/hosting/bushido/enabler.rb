@@ -81,10 +81,9 @@ module Locomotive
               config.cas_username_column  = :bushido_user_id
             end
 
-            Admin::SessionsController.class_eval do
-              def new
-                redirect_to admin_pages_url
-              end
+            ActionDispatch::Session::MongoidStore.class_eval do
+              include DeviseCasAuthenticatable::SingleSignOut::SetSession
+              alias_method_chain :set_session, :storage
             end
           end
 
