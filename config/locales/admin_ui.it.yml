@@ -99,7 +99,7 @@ it:
         help: "Le pagine sono organizzate ad albero. Puoi ordinarle come se fossero delle cartelle"
         no_items: "Per ora non ci sono pagine. Clicca <a href=\"%{url}\">qui</a> per creare la prima pagina."
         new: nuova pagina
-        lastest_items: Ultime pagine
+        latest_items: Ultime pagine
       new:
         title: Nuova pagina
         help: "Prego, compila il seguente modulo per creare la tua pagina. Fai attenzione, per default, la pagina non è pubblicata."
@@ -243,7 +243,7 @@ it:
         download: scarica elementi
         new: nuovo elemento
         category_noname: "Senza nome"
-        lastest_items: "Ultimi elementi"
+        latest_items: "Ultimi elementi"
         updated_at: "modificato il"
       list:
         no_items: "Per ora non ci sono elementi. Clicca <a href=\"%{url}\">qui</a> per creare il primo."

@@ -40,7 +40,7 @@ class Page
   validates_exclusion_of    :slug, :in => Locomotive.config.reserved_slugs, :if => Proc.new { |p| p.depth == 0 }
 
   ## named scopes ##
-  scope :latest_updated, :order_by => [[:updated_at, :desc]], :limit => Locomotive.config.lastest_items_nb
+  scope :latest_updated, :order_by => [[:updated_at, :desc]], :limit => Locomotive.config.latest_items_nb
   scope :root, :where => { :slug => 'index', :depth => 0 }
   scope :not_found, :where => { :slug => '404', :depth => 0 }
   scope :published, :where => { :published => true }
