@@ -101,7 +101,7 @@ de:
         help: "Seiten sind als Baum organisiert. Du kannst die Seiten also wie Ordner sortieren und verschachteln."
         no_items: "Momentan gibt es keine Seiten. Klicke einfach <a href='%{url}'>hier</a>, um die erste Seite zu erstellen."
         new: neue Seite
-        lastest_items: Neueste Seiten
+        latest_items: Neueste Seiten
       new:
         title: Neue Seite
         help: "Fülle das folgende Formular aus, um eine neue Seite zu erstellen. Nur zur Info: Die Seite wird nicht standardmäßig publiziert!"
@@ -244,7 +244,7 @@ de:
         download: Elemente herunterladen
         new: neues Element
         category_noname: "Kein Name"
-        lastest_items: "Neueste Elemente"
+        latest_items: "Neueste Elemente"
         updated_at: "Aktualisiert am"
       list:
         no_items: "Momentan gibt es keine Elemente. Klicke einfach <a href='%{url}'>hier</a>, um das erste Element zu erstellen."

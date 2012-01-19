@@ -16,7 +16,7 @@ module Locomotive
       :mailer_sender          => 'support', #support@example.com'
       :manage_subdomain       => false,
       :manage_manage_domains  => false,
-      :lastest_items_nb       => 5,
+      :latest_items_nb       => 5,
       :rack_cache             => {
         :verbose     => true,
         :metastore   => URI.encode("file:#{Rails.root}/tmp/dragonfly/cache/meta"), # URI encoded in case of spaces

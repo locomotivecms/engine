@@ -26,7 +26,7 @@ class ContentInstance
   after_create :send_notifications
 
   ## named scopes ##
-  scope :latest_updated, :order_by => :updated_at.desc, :limit => Locomotive.config.lastest_items_nb
+  scope :latest_updated, :order_by => :updated_at.desc, :limit => Locomotive.config.latest_items_nb
 
   ## methods ##
 

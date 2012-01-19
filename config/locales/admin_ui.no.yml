@@ -101,7 +101,7 @@
         help: "Sidene er organisert i en trestruktur. Du kan sortere både sider og mapper."
         no_items: "Det har ikke blitt opprettet noen sider ennå. Klikk <a href=\"%{url}\">her</a> for lage den første."
         new: ny side
-        lastest_items: Siste sider
+        latest_items: Siste sider
       new:
         title: Ny side
         help: "Fyll ut skjemaet nedenfor for å opprette en ny side. Publisering er skrudd av som standard."
@@ -245,7 +245,7 @@
         download: last ned elementer
         new: nytt element
         category_noname: "Navn mangler"
-        lastest_items: "Siste elementer"
+        latest_items: "Siste elementer"
         updated_at: "Sist oppdatert"
       list:
         no_items: "Det har ikke blitt opprettet noen elementer her ennå. Klikk <a href=\"%{url}\">her</a> for å opprette det første."

@@ -3,7 +3,7 @@
     .header
       %p= link_to t('admin.pages.index.new'), new_admin_page_url
   .inner
-    %h2!= t('admin.pages.index.lastest_items')
+    %h2!= t('admin.pages.index.latest_items')
     %ul
       - current_site.pages.latest_updated.minimal_attributes.each do |page|
         %li
@@ -18,7 +18,7 @@
       %p.edit= link_to t('admin.contents.index.edit'), edit_admin_content_type_url(content_type)
 
   .inner
-    %h2!= t('admin.contents.index.lastest_items')
+    %h2!= t('admin.contents.index.latest_items')
     %ul
       - content_type.latest_updated_contents.each do |content|
         %li

@@ -99,7 +99,7 @@ es:
         no_items: "No se ha creado ninguna página aún. Pulse <a href=\"%{url}\">aquí</a> to para crear la primera."
 
         new: Nueva página
-        lastest_items: Últimas páginas
+        latest_items: Últimas páginas
       new:
         title: Nueva página
         help: "Por favor rellene el formulario de más abajo para crear su página. ¡Atención! Las páginas, por defecto, están 'no publicadas'."
@@ -244,7 +244,7 @@ es:
         download: descargar elementos
         new: nuevo elemento
         category_noname: "Sin nombre"
-        lastest_items: "Últimos elementos"
+        latest_items: "Últimos elementos"
         updated_at: "Última actualización"
       list:
         no_items: "No hay ningún elemento. Haga click <a href=\"%{url}\">aquí</a> para crear el primero."

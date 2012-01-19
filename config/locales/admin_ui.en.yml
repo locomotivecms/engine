@@ -101,7 +101,7 @@ en:
         help: "Pages are organized as a tree. You can order pages as well as folders"
         no_items: "There are no pages for now. Just click <a href=\"%{url}\">here</a> to create the first one."
         new: new page
-        lastest_items: Lastest pages
+        latest_items: Latest pages
       new:
         title: New page
         help: "Please fill in the below form to create your page. Be careful, by default, the page is not published."
@@ -245,7 +245,7 @@ en:
         download: download items
         new: new item
         category_noname: "No name"
-        lastest_items: "Lastest items"
+        latest_items: "Lastest items"
         updated_at: "Updated at"
       list:
         no_items: "There are no items for now. Just click <a href=\"%{url}\">here</a> to create the first one."
