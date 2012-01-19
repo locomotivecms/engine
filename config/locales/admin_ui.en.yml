@@ -245,7 +245,7 @@ en:
         download: download items
         new: new item
         category_noname: "No name"
-        latest_items: "Lastest items"
+        latest_items: "Latest items"
         updated_at: "Updated at"
       list:
         no_items: "There are no items for now. Just click <a href=\"%{url}\">here</a> to create the first one."
