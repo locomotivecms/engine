@@ -1,7 +1,6 @@
 GIT
   remote: git://github.com/Bushido/devise_cas_authenticatable.git
-  revision: 994bfd939a6142ff6f18fec5fd9040c8a1b6b699
-  branch: single_signout
+  revision: 71fc4540b06d229c0a1e5cbede48be830af9206f
   specs:
     devise_bushido_authenticatable (1.0.0)
       devise (>= 1.0.6)
