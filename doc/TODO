@@ -83,13 +83,19 @@ x edit my site
     x remove sidebar
     - i18n
     - insert image
+- deployment
+  - fix integration problems
+  - pre-compile assets
 
 - bugs:
   x unable to toggle the "required" check_boxes for content types
+  - unable to sign out
+  - https://github.com/locomotivecms/engine/pull/281/files
 
 - disallow to click twice on the submit form button (spinner ?)
 - message to notify people if their browser is too old
 - install a site by default at the first installation (without asking)
+- where to put Locomotive::InlineEditorMiddleware ?
 
 
 

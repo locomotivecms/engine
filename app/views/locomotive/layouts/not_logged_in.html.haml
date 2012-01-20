@@ -4,13 +4,10 @@
   %head
     %title= title || escape_once("#{Locomotive.config.name} &mdash; #{current_site.name}")
 
-    = javascript_include_tag  'jquery.js'
+    = javascript_include_tag  'locomotive/not_logged_in'
     = stylesheet_link_tag     'locomotive/not_logged_in', :media => 'screen'
 
     = yield :head
-
-    / [if IE]
-      = stylesheet_link_tag 'locomotive/ie', :media => 'screen'
 
   %body{ :class => controller.controller_name }
     #wrapper

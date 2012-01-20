@@ -19,3 +19,17 @@
 
 collection, selector = Locomotive::ContentType.collection, Locomotive::ContentType.criteria.selector
 collection.update selector, { '$rename' => { 'contents_custom_fields' => 'entries_custom_fields' } }
+
+
+Installation:
+
+  1/ open Gemfile
+
+    gem 'locomotive_cms', :path => '../../Desktop/NoCoffee/LocomotiveCMS/engine/', :require => 'locomotive/engine'
+    gem 'unicorn'
+
+  2/ bundle exec rails g mongoid:config
+
+  3/ bundle exec rails g locomotive:install
+
+  4/ bundle exec rake assets:precompile

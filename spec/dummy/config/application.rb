@@ -6,7 +6,7 @@ require 'active_resource/railtie'
 require 'sprockets/railtie'
 
 Bundler.require
-require 'locomotive'
+require 'locomotive/engine'
 
 module Dummy
   class Application < Rails::Application
@@ -43,8 +43,6 @@ module Dummy
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
-
-    config.middleware.use 'Locomotive::InlineEditorMiddleware'
   end
 end
 

@@ -1,6 +1,4 @@
-require 'locomotive/engine'
-
-require 'locomotive/dependencies'
+puts "\t...loading core"
 
 require 'locomotive/version'
 require 'locomotive/core_ext'
@@ -91,6 +89,8 @@ module Locomotive
 
     self.app_middleware.insert_before Rack::Lock, '::Locomotive::Middlewares::Fonts', :path => %r{^/fonts}
     self.app_middleware.use '::Locomotive::Middlewares::SeoTrailingSlash'
+
+    self.app_middleware.use '::Locomotive::InlineEditorMiddleware' # TODO
   end
 
   def self.configure_multi_sites

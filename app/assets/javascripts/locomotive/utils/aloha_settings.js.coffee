@@ -1,10 +1,16 @@
-unless window.Aloha?
-  window.Aloha = {}
+# unless window.Aloha?
+#   window.Aloha = {}
 
-window.Aloha.settings =
+Aloha = window.Aloha ?= {}
+
+Aloha.settings =
+
   logLevels: { 'error': true, 'warn': true, 'info': false, 'debug': false }
+
   errorhandling: true
+
   plugins:
+
     format:
       config: [ 'b', 'i', 'u','del','sub','sup', 'p', 'title', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'pre', 'removeFormat']
       editables:
@@ -25,3 +31,5 @@ window.Aloha.settings =
 
   sidebar:
     disabled: true
+
+
