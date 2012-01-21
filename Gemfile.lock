@@ -259,6 +259,7 @@ GEM
       ffi (~> 1.0.9)
       multi_json (~> 1.0.4)
       rubyzip
+    shoulda-matchers (1.0.0)
     spork (0.9.0.rc9)
     term-ansicolor (1.0.7)
     thor (0.14.6)
@@ -332,6 +333,7 @@ DEPENDENCIES
   rubyzip
   sanitize
   sass (= 3.1.2)
+  shoulda-matchers
   spork (~> 0.9.0.rc)
   unicorn
   warden

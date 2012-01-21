@@ -73,6 +73,7 @@ group :test do
   gem 'xpath', '~> 0.1.4'
   gem 'capybara'
   gem 'database_cleaner'
+  gem 'shoulda-matchers'
 
   gem 'spork', '~> 0.9.0.rc'
   gem 'launchy'
