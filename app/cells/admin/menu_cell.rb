@@ -1,4 +1,4 @@
-class Admin::MenuCell < Cell::Base
+class Admin::MenuCell < Cell::Rails
 
   include ::Rails.application.routes.url_helpers
 

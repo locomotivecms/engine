@@ -62,7 +62,7 @@ GEM
       xpath (~> 0.1.4)
     carrierwave (0.5.6)
       activesupport (~> 3.0)
-    cells (3.7.1)
+    cells (3.8.0)
       actionpack (~> 3.0)
       railties (~> 3.0)
     childprocess (0.2.5)
@@ -141,7 +141,7 @@ GEM
       responders (~> 0.6.0)
     jammit (0.6.5)
       yui-compressor (>= 0.9.3)
-    json (1.6.4)
+    json (1.6.5)
     kaminari (0.13.0)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
@@ -293,7 +293,7 @@ DEPENDENCIES
   cancan
   capybara
   carrierwave (= 0.5.6)
-  cells (~> 3.7.0)
+  cells
   cucumber-rails (= 1.2.0)
   custom_fields (= 1.0.0.beta.25)
   database_cleaner

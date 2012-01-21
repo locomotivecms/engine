@@ -40,7 +40,7 @@ gem 'delayed_job_mongoid', '1.0.8'
 gem 'rubyzip'
 gem 'locomotive_jammit-s3', :require => 'jammit-s3'
 gem 'SystemTimer', :platforms => :ruby_18
-gem 'cells', '~> 3.7.0'
+gem 'cells'
 gem 'sanitize'
 gem 'highline'
 
