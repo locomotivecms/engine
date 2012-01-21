@@ -21,36 +21,18 @@ module Locomotive
     end
 
     initializer "Locomotive precompile hook" do |app|
-      # app.config.assets.precompile += %w(locomotive.js locomotive.css locomotive/inline_editor.js locomotive/inline_editor.css
-      # locomotive/not_logged_in.js locomotive/not_logged_in.css
-      # locomotive/aloha.js)
-
       app.config.assets.precompile += %w(locomotive.js locomotive.css locomotive/inline_editor.js locomotive/inline_editor.css
       locomotive/not_logged_in.js locomotive/not_logged_in.css
       locomotive/aloha.js)
 
+      # very useful to see what happens during the precompilation of the assets
       def compile_asset?(path)
-        # ignores any filename that begins with '_' (e.g. sass partials)
-        # all other css/js/sass/image files are processed
-        if File.basename(path) =~ /^[^_].*\.\w+$/
-          puts "Compiling: #{path}"
-          true
-        else
-          puts "Ignoring: #{path}"
-          false
-        end
+        puts "Compiling: #{path}"
+        true
       end
 
       app.config.assets.precompile = [ method(:compile_asset?).to_proc ]
 
-      # app.config.assets.precompile += lambda { |f| puts f.inspect; true }
-
-      # locomotive/aloha.js locomotive/aloha.css
-      # locomotive/aloha/img/*)
-      # # locomotive/utils/aloha_settings.js
-      # # locomotive/aloha/*.js
-      # # locomotive/aloha.css
-      # # locomotive/aloha/plugins/*.css)
     end
 
   end

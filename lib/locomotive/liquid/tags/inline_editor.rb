@@ -11,8 +11,7 @@ module Liquid
             %{
               <meta content="true" name="inline-editor" />
 
-              #{ActionController::Base.helpers.stylesheet_link_tag    'aloha'}
-
+              #{ActionController::Base.helpers.stylesheet_link_tag    'aloha/css/aloha.css'}
               #{ActionController::Base.helpers.javascript_include_tag 'locomotive/aloha', :'data-aloha-plugins' => plugins}
 
 
@@ -33,17 +32,3 @@ module Liquid
     end
   end
 end
-
-# = javascript_include_tag  'locomotive/not_logged_in'
-# = stylesheet_link_tag     'locomotive/not_logged_in', :media => 'screen'
-
-# <link href="/assets/locomotive/aloha/css/aloha.css" media="screen" rel="stylesheet" type="text/css" />
-# <script type="text/javascript" src="/assets/locomotive/utils/aloha_settings.js"></script>
-# <script type="text/javascript" src="/assets/locomotive/aloha/lib/aloha.js" data-aloha-plugins="common/format,common/highlighteditables,common/list,common/link,common/undo,common/paste"></script>
-
-
-
-
-#{ActionController::Base.helpers.javascript_include_tag 'locomotive/aloha', :'data-aloha-plugins' => 'common/format,common/highlighteditables,common/list,common/link,common/undo,common/paste'}
-
-             # <script type="text/javascript" src="/assets/aloha/lib/aloha.js" data-aloha-plugins="common/format,common/highlighteditables,common/list,common/link,common/undo,common/paste"></script>

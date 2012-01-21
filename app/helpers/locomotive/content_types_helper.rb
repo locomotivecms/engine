@@ -28,8 +28,10 @@ module Locomotive::ContentTypesHelper
       visible << content_type
     end
 
-    visible.map { |c| yield(c) }
-    yield(others)
+    if visible.size > 0
+      visible.map { |c| yield(c) }
+      yield(others) if others.size > 0
+    end
   end
 
   def is_content_type_selected(content_type)

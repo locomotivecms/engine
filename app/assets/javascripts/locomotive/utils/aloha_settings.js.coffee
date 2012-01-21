@@ -1,9 +1,6 @@
-# unless window.Aloha?
-#   window.Aloha = {}
+window.Aloha = window.Aloha ?= {}
 
-Aloha = window.Aloha ?= {}
-
-Aloha.settings =
+window.Aloha.settings =
 
   logLevels: { 'error': true, 'warn': true, 'info': false, 'debug': false }
 
