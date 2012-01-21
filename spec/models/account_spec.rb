@@ -1,20 +1,20 @@
 require 'spec_helper'
 
 describe Account do
+  let!(:existing_account) { Factory(:account, :email => 'another@email.com') }
 
   it 'should have a valid factory' do
     FactoryGirl.build(:account).should be_valid
   end
 
   ## Validations ##
-
-  %w{name email password}.each do |attr|
-    it "should validate presence of #{attr}" do
-      account = FactoryGirl.build(:account, attr.to_sym => nil)
-      account.should_not be_valid
-      account.errors[attr.to_sym].should include("can't be blank")
-    end
-  end
+  it { should validate_presence_of :name }
+  it { should validate_presence_of :email }
+  it { should validate_presence_of :password }
+  it { should validate_uniqueness_of(:email).with_message(/is already taken/) }
+  it { should allow_value('valid@email.com').for(:email) }
+  it { should allow_value('prefix+suffix@email.com').for(:email) }
+  it { should_not allow_value('not-an-email').for(:email) }
 
   it "should have a default locale" do
     account = Account.new
