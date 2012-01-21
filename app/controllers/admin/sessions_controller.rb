@@ -1,5 +1,5 @@
 module Admin
-  class SessionsController < Devise::SessionsController
+  class SessionsController < Devise::CasSessionsController
 
     include Locomotive::Routing::SiteDispatcher
 

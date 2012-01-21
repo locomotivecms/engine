@@ -29,7 +29,7 @@ module Locomotive
           def enable_bushido!
             self.config.domain = ENV['APP_TLD'] unless self.config.multi_sites?
 
-            self.config.devise_modules = [:cas_authenticatable, :rememberable, :trackable]
+            self.config.devise_modules = [:bushido_authenticatable, :rememberable, :trackable]
 
             self.enhance_models
 
@@ -52,7 +52,7 @@ module Locomotive
           end
 
           def tweak_ui
-            edit_account_url = 'https://auth.bushi.do/users/edit'
+            edit_account_url = 'https://bushi.do/account'
 
             ::Admin::GlobalActionsCell.update_for(:bushido) do |menu|
               menu.modify :welcome, :url => edit_account_url
@@ -75,16 +75,15 @@ module Locomotive
 
           def setup_cas_client
             ::Devise.setup do |config|
-              config.cas_base_url         = 'https://auth.bushi.do/cas'
-              config.cas_logout_url       = 'https://auth.bushi.do/cas/logout'
+              config.cas_base_url         = 'https://bushi.do/cas'
+              config.cas_logout_url       = 'https://bushi.do/cas/logout'
               config.cas_create_user      = false
               config.cas_username_column  = :bushido_user_id
             end
 
-            Admin::SessionsController.class_eval do
-              def new
-                redirect_to admin_pages_url
-              end
+            ActionDispatch::Session::MongoidStore.class_eval do
+              include DeviseCasAuthenticatable::SingleSignOut::SetSession
+              alias_method_chain :set_session, :storage
             end
           end
 
