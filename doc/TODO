@@ -83,13 +83,23 @@ x edit my site
     x remove sidebar
     - i18n
     - insert image
-- deployment
-  - fix integration problems
-  - pre-compile assets
+x deployment
+  x fix integration problems
+  x pre-compile assets
+- API
+  - authentication from a token + controller to deliver a token
+  - api routes
+  - add a way to custom the as_json method within the presenters (by  default as_json ?) + custom responder ?
+  - REST actions:
+    - CRUD assets
+    - CRUD pages
+    - CRUD snippets
+    - CRUD content types
+    - data ?
 
 - bugs:
   x unable to toggle the "required" check_boxes for content types
-  - unable to sign out
+  x unable to sign out
   - https://github.com/locomotivecms/engine/pull/281/files
 
 - disallow to click twice on the submit form button (spinner ?)
