@@ -74,6 +74,8 @@ Rails.application.routes.draw do
 
       resources :content_types
 
+      resources :content_entries, :path => 'content_types/:slug/entries'
+
     end
   end
 
