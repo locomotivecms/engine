@@ -45,8 +45,10 @@ module Locomotive
           set_flash_message!
           message = controller.flash[type]
 
-          controller.headers['X-Message']       = message
-          controller.headers['X-Message-Type']  = type
+          unless message.blank?
+            controller.headers['X-Message']       = message
+            controller.headers['X-Message-Type']  = type
+          end
 
           yield if block_given?
 

@@ -22,12 +22,14 @@ class Locomotive::BasePresenter
     self.source.persisted? || self.source.embedded? ? self.source._id.to_s : nil
   end
 
+  alias :_id :id
+
   def ability?
     self.ability.present?
   end
 
   def included_methods
-    %w(id created_at updated_at)
+    %w(id _id created_at updated_at)
   end
 
   def as_json(methods = nil)
