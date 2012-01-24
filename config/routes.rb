@@ -41,6 +41,7 @@ Locomotive::Engine.routes.draw do
     put :sort, :on => :collection
   end
 
+  # TODO
   resources :custom_fields, :path => 'custom/:parent/:slug/fields'
 
   resources :cross_domain_sessions, :only => [:new, :create]
@@ -57,17 +58,21 @@ end
 
 Rails.application.routes.draw do
 
-  # api
-  namespace :_locomotive, :module => 'locomotive' do
-    namespace :api  do
+  # API
+  namespace :locomotive, :module => 'locomotive' do
+    namespace :api do
 
       resources :tokens, :only => [:create, :destroy]
 
       resources :theme_assets
 
+      resources :content_assets
+
       resources :snippets
 
       resources :pages
+
+      resources :content_types
 
     end
   end

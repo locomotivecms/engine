@@ -23,9 +23,5 @@ module Locomotive
       end
 
     end
-
   end
-
 end
-
-# cAEERKkstnUya7UVxkqN
