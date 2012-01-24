@@ -63,7 +63,10 @@ class Locomotive.Views.InlinEditor.ToolbarView extends Backbone.View
 
   back: (event) ->
     event.stopPropagation() & event.preventDefault()
-    window.location.href = @model.get('edit_url')
+    if @model
+      window.location.href = @model.get('edit_url')
+    else
+      window.location.href = window.Locomotive.mounted_on + '/pages'
 
   show_editing_mode_block: ->
     @$('.editing-mode').show()

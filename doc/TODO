@@ -71,6 +71,7 @@ x edit my site
   x locale switcher
   - back to default locale (if changed in settings)
   - front
+    - pages
 - inline editor
   x rack
   x iframe
@@ -78,7 +79,7 @@ x edit my site
   x save editable elements
   x notification (growl)
   x change page
-  - i18n
+  x i18n
   - aloha:
     x remove sidebar
     - i18n
@@ -91,13 +92,13 @@ x deployment
   x api routes
   x change api location
   (- add a way to custom the as_json method within the presenters (by  default as_json ?) + custom responder ?)
-  - REST actions:
+  x REST actions:
     x CRUD theme assets
     x CRUD snippets
     x CRUD content assets
     x CRUD pages
     x CRUD content types
-    - data ?
+    x data ?
 - refactoring
   - remove the import / export scripts
   - remove the cross domain authentication (use auth_token instead)
@@ -107,9 +108,7 @@ x deployment
   x unable to toggle the "required" check_boxes for content types
   x unable to sign out
   x unable to remove a field
-
-  - "back to admin" link does not work if inline editor disabled
-
+  x "back to admin" link does not work if inline editor disabled
 
 - disallow to click twice on the submit form button (spinner ?)
 - message to notify people if their browser is too old
