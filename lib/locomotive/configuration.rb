@@ -16,7 +16,7 @@ module Locomotive
       :mailer_sender          => 'support', #support@example.com'
       :manage_subdomain       => false,
       :manage_manage_domains  => false,
-      :latest_items_nb       => 5,
+      :latest_items_nb        => 5,
       :rack_cache             => {
         :verbose     => true,
         :metastore   => URI.encode("file:#{Rails.root}/tmp/dragonfly/cache/meta"), # URI encoded in case of spaces
@@ -34,6 +34,16 @@ module Locomotive
 
     def self.settings
       @@settings
+    end
+
+    def lastest_items_nb=(setting)
+      puts "DEPRACATION WARNING: The Locomotive config setting 'lastest_items_nb' was misspelled and will be removed in a future version. Please use 'latest_items_nb' in your Locomotive initializer."
+      self.settings.latest_items_nb = setting
+    end
+
+    def lastest_items_nb
+      puts "DEPRACATION WARNING: The Locomotive config setting 'lastest_items_nb' was misspelled and will be removed in a future version. Please use 'latest_items_nb' in your Locomotive initializer."
+      self.settings.latest_items_nb
     end
 
     def multi_sites?
