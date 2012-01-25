@@ -93,7 +93,7 @@ Rails.application.routes.draw do
   match '/_edit'        => 'locomotive/public/pages#edit'
   match '*path/_edit'   => 'locomotive/public/pages#edit'
 
-  match '/'             => 'locomotive/public/pages#show'
+  root :to              => 'locomotive/public/pages#show'
   match '*path'         => 'locomotive/public/pages#show'
 
 
