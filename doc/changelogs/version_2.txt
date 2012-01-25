@@ -1,7 +1,6 @@
 - rake locomotive:upgrade:rename_collections
 
 - locales updates (en / fr)
-
   - theme_assets.images => theme_assets.image_picker
   - assets => content_assets
   - EditableXXX => Locomotive::EditableXXX (in mongodb)

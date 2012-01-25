@@ -66,12 +66,16 @@ class Locomotive.Views.ContentTypes.CustomFieldsView extends Backbone.View
     @add_entry(event)
 
   remove_entry: (custom_field, view) ->
+    if custom_field.isNew()
+      @model.get('entries_custom_fields').remove(custom_field)
+    else
+      custom_field.set _destroy: true
+
     @_entry_views = _.reject @_entry_views, (_view) -> _view == view
-    @model.get('entries_custom_fields').remove(custom_field)
 
     @refresh_position_entries()
 
-    @$('> .empty').show() if @model.get('entries_custom_fields').length == 0
+    @$('> .empty').show() if @_entry_views.length == 0
 
   render_entries: ->
     if @model.get('entries_custom_fields').length == 0

@@ -41,6 +41,7 @@ Locomotive::Engine.routes.draw do
     put :sort, :on => :collection
   end
 
+  # TODO
   resources :custom_fields, :path => 'custom/:parent/:slug/fields'
 
   resources :cross_domain_sessions, :only => [:new, :create]
@@ -52,9 +53,30 @@ Locomotive::Engine.routes.draw do
   # installation guide
   match '/installation'       => 'installation#show', :defaults => { :step => 1 }, :as => :installation
   match '/installation/:step' => 'installation#show', :as => :installation_step
+
 end
 
 Rails.application.routes.draw do
+
+  # API
+  namespace :locomotive, :module => 'locomotive' do
+    namespace :api do
+
+      resources :tokens, :only => [:create, :destroy]
+
+      resources :theme_assets
+
+      resources :content_assets
+
+      resources :snippets
+
+      resources :pages
+
+      resources :content_types
+
+    end
+  end
+
   # sitemap
   match '/sitemap.xml'  => 'locomotive/public/sitemaps#show', :format => 'xml'
 
@@ -73,4 +95,6 @@ Rails.application.routes.draw do
 
   match '/'             => 'locomotive/public/pages#show'
   match '*path'         => 'locomotive/public/pages#show'
+
+
 end

@@ -1,7 +1,7 @@
 module Locomotive
   class ThemeAssetPresenter < BasePresenter
 
-    delegate :content_type, :to => :source
+    delegate :content_type, :folder, :to => :source
 
     def local_path
       self.source.local_path(true)
@@ -24,7 +24,7 @@ module Locomotive
     end
 
     def included_methods
-      super + %w(content_type local_path url size dimensions updated_at)
+      super + %w(content_type folder local_path url size dimensions updated_at)
     end
 
   end
