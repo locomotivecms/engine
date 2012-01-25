@@ -1,0 +1,52 @@
+- title t('.title')
+
+- content_for :head do
+  = render 'asset'
+
+  = render 'list', :name => 'images', :title => t('.images'), :empty_message => t('.no_items', :url => new_theme_asset_url)
+  = render 'list', :name => 'media', :title => t('.media'), :empty_message => t('.no_items', :url => new_theme_asset_url)
+
+  - if can?(:manage, Locomotive::Snippet)
+    = render '/locomotive/snippets/snippet'
+    = render 'list', :name => 'snippets', :title => t('.snippets'), :empty_message => t('locomotive.snippets.index.no_items', :url => new_snippet_url)
+
+  - if can?(:manage, Locomotive::ThemeAsset)
+    = render 'list', :name => 'js_and_css', :title => t('.css_and_js'), :empty_message => t('.no_items', :url => new_theme_asset_url)
+    = render 'list', :name => 'fonts', :title => t('.fonts'), :empty_message => t('.no_items', :url => new_theme_asset_url)
+
+- content_for :backbone_view_data do
+  :plain
+    {
+      snippets:           #{can?(:manage, Locomotive::Snippet) ? @snippets.to_json : 'null'},
+      images:             #{@assets[:images].to_json},
+      media:              #{@assets[:media].to_json},
+      js_and_css_assets:  #{can?(:manage, Locomotive::ThemeAsset) ? @js_and_css_assets.to_json : 'null'},
+      fonts:              #{can?(:manage, Locomotive::ThemeAsset) ? @assets[:fonts].to_json : 'null'}
+    }
+
+- content_for :submenu do
+  = render_cell 'locomotive/settings_menu', :show
+
+- content_for :buttons do
+  - if can?(:manage, Locomotive::ThemeAsset)
+    = form_tag theme_assets_url(:json), :id => 'theme-assets-quick-upload', :class => 'quick-upload' do
+      = file_field_tag 'theme_asset[source]', :multiple => 'multiple'
+      = local_action_button :quick_upload, '#', :class => 'new'
+
+  = local_action_button t('locomotive.snippets.index.new'), new_snippet_url, :class => 'new' if can?(:manage, Locomotive::Snippet)
+  = local_action_button :new, new_theme_asset_url, :class => 'new' if can?(:manage, Locomotive::ThemeAsset)
+
+%p!= t('.help')
+
+- if can?(:manage, Locomotive::Snippet)
+  #snippets-anchor
+
+- if can?(:manage, Locomotive::ThemeAsset)
+  #js-and-css-anchor
+
+#images-anchor
+
+- if can?(:manage, Locomotive::ThemeAsset)
+  #fonts-anchor
+
+#media-anchor

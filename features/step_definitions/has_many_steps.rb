@@ -1,15 +1,15 @@
 Given %r{^I have an? "([^"]*)" model which has many "([^"]*)"$} do |parent_model, child_model|
   @parent_model = FactoryGirl.build(:content_type, :site => @site, :name => parent_model).tap do |ct|
-    ct.content_custom_fields.build :label => 'Body', :kind => 'string', :required => false
+    ct.entries_custom_fields.build :label => 'Body', :type => 'string', :required => false
     ct.save!
   end
   @child_model = FactoryGirl.build(:content_type, :site => @site, :name => child_model).tap do |ct|
-    ct.content_custom_fields.build :label => 'Body', :kind => 'string', :required => false
-    ct.content_custom_fields.build :label => parent_model.singularize, :kind => 'has_one', :required => false, :target => parent_model
+    ct.entries_custom_fields.build :label => 'Body', :type => 'string', :required => false
+    ct.entries_custom_fields.build :label => parent_model.singularize, :kind => 'has_one', :required => false, :target => parent_model
     ct.save!
   end
 
-  @parent_model.content_custom_fields.build({
+  @parent_model.entries_custom_fields.build({
     :label          => child_model,
     :kind           => 'has_many',
     :target         => @child_model.content_klass.to_s,
@@ -22,12 +22,12 @@ Then /^I should be able to view a paginaed list of a has many association$/ do
   step %{I have an "Articles" model which has many "Comments"}
 
   # Create contents
-  article = @parent_model.contents.create!(:slug => 'parent', :body => 'Parent')
-  @child_model.contents.create!(:slug => 'one', :body => 'One', :custom_field_2 => article.id.to_s)
-  @child_model.contents.create!(:slug => 'two', :body => 'Two', :custom_field_2 => article.id.to_s)
-  @child_model.contents.create!(:slug => 'three', :body => 'Three', :custom_field_2 => article.id.to_s)
+  article = @parent_model.entries.create!(:slug => 'parent', :body => 'Parent')
+  @child_model.entries.create!(:slug => 'one', :body => 'One', :custom_field_2 => article.id.to_s)
+  @child_model.entries.create!(:slug => 'two', :body => 'Two', :custom_field_2 => article.id.to_s)
+  @child_model.entries.create!(:slug => 'three', :body => 'Three', :custom_field_2 => article.id.to_s)
 
-  @child_model.contents.each do |comment|
+  @child_model.entries.each do |comment|
     article.comments << comment
   end
 

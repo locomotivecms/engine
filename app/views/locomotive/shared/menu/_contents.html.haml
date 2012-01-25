@@ -1,0 +1,40 @@
+= submenu_entry 'pages', pages_url do
+  .wrapper
+    - if can? :manage, @page
+      .header
+        %p= link_to t('locomotive.pages.index.new'), new_page_url
+    .inner
+      %h2!= t('locomotive.pages.index.latest_entries')
+      %ul
+        - current_site.pages.latest_updated.minimal_attributes.each do |page|
+          %li
+            = link_to truncate(page.title, :length => 25), edit_page_url(page)
+            %span= time_ago_in_words(page.updated_at)
+
+- each_content_type do |menu_item|
+  -if menu_item.is_a?(Array)
+    - content_types = menu_item
+    = submenu_entry '...', '#', :i18n => false do
+      .wrapper
+        .inner
+          %ul.big-links
+            - content_types.each do |content_type|
+              %li
+                = link_to truncate(content_type.name, :length => 20), content_entries_url(content_type.slug)
+  - else
+    - content_type = menu_item
+    = submenu_entry truncate(content_type.name, :length => 15), content_entries_url(content_type.slug), :i18n => false, :css => "#{'on' if is_content_type_selected(content_type)}" do
+      .wrapper
+        .header
+          %p= link_to t('locomotive.content_entries.index.new'), new_content_entry_url(content_type.slug)
+
+          - if can? :manage, content_type
+            %p.edit= link_to t('locomotive.content_types.index.edit'), edit_content_type_url(content_type)
+
+        .inner
+          %h2!= t('locomotive.content_entries.index.latest_entries')
+          %ul
+            - content_type.entries.latest_updated.each do |entry|
+              %li
+                = link_to truncate(entry._label(content_type), :length => 20), edit_content_entry_url(content_type.slug, entry)
+                %span= time_ago_in_words(entry.updated_at)

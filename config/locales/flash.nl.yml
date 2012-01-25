@@ -1,6 +1,6 @@
 nl:
   flash:
-    admin:
+    locomotive:
       pages:
         create:
           notice: "Pagina is gemaakt."
@@ -13,7 +13,7 @@ nl:
         destroy:
           notice: "Pagina is verwijderd."
 
-      contents:
+      content_entries:
         create:
           notice: "Inhoud is gemaakt."
           alert: "Inhoud is niet gemaakt."
@@ -72,16 +72,6 @@ nl:
           notice: "Lidmaatschap is gemaakt."
           alert: "Lidmaatschap is niet gemaakt."
           already_created: "Lidmaatschap is al gemaakt voor de website."
-
-      asset_collection:
-        create:
-          notice: "Verzameling is gemaakt."
-          alert: "Verzameling is niet gemaakt."
-        update:
-          notice: "Verzameling is gewijzigd."
-          alert: "Verzameling is niet gewijzigd."
-        destroy:
-          notice: "Verzameling is verwijderd."
 
       assets:
         create:

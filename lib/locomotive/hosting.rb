@@ -1,1 +1,0 @@
-Dir[File.join(File.dirname(__FILE__), 'hosting/*.rb')].each { |lib| require lib }

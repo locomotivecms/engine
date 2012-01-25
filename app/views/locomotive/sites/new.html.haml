@@ -1,0 +1,12 @@
+- title t('.title')
+
+- content_for :submenu do
+  = render_cell 'locomotive/settings_menu', :show
+
+%p!= t('.help')
+
+= semantic_form_for @site, :url => sites_url do |form|
+
+  = render 'form', :f => form
+
+  = render 'locomotive/shared/form_actions', :back_url => edit_my_account_url, :button_label => :create

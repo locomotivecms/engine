@@ -24,7 +24,7 @@ module Locomotive
 
           self.add_or_update_fields(content_type, attributes['fields'])
 
-          if content_type.content_custom_fields.any? { |f| ['has_many', 'has_one'].include?(f.kind) }
+          if content_type.entries_custom_fields.any? { |f| ['has_many', 'has_one'].include?(f.type) }
             content_types_with_associations << content_type
           end
 
@@ -80,17 +80,17 @@ module Locomotive
 
           reverse_lookup = data.delete('reverse')
 
-          attributes = { :_alias => name, :label => name.humanize, :kind => 'string', :position => position }.merge(data).symbolize_keys
+          attributes = { :name => name, :label => name.humanize, :type => 'string', :position => position }.merge(data).symbolize_keys
 
-          field = content_type.content_custom_fields.detect { |f| f._alias == attributes[:_alias] }
+          field = content_type.entries_custom_fields.detect { |f| f.name == attributes[:name] }
 
-          field ||= content_type.content_custom_fields.build(attributes)
+          field ||= content_type.entries_custom_fields.build(attributes)
 
           field.send(:set_unique_name!) if field.new_record?
 
           field.attributes = attributes
 
-          field[:kind] = field[:kind].downcase # old versions of the kind field are capitalized
+          field[:type] = field[:type].downcase # old versions of the kind field are capitalized
 
           field[:tmp_reverse_lookup] = reverse_lookup # use the ability in mongoid to set free attributes on the fly
         end
@@ -98,8 +98,8 @@ module Locomotive
 
       def replace_target(content_types)
         content_types.each do |content_type|
-          content_type.content_custom_fields.each do |field|
-            next unless ['has_many', 'has_one'].include?(field.kind)
+          content_type.entries_custom_fields.each do |field|
+            next unless ['has_many', 'has_one'].include?(field.type)
 
             target_content_type = site.content_types.where(:slug => field.target).first
 
@@ -125,11 +125,13 @@ module Locomotive
 
           associations = []
 
+          # TODO (needs refactoring)
+
           # build with default attributes
           content = content_type.contents.where(content_type.highlighted_field_name.to_sym => value).first
 
           if content.nil?
-            content = content_type.contents.build(content_type.highlighted_field_name.to_sym => value, :_position_in_list => position)
+            content = content_type.contents.build(content_type.highlighted_field_name.to_sym => value, :_position => position)
           end
 
           %w(_permalink seo_title meta_description meta_keywords).each do |attribute|
@@ -141,24 +143,24 @@ module Locomotive
           end
 
           attributes.each do |name, value|
-            field = content_type.content_custom_fields.detect { |f| f._alias == name }
+            field = content_type.entries_custom_fields.detect { |f| f.name == name }
 
             next if field.nil? # the attribute name is not related to a field (name misspelled ?)
 
-            kind = field.kind
+            type = field.type
 
-            if ['has_many', 'has_one'].include?(kind)
-              associations << OpenStruct.new(:name => name, :kind => kind, :value => value, :target => field.target)
+            if ['has_many', 'has_one'].include?(type)
+              associations << OpenStruct.new(:name => name, :type => type, :value => value, :target => field.target)
               next
             end
 
-            value = (case kind
+            value = (case type
             when 'file'     then self.open_sample_asset(value)
             when 'boolean'  then Boolean.set(value)
             when 'date'     then value.is_a?(Date) ? value : Date.parse(value)
-            when 'category'
-              if field.category_items.detect { |item| item.name == value }.nil?
-                field.category_items.build :name => value
+            when 'select'
+              if field.select_options.detect { |item| item.name == value }.nil?
+                field.select_options.build :name => value
               end
               value
             else # string, text
@@ -193,7 +195,7 @@ module Locomotive
 
             next if target_content_type.nil?
 
-            value = (case association.kind
+            value = (case association.type
             when 'has_one' then
               target_content_type.contents.detect { |c| c.highlighted_field_value == association.value }
             when 'has_many' then
@@ -210,7 +212,7 @@ module Locomotive
       end
 
       def set_highlighted_field_name(content_type)
-        field = content_type.content_custom_fields.detect { |f| f._alias == content_type.highlighted_field_name.to_s }
+        field = content_type.entries_custom_fields.detect { |f| f.name == content_type.highlighted_field_name.to_s }
 
         content_type.highlighted_field_name = field._name if field
       end
@@ -219,21 +221,21 @@ module Locomotive
         self.log "order by #{content_type.order_by}"
 
         order_by = (case content_type.order_by
-        when 'manually', '_position_in_list' then '_position_in_list'
+        when 'manually', '_position_in_list', '_position' then '_position'
         when 'default', 'created_at' then 'created_at'
         else
-          content_type.content_custom_fields.detect { |f| f._alias == content_type.order_by }._name rescue nil
+          content_type.entries_custom_fields.detect { |f| f.name == content_type.order_by }._name rescue nil
         end)
 
         self.log "order by (after) #{order_by}"
 
-        content_type.order_by = order_by || '_position_in_list'
+        content_type.order_by = order_by || '_position'
       end
 
       def set_group_by_value(content_type)
         return if content_type.group_by_field_name.blank?
 
-        field = content_type.content_custom_fields.detect { |f| f._alias == content_type.group_by_field_name }
+        field = content_type.entries_custom_fields.detect { |f| f.name == content_type.group_by_field_name }
 
         content_type.group_by_field_name = field._name if field
       end

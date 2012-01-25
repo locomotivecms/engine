@@ -1,0 +1,14 @@
+- title t('.title')
+
+= form_tag cross_domain_sessions_url(:host => @target, :port => request.port), :method => 'post' do
+
+  = hidden_field_tag 'token', current_locomotive_account.switch_site_token
+
+  .inner
+    %p.notice= t('.notice')
+
+  .footer
+    = submit_tag t('locomotive.buttons.switch_to_site')
+
+:javascript
+  $(document).ready(function() { setTimeout(function() { $('form').submit(); }, 1000); });

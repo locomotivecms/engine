@@ -1,5 +1,5 @@
 es:
-  admin:
+  locomotive:
     errors:
       "500":
         title: Error de Aplicación
@@ -46,7 +46,7 @@ es:
         send: Enviar
 
     notifications:
-      new_content_instance:
+      new_content_entry:
         subject: "[%{type}] nuevo"
         title: "Hola %{name}, queremos hacerte saber que una nueva instancia se creó el día %{date}"
         type: "Modelo: %{type}"
@@ -57,15 +57,7 @@ es:
       text_formatting:
         none: Ninguno
         html: HTML
-      edit_field:
-        title: Editar campo
-      edit_category:
-        title: Editar opciones
-        help: Gestionar la lista de opciones que aparecerán en la lista desplegable.
-        collection_label: Lista de opciones
       types:
-        category:
-          edit_categories: Editar opciones
         file:
           delete_file: Borrar fichero
         has_many:
@@ -99,7 +91,7 @@ es:
         no_items: "No se ha creado ninguna página aún. Pulse <a href=\"%{url}\">aquí</a> to para crear la primera."
 
         new: Nueva página
-        latest_items: Últimas páginas
+        latest_entries: Últimas páginas
       new:
         title: Nueva página
         help: "Por favor rellene el formulario de más abajo para crear su página. ¡Atención! Las páginas, por defecto, están 'no publicadas'."
@@ -187,7 +179,7 @@ es:
         css_and_js: Estilo y Javascript
         fonts: Fuentes
         images: Imágenes
-        medias: Media
+        media: Media
         no_items: "Por ahora no hay ficheros."
       asset:
         updated_at: Última actualización
@@ -236,7 +228,7 @@ es:
           asc: Ascendente
           desc: Descendente
 
-    contents:
+    content_entries:
       index:
         title: 'Mostrando "%{type}"'
         edit: editar modelo
@@ -244,18 +236,14 @@ es:
         download: descargar elementos
         new: nuevo elemento
         category_noname: "Sin nombre"
-        latest_items: "Últimos elementos"
+        latest_entries: "Últimos elementos"
         updated_at: "Última actualización"
       list:
-        no_items: "No hay ningún elemento. Haga click <a href=\"%{url}\">aquí</a> para crear el primero."
+        no_entries: "No hay ningún elemento. Haga click <a href=\"%{url}\">aquí</a> para crear el primero."
       new:
-        title:
-          default: '%{type} &mdash; nuevo elemento'
-          breadcrumb: '%{root} &raquo; %{type} &mdash; nuevo elemento'
+        title: '%{type} &mdash; nuevo elemento'
       edit:
-        title:
-          default: '%{type} &mdash; editando elemento'
-          breadcrumb: '%{root} &raquo; %{type} &mdash; editando elemento'
+        title: '%{type} &mdash; editando elemento'
       form:
         has_many:
           new_item: Nuevo elemento
@@ -279,7 +267,6 @@ es:
           site: Información del Sitio
           content_types: Modelos
           assets: Contenido multi-media
-          asset_collections: Colecciones
           snippets: Fragmentos
           pages: Páginas
         messages:

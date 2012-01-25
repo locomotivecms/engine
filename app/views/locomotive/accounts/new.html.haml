@@ -1,0 +1,21 @@
+- title t('.title')
+
+- content_for :submenu do
+  = render_cell 'locomotive/settings_menu', :show
+
+%p!= t('.help')
+
+= semantic_form_for @account, :url => accounts_url do |f|
+
+  = f.inputs :name => :information do
+    = f.input :name
+    - unless f.object.respond_to?(:password)
+      = f.input :email
+
+  - if f.object.respond_to?(:password)
+    = f.inputs :name => :credentials do
+      = f.input :email
+      = f.input :password, :input_html => { :autocomplete => "off" }
+      = f.input :password_confirmation, :input_html => { :autocomplete => "off" }
+
+  = render 'locomotive/shared/form_actions', :back_url => edit_current_site_url, :button_label => :create

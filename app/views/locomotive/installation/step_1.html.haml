@@ -1,0 +1,23 @@
+- content_for :head_title do
+  = t('locomotive.installation.common.title')
+
+- title t('.title')
+
+- if @step_done.blank?
+  = semantic_form_for(@account, :url => installation_step_url(1)) do |f|
+    .inner
+      = f.inputs do
+        = f.input :name, :label => t('.name'), :required => false
+        = f.input :email, :label => t('.email'), :required => false
+        = f.input :password, :label => t('.password'), :required => false
+        = f.input :password_confirmation, :label => t('.password_confirmation'), :required => false
+
+    .footer
+      = submit_tag t('.next')
+- else
+  .inner
+    %p.done
+      != @step_done
+
+  .footer
+    = next_installation_step_link(2)

@@ -6,11 +6,11 @@ Feature: Create and manage has many relationships
 Background:
   Given I have the site: "test site" set up
   And I have a custom model named "Projects" with
-    | label       | kind      | required    | target  |
+    | label       | type      | required    | target  |
     | Name        | string    | true        |         |
     | Description | text      | false       |         |
   And I have a custom model named "Clients" with
-    | label       | kind      | required    | target   |
+    | label       | type      | required    | target   |
     | Name        | string    | true        |          |
     | Description | string    | false       |          |
     | Projects    | has_many  | false       | Projects |

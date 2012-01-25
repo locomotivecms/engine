@@ -1,0 +1,12 @@
+- content_for :head do
+  = render 'locomotive/sites/domains'
+
+= f.inputs :name => :information do
+  = f.input :name
+
+- if manage_subdomain_or_domains?
+  = f.inputs :name => :access_points do
+    = f.input :subdomain, :as => :'Locomotive::Subdomain', :domain => application_domain, :input_html => { :readonly => !manage_subdomain? }
+
+    - if manage_domains?
+      = f.input :domains, :as => :'Locomotive::Empty'

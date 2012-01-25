@@ -1,0 +1,18 @@
+%h1
+  = link_to current_site.name, pages_url
+
+= render_cell 'locomotive/global_actions', :show, :current_locomotive_account => current_locomotive_account, :current_site_url => current_site_public_url
+
+- if multi_sites? && current_locomotive_account.sites.size > 1
+  #sites-picker{ :style => 'display: none' }
+    %ul
+      - current_locomotive_account.sites.each do |site|
+        - unless current_site._id == site._id
+          %li
+            = link_to site.name, new_cross_domain_session_url(:target_id => site._id)
+
+    - if can?(:manage, Locomotive::Site)
+      %p.action
+        = link_to t('locomotive.sites_picker.new'), new_site_url
+
+= render_cell 'locomotive/content_locale_picker', :show, :site => current_site, :locale => current_content_locale

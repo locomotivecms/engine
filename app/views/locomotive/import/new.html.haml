@@ -1,0 +1,15 @@
+- title t('.title')
+
+- content_for :submenu do
+  = render_cell 'locomotive/settings_menu', :show
+
+%p!= t('.help')
+
+= semantic_form_for @import, :as => 'import', :url => import_url, :html => { :multipart => true } do |f|
+
+  = f.inputs :name => :upload do
+    = f.input :source,  :as => 'file'
+    = f.input :samples, :as => :'Locomotive::Toggle'
+    = f.input :reset,   :as => :'Locomotive::Toggle'
+
+  = render 'locomotive/shared/form_actions', :back_url => edit_current_site_url, :button_label => :create

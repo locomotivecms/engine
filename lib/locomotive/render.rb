@@ -9,7 +9,7 @@ module Locomotive
 
       def render_locomotive_page
         if request.fullpath =~ /^\/admin\//
-          render :template => '/admin/errors/404', :layout => '/admin/layouts/box', :status => :not_found
+          render :template => '/locomotive/errors/404', :layout => '/admin/layouts/not_logged_in', :status => :not_found
         else
           @page = locomotive_page
 
@@ -24,7 +24,7 @@ module Locomotive
       end
 
       def render_no_page_error
-        render :template => '/admin/errors/no_page', :layout => false
+        render :template => '/locomotive/errors/no_page', :layout => false
       end
 
       def locomotive_page
@@ -33,7 +33,7 @@ module Locomotive
         path.gsub!(/\.[a-zA-Z][a-zA-Z0-9]{2,}$/, '') # remove the page extension
         path.gsub!(/^\//, '') # remove the leading slash
 
-        path = 'index' if path.blank?
+        path = 'index' if path.blank? || path == '_edit'
 
         if path != 'index'
           dirname = File.dirname(path).gsub(/^\.$/, '') # also look for templatized page path
@@ -41,13 +41,13 @@ module Locomotive
         end
 
         if page = current_site.pages.any_in(:fullpath => [*path]).first
-          if not page.published? and current_admin.nil?
+          if not page.published? and current_locomotive_account.nil?
             page = nil
           else
             if page.templatized?
-              @content_instance = page.content_type.contents.where(:_slug => File.basename(path.first)).first
+              @content_entry = page.content_type.entries.where(:_slug => File.basename(path.first)).first
 
-              if @content_instance.nil? || (!@content_instance.visible? && current_admin.nil?) # content instance not found or not visible
+              if @content_entry.nil? || (!@content_entry.visible? && current_locomotive_account.nil?) # content instance not found or not visible
                 page = nil
               end
             end
@@ -61,8 +61,8 @@ module Locomotive
         assigns = {
           'site'              => current_site,
           'page'              => @page,
-          'asset_collections' => Locomotive::Liquid::Drops::AssetCollections.new, # depracated, will be removed shortly
-          'contents'          => Locomotive::Liquid::Drops::Contents.new,
+          'models'            => Locomotive::Liquid::Drops::ContentTypes.new,
+          'contents'          => Locomotive::Liquid::Drops::ContentTypes.new, # DEPRECATED
           'current_page'      => self.params[:page],
           'params'            => self.params,
           'path'              => request.path,
@@ -73,11 +73,11 @@ module Locomotive
 
         assigns.merge!(Locomotive.config.context_assign_extensions)
 
-        assigns.merge!(flash.stringify_keys) # data from api
+        assigns.merge!(flash.to_hash.stringify_keys) # data from public submissions
 
         if @page.templatized? # add instance from content type
-          assigns['content_instance'] = @content_instance
-          assigns[@page.content_type.slug.singularize] = @content_instance # just here to help to write readable liquid code
+          assigns['entry'] = @content_entry
+          assigns[@page.content_type.slug.singularize] = @content_entry # just here to help to write readable liquid code
         end
 
         registers = {
@@ -85,7 +85,7 @@ module Locomotive
           :site           => current_site,
           :page           => @page,
           :inline_editor  => self.editing_page?,
-          :current_admin  => current_admin
+          :current_locomotive_account  => current_locomotive_account
         }
 
         ::Liquid::Context.new({}, assigns, registers)
@@ -94,7 +94,8 @@ module Locomotive
       def prepare_and_set_response(output)
         flash.discard
 
-        response.headers['Content-Type'] = 'text/html; charset=utf-8'
+        response.headers['Content-Type']  = 'text/html; charset=utf-8'
+        response.headers['Editable']      = 'true' unless self.editing_page?
 
         if @page.with_cache?
           fresh_when :etag => @page, :last_modified => @page.updated_at.utc, :public => true
@@ -112,7 +113,7 @@ module Locomotive
       end
 
       def editing_page?
-        @editing
+        !!@editing
       end
 
       def page_status

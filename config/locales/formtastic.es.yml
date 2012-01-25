@@ -30,7 +30,7 @@ es:
           source: Reemplazar fichero
       custom_fields:
         field:
-          _alias: Alias
+          name: Alias
       import:
         new:
           source: Fichero
@@ -72,13 +72,13 @@ es:
           source: "El fichero está disponible aquí: %{url}"
       custom_fields:
         field:
-          _alias: "Propiedad disponible en plantillas Liquid"
+          name: "Propiedad disponible en plantillas Liquid"
           hint: "Texto mostrado justo debajo del campo en el formulario de creación"
       import:
         source: "Un fichero zip conteniendo un fichero database.yml con plantillas y contenido multimedia."
         samples: "Si se activa, la importación también copiará contenido multimedia y páginas"
         reset: "Si se activa, toda la información del sitio será eliminada antes de importar"
       content_type:
-        raw_item_template: "Puede personalizar el texto mostrado para cada elemento de la lista. Simplemente utilice Liquid. Ej: {{ content.name }})"
+        raw_item_template: "Puede personalizar el texto mostrado para cada elemento de la lista. Simplemente utilice Liquid. Ej: {{ entry.name }})"
         api_enabled: "Se utiliza para dejar crear elementos a gente externa a la aplicación (ejemplo: mensajes en un formulario de contacto)"
         api_accounts: "Un email de notificación será enviado a las cuentas listadas más arriba cuando un nuevo elemento se cree"

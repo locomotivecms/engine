@@ -1,9 +1,0 @@
-{
-  "platform": "rails",
-  "platform_version": 3,
-  "ruby_version": "1.9.2",
-  "sql": false,
-  "mongodb": true,
-  "start_page": "admin/pages#guider=welcome",
-  "project_name": "locomotive"
-}

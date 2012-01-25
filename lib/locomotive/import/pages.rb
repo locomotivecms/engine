@@ -64,12 +64,13 @@ module Locomotive
         attributes[:position] = attributes[:position].to_i
 
         # templatized ?
-        if content_type_slug = attributes.delete(:content_type)
-          attributes.merge!({
-            :templatized  => true,
-            :content_type => site.content_types.where(:slug => content_type_slug).first
-          })
-        end
+        # TODO: DEBUG PURPOSE
+        # if content_type_slug = attributes.delete(:content_type)
+        #   attributes.merge!({
+        #     :templatized  => true,
+        #     :content_type => site.content_types.where(:slug => content_type_slug).first
+        #   })
+        # end
 
         # redirection page ?
         attributes[:redirect] = true if attributes[:redirect_url].present?
@@ -153,7 +154,7 @@ module Locomotive
         template.gsub!(/\/samples\/(.*\.[a-zA-Z0-9]{3})/) do |match|
           name = File.basename($1)
 
-          if asset = site.assets.where(:source_filename => name).first
+          if asset = site.content_assets.where(:source_filename => name).first
             asset.source.url
           else
             match

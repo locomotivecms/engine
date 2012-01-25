@@ -32,7 +32,7 @@ it:
           source: Sostituire file
       custom_fields:
         field:
-          _alias: Alias
+          name: Alias
       import:
         new:
           source: File
@@ -42,14 +42,14 @@ it:
       content_type:
         item_template: Template di elemento
         api_accounts: Destinatari notifiche
-      content_instance:
-        _slug: Permalink        
+      content_entry:
+        _slug: Permalink
       account:
         edit:
           password: Nuova password
           password_confirmation: Conferma nuova password
       page:
-        seo_title: Title          
+        seo_title: Title
 
     hints:
       page:
@@ -81,9 +81,9 @@ it:
           source: "Il corrente file è disponibile qui %{url}"
       custom_fields:
         field:
-          _alias: "Proprietà disponibile nei tamplate liquid"
+          name: "Proprietà disponibile nei tamplate liquid"
           hint: "Testo visualizzato nel form del modello appena sotto il campo"
-      content_instance:
+      content_entry:
         _slug: "Proprità utilizzata per generare l'url della pagina di template per questo contenuto (es: \"template_page/{{ your_object._permalink }})\"."
         seo_title: "Il valore del tag title della pagina che visualizza questo contenuto."
         meta_keywords: "Sovrascrive le meta keywords per questo contenuto. Separate da virgola."
@@ -93,7 +93,7 @@ it:
         samples: "Se attivato, il processo di import copierà anche contenuti e risorse"
         reset: "Se attivato, tutti i dati del tuo sito saranno cancellati prima di importare il nuovo sito"
       content_type:
-        item_template: "Puoi personalizzare il testo visualizzato per ciascun elemento della lista semplicemente usando Liquid. Ex: {{ content.name }})"
+        item_template: "Puoi personalizzare il testo visualizzato per ciascun elemento della lista semplicemente usando Liquid. Ex: {{ entry.name }})"
         api_enabled: "E' usato per lasciare che i visitatori, da fuori, possano creare nuove istanze (per esempio: i messaggi da un form 'contattaci')"
         api_accounts: "Quando viene creata una nuova istanza, una mail di notifica verrà inviata a tutti gli account elencati qui sopra"
 

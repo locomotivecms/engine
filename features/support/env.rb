@@ -4,12 +4,15 @@
 # instead of editing this one. Cucumber will automatically load all features/**/*.rb
 # files.
 
-ENV['RAILS_ENV'] ||= 'test'
+ENV['RAILS_ENV']  ||= 'test'
+ENV["RAILS_ROOT"] ||= File.join(File.dirname(__FILE__), '../', '../', 'spec', 'dummy')
 
 require 'cucumber/rails'
 require 'cucumber/formatter/unicode' # Remove this line if you don't want Cucumber Unicode support
 require 'cucumber/rails/rspec'
 require 'cucumber/rails/world'
+
+require 'factory_girl'
 
 require 'capybara'
 require 'capybara/rails'
@@ -64,5 +67,7 @@ ActionController::Base.allow_rescue = false
 
 require File.expand_path(File.dirname(__FILE__) + '/../../spec/support/carrierwave')
 require File.expand_path(File.dirname(__FILE__) + '/../../spec/support/locomotive')
+
+World(Locomotive::Engine.routes.url_helpers) # Load engine routes
 
 Locomotive.configure_for_test(true)

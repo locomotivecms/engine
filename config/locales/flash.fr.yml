@@ -1,6 +1,6 @@
 fr:
   flash:
-    admin:
+    locomotive:
       pages:
         create:
           notice: "La page a été créée avec succès."
@@ -13,7 +13,7 @@ fr:
         destroy:
           notice: "La page a été supprimée avec succès."
 
-      contents:
+      content_entries:
         create:
           notice: "L'élément a été crée avec succès."
           alert: "L'élément a été crée avec succès."

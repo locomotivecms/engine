@@ -1,0 +1,35 @@
+- content_for :head do
+  = render 'locomotive/sites/domains'
+  = render 'locomotive/sites/memberships'
+
+- content_for :backbone_view_data do
+  :plain
+    { site: #{@site.to_json(:current_account => current_locomotive_account, :current_site => current_site)}, errors: #{@site.errors.to_json} }
+
+= f.inputs :name => :information  do
+  = f.input :name, :wrapper_html => { :style => 'display: none' }
+  = f.input :locales, :as => '::Locomotive::Locales', :collection => ordered_current_site_locales, :input_html => { :class => 'locales' }
+
+- if can?(:point, Locomotive::Site)
+  - if manage_subdomain_or_domains?
+    = f.inputs :name => :access_points do
+      = f.input :subdomain, :as => :'Locomotive::Subdomain', :domain => application_domain, :input_html => { :readonly => !manage_subdomain? }
+
+      - if manage_domains?
+        = f.input :domains, :as => :'Locomotive::Empty'
+
+
+= f.inputs :name => :seo, :class => "inputs foldable #{'folded' if inputs_folded?(@site)}" do
+  = f.input :seo_title
+  = f.input :meta_keywords
+  = f.input :meta_description
+
+- if can?(:index, Locomotive::Membership)
+
+  = f.inputs :name => :memberships do
+    = f.input :memberships, :as => :'Locomotive::Empty', :label => false, :wrapper_html => { :id => 'site_memberships_input' }
+
+- if can?(:manage, current_site)
+
+  = f.inputs :name => :robots_txt, :class => "inputs foldable #{'folded' if inputs_folded?(@site)}" do
+    = f.input :robots_txt, :as => :'Locomotive::Code', :picker => false, :wrapper_html => { :class => 'small no-label' }

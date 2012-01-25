@@ -5,9 +5,9 @@ describe 'Locomotive rendering system' do
 
   before(:each) do
     @controller = Locomotive::TestController.new
-    Site.any_instance.stubs(:create_default_pages!).returns(true)
+    Locomotive::Site.any_instance.stubs(:create_default_pages!).returns(true)
     @site = FactoryGirl.build(:site)
-    Site.stubs(:find).returns(@site)
+    Locomotive::Site.stubs(:find).returns(@site)
     @controller.current_site = @site
     @page = FactoryGirl.build(:page, :site => nil, :published => true)
   end
@@ -101,7 +101,7 @@ describe 'Locomotive rendering system' do
 
     it 'should return the 404 page if the page does not exist' do
       @controller.request.fullpath = '/contact'
-      (klass = Page).expects(:published).returns([true])
+      (klass = Locomotive::Page).expects(:published).returns([true])
       @controller.current_site.pages.expects(:not_found).returns(klass)
       @controller.send(:locomotive_page).should be_true
     end
@@ -126,31 +126,31 @@ describe 'Locomotive rendering system' do
 
       before(:each) do
         @content_type = FactoryGirl.build(:content_type, :site => nil)
-        @content = @content_type.contents.build(:_visible => true)
+        @content_entry = @content_type.entries.build(:_visible => true)
         @page.templatized = true
         @page.content_type = @content_type
         @controller.request.fullpath = '/projects/edeneo.html'
         @controller.current_site.pages.expects(:any_in).with({ :fullpath => %w{projects/edeneo projects/content_type_template} }).returns([@page])
       end
 
-      it 'sets the content_instance variable' do
-        @content_type.contents.stubs(:where).returns([@content])
+      it 'sets the content_entry variable' do
+        @content_type.entries.stubs(:where).returns([@content_entry])
         @controller.send(:locomotive_page).should_not be_nil
-        @controller.instance_variable_get(:@content_instance).should == @content
+        @controller.instance_variable_get(:@content_entry).should == @content_entry
       end
 
       it 'returns the 404 page if the instance does not exist' do
-        @content_type.contents.stubs(:where).returns([])
-        (klass = Page).expects(:published).returns([true])
+        @content_type.entries.stubs(:where).returns([])
+        (klass = Locomotive::Page).expects(:published).returns([true])
         @controller.current_site.pages.expects(:not_found).returns(klass)
         @controller.send(:locomotive_page).should be_true
-        @controller.instance_variable_get(:@content_instance).should be_nil
+        @controller.instance_variable_get(:@content_entry).should be_nil
       end
 
       it 'returns the 404 page if the instance is not visible' do
-        @content._visible = false
-        @content_type.contents.stubs(:where).returns([@content])
-        (klass = Page).expects(:published).returns([true])
+        @content_entry._visible = false
+        @content_type.entries.stubs(:where).returns([@content_entry])
+        (klass = Locomotive::Page).expects(:published).returns([true])
         @controller.current_site.pages.expects(:not_found).returns(klass)
         @controller.send(:locomotive_page).should be_true
       end
@@ -161,19 +161,19 @@ describe 'Locomotive rendering system' do
 
       before(:each) do
         @page.published = false
-        @controller.current_admin = nil
+        @controller.current_locomotive_account = nil
       end
 
       it 'should return the 404 page if the page has not been published yet' do
         @controller.request.fullpath = '/contact'
         @controller.current_site.pages.expects(:any_in).with({ :fullpath => %w{contact content_type_template} }).returns([@page])
-        (klass = Page).expects(:published).returns([true])
+        (klass = Locomotive::Page).expects(:published).returns([true])
         @controller.current_site.pages.expects(:not_found).returns(klass)
         @controller.send(:locomotive_page).should be_true
       end
 
       it 'should not return the 404 page if the page has not been published yet and admin is logged in' do
-        @controller.current_admin = true
+        @controller.current_locomotive_account = true
         @controller.request.fullpath = '/contact'
         @controller.current_site.pages.expects(:any_in).with({ :fullpath => %w{contact content_type_template} }).returns([@page])
         @controller.send(:locomotive_page).should == @page
@@ -182,10 +182,4 @@ describe 'Locomotive rendering system' do
     end
 
   end
-
-  after(:all) do
-    ENV['APP_TLD'] = nil
-    Locomotive.configure_for_test(true)
-  end
-
 end

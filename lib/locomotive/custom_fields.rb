@@ -1,6 +1,6 @@
 # Custom options for CustomFields
 CustomFields.options = {
-  :reserved_aliases => Mongoid.destructive_fields + %w(created_at updated_at)
+  :reserved_names => Mongoid.destructive_fields + %w(created_at updated_at)
 }
 
 # Set correct paths
@@ -20,15 +20,6 @@ module CustomFields
       end
     end
 
-    module Category
-      class Item
-
-        def to_liquid
-          { 'id' => self._id.to_s, 'name' => self.name }
-        end
-
-      end
-    end
   end
 end
 

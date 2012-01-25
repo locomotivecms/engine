@@ -1,0 +1,52 @@
+%script{ :type => 'text/html', :id => 'editable_elements_edit' }
+
+  .nav
+    {{#each blocks}}
+    = link_to '{{name}}', '#block-{{index}}', :class => '{{#unless index}}on{{/unless}}'
+    {{/each}}
+    .clear
+
+  .wrapper
+    %ul
+      {{#each blocks}}
+      %li{ :id => 'block-{{index}}', :class => 'block', :style => 'display: {{#if index}}none{{else}}block{{/if}}' }
+        %fieldset.inputs
+          %ol
+      {{/each}}
+
+%script{ :type => 'text/html', :id => 'editable_text_input' }
+
+  %label{ :for => 'page_editable_elements_attributes_{{index}}_content' } {{label}}
+
+  = text_area_tag 'page[editable_elements_attributes][{{index}}][content]', '{{content}}', :id => 'page_editable_elements_attributes_{{index}}_content'
+
+  {{#if hint}}
+  %p.inline-hints {{hint}}
+  {{/if}}
+
+  = hidden_field_tag 'page[editable_elements_attributes][{{index}}][id]', '{{id}}', :id => 'page_editable_elements_attributes_{{index}}_id'
+
+%script{ :type => 'text/html', :id => 'editable_file_input' }
+
+  %label{ :for => 'page_editable_elements_attributes_{{index}}_content' } {{label}}
+
+  %span.file
+    {{#if content}}
+    = link_to '{{filename}}', '{{content}}', :target => '_blank'
+
+    = file_field_tag 'page[editable_elements_attributes][{{index}}][source]', :id => 'page_editable_elements_attributes_{{index}}_source', :style => 'display: none'
+
+    = link_to t('locomotive.pages.form.change_file'), '#', :class => 'change', :'data-alt-label' => t('locomotive.pages.form.cancel')
+    = link_to t('locomotive.pages.form.delete_file'), '#', :class => 'delete', :'data-alt-label' => t('locomotive.pages.form.cancel')
+
+    = hidden_field_tag 'page[editable_elements_attributes][{{index}}][remove_source]', '0', :class => 'remove-flag'
+
+    {{else}}
+    = file_field_tag 'page[editable_elements_attributes][{{index}}][source]', :id => 'page_editable_elements_attributes_{{index}}_source'
+    {{/if}}
+
+  {{#if hint}}
+  %p.inline-hints {{hint}}
+  {{/if}}
+
+  = hidden_field_tag 'page[editable_elements_attributes][{{index}}][id]', '{{id}}', :id => 'page_editable_elements_attributes_{{index}}_id'

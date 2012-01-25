@@ -1,0 +1,52 @@
+@import "compass/css3";
+
+.toggleSwitch {
+  position: relative;
+  top: 3px;
+  line-height: 14px;
+
+  span.leftLabel {
+    float: left;
+  }
+
+  span.leftLabel, span.rightLabel {
+    line-height: 14px;
+    padding: 0 2px;
+    font-size: 11px;
+    font-weight: bold;
+  }
+
+  div.switchArea {
+    float: left;
+    width: 32px;
+    height: 12px;
+    cursor: pointer;
+
+    border: 1px solid #a3a3a3;
+    @include border-radius(3px);
+    @include background-image(linear-gradient(top, #d2d1d1, #eeeeee 20%, #f1f1f1 25%, #f1f1f1));
+    @include box-shadow(rgba(255, 255, 255, 0.8) 0px 1px 0px 0px);
+
+    &.on {
+      border-color: #1971af;
+      @include background-image(linear-gradient(#218bd9, #2abbf2));
+    }
+  }
+
+  span.switchHandle {
+    position: relative;
+    top: -1px;
+    display: block;
+    width: 16px;
+    height: 100%;
+    cursor: pointer;
+    cursor: hand;
+    margin-left: 0;
+
+    @include background-image(linear-gradient(#f4f4f4, #eeeeee));
+
+    border: 1px solid rgba(120, 120, 120, 1);
+    @include border-radius(3px);
+    @include box-shadow(rgba(255, 255, 255, 1) 0px 1px 0px 0px inset, rgba(0, 0, 0, 0.3) 0px 1px 1px 0px);
+  }
+}

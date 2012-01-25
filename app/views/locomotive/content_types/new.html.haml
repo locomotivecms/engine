@@ -1,0 +1,15 @@
+- title t('.title')
+
+- content_for :submenu do
+  = render 'locomotive/shared/menu/contents'
+
+- content_for :actions do
+  = render 'locomotive/shared/actions/contents'
+
+%p!= t('.help')
+
+= semantic_form_for @content_type, :url => content_types_url do |f|
+
+  = render 'form', :f => f
+
+  = render 'locomotive/shared/form_actions', :back_url => pages_url, :button_label => :create

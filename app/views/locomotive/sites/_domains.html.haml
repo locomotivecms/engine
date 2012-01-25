@@ -1,0 +1,22 @@
+%script{ :type => 'text/html', :id => 'domains_list' }
+
+  %p.empty{ :style => 'display: none' }!= t('.empty')
+
+  %ul
+
+  %hr
+
+  .new-entry
+    %em http://
+    = text_field_tag 'domain', '', :id => '', :placeholder => t('formtastic.hints.site.domain_name'), :class => 'path'
+
+    %span.actions
+      = link_to t('locomotive.buttons.new_item'), '#', :class => 'add'
+
+%script{ :type => 'text/html', :id => 'domain_entry' }
+
+  %em http://
+  = text_field_tag 'site[domains][]', '{{name}}', :id => '', :class => 'path'
+
+  %span.actions
+    = link_to 'x', '#', :class => 'remove'

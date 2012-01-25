@@ -1,0 +1,78 @@
+@import "compass/css3";
+@import "compass/css3/border-radius";
+@import "compass/css3/images";
+@import "compass/css3/text-shadow";
+
+/* Generic */
+html {
+}
+
+body {
+  font-family: 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  font-size: 13px;
+  margin: 0px;
+  padding: 0px;
+}
+
+.tabs, .title {
+  display: none;
+}
+
+form {
+  input[type=text], textarea {
+    // from _helpers.scss
+    padding: 4px 3px;
+
+    font-family: "Helvetica Neue", Arial, Helvetica, sans-serif !important;
+    color: #17171B;
+    font-size: 12px !important;
+    font-weight: normal;
+
+    border: 1px solid #b5b7c4;
+  }
+
+  .panel > table {
+    width: 100%;
+    border-collapse: collapse;
+
+    & > tbody > tr {
+      & > td:first-child {
+        text-align: left;
+        padding-right: 15px;
+
+        label {
+          font-weight: bold;
+          color: #222;
+        }
+      }
+
+      & > td:last-child {
+        input[type=text] {
+          @include background-image(linear-gradient(top, #f0f0f0, #f9f9f9 25%, #f9f9f9 25%, #ffffff 50%, #ffffff));
+        }
+      }
+    }
+
+  }
+
+  &[name=source] {
+    #wrapline label {
+      font-weight: bold;
+      font-size: 12px;
+    }
+
+    textarea#htmlSource {
+      width: 718px !important;
+
+      margin-top: 10px;
+
+      font-family: "Helvetica Neue", Arial, Helvetica, sans-serif !important;
+      font-size: 12px !important;
+
+      @include background-image(linear-gradient(top, #f0f0f0, #f9f9f9 4px, #f9f9f9 4px, #ffffff 12px, #ffffff));
+    }
+  }
+}
+
+.mceActionPanel {
+}

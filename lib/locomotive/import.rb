@@ -1,5 +1,6 @@
 require 'locomotive/import/logger'
 require 'locomotive/import/base'
+require 'locomotive/import/model'
 require 'locomotive/import/job'
 require 'locomotive/import/site'
 require 'locomotive/import/assets'

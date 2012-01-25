@@ -1,9 +1,0 @@
-%ul#menu
-  - @list.each_with_index do |item, index|
-    - index += 1
-    %li{ :class => "item #{'first' if index == 1} item-#{index} #{item[:class]}" }
-      %span
-      = link_to item[:url] do
-        %em &nbsp;
-        %span= item[:label]
-  %li.clear

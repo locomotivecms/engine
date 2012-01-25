@@ -1,0 +1,14 @@
+- title t('.title')
+
+- content_for :submenu do
+  = render_cell 'locomotive/settings_menu', :show
+
+%p!= t('.help')
+
+%ul{ :id => 'import-steps', :class => 'list', :'data-url' => import_url(:json), :'data-success-message' => t('.messages.success'), :'data-failure-message' => t('.messages.failure') }
+  - %w(site content_types assets snippets pages).each do |step|
+    %li.item{ :id => "#{step}-step" }
+      %strong= t(".steps.#{step}")
+      .more
+        .states
+          &nbsp;

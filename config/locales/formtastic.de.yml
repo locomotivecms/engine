@@ -32,7 +32,7 @@ de:
           source: Datei ersetzen
       custom_fields:
         field:
-          _alias: Alias
+          name: Alias
       import:
         new:
           source: Datei
@@ -80,7 +80,7 @@ de:
           source: "Die aktuelle Datei liegt hier %{url}"
       custom_fields:
         field:
-          _alias: "Merkmal verfügbar in den liquid-Templates"
+          name: "Merkmal verfügbar in den liquid-Templates"
           hint: "Hilfe-Text, der im Formular des Bausteins direkt unter dem jeweiligen Feld angezeigt wird"
       content_instance:
         _slug:  "Merkmal, was für die Erstellung der URL für diesen Baustein benutzt wird. (ex: \"template_page/{{ your_object._permalink }})\"."

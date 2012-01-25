@@ -1,5 +1,5 @@
 it:
-  admin:
+  locomotive:
     buttons:
       login: Entra
       send_password: Invia
@@ -46,7 +46,7 @@ it:
         link: "&rarr; Ritorna all'applicazione"
 
     notifications:
-      new_content_instance:
+      new_content_entry:
         subject: "[%{type}] nuovo/a"
         title: "Ciao %{name}, solo per farti sapere che una nuova istanza è stata creata il %{date}"
         type: "Modello: %{type}"
@@ -60,15 +60,7 @@ it:
       text_formatting:
         none: Nessuno
         html: HTML
-      edit_field:
-        title: Modifica campo
-      edit_category:
-        title: Modifica opzioni
-        help: Amministra la lista opzioni del select box.
-        collection_label: Lista delle opzioni
       types:
-        category:
-          edit_categories: Modifica opzioni
         file:
           delete_file: Elimina file
       index:
@@ -99,7 +91,7 @@ it:
         help: "Le pagine sono organizzate ad albero. Puoi ordinarle come se fossero delle cartelle"
         no_items: "Per ora non ci sono pagine. Clicca <a href=\"%{url}\">qui</a> per creare la prima pagina."
         new: nuova pagina
-        latest_items: Ultime pagine
+        latest_entries: Ultime pagine
       new:
         title: Nuova pagina
         help: "Prego, compila il seguente modulo per creare la tua pagina. Fai attenzione, per default, la pagina non è pubblicata."
@@ -186,7 +178,7 @@ it:
         css_and_js: Style e javascript
         fonts: Fonts
         images: Immagini
-        medias: Media
+        media: Media
         no_items: "Per ora non ci sono file. Clicca <a href=\"%{url}\">qui</a> per creare il primo."
       asset:
         updated_at: Modificato il
@@ -235,7 +227,7 @@ it:
           asc: Ascendente
           desc: Discendente
 
-    contents:
+    content_entries:
       index:
         title: 'Lista "%{type}"'
         edit: modifica modello
@@ -243,18 +235,14 @@ it:
         download: scarica elementi
         new: nuovo elemento
         category_noname: "Senza nome"
-        latest_items: "Ultimi elementi"
+        latest_entries: "Ultimi elementi"
         updated_at: "modificato il"
       list:
-        no_items: "Per ora non ci sono elementi. Clicca <a href=\"%{url}\">qui</a> per creare il primo."
+        no_entries: "Per ora non ci sono elementi. Clicca <a href=\"%{url}\">qui</a> per creare il primo."
       new:
-        title:
-          default: '%{type} &mdash; nuovo elemento'
-          breadcrumb: '%{root} &raquo; %{type} &mdash; nuovo elemento'
+        title: '%{type} &mdash; nuovo elemento'
       edit:
-        title:
-          default: '%{type} &mdash; modifica elemento'
-          breadcrumb: '%{root} &raquo; %{type} &mdash; modifica elemento'
+        title: '%{type} &mdash; modifica elemento'
       form:
         has_many:
           new_item: Nuovo elemento

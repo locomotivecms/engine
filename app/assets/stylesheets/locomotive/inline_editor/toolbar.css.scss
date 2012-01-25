@@ -1,0 +1,115 @@
+@import "compass/css3/images";
+@import "compass/css3/opacity";
+@import "compass/css3/box-shadow";
+@import "compass/css3/text-shadow";
+@import "buttons";
+
+#toolbar {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+
+  height: 40px;
+  width: 100%;
+
+  @include box-shadow(rgba(0, 0, 0, 1) 0px -1px 10px 0px, rgba(0, 0, 0, 0.1) 0px 4px 6px 4px, rgba(255, 255, 255, 0.4) 0 1px 0 0 inset);
+
+  .background {
+    z-index: 100;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+
+    height: 100%;
+    width: 100%;
+
+    @include background-image(linear-gradient(#3F3F45, #23242B));
+    @include opacity(0.95);
+  }
+
+  .inner {
+    position: relative;
+    height: 100%;
+    z-index: 200;
+    color: #fff;
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+
+    h1 {
+      float: left;
+      margin: 0 0 0 10px;
+
+      position: relative;
+      top: -2px;
+
+      width: 200px;
+
+      line-height: 40px;
+      font-size: 18px;
+      font-weight: bold;
+      color: #fff;
+      @include single-text-shadow(#000, 0px, 1px, 0px);
+
+      &.disabled {
+        font-style: italic;
+        color: #999;
+      }
+
+      &.loading, &.disabled {
+        top: -1px;
+        font-size: 14px;
+      }
+    }
+
+    .col {
+      float: right;
+
+      height: 40px;
+      line-height: 40px;
+
+      margin-right: 10px;
+      padding-left: 14px;
+
+      border-left: 1px solid rgba(0, 0, 0, 0.3);
+      @include box-shadow(rgba(255, 255, 255, 0.1) 1px 0 0 0 inset);
+
+      label {
+        @include single-text-shadow(#000, 0px, 1px, 0px);
+      }
+    }
+
+    .lang {
+      #content-locale-picker-link {
+        @include button;
+
+        top: 8px;
+      }
+    }
+
+    .back {
+      a {
+        position: relative;
+        top: 7px;
+      }
+    }
+
+    .editing-mode {
+      .toggleSwitch {
+        position: relative;
+        top: 0px;
+        margin-left: 3px;
+        display: inline-block;
+
+        div.switchArea {
+          @include box-shadow(rgba(0, 0, 0, 0.8) 0px 1px 0px 0px);
+        }
+      }
+    }
+
+    .element-actions {
+      .button {
+        @include button;
+      } // .button
+    } // .element-actions
+  }
+}

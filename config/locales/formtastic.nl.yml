@@ -30,7 +30,7 @@ nl:
           source: Vervang bestand
       custom_fields:
         field:
-          _alias: Alias
+          name: Alias
       import:
         new:
           source: Bestand
@@ -72,14 +72,14 @@ nl:
           source: "Het huidige bestand is hier beschikbaar %{url}"
       custom_fields:
         field:
-          _alias: "Eigenschap is beschikbaar in liquid templates"
+          name: "Eigenschap is beschikbaar in liquid templates"
           hint: "Net beneden het veld staat de tekst in het model formulier"
       import:
         source: "Een .zip bestand met een database.yml met de bronbestanden en templates"
         samples: "Het importeren zal ook de contents en bronbestanden copiëren als deze optie aanstaat"
         reset: "Alle data van uw website zal verwijderd worden voordat de nieuwe website wordt geimporteerd als deze optie aanstaat"
       content_type:
-        raw_item_template: "U kunt de tekst voor elk item in de lijst aanpassen. Ie: {{ content.name }})"
+        raw_item_template: "U kunt de tekst voor elk item in de lijst aanpassen. Ie: {{ entry.name }})"
         api_enabled: "It is used to let people from outside to create new instances (example: messages in a contact form)"
         api_enabled: "Wordt gebruikt om mensen van buiten nieuwe instanties te laten creëren (voorbeeld: berichten in een contactformulier)"
         api_accounts: "Een e-mail met een aankondiging zal worden verstuurd naar de bovenstaande accounts wanneer een nieuwe instantie wordt gecreëerd"

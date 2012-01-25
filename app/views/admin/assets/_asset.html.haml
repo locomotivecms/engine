@@ -1,5 +1,0 @@
-%li{ :id => "asset-#{asset.id}", :class => "asset #{'last' if (asset_counter + 1) % 6 == 0}"}
-  %h4= link_to truncate(asset.name, :length => 17), edit_admin_asset_path(asset)
-  = vignette_tag(asset)
-  .actions
-    = link_to image_tag('admin/list/icons/cross.png'), '#', :class => 'remove', :confirm => t('admin.messages.confirm')

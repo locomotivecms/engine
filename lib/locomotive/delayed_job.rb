@@ -40,7 +40,8 @@ module Delayed
       class Job
         field :job_type
         field :step
-        referenced_in :site
+        field :site_id, :type => BSON::ObjectId
+        # referenced_in :site
       end
     end
   end

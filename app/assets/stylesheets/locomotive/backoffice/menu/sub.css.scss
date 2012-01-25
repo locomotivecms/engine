@@ -1,0 +1,284 @@
+@import "compass/css3/images";
+@import "compass/css3/border-radius";
+@import "compass/css3/text-shadow";
+@import "compass/css3/box-shadow";
+@import "helpers";
+
+#submenu {
+  position: relative;
+
+  clear: both;
+
+  z-index: 990;
+
+  height: 58px;
+
+  margin: 0px 8px 0 8px;
+
+  top: -1px;
+
+  @include border-top-right-radius(4px);
+
+  @include box-shadow(rgba(0, 0, 0, 0.3) 0px -1px 10px 0px, rgba(0, 0, 0, 0.2) 0px 4px 6px 4px, rgba(255, 255, 255, 0.4) 0 1px 0 0 inset);
+
+  @include background-image(linear-gradient(#2478ac, #1c5d86)); // # default = blue
+
+  border-bottom: 1px solid #000;
+
+  & > ul {
+    height: 58px;
+    margin: 0px;
+
+    & > li {
+      float: left;
+      margin: 15px 7px 0 8px;
+
+      &.hoverable > a span {
+        em {
+          display: inline-block;
+          background: transparent image-url("locomotive/menu/icons.png") no-repeat 0 -16px;
+          width: 12px;
+          height: 7px;
+          position: relative;
+          top: 0px;
+          left: 6px;
+        }
+      }
+
+      & > a {
+        display: inline-block;
+
+        @include border-radius(16px);
+        @include box-shadow(rgba(255, 255, 255, 0.2) 0 1px 0 0 inset, rgba(255, 255, 255, 0.1) 0 1px 0 0);
+
+        border: 1px solid rgba(0, 0, 0, 0.4);
+        border-top: 1px solid rgba(0, 0, 0, 0.3);
+        padding: 0px 16px 0px 16px;
+        line-height: 26px;
+        outline: none;
+        text-decoration: none;
+
+        span {
+          color: #fff;
+          font-size: 13px;
+          font-weight: normal;
+          @include single-text-shadow(rgba(0, 0, 0, 1), 1px, 1px, 1px);
+        }
+
+        &:hover {
+          border: 1px solid rgba(0, 0, 0, 0.9);
+          border-top: 1px solid rgba(0, 0, 0, 0.8);
+        }
+
+        &.on, &:active {
+          border: 1px solid rgba(0, 0, 0, 0.2);
+          border-top: 1px solid rgba(0, 0, 0, 0.4);
+          border-bottom: 1px solid transparent;
+          @include box-shadow(rgba(0, 0, 0, 0) 0 1px 0 0 inset, rgba(255, 255, 255, 0.2) 0 1px 0 0);
+        }
+
+        &.hover {
+          background: #fff !important;
+          border-color: transparent !important;
+          border-color-bottom: #fff;
+          padding-bottom: 0px;
+          @include border-bottom-radius(0px); // !important is missing here
+          position: relative;
+          z-index: 998;
+
+          span {
+            color: #8b8d9a;
+            text-shadow: none;
+            @include box-shadow(transparent 0 0 0 0);
+          }
+
+          span em {
+            background-position: -12px -16px;
+          }
+
+          & > em {
+            @include absolute-position(bottom, 0px, right, -11px);
+            width: 13px;
+            height: 13px;
+            background: transparent image-url("locomotive/menu/popup/bottom-right-corner.png") no-repeat 0 0;
+          }
+        }
+      } // > a
+
+    } // > li
+  } // > ul
+
+  & > .actions {
+    @include absolute-position(top, 0px, right, 12px);
+    height: 58px;
+    padding-top: 17px;
+    padding-left: 10px;
+    z-index: 1;
+
+    border-left: 1px solid rgba(0, 0, 0, 0.3);
+    @include box-shadow(rgba(255, 255, 255, 0.1) 1px 0 0 0 inset);
+
+    .action {
+      display: block;
+      float: left;
+      margin-left: 10px;
+    }
+
+    .button {
+      display: inline-block;
+
+      height: 22px;
+      line-height: 22px;
+
+      margin: 0 0 0 0;
+      padding: 0px 10px 0 15px;
+
+      @include border-radius(10px);
+      @include box-shadow(rgba(255, 255, 255, 0.2) 0 1px 0 0 inset, rgba(255, 255, 255, 0.1) 0 1px 0 0);
+      border: 1px solid rgba(0, 0, 0, 0.4);
+      border-top: 1px solid rgba(0, 0, 0, 0.3);
+
+      text-decoration: none;
+      font-size: 11px;
+
+      em {
+        display: inline-block;
+        position: relative;
+        background: transparent image-url("locomotive/menu/icons.png") no-repeat 0 0px;
+        height: 11px;
+        width: 11px;
+        top: 2px;
+        left: -5px;
+      }
+
+      span {
+        color: #fff;
+        font-size: 11px;
+        @include single-text-shadow(rgba(0, 0, 0, 1), 1px, 1px, 1px);
+      }
+
+      &:hover {
+        border: 1px solid rgba(0, 0, 0, 0.9);
+        border-top: 1px solid rgba(0, 0, 0, 0.8);
+      }
+
+      &.on, &:active {
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        border-top: 1px solid rgba(0, 0, 0, 0.4);
+        border-bottom: 1px solid transparent;
+        @include box-shadow(rgba(0, 0, 0, 0) 0 1px 0 0 inset, rgba(255, 255, 255, 0.2) 0 1px 0 0);
+      }
+    }
+  }
+}
+
+.submenu-popup {
+  position: absolute;
+
+  min-width: 250px;
+  z-index: 999;
+
+  overflow: hidden;
+
+  padding: 0px 12px 12px 12px;
+
+  background: transparent;
+
+  .wrapper {
+
+    background: #fff;
+
+    @include box-shadow(rgba(0, 0, 0, 0.5) 0px 0px 8px 0px);
+    @include border-radius(16px);
+    @include border-top-left-radius(0px);
+
+    text-align: left;
+
+    a {
+      color: #1f82bc;
+      text-decoration: none;
+      &:hover { text-decoration: underline; }
+    }
+
+    .header {
+      border-bottom: 1px dotted #bbbbbd;
+      padding-bottom: 6px;
+      margin: 0px 16px;
+    }
+
+    .inner { padding: 8px 16px; }
+
+    h2 {
+      font-size: 11px;
+      font-weight: bold;
+      color: #1e1f26;
+      margin-bottom: 0px;
+    }
+
+    p {
+      margin: 0px;
+      padding: 10px 0 0 0px;
+
+      a {
+        font-size: 13px;
+        background: transparent image-url("locomotive/menu/popup/add.png") no-repeat left 4px;
+        padding-left: 12px;
+      }
+
+      &.edit {
+        padding-top: 0px;
+
+        a {
+          background: transparent image-url("locomotive/menu/popup/bullet.png") no-repeat left 5px;
+        }
+      }
+    }
+
+    ul {
+      list-style-image: image-url("locomotive/menu/popup/bullet.png");
+      margin: 0px 0px 0 15px;
+
+      li {
+        position: relative;
+        height: 24px;
+        line-height: 24px;
+
+        a { font-size: 11px; }
+
+        span {
+          @include absolute-position(top, -1px, right, 0px, inline);
+          color: #8b8d9a;
+          font-size: 11px;
+        }
+      }
+
+      &.big-links {
+        list-style: none;
+        margin: 0px;
+
+        li {
+          margin: 10px 0;
+
+          a {
+            @include border-radius(16px);
+            padding: 3px 10px;
+            background: #ebedf4;
+            font-weight: bold;
+            font-size: 13px;
+          }
+        }
+      }
+    }
+
+    .footer {
+      background: #ebedf4;
+      padding: 8px 16px;
+      @include border-bottom-radius(16px);
+
+      a {
+        color: #8b8d9a;
+        font-weight: bold;
+      }
+    }
+  }
+} // submenu-popup

@@ -29,7 +29,7 @@ pt-BR:
           source: Substituir arquivo
       custom_fields:
         field:
-          _alias: Apelido
+          name: Apelido
       import:
         new:
           source: Arquivo
@@ -59,7 +59,7 @@ pt-BR:
           source: "Você pode substituir por um arquivo com a mesma extensão."
       custom_fields:
         field:
-          _alias: "Propriedades disponíveis em templates líquidos."
+          name: "Propriedades disponíveis em templates líquidos."
           hint: "Texto mostrado no formulário de modelo está abaixo do campo."
       import:
         source: "Um arquivo .zip contendo um database.yml com assets and templates"

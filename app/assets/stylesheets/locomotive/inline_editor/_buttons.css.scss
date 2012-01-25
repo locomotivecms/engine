@@ -1,0 +1,70 @@
+@import "compass/css3/images";
+@import "compass/css3/opacity";
+@import "compass/css3/box-shadow";
+@import "compass/css3/text-shadow";
+@import "compass/css3/border-radius";
+
+@mixin button {
+  display: inline-block;
+
+  height: 22px;
+  line-height: 22px;
+
+  margin: 0 5px;
+  padding: 0 14px;
+
+  @include border-radius(14px);
+  @include background-image(linear-gradient(#303138, #1e1e24));
+  @include box-shadow(rgba(255, 255, 255, 0.1) 0 1px 0 0 inset, rgba(255, 255, 255, 0.1) 0 1px 0 0);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.6);
+
+  color: #fff;
+  font-size: 12px;
+  text-decoration: none;
+  @include single-text-shadow(rgba(0, 0, 0, 1), 1px, 1px, 1px);
+
+  em {
+    display: inline-block;
+    position: relative;
+    background: transparent image-url("locomotive/menu/icons.png") no-repeat 0 0px;
+    height: 11px;
+    width: 11px;
+    top: 2px;
+    left: -5px;
+  }
+
+  &:hover {
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-top: 1px solid rgba(255, 255, 255, 0.4);
+  }
+
+  &.on, &:active {
+    border: 1px solid rgba(0, 0, 0, 0.4);
+    border-top: 1px solid rgba(0, 0, 0, 0.6);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    @include background-image(linear-gradient(#1e1e24, #212229));
+    @include box-shadow(rgba(0, 0, 0, 0) 0 1px 0 0 inset, rgba(255, 255, 255, 0.2) 0 1px 0 0);
+  }
+
+  &.blue {
+    @include single-text-shadow(rgba(0, 0, 0, 0.6), 1px, 1px, 1px);
+
+    @include background-image(linear-gradient(#2abaf1, #228dda));
+    @include box-shadow(rgba(255, 255, 255, 0.4) 0 1px 0 0 inset, rgba(127, 177, 211, 0.3) 0 1px 0 0);
+    border: 1px solid rgba(13, 56, 87, 1);
+    border-top: 1px solid rgba(13, 56, 87, 1);
+    border-bottom: 1px solid rgba(13, 56, 87, 1);
+
+    &.on, &:active {
+      @include box-shadow(rgba(0, 0, 0, 0) 0 1px 0 0 inset, rgba(255, 255, 255, 0.2) 0 1px 0 0);
+      @include background-image(linear-gradient(#26a1e9, #26a1e9));
+    }
+
+    &:hover {
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      border-top: 1px solid rgba(255, 255, 255, 0.4);
+    }
+  }
+}

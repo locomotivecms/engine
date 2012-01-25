@@ -1,5 +1,5 @@
 en:
-  admin:
+  locomotive:
     buttons:
       login: Log in
       send_password: Send
@@ -7,6 +7,7 @@ en:
       new_item: "+ add"
       switch_to_site: Go
       delete: "Delete"
+      close: "Close"
 
     messages:
       confirm: Are you sure ?
@@ -27,13 +28,17 @@ en:
         account: My account
         site: Site
         theme_assets: Theme files
-      footer:
-        who_is_behind: "Service developed by %{development} and designed by <a href=\"http://www.sachagreif.com\">Sacha Greif</a>"
+      form:
+        change_file: change
+        delete_file: delete
+        cancel: cancel
       form_actions:
         back: Back without saving
         create: Create
         update: Save
         send: Send
+      footer:
+        who_is_behind: "LocomotiveCMS is developed by %{development} and designed by <a href=\"http://www.sachagreif.com\">Sacha Greif</a>"
 
     errors:
       "500":
@@ -46,7 +51,7 @@ en:
         link: "&rarr; Back to the application"
 
     notifications:
-      new_content_instance:
+      new_content_entry:
         subject: "[%{type}] new"
         title: "Hi %{name}, just to let you know that a new instance has been created on %{date}"
         type: "Model: %{type}"
@@ -60,22 +65,17 @@ en:
       text_formatting:
         none: None
         html: HTML
-      edit_field:
-        title: Edit field
-      edit_category:
-        title: Edit options
-        help: Manage the list of options for your select box.
-        collection_label: List of options
       types:
-        category:
-          edit_categories: Edit options
         file:
           delete_file: Delete file
         has_many:
           empty: Empty
-      index:
-        is_required: is required
+      form:
+        required: Required
+        optional: Optional
         default_label: Field name
+        select_options:
+          ask_name: "Type the label of the option"
 
     sessions:
       new:
@@ -101,7 +101,7 @@ en:
         help: "Pages are organized as a tree. You can order pages as well as folders"
         no_items: "There are no pages for now. Just click <a href=\"%{url}\">here</a> to create the first one."
         new: new page
-        latest_items: Latest pages
+        latest_entries: Latest pages
       new:
         title: New page
         help: "Please fill in the below form to create your page. Be careful, by default, the page is not published."
@@ -112,7 +112,9 @@ en:
         help: "The page title can be updated by clicking it. To apply your changes, click on the \"Save\" button."
         ask_for_title: "Please type the new page title"
       form:
-        delete_file: Delete file
+        change_file: change
+        delete_file: delete
+        cancel: cancel
         default_block: Default
         cache_strategy:
           none: None
@@ -141,6 +143,8 @@ en:
       new:
         title: New site
         help: "Fill in the form below to create your new site."
+      domains:
+        empty: "There are no domains tied this site yet. Simply add your domains just below. <b>Do not forget to upgrade your DNS.</b>"
 
     current_site:
       edit:
@@ -188,7 +192,7 @@ en:
         css_and_js: Style and javascript
         fonts: Fonts
         images: Images
-        medias: Medias
+        media: Media
         no_items: "There are no files for now."
       asset:
         updated_at: Updated at
@@ -205,29 +209,29 @@ en:
         picker_link: Insert a file into the code
         choose_file: Choose file
         choose_plain_text: Choose plain text
-      images:
-        title: Listing images
-        no_items: "There are no files for now."
+      image_picker:
+        title: "Insert theme image"
+        no_items: "There are no images for now."
+        upload: "Upload theme images"
 
-    assets:
-      new:
-        title: New asset
-        help: "Fill in the form below to create your asset."
-      edit:
-        title: Edit asset
-        help: "Fill in the form below to update your asset."
+    content_assets:
+      picker:
+        title: "Insert media"
+        no_items: "There are no media for now."
+        upload: "Upload media"
 
     content_types:
       index:
         new: new model
+        edit: edit model
       new:
         title: New model
         help: "Create your own data model (Projects, People, ...etc). Your model should have one field at least. The items created from this content type would have their first field mandatory."
       edit:
         title: Editing model
         help: "Your model should have one field at least. The items created from this content type would have their first field mandatory."
-        show_items: show items
-        new_item: new item
+        show_entries: show entries
+        new_entry: new entry
       form:
         order_by:
           created_at: 'By creation date'
@@ -237,29 +241,25 @@ en:
           asc: Ascending
           desc: Descending
 
-    contents:
+    content_entries:
       index:
         title: 'Listing "%{type}"'
         edit: edit model
         destroy: remove model
-        download: download items
-        new: new item
+        download: download entries
+        new: new entry
         category_noname: "No name"
-        latest_items: "Latest items"
+        latest_entries: "Latest entries"
         updated_at: "Updated at"
       list:
-        no_items: "There are no items for now. Just click <a href=\"%{url}\">here</a> to create the first one."
+        no_items: "There are no entries for now. Just click <a href=\"%{url}\">here</a> to create the first one."
       new:
-        title:
-          default: '%{type} &mdash; new item'
-          breadcrumb: '%{root} &raquo; %{type} &mdash; new item'
+        title: '%{type} &mdash; new entry'
       edit:
-        title:
-          default: '%{type} &mdash; editing item'
-          breadcrumb: '%{root} &raquo; %{type} &mdash; editing item'
+        title: '%{type} &mdash; editing entry'
       form:
         has_many:
-          new_item: New item
+          new_entry: New entry
 
     image_picker:
       link: Insert an image into the code
@@ -303,3 +303,18 @@ en:
         explanations: "If you already uploaded the default site template (see instructions), you can use it right away. Or you can upload a site template as a zip file (free available templates <a href=\"http://www.locomotivecms.com/support/themes\">here</a>)."
         back_to_default_template: "Click <a href='#'>here</a> to select the default site template instead"
         next: Create site
+
+    public:
+      pages:
+        show_toolbar:
+          statuses:
+            loading: "Loading...."
+            disabled: "Inline Editor disabled"
+          labels:
+            save_changes: "Save changes: "
+            editing_mode: "Editing mode: "
+            lang: "Lang: "
+          buttons:
+            back: Return to back-office
+            confirm: Confirm
+            cancel: Cancel

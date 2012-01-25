@@ -1,0 +1,17 @@
+- title t('.title')
+
+= semantic_form_for(resource, :as => resource_name, :url => locomotive_account_password_path) do |f|
+
+  = f.hidden_field :reset_password_token
+
+  .inner
+    = flash_message
+
+    = f.inputs do
+      = f.input :email, :label => t('.email'), :required => false
+
+    %p.link
+      = link_to preserve(t('.link')), new_locomotive_account_session_path
+
+  .footer
+    = submit_tag t('locomotive.buttons.send_password')

@@ -1,6 +1,6 @@
 de:
   flash:
-    admin:
+    locomotive:
       pages:
         create:
           notice: "Seite wurde erfolgreich erstellt."
@@ -13,7 +13,7 @@ de:
         destroy:
           notice: "Seite wurde erfolgreich gelöscht."
 
-      contents:
+      content_entries:
         create:
           notice: "Inhalt wurde erfolgreich erstellt."
           alert: "Inhalt wurde nicht erstellt."

@@ -6,7 +6,7 @@ Feature: Manage Content Types
 Background:
   Given I have the site: "test site" set up
   And I have a custom model named "Projects" with
-    | label       | kind      | required        |
+    | label       | type      | required        |
     | Name        | string    | true            |
     | Description | text      | false           |
   And I am an authenticated user
