@@ -27,7 +27,7 @@ module Locomotive
 
     ## named scopes ##
     scope :visible, :where => { :_visible => true }
-    scope :latest_updated, :order_by => :updated_at.desc, :limit => Locomotive.config.ui.lastest_entries_nb
+    scope :latest_updated, :order_by => :updated_at.desc, :limit => Locomotive.config.ui.latest_entries_nb
 
     ## methods ##
 

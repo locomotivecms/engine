@@ -84,7 +84,7 @@ nl:
         help: "Pagina's zijn georganiseerd als een boom. U kunt zowel pagina's als mappen ordenen"
         no_items: "Er zijn momenteel geen pagina's. Klik <a href=\"%{url}\">hier</a> om de eerste pagina te maken."
         new: Nieuwe pagina
-        lastest_entries: Laatste pagina's
+        latest_entries: Laatste pagina's
       new:
         title: Nieuwe pagina
         help: "Voer onderstaande formulier in om uw pagina te maken. Opgelet, de pagina is niet gepubliseerd"
@@ -220,7 +220,7 @@ nl:
         download: download items
         new: nieuw item
         category_noname: "Geen naam"
-        lastest_entries: "Laatste items"
+        latest_entries: "Laatste items"
         updated_at: "Gewijzigd op"
       list:
         no_entries: "Er zijn momenteel geen items. Klik hier <a href=\"%{url}\">here</a> om de eerste te maken."

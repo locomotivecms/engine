@@ -4,7 +4,7 @@
       .header
         %p= link_to t('locomotive.pages.index.new'), new_page_url
     .inner
-      %h2!= t('locomotive.pages.index.lastest_entries')
+      %h2!= t('locomotive.pages.index.latest_entries')
       %ul
         - current_site.pages.latest_updated.minimal_attributes.each do |page|
           %li
@@ -32,7 +32,7 @@
             %p.edit= link_to t('locomotive.content_types.index.edit'), edit_content_type_url(content_type)
 
         .inner
-          %h2!= t('locomotive.content_entries.index.lastest_entries')
+          %h2!= t('locomotive.content_entries.index.latest_entries')
           %ul
             - content_type.entries.latest_updated.each do |entry|
               %li
