@@ -214,7 +214,7 @@ de:
         help: "Der Name der Buchung kann durch darauf klicken bearbeitet werden."
         new: neue Buchung
         no_items: "Momentan gibt es keine Buchungen. Klicke einfach <a href='%{url}'>hier</a>, um eine neue Buchung zu erstellen."
-        lastest_entries: Letzte Buchungen
+        latest_entries: Letzte Buchungen
         updated_at: bearbeitet am
       new:
         title: Neue Buchung
