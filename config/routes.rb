@@ -99,10 +99,8 @@ Rails.application.routes.draw do
   match ':locale/*path/_edit'   => 'locomotive/public/pages#edit', :locale => /(#{Locomotive.config.site_locales.join('|')})/
   match '*path/_edit'           => 'locomotive/public/pages#edit'
 
-  match '/'                     => 'locomotive/public/pages#show'
+  root :to                      => 'locomotive/public/pages#show'
   match ':locale'               => 'locomotive/public/pages#show', :page_path => 'index', :locale => /(#{Locomotive.config.site_locales.join('|')})/
   match ':locale/*path'         => 'locomotive/public/pages#show', :locale => /(#{Locomotive.config.site_locales.join('|')})/
   match '*path'                 => 'locomotive/public/pages#show'
-
-
 end
