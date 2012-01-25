@@ -99,10 +99,13 @@ x deployment
     x CRUD pages
     x CRUD content types
     x data ?
+- script to migrate existing site
+  - i18n
 - refactoring
   - remove the import / export scripts
   - remove the cross domain authentication (use auth_token instead)
 - upgrade to rails 3.2 (https://github.com/locomotivecms/engine/pull/281/files)
+- heroku module for locomotive
 
 - bugs:
   x unable to toggle the "required" check_boxes for content types

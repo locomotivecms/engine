@@ -11,7 +11,7 @@ gem 'cancan',                   '~> 1.6.7'
 
 gem 'mongo',                    '~> 1.5.2'
 gem 'bson_ext',                 '~> 1.5.2'
-gem 'mongoid',                  '~> 2.4.0'
+gem 'mongoid',                  '~> 2.4.2'
 gem 'locomotive_mongoid_acts_as_tree', '~> 0.1.5.8'
 gem 'custom_fields',            :path => '../gems/custom_fields' # DEV
 # gem 'custom_fields',          :git => 'git://github.com/locomotivecms/custom_fields.git', :branch => 'experimental'

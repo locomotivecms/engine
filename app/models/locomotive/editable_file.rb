@@ -3,6 +3,8 @@ module Locomotive
 
     mount_uploader :source, EditableFileUploader, :mount_on => :source_filename
 
+    replace_field :source_filename, ::String, true
+
     def content
       self.source? ? self.source.url : self.default_content
     end

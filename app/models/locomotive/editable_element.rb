@@ -6,13 +6,13 @@ module Locomotive
       ## fields ##
       field :slug
       field :block
-      field :default_content
+      field :default_content,   :localize => true
       field :default_attribute
       field :hint
-      field :priority,    :type => Integer, :default => 0
-      field :disabled,    :type => Boolean, :default => false
-      field :assignable,  :type => Boolean, :default => true
-      field :from_parent, :type => Boolean, :default => false
+      field :priority,          :type => Integer, :default => 0
+      field :disabled,          :type => Boolean, :default => false
+      field :assignable,        :type => Boolean, :default => true
+      field :from_parent,       :type => Boolean, :default => false
 
       ## associations ##
       embedded_in :page, :class_name => 'Locomotive::Page', :inverse_of => :editable_elements

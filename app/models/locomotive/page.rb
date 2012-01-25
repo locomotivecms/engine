@@ -14,12 +14,13 @@ module Locomotive
     include Extensions::Shared::Seo
 
     ## fields ##
-    field :title
-    field :slug
-    field :fullpath
-    field :raw_template
-    field :published, :type => Boolean, :default => false
-    field :cache_strategy, :default => 'none'
+    field :title,               :localize => true
+    field :slug,                :localize => true
+    field :fullpath,            :localize => true
+    field :raw_template,        :localize => true
+    field :locales,             :type => Array
+    field :published,           :type => Boolean, :default => false
+    field :cache_strategy,      :default => 'none'
 
     ## associations ##
     referenced_in :site, :class_name => 'Locomotive::Site'
@@ -32,7 +33,8 @@ module Locomotive
     ## callbacks ##
     after_initialize    :set_default_raw_template
     before_validation   :normalize_slug
-    before_save { |p| p.fullpath = p.fullpath(true) }
+    before_save         :build_fullpath
+    before_save         :record_current_locale
     before_destroy      :do_not_remove_index_and_404_pages
 
     ## validations ##
@@ -62,19 +64,34 @@ module Locomotive
       self.index? || self.not_found?
     end
 
-    def fullpath(force = false)
-      if read_attribute(:fullpath).present? && !force
-        return read_attribute(:fullpath)
-      end
+    # def localized_fullpath(locale)
+    #   ::Mongoid::Fields::I18n.with_locale(locale) do
+    #     self.fullpath
+    #     # locale != self.site.default_locale ? File.join(locale, self.fullpath) : self.fullpath
+    #   end
+    # end
 
-      if self.index? || self.not_found?
-        self.slug
-      else
-        slugs = self.self_and_ancestors.sort_by(&:depth).map(&:slug)
-        slugs.shift unless slugs.size == 1
-        File.join slugs.compact
-      end
-    end
+    # def fullpath(locale = nil)
+      # locale ||= ::Mongoid::Fields::I18n.locale
+      #
+      # localized_fullpath = self.attributes['fullpath'][locale]
+      #
+      # return localized_fullpath if localized_fullpath.present? && !force
+      #
+      # if self.index? || self.not_found?
+      #   self.slug
+      # else
+      #   slugs = self.self_and_ancestors.sort_by(&:depth).map(&:slug)
+      #   slugs.shift unless slugs.size == 1
+      #   File.join slugs.compact
+      # end
+    # end
+
+    # def fullpath_with_locale(locale)
+    #   url, locale = self.fullpath(true), locale.to_s
+    #
+    #   locale != self.site.default_locale ? File.join(locale, url) : url
+    # end
 
     def with_cache?
       self.cache_strategy != 'none'
@@ -111,6 +128,22 @@ module Locomotive
 
     def set_default_raw_template
       self.raw_template ||= ::I18n.t('attributes.defaults.pages.other.body')
+    end
+
+    def build_fullpath
+      if self.index? || self.not_found? || self.templatized?
+        self.fullpath = self.slug
+      else
+        slugs = self.self_and_ancestors.sort_by(&:depth).map(&:slug)
+        slugs.shift unless slugs.size == 1
+        self.fullpath = File.join slugs.compact
+      end
+    end
+
+    def record_current_locale
+      self.locales ||= []
+      self.locales << ::Mongoid::Fields::I18n.locale
+      self.locales.uniq!
     end
 
   end
