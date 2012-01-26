@@ -78,12 +78,14 @@ class Locomotive.Views.InlinEditor.ApplicationView extends Backbone.View
     _jQuery('a').each ->
       link  = _jQuery(this)
       url   = link.attr('href')
-      if url? && url != '#' && /^(www|http)/.exec(url) == null && /(\/_edit)$/.exec(url) == null
+      if url? && url.indexOf('#') != 0 && /^(www|http)/.exec(url) == null && /(\/_edit)$/.exec(url) == null
         url = '/index' if url == '/'
-        if url.indexOf('?') > 0
-          link.attr('href', url.replace('?', '/_edit?'))
-        else
-          link.attr('href', "#{url}/_edit")
+
+        unless url.indexOf('_edit') > 0
+          if url.indexOf('?') > 0
+            link.attr('href', url.replace('?', '/_edit?'))
+          else
+            link.attr('href', "#{url}/_edit")
 
         link.bind 'click', ->
           toolbar_view.show_status 'loading'

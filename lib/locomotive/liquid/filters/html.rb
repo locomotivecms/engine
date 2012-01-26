@@ -98,8 +98,8 @@ module Locomotive
 
           options = args_to_options(args)
 
-          previous_label = options[:previous_label] || I18n.t('pagination.previous')
-          next_label = options[:next_label] || I18n.t('pagination.next')
+          previous_label  = options[:previous_label] || I18n.t('pagination.previous')
+          next_label      = options[:next_label] || I18n.t('pagination.next')
 
           previous_link = (if paginate['previous'].blank?
             "<span class=\"disabled prev_page\">#{previous_label}</span>"

@@ -33,11 +33,14 @@ module Locomotive
 
       def set_ui_locale
         ::I18n.locale = current_locomotive_account.locale rescue Locomotive.config.default_locale
+        ::Mongoid::Fields::I18n.locale = params[:locale] || current_site.default_locale
       end
 
       def set_locale
-        self.set_current_content_locale
+        ::Mongoid::Fields::I18n.locale = params[:locale] || current_site.default_locale
         ::I18n.locale = ::Mongoid::Fields::I18n.locale
+
+        self.setup_i18n_fallbacks
       end
 
     end

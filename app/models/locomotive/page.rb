@@ -64,35 +64,6 @@ module Locomotive
       self.index? || self.not_found?
     end
 
-    # def localized_fullpath(locale)
-    #   ::Mongoid::Fields::I18n.with_locale(locale) do
-    #     self.fullpath
-    #     # locale != self.site.default_locale ? File.join(locale, self.fullpath) : self.fullpath
-    #   end
-    # end
-
-    # def fullpath(locale = nil)
-      # locale ||= ::Mongoid::Fields::I18n.locale
-      #
-      # localized_fullpath = self.attributes['fullpath'][locale]
-      #
-      # return localized_fullpath if localized_fullpath.present? && !force
-      #
-      # if self.index? || self.not_found?
-      #   self.slug
-      # else
-      #   slugs = self.self_and_ancestors.sort_by(&:depth).map(&:slug)
-      #   slugs.shift unless slugs.size == 1
-      #   File.join slugs.compact
-      # end
-    # end
-
-    # def fullpath_with_locale(locale)
-    #   url, locale = self.fullpath(true), locale.to_s
-    #
-    #   locale != self.site.default_locale ? File.join(locale, url) : url
-    # end
-
     def with_cache?
       self.cache_strategy != 'none'
     end
@@ -131,7 +102,7 @@ module Locomotive
     end
 
     def build_fullpath
-      if self.index? || self.not_found? || self.templatized?
+      if self.index? || self.not_found?
         self.fullpath = self.slug
       else
         slugs = self.self_and_ancestors.sort_by(&:depth).map(&:slug)

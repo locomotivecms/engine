@@ -37,7 +37,7 @@ module Locomotive
     end
 
     def choice_label(choice)
-      text = I18n.t("locomotive.my_account.edit.#{choice}")
+      text = I18n.t("locomotive.locales.#{choice}")
       template.image_tag("locomotive/icons/flags/#{choice}.png", :alt => text) << text
     end
 

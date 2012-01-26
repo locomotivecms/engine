@@ -10,6 +10,17 @@ fr:
         notice: "La page que vous avez demandée n'existe pas."
         link: "&rarr; Retour application"
 
+    locales:
+      en: Anglais
+      de: Allemand
+      fr: Français
+      pt-BR: "Portugais"
+      it: "Italien"
+      nl: "Hollandais"
+      "no": "Norvégien"
+      es: Espagnol
+      ru: Russe
+
     buttons:
       login: Se connecter
       send_password: Envoyer
@@ -163,16 +174,6 @@ fr:
       edit:
         help: "Votre nom est modifiable en cliquant dessus. Pour appliquer votre modification, cliquez après sur le bouton \"Modifier\""
         new_site: nouveau site
-        en: en Anglais
-        de: en Allemand
-        fr: en Français
-        pt-BR: "en Portugais"
-        it: "en Italien"
-        nl: "en Hollandais"
-        "no": "en Norvégien"
-        es: en Espagnol
-        ru: en Russe
-
         ask_for_name: "Veuillez entrer le nouveau nom"
 
     theme_assets:

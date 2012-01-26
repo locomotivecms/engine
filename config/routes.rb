@@ -89,14 +89,20 @@ Rails.application.routes.draw do
   resources :locomotive_entry_submissions, :controller => 'locomotive/public/content_entries', :path => 'entry_submissions/:slug'
 
   # magic urls
-  match '/_admin'       => 'locomotive/public/pages#show_toolbar'
-  match '*path/_admin'  => 'locomotive/public/pages#show_toolbar'
+  match '/_admin'               => 'locomotive/public/pages#show_toolbar'
+  match ':locale/_admin'        => 'locomotive/public/pages#show_toolbar', :locale => /(#{Locomotive.config.site_locales.join('|')})/
+  match ':locale/*path/_admin'  => 'locomotive/public/pages#show_toolbar', :locale => /(#{Locomotive.config.site_locales.join('|')})/
+  match '*path/_admin'          => 'locomotive/public/pages#show_toolbar'
 
-  match '/_edit'        => 'locomotive/public/pages#edit'
-  match '*path/_edit'   => 'locomotive/public/pages#edit'
+  match '/_edit'                => 'locomotive/public/pages#edit'
+  match ':locale/_edit'         => 'locomotive/public/pages#edit', :page_path => 'index', :locale => /(#{Locomotive.config.site_locales.join('|')})/
+  match ':locale/*path/_edit'   => 'locomotive/public/pages#edit', :locale => /(#{Locomotive.config.site_locales.join('|')})/
+  match '*path/_edit'           => 'locomotive/public/pages#edit'
 
-  match '/'             => 'locomotive/public/pages#show'
-  match '*path'         => 'locomotive/public/pages#show'
+  match '/'                     => 'locomotive/public/pages#show'
+  match ':locale'               => 'locomotive/public/pages#show', :page_path => 'index', :locale => /(#{Locomotive.config.site_locales.join('|')})/
+  match ':locale/*path'         => 'locomotive/public/pages#show', :locale => /(#{Locomotive.config.site_locales.join('|')})/
+  match '*path'                 => 'locomotive/public/pages#show'
 
 
 end

@@ -12,7 +12,17 @@ module Locomotive
     end
 
     def included_methods
-      super + %w(title slug fullpath raw_template published listed templatized redirect redirect_url cache_strategy template_changed editable_elements edit_url)
+      super + %w(title slug fullpath raw_template published listed templatized redirect redirect_url cache_strategy template_changed editable_elements edit_url localized_fullpaths)
+    end
+
+    def localized_fullpaths
+      site = self.source.site
+
+      {}.tap do |hash|
+        site.locales.each do |locale|
+          hash[locale] = site.localized_page_fullpath(self.source, locale)
+        end
+      end
     end
 
     def as_json_for_html_view

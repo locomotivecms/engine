@@ -24,15 +24,20 @@ module Locomotive
           end
 
           ::Mongoid::Fields::I18n.locale = session[:content_locale]
-          (current_site.locales || []).each do |locale|
-            ::Mongoid::Fields::I18n.fallbacks_for(locale, current_site.locale_fallbacks(locale))
-          end
 
-          logger.debug "*** content locale = #{session[:content_locale]} / #{::Mongoid::Fields::I18n.locale}"
+          self.setup_i18n_fallbacks
+
+          # logger.debug "*** content locale = #{session[:content_locale]} / #{::Mongoid::Fields::I18n.locale}"
         end
 
         def set_back_office_locale
           ::I18n.locale = current_locomotive_account.locale rescue Locomotive.config.default_locale
+        end
+
+        def setup_i18n_fallbacks
+          (current_site.locales || []).each do |locale|
+            ::Mongoid::Fields::I18n.fallbacks_for(locale, current_site.locale_fallbacks(locale))
+          end
         end
 
       end
