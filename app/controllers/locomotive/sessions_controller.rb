@@ -7,6 +7,8 @@ module Locomotive
 
     before_filter :require_site
 
+    before_filter :set_locale
+
     helper 'locomotive/base'
 
     protected
@@ -17,6 +19,10 @@ module Locomotive
 
     def after_sign_out_path_for(resource)
       request.protocol + request.host_with_port
+    end
+
+    def set_locale
+      I18n.locale = current_site.accounts.first.locale
     end
 
   end

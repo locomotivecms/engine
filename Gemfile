@@ -13,8 +13,8 @@ gem 'mongo',                    '~> 1.5.2'
 gem 'bson_ext',                 '~> 1.5.2'
 gem 'mongoid',                  '~> 2.4.2'
 gem 'locomotive_mongoid_acts_as_tree', '~> 0.1.5.8'
-# gem 'custom_fields',            :path => '../gems/custom_fields' # DEV
-gem 'custom_fields',            :git => 'git://github.com/locomotivecms/custom_fields.git', :branch => '2.0.0.rc'
+gem 'custom_fields',            :path => '../gems/custom_fields' # DEV
+# gem 'custom_fields',            :git => 'git://github.com/locomotivecms/custom_fields.git', :branch => '2.0.0.rc'
 gem 'kaminari'
 
 gem 'haml',                     '~> 3.1.3'

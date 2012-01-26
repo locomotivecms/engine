@@ -3,6 +3,8 @@ module Locomotive
 
     sections 'contents'
 
+    before_filter :back_to_default_site_locale, :only => %w(new create)
+
     before_filter :set_content_type
 
     respond_to :json, :only => [:edit, :create, :update, :sort]

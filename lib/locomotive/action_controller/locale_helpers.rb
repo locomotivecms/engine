@@ -34,6 +34,10 @@ module Locomotive
           ::I18n.locale = current_locomotive_account.locale rescue Locomotive.config.default_locale
         end
 
+        def back_to_default_site_locale
+          session[:content_locale] = ::Mongoid::Fields::I18n.locale = current_site.default_locale
+        end
+
         def setup_i18n_fallbacks
           (current_site.locales || []).each do |locale|
             ::Mongoid::Fields::I18n.fallbacks_for(locale, current_site.locale_fallbacks(locale))

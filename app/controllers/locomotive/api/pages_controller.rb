@@ -9,13 +9,13 @@ module Locomotive
 
       def create
         @page = current_site.pages.create(params[:page])
-        respond_with @page, :location => edit_locomotive_api_page_url(@page._id)
+        respond_with @page, :location => main_app.locomotive_api_pages_url
       end
 
       def update
         @page = current_site.pages.find(params[:id])
         @page.update_attributes(params[:page])
-        respond_with @page, :location => edit_locomotive_api_page_url(@page._id)
+        respond_with @page, :location => main_app.locomotive_api_pages_url
       end
 
     end
