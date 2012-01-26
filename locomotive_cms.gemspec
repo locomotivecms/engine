@@ -24,7 +24,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'mongo',                 '~> 1.5.2'
   s.add_dependency 'bson_ext',              '~> 1.5.2'
-  s.add_dependency 'mongoid',               '~> 2.4.0'
+  s.add_dependency 'mongoid',               '~> 2.4.2'
   s.add_dependency 'locomotive_mongoid_acts_as_tree', '0.1.5.8'
 
   s.add_dependency 'custom_fields',         '~> 2.0.0.rc1'
@@ -46,7 +46,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'locomotive_liquid',     '2.2.2'
   s.add_dependency 'formtastic',            '~> 2.0.2'
   s.add_dependency 'responders',            '~> 0.6.4'
-  s.add_dependency 'cells',                 '~> 3.7.1'
+  s.add_dependency 'cells',                 '~> 3.8.0'
   s.add_dependency 'RedCloth',              '~> 4.2.8'
   s.add_dependency 'sanitize',              '~> 2.0.3'
   s.add_dependency 'highline',              '~> 1.6.2'

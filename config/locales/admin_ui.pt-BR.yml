@@ -82,7 +82,7 @@ pt-BR:
         help: "As páginas são organizadas como uma árvore. Você pode reordenar as páginas como se fossem pastas"
         no_items: "Não existe nenhuma página ainda. Clique <a href=\"%{url}\">aqui</a> para criar a primeira."
         new: nova página
-        lastest_entries: Últmas páginas
+        latest_entries: Últmas páginas
       new:
         title: Nova página
         help: "Por favor, preencha o formulário a seguir para criar sua página. Atenção: Por padrão a página não é publicada."
@@ -215,7 +215,7 @@ pt-BR:
         download: download dos itens
         new: novo item
         category_noname: "Sem nome"
-        lastest_entries: "Últimos itens"
+        latest_entries: "Últimos itens"
         updated_at: "Atualizado em"
       list:
         no_entries: "Não existem itens ainda. Clique <a href=\"%{url}\">aqui</a> para criar o primeiro."

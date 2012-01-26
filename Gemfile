@@ -13,8 +13,8 @@ gem 'mongo',                    '~> 1.5.2'
 gem 'bson_ext',                 '~> 1.5.2'
 gem 'mongoid',                  '~> 2.4.2'
 gem 'locomotive_mongoid_acts_as_tree', '~> 0.1.5.8'
-gem 'custom_fields',            :path => '../gems/custom_fields' # DEV
-# gem 'custom_fields',          :git => 'git://github.com/locomotivecms/custom_fields.git', :branch => 'experimental'
+# gem 'custom_fields',            :path => '../gems/custom_fields' # DEV
+gem 'custom_fields',            :git => 'git://github.com/locomotivecms/custom_fields.git', :branch => '2.0.0.rc'
 gem 'kaminari'
 
 gem 'haml',                     '~> 3.1.3'
@@ -44,7 +44,6 @@ gem 'dragonfly',                '~> 0.9.8'
 gem 'rack-cache',               '~> 1.1', :require => 'rack/cache'
 gem 'mimetype-fu',              '~> 0.1.2'
 gem 'rubyzip'
-
 gem 'actionmailer-with-request',  '~> 0.3.0', :require => 'actionmailer_with_request'
 gem 'httparty',                   '~> 0.8.1'
 gem 'delayed_job_mongoid',        '~> 1.0.8'
@@ -69,6 +68,7 @@ group :test do
   gem 'xpath', '~> 0.1.4'
   gem 'capybara'
   gem 'database_cleaner'
+  gem 'shoulda-matchers'
 
   gem 'launchy'
   gem 'mocha', '0.9.12' # :git => 'git://github.com/floehopper/mocha.git'
