@@ -9,6 +9,8 @@ module Locomotive
 
       before_filter :require_site
 
+      before_filter :set_locale
+
       # before_filter :validate_site_membership
 
       skip_before_filter :verify_authenticity_token
@@ -37,6 +39,13 @@ module Locomotive
 
       def require_account
         authenticate_locomotive_account!
+      end
+
+      def set_locale
+        ::Mongoid::Fields::I18n.locale = params[:locale] || current_site.default_locale
+        ::I18n.locale = ::Mongoid::Fields::I18n.locale
+
+        self.setup_i18n_fallbacks
       end
 
     end
