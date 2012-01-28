@@ -150,8 +150,6 @@ fr:
 
     current_site:
       edit:
-        export: exporter
-        import: importer
         new_membership: ajouter compte
         help: "Le nom du site est modifiable en cliquant dessus. Pour appliquer votre modification, cliquez après sur le bouton \"Modifier\""
         ask_for_name: "Veuillez entrer le nouveau nom"
@@ -260,23 +258,6 @@ fr:
       new:
         title: Transfert vers un autre site
         notice: Vous allez être redirigé(e) vers le site dans quelques secondes.
-
-    import:
-      new:
-        title: Importer template de site
-        help: "Faites attention quand vous envoyez un nouveau template sur votre site, les données de celui-ci pourront être modifiées voire même supprimées."
-      show:
-        title: Import en cours
-        help: "Votre site est en train d'être mis à jour à partir du fichier zip précédemment envoyé sur le serveur. Cette opération peut durer quelques secondes."
-        steps:
-          site: Informations sur le site
-          content_types: Modèles de données personnalisés
-          assets: Fichiers du thème
-          snippets: Snippets
-          pages: Pages
-        messages:
-          success: "Votre site a été mis à jour avec succès."
-          failure: "L'import n'a pas fonctionné."
 
     installation:
       common:

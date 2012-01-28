@@ -29,10 +29,6 @@ module NavigationHelpers
       edit_locomotive_current_site_path
     when /account settings/
       edit_locomotive_my_account_path
-    when /import page/
-      new_locomotive_import_path
-    when /export page/
-      new_locomotive_export_path
     when /the "(.*)" model list page/
       content_type = Locomotive::Site.first.content_types.where(:name => $1).first
       locomotive_contents_path(content_type.slug)

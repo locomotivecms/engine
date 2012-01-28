@@ -46,10 +46,6 @@ Locomotive::Engine.routes.draw do
 
   resources :cross_domain_sessions, :only => [:new, :create]
 
-  resource :import, :only => [:new, :show, :create], :controller => 'import'
-
-  resource :export, :only => [:new], :controller => 'export'
-
   # installation guide
   match '/installation'       => 'installation#show', :defaults => { :step => 1 }, :as => :installation
   match '/installation/:step' => 'installation#show', :as => :installation_step

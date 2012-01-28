@@ -18,13 +18,13 @@ gem 'custom_fields',            :path => '../gems/custom_fields' # DEV
 gem 'kaminari'
 
 gem 'haml',                     '~> 3.1.3'
-gem 'sass-rails',               '~> 3.1.4'
+gem 'sass-rails',               '~> 3.1.5'
 gem 'coffee-script',            '~> 2.2.0'
 gem 'uglifier',                 '~> 1.0.4'
 gem 'compass',                  '~> 0.12.alpha.4'
 gem 'jquery-rails',             '~> 1.0.16'
 gem 'rails-backbone',           '0.5.4'
-gem 'codemirror-rails'
+gem 'codemirror-rails',         '~> 2.21'
 gem 'locomotive-tinymce-rails', '~> 3.4.7'
 gem 'locomotive-aloha-rails',   '~> 0.20.1'
 gem 'flash_cookie_session',     '~> 1.1.1'
@@ -43,10 +43,9 @@ gem 'fog',                      '~> 1.0.0'
 gem 'dragonfly',                '~> 0.9.8'
 gem 'rack-cache',               '~> 1.1', :require => 'rack/cache'
 gem 'mimetype-fu',              '~> 0.1.2'
-gem 'rubyzip'
 gem 'actionmailer-with-request',  '~> 0.3.0', :require => 'actionmailer_with_request'
 gem 'httparty',                   '~> 0.8.1'
-gem 'delayed_job_mongoid',        '~> 1.0.8'
+# gem 'delayed_job_mongoid',        '~> 1.0.8'
 gem 'SystemTimer',                :platforms => :ruby_18
 
 # The rest of the dependencies are for use when in the locomotive dev environment

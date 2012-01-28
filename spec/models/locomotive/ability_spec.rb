@@ -97,13 +97,6 @@ describe Locomotive::Ability do
       end
     end
 
-    context 'importing' do
-      it 'should allow importing of sites from (designer)' do
-        should     allow_permission_from :import, @designer
-        should_not allow_permission_from :import, @author
-      end
-    end
-
     context 'pointing' do
       it 'should allow importing of sites from (designer)' do
         should     allow_permission_from :point, @designer

@@ -4,9 +4,6 @@
   = render_cell 'locomotive/settings_menu', :show
 
 - content_for :buttons do
-  - if can?(:manage, @site)
-    = local_action_button :export, new_export_url, :class => 'new'
-    = local_action_button :import, new_import_url, :class => 'new'
   - if can?(:create, Locomotive::Account)
     = local_action_button t('.new_membership'), new_membership_url, :class => 'new'
 

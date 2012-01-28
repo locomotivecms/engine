@@ -7,7 +7,7 @@
  *= require locomotive/jquery
  *= require formtastic
  *= require codemirror
- *= require codemirror/themes/default
+ *= require codemirror/themes/neat
  *= require locomotive/toggle.css
  *= require locomotive/liquid_mode.css
  *= require_tree ./locomotive/shared

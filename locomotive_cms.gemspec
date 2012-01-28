@@ -10,8 +10,8 @@ Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.authors     = ['Didier Lafforgue']
   s.email       = ['didier@nocoffee.fr']
-  s.homepage    = 'http://locomotivecms.com'
-  s.summary     = 'A Next Generation Sexy CMS for Rails3'
+  s.homepage    = 'http://www.locomotivecms.com'
+  s.summary     = 'A Next Generation Sexy CMS for Rails 3'
   s.description = 'Locomotive is a next generation CMS system with sexy admin tools, liquid templating, and inline editing powered by mongodb and rails 3.1'
 
   s.required_rubygems_version = '>= 1.3.6'
@@ -32,13 +32,13 @@ Gem::Specification.new do |s|
   s.add_dependency 'kaminari'
 
   s.add_dependency 'haml',                  '~> 3.1.3'
-  s.add_dependency 'sass-rails',            '~> 3.1.4'
+  s.add_dependency 'sass-rails',            '~> 3.1.5'
   s.add_dependency 'coffee-script',         '~> 2.2.0'
   s.add_dependency 'uglifier',              '~> 1.2.2'
   s.add_dependency 'compass',               '~> 0.12.alpha.4'
   s.add_dependency 'jquery-rails',          '~> 1.0.16'
   s.add_dependency 'rails-backbone',        '0.5.4'
-  s.add_dependency 'codemirror-rails'
+  s.add_dependency 'codemirror-rails',      '~> 2.21'
   s.add_dependency 'locomotive-tinymce-rails',  '~> 3.4.7'
   s.add_dependency 'locomotive-aloha-rails',    '~> 0.20.1'
   s.add_dependency 'flash_cookie_session',  '~> 1.1.1'
@@ -57,11 +57,10 @@ Gem::Specification.new do |s|
   s.add_dependency 'dragonfly',             '~> 0.9.8'
   s.add_dependency 'rack-cache',            '~> 1.1'
   s.add_dependency 'mimetype-fu',           '~> 0.1.2'
-  s.add_dependency 'rubyzip'
 
   s.add_dependency 'actionmailer-with-request', '~> 0.3.0'
   s.add_dependency 'httparty',                  '~> 0.8.1'
-  s.add_dependency 'delayed_job_mongoid',       '~> 1.0.8'
+  # s.add_dependency 'delayed_job_mongoid',       '~> 1.0.8'
 
   s.files        = Dir[ 'Gemfile',
                         '{app}/**/*',

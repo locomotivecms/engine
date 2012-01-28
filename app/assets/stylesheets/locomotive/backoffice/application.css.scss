@@ -292,39 +292,6 @@ ul.list {
   }
 }
 
-/* ___ import steps ___ */
-
-#import-steps {
-  margin: 0px 200px;
-
-  li {
-    strong {
-      margin-left: 18px;
-      color: #b7baca;
-    }
-
-    .more .states {
-      position: relative;
-      top: 7px;
-      height: 16px;
-      width: 16px;
-      background: transparent image-url("locomotive/list/icons/states.png") no-repeat 0 0;
-    }
-
-    &.done {
-      strong { color: #1F82BC; }
-
-      .more .states {
-        background-position: 0 -16px;
-      }
-    }
-
-    &.failed .more .states {
-      background-position: 0 -32px;
-    }
-  }
-}
-
 /* ___ paragraph (for help for example) ___ */
 
 p span.code {
