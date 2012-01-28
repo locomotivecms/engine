@@ -6,14 +6,15 @@ module Liquid
         def render(context)
           if context.registers[:current_locomotive_account] && context.registers[:inline_editor]
 
+            controller = context.registers[:controller]
+
             plugins = 'common/format,common/table,common/list,common/link,common/highlighteditables,common/block,common/undo,common/contenthandler,common/paste,common/commands,common/abbr,common/horizontalruler'
 
             %{
               <meta content="true" name="inline-editor" />
 
-              #{ActionController::Base.helpers.stylesheet_link_tag    'aloha/css/aloha.css'}
-              #{ActionController::Base.helpers.javascript_include_tag 'locomotive/aloha', :'data-aloha-plugins' => plugins}
-
+              #{controller.view_context.stylesheet_link_tag    'aloha/css/aloha.css'}
+              #{controller.view_context.javascript_include_tag 'locomotive/aloha', :'data-aloha-plugins' => plugins}
 
               <script type="text/javascript">
                 Aloha.ready(function() \{
