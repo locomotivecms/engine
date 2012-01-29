@@ -76,12 +76,14 @@ Gem::Specification.new do |s|
 
   s.add_development_dependency 'unicorn',     '~> 4.2.0'
 
-  s.files        = Dir[ 'Gemfile',
-                        '{app}/**/*',
-                        '{config}/**/*',
-                        '{lib}/**/*',
-                        '{public}/**/*',
-                        '{vendor}/**/*']
+  s.files = Dir[
+    'Gemfile',
+    '{app}/**/*',
+    '{config}/**/*',
+    '{lib}/**/*',
+    '{public}/**/*',
+    '{vendor}/**/*'
+  ]
 
   s.require_path = 'lib'
 
