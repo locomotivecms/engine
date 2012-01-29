@@ -32,14 +32,6 @@ RSpec.configure do |config|
   end
 
   config.before(:each) do
-    if self.described_class != Locomotive::Import::Job
-      DatabaseCleaner.clean
-    end
-  end
-
-  config.before(:all) do
-    if self.described_class == Locomotive::Import::Job
-      DatabaseCleaner.clean
-    end
+    DatabaseCleaner.clean
   end
 end
