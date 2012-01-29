@@ -12,9 +12,9 @@ Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.authors     = ['Didier Lafforgue']
   s.email       = ['didier@nocoffee.fr']
-  s.homepage    = 'http://www.locomotivecms.com'
-  s.summary     = 'A Next Generation Sexy CMS for Rails 3'
-  s.description = 'Locomotive is a next generation CMS system with sexy admin tools, liquid templating, and inline editing powered by mongodb and rails 3.1'
+  s.homepage    = 'http://locomotivecms.com'
+  s.summary     = 'A next generation sexy CMS for Rails 3'
+  s.description = 'Locomotive is a next generation CMS with sexy admin tools, liquid templating, and inline editing powered by MongoDB and Rails 3.'
 
   s.required_rubygems_version = '>= 1.3.6'
   
