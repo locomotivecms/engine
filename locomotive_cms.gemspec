@@ -65,9 +65,17 @@ Gem::Specification.new do |s|
   s.add_dependency 'actionmailer-with-request',       '~> 0.3.0'
   
   # s.add_dependency 'delayed_job_mongoid',             '~> 1.0.8'
-  
+
   s.add_dependency 'SystemTimer' if RUBY_VERSION =~ /1.8/
+
+  # Development dependencies
+  # ------------------------
   
+  s.add_development_dependency 'rspec-rails', '~> 2.6.1'
+  s.add_development_dependency 'rspec-cells', '~> 0.1.2'
+
+  s.add_development_dependency 'unicorn',     '~> 4.2.0'
+
   s.files        = Dir[ 'Gemfile',
                         '{app}/**/*',
                         '{config}/**/*',
