@@ -106,8 +106,8 @@ x script to migrate existing site
   x i18n
 - heroku module for locomotive
 - refactoring
-  - remove the cross domain authentication (use auth_token instead)
-  - remove the import / export scripts
+  x remove the import / export scripts
+  x remove the cross domain authentication (use auth_token instead)
   - where to put Locomotive::InlineEditorMiddleware ?
 - upgrade to rails 3.2 (https://github.com/locomotivecms/engine/pull/281/files)
 
