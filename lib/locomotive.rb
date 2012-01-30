@@ -63,7 +63,8 @@ module Locomotive
 
     # cookies stored in mongodb (mongoid_store)
     Rails.application.config.session_store :mongoid_store, {
-      :key => self.config.cookie_key
+      :key    => self.config.cookie_key,
+      :domain => :all
     }
 
     # add middlewares (dragonfly, font, seo, ...etc)

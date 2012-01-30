@@ -29,7 +29,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'custom_fields',         '~> 2.0.0.rc2'
 
-  s.add_dependency 'kaminari'
+  s.add_dependency 'kaminari',              '~> 0.13.0'
 
   s.add_dependency 'haml',                  '~> 3.1.3'
   s.add_dependency 'sass-rails',            '~> 3.1.5'
@@ -60,7 +60,6 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'actionmailer-with-request', '~> 0.3.0'
   s.add_dependency 'httparty',                  '~> 0.8.1'
-  # s.add_dependency 'delayed_job_mongoid',       '~> 1.0.8'
 
   s.files        = Dir[ 'Gemfile',
                         '{app}/**/*',
