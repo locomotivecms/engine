@@ -29,9 +29,9 @@ module Locomotive
       if account = Account.find_using_switch_site_token(params[:token])
         account.reset_switch_site_token!
         sign_in(account)
-        redirect_to admin_pages_path
+        redirect_to pages_path
       else
-        redirect_to new_admin_session_path, :alert => t('flash.locomotive.cross_domain_sessions.create.alert')
+        redirect_to new_locomotive_account_session_path, :alert => t('flash.locomotive.cross_domain_sessions.create.alert')
       end
     end
 

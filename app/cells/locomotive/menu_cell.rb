@@ -1,4 +1,5 @@
-class Locomotive::MenuCell < Cell::Base
+class Locomotive::MenuCell < Cell::Rails
+
   include ::Locomotive::Engine.routes.url_helpers
 
   delegate :sections, :to => :parent_controller
@@ -17,10 +18,10 @@ class Locomotive::MenuCell < Cell::Base
 
   def url_options
     super.reverse_merge(
-      :host => request.host_with_port,
-      :protocol => request.protocol,
-      :_path_segments => request.symbolized_path_parameters
-    ).merge(:script_name => request.script_name)
+      :host               => request.host_with_port,
+      :protocol           => request.protocol,
+      :_path_segments     => request.symbolized_path_parameters
+    ).merge(:script_name  => request.script_name)
   end
 
   class MenuProxy

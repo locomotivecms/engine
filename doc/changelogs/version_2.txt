@@ -14,7 +14,8 @@
   - api_contents:
     - url => entry_submissions
     - params[:content] => params[:entries]
-
+  - editable_file:
+    - source_filename => source
 
 collection, selector = Locomotive::ContentType.collection, Locomotive::ContentType.criteria.selector
 collection.update selector, { '$rename' => { 'contents_custom_fields' => 'entries_custom_fields' } }

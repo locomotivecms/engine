@@ -15,8 +15,7 @@ Background:
   Scenario: Accessing site settings as an Admin
     Given I am an authenticated "admin"
     When I go to site settings
-    Then I should see "import"
-    And I should see "add account"
+    Then I should see "add account"
     And I should see "SEO settings"
     And I should see "Access points"
     And I should not see the role dropdown on myself
@@ -29,8 +28,7 @@ Background:
   Scenario: Accessing site settings as a Designer
     Given I am an authenticated "designer"
     When I go to site settings
-    Then I should see "import"
-    And I should not see "add account"
+    Then I should not see "add account"
     And I should see "SEO settings"
     And I should see "Access points"
     And I should not see the role dropdown on myself
@@ -43,8 +41,7 @@ Background:
   Scenario: Accessing site settings as an Author
     Given I am an authenticated "author"
     When I go to site settings
-    Then I should not see "import"
-    And I should not see "add account"
+    Then I should not see "add account"
     And I should see "SEO settings"
     And I should not see "Access points"
     And I should not see "Accounts"

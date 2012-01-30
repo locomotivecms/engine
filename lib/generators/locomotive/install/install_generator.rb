@@ -13,6 +13,8 @@ module Locomotive
       template 'carrierwave.rb', 'config/initializers/carrierwave.rb'
 
       template 'dragonfly.rb', 'config/initializers/dragonfly.rb'
+
+      template 'mongoid.yml', 'config/mongoid.yml'
     end
 
     def insert_engine_routes

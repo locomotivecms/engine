@@ -18,7 +18,7 @@ module Locomotive
     end
 
     def locale_to_html(locale)
-      text = I18n.t("locomotive.my_account.edit.#{locale}")
+      text = I18n.t("locomotive.locales.#{locale}")
 
       builder.radio_button(:locale, locale, :id => choice_input_dom_id(locale)) +
       template.content_tag(:label,

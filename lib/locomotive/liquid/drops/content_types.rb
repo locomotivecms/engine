@@ -66,7 +66,7 @@ module Locomotive
         protected
 
         def paginate(options = {})
-          @collection.page(options[:page]).per(options[:per_page])
+          self.collection.page(options[:page]).per(options[:per_page])
         end
 
         def collection

@@ -2,7 +2,7 @@
 !!!
 %html{ :xmlns => 'http://www.w3.org/1999/xhtml'  }
   %head
-    %title= title || escape_once("#{Locomotive.config.name} &mdash; #{current_site.name}")
+    %title= escape_once(title || "#{Locomotive.config.name} &mdash; #{current_site.name}")
 
     = javascript_include_tag  'locomotive/not_logged_in'
     = stylesheet_link_tag     'locomotive/not_logged_in', :media => 'screen'

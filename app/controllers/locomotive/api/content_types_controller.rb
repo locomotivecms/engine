@@ -9,18 +9,13 @@ module Locomotive
 
       def create
         @content_type = current_site.content_types.create(params[:content_type])
-        respond_with @content_type, :location => edit_locomotive_api_content_type_url(@content_type._id)
-      end
-
-      def edit
-        @content_type = current_site.content_types.find(params[:id])
-        respond_with @content_type
+        respond_with @content_type, :location => main_app.locomotive_api_content_types_url
       end
 
       def update
         @content_type = current_site.content_types.find(params[:id])
         @content_type.update_attributes(params[:content_type])
-        respond_with @content_type, :location => edit_locomotive_api_content_type_url(@content_type._id)
+        respond_with @content_type, :location => main_app.locomotive_api_content_types_url
       end
 
     end

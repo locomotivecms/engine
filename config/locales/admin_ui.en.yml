@@ -9,6 +9,17 @@ en:
       delete: "Delete"
       close: "Close"
 
+    locales:
+      en: English
+      de: German
+      fr: French
+      pt-BR: "Brazilian Portuguese"
+      it: Italian
+      nl: Dutch
+      "no": Norwegian
+      es: Spanish
+      ru: Russian
+
     messages:
       confirm: Are you sure ?
 
@@ -148,8 +159,6 @@ en:
 
     current_site:
       edit:
-        export: export
-        import: import
         new_membership: add account
         help: "The site name can be updated by clicking it. To apply your changes, click on the \"Save\" button."
         ask_for_name: "Please type the new site name"
@@ -172,15 +181,6 @@ en:
       edit:
         help: "Your name can be updated by clicking it. To apply your changes, click on the \"Save\" button."
         new_site: new site
-        en: English
-        de: German
-        fr: French
-        pt-BR: "Brazilian Portuguese"
-        it: Italian
-        nl: Dutch
-        "no": Norwegian
-        es: Spanish
-        ru: Russian
         ask_for_name: "Please type your new name"
 
     theme_assets:
@@ -268,23 +268,6 @@ en:
       new:
         title: Cross-domain authentication
         notice: You will be redirected to the website in a couple of seconds.
-
-    import:
-      new:
-        title: Import site template
-        help: "Be careful when you upload a new template for your existing website, your current data could be modified or even removed."
-      show:
-        title: Import in progress
-        help: "Your site is being updated from the theme zip file you have just uploaded. It lasts a couple of seconds."
-        steps:
-          site: Site information
-          content_types: Custom content types
-          assets: Theme files
-          snippets: Snippets
-          pages: Pages
-        messages:
-          success: "Your site was successfully updated."
-          failure: "The import did not work."
 
     installation:
       common:

@@ -56,10 +56,6 @@ module Locomotive
         site == @site
       end
 
-      can :import, Site
-
-      can :export, Site
-
       can :point, Site
 
       cannot :create, Site

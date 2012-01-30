@@ -28,7 +28,7 @@ module Locomotive
       end
 
       def locomotive_page
-        path = (params[:path] || request.fullpath).clone # TODO: params[:path] is more consistent
+        path = (params[:path] || params[:page_path] || request.fullpath).clone # TODO: params[:path] is more consistent
         path = path.split('?').first # take everything before the query string or the lookup fails
         path.gsub!(/\.[a-zA-Z][a-zA-Z0-9]{2,}$/, '') # remove the page extension
         path.gsub!(/^\//, '') # remove the leading slash
@@ -68,7 +68,10 @@ module Locomotive
           'path'              => request.path,
           'url'               => request.url,
           'now'               => Time.now.utc,
-          'today'             => Date.today
+          'today'             => Date.today,
+          'locale'            => I18n.locale,
+          'default_locale'    => current_site.default_locale.to_s,
+          'locales'           => current_site.locales
         }
 
         assigns.merge!(Locomotive.config.context_assign_extensions)
@@ -85,10 +88,10 @@ module Locomotive
           :site           => current_site,
           :page           => @page,
           :inline_editor  => self.editing_page?,
-          :current_locomotive_account  => current_locomotive_account
+          :current_locomotive_account => current_locomotive_account
         }
 
-        ::Liquid::Context.new({}, assigns, registers)
+        ::Liquid::Context.new({}, assigns, registers, false) # pass false to true to enable the re-thrown exception flag
       end
 
       def prepare_and_set_response(output)

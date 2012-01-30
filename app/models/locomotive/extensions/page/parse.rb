@@ -6,14 +6,14 @@ module Locomotive
         extend ActiveSupport::Concern
 
         included do
-          field :serialized_template, :type => Binary
-          field :template_dependencies, :type => Array, :default => []
-          field :snippet_dependencies, :type => Array, :default => []
+          field :serialized_template,   :type => Binary, :localize => true
+          field :template_dependencies, :type => Array, :default => [], :localize => true
+          field :snippet_dependencies,  :type => Array, :default => [], :localize => true
 
           attr_reader :template_changed
 
           before_validation :serialize_template
-          after_save :update_template_descendants
+          after_save        :update_template_descendants
 
           validate :template_must_be_valid
 
@@ -23,7 +23,7 @@ module Locomotive
         module InstanceMethods
 
           def template
-            @template ||= Marshal.load(read_attribute(:serialized_template).to_s) rescue nil
+            @template ||= Marshal.load(self.serialized_template.to_s) rescue nil
           end
 
           protected

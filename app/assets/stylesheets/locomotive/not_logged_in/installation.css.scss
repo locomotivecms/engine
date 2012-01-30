@@ -46,10 +46,12 @@ body.installation {
           } // li.question
 
           li {
-            input {
-              &[type=text] { width: 302px; }
+            &.string {
+              input[type=text] { width: 290px; }
+            }
 
-              &[type=password] { width: 180px; }
+            &.password {
+              input[type=password] { width: 180px; }
             }
 
           } // li

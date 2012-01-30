@@ -3,8 +3,8 @@ class Locomotive::GlobalActionsCell < ::Locomotive::MenuCell
   attr_reader :current_locomotive_account, :current_site_url
 
   def show(args)
-    @current_locomotive_account    = args[:current_locomotive_account]
-    @current_site_url   = args[:current_site_url]
+    @current_locomotive_account = args[:current_locomotive_account]
+    @current_site_url           = args[:current_site_url]
     super
   end
 

@@ -1,7 +1,9 @@
 module Locomotive
   class EditableFile < EditableElement
 
-    mount_uploader :source, EditableFileUploader, :mount_on => :source_filename
+    mount_uploader :source, EditableFileUploader
+
+    replace_field :source, ::String, true
 
     def content
       self.source? ? self.source.url : self.default_content
