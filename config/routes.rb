@@ -7,7 +7,8 @@ Locomotive::Engine.routes.draw do
     :path_prefix  => nil,
     :failure_app  => 'Locomotive::Devise::FailureApp',
     :controllers  => { :sessions => 'locomotive/sessions', :passwords => 'locomotive/passwords' } do
-      match '/' => 'sessions#new'
+      match '/'         => 'sessions#new'
+      delete 'signout'  => 'sessions#destroy', :as => :destroy_locomotive_session
   end
 
   root :to => 'pages#index'
@@ -40,11 +41,6 @@ Locomotive::Engine.routes.draw do
   resources :content_entries, :path => 'content_types/:slug/entries' do
     put :sort, :on => :collection
   end
-
-  # TODO
-  resources :custom_fields, :path => 'custom/:parent/:slug/fields'
-
-  resources :cross_domain_sessions, :only => [:new, :create]
 
   # installation guide
   match '/installation'       => 'installation#show', :defaults => { :step => 1 }, :as => :installation

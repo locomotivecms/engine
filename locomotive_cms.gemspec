@@ -17,7 +17,7 @@ Gem::Specification.new do |s|
   s.description = 'Locomotive is a next generation CMS system with sexy admin tools, liquid templating, and inline editing powered by mongodb and rails 3.1'
 
   s.required_rubygems_version = '>= 1.3.6'
-  
+
   s.add_dependency 'rake',                            '~> 0.9.2'
 
   s.add_dependency 'rails',                           '~> 3.1.3'
@@ -63,11 +63,9 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'httparty',                        '~> 0.8.1'
   s.add_dependency 'actionmailer-with-request',       '~> 0.3.0'
-  
-  # s.add_dependency 'delayed_job_mongoid',             '~> 1.0.8'
-  
+
   s.add_dependency 'SystemTimer' if RUBY_VERSION =~ /1.8/
-  
+
   s.files        = Dir[ 'Gemfile',
                         '{app}/**/*',
                         '{config}/**/*',

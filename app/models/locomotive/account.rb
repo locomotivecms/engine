@@ -1,5 +1,3 @@
-require 'digest'
-
 module Locomotive
   class Account
 
@@ -10,7 +8,6 @@ module Locomotive
     ## attributes ##
     field :name
     field :locale, :default => Locomotive.config.default_locale.to_s or 'en'
-    field :switch_site_token
 
     ## validations ##
     validates_presence_of :name
@@ -24,20 +21,6 @@ module Locomotive
 
     def sites
       @sites ||= Site.where({ 'memberships.account_id' => self._id })
-    end
-
-    def reset_switch_site_token!
-      self.switch_site_token = SecureRandom.base64(8).gsub("/", "_").gsub(/=+$/, "")
-      self.save
-    end
-
-    def self.find_using_switch_site_token(token, age = 1.minute)
-      return if token.blank?
-      self.where(:switch_site_token => token, :updated_at.gt => age.ago.utc).first
-    end
-
-    def self.find_using_switch_site_token!(token, age = 1.minute)
-      self.find_using_switch_site_token(token, age) || raise(::Mongoid::Errors::DocumentNotFound.new(self, token))
     end
 
     # Create the API token which will be passed to all the requests to the Locomotive API.
