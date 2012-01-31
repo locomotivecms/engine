@@ -41,6 +41,9 @@ class Locomotive.Views.ContentTypes.CustomFieldEntryView extends Backbone.View
         @$('li.input.select-options').show()
       when 'text'
         @$('li.input.text-formatting').show()
+      when 'belongs_to'
+        @$('li.input.localized').hide()
+        @$('li.input.class-name').show()
 
   render_select_options_view: ->
     @select_options_view = new Locomotive.Views.ContentTypes.SelectOptionsView

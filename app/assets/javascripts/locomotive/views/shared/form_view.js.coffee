@@ -83,6 +83,7 @@ class Locomotive.Views.Shared.FormView extends Backbone.View
 
   show_error: (attribute, message, html) ->
     input = @$("##{@model.paramRoot}_#{attribute}")
+    input = @$("##{@model.paramRoot}_#{attribute}_id") if input.size() == 0
 
     return unless input.size() > 0
 

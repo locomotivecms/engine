@@ -1,0 +1,5 @@
+= f.input :"#{name}_id",
+  :label      => field.label,
+  :hint       => field.hint,
+  :as         => :select,
+  :collection => options_for_belongs_to_custom_field(field.class_name)

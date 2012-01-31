@@ -1,7 +1,7 @@
 module Locomotive::CustomFieldsHelper
 
   def options_for_custom_field_type
-    %w(string text select boolean date file).map do |type|
+    %w(string text select boolean date file belongs_to).map do |type|
       [t("custom_fields.types.#{type}"), type]
     end
   end
@@ -40,6 +40,14 @@ module Locomotive::CustomFieldsHelper
       [t("locomotive.custom_fields.text_formatting.#{option}"), option]
     end
   end
+
+  def options_for_content_types
+    current_site.content_types.map do |c|
+      c != @content_type ? [c.name, c.klass_with_custom_fields(:entries).to_s] : nil
+    end.compact
+  end
+
+
 
   # def options_for_association_target
   #   current_site.reload.content_types.collect { |c| [c.name, c.content_klass.to_s] }
