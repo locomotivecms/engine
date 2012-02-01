@@ -1,5 +1,5 @@
 module Locomotive
-  class FileInput # < Formtastic::Inputs::TextInput
+  class FileInput
 
     include Formtastic::Inputs::Base
 

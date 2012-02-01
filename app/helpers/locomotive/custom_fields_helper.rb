@@ -1,7 +1,7 @@
 module Locomotive::CustomFieldsHelper
 
   def options_for_custom_field_type
-    %w(string text select boolean date file belongs_to).map do |type|
+    %w(string text select boolean date file belongs_to has_many).map do |type|
       [t("custom_fields.types.#{type}"), type]
     end
   end
@@ -41,13 +41,27 @@ module Locomotive::CustomFieldsHelper
     end
   end
 
-  def options_for_content_types
+  def options_for_content_type
     current_site.content_types.map do |c|
       c != @content_type ? [c.name, c.klass_with_custom_fields(:entries).to_s] : nil
     end.compact
   end
 
-
+  def options_for_content_type_inverse_of
+    [].tap do |list|
+      current_site.content_types.where(:'entries_custom_fields.type' => 'belongs_to').each do |content_type|
+        content_type.entries_custom_fields.each do |field|
+          if field.type == 'belongs_to'
+            list << {
+              :label      => field.label,
+              :name       => field.name,
+              :class_name => content_type.klass_with_custom_fields(:entries).to_s
+            }
+          end
+        end
+      end
+    end
+  end
 
   # def options_for_association_target
   #   current_site.reload.content_types.collect { |c| [c.name, c.content_klass.to_s] }

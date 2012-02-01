@@ -2,7 +2,7 @@ puts "\t...loading dependencies"
 
 require 'mongoid'
 require 'mongoid/railtie'
-require 'mongoid_acts_as_tree'
+require 'mongoid/tree'
 require 'devise'
 require 'devise/orm/mongoid'
 require 'kaminari'

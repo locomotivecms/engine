@@ -1,5 +1,5 @@
 module Locomotive
-  class EmptyInput # < Formtastic::Inputs::HiddenInput
+  class EmptyInput
     include Formtastic::Inputs::Base
 
     def to_html

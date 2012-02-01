@@ -1,33 +1,70 @@
-= form.custom_input field._alias.to_sym, :label => field.label, :hint => field.hint, :css => 'has-many', :required => required do
+- if !f.object.new_record? && field.ui_enabled?
 
-  .has-many-selector
+  = f.input     name.to_sym,
+    :label      => field.label,
+    :hint       => field.hint,
+    :as         => :'Locomotive::Empty',
+    :wrapper_html => { :id => "content_entry_#{name}_input", :class => 'empty relationship input' }
 
-    %p{ :style => form.object.send(field._alias.to_sym).empty? ? '' : 'display: none'  }
-      = t('.empty')
+  - content_for :head do
 
-    %ul
+    %script{ :type => 'text/html', :id => "#{name}_list" }
 
-    %script{ :type => 'text/x-mustache-template', :name => 'template', :'data-base-input-name' => "content[#{field._alias.to_sym}]" }
-      %li{ :class => "item {{behaviour_flag}}" }
-        %span.handle
-          = image_tag 'admin/form/icons/drag.png'
+      %p.empty{ :style => 'display: none' }!= t('.empty')
 
-        {{^if_template}}
-        %input{ :name => '{{base_name}}[]', :value => '{{{id}}}', :type => 'hidden', :'data-field' => 'id' }
-        {{/if_template}}
+      %ul
 
-        %strong {{label}}
+      %hr
 
-        {{#if_template}}
-        = select_tag 'label', ''
-        {{/if_template}}
+      %p
+        = link_to t('.new_entry'), '#'
+
+    %script{ :type => 'text/html', :id => "#{name}_entry" }
+      %li
+        .handle.col
+          = image_tag 'locomotive/form/icons/drag.png'
+
+        .label.col
+          {{label}}
 
         %span.actions
-          - if field.reverse_lookup?
-            = link_to image_tag('admin/form/pen.png'), '#', :class => 'edit first'
-          = link_to image_tag('admin/form/icons/trash.png'), '#', :class => 'remove'
-          %button{ :class => 'button light mini add', :type => 'button' }
-            %span!= t('locomotive.buttons.new_item')
+          = link_to 'x', '#', :class => 'remove', :confirm => t('locomotive.messages.confirm')
 
-    %script{ :type => 'text/javascript', :name => 'data' }
-      != has_many_data_to_js(field, form.object)
+
+  / - collection = f.object.send(name.to_sym)
+
+
+
+/ = form.custom_input field._alias.to_sym, :label => field.label, :hint => field.hint, :css => 'has-many', :required => required do
+/
+/   .has-many-selector
+/
+/     %p{ :style => form.object.send(field._alias.to_sym).empty? ? '' : 'display: none'  }
+/       = t('.empty')
+/
+/     %ul
+/
+/     %script{ :type => 'text/x-mustache-template', :name => 'template', :'data-base-input-name' => "content[#{field._alias.to_sym}]" }
+/       %li{ :class => "item {{behaviour_flag}}" }
+/         %span.handle
+/           = image_tag 'admin/form/icons/drag.png'
+/
+/         {{^if_template}}
+/         %input{ :name => '{{base_name}}[]', :value => '{{{id}}}', :type => 'hidden', :'data-field' => 'id' }
+/         {{/if_template}}
+/
+/         %strong {{label}}
+/
+/         {{#if_template}}
+/         = select_tag 'label', ''
+/         {{/if_template}}
+/
+/         %span.actions
+/           - if field.reverse_lookup?
+/             = link_to image_tag('admin/form/pen.png'), '#', :class => 'edit first'
+/           = link_to image_tag('admin/form/icons/trash.png'), '#', :class => 'remove'
+/           %button{ :class => 'button light mini add', :type => 'button' }
+/             %span!= t('locomotive.buttons.new_item')
+/
+/     %script{ :type => 'text/javascript', :name => 'data' }
+/       != has_many_data_to_js(field, form.object)

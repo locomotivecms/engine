@@ -33,6 +33,7 @@ module Locomotive
     before_validation   :normalize_slug
     after_validation    :bubble_fields_errors_up
     before_save         :set_default_values
+    before_update       :update_label_field_name_in_entries
 
     ## validations ##
     validates_presence_of   :site, :name, :slug
@@ -112,6 +113,29 @@ module Locomotive
       end
 
       self.errors.set(:entries_custom_fields, hash)
+    end
+
+    def update_label_field_name_in_entries
+      self.klass_with_custom_fields(:entries).update_all :_label_field_name => self.label_field_name
+    end
+
+    # Makes sure the class_name filled in a belongs_to or has_many field
+    # does not belong to another site. Adds an error if it presents a
+    # security problem.
+    #
+    # @param [ CustomFields::Field ] field The field to check
+    #
+    def ensure_class_name_security(field)
+      if field.class_name =~ /^Locomotive::Entry([a-z0-9]+)$/
+        content_type = Locomotive::ContentType.find($1)
+
+        if content_type.site_id != self.site_id
+          field.errors.add :security
+        end
+      else
+        # for now, does not allow external classes
+        field.errors.add :security
+      end
     end
 
   end

@@ -30,7 +30,7 @@ class Locomotive.Views.ContentTypes.FormView extends Locomotive.Views.Shared.For
     return @
 
   render_custom_fields: ->
-    @custom_fields_view = new Locomotive.Views.ContentTypes.CustomFieldsView model: @model
+    @custom_fields_view = new Locomotive.Views.ContentTypes.CustomFieldsView model: @model, inverse_of_list: @options.inverse_of_list
 
     @$('#custom_fields_input').append(@custom_fields_view.render().el)
 

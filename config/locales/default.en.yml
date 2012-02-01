@@ -17,6 +17,7 @@ en:
           liquid_syntax: "Liquid Syntax error ('%{error}' on '%{fullpath}')"
           liquid_extend: "The page '%{fullpath}' extends a template which does not exist"
         too_few_custom_fields: "At least, one custom field is required"
+        security: "presents a security problem"
 
   attributes:
     defaults:

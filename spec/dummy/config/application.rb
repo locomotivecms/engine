@@ -5,7 +5,8 @@ require 'action_mailer/railtie'
 require 'active_resource/railtie'
 require 'sprockets/railtie'
 
-Bundler.require
+# Bundler.require
+Bundler.require(*Rails.groups(:assets => %w(development test)))
 require 'locomotive/engine'
 
 module Dummy
@@ -43,6 +44,10 @@ module Dummy
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+    # config.after_initialize do |c|
+    #   c.middleware.delete(Sass::Plugin::Rack)
+    # end
   end
 end
 
