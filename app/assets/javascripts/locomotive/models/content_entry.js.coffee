@@ -23,6 +23,12 @@ class Locomotive.Models.ContentEntry extends Backbone.Model
       @set_attribute attribute, attributes[attribute]
       @set_attribute "remove_#{field}", false
 
+  toMinJSON: ->
+    _.tap {}, (hash) =>
+      _.each @attributes, (val, key) =>
+        if key == 'id' || key == '_destroy' || key.indexOf('position_in_') == 0
+          hash[key] = val
+
   toJSON: ->
     _.tap super, (hash) =>
       hash['_slug'] = '' if hash['_slug'] == null # avoid empty hash
@@ -30,10 +36,15 @@ class Locomotive.Models.ContentEntry extends Backbone.Model
         unless _.include(@get('safe_attributes'), key)
           delete hash[key]
 
-      # TODO: insert has_many
+      _.each @get('_has_many_fields'), (field) => # include the has_many relationships
+        name = field[0]
+        hash["#{name}_attributes"] = @get(name).toMinJSON()
 
 class Locomotive.Models.ContentEntriesCollection extends Backbone.Collection
 
   model: Locomotive.Models.ContentEntry
 
   url: "#{Locomotive.mounted_on}/content_types/:slug/entries"
+
+  toMinJSON: ->
+    @map (entry) => entry.toMinJSON()

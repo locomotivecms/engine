@@ -68,5 +68,6 @@ class Locomotive.Views.Shared.Fields.HasManyView extends Backbone.View
       entry.set _destroy: true
 
       entry_html.remove()
+      @$('.empty').show() if @$('> ul > li').size() == 0
       @refresh_position_entries()
 
