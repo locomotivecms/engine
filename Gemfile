@@ -9,12 +9,20 @@ gemspec # Include gemspec dependencies
 
 group :development do
   gem 'custom_fields', :path => '../gems/custom_fields' # Locale
-  # gem 'custom_fields', :git => 'git://github.com/locomotivecms/custom_fields.git', :branch => '2.0.0.rc' # Branch on Github
+#   # gem 'custom_fields', :git => 'git://github.com/locomotivecms/custom_fields.git', :branch => '2.0.0.rc' # Branch on Github
 
   gem 'rspec-rails', '2.6.1' # In order to have rspec tasks and generators
   gem 'rspec-cells'
 
   gem 'unicorn' # Using unicorn_rails instead of webrick (default server)
+end
+
+group :assets do
+  gem 'sass-rails',   '~> 3.2.4'
+  gem 'coffee-rails', '~> 3.2.2'
+  gem 'uglifier',     '~> 1.2.3'
+  gem 'compass',        :git => 'git://github.com/chriseppstein/compass.git', :branch => 'no_rails_integration'
+  gem 'compass-rails',  :git => 'git://github.com/Compass/compass-rails.git'
 end
 
 group :test do

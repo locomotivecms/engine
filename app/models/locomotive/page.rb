@@ -23,7 +23,7 @@ module Locomotive
     field :cache_strategy,      :default => 'none'
 
     ## associations ##
-    referenced_in :site, :class_name => 'Locomotive::Site'
+    belongs_to :site, :class_name => 'Locomotive::Site'
 
     ## indexes ##
     index :site_id
@@ -105,7 +105,7 @@ module Locomotive
       if self.index? || self.not_found?
         self.fullpath = self.slug
       else
-        slugs = self.self_and_ancestors.sort_by(&:depth).map(&:slug)
+        slugs = self.ancestors_and_self.map(&:slug)
         slugs.shift unless slugs.size == 1
         self.fullpath = File.join slugs.compact
       end

@@ -9,6 +9,7 @@ module Locomotive
 
     ## fields ##
     field :_slug
+    field :_label_field_name
     field :_position, :type => Integer, :default => 0
     field :_visible,  :type => Boolean, :default => true
 
@@ -22,6 +23,7 @@ module Locomotive
     ## callbacks ##
     before_validation :set_slug
     before_save       :set_visibility
+    before_save       :set_label_field_name
     before_create     :add_to_list_bottom
     after_create      :send_notifications
 
@@ -36,7 +38,11 @@ module Locomotive
     alias :_permalink= :_slug=
 
     def _label(type = nil)
-      self.send((type || self.content_type).label_field_name.to_sym)
+      if self._label_field_name
+        self.send(self._label_field_name.to_sym)
+      else
+        self.send((type || self.content_type).label_field_name.to_sym)
+      end
     end
 
     def visible?
@@ -112,6 +118,10 @@ module Locomotive
           return
         end
       end
+    end
+
+    def set_label_field_name
+      self._label_field_name = self.content_type.label_field_name
     end
 
     def add_to_list_bottom

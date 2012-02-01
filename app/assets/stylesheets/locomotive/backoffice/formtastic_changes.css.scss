@@ -111,6 +111,11 @@ form.formtastic {
           }
         }
 
+        .col {
+          float: left;
+          margin-right: 20px;
+        }
+
         span.actions {
           position: absolute;
           top: 0px;
@@ -540,6 +545,31 @@ form.formtastic {
             } // .list .actions
           }
         } // li.select-options
+
+        &.relationship {
+
+          .list > ul {
+
+            .col {
+
+              &.handle {
+                position: relative;
+                top: 4px;
+                margin-left: 5px;
+                margin-right: 2px;
+                cursor: move;
+              }
+
+              &.label {
+                 margin-left: 8px;
+                 font-weight: bold;
+              }
+
+            } // ul .col
+
+          } // .list > ul
+
+        } // li.relationship
 
         &#site_memberships_input {
           .entry {

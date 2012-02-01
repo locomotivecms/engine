@@ -7,6 +7,11 @@ class Locomotive.Models.ContentEntry extends Backbone.Model
   initialize: ->
     @urlRoot = @urlRoot.replace(':slug', @get('content_type_slug'))
 
+    _.each @get('_has_many_fields'), (field) =>
+      name = field[0]
+      collection = new Locomotive.Models.ContentEntriesCollection(@get(name))
+      @set_attribute name, collection
+
   set_attribute: (attribute, value) ->
     data = {}
     data[attribute] = value
@@ -24,6 +29,8 @@ class Locomotive.Models.ContentEntry extends Backbone.Model
       _.each _.keys(hash), (key) =>
         unless _.include(@get('safe_attributes'), key)
           delete hash[key]
+
+      # TODO: insert has_many
 
 class Locomotive.Models.ContentEntriesCollection extends Backbone.Collection
 

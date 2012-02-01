@@ -1,7 +1,7 @@
 module Locomotive
   class ContentEntryPresenter < BasePresenter
 
-    delegate :_slug, :_position, :seo_title, :meta_keywords, :meta_description, :to => :source
+    delegate :_label, :_slug, :_position, :seo_title, :meta_keywords, :meta_description, :to => :source
 
     # Returns the value of a field in the context of the current entry.
     #
@@ -30,14 +30,15 @@ module Locomotive
     #
     def safe_attributes
       self.source.custom_fields_recipe['rules'].map do |rule|
-        case rule['type']
-        when 'select' then "#{rule['name']}_id"
-        when 'date'   then "formatted_#{rule['name']}"
-        when 'file'   then [rule['name'], "remove_#{rule['name']}"]
+        case rule['type'].to_sym
+        when :date                then "formatted_#{rule['name']}"
+        when :file                then [rule['name'], "remove_#{rule['name']}"]
+        when :select, :belongs_to then ["#{rule['name']}_id", "position_in_#{rule['name']}"]
+        when :has_many            then nil
         else
           rule['name']
         end
-      end.flatten + %w(_slug seo_title meta_keywords meta_description)
+      end.compact.flatten + %w(_slug seo_title meta_keywords meta_description _destroy)
     end
 
     def errors
@@ -52,8 +53,12 @@ module Locomotive
       self.source.custom_fields_recipe['rules'].find_all { |rule| rule['type'] == 'file' }.map { |rule| rule['name'] }
     end
 
+    def _has_many_fields
+      self.source.custom_fields_recipe['rules'].find_all { |rule| rule['type'] == 'has_many' }.map { |rule| [rule['name'], rule['inverse_of']] }
+    end
+
     def included_methods
-      default_list = %w(_slug _position content_type_slug _file_fields safe_attributes)
+      default_list = %w(_label _slug _position content_type_slug _file_fields _has_many_fields safe_attributes)
       default_list << 'errors' if !!self.options[:include_errors]
       super + self.custom_fields_methods + default_list
     end
@@ -76,10 +81,12 @@ module Locomotive
     #
     # @returns [ Object ] A string or an array of names
     def getters_for(name, type)
-      case type
-      when 'select' then [name, "#{name}_id"]
-      when 'date'   then "formatted_#{name}"
-      when 'file'   then "#{name}_url"
+      case type.to_sym
+      when :select      then [name, "#{name}_id"]
+      when :date        then "formatted_#{name}"
+      when :file        then "#{name}_url"
+      when :belongs_to  then "#{name}_id"
+      # when :has_many    then nil
       else
         name
       end

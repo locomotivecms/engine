@@ -7,7 +7,7 @@ module Locomotive
 
     before_filter :set_content_type
 
-    respond_to :json, :only => [:edit, :create, :update, :sort]
+    respond_to :json, :only => [:show, :edit, :create, :update, :sort]
 
     skip_load_and_authorize_resource
 
@@ -16,6 +16,11 @@ module Locomotive
     def index
       @content_entries = @content_type.list_or_group_entries
       respond_with @content_entries
+    end
+
+    def show
+      @content_entry = @content_type.entries.find(params[:id])
+      respond_with @content_entry
     end
 
     def new

@@ -18,7 +18,7 @@ module Locomotive
         end
 
         def breadcrumbs
-          @breadcrumbs ||= liquify(*self._source.self_and_ancestors)
+          @breadcrumbs ||= liquify(*self._source.ancestors_and_self)
         end
 
         def children

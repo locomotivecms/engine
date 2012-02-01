@@ -8,11 +8,13 @@ class Locomotive.Views.ContentEntries.FormView extends Locomotive.Views.Shared.F
 
   _file_field_views: []
 
+  _has_many_field_views: []
+
   events:
     'submit': 'save'
 
   initialize: ->
-    @model = new Locomotive.Models.ContentEntry(@options.content_entry)
+    @model      = new Locomotive.Models.ContentEntry(@options.content_entry)
 
     window.foo = @model
 
@@ -28,6 +30,8 @@ class Locomotive.Views.ContentEntries.FormView extends Locomotive.Views.Shared.F
     @enable_richtexteditor()
 
     @enable_file_fields()
+
+    @enable_has_many_fields()
 
     @slugify_label_field()
 
@@ -55,6 +59,15 @@ class Locomotive.Views.ContentEntries.FormView extends Locomotive.Views.Shared.F
 
       @$("##{@model.paramRoot}_#{name}_input").append(view.render().el)
 
+  enable_has_many_fields: ->
+    _.each @model.get('_has_many_fields'), (field) =>
+      name = field[0]; inverse_of = field[1]
+      view = new Locomotive.Views.Shared.Fields.HasManyView model: @model, name: name, inverse_of: inverse_of
+
+      @_has_many_field_views.push(view)
+
+      @$("##{@model.paramRoot}_#{name}_input").append(view.render().el)
+
   slugify_label_field: ->
     @$('li.input.highlighted > input[type=text]').slugify(target: @$('#content_entry__slug'))
 
@@ -63,5 +76,6 @@ class Locomotive.Views.ContentEntries.FormView extends Locomotive.Views.Shared.F
 
   remove: ->
     _.each @_file_field_views, (view) => view.remove()
+    _.each @_has_many_field_views, (view) => view.remove()
     super
 

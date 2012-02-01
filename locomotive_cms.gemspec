@@ -14,36 +14,37 @@ Gem::Specification.new do |s|
   s.email       = ['didier@nocoffee.fr']
   s.homepage    = 'http://www.locomotivecms.com'
   s.summary     = 'A Next Generation Sexy CMS for Rails 3'
-  s.description = 'Locomotive is a next generation CMS system with sexy admin tools, liquid templating, and inline editing powered by mongodb and rails 3.1'
+  s.description = 'Locomotive is a next generation CMS system with sexy admin tools, liquid templating, and inline editing powered by mongodb and rails 3.2'
 
   s.required_rubygems_version = '>= 1.3.6'
 
   s.add_dependency 'rake',                            '~> 0.9.2'
 
-  s.add_dependency 'rails',                           '~> 3.1.3'
+  s.add_dependency 'rails',                           '~> 3.2.1'
 
   s.add_dependency 'devise',                          '~> 1.5.3'
   s.add_dependency 'cancan',                          '~> 1.6.7'
 
   s.add_dependency 'mongo',                           '~> 1.5.2'
   s.add_dependency 'bson_ext',                        '~> 1.5.2'
-  s.add_dependency 'mongoid',                         '~> 2.4.2'
-  s.add_dependency 'locomotive_mongoid_acts_as_tree', '~> 0.1.5.8'
+  s.add_dependency 'mongoid',                         '~> 2.4.3'
+  s.add_dependency 'locomotive-mongoid-tree',         '~> 0.6.2'
+  # s.add_dependency 'locomotive_mongoid_acts_as_tree', '~> 0.1.5.8'
 
-  s.add_dependency 'custom_fields',                   '~> 2.0.0.rc2'
+  s.add_dependency 'custom_fields',                   '~> 2.0.0.rc3'
 
   s.add_dependency 'kaminari',                        '~> 0.13.0'
 
-  s.add_dependency 'haml',                            '~> 3.1.3'
-  s.add_dependency 'sass-rails',                      '~> 3.1.5'
-  s.add_dependency 'coffee-script',                   '~> 2.2.0'
-  s.add_dependency 'uglifier',                        '~> 1.2.2'
-  s.add_dependency 'compass',                         '~> 0.12.alpha.4'
+  s.add_dependency 'haml',                            '~> 3.1.4'
+  # # s.add_dependency 'sass-rails',                      '~> 3.1.5'
+  # # s.add_dependency 'coffee-script',                   '~> 2.2.0'
+  # # s.add_dependency 'uglifier',                        '~> 1.2.2'
+  # # # s.add_dependency 'compass',                         '~> 0.12.rc.0'
   s.add_dependency 'jquery-rails',                    '~> 1.0.16'
-  s.add_dependency 'rails-backbone',                  '~> 0.5.4'
+  s.add_dependency 'rails-backbone',                  '~> 0.6.1'
   s.add_dependency 'codemirror-rails',                '~> 2.21'
-  s.add_dependency 'locomotive-tinymce-rails',        '~> 3.4.7'
-  s.add_dependency 'locomotive-aloha-rails',          '~> 0.20.1'
+  s.add_dependency 'locomotive-tinymce-rails',        '~> 3.4.7.1'
+  s.add_dependency 'locomotive-aloha-rails',          '~> 0.20.1.1'
   s.add_dependency 'flash_cookie_session',            '~> 1.1.1'
 
   s.add_dependency 'locomotive_liquid',               '2.2.2'

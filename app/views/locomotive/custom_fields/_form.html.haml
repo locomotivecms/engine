@@ -38,11 +38,17 @@
 
       = g.input :hint, :input_html => { :class => 'hint' }
 
-      = g.input :localized, :as => :'Locomotive::Toggle', :input_html => { :class => 'localized' }
+      = g.input :localized, :as => :'Locomotive::Toggle', :wrapper_html => { :class => 'extra localized' }, :input_html => { :class => 'localized' }
 
       = g.input :select_options, :as => :'Locomotive::Empty', :wrapper_html => { :class => 'extra select-options', :style => 'display: none' }
 
       = g.input :text_formatting, :as => :select, :collection => options_for_text_formatting, :include_blank => false, :wrapper_html => { :class => 'extra text-formatting' }, :input_html => { :class => 'text_formatting' }
+
+      = g.input :class_name, :as => :select, :collection => options_for_content_type, :include_blank => false, :wrapper_html => { :class => 'extra class-name', :style => 'display: none' }, :input_html => { :class => 'class_name' }
+
+      = g.input :inverse_of, :as => :select, :collection => [], :wrapper_html => { :class => 'extra inverse-of', :style => 'display: none' }, :input_html => { :class => 'inverse_of' }
+
+      = g.input :ui_enabled, :as => :'Locomotive::Toggle', :wrapper_html => { :class => 'extra ui-enabled' }, :input_html => { :class => 'ui_enabled' }
 
     %span.actions
       = link_to 'toggle', '#', :class => 'toggle'
