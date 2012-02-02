@@ -183,7 +183,10 @@ Backbone.ModelBinding = (function(Backbone, _, $){
         }
         // console.log(attribute_name);
 
-        var modelChange = function(changed_model, val){ element.val(val); };
+        var modelChange = function(changed_model, val){
+          val = val == null ? '' : val;
+          element.val(val);
+        };
 
         var setModelValue = function(attr_name, value){
           var data = {};

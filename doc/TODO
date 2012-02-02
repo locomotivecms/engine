@@ -107,7 +107,7 @@ x script to migrate existing site
 - upgrade to rails 3.2 (https://github.com/locomotivecms/engine/pull/281/files)
 - missing custom_fields
   x belongs_to
-  - has_many
+  x has_many
   - many_to_many
 - heroku module for locomotive
 - refactoring

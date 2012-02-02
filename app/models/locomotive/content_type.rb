@@ -74,6 +74,26 @@ module Locomotive
       end
     end
 
+    def class_name_to_content_type(class_name)
+      self.class.class_name_to_content_type(class_name, self.site)
+    end
+
+    # Retrieve from a class name the associated content type within the scope of a site.
+    # If no content type is found, the method returns nil
+    #
+    # @param [ String ] class_name The class name
+    # @param [ Locomotive::Site ] site The Locomotive site
+    #
+    # @return [ Locomotive::ContentType ] The content type matching the class_name
+    #
+    def self.class_name_to_content_type(class_name, site)
+      if class_name =~ /^Locomotive::Entry(.*)/
+        site.content_types.find($1)
+      else
+        nil
+      end
+    end
+
     def to_presenter
       Locomotive::ContentTypePresenter.new(self)
     end

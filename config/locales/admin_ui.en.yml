@@ -80,7 +80,9 @@ en:
         file:
           delete_file: Delete file
         has_many:
-          empty: Empty
+          empty: The list is empty
+          new_entry: + Add a new entry
+
       form:
         required: Required
         optional: Optional

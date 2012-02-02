@@ -39,13 +39,14 @@ class Locomotive.Views.Shared.Fields.FileView extends Backbone.View
     return @
 
   refresh: ->
-    # @remove()
     @$('input[type=file]').unbind 'change'
     @states = { 'change': false, 'delete': false }
     @render()
-    # @$('input[type=file]').unbind 'change'
-    # @states = { 'change': false, 'delete': false }
-    # @render()
+
+  reset: ->
+    @model.set_attribute @options.name, null
+    @model.set_attribute "#{@options.name}_url", null
+    @refresh()
 
   toggle_change: (event) ->
     @_toggle event, 'change',

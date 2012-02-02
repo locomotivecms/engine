@@ -86,7 +86,6 @@ module Locomotive
       when :date        then "formatted_#{name}"
       when :file        then "#{name}_url"
       when :belongs_to  then "#{name}_id"
-      # when :has_many    then nil
       else
         name
       end
