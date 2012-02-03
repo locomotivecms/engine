@@ -17,7 +17,7 @@ class Locomotive.Models.CustomField extends Backbone.Model
     ['class_name', 'inverse_of', 'ui_enabled']
 
   is_relationship_type: ->
-    _.include(['belongs_to', 'has_many'], @get('type'))
+    _.include(['belongs_to', 'has_many', 'many_to_many'], @get('type'))
 
   toJSONForSave: ->
     _.tap {}, (hash) =>

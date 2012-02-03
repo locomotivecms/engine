@@ -74,9 +74,12 @@
 
         for (var prefix in data) {
           _buildParams(prefix, data[prefix], function(key, value) {
-            // console.log('append ' + key + ', ' + value);
-            if (value != null)
-              formData.append(key, value);
+            // console.log('append ' + key + ', ' + value + ', is Array = ' + jQuery.isArray(value));
+            if (jQuery.isArray(value) && value.length == 0)
+              formData.append(key + '[]', '');
+            else
+              if (value != null)
+                formData.append(key, value);
           });
         }
 

@@ -31,10 +31,10 @@ module Locomotive
     def safe_attributes
       self.source.custom_fields_recipe['rules'].map do |rule|
         case rule['type'].to_sym
-        when :date                then "formatted_#{rule['name']}"
-        when :file                then [rule['name'], "remove_#{rule['name']}"]
-        when :select, :belongs_to then ["#{rule['name']}_id", "position_in_#{rule['name']}"]
-        when :has_many            then nil
+        when :date                    then "formatted_#{rule['name']}"
+        when :file                    then [rule['name'], "remove_#{rule['name']}"]
+        when :select, :belongs_to     then ["#{rule['name']}_id", "position_in_#{rule['name']}"]
+        when :has_many, :many_to_many then nil
         else
           rule['name']
         end
@@ -50,15 +50,19 @@ module Locomotive
     end
 
     def _file_fields
-      self.source.custom_fields_recipe['rules'].find_all { |rule| rule['type'] == 'file' }.map { |rule| rule['name'] }
+      group_fields 'file'
     end
 
     def _has_many_fields
-      self.source.custom_fields_recipe['rules'].find_all { |rule| rule['type'] == 'has_many' }.map { |rule| [rule['name'], rule['inverse_of']] }
+      group_fields('has_many') { |rule| [rule['name'], rule['inverse_of']] }
+    end
+
+    def _many_to_many_fields
+      group_fields('many_to_many') { |rule| [rule['name'], "#{rule['name'].singularize}_ids"] }
     end
 
     def included_methods
-      default_list = %w(_label _slug _position content_type_slug _file_fields _has_many_fields safe_attributes)
+      default_list = %w(_label _slug _position content_type_slug _file_fields _has_many_fields _many_to_many_fields safe_attributes)
       default_list << 'errors' if !!self.options[:include_errors]
       super + self.custom_fields_methods + default_list
     end
@@ -89,6 +93,14 @@ module Locomotive
       else
         name
       end
+    end
+
+    def group_fields(type, &block)
+      unless block_given?
+        block = lambda { |rule| rule['name'] }
+      end
+
+      self.source.custom_fields_recipe['rules'].find_all { |rule| rule['type'] == type }.map(&block)
     end
 
   end

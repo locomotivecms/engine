@@ -13,8 +13,6 @@ class Locomotive.Views.ContentTypes.CustomFieldEntryView extends Backbone.View
   initialize: ->
     @inverse_of_list = @options.parent_view.options.inverse_of_list
 
-    console.log(@model.get('inverse_of'))
-
     @model.bind 'change', (custom_field) =>
       @switch_to_type() if @model.hasChanged('type')
       @fetch_inverse_of_list() if @model.hasChanged('class_name') && @model.get('class_name')?
@@ -51,7 +49,7 @@ class Locomotive.Views.ContentTypes.CustomFieldEntryView extends Backbone.View
       when 'belongs_to'
         @$('li.input.localized').hide()
         @$('li.input.class-name').show()
-      when 'has_many'
+      when 'has_many', 'many_to_many'
         @$('li.input.localized').hide()
         @$('li.input.class-name').show()
         @$('li.input.inverse-of').show()
@@ -60,7 +58,7 @@ class Locomotive.Views.ContentTypes.CustomFieldEntryView extends Backbone.View
   fetch_inverse_of_list: ->
     @$('li.input.inverse-of select option').remove()
 
-    _.each @inverse_of_list, (data) =>
+    _.each @inverse_of_list[@model.get('type')], (data) =>
       if data.class_name == @model.get('class_name')
         option = new Option(data.label, data.name, data.class_name == @model.get('inverse_of') || @inverse_of_list.length == 1)
         @$('li.input.inverse-of select').append(option)

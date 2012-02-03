@@ -150,11 +150,11 @@ module Locomotive
         content_type = Locomotive::ContentType.find($1)
 
         if content_type.site_id != self.site_id
-          field.errors.add :security
+          field.errors.add :class_name, :security
         end
       else
         # for now, does not allow external classes
-        field.errors.add :security
+        field.errors.add :class_name, :security
       end
     end
 

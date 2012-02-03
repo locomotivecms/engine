@@ -10,6 +10,8 @@ class Locomotive.Views.ContentEntries.FormView extends Locomotive.Views.Shared.F
 
   _has_many_field_views: []
 
+  _many_to_many_field_views: []
+
   events:
     'submit': 'save'
 
@@ -32,6 +34,8 @@ class Locomotive.Views.ContentEntries.FormView extends Locomotive.Views.Shared.F
     @enable_file_fields()
 
     @enable_has_many_fields()
+
+    @enable_many_to_many_fields()
 
     @slugify_label_field()
 
@@ -67,7 +71,16 @@ class Locomotive.Views.ContentEntries.FormView extends Locomotive.Views.Shared.F
 
       @_has_many_field_views.push(view)
 
-      @$("##{@model.paramRoot}_#{name}_input").append(view.render().el)
+      @$("##{@model.paramRoot}_#{name}_input label").after(view.render().el)
+
+  enable_many_to_many_fields: ->
+    _.each @model.get('_many_to_many_fields'), (field) =>
+      name = field[0]
+      view = new Locomotive.Views.Shared.Fields.ManyToManyView model: @model, name: name, all_entries: @options["all_#{name}_entries"]
+
+      @_many_to_many_field_views.push(view)
+
+      @$("##{@model.paramRoot}_#{name}_input label").after(view.render().el)
 
   slugify_label_field: ->
     @$('li.input.highlighted > input[type=text]').slugify(target: @$('#content_entry__slug'))
@@ -88,6 +101,7 @@ class Locomotive.Views.ContentEntries.FormView extends Locomotive.Views.Shared.F
   remove: ->
     _.each @_file_field_views, (view) => view.remove()
     _.each @_has_many_field_views, (view) => view.remove()
+    _.each @_many_to_many_field_views, (view) => view.remove()
     super
 
   tinyMCE_settings: ->
