@@ -59,7 +59,7 @@ module Locomotive::BaseHelper
   end
 
   def backbone_view_data
-    content_for?(:backbone_view_data) ? content_for(:backbone_view_data) : 'null'
+    content_for?(:backbone_view_data) ? content_for(:backbone_view_data) : ''
   end
 
   def nocoffee_tag

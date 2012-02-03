@@ -21,7 +21,8 @@ class Locomotive.Models.Site extends Backbone.Model
 
   toJSON: ->
     _.tap super, (hash) =>
-      hash.memberships = @get('memberships').toJSONForSave() if @get('memberships')
+      delete hash.memberships
+      hash.memberships_attributes = @get('memberships').toJSONForSave() if @get('memberships')? && @get('memberships').length > 0
       hash.domains = _.map(@get('domains'), (domain) -> domain.get('name'))
 
 class Locomotive.Models.CurrentSite extends Locomotive.Models.Site

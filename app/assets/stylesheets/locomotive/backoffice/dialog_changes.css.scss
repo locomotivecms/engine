@@ -60,7 +60,7 @@
 
   .ui-dialog-content {
     position: relative;
-    z-index: 101;
+    z-index: 999;
 
     text-align: left;
 
@@ -71,6 +71,22 @@
       overflow: auto;
       height: 360px;
     }
+
+    form.formtastic {
+      fieldset {
+        legend, ol {
+          width: 748px;
+        }
+
+        ol {
+          li.string {
+            input[type=text] {
+              width: 530px;
+            }
+          } // li.string
+        }
+      }
+    } // .form.formtastic
   } // .ui-dialog-content
 
 
@@ -104,7 +120,7 @@
 
       z-index: 1003;
 
-      a {
+      a, input[type=submit] {
         @include light-button;
       }
 

@@ -14,7 +14,7 @@ class Locomotive.Views.ContentEntries.FormView extends Locomotive.Views.Shared.F
     'submit': 'save'
 
   initialize: ->
-    @model      = new Locomotive.Models.ContentEntry(@options.content_entry)
+    @model ||= new Locomotive.Models.ContentEntry(@options.content_entry)
 
     window.foo = @model
 
@@ -45,7 +45,7 @@ class Locomotive.Views.ContentEntries.FormView extends Locomotive.Views.Shared.F
 
   enable_richtexteditor: ->
     _.each @$('li.input.rte textarea.html'), (textarea) =>
-      settings = _.extend {}, window.Locomotive.tinyMCE.defaultSettings,
+      settings = _.extend {}, @tinyMCE_settings(),
         onchange_callback: (editor) =>
           $(textarea).val(editor.getBody().innerHTML).trigger('change')
 
@@ -62,7 +62,8 @@ class Locomotive.Views.ContentEntries.FormView extends Locomotive.Views.Shared.F
   enable_has_many_fields: ->
     _.each @model.get('_has_many_fields'), (field) =>
       name = field[0]; inverse_of = field[1]
-      view = new Locomotive.Views.Shared.Fields.HasManyView model: @model, name: name, inverse_of: inverse_of
+      new_entry = new Locomotive.Models.ContentEntry(@options["#{name}_new_entry"])
+      view      = new Locomotive.Views.Shared.Fields.HasManyView model: @model, name: name, new_entry: new_entry, inverse_of: inverse_of
 
       @_has_many_field_views.push(view)
 
@@ -74,8 +75,21 @@ class Locomotive.Views.ContentEntries.FormView extends Locomotive.Views.Shared.F
   refresh_file_fields: ->
     _.each @_file_field_views, (view) => view.refresh()
 
+  refresh: ->
+    @$('li.input.toggle input[type=checkbox]').checkToggle('sync')
+    _.each @_file_field_views, (view) => view.refresh()
+
+  reset: ->
+    @$('li.input.string input[type=text], li.input.text textarea, li.input.date input[type=text]').val('').trigger('change')
+    _.each @$('li.input.rte textarea.html'), (textarea) => $(textarea).tinymce().setContent(''); $(textarea).trigger('change')
+    _.each @_file_field_views, (view) => view.reset()
+    @$('li.input.toggle input[type=checkbox]').checkToggle('sync')
+
   remove: ->
     _.each @_file_field_views, (view) => view.remove()
     _.each @_has_many_field_views, (view) => view.remove()
     super
+
+  tinyMCE_settings: ->
+    window.Locomotive.tinyMCE.defaultSettings
 

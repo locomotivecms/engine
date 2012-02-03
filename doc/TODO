@@ -104,18 +104,23 @@ x deployment
     x data ?
 x script to migrate existing site
   x i18n
+- upgrade to rails 3.2 (https://github.com/locomotivecms/engine/pull/281/files)
+- missing custom_fields
+  x belongs_to
+  x has_many
+  - many_to_many
 - heroku module for locomotive
 - refactoring
   x remove the import / export scripts
   x remove the cross domain authentication (use auth_token instead)
   - where to put Locomotive::InlineEditorMiddleware ?
-- upgrade to rails 3.2 (https://github.com/locomotivecms/engine/pull/281/files)
 
 - bugs / ui tweaks
   x unable to toggle the "required" check_boxes for content types
   x unable to sign out
   x unable to remove a field
   x "back to admin" link does not work if inline editor disabled
+  x unable to delete memberships
   - display by categories does not work when localized
   - disallow to click twice on the submit form button (spinner ?)
   - message to notify people if their browser is too old

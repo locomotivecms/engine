@@ -23,11 +23,12 @@ class Locomotive.Views.Shared.FormView extends Backbone.View
 
     @clear_errors()
 
-    options ||= { on_success: null, on_error: null }
+    options ||= { headers: {}, on_success: null, on_error: null }
 
     previous_attributes = _.clone @model.attributes
 
     @model.save {},
+      headers: options.headers
       success: (model, response, xhr) =>
         model.attributes = previous_attributes
 

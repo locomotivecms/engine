@@ -4,7 +4,8 @@
 
 - content_for :backbone_view_data do
   :plain
-    { site: #{@site.to_json(:current_account => current_locomotive_account, :current_site => current_site)}, errors: #{@site.errors.to_json} }
+    site:   #{@site.to_json(:current_account => current_locomotive_account, :current_site => current_site)},
+    errors: #{@site.errors.to_json}
 
 = f.inputs :name => :information  do
   = f.input :name, :wrapper_html => { :style => 'display: none' }

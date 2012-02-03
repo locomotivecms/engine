@@ -127,7 +127,7 @@ form.formtastic {
             padding-left: 10px;
           }
 
-          a.remove, a.toggle, a.drag {
+          a.edit, a.remove, a.toggle, a.drag {
             display: inline-block;
             width: 16px;
             height: 16px;
@@ -137,6 +137,13 @@ form.formtastic {
 
             outline: none;
             text-indent: -9999px;
+
+            &.edit {
+              background: transparent image-url("locomotive/list/icons/pencil_off.png") repeat 0 0;
+              &:hover {
+                background-image: image-url("locomotive/list/icons/pencil.png");
+              }
+            }
 
             &.remove {
               background: transparent image-url("locomotive/list/icons/trash_off.png") repeat 0 0;
