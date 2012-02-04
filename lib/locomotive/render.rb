@@ -91,7 +91,7 @@ module Locomotive
           :current_locomotive_account => current_locomotive_account
         }
 
-        ::Liquid::Context.new({}, assigns, registers, false) # pass false to true to enable the re-thrown exception flag
+        ::Liquid::Context.new({}, assigns, registers, false) # switch from false to true to enable the re-thrown exception flag
       end
 
       def prepare_and_set_response(output)

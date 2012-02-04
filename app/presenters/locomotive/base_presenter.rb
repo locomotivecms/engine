@@ -5,15 +5,16 @@ class Locomotive::BasePresenter
   include ActionView::Helpers::TextHelper
   include ActionView::Helpers::NumberHelper
 
-  attr_reader :source, :options, :ability
+  attr_reader :source, :options, :ability, :depth
 
   delegate :created_at, :updated_at, :to => :source
 
   def initialize(object, options = {})
     @source   = object
-    @options  = options
+    @options  = options || {}
+    @depth    = options[:depth] || 0
 
-    if @options && @options[:current_account] && @options[:current_site]
+    if @options[:current_account] && @options[:current_site]
       @ability = Locomotive::Ability.new @options[:current_account], @options[:current_site]
     end
   end

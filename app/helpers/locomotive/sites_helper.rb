@@ -1,7 +1,9 @@
-module Locomotive::SitesHelper
+module Locomotive
+  module SitesHelper
 
-  def ordered_current_site_locales
-    current_site.locales + (Locomotive.config.site_locales - current_site.locales)
+    def ordered_current_site_locales
+      current_site.locales + (Locomotive.config.site_locales - current_site.locales)
+    end
+
   end
-
 end

@@ -56,7 +56,7 @@ class Locomotive.Views.ContentEntries.FormView extends Locomotive.Views.Shared.F
       $(textarea).tinymce(settings)
 
   enable_file_fields: ->
-    _.each @model.get('_file_fields'), (name) =>
+    _.each @model.get('file_custom_fields'), (name) =>
       view = new Locomotive.Views.Shared.Fields.FileView model: @model, name: name
 
       @_file_field_views.push(view)
@@ -64,7 +64,7 @@ class Locomotive.Views.ContentEntries.FormView extends Locomotive.Views.Shared.F
       @$("##{@model.paramRoot}_#{name}_input").append(view.render().el)
 
   enable_has_many_fields: ->
-    _.each @model.get('_has_many_fields'), (field) =>
+    _.each @model.get('has_many_custom_fields'), (field) =>
       name = field[0]; inverse_of = field[1]
       new_entry = new Locomotive.Models.ContentEntry(@options["#{name}_new_entry"])
       view      = new Locomotive.Views.Shared.Fields.HasManyView model: @model, name: name, new_entry: new_entry, inverse_of: inverse_of
@@ -74,7 +74,7 @@ class Locomotive.Views.ContentEntries.FormView extends Locomotive.Views.Shared.F
       @$("##{@model.paramRoot}_#{name}_input label").after(view.render().el)
 
   enable_many_to_many_fields: ->
-    _.each @model.get('_many_to_many_fields'), (field) =>
+    _.each @model.get('many_to_many_custom_fields'), (field) =>
       name = field[0]
       view = new Locomotive.Views.Shared.Fields.ManyToManyView model: @model, name: name, all_entries: @options["all_#{name}_entries"]
 

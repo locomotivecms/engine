@@ -12,10 +12,13 @@ class Locomotive.Models.Page extends Backbone.Model
 
   _normalize: ->
     @set
-      editable_elements: new Locomotive.Models.EditableElementsCollection(@get('editable_elements'))
+      editable_elements: new Locomotive.Models.EditableElementsCollection(@get('editable_elements') || [])
 
   toJSON: ->
     _.tap super, (hash) =>
-      hash.editable_elements = @get('editable_elements').toJSONForSave() if @get('editable_elements')
+      _.each ['content_type_id_text', 'edit_url', 'parent_id_text'], (key) => delete hash[key]
+
+      delete hash['editable_elements']
+      hash.editable_elements = @get('editable_elements').toJSONForSave() if @get('editable_elements')? && @get('editable_elements').length > 0
 
 class Locomotive.Models.PagesCollection extends Backbone.Collection

@@ -36,7 +36,7 @@ module Locomotive
           #
           def localized_page_fullpath(page, locale = nil)
             locale = (locale || I18n.locale).to_s
-            fullpath = page.fullpath_translations[locale]
+            fullpath = page.fullpath_translations[locale] || page.fullpath_translations[self.default_locale]
 
             locale == self.default_locale ? fullpath : File.join(locale, fullpath)
           end

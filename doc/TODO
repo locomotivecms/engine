@@ -104,11 +104,12 @@ x deployment
     x data ?
 x script to migrate existing site
   x i18n
-- upgrade to rails 3.2 (https://github.com/locomotivecms/engine/pull/281/files)
-- missing custom_fields
+x upgrade to rails 3.2 (https://github.com/locomotivecms/engine/pull/281/files)
+x missing custom_fields
   x belongs_to
   x has_many
-  - many_to_many
+  x many_to_many
+- simplify cells integration when modifying a menu from the main app
 - heroku module for locomotive
 - refactoring
   x remove the import / export scripts
