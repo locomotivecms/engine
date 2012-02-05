@@ -3,3 +3,8 @@
 
 en:
   hello: "Hello world"
+
+  locomotive:
+    shared:
+      menu:
+        foo: My FOO menu

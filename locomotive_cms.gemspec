@@ -29,17 +29,12 @@ Gem::Specification.new do |s|
   s.add_dependency 'bson_ext',                        '~> 1.5.2'
   s.add_dependency 'mongoid',                         '~> 2.4.3'
   s.add_dependency 'locomotive-mongoid-tree',         '~> 0.6.2'
-  # s.add_dependency 'locomotive_mongoid_acts_as_tree', '~> 0.1.5.8'
 
   s.add_dependency 'custom_fields',                   '~> 2.0.0.rc3'
 
   s.add_dependency 'kaminari',                        '~> 0.13.0'
 
   s.add_dependency 'haml',                            '~> 3.1.4'
-  # # s.add_dependency 'sass-rails',                      '~> 3.1.5'
-  # # s.add_dependency 'coffee-script',                   '~> 2.2.0'
-  # # s.add_dependency 'uglifier',                        '~> 1.2.2'
-  # # # s.add_dependency 'compass',                         '~> 0.12.rc.0'
   s.add_dependency 'jquery-rails',                    '~> 1.0.16'
   s.add_dependency 'rails-backbone',                  '~> 0.6.1'
   s.add_dependency 'codemirror-rails',                '~> 2.21'
