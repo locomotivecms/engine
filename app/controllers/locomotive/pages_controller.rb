@@ -52,7 +52,7 @@ module Locomotive
 
     def get_path
       page = current_site.pages.build(:parent => current_site.pages.find(params[:parent_id]), :slug => params[:slug].permalink)
-
+      page.send(:build_fullpath)
       render :json => { :url => public_page_url(page), :slug => page.slug }
     end
 

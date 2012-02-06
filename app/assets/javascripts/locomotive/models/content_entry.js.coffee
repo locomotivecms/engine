@@ -7,9 +7,15 @@ class Locomotive.Models.ContentEntry extends Backbone.Model
   initialize: ->
     @urlRoot = @urlRoot.replace(':slug', @get('content_type_slug'))
 
-    _.each @get('_has_many_fields'), (field) =>
+    _.each @get('has_many_custom_fields'), (field) =>
       name = field[0]
       collection = new Locomotive.Models.ContentEntriesCollection(@get(name))
+      @set_attribute name, collection
+
+    _.each @get('many_to_many_custom_fields'), (field) =>
+      name = field[0]
+      collection = new Locomotive.Models.ContentEntriesCollection(@get(name))
+      collection.comparator = (entry) -> entry.get('__position') || 0
       @set_attribute name, collection
 
   set_attribute: (attribute, value) ->
@@ -18,7 +24,7 @@ class Locomotive.Models.ContentEntry extends Backbone.Model
     @set data
 
   update_attributes: (attributes) ->
-    _.each attributes._file_fields, (field) => # special treatment for files
+    _.each attributes.file_custom_fields, (field) => # special treatment for files
       attribute = "#{field}_url"
       @set_attribute attribute, attributes[attribute]
       @set_attribute "remove_#{field}", false
@@ -36,9 +42,13 @@ class Locomotive.Models.ContentEntry extends Backbone.Model
         unless _.include(@get('safe_attributes'), key)
           delete hash[key]
 
-      _.each @get('_has_many_fields'), (field) => # include the has_many relationships
+      _.each @get('has_many_custom_fields'), (field) => # include the has_many relationships
         name = field[0]
         hash["#{name}_attributes"] = @get(name).toMinJSON()
+
+      _.each @get('many_to_many_custom_fields'), (field) => # include the many_to_many relationships
+        name = field[0]; setter_name = field[1]
+        hash[setter_name] = @get(name).sort().map (entry) => entry.id
 
 class Locomotive.Models.ContentEntriesCollection extends Backbone.Collection
 

@@ -61,7 +61,7 @@ module Locomotive
           case @options[:label]
           when :iso     then locale
           when :locale  then I18n.t("locomotive.locales.#{locale}", :locale => locale)
-          when :title   then @page.title
+          when :title   then @page.title # FIXME: this returns nil if the page has not been translated in the locale
           else
             locale
           end

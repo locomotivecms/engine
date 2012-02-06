@@ -4,16 +4,12 @@ module Locomotive
 
       extend ActiveSupport::Concern
 
-      module InstanceMethods
-
-        def sections(key = nil)
-          if !key.nil? && key.to_sym == :sub
-            @locomotive_sections[:sub] || self.controller_name.dasherize
-          else
-            @locomotive_sections[:main]
-          end
+      def sections(key = nil)
+        if !key.nil? && key.to_sym == :sub
+          @locomotive_sections[:sub] || self.controller_name.dasherize
+        else
+          @locomotive_sections[:main]
         end
-
       end
 
       module ClassMethods

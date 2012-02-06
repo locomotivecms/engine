@@ -122,7 +122,7 @@ module Locomotive
   end
 
   def self.mounted_on
-    Rails.application.routes.named_routes[:locomotive].path
+    Rails.application.routes.named_routes[:locomotive].path.spec.to_s
   end
 
   protected
