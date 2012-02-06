@@ -28,7 +28,7 @@ Installation:
     gem 'locomotive_cms', :path => '../../Desktop/NoCoffee/LocomotiveCMS/engine/', :require => 'locomotive/engine'
     gem 'unicorn'
 
-  2/ bundle exec rails g mongoid:config
+  !!!!2/ bundle exec rails g mongoid:config !!! => not needed anymore
 
   3/ bundle exec rails g locomotive:install
 

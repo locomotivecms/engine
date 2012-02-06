@@ -23,8 +23,4 @@ The Locomotive Engine has been correctly installed in your Rails application.
 
   5. Enjoy !
 
-  Note: If you want to use DelayedJob, be sure to launch it:
-
-    > rake jobs:work
-
 ===============================================================================
