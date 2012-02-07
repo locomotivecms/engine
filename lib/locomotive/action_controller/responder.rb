@@ -47,7 +47,7 @@ module Locomotive
 
           unless message.blank?
             controller.headers['X-Message']       = message
-            controller.headers['X-Message-Type']  = type
+            controller.headers['X-Message-Type']  = type.to_s
           end
 
           yield if block_given?
