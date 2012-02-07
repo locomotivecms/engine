@@ -79,7 +79,7 @@ class Locomotive.Views.ApplicationView extends Backbone.View
       event.stopPropagation() & event.preventDefault()
       picker.toggle()
 
-    picker.find('li span.text').bind 'click', (event) ->
+    picker.find('li').bind 'click', (event) ->
       locale = $(event.target).html()
       window.addParameterToURL 'content_locale', locale
 
