@@ -15,9 +15,10 @@ CarrierWave.configure do |config|
     config.s3_bucket = ENV['S3_BUCKET']
     # config.s3_cname = 'ENV['S3_CNAME']
 
+  else
     # settings for the local filesystem
-    # config.storage = :file
-    # config.root = File.join(Rails.root, 'public')
+    config.storage = :file
+    config.root = File.join(Rails.root, 'public')
   end
 
 end

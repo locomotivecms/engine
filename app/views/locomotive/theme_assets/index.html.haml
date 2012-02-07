@@ -16,7 +16,7 @@
 
 - content_for :backbone_view_data do
   :plain
-    snippets:           #{can?(:manage, Locomotive::Snippet) ? @snippets.to_json : 'null'},
+    snippets:           #{can?(:manage, Locomotive::Snippet) ? @snippets.map { |snippet| snippet.to_presenter.as_json_for_html_view }.to_json : 'null'},
     images:             #{@assets[:images].to_json},
     media:              #{@assets[:media].to_json},
     js_and_css_assets:  #{can?(:manage, Locomotive::ThemeAsset) ? @js_and_css_assets.to_json : 'null'},
