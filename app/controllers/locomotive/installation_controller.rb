@@ -7,7 +7,7 @@ module Locomotive
 
     before_filter :allow_installation?
 
-    helper Locomotive::BaseHelper
+    helper Locomotive::BaseHelper, Locomotive::SitesHelper
 
     def show
       request.get? ? self.handle_get : self.handle_post
