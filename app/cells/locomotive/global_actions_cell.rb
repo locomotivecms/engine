@@ -18,7 +18,7 @@ module Locomotive
         :value  => @current_locomotive_account.name
       }
 
-      add :see, :url => current_site_url, :id => 'viewsite', :target => '_blank'
+      add :see, :url => main_app.root_url, :id => 'viewsite', :target => '_blank'
 
       if Locomotive.config.multi_sites? && current_locomotive_account.sites.size > 1
         add :switch, :url => '#', :id => 'sites-picker-link'
