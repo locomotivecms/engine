@@ -126,6 +126,7 @@ x missing custom_fields
   - display by categories does not work when localized
   - disallow to click twice on the submit form button (spinner ?)
   - message to notify people if their browser is too old
+  - weird behaviour when changing the default locale of a site
 
 ? install a site by default at the first installation (without asking)
 

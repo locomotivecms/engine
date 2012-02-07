@@ -7,7 +7,7 @@ module Locomotive
 
     before_filter :allow_installation?
 
-    helper Locomotive::BaseHelper
+    helper Locomotive::BaseHelper, Locomotive::SitesHelper
 
     def show
       request.get? ? self.handle_get : self.handle_post
@@ -36,8 +36,6 @@ module Locomotive
         @site = Site.create_first_one(params[:site])
 
         if @site.valid?
-          Site.install_template(@site, params)
-
           redirect_to last_url
         else
           logger.error "Unable to create the first website: #{@site.errors.inspect}"

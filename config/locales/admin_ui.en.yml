@@ -287,8 +287,9 @@ en:
         next: Create account
       step_2:
         title: "Step 2/2 &mdash; Create your first site"
-        explanations: "If you already uploaded the default site template (see instructions), you can use it right away. Or you can upload a site template as a zip file (free available templates <a href=\"http://www.locomotivecms.com/support/themes\">here</a>)."
-        back_to_default_template: "Click <a href='#'>here</a> to select the default site template instead"
+        explanations: "You are almost done. Please give a name to your first site and pick up the default locale."
+        default_site_locale: Site locale
+        default_site_locales_hints: You can add more locales in the Settings panel later.
         next: Create site
 
     public:
