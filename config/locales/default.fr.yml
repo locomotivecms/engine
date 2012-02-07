@@ -95,7 +95,7 @@ fr:
         access_password: "Mot de passe"
       custom_fields:
         field:
-          _alias: Alias
+          name: Alias
           hint: Aide
           required: Requis ?
           text_formatting: Formattage

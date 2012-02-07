@@ -1,0 +1,21 @@
+- title t('.title', :type => @content_type.name.capitalize)
+
+- content_for :submenu do
+  = render 'locomotive/shared/menu/contents'
+
+- content_for :actions do
+  = render 'locomotive/shared/actions/contents'
+
+- content_for :buttons do
+  - if can?(:manage, Locomotive::ContentType)
+    = local_action_button t('locomotive.content_entries.index.edit'), edit_content_type_url(@content_type), :class => 'edit'
+
+  = local_action_button t('locomotive.content_entries.index.new'), new_content_entry_url(@content_type.slug), :class => 'new'
+
+%p= @content_type.description
+
+= semantic_form_for @content_entry, :as => :content_entry, :url => content_entry_url(@content_type.slug, @content_entry), :html => { :multipart => true } do |form|
+
+  = render 'form', :f => form
+
+  = render 'locomotive/shared/form_actions', :back_url => content_entries_url(@content_type.slug), :button_label => :update

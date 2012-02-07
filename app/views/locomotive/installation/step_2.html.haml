@@ -1,0 +1,24 @@
+- content_for :head_title do
+  = t('locomotive.installation.common.title')
+
+- title t('.title')
+
+= semantic_form_for(@site, :url => installation_step_url(2), :html => { :multipart => true }) do |f|
+  .inner
+
+    %p.explanations
+      != t('.explanations')
+
+    = f.inputs do
+      = f.input :name, :required => true
+
+      - if multi_sites?
+        = f.input :subdomain, :required => true
+
+      %li{ :class => 'select optional', :id => 'default_site_locale' }
+        %label{ :for => 'default_site_locale_input' }= t('.default_site_locale')
+        = select_tag 'site[locales][]', options_for_select(options_for_site_locales, @site.default_locale), :id => 'default_site_locale_input'
+        %p.inline-hints!= t('.default_site_locales_hints')
+
+  .footer
+    = submit_tag t('.next')

@@ -36,18 +36,17 @@ Locomotive.configure do |config|
   #   :password   => '<your_heroku_password>'
   # }
 
-  # Locomotive uses the DelayedJob gem for the site import module.
-  # In case you want to deploy to Heroku, you will have to pay for an extra dyno.
-  # If you do not mind about importing theme without DelayedJob, disable it.
-  #
-  # Warning: this option is not used if you deploy on bushi.do and we set automatically the value to true.
-  config.delayed_job = false
-
   # configure how many items we display in sub menu in the "Contents" section.
-  # config.latest_items_nb = 5
+  # config.ui = {
+  #   :latest_entries_nb => 5,
+  #   :max_content_types  => 4
+  # }
 
   # default locale (for now, only en, de, fr, pt-BR and it are supported)
   config.default_locale = :en
+
+  # available locales suggested to "localize" a site. You will have to pick up at least one among that list.
+  # config.site_locales = %w{en de fr pt-BR it nl no es ru}
 
   # tell if logs are enabled. Useful for debug purpose.
   config.enable_logs = true
@@ -57,9 +56,9 @@ Locomotive.configure do |config|
   # on your deployment target (server, Heroku, Bushido, ...etc)
   #
   # Ex:
-  # config.mailer_sender = 'support'
+  # config.mailer_sender = 'support@example.com'
   # # => 'support@heroku.com' (Heroku), 'support@bushi.do' (Bushido), 'support@example.com' (Dev) or 'support@<your_hosting_platform>' (Multi-sites)
-  config.mailer_sender = 'support'
+  config.mailer_sender = 'support@example.com'
 
   # allow apps using the engine to add their own Liquid drops, variables and similar available
   # in Liquid templates, extending the assigns used while rendering.

@@ -1,0 +1,176 @@
+@import "compass/css3";
+@import "compass/css3/border-radius";
+@import "compass/css3/images";
+@import "compass/css3/text-shadow";
+@import "../backoffice/buttons";
+
+body { background: #000 image-url("locomotive/background/body.png") repeat 0 0; }
+
+div.application-message {
+  font-size: 1.2em;
+  font-weight: bold;
+  padding: 8px;
+  margin: 10px 0px 0 0px;
+  text-align: justify;
+}
+
+div#flash-alert {
+  background: #FFE5E5;
+  color: #CE2525;
+}
+
+div#flash-notice {
+  background: #c7ff99;
+  color: #58852b;
+}
+
+#wrapper {
+  background: transparent image-url("locomotive/simple/wrapper_bg.png") repeat-x 0 0;
+  min-height: 400px;
+}
+
+#light {
+  background: transparent image-url("locomotive/simple/light_bg.png") no-repeat center 0;
+  min-height: 400px;
+  padding-top: 100px;
+}
+
+#panel {
+  width: 346px;
+  padding: 0px;
+
+  @include box-shadow(rgba(0, 0, 0, 0.6) 0px 0px 7px 1px);
+
+  h1 {
+    height: 41px;
+    margin: 0px;
+    padding: 20px 0px 0 0;
+
+    @include border-top-radius(3px);
+    border-top: 1px solid #63646a;
+
+    @include background-image(linear-gradient(#393a41, #1e1f26));
+
+    font-size: 22px;
+    color: #fff;
+    text-align: center;
+    text-shadow: 1px 1px 1px #000;
+  } // h1
+
+  .inner {
+    background: #fff;
+    padding: 5px 40px 20px 40px;
+
+    fieldset {
+      border: 0px;
+      padding: 0px;
+      margin: 0px;
+
+      ol {
+        width: 100%;
+        list-style: none;
+        padding: 0px;
+        margin: 0px auto 0 auto;
+
+        li {
+          margin-top: 20px;
+
+          label {
+            display: block;
+            font-size: 1.2em;
+            color: #222;
+          } // label
+
+          input {
+            padding: 7px;
+
+            border: 1px solid #b5b7c4;
+            @include background-image(linear-gradient(top, #dedfe4, #f8f9fa 25%, #f8f9fa 25%, #fefefe 50%, #fefefe));
+
+            font-size: 14px;
+            color: #222;
+
+            &[type=text], &[type=password] { width: 248px; }
+
+            &[type=file] {
+              background: none;
+              padding: 0px;
+            } // type=file
+
+          } // input
+
+          div.inline-errors {
+            margin: 2px 0 0 0;
+            padding: 8px 0 0 0;
+
+            background: transparent image-url("locomotive/form/error-arrow.png") no-repeat 17px 0;
+
+            p {
+              display: inline-block;
+              width: auto;
+              line-height: 14px;
+              margin: 0px;
+              padding: 3px 12px 4px 27px;
+
+              @include box-shadow(rgba(0, 0, 0, 0.4) 2px 2px 2px 0);
+              @include border-radius(3px);
+              background: #cd0f19 image-url("locomotive/form/icons/error.png") no-repeat 7px center;
+
+              color: #fff !important;
+              font-size: 12px;
+              @include single-text-shadow(rgba(0, 0, 0, 0.7), 0px, 1px, 1px);
+            }
+          } // div.inline-errors
+
+        } // li
+      } // ol
+    } // fieldset
+
+    p.notice {
+      font-size: 1.2em;
+      color: #222;
+      margin: 15px 49px 0 49px;
+      text-align: center;
+    } // p.notice
+
+    p.link {
+      margin: 15px 0 0 0px;
+
+      a {
+        color: #1f82bc;
+        text-decoration: none;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    } // p.link
+
+    p.tright {
+      text-align: right;
+      margin-right: 20px;
+    } // p.tright
+
+  } // .inner
+
+  .footer {
+    margin: 0px 0px 0 0px;
+    padding: 15px 0;
+
+    background: #8b8d9a;
+    border-top: 1px solid #5F6069;
+    @include border-bottom-radius(3px);
+
+    text-align: right;
+
+    input[type=submit], a.button {
+      @include black-button;
+
+      margin: 0 18px 0 0;
+    }
+  } // .footer
+
+} // #panel
+
+
+

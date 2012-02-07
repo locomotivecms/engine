@@ -1,0 +1,30 @@
+$locomotive-default-icons-url: image-url("locomotive/menu/icons.png");
+
+@mixin locomotive-menu-icon($url, $where, $width, $height, $enabled: false, $top: 0, $left: 0) {
+  em {
+    @if $enabled == true {
+      background-position: -#{$width} $where; }
+    @else {
+      display: inline-block;
+      position: relative;
+      width: $width;
+      height: $height;
+      line-height: $height + 1;
+      background: transparent $url no-repeat 0 $where;
+      top: $top;
+      left: $left;
+      margin-right: 2px; }
+  }
+}
+
+@mixin locomotive-contents-icon($enabled: false) {
+  @include locomotive-menu-icon($locomotive-default-icons-url, -64px, 16px, 12px, $enabled, 0px);
+}
+
+@mixin locomotive-assets-icon($enabled: false) {
+  @include locomotive-menu-icon($locomotive-default-icons-url, -48px, 20px, 16px, $enabled, 1px);
+}
+
+@mixin locomotive-settings-icon($enabled: false) {
+  @include locomotive-menu-icon($locomotive-default-icons-url, -32px, 14px, 13px, $enabled, 1px);
+}

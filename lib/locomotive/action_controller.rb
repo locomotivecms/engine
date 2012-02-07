@@ -1,0 +1,5 @@
+require 'locomotive/action_controller/locale_helpers'
+require 'locomotive/action_controller/section_helpers'
+require 'locomotive/action_controller/url_helpers'
+require 'locomotive/action_controller/responder'
+require 'locomotive/action_controller/public_responder'

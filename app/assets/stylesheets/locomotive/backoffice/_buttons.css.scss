@@ -1,0 +1,155 @@
+@import "compass/css3";
+@import "compass/css3/border-radius";
+@import "compass/css3/images";
+@import "compass/css3/text-shadow";
+
+@mixin black-button {
+  display: inline-block;
+
+  position: relative;
+
+  cursor: pointer;
+
+  border: 1px solid #000;
+  @include border-radius(5px);
+
+  line-height: 17px !important;
+
+  padding: 5px 10px 7px 10px;
+
+  @include background-image(linear-gradient(top, #474850, #1f2027));
+  @include box-shadow(rgba(0, 0, 0, 0.3) 1px 1px 0px 0px);
+
+  font-size: 12px;
+  color: #fff;
+  text-decoration: none;
+  @include text-shadow(rgba(0, 0, 0, 0.8), 0px, 1px, 0px);
+
+  &:hover {
+    @include background-image(linear-gradient(top, #575862, #2f303b));
+  }
+
+  &:active {
+    top: 1px;
+  }
+}
+
+@mixin light-button {
+  display: inline-block;
+
+  // font-family: "Lucida Grande";
+
+  position: relative;
+  cursor: pointer;
+  line-height: 12px;
+
+  padding: 8px 10px 10px 10px;
+
+  border: 0px;
+  border-top: 1px solid rgba(255, 255, 255, 0.6);
+  @include border-radius(5px);
+  @include background-image(linear-gradient(top, #ebedf4, #d2d6e1));
+  @include box-shadow(rgba(0, 0, 0, 0.3) 1px 1px 0px 0px);
+
+  font-size: 12px;
+  color: #6B6D7A;
+  text-decoration: none;
+  @include text-shadow(rgba(255, 255, 255, 0.8), 0px, 1px, 0px);
+
+  &:hover, &.hover {
+    @include background-image(linear-gradient(top, #fff, #d7dbe7));
+  }
+
+  &:active {
+    top: 1px;
+  }
+}
+
+@mixin red-button {
+  @include light-button;
+
+  @include background-image(linear-gradient(top, #EE5F5B, #C43C35));
+  @include box-shadow(rgba(0, 0, 0, 0.4) 1px 1px 0px 0px);
+
+  @include text-shadow(rgba(0, 0, 0, 0.7) 0px -1px 0px);
+  color: #fff;
+
+  &:hover, &.hover {
+    background: #C43C35;
+  }
+}
+
+@mixin gray-button {
+  position: relative;
+  padding: 2px 10px 3px 31px;
+
+  background-color: #ebedf4;
+  @include border-radius(10px);
+  @include box-shadow(rgba(0, 0, 0, 0.4) 1px 1px 0px 0px);
+
+  color: #8b8d9a;
+  text-decoration: none;
+  @include text-shadow(rgba(255, 255, 255, 0.8) 0px 1px 0px);
+  font-size: 11px;
+  margin-left: 10px;
+
+  outline: none;
+
+  em {
+    position: absolute;
+    top: 5px;
+    left: 10px;
+
+    display: block;
+    height: 16px;
+    width: 16px;
+
+    background: transparent image-url("locomotive/icons/actions.png") no-repeat 0 0;
+  }
+
+  &.show em { background-position: 0 0; }
+  &.edit em { background-position: 0 -16px; top: 2px; left: 12px; }
+  &.download em { background-position: 0 -32px; }
+  &.new em { background-position: 0 -48px; top: 4px; left: 13px; }
+
+  &:hover, &.hover {
+    text-decoration: none;
+    color: #333;
+  }
+
+  &:active, &.active {
+    top: 1px;
+  }
+}
+
+@mixin blue-button {
+  display: inline-block;
+
+  position: relative;
+
+  cursor: pointer;
+
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  border-bottom-color: rgba(0, 0, 0, 0.6);
+  @include border-radius(5px);
+
+  line-height: 19px !important;
+
+  padding: 0px 7px;
+
+  @include background-image(linear-gradient(top, #2abaf1, #228dda));
+  @include box-shadow(rgba(0, 0, 0, 0.2) 0px 1px 0px 0px, rgba(255, 255, 255, 0.5) 0px 1px 0px 0px inset);
+
+  font-size: 12px;
+  color: #fff;
+  text-decoration: none;
+  @include text-shadow(rgba(0, 0, 0, 0.8), 0px, 1px, 0px);
+
+  &:hover {
+    @include background-image(linear-gradient(top, #26a1e9, #0d6893));
+  }
+
+  &:active {
+    top: 1px;
+  }
+}

@@ -32,7 +32,7 @@ en:
           source: Replace file
       custom_fields:
         field:
-          _alias: Alias
+          name: Alias
       import:
         new:
           source: File
@@ -40,16 +40,22 @@ en:
           reset: Reset site
           default_site_template: "Use the default site template. Click <a href='#'>here</a> to upload a site template as a zip file instead."
       content_type:
-        item_template: Item template
-        api_accounts: Notified Accounts
-      content_instance:
+        raw_item_template: Item template
+        public_submission_enabled: Public submission
+        public_submission_accounts: Notified Accounts
+        "custom_fields/field":
+          select_options: "Options"
+      content_entry:
         _slug: Permalink
       account:
         edit:
+          locale: UI Language
           password: New password
           password_confirmation: New password confirmation
       page:
         seo_title: Title
+      site:
+        locales: Languages
 
     hints:
       page:
@@ -64,6 +70,7 @@ en:
       snippet:
         slug: "You need to know it in order to insert the snippet inside a page"
       site:
+        locales: "Drag&drop a flag to the first position to make it the default one."
         seo_title: "Define a global value here which should be used as the value for the title tag in the head section."
         meta_keywords: "Meta keywords used within the head tag of the page. They are separated by a comma. Required for SEO."
         meta_description: "Meta description used within the head tag of the page. Required for SEO."
@@ -79,11 +86,7 @@ en:
           source: "The current file is available here %{url}"
         update:
           source: "The current file is available here %{url}"
-      custom_fields:
-        field:
-          _alias: "Property available in liquid templates"
-          hint: "Text displayed in the model form just below the field"
-      content_instance:
+      content_entry:
         _slug: "Property used to generate the url of a page working as a template for this content type (ex: \"template_page/{{ your_object._permalink }})\"."
         seo_title: "The value you fill in will replace the SEO title of the templatized page related to your model."
         meta_keywords: "Overrides the site's meta keywords used within the head tag of the page. They are separated by a comma."
@@ -93,7 +96,12 @@ en:
         samples: "If enabled, the import process will also copy contents and assets"
         reset: "If enabled, all the data of your site will be destroyed before importing the new site"
       content_type:
-        item_template: "You can customize the text displayed for each item in the list. Simply use Liquid. Ex: {{ content.name }})"
-        api_enabled: "It is used to let people from outside to create new instances (example: messages in a contact form)"
-        api_accounts: "A notification email will be sent to each of the accounts listed above when a new instance is created"
+        name: "We suggest you to type the plural form of the model. Ex: Projects, Recipes, Posts, Articles, ...etc"
+        slug: "It will be used as the name of the collection in the liquid templates. Ex: <span class='code'>{{ contents.my_projects }}</span>"
+        raw_item_template: "You can customize the text displayed for each item in the list. Simply use Liquid. Ex: <span class='code'>{{ entry.name }})</span>"
+        public_submission_enabled: "It is used to let people from outside to create new entries (example: messages in a contact form)"
+        public_submission_accounts: "If the public submission option is enabled and for each entry created, sends a notification email tothe accounts listed above."
+        "custom_fields/field":
+          name: "Name of the property for liquid templates. Ex: <span class='code'>&#123;&#123; your_object.&lt;name_of_your_field&gt; &#125;&#125;</span>"
+          hint: "Text displayed in the model form just below the field"
 

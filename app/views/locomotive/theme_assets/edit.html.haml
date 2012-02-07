@@ -1,0 +1,21 @@
+- title t('.title', :file => @theme_asset.source_filename)
+
+- content_for :submenu do
+  = render_cell 'locomotive/settings_menu', :show
+
+- if can?(:manage, Locomotive::ThemeAsset)
+  - content_for :buttons do
+    = local_action_button t('locomotive.theme_assets.index.new'), new_theme_asset_url, :class => 'new'
+
+%p.help
+  - if %w(image javascript stylesheet).include?(@theme_asset.content_type.to_s)
+    != t(".help_#{@theme_asset.content_type}", :path => @theme_asset.local_path(true), :width => @theme_asset.width, :height => @theme_asset.height)
+
+  != t('.help', :url => @theme_asset.source.url)
+
+
+= semantic_form_for @theme_asset, :url => theme_asset_url(@theme_asset), :html => { :multipart => true, :class => 'save-with-shortcut' } do |form|
+
+  = render 'form', :f => form
+
+  = render 'locomotive/shared/form_actions', :back_url => theme_assets_url, :button_label => :update

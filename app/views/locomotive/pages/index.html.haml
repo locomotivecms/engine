@@ -1,0 +1,19 @@
+- title t('.title')
+
+- content_for :submenu do
+  = render 'locomotive/shared/menu/contents'
+
+- content_for :actions do
+  = render 'locomotive/shared/actions/contents'
+
+- if can? :create, Locomotive::Page
+  - content_for :buttons do
+    = local_action_button :new, new_page_url, :class => 'new', :id => 'newpage'
+
+%p!= t('.help')
+
+- if @pages.empty?
+  %p.no-items!= t('.no_items', :url => new_page_url)
+- else
+  %ul#pages-list
+    = render @pages

@@ -1,0 +1,7 @@
+- if can? :manage, Locomotive::ContentType
+  .action
+    = link_to content_tag(:em) + content_tag(:span, t('locomotive.content_types.index.new')), new_content_type_url, :class => 'button'
+
+- if current_site.locales.size > 1
+  .action
+    = render 'locomotive/shared/locale_picker_link'

@@ -1,0 +1,127 @@
+@import "compass/css3/images";
+@import "compass/css3/border-radius";
+@import "compass/css3/text-shadow";
+@import "compass/css3/box-shadow";
+@import "compass/css3/transform-legacy";
+
+#menu {
+  padding: 0;
+  margin: 20px 8px 0 2px;
+  list-style: none;
+
+  li.entry {
+    float: left;
+    position: relative;
+    padding: 6px 6px 0 6px;
+    height: 29px;
+    line-height: 29px;
+    overflow: hidden;
+
+    a {
+      display: block;
+      float: left;
+
+      position: relative;
+      z-index: 1;
+
+      padding: 0 7px;
+
+      line-height: 29px;
+
+      @include border-top-left-radius(2px);
+      @include border-top-right-radius(2px);
+
+      background: #bcc8cb;
+      @include box-shadow(rgba(0, 0, 0, 0.5) 0px 0px 10px 0px, rgba(255, 255, 255, 0.2) 0 1px 0 0 inset);
+
+      font-size: 13px;
+      text-decoration: none;
+
+      span {
+        text-decoration: none;
+        color: #787A89;
+        @include single-text-shadow(rgba(255, 255, 255, 0.4), 1px, 1px, 1px);
+      }
+    }
+
+    div.left, div.right {
+      float: left;
+
+      width: 34px;
+      height: 29px;
+
+      overflow: hidden;
+
+      position: relative;
+      top: 0px;
+      right: 0px;
+
+      z-index: 100;
+
+      span {
+        display: block;
+        position: relative;
+
+        width:  41px;
+        height: 41px;
+      }
+    }
+
+    div.right {
+      span {
+        top: 9px;
+        right: 20px;
+
+        background: #bcc8cb;
+        @include box-shadow(rgba(0, 0, 0, 0.5) 0px 0px 10px 0px, rgba(255, 255, 255, 0.5) 0 0 1px 0 inset);
+        @include rotate(-45deg);
+      }
+    }
+
+    div.left {
+      span {
+        top: 9px;
+        left: 14px;
+
+        background: #bcc8cb;
+        @include box-shadow(rgba(0, 0, 0, 0.5) 0px 0px 10px 0px, rgba(255, 255, 255, 0.5) 0 0 1px 0 inset);
+        @include rotate(45deg);
+      }
+    }
+
+    div.shadow {
+      display: none; // TODO
+
+      position: absolute;
+      height: 8px;
+      bottom: -8px;
+      right: 0px;
+      width: 100%;
+      z-index: 995;
+
+      div {
+        @include box-shadow(rgba(0, 0, 0, 0.4) 0px 0px 10px 0px);
+        height: 8px;
+        margin: 0 13px 0 0;
+      }
+    }
+
+    &:first-child {
+      z-index: 990;
+      a {
+        @include border-top-left-radius(4px);
+        padding-left: 10px;
+      }
+      div.left {
+        display: none;
+      }
+      div.shadow { // TODO
+        left: 6px;
+      }
+    }
+
+    @for $i from 1 through 5 {
+      &.entry-#{$i} { left: -42px * $i; z-index: 990 - $i; }
+    }
+  }
+}

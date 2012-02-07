@@ -71,9 +71,6 @@ es:
         highlighted_field_name: Campo destacado
         group_by_field_name: Champ para agrupar
         api_enabled: API activada
-      asset_collection:
-        name: Nombre
-        slug: Enlace
       asset:
         name: Nombre
         source: Fichero
@@ -98,7 +95,7 @@ es:
         access_password: "Clave"
       custom_fields:
         field:
-          _alias: Alias
+          name: Alias
           hint: Ayuda
           required: Obligatorio
           text_formatting: Formato

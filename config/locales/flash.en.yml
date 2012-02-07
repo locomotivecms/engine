@@ -1,6 +1,6 @@
 en:
   flash:
-    admin:
+    locomotive:
       pages:
         create:
           notice: "Page was successfully created."
@@ -13,17 +13,17 @@ en:
         destroy:
           notice: "Page was successfully deleted."
 
-      contents:
+      content_entries:
         create:
-          notice: "Content was successfully created."
-          alert: "Content was not created."
+          notice: "Entry was successfully created."
+          alert: "Entry was not created."
         update:
-          notice: "Content was successfully updated."
-          alert: "Content was not updated."
+          notice: "Entry was successfully updated."
+          alert: "Entry was not updated."
         sort:
-          notice: "Contents were successfully sorted."
+          notice: "Entries were successfully sorted."
         destroy:
-          notice: "Content was successfully deleted."
+          notice: "Entry was successfully deleted."
 
       content_types:
         create:

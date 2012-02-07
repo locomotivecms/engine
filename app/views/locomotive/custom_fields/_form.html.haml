@@ -1,0 +1,75 @@
+%script{ :type => 'text/html', :id => 'custom_fields_list' }
+
+  %p.empty{ :style => 'display: none' }!= t('.empty')
+
+  %ul
+
+  %hr
+
+  .new-entry
+
+    = text_field_tag 'label', '', :id => '', :placeholder => t('.default_label')
+
+    = select_tag 'type', options_for_select(options_for_custom_field_type)
+
+    %span.actions
+      = link_to t('locomotive.buttons.new_item'), '#', :class => 'add'
+
+
+%script{ :type => 'text/html', :id => 'custom_field_entry' }
+
+  = f.semantic_fields_for :contents_custom_field, CustomFields::Field.new do |g|
+
+    .handle.col
+      = image_tag 'locomotive/form/icons/drag.png'
+
+    .label-input.col
+      = g.text_field :label, :class => 'label'
+
+    .type-input.col
+      = g.select :type, options_for_custom_field_type, {}, { :class => 'type' }
+
+    .required-input.col
+      = g.check_box :required, :class => 'required', :'data-on-label' => t('.required'), :'data-off-label' => t('.optional')
+
+    %ol.nested{ :style => 'display: none' }
+
+      = g.input :name, :input_html => { :class => 'name' }
+
+      = g.input :hint, :input_html => { :class => 'hint' }
+
+      = g.input :localized, :as => :'Locomotive::Toggle', :wrapper_html => { :class => 'localized' }, :input_html => { :class => 'localized' }
+
+      = g.input :select_options, :as => :'Locomotive::Empty', :wrapper_html => { :class => 'extra select-options', :style => 'display: none' }
+
+      = g.input :text_formatting, :as => :select, :collection => options_for_text_formatting, :include_blank => false, :wrapper_html => { :class => 'extra text-formatting' }, :input_html => { :class => 'text_formatting' }
+
+      = g.input :class_name, :as => :select, :collection => options_for_content_type, :include_blank => false, :wrapper_html => { :class => 'extra class-name', :style => 'display: none' }, :input_html => { :class => 'class_name' }
+
+      = g.input :inverse_of, :as => :select, :collection => [], :wrapper_html => { :class => 'extra inverse-of', :style => 'display: none' }, :input_html => { :class => 'inverse_of' }
+
+      = g.input :ui_enabled, :as => :'Locomotive::Toggle', :wrapper_html => { :class => 'extra ui-enabled' }, :input_html => { :class => 'ui_enabled' }
+
+    %span.actions
+      = link_to 'toggle', '#', :class => 'toggle'
+      = link_to 'x', '#', :class => 'remove', :confirm => t('locomotive.messages.confirm')
+
+    .clear
+
+
+%script{ :type => 'text/html', :id => 'select_options_list' }
+
+  %ul{ :'data-prompt' => t('.select_options.ask_name') }
+
+  %span.actions
+    = link_to t('locomotive.buttons.new_item'), '#', :class => 'add'
+
+
+%script{ :type => 'text/html', :id => 'select_option_entry' }
+
+  %li.entry
+    %span.name {{name}}
+
+    %span.actions
+      = link_to 'drag', '#', :class => 'drag'
+      = link_to 'x', '#', :class => 'remove', :confirm => t('locomotive.messages.confirm')

@@ -1,0 +1,82 @@
+@import "picker";
+
+#content-locale-picker-link {
+
+  position: relative;
+
+  padding-left: 10px !important;
+  padding-right: 25px !important;
+
+  cursor: pointer;
+
+  .hand {
+    position: absolute;
+    top: 7px;
+    right: 7px;
+
+    height: 7px;
+    width: 12px;
+
+    background: transparent image-url("locomotive/menu/icons.png") no-repeat 0px -16px;
+  }
+
+  img.flag {
+    float: left;
+
+    position: relative;
+    top: 1px;
+
+    width: 20px;
+    height: 20px;
+
+    margin-right: 7px;
+  }
+
+  span.text {
+    position: relative;
+
+    color: #fff;
+    font-size: 11px;
+    text-shadow: 1px 1px 1px #000;
+    text-transform: uppercase;
+  }
+
+  .others {
+    display: none;
+  }
+}
+
+#content-locale-picker {
+  @include picker;
+
+  display: none;
+
+  top: 152px;
+  right: 22px;
+
+  min-width: 63px;
+  z-index: 999;
+
+  li {
+    height: 26px;
+    padding: 2px 8px !important;
+
+    img.flag {
+      position: relative;
+      top: 1px;
+
+      margin-right: 5px;
+    }
+
+    span.text {
+      position: relative;
+      top: -6px;
+      text-transform: uppercase;
+    }
+
+    &:last-child {
+      border-bottom: 0px;
+      @include box-shadow(transparent 0 0 0 0);
+    }
+  }
+}

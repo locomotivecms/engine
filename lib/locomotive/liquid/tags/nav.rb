@@ -56,14 +56,14 @@ module Locomotive
 
         # Determines root node for the list
         def fetch_entries(context)
-          @current_page = context.registers[:page]
+          @site, @page = context.registers[:site], context.registers[:page]
 
           children = (case @source
-          when 'site'     then context.registers[:site].pages.root.minimal_attributes.first # start from home page
-          when 'parent'   then @current_page.parent || @current_page
-          when 'page'     then @current_page
+          when 'site'     then @site.pages.root.minimal_attributes.first # start from home page
+          when 'parent'   then @page.parent || @page
+          when 'page'     then @page
           else
-            context.registers[:site].pages.fullpath(@source).minimal_attributes.first
+            @site.pages.fullpath(@source).minimal_attributes.first
           end).children_with_minimal_attributes.to_a
 
           children.delete_if { |p| !include_page?(p) }
@@ -71,13 +71,13 @@ module Locomotive
 
         # Returns a list element, a link to the page and its children
         def render_entry_link(page, css, depth)
-          selected = @current_page.fullpath =~ /^#{page.fullpath}/ ? ' on' : ''
+          selected = @page.fullpath =~ /^#{page.fullpath}/ ? ' on' : ''
 
           icon = @options[:icon] ? '<span></span>' : ''
           label = %{#{icon if @options[:icon] != 'after' }#{page.title}#{icon if @options[:icon] == 'after' }}
 
           output  = %{<li id="#{page.slug.dasherize}-link" class="link#{selected} #{css}">}
-          output << %{<a href="/#{page.fullpath}">#{label}</a>}
+          output << %{<a href="/#{@site.localized_page_fullpath(page)}">#{label}</a>}
           output << render_entry_children(page, depth.succ) if (depth.succ <= @options[:depth].to_i)
           output << %{</li>}
 

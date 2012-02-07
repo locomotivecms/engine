@@ -1,0 +1,15 @@
+/*
+ * This is a manifest file that'll automatically include all the stylesheets available in this directory
+ * and any sub-directories. You're free to add application-wide styles to this file and they'll appear at
+ * the top of the compiled file, but it's generally better to create a new file per style scope.
+ *= require_self
+ *= require locomotive/blueprint/screen.css
+ *= require locomotive/jquery
+ *= require formtastic
+ *= require codemirror
+ *= require codemirror/themes/neat
+ *= require locomotive/toggle.css
+ *= require locomotive/liquid_mode.css
+ *= require_tree ./locomotive/shared
+ *= require_tree ./locomotive/backoffice
+*/

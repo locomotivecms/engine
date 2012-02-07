@@ -1,0 +1,7 @@
+%script{ :type => 'text/html', :id => "#{name}_list" }
+
+  %h3!= title
+  .inner
+    %p.no-items{ :style => 'display: none' }!= empty_message
+
+    %ul{ :class => name.dasherize }

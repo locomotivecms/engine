@@ -3,9 +3,9 @@ module Locomotive
     class Fonts
 
       def initialize(app, opts = {})
-        @app = app
-        @path_regexp = opts[:path] || %r{^/fonts/}
-        @expires_in = opts[:expires_in] || 24.hour # varnish
+        @app          = app
+        @path_regexp  = opts[:path] || %r{^/fonts/}
+        @expires_in   = opts[:expires_in] || 24.hour # varnish
       end
 
       def call(env)

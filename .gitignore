@@ -1,6 +1,6 @@
 .bundle
 db/*.sqlite3
-log/*.log
+log
 tmp/**/*
 .DS_Store
 rerun.txt
@@ -30,9 +30,15 @@ Capfile
 config/deploy.rb
 perf/*.rb
 gem_graph.png
-sites/
 permanent
 doc/bushido
 *.swp
-
-
+.sass-cache/
+spec/dummy/public/sites
+/spec/dummy/tmp/
+/spec/dummy/spec/tmp
+/spec/dummy/log/*.log
+/spec/dummy/tmp/**/*
+app/assets/javascripts/old/
+app/assets/stylesheets/old/
+.rbenv-version

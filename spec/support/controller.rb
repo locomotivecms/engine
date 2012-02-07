@@ -3,7 +3,7 @@ module Locomotive
 
     include Locomotive::Render
 
-    attr_accessor :output, :status, :current_site, :current_admin
+    attr_accessor :output, :status, :current_site, :current_locomotive_account
 
     def render(options = {})
       self.output = options[:text]

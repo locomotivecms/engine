@@ -48,9 +48,7 @@ task :spec_nix do
     lib/locomotive/liquid/filters/text_spec.rb
     lib/locomotive/liquid/filters/misc_spec.rb
     lib/locomotive/heroku_spec.rb
-    lib/locomotive/import_spec.rb
-    lib/locomotive/export_spec.rb
-    models/content_instance_spec.rb
+    models/content_entry_spec.rb
     models/editable_element_spec.rb
     models/account_spec.rb
     models/content_type_spec.rb

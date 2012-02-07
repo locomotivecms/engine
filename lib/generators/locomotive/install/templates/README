@@ -8,10 +8,12 @@ The Locomotive Engine has been correctly installed in your Rails application.
     - config/initializers/carrierwave.rb
     - config/initializers/dragonfly.rb
     - config/mongoid.yml
+    - config/devise.yml
+    - config/routes.rb
 
   2. Launch the server
 
-    > unicorn_rails
+    > bundle exec unicorn_rails
 
   3. Open your browser
 
@@ -20,9 +22,5 @@ The Locomotive Engine has been correctly installed in your Rails application.
   4. Follow the installation wizzard steps
 
   5. Enjoy !
-
-  Note: If you want to use DelayedJob, be sure to launch it:
-
-    > rake jobs:work
 
 ===============================================================================

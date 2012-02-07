@@ -1,0 +1,18 @@
+- title link_to(@page.title.blank? ? @page.title_was : @page.title, '#', :rel => 'page_title', :title => t('.ask_for_title'), :class => 'editable')
+
+- content_for :submenu do
+  = render 'locomotive/shared/menu/contents'
+
+- content_for :actions do
+  = render 'locomotive/shared/actions/contents'
+
+- content_for :buttons do
+  = local_action_button :show, "/#{@page.fullpath}", :class => 'show'
+
+%p!= t('.help')
+
+= semantic_form_for @page, :url => page_url(@page), :html => { :multipart => true } do |form|
+
+  = render 'form', :f => form
+
+  = render 'locomotive/shared/form_actions', :back_url => pages_url, :button_label => :update

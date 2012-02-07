@@ -1,9 +1,0 @@
-tinyMCE.addI18n('ru.locomedia_dlg',{
-  dialog_title: 'Вставить изображение', // Insert media
-  upload: 'Загрузить изображение', // Upload media
-  loading: 'Идет загрузка...', // Loading...
-  uploading: 'Идет загрузка...', // Uploading...
-  destroying: 'Идет удаление...', // Destroying...
-  confirm: 'Вы уверены?', // Are you sure ?
-  no_items: 'Список изображений пуск.' // There are no media for now.
-});

@@ -1,0 +1,22 @@
+%p= t('.title', :name => @account.name, :date => I18n.l(Time.now), :locale => @account.locale)
+
+%hr
+
+%p
+  %b= t('.type', :type => @type.name, :locale => @account.locale)
+  %br
+  %i= @type.description
+
+%hr
+
+%ul
+  - @type.entries_custom_fields.each do |field|
+    - value = @entry.value_for(field)
+    %li
+      %strong= field.label
+      &nbsp;-&nbsp;
+      %i
+        - if field.type == 'file'
+          = link_to File.basename(value), value
+        - else
+          = value

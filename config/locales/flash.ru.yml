@@ -1,6 +1,6 @@
 ru:
   flash:
-    admin:
+    locomotive:
       pages:
         create:
           notice: "Страница успешно создана."
@@ -13,7 +13,7 @@ ru:
         destroy:
           notice: "Страницы успешно удалены."
 
-      contents:
+      content_entries:
         create:
           notice: "Контент успешно создан."
           alert: "Контент не создан."

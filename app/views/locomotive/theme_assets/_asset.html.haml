@@ -1,0 +1,9 @@
+%script{ :type => 'text/html', :id => 'editable_theme_asset_item' }
+
+  %strong= link_to "{{local_path}}", edit_theme_asset_path('asset_id').gsub(/\/asset_id\//, '/{{id}}/')
+  .more
+    %span.size {{size}}
+    %span!= t('.updated_at')
+    %span.date {{updated_at}}
+
+    = link_to 'x', '#', :class => 'remove', :confirm => t('locomotive.messages.confirm')

@@ -1,0 +1,16 @@
+- title link_to(@site.name.blank? ? @site.name_was : @site.name, '#', :rel => 'site_name', :title => t('.ask_for_name'), :class => 'editable')
+
+- content_for :submenu do
+  = render_cell 'locomotive/settings_menu', :show
+
+- content_for :buttons do
+  - if can?(:create, Locomotive::Account)
+    = local_action_button t('.new_membership'), new_membership_url, :class => 'new'
+
+%p!= t('.help')
+
+= semantic_form_for @site, :url => current_site_url do |form|
+
+  = render 'form', :f => form
+
+  = render 'locomotive/shared/form_actions', :button_label => :update

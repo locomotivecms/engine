@@ -8,21 +8,25 @@ module Locomotive
       # :forbidden_paths      => %w{layouts snippets stylesheets javascripts assets admin system api},
       :reserved_slugs         => %w{stylesheets javascripts assets admin images api pages edit},
       :locales                => %w{en de fr pt-BR it nl no es ru},
+      :site_locales           => %w{en de fr pt-BR it nl no es ru},
       :cookie_key             => '_locomotive_session',
       :enable_logs            => false,
       :hosting                => :auto,
       :delayed_job            => false,
       :default_locale         => :en,
-      :mailer_sender          => 'support', #support@example.com'
+      :mailer_sender          => 'support@example.com',
       :manage_subdomain       => false,
       :manage_manage_domains  => false,
-      :latest_items_nb        => 5,
+      :ui                     => {
+        :latest_entries_nb   => 5,
+        :max_content_types    => 2
+      },
       :rack_cache             => {
         :verbose     => true,
         :metastore   => URI.encode("file:#{Rails.root}/tmp/dragonfly/cache/meta"), # URI encoded in case of spaces
         :entitystore => URI.encode("file:#{Rails.root}/tmp/dragonfly/cache/body")
       },
-      :devise_modules             => [:database_authenticatable, :recoverable, :rememberable, :trackable, :validatable, :encryptable, { :encryptor => :sha1 }],
+      :devise_modules             => [:rememberable, :database_authenticatable, :token_authenticatable, :recoverable, :trackable, :validatable, :encryptable, { :encryptor => :sha1 }],
       :context_assign_extensions  => {  }
     }
 
@@ -34,16 +38,6 @@ module Locomotive
 
     def self.settings
       @@settings
-    end
-
-    def lastest_items_nb=(setting)
-      puts "DEPRACATION WARNING: The Locomotive config setting 'lastest_items_nb' was misspelled and will be removed in a future version. Please use 'latest_items_nb' in your Locomotive initializer."
-      self.settings.latest_items_nb = setting
-    end
-
-    def lastest_items_nb
-      puts "DEPRACATION WARNING: The Locomotive config setting 'lastest_items_nb' was misspelled and will be removed in a future version. Please use 'latest_items_nb' in your Locomotive initializer."
-      self.settings.latest_items_nb
     end
 
     def multi_sites?

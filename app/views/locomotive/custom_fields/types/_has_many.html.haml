@@ -1,0 +1,70 @@
+- if !f.object.new_record? && field.ui_enabled?
+
+  - target_content_type       = Locomotive::ContentType.class_name_to_content_type(field.class_name, current_site)
+  - new_target_content_entry  = target_content_type.entries.build(field.inverse_of => f.object)
+
+  = f.input     name.to_sym,
+    :label      => field.label,
+    :hint       => field.hint,
+    :as         => :'Locomotive::Empty',
+    :wrapper_html => { :id => "content_entry_#{name}_input", :class => 'empty relationship input' }
+
+  - content_for :head do
+
+    %script{ :type => 'text/html', :id => "#{name}_list" }
+
+      %p.empty{ :style => 'display: none' }!= t('.empty')
+
+      %ul
+
+      %hr
+
+      %p.actions
+        = link_to t('.new_entry'), '#', :class => 'add'
+
+    %script{ :type => 'text/html', :id => "#{name}_entry" }
+      %li
+        .handle.col
+          = image_tag 'locomotive/form/icons/drag.png'
+
+        .label.col
+          {{label}}
+
+        %span.actions
+          = link_to 'e', '#', :class => 'edit'
+          = link_to 'x', '#', :class => 'remove', :confirm => t('locomotive.messages.confirm')
+
+
+  - content_for :backbone_view_data do
+    :plain
+      , #{name}_new_entry: #{new_target_content_entry.to_json}
+
+  - content_for :foot do
+
+    %div{ :id => "#{name}-template-entry", :style => 'display: none' }
+
+      %h2
+        %span.new-section= t('locomotive.content_entries.new.title', :type => name.capitalize).html_safe
+        %span.edit-section= t('locomotive.content_entries.edit.title', :type => name.capitalize).html_safe
+
+      = semantic_form_for new_target_content_entry, :as => :content_entry, :url => content_entries_url(target_content_type.slug), :html => { :multipart => true } do |form|
+
+        = form.inputs :name => :attributes do
+          - target_content_type.ordered_entries_custom_fields.each_with_index do |_field, index|
+
+            - next if _field.name == field.inverse_of || _field.type == 'has_many'
+
+            = render "locomotive/custom_fields/types/#{_field.type}",
+              :f            => form,
+              :name         => _field.name.to_sym,
+              :field        => _field,
+              :highlighted  => _field._id == target_content_type.label_field_id
+
+
+      .dialog-actions
+        = link_to t('locomotive.buttons.close'), '#', :id => 'close-link'
+
+        .button-wrapper
+          %span.new-section= submit_tag t('locomotive.shared.form_actions.create')
+          %span.edit-section= submit_tag t('locomotive.shared.form_actions.update')
+

@@ -1,0 +1,34 @@
+!!! XML
+!!!
+%html{ :xmlns => 'http://www.w3.org/1999/xhtml'  }
+  %head
+    = render 'locomotive/shared/head'
+  %body{ :class => sections }
+    #wrapper
+      .container
+        #header
+          = render 'locomotive/shared/header'
+          = render_cell 'locomotive/main_menu', :show
+
+          #submenu
+            %ul
+              = yield :submenu
+
+            - if content_for? :actions
+              .actions
+                = yield :actions
+
+        #content
+          .inner
+            %h2!= title
+
+            #local-actions-bar
+              &nbsp;
+              = yield :buttons
+
+            = yield
+
+        #footer
+          = render 'locomotive/shared/footer'
+
+    = yield :foot

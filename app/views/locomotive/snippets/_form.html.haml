@@ -1,0 +1,13 @@
+- content_for :head do
+  = render '/locomotive/theme_assets/picker'
+
+- content_for :backbone_view_data do
+  :plain
+    snippet: #{@snippet.persisted? ? @snippet.to_presenter.as_json_for_html_view.to_json : 'null'}
+
+= f.inputs :name => :information do
+  = f.input :name, :wrapper_html => { :class => 'highlighted' }
+  = f.input :slug, :required => false
+
+= f.inputs :name => :code do
+  = f.input :template, :as => :'Locomotive::Code'

@@ -1,0 +1,30 @@
+- title t('.title', :type => @content_type.name.capitalize)
+
+- content_for :submenu do
+  = render 'locomotive/shared/menu/contents'
+
+- content_for :actions do
+  = render 'locomotive/shared/actions/contents'
+
+- content_for :buttons do
+  - if can?(:manage, Locomotive::ContentType)
+    = local_action_button :edit, edit_content_type_url(@content_type), :class => 'edit'
+
+  = local_action_button :new, new_content_entry_url(@content_type.slug), :class => 'new'
+
+- if @content_type.description.present?
+  %p= @content_type.description
+
+- if @content_type.groupable?
+  - @content_entries.each do |group|
+    .box
+      %h3= group[:name] || t('.category_noname')
+      .inner
+        = render 'list', :content_type => @content_type, :entries => group[:entries]
+- else
+  = render 'list', :content_type => @content_type, :entries => @content_entries
+
+- if can?(:manage, Locomotive::ContentType)
+  #local-actions-bottom-bar
+    %p.tleft
+      = link_to t('.destroy'), content_type_url(@content_type), :confirm => t('locomotive.messages.confirm'), :method => :delete, :class => 'button remove'

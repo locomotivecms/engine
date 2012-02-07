@@ -1,0 +1,787 @@
+@import "compass/css3";
+@import "compass/css3/border-radius";
+@import "compass/css3/images";
+@import "compass/css3/text-shadow";
+@import "locomotive/shared/helpers";
+@import "buttons";
+
+form.formtastic {
+
+  fieldset {
+    margin-bottom: 20px;
+
+    padding-bottom: 1px;
+
+    span.inline-errors {
+      margin-left: 10px;
+      padding: 2px 3px;
+
+      background: #FFE5E5;
+
+      color: #CE2525;
+      font-size: 13px;
+    }
+
+    legend {
+      display: block;
+      width: 918px;
+
+      padding: 5px 0px;
+
+      background: #ebedf4;
+
+      border: 1px solid #ccced7;
+      border-bottom-width: 0px;
+
+      @include border-top-radius(8px);
+      @include background-image(linear-gradient(#ebedf4, #d7dbe7));
+
+      span {
+        padding-left: 20px;
+
+        line-height: 20px;
+
+        font-size: 13px;
+        font-weight: bold;
+        @include single-text-shadow(#fff, 1px, 1px, 1px);
+      }
+    } // legend
+
+    &.foldable {
+      legend span {
+        cursor: pointer;
+
+        padding-right: 15px;
+
+        background: transparent image-url("locomotive/form/folded-arrow-on.png") no-repeat right center;
+      }
+
+      &.folded legend {
+        @include border-bottom-radius(8px);
+        @include box-shadow(rgba(0, 0, 0, 0.4) 0px 1px 0px 0px);
+        border-bottom-width: 1px;
+
+        span {
+          background-image: image-url("locomotive/form/folded-arrow-off.png");
+        }
+      }
+    } // .foldable
+
+    .list {
+      .empty {
+        text-align: left;
+        color: #BDBFC9;
+        text-shadow: #fff 1px 1px 1px;
+        font-weight: bold;
+        font-size: 13px;
+      }
+
+      li, .entry, .new-entry {
+        position: relative;
+        margin-bottom: 10px;
+        height: 31px;
+        line-height: 31px;
+
+        padding: 0 10px;
+
+        background: #fff;
+        @include border-radius(16px);
+        @include box-shadow(rgba(0, 0, 0, 0.2) 0px 1px 0px 0px);
+
+        em {
+          color: #757575;
+          font-size: 11px;
+          font-weight: normal;
+        }
+
+        strong {
+          color: #17171D;
+          font-size: 14px;
+          font-weight: bold;
+
+          @include locomotive-link;
+        }
+
+        .editable {
+          @include editable;
+          padding-right: 6px;
+
+          &:hover {
+            background-image: none;
+          }
+        }
+
+        .col {
+          float: left;
+          margin-right: 20px;
+        }
+
+        span.actions {
+          position: absolute;
+          top: 0px;
+          right: 10px;
+
+          a.add {
+            @include gray-button;
+
+            padding-left: 10px;
+          }
+
+          a.edit, a.remove, a.toggle, a.drag {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+
+            position: relative;
+            top: 4px;
+
+            outline: none;
+            text-indent: -9999px;
+
+            &.edit {
+              background: transparent image-url("locomotive/list/icons/pencil_off.png") repeat 0 0;
+              &:hover {
+                background-image: image-url("locomotive/list/icons/pencil.png");
+              }
+            }
+
+            &.remove {
+              background: transparent image-url("locomotive/list/icons/trash_off.png") repeat 0 0;
+              &:hover {
+                background-image: image-url("locomotive/list/icons/trash.png");
+              }
+            }
+
+            &.toggle {
+              background: transparent image-url("locomotive/list/icons/toggle_off.png") repeat 0 0;
+              &:hover {
+                background-image: image-url("locomotive/list/icons/toggle.png");
+              }
+            }
+
+            &.drag {
+              cursor: move;
+              background: transparent image-url("locomotive/list/icons/move_off.png") repeat 0 0;
+              &:hover {
+                background-image: image-url("locomotive/list/icons/move.png");
+              }
+            }
+          }
+        }
+
+        &:last-child {
+          margin-bottom: 0px;
+        }
+      } // li
+
+      > hr {
+        margin: 10px 0px;
+        height: 1px;
+        line-height: 1px;
+        border: 0px;
+        border-top: 1px solid rgba(0, 0, 0, 0.2);
+        background: transparent;
+      }
+
+      .new-entry {
+      }
+    } // div.list
+
+    ol {
+      margin-bottom: 0px;
+      padding: 0px;
+
+      width: 918px;
+
+      border: 1px solid #ccced7;
+
+      @include border-bottom-radius(8px);
+      @include box-shadow(rgba(0, 0, 0, 0.4) 0px 1px 0px 0px, rgba(255, 255, 255, 0.5) 0 1px 0 0 inset);
+
+      background: #ebedf4;
+
+      > li.input {
+        margin: 0;
+        padding: 10px 20px 16px 20px;
+
+        background: transparent image-url("locomotive/form/input-sep.png") repeat-x 0 bottom;
+
+        &:last-child, &.last {
+          background: none;
+          margin-bottom: 0px;
+        }
+
+        label, .label {
+          float: left;
+
+          width: 160px;
+          padding: 0px 0 0 0px;
+
+          font-size: 13px;
+          text-align: left;
+          color: #585A69;
+          @include single-text-shadow(#fff, 1px, 1px, 1px);
+        }
+
+        p.inline-hints {
+          margin: 5px 0 0 160px;
+
+          a {
+            color: #1f82bc;
+          }
+          .code {
+            background-color: #c8cad0;
+            color: #5E5F64;
+            @include single-text-shadow(rgba(255, 255, 255, 0.8), 0px, 1px, 1px);
+          }
+        } // p.inline-hints
+
+        div.list {
+          margin-left: 160px;
+        }
+
+        div.inline-errors {
+          margin: 2px 0 0 160px;
+          padding: 8px 0 0 0;
+
+          background: transparent image-url("locomotive/form/error-arrow.png") no-repeat 17px 0;
+
+          p {
+            display: inline-block;
+            width: auto;
+            line-height: 14px;
+            margin: 0px;
+            padding: 3px 12px 4px 27px;
+
+            @include box-shadow(rgba(0, 0, 0, 0.4) 2px 2px 2px 0);
+            @include border-radius(3px);
+            background: #cd0f19 image-url("locomotive/form/icons/error.png") no-repeat 7px center;
+
+            color: #fff !important;
+            font-size: 12px;
+            @include single-text-shadow(rgba(0, 0, 0, 0.7), 0px, 1px, 1px);
+          }
+        } // div.inline-errors
+
+        &.string, &.password {
+          label {
+            padding-top: 2px;
+          }
+
+          input[type=text], input[type=password] {
+            @include default-input-style;
+
+            width: 700px;
+          }
+
+          &.highlighted {
+            label {
+              padding-top: 7px;
+            }
+
+            input[type=text] {
+              font-size: 20px;
+            }
+          }
+
+          &.em-inline-hints {
+            p.inline-hints {
+              color: #1F82BC !important;
+            }
+          }
+        } // li.string, li.password
+
+        &.locale, &.locales {
+          .list {
+            margin-left: 150px;
+          }
+
+          &.locales {
+            label {
+              color: #8B8D9A;
+            }
+          }
+
+          .entry {
+            float: left;
+            width: 212px;
+
+            margin-left: 10px;
+
+            &:first-child {
+              margin-left: 0px;
+            }
+
+            label {
+              float: none;
+              display: inline-block;
+              width: auto;
+              position: relative;
+
+              padding-left: 31px;
+              margin-left: 8px;
+
+              font-weight: normal;
+
+              img {
+                position: absolute;
+                top: 2px;
+                left: 0px;
+              }
+            }
+
+            &.selected {
+              label {
+                color: #585A69;
+              }
+              &:first-child {
+                label {
+                  font-weight: bold;
+                }
+              }
+            } // .entry.selected
+
+          } // .entry
+
+          .inline-hints {
+            clear: both;
+          }
+        } // > li.locale, li.locales
+
+        &.code {
+
+          textarea, .CodeMirror-scroll {
+            height: 400px;
+          }
+
+          textarea {
+            @include default-input-style;
+            width: 868px;
+          }
+
+          &.small {
+            textarea, .CodeMirror-scroll {
+              height: 60px;
+            }
+          }
+
+          div.inline-errors, p.inline-hints {
+            margin-left: 0px;
+          }
+
+          .more {
+            text-align: right;
+            width: auto;
+            margin: 10px 0px 0 0;
+            line-height: 0.6em;
+
+            a {
+              @include hover-link;
+              color: #787A89;
+
+              &.picture {
+                padding-left: 23px;
+                background: transparent image-url("locomotive/icons/asset_add.png") no-repeat left 1px;
+              }
+            }
+          } // .more
+
+          &.small {
+
+            > textarea, .CodeMirror, .CodeMirror-scroll {
+              height: 60px;
+              width: 706px;
+            }
+
+            .CodeMirror {
+              float: left;
+              margin-top: 0px;
+              margin-bottom: 5px;
+            }
+
+            div.inline-errors, p.inline-hints {
+              margin-left: 160px;
+            }
+
+          }
+
+          &.no-label {
+            > textarea, .CodeMirror, .CodeMirror-scroll {
+              margin-top: 12px;
+              width: 868px;
+            }
+          }
+
+        } // li.code
+
+        &.toggle {
+
+          p.inline-hints {
+            margin-top: 9px;
+          }
+
+        } // li.toggle
+
+        &.date {
+
+          input[type=text] {
+            width: 90px;
+          }
+
+        } // li.date
+
+        &.file {
+          span.file {
+            a:first-child {
+              @include hover-link;
+
+              margin-right: 20px;
+
+              color: #1F82BC;
+
+              &.deleted {
+                text-decoration: line-through;
+              }
+            }
+
+            a.change, a.delete {
+              @include blue-button;
+
+              margin-left: 5px;
+            }
+          }
+        } // li.file
+
+        &.subdomain {
+
+          em {
+            color: #222;
+          }
+
+          input[type=text] {
+            @include path-input-style;
+          }
+
+        } // li.subdomain
+
+        &.empty {
+
+          .list {
+
+            em.editable {
+              font-size: 14px;
+              color: #17171D;
+              font-weight: bold;
+            }
+
+            input[type=text].path {
+              @include path-input-style;
+            }
+          }
+
+        } // li.empty
+
+        &.no-label {
+          padding-top: 6px;
+
+          > .list {
+            margin-left: 0;
+
+            .entry {
+              margin-top: 10px;
+              margin-bottom: 0px;
+            }
+          }
+
+          &.string {
+            padding-top: 16px;
+
+            input[type=text] {
+              width: 868px;
+            }
+          }
+
+          > .inline-hints {
+            margin-left: 0px !important;
+          }
+
+          > .inline-errors {
+            margin-left: 0px !important;
+          }
+        } // li.no-label
+
+        &.select-options {
+          .list {
+            line-height: auto;
+
+            ul, li, > span.actions {
+              float: left;
+            }
+
+            ul {
+              width: 558px;
+              min-height: 34px;
+
+              li.entry {
+                background: #c2e0f0;
+                @include border-radius(2px);
+
+                padding: 0 55px 0 8px;
+                margin: 2px 10px 8px 0;
+                height: auto;
+
+                color: #29739b;
+                line-height: 24px;
+
+                span.name {
+                  cursor: pointer;
+                  @include text-shadow(#fff 0px 1px 1px);
+                }
+
+                span.actions {
+                  line-height: 20px;
+                  right: 8px;
+                }
+              }
+            } // .list ul
+
+            > span.actions {
+              position: static;
+              margin-left: 15px;
+              line-height: 24px;
+            } // .list .actions
+          }
+        } // li.select-options
+
+        &.relationship {
+
+          .list > ul {
+
+            .col {
+
+              &.handle {
+                position: relative;
+                top: 4px;
+                margin-left: 5px;
+                margin-right: 2px;
+                cursor: move;
+              }
+
+              &.label {
+                 margin-left: 8px;
+                 font-weight: bold;
+                 color: #000;
+              }
+
+            } // ul .col
+
+          } // .list > ul
+
+        } // li.relationship
+
+        &#site_memberships_input {
+          .entry {
+            em.email {
+              margin-left: 10px;
+            }
+
+            .role {
+              position: absolute;
+              top: 0px;
+              right: 30px;
+              width: 170px;
+
+              line-height: 30px;
+
+              em {
+                padding-left: 17px;
+                margin-left: 0px;
+                background-repeat: no-repeat;
+
+                color: #757575;
+                font-size: 13px;
+                font-weight: normal;
+
+                &.locked {
+                  background-image: image-url("locomotive/icons/membership_lock.png");
+                  background-position: 1px 0px;
+                }
+
+                &.editable {
+                  background-image: image-url("locomotive/icons/membership_edit.png");
+                  background-position: 0px 3px;
+                }
+              }
+            }
+          }
+        } // > li#site_memberships_input
+
+        &#account_sites_input {
+          .entry {
+            strong {
+              margin-right: 10px;
+            }
+          }
+        } // > li#account_sites_input
+
+        &#custom_fields_input {
+
+          padding-top: 17px;
+
+          li.custom-field {
+            height: auto;
+            clear: both;
+
+            & > .col {
+              float: left;
+              margin-right: 20px;
+            }
+
+            .editable {
+              display: inline-block;
+              line-height: 16px;
+
+              width: 20px;
+            }
+
+            .handle {
+              position: relative;
+              top: 4px;
+              margin-left: 5px;
+              margin-right: 2px;
+              cursor: move;
+            }
+
+            .label-input {
+              margin-right: 2px;
+
+              input[type=text] {
+                float: none;
+                display: inline-block;
+
+                @include default-input-style;
+                margin-left: 5px;
+                padding: 2px 3px;
+                font-size: 12px;
+              }
+
+              .editable {
+                width: 160px;
+              }
+            }
+
+            .type-input {
+              width: 150px;
+
+              .editable {
+                color: #585A69;
+                font-weight: normal;
+                width: 150px;
+              }
+            }
+
+            .required-input {
+              label {
+                float: none;
+                width: auto;
+
+                font-weight: normal;
+              }
+
+              .toggleSwitch {
+                display: inline-block;
+                position: relative;
+                top: 0px;
+
+                margin-left: 5px;
+              }
+            }
+
+          } // li.custom-field
+
+          .new-entry {
+
+            input[type=text] {
+              @include default-input-style;
+              margin-left: 5px;
+              padding: 2px 3px;
+              font-size: 12px;
+            }
+
+          } // .new-entry
+
+        } // > li#custom_fields_input
+
+      } // > li
+
+      &.nested {
+        clear: both;
+        width: 858px;
+        border: none;
+        @include border-radius(0);
+        @include box-shadow(transparent 0 0 0 0);
+        background: transparent;
+
+        > li.input {
+          height: auto;
+          padding-bottom: 5px;
+          padding-left: 29px;
+          background: transparent;
+          border-top: 1px solid #CCC;
+          @include border-radius(0);
+          @include box-shadow(transparent 0 0 0 0);
+
+          label.label {
+            width: 174px;
+            padding-top: 0px;
+            line-height: 28px;
+          }
+
+          &.string, &.password {
+            input[type=text], input[type=password] {
+              width: 623px;
+            }
+
+            p.inline-hints {
+              margin-top: 0px;
+            }
+          } // li.string, li.password
+
+          p.inline-hints {
+            margin-left: 174px;
+          }
+
+        } // li.input
+
+      } // ol.nested
+
+    } //ol
+  } // fieldset
+
+  // theme assets
+  .selector {
+    position: relative;
+
+    a.alt {
+      position: absolute;
+      display: inline-block;
+      line-height: 32px;
+
+      top: 0px;
+      right: 20px;
+      padding-left: 20px;
+
+      background: transparent image-url("locomotive/icons/asset_switch.png") no-repeat left center;
+
+      color: #787a89;
+      font-size: 11px;
+      @include single-text-shadow(rgba(255, 255, 255, 0.6), 1px, 1px, 1px);
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+

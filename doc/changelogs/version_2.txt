@@ -1,0 +1,35 @@
+- rake locomotive:upgrade:rename_collections
+
+- locales updates (en / fr)
+  - theme_assets.images => theme_assets.image_picker
+  - assets => content_assets
+  - EditableXXX => Locomotive::EditableXXX (in mongodb)
+  - content_types:
+    - category => select
+    - highlighted_field_name => highlighted_field_id (label_field_id)
+    - api_enabled => public_submission_enabled
+    - api_accounts => public_submission_accounts
+  - contents (content_entries now)
+    - _position_in_list => _position
+  - api_contents:
+    - url => entry_submissions
+    - params[:content] => params[:entries]
+  - editable_file:
+    - source_filename => source
+
+collection, selector = Locomotive::ContentType.collection, Locomotive::ContentType.criteria.selector
+collection.update selector, { '$rename' => { 'contents_custom_fields' => 'entries_custom_fields' } }
+
+
+Installation:
+
+  1/ open Gemfile
+
+    gem 'locomotive_cms', :path => '../../Desktop/NoCoffee/LocomotiveCMS/engine/', :require => 'locomotive/engine'
+    gem 'unicorn'
+
+  !!!!2/ bundle exec rails g mongoid:config !!! => not needed anymore
+
+  3/ bundle exec rails g locomotive:install
+
+  4/ bundle exec rake assets:precompile

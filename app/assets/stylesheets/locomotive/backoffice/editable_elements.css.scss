@@ -1,0 +1,71 @@
+@import "compass/css3/images";
+@import "compass/css3/border-radius";
+@import "compass/css3/text-shadow";
+@import "compass/css3/box-shadow";
+@import "locomotive/shared/helpers";
+@import "buttons";
+@import "box";
+
+#editable-elements {
+
+  .nav {
+    @include box-header;
+
+    padding-left: 0px;
+
+    a {
+      float: left;
+      display: block;
+      position: relative;
+
+      line-height: 31px;
+      padding: 0px 20px 0 20px;
+
+      color: #8b8d9a;
+      @include single-text-shadow(#fff, 1px, 1px, 1px);
+      text-decoration: none;
+      text-transform: capitalize;
+      font-size: 13px;
+      cursor: pointer;
+      outline: none;
+
+      &.on {
+        @include background-image(linear-gradient(#d9dde9, #ebedf4));
+
+        height: 31px;
+
+        z-index: 999;
+
+        color: #1e1f26;
+        font-weight: bold;
+
+        border-right: 1px solid #ccced7;
+        border-left: 1px solid #ccced7;
+
+        @include box-shadow(#EBEDF4 0 1px 0 0, rgba(255, 255, 255, 0.4) 0 1px 0 0 inset, rgba(255, 255, 255, 0.4) -1px 0 0 0 inset, rgba(255, 255, 255, 0.4) 1px 0 0 0 inset);
+      }
+
+      &:first-child {
+        &.on {
+          @include border-top-left-radius(8px);
+          border-left: none;
+          @include box-shadow(#EBEDF4 0 1px 0 0, rgba(255, 255, 255, 0.4) 0 1px 0 0 inset, rgba(255, 255, 255, 0.4) -1px 0 0 0 inset);
+        }
+      }
+    } // a
+  } // .nav
+
+  .wrapper {
+    position: relative;
+    top: -1px;
+  }
+
+  fieldset {
+    clear: both;
+
+    ol {
+      min-height: 400px;
+    }
+  } // fieldset
+
+}

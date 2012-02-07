@@ -1,5 +1,135 @@
 BOARD:
 
+x namespace assets
+x bugs:
+  x toggler
+  x advanced options (redirect url missing)
+  x locomotive_media (not animating on open)
+  x undefined method `_selector' for #<Locomotive::Page:0x00000107434768>
+x editable_elements => view + handlebar template
+x editable_short_text => tinymce
+x editable_file =>
+  x backbone / handlebar
+  x new formtastic inputs
+x menu / submenu in full css3 (no images)
+x fix css in firefox
+x update page in ajax
+x edit my site
+  x css
+  x robots.txt
+  x domains
+  x roles
+  x save
+- fix other sections
+  x edit my account
+  x create a new site
+  x create a new accounts
+  x theme assets
+    x polish the page
+    x snippets
+    x delete in ajax
+    x upload many files at once
+  x import/export
+    x export
+  x site picker
+  - content types
+    x move content instances into their own collection
+    x manage custom_fields
+      x automatic name
+      x required
+      x editable plugin: add class depending on the type => surrounding span instead
+      x position
+      x open the nested form
+      x remove an entry
+      x look n feel
+      x display errors
+      x slugify
+      x refactor highlighted_field (field id instead of name)
+      x other content type options
+      x show / hide options of a field based on its type
+        x select: add/edit/remove options
+        x text: formatting
+    x change in main menu
+    x manage contents
+      x list (highlighted field)
+      x slugify
+      x crud
+        x new
+          x date
+          x checkbox
+          x html
+          x file
+        x edit
+        x destroy
+    x public_form (previously api something)
+    x bug text formatting
+    x custom_fields: use the appropriate icon to drag select options
+    x bug ui with contents popup
+    - use list_or_group_entries instead of ordered_entries
+- i18n
+  x add locales a site responds to
+  x locale switcher
+  x constraint: one locale at least
+  x front
+    x pages
+    x inline-editor
+  - back to default locale (if changed in settings) and when creating new pages / entries
+- inline editor
+  x rack
+  x iframe
+  (- remove inline-editor tag)
+  x save editable elements
+  x notification (growl)
+  x change page
+  x i18n
+  - style the "ADMIN" button
+  - aloha:
+    x remove sidebar
+    - i18n
+    - insert image
+x deployment
+  x fix integration problems
+  x pre-compile assets
+- API
+  x authentication from a token + controller to deliver a token
+  x api routes
+  x change api location
+  (- add a way to custom the as_json method within the presenters (by  default as_json ?) + custom responder ?)
+  x REST actions:
+    x CRUD theme assets
+    x CRUD snippets
+    x CRUD content assets
+    x CRUD pages
+    x CRUD content types
+    x data ?
+x script to migrate existing site
+  x i18n
+x upgrade to rails 3.2 (https://github.com/locomotivecms/engine/pull/281/files)
+x missing custom_fields
+  x belongs_to
+  x has_many
+  x many_to_many
+- simplify cells integration when modifying a menu from the main app
+- heroku module for locomotive
+- refactoring
+  x remove the import / export scripts
+  x remove the cross domain authentication (use auth_token instead)
+  - where to put Locomotive::InlineEditorMiddleware ?
+
+- bugs / ui tweaks
+  x unable to toggle the "required" check_boxes for content types
+  x unable to sign out
+  x unable to remove a field
+  x "back to admin" link does not work if inline editor disabled
+  x unable to delete memberships
+  - editable_elements does not display the first time they get created (and if there are no existing ones)
+  - display by categories does not work when localized
+  - disallow to click twice on the submit form button (spinner ?)
+  - message to notify people if their browser is too old
+  - weird behaviour when changing the default locale of a site
+
+? install a site by default at the first installation (without asking)
+
 BACKLOG:
 
 - custom_fields:

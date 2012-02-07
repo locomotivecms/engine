@@ -1,0 +1,1018 @@
+/* Reset */
+
+.locomotiveSkin table, .locomotiveSkin tbody, .locomotiveSkin a, .locomotiveSkin img, .locomotiveSkin tr, .locomotiveSkin div, .locomotiveSkin td, .locomotiveSkin iframe, .locomotiveSkin span, .locomotiveSkin *, .locomotiveSkin .mceText {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  white-space: nowrap;
+  text-decoration: none;
+  font-weight: normal;
+  cursor: default;
+  color: #000;
+  vertical-align: baseline;
+  width: auto;
+  border-collapse: separate;
+  text-align: left
+}
+
+.locomotiveSkin {
+  display: inline-block;
+}
+
+.locomotiveSkin a:hover, .locomotiveSkin a:link, .locomotiveSkin a:visited, .locomotiveSkin a:active {
+  text-decoration: none;
+  font-weight: normal;
+  cursor: default;
+  color: #000
+}
+
+.locomotiveSkin table td {
+  vertical-align: middle
+}
+
+/* Containers */
+.locomotiveSkin table {
+  direction:ltr;
+}
+.locomotiveSkin iframe {
+  display: block;
+  background: #FFF;
+}
+
+.locomotiveSkin .mceToolbar {
+  height: 26px
+}
+
+.locomotiveSkin .mceLeft {
+  text-align: left
+}
+
+.locomotiveSkin .mceRight {
+  text-align: right
+}
+
+/* External */
+.locomotiveSkin .mceExternalToolbar {
+  position: absolute;
+  border: 1px solid #CCC;
+  border-bottom: 0;
+  display: none;
+}
+
+.locomotiveSkin .mceExternalToolbar td.mceToolbar {
+  padding-right: 13px;
+}
+
+.locomotiveSkin .mceExternalClose {
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  width: 7px;
+  height: 7px;
+  background: url('img/icons.png') -820px 0
+}
+
+/* Layout */
+.locomotiveSkin table.mceLayout {
+  border: 0;
+}
+
+.locomotiveSkin table.mceLayout tr.mceFirst td.mceToolbar {
+  padding-bottom: 1px;
+}
+
+.locomotiveSkin table.mceLayout tr.mceFirst td {
+  border: none;
+  background: transparent;
+}
+
+.locomotiveSkin table.mceLayout tr.mceFirst td.mceToolbarStart {
+  display: none;
+}
+
+.locomotiveSkin #mce_fullscreen_toolbargroup {
+  background: #ebedf4;
+}
+
+.locomotiveSkin .mceStatusbar {
+  background: #ebedf4;
+}
+
+.locomotiveSkin table.mceLayout tr.mceLast td {
+  margin-top: 2px;
+  border-bottom: 1px solid #CCC;
+  background: url('img/toolbarbg.png') center repeat-x;
+/*  background: transparent;*/
+}
+
+.locomotiveSkin table.mceToolbar, .locomotiveSkin tr.mceFirst .mceToolbar tr td, .locomotiveSkin tr.mceLast .mceToolbar tr td {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.locomotiveSkin td.mceToolbar {
+/*  padding-top: 1px;*/
+  vertical-align: top;
+/*  background-color: #DFDFDF;*/
+}
+
+.locomotiveSkin .mceIframeContainer {
+/*  border-top: 1px solid #CCC;
+  border-bottom: 1px solid #CCC;
+*/
+  border: 1px solid #B5B7C4;
+/*height: 100%; 5/22/2010 - Joe Rozzi - taken out comparing to default theme ui.css */
+}
+
+.locomotiveSkin .mceStatusbar {
+  font-family: 'MS Sans Serif', sans-serif, Verdana, Arial;
+  font-size: 9pt;
+  line-height: 16px;
+  overflow: visible;
+  color: #666;
+  display: block;
+  height: 20px
+}
+
+.locomotiveSkin .mceStatusbar div {
+  float: left;
+  /*margin: 3px 0 0 4px;*/
+  margin:2px;
+  color: #666;
+}
+
+.locomotiveSkin .mceStatusbar a.mceResize {
+  display: block;
+  float: right;
+  background: url('img/icons.png') -801px -2px;
+  width: 20px;
+  height: 20px;
+  cursor: se-resize;
+  outline:0;
+}
+
+.locomotiveSkin .mceStatusbar a:hover {
+  text-decoration: underline
+}
+
+.locomotiveSkin table.mceToolbar {
+/*  margin-left: 3px*/
+}
+
+.locomotiveSkin span.mceIcon, .locomotiveSkin img.mceIcon {
+  display: block;
+  width: 20px;
+  height: 20px
+}
+
+.locomotiveSkin .mceIcon {
+  background: url('img/icons.png') no-repeat 20px 20px
+}
+
+.locomotiveSkin td.mceCenter {
+  text-align: center;
+}
+
+.locomotiveSkin td.mceCenter table {
+  margin: 0 auto;
+  text-align: left;
+}
+
+.locomotiveSkin td.mceRight table {
+  margin: 0 0 0 auto;
+}
+
+/* Button */
+.locomotiveSkin .mceButton {
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -khtml-border-radius: 3px;
+  border-radius: 3px;
+  background-image: url("img/butt2.png");
+  background-position: left top;
+  background-repeat: repeat-x;
+  cursor: default;
+  display: block;
+  height: 20px;
+  margin: 1px;
+  padding: 1px 2px;
+  width: 20px;
+  background-color: #E9E8E8;
+  border-color: #B2B2B2;
+}
+
+.locomotiveSkin a.mceButtonEnabled:hover {
+  background-position: 0 -10px;
+  border-color: #777;
+}
+
+.locomotiveSkin a.mceButtonActive, .locomotiveSkin a.mceButtonSelected {
+  background-image: inherit;
+  border-color: #333;
+  background: #bcd0f5 !important;
+}
+
+.locomotiveSkin .mceButtonDisabled .mceIcon {
+  opacity: 0.3;
+  -ms-filter: 'alpha(opacity=30)';
+  filter: alpha(opacity = 30);
+}
+
+.locomotiveSkin .mceButtonLabeled {
+  width: auto;
+}
+
+.locomotiveSkin .mceButtonLabeled span.mceIcon {
+  float: left;
+}
+
+.locomotiveSkin span.mceButtonLabel {
+  display: block;
+  font-size: 10px;
+  padding: 4px 6px 0 22px;
+  font-family: Tahoma, Verdana, Arial, Helvetica;
+}
+
+.locomotiveSkin .mceButtonDisabled .mceButtonLabel {
+  color: #888;
+}
+
+/* Separator */
+.locomotiveSkin .mceSeparator {
+  background: none repeat scroll 0 0 transparent;
+  display: block;
+  height: 24px;
+  margin: 0 2px;
+  overflow: hidden;
+  width: 1px;
+}
+
+/* ListBox */
+.locomotiveSkin .mceListBox {
+  direction: ltr;
+  margin: 1px;
+}
+
+.locomotiveSkin .mceListBox, .locomotiveSkin .mceListBox a {
+  display: block
+}
+
+.locomotiveSkin .mceListBox .mceText {
+  padding: 1px 2px 1px 5px;
+  text-align: left;
+  text-decoration: none !important;
+  width: 70px;
+  background-image: url(img/butt2.png);
+  background-position: left top;
+  background-repeat: repeat-x;
+  font-family: Tahoma, Verdana, Arial, Helvetica;
+  font-size: 11px;
+  height: 20px;
+  line-height: 20px;
+  overflow: hidden;
+}
+
+.locomotiveSkin .mceListBox .mceText, .locomotiveSkin .mceListBox .mceOpen {
+  background-color: #D5D5D5;
+  border-color: #B2B2B2;
+}
+
+.locomotiveSkin table.mceListBoxEnabled:hover .mceOpen, .locomotiveSkin .mceListBoxHover .mceOpen, .locomotiveSkin .mceListBoxSelected .mceOpen, .locomotiveSkin .mceListBoxSelected .mceText {
+  border-color: #777 !important;
+  background-color: #d5d5d5 !important;
+}
+
+.locomotiveSkin table.mceListBoxEnabled:hover .mceText, .locomotiveSkin .mceListBoxHover .mceText {
+  border-color: #777 !important;
+}
+
+.locomotiveSkin table.mceListBoxEnabled:hover .mceText, .locomotiveSkin .mceListBoxHover .mceText, .locomotiveSkin .mceListBoxSelected .mceText, .locomotiveSkin table.mceListBoxEnabled:hover .mceOpen, .locomotiveSkin .mceListBoxHover .mceOpen, .locomotiveSkin .mceListBoxSelected .mceOpen {
+  background-image: none;
+}
+
+.locomotiveSkin .mceListBoxDisabled a.mceText {
+  color: gray;
+  background-color: transparent;
+}
+
+.locomotiveSkin .mceListBoxMenu {
+  overflow: auto;
+  overflow-x: hidden
+}
+
+.locomotiveSkin .mceOldBoxModel .mceListBox .mceText {
+  height: 22px
+}
+
+.locomotiveSkin .mceOldBoxModel .mceListBox .mceOpen {
+  width: 11px;
+  height: 22px;
+}
+
+.locomotiveSkin select.mceNativeListBox {
+  font: 11px 'Lucida Grande', Helvetica, Arial, sans-serif;
+  background: #F0F0EE;
+  border: 1px solid gray;
+  margin-right: 2px;
+}
+
+.locomotiveSkin .mceListBox .mceOpen {
+  width: 14px;
+  height: 20px;
+  border-collapse: separate;
+  background-image: url(img/butt2.png);
+  background-position: left top;
+  background-repeat: repeat-x;
+  padding: 1px;
+  border-left: 0 none !important;
+}
+
+.locomotiveSkin .mceListBox .mceOpen span {
+  display: block;
+  width: 14px;
+  height: 20px;
+  background-image: url(img/down_arrow.gif);
+  background-position: 2px 1px;
+  background-repeat: no-repeat;
+}
+
+/* SplitButton */
+.locomotiveSkin .mceSplitButton {
+  width: 32px;
+  height: 20px;
+  direction: ltr
+}
+
+.locomotiveSkin .mceSplitButton a, .locomotiveSkin .mceSplitButton span {
+  height: 20px;
+}
+
+.locomotiveSkin .mceSplitButton a {
+  display: block;
+}
+
+.locomotiveSkin .mceSplitButton a.mceAction {
+  height: 20px;
+  width: 20px;
+  padding: 1px 2px;
+  display: block;
+  outline: none;
+}
+
+.locomotiveSkin .mceSplitButton span.mceAction {
+  width: 20px;
+  background: url('img/icons.png') 20px 20px;
+  display: block;
+}
+
+.locomotiveSkin .mceSplitButton a.mceOpen {
+  width: 10px;
+  height: 20px;
+  background-image: url(img/down_arrow.gif);
+  background-position: 1px 2px;
+  background-repeat: no-repeat;
+  padding: 1px;
+  border-left: 0 none !important;
+}
+
+.locomotiveSkin .mceSplitButtonDisabled .mceAction, .locomotiveSkin .mceSplitButtonDisabled span.mceOpen {
+  opacity: 0.3;
+  filter: alpha(opacity = 30);
+}
+
+.locomotiveSkin .mceSplitButtonActive a.mceAction {
+  border: 1px solid #0A246A;
+  background-color: #C2CBE0;
+}
+
+.locomotiveSkin table.mceSplitButton td {
+  background-image: url(img/butt2.png);
+  background-position: left top;
+  background-repeat: repeat-x;
+}
+
+.locomotiveSkin .mceSplitButton a.mceAction, .locomotiveSkin .mceSplitButton a.mceOpen {
+  border-color: #B2B2B2;
+}
+
+.locomotiveSkin .mceListBox a.mceText, .locomotiveSkin .mceSplitButton a.mceAction {
+  -moz-border-radius-bottomleft: 3px;
+  -webkit-border-bottom-left-radius: 3px;
+  -khtml-border-bottom-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+  -moz-border-radius-topleft: 3px;
+  -webkit-border-top-left-radius: 3px;
+  -khtml-border-top-left-radius: 3px;
+  border-top-left-radius: 3px;
+}
+
+.locomotiveSkin .mceSplitButton a.mceOpen, .locomotiveSkin .mceListBox a.mceOpen {
+  -moz-border-radius-bottomright: 3px;
+  -webkit-border-bottom-right-radius: 3px;
+  -khtml-border-bottom-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+  -moz-border-radius-topright: 3px;
+  -webkit-border-top-right-radius: 3px;
+  -khtml-border-top-right-radius: 3px;
+  border-top-right-radius: 3px;
+}
+
+.locomotiveSkin .mceSplitButton a.mceOpen:hover, .locomotiveSkin .mceSplitButtonSelected a.mceOpen, .locomotiveSkin table.mceSplitButtonEnabled:hover a.mceAction, .locomotiveSkin .mceSplitButton a.mceAction:hover {
+  background-color: #d5d5d5;
+  border-color: #777 !important;
+}
+
+/* ColorSplitButton */
+.locomotiveSkin div.mceColorSplitMenu table {
+  background: #FFF;
+  border: 1px solid gray
+}
+
+.locomotiveSkin .mceColorSplitMenu td {
+  padding: 2px
+}
+
+.locomotiveSkin .mceColorSplitMenu a {
+  display: block;
+  width: 9px;
+  height: 9px;
+  overflow: hidden;
+  border: 1px solid #808080
+}
+
+.locomotiveSkin .mceColorSplitMenu td.mceMoreColors {
+  padding: 1px 3px 1px 1px
+}
+
+.locomotiveSkin .mceColorSplitMenu a.mceMoreColors {
+  width: 100%;
+  height: auto;
+  text-align: center;
+  font-family: Tahoma, Verdana, Arial, Helvetica;
+  font-size: 11px;
+  line-height: 20px;
+  border: 1px solid #FFF
+}
+
+.locomotiveSkin .mceColorSplitMenu a.mceMoreColors:hover {
+  border: 1px solid #0A246A;
+  background-color: #B6BDD2
+}
+
+.locomotiveSkin a.mceMoreColors:hover {
+  border: 1px solid #0A246A
+}
+
+.locomotiveSkin .mceColorPreview {
+  margin-left: 2px;
+  width: 16px;
+  height: 3px;
+  overflow: hidden;
+  background: #9a9b9a
+}
+
+.locomotiveSkin .mce_forecolor span.mceAction, .locomotiveSkin .mce_backcolor span.mceAction {
+  overflow: hidden;
+  height: 16px
+}
+
+/* Menu */
+.locomotiveSkin .mceMenu {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 1000;
+  border: 1px solid #D4D0C8
+}
+
+.locomotiveSkin .mceNoIcons span.mceIcon {
+  width: 0;
+}
+
+.locomotiveSkin .mceNoIcons a .mceText {
+  padding-left: 10px
+}
+
+.locomotiveSkin .mceMenu table {
+  background: #FFF
+}
+
+.locomotiveSkin .mceMenu a, .locomotiveSkin .mceMenu span, .locomotiveSkin .mceMenu {
+  display: block
+}
+
+.locomotiveSkin .mceMenu td {
+  height: 20px
+}
+
+.locomotiveSkin .mceMenu a {
+  position: relative;
+  padding: 3px 0 4px 0
+}
+
+.locomotiveSkin .mceMenu .mceText {
+  position: relative;
+  display: block;
+  font-family: 'Lucida Grande', Helvetica, Arial, sans-serif;
+  color: #000;
+  cursor: default;
+  margin: 0;
+  padding: 0 25px 0 25px;
+  display: block
+}
+
+.locomotiveSkin .mceMenu span.mceText, .locomotiveSkin .mceMenu .mcePreview {
+  font-size: 11px
+}
+
+.locomotiveSkin .mceMenu pre.mceText {
+  font-family: Monospace
+}
+
+.locomotiveSkin .mceMenu .mceIcon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 22px;
+}
+
+.locomotiveSkin .mceMenu .mceMenuItemEnabled a:hover, .locomotiveSkin .mceMenu .mceMenuItemActive {
+  background-color: #dbecf3
+}
+
+.locomotiveSkin td.mceMenuItemSeparator {
+  background: #DDD;
+  height: 1px
+}
+
+.locomotiveSkin .mceMenuItemTitle a {
+  border: 0;
+  background: #EEE;
+  border-bottom: 1px solid #DDD
+}
+
+.locomotiveSkin .mceMenuItemTitle span.mceText {
+  color: #000;
+  font-weight: bold;
+  padding-left: 4px
+}
+
+.locomotiveSkin .mceMenuItemDisabled .mceText {
+  color: #888
+}
+
+.locomotiveSkin .mceMenuItemSelected .mceIcon {
+  background: url('img/menu-check.png')
+}
+
+.locomotiveSkin .mceNoIcons .mceMenuItemSelected a {
+  background: url('img/menu-arrow.png') no-repeat -6px center
+}
+
+.locomotiveSkin .mceMenu span.mceMenuLine {
+  display: none
+}
+
+.locomotiveSkin .mceMenuItemSub a {
+  background: url('img/menu-arrow.png') no-repeat top right;
+}
+
+/* Progress,Resize */
+.locomotiveSkin .mceBlocker {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 1000;
+  opacity: 0.5;
+  -ms-filter: 'alpha(opacity=50)';
+  filter: alpha(opacity = 50);
+  background: #FFF
+}
+
+.locomotiveSkin .mceProgress {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 1001;
+  background: url('img/progress.gif') no-repeat;
+  width: 32px;
+  height: 32px;
+  margin: -16px 0 0 -16px
+}
+
+.locomotiveSkin .mcePlaceHolder {
+  border: 1px dotted gray
+}
+
+/* Formats */
+.locomotiveSkin .mce_formatPreview a {
+  font-size: 10px
+}
+
+.locomotiveSkin .mce_p span.mceText {
+}
+
+.locomotiveSkin .mce_address span.mceText {
+  font-style: italic
+}
+
+.locomotiveSkin .mce_pre span.mceText {
+  font-family: monospace
+}
+
+.locomotiveSkin .mce_h1 span.mceText {
+  font-weight: bolder;
+  font-size: 2em
+}
+
+.locomotiveSkin .mce_h2 span.mceText {
+  font-weight: bolder;
+  font-size: 1.5em
+}
+
+.locomotiveSkin .mce_h3 span.mceText {
+  font-weight: bolder;
+  font-size: 1.17em
+}
+
+.locomotiveSkin .mce_h4 span.mceText {
+  font-weight: bolder;
+  font-size: 1em
+}
+
+.locomotiveSkin .mce_h5 span.mceText {
+  font-weight: bolder;
+  font-size: .83em
+}
+
+.locomotiveSkin .mce_h6 span.mceText {
+  font-weight: bolder;
+  font-size: .75em
+}
+
+/* Theme */
+.locomotiveSkin span.mce_bold {
+  background-position: 0 0
+}
+
+.locomotiveSkin span.mce_italic {
+  background-position: -60px 0
+}
+
+.locomotiveSkin span.mce_underline {
+  background-position: -140px 0
+}
+
+.locomotiveSkin span.mce_strikethrough {
+  background-position: -120px 0
+}
+
+.locomotiveSkin span.mce_undo {
+  background-position: -160px 0
+}
+
+.locomotiveSkin span.mce_redo {
+  background-position: -100px 0
+}
+
+.locomotiveSkin span.mce_cleanup {
+  background-position: -40px 0
+}
+
+.locomotiveSkin span.mce_bullist {
+  background-position: -20px 0
+}
+
+.locomotiveSkin span.mce_numlist {
+  background-position: -80px 0
+}
+
+.locomotiveSkin span.mce_justifyleft {
+  background-position: -460px 0
+}
+
+.locomotiveSkin span.mce_justifyright {
+  background-position: -480px 0
+}
+
+.locomotiveSkin span.mce_justifycenter {
+  background-position: -420px 0
+}
+
+.locomotiveSkin span.mce_justifyfull {
+  background-position: -440px 0
+}
+
+.locomotiveSkin span.mce_anchor {
+  background-position: -200px 0
+}
+
+.locomotiveSkin span.mce_indent {
+  background-position: -400px 0
+}
+
+.locomotiveSkin span.mce_outdent {
+  background-position: -540px 0
+}
+
+.locomotiveSkin span.mce_link {
+  background-position: -500px 0
+}
+
+.locomotiveSkin span.mce_unlink {
+  background-position: -640px 0
+}
+
+.locomotiveSkin span.mce_sub {
+  background-position: -600px 0
+}
+
+.locomotiveSkin span.mce_sup {
+  background-position: -620px 0
+}
+
+.locomotiveSkin span.mce_removeformat {
+  background-position: -580px 0
+}
+
+.locomotiveSkin span.mce_newdocument {
+  background-position: -520px 0
+}
+
+.locomotiveSkin span.mce_image {
+  background-position: -380px 0
+}
+
+.locomotiveSkin span.mce_locomotive_media {
+  background-position: -380px 0
+}
+
+.locomotiveSkin span.mce_help {
+  background-position: -340px 0
+}
+
+.locomotiveSkin span.mce_code {
+  background-position: -260px 0
+}
+
+.locomotiveSkin span.mce_hr {
+  background-position: -360px 0
+}
+
+.locomotiveSkin span.mce_visualaid {
+  background-position: -660px 0
+}
+
+.locomotiveSkin span.mce_charmap {
+  background-position: -240px 0
+}
+
+.locomotiveSkin span.mce_paste {
+  background-position: -560px 0
+}
+
+.locomotiveSkin span.mce_copy {
+  background-position: -700px 0
+}
+
+.locomotiveSkin span.mce_cut {
+  background-position: -680px 0
+}
+
+.locomotiveSkin span.mce_blockquote {
+  background-position: -220px 0
+}
+
+.locomotiveSkin .mce_forecolor span.mceAction {
+  background-position: -720px 0
+}
+
+.locomotiveSkin .mce_backcolor span.mceAction {
+  background-position: -760px 0
+}
+
+.locomotiveSkin span.mce_forecolorpicker {
+  background-position: -720px 0
+}
+
+.locomotiveSkin span.mce_backcolorpicker {
+  background-position: -760px 0
+}
+
+/* Plugins */
+.locomotiveSkin span.mce_advhr {
+  background-position: -0px -20px
+}
+
+.locomotiveSkin span.mce_ltr {
+  background-position: -20px -20px
+}
+
+.locomotiveSkin span.mce_rtl {
+  background-position: -40px -20px
+}
+
+.locomotiveSkin span.mce_emotions {
+  background-position: -60px -20px
+}
+
+.locomotiveSkin span.mce_fullpage {
+  background-position: -80px -20px
+}
+
+.locomotiveSkin span.mce_fullscreen {
+  background-position: -100px -20px
+}
+
+.locomotiveSkin span.mce_iespell {
+  background-position: -120px -20px
+}
+
+.locomotiveSkin span.mce_insertdate {
+  background-position: -140px -20px
+}
+
+.locomotiveSkin span.mce_inserttime {
+  background-position: -160px -20px
+}
+
+.locomotiveSkin span.mce_absolute {
+  background-position: -180px -20px
+}
+
+.locomotiveSkin span.mce_backward {
+  background-position: -200px -20px
+}
+
+.locomotiveSkin span.mce_forward {
+  background-position: -220px -20px
+}
+
+.locomotiveSkin span.mce_insert_layer {
+  background-position: -240px -20px
+}
+
+.locomotiveSkin span.mce_insertlayer {
+  background-position: -260px -20px
+}
+
+.locomotiveSkin span.mce_movebackward {
+  background-position: -280px -20px
+}
+
+.locomotiveSkin span.mce_moveforward {
+  background-position: -300px -20px
+}
+
+.locomotiveSkin span.mce_media {
+  background-position: -320px -20px
+}
+
+.locomotiveSkin span.mce_nonbreaking {
+  background-position: -340px -20px
+}
+
+.locomotiveSkin span.mce_pastetext {
+  background-position: -360px -20px
+}
+
+.locomotiveSkin span.mce_pasteword {
+  background-position: -380px -20px
+}
+
+.locomotiveSkin span.mce_selectall {
+  background-position: -400px -20px
+}
+
+.locomotiveSkin span.mce_preview {
+  background-position: -420px -20px
+}
+
+.locomotiveSkin span.mce_print {
+  background-position: -440px -20px
+}
+
+.locomotiveSkin span.mce_cancel {
+  background-position: -460px -20px
+}
+
+.locomotiveSkin span.mce_save {
+  background-position: -480px -20px
+}
+
+.locomotiveSkin span.mce_replace {
+  background-position: -500px -20px
+}
+
+.locomotiveSkin span.mce_search {
+  background-position: -520px -20px
+}
+
+.locomotiveSkin span.mce_styleprops {
+  background-position: -560px -20px
+}
+
+.locomotiveSkin span.mce_table {
+  background-position: -580px -20px
+}
+
+.locomotiveSkin span.mce_cell_props {
+  background-position: -600px -20px
+}
+
+.locomotiveSkin span.mce_delete_table {
+  background-position: -620px -20px
+}
+
+.locomotiveSkin span.mce_delete_col {
+  background-position: -640px -20px
+}
+
+.locomotiveSkin span.mce_delete_row {
+  background-position: -660px -20px
+}
+
+.locomotiveSkin span.mce_col_after {
+  background-position: -680px -20px
+}
+
+.locomotiveSkin span.mce_col_before {
+  background-position: -700px -20px
+}
+
+.locomotiveSkin span.mce_row_after {
+  background-position: -720px -20px
+}
+
+.locomotiveSkin span.mce_row_before {
+  background-position: -740px -20px
+}
+
+.locomotiveSkin span.mce_merge_cells {
+  background-position: -760px -20px
+}
+
+.locomotiveSkin span.mce_table_props {
+  background-position: -980px -20px
+}
+
+.locomotiveSkin span.mce_row_props {
+  background-position: -780px -20px
+}
+
+.locomotiveSkin span.mce_split_cells {
+  background-position: -800px -20px
+}
+
+.locomotiveSkin span.mce_template {
+  background-position: -820px -20px
+}
+
+.locomotiveSkin span.mce_visualchars {
+  background-position: -840px -20px
+}
+
+.locomotiveSkin span.mce_abbr {
+  background-position: -860px -20px
+}
+
+.locomotiveSkin span.mce_acronym {
+  background-position: -880px -20px
+}
+
+.locomotiveSkin span.mce_attribs {
+  background-position: -900px -20px
+}
+
+.locomotiveSkin span.mce_cite {
+  background-position: -920px -20px
+}
+
+.locomotiveSkin span.mce_del {
+  background-position: -940px -20px
+}
+
+.locomotiveSkin span.mce_ins {
+  background-position: -960px -20px
+}
+
+.locomotiveSkin span.mce_pagebreak {
+  background-position: 0 -40px
+}
+
+.locomotiveSkin .mce_spellchecker span.mceAction {
+  background-position: -540px -20px
+}
+
+.locomotiveSkin span.mce_restoredraft {
+  background-position: -20px -40px
+}
+
+/* border */
+.locomotiveSkin .mceExternalToolbar, .locomotiveSkin .mceButton, .locomotiveSkin a.mceButtonEnabled:hover, .locomotiveSkin a.mceButtonActive, .locomotiveSkin a.mceButtonSelected, .locomotiveSkin .mceListBox .mceText, .locomotiveSkin .mceListBox .mceOpen, .locomotiveSkin table.mceListBoxEnabled:hover .mceText, .locomotiveSkin .mceListBoxHover .mceText, .locomotiveSkin .mceListBoxSelected .mceText, .locomotiveSkin table.mceListBoxEnabled:hover .mceOpen, .locomotiveSkin .mceListBoxHover .mceOpen, .locomotiveSkin .mceListBoxSelected .mceOpen, .locomotiveSkin select.mceListBox, .locomotiveSkin .mceSplitButton a.mceAction, .locomotiveSkin .mceSplitButton a.mceOpen, .locomotiveSkin .mceSplitButton a.mceOpen:hover, .locomotiveSkin .mceSplitButtonSelected a.mceOpen, .locomotiveSkin table.mceSplitButtonEnabled:hover a.mceAction, .locomotiveSkin .mceSplitButton a.mceAction:hover, .locomotiveSkin div.mceColorSplitMenu table, .locomotiveSkin .mceColorSplitMenu a, .locomotiveSkin .mceColorSplitMenu a.mceMoreColors, .locomotiveSkin .mceColorSplitMenu a.mceMoreColors:hover, .locomotiveSkin a.mceMoreColors:hover, .locomotiveSkin .mceMenu {
+  border-style: solid;
+  border-width: 1px;
+}
+

@@ -2,6 +2,8 @@ require 'spec_helper'
 
 class MyController < ActionController::Base
   include Locomotive::Routing::SiteDispatcher
+
+  include Locomotive::Engine.routes.url_helpers # Required for loading engine routes
 end
 
 describe Locomotive::Routing::SiteDispatcher do
@@ -39,7 +41,7 @@ describe Locomotive::Routing::SiteDispatcher do
     end
 
     it 'returns the site with matching domain if there is no current site instance' do
-      Site.expects(:match_domain).with('host').returns([@site])
+      Locomotive::Site.expects(:match_domain).with('host').returns([@site])
       @controller.send(:fetch_site).should == @site
     end
 
@@ -80,11 +82,11 @@ describe Locomotive::Routing::SiteDispatcher do
     context 'when there are no accounts' do
 
       before :each do
-        Account.expects(:count).returns(0)
+        Locomotive::Account.expects(:count).returns(0)
 
         @controller.instance_variable_set('@_response', ActionDispatch::Response.new)
         @controller.expects(:current_site).returns(false)
-        @controller.stubs(:admin_installation_url).returns('/admin/install/url/')
+        @controller.stubs(:installation_url).returns('/admin/install/url/')
         @controller.stubs(:redirect_to).with('/admin/install/url/')
       end
 
@@ -102,12 +104,12 @@ describe Locomotive::Routing::SiteDispatcher do
     context 'when there are no sites' do
 
       before :each do
-        Account.expects(:count).returns(1)
-        Site.expects(:count).returns(0)
+        Locomotive::Account.expects(:count).returns(1)
+        Locomotive::Site.expects(:count).returns(0)
 
         @controller.instance_variable_set('@_response', ActionDispatch::Response.new)
         @controller.expects(:current_site).returns(false)
-        @controller.stubs(:admin_installation_url).returns('/admin/install/url/')
+        @controller.stubs(:installation_url).returns('/admin/install/url/')
         @controller.stubs(:redirect_to).with('/admin/install/url/')
       end
 
@@ -125,8 +127,8 @@ describe Locomotive::Routing::SiteDispatcher do
     context 'when there is no current site' do
 
       before :each do
-        Account.expects(:count).returns(1)
-        Site.expects(:count).returns(1)
+        Locomotive::Account.expects(:count).returns(1)
+        Locomotive::Site.expects(:count).returns(1)
 
         @controller.instance_variable_set('@_response', ActionDispatch::Response.new)
         @controller.expects(:current_site).returns(false)
@@ -171,9 +173,9 @@ describe Locomotive::Routing::SiteDispatcher do
 
       @controller.instance_variable_set('@_response', ActionDispatch::Response.new)
       @controller.stubs(:request).returns(@request)
-      @controller.stubs(:current_admin).returns(@account)
+      @controller.stubs(:current_locomotive_account).returns(@account)
       @controller.stubs(:sign_out).with(@account)
-      @controller.stubs(:new_admin_session_url).returns('/new/admin/session')
+      @controller.stubs(:new_session_url).returns('/new/admin/session')
     end
 
     context 'when a site is present' do
@@ -247,13 +249,6 @@ describe Locomotive::Routing::SiteDispatcher do
       it 'returns false' do
         @controller.send(:validate_site_membership).should be_false
       end
-
     end
-
   end
-
-  # after(:all) do
-  #   Locomotive.configure_for_test(true)
-  # end
-
 end

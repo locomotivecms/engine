@@ -5,13 +5,12 @@ module Locomotive
     class Cache
 
       def initialize(app, opts = {}, &block)
-        url_format = Locomotive::Dragonfly.app.configuration[:url_format]
-
+        url_format  = Locomotive::Dragonfly.app.configuration[:url_format]
         base_format = url_format.split('/:').first rescue '/images/dynamic'
 
-        @regexp = %r{^#{base_format}/}
-        @app = app
-        @context = ::Rack::Cache.new(app, opts, &block)
+        @app      = app
+        @regexp   = %r{^#{base_format}/}
+        @context  = ::Rack::Cache.new(app, opts, &block)
       end
 
       def call(env)

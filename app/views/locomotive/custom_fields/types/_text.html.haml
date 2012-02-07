@@ -1,0 +1,5 @@
+= f.input field.name.to_sym,
+  :label      => field.label,
+  :hint       => field.hint,
+  :as         => field.text_formatting == 'html' ? :'Locomotive::Rte' : :text,
+  :input_html => { :class => field.text_formatting }

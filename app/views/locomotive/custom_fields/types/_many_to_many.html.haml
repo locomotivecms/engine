@@ -1,0 +1,41 @@
+- if field.ui_enabled?
+  - target_content_type = Locomotive::ContentType.class_name_to_content_type(field.class_name, current_site)
+
+  = f.input     name.to_sym,
+    :label      => field.label,
+    :hint       => field.hint,
+    :as         => :'Locomotive::Empty',
+    :wrapper_html => { :id => "content_entry_#{name}_input", :class => 'empty relationship input' }
+
+  - content_for :head do
+
+    %script{ :type => 'text/html', :id => "#{name}_list" }
+
+      %p.empty{ :style => 'display: none' }!= t('.empty')
+
+      %ul
+
+      %hr
+
+      .new-entry
+
+        = select_tag 'entry', []
+
+        %span.actions
+          = link_to t('locomotive.buttons.new_item'), '#', :class => 'add'
+
+    %script{ :type => 'text/html', :id => "#{name}_entry" }
+      %li
+        .handle.col
+          = image_tag 'locomotive/form/icons/drag.png'
+
+        .label.col
+          {{label}}
+
+        %span.actions
+          = link_to 'x', '#', :class => 'remove', :confirm => t('locomotive.messages.confirm')
+
+
+  - content_for :backbone_view_data do
+    :plain
+      , all_#{name}_entries: #{target_content_type.list_or_group_entries.to_json}

@@ -42,7 +42,7 @@ module Locomotive
           end
 
           def metadata_object(context)
-            context['content_instance'] || context['page']
+            context['content_entry'] || context['page']
           end
         end
 

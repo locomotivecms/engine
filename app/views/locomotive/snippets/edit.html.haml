@@ -1,0 +1,15 @@
+- title t('.title')
+
+- content_for :submenu do
+  = render_cell 'locomotive/settings_menu', :show
+
+- content_for :buttons do
+  = local_action_button t('locomotive.snippets.index.new'), new_snippet_url, :class => 'new'
+
+%p!= t('.help', :slug => @snippet.slug)
+
+= semantic_form_for @snippet, :url => snippet_url(@snippet), :html => { :class => 'save-with-shortcut' } do |form|
+
+  = render 'form', :f => form
+
+  = render 'locomotive/shared/form_actions', :back_url => theme_assets_url, :button_label => :update

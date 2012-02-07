@@ -34,7 +34,7 @@ fr:
           source: Nouveau fichier
       custom_fields:
         field:
-          _alias: Alias
+          name: Alias
       import:
         new:
           source: Fichier
@@ -43,10 +43,11 @@ fr:
       content_type:
         item_template: Template d'affichage
         api_accounts: Comptes à notifier
-      content_instance:
+      content_entry:
         _slug: Permalink
       account:
         edit:
+          locale: Langue UI
           password: Nouveau mot de passe
           password_confirmation: Confirmation nouveau mot de passe
       page:
@@ -80,9 +81,9 @@ fr:
           source: "Le fichier actuel est accessible ici %{url}"
       custom_fields:
         field:
-          _alias: "Champ utilisable dans les templates liquid"
+          name: "Champ utilisable dans les templates liquid"
           hint: "Texte affiché dans le formulaire de l'élément juste en dessous du champ."
-      content_instance:
+      content_entry:
         _slug: "Propriété utilisée pour générer l'url d'une page faisant office de template pour ce modèle (ex: \"template_de_la_page/{{ votre_object._permalink }})\"."
         seo_title: "La valeur que vous rentrez sera utilisée comme titre SEO pour la page faisant office de template pour ce modèle."
         meta_keywords: "Redéfinit les mots-clés du site. Utilisés à l'intérieur de la balise HEAD. Ils sont séparés par une virgule."
@@ -93,6 +94,6 @@ fr:
         reset: "Si activé, toutes les données de votre site seront détruites avant l'import du nouveau site"
       content_type:
         slug: Nom utilisé dans les templates liquid afin d'accéder aux enregistrements de ce modèle
-        item_template: "Personnaliser le texte affiché pour chaque élément de la liste. Utilisez simplement du code Liquid. Ex: {{ content.name }}"
+        item_template: "Personnaliser le texte affiché pour chaque élément de la liste. Utilisez simplement du code Liquid. Ex: {{ entry.name }}"
         api_enabled: "Utilisé pour autoriser la création de nouvelles instances de l'extérieur (ex.: les messages dans un formulaire de contact)"
         api_accounts: "Un email de notification sera envoyé à chaque compte listé ci-dessus lors de la création d'une nouvelle instance"

@@ -1,0 +1,13 @@
+%ul#menu
+  - @list.each_with_index do |entry, index|
+    %li{ :class => "entry entry-#{index} #{entry[:class]}" }
+      %div.left
+        %span
+      = link_to entry[:url] do
+        %em &nbsp;
+        %span= entry[:label]
+      %div.right
+        %span
+      %div.shadow
+        %div
+  %li.clear

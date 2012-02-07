@@ -1,0 +1,167 @@
+@import "compass/css3";
+@import "compass/css3/images";
+@import "compass/css3/border-radius";
+@import "compass/css3/text-shadow";
+@import "locomotive/shared/helpers";
+@import "buttons";
+
+@mixin box-header {
+  display: block;
+  padding: 0 0 0 20px;
+  margin: 0px;
+
+  line-height: 31px;
+  height: 31px;
+
+  border: 1px solid #ccced7;
+  border-bottom: 0;
+
+  @include border-top-radius(8px);
+  @include background-image(linear-gradient(#ebedf4, #d7dbe7));
+}
+
+@mixin box-body {
+  margin-bottom: 0;
+  padding: 0;
+
+  width: 918px;
+
+  border: 1px solid #ccced7;
+
+  @include border-bottom-radius(8px);
+  @include box-shadow(rgba(0, 0, 0, 0.4) 0px 1px 0px 0px, rgba(255, 255, 255, 0.5) 0 1px 0 0 inset);
+
+  background: #ebedf4;
+
+  p.no-items {
+    border: none;
+    padding: 0;
+    margin: 0;
+    background: none;
+
+    color: #bdbfc9;
+    font-weight: bold;
+    text-align: center;
+  }
+}
+
+@mixin box-inner-list {
+  margin: 0px;
+
+  .empty {
+    text-align: left;
+  }
+
+  li, .entry, .new-entry {
+    position: relative;
+    margin-bottom: 10px;
+    height: 30px;
+    line-height: 30px;
+
+    padding: 0 13px;
+
+    background: #fff;
+    @include border-radius(16px);
+    @include box-shadow(rgba(0, 0, 0, 0.2) 0px 1px 0px 0px);
+
+    em {
+      color: #757575;
+      font-size: 11px;
+      font-weight: normal;
+    }
+
+    span.handle {
+      display: none;
+      position: relative;
+      top: 3px;
+      margin-right: 5px;
+      cursor: move;
+    }
+
+    strong {
+      color: #17171D;
+      font-size: 14px;
+      font-weight: bold;
+
+      @include locomotive-link;
+    }
+
+    .editable {
+      @include editable;
+      padding-right: 6px;
+
+      &:hover {
+        background-image: none;
+      }
+    }
+
+    span.inline-errors {
+      margin-left: 10px;
+      padding: 2px 3px;
+
+      background: #FFE5E5;
+
+      color: #CE2525;
+      font-size: 13px;
+    }
+
+    div.more, span.actions {
+      position: absolute;
+      top: 0px;
+      right: 13px;
+
+      color: #8B8D9A;
+      font-size: 11px;
+
+      a.add {
+        @include gray-button;
+
+        padding-left: 10px;
+      }
+
+      a.remove {
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+        margin-left: 10px;
+
+        position: relative;
+        top: 4px;
+
+        outline: none;
+
+        background: transparent image-url("locomotive/list/icons/trash_off.png") repeat 0 0;
+
+        text-indent: -9999px;
+
+        &:hover {
+          background-image: image-url("locomotive/list/icons/trash.png");
+        }
+      }
+    }
+
+    &:last-child {
+      margin-bottom: 0px;
+    }
+  } // li
+
+  &.sortable {
+    li {
+      span.handle {
+        display: inline-block;
+      }
+    }
+  }
+
+  > hr {
+    margin: 10px 0px;
+    height: 1px;
+    line-height: 1px;
+    border: 0px;
+    border-top: 1px solid rgba(0, 0, 0, 0.2);
+    background: transparent;
+  }
+
+  .new-entry {
+  }
+}
