@@ -111,9 +111,9 @@ class Locomotive.Views.Pages.FormView extends Locomotive.Views.Shared.FormView
     @_enable_checkbox 'templatized',
       features:     ['slug', 'redirect', 'listed']
       on_callback:  =>
-        @$('li#page_content_type_id_input').show()
+        @$('li#page_target_klass_name_input').show()
       off_callback: =>
-        @$('li#page_content_type_id_input').hide()
+        @$('li#page_target_klass_name_input').hide()
 
   enable_redirect_checkbox: ->
     @_enable_checkbox 'redirect',

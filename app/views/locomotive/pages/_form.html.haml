@@ -30,9 +30,9 @@
 
   = f.inputs :name => :advanced_options, :id => 'advanced-options', :class => "inputs foldable #{'folded' if inputs_folded?(@page)}" do
 
-    = f.input :content_type_id, :as => :select, :collection => current_site.content_types.all.to_a, :include_blank => false, :wrapper_html => { :style => "#{'display: none' unless @page.templatized?}" }
-
     = f.input :templatized, :as => :'Locomotive::Toggle', :style => "#{'display: none' if @page.redirect?}"
+
+    = f.input :target_klass_name, :as => :select, :collection => options_for_target_klass_name, :include_blank => false, :wrapper_html => { :style => "#{'display: none' unless @page.templatized?}" }
 
     = f.input :published, :as => :'Locomotive::Toggle'
 

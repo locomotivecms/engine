@@ -15,21 +15,11 @@ module Locomotive
 
       skip_before_filter :verify_authenticity_token
 
+      skip_load_and_authorize_resource
+
       self.responder = Locomotive::ActionController::Responder # custom responder
 
       respond_to :json, :xml
-
-      rescue_from CanCan::AccessDenied do |exception|
-        ::Locomotive.log "[CanCan::AccessDenied] #{exception.inspect}"
-
-        if request.xhr?
-          render :json => { :error => exception.message }
-        else
-          flash[:alert] = exception.message
-
-          redirect_to pages_url
-        end
-      end
 
       protected
 

@@ -51,7 +51,7 @@ Locomotive.configure do |config|
   # tell if logs are enabled. Useful for debug purpose.
   config.enable_logs = true
 
-  # Configure the e-mail address which will be shown in the DeviseMailer, NotificationMailer, ...etc
+  # configure the e-mail address which will be shown in the DeviseMailer, NotificationMailer, ...etc
   # if you do not put the domain name in the email, Locomotive will take the default domain name depending
   # on your deployment target (server, Heroku, Bushido, ...etc)
   #
@@ -64,6 +64,9 @@ Locomotive.configure do |config|
   # in Liquid templates, extending the assigns used while rendering.
   # follow the Dependency Injection pattern
   # config.context_assign_extensions = {}
+
+  # add extra classes other than the defined content types among a site which will potentially used by the templatized pages.
+  # config.models_for_templatization = %w(Product)
 
   # Rack-cache settings, mainly used for the inline resizing image module. Default options:
   # config.rack_cache = {

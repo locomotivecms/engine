@@ -11,6 +11,10 @@ module Locomotive
           input.to_s.gsub(' ', '-').gsub('/', '-').dasherize
         end
 
+        def multi_line(input)
+          input.to_s.gsub("\n", '<br/>')
+        end
+
         def concat(input, *args)
           result = input.to_s
           args.flatten.each { |a| result << a.to_s }
@@ -19,6 +23,14 @@ module Locomotive
 
         def modulo(word, index, modulo)
           (index.to_i + 1) % modulo == 0 ? word : ''
+        end
+
+        def first(input)
+          input.first
+        end
+
+        def last(input)
+          input.last
         end
 
       end

@@ -66,6 +66,9 @@ Locomotive.configure do |config|
   # follow the Dependency Injection pattern
   # config.context_assign_extensions = {}
 
+  # add extra classes other than the defined content types among a site which will potentially used by the templatized pages.
+  config.models_for_templatization = %w(Foo)
+
   # Rack-cache settings, mainly used for the inline resizing image module. Default options:
   # config.rack_cache = {
   #   :verbose     => true,

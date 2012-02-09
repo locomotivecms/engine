@@ -43,7 +43,6 @@ module Locomotive
       end
 
       def localized?
-        Rails.logger.debug "localized? #{@locomotive_localized.inspect}"
         !!@locomotive_localized
       end
 

@@ -27,7 +27,8 @@ module Locomotive
         :entitystore => URI.encode("file:#{Rails.root}/tmp/dragonfly/cache/body")
       },
       :devise_modules             => [:rememberable, :database_authenticatable, :token_authenticatable, :recoverable, :trackable, :validatable, :encryptable, { :encryptor => :sha1 }],
-      :context_assign_extensions  => {  }
+      :context_assign_extensions  => { },
+      :models_for_templatization  => []
     }
 
     cattr_accessor :settings
