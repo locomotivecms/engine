@@ -3,6 +3,9 @@
 - content_for :submenu do
   = render_cell 'locomotive/settings_menu', :show
 
+- content_for :actions do
+  = locale_picker_link
+
 - content_for :buttons do
   = local_action_button t('locomotive.snippets.index.new'), new_snippet_url, :class => 'new'
 

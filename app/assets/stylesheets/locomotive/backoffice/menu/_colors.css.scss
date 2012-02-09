@@ -81,7 +81,7 @@
 
 @mixin locomotive-blue-submenu {
   @include background-image(linear-gradient(#2478ac, #1c5d86));
-  & > ul > li > a {
+  & > ul > li > a, & > .actions .button {
     @include background-image(linear-gradient(#1f6ea1, #135179));
 
     &.on, &:active {
@@ -92,7 +92,7 @@
 
 @mixin locomotive-green-submenu {
   @include background-image(linear-gradient(#2e9a7d, #2e9a7d)); // TODO (#2e9a7d)
-  & > ul > li > a {
+  & > ul > li > a, & > .actions .button {
     @include background-image(linear-gradient(#258c70, #13604b));
 
     &.on, &:active {
@@ -103,7 +103,7 @@
 
 @mixin locomotive-orange-submenu {
   @include background-image(linear-gradient(#ed8102, #ed8102)); // TODO (#ed8102)
-  & > ul > li > a {
+  & > ul > li > a, & > .actions .button {
     @include background-image(linear-gradient(#e07a02, #a25804));
 
     &.on, &:active {
@@ -114,7 +114,7 @@
 
 @mixin locomotive-red-submenu {
   @include background-image(linear-gradient(#d23c45, #d23c45)); // TODO (#d23c45)
-  & > ul > li > a {
+  & > ul > li > a, & > .actions .button {
     @include background-image(linear-gradient(#b63e45, #89272d));
 
     &.on, &:active {

@@ -6,7 +6,7 @@ module Locomotive
     ## fields ##
     field :name
     field :slug
-    field :template
+    field :template, :localize => true
 
     ## associations ##
     referenced_in :site, :class_name => 'Locomotive::Site'

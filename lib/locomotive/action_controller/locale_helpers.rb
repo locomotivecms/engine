@@ -5,7 +5,7 @@ module Locomotive
       extend ActiveSupport::Concern
 
       included do
-        helper_method :current_content_locale
+        helper_method :current_content_locale, :localized?
       end
 
       def current_content_locale
@@ -40,6 +40,21 @@ module Locomotive
         (current_site.locales || []).each do |locale|
           ::Mongoid::Fields::I18n.fallbacks_for(locale, current_site.locale_fallbacks(locale))
         end
+      end
+
+      def localized?
+        Rails.logger.debug "localized? #{@locomotive_localized.inspect}"
+        !!@locomotive_localized
+      end
+
+      module ClassMethods
+
+        def localized(enable_it = true)
+          before_filter do |c|
+            c.instance_variable_set(:@locomotive_localized, enable_it)
+          end
+        end
+
       end
 
     end
