@@ -48,7 +48,7 @@
         var formData = new FormData();
 
         formData.append('xhr', true); // fix a bug with POW which happens to not like empty form
-        if (window.content_locale)
+        if (typeof(window.content_locale) != 'undefined' && window.content_locale != '')
           formData.append('content_locale', window.content_locale);
 
         var _buildParams = function(prefix, obj, fn) { // code grabbed from jquery
