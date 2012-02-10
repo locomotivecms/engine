@@ -26,17 +26,7 @@ module Locomotive
     end
 
     def locomotive_page
-      path = (params[:path] || params[:page_path] || request.fullpath).clone # TODO: params[:path] is more consistent
-      path = path.split('?').first # take everything before the query string or the lookup fails
-      path.gsub!(/\.[a-zA-Z][a-zA-Z0-9]{2,}$/, '') # remove the page extension
-      path.gsub!(/^\//, '') # remove the leading slash
-
-      path = 'index' if path.blank? || path == '_edit'
-
-      if path != 'index'
-        dirname = File.dirname(path).gsub(/^\.$/, '') # also look for templatized page path
-        path = [path, File.join(dirname, 'content_type_template').gsub(/^\//, '')]
-      end
+      path = self.locomotive_page_path
 
       if page = current_site.pages.any_in(:fullpath => [*path]).first
         if not page.published? and current_locomotive_account.nil?
@@ -53,6 +43,22 @@ module Locomotive
       end
 
       page || not_found_page
+    end
+
+    def locomotive_page_path
+      path = (params[:path] || params[:page_path] || request.fullpath).clone # TODO: params[:path] is more consistent
+      path = path.split('?').first # take everything before the query string or the lookup fails
+      path.gsub!(/\.[a-zA-Z][a-zA-Z0-9]{2,}$/, '') # remove the page extension
+      path.gsub!(/^\//, '') # remove the leading slash
+
+      path = 'index' if path.blank? || path == '_edit'
+
+      if path != 'index'
+        dirname = File.dirname(path).gsub(/^\.$/, '') # also look for templatized page path
+        path = [path, File.join(dirname, 'content_type_template').gsub(/^\//, '')]
+      end
+
+      path
     end
 
     def locomotive_context

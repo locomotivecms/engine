@@ -28,40 +28,36 @@ module Locomotive
 
         end
 
-        module InstanceMethods
+        def set_content_type(*args)
+          value = :other
 
-          def set_content_type(*args)
-            value = :other
+          content_type = file.content_type == 'application/octet-stream' ? File.mime_type?(original_filename) : file.content_type
 
-            content_type = file.content_type == 'application/octet-stream' ? File.mime_type?(original_filename) : file.content_type
-
-            self.class.content_types.each_pair do |type, rules|
-              rules.each do |rule|
-                case rule
-                when String then value = type if content_type == rule
-                when Regexp then value = type if (content_type =~ rule) == 0
-                end
+          self.class.content_types.each_pair do |type, rules|
+            rules.each do |rule|
+              case rule
+              when String then value = type if content_type == rule
+              when Regexp then value = type if (content_type =~ rule) == 0
               end
             end
-
-            model.content_type = value
           end
 
-          def set_size(*args)
-            model.size = file.size
-          end
+          model.content_type = value
+        end
 
-          def set_width_and_height
-            if model.image?
-              magick = ::Magick::Image.read(current_path).first
-              model.width, model.height = magick.columns, magick.rows
-            end
-          end
+        def set_size(*args)
+          model.size = file.size
+        end
 
-          def image?(file)
-            model.image?
+        def set_width_and_height
+          if model.image?
+            magick = ::Magick::Image.read(current_path).first
+            model.width, model.height = magick.columns, magick.rows
           end
+        end
 
+        def image?(file)
+          model.image?
         end
 
       end

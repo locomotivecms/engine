@@ -17,12 +17,38 @@ module Locomotive
           ## callbacks ##
           before_validation :set_slug_if_templatized
           before_validation :ensure_target_klass_name_security
+
+          ## scopes ##
+          scope :templatized, :where => { :templatized => true }
         end
 
+        # Returns the class specified by the target_klass_name property
+        #
+        # @example
+        #
+        #   page.target_klass_name = 'Locomotive::Entry12345'
+        #   page.target_klass = Locomotive::Entry12345
+        #
+        # @return [ Class ] The target class
+        #
         def target_klass
           target_klass_name.constantize
         end
 
+        # Gives the name which can be used in a liquid template in order
+        # to reference an entry. It uses the slug property if the target klass
+        # is a Locomotive content type or the class name itself for the other classes.
+        #
+        # @example
+        #
+        #   page.target_klass_name = 'Locomotive::Entry12345' # related to the content type Articles
+        #   page.target_entry_name = 'article'
+        #
+        #   page.target_klass_name = 'OurProduct'
+        #   page.target_entry_name = 'our_product'
+        #
+        # @return [ String ] The name in lowercase and underscored
+        #
         def target_entry_name
           if self.target_klass_name =~ /^Locomotive::Entry([a-z0-9]+)$/
             @content_type ||= self.site.content_types.find($1)
@@ -32,6 +58,12 @@ module Locomotive
           end
         end
 
+        # Finds the entry both specified by the target klass and identified by the permalink
+        #
+        # @param [ String ] permalink The permalink of the entry
+        #
+        # @return [ Object ] The document
+        #
         def fetch_target_entry(permalink)
           target_klass.find_by_permalink(permalink)
         end
