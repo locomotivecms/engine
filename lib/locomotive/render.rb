@@ -6,8 +6,8 @@ module Locomotive
     protected
 
     def render_locomotive_page
-      if request.fullpath =~ /^\/admin\//
-        render :template => '/locomotive/errors/404', :layout => '/admin/layouts/not_logged_in', :status => :not_found
+      if request.fullpath =~ /^\/#{Locomotive.mounted_on}\//
+        render :template => '/locomotive/errors/404', :layout => '/locomotive/layouts/not_logged_in', :status => :not_found
       else
         @page = locomotive_page
 
