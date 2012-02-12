@@ -3,11 +3,16 @@ module CarrierWave
     class Base
 
       def to_liquid
-        {
-          :url      => self.url,
-          :filename => (File.basename(self.url) rescue ''),
-          :size     => self.size
-        }.stringify_keys
+        uploader = self
+
+        (Hash.new do |h, key|
+          if key == 'size' || key == :size
+            h[key] = uploader.size
+          end
+        end).tap do |h|
+          h['url'] = self.url
+          h["filename"] = (File.basename(self.url) rescue '')
+        end
       end
 
     end
