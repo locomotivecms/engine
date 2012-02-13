@@ -173,7 +173,7 @@ module Locomotive
     protected
 
     def _copy_pages(page)
-      attributes = self.extract_attributes(page, %w{title seo_title meta_description meta_keywords redirect_url content_type published})
+      attributes = self.extract_attributes(page, %w{title seo_title meta_description meta_keywords redirect_url content_type published cache_strategy})
 
       attributes['listed'] = page.listed? # in some cases, page.listed can be nil
 
