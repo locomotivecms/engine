@@ -42,7 +42,7 @@ module Locomotive
 
         self.reset! if @options[:reset]
 
-        %w(site content_types assets snippets pages).each do |step|
+        %w(site assets content_types snippets pages).each do |step|
           if @options[:enabled][step] != false
             "Locomotive::Import::#{step.camelize}".constantize.process(context, @options)
             @worker.update_attributes :step => step if @worker
