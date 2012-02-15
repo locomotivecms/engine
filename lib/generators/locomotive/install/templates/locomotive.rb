@@ -1,6 +1,6 @@
 Locomotive.configure do |config|
 
-  # A single locomotive instance can serve one single site or many.
+  # A single locomotiveCMS instance can serve one single site or many.
   # If you want to run many different websites, you will have to specify
   # your own domain name (ex: locomotivehosting.com).
   #
@@ -16,24 +16,20 @@ Locomotive.configure do |config|
   # end
   config.multi_sites = false
 
-  # configure the hosting target for the production environment. Locomotive can be installed in:
+  # configure the hosting target for the production environment. LocomotiveCMS can be installed in:
   # - your own server
   # - Heroku (you need to create an account in this case)
   # - Bushi.do (see the bushi.do website for more explanations)
   #
   # the possible options are: server, heroku, bushido or auto (default)
-  # if you select 'auto', Locomotive will look after specific ENV variables to check
+  # if you select 'auto', LocomotiveCMS will look after specific ENV variables to check
   # the matching platform (Heroku and Bushido set their own ENV variables).
   #
   config.hosting = :auto
 
-  # In case you host Locomotive in Heroku, the engine uses the heroku api to add / remove domains.
-  # there are 2 ways of passing heroku credentials to Locomotive
-  #   - from ENV variables: HEROKU_LOGIN & HEROKU_PASSWORD
-  #   - from this file, see the example below and uncomment it if needed
+  # In case you host LocomotiveCMS in Heroku, the engine uses the heroku api to add / remove domains.
   # config.heroku = {
-  #   :login      => '<your_heroku_login>',
-  #   :password   => '<your_heroku_password>'
+  #   :api_key  => '<your_heroku_api_key>
   # }
 
   # configure how many items we display in sub menu in the "Contents" section.
@@ -52,7 +48,7 @@ Locomotive.configure do |config|
   config.enable_logs = true
 
   # configure the e-mail address which will be shown in the DeviseMailer, NotificationMailer, ...etc
-  # if you do not put the domain name in the email, Locomotive will take the default domain name depending
+  # if you do not put the domain name in the email, LocomotiveCMS will take the default domain name depending
   # on your deployment target (server, Heroku, Bushido, ...etc)
   #
   # Ex:

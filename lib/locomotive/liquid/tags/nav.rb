@@ -10,7 +10,7 @@ module Locomotive
       #
       # {% nav site %} => <ul class="nav"><li class="on"><a href="/features">Features</a></li></ul>
       #
-      # {% nav site, no_wrapper: true, depth: 1, exclude: 'contact|about', id: 'main-nav' }
+      # {% nav site, no_wrapper: true, exclude: 'contact|about', id: 'main-nav', class: 'nav', active_class: 'on' }
       #
       class Nav < ::Liquid::Tag
 
@@ -19,7 +19,7 @@ module Locomotive
         def initialize(tag_name, markup, tokens, context)
           if markup =~ Syntax
             @source = ($1 || 'page').gsub(/"|'/, '')
-            @options = { :id => 'nav', :depth => 1 }
+            @options = { :id => 'nav', :depth => 1, :class => '', :active_class => 'on' }
             markup.scan(::Liquid::TagAttributes) { |key, value| @options[key.to_sym] = value.gsub(/"|'/, '') }
 
             @options[:exclude] = Regexp.new(@options[:exclude]) if @options[:exclude]
@@ -46,7 +46,7 @@ module Locomotive
           output = children_output.join("\n")
 
           if @options[:no_wrapper] != 'true'
-            output = %{<ul id="#{@options[:id]}">\n#{output}</ul>}
+            output = %{<ul id="#{@options[:id]}" class="#{@options[:class]}">\n#{output}</ul>}
           end
 
           output
@@ -71,7 +71,7 @@ module Locomotive
 
         # Returns a list element, a link to the page and its children
         def render_entry_link(page, css, depth)
-          selected = @page.fullpath =~ /^#{page.fullpath}/ ? ' on' : ''
+          selected = @page.fullpath =~ /^#{page.fullpath}/ ? " #{@options[:active_class]}" : ''
 
           icon = @options[:icon] ? '<span></span>' : ''
           label = %{#{icon if @options[:icon] != 'after' }#{page.title}#{icon if @options[:icon] == 'after' }}
