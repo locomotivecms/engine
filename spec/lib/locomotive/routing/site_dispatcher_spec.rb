@@ -86,8 +86,8 @@ describe Locomotive::Routing::SiteDispatcher do
 
         @controller.instance_variable_set('@_response', ActionDispatch::Response.new)
         @controller.expects(:current_site).returns(false)
-        @controller.stubs(:installation_url).returns('/admin/install/url/')
-        @controller.stubs(:redirect_to).with('/admin/install/url/')
+        @controller.stubs(:installation_url).returns('/locomotive/install/url/')
+        @controller.stubs(:redirect_to).with('/locomotive/install/url/')
       end
 
       it 'returns false' do
@@ -95,7 +95,7 @@ describe Locomotive::Routing::SiteDispatcher do
       end
 
       it 'redirects to the admin installation url' do
-        @controller.expects(:redirect_to).with('/admin/install/url/')
+        @controller.expects(:redirect_to).with('/locomotive/install/url/')
         @controller.send(:require_site)
       end
 
@@ -109,8 +109,8 @@ describe Locomotive::Routing::SiteDispatcher do
 
         @controller.instance_variable_set('@_response', ActionDispatch::Response.new)
         @controller.expects(:current_site).returns(false)
-        @controller.stubs(:installation_url).returns('/admin/install/url/')
-        @controller.stubs(:redirect_to).with('/admin/install/url/')
+        @controller.stubs(:installation_url).returns('/locomotive/install/url/')
+        @controller.stubs(:redirect_to).with('/locomotive/install/url/')
       end
 
       it 'returns false' do
@@ -118,7 +118,7 @@ describe Locomotive::Routing::SiteDispatcher do
       end
 
       it 'redirects to the admin installation url' do
-        @controller.expects(:redirect_to).with('/admin/install/url/')
+        @controller.expects(:redirect_to).with('/locomotive/install/url/')
         @controller.send(:require_site)
       end
 
@@ -175,7 +175,7 @@ describe Locomotive::Routing::SiteDispatcher do
       @controller.stubs(:request).returns(@request)
       @controller.stubs(:current_locomotive_account).returns(@account)
       @controller.stubs(:sign_out).with(@account)
-      @controller.stubs(:new_session_url).returns('/new/admin/session')
+      @controller.stubs(:new_locomotive_account_session_url).returns('/locomotive/session/new')
     end
 
     context 'when a site is present' do
@@ -213,7 +213,7 @@ describe Locomotive::Routing::SiteDispatcher do
         end
 
         it 'redirects to the new session url' do
-          @controller.expects(:redirect_to).with('/new/admin/session')
+          @controller.expects(:redirect_to).with('/locomotive/session/new')
           @controller.send(:validate_site_membership)
         end
 
@@ -242,7 +242,7 @@ describe Locomotive::Routing::SiteDispatcher do
       end
 
       it 'redirects to the new session url' do
-        @controller.expects(:redirect_to).with('/new/admin/session')
+        @controller.expects(:redirect_to).with('/locomotive/session/new')
         @controller.send(:validate_site_membership)
       end
 

@@ -44,7 +44,7 @@ module Locomotive
         end
 
         def _label
-          self._label
+          @_label ||= self._source._label
         end
 
       end

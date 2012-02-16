@@ -81,8 +81,8 @@ describe Locomotive::Liquid::Tags::SEO do
 
       let(:content_type) do
         FactoryGirl.build(:content_type, :site => site).tap do |ct|
-          ct.entries_custom_fields.build :label => 'anything', :type => 'String'
-        end
+          ct.entries_custom_fields.build :label => 'anything', :type => 'string'
+        end.tap { |_ct| _ct.valid? }
       end
 
       context "has seo title" do

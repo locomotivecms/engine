@@ -128,19 +128,18 @@ describe 'Locomotive rendering system' do
         @content_type = FactoryGirl.build(:content_type, :site => nil)
         @content_entry = @content_type.entries.build(:_visible => true)
         @page.templatized = true
-        @page.content_type = @content_type
+        @page.stubs(:fetch_target_entry).returns(@content_entry)
         @controller.request.fullpath = '/projects/edeneo.html'
         @controller.current_site.pages.expects(:any_in).with({ :fullpath => %w{projects/edeneo projects/content_type_template} }).returns([@page])
       end
 
       it 'sets the content_entry variable' do
-        @content_type.entries.stubs(:where).returns([@content_entry])
         @controller.send(:locomotive_page).should_not be_nil
         @controller.instance_variable_get(:@content_entry).should == @content_entry
       end
 
       it 'returns the 404 page if the instance does not exist' do
-        @content_type.entries.stubs(:where).returns([])
+        @page.stubs(:fetch_target_entry).returns(nil)
         (klass = Locomotive::Page).expects(:published).returns([true])
         @controller.current_site.pages.expects(:not_found).returns(klass)
         @controller.send(:locomotive_page).should be_true
@@ -149,7 +148,7 @@ describe 'Locomotive rendering system' do
 
       it 'returns the 404 page if the instance is not visible' do
         @content_entry._visible = false
-        @content_type.entries.stubs(:where).returns([@content_entry])
+        @page.stubs(:fetch_target_entry).returns(@content_entry)
         (klass = Locomotive::Page).expects(:published).returns([true])
         @controller.current_site.pages.expects(:not_found).returns(klass)
         @controller.send(:locomotive_page).should be_true

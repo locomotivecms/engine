@@ -46,7 +46,8 @@ module Locomotive
           output = children_output.join("\n")
 
           if @options[:no_wrapper] != 'true'
-            output = %{<ul id="#{@options[:id]}" class="#{@options[:class]}">\n#{output}</ul>}
+            list_class = !@options[:class].blank? ? %( class="#{@options[:class]}") : ''
+            output = %{<ul id="#{@options[:id]}"#{list_class}>\n#{output}</ul>}
           end
 
           output
