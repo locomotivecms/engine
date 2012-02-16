@@ -9,6 +9,10 @@ module Locomotive
           self._source._id.to_s
         end
 
+        def _label
+          @_label ||= self._source._label
+        end
+
         # Returns the next content for the parent content type.
         # If no content is found, nil is returned.
         #
@@ -40,11 +44,16 @@ module Locomotive
 
           if not @@forbidden_attributes.include?(meth.to_s)
             value = self._source.send(meth)
-          end
-        end
 
-        def _label
-          @_label ||= self._source._label
+            if value.respond_to?(:all)
+              # returns a mongoid criterion in order to chain pagination criteria
+              value.all
+            else
+              value
+            end
+          else
+            nil
+          end
         end
 
       end

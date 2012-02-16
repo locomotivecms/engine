@@ -33,7 +33,7 @@ group :test do
 
   # gem 'growl-glue'
 
-  # gem 'cucumber-rails'
+  gem 'cucumber-rails'
   gem 'rspec-rails', '~> 2.8.0'
   gem 'shoulda-matchers'
 

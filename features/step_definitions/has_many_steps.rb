@@ -5,16 +5,17 @@ Given %r{^I have an? "([^"]*)" model which has many "([^"]*)"$} do |parent_model
   end
   @child_model = FactoryGirl.build(:content_type, :site => @site, :name => child_model).tap do |ct|
     ct.entries_custom_fields.build :label => 'Body', :type => 'string', :required => false
-    ct.entries_custom_fields.build :label => parent_model.singularize, :kind => 'has_one', :required => false, :target => parent_model
+    ct.entries_custom_fields.build :label => parent_model.singularize.downcase, :type => 'belongs_to', :required => false, :class_name => @parent_model.klass_with_custom_fields(:entries).to_s
     ct.save!
   end
 
   @parent_model.entries_custom_fields.build({
     :label          => child_model,
-    :kind           => 'has_many',
-    :target         => @child_model.content_klass.to_s,
-    :reverse_lookup => @child_model.content_klass.custom_field_alias_to_name(parent_model.downcase.singularize)
+    :type           => 'has_many',
+    :class_name     => @child_model.klass_with_custom_fields(:entries).to_s,
+    :inverse_of     => parent_model.singularize.downcase
   })
+  @parent_model.save
 end
 
 Then /^I should be able to view a paginaed list of a has many association$/ do
@@ -23,17 +24,14 @@ Then /^I should be able to view a paginaed list of a has many association$/ do
 
   # Create contents
   article = @parent_model.entries.create!(:slug => 'parent', :body => 'Parent')
-  @child_model.entries.create!(:slug => 'one', :body => 'One', :custom_field_2 => article.id.to_s)
-  @child_model.entries.create!(:slug => 'two', :body => 'Two', :custom_field_2 => article.id.to_s)
-  @child_model.entries.create!(:slug => 'three', :body => 'Three', :custom_field_2 => article.id.to_s)
-
-  @child_model.entries.each do |comment|
-    article.comments << comment
-  end
+  @child_model.entries.create!(:slug => 'one', :body => 'One', :article => article)
+  @child_model.entries.create!(:slug => 'two', :body => 'Two', :article => article)
+  @child_model.entries.create!(:slug => 'three', :body => 'Three', :article => article)
 
   # Create a page
   raw_template = %{
-  {% for article in contents.articles %}
+  {% for article in models.articles %}
+    {{ article.body }}
     {% paginate article.comments by 2 %}
       {% for comment in paginate.collection %}
         {{ comment.body }}
@@ -48,10 +46,10 @@ Then /^I should be able to view a paginaed list of a has many association$/ do
 
   # The page should have the first two comments
   visit '/hello'
+
   page.should have_content 'One'
   page.should have_content 'Two'
   page.should_not have_content 'Three'
-
 
   # The second page should have the last comment
   click_link '2'
