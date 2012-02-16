@@ -1,7 +1,7 @@
 # encoding: utf-8
 
-require 'locomotive'
-require 'highline/import'
+# require 'locomotive'
+# require 'highline/import'
 
 namespace :locomotive do
 

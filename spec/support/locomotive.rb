@@ -1,16 +1,16 @@
 # tiny patch to add middlewares after the initialization
-module Rails
-  class Application < Engine
-    def app
-      @app ||= begin
-        if config.middleware.respond_to?(:merge_into)
-          config.middleware = config.middleware.merge_into(default_middleware_stack)
-        end
-        config.middleware.build(routes)
-      end
-    end
-  end
-end
+# module Rails
+#   class Application < Engine
+#     def app
+#       @app ||= begin
+#         if config.middleware.respond_to?(:merge_into)
+#           config.middleware = config.middleware.merge_into(default_middleware_stack)
+#         end
+#         config.middleware.build(routes)
+#       end
+#     end
+#   end
+# end
 
 
 def Locomotive.configure_for_test(force = false)

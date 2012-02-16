@@ -1,16 +1,13 @@
 require 'spec_helper'
 
 describe Locomotive::SettingsMenuCell do
-  # FIXME: This does not seem to work correctly, rspec-cells should allow this to be called
-  # as if it were a controller.
-  # render_views
 
   let(:menu) { render_cell('locomotive/settings_menu', :show) }
 
   describe 'show menu' do
 
-    before(:each) do
-      CellsResetter.new_settings_menu_cell_klass({ :main => 'settings', :sub => 'site' })
+    before(:all) do
+      reset_cell(:main => 'settings', :sub => 'site')
     end
 
     it 'has 3 items' do
@@ -33,8 +30,8 @@ describe Locomotive::SettingsMenuCell do
 
   describe 'add a new menu item' do
 
-    before(:each) do
-      CellsResetter.new_settings_menu_cell_klass({ :main => 'settings', :sub => 'site' })
+    before(:all) do
+      reset_cell(:main => 'settings', :sub => 'site')
       Locomotive::SettingsMenuCell.update_for(:testing_add) { |m| m.add(:my_link, :label => 'My link', :url => 'http://www.locomotivecms.com') }
     end
 
@@ -50,8 +47,8 @@ describe Locomotive::SettingsMenuCell do
 
   describe 'remove a new menu item' do
 
-    before(:each) do
-      CellsResetter.new_settings_menu_cell_klass({ :main => 'settings', :sub => 'site' })
+    before(:all) do
+      reset_cell(:main => 'settings', :sub => 'site')
       Locomotive::SettingsMenuCell.update_for(:testing_remove) { |m| m.remove(:theme_assets) }
     end
 
@@ -67,8 +64,8 @@ describe Locomotive::SettingsMenuCell do
 
   describe 'modify an existing menu item' do
 
-    before(:each) do
-      CellsResetter.new_settings_menu_cell_klass({ :main => 'settings', :sub => 'site' })
+    before(:all) do
+      reset_cell(:main => 'settings', :sub => 'site')
       Locomotive::SettingsMenuCell.update_for(:testing_update) { |m| m.modify(:theme_assets, { :label => 'Modified !' }) }
     end
 
@@ -84,7 +81,23 @@ describe Locomotive::SettingsMenuCell do
   end
 
   after(:all) do
-   CellsResetter.clean!
+    reset_cell
+  end
+
+  def reset_cell(attributes = {})
+    ::Locomotive.send(:remove_const, 'SettingsMenuCell')
+
+    cell_path = File.join(File.dirname(__FILE__), '../../../app/cells/locomotive/settings_menu_cell.rb')
+    load cell_path
+
+    unless attributes.empty?
+      # weird issue: Locomotive::GlobalActionsCell.any_instance does not work at all
+      Locomotive::SettingsMenuCell.class_eval <<-EOV
+        def sections(*args)
+          #{attributes.inspect}
+        end
+      EOV
+    end
   end
 
 end
