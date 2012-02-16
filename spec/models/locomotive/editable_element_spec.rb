@@ -5,6 +5,7 @@ describe Locomotive::EditableElement do
   before(:each) do
     @site = FactoryGirl.create(:site)
     @home = @site.pages.root.first
+
     @home.update_attributes :raw_template => "{% block body %}{% editable_short_text 'body' %}Lorem ipsum{% endeditable_short_text %}{% endblock %}"
 
     @sub_page_1 = FactoryGirl.create(:page, :slug => 'sub_page_1', :parent => @home, :raw_template => "{% extends 'parent' %}")
