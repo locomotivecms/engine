@@ -113,6 +113,10 @@ module Locomotive
       self.order_by ||= 'created_at'
       self.label_field_id = self.entries_custom_fields.first._id if self.label_field_id.blank?
       field = self.entries_custom_fields.find(self.label_field_id)
+
+      # the label field should always be required
+      field.required = true
+
       self.label_field_name = field.name
     end
 

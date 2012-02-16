@@ -17,11 +17,12 @@ module Locomotive
     validates :_slug, :presence => true, :uniqueness => { :scope => :content_type_id }
 
     ## associations ##
-    belongs_to  :site
-    belongs_to  :content_type, :class_name => 'Locomotive::ContentType', :inverse_of => :entries
+    belongs_to  :site,          :class_name => 'Locomotive::Site'
+    belongs_to  :content_type,  :class_name => 'Locomotive::ContentType', :inverse_of => :entries
 
     ## callbacks ##
     before_validation :set_slug
+    before_save       :set_site
     before_save       :set_visibility
     before_save       :set_label_field_name
     before_create     :add_to_list_bottom
@@ -43,10 +44,6 @@ module Locomotive
       else
         self.send((type || self.content_type).label_field_name.to_sym)
       end
-    end
-
-    def visible?
-      self._visible || self._visible.nil?
     end
 
     def next
@@ -86,9 +83,9 @@ module Locomotive
 
     def next_or_previous(matcher = :gt)
       order_by  = self.content_type.order_by_definition
-      criterion = attribute.send(matcher)
+      criterion = :_position.send(matcher)
 
-      self.class.where(criterion => self.send(attribute)).order_by([order_by]).limit(1).first
+      self.class.where(criterion => self._position).order_by([order_by]).limit(1).first
     end
 
     # Sets the slug of the instance by using the value of the highlighted field
@@ -115,12 +112,15 @@ module Locomotive
       self.class.where(:_id.ne => self._id, :_slug => self._slug).any?
     end
 
+    def set_site
+      self.site ||= self.content_type.site
+    end
+
     def set_visibility
-      [:visible, :active].each do |meth|
-        if self.respond_to?(meth)
-          self._visible = self.send(meth)
-          return
-        end
+      if self.respond_to?(:visible)
+        self.visible  = true if self.visible.nil?
+        self._visible = self.visible
+        return
       end
     end
 
@@ -135,8 +135,8 @@ module Locomotive
     def send_notifications
       return if !self.content_type.public_submission_enabled? || self.content_type.public_submission_accounts.blank?
 
-      self.content_type.site.accounts.each do |account|
-        next unless self.content_type.public_submission_accounts.include?(account._id.to_s)
+      self.site.accounts.each do |account|
+        next unless self.content_type.public_submission_accounts.include?(account._id)
 
         Locomotive::Notifications.new_content_entry(account, self).deliver
       end
