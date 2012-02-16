@@ -6,7 +6,7 @@ module Locomotive
       :domain                 => 'example.com',
       :reserved_subdomains    => %w{www admin email blog webmail mail support help site sites},
       # :forbidden_paths      => %w{layouts snippets stylesheets javascripts assets admin system api},
-      :reserved_slugs         => %w{stylesheets javascripts assets admin images api pages edit},
+      :reserved_slugs         => %w{stylesheets javascripts assets admin locomotive images api pages edit},
       :locales                => %w{en de fr pt-BR it nl no es ru},
       :site_locales           => %w{en de fr pt-BR it nl no es ru},
       :cookie_key             => '_locomotive_session',

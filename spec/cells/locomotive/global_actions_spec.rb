@@ -15,7 +15,6 @@ describe Locomotive::GlobalActionsCell do
     end
 
     it 'has a link to edit my account' do
-      puts "last test"
       menu.should have_link('Admin')
     end
 

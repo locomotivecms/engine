@@ -9,6 +9,13 @@ module Locomotive
           include ::Mongoid::Tree
           include ::Mongoid::Tree::Ordering
 
+          ## fields ##
+          field :depth, :type => Integer, :default => 0
+
+          ## callbacks ##
+          before_save     :persist_depth
+          before_destroy  :delete_descendants
+
           ## indexes ##
           index :position
           index [:depth.asc, :position.asc]
@@ -86,6 +93,16 @@ module Locomotive
             child.position = position
             child.save
           end
+        end
+
+        def depth
+          self.parent_ids.count
+        end
+
+        protected
+
+        def persist_depth
+          self.attributes[:depth] = self.depth
         end
 
       end

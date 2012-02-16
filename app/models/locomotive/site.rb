@@ -67,8 +67,7 @@ module Locomotive
             :slug         => slug,
             :title        => ::I18n.t("attributes.defaults.pages.#{slug}.title"),
             :raw_template => ::I18n.t("attributes.defaults.pages.#{slug}.body"),
-            :published    => true,
-            :depth        => 0
+            :published    => true
           })
         end
       end
