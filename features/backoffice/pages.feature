@@ -23,13 +23,12 @@ Scenario: Creating a valid page
   Then I should see "Page was successfully created."
   And I should have "{% extends 'parent' %}" in the test page
 
-@wip
 @javascript
 Scenario: Updating a valid page
   When I go to pages
   And I follow "Home page"
-  And I fill in "page_title" with "Home page !"
-  And I fill in "Raw template" with "My new content is here"
+  And I change the page title with "Home page !"
+  And I change the page template with "My new content is here"
   And I press "Save"
   Then I should see "Page was successfully updated."
   And I should have "My new content is here" in the index page
