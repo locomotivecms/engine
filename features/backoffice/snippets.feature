@@ -15,7 +15,6 @@ Background:
   "yield"
   """
 
-
 Scenario: Creating a Snippet
   When I go to theme assets
   And I follow "new snippet"
