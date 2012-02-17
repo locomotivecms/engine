@@ -66,14 +66,14 @@ x edit my site
     x custom_fields: use the appropriate icon to drag select options
     x bug ui with contents popup
     - use list_or_group_entries instead of ordered_entries
-- i18n
+x i18n
   x add locales a site responds to
   x locale switcher
   x constraint: one locale at least
   x front
     x pages
     x inline-editor
-  - back to default locale (if changed in settings) and when creating new pages / entries
+  x back to default locale (if changed in settings) and when creating new pages / entries
 - inline editor
   x rack
   x iframe
