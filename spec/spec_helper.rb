@@ -22,10 +22,6 @@ RSpec.configure do |config|
     Locomotive.configure_for_test(true)
   end
 
-  config.before(:each) do
-    Locomotive.config.heroku = false
-  end
-
   config.before(:suite) do
     DatabaseCleaner.strategy = :truncation
     DatabaseCleaner.orm = 'mongoid'

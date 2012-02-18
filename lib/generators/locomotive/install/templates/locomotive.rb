@@ -16,22 +16,6 @@ Locomotive.configure do |config|
   # end
   config.multi_sites = false
 
-  # configure the hosting target for the production environment. LocomotiveCMS can be installed in:
-  # - your own server
-  # - Heroku (you need to create an account in this case)
-  # - Bushi.do (see the bushi.do website for more explanations)
-  #
-  # the possible options are: server, heroku, bushido or auto (default)
-  # if you select 'auto', LocomotiveCMS will look after specific ENV variables to check
-  # the matching platform (Heroku and Bushido set their own ENV variables).
-  #
-  config.hosting = :auto
-
-  # In case you host LocomotiveCMS in Heroku, the engine uses the heroku api to add / remove domains.
-  # config.heroku = {
-  #   :api_key  => '<your_heroku_api_key>
-  # }
-
   # configure how many items we display in sub menu in the "Contents" section.
   # config.ui = {
   #   :latest_entries_nb => 5,

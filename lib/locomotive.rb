@@ -31,18 +31,6 @@ module Locomotive
     end
   end
 
-  def self.engine?
-    self.const_defined?('Engine')
-  end
-
-  def self.default_site_template_present?
-    File.exists?(self.default_site_template_path)
-  end
-
-  def self.default_site_template_path
-    File.join(Rails.root, 'tmp/default_site_template.zip')
-  end
-
   def self.configure
     self.config ||= Configuration.new
 
@@ -76,6 +64,9 @@ module Locomotive
     rescue ::Mongoid::Errors::InvalidDatabase => e
       # let assume it's because of the first install (meaning no config.yml file)
     end
+
+    # enable the hosting solution if both we are not in test or dev and that the config.hosting option has been filled up
+    self.enable_hosting
   end
 
   def self.add_middlewares
@@ -98,6 +89,12 @@ module Locomotive
       raise '[Error] Locomotive needs a domain name when used as a multi sites platform' if domain_name.blank?
 
       self.config.domain = domain_name
+    end
+  end
+
+  def self.enable_hosting
+    if (!Rails.env.test? && !Rails.env.development?) && !self.config.hosting.blank? && self.respond_to?(:"enable_#{self.config.hosting}")
+      self.send(:"enable_#{self.config.hosting}")
     end
   end
 

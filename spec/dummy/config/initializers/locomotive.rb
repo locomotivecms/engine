@@ -17,17 +17,6 @@ Locomotive.configure do |config|
   end
   # config.multi_sites = false
 
-  # configure the hosting target for the production environment. Locomotive can be installed in:
-  # - your own server
-  # - Heroku (you need to create an account in this case)
-  # - Bushi.do (see the bushi.do website for more explanations)
-  #
-  # the possible options are: server, heroku, bushido or auto (default)
-  # if you select 'auto', Locomotive will look after specific ENV variables to check
-  # the matching platform (Heroku and Bushido set their own ENV variables).
-  #
-  config.hosting = :server
-
   # In case you host Locomotive in Heroku, the engine uses the heroku api to add / remove domains.
   # there are 2 ways of passing heroku credentials to Locomotive
   #   - from ENV variables: HEROKU_LOGIN & HEROKU_PASSWORD

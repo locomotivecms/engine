@@ -17,16 +17,12 @@ def Locomotive.configure_for_test(force = false)
   Locomotive.configure do |config|
     config.multi_sites do |multi_sites|
       multi_sites.domain = 'example.com'
-      multi_sites.reserved_subdomains = %w(www admin email blog webmail mail support help site sites)
+      multi_sites.reserved_subdomains = %w(www admin locomotive email blog webmail mail support help site sites)
     end
-
-    config.hosting = :none
 
     config.enable_logs = true
 
     if force
-      ENV['APP_TLD'] = ENV['HEROKU_SLUG'] = ENV['APP_NAME'] = ENV['HEROKU_LOGIN'] = ENV['HEROKU_PASSWORD'] = nil
-
       Locomotive.define_subdomain_and_domains_options
 
       Locomotive.send(:remove_const, 'Site') if Locomotive.const_defined?('Site')

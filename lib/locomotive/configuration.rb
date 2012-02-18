@@ -11,7 +11,6 @@ module Locomotive
       :site_locales           => %w{en de fr pt-BR it nl no es ru},
       :cookie_key             => '_locomotive_session',
       :enable_logs            => false,
-      :hosting                => :auto,
       :delayed_job            => false,
       :default_locale         => :en,
       :mailer_sender          => 'support@example.com',
