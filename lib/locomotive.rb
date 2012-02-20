@@ -99,10 +99,6 @@ module Locomotive
     method = :"enable_#{target}"
 
     self.send(method) if self.respond_to?(method)
-
-    # if (!Rails.env.test? && !Rails.env.development?) && !self.config.hosting.blank? && self.respond_to?(:"enable_#{self.config.hosting}")
-    #   self.send(:"enable_#{self.config.hosting}")
-    # end
   end
 
   def self.define_subdomain_and_domains_options

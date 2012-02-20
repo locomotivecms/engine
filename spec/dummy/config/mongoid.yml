@@ -17,5 +17,4 @@ test:
 
 production:
   <<: *defaults
-  # database: locomotive_engine_production
-  database: locomotive_hosting_production
+  database: locomotive_engine_production

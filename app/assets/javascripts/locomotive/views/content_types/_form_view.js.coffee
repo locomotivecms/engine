@@ -12,6 +12,8 @@ class Locomotive.Views.ContentTypes.FormView extends Locomotive.Views.Shared.For
   initialize: ->
     @model = new Locomotive.Models.ContentType(@options.content_type)
 
+    window.foo = @model
+
     Backbone.ModelBinding.bind @
 
   render: ->

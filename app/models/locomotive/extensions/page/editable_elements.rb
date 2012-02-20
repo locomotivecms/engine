@@ -8,11 +8,11 @@ module Locomotive
         included do
           embeds_many :editable_elements, :class_name => 'Locomotive::EditableElement'
 
-          after_save :remove_disabled_editable_elements
+          after_save    :remove_disabled_editable_elements
 
           # editable file callbacks
-          after_save :store_file_sources!
-          before_save :write_file_source_identifiers
+          after_save    :store_file_sources!
+          before_save   :write_file_source_identifiers
           after_destroy :remove_file_sources!
 
           accepts_nested_attributes_for :editable_elements

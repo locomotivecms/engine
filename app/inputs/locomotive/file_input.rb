@@ -18,12 +18,12 @@ module Locomotive
 
     def file_wrapper_html
       template.content_tag(:script,
-        template.content_tag(:span, %(
+        %(
           {{#if url}}
           #{with_file_html}
           {{else}}
           #{without_file_html}
-          {{/if}}).html_safe, :class => 'file'),
+          {{/if}}).html_safe,
         :type => 'text/html', :id => "#{method}_file_input")
     end
 

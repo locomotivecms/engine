@@ -10,6 +10,7 @@ Locomotive.configure do |config|
     # and the multi_site_domain value (ex: website_1.locomotivehosting.com).
     multi_sites.domain = 'engine.dev' #'myhostingplatform.com'
     # multi_sites.domain = 'example.com'
+    # multi_sites.domain = 'locomotivehosting.fr'
 
     # define the reserved subdomains
     # Ex:

@@ -13,7 +13,7 @@ module Locomotive
       respond_to :html, :json
 
       def create
-        @entry = @content_type.entries.create(params[:entry])
+        @entry = @content_type.entries.create(params[:entry] || params[:content])
         flash[@content_type.slug.singularize] = @entry.to_presenter(:include_errors => true).as_json
         respond_with @entry, :location => self.callback_url
       end
@@ -34,7 +34,7 @@ module Locomotive
       end
 
       def callback_url
-        @entry.errors.empty? ? params[:success_callback] : params[:error_callback]
+        (@entry.errors.empty? ? params[:success_callback] : params[:error_callback]) || main_app.root_path
       end
 
       def sanitize_entry_params

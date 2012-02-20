@@ -37,7 +37,6 @@ module Locomotive
     protected
 
     def normalize_slug
-      # TODO: refactor it
       self.slug = self.name.clone if self.slug.blank? && self.name.present?
       self.slug.permalink! if self.slug.present?
     end

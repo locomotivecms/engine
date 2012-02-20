@@ -18,8 +18,6 @@ class Locomotive.Views.ContentEntries.FormView extends Locomotive.Views.Shared.F
   initialize: ->
     @model ||= new Locomotive.Models.ContentEntry(@options.content_entry)
 
-    window.foo = @model
-
     Backbone.ModelBinding.bind @
 
   render: ->
@@ -61,7 +59,7 @@ class Locomotive.Views.ContentEntries.FormView extends Locomotive.Views.Shared.F
 
       @_file_field_views.push(view)
 
-      @$("##{@model.paramRoot}_#{name}_input").append(view.render().el)
+      @$("##{@model.paramRoot}_#{name}_input label").after(view.render().el)
 
   enable_has_many_fields: ->
     _.each @model.get('has_many_custom_fields'), (field) =>
