@@ -1,6 +1,6 @@
 module Locomotive
   module Api
-    class TokensController < BaseController
+    class TokensController < Locomotive::Api::BaseController
 
       skip_before_filter :require_account
 

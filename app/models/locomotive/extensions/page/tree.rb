@@ -19,6 +19,9 @@ module Locomotive
           ## indexes ##
           index :position
           index [:depth.asc, :position.asc]
+
+          ## scopes ##
+          default_scope :where => {} # disable the default_scope from the Mongoid::Tree gem
         end
 
         module ClassMethods
@@ -102,7 +105,8 @@ module Locomotive
         protected
 
         def persist_depth
-          self.attributes[:depth] = self.depth
+          self.attributes['depth'] = self.depth
+          self.depth_will_change!
         end
 
       end
