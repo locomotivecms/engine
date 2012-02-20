@@ -5,6 +5,10 @@ module Locomotive
       include Locomotive::Routing::SiteDispatcher
       include Locomotive::ActionController::LocaleHelpers
 
+      skip_before_filter :verify_authenticity_token
+
+      skip_load_and_authorize_resource
+
       before_filter :require_account
 
       before_filter :require_site
@@ -12,10 +16,6 @@ module Locomotive
       before_filter :set_locale
 
       # before_filter :validate_site_membership
-
-      skip_before_filter :verify_authenticity_token
-
-      skip_load_and_authorize_resource
 
       self.responder = Locomotive::ActionController::Responder # custom responder
 

@@ -17,10 +17,6 @@ module Locomotive
 
         output = @page.render(locomotive_context)
 
-        # puts "======================"
-        # puts output.inspect
-        # puts "======================"
-
         self.prepare_and_set_response(output)
       end
     end

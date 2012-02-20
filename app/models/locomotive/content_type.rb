@@ -78,6 +78,12 @@ module Locomotive
       self.class.class_name_to_content_type(class_name, self.site)
     end
 
+    def label_field_name=(value)
+      # mandatory if we allow the API to set the label field name without an id of the field
+      @new_label_field_name = value unless value.blank?
+      super(value)
+    end
+
     # Retrieve from a class name the associated content type within the scope of a site.
     # If no content type is found, the method returns nil
     #
@@ -111,7 +117,15 @@ module Locomotive
 
     def set_default_values
       self.order_by ||= 'created_at'
-      self.label_field_id = self.entries_custom_fields.first._id if self.label_field_id.blank?
+
+      if @new_label_field_name.present?
+        self.label_field_id = self.entries_custom_fields.detect { |f| f.name == @new_label_field_name.underscore }._id
+      end
+
+      if self.label_field_id.blank?
+        self.label_field_id = self.entries_custom_fields.first._id
+      end
+
       field = self.entries_custom_fields.find(self.label_field_id)
 
       # the label field should always be required
