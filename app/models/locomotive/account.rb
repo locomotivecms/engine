@@ -86,7 +86,7 @@ module Locomotive
         membership = site.memberships.where(:account_id => self._id).first
 
         if site.admin_memberships.size == 1 && membership.admin?
-          raise I18n.t('errors.messages.needs_admin_account')
+          raise ::I18n.t('errors.messages.needs_admin_account')
         else
           membership.destroy
         end

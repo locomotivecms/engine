@@ -33,7 +33,7 @@ fr:
       extname_changed: "Nouveau fichier n'a pas l'extension original"
       array_too_short: "est trop petit (le nombre minimum d'éléments est %{count})"
       liquid_syntax: "Erreur de syntaxe ('%{error}')"
-      invalid_theme_file: "doit être rempli ou n'est pas un fichier zip"
+      security: "présente un problème de sécurité"
       page:
         liquid_syntax: "Erreur de syntaxe dans les sections de page, veuillez vérifier la syntaxe ('%{error}'/'%{fullpath}')"
         liquid_extend: "La page '%{fullpath}' étend le contenu d'une page qui n'existe pas"

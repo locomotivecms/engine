@@ -12,7 +12,7 @@ module Locomotive
 
       before_filter :validate_site_membership, :only => [:show_toolbar]
 
-      before_filter :set_ui_locale, :only => :show_toolbar
+      before_filter :set_toolbar_locale, :only => :show_toolbar
 
       before_filter :set_locale, :only => [:show, :edit]
 
@@ -31,9 +31,9 @@ module Locomotive
 
       protected
 
-      def set_ui_locale
+      def set_toolbar_locale
         ::I18n.locale = current_locomotive_account.locale rescue Locomotive.config.default_locale
-        ::Mongoid::Fields::I18n.locale = params[:locale] || current_site.default_locale
+        ::Mongoid::Fields::I18n.locale = session[:content_locale] || current_site.default_locale
       end
 
       def set_locale

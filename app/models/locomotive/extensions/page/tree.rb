@@ -9,6 +9,13 @@ module Locomotive
           include ::Mongoid::Tree
           include ::Mongoid::Tree::Ordering
 
+          ## fields ##
+          field :depth, :type => Integer, :default => 0
+
+          ## callbacks ##
+          before_save     :persist_depth
+          before_destroy  :delete_descendants
+
           ## indexes ##
           index :position
           index [:depth.asc, :position.asc]
@@ -26,7 +33,7 @@ module Locomotive
           # @return [ Array ] The first array of pages (depth = 0)
           #
           def quick_tree(site, minimal_attributes = true)
-            pages = (minimal_attributes ? site.pages.minimal_attributes : site.pages).order_by([:depth.asc, :position.asc]).to_a
+            pages = (minimal_attributes ? site.pages.unscoped.minimal_attributes : site.pages.unscoped).order_by([:depth.asc, :position.asc]).to_a
 
             tmp = []
 
@@ -86,6 +93,17 @@ module Locomotive
             child.position = position
             child.save
           end
+        end
+
+        def depth
+          self.parent_ids.count
+        end
+
+        protected
+
+        def persist_depth
+          self.attributes['depth'] = self.depth
+          self.depth_will_change!
         end
 
       end

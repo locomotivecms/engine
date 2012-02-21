@@ -47,7 +47,7 @@ describe Locomotive::Liquid::Drops::Page do
     end
 
     it 'renders title of parent page' do
-      content = render_template '{{ sub_page.parent.title }}', {'sub_page' => @sub_page}
+      content = render_template '{{ sub_page.parent.title }}', { 'sub_page' => @sub_page }
       content.should == "Home page"
     end
 
@@ -56,10 +56,11 @@ describe Locomotive::Liquid::Drops::Page do
   context '#breadcrumbs' do
     before(:each) do
       @sub_page = FactoryGirl.build(:sub_page, :meta_keywords => 'Sub Libidinous, Angsty', :meta_description => "Sub Quite the combination.")
+      @sub_page.stubs(:ancestors_and_self).returns([FactoryGirl.build(:page), @sub_page])
     end
 
     it 'renders breadcrumbs of current page' do
-      content = render_template '{% for crumb in sub_page.breadcrumbs %}{{ crumb.title}},{% endfor %}', {'sub_page' => @sub_page}
+      content = render_template '{% for crumb in sub_page.breadcrumbs %}{{ crumb.title }},{% endfor %}', { 'sub_page' => @sub_page }
       content.should == 'Home page,Subpage,'
     end
   end
@@ -73,7 +74,7 @@ describe Locomotive::Liquid::Drops::Page do
     it 'renders the content instance highlighted field instead for a templatized page' do
       templatized = FactoryGirl.build(:page, :title => 'Lorem ipsum template', :templatized => true)
 
-      content_entry = Locomotive::Liquid::Drops::Content.new(mock('content_entry', :highlighted_field_value => 'Locomotive rocks !'))
+      content_entry = Locomotive::Liquid::Drops::ContentEntry.new(mock('content_entry', :_label => 'Locomotive rocks !'))
 
       render_template('{{ page.title }}', 'page' => templatized, 'content_entry' => content_entry).should == 'Locomotive rocks !'
     end

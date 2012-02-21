@@ -7,13 +7,15 @@ describe Locomotive::ContentEntry do
   before(:each) do
     Locomotive::Site.any_instance.stubs(:create_default_pages!).returns(true)
     @content_type = FactoryGirl.build(:content_type)
-    @content_type.entries_custom_fields.build :label => 'Title', :type => 'String'
-    @content_type.entries_custom_fields.build :label => 'Description', :type => 'Text'
-    @content_type.entries_custom_fields.build :label => 'Visible ?', :type => 'Text', :name => 'visible'
-    @content_type.highlighted_field_name = 'custom_field_1'
+    @content_type.entries_custom_fields.build :label => 'Title', :type => 'string'
+    @content_type.entries_custom_fields.build :label => 'Description', :type => 'text'
+    @content_type.entries_custom_fields.build :label => 'Visible ?', :type => 'boolean', :name => 'visible'
+    @content_type.valid?
+    @content_type.send(:set_default_values)
   end
 
   describe '#validation' do
+
     it 'is valid' do
       build_content_entry.should be_valid
     end
@@ -21,13 +23,13 @@ describe Locomotive::ContentEntry do
     ## Validations ##
 
     it 'requires the presence of title' do
-      content_entry = build_content_entry_entry :title => nil
+      content_entry = build_content_entry :title => nil
       content_entry.should_not be_valid
       content_entry.errors[:title].should == ["can't be blank"]
     end
 
     it 'requires the presence of the permalink (_slug)' do
-      content_entry = build_content_entry_entry :title => nil
+      content_entry = build_content_entry :title => nil
       content_entry.should_not be_valid
       content_entry.errors[:_slug].should == ["can't be blank"]
     end
@@ -66,21 +68,23 @@ describe Locomotive::ContentEntry do
 
   describe "#navigation" do
     before(:each) do
-      %w(first second third).each_with_index do |item,index|
-        content = build_content_entry({:title => item.to_s})
-        content._position_in_list = index
+      @content_type.save
+
+      %w(first second third).each_with_index do |item, index|
+        content = build_content_entry(:title => item.to_s, :_position => index)
+        content.save
         instance_variable_set "@#{item}", content
       end
     end
 
     it 'should find previous item when available' do
-      @second.previous.custom_field_1.should == "first"
-      @second.previous._position_in_list.should == 0
+      @second.previous.title.should == 'first'
+      @second.previous._position.should == 1
     end
 
     it 'should find next item when available' do
-      @second.next.custom_field_1.should == "third"
-      @second.next._position_in_list.should == 2
+      @second.next.title.should == 'third'
+      @second.next._position.should == 3
     end
 
     it 'should return nil when fetching previous item on first in list' do
@@ -132,20 +136,20 @@ describe Locomotive::ContentEntry do
     end
 
     it 'is visible by default' do
-      @content_entry._visible?.should be_true
-      @content_entry.should be_visible
+      @content_entry.send(:set_visibility)
+      @content_entry.visible?.should be_true
     end
 
     it 'can be visible even if it is nil' do
       @content_entry.visible = nil
-      @content_entry.send(:set_visibility).should be_true
-      @content_entry.should be_visible
+      @content_entry.send(:set_visibility)
+      @content_entry.visible?.should be_true
     end
 
     it 'can not be visible' do
       @content_entry.visible = false
-      @content_entry.send(:set_visibility).should be_true
-      @content_entry.should_not be_visible
+      @content_entry.send(:set_visibility)
+      @content_entry.visible?.should be_false
     end
 
   end
@@ -153,50 +157,54 @@ describe Locomotive::ContentEntry do
   describe '#requirements' do
 
     it 'has public access to the highlighted field value' do
-      build_content_entry.highlighted_field_value.should == 'Locomotive'
+      build_content_entry._label.should == 'Locomotive'
     end
 
   end
 
-  describe '#api' do
+  describe '#public_submission' do
 
     before(:each) do
       @account_1 = FactoryGirl.build('admin user', :id => fake_bson_id('1'))
       @account_2 = FactoryGirl.build('frenchy user', :id => fake_bson_id('2'))
 
-      @content_type.api_enabled = true
-      @content_type.api_accounts = ['', @account_1.id, @account_2.id]
+      @content_type.public_submission_enabled = true
+      @content_type.public_submission_accounts = ['', @account_1._id, @account_2._id]
 
-      Locomotive::Site.any_instance.stubs(:accounts).returns([@account_1, @account_2])
+      site = FactoryGirl.build(:site)
+      site.stubs(:accounts).returns([@account_1, @account_2])
 
-      @content_entry = build_content_entry
+      @content_entry = build_content_entry(:site => site)
     end
 
     it 'does not send email notifications if the api is disabled' do
-      @content_type.api_enabled = false
+      @content_type.public_submission_enabled = false
       Locomotive::Notifications.expects(:new_content_entry).never
       @content_entry.save
     end
 
     it 'does not send email notifications if no api accounts' do
-      @content_type.api_accounts = nil
+      @content_type.public_submission_accounts = nil
       Locomotive::Notifications.expects(:new_content_entry).never
       @content_entry.save
     end
 
     it 'sends email notifications when a new instance is created' do
-      Locomotive::Notifications.expects(:new_content_entry).with(@account_1, @content).returns(mock('mailer', :deliver => true))
-      Locomotive::Notifications.expects(:new_content_entry).with(@account_2, @content).returns(mock('mailer', :deliver => true))
+      Locomotive::Notifications.expects(:new_content_entry).with(@account_1, @content_entry).returns(mock('mailer', :deliver => true))
+      Locomotive::Notifications.expects(:new_content_entry).with(@account_2, @content_entry).returns(mock('mailer', :deliver => true))
       @content_entry.save
     end
 
   end
 
   describe '#site' do
-    it 'delegates to the content type' do
-      @content_type.expects(:site)
-      build_content_entry.site
+
+    it 'assigns a site when saving the content entry' do
+      content_entry = build_content_entry
+      content_entry.save
+      content_entry.site.should_not be_nil
     end
+
   end
 
   def build_content_entry(options = {})

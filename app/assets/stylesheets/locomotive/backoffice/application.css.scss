@@ -262,19 +262,21 @@ ul.list {
     }
 
     &.folder {
+
       li {
         em {
           background-position: left -31px;
           cursor: move;
         }
 
-        &.templatized > strong a {
+        &.templatized > .inner > a {
           padding-right: 24px;
-          background: transparent image-url("locomotive/list/icons/template.png") no-repeat right 3px;
+          background: transparent image-url("locomotive/list/icons/template.png") no-repeat right 2px;
         }
 
-        &.redirect > strong a {
-          background: transparent image-url("locomotive/list/icons/redirect.png") no-repeat right 2px;
+        &.redirect > .inner > a {
+          padding-right: 24px;
+          background: transparent image-url("locomotive/list/icons/redirect.png") no-repeat right 1px;
         }
       } // ul.folder li
     } // ul.folder

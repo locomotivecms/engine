@@ -1,8 +1,5 @@
 - title t('.title', :type => @content_type.name.capitalize)
 
-- content_for :submenu do
-  = render 'locomotive/shared/menu/contents'
-
 - content_for :actions do
   = render 'locomotive/shared/actions/contents'
 
@@ -23,6 +20,11 @@
         = render 'list', :content_type => @content_type, :entries => group[:entries]
 - else
   = render 'list', :content_type => @content_type, :entries => @content_entries
+
+- # Note: submenu has to be here in order to have the previous entries correctly rendered since we do not return
+- #       all the attributes of the content types in the following code (causing stale documents)
+- content_for :submenu do
+  = render 'locomotive/shared/menu/contents'
 
 - if can?(:manage, Locomotive::ContentType)
   #local-actions-bottom-bar

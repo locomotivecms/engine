@@ -1,6 +1,6 @@
 Locomotive.configure do |config|
 
-  # A single locomotive instance can serve one single site or many.
+  # A single locomotiveCMS instance can serve one single site or many.
   # If you want to run many different websites, you will have to specify
   # your own domain name (ex: locomotivehosting.com).
   #
@@ -15,26 +15,6 @@ Locomotive.configure do |config|
   #   multi_sites.reserved_subdomains = %w(www admin email blog webmail mail support help site sites)
   # end
   config.multi_sites = false
-
-  # configure the hosting target for the production environment. Locomotive can be installed in:
-  # - your own server
-  # - Heroku (you need to create an account in this case)
-  # - Bushi.do (see the bushi.do website for more explanations)
-  #
-  # the possible options are: server, heroku, bushido or auto (default)
-  # if you select 'auto', Locomotive will look after specific ENV variables to check
-  # the matching platform (Heroku and Bushido set their own ENV variables).
-  #
-  config.hosting = :auto
-
-  # In case you host Locomotive in Heroku, the engine uses the heroku api to add / remove domains.
-  # there are 2 ways of passing heroku credentials to Locomotive
-  #   - from ENV variables: HEROKU_LOGIN & HEROKU_PASSWORD
-  #   - from this file, see the example below and uncomment it if needed
-  # config.heroku = {
-  #   :login      => '<your_heroku_login>',
-  #   :password   => '<your_heroku_password>'
-  # }
 
   # configure how many items we display in sub menu in the "Contents" section.
   # config.ui = {
@@ -51,8 +31,8 @@ Locomotive.configure do |config|
   # tell if logs are enabled. Useful for debug purpose.
   config.enable_logs = true
 
-  # Configure the e-mail address which will be shown in the DeviseMailer, NotificationMailer, ...etc
-  # if you do not put the domain name in the email, Locomotive will take the default domain name depending
+  # configure the e-mail address which will be shown in the DeviseMailer, NotificationMailer, ...etc
+  # if you do not put the domain name in the email, LocomotiveCMS will take the default domain name depending
   # on your deployment target (server, Heroku, Bushido, ...etc)
   #
   # Ex:
@@ -64,6 +44,9 @@ Locomotive.configure do |config|
   # in Liquid templates, extending the assigns used while rendering.
   # follow the Dependency Injection pattern
   # config.context_assign_extensions = {}
+
+  # add extra classes other than the defined content types among a site which will potentially used by the templatized pages.
+  # config.models_for_templatization = %w(Product)
 
   # Rack-cache settings, mainly used for the inline resizing image module. Default options:
   # config.rack_cache = {

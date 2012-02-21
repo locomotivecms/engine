@@ -3,9 +3,11 @@ module Locomotive
 
     sections 'contents'
 
+    localized
+
     before_filter :back_to_default_site_locale, :only => %w(new create)
 
-    respond_to  :json, :only => [:show, :create, :update, :sort, :get_path]
+    respond_to    :json, :only => [:show, :create, :update, :sort, :get_path]
 
     def index
       @pages = current_site.all_pages_in_once

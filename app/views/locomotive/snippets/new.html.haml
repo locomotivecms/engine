@@ -3,6 +3,9 @@
 - content_for :submenu do
   = render_cell 'locomotive/settings_menu', :show
 
+- content_for :actions do
+  = locale_picker_link
+
 %p!= t('.help')
 
 = semantic_form_for @snippet, :url => snippets_url do |form|

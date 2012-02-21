@@ -36,8 +36,8 @@ describe Locomotive::ContentAsset do
     end
 
     it 'has any possible resized versions' do
-      @asset.stubs(:with).returns(81)
-      @asset.stubs(:height).returns(81)
+      @asset.stubs(:with).returns(90)
+      @asset.stubs(:height).returns(90)
       @asset.vignette_url.should =~ /^\/images\/dynamic\/.*\/5k.png/
     end
 

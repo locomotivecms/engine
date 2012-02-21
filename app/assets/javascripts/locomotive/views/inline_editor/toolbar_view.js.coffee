@@ -113,6 +113,8 @@ class Locomotive.Views.InlinEditor.ToolbarView extends Backbone.View
 
       picker.toggle()
 
+      window.content_locale = selected[1]
+
       _window.location.href = '/' + @model.get('localized_fullpaths')[selected[1]] + '/_edit'
 
   get_locale_attributes: (context) ->

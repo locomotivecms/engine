@@ -5,6 +5,10 @@ module Locomotive
       include Locomotive::Routing::SiteDispatcher
       include Locomotive::ActionController::LocaleHelpers
 
+      skip_before_filter :verify_authenticity_token
+
+      skip_load_and_authorize_resource
+
       before_filter :require_account
 
       before_filter :require_site
@@ -13,23 +17,9 @@ module Locomotive
 
       # before_filter :validate_site_membership
 
-      skip_before_filter :verify_authenticity_token
-
       self.responder = Locomotive::ActionController::Responder # custom responder
 
       respond_to :json, :xml
-
-      rescue_from CanCan::AccessDenied do |exception|
-        ::Locomotive.log "[CanCan::AccessDenied] #{exception.inspect}"
-
-        if request.xhr?
-          render :json => { :error => exception.message }
-        else
-          flash[:alert] = exception.message
-
-          redirect_to pages_url
-        end
-      end
 
       protected
 

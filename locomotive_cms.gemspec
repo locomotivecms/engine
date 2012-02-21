@@ -30,7 +30,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'mongoid',                         '~> 2.4.3'
   s.add_dependency 'locomotive-mongoid-tree',         '~> 0.6.2'
 
-  s.add_dependency 'custom_fields',                   '~> 2.0.0.rc4'
+  s.add_dependency 'custom_fields',                   '~> 2.0.0.rc5'
 
   s.add_dependency 'kaminari',                        '~> 0.13.0'
 
@@ -52,7 +52,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'rmagick',                         '~> 2.12.2'
   s.add_dependency 'carrierwave-mongoid',             '~> 0.1.3'
-  s.add_dependency 'fog',                             '~> 1.0.0'
+  s.add_dependency 'fog',                             '~> 1.1.2'
   s.add_dependency 'dragonfly',                       '~> 0.9.8'
   s.add_dependency 'rack-cache',                      '~> 1.1'
   s.add_dependency 'mimetype-fu',                     '~> 0.1.2'

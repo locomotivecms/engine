@@ -17,6 +17,7 @@ module Locomotive
     field :title,               :localize => true
     field :slug,                :localize => true
     field :fullpath,            :localize => true
+    field :handle
     field :raw_template,        :localize => true
     field :locales,             :type => Array
     field :published,           :type => Boolean, :default => false
@@ -40,7 +41,8 @@ module Locomotive
     ## validations ##
     validates_presence_of     :site, :title, :slug
     validates_uniqueness_of   :slug, :scope => [:site_id, :parent_id]
-    validates_exclusion_of    :slug, :in => Locomotive.config.reserved_slugs, :if => Proc.new { |p| p.depth == 0 }
+    validates_uniqueness_of   :handle, :allow_blank => true
+    validates_exclusion_of    :slug, :in => Locomotive.config.reserved_slugs, :if => Proc.new { |p| p.depth <= 1 }
 
     ## named scopes ##
     scope :latest_updated,      :order_by => [[:updated_at, :desc]], :limit => Locomotive.config.ui.latest_entries_nb
@@ -48,6 +50,7 @@ module Locomotive
     scope :not_found,           :where => { :slug => '404', :depth => 0 }
     scope :published,           :where => { :published => true }
     scope :fullpath,            lambda { |fullpath| { :where => { :fullpath => fullpath } } }
+    scope :handle,              lambda { |handle| { :where => { :handle => handle } } }
     scope :minimal_attributes,  :only => %w(title slug fullpath position depth published templatized redirect listed parent_id created_at updated_at)
 
     ## methods ##

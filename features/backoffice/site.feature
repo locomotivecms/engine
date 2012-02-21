@@ -10,7 +10,7 @@ Background:
 Scenario: Site settings are not accessible for non authenticated accounts
   Given I am not authenticated
   When I go to the site settings
-  Then I should see "Log in"
+  Then I should see "You need to sign in or sign up before continuing"
 
 Scenario: Add a new site
   Given I go to the account settings

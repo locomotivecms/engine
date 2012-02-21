@@ -37,6 +37,14 @@ module Locomotive
       end
     end
 
+    def locale_picker_link
+      if current_site.locales.size > 1 && localized?
+        content_tag :div, render('locomotive/shared/locale_picker_link'), :class => 'action'
+      else
+        nil
+      end
+    end
+
     def flash_message
       if not flash.empty?
         first_key = flash.keys.first

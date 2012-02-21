@@ -21,4 +21,7 @@ class Locomotive.Models.Page extends Backbone.Model
       delete hash['editable_elements']
       hash.editable_elements = @get('editable_elements').toJSONForSave() if @get('editable_elements')? && @get('editable_elements').length > 0
 
+      delete hash['target_klass_name']
+      hash.target_klass_name = @get('target_klass_name') if @get('templatized') == true
+
 class Locomotive.Models.PagesCollection extends Backbone.Collection

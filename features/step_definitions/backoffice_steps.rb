@@ -1,7 +1,7 @@
 ### Authentication
 
 Given /^I am not authenticated$/ do
-  visit('/admin/sign_out')
+  visit('/locomotive/sign_out')
 end
 
 Given /^I am an authenticated "([^"]*)"$/ do |role|

@@ -37,11 +37,11 @@ PATH
       carrierwave-mongoid (~> 0.1.3)
       cells (~> 3.8.0)
       codemirror-rails (~> 2.21)
-      custom_fields (~> 2.0.0.rc3)
+      custom_fields (~> 2.0.0.rc5)
       devise (~> 1.5.3)
       dragonfly (~> 0.9.8)
       flash_cookie_session (~> 1.1.1)
-      fog (~> 1.0.0)
+      fog (~> 1.1.2)
       formtastic (~> 2.0.2)
       haml (~> 3.1.4)
       highline (~> 1.6.2)
@@ -67,7 +67,6 @@ GEM
   remote: http://rubygems.org/
   specs:
     RedCloth (4.2.9)
-    ZenTest (4.6.2)
     actionmailer (3.2.1)
       actionpack (= 3.2.1)
       mail (~> 2.4.0)
@@ -99,8 +98,6 @@ GEM
       multi_json (~> 1.0)
     addressable (2.2.6)
     arel (3.0.0)
-    autotest (4.4.6)
-      ZenTest (>= 4.4.1)
     bcrypt-ruby (3.0.1)
     bson (1.5.2)
     bson_ext (1.5.2)
@@ -125,7 +122,7 @@ GEM
     childprocess (0.3.0)
       ffi (~> 1.0.6)
     chunky_png (1.2.5)
-    codemirror-rails (2.21)
+    codemirror-rails (2.21.1)
       railties (~> 3.0)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
@@ -154,25 +151,25 @@ GEM
       rack
     ejs (1.0.0)
     erubis (2.7.0)
-    excon (0.7.12)
+    excon (0.9.5)
     execjs (1.3.0)
       multi_json (~> 1.0)
-    factory_girl (2.2.0)
-      activesupport
-    factory_girl_rails (1.3.0)
-      factory_girl (~> 2.2.0)
+    factory_girl (2.5.2)
+      activesupport (>= 2.3.9)
+    factory_girl_rails (1.6.0)
+      factory_girl (~> 2.5.0)
       railties (>= 3.0.0)
     ffi (1.0.11)
     flash_cookie_session (1.1.1)
       rails (~> 3.0)
-    fog (1.0.0)
+    fog (1.1.2)
       builder
-      excon (~> 0.7.3)
+      excon (~> 0.9.0)
       formatador (~> 0.2.0)
       mime-types
       multi_json (~> 1.0.3)
       net-scp (~> 1.0.4)
-      net-ssh (~> 2.1.4)
+      net-ssh (>= 2.1.3)
       nokogiri (~> 1.5.0)
       ruby-hmac
     formatador (0.2.1)
@@ -181,7 +178,6 @@ GEM
     fssm (0.2.8.1)
     gherkin (2.7.6)
       json (>= 1.4.6)
-    growl-glue (1.0.7)
     haml (3.1.4)
     highline (1.6.11)
     hike (1.2.1)
@@ -225,7 +221,7 @@ GEM
     multi_xml (0.4.1)
     net-scp (1.0.4)
       net-ssh (>= 1.99.1)
-    net-ssh (2.1.4)
+    net-ssh (2.2.2)
     nokogiri (1.5.0)
     orm_adapter (0.0.6)
     pickle (0.4.10)
@@ -264,23 +260,23 @@ GEM
       json (~> 1.4)
     responders (0.6.5)
     rmagick (2.12.2)
-    rspec (2.6.0)
-      rspec-core (~> 2.6.0)
-      rspec-expectations (~> 2.6.0)
-      rspec-mocks (~> 2.6.0)
+    rspec (2.8.0)
+      rspec-core (~> 2.8.0)
+      rspec-expectations (~> 2.8.0)
+      rspec-mocks (~> 2.8.0)
     rspec-cells (0.1.2)
       cells (~> 3.4)
       rails (~> 3.0)
       rspec-rails (~> 2.2)
-    rspec-core (2.6.4)
-    rspec-expectations (2.6.0)
+    rspec-core (2.8.0)
+    rspec-expectations (2.8.0)
       diff-lcs (~> 1.1.2)
-    rspec-mocks (2.6.0)
-    rspec-rails (2.6.1)
-      actionpack (~> 3.0)
-      activesupport (~> 3.0)
-      railties (~> 3.0)
-      rspec (~> 2.6.0)
+    rspec-mocks (2.8.0)
+    rspec-rails (2.8.1)
+      actionpack (>= 3.0)
+      activesupport (>= 3.0)
+      railties (>= 3.0)
+      rspec (~> 2.8.0)
     ruby-hmac (0.4.0)
     rubyzip (0.9.5)
     sanitize (2.0.3)
@@ -323,8 +319,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  ZenTest
-  autotest
   capybara
   coffee-rails (~> 3.2.2)
   compass!
@@ -332,14 +326,13 @@ DEPENDENCIES
   cucumber-rails
   custom_fields!
   database_cleaner
-  factory_girl_rails (~> 1.3.0)
-  growl-glue
+  factory_girl_rails (~> 1.6.0)
   launchy
   locomotive_cms!
   mocha (= 0.9.12)
   pickle
   rspec-cells
-  rspec-rails (= 2.6.1)
+  rspec-rails (~> 2.8.0)
   sass-rails (~> 3.2.4)
   shoulda-matchers
   uglifier (~> 1.2.3)

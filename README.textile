@@ -11,8 +11,8 @@ If we have to give a couple of features to describe our application, there will 
 * nice looking UI (see http://www.locomotivecms.com for some screenshots)
 * flexible content types
 * content localization out of the box
-* playing smoothly with Heroku and MongoHQ
-* inline editing (beta)
+* playing smoothly with Heroku, Bushido and MongoHQ
+* inline editing (wip)
 * API
 
 h2. Strategy / Development status
@@ -24,8 +24,8 @@ h2. Gems
 
 Here is a short list of main gems / technologies used in the application.
 
-* Rails 3.1 (3.2 soon)
-* Mongoid 2.4.2 (with MongoDB 2.0)
+* Rails 3.2
+* Mongoid 2.4.3 (with MongoDB 2.0)
 * Liquid
 * Devise
 * Carrierwave
@@ -40,7 +40,7 @@ See the "official website":http://www.locomotivecms.com
 
 h2. Upgrading
 
-If you wish to upgrade your locomotive install from an older version to the current 1.0.0rc1 then "please refer to the upgrade guide":http://www.locomotivecms.com/support/howto/upgrade
+We work on the procedure to upgrade from a previous version of the engine (below the 2.0.0)
 
 h2. Community
 

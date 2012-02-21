@@ -10,23 +10,13 @@ Locomotive.configure do |config|
     # and the multi_site_domain value (ex: website_1.locomotivehosting.com).
     multi_sites.domain = 'engine.dev' #'myhostingplatform.com'
     # multi_sites.domain = 'example.com'
+    # multi_sites.domain = 'locomotivehosting.fr'
 
     # define the reserved subdomains
     # Ex:
     multi_sites.reserved_subdomains = %w(www admin email blog webmail mail support help site sites)
   end
   # config.multi_sites = false
-
-  # configure the hosting target for the production environment. Locomotive can be installed in:
-  # - your own server
-  # - Heroku (you need to create an account in this case)
-  # - Bushi.do (see the bushi.do website for more explanations)
-  #
-  # the possible options are: server, heroku, bushido or auto (default)
-  # if you select 'auto', Locomotive will look after specific ENV variables to check
-  # the matching platform (Heroku and Bushido set their own ENV variables).
-  #
-  config.hosting = :server
 
   # In case you host Locomotive in Heroku, the engine uses the heroku api to add / remove domains.
   # there are 2 ways of passing heroku credentials to Locomotive
@@ -65,6 +55,9 @@ Locomotive.configure do |config|
   # in Liquid templates, extending the assigns used while rendering.
   # follow the Dependency Injection pattern
   # config.context_assign_extensions = {}
+
+  # add extra classes other than the defined content types among a site which will potentially used by the templatized pages.
+  config.models_for_templatization = %w(Foo)
 
   # Rack-cache settings, mainly used for the inline resizing image module. Default options:
   # config.rack_cache = {

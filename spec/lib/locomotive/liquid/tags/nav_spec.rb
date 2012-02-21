@@ -96,8 +96,18 @@ describe Locomotive::Liquid::Tags::Nav do
       render_nav('site', {}, 'icon: after').should match /<li id="child-1-link" class="link first"><a href="\/child_1">Child #1<span><\/span><\/a><\/li>/
     end
 
-    it 'assign a different dom id' do
+    it 'assigns a different dom id' do
       render_nav('site', {}, 'id: "main-nav"').should match /<ul id="main-nav">/
+    end
+
+    it 'assigns a class' do
+      render_nav('site', {}, 'class: "nav"').should match /<ul id="nav" class="nav">/
+    end
+
+    it 'assigns a class other than "on" for a selected item' do
+      (page = @home.children.last.children.first).stubs(:parent).returns(@home.children.last)
+      output = render_nav 'parent', { :page => page }, 'active_class: "active"'
+      output.should match /<li id="sub-child-1-link" class="link active first">/
     end
 
     it 'excludes entries based on a regexp' do

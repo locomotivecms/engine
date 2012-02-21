@@ -2,22 +2,18 @@ require 'spec_helper'
 
 describe 'Locomotive::Middlewares::SeoTrailingSlash' do
 
-  before(:all) do
-    Dummy::Application.instance.instance_variable_set(:@app, nil) # re-initialize the stack
-  end
-
   it 'does not process the "/" url' do
     get '/'
     response.status.should_not be(301)
   end
 
-  it 'does not process the "/admin/" url' do
-    get '/admin/'
+  it 'does not process the "/locomotive/" url' do
+    get '/locomotive/'
     response.status.should_not be(301)
   end
 
-  it 'does not process the "/admin/*" urls' do
-    get '/admin/login'
+  it 'does not process the "/locomotive/*" urls' do
+    get '/locomotive/login'
     response.status.should_not be(301)
   end
 

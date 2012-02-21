@@ -17,27 +17,27 @@ module NavigationHelpers
     when /logout/
       destroy_locomotive_account_session_url
     when /pages( list)?/
-      locomotive_pages_path
+      pages_path
     when /new page/
-      new_locomotive_page_path
+      new_page_path
     when /"(.*)" edition page/
       page = Site.first.pages.where(:slug => $1).first
-      edit_locomotive_page_path(page)
+      edit_page_path(page)
     when /theme assets/
-      locomotive_theme_assets_path
+      theme_assets_path
     when /site settings/
-      edit_locomotive_current_site_path
+      edit_current_site_path
     when /account settings/
-      edit_locomotive_my_account_path
+      edit_my_account_path
     when /the "(.*)" model list page/
       content_type = Locomotive::Site.first.content_types.where(:name => $1).first
-      locomotive_contents_path(content_type.slug)
+      content_entries_path(content_type.slug)
     when /the "(.*)" model creation page/
       content_type = Locomotive::Site.first.content_types.where(:name => $1).first
-      new_locomotive_content_path(content_type.slug)
+      new_content_entry_path(content_type.slug)
     when /the "(.*)" model edition page/
       content_type = Locomotive::Site.first.content_types.where(:name => $1).first
-      edit_locomotive_content_type_path(content_type)
+      edit_content_entries_path(content_type)
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
