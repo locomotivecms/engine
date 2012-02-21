@@ -19,9 +19,6 @@ module Locomotive
           ## indexes ##
           index :position
           index [:depth.asc, :position.asc]
-
-          ## scopes ##
-          default_scope :where => {} # disable the default_scope from the Mongoid::Tree gem
         end
 
         module ClassMethods
@@ -36,7 +33,7 @@ module Locomotive
           # @return [ Array ] The first array of pages (depth = 0)
           #
           def quick_tree(site, minimal_attributes = true)
-            pages = (minimal_attributes ? site.pages.minimal_attributes : site.pages).order_by([:depth.asc, :position.asc]).to_a
+            pages = (minimal_attributes ? site.pages.unscoped.minimal_attributes : site.pages.unscoped).order_by([:depth.asc, :position.asc]).to_a
 
             tmp = []
 
