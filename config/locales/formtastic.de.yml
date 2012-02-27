@@ -72,6 +72,7 @@ de:
         slug: "Du musst die Dateiendung nicht angeben (.css or .js)"
         edit:
           source: "Du kannst diese Datei durch eine Datei mit gleicher Dateiendung ersetzen"
+        compile: "Kompiliere .scss nach .css oder .coffee nach .js"
       asset:
         source: "Es werden alle Datei-Typen akzeptiert."
         edit:

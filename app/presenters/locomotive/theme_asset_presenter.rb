@@ -4,11 +4,11 @@ module Locomotive
     delegate :content_type, :folder, :plain_text, :to => :source
 
     def local_path
-      self.source.local_path(true)
+      self.source.local_path_without_root
     end
 
     def url
-      self.source.source.url
+      self.source.select_source.url
     end
 
     def size
