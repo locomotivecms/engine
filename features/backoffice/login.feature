@@ -1,4 +1,4 @@
-Feature: Login
+Feature: Log in
   In order to access locomotive admin panel
   As an administrator
   I want to log in

@@ -3,15 +3,15 @@
 # helps create a theme asset
 def create_plain_text_asset(name, type)
   asset = FactoryGirl.build(:theme_asset, {
-    :site => @site,
-    :plain_text_name => name,
-    :plain_text => 'Lorem ipsum',
-    :plain_text_type => type,
-    :performing_plain_text => true
+    :site                   => @site,
+    :plain_text_name        => name,
+    :plain_text             => 'Lorem ipsum',
+    :plain_text_type        => type,
+    :performing_plain_text  => true
   })
+
   # asset.should be_valid
   asset.save!
-
 end
 
 # creates various theme assets
@@ -32,6 +32,12 @@ end
 
 
 # other stuff
+
+# change the template
+# When /^I change the theme asset code to "([^"]*)"$/ do |page_template|
+#   page.evaluate_script "window.application_view.view.model.set({ 'raw_template': '#{page_template}' })"
+# end
+
 
 Then /^I should see "([^"]*)" as theme asset code$/ do |code|
   find(:css, "#theme_asset_plain_text").text.should == code

@@ -81,6 +81,8 @@ class Locomotive.Views.Shared.Fields.HasManyView extends Backbone.View
   update_entry: (entry) ->
     entry_html = $(_.detect @$('> ul > li'), (_entry_html) -> $(_entry_html).data('data-entry-id') == entry.id)
 
+    @collection.get(entry.id).set(entry.attributes) # sync
+
     new_entry_html = $(@entry_template()(label: entry.get('_label')))
     new_entry_html.data('data-entry-id', entry.id)
 

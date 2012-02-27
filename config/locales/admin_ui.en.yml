@@ -94,7 +94,7 @@ en:
 
     sessions:
       new:
-        title: Login
+        title: Log in
         link: "I forgot my password"
         email: "Email"
         password: "Password"

@@ -16,7 +16,7 @@ module Locomotive
     mount_uploader :source, ThemeAssetUploader, :mount_on => :source_filename
 
     ## associations ##
-    referenced_in :site, :class_name => 'Locomotive::Site'
+    belongs_to :site, :class_name => 'Locomotive::Site'
 
     ## indexes ##
     index :site_id

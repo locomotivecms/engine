@@ -18,13 +18,13 @@ Given /^a page named "([^"]*)" with the template:$/ do |page_slug, template|
 end
 
 # change the title
-When /^I change the page title with "([^"]*)"$/ do |page_title|
+When /^I change the page title to "([^"]*)"$/ do |page_title|
   page.evaluate_script "window.prompt = function() { return '#{page_title}'; }"
   page.find('h2 a.editable').click
 end
 
 # change the template
-When /^I change the page template with "([^"]*)"$/ do |page_template|
+When /^I change the page template to "([^"]*)"$/ do |page_template|
   page.evaluate_script "window.application_view.view.model.set({ 'raw_template': '#{page_template}' })"
 end
 

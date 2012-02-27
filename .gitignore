@@ -41,4 +41,5 @@ spec/dummy/public/sites
 /spec/dummy/tmp/**/*
 app/assets/javascripts/old/
 app/assets/stylesheets/old/
+.rbenv-gemsets
 
