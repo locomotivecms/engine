@@ -67,6 +67,19 @@ de:
       index:
         is_required: ist erforderlich
         default_label: Feld-Name
+        has_many:
+          empty: Die Liste ist leer
+          new_entry: + Neuer Eintrag
+        many_to_many:
+          empty: Die Liste ist leer. Wählen Sie einen Eintrag unten aus.
+
+      form:
+        empty: "Bisher wurde kein Feld definiert."
+        required: Pflichtfeld
+        optional: Optional
+        default_label: Feldname
+        select_options:
+          ask_name: "Geben Sie den Namen der Auswahloption an."
 
 
     sessions:
@@ -229,10 +242,10 @@ de:
         new: Neuer Baustein
       new:
         title: Neuer Baustein
-        help: "Erstelle deine eigenen Baustein (Projekte, Leute, ...usw). Dein Baustein muss mindestens ein Feld haben. Das erste Feld ist dabei immer verpflichtend auszufüllen."
+        help: "Erstellen Sie ihren eigenen Baustein (Projekte, Leute, ...usw). Der Baustein muss mindestens ein Feld haben. Das erste Feld ist dabei immer verpflichtend auszufüllen."
       edit:
         title: Vorlage bearbeiten
-        help: "Deine Vorlage muss mindestens ein Feld haben. Das erste Feld ist dabei immer verpflichtend auszufüllen."
+        help: "Ihre Vorlage muss mindestens ein Feld haben. Das erste Feld ist dabei immer verpflichtend auszufüllen."
         show_items: zeige Elemente
         new_item: neues Element
       form:
