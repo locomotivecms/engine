@@ -34,13 +34,12 @@ end
 # other stuff
 
 # change the template
-# When /^I change the theme asset code to "([^"]*)"$/ do |page_template|
-#   page.evaluate_script "window.application_view.view.model.set({ 'raw_template': '#{page_template}' })"
-# end
+When /^I change the theme asset code to "([^"]*)"$/ do |plain_text|
+  page.evaluate_script "window.application_view.view.editor.setValue('#{plain_text}')"
+end
 
-
-Then /^I should see "([^"]*)" as theme asset code$/ do |code|
-  find(:css, "#theme_asset_plain_text").text.should == code
+Then /^I should see "([^"]*)" as the theme asset code$/ do |code|
+  find(:css, "#theme_asset_plain_text").value.should == code
 end
 
 Then /^I should see a delete image button$/ do

@@ -1,7 +1,7 @@
 module Locomotive
   class ThemeAssetPresenter < BasePresenter
 
-    delegate :content_type, :folder, :to => :source
+    delegate :content_type, :folder, :plain_text, :to => :source
 
     def local_path
       self.source.local_path(true)
@@ -24,7 +24,16 @@ module Locomotive
     end
 
     def included_methods
-      super + %w(content_type folder local_path url size dimensions updated_at)
+      default_list = %w(content_type folder local_path url size dimensions updated_at)
+      default_list += %w(plain_text) if plain_text?
+      super + default_list
+    end
+
+    private
+
+    def plain_text?
+      # FIXME: self.options contains all the options passed by the responder
+      self.options[:template] == 'update' && self.source.errors.empty? && self.source.stylesheet_or_javascript?
     end
 
   end

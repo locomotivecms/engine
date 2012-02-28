@@ -99,6 +99,8 @@ module Locomotive
         :tempfile => StringIO.new(sanitized_source),
         :filename => "#{self.plain_text_name}.#{self.stylesheet? ? 'css' : 'js'}"
       })
+
+      @plain_text = sanitized_source # no need to reset the plain_text instance variable to have the last version
     end
 
     def to_liquid
@@ -106,7 +108,7 @@ module Locomotive
     end
 
     def as_json(options = {})
-      Locomotive::ThemeAssetPresenter.new(self).as_json
+      Locomotive::ThemeAssetPresenter.new(self, options).as_json
     end
 
     def self.all_grouped_by_folder(site)
