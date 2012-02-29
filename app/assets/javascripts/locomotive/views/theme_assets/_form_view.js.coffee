@@ -49,7 +49,7 @@ class Locomotive.Views.ThemeAssets.FormView extends Locomotive.Views.Shared.Form
           @$('input#theme_asset_performing_plain_text').val(false)
       else
         @$('#file-selector').slideUp 'normal', =>
-          @$('#text-selector').slideDown()
+          @$('#text-selector').slideDown 'normal', => @editor.refresh()
           @model.set(performing_plain_text: true)
           @$('#theme_asset_performing_plain_text').val(true)
 
