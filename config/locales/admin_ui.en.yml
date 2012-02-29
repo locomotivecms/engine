@@ -49,7 +49,7 @@ en:
         update: Save
         send: Send
       footer:
-        who_is_behind: "LocomotiveCMS is developed by %{development} and designed by <a href=\"http://www.sachagreif.com\">Sacha Greif</a>"
+        who_is_behind: "LocomotiveCMS is developed by %{development} and designed by <a href=\"http://www.sachagreif.com\">Sacha Greif</a> &mdash; <small>version</small> %{version}"
 
     errors:
       "500":

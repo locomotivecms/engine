@@ -49,7 +49,7 @@ fr:
         site: Site
         theme_assets: Fichiers Thème
       footer:
-        who_is_behind: "Produit développé par %{development} et désigné par <a href=\"http://www.sachagreif.com\">Sacha Greif</a>"
+        who_is_behind: "Produit développé par %{development} et désigné par <a href=\"http://www.sachagreif.com\">Sacha Greif</a> &mdash; <small>version</small> %{version}"
       form_actions:
         back: Retour sans sauvegarder
         create: Créer
