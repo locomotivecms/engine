@@ -40,6 +40,10 @@ de:
         site: Mandant
         theme_assets: Dateien
         bookings: Buchungen
+      form:
+        change_file: Ändern
+        delete_file: Löschen
+        cancel: Abbrechen
       footer:
         who_is_behind: "Dienst entwickelt von %{development} und entworfen von <a href=\"http://www.sachagreif.com\">Sacha Greif</a>"
       form_actions:
