@@ -13,6 +13,14 @@ Given /^a snippet named "([^"]*)" with the template:$/ do |name, template|
   @snippet = create_snippet(name, template)
 end
 
+When /^I change the snippet template to "([^"]*)"$/ do |code|
+  page.evaluate_script "window.application_view.view.editor.setValue('#{code}')"
+end
+
+# Then /^I should see "([^"]*)" as the snippet template$/ do |code|
+#   find(:css, "#theme_asset_plain_text").value.should == code
+# end
+
 # checks to see if a string is in the slug
 Then /^I should have "(.*)" in the (.*) snippet/ do |content, snippet_slug|
   snippet = @site.snippets.where(:slug => snippet_slug).first

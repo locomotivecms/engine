@@ -55,7 +55,7 @@ end
 When %r{^I change the presentation of the "([^"]*)" model by grouping items by "([^"]*)"$} do |name, field|
   content_type = Locomotive::ContentType.where(:name => name).first
   field = content_type.entries_custom_fields.detect { |f| f.label == field }
-  content_type.group_by_field_name = field._name
+  content_type.group_by_field_id = field._id
   content_type.save.should be_true
 end
 

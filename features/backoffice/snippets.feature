@@ -15,7 +15,7 @@ Background:
   "yield"
   """
 
-Scenario: Creating a Snippet
+Scenario: Creating a snippet
   When I go to theme assets
   And I follow "new snippet"
   And I fill in "Name" with "Banner"
@@ -25,14 +25,15 @@ Scenario: Creating a Snippet
   Then I should see "Snippet was successfully created."
   And I should have "banner" in the banner snippet
 
-Scenario: Updating a Snippet that includes another snippet
+@javascript
+Scenario: Updating a snippet that includes another snippet
   Given a snippet named "other" with the template:
   """
   "other"
   """
   When I go to theme assets
   And I follow "yield"
-  And I fill in "snippet_template" with "{% include 'other' %}"
+  And I change the snippet template to "{% include other %}"
   And I press "Save"
   Then I should see "Snippet was successfully updated."
-  And I should have "{% include 'other' %}" in the yield snippet
+  And I should have "{% include other %}" in the yield snippet

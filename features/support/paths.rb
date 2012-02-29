@@ -35,9 +35,9 @@ module NavigationHelpers
     when /the "(.*)" model creation page/
       content_type = Locomotive::Site.first.content_types.where(:name => $1).first
       new_content_entry_path(content_type.slug)
-    when /the "(.*)" model edition page/
-      content_type = Locomotive::Site.first.content_types.where(:name => $1).first
-      edit_content_entries_path(content_type)
+    # when /the "(.*)" model edition page/
+    #   content_type = Locomotive::Site.first.content_types.where(:name => $1).first
+    #   edit_content_entry_path(content_type)
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:

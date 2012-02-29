@@ -30,7 +30,6 @@ Given /^I have an image theme asset named "([^"]*)"$/ do |name|
   @asset.save!
 end
 
-
 # other stuff
 
 # change the template
