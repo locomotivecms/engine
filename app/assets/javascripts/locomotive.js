@@ -14,6 +14,7 @@
 //= require codemirror/utils/overlay
 //= require codemirror/modes/css
 //= require codemirror/modes/javascript
+//= require codemirror/modes/coffeescript
 //= require codemirror/modes/xml
 //= require codemirror/modes/htmlmixed
 //= require locomotive/vendor
