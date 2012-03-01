@@ -64,14 +64,16 @@ class Locomotive.Views.Pages.FormView extends Locomotive.Views.Shared.FormView
 
   enable_liquid_editing: ->
     input = @$('#page_raw_template')
-    @editor = CodeMirror.fromTextArea input.get()[0],
-      mode:             'liquid'
-      autoMatchParens:  false
-      lineNumbers:      false
-      passDelay:        50
-      tabMode:          'shift'
-      theme:            'default'
-      onChange: (editor) => @model.set(raw_template: editor.getValue())
+
+    if input.size() > 0
+      @editor = CodeMirror.fromTextArea input.get()[0],
+        mode:             'liquid'
+        autoMatchParens:  false
+        lineNumbers:      false
+        passDelay:        50
+        tabMode:          'shift'
+        theme:            'default'
+        onChange: (editor) => @model.set(raw_template: editor.getValue())
 
   after_inputs_fold: ->
     @editor.refresh()
