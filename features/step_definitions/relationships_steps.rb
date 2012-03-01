@@ -15,7 +15,45 @@ Given %r{^I have an? "([^"]*)" model which has many "([^"]*)"$} do |parent_model
     :class_name     => @child_model.klass_with_custom_fields(:entries).to_s,
     :inverse_of     => parent_model.singularize.downcase
   })
+
   @parent_model.save
+end
+
+Given %r{^I set up a has_many relationship between "([^"]*)" and "([^"]*)"$} do |source_name, target_name|
+  source_model = @site.content_types.where(:name => source_name).first
+  target_model = @site.content_types.where(:name => target_name).first
+
+  source_model.entries_custom_fields.build({
+    :label          => target_name,
+    :type           => 'has_many',
+    :class_name     => target_model.klass_with_custom_fields(:entries).to_s,
+    :inverse_of     => source_name.singularize.downcase
+  })
+
+  source_model.save
+end
+
+Given %r{^I set up a many_to_many relationship between "([^"]*)" and "([^"]*)"$} do |first_name, last_name|
+  first_model = @site.content_types.where(:name => first_name).first
+  last_model  = @site.content_types.where(:name => last_name).first
+
+  first_model.entries_custom_fields.build({
+    :label          => last_name,
+    :type           => 'many_to_many',
+    :class_name     => last_model.klass_with_custom_fields(:entries).to_s,
+    :inverse_of     => first_name.singularize.downcase
+  })
+
+  first_model.save
+
+  last_model.entries_custom_fields.build({
+    :label          => first_name,
+    :type           => 'many_to_many',
+    :class_name     => first_model.klass_with_custom_fields(:entries).to_s,
+    :inverse_of     => last_name.singularize.downcase
+  })
+
+  last_model.save
 end
 
 Then /^I should be able to view a paginaed list of a has many association$/ do

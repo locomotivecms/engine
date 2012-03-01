@@ -40,6 +40,8 @@ Capybara.configure do |config|
   ensure_host_resolution(config.app_host)
 end
 
+Capybara.default_wait_time = 5
+
 # Capybara.javascript_driver = :rack_test
 
 # Stop endless errors like

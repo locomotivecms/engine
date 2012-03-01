@@ -19,6 +19,7 @@ Scenario: Creating a valid page
   And I fill in "page_title" with "Test"
   And I fill in "Slug" with "test"
   And I select "Home page" from "Parent"
+  And I sync my form with my backbone model because of Firefox
   And I press "Create"
   Then I should see "Page was successfully created."
   And I should have "{% extends 'parent' %}" in the test page

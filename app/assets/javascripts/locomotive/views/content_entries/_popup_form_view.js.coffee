@@ -21,8 +21,6 @@ class Locomotive.Views.ContentEntries.PopupFormView extends Locomotive.Views.Con
         entry = new Locomotive.Models.ContentEntry(response)
         @options.parent_view.insert_or_update_entry(entry)
         @close()
-      on_error: =>
-        @shake()
 
   create_dialog: ->
     @dialog = $(@el).dialog
@@ -56,10 +54,8 @@ class Locomotive.Views.ContentEntries.PopupFormView extends Locomotive.Views.Con
 
   close: (event) ->
     event.stopPropagation() & event.preventDefault() if event?
+    @clear_errors()
     $(@el).dialog('close')
-
-  shake: ->
-    $(@el).parents('.ui-dialog').effect('shake', { times: 4 }, 100)
 
   center: ->
     $(@el).dialog('option', 'position', 'center')
@@ -72,6 +68,12 @@ class Locomotive.Views.ContentEntries.PopupFormView extends Locomotive.Views.Con
       super()
     else
       @refresh()
+
+  enable_has_many_fields: ->
+    # disabled in a popup form
+
+  enable_many_to_many_fields: ->
+    # disabled in a popup form
 
   tinyMCE_settings: ->
     window.Locomotive.tinyMCE.popupSettings

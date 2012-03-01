@@ -8,24 +8,24 @@ module HtmlSelectorsHelpers
   def selector_for(locator)
     case locator
 
-    when "the page"
-      "html > body"
+    when 'the page'
+      'html > body'
 
-    when "the main form"
-      "form.formtastic"
-    
-    when "the list of added items"
-      ".has-many-selector li.item.added"
-    
-    when "the list of items"
-      ".has-many-selector"
-      
-    when "the has many selector"
-      ".has-many-selector ul li.template"
+    when 'the main form'
+      'form.formtastic'
+
+    when 'the dialog popup'
+      '.ui-dialog'
+
+    when 'the list of entries'
+      'li.input.relationship'
 
     when 'the role'
       '.role'
-    
+
+    when 'the submit button'
+      'form.formtastic #local-actions-bottom-bar input[type=submit]'
+
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #

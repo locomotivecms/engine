@@ -10,7 +10,6 @@ def create_plain_text_asset(name, type)
     :performing_plain_text  => true
   })
 
-  # asset.should be_valid
   asset.save!
 end
 
@@ -25,7 +24,7 @@ Given /^a stylesheet asset named "([^"]*)"$/ do |name|
 end
 
 Given /^I have an image theme asset named "([^"]*)"$/ do |name|
-  @asset = FactoryGirl.create(:theme_asset, :site => @site, :source => File.open(Rails.root.join('spec', 'fixtures', 'assets', '5k.png')))
+  @asset = FactoryGirl.create(:theme_asset, :site => @site, :source => File.open(Rails.root.join('..', 'fixtures', 'assets', '5k.png')))
   @asset.source_filename = name
   @asset.save!
 end
@@ -41,10 +40,10 @@ Then /^I should see "([^"]*)" as the theme asset code$/ do |code|
   find(:css, "#theme_asset_plain_text").value.should == code
 end
 
-Then /^I should see a delete image button$/ do
-  page.has_css?("ul.theme-assets li .more a.remove").should be_true
+Then /^I should see a delete link$/ do
+  page.has_css?(".box ul li .more a.remove").should be_true
 end
 
-Then /^I should not see a delete image button$/ do
-  page.has_css?("ul.theme-assets li .more a.remove").should be_false
+Then /^I should not see a delete link$/ do
+  page.has_css?(".box ul li .more a.remove").should be_false
 end

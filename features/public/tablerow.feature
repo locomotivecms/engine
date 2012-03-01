@@ -8,10 +8,10 @@ Background:
     | label         | type      | required  |
     | Name          | string    | true      |
   And I have entries for "Projects" with
-    | name        |
-    | Project 1   |
-    | Project 2   |
-    | Project 3   |
+    | name        | _position |
+    | Project 1   | 1         |
+    | Project 2   | 2         |
+    | Project 3   | 3         |
 
 Scenario: Use the tablerow tag
   Given a page named "project-table" with the template:

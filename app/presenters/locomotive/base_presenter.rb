@@ -13,6 +13,7 @@ class Locomotive::BasePresenter
     @source   = object
     @options  = options || {}
     @depth    = options[:depth] || 0
+    @ability  = options[:ability]
 
     if @options[:current_account] && @options[:current_site]
       @ability = Locomotive::Ability.new @options[:current_account], @options[:current_site]

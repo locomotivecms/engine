@@ -5,15 +5,16 @@ Feature: Create and manage has many relationships
 
 Background:
   Given I have the site: "test site" set up
-  And I have a custom model named "Projects" with
-    | label       | type      | required    | target  |
-    | Name        | string    | true        |         |
-    | Description | text      | false       |         |
   And I have a custom model named "Clients" with
     | label       | type      | required    | target   |
     | Name        | string    | true        |          |
     | Description | string    | false       |          |
-    | Projects    | has_many  | false       | Projects |
+  And I have a custom model named "Projects" with
+    | label       | type        | required    | target  |
+    | Name        | string      | true        |         |
+    | Description | text        | false       |         |
+    | Client      | belongs_to  | false       | Clients |
+  And I set up a has_many relationship between "Clients" and "Projects"
   And I have entries for "Clients" with
     | name              | description                |
     | Alpha, Inc        | Description for Alpha, Inc |
@@ -28,19 +29,33 @@ Background:
 
 @javascript
 Scenario: I view a client without any projects
-  When I go to the "Clients" model list page
+  When I go to the list of "Clients"
   And I follow "Alpha, Inc"
-  And I wait until the has many selector is visible
-  Then I should see "Empty" within the list of items
+  Then I should see "The list is empty" within the list of entries
 
 @javascript
 Scenario: I add a project to a client
-  When I go to the "Clients" model list page
+  When I go to the list of "Projects"
+  And I follow "Fun project"
+  And I select "Alpha, Inc" from "Client"
+  And I press "Save"
+  Then I should see "Entry was successfully updated."
+  When I go to the list of "Clients"
+  And I follow "Alpha, Inc"
+  Then I should see "Fun project" within the list of entries
+
+@javascript
+Scenario: I add a project to a client from the client page
+  When I go to the list of "Clients"
   And I follow "Beta, Inc"
-  And I wait until the has many selector is visible
-  Then "Fun project" should be an option for "label"
-  And I press "+ add"
-  When I press "Save"
-  And I wait until the has many selector is visible
-  Then I should see "Fun project" within the list of added items
-  And "Fun project" should not be an option for "label"
+  And I follow "+ Add a new entry"
+  Then I should see "Projects — new entry"
+  When I press "Create" within the dialog popup
+  Then I should see "Entry was not created."
+  When I fill in "Name" with "Project X" within the dialog popup
+  And I fill in "Description" with "Lorem ipsum" within the dialog popup
+  And I sync my form with my backbone model because of Firefox
+  And I press "Create" within the dialog popup
+  Then I should see "Entry was successfully created."
+  And I should see "Project X" within the list of entries
+  And "p.empty" should not be visible within the list of entries

@@ -13,6 +13,7 @@ Background:
     When I go to theme assets
     Then I should see "Log in"
 
+  @javascript
   Scenario: Accessing theme assets as an Admin
     Given I am an authenticated "admin"
     When I go to theme assets
@@ -22,8 +23,9 @@ Background:
     And I should see "Style and javascript"
     And I should see "Images"
     And I should see "dog.png"
-    And I should see a delete image button
+    And I should see a delete link
 
+  @javascript
   Scenario: Accessing theme assets as a Designer
     Given I am an authenticated "designer"
     When I go to theme assets
@@ -33,8 +35,9 @@ Background:
     And I should see "Style and javascript"
     And I should see "Images"
     And I should see "dog.png"
-    And I should see a delete image button
+    And I should see a delete link
 
+  @javascript
   Scenario: Accessing theme assets as an Author
     Given I am an authenticated "author"
     When I go to theme assets
@@ -44,4 +47,4 @@ Background:
     And I should not see "Style and javascript"
     And I should see "Images"
     And I should see "dog.png"
-    And I should not see a delete image button
+    And I should not see a delete link

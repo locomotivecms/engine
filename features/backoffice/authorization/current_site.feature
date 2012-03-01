@@ -12,6 +12,7 @@ Background:
     When I go to site settings
     Then I should see "Log in"
 
+  @javascript
   Scenario: Accessing site settings as an Admin
     Given I am an authenticated "admin"
     When I go to site settings
@@ -25,6 +26,7 @@ Background:
     And I should see delete on the "designer"
     And I should see delete on the "author"
 
+  @javascript
   Scenario: Accessing site settings as a Designer
     Given I am an authenticated "designer"
     When I go to site settings
@@ -38,6 +40,7 @@ Background:
     And I should not see delete on myself
     And I should see delete on the "author"
 
+  @javascript
   Scenario: Accessing site settings as an Author
     Given I am an authenticated "author"
     When I go to site settings

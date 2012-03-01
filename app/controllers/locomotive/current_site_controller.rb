@@ -28,7 +28,7 @@ module Locomotive
 
     def filter_attributes
       unless can?(:manage, Locomotive::Membership)
-        params[:site].delete(:memberships_attributes)
+        params[:site].delete(:memberships_attributes) if params[:site]
       end
     end
 

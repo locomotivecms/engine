@@ -23,8 +23,12 @@ module Locomotive
       I18n.l(self.source.updated_at, :format => :short)
     end
 
+    def can_be_deleted
+      self.ability.try(:can?, :destroy, self.source)
+    end
+
     def included_methods
-      default_list = %w(content_type folder local_path url size dimensions updated_at)
+      default_list = %w(content_type folder local_path url size dimensions can_be_deleted updated_at)
       default_list += %w(plain_text) if plain_text?
       super + default_list
     end

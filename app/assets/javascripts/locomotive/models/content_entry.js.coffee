@@ -44,7 +44,8 @@ class Locomotive.Models.ContentEntry extends Backbone.Model
 
       _.each @get('has_many_custom_fields'), (field) => # include the has_many relationships
         name = field[0]
-        hash["#{name}_attributes"] = @get(name).toMinJSON()
+        if @get(name).length > 0
+          hash["#{name}_attributes"] = @get(name).toMinJSON()
 
       _.each @get('many_to_many_custom_fields'), (field) => # include the many_to_many relationships
         name = field[0]; setter_name = field[1]

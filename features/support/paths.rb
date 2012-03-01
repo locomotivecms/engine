@@ -21,7 +21,7 @@ module NavigationHelpers
     when /new page/
       new_page_path
     when /"(.*)" edition page/
-      page = Site.first.pages.where(:slug => $1).first
+      page = Locomotive::Site.first.pages.where(:slug => $1).first
       edit_page_path(page)
     when /theme assets/
       theme_assets_path
@@ -29,15 +29,12 @@ module NavigationHelpers
       edit_current_site_path
     when /account settings/
       edit_my_account_path
-    when /the "(.*)" model list page/
+    when /the list of "(.*)"/
       content_type = Locomotive::Site.first.content_types.where(:name => $1).first
       content_entries_path(content_type.slug)
-    when /the "(.*)" model creation page/
+    when /the "(.*)" model edition page/
       content_type = Locomotive::Site.first.content_types.where(:name => $1).first
-      new_content_entry_path(content_type.slug)
-    # when /the "(.*)" model edition page/
-    #   content_type = Locomotive::Site.first.content_types.where(:name => $1).first
-    #   edit_content_entry_path(content_type)
+      edit_content_type_path(content_type)
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:

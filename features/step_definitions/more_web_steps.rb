@@ -14,6 +14,17 @@ When /^I wait until ([^"]*) is visible$/ do |locator|
   page.has_css?(selector_for(locator), :visible => true)
 end
 
+When /^I sync my form with my backbone model because of Firefox$/ do
+  page.execute_script("$(':input').trigger('change')")
+end
+
+Then /^"([^"]*)" should not be visible$/ do |text|
+  begin
+    assert page.find(text).visible? != true
+  rescue Capybara::ElementNotFound
+  end
+end
+
 Then /^"([^"]*)" should( not)? be an option for "([^"]*)"(?: within "([^\"]*)")?$/ do |value, negate, field, selector|
   with_scope(selector) do
     expectation = negate ? :should_not : :should

@@ -19,11 +19,11 @@ Background:
     | Bar project       | Lorem ipsum...          | Design          |
 
 Scenario:
-  When I go to the "Projects" model list page
+  When I go to the list of "Projects"
   Then I should see "My sexy project"
 
 Scenario: Add a new entry
-  When I go to the "Projects" model list page
+  When I go to the list of "Projects"
   And I follow "new entry"
   Then I should see "Projects — new entry"
   When I fill in "Name" with "My other sexy project"
@@ -32,39 +32,39 @@ Scenario: Add a new entry
   Then I should see "Entry was successfully created."
 
 Scenario: Add an invalid entry
-  When I go to the "Projects" model list page
+  When I go to the list of "Projects"
   And I follow "new entry"
   And I fill in "Description" with "Lorem ipsum...."
   And I press "Create"
   Then I should not see "Entry was successfully created."
 
 Scenario: Update an existing entry
-  When I go to the "Projects" model list page
+  When I go to the list of "Projects"
   And I follow "My sexy project"
   When I fill in "Name" with "My other sexy project (UPDATED)"
   And I press "Save"
   Then I should see "Entry was successfully updated."
-  When I go to the "Projects" model list page
+  When I go to the list of "Projects"
   Then I should see "My other sexy project (UPDATED)"
 
 Scenario: Update an invalid entry
-  When I go to the "Projects" model list page
+  When I go to the list of "Projects"
   And I follow "My sexy project"
   When I fill in "Name" with ""
   And I press "Save"
   Then I should not see "Entry was successfully updated."
 
 Scenario: Destroy an entry
-  When I go to the "Projects" model list page
+  When I go to the list of "Projects"
   And I follow "x"
   Then I should see "Entry was successfully deleted."
   And I should not see "My sexy project"
 
 Scenario: Group entries by category
-  When I go to the "Projects" model list page
+  When I go to the list of "Projects"
   Then I should not see "Development"
   And I should not see "Design"
   When I change the presentation of the "Projects" model by grouping items by "Category"
-  And I go to the "Projects" model list page
+  And I go to the list of "Projects"
   Then I should see "Development"
   And I should see "Design"

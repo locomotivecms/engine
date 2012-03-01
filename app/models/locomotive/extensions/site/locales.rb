@@ -33,6 +33,8 @@ module Locomotive
         # @returns [ String ] The localized fullpath according to the current locale
         #
         def localized_page_fullpath(page, locale = nil)
+          return nil if page.fullpath_translations.blank?
+
           locale = (locale || I18n.locale).to_s
           fullpath = page.fullpath_translations[locale] || page.fullpath_translations[self.default_locale]
 
