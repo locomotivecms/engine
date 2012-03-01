@@ -21,6 +21,12 @@ describe Locomotive::Liquid::Drops::CurrentUser do
       @controller.expects(:render).with(:text => "false", :layout => false, :status => :ok).returns(true)
       @controller.send(:render_locomotive_page)
     end
+    it 'returns true  when there is a user logged in' do
+      @page.raw_template = '{{ current_user.logged_in? }}'
+      @page.send(:serialize_template)
+      @controller.expects(:render).with(:text => "true", :layout => false, :status => :ok).returns(true)
+      @controller.send(:render_locomotive_page)
+    end
   end
 
 

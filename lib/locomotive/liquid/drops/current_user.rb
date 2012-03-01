@@ -3,7 +3,7 @@ module Locomotive
     module Drops
       class CurrentUser < Base
         def logged_in?
-          false
+          _source.present?
         end
       end
     end

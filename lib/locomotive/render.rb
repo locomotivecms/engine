@@ -69,7 +69,7 @@ module Locomotive
           'url'               => request.url,
           'now'               => Time.now.utc,
           'today'             => Date.today,
-          'current_user'      => Locomotive::Liquid::Drops::CurrentUser.new
+          'current_user'      => Locomotive::Liquid::Drops::CurrentUser.new(current_user)
         }
 
         assigns.merge!(Locomotive.config.context_assign_extensions)
