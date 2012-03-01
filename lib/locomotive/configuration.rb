@@ -17,7 +17,7 @@ module Locomotive
       :manage_subdomain       => false,
       :manage_manage_domains  => false,
       :ui                     => {
-        :latest_entries_nb   => 5,
+        :latest_entries_nb    => 5,
         :max_content_types    => 2
       },
       :rack_cache             => {

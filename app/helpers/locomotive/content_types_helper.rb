@@ -16,9 +16,9 @@ module Locomotive
       current_site.content_types.ordered.only(:site_id, :name, :slug, :label_field_name).each_with_index do |content_type, index|
         next if !content_type.persisted?
 
-        if index >= Locomotive.config.ui.max_content_types
+        if index >= Locomotive.config.ui[:max_content_types]
           if self.is_content_type_selected(content_type)
-            others << visible.delete_at(Locomotive.config.ui.max_content_types - 1) # swap content types
+            others << visible.delete_at(Locomotive.config.ui[:max_content_types] - 1) # swap content types
             visible.insert(0, content_type)
           else
             others << content_type # fills the "..." menu

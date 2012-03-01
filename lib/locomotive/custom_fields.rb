@@ -26,7 +26,7 @@ module CustomFields
 
         # Set correct paths
         def store_dir
-          "sites/#{model.site_id}/contents/#{model.class.model_name.underscore}/#{model.id}/files"
+          "sites/#{model.site_id}/content_#{model.class.model_name.demodulize.underscore}/#{model.id}/files"
         end
 
         def cache_dir
