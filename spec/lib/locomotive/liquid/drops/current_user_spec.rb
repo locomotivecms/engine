@@ -14,7 +14,7 @@ describe Locomotive::Liquid::Drops::CurrentUser do
     @controller.stubs(:request).returns(OpenStruct.new(:url => '/subpage', :fullpath => '/subpage'))
     @controller.current_site = @site
 
-    @admin = FactoryGirl.build(:admin)
+    @admin = FactoryGirl.build(:admin).account
   end
 
   def expect_render(template, text)

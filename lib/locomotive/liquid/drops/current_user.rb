@@ -9,10 +9,10 @@ module Locomotive
           _source.present?
         end
         def name
-          _source.account.name if logged_in?
+          _source.name if logged_in?
         end
         def email
-          _source.account.email if logged_in?
+          _source.email if logged_in?
         end
         def logout_path
           destroy_admin_session_path
