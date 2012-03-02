@@ -44,7 +44,9 @@ module Locomotive
     def update_templates
       return unless (self.site rescue false) # not run if the site is being destroyed
 
-      pages = self.site.pages.any_in(:snippet_dependencies => [self.slug]).to_a
+      pages = ::I18n.with_locale(::Mongoid::Fields::I18n.locale) do
+        pages = self.site.pages.any_in(:snippet_dependencies => [self.slug]).to_a
+      end
 
       pages.each do |page|
         self._change_snippet_inside_template(page.template.root)

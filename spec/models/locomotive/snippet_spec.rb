@@ -49,6 +49,29 @@ describe Locomotive::Snippet do
 
     end
 
+    context '#i18n' do
+
+      before :each do
+        Mongoid::Fields::I18n.with_locale(:fr) do
+          @snippet = FactoryGirl.create(:snippet, :site => @site, :slug => 'my_localized_test_snippet', :template => 'a testing template')
+          @page = FactoryGirl.create(:page, :site => @site, :slug => 'my_localized_test_snippet', :raw_template => "{% block main %}{% include 'my_localized_test_snippet' %}{% endblock %}")
+        end
+      end
+
+      it 'returns the snippet dependencies depending on the UI locale' do
+        Mongoid::Fields::I18n.with_locale(:fr) { @page.snippet_dependencies.should_not be_empty }
+        Mongoid::Fields::I18n.with_locale(:en) { @page.snippet_dependencies.should be_nil }
+      end
+
+      it 'updates the templates with the new snippet' do
+        Mongoid::Fields::I18n.with_locale(:fr) do
+          @snippet.update_attributes(:template => 'a new template')
+          Locomotive::Page.find(@page.id).render({}).should == 'a new template'
+        end
+      end
+
+    end
+
   end
 
 end

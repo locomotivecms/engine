@@ -160,6 +160,10 @@ REFACTORING:
   - move content_type and content_instances in the CustomFields plugin (much more appropriate)
 
 BUGS:
+  x mode author: settings KO + editable elements non visibles
+  x locales pour le locomotive editor => KO
+  - impossible de sauvegarder une page
+
 
 NICE TO HAVE:
 - export site
