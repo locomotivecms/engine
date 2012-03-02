@@ -3,11 +3,7 @@ module CarrierWave
     class Base
 
       def to_liquid
-        {
-          :url      => self.url,
-          :filename => (File.basename(self.url) rescue ''),
-          :size     => self.size
-        }.stringify_keys
+        Locomotive::Liquid::Drops::Uploader.new(self)
       end
 
     end
