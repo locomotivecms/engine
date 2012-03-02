@@ -7,27 +7,43 @@ de:
       new_item: "+ hinzufügen"
       switch_to_site: Los
       delete: "Löschen"
+      close: "Schließen"
+
+    locales:
+      en: Englisch
+      de: Deutsch
+      fr: Französisch
+      pt-BR: "Bras. Portugiesisch"
+      it: Italienisch
+      nl: Niederländisch
+      "no": Norwegisch
+      es: Spanisch
+      ru: Russisch
 
     messages:
-      confirm: Bist du sicher ?
+      confirm: Sind Sie sicher ?
 
     shared:
       header:
         welcome: Willkommen, %{name}
-        see: Webseite ansehen
-        switch: Zu anderer Seite wechseln
+        see: Mandant zeigen
+        switch: Mandant wechseln
         help: Hilfe
         logout: Ausloggen
       menu:
         contents: Inhalte
-        assets: Galerien
+        assets: Medien
         settings: Einstellungen
         pages: Seiten
         snippets: Snippets
-        account: Mein Account
-        site: Webseite
-        theme_assets: Templates
+        account: Mein Zugang
+        site: Mandant
+        theme_assets: Dateien
         bookings: Buchungen
+      form:
+        change_file: Ändern
+        delete_file: Löschen
+        cancel: Abbrechen
       footer:
         who_is_behind: "Dienst entwickelt von %{development} und entworfen von <a href=\"http://www.sachagreif.com\">Sacha Greif</a>"
       form_actions:
@@ -53,7 +69,7 @@ de:
         type: "Model: %{type}"
 
     sites_picker:
-      new: + Neue Webseite
+      new: + Neuer Mandant 
 
     custom_fields:
       edit:
@@ -67,6 +83,19 @@ de:
       index:
         is_required: ist erforderlich
         default_label: Feld-Name
+        has_many:
+          empty: Die Liste ist leer
+          new_entry: + Neuer Eintrag
+        many_to_many:
+          empty: Die Liste ist leer. Wählen Sie einen Eintrag unten aus.
+
+      form:
+        empty: "Bisher wurde kein Feld definiert."
+        required: Pflichtfeld
+        optional: Optional
+        default_label: Feldname
+        select_options:
+          ask_name: "Geben Sie den Namen der Auswahloption an."
 
 
     sessions:
@@ -131,15 +160,15 @@ de:
 
     sites:
       new:
-        title: Neue Webseite
-        help: "Fülle das folgende Formular aus, um eine neue Webseite zu erstellen."
+        title: Neuer Mandant
+        help: "Fülle das folgende Formular aus, um einen neuen Mandanten zu erstellen."
 
     current_site:
       edit:
         import: Importieren
         new_membership: Account hinzufügen
-        help: "Der Name der Webseite kann durch anklicken bearbeitet werden."
-        ask_for_name: "Bitte gib den neuen Namen der Webseite an"
+        help: "Der Name des Mandanten kann durch anklicken bearbeitet werden."
+        ask_for_name: "Bitte gib den neuen Namen des Mandanten an"
 
     memberships:
       roles:
@@ -158,13 +187,13 @@ de:
     my_account:
       edit:
         help: "Deinen Namen kannst du durch darauf klicken ändern."
-        new_site: Neue Webseite
+        new_site: Neuer Mandant
         en: Englisch
         de: Deutsch
         fr: Französisch
         pt-BR: "Bras. Portugisisch"
         it: "Italienisch"
-        nl: "Holländer"
+        nl: "Niederländisch"
         "no": "Norwegisch"
         es: "Spanisch"
         ru: "Russisch"
@@ -172,8 +201,8 @@ de:
 
     theme_assets:
       index:
-        title: Template-Dateien
-        help: "In diesem Bereich kannst du alle Dateien organisieren, die für dein Layout verwendet werden. Wenn du eine Bilder-Galerie organisieren möchtest, dann gehe dazu in den Galerien-Abschnitt."
+        title: Layout-Dateien
+        help: "In diesem Bereich kannst du alle Dateien organisieren, die für dein Layout verwendet werden."
         new: neue Datei
         snippets: Snippets
         css_and_js: Style und Javascript
@@ -229,10 +258,10 @@ de:
         new: Neuer Baustein
       new:
         title: Neuer Baustein
-        help: "Erstelle deine eigenen Baustein (Projekte, Leute, ...usw). Dein Baustein muss mindestens ein Feld haben. Das erste Feld ist dabei immer verpflichtend auszufüllen."
+        help: "Erstellen Sie ihren eigenen Baustein (Projekte, Leute, ...usw). Der Baustein muss mindestens ein Feld haben. Das erste Feld ist dabei immer verpflichtend auszufüllen."
       edit:
         title: Vorlage bearbeiten
-        help: "Deine Vorlage muss mindestens ein Feld haben. Das erste Feld ist dabei immer verpflichtend auszufüllen."
+        help: "Ihre Vorlage muss mindestens ein Feld haben. Das erste Feld ist dabei immer verpflichtend auszufüllen."
         show_items: zeige Elemente
         new_item: neues Element
       form:
@@ -294,17 +323,16 @@ de:
         title: Erst-Installation von Locomotive CMS
         next: Weiter
       step_1:
-        title: "Schritt 1/2 &mdash; Account erstellen"
+        title: "Schritt 1/2 &mdash; Zugang erstellen"
         name: Name
         email: E-Mail
         password: Passwort
         password_confirmation: Passwort-Bestätigung
-        done: "Du hast bereits einen Account hinzugefügt:<br/><strong>%{name}</strong>, <em>%{email}</em>"
-        next: Account erstellen
+        done: "Du hast bereits einen Zugang hinzugefügt:<br/><strong>%{name}</strong>, <em>%{email}</em>"
+        next: Zugang erstellen
       step_2:
-        title: "Schritt 2/2 &mdash; Webseite erstellen"
-        explanations: |
-          Wenn Du schon eine ein Standard Template hochgeladen hast (siehe Hilfe), kannst Du es gleich benutzen.
-          Oder Du kannst ein fertiges Template als zip-Datei hochladen. <a href='http://www.locomotivecms.com/support/themes'>Hier</a> findest du ein paar kostenlose Templates, die du gerne kostenlos verwenden kannst.
-        back_to_default_template: "Klick <a href='#'>hier</a> um ein Template auszuwählen"
-        next: Webseite erstellen
+        title: "Schritt 2/2 &mdash; Mandant erstellen"
+        explanations: "Es ist fast geschafft. Bitte geben Sie Ihrem ersten Mandanten einen Namen und wählen Sie eine Sprache aus."
+        default_site_locale: Sprachauswahl
+        default_site_locales_hints: Sie können später weitere Sprachen im Einstellungsdialog vornehmen.
+        next: Mandant erstellen
