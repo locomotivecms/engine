@@ -161,7 +161,9 @@ module Locomotive
                 field.category_items.build :name => value
               end
               value
-            else # string, text
+            when 'text'
+              replace_images!(value)
+            else # string
               value
             end)
 
