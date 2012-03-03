@@ -41,7 +41,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'json_pure', '1.5.1'
   s.add_dependency 'bushido'
-  s.add_dependency 'heroku', '1.19.1'
+  s.add_dependency 'heroku', '2.19.1'
 
   s.add_dependency 'rmagick', '2.12.2'
   s.add_dependency 'carrierwave', '0.5.6'
