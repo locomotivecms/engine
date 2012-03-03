@@ -41,6 +41,20 @@ module Locomotive
       def open_sample_asset(url)
         File.open(File.join(self.theme_path, 'public', url))
       end
+
+      def replace_images!(template)
+        return if template.blank?
+
+        template.gsub!(/\/samples\/(.*\.[a-zA-Z0-9]{3})/) do |match|
+          name = File.basename($1)
+
+          if asset = site.assets.where(:source_filename => name).first
+            asset.source.url
+          else
+            match
+          end
+        end
+      end
     end
   end
 end

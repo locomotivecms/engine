@@ -137,4 +137,20 @@ describe Locomotive::Import::Job do
     end
   end
 
+  context 'with a content referencing an asset' do
+    before(:all) do
+      @site = FactoryGirl.create(:site)
+
+      job = Locomotive::Import::Job.new(FixturedTheme.duplicate_and_open('default2.zip'), @site, { :samples => true, :reset => true })
+      job.perform
+
+      job.success nil
+    end
+
+    it 'will fix the url inside content' do
+      content = @site.content_types.where(:slug => 'messages').first.contents.first
+      asset = @site.assets.first
+      content.message.should == "<img src=\"/sites/#{@site.id}/assets/#{asset.id}/#{asset.source_filename}\" />"
+    end
+  end
 end
