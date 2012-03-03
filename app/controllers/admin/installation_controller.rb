@@ -11,9 +11,9 @@ module Admin
 
     skip_before_filter :validate_site_membership
 
-    before_filter :is_step_already_done?
-
     before_filter :allow_installation?
+
+    before_filter :is_step_already_done?
 
     skip_load_and_authorize_resource
 
