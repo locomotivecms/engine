@@ -71,6 +71,50 @@ describe 'Locomotive rendering system' do
       @controller.status.should == :not_found
     end
 
+    context 'templatized page' do
+
+      before(:each) do
+        @content_type = FactoryGirl.build(:content_type, :site => nil)
+        @content = @content_type.contents.build(:_visible => true, :tile => 'one')
+        @page.templatized = true
+        @page.content_type = @content_type
+      end
+
+      it 'sets the etag' do
+        @page.cache_strategy = 'simple'
+        @page.stubs(:updated_at).returns(Time.now)
+        @controller.send(:prepare_and_set_response, 'Hello world !')
+        @controller.response.to_a # force to build headers
+        @controller.response.headers['ETag'].should == "\"d232eefab45e58af59c2d00409261365\""
+      end
+
+      it 'changes the etag if the page changes' do
+        @page.cache_strategy = 'simple'
+        @page.stubs(:updated_at).returns(Time.now)
+        @page.stubs(:to_param).returns("1")
+        @controller.send(:prepare_and_set_response, 'Hello world !')
+        @controller.response.to_a # force to build headers
+        old_etag = @controller.response.headers['ETag']
+
+        @page.stubs(:to_param).returns("2")
+        @controller.send(:prepare_and_set_response, 'Hello world !')
+        @controller.response.to_a # force to build headers
+        @controller.response.headers['ETag'].should_not == old_etag
+      end
+
+      it 'changes the etag if the output changes' do
+        @page.cache_strategy = 'simple'
+        @page.stubs(:updated_at).returns(Time.now)
+        @controller.send(:prepare_and_set_response, 'Hello world !')
+        @controller.response.to_a # force to build headers
+        old_etag = @controller.response.headers['ETag']
+
+        @controller.send(:prepare_and_set_response, 'Hello world !!')
+        @controller.response.to_a # force to build headers
+        @controller.response.headers['ETag'].should_not == old_etag
+      end
+
+    end
   end
 
   context 'when retrieving page' do
