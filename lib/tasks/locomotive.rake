@@ -175,9 +175,37 @@ namespace :locomotive do
         puts "...the collection named '#{collection.slug}' for the '#{site.name}' site has been migrated with success !"
       end
     end
-
   end
 
+  # Hack! mongoid specific tasks added here, because mongoid is only looking 
+  # in the app's directory tree, and not in the any engines that are employed.
+  # This should be reported to the mongoid team, but I'm fixing it here first.
+  # The code here is adopted from the mongoid source.
+  namespace :mongoid do
+    # gets a list of the mongoid models defined in the app/models directory
+    def get_mongoid_models
+      documents = []
+      models_dir = File.expand_path('../../../app/models', __FILE__)
+      Dir.glob("#{models_dir}/**/*.rb").sort.each do |file|
+        model_path = file[0..-4].split('/') - models_dir.split('/')
+        begin
+          klass = model_path.map(&:classify).join('::').constantize
+          if klass.ancestors.include?(Mongoid::Document) && !klass.embedded
+            documents << klass
+          end
+        rescue => e
+          # Just for non-mongoid objects that dont have the embedded
+          # attribute at the class level.
+        end
+      end
+      documents
+    end
+
+    desc "Create indexes for the collections defined by locomotive"
+    task :create_indexes => :environment do
+      ::Rails::Mongoid.index_children(get_mongoid_models)
+    end
+  end
 end
 
 
