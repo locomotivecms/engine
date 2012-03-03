@@ -277,7 +277,7 @@ module Locomotive
 
       highlighted_field_name = content_type.highlighted_field_name
 
-      content_type.contents.each do |content|
+      content_type.ordered_contents.each do |content|
         hash = {}
 
         content.custom_fields.each do |field|

@@ -136,6 +136,7 @@ FactoryGirl.define do
   factory :content_type do
     name 'My project'
     site { Site.where(:subdomain => "acme").first || Factory(:site) }
+    order_by 'created_at'
   end
 
   factory :content_instance do

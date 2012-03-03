@@ -60,6 +60,27 @@ describe Locomotive::Export do
 
   end
 
+  context 'manually ordered content_types' do
+    before(:each) do
+      site = FactoryGirl.build('another site')
+      Site.stubs(:find).returns(site)
+      @wish_type = build_wish_type(site)
+      @wish_type.contents.build(:what => 'nothing', :_position_in_list => 2)
+      @wish_type.contents.build(:what => 'everything', :_position_in_list => 1)
+      @wish_data = ::Locomotive::Export.new(site).send(:extract_contents, @wish_type)
+    end
+
+    it 'should have the right order' do
+      @wish_data.should == [{'everything' => {}}, {'nothing' => {}}]
+    end
+  end
+
+  def build_wish_type(site)
+    site.content_types.build(:slug => 'wishes', :name => 'Wishes', :site => site, :order_by => '_position_in_list', :order_direction => 'asc', :highlighted_field_name => 'custom_field_1').tap do |content_type|
+      content_type.content_custom_fields.build :label => 'What', :_alias => 'what', :kind => 'string'
+    end
+  end
+
   context '#zipfile' do
 
     before(:all) do
