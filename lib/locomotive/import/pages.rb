@@ -113,6 +113,7 @@ module Locomotive
               end
             end
           else
+            self.replace_images!(attributes['content'])
             element.content = attributes['content']
           end
         end
@@ -150,7 +151,7 @@ module Locomotive
       def replace_images!(template)
         return if template.blank?
 
-        template.gsub!(/\/samples\/(.*\.[a-zA-Z0-9]{3})/) do |match|
+        template.gsub!(/\/samples\/([^'"]+?\.[a-zA-Z0-9]{3})/) do |match|
           name = File.basename($1)
 
           if asset = site.assets.where(:source_filename => name).first
