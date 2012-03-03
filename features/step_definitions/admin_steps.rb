@@ -28,6 +28,28 @@ Then /^I am redirected to "([^\"]*)"$/ do |url|
   visit location
 end
 
+Given /^I have an admin account$/ do
+  @member   = Site.first.memberships.where(:role => 'admin').first || FactoryGirl.create(:admin, :site => Site.first, :password => 'easyone')
+  @email    = @member.account.email
+  @password = 'easyone'
+end
+
+Given /^I attempt to access an admin page when not logged in$/ do
+  @admin_path = edit_admin_current_site_path
+  visit @admin_path
+end
+
+When /^I login with my admin account$/ do
+  fill_in 'Email', :with => @email
+  fill_in 'Password', :with => @password
+  click_button 'Log in'
+end
+
+Then /^I should be redirected the the admin page I was attempting to access$/ do
+  save_and_open_page
+  current_path.should == edit_admin_current_site_path
+end
+
 ### Cross-domain authentication
 
 When /^I forget to press the button on the cross-domain notice page$/ do
