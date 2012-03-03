@@ -46,7 +46,6 @@ When /^I login with my admin account$/ do
 end
 
 Then /^I should be redirected the the admin page I was attempting to access$/ do
-  save_and_open_page
   current_path.should == edit_admin_current_site_path
 end
 

@@ -12,7 +12,7 @@ module Admin
     protected
 
     def after_sign_in_path_for(resource)
-      admin_pages_url
+      stored_location_for(resource) || admin_pages_url
     end
 
     def after_sign_out_path_for(resource)
