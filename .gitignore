@@ -34,5 +34,5 @@ sites/
 permanent
 doc/bushido
 *.swp
-
+/spec/dummy
 

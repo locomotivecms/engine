@@ -113,6 +113,7 @@ module Locomotive
               end
             end
           else
+            self.replace_images!(attributes['content'])
             element.content = attributes['content']
           end
         end

@@ -73,7 +73,7 @@ describe Locomotive::Import::Job do
 
     it 'sets the editable text for a page from the site config file' do
       page = @site.pages.where(:title => 'Contact').first
-      page.find_editable_element('content', 'address').content.should == '<p>Our office address: 215 Vine Street, Scranton, PA 18503</p>'
+      page.find_editable_element('content', 'address').content.should match('<p>Our office address: 215 Vine Street, Scranton, PA 18503<br /><img src="/sites/[^/]+/assets/[^/]+/office.jpg" alt="office.jpg" /></p>')
     end
 
     it 'sets the editable file for a page from the site config file' do
