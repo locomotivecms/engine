@@ -109,8 +109,8 @@ x missing custom_fields
   x belongs_to
   x has_many
   x many_to_many
-- simplify cells integration when modifying a menu from the main app
-- heroku module for locomotive
+x simplify cells integration when modifying a menu from the main app
+x heroku module for locomotive
 - refactoring
   x remove the import / export scripts
   x remove the cross domain authentication (use auth_token instead)
@@ -162,7 +162,7 @@ REFACTORING:
 BUGS:
   x mode author: settings KO + editable elements non visibles
   x locales pour le locomotive editor => KO
-  - impossible de sauvegarder une page
+  ! impossible de sauvegarder une page
 
 
 NICE TO HAVE:
