@@ -10,6 +10,7 @@ describe ContentInstance do
     @content_type.content_custom_fields.build :label => 'Title', :kind => 'String'
     @content_type.content_custom_fields.build :label => 'Description', :kind => 'Text'
     @content_type.content_custom_fields.build :label => 'Visible ?', :kind => 'Text', :_alias => 'visible'
+    @content_type.content_custom_fields.build :label => 'Photo', :kind => 'File'
     @content_type.highlighted_field_name = 'custom_field_1'
   end
 
@@ -210,5 +211,21 @@ describe ContentInstance do
 
   def fake_bson_id(id)
     BSON::ObjectId(id.to_s.rjust(24, '0'))
+  end
+
+  describe '#highlighted_field_value' do
+    it 'returns the value of the highlighted field' do
+      content = build_content(:title => 'Cheese')
+
+      content.highlighted_field_value.should == 'Cheese'
+    end
+
+    it 'returns the filename of a file type highlighted field' do
+      @content_type.highlighted_field_name = 'custom_field_4'
+      content = build_content(:photo => File.open(Rails.root.join('spec', 'fixtures', 'assets', '5k.png')))
+
+      content.highlighted_field_value.should be_a String
+      content.highlighted_field_value.should include '5k.png'
+    end
   end
 end
