@@ -10,6 +10,7 @@ describe Locomotive::ContentEntry do
     @content_type.entries_custom_fields.build :label => 'Title', :type => 'string'
     @content_type.entries_custom_fields.build :label => 'Description', :type => 'text'
     @content_type.entries_custom_fields.build :label => 'Visible ?', :type => 'boolean', :name => 'visible'
+    @content_type.entries_custom_fields.build :label => 'File', :type => 'file'
     @content_type.valid?
     @content_type.send(:set_default_values)
   end
@@ -125,6 +126,12 @@ describe Locomotive::ContentEntry do
     it 'removes dots' do
       @content_entry.title = "my.test"; @content_entry.send(:set_slug)
       @content_entry._permalink.should == 'my-test'
+    end
+
+    it 'also accepts a file field as the highlighted field' do
+      @content_entry.stubs(:_label_field_name).returns('file')
+      @content_entry.file = FixturedAsset.open('5k.png'); @content_entry.send(:set_slug)
+      @content_entry._permalink.should == '5k'
     end
 
   end

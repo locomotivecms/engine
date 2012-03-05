@@ -39,11 +39,13 @@ module Locomotive
     alias :_permalink= :_slug=
 
     def _label(type = nil)
-      if self._label_field_name
+      value = if self._label_field_name
         self.send(self._label_field_name.to_sym)
       else
         self.send((type || self.content_type).label_field_name.to_sym)
       end
+
+      value.respond_to?(:to_label) ? value.to_label : value
     end
 
     def next
