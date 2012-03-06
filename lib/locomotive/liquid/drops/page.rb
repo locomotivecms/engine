@@ -41,6 +41,10 @@ module Locomotive
           self._source.published?
         end
 
+        def before_method(meth)
+          self._source.editable_elements.where(:slug => meth).try(:first).try(:content)
+        end
+
       end
     end
   end

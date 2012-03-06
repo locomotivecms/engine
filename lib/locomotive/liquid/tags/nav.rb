@@ -23,6 +23,16 @@ module Locomotive
             markup.scan(::Liquid::TagAttributes) { |key, value| @options[key.to_sym] = value.gsub(/"|'/, '') }
 
             @options[:exclude] = Regexp.new(@options[:exclude]) if @options[:exclude]
+
+            @options[:add_attributes] = []
+            if @options[:snippet]
+              template = @options[:snippet].include?('{') ? @options[:snippet] : context[:site].snippets.where(:slug => @options[:snippet] ).try(:first).try(:template)
+              unless template.blank?
+                @options[:liquid_render] = ::Liquid::Template.parse( template )
+                @options[:add_attributes] = ['editable_elements']
+              end
+            end
+
           else
             raise ::Liquid::SyntaxError.new("Syntax Error in 'nav' - Valid syntax: nav <page|site> <options>")
           end
@@ -60,12 +70,12 @@ module Locomotive
           @site, @page = context.registers[:site], context.registers[:page]
 
           children = (case @source
-          when 'site'     then @site.pages.root.minimal_attributes.first # start from home page
+          when 'site'     then @site.pages.root.minimal_attributes( @options[:add_attributes] ).first # start from home page
           when 'parent'   then @page.parent || @page
           when 'page'     then @page
           else
-            @site.pages.fullpath(@source).minimal_attributes.first
-          end).children_with_minimal_attributes.to_a
+            @site.pages.fullpath(@source).minimal_attributes( @options[:add_attributes] ).first
+          end).children_with_minimal_attributes( @options[:add_attributes] ).to_a
 
           children.delete_if { |p| !include_page?(p) }
         end
@@ -75,7 +85,10 @@ module Locomotive
           selected = @page.fullpath =~ /^#{page.fullpath}/ ? " #{@options[:active_class]}" : ''
 
           icon = @options[:icon] ? '<span></span>' : ''
-          label = %{#{icon if @options[:icon] != 'after' }#{page.title}#{icon if @options[:icon] == 'after' }}
+
+          title = @options[:liquid_render] ? @options[:liquid_render].render( 'page' => page ) : page.title
+
+          label = %{#{icon if @options[:icon] != 'after' }#{title}#{icon if @options[:icon] == 'after' }}
 
           output  = %{<li id="#{page.slug.dasherize}-link" class="link#{selected} #{css}">}
           output << %{<a href="/#{@site.localized_page_fullpath(page)}">#{label}</a>}
@@ -89,7 +102,7 @@ module Locomotive
         def render_entry_children(page, depth)
           output = %{}
 
-          children = page.children_with_minimal_attributes.reject { |c| !include_page?(c) }
+          children = page.children_with_minimal_attributes( @options[:add_attributes] ).reject { |c| !include_page?(c) }
           if children.present?
             output = %{<ul id="#{@options[:id]}-#{page.slug.dasherize}">}
             children.each do |c, page|
