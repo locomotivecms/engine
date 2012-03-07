@@ -36,16 +36,21 @@ module Locomotive
       super + self.filtered_custom_fields_methods + default_list
     end
 
-    def method_missing(meth, *arguments, &block)
-      if self.source.custom_fields_methods.include?(meth.to_s)
-        if self.source.is_a_custom_field_many_relationship?(meth.to_s)
-          # go deeper
-          self.source.send(meth).map { |entry| entry.to_presenter(:depth => self.depth + 1) }
-        else
-          self.source.send(meth) rescue nil
+    def as_json(methods = nil)
+      methods ||= self.included_methods
+      {}.tap do |hash|
+        methods.each do |meth|
+          hash[meth]= (if self.source.custom_fields_methods.include?(meth.to_s)
+            if self.source.is_a_custom_field_many_relationship?(meth.to_s)
+              # go deeper
+              self.source.send(meth).map { |entry| entry.to_presenter(:depth => self.depth + 1) }
+            else
+              self.source.send(meth) rescue nil
+            end
+          else
+            self.send(meth.to_sym) rescue nil
+          end)
         end
-      else
-        super
       end
     end
 

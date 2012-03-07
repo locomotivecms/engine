@@ -5,7 +5,7 @@ module Locomotive
       before_filter :set_content_type
 
       def index
-        @content_entries = @content_type.list_or_group_entries
+        @content_entries = @content_type.ordered_entries
         respond_with @content_entries
       end
 
