@@ -102,6 +102,50 @@ describe Locomotive::ContentType do
 
   end
 
+  context '#group_by belongs_to field' do
+
+    before(:each) do
+      (@category_content_type = build_content_type(:name => 'Categories')).save!
+      @category_1 = @category_content_type.entries.create :name => 'A-developer'
+      @category_2 = @category_content_type.entries.create :name => 'B-designer'
+
+      @content_type = build_content_type.tap do |content_type|
+        field = content_type.entries_custom_fields.build :label => 'Category', :type => 'belongs_to', :class_name => @category_1.class.to_s
+        content_type.group_by_field_id = field._id
+        content_type.save!
+      end
+      @content_1 = @content_type.entries.create :name => 'Sacha', :category => @category_2
+      @content_2 = @content_type.entries.create :name => 'Did',   :category => @category_1
+      @content_3 = @content_type.entries.create :name => 'Mario', :category => @category_1
+    end
+
+    it 'groups entries' do
+      groups = @content_type.send(:group_by_belongs_to_field, @content_type.group_by_field)
+
+      groups.map { |h| h[:name] }.should == %w(A-developer B-designer)
+
+      groups.first[:entries].map(&:name).should == %w(Did Mario)
+      groups.last[:entries].map(&:name).should == %w(Sacha)
+    end
+
+    it 'groups entries with a different columns order' do
+      @category_content_type.update_attributes :order_by => @category_content_type.entries_custom_fields.first._id, :order_direction => 'desc'
+      groups = @content_type.send(:group_by_belongs_to_field, @content_type.group_by_field)
+
+      groups.map { |h| h[:name] }.should == %w(B-designer A-developer)
+    end
+
+    it 'deals with entries without a value for the group_by field (orphans)' do
+      @content_type.entries.create :name => 'Paul'
+      groups = @content_type.send(:group_by_belongs_to_field, @content_type.group_by_field)
+
+      groups.map { |h| h[:name] }.should == ['A-developer', 'B-designer', nil]
+
+      groups.last[:entries].map(&:name).should == %w(Paul)
+    end
+
+  end
+
   describe 'custom fields' do
 
     before(:each) do

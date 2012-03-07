@@ -17,7 +17,7 @@ module Locomotive
 
     def options_for_group_by_field(content_type)
       content_type.ordered_entries_custom_fields.find_all do |field|
-        %w(select).include?(field.type)
+        %w(select belongs_to).include?(field.type)
       end.map do |field|
         [field.label, field._id]
       end

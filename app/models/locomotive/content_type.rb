@@ -59,7 +59,7 @@ module Locomotive
     end
 
     def groupable?
-      !!self.group_by_field && group_by_field.type == 'select'
+      !!self.group_by_field && %w(select belongs_to).include?(group_by_field.type)
     end
 
     def group_by_field
@@ -68,7 +68,11 @@ module Locomotive
 
     def list_or_group_entries
       if self.groupable?
-        self.entries.group_by_select_option(self.group_by_field.name, self.order_by_definition)
+        if group_by_field.type == 'select'
+          self.entries.group_by_select_option(self.group_by_field.name, self.order_by_definition)
+        else
+          group_by_belongs_to_field(self.group_by_field)
+        end
       else
         self.ordered_entries
       end
@@ -109,6 +113,28 @@ module Locomotive
     end
 
     protected
+
+    def group_by_belongs_to_field(field)
+      grouped_entries     = self.ordered_entries.group_by(&:"#{field.name}_id")
+      columns             = grouped_entries.keys
+      target_content_type = self.class_name_to_content_type(field.class_name)
+      all_columns         = target_content_type.ordered_entries
+
+      all_columns.map do |column|
+        if columns.include?(column._id)
+          {
+            :name     => column._label(target_content_type),
+            :entries  => grouped_entries.delete(column._id)
+          }
+        else
+          nil
+        end
+      end.compact.tap do |groups|
+        unless grouped_entries.empty? # "orphans" ?
+          groups << { :name => nil, :entries => grouped_entries.values.flatten }
+        end
+      end
+    end
 
     def order_by_attribute
       return self.order_by if %w(created_at updated_at _position).include?(self.order_by)
@@ -179,63 +205,3 @@ module Locomotive
   end
 end
 
-# def list_or_group_contents
-#   if self.groupable?
-#     groups = self.contents.klass.send(:"group_by_#{self.group_by_field._alias}", :ordered_contents)
-#
-#     # look for items with no category or unknown ones
-#     items_without_category = self.contents.find_all { |c| !self.group_by_field.category_ids.include?(c.send(self.group_by_field_name)) }
-#     if not items_without_category.empty?
-#       groups << { :name => nil, :items => items_without_category }
-#     else
-#       groups
-#     end
-#   else
-#     self.ordered_contents
-#   end
-# end
-#
-# def latest_updated_contents
-#   self.contents.latest_updated.reject { |c| !c.persisted? }
-# end
-#
-# def ordered_contents(conditions = {})
-#   column = self.order_by.to_sym
-#
-#   list = (if conditions.nil? || conditions.empty?
-#     self.contents
-#   else
-#     conditions_with_names = {}
-#
-#     conditions.each do |key, value|
-#       # convert alias (key) to name
-#       field = self.entries_custom_fields.detect { |f| f._alias == key }
-#
-#       case field.kind.to_sym
-#       when :category
-#         if (category_item = field.category_items.where(:name => value).first).present?
-#           conditions_with_names[field._name.to_sym] = category_item._id
-#         end
-#       else
-#         conditions_with_names[field._name.to_sym] = value
-#       end
-#     end
-#
-#     self.contents.where(conditions_with_names)
-#   end).sort { |a, b| (a.send(column) && b.send(column)) ? (a.send(column) || 0) <=> (b.send(column) || 0) : 0 }
-#
-#   return list if self.order_manually?
-#
-#   self.asc_order? ? list : list.reverse
-# end
-#
-# def sort_contents!(ids)
-#   ids.each_with_index do |id, position|
-#     self.contents.find(BSON::ObjectId(id))._position_in_list = position
-#   end
-#   self.save
-# end
-#
-# def group_by_field
-#   @group_by_field ||= self.entries_custom_fields.detect { |f| f._name == self.group_by_field_name }
-# end

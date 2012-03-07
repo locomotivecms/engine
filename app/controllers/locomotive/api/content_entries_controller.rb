@@ -9,6 +9,11 @@ module Locomotive
         respond_with @content_entries
       end
 
+      def show
+        @content_entry = @content_type.entries.any_of({ :_id => params[:id] }, { :_slug => params[:id] }).first
+        respond_with @content_entry, :status => @content_entry ? :ok : :not_found
+      end
+
       def create
         @content_entry = @content_type.entries.create(params[:content_entry])
         respond_with @content_entry, :location => main_app.locomotive_api_content_entries_url(@content_type.slug)
