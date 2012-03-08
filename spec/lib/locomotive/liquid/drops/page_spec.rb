@@ -81,6 +81,21 @@ describe Locomotive::Liquid::Drops::Page do
 
   end
 
+  context '#rendering page with editable_elements' do
+
+    before(:each) do
+      @site = FactoryGirl.create(:site)
+      @home = @site.pages.root.first
+      @home.update_attributes :raw_template => "{% block body %}{% editable_short_text 'body' %}Lorem ipsum{% endeditable_short_text %}{% endblock %}"
+      @home.editable_elements.first.content = 'Lorem ipsum'
+    end
+
+    it 'renders the text of the editable field' do
+      render_template('{{ home.body }}').should == 'Lorem ipsum'
+    end
+
+  end
+
   describe 'published?' do
     subject { render_template('{{ home.published? }}') }
     it { should == @home.published?.to_s }
