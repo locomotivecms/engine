@@ -1,11 +1,25 @@
 module Locomotive
   module Liquid
     module Tags
+
+      # Filter a collection
+      #
+      # Usage:
+      #
+      # {% with_scope main_developer: 'John Doe', active: true %}
+      #   {% for project in contents.projects %}
+      #     {{ project.name }}
+      #   {% endfor %}
+      # {% endwith_scope %}
+      #
+
       class WithScope < ::Liquid::Block
 
+        TagAttributes = /(\w+|\w+\.\w+)\s*\:\s*(#{::Liquid::QuotedFragment})/
+
         def initialize(tag_name, markup, tokens, context)
-          @attributes = {}
-          markup.scan(::Liquid::TagAttributes) do |key, value|
+          @attributes = HashWithIndifferentAccess.new
+          markup.scan(TagAttributes) do |key, value|
             @attributes[key] = value
           end
           super
@@ -22,13 +36,7 @@ module Locomotive
 
         def decode(attributes, context)
           attributes.each_pair do |key, value|
-            attributes[key] = (case value
-            when /^true|false$/i then value == 'true'
-            when /^[0-9]+$/ then value.to_i
-            when /^["|'](.+)["|']$/ then $1.gsub(/^["|']/, '').gsub(/["|']$/, '')
-            else
-              context[value]
-            end)
+            attributes[key] = context[value]
           end
         end
       end
