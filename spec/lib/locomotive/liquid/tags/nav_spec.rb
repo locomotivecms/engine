@@ -96,6 +96,10 @@ describe Locomotive::Liquid::Tags::Nav do
       render_nav('site', {}, 'icon: after').should match /<li id="child-1-link" class="link first"><a href="\/child_1">Child #1<span><\/span><\/a><\/li>/
     end
 
+    it 'renders a snippet for the title' do
+      render_nav('site', {}, 'snippet: "-{{page.title}}-"').should match /<li id="child-1-link" class="link first"><a href="\/child_1">-Child #1-<\/a><\/li>/
+    end
+
     it 'assigns a different dom id' do
       render_nav('site', {}, 'id: "main-nav"').should match /<ul id="main-nav">/
     end
