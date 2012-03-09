@@ -51,7 +51,7 @@ module Locomotive
     scope :published,           :where => { :published => true }
     scope :fullpath,            lambda { |fullpath| { :where => { :fullpath => fullpath } } }
     scope :handle,              lambda { |handle| { :where => { :handle => handle } } }
-    scope :minimal_attributes,  lambda { |attrs=[]| {:only => attrs + %w(title slug fullpath position depth published templatized redirect listed parent_id created_at updated_at) } }
+    scope :minimal_attributes,  lambda { |attrs = []| { :only => (attrs || []) + %w(title slug fullpath position depth published templatized redirect listed parent_id site_id created_at updated_at) } }
 
     ## methods ##
 

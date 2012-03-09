@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Locomotive::EditableElement do
+describe Locomotive::EditableFile do
 
   before(:each) do
     @site = FactoryGirl.create(:site)
@@ -20,6 +20,25 @@ describe Locomotive::EditableElement do
     editable_file = @home.editable_elements.first
     fields = editable_file.class.fields.keys
     (fields.include?('source') && fields.include?(:source)).should be_false
+  end
+
+  context 'with an attached file' do
+
+    before(:each) do
+      @editable_file = @home.editable_elements.first
+      @editable_file.source = FixturedAsset.open('5k.png')
+      @home.save
+    end
+
+    it 'has a valid source' do
+      @editable_file.source?.should be_true
+    end
+
+    it 'returns the right path even if the page has been retrieved with the minimum_attributes scope' do
+      @home = @site.pages.minimal_attributes(%w(editable_elements)).root.first
+      @home.editable_elements.first.source?.should be_true
+    end
+
   end
 
 end
