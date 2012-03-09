@@ -24,6 +24,12 @@ describe Locomotive::Liquid::Tags::WithScope do
     attributes['category'].should == 'posts'
   end
 
+  it 'allows order_by option' do
+    scope = Locomotive::Liquid::Tags::WithScope.new('with_scope', 'order_by:\'name DESC\'', ["{% endwith_scope %}"], {})
+    attributes = scope.send(:decode, scope.instance_variable_get(:@attributes), ::Liquid::Context.new)
+    attributes['order_by'].should == 'name DESC'
+  end
+
   it 'stores attributes in the context' do
     template = ::Liquid::Template.parse("{% with_scope active:true title:'foo' %}{{ with_scope.active }}-{{ with_scope.title }}{% endwith_scope %}")
     text = template.render

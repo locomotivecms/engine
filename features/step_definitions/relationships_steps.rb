@@ -56,7 +56,7 @@ Given %r{^I set up a many_to_many relationship between "([^"]*)" and "([^"]*)"$}
   last_model.save
 end
 
-Then /^I should be able to view a paginaed list of a has many association$/ do
+Then /^I should be able to view a paginated list of a has many association$/ do
   # Create models
   step %{I have an "Articles" model which has many "Comments"}
 

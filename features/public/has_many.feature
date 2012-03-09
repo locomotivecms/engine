@@ -5,4 +5,4 @@ Feature: Has Many Association
 
   Scenario: Paginating a has many association
     Given I have a site set up
-    Then I should be able to view a paginaed list of a has many association
+    Then I should be able to view a paginated list of a has many association

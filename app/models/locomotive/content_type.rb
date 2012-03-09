@@ -55,7 +55,8 @@ module Locomotive
     end
 
     def ordered_entries(conditions = {})
-      self.entries.order_by([order_by_definition]).where(conditions)
+      _order_by_definition = (conditions || {}).delete(:order_by).try(:split) || self.order_by_definition
+      self.entries.order_by([_order_by_definition]).where(conditions)
     end
 
     def groupable?

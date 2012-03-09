@@ -89,6 +89,12 @@ describe Locomotive::ContentType do
       @content_type.ordered_entries.collect(&:name).should == %w(Sacha Did)
     end
 
+    it 'returns a list of contents ordered through condition {order_by: "name asc"}' do
+      @content_type.order_by = @content_type.entries_custom_fields.where(:name => 'name').first._id
+      @content_type.order_direction = 'desc'
+      @content_type.ordered_entries(:order_by => 'name asc').collect(&:name).should == %w(Did Sacha)
+    end
+
     it 'returns a list of entries ordered by a Date column when first instance is missing the value' do
       @content_type.order_by = @content_type.entries_custom_fields.where(:name => 'active_at').first._id
       @content_2.update_attribute :active_at, Date.parse('01/01/2001')
