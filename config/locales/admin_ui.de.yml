@@ -26,8 +26,8 @@ de:
     shared:
       header:
         welcome: Willkommen, %{name}
-        see: Mandant zeigen
-        switch: Mandant wechseln
+        see: Webseite zeigen
+        switch: Webseite wechseln
         help: Hilfe
         logout: Ausloggen
       menu:
@@ -37,20 +37,19 @@ de:
         pages: Seiten
         snippets: Snippets
         account: Mein Zugang
-        site: Mandant
+        site: Webseite
         theme_assets: Dateien
-        bookings: Buchungen
       form:
         change_file: Ändern
         delete_file: Löschen
         cancel: Abbrechen
-      footer:
-        who_is_behind: "Dienst entwickelt von %{development} und entworfen von <a href=\"http://www.sachagreif.com\">Sacha Greif</a> &mdash; <small>version</small> %{version}"
       form_actions:
         back: Ohne Speichern zurück
         create: Neu
         update: Speichern
         send: Senden
+     footer:
+        who_is_behind: "Dienst entwickelt von %{development} und entworfen von <a href=\"http://www.sachagreif.com\">Sacha Greif</a> &mdash; <small>version</small> %{version}"
 
     errors:
       "500":
@@ -65,11 +64,11 @@ de:
     notifications:
       new_content_entry:
         subject: "[%{type}] neu"
-        title: "Hi %{name}, nur damit du Bescheid weißt! Am %{date} wurde folgende neue Instanz erstellt."
+        title: "Hi %{name}, nur damit Sie Bescheid wissen! Am %{date} wurde folgende neue Instanz erstellt."
         type: "Model: %{type}"
 
     sites_picker:
-      new: + Neuer Mandant
+      new: + Neuer Webseite
 
     custom_fields:
       edit:
@@ -80,9 +79,6 @@ de:
       types:
         file:
           delete_file: Datei löschen
-      index:
-        is_required: ist erforderlich
-        default_label: Feld-Name
         has_many:
           empty: Die Liste ist leer
           new_entry: + Neuer Eintrag
@@ -90,13 +86,11 @@ de:
           empty: Die Liste ist leer. Wählen Sie einen Eintrag unten aus.
 
       form:
-        empty: "Bisher wurde kein Feld definiert."
         required: Pflichtfeld
         optional: Optional
         default_label: Feldname
         select_options:
           ask_name: "Geben Sie den Namen der Auswahloption an."
-
 
     sessions:
       new:
@@ -113,27 +107,29 @@ de:
       edit:
         title: Passwort bearbeiten
         link: "&rarr; Zurück zur Login-Seite"
-        password: "Dein neues Passwort"
-        password_confirmation: "Wiederholung deines neuen Passworts"
+        password: "Ihr neues Passwort"
+        password_confirmation: "Wiederholung ihres neuen Passworts"
 
     pages:
       index:
         title: Seiten anzeigen
-        help: "Seiten sind als Baum organisiert. Du kannst die Seiten also wie Ordner sortieren und verschachteln."
-        no_items: "Momentan gibt es keine Seiten. Klicke einfach <a href='%{url}'>hier</a>, um die erste Seite zu erstellen."
+        help: "Seiten sind als Baum organisiert. Sie können die Seiten also wie Ordner sortieren und verschachteln."
+        no_items: "Momentan gibt es keine Seiten. Klicken Sie einfach <a href='%{url}'>hier</a>, um die erste Seite zu erstellen."
         new: neue Seite
         latest_entries: Neueste Seiten
       new:
         title: Neue Seite
-        help: "Fülle das folgende Formular aus, um eine neue Seite zu erstellen. Nur zur Info: Die Seite wird nicht standardmäßig publiziert!"
+        help: "Füllen Sie bitte das folgende Formular aus, um eine neue Seite zu erstellen. Nur zur Info: Die Seite wird nicht standardmäßig publiziert!"
       page:
         updated_at: bearbeitet am
       edit:
         show: anzeigen
         help: "Der Seiten-Titel kann durch anklicken bearbeitet werden."
-        ask_for_title: "Bitte gib den neuen Seiten-Titel ein"
+        ask_for_title: "Bitte geben Sie den neuen Seiten-Titel ein"
       form:
+        change_file: Datei ändern
         delete_file: Datei löschen
+        cancel: Abbrechen
         default_block: Standard
         cache_strategy:
           none: Keine
@@ -147,28 +143,29 @@ de:
       index:
         title: Snipptes anzeigen
         help: "Snippets sind HTML-Code Ausschnitte, die an verschiedenen Stellen der Webseite eingesetzt werden können (z.B. die Fußzeile)."
-        no_items: "Momentan gibt es keine Snippets. Klicke einfach <a href='%{url}'>hier</a>, um das erste Snippet zu erstellen."
+        no_items: "Momentan gibt es keine Snippets. Klicken Sie einfach <a href='%{url}'>hier</a>, um das erste Snippet zu erstellen."
         new: neues Snippet
       new:
         title: Neues Snippet
-        help: "Fülle das folgende Formular aus, um ein neues Snippet zu erstellen."
+        help: "Füllen Sie bitte das folgende Formular aus, um ein neues Snippet zu erstellen."
       edit:
         title: Snippet bearbeiten
-        help: "Fülle das folgende Formular aus, um dein Snippet zu aktualisieren."
+        help: "Füllen Sie bitte das folgende Formular aus, um ihr Snippet zu aktualisieren."
       snippet:
         updated_at: Aktualisiert am
 
     sites:
       new:
-        title: Neuer Mandant
-        help: "Fülle das folgende Formular aus, um einen neuen Mandanten zu erstellen."
+        title: Neuer Webseite
+        help: "Fülle das folgende Formular aus, um einen neuen Webseiteen zu erstellen."
+      domains:
+        empty: "Bisher sind keine Domains/Hostnamen an diese Seite gebunden. Wenn Sie unten Domains/Hostnamen angeben, achten Sie bitte darauf <b>Ihren DNS Server zu prüfen/aktualisieren.</b>"
 
     current_site:
       edit:
-        import: Importieren
-        new_membership: Account hinzufügen
-        help: "Der Name des Mandanten kann durch anklicken bearbeitet werden."
-        ask_for_name: "Bitte gib den neuen Namen des Mandanten an"
+       new_membership: Account hinzufügen
+        help: "Der Name des Webseiteen kann durch einen Klick auf den Namen bearbeitet werden."
+        ask_for_name: "Bitte geben Sie den neuen Namen der Webseite an"
 
     memberships:
       roles:
@@ -177,85 +174,60 @@ de:
         author: Autor
       new:
         title: Neuer Account
-        help: "Bitte gib eine Email für den neuen Account an. Wenn diese noch nicht registriert ist, wirst du zu einem Formular zur Erstellung weitergeleitet."
+        help: "Bitte geben Sie eine Email für den neuen Account an. Wenn diese noch nicht registriert ist, werden Sie zu einem Formular zur Erstellung des Accounts weitergeleitet."
 
     accounts:
       new:
         title: Neuer Account
-        help: "Fülle das folgende Formular aus, um einen neuen Account anzulegen."
+        help: "Füllen Sie das folgende Formular aus, um einen neuen Account anzulegen."
 
     my_account:
       edit:
-        help: "Deinen Namen kannst du durch darauf klicken ändern."
-        new_site: Neuer Mandant
-        en: Englisch
-        de: Deutsch
-        fr: Französisch
-        pt-BR: "Bras. Portugisisch"
-        it: "Italienisch"
-        nl: "Niederländisch"
-        "no": "Norwegisch"
-        es: "Spanisch"
-        ru: "Russisch"
-        ask_for_name: "Bitte gib deinen neuen Namen an"
+        help: "Ihren Namen können Sie durch einen Klick auf denselben ändern."
+        new_site: Neue Webseite
+        ask_for_name: "Bitte geben Sie Ihren Namen an."
 
     theme_assets:
       index:
         title: Layout-Dateien
-        help: "In diesem Bereich kannst du alle Dateien organisieren, die für dein Layout verwendet werden."
+        help: "In diesem Bereich können Sie alle Dateien organisieren, die für das Layout verwendet werden."
         new: neue Datei
         snippets: Snippets
         css_and_js: Style und Javascript
         fonts: Fonts
         images: Bilder
         media: Medien
-        no_items: "Momentan gibt es keine Dateien. Klicke einfach <a href='%{url}'>hier</a>, um die erste Datei zu erstellen."
+        no_items: "Momentan gibt es keine Dateien. Klicken Sie einfach <a href='%{url}'>hier</a>, um die erste Datei zu erstellen."
       asset:
         updated_at: Aktualisiert am
       new:
         title: Neue Datei
-        help: "Du hast die Wahl entweder eine neue Datei hochzuladen oder ein bestehendes Stylesheet / Javascript als Text einzufügen."
+        help: "Sie haben die Wahl entweder eine neue Datei hochzuladen oder ein bestehendes Stylesheet / Javascript als Text einzufügen."
       edit:
         title: "Bearbeite %{file}"
         help: "Diese Datei kann über folgende URL erreicht werden: <a href='%{url}'>%{url}</a>"
-        help_image: "Du kannst das Bild in Templates oder Snippets mit folgendem Code einbinden : <span class='code'>{{ '%{path}' | theme_image_tag }}</span>.<br/>Aktuelle Breite x Höhe : <b>%{width}px x %{height}px</b>.<br/>"
-        help_javascript: "Du kannst die Javascript Datei in Templates oder Snippets mit folgendem Code einbinden: <span class='code'>{{ '%{path}' | javascript_tag }}</span>.<br/>"
-        help_stylesheet: "Du kannst die CSS Datei in Templates oder Snippets mit folgendem Code einbinden  : <span class='code'>{{ '%{path}' | stylesheet_tag }}</span>.<br/>"
+        help_image: "Sie können das Bild in Templates oder Snippets mit folgendem Code einbinden : <span class='code'>{{ '%{path}' | theme_image_tag }}</span>.<br/>Aktuelle Breite x Höhe : <b>%{width}px x %{height}px</b>.<br/>"
+        help_javascript: "Sie können die Javascript Datei in Templates oder Snippets mit folgendem Code einbinden: <span class='code'>{{ '%{path}' | javascript_tag }}</span>.<br/>"
+        help_stylesheet: "Sie können die CSS Datei in Templates oder Snippets mit folgendem Code einbinden  : <span class='code'>{{ '%{path}' | stylesheet_tag }}</span>.<br/>"
       form:
-        picker_link: Füge eine Datei in den Code ein
+        picker_link: Fügen Sie eine Datei in den Code ein
         choose_file: Datei auswählen
         choose_plain_text: Text einfügen
       images:
-        title: Bilder anzeigen
+        title: "Bilder anzeigen"
         no_items: "Momentan gibt es keine Bilder."
+        upload: "Bilder hochladen"
 
-    assets:
-      new:
-        title: Neues Bild
-        help: "Fülle das folgende Formular aus, um dein Bild zu erstellen."
-      edit:
-        title: Bild bearbeiten
-        help: "Fülle das folgende Formular aus, um dein Bild zu aktualisieren."
-
-    bookings:
-      index:
-        title: Buchungen
-        help: "Der Name der Buchung kann durch darauf klicken bearbeitet werden."
-        new: neue Buchung
-        no_items: "Momentan gibt es keine Buchungen. Klicke einfach <a href='%{url}'>hier</a>, um eine neue Buchung zu erstellen."
-        latest_entries: Letzte Buchungen
-        updated_at: bearbeitet am
-      new:
-        title: Neue Buchung
-        help: "Gib erst mal einen Namen ein. Alle anderen Einstellungen kannst du vornehmen, sobald das Formular abgesendet ist."
-      edit:
-        help: "Der Name der Buchung kann durch darauf klicken bearbeitet werden."
-        destroy: Buchung löschen
-        ask_for_name: "Gib den neuen Namen ein"
+    content_assets:
+      picker:
+        title: "Eine Mediendatei einfügen"
+        no_items: "Es gibt bisher keine Mediendateien."
+        upload: "Mediendatei hochladen"
 
     content_types:
       index:
         new: Neuer Baustein
+        edit: "Baustein bearbeiten"
       new:
         title: Neuer Baustein
         help: "Erstellen Sie ihren eigenen Baustein (Projekte, Leute, ...usw). Der Baustein muss mindestens ein Feld haben. Das erste Feld ist dabei immer verpflichtend auszufüllen."
@@ -284,7 +256,7 @@ de:
         latest_entries: "Neueste Elemente"
         updated_at: "Aktualisiert am"
       list:
-        no_entries: "Momentan gibt es keine Elemente. Klicke einfach <a href='%{url}'>hier</a>, um das erste Element zu erstellen."
+        no_entries: "Momentan gibt es keine Elemente. Klicken Sie einfach <a href='%{url}'>hier</a>, um das erste Element zu erstellen."
       new:
         title: '%{type} &mdash; neues Element'
       edit:
@@ -299,24 +271,7 @@ de:
     cross_domain_sessions:
       new:
         title: Cross-Domain Authentifizierung
-        notice: Du wirst zu der Webseite in ein paar Sekunden weitergeleitet.
-
-    import:
-      new:
-        title: Import
-        help: "Passe bitte auf, wenn du ein neues Template für deine bestehende Webseite hochlädst. Deine bestehenden Daten könnten verändert oder gelöscht werden!"
-      show:
-        title: Import am Laufen
-        help: "Deine Webseite wird gerade mit deinem hochgeladenen Template aktualisiert. Bitte habe noch ein paar Sekunden Geduld."
-        steps:
-          site: Webseiten-Informationen
-          content_types: Benutzerdefinierte Inhalts-Typen
-          assets: Template-Dateien
-          snippets: Snippets
-          pages: Seiten
-        messages:
-          success: "Deine Webseite wurde erfolgreich aktualisiert."
-          failure: "Der Import war leider nicht erfolgreich."
+        notice: Sie werden zu der Webseite in ein paar Sekunden weitergeleitet.
 
     installation:
       common:
@@ -328,11 +283,26 @@ de:
         email: E-Mail
         password: Passwort
         password_confirmation: Passwort-Bestätigung
-        done: "Du hast bereits einen Zugang hinzugefügt:<br/><strong>%{name}</strong>, <em>%{email}</em>"
+        done: "Sie haben bereits einen Zugang hinzugefügt:<br/><strong>%{name}</strong>, <em>%{email}</em>"
         next: Zugang erstellen
       step_2:
-        title: "Schritt 2/2 &mdash; Mandant erstellen"
-        explanations: "Es ist fast geschafft. Bitte geben Sie Ihrem ersten Mandanten einen Namen und wählen Sie eine Sprache aus."
+        title: "Schritt 2/2 &mdash; Webseite erstellen"
+        explanations: "Es ist fast geschafft. Bitte geben Sie Ihrer ersten Webseite einen Namen und wählen Sie eine Sprache aus."
         default_site_locale: Sprachauswahl
         default_site_locales_hints: Sie können später weitere Sprachen im Einstellungsdialog vornehmen.
-        next: Mandant erstellen
+        next: Webseite erstellen
+
+    public:
+      pages:
+        show_toolbar:
+          statuses:
+            loading: "Lade...."
+            disabled: "Inline Editor deaktiviert"
+          labels:
+            save_changes: "Änderungen speichern: "
+            editing_mode: "Bearbeitungsmodus: "
+            lang: "Sprache: "
+          buttons:
+            back: "Zur Administration zurück"
+            confirm: Bestätigen
+            cancel: Abbrechen
