@@ -68,7 +68,7 @@ de:
         type: "Model: %{type}"
 
     sites_picker:
-      new: + Neuer Webseite
+      new: + Neue Webseite
 
     custom_fields:
       edit:
