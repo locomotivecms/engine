@@ -46,14 +46,31 @@ module Locomotive
             value = self._source.send(meth)
 
             if value.respond_to?(:all)
-              # returns a mongoid criterion in order to chain pagination criteria
-              value.all
+              filter_and_order_list(value)
             else
               value
             end
           else
             nil
           end
+        end
+
+        protected
+
+        def filter_and_order_list(list)
+          # filter ?
+          if @context['with_scope']
+            conditions  = HashWithIndifferentAccess.new(@context['with_scope'])
+            order_by    = conditions.delete(:order_by).try(:split)
+
+            if order_by.nil?
+              list.where(conditions).ordered
+            else
+              list.where(conditions).order_by(order_by)
+            end
+          else
+            list.ordered
+          end.all
         end
 
       end

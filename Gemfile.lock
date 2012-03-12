@@ -17,10 +17,10 @@ GIT
 
 GIT
   remote: git://github.com/locomotivecms/custom_fields.git
-  revision: c30c7df5a502b888f63bb908c146cb0fc61ef204
+  revision: ec157c3941d1530eb49d08ee385d25c3d3f34f15
   branch: 2.0.0.rc
   specs:
-    custom_fields (2.0.0.rc6)
+    custom_fields (2.0.0.rc7)
       activesupport (~> 3.2.1)
       carrierwave-mongoid (~> 0.1.3)
       mongoid (~> 2.4.5)
@@ -36,7 +36,7 @@ PATH
       carrierwave-mongoid (~> 0.1.3)
       cells (~> 3.8.0)
       codemirror-rails (~> 2.21)
-      custom_fields (~> 2.0.0.rc6)
+      custom_fields (~> 2.0.0.rc7)
       devise (~> 1.5.3)
       dragonfly (~> 0.9.8)
       flash_cookie_session (~> 1.1.1)

@@ -36,5 +36,4 @@ describe Locomotive::Liquid::Tags::WithScope do
     text.should == "true-foo"
   end
 
-
 end

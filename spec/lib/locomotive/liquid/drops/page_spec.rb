@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Locomotive::Liquid::Drops::Page do
 
   before(:each) do
-    site = FactoryGirl.build(:site)
+    site  = FactoryGirl.build(:site)
     @home = FactoryGirl.build(:page, :site => site, :meta_keywords => 'Libidinous, Angsty', :meta_description => "Quite the combination.")
   end
 

@@ -108,46 +108,72 @@ describe Locomotive::ContentType do
 
   end
 
-  context '#group_by belongs_to field' do
+  describe 'belongs_to/has_many relationship' do
 
     before(:each) do
-      (@category_content_type = build_content_type(:name => 'Categories')).save!
-      @category_1 = @category_content_type.entries.create :name => 'A-developer'
-      @category_2 = @category_content_type.entries.create :name => 'B-designer'
+      build_belongs_to_has_many_relationship
 
-      @content_type = build_content_type.tap do |content_type|
-        field = content_type.entries_custom_fields.build :label => 'Category', :type => 'belongs_to', :class_name => @category_1.class.to_s
-        content_type.group_by_field_id = field._id
-        content_type.save!
+      @category_1 = @category_content_type.entries.create :name => 'Gems'
+      @category_2 = @category_content_type.entries.create :name => 'Service'
+
+      @content_1 = @content_type.entries.create :name => 'Github',        :category => @category_2
+      @content_2 = @content_type.entries.create :name => 'LocomotiveCMS', :category => @category_1, :description => 'Lorem ipsum',  :_position_in_category => 1
+      @content_3 = @content_type.entries.create :name => 'RubyOnRails',   :category => @category_1, :description => 'Zzzzzz',       :_position_in_category => 2
+    end
+
+    context '#ordering in a belongs_to/has_many relationship' do
+
+      it 'orders projects based on the default order of the Project content type' do
+        @category_1.projects.metadata.order.should == %w(name desc)
+        @category_1.projects.map(&:name).should == %w(RubyOnRails LocomotiveCMS)
+        @category_1.projects.ordered.all.map(&:name).should == %w(RubyOnRails LocomotiveCMS)
       end
-      @content_1 = @content_type.entries.create :name => 'Sacha', :category => @category_2
-      @content_2 = @content_type.entries.create :name => 'Did',   :category => @category_1
-      @content_3 = @content_type.entries.create :name => 'Mario', :category => @category_1
+
+      it 'updates the information about the order of a has_many relationship if the target class changes its order' do
+        @content_type.order_by = 'description'; @content_type.order_direction = 'ASC'; @content_type.save!
+        @category_1 = @category_1.class.find(@category_1._id)
+
+        @category_1.projects.metadata.order.should == %w(description ASC)
+        @category_1.projects.map(&:name).should == %w(LocomotiveCMS RubyOnRails)
+      end
+
+      it 'uses the order by position if the UI option is enabled' do
+        field = @category_content_type.entries_custom_fields.where(:name => 'projects').first
+        field.ui_enabled = true; @category_content_type.save!; @category_1 = @category_1.class.find(@category_1._id)
+
+        @category_1.projects.metadata.order.to_s.should == 'position_in_category'
+        @category_1.projects.map(&:name).should == %w(LocomotiveCMS RubyOnRails)
+      end
+
     end
 
-    it 'groups entries' do
-      groups = @content_type.send(:group_by_belongs_to_field, @content_type.group_by_field)
+    context '#group_by belongs_to field' do
 
-      groups.map { |h| h[:name] }.should == %w(A-developer B-designer)
+      it 'groups entries' do
+        groups = @content_type.send(:group_by_belongs_to_field, @content_type.group_by_field)
 
-      groups.first[:entries].map(&:name).should == %w(Did Mario)
-      groups.last[:entries].map(&:name).should == %w(Sacha)
-    end
+        groups.map { |h| h[:name] }.should == %w(Gems Service)
 
-    it 'groups entries with a different columns order' do
-      @category_content_type.update_attributes :order_by => @category_content_type.entries_custom_fields.first._id, :order_direction => 'desc'
-      groups = @content_type.send(:group_by_belongs_to_field, @content_type.group_by_field)
+        groups.first[:entries].map(&:name).should == %w(RubyOnRails LocomotiveCMS)
+        groups.last[:entries].map(&:name).should == %w(Github)
+      end
 
-      groups.map { |h| h[:name] }.should == %w(B-designer A-developer)
-    end
+      it 'groups entries with a different columns order' do
+        @category_content_type.update_attributes :order_by => @category_content_type.entries_custom_fields.first._id, :order_direction => 'desc'
+        groups = @content_type.send(:group_by_belongs_to_field, @content_type.group_by_field)
 
-    it 'deals with entries without a value for the group_by field (orphans)' do
-      @content_type.entries.create :name => 'Paul'
-      groups = @content_type.send(:group_by_belongs_to_field, @content_type.group_by_field)
+        groups.map { |h| h[:name] }.should == %w(Service Gems)
+      end
 
-      groups.map { |h| h[:name] }.should == ['A-developer', 'B-designer', nil]
+      it 'deals with entries without a value for the group_by field (orphans)' do
+        @content_type.entries.create :name => 'MacOsX'
+        groups = @content_type.send(:group_by_belongs_to_field, @content_type.group_by_field)
 
-      groups.last[:entries].map(&:name).should == %w(Paul)
+        groups.map { |h| h[:name] }.should == ['Gems', 'Service', nil]
+
+        groups.last[:entries].map(&:name).should == %w(MacOsX)
+      end
+
     end
 
   end
@@ -301,17 +327,35 @@ describe Locomotive::ContentType do
 
   end
 
-  def build_content_type(options = {})
+  def build_content_type(options = {}, &block)
     FactoryGirl.build(:content_type, options).tap do |content_type|
       content_type.entries_custom_fields.build :label => 'Name',        :type => 'string'
       content_type.entries_custom_fields.build :label => 'Description', :type => 'text'
       content_type.entries_custom_fields.build :label => 'Active',      :type => 'boolean'
       content_type.entries_custom_fields.build :label => 'Active at',   :type => 'date'
+      block.call(content_type) if block_given?
     end
   end
 
   def build_content_entry(content_type)
     content_type.entries.build(:name => 'Asset on steroids', :description => 'Lorem ipsum', :active => true)
+  end
+
+  def build_belongs_to_has_many_relationship
+    (@category_content_type = build_content_type(:name => 'Categories')).save!
+    category_klass = @category_content_type.klass_with_custom_fields(:entries).name
+
+    @content_type = build_content_type.tap do |content_type|
+      field = content_type.entries_custom_fields.build :label => 'Category', :type => 'belongs_to', :class_name => category_klass
+      content_type.order_by           = 'name'
+      content_type.order_direction    = 'desc'
+      content_type.group_by_field_id  = field._id
+      content_type.save!
+    end
+    project_klass = @content_type.klass_with_custom_fields(:entries).name
+
+    field = @category_content_type.entries_custom_fields.build :label => 'Projects', :type => 'has_many', :class_name => project_klass, :inverse_of => :category, :ui_enabled => false
+    @category_content_type.save!
   end
 
   def lookup_field_id(index)
