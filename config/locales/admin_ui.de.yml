@@ -48,7 +48,7 @@ de:
         create: Neu
         update: Speichern
         send: Senden
-     footer:
+      footer:
         who_is_behind: "Dienst entwickelt von %{development} und entworfen von <a href=\"http://www.sachagreif.com\">Sacha Greif</a> &mdash; <small>version</small> %{version}"
 
     errors:
@@ -163,7 +163,7 @@ de:
 
     current_site:
       edit:
-       new_membership: Account hinzufügen
+        new_membership: Account hinzufügen
         help: "Der Name des Webseiteen kann durch einen Klick auf den Namen bearbeitet werden."
         ask_for_name: "Bitte geben Sie den neuen Namen der Webseite an"
 
