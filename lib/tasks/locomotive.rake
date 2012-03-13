@@ -60,4 +60,5 @@ namespace :locomotive do
     end
 
   end
+
 end

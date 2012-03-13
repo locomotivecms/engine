@@ -18,7 +18,7 @@ module Locomotive
 
           ## indexes ##
           index :position
-          index [:depth.asc, :position.asc]
+          index [[:depth, Mongo::ASCENDING], [:position, Mongo::ASCENDING]]
         end
 
         module ClassMethods
