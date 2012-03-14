@@ -138,4 +138,20 @@ Scenario: Render liquid variable used as default editable file name
     
     My application file is /different-default.pdf
     """
+  
+@javascript
+Scenario: Simple select element
+  Given a page named "hello-world" with the template:
+    """
+    {% block menuecontent %}{% editable_select 'menueposition', options: 'top=Top of the Page,bottom=Bottom of the Page'  %}bottom{% endeditable_select %}{% endblock %}
+    """
+  And I have a designer and an author
+  And I am an authenticated "designer"
+  When I go to the "hello-world" edition page
+  Then "Bottom of the Page" should be selected for "page[editable_elements_attributes][0][content]"
+  When I select "Top of the Page" from "page[editable_elements_attributes][0][content]"
+  And I press "Save"
+  Then I should see "Page was successfully updated."
+  When I reload the page
+  Then "Top of the Page" should be selected for "page[editable_elements_attributes][0][content]"
 

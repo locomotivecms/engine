@@ -44,6 +44,7 @@ class Locomotive.Views.EditableElements.EditAllView extends Backbone.View
         view_class = switch element.get('type')
           when 'EditableShortText' then Locomotive.Views.EditableElements.ShortTextView
           when 'EditableLongText' then Locomotive.Views.EditableElements.LongTextView
+          when 'EditableSelect' then Locomotive.Views.EditableElements.SelectView
           when 'EditableFile' then Locomotive.Views.EditableElements.FileView
 
         view = new view_class(model: element)

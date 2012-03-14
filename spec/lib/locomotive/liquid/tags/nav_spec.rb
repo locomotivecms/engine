@@ -100,6 +100,15 @@ describe Locomotive::Liquid::Tags::Nav do
       render_nav('site', {}, 'snippet: "-{{page.title}}-"').should match /<li id="child-1-link" class="link first"><a href="\/child_1">-Child #1-<\/a><\/li>/
     end
 
+    it 'renders if the group matches' do
+      child1 = @home.children.first
+      child1.raw_template = "{% block menuecontent %}{% editable_select 'menueposition', options: 'top,bottom'  %}top{% endeditable_select %}{% endblock %}"
+      child1.send(:serialize_template)
+      render_nav('site', {}, 'group: "menueposition:top"').should match /<li id="child-1-link" class="link first"><a href="\/child_1">Child #1<\/a><\/li>/
+      render_nav('site', {}, 'group: "menueposition:bottom"').should_not match /<li id="child-1-link" class="link first"><a href="\/child_1">Child #1<\/a><\/li>/
+    end
+
+
     it 'assigns a different dom id' do
       render_nav('site', {}, 'id: "main-nav"').should match /<ul id="main-nav">/
     end

@@ -10,7 +10,7 @@ module Locomotive
       #
       # {% nav site %} => <ul class="nav"><li class="on"><a href="/features">Features</a></li></ul>
       #
-      # {% nav site, no_wrapper: true, exclude: 'contact|about', id: 'main-nav', class: 'nav', active_class: 'on' }
+      # {% nav site, no_wrapper: true, exclude: 'contact|about', id: 'main-nav', class: 'nav', active_class: 'on', snippet: 'menuecontent', group: 'menuegroup:top'  }
       #
       class Nav < ::Liquid::Tag
 
@@ -19,12 +19,18 @@ module Locomotive
         def initialize(tag_name, markup, tokens, context)
           if markup =~ Syntax
             @source = ($1 || 'page').gsub(/"|'/, '')
-            @options = { :id => 'nav', :depth => 1, :class => '', :active_class => 'on' }
+            @options = { :id => 'nav', :depth => 1, :class => '', :active_class => 'on', :group => nil }
             markup.scan(::Liquid::TagAttributes) { |key, value| @options[key.to_sym] = value.gsub(/"|'/, '') }
 
             @options[:exclude] = Regexp.new(@options[:exclude]) if @options[:exclude]
 
             @options[:add_attributes] = []
+
+            if @options[:group]
+              @options[:add_attributes] = ['editable_elements']
+              @options[:group_name], @options[:group_target] = *@options[:group].split(':')
+            end
+
             if @options[:snippet]
               template = @options[:snippet].include?('{') ? @options[:snippet] : context[:site].snippets.where(:slug => @options[:snippet] ).try(:first).try(:template)
               unless template.blank?
@@ -64,6 +70,12 @@ module Locomotive
         end
 
         private
+
+        def belongs_to_target_group?( page )
+          return true unless @options[:group]
+          group = page.editable_elements.where(:slug => @options[:group_name]).try(:first).try(:content)
+          group.blank? or group == 'parent' or group == @options[:group_target]
+        end
 
         # Determines root node for the list
         def fetch_entries(context)
@@ -120,13 +132,10 @@ module Locomotive
 
         # Determines whether or not a page should be a part of the menu
         def include_page?(page)
-          if !page.listed? || page.templatized? || !page.published?
-            false
-          elsif @options[:exclude]
-            (page.fullpath =~ @options[:exclude]).nil?
-          else
-            true
-          end
+          return false if !page.listed? || page.templatized? || !page.published?
+          return false unless belongs_to_target_group?( page )
+          return (page.fullpath =~ @options[:exclude]).nil? if @options[:exclude]
+          true
         end
 
         ::Liquid::Template.register_tag('nav', Nav)

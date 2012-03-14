@@ -6,7 +6,7 @@ module Locomotive
       ## fields ##
       field :slug
       field :block
-      field :default_content,   :localize => true
+      field :default_content,   :localize => (self.class == EditableSelect) ? false : true
       field :default_attribute
       field :hint
       field :priority,          :type => Integer, :default => 0
