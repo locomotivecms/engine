@@ -1,5 +1,3 @@
-puts "\t...loading core"
-
 require 'locomotive/version'
 require 'locomotive/core_ext'
 require 'locomotive/configuration'

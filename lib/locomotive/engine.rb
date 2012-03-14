@@ -1,5 +1,3 @@
-puts "...loading Locomotive engine"
-
 require 'locomotive/dependencies'
 require 'locomotive'
 

@@ -1,5 +1,3 @@
-puts "\t...loading dependencies"
-
 require 'mongoid'
 require 'mongoid/railtie'
 require 'mongoid/tree'
