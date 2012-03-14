@@ -195,3 +195,12 @@ end
 Then /^show me the page$/ do
   save_and_open_page
 end
+
+Then /^"([^"]*)" should be selected for "([^"]*)"$/ do |value, field|
+ assert page.has_xpath?("//select[@name='#{field}' and option[@selected and contains(text(), '#{value}')]]") 
+end
+
+When /^I reload the page$/ do
+  visit current_path
+end
+

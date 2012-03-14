@@ -26,6 +26,18 @@
 
   = hidden_field_tag 'page[editable_elements_attributes][{{index}}][id]', '{{id}}', :id => 'page_editable_elements_attributes_{{index}}_id'
 
+%script{ :type => 'text/html', :id => 'editable_select_input' }
+
+  %label{ :for => 'page_editable_elements_attributes_{{index}}_content' } {{label}}
+
+  = select_tag 'page[editable_elements_attributes][{{index}}][content]', raw('{{#each selector_options}}<option value="{{this.value}}" {{this.selected}}>{{this.text}}</option>{{/each}}'), :id => 'page_editable_elements_attributes_{{index}}_content', :'data-model-attr' => 'content'
+
+  {{#if hint}}
+  %p.inline-hints {{hint}}
+  {{/if}}
+
+  = hidden_field_tag 'page[editable_elements_attributes][{{index}}][id]', '{{id}}', :id => 'page_editable_elements_attributes_{{index}}_id'
+
 %script{ :type => 'text/html', :id => 'editable_file_input' }
 
   %label{ :for => 'page_editable_elements_attributes_{{index}}_content' } {{label}}
