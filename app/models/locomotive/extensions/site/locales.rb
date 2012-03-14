@@ -12,7 +12,6 @@ module Locomotive
 
           ## callbacks ##
           after_validation :add_default_locale
-          # after_validation :add_missing_locales_for_all_pages
 
         end
 

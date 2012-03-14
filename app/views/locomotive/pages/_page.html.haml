@@ -17,6 +17,9 @@
 
     = link_to truncate(page.title, :length => 80), edit_page_url(page)
 
+    - unless page.translated?
+      %span.untranslated= t('locomotive.shared.list.untranslated')
+
     .more
       %span!= t('.updated_at')
       = l page.updated_at, :format => :short

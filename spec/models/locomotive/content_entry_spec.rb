@@ -67,6 +67,27 @@ describe Locomotive::ContentEntry do
     end
   end
 
+  context '#i18n' do
+
+    before(:each) do
+      localize_content_type @content_type
+      ::Mongoid::Fields::I18n.locale = 'en'
+      @content_entry = build_content_entry(:title => 'Hello world')
+      ::Mongoid::Fields::I18n.locale = 'fr'
+    end
+
+    after(:all) do
+      ::Mongoid::Fields::I18n.locale = 'en'
+    end
+
+    it 'tells if an entry has been translated or not' do
+      @content_entry.translated?.should be_false
+      @content_entry.title = 'Bonjour'
+      @content_entry.translated?.should be_true
+    end
+
+  end
+
   describe "#navigation" do
     before(:each) do
       @content_type.save
@@ -214,8 +235,13 @@ describe Locomotive::ContentEntry do
 
   end
 
+  def localize_content_type(content_type)
+    content_type.entries_custom_fields.first.localized = true
+    content_type.save
+  end
+
   def build_content_entry(options = {})
-    @content_type.entries.build({ :title => 'Locomotive', :description => 'Lorem ipsum....' }.merge(options))
+    @content_type.entries.build({ :title => 'Locomotive', :description => 'Lorem ipsum....', :_label_field_name => 'title' }.merge(options))
   end
 
   def fake_bson_id(id)

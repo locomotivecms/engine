@@ -55,3 +55,18 @@
     border-bottom: 1px dotted #efe4a5;
   }
 }
+
+@mixin label {
+  display: inline-block;
+  position: relative;
+
+  background-color: #858585;
+  @include border-radius(3px);
+  padding: 1px 3px 2px;
+
+  line-height: 16px;
+  font-size: 11px;
+  font-weight: bold;
+  color: #fff;
+  @include single-text-shadow(rgba(0, 0, 0, 0.6), 0px, -1px, 0px);
+}

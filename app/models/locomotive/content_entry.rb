@@ -48,6 +48,14 @@ module Locomotive
       value.respond_to?(:to_label) ? value.to_label : value
     end
 
+    def translated?
+      if self.respond_to?(:"#{self._label_field_name}_translations")
+        self.send(:"#{self._label_field_name}_translations").key?(::Mongoid::Fields::I18n.locale.to_s) #rescue false
+      else
+        true
+      end
+    end
+
     def next
       next_or_previous :gt
     end

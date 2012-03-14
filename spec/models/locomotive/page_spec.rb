@@ -74,6 +74,12 @@ describe Locomotive::Page do
         @page.errors[:title].should == ["can't be blank"]
       end
 
+      it 'tells if a page has been translated or not' do
+        @page.translated?.should be_false
+        @page.title = 'Hello world'
+        @page.translated?.should be_true
+      end
+
     end
 
   end

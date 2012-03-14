@@ -78,6 +78,12 @@ ul.list {
       outline: none;
     }
 
+    span.untranslated {
+      @include label;
+      top: -1px;
+      left: 5px;
+    }
+
     div.more {
       position: absolute;
       top: 0px;
@@ -211,6 +217,12 @@ ul.list {
       }
 
       &.hidden a { font-style: italic; font-weight: normal; }
+
+      span.untranslated {
+        @include label;
+        top: 3px;
+        left: 5px;
+      }
 
       .more {
         position: absolute;

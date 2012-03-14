@@ -71,6 +71,10 @@ module Locomotive
       self.cache_strategy != 'none'
     end
 
+    def translated?
+      self.title_translations.key?(::Mongoid::Fields::I18n.locale.to_s) rescue false
+    end
+
     def to_liquid
       Locomotive::Liquid::Drops::Page.new(self)
     end

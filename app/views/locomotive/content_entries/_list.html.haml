@@ -6,7 +6,11 @@
       %li.item{ :id => "entry-#{entry._id}" }
         %span.handle
           = image_tag 'locomotive/form/icons/drag.png'
+
         %strong= link_to entry_label(content_type, entry), edit_content_entry_url(content_type.slug, entry)
+
+        - unless entry.translated?
+          %span.untranslated= t('locomotive.shared.list.untranslated')
         .more
           %span
             != t('locomotive.content_entries.index.updated_at')
