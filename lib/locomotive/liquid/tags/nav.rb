@@ -19,7 +19,7 @@ module Locomotive
         def initialize(tag_name, markup, tokens, context)
           if markup =~ Syntax
             @source = ($1 || 'page').gsub(/"|'/, '')
-            @options = { :id => 'nav', :depth => 1, :class => '', :active_class => 'on' }
+            @options = { :id => 'nav', :depth => 1, :class => '', :active_class => 'on', :bootstrap => false }
             markup.scan(::Liquid::TagAttributes) { |key, value| @options[key.to_sym] = value.gsub(/"|'/, '') }
 
             @options[:exclude] = Regexp.new(@options[:exclude]) if @options[:exclude]
@@ -90,12 +90,28 @@ module Locomotive
 
           label = %{#{icon if @options[:icon] != 'after' }#{title}#{icon if @options[:icon] == 'after' }}
 
-          output  = %{<li id="#{page.slug.dasherize}-link" class="link#{selected} #{css}">}
-          output << %{<a href="/#{@site.localized_page_fullpath(page)}">#{label}</a>}
+          dropdow = ""
+          link_options = ""
+          href = "/#{page.fullpath}"
+          caret = ""
+
+          if render_children_for_page?(page, depth) && @options[:bootstrap] == "true"
+            dropdow = "dropdown"
+            link_options = %{class="dropdown-toggle" data-toogle="dropdown"}
+            href = "#"
+            caret = %{<b class="caret"></b>}
+          end
+
+          output  = %{<li id="#{page.slug.to_s.dasherize}-link" class="link#{selected} #{css} #{dropdow}">}
+          output << %{<a href="#{href}" #{link_options}>#{label} #{caret}</a>}
           output << render_entry_children(page, depth.succ) if (depth.succ <= @options[:depth].to_i)
           output << %{</li>}
 
           output.strip
+        end
+
+        def render_children_for_page?(page, depth)
+          depth.succ <= @options[:depth].to_i && page.children.reject { |c| !include_page?(c) }.any?
         end
 
         # Recursively creates a nested unordered list for the depth specified
@@ -104,7 +120,7 @@ module Locomotive
 
           children = page.children_with_minimal_attributes( @options[:add_attributes] ).reject { |c| !include_page?(c) }
           if children.present?
-            output = %{<ul id="#{@options[:id]}-#{page.slug.dasherize}">}
+            output = %{<ul id="#{@options[:id]}-#{page.slug.to_s.dasherize}" class="#{@options[:bootstrap] == "true" ? "dropdown-menu" : ""}">}
             children.each do |c, page|
               css = []
               css << 'first' if children.first == c
