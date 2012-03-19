@@ -6,7 +6,7 @@
     .inner
       %h2!= t('locomotive.pages.index.latest_entries')
       %ul
-        - current_site.pages.latest_updated.minimal_attributes.each do |page|
+        - current_site.pages.unscoped.latest_updated.minimal_attributes.each do |page|
           %li
             = link_to truncate(page.title, :length => 25), edit_page_url(page)
             %span= time_ago_in_words(page.updated_at)

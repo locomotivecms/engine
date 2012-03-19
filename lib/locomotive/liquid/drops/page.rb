@@ -6,7 +6,7 @@ module Locomotive
         delegate :seo_title, :meta_keywords, :meta_description, :to => '_source'
 
         def title
-          self._source.templatized? ? @context['content_entry']._label : self._source.title
+          self._source.templatized? ? @context['entry']._label : self._source.title
         end
 
         def slug

@@ -74,9 +74,9 @@ describe Locomotive::Liquid::Drops::Page do
     it 'renders the content instance highlighted field instead for a templatized page' do
       templatized = FactoryGirl.build(:page, :title => 'Lorem ipsum template', :templatized => true)
 
-      content_entry = Locomotive::Liquid::Drops::ContentEntry.new(mock('content_entry', :_label => 'Locomotive rocks !'))
+      entry = Locomotive::Liquid::Drops::ContentEntry.new(mock('entry', :_label => 'Locomotive rocks !'))
 
-      render_template('{{ page.title }}', 'page' => templatized, 'content_entry' => content_entry).should == 'Locomotive rocks !'
+      render_template('{{ page.title }}', 'page' => templatized, 'entry' => entry).should == 'Locomotive rocks !'
     end
 
   end

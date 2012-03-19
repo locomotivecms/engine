@@ -6,8 +6,26 @@ module Locomotive
 
           protected
 
+          protected
+
+          def default_element_attributes
+            if @nodelist.first.is_a?(String)
+              super.merge(:default_source_url => @nodelist.first.try(:to_s))
+            else
+              super
+            end
+          end
+
           def render_element(context, element)
-            element.source? ? element.source.url : element.default_content
+            if element.source?
+              element.source.url
+            else
+              if element.default_source_url.present?
+                element.default_source_url
+              else
+                render_default_content(context)
+              end
+            end
           end
 
           def document_type

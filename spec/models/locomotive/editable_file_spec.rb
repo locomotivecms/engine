@@ -16,13 +16,25 @@ describe Locomotive::EditableFile do
     @home.editable_elements.first.slug.should == 'image'
   end
 
+  it 'disables the default content flag if the remove_source method is called' do
+    @home.editable_elements.first.remove_source = true
+    @home.save; @home.reload
+    @home.editable_elements.first.default_content?.should be_false
+  end
+
+  it 'disables the default content when a new file is uploaded' do
+    @home.editable_elements.first.source = FixturedAsset.open('5k.png')
+    @home.save
+    @home.editable_elements.first.default_content?.should be_false
+  end
+
   it 'does not have 2 image fields' do
     editable_file = @home.editable_elements.first
     fields = editable_file.class.fields.keys
     (fields.include?('source') && fields.include?(:source)).should be_false
   end
 
-  context 'with an attached file' do
+  describe 'with an attached file' do
 
     before(:each) do
       @editable_file = @home.editable_elements.first
@@ -37,6 +49,45 @@ describe Locomotive::EditableFile do
     it 'returns the right path even if the page has been retrieved with the minimum_attributes scope' do
       @home = @site.pages.minimal_attributes(%w(editable_elements)).root.first
       @home.editable_elements.first.source?.should be_true
+    end
+
+  end
+
+  describe '"sticky" files' do
+
+    before(:each) do
+      @home.update_attributes :raw_template => "{% block body %}{% editable_file 'image', fixed: true %}/foo.png{% endeditable_file %}{% endblock %}"
+
+      @sub_page_1 = FactoryGirl.create(:page, :slug => 'sub_page_1', :parent => @home, :raw_template => "{% extends 'index' %}")
+      @sub_page_2 = FactoryGirl.create(:page, :slug => 'sub_page_2', :parent => @home, :raw_template => "{% extends 'index' %}")
+
+      @sub_page_1_el = @sub_page_1.editable_elements.first
+      @sub_page_2_el = @sub_page_2.editable_elements.first
+    end
+
+    it 'exists in sub pages' do
+      @sub_page_1.editable_elements.size.should == 1
+      @sub_page_2.editable_elements.size.should == 1
+    end
+
+    it 'is marked as fixed' do
+      @sub_page_1_el.fixed?.should be_true
+      @sub_page_2_el.fixed?.should be_true
+    end
+
+    it 'enables the default content when it just got created' do
+      @sub_page_1_el.source?.should be_false
+      @sub_page_1_el.default_source_url.should == '/foo.png'
+      @sub_page_1_el.default_content?.should be_true
+    end
+
+    it 'gets also updated when updating the very first element' do
+      @home.editable_elements.first.source = FixturedAsset.open('5k.png')
+      @home.save; @sub_page_1.reload; @sub_page_2.reload
+      @sub_page_1.editable_elements.first.default_source_url.should be_true
+      @sub_page_1.editable_elements.first.default_source_url.should =~ /files\/5k.png$/
+      @sub_page_2.editable_elements.first.default_source_url.should be_true
+      @sub_page_2.editable_elements.first.default_source_url.should =~ /files\/5k.png$/
     end
 
   end

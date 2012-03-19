@@ -7,14 +7,16 @@ module Locomotive
           protected
 
           def render_element(context, element)
-            if context.registers[:inline_editor]
+            content = element.default_content? ? render_default_content(context) : element.content
+
+            if editable?(context, element)
               %{
                 <div class='editable-long-text' data-element-id='#{element.id}' data-element-index='#{element._index}'>
-                  #{element.content}
+                  #{content}
                 </div>
               }
             else
-              element.content
+              content
             end
           end
 

@@ -102,7 +102,7 @@ en:
         slug: "It will be used as the name of the collection in the liquid templates. Ex: <span class='code'>{{ contents.my_projects }}</span>"
         raw_item_template: "You can customize the text displayed for each item in the list. Simply use Liquid. Ex: <span class='code'>{{ entry.name }})</span>"
         public_submission_enabled: "It is used to let people from outside to create new entries (example: messages in a contact form)"
-        public_submission_accounts: "If the public submission option is enabled and for each entry created, sends a notification email tothe accounts listed above."
+        public_submission_accounts: "If the public submission option is enabled and for each entry created, sends a notification email to the accounts listed above."
         "custom_fields/field":
           name: "Name of the property for liquid templates. Ex: <span class='code'>&#123;&#123; your_object.&lt;name_of_your_field&gt; &#125;&#125;</span>"
           hint: "Text displayed in the model form just below the field"
