@@ -60,8 +60,8 @@ module Locomotive
 
           @template = ::Liquid::Template.parse(self.raw_template, context)
 
-          self.template_dependencies = context[:templates]
-          self.snippet_dependencies = context[:snippets]
+          self.template_dependencies  = context[:templates]
+          self.snippet_dependencies   = context[:snippets]
 
           @template.root.context.clear
         end
@@ -77,7 +77,7 @@ module Locomotive
           return unless @template_changed == true
 
           # we admit at this point that the current template is up-to-date
-          template_descendants = self.site.pages.any_in(:template_dependencies => [self.id]).to_a
+          template_descendants = self.site.pages.any_in("template_dependencies.#{::Mongoid::Fields::I18n.locale}" => [self.id]).to_a
 
           # group them by fullpath for better performance
           cached = template_descendants.inject({}) { |memo, page| memo[page.fullpath] = page; memo }
