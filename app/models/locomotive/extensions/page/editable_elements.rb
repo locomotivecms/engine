@@ -26,7 +26,7 @@ module Locomotive
         end
 
         def enabled_editable_elements
-          self.editable_elements.by_priority.find_all(&:editable?) # { |el| !el.editable? }
+          self.editable_elements.by_priority.find_all(&:editable?)
         end
 
         def editable_elements_grouped_by_blocks
@@ -70,7 +70,7 @@ module Locomotive
               new_el = self.editable_elements.build({}, el.class)
               new_el.copy_attributes_from(el)
             else
-              existing_el.disabled = false # = { :disabled => false }
+              existing_el.disabled = false
             end
           end
         end

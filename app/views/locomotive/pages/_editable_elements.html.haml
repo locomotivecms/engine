@@ -50,3 +50,15 @@
   {{/if}}
 
   = hidden_field_tag 'page[editable_elements_attributes][{{index}}][id]', '{{id}}', :id => 'page_editable_elements_attributes_{{index}}_id'
+
+%script{ :type => 'text/html', :id => 'editable_control_input' }
+
+  %label{ :for => 'page_editable_elements_attributes_{{index}}_content' } {{label}}
+
+  = select_tag 'page[editable_elements_attributes][{{index}}][content]', raw('{{#each options}}<option value="{{this.value}}" {{#if this.selected}}selected="selected"{{/if}}>{{this.text}}</option>{{/each}}'), :id => 'page_editable_elements_attributes_{{index}}_content', :class => 'content'
+
+  {{#if hint}}
+  %p.inline-hints {{hint}}
+  {{/if}}
+
+  = hidden_field_tag 'page[editable_elements_attributes][{{index}}][id]', '{{id}}', :id => 'page_editable_elements_attributes_{{index}}_id'

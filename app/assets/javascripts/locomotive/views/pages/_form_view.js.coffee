@@ -90,6 +90,7 @@ class Locomotive.Views.Pages.FormView extends Locomotive.Views.Shared.FormView
 
   # Just re-connect the model and the views (+ redraw the file fields)
   refresh_editable_elements: ->
+    @editable_elements_view.unbind_model()
     @editable_elements_view.collection = @model.get('editable_elements')
     @editable_elements_view.refresh()
 

@@ -6,8 +6,6 @@ module Locomotive
 
           protected
 
-          protected
-
           def default_element_attributes
             if @nodelist.first.is_a?(String)
               super.merge(:default_source_url => @nodelist.first.try(:to_s))

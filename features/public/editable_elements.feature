@@ -125,7 +125,7 @@ Scenario: Insert editable files
     """
     My application file is /default.pdf
     """
-    
+
 Scenario: Render liquid variable used as default editable file name
   Given a page named "hello-world" with the template:
     """
@@ -135,7 +135,17 @@ Scenario: Render liquid variable used as default editable file name
   When I view the rendered page at "/hello-world"
   Then the rendered output should look like:
     """
-    
+
     My application file is /different-default.pdf
     """
 
+Scenario: Simple select element
+  Given a page named "hello-world" with the template:
+    """
+    {% block menuecontent %}{% editable_control 'menueposition', options: 'top=Top of the Page,bottom=Bottom of the Page' %}bottom{% endeditable_control %}{% endblock %}
+    """
+  When I view the rendered page at "/hello-world"
+  Then the rendered output should look like:
+    """
+    bottom
+    """

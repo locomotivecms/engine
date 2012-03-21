@@ -32,6 +32,9 @@ class Locomotive.Views.EditableElements.EditAllView extends Backbone.View
       view.model = @collection.get(view.model.get('id'))
       view.refresh()
 
+  unbind_model: ->
+    _.each @_editable_elements_views, (view) => Backbone.ModelBinding.unbind(view)
+
   render_elements: ->
     index = 0
 
@@ -45,6 +48,7 @@ class Locomotive.Views.EditableElements.EditAllView extends Backbone.View
           when 'EditableShortText' then Locomotive.Views.EditableElements.ShortTextView
           when 'EditableLongText' then Locomotive.Views.EditableElements.LongTextView
           when 'EditableFile' then Locomotive.Views.EditableElements.FileView
+          when 'EditableControl' then Locomotive.Views.EditableElements.ControlView
 
         view = new view_class(model: element)
         @$("#block-#{block.index} > fieldset > ol").append(view.render().el)

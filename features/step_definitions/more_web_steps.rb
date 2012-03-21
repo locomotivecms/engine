@@ -1,5 +1,5 @@
 When /^I follow image link "([^"]*)"$/ do |img_alt|
-    find(:xpath, "//img[@alt = '#{img_alt}']/parent::a").click()
+  find(:xpath, "//img[@alt = '#{img_alt}']/parent::a").click()
 end
 
 Then /^I should get a download with the filename "([^\"]*)"$/ do |filename|
@@ -30,4 +30,12 @@ Then /^"([^"]*)" should( not)? be an option for "([^"]*)"(?: within "([^\"]*)")?
     expectation = negate ? :should_not : :should
     field_labeled(field).first(:xpath, ".//option[text() = '#{value}']").send(expectation, be_present)
   end
+end
+
+Then /^"([^"]*)" should be selected for "([^"]*)"$/ do |value, field|
+  assert page.has_xpath?("//select[@name='#{field}' and option[@selected and contains(text(), '#{value}')]]")
+end
+
+When /^I reload the page$/ do
+  visit current_path
 end
