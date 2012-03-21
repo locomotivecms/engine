@@ -18,6 +18,66 @@ describe Locomotive::EditableShortText do
       @sub_page_1_1 = FactoryGirl.create(:page, :slug => 'sub_page_1_1', :parent => @sub_page_1, :raw_template => "{% extends 'parent' %}")
     end
 
+    context '#locales' do
+
+      it 'assigns the default locale' do
+        @sub_page_1_el.locales.should == ['en']
+      end
+
+      it 'adds new locale' do
+        ::Mongoid::Fields::I18n.with_locale 'fr' do
+          page = Locomotive::Page.find(@home._id)
+          page.editable_elements.first.content = 'Lorem ipsum (FR)'
+          page.save
+          page.editable_elements.first.locales.should == %w(en fr)
+        end
+      end
+
+      it 'adds new locale within sub page elements' do
+        ::Mongoid::Fields::I18n.with_locale 'fr' do
+          @home.update_attributes :title => 'Accueil', :raw_template => "{% block body %}{% editable_short_text 'body' %}Lorem ipsum{% endeditable_short_text %}{% endblock %}"
+          page = Locomotive::Page.find(@sub_page_1._id)
+          page.editable_elements.first.content = 'Lorem ipsum (FR)'
+          page.save
+          page.editable_elements.first.locales.should == %w(en fr)
+        end
+      end
+
+    end
+
+    context '#editable?' do
+
+      it 'is editable' do
+        @sub_page_1_el.editable?.should be_true
+      end
+
+      it 'is not editable if the element is disabled' do
+        @sub_page_1_el.disabled = true
+        @sub_page_1_el.editable?.should be_false
+      end
+
+      it 'is not editable if it is a fixed one' do
+        @sub_page_1_el.fixed = true
+        @sub_page_1_el.editable?.should be_false
+      end
+
+      it 'is not editable if it does exist for the current locale' do
+        ::Mongoid::Fields::I18n.with_locale 'fr' do
+          @sub_page_1_el.editable?.should be_false
+        end
+      end
+
+      it 'is among the editable elements of the page' do
+        @sub_page_1.enabled_editable_elements.map(&:slug).should == %w(body)
+      end
+
+      it 'is not among the editable elements of the page if disabled' do
+        @sub_page_1_el.disabled = true
+        @sub_page_1.enabled_editable_elements.map(&:slug).should == []
+      end
+
+    end
+
     context 'in sub pages level #1' do
 
       before(:each) do

@@ -8,6 +8,7 @@ module Locomotive
     ## methods ##
 
     def content=(value)
+      self.add_current_locale
       self.default_content = false unless self.new_record?
       super
     end

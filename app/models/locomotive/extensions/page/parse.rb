@@ -38,6 +38,8 @@ module Locomotive
               @parsing_errors << I18n.t(:liquid_syntax, :fullpath => self.fullpath, :error => error.to_s, :scope => [:errors, :messages, :page])
             rescue ::Locomotive::Liquid::PageNotFound => error
               @parsing_errors << I18n.t(:liquid_extend, :fullpath => self.fullpath, :scope => [:errors, :messages, :page])
+            rescue ::Locomotive::Liquid::PageNotTranslated => error
+              @parsing_errors << I18n.t(:liquid_translation, :fullpath => self.fullpath, :scope => [:errors, :messages, :page])
             end
           end
         end

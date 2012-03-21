@@ -9,9 +9,9 @@ module Locomotive
       field :hint
       field :priority,          :type => Integer, :default => 0
       field :fixed,             :type => Boolean, :default => false
-      field :disabled,          :type => Boolean, :default => false
+      field :disabled,          :type => Boolean, :default => false, :localize => true
       field :from_parent,       :type => Boolean, :default => false
-      # field :locales,           :type => Array TODO
+      field :locales,           :type => Array,   :default => []
 
       ## associations ##
       embedded_in :page, :class_name => 'Locomotive::Page', :inverse_of => :editable_elements
@@ -26,6 +26,16 @@ module Locomotive
       scope :by_priority, :order_by => [[:priority, :desc]]
 
       ## methods ##
+
+      def disabled?
+        !!self.disabled # the original method does not work quite well with the localization
+      end
+
+      # Determines if the current element can be edited in the back-office
+      #
+      def editable?
+        !self.disabled? && self.locales.include?(::Mongoid::Fields::I18n.locale.to_s) && (!self.fixed? || !self.from_parent?)
+      end
 
       def _run_rearrange_callbacks
         # callback from page/tree. not needed in the editable elements
@@ -52,8 +62,17 @@ module Locomotive
       # @param [ EditableElement] el The source element
       #
       def copy_attributes_from(el)
-        self.attributes   = el.attributes.reject { |attr| !%w(slug block hint priority fixed disabled from_parent).include?(attr) }
+        self.attributes   = el.attributes.reject { |attr| !%w(slug block hint priority fixed disabled locales from_parent).include?(attr) }
         self.from_parent  = true
+      end
+
+      # Make sure the current locale is added to the list
+      # of locales for the current element so that we know
+      # in which languages the element was translated.
+      #
+      def add_current_locale
+        locale = ::Mongoid::Fields::I18n.locale.to_s
+        self.locales << locale unless self.locales.include?(locale)
       end
 
       protected

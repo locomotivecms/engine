@@ -32,11 +32,11 @@ fr:
       protected_page: "Vous ne pouvez pas supprimer les pages index et 404"
       extname_changed: "Nouveau fichier n'a pas l'extension original"
       array_too_short: "est trop petit (le nombre minimum d'éléments est %{count})"
-      liquid_syntax: "Erreur de syntaxe ('%{error}')"
       security: "présente un problème de sécurité"
       page:
         liquid_syntax: "Erreur de syntaxe dans les sections de page, veuillez vérifier la syntaxe ('%{error}'/'%{fullpath}')"
         liquid_extend: "La page '%{fullpath}' étend le contenu d'une page qui n'existe pas"
+        liquid_translation: "La page '%{fullpath}' étend le contenu d'une page qui n'a pas été traduite"
 
   attributes:
     defaults:

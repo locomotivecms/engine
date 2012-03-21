@@ -26,7 +26,7 @@ module Locomotive
         end
 
         def enabled_editable_elements
-          self.editable_elements.by_priority.reject { |el| el.disabled? || (el.fixed? && el.from_parent?) }
+          self.editable_elements.by_priority.find_all(&:editable?) # { |el| !el.editable? }
         end
 
         def editable_elements_grouped_by_blocks
@@ -43,15 +43,17 @@ module Locomotive
         end
 
         def add_or_update_editable_element(attributes, type)
-          # locale = attributes.delete(:locale) # TODO
-
           element = self.find_editable_element(attributes[:block], attributes[:slug])
 
           if element
             element.copy_attributes(attributes)
           else
-            self.editable_elements.build(attributes, type)
+            element = self.editable_elements.build(attributes, type)
           end
+
+          element.add_current_locale
+
+          element
         end
 
         def enable_editable_elements(block)
@@ -68,7 +70,7 @@ module Locomotive
               new_el = self.editable_elements.build({}, el.class)
               new_el.copy_attributes_from(el)
             else
-              existing_el.attributes = { :disabled => false }
+              existing_el.disabled = false # = { :disabled => false }
             end
           end
         end
@@ -77,7 +79,7 @@ module Locomotive
           return unless self.editable_elements.any? { |el| el.disabled? }
 
           # super fast way to remove useless elements all in once
-          self.collection.update(self.atomic_selector, '$pull' => { 'editable_elements' => { 'disabled' => true } })
+          self.collection.update(self.atomic_selector, '$pull' => { 'editable_elements' => { "disabled.#{::Mongoid::Fields::I18n.locale}" => true } })
         end
 
       end

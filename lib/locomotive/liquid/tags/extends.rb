@@ -34,7 +34,9 @@ module Locomotive
           raise PageNotFound.new("Page with fullpath '#{@template_name}' was not found") if @context[:parent_page].nil?
 
           # be sure to work with a copy of the parent template otherwise there will be conflicts
-          parent_template = @context[:parent_page].template.clone
+          parent_template = @context[:parent_page].template.try(:clone)
+
+          raise PageNotTranslated.new("Page with fullpath '#{@template_name}' was not translated") if parent_template.nil?
 
           @context[:parent_page].instance_variable_set(:@template, parent_template)
 
