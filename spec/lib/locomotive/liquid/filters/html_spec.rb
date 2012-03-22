@@ -8,6 +8,16 @@ describe Locomotive::Liquid::Filters::Html do
     @context = build_context
   end
 
+  it 'writes the tag to display a rss/atom feed' do
+    auto_discovery_link_tag('/foo/bar').should == %(
+      <link rel="alternate" type="application/rss+xml" title="RSS" href="/foo/bar" />
+    ).strip
+
+    auto_discovery_link_tag('/foo/bar', 'rel:alternate2', 'type:atom', 'title:Hello world').should == %(
+      <link rel="alternate2" type="atom" title="Hello world" href="/foo/bar" />
+    ).strip
+  end
+
   it 'should return a url for a stylesheet file' do
     result = "/sites/000000000000000000000042/theme/stylesheets/main.css"
     stylesheet_url('main.css').should == result
