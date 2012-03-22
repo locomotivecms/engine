@@ -77,10 +77,17 @@ fr:
         file:
           delete_file: Supprimer fichier
         has_many:
-          empty: Vide
+          empty: La liste est vide
+          new_entry: + Ajouter une nouvelle entrée
+        many_to_many:
+          empty: La liste est vide. Ajouter une entrée depuis la liste ci-dessous.
+
       form:
-        is_required: est obligatoire
-        default_label: Nom du champ
+        required: Required
+        optional: Optional
+        default_label: Field name
+        select_options:
+          ask_name: "Type the label of the option"
 
     sessions:
       new:
@@ -149,6 +156,8 @@ fr:
       new:
         title: "Nouveau site"
         help: "Remplissez le formulaire ci-dessous pour créer votre nouveau site."
+      domains:
+        empty: Aucun domaine
 
     current_site:
       edit:
@@ -187,6 +196,7 @@ fr:
         media: Média
         fonts: Polices
         no_items: "Il n'existe pas de fichiers."
+        quick_upload: "Upload rapide"
       asset:
         updated_at: Mis à jour le
       new:
@@ -216,6 +226,7 @@ fr:
     content_types:
       index:
         new: nouveau modèle
+        edit: éditer
       new:
         title: Nouveau modèle
         help: "Créer votre propre modèle de données (Projets, Personnes, ...etc). Votre modèle doit au moins comporter un champ. Le premier champ sera obligatoire lorsque vous ajouterez un élément de ce type-là."

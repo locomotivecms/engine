@@ -80,6 +80,7 @@ ul.list {
 
     span.untranslated {
       @include label;
+      background-color: #F89406;
       top: -1px;
       left: 5px;
     }
@@ -219,6 +220,13 @@ ul.list {
       &.hidden a { font-style: italic; font-weight: normal; }
 
       span.untranslated {
+        @include label;
+        background-color: #F89406;
+        top: 3px;
+        left: 5px;
+      }
+
+      span.response-type {
         @include label;
         top: 3px;
         left: 5px;

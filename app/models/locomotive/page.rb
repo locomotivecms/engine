@@ -22,6 +22,7 @@ module Locomotive
     field :locales,             :type => Array
     field :published,           :type => Boolean, :default => false
     field :cache_strategy,      :default => 'none'
+    field :response_type,       :default => 'text/html'
 
     ## associations ##
     belongs_to :site, :class_name => 'Locomotive::Site'
@@ -51,7 +52,7 @@ module Locomotive
     scope :published,           :where => { :published => true }
     scope :fullpath,            lambda { |fullpath| { :where => { :fullpath => fullpath } } }
     scope :handle,              lambda { |handle| { :where => { :handle => handle } } }
-    scope :minimal_attributes,  lambda { |attrs = []| { :only => (attrs || []) + %w(title slug fullpath position depth published templatized redirect listed parent_id site_id created_at updated_at) } }
+    scope :minimal_attributes,  lambda { |attrs = []| { :only => (attrs || []) + %w(title slug fullpath position depth published templatized redirect listed response_type parent_id site_id created_at updated_at) } }
     scope :dependent_from,      lambda { |id| { :where => { :template_dependencies.in => [id] } } }
 
     ## methods ##
@@ -70,6 +71,10 @@ module Locomotive
 
     def with_cache?
       self.cache_strategy != 'none'
+    end
+
+    def default_response_type?
+      self.response_type == 'text/html'
     end
 
     def translated?

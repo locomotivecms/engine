@@ -307,6 +307,24 @@ describe Locomotive::Page do
     end
   end
 
+  describe 'response type' do
+
+    before(:each) do
+      @page = FactoryGirl.build(:page, :site => nil)
+    end
+
+    it 'is a HTML document by default' do
+      @page.response_type.should == 'text/html'
+      @page.default_response_type?.should be_true
+    end
+
+    it 'can also be a JSON document' do
+      @page.response_type = 'application/json'
+      @page.default_response_type?.should be_false
+    end
+
+  end
+
   class Foo
   end
 

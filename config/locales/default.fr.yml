@@ -52,7 +52,7 @@ fr:
 
   mongoid:
     attributes:
-      page:
+      locomotive/page:
         title: Titre
         parent: Dossier parent
         parent_id: Dossier parent
@@ -63,42 +63,49 @@ fr:
         redirect: Redirection
         redirect_url: Url de redirection
         cache_strategy: Cache
+        response_type: Type de réponse
         seo_title: Titre SEO
-      content_type:
+      locomotive/content_type:
         name: Nom
         description: Description
         slug: Raccourci
         order_by: Ordonner
-        highlighted_field_name: Champ mis en avant
+        order_direction: Direction
+        label_field_name: Champ mis en avant
+        label_field_id: Champ mis en avant
         group_by_field_name: Champ pour grouper
-        api_enabled: Activation API
-      asset:
+        group_by_field_id: Champ pour grouper
+        public_submission_enabled: Activation API
+        public_submission_accounts: Comptes à notifier
+      locomotive/asset:
         source: Fichier
-      account:
+      locomotive/account:
         email: E-mail
         name: Nom
         language: Langue
         password: Mot de passe
         password_confirmation: Confirmation mot de passe
-      snippet:
+      locomotive/snippet:
         body: Code
         slug: Raccourci
         name: Nom
-      theme_asset:
+      locomotive/theme_asset:
         content_type: Type du fichier
-      site:
+      locomotive/site:
         name: Nom du site
+        locales: Langues
         domain_name: Domaine
         subdomain: Sous-domaine
         restricted_access: Activer ?
         access_login: Identifiant
         access_password: "Mot de passe"
-      custom_fields:
-        field:
-          name: Alias
-          hint: Aide
-          required: Requis ?
-          text_formatting: Formattage
+      custom_fields/field:
+        name: Alias
+        hint: Aide
+        required: Requis ?
+        text_formatting: Formattage
+        localized: Localisé ?
+        select_options: Options
 
   pagination:
     previous: "&laquo; Précédent"

@@ -32,6 +32,8 @@
 
     = f.input :handle
 
+    = f.input :response_type, :as => :select, :collection => options_for_page_response_type, :include_blank => false
+
     = f.input :templatized, :as => :'Locomotive::Toggle', :style => "#{'display: none' if @page.redirect?}"
 
     = f.input :target_klass_name, :as => :select, :collection => options_for_target_klass_name, :include_blank => false, :wrapper_html => { :style => "#{'display: none' unless @page.templatized?}" }
@@ -40,7 +42,7 @@
 
     = f.input :listed, :as => :'Locomotive::Toggle'
 
-    = f.input :redirect, :as => :'Locomotive::Toggle', :style => "#{'display: none' if @page.templatized?}"
+    = f.input :redirect, :as => :'Locomotive::Toggle', :wrapper_html => { :style => "#{'display: none' if @page.templatized? || !@page.default_response_type?}" }
 
     = f.input :cache_strategy, :as => :select, :collection => options_for_page_cache_strategy, :include_blank => false, :wrapper_html => { :style => "#{'display: none' if @page.redirect?}" }
 

@@ -37,6 +37,12 @@ describe 'Locomotive rendering system' do
       @controller.response.headers['Content-Type'].should == 'text/html; charset=utf-8'
     end
 
+    it 'sets the content type to the one specified by the page' do
+      @page.response_type = 'application/json'
+      @controller.send(:prepare_and_set_response, 'Hello world !')
+      @controller.response.headers['Content-Type'].should == 'application/json; charset=utf-8'
+    end
+
     it 'sets the status to 200 OK' do
       @controller.status.should == :ok
     end

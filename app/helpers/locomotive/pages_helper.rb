@@ -50,5 +50,18 @@ module Locomotive
       ]
     end
 
+    def options_for_page_response_type
+      [
+        ['HTML', 'text/html'],
+        ['RSS', 'application/rss+xml'],
+        ['XML', 'text/xml'],
+        ['JSON', 'application/json']
+      ]
+    end
+
+    def page_response_type_to_string(page)
+      options_for_page_response_type.detect { |t| t.last == page.response_type }.try(:first) || '&mdash;'
+    end
+
   end
 end

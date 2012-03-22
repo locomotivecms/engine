@@ -17,6 +17,9 @@
 
     = link_to truncate(page.title, :length => 80), edit_page_url(page)
 
+    - unless page.default_response_type?
+      %span.response-type= page_response_type_to_string(page)
+
     - unless page.translated?
       %span.untranslated= t('locomotive.shared.list.untranslated')
 

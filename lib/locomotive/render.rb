@@ -26,20 +26,25 @@ module Locomotive
     end
 
     def locomotive_page
+      page = nil
       path = self.locomotive_page_path
 
-      if page = current_site.pages.any_in(:fullpath => [*path]).first
-        if not page.published? and current_locomotive_account.nil?
-          page = nil
+      current_site.pages.any_in(:fullpath => [*path]).each do |_page|
+        if not _page.published? and current_locomotive_account.nil?
+          next
         else
-          if page.templatized?
-            @content_entry = page.fetch_target_entry(File.basename(path.first))
+          if _page.templatized?
+            @content_entry = _page.fetch_target_entry(File.basename(path.first))
 
             if @content_entry.nil? || (!@content_entry.visible? && current_locomotive_account.nil?) # content instance not found or not visible
-              page = nil
+              next
             end
           end
         end
+
+        page = _page
+
+        break
       end
 
       page || not_found_page
@@ -101,7 +106,7 @@ module Locomotive
     def prepare_and_set_response(output)
       flash.discard
 
-      response.headers['Content-Type']  = 'text/html; charset=utf-8'
+      response.headers['Content-Type']  = "#{@page.response_type}; charset=utf-8"
       response.headers['Editable']      = 'true' unless self.editing_page? || current_locomotive_account.nil?
 
       if @page.with_cache?

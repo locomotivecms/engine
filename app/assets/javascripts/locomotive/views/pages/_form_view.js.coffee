@@ -37,6 +37,9 @@ class Locomotive.Views.Pages.FormView extends Locomotive.Views.Shared.FormView
     # the url gets modified by different ways so reflect the changes in the UI
     @listen_for_url_changes()
 
+    # enable response type
+    @enable_response_type_select()
+
     # enable check boxes
     @enable_templatized_checkbox()
 
@@ -109,6 +112,14 @@ class Locomotive.Views.Pages.FormView extends Locomotive.Views.Shared.FormView
       data:       { parent_id:  @$('#page_parent_id').val(), slug: @$('#page_slug').val() }
       success:    (data) =>
         @$('#page_slug_input .inline-hints').html(data.url).effect('highlight')
+
+  enable_response_type_select: ->
+    @$('li#page_response_type_input').change (event) =>
+      if $(event.target).val() == 'text/html'
+        @$('li#page_redirect_input, li#page_redirect_url_input').show()
+      else
+        @model.set redirect: false
+        @$('li#page_redirect_input, li#page_redirect_url_input').hide()
 
   enable_templatized_checkbox: ->
     @_enable_checkbox 'templatized',
