@@ -56,8 +56,8 @@ module Locomotive
           output = children_output.join("\n")
 
           if @options[:no_wrapper] != 'true'
-            list_class = !@options[:class].blank? ? %( class="#{@options[:class]}") : ''
-            output = %{<ul id="#{@options[:id]}"#{list_class}>\n#{output}</ul>}
+            list_class  = !@options[:class].blank? ? %( class="#{@options[:class]}") : ''
+            output      = %{<ul id="#{@options[:id]}"#{list_class}>\n#{output}</ul>}
           end
 
           output
@@ -90,20 +90,18 @@ module Locomotive
 
           label = %{#{icon if @options[:icon] != 'after' }#{title}#{icon if @options[:icon] == 'after' }}
 
-          dropdow = ""
-          link_options = ""
-          href = "/#{page.fullpath}"
-          caret = ""
+          link_options = caret = ''
+          href    = "/#{page.fullpath}"
 
-          if render_children_for_page?(page, depth) && @options[:bootstrap] == "true"
-            dropdow = "dropdown"
-            link_options = %{class="dropdown-toggle" data-toogle="dropdown"}
-            href = "#"
-            caret = %{<b class="caret"></b>}
+          if render_children_for_page?(page, depth) && bootstrap?
+            css           += ' dropdown'
+            link_options  = %{ class="dropdown-toggle" data-toogle="dropdown"}
+            href          = '#'
+            caret         = %{ <b class="caret"></b>}
           end
 
-          output  = %{<li id="#{page.slug.to_s.dasherize}-link" class="link#{selected} #{css} #{dropdow}">}
-          output << %{<a href="#{href}" #{link_options}>#{label} #{caret}</a>}
+          output  = %{<li id="#{page.slug.to_s.dasherize}-link" class="link#{selected} #{css}">}
+          output << %{<a href="#{href}"#{link_options}>#{label}#{caret}</a>}
           output << render_entry_children(page, depth.succ) if (depth.succ <= @options[:depth].to_i)
           output << %{</li>}
 
@@ -120,7 +118,7 @@ module Locomotive
 
           children = page.children_with_minimal_attributes( @options[:add_attributes] ).reject { |c| !include_page?(c) }
           if children.present?
-            output = %{<ul id="#{@options[:id]}-#{page.slug.to_s.dasherize}" class="#{@options[:bootstrap] == "true" ? "dropdown-menu" : ""}">}
+            output = %{<ul id="#{@options[:id]}-#{page.slug.to_s.dasherize}" class="#{bootstrap? ? 'dropdown-menu' : ''}">}
             children.each do |c, page|
               css = []
               css << 'first' if children.first == c
@@ -145,8 +143,13 @@ module Locomotive
           end
         end
 
-        ::Liquid::Template.register_tag('nav', Nav)
+        def bootstrap?
+          @options[:bootstrap] == 'true'
+        end
+
       end
+
+      ::Liquid::Template.register_tag('nav', Nav)
     end
   end
 end

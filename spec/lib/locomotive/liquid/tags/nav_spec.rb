@@ -49,7 +49,7 @@ describe Locomotive::Liquid::Tags::Nav do
 
       output.should match /<ul id="nav">/
       output.should match /<li id="child-1-link" class="link first">/
-      output.should match /<\/a><ul id="nav-child-2">/
+      output.should match /<\/a><ul id="nav-child-2" class="">/
       output.should match /<li id="sub-child-1-link" class="link first">/
       output.should match /<li id="sub-child-2-link" class="link last">/
       output.should match /<\/a><\/li><\/ul><\/li><\/ul>/
