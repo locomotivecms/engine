@@ -77,7 +77,7 @@ module Locomotive
     self.app_middleware.insert_before Rack::Lock, '::Locomotive::Middlewares::Fonts', :path => %r{^/fonts}
     self.app_middleware.use '::Locomotive::Middlewares::SeoTrailingSlash'
 
-    self.app_middleware.use '::Locomotive::InlineEditorMiddleware' # TODO
+    self.app_middleware.use '::Locomotive::Middlewares::InlineEditor'
   end
 
   def self.configure_multi_sites

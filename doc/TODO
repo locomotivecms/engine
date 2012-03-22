@@ -111,10 +111,10 @@ x missing custom_fields
   x many_to_many
 x simplify cells integration when modifying a menu from the main app
 x heroku module for locomotive
-- refactoring
+x refactoring
   x remove the import / export scripts
   x remove the cross domain authentication (use auth_token instead)
-  - where to put Locomotive::InlineEditorMiddleware ?
+  x where to put Locomotive::InlineEditorMiddleware ?
 x global regions: keyword in editable element (http://www.mongodb.org/display/DOCS/Updating)
 x override sort for contents
 
