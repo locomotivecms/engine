@@ -13,6 +13,9 @@ class Locomotive.Views.Shared.FormView extends Backbone.View
     # make inputs foldable (if specified)
     @make_inputs_foldable()
 
+    # allow users to save with CTRL+S or CMD+s
+    @enable_save_with_keys_combination()
+
     return @
 
   save: (event) ->
@@ -67,6 +70,9 @@ class Locomotive.Views.Shared.FormView extends Backbone.View
         content.slideDown 100, -> self.after_inputs_fold(parent)
       else
         content.slideUp 100, -> parent.addClass('folded')
+
+  enable_save_with_keys_combination: ->
+    $.cmd 'S', (() => @$('form').trigger('submit')), [], ignoreCase: true
 
   after_inputs_fold: ->
     # overide this method if necessary

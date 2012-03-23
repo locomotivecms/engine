@@ -28,6 +28,6 @@ $.fn.toggleMe = function(settings) {
     });
   };
 
-  return $(this).bind("click", toggle);
+  return $(this).bind('click', toggle);
 
 };
