@@ -40,7 +40,7 @@ module Locomotive
             css << 'first' if index == 0
             css << 'last' if index == entries.size - 1
 
-            children_output << render_entry_link(p, css.join(' '), 1)
+            children_output << render_entry_link(p, css.join(' '), 1, context)
           end
 
           output = children_output.join("\n")
@@ -66,11 +66,11 @@ module Locomotive
             context.registers[:site].pages.fullpath(@source).minimal_attributes.first
           end).children_with_minimal_attributes.to_a
 
-          children.delete_if { |p| !include_page?(p) }
+          children.delete_if { |p| !include_page?(p,context) }
         end
 
         # Returns a list element, a link to the page and its children
-        def render_entry_link(page, css, depth)
+        def render_entry_link(page, css, depth, context)
           selected = @current_page.fullpath =~ /^#{page.fullpath}/ ? ' on' : ''
 
           icon = @options[:icon] ? '<span></span>' : ''
@@ -78,17 +78,17 @@ module Locomotive
 
           output  = %{<li id="#{page.slug.dasherize}-link" class="link#{selected} #{css}">}
           output << %{<a href="/#{page.fullpath}">#{label}</a>}
-          output << render_entry_children(page, depth.succ) if (depth.succ <= @options[:depth].to_i)
+          output << render_entry_children(page, depth.succ, context) if (depth.succ <= @options[:depth].to_i)
           output << %{</li>}
 
           output.strip
         end
 
         # Recursively creates a nested unordered list for the depth specified
-        def render_entry_children(page, depth)
+        def render_entry_children(page, depth,context)
           output = %{}
 
-          children = page.children_with_minimal_attributes.reject { |c| !include_page?(c) }
+          children = page.children_with_minimal_attributes.reject { |c| !include_page?(c,context) }
           if children.present?
             output = %{<ul id="#{@options[:id]}-#{page.slug.dasherize}">}
             children.each do |c, page|
@@ -96,7 +96,7 @@ module Locomotive
               css << 'first' if children.first == c
               css << 'last'  if children.last  == c
 
-              output << render_entry_link(c, css.join(' '), depth)
+              output << render_entry_link(c, css.join(' '), depth, context)
             end
             output << %{</ul>}
           end
@@ -105,8 +105,8 @@ module Locomotive
         end
 
         # Determines whether or not a page should be a part of the menu
-        def include_page?(page)
-          if !page.listed? || page.templatized? || !page.published?
+        def include_page?(page,context)
+          if !page.listed? || page.templatized? || !page.published? || (page.authentication_required? && !context.registers[:controller].signed_in?)
             false
           elsif @options[:exclude]
             (page.fullpath =~ @options[:exclude]).nil?

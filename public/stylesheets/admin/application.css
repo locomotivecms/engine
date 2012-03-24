@@ -200,6 +200,11 @@ ul.theme-assets li.hidden strong a { font-style: italic; color: #8B8D9A; font-we
   background: transparent url(/images/admin/list/icons/redirect.png) no-repeat right 2px;
 }
 
+#pages-list ul.folder li.authentication-required > strong a {
+    padding-right: 24px;
+    background: transparent url(/images/admin/list/icons/lock.png) no-repeat right 2px;
+}
+
 #pages-list li .more {
   position: absolute;
   top: 0px;

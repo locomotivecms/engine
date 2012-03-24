@@ -36,6 +36,9 @@
     = f.custom_input :listed, :css => 'toggle' do
       = f.check_box :listed
 
+    = f.custom_input :authentication_required, :css => 'toggle' do
+      = f.check_box :authentication_required
+
     = f.custom_input :redirect, :css => 'toggle', :style => "#{'display: none' if @page.templatized?}" do
       = f.check_box :redirect
 
