@@ -35,25 +35,26 @@ module Locomotive
 
         path = 'index' if path.blank?
 
-        if path != 'index'
-          dirname = File.dirname(path).gsub(/^\.$/, '') # also look for templatized page path
-          path = [path, File.join(dirname, 'content_type_template').gsub(/^\//, '')]
-        end
+        page = nil
+        parents = []
+        @content_instances = ActiveSupport::OrderedHash.new
 
-        if page = current_site.pages.any_in(:fullpath => [*path]).first
-          if not page.published? and current_admin.nil?
-            page = nil
-          else
+        path.split('/').each do |slug|
+          paths = []
+          paths << parents + [ slug ]
+          paths << parents + [ "content_type_template" ] unless paths == [[ "index" ]]
+          paths.map! { |p| p.join '/' }
+          if page = current_site.pages.any_in(:fullpath => paths).sort_by { |p| p.templatized.to_s }.first
+            parents << page.slug
             if page.templatized?
-              @content_instance = page.content_type.contents.where(:_slug => File.basename(path.first)).first
-
-              if @content_instance.nil? || (!@content_instance.visible? && current_admin.nil?) # content instance not found or not visible
-                page = nil
-              end
+              @content_instance = page.content_type.contents.where(:_slug => slug).first
+              @content_instances[page.content_type.slug.singularize] = @content_instance
+              page = nil if @content_instance.nil? || (!@content_instance.visible? && current_admin.nil?) # content instance not found or not visible
             end
           end
+          break unless page
         end
-
+        page = nil if page and not page.published? and current_admin.nil?
         page || not_found_page
       end
 
@@ -76,9 +77,10 @@ module Locomotive
 
         assigns.merge!(flash.stringify_keys) # data from api
 
-        if @page.templatized? # add instance from content type
+        if @page.templatized? 
           assigns['content_instance'] = @content_instance
-          assigns[@page.content_type.slug.singularize] = @content_instance # just here to help to write readable liquid code
+          assigns['content_instances'] = @content_instances.values
+          @content_instances.each { |k,v| assigns[k] = v } # just here to help to write readable liquid code
         end
 
         registers = {
