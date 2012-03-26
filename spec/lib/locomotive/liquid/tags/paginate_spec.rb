@@ -2,14 +2,14 @@ require 'spec_helper'
 
 describe Locomotive::Liquid::Tags::Paginate do
 
-  it 'should have a valid syntax' do
+  it 'has a valid syntax' do
     markup = "contents.projects by 5"
     lambda do
       Locomotive::Liquid::Tags::Paginate.new('paginate', markup, ["{% endpaginate %}"], {})
     end.should_not raise_error
   end
 
-  it 'should raise an error if the syntax is incorrect' do
+  it 'raises an error if the syntax is incorrect' do
     ["contents.projects by a", "contents.projects", "contents.projects 5"].each do |markup|
       lambda do
         Locomotive::Liquid::Tags::Paginate.new('paginate', markup, ["{% endpaginate %}"], {})
@@ -17,9 +17,9 @@ describe Locomotive::Liquid::Tags::Paginate do
     end
   end
 
-  it 'should paginate the collection' do
-    template = Liquid::Template.parse(default_template)
-    text = template.render!(liquid_context)
+  it 'paginates the collection' do
+    template  = Liquid::Template.parse(default_template)
+    text      = template.render!(liquid_context)
 
     text.should match /!Ruby on Rails!/
     text.should match /!jQuery!/
@@ -33,7 +33,7 @@ describe Locomotive::Liquid::Tags::Paginate do
     text.should_not match /!sqlite3!/
   end
 
-  it 'should not paginate if collection is nil or empty' do
+  it 'does not paginate if collection is nil or empty' do
     template = Liquid::Template.parse(default_template)
 
     lambda do
@@ -45,6 +45,20 @@ describe Locomotive::Liquid::Tags::Paginate do
     end.should raise_error
   end
 
+  it 'keeps the original GET parameters' do
+    context   = liquid_context(:fullpath => '/products?foo=1&bar=1&baz=1')
+    template  = Liquid::Template.parse(default_template)
+    text      = template.render!(context)
+    text.should match /\/products\?foo=1&bar=1&baz=1&page=2/
+  end
+
+  it 'does not include twice the page parameter' do
+    context   = liquid_context(:fullpath => '/products?page=1')
+    template  = Liquid::Template.parse(default_template)
+    text      = template.render!(context)
+    text.should match /\/products\?page=2/
+  end
+
   # ___ helpers methods ___ #
 
   def liquid_context(options = {})
@@ -53,7 +67,8 @@ describe Locomotive::Liquid::Tags::Paginate do
       {
       'projects'      => options.has_key?(:collection) ? options[:collection] : PaginatedCollection.new(['Ruby on Rails', 'jQuery', 'mongodb', 'Liquid', 'sqlite3']),
       'current_page'  => options[:page] || 1,
-      'path'          => '/'
+      'path'          => '/',
+      'fullpath'      => options[:fullpath] || '/'
     }, {
       :page           => FactoryGirl.build(:page)
     }, true)
@@ -64,6 +79,7 @@ describe Locomotive::Liquid::Tags::Paginate do
       {% for project in paginate.collection %}
         !{{ project }}!
       {% endfor %}
+      {{ paginate.next.url }}
     {% endpaginate %}"
   end
 
