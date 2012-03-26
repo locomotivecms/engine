@@ -33,6 +33,10 @@ module Locomotive
           input.last
         end
 
+        def default(input, value)
+          input.blank? ? value : input
+        end
+
       end
 
       ::Liquid::Template.register_filter(Misc)
