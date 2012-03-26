@@ -20,6 +20,9 @@ module Locomotive
 
           ## scopes ##
           scope :templatized, :where => { :templatized => true }
+
+          ## virtual attributes ##
+          attr_accessor :content_entry
         end
 
         # Returns the class specified by the target_klass_name property

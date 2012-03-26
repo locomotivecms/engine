@@ -95,13 +95,13 @@ describe 'Locomotive rendering system' do
 
     it 'should retrieve it based on the full path' do
       @controller.request.fullpath = '/about_us/team.html'
-      @controller.current_site.pages.expects(:any_in).with({ :fullpath => %w{about_us/team about_us/content_type_template} }).returns([@page])
+      @controller.current_site.pages.expects(:any_in).with({ :fullpath => %w{about_us/team about_us/content_type_template content_type_template/team} }).returns([@page])
       @controller.send(:locomotive_page).should_not be_nil
     end
 
     it 'does not include the query string' do
       @controller.request.fullpath = '/about_us/team.html?some=params&we=use'
-      @controller.current_site.pages.expects(:any_in).with({ :fullpath => %w{about_us/team about_us/content_type_template} }).returns([@page])
+      @controller.current_site.pages.expects(:any_in).with({ :fullpath => %w{about_us/team about_us/content_type_template content_type_template/team} }).returns([@page])
       @controller.send(:locomotive_page).should_not be_nil
     end
 
@@ -135,13 +135,15 @@ describe 'Locomotive rendering system' do
         @content_entry = @content_type.entries.build(:_visible => true)
         @page.templatized = true
         @page.stubs(:fetch_target_entry).returns(@content_entry)
+        @page.stubs(:fullpath).returns('/projects/content_type_template')
         @controller.request.fullpath = '/projects/edeneo.html'
-        @controller.current_site.pages.expects(:any_in).with({ :fullpath => %w{projects/edeneo projects/content_type_template} }).returns([@page])
+        @controller.current_site.pages.expects(:any_in).with({ :fullpath => %w{projects/edeneo projects/content_type_template content_type_template/edeneo} }).returns([@page])
       end
 
       it 'sets the content_entry variable' do
-        @controller.send(:locomotive_page).should_not be_nil
-        @controller.instance_variable_get(:@content_entry).should == @content_entry
+        page = @controller.send(:locomotive_page)
+        page.should_not be_nil
+        page.content_entry.should == @content_entry
       end
 
       it 'returns the 404 page if the instance does not exist' do
@@ -149,7 +151,6 @@ describe 'Locomotive rendering system' do
         (klass = Locomotive::Page).expects(:published).returns([true])
         @controller.current_site.pages.expects(:not_found).returns(klass)
         @controller.send(:locomotive_page).should be_true
-        @controller.instance_variable_get(:@content_entry).should be_nil
       end
 
       it 'returns the 404 page if the instance is not visible' do
