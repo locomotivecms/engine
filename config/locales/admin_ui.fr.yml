@@ -289,3 +289,18 @@ fr:
         explanations: "Si vous avez déjà uploadé le template de site par défaut (voir instructions), vous pouvez l'utiliser dès maintenant. Ou vous pouvez uploader un template de site sous forme d'un fichier zip (quelques themes disponibles <a href=\"http://www.locomotivecms.com/support/themes\">ici</a>)."
         back_to_default_template: "Cliquez <a href='#'>ici</a> pour sélectionner à la place le template de site par défault"
         next: Créer site
+
+    public:
+      pages:
+        show_toolbar:
+          statuses:
+            loading: "Chargement...."
+            disabled: "Editeur en ligne désactivé"
+          labels:
+            save_changes: "Enregistrez les modifications: "
+            editing_mode: "Mode édition: "
+            lang: "Langue: "
+          buttons:
+            back: "Revenir au panneau d'administration"
+            confirm: "Valider"
+            cancel: "Annuler"
