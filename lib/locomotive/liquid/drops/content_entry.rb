@@ -45,7 +45,7 @@ module Locomotive
           if not @@forbidden_attributes.include?(meth.to_s)
             value = self._source.send(meth)
 
-            if value.respond_to?(:all)
+            if value.respond_to?(:all) && value.respond_to?(:ordered)
               filter_and_order_list(value)
             else
               value
@@ -68,7 +68,7 @@ module Locomotive
             else
               list.where(conditions).order_by(order_by)
             end
-          else
+          else         
             list.ordered
           end.all
         end
