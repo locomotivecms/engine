@@ -43,7 +43,7 @@ module Locomotive
           hash[meth]= (if self.source.custom_fields_methods.include?(meth.to_s)
             if self.source.is_a_custom_field_many_relationship?(meth.to_s)
               # go deeper
-              self.source.send(meth).map { |entry| entry.to_presenter(:depth => self.depth + 1) }
+              self.source.send(meth).ordered.map { |entry| entry.to_presenter(:depth => self.depth + 1) }
             else
               self.source.send(meth) rescue nil
             end

@@ -39,6 +39,9 @@ class Locomotive.Views.Shared.Fields.ManyToManyView extends Backbone.View
 
     return @
 
+  ui_enabled: ->
+    @template()?
+
   insert_entries: ->
     if @collection.length > 0
       @collection.each (entry) => @insert_entry(entry)

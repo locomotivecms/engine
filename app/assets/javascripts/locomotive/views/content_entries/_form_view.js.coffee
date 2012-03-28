@@ -73,18 +73,20 @@ class Locomotive.Views.ContentEntries.FormView extends Locomotive.Views.Shared.F
         new_entry = new Locomotive.Models.ContentEntry(@options["#{name}_new_entry"])
         view      = new Locomotive.Views.Shared.Fields.HasManyView model: @model, name: name, new_entry: new_entry, inverse_of: inverse_of
 
-        @_has_many_field_views.push(view)
+        if view.ui_enabled()
+          @_has_many_field_views.push(view)
 
-        @$("##{@model.paramRoot}_#{name}_input label").after(view.render().el)
+          @$("##{@model.paramRoot}_#{name}_input label").after(view.render().el)
 
   enable_many_to_many_fields: ->
     _.each @model.get('many_to_many_custom_fields'), (field) =>
       name = field[0]
       view = new Locomotive.Views.Shared.Fields.ManyToManyView model: @model, name: name, all_entries: @options["all_#{name}_entries"]
 
-      @_many_to_many_field_views.push(view)
+      if view.ui_enabled()
+        @_many_to_many_field_views.push(view)
 
-      @$("##{@model.paramRoot}_#{name}_input label").after(view.render().el)
+        @$("##{@model.paramRoot}_#{name}_input label").after(view.render().el)
 
   slugify_label_field: ->
     @$('li.input.highlighted > input[type=text]').slugify(target: @$('#content_entry__slug'))

@@ -41,7 +41,7 @@ Given %r{^I set up a many_to_many relationship between "([^"]*)" and "([^"]*)"$}
     :label          => last_name,
     :type           => 'many_to_many',
     :class_name     => last_model.klass_with_custom_fields(:entries).to_s,
-    :inverse_of     => first_name.singularize.downcase
+    :inverse_of     => first_name.pluralize.downcase
   })
 
   first_model.save
@@ -50,10 +50,20 @@ Given %r{^I set up a many_to_many relationship between "([^"]*)" and "([^"]*)"$}
     :label          => first_name,
     :type           => 'many_to_many',
     :class_name     => first_model.klass_with_custom_fields(:entries).to_s,
-    :inverse_of     => last_name.singularize.downcase
+    :inverse_of     => last_name.pluralize.downcase
   })
 
   last_model.save
+end
+
+Given %r{^I attach the "([^"]*)" ([\S]*) to the "([^"]*)" ([\S]*)$} do |target_name, target_model_name, souce_name, source_model_name|
+  target_model  = @site.content_types.where(:name => target_model_name.pluralize.capitalize).first
+  source_model  = @site.content_types.where(:name => source_model_name.pluralize.capitalize).first
+
+  target_entry = target_model.entries.where(:_slug => target_name.permalink).first
+  source_entry = source_model.entries.where(:_slug => souce_name.permalink).first
+
+  source_entry.send(target_model_name.pluralize.downcase.parameterize('_').to_sym).push(target_entry)
 end
 
 Then /^I should be able to view a paginated list of a has many association$/ do
