@@ -7,6 +7,7 @@ module Locomotive
 
         included do
 
+          ## fields ##
           field :listed, :type => Boolean, :default => true
 
         end

@@ -26,28 +26,7 @@ module Locomotive
     end
 
     def locomotive_page
-      page = nil
-      path = self.locomotive_page_path
-
-      current_site.pages.any_in(:fullpath => [*path]).each do |_page|
-        if not _page.published? and current_locomotive_account.nil?
-          next
-        else
-          if _page.templatized?
-            @content_entry = _page.fetch_target_entry(File.basename(path.first))
-
-            if @content_entry.nil? || (!@content_entry.visible? && current_locomotive_account.nil?) # content instance not found or not visible
-              next
-            end
-          end
-        end
-
-        page = _page
-
-        break
-      end
-
-      page || not_found_page
+      current_site.fetch_page self.locomotive_page_path, current_locomotive_account.present?
     end
 
     def locomotive_page_path
@@ -57,11 +36,6 @@ module Locomotive
       path.gsub!(/^\//, '') # remove the leading slash
 
       path = 'index' if path.blank? || path == '_edit'
-
-      if path != 'index'
-        dirname = File.dirname(path).gsub(/^\.$/, '') # also look for templatized page path
-        path = [path, File.join(dirname, 'content_type_template').gsub(/^\//, '')]
-      end
 
       path
     end
@@ -75,6 +49,7 @@ module Locomotive
         'current_page'      => self.params[:page],
         'params'            => self.params,
         'path'              => request.path,
+        'fullpath'          => request.fullpath,
         'url'               => request.url,
         'now'               => Time.now.utc,
         'today'             => Date.today,
@@ -88,8 +63,8 @@ module Locomotive
       assigns.merge!(flash.to_hash.stringify_keys) # data from public submissions
 
       if @page.templatized? # add instance from content type
-        assigns['entry'] = @content_entry
-        assigns[@page.target_entry_name] = @content_entry # just here to help to write readable liquid code
+        assigns['entry'] = @page.content_entry
+        assigns[@page.target_entry_name] = @page.content_entry # just here to help to write readable liquid code
       end
 
       registers = {
@@ -118,10 +93,6 @@ module Locomotive
       end
 
       render :text => output, :layout => false, :status => page_status unless performed?
-    end
-
-    def not_found_page
-      current_site.pages.not_found.published.first
     end
 
     def editing_page?

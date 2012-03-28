@@ -38,6 +38,10 @@ module Locomotive
       Page.quick_tree(self)
     end
 
+    def fetch_page(path, logged_in)
+      Locomotive::Page.fetch_page_from_path self, path, logged_in
+    end
+
     def accounts
       Account.criteria.in(:_id => self.memberships.map(&:account_id))
     end

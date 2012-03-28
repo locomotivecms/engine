@@ -7,7 +7,9 @@ module Locomotive
 
         included do
 
-          field :templatized, :type => Boolean, :default => false
+          ## fields ##
+          field :templatized,             :type => Boolean, :default => false
+          field :templatized_from_parent, :type => Boolean, :default => false
           field :target_klass_name
 
           ## validations ##
@@ -15,11 +17,16 @@ module Locomotive
           validate              :ensure_target_klass_name_security
 
           ## callbacks ##
+          before_validation :get_templatized_from_parent
           before_validation :set_slug_if_templatized
           before_validation :ensure_target_klass_name_security
+          after_save        :propagate_templatized
 
           ## scopes ##
           scope :templatized, :where => { :templatized => true }
+
+          ## virtual attributes ##
+          attr_accessor :content_entry
         end
 
         # Returns the class specified by the target_klass_name property
@@ -70,10 +77,26 @@ module Locomotive
 
         protected
 
-        def set_slug_if_templatized
-          self.slug = 'content_type_template' if self.templatized?
+        def get_templatized_from_parent
+          return if self.parent.nil?
+
+          if self.parent.templatized?
+            self.templatized        = self.templatized_from_parent = true
+            self.target_klass_name  = self.parent.target_klass_name
+          elsif !self.templatized?
+            self.templatized        = self.templatized_from_parent = false
+            self.target_klass_name  = nil
+          end
         end
 
+        def set_slug_if_templatized
+          self.slug = 'content_type_template' if self.templatized? && !self.templatized_from_parent?
+        end
+
+        # Makes sure the target_klass is owned by the site OR
+        # if it belongs to the models allowed by the application
+        # thanks to the models_for_templatization option.
+        #
         def ensure_target_klass_name_security
           return if !self.templatized? || self.target_klass_name.blank?
 
@@ -86,7 +109,25 @@ module Locomotive
           elsif !Locomotive.config.models_for_templatization.include?(self.target_klass_name)
             self.errors.add :target_klass_name, :security
           end
+        end
 
+        # Sets the templatized, templatized_from_parent properties of
+        # the children of the current page ONLY IF the templatized
+        # attribute got changed.
+        #
+        def propagate_templatized
+          return unless self.templatized_changed?
+
+          selector = { 'parent_ids' => { '$in' => [self._id] } }
+          operations  = {
+            '$set' => {
+              'templatized'             => self.templatized,
+              'templatized_from_parent' => self.templatized,
+              'target_klass_name'       => self.target_klass_name
+            }
+          }
+
+          self.collection.update selector, operations, :multi => true
         end
 
       end
