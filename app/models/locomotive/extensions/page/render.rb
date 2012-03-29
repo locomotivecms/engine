@@ -24,11 +24,12 @@ module Locomotive
           # @return [ Page ] The page matching the criteria OR the 404 one if none
           #
           def fetch_page_from_path(site, path, logged_in)
-            page = nil
+            page  = nil
+            depth = path == 'index' ? 0 : path.split('/').size
 
             matching_paths = path == 'index' ? %w(index) : path_combinations(path)
 
-            site.pages.any_in(:fullpath => matching_paths).each do |_page|
+            site.pages.where(:depth => depth, :fullpath.in => matching_paths).each do |_page|
               if !_page.published? && !logged_in
                 next
               else

@@ -18,7 +18,7 @@ Then /^I should be able to display paginated models$/ do
     {{ paginate | default_pagination }}
   {% endpaginate %}
   }
-  FactoryGirl.create(:page, :site => @site, :slug => 'hello', :raw_template => raw_template)
+  FactoryGirl.create(:page, :site => @site, :slug => 'hello', :parent => @site.pages.root.first, :raw_template => raw_template)
 
   # The page should have the first two articles
   visit '/hello'

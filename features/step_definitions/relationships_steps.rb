@@ -90,7 +90,7 @@ Then /^I should be able to view a paginated list of a has many association$/ do
   }
 
   # Create a page
-  FactoryGirl.create(:page, :site => @site, :slug => 'hello', :raw_template => raw_template)
+  FactoryGirl.create(:page, :site => @site, :slug => 'hello', :parent => @site.pages.root.first, :raw_template => raw_template)
 
   # The page should have the first two comments
   visit '/hello'
