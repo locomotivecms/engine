@@ -18,7 +18,7 @@ module Locomotive
       ::ActionController::Base.wrap_parameters :format => [:json]
     end
 
-    initializer "Locomotive precompile hook" do |app|
+    initializer "Locomotive precompile hook", :group => :all do |app|
       app.config.assets.precompile += %w(locomotive.js locomotive.css locomotive/inline_editor.js locomotive/inline_editor.css
       locomotive/not_logged_in.js locomotive/not_logged_in.css
       locomotive/aloha.js)
