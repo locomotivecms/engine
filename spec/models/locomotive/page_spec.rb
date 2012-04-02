@@ -226,7 +226,7 @@ describe Locomotive::Page do
   describe 'templatized extension' do
 
     before(:each) do
-      @page = FactoryGirl.build(:page, :parent => Factory.build(:page, :templatized => false), :templatized => true, :target_klass_name => 'Foo')
+      @page = FactoryGirl.build(:page, :parent => FactoryGirl.build(:page, :templatized => false), :templatized => true, :target_klass_name => 'Foo')
     end
 
     it 'is considered as a templatized page' do
