@@ -24,7 +24,7 @@ class Locomotive.Models.Site extends Backbone.Model
       delete hash.memberships
       hash.memberships_attributes = @get('memberships').toJSONForSave() if @get('memberships')? && @get('memberships').length > 0
       delete hash.domains
-      hash.domains = _.map(@get('domains'), (domain) -> domain.get('name')) if @get('domains')? && @get('domains').length > 0
+      hash.domains = _.map(@get('domains'), (domain) -> domain.get('name'))
 
 class Locomotive.Models.CurrentSite extends Locomotive.Models.Site
 

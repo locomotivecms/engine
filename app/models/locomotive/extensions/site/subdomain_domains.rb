@@ -38,6 +38,7 @@ module Locomotive
         module InstanceMethods
 
           def domains=(array)
+            array.reject!(&:blank?)
             array = [] if array.blank?; super(array)
           end
 
