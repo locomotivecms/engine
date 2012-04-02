@@ -20,14 +20,14 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'rake',                            '~> 0.9.2'
 
-  s.add_dependency 'rails',                           '~> 3.2.1'
+  s.add_dependency 'rails',                           '~> 3.2.3'
 
   s.add_dependency 'devise',                          '~> 1.5.3'
   s.add_dependency 'cancan',                          '~> 1.6.7'
 
   s.add_dependency 'mongo',                           '~> 1.5.2'
   s.add_dependency 'bson_ext',                        '~> 1.5.2'
-  s.add_dependency 'mongoid',                         '~> 2.4.5'
+  s.add_dependency 'mongoid',                         '~> 2.4.6'
   s.add_dependency 'locomotive-mongoid-tree',         '~> 0.6.2'
 
   s.add_dependency 'custom_fields',                   '~> 2.0.0.rc9'
