@@ -8,4 +8,25 @@ describe Locomotive::Liquid::Filters::Text do
     textile('This is *my* text.').should == "<p>This is <strong>my</strong> text.</p>"
   end
 
+  it 'underscores an input' do
+    underscore('foo').should == 'foo'
+    underscore('home page').should == 'home_page'
+    underscore('My foo Bar').should == 'my_foo_bar'
+    underscore('foo/bar').should == 'foo_bar'
+    underscore('foo/bar/index').should == 'foo_bar_index'
+  end
+
+  it 'dasherizes an input' do
+    dasherize('foo').should == 'foo'
+    dasherize('foo_bar').should == 'foo-bar'
+    dasherize('foo/bar').should == 'foo-bar'
+    dasherize('foo/bar/index').should == 'foo-bar-index'
+  end
+
+  it 'concats strings' do
+    concat('foo', 'bar').should == 'foobar'
+    concat('hello', 'foo', 'bar').should == 'hellofoobar'
+  end
+
+
 end

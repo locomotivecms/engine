@@ -11,11 +11,11 @@ module Locomotive
       #
       # options:
       #   - label: iso (de, fr, en, ...etc), locale (Deutsch, Français, English, ...etc), title (page title)
-      #   - sep: piece of html code seperating 2 locales
+      #   - sep: piece of html code separating 2 locales
       #
       # notes:
       #   - "iso" is the default choice for label
-      #   - " | " is the default seperating code
+      #   - " | " is the default separating code
       #
       class LocaleSwitcher < ::Liquid::Tag
 
