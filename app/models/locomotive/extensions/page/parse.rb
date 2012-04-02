@@ -6,17 +6,22 @@ module Locomotive
         extend ActiveSupport::Concern
 
         included do
+          ## fields ##
           field :serialized_template,   :type => Binary, :localize => true
           field :template_dependencies, :type => Array, :default => [], :localize => true
           field :snippet_dependencies,  :type => Array, :default => [], :localize => true
 
+          ## virtual attributes
           attr_reader :template_changed
 
+          ## callbacks ##
           before_validation :serialize_template
           after_save        :update_template_descendants
 
+          ## validations ##
           validate :template_must_be_valid
 
+          ## scopes ##
           scope :pages, lambda { |domain| { :any_in => { :domains => [*domain] } } }
         end
 

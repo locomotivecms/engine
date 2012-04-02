@@ -13,7 +13,7 @@ describe Locomotive::Liquid::Drops::ContentEntry do
     it 'loops through the list' do
       template = %({% for project in category.projects %}{{ project }},{% endfor %})
 
-      @list.expects(:ordered).returns(mock('criteria', :all => %w(a b)))
+      @list.expects(:ordered).returns(%w(a b))
 
       render(template, { 'category' => @category }).should == 'a,b,'
     end
@@ -21,7 +21,7 @@ describe Locomotive::Liquid::Drops::ContentEntry do
     it 'filters the list' do
       template = %({% with_scope order_by: 'name ASC', active: true %}{% for project in category.projects %}{{ project }},{% endfor %}{% endwith_scope %})
 
-      @list.expects(:order_by).with(['name', 'ASC']).returns(mock('criteria', :all => %w(a b)))
+      @list.expects(:order_by).with(['name', 'ASC']).returns(%w(a b))
       @list.expects(:where).with({ 'active' => true }).returns(@list)
 
       render(template, { 'category' => @category }).should == 'a,b,'
@@ -30,7 +30,7 @@ describe Locomotive::Liquid::Drops::ContentEntry do
     it 'filters the list and uses the default order' do
       template = %({% with_scope active: true %}{% for project in category.projects %}{{ project }},{% endfor %}{% endwith_scope %})
 
-      @list.expects(:ordered).returns(mock('criteria', :all => %w(a b)))
+      @list.expects(:ordered).returns(%w(a b))
       @list.expects(:where).with({ 'active' => true }).returns(@list)
 
       render(template, { 'category' => @category }).should == 'a,b,'

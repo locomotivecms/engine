@@ -46,7 +46,7 @@ module Locomotive
             end
             page_count, current_page = pagination['total_pages'], pagination['current_page']
 
-            path = context['path']
+            path = sanitize_path(context['fullpath'])
 
             pagination['previous'] = link(I18n.t('pagination.previous'), current_page - 1, path) if pagination['previous_page']
             pagination['next'] = link(I18n.t('pagination.next'), current_page + 1, path) if pagination['next_page']
@@ -83,6 +83,12 @@ module Locomotive
 
         private
 
+        def sanitize_path(path)
+          _path = path.gsub(/page=[0-9]+&?/, '').gsub(/_pjax=true&?/, '')
+          _path = _path.slice(0..-2) if _path.last == '?' || _path.last == '&'
+          _path
+        end
+
         def window_size
           3
         end
@@ -92,7 +98,8 @@ module Locomotive
         end
 
         def link(title, page, path)
-          { 'title' => title, 'url' => path + "?page=#{page}", 'is_link' => true}
+          _path = %(#{path}#{path.include?('?') ? '&' : '?'}page=#{page})
+          { 'title' => title, 'url' => _path, 'is_link' => true }
         end
       end
 

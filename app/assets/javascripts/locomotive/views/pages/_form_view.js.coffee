@@ -112,6 +112,11 @@ class Locomotive.Views.Pages.FormView extends Locomotive.Views.Shared.FormView
       data:       { parent_id:  @$('#page_parent_id').val(), slug: @$('#page_slug').val() }
       success:    (data) =>
         @$('#page_slug_input .inline-hints').html(data.url).effect('highlight')
+        if data.templatized_parent
+          @$('li#page_slug_input').show()
+          @$('li#page_templatized_input, li#page_target_klass_name_input').hide()
+        else
+          @$('li#page_templatized_input, li#page_target_klass_name_input').show()
 
   enable_response_type_select: ->
     @$('li#page_response_type_input').change (event) =>
@@ -128,6 +133,8 @@ class Locomotive.Views.Pages.FormView extends Locomotive.Views.Shared.FormView
         @$('li#page_target_klass_name_input').show()
       off_callback: =>
         @$('li#page_target_klass_name_input').hide()
+
+    @$('li#page_templatized_input').hide() if @model.get('templatized_from_parent') == true
 
   enable_redirect_checkbox: ->
     @_enable_checkbox 'redirect',
