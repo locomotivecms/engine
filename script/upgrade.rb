@@ -5,15 +5,15 @@ rescue LoadError
   puts 'You must `gem install bundler` and `bundle install` to run rake tasks'
 end
 
-Locomotive::Page.each do |page|
-  page.editable_elements.each_with_index do |el, index|
-    next if el._type != 'Locomotive::EditableFile' || el.attributes['source'].is_a?(Hash)
-
-    value = el.attributes['source']
-
-    page.collection.update({ '_id' => page._id }, { '$set' => { "editable_elements.#{index}.source" => { 'en' => value } } })
-  end
-end
+# Locomotive::Page.each do |page|
+#   page.editable_elements.each_with_index do |el, index|
+#     next if el._type != 'Locomotive::EditableFile' || el.attributes['source'].is_a?(Hash)
+#
+#     value = el.attributes['source']
+#
+#     page.collection.update({ '_id' => page._id }, { '$set' => { "editable_elements.#{index}.source" => { 'en' => value } } })
+#   end
+# end
 
 
 # ================ GLOBAL VARIABLES ==============

@@ -22,7 +22,8 @@ module Locomotive
           validate :template_must_be_valid
 
           ## scopes ##
-          scope :pages, lambda { |domain| { :any_in => { :domains => [*domain] } } }
+          scope :pages,           lambda { |domain| { :any_in => { :domains => [*domain] } } }
+          scope :dependent_from,  lambda { |id| { :where => { :template_dependencies.in => [id] } } }
         end
 
         def template

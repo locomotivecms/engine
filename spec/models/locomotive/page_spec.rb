@@ -223,108 +223,108 @@ describe Locomotive::Page do
 
   end
 
-  describe 'templatized extension' do
-
-    before(:each) do
-      @page = FactoryGirl.build(:page, :parent => FactoryGirl.build(:page, :templatized => false), :templatized => true, :target_klass_name => 'Foo')
-    end
-
-    it 'is considered as a templatized page' do
-      @page.templatized?.should be_true
-    end
-
-    it 'fills in the slug field' do
-      @page.valid?
-      @page.slug.should == 'content_type_template'
-    end
-
-    it 'returns the target klass' do
-      @page.target_klass.should == Foo
-    end
-
-    it 'has a name for the target entry' do
-      @page.target_entry_name.should == 'foo'
-    end
-
-    it 'uses the find_by_permalink method when fetching the entry' do
-      Foo.expects(:find_by_permalink)
-      @page.fetch_target_entry('foo')
-    end
-
-    context '#descendants' do
-
-      before(:each) do
-        @home = FactoryGirl.create(:page)
-        @page.attributes = { :parent_id => @home._id, :site => @home.site }; @page.save!
-        @sub_page = FactoryGirl.build(:page, :title => 'Subpage', :slug => 'foo', :parent => @page, :site => @home.site, :templatized => false)
-      end
-
-      it 'inherits the templatized property from its parent' do
-        @sub_page.valid?
-        @sub_page.templatized?.should be_true
-        @sub_page.templatized_from_parent?.should be_true
-        @sub_page.target_klass_name.should == 'Foo'
-      end
-
-      it 'gets templatized if its parent is' do
-        @page.attributes = { :templatized => false, :target_klass_name => nil }; @page.save!
-        @sub_page.save.should be_true
-        @sub_page.templatized?.should be_false
-
-        @page.attributes = { :templatized => true, :target_klass_name => 'Foo' }; @page.save!
-        @sub_page.reload
-        @sub_page.templatized?.should be_true
-        @sub_page.templatized_from_parent?.should be_true
-        @sub_page.target_klass_name.should == 'Foo'
-      end
-
-      it 'is not templatized if its parent is no more a templatized page' do
-        @sub_page.save.should be_true
-        @page.templatized = false; @page.save!
-        @sub_page.reload
-        @sub_page.templatized.should be_false
-        @sub_page.templatized_from_parent.should be_false
-        @sub_page.target_klass_name.should be_nil
-      end
-
-    end
-
-    context 'using a content type' do
-
-      before(:each) do
-        @site = FactoryGirl.build(:site)
-        @content_type = FactoryGirl.build(:content_type, :slug => 'posts', :site => @site)
-        @page.site = @site
-        @page.target_klass_name = 'Locomotive::Entry42'
-      end
-
-      it 'has a name for the target entry' do
-        @site.stubs(:content_types).returns(mock(:find => @content_type))
-        @page.target_entry_name.should == 'post'
-      end
-
-      context '#security' do
-
-        before(:each) do
-          Locomotive::ContentType.stubs(:find).returns(@content_type)
-        end
-
-        it 'is valid if the content type belongs to the site' do
-          @page.send(:ensure_target_klass_name_security)
-          @page.errors.should be_empty
-        end
-
-        it 'does not valid the page if the content type does not belong to the site' do
-          @content_type.site = FactoryGirl.build(:site)
-          @page.send(:ensure_target_klass_name_security)
-          @page.errors[:target_klass_name].should == ['presents a security problem']
-        end
-
-      end
-
-    end
-
-  end
+  # describe 'templatized extension' do
+  #
+  #   before(:each) do
+  #     @page = FactoryGirl.build(:page, :parent => FactoryGirl.build(:page, :templatized => false), :templatized => true, :target_klass_name => 'Foo')
+  #   end
+  #
+  #   it 'is considered as a templatized page' do
+  #     @page.templatized?.should be_true
+  #   end
+  #
+  #   it 'fills in the slug field' do
+  #     @page.valid?
+  #     @page.slug.should == 'content_type_template'
+  #   end
+  #
+  #   it 'returns the target klass' do
+  #     @page.target_klass.should == Foo
+  #   end
+  #
+  #   it 'has a name for the target entry' do
+  #     @page.target_entry_name.should == 'foo'
+  #   end
+  #
+  #   it 'uses the find_by_permalink method when fetching the entry' do
+  #     Foo.expects(:find_by_permalink)
+  #     @page.fetch_target_entry('foo')
+  #   end
+  #
+  #   context '#descendants' do
+  #
+  #     before(:each) do
+  #       @home = FactoryGirl.create(:page)
+  #       @page.attributes = { :parent_id => @home._id, :site => @home.site }; @page.save!
+  #       @sub_page = FactoryGirl.build(:page, :title => 'Subpage', :slug => 'foo', :parent => @page, :site => @home.site, :templatized => false)
+  #     end
+  #
+  #     it 'inherits the templatized property from its parent' do
+  #       @sub_page.valid?
+  #       @sub_page.templatized?.should be_true
+  #       @sub_page.templatized_from_parent?.should be_true
+  #       @sub_page.target_klass_name.should == 'Foo'
+  #     end
+  #
+  #     it 'gets templatized if its parent is' do
+  #       @page.attributes = { :templatized => false, :target_klass_name => nil }; @page.save!
+  #       @sub_page.save.should be_true
+  #       @sub_page.templatized?.should be_false
+  #
+  #       @page.attributes = { :templatized => true, :target_klass_name => 'Foo' }; @page.save!
+  #       @sub_page.reload
+  #       @sub_page.templatized?.should be_true
+  #       @sub_page.templatized_from_parent?.should be_true
+  #       @sub_page.target_klass_name.should == 'Foo'
+  #     end
+  #
+  #     it 'is not templatized if its parent is no more a templatized page' do
+  #       @sub_page.save.should be_true
+  #       @page.templatized = false; @page.save!
+  #       @sub_page.reload
+  #       @sub_page.templatized.should be_false
+  #       @sub_page.templatized_from_parent.should be_false
+  #       @sub_page.target_klass_name.should be_nil
+  #     end
+  #
+  #   end
+  #
+  #   context 'using a content type' do
+  #
+  #     before(:each) do
+  #       @site = FactoryGirl.build(:site)
+  #       @content_type = FactoryGirl.build(:content_type, :slug => 'posts', :site => @site)
+  #       @page.site = @site
+  #       @page.target_klass_name = 'Locomotive::Entry42'
+  #     end
+  #
+  #     it 'has a name for the target entry' do
+  #       @site.stubs(:content_types).returns(mock(:find => @content_type))
+  #       @page.target_entry_name.should == 'post'
+  #     end
+  #
+  #     context '#security' do
+  #
+  #       before(:each) do
+  #         Locomotive::ContentType.stubs(:find).returns(@content_type)
+  #       end
+  #
+  #       it 'is valid if the content type belongs to the site' do
+  #         @page.send(:ensure_target_klass_name_security)
+  #         @page.errors.should be_empty
+  #       end
+  #
+  #       it 'does not valid the page if the content type does not belong to the site' do
+  #         @content_type.site = FactoryGirl.build(:site)
+  #         @page.send(:ensure_target_klass_name_security)
+  #         @page.errors[:target_klass_name].should == ['presents a security problem']
+  #       end
+  #
+  #     end
+  #
+  #   end
+  #
+  # end
 
   describe 'listed extension' do
 

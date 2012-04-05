@@ -8,7 +8,7 @@ module Locomotive
     include Extensions::Page::EditableElements
     include Extensions::Page::Parse
     include Extensions::Page::Render
-    include Extensions::Page::Templatized
+    include Extensions::Page::Fullpath
     include Extensions::Page::Redirect
     include Extensions::Page::Listed
     include Extensions::Shared::Seo
@@ -16,7 +16,6 @@ module Locomotive
     ## fields ##
     field :title,               :localize => true
     field :slug,                :localize => true
-    field :fullpath,            :localize => true
     field :handle
     field :raw_template,        :localize => true
     field :locales,             :type => Array
@@ -35,7 +34,6 @@ module Locomotive
     ## callbacks ##
     after_initialize    :set_default_raw_template
     before_validation   :normalize_slug
-    before_save         :build_fullpath
     before_save         :record_current_locale
     before_destroy      :do_not_remove_index_and_404_pages
 
@@ -50,10 +48,8 @@ module Locomotive
     scope :root,                :where => { :slug => 'index', :depth => 0 }
     scope :not_found,           :where => { :slug => '404', :depth => 0 }
     scope :published,           :where => { :published => true }
-    scope :fullpath,            lambda { |fullpath| { :where => { :fullpath => fullpath } } }
     scope :handle,              lambda { |handle| { :where => { :handle => handle } } }
-    scope :minimal_attributes,  lambda { |attrs = []| { :only => (attrs || []) + %w(title slug fullpath position depth published templatized redirect listed response_type parent_id site_id created_at updated_at) } }
-    scope :dependent_from,      lambda { |id| { :where => { :template_dependencies.in => [id] } } }
+    scope :minimal_attributes,  lambda { |attrs = []| { :only => (attrs || []) + %w(title slug fullpath position depth published with_wildcards redirect listed response_type parent_id site_id created_at updated_at) } }
 
     ## methods ##
 
@@ -112,16 +108,6 @@ module Locomotive
 
     def set_default_raw_template
       self.raw_template ||= ::I18n.t('attributes.defaults.pages.other.body')
-    end
-
-    def build_fullpath
-      if self.index? || self.not_found?
-        self.fullpath = self.slug
-      else
-        slugs = self.ancestors_and_self.map(&:slug)
-        slugs.shift unless slugs.size == 1
-        self.fullpath = File.join slugs.compact
-      end
     end
 
     def record_current_locale

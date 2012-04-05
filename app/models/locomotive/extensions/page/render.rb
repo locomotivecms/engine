@@ -56,9 +56,7 @@ module Locomotive
 
           # Calculate all the combinations possible based on the
           # fact that one of the segment of the path could be
-          # a content type from a templatized page.
-          # We postulate that there is only one templatized page in a path
-          # (ie: no nested templatized pages)
+          # a wildcard.
           #
           # @param [ String ] path The path to the page
           #
@@ -69,13 +67,13 @@ module Locomotive
           end
 
           #:nodoc:
-          def _path_combinations(segments, can_include_template = true)
+          def _path_combinations(segments)
             return nil if segments.empty?
 
             segment = segments.shift
 
-            (can_include_template ? [segment, 'content_type_template'] : [segment]).map do |_segment|
-              if (_combinations = _path_combinations(segments.clone, can_include_template && _segment != 'content_type_template'))
+            [segment, '*'].map do |_segment|
+              if (_combinations = _path_combinations(segments.clone))
                 [*_combinations].map do |_combination|
                   File.join(_segment, _combination)
                 end
