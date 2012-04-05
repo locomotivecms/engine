@@ -16,7 +16,7 @@ module Locomotive
           before_validation :get_wildcards_from_parent
           before_validation :add_slug_to_wildcards
           before_save       :build_fullpath
-          before_save       :set_children_autosave
+          # before_save       :set_children_autosave
           # before_rearrange  :foo #propagate_fullpath_changes
           # after_save        :propagate_fullpath_changes
 
@@ -62,10 +62,10 @@ module Locomotive
 
         protected
 
-        def set_children_autosave
-          @autosave_for_children = !must_propagate_fullpath_changes?
-          true
-        end
+        # def set_children_autosave
+        #   @autosave_for_children = !must_propagate_fullpath_changes?
+        #   true
+        # end
 
         def get_wildcards_from_parent
           return true if self.parent.nil?
@@ -81,6 +81,7 @@ module Locomotive
         end
 
         def add_slug_to_wildcards
+          puts "[add_slug_to_wildcards] #{self.slug} / #{self.wildcard?}"
           (self.wildcards ||= []) << self.slug if self.wildcard?
         end
 

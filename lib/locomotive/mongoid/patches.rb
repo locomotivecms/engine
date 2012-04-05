@@ -12,27 +12,27 @@ module Mongoid#:nodoc:
     end
   end
 
-  module Relations #:nodoc:
-    module AutoSave
-      module ClassMethods #:nodoc:
-        def autosave(metadata)
-          if metadata.autosave?
-            set_callback :save, :after do |document|
-              relation = document.send(metadata.name)
-
-              return true if document.try(:"autosave_for_#{metadata.name}?") == false # FIXME (Didier L.) add more control on the document side
-
-              if relation
-                (relation.do_or_do_not(:in_memory) || Array.wrap(relation)).each do |doc|
-                  doc.save
-                end
-              end
-            end
-          end
-        end
-      end
-    end
-  end
+  # module Relations #:nodoc:
+  #   module AutoSave
+  #     module ClassMethods #:nodoc:
+  #       def autosave(metadata)
+  #         if metadata.autosave?
+  #           set_callback :save, :after do |document|
+  #             relation = document.send(metadata.name)
+  #
+  #             return true if document.try(:"autosave_for_#{metadata.name}?") == false # FIXME (Didier L.) add more control on the document side
+  #
+  #             if relation
+  #               (relation.do_or_do_not(:in_memory) || Array.wrap(relation)).each do |doc|
+  #                 doc.save
+  #               end
+  #             end
+  #           end
+  #         end
+  #       end
+  #     end
+  #   end
+  # end
 
   module Fields #:nodoc:
     module Internal #:nodoc:
