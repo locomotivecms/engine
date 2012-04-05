@@ -74,6 +74,10 @@ module Locomotive
 
         end
 
+        def autosave_for_children?
+          @autosave_for_children != false
+        end
+
         # Returns the children of this node but with the minimal set of required attributes
         #
         # @return [ Array ] The children pages ordered by their position
