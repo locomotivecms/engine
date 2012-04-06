@@ -77,10 +77,32 @@ describe Locomotive::ThemeAsset do
       @asset.stylesheet?.should be_true
     end
 
+    it 'should compile scss stylesheet if compile is set' do
+      @asset.compile = true
+      asset = FixturedAsset.open('main.scss')
+      Locomotive.config.sass_process_options = { :load_paths => [File.dirname(asset.path)] }
+      @asset.source = asset
+      @asset.source.compiled.should_not be_nil
+      @asset.source.compiled.path.should match(/compiled_main.scss$/)
+      File.open(@asset.source.compiled.path).read.gsub(/\s+/,'').should == "body{color:#001122;}"
+      @asset.source.store!
+      @asset.source.compiled.path.should match(/compiled_main.css$/)
+    end
+
     it 'should process javascript' do
       @asset.source = FixturedAsset.open('application.js')
       @asset.source.file.content_type.should_not be_nil
       @asset.javascript?.should be_true
+    end
+
+    it 'should compile coffescript if compile is set' do
+      @asset.compile = true
+      @asset.source = FixturedAsset.open('application.coffee')
+      @asset.source.compiled.should_not be_nil
+      @asset.source.compiled.path.should match(/compiled_application.coffee$/)
+      File.open(@asset.source.compiled.path).read.gsub(/\s+/,'').should == "(function(){varsquare;square=function(x){returnx*x;};}).call(this);"
+      @asset.source.store!
+      @asset.source.compiled.path.should match(/compiled_application.js$/)
     end
 
     it 'should get size' do

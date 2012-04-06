@@ -2,3 +2,4 @@ de:
   carrierwave:
     errors:
       integrity: 'ist kein erlaubter Datei-Typ.'
+      processing: 'hatte Fehler bei der Kompilierung.'

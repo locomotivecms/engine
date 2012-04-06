@@ -27,7 +27,9 @@ module Locomotive
       },
       :devise_modules             => [:rememberable, :database_authenticatable, :token_authenticatable, :recoverable, :trackable, :validatable, :encryptable, { :encryptor => :sha1 }],
       :context_assign_extensions  => { },
-      :models_for_templatization  => []
+      :models_for_templatization  => [],
+      :sass_process_options => {},
+      :coffeescript_process_options => {}
     }
 
     cattr_accessor :settings
