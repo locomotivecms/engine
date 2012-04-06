@@ -11,11 +11,10 @@ module Locomotive
 
         module ClassMethods
 
-          # Given both a site and a path, this method tries
-          # to get the matching page.
-          # If the page is templatized, the related content entry is
-          # associated to the page (page.content_entry stores the entry).
-          # If no page is found, then it returns the 404 one instead.
+          # Given both a site and a path, this method retrieves
+          # the matching page if it exists.
+          # If the found page owns wildcards in its fullpath, then
+          # assigns the value for each wildcard and store the result within the page.
           #
           # @param [ Site ] site The site where to find the page
           # @param [ String ] path The fullpath got from the request
@@ -33,17 +32,7 @@ module Locomotive
               if !_page.published? && !logged_in
                 next
               else
-                if _page.templatized?
-                  %r(^#{_page.fullpath.gsub('content_type_template', '([^\/]+)')}$) =~ path
-
-                  permalink = $1
-
-                  _page.content_entry = _page.fetch_target_entry(permalink)
-
-                  if _page.content_entry.nil? || (!_page.content_entry.visible? && !logged_in) # content instance not found or not visible
-                    next
-                  end
-                end
+                _page.match_wildcards(path)
               end
 
               page = _page

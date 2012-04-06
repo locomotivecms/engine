@@ -221,7 +221,7 @@
         parent: Tilhører
         parent_id: Tilhører
         slug: Slug
-        templatized: Templatized
+        wildcard: Wildcard
         published: Publisert
         listed: I meny
         redirect: Videresending

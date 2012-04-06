@@ -3,14 +3,18 @@ module Locomotive
     module Drops
       class Page < Base
 
-        delegate :seo_title, :meta_keywords, :meta_description, :to => '_source'
+        delegate :title, :seo_title, :meta_keywords, :meta_description, :to => '_source'
 
         def title
-          self._source.templatized? ? @context['entry']._label : self._source.title
+          # TODO
+          # self._source.templatized? ? @context['entry']._label : self._source.title
+          self._source.title
         end
 
         def slug
-          self._source.templatized? ? self._source.content_type.slug.singularize : self._source.slug
+          # TODO
+          # self._source.templatized? ? self._source.content_type.slug.singularize : self._source.slug
+          self._source.slug
         end
 
         def parent

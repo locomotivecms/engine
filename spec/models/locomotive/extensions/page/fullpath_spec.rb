@@ -25,6 +25,12 @@ describe Locomotive::Page do
       @page.pretty_fullpath.should == 'archives/:month/projects/:permalink'
     end
 
+    it 'compiles a fullpath with wildcards' do
+      @page.fullpath  = 'archives/*/projects/*'
+      @page.wildcards = %w(month permalink)
+      @page.compiled_fullpath('month' => 'june', 'permalink' => 'hello-world').should == 'archives/june/projects/hello-world'
+    end
+
     describe 'building the fullpath' do
 
       it 'returns "index" for the root page' do
@@ -45,16 +51,13 @@ describe Locomotive::Page do
       end
 
       it 'includes a single "*" if the page enables wildcards and if there are a lot of ancestors' do
-        @page.stubs(:ancestors_and_self).returns([FactoryGirl.build(:page), FactoryGirl.build(:page, :slug => 'archives'), FactoryGirl.build(:page, :slug => 'projects'), @page])
+        @page.stubs(:parent).returns(FactoryGirl.build(:page, :fullpath => 'archives/projects'))
         @page.send(:build_fullpath)
         @page.fullpath.should == 'archives/projects/*'
       end
 
       it 'includes many "*" when there are ancestors enabling wildcards' do
-        @page.stubs(:ancestors_and_self).returns([FactoryGirl.build(:page),
-          FactoryGirl.build(:page, :slug => 'archives'),
-          FactoryGirl.build(:page, :slug => 'month', :wildcard => true),
-          FactoryGirl.build(:page, :slug => 'projects'), @page])
+        @page.stubs(:parent).returns(FactoryGirl.build(:page, :fullpath => 'archives/*/projects'))
         @page.send(:build_fullpath)
         @page.fullpath.should == 'archives/*/projects/*'
       end
@@ -101,9 +104,7 @@ describe Locomotive::Page do
       end
 
       it 'turns a page into a wildcards one' do
-        Rails.logger.debug "=========== START ============"
         @month_page.update_attributes :wildcard => true
-        Rails.logger.debug "=========== END ============"
         @project_page.reload
         @project_page.fullpath.should == 'archives/*/projects/*'
         @posts_page.reload
@@ -111,21 +112,52 @@ describe Locomotive::Page do
       end
 
       it 'turns off the wildcard property of page' do
-        puts "==== 1 ==="
-        Rails.logger.debug "==== 1 ==="
-        puts "@month_page = #{@month_page.fullpath.inspect} / #{@month_page.wildcards.inspect}"
         @month_page.update_attributes :wildcard => true
-        puts "==== 2 === "
-        Rails.logger.debug "==== 2 ==="
         @month_page.update_attributes :wildcard => false
-        puts "---- DONE ----"
-        Rails.logger.debug "==== DONE ==="
         @project_page.reload
         @project_page.fullpath.should == 'archives/month/projects/*'
         @project_page.wildcards.should == %w(project)
         @posts_page.reload
         @posts_page.fullpath.should == 'archives/month/posts'
-        @posts_page.wildcards.should == nil
+        @posts_page.wildcards.should == []
+      end
+
+    end
+
+    describe 'building the hash map asssociating a wildcard name with its value from a path' do
+
+      it 'returns an empty map for non wildcards fullpath' do
+        @page.fullpath  = 'index'
+        @page.wildcards = nil
+        @page.match_wildcards('index').should be_empty
+      end
+
+      it 'underscores the wildcard name in the returned hash map' do
+        @page.fullpath  = 'projects/*'
+        @page.wildcards = %w(my-permalink)
+        @page.match_wildcards('projects/hello-world').should == { 'my_permalink' => 'hello-world' }
+      end
+
+      it 'returns a map with one element if the fullpath contains a single wildcard' do
+        @page.fullpath  = 'projects/*'
+        @page.wildcards = %w(permalink)
+        @page.match_wildcards('projects/hello-world').should == { 'permalink' => 'hello-world' }
+      end
+
+      it 'returns a map with as many elements as there are wildcards in the fullpath' do
+        @page.fullpath  = 'archives/*/projects/*'
+        @page.wildcards = %w(month permalink)
+        @page.match_wildcards('archives/june/projects/hello-world').should == {
+          'month'     => 'june',
+          'permalink' => 'hello-world'
+        }
+      end
+
+      it 'stores the map inside a virtual attribute' do
+        @page.fullpath  = 'projects/*'
+        @page.wildcards = %w(permalink)
+        @page.match_wildcards('projects/hello-world')
+        @page.wildcards_hash.should == { 'permalink' => 'hello-world' }
       end
 
     end

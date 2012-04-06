@@ -2,7 +2,7 @@ module Locomotive
   module PagesHelper
 
     def css_for_page(page)
-      %w(index not_found templatized redirect).inject([]) do |memo, state|
+      %w(index not_found wildcard redirect).inject([]) do |memo, state|
         memo << state.dasherize if page.send(:"#{state}?")
         memo
       end.join(' ')
@@ -30,13 +30,6 @@ module Locomotive
       list << ["#{offset}#{page.title}", page.id]
       page.children.each { |child| add_children_to_options(child, list) }
       list
-    end
-
-    def options_for_target_klass_name
-      base_models = current_site.content_types.map do |type|
-        [type.name.humanize, type.klass_with_custom_fields(:entries)]
-      end
-      base_models + Locomotive.config.models_for_templatization.map { |name| [name.underscore.humanize, name] }
     end
 
     def options_for_page_cache_strategy

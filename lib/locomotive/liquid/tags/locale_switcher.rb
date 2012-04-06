@@ -42,11 +42,14 @@ module Locomotive
 
           output += @site.locales.collect do |locale|
             ::Mongoid::Fields::I18n.with_locale(locale) do
-              fullpath = @site.localized_page_fullpath(@page, locale)
+              # fullpath = @site.localized_page_fullpath(@page, locale)
 
-              if @page.templatized?
-                fullpath.gsub!('content_type_template', context['entry']._permalink)
-              end
+              # if @page.templatized?
+              #   fullpath.gsub!('content_type_template', context['entry']._permalink)
+              # end
+
+              # TODO: TO BE TESTED
+              fullpath = @page.compiled_fullpath(@page.wildcards_hash)
 
               %(<a href="/#{fullpath}" class="#{locale} #{'current' if locale == context['current_locale']}">#{link_label(locale)}</a>)
             end

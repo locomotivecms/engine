@@ -71,13 +71,14 @@ describe Locomotive::Liquid::Drops::Page do
       render_template('{{ home.title }}').should == 'Home page'
     end
 
-    it 'renders the content instance highlighted field instead for a templatized page' do
-      templatized = FactoryGirl.build(:page, :title => 'Lorem ipsum template', :templatized => true)
-
-      entry = Locomotive::Liquid::Drops::ContentEntry.new(mock('entry', :_label => 'Locomotive rocks !'))
-
-      render_template('{{ page.title }}', 'page' => templatized, 'entry' => entry).should == 'Locomotive rocks !'
-    end
+    # TODO
+    # it 'renders the content instance highlighted field instead for a templatized page' do
+    #   templatized = FactoryGirl.build(:page, :title => 'Lorem ipsum template', :templatized => true)
+    #
+    #   entry = Locomotive::Liquid::Drops::ContentEntry.new(mock('entry', :_label => 'Locomotive rocks !'))
+    #
+    #   render_template('{{ page.title }}', 'page' => templatized, 'entry' => entry).should == 'Locomotive rocks !'
+    # end
 
   end
 

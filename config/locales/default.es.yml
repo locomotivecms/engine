@@ -58,7 +58,7 @@ es:
         parent_id: Padre
         slug: Enlace
         listed: Menu
-        templatized: Templatizada
+        wildcard: Wildcard
         published: Publicada
         redirect: Redirección
         redirect_url: Url de redirección

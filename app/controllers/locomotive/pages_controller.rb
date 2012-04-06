@@ -53,10 +53,10 @@ module Locomotive
     end
 
     def get_path
-      page = current_site.pages.build(:parent => current_site.pages.find(params[:parent_id]), :slug => params[:slug].permalink).tap do |p|
+      page = current_site.pages.build(:parent => current_site.pages.find(params[:parent_id]), :slug => params[:slug].permalink, :wildcard => params[:wildcard]).tap do |p|
         p.valid?; p.send(:build_fullpath)
       end
-      render :json => { :url => public_page_url(page), :slug => page.slug, :templatized_parent => page.templatized_from_parent? }
+      render :json => { :url => public_page_url(page), :slug => page.slug }
     end
 
   end

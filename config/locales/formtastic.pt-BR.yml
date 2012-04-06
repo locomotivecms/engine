@@ -46,7 +46,6 @@ pt-BR:
       page:
         published: "Apenas contas autenticadas podem ver páginas não publicadas."
         cache_strategy: 'Faça o Cache da página para obter melhor desempenho. A escolha do "Simples" é um bom compromisso'
-        templatized: "Utilize a página como template para o modelo definido."
       snippet:
         slug: "Você precisa saber a ordem para inserir fragmentos dentro da página."
       site:

@@ -128,37 +128,22 @@ describe 'Locomotive rendering system' do
 
     end
 
-    context 'templatized page' do
+    context 'wildcards page' do
 
       before(:each) do
-        @content_type = FactoryGirl.build(:content_type, :site => nil)
-        @content_entry = @content_type.entries.build(:_visible => true)
-        @page.templatized = true
-        @page.stubs(:fetch_target_entry).returns(@content_entry)
-        @page.stubs(:fullpath).returns('/projects/content_type_template')
+        @page.attributes = { 'wildcards' => %w(permalink), 'fullpath' => 'projects/*', 'wildcard' => true }
         @controller.request.fullpath = '/projects/edeneo.html'
-        @controller.current_site.pages.expects(:where).with(:depth => 2, :fullpath.in => %w{projects/edeneo projects/content_type_template content_type_template/edeneo}).returns([@page])
+        @controller.current_site.pages.expects(:where).with(:depth => 2, :fullpath.in => %w{projects/edeneo projects/* */edeneo */*}).returns([@page])
       end
 
-      it 'sets the content_entry variable' do
+      it 'finds the page' do
         page = @controller.send(:locomotive_page)
         page.should_not be_nil
-        page.content_entry.should == @content_entry
       end
 
-      it 'returns the 404 page if the instance does not exist' do
-        @page.stubs(:fetch_target_entry).returns(nil)
-        (klass = Locomotive::Page).expects(:published).returns([true])
-        @controller.current_site.pages.expects(:not_found).returns(klass)
-        @controller.send(:locomotive_page).should be_true
-      end
-
-      it 'returns the 404 page if the instance is not visible' do
-        @content_entry._visible = false
-        @page.stubs(:fetch_target_entry).returns(@content_entry)
-        (klass = Locomotive::Page).expects(:published).returns([true])
-        @controller.current_site.pages.expects(:not_found).returns(klass)
-        @controller.send(:locomotive_page).should be_true
+      it 'assigns values to wildcards' do
+        page = @controller.send(:locomotive_page)
+        page.wildcards_hash.should == { 'permalink' => 'edeneo' }
       end
 
     end

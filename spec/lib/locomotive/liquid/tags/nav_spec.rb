@@ -15,7 +15,7 @@ describe Locomotive::Liquid::Tags::Nav do
       Locomotive::Page.new(:title => 'Child #2.1', :fullpath => 'child_2/sub_child_1', :slug => 'sub_child_1', :published => true),
       Locomotive::Page.new(:title => 'Child #2.2', :fullpath => 'child_2/sub_child_2', :slug => 'sub_child_2', :published => true),
       Locomotive::Page.new(:title => 'Unpublished #2.2', :fullpath => 'child_2/sub_child_unpublishd_2', :slug => 'sub_child_unpublished_2', :published => false),
-      Locomotive::Page.new(:title => 'Templatized #2.3', :fullpath => 'child_2/sub_child_template_3',   :slug => 'sub_child_template_3',    :published => true,   :templatized => true),
+      Locomotive::Page.new(:title => 'Templatized #2.3', :fullpath => 'child_2/sub_child_template_3',   :slug => 'sub_child_template_3',    :published => true,   :wildcard => true),
       Locomotive::Page.new(:title => 'Unlisted    #2.4', :fullpath => 'child_2/sub_child_unlisted_4',   :slug => 'sub_child_unlisted_4',    :published => true,   :listed => false)
     ]
     @home.children.last.stubs(:children_with_minimal_attributes).returns(other_children)
@@ -55,7 +55,7 @@ describe Locomotive::Liquid::Tags::Nav do
       output.should match /<\/a><\/li><\/ul><\/li><\/ul>/
     end
 
-    it 'does not render templatized pages' do
+    it 'does not render pages with wildcards' do
       output = render_nav('site', {}, 'depth: 2')
 
       output.should_not match /sub-child-template-3/

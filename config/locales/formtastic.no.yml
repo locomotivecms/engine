@@ -55,9 +55,7 @@
       page:
         published: "Kun autoriserte kontoer kan se ikke-publiserte sider"
         cache_strategy: "Buffre siden for å bedre ytelsen. \"Enkel\" er et bra kompromiss."
-        templatized: "Bruk denne siden som mal for en modell."
         listed: "Styr om siden skal vises i de genererte menyene."
-        content_type_id: "Innholdstypen denne siden skal være mal for."
         seo_title: "Definer en egen tittel for siden. Denne blir benyttet av nettleseren. Hvis denne står tom blir standardverdien fra sideinnstillingene benyttet."
         meta_keywords: "Overstyr søkemotor-metadata for denne siden. Separer med komma."
         meta_description: "Overstyr søkemotorbeskrivelsen for denne siden."

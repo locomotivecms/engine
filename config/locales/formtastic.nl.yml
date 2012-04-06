@@ -49,9 +49,7 @@ nl:
       page:
         published: "Alleen geauthenticeerde accounts kunnen niet gepubliceerde pagina's zien."
         cache_strategy: "Cache de pagina voor betere prestaties. De 'Simpele' keus is een goed compromis."
-        templatized: "Gebruik de pagina als template voor een door u gedefinieerd model."
         listed: "Controleer of de pagina getoond wordt van de gegenereerde menu's."
-        content_type_id: "Het type inhoud waar deze pagina als template voor dient"
         meta_keywords: "Overschrijft de meta keywords van de website in de head tag van deze pagina. Gescheiden door een komma"
         meta_description: "Overschrijft de meta description van de website in de head tag van deze pagina."
       snippet:

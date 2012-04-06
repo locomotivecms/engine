@@ -41,7 +41,7 @@ class Locomotive.Views.Pages.FormView extends Locomotive.Views.Shared.FormView
     @enable_response_type_select()
 
     # enable check boxes
-    @enable_templatized_checkbox()
+    @enable_wildcard_checkbox()
 
     @enable_redirect_checkbox()
 
@@ -112,11 +112,6 @@ class Locomotive.Views.Pages.FormView extends Locomotive.Views.Shared.FormView
       data:       { parent_id:  @$('#page_parent_id').val(), slug: @$('#page_slug').val() }
       success:    (data) =>
         @$('#page_slug_input .inline-hints').html(data.url).effect('highlight')
-        if data.templatized_parent
-          @$('li#page_slug_input').show()
-          @$('li#page_templatized_input, li#page_target_klass_name_input').hide()
-        else
-          @$('li#page_templatized_input, li#page_target_klass_name_input').show()
 
   enable_response_type_select: ->
     @$('li#page_response_type_input').change (event) =>
@@ -126,19 +121,13 @@ class Locomotive.Views.Pages.FormView extends Locomotive.Views.Shared.FormView
         @model.set redirect: false
         @$('li#page_redirect_input, li#page_redirect_url_input').hide()
 
-  enable_templatized_checkbox: ->
-    @_enable_checkbox 'templatized',
-      features:     ['slug', 'redirect', 'listed']
-      on_callback:  =>
-        @$('li#page_target_klass_name_input').show()
-      off_callback: =>
-        @$('li#page_target_klass_name_input').hide()
-
-    @$('li#page_templatized_input').hide() if @model.get('templatized_from_parent') == true
+  enable_wildcard_checkbox: ->
+    @_enable_checkbox 'wildcard',
+      features:     ['redirect', 'listed']
 
   enable_redirect_checkbox: ->
     @_enable_checkbox 'redirect',
-      features:     ['templatized', 'cache_strategy']
+      features:     ['wildcard', 'cache_strategy']
       on_callback:  =>
         @$('li#page_redirect_url_input').show()
       off_callback: =>

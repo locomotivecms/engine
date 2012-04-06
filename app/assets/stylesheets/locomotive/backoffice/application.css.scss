@@ -289,7 +289,7 @@ ul.list {
           cursor: move;
         }
 
-        &.templatized > .inner > a {
+        &.wildcard > .inner > a {
           padding-right: 24px;
           background: transparent image-url("locomotive/list/icons/template.png") no-repeat right 2px;
         }

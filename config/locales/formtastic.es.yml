@@ -49,9 +49,7 @@ es:
       page:
         published: "Las páginas no publicadas son únicamente visibles tras iniciar sesión."
         cache_strategy: "Utilizar una caché de página para un mejor rendimiento. La opción 'Simple' es un buen compromiso."
-        templatized: "Usar la página como plantilla de un modelo."
         listed: "Controla si la página se enseña o no en los menús."
-        content_type_id: "El modelo del cual será una plantilla esta página."
         meta_keywords: "Reescribir las palabras clave SEO utilizadas en la cabecera de la página. Deben estar separadas por comas."
         meta_description: "Reescribir la metadescripción que se utiliza en la cabecera de la página."
       snippet:

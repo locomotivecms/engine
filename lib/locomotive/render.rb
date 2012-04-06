@@ -62,10 +62,7 @@ module Locomotive
 
       assigns.merge!(flash.to_hash.stringify_keys) # data from public submissions
 
-      if @page.templatized? # add instance from content type
-        assigns['entry'] = @page.content_entry
-        assigns[@page.target_entry_name] = @page.content_entry # just here to help to write readable liquid code
-      end
+      assigns.merge!(@page.wildcards_hash.stringify_keys) if @page.has_wildcards?
 
       registers = {
         :controller     => self,

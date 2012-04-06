@@ -55,9 +55,7 @@ it:
       page:
         published: "Solo gli account autenticati possono visualizzare le pagine non pubblicate."
         cache_strategy: "Attiva il cache della pagina per miglirare le prestazioni. L'opzione 'Semplice' è un buon compromesso."
-        templatized: "Utilizzare la pagina come template per un modello che hai definito."
         listed: "Determina se la pagina deve essere mostrata nei menù generati."
-        content_type_id: "Il tipo di contenuto di cui questa pagina sarà il template."
         seo_title: "Definisce il titolo della pagina inserito nel tag title della sezione head. Lascia vuoto se vuoi che venga utilizzato il titolo definito per il sito."
         meta_keywords: "Sovrascrive per questa pagina le meta keywords definite per il sito all'interno del tag head della pagina. Sono separate da virgola."
         meta_description: "Sovrascrive per questa pagina la meta description definita per il sito."

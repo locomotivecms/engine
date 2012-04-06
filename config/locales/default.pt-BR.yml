@@ -60,7 +60,7 @@ pt-BR:
         title: Título
         parent: Pai
         slug: Slug
-        templatized: Template
+        wildcard: Wildcard
         published: Publicado
         cache_strategy: Cache
       content_type:

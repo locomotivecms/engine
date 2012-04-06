@@ -57,7 +57,7 @@ de:
         title: Titel
         parent: Parent
         slug: Slug
-        templatized: Templatized
+        wildcard: Wildcard
         published: Veröffentlicht
         listed: Im Menü
         redirect: Umleitung

@@ -58,7 +58,7 @@ fr:
         parent_id: Dossier parent
         slug: Raccourci
         listed: Menu
-        templatized: Templatisée
+        wildcard: Wildcard
         published: Publiée
         redirect: Redirection
         redirect_url: Url de redirection
