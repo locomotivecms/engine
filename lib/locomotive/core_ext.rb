@@ -1,11 +1,11 @@
 # encoding: utf-8
 
 ## String
-
+require "stringex"
 class String #:nodoc
 
   def permalink
-    self.parameterize('-')
+    self.to_url
   end
 
   def permalink!

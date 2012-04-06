@@ -60,6 +60,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'httparty',                        '~> 0.8.1'
   s.add_dependency 'actionmailer-with-request',       '~> 0.3.0'
+  s.add_dependency 'stringex',                        '~> 1.3.2'
 
   s.add_dependency 'SystemTimer' if RUBY_VERSION =~ /1.8/
 
