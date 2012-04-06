@@ -13,4 +13,7 @@ Then /^I should be able to access the backend$/ do
   click_link 'Home page'
   click_button 'Save'
   page.should have_content 'Page was successfully updated'
+
+  # Reset the routes back to normal once we are done
+  Rails.application.reload_routes!
 end
