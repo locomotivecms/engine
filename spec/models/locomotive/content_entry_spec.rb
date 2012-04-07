@@ -197,7 +197,7 @@ describe Locomotive::ContentEntry do
       @account_2 = FactoryGirl.build('frenchy user', :id => fake_bson_id('2'))
 
       @content_type.public_submission_enabled = true
-      @content_type.public_submission_accounts = ['', @account_1._id, @account_2._id]
+      @content_type.public_submission_accounts = ['', @account_1._id.to_s, @account_2._id.to_s]
 
       site = FactoryGirl.build(:site)
       site.stubs(:accounts).returns([@account_1, @account_2])
