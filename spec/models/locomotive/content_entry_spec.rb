@@ -146,7 +146,12 @@ describe Locomotive::ContentEntry do
 
     it 'removes dots' do
       @content_entry.title = "my.test"; @content_entry.send(:set_slug)
-      @content_entry._permalink.should == 'my-test'
+      @content_entry._permalink.should == 'my-dot-test'
+    end
+    
+    it 'accepts non-latin chars' do
+      @content_entry.title = "абракадабра"; @content_entry.send(:set_slug)
+      @content_entry._permalink.should == 'abrakadabra'
     end
 
     it 'also accepts a file field as the highlighted field' do
