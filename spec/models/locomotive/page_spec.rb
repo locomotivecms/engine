@@ -235,7 +235,7 @@ describe Locomotive::Page do
 
     it 'fills in the slug field' do
       @page.valid?
-      @page.slug.should == 'content-type-template'
+      @page.slug.should == 'content_type_template'
     end
 
     it 'returns the target klass' do
