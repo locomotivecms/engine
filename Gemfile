@@ -14,6 +14,8 @@ group :development do
   gem 'rspec-rails', '~> 2.8.0' # In order to have rspec tasks and generators
   gem 'rspec-cells'
 
+  gem 'therubyracer', '>= 0.8.2'
+
   gem 'unicorn' # Using unicorn_rails instead of webrick (default server)
 end
 
