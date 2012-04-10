@@ -72,7 +72,7 @@ class Locomotive.Views.Pages.FormView extends Locomotive.Views.Shared.FormView
       @editor = CodeMirror.fromTextArea input.get()[0],
         mode:             'liquid'
         autoMatchParens:  false
-        lineNumbers:      false
+        lineNumbers:      true
         passDelay:        50
         tabMode:          'shift'
         theme:            'default'

@@ -1,5 +1,5 @@
-module Liquid
-  module Locomotive
+module Locomotive
+  module Liquid
     module Tags
       class InlineEditor < ::Liquid::Tag
 

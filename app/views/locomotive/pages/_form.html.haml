@@ -38,9 +38,9 @@
 
     = f.input :published, :as => :'Locomotive::Toggle'
 
-    = f.input :listed, :as => :'Locomotive::Toggle'
+    = f.input :listed, :as => :'Locomotive::Toggle', :wrapper_html => { :style => "#{'display: none' if @page.has_wildcards?}" }
 
-    = f.input :redirect, :as => :'Locomotive::Toggle', :wrapper_html => { :style => "#{'display: none' if !@page.default_response_type?}" }
+    = f.input :redirect, :as => :'Locomotive::Toggle', :wrapper_html => { :style => "#{'display: none' if !@page.default_response_type? || @page.has_wildcards?}" }
 
     = f.input :cache_strategy, :as => :select, :collection => options_for_page_cache_strategy, :include_blank => false, :wrapper_html => { :style => "#{'display: none' if @page.redirect?}" }
 

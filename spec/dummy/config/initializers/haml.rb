@@ -1,1 +1,2 @@
-Haml::Template.options[:ugly] = true # improve performance in dev
+Haml::Template.options[:ugly]   = true
+Haml::Template.options[:format] = :html5

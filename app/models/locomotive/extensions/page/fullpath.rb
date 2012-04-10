@@ -16,6 +16,8 @@ module Locomotive
           before_validation :get_wildcards_from_parent
           before_validation :add_slug_to_wildcards
           before_save       :build_fullpath
+          after_update      :propagate_fullpath_changes
+
           # before_save       :set_children_autosave
           # before_rearrange  :foo #propagate_fullpath_changes
           # after_save        :propagate_fullpath_changes
@@ -134,6 +136,12 @@ module Locomotive
             segments = (self.parent.fullpath.try(:split, '/') || [nil]) + [self.wildcard? ? '*' : self.slug]
             segments.shift if segments.first == 'index'
             self.fullpath = File.join segments.compact
+          end
+        end
+
+        def propagate_fullpath_changes
+          if self.fullpath_changed? || self.wildcards_changed?
+            self.rearrange_children!
           end
         end
 

@@ -34,7 +34,7 @@ module Locomotive
             end
 
           else
-            raise ::Liquid::SyntaxError.new("Syntax Error in 'nav' - Valid syntax: nav <page|site> <options>")
+            raise ::Liquid::SyntaxError.new("Syntax Error in 'nav' - Valid syntax: nav <page|site>, <options>")
           end
 
           super

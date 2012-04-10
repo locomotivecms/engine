@@ -62,7 +62,7 @@ module Locomotive
 
       assigns.merge!(flash.to_hash.stringify_keys) # data from public submissions
 
-      assigns.merge!(@page.wildcards_hash.stringify_keys) if @page.has_wildcards?
+      assigns['params'].merge!(@page.wildcards_hash.stringify_keys) if @page.has_wildcards?
 
       registers = {
         :controller     => self,

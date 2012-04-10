@@ -95,12 +95,23 @@ describe Locomotive::Page do
         @projects_page  = FactoryGirl.create(:page, :site => @home_page.site, :parent => @month_page, :slug => 'projects')
         @project_page   = FactoryGirl.create(:page, :site => @home_page.site, :parent => @projects_page, :slug => 'project', :wildcard => true)
         @posts_page     = FactoryGirl.create(:page, :site => @home_page.site, :parent => @month_page, :slug => 'posts')
+
+        [@home_page, @archives_page, @month_page, @projects_page, @project_page, @posts_page].map(&:reload)
       end
 
       it 'keeps the wildcards as they were if we modify a slug of an ancestor' do
         @archives_page.update_attributes :slug => 'my_archives'
         @project_page.reload
         @project_page.fullpath.should == 'my_archives/month/projects/*'
+      end
+
+      it 'modifies a wildcard' do
+        @month_page.update_attributes :wildcard => true
+        @month_page.reload
+        @month_page.update_attributes :slug => 'a_month'
+        @project_page.reload
+        @project_page.fullpath.should == 'archives/*/projects/*'
+        @project_page.wildcards.should == %w(a_month project)
       end
 
       it 'turns a page into a wildcards one' do
@@ -113,6 +124,7 @@ describe Locomotive::Page do
 
       it 'turns off the wildcard property of page' do
         @month_page.update_attributes :wildcard => true
+        @month_page.reload
         @month_page.update_attributes :wildcard => false
         @project_page.reload
         @project_page.fullpath.should == 'archives/month/projects/*'

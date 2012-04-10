@@ -49,7 +49,7 @@ module Locomotive
     scope :not_found,           :where => { :slug => '404', :depth => 0 }
     scope :published,           :where => { :published => true }
     scope :handle,              lambda { |handle| { :where => { :handle => handle } } }
-    scope :minimal_attributes,  lambda { |attrs = []| { :only => (attrs || []) + %w(title slug fullpath position depth published with_wildcards redirect listed response_type parent_id site_id created_at updated_at) } }
+    scope :minimal_attributes,  lambda { |attrs = []| { :only => (attrs || []) + %w(title slug fullpath position depth published with_wildcards redirect listed wildcard response_type parent_id parent_ids site_id created_at updated_at) } }
 
     ## methods ##
 
