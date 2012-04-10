@@ -146,7 +146,7 @@ module Locomotive
       return if !self.content_type.public_submission_enabled? || self.content_type.public_submission_accounts.blank?
 
       self.site.accounts.each do |account|
-        next unless self.content_type.public_submission_accounts.include?(account._id)
+        next unless self.content_type.public_submission_accounts.include?(account._id.to_s)
 
         Locomotive::Notifications.new_content_entry(account, self).deliver
       end
