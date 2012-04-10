@@ -52,7 +52,7 @@ module Locomotive
     scope :published,           :where => { :published => true }
     scope :fullpath,            lambda { |fullpath| { :where => { :fullpath => fullpath } } }
     scope :handle,              lambda { |handle| { :where => { :handle => handle } } }
-    scope :minimal_attributes,  lambda { |attrs = []| { :only => (attrs || []) + %w(title slug fullpath position depth published templatized redirect listed response_type parent_id site_id created_at updated_at) } }
+    scope :minimal_attributes,  lambda { |attrs = []| { :only => (attrs || []) + %w(title slug fullpath position depth published templatized redirect listed response_type parent_id parent_ids site_id created_at updated_at) } }
     scope :dependent_from,      lambda { |id| { :where => { :template_dependencies.in => [id] } } }
 
     ## methods ##
