@@ -81,6 +81,10 @@ describe 'Locomotive rendering system' do
 
   context 'when retrieving page' do
 
+    before(:each) do
+      @page.fullpath = 'index' # we do not care if the fullpath is consistent or not.
+    end
+
     it 'should retrieve the index page /' do
       @controller.request.fullpath = '/'
       @controller.current_site.pages.expects(:where).with(:depth => 0, :fullpath.in => %w{index}).returns([@page])
@@ -95,13 +99,13 @@ describe 'Locomotive rendering system' do
 
     it 'should retrieve it based on the full path' do
       @controller.request.fullpath = '/about_us/team.html'
-      @controller.current_site.pages.expects(:where).with(:depth => 2, :fullpath.in => %w{about_us/team about_us/content_type_template content_type_template/team}).returns([@page])
+      @controller.current_site.pages.expects(:where).with(:depth => 2, :fullpath.in => %w{about_us/team about_us/* */team */*}).returns([@page])
       @controller.send(:locomotive_page).should_not be_nil
     end
 
     it 'does not include the query string' do
       @controller.request.fullpath = '/about_us/team.html?some=params&we=use'
-      @controller.current_site.pages.expects(:where).with(:depth => 2, :fullpath.in => %w{about_us/team about_us/content_type_template content_type_template/team}).returns([@page])
+      @controller.current_site.pages.expects(:where).with(:depth => 2, :fullpath.in => %w{about_us/team about_us/* */team */*}).returns([@page])
       @controller.send(:locomotive_page).should_not be_nil
     end
 
@@ -118,7 +122,7 @@ describe 'Locomotive rendering system' do
         @page.redirect = true
         @page.redirect_url = 'http://www.example.com/'
         @controller.request.fullpath = '/contact'
-        @controller.current_site.pages.expects(:where).with(:depth => 1, :fullpath.in => %w{contact content_type_template}).returns([@page])
+        @controller.current_site.pages.expects(:where).with(:depth => 1, :fullpath.in => %w{contact *}).returns([@page])
       end
 
       it 'redirects to the redirect_url' do
@@ -157,7 +161,7 @@ describe 'Locomotive rendering system' do
 
       it 'should return the 404 page if the page has not been published yet' do
         @controller.request.fullpath = '/contact'
-        @controller.current_site.pages.expects(:where).with(:depth => 1, :fullpath.in => %w{contact content_type_template}).returns([@page])
+        @controller.current_site.pages.expects(:where).with(:depth => 1, :fullpath.in => %w{contact *}).returns([@page])
         (klass = Locomotive::Page).expects(:published).returns([true])
         @controller.current_site.pages.expects(:not_found).returns(klass)
         @controller.send(:locomotive_page).should be_true
@@ -166,7 +170,7 @@ describe 'Locomotive rendering system' do
       it 'should not return the 404 page if the page has not been published yet and admin is logged in' do
         @controller.current_locomotive_account = true
         @controller.request.fullpath = '/contact'
-        @controller.current_site.pages.expects(:where).with(:depth => 1, :fullpath.in => %w{contact content_type_template}).returns([@page])
+        @controller.current_site.pages.expects(:where).with(:depth => 1, :fullpath.in => %w{contact *}).returns([@page])
         @controller.send(:locomotive_page).should == @page
       end
 

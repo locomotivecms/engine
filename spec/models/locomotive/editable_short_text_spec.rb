@@ -5,7 +5,7 @@ describe Locomotive::EditableShortText do
   describe 'a simple case' do
 
     before(:each) do
-      @site = FactoryGirl.create(:site)
+      @site = FactoryGirl.create(:site, :locales => %w(en fr))
       @home = @site.pages.root.first
 
       @home.update_attributes :raw_template => "{% block body %}{% editable_short_text 'body' %}Lorem ipsum{% endeditable_short_text %}{% endblock %}"

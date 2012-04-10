@@ -60,20 +60,21 @@ module Locomotive
 
     protected
 
-    # FIXME: Currently there is no t/translate method on the I18n module
-    # Extensions::Site::I18n which is breaking the testing. The
-    # namespaced ::I18n should be changed to just I18n when the t()
-    # method is available
+    # FIXME: Currently there is no t/translate method on the
+    # Extensions::Site::I18n module which is breaking the testing. The
+    # namespaced ::I18n should be replaced by simply I18n when the t()
+    # method will be available.
     def create_default_pages!
-      ::Mongoid::Fields::I18n.with_locale(self.default_locale) do
-        %w{index 404}.each do |slug|
-          self.pages.create({
-            :slug         => slug,
-            :title        => ::I18n.t("attributes.defaults.pages.#{slug}.title"),
-            :raw_template => ::I18n.t("attributes.defaults.pages.#{slug}.body"),
-            :published    => true
-          })
+      %w(index 404).each do |slug|
+        page = self.pages.build(:title => '', :slug => '', :raw_template => '', :published => true)
+
+        self.locales.each do |locale|
+          page.attributes['slug'][locale]         = slug
+          page.attributes['title'][locale]        = ::I18n.t("attributes.defaults.pages.#{slug}.title", :locale => locale)
+          page.attributes['raw_template'][locale] = ::I18n.t("attributes.defaults.pages.#{slug}.body", :locale => locale)
         end
+
+        page.save
       end
     end
 

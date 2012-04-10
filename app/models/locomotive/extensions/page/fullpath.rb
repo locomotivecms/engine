@@ -41,7 +41,7 @@ module Locomotive
         # the current page has wildcards or not.
         #
         def has_wildcards?
-          !self.fullpath.try(:index, '*').nil?
+          self.wildcard? || !self.fullpath.try(:index, '*').nil?
         end
 
         # It returns a pretty output of the fullpath. The "*" characters

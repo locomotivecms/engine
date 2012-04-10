@@ -109,7 +109,7 @@ class Locomotive.Views.Pages.FormView extends Locomotive.Views.Shared.FormView
       url:        @$('#page_slug').attr('data-url')
       type:       'get'
       dataType:   'json'
-      data:       { parent_id:  @$('#page_parent_id').val(), slug: @$('#page_slug').val() }
+      data:       { parent_id:  @$('#page_parent_id').val(), slug: @$('#page_slug').val(), wildcard: @model.get('wildcard') }
       success:    (data) =>
         @$('#page_slug_input .inline-hints').html(data.url).effect('highlight')
 

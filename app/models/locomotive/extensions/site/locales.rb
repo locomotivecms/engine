@@ -10,8 +10,12 @@ module Locomotive
           ## fields ##
           field :locales, :type => 'RawArray', :default => []
 
+          ## validations ##
+          validate :can_not_remove_default_locale
+
           ## callbacks ##
-          after_validation :add_default_locale
+          after_validation  :add_default_locale
+          before_update     :verify_localized_default_pages_integrity
 
         end
 
@@ -48,6 +52,14 @@ module Locomotive
           self.locales.first || Locomotive.config.site_locales.first
         end
 
+        def default_locale_was
+          self.locales_was.first || Locomotive.config.site_locales.first
+        end
+
+        def default_locale_changed?
+          self.default_locale != self.default_locale_was
+        end
+
         def locale_fallbacks(locale)
           [locale.to_s] + (locales - [locale.to_s])
         end
@@ -58,8 +70,49 @@ module Locomotive
           self.locales = [Locomotive.config.site_locales.first] if self.locales.blank?
         end
 
+        def can_not_remove_default_locale
+          if self.persisted? && !self.locales.include?(self.default_locale_was)
+            self.errors.add :locales, I18n.t(:default_locale_removed, :scope => [:errors, :messages, :site])
+          end
+        end
+
+        def verify_localized_default_pages_integrity
+          if self.persisted? && self.locales_changed?
+            self.pages.where(:"slug.#{self.default_locale_was}".in => %w(index 404), :depth => 0).each do |page|
+              modifications = { 'title' => {}, 'slug' => {} }
+
+              self.locales.each do |locale|
+                slug = page.attributes['slug'][self.default_locale_was]
+
+                modifications['slug'][locale]  = slug
+                modifications['title'][locale] = page.attributes['title'][locale] || ::I18n.t("attributes.defaults.pages.#{slug}.title", :locale => locale)
+              end
+
+              page.collection.update({ :_id => page._id }, { '$set' => modifications })
+            end
+          end
+        end
+
       end
 
     end
   end
 end
+
+#
+#   %w(index 404).each do |slug|
+#     page = self.pages.where("slug.#{self.default_locale}" => slug).first
+#
+#     self.locales.each do |locale|
+#       if .blank?
+#         page.collection.update({ :_id => page._id }, { '$set' => { "slug.#{locale}" => slug } })
+#       end
+#
+#       if page.attributes['title'][locale.to_s].blank?
+#         page.collection.update({ :_id => page._id }, {
+#           '$set' => { "title.#{locale}" =>  }
+#         })
+#       end
+#     end
+#   end
+# end

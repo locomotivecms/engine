@@ -26,7 +26,7 @@ describe Locomotive::Snippet do
     context 'with a normal top level snippet' do
 
       before :each do
-        @page = FactoryGirl.create(:page, :site => @site, :slug => 'my_page_here', :raw_template => "{% include 'my_test_snippet'  %}")
+        @page = FactoryGirl.create(:page, :site => @site, :parent => @site.pages.root.first, :slug => 'my_page_here', :raw_template => "{% include 'my_test_snippet'  %}")
       end
 
       it 'updates templates with the new snippet template' do
@@ -39,7 +39,7 @@ describe Locomotive::Snippet do
     context 'for snippets inside of a block' do
 
       before :each do
-        @page = FactoryGirl.create(:page, :site => @site, :slug => 'my_page_here', :raw_template => "{% block main %}{% include 'my_test_snippet'  %}{% endblock %}")
+        @page = FactoryGirl.create(:page, :site => @site, :parent => @site.pages.root.first, :slug => 'my_page_here', :raw_template => "{% block main %}{% include 'my_test_snippet'  %}{% endblock %}")
       end
 
       it 'updates templates with the new snippet template' do
@@ -54,7 +54,7 @@ describe Locomotive::Snippet do
       before :each do
         Mongoid::Fields::I18n.with_locale(:fr) do
           @snippet = FactoryGirl.create(:snippet, :site => @site, :slug => 'my_localized_test_snippet', :template => 'a testing template')
-          @page = FactoryGirl.create(:page, :site => @site, :slug => 'my_localized_test_snippet', :raw_template => "{% block main %}{% include 'my_localized_test_snippet' %}{% endblock %}")
+          @page = FactoryGirl.create(:page, :site => @site, :parent => @site.pages.root.first, :slug => 'my_localized_test_snippet', :raw_template => "{% block main %}{% include 'my_localized_test_snippet' %}{% endblock %}")
         end
       end
 

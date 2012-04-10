@@ -1,3 +1,5 @@
+# coding: utf-8
+
 require 'spec_helper'
 
 describe Locomotive::Site do
@@ -109,9 +111,50 @@ describe Locomotive::Site do
       @site = FactoryGirl.create(:site)
     end
 
-    it 'should create index and 404 pages' do
+    it 'creates index and 404 pages' do
       @site.pages.size.should == 2
       @site.pages.map(&:fullpath).sort.should == %w{404 index}
+    end
+
+    it 'translates the index/404 pages if a new locale is added' do
+      @site.update_attributes :locales => %w(en fr)
+
+      @site.errors.should be_empty
+
+      ::Mongoid::Fields::I18n.with_locale('fr') do
+        @site.pages.root.first.tap do |page|
+          page.title.should == "Page d'accueil"
+          page.slug.should == 'index'
+        end
+
+        @site.pages.not_found.first.tap do |page|
+          page.title.should == 'Page non trouvée'
+          page.slug.should == '404'
+        end
+      end
+    end
+
+    it 'translates the index/404 pages if the default locale changes' do
+      @site.update_attributes :locales => %w(fr en)
+
+      @site.errors.should be_empty
+
+      ::Mongoid::Fields::I18n.with_locale('fr') do
+        @site.pages.root.first.tap do |page|
+          page.title.should == "Page d'accueil"
+          page.slug.should == 'index'
+        end
+
+        @site.pages.not_found.first.tap do |page|
+          page.title.should == 'Page non trouvée'
+          page.slug.should == '404'
+        end
+      end
+    end
+
+    it 'does not allow to remove the default locale' do
+      @site.update_attributes :locales => %w(fr)
+      @site.errors[:locales].should == ['The previous default locale can not be removed right away.']
     end
 
   end

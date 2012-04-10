@@ -99,13 +99,13 @@ module Locomotive
       Locomotive.config.multi_sites?
     end
 
-    def public_page_url(page, options = {})
-      if content = options.delete(:content)
-        File.join(current_site_public_url, page.fullpath.gsub('content_type_template', ''), content._slug)
-      else
-        File.join(current_site_public_url, page.fullpath)
-      end
-    end
+    # def public_page_url(page, options = {})
+    #   if content = options.delete(:content)
+    #     File.join(current_site_public_url, page.fullpath.gsub('content_type_template', ''), content._slug)
+    #   else
+    #     File.join(current_site_public_url, page.fullpath)
+    #   end
+    # end
 
     # memberships
 

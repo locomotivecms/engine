@@ -208,15 +208,15 @@ describe Locomotive::Page do
     context '#path combinations' do
 
       it 'generates them for a path depth equals to 1' do
-        Locomotive::Page.path_combinations('foo').should == ['foo', 'content_type_template']
+        Locomotive::Page.path_combinations('foo').should == ['foo', '*']
       end
 
       it 'generates them for a path depth equals to 2' do
-        Locomotive::Page.path_combinations('foo/bar').should == ['foo/bar', 'foo/content_type_template', 'content_type_template/bar']
+        Locomotive::Page.path_combinations('foo/bar').should == ['foo/bar', 'foo/*', '*/bar', '*/*']
       end
 
       it 'generates them for a path depth equals to 3' do
-        Locomotive::Page.path_combinations('foo/bar/baz').should == ['foo/bar/baz', 'foo/bar/content_type_template', 'foo/content_type_template/baz', 'content_type_template/bar/baz']
+        Locomotive::Page.path_combinations('foo/bar/baz').should == ['foo/bar/baz', 'foo/bar/*', 'foo/*/baz', 'foo/*/*', '*/bar/baz', '*/bar/*', '*/*/baz', '*/*/*']
       end
 
     end

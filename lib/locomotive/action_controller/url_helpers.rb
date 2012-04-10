@@ -24,10 +24,10 @@ module Locomotive
       end
 
       def public_page_url(page, options = {})
-        if content = options.delete(:content)
-          File.join(current_site_public_url, page.fullpath.gsub('content_type_template', ''), content._slug)
+        if contents = options.delete(:contents)
+          File.join(current_site_public_url, page.compiled_fullpath(contents))
         else
-          File.join(current_site_public_url, page.fullpath)
+          File.join(current_site_public_url, page.pretty_fullpath)
         end
       end
 
