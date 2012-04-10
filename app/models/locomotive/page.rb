@@ -40,7 +40,7 @@ module Locomotive
     ## validations ##
     validates_presence_of     :site, :title, :slug
     validates_uniqueness_of   :slug, :scope => [:site_id, :parent_id]
-    validates_uniqueness_of   :handle, :allow_blank => true
+    validates_uniqueness_of   :handle, :allow_blank => true, :scope => [:site_id]
     validates_exclusion_of    :slug, :in => Locomotive.config.reserved_slugs, :if => Proc.new { |p| p.depth <= 1 }
 
     ## named scopes ##

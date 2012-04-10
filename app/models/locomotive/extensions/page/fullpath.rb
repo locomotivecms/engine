@@ -47,7 +47,7 @@ module Locomotive
         end
 
         # It returns a pretty output of the fullpath. The "*" characters
-        # are replaced by the following pattern ":<slug>" like you can find
+        # are replaced by the following pattern ":<slug>" like the ones you can find
         # in the Ruby on Rails routes.
         #
         def pretty_fullpath
