@@ -11,7 +11,7 @@ class Locomotive.Models.CustomField extends Backbone.Model
       select_options: new Locomotive.Models.CustomFieldSelectOptionsCollection(@get('select_options'))
 
   _undesired_fields:
-    ['select_options', 'type_text', 'text_formatting_text', 'inverse_of_text', 'class_name_text', 'undefined_text', 'undefined', 'created_at', 'updated_at']
+    ['select_options', 'type_text', 'text_formatting_text', 'default_currency_text', 'inverse_of_text', 'class_name_text', 'undefined_text', 'undefined', 'created_at', 'updated_at']
 
   _relationship_fields:
     ['class_name', 'inverse_of', 'ui_enabled']

@@ -38,9 +38,13 @@
 
       = g.input :hint, :input_html => { :class => 'hint' }
 
-      = g.input :localized, :as => :'Locomotive::Toggle', :wrapper_html => { :class => 'localized' }, :input_html => { :class => 'localized' }
+      = g.input :localized, :as => :'Locomotive::Toggle', :wrapper_html => { :class => 'localized' }, :input_html => { :class => 'localized', :'data-on-label' => t('.toggle_on_label'), :'data-off-label' => t('.toggle_off_label') }
 
       = g.input :select_options, :as => :'Locomotive::Empty', :wrapper_html => { :class => 'extra select-options', :style => 'display: none' }
+
+      = g.input :default_currency, :as => :select, :collection => options_for_default_currency,  :wrapper_html => { :class => 'extra default-currency', :style => 'display: none' }, :input_html => { :class => 'default_currency' }
+
+      = g.input :allow_currency_from_symbol, :as => :'Locomotive::Toggle', :wrapper_html => { :class => 'extra allow-currency-from-symbol' }, :input_html => { :class => 'allow_currency_from_symbol', :'data-on-label' => t('.toggle_on_label'), :'data-off-label' => t('.toggle_off_label') }
 
       = g.input :text_formatting, :as => :select, :collection => options_for_text_formatting, :include_blank => false, :wrapper_html => { :class => 'extra text-formatting' }, :input_html => { :class => 'text_formatting' }
 
@@ -48,7 +52,7 @@
 
       = g.input :inverse_of, :as => :select, :collection => [], :wrapper_html => { :class => 'extra inverse-of', :style => 'display: none' }, :input_html => { :class => 'inverse_of' }
 
-      = g.input :ui_enabled, :as => :'Locomotive::Toggle', :wrapper_html => { :class => 'extra ui-enabled' }, :input_html => { :class => 'ui_enabled' }
+      = g.input :ui_enabled, :as => :'Locomotive::Toggle', :wrapper_html => { :class => 'extra ui-enabled' }, :input_html => { :class => 'ui_enabled', :'data-on-label' => t('.toggle_on_label'), :'data-off-label' => t('.toggle_off_label') }
 
     %span.actions
       = link_to 'toggle', '#', :class => 'toggle'

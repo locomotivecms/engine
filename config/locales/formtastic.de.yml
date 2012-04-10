@@ -18,7 +18,7 @@ de:
       preview: Vorschau
       options: Fortgeschrittene Optionen
       custom_fields: Benutzerdefinierte Felder
-      other_fields: Weitere Informationen
+      other_fields: Weitere Informationenlt
       presentation: Anzeige
       attributes: Attribute
       upload: Upload
@@ -33,26 +33,32 @@ de:
       custom_fields:
         field:
           name: Alias
-      import:
-        new:
-          source: Datei
-          samples: Beispiele kopieren
-          reset: Webseite zurücksetzen
-          default_site_template: "Benutze Standard Webseiten Template. Klicke <a href='#'>hier</a>, um ein anderes Template als zip-Datei hochzuladen."
       content_type:
-        item_template: Baustein Template
-        api_accounts: Benachrichtigte Accounts
-      content_instance:
+        raw_item_template: Baustein Vorlage
+        public_submission_enabled: öffentliche Eingabe aktiviert
+        public_submission_accounts: Benachrichtigte Zugänge
+        "custom_fields/field":
+          select_options: "Optionen"
+          hint: Hinweis
+          localized: Mehrsprachig
+          default_currency: Standardwährung
+          allow_currency_from_symbol: Mehrere Währungen
+      content_entry:
         _slug: Permalink
       account:
         edit:
-          password: "Neues Passwort"
-          password_confirmation: "Bestätigung des neuen Passworts"
+          locale: UI Sprache
+          password: Neues Passwort
+          password_confirmation: Neues Passwort bestätigen
       page:
         seo_title: Titel
+        target_klass_name: Baustein
+      site:
+        locales: Sprachen
 
     hints:
       page:
+        handle: "Eindeutiger Wert um diese Seite in einem externen Controller zu laden."
         published: "Nur authentifizierte Accounts können nicht publizierte Seiten ansehen."
         cache_strategy: "Cache die Seiten, um eine bessere Geschwindigkeit zu erzielen. Die 'Einfach' Option ist ein guter Kompromiss."
         templatized: "Nutze diese Seite als Vorlage für einen Baustein, den du erstellt hast."
@@ -64,6 +70,8 @@ de:
       snippet:
         slug: "Um ein Snippet einzubinden, musst Du diesen Slug benutzen."
       site:
+        locales: "Ziehen Sie eine Flagge an die erste Position um die Sprach als Standardsprache festzulegen."
+        seo_title: "Dieser Wert wird als globaler Wert für den Titel genommen."
         meta_keywords: "Meta-Schlagworte, die im HEAD-Bereich der Webseite genutzt werden. Die einzelnen Wörter werden durch eine Leertaste getrennt. Diese werden für die Suchmaschinen benötigt."
         meta_description: "Meta-Beschreibung, die im HEAD-Bereich der Webseite genutzt wird. Diese wird für die Suchmaschinen benötigt."
         domain_name: "z.B: locomotiveapp.org"
@@ -78,11 +86,7 @@ de:
           source: "Die aktuelle Datei liegt hier %{url}"
         update:
           source: "Die aktuelle Datei liegt hier %{url}"
-      custom_fields:
-        field:
-          name: "Merkmal verfügbar in den liquid-Templates"
-          hint: "Hilfe-Text, der im Formular des Bausteins direkt unter dem jeweiligen Feld angezeigt wird"
-      content_instance:
+      content_entry:
         _slug:  "Merkmal, was für die Erstellung der URL für diesen Baustein benutzt wird. (ex: \"template_page/{{ your_object._permalink }})\"."
         seo_title: "Wähle einen Titel für den 'title' Tag im Seiten Header. Lass es leer, wenn der Seitentitel verwendet werden soll."
         meta_keywords: "Meta-Schlagworte, die im HEAD-Bereich der Webseite genutzt werden. Die einzelnen Wörter werden durch eine Leertaste getrennt. Diese werden für die Suchmaschinen benötigt."
@@ -92,6 +96,14 @@ de:
         samples: "Bei Aktivierung werden auch Inhalte und Assets importiert"
         reset: "Bei Aktivierung werden alle Daten deiner Webseite gelöscht, bevor die neue Webseite importiert wird"
       content_type:
-        item_template: "Du kannst den Text für jeden Baustein einfach anpassen. Benutze einfach folgendes in Liquid : {{ content.name }})"
-        api_enabled: "Dies wird genutzt, um Besuchern deiner Webseite die Möglichkeit zu geben neue Elemente zu erstellen (z.B: Nachrichten in einem Kontakt-Formular)"
-        api_accounts: "Sobald ein Besucher ein neues Element erstellt, wird eine Benachrichtigungs-Email an alle unten aufgeführten Accounts gesendet"
+        name: "Bitte benutzen Sie hier den Plural, also: Produkte, Kollegen ... "
+        slug: "Dieser Eintrag wird innerhalb der Vorlagen für den Zugriff benutzt z.B.: <span class='code'>{{ contents.produkte }}</span>"
+        raw_item_template: "Sie können den Text für jeden Baustein einfach anpassen. Benutzen Sie einfach folgendes in Liquid : {{ content.name }})"
+        public_submission_enabled: "Dies wird genutzt, um Besuchern deiner Webseite die Möglichkeit zu geben neue Elemente zu erstellen (z.B: Nachrichten in einem Kontakt-Formular)"
+        public_submission_accounts: "Sobald ein Besucher ein neues Element erstellt, wird eine Benachrichtigungs-Email an alle unten aufgeführten Accounts gesendet"
+        "custom_fields/field":
+          name: "Der Name zum Zugfiff innerhalb der Liquid - Vorlagen"
+          hint: "Hilfe-Text, der im Formular des Bausteins direkt unter dem jeweiligen Feld angezeigt wird"
+          allow_currency_from_symbol: "Sie können mehrere Währungen durch Angabe des ISO Symbols eingeben. z.B: USD 10.23"
+          default_currency: "Diese Währung wird angenommen, wenn Sie nur eine Währung wollen, oder kein ISO Symbol voranstellen."
+

@@ -1,4 +1,8 @@
 en:
+  datepicker:
+    close: 'Close'
+    current: Today
+    format: 'mm/dd/yy'  # The result of this format has to match the date.formats.default below for processing with locomotive
   date:
     formats:
       default: "%m/%d/%Y"

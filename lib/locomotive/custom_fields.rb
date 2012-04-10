@@ -2,6 +2,13 @@
 CustomFields.options = {
   :reserved_names => Mongoid.destructive_fields + %w(created_at updated_at)
 }
+class Money
+
+  def to_liquid
+    self.format
+  end
+
+end
 
 module CustomFields
 

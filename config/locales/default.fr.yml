@@ -112,6 +112,10 @@ fr:
   pagination:
     previous: "&laquo; Précédent"
     next: "Suivant &raquo;"
+  datepicker:
+    close: 'Fermer'
+    current: 'Courant'
+    format: 'mm/dd/yy'  # The result of this format has to match the date.formats.default below for processing with locomotive
   date:
     formats:
       default: "%d/%m/%Y"

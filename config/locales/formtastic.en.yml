@@ -39,6 +39,7 @@ en:
         public_submission_accounts: Notified Accounts
         "custom_fields/field":
           select_options: "Options"
+          allow_currency_from_symbol: Multiple Currencies
       content_entry:
         _slug: Permalink
       account:
@@ -100,4 +101,6 @@ en:
         "custom_fields/field":
           name: "Name of the property for liquid templates. Ex: <span class='code'>&#123;&#123; your_object.&lt;name_of_your_field&gt; &#125;&#125;</span>"
           hint: "Text displayed in the model form just below the field"
+          allow_currency_from_symbol: "Allows you to enter another Currency by prefixing the ISO-Code e.g. EUR 10,10"
+          default_currency: "This currency will be used by default."
 

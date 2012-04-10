@@ -87,6 +87,9 @@ de:
           empty: Die Liste ist leer. Wählen Sie einen Eintrag unten aus.
 
       form:
+        empty: Leer
+        toggle_on_label: Ja
+        toggle_off_label: Nein
         required: Pflichtfeld
         optional: Optional
         default_label: Feldname
