@@ -22,6 +22,8 @@ de:
 
     messages:
       confirm: Sind Sie sicher ?
+      sending_form: Ihre Daten werden übermittelt
+
 
     shared:
       header:

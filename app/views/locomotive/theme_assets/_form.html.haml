@@ -21,7 +21,7 @@
       - if @theme_asset.new_record?
         = f.input :plain_text_name
 
-        = f.input :plain_text_type, :as => 'select', :collection => %w(stylesheet javascript), :include_blank => false
+        = f.input :plain_text_type, :as => 'select', :collection => %w(stylesheet javascript scss coffeescript), :include_blank => false
 
       = f.input :plain_text, :as => :'Locomotive::Code', :type => plain_text_type(@theme_asset)
 
@@ -29,3 +29,4 @@
 
 = f.inputs :name => :options, :class => "inputs foldable #{'folded' if inputs_folded?(@theme_asset)}" do
   = f.input :folder
+  = f.input :compile, :as => :'Locomotive::Toggle'

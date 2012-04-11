@@ -55,6 +55,13 @@ PATH
       sanitize (~> 2.0.3)
       unidecoder (~> 1.1.1)
 
+PATH
+  remote: ../gems/custom_fields
+  specs:
+    custom_fields (2.0.0.rc6)
+      activesupport (~> 3.2.1)
+      carrierwave-mongoid (~> 0.1.3)
+      mongoid (~> 2.4.5)
 GEM
   remote: http://rubygems.org/
   specs:

@@ -4,7 +4,8 @@ module CarrierWave
 
     # FIXME (Did) CarrierWave speaks mime type now
     def content_type_with_file_mime_type
-      content_type_without_file_mime_type || File.mime_type?(original_filename)
+      mt = content_type_without_file_mime_type
+      mt.blank? || mt == 'text/plain' ? File.mime_type?(original_filename) : mt
     end
 
     alias_method_chain :content_type, :file_mime_type
@@ -12,6 +13,17 @@ module CarrierWave
   end
 
   module Uploader
+
+    module Store
+      # unfortunately carrierwave does not support an easy way of changing
+      # version file extensions
+      def store_path(for_file=filename)
+        File.join([store_dir, full_filename(for_file)].compact).gsub(/(compiled_[^\.]+\.)(scss|coffee)$/) do
+          "#{$1}#{$2=='scss'? 'css':'js'}" 
+        end
+      end
+    end
+
 
     class Base
 

@@ -76,6 +76,7 @@ en:
         slug: "You do not need to add the extension file (.css or .js)"
         edit:
           source: "You can replace it by a file of the same extension"
+        compile: "Compile .scss to .css or .coffee to .js"
       asset:
         source: "All file types are accepted."
         edit:

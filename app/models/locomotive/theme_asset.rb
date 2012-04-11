@@ -9,6 +9,7 @@ module Locomotive
     ## fields ##
     field :local_path
     field :content_type
+    field :compile,           :type => Boolean, :default => false
     field :width,   :type => Integer
     field :height,  :type => Integer
     field :size,    :type => Integer
@@ -34,26 +35,61 @@ module Locomotive
     validates_presence_of   :plain_text_name, :if => Proc.new { |a| a.performing_plain_text? }
     validates_uniqueness_of :local_path, :scope => :site_id
     validates_integrity_of  :source
+    validates_processing_of :source, :if => :compile
+
     validate                :content_type_can_not_changed
 
     ## named scopes ##
 
     ## accessors ##
     attr_accessor   :plain_text_name, :plain_text, :plain_text_type, :performing_plain_text
-    attr_accessible :folder, :source, :plain_text_type, :performing_plain_text, :plain_text_name, :plain_text
+    attr_accessible :folder, :source, :plain_text_type, :performing_plain_text, :plain_text_name, :plain_text, :compile
 
     ## methods ##
+
+    def mime_type_folder
+      case self.content_type
+      when :scss then 'stylesheets'
+      when :coffeescript then 'javascripts'
+      else self.content_type.to_s.pluralize
+      end
+    end
+
+    def content_type_to_extension
+      case self.content_type
+      when :stylesheet then 'css'
+      when :javascript then 'js'
+      when :coffeescript then 'coffee'
+      else self.content_type
+      end
+    end
+
+    def stylesheet?
+      [:scss, :stylesheet].include?(self.content_type)
+    end
+
+    def javascript?
+      [:coffeescript, :javascript].include?(self.content_type)
+    end
+
 
     def stylesheet_or_javascript?
       self.stylesheet? || self.javascript?
     end
 
-    def local_path(short = false)
-      if short
-        self.read_attribute(:local_path).gsub(/^#{self.content_type.to_s.pluralize}\//, '')
-      else
-        self.read_attribute(:local_path)
-      end
+    def embedable_type
+      return :image if self.content_type == :image
+      return :stylesheet if ((self.content_type == :scss and self.compile?) or self.content_type == :stylesheet)
+      return :javascript if ((self.content_type == :coffeescript and self.compile?) or self.content_type == :javascript)
+      nil
+    end
+
+    def local_path_without_root( what = self.local_path )
+      what.gsub(/^.*?#{self.mime_type_folder}\//,'')
+    end
+
+    def select_source
+      self.compile? ? self.source.compiled : self.source
     end
 
     def plain_text_name
@@ -75,6 +111,10 @@ module Locomotive
         @plain_text ||= self.source.read
       end
     end
+    
+    def plain_text_type=( str )
+      @plain_text_type = str.try(:to_sym)
+    end
 
     def plain_text_type
       @plain_text_type || (stylesheet_or_javascript? ? self.content_type : nil)
@@ -86,25 +126,20 @@ module Locomotive
 
     def store_plain_text
       return if self.persisted? && !self.stylesheet_or_javascript?
-
       self.content_type ||= @plain_text_type if self.performing_plain_text?
-
       data = self.performing_plain_text? ? self.plain_text : self.source.read
-
       return if !self.stylesheet_or_javascript? || self.plain_text_name.blank? || data.blank?
-
       sanitized_source = self.escape_shortcut_urls(data)
-
       self.source = ::CarrierWave::SanitizedFile.new({
         :tempfile => StringIO.new(sanitized_source),
-        :filename => "#{self.plain_text_name}.#{self.stylesheet? ? 'css' : 'js'}"
+        :filename => "#{self.plain_text_name}.#{self.content_type_to_extension}"
       })
 
       @plain_text = sanitized_source # no need to reset the plain_text instance variable to have the last version
     end
 
     def to_liquid
-      { :url => self.source.url }.merge(self.attributes).stringify_keys
+      { :url => self.select_source.url }.merge(self.attributes).stringify_keys
     end
 
     def as_json(options = {})
@@ -123,14 +158,14 @@ module Locomotive
     end
 
     def sanitize_folder
-      self.folder = self.content_type.to_s.pluralize if self.folder.blank?
+      self.folder = self.mime_type_folder if self.folder.blank?
 
       # no accents, no spaces, no leading and ending trails
       self.folder = ActiveSupport::Inflector.transliterate(self.folder).gsub(/(\s)+/, '_').gsub(/^\//, '').gsub(/\/$/, '')
 
       # folder should begin by a root folder
       if (self.folder =~ /^(stylesheets|javascripts|images|media|fonts)/).nil?
-        self.folder = File.join(self.content_type.to_s.pluralize, self.folder)
+        self.folder = File.join(self.mime_type_folder, self.folder)
       end
     end
 
@@ -164,7 +199,7 @@ module Locomotive
         # a simple way to rename a file
         old_asset         = self.class.find(self._id)
         file              = old_asset.source.file
-        file.content_type = File.mime_type?(file.path) if file.content_type.nil?
+        file.content_type = File.mime_type?(file.path).to_s if file.content_type.nil?
         self.source       = file
         self.changed_attributes['source_filename'] = nil # delete the old file
       end

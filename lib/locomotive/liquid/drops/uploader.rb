@@ -3,7 +3,7 @@ module Locomotive
     module Drops
       class Uploader < Base
 
-        delegate :url, :size, :to => '_source'
+        delegate :url, :size, :to => 'select_source'
 
         def filename
           File.basename(self._source.url)
