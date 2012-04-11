@@ -157,6 +157,10 @@ form.formtastic {
               &:hover {
                 background-image: image-url("locomotive/list/icons/toggle.png");
               }
+              &.open {
+                @include rotate(180);
+              }
+              @include single-transition(transform, 0.5s);
             }
 
             &.drag {
