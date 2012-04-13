@@ -30,11 +30,11 @@ class Locomotive.Views.InlinEditor.ApplicationView extends Backbone.View
 
       if @_$('meta[name=inline-editor]').size() > 0
         # bind the resize event. When the iFrame's size changes, update its height
-        iframe_content = iframe.contents().find('body')
+        iframe_content = iframe.contents()
         iframe_content.resize ->
           elem = $(this)
 
-          if elem.outerHeight(true) > $('body').outerHeight(true) # Resize the iFrame.
+          if elem.outerHeight(true) > iframe.outerHeight(true) # Resize the iFrame.
             iframe.css height: elem.outerHeight(true)
 
         # Resize the iFrame immediately.
