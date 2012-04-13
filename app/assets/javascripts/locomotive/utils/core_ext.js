@@ -18,7 +18,7 @@
 
   String.prototype.slugify = function(sep) {
     if (typeof sep == 'undefined') sep = '_';
-    var alphaNumRegexp = new RegExp('[^\w\\' + sep + ']', 'g');
+    var alphaNumRegexp = new RegExp('[^\\w\\' + sep + ']', 'g');
     var avoidDuplicateRegexp = new RegExp('[\\' + sep + ']{2,}', 'g');
     return this.replace(/\s/g, sep).replace(alphaNumRegexp, '').replace(avoidDuplicateRegexp, sep).toLowerCase()
   }
