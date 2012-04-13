@@ -10,13 +10,20 @@
 %hr
 
 %ul
-  - @type.entries_custom_fields.each do |field|
-    - value = @entry.value_for(field)
+  - @type.ordered_entries_custom_fields.each do |field|
+    - value = @entry.send(field.name)
     %li
       %strong= field.label
       &nbsp;-&nbsp;
       %i
-        - if field.type == 'file'
-          = link_to File.basename(value), value
-        - else
+        - case field.type.to_s
+        - when 'string', 'text', 'boolean', 'date'
           = value
+        - when 'file'
+          = link_to File.basename(value.to_s), value.to_s
+        - when 'select'
+          = value
+        - when 'belongs_to'
+          = value.try(:_label)
+        - when 'has_many', 'many_to_many'
+          = value.map(&:_label).join(', ')
