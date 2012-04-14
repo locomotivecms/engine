@@ -295,6 +295,17 @@ form.formtastic {
           }
         } // li.string, li.password
 
+        &.text {
+
+          &.short textarea {
+            padding: 5px;
+            height: 28px;
+            width: 696px;
+            overflow-y: hidden;
+          }
+
+        } // li.text
+
         &.locale, &.locales {
           .list {
             margin-left: 150px;

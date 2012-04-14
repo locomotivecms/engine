@@ -16,7 +16,7 @@ class Locomotive.Models.Page extends Backbone.Model
 
   toJSON: ->
     _.tap super, (hash) =>
-      _.each ['content_type_id_text', 'edit_url', 'parent_id_text', 'response_type_text'], (key) => delete hash[key]
+      _.each ['fullpath', 'localized_fullpaths', 'templatized_from_parent', 'target_klass_name_text', 'content_type_id_text', 'edit_url', 'parent_id_text', 'response_type_text'], (key) => delete hash[key]
 
       delete hash['editable_elements']
       hash.editable_elements = @get('editable_elements').toJSONForSave() if @get('editable_elements')? && @get('editable_elements').length > 0
