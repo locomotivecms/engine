@@ -88,7 +88,8 @@ module Locomotive
         fresh_when :etag => @page, :last_modified => @page.updated_at.utc, :public => true
 
         if @page.cache_strategy != 'simple' # varnish
-          response.cache_control[:max_age] = @page.cache_strategy
+          response.headers['Editable']      = ''
+          response.cache_control[:max_age]  = @page.cache_strategy
         end
       end
 
