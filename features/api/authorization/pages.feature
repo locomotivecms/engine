@@ -40,6 +40,41 @@ Feature: Pages
     When I do an API GET request to pages.json
     Then the JSON response should contain all pages
 
+  # showing page
+
+  Scenario: Accessing page as an Admin
+    Given I have an "admin" token
+    When I do an API GET request to pages/4f832c2cb0d86d3f42fffffe.json
+    Then the JSON response hash should contain:
+    """
+    {
+      "id": "4f832c2cb0d86d3f42fffffe",
+      "slug": "hello-world"
+    }
+    """
+
+  Scenario: Accessing page as a Designer
+    Given I have a "designer" token
+    When I do an API GET request to pages/4f832c2cb0d86d3f42fffffe.json
+    Then the JSON response hash should contain:
+    """
+    {
+      "id": "4f832c2cb0d86d3f42fffffe",
+      "slug": "hello-world"
+    }
+    """
+
+  Scenario: Accessing page as an Author
+    Given I have an "author" token
+    When I do an API GET request to pages/4f832c2cb0d86d3f42fffffe.json
+    Then the JSON response hash should contain:
+    """
+    {
+      "id": "4f832c2cb0d86d3f42fffffe",
+      "slug": "hello-world"
+    }
+    """
+
   # create page
 
   Scenario: Creating new page as an Admin
@@ -101,11 +136,13 @@ Feature: Pages
     When I do an API PUT to pages/4f832c2cb0d86d3f42fffffe.json with:
     """
     {
-      "title": "Brand new updated title"
+      "page": {
+        "title": "Brand new updated title"
+      }
     }
     """
     When I do an API GET request to pages/4f832c2cb0d86d3f42fffffe.json
-    Then the JSON response should contain:
+    Then the JSON response hash should contain:
     """
     {
       "id": "4f832c2cb0d86d3f42fffffe",
@@ -118,11 +155,13 @@ Feature: Pages
     When I do an API PUT to pages/4f832c2cb0d86d3f42fffffe.json with:
     """
     {
-      "title": "Brand new updated title"
+      "page": {
+        "title": "Brand new updated title"
+      }
     }
     """
     When I do an API GET request to pages/4f832c2cb0d86d3f42fffffe.json
-    Then the JSON response should contain:
+    Then the JSON response hash should contain:
     """
     {
       "id": "4f832c2cb0d86d3f42fffffe",
@@ -135,7 +174,9 @@ Feature: Pages
     When I do an API PUT to pages/4f832c2cb0d86d3f42fffffe.json with:
     """
     {
-      "title": "Brand new updated title"
+      "page": {
+        "title": "Brand new updated title"
+      }
     }
     """
     Then the JSON response should be an access denied error

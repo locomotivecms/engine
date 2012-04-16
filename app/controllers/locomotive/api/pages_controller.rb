@@ -7,6 +7,11 @@ module Locomotive
         respond_with(@pages)
       end
 
+      def show
+        @page = current_site.pages.find(params[:id])
+        respond_with(@page)
+      end
+
       def create
         @page = current_site.pages.create(params[:page])
         respond_with @page, :location => main_app.locomotive_api_pages_url

@@ -67,6 +67,11 @@ Then /^the JSON response should be an access denied error$/ do
   @response['message'].should == 'You are not authorized to access this page'
 end
 
-Then /^the JSON response should contain:$/ do |json|
-  @response.merge(JSON.parse(json)).should == @response
+Then /^the JSON response hash should contain:$/ do |json|
+  sub_response = {}
+  parsed_json = JSON.parse(json)
+  parsed_json.each do |k, v|
+    sub_response[k] = @response[k]
+  end
+  sub_response.should == parsed_json
 end
