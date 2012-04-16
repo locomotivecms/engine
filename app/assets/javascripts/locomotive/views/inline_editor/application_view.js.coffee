@@ -26,8 +26,6 @@ class Locomotive.Views.InlinEditor.ApplicationView extends Backbone.View
     iframe = @iframe
 
     iframe.load =>
-      console.log('iframe loading')
-
       if @_$('meta[name=inline-editor]').size() > 0
         # bind the resize event. When the iFrame's size changes, update its height
         iframe_content = iframe.contents().find('body')
@@ -46,8 +44,6 @@ class Locomotive.Views.InlinEditor.ApplicationView extends Backbone.View
         @enhance_iframe_links()
 
   set_page: (attributes) ->
-    console.log('set_page')
-
     @page = new Locomotive.Models.Page(attributes)
 
     @toolbar_view.model = @page

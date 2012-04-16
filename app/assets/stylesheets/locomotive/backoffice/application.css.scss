@@ -314,6 +314,29 @@ ul.list {
   }
 }
 
+/* ___ form notification ___ */
+
+#form-submit-notification {
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  z-index: 9999;
+
+  > div {
+    padding: 5px 10px;
+
+    background-color: #fffbe5;
+    border-left: 4px solid #efe4a5;
+    border-bottom: 4px solid #efe4a5;
+
+    text-align: center;
+    @include single-text-shadow(rgba(255, 255, 255, 1), 0px, 1px, 0px);
+    font-weight: bold;
+    font-size: 12px;
+    color: #aa9a79;
+  }
+}
+
 /* ___ paragraph (for help for example) ___ */
 
 p span.code {

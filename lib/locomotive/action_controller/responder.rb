@@ -9,6 +9,14 @@ module Locomotive
         super || has_errors?
       end
 
+      def options
+        super.merge({
+          :current_site     => self.controller.send(:current_site),
+          :current_account  => self.controller.send(:current_locomotive_account),
+          :ability          => self.controller.send(:current_ability)
+        })
+      end
+
       def to_json
         if get?
           display resource

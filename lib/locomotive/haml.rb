@@ -6,8 +6,6 @@ module ActionView
 
       # Only preserve whitespace in the tag's content: https://github.com/nex3/haml/pull/503
       def content_tag_with_haml_and_preserve(name, content_or_options_with_block = nil, *args, &block)
-        Rails.logger.debug("[content_tag_with_haml_and_preserve / ENGINE] #{name} / #{respond_to?(:content_tag_with_haml)} / #{respond_to?(:content_tag_without_haml)}")
-
         return content_tag_without_haml(name, content_or_options_with_block, *args, &block) unless is_haml?
 
         preserve = haml_buffer.options[:preserve].include?(name.to_s)

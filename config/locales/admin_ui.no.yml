@@ -34,6 +34,7 @@
         create: Opprett
         update: Lagre
         send: Send
+        disable_with: "locomotive.disable_with.form_actions"
 
     errors:
       "500":
