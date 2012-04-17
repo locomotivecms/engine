@@ -11,9 +11,13 @@ def api_base_url
 end
 
 def do_api_request(type, url, param_string = nil)
-  params = param_string && JSON.parse(param_string) || {}
-  @raw_response = do_request(type, api_base_url, url, params)
-  @response = JSON.parse(@raw_response.body)
+  begin
+    params = param_string && JSON.parse(param_string) || {}
+    @raw_response = do_request(type, api_base_url, url, params)
+    @response = JSON.parse(@raw_response.body)
+  rescue Exception
+    @error = $!
+  end
 end
 
 Given /^a page named "([^"]*)" with id "([^"]*)"$/ do |name, id|
@@ -64,7 +68,8 @@ Then /^the JSON response should contain (\d+) pages$/ do |n|
 end
 
 Then /^the JSON response should be an access denied error$/ do
-  @response['message'].should == 'You are not authorized to access this page'
+  @error.should_not be_nil
+  @error.message.should == 'You are not authorized to access this page.'
 end
 
 Then /^the JSON response hash should contain:$/ do |json|

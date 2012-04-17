@@ -2,6 +2,8 @@ module Locomotive
   module Api
     class PagesController < BaseController
 
+      load_and_authorize_resource :class => Locomotive::Page
+
       def index
         @pages = current_site.pages.all
         respond_with(@pages)

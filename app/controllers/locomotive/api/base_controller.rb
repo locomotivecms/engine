@@ -7,8 +7,6 @@ module Locomotive
 
       skip_before_filter :verify_authenticity_token
 
-      skip_load_and_authorize_resource
-
       before_filter :require_account
 
       before_filter :require_site
