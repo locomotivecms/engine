@@ -170,7 +170,7 @@ Feature: Pages
     """
 
   Scenario: Updating page as an Author
-    Given I have a "designer" token
+    Given I have a "author" token
     When I do an API PUT to pages/4f832c2cb0d86d3f42fffffe.json with:
     """
     {
@@ -179,4 +179,11 @@ Feature: Pages
       }
     }
     """
-    Then the JSON response should be an access denied error
+    When I do an API GET request to pages/4f832c2cb0d86d3f42fffffe.json
+    Then the JSON response hash should contain:
+    """
+    {
+      "id": "4f832c2cb0d86d3f42fffffe",
+      "title": "Brand new updated title"
+    }
+    """
