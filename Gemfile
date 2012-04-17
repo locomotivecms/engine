@@ -45,5 +45,7 @@ group :test do
 
   gem 'xpath', '~> 0.1.4'
 
+  gem 'json_spec'
+
   gem 'database_cleaner'
 end

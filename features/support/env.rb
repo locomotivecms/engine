@@ -19,6 +19,8 @@ require 'capybara/rails'
 require 'capybara/cucumber'
 require 'capybara/session'
 
+require 'json_spec/cucumber'
+
 require 'resolv'
 require 'uri'
 

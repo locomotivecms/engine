@@ -17,7 +17,9 @@ module ActionView
             content_tag_without_haml(name, content_or_options_with_block, *args, &block)
           end
         else
-          if preserve && content_or_options_with_block
+          if name == 'textarea'
+            tab_down(haml_buffer.tabulation)
+          elsif preserve && content_or_options_with_block
             content_or_options_with_block = Haml::Helpers.preserve(content_or_options_with_block)
           end
           content_tag_without_haml(name, content_or_options_with_block, *args, &block)
