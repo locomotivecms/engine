@@ -148,7 +148,7 @@ module Locomotive
       self.site.accounts.each do |account|
         next unless self.content_type.public_submission_accounts.map(&:to_s).include?(account._id.to_s)
 
-        Locomotive::Notifications.new_content_entry(self, account).deliver
+        Locomotive::Notifications.new_content_entry(account, self).deliver
       end
     end
 
