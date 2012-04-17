@@ -54,7 +54,8 @@ end
 
 # checks if the rendered body matches a string
 Then /^the rendered output should look like:$/ do |body_contents|
-  page.source.should == body_contents
+  # page.source.should == body_contents
+  page.source.index(body_contents).should_not be_nil
 end
 
 Then /^I should see delete page buttons$/ do
