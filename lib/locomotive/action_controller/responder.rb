@@ -10,10 +10,14 @@ module Locomotive
       end
 
       def options
+        current_site    = self.controller.send(:current_site)
+        current_account = self.controller.send(:current_locomotive_account)
+        ability         = current_account.nil? ? nil : self.controller.send(:current_ability)
+
         super.merge({
-          :current_site     => self.controller.send(:current_site),
-          :current_account  => self.controller.send(:current_locomotive_account),
-          :ability          => self.controller.send(:current_ability)
+          :current_site     => current_site,
+          :current_account  => current_account,
+          :ability          => ability
         })
       end
 
