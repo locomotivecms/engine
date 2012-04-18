@@ -5,17 +5,6 @@ rescue LoadError
   puts 'You must `gem install bundler` and `bundle install` to run rake tasks'
 end
 
-Locomotive::Page.each do |page|
-  page.editable_elements.each_with_index do |el, index|
-    next if el._type != 'Locomotive::EditableFile' || el.attributes['source'].is_a?(Hash)
-
-    value = el.attributes['source']
-
-    page.collection.update({ '_id' => page._id }, { '$set' => { "editable_elements.#{index}.source" => { 'en' => value } } })
-  end
-end
-
-
 # ================ GLOBAL VARIABLES ==============
 
 $database = 'locomotive_hosting_production'
@@ -24,12 +13,12 @@ $default_locale = 'en'
 # $locale_exceptions = {}
 
 # Example:
-$locale_exceptions = {
-  '4c082a9393d4330812000002' => 'fr',
-  '4c2330706f40d50ae2000005' => 'fr',
-  '4dc07643d800a53aea00035a' => 'fr',
-  '4eb6aca89a976a0001000ebb' => 'fr'
-}
+# $locale_exceptions = {
+#   '4c082a9393d4330812000002' => 'fr',
+#   '4c2330706f40d50ae2000005' => 'fr',
+#   '4dc07643d800a53aea00035a' => 'fr',
+#   '4eb6aca89a976a0001000ebb' => 'fr'
+# }
 
 def get_locale(site_id)
   $locale_exceptions[site_id.to_s] || $default_locale
@@ -42,8 +31,18 @@ require 'mongoid'
 Mongoid.configure do |config|
   name = $database
   host = 'localhost'
-  config.master = Mongo::Connection.new.db(name)
+
+  # simple connection
+  # config.master = Mongo::Connection.new.db(name)
+
+  # a more complicated connection
   # config.master = Mongo::Connection.new('localhost', '27017', :logger => Logger.new($stdout)).db(name)
+
+  # connection with authentication
+  # db = config.master = Mongo::Connection.new(host, '27019').db(name)
+  # db.authenticate('username', 'password').tap do |auth|
+  #   puts auth.inspect
+  # end
 end
 
 db = Mongoid.config.master
@@ -305,6 +304,17 @@ if collection = db.collections.detect { |c| c.name == 'pages' }
         modifications["editable_elements.#{index}.source"] = { locale => editable_element['source_filename'] }
         removals["editable_elements.#{index}.source_filename"] = '1'
       end
+
+      # FIXME: do not remember why I needed to run this code.
+      # Locomotive::Page.each do |page|
+      #   page.editable_elements.each_with_index do |el, index|
+      #     next if el._type != 'Locomotive::EditableFile' || el.attributes['source'].is_a?(Hash)
+      #
+      #     value = el.attributes['source']
+      #
+      #     page.collection.update({ '_id' => page._id }, { '$set' => { "editable_elements.#{index}.source" => { 'en' => value } } })
+      #   end
+      # end
     end
 
     if page['depth'] == 0 && page['fullpath'] == '404'
