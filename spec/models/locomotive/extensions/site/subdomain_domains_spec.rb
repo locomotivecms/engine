@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe Locomotive::Extensions::Site::SubdomainDomains do
+
   describe '#subdomain=' do
     let(:site) { Locomotive::Site.new }
 
@@ -20,4 +21,5 @@ describe Locomotive::Extensions::Site::SubdomainDomains do
       site.domains.should == ['first.com', 'second.com', 'third.com']
     end
   end
+
 end

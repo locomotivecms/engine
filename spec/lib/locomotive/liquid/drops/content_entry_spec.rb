@@ -5,7 +5,6 @@ describe Locomotive::Liquid::Drops::ContentEntry do
   before(:each) do
     @list = mock('list')
     @list.stubs(:all).returns(true)
-    # @list.stubs(:to_liquid).returns(true)
     @category = Locomotive::Liquid::Drops::ContentEntry.new(mock('category', :projects => @list))
   end
 
