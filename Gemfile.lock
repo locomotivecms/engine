@@ -15,16 +15,6 @@ GIT
       fssm (>= 0.2.7)
       sass (~> 3.1)
 
-GIT
-  remote: git://github.com/locomotivecms/custom_fields.git
-  revision: 5b0e68859eaca41ac9d7a0231c6cd68ad66018b8
-  branch: 2.0.0.rc
-  specs:
-    custom_fields (2.0.0.rc9)
-      activesupport (~> 3.2.1)
-      carrierwave-mongoid (~> 0.1.3)
-      mongoid (~> 2.4.7)
-
 PATH
   remote: .
   specs:
@@ -37,7 +27,7 @@ PATH
       carrierwave-mongoid (~> 0.1.3)
       cells (~> 3.8.0)
       codemirror-rails (~> 2.21)
-      custom_fields (~> 2.0.0.rc9)
+      custom_fields (~> 2.0.0.rc10)
       devise (~> 1.5.3)
       dragonfly (~> 0.9.8)
       flash_cookie_session (~> 1.1.1)
@@ -64,6 +54,14 @@ PATH
       rmagick (~> 2.12.2)
       sanitize (~> 2.0.3)
       unidecoder (~> 1.1.1)
+
+PATH
+  remote: ../gems/custom_fields
+  specs:
+    custom_fields (2.0.0.rc10)
+      activesupport (~> 3.2.1)
+      carrierwave-mongoid (~> 0.1.3)
+      mongoid (~> 2.4.7)
 
 GEM
   remote: http://rubygems.org/
