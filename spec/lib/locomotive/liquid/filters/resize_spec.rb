@@ -17,13 +17,19 @@ describe Locomotive::Liquid::Filters::Resize do
         @template = Liquid::Template.parse('{{ asset_url | resize: "40x30" }}')
       end
 
-      it 'should return the location of the resized image' do
+      it 'returns the location of the resized image' do
         @template.render(@context).should =~ /images\/dynamic\/.*\/5k.png/
       end
 
-      it 'should use the path in the public folder to generate a location' do
+      it 'uses the path in the public folder to generate a location' do
         @template.render(@context).should == Locomotive::Dragonfly.resize_url(@asset_path, '40x30')
       end
+
+      it 'accepts strings with leading and trailing empty characters' do
+        @context['asset_url'] = "  \t #{@context['asset_url']}   \n\n  "
+        @template.render(@context).should == Locomotive::Dragonfly.resize_url(@asset_path, '40x30')
+      end
+
     end
 
     context 'when a theme asset is given' do
@@ -31,11 +37,11 @@ describe Locomotive::Liquid::Filters::Resize do
         @template = Liquid::Template.parse("{{ theme_asset | resize: '300x400' }}")
       end
 
-      it 'should return the location of the resized image' do
+      it 'returns the location of the resized image' do
         @template.render(@context).should =~ /images\/dynamic\/.*\/5k.png/
       end
 
-      it 'should use the path of the theme asset to generate a location' do
+      it 'uses the path of the theme asset to generate a location' do
         @template.render(@context).should == Locomotive::Dragonfly.resize_url(@theme_asset_path, '300x400')
       end
     end
@@ -45,7 +51,7 @@ describe Locomotive::Liquid::Filters::Resize do
         @template = Liquid::Template.parse('{{ asset | resize: }}')
       end
 
-      it 'should return a liquid error' do
+      it 'returns a liquid error' do
         @template.render(@context).should include 'Liquid error: wrong number of arguments'
       end
     end
