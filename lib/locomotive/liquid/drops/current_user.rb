@@ -3,8 +3,6 @@ module Locomotive
     module Drops
       class CurrentUser < Base
 
-	include Rails.application.routes.url_helpers
-
         def logged_in?
           _source.present?
         end
