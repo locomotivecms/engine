@@ -47,6 +47,7 @@ describe Locomotive::Liquid::Filters::Resize do
     end
 
     context 'when no resize string is given' do
+
       before :each do
         @template = Liquid::Template.parse('{{ asset | resize: }}')
       end
@@ -54,6 +55,7 @@ describe Locomotive::Liquid::Filters::Resize do
       it 'returns a liquid error' do
         @template.render(@context).should include 'Liquid error: wrong number of arguments'
       end
+
     end
   end
 end
