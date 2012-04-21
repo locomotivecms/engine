@@ -33,24 +33,6 @@
 
 /* ___ list ___ */
 
-p.no-items {
-  background: #fffbe6;
-  border: 5px solid #eee3a8;
-  @include border-radius(25px);
-
-  padding: 15px 0px;
-
-  text-align: center;
-  color: #9d8963;
-  font-size: 16px !important;
-  @include single-text-shadow(rgba(255, 255, 255, 1), 1px, 1px, 1px);
-
-  a {
-    @include hover-link;
-    color: #ff2900;
-  }
-}
-
 ul.list {
   background: #fff;
   list-style: none;
@@ -346,19 +328,3 @@ p span.code {
   color: #8B8D9A;
   @include single-text-shadow(#fff, 0px, 0px, 1px);
 }
-
-/* ___ quick upload ___ */
-
-form.quick-upload {
-  display: inline;
-
-  input[type=file] {
-    visibility: hidden;
-  }
-
-}
-
-
-
-
-

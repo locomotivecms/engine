@@ -1,7 +1,7 @@
 module Locomotive
   class ContentAssetPresenter < BasePresenter
 
-    delegate :content_type, :vignette_url, :to => :source
+    delegate :content_type, :width, :height, :vignette_url, :to => :source
 
     def full_filename
       self.source.source_filename
@@ -29,7 +29,7 @@ module Locomotive
     end
 
     def included_methods
-      super + %w(full_filename filename short_name extname content_type content_type_text url vignette_url)
+      super + %w(full_filename filename short_name extname content_type content_type_text url vignette_url width height)
     end
 
   end

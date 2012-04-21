@@ -1,6 +1,6 @@
-Locomotive.Views.InlinEditor ||= {}
+Locomotive.Views.InlineEditor ||= {}
 
-class Locomotive.Views.InlinEditor.ToolbarView extends Backbone.View
+class Locomotive.Views.InlineEditor.ToolbarView extends Backbone.View
 
   el: '#toolbar .inner'
 
