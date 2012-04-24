@@ -1,11 +1,4 @@
 
-def new_content_page(page_slug, page_contents = '', template = '')
-  @home = @site.pages.where(:slug => 'index').first || FactoryGirl.create(:page)
-  page = @site.pages.build(:slug => page_slug, :body => page_contents, :parent => @home, :title => "some title", :published => true, :raw_template => template)
-  page.should be_valid
-  page
-end
-
 def api_base_url
   '/locomotive/api'
 end
@@ -18,12 +11,6 @@ def do_api_request(type, url, param_string = nil)
   rescue Exception
     @error = $!
   end
-end
-
-Given /^a page named "([^"]*)" with id "([^"]*)"$/ do |name, id|
-  @page = new_content_page(name)
-  @page.id = BSON::ObjectId(id)
-  @page.save!
 end
 
 Given /^I have an? "([^"]*)" token$/ do |role|
