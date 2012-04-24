@@ -25,10 +25,12 @@
 
         $(document).ready(function() {
 
-          window.application_view = new Locomotive.Views.InlinEditor.ApplicationView();
+          window.application_view = new Locomotive.Views.InlineEditor.ApplicationView();
           window.application_view.render();
 
         });
+
+    = render '/locomotive/content_assets/picker'
 
   %body
     #page

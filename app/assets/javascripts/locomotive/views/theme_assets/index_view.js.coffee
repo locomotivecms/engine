@@ -7,7 +7,7 @@ class Locomotive.Views.ThemeAssets.IndexView extends Backbone.View
   _lists_views: []
 
   initialize: ->
-    _.bindAll(@, 'add_asset')
+    _.bindAll(@, 'insert_asset')
 
   render: ->
     @build_uploader()
@@ -29,16 +29,24 @@ class Locomotive.Views.ThemeAssets.IndexView extends Backbone.View
     input = form.find('input[type=file]')
     link  = form.find('a.new')
 
+    form.formSubmitNotification()
+
     link.bind 'click', (event) ->
       event.stopPropagation() & event.preventDefault()
       input.click()
 
     input.bind 'change', (event) =>
+      form.trigger('ajax:beforeSend')
       _.each event.target.files, (file) =>
         asset = new Locomotive.Models.ThemeAsset(source: file)
-        asset.save {}, success: @add_asset, headers: { 'X-Flash': true }
+        asset.save {},
+          success:  (model, response, xhr) =>
+            form.trigger('ajax:complete')
+            @insert_asset(model)
+          error:    (() => form.trigger('ajax:complete'))
+          headers:  { 'X-Flash': true }
 
-  add_asset: (model) ->
+  insert_asset: (model) ->
     list_view = @pick_list_view(model.get('content_type'))
     list_view.collection.add(model)
 

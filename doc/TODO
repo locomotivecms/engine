@@ -124,11 +124,11 @@ x override sort for contents
   x unable to remove a field
   x "back to admin" link does not work if inline editor disabled
   x unable to delete memberships
+  x disallow to click twice on the submit form button (spinner ?)
+  x weird behaviour when changing the default locale of a site
   - editable_elements does not display the first time they get created (and if there are no existing ones)
   - display by categories does not work when localized
-  - disallow to click twice on the submit form button (spinner ?)
   - message to notify people if their browser is too old
-  - weird behaviour when changing the default locale of a site
 
 ? install a site by default at the first installation (without asking)
 

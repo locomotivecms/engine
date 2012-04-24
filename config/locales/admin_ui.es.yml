@@ -37,6 +37,7 @@ es:
         account: Mi Cuenta
         site: Sitio
         theme_assets: Ficheros del Tema
+        disable_with: "locomotive.disable_with.form_actions"
       footer:
         who_is_behind: "Servicio desarrollado por %{development} y diseñado por <a href=\"http://www.sachagreif.com\">Sacha Greif</a>"
       form_actions:

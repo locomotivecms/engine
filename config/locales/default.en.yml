@@ -12,6 +12,8 @@ en:
         extname_changed: "New file does not have the original extension"
         array_too_short: "is too small (minimum element number is %{count})"
         invalid_theme_file: "can't be blank or isn't a zip file"
+        site:
+          default_locale_removed: The previous default locale can not be removed right away.
         page:
           liquid_syntax: "Liquid Syntax error ('%{error}' on '%{fullpath}')"
           liquid_extend: "The page '%{fullpath}' extends a template which does not exist"

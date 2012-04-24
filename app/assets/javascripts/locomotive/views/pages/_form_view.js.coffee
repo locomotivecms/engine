@@ -116,7 +116,7 @@ class Locomotive.Views.Pages.FormView extends Locomotive.Views.Shared.FormView
           @$('li#page_slug_input').show()
           @$('li#page_templatized_input, li#page_target_klass_name_input').hide()
         else
-          @$('li#page_templatized_input, li#page_target_klass_name_input').show()
+          @$('li#page_templatized_input').show() unless @model.get('redirect')
 
   enable_response_type_select: ->
     @$('li#page_response_type_input').change (event) =>

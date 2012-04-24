@@ -7,6 +7,8 @@ module Locomotive
       if source.is_a?(String) || source.is_a?(Hash) # simple string or theme asset
         source = source['url'] if source.is_a?(Hash)
 
+        source.strip!
+
         if source =~ /^http/
           file = self.app.fetch_url(source)
         else

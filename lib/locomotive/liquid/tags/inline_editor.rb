@@ -8,7 +8,7 @@ module Liquid
 
             controller = context.registers[:controller]
 
-            plugins = 'common/format,common/table,common/list,common/link,common/highlighteditables,common/block,common/undo,common/contenthandler,common/paste,common/commands,common/abbr,common/horizontalruler'
+            plugins = 'common/format,common/table,common/list,common/link,common/highlighteditables,common/block,common/undo,common/contenthandler,common/paste,common/commands,common/abbr,common/align,common/horizontalruler,custom/locomotive_media'
 
             %{
               <meta content="true" name="inline-editor" />

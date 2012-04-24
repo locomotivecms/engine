@@ -11,5 +11,4 @@ class Locomotive.Views.ContentTypes.EditView extends Locomotive.Views.ContentTyp
 
         if custom_field.isNew() # assign an id for each new custom field
           custom_field.set id: data._id, _id: data._id
-          console.log(custom_field)
 

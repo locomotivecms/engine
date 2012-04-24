@@ -71,6 +71,11 @@ module Locomotive
               new_el.copy_attributes_from(el)
             else
               existing_el.disabled = false
+
+              # only the type and hint properties can be modified from the parent element
+              %w(_type hint).each do |attr|
+                existing_el.send(:"#{attr}=", el.send(attr.to_sym))
+              end
             end
           end
         end

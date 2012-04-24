@@ -30,7 +30,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'mongoid',                         '~> 2.4.6'
   s.add_dependency 'locomotive-mongoid-tree',         '~> 0.6.2'
 
-  s.add_dependency 'custom_fields',                   '~> 2.0.0.rc9'
+  s.add_dependency 'custom_fields',                   '~> 2.0.0.rc10'
 
   s.add_dependency 'kaminari',                        '~> 0.13.0'
 
@@ -39,7 +39,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'rails-backbone',                  '~> 0.6.1'
   s.add_dependency 'codemirror-rails',                '~> 2.21'
   s.add_dependency 'locomotive-tinymce-rails',        '~> 3.4.7.2'
-  s.add_dependency 'locomotive-aloha-rails',          '~> 0.20.1.2'
+  s.add_dependency 'locomotive-aloha-rails',          '~> 0.20.1.4'
   s.add_dependency 'flash_cookie_session',            '~> 1.1.1'
 
   s.add_dependency 'locomotive_liquid',               '2.2.2'
@@ -54,11 +54,12 @@ Gem::Specification.new do |s|
   s.add_dependency 'rmagick',                         '~> 2.12.2'
   s.add_dependency 'carrierwave-mongoid',             '~> 0.1.3'
   s.add_dependency 'carrierwave',                     '~> 0.6.0'
-  s.add_dependency 'fog',                             '~> 1.1.2'
+  s.add_dependency 'fog',                             '~> 1.3.1'
   s.add_dependency 'dragonfly',                       '~> 0.9.8'
   s.add_dependency 'rack-cache',                      '~> 1.1'
   s.add_dependency 'mimetype-fu',                     '~> 0.1.2'
 
+  s.add_dependency 'multi_json',                      '1.2.0'
   s.add_dependency 'httparty',                        '~> 0.8.1'
   s.add_dependency 'actionmailer-with-request',       '~> 0.3.0'
 

@@ -9,7 +9,9 @@ gemspec # Include gemspec dependencies
 
 group :development do
   # gem 'custom_fields', :path => '../gems/custom_fields' # for Developers
-  gem 'custom_fields', :git => 'git://github.com/locomotivecms/custom_fields.git', :branch => '2.0.0.rc' # Branch on Github
+  # gem 'custom_fields', :git => 'git://github.com/locomotivecms/custom_fields.git', :branch => '2.0.0.rc' # Branch on Github
+
+  # gem 'locomotive-aloha-rails', :path => '../gems/aloha-rails' # for Developers
 
   gem 'rspec-rails', '~> 2.8.0' # In order to have rspec tasks and generators
   gem 'rspec-cells'
@@ -44,6 +46,8 @@ group :test do
   gem 'capybara'
 
   gem 'xpath', '~> 0.1.4'
+
+  gem 'json_spec'
 
   gem 'database_cleaner'
 end

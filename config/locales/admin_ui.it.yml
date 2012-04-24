@@ -34,6 +34,7 @@ it:
         create: Crea
         update: Salva
         send: Invia
+        disable_with: "locomotive.disable_with.form_actions"
 
     errors:
       "500":
