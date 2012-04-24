@@ -37,6 +37,8 @@ module Locomotive
       can :touch, Site do |site|
         site == @site
       end
+
+      can :read, ContentType
     end
 
     def setup_designer_permissions!
