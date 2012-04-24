@@ -17,10 +17,6 @@ def last_json
   @json_response.try(:body) || page.source
 end
 
-def parsed_response
-  @parsed_response ||= JSON.parse(last_json)
-end
-
 Given /^I have an? "([^"]*)" API token$/ do |role|
   @membership = Locomotive::Site.first.memberships.where(:role => role.downcase).first \
     || FactoryGirl.create(role.downcase.to_sym, :site => Locomotive::Site.first)
@@ -67,28 +63,7 @@ When /^I do an API (\w+) (?:request )?to ([\w.\/]+) with:$/ do |request_type, ur
   do_api_request(request_type, url, param_string)
 end
 
-Then /^the JSON response should contain all pages$/ do
-  page_ids_in_response = parsed_response.collect { |page| page['id'].to_s }.sort
-  all_page_ids = Locomotive::Page.all.collect { |page| page.id.to_s }.sort
-  page_ids_in_response.should == all_page_ids
-end
-
-Then /^the JSON response should contain (\d+) pages$/ do |n|
-  parsed_response.count.should == n.to_i
-end
-
 Then /^an access denied error should occur$/ do
   @error.should_not be_nil
   @error.message.should == 'You are not authorized to access this page.'
 end
-
-=begin
-Then /^the JSON response hash should contain:$/ do |json|
-  sub_response = {}
-  parsed_json = JSON.parse(json)
-  parsed_json.each do |k, v|
-    sub_response[k] = @response[k]
-  end
-  sub_response.should == parsed_json
-end
-=end
