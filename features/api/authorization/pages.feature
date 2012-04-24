@@ -187,3 +187,29 @@ Feature: Pages
       "title": "Brand new updated title"
     }
     """
+
+  # destroy page
+
+  Scenario: Destroying page as an Admin
+    Given I have an "admin" token
+    When I do an API GET request to pages.json
+    Then the JSON response should contain 4 pages
+    When I do an API DELETE to pages/4f832c2cb0d86d3f42fffffe.json
+    When I do an API GET request to pages.json
+    Then the JSON response should contain 3 pages
+
+  Scenario: Destroying page as a Designer
+    Given I have a "designer" token
+    When I do an API GET request to pages.json
+    Then the JSON response should contain 4 pages
+    When I do an API DELETE to pages/4f832c2cb0d86d3f42fffffe.json
+    When I do an API GET request to pages.json
+    Then the JSON response should contain 3 pages
+
+  Scenario: Deleting page as an Author
+    Given I have a "author" token
+    When I do an API GET request to pages.json
+    Then the JSON response should contain 4 pages
+    When I do an API DELETE to pages/4f832c2cb0d86d3f42fffffe.json
+    When I do an API GET request to pages.json
+    Then the JSON response should contain 3 pages
