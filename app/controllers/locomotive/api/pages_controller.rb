@@ -25,6 +25,12 @@ module Locomotive
         respond_with @page, :location => main_app.locomotive_api_pages_url
       end
 
+      def destroy
+        @page = current_site.pages.find(params[:id])
+        @page.destroy
+        respond_with @page
+      end
+
     end
 
   end
