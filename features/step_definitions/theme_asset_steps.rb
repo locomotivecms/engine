@@ -1,15 +1,18 @@
 ### Theme assets
 
 # helps create a theme asset
-def create_plain_text_asset(name, type)
-  asset = FactoryGirl.build(:theme_asset, {
+def new_plain_text_asset(name, type)
+  FactoryGirl.build(:theme_asset, {
     :site                   => @site,
     :plain_text_name        => name,
     :plain_text             => 'Lorem ipsum',
     :plain_text_type        => type,
     :performing_plain_text  => true
   })
+end
 
+def create_plain_text_asset(name, type)
+  asset = new_plain_text_asset(name, type)
   asset.save!
 end
 
@@ -19,8 +22,20 @@ Given /^a javascript asset named "([^"]*)"$/ do |name|
   @asset = create_plain_text_asset(name, 'javascript')
 end
 
+Given /^a javascript asset named "([^"]*)" with id "([^"]*)"$/ do |name, id|
+  @asset = new_plain_text_asset(name, 'javascript')
+  @asset.id = BSON::ObjectId(id)
+  @asset.save!
+end
+
 Given /^a stylesheet asset named "([^"]*)"$/ do |name|
   @asset = create_plain_text_asset(name, 'stylesheet')
+end
+
+Given /^a stylesheet asset named "([^"]*)" with id "([^"]*)"$/ do |name, id|
+  @asset = new_plain_text_asset(name, 'stylesheet')
+  @asset.id = BSON::ObjectId(id)
+  @asset.save!
 end
 
 Given /^I have an image theme asset named "([^"]*)"$/ do |name|
