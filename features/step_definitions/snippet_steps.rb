@@ -1,9 +1,13 @@
 ### Snippets
 
 # helps create a simple snippet with a slug and template
+def new_snippet(name, template = nil)
+  @site.snippets.new(:name => name, :template => template)
+end
+
 def create_snippet(name, template = nil)
-  snippet = @site.snippets.create(:name => name, :template => template)
-  snippet.should be_valid
+  snippet = new_snippet(name, template)
+  snippet.save!
   snippet
 end
 
@@ -11,6 +15,12 @@ end
 
 Given /^a snippet named "([^"]*)" with the template:$/ do |name, template|
   @snippet = create_snippet(name, template)
+end
+
+Given /^a snippet named "([^"]*)" with id "([^"]*)" and template:$/ do |name, id, template|
+  @snippet = new_snippet(name, template)
+  @snippet.id = BSON::ObjectId(id)
+  @snippet.save!
 end
 
 When /^I change the snippet template to "([^"]*)"$/ do |code|
