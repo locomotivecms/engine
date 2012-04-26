@@ -3,9 +3,17 @@ def api_base_url
   "http://#{@site.domains.first}/locomotive/api/"
 end
 
-def do_api_request(type, url, param_string = nil)
+def do_api_request(type, url, param_string_or_hash = nil)
   begin
-    params = param_string && JSON.parse(param_string) || {}
+    if param_string_or_hash
+      if param_string_or_hash.is_a? Hash
+        params = param_string_or_hash
+      else
+        params = JSON.parse(param_string_or_hash)
+      end
+    else
+      params = {}
+    end
     @json_response = do_request(type, api_base_url, url,
                                params.merge({ 'CONTENT_TYPE' => 'application/json' }))
   rescue CanCan::AccessDenied
@@ -66,4 +74,14 @@ end
 Then /^an access denied error should occur$/ do
   @error.should_not be_nil
   @error.is_a?(CanCan::AccessDenied).should be_true
+end
+
+When /^I do a multipart API (\w+) (?:request )?to ([\w.\/]+) with base key "([^"]*)" and:$/ \
+    do |request_type, url, base_key, table|
+  params = {}
+  params = table.rows_hash
+  params.each do |key, filename|
+    params[key] = Rack::Test::UploadedFile.new(Rails.root.join('..', 'fixtures', filename))
+  end
+  do_api_request(request_type, url, { base_key => params })
 end
