@@ -357,8 +357,8 @@ $(document).ready(function(){
   * New model
   *
   */
-  if(window.location.pathname.match('admin/content_types/new') != null ||
-     window.location.pathname.match('admin/content_types/.+/edit')){
+  if(window.location.pathname.match(/admin\/content_types\/new[\/]?$/) != null ||
+     window.location.pathname.match(/admin\/content_types\/.+\/edit[\/]?$/)){
 
       guiders.createGuider({
         attachTo: "undefined",
