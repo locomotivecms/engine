@@ -84,6 +84,12 @@
               width: 530px;
             }
           } // li.string
+
+          li.date {
+            input[type=text] {
+              width: 90px;
+            }
+          } // li.string
         }
       }
     } // .form.formtastic
