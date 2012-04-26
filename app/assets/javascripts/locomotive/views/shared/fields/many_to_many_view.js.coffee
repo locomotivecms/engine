@@ -24,10 +24,6 @@ class Locomotive.Views.Shared.Fields.ManyToManyView extends Backbone.View
     @collection   = @model.get(@options.name)
     @all_entries  = @options.all_entries
 
-    window.collection = @collection
-    window.bar = @all_entries
-    window.model = @model
-
   render: ->
     $(@el).html(@template()())
 

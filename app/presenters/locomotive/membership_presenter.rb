@@ -1,7 +1,7 @@
 module Locomotive
   class MembershipPresenter < BasePresenter
 
-    delegate :role, :to => :source
+    delegate :role, :account_id, :to => :source
 
     def name
       self.source.account.name
@@ -26,8 +26,13 @@ module Locomotive
     end
 
     def included_methods
-      super + %w(name email role role_name can_update grant_admin)
+      super + %w(account_id name email role role_name can_update grant_admin)
     end
+
+    # def light_as_json
+    #   methods = included_methods.clone - %w(name email)
+    #   self.as_json(methods)
+    # end
 
   end
 end

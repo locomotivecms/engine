@@ -19,6 +19,9 @@ module Locomotive
           ## indexes ##
           index :position
           index [[:depth, Mongo::ASCENDING], [:position, Mongo::ASCENDING]]
+
+          alias_method_chain :rearrange, :identity_map
+          alias_method_chain :rearrange_children, :identity_map
         end
 
         module ClassMethods
@@ -100,6 +103,16 @@ module Locomotive
         end
 
         protected
+
+        def rearrange_with_identity_map
+          ::Mongoid::IdentityMap.clear
+          rearrange_without_identity_map
+        end
+
+        def rearrange_children_with_identity_map
+          self.children.reset
+          rearrange_children_without_identity_map
+        end
 
         def persist_depth
           self.attributes['depth'] = self.depth

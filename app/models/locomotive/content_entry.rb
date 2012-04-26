@@ -86,7 +86,7 @@ module Locomotive
     end
 
     def as_json(options = {})
-      self.to_presenter.as_json
+      self.to_presenter(options).as_json
     end
 
     protected

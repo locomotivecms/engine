@@ -143,8 +143,8 @@ describe Locomotive::Page do
   describe 'tree organization' do
 
     before(:each) do
-      @home = FactoryGirl.create(:page)
-      @child_1 = FactoryGirl.create(:page, :title => 'Subpage 1', :slug => 'foo', :parent_id => @home._id, :site => @home.site)
+      @home     = FactoryGirl.create(:page)
+      @child_1  = FactoryGirl.create(:page, :title => 'Subpage 1', :slug => 'foo', :parent_id => @home._id, :site => @home.site)
     end
 
     it 'adds root elements' do
@@ -390,4 +390,5 @@ describe Locomotive::Page do
   def fake_bson_id(id)
     BSON::ObjectId(id.to_s.rjust(24, '0'))
   end
+
 end

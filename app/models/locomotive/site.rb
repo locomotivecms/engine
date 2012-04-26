@@ -54,8 +54,12 @@ module Locomotive
       Locomotive::Liquid::Drops::Site.new(self)
     end
 
+    def to_presenter(options = {})
+      Locomotive::SitePresenter.new(self, options)
+    end
+
     def as_json(options = {})
-      Locomotive::SitePresenter.new(self, options).as_json
+      self.to_presenter(options).as_json
     end
 
     protected
