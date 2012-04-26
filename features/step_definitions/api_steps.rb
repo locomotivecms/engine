@@ -8,7 +8,7 @@ def do_api_request(type, url, param_string = nil)
     params = param_string && JSON.parse(param_string) || {}
     @json_response = do_request(type, api_base_url, url,
                                params.merge({ 'CONTENT_TYPE' => 'application/json' }))
-  rescue Exception
+  rescue CanCan::AccessDenied
     @error = $!
   end
 end
@@ -65,5 +65,5 @@ end
 
 Then /^an access denied error should occur$/ do
   @error.should_not be_nil
-  @error.message.should == 'You are not authorized to access this page.'
+  @error.is_a?(CanCan::AccessDenied).should be_true
 end
