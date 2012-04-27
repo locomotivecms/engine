@@ -1,6 +1,6 @@
 
 def api_base_url
-  "http://#{@site.domains.first}/locomotive/api/"
+  "http://#{Locomotive::Site.first.domains.first}/locomotive/api/"
 end
 
 def do_api_request(type, url, param_string_or_hash = nil)
@@ -16,7 +16,7 @@ def do_api_request(type, url, param_string_or_hash = nil)
     end
     @json_response = do_request(type, api_base_url, url,
                                params.merge({ 'CONTENT_TYPE' => 'application/json' }))
-  rescue CanCan::AccessDenied
+  rescue CanCan::AccessDenied, Mongoid::Errors::DocumentNotFound
     @error = $!
   end
 end
@@ -76,6 +76,11 @@ Then /^an access denied error should occur$/ do
   @error.is_a?(CanCan::AccessDenied).should be_true
 end
 
+Then /^it should not exist$/ do
+  @error.should_not be_nil
+  @error.is_a?(Mongoid::Errors::DocumentNotFound).should be_true
+end
+
 When /^I do a multipart API (\w+) (?:request )?to ([\w.\/]+) with base key "([^"]*)" and:$/ \
     do |request_type, url, base_key, table|
   params = {}
@@ -84,4 +89,8 @@ When /^I do a multipart API (\w+) (?:request )?to ([\w.\/]+) with base key "([^"
     params[key] = Rack::Test::UploadedFile.new(Rails.root.join('..', 'fixtures', filename))
   end
   do_api_request(request_type, url, { base_key => params })
+end
+
+Then /^I print the json response$/ do
+  puts %{JSON: "#{last_json}"}
 end
