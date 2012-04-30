@@ -13,13 +13,18 @@ module Locomotive
 
       before_filter :set_locale
 
-      # before_filter :validate_site_membership
+      before_filter :set_current_thread_variables
 
       self.responder = Locomotive::ActionController::Responder # custom responder
 
       respond_to :json, :xml
 
       protected
+
+    def set_current_thread_variables
+      Thread.current[:account]  = current_locomotive_account
+      Thread.current[:site]     = current_site
+    end
 
       def current_ability
         @current_ability ||= Ability.new(current_locomotive_account, current_site)
