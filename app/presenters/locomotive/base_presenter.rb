@@ -7,7 +7,7 @@ class Locomotive::BasePresenter
 
   attr_reader :source, :options, :ability, :depth
 
-  delegate :created_at, :updated_at, :to => :source
+  delegate :created_at, :updated_at, :errors, :save, :to => :source
 
   def initialize(object, options = {})
     @source   = object
@@ -41,6 +41,19 @@ class Locomotive::BasePresenter
         hash[meth] = self.send(meth.to_sym) rescue nil
       end
     end
+  end
+
+  def assign_attributes(new_attributes)
+    return unless new_attributes
+
+    new_attributes.each do |attr, value|
+      self.send(:"#{attr}=", value)
+    end
+  end
+
+  def update_attributes(new_attributes)
+    self.assign_attributes(new_attributes)
+    self.save
   end
 
 end

@@ -3,6 +3,8 @@ module Locomotive
 
     delegate :title, :slug, :fullpath, :handle, :raw_template, :published, :listed, :templatized, :templatized_from_parent, :redirect, :redirect_url, :template_changed, :cache_strategy, :response_type, :to => :source
 
+    delegate :title=, :slug=, :fullpath=, :handle=, :raw_template=, :published=, :listed=, :templatized=, :templatized_from_parent=, :redirect=, :redirect_url=, :template_changed=, :cache_strategy=, :response_type=, :to => :source
+
     def escaped_raw_template
       h(self.source.raw_template)
     end
@@ -11,8 +13,16 @@ module Locomotive
       self.source.enabled_editable_elements.collect(&:as_json)
     end
 
+    def parent_fullpath
+      self.source.parent.fullpath
+    end
+
+    def parent_fullpath=(parent_fullpath)
+      self.source.parent = Page.where(:fullpath => parent_fullpath).first
+    end
+
     def included_methods
-      super + %w(title slug fullpath handle raw_template published listed templatized templatized_from_parent redirect redirect_url cache_strategy response_type template_changed editable_elements localized_fullpaths)
+      super + %w(title slug fullpath handle raw_template published listed templatized templatized_from_parent redirect redirect_url cache_strategy response_type template_changed editable_elements localized_fullpaths parent)
     end
 
     def localized_fullpaths
