@@ -3,6 +3,8 @@ module Locomotive
 
     delegate :content, :to => :source
 
+    delegate :content=, :to => :source
+
     def filename
       File.basename(self.content)
     end

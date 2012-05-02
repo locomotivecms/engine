@@ -16,12 +16,14 @@ module Locomotive
     def editable_elements=(editable_elements)
       editable_elements.each do |editable_element_hash|
         editable_element_id = editable_element_hash[:id]
+        editable_element_type = editable_element_hash[:type]
         if editable_element_id
           editable_element_hash.delete(:id)
           editable_element_hash.delete(:_id)
           editable_element = self.source.editable_elements.find(editable_element_id)
         else
-          editable_element = self.source.editable_elements.build
+          editable_element = "Locomotive::#{editable_element_type}".constantize.new
+          editable_element.page = self.source
         end
 
         editable_element_presenter = editable_element.to_presenter

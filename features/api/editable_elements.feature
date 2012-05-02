@@ -37,3 +37,26 @@ Feature: Editable Elements
     """
     When I do an API GET request to pages/4f832c2cb0d86d3f42fffffe.json
     Then the JSON response at "editable_elements/0/content" should be "My new welcome content!!!"
+
+  Scenario: Create new editable element on existing page
+    When I do an API PUT to pages/4f832c2cb0d86d3f42fffffe.json with:
+    """
+    {
+      "page": {
+        "raw_template": "{% editable_short_text my_short_text %}{% endeditable_short_text %}",
+        "editable_elements": [
+          {
+            "slug": "my_short_text",
+            "block": null,
+            "content": "The new short text content",
+            "type": "EditableShortText"
+          }
+        ]
+      }
+    }
+    """
+    When I do an API GET request to pages/4f832c2cb0d86d3f42fffffe.json
+    Then the JSON response should have the following:
+      | editable_elements/0/slug    | "my_short_text"               |
+      | editable_elements/0/block   | null                          |
+      | editable_elements/0/content | "The new short text content"  |
