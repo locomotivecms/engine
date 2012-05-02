@@ -30,6 +30,12 @@ Given /^a page named "([^"]*)" with id "([^"]*)"$/ do |page_slug, id|
   @page.save!
 end
 
+Given /^a page named "([^"]*)" with id "([^"]*)" and template:$/ do |page_slug, id, template|
+  @page = new_content_page(page_slug, '', template)
+  @page.id = BSON::ObjectId(id)
+  @page.save!
+end
+
 # change the title
 When /^I change the page title to "([^"]*)"$/ do |page_title|
   page.evaluate_script "window.prompt = function() { return '#{page_title}'; }"
