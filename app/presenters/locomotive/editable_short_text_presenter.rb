@@ -3,6 +3,8 @@ module Locomotive
 
     delegate :content, :to => :source
 
+    delegate :content=, :to => :source
+
     def included_methods
       super + %w(content)
     end

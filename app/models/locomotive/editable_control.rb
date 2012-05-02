@@ -31,8 +31,8 @@ module Locomotive
       end
     end
 
-    def as_json(options = {})
-      Locomotive::EditableControlPresenter.new(self).as_json
+    def to_presenter
+      Locomotive::EditableControlPresenter.new(self)
     end
 
     protected

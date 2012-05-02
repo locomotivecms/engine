@@ -13,6 +13,22 @@ module Locomotive
       self.source.enabled_editable_elements.collect(&:as_json)
     end
 
+    def editable_elements=(editable_elements)
+      editable_elements.each do |editable_element_hash|
+        editable_element_id = editable_element_hash[:id]
+        if editable_element_id
+          editable_element_hash.delete(:id)
+          editable_element_hash.delete(:_id)
+          editable_element = self.source.editable_elements.find(editable_element_id)
+        else
+          editable_element = self.source.editable_elements.build
+        end
+
+        editable_element_presenter = editable_element.to_presenter
+        editable_element_presenter.update_attributes(editable_element_hash)
+      end
+    end
+
     def parent_fullpath
       self.source.parent.fullpath
     end

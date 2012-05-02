@@ -3,12 +3,18 @@ module Locomotive
 
     delegate :slug, :block, :default_content, :default_attribute, :hint, :priority, :disabled, :assignable, :from_parent, :to => :source
 
+    delegate :slug=, :block=, :default_content=, :default_attribute=, :hint=, :priority=, :disabled=, :assignable=, :from_parent=, :to => :source
+
     def label
       self.slug.humanize
     end
 
     def type
       self.source._type.to_s.demodulize
+    end
+
+    def type=(type)
+      self.source._type = "Locomotive::#{type}"
     end
 
     def block_name

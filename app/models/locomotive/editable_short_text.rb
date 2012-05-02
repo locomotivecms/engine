@@ -24,8 +24,8 @@ module Locomotive
       self.attributes['default_content']  = el.default_content_translations
     end
 
-    def as_json(options = {})
-      Locomotive::EditableShortTextPresenter.new(self).as_json
+    def to_presenter
+      Locomotive::EditableShortTextPresenter.new(self)
     end
 
     protected

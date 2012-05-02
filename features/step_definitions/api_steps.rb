@@ -9,7 +9,8 @@ def do_api_request(type, url, param_string_or_hash = nil)
       if param_string_or_hash.is_a? Hash
         params = param_string_or_hash
       else
-        params = JSON.parse(param_string_or_hash)
+        # Do memory substitution from json_spec
+        params = JSON.parse(JsonSpec.remember(param_string_or_hash))
       end
     else
       params = {}

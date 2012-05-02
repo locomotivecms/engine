@@ -75,6 +75,10 @@ module Locomotive
       self.locales << locale unless self.locales.include?(locale)
     end
 
+    def as_json
+      self.to_presenter.as_json
+    end
+
     protected
 
     def _selector
