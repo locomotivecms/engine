@@ -60,3 +60,28 @@ Feature: Editable Elements
       | editable_elements/0/slug    | "my_short_text"               |
       | editable_elements/0/block   | null                          |
       | editable_elements/0/content | "The new short text content"  |
+
+  Scenario: Create new editable element on new page
+    When I do an API POST to pages.json with:
+    """
+    {
+      "page": {
+        "title": "New Page",
+        "parent_fullpath": "index",
+        "raw_template": "{% editable_short_text my_short_text %}{% endeditable_short_text %}",
+        "editable_elements": [
+          {
+            "slug": "my_short_text",
+            "block": null,
+            "content": "The new short text content",
+            "type": "EditableShortText"
+          }
+        ]
+      }
+    }
+    """
+    When I do an API GET request to pages.json
+    Then the JSON response should have the following:
+      | 3/editable_elements/0/slug      | "my_short_text"               |
+      | 3/editable_elements/0/block     | null                          |
+      | 3/editable_elements/0/content   | "The new short text content"  |
