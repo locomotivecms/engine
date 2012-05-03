@@ -47,7 +47,11 @@ class Locomotive::BasePresenter
     return unless new_attributes
 
     new_attributes.each do |attr, value|
-      self.send(:"#{attr}=", value)
+      # Only call the methods which the presenter can handle
+      meth = :"#{attr}="
+      if self.respond_to? meth
+        self.send(:"#{attr}=", value)
+      end
     end
   end
 

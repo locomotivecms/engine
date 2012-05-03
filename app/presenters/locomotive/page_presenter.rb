@@ -3,7 +3,7 @@ module Locomotive
 
     delegate :title, :slug, :fullpath, :handle, :raw_template, :published, :listed, :templatized, :templatized_from_parent, :redirect, :redirect_url, :template_changed, :cache_strategy, :response_type, :to => :source
 
-    delegate :title=, :slug=, :fullpath=, :handle=, :raw_template=, :published=, :listed=, :templatized=, :templatized_from_parent=, :redirect=, :redirect_url=, :template_changed=, :cache_strategy=, :response_type=, :to => :source
+    delegate :title=, :slug=, :fullpath=, :handle=, :raw_template=, :published=, :listed=, :templatized=, :templatized_from_parent=, :redirect=, :redirect_url=, :cache_strategy=, :response_type=, :to => :source
 
     def escaped_raw_template
       h(self.source.raw_template)

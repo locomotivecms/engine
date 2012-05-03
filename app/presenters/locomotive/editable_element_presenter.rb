@@ -3,7 +3,7 @@ module Locomotive
 
     delegate :slug, :block, :default_content, :default_attribute, :hint, :priority, :disabled, :assignable, :from_parent, :to => :source
 
-    delegate :slug=, :block=, :default_content=, :default_attribute=, :hint=, :priority=, :disabled=, :assignable=, :from_parent=, :to => :source
+    delegate :slug=, :block=, :default_content=, :hint=, :priority=, :disabled=, :from_parent=, :to => :source
 
     def label
       self.slug.humanize
