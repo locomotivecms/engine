@@ -17,17 +17,24 @@ module Locomotive
       editable_elements.each do |editable_element_hash|
         editable_element_id = editable_element_hash[:id]
         editable_element_type = editable_element_hash[:type]
+
+        # Check to see if the object exists in the DB
         if editable_element_id
-          editable_element_hash.delete(:id)
-          editable_element_hash.delete(:_id)
-          editable_element = self.source.editable_elements.find(editable_element_id)
-        else
+          begin
+            editable_element = self.source.editable_elements.find(editable_element_id)
+          rescue ::Mongoid::Errors::DocumentNotFound
+            editable_element = nil
+          end
+        end
+
+        # Create element if needed
+        unless editable_element
           editable_element = "Locomotive::#{editable_element_type}".constantize.new
           editable_element.page = self.source
         end
 
         editable_element_presenter = editable_element.to_presenter
-        editable_element_presenter.update_attributes(editable_element_hash)
+        editable_element_presenter.assign_attributes(editable_element_hash)
       end
     end
 
@@ -40,7 +47,7 @@ module Locomotive
     end
 
     def included_methods
-      super + %w(title slug fullpath handle raw_template published listed templatized templatized_from_parent redirect redirect_url cache_strategy response_type template_changed editable_elements localized_fullpaths parent)
+      super + %w(title slug fullpath handle raw_template published listed templatized templatized_from_parent redirect redirect_url cache_strategy response_type template_changed editable_elements localized_fullpaths parent_fullpath)
     end
 
     def localized_fullpaths
