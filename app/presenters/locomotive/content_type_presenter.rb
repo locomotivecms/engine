@@ -1,7 +1,9 @@
 module Locomotive
   class ContentTypePresenter < BasePresenter
 
-    delegate :name, :description, :slug, :order_by, :order_direction, :label_field_name, :group_by_field_id, :public_submission_accounts, :to => :source
+    delegate :name, :description, :slug, :order_by, :order_direction, :label_field_name, :group_by_field_id, :raw_item_template, :public_submission_enabled, :public_submission_accounts, :to => :source
+
+    delegate :name=, :description=, :slug=, :order_by=, :order_direction=, :label_field_name=, :group_by_field_id=, :raw_item_template=, :public_submission_enabled=, :public_submission_accounts=, :entries_custom_fields=, :to => :source
 
     def entries_custom_fields
       self.source.ordered_entries_custom_fields.collect(&:as_json)
