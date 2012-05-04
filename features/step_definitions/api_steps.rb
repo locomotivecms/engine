@@ -92,6 +92,10 @@ When /^I do a multipart API (\w+) (?:request )?to ([\w.\/]+) with base key "([^"
   do_api_request(request_type, url, { base_key => params })
 end
 
-Then /^I print the json response$/ do
-  puts %{JSON: "#{last_json}"}
+Then /^I print the JSON response$/ do
+  puts %{JSON (status=#{@json_response.status}): "#{last_json}"}
+end
+
+Then /^I print the editable elements for page "([^"]*)"$/ do |id|
+  puts @site.pages.find(id).editable_elements.inspect
 end
