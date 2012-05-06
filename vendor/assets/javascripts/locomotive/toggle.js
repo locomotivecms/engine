@@ -47,12 +47,6 @@
       off_callback : function(el) {}
     }, settings);
 
-    // FIXME (Didier Lafforgue) it works but it doesn't scale if we handle another locale
-    if (typeof I18nLocale != 'undefined' && I18nLocale == 'fr') {
-      settings.on_label = 'Oui';
-      settings.off_label = 'Non';
-    }
-
     function showUncheckedState(element) {
       element.parent().prev().css("color",settings.off_label_color);
       element.parent().next().css("color",settings.on_label_color);
@@ -112,11 +106,15 @@
         // hide the checkbox
         $(this).css('display','none');
 
+        // get translations
+        var label_on = $(this).attr('data-on-label') || settings.on_label;
+        var label_off = $(this).attr('data-off-label') || settings.off_label;
+
         // insert the new toggle markup
         if($(this).attr("checked") == "checked" || $(this).attr("checked") == true){
-          $(this).after('<div class="toggleSwitch"><span class="leftLabel">'+settings.on_label+'<\/span><div class="switchArea on" style="background-color: '+settings.on_bg_color+'"><span class="switchHandle left" style="margin-left: 15px;"><\/span><\/div><span class="rightLabel" style="color:#cccccc">'+settings.off_label+'<\/span><\/div>');
+          $(this).after('<div class="toggleSwitch"><span class="leftLabel">'+label_on+'<\/span><div class="switchArea on" style="background-color: '+settings.on_bg_color+'"><span class="switchHandle left" style="margin-left: 15px;"><\/span><\/div><span class="rightLabel" style="color:#cccccc">'+label_off+'<\/span><\/div>');
         }else{
-          $(this).after('<div class="toggleSwitch"><span class="leftLabel" style="color:#cccccc;">'+settings.on_label+'<\/span><div class="switchArea" style="background-color: '+settings.off_bg_color+'"><span class="switchHandle right" style="margin-left:0px"><\/span><\/div><span class="rightLabel">'+settings.off_label+'<\/span><\/div>');
+          $(this).after('<div class="toggleSwitch"><span class="leftLabel" style="color:#cccccc;">'+label_on+'<\/span><div class="switchArea" style="background-color: '+settings.off_bg_color+'"><span class="switchHandle right" style="margin-left:0px"><\/span><\/div><span class="rightLabel">'+label_off+'<\/span><\/div>');
         }
 
         // Bind the switchHandle click events to the internal toggle function

@@ -2,7 +2,7 @@ module Locomotive
   module CustomFieldsHelper
 
     def options_for_custom_field_type
-      %w(string text select boolean date file belongs_to has_many many_to_many).map do |type|
+      %w(string text integer select boolean date money file belongs_to has_many many_to_many).map do |type|
         [t("custom_fields.type.#{type}"), type]
       end
     end
@@ -39,6 +39,12 @@ module Locomotive
     def options_for_text_formatting
       %w(none html).map do |option|
         [t("locomotive.custom_fields.text_formatting.#{option}"), option]
+      end
+    end
+
+    def options_for_default_currency
+      ::Money::Currency.table.values.sort {|x,y| x[:priority] <=> y[:priority] }.collect do |val|
+        ["#{val[:symbol]} #{val[:name]} (#{val[:iso_code]})", val[:iso_code]]
       end
     end
 

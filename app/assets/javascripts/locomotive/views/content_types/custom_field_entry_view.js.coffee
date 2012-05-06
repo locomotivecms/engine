@@ -42,6 +42,10 @@ class Locomotive.Views.ContentTypes.CustomFieldEntryView extends Backbone.View
     @$('li.input.extra').hide() # reset
 
     switch @model.get('type')
+      when 'money'
+        @$('li.input.default-currency').show()
+        @$('li.input.allow-currency-from-symbol').show()
+        @$('li.input.localized').hide()
       when 'select'
         @$('li.input.select-options').show()
       when 'text'

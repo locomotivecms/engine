@@ -87,6 +87,8 @@ fr:
       form:
         required: Required
         optional: Optional
+        toggle_on_label: Oui
+        toggle_off_label: Aucun
         default_label: Field name
         select_options:
           ask_name: "Type the label of the option"

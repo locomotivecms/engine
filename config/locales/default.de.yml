@@ -97,6 +97,10 @@ de:
   pagination:
     previous: "&laquo; Zurück"
     next: "Vor &raquo;"
+  datepicker:
+    close: 'Schießen'
+    current: Heute
+    format: 'dd.mm.yy'  # The result of this format has to match the date.formats.default below for processing with locomotive
   date:
     formats:
       default: "%d.%m.%Y"
@@ -110,6 +114,7 @@ de:
     month_names: [~, Januar, Februar, März, April, Mai, Juni, Juli, August, September, Oktober, November, Dezember]
     abbr_month_names: [~, Jan., Feb., Mär., Apr., Mai, Juni, Juli, Aug., Sept., Okt., Nov., Dez.]
     order: [ day, month, year ]
+    first_day_of_week: 1
 
   pagination:
     previous: "&laquo; Zurück"

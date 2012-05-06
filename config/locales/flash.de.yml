@@ -37,8 +37,8 @@ de:
 
       current_site:
         update:
-          notice: "Meine Webseite wurde erfolreich aktualisiert."
-          alert: "Meine Webseite wurde nicht aktualisiert."
+          notice: "Ihr Mandant wurde erfolreich aktualisiert."
+          alert: "Ihr Mandant wurde nicht aktualisiert."
 
       snippets:
         create:
@@ -57,8 +57,8 @@ de:
 
       my_account:
         update:
-          notice: "Mein Account wurde erfolreich aktualisiert."
-          alert: "Mein Account wurde nicht aktualisiert."
+          notice: "Ihr Zugang wurde erfolreich aktualisiert."
+          alert: "Ihr Zugang wurde nicht aktualisiert."
 
       sites:
         create:
@@ -97,10 +97,10 @@ de:
 
       cross_domain_sessions:
         create:
-          alert: "Du musst dich einloggen"
+          alert: "Sie müssen sich anmelden"
 
       import:
         create:
-          done: "Deine Webseite wurde erfolreich aktualisiert."
-          notice: "Deine Webseite wird aktualisiert."
+          done: "Ihre Webseite wurde erfolreich aktualisiert."
+          notice: "Ihre Webseite wird aktualisiert."
           alert: "Der Import war nicht erfolgreich."

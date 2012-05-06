@@ -1,0 +1,21 @@
+<%# encoding: utf-8 %>
+jQuery(function($){
+<% I18n.available_locales.each do |locale| %>
+  <% I18n.locale = locale %>
+  $.datepicker.regional['<%=locale %>'] = {
+    closeText: '<%= I18n.t('datepicker.close', :default => 'close')%>',
+    prevText: '<%= I18n.t('pagination.previous', :default => 'previous') %>',
+    nextText: '<%= I18n.t('pagination.next', :default => 'next') %>',
+    currentText: '<%= I18n.t('datepicker.current', :default => 'current') %>',
+    monthNames: <%= I18n.t('date.month_names', :default => ['January','February','March','April','May','June','July','August','September','October','November','December']).compact.to_s %>,
+    monthNamesShort: <%= I18n.t('date.abbr_month_names', :default => ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun','Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']).compact.to_s %>,
+    dayNames: <%= I18n.t('date.day_names', :default => ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'] ).compact.to_s %>,
+    dayNamesShort: <%= I18n.t('date.abbr_day_names', :default => ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']).compact.to_s %>,
+    dayNamesMin: <%= I18n.t('date.abbr_day_names', :default => ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']).compact.to_s %>,
+    dateFormat: '<%= I18n.t('datepicker.format', :default => 'mm/dd/yy') %>', 
+    firstDay: <%= I18n.t('date.first_day_of_week', :default => 0)  %>,
+    isRTL: false
+  };
+<% end %>
+});
+

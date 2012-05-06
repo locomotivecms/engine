@@ -93,6 +93,8 @@ en:
         required: Required
         optional: Optional
         default_label: Field name
+        toggle_on_label: Yes
+        toggle_off_label: No
         select_options:
           ask_name: "Type the label of the option"
 
