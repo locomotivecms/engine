@@ -284,6 +284,13 @@ describe Locomotive::ContentType do
         lambda { asset.active_at }.should raise_error
       end
 
+      it 'removes the field used as the label when setting the original label_field_name value before' do
+        @content_type.label_field_name = 'name'
+        @content_type.entries_custom_fields.destroy_all :conditions => { :name => @content_type.label_field_name }
+        @content_type.save
+        @content_type.label_field_name.should == 'description'
+      end
+
       it 'renames field label' do
         @content_type.entries_custom_fields[1].label = 'Simple description'
         @content_type.entries_custom_fields[1].name = nil

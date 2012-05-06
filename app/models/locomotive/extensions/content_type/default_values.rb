@@ -27,7 +27,7 @@ module Locomotive
 
         def set_label_field
           if @new_label_field_name.present?
-            self.label_field_id = self.entries_custom_fields.detect { |f| f.name == @new_label_field_name.underscore }._id
+            self.label_field_id = self.entries_custom_fields.detect { |f| f.name == @new_label_field_name.underscore }.try(:_id)
           end
 
           # unknown label_field_name, get the first one instead
