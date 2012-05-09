@@ -15,8 +15,10 @@ module Locomotive
       end
 
       def create
-        @content_entry = @content_type.entries.create(params[:content_entry])
-        respond_with @content_entry, :location => main_app.locomotive_api_content_entries_url(@content_type.slug)
+        # FIXME need to use "create" here. Things go wrong if we use "new" and
+        # "update_attributes" with the presenter
+        @content_entry_presenter = Locomotive::ContentEntryPresenter.create(@content_type, params[:content_entry])
+        respond_with @content_entry_presenter, :location => main_app.locomotive_api_content_entries_url(@content_type.slug)
       end
 
       def update

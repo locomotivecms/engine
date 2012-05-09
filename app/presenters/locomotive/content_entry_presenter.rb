@@ -3,6 +3,17 @@ module Locomotive
 
     delegate :_label, :_slug, :_position, :seo_title, :meta_keywords, :meta_description, :file_custom_fields, :has_many_custom_fields, :many_to_many_custom_fields, :to => :source
 
+    SETTERS = %w{_position seo_title meta_keyworks meta_description}
+
+    SETTERS.each do |setter|
+      delegate :"#{setter}=", :to => :source
+    end
+
+    def self.create(content_type, params)
+      filter_params(params, content_type)
+      content_type.entries.create(params)
+    end
+
     # Lists of all the attributes editable thru the html form for instance
     #
     # @returns [ List ] a list of attributes (string)
@@ -51,6 +62,43 @@ module Locomotive
             self.send(meth.to_sym) rescue nil
           end)
         end
+      end
+    end
+
+    protected
+
+    def self.available_custom_field_names(content_type)
+      content_type.entries_custom_fields.collect(&:name)
+    end
+
+    def available_custom_field_names
+      self.class.available_custom_field_names(self.source.content_type)
+    end
+
+    def self.filter_params(params, content_type)
+      params.each do |key, value|
+        good_param = (SETTERS + self.available_custom_field_names(content_type)).include?(key.to_s)
+        params.delete(key) unless good_param
+      end
+    end
+
+    # Delegate custom field setters to source
+
+    def respond_to?(meth)
+      if meth.to_s =~ /^(.+)=$/
+        custom_field_name = $1
+        if available_custom_field_names.include?(custom_field_name)
+          return true
+        end
+      end
+
+      super
+    end
+
+    def method_missing(meth, *args, &block)
+      # If the method is missing but we should respond to it, delegate it to the source
+      if self.respond_to?(meth)
+        self.source.send(meth, *args, &block)
       end
     end
 
