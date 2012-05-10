@@ -3,16 +3,9 @@ module Locomotive
 
     delegate :_label, :_slug, :_position, :seo_title, :meta_keywords, :meta_description, :file_custom_fields, :has_many_custom_fields, :many_to_many_custom_fields, :to => :source
 
-    SETTERS = %w{_position seo_title meta_keyworks meta_description}
+    delegate :_position=, :seo_title=, :meta_keyworks=, :meta_description=, :to => :source
 
-    SETTERS.each do |setter|
-      delegate :"#{setter}=", :to => :source
-    end
-
-    def self.create(content_type, params)
-      filter_params(params, content_type)
-      content_type.entries.create(params)
-    end
+    attr_accessor :objects_to_save
 
     # Lists of all the attributes editable thru the html form for instance
     #
@@ -67,19 +60,52 @@ module Locomotive
 
     protected
 
-    def self.available_custom_field_names(content_type)
-      content_type.entries_custom_fields.collect(&:name)
-    end
-
     def available_custom_field_names
-      self.class.available_custom_field_names(self.source.content_type)
+      @available_custom_field_names ||= self.source.custom_fields_methods
     end
 
-    def self.filter_params(params, content_type)
-      params.each do |key, value|
-        good_param = (SETTERS + self.available_custom_field_names(content_type)).include?(key.to_s)
-        params.delete(key) unless good_param
+    # Deal with "many" and "belongs_to" relationships
+
+    def get_custom_field_name_for_method(meth)
+      if meth.to_s =~ /^(.+)=$/
+        meth = $1
       end
+      meth
+    end
+
+    def custom_field_for_method(meth)
+      name = get_custom_field_name_for_method(meth)
+      self.source.content_type.entries_custom_fields.where(:name => name).first
+    end
+
+    def get_target_klass_for_custom_field_method(meth)
+      field = custom_field_for_method(meth)
+      field.class_name.constantize
+    end
+
+    def get_many_field_objects(meth, slug_list)
+      target_klass = get_target_klass_for_custom_field_method(meth)
+      target_klass.any_in(:_slug => slug_list).to_ary
+    end
+
+    def get_belongs_field_object(meth, slug)
+      target_klass = get_target_klass_for_custom_field_method(meth)
+      target_klass.where(:_slug => slug_list).first
+    end
+
+    def is_many_custom_field?(meth)
+      field = custom_field_for_method(meth)
+      field && %w{has_many many_to_many}.include?(field.type)
+    end
+
+    def is_belongs_to_custom_field?(meth)
+      field = custom_field_for_method(meth)
+      field && field.type == 'belongs_to'
+    end
+
+    def save
+      objects_to_save.each { |obj| obj.save } if objects_to_save
+      super
     end
 
     # Delegate custom field setters to source
@@ -98,7 +124,21 @@ module Locomotive
     def method_missing(meth, *args, &block)
       # If the method is missing but we should respond to it, delegate it to the source
       if self.respond_to?(meth)
-        self.source.send(meth, *args, &block)
+        # If it's a "many" or "belong_to" field, pass in the right objects
+        if is_many_custom_field?(meth)
+          new_args = args.collect { |list| get_many_field_objects(meth, list) }
+
+          # Get the objects which we need to save
+          self.objects_to_save ||= []
+          self.objects_to_save += new_args.flatten
+
+          self.source.send(meth, *new_args, &block)
+        elsif is_belongs_to_custom_field?(meth)
+          new_args = args.collect { |slug| get_belongs_field_object(meth, slug) }
+          self.source.send(meth, *new_args, &block)
+        else
+          self.source.send(meth, *args, &block)
+        end
       end
     end
 

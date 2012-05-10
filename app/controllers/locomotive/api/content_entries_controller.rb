@@ -15,16 +15,17 @@ module Locomotive
       end
 
       def create
-        # FIXME need to use "create" here. Things go wrong if we use "new" and
-        # "update_attributes" with the presenter
-        @content_entry_presenter = Locomotive::ContentEntryPresenter.create(@content_type, params[:content_entry])
+        @content_entry = @content_type.entries.build
+        @content_entry_presenter = @content_entry.to_presenter
+        @content_entry_presenter.update_attributes(params[:content_entry])
         respond_with @content_entry_presenter, :location => main_app.locomotive_api_content_entries_url(@content_type.slug)
       end
 
       def update
         @content_entry = @content_type.entries.find(params[:id])
-        @content_entry.update_attributes(params[:content_entry])
-        respond_with @content_entry, :location => main_app.locomotive_api_content_entries_url(@content_type.slug)
+        @content_entry_presenter = @content_entry.to_presenter
+        @content_entry_presenter.update_attributes(params[:content_entry])
+        respond_with @content_entry_presenter, :location => main_app.locomotive_api_content_entries_url(@content_type.slug)
       end
 
       def destroy
