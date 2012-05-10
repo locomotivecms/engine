@@ -35,9 +35,9 @@ Feature: Content Entries
       | 4f832c2cb0d86d3f42fffffe    | t2    |
       | 4f832c2cb0d86d3f42ffffff    | t3    |
     And I have entries for "Projects" with
-      | name  | desc  | type    | started   | due         | logo        |
-      | p1    | first | code    | false     | 2012-07-01  | logo1.jpg   |
-      | p2    | 2nd   | design  | true      | 2012-11-30  | logo1.jpg   |
+      | id                          | name  | desc  | type    | started   | due         | logo        |
+      | 4f832c2cb0d86d3f42fffff0    | p1    | first | code    | false     | 2012-07-01  | logo1.jpg   |
+      | 4f832c2cb0d86d3f42fffff1    | p2    | 2nd   | design  | true      | 2012-11-30  | logo1.jpg   |
 
   # create content entry
 
@@ -69,3 +69,32 @@ Feature: Content Entries
       | 2/tasks/1/name      | "t3"          |
       | 2/workers/0/name    | "w1"          |
       | 2/workers/1/name    | "w3"          |
+
+  Scenario: Updating existing project
+    When I do an API PUT to content_types/projects/entries/4f832c2cb0d86d3f42fffff0.json with:
+    """
+    {
+      "content_entry": {
+        "name": "Awesome title",
+        "desc": "Awesome Desc",
+        "type": "design",
+        "started": true,
+        "formatted_due": "06/01/2012",
+        "tasks": [ "t1", "t3" ],
+        "workers": [ "w1", "w3" ]
+      }
+    }
+    """
+    When I do an API GET request to content_types/projects/entries.json
+    Then the JSON response should be an array
+    And the JSON response should have 2 entries
+    And the JSON should have the following:
+      | 0/name              | "Awesome title"   |
+      | 0/desc              | "Awesome Desc"    |
+      | 0/type              | "design"          |
+      | 0/started           | true              |
+      | 0/formatted_due     | "06/01/2012"      |
+      | 0/tasks/0/name      | "t1"              |
+      | 0/tasks/1/name      | "t3"              |
+      | 0/workers/0/name    | "w1"              |
+      | 0/workers/1/name    | "w3"              |
