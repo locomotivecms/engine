@@ -14,7 +14,7 @@ Feature: Content Entries
       | Started | boolean   | false     |
       | Due     | date      | false     |
       | Logo    | file      | false     |
-  And I have "code, design" as "Type" values of the "Projects" model
+    And I have "code, design" as "Type" values of the "Projects" model
     And I have a custom model named "Workers" with
       | label       | type          | required  |
       | Name        | string        | true      |
@@ -42,6 +42,7 @@ Feature: Content Entries
   # create content entry
 
   Scenario: Creating new project
+    Given the JSON request at "content_entry/logo" is a file
     When I do an API POST to content_types/projects/entries.json with:
     """
     {
@@ -51,6 +52,7 @@ Feature: Content Entries
         "type": "code",
         "started": false,
         "formatted_due": "06/01/2012",
+        "logo": "images/logo2.jpg",
         "tasks": [ "t1", "t3" ],
         "workers": [ "w1", "w3" ]
       }
@@ -69,8 +71,10 @@ Feature: Content Entries
       | 2/tasks/1/name      | "t3"          |
       | 2/workers/0/name    | "w1"          |
       | 2/workers/1/name    | "w3"          |
+    And the JSON at "2/logo_url" should match /logo2.jpg$/
 
   Scenario: Updating existing project
+    Given the JSON request at "content_entry/logo" is a file
     When I do an API PUT to content_types/projects/entries/4f832c2cb0d86d3f42fffff0.json with:
     """
     {
@@ -80,6 +84,7 @@ Feature: Content Entries
         "type": "design",
         "started": true,
         "formatted_due": "06/01/2012",
+        "logo": "images/logo2.jpg",
         "tasks": [ "t1", "t3" ],
         "workers": [ "w1", "w3" ]
       }
@@ -98,3 +103,4 @@ Feature: Content Entries
       | 0/tasks/1/name      | "t3"              |
       | 0/workers/0/name    | "w1"              |
       | 0/workers/1/name    | "w3"              |
+    And the JSON at "0/logo_url" should match /logo2.jpg$/

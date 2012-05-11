@@ -61,7 +61,23 @@ module Locomotive
     protected
 
     def available_custom_field_names
-      @available_custom_field_names ||= self.source.custom_fields_methods
+      return @available_custom_field_names if @available_custom_field_names
+
+      # Find all "file" fields
+      file_fields = Set.new(self.source.content_type.entries_custom_fields.find_all do |f|
+        f.type == 'file'
+      end.collect(&:name))
+
+      # Replace file field urls with the actual file field name
+      @available_custom_field_names = self.source.custom_fields_methods.collect do |name|
+        if name =~ /^(.+)_url$/ && file_fields.include?($1)
+          name.sub(/_url$/, '')
+        else
+          name
+        end
+      end
+
+      @available_custom_field_names
     end
 
     # Deal with "many" and "belongs_to" relationships
@@ -139,6 +155,8 @@ module Locomotive
         else
           self.source.send(meth, *args, &block)
         end
+      else
+        super
       end
     end
 
