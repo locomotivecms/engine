@@ -63,15 +63,21 @@ module Locomotive
     def available_custom_field_names
       return @available_custom_field_names if @available_custom_field_names
 
-      # Find all "file" fields
-      file_fields = Set.new(self.source.content_type.entries_custom_fields.find_all do |f|
-        f.type == 'file'
-      end.collect(&:name))
+      # Find all "file" and "belongs_to" fields
+      file_fields = Set.new
+      belongs_to_fields = Set.new
+      self.source.content_type.entries_custom_fields.each do |f|
+        name = f.name
+        file_fields << name if f.type == 'file'
+        belongs_to_fields << name if f.type == 'belongs_to'
+      end
 
-      # Replace file field urls with the actual file field name
+      # Replace file field urls and belongs_to IDs with the actual field names
       @available_custom_field_names = self.source.custom_fields_methods.collect do |name|
         if name =~ /^(.+)_url$/ && file_fields.include?($1)
           name.sub(/_url$/, '')
+        elsif name =~ /^(.+)_id$/ && belongs_to_fields.include?($1)
+          name.sub(/_id$/, '')
         else
           name
         end
@@ -106,7 +112,7 @@ module Locomotive
 
     def get_belongs_field_object(meth, slug)
       target_klass = get_target_klass_for_custom_field_method(meth)
-      target_klass.where(:_slug => slug_list).first
+      target_klass.where(:_slug => slug).first
     end
 
     def is_many_custom_field?(meth)
