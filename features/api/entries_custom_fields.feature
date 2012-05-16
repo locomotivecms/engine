@@ -11,6 +11,29 @@ Feature: Entries Custom Fieldws
       | Name        | string    | true            |
       | Description | text      | false           |
 
+  Scenario: Update custom field
+    When I do an API PUT to content_types/4f832c2cb0d86d3f42fffffe.json with:
+    """
+    {
+      "content_type": {
+        "entries_custom_fields": [
+          {
+            "name": "name",
+            "label": "Super cool name"
+          },
+          {
+            "name": "description",
+            "label": "Super cool description"
+          }
+        ]
+      }
+    }
+    """
+    When I do an API GET request to content_types/4f832c2cb0d86d3f42fffffe.json
+    Then the JSON response at "entries_custom_fields" should have 2 entries
+    And the JSON response at "entries_custom_fields/0/label" should be "Super cool name"
+    And the JSON response at "entries_custom_fields/1/label" should be "Super cool description"
+
   Scenario: Create new custom fields for existing content type
     When I do an API PUT to content_types/4f832c2cb0d86d3f42fffffe.json with:
     """
@@ -30,12 +53,12 @@ Feature: Entries Custom Fieldws
     }
     """
     When I do an API GET request to content_types/4f832c2cb0d86d3f42fffffe.json
-    Then the JSON response at "entries_custom_fields" should have 2 entries
+    Then the JSON response at "entries_custom_fields" should have 4 entries
     And the JSON response should have the following:
-      | entries_custom_fields/0/label   | "Title"   |
-      | entries_custom_fields/0/type    | "string"  |
-      | entries_custom_fields/1/label   | "Content" |
-      | entries_custom_fields/1/type    | "text"    |
+      | entries_custom_fields/2/label   | "Title"   |
+      | entries_custom_fields/2/type    | "string"  |
+      | entries_custom_fields/3/label   | "Content" |
+      | entries_custom_fields/3/type    | "text"    |
 
   Scenario: Create new custom field on new content type
     When I do an API GET request to content_types.json

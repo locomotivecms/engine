@@ -11,7 +11,17 @@ module Locomotive
 
     def entries_custom_fields=(entries_custom_fields)
       fields = entries_custom_fields.collect { |f| filter_entries_custom_field_hash(f) }
-      self.source.entries_custom_fields = fields
+
+      # Update the ones with the same name, and create the new ones
+      entries_custom_fields.each do |field|
+        name = field['name']
+        db_field = self.source.entries_custom_fields.where(:name => name).first if name
+        if db_field
+          db_field.assign_attributes(field)
+        else
+          self.source.entries_custom_fields.build(field)
+        end
+      end
     end
 
     def klass_name
