@@ -47,18 +47,34 @@ Feature: Entries Custom Fieldws
           {
             "label": "Content",
             "type": "text"
+          },
+          {
+            "label": "Category",
+            "type": "select",
+            "select_options": [
+              {
+                "name": "category1"
+              },
+              {
+                "name": "category2"
+              }
+            ]
           }
         ]
       }
     }
     """
     When I do an API GET request to content_types/4f832c2cb0d86d3f42fffffe.json
-    Then the JSON response at "entries_custom_fields" should have 4 entries
+    Then the JSON response at "entries_custom_fields" should have 5 entries
     And the JSON response should have the following:
-      | entries_custom_fields/2/label   | "Title"   |
-      | entries_custom_fields/2/type    | "string"  |
-      | entries_custom_fields/3/label   | "Content" |
-      | entries_custom_fields/3/type    | "text"    |
+      | entries_custom_fields/2/label                   | "Title"       |
+      | entries_custom_fields/2/type                    | "string"      |
+      | entries_custom_fields/3/label                   | "Content"     |
+      | entries_custom_fields/3/type                    | "text"        |
+      | entries_custom_fields/4/label                   | "Category"    |
+      | entries_custom_fields/4/type                    | "select"      |
+      | entries_custom_fields/4/select_options/0/name   | "category1"   |
+      | entries_custom_fields/4/select_options/1/name   | "category2"   |
 
   Scenario: Create new custom field on new content type
     When I do an API GET request to content_types.json

@@ -41,7 +41,7 @@ module Locomotive
     end
 
     def custom_fields_write_methods
-      %w(hint inverse_of label localized name order_by position required text_formatting type ui_enabled class_name)
+      %w(hint inverse_of label localized name order_by position required text_formatting type ui_enabled class_name select_options)
     end
 
   end
