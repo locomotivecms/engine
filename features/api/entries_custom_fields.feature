@@ -11,33 +11,7 @@ Feature: Entries Custom Fieldws
       | Name        | string    | true            |
       | Description | text      | false           |
 
-  Scenario: Update custom field
-    When I do an API GET request to content_types/4f832c2cb0d86d3f42fffffe.json
-    Then I keep the JSON response at "entries_custom_fields/0/id" as "NAME_ID"
-    And I keep the JSON response at "entries_custom_fields/1/id" as "DESC_ID"
-    When I do an API PUT to content_types/4f832c2cb0d86d3f42fffffe.json with:
-    """
-    {
-      "content_type": {
-        "entries_custom_fields": [
-          {
-            "id": %{NAME_ID},
-            "label": "Super cool name"
-          },
-          {
-            "id": %{DESC_ID},
-            "label": "Super cool description"
-          }
-        ]
-      }
-    }
-    """
-    When I do an API GET request to content_types/4f832c2cb0d86d3f42fffffe.json
-    Then the JSON response at "entries_custom_fields" should have 2 entries
-    And the JSON response at "entries_custom_fields/0/label" should be "Super cool name"
-    And the JSON response at "entries_custom_fields/1/label" should be "Super cool description"
-
-  Scenario: Create new custom fields on existing page
+  Scenario: Create new custom fields for existing content type
     When I do an API PUT to content_types/4f832c2cb0d86d3f42fffffe.json with:
     """
     {
@@ -56,14 +30,16 @@ Feature: Entries Custom Fieldws
     }
     """
     When I do an API GET request to content_types/4f832c2cb0d86d3f42fffffe.json
-    Then the JSON response at "entries_custom_fields" should have 4 entries
+    Then the JSON response at "entries_custom_fields" should have 2 entries
     And the JSON response should have the following:
-      | entries_custom_fields/2/label   | "Title"   |
-      | entries_custom_fields/2/type    | "string"  |
-      | entries_custom_fields/3/label   | "Content" |
-      | entries_custom_fields/3/type    | "text"    |
+      | entries_custom_fields/0/label   | "Title"   |
+      | entries_custom_fields/0/type    | "string"  |
+      | entries_custom_fields/1/label   | "Content" |
+      | entries_custom_fields/1/type    | "text"    |
 
   Scenario: Create new custom field on new content type
+    When I do an API GET request to content_types.json
+    Then I keep the JSON at "0/klass_name" as "KLASS_NAME"
     When I do an API POST to content_types.json with:
     """
     {
@@ -77,15 +53,22 @@ Feature: Entries Custom Fieldws
           {
             "label": "Content",
             "type": "text"
+          },
+          {
+            "label": "Project",
+            "type": "belongs_to",
+            "class_name": %{KLASS_NAME}
           }
         ]
       }
     }
     """
     When I do an API GET request to content_types.json
-    Then the JSON response at "1/entries_custom_fields" should have 2 entries
+    Then the JSON response at "1/entries_custom_fields" should have 3 entries
     And the JSON response should have the following:
-      | 1/entries_custom_fields/0/label | "Title"   |
-      | 1/entries_custom_fields/0/type  | "string"  |
-      | 1/entries_custom_fields/1/label | "Content" |
-      | 1/entries_custom_fields/1/type  | "text"    |
+      | 1/entries_custom_fields/0/label | "Title"       |
+      | 1/entries_custom_fields/0/type  | "string"      |
+      | 1/entries_custom_fields/1/label | "Content"     |
+      | 1/entries_custom_fields/1/type  | "text"        |
+      | 1/entries_custom_fields/2/label | "Project"     |
+      | 1/entries_custom_fields/2/type  | "belongs_to"  |
