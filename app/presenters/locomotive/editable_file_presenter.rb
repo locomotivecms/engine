@@ -9,6 +9,10 @@ module Locomotive
       File.basename(self.content)
     end
 
+    def url
+      self.content
+    end
+
     def included_methods
       super + %w(filename content url)
     end
