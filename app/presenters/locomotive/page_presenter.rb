@@ -5,6 +5,8 @@ module Locomotive
 
     delegate :title=, :slug=, :fullpath=, :handle=, :raw_template=, :published=, :listed=, :templatized=, :templatized_from_parent=, :redirect=, :redirect_url=, :cache_strategy=, :response_type=, :to => :source
 
+    attr_writer :editable_elements
+
     def escaped_raw_template
       h(self.source.raw_template)
     end
@@ -13,28 +15,28 @@ module Locomotive
       self.source.enabled_editable_elements.collect(&:as_json)
     end
 
-    def editable_elements=(editable_elements)
-      editable_elements.each do |editable_element_hash|
-        editable_element_id = editable_element_hash[:id]
-        editable_element_type = editable_element_hash[:type]
+    def set_editable_elements
+      return unless @editable_elements
 
-        # Check to see if the object exists in the DB
-        if editable_element_id
-          begin
-            editable_element = self.source.editable_elements.find(editable_element_id)
-          rescue ::Mongoid::Errors::DocumentNotFound
-            editable_element = nil
-          end
+      # Need to parse to get the right editable elements first
+      self.source.send(:_parse_and_serialize_template)
+
+      @editable_elements.each do |editable_element_hash|
+        slug = editable_element_hash['slug']
+        block = editable_element_hash['block']
+
+        block = nil if block && block.empty?
+
+        el = self.source.find_editable_element(block, slug)
+        el.to_presenter.assign_attributes(editable_element_hash) if el
+
+        # FIXME: Not sure why we need to do this...
+        if el.respond_to?(:source)
+          self.source.save
+          self.source.reload
+          el = self.source.find_editable_element(block, slug)
+          el.source = editable_element_hash['source']
         end
-
-        # Create element if needed
-        unless editable_element
-          editable_element = "Locomotive::#{editable_element_type}".constantize.new
-          editable_element.page = self.source
-        end
-
-        editable_element_presenter = editable_element.to_presenter
-        editable_element_presenter.assign_attributes(editable_element_hash)
       end
     end
 
@@ -63,6 +65,11 @@ module Locomotive
     def as_json_for_html_view
       methods = included_methods.clone - %w(raw_template)
       self.as_json(methods)
+    end
+
+    def save
+      set_editable_elements
+      super
     end
 
   end

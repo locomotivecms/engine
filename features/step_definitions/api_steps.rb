@@ -40,7 +40,9 @@ end
 def get_field_at_path(hash, path)
   val = hash
   path.split('/').each do |key|
-    if val.has_key? key
+    if val.is_a?(Array)
+      val = val[key.to_i]
+    elsif val.has_key?(key)
       val = val[key]
     else
       return nil
@@ -54,7 +56,11 @@ def set_field_at_path(hash, path, value)
   keys = path.split('/')
   last_key = keys.slice!(-1)
   keys.each do |key|
-    obj = obj[key]
+    if obj.is_a?(Array)
+      obj = obj[key.to_i]
+    else
+      obj = obj[key]
+    end
   end
   obj[last_key] = value
 end

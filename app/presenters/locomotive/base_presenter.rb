@@ -50,7 +50,7 @@ class Locomotive::BasePresenter
       # Only call the methods which the presenter can handle
       meth = :"#{attr}="
       if self.respond_to? meth
-        self.send(:"#{attr}=", value)
+        self.send(meth, value)
       end
     end
   end

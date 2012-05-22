@@ -29,11 +29,13 @@ Feature: Editable Elements
       "page": {
         "editable_elements": [
           {
-            "id": %{LONG_TEXT_ID},
+            "slug": "welcome",
+            "block": null,
             "content": "My new welcome content!!!"
           },
           {
-            "id": %{SHORT_TEXT_ID},
+            "slug": "subtitle",
+            "block": "main",
             "content": "My new main content!!!"
           }
         ]
@@ -112,3 +114,84 @@ Feature: Editable Elements
       | 3/editable_elements/1/slug      | "my_long_text"                        |
       | 3/editable_elements/1/block     | "main"                                |
       | 3/editable_elements/1/content   | "<p>The new long text content</p>"    |
+
+  Scenario: Create new editable file on new page
+    Given the JSON request at "page/editable_elements/0/source" is a file
+    When I do an API POST to pages.json with:
+    """
+    {
+      "page": {
+        "title": "New Page",
+        "parent_fullpath": "index",
+        "raw_template": "{% block main %}{% editable_file my_file %}{% endeditable_file %}{% endblock %}",
+        "editable_elements": [
+          {
+            "slug": "my_file",
+            "block": "main",
+            "type": "EditableFile",
+            "source": "images/logo2.jpg"
+          }
+        ]
+      }
+    }
+    """
+    When I do an API GET request to pages.json
+    Then the JSON response at "3/editable_elements" should have 1 entry
+    And the JSON response should have the following:
+      | 3/editable_elements/0/slug      | "my_file"     |
+      | 3/editable_elements/0/block     | "main"        |
+    And the JSON at "3/editable_elements/0/url" should match /logo2.jpg$/
+
+  Scenario: Create new editable file on existing page
+    Given the JSON request at "page/editable_elements/0/source" is a file
+    When I do an API PUT to pages/4f832c2cb0d86d3f42fffffe.json with:
+    """
+    {
+      "page": {
+        "title": "New Page",
+        "parent_fullpath": "index",
+        "raw_template": "{% block main %}{% editable_file my_file %}{% endeditable_file %}{% endblock %}",
+        "editable_elements": [
+          {
+            "slug": "my_file",
+            "block": "main",
+            "type": "EditableFile",
+            "source": "images/logo2.jpg"
+          }
+        ]
+      }
+    }
+    """
+    When I do an API GET request to pages/4f832c2cb0d86d3f42fffffe.json
+    Then the JSON response at "editable_elements" should have 1 entry
+    And the JSON response should have the following:
+      | editable_elements/0/slug    | "my_file"     |
+      | editable_elements/0/block   | "main"        |
+    And the JSON at "editable_elements/0/url" should match /logo2.jpg$/
+
+  Scenario: Create new editable file with no block
+    Given the JSON request at "page/editable_elements/0/source" is a file
+    When I do an API PUT to pages/4f832c2cb0d86d3f42fffffe.json with:
+    """
+    {
+      "page": {
+        "title": "New Page",
+        "parent_fullpath": "index",
+        "raw_template": "{% editable_file my_file %}{% endeditable_file %}",
+        "editable_elements": [
+          {
+            "slug": "my_file",
+            "block": null,
+            "type": "EditableFile",
+            "source": "images/logo2.jpg"
+          }
+        ]
+      }
+    }
+    """
+    When I do an API GET request to pages/4f832c2cb0d86d3f42fffffe.json
+    Then the JSON response at "editable_elements" should have 1 entry
+    And the JSON response should have the following:
+      | editable_elements/0/slug    | "my_file"     |
+      | editable_elements/0/block   | null          |
+    And the JSON at "editable_elements/0/url" should match /logo2.jpg$/

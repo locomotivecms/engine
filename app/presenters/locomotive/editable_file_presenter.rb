@@ -3,14 +3,16 @@ module Locomotive
 
     delegate :content, :to => :source
 
-    delegate :content=, :to => :source
-
     def filename
       File.basename(self.content)
     end
 
     def url
       self.content
+    end
+
+    def source=(value)
+      self.source.source = value
     end
 
     def included_methods
