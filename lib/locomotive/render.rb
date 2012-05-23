@@ -55,7 +55,8 @@ module Locomotive
         'today'             => Date.today,
         'locale'            => I18n.locale,
         'default_locale'    => current_site.default_locale.to_s,
-        'locales'           => current_site.locales
+        'locales'           => current_site.locales,
+	'current_user'      => Locomotive::Liquid::Drops::CurrentUser.new(current_locomotive_account)
       }
 
       assigns.merge!(Locomotive.config.context_assign_extensions)
@@ -85,7 +86,8 @@ module Locomotive
         fresh_when :etag => @page, :last_modified => @page.updated_at.utc, :public => true
 
         if @page.cache_strategy != 'simple' # varnish
-          response.cache_control[:max_age] = @page.cache_strategy
+          response.headers['Editable']      = ''
+          response.cache_control[:max_age]  = @page.cache_strategy
         end
       end
 

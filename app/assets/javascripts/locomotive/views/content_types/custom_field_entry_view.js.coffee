@@ -78,8 +78,10 @@ class Locomotive.Views.ContentTypes.CustomFieldEntryView extends Backbone.View
     form = @$('ol')
 
     if form.is(':hidden')
+      @$('a.toggle').addClass('open')
       form.slideDown()
     else
+      @$('a.toggle').removeClass('open')
       form.slideUp()
 
   show_error: (message) ->

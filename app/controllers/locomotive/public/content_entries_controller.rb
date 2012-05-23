@@ -8,6 +8,8 @@ module Locomotive
 
       skip_before_filter :verify_authenticity_token
 
+      skip_load_and_authorize_resource
+
       self.responder = Locomotive::ActionController::PublicResponder # custom responder
 
       respond_to :html, :json
@@ -15,6 +17,7 @@ module Locomotive
       def create
         @entry = @content_type.entries.create(params[:entry] || params[:content])
         flash[@content_type.slug.singularize] = @entry.to_presenter(:include_errors => true).as_json
+        Rails.logger.debug @entry.to_presenter(:include_errors => true).as_json
         respond_with @entry, :location => self.callback_url
       end
 

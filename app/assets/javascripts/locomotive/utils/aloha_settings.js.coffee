@@ -23,6 +23,11 @@ window.Aloha.settings =
       editables:
         '.editable-short-text': [ ]
 
+    image:
+      ui:
+        insert: false
+        crop:   false
+
   i18n:
     available: ['en', 'fr', 'pt-BR', 'es', 'de', 'no', 'ru', 'nl']
 

@@ -11,4 +11,4 @@ notifications:
 branches:
   only:
     - master
-    - 2.0.0.rc
+    - 1.0-stable

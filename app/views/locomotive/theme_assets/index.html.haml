@@ -27,7 +27,7 @@
 
 - content_for :buttons do
   - if can?(:manage, Locomotive::ThemeAsset)
-    = form_tag theme_assets_url(:json), :id => 'theme-assets-quick-upload', :class => 'quick-upload' do
+    = form_tag theme_assets_url(:json), :id => 'theme-assets-quick-upload', :class => 'quick-upload', :'data-sending-form-message' => t('locomotive.messages.sending_form')  do
       = file_field_tag 'theme_asset[source]', :multiple => 'multiple'
       = local_action_button :quick_upload, '#', :class => 'new'
 

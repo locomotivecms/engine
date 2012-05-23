@@ -4,7 +4,7 @@
 #= require_tree ./views
 
 window.Locomotive =
-  mounted_on:   '/locomotive' # default path
+  mounted_on:   window.Locomotive.mounted_on
   Models:       {}
   Collections:  {}
   Views:        {}

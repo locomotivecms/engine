@@ -131,7 +131,7 @@ describe Locomotive::ContentType do
 
       it 'updates the information about the order of a has_many relationship if the target class changes its order' do
         @content_type.order_by = 'description'; @content_type.order_direction = 'ASC'; @content_type.save!
-        @category_1 = @category_1.class.find(@category_1._id)
+        @category_1 = safe_find(@category_1.class, @category_1._id)
 
         @category_1.projects.metadata.order.should == %w(description ASC)
         @category_1.projects.map(&:name).should == %w(LocomotiveCMS RubyOnRails)
@@ -139,7 +139,9 @@ describe Locomotive::ContentType do
 
       it 'uses the order by position if the UI option is enabled' do
         field = @category_content_type.entries_custom_fields.where(:name => 'projects').first
-        field.ui_enabled = true; @category_content_type.save!; @category_1 = @category_1.class.find(@category_1._id)
+        field.ui_enabled = true;
+
+        @category_content_type.save!; @category_1 = safe_find(@category_1.class, @category_1._id)
 
         @category_1.projects.metadata.order.to_s.should == 'position_in_category'
         @category_1.projects.map(&:name).should == %w(LocomotiveCMS RubyOnRails)
@@ -282,6 +284,13 @@ describe Locomotive::ContentType do
         lambda { asset.active_at }.should raise_error
       end
 
+      it 'removes the field used as the label when setting the original label_field_name value before' do
+        @content_type.label_field_name = 'name'
+        @content_type.entries_custom_fields.destroy_all :conditions => { :name => @content_type.label_field_name }
+        @content_type.save
+        @content_type.label_field_name.should == 'description'
+      end
+
       it 'renames field label' do
         @content_type.entries_custom_fields[1].label = 'Simple description'
         @content_type.entries_custom_fields[1].name = nil
@@ -335,6 +344,11 @@ describe Locomotive::ContentType do
       content_type.entries_custom_fields.build :label => 'Active at',   :type => 'date'
       block.call(content_type) if block_given?
     end
+  end
+
+  def safe_find(klass, id)
+    Mongoid::IdentityMap.clear
+    klass.find(id)
   end
 
   def build_content_entry(content_type)

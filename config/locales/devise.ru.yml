@@ -7,7 +7,7 @@ ru:
 
   devise:
     failure:
-      locomotive:
+      locomotive_account:
         unauthenticated: 'Вам необходимо войти или зарегистрироваться перед тем, как продолжить.'
         unconfirmed: 'Вы должны подтвердить аккаунт перед продолжением.'
         locked: 'Ваш аккаунт заблокирован.'
@@ -17,34 +17,34 @@ ru:
         timeout: 'Срок действия вашей сессии истек, пожалуйста залогиньтесь для продолжения.'
         inactive: 'Ваш аккаунт еще не был активирован.'
     sessions:
-      locomotive:
+      locomotive_account:
         signed_in: 'Вход выполнен успешно.'
         signed_out: 'Выход выполнен успешно.'
     passwords:
-      locomotive:
+      locomotive_account:
         send_instructions: 'Вы получите письмо с инструкциями о том, как сбросить ваш пароль, через несколько минут.'
         updated: 'Ваш пароль был успешно изменен. Вы вошли в систему.'
     confirmations:
-      locomotive:
+      locomotive_account:
         send_instructions: 'Вы получите письмо с инструкциями о том, как подтвердить ваш аккаунт, через несколько минут.'
         confirmed: 'Ваша учетная запись была успешно подтверждена. Вы вошли в систему.'
     registrations:
-      locomotive:
+      locomotive_account:
         signed_up: 'Вы успешно зарегистрировались.'
         updated: 'Вы успешно обновили ваш аккаунт.'
         destroyed: 'До свидания! Ваш аккаунт был успешно отменен. Мы надеемся скоро увидеть вас снова.'
     unlocks:
-      locomotive:
+      locomotive_account:
         send_instructions: 'Вам будет отправлено письмо с инструкциями о том, как разблокировать ваш аккаунт, в течение нескольких минут.'
         unlocked: 'Ваша учетная запись была успешно разблокирована. Вы вошли в систему.'
     mailer:
-      locomotive:
+      locomotive_account:
         confirmation_instructions: 'Инструкции подтверждения'
         reset_password_instructions: 'Инструкции по сбросу пароля'
         unlock_instructions: 'Инструкции по разблокированию'
-        
-        
-  locomotive:
+
+
+  locomotive_account:
     mailer:
       common:
         hello: Здравствуйте

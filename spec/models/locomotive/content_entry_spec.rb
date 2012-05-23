@@ -149,6 +149,11 @@ describe Locomotive::ContentEntry do
       @content_entry._permalink.should == 'my-test'
     end
 
+    it 'accepts non-latin chars' do
+      @content_entry.title = "абракадабра"; @content_entry.send(:set_slug)
+      @content_entry._permalink.should == 'abrakadabra'
+    end
+
     it 'also accepts a file field as the highlighted field' do
       @content_entry.stubs(:_label_field_name).returns('file')
       @content_entry.file = FixturedAsset.open('5k.png'); @content_entry.send(:set_slug)
@@ -197,7 +202,7 @@ describe Locomotive::ContentEntry do
       @account_2 = FactoryGirl.build('frenchy user', :id => fake_bson_id('2'))
 
       @content_type.public_submission_enabled = true
-      @content_type.public_submission_accounts = ['', @account_1._id, @account_2._id]
+      @content_type.public_submission_accounts = ['', @account_1._id, @account_2._id.to_s]
 
       site = FactoryGirl.build(:site)
       site.stubs(:accounts).returns([@account_1, @account_2])

@@ -63,12 +63,9 @@ module Locomotive
             conditions  = HashWithIndifferentAccess.new(@context['with_scope'])
             order_by    = conditions.delete(:order_by).try(:split)
 
-            if order_by.nil?
-              list.where(conditions).ordered
-            else
-              list.where(conditions).order_by(order_by)
-            end
+            list.filtered(conditions, order_by)
           else
+            # no filter, default order
             list.ordered
           end
         end

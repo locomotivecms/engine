@@ -1,5 +1,4 @@
-ru:
-
+ru:  
   errors:
       messages:
         domain_taken: "%{value} уже занято"
@@ -8,16 +7,15 @@ ru:
         protected_page: "Вы не можете удалять стартовую или 404 страницы"
         extname_changed: "Новый файл не имеет оригинального расширения"
         array_too_short: "слишком мал (минимальное число элементов %{count})"
-        liquid_syntax: "Ошибка синтаксиса Liquid ('%{error}')"
         invalid_theme_file: "не может быть пустым или не является zip файлом"
-
-        too_short: "слишком короткий (не менее %{count} символов)"
-        blank: "не может быть пустым"
-        invalid: "имеет неверное значение"
-        confirmation: "не совпадает с подтверждением"
+        site:
+          default_locale_removed: Предыдущая локаль не может быть удалена.
         page:
           liquid_syntax: "Ошибка синтаксиса Liquid ('%{error}' в '%{fullpath}')"
-          liquid_extend: "Страница '%{fullpath}' расширяет шаблон, который не существует"
+          liquid_extend: "Страница '%{fullpath}' наследует (расширяет) несуществующий шаблон"
+          liquid_translation: "Страница '%{fullpath}' наследует (расширяет) непереведенный шаблон"
+        too_few_custom_fields: "По крайней мере одно поле является обязательным"
+        security: "проблема безопасности"  
 
   attributes:
     defaults:

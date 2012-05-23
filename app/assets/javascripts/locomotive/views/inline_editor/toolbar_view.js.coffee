@@ -1,6 +1,6 @@
-Locomotive.Views.InlinEditor ||= {}
+Locomotive.Views.InlineEditor ||= {}
 
-class Locomotive.Views.InlinEditor.ToolbarView extends Backbone.View
+class Locomotive.Views.InlineEditor.ToolbarView extends Backbone.View
 
   el: '#toolbar .inner'
 
@@ -13,8 +13,6 @@ class Locomotive.Views.InlinEditor.ToolbarView extends Backbone.View
   render: ->
     super
 
-    console.log('render toolbar')
-
     @enable_editing_mode_checkbox()
 
     @enable_content_locale_picker()
@@ -22,8 +20,6 @@ class Locomotive.Views.InlinEditor.ToolbarView extends Backbone.View
     @
 
   notify: (aloha_editable) ->
-    console.log('editable_element has been modified...')
-
     window.bar = aloha_editable
 
     element_id  = aloha_editable.obj.attr('data-element-id')
@@ -125,8 +121,6 @@ class Locomotive.Views.InlinEditor.ToolbarView extends Backbone.View
     context.find('span.text').html(values[1])
 
   refresh: ->
-    console.log('refreshing toolbar...')
-
     @$('h1').html(@model.get('title')).removeClass()
 
     if @$('.editing-mode input[type=checkbox]').is(':checked')

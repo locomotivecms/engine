@@ -31,6 +31,7 @@ fr:
 
     messages:
       confirm: "Êtes-vous sûr(e) ?"
+      sending_form: "Votre formulaire est en cours d'envoi"
 
     shared:
       header:
@@ -57,6 +58,7 @@ fr:
         create: Créer
         update: Mettre à jour
         send: Envoyer
+        disable_with: En cours...
 
     notifications:
       new_content_entry:
