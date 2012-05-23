@@ -86,7 +86,7 @@ module Locomotive
     
     def label_field_id=(value)
       # update the label_field_name if the label_field_id is changed
-      new_label_field_name = self.entries_custom_fields.find(value).name rescue nil
+      new_label_field_name = self.entries_custom_fields.where(:_id =>value).first.try(:name)
       self.label_field_name = new_label_field_name
       super(value)
     end
