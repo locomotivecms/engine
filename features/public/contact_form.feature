@@ -4,6 +4,7 @@ Feature: Contact form
   I want to be able to send them a message
 
   Background:
+    Given I enable the CSRF protection for public submission requests
     Given I have the site: "test site" set up
     And I have a custom model named "Messages" with
       | label       | type      | required    |
@@ -16,6 +17,7 @@ Feature: Contact form
         <head></head>
         <body>
           <form action="{{ contents.messages.public_submission_url }}" method="post">
+            {% csrf_param %}
             <input type="hidden" value="/success" name="success_callback" />
             <input type="hidden" value="/contact" name="error_callback" />
             <label for="email">E-Mail Address</label>
@@ -50,6 +52,20 @@ Feature: Contact form
 
   Scenario: Sending a message with success
     When I view the rendered page at "/contact"
+    And I fill in "E-Mail Address" with "did@locomotivecms.com"
+    And I fill in "Message" with "LocomotiveCMS rocks"
+    And I press "Submit"
+    Then I should see "Thanks did@locomotivecms.com"
+
+  Scenario: Can not send a message if the csrf tag is missing
+    Given I delete the following code "{% csrf_param %}" from the "contact" page
+    When I view the rendered page at "/contact"
+    And I press "Submit"
+    Then I should see "Content of the home page"
+
+  Scenario: Can send a message if the csrf protection is disabled
+    Given I disable the CSRF protection for public submission requests
+    And I view the rendered page at "/contact"
     And I fill in "E-Mail Address" with "did@locomotivecms.com"
     And I fill in "Message" with "LocomotiveCMS rocks"
     And I press "Submit"

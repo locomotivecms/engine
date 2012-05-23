@@ -28,6 +28,13 @@ module Mongoid#:nodoc:
     end
   end
 
+  module Criterion
+    class Selector < Hash
+      # for some reason, the store method behaves differently than the []= one, causing regression bugs (query not localized)
+      alias :store :[]=
+    end
+  end
+
   # without callback feature
   module Callbacks #:nodoc:
     module ClassMethods #:nodoc:

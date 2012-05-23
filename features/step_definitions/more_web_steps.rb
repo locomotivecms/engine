@@ -39,3 +39,18 @@ end
 When /^I reload the page$/ do
   visit current_path
 end
+
+Given /^I enable the CSRF protection for public submission requests$/ do
+  Locomotive.config.csrf_protection = true
+  Locomotive::Public::ContentEntriesController.any_instance.stubs(:protect_against_forgery?).returns(true)
+end
+
+Given /^I disable the CSRF protection for public submission requests$/ do
+  Locomotive.config.csrf_protection = false
+  # pending # express the regexp above with the code you wish you had
+end
+
+Then /^it returns a (\d+) error page$/ do |code|
+  puts page.status_code
+  page.status_code.should == code.to_i
+end
