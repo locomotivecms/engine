@@ -176,7 +176,7 @@ body {
         }
       }
 
-      input[type=submit] {
+      input[type=submit], button[type=submit] {
         @include light-button;
       }
 

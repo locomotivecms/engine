@@ -22,6 +22,7 @@ en:
 
     messages:
       confirm: Are you sure ?
+      sending_form: Your form is being submitted
 
     shared:
       header:
@@ -48,6 +49,7 @@ en:
         create: Create
         update: Save
         send: Send
+        disable_with: Pending...
       list:
         untranslated: untranslated
       footer:
@@ -193,6 +195,7 @@ en:
       index:
         title: Listing theme files
         help: "The theme files section is the place where you manage the files needed by your layout, snippets...etc. If you need to manage an image gallery, create a new content type instead.<br/><b>Warning:</b> you may not see all the assets depending on your rights."
+        quick_upload: Quick upload
         new: new file
         snippets: Snippets
         css_and_js: Style and javascript

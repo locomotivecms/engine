@@ -35,4 +35,10 @@ describe Locomotive::Liquid::Filters::Date do
     format_date(@date).should == '06/29/2007'
   end
 
+  it 'prints a date within a template (from the documentation)' do
+    template  = Liquid::Template.parse("{{ today | localized_date: '%d %B', 'fr' }}")
+    context   = Liquid::Context.new({}, { 'today' => @date }, {})
+    template.render(context).should == '29 juin'
+  end
+
 end

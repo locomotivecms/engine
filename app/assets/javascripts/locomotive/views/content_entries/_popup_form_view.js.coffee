@@ -50,6 +50,8 @@ class Locomotive.Views.ContentEntries.PopupFormView extends Locomotive.Views.Con
       parent_el.find('.new-section').hide()
       parent_el.find('.edit-section').show()
 
+    @clear_errors()
+
     $(@el).dialog('open')
 
   close: (event) ->

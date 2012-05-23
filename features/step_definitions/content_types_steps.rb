@@ -39,6 +39,14 @@ Given %r{^I have entries for "([^"]*)" with$} do |name, entries|
   content_type.save.should be_true
 end
 
+Given %r{^I (enable|disable) the public submission of the "([^"]*)" model$} do |action, name|
+  enabled = action == 'enable'
+  content_type = Locomotive::ContentType.where(:name => name).first
+  content_type.public_submission_enabled  = enabled
+  content_type.public_submission_accounts = enabled ? [Locomotive::Account.first._id] : []
+  content_type.save.should be_true
+end
+
 When %r{^I change the presentation of the "([^"]*)" model by grouping items by "([^"]*)"$} do |name, field|
   content_type = Locomotive::ContentType.where(:name => name).first
   field = content_type.entries_custom_fields.detect { |f| f.label == field }

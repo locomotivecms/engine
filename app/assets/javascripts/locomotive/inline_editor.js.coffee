@@ -12,6 +12,7 @@
 #= require_self
 #= require_tree ./utils
 #= require_tree ./models
+#= require_tree ./views/content_assets
 #= require_tree ./views/inline_editor
 
 window.Locomotive =

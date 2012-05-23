@@ -19,6 +19,7 @@ require 'cancan'
 require 'RMagick'
 require 'cells'
 require 'sanitize'
+require 'unidecoder'
 
 require 'compass'
 require 'codemirror/rails'

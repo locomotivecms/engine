@@ -33,24 +33,6 @@
 
 /* ___ list ___ */
 
-p.no-items {
-  background: #fffbe6;
-  border: 5px solid #eee3a8;
-  @include border-radius(25px);
-
-  padding: 15px 0px;
-
-  text-align: center;
-  color: #9d8963;
-  font-size: 16px !important;
-  @include single-text-shadow(rgba(255, 255, 255, 1), 1px, 1px, 1px);
-
-  a {
-    @include hover-link;
-    color: #ff2900;
-  }
-}
-
 ul.list {
   background: #fff;
   list-style: none;
@@ -314,6 +296,29 @@ ul.list {
   }
 }
 
+/* ___ form notification ___ */
+
+#form-submit-notification {
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  z-index: 9999;
+
+  > div {
+    padding: 5px 10px;
+
+    background-color: #fffbe5;
+    border-left: 4px solid #efe4a5;
+    border-bottom: 4px solid #efe4a5;
+
+    text-align: center;
+    @include single-text-shadow(rgba(255, 255, 255, 1), 0px, 1px, 0px);
+    font-weight: bold;
+    font-size: 12px;
+    color: #aa9a79;
+  }
+}
+
 /* ___ paragraph (for help for example) ___ */
 
 p span.code {
@@ -323,19 +328,3 @@ p span.code {
   color: #8B8D9A;
   @include single-text-shadow(#fff, 0px, 0px, 1px);
 }
-
-/* ___ quick upload ___ */
-
-form.quick-upload {
-  display: inline;
-
-  input[type=file] {
-    visibility: hidden;
-  }
-
-}
-
-
-
-
-

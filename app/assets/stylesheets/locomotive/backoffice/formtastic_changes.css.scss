@@ -157,6 +157,10 @@ form.formtastic {
               &:hover {
                 background-image: image-url("locomotive/list/icons/toggle.png");
               }
+              &.open {
+                @include rotate(180deg);
+              }
+              @include single-transition(transform, 0.5s);
             }
 
             &.drag {
@@ -290,6 +294,17 @@ form.formtastic {
             }
           }
         } // li.string, li.password
+
+        &.text {
+
+          &.short textarea {
+            padding: 5px;
+            height: 28px;
+            width: 696px;
+            overflow-y: hidden;
+          }
+
+        } // li.text
 
         &.locale, &.locales {
           .list {

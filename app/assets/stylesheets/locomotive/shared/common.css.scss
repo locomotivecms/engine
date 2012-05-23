@@ -1,0 +1,34 @@
+@import "compass/css3/border-radius";
+@import "compass/css3/text-shadow";
+@import "locomotive/shared/helpers";
+
+/* ___ quick upload ___ */
+
+form.quick-upload {
+  display: inline;
+
+  input[type=file] {
+    visibility: hidden;
+  }
+
+}
+
+/* ___ list ___ */
+
+p.no-items {
+  background: #fffbe6;
+  border: 5px solid #eee3a8;
+  @include border-radius(25px);
+
+  padding: 15px 0px;
+
+  text-align: center;
+  color: #9d8963;
+  font-size: 16px !important;
+  @include single-text-shadow(rgba(255, 255, 255, 1), 1px, 1px, 1px);
+
+  a {
+    @include hover-link;
+    color: #ff2900;
+  }
+}

@@ -48,6 +48,7 @@ de:
         create: Neu
         update: Speichern
         send: Senden
+        disable_with: "locomotive.disable_with.form_actions"
       footer:
         who_is_behind: "Dienst entwickelt von %{development} und entworfen von <a href=\"http://www.sachagreif.com\">Sacha Greif</a> &mdash; <small>version</small> %{version}"
 

@@ -37,9 +37,13 @@ module Locomotive
 
         module InstanceMethods
 
+          def subdomain=(subdomain)
+            super(subdomain.try(:downcase))
+          end
+
           def domains=(array)
             array.reject!(&:blank?)
-            array = [] if array.blank?; super(array)
+            array = [] if array.blank?; super(array.map(&:downcase))
           end
 
           def add_subdomain_to_domains

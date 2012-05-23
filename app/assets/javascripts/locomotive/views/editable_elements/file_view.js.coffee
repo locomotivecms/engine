@@ -38,7 +38,8 @@ class Locomotive.Views.EditableElements.FileView extends Backbone.View
       on_change: =>
         @$('a:first').hide() & @$('input[type=file]').show() & @$('a.delete').hide()
       on_cancel: =>
-        @$('a:first').show() & @$('input[type=file]').hide() & @$('a.delete').show()
+        @model.set(source: null)
+        @$('a:first').show() & @$('input[type=file]').val('').hide() & @$('a.delete').show()
 
   toggle_delete: (event) ->
     @_toggle event, 'delete',

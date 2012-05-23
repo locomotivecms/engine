@@ -31,6 +31,7 @@ pt-BR:
         create: Criar
         update: Atualizar
         send: Enviar
+        disable_with: "locomotive.disable_with.form_actions"
 
     errors:
       "500":

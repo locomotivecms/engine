@@ -1,10 +1,10 @@
 - if field.ui_enabled?
   - target_content_type = Locomotive::ContentType.class_name_to_content_type(field.class_name, current_site)
 
-  = f.input     name.to_sym,
-    :label      => field.label,
-    :hint       => field.hint,
-    :as         => :'Locomotive::Empty',
+  = f.input       name.to_sym,
+    :label        => field.label,
+    :hint         => field.hint,
+    :as           => :'Locomotive::Empty',
     :wrapper_html => { :id => "content_entry_#{name}_input", :class => 'empty relationship input' }
 
   - content_for :head do
@@ -38,4 +38,4 @@
 
   - content_for :backbone_view_data do
     :plain
-      , all_#{name}_entries: #{target_content_type.list_or_group_entries.to_json}
+      , all_#{name}_entries: #{target_content_type.list_or_group_entries.to_json(:depth => 1)}

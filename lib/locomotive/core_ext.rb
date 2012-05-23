@@ -5,7 +5,7 @@
 class String #:nodoc
 
   def permalink
-    self.parameterize('-')
+    self.to_ascii.parameterize('-')
   end
 
   def permalink!

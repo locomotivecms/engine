@@ -9,3 +9,425 @@ x page with regexp url => wildcards
   - find_spec
   - features
 - clean code
+x namespace assets
+x bugs:
+  x toggler
+  x advanced options (redirect url missing)
+  x locomotive_media (not animating on open)
+  x undefined method `_selector' for #<Locomotive::Page:0x00000107434768>
+x editable_elements => view + handlebar template
+x editable_short_text => tinymce
+x editable_file =>
+  x backbone / handlebar
+  x new formtastic inputs
+x menu / submenu in full css3 (no images)
+x fix css in firefox
+x update page in ajax
+x edit my site
+  x css
+  x robots.txt
+  x domains
+  x roles
+  x save
+x fix other sections
+  x edit my account
+  x create a new site
+  x create a new accounts
+  x theme assets
+    x polish the page
+    x snippets
+    x delete in ajax
+    x upload many files at once
+  x import/export
+    x export
+  x site picker
+  x content types
+    x move content instances into their own collection
+    x manage custom_fields
+      x automatic name
+      x required
+      x editable plugin: add class depending on the type => surrounding span instead
+      x position
+      x open the nested form
+      x remove an entry
+      x look n feel
+      x display errors
+      x slugify
+      x refactor highlighted_field (field id instead of name)
+      x other content type options
+      x show / hide options of a field based on its type
+        x select: add/edit/remove options
+        x text: formatting
+    x change in main menu
+    x manage contents
+      x list (highlighted field)
+      x slugify
+      x crud
+        x new
+          x date
+          x checkbox
+          x html
+          x file
+        x edit
+        x destroy
+    x public_form (previously api something)
+    x bug text formatting
+    x custom_fields: use the appropriate icon to drag select options
+    x bug ui with contents popup
+    x use list_or_group_entries instead of ordered_entries
+x i18n
+  x add locales a site responds to
+  x locale switcher
+  x constraint: one locale at least
+  x front
+    x pages
+    x inline-editor
+  x back to default locale (if changed in settings) and when creating new pages / entries
+- inline editor
+  x rack
+  x iframe
+  (- remove inline-editor tag)
+  x save editable elements
+  x notification (growl)
+  x change page
+  x i18n
+  - style the "ADMIN" button
+  - aloha:
+    x remove sidebar
+    - i18n
+    - insert image
+x deployment
+  x fix integration problems
+  x pre-compile assets
+x API
+  x authentication from a token + controller to deliver a token
+  x api routes
+  x change api location
+  (- add a way to custom the as_json method within the presenters (by  default as_json ?) + custom responder ?)
+  x REST actions:
+    x CRUD theme assets
+    x CRUD snippets
+    x CRUD content assets
+    x CRUD pages
+    x CRUD content types
+    x data ?
+x script to migrate existing site
+  x i18n
+x upgrade to rails 3.2 (https://github.com/locomotivecms/engine/pull/281/files)
+x missing custom_fields
+  x belongs_to
+  x has_many
+  x many_to_many
+x simplify cells integration when modifying a menu from the main app
+x heroku module for locomotive
+x refactoring
+  x remove the import / export scripts
+  x remove the cross domain authentication (use auth_token instead)
+  x where to put Locomotive::InlineEditorMiddleware ?
+x global regions: keyword in editable element (http://www.mongodb.org/display/DOCS/Updating)
+x override sort for contents
+
+- bugs / ui tweaks
+  x unable to toggle the "required" check_boxes for content types
+  x unable to sign out
+  x unable to remove a field
+  x "back to admin" link does not work if inline editor disabled
+  x unable to delete memberships
+  x disallow to click twice on the submit form button (spinner ?)
+  x weird behaviour when changing the default locale of a site
+  - editable_elements does not display the first time they get created (and if there are no existing ones)
+  - display by categories does not work when localized
+  - message to notify people if their browser is too old
+
+? install a site by default at the first installation (without asking)
+
+BACKLOG:
+
+- custom_fields:
+  - validation: regexp (pre-defined regexps ?)
+  x new type: belongs_to => association
+- inline editing (http://www.aloha-editor.com/wiki/index.php/Aloha_PHP_Example)
+  - html view in the aloha popup
+  - editable elements should wrap a tag: div, h1, ...etc (default span)
+  - edit images (upload new ones, ...etc) => wait for aloha or send them an email ?
+- cucumber features for admin pages (in progress)
+(- duostack/doutcloud version)
+- write my first tutorial about locomotive
+- upgrade warning if new version of locomotive (maybe based on the commit id)
+- deploying workflow:
+  - roll back a bad update
+  - conflicts with content types
+  - dev -> staging -> production
+  - sync data
+  - import only theme assets
+- endless pagination
+
+- tooltip to explain the difference between 1.) Admin 2.) Author 3.) Designer?
+- [bushido] guiders / welcome page / devise cas authentication (SSO)
+
+REFACTORING:
+
+  - move content_type and content_instances in the CustomFields plugin (much more appropriate)
+
+BUGS:
+  x mode author: settings KO + editable elements non visibles
+  x locales pour le locomotive editor => KO
+  ! impossible de sauvegarder une page
+
+
+NICE TO HAVE:
+- export site
+- super_finder
+- traffic statistics
+- asset picker (content instance)
+- page with regexp url ?
+- automatic update !
+- page not found (front) => if logged in, link to create the page
+- switch to list (theme assets / assets ?). delete all in once (with checkbox) or see details (updated_at, size, ...etc)
+- code completion ? http://blog.quplo.com/2010/06/common-sense-code-completion/
+
+DONE:
+
+x tiny mce or similar for custom field text type.
+x refactor custom field types
+x new custom field types
+  x boolean
+x enable/disable text formatting
+x custom fields for asset collections
+x [BUG] impossible to remove many assets in an asset collection
+x new custom field type: date
+x missing key: en, admin, theme_assets, images, no_items
+x new custom field type: file
+  x update custom_fields plugin
+  x locomotive ui
+  x liquid templates
+x rss parser
+x localize application in French
+  x default
+  x devise
+  x carrierwave
+  x localize devise emails
+  x admin
+x change credits in the admin footer
+x license
+x textile filter
+x [bug] varnish can not be refreshed in heroku so "max-age" has to be disabled => modify cache strategy
+x "remember me" should always be enabled
+x sitemap
+x refactoring admin crud (pages + layouts + snippets)
+x flash messages in French
+x save layout / snippet / page / stylesheet / javascript with CMD + S (ajax)
+x change action icons according to the right action [Sacha]
+x publish event when saving form in ajax (for instance, in order to update account name or site name)
+x page templatized (bound to a model)
+x theme asset picker when editing layout / snippet
+x templatized: do not display content with visible / active set to false
+x theme assets: disable version if not image (handled by the new version of Carrierwave)
+x rack app to map pretty asset url to S3 => shortcut urls instead
+x site selector (cross domain authentication)
+x nice error page
+x nice 404 page (admin section)
+x liquid inheritance
+x bug editable_xxx disabled for nil block
+! duplicated block name
+x display liquid errors
+x theme assets selector in page editor
+x saving page in ajax
+x editable_long_text tag
+x blocking issue when modifying the parent of 2 templates => one of the 2 children has reference of the first child
+x editable_file tag
+x stylish file field
+x remove not used editable element all in once
+x default content from parent editable element
+x unable to upload/remove editable file
+x customize tinyMCE: no html popup => div popup, nice icons
+x add images / files inside long text element (back-office side at first ?)
+x create a repo for a tool "a la" vision
+x asset collections => liquid
+x images tag to write
+! apply http://github.com/flori/json/commit/2c0f8d2c9b15a33b8d10ffcb1959aef54d320b57
+x snippet dependencies => do not work correctly
+? google analytics tag
+x mask internal asset_collections
+x refactor ui for the theme assets page
+x fix assets liquid tags / filters
+x upload and insert new images in a css or js from the ui is broken
+x proxy for fonts (http://markevans.github.com/dragonfly/file.Rails3.html)
+x order yaml file (http://www.ruby-forum.com/topic/120295)
+x fix tests
+x inline editing (http://www.aloha-editor.com/wiki/index.php/Aloha_PHP_Example)
+  x spinner
+  x save automatically (callback) => store modifications
+  x admin buttons
+    x edit page
+    x save / cancel
+    x back to back-office => admin settings of the page
+    (- duplicate page ?)
+    (- super bonus statistics)
+  x locale
+  x store page toolbar status in cookie
+  x trim short text content
+  x namespace js functions
+x import tool:
+  x select field (see custom fields and nocoffee theme) ?
+  x disable sub tasks by passing options
+  x exceptions
+  x page to import theme
+  x contents: group_by, oder_by, api_enabled
+  x folders for theme assets
+  x theme assets whitelist
+  x fonts
+  x asset collections
+x rewrite the unzip process (for the import)
+x bug with asset collections (assets disappear if we save the collection ?!)
+x import tool:
+  x asset whitelist
+  x do not override existing site name
+  x add samples option
+    x content types
+    x asset collections
+  x page templatized (tied to content type)
+  x remove existing pages / contents option => reset
+  x give choice to reset site / add samples
+  x french translatations
+x cosmetic / ui bugs / bugs:
+  x segmentation fault with with_scope
+  x paginate is not working
+  x redirection in dev does not work correctly for cross domain
+  x drag&drop for assets ('last' class issue)
+  x increase the input field width for domain names
+  x assets within custom contents are not deleted when the whole content type gets destroyed (after_destroy callback ?)
+x api
+  x handle html request (for now, it's just json)
+x installation guide
+  x detect if new installation
+  x no-site error redirects to the first step
+  x steps:
+    x welcome: domains, ...etc
+    x Create account
+    x Create new site (name, subdomain) / Import theme (worker or list of sites from fs)
+x import:
+  x ordered pages ?
+  x order_by for content_types ? created_at, updated_at
+x liquid:
+  x nav
+    x no_wrapper option
+    x regexp to get rid of some pages
+  x filters
+    x default_pagination: labels
+x [content types] the "display column" selector should not include file types
+x Worker => Heroku / S3 (not so sure finally)
+x jammit-s3: assets
+x copy assets.yml config file when using it as gem (http://asciicasts.com/episodes/218-making-generators-in-rails-3)
+x import theme without delayed_job
+x rspec 2.3
+x ruby 1.9.2:
+  x DelayedJob not working
+x new version of Aloha-Editor
+x locomotive gem: test with staging
+x nav tag:
+  x site | page | parent
+  x retrieve only important page information from mongodb
+x published by default when importing pages
+x page redirection
+x notify accounts when new instance of models (opt): none, one or many accounts. Used for contact form.
+  x implementation
+  x emails
+  x tests
+x fix bug issue about (custom fields)
+x moving to mongoid 2.0.0 rc.6
+  x accepts_nested_attributes (javascript part)
+  x check the theme uploader
+  x release new version of CustomFields, ActsAsTree gems
+x add metadata to sites
+x pull requests #31 et #32
+x password / new_password
+x bugs
+  x custom_fields not deleted (doesn't use index anymore)
+  ? editable_elements slug becomes nil
+  x editable_elements not updated (doesn't use index anymore)
+  x uploading videos http://groups.google.com/group/carrierwave/browse_thread/thread/6e211d98f1ff4bc0/51717c2167695ca2?lnk=gst&q=version#51717c2167695ca2
+x custom fields: accepts_nested_attributes weird behaviour when creating new content type + adding random fields
+x better icons for mime type (css3)
+x validation for custom fields: required done
+x pull request #44
+x bug on dates (https://github.com/locomotivecms/engine/issues#issue/48)
+x generated sitemaps are invalid (url + date)
+x integrate new locomotivecms home
+x seo section for the page form: seo title, seo keywords, seo description
+x bugs: #50, #51
+x 2 different sites on the same main domain (one in www, the other one in something else) (Raphael Costa)
+! asset collections: custom resizing if image
+x bushido version
+  x default template
+~ editable_elements: inheritable: false (Mattias) => seems to be fixed by Dirk's last pull request (#44) => content tag
+x resizing images on the fly
+x locomedia tinyMCE plugin (Bernd)
+x remove asset_collections
+  x site templates
+  x tinyMCE plugin
+  x vignette.rb
+  x code
+  x helpers
+  x ui
+  x rake task
+  x internal collection
+    x assign same _id
+x pick up a theme_asset
+x pull request locomedia
+x refactor slugify method (use parameterize + create a module)
+x contents permalink (UI)
+x BUG: has_one / has_many. Delete an author
+x bushido changes in the master
+? edit sidebar (inline editor). Unable to reset it
+x SEO: support and support/ should be 2 different pages. Remove trailing slash
+x issue #91: httparty
+x issue #90: seo metadata
+x issue #57: seo page title
+x issue #56
+x tweak ui: form, quick link to edit a model in the popup menu
+x Has_one => group by in the select
+x better hints:
+  x notify the user that after changing the page title, they still have to click "update" for the change to be saved
+  x created_by ASC => "Creation date ascending"
+x cancan: (authors / designers / admin)
+  x model
+  x ui
+  x controllers / views:
+    x page
+    x content / content type
+    x asset
+    x site
+    x account
+    x snippet
+    x theme asset
+  x features / specs
+x enable rack-cache only for a specific url
+x more cucumber tests for the content types
+x check hosting:
+  x heroku
+  x bushi.do
+    x unable to reach the console
+    x deploy => okay
+    x unable to set a new subdomain
+x liquid tag: Date.today (now), add a test to compare 2 dates
+? better ui: increase text field length (auto sizable ?) + refactor error message
+  - trigger refresh at startup
+x bugs
+  x heroku: unable to upload a new file => okay
+  x import => okay
+  x delete an item => okay
+x bug: duplicate fields (new entry) when errors in the content type form
+x tinyMCE => fullscreen
+x export site
+x rake task to import a remote template
+x MERGE
+x remove withelist for assets since we've got now roles
+x admin role is not correctly set when creating a new website
+x the required star for file field is not shown
+x Rights to set roles (ticket #104)
+x export: problems with templatized pages (source => multi levels pages)
+x do not rename files for fonts
+x icon for redirection page in the pages section (back-office)
+x installed on heroku with source
+x test and/or convert existing templates (the 2 of the themes section)

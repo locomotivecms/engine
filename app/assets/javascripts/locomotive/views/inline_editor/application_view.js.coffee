@@ -1,8 +1,8 @@
-Locomotive.Views.InlinEditor ||= {}
+Locomotive.Views.InlineEditor ||= {}
 
 #= require ./toolbar_view
 
-class Locomotive.Views.InlinEditor.ApplicationView extends Backbone.View
+class Locomotive.Views.InlineEditor.ApplicationView extends Backbone.View
 
   el: 'body'
 
@@ -13,7 +13,9 @@ class Locomotive.Views.InlinEditor.ApplicationView extends Backbone.View
 
     _.bindAll(@, '_$')
 
-    @toolbar_view = new Locomotive.Views.InlinEditor.ToolbarView(target: @iframe)
+    @toolbar_view = new Locomotive.Views.InlineEditor.ToolbarView(target: @iframe)
+
+    @content_assets_picker_view = new Locomotive.Views.ContentAssets.PickerView(collection: new Locomotive.Models.ContentAssetsCollection())
 
   render: ->
     super
@@ -26,15 +28,13 @@ class Locomotive.Views.InlinEditor.ApplicationView extends Backbone.View
     iframe = @iframe
 
     iframe.load =>
-      console.log('iframe loading')
-
       if @_$('meta[name=inline-editor]').size() > 0
         # bind the resize event. When the iFrame's size changes, update its height
-        iframe_content = iframe.contents().find('body')
+        iframe_content = iframe.contents()
         iframe_content.resize ->
           elem = $(this)
 
-          if elem.outerHeight(true) > $('body').outerHeight(true) # Resize the iFrame.
+          if elem.outerHeight(true) > iframe.outerHeight(true) # Resize the iFrame.
             iframe.css height: elem.outerHeight(true)
 
         # Resize the iFrame immediately.
@@ -46,8 +46,6 @@ class Locomotive.Views.InlinEditor.ApplicationView extends Backbone.View
         @enhance_iframe_links()
 
   set_page: (attributes) ->
-    console.log('set_page')
-
     @page = new Locomotive.Models.Page(attributes)
 
     @toolbar_view.model = @page
@@ -78,7 +76,7 @@ class Locomotive.Views.InlinEditor.ApplicationView extends Backbone.View
     _jQuery('a').each ->
       link  = _jQuery(this)
       url   = link.attr('href')
-      if url? && url.indexOf('#') != 0 && /^(www|http)/.exec(url) == null && /(\/_edit)$/.exec(url) == null
+      if url? && url.indexOf('#') != 0 && /^(www|http)/.exec(url) == null && /(\/_edit)$/.exec(url) == null && /^\/sites\//.exec(url) == null
         url = '/index' if url == '/'
 
         unless url.indexOf('_edit') > 0

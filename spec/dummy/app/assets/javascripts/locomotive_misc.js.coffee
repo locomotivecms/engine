@@ -1,0 +1,2 @@
+# FIXME: just to demonstrate how easy it is to change the tinymce settings for the LocomotiveCMS back-office
+# window.Locomotive.tinyMCE.defaultSettings.theme_advanced_buttons2 = 'formatselect,fontselect,fontsizeselect'

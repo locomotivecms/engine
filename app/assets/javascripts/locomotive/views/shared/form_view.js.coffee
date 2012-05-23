@@ -16,6 +16,9 @@ class Locomotive.Views.Shared.FormView extends Backbone.View
     # allow users to save with CTRL+S or CMD+s
     @enable_save_with_keys_combination()
 
+    # enable form notifications
+    @enable_form_notifications()
+
     return @
 
   save: (event) ->
@@ -23,6 +26,8 @@ class Locomotive.Views.Shared.FormView extends Backbone.View
 
   save_in_ajax: (event, options) ->
     event.stopPropagation() & event.preventDefault()
+
+    form = $(event.target).trigger('ajax:beforeSend')
 
     @clear_errors()
 
@@ -33,11 +38,15 @@ class Locomotive.Views.Shared.FormView extends Backbone.View
     @model.save {},
       headers: options.headers
       success: (model, response, xhr) =>
+        form.trigger('ajax:complete')
+
         model.attributes = previous_attributes
 
         options.on_success(response, xhr) if options.on_success
 
       error: (model, xhr) =>
+        form.trigger('ajax:complete')
+
         errors = JSON.parse(xhr.responseText)
 
         @show_errors errors
@@ -72,7 +81,10 @@ class Locomotive.Views.Shared.FormView extends Backbone.View
         content.slideUp 100, -> parent.addClass('folded')
 
   enable_save_with_keys_combination: ->
-    $.cmd 'S', (() => @$('form').trigger('submit')), [], ignoreCase: true
+    $.cmd 'S', (() => @$('form input[type=submit]').trigger('click')), [], ignoreCase: true
+
+  enable_form_notifications: ->
+    @$('form').formSubmitNotification()
 
   after_inputs_fold: ->
     # overide this method if necessary
