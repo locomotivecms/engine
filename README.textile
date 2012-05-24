@@ -55,7 +55,8 @@ Locomotive CMS is an open source project, we encourage contributions. If you hav
 * Install ruby and mongoDB
 * Clone the project <code>git clone git@github.com:locomotivecms/engine.git</code>
 * Setup a virtual host entry for <code>test.example.com</code> to point to localhost
-* Run the tests <code>rake</code> (you'll need to install PhantomJS for javascript testing see https://github.com/jonleighton/poltergeist)
+* Install PhantomJS (Required for the cucumber suite See: https://github.com/jonleighton/poltergeist)
+* Run the tests <code>rake</code>
 * Write your failing tests
 * Make the tests pass
 * "Create a GitHub pull request":http://help.github.com/send-pull-requests
