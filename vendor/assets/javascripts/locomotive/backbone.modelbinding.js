@@ -64,10 +64,13 @@ Backbone.ModelBinding = (function(Backbone, _, $){
       this.modelBindings.push({model: model, eventName: eventName, callback: callback});
     }
 
-    this.registerElementBinding = function(element, callback){
+    this.registerElementBinding = function(element, callback, callbackSilently){
       // bind the form changes to the model
       element.bind("change", callback);
       this.elementBindings.push({element: element, eventName: "change", callback: callback});
+
+      if (callbackSilently)
+        element.bind("changeSilently", callbackSilently)
     }
   }
 
@@ -188,18 +191,24 @@ Backbone.ModelBinding = (function(Backbone, _, $){
           element.val(val);
         };
 
-        var setModelValue = function(attr_name, value){
+        var setModelValue = function(attr_name, value, silent){
+          if (typeof(silent) === 'undefined' || silent == null) silent = false
           var data = {};
           data[attr_name] = value;
-          model.set(data);
+          model.set(data, { 'silent': silent });
         };
 
         var elementChange = function(ev){
           setModelValue(attribute_name, view.$(ev.target).val());
         };
 
+        // FIXME (Did): simple solution to update the model without triggering related callbacks (solving a bug with tinymce)
+        var elementChangeSilently = function(ev) {
+          setModelValue(attribute_name, view.$(ev.target).val(), true);
+        }
+
         modelBinder.registerModelBinding(model, attribute_name, modelChange);
-        modelBinder.registerElementBinding(element, elementChange);
+        modelBinder.registerElementBinding(element, elementChange, elementChangeSilently);
 
         // set the default value on the form, from the model
         var attr_value = model.get(attribute_name);

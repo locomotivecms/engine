@@ -50,11 +50,13 @@ class Locomotive.Views.ContentEntries.FormView extends Locomotive.Views.Shared.F
       settings = _.extend {}, @tinyMCE_settings(),
         oninit: ((editor) =>
           $.cmd 'S', (() =>
-            $(textarea).val(editor.getBody().innerHTML).trigger('change')
+            editor.save()
+            $(textarea).trigger('changeSilently')
             @$('form').trigger('submit')
           ), [], ignoreCase: true, document: editor.dom.doc),
         onchange_callback: (editor) =>
-          $(textarea).val(editor.getBody().innerHTML).trigger('change')
+          editor.save()
+          $(textarea).trigger('changeSilently')
 
       $(textarea).tinymce(settings)
 
