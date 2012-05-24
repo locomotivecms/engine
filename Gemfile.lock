@@ -227,7 +227,7 @@ GEM
     multi_xml (0.5.1)
     net-scp (1.0.4)
       net-ssh (>= 1.99.1)
-    net-ssh (2.4.0)
+    net-ssh (2.5.1)
       jruby-pageant (>= 1.0.2)
     nokogiri (1.5.2)
     orm_adapter (0.0.7)
