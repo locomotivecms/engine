@@ -36,7 +36,8 @@ class Locomotive.Views.Shared.FormView extends Backbone.View
     previous_attributes = _.clone @model.attributes
 
     @model.save {},
-      headers: options.headers
+      headers:  options.headers
+      silent:   true # since we pass an empty hash above, no need to trigger the callbacks
       success: (model, response, xhr) =>
         form.trigger('ajax:complete')
 
