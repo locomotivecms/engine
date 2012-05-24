@@ -3,7 +3,7 @@
 
 - content_for :backbone_view_data do
   :plain
-    content_entry: #{@content_entry.to_json}
+    content_entry: #{j @content_entry.to_json.html_safe}
 
 = f.inputs :name => :attributes do
   - @content_type.ordered_entries_custom_fields.each_with_index do |field, index|

@@ -5,7 +5,7 @@
 
 - content_for :backbone_view_data do
   :plain
-    page: #{@page.to_presenter.as_json_for_html_view.to_json}
+    page: #{j @page.to_presenter.as_json_for_html_view.to_json.html_safe}
 
 - if can?(:manage, @page)
 

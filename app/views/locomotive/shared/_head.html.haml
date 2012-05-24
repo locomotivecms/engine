@@ -19,8 +19,8 @@
     window.locale         = '#{I18n.locale}';
     window.content_locale = '#{::Mongoid::Fields::I18n.locale}';
 
-    Locomotive.current_site     = new Locomotive.Models.Site(#{current_site.to_presenter.as_json_for_html_view.to_json});
-    Locomotive.current_account  = new Locomotive.Models.Account(#{current_locomotive_account.to_json});
+    Locomotive.current_site     = new Locomotive.Models.Site(#{j current_site.to_presenter.as_json_for_html_view.to_json.html_safe});
+    Locomotive.current_account  = new Locomotive.Models.Account(#{j current_locomotive_account.to_json.html_safe});
 
     $(document).ready(function() {
 

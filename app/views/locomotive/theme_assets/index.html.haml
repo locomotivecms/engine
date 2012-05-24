@@ -16,11 +16,11 @@
 
 - content_for :backbone_view_data do
   :plain
-    snippets:           #{can?(:manage, Locomotive::Snippet) ? @snippets.map { |snippet| snippet.to_presenter.as_json_for_html_view }.to_json : 'null'},
-    images:             #{theme_assets_to_json(@assets[:images])},
-    media:              #{theme_assets_to_json(@assets[:media])},
-    js_and_css_assets:  #{can?(:manage, Locomotive::ThemeAsset) ? theme_assets_to_json(@js_and_css_assets) : 'null'},
-    fonts:              #{can?(:manage, Locomotive::ThemeAsset) ? theme_assets_to_json(@assets[:fonts]) : 'null'}
+    snippets:           #{j can?(:manage, Locomotive::Snippet) ? @snippets.map { |snippet| snippet.to_presenter.as_json_for_html_view }.to_json.html_safe : 'null'},
+    images:             #{j theme_assets_to_json(@assets[:images]).html_safe},
+    media:              #{j theme_assets_to_json(@assets[:media]).html_safe},
+    js_and_css_assets:  #{j can?(:manage, Locomotive::ThemeAsset) ? theme_assets_to_json(@js_and_css_assets).html_safe : 'null'},
+    fonts:              #{j can?(:manage, Locomotive::ThemeAsset) ? theme_assets_to_json(@assets[:fonts]).html_safe : 'null'}
 
 - content_for :submenu do
   = render_cell 'locomotive/settings_menu', :show

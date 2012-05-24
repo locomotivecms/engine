@@ -3,7 +3,7 @@
 
 - content_for :backbone_view_data do
   :plain
-    theme_asset: #{@theme_asset.persisted? ? @theme_asset.to_json : 'null'}
+    theme_asset: #{j @theme_asset.persisted? ? @theme_asset.to_json.html_safe : 'null'}
 
 = f.hidden_field :performing_plain_text
 

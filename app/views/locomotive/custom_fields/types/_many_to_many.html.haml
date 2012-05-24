@@ -38,4 +38,4 @@
 
   - content_for :backbone_view_data do
     :plain
-      , all_#{name}_entries: #{target_content_type.list_or_group_entries.to_json(:depth => 1)}
+      , all_#{name}_entries: #{j target_content_type.list_or_group_entries.to_json(:depth => 1).html_safe}

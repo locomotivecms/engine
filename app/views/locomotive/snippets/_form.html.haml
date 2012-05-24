@@ -3,7 +3,7 @@
 
 - content_for :backbone_view_data do
   :plain
-    snippet: #{@snippet.persisted? ? @snippet.to_presenter.as_json_for_html_view.to_json : 'null'}
+    snippet: #{j @snippet.persisted? ? @snippet.to_presenter.as_json_for_html_view.to_json.html_safe : 'null'}
 
 = f.inputs :name => :information do
   = f.input :name, :wrapper_html => { :class => 'highlighted' }

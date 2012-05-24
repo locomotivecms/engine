@@ -2,7 +2,7 @@
 
 - content_for :backbone_view_data do
   :plain
-    account: #{@account.to_json}
+    account: #{j @account.to_json.html_safe}
 
 - content_for :submenu do
   = render_cell 'locomotive/settings_menu', :show

@@ -4,7 +4,7 @@
 
 - content_for :backbone_view_data do
   :plain
-    site:   #{@site.to_json(:current_account => current_locomotive_account, :current_site => current_site)},
+    site:   #{j @site.to_json(:current_account => current_locomotive_account, :current_site => current_site).html_safe},
     errors: #{@site.errors.to_json}
 
 = f.inputs :name => :information  do
