@@ -20,10 +20,14 @@ module Locomotive
         Syntax = /(#{::Liquid::Expression}+)\s+by\s+([0-9]+)/
 
         def initialize(tag_name, markup, tokens, context)
+        
           if markup =~ Syntax
             @collection_name = $1
             @per_page = $2.to_i
-          else
+            @options = { }
+            markup.scan(::Liquid::TagAttributes) { |key, value| @options[key.to_sym] = value.gsub(/^'/, '').gsub(/'$/, '') }
+            @reversed = 'reversed' if @options[:order] == 'descending'
+          else 
             raise ::Liquid::SyntaxError.new("Syntax Error in 'paginate' - Valid syntax: paginate <collection> by <number>")
           end
 
@@ -33,8 +37,26 @@ module Locomotive
         def render(context)
           context.stack do
             collection = context[@collection_name]
-
+            
             raise ::Liquid::ArgumentError.new("Cannot paginate array '#{@collection_name}'. Not found.") if collection.nil?
+ 
+            sort_property = @options[:sort_by]
+            order_property = @options[:order]
+            
+            if sort_property || order_property
+                collection = if sort_property.nil? && (@options[:order] == 'ascending' || @options[:order] == 'descending')
+                    collection.sort
+                elsif collection.first.respond_to?('[]') and !collection.first[sort_property].nil?
+                    collection.sort {|a,b| a[sort_property] <=> b[sort_property] }
+                elsif collection.first.respond_to?(sort_property)
+                    collection.sort {|a,b| a.send(sort_property) <=> b.send(sort_property) }
+                else
+                    collection
+                end
+            end
+            
+            collection.reverse! if @reversed
+
 
             if collection.is_a? Array
               pagination = Kaminari.paginate_array(collection).page(context['current_page']).per(@per_page).to_liquid.stringify_keys
