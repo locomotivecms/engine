@@ -43,8 +43,8 @@ end
 
 # try to render a page by slug
 When /^I view the rendered page at "([^"]*)"$/ do |path|
-  # If we're running selenium then we need to use a different port
-  if Capybara.current_driver == :selenium
+  # If we're running poltergeist then we need to use a different port
+  if Capybara.current_driver == :poltergeist
     visit "http://#{@site.domains.first}:#{Capybara.server_port}#{path}"
   else
     visit "http://#{@site.domains.first}#{path}"

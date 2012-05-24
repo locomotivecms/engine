@@ -36,6 +36,7 @@ group :test do
   # gem 'growl-glue'
 
   gem 'cucumber-rails', :require => false
+  gem 'poltergeist'
   gem 'rspec-rails', '~> 2.8.0'
   gem 'shoulda-matchers'
 
