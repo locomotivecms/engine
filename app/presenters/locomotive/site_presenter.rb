@@ -3,6 +3,8 @@ module Locomotive
 
     delegate :name, :locales, :subdomain, :domains, :robots_txt, :seo_title, :meta_keywords, :meta_description, :domains_without_subdomain, :to => :source
 
+    delegate :name=, :locales=, :subdomain=, :domains=, :robots_txt=, :seo_title=, :meta_keywords=, :meta_description=, :domains_without_subdomain=, :to => :source
+
     def domain_name
       Locomotive.config.domain
     end

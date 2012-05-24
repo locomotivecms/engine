@@ -19,14 +19,17 @@ module Locomotive
       end
 
       def create
-        @site = Locomotive::Site.create(params[:site])
+        @site = Locomotive::Site.new
+        @site_presenter = @site.to_presenter
+        @site_presenter.update_attributes(params[:site])
         respond_with(@site)
       end
 
       def update
         @site = Locomotive::Site.find(params[:id])
         authorize! :update, @site
-        @site.update_attributes(params[:site])
+        @site_presenter = @site.to_presenter
+        @site_presenter.update_attributes(params[:site])
         respond_with @site
       end
 
