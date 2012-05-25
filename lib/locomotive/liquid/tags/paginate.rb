@@ -12,7 +12,23 @@ module Locomotive
       #   {% for project in paginate.collection %}
       #     {{ project.name }}
       #   {% endfor %}
-      #  {% endpaginate %}
+      # {% endpaginate %}
+      #
+      # You can also specify an order for the collection items
+      #
+      # {% paginate contents.projects by 5 order: ascending %}
+      #   {% for project in paginate.collection %}
+      #     {{ project.name }}
+      #   {% endfor %}
+      # {% endpaginate %}
+      #
+      # You can also specify which attribute to sort by.
+      # {% paginate contents.projects by 5 sort_by: name order: ascending %}
+      #   {% for project in paginate.collection %}
+      #     {{ project.name }}
+      #   {% endfor %}
+      # {% endpaginate %}
+      #
       #
 
       class Paginate < ::Liquid::Block
