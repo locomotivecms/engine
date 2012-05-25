@@ -30,8 +30,8 @@ module Locomotive
               :coffeescript => ['text/x-coffeescript']
             }
           end
-          
-          
+
+
         end
 
         def set_content_type(*args)
@@ -71,19 +71,17 @@ module Locomotive
 
         def compile_js_css(*args)
           cache_stored_file! if !cached?
-          if model.stylesheet?
-            options = Locomotive.config.sass_process_options || {}
-            options[:syntax] = :scss if options[:syntax].blank?
-            options[:load_paths] = [] if options[:load_paths].blank?
-            options[:load_paths] += ['.',File.dirname(current_path),File.expand_path(model.source.store_dir,Rails.public_path)]
-            compiled = Sass::Engine.for_file( model.source.path, options ).render
-          elsif model.javascript?
-            options = Locomotive.config.coffeescript_process_options || {}
-            compiled = CoffeeScript.compile(File.open(model.source.path).read,options )
-          end
-          File.open(current_path, "wb") { |f| f.write(compiled) } unless compiled.blank?
+          pre_suffix = model.stylesheet? ? '.css' : '.js'
+          path = model.source.path.to_s.gsub(/(\.scss|\.coffee)$/, "#{pre_suffix}\\1" )
+          FileUtils.cp( model.source.path, path )
+          assets = Rails.application.assets
+          ( Locomotive.config.assets_append_paths || [] ).each { |p| assets.append_path( p ) } 
+          assets.append_path( File.dirname( path ) )
+          assets.append_path( File.expand_path( model.source.store_dir,Rails.public_path ) )
+          asset = Sprockets::ProcessedAsset.new( assets, path, Pathname.new(path) )
+          asset.write_to( current_path )
         rescue
-          raise ::CarrierWave::ProcessingError, "#{$!}"
+          raise ::CarrierWave::ProcessingError, "#{$!} #{$@}"
         end
 
       end

@@ -80,11 +80,11 @@ describe Locomotive::ThemeAsset do
     it 'should compile scss stylesheet if compile is set' do
       @asset.compile = true
       asset = FixturedAsset.open('main.scss')
-      Locomotive.config.sass_process_options = { :load_paths => [File.dirname(asset.path)] }
+      Locomotive.config.assets_append_paths = [File.dirname(asset.path)]
       @asset.source = asset
       @asset.source.compiled.should_not be_nil
       @asset.source.compiled.path.should match(/compiled_main.scss$/)
-      File.open(@asset.source.compiled.path).read.gsub(/\s+/,'').should == "body{color:#001122;}"
+      File.open(@asset.source.compiled.path).read.gsub(/\s+/,'').should match("body{color:#001122;}")
       @asset.source.store!
       @asset.source.compiled.path.should match(/compiled_main.css$/)
     end
