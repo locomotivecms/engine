@@ -45,7 +45,8 @@ module Locomotive
     end
 
     def parent_fullpath=(parent_fullpath)
-      self.source.parent = Page.where(:fullpath => parent_fullpath).first
+      current_site = self.source.site
+      self.source.parent = current_site.pages.where(:fullpath => parent_fullpath).first
     end
 
     def included_methods
