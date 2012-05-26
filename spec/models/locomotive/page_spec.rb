@@ -48,7 +48,7 @@ describe Locomotive::Page do
     end
 
     %w{admin locomotive stylesheets images javascripts}.each do |slug|
-      it "considers '#{slug}' as invalid" do
+      it "considers '#{slug}' as an invalid slug" do
         page = FactoryGirl.build(:page, :slug => slug)
         page.stubs(:depth).returns(1)
         page.should_not be_valid

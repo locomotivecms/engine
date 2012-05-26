@@ -9,7 +9,7 @@ module Locomotive
 
           ## fields ##
           field :redirect,      :type => Boolean, :default => false
-          field :redirect_url,  :type => String
+          field :redirect_url,  :type => String, :localize => true
 
           ## validations ##
           validates_presence_of :redirect_url, :if => :redirect

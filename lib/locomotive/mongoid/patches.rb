@@ -48,21 +48,59 @@ module Mongoid#:nodoc:
 
   # make the validators work with localized field
   module Validations #:nodoc:
-    def read_attribute_for_validation_with_localization(attr)
-      if fields[attr.to_s] && fields[attr.to_s].localized?
-        send(attr.to_sym)
-      else
-        read_attribute_for_validation_without_localization(attr)
+
+    class ExclusionValidator < ActiveModel::Validations::ExclusionValidator
+      include Localizable
+    end
+
+    class UniquenessValidator < ActiveModel::EachValidator
+
+      def to_validate_with_localization(document, attribute, value)
+        field = document.fields[attribute.to_s]
+        if field.try(:localized?)
+          # no need of the translations, just the current value
+          value = document.send(attribute.to_sym)
+        end
+        to_validate_without_localization(document, attribute, value)
+      end
+
+      alias_method_chain :to_validate, :localization
+
+    end
+
+    module ClassMethods
+      def validates_exclusion_of(*args)
+        validates_with(ExclusionValidator, _merge_attributes(args))
       end
     end
 
-    alias_method_chain :read_attribute_for_validation, :localization
+    module LocalizedEachValidator
 
-    class PresenceValidator < ActiveModel::EachValidator
-      def validate_each(document, attribute, value)
-        document.errors.add(attribute, :blank, options) if value.blank?
+      # Performs validation on the supplied record. By default this will call
+      # +validates_each+ to determine validity therefore subclasses should
+      # override +validates_each+ with validation logic.
+      def validate(record)
+        attributes.each do |attribute|
+          field = record.fields[attribute.to_s]
+
+          # make sure that we use the localized value and not the translations when we test the allow_nil and allow_blank options
+          value = field.try(:localized?) ? record.send(attribute.to_sym) : record.read_attribute_for_validation(attribute)
+
+          next if (value.nil? && options[:allow_nil]) || (value.blank? && options[:allow_blank])
+
+          # use the translations of the localized field for the next part
+          value = record.read_attribute_for_validation(attribute) if field.try(:localized?)
+
+          validate_each(record, attribute, value)
+        end
       end
+
     end
+
+    [FormatValidator, LengthValidator, PresenceValidator, UniquenessValidator, ExclusionValidator].each do |klass|
+      klass.send(:include, LocalizedEachValidator)
+    end
+
   end
 
 end

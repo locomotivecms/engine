@@ -53,6 +53,10 @@ fr:
           body: "{% extends 'parent' %}"
 
   mongoid:
+    errors:
+      messages:
+        blank_on_locale: "doit être rempli(e)"
+
     attributes:
       locomotive/page:
         title: Titre

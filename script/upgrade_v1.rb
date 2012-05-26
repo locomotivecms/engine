@@ -303,7 +303,7 @@ if collection = db.collections.detect { |c| c.name == 'pages' }
     modifications['locales']        = [locale]
     modifications['response_type']  = 'text/html'
 
-    %w(title slug fullpath raw_template serialized_template template_dependencies snippet_dependencies seo_title meta_keywords meta_description).each do |attr|
+    %w(title slug fullpath raw_template serialized_template template_dependencies snippet_dependencies seo_title meta_keywords meta_description redirect_url).each do |attr|
       modifications[attr] = { locale => page[attr] }
     end
 
