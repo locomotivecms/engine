@@ -26,7 +26,7 @@ module Locomotive
 
         module ClassMethods
 
-          # Returns the pages tree from the site with the most minimal amount of queries.
+          # Returns the tree of pages from the site with the most minimal amount of queries.
           # This method should only be used for read-only purpose since
           # the mongodb returns the minimal set of required attributes to build
           # the tree.
