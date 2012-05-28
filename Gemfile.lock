@@ -36,7 +36,7 @@ PATH
       haml (~> 3.1.4)
       highline (~> 1.6.2)
       httparty (~> 0.8.1)
-      jquery-rails (~> 1.0.16)
+      jquery-rails (~> 1.0.19)
       kaminari (~> 0.13.0)
       locomotive-aloha-rails (~> 0.20.1.4)
       locomotive-mongoid-tree (~> 0.6.2)

@@ -3,7 +3,7 @@ module Locomotive
     class PagesController < BaseController
 
       def index
-        @pages = current_site.pages.order([:depth, :asc], [:position, :asc])
+        @pages = current_site.pages.order_by([[:depth, :asc], [:position, :asc]])
         respond_with(@pages)
       end
 

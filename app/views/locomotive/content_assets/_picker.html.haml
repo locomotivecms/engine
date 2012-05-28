@@ -11,9 +11,9 @@
     = link_to t('locomotive.buttons.close'), '#', :id => 'close-link'
 
     .button-wrapper.upload
-      = form_tag theme_assets_url(:json), :class => 'quick-upload' do
-        = file_field_tag 'theme_asset[source]', :multiple => 'multiple'
-        = link_to t('locomotive.theme_assets.image_picker.upload'), theme_assets_url(:json), :class => 'new', :id => 'upload-link'
+      = form_tag content_assets_url(:json), :class => 'quick-upload' do
+        = file_field_tag 'content_asset[source]', :multiple => 'multiple'
+        = link_to t('locomotive.content_assets.image_picker.upload'), content_assets_url(:json), :class => 'new', :id => 'upload-link'
 
 %script{ :type => 'text/html', :id => 'content_asset' }
 

@@ -23,10 +23,13 @@ class Locomotive.Views.ContentEntries.PopupFormView extends Locomotive.Views.Con
         @close()
 
   create_dialog: ->
+    # FIXME (Did): each modal window should have a different zIndex, otherwise there will be conflicts
+    zIndex = 998 + @options.index
+
     @dialog = $(@el).dialog
       autoOpen: false
       modal:    true
-      zIndex:   998
+      zIndex:   zIndex
       width:    770,
       create: (event, ui) =>
         $('.ui-widget-overlay').bind 'click', => @close()
@@ -70,6 +73,9 @@ class Locomotive.Views.ContentEntries.PopupFormView extends Locomotive.Views.Con
       super()
     else
       @refresh()
+
+  slugify_label_field: ->
+    # disabled in a popup form
 
   enable_has_many_fields: ->
     # disabled in a popup form

@@ -30,8 +30,9 @@ class Locomotive.Views.Shared.AssetPickerView extends Backbone.View
 
   create_dialog: ->
     @dialog = $(@el).dialog
+      autoOpen: false
       modal:    true
-      zIndex:   998
+      zIndex:   996
       width:    650,
       create: (event, ui) =>
         $('.ui-widget-overlay').bind 'click', => @close()
