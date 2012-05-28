@@ -1,12 +1,12 @@
 module Locomotive
   class EditableShortTextPresenter < EditableElementPresenter
 
-    delegate :content, :to => :source
+    delegate :content, :default_content, :to => :source
 
-    delegate :content=, :to => :source
+    delegate :content=, :default_content=, :to => :source
 
     def included_methods
-      super + %w(content)
+      super + %w(content default_content)
     end
 
   end

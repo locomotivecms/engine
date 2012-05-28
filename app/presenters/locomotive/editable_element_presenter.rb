@@ -1,9 +1,9 @@
 module Locomotive
   class EditableElementPresenter < BasePresenter
 
-    delegate :slug, :block, :default_content, :default_attribute, :hint, :priority, :disabled, :assignable, :from_parent, :to => :source
+    delegate :slug, :block, :default_attribute, :hint, :priority, :disabled, :assignable, :from_parent, :to => :source
 
-    delegate :slug=, :block=, :default_content=, :hint=, :priority=, :disabled=, :from_parent=, :to => :source
+    delegate :slug=, :block=, :hint=, :priority=, :disabled=, :from_parent=, :to => :source
 
     def label
       self.slug.humanize
@@ -26,7 +26,7 @@ module Locomotive
     end
 
     def included_methods
-      super + %w(type label slug block_name block default_content default_attribute hint priority disabled assignable from_parent)
+      super + %w(type label slug block_name block default_attribute hint priority disabled assignable from_parent)
     end
 
   end
