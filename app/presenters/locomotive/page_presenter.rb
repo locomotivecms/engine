@@ -1,9 +1,9 @@
 module Locomotive
   class PagePresenter < BasePresenter
 
-    delegate :title, :slug, :fullpath, :handle, :raw_template, :published, :listed, :templatized, :templatized_from_parent, :redirect, :redirect_url, :template_changed, :cache_strategy, :response_type, :to => :source
+    delegate :title, :slug, :fullpath, :handle, :raw_template, :published, :listed, :templatized, :templatized_from_parent, :redirect, :redirect_url, :template_changed, :cache_strategy, :response_type, :position, :to => :source
 
-    delegate :title=, :slug=, :fullpath=, :handle=, :raw_template=, :published=, :listed=, :templatized=, :templatized_from_parent=, :redirect=, :redirect_url=, :cache_strategy=, :response_type=, :to => :source
+    delegate :title=, :slug=, :fullpath=, :handle=, :raw_template=, :published=, :listed=, :templatized=, :templatized_from_parent=, :redirect=, :redirect_url=, :cache_strategy=, :response_type=, :position=, :to => :source
 
     attr_writer :editable_elements
 
@@ -50,7 +50,7 @@ module Locomotive
     end
 
     def included_methods
-      super + %w(title slug fullpath handle raw_template published listed templatized templatized_from_parent redirect redirect_url cache_strategy response_type template_changed editable_elements localized_fullpaths parent_fullpath)
+      super + %w(title slug fullpath handle raw_template published listed templatized templatized_from_parent redirect redirect_url cache_strategy response_type position template_changed editable_elements localized_fullpaths parent_fullpath)
     end
 
     def localized_fullpaths
