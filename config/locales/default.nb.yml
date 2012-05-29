@@ -1,4 +1,46 @@
-"no":
+nb:
+  date:
+    formats:
+      default: "%d.%m.%Y"
+
+  mongoid:
+    errors:
+      messages:
+        blank_on_locale: "må fylles ut"
+
+  errors:
+    messages:
+        domain_taken: "%{value} er alerede tatt"
+        invalid_domain: "%{value} er ugyldig"
+        needs_admin_account: "Det må være minst en admin-konto"
+        protected_page: "Du kan ikke fjerne index eller 404 sidene"
+        extname_changed: "Den nye filen har ikke det opprinnelige filetternavnet"
+        array_too_short: "er for liten (minimum elementnummer er %{count})"
+        invalid_theme_file: "må være en zip-fil"
+        site:
+          default_locale_removed: Forrige standardspråk kan ikke fjernes før nytt er valgt.
+        page:
+          liquid_syntax: "Liquid Syntax error ('%{error}' on '%{fullpath}')"
+          liquid_extend: "The page '%{fullpath}' extends a template which does not exist"
+          liquid_translation: "The page '%{fullpath}' extends a template which is not translated"
+        too_few_custom_fields: "At least, one custom field is required"
+        security: "presents a security problem"
+
+  attributes:
+    defaults:
+      pages:
+        index:
+          title: "Startside"
+          body: "Startsidens innholds"
+        "404":
+          title: "Siden finnes ikke"
+          body: "Sidens innhold"
+        other:
+          body: "{% extends 'parent' %}"
+
+  pagination:
+    previous: "&laquo; Previous"
+    next: "Next &raquo;"
   support:
     array:
       words_connector: ", "
