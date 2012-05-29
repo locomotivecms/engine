@@ -32,6 +32,8 @@ class Locomotive.Views.ThemeAssets.FormView extends Locomotive.Views.Shared.Form
 
     @enable_source_file()
 
+    @enable_checkboxes()
+
     return @
 
   enable_toggle_between_file_and_text: ->
@@ -102,3 +104,6 @@ class Locomotive.Views.ThemeAssets.FormView extends Locomotive.Views.Shared.Form
 
   after_inputs_fold: ->
     @editor.refresh() if @editor?
+
+  enable_checkboxes: ->
+    @$('#theme_asset_compile').checkToggle()

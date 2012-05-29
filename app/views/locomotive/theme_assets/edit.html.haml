@@ -8,10 +8,10 @@
     = local_action_button t('locomotive.theme_assets.index.new'), new_theme_asset_url, :class => 'new'
 
 %p.help
-  - if %w(image javascript stylesheet).include?(@theme_asset.content_type.to_s)
-    != t(".help_#{@theme_asset.content_type}", :path => @theme_asset.local_path(true), :width => @theme_asset.width, :height => @theme_asset.height)
+  - if @theme_asset.embedable_type
+    != t(".help_#{@theme_asset.embedable_type}", :path => @theme_asset.local_path_without_root( @theme_asset.select_source.to_s ), :width => @theme_asset.width, :height => @theme_asset.height)
 
-  != t('.help', :url => @theme_asset.source.url)
+  != t('.help', :url => @theme_asset.select_source.url)
 
 
 = semantic_form_for @theme_asset, :url => theme_asset_url(@theme_asset), :html => { :multipart => true, :class => 'save-with-shortcut' } do |form|
