@@ -44,3 +44,7 @@ collection.find.each do |page|
 
   collection.update({ '_id' => page['_id'] }, { '$set' => { 'redirect_url' => { locale => page['redirect_url'] } } })
 end
+
+# Update Norwegian locale from 'no' to 'nb'
+collection = db.collections.detect { |c| c.name == 'locomotive_accounts' }
+collection.update({ 'locale' => 'no' }, { '$set' => { 'locale' => 'nb' }}, { :multi => true })
