@@ -23,17 +23,12 @@ class Locomotive.Views.ContentEntries.PopupFormView extends Locomotive.Views.Con
         @close()
 
   create_dialog: ->
-    # FIXME (Did): each modal window should have a different zIndex, otherwise there will be conflicts
-    zIndex = 998 + @options.index
-
     @dialog = $(@el).dialog
       autoOpen: false
       modal:    true
-      zIndex:   zIndex
+      zIndex:   window.application_view.unique_dialog_zindex()
       width:    770,
       create: (event, ui) =>
-        $('.ui-widget-overlay').bind 'click', => @close()
-
         $(@el).prev().find('.ui-dialog-title').html(@$('h2').html())
         @$('h2').remove()
         actions = @$('.dialog-actions').appendTo($(@el).parent()).addClass('ui-dialog-buttonpane ui-widget-content ui-helper-clearfix')
@@ -42,6 +37,7 @@ class Locomotive.Views.ContentEntries.PopupFormView extends Locomotive.Views.Con
         actions.find('input[type=submit]').click (event) => @save(event)
 
       open: (event, ui, extra) =>
+        $(@el).dialog('overlayEl').bind 'click', => @close()
         # nothing to do
 
   open: ->
@@ -60,6 +56,7 @@ class Locomotive.Views.ContentEntries.PopupFormView extends Locomotive.Views.Con
   close: (event) ->
     event.stopPropagation() & event.preventDefault() if event?
     @clear_errors()
+    $(@el).dialog('overlayEl').unbind('click')
     $(@el).dialog('close')
 
   center: ->

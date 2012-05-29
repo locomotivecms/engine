@@ -38,7 +38,7 @@ end
 # localize redirect_url
 collection = db.collections.detect { |c| c.name == 'locomotive_pages' }
 collection.find.each do |page|
-  next if !page['redirect'] || page['redirect_url'].is_a?(Hash)
+  next unless page['redirect_url'].is_a?(String)
 
   locale = get_locale(page['site_id'])
 

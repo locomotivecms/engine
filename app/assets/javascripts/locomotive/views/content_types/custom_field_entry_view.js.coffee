@@ -58,10 +58,17 @@ class Locomotive.Views.ContentTypes.CustomFieldEntryView extends Backbone.View
   fetch_inverse_of_list: ->
     @$('li.input.inverse-of select option').remove()
 
-    _.each @inverse_of_list[@model.get('type')], (data) =>
+    list = @inverse_of_list[@model.get('type')] || []
+
+    _.each list, (data) =>
       if data.class_name == @model.get('class_name')
-        option = new Option(data.label, data.name, data.class_name == @model.get('inverse_of') || @inverse_of_list.length == 1)
+        option = new Option(data.label, data.name, data.name == @model.get('inverse_of') || list.length == 1)
         @$('li.input.inverse-of select').append(option)
+
+    # by default, select the first option
+    if !@model.get('inverse_of')? && list.length > 0
+      @model.set
+        inverse_of: list[0].name
 
   render_select_options_view: ->
     @select_options_view = new Locomotive.Views.ContentTypes.SelectOptionsView

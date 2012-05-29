@@ -70,10 +70,10 @@ class Locomotive.Views.ContentEntries.FormView extends Locomotive.Views.Shared.F
 
   enable_has_many_fields: ->
     unless @model.isNew()
-      _.each @model.get('has_many_custom_fields'), (field, index) =>
+      _.each @model.get('has_many_custom_fields'), (field) =>
         name = field[0]; inverse_of = field[1]
         new_entry = new Locomotive.Models.ContentEntry(@options["#{name}_new_entry"])
-        view      = new Locomotive.Views.Shared.Fields.HasManyView model: @model, name: name, new_entry: new_entry, inverse_of: inverse_of, index: index
+        view      = new Locomotive.Views.Shared.Fields.HasManyView model: @model, name: name, new_entry: new_entry, inverse_of: inverse_of
 
         if view.ui_enabled()
           @_has_many_field_views.push(view)

@@ -43,13 +43,16 @@
         'collection': new Locomotive.Models.ContentAssetsCollection()
       });
 
+      view.render();
+
       // Register commands
       ed.addCommand('locomotiveMedia', function() {
         view.options.on_select = function(asset) {
           insertImage(ed, asset);
           view.close();
         }
-        view.render();
+
+        view.fetch_assets();
       });
 
       // Register buttons

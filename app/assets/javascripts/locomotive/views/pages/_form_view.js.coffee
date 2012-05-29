@@ -16,13 +16,13 @@ class Locomotive.Views.Pages.FormView extends Locomotive.Views.Shared.FormView
 
     @model = new Locomotive.Models.Page(@options.page)
 
-    window.foo = @model
-
     @touched_url = false
 
     @image_picker_view = new Locomotive.Views.ThemeAssets.ImagePickerView
       collection: new Locomotive.Models.ThemeAssetsCollection()
       on_select:  @insert_image
+
+    @image_picker_view.render()
 
     Backbone.ModelBinding.bind @
 
@@ -58,7 +58,7 @@ class Locomotive.Views.Pages.FormView extends Locomotive.Views.Shared.FormView
   open_image_picker: (event) ->
     event.stopPropagation() & event.preventDefault()
     @image_picker_view.editor = @editor
-    @image_picker_view.render()
+    @image_picker_view.fetch_assets()
 
   insert_image: (path) ->
     text = "{{ '#{path}' | theme_image_url }}"

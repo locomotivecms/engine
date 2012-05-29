@@ -70,7 +70,6 @@ class Locomotive.Views.Shared.Fields.HasManyView extends Backbone.View
       el:           $("##{@options.name}-template-entry")
       parent_view:  @
       model:        @options.new_entry.clone() # by default, it does not matter
-      index:        @options.index
 
     @target_entry_view.render()
 
