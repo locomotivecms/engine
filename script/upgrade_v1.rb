@@ -358,8 +358,9 @@ if collection = db.collections.detect { |c| c.name == 'pages' }
 end
 
 # Update Norwegian locale from 'no' to 'nb'
-collection = db.collections.detect {|c| c.name == 'locomotive_accounts'}
-collection.update({ 'locale' => 'no' }, { '$set' => {'locale' => 'nb'}}, {:multi => true})
+if collection = db.collections.detect {|c| c.name == 'locomotive_accounts'}
+  collection.update({ 'locale' => 'no' }, { '$set' => {'locale' => 'nb'}}, {:multi => true})
+end
 
 # some cleaning
 %w(asset_collections liquid_templates delayed_backend_mongoid_jobs).each do |name|
