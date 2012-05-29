@@ -74,10 +74,17 @@ module Locomotive
           pre_suffix = model.stylesheet? ? '.css' : '.js'
           path = model.source.path.to_s.gsub(/(\.scss|\.coffee)$/, "#{pre_suffix}\\1" )
           FileUtils.cp( model.source.path, path )
+          # With using Sprockets we are able to import everything from gems or the app itself
           assets = Rails.application.assets
+          # Sprockets uses a Cache on Production, but we need the version that allows us to append a path
+          assets = assets.instance_variable_get('@environment') if assets.class == Sprockets::Index
+          # we do not want to change something, so no index expiration
+          assets.define_singleton_method('expire_index!', proc { false } )
+          # append necessary paths 
           ( Locomotive.config.assets_append_paths || [] ).each { |p| assets.append_path( p ) } 
           assets.append_path( File.dirname( path ) )
           assets.append_path( File.expand_path( model.source.store_dir,Rails.public_path ) )
+          # and finaly compile all the stuff
           asset = Sprockets::ProcessedAsset.new( assets, path, Pathname.new(path) )
           asset.write_to( current_path )
         rescue
