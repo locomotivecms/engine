@@ -1,4 +1,4 @@
-"no":
+nb:
   locomotive:
     buttons:
       login: Logg inn
@@ -6,10 +6,23 @@
       change_password: Endre
       new_item: "+ ny"
       switch_to_site: Vis
-      delete: "Slett"
+      delete: Slett
+      close: Lukk
+
+    locales:
+      en: Engelsk
+      de: Tysk
+      fr: Fransk
+      pt-BR: "Brazilian Portuguese"
+      it: Italiensk
+      nl: Nederlandsk
+      nb: Norsk
+      es: Spansk
+      ru: Russisk
 
     messages:
       confirm: Er du sikker?
+      sending_form: Skjemaet blir sendt
 
     shared:
       header:
@@ -27,14 +40,20 @@
         account: Min konto
         site: Siden
         theme_assets: Temafiler
-      footer:
-        who_is_behind: "Tjenesten utviklet av %{development} og designet av <a href=\"http://www.sachagreif.com\">Sacha Greif</a>"
+      form:
+        change_file: Endre
+        delete_file: Slett
+        cancel: Avbryt
       form_actions:
         back: Tilbake uten å lagre
         create: Opprett
         update: Lagre
         send: Send
-        disable_with: "locomotive.disable_with.form_actions"
+        disable_with: "Vent litt.."
+      list:
+        untranslated: ikke oversatt
+      footer:
+        who_is_behind: "LocomotiveCMS er utviklet av %{development} og designet av <a href=\"http://www.sachagreif.com\">Sacha Greif</a> &mdash; <small>versjon</small> %{version}"
 
     errors:
       "500":
@@ -66,9 +85,16 @@
           delete_file: Slett fil
         has_many:
           empty: Tom
-      index:
-        is_required: er nødvendig
+          new_entry: + Legg til ny
+        many_to_many:
+          empty: Listen er tom. Legg til ny fra listen nedenfor.
+
+      form:
+        required: Nødvendig
+        optional: Valgfri
         default_label: Feltnavn
+        select_options:
+          ask_name: "Skriv inn etiketten for dette valget"
 
     sessions:
       new:
@@ -105,7 +131,9 @@
         help: "Tittelen til siden kan oppdateres ved å klikke på den. For å lagre endringene, klikk på \"Lagre\" -knappen."
         ask_for_title: "Endre tittelen"
       form:
-        delete_file: Slett fil
+        change_file: endre
+        delete_file: slett fil
+        cancel: avbryt
         default_block: Standard
         cache_strategy:
           none: Ingen
@@ -134,14 +162,14 @@
       new:
         title: Ny nettside
         help: "Fyll ut skjemaet nedenfor for å opprette en ny nettside."
+      domains:
+        empty: "Det er ingen domener tilknyttet denne siden ennå. Legg til domenene dine nedenfor. <b>Ikke glem å oppdatere DNS-pekerene.</b>"
 
     current_site:
       edit:
-        export: eksporter
-        import: importer
-        new_membership: nytt medlemskap
+        new_membership: legg til konto
         help: "Navnet på siden kan oppdateres ved å trykke på det. For å lagre endringen, trykk på \"Lagre\" -knappen."
-        ask_for_name: "Rediger navnet"
+        ask_for_name: "Skriv inn det nye navnet"
 
     memberships:
       roles:
@@ -161,21 +189,13 @@
       edit:
         help: "Navnet ditt kan endres ved å trykke på det. For å lagre endringen, trykk på  \"Lagre\" -knappen."
         new_site: ny nettside
-        en: Engelsk
-        de: Tysk
-        fr: Fransk
-        pt-BR: "Brasiliansk Portugisisk"
-        it: Italiensk
-        nl: Nederlandsk
-        "no": Norsk
-        es: Spansk
-        ru: Russisk
         ask_for_name: "Rediger navnet ditt"
 
     theme_assets:
       index:
         title: Temafiler
         help: "I denne seksjonen kan du håndtere alle layout-relaterte filer. Hvis du trenger et bildegalleri så opprett en ny innholdstype i stedet.<br/><b>Advarsel:</b> hvis det er enkelte filer du ikke ser så kan dette skyldes manglende rettigheter."
+        quick_upload: Hurtigopplasting
         new: ny fil
         snippets: HTML-snutter
         css_and_js: Stilark og javascript
@@ -198,29 +218,29 @@
         picker_link: Sett inn en fil i koden
         choose_file: Velg fil
         choose_plain_text: Velg klartekst
-      images:
-        title: Bilder
-        no_items: "Det er ingen filer her ennå."
+      image_picker:
+        title: "Sett inn bilde"
+        no_items: "Det finnes ingen bilder foreløpig."
+        upload: "Last opp bilder"
 
-    assets:
-      new:
-        title: New asset
-        help: "Fill in the form below to create your asset."
-      edit:
-        title: Edit asset
-        help: "Fill in the form below to update your asset."
+    content_assets:
+      picker:
+        title: "Sett inn media"
+        no_items: "Det finnes ingen media foreløpig."
+        upload: "Last opp media"
 
     content_types:
       index:
         new: Ny modell
+        edit: Rediger modell
       new:
         title: Ny modell
         help: "Lag din egen datamodell (Prosjekter, Ansatte, ...etc). Modellen må ha minst ett felt. Det første feltet vil være obligatorisk for elementer som opprettes av denne innholdstypen."
       edit:
-        title: Rediger modellen
+        title: Redigerer modell
         help: "Modellen må ha minst ett felt. Det første feltet vil være obligatorisk for elementer som opprettes av denne innholdstypen."
-        show_items: vis elementer
-        new_item: nytt element
+        show_entries: vis elementer
+        new_entry: nytt element
       form:
         order_by:
           created_at: 'Etter dato opprettet'
@@ -241,7 +261,7 @@
         latest_entries: "Siste elementer"
         updated_at: "Sist oppdatert"
       list:
-        no_entries: "Det har ikke blitt opprettet noen elementer her ennå. Klikk <a href=\"%{url}\">her</a> for å opprette det første."
+        no_entries: "Det finnes ingen elementer her ennå. Klikk <a href=\"%{url}\">her</a> for å opprette det første."
       new:
         title: '%{type} &mdash; nytt element'
       edit:
@@ -258,25 +278,6 @@
         title: Cross-domain authentication
         notice: Du blir sendt videre til nettsiden i løpet av noen få sekunder.
 
-    import:
-      new:
-        title: Importer en mal for siden
-        help: "Be careful when you upload a new template for your existing website, your current data could be modified or even removed."
-        help: "Vær forsiktig hvis du laster opp en ny mal til en ekisterende side. Dataene dine kan bli slettet eller endret."
-      show:
-        title: Import pågår
-        help: "Your site is being updated from the theme zip file you have just uploaded. It lasts a couple of seconds."
-        help: "Siden blir oppdatert fra temafilen som ble lastet opp. Dette vil ta noen sekunder."
-        steps:
-          site: Sideinformasjon
-          content_types: Tilpassede innholdstyper
-          assets: Temafiler
-          snippets: HTML-snutter
-          pages: Sider
-        messages:
-          success: "Importen var velykket og siden har blitt oppdatert."
-          failure: "Importen kunne ikke gjennomføres."
-
     installation:
       common:
         title: Locomotive førstegangsoppsett
@@ -292,5 +293,21 @@
       step_2:
         title: "Steg 2/2 &mdash; Lag din første nettside"
         explanations: "Hvis du allerede har lastet opp standardmalen (se instruksjoner), så kan du bruke denne med en gang. Du kan også laste opp en sidemal som en zip-fil (gratis maler finnes <a href=\"http://www.locomotivecms.com/support/themes\">her</a>)."
-        back_to_default_template: "Trykk <a href='#'>her</a> for å velge standardmalen i stedet"
+        default_site_locale: Språk
+        default_site_locales_hints: Du kan legge til flere språk under Innstilinger senere
         next: Opprett side
+
+    public:
+      pages:
+        show_toolbar:
+          statuses:
+            loading: "Vent litt...."
+            disabled: "Inline Editor disabled"
+          labels:
+            save_changes: "Lagre endringer: "
+            editing_mode: "Redigeringsmodus: "
+            lang: "Språk: "
+          buttons:
+            back: Tilbake til admin-siden
+            confirm: Bekreft
+            cancel: Avbryt

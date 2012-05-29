@@ -1,4 +1,4 @@
-"no":
+nb:
   errors:
     messages:
       not_found: "finnes ikke"
@@ -7,7 +7,7 @@
 
   devise:
     failure:
-      locomotive:
+      locomotive_account:
         unauthenticated: 'Du må logge inn eller registrere deg før du kan fortsette.'
         unconfirmed: 'Kontoen må aktiveres før du kan fortsette.'
         locked: 'Brukerkontoen er sperret.'
@@ -17,34 +17,34 @@
         timeout: 'Innloggingen har utløpt. Logg inn på nytt for å fortsette.'
         inactive: 'Kontoen din er ikke aktivert ennå.'
     sessions:
-      locomotive:
+      locomotive_account:
         signed_in: 'Du er nå logget inn.'
         signed_out: 'Du har blitt logget ut.'
     passwords:
-      locomotive:
+      locomotive_account:
         send_instructions: 'Du vil motta en epost med instruksjoner for hvordan du kan tilbakestille passordet i løpet av kort tid.'
         updated: 'Passordendringen var vellykket. Du er nå logget inn.'
     confirmations:
-      locomotive:
+      locomotive_account:
         send_instructions: 'Du vil motta en epost med instrusksjoner for hvordan brukerkontoen aktiveres i løpet av kort tid.'
         confirmed: 'Aktiveringen av brukerkontoen var vellykket. Du er nå logget inn.'
     registrations:
-      locomotive:
+      locomotive_account:
         signed_up: 'Registreringen var vellykket.'
         updated: 'Oppdateringen av kontoen var vellykket'
         destroyed: 'Kontoen din har blitt kansellert. Vi håper å se deg igjen en annen gang.'
     unlocks:
-      locomotive:
+      locomotive_account:
         send_instructions: 'Du vil motta en epost med instruksjoner for hvordan du kan åpne kontoen i løpet av kort tid.'
         unlocked: 'Kontoen har blitt åpnet og du er nå logget inn.'
     mailer:
-      locomotive:
+      locomotive_account:
         confirmation_instructions: 'Bekreftelsesinstrukser'
         reset_password_instructions: 'Instrukser for tilbakestilling av passord'
         unlock_instructions: 'Instrukser for åpning'
         
         
-  locomotive:
+  locomotive_account:
     mailer:
       common:
         hello: Hallo
