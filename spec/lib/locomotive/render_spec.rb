@@ -14,14 +14,22 @@ describe 'Locomotive rendering system' do
 
   context '#liquid_context' do
 
-    it 'includes the current date and time' do
+    before(:each) do
       @controller.instance_variable_set(:@page, @page)
       @controller.stubs(:flash).returns({})
       @controller.stubs(:params).returns({})
       @controller.stubs(:request).returns(OpenStruct.new(:url => '/'))
+    end
+
+    it 'includes the current date and time' do
       context = @controller.send(:locomotive_context)
       context['now'].should_not be_blank
       context['today'].should_not be_blank
+    end
+
+    it 'includes the locale' do
+      context = @controller.send(:locomotive_context)
+      context['locale'].should == 'en'
     end
 
   end
