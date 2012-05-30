@@ -30,12 +30,11 @@ Gem::Specification.new do |s|
   s.add_dependency 'mongoid',                         '~> 2.4.9'
   s.add_dependency 'locomotive-mongoid-tree',         '~> 0.6.2'
 
-  s.add_dependency 'custom_fields',                   '~> 2.0.0.rc10'
+  s.add_dependency 'custom_fields',                   '~> 2.0.0.rc11'
 
   s.add_dependency 'kaminari',                        '~> 0.13.0'
 
   s.add_dependency 'haml',                            '~> 3.1.4'
-  # s.add_dependency 'jquery-rails',                    '~> 2.0.0' #'~> 1.0.16'
   s.add_dependency 'jquery-rails',                    '~> 1.0.19'
   s.add_dependency 'rails-backbone',                  '~> 0.6.1'
   s.add_dependency 'codemirror-rails',                '~> 2.21'
