@@ -10,6 +10,7 @@ it:
 
     messages:
       confirm: Sicuro?
+      sending_form: "locomotive.messages.sending_form"
 
     shared:
       header:

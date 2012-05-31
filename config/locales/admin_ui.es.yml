@@ -20,6 +20,7 @@ es:
 
     messages:
       confirm: Por favor confirme
+      sending_form: "locomotive.messages.sending_form"
 
     shared:
       header:

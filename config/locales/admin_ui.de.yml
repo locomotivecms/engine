@@ -22,6 +22,7 @@ de:
 
     messages:
       confirm: Sind Sie sicher ?
+      sending_form: "locomotive.messages.sending_form"
 
     shared:
       header:

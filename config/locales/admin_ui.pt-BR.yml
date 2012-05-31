@@ -9,6 +9,7 @@ pt-BR:
 
     messages:
       confirm: Você tem certeza ?
+      sending_form: "locomotive.messages.sending_form"
 
     shared:
       header:

@@ -9,6 +9,7 @@ nl:
 
     messages:
       confirm: Weet u het zeker ?
+      sending_form: "locomotive.messages.sending_form"
 
     shared:
       header:
