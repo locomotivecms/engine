@@ -1,14 +1,15 @@
 de:
   locomotive:
-    buttons:
-      login: Einloggen
-      send_password: Senden
-      change_password: Update
-      new_item: "+ hinzufügen"
-      switch_to_site: Los
-      delete: "Löschen"
-      close: "Schließen"
-
+    errors:
+      "500":
+        title: Anwendungs-Fehler
+        notice: "Entschuldigung, irgendetwas ist hier schief gelaufen."
+        link: "&rarr; Zurück zur Anwendung"
+      "404":
+        title: Seite nicht gefunden
+        notice: "Die angefragte Seite existiert nicht."
+        link: "&rarr; Zurück zur Anwendung"
+        
     locales:
       en: Englisch
       de: Deutsch
@@ -19,6 +20,15 @@ de:
       nb: Norwegisch
       es: Spanisch
       ru: Russisch
+      
+    buttons:
+      login: Einloggen
+      send_password: Senden
+      change_password: Update
+      new_item: "+ hinzufügen"
+      switch_to_site: Los
+      delete: "Löschen"
+      close: "Schließen"
 
     messages:
       confirm: Sind Sie sicher ?
@@ -40,6 +50,8 @@ de:
         account: Mein Zugang
         site: Webseite
         theme_assets: Dateien
+      list:
+        untranslated: "Nicht übersetzt"
       form:
         change_file: Ändern
         delete_file: Löschen
@@ -49,24 +61,14 @@ de:
         create: Neu
         update: Speichern
         send: Senden
-        disable_with: "locomotive.disable_with.form_actions"
+        disable_with: "Transfer..."
       footer:
-        who_is_behind: "Dienst entwickelt von %{development} und entworfen von <a href=\"http://www.sachagreif.com\">Sacha Greif</a> &mdash; <small>version</small> %{version}"
-
-    errors:
-      "500":
-        title: Anwendungs-Fehler
-        notice: "Entschuldigung, irgendetwas ist hier schief gelaufen."
-        link: "&rarr; Zurück zur Anwendung"
-      "404":
-        title: Seite nicht gefunden
-        notice: "Die angefragte Seite existiert nicht."
-        link: "&rarr; Zurück zur Anwendung"
+        who_is_behind: "LocomitveCMS - entwickelt von %{development} und entworfen von <a href=\"http://www.sachagreif.com\">Sacha Greif</a> &mdash; <small>version</small> %{version}"
 
     notifications:
       new_content_entry:
         subject: "[%{type}] neu"
-        title: "Hi %{name}, nur damit Sie Bescheid wissen! Am %{date} wurde folgende neue Instanz erstellt."
+        title: "Hi %{name}, nur damit Sie Bescheid wissen, am %{date} wurde eine neue Instanz erstellt."
         type: "Model: %{type}"
 
     sites_picker:
@@ -158,16 +160,16 @@ de:
 
     sites:
       new:
-        title: Neuer Webseite
-        help: "Fülle das folgende Formular aus, um einen neuen Webseiteen zu erstellen."
+        title: Neue Webseite
+        help: "Füllen Sie das folgende Formular aus, um eine neue Webseite zu erstellen."
       domains:
         empty: "Bisher sind keine Domains/Hostnamen an diese Seite gebunden. Wenn Sie unten Domains/Hostnamen angeben, achten Sie bitte darauf <b>Ihren DNS Server zu prüfen/aktualisieren.</b>"
 
     current_site:
       edit:
         new_membership: Account hinzufügen
-        help: "Der Name des Webseiteen kann durch einen Klick auf den Namen bearbeitet werden."
-        ask_for_name: "Bitte geben Sie den neuen Namen der Webseite an"
+        help: "Der Name der Webseiten kann durch einen Klick auf den Namen bearbeitet werden."
+        ask_for_name: "Bitte geben Sie den neuen Namen der Webseite ein"
 
     memberships:
       roles:
@@ -196,10 +198,11 @@ de:
         new: neue Datei
         snippets: Snippets
         css_and_js: Style und Javascript
-        fonts: Fonts
         images: Bilder
         media: Medien
+        fonts: Fonts
         no_items: "Momentan gibt es keine Dateien. Klicken Sie einfach <a href='%{url}'>hier</a>, um die erste Datei zu erstellen."
+        quick_upload: Schneller Upload
       asset:
         updated_at: Aktualisiert am
       new:
@@ -292,13 +295,15 @@ de:
         explanations: "Es ist fast geschafft. Bitte geben Sie Ihrer ersten Webseite einen Namen und wählen Sie eine Sprache aus."
         default_site_locale: Sprachauswahl
         default_site_locales_hints: Sie können später weitere Sprachen im Einstellungsdialog vornehmen.
-        next: Webseite erstellen
+        next: Webseite erstellen      
+        back_to_default_template: "Klicken Sie <a href='#'>hier</a> um die Standardeinstellungen wieder herzustellen"
+
 
     public:
       pages:
         show_toolbar:
           statuses:
-            loading: "Lade...."
+            loading: "Laden..."
             disabled: "Inline Editor deaktiviert"
           labels:
             save_changes: "Änderungen speichern: "
