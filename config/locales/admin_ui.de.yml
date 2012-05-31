@@ -1,28 +1,38 @@
 de:
   locomotive:
+    errors:
+      "500":
+        title: Anwendungs-Fehler
+        notice: "Entschuldigung, irgendetwas ist hier schief gelaufen."
+        link: "&rarr; Zurück zur Anwendung"
+      "404":
+        title: Seite nicht gefunden
+        notice: "Die angefragte Seite existiert nicht."
+        link: "&rarr; Zurück zur Anwendung"
+        
+    locales:
+      en: Englisch
+      de: Deutsch
+      fr: Französisch
+      pt-BR: "Bras. Portugiesisch"
+      it: Italienisch
+      nl: Niederländisch
+      nb: Norwegisch
+      es: Spanisch
+      ru: Russisch
+      
     buttons:
       login: Einloggen
       send_password: Senden
       change_password: Update
-      new_item: "+ hinzuf√ºgen"
+      new_item: "+ hinzufügen"
       switch_to_site: Los
-      delete: "L√∂schen"
-      close: "Schlie√üen"
-
-    locales:
-      en: Englisch
-      de: Deutsch
-      fr: Franz√∂sisch
-      pt-BR: "Bras. Portugiesisch"
-      it: Italienisch
-      nl: Niederl√§ndisch
-      nb: Norwegisch
-      es: Spanisch
-      ru: Russisch
+      delete: "Löschen"
+      close: "Schließen"
 
     messages:
       confirm: Sind Sie sicher ?
-      sending_form: "locomotive.messages.sending_form"
+      sending_form: "Formular wird gesendet"
 
     shared:
       header:
@@ -40,33 +50,25 @@ de:
         account: Mein Zugang
         site: Webseite
         theme_assets: Dateien
+      list:
+        untranslated: "Nicht übersetzt"
       form:
-        change_file: √Ñndern
-        delete_file: L√∂schen
+        change_file: Ändern
+        delete_file: Löschen
         cancel: Abbrechen
       form_actions:
-        back: Ohne Speichern zur√ºck
+        back: Ohne Speichern zurück
         create: Neu
         update: Speichern
         send: Senden
-        disable_with: "locomotive.disable_with.form_actions"
+        disable_with: "Transfer..."
       footer:
-        who_is_behind: "Dienst entwickelt von %{development} und entworfen von <a href=\"http://www.sachagreif.com\">Sacha Greif</a> &mdash; <small>version</small> %{version}"
-
-    errors:
-      "500":
-        title: Anwendungs-Fehler
-        notice: "Entschuldigung, irgendetwas ist hier schief gelaufen."
-        link: "&rarr; Zur√ºck zur Anwendung"
-      "404":
-        title: Seite nicht gefunden
-        notice: "Die angefragte Seite existiert nicht."
-        link: "&rarr; Zur√ºck zur Anwendung"
+        who_is_behind: "LocomitveCMS - entwickelt von %{development} und entworfen von <a href=\"http://www.sachagreif.com\">Sacha Greif</a> &mdash; <small>version</small> %{version}"
 
     notifications:
       new_content_entry:
         subject: "[%{type}] neu"
-        title: "Hi %{name}, nur damit Sie Bescheid wissen! Am %{date} wurde folgende neue Instanz erstellt."
+        title: "Hi %{name}, nur damit Sie Bescheid wissen, am %{date} wurde eine neue Instanz erstellt."
         type: "Model: %{type}"
 
     sites_picker:
@@ -80,12 +82,12 @@ de:
         html: HTML
       types:
         file:
-          delete_file: Datei l√∂schen
+          delete_file: Datei löschen
         has_many:
           empty: Die Liste ist leer
           new_entry: + Neuer Eintrag
         many_to_many:
-          empty: Die Liste ist leer. W√§hlen Sie einen Eintrag unten aus.
+          empty: Die Liste ist leer. Wählen Sie einen Eintrag unten aus.
 
       form:
         required: Pflichtfeld
@@ -104,24 +106,24 @@ de:
     passwords:
       new:
         title: Passwort vergessen
-        link: "&rarr; Zur√ºck zur Login-Seite"
+        link: "&rarr; Zurück zur Login-Seite"
         email: "Deine Email"
       edit:
         title: Passwort bearbeiten
-        link: "&rarr; Zur√ºck zur Login-Seite"
+        link: "&rarr; Zurück zur Login-Seite"
         password: "Ihr neues Passwort"
         password_confirmation: "Wiederholung ihres neuen Passworts"
 
     pages:
       index:
         title: Seiten anzeigen
-        help: "Seiten sind als Baum organisiert. Sie k√∂nnen die Seiten also wie Ordner sortieren und verschachteln."
+        help: "Seiten sind als Baum organisiert. Sie können die Seiten also wie Ordner sortieren und verschachteln."
         no_items: "Momentan gibt es keine Seiten. Klicken Sie einfach <a href='%{url}'>hier</a>, um die erste Seite zu erstellen."
         new: neue Seite
         latest_entries: Neueste Seiten
       new:
         title: Neue Seite
-        help: "F√ºllen Sie bitte das folgende Formular aus, um eine neue Seite zu erstellen. Nur zur Info: Die Seite wird nicht standardm√§√üig publiziert!"
+        help: "Füllen Sie bitte das folgende Formular aus, um eine neue Seite zu erstellen. Nur zur Info: Die Seite wird nicht standardmäßig publiziert!"
       page:
         updated_at: bearbeitet am
       edit:
@@ -129,8 +131,8 @@ de:
         help: "Der Seiten-Titel kann durch anklicken bearbeitet werden."
         ask_for_title: "Bitte geben Sie den neuen Seiten-Titel ein"
       form:
-        change_file: Datei √§ndern
-        delete_file: Datei l√∂schen
+        change_file: Datei ändern
+        delete_file: Datei löschen
         cancel: Abbrechen
         default_block: Standard
         cache_strategy:
@@ -144,30 +146,30 @@ de:
     snippets:
       index:
         title: Snipptes anzeigen
-        help: "Snippets sind HTML-Code Ausschnitte, die an verschiedenen Stellen der Webseite eingesetzt werden k√∂nnen (z.B. die Fu√üzeile)."
+        help: "Snippets sind HTML-Code Ausschnitte, die an verschiedenen Stellen der Webseite eingesetzt werden können (z.B. die Fußzeile)."
         no_items: "Momentan gibt es keine Snippets. Klicken Sie einfach <a href='%{url}'>hier</a>, um das erste Snippet zu erstellen."
         new: neues Snippet
       new:
         title: Neues Snippet
-        help: "F√ºllen Sie bitte das folgende Formular aus, um ein neues Snippet zu erstellen."
+        help: "Füllen Sie bitte das folgende Formular aus, um ein neues Snippet zu erstellen."
       edit:
         title: Snippet bearbeiten
-        help: "F√ºllen Sie bitte das folgende Formular aus, um ihr Snippet zu aktualisieren."
+        help: "Füllen Sie bitte das folgende Formular aus, um ihr Snippet zu aktualisieren."
       snippet:
         updated_at: Aktualisiert am
 
     sites:
       new:
-        title: Neuer Webseite
-        help: "F√ºlle das folgende Formular aus, um einen neuen Webseiteen zu erstellen."
+        title: Neue Webseite
+        help: "Füllen Sie das folgende Formular aus, um eine neue Webseite zu erstellen."
       domains:
-        empty: "Bisher sind keine Domains/Hostnamen an diese Seite gebunden. Wenn Sie unten Domains/Hostnamen angeben, achten Sie bitte darauf <b>Ihren DNS Server zu pr√ºfen/aktualisieren.</b>"
+        empty: "Bisher sind keine Domains/Hostnamen an diese Seite gebunden. Wenn Sie unten Domains/Hostnamen angeben, achten Sie bitte darauf <b>Ihren DNS Server zu prüfen/aktualisieren.</b>"
 
     current_site:
       edit:
-        new_membership: Account hinzuf√ºgen
-        help: "Der Name des Webseiteen kann durch einen Klick auf den Namen bearbeitet werden."
-        ask_for_name: "Bitte geben Sie den neuen Namen der Webseite an"
+        new_membership: Account hinzufügen
+        help: "Der Name der Webseiten kann durch einen Klick auf den Namen bearbeitet werden."
+        ask_for_name: "Bitte geben Sie den neuen Namen der Webseite ein"
 
     memberships:
       roles:
@@ -176,45 +178,46 @@ de:
         author: Autor
       new:
         title: Neuer Account
-        help: "Bitte geben Sie eine Email f√ºr den neuen Account an. Wenn diese noch nicht registriert ist, werden Sie zu einem Formular zur Erstellung des Accounts weitergeleitet."
+        help: "Bitte geben Sie eine Email für den neuen Account an. Wenn diese noch nicht registriert ist, werden Sie zu einem Formular zur Erstellung des Accounts weitergeleitet."
 
     accounts:
       new:
         title: Neuer Account
-        help: "F√ºllen Sie das folgende Formular aus, um einen neuen Account anzulegen."
+        help: "Füllen Sie das folgende Formular aus, um einen neuen Account anzulegen."
 
     my_account:
       edit:
-        help: "Ihren Namen k√∂nnen Sie durch einen Klick auf denselben √§ndern."
+        help: "Ihren Namen können Sie durch einen Klick auf denselben ändern."
         new_site: Neue Webseite
         ask_for_name: "Bitte geben Sie Ihren Namen an."
 
     theme_assets:
       index:
         title: Layout-Dateien
-        help: "In diesem Bereich k√∂nnen Sie alle Dateien organisieren, die f√ºr das Layout verwendet werden."
+        help: "In diesem Bereich können Sie alle Dateien organisieren, die für das Layout verwendet werden."
         new: neue Datei
         snippets: Snippets
         css_and_js: Style und Javascript
-        fonts: Fonts
         images: Bilder
         media: Medien
+        fonts: Fonts
         no_items: "Momentan gibt es keine Dateien. Klicken Sie einfach <a href='%{url}'>hier</a>, um die erste Datei zu erstellen."
+        quick_upload: Schneller Upload
       asset:
         updated_at: Aktualisiert am
       new:
         title: Neue Datei
-        help: "Sie haben die Wahl entweder eine neue Datei hochzuladen oder ein bestehendes Stylesheet / Javascript als Text einzuf√ºgen."
+        help: "Sie haben die Wahl entweder eine neue Datei hochzuladen oder ein bestehendes Stylesheet / Javascript als Text einzufügen."
       edit:
         title: "Bearbeite %{file}"
-        help: "Diese Datei kann √ºber folgende URL erreicht werden: <a href='%{url}'>%{url}</a>"
-        help_image: "Sie k√∂nnen das Bild in Templates oder Snippets mit folgendem Code einbinden : <span class='code'>{{ '%{path}' | theme_image_tag }}</span>.<br/>Aktuelle Breite x H√∂he : <b>%{width}px x %{height}px</b>.<br/>"
-        help_javascript: "Sie k√∂nnen die Javascript Datei in Templates oder Snippets mit folgendem Code einbinden: <span class='code'>{{ '%{path}' | javascript_tag }}</span>.<br/>"
-        help_stylesheet: "Sie k√∂nnen die CSS Datei in Templates oder Snippets mit folgendem Code einbinden  : <span class='code'>{{ '%{path}' | stylesheet_tag }}</span>.<br/>"
+        help: "Diese Datei kann über folgende URL erreicht werden: <a href='%{url}'>%{url}</a>"
+        help_image: "Sie können das Bild in Templates oder Snippets mit folgendem Code einbinden : <span class='code'>{{ '%{path}' | theme_image_tag }}</span>.<br/>Aktuelle Breite x Höhe : <b>%{width}px x %{height}px</b>.<br/>"
+        help_javascript: "Sie können die Javascript Datei in Templates oder Snippets mit folgendem Code einbinden: <span class='code'>{{ '%{path}' | javascript_tag }}</span>.<br/>"
+        help_stylesheet: "Sie können die CSS Datei in Templates oder Snippets mit folgendem Code einbinden  : <span class='code'>{{ '%{path}' | stylesheet_tag }}</span>.<br/>"
       form:
-        picker_link: F√ºgen Sie eine Datei in den Code ein
-        choose_file: Datei ausw√§hlen
-        choose_plain_text: Text einf√ºgen
+        picker_link: Fügen Sie eine Datei in den Code ein
+        choose_file: Datei auswählen
+        choose_plain_text: Text einfügen
       images:
         title: "Bilder anzeigen"
         no_items: "Momentan gibt es keine Bilder."
@@ -222,7 +225,7 @@ de:
 
     content_assets:
       picker:
-        title: "Eine Mediendatei einf√ºgen"
+        title: "Eine Mediendatei einfügen"
         no_items: "Es gibt bisher keine Mediendateien."
         upload: "Mediendatei hochladen"
 
@@ -232,10 +235,10 @@ de:
         edit: "Baustein bearbeiten"
       new:
         title: Neuer Baustein
-        help: "Erstellen Sie ihren eigenen Baustein (Projekte, Leute, ...usw). Der Baustein muss mindestens ein Feld haben. Das erste Feld ist dabei immer verpflichtend auszuf√ºllen."
+        help: "Erstellen Sie ihren eigenen Baustein (Projekte, Leute, ...usw). Der Baustein muss mindestens ein Feld haben. Das erste Feld ist dabei immer verpflichtend auszufüllen."
       edit:
         title: Vorlage bearbeiten
-        help: "Ihre Vorlage muss mindestens ein Feld haben. Das erste Feld ist dabei immer verpflichtend auszuf√ºllen."
+        help: "Ihre Vorlage muss mindestens ein Feld haben. Das erste Feld ist dabei immer verpflichtend auszufüllen."
         show_items: zeige Elemente
         new_item: neues Element
       form:
@@ -251,7 +254,7 @@ de:
       index:
         title: '"%{type}" anzeigen'
         edit: Baustein bearbeiten
-        destroy: Baustein l√∂schen
+        destroy: Baustein löschen
         download: Elemente herunterladen
         new: neues Element
         category_noname: "Kein Name"
@@ -268,7 +271,7 @@ de:
           new_item: Neues Element
 
     image_picker:
-      link: F√ºge ein Bild in den Code ein
+      link: Füge ein Bild in den Code ein
 
     cross_domain_sessions:
       new:
@@ -284,27 +287,29 @@ de:
         name: Name
         email: E-Mail
         password: Passwort
-        password_confirmation: Passwort-Best√§tigung
-        done: "Sie haben bereits einen Zugang hinzugef√ºgt:<br/><strong>%{name}</strong>, <em>%{email}</em>"
+        password_confirmation: Passwort-Bestätigung
+        done: "Sie haben bereits einen Zugang hinzugefügt:<br/><strong>%{name}</strong>, <em>%{email}</em>"
         next: Zugang erstellen
       step_2:
         title: "Schritt 2/2 &mdash; Webseite erstellen"
-        explanations: "Es ist fast geschafft. Bitte geben Sie Ihrer ersten Webseite einen Namen und w√§hlen Sie eine Sprache aus."
+        explanations: "Es ist fast geschafft. Bitte geben Sie Ihrer ersten Webseite einen Namen und wählen Sie eine Sprache aus."
         default_site_locale: Sprachauswahl
-        default_site_locales_hints: Sie k√∂nnen sp√§ter weitere Sprachen im Einstellungsdialog vornehmen.
-        next: Webseite erstellen
+        default_site_locales_hints: Sie können später weitere Sprachen im Einstellungsdialog vornehmen.
+        next: Webseite erstellen      
+        back_to_default_template: "Klicken Sie <a href='#'>hier</a> um die Standardeinstellungen wieder herzustellen"
+
 
     public:
       pages:
         show_toolbar:
           statuses:
-            loading: "Lade...."
+            loading: "Laden..."
             disabled: "Inline Editor deaktiviert"
           labels:
-            save_changes: "√Ñnderungen speichern: "
+            save_changes: "Änderungen speichern: "
             editing_mode: "Bearbeitungsmodus: "
             lang: "Sprache: "
           buttons:
-            back: "Zur Administration zur√ºck"
-            confirm: Best√§tigen
+            back: "Zur Administration zurück"
+            confirm: Bestätigen
             cancel: Abbrechen
