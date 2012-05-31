@@ -421,8 +421,10 @@ form.formtastic {
           }
 
           &.no-label {
+            padding-top: 12px;
+
             > textarea, .CodeMirror, .CodeMirror-scroll {
-              margin-top: 12px;
+              margin-top: 0px;
               width: 868px;
             }
           }

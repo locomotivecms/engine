@@ -15,8 +15,6 @@ class Locomotive.Views.CurrentSite.EditView extends Locomotive.Views.Shared.Form
 
     Backbone.ModelBinding.bind @, checkbox: 'class'
 
-    window.foo = @model
-
   render: ->
     super()
 
