@@ -1,9 +1,9 @@
 module Locomotive
   class PagePresenter < BasePresenter
 
-    delegate :title, :slug, :fullpath, :handle, :raw_template, :published, :listed, :templatized, :templatized_from_parent, :redirect, :redirect_url, :template_changed, :cache_strategy, :response_type, :depth, :position, :to => :source
+    delegate :title, :slug, :fullpath, :handle, :raw_template, :published, :listed, :templatized, :templatized_from_parent, :target_klass_name, :redirect, :redirect_url, :template_changed, :cache_strategy, :response_type, :depth, :position, :to => :source
 
-    delegate :title=, :slug=, :fullpath=, :handle=, :raw_template=, :published=, :listed=, :templatized=, :templatized_from_parent=, :redirect=, :redirect_url=, :cache_strategy=, :response_type=, :position=, :to => :source
+    delegate :title=, :slug=, :fullpath=, :handle=, :raw_template=, :published=, :listed=, :templatized=, :templatized_from_parent=, :target_klass_name=, :redirect=, :redirect_url=, :cache_strategy=, :response_type=, :position=, :to => :source
 
     attr_writer :editable_elements
 
@@ -49,8 +49,14 @@ module Locomotive
       self.source.parent = current_site.pages.where(:fullpath => parent_fullpath).first
     end
 
+    def target_entry_name=(target_entry_name)
+      current_site = self.source.site
+      self.source.target_klass_name = current_site.content_types.where(
+        :slug => target_entry_name).first.klass_with_custom_fields(:entries).to_s
+    end
+
     def included_methods
-      super + %w(title slug fullpath handle raw_template published listed templatized templatized_from_parent redirect redirect_url cache_strategy response_type depth position template_changed editable_elements localized_fullpaths parent_fullpath)
+      super + %w(title slug fullpath handle raw_template published listed templatized templatized_from_parent target_klass_name redirect redirect_url cache_strategy response_type depth position template_changed editable_elements localized_fullpaths parent_fullpath)
     end
 
     def localized_fullpaths

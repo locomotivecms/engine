@@ -14,6 +14,10 @@ Feature: Pages
     """
     Goodbye world :-(
     """
+    And I have a custom model named "Projects" with id "4f832c2cb0d86d3f42fffffe" and
+      | label       | type      | required        |
+      | Name        | string    | true            |
+      | Description | text      | false           |
 
   Scenario: Protect the pages resources if not authenticated
     Given I do not have an API token
@@ -27,3 +31,22 @@ Feature: Pages
       | 1/fullpath | "hello-world"    |
       | 2/fullpath | "404"            |
       | 3/fullpath | "goodbye-world"  |
+
+  Scenario: Creating templatized page
+    When I do an API POST to pages.json with:
+    """
+    {
+      "page": {
+        "title": "My Templatized Page",
+        "templatized": "true",
+        "templatized_from_parent": "false",
+        "target_entry_name": "projects",
+        "parent_fullpath": "index"
+      }
+    }
+    """
+    When I do an API GET request to pages.json
+    Then the JSON response should be an array
+    And the JSON response should have 5 entries
+    And the JSON response at "4/title" should be "My Templatized Page"
+    And the JSON response at "4/target_klass_name" should be "Locomotive::Entry4f832c2cb0d86d3f42fffffe"
