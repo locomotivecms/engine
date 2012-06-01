@@ -10,6 +10,7 @@ module Locomotive
     def set_order_by_attribute
       return unless @order_by_attribute
       # FIXME: I don't like this...
+      self.source.order_by = nil
       self.source.save
       self.source.order_by = self.source.entries_custom_fields.where(:name => @order_by_attribute).first.id
     end

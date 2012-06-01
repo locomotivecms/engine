@@ -7,13 +7,14 @@ Feature: Content Types
     Given I have the site: "test site" set up
     And I have an "admin" API token
 
-  Scenario: Creating Content Type with order_by_attribute
+  Scenario: Creating Content Type with order_by_attribute (should ignore order_by)
     When I do an API POST to content_types.json with:
     """
     {
       "content_type": {
         "name": "Employees",
         "slug": "employees",
+        "order_by": "1234",
         "order_by_attribute": "name",
         "entries_custom_fields": [
           {
