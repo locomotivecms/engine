@@ -9,10 +9,15 @@ module Locomotive
 
     def set_order_by_attribute
       return unless @order_by_attribute
-      # FIXME: I don't like this...
-      self.source.order_by = nil
-      self.source.save
-      self.source.order_by = self.source.entries_custom_fields.where(:name => @order_by_attribute).first.id
+
+      if %w{created_at updated_at _position}.include?(@order_by_attribute)
+        self.source.order_by = @order_by_attribute
+      else
+        # FIXME: I don't like this...
+        self.source.order_by = nil
+        self.source.save
+        self.source.order_by = self.source.entries_custom_fields.where(:name => @order_by_attribute).first.id rescue 'created_at'
+      end
     end
 
     def entries_custom_fields
