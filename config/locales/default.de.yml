@@ -34,10 +34,13 @@ de:
       array_too_short: "ist zu kurz (minimale Element-Zahl ist %{count})"
       liquid_syntax: "Liquid Syntax-Fehler, bitte überprüfe die Syntax ('%{error}')"
       invalid_theme_file: "darf nicht leer sein oder ist keine zip-Datei"
+      security: "stellt ein Sicherheitproblem dar"
+      site:
+        default_locale_removed: Die vorige Standard-Spracheinstellung kann noch nicht gelöscht werden
       page:
         liquid_syntax: "Liquid Syntax-Fehler, bitte überprüfe die Syntax ('%{error}'/'%{fullpath}')"
         liquid_extend: "Die Seite '%{fullpath}' verwendet eine Vorlage, die gar nicht existiert"
-
+        liquid_translation: "Die Seite '%{fullpath}' erweitert eine Vorlage die noch nicht übersetzt wurde"
 
   attributes:
     defaults:
@@ -52,17 +55,24 @@ de:
           body: "{% extends 'parent' %}"
 
   mongoid:
+    errors:
+      messages:
+        blank_on_locale: "darf nicht leer sein"
+        
     attributes:
       page:
         title: Titel
-        parent: Parent
+        parent: Elternprozess
+        pared_id: Elternprozess
         slug: Slug
+        listed: Im Menü
         templatized: Templatized
         published: Veröffentlicht
-        listed: Im Menü
         redirect: Umleitung
         redirect_url: Umleitungs-URL
         cache_strategy: Cache
+        response_type: Antworttyp
+        seo_title: SEO-Titel
       content_type:
         name: Name
         description: Beschreibung
