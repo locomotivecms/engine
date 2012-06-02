@@ -45,8 +45,10 @@ module Locomotive
         self.send((type || self.content_type).label_field_name.to_sym)
       end
 
-      value.respond_to?(:to_label) ? value.to_label : value
+      value.respond_to?(:to_label) ? value.to_label : value.to_s
     end
+
+    alias :to_label :_label
 
     def translated?
       if self.respond_to?(:"#{self._label_field_name}_translations")

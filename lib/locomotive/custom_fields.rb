@@ -22,6 +22,7 @@ module CustomFields
   module Types
 
     module File
+
       class FileUploader < ::CarrierWave::Uploader::Base
 
         # Set correct paths
@@ -34,6 +35,7 @@ module CustomFields
         end
 
       end
+
     end
 
   end
