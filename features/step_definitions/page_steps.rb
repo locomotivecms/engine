@@ -2,9 +2,16 @@
 
 # helps create a simple content page (parent: "index") with a slug, contents, and template
 def create_content_page(page_slug, page_contents, template = nil)
-  @home = @site.pages.where(:slug => "index").first || FactoryGirl.create(:page)
-  page = @site.pages.create(:slug => page_slug, :body => page_contents, :parent => @home, :title => "some title", :published => true, :raw_template => template)
+  page = new_content_page(page_slug, page_contents, template)
   page.should be_valid
+  page.save!
+  page
+end
+
+# build page without saving
+def new_content_page(page_slug, page_contents, template = nil)
+  @home = @site.pages.where(:slug => "index").first || FactoryGirl.create(:page)
+  page = @site.pages.new(:slug => page_slug, :body => page_contents, :parent => @home, :title => "some title", :published => true, :raw_template => template)
   page
 end
 
@@ -15,6 +22,12 @@ end
 
 Given /^a page named "([^"]*)" with the template:$/ do |page_slug, template|
   @page = create_content_page(page_slug, '', template)
+end
+
+Given /^a page named "([^"]*)" with id "([^"]*)"$/ do |page_slug, id|
+  @page = new_content_page(page_slug, '')
+  @page.id = BSON::ObjectId(id)
+  @page.save!
 end
 
 # change the title

@@ -1,6 +1,9 @@
-Given %r{^I have a custom model named "([^"]*)" with$} do |name, fields|
+def build_content_type(name)
   site = Locomotive::Site.first
-  content_type = FactoryGirl.build(:content_type, :site => site, :name => name, :order_by => '_position')
+  FactoryGirl.build(:content_type, :site => site, :name => name, :order_by => '_position')
+end
+
+def set_custom_fields_from_table(content_type, fields)
   fields.hashes.each do |field|
     # found a belongs_to association
     if field['type'] == 'belongs_to'
@@ -12,6 +15,19 @@ Given %r{^I have a custom model named "([^"]*)" with$} do |name, fields|
 
     content_type.entries_custom_fields.build field
   end
+end
+
+Given %r{^I have a custom model named "([^"]*)" with id "([^"]*)" and$} do |name, id, fields|
+  content_type = build_content_type(name)
+  content_type.id = BSON::ObjectId(id)
+  set_custom_fields_from_table(content_type, fields)
+  content_type.valid?
+  content_type.save.should be_true
+end
+
+Given %r{^I have a custom model named "([^"]*)" with$} do |name, fields|
+  content_type = build_content_type(name)
+  set_custom_fields_from_table(content_type, fields)
   content_type.valid?
   content_type.save.should be_true
 end
