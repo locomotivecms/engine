@@ -68,6 +68,10 @@ Rails.application.routes.draw do
 
       resources :content_entries, :path => 'content_types/:slug/entries'
 
+      resources :sites
+
+      resources :memberships
+
       resource  :current_site, :controller => 'current_site'
 
     end

@@ -3,7 +3,9 @@ module Locomotive
     class CurrentSiteController < BaseController
 
       def show
-        respond_with(current_site)
+        @site = current_site
+        authorize! :show, @site
+        respond_with(@site)
       end
 
     end
