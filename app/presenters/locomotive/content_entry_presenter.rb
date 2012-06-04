@@ -3,7 +3,7 @@ module Locomotive
 
     delegate :_label, :_slug, :_position, :seo_title, :meta_keywords, :meta_description, :file_custom_fields, :has_many_custom_fields, :many_to_many_custom_fields, :to => :source
 
-    delegate :_position=, :seo_title=, :meta_keyworks=, :meta_description=, :to => :source
+    delegate :_slug=, :_position=, :seo_title=, :meta_keyworks=, :meta_description=, :to => :source
 
     attr_accessor :objects_to_save
 
