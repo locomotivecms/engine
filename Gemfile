@@ -51,4 +51,6 @@ group :test do
   gem 'json_spec'
 
   gem 'database_cleaner'
+
+  # gem 'debugger', :git => 'git://github.com/cldwalker/debugger.git'
 end

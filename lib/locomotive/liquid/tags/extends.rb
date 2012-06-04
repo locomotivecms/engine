@@ -18,14 +18,7 @@ module Locomotive
 
         def parse_parent_template
           if @template_name == 'parent'
-            if @context[:cached_parent]
-              @context[:parent_page] = @context[:cached_parent] #.clone # parent must not be modified
-
-              @context[:cached_parent].instance_variable_set(:@template, nil) # force to reload the template
-              @context[:cached_parent] = nil
-            else
-              @context[:parent_page] = @context[:page].parent
-            end
+            @context[:parent_page] = @context[:cached_parent] || @context[:page].parent
           else
             locale = ::Mongoid::Fields::I18n.locale
 
@@ -40,7 +33,8 @@ module Locomotive
 
           raise PageNotTranslated.new("Page with fullpath '#{@template_name}' was not translated") if parent_template.nil?
 
-          @context[:parent_page].instance_variable_set(:@template, parent_template)
+          # force the page to restore the original version of its template (from the serialized version)
+          @context[:parent_page].instance_variable_set(:@template, nil)
 
           parent_template
         end

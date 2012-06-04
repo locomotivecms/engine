@@ -88,14 +88,14 @@ Feature: Content Types
     Then the JSON response should be an array
     And the JSON response should have 2 entries
     And the JSON should have the following:
-      | 1/name                          | "Employees"   |
-      | 1/slug                          | "employees"   |
-      | 1/entries_custom_fields/0/label | "Name"        |
-      | 1/entries_custom_fields/0/name  | "name"        |
-      | 1/entries_custom_fields/0/type  | "string"      |
-      | 1/entries_custom_fields/1/label | "Position"    |
-      | 1/entries_custom_fields/1/name  | "position"    |
-      | 1/entries_custom_fields/1/type  | "string"      |
+      | 0/name                          | "Employees"   |
+      | 0/slug                          | "employees"   |
+      | 0/entries_custom_fields/0/label | "Name"        |
+      | 0/entries_custom_fields/0/name  | "name"        |
+      | 0/entries_custom_fields/0/type  | "string"      |
+      | 0/entries_custom_fields/1/label | "Position"    |
+      | 0/entries_custom_fields/1/name  | "position"    |
+      | 0/entries_custom_fields/1/type  | "string"      |
 
   Scenario: Creating new content type as a Designer
     Given I have a "designer" API token
@@ -127,14 +127,14 @@ Feature: Content Types
     Then the JSON response should be an array
     And the JSON response should have 2 entries
     And the JSON should have the following:
-      | 1/name                          | "Employees"   |
-      | 1/slug                          | "employees"   |
-      | 1/entries_custom_fields/0/label | "Name"        |
-      | 1/entries_custom_fields/0/name  | "name"        |
-      | 1/entries_custom_fields/0/type  | "string"      |
-      | 1/entries_custom_fields/1/label | "Position"    |
-      | 1/entries_custom_fields/1/name  | "position"    |
-      | 1/entries_custom_fields/1/type  | "string"      |
+      | 0/name                          | "Employees"   |
+      | 0/slug                          | "employees"   |
+      | 0/entries_custom_fields/0/label | "Name"        |
+      | 0/entries_custom_fields/0/name  | "name"        |
+      | 0/entries_custom_fields/0/type  | "string"      |
+      | 0/entries_custom_fields/1/label | "Position"    |
+      | 0/entries_custom_fields/1/name  | "position"    |
+      | 0/entries_custom_fields/1/type  | "string"      |
 
   Scenario: Creating new content type as an Author
     Given I have an "author" API token
