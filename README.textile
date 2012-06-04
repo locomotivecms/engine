@@ -24,8 +24,8 @@ h2. Gems
 
 Here is a short list of main gems / technologies used in the application.
 
-* Rails 3.2.3
-* Mongoid 2.4.6 (with MongoDB 2.0)
+* Rails 3.2.5
+* Mongoid 2.4.9 (with MongoDB 2.0)
 * Liquid
 * Devise
 * Carrierwave
@@ -46,7 +46,7 @@ h2. Community
 
 * Get help or discuss locomotive CMS at the "LocomotiveCMS Google group":https://groups.google.com/forum/?fromgroups#!forum/locomotivecms or the "LocomotiveCMS Discussion Forums":http://locomotive.vanillaforums.com/ (deprecated)
 * Join us on IRC "#locomotivecms at irc.freenode.net!":http://webchat.freenode.net/
-* "Follow us on twitter":http://twitter.com/locomotiveapp
+* "Follow us on twitter":http://twitter.com/locomotivecms
 
 h2. Contributing to Locomotive
 

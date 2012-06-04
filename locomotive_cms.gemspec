@@ -20,7 +20,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'rake',                            '~> 0.9.2'
 
-  s.add_dependency 'rails',                           '~> 3.2.3'
+  s.add_dependency 'rails',                           '~> 3.2.5'
 
   s.add_dependency 'devise',                          '~> 1.5.3'
   s.add_dependency 'cancan',                          '~> 1.6.7'

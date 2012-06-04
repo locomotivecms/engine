@@ -5,7 +5,7 @@ module Locomotive
       load_and_authorize_resource :class => Locomotive::Snippet
 
       def index
-        @snippets = current_site.snippets.all
+        @snippets = current_site.snippets.order_by([[:name, :asc]])
         respond_with(@snippets)
       end
 

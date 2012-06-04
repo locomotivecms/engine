@@ -423,3 +423,5 @@ else
     FileUtils.rm_rf folder
   end
 end
+
+puts "\n\n\033[1mImportant:\033[22m in order to avoid a bug with sessions after upgrading to the 2.0 version, you have to change your secret token key by updating your config/initializers/secret_token.rb file\n\n"
