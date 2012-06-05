@@ -130,7 +130,7 @@ describe 'Locomotive rendering system' do
       end
 
       it 'redirects to the redirect_url' do
-        @controller.expects(:redirect_to).with('http://www.example.com/').returns(true)
+        @controller.expects(:redirect_to).with('http://www.example.com/', { :status => 301 }).returns(true)
         @controller.send(:render_locomotive_page)
       end
 
