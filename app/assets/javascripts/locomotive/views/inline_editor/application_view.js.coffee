@@ -24,6 +24,8 @@ class Locomotive.Views.InlineEditor.ApplicationView extends Backbone.View
 
     @toolbar_view.render()
 
+    @content_assets_picker_view.render()
+
   enable_iframe_autoheight: ->
     iframe = @iframe
 
@@ -88,6 +90,13 @@ class Locomotive.Views.InlineEditor.ApplicationView extends Backbone.View
         link.bind 'click', ->
           toolbar_view.show_status 'loading'
           window.history.pushState('Object', 'Title', link.attr('href').replace('_edit', '_admin'))
+
+  unique_dialog_zindex: ->
+    # returns the number of jQuery UI modals created in order to set a valid zIndex for each of them.
+    # Each modal window should have a different zIndex, otherwise there will be conflicts between them.
+    window.Locomotive.jQueryModals ||= 0
+
+    1050 + window.Locomotive.jQueryModals++
 
   _$: (selector) ->
     $(selector, @iframe[0].contentWindow.document)

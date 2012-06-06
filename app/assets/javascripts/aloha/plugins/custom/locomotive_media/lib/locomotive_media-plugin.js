@@ -25,7 +25,7 @@ define(
             picker.close();
           }
 
-          picker.render()
+          picker.fetch_assets();
         },
 
         /**
