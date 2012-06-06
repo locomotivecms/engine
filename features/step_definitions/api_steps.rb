@@ -149,6 +149,14 @@ Then /^the JSON at "([^"]*)" should match \/(.+)\/$/ do |path, regex|
   parse_json(last_json, path).should =~ /#{regex}/
 end
 
+Then /^the JSON at "([^"]*)" should be the time "(.+)"$/ do |path, time_str|
+  format = '%Y-%m-%dT%H:%M:%S%Z'
+  json_time_str = parse_json(last_json, path)
+  json_time = Time.strptime(json_time_str, format)
+  time = Time.strptime(time_str, format)
+  json_time.should == time
+end
+
 Then /^I print the JSON response$/ do
   puts %{JSON (status=#{@json_response.status}): "#{last_json}"}
 end

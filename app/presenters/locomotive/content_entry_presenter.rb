@@ -36,6 +36,16 @@ module Locomotive
       end
     end
 
+    def formatted_created_at=(created_at)
+      self.source.timeless
+      self.source.created_at = formatted_time(created_at)
+    end
+
+    def formatted_updated_at=(updated_at)
+      self.source.timeless
+      self.source.updated_at = formatted_time(updated_at)
+    end
+
     def errors
       self.source.errors.to_hash.stringify_keys
     end
@@ -71,6 +81,12 @@ module Locomotive
     end
 
     protected
+
+    # Mimic format used by to_json
+    def formatted_time(time_str)
+      format = '%Y-%m-%dT%H:%M:%S%Z'
+      ::Time.strptime(time_str, format)
+    end
 
     def available_custom_field_names
       return @available_custom_field_names if @available_custom_field_names
