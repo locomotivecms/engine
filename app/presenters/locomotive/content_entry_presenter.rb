@@ -26,6 +26,16 @@ module Locomotive
       end
     end
 
+    def additional_custom_fields_methods
+      [].tap do |methods|
+        self.source.custom_fields_recipe['rules'].each do |rule|
+          if rule['type'] == 'belongs_to'
+            methods << "position_in_#{rule['name'].underscore}"
+          end
+        end
+      end
+    end
+
     def errors
       self.source.errors.to_hash.stringify_keys
     end
@@ -37,14 +47,16 @@ module Locomotive
     def included_methods
       default_list = %w(_label _slug _position content_type_slug file_custom_fields has_many_custom_fields many_to_many_custom_fields safe_attributes)
       default_list << 'errors' if !!self.options[:include_errors]
-      super + self.filtered_custom_fields_methods + default_list
+      super + self.filtered_custom_fields_methods + self.additional_custom_fields_methods + default_list
     end
 
     def as_json(methods = nil)
       methods ||= self.included_methods
       {}.tap do |hash|
         methods.each do |meth|
-          hash[meth]= (if self.source.custom_fields_methods.include?(meth.to_s)
+          pr = meth.to_s =~ /^position_in_.*$/
+          hash[meth]= (if self.source.custom_fields_methods.include?(meth.to_s) \
+                       || self.additional_custom_fields_methods.include?(meth.to_s)
             if self.source.is_a_custom_field_many_relationship?(meth.to_s)
               # go deeper
               self.source.send(meth).ordered.map { |entry| entry.to_presenter(:depth => self.depth + 1) }
@@ -107,12 +119,18 @@ module Locomotive
 
     def get_many_field_objects(meth, slug_list)
       target_klass = get_target_klass_for_custom_field_method(meth)
-      target_klass.any_in(:_slug => slug_list).to_ary
+      # FIXME: too many DB accesses
+      slug_list.collect { |slug| target_klass.where(:_slug => slug).first }
     end
 
     def get_belongs_field_object(meth, slug)
       target_klass = get_target_klass_for_custom_field_method(meth)
       target_klass.where(:_slug => slug).first
+    end
+
+    def is_has_many_custom_field?(meth)
+      field = custom_field_for_method(meth)
+      field && field.type == 'has_many'
     end
 
     def is_many_custom_field?(meth)
@@ -123,6 +141,19 @@ module Locomotive
     def is_belongs_to_custom_field?(meth)
       field = custom_field_for_method(meth)
       field && field.type == 'belongs_to'
+    end
+
+    def set_positions_for_has_many(objs, meth)
+      field = get_custom_field_name_for_method(meth)
+      objs.each_with_index do |obj, index|
+        inverse_field ||= (self.source.custom_fields_recipe['rules'].detect do |rule|
+          rule['name'] == field
+        end)['inverse_of']
+
+        if inverse_field
+          obj.send(:"position_in_#{inverse_field}=", index)
+        end
+      end
     end
 
     def save
@@ -153,6 +184,11 @@ module Locomotive
           # Get the objects which we need to save
           self.objects_to_save ||= []
           self.objects_to_save += new_args.flatten
+
+          # If it's a has_many field, set the positions
+          if is_has_many_custom_field?(meth)
+            self.set_positions_for_has_many(new_args.flatten, meth.to_s)
+          end
 
           self.source.send(meth, *new_args, &block)
         elsif is_belongs_to_custom_field?(meth)

@@ -62,7 +62,7 @@ Feature: Content Entries
         "started": false,
         "formatted_due": "06/01/2012",
         "logo": "images/logo2.jpg",
-        "tasks": [ "t1", "t3" ],
+        "tasks": [ "t3", "t1" ],
         "workers": [ "w1", "w3" ],
         "client": "c1"
       }
@@ -77,8 +77,8 @@ Feature: Content Entries
       | 2/type              | "code"                        |
       | 2/started           | false                         |
       | 2/formatted_due     | "06/01/2012"                  |
-      | 2/tasks/0/name      | "t1"                          |
-      | 2/tasks/1/name      | "t3"                          |
+      | 2/tasks/0/name      | "t3"                          |
+      | 2/tasks/1/name      | "t1"                          |
       | 2/workers/0/name    | "w1"                          |
       | 2/workers/1/name    | "w3"                          |
       | 2/client_id         | "4f832c2cb0d86d3f42fffff8"    |
@@ -96,7 +96,7 @@ Feature: Content Entries
         "started": true,
         "formatted_due": "06/01/2012",
         "logo": "images/logo2.jpg",
-        "tasks": [ "t1", "t3" ],
+        "tasks": [ "t3", "t1" ],
         "workers": [ "w1", "w3" ],
         "client": "c1"
       }
@@ -111,8 +111,8 @@ Feature: Content Entries
       | 0/type              | "design"                      |
       | 0/started           | true                          |
       | 0/formatted_due     | "06/01/2012"                  |
-      | 0/tasks/0/name      | "t1"                          |
-      | 0/tasks/1/name      | "t3"                          |
+      | 0/tasks/0/name      | "t3"                          |
+      | 0/tasks/1/name      | "t1"                          |
       | 0/workers/0/name    | "w1"                          |
       | 0/workers/1/name    | "w3"                          |
       | 0/client_id         | "4f832c2cb0d86d3f42fffff8"    |
