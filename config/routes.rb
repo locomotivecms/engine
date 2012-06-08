@@ -1,12 +1,8 @@
 Locomotive::Engine.routes.draw do
 
   # authentication
-  devise_for :locomotive_account,
-    :class_name   => 'Locomotive::Account',
-    :path         => '',
-    :path_prefix  => nil,
-    :failure_app  => 'Locomotive::Devise::FailureApp',
-    :controllers  => { :sessions => 'locomotive/sessions', :passwords => 'locomotive/passwords' } do
+  devise_for :locomotive_account, :class_name   => 'Locomotive::Account', :path => '', :path_prefix  => nil, :failure_app  => 'Locomotive::Devise::FailureApp',:controllers  => { :sessions => 'locomotive/sessions', :passwords => 'locomotive/passwords' }
+  devise_scope :locomotive_account do
       match '/'         => 'sessions#new'
       delete 'signout'  => 'sessions#destroy', :as => :destroy_locomotive_session
   end
