@@ -30,11 +30,11 @@ Gem::Specification.new do |s|
   s.add_dependency 'mongoid',                         '~> 2.4.9'
   s.add_dependency 'locomotive-mongoid-tree',         '~> 0.6.2'
 
-  s.add_dependency 'custom_fields',                   '~> 2.0.0.rc11'
+  s.add_dependency 'custom_fields',                   '~> 2.0.0.rc12'
 
   s.add_dependency 'kaminari',                        '~> 0.13.0'
 
-  s.add_dependency 'haml',                            '~> 3.1.4'
+  s.add_dependency 'haml',                            '~> 3.1.6'
   s.add_dependency 'jquery-rails',                    '~> 1.0.19'
   s.add_dependency 'rails-backbone',                  '~> 0.6.1'
   s.add_dependency 'codemirror-rails',                '~> 2.21'
@@ -52,8 +52,8 @@ Gem::Specification.new do |s|
   s.add_dependency 'unidecoder',                      '~> 1.1.1'
 
   s.add_dependency 'rmagick',                         '~> 2.12.2'
-  s.add_dependency 'carrierwave-mongoid',             '~> 0.1.3'
-  s.add_dependency 'carrierwave',                     '~> 0.6.0'
+  s.add_dependency 'carrierwave-mongoid',             '~> 0.2.1'
+  # s.add_dependency 'carrierwave',                     '~> 0.6.2'
   s.add_dependency 'fog',                             '~> 1.3.1'
   s.add_dependency 'dragonfly',                       '~> 0.9.8'
   s.add_dependency 'rack-cache',                      '~> 1.1'
