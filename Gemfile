@@ -5,10 +5,6 @@ source :rubygems
 
 gemspec # Include gemspec dependencies
 
-# Devise 2.1 throws an error if devise-encryptable is present in gemspec only
-# TODO: Check Devise Code to remove that 'broken' existance test for devise-encryptable
-gem 'devise-encryptable'
-
 # The rest of the dependencies are for use when in the locomotive development environment
 
 group :development do

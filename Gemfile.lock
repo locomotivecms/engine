@@ -329,7 +329,6 @@ DEPENDENCIES
   compass-rails
   cucumber-rails
   database_cleaner
-  devise-encryptable
   factory_girl_rails (~> 1.6.0)
   json_spec
   launchy
