@@ -1,6 +1,7 @@
 require 'locomotive/version'
 require 'locomotive/core_ext'
 require 'locomotive/configuration'
+require 'locomotive/devise'
 require 'locomotive/logger'
 require 'locomotive/haml'
 require 'locomotive/formtastic'
