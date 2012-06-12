@@ -67,5 +67,5 @@ Feature: Pages
     When I do an API GET request to pages/4f832c2cb0d86d3f42fffffe.json
     Then the JSON response should have the following:
       | seo_title           | "Awesome SEO title"       |
-      | meta_keywords       | "keywords,more_keywords"  |
+      | meta_keywords       | "keywords,more_keywords," |
       | meta_description    | "It is awesome"           |
