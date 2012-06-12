@@ -3,7 +3,7 @@ module Locomotive
 
     delegate :_label, :_slug, :_position, :seo_title, :meta_keywords, :meta_description, :file_custom_fields, :has_many_custom_fields, :many_to_many_custom_fields, :to => :source
 
-    delegate :_slug=, :_position=, :seo_title=, :meta_keyworks=, :meta_description=, :to => :source
+    delegate :_slug=, :_position=, :seo_title=, :meta_keywords=, :meta_description=, :to => :source
 
     attr_accessor :objects_to_save
 
@@ -55,7 +55,7 @@ module Locomotive
     end
 
     def included_methods
-      default_list = %w(_label _slug _position content_type_slug file_custom_fields has_many_custom_fields many_to_many_custom_fields safe_attributes)
+      default_list = %w(_label _slug _position seo_title meta_keywords meta_description content_type_slug file_custom_fields has_many_custom_fields many_to_many_custom_fields safe_attributes)
       default_list << 'errors' if !!self.options[:include_errors]
       super + self.filtered_custom_fields_methods + self.additional_custom_fields_methods + default_list
     end

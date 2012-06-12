@@ -150,5 +150,5 @@ Feature: Content Entries
     When I do an API GET request to content_types/projects/entries/4f832c2cb0d86d3f42fffff0.json
     And the JSON should have the following:
       | seo_title           | "New super-cool SEO title"    |
-      | meta_keywords       | "meta_keywords"               |
+      | meta_keywords       | "key1,key2"                   |
       | meta_description    | "My SEO description"          |
