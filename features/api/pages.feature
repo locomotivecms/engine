@@ -50,3 +50,22 @@ Feature: Pages
     And the JSON response should have 5 entries
     And the JSON response at "4/title" should be "My Templatized Page"
     And the JSON response at "4/target_klass_name" should be "Locomotive::Entry4f832c2cb0d86d3f42fffffe"
+
+  Scenario: Saving page SEO data
+    Given a page named "yet another page" with id "4f832c2cb0d86d3f42fffffe"
+    And I have an "admin" API token
+    When I do an API PUT to pages/4f832c2cb0d86d3f42fffffe.json with:
+    """
+    {
+      "page": {
+        "seo_title": "Awesome SEO title",
+        "meta_keywords": "keywords,more_keywords,",
+        "meta_description": "It is awesome"
+      }
+    }
+    """
+    When I do an API GET request to pages/4f832c2cb0d86d3f42fffffe.json
+    Then the JSON response should have the following:
+      | seo_title           | "Awesome SEO title"       |
+      | meta_keywords       | "keywords,more_keywords"  |
+      | meta_description    | "It is awesome"           |
