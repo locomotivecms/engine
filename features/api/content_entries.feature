@@ -135,3 +135,20 @@ Feature: Content Entries
     And the JSON at "2/name" should be "Project 3"
     And the JSON at "2/created_at" should be the time "2000-02-01T17:30:00-04:00"
     And the JSON at "2/updated_at" should be the time "2001-03-02T18:40:10-03:00"
+
+  Scenario: Updating project SEO data
+    When I do an API PUT to content_types/projects/entries/4f832c2cb0d86d3f42fffff0.json with:
+    """
+    {
+      "content_entry": {
+        "seo_title": "New super-cool SEO title",
+        "meta_keywords": "key1,key2",
+        "meta_description": "My SEO description"
+      }
+    }
+    """
+    When I do an API GET request to content_types/projects/entries/4f832c2cb0d86d3f42fffff0.json
+    And the JSON should have the following:
+      | seo_title           | "New super-cool SEO title"    |
+      | meta_keywords       | "meta_keywords"               |
+      | meta_description    | "My SEO description"          |
