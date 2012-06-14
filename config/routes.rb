@@ -72,6 +72,8 @@ Rails.application.routes.draw do
 
       resources :memberships
 
+      resources :accounts
+
       resource  :current_site, :controller => 'current_site'
 
     end
