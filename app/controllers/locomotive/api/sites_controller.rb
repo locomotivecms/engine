@@ -20,6 +20,8 @@ module Locomotive
 
       def create
         @site = Locomotive::Site.new
+        @site.memberships.build :account => current_locomotive_account, :role => 'admin'
+        @site.save
         @site_presenter = @site.to_presenter
         @site_presenter.update_attributes(params[:site])
         respond_with(@site)
