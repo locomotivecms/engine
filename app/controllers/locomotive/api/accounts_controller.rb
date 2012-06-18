@@ -8,6 +8,7 @@ module Locomotive
 
       def index
         @accounts = Locomotive::Account.all
+        authorize! :index, @account
         respond_with(@accounts)
       end
 
@@ -20,11 +21,15 @@ module Locomotive
       def create
         build_params = params[:account] # force author by default
         @account = current_site.accounts.create(build_params)
+        authorize! :create, @account
+        @account_presenter = @account.to_presenter
+        @account_presenter.update_attributes(params[:account])
         respond_with(@account)
       end
 
       def destroy
         @account = Locomotive::Account.find(params[:id])
+        authorize! :destroy, @account
         @account.destroy
         respond_with(@account)
       end
