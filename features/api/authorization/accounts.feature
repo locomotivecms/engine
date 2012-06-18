@@ -6,16 +6,11 @@ Feature: Accounts
   Background:
     Given I have the site: "test site" set up with id: "4f832c2cb0d86d3f42fffffb"
     And I have a designer and an author
-#   And I have accounts:
-#     | email           | id                        |
-#     | new-user1@a.com  | 4f832c2cb0d86d3f42fffffc  |
-#     | new-user2@a.com  | 4f832c2cb0d86d3f42fffffd  |
-#     | new-user3@a.com  | 4f832c2cb0d86d3f42fffffe  |
-#   And I have memberships:
-#     | email           | role      | id                        |
-#     | admin@a.com     | admin     | 4f832c2cb0d86d3f42ffffff  |
-#     | designer@a.com  | designer  | 4f832c2cb0d86d3f42fffff0  |
-#     | author@a.com    | author    | 4f832c2cb0d86d3f42fffff1  |
+    #   And I have accounts:
+    #     | email           | id                        |
+    #     | new-user1@a.com  | 4f832c2cb0d86d3f42fffffc  |
+    #     | new-user2@a.com  | 4f832c2cb0d86d3f42fffffd  |
+    #     | new-user3@a.com  | 4f832c2cb0d86d3f42fffffe  |
 
   Scenario: As an unauthenticated user
     Given I am not authenticated
@@ -24,10 +19,10 @@ Feature: Accounts
 
   # listing accounts
 
-# Scenario: Accessing accounts as an Admin
-#   Given I have an "admin" API token
-#   When I do an API GET request to /accounts.json
-#   Then I print the JSON response
+  Scenario: Accessing accounts as an Admin
+    Given I have an "admin" API token
+    When I do an API GET request to accounts.json
+    Then I print the JSON response
 #   Then the JSON response should be an array
 #   And the JSON response should have 3 entries
 
