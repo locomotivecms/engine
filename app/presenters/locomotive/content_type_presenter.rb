@@ -5,7 +5,7 @@ module Locomotive
 
     delegate :name=, :description=, :slug=, :order_by=, :order_direction=, :label_field_name=, :group_by_field_id=, :raw_item_template=, :public_submission_enabled=, :public_submission_accounts=, :to => :source
 
-    attr_writer :order_by_attribute
+    attr_writer :order_by_attribute, :group_by_field_name
 
     def set_order_by_attribute
       return unless @order_by_attribute
@@ -18,6 +18,19 @@ module Locomotive
         self.source.save
         self.source.order_by = self.source.entries_custom_fields.where(:name => @order_by_attribute).first.id rescue 'created_at'
       end
+    end
+
+    def set_group_by_field_name
+      return unless @group_by_field_name
+
+      self.source.group_by_field_id = nil
+      self.source.save
+      self.source.group_by_field_id = self.source.entries_custom_fields.where(:name => @group_by_field_name).first.id rescue nil
+    end
+
+    def group_by_field_name
+      # Get the name of the group_by field in the model
+      self.source.entries_custom_fields.find(self.source.group_by_field_id).name
     end
 
     def entries_custom_fields
@@ -44,7 +57,7 @@ module Locomotive
     end
 
     def included_methods
-      super + %w(name description slug order_by order_by_attribute order_direction label_field_name group_by_field_id public_submission_accounts entries_custom_fields klass_name)
+      super + %w(name description slug order_by order_by_attribute order_direction label_field_name group_by_field_id group_by_field_name raw_item_template public_submission_accounts entries_custom_fields klass_name)
     end
 
     def filter_entries_custom_field_hash(entries_custom_field_hash)
@@ -61,6 +74,7 @@ module Locomotive
 
     def save
       set_order_by_attribute
+      set_group_by_field_name
       super
     end
 
