@@ -2,7 +2,7 @@ module Locomotive
   module CustomFieldsHelper
 
     def options_for_custom_field_type
-      %w(string text select boolean date file belongs_to has_many many_to_many).map do |type|
+      %w(string text select boolean date file belongs_to has_many many_to_many tag_set).map do |type|
         [t("custom_fields.type.#{type}"), type]
       end
     end
@@ -17,7 +17,7 @@ module Locomotive
 
     def options_for_group_by_field(content_type)
       content_type.ordered_entries_custom_fields.find_all do |field|
-        %w(select belongs_to).include?(field.type)
+        %w(select belongs_to tag_set).include?(field.type)
       end.map do |field|
         [field.label, field._id]
       end

@@ -61,7 +61,7 @@ module Locomotive
     end
 
     def groupable?
-      !!self.group_by_field && %w(select belongs_to).include?(group_by_field.type)
+      !!self.group_by_field && %w(select belongs_to tag_set).include?(group_by_field.type)
     end
 
     def group_by_field
@@ -72,6 +72,8 @@ module Locomotive
       if self.groupable?
         if group_by_field.type == 'select'
           self.entries.group_by_select_option(self.group_by_field.name, self.order_by_definition)
+        elsif group_by_field.type == 'tag_set'
+          self.entries.group_by_tag(self.group_by_field.name, self.order_by_definition)
         else
           group_by_belongs_to_field(self.group_by_field)
         end

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>locomotive_engine</name>
+	<comment></comment>
+	<projects>
+	</projects>
+	<buildSpec>
+	</buildSpec>
+	<natures>
+		<nature>org.radrails.rails.core.railsnature</nature>
+		<nature>com.aptana.ruby.core.rubynature</nature>
+	</natures>
+</projectDescription>
