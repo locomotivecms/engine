@@ -37,7 +37,19 @@ class Locomotive.Views.ContentEntries.FormView extends Locomotive.Views.Shared.F
 
     @slugify_label_field()
 
+    @bind_keyup_in_text_fields()
+
     return @
+
+  bind_keyup_in_text_fields: ->
+    _.each @$('li.input.stringish input[type=text]'), (textfield) =>
+      alert
+      $(textfield).bind 'keyup', (event) =>
+        input = $(event.target)
+        input_name = input[0].name.match(/\w*\[(\w*)\]/)[1]
+        data = {}
+        data[input_name] = input.val()
+        @model.set(data)
 
   enable_checkboxes: ->
     @$('li.input.toggle input[type=checkbox]').checkToggle()
