@@ -43,7 +43,6 @@ class Locomotive.Views.ContentEntries.FormView extends Locomotive.Views.Shared.F
 
   bind_keyup_in_text_fields: ->
     _.each @$('li.input.stringish input[type=text]'), (textfield) =>
-      alert
       $(textfield).bind 'keyup', (event) =>
         input = $(event.target)
         input_name = input[0].name.match(/\w*\[(\w*)\]/)[1]
