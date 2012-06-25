@@ -1,3 +1,7 @@
+- content_for :head do
+  = render '/locomotive/shared/tag_set'
+
 = f.input name,
   :label      => field.label,
-  :hint       => field.hint
+  :hint       => field.hint,
+  :wrapper_html => { :class => 'tag_set' }

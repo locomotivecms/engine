@@ -50,6 +50,10 @@ class Locomotive.Models.ContentEntry extends Backbone.Model
       _.each @get('many_to_many_custom_fields'), (field) => # include the many_to_many relationships
         name = field[0]; setter_name = field[1]
         hash[setter_name] = @get(name).sort().map (entry) => entry.id
+        
+      _.each @get('tag_set_custom_fields'), (field) => # include the tag_set results
+        hash[field] = $("#as-values-#{@paramRoot}_#{field}").val()
+        
 
 class Locomotive.Models.ContentEntriesCollection extends Backbone.Collection
 

@@ -1,0 +1,13 @@
+%script{ :type => 'text/javascript' }
+  :plain
+    var tag_set = {items: [
+    #{
+      tag_list_string = ""
+      tag_array = CustomFields::Types::TagSet::Tag.available_tags
+      tag_array.each do |tag|
+        tag_list_string += "{value: '#{tag.name}'}"
+        tag_list_string += ",\n" if (tag_array.last != tag)   
+      end
+      tag_list_string
+    }
+    ]};

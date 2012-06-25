@@ -10,6 +10,7 @@
  *= require codemirror/themes/neat
  *= require locomotive/toggle.css
  *= require locomotive/liquid_mode.css
+ *= require locomotive/autoSuggest.css 
  *= require_tree ./locomotive/shared
- *= require_tree ./locomotive/backoffice
+ *= require_tree ./locomotive/backoffice 
 */

@@ -34,6 +34,8 @@ class Locomotive.Views.ContentEntries.FormView extends Locomotive.Views.Shared.F
     @enable_has_many_fields()
 
     @enable_many_to_many_fields()
+    
+    @enable_tag_set_fields()
 
     @slugify_label_field()
 
@@ -94,12 +96,22 @@ class Locomotive.Views.ContentEntries.FormView extends Locomotive.Views.Shared.F
   enable_many_to_many_fields: ->
     _.each @model.get('many_to_many_custom_fields'), (field) =>
       name = field[0]
-      view = new Locomotive.Views.Shared.Fields.ManyToManyView model: @model, name: name, all_entries: @options["all_#{name}_entries"]
+      view = new Locomotive.Views.Shared.Fields.TagSetView model: @model, name: name, all_entries: @options["all_#{name}_entries"]
 
       if view.ui_enabled()
         @_many_to_many_field_views.push(view)
 
         @$("##{@model.paramRoot}_#{name}_input label").after(view.render().el)
+        
+  enable_tag_set_fields: ->
+    _.each @model.get('tag_set_custom_fields'), (name) =>
+      html_id = "#{@model.paramRoot}_#{name}"
+      @$("##{html_id}").autoSuggest(tag_set.items, {startText: "", emptyText:"",
+      preFill:@$("##{html_id}").val(),
+      asHtmlID:"#{html_id}",
+      retrieveLimit: 5,
+      neverSubmit:true})
+     
 
   slugify_label_field: ->
     @$('li.input.highlighted > input[type=text]').slugify(target: @$('#content_entry__slug'))
