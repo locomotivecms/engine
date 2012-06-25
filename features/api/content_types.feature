@@ -38,7 +38,6 @@ Feature: Content Types
     Then the JSON response at "0/order_by" should be %{ORDER_BY_ATTRIBUTE_ID}
     And the JSON response at "0/order_by_attribute" should be "name"
 
-
   Scenario: Creating Content Type with special order_by_attribute
     When I do an API POST to content_types.json with:
     """
@@ -67,3 +66,34 @@ Feature: Content Types
     And the JSON response should have 1 entry
     And the JSON response at "0/order_by" should be "updated_at"
     And the JSON response at "0/order_by_attribute" should be "updated_at"
+
+  Scenario: Creating Content Type with group_by_field_name (should ignore group_by_field_id)
+    When I do an API POST to content_types.json with:
+    """
+    {
+      "content_type": {
+        "name": "Employees",
+        "slug": "employees",
+        "group_by_field_id": "4fe2096581805658ee001169",
+        "group_by_field_name": "category",
+        "entries_custom_fields": [
+          {
+            "label": "Name",
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "label": "Category",
+            "name": "category",
+            "type": "select"
+          }
+        ]
+      }
+    }
+    """
+    When I do an API GET request to content_types.json
+    Then the JSON response should be an array
+    And the JSON response should have 1 entry
+    When I keep the JSON response at "0/entries_custom_fields/1/id" as "GROUP_BY_FIELD_ID"
+    Then the JSON response at "0/group_by_field_id" should be %{GROUP_BY_FIELD_ID}
+    And the JSON response at "0/group_by_field_name" should be "category"
