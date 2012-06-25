@@ -40,7 +40,12 @@
 			neverSubmit: false,
 			selectionLimit: false,
 			showResultList: true,
-		  	start: function(){},
+			enterAsTab: false,  //treat return like a tab or comma - markwpearce
+			ignoreLeadingSpace: false,  //ignore a leading space in text entry - markwpearce
+			tabUsesSearchValue: false,  //when tab or comma is pressed and a search result is selected, use that result only - markwpearce
+			hideEmptySearchResults: false,  //totally ignore an empty search results window - markwpearce
+			searchResultsLeftMargin: 0, // allow a new margin-left for the search results window 
+			 	start: function(){},
 		  	selectionClick: function(elem){},
 		  	selectionAdded: function(elem){},
 		  	selectionRemoved: function(elem){ elem.remove(); },
@@ -79,7 +84,8 @@
 				input.wrap('<ul class="as-selections" id="as-selections-'+x+'"></ul>').wrap('<li class="as-original" id="as-original-'+x+'"></li>');
 				var selections_holder = $("#as-selections-"+x);
 				var org_li = $("#as-original-"+x);				
-				var results_holder = $('<div class="as-results" id="as-results-'+x+'"></div>').hide();
+				var left_position = opts.searchResultsLeftMargin;
+				var results_holder = $('<div class="as-results" id="as-results-'+x+'" style="margin-left:'+left_position+'px"></div>').hide();
 				var results_ul =  $('<ul class="as-list"></ul>');
 				var values_input = $('<input type="hidden" class="as-values" name="as_values_'+x+'" id="as-values-'+x+'" />');
 				var prefill_value = "";
@@ -182,21 +188,30 @@
 							}
 							break;
 						case 9: case 188:  // tab or comma
-							tab_press = true;
-							var i_input = input.val().replace(/(,)/g, "");
-							if(i_input != "" && values_input.val().search(","+i_input+",") < 0 && i_input.length >= opts.minChars){	
-								e.preventDefault();
-								var n_data = {};
-								n_data[opts.selectedItemProp] = i_input;
-								n_data[opts.selectedValuesProp] = i_input;																				
-								var lis = $("li", selections_holder).length;
-								add_selected_item(n_data, "00"+(lis+1));
-								input.val("");
+						  case 13: // return
+              if(opts.enterAsTab && lastKeyPressCode == 13)
+              {
+                tab_press = true;
+  							var i_input = input.val().replace(/(,)/g, "");
+  							var active = "";
+  							if((opts.tabUsesSearchValue && (lastKeyPressCode == 9 || lastKeyPressCode == 188))
+  							   || (opts.enterAsTab && lastKeyPressCode == 13))  {
+  							  active = $("li.active:first", results_holder);
+                }
+  							if(active.length == 0 && i_input != "" && values_input.val().search(","+i_input+",") < 0 && i_input.length >= opts.minChars){	
+  								e.preventDefault();
+  								var n_data = {};
+  								n_data[opts.selectedItemProp] = i_input;
+  								n_data[opts.selectedValuesProp] = i_input;																				
+  								var lis = $("li", selections_holder).length;
+  								add_selected_item(n_data, "00"+(lis+1));
+  								input.val("");
+  							}
 							}
-						case 13: // return
 							tab_press = false;
 							var active = $("li.active:first", results_holder);
 							if(active.length > 0){
+								input.val("");
 								active.click();
 								results_holder.hide();
 							}
@@ -223,6 +238,9 @@
 					if( lastKeyPressCode == 46 || (lastKeyPressCode > 8 && lastKeyPressCode < 32) ){ return results_holder.hide(); }
 					var string = input.val().replace(/[\\]+|[\/]+/g,"");
 					if (string == prev) return;
+					if(opts.ignoreLeadingSpace) {
+					  string = string.trim();
+					}
 					prev = string;
 					if (string.length >= opts.minChars) {
 						selections_holder.addClass("loading");
@@ -319,7 +337,12 @@
 						results_ul.html('<li class="as-message">'+opts.emptyText+'</li>');
 					}
 					results_ul.css("width", selections_holder.outerWidth());
-					results_holder.show();
+					if(opts.hideEmptySearchResults && matchCount <= 0) {
+					  results_holder.hide();
+					}
+					else {
+					  results_holder.show();
+          }
 					opts.resultsComplete.call(this);
 				}
 				

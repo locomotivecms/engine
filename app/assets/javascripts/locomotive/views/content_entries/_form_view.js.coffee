@@ -110,7 +110,12 @@ class Locomotive.Views.ContentEntries.FormView extends Locomotive.Views.Shared.F
       preFill:@$("##{html_id}").val(),
       asHtmlID:"#{html_id}",
       retrieveLimit: 5,
-      neverSubmit:true})
+      neverSubmit:true,
+      enterAsTab: true,
+      ignoreLeadingSpace: true,
+      tabUsesSearchValue: true,
+      hideEmptySearchResults: true,
+      searchResultsLeftMargin: 160})
      
 
   slugify_label_field: ->
