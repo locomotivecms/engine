@@ -8,7 +8,7 @@ module Locomotive
 
       def index
         @accounts = Locomotive::Account.all
-        authorize! :index, @account
+        authorize! :index, @accounts
         respond_with(@accounts)
       end
 

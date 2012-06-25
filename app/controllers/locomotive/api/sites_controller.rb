@@ -5,10 +5,11 @@ module Locomotive
       load_and_authorize_resource :class => Locomotive::Site
 
       # FIXME: the auto-loaded site won't pass authorization for show, update, or destroy
-      skip_load_and_authorize_resource :only => [ :show, :update, :destroy ]
+      skip_load_and_authorize_resource :only => [ :index, :show, :update, :destroy ]
 
       def index
         @sites = Locomotive::Site.all
+        authorize! :index, @sites
         respond_with(@sites)
       end
 
