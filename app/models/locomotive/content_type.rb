@@ -200,7 +200,7 @@ module Locomotive
     # "field_name: given_value" ----> "field_name_id: <id of select option with name == given_value>" 
     def translate_scope_by_id(conditions = {})
       translated_conditions = {}
-      types_needing_translation = %w(select)
+      types_needing_translation = %w(select tag_set)
       conditions.each_pair do |key, value|
         field = self.entries_custom_fields.where({"name" => key}).first
         if( !field.nil? && types_needing_translation.include?(field.type) )
@@ -212,6 +212,14 @@ module Locomotive
               option = field.select_options.where({'name' => value}).first
               #if there's no option by that name, then no entries will be given - the Id is one that's never been used
               #if there is an option, find the entries by that option's id
+              option.nil? ? translated_conditions["#{key}_id"] = BSON::ObjectId.new : translated_conditions["#{key}_id"] = option._id
+            end
+          elsif(field.type == "tag_set")
+            if value.empty?
+              translated_conditions["#{key}_ids"] = nil
+            else
+              debugger
+              tag_list = field.select_options.where({'name' => value}).first
               option.nil? ? translated_conditions["#{key}_id"] = BSON::ObjectId.new : translated_conditions["#{key}_id"] = option._id
             end
           else
