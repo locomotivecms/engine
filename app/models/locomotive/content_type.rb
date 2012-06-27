@@ -202,25 +202,30 @@ module Locomotive
       translated_conditions = {}
       types_needing_translation = %w(select tag_set)
       conditions.each_pair do |key, value|
-        field = self.entries_custom_fields.where({"name" => key}).first
+        key_parts = key.split('.')
+        field_name = key_parts[0]
+        key_parts.length > 1 ? search_modifier = key_parts[1] : "" 
+        
+        field = self.entries_custom_fields.where({"name" => field_name}).first
+        
         if( !field.nil? && types_needing_translation.include?(field.type) )
           if(field.type == "select")
             if value.empty?
               # with_scope select_field = "" should give the entries not assigned a value
-              translated_conditions["#{key}_id"] = nil
+              translated_conditions["#{field_name}_id"] = nil
             else
               option = field.select_options.where({'name' => value}).first
               #if there's no option by that name, then no entries will be given - the Id is one that's never been used
               #if there is an option, find the entries by that option's id
-              option.nil? ? translated_conditions["#{key}_id"] = BSON::ObjectId.new : translated_conditions["#{key}_id"] = option._id
+              option.nil? ? translated_conditions["#{field_name}_id"] = BSON::ObjectId.new : translated_conditions["#{field_name}_id"] = option._id
             end
           elsif(field.type == "tag_set")
             if value.empty?
-              translated_conditions["#{key}_ids"] = nil
+              translated_conditions["#{field_name}_ids"] = nil
             else
               debugger
               tag_list = field.select_options.where({'name' => value}).first
-              option.nil? ? translated_conditions["#{key}_id"] = BSON::ObjectId.new : translated_conditions["#{key}_id"] = option._id
+              option.nil? ? translated_conditions["#{field_name}_ids"] = BSON::ObjectId.new : translated_conditions["#{field_name}_ids"] = option._id
             end
           else
             translated_conditions[key] = value 
