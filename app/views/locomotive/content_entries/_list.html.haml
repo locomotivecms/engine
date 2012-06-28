@@ -16,4 +16,4 @@
             != t('locomotive.content_entries.index.updated_at')
           = l entry.updated_at, :format => :short rescue 'n/a'
 
-          = link_to 'x', content_entry_url(content_type.slug, entry), :class => 'remove', :confirm => t('locomotive.messages.confirm'), :method => :delete
+          = link_to 'x', content_entry_url(content_type.slug, entry), :class => 'remove', :data => { :confirm => t('locomotive.messages.confirm') }, :method => :delete

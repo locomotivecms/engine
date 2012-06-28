@@ -29,4 +29,4 @@
 - if can?(:manage, Locomotive::ContentType)
   #local-actions-bottom-bar
     %p.tleft
-      = link_to t('.destroy'), content_type_url(@content_type), :confirm => t('locomotive.messages.confirm'), :method => :delete, :class => 'button remove'
+      = link_to t('.destroy'), content_type_url(@content_type), :data => { :confirm => t('locomotive.messages.confirm') }, :method => :delete, :class => 'button remove'
