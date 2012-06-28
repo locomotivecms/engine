@@ -18,14 +18,14 @@ module Locomotive
         @content_entry = @content_type.entries.build
         @content_entry_presenter = @content_entry.to_presenter
         @content_entry_presenter.update_attributes(params[:content_entry])
-        respond_with @content_entry_presenter, :location => main_app.locomotive_api_content_entries_url(@content_type.slug)
+        respond_with @content_entry, :location => main_app.locomotive_api_content_entries_url(@content_type.slug)
       end
 
       def update
         @content_entry = @content_type.entries.find(params[:id])
         @content_entry_presenter = @content_entry.to_presenter
         @content_entry_presenter.update_attributes(params[:content_entry])
-        respond_with @content_entry_presenter, :location => main_app.locomotive_api_content_entries_url(@content_type.slug)
+        respond_with @content_entry, :location => main_app.locomotive_api_content_entries_url(@content_type.slug)
       end
 
       def destroy
