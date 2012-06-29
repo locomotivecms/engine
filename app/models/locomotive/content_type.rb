@@ -221,11 +221,15 @@ module Locomotive
             end
           elsif(field.type == "tag_set")
             if value.empty?
-              translated_conditions["#{field_name}_ids"] = nil
+              translated_conditions["#{field_name.singularize}_ids"] = nil
             else
-              debugger
-              tag_list = field.select_options.where({'name' => value}).first
-              option.nil? ? translated_conditions["#{field_name}_ids"] = BSON::ObjectId.new : translated_conditions["#{field_name}_ids"] = option._id
+              tag_list = value.split(',').map {|tag_name| CustomFields::Types::TagSet::Tag.find_tag_by_name(tag_name)}
+              tag_list.delete_if{|tag| tag.nil?}
+              if tag_list.blank?
+                translated_conditions["raw_#{field_name.singularize}_ids"] = []
+              else
+                translated_conditions["raw_#{field_name.singularize}_ids"] = {"$all" => tag_list.map{|x| x['_id']} } 
+              end     
             end
           else
             translated_conditions[key] = value 

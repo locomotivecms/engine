@@ -66,7 +66,7 @@
 			var org_data = data;
 			for (k in data) if (data.hasOwnProperty(k)) d_count++;
 		}
-		if((d_type == "object" && d_count > 0) || d_type == "string"){
+		if((d_type == "object" && d_count >= 0) || d_type == "string"){
 			return this.each(function(x){
 				if(!opts.asHtmlID){
 					x = x+""+Math.floor(Math.random()*100); //this ensures there will be unique IDs on the page if autoSuggest() is called multiple times
