@@ -33,7 +33,7 @@
           {{label}}
 
         %span.actions
-          = link_to 'x', '#', :class => 'remove', :confirm => t('locomotive.messages.confirm')
+          = link_to 'x', '#', :class => 'remove', :data => { :confirm => t('locomotive.messages.confirm') }
 
 
   - content_for :backbone_view_data do

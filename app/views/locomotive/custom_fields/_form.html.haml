@@ -52,7 +52,7 @@
 
     %span.actions
       = link_to 'toggle', '#', :class => 'toggle'
-      = link_to 'x', '#', :class => 'remove', :confirm => t('locomotive.messages.confirm')
+      = link_to 'x', '#', :class => 'remove', :data => { :confirm => t('locomotive.messages.confirm') }
 
     .clear
 
@@ -72,4 +72,4 @@
 
     %span.actions
       = link_to 'drag', '#', :class => 'drag'
-      = link_to 'x', '#', :class => 'remove', :confirm => t('locomotive.messages.confirm')
+      = link_to 'x', '#', :class => 'remove', :data => { :confirm => t('locomotive.messages.confirm') }
