@@ -1,14 +1,12 @@
 module Locomotive
   module Api
-    class AccountsController < BaseController
+    class AccountsController < Api::BaseController
 
-      #load_and_authorize_resource :class => Locomotive::Account
-      #FIXME: qwill not auto-load
-      skip_load_and_authorize_resource
+      load_and_authorize_resource :class => Locomotive::Account
+
+      skip_load_and_authorize_resource :only => [ :show, :create ]
 
       def index
-        @accounts = Locomotive::Account.all
-        authorize! :index, @account
         respond_with(@accounts)
       end
 
@@ -19,8 +17,7 @@ module Locomotive
       end
 
       def create
-        build_params = params[:account] # force author by default
-        @account = current_site.accounts.create(build_params)
+        @account = Locomotive::Account.new
         authorize! :create, @account
         @account_presenter = @account.to_presenter
         @account_presenter.update_attributes(params[:account])
