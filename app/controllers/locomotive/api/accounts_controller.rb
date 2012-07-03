@@ -7,6 +7,8 @@ module Locomotive
       skip_load_and_authorize_resource :only => [ :show, :create ]
 
       def index
+        @accounts = Locomotive::Account.all
+        authorize! :index, @accounts
         respond_with(@accounts)
       end
 
