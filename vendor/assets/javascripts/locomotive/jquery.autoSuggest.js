@@ -189,7 +189,7 @@
 							break;
 						case 9: case 188:  // tab or comma
 						  case 13: // return
-              if(opts.enterAsTab && lastKeyPressCode == 13)
+              if( (opts.enterAsTab && lastKeyPressCode == 13) || lastKeyPressCode == 9 || lastKeyPressCode == 188)
               {
                 tab_press = true;
   							var i_input = input.val().replace(/(,)/g, "");
@@ -206,6 +206,7 @@
   								var lis = $("li", selections_holder).length;
   								add_selected_item(n_data, "00"+(lis+1));
   								input.val("");
+  								results_holder.hide();
   							}
 							}
 							tab_press = false;
