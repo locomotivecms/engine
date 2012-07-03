@@ -1,9 +1,9 @@
 module Locomotive
   class ContentTypePresenter < BasePresenter
 
-    delegate :name, :description, :slug, :order_by, :order_by_attribute, :order_direction, :label_field_name, :group_by_field_id, :raw_item_template, :public_submission_enabled, :public_submission_accounts, :to => :source
+    delegate :name, :description, :slug, :order_by, :order_by_attribute, :order_direction, :label_field_name, :group_by_field_id, :raw_item_template, :public_submission_enabled, :to => :source
 
-    delegate :name=, :description=, :slug=, :order_by=, :order_direction=, :label_field_name=, :group_by_field_id=, :raw_item_template=, :public_submission_enabled=, :public_submission_accounts=, :to => :source
+    delegate :name=, :description=, :slug=, :order_by=, :order_direction=, :label_field_name=, :group_by_field_id=, :raw_item_template=, :public_submission_enabled=, :to => :source
 
     attr_writer :order_by_attribute, :group_by_field_name
 
@@ -56,8 +56,21 @@ module Locomotive
       self.source.klass_with_custom_fields(:entries).to_s
     end
 
+    def public_submission_account_emails
+      self.source.public_submission_accounts.collect do |acct_id|
+        acct = Locomotive::Account.find(acct_id)
+        acct.email
+      end
+    end
+
+    def public_submission_account_emails=(emails)
+      self.source.public_submission_accounts = emails.collect do |email|
+        acct = Locomotive::Account.where(:email => email).first
+      end.collect(&:id)
+    end
+
     def included_methods
-      super + %w(name description slug order_by order_by_attribute order_direction label_field_name group_by_field_id group_by_field_name raw_item_template public_submission_accounts entries_custom_fields klass_name)
+      super + %w(name description slug order_by order_by_attribute order_direction label_field_name group_by_field_id group_by_field_name raw_item_template public_submission_enabled public_submission_account_emails entries_custom_fields klass_name)
     end
 
     def filter_entries_custom_field_hash(entries_custom_field_hash)

@@ -97,3 +97,33 @@ Feature: Content Types
     When I keep the JSON response at "0/entries_custom_fields/1/id" as "GROUP_BY_FIELD_ID"
     Then the JSON response at "0/group_by_field_id" should be %{GROUP_BY_FIELD_ID}
     And the JSON response at "0/group_by_field_name" should be "category"
+
+  Scenario: Creating Content Type with public_submission_account_emails
+    Given I have accounts:
+      | email         | id                        |
+      | user1@a.com   | 4f832c2cb0d86d3f42fffffc  |
+      | user2@a.com   | 4f832c2cb0d86d3f42fffffd  |
+      | user3@a.com   | 4f832c2cb0d86d3f42fffffe  |
+    When I do an API POST to content_types.json with:
+    """
+    {
+      "content_type": {
+        "name": "Employees",
+        "slug": "employees",
+        "entries_custom_fields": [
+          {
+            "label": "Name",
+            "name": "name",
+            "type": "string"
+          }
+        ],
+        "public_submission_enabled": true,
+        "public_submission_account_emails": [ "user1@a.com", "user2@a.com" ]
+      }
+    }
+    """
+    When I do an API GET request to content_types.json
+    Then the JSON response should be an array
+    And the JSON response should have 1 entry
+    And the JSON response at "0/public_submission_account_emails/0" should be "user1@a.com"
+    And the JSON response at "0/public_submission_account_emails/1" should be "user2@a.com"
