@@ -121,9 +121,7 @@ module Locomotive
       self.to_presenter.as_json
     end
 
-    protected
-
-    def group_by_belongs_to_field(field)
+     def group_by_belongs_to_field(field)
       grouped_entries     = self.ordered_entries.group_by(&:"#{field.name}_id")
       columns             = grouped_entries.keys
       target_content_type = self.class_name_to_content_type(field.class_name)
@@ -131,19 +129,22 @@ module Locomotive
 
       all_columns.map do |column|
         if columns.include?(column._id)
-          {
+          HashWithIndifferentAccess.new ({
             :name     => column._label(target_content_type),
             :entries  => grouped_entries.delete(column._id)
-          }
+          } )
         else
           nil
         end
       end.compact.tap do |groups|
         unless grouped_entries.empty? # "orphans" ?
-          groups << { :name => nil, :entries => grouped_entries.values.flatten }
+          groups << HashWithIndifferentAccess.new( { :name => nil, :entries => grouped_entries.values.flatten } )
         end
       end
     end
+
+    protected
+   
 
     def order_by_attribute
       return self.order_by if %w(created_at updated_at _position).include?(self.order_by)

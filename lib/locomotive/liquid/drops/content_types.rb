@@ -28,9 +28,14 @@ module Locomotive
 
         def before_method(meth)
           klass = @content_type.entries.klass # delegate to the proxy class
-
           if (meth.to_s =~ /^group_by_(.+)$/) == 0
-            klass.send(:group_by_select_option, $1, @content_type.order_by_definition)
+            field = @content_type.entries_custom_fields.detect{|x| x.name==$1}
+            case (field.nil? ? nil : field['type'])
+            when 'belongs_to'
+              @content_type.group_by_belongs_to_field(field)
+            else
+              klass.send(:group_by_select_option, $1, @content_type.order_by_definition)
+            end
           else
             Locomotive.log :warn, "[Liquid template] trying to call #{meth} on a content_type object"
           end
