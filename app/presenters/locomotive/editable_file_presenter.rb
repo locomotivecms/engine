@@ -19,5 +19,9 @@ module Locomotive
       super + %w(filename content url)
     end
 
+    def included_setters
+      super + %w(source)
+    end
+
   end
 end

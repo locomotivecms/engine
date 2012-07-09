@@ -59,6 +59,10 @@ module Locomotive
       super + %w(title slug fullpath handle seo_title meta_keywords meta_description raw_template published listed templatized templatized_from_parent target_klass_name redirect redirect_url cache_strategy response_type depth position template_changed editable_elements localized_fullpaths parent_fullpath)
     end
 
+    def included_setters
+      super + %w(title slug fullpath seo_title meta_keywords meta_description handle raw_template published listed templatized templatized_from_parent target_klass_name redirect redirect_url cache_strategy response_type position editable_elements parent_fullpath target_entry_name)
+    end
+
     def localized_fullpaths
       site = self.source.site
 

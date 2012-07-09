@@ -3,6 +3,8 @@ module Locomotive
 
     delegate :content_type, :folder, :plain_text, :to => :source
 
+    delegate :content_type=, :folder=, :plain_text_name=, :plain_text=, :plain_text_type=, :performing_plain_text=, :source=, :to => :source
+
     def local_path
       self.source.local_path(true)
     end
@@ -31,6 +33,10 @@ module Locomotive
       default_list = %w(content_type folder local_path url size dimensions can_be_deleted updated_at)
       default_list += %w(plain_text) if plain_text?
       super + default_list
+    end
+
+    def included_setters
+      super + %w(content_type folder plain_text_name plain_text plain_text_type performing_plain_text source)
     end
 
     private

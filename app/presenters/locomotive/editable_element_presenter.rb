@@ -29,6 +29,10 @@ module Locomotive
       super + %w(type label slug block_name block default_attribute hint priority disabled assignable from_parent)
     end
 
+    def included_setters
+      super + %w(type slug block hint priority disabled from_parent)
+    end
+
   end
 end
 

@@ -60,11 +60,14 @@ module Locomotive
       super + self.filtered_custom_fields_methods + self.additional_custom_fields_methods + default_list
     end
 
+    def included_setters
+      super + %w(_slug _position seo_title meta_keywords meta_description formatted_created_at formatted_updated_at) + self.available_custom_field_names
+    end
+
     def as_json(methods = nil)
       methods ||= self.included_methods
       {}.tap do |hash|
         methods.each do |meth|
-          pr = meth.to_s =~ /^position_in_.*$/
           hash[meth]= (if self.source.custom_fields_methods.include?(meth.to_s) \
                        || self.additional_custom_fields_methods.include?(meth.to_s)
             if self.source.is_a_custom_field_many_relationship?(meth.to_s)
@@ -179,35 +182,25 @@ module Locomotive
 
     # Delegate custom field setters to source
 
-    def respond_to?(meth)
-      if meth.to_s =~ /^(.+)=$/
-        custom_field_name = $1
-        if available_custom_field_names.include?(custom_field_name)
-          return true
-        end
-      end
-
-      super
-    end
-
     def method_missing(meth, *args, &block)
-      # If the method is missing but we should respond to it, delegate it to the source
-      if self.respond_to?(meth)
+      # If the setter is missing but it's in the available_custom_field_names, delegate it to the source
+      field_name = get_custom_field_name_for_method(meth)
+      if self.available_custom_field_names.include?(field_name)
         # If it's a "many" or "belong_to" field, pass in the right objects
-        if is_many_custom_field?(meth)
-          new_args = args.collect { |list| get_many_field_objects(meth, list) }
+        if is_many_custom_field?(field_name)
+          new_args = args.collect { |list| get_many_field_objects(field_name, list) }
 
           # Get the objects which we need to save
           self.objects_to_save ||= []
           self.objects_to_save += new_args.flatten
 
           # If it's a has_many field, set the positions
-          if is_has_many_custom_field?(meth)
-            self.set_positions_for_has_many(new_args.flatten, meth.to_s)
+          if is_has_many_custom_field?(field_name)
+            self.set_positions_for_has_many(new_args.flatten, field_name)
           end
 
           self.source.send(meth, *new_args, &block)
-        elsif is_belongs_to_custom_field?(meth)
+        elsif is_belongs_to_custom_field?(field_name)
           new_args = args.collect { |slug| get_belongs_field_object(meth, slug) }
           self.source.send(meth, *new_args, &block)
         else

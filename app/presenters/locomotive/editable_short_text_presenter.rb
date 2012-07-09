@@ -9,5 +9,9 @@ module Locomotive
       super + %w(content default_content)
     end
 
+    def included_setters
+      super + %w(content default_content)
+    end
+
   end
 end

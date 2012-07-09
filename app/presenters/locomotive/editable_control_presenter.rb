@@ -16,5 +16,9 @@ module Locomotive
       super + %w(content options)
     end
 
+    def included_setters
+      super + %w(content)
+    end
+
   end
 end

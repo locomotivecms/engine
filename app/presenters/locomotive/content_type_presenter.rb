@@ -73,6 +73,10 @@ module Locomotive
       super + %w(name description slug order_by order_by_attribute order_direction label_field_name group_by_field_id group_by_field_name raw_item_template public_submission_enabled public_submission_account_emails entries_custom_fields klass_name)
     end
 
+    def included_setters
+      super + %w(name description slug order_by order_by_attribute order_direction label_field_name group_by_field_id group_by_field_name raw_item_template public_submission_enabled public_submission_account_emails entries_custom_fields)
+    end
+
     def filter_entries_custom_field_hash(entries_custom_field_hash)
       entries_custom_field_hash.each do |k, v|
         unless custom_fields_write_methods.include? k.to_s

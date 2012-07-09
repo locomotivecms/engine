@@ -3,6 +3,8 @@ module Locomotive
 
     delegate :role, :to => :source
 
+    delegate :role=, :account_id=, :email=, :to => :source
+
     def name
       self.source.account.name
     end
@@ -27,6 +29,10 @@ module Locomotive
 
     def included_methods
       super + %w(name email role role_name can_update grant_admin)
+    end
+
+    def included_setters
+      super + %w(role account_id email)
     end
 
   end

@@ -34,6 +34,16 @@ class Locomotive::BasePresenter
     %w(id _id created_at updated_at)
   end
 
+  def included_setters
+    []
+  end
+
+  def included_setter_methods
+    included_setters.collect do |setter|
+      :"#{setter}="
+    end
+  end
+
   def as_json(methods = nil)
     methods ||= self.included_methods
     {}.tap do |hash|
@@ -49,7 +59,7 @@ class Locomotive::BasePresenter
     new_attributes.each do |attr, value|
       # Only call the methods which the presenter can handle
       meth = :"#{attr}="
-      if self.respond_to? meth
+      if self.included_setter_methods.include? meth
         self.send(meth, value)
       end
     end

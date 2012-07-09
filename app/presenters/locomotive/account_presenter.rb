@@ -11,6 +11,10 @@ module Locomotive
       super + %w(name email locale encrypted_password password_salt)
     end
 
+    def included_setters
+      super + %w(name email locale password encrypted_password password_salt)
+    end
+
     def save
       if @encrypted_password && @password_salt
         # Just need something that will pass the password validation

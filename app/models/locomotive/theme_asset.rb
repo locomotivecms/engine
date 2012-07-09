@@ -107,8 +107,12 @@ module Locomotive
       { :url => self.source.url }.merge(self.attributes).stringify_keys
     end
 
+    def to_presenter(options = {})
+      Locomotive::ThemeAssetPresenter.new(self, options)
+    end
+
     def as_json(options = {})
-      Locomotive::ThemeAssetPresenter.new(self, options).as_json
+      self.to_presenter(options).as_json
     end
 
     def self.all_grouped_by_folder(site)
