@@ -31,6 +31,8 @@ module Locomotive
 
           if (meth.to_s =~ /^group_by_(.+)$/) == 0
             klass.send(:group_by_select_option, $1, @content_type.order_by_definition)
+          elsif (meth.to_s =~ /^(.+)_options$/) == 0
+            klass.send(:"#{$1}_options").map { |option| option['name'] }
           else
             Locomotive.log :warn, "[Liquid template] trying to call #{meth} on a content_type object"
           end
