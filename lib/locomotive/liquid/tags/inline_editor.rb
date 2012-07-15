@@ -6,23 +6,25 @@ module Liquid
         def render(context)
           if context.registers[:current_locomotive_account] && context.registers[:inline_editor]
 
-            controller = context.registers[:controller]
-
             plugins = 'common/format,common/table,common/list,common/link,common/highlighteditables,common/block,common/undo,common/contenthandler,common/paste,common/commands,common/abbr,common/align,common/horizontalruler,custom/locomotive_media'
 
-            %{
-              <meta content="true" name="inline-editor" />
+            controller = context.registers[:controller]
+            controller.instance_variable_set(:@plugins, plugins)
 
-              #{controller.view_context.stylesheet_link_tag    'aloha/css/aloha.css'}
-              #{controller.view_context.javascript_include_tag 'locomotive/aloha', :'data-aloha-plugins' => plugins}
+            html = <<-HTML
+              %meta{ :content => true, :name => 'inline-editor' }
 
-              <script type="text/javascript">
-                Aloha.ready(function() \{
-                  window.parent.application_view.set_page(#{context.registers[:page].to_presenter.as_json_for_html_view.to_json});
-                \});
-              </script>
+              = stylesheet_link_tag 'aloha/css/aloha.css'
+              = javascript_include_tag 'locomotive/aloha', :'data-aloha-plugins' => @plugins
 
-            }
+              %script{ :type => 'text/javascript' }
+                :plain
+                  Aloha.ready(function() \{
+                    window.parent.application_view.set_page(#{controller.view_context.j context.registers[:page].to_presenter.as_json_for_html_view.to_json.html_safe});
+                  \});
+            HTML
+
+            Haml::Engine.new(html.gsub(/\n+/, "\n").gsub(/^\s{14}/, ''), :escape_html => true).render(controller.view_context)
           else
             ''
           end
