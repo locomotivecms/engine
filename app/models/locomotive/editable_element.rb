@@ -75,6 +75,15 @@ module Locomotive
       self.locales << locale unless self.locales.include?(locale)
     end
 
+    # Set the content of the editable element with a default value
+    # only if the content has not already been modified by the user.
+    #
+    # @param [ String ] content The default content.
+    #
+    def content_from_default=(content)
+      # needs to be overridden for each kind of elements
+    end
+
     protected
 
     def _selector
