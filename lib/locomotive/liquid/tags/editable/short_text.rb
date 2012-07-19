@@ -28,6 +28,10 @@ module Locomotive
             context.registers[:inline_editor] && (!element.fixed? || (element.fixed? && !element.from_parent?))
           end
 
+          def default_element_attributes
+            super.merge(:content_from_default => self.render_default_content(nil))
+          end
+
         end
 
         ::Liquid::Template.register_tag('editable_short_text', ShortText)

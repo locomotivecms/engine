@@ -95,8 +95,8 @@ describe Locomotive::EditableShortText do
       end
 
       it 'does not have a content at first' do
-        @sub_page_1_el.content.should be_nil
         @sub_page_1_el.default_content.should be_true
+        @sub_page_1_el.content.should == 'Lorem ipsum'
       end
 
     end
