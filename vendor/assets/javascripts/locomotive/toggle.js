@@ -34,6 +34,7 @@
     }
 
     settings = $.extend({
+      toggle_width: 28,
       on_label  : 'Yes',
       on_label_color : '#333333',
       on_bg_color : '#8FE38D',
@@ -48,22 +49,22 @@
     }, settings);
 
     // FIXME (Didier Lafforgue) it works but it doesn't scale if we handle another locale
-    if (typeof I18nLocale != 'undefined' && I18nLocale == 'fr') {
+    if (typeof window.locale != 'undefined' && window.locale == 'fr') {
       settings.on_label = 'Oui';
       settings.off_label = 'Non';
     }
 
     function showUncheckedState(element) {
-      element.parent().prev().css("color",settings.off_label_color);
-      element.parent().next().css("color",settings.on_label_color);
+      element.parent().prev().css("color",settings.off_label_color).removeClass('on');
+      element.parent().next().css("color",settings.on_label_color).addClass('on');
       element.parent().css("background-color", settings.off_bg_color).removeClass('on');
       element.parent().parent().prev().removeAttr("checked").trigger('change');
       element.removeClass("left").addClass("right");
     }
 
     function showCheckedState(element) {
-      element.parent().prev().css("color",settings.on_label_color);
-      element.parent().next().css("color",settings.off_label_color);
+      element.parent().prev().css("color",settings.on_label_color).addClass('on');
+      element.parent().next().css("color",settings.off_label_color).removeClass('on');
       element.parent().css("background-color", settings.on_bg_color).addClass('on');
       element.parent().parent().prev().attr("checked", "checked").trigger('change');
       element.removeClass("right").addClass("left");
@@ -88,7 +89,7 @@
         });
 
       } else {
-        $(element).animate({marginLeft: '15px'}, 100,
+        $(element).animate({marginLeft: settings.toggle_width + 'px'}, 100,
 
         // callback function
         function(){
@@ -114,9 +115,9 @@
 
         // insert the new toggle markup
         if($(this).attr("checked") == "checked" || $(this).attr("checked") == true){
-          $(this).after('<div class="toggleSwitch"><span class="leftLabel">'+settings.on_label+'<\/span><div class="switchArea on" style="background-color: '+settings.on_bg_color+'"><span class="switchHandle left" style="margin-left: 15px;"><\/span><\/div><span class="rightLabel" style="color:#cccccc">'+settings.off_label+'<\/span><\/div>');
+          $(this).after('<div class="toggleSwitch"><span class="leftLabel on">'+settings.on_label+'<\/span><div class="switchArea on" style="background-color: '+settings.on_bg_color+'"><span class="switchHandle left" style="margin-left: ' + settings.toggle_width + 'px;"><\/span><\/div><span class="rightLabel" style="color:#cccccc">'+settings.off_label+'<\/span><\/div>');
         }else{
-          $(this).after('<div class="toggleSwitch"><span class="leftLabel" style="color:#cccccc;">'+settings.on_label+'<\/span><div class="switchArea" style="background-color: '+settings.off_bg_color+'"><span class="switchHandle right" style="margin-left:0px"><\/span><\/div><span class="rightLabel">'+settings.off_label+'<\/span><\/div>');
+          $(this).after('<div class="toggleSwitch"><span class="leftLabel" style="color:#cccccc;">'+settings.on_label+'<\/span><div class="switchArea" style="background-color: '+settings.off_bg_color+'"><span class="switchHandle right" style="margin-left:0px"><\/span><\/div><span class="rightLabel on">'+settings.off_label+'<\/span><\/div>');
         }
 
         // Bind the switchHandle click events to the internal toggle function
