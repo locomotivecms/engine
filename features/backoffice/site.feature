@@ -26,3 +26,8 @@ Feature: Manage my site
   Scenario: Adding a domain to a site
     Given I am an authenticated user
     Then I should be able to add a domain to my site
+
+  @javascript
+  Scenario: Removing a domain from a site
+    Given I am an authenticated user
+    Then I should be able to remove a domain from my site
