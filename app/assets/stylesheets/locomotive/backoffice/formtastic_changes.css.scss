@@ -700,17 +700,15 @@ form.formtastic {
             }
 
             .required-input {
-              label {
-                float: none;
-                width: auto;
-
+              span {
+                color: #585A69;
                 font-weight: normal;
               }
 
               .toggleSwitch {
                 display: inline-block;
                 position: relative;
-                top: 0px;
+                top: 5px;
 
                 margin-left: 5px;
               }
@@ -765,6 +763,18 @@ form.formtastic {
               margin-top: 0px;
             }
           } // li.string, li.password
+
+          &.toggle {
+            label {
+              width: 174px;
+              padding-top: 0px;
+              line-height: 24px;
+            }
+
+            .toggleSwitch {
+              top: 3px;
+            }
+          } // li.toggle
 
           p.inline-hints {
             margin-left: 174px;
