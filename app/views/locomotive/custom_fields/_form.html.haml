@@ -30,7 +30,8 @@
       = g.select :type, options_for_custom_field_type, {}, { :class => 'type' }
 
     .required-input.col
-      = g.check_box :required, :class => 'required', :'data-on-label' => t('.required'), :'data-off-label' => t('.optional')
+      %span= t('.required')
+      = g.check_box :required, :class => 'required' #, :'data-on-label' => t('.required'), :'data-off-label' => t('.optional')
 
     %ol.nested{ :style => 'display: none' }
 
