@@ -20,7 +20,9 @@
         - when 'string', 'text', 'boolean', 'date'
           = value
         - when 'file'
-          = link_to File.basename(value.to_s), value.to_s
+          - url = value.guess_url
+          - url = url =~ /^http/ ? url : URI.join("http://#{@entry.site.domains.first}", url).to_s # Amazon S3 (http/https) or local files ?
+          = link_to File.basename(url), url
         - when 'select'
           = value
         - when 'belongs_to'

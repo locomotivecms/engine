@@ -90,7 +90,6 @@ ru:
           empty: Список пуст. Добавьте элемент из селекта ниже.
       form:
         required: Обязательное
-        optional: Опциональное
         default_label: Название поля
         select_options:
           ask_name: "Введите название элемента"
