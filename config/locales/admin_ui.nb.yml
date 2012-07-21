@@ -91,7 +91,6 @@ nb:
 
       form:
         required: Nødvendig
-        optional: Valgfri
         default_label: Feltnavn
         select_options:
           ask_name: "Skriv inn etiketten for dette valget"
