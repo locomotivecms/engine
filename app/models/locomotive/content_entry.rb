@@ -94,10 +94,15 @@ module Locomotive
     protected
 
     def next_or_previous(matcher = :gt)
-      order_by  = self.content_type.order_by_definition
-      criterion = :_position.send(matcher)
+      # order_by  = self.content_type.order_by_definition
+      # criterion = :_position.send(matcher)
+      # self.class.where(criterion => self._position).order_by([order_by]).limit(1).first
 
-      self.class.where(criterion => self._position).order_by([order_by]).limit(1).first
+      order_by  = self.content_type.order_by_definition(matcher == :lt)
+      criterion = self.content_type.order_by_attribute.to_sym.send(matcher)
+      value     = self.send(self.content_type.order_by_attribute.to_sym)
+
+      self.class.where(criterion => value).order_by([order_by]).limit(1).first
     end
 
     # Sets the slug of the instance by using the value of the highlighted field
