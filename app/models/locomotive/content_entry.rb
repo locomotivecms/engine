@@ -94,7 +94,7 @@ module Locomotive
     protected
 
     def next_or_previous(matcher = :gt)
-      order_by  = self.content_type.order_by_definition
+      order_by  = self.content_type.order_by_definition(matcher == :lt)
       criterion = :_position.send(matcher)
 
       self.class.where(criterion => self._position).order_by([order_by]).limit(1).first
