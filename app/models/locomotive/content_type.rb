@@ -50,16 +50,13 @@ module Locomotive
       self.order_by == '_position'
     end
 
-    # def order_by_definition
-    #   direction = self.order_manually? ? 'asc' : self.order_direction || 'asc'
-    #   [order_by_attribute, direction]
-    # end
-    #
     def order_by_definition(reverse_order = false)
       direction = self.order_manually? ? 'asc' : self.order_direction || 'asc'
+
       if reverse_order
         direction = (direction == 'asc' ? 'desc' : 'asc')
       end
+
       [order_by_attribute, direction]
     end
 

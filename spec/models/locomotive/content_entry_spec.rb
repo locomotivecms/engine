@@ -91,6 +91,7 @@ describe Locomotive::ContentEntry do
 
   describe "#navigation" do
     before(:each) do
+      @content_type.order_by = '_position'
       @content_type.save
 
       %w(first second third).each_with_index do |item, index|
