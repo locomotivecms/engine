@@ -23,8 +23,7 @@ module Locomotive
         # {% endif %}
         #
         def next
-          Rails.logger.debug "next = #{@next.to_liquid.inspect} / #{@next.object_id.inspect} / liquid drop = #{self.object_id}, model = #{self._source.object_id}"
-          (@next ||= self._source.next).to_liquid
+          @next ||= self._source.next.to_liquid
         end
 
         # Returns the previous content for the parent content type.
@@ -37,8 +36,7 @@ module Locomotive
         # {% endif %}
         #
         def previous
-          Rails.logger.debug "previous = #{@next.to_liquid.inspect} / #{@next.object_id.inspect} / liquid drop = #{self.object_id}, model = #{self._source.object_id}"
-          (@previous ||= self._source.previous).to_liquid
+          @previous ||= self._source.previous.to_liquid
         end
 
         def before_method(meth)

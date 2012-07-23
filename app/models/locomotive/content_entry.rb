@@ -38,6 +38,13 @@ module Locomotive
     alias :_permalink :_slug
     alias :_permalink= :_slug=
 
+    # Any content entry owns a label property which is used in the back-office UI
+    # to represent it. The field used as the label is defined within the parent content type.
+    #
+    # @param [ Object ] (optional) The content type to avoid to run another MongoDB and useless query.
+    #
+    # @return [ String ] The "label" of the content entry
+    #
     def _label(type = nil)
       value = if self._label_field_name
         self.send(self._label_field_name.to_sym)
@@ -50,6 +57,11 @@ module Locomotive
 
     alias :to_label :_label
 
+    # Tells if the content entry has been translated or not.
+    # It just checks if the field used for the label has been translated.
+    #
+    # @return [ Boolean ] True if translated, false otherwise
+    #
     def translated?
       if self.respond_to?(:"#{self._label_field_name}_translations")
         self.send(:"#{self._label_field_name}_translations").key?(::Mongoid::Fields::I18n.locale.to_s) #rescue false
@@ -58,18 +70,37 @@ module Locomotive
       end
     end
 
+    # Return the next content entry based on the order defined in the parent content type.
+    #
+    # @param [ Object ] The next content entry or nil if not found
+    #
     def next
       next_or_previous :gt
     end
 
+    # Return the previous content entry based on the order defined in the parent content type.
+    #
+    # @param [ Object ] The previous content entry or nil if not found
+    #
     def previous
       next_or_previous :lt
     end
 
+    # Find a content entry by its permalink
+    #
+    # @param [ String ] The permalink
+    #
+    # @return [ Object ] The content entry matching the permalink or nil if not found
+    #
     def self.find_by_permalink(permalink)
       self.where(:_slug => permalink).first
     end
 
+    # Sort the content entries from an ordered array of content entry ids.
+    # Their new positions are persisted.
+    #
+    # @param [ Array ] The ordered array of ids
+    #
     def self.sort_entries!(ids)
       list = self.any_in(:_id => ids.map { |id| BSON::ObjectId.from_string(id.to_s) }).to_a
       ids.each_with_index do |id, position|
@@ -93,11 +124,14 @@ module Locomotive
 
     protected
 
+    # Retrieve the next or the previous entry following the order
+    # defined in the parent content type.
+    #
+    # @param [ Symbol ] :gt for the next element, :lt for the previous element
+    #
+    # @return [ Object ] The next or previous content entry or nil if none
+    #
     def next_or_previous(matcher = :gt)
-      # order_by  = self.content_type.order_by_definition
-      # criterion = :_position.send(matcher)
-      # self.class.where(criterion => self._position).order_by([order_by]).limit(1).first
-
       order_by  = self.content_type.order_by_definition(matcher == :lt)
       criterion = self.content_type.order_by_attribute.to_sym.send(matcher)
       value     = self.send(self.content_type.order_by_attribute.to_sym)
