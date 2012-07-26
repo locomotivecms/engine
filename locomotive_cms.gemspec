@@ -43,7 +43,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'locomotive-aloha-rails',          '~> 0.20.1.4'
   s.add_dependency 'flash_cookie_session',            '~> 1.1.1'
 
-  s.add_dependency 'locomotive_liquid',               '2.2.2'
+  s.add_dependency 'locomotive_liquid',               '~> 2.2.3'
   s.add_dependency 'formtastic',                      '~> 2.0.2'
   s.add_dependency 'responders',                      '~> 0.6.4'
   s.add_dependency 'cells',                           '~> 3.8.0'
@@ -54,7 +54,6 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'rmagick',                         '~> 2.12.2'
   s.add_dependency 'carrierwave-mongoid',             '~> 0.2.1'
-  # s.add_dependency 'carrierwave',                     '~> 0.6.2'
   s.add_dependency 'fog',                             '~> 1.3.1'
   s.add_dependency 'dragonfly',                       '~> 0.9.8'
   s.add_dependency 'rack-cache',                      '~> 1.1'
