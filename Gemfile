@@ -12,6 +12,7 @@ group :development do
   # gem 'custom_fields', :git => 'git://github.com/locomotivecms/custom_fields.git', :branch => '2.0.0.rc' # Branch on Github
 
   # gem 'locomotive-aloha-rails', :path => '../gems/aloha-rails' # for Developers
+  # gem 'locomotive_liquid', :path => '../gems/liquid' # for Developers
 
   gem 'rspec-rails', '~> 2.8.0' # In order to have rspec tasks and generators
   gem 'rspec-cells'
@@ -34,18 +35,18 @@ group :test do
 
   # gem 'growl-glue'
 
-  gem 'cucumber-rails', :require => false
-  gem 'poltergeist'
-  gem 'rspec-rails', '~> 2.8.0'
+  gem 'cucumber-rails',     :require => false
+  gem 'poltergeist',        '~> 0.7.0'
+  gem 'rspec-rails',        '~> 2.8.0'
   gem 'shoulda-matchers'
 
   gem 'factory_girl_rails', '~> 1.6.0'
   gem 'pickle'
-  gem 'mocha', '0.9.12' # :git => 'git://github.com/floehopper/mocha.git'
+  gem 'mocha',              '0.9.12' # :git => 'git://github.com/floehopper/mocha.git'
 
   gem 'capybara'
 
-  gem 'xpath', '~> 0.1.4'
+  gem 'xpath',              '~> 0.1.4'
 
   gem 'json_spec'
 
