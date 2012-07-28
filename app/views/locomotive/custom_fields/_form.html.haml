@@ -57,20 +57,5 @@
 
     .clear
 
-
-%script{ :type => 'text/html', :id => 'select_options_list' }
-
-  %ul{ :'data-prompt' => t('.select_options.ask_name') }
-
-  %span.actions
-    = link_to t('locomotive.buttons.new_item'), '#', :class => 'add'
-
-
-%script{ :type => 'text/html', :id => 'select_option_entry' }
-
-  %li.entry
-    %span.name {{name}}
-
-    %span.actions
-      = link_to 'drag', '#', :class => 'drag'
-      = link_to 'x', '#', :class => 'remove', :data => { :confirm => t('locomotive.messages.confirm') }
+/ Handlebar templates for managing the select options
+= render 'locomotive/custom_fields/select_templates'

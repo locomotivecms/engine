@@ -266,6 +266,7 @@ en:
       edit:
         title: '%{type} &mdash; editing entry'
       form:
+        edit_select_options: edit options
         has_many:
           new_entry: New entry
 

@@ -3,3 +3,32 @@
   :hint       => field.hint,
   :as         => :select,
   :collection => field.ordered_select_options.map { |option| [option.name, option.id] }
+
+- content_for :head do
+
+  - required_once :select_options do
+
+    / Handlebar templates for managing the select options
+    = render 'locomotive/custom_fields/select_templates'
+
+    %script{ :type => 'text/html', :id => 'edit_select_options_button' }
+      = link_to t('locomotive.content_entries.form.edit_select_options'), '#', :class => 'edit-options-button'
+
+
+- content_for :foot do
+
+  - required_once :select_options_popup do
+
+    / Handlebar template for the popup
+    %div{ :id => 'edit-select-option-entries', :style => 'display: none' }
+
+      %h2
+        = t('.manage_select_options_entries')
+
+      .placeholder{ :data => { :sending_form_message => t('locomotive.messages.sending_form') } }
+
+      .dialog-actions
+        = link_to t('locomotive.buttons.close'), '#', :id => 'close-link'
+
+        .button-wrapper
+          = submit_tag t('locomotive.shared.form_actions.update'), { :data => { :disable_with => t('locomotive.shared.form_actions.disable_with') } }

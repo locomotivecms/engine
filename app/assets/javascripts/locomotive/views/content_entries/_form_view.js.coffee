@@ -6,6 +6,8 @@ class Locomotive.Views.ContentEntries.FormView extends Locomotive.Views.Shared.F
 
   el: '#content'
 
+  _select_field_view: null
+
   _file_field_views: []
 
   _has_many_field_views: []
@@ -16,6 +18,8 @@ class Locomotive.Views.ContentEntries.FormView extends Locomotive.Views.Shared.F
     'submit': 'save'
 
   initialize: ->
+    @content_type ||= new Locomotive.Models.ContentType(@options.content_type)
+
     @model ||= new Locomotive.Models.ContentEntry(@options.content_entry)
 
     Backbone.ModelBinding.bind @
@@ -28,6 +32,8 @@ class Locomotive.Views.ContentEntries.FormView extends Locomotive.Views.Shared.F
     @enable_datepickers()
 
     @enable_richtexteditor()
+
+    @enable_select_fields()
 
     @enable_file_fields()
 
@@ -59,6 +65,26 @@ class Locomotive.Views.ContentEntries.FormView extends Locomotive.Views.Shared.F
           $(textarea).trigger('changeSilently')
 
       $(textarea).tinymce(settings)
+
+  enable_select_fields: ->
+    @_select_field_view = new Locomotive.Views.Shared.Fields.SelectView model: @content_type
+
+    _.each @model.get('select_custom_fields'), (name) =>
+      $input_wrapper = @$("##{@model.paramRoot}_#{name}_id_input")
+
+      $input_wrapper.append(ich.edit_select_options_button())
+
+      $input_wrapper.find('a.edit-options-button').bind 'click', (event) =>
+        event.stopPropagation() & event.preventDefault()
+
+        @_select_field_view.render_for name, (options) =>
+          # refresh the options of the select box
+          $select = $input_wrapper.find('select')
+          $select.find('option[value!=""]').remove()
+
+          _.each options, (option) =>
+            unless option.destroyed()
+              $select.append(new Option(option.get('name'), option.get('id'), false, option.get('id') == @model.get("#{name}_id")))
 
   enable_file_fields: ->
     _.each @model.get('file_custom_fields'), (name) =>
@@ -107,6 +133,7 @@ class Locomotive.Views.ContentEntries.FormView extends Locomotive.Views.Shared.F
     @$('li.input.toggle input[type=checkbox]').checkToggle('sync')
 
   remove: ->
+    @_select_field_view.remove()
     _.each @_file_field_views, (view) => view.remove()
     _.each @_has_many_field_views, (view) => view.remove()
     _.each @_many_to_many_field_views, (view) => view.remove()

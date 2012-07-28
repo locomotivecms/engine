@@ -14,6 +14,20 @@ module Locomotive
       resource.persisted? && resource.errors.empty?
     end
 
+    # Execute the code only once during the request time. It avoids duplicated
+    # dom elements in the rendered rails page.
+    #
+    # @param [ String / Symbol ] label Unique identifier of the block
+    #
+    def required_once(label, &block)
+      symbol = :"@block_#{label.to_s.underscore}"
+
+      if instance_variable_get(symbol).blank?
+        yield
+        instance_variable_set(symbol, true)
+      end
+    end
+
     def submenu_entry(name, url, options = {}, &block)
       default_options = { :i18n => true, :css => name.dasherize.downcase }
       default_options.merge!(options)

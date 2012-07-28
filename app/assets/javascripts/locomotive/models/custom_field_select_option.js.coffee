@@ -1,5 +1,8 @@
 class Locomotive.Models.CustomFieldSelectOption extends Backbone.Model
 
+  destroyed: ->
+    @get('_destroy') == true
+
   toJSONForSave: ->
     _.tap {}, (hash) =>
       for key, value of @.toJSON()
