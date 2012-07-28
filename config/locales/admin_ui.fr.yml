@@ -262,6 +262,7 @@ fr:
       edit:
         title: '%{type} &mdash; édition élément'
       form:
+        edit_select_options: éditer options
         has_many:
           new_item: Nouvel élément
 
