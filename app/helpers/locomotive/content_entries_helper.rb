@@ -5,7 +5,7 @@ module Locomotive
       content_type = Locomotive::ContentType.class_name_to_content_type(class_name, current_site)
 
       if content_type
-        content_type.ordered_entries.map { |entry| [entry._label, entry._id] }
+        content_type.ordered_entries.map { |entry| [entry_label(content_type, entry), entry._id] }
       else
         [] # unknown content type
       end
