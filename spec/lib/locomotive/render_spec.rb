@@ -129,9 +129,12 @@ describe 'Locomotive rendering system' do
         @controller.current_site.pages.expects(:where).with(:depth => 1, :fullpath.in => %w{contact content_type_template}).returns([@page])
       end
 
-      it 'redirects to the redirect_url' do
-        @controller.expects(:redirect_to).with('http://www.example.com/', { :status => 301 }).returns(true)
-        @controller.send(:render_locomotive_page)
+      (301..302).each do |status|
+        it "redirects to the redirect_url with a #{status} status" do
+          @page.redirect_type = status
+          @controller.expects(:redirect_to).with('http://www.example.com/', { :status => status }).returns(true)
+          @controller.send(:render_locomotive_page)
+        end
       end
 
     end

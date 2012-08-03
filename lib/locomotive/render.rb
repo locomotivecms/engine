@@ -11,7 +11,7 @@ module Locomotive
       else
         @page = locomotive_page
 
-        redirect_to(@page.redirect_url, :status => 301) and return if @page.present? && @page.redirect?
+        redirect_to(@page.redirect_url, :status => @page.redirect_type) and return if @page.present? && @page.redirect?
 
         render_no_page_error and return if @page.nil?
 
