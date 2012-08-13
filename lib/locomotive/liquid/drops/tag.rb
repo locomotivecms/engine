@@ -9,8 +9,9 @@ module Locomotive
         
           
         def before_method(meth)
+          debugger
           type = @context.registers[:site].content_types.where(:slug => meth.to_s).first
-          TaggedContent.new(_source, type)
+          TaggedContentProxyCollection.new(_source, type)
         end
       end
       
@@ -24,7 +25,7 @@ module Locomotive
         protected
 
         def collection
-          @collection ||= @tag.send(@content_type.slug)
+          @collection ||= @tag.get_relation_collection(@content_type._id)
         end
 
       end
