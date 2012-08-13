@@ -85,7 +85,7 @@ class Locomotive.Views.ContentEntries.FormView extends Locomotive.Views.Shared.F
   enable_many_to_many_fields: ->
     _.each @model.get('many_to_many_custom_fields'), (field) =>
       name = field[0]
-      view = new Locomotive.Views.Shared.Fields.TagSetView model: @model, name: name, all_entries: @options["all_#{name}_entries"]
+      view = new Locomotive.Views.Shared.Fields.ManyToManyView model: @model, name: name, all_entries: @options["all_#{name}_entries"]
 
       if view.ui_enabled()
         @_many_to_many_field_views.push(view)
