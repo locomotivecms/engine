@@ -9,7 +9,6 @@ module Locomotive
         
           
         def before_method(meth)
-          debugger
           type = @context.registers[:site].content_types.where(:slug => meth.to_s).first
           TaggedContentProxyCollection.new(_source, type)
         end
