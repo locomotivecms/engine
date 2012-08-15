@@ -7,6 +7,7 @@ et:
 
   devise:
     failure:
+      already_authenticated: 'Oled juba sisse logitud.'
       locomotive_account:
         unauthenticated: 'Pead sisse logima või konto looma enne jätkamist.'
         unconfirmed: 'Pead kinnitama oma konto enne jätkamist.'
