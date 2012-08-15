@@ -19,6 +19,7 @@ nb:
       nb: Norsk
       es: Spansk
       ru: Russisk
+      et: Estisk
 
     messages:
       confirm: Er du sikker?

@@ -1,0 +1,54 @@
+et:
+  date:
+    formats:
+      default: "%d.%m.%Y"
+
+  time:
+    formats:
+      default: "%d %B %Y %H:%M"
+      time: "%H:%M"
+      short: "%d %b %H:%M"
+      long: "%A %d %B %Y %H:%M:%S %Z"
+      long_ordinal: "%A %d %B %Y %H:%M:%S %Z"
+      only_second: "%S"
+    am: 'ennelõunat'
+    pm: 'pealelõunat'
+
+  mongoid:
+    errors:
+      messages:
+        blank_on_locale: "ei saa olla tühi"
+
+  errors:
+      messages:
+        domain_taken: "%{value} on juba võetud"
+        invalid_domain: "%{value} on vigane"
+        needs_admin_account: "Vähemalt üks admin konto on vajalik"
+        protected_page: "Sa ei saa kustutada index ega 404 lehte"
+        extname_changed: "Uuel failil ei ole originaal-laiend"
+        array_too_short: "on liiga väike (miinimum elementide arv on %{count})"
+        invalid_theme_file: "ei saa olla tühi või ei ole .zip fail"
+        site:
+          default_locale_removed: Eelmist vaikimisi lokaali ei saa koheselt eemaldada.
+        page:
+          liquid_syntax: "Liquid'i süntaksi viga ('%{error}' on '%{fullpath}')"
+          liquid_extend: "Leht '%{fullpath}' laiendab teemat, mida ei eksisteeri"
+          liquid_translation: "Leht '%{fullpath}' laiendab teemat, mida ei ole tõlgitud"
+        too_few_custom_fields: "Vähemalt üks kohandatud väli on kohustuslik"
+        security: "hõlmab endas turvaprobleemi"
+
+  attributes:
+    defaults:
+      pages:
+        index:
+          title: "Koduleht"
+          body: "Kodulehe sisu"
+        "404":
+          title: "Lehte mitte leitud"
+          body: "404 lehe sisu"
+        other:
+          body: "{% extends 'parent' %}"
+
+  pagination:
+    previous: "&laquo; Eelmine"
+    next: "Järgmine &raquo;"
