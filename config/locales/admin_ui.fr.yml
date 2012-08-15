@@ -20,6 +20,7 @@ fr:
       nb: "Norvégien"
       es: Espagnol
       ru: Russe
+      et: Estonien
 
     buttons:
       login: Se connecter
