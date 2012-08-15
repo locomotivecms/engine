@@ -1,0 +1,240 @@
+et:
+  errors:
+    # The default format use in full error messages.
+    format: "%{attribute} %{message}"
+
+    # The values :model, :attribute and :value are always available for interpolation
+    # The value :count is available when applicable. Can be used for pluralization.
+    messages:
+      inclusion: "ei ole nimekirja kantud"
+      exclusion: "ei ole olemas"
+      invalid: "vigane"
+      confirmation: "ei sobi kinnitamiseks"
+      accepted: "aktsepteeritud"
+      empty: "tühi"
+      blank: "tühi"
+      too_long: "liiga pikk (mitte rohkem kui %{count} tähemärki)"
+      too_short: "liiga lühike (vähemalt %{count} tähemärki)"
+      wrong_length: "vigane pikkus (peab olema %{count} tähemärki)"
+      taken: "võetud"
+      not_a_number: "ei ole number"
+      greater_than: "suurem kui %{count}"
+      greater_than_or_equal_to: "on suurem või võrdne kui %{count}"
+      equal_to: "on võrdne %{count}"
+      less_than: "on vähem kui %{count}"
+      less_than_or_equal_to: "on vähem või võrdne kui %{count}"
+      odd: "paaritu"
+      even: "paaris"
+
+      domain_taken: "%{value} on juba võetud"
+      invalid_domain: "%{value} on vigane"
+      needs_admin_account: "Vähemalt üks admin konto on vajalik"
+      protected_page: "Sa ei saa kustutada index ega 404 lehte"
+      extname_changed: "Uuel failil ei ole originaal-laiend"
+      array_too_short: "on liiga väike (miinimum elementide arv on %{count})"
+      invalid_theme_file: "ei saa olla tühi või ei ole .zip fail"
+      site:
+        default_locale_removed: Eelmist vaikimisi lokaali ei saa koheselt eemaldada.
+      page:
+        liquid_syntax: "Liquid'i süntaksi viga ('%{error}' on '%{fullpath}')"
+        liquid_extend: "Leht '%{fullpath}' laiendab teemat, mida ei eksisteeri"
+        liquid_translation: "Leht '%{fullpath}' laiendab teemat, mida ei ole tõlgitud"
+      too_few_custom_fields: "Vähemalt üks kohandatud väli on kohustuslik"
+      security: "hõlmab endas turvaprobleemi"
+
+  attributes:
+    defaults:
+      pages:
+        index:
+          title: "Koduleht"
+          body: "Kodulehe sisu"
+        "404":
+          title: "Lehte mitte leitud"
+          body: "404 lehe sisu"
+        other:
+          body: "{% extends 'parent' %}"
+
+  mongoid:
+    errors:
+      messages:
+        blank_on_locale: "ei saa olla tühi"
+        
+    attributes:
+      page:
+        title: Tiitel
+        parent: Vanem
+        slug: Slug
+        listed: Menüüs
+        templatized: Mallistatud
+        published: Publitseeritud
+        redirect: Suuna
+        redirect_url: Suunatud-URL
+        cache_strategy: Vahemälu
+        response_type: Vastuse tüüp
+        seo_title: SEO-tiitel
+      content_type:
+        name: Nimi
+        description: Kirjeldus
+        slug: Slug
+        order_by: Sorteeritud
+        order_direction: Sorteerimise suund
+        highlighted_field_name: Valitud välja nimi
+        group_by_field_name: Grupeeri välja nime järgi
+        api_enabled: API aktiveeritud
+      asset:
+        source: Lähtekood
+      account:
+        email: Email
+        name: Nimi
+        language: Keel
+        password: Parool
+        password_confirmation: Parooli kinnitus
+      snippet:
+        body: Kood
+        slug: Slug
+        name: Nimi
+      theme_asset:
+        content_type: Sisu tüüp
+      site:
+        name: Saidi nimi
+        domain_name: Domeen
+        subdomain: Alamdomeen
+        restricted_access: Piiratud ligipääs ?
+        access_login: Kasutajanimi
+        access_password: "Parool"
+
+  pagination:
+    previous: "&laquo; Eelmine"
+    next: "Järgmine &raquo;"
+
+  date:
+    formats:
+      default: "%d.%m.%Y"
+      short: "%e %b"
+      long: "%e %B %Y"
+      long_ordinal: "%e %B %Y"
+      only_day: "%e"
+
+    day_names: [Pühapäev, Esmaspäev, Teisipäev, Kolmapäev, Neljapäev, Reede, Laupäev]
+    abbr_day_names: [Pü, Es, Te, Ko, Ne, Re, La]
+    month_names: [~, Jaanuar, Veebruar, Märts, Aprill, Mai, Juuni, Juuli, August, September, Oktoober, November, Detsember]
+    abbr_month_names: [~, Jaan., Veeb., Mär., Apr., Mai, Jun, Jul, Aug., Sept., Okt., Nov., Dez.]
+    order: [ day, month, year ]
+
+  time:
+    formats:
+      default: "%d %B %Y %H:%M"
+      time: "%H:%M"
+      short: "%d %b %H:%M"
+      long: "%A %d %B %Y %H:%M:%S %Z"
+      long_ordinal: "%A %d %B %Y %H:%M:%S %Z"
+      only_second: "%S"
+    am: 'ennelõunat'
+    pm: 'pealelõunat'
+
+  datetime:
+    distance_in_words:
+      half_a_minute: 'pool minutit'
+      less_than_x_seconds:
+        one: 'vähem kui 1 sekund'
+        other: 'vähem kui %{count} sekundit'
+      x_seconds:
+        one: 'üks sekund'
+        other: '%{count} sekundit'
+      less_than_x_minutes:
+        one: 'vähem kui üks minut'
+        other: 'vähem kui %{count} minutit'
+      x_minutes:
+        one: 'üks minut'
+        other: '%{count} minutit'
+      about_x_hours:
+        one: 'umber üks tund'
+        other: 'umbes %{count} tundi'
+      x_days:
+        one: 'üks päev'
+        other: '%{count} päeva'
+      about_x_months:
+        one: 'umbes üks kuu'
+        other: 'umbes %{count} kuud'
+      x_months:
+        one: 'üks kuu'
+        other: '%{count} kuud'
+      almost_x_years:
+        one: 'peaaegu üks aasta'
+        other: 'peaaegu %{count} aastat'
+      about_x_years:
+        one: 'umbes üks aasta'
+        other: 'umbes %{count} aastat'
+      over_x_years:
+        one: 'üle ühe aasta'
+        other: 'üle %{count} aasta'
+    prompts:
+      second: "Sekundit"
+      minute: "Minutit"
+      hour: "Tundi"
+      day: "Päeva"
+      month: "Kuud"
+      year: "Aastat"
+
+  number:
+    format:
+      precision: 2
+      separator: ' '
+      delimiter: '.'
+      significant: false
+      strip_insignificant_zeros: false
+    currency:
+      format:
+        unit: '€'
+        format: '%n%u'
+        separator: ","
+        delimiter: ""
+        precision: 2
+        significant: false
+        strip_insignificant_zeros: false
+    percentage:
+      format:
+        delimiter: ""
+    precision:
+      format:
+        delimiter: ""
+    human:
+      format:
+        delimiter: ""
+        precision: 1
+        significant: true
+        strip_insignificant_zeros: true
+      storage_units:
+        # Storage units output formatting.
+        # %u is the storage unit, %n is the number (default: 2 MB)
+        format: "%n %u"
+        units:
+          byte:
+            one: "Bait"
+            other: "Baiti"
+          kb: "KB"
+          mb: "MB"
+          gb: "GB"
+          tb: "TB"
+      decimal_units:
+        format: "%n %u"
+        units:
+          unit: ""
+          thousand: Tuhat
+          million: Miljon
+          billion:
+            one: Miljard
+            others: Miljardit
+          trillion: Triljon
+          quadrillion:
+            one: Kvadriljon
+            others: Kvadriljonit
+
+  support:
+    array:
+      sentence_connector: 'ja'
+      skip_last_comma: true
+      words_connector: ", "
+      two_words_connector: " ja "
+      last_word_connector: " ja "
+

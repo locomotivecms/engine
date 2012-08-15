@@ -39,7 +39,7 @@ it:
 
     errors:
       "500":
-        title: Errore dell'applicazione
+        title: "Errore dell'applicazione"
         notice: "Siamo spiacenti, quancosa è andato storto"
         link: "&rarr; Ritorna all'applicazione"
       "404":
@@ -169,6 +169,7 @@ it:
         nb: Norvegese
         es: Spagnolo
         ru: Russo
+        et: Estone
         ask_for_name: "Prego, digita il tuo nome"
 
     theme_assets:

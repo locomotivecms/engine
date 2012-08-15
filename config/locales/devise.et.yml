@@ -1,0 +1,64 @@
+et:
+  errors:
+    messages:
+      not_found: "ei leitud"
+      already_confirmed: "juba kinnitatud"
+      not_locked: "ei olnud lukustatud"
+
+  devise:
+    failure:
+      already_authenticated: 'Oled juba sisse logitud.'
+      locomotive_account:
+        unauthenticated: 'Pead sisse logima või konto looma enne jätkamist.'
+        unconfirmed: 'Pead kinnitama oma konto enne jätkamist.'
+        locked: 'Sinu konto on lukus.'
+        invalid: 'Vale email või parool.'
+        no_membership: 'Sinu konto ei ole selle saidi liige, palun võta ühendust saidi administraatoriga, et ligipääsu saada.'
+        invalid_token: 'Vale autentimise identsustõend.'
+        timeout: 'Sinu sessioon aegus, palun logi sisse uuesti, et jätkata.'
+        inactive: 'Sinu konto ei ole veel aktiveeritud.'
+    sessions:
+      locomotive_account:
+        signed_in: 'Edukalt sisse logitud.'
+        signed_out: 'Edukalt välja logitud.'
+    passwords:
+      locomotive_account:
+        send_instructions: 'Sulle saadetakse email juhistega mõne minuti jooksul, kuidas oma parooli taasasetada.'
+        updated: 'Sinu parool muudeti edukalt. Oled nüüd sisse logitud.'
+    confirmations:
+      locomotive_account:
+        send_instructions: 'Sulle saadetakse email juhistega mõne minuti jooksul, kuidas oma kontot kinnitada.'
+        confirmed: 'Sinu konto kinnitati edukalt. Oled nüüd sisse logitud.'
+    registrations:
+      locomotive_account:
+        signed_up: 'Oled edukalt kirja pandud.'
+        updated: 'Uuendasid oma kontot edukalt.'
+        destroyed: 'Head aega! Sinu konto tühistati edukalt. Loodame sind varsti taas kohata.'
+    unlocks:
+      locomotive_account:
+        send_instructions: 'Sulle saadetakse email juhistega mõne minuti jooksul, kuidas oma kontot lahtilukustada.'
+        unlocked: 'Sinu konto lukustati lahti edukalt. Oled nüüd sisse logitud.'
+    mailer:
+      locomotive_account:
+        confirmation_instructions: 'Kinnituse juhised'
+        reset_password_instructions: 'Parooli taasasetuse juhised'
+        unlock_instructions: 'Lahti lukustamise juhised'
+
+
+  locomotive_account:
+    mailer:
+      common:
+        hello: Tere
+
+      confirmation_instructions:
+        you_can_confirm_your_account_through_the_link_below: "Saad oma kontot kinnitada läbi alloleva lingi:"
+        confirm_my_account: "Kinnita minu konto"
+      reset_password_instructions:
+        reset_password_instruction: "Keegi on soovinud linki, et vahetada sinu parooli ja sa saad teha seda alloleva lingi kaudu::"
+        change_my_password: "Vaheta minu parool"
+        wrong_request_instruction: "Kui sa ei soovinud seda siis ignoreeri seda email'i."
+        unchange_password_message: "Sinu parool ei muutu niikaua, kuni sa ei kasuta allolevat linki ja ei loo uut salasõna."
+      unlock_instructions:
+        locked_account_message: "Sinu konto on lukustatud, kuna liiga palju kordi on ebaõnnestunult sisse logitud."
+        unlock_account_instruction: "Klõpsa allolevat linki, et oma konto lahti lukustada:"
+        unlock_my_account: "Lukusta lahti minu konto"
