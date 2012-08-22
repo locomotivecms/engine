@@ -19,6 +19,7 @@ en:
       nb: Norwegian
       es: Spanish
       ru: Russian
+      et: Estonian
 
     messages:
       confirm: Are you sure ?

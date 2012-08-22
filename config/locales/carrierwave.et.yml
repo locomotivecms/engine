@@ -1,0 +1,4 @@
+et:
+  carrierwave:
+    errors:
+      integrity: 'ei ole lubatud fail.'

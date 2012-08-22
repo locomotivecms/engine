@@ -169,6 +169,7 @@ es:
         nb: Noruego
         es: Español
         ru: Ruso
+        et: Estonio
         ask_for_name: "Por favor escriba su nuevo nombre"
 
     theme_assets:

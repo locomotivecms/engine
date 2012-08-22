@@ -1,0 +1,103 @@
+et:
+  formtastic:
+    titles:
+      information: Üldine informatsioon
+      advanced_options: Täpsemad valikud
+      meta: SEO Metadata
+      seo: SEO seaded
+      robots_txt: Robots.txt fail
+      code: Code
+      raw_template: Mall
+      credentials: Tõendid
+      language: Keel
+      sites: Saidid
+      access_points: Ligipääsupunktid
+      memberships: Kontod
+      membership_email: Konto email
+      file: Fail
+      preview: Eelvaade
+      options: Täpsemad valikud
+      custom_fields: Kohandatud väljad
+      other_fields: Muu informatsioon
+      presentation: Presentatsioon
+      attributes: Atribuudid
+      upload: Üles laadima
+    labels:
+      theme_asset:
+        plain_text_name: Faili nimi
+        content_type: Faili tüüp
+        new:
+          source: Fail
+        edit:
+          source: Asenda fail
+      custom_fields:
+        field:
+          name: Teisik
+      content_type:
+        raw_item_template: Eseme mall
+        public_submission_enabled: Avalik esitis
+        public_submission_accounts: Teavitatud kontod
+        "custom_fields/field":
+          select_options: "Valikud"
+      content_entry:
+        _slug: Permalink
+      account:
+        edit:
+          locale: UI Keel
+          password: Uus parool
+          password_confirmation: Uue parooli kinnitus
+      page:
+        seo_title: Tiitel
+        target_klass_name: Mudel
+      site:
+        locales: Keeled
+
+    hints:
+      page:
+        handle: "Unikaalne identifikaator, et seda lehte hageda välise kontrolleri instantsist"
+        published: "Ainult audentinud kontod saavad vaadata avaldamata lehti."
+        cache_strategy: "Lae vahemällu see leht parema kiiruse saavutamiseks. 'Lihtne' valik on hea kompromiss."
+        templatized: "Kasuta lehte mallina mudelile, mille defineerisid."
+        listed: "Juhi, kas näidata seda lehte genereeritud menüüs."
+        target_klass_name: "Sisu tüüp, mille malliks see leht on."
+        seo_title: "Defineeri lehe tiitel mida kasutada tiitel täg'i väärtusena 'head' sektsioonis. Jäta tühjaks, kui tahad kasutada vaikimisi väärtust saidi seadetest."
+        meta_keywords: "Ümber kehtestab saidi meta võtmesõnad, mida kasutada lehe 'head' sektsioonis. Komaga eraldatuna."
+        meta_description: "Ümber kehtestab saidi meta kirjelduse, mida kasutada lehe 'head' sektsioonis."
+      snippet:
+        slug: "Pead seda teadma, et sisestada koodijupp lehele"
+      site:
+        locales: "Pukseeri lipp desimele positsioonile, et teha sellest vaikimisi keel.."
+        seo_title: "Defineeri siin globaalne väärtus, mida kasutada tiitel täg'i väärtsena 'head' sektsioonis."
+        meta_keywords: "Meta võtmesõnad, mida kasutada lehe 'head' sektsioonis. Komaga eraldatuna. Vajalik SEO jaoks."
+        meta_description: "Meta kirjeldus, mida kasutada lehe 'head' tägis. Vajalik SEO jaoks."
+        domain_name: "näiteks: locomotiveapp.org"
+        robots_txt: "Sisu failis <span class='code'>/robots.txt</span>. Vaata järgmist linki <a href='http://www.w3.org/TR/html4/appendix/notes.html#h-B.4.1.1'>url</a> lisainformatsiooniks."
+      theme_asset:
+        slug: "Sa ei pea lisama faili laiendit (.css või .js)"
+        edit:
+          source: "Sa võid asendada selle failiga, millel on sama laiend"
+      asset:
+        source: "Kõik faili tüübid on lubatud."
+        edit:
+          source: "Praegune fail on saadaval siin %{url}"
+        update:
+          source: "Praegune fail on saadaval siin %{url}"
+      content_entry:
+        _slug: "Atribuut, mida kasutatakse, et genereerida url lehele, mis on mall selle sisu tüübi kohta (näiteks: \"template_page/{{ sinu_objekti._permalink }})\"."
+        seo_title: "Väärtus, mille lisad asendab SEO tiitli mallistatud lehel seotud sinu mudeliga."
+        meta_keywords: "Ümber kehtestab saidi meta võtmesõnad kasutusel lehe 'head' tägis. Komaga eraldatuna."
+        meta_description: "Ümber kehtestab saidi meta kirjelduse kasutusel lehel 'head' tägis."
+      import:
+        source: "Zip-fail sisaldades database.yml koos varade ja mallidega"
+        samples: "Kui aktiveeritud, import protsess kopeerib ka sisu ja varad"
+        reset: "Kui aktiveeritud, kõik anmed sinu saidil kustutatakse enne uue saidi importimist"
+      content_type:
+        name: "Me soovitame sul sisestada mudeli mitmuse vorm. Näiteks: Projektid, Retseptid, Kirjad, Artiklid, ...jne"
+        slug: "Seda kasutatakse kui kollektsiooni nime liquid'i mallis. Näiteks: <span class='code'>{{ contents.minu_projektid }}</span>"
+        raw_item_template: "Võid kohandada teksti, mida kuvatakse iga eseme kohta listis. Lihtsalt kasuta Liquid'it Näiteks: <span class='code'>{{ entry.nimi }})</span>"
+        public_submission_enabled: "Seda kasutatakse, et lasta välistel inimestel luua uusi sisendeid (näiteks: sõnumid kontakti ankeedis)"
+        public_submission_accounts: "Kui avaliku esitise valik on aktiveeritud ja iga sisendi jaoks loodud, saadetakse teavituskiri ülevalolevatele kontodele."
+        "custom_fields/field":
+          name: "Liquidi malli atribuudi nimi. Näiteks: <span class='code'>&#123;&#123; sinu_object.&lt;sinu_valja_nimi&gt; &#125;&#125;</span>"
+          hint: "Tekst mida kuvatakse vormi mudelis välja all"
+
