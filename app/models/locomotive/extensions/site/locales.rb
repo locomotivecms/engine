@@ -78,8 +78,8 @@ module Locomotive
               modifications = { 'title' => {}, 'slug' => {}, 'fullpath' => {}, 'locales' => self.locales }
 
               self.locales.each do |locale|
-                title = page.attributes['title'][locale] || ::I18n.t("attributes.defaults.pages.#{slug}.title", :locale => locale)
                 slug  = page.attributes['slug'][self.default_locale_was]
+                title = page.attributes['title'][locale] || ::I18n.t("attributes.defaults.pages.#{slug}.title", :locale => locale)
 
                 modifications['slug'][locale]     = slug
                 modifications['fullpath'][locale] = slug
