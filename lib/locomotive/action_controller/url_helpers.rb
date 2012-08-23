@@ -24,6 +24,7 @@ module Locomotive
       end
 
       def public_page_url(page, options = {})
+        Rails.logger.info "[public_page_url] =====> #{page.attributes.inspect} / #{page.fullpath.inspect}\n\n"
         if content = options.delete(:content)
           File.join(current_site_public_url, page.fullpath.gsub('content_type_template', ''), content._slug)
         else
