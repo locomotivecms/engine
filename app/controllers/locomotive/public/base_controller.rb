@@ -7,6 +7,8 @@ module Locomotive
       include Locomotive::ActionController::SectionHelpers
       include Locomotive::ActionController::UrlHelpers
 
+      skip_load_and_authorize_resource
+
       before_filter :require_site
 
       protected
