@@ -76,6 +76,9 @@ class Locomotive.Views.CurrentSite.EditView extends Locomotive.Views.Shared.Form
     else
       super
 
+  after_inputs_fold: ->
+    @editor.refresh()
+
   remove: ->
     @domains_view.remove()
     @memberships_view.remove()
