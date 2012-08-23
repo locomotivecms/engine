@@ -27,7 +27,7 @@ module Locomotive
 
         def render(context)
           context.stack do
-            context['with_scope'] = decode(@attributes, context)
+            context['with_scope'] = decode(@attributes.clone, context)
             render_all(@nodelist, context)
           end
         end
