@@ -18,7 +18,7 @@ module Locomotive
         [].tap do |parts|
           response.each do |part|
             parts << part.to_s.gsub('</body>', %(
-             <a  href="_admin"
+             <a  href="#{File.join(response.request.path, '/_admin')}"
                  onmouseout="this.style.backgroundPosition='0px 0px'"
                  onmouseover="this.style.backgroundPosition='0px -45px'"
                  onmousedown="this.style.backgroundPosition='0px -90px'"
