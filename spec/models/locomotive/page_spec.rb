@@ -181,6 +181,11 @@ describe Locomotive::Page do
       Locomotive::Page.where(:slug => 'bar').first.should be_nil
     end
 
+    it 'is scoped by the site' do
+      another_home = FactoryGirl.create(:page, :site => FactoryGirl.create('another site'))
+      another_home.position.should == 0
+    end
+
   end
 
   describe 'acts as list' do

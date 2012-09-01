@@ -12,7 +12,7 @@ module Locomotive
     end
 
     def included_methods
-      super + %w(title slug fullpath handle raw_template published listed templatized templatized_from_parent redirect redirect_url cache_strategy response_type template_changed editable_elements localized_fullpaths)
+      super + %w(title slug fullpath handle position raw_template published listed templatized templatized_from_parent redirect redirect_url cache_strategy response_type template_changed editable_elements localized_fullpaths)
     end
 
     def localized_fullpaths
