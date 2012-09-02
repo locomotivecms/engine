@@ -81,6 +81,10 @@ module Locomotive
       self.title_translations.key?(::Mongoid::Fields::I18n.locale.to_s) rescue false
     end
 
+    def translated_in
+      self.title_translations.keys
+    end
+
     def to_liquid
       Locomotive::Liquid::Drops::Page.new(self)
     end
