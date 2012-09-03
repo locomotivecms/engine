@@ -1,9 +1,9 @@
 module Locomotive
   class ContentEntryPresenter < BasePresenter
 
-    delegate :_label, :_slug, :_position, :seo_title,
-      :meta_keywords, :meta_description, :select_custom_fields,
-      :file_custom_fields, :has_many_custom_fields, :many_to_many_custom_fields, :to => :source
+    delegate  :_label, :_slug, :_position, :translated_in, :seo_title,
+              :meta_keywords, :meta_description, :select_custom_fields,
+              :file_custom_fields, :has_many_custom_fields, :many_to_many_custom_fields, :to => :source
 
     # Lists of all the attributes editable thru the html form for instance
     #
@@ -33,7 +33,7 @@ module Locomotive
     end
 
     def included_methods
-      default_list = %w(_label _slug _position content_type_slug select_custom_fields file_custom_fields has_many_custom_fields many_to_many_custom_fields safe_attributes)
+      default_list = %w(_label _slug _position content_type_slug select_custom_fields file_custom_fields has_many_custom_fields many_to_many_custom_fields translated_in safe_attributes)
       default_list << 'errors' if !!self.options[:include_errors]
       super + self.filtered_custom_fields_methods + default_list
     end
