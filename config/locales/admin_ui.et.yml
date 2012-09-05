@@ -1,0 +1,314 @@
+et:
+  locomotive:
+    buttons:
+      login: Logi sisse
+      send_password: Saada
+      change_password: Uuenda
+      new_item: "+ lisa"
+      switch_to_site: Mine
+      delete: "Kustuta"
+      close: "Sulge"
+
+    locales:
+      en: Inglise
+      de: Saksa
+      fr: Prantsuse
+      pt-BR: "Brasiilia Portugali"
+      it: Itaalia
+      nl: Hollandi
+      nb: Norra
+      es: Hispaania
+      ru: Vene
+      et: Eesti
+
+    messages:
+      confirm: Oled kindel ?
+      sending_form: Sinu veebivormi saadetakse
+
+    shared:
+      header:
+        welcome: Tere tulemast, %{name}
+        see: Vaata kodulehte
+        switch: Vali teine sait
+        help: Abi
+        logout: Välju
+      menu:
+        contents: Sisu
+        assets: Vara
+        settings: Seaded
+        pages: Lehed
+        snippets: Koodijupid
+        account: Minu konto
+        site: Sait
+        theme_assets: Teema failid
+      form:
+        change_file: muuda
+        delete_file: kustuta
+        cancel: tühista
+      form_actions:
+        back: Tagasi ilma salvestamata
+        create: Loo
+        update: Salvesta
+        send: Saada
+        disable_with: Töötlen...
+      list:
+        untranslated: tõlkimata
+      footer:
+        who_is_behind: "LocomotiveCMS arendus: %{development} ja disain: <a href=\"http://www.sachagreif.com\">Sacha Greif</a> &mdash; <small>version</small> %{version}"
+
+    errors:
+      "500":
+        title: Rakenduse viga
+        notice: "Väga vabandame, aga midagi läks totaalselt nihu"
+        link: "&rarr; Tagasi rakendusse"
+      "404":
+        title: Lehte ei leitud
+        notice: "Leht mida soovite ei eksisteeri"
+        link: "&rarr; Tagasi rakendusse"
+
+    notifications:
+      new_content_entry:
+        subject: "[%{type}] uus"
+        title: "Tere %{name}, lihtsalt teadmiseks, uus instants loodi %{date}"
+        type: "Mudel: %{type}"
+
+    sites_picker:
+      new: + uus sait
+
+    custom_fields:
+      edit:
+        title: Redigeeri kohandatud välja
+      text_formatting:
+        none: Puudub
+        html: HTML
+      types:
+        file:
+          delete_file: Kustuta fail
+        has_many:
+          empty: List on tühi
+          new_entry: + Lisa uus sissekanne
+        many_to_many:
+          empty: List on tühi. Lisa sissekanne vajutades allolevat nuppu
+
+      form:
+        required: Vajalik
+        default_label: Välja nimi
+        select_options:
+          ask_name: "Sisesta valiku pealkiri"
+
+    sessions:
+      new:
+        title: Logi sisse
+        link: "Unustasin oma parooli"
+        email: "Email"
+        password: "Salasõna"
+
+    passwords:
+      new:
+        title: Unustatud parool
+        link: "&rarr; Tagasi sisselogimislehele"
+        email: "Sinu email"
+      edit:
+        title: Uuenda minu parooli
+        link: "&rarr; Tagasi sisselogimislehele"
+        password: "Sinu uus parool"
+        password_confirmation: "Sinu uue parooli kinnitus"
+
+    pages:
+      index:
+        title: Lehtede listimine
+        help: "Lehed on puu struktuuris. Võid järjestada lehti kui ka katalooge"
+        no_items: "Hetkel ei ole ühtegi lehte. Klõpsa <a href=\"%{url}\">siia</a>, et luua esimene."
+        new: uus leht
+        latest_entries: Viimased lehed
+      new:
+        title: Uus leht
+        help: "Palun täida allolev vorm, et luua oma leht. Ole ettevaatlik, vaikimisi lehte ei publitseerita."
+      page:
+        updated_at: uuendatud
+      edit:
+        show: näita
+        help: "Lehe tiitlit saab uuendada sellele klõpsates. Muudatuste salvestamiseks, klõpsa \"Salvesta\" nuppu."
+        ask_for_title: "Palun sisesta uue lehe tiitel"
+      form:
+        change_file: muuda
+        delete_file: kustuta
+        cancel: tühista
+        default_block: Vaikimisi
+        cache_strategy:
+          none: Puudub
+          simple: Lihtne
+          hour: 1 tund
+          day: 1 päev
+          week: 1 nädal
+          month: 1 kuu
+
+    snippets:
+      index:
+        title: Koodijuppide listimine
+        help: "Koodijupid on osa HTML koodi, mida leidub erinevates kohtades ühe saidi piires (näiteks lehe jalustiitel)."
+        no_items: "Hetkel ei ole ühtegi koodijuppi. Klõpsa <a href=\"%{url}\">siia</a>, et luua esimene."
+        new: uus koodijupp
+      new:
+        title: Uus koodijupp
+        help: "Palun täida allolev vorm, et uuendada oma koodijuppi."
+      edit:
+        title: Koodijupi redigeerimine
+        help: "Lisa oma koodijupp oma lehe mallidesse järmise liquid'i koodiga : <span class='code'>{% include '%{slug}' %}</span>."
+      snippet:
+        updated_at: Uuendatud
+
+    sites:
+      new:
+        title: Uus sait
+        help: "Palun täida allolev vorm, et luua oma uus sait."
+      domains:
+        empty: "Hetkel ei ole ühtegi domeeni seotud selle saidiga. Lisa oma domeenid allpool. <b>Ära unusta uuendamast oma DNS'i.</b>"
+
+    current_site:
+      edit:
+        new_membership: lisa konto
+        help: "Saidi nime saab uuendada sellele klõpsates. Muudatuste salvestamiseks, klõpsa \"Salvesta\" nuppu."
+        ask_for_name: "Palun trüki uus saidi nimi"
+
+    memberships:
+      roles:
+        admin: Administraator
+        designer: Disainer
+        author: Autor
+      new:
+        title: Uus liige
+        help: "Palun anna kontole email, mida lisada. Kui seda ei eksisteeri siis suunatakse sind konto loomise vormile."
+
+    accounts:
+      new:
+        title: Uus konto
+        help: "Täida allolev vorm uue konto lisamiseks."
+
+    my_account:
+      edit:
+        help: "Oma nime saad uuendada sellele klõpsates. Muudatuste salvestamiseks klõpsa \"Salvesta\" nuppu."
+        new_site: uus sait
+        ask_for_name: "Palun sisesta oma uus nimi"
+
+    theme_assets:
+      index:
+        title: Teema failide listimine
+        help: "Teema failide sektsioon on koht kus saad hallata faile, mis on vajalikud sinu küljenduse, koodijuppide...jne jaoks. Kui vajad hallata oma piltide galeriid siis loo uus sisu tüüp. <br/><b>Hoiatus:</b> sa ei pruugi näha kõiki varasi sõltuvalt oma õigustest."
+        quick_upload: Kiire üleslaadimine
+        new: uus fail
+        snippets: Koodijupid
+        css_and_js: Stiil ja javascript
+        fonts: Fondid
+        images: Pildid
+        media: Meedia
+        no_items: "Hetkel ei ole ühtegi faili."
+      asset:
+        updated_at: Uuendatud
+      new:
+        title: Uus fail
+        help: "Sul on valik kas üleslaadida mistahes fail või kopeerida/kleepida stiilid või javascript tavatekstina."
+      edit:
+        title: "Redigeerimine %{file}"
+        help: "See vara on saadaval otse järgmisest lingist: <a href='%{url}'>%{url}</a>"
+        help_image: "Lisa oma pilt lehe malli või koodijuppi järgmise liquid koodiga : <span class='code'>{{ '%{path}' | theme_image_tag }}</span>.<br/>Sinu praeguse pildi dimensioonid : <b>%{width}px x %{height}px</b>.<br/>"
+        help_javascript: "Lisa oma javascript fail lehe malli või koodijuppi järgmise liquid koodiga : <span class='code'>{{ '%{path}' | javascript_tag }}</span>.<br/>"
+        help_stylesheet: "Lisa oma stiili fail oma lehe malli või koodijuppi järgmise koodiga : <span class='code'>{{ '%{path}' | stylesheet_tag }}</span>.<br/>"
+      form:
+        picker_link: Sisesta fail koodi
+        choose_file: Vali fail
+        choose_plain_text: Vali tavaline tekst
+      image_picker:
+        title: "Sisesta teema pilt"
+        no_items: "Hetkel ei ole ühtegi pilti."
+        upload: "Üleslae teema pildid"
+
+    content_assets:
+      picker:
+        title: "Sisesta meedia"
+        no_items: "Hetkel ei ole ühtegi meediat."
+        upload: "Üleslae meediat"
+
+    content_types:
+      index:
+        new: uus mudel
+        edit: redigeeri mudelit
+      new:
+        title: Uus mudel
+        help: "Loo enda oma andmete mudel (Projektid, Inimesed, ...jne). Sinu mudelil peaks olema vähemalt üks väli. Esimene väli on kohustuslik loodavatele sissekannetele sellest sisu tüübist."
+      edit:
+        title: Mudeli redigeerimine
+        help: "Sinu mudelil peab olema vähemalt üks väli. Esimene väli on kohustuslik loodavatele sissekannetele sellest sisu tüübist."
+        show_entries: näita sissekandeid
+        new_entry: uus sissekanne
+      form:
+        order_by:
+          created_at: 'Loomise kuupäeva järgi'
+          updated_at: 'Uuendatud kuupäeva järgi'
+          position_in_list: Käsitsi
+        order_direction:
+          asc: Kasvavalt
+          desc: Kahanevalt
+
+    content_entries:
+      index:
+        title: 'Listimine "%{type}"'
+        edit: mudeli redigeerimine
+        destroy: eemalda mudel
+        download: sissekannete allalaadimine
+        new: uus sissekanne
+        category_noname: "Nimeta"
+        latest_entries: "Viimased sissekanded"
+        updated_at: "Uuendatud"
+      list:
+        no_items: "Hetkel ei ole ühtegi sissekannet. Klõpsa <a href=\"%{url}\">siia</a>, et luua esimene."
+      new:
+        title: '%{type} &mdash; uus sissekanne'
+      edit:
+        title: '%{type} &mdash; sissekande redigeerimine'
+      form:
+        edit_select_options: redigeerimise valikud
+        has_many:
+          new_entry: Uus sissekanne
+
+    image_picker:
+      link: Sisesta pilt koodi
+
+    cross_domain_sessions:
+      new:
+        title: Domeenide vaheline autentimine
+        notice: Sind suunatakse veebisaidile mõne sekundi pärast.
+
+    installation:
+      common:
+        title: Esimene Locomotive installeerimine
+        next: Edasi
+      step_1:
+        title: "Samm 1/2 &mdash; Loo konto"
+        name: Konto nimi
+        email: Email
+        password: Parool
+        password_confirmation: Parooli kinnitus
+        done: "Oled juba lisanud konto:<br/><strong>%{name}</strong>, <em>%{email}</em>"
+        next: Loo konto
+      step_2:
+        title: "Samm 2/2 &mdash; Loo oma esimene sait"
+        explanations: "Peaaegu valmis. Palun anna nimi oma esimesele saidile ja vali vaikimisi lokaat."
+        default_site_locale: Saidi lokaat
+        default_site_locales_hints: Sa saad hiljem lisada veel lokaate Seadete paneelilt.
+        next: Loo sait
+
+    public:
+      pages:
+        show_toolbar:
+          statuses:
+            loading: "Laen...."
+            disabled: "Integreeritud redaktor pole aktiveeritud"
+          labels:
+            save_changes: "Salvesta muudatused: "
+            editing_mode: "Redigeerimise režiim: "
+            lang: "Keel: "
+          buttons:
+            back: Tagasi taga-tuppa
+            confirm: Kinnita
+            cancel: Tühista

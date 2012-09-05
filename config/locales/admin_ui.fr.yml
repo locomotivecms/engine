@@ -20,6 +20,7 @@ fr:
       nb: "Norvégien"
       es: Espagnol
       ru: Russe
+      et: Estonien
 
     buttons:
       login: Se connecter
@@ -262,6 +263,7 @@ fr:
       edit:
         title: '%{type} &mdash; édition élément'
       form:
+        edit_select_options: éditer options
         has_many:
           new_item: Nouvel élément
 

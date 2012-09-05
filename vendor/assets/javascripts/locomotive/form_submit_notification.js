@@ -22,7 +22,7 @@ $.fn.formSubmitNotification = function(settings) {
 
   return this.each(function() {
     var form    = $(this);
-    var message = form.attr('data-sending-form-message');
+    var message = form.attr('data-sending-form-message') || form.attr('data-sending_form_message');
 
     if (typeof(message) == 'undefined')
       message = form.find('input[type=submit]').attr('data-sending-form-message');

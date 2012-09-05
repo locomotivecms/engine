@@ -47,7 +47,7 @@
         %span.new-section= t('locomotive.content_entries.new.title', :type => name.capitalize).html_safe
         %span.edit-section= t('locomotive.content_entries.edit.title', :type => name.capitalize).html_safe
 
-      = semantic_form_for new_target_content_entry, :as => :content_entry, :url => content_entries_url(target_content_type.slug), :html => { :multipart => true } do |form|
+      = semantic_form_for new_target_content_entry, :as => :content_entry, :url => content_entries_url(target_content_type.slug), :html => { :multipart => true, :data => { :sending_form_message => t('locomotive.messages.sending_form') } } do |form|
 
         = form.inputs :name => :attributes do
           - target_content_type.ordered_entries_custom_fields.each_with_index do |_field, index|
@@ -65,6 +65,6 @@
         = link_to t('locomotive.buttons.close'), '#', :id => 'close-link'
 
         .button-wrapper
-          %span.new-section= submit_tag t('locomotive.shared.form_actions.create')
-          %span.edit-section= submit_tag t('locomotive.shared.form_actions.update')
+          %span.new-section= submit_tag t('locomotive.shared.form_actions.create'), :'data-disable-with' => t('locomotive.shared.form_actions.disable_with')
+          %span.edit-section= submit_tag t('locomotive.shared.form_actions.update'), :'data-disable-with' => t('locomotive.shared.form_actions.disable_with')
 

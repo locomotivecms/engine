@@ -121,56 +121,7 @@ form.formtastic {
           top: 0px;
           right: 10px;
 
-          a.add {
-            @include gray-button;
-
-            padding-left: 10px;
-          }
-
-          a.edit, a.remove, a.toggle, a.drag {
-            display: inline-block;
-            width: 16px;
-            height: 16px;
-
-            position: relative;
-            top: 4px;
-
-            outline: none;
-            text-indent: -9999px;
-
-            &.edit {
-              background: transparent image-url("locomotive/list/icons/pencil_off.png") repeat 0 0;
-              &:hover {
-                background-image: image-url("locomotive/list/icons/pencil.png");
-              }
-            }
-
-            &.remove {
-              background: transparent image-url("locomotive/list/icons/trash_off.png") repeat 0 0;
-              &:hover {
-                background-image: image-url("locomotive/list/icons/trash.png");
-              }
-            }
-
-            &.toggle {
-              background: transparent image-url("locomotive/list/icons/toggle_off.png") repeat 0 0;
-              &:hover {
-                background-image: image-url("locomotive/list/icons/toggle.png");
-              }
-              &.open {
-                @include rotate(180deg);
-              }
-              @include single-transition(transform, 0.5s);
-            }
-
-            &.drag {
-              cursor: move;
-              background: transparent image-url("locomotive/list/icons/move_off.png") repeat 0 0;
-              &:hover {
-                background-image: image-url("locomotive/list/icons/move.png");
-              }
-            }
-          }
+          @include tiny-buttons-group;
         }
 
         &:last-child {
@@ -305,6 +256,14 @@ form.formtastic {
           }
 
         } // li.text
+
+        &.select {
+          @include locomotive-link;
+
+          a.edit-options-button {
+            margin-left: 10px;
+          }
+        } // li.select_with_edit
 
         &.locale, &.locales {
           .list {
@@ -528,46 +487,7 @@ form.formtastic {
         } // li.no-label
 
         &.select-options {
-          .list {
-            line-height: auto;
-
-            ul, li, > span.actions {
-              float: left;
-            }
-
-            ul {
-              width: 558px;
-              min-height: 34px;
-
-              li.entry {
-                background: #c2e0f0;
-                @include border-radius(2px);
-
-                padding: 0 55px 0 8px;
-                margin: 2px 10px 8px 0;
-                height: auto;
-
-                color: #29739b;
-                line-height: 24px;
-
-                span.name {
-                  cursor: pointer;
-                  @include text-shadow(#fff 0px 1px 1px);
-                }
-
-                span.actions {
-                  line-height: 20px;
-                  right: 8px;
-                }
-              }
-            } // .list ul
-
-            > span.actions {
-              position: static;
-              margin-left: 15px;
-              line-height: 24px;
-            } // .list .actions
-          }
+          @include select-options-edit-style;
         } // li.select-options
 
         &.relationship {

@@ -6,24 +6,24 @@ FactoryGirl.define do
     subdomain 'acme'
     created_at Time.now
 
-    factory "test site" do
+    factory 'test site' do
       name 'Locomotive test website'
       subdomain 'test'
 
       after_build do |site_test|
-        site_test.memberships.build :account => Locomotive::Account.where(:name => "Admin").first || Factory("admin user"), :role => 'admin'
+        site_test.memberships.build :account => Locomotive::Account.where(:name => 'Admin').first || Factory('admin user'), :role => 'admin'
       end
 
-      factory "another site" do
-        name "Locomotive test website #2"
-        subdomain "test2"
+      factory 'another site' do
+        name 'Locomotive test website #2'
+        subdomain 'test2'
       end
 
     end
 
-    factory "existing site" do
-      name "Locomotive site with existing models"
-      subdomain "models"
+    factory 'existing site' do
+      name 'Locomotive site with existing models'
+      subdomain 'models'
       after_build do |site_with_models|
         site_with_models.content_types.build(
           :slug => 'projects',
@@ -34,7 +34,7 @@ FactoryGirl.define do
 
     end
 
-    factory "valid site" do
+    factory 'valid site' do
       # after_build { |valid_site| valid_site.stubs(:valid?).returns(true) }
     end
 
@@ -48,26 +48,26 @@ FactoryGirl.define do
     password_confirmation 'easyone'
     locale 'en'
 
-    factory "admin user" do
-      name "Admin"
-      email "admin@locomotiveapp.org"
+    factory 'admin user' do
+      name 'Admin'
+      email 'admin@locomotiveapp.org'
     end
 
-    factory "frenchy user" do
-      name "Jean Claude"
-      email "jean@frenchy.fr"
+    factory 'frenchy user' do
+      name 'Jean Claude'
+      email 'jean@frenchy.fr'
       locale 'fr'
     end
 
-    factory "brazillian user" do
-      name "Jose Carlos"
-      email "jose@carlos.com.br"
+    factory 'brazillian user' do
+      name 'Jose Carlos'
+      email 'jose@carlos.com.br'
       locale 'pt-BR'
     end
 
-    factory "italian user" do
-      name "Paolo Rossi"
-      email "paolo@paolo-rossi.it"
+    factory 'italian user' do
+      name 'Paolo Rossi'
+      email 'paolo@paolo-rossi.it'
       locale 'it'
     end
 
@@ -76,7 +76,7 @@ FactoryGirl.define do
   ## Memberships ##
   factory :membership, :class => Locomotive::Membership do
     role 'admin'
-    account { Locomotive::Account.where(:name => "Bart Simpson").first || Factory('admin user') }
+    account { Locomotive::Account.where(:name => 'Bart Simpson').first || Factory('admin user') }
 
     factory :admin do
       role 'admin'
@@ -100,14 +100,14 @@ FactoryGirl.define do
     title 'Home page'
     slug 'index'
     published true
-    site { Locomotive::Site.where(:subdomain => "acme").first || Factory(:site) }
+    site { Locomotive::Site.where(:subdomain => 'acme').first || Factory(:site) }
 
     factory :sub_page do
       title 'Subpage'
       slug 'subpage'
       published true
-      site { Locomotive::Site.where(:subdomain => "acme").first || Factory(:site) }
-      parent { Locomotive::Page.where(:slug => "index").first || Factory(:page) }
+      site { Locomotive::Site.where(:subdomain => 'acme').first || Factory(:site) }
+      parent { Locomotive::Page.where(:slug => 'index').first || Factory(:page) }
     end
 
   end
@@ -117,25 +117,25 @@ FactoryGirl.define do
     name 'My website title'
     slug 'header'
     template %{<title>Acme</title>}
-    site { Locomotive::Site.where(:subdomain => "acme").first || Factory(:site) }
+    site { Locomotive::Site.where(:subdomain => 'acme').first || Factory(:site) }
   end
 
 
   ## Assets ##
   factory :asset, :class => Locomotive::ContentAsset do
-    site { Locomotive::Site.where(:subdomain => "acme").first || Factory(:site) }
+    site { Locomotive::Site.where(:subdomain => 'acme').first || Factory(:site) }
   end
 
 
   ## Theme assets ##
   factory :theme_asset, :class => Locomotive::ThemeAsset do
-    site { Locomotive::Site.where(:subdomain => "acme").first || Factory(:site) }
+    site { Locomotive::Site.where(:subdomain => 'acme').first || Factory(:site) }
   end
 
   ## Content types ##
   factory :content_type, :class => Locomotive::ContentType do
     name 'My project'
-    site { Locomotive::Site.where(:subdomain => "acme").first || Factory(:site) }
+    site { Locomotive::Site.where(:subdomain => 'acme').first || Factory(:site) }
   end
 
   factory :content_entry, :class => Locomotive::ContentEntry do

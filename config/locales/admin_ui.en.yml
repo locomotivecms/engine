@@ -19,6 +19,7 @@ en:
       nb: Norwegian
       es: Spanish
       ru: Russian
+      et: Estonian
 
     messages:
       confirm: Are you sure ?
@@ -266,6 +267,7 @@ en:
       edit:
         title: '%{type} &mdash; editing entry'
       form:
+        edit_select_options: edit options
         has_many:
           new_entry: New entry
 

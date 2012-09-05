@@ -22,6 +22,7 @@ module Locomotive
 
           alias_method_chain :rearrange, :identity_map
           alias_method_chain :rearrange_children, :identity_map
+          alias_method_chain :siblings_and_self, :scoping
         end
 
         module ClassMethods
@@ -96,6 +97,14 @@ module Locomotive
             child.position = position
             child.save
           end
+        end
+
+        ##
+        # Returns this document's siblings and itself, all scoped by the site
+        #
+        # @return [Mongoid::Criteria] Mongoid criteria to retrieve the document's siblings and itself
+        def siblings_and_self_with_scoping
+          base_class.where(:parent_id => self.parent_id, :site_id => self.site_id)
         end
 
         def depth

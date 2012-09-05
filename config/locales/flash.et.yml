@@ -1,0 +1,106 @@
+et:
+  flash:
+    locomotive:
+      pages:
+        create:
+          notice: "Leht loodi edukalt."
+          alert: "Lehte ei loodud."
+        update:
+          notice: "Leht uuendati edukalt."
+          alert: "Lehte ei uuendatud."
+        sort:
+          notice: "Lehed sorteeriti edukalt."
+        destroy:
+          notice: "Leht kustutati edukalt."
+
+      content_entries:
+        create:
+          notice: "Sisend loodi edukalt."
+          alert: "Sisendit ei loodud."
+        update:
+          notice: "Sisend uuendati edukalt."
+          alert: "Sisendit ei uuendatud."
+        sort:
+          notice: "Sisendid sorteeriti edukalt."
+        destroy:
+          notice: "Sisend kustutati edukalt."
+
+      content_types:
+        create:
+          notice: "Mudel loodi edukalt."
+          alert: "Mudelit ei loodud."
+        update:
+          notice: "Mudel uuendati edukalt."
+          alert: "Mudelit ei uuendatud."
+        destroy:
+          notice: "Mudel kustutati edukalt."
+
+      current_site:
+        update:
+          notice: "Minu sait uuendati edukalt."
+          alert: "Minu saiti ei uuendatud."
+
+      snippets:
+        create:
+          notice: "Koodijupp loodi edukalt."
+          alert: "Koodijuppi ei loodud."
+        update:
+          notice: "Koodijupp uuendati edukalt."
+          alert: "Koodijuppi ei uuendatud."
+        destroy:
+          notice: "Koodijupp kustutati edukalt."
+
+      accounts:
+        create:
+          notice: "Konto loodi edukalt."
+          alert: "Kontot ei loodud."
+
+      my_account:
+        update:
+          notice: "Minu konto uuendati edukalt."
+          alert: "Minu kontot ei uuendatud."
+
+      sites:
+        create:
+          notice: "Sait loodi edukalt."
+          alert: "Saiti ei loodud."
+        destroy:
+          notice: "Sait kustutati edukalt."
+
+      memberships:
+        create:
+          notice: "Liikmeksolek loodi edukalt."
+          alert: "Liikmeksolekut ei loodud."
+          already_created: "Konto oli lisatud juba praegusesse saiti."
+
+      assets:
+        create:
+          notice: "Vara loodi edukalt."
+          alert: "Vara ei loodud."
+        update:
+          notice: "Vara uuendati edukalt."
+          alert: "Vara ei uuendatud."
+
+      theme_assets:
+        create:
+          notice: "Fail loodi edukalt."
+          alert: "Faili ei loodud."
+        update:
+          notice: "Fail uuendati edukalt."
+          alert: "Faili ei uuendatud."
+        destroy:
+          notice: "Fail kustutati edukalt."
+
+      custom_fields:
+        update:
+          alert: "Väli uuendamata"
+
+      cross_domain_sessions:
+        create:
+          alert: "Pead sisse logima"
+
+      import:
+        create:
+          done: "Sinu sait uuendati edukalt."
+          notice: "Sinu saiti uuendatakse."
+          alert: "Importi ei tehtud."

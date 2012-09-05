@@ -75,13 +75,15 @@ module Locomotive
         def verify_localized_default_pages_integrity
           if self.persisted? && self.locales_changed?
             self.pages.where(:"slug.#{self.default_locale_was}".in => %w(index 404), :depth => 0).each do |page|
-              modifications = { 'title' => {}, 'slug' => {} }
+              modifications = { 'title' => {}, 'slug' => {}, 'fullpath' => {}, 'locales' => self.locales }
 
               self.locales.each do |locale|
-                slug = page.attributes['slug'][self.default_locale_was]
+                slug  = page.attributes['slug'][self.default_locale_was]
+                title = page.attributes['title'][locale] || ::I18n.t("attributes.defaults.pages.#{slug}.title", :locale => locale)
 
-                modifications['slug'][locale]  = slug
-                modifications['title'][locale] = page.attributes['title'][locale] || ::I18n.t("attributes.defaults.pages.#{slug}.title", :locale => locale)
+                modifications['slug'][locale]     = slug
+                modifications['fullpath'][locale] = slug
+                modifications['title'][locale]    = title
               end
 
               page.collection.update({ :_id => page._id }, { '$set' => modifications })
