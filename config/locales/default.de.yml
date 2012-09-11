@@ -58,7 +58,7 @@ de:
     errors:
       messages:
         blank_on_locale: "darf nicht leer sein"
-        
+
     attributes:
       page:
         title: Titel
@@ -107,6 +107,7 @@ de:
   pagination:
     previous: "&laquo; Zurück"
     next: "Vor &raquo;"
+
   date:
     formats:
       default: "%d.%m.%Y"

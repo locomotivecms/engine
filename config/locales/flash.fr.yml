@@ -16,7 +16,7 @@ fr:
       content_entries:
         create:
           notice: "L'élément a été crée avec succès."
-          alert: "L'élément a été crée avec succès."
+          alert: "L'élément n'a pas été crée avec succès."
         update:
           notice: "L'élément a été mis à jour avec succès."
           alert: "L'élément n'a pas été mis à jour."
