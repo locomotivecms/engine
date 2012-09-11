@@ -41,12 +41,12 @@ fr:
         confirmation_instructions: "Instructions pour la confirmation"
         reset_password_instructions: "Instructions pour la réinitialisation du mot de passe"
         unlock_instructions: "Instructions pour le déverrouillage"
-  
+
   locomotive:
-    mailer:
+    devise_mailer:
       common:
         hello: Bienvenu(e)
-      
+
       confirmation_instructions:
         you_can_confirm_your_account_through_the_link_below: "Vous pouvez confirmer votre compte via le lien ci-dessous:"
         confirm_my_account: "Confirmer mon compte"

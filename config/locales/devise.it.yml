@@ -42,10 +42,10 @@ it:
         confirmation_instructions: 'Istruzioni per la conferma'
         reset_password_instructions: 'Istruzioni per reimpostare la password'
         unlock_instructions: "Istruzioni per lo sblocco dell'account"
-        
-        
+
+
   locomotive:
-    mailer:
+    devise_mailer:
       common:
         hello: Ciao
 

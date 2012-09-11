@@ -45,7 +45,7 @@ es:
 
 
   locomotive:
-    mailer:
+    devise_mailer:
       common:
         hello: Hola
 

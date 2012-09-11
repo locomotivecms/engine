@@ -41,10 +41,10 @@ pt-BR:
         confirmation_instructions: 'Instruções de confirmação'
         reset_password_instructions: 'Instruções para resetar a senha.'
         unlock_instructions: 'Instruções de desbloqueio'
-        
-        
+
+
   locomotive:
-    mailer:
+    devise_mailer:
       common:
         hello: Olá
       confirmation_instructions:

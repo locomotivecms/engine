@@ -45,7 +45,7 @@ ru:
 
 
   locomotive_account:
-    mailer:
+    devise_mailer:
       common:
         hello: Здравствуйте
 

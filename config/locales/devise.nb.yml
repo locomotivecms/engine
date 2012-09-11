@@ -42,10 +42,10 @@ nb:
         confirmation_instructions: 'Bekreftelsesinstrukser'
         reset_password_instructions: 'Instrukser for tilbakestilling av passord'
         unlock_instructions: 'Instrukser for åpning'
-        
-        
+
+
   locomotive_account:
-    mailer:
+    devise_mailer:
       common:
         hello: Hallo
 

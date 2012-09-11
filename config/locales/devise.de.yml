@@ -41,10 +41,10 @@ de:
         confirmation_instructions: 'Anleitung zur Aktivierung'
         reset_password_instructions: 'Anleitung zum Zurücksetzen deines Passworts'
         unlock_instructions: 'Anleitung zur Entsperrung'
-        
-        
+
+
   locomotive:
-    mailer:
+    devise_mailer:
       common:
         hello: Hallo
 
