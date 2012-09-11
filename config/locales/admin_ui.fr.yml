@@ -106,7 +106,7 @@ fr:
       edit:
         title: Changer mon mot de passe
         link: "&rarr; Retour page de connexion"
-        password: "Votre email"
+        password: "Entrez un nouveau mot de passe"
         password_confirmation: "Confirmation nouveau mot de passe"
 
     pages:
