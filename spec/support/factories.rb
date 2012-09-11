@@ -135,6 +135,7 @@ FactoryGirl.define do
   ## Content types ##
   factory :content_type, :class => Locomotive::ContentType do
     name 'My project'
+    description 'The list of my projects'
     site { Locomotive::Site.where(:subdomain => 'acme').first || Factory(:site) }
   end
 

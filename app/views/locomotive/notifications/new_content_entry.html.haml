@@ -1,6 +1,4 @@
-%p= t('.title', :name => @account.name, :date => I18n.l(Time.now), :locale => @account.locale)
-
-%hr
+%p= t('.title', :name => @account.name, :domain => @domain, :date => I18n.l(Time.now), :locale => @account.locale).html_safe
 
 %p
   %b= t('.type', :type => @type.name, :locale => @account.locale)
@@ -21,7 +19,7 @@
           = value
         - when 'file'
           - url = value.guess_url
-          - url = url =~ /^http/ ? url : URI.join("http://#{@entry.site.domains.first}", url).to_s # Amazon S3 (http/https) or local files ?
+          - url = url =~ /^http/ ? url : URI.join("http://#{@domain}", url).to_s # Amazon S3 (http/https) or local files ?
           = link_to File.basename(url), url
         - when 'select'
           = value

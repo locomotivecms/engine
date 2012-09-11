@@ -63,8 +63,8 @@ fr:
 
     notifications:
       new_content_entry:
-        subject: "[%{type}] nouveau"
-        title: "Bonjour %{name}, nous voulions vous faire savoir qu'une nouvelle instance a été créée le %{date}"
+        subject: "%{domain}[%{type}] nouveau"
+        title: "Bonjour %{name}, nous voulions vous faire savoir qu'une nouvelle instance a été créée le %{date} pour le site <b>%{domain}</b>"
         type: "Modèle: %{type}"
 
     sites_picker:

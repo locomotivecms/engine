@@ -49,7 +49,7 @@ it:
 
     notifications:
       new_content_entry:
-        subject: "[%{type}] nuovo/a"
+        subject: "[%{domain}][%{type}] nuovo/a"
         title: "Ciao %{name}, solo per farti sapere che una nuova istanza è stata creata il %{date}"
         type: "Modello: %{type}"
 

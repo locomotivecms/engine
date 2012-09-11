@@ -68,7 +68,7 @@ et:
 
     notifications:
       new_content_entry:
-        subject: "[%{type}] uus"
+        subject: "[%{domain}][%{type}] uus"
         title: "Tere %{name}, lihtsalt teadmiseks, uus instants loodi %{date}"
         type: "Mudel: %{type}"
 
