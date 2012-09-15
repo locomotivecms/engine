@@ -308,6 +308,11 @@ describe Locomotive::Page do
         @page.target_entry_name.should == 'post'
       end
 
+      it 'returns the slug of the target klass' do
+        @site.stubs(:content_types).returns(mock(:find => @content_type))
+        @page.target_klass_slug.should == 'posts'
+      end
+
       context '#security' do
 
         before(:each) do
