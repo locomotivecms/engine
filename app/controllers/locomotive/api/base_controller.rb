@@ -21,10 +21,10 @@ module Locomotive
 
       protected
 
-    def set_current_thread_variables
-      Thread.current[:account]  = current_locomotive_account
-      Thread.current[:site]     = current_site
-    end
+      def set_current_thread_variables
+        Thread.current[:account]  = current_locomotive_account
+        Thread.current[:site]     = current_site
+      end
 
       def current_ability
         @current_ability ||= Ability.new(current_locomotive_account, current_site)
