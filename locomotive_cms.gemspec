@@ -39,7 +39,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'jquery-rails',                    '~> 1.0.19'
   s.add_dependency 'rails-backbone',                  '~> 0.6.1'
   s.add_dependency 'codemirror-rails',                '~> 2.21'
-  s.add_dependency 'locomotive-tinymce-rails',        '~> 3.4.7.2'
+  s.add_dependency 'locomotive-tinymce-rails',        '~> 3.4.7.3'
   s.add_dependency 'locomotive-aloha-rails',          '~> 0.20.1.4'
   s.add_dependency 'flash_cookie_session',            '~> 1.1.1'
 

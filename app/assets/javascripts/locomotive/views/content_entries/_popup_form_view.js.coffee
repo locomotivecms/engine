@@ -87,4 +87,4 @@ class Locomotive.Views.ContentEntries.PopupFormView extends Locomotive.Views.Con
     # disabled in a popup form
 
   tinyMCE_settings: ->
-    window.Locomotive.tinyMCE.popupSettings
+    _.extend { language: window.locale }, window.Locomotive.tinyMCE.popupSettings

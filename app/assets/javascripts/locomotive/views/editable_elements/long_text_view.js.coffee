@@ -14,7 +14,7 @@ class Locomotive.Views.EditableElements.LongTextView extends Backbone.View
     return @
 
   after_render: ->
-    settings = _.extend {}, @tinymce_settings(),
+    settings = _.extend {}, @tinymce_settings(),    
       oninit: ((editor) =>
         $.cmd 'S', (() =>
           @model.set(content: editor.getBody().innerHTML)
@@ -26,7 +26,7 @@ class Locomotive.Views.EditableElements.LongTextView extends Backbone.View
     @$('textarea').tinymce(settings)
 
   tinymce_settings: ->
-    window.Locomotive.tinyMCE.defaultSettings
+    _.extend { language: window.locale }, window.Locomotive.tinyMCE.defaultSettings
 
   refresh: ->
     # do nothing
