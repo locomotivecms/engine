@@ -1,8 +1,8 @@
 BOARD:
 
 x tinyMCE langs
-- bug: fixed editable elements 
-- default editable content 
+x bug: fixed editable elements
+x default editable content
 
 - bugs / ui tweaks
   x unable to toggle the "required" check_boxes for content types
