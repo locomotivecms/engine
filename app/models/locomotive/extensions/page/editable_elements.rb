@@ -81,10 +81,13 @@ module Locomotive
         end
 
         def remove_disabled_editable_elements
-          return unless self.editable_elements.any? { |el| el.disabled? }
+          # get only those which are fully disabled, meaning in ALL the locales
+          ids = self.editable_elements.find_all { |el| el.disabled_in_all_translations? }.map(&:_id)
+
+          return if ids.empty?
 
           # super fast way to remove useless elements all in once
-          self.collection.update(self.atomic_selector, '$pull' => { 'editable_elements' => { "disabled.#{::Mongoid::Fields::I18n.locale}" => true } })
+          self.collection.update(self.atomic_selector, '$pull' => { 'editable_elements' => { '_id' => { '$in' => ids } } })
         end
 
       end
