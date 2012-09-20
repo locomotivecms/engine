@@ -76,6 +76,8 @@ Rails.application.routes.draw do
 
       resource  :current_site, :controller => 'current_site'
 
+      resource  :my_account, :controller => 'my_account'
+
     end
   end
 
