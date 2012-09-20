@@ -7,7 +7,7 @@ de:
 
   devise:
     failure:
-      locomotive:
+      locomotive_account:
         unauthenticated: 'Du musst dich einloggen oder registrieren bevor es weiter geht.'
         unconfirmed: 'Du musst deinen Account aktivieren bevor es weiter geht.'
         locked: 'Dein Account ist gesperrt.'
@@ -16,34 +16,34 @@ de:
         timeout: 'Deine Session ist abgelaufe. Bitte logge dich erneut ein, dann geht es weiter.'
         inactive: 'Dein Account wurde noch nicht aktiviert.'
     sessions:
-      locomotive:
+      locomotive_account:
         signed_in: 'Willkommen zu Hause!'
         signed_out: 'Bis zum nächsten Mal.'
     passwords:
-      locomotive:
+      locomotive_account:
         send_instructions: 'Du bekommst in ein paar Minuten eine Email mit einer genauen Anleitung, wie du dein Passwort zurücksetzen kannst.'
         updated: 'Dein Passwort wurde erfolgreich geändert. Du bist nun eingeloggt.'
     confirmations:
-      locomotive:
+      locomotive_account:
         send_instructions: 'Du bekommst in ein paar Minuten eine Email mit einer genauen Anleitung, wie du deinen Account aktivieren kannst.'
         confirmed: 'Dein Account wurde erfolgreich aktiviert. Du bist nun eingeloggt.'
     registrations:
-      locomotive:
+      locomotive_account:
         signed_up: 'Du hast dich erfolgreich registriert.'
         updated: 'Du hast deinen Account erfolgreich aktualisiert.'
         destroyed: 'Tschüss! Dein Account wurder erfolgreich gelöscht. Hoffentlich sehen wir dich bald wieder!'
     unlocks:
-      locomotive:
+      locomotive_account:
         send_instructions: 'Du bekommst in ein paar Minuten eine Email mit einer genauen Anleitung, wie du deinen Account entsperren kannst.'
         unlocked: 'Dein Account wurder erfolgreich entsperrt. Du bist nun eingeloggt.'
     mailer:
-      locomotive:
+      locomotive_account:
         confirmation_instructions: 'Anleitung zur Aktivierung'
         reset_password_instructions: 'Anleitung zum Zurücksetzen deines Passworts'
         unlock_instructions: 'Anleitung zur Entsperrung'
 
 
-  locomotive:
+  locomotive_account:
     devise_mailer:
       common:
         hello: Hallo

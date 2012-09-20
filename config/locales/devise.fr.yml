@@ -7,7 +7,7 @@ fr:
 
   devise:
     failure:
-      locomotive:
+      locomotive_account:
         unauthenticated: "Vous devez vous connecter ou vous inscrire avant de poursuivre."
         unconfirmed: "Vous devez confirmer votre compte avant de poursuivre."
         locked: "Votre compte a été vérrouillé."
@@ -16,36 +16,36 @@ fr:
         timeout: "Votre session a expiré, veuillez vous reconnecter pour poursuivre."
         inactive: "Votre compte n'a pas encore été activé."
     sessions:
-      locomotive:
+      locomotive_account:
         signed_in: "Connexion réussie."
         signed_out: "Déconnexion réussie."
     passwords:
-      locomotive:
+      locomotive_account:
         send_instructions: "Vous allez recevoir un email avec les instructions pour réinitialiser votre mot de passe dans quelques minutes."
         updated: "Votre mot de passe a été modifié avec succès. Vous êtes maintenant connecté."
     confirmations:
-      locomotive:
+      locomotive_account:
         send_instructions: "Vous allez recevoir un email avec les instruction pour confirmer votre compte dans quelques minutes."
         confirmed: "Votre compte a été confirmé avec succès."
     registrations:
-      locomotive:
+      locomotive_account:
         signed_up: "Vous vous êtes inscrit avec succès. Vous allez recevoir les instructions de confirmation par email."
         updated: "Vous avez mis à jour votre compte avec succès."
         destroyed: "Au revoir. Votre compte a été fermé avec succès. Nous espérons vous revoir bientôt."
     unlocks:
-      locomotive:
+      locomotive_account:
         send_instructions: "Vous allez recevoir un email avec les instructions pour déverrouiller votre compte dans quelques minutes."
         unlocked: "Votre compte a été déverrouillé avec succès. Vous êtes maintenant connecté."
     mailer:
-      locomotive:
+      locomotive_account:
         confirmation_instructions: "Instructions pour la confirmation"
         reset_password_instructions: "Instructions pour la réinitialisation du mot de passe"
         unlock_instructions: "Instructions pour le déverrouillage"
 
-  locomotive:
+  locomotive_account:
     devise_mailer:
       common:
-        hello: Bienvenu(e)
+        hello: Bienvenue
 
       confirmation_instructions:
         you_can_confirm_your_account_through_the_link_below: "Vous pouvez confirmer votre compte via le lien ci-dessous:"

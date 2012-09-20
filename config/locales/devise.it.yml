@@ -7,7 +7,7 @@ it:
 
   devise:
     failure:
-      locomotive:
+      locomotive_account:
         unauthenticated: "E' necessario accedere o registrati prima di continuare."
         unconfirmed: "E' necessario confermare l'account prima di continuare."
         locked: 'Il tuo account è bloccato.'
@@ -17,34 +17,34 @@ it:
         timeout: 'La tua sessione è scaduta, si prega di accedere nuovamente per continuare.'
         inactive: 'Il tuo account non è stato ancora attivato.'
     sessions:
-      locomotive:
+      locomotive_account:
         signed_in: 'Login eseguito con successo.'
         signed_out: 'Logout eseguito con successo.'
     passwords:
-      locomotive:
+      locomotive_account:
         send_instructions: 'Entro qualche minuti riceverai una email con le istruzioni su come reimpostare la password.'
         updated: 'La tua password è stata cambiata con successo. Ora sei collegato.'
     confirmations:
-      locomotive:
+      locomotive_account:
         send_instructions: 'Entro qualche minuti riceverai un messaggio email con le istruzioni per confermare il tuo account.'
         confirmed: 'Il tuo account è stato confermato. Ora sei collegato.'
     registrations:
-      locomotive:
+      locomotive_account:
         signed_up: 'Registrazione eseguita correttamente.'
         updated: 'Il tuo account è stato aggiornato.'
         destroyed: "Arrivederci! L'account è stato eliminato. Speriamo di rivederci presto."
     unlocks:
-      locomotive:
+      locomotive_account:
         send_instructions: 'Entro qualche minuti riceverai un messaggio email con le istruzioni per sbloccare il tuo account.'
         unlocked: 'Il tuo account è stato correttamente sbloccato. Ora sei collegato.'
     mailer:
-      locomotive:
+      locomotive_account:
         confirmation_instructions: 'Istruzioni per la conferma'
         reset_password_instructions: 'Istruzioni per reimpostare la password'
         unlock_instructions: "Istruzioni per lo sblocco dell'account"
 
 
-  locomotive:
+  locomotive_account:
     devise_mailer:
       common:
         hello: Ciao

@@ -7,7 +7,7 @@ es:
 
   devise:
     failure:
-      locomotive:
+      locomotive_account:
         unauthenticated: 'Debe crear una cuenta o acceder con una cuenta existente para continuar.'
         unconfirmed: 'Debe confirmar su cuenta para continuar.'
         locked: 'Su cuenta está bloqueada.'
@@ -17,34 +17,34 @@ es:
         timeout: 'Su sesión ha expirado. Por favor inicie una nueva sesión para continuar.'
         inactive: 'Su cuenta no está activa.'
     sessions:
-      locomotive:
+      locomotive_account:
         signed_in: 'Sesión iniciada con éxito.'
         signed_out: 'Sesión finalizada con éxito.'
     passwords:
-      locomotive:
+      locomotive_account:
         send_instructions: 'Recibirá un email con instrucciones para resetear su clave en unos minutos.'
         updated: 'Su clave ha sido cambiada. Se ha iniciado una sesión.'
     confirmations:
-      locomotive:
+      locomotive_account:
         send_instructions: 'Recibirá un email con instrucciones para activar su clave en unos minutos.'
         confirmed: 'Su cuenta ha sido activada. Se ha iniciado una sesión.'
     registrations:
-      locomotive:
+      locomotive_account:
         signed_up: 'Creación de cuenta realizada con éxito.'
         updated: 'Se ha actualizado su cuenta con éxito.'
         destroyed: '¡Hasta pronto! Su cuenta ha sido eliminada. Esperamos verle de nuevo.'
     unlocks:
-      locomotive:
+      locomotive_account:
         send_instructions: 'Recibirá un email con instrucciones para desbloquear su cuenta en unos minutos.'
         unlocked: 'Su cuenta ha sido desbloqueada. Se ha iniciado una sesión.'
     mailer:
-      locomotive:
+      locomotive_account:
         confirmation_instructions: 'Instrucciones de activación'
         reset_password_instructions: 'Instrucciones de reseteo de clave'
         unlock_instructions: 'Instrucciones de desbloqueo'
 
 
-  locomotive:
+  locomotive_account:
     devise_mailer:
       common:
         hello: Hola

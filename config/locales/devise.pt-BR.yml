@@ -7,7 +7,7 @@ pt-BR:
 
   devise:
     failure:
-      locomotive:
+      locomotive_account:
         unauthenticated: 'Você precisa se cadasstrar ou fazer o login antes de continuar.'
         unconfirmed: 'Você deve confirmar sua conta antes de continuar.'
         locked: 'Sua conta está bloquada.'
@@ -16,34 +16,34 @@ pt-BR:
         timeout: 'Sua sessão expirou. Por favor, faça o login novamente para continuar.'
         inactive: 'Sua conta não foi ativada ainda.'
     sessions:
-      locomotive:
+      locomotive_account:
         signed_in: 'Login feito com sucesso.'
         signed_out: 'Logout feito com sucesso.'
     passwords:
-      locomotive:
+      locomotive_account:
         send_instructions: 'Você receberá um email com as instruções sobre como alterar sua senha em poucos minutos.'
         updated: 'Sua senha foi alterada com sucesso. Você está logado.'
     confirmations:
-      locomotive:
+      locomotive_account:
         send_instructions: 'Você receberá um email com as instruções sobre como confirmar sua conta em poucos minutos.'
         confirmed: 'Sua conta foi confirmada com sucesso. Você está logado.'
     registrations:
-      locomotive:
+      locomotive_account:
         signed_up: 'Você logou com sucesso.'
         updated: 'Atualização da conta feita com sucesso.'
         destroyed: 'Sua conta foi cancelada com sucesso. Logo logo esperamos te ver por aqui. Tchau!'
     unlocks:
-      locomotive:
+      locomotive_account:
         send_instructions: 'Você receberá um email com as intruções de como desbloquear sua conta em poucos minutos.'
         unlocked: 'Sua conta foi desbloqueada com sucesso. Você está logado.'
     mailer:
-      locomotive:
+      locomotive_account:
         confirmation_instructions: 'Instruções de confirmação'
         reset_password_instructions: 'Instruções para resetar a senha.'
         unlock_instructions: 'Instruções de desbloqueio'
 
 
-  locomotive:
+  locomotive_account:
     devise_mailer:
       common:
         hello: Olá
