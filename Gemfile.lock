@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    locomotive_cms (2.0.0.rc11)
+    locomotive_cms (2.0.0.rc12)
       RedCloth (~> 4.2.8)
       actionmailer-with-request (~> 0.3.0)
       bson_ext (~> 1.5.2)

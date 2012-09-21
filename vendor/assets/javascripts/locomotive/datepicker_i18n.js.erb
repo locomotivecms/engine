@@ -1,5 +1,11 @@
 <%# encoding: utf-8 %>
 
+<%# FIXME: Assets precompilation requires to load the I18n since we disable the config.assets.initialize_on_precompile option %>
+<% if !I18n.backend.initialized? && I18n.t('locomotive.locales.en', :locale => :en, :default => '').blank? %>
+  <% I18n.load_path += Dir[Locomotive::Engine.root.join('config', 'locales', '**/*.{rb,yml}').to_s] %>
+  <% I18n.reload! %>
+<% end %>
+
 jQuery(function($){
 <% Locomotive.config.locales.each do |locale| %>
   <% I18n.with_locale(locale) do %>
