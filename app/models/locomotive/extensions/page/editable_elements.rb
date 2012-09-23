@@ -66,11 +66,24 @@ module Locomotive
 
             existing_el = self.find_editable_element(el.block, el.slug)
 
+            Rails.logger.debug "[merge_editable_elements_from_page] el = #{el.block.inspect} / #{el.slug.inspect} / not found ? #{existing_el.nil?.inspect} / #{::Mongoid::Fields::I18n.locale.inspect}"
+
             if existing_el.nil? # new one from parents
               new_el = self.editable_elements.build({}, el.class)
               new_el.copy_attributes_from(el)
             else
+              Rails.logger.debug "___ #{existing_el.changes.inspect} ____ [BEFORE]"
+
               existing_el.disabled = false
+
+              Rails.logger.debug "___ #{existing_el.changes.inspect} ____ [AFTER]"
+
+              # make sure the default content gets updated too
+              existing_el.set_default_content_from(el)
+
+              # Rails.logger.debug "====> #{existing_el.inspect}"
+
+              Rails.logger.debug "___ #{existing_el.changes.inspect} ____"
 
               # only the type, hint and fixed properties can be modified from the parent element
               %w(_type hint fixed).each do |attr|

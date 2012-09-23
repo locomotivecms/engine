@@ -51,6 +51,16 @@ module Locomotive
       end
     end
 
+    def set_default_content_from(el)
+      super(el)
+
+      locale = ::Mongoid::Fields::I18n.locale.to_s
+
+      if self.attributes['default_source_url'][locale].nil?
+        self.default_source_url = el.default_source_url
+      end
+    end
+
     def remove_source=(value)
       self.source_will_change! # notify the page to run the callbacks for that element
       self.default_source_url = nil
