@@ -1,4 +1,4 @@
-"no":
+nb:
   formtastic:
     titles:
       information: Generell informasjon
@@ -33,37 +33,40 @@
       custom_fields:
         field:
           name: Alias
-      import:
-        new:
-          source: Fil
-          samples: Kopier testdata
-          reset: Reset side
-          default_site_template: "Bruk standardmalen. Klikk <a href='#'>her</a> for å laste opp en mal fra en zip-fil i stedet."
       content_type:
-        item_template: Elementmal
-        api_accounts: Varslede kontoer
+        raw_item_template: Elementmal
+        public_submission_enabled: Kan opprettes utenfra
+        public_submission_accounts: Kontoer som varsles
+        "custom_fields/field":
+          select_options: "Valg"
       content_entry:
         _slug: Permalink
       account:
         edit:
+          locale: Språk
           password: Nytt passord
           password_confirmation: Bekreft nytt passord
       page:
         seo_title: Tittel
+        target_klass_name: Modell
+      site:
+        locales: Språk
 
     hints:
       page:
+        handle: "En unik ID for å hente siden fra en ekstern controller"
         published: "Kun autoriserte kontoer kan se ikke-publiserte sider"
         cache_strategy: "Buffre siden for å bedre ytelsen. \"Enkel\" er et bra kompromiss."
         templatized: "Bruk denne siden som mal for en modell."
         listed: "Styr om siden skal vises i de genererte menyene."
-        content_type_id: "Innholdstypen denne siden skal være mal for."
+        target_klass_name: "Innholdstypen denne siden skal være mal for."
         seo_title: "Definer en egen tittel for siden. Denne blir benyttet av nettleseren. Hvis denne står tom blir standardverdien fra sideinnstillingene benyttet."
         meta_keywords: "Overstyr søkemotor-metadata for denne siden. Separer med komma."
         meta_description: "Overstyr søkemotorbeskrivelsen for denne siden."
       snippet:
         slug: "Denne brukes for å inkludere HTML-snutten i en side."
       site:
+        locales: "Dra et flagg til første posisjon for å sette som standard."
         seo_title: "Definer en global verdi her som brukes som verdi for titteltaggen i sidens head-seksjon."
         meta_keywords: "Meta-nøkkelord blir brukt i head-seksjonen og leses av søkemotorer. Separeres med komma."
         meta_description: "Meta-beskrivelse brukes i head-seksjonen og leses av søkemotorer."
@@ -79,10 +82,6 @@
           source: "Filen er tilgjengelig her: %{url}"
         update:
           source: "Filen er tilgjengelig her: %{url}"
-      custom_fields:
-        field:
-          name: "Verdi tilgjengelig i liquid-maler"
-          hint: "Tekst som vises i skjemaet rett under feltet"
       content_entry:
         _slug: "Verdien brukes til å generere en url for en side som fungerer som en mal for denne innholdstypen (f.eks: \"template_page/{{ your_object._permalink }})\"."
         seo_title: "Verdien benyttes til å erstatte sidetittelen for malen knyttet til modellen. Leses av søkemotorer."
@@ -93,7 +92,12 @@
         samples: "Vil gjøre at importen kopierer innhold og assets"
         reset: "Vil gjøre at alle data slettes for den nye siden importeres."
       content_type:
-        item_template: "Du kan justere teksten som vises for hvert element i listen. Bruk liquid, f.eks: {{ entry.name }}"
-        api_enabled: "Brukes for å la sidebrukere opprette ny elementer (f.eks: meldinger i et kontaktskjema)"
-        api_accounts: "En varslingsepost vil bli sendt til alle kontoene ovenfor når et nytt element blir opprettet."
+        name: "Vi foreslår at du bruker flertals form (E.G: Personer)"
+        slug: "It will be used as the name of the collection in the liquid templates. Ex: <span class='code'>{{ contents.my_projects }}</span>"
+        raw_item_template: "You can customize the text displayed for each item in the list. Simply use Liquid. Ex: <span class='code'>{{ entry.name }})</span>"
+        public_submission_enabled: "It is used to let people from outside to create new entries (example: messages in a contact form)"
+        public_submission_accounts: "If the public submission option is enabled and for each entry created, sends a notification email to the accounts listed above."
+        "custom_fields/field":
+          name: "Name of the property for liquid templates. Ex: <span class='code'>&#123;&#123; your_object.&lt;name_of_your_field&gt; &#125;&#125;</span>"
+          hint: "Text displayed in the model form just below the field"
 

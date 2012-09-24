@@ -12,8 +12,6 @@ class Locomotive.Views.ContentTypes.FormView extends Locomotive.Views.Shared.For
   initialize: ->
     @model = new Locomotive.Models.ContentType(@options.content_type)
 
-    window.foo = @model
-
     Backbone.ModelBinding.bind @
 
   render: ->
@@ -47,8 +45,11 @@ class Locomotive.Views.ContentTypes.FormView extends Locomotive.Views.Shared.For
       lineNumbers:      false
       passDelay:        50
       tabMode:          'shift'
-      theme:            'default medium'
+      theme:            'default'
       onChange: (editor) => @model.set(raw_item_template: editor.getValue())
+
+  after_inputs_fold: ->
+    @editor.refresh()
 
   enable_public_submission_checkbox: ->
     @_enable_checkbox 'public_submission_enabled',

@@ -3,6 +3,8 @@ module Locomotive
 
     sections 'settings', 'site'
 
+    localized
+
     skip_load_and_authorize_resource
 
     load_and_authorize_resource :class => 'Site'
@@ -10,6 +12,8 @@ module Locomotive
     helper 'Locomotive::Sites'
 
     before_filter :filter_attributes
+
+    before_filter :ensure_domains_list, :only => :update
 
     respond_to :json, :only => :update
 
@@ -38,6 +42,10 @@ module Locomotive
       else
         { :host => site_url(@site, { :fullpath => false, :protocol => false }) }
       end
+    end
+
+    def ensure_domains_list
+      params[:site][:domains] = [] unless params[:site][:domains]
     end
 
   end

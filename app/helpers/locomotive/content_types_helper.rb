@@ -27,6 +27,10 @@ module Locomotive
         end
 
         visible << content_type
+
+      end.each do |content_type|
+        # make sure to have a fresh copy of the content types because for now we don't have the full content types (ie: content_types.only(...))
+        ::Mongoid::IdentityMap.remove(content_type)
       end
 
       if visible.size > 0

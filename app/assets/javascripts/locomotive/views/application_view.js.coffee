@@ -83,3 +83,10 @@ class Locomotive.Views.ApplicationView extends Backbone.View
       locale = $(@).attr('data-locale')
       window.addParameterToURL 'content_locale', locale
 
+  unique_dialog_zindex: ->
+    # returns the number of jQuery UI modals created in order to set a valid zIndex for each of them.
+    # Each modal window should have a different zIndex, otherwise there will be conflicts between them.
+    window.Locomotive.jQueryModals ||= 0
+
+    998 + window.Locomotive.jQueryModals++
+

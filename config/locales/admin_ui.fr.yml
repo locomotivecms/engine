@@ -17,9 +17,10 @@ fr:
       pt-BR: "Portugais"
       it: "Italien"
       nl: "Hollandais"
-      "no": "Norvégien"
+      nb: "Norvégien"
       es: Espagnol
       ru: Russe
+      et: Estonien
 
     buttons:
       login: Se connecter
@@ -62,8 +63,8 @@ fr:
 
     notifications:
       new_content_entry:
-        subject: "[%{type}] nouveau"
-        title: "Bonjour %{name}, nous voulions vous faire savoir qu'une nouvelle instance a été créée le %{date}"
+        subject: "%{domain}[%{type}] nouveau"
+        title: "Bonjour %{name}, nous voulions vous faire savoir qu'une nouvelle instance a été créée le %{date} pour le site <b>%{domain}</b>"
         type: "Modèle: %{type}"
 
     sites_picker:
@@ -85,11 +86,10 @@ fr:
           empty: La liste est vide. Ajouter une entrée depuis la liste ci-dessous.
 
       form:
-        required: Required
-        optional: Optional
-        default_label: Field name
+        required: Requis
+        default_label: Nom du champ
         select_options:
-          ask_name: "Type the label of the option"
+          ask_name: "Tapez le nom de l'option"
 
     sessions:
       new:
@@ -106,7 +106,7 @@ fr:
       edit:
         title: Changer mon mot de passe
         link: "&rarr; Retour page de connexion"
-        password: "Votre email"
+        password: "Entrez un nouveau mot de passe"
         password_confirmation: "Confirmation nouveau mot de passe"
 
     pages:
@@ -263,6 +263,7 @@ fr:
       edit:
         title: '%{type} &mdash; édition élément'
       form:
+        edit_select_options: éditer options
         has_many:
           new_item: Nouvel élément
 

@@ -12,7 +12,10 @@ class Locomotive.Views.ContentAssets.PickerView extends Locomotive.Views.Shared.
     ich.content_asset_picker
 
   fetch_assets: ->
-    @collection.fetch()
+    @_reset()
+    @collection.fetch
+      success: () =>
+        @open()
 
   build_uploader: (el, link) ->
     link.bind 'click', (event) ->

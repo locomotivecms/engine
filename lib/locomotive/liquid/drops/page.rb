@@ -10,7 +10,7 @@ module Locomotive
         end
 
         def slug
-          self._source.templatized? ? self._source.content_type.slug.singularize : self._source.slug
+          self._source.templatized? ? @context['entry']._slug.singularize : self._source.slug
         end
 
         def parent

@@ -28,7 +28,7 @@ module Locomotive
             if @options[:snippet]
               template = @options[:snippet].include?('{') ? @options[:snippet] : context[:site].snippets.where(:slug => @options[:snippet] ).try(:first).try(:template)
               unless template.blank?
-                @options[:liquid_render] = ::Liquid::Template.parse( template )
+                @options[:liquid_render] = ::Liquid::Template.parse(template)
                 @options[:add_attributes] = ['editable_elements']
               end
             end
@@ -70,12 +70,12 @@ module Locomotive
           @site, @page = context.registers[:site], context.registers[:page]
 
           children = (case @source
-          when 'site'     then @site.pages.root.minimal_attributes( @options[:add_attributes] ).first # start from home page
+          when 'site'     then @site.pages.root.minimal_attributes(@options[:add_attributes]).first # start from home page
           when 'parent'   then @page.parent || @page
           when 'page'     then @page
           else
-            @site.pages.fullpath(@source).minimal_attributes( @options[:add_attributes] ).first
-          end).children_with_minimal_attributes( @options[:add_attributes] ).to_a
+            @site.pages.fullpath(@source).minimal_attributes(@options[:add_attributes]).first
+          end).children_with_minimal_attributes(@options[:add_attributes]).to_a
 
           children.delete_if { |p| !include_page?(p) }
         end
@@ -86,16 +86,16 @@ module Locomotive
 
           icon = @options[:icon] ? '<span></span>' : ''
 
-          title = @options[:liquid_render] ? @options[:liquid_render].render( 'page' => page ) : page.title
+          title = @options[:liquid_render] ? @options[:liquid_render].render('page' => page) : page.title
 
           label = %{#{icon if @options[:icon] != 'after' }#{title}#{icon if @options[:icon] == 'after' }}
 
           link_options = caret = ''
-          href    = "/#{page.fullpath}"
+          href = File.join('/', @site.localized_page_fullpath(page))
 
           if render_children_for_page?(page, depth) && bootstrap?
             css           += ' dropdown'
-            link_options  = %{ class="dropdown-toggle" data-toogle="dropdown"}
+            link_options  = %{ class="dropdown-toggle" data-toggle="dropdown"}
             href          = '#'
             caret         = %{ <b class="caret"></b>}
           end
@@ -116,7 +116,7 @@ module Locomotive
         def render_entry_children(page, depth)
           output = %{}
 
-          children = page.children_with_minimal_attributes( @options[:add_attributes] ).reject { |c| !include_page?(c) }
+          children = page.children_with_minimal_attributes(@options[:add_attributes]).reject { |c| !include_page?(c) }
           if children.present?
             output = %{<ul id="#{@options[:id]}-#{page.slug.to_s.dasherize}" class="#{bootstrap? ? 'dropdown-menu' : ''}">}
             children.each do |c, page|

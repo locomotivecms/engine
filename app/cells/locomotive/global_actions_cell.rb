@@ -24,8 +24,8 @@ module Locomotive
         add :switch, :url => '#', :id => 'sites-picker-link'
       end
 
-      add :help, :url => '#', :class => 'tutorial', :id => 'help'
-      add :logout, :url => destroy_locomotive_session_url, :confirm => t('locomotive.messages.confirm'), :method => :delete
+      add :help, :url => 'http://doc.locomotivecms.com/templates/basics', :class => 'tutorial', :id => 'help'
+      add :logout, :url => destroy_locomotive_session_url, :data => { :confirm => t('locomotive.messages.confirm') }, :method => :delete
     end
 
     def localize_label(label, options = {})

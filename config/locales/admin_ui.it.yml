@@ -10,6 +10,7 @@ it:
 
     messages:
       confirm: Sicuro?
+      sending_form: "locomotive.messages.sending_form"
 
     shared:
       header:
@@ -38,7 +39,7 @@ it:
 
     errors:
       "500":
-        title: Errore dell'applicazione
+        title: "Errore dell'applicazione"
         notice: "Siamo spiacenti, quancosa è andato storto"
         link: "&rarr; Ritorna all'applicazione"
       "404":
@@ -48,7 +49,7 @@ it:
 
     notifications:
       new_content_entry:
-        subject: "[%{type}] nuovo/a"
+        subject: "[%{domain}][%{type}] nuovo/a"
         title: "Ciao %{name}, solo per farti sapere che una nuova istanza è stata creata il %{date}"
         type: "Modello: %{type}"
 
@@ -165,9 +166,10 @@ it:
         pt-BR: "Portoghese Brasiliano"
         it: Italiano
         nl: Olandese
-        "no": Norvegese
+        nb: Norvegese
         es: Spagnolo
         ru: Russo
+        et: Estone
         ask_for_name: "Prego, digita il tuo nome"
 
     theme_assets:

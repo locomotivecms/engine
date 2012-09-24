@@ -44,3 +44,29 @@ Then /^I should be able to add a domain to my site$/ do
   page.should have_content 'My site was successfully updated'
   @site.reload.domains.should include 'monkeys.com'
 end
+
+Then /^I should be able to remove a domain from my site$/ do
+  @site.domains = [ 'monkeys.com' ]
+  @site.save!
+
+  visit edit_current_site_path
+
+  click_link 'x'
+  click_button 'Save'
+
+  page.should have_content 'My site was successfully updated'
+  @site.reload.domains_without_subdomain.should be_blank
+end
+
+Then /^I should be able to remove a membership from my site$/ do
+  @new_account = FactoryGirl.create(:author, :site => @site)
+  @site.save!
+
+  visit edit_current_site_path
+
+  click_link 'x'
+  click_button 'Save'
+
+  page.should have_content 'My site was successfully updated'
+  @site.reload.memberships.collect(&:account).should_not include(@new_account)
+end

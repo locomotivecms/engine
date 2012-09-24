@@ -1,6 +1,6 @@
 - title t('.title')
 
-= semantic_form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put }) do |f|
+= semantic_form_for(resource, :as => resource_name, :url => locomotive_account_password_url, :html => { :method => :put }) do |f|
 
   = f.hidden_field :reset_password_token
 

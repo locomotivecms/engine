@@ -2,7 +2,7 @@
 
 - content_for :backbone_view_data do
   :plain
-    account: #{@account.to_json}
+    account: #{j @account.to_json.html_safe}
 
 - content_for :submenu do
   = render_cell 'locomotive/settings_menu', :show
@@ -35,6 +35,6 @@
 
               - if admin_on?(site) && site != current_site
                 %span{ :class => 'actions' }
-                  = link_to 'x', site_url(site), :class => 'remove', :confirm => t('locomotive.messages.confirm'), :method => :delete
+                  = link_to 'x', site_url(site), :class => 'remove', :data => { :confirm => t('locomotive.messages.confirm') }, :method => :delete
 
   = render 'locomotive/shared/form_actions', :button_label => :update

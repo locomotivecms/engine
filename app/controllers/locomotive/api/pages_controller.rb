@@ -5,7 +5,7 @@ module Locomotive
       load_and_authorize_resource :class => Locomotive::Page
 
       def index
-        @pages = current_site.pages.all
+        @pages = current_site.pages.order_by([[:depth, :asc], [:position, :asc]])
         respond_with(@pages)
       end
 

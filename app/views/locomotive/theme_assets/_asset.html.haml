@@ -7,5 +7,5 @@
     %span.date {{updated_at}}
 
     {{#if can_be_deleted}}
-    = link_to 'x', '#', :class => 'remove', :confirm => t('locomotive.messages.confirm')
+    = link_to 'x', '#', :class => 'remove', :data => { :confirm => t('locomotive.messages.confirm') }
     {{/if}}

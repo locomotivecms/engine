@@ -16,9 +16,10 @@ ru:
       pt-BR: "Браз. - Португальский"
       it: Итальянский
       nl: Голландский
-      "no": Норвежский
+      nb: Норвежский
       es: Испанский
       ru: Русский
+      et: Эстонский
 
     messages:
       confirm: Вы уверены ?
@@ -67,7 +68,7 @@ ru:
 
     notifications:
       new_content_entry:
-        subject: "[%{type}] новый"
+        subject: "[%{domain}][%{type}] новый"
         title: "Привет %{name}, просто сообщаем, что новый элемент был создан %{date}"
         type: "Модель: %{type}"
 
@@ -90,7 +91,6 @@ ru:
           empty: Список пуст. Добавьте элемент из селекта ниже.
       form:
         required: Обязательное
-        optional: Опциональное
         default_label: Название поля
         select_options:
           ask_name: "Введите название элемента"

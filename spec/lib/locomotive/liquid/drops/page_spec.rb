@@ -81,6 +81,22 @@ describe Locomotive::Liquid::Drops::Page do
 
   end
 
+  context '#rendering page slug' do
+
+    it 'renders the slug of a normal page' do
+      render_template('{{ home.slug }}').should == 'index'
+    end
+
+    it 'renders the content instance slug instead for a templatized page' do
+      templatized = FactoryGirl.build(:page, :title => 'Lorem ipsum template', :templatized => true)
+
+      entry = Locomotive::Liquid::Drops::ContentEntry.new(mock('entry', :_slug => 'my_entry'))
+
+      render_template('{{ page.slug }}', 'page' => templatized, 'entry' => entry).should == 'my_entry'
+    end
+
+  end
+
   context '#rendering page with editable_elements' do
 
     before(:each) do

@@ -28,7 +28,7 @@
       = l page.updated_at, :format => :short
 
       - if !page.index_or_not_found? && can?(:manage, page)
-        = link_to 'x', page_url(page), :class => 'remove', :confirm => t('locomotive.messages.confirm'), :method => :delete
+        = link_to 'x', page_url(page), :class => 'remove', :data => { :confirm => t('locomotive.messages.confirm') }, :method => :delete
 
   - if with_children
     %ul{ :id => "folder-#{page._id}", :class => "page folder depth-#{(page.depth || 0) + 1}", :'data-url' => sort_page_url(page), :style => "display: #{cookies["folder-#{page._id}"] || 'block'}" }

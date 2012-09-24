@@ -36,7 +36,8 @@ class Locomotive.Views.Shared.FormView extends Backbone.View
     previous_attributes = _.clone @model.attributes
 
     @model.save {},
-      headers: options.headers
+      headers:  options.headers
+      silent:   true # since we pass an empty hash above, no need to trigger the callbacks
       success: (model, response, xhr) =>
         form.trigger('ajax:complete')
 
@@ -81,7 +82,14 @@ class Locomotive.Views.Shared.FormView extends Backbone.View
         content.slideUp 100, -> parent.addClass('folded')
 
   enable_save_with_keys_combination: ->
-    $.cmd 'S', (() => @$('form input[type=submit]').trigger('click')), [], ignoreCase: true
+    $.cmd 'S', (() =>
+      # make sure that the current text field gets saved too
+      input = @$('form input[type=text]:focus, form input[type=password]:focus')
+      input.trigger('change') if input.size() > 0
+
+      @$('form input[type=submit]').trigger('click')
+    ), [], ignoreCase: true
+
 
   enable_form_notifications: ->
     @$('form').formSubmitNotification()

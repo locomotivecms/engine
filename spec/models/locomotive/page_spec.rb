@@ -36,6 +36,13 @@ describe Locomotive::Page do
       another_page.errors[:slug].should == ["is already taken"]
     end
 
+    it 'requires the uniqueness of the handle' do
+      page = FactoryGirl.create(:page, :handle => 'foo')
+      another_page = FactoryGirl.build(:page, :handle => 'foo', :site => page.site)
+      another_page.should_not be_valid
+      another_page.errors[:handle].should == ["is already taken"]
+    end
+
     it 'requires the uniqueness of the slug within a "folder"' do
       site = FactoryGirl.create(:site)
       root = FactoryGirl.create(:page, :slug => 'index', :site => site)
@@ -48,7 +55,7 @@ describe Locomotive::Page do
     end
 
     %w{admin locomotive stylesheets images javascripts}.each do |slug|
-      it "considers '#{slug}' as invalid" do
+      it "considers '#{slug}' as an invalid slug" do
         page = FactoryGirl.build(:page, :slug => slug)
         page.stubs(:depth).returns(1)
         page.should_not be_valid
@@ -143,8 +150,8 @@ describe Locomotive::Page do
   describe 'tree organization' do
 
     before(:each) do
-      @home = FactoryGirl.create(:page)
-      @child_1 = FactoryGirl.create(:page, :title => 'Subpage 1', :slug => 'foo', :parent_id => @home._id, :site => @home.site)
+      @home     = FactoryGirl.create(:page)
+      @child_1  = FactoryGirl.create(:page, :title => 'Subpage 1', :slug => 'foo', :parent_id => @home._id, :site => @home.site)
     end
 
     it 'adds root elements' do
@@ -179,6 +186,11 @@ describe Locomotive::Page do
       FactoryGirl.create(:page, :title => 'Sub Subpage 1', :slug => 'bar', :parent_id => @child_1._id, :site => @home.site)
       @child_1.destroy
       Locomotive::Page.where(:slug => 'bar').first.should be_nil
+    end
+
+    it 'is scoped by the site' do
+      another_home = FactoryGirl.create(:page, :site => FactoryGirl.create('another site'))
+      another_home.position.should == 0
     end
 
   end
@@ -303,6 +315,11 @@ describe Locomotive::Page do
         @page.target_entry_name.should == 'post'
       end
 
+      it 'returns the slug of the target klass' do
+        @site.stubs(:content_types).returns(mock(:find => @content_type))
+        @page.target_klass_slug.should == 'posts'
+      end
+
       context '#security' do
 
         before(:each) do
@@ -390,4 +407,5 @@ describe Locomotive::Page do
   def fake_bson_id(id)
     BSON::ObjectId(id.to_s.rjust(24, '0'))
   end
+
 end

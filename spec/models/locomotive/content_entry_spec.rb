@@ -34,6 +34,7 @@ describe Locomotive::ContentEntry do
       content_entry.should_not be_valid
       content_entry.errors[:_slug].should == ["can't be blank"]
     end
+
   end
 
   context 'setting the slug' do
@@ -90,6 +91,7 @@ describe Locomotive::ContentEntry do
 
   describe "#navigation" do
     before(:each) do
+      @content_type.order_by = '_position'
       @content_type.save
 
       %w(first second third).each_with_index do |item, index|
@@ -168,9 +170,9 @@ describe Locomotive::ContentEntry do
       @content_entry = build_content_entry
     end
 
-    it 'is visible by default' do
+    it 'is not visible by default' do
       @content_entry.send(:set_visibility)
-      @content_entry.visible?.should be_true
+      @content_entry.visible?.should be_false
     end
 
     it 'can be visible even if it is nil' do
@@ -187,10 +189,22 @@ describe Locomotive::ContentEntry do
 
   end
 
-  describe '#requirements' do
+  describe '#label' do
 
-    it 'has public access to the highlighted field value' do
+    it 'has a label based on the value of the first field' do
       build_content_entry._label.should == 'Locomotive'
+    end
+
+    it 'uses the to_label method if the value of the label field defined it' do
+      entry = build_content_entry(:_label_field_name => 'with_to_label')
+      entry.stubs(:with_to_label).returns(mock('with_to_label', :to_label => 'acme'))
+      entry._label.should == 'acme'
+    end
+
+    it 'uses the to_s method at last if the label field did not define the to_label method' do
+      entry = build_content_entry(:_label_field_name => 'not_a_string')
+      entry.stubs(:not_a_string).returns(mock('not_a_string', :to_s => 'not_a_string'))
+      entry._label.should == 'not_a_string'
     end
 
   end

@@ -18,6 +18,7 @@ require 'capybara'
 require 'capybara/rails'
 require 'capybara/cucumber'
 require 'capybara/session'
+require 'capybara/poltergeist'
 
 require 'json_spec/cucumber'
 
@@ -44,7 +45,7 @@ end
 
 Capybara.default_wait_time = 5
 
-# Capybara.javascript_driver = :rack_test
+Capybara.javascript_driver = :poltergeist
 
 # Stop endless errors like
 # ~/.rvm/gems/ruby-1.9.2-p0@global/gems/rack-1.2.1/lib/rack/utils.rb:16:

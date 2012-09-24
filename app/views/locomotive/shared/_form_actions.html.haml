@@ -9,6 +9,6 @@
 
   .span-12.last
     %p
-      = submit_tag button_label.is_a?(Symbol) ? t(".#{button_label}") : button_label, :disable_with => t('.disable_with'), :'data-sending-form-message' => t('locomotive.messages.sending_form')
+      = submit_tag button_label.is_a?(Symbol) ? t(".#{button_label}") : button_label, :'data-disable-with' => t('.disable_with'), :'data-sending-form-message' => t('locomotive.messages.sending_form')
 
   .clear

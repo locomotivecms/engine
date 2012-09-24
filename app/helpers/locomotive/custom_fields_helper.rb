@@ -44,7 +44,7 @@ module Locomotive
 
     def options_for_content_type
       current_site.content_types.map do |c|
-        c != @content_type ? [c.name, c.klass_with_custom_fields(:entries).to_s] : nil
+        [c.name, c.klass_with_custom_fields(:entries).to_s]
       end.compact
     end
 

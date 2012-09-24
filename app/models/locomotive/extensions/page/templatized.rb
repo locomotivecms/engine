@@ -42,6 +42,20 @@ module Locomotive
           target_klass_name.constantize
         end
 
+        # Returns the slug related to the target_klass.
+        # In other words, it returns the slug of the target content type.        
+        #
+        # @return [ String ] The slug of the target class / content type. Nil if no target klass.
+        #
+        def target_klass_slug
+          if self.target_klass_name =~ /^Locomotive::Entry([a-z0-9]+)$/
+            @content_type ||= self.site.content_types.find($1)
+            @content_type.slug
+          else
+            nil
+          end
+        end
+
         # Gives the name which can be used in a liquid template in order
         # to reference an entry. It uses the slug property if the target klass
         # is a Locomotive content type or the class name itself for the other classes.

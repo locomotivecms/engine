@@ -69,5 +69,7 @@
     doc.head.appendChild(stylesheet);
   }
 
+  $.ui.dialog.prototype.overlayEl = function() { return this.overlay.$el; }
+
 })();
 

@@ -22,6 +22,8 @@ def Locomotive.configure_for_test(force = false)
 
     config.enable_logs = true
 
+    config.csrf_protection = true
+
     if force
       Locomotive.define_subdomain_and_domains_options
 

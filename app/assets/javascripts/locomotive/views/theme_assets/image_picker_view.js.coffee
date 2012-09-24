@@ -15,7 +15,12 @@ class Locomotive.Views.ThemeAssets.ImagePickerView extends Locomotive.Views.Shar
     ich.theme_image_picker
 
   fetch_assets: ->
-    @collection.fetch data: { content_type: 'image' }
+    @_reset()
+    @collection.fetch
+      data:
+        content_type: 'image'
+      success: () =>
+        @open()
 
   build_uploader: (el, link) ->
     link.bind 'click', (event) ->
@@ -38,3 +43,6 @@ class Locomotive.Views.ThemeAssets.ImagePickerView extends Locomotive.Views.Shar
   add_asset: (asset) ->
     @$('ul.list').append(ich.theme_asset(asset.toJSON()))
     @_refresh()
+
+  _reset: ->
+    @$('ul.list').empty()

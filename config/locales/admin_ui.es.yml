@@ -20,6 +20,7 @@ es:
 
     messages:
       confirm: Por favor confirme
+      sending_form: "locomotive.messages.sending_form"
 
     shared:
       header:
@@ -48,7 +49,7 @@ es:
 
     notifications:
       new_content_entry:
-        subject: "[%{type}] nuevo"
+        subject: "[%{domain}][%{type}] nuevo"
         title: "Hola %{name}, queremos hacerte saber que una nueva instancia se creó el día %{date}"
         type: "Modelo: %{type}"
 
@@ -165,9 +166,10 @@ es:
         pt-BR: "Portugués (Brasil)"
         it: Italiano
         nl: holandés
-        "no": Noruego
+        nb: Noruego
         es: Español
         ru: Ruso
+        et: Estonio
         ask_for_name: "Por favor escriba su nuevo nombre"
 
     theme_assets:

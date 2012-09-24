@@ -8,6 +8,7 @@ module Locomotive
     ## methods ##
 
     def content=(value)
+      return if value == self.content
       self.add_current_locale
       self.default_content = false unless self.new_record?
       super
@@ -15,6 +16,14 @@ module Locomotive
 
     def default_content?
       !!self.default_content
+    end
+
+    def content_from_default=(content)
+      if self.default_content?
+        self.content_will_change!
+        self.attributes['content'] ||= {}
+        self.attributes['content'][::Mongoid::Fields::I18n.locale.to_s] = content
+      end
     end
 
     def copy_attributes_from(el)

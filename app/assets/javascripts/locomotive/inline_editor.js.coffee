@@ -16,7 +16,7 @@
 #= require_tree ./views/inline_editor
 
 window.Locomotive =
-  mounted_on:   '/locomotive' # default path
+  mounted_on:   window.Locomotive.mounted_on
   Models:       {}
   Collections:  {}
   Views:        {}

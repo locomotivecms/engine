@@ -50,8 +50,13 @@ module Locomotive
       self.order_by == '_position'
     end
 
-    def order_by_definition
+    def order_by_definition(reverse_order = false)
       direction = self.order_manually? ? 'asc' : self.order_direction || 'asc'
+
+      if reverse_order
+        direction = (direction == 'asc' ? 'desc' : 'asc')
+      end
+
       [order_by_attribute, direction]
     end
 
@@ -82,6 +87,13 @@ module Locomotive
 
     def class_name_to_content_type(class_name)
       self.class.class_name_to_content_type(class_name, self.site)
+    end
+
+    def label_field_id=(value)
+      # update the label_field_name if the label_field_id is changed
+      new_label_field_name = self.entries_custom_fields.where(:_id => value).first.try(:name)
+      self.label_field_name = new_label_field_name
+      super(value)
     end
 
     def label_field_name=(value)

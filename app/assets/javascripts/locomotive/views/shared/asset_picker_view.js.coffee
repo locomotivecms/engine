@@ -11,11 +11,9 @@ class Locomotive.Views.Shared.AssetPickerView extends Backbone.View
     @collection.bind('remove', @remove_asset)
 
   render: ->
-    @_reset()
-
     $(@el).html(@template()())
 
-    @fetch_assets()
+    @create_dialog()
 
     return @
 
@@ -29,33 +27,32 @@ class Locomotive.Views.Shared.AssetPickerView extends Backbone.View
     # please overide build_uploader
 
   create_dialog: ->
-    @dialog = $(@el).dialog
+    @dialog ||= $(@el).dialog
+      autoOpen: false
       modal:    true
-      zIndex:   998
+      zIndex:   window.application_view.unique_dialog_zindex()
       width:    650,
       create: (event, ui) =>
-        $('.ui-widget-overlay').bind 'click', => @close()
-
         $(@el).prev().find('.ui-dialog-title').html(@$('h2').html())
         @$('h2').remove()
         actions = @$('.dialog-actions').appendTo($(@el).parent()).addClass('ui-dialog-buttonpane ui-widget-content ui-helper-clearfix')
 
         actions.find('#close-link').click (event) => @close(event)
 
+        input = actions.find('input[type=file]')
+        link  = actions.find('#upload-link')
+
+        @build_uploader(input, link)
+
       open: (event, ui, extra) =>
-        actions = $(@el).parent().find('.ui-dialog-buttonpane')
-        el      = actions.find('input[type=file]')
-        link    = actions.find('#upload-link')
-
-        @build_uploader(el, link)
-
-    @open()
+        $(@el).dialog('overlayEl').bind 'click', => @close()
 
   open: ->
     $(@el).dialog('open')
 
   close: (event) ->
     event.stopPropagation() & event.preventDefault() if event?
+    $(@el).dialog('overlayEl').unbind('click')
     $(@el).dialog('close')
 
   shake: ->
@@ -69,8 +66,6 @@ class Locomotive.Views.Shared.AssetPickerView extends Backbone.View
       @add_asset(asset, true)
 
     @_refresh()
-
-    setTimeout (=> @create_dialog()), 30 # disable flickering
 
   add_asset: (asset, first) ->
     # please overide add_asset (the 'first' param is to know if it comes from the first collection fetch)
@@ -94,6 +89,4 @@ class Locomotive.Views.Shared.AssetPickerView extends Backbone.View
   _on_refresh: ->
 
   _reset: ->
-    $('.ui-widget-overlay').unbind 'click'
-    @$('.actions input[type=file]').remove()
-    @dialog.dialog('destroy') if @dialog?
+    # for nothing to do

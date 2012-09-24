@@ -3,6 +3,9 @@
 - content_for :submenu do
   = render_cell 'locomotive/settings_menu', :show
 
+- content_for :actions do
+  = locale_picker_link
+
 - content_for :buttons do
   - if can?(:create, Locomotive::Account)
     = local_action_button t('.new_membership'), new_membership_url, :class => 'new'

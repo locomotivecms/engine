@@ -1,8 +1,0 @@
-%p
-  != t('locomotive.mailer.common.hello')
-  = @resource.email
-  \!
-%p
-  != t('.you_can_confirm_your_account_through_the_link_below')
-%p
-  = link_to t('.confirm_my_account'), confirmation_url(@resource, :confirmation_token => @resource.confirmation_token)

@@ -16,9 +16,10 @@ en:
       pt-BR: "Brazilian Portuguese"
       it: Italian
       nl: Dutch
-      "no": Norwegian
+      nb: Norwegian
       es: Spanish
       ru: Russian
+      et: Estonian
 
     messages:
       confirm: Are you sure ?
@@ -67,8 +68,8 @@ en:
 
     notifications:
       new_content_entry:
-        subject: "[%{type}] new"
-        title: "Hi %{name}, just to let you know that a new instance has been created on %{date}"
+        subject: "[%{domain}][%{type}] new entry"
+        title: "Hi %{name}, just to let you know that a new instance has been created on %{date} for the site <b>%{domain}</b>"
         type: "Model: %{type}"
 
     sites_picker:
@@ -91,7 +92,6 @@ en:
 
       form:
         required: Required
-        optional: Optional
         default_label: Field name
         select_options:
           ask_name: "Type the label of the option"
@@ -267,6 +267,7 @@ en:
       edit:
         title: '%{type} &mdash; editing entry'
       form:
+        edit_select_options: edit options
         has_many:
           new_entry: New entry
 

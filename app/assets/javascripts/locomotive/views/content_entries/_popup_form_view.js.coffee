@@ -26,19 +26,24 @@ class Locomotive.Views.ContentEntries.PopupFormView extends Locomotive.Views.Con
     @dialog = $(@el).dialog
       autoOpen: false
       modal:    true
-      zIndex:   998
+      zIndex:   window.application_view.unique_dialog_zindex()
       width:    770,
       create: (event, ui) =>
-        $('.ui-widget-overlay').bind 'click', => @close()
-
         $(@el).prev().find('.ui-dialog-title').html(@$('h2').html())
         @$('h2').remove()
         actions = @$('.dialog-actions').appendTo($(@el).parent()).addClass('ui-dialog-buttonpane ui-widget-content ui-helper-clearfix')
 
         actions.find('#close-link').click (event) => @close(event)
-        actions.find('input[type=submit]').click (event) => @save(event)
+        actions.find('input[type=submit]').click (event) =>
+          # since the submit buttons are outside the form, we have to mimic the behaviour of a basic form
+          $form = @el.find('form'); $buttons_pane = $(event.target).parent()
+
+          $.rails.disableFormElements($buttons_pane)
+
+          $form.trigger('submit').bind 'ajax:complete', => $.rails.enableFormElements($buttons_pane)
 
       open: (event, ui, extra) =>
+        $(@el).dialog('overlayEl').bind 'click', => @close()
         # nothing to do
 
   open: ->
@@ -50,11 +55,14 @@ class Locomotive.Views.ContentEntries.PopupFormView extends Locomotive.Views.Con
       parent_el.find('.new-section').hide()
       parent_el.find('.edit-section').show()
 
+    @clear_errors()
+
     $(@el).dialog('open')
 
   close: (event) ->
     event.stopPropagation() & event.preventDefault() if event?
     @clear_errors()
+    $(@el).dialog('overlayEl').unbind('click')
     $(@el).dialog('close')
 
   center: ->
@@ -69,6 +77,9 @@ class Locomotive.Views.ContentEntries.PopupFormView extends Locomotive.Views.Con
     else
       @refresh()
 
+  slugify_label_field: ->
+    # disabled in a popup form
+
   enable_has_many_fields: ->
     # disabled in a popup form
 
@@ -76,4 +87,4 @@ class Locomotive.Views.ContentEntries.PopupFormView extends Locomotive.Views.Con
     # disabled in a popup form
 
   tinyMCE_settings: ->
-    window.Locomotive.tinyMCE.popupSettings
+    _.extend { language: window.locale }, window.Locomotive.tinyMCE.popupSettings

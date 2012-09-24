@@ -54,10 +54,16 @@ When /^I update the "([^"]*)" page with the template:$/ do |page_slug, template|
   page.save!
 end
 
+Given /^I delete the following code "([^"]*)" from the "([^"]*)" page$/ do |code, page_slug|
+  page = @site.pages.where(:slug => page_slug).first
+  page.raw_template = page.raw_template.gsub(code, '')
+  page.save!
+end
+
 # try to render a page by slug
 When /^I view the rendered page at "([^"]*)"$/ do |path|
-  # If we're running selenium then we need to use a differnt port
-  if Capybara.current_driver == :selenium
+  # If we're running poltergeist then we need to use a different port
+  if Capybara.current_driver == :poltergeist
     visit "http://#{@site.domains.first}:#{Capybara.server_port}#{path}"
   else
     visit "http://#{@site.domains.first}#{path}"

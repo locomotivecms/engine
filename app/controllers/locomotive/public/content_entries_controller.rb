@@ -6,8 +6,6 @@ module Locomotive
 
       before_filter :sanitize_entry_params, :only => :create
 
-      skip_before_filter :verify_authenticity_token
-
       skip_load_and_authorize_resource
 
       self.responder = Locomotive::ActionController::PublicResponder # custom responder
@@ -17,7 +15,6 @@ module Locomotive
       def create
         @entry = @content_type.entries.create(params[:entry] || params[:content])
         flash[@content_type.slug.singularize] = @entry.to_presenter(:include_errors => true).as_json
-        Rails.logger.debug @entry.to_presenter(:include_errors => true).as_json
         respond_with @entry, :location => self.callback_url
       end
 
@@ -45,6 +42,13 @@ module Locomotive
         entry_params.each do |key, value|
           next unless value.is_a?(String)
           entry_params[key] = Sanitize.clean(value, Sanitize::Config::BASIC)
+        end
+      end
+
+      def handle_unverified_request
+        if Locomotive.config.csrf_protection
+          reset_session
+          redirect_to '/', :status => 302
         end
       end
 

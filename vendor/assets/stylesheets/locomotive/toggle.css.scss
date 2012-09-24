@@ -1,25 +1,48 @@
 @import "compass/css3";
 
 .toggleSwitch {
+  display: inline-block;
   position: relative;
-  top: 3px;
-  line-height: 14px;
+  top: 0px;
+  line-height: 18px;
 
-  span.leftLabel {
-    float: left;
+  span.leftLabel.on {
+    width: 29px;
+    left: 0px;
+    padding-left: 1px;
+    color: #fff !important;
+    @include single-text-shadow(rgba(0, 0, 0, 0.3), 0, -1px, 0px);
+  }
+
+  span.rightLabel.on {
+    width: 27px;
+    right: 0px;
+    padding-right: 1px;
+    color: #888 !important;
   }
 
   span.leftLabel, span.rightLabel {
-    line-height: 14px;
-    padding: 0 2px;
-    font-size: 11px;
+    position: absolute;
+    top: 0px;
+    width: 27px;
+
+    line-height: 18px;
+    font-size: 10px;
     font-weight: bold;
+    text-align: center;
+    text-transform: uppercase;
+
+    display: none;
+
+    &.on {
+      display: inline;
+    }
   }
 
   div.switchArea {
     float: left;
-    width: 32px;
-    height: 12px;
+    width: 54px;
+    height: 16px;
     cursor: pointer;
 
     border: 1px solid #a3a3a3;
@@ -37,7 +60,7 @@
     position: relative;
     top: -1px;
     display: block;
-    width: 16px;
+    width: 25px;
     height: 100%;
     cursor: pointer;
     cursor: hand;

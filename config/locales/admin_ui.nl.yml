@@ -9,6 +9,7 @@ nl:
 
     messages:
       confirm: Weet u het zeker ?
+      sending_form: "locomotive.messages.sending_form"
 
     shared:
       header:
@@ -45,7 +46,7 @@ nl:
 
     notifications:
       new_content_entry:
-        subject: "[%{type}] nieuw"
+        subject: "[%{domain}][%{type}] nieuw"
         title: "Hallo %{name}, dit bericht is om te laten weten dat er een nieuwe instantie is gemaakt op %{date}"
         type: "Model: %{type}"
 
@@ -85,7 +86,7 @@ nl:
         help: "Pagina's zijn georganiseerd als een boom. U kunt zowel pagina's als mappen ordenen"
         no_items: "Er zijn momenteel geen pagina's. Klik <a href=\"%{url}\">hier</a> om de eerste pagina te maken."
         new: Nieuwe pagina
-        latest_entries: Laatste pagina's
+        latest_entries: "Laatste pagina's"
       new:
         title: Nieuwe pagina
         help: "Voer onderstaande formulier in om uw pagina te maken. Opgelet, de pagina is niet gepubliseerd"
@@ -153,8 +154,9 @@ nl:
         pt-BR: "Braziliaans Portugees"
         it: Italiaans
         nl: Nederlands
-        "no": Noors
+        nb: Noors
         ru: Russisch
+        et: Estlands
         ask_for_name: "Voer uw nieuwe naam in"
 
     theme_assets:

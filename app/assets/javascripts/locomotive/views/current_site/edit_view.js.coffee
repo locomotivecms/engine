@@ -15,8 +15,6 @@ class Locomotive.Views.CurrentSite.EditView extends Locomotive.Views.Shared.Form
 
     Backbone.ModelBinding.bind @, checkbox: 'class'
 
-    window.foo = @model
-
   render: ->
     super()
 
@@ -57,15 +55,16 @@ class Locomotive.Views.CurrentSite.EditView extends Locomotive.Views.Shared.Form
     @$('#site_memberships_input').append(@memberships_view.render().el)
 
   enable_liquid_editing: ->
-    input = @$('#site_robots_txt')
-    @editor = CodeMirror.fromTextArea input.get()[0],
-      mode:             'liquid'
-      autoMatchParens:  false
-      lineNumbers:      false
-      passDelay:        50
-      tabMode:          'shift'
-      theme:            'default'
-      onChange: (editor) => @model.set(robots_txt: editor.getValue())
+    if($('#site_robots_txt').length)
+      input = @$('#site_robots_txt')
+      @editor = CodeMirror.fromTextArea input.get()[0],
+        mode:             'liquid'
+        autoMatchParens:  false
+        lineNumbers:      false
+        passDelay:        50
+        tabMode:          'shift'
+        theme:            'default'
+        onChange: (editor) => @model.set(robots_txt: editor.getValue())
 
   save: (event) ->
     if @model.includes_domain(window.location.host)
@@ -76,6 +75,9 @@ class Locomotive.Views.CurrentSite.EditView extends Locomotive.Views.Shared.Form
       @domains_view.show_error(message)
     else
       super
+
+  after_inputs_fold: ->
+    @editor.refresh()
 
   remove: ->
     @domains_view.remove()

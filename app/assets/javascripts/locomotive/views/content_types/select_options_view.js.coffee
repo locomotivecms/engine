@@ -10,6 +10,7 @@ class Locomotive.Views.ContentTypes.SelectOptionsView extends Backbone.View
     'click a.add':      'add_entry'
     'click span.name':  'edit_entry'
     'click a.remove':   'remove_entry'
+    'click a.drag':     'do_nothing'
 
   initialize: ->
     _.bindAll(@, 'refresh_position_entries', '_insert_entry')
@@ -41,6 +42,9 @@ class Locomotive.Views.ContentTypes.SelectOptionsView extends Backbone.View
       select_option = @collection.getByCid($(view_dom).attr('data-cid'))
       select_option.set position: index
 
+  do_nothing: (event) ->
+    event.stopPropagation() & event.preventDefault()
+
   add_entry: (event) ->
     event.stopPropagation() & event.preventDefault()
 
@@ -67,7 +71,7 @@ class Locomotive.Views.ContentTypes.SelectOptionsView extends Backbone.View
     view_dom      = link.closest('li')
     select_option = @collection.getByCid(view_dom.attr('data-cid'))
 
-    if confirm(link.attr('date-confirm'))
+    if confirm(link.attr('data-confirm'))
       if select_option.isNew()
         @collection.remove(select_option)
       else

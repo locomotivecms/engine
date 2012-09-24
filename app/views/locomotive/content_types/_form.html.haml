@@ -3,8 +3,8 @@
 
 - content_for :backbone_view_data do
   :plain
-    content_type: #{@content_type.persisted? ? @content_type.to_json : 'null'},
-    inverse_of_list: #{options_for_content_type_inverse_of.to_json}
+    content_type: #{j @content_type.persisted? ? @content_type.to_json.html_safe : 'null'},
+    inverse_of_list: #{j options_for_content_type_inverse_of.to_json.html_safe}
 
 = f.inputs :name => :information do
 

@@ -24,7 +24,7 @@ describe Locomotive::Liquid::Tags::Nav do
     pages = [@home]
     pages.stubs(:root).returns(pages)
     pages.stubs(:minimal_attributes).returns(pages) # iso
-    @site = FactoryGirl.build(:site)
+    @site = FactoryGirl.build(:site, :locales => %w(en fr))
     @site.stubs(:pages).returns(pages)
   end
 
@@ -120,6 +120,12 @@ describe Locomotive::Liquid::Tags::Nav do
 
     it 'does not render the parent ul' do
       render_nav('site', {}, 'no_wrapper: true').should_not match /<ul id="nav">/
+    end
+
+    it 'localizes the links' do
+      I18n.with_locale('fr') do
+        render_nav.should == '<ul id="nav"><li id="child-1-link" class="link first"><a href="/fr/child_1">Child #1</a></li><li id="child-2-link" class="link last"><a href="/fr/child_2">Child #2</a></li></ul>'
+      end
     end
 
   end

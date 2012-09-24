@@ -328,3 +328,16 @@ p span.code {
   color: #8B8D9A;
   @include single-text-shadow(#fff, 0px, 0px, 1px);
 }
+
+/* ___ dialog box to edit select options ___ */
+
+#edit-select-option-entries {
+  .placeholder {
+    @include tiny-buttons-group;
+    @include select-options-edit-style;
+
+    .list {
+      height: auto;
+    }
+  }
+}

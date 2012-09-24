@@ -40,4 +40,28 @@ describe Locomotive::Extensions::Page::EditableElements do
 
   end
 
+  describe '#localized' do
+
+    it 'does not remove the editable elements in other locales' do
+      Mongoid::Fields::I18n.with_locale(:fr) do
+        @home.update_attributes :raw_template => "{% editable_short_text 'corps' %}Lorem ipsum{% endeditable_short_text %}"
+      end
+      @home.reload
+      @home.editable_elements.count.should == 2
+    end
+
+    it 'removes the editable elements which are not present in at least one locale' do
+      Mongoid::Fields::I18n.with_locale(:fr) do
+        @home.update_attributes :raw_template => ''
+      end
+      @home.reload
+      @home.editable_elements.count.should == 1
+
+      @home.update_attributes :raw_template => ''
+      @home.reload
+      @home.editable_elements.count.should == 0
+    end
+
+  end
+
 end

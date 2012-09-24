@@ -19,11 +19,15 @@ module Locomotive
           ## indexes ##
           index :position
           index [[:depth, Mongo::ASCENDING], [:position, Mongo::ASCENDING]]
+
+          alias_method_chain :rearrange, :identity_map
+          alias_method_chain :rearrange_children, :identity_map
+          alias_method_chain :siblings_and_self, :scoping
         end
 
         module ClassMethods
 
-          # Returns the pages tree from the site with the most minimal amount of queries.
+          # Returns the tree of pages from the site with the most minimal amount of queries.
           # This method should only be used for read-only purpose since
           # the mongodb returns the minimal set of required attributes to build
           # the tree.
@@ -78,8 +82,8 @@ module Locomotive
         #
         # @return [ Array ] The children pages ordered by their position
         #
-        def children_with_minimal_attributes( attrs = [] )
-          self.children.minimal_attributes( attrs )
+        def children_with_minimal_attributes(attrs = [])
+          self.children.minimal_attributes(attrs)
         end
 
         # Assigns the new position of each child of this node.
@@ -95,15 +99,32 @@ module Locomotive
           end
         end
 
+        ##
+        # Returns this document's siblings and itself, all scoped by the site
+        #
+        # @return [Mongoid::Criteria] Mongoid criteria to retrieve the document's siblings and itself
+        def siblings_and_self_with_scoping
+          base_class.where(:parent_id => self.parent_id, :site_id => self.site_id)
+        end
+
         def depth
           self.parent_ids.count
         end
 
         protected
 
+        def rearrange_with_identity_map
+          ::Mongoid::IdentityMap.clear
+          rearrange_without_identity_map
+        end
+
+        def rearrange_children_with_identity_map
+          self.children.reset
+          rearrange_children_without_identity_map
+        end
+
         def persist_depth
-          self.attributes['depth'] = self.depth
-          self.depth_will_change!
+          self.depth = self.parent_ids.count
         end
 
       end

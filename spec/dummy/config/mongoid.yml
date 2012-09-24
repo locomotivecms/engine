@@ -10,11 +10,14 @@ defaults: &defaults
 development:
   <<: *defaults
   database: locomotive_engine_dev
+  identity_map_enabled: true
 
 test:
   <<: *defaults
   database: locomotive_engine_test
+  identity_map_enabled: true
 
 production:
   <<: *defaults
+  identity_map_enabled: true
   database: locomotive_engine_production

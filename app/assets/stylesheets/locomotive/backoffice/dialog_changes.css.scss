@@ -60,7 +60,7 @@
 
   .ui-dialog-content {
     position: relative;
-    z-index: 999;
+    z-index: 1200;
 
     text-align: left;
 
@@ -82,6 +82,12 @@
           li.string {
             input[type=text] {
               width: 530px;
+            }
+          } // li.string
+
+          li.date {
+            input[type=text] {
+              width: 90px;
             }
           } // li.string
         }
@@ -118,14 +124,14 @@
       top: 8px;
       right: 10px;
 
-      z-index: 1003;
+      z-index: 1203;
 
       a, input[type=submit] {
         @include light-button;
       }
 
       input[type=file] {
-        z-index: 1003;
+        z-index: 1203;
       }
 
     } // .button-wrapper

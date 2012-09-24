@@ -13,7 +13,8 @@ class Locomotive.Models.Site extends Backbone.Model
 
     @set domains: domains, memberships: memberships
 
-  includes_domain: (name) ->
+  includes_domain: (name_with_port) ->
+    name = name_with_port.replace(/:[0-9]*/, '')
     name == @domain_with_domain() || _.any(@get('domains'), (domain) -> domain.get('name') == name)
 
   domain_with_domain: ->

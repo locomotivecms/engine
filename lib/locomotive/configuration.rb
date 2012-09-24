@@ -7,8 +7,8 @@ module Locomotive
       :reserved_subdomains    => %w{www admin email blog webmail mail support help site sites},
       # :forbidden_paths      => %w{layouts snippets stylesheets javascripts assets admin system api},
       :reserved_slugs         => %w{stylesheets javascripts assets admin locomotive images api pages edit},
-      :locales                => %w{en de fr pt-BR it nl no es ru},
-      :site_locales           => %w{en de fr pt-BR it nl no es ru},
+      :locales                => %w{en de fr pt-BR it nl nb es ru et},
+      :site_locales           => %w{en de fr pt-BR it nl nb es ru et},
       :cookie_key             => '_locomotive_session',
       :enable_logs            => false,
       :delayed_job            => false,
@@ -27,7 +27,8 @@ module Locomotive
       },
       :devise_modules             => [:rememberable, :database_authenticatable, :token_authenticatable, :recoverable, :trackable, :validatable, :encryptable, { :encryptor => :sha1 }],
       :context_assign_extensions  => { },
-      :models_for_templatization  => []
+      :models_for_templatization  => [],
+      :csrf_protection            => false
     }
 
     cattr_accessor :settings

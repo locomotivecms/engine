@@ -18,9 +18,9 @@ module Locomotive
         Locomotive.log "[fetch site] host = #{request.host} / #{request.env['HTTP_HOST']}"
 
         if Locomotive.config.multi_sites?
-          @current_site ||= Site.match_domain(request.host).first
+          @current_site ||= Locomotive::Site.match_domain(request.host).first
         else
-          @current_site ||= Site.first
+          @current_site ||= Locomotive::Site.first
         end
       end
 
@@ -44,7 +44,7 @@ module Locomotive
         return true if current_site.present? && current_site.accounts.include?(current_locomotive_account)
 
         sign_out(current_locomotive_account)
-        flash[:alert] = I18n.t(:no_membership, :scope => [:devise, :failure, :locomotive])
+        flash[:alert] = I18n.t(:no_membership, :scope => [:devise, :failure, :locomotive_account])
         redirect_to new_locomotive_account_session_url and return false
       end
 
