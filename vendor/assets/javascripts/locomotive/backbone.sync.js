@@ -102,7 +102,7 @@
       var noticeType = xhr.getResponseHeader('X-Message-Type');
       if (noticeType != null) {
         var growlType = noticeType == 'notice' ? 'notice' : 'alert'; // for now, only 2 kind of growl messages
-        $.growl(noticeType, xhr.getResponseHeader('X-Message'));
+        $.growl(noticeType, jQuery.parseJSON(xhr.getResponseHeader('X-Message')));
       }
     }
 
