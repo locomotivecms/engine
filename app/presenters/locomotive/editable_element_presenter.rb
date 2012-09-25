@@ -13,10 +13,6 @@ module Locomotive
       self.source._type.to_s.demodulize
     end
 
-    def type=(type)
-      self.source._type = "Locomotive::#{type}"
-    end
-
     def block_name
       if self.source.block
         self.source.block.gsub('\'', '').humanize
@@ -30,7 +26,7 @@ module Locomotive
     end
 
     def included_setters
-      super + %w(type slug block hint priority disabled from_parent)
+      super + %w(slug block hint priority disabled from_parent)
     end
 
   end

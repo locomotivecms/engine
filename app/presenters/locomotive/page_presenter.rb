@@ -18,25 +18,19 @@ module Locomotive
     def set_editable_elements
       return unless @editable_elements
 
-      # Need to parse to get the right editable elements first
-      self.source.send(:_parse_and_serialize_template)
+      self.source.force_serialize_template
 
       @editable_elements.each do |editable_element_hash|
         slug = editable_element_hash['slug']
+
+        # Change empty string in block to nil
+        if editable_element_hash['block'] && editable_element_hash['block'].blank?
+          editable_element_hash['block'] = nil
+        end
         block = editable_element_hash['block']
 
-        block = nil if block && block.empty?
-
-        el = self.source.find_editable_element(block, slug)
-        el.to_presenter.assign_attributes(editable_element_hash) if el
-
-        # FIXME: Not sure why we need to do this...
-        if el.respond_to?(:source)
-          self.source.save
-          self.source.reload
-          el = self.source.find_editable_element(block, slug)
-          el.source = editable_element_hash['source']
-        end
+        el = self.fetch_editable_element(slug, block)
+        el.try(:assign_attributes, editable_element_hash)
       end
     end
 
@@ -81,6 +75,13 @@ module Locomotive
     def save
       set_editable_elements
       super
+    end
+
+    protected
+
+    def fetch_editable_element(slug, block)
+      el = self.source.find_editable_element(block, slug)
+      el.try(:to_presenter)
     end
 
   end

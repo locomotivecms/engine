@@ -57,14 +57,12 @@ Feature: Editable Elements
           {
             "slug": "my_short_text",
             "block": null,
-            "content": "The new short text content",
-            "type": "EditableShortText"
+            "content": "The new short text content"
           },
           {
             "slug": "my_long_text",
             "block": "main",
-            "content": "<p>The new long text content</p>",
-            "type": "EditableLongText"
+            "content": "<p>The new long text content</p>"
           }
         ]
       }
@@ -92,14 +90,12 @@ Feature: Editable Elements
           {
             "slug": "my_short_text",
             "block": null,
-            "content": "The new short text content",
-            "type": "EditableShortText"
+            "content": "The new short text content"
           },
           {
             "slug": "my_long_text",
             "block": "main",
-            "content": "<p>The new long text content</p>",
-            "type": "EditableLongText"
+            "content": "<p>The new long text content</p>"
           }
         ]
       }
@@ -128,7 +124,6 @@ Feature: Editable Elements
           {
             "slug": "my_file",
             "block": "main",
-            "type": "EditableFile",
             "source": "images/logo2.jpg"
           }
         ]
@@ -155,7 +150,6 @@ Feature: Editable Elements
           {
             "slug": "my_file",
             "block": "main",
-            "type": "EditableFile",
             "source": "images/logo2.jpg"
           }
         ]
@@ -182,7 +176,6 @@ Feature: Editable Elements
           {
             "slug": "my_file",
             "block": null,
-            "type": "EditableFile",
             "source": "images/logo2.jpg"
           }
         ]
