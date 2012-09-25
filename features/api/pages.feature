@@ -49,7 +49,7 @@ Feature: Pages
     Then the JSON response should be an array
     And the JSON response should have 5 entries
     And the JSON response at "4/title" should be "My Templatized Page"
-    And the JSON response at "4/target_klass_name" should be "Locomotive::Entry4f832c2cb0d86d3f42fffffe"
+    And the JSON response at "4/target_klass_slug" should be "projects"
 
   Scenario: Saving page SEO data
     Given a page named "yet another page" with id "4f832c2cb0d86d3f42fffffe"

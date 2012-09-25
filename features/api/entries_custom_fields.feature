@@ -102,12 +102,11 @@ Feature: Entries Custom Fieldws
       }
     }
     """
-    When I do an API GET request to content_types.json
-    Then the JSON response at "1/entries_custom_fields" should have 3 entries
+    Then the JSON response at "entries_custom_fields" should have 3 entries
     And the JSON response should have the following:
-      | 1/entries_custom_fields/0/label | "Title"       |
-      | 1/entries_custom_fields/0/type  | "string"      |
-      | 1/entries_custom_fields/1/label | "Content"     |
-      | 1/entries_custom_fields/1/type  | "text"        |
-      | 1/entries_custom_fields/2/label | "Project"     |
-      | 1/entries_custom_fields/2/type  | "belongs_to"  |
+      | entries_custom_fields/0/label   | "Title"       |
+      | entries_custom_fields/0/type    | "string"      |
+      | entries_custom_fields/1/label   | "Content"     |
+      | entries_custom_fields/1/type    | "text"        |
+      | entries_custom_fields/2/label   | "Project"     |
+      | entries_custom_fields/2/type    | "belongs_to"  |
