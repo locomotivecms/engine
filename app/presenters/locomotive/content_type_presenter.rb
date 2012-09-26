@@ -13,19 +13,17 @@ module Locomotive
       if %w{created_at updated_at _position}.include?(@order_by_attribute)
         self.source.order_by = @order_by_attribute
       else
-        # FIXME: I don't like this...
-        self.source.order_by = nil
-        self.source.save
-        self.source.order_by = self.source.entries_custom_fields.where(:name => @order_by_attribute).first.id rescue 'created_at'
+        field = get_field(@order_by_attribute)
+        self.source.order_by = field.try(:id)
+        self.source.order_by ||= 'created_at'
       end
     end
 
     def set_group_by_field_name
       return unless @group_by_field_name
 
-      self.source.group_by_field_id = nil
-      self.source.save
-      self.source.group_by_field_id = self.source.entries_custom_fields.where(:name => @group_by_field_name).first.id rescue nil
+      field = get_field(@group_by_field_name)
+      self.source.group_by_field_id = field.try(:id)
     end
 
     def group_by_field_name
@@ -93,6 +91,12 @@ module Locomotive
       set_order_by_attribute
       set_group_by_field_name
       super
+    end
+
+    protected
+
+    def get_field(name)
+      self.source.entries_custom_fields.where(:name => name).first
     end
 
   end
