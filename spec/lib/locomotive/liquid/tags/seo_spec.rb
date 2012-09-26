@@ -11,8 +11,8 @@ describe Locomotive::Liquid::Tags::SEO do
     it 'renders everything' do
       html = render_seo
       html.should include '<title>Site title (SEO)</title>'
-      html.should include '<meta name="description" content="A short site description" />'
-      html.should include '<meta name="keywords" content="test only cat dog" />'
+      html.should include '<meta name="description" content="A short site description">'
+      html.should include '<meta name="keywords" content="test only cat dog">'
     end
 
     it 'renders a seo title' do
@@ -25,26 +25,26 @@ describe Locomotive::Liquid::Tags::SEO do
     end
 
     it 'renders a meta description tag' do
-      render_seo_metadata.should include '<meta name="description" content="A short site description" />'
+      render_seo_metadata.should include '<meta name="description" content="A short site description">'
     end
 
     it 'strips and removes quote characters from the description' do
       site.meta_description = ' String with " " quotes '
-      render_seo_metadata.should include '<meta name="description" content="String with   quotes" />'
+      render_seo_metadata.should include '<meta name="description" content="String with   quotes">'
     end
 
     it 'renders a meta keywords tag' do
-      render_seo_metadata.should include '<meta name="keywords" content="test only cat dog" />'
+      render_seo_metadata.should include '<meta name="keywords" content="test only cat dog">'
     end
 
     it 'strips and removes quote characters from the keywords' do
       site.meta_keywords = ' one " two " three '
-      render_seo_metadata.should include '<meta name="keywords" content="one  two  three" />'
+      render_seo_metadata.should include '<meta name="keywords" content="one  two  three">'
     end
 
     it 'renders an empty string if no meta' do
       site.meta_keywords = nil
-      render_seo_metadata.should include '<meta name="keywords" content="" />'
+      render_seo_metadata.should include '<meta name="keywords" content="">'
     end
 
     context "when page" do
@@ -64,15 +64,15 @@ describe Locomotive::Liquid::Tags::SEO do
       context "has metadata" do
         let(:page) { site.pages.build(:meta_keywords => 'hulk,gamma', :meta_description => "Bruce Banner") }
         subject { render_seo_metadata('page' => page) }
-        it { should include(%Q[<meta name="keywords" content="#{page.meta_keywords}" />]) }
-        it { should include(%Q[<meta name="description" content="#{page.meta_description}" />]) }
+        it { should include(%Q[<meta name="keywords" content="#{page.meta_keywords}">]) }
+        it { should include(%Q[<meta name="description" content="#{page.meta_description}">]) }
       end
 
       context "does not have metadata" do
         let(:page) { site.pages.build }
         subject { render_seo_metadata('page' => page) }
-        it { should include(%Q[<meta name="keywords" content="#{site.meta_keywords}" />]) }
-        it { should include(%Q[<meta name="description" content="#{site.meta_description}" />]) }
+        it { should include(%Q[<meta name="keywords" content="#{site.meta_keywords}">]) }
+        it { should include(%Q[<meta name="description" content="#{site.meta_description}">]) }
       end
 
     end
@@ -100,15 +100,15 @@ describe Locomotive::Liquid::Tags::SEO do
       context "has metadata" do
         let(:content_entry) { content_type.entries.build(:meta_keywords => 'Libidinous, Angsty', :meta_description => "Quite the combination.") }
         subject { render_seo_metadata('content_entry' => content_entry) }
-        it { should include(%Q[<meta name="keywords" content="#{content_entry.meta_keywords}" />]) }
-        it { should include(%Q[<meta name="description" content="#{content_entry.meta_description}" />]) }
+        it { should include(%Q[<meta name="keywords" content="#{content_entry.meta_keywords}">]) }
+        it { should include(%Q[<meta name="description" content="#{content_entry.meta_description}">]) }
       end
 
       context "does not have metadata" do
         let(:content_entry) { content_type.entries.build }
         subject { render_seo_metadata('content_entry' => content_entry) }
-        it { should include(%Q[<meta name="keywords" content="#{site.meta_keywords}" />]) }
-        it { should include(%Q[<meta name="description" content="#{site.meta_description}" />]) }
+        it { should include(%Q[<meta name="keywords" content="#{site.meta_keywords}">]) }
+        it { should include(%Q[<meta name="description" content="#{site.meta_description}">]) }
       end
 
     end
