@@ -69,16 +69,21 @@ class Locomotive.Views.InlineEditor.ToolbarView extends Backbone.View
     @$('.editing-mode').hide()
 
   toggle_editing_mode: (event) ->
-    return if @editable_elements() == null
-
+    return if (editable_elements = @editable_elements()) == null
+    return if (_jQuery = @iframe_jquery()) == null
+    
     if $(event.target).is(':checked')
-      @editable_elements().aloha()
+      editable_elements.find('a').each ->
+        link = _jQuery(this)
+        link.attr('href', link.data('original-url')) if link.data('original-url')
+      editable_elements.aloha()
     else
-      @editable_elements().removeClass('aloha-editable-highlight').mahalo()
+      editable_elements.removeClass('aloha-editable-highlight').mahalo()
+      @enhance_iframe_links(editable_elements.find('a'))
 
   editable_elements: ->
-    if @options.target[0].contentWindow.Aloha
-      @options.target[0].contentWindow.Aloha.jQuery('.editable-long-text, .editable-short-text')
+    if _jQuery = @iframe_jquery()
+      _jQuery('.editable-long-text, .editable-short-text')
     else
       null
 
@@ -117,6 +122,34 @@ class Locomotive.Views.InlineEditor.ToolbarView extends Backbone.View
   set_locale_attributes: (context, values) ->
     context.find('img').attr('src', values[0])
     context.find('span.text').html(values[1])
+  
+  enhance_iframe_links: (links) ->
+    return if (_jQuery = @iframe_jquery()) == null
+    _toolbarView = @
+    links.each ->
+      link  = _jQuery(this)
+      url   = link.attr('href')
+      if url? && url.indexOf('#') != 0 && /^(www|http)/.exec(url) == null && /(\/_edit)$/.exec(url) == null && /^\/sites\//.exec(url) == null
+        link.data('original-url', url)
+        url = '/index' if url == '/'
+        modified_url = url
+        
+        unless url.indexOf('_edit') > 0
+          if url.indexOf('?') > 0
+            modified_url = url.replace('?', '/_edit?')
+          else
+            modified_url = "#{url}/_edit"
+        
+        link.attr('href', modified_url)
+        link.bind 'click', ->
+          _toolbarView.show_status 'loading'
+          window.history.pushState('Object', 'Title', link.attr('href').replace('_edit', '_admin'))
+
+  iframe_jquery: ->
+    if @options.target[0].contentWindow.Aloha.jQuery
+      @options.target[0].contentWindow.Aloha.jQuery
+    else
+      null
 
   refresh: ->
     @$('h1').html(@model.get('title')).removeClass()
