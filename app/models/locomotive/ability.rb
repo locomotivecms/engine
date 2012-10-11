@@ -9,9 +9,13 @@ module Locomotive
 
       alias_action :index, :show, :edit, :update, :to => :touch
 
-      @membership = @site.memberships.where(:account_id => @account.id).first
+      if @site
+        @membership = @site.memberships.where(:account_id => @account.id).first
+      elsif @account.admin?
+        @membership = Membership.new(:account => @account, :role => 'admin')
+      end
 
-      return false if @membership.blank?
+      return false if @membership.nil?
 
       if @membership.admin?
         setup_admin_permissions!

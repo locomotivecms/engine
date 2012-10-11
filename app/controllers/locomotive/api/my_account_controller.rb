@@ -4,8 +4,7 @@ module Locomotive
 
       skip_load_and_authorize_resource
 
-      # FIXME: the auto-loaded site won't pass authorization for show, update, or destroy
-      # skip_load_and_authorize_resource :only => [ :show, :update, :destroy ]
+      skip_before_filter :require_site, :set_locale, :set_current_thread_variables
 
       def show
         respond_with(current_locomotive_account)

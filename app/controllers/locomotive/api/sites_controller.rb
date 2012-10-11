@@ -2,39 +2,37 @@ module Locomotive
   module Api
     class SitesController < BaseController
 
+      skip_before_filter :require_site, :set_locale, :set_current_thread_variables
+
       load_and_authorize_resource :class => Locomotive::Site
 
-      # FIXME: the auto-loaded site won't pass authorization for show, update, or destroy
-      skip_load_and_authorize_resource :only => [:show, :update, :destroy]
+      # We make an exception for the index action, we don't use the ability
+      # object, we just return the sites owned by the current account.
+      skip_load_and_authorize_resource :only => :index
 
       def index
-        @sites = Locomotive::Site.all
+        @sites = self.current_locomotive_account.sites.all
         respond_with(@sites)
       end
 
       def show
-        @site = Locomotive::Site.find(params[:id])
-        authorize! :show, @site
         respond_with(@site)
       end
 
       def create
-        @site = Locomotive::Site.create(params[:site])
+        @site.memberships.build :account => self.current_locomotive_account, :role => 'admin'
+        @site.save
         respond_with(@site)
       end
 
       def update
-        @site = Locomotive::Site.find(params[:id])
-        authorize! :update, @site
         @site.update_attributes(params[:site])
-        respond_with @site
+        respond_with(@site)
       end
 
       def destroy
-        @site = Locomotive::Site.find(params[:id])
-        authorize! :destroy, @site
         @site.destroy
-        respond_with @site
+        respond_with(@site)
       end
 
     end

@@ -25,6 +25,10 @@ def last_json
   @json_response.try(:body) || page.source
 end
 
+def last_status
+  @json_response.try(:status) || page.status
+end
+
 Given /^I have an? "([^"]*)" API token$/ do |role|
   @membership = Locomotive::Site.first.memberships.where(:role => role.downcase).first \
     || FactoryGirl.create(role.downcase.to_sym, :site => Locomotive::Site.first)
@@ -72,13 +76,19 @@ When /^I do an API (\w+) (?:request )?to ([\w.\/]+) with:$/ do |request_type, ur
 end
 
 Then /^an access denied error should occur$/ do
-  @error.should_not be_nil
-  @error.is_a?(CanCan::AccessDenied).should be_true
+  if @error
+    @error.is_a?(CanCan::AccessDenied).should be_true
+  else
+    last_status.should == 401
+  end
 end
 
 Then /^it should not exist$/ do
-  @error.should_not be_nil
-  @error.is_a?(Mongoid::Errors::DocumentNotFound).should be_true
+  if @error
+    @error.is_a?(Mongoid::Errors::DocumentNotFound).should be_true
+  else
+    last_status.should == 404
+  end
 end
 
 When /^I do a multipart API (\w+) (?:request )?to ([\w.\/]+) with base key "([^"]*)" and:$/ \
@@ -92,5 +102,5 @@ When /^I do a multipart API (\w+) (?:request )?to ([\w.\/]+) with base key "([^"
 end
 
 Then /^I print the json response$/ do
-  puts %{JSON: "#{last_json}"}
+  puts %{JSON: "#{last_json}" / #{last_json.inspect}}
 end
