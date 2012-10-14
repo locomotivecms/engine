@@ -11,11 +11,11 @@ describe Locomotive::Liquid::Filters::Html do
 
   it 'writes the tag to display a rss/atom feed' do
     auto_discovery_link_tag('/foo/bar').should == %(
-      <link rel="alternate" type="application/rss+xml" title="RSS" href="/foo/bar" />
+      <link rel="alternate" type="application/rss+xml" title="RSS" href="/foo/bar">
     ).strip
 
     auto_discovery_link_tag('/foo/bar', 'rel:alternate2', 'type:atom', 'title:Hello world').should == %(
-      <link rel="alternate2" type="atom" title="Hello world" href="/foo/bar" />
+      <link rel="alternate2" type="atom" title="Hello world" href="/foo/bar">
     ).strip
   end
 
@@ -50,61 +50,61 @@ describe Locomotive::Liquid::Filters::Html do
   end
 
   it 'should return a link tag for a stylesheet file' do
-    result = "<link href=\"/sites/000000000000000000000042/theme/stylesheets/main.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />"
+    result = "<link href=\"/sites/000000000000000000000042/theme/stylesheets/main.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\">"
     stylesheet_tag('main.css').should == result
     stylesheet_tag('main').should == result
     stylesheet_tag(nil).should == ''
   end
 
   it 'should return a link tag for a stylesheet file with folder' do
-    result = "<link href=\"/sites/000000000000000000000042/theme/stylesheets/trash/main.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />"
+    result = "<link href=\"/sites/000000000000000000000042/theme/stylesheets/trash/main.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\">"
     stylesheet_tag('trash/main.css').should == result
   end
 
   it 'should return a link tag for a stylesheet file without touching the url that starts with "/"' do
-    result = "<link href=\"/trash/main.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />"
+    result = "<link href=\"/trash/main.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\">"
     stylesheet_tag('/trash/main.css').should == result
     stylesheet_tag('/trash/main').should == result
   end
 
   it 'should return a link tag for a stylesheet file without touching the url that starts with "http:"' do
-    result = "<link href=\"http://cdn.example.com/trash/main.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />"
+    result = "<link href=\"http://cdn.example.com/trash/main.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\">"
     stylesheet_tag('http://cdn.example.com/trash/main.css').should == result
     stylesheet_tag('http://cdn.example.com/trash/main').should == result
   end
 
   it 'should return a link tag for a stylesheet file without touching the url that starts with "https:"' do
-    result = "<link href=\"https://cdn.example.com/trash/main.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />"
+    result = "<link href=\"https://cdn.example.com/trash/main.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\">"
     stylesheet_tag('https://cdn.example.com/trash/main.css').should == result
     stylesheet_tag('https://cdn.example.com/trash/main').should == result
   end
 
   it 'should return a link tag for a stylesheet file and media attribute set to print' do
-    result = "<link href=\"/sites/000000000000000000000042/theme/stylesheets/main.css\" media=\"print\" rel=\"stylesheet\" type=\"text/css\" />"
+    result = "<link href=\"/sites/000000000000000000000042/theme/stylesheets/main.css\" media=\"print\" rel=\"stylesheet\" type=\"text/css\">"
     stylesheet_tag('main.css','print').should == result
     stylesheet_tag('main','print').should == result
     stylesheet_tag(nil).should == ''
   end
 
   it 'should return a link tag for a stylesheet file with folder and media attribute set to print' do
-    result = "<link href=\"/sites/000000000000000000000042/theme/stylesheets/trash/main.css\" media=\"print\" rel=\"stylesheet\" type=\"text/css\" />"
+    result = "<link href=\"/sites/000000000000000000000042/theme/stylesheets/trash/main.css\" media=\"print\" rel=\"stylesheet\" type=\"text/css\">"
     stylesheet_tag('trash/main.css','print').should == result
   end
 
   it 'should return a link tag for a stylesheet file without touching the url that starts with "/" and media attribute set to print' do
-    result = "<link href=\"/trash/main.css\" media=\"print\" rel=\"stylesheet\" type=\"text/css\" />"
+    result = "<link href=\"/trash/main.css\" media=\"print\" rel=\"stylesheet\" type=\"text/css\">"
     stylesheet_tag('/trash/main.css','print').should == result
     stylesheet_tag('/trash/main','print').should == result
   end
 
   it 'should return a link tag for a stylesheet file without touching the url that starts with "http:" and media attribute set to print' do
-    result = "<link href=\"http://cdn.example.com/trash/main.css\" media=\"print\" rel=\"stylesheet\" type=\"text/css\" />"
+    result = "<link href=\"http://cdn.example.com/trash/main.css\" media=\"print\" rel=\"stylesheet\" type=\"text/css\">"
     stylesheet_tag('http://cdn.example.com/trash/main.css','print').should == result
     stylesheet_tag('http://cdn.example.com/trash/main','print').should == result
   end
 
   it 'should return a link tag for a stylesheet file without touching the url that starts with "https:" and media attribute set to print' do
-    result = "<link href=\"https://cdn.example.com/trash/main.css\" media=\"print\" rel=\"stylesheet\" type=\"text/css\" />"
+    result = "<link href=\"https://cdn.example.com/trash/main.css\" media=\"print\" rel=\"stylesheet\" type=\"text/css\">"
     stylesheet_tag('https://cdn.example.com/trash/main.css','print').should == result
     stylesheet_tag('https://cdn.example.com/trash/main','print').should == result
   end
@@ -172,26 +172,26 @@ describe Locomotive::Liquid::Filters::Html do
   end
 
   it 'should return an image tag for a given theme file without parameters' do
-    theme_image_tag('foo.jpg').should == "<img src=\"/sites/000000000000000000000042/theme/images/foo.jpg\" />"
+    theme_image_tag('foo.jpg').should == "<img src=\"/sites/000000000000000000000042/theme/images/foo.jpg\" >"
   end
 
   it 'should return an image tag for a given theme file with size' do
-    theme_image_tag('foo.jpg', 'width:100', 'height:100').should == "<img src=\"/sites/000000000000000000000042/theme/images/foo.jpg\" height=\"100\" width=\"100\" />"
+    theme_image_tag('foo.jpg', 'width:100', 'height:100').should == "<img src=\"/sites/000000000000000000000042/theme/images/foo.jpg\" height=\"100\" width=\"100\" >"
   end
 
   it 'should return an image tag without parameters' do
-    image_tag('foo.jpg').should == "<img src=\"foo.jpg\" />"
+    image_tag('foo.jpg').should == "<img src=\"foo.jpg\" >"
   end
 
   it 'should return an image tag with size' do
-    image_tag('foo.jpg', 'width:100', 'height:50').should == "<img src=\"foo.jpg\" height=\"50\" width=\"100\" />"
+    image_tag('foo.jpg', 'width:100', 'height:50').should == "<img src=\"foo.jpg\" height=\"50\" width=\"100\" >"
   end
 
   it 'should return a flash tag without parameters' do
     flash_tag('foo.flv').should == %{
             <object>
-              <param name="movie" value="foo.flv" />
-              <embed src="foo.flv" />
+              <param name="movie" value="foo.flv">
+              <embed src="foo.flv">
               </embed>
             </object>
     }.strip
@@ -200,8 +200,8 @@ describe Locomotive::Liquid::Filters::Html do
   it 'should return a flash tag with size' do
     flash_tag('foo.flv', 'width:100', 'height:50').should == %{
             <object height=\"50\" width=\"100\">
-              <param name="movie" value="foo.flv" />
-              <embed src="foo.flv" height=\"50\" width=\"100\" />
+              <param name="movie" value="foo.flv">
+              <embed src="foo.flv" height=\"50\" width=\"100\">
               </embed>
             </object>
     }.strip

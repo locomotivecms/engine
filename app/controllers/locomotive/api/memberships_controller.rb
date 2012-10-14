@@ -3,8 +3,8 @@ module Locomotive
     class MembershipsController < BaseController
 
       # It's an embedded document, so we'll just load manually
-      before_filter :load_membership, :only => [ :show, :update, :destroy ]
-      before_filter :load_memberships, :only => [ :index ]
+      before_filter :load_membership, :only => [:show, :update, :destroy]
+      before_filter :load_memberships, :only => [:index]
 
       authorize_resource :class => Locomotive::Membership
 

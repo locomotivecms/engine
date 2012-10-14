@@ -68,7 +68,7 @@ de:
 
     notifications:
       new_content_entry:
-        subject: "[%{type}] neu"
+        subject: "[%{domain}][%{type}] neu"
         title: "Hi %{name}, nur damit Sie Bescheid wissen, am %{date} wurde eine neue Instanz erstellt."
         type: "Model: %{type}"
 

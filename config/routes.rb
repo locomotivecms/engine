@@ -9,8 +9,8 @@ Locomotive::Engine.routes.draw do
     :controllers  => { :sessions => 'locomotive/sessions', :passwords => 'locomotive/passwords' }
 
   devise_scope :locomotive_account do
-      match '/'         => 'sessions#new'
-      delete 'signout'  => 'sessions#destroy', :as => :destroy_locomotive_session
+    match '/'         => 'sessions#new'
+    delete 'signout'  => 'sessions#destroy', :as => :destroy_locomotive_session
   end
 
   root :to => 'pages#index'
@@ -75,6 +75,8 @@ Rails.application.routes.draw do
       resources :memberships
 
       resource  :current_site, :controller => 'current_site'
+
+      resource  :my_account, :controller => 'my_account'
 
     end
   end

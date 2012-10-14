@@ -68,7 +68,7 @@ nb:
 
     notifications:
       new_content_entry:
-        subject: "[%{type}] ny"
+        subject: "[%{domain}][%{type}] ny"
         title: "Hei %{name}, varsler om at en ny instanse ble opprettet %{date}"
         type: "Modell: %{type}"
 

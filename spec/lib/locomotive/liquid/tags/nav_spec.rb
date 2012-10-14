@@ -31,28 +31,29 @@ describe Locomotive::Liquid::Tags::Nav do
   context '#rendering' do
 
     it 'renders from site' do
-      render_nav.should == '<ul id="nav"><li id="child-1-link" class="link first"><a href="/child_1">Child #1</a></li><li id="child-2-link" class="link last"><a href="/child_2">Child #2</a></li></ul>'
+      render_nav.should == '<nav id="nav"><ul><li id="child-1-link" class="link first"><a href="/child_1">Child #1</a></li><li id="child-2-link" class="link last"><a href="/child_2">Child #2</a></li></ul></nav>'
     end
 
     it 'renders from page' do
-      render_nav('page').should == '<ul id="nav"><li id="child-1-link" class="link first"><a href="/child_1">Child #1</a></li><li id="child-2-link" class="link last"><a href="/child_2">Child #2</a></li></ul>'
+      render_nav('page').should == '<nav id="nav"><ul><li id="child-1-link" class="link first"><a href="/child_1">Child #1</a></li><li id="child-2-link" class="link last"><a href="/child_2">Child #2</a></li></ul></nav>'
     end
 
     it 'renders from parent' do
       (page = @home.children.last.children.first).stubs(:parent).returns(@home.children.last)
       output = render_nav 'parent', { :page => page }
-      output.should == '<ul id="nav"><li id="sub-child-1-link" class="link on first"><a href="/child_2/sub_child_1">Child #2.1</a></li><li id="sub-child-2-link" class="link last"><a href="/child_2/sub_child_2">Child #2.2</a></li></ul>'
+      output.should == '<nav id="nav"><ul><li id="sub-child-1-link" class="link on first"><a href="/child_2/sub_child_1">Child #2.1</a></li><li id="sub-child-2-link" class="link last"><a href="/child_2/sub_child_2">Child #2.2</a></li></ul></nav>'
     end
 
     it 'renders children to depth' do
       output = render_nav('site', {}, 'depth: 2')
 
-      output.should match /<ul id="nav">/
+      output.should match /<nav id="nav">/
+      output.should match /<ul>/
       output.should match /<li id="child-1-link" class="link first">/
       output.should match /<\/a><ul id="nav-child-2" class="">/
       output.should match /<li id="sub-child-1-link" class="link first">/
       output.should match /<li id="sub-child-2-link" class="link last">/
-      output.should match /<\/a><\/li><\/ul><\/li><\/ul>/
+      output.should match /<\/a><\/li><\/ul><\/li><\/ul><\/nav>/
     end
 
     it 'does not render templatized pages' do
@@ -101,11 +102,11 @@ describe Locomotive::Liquid::Tags::Nav do
     end
 
     it 'assigns a different dom id' do
-      render_nav('site', {}, 'id: "main-nav"').should match /<ul id="main-nav">/
+      render_nav('site', {}, 'id: "main-nav"').should match /<nav id="main-nav">/
     end
 
     it 'assigns a class' do
-      render_nav('site', {}, 'class: "nav"').should match /<ul id="nav" class="nav">/
+      render_nav('site', {}, 'class: "nav"').should match /<nav id="nav" class="nav">/
     end
 
     it 'assigns a class other than "on" for a selected item' do
@@ -115,7 +116,7 @@ describe Locomotive::Liquid::Tags::Nav do
     end
 
     it 'excludes entries based on a regexp' do
-      render_nav('page', {}, 'exclude: "child_1"').should == '<ul id="nav"><li id="child-2-link" class="link first last"><a href="/child_2">Child #2</a></li></ul>'
+      render_nav('page', {}, 'exclude: "child_1"').should == '<nav id="nav"><ul><li id="child-2-link" class="link first last"><a href="/child_2">Child #2</a></li></ul></nav>'
     end
 
     it 'does not render the parent ul' do
@@ -124,7 +125,7 @@ describe Locomotive::Liquid::Tags::Nav do
 
     it 'localizes the links' do
       I18n.with_locale('fr') do
-        render_nav.should == '<ul id="nav"><li id="child-1-link" class="link first"><a href="/fr/child_1">Child #1</a></li><li id="child-2-link" class="link last"><a href="/fr/child_2">Child #2</a></li></ul>'
+        render_nav.should == '<nav id="nav"><ul><li id="child-1-link" class="link first"><a href="/fr/child_1">Child #1</a></li><li id="child-2-link" class="link last"><a href="/fr/child_2">Child #2</a></li></ul></nav>'
       end
     end
 

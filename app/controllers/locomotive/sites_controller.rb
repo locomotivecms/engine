@@ -12,13 +12,13 @@ module Locomotive
 
     def create
       @site = Site.new(params[:site])
-      @site.memberships.build :account => @current_locomotive_account, :role => 'admin'
+      @site.memberships.build :account => self.current_locomotive_account, :role => 'admin'
       @site.save
       respond_with @site, :location => edit_my_account_url
     end
 
     def destroy
-      @site = current_locomotive_account.sites.find(params[:id])
+      @site = self.current_locomotive_account.sites.find(params[:id])
 
       if @site != current_site
         @site.destroy

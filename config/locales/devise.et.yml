@@ -46,7 +46,7 @@ et:
 
 
   locomotive_account:
-    mailer:
+    devise_mailer:
       common:
         hello: Tere
 

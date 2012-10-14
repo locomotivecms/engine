@@ -6,9 +6,9 @@ describe Locomotive::Ability do
     @site = FactoryGirl.create(:site)
     @account = FactoryGirl.create(:account)
 
-    @admin  = FactoryGirl.create(:membership, :account => FactoryGirl.build(:account), :site => FactoryGirl.build(:site))
-    @designer  = FactoryGirl.create(:membership, :account => FactoryGirl.build(:account), :site => @site, :role => %(designer))
-    @author = FactoryGirl.create(:membership, :account => FactoryGirl.build(:account), :site => @site, :role => %(author))
+    @admin    = FactoryGirl.create(:membership, :account => FactoryGirl.build(:account), :site => FactoryGirl.build(:site))
+    @designer = FactoryGirl.create(:membership, :account => FactoryGirl.build(:account), :site => @site, :role => %(designer))
+    @author   = FactoryGirl.create(:membership, :account => FactoryGirl.build(:account), :site => @site, :role => %(author))
   end
 
   context 'pages' do

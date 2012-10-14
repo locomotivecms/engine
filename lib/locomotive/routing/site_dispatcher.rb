@@ -44,7 +44,7 @@ module Locomotive
         return true if current_site.present? && current_site.accounts.include?(current_locomotive_account)
 
         sign_out(current_locomotive_account)
-        flash[:alert] = I18n.t(:no_membership, :scope => [:devise, :failure, :locomotive])
+        flash[:alert] = I18n.t(:no_membership, :scope => [:devise, :failure, :locomotive_account])
         redirect_to new_locomotive_account_session_url and return false
       end
 

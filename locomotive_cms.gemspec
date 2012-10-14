@@ -23,7 +23,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'rails',                           '~> 3.2.8'
 
   s.add_dependency 'devise-encryptable',              '~> 0.1.1'
-  s.add_dependency 'devise',                          '~> 2.1.0'
+  s.add_dependency 'devise',                          '~> 2.1.2'
   s.add_dependency 'cancan',                          '1.6.7'
 
   s.add_dependency 'mongo',                           '~> 1.5.2'
@@ -39,13 +39,13 @@ Gem::Specification.new do |s|
   s.add_dependency 'jquery-rails',                    '~> 1.0.19'
   s.add_dependency 'rails-backbone',                  '~> 0.6.1'
   s.add_dependency 'codemirror-rails',                '~> 2.21'
-  s.add_dependency 'locomotive-tinymce-rails',        '~> 3.4.7.2'
+  s.add_dependency 'locomotive-tinymce-rails',        '~> 3.4.7.3'
   s.add_dependency 'locomotive-aloha-rails',          '~> 0.20.1.4'
   s.add_dependency 'flash_cookie_session',            '~> 1.1.1'
 
   s.add_dependency 'locomotive_liquid',               '~> 2.2.3'
   s.add_dependency 'formtastic',                      '~> 2.0.2'
-  s.add_dependency 'responders',                      '~> 0.6.4'
+  s.add_dependency 'responders',                      '~> 0.9.2'
   s.add_dependency 'cells',                           '~> 3.8.0'
   s.add_dependency 'RedCloth',                        '~> 4.2.8'
   s.add_dependency 'sanitize',                        '~> 2.0.3'

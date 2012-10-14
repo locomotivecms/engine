@@ -2,7 +2,7 @@ module Locomotive
   module Api
     class TokensController < Locomotive::Api::BaseController
 
-      skip_before_filter :require_account
+      skip_before_filter :require_account, :require_site, :set_locale, :set_current_thread_variables
 
       def create
         begin

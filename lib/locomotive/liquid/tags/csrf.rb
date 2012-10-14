@@ -10,7 +10,7 @@ module Locomotive
             name        = controller.send(:request_forgery_protection_token).to_s
             value       = controller.send(:form_authenticity_token)
 
-            %(<input type="hidden" name="#{name}" value="#{value}" />)
+            %(<input type="hidden" name="#{name}" value="#{value}">)
           end
 
         end
@@ -23,8 +23,8 @@ module Locomotive
             value       = controller.send(:form_authenticity_token)
 
             %{
-              <meta name="csrf-param" content="#{name}" />
-              <meta name="csrf-token" content="#{value}" />
+              <meta name="csrf-param" content="#{name}">
+              <meta name="csrf-token" content="#{value}">
             }
           end
 

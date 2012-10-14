@@ -12,7 +12,7 @@ module Locomotive
       def options
         current_site    = self.controller.send(:current_site)
         current_account = self.controller.send(:current_locomotive_account)
-        ability         = current_account.nil? ? nil : self.controller.send(:current_ability)
+        ability         = current_site.nil? || current_account.nil? ? nil : self.controller.send(:current_ability)
 
         super.merge({
           :current_site     => current_site,
@@ -58,7 +58,8 @@ module Locomotive
           message = controller.flash[type]
 
           unless message.blank?
-            controller.headers['X-Message']       = message
+            # controller.headers['X-Message']       = message
+            controller.headers['X-Message']       = ActiveSupport::JSON::Encoding.escape(message)
             controller.headers['X-Message-Type']  = type.to_s
           end
 

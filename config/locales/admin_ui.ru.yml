@@ -68,7 +68,7 @@ ru:
 
     notifications:
       new_content_entry:
-        subject: "[%{type}] новый"
+        subject: "[%{domain}][%{type}] новый"
         title: "Привет %{name}, просто сообщаем, что новый элемент был создан %{date}"
         type: "Модель: %{type}"
 

@@ -46,7 +46,7 @@ nl:
 
     notifications:
       new_content_entry:
-        subject: "[%{type}] nieuw"
+        subject: "[%{domain}][%{type}] nieuw"
         title: "Hallo %{name}, dit bericht is om te laten weten dat er een nieuwe instantie is gemaakt op %{date}"
         type: "Model: %{type}"
 

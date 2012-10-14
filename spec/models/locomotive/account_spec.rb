@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Locomotive::Account do
   let!(:existing_account) { Factory(:account, :email => 'another@email.com') }
 
-  it 'should have a valid factory' do
+  it 'has a valid factory' do
     FactoryGirl.build(:account).should be_valid
   end
 
@@ -16,12 +16,12 @@ describe Locomotive::Account do
   it { should allow_value('prefix+suffix@email.com').for(:email) }
   it { should_not allow_value('not-an-email').for(:email) }
 
-  it "should have a default locale" do
+  it "has a default locale" do
     account = Locomotive::Account.new
     account.locale.should == 'en'
   end
 
-  it "should validate uniqueness of email" do
+  it "validates the uniqueness of email" do
     FactoryGirl.create(:account)
     (account = FactoryGirl.build(:account)).should_not be_valid
     account.errors[:email].should == ["is already taken"]
@@ -29,7 +29,7 @@ describe Locomotive::Account do
 
   ## Associations ##
 
-  it 'should own many sites' do
+  it 'owns many sites' do
     account = FactoryGirl.create(:account)
     site_1  = FactoryGirl.create(:site, :memberships => [Locomotive::Membership.new(:account => account)])
     site_2  = FactoryGirl.create(:site, :subdomain => 'another_one', :memberships => [Locomotive::Membership.new(:account => account)])
@@ -47,19 +47,39 @@ describe Locomotive::Account do
       Locomotive::Site.any_instance.stubs(:save).returns(true)
     end
 
-    it 'should also delete memberships' do
+    it 'also deletes memberships' do
       Locomotive::Site.any_instance.stubs(:admin_memberships).returns(['junk', 'dirt'])
       @site_1.memberships.first.expects(:destroy)
       @site_2.memberships.first.expects(:destroy)
       @account.destroy
     end
 
-    it 'should raise an exception if account is the only remaining admin' do
+    it 'raises an exception if account is the only remaining admin' do
       @site_1.memberships.first.stubs(:admin?).returns(true)
       @site_1.stubs(:admin_memberships).returns(['junk'])
       lambda {
         @account.destroy
       }.should raise_error(Exception, "One admin account is required at least")
+    end
+
+  end
+
+  describe '#admin?' do
+
+    it 'is considered as an admin if she/he has a membership with an admin role' do
+      create_site_and_account
+      @account.admin?.should be_true
+    end
+
+    it 'is not considered as an admin if she/he does not have a membership with an admin role' do
+      create_site_and_account('author')
+      @account.admin?.should be_false
+    end
+
+    def create_site_and_account(role = 'admin')
+      @account    = FactoryGirl.create(:account)
+      @membership = Locomotive::Membership.new(:account => @account, :role => role)
+      @site       = FactoryGirl.create(:site, :memberships => [@membership])
     end
 
   end

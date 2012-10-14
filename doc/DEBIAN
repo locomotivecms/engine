@@ -1,0 +1,49 @@
+1/ Install MongoDB
+
+Reference: http://docs.mongodb.org/manual/tutorial/install-mongodb-on-debian/
+
+> sudo apt-key adv --keyserver keyserver.ubuntu.com --recv 7F0CEB10
+> sudo echo 'deb http://downloads-distro.mongodb.org/repo/debian-sysvinit dist 10gen' > /etc/apt/sources.list.d/10gen.list
+> sudo apt-get update
+> sudo apt-get install mongodb-10gen
+
+2/ Install ImageMagick
+
+Reference: http://www.semanticpool.de/debian-rmagick-install-cant-find-magick-config/
+
+> sudo apt-get install imagemagick libmagick9-dev
+
+3/ Rails
+
+Reference: http://pastebin.com/KJzs2rqm
+
+> sudo aptitude install build-essential curl git-core gcc make libxml2-dev zlib1g-dev libpcre3-dev libopenssl-ruby libcurl4-openssl-dev libxslt-dev
+> cd
+> git clone git://github.com/sstephenson/rbenv.git .rbenv
+> echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bash_profile
+> echo 'eval "$(rbenv init -)"' >> ~/.bash_profile
+
+Add bash_profile to bashrc if not done:
+> vi ~/.bashrc
+if [ -n "$PS1" ]; then
+  [ -f ~/.bash_profile ] && source ~/.bash_profile
+fi
+
+> exec $SHELL
+> mkdir -p ~/.rbenv/plugins
+> cd ~/.rbenv/plugins
+> git clone git://github.com/sstephenson/ruby-build.git
+
+> rbenv install 1.9.3-p194
+> rbenv global 1.9.3-p194
+> rbenv rehash
+> gem install bundler rails --no-ri --no-rdoc
+> rbenv rehash
+
+4/ LocomotiveCMS
+
+> cd
+> mkdir rails_apps
+> cd rails_apps
+> gem install locomotive_cmd --no-ri --no-rdoc
+> locomotive install yummy

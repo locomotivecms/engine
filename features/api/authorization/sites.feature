@@ -24,12 +24,14 @@ Feature: Sites
   Scenario: Accessing sites as a Designer
     Given I have a "designer" API token
     When I do an API GET request to sites.json
-    Then an access denied error should occur
+    Then the JSON response should be an array
+    And the JSON response should have 1 entry
 
   Scenario: Accessing sites as an Author
     Given I have an "author" API token
     When I do an API GET request to sites.json
-    Then an access denied error should occur
+    Then the JSON response should be an array
+    And the JSON response should have 1 entry
 
   # showing site
 
@@ -46,6 +48,7 @@ Feature: Sites
   Scenario: Accessing other site as a Designer
     Given I have a "designer" API token
     When I do an API GET request to sites/4f832c2cb0d86d3f42ffffff.json
+    # Then I print the json response
     Then an access denied error should occur
 
   Scenario: Accessing my site as an Author

@@ -41,7 +41,13 @@ module Locomotive
           locale = (locale || I18n.locale).to_s
           fullpath = page.fullpath_translations[locale] || page.fullpath_translations[self.default_locale]
 
-          locale == self.default_locale ? fullpath : File.join(locale, fullpath)
+          if locale == self.default_locale.to_s # no need to specify the locale
+            page.index? ? '' : fullpath
+          elsif page.index? # avoid /en/index or /fr/index, prefer /en or /fr instead
+            locale
+          else
+            File.join(locale, fullpath)
+          end
         end
 
         def locales=(array)

@@ -110,7 +110,7 @@ module Locomotive
 
       assigns.merge!(flash.to_hash.stringify_keys) # data from public submissions
 
-      if @page.templatized? # add instance from content type
+      if defined?(@page) && @page.templatized? # add instance from content type
         content_entry = @page.content_entry.to_liquid
         ['content_entry', 'entry', @page.target_entry_name].each do |key|
           assigns[key] = content_entry

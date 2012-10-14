@@ -43,14 +43,14 @@ module Locomotive
 
           def default_element_attributes
             {
-              :block                => @options[:block] || @context[:current_block].try(:name),
-              :slug                 => @slug,
-              :hint                 => @options[:hint],
-              :priority             => @options[:priority] || 0,
-              :fixed                => !!@options[:fixed],
-              :disabled             => false,
-              :from_parent          => false,
-              :_type                => self.document_type.to_s
+              :block         => self.current_block_name,
+              :slug          => @slug,
+              :hint          => @options[:hint],
+              :priority      => @options[:priority] || 0,
+              :fixed         => !!@options[:fixed],
+              :disabled      => false,
+              :from_parent   => false,
+              :_type         => self.document_type.to_s
             }
           end
 
@@ -62,8 +62,16 @@ module Locomotive
             raise 'FIXME: has to be overidden'
           end
 
+          def current_block_name
+            @options[:block] || @context[:current_block].try(:name)
+          end
+
           def render_default_content(context)
-            render_all(@nodelist, context).join(' ')
+            begin
+              render_all(@nodelist, context).join(' ')
+            rescue
+              raise ::Liquid::SyntaxError.new("Error in the #{self.current_block_name || 'default'} block for the #{@slug} editable_element - No liquid tags are allowed inside.")
+            end
           end
         end
 

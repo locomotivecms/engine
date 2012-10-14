@@ -31,6 +31,10 @@ module Locomotive
       !!self.disabled # the original method does not work quite well with the localization
     end
 
+    def disabled_in_all_translations?
+      self.disabled_translations.all? { |_, v| v == true }
+    end
+
     # Determines if the current element can be edited in the back-office
     #
     def editable?
@@ -64,6 +68,13 @@ module Locomotive
     def copy_attributes_from(el)
       self.attributes   = el.attributes.reject { |attr| !%w(slug block hint priority fixed disabled locales from_parent).include?(attr) }
       self.from_parent  = true
+    end
+
+    # Set the default content from an existing editable element coming
+    # from the parent page. Each editable element may or not
+    # override this method. The source element is an existing record.
+    def set_default_content_from(el)
+      self.add_current_locale
     end
 
     # Make sure the current locale is added to the list

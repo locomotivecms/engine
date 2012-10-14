@@ -46,7 +46,7 @@ pt-BR:
 
     notifications:
       new_content_entry:
-        subject: " Novo [%{type}] "
+        subject: "[%{domain}] Novo [%{type}] "
         title: "Olá %{name}, apenas informando que uma nova instância foi criada em %{date}"
         type: "Modelo: %{type}"
 

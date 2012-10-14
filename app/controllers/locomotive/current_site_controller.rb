@@ -3,6 +3,8 @@ module Locomotive
 
     sections 'settings', 'site'
 
+    localized
+
     skip_load_and_authorize_resource
 
     load_and_authorize_resource :class => 'Site'

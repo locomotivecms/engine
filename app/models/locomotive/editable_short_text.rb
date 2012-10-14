@@ -33,6 +33,19 @@ module Locomotive
       self.attributes['default_content']  = el.default_content_translations
     end
 
+    def set_default_content_from(el)
+      super(el)
+
+      locale = ::Mongoid::Fields::I18n.locale.to_s
+
+      if self.default_content? || self.attributes['default_content'][locale].nil?
+        self.default_content = true
+
+        self.content_will_change!
+        self.attributes['content'][locale] = el.content
+      end
+    end
+
     def as_json(options = {})
       Locomotive::EditableShortTextPresenter.new(self).as_json
     end

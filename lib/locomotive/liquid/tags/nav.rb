@@ -57,7 +57,7 @@ module Locomotive
 
           if @options[:no_wrapper] != 'true'
             list_class  = !@options[:class].blank? ? %( class="#{@options[:class]}") : ''
-            output      = %{<ul id="#{@options[:id]}"#{list_class}>\n#{output}</ul>}
+            output      = %{<nav id="#{@options[:id]}"#{list_class}><ul>\n#{output}</ul></nav>}
           end
 
           output

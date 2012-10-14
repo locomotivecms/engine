@@ -3,8 +3,12 @@ module Locomotive
 
     delegate :name, :email, :locale, :to => :source
 
+    def admin
+      self.source.admin?
+    end
+
     def included_methods
-      super + %w(name email locale)
+      super + %w(name email locale admin)
     end
 
   end

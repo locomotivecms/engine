@@ -36,6 +36,13 @@ describe Locomotive::Page do
       another_page.errors[:slug].should == ["is already taken"]
     end
 
+    it 'requires the uniqueness of the handle' do
+      page = FactoryGirl.create(:page, :handle => 'foo')
+      another_page = FactoryGirl.build(:page, :handle => 'foo', :site => page.site)
+      another_page.should_not be_valid
+      another_page.errors[:handle].should == ["is already taken"]
+    end
+
     it 'requires the uniqueness of the slug within a "folder"' do
       site = FactoryGirl.create(:site)
       root = FactoryGirl.create(:page, :slug => 'index', :site => site)
@@ -306,6 +313,11 @@ describe Locomotive::Page do
       it 'has a name for the target entry' do
         @site.stubs(:content_types).returns(mock(:find => @content_type))
         @page.target_entry_name.should == 'post'
+      end
+
+      it 'returns the slug of the target klass' do
+        @site.stubs(:content_types).returns(mock(:find => @content_type))
+        @page.target_klass_slug.should == 'posts'
       end
 
       context '#security' do

@@ -40,10 +40,10 @@ module Locomotive
     before_destroy      :do_not_remove_index_and_404_pages
 
     ## validations ##
-    validates_presence_of     :site, :title, :slug
-    validates_uniqueness_of   :slug, :scope => [:site_id, :parent_id]
-    validates_uniqueness_of   :handle, :allow_blank => true
-    validates_exclusion_of    :slug, :in => Locomotive.config.reserved_slugs, :if => Proc.new { |p| p.depth <= 1 }
+    validates_presence_of     :site,    :title, :slug
+    validates_uniqueness_of   :slug,    :scope => [:site_id, :parent_id]
+    validates_uniqueness_of   :handle,  :scope => :site_id, :allow_blank => true
+    validates_exclusion_of    :slug,    :in => Locomotive.config.reserved_slugs, :if => Proc.new { |p| p.depth <= 1 }
 
     ## named scopes ##
     scope :latest_updated,      :order_by => [[:updated_at, :desc]], :limit => Locomotive.config.ui[:latest_entries_nb]

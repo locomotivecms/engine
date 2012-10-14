@@ -49,7 +49,7 @@ es:
 
     notifications:
       new_content_entry:
-        subject: "[%{type}] nuevo"
+        subject: "[%{domain}][%{type}] nuevo"
         title: "Hola %{name}, queremos hacerte saber que una nueva instancia se creó el día %{date}"
         type: "Modelo: %{type}"
 
