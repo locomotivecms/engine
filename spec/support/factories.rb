@@ -71,6 +71,12 @@ FactoryGirl.define do
       locale 'it'
     end
 
+    factory 'polish user' do
+      name 'Paweł Wilk'
+      email 'pawel@randomseed.pl'
+      locale 'pl'
+    end
+
   end
 
   ## Memberships ##
