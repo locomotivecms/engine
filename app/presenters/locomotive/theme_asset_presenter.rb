@@ -15,6 +15,10 @@ module Locomotive
       number_to_human_size(self.source.size)
     end
 
+    def raw_size
+      self.source.size
+    end
+
     def dimensions
       self.source.image? ? "#{self.source.width}px x #{self.source.height}px" : nil
     end
@@ -28,7 +32,7 @@ module Locomotive
     end
 
     def included_methods
-      default_list = %w(content_type folder local_path url size dimensions can_be_deleted updated_at)
+      default_list = %w(content_type folder local_path url size raw_size dimensions can_be_deleted updated_at)
       default_list += %w(plain_text) if plain_text?
       super + default_list
     end
