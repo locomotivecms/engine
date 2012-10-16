@@ -118,7 +118,7 @@ pl:
     pages:
       index:
         title: Wykaz stron
-        help: "Strony zorganizowane są w strukturze drzewiastej. Możesz zmieniać ich kolejność, podobnie jak i folderów"
+        help: "Strony zorganizowane są w drzewiastej strukturze. Zarówno kolejność stron, jak i folderów, może być zmieniana."
         no_items: "Nie ma jeszcze stron. Kliknij <a href=\"%{url}\">tutaj</a>, aby utworzyć pierwszą."
         new: nowa strona
         latest_entries: Ostatnie strony
@@ -126,10 +126,10 @@ pl:
         title: Nowa strona
         help: "Wypełnij pola poniższego formularza, aby utworzyć stronę. Zauważ, że strona nie będzie od razu opublikowana."
       page:
-        updated_at: Zaktualizowano
+        updated_at: zaktualizowano
       edit:
         show: pokaż
-        help: "Tytuł strony można zmienić, klikając go. Użyj przycisku \"Zapisz\", aby zatwierdzić zmiany."
+        help: "Możesz zmienić tytuł strony, klikając go. Użyj przycisku \"Zapisz\", aby zatwierdzić zmiany."
         ask_for_title: "Wprowadź tytuł strony"
       form:
         change_file: zmień
@@ -157,7 +157,7 @@ pl:
         title: Edycja wstawki
         help: "Użyj następującego kodu liquid, aby zawrzeć wstawkę w szablonie strony: <span class='code'>{% include '%{slug}' %}</span>."
       snippet:
-        updated_at: Zaktualizowano
+        updated_at: zaktualizowano
 
     sites:
       new:
@@ -169,7 +169,7 @@ pl:
     current_site:
       edit:
         new_membership: dodaj konto
-        help: "Nazwę witryny można zmienić, klikając ją. Użyj przycisku \"Zapisz\", aby zatwierdzić zmiany."
+        help: "Możesz zmienić nazwę witryny, klikając ją. Użyj przycisku \"Zapisz\", aby zatwierdzić zmiany."
         ask_for_name: "Wprowadź nową nazwę witryny"
 
     memberships:
@@ -188,15 +188,18 @@ pl:
 
     my_account:
       edit:
-        help: "Twoją nazwę można zmienić, klikając ją. Użyj przycisku \"Zapisz\", aby zatwierdzić zmiany."
+        help: "Możesz zmienić własną nazwę, klikając ją. Użyj przycisku \"Zapisz\", aby zatwierdzić zmiany."
         new_site: nowa witryna
         ask_for_name: "Wprowadź nową nazwę"
 
     theme_assets:
+      picker:
+        updated_at: zaktualizowano
+
       index:
         title: Wykaz plików motywów
-        help: "Sekcja zawierająca pliki należące do motywów jest miejscem, gdzie możesz zarządzać zbiorami wykorzystywanymi w układzie graficznym, we wstawkach, itd. Są to zasoby używane przy projektowaniu wyglądu witryny, więc jeśli chcesz po prostu zarządzać galerią obrazów, to utwórz nowy typ zawartości, zamiast dodawać elementy tutaj.<br /><b>Uwaga:</b> możesz nie widzieć wszystkich zasobów; zależy to od Twoich uprawnień."
-        quick_upload: Szybka wysyłka
+        help: "Sekcja zawierająca pliki należące do motywów jest miejscem, gdzie możesz zarządzać zbiorami wykorzystywanymi w układzie graficznym, we wstawkach, itd. Są to zasoby używane przy projektowaniu wyglądu witryny, więc jeśli chcesz po prostu zarządzać galerią obrazów, to utwórz nowy typ zawartości, zamiast dodawać elementy tutaj. <b>Uwaga:</b> możesz nie widzieć wszystkich zasobów; zależy to od Twoich uprawnień."
+        quick_upload: szybka wysyłka
         new: nowy plik
         snippets: Wstawki
         css_and_js: Style i skrypty
@@ -205,7 +208,7 @@ pl:
         media: Media
         no_items: "Nie ma jeszcze żadnych plików."
       asset:
-        updated_at: Zaktualizowano
+        updated_at: zaktualizowano
       new:
         title: Nowy plik
         help: "Możesz przesłać plik, albo wkleić tekstową zawartość arkusza stylów lub skryptu JS."
@@ -229,6 +232,7 @@ pl:
         title: "Wstaw medium"
         no_items: "Nie ma jeszcze żadnych mediów."
         upload: "Prześlij medium"
+        updated_at: zaktualizowano
 
     content_types:
       index:
@@ -260,7 +264,7 @@ pl:
         new: nowa pozycja
         category_noname: "Brak nazwy"
         latest_entries: "Ostatnie pozycje"
-        updated_at: "Zaktualizowano"
+        updated_at: "zaktualizowano"
       list:
         no_items: "Nie ma jeszcze żadnych pozycji. Kliknij <a href=\"%{url}\">tutaj</a>, aby utworzyć pierwszą."
       new:
