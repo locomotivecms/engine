@@ -1,7 +1,6 @@
 module Locomotive
   module Api
     class ThemeAssetsController < BaseController
-
       load_and_authorize_resource :class => Locomotive::ThemeAsset
 
       def index

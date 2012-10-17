@@ -1,0 +1,6 @@
+- title t('.title')
+
+- content_for :submenu do
+  = render_cell 'locomotive/settings_menu', :show
+
+= render 'form'

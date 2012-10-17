@@ -35,6 +35,8 @@ Locomotive::Engine.routes.draw do
   resources :theme_assets do
     get :all, :action => 'index', :on => :collection, :defaults => { :all => true }
   end
+  
+  resources :translations
 
   resources :content_assets
 

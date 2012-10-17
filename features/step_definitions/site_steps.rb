@@ -22,6 +22,12 @@ Given /^I have a designer and an author$/ do
   FactoryGirl.create(:author, :site => Locomotive::Site.first)
 end
 
+Given /^the site "(.*?)" has locales "(.*?)"$/ do |name, locales|
+  site = Locomotive::Site.where(:name => name).first
+  site.locales = locales.split(',').map(&:strip)
+  site.save
+end
+
 Then /^I should be a administrator of the "([^"]*)" site$/ do |name|
   site = Locomotive::Site.where(:name => name).first
   m = site.memberships.detect { |m| m.account_id == @admin._id && m.admin? }

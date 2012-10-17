@@ -10,8 +10,8 @@ describe Locomotive::SettingsMenuCell do
       reset_cell(:main => 'settings', :sub => 'site')
     end
 
-    it 'has 3 items' do
-      menu.should have_selector('li', :count => 3)
+    it 'has 4 items' do
+      menu.should have_selector('li', :count => 4)
     end
 
     it 'has a link to edit the current site' do
@@ -20,6 +20,10 @@ describe Locomotive::SettingsMenuCell do
 
     it 'has a link to edit the template files' do
       menu.should have_link('Theme files')
+    end
+    
+    it "has a link to edit the translations" do
+      menu.should have_link('Translations')
     end
 
     it 'has a link to edit my account' do
@@ -35,8 +39,8 @@ describe Locomotive::SettingsMenuCell do
       Locomotive::SettingsMenuCell.update_for(:testing_add) { |m| m.add(:my_link, :label => 'My link', :url => 'http://www.locomotivecms.com') }
     end
 
-    it 'has 4 items' do
-      menu.should have_selector('li', :count => 4)
+    it 'has 5 items' do
+      menu.should have_selector('li', :count => 5)
     end
 
     it 'has a new link' do
@@ -52,8 +56,8 @@ describe Locomotive::SettingsMenuCell do
       Locomotive::SettingsMenuCell.update_for(:testing_remove) { |m| m.remove(:theme_assets) }
     end
 
-    it 'has 2 items' do
-      menu.should have_selector('li', :count => 2)
+    it 'has 3 items' do
+      menu.should have_selector('li', :count => 3)
     end
 
     it 'does not have the link to edit the template files' do
@@ -69,8 +73,8 @@ describe Locomotive::SettingsMenuCell do
       Locomotive::SettingsMenuCell.update_for(:testing_update) { |m| m.modify(:theme_assets, { :label => 'Modified !' }) }
     end
 
-    it 'still has 3 items' do
-      menu.should have_selector('li', :count => 3)
+    it 'still has 4 items' do
+      menu.should have_selector('li', :count => 4)
     end
 
     it 'has a modified menu item' do
