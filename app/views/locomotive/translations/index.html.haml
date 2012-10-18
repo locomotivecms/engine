@@ -8,7 +8,7 @@
     = local_action_button t('.new_translation'), new_translation_path, :class => 'new' if can?(:create, Locomotive::Translation)
     
 - if @translations.present?
-  %ul.items
+  %ul#entries-list.list
     - @translations.each do |translation|
       %li.item
         %strong

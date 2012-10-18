@@ -20,7 +20,8 @@ module Locomotive
     end
     
     def update
-      @translation = current_site.translations.update(params[:translation])
+      @translation = current_site.translations.find(params[:id])
+      @translation.update_attributes(params[:translation])
       respond_with @translation, location: translations_path
     end
   end

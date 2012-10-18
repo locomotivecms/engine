@@ -2,7 +2,7 @@ module Locomotive
   module TranslationsHelper
     def untranslated_locales(site, translation)
       list = site.locales.inject([]) do |memo,locale|
-        translation.values.has_key?(locale) ? memo :  memo << I18n.t("locomotive.locales.#{locale}")
+        translation.values[locale].present? ? memo :  memo << I18n.t("locomotive.locales.#{locale}")
       end
       
       if list.empty?
