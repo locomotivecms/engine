@@ -13,12 +13,20 @@ module Locomotive
       #
       class Consume < ::Liquid::Block
 
-        Syntax = /(#{::Liquid::VariableSignature}+)\s*from\s*(#{::Liquid::QuotedString}+)/
+        Syntax = /(#{::Liquid::VariableSignature}+)\s*from\s*([#{::Liquid::QuotedString}#{::Liquid::VariableSignature}]+)/
 
         def initialize(tag_name, markup, tokens, context)
           if markup =~ Syntax
             @target = $1
-            @url = $2.gsub(/['"]/, '')
+            @url = $2
+            @is_var = false
+            if @url.match(::Liquid::QuotedString)
+              @url.gsub!(/['"]/, '')
+            elsif @url.match(::Liquid::VariableSignature)
+              @is_var = true
+            else
+              raise ::Liquid::SyntaxError.new("Syntax Error in 'consume' - Valid syntax: consume <var> from \"<url>\" [username: value, password: value]")
+            end
             @options = {}
             markup.scan(::Liquid::TagAttributes) do |key, value|
               @options[key] = value if key != 'http'
@@ -33,6 +41,9 @@ module Locomotive
         end
 
         def render(context)
+          if @is_var
+            @url = context[@url]
+          end
           render_all_and_cache_it(context)
         end
 
