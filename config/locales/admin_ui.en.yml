@@ -228,8 +228,9 @@ en:
       index:
         title: Translations
         new_translation: New translation
-      new:
-        title: New translation
+      form:
+        create: New translation
+        update: Edit translation
 
     content_assets:
       picker:
