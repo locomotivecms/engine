@@ -12,13 +12,15 @@ group :development do
   # gem 'custom_fields', :git => 'git://github.com/locomotivecms/custom_fields.git', :branch => '2.0.0.rc' # Branch on Github
 
   # gem 'locomotive-aloha-rails', :path => '../gems/aloha-rails' # for Developers
-  # gem 'locomotive-tinymce-rails', '~> 3.4.7.3', :path => '../gems/tinymce-rails' # for Developers  
+  # gem 'locomotive-tinymce-rails', '~> 3.4.7.3', :path => '../gems/tinymce-rails' # for Developers
   # gem 'locomotive_liquid', :path => '../gems/liquid' # for Developers
 
   gem 'rspec-rails', '~> 2.8.0' # In order to have rspec tasks and generators
   gem 'rspec-cells'
 
   gem 'unicorn' # Using unicorn_rails instead of webrick (default server)
+  gem 'pry'
+  gem 'pry-nav'
 end
 
 group :assets do

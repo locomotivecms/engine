@@ -27,6 +27,7 @@ module Locomotive
     before_validation :store_plain_text
     before_validation :sanitize_folder
     before_validation :build_local_path
+    before_validation :change_plain_text_name
 
     ## validations ##
     validates_presence_of   :site
@@ -48,6 +49,11 @@ module Locomotive
       self.stylesheet? || self.javascript?
     end
 
+    def change_plain_text_name
+      @plain_text_name ||= self.safe_source_filename
+      @plain_text_name.gsub!(/(\.[a-z0-9A-Z]+)$/, '') rescue nil
+    end
+
     def local_path(short = false)
       if short
         # self.read_attribute(:local_path).gsub(/^#{self.content_type.to_s.pluralize}\//, '')
@@ -55,18 +61,6 @@ module Locomotive
       else
         self.read_attribute(:local_path)
       end
-    end
-
-    def plain_text_name
-      if not @plain_text_name_changed
-        @plain_text_name ||= self.safe_source_filename
-      end
-      @plain_text_name.gsub(/(\.[a-z0-9A-Z]+)$/, '') rescue nil
-    end
-
-    def plain_text_name=(name)
-      @plain_text_name_changed = true
-      @plain_text_name = name
     end
 
     def plain_text

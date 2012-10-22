@@ -5,8 +5,8 @@ Feature: Theme Assets
 
   Background:
     Given I have the site: "test site" set up
-    And a javascript asset named "my_javascript.js" with id "4f832c2cb0d86d3f42fffffe"
-    And a stylesheet asset named "my_stylesheet.css" with id "4f832c2cb0d86d3f42ffffff"
+    And a javascript asset named "my_javascript" with id "4f832c2cb0d86d3f42fffffe"
+    And a stylesheet asset named "my_stylesheet" with id "4f832c2cb0d86d3f42ffffff"
 
   Scenario: As an unauthenticated user
     Given I am not authenticated
