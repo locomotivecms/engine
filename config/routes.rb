@@ -61,6 +61,8 @@ Rails.application.routes.draw do
       resources :tokens, :only => [:create, :destroy]
 
       resources :theme_assets
+      
+      resources :translations
 
       resources :content_assets
 

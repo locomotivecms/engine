@@ -35,6 +35,10 @@ def ensure_host_resolution(app_host)
   end
 end
 
+JsonSpec.configure do
+  exclude_keys "id", "_id", "created_at", "updated_at"
+end
+
 Capybara.configure do |config|
   config.default_selector   = :css
   config.server_port        = 9886
