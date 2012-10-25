@@ -1,0 +1,17 @@
+- title t('.title')
+
+- content_for :submenu do
+  = render_cell 'locomotive/settings_menu', :show
+
+- if can? :create, Locomotive::Translation
+  - content_for :buttons do
+    = local_action_button t('.new_translation'), new_translation_path, :class => 'new' if can?(:create, Locomotive::Translation)
+    
+- if @translations.present?
+  %ul#entries-list.list
+    - @translations.each do |translation|
+      %li.item
+        %strong
+          = link_to "#{translation.key}", edit_translation_path(translation)
+        %em= translation.values[I18n.locale.to_s]
+        - untranslated_locales(current_site, translation)

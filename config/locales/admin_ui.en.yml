@@ -41,6 +41,7 @@ en:
         account: My account
         site: Site
         theme_assets: Theme files
+        translations: Translations
       form:
         change_file: change
         delete_file: delete
@@ -222,6 +223,14 @@ en:
         title: "Insert theme image"
         no_items: "There are no images for now."
         upload: "Upload theme images"
+    translations:
+      untranslated: "Untranslated locales: %{list}"
+      index:
+        title: Translations
+        new_translation: New translation
+      form:
+        create: New translation
+        update: Edit translation
 
     content_assets:
       picker:

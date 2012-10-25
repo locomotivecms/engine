@@ -1,0 +1,12 @@
+- content_for :submenu do
+  = render_cell 'locomotive/settings_menu', :show
+  
+= semantic_form_for @translation do |f|
+  = f.inputs t(".#{@translation.persisted? ? :update : :create}_translation") do
+    = f.input :key
+    - current_site.locales.each do |l|
+      %li.input.string
+        = f.label "values[#{l}]", t("locomotive.locales.#{l}")
+        = f.text_field "values[#{l}]", value: @translation.values[l]
+    
+    = render 'locomotive/shared/form_actions', :button_label => @translation.persisted? ? :update : :create
