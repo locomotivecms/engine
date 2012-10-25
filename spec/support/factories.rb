@@ -141,5 +141,8 @@ FactoryGirl.define do
 
   factory :content_entry, :class => Locomotive::ContentEntry do
   end
+  
+  factory :translation, :class => Locomotive::Translation do
+  end
 
 end

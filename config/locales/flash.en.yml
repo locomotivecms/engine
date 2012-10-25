@@ -90,6 +90,15 @@ en:
           alert: "File was not updated."
         destroy:
           notice: "File was successfully deleted."
+      translations:
+        create:
+          notice: "Translation was successfully created."
+          alert: "Translation was not created."
+        update:
+          notice: "Translation was successfully updated."
+          alert: "Translation was not updated."
+        destroy:
+          notice: "Translation was successfully deleted."
 
       custom_fields:
         update:
