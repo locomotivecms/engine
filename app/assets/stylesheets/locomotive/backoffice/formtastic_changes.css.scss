@@ -176,6 +176,11 @@ form.formtastic {
           text-align: left;
           color: #585A69;
           @include single-text-shadow(#fff, 1px, 1px, 1px);
+
+          img.flag {
+            float: left;
+            margin: -3px 10px 0 0;
+          }
         }
 
         p.inline-hints {
@@ -353,9 +358,8 @@ form.formtastic {
               @include hover-link;
               color: #787A89;
 
-              &.picture {
-                padding-left: 23px;
-                background: transparent image-url("locomotive/icons/asset_add.png") no-repeat left 1px;
+              i {
+                margin-right: 3px;
               }
             }
           } // .more

@@ -7,8 +7,9 @@ class Locomotive.Views.Snippets.FormView extends Locomotive.Views.Shared.FormVie
   el: '#content'
 
   events:
-    'click    a#image-picker-link': 'open_image_picker'
-    'submit':                       'save'
+    'click a#image-picker-link':   'open_image_picker'
+    'click a#copy-template-link':  'replace_template'
+    'submit':                      'save'
 
   initialize: ->
     _.bindAll(@, 'insert_image')
@@ -46,6 +47,18 @@ class Locomotive.Views.Snippets.FormView extends Locomotive.Views.Shared.FormVie
     text = "{{ '#{path}' | theme_image_url }}"
     @editor.replaceSelection(text)
     @image_picker_view.close()
+
+  replace_template: (event) ->
+    event.stopPropagation() & event.preventDefault()
+
+    link = $(event.target).closest('a')
+
+    $.rails.ajax
+      url:       link.attr('href')
+      type:      'get'
+      dataType:  'json'
+      success:  (data) =>
+        @editor.setValue(data.template)
 
   enable_liquid_editing: ->
     input = @$('#snippet_template')

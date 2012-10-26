@@ -63,5 +63,20 @@ module Locomotive
       options_for_page_response_type.detect { |t| t.last == page.response_type }.try(:first) || '&mdash;'
     end
 
+    # Give the path to the template of the page for the main locale ONLY IF
+    # the user does not already edit the page in the main locale.
+    #
+    # @param [ Object ] page The page
+    #
+    # @return [ String ] The path or nil if the main locale is enabled
+    #
+    def page_main_template_path(page)
+      if not_the_default_current_locale?
+        page_path(page, :content_locale => current_site.default_locale, :format => :json)
+      else
+        nil
+      end
+    end
+
   end
 end

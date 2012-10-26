@@ -81,23 +81,6 @@ ul.list {
         margin-left: 10px;
       }
 
-    } // li div.more
-  } // ul.list li
-}
-
-#entries-list.list {
-
-  li.item {
-    a {
-      @include single-text-shadow(#fff, 1px, 1px, 1px);
-    }
-
-    span.handle {
-      display: none;
-    }
-
-    .more {
-
       a.remove {
         display: inline-block;
         width: 16px;
@@ -114,7 +97,22 @@ ul.list {
           background-image: image-url("locomotive/list/icons/trash.png");
         }
       }
+
     } // li div.more
+  } // ul.list li
+}
+
+#entries-list.list {
+
+  li.item {
+    a {
+      @include single-text-shadow(#fff, 1px, 1px, 1px);
+    }
+
+    span.handle {
+      display: none;
+    }
+
   } // li.item
 
   &.sortable {

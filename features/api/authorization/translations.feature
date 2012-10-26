@@ -87,7 +87,6 @@ Feature: Translations
     And the JSON response at "1" should be:
       """
         {
-          "site_id": "4f832c2cb0d86d3f42fffffb",
           "key": "hello_world",
           "values": {
             "en": "Hello, World",
@@ -118,7 +117,6 @@ Feature: Translations
     And the JSON response at "1" should be:
       """
         {
-          "site_id": "4f832c2cb0d86d3f42fffffb",
           "key": "hello_world",
           "values": {
             "en": "Hello, World",
@@ -149,7 +147,6 @@ Feature: Translations
     And the JSON response at "1" should be:
       """
         {
-          "site_id": "4f832c2cb0d86d3f42fffffb",
           "key": "hello_world",
           "values": {
             "en": "Hello, World",
@@ -177,7 +174,6 @@ Feature: Translations
     Then the JSON response should be:
       """
         {
-          "site_id": "4f832c2cb0d86d3f42fffffb",
           "key": "the_cake_is_true",
           "values": {
             "en": "The cake is true"
@@ -202,14 +198,13 @@ Feature: Translations
     Then the JSON response should be:
       """
         {
-          "site_id": "4f832c2cb0d86d3f42fffffb",
           "key": "the_cake_is_true",
           "values": {
             "en": "The cake is true"
           }
         }
       """
-      
+
   Scenario: Updating translation as an Author
     Given I have a "author" API token
     When I do an API PUT to translations/4f832c2cb0d86d3f42fffffe.json with:
@@ -227,14 +222,13 @@ Feature: Translations
     Then the JSON response should be:
       """
         {
-          "site_id": "4f832c2cb0d86d3f42fffffb",
           "key": "the_cake_is_true",
           "values": {
             "en": "The cake is true"
           }
         }
       """
-      
+
   # destroy translation
 
   Scenario: Destroying translation as an Admin

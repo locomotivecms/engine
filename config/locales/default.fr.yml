@@ -95,6 +95,8 @@ fr:
         body: Code
         slug: Raccourci
         name: Nom
+      locomotive/translation:
+        key: Clé de traduction
       locomotive/theme_asset:
         content_type: Type du fichier
       locomotive/site:

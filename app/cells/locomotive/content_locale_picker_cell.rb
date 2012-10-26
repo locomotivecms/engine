@@ -1,6 +1,10 @@
 module Locomotive
   class ContentLocalePickerCell < Cell::Base
 
+    helper do
+      include ::Locomotive::BaseHelper
+    end
+
     def show(args)
       site    = args[:site]
       locale  = args[:locale].to_s

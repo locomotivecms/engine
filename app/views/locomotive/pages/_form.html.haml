@@ -54,4 +54,6 @@
 
   = f.inputs :name => :raw_template, :class => "inputs foldable #{'folded' if inputs_folded?(@page)}" do
 
-    = f.input :raw_template, :as => :'Locomotive::Code'
+    = f.input :raw_template, :as => :'Locomotive::Code', :main_locale_template_url => page_main_template_path(@page)
+
+

@@ -2,6 +2,6 @@
   %ul
     - @locales.each do |locale|
       %li{ :'data-locale' => locale }
-        = image_tag "locomotive/icons/flags/#{locale}.png", :class => 'flag'
+        = flag_tag(locale)
 
         %span.text= locale

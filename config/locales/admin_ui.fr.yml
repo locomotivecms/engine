@@ -47,6 +47,7 @@ fr:
         settings: Paramètres
         pages: Pages
         snippets: Snippets
+        translations: Traductions
         account: Mon compte
         site: Site
         theme_assets: Fichiers Thème
@@ -153,6 +154,18 @@ fr:
         help: "Utilisez votre snippet dans le template d'une page avec le code Liquid suivant : <span class='code'>{% include '%{slug}' %}</span>."
       snippet:
         updated_at: Mis à jour le
+
+    translations:
+      untranslated: "Non traduit pour les langues: %{list}"
+      index:
+        title: Traductions
+        new_translation: nouvelle traduction
+      new:
+        title: "Nouvelle traduction"
+        help: "Les pages/snippets peuvent avoir le même template dans toutes les langues. Seuls diffèrent de courts bouts de texte peuvent être traduits d'une langue à une autre grâce au tag liquid <b>translate</b>."
+      edit:
+        title: "Edition %{key}"
+        help: "Vous pouvez utiliser cette clé de traduction en utilisant le code liquid suivant: <span class='code'>{{ '%{key}' | translate }}</span>."
 
     sites:
       new:

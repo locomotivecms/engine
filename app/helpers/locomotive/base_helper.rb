@@ -85,6 +85,16 @@ module Locomotive
       content_for?(:backbone_view_data) ? content_for(:backbone_view_data) : ''
     end
 
+    # Display the image of the flag representing the locale.
+    #
+    # @param [ String / Symbol ] locale The locale (fr, en, ...etc)
+    #
+    # @return [ String ] The HTML image tag with the path to the matching flag.
+    #
+    def flag_tag(locale)
+      image_tag("locomotive/icons/flags/#{locale}.png", :class => 'flag')
+    end
+
     def nocoffee_tag
       link_to 'noCoffee', 'http://www.nocoffee.fr', :id => 'nocoffee'
     end
@@ -133,6 +143,18 @@ module Locomotive
       options_for_select(list)
     end
 
+    # locales
+
+    # For a localized site, tell if the current content locale does not match
+    # the default locale of the site. It is used by the page / snippet forms
+    # to determine if we have to display the warning message letting the
+    # designer know that the template is only editable in the default locale.
+    #
+    # @return [ Boolean ] True if it matches the condition above.
+    #
+    def not_the_default_current_locale?
+      current_site.localized? && current_content_locale.to_s != current_site.default_locale.to_s
+    end
 
   end
 end

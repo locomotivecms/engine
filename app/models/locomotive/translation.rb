@@ -1,10 +1,40 @@
 class Locomotive::Translation
+
   include Locomotive::Mongoid::Document
-  
-  belongs_to :site, class_name: "Locomotive::Site"
+
+  ## fields ##
   field :key
   field :values, type: Hash, default: {}
-  
+
+  ## associations ##
+  belongs_to :site, class_name: 'Locomotive::Site'
+
+  ## validations ##
   validates_uniqueness_of :key, scope: :site_id
-  validates_presence_of :site
+  validates_presence_of 	:site, :key
+
+  ## callbacks ##
+	before_validation :underscore_key
+
+	## methods ##
+
+	def to_presenter
+		Locomotive::TranslationPresenter.new(self)
+	end
+
+	def as_json(options = {})
+		self.to_presenter.as_json
+	end
+
+	protected
+
+	# Make sure the translation key is underscored
+	# since it is the unique way to use it in a liquid template.
+	#
+	def underscore_key
+		if self.key
+			self.key = self.key.permalink.underscore
+		end
+	end
+
 end

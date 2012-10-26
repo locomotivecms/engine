@@ -16,6 +16,8 @@ module Locomotive
 
       before_filter :set_locale, :only => [:show, :edit]
 
+      helper Locomotive::BaseHelper
+
       def show_toolbar
         render :layout => false
       end
