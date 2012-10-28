@@ -121,10 +121,10 @@ class Locomotive.Views.Pages.FormView extends Locomotive.Views.Shared.FormView
   enable_response_type_select: ->
     @$('li#page_response_type_input').change (event) =>
       if $(event.target).val() == 'text/html'
-        @$('li#page_redirect_input, li#page_redirect_url_input').show()
+        @$('li#page_redirect_input, li#page_redirect_url_input, li#page_redirect_type_input').show()
       else
         @model.set redirect: false
-        @$('li#page_redirect_input, li#page_redirect_url_input').hide()
+        @$('li#page_redirect_input, li#page_redirect_url_input, li#page_redirect_type_input').hide()
 
   enable_templatized_checkbox: ->
     @_enable_checkbox 'templatized',
@@ -140,9 +140,9 @@ class Locomotive.Views.Pages.FormView extends Locomotive.Views.Shared.FormView
     @_enable_checkbox 'redirect',
       features:     ['templatized', 'cache_strategy']
       on_callback:  =>
-        @$('li#page_redirect_url_input').show()
+        @$('li#page_redirect_url_input, li#page_redirect_type_input').show()
       off_callback: =>
-        @$('li#page_redirect_url_input').hide()
+        @$('li#page_redirect_url_input, li#page_redirect_type_input').hide()
 
   enable_other_checkboxes: ->
     _.each ['published', 'listed'], (exp) =>
