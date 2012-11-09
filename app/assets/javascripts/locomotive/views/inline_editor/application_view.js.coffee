@@ -74,22 +74,7 @@ class Locomotive.Views.InlineEditor.ApplicationView extends Backbone.View
 
     toolbar_view = @toolbar_view
     _jQuery     ||= @_$
-
-    _jQuery('a').each ->
-      link  = _jQuery(this)
-      url   = link.attr('href')
-      if url? && url.indexOf('#') != 0 && /^(www|http)/.exec(url) == null && /(\/_edit)$/.exec(url) == null && /^\/sites\//.exec(url) == null
-        url = '/index' if url == '/'
-
-        unless url.indexOf('_edit') > 0
-          if url.indexOf('?') > 0
-            link.attr('href', url.replace('?', '/_edit?'))
-          else
-            link.attr('href', "#{url}/_edit")
-
-        link.bind 'click', ->
-          toolbar_view.show_status 'loading'
-          window.history.pushState('Object', 'Title', link.attr('href').replace('_edit', '_admin'))
+    toolbar_view.enhance_iframe_links(_jQuery('a'))
 
   unique_dialog_zindex: ->
     # returns the number of jQuery UI modals created in order to set a valid zIndex for each of them.
