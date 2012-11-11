@@ -45,7 +45,8 @@
         %h1{ :class => 'loading', :'data-disabled-status' => t('.statuses.disabled'), :'data-loading-status' => t('.statuses.loading') }= t('.statuses.loading')
 
         .back.col
-          = link_to image_tag('locomotive/inline_editor/back.png'), '#', :class => 'button back', :title => t('.buttons.back'), :alt => t('.buttons.back')
+          = link_to '#', :class => 'button back', :title => t('.buttons.back'), :alt => t('.buttons.back') do
+            %i.icon-home
 
         - if current_site.locales.size > 1
           .lang.col
@@ -62,4 +63,3 @@
           = link_to t('.buttons.cancel'), '#', :class => 'button cancel'
 
     = render_cell 'locomotive/content_locale_picker', :show, :site => current_site, :locale => current_content_locale
-

@@ -1,7 +1,6 @@
 = link_to '#', :id => 'content-locale-picker-link', :class => 'button' do
-  %span.hand
-    &nbsp;
-
-  = flag_tag current_content_locale
+	= flag_tag current_content_locale
 
   %span.text= current_content_locale
+
+  %i.caret.icon-caret-down

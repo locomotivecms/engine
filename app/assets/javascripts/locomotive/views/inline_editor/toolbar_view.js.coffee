@@ -99,26 +99,40 @@ class Locomotive.Views.InlineEditor.ToolbarView extends Backbone.View
       picker.toggle()
 
     picker.find('li').bind 'click', (event) =>
-      current   = @get_locale_attributes(link)
-      selected  = @get_locale_attributes($(event.target).closest('li'))
-
-      @set_locale_attributes(link, selected)
-      @set_locale_attributes($(event.target).closest('li'), current)
+      selected  = $(event.target).closest('li')
+      locale    = selected.find('span.text').html()
 
       picker.toggle()
 
-      window.content_locale = selected[1]
+      window.content_locale = locale
 
-      _window.location.href = '/' + @model.get('localized_fullpaths')[selected[1]] + '/_edit'
+      url = @model.get('localized_fullpaths')[locale]
+      url = 'index' if url == ''
+      url = "/#{url}/_edit"
 
-  get_locale_attributes: (context) ->
-    [context.find('img').attr('src'), context.find('span.text').html()]
+      _window.location.href = url
 
-  set_locale_attributes: (context, values) ->
-    context.find('img').attr('src', values[0])
-    context.find('span.text').html(values[1])
+  select_locale: (locale) ->
+    _window = @options.target[0].contentWindow
+    link    = @$('#content-locale-picker-link')
+    picker  = $('#content-locale-picker')
+
+    # get the information about the locale
+    entry  = picker.find("li[data-locale=#{locale}]")
+    image  = entry.find('img').attr('src')
+    label  = entry.find('span.text').html()
+
+    # refresh the current entry
+    link.find('img').attr('src', image)
+    link.find('span.text').html(label)
+
+    # refresh the list of locales
+    picker.find('li.selected').removeClass('selected')
+    entry.addClass('selected')
 
   refresh: ->
+    @select_locale(@model.get('lang'))
+
     @$('h1').html(@model.get('title')).removeClass()
 
     if @$('.editing-mode input[type=checkbox]').is(':checked')
@@ -127,3 +141,5 @@ class Locomotive.Views.InlineEditor.ToolbarView extends Backbone.View
     @$('.element-actions').hide()
 
     @show_editing_mode_block()
+
+

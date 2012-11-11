@@ -7,12 +7,12 @@ module Locomotive
 
     def show(args)
       site    = args[:site]
-      locale  = args[:locale].to_s
+      @locale = args[:locale].to_s
 
       if site.locales.empty? || site.locales.size < 2
         ''
       else
-        @locales = site.locales - [locale]
+        @locales = site.locales
         render
       end
     end

@@ -64,9 +64,11 @@ class Locomotive.Views.InlineEditor.ApplicationView extends Backbone.View
     # set main window title
     window.document.title = _window.document.title
 
-    # only way but dirty to handle back buttons with webkit.
+    # allow to hit the refresh button and still stay on the same page
+    window.history.replaceState('OBJECT', 'TITLE', _window.location.href.replace('_edit', '_admin'))
+
+    # only but dirty way to handle back buttons with webkit.
     if $.browser.webkit
-      window.history.replaceState('OBJECT', 'TITLE', _window.location.href.replace('_edit', '_admin'))
       window.history.pushState('OBJECT', 'TITLE', _window.location.href.replace('_edit', '_admin'))
 
     # keep the user in the admin mode
@@ -99,11 +101,6 @@ class Locomotive.Views.InlineEditor.ApplicationView extends Backbone.View
 
           # let the editor know that we are redirecting her/him to the target page
           toolbar_view.show_status 'loading'
-
-          # make sure the back button or a simply reload work for the main window
-          # webkit browsers (Safari and Google) do not handle correctly back buttons and iframe
-          unless $.browser.webkit
-            window.history.replaceState(null, null, url.replace('_edit', '_admin'))
 
           # redirection now !
           link.attr('href', url)
