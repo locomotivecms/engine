@@ -11,7 +11,8 @@
 
   a {
     @include background-image(linear-gradient($color_top, $color_bottom));
-    span {
+
+    span, i {
       color: #fff;
       @include single-text-shadow(transparent, 0px, 0px, 0px);
     }
