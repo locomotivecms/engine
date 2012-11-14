@@ -80,6 +80,8 @@ h2. Credits
 
 "Emmanuel Grard":http://www.grardesign.com designed the awesome locomotive illustration in the locomotivecms.com landing page.
 
+"Font Awesome":http://fortawesome.github.com/Font-Awesome for providing the best icons. Make the whole back-office Retina-ready.
+
 h2. Contact
 
 Feel free to contact me at didier at nocoffee dot fr.

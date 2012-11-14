@@ -9,7 +9,13 @@ module Locomotive
     end
 
     def page_toggler(page)
-      image_tag("locomotive/list/icons/node_#{(cookies["folder-#{page._id}"] != 'none') ? 'open' : 'closed'}.png", :class => 'toggler')
+      icon_class = cookies["folder-#{page._id}"] != 'none' ? 'icon-caret-down' : 'icon-caret-right'
+      content_tag :i, '',
+        :class  => "#{icon_class} toggler",
+        :data   => {
+          :open   => 'icon-caret-down',
+          :closed => 'icon-caret-right'
+        }
     end
 
     def parent_pages_options

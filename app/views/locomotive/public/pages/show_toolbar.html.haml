@@ -45,8 +45,7 @@
         %h1{ :class => 'loading', :'data-disabled-status' => t('.statuses.disabled'), :'data-loading-status' => t('.statuses.loading') }= t('.statuses.loading')
 
         .back.col
-          = link_to '#', :class => 'button back', :title => t('.buttons.back'), :alt => t('.buttons.back') do
-            %i.icon-home
+          = link_to_icon :home, '#', :class => 'button back', :title => t('.buttons.back'), :alt => t('.buttons.back')
 
         - if current_site.locales.size > 1
           .lang.col

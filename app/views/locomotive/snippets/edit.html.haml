@@ -7,7 +7,7 @@
   = locale_picker_link
 
 - content_for :buttons do
-  = local_action_button t('locomotive.snippets.index.new'), new_snippet_url, :class => 'new'
+  = local_action_button t('locomotive.snippets.index.new'), new_snippet_url, :icon => 'icon-plus'
 
 %p!= t('.help', :slug => @snippet.slug)
 

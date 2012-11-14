@@ -9,7 +9,7 @@
 
 - if multi_sites?
   - content_for :buttons do
-    = local_action_button t('.new_site'), new_site_url, :class => 'new' if can?(:create, Locomotive::Site)
+    = local_action_button t('.new_site'), new_site_url, :icon => 'icon-plus' if can?(:create, Locomotive::Site)
 
 %p= t('.help')
 
@@ -35,6 +35,6 @@
 
               - if admin_on?(site) && site != current_site
                 %span{ :class => 'actions' }
-                  = link_to 'x', site_url(site), :class => 'remove', :data => { :confirm => t('locomotive.messages.confirm') }, :method => :delete
+                  = link_to_icon :trash, site_url(site), :class => 'remove', :data => { :confirm => t('locomotive.messages.confirm') }, :method => :delete
 
   = render 'locomotive/shared/form_actions', :button_label => :update

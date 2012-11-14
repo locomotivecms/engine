@@ -228,7 +228,7 @@ en:
       untranslated: "Untranslated locales: %{list}"
       index:
         title: Translations
-        new_translation: New translation
+        new: new translation
       new:
         title: "New translation"
         help: "Pages/snippets can share the same template for all the locales except for some labels which can be handled by the <b>translate</b> liquid tag."

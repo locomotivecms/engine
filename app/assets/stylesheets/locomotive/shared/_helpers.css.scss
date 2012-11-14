@@ -78,48 +78,27 @@
     padding-left: 10px;
   }
 
-  a.edit, a.remove, a.toggle, a.drag {
-    display: inline-block;
-    width: 16px;
-    height: 16px;
+  a.drag {
+    @include icon-button;
 
-    position: relative;
-    top: 4px;
-
-    outline: none;
-    text-indent: -9999px;
-
-    &.edit {
-      background: transparent image-url("locomotive/list/icons/pencil_off.png") repeat 0 0;
-      &:hover {
-        background-image: image-url("locomotive/list/icons/pencil.png");
-      }
+    &:hover {
+      background: #25a7ed;
     }
+  }
 
-    &.remove {
-      background: transparent image-url("locomotive/list/icons/trash_off.png") repeat 0 0;
-      &:hover {
-        background-image: image-url("locomotive/list/icons/trash.png");
-      }
+  a.remove {
+    @include icon-button;
+
+    &:hover {
+      background: #e72635;
     }
+  }
 
-    &.toggle {
-      background: transparent image-url("locomotive/list/icons/toggle_off.png") repeat 0 0;
-      &:hover {
-        background-image: image-url("locomotive/list/icons/toggle.png");
-      }
-      &.open {
-        @include rotate(180deg);
-      }
-      @include single-transition(transform, 0.5s);
-    }
+  a.toggle {
+    @include icon-button;
 
-    &.drag {
-      cursor: move;
-      background: transparent image-url("locomotive/list/icons/move_off.png") repeat 0 0;
-      &:hover {
-        background-image: image-url("locomotive/list/icons/move.png");
-      }
+    &:hover {
+      background: #f3c526;
     }
   }
 }

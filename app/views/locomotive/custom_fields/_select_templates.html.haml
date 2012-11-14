@@ -12,5 +12,5 @@
     %span.name {{name}}
 
     %span.actions
-      = link_to 'drag', '#', :class => 'drag'
-      = link_to 'x', '#', :class => 'remove', :data => { :confirm => t('locomotive.messages.confirm') }
+      = link_to_icon :move, '#', :class => 'drag'
+      = link_to_icon :trash, '#', :class => 'remove', :data => { :confirm => t('locomotive.messages.confirm') }

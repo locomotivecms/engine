@@ -1,8 +1,8 @@
 @import "colors";
 
 #menu {
-  li.contents { @include locomotive-contents-icon; }
-  li.settings { @include locomotive-settings-icon; }
+  li.contents { }
+  li.settings { }
 }
 
 body.contents {

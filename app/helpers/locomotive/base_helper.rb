@@ -14,6 +14,22 @@ module Locomotive
       resource.persisted? && resource.errors.empty?
     end
 
+    # Like link_to but instead of passing a label, we
+    # pass the name of an Font Awesome icon.
+    # If the name is a Symbol, we append "icon-" to the
+    # dasherized version of the name.
+    #
+    # @param [ String / Symbol ] name The class name or a symbol
+    # @param [ Array ] *args
+    #
+    # @return [ String ] The HTML <a> tag
+    #
+    def link_to_icon(name, *args, &block)
+      name = name.is_a?(Symbol) ? "icon-#{name.to_s.dasherize}" : name
+      icon = content_tag(:i, '', :class => name)
+      link_to(icon, *args, &block).html_safe
+    end
+
     # Execute the code only once during the request time. It avoids duplicated
     # dom elements in the rendered rails page.
     #
@@ -37,7 +53,8 @@ module Locomotive
       label_link = default_options[:i18n] ? t("locomotive.shared.menu.#{name}") : name
       if block_given?
         popup = content_tag(:div, capture(&block), :class => 'popup', :style => 'display: none')
-        link = link_to(content_tag(:span, preserve(label_link) + content_tag(:em)) + content_tag(:em), url, :class => css)
+        text  = content_tag(:span, preserve(label_link) + content_tag(:i, '', :class => 'icon-caret-down'))
+        link  = link_to(text + content_tag(:em), url, :class => css)
         content_tag(:li, link + popup, :class => 'hoverable')
       else
         content_tag(:li, link_to(content_tag(:span, label_link), url, :class => css))
@@ -45,9 +62,10 @@ module Locomotive
     end
 
     def local_action_button(text, url, options = {})
+      icon = options.delete(:icon) || 'icon-exclamation-sign'
       text = text.is_a?(Symbol) ? t(".#{text}") : text
       link_to(url, options) do
-        content_tag(:em, escape_once('&nbsp;')) + text
+        content_tag(:i, '', :class => icon) + text
       end
     end
 

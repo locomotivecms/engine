@@ -5,9 +5,9 @@
 
 - content_for :buttons do
   - if can?(:manage, Locomotive::ContentType)
-    = local_action_button :edit, edit_content_type_url(@content_type), :class => 'edit'
+    = local_action_button :edit, edit_content_type_url(@content_type), :icon => 'icon-pencil'
 
-  = local_action_button :new, new_content_entry_url(@content_type.slug), :class => 'new'
+  = local_action_button :new, new_content_entry_url(@content_type.slug), :icon => 'icon-plus'
 
 - if @content_type.description.present?
   %p= @content_type.description

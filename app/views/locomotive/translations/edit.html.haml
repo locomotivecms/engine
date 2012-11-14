@@ -4,7 +4,7 @@
   = render_cell 'locomotive/settings_menu', :show
 
 - content_for :buttons do
-  = local_action_button t('locomotive.translations.index.new'), new_translation_url, :class => 'new'
+  = local_action_button t('locomotive.translations.index.new'), new_translation_url, :icon => 'icon-plus'
 
 %p!= t('.help', :key => @translation.key)
 

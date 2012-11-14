@@ -12,7 +12,9 @@
     = f.input :source
 
   - if allow_plain_text_editing?(@theme_asset)
-    = link_to t('locomotive.theme_assets.form.choose_plain_text'), '#', :class => 'alt'
+    = link_to '#', :class => 'alt' do
+      %i.icon-share
+      = t('locomotive.theme_assets.form.choose_plain_text')
 
 - if allow_plain_text_editing?(@theme_asset)
   #text-selector{ :class => "selector #{'hidden' unless display_plain_text?(@theme_asset)}", :style => "#{'display: none' unless display_plain_text?(@theme_asset)}" }
@@ -25,7 +27,9 @@
 
       = f.input :plain_text, :as => :'Locomotive::Code', :type => plain_text_type(@theme_asset)
 
-    = link_to t('locomotive.theme_assets.form.choose_file'), '#', :class => 'alt'
+    = link_to '#', :class => 'alt' do
+      %i.icon-share
+      = t('locomotive.theme_assets.form.choose_file')
 
 = f.inputs :name => :options, :class => "inputs foldable #{'folded' if inputs_folded?(@theme_asset)}" do
   = f.input :folder
