@@ -57,7 +57,7 @@ Then /^I should be able to remove a domain from my site$/ do
 
   visit edit_current_site_path
 
-  click_link 'x'
+  click_link 'Delete'
   click_button 'Save'
 
   page.should have_content 'My site was successfully updated'
@@ -70,7 +70,7 @@ Then /^I should be able to remove a membership from my site$/ do
 
   visit edit_current_site_path
 
-  click_link 'x'
+  click_link 'Delete'
   click_button 'Save'
 
   page.should have_content 'My site was successfully updated'

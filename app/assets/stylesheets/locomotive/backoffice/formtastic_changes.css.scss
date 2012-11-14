@@ -51,7 +51,7 @@ form.formtastic {
       legend span {
         cursor: pointer;
 
-        &:after { font-family: FontAwesome; content: "\00a0\00a0\f0da"; }
+        &:after { font-family: FontAwesome; content: "\00a0\00a0\f0d7"; }
       }
 
       &.folded legend {
@@ -60,7 +60,7 @@ form.formtastic {
         border-bottom-width: 1px;
 
         span {
-          &:after { content: "\00a0\00a0\f0d7"; }
+          &:after { content: "\00a0\00a0\f0da"; }
         }
       }
     } // .foldable
@@ -504,11 +504,14 @@ form.formtastic {
             .col {
 
               &.handle {
-                position: relative;
-                top: 4px;
-                margin-left: 5px;
-                margin-right: 2px;
+                margin: 7px 2px 0px 4px;
+
+                @include icon-button;
                 cursor: move;
+
+                i {
+                  font-size: 9px;
+                }
               }
 
               &.label {

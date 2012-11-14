@@ -25,16 +25,6 @@
   text-decoration: none;
   @include single-text-shadow(rgba(0, 0, 0, 1), 1px, 1px, 1px);
 
-  em {
-    display: inline-block;
-    position: relative;
-    // background: transparent image-url("locomotive/menu/icons.png") no-repeat 0 0px;
-    height: 11px;
-    width: 11px;
-    top: 2px;
-    left: -5px;
-  }
-
   &:hover {
     border: 1px solid rgba(255, 255, 255, 0.5);
     border-top: 1px solid rgba(255, 255, 255, 0.4);

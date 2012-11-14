@@ -3,6 +3,7 @@
 @import "compass/css3/images";
 @import "compass/css3/text-shadow";
 @import "locomotive/shared/helpers";
+@import "buttons";
 
 ul.content-assets {
 
@@ -114,16 +115,12 @@ ul.content-assets {
       right: 17px;
 
       a {
-        display: block;
-        width: 16px;
-        height: 16px;
+        @include icon-button;
 
-        background: transparent image-url("locomotive/list/icons/trash_off.png") repeat 0 0;
+        margin: 0 0 0 5px;
 
-        text-indent: -9999px;
-
-        &:hover{
-          background-image: image-url("locomotive/list/icons/trash.png");
+        &:hover {
+          background: #e72635;
         }
       }
     }

@@ -56,7 +56,7 @@ Scenario: Update an invalid entry
 
 Scenario: Destroy an entry
   When I go to the list of "Projects"
-  And I follow "x"
+  And I follow "Delete"
   Then I should see "Entry was successfully deleted."
   And I should not see "My sexy project"
 

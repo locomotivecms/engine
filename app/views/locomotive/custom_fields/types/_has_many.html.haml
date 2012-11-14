@@ -25,14 +25,14 @@
     %script{ :type => 'text/html', :id => "#{name}_entry" }
       %li
         .handle.col
-          = image_tag 'locomotive/form/icons/drag.png'
+          %i.icon-reorder
 
         .label.col
           {{label}}
 
         %span.actions
-          = link_to 'e', '#', :class => 'edit'
-          = link_to 'x', '#', :class => 'remove', :data => { :confirm => t('locomotive.messages.confirm') }
+          = link_to_icon :pencil, '#', :class => 'edit'
+          = link_to_icon :trash, '#', :class => 'remove', :data => { :confirm => t('locomotive.messages.confirm') }
 
 
   - content_for :backbone_view_data do

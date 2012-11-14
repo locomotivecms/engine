@@ -4,7 +4,12 @@
 @import "compass/css3/text-shadow";
 @import "../backoffice/buttons";
 
-body { background: #000 image-url("locomotive/background/body.png") repeat 0 0; }
+html { height: 100%; }
+
+body {
+  background: #000 image-url("locomotive/background/body.png") repeat 0 0;
+  height: 100%;
+}
 
 div.application-message {
   font-size: 1.2em;
@@ -25,17 +30,19 @@ div#flash-notice {
 }
 
 #wrapper {
-  background: transparent image-url("locomotive/simple/wrapper_bg.png") repeat-x 0 0;
-  min-height: 400px;
+  @include background-image(linear-gradient(top, rgba(102, 102, 115, 0.3), rgba(30, 30, 35, 0.3) 252px, rgba(30, 30, 35, 0.3)));
+  height: 100%;
 }
 
 #light {
-  background: transparent image-url("locomotive/simple/light_bg.png") no-repeat center 0;
-  min-height: 400px;
-  padding-top: 100px;
+  @include background-image(radial-gradient(top, rgba(255, 255, 255, 0.2), rgba(95, 95, 105, 0.3) 240px, rgba(30, 30, 35, 0.1) 370px));
+  height: 100%;
 }
 
 #panel {
+  position: relative;
+  top: 100px;
+
   width: 346px;
   padding: 0px;
 
@@ -110,11 +117,13 @@ div#flash-notice {
               width: auto;
               line-height: 14px;
               margin: 0px;
-              padding: 3px 12px 4px 27px;
+              padding: 3px 8px 4px 8px;
 
               @include box-shadow(rgba(0, 0, 0, 0.4) 2px 2px 2px 0);
               @include border-radius(3px);
-              background: #cd0f19 image-url("locomotive/form/icons/error.png") no-repeat 7px center;
+              background: #cd0f19;
+
+              &:before { font-family: FontAwesome; content: "\f071\00a0\00a0"; }
 
               color: #fff !important;
               font-size: 12px;
