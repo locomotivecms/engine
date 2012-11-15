@@ -86,6 +86,10 @@ module Locomotive
       self.locales << locale unless self.locales.include?(locale)
     end
 
+    def as_json
+      self.to_presenter.as_json
+    end
+
     # Set the content of the editable element with a default value
     # only if the content has not already been modified by the user.
     #

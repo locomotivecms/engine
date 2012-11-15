@@ -78,6 +78,8 @@ Rails.application.routes.draw do
 
       resources :memberships
 
+      resources :accounts
+
       resource  :current_site, :controller => 'current_site'
 
       resource  :my_account, :controller => 'my_account'

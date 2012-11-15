@@ -67,8 +67,8 @@ module Locomotive
       super
     end
 
-    def as_json(options = {})
-      Locomotive::EditableFilePresenter.new(self).as_json
+    def to_presenter
+      Locomotive::EditableFilePresenter.new(self)
     end
 
     protected
