@@ -1,0 +1,317 @@
+pl:
+  errors:
+    # The default format use in full error messages.
+    format: "Pole %{attribute} %{message}"
+
+    # The values :model, :attribute and :value are always available for interpolation
+    # The value :count is available when applicable. Can be used for pluralization.
+    messages:
+      domain_taken: "%{value} jest już w użyciu"
+      invalid_domain: "%{value} jest nieprawidłowa"
+      needs_admin_account: "Wymagane jest przynajmniej jedno konto administracyjne"
+      protected_page: "Nie można usuwać stron index i 404"
+      extname_changed: "Nowy plik nie ma oryginalnego rozszerzenia"
+      array_too_short: "jest zbyt małe (minimalna liczba elementów to %{count})"
+      invalid_theme_file: "jest pusty lub nie jest poprawnym archiwum ZIP"
+      site:
+        default_locale_removed: "Poprzednie ustawienia regionalne nie mogą być od razu wycofane."
+      page:
+        liquid_syntax: "Błąd składniowy silnika Liquid ('%{error}' w '%{fullpath}')"
+        liquid_extend: "Strona '%{fullpath}' rozszerza szablon, który nie istnieje"
+        liquid_translation: "Strona '%{fullpath}' rozszerza szablon, który nie jest przetłumaczony"
+      too_few_custom_fields: "Wymagane jest przynajmniej jedno własne pole"
+      inclusion: "nie znajduje się na liście dopuszczalnych wartości"
+      exclusion: "jest zarezerwowane"
+      invalid: "jest nieprawidłowe"
+      confirmation: "nie zgadza się z potwierdzeniem"
+      accepted: "musi zostać zaakceptowane"
+      empty: "nie może być puste"
+      blank: "nie może być puste"
+      too_long: "jest za długie (maksymalna liczba znaków to %{count})"
+      too_short: "jest za krótkie (minimalna liczba znaków to %{count})"
+      wrong_length: "ma złą długość (wymagana liczba znaków to %{count})"
+      taken: "zawiera wartość, która już istnieje"
+      not_a_number: "nie jest liczbą"
+      not_an_integer: "musi być liczbą całkowitą"
+      greater_than: "musi być większe niż %{count}"
+      greater_than_or_equal_to: "musi być większe lub równe %{count}"
+      equal_to: "musi być równe %{count}"
+      less_than: "musi być mniejsze niż %{count}"
+      less_than_or_equal_to: "musi być mniejsze lub równe %{count}"
+      odd: "musi być nieparzyste"
+      even: "musi być parzyste"
+
+  attributes:
+    defaults:
+      pages:
+        index:
+          title: "Strona główna"
+          body: "Zawartość strony głównej"
+        "404":
+          title: "Strona nie znaleziona"
+          body: "Zawartość strony opisującej błąd o numerze 404"
+        other:
+          body: "{% extends 'parent' %}"
+
+  mongoid:
+    errors:
+      messages:
+        blank_on_locale: "nie może być pusty"
+
+    attributes:
+      locomotive/page:
+        title: Tytuł
+        handle: Uchwyt
+        parent: Element nadrzędny
+        parent_id: Element nadrzędny
+        slug: Nazwa skrócona
+        empty_slug: brak
+        listed: Menu
+        templatized: Szablon
+        published: Publikowanie
+        redirect: Przekierowanie
+        redirect_url: URL przekierowania
+        cache_strategy: Buforowanie
+        response_type: Typ odpowiedzi
+        seo_title: Tytuł SEO
+      locomotive/content_type:
+        name: Nazwa
+        description: Opis
+        slug: Nazwa skrócona
+        order_by: Kolejność
+        order_direction: Kierunek
+        label_field_name: Wyróżniona nazwa pola
+        label_field_id: Wyróżniony ID pola
+        group_by_field_name: Grupuj po nazwach pól
+        group_by_field_id: Grupuj po ID pól
+        public_submission_enabled: Włączenie API
+        public_submission_accounts: Odbiorcy powiadomień
+      locomotive/asset:
+        source: Plik
+      locomotive/account:
+        email: E-mail
+        name: Nazwa
+        language: Język
+        password: Hasło
+        password_confirmation: Powtórzenie hasła
+      locomotive/snippet:
+        body: Kod
+        slug: Nazwa skrócona
+        name: Nazwa
+      locomotive/theme_asset:
+        content_type: Typ zawartości
+      locomotive/site:
+        name: Nazwa witryny
+        locales: Języki
+        domain_name: Nazwa domenowa
+        subdomain: Poddomena
+        restricted_access: Aktywna?
+        access_login: Nazwa użytkownika
+        access_password: "Hasło"
+      custom_fields/field:
+        name: Nazwa
+        hint: Wskazówka
+        required: Obowiązkowe?
+        text_formatting: Formatowanie
+        localized: Przetłumaczone?
+        select_options: Opcje
+
+  date_picker:
+    close_text: Zamknij
+    prev_text: '&#x3c;Poprz.'
+    next_text: 'Nast.&#x3e;'
+    current_text: 'Bieżąca'
+
+  date:
+    formats:
+      default: "%d-%m-%Y"
+      short: "%d %b"
+      long: "%B %d, %Y"
+      long_ordinal: "%B %d, %Y"
+      only_day: "%e"
+    day_names:
+      - niedziela
+      - poniedziałek
+      - wtorek
+      - środa
+      - czwartek
+      - piątek
+      - sobota
+    abbr_day_names:
+      - nie
+      - pon
+      - wto
+      - śro
+      - czw
+      - pia
+      - sob
+    month_names:
+      - ~
+      - styczeń
+      - luty
+      - marzec
+      - kwiecień
+      - maj
+      - czerwiec
+      - lipiec
+      - sierpień
+      - wrzesień
+      - październik
+      - listopad
+      - grudzień
+    abbr_month_names:
+      - ~
+      - sty
+      - lut
+      - mar
+      - kwi
+      - maj
+      - cze
+      - lip
+      - sie
+      - wrz
+      - paź
+      - lis
+      - gru
+    order:
+      - :day
+      - :month
+      - :year
+
+  pagination:
+    previous: "&laquo; Poprzednia"
+    next: "Następna &raquo;"
+
+  time:
+    formats:
+      default: "%a, %d %b %Y %H:%M:%S %z"
+      short: "%d %b %H:%M"
+      long: "%B %d, %Y %H:%M"
+    am: "przed południem"
+    pm: "po południu"
+
+  support:
+    array:
+      words_connector: ", "
+      two_words_connector: " i "
+      last_word_connector: " oraz "
+
+    select:
+      prompt: "Wybierz"
+
+  number:
+    format:
+      separator: ","
+      delimiter: " "
+      precision: 3
+      significant: false
+      strip_insignificant_zeros: false
+
+    currency:
+      format:
+        format: "%u %n"
+        unit: "PLN"
+        separator: ","
+        delimiter: " "
+        precision: 2
+        significant: false
+        strip_insignificant_zeros: true
+
+    percentage:
+      format:
+        delimiter: ""
+
+    precision:
+      format:
+        delimiter: ""
+
+    human:
+      format:
+        delimiter: ""
+        precision: 3
+        significant: true
+        strip_insignificant_zeros: true
+      storage_units:
+        format: "%n %u"
+        units:
+          byte:
+            one:   "bajt"
+            other: "bajty"
+          kb: "KB"
+          mb: "MB"
+          gb: "GB"
+          tb: "TB"
+      decimal_units:
+        format: "%n %u"
+        units:
+          unit: ""
+          thousand: Tysiąc
+          million: Milion
+          billion: Miliard
+          trillion: Bilion
+          quadrillion: Biliard
+
+  datetime:
+    distance_in_words:
+      half_a_minute: "pół minuty"
+      less_than_x_seconds:
+        one:   "mniej niż sekundę"
+        few:   "mniej niż %{count} sekundy"
+        other: "mniej niż %{count} sekund"
+      x_seconds:
+        one:   "1 sekunda"
+        few:   "%{count} sekundy"
+        other: "%{count} sekund"
+      less_than_x_minutes:
+        one:   "mniej niż minutę"
+        few:   "mniej niż %{count} minuty"
+        other: "mniej niż %{count} minut"
+      x_minutes:
+        one:   "1 minuta"
+        few:   "%{count} minuty"
+        other: "%{count} minut"
+      about_x_hours:
+        one:   "około godziny"
+        few:   "około %{count} godziny"
+        other: "około %{count} godzin"
+      x_days:
+        one:   "1 dzień"
+        few:   "%{count} dni"
+        other: "%{count} dni"
+      about_x_months:
+        one:   "około miesiąca"
+        few:   "około %{count} miesiące"
+        other: "około %{count} miesięcy"
+      x_months:
+        one:   "1 miesiąc"
+        few:   "%{count} miesiące"
+        other: "%{count} miesięcy"
+      about_x_years:
+        one:   "około rok"
+        few:   "około %{count} lata"
+        other: "około %{count} lat"
+      over_x_years:
+        one:   "ponad rok"
+        few:   "ponad %{count} lata"
+        other: "ponad %{count} lat"
+      almost_x_years:
+        one:   "prawie rok"
+        few:   "prawie %{count} lata"
+        other: "prawie %{count} lat"
+    prompts:
+      year:   "Rok"
+      month:  "Miesiąc"
+      day:    "Dzień"
+      hour:   "Godzina"
+      minute: "Minuta"
+      second: "Sekundy"
+
+  helpers:
+    select:
+      prompt: "Wybierz"
+
+    submit:
+      create: 'Utwórz %{model}'
+      update: 'Aktualizuj %{model}'
+      submit: 'Zapisz %{model}'
+  
