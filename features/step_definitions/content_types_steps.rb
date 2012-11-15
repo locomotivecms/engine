@@ -73,3 +73,14 @@ end
 Then %r{^I should not see (\d+) times the "([^"]*)" field$} do |n, field|
   page.all(:css, "#content_#{field.underscore.downcase}_input").size.should_not == n.to_i
 end
+
+When %r{^I unselect the notified accounts$} do
+  page.find('#content_type_public_submission_accounts').find('option').unselect_option
+  puts page.find('#content_type_public_submission_accounts').find('option').selected?
+  click_button 'Save'
+end
+
+Then %{^there should not be any notified accounts on the "([^"]*)" model$} do |name|
+  content_type = Locomotive::ContentType.where(:name => name).first
+  content_type.reload.public_submission_accounts.should eq([])
+end
