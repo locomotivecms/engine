@@ -5,6 +5,8 @@ module Locomotive
 
     before_filter :back_to_default_site_locale, :only => %w(new create)
 
+    before_filter :ensure_account_notification_list, :only => :update
+
     respond_to :json, :only => [:create, :update, :destroy]
 
     helper 'Locomotive::Accounts', 'Locomotive::CustomFields'
@@ -36,5 +38,10 @@ module Locomotive
       respond_with @content_type, :location => pages_url
     end
 
+    protected
+
+    def ensure_account_notification_list
+      params[:content_type][:public_submission_accounts] = [] unless params[:content_type][:public_submission_accounts]
+    end
   end
 end
