@@ -62,8 +62,11 @@ module Locomotive
     end
 
     def local_action_button(text, url, options = {})
-      icon = options.delete(:icon) || 'icon-exclamation-sign'
       text = text.is_a?(Symbol) ? t(".#{text}") : text
+
+      icon = options.delete(:icon) || :exclamation_sign
+      icon = icon.is_a?(Symbol) ? "icon-#{icon.to_s.dasherize}" : icon
+
       link_to(url, options) do
         content_tag(:i, '', :class => icon) + text
       end
