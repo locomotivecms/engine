@@ -7,9 +7,10 @@ class Locomotive.Views.Pages.FormView extends Locomotive.Views.Shared.FormView
   el: '#content'
 
   events:
-    'change   #page_parent_id':     'change_page_url'
-    'click    a#image-picker-link': 'open_image_picker'
-    'submit':                       'save'
+    'change   #page_parent_id':       'change_page_url'
+    'click    a#image-picker-link':   'open_image_picker'
+    'click    a#copy-template-link':  'replace_template'
+    'submit':                         'save'
 
   initialize: ->
     _.bindAll(@, 'insert_image')
@@ -37,7 +38,7 @@ class Locomotive.Views.Pages.FormView extends Locomotive.Views.Shared.FormView
     # the url gets modified by different ways so reflect the changes in the UI
     @listen_for_url_changes()
 
-    # enable response type
+    # enable response type to be changed (xml, json, ...etc)
     @enable_response_type_select()
 
     # enable check boxes
@@ -65,6 +66,18 @@ class Locomotive.Views.Pages.FormView extends Locomotive.Views.Shared.FormView
     @editor.replaceSelection(text)
     @image_picker_view.close()
 
+  replace_template: (event) ->
+    event.stopPropagation() & event.preventDefault()
+
+    link = $(event.target).closest('a')
+
+    $.rails.ajax
+      url:       link.attr('href')
+      type:      'get'
+      dataType:  'json'
+      success:  (data) =>
+        @editor.setValue(data.raw_template)
+
   enable_liquid_editing: ->
     input = @$('#page_raw_template')
 
@@ -72,7 +85,7 @@ class Locomotive.Views.Pages.FormView extends Locomotive.Views.Shared.FormView
       @editor = CodeMirror.fromTextArea input.get()[0],
         mode:             'liquid'
         autoMatchParens:  false
-        lineNumbers:      false
+        lineNumbers:      true
         passDelay:        50
         tabMode:          'shift'
         theme:            'default'

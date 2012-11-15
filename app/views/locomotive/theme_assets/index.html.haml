@@ -29,10 +29,10 @@
   - if can?(:manage, Locomotive::ThemeAsset)
     = form_tag theme_assets_url(:json), :id => 'theme-assets-quick-upload', :class => 'quick-upload', :'data-sending-form-message' => t('locomotive.messages.sending_form')  do
       = file_field_tag 'theme_asset[source]', :multiple => 'multiple'
-      = local_action_button :quick_upload, '#', :class => 'new'
+      = local_action_button :quick_upload, '#', :icon => 'icon-upload'
 
-  = local_action_button t('locomotive.snippets.index.new'), new_snippet_url, :class => 'new' if can?(:manage, Locomotive::Snippet)
-  = local_action_button :new, new_theme_asset_url, :class => 'new' if can?(:manage, Locomotive::ThemeAsset)
+  = local_action_button t('locomotive.snippets.index.new'), new_snippet_url, :icon => 'icon-plus' if can?(:manage, Locomotive::Snippet)
+  = local_action_button :new, new_theme_asset_url, :icon => 'icon-plus' if can?(:manage, Locomotive::ThemeAsset)
 
 %p!= t('.help')
 

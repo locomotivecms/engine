@@ -22,6 +22,12 @@ Given /^I have a designer and an author$/ do
   FactoryGirl.create(:author, :site => Locomotive::Site.first)
 end
 
+Given /^the site "(.*?)" has locales "(.*?)"$/ do |name, locales|
+  site = Locomotive::Site.where(:name => name).first
+  site.locales = locales.split(',').map(&:strip)
+  site.save
+end
+
 Then /^I should be a administrator of the "([^"]*)" site$/ do |name|
   site = Locomotive::Site.where(:name => name).first
   m = site.memberships.detect { |m| m.account_id == @admin._id && m.admin? }
@@ -51,7 +57,7 @@ Then /^I should be able to remove a domain from my site$/ do
 
   visit edit_current_site_path
 
-  click_link 'x'
+  click_link 'Delete'
   click_button 'Save'
 
   page.should have_content 'My site was successfully updated'
@@ -64,7 +70,7 @@ Then /^I should be able to remove a membership from my site$/ do
 
   visit edit_current_site_path
 
-  click_link 'x'
+  click_link 'Delete'
   click_button 'Save'
 
   page.should have_content 'My site was successfully updated'

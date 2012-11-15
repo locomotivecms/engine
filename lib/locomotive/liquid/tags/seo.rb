@@ -25,8 +25,8 @@ module Locomotive
 
           def render_metadata(context)
             %{
-              <meta name="description" content="#{self.value_for(:meta_description, context)}" />
-              <meta name="keywords" content="#{self.value_for(:meta_keywords, context)}" />
+              <meta name="description" content="#{self.value_for(:meta_description, context)}">
+              <meta name="keywords" content="#{self.value_for(:meta_keywords, context)}">
             }
           end
 

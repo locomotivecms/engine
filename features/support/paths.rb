@@ -25,6 +25,8 @@ module NavigationHelpers
       edit_page_path(page)
     when /theme assets/
       theme_assets_path
+    when /translations/
+      translations_path
     when /site settings/
       edit_current_site_path
     when /account settings/

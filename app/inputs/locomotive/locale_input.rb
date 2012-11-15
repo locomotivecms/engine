@@ -14,7 +14,8 @@ module Locomotive
       template.content_tag(:div,
         Locomotive.config.locales.map do |locale|
           template.content_tag(:div, locale_to_html(locale).html_safe, :class => 'entry')
-        end.join.html_safe, :class => 'list')
+        end.join.html_safe +
+        template.content_tag(:div, '', :class => 'clear'), :class => 'list')
     end
 
     def locale_to_html(locale)
@@ -22,7 +23,7 @@ module Locomotive
 
       builder.radio_button(:locale, locale, :id => choice_input_dom_id(locale)) +
       template.content_tag(:label,
-        template.image_tag("locomotive/icons/flags/#{locale}.png", :alt => text) +
+        template.image_tag("locomotive/icons/flags/#{locale}.png", :alt => text, :size => '24x24') +
         text, :for => choice_input_dom_id(locale))
     end
 

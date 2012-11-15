@@ -37,7 +37,7 @@
       font-size: 13px;
       text-decoration: none;
 
-      span {
+      span, i {
         text-decoration: none;
         color: #787A89;
         @include single-text-shadow(rgba(255, 255, 255, 0.4), 1px, 1px, 1px);

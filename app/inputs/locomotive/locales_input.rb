@@ -16,7 +16,8 @@ module Locomotive
 
     def choices_group_wrapping(&block)
       template.content_tag(:div,
-        template.capture(&block),
+        template.capture(&block) +
+        template.content_tag(:div, '', :class => 'clear'),
         choices_group_wrapping_html_options
       )
     end
@@ -38,7 +39,7 @@ module Locomotive
 
     def choice_label(choice)
       text = I18n.t("locomotive.locales.#{choice}")
-      template.image_tag("locomotive/icons/flags/#{choice}.png", :alt => text) << text
+      template.image_tag("locomotive/icons/flags/#{choice}.png", :alt => text, :size => '24x24') << text
     end
 
     def choices_group_wrapping_html_options

@@ -1,0 +1,319 @@
+pl:
+  locomotive:
+    buttons:
+      login: Zaloguj się
+      send_password: Prześlij
+      change_password: Zmień
+      new_item: "+ dodaj"
+      switch_to_site: Dalej
+      delete: "Usuń"
+      close: "Zamknij"
+
+    locales:
+      en: angielski
+      de: niemiecki
+      fr: francuski
+      pl: polski
+      pt-BR: "portugalski (brazylijski)"
+      it: włoski
+      nl: niderlandzki
+      nb: norweski
+      es: hiszpański
+      ru: rosyjski
+      et: estoński
+
+    messages:
+      confirm: Na pewno ?
+      sending_form: Twój formularz jest przesyłany
+
+    shared:
+      header:
+        welcome: Witaj, %{name}
+        see: Obejrzyj stronę
+        switch: Przełącz na inną stronę
+        help: Pomoc
+        logout: Wyloguj
+      menu:
+        contents: Zawartość
+        assets: Zasoby
+        settings: Ustawienia
+        pages: Strony
+        snippets: Wstawki
+        account: Moje konto
+        site: Witryna
+        theme_assets: Pliki motywów
+      form:
+        change_file: zmień
+        delete_file: usuń
+        cancel: anuluj
+      form_actions:
+        back: Wróć bez zapisywania
+        create: Utwórz
+        update: Zapisz
+        send: Wyślij
+        disable_with: Oczekiwanie...
+      list:
+        untranslated: nieprzetłumaczone
+      footer:
+        who_is_behind: "LocomotiveCMS jest rozwijany przez %{development} i projektowany przez <a href=\"http://www.sachagreif.com\">Sachę Greifa</a> &mdash; <small>wersja</small> %{version}"
+
+    errors:
+      "500":
+        title: Błąd aplikacji
+        notice: "Przepraszamy, ale coś poszło nie tak"
+        link: "&rarr; Powrót do aplikacji"
+      "404":
+        title: Strona nie znaleziona
+        notice: "Żądana przez Ciebie strona nie istnieje."
+        link: "&rarr; Powrót do aplikacji"
+
+    notifications:
+      new_content_entry:
+        subject: "[%{domain}][%{type}] nowy wpis"
+        title: "Cześć %{name}, dnia %{date} w witrynie <b>%{domain}</b> pojawiła się nowa zawartość."
+        type: "Model: %{type}"
+
+    sites_picker:
+      new: + nowa witryna
+
+    custom_fields:
+      edit:
+        title: Edycja pola własnego
+      text_formatting:
+        none: brak
+        html: HTML
+      types:
+        file:
+          delete_file: Usuń plik
+        has_many:
+          empty: Lista jest pusta
+          new_entry: + Dodaj nową pozycję
+        many_to_many:
+          empty: "Lista jest pusta. Dodaj pozycję, używając poniższego pola wyboru."
+
+      form:
+        required: wymagane
+        default_label: Nazwa pola
+        select_options:
+          ask_name: "Wprowadź nazwę etykiety dla opcji"
+
+    sessions:
+      new:
+        title: Zaloguj się
+        link: "I forgot my password"
+        email: "Email"
+        password: "Password"
+
+    passwords:
+      new:
+        title: Przypomnienie hasła
+        link: "&rarr; Powrót do strony logowania"
+        email: "Twój adres e-mailowy"
+      edit:
+        title: Ustawianie hasła
+        link: "&rarr; Powrót do strony logowania"
+        password: "Twoje nowe hasło"
+        password_confirmation: "Powtórzenie Twojego nowego hasła"
+
+    pages:
+      index:
+        title: Wykaz stron
+        help: "Strony zorganizowane są w drzewiastej strukturze. Zarówno kolejność stron, jak i folderów, może być zmieniana."
+        no_items: "Nie ma jeszcze stron. Kliknij <a href=\"%{url}\">tutaj</a>, aby utworzyć pierwszą."
+        new: nowa strona
+        latest_entries: Ostatnie strony
+      new:
+        title: Nowa strona
+        help: "Wypełnij pola poniższego formularza, aby utworzyć stronę. Zauważ, że strona nie będzie od razu opublikowana."
+      page:
+        updated_at: zaktualizowano
+      edit:
+        show: pokaż
+        help: "Możesz zmienić tytuł strony, klikając go. Użyj przycisku \"Zapisz\", aby zatwierdzić zmiany."
+        ask_for_title: "Wprowadź tytuł strony"
+      form:
+        change_file: zmień
+        delete_file: usuń
+        cancel: anuluj
+        default_block: Domyślny
+        cache_strategy:
+          none: brak
+          simple: proste
+          hour: 1 godzina
+          day: 1 dzień
+          week: 1 tydzień
+          month: 1 miesiąc
+
+    snippets:
+      index:
+        title: Wykaz wstawek
+        help: "Wstawki to porcje kodu HTML, które mogą znajdować się w różnych miejscach strony (np. w stopce)."
+        no_items: "Nie ma jeszcze żadnych wstawek. Kliknij <a href=\"%{url}\">tutaj</a>, aby utworzyć pierwszą."
+        new: nowa wstawka
+      new:
+        title: Nowa wstawka
+        help: "Wypełnij pola poniższego formularza, aby utworzyć wstawkę."
+      edit:
+        title: Edycja wstawki
+        help: "Użyj następującego kodu liquid, aby zawrzeć wstawkę w szablonie strony: <span class='code'>{% include '%{slug}' %}</span>."
+      snippet:
+        updated_at: zaktualizowano
+
+    sites:
+      new:
+        title: Nowa witryna
+        help: "Wypełnij pola poniższego formularza, aby utworzyć witrynę."
+      domains:
+        empty: "Do tej witryny nie przypisano jeszcze żadnych nazw domenowych. Poniżej możesz je dodać. <b>Nie zapomnij o zaktualizowaniu wpisów w DNS.</b>"
+
+    current_site:
+      edit:
+        new_membership: dodaj konto
+        help: "Możesz zmienić nazwę witryny, klikając ją. Użyj przycisku \"Zapisz\", aby zatwierdzić zmiany."
+        ask_for_name: "Wprowadź nową nazwę witryny"
+
+    memberships:
+      roles:
+        admin: Administrator
+        designer: Projektant
+        author: Autor
+      new:
+        title: Nowe członkostwo
+        help: "Podaj e-mail skojarzony z kontem. Jeśli jeszcze nie istnieje, nastąpi przekierowanie do formularza tworzenia konta."
+
+    accounts:
+      new:
+        title: Nowe konto
+        help: "Wypełnij pola poniższego formularza, aby dodać konto."
+
+    my_account:
+      edit:
+        help: "Możesz zmienić własną nazwę, klikając ją. Użyj przycisku \"Zapisz\", aby zatwierdzić zmiany."
+        new_site: nowa witryna
+        ask_for_name: "Wprowadź nową nazwę"
+
+    theme_assets:
+      picker:
+        updated_at: zaktualizowano
+
+      index:
+        title: Wykaz plików motywów
+        help: "Sekcja zawierająca pliki należące do motywów jest miejscem, gdzie możesz zarządzać zbiorami wykorzystywanymi w układzie graficznym, we wstawkach, itd. Są to zasoby używane przy projektowaniu wyglądu witryny, więc jeśli chcesz po prostu zarządzać galerią obrazów, to utwórz nowy typ zawartości, zamiast dodawać elementy tutaj. <b>Uwaga:</b> możesz nie widzieć wszystkich zasobów; zależy to od Twoich uprawnień."
+        quick_upload: szybka wysyłka
+        new: nowy plik
+        snippets: Wstawki
+        css_and_js: Style i skrypty
+        fonts: Czcionki ekranowe
+        images: Obrazy
+        media: Media
+        no_items: "Nie ma jeszcze żadnych plików."
+      asset:
+        updated_at: zaktualizowano
+      new:
+        title: Nowy plik
+        help: "Możesz przesłać plik, albo wkleić tekstową zawartość arkusza stylów lub skryptu JS."
+      edit:
+        title: "Edycja %{file}"
+        help: "Ten zasób jest bezpośrednio dostępny z użyciem łańcucha url: <a href='%{url}'>%{url}</a>"
+        help_image: "Użyj następującego kodu liquid, aby umieścić obraz w szablonach stron lub wstawkach: <span class='code'>{{ '%{path}' | theme_image_tag }}</span>.<br/>Wymiary bieżącego obrazu: <b>%{width}px x %{height}px</b>.<br/>"
+        help_javascript: "Użyj następującego kodu liquid, aby umieścić odwołanie do kodu javascript w szablonach stron lub wstawkach: <span class='code'>{{ '%{path}' | javascript_tag }}</span>.<br/>"
+        help_stylesheet: "Użyj następującego kodu liquid, aby umieścić odwołanie do arkusza stylów w szablonach stron lub wstawkach: <span class='code'>{{ '%{path}' | stylesheet_tag }}</span>.<br/>"
+      form:
+        picker_link: Wstaw plik do kodu
+        choose_file: Wybierz plik
+        choose_plain_text: Wybierz zwykły tekst
+      image_picker:
+        title: "Wstaw obraz motywu"
+        no_items: "Nie ma jeszcze żadnych obrazów."
+        upload: "Prześlij obrazy motywu"
+
+    content_assets:
+      picker:
+        title: "Wstaw medium"
+        no_items: "Nie ma jeszcze żadnych mediów."
+        upload: "Prześlij medium"
+        updated_at: zaktualizowano
+
+    content_types:
+      index:
+        new: nowy model
+        edit: edytuj model
+      new:
+        title: Nowy model
+        help: "Stwórz własny model danych (Projects, People, ..., itp). Twój model powinien mieć przynajmniej jedno pole. Jego wypełnienie będzie obowiązkowe we wpisach tworzonych w oparciu o ten stworzony typ zawartości."
+      edit:
+        title: Edycja modelu
+        help: "Twój model powinien mieć przynajmniej jedno pole. Jego wypełnienie będzie obowiązkowe we wpisach tworzonych w oparciu o ten stworzony typ zawartości."
+        show_entries: pokaż pozycje
+        new_entry: nowa pozycja
+      form:
+        order_by:
+          created_at: 'daty utworzenia'
+          updated_at: 'daty aktualizacji'
+          position_in_list: ręcznie
+        order_direction:
+          asc: rosnąco
+          desc: malejąco
+
+    content_entries:
+      index:
+        title: 'Wykaz "%{type}"'
+        edit: edycja modelu
+        destroy: usuwanie modelu
+        download: pobieranie treści
+        new: nowa pozycja
+        category_noname: "Brak nazwy"
+        latest_entries: "Ostatnie pozycje"
+        updated_at: "zaktualizowano"
+      list:
+        no_items: "Nie ma jeszcze żadnych pozycji. Kliknij <a href=\"%{url}\">tutaj</a>, aby utworzyć pierwszą."
+      new:
+        title: '%{type} &mdash; nowa treść'
+      edit:
+        title: '%{type} &mdash; edycja treści'
+      form:
+        edit_select_options: edycja opcji
+        has_many:
+          new_entry: Nowa treść
+
+    image_picker:
+      link: Wstaw obraz do kodu
+
+    cross_domain_sessions:
+      new:
+        title: Uwierzytelnianie międzydomenowe
+        notice: W ciągu kilku sekund następi przekierowanie do strony.
+
+    installation:
+      common:
+        title: Pierwsza instalacja Locomotive
+        next: Następny
+      step_1:
+        title: "Krok 1/2 &mdash; Tworzenie konta"
+        name: Nazwa konta
+        email: Adres e-mailowy
+        password: Hasło
+        password_confirmation: Powtórzenie hasła
+        done: "Dodano już konto:<br/><strong>%{name}</strong>, <em>%{email}</em>"
+        next: Utwórz konto
+      step_2:
+        title: "Krok 2/2 &mdash; Tworzenie pierwszej witryny"
+        explanations: "Prawie skończyliśmy. Wprowadź proszę nazwę pierwszej witryny i wybierz domyślny język."
+        default_site_locale: Język witryny
+        default_site_locales_hints: "Możesz później dodać więcej języków, korzystając z panelu ustawień."
+        next: Utwórz witrynę
+
+    public:
+      pages:
+        show_toolbar:
+          statuses:
+            loading: "Ładowanie...."
+            disabled: "Wbudowany edytor jest wyłączony"
+          labels:
+            save_changes: "Zapisz zmiany: "
+            editing_mode: "Tryb edycji: "
+            lang: "Język: "
+          buttons:
+            back: Zwróć do zaplecza
+            confirm: Potwierdź
+            cancel: Anuluj

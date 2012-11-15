@@ -37,6 +37,19 @@ module Locomotive
       Locomotive::EditableShortTextPresenter.new(self)
     end
 
+    def set_default_content_from(el)
+      super(el)
+
+      locale = ::Mongoid::Fields::I18n.locale.to_s
+
+      if self.default_content? || self.attributes['default_content'][locale].nil?
+        self.default_content = true
+
+        self.content_will_change!
+        self.attributes['content'][locale] = el.content
+      end
+    end
+
     protected
 
     def propagate_content

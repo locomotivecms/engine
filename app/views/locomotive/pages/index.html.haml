@@ -8,7 +8,7 @@
 
 - if can? :create, Locomotive::Page
   - content_for :buttons do
-    = local_action_button :new, new_page_url, :class => 'new', :id => 'newpage'
+    = local_action_button :new, new_page_url, :icon => 'icon-plus', :id => 'newpage'
 
 %p!= t('.help')
 

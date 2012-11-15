@@ -7,8 +7,12 @@ module Locomotive
 
     attr_writer :encrypted_password, :password_salt
 
+    def admin
+      self.source.admin?
+    end
+
     def included_methods
-      super + %w(name email locale encrypted_password password_salt)
+      super + %w(name email locale admin encrypted_password password_salt)
     end
 
     def included_setters

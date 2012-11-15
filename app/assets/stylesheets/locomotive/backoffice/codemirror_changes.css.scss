@@ -3,6 +3,8 @@
 .CodeMirror {
   @include default-input-style;
 
+  padding: 0px;
+
   margin-top: 13px;
 
   font-size: 13px;

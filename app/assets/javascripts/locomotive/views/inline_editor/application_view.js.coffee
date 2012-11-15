@@ -57,11 +57,19 @@ class Locomotive.Views.InlineEditor.ApplicationView extends Backbone.View
     @toolbar_view.refresh()
 
   enhance_iframe: ->
-    _window = @iframe[0].contentWindow
+    _window = @_window()
+
     _window.Aloha.settings.locale = window.locale
 
     # set main window title
     window.document.title = _window.document.title
+
+    # allow to hit the refresh button and still stay on the same page
+    window.history.replaceState('OBJECT', 'TITLE', _window.location.href.replace('_edit', '_admin'))
+
+    # only but dirty way to handle back buttons with webkit.
+    if $.browser.webkit
+      window.history.pushState('OBJECT', 'TITLE', _window.location.href.replace('_edit', '_admin'))
 
     # keep the user in the admin mode
     @enhance_iframe_links _window.Aloha.jQuery
@@ -71,25 +79,35 @@ class Locomotive.Views.InlineEditor.ApplicationView extends Backbone.View
       @toolbar_view.notify editable.editable
 
   enhance_iframe_links: (_jQuery) ->
+    toolbar_view  = @toolbar_view
+    _jQuery       ||= @_$
+    _window       = @_window()
 
-    toolbar_view = @toolbar_view
-    _jQuery     ||= @_$
-
-    _jQuery('a').each ->
-      link  = _jQuery(this)
+    _jQuery('a').live 'click', (event) ->
+      link  = _jQuery(event.target)
       url   = link.attr('href')
+
       if url? && url.indexOf('#') != 0 && /^(www|http)/.exec(url) == null && /(\/_edit)$/.exec(url) == null && /^\/sites\//.exec(url) == null
-        url = '/index' if url == '/'
+        # change the url only if aloha is enabled
+        unless link.parents('div.editable-long-text, div.editable-short-text').hasClass('aloha-editable')
 
-        unless url.indexOf('_edit') > 0
-          if url.indexOf('?') > 0
-            link.attr('href', url.replace('?', '/_edit?'))
-          else
-            link.attr('href', "#{url}/_edit")
+          url = '/index' if url == '/'
 
-        link.bind 'click', ->
+          unless url.indexOf('_edit') > 0
+            if url.indexOf('?') > 0
+              url = url.replace('?', '/_edit?')
+            else
+              url = "#{url}/_edit"
+
+          # let the editor know that we are redirecting her/him to the target page
           toolbar_view.show_status 'loading'
-          window.history.pushState('Object', 'Title', link.attr('href').replace('_edit', '_admin'))
+
+          # redirection now !
+          link.attr('href', url)
+      else
+        # force the opening of a new window because we are in an iframe (security)
+        event.preventDefault()
+        window.open url
 
   unique_dialog_zindex: ->
     # returns the number of jQuery UI modals created in order to set a valid zIndex for each of them.
@@ -98,6 +116,9 @@ class Locomotive.Views.InlineEditor.ApplicationView extends Backbone.View
 
     1050 + window.Locomotive.jQueryModals++
 
+  _window: ->
+     @iframe[0].contentWindow
+
   _$: (selector) ->
-    $(selector, @iframe[0].contentWindow.document)
+    $(selector, @_window().document)
 

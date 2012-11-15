@@ -8,7 +8,7 @@
 
 - content_for :buttons do
   - if can?(:create, Locomotive::Account)
-    = local_action_button t('.new_membership'), new_membership_url, :class => 'new'
+    = local_action_button t('.new_membership'), new_membership_url, :icon => 'icon-plus'
 
 %p!= t('.help')
 

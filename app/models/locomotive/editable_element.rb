@@ -70,6 +70,13 @@ module Locomotive
       self.from_parent  = true
     end
 
+    # Set the default content from an existing editable element coming
+    # from the parent page. Each editable element may or not
+    # override this method. The source element is an existing record.
+    def set_default_content_from(el)
+      self.add_current_locale
+    end
+
     # Make sure the current locale is added to the list
     # of locales for the current element so that we know
     # in which languages the element was translated.

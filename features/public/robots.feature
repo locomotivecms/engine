@@ -13,10 +13,10 @@ Scenario: Simple robots text
     robots text value
     """
 
-Scenario: Robots.txt should provide access to request_host
-  Given a robot_txt set to "host: {{request_host}}"
+Scenario: Robots.txt should provide access to request_host and all other liquid variables
+  Given a robot_txt set to "host: {{request_host}} path: {{path}}"
   When I view the rendered page at "/robots.txt"
   Then the rendered output should look like:
     """
-    host: test.example.com
+    host: test.example.com path: /robots.txt
     """

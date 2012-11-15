@@ -12,7 +12,7 @@ class Locomotive.Views.Pages.ListView extends Backbone.View
     return @
 
   make_foldable: ->
-    @$('ul.folder img.toggler').toggleMe()
+    @$('ul.folder .toggler').toggleMe()
 
   make_sortable: ->
     self = @

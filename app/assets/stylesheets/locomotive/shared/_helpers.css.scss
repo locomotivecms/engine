@@ -44,15 +44,20 @@
 }
 
 @mixin editable {
-  padding: 2px 25px 2px 6px;
+  padding: 2px 6px 2px 6px;
   color: #1e1f26;
   outline: none;
   cursor: pointer;
 
+  &:after { font-family: FontAwesome; color: #e8e1ad; content: "\00a0"; }
+
   &:hover {
     text-decoration: none;
-    background: #fffbe5 image-url("locomotive/form/pen.png") no-repeat right 5px;
+    background: #fffbe5;
+
     border-bottom: 1px dotted #efe4a5;
+
+    &:after { font-family: FontAwesome; color: #e8e1ad; content: "\00a0\00a0\f040"; }
   }
 }
 
@@ -78,49 +83,24 @@
     padding-left: 10px;
   }
 
-  a.edit, a.remove, a.toggle, a.drag {
-    display: inline-block;
-    width: 16px;
-    height: 16px;
+  a.edit, a.drag, a.remove, a.toggle {
+    @include icon-button;
+  }
 
-    position: relative;
-    top: 4px;
+  a.edit:hover {
+    background: #f0c334;
+  }
 
-    outline: none;
-    text-indent: -9999px;
+  a.drag:hover {
+    background: #25a7ed;
+  }
 
-    &.edit {
-      background: transparent image-url("locomotive/list/icons/pencil_off.png") repeat 0 0;
-      &:hover {
-        background-image: image-url("locomotive/list/icons/pencil.png");
-      }
-    }
+  a.remove:hover {
+    background: #e72635;
+  }
 
-    &.remove {
-      background: transparent image-url("locomotive/list/icons/trash_off.png") repeat 0 0;
-      &:hover {
-        background-image: image-url("locomotive/list/icons/trash.png");
-      }
-    }
-
-    &.toggle {
-      background: transparent image-url("locomotive/list/icons/toggle_off.png") repeat 0 0;
-      &:hover {
-        background-image: image-url("locomotive/list/icons/toggle.png");
-      }
-      &.open {
-        @include rotate(180deg);
-      }
-      @include single-transition(transform, 0.5s);
-    }
-
-    &.drag {
-      cursor: move;
-      background: transparent image-url("locomotive/list/icons/move_off.png") repeat 0 0;
-      &:hover {
-        background-image: image-url("locomotive/list/icons/move.png");
-      }
-    }
+  a.toggle:hover {
+    background: #f3c526;
   }
 }
 

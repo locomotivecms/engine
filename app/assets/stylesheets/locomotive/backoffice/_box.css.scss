@@ -120,22 +120,12 @@
       }
 
       a.remove {
-        display: inline-block;
-        width: 16px;
-        height: 16px;
-        margin-left: 10px;
+        @include icon-button;
 
-        position: relative;
-        top: 4px;
-
-        outline: none;
-
-        background: transparent image-url("locomotive/list/icons/trash_off.png") repeat 0 0;
-
-        text-indent: -9999px;
+        margin: 0 0 0 5px;
 
         &:hover {
-          background-image: image-url("locomotive/list/icons/trash.png");
+          background: #e72635;
         }
       }
     }

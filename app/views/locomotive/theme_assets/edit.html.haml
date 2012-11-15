@@ -5,7 +5,7 @@
 
 - if can?(:manage, Locomotive::ThemeAsset)
   - content_for :buttons do
-    = local_action_button t('locomotive.theme_assets.index.new'), new_theme_asset_url, :class => 'new'
+    = local_action_button t('locomotive.theme_assets.index.new'), new_theme_asset_url, :icon => 'icon-plus'
 
 %p.help
   - if %w(image javascript stylesheet).include?(@theme_asset.content_type.to_s)

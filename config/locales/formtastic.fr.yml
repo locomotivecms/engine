@@ -70,6 +70,8 @@ fr:
         plain_text_name: "Vous n'avez pas besoin de mettre l'extension du fichier (.css ou .js)"
         edit:
           source: "Vous pouvez le remplacer par un fichier avec la meme extension."
+      translation:
+        key: "Ne pas utiliser '-' mais plutot '_'. Exemple: welcome_message."
       asset:
         source: "Tous les types de fichier sont acceptés."
         edit:

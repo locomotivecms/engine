@@ -51,9 +51,7 @@ form.formtastic {
       legend span {
         cursor: pointer;
 
-        padding-right: 15px;
-
-        background: transparent image-url("locomotive/form/folded-arrow-on.png") no-repeat right center;
+        &:after { font-family: FontAwesome; content: "\00a0\00a0\f0d7"; }
       }
 
       &.folded legend {
@@ -62,7 +60,7 @@ form.formtastic {
         border-bottom-width: 1px;
 
         span {
-          background-image: image-url("locomotive/form/folded-arrow-off.png");
+          &:after { content: "\00a0\00a0\f0da"; }
         }
       }
     } // .foldable
@@ -116,10 +114,13 @@ form.formtastic {
           margin-right: 20px;
         }
 
-        span.actions {
+        .actions {
           position: absolute;
           top: 0px;
           right: 10px;
+
+          height: 30px;
+          line-height: 30px;
 
           @include tiny-buttons-group;
         }
@@ -176,6 +177,11 @@ form.formtastic {
           text-align: left;
           color: #585A69;
           @include single-text-shadow(#fff, 1px, 1px, 1px);
+
+          img.flag {
+            float: left;
+            margin: -3px 10px 0 0;
+          }
         }
 
         p.inline-hints {
@@ -206,11 +212,13 @@ form.formtastic {
             width: auto;
             line-height: 14px;
             margin: 0px;
-            padding: 3px 12px 4px 27px;
+            padding: 3px 8px 4px 8px;
 
             @include box-shadow(rgba(0, 0, 0, 0.4) 2px 2px 2px 0);
             @include border-radius(3px);
-            background: #cd0f19 image-url("locomotive/form/icons/error.png") no-repeat 7px center;
+            background: #cd0f19;
+
+            &:before { font-family: FontAwesome; content: "\f071\00a0\00a0"; }
 
             color: #fff !important;
             font-size: 12px;
@@ -353,9 +361,8 @@ form.formtastic {
               @include hover-link;
               color: #787A89;
 
-              &.picture {
-                padding-left: 23px;
-                background: transparent image-url("locomotive/icons/asset_add.png") no-repeat left 1px;
+              i {
+                margin-right: 3px;
               }
             }
           } // .more
@@ -497,11 +504,14 @@ form.formtastic {
             .col {
 
               &.handle {
-                position: relative;
-                top: 4px;
-                margin-left: 5px;
-                margin-right: 2px;
+                margin: 7px 2px 0px 4px;
+
+                @include icon-button;
                 cursor: move;
+
+                i {
+                  font-size: 9px;
+                }
               }
 
               &.label {
@@ -533,23 +543,12 @@ form.formtastic {
               line-height: 30px;
 
               em {
-                padding-left: 17px;
                 margin-left: 0px;
                 background-repeat: no-repeat;
 
                 color: #757575;
                 font-size: 13px;
                 font-weight: normal;
-
-                &.locked {
-                  background-image: image-url("locomotive/icons/membership_lock.png");
-                  background-position: 1px 0px;
-                }
-
-                &.editable {
-                  background-image: image-url("locomotive/icons/membership_edit.png");
-                  background-position: 0px 3px;
-                }
               }
             }
           }
@@ -584,11 +583,14 @@ form.formtastic {
             }
 
             .handle {
-              position: relative;
-              top: 4px;
-              margin-left: 5px;
-              margin-right: 2px;
+              margin: 6px 2px 0px 4px;
+
+              @include icon-button;
               cursor: move;
+
+              i {
+                font-size: 9px;
+              }
             }
 
             .label-input {
@@ -718,9 +720,6 @@ form.formtastic {
 
       top: 0px;
       right: 20px;
-      padding-left: 20px;
-
-      background: transparent image-url("locomotive/icons/asset_switch.png") no-repeat left center;
 
       color: #787a89;
       font-size: 11px;

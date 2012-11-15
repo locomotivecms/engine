@@ -9,6 +9,7 @@
 
   {{#if can_update}}
   .role
+    %i.icon-edit
     {{#if grant_admin}}
     = select_tag 'site[memberships_attributes][{{index}}][role]', options_for_membership_roles
     {{else}}
@@ -16,10 +17,11 @@
     {{/if}}
 
   %span.actions
-    = link_to 'x', '#', :class => 'remove'
+    = link_to_icon :trash, '#', :title => t('locomotive.buttons.delete'), :class => 'remove'
 
   {{else}}
   .role
-    %em.locked {{role_name}}
+    %i.icon-lock
+    {{role_name}}
 
   {{/if}}

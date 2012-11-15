@@ -21,7 +21,7 @@
   = f.semantic_fields_for :contents_custom_field, CustomFields::Field.new do |g|
 
     .handle.col
-      = image_tag 'locomotive/form/icons/drag.png'
+      %i.icon-reorder
 
     .label-input.col
       = g.text_field :label, :class => 'label'
@@ -51,9 +51,9 @@
 
       = g.input :ui_enabled, :as => :'Locomotive::Toggle', :wrapper_html => { :class => 'extra ui-enabled' }, :input_html => { :class => 'ui_enabled' }
 
-    %span.actions
-      = link_to 'toggle', '#', :class => 'toggle'
-      = link_to 'x', '#', :class => 'remove', :data => { :confirm => t('locomotive.messages.confirm') }
+    .actions
+      = link_to_icon :caret_down, '#', :class => 'toggle'
+      = link_to_icon :trash, '#', :class => 'remove', :data => { :confirm => t('locomotive.messages.confirm') }
 
     .clear
 

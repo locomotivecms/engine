@@ -34,7 +34,17 @@ module Locomotive
     ## methods ##
 
     def sites
-      @sites ||= Site.where({ 'memberships.account_id' => self._id })
+      @sites ||= Site.where('memberships.account_id' => self._id)
+    end
+
+    # Tell if the account has admin privileges or not.
+    # Actually, an account is considered as an admin if
+    # it owns at least one admin membership in all its sites.
+    #
+    # @return [ Boolean ] True if admin
+    #
+    def admin?
+      Site.where(:memberships => { '$elemMatch' => { :account_id => self._id, :role => :admin } }).count > 0
     end
 
     # Create the API token which will be passed to all the requests to the Locomotive API.

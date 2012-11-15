@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 FactoryGirl.define do
 
   ## Site ##
@@ -71,6 +73,12 @@ FactoryGirl.define do
       locale 'it'
     end
 
+    factory 'polish user' do
+      name 'Paweł Wilk'
+      email 'pawel@randomseed.pl'
+      locale 'pl'
+    end
+
   end
 
   ## Memberships ##
@@ -140,6 +148,9 @@ FactoryGirl.define do
   end
 
   factory :content_entry, :class => Locomotive::ContentEntry do
+  end
+  
+  factory :translation, :class => Locomotive::Translation do
   end
 
 end

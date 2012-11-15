@@ -1,0 +1,105 @@
+pl:
+  formtastic:
+    titles:
+      information: Informacje ogólne
+      advanced_options: Ustawienia zaawansowane
+      meta: Metadane SEO
+      seo: Ustawienia SEO
+      robots_txt: Plik Robots.txt
+      code: Kod
+      raw_template: Szablon
+      credentials: Informacje uwierzytelniające
+      language: Język
+      sites: Witryny
+      access_points: Punkty dostępowe
+      memberships: Konta
+      membership_email: Adres e-mailowy konta
+      file: Plik
+      preview: Podgląd
+      options: Ustawienia zaawansowane
+      custom_fields: Pola własne
+      other_fields: Inne informacje
+      presentation: Prezentacja
+      attributes: Atrybuty
+      upload: Wysyłanie
+    labels:
+      theme_asset:
+        plain_text_name: Nazwa pliku
+        content_type: Typ pliku
+        new:
+          source: Plik
+        edit:
+          source: Zastąp plikiem
+      custom_fields:
+        form:
+          empty: Brak pól
+        field:
+          name: Nazwa
+      content_type:
+        raw_item_template: Szablon treści
+        public_submission_enabled: Publiczne wprowadzanie
+        public_submission_accounts: Odbiorcy powiadomień
+        "custom_fields/field":
+          select_options: "Opcje"
+      content_entry:
+        _slug: Odnośnik bezpośredni
+      account:
+        edit:
+          locale: Język interfejsu
+          password: Nowe hasło
+          password_confirmation: Powtórzenie hasła
+      page:
+        seo_title: Tytuł
+        target_klass_name: Model
+      site:
+        locales: Języki
+
+    hints:
+      page:
+        handle: "Unikatowy identyfikator służący do pobierania tej strony z użyciem zewnętrznej instancji kontrolera."
+        published: "Tylko uwierzytelnieni użytkownicy mogą oglądać nieopublikowane strony."
+        cache_strategy: "Buforuj zawartość strony w celu polepszenia wydajności. Wybór opcji 'proste' jest dobrym kompromisem między wydajnością, a aktualnością informacji."
+        templatized: "Użyj tej strony jako szablonu dla stworzonego modelu."
+        listed: "Decyduj czy strona powinna ukazywać się w generowanych menu."
+        target_klass_name: "Typ zawartości, dla której ta strona będzie szablonem."
+        seo_title: "Określ tytuł strony, który będzie użyty jako wartość dla znacznika title umieszczanego w sekcji head kodu HTML. Pozostaw to pole puste, jeśli chcesz, aby wykorzystana została domyślna wartość określona ustawieniami witryny."
+        meta_keywords: "Nadpisz słowa kluczowe (meta keywords) umieszczane w sekcji head kodu HTML. Słowa powinny być oddzielone przecinkami."
+        meta_description: "Nadpisz znacznik opisu (meta description) umieszczanego w sekcji head kodu HTML."
+      snippet:
+        slug: "Musisz go znać, aby umieścić wstawkę w stronie."
+      site:
+        locales: "Przeciągnij flagę i upuść ją na pozycję, która ma stać się wartością domyślną."
+        seo_title: "Zdefiniuj globalną wartość, która będzie używana jako tytuł (znacznik title w sekcji head kodu HTML)."
+        meta_keywords: "Oddzielone przecinkami słowa kluczowe (znacznik meta keywords sekcji head kodu HTML). Wymagane przez SEO."
+        meta_description: "Opis (znacznik meta description sekcji head kodu HTML). Wymagany przez SEO."
+        domain_name: "np. locomotiveapp.org"
+        robots_txt: "Zawartość pliku <span class='code'>/robots.txt</span>. Pod umieszczonym <a href='http://www.w3.org/TR/html4/appendix/notes.html#h-B.4.1.1'>tutaj</a> odnośnikiem znajdziesz więcej informacji."
+      theme_asset:
+        slug: "Nie musisz dodawać rozszerzenia pliku (.css lub .js)"
+        edit:
+          source: "Możesz zastąpić go plikiem o takim samym rozszerzeniu"
+      asset:
+        source: "Akceptowane są pliki każdego typu."
+        edit:
+          source: "Bieżący plik jest dostępny pod adresem %{url}"
+        update:
+          source: "Bieżący plik jest dostępny pod adresem %{url}"
+      content_entry:
+        _slug: "Właściwość używana do generowania łańcucha URL strony pełniącej funkcję szablonu dla tego typu zawartości (np. \"strona_szablonu/{{ twój_obiekt._permalink }})\"."
+        seo_title: "Wartość, którą tu podasz, zastąpi tytuł SEO strony szablonowej odnoszącej się do stworzonego modelu."
+        meta_keywords: "Nadpisz słowa kluczowe (meta keywords) witryny, umieszczane w sekcji head kodu HTML strony. Powinny być oddzielone przecinkami."
+        meta_description: "Nadpisz opis (meta description) witryny, umieszczany w sekcji head kodu HTML strony."
+      import:
+        source: "Archiwum ZIP zawierające plik database.yml razem z zasobami i szablonami."
+        samples: "Gdy włączone, w procesie importowania uwzględnione zostaną również zasoby i treści."
+        reset: "Gdy włączone, wszystkie dane Twojej witryny zostaną zniszczone przed importowaniem nowej witryny."
+      content_type:
+        name: "Sugerujemy, aby nazwa modelu była słowem z języka angielskiego w liczbie mnogiej i zaczynała się wielką literą, np.: Projects, Recipes, Posts, Articles, itp."
+        slug: "Będzie użyta jako nazwa kolekcji w szablonach Liquid, np. <span class='code'>{{ contents.moje_projekty }}</span>"
+        raw_item_template: "Możesz dostosować tekst wyświetlany dla każdego elementu listy. Po prostu użyj Liquida, np. <span class='code'>{{ entry.nazwa }})</span>"
+        public_submission_enabled: "Używane, aby pozwalać każdemu z zewnątrz na dodawanie zawartości (np. na tworzenie wiadomości formularza kontaktowego)."
+        public_submission_accounts: "Jeśli publiczne wprowadzanie jest włączone, to dla każdej utworzonej zawartości będzie wysyłane e-mailowe powiadomienie do wskazanych osób."
+        "custom_fields/field":
+          name: "Nazwa właściwości dla szablonów Liquid, np. <span class='code'>&#123;&#123; twój_obiekt.&lt;nazwa_twojego_pola&gt; &#125;&#125;</span>"
+          hint: "Tekst wyświetlany w formularzu modelu tuż pod miejscem do wypełnienia."
+

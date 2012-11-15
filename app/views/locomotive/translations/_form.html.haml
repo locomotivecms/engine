@@ -1,0 +1,12 @@
+- content_for :backbone_view_data do
+  :plain
+    translation: #{j @translation.to_json.html_safe}
+
+= f.inputs :name => :information do
+
+  = f.input :key, :wrapper_html => { :class => 'highlighted' }
+
+  - current_site.locales.each do |l|
+    %li.input.string
+      = f.label "values[#{l}]", flag_tag(l) + t("locomotive.locales.#{l}")
+      = f.text_field "values[#{l}]", value: @translation.values[l]

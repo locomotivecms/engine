@@ -38,7 +38,8 @@ body {
 }
 
 #wrapper {
-  background: transparent image-url("locomotive/background/light.png") repeat-x 0 0;
+  @include background-image(linear-gradient(top, rgba(102, 102, 115, 0.3), rgba(30, 30, 42, 0.3) 252px, rgba(30, 30, 42, 0.3)));
+  height: 100%;
 
   > .container {
     width: 966px;

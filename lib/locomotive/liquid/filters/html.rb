@@ -14,7 +14,7 @@ module Locomotive
           type  = options[:type] || Mime::Type.lookup_by_extension('rss').to_s
           title = options[:title] || 'RSS'
 
-          %{<link rel="#{rel}" type="#{type}" title="#{title}" href="#{input}" />}
+          %{<link rel="#{rel}" type="#{type}" title="#{title}" href="#{input}">}
         end
 
         # Write the url of a theme stylesheet
@@ -38,7 +38,7 @@ module Locomotive
 
           input = stylesheet_url(input)
 
-          %{<link href="#{input}" media="#{media}" rel="stylesheet" type="text/css" />}
+          %{<link href="#{input}" media="#{media}" rel="stylesheet" type="text/css">}
         end
 
         # Write the url to javascript resource
@@ -75,11 +75,11 @@ module Locomotive
 
         # Write a theme image tag
         # input: name of file including folder
-        # example: 'about/myphoto.jpg' | theme_image # <img src="images/about/myphoto.jpg" />
+        # example: 'about/myphoto.jpg' | theme_image # <img src="images/about/myphoto.jpg">
         def theme_image_tag(input, *args)
           image_options = inline_options(args_to_options(args))
 
-          "<img src=\"#{theme_image_url(input)}\" #{image_options}/>"
+          "<img src=\"#{theme_image_url(input)}\" #{image_options}>"
         end
 
         # Write an image tag
@@ -87,7 +87,7 @@ module Locomotive
         def image_tag(input, *args)
           image_options = inline_options(args_to_options(args))
 
-          "<img src=\"#{get_url_from_asset(input)}\" #{image_options}/>"
+          "<img src=\"#{get_url_from_asset(input)}\" #{image_options}>"
         end
 
         # Embed a flash movie into a page
@@ -99,8 +99,8 @@ module Locomotive
           embed_options = inline_options(args_to_options(args))
           %{
             <object #{embed_options}>
-              <param name="movie" value="#{path}" />
-              <embed src="#{path}" #{embed_options}/>
+              <param name="movie" value="#{path}">
+              <embed src="#{path}" #{embed_options}>
               </embed>
             </object>
           }.gsub(/ >/, '>').strip

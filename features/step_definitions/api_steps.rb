@@ -27,6 +27,10 @@ def last_json
   @json_response.try(:body) || page.source
 end
 
+def last_status
+  @json_response.try(:status) || page.status
+end
+
 # Deal with file fields
 
 def file_fields
@@ -126,13 +130,19 @@ When /^I do an API (\w+) (?:request )?to ([\w.\/]+) with:$/ do |request_type, ur
 end
 
 Then /^an access denied error should occur$/ do
-  @error.should_not be_nil
-  @error.is_a?(CanCan::AccessDenied).should be_true
+  if @error
+    @error.is_a?(CanCan::AccessDenied).should be_true
+  else
+    last_status.should == 401
+  end
 end
 
 Then /^it should not exist$/ do
-  @error.should_not be_nil
-  @error.is_a?(Mongoid::Errors::DocumentNotFound).should be_true
+  if @error
+    @error.is_a?(Mongoid::Errors::DocumentNotFound).should be_true
+  else
+    last_status.should == 404
+  end
 end
 
 When /^I do a multipart API (\w+) (?:request )?to ([\w.\/]+) with base key "([^"]*)" and:$/ \
@@ -158,7 +168,7 @@ Then /^the JSON at "([^"]*)" should be the time "(.+)"$/ do |path, time_str|
 end
 
 Then /^I print the JSON response$/ do
-  puts %{JSON (status=#{@json_response.status}): "#{last_json}"}
+  puts %{JSON (status=#{@json_response.status}): "#{last_json}" / #{last_json.inspect}}
 end
 
 Then /^I print the editable elements for page "([^"]*)"$/ do |id|

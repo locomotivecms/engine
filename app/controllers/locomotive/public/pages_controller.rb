@@ -16,6 +16,8 @@ module Locomotive
 
       before_filter :set_locale, :only => [:show, :edit]
 
+      helper Locomotive::BaseHelper
+
       def show_toolbar
         render :layout => false
       end
@@ -33,7 +35,7 @@ module Locomotive
 
       def set_toolbar_locale
         ::I18n.locale = current_locomotive_account.locale rescue Locomotive.config.default_locale
-        ::Mongoid::Fields::I18n.locale = session[:content_locale] || current_site.default_locale
+        ::Mongoid::Fields::I18n.locale = params[:locale] || current_site.default_locale
       end
 
       def set_locale

@@ -13,6 +13,7 @@ en:
       en: English
       de: German
       fr: French
+      pl: Polish
       pt-BR: "Brazilian Portuguese"
       it: Italian
       nl: Dutch
@@ -41,6 +42,7 @@ en:
         account: My account
         site: Site
         theme_assets: Theme files
+        translations: Translations
       form:
         change_file: change
         delete_file: delete
@@ -223,6 +225,18 @@ en:
         no_items: "There are no images for now."
         upload: "Upload theme images"
 
+    translations:
+      untranslated: "Untranslated locales: %{list}"
+      index:
+        title: Translations
+        new: new translation
+      new:
+        title: "New translation"
+        help: "Pages/snippets can share the same template for all the locales except for some labels which can be handled by the <b>translate</b> liquid tag."
+      edit:
+        title: "Editing %{key}"
+        help: "You can use that translation key with the following liquid code : <span class='code'>{{ '%{key}' | translate }}</span>."
+
     content_assets:
       picker:
         title: "Insert media"
@@ -271,8 +285,9 @@ en:
         has_many:
           new_entry: New entry
 
-    image_picker:
-      link: Insert an image into the code
+    code_editing:
+      image_picker: Insert an image into the code
+      copy_template: Copy template from main locale
 
     cross_domain_sessions:
       new:

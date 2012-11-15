@@ -1,8 +1,5 @@
 # encoding: utf-8
 
-# require 'locomotive'
-# require 'highline/import'
-
 namespace :locomotive do
 
   # desc 'Fetch the Locomotive default site template for the installation'
@@ -46,7 +43,7 @@ namespace :locomotive do
 
   namespace :upgrade do
 
-    desc "Fix issue with the editable file and i18n in the 2.0.0.rc"
+    desc 'Fix issue with the editable file and i18n in the 2.0.0.rc'
     task :fix_editable_files => :environment do
       Locomotive::Page.all.each do |page|
         page.editable_elements.each_with_index do |el, index|
@@ -55,6 +52,45 @@ namespace :locomotive do
           value = el.attributes['source']
 
           page.collection.update({ '_id' => page._id }, { '$unset' => { "editable_elements.#{index}.content" => 1 }, '$set' => { "editable_elements.#{index}.source" => { 'en' => value } } })
+        end
+      end
+    end
+
+  end
+
+  namespace :maintenance do
+
+    desc 'Unset the translation of the editable elements for a LOCALE'
+    task :unset_editable_elements_translation => :environment do
+      if ENV['LOCALE'].blank?
+        puts 'LOCALE is required'
+      else
+        locale  = ENV['LOCALE'].downcase
+        pages   = ENV['SITE_ID'].blank? ? Locomotive::Page.all : Locomotive::Site.find(ENV['SITE_ID']).pages
+
+        pages.each do |page|
+          modifications = {}
+
+          page.editable_elements.each_with_index do |el, index|
+            next if ['Locomotive::EditableFile', 'Locomotive::EditableControl'].include?(el._type)
+
+            if el.locales
+              modifications["editable_elements.#{index}.locales"] = el.locales - [locale]
+            end
+
+            if el.content_translations
+              modifications["editable_elements.#{index}.content"] = el.content_translations.delete_if { |_locale, _| _locale == locale }
+            end
+
+            if el.default_content_translations
+              modifications["editable_elements.#{index}.default_content"] = el.default_content_translations.delete_if { |_locale, _| _locale == locale }
+            end
+          end
+
+          # persist the modifications
+          unless modifications.empty?
+            page.collection.update({ '_id' => page._id }, { '$set' => modifications })
+          end
         end
       end
     end

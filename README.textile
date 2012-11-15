@@ -36,7 +36,7 @@ Here is a short list of main gems / technologies used in the application.
 
 h2. Installation
 
-See the "official website":http://www.locomotivecms.com
+See the "installation documentation on the official website":http://doc.locomotivecms.com/installation/requirements
 
 h2. Upgrading
 
@@ -79,6 +79,8 @@ h2. Credits
 "Rodrigo Alvarez":http://blog.codecaster.es/ for his plugin named Congo which gave us a good starting point and for his availability for (very late) tech discussions.
 
 "Emmanuel Grard":http://www.grardesign.com designed the awesome locomotive illustration in the locomotivecms.com landing page.
+
+"Font Awesome":http://fortawesome.github.com/Font-Awesome for providing the best icons. Make the whole back-office Retina-ready.
 
 h2. Contact
 

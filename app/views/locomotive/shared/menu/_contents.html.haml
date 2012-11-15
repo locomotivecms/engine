@@ -2,12 +2,16 @@
   .wrapper
     - if can? :manage, @page
       .header
-        %p= link_to t('locomotive.pages.index.new'), new_page_url
+        %p
+          = link_to new_page_url do
+            %i.icon-plus
+            = t('locomotive.pages.index.new')
     .inner
       %h2!= t('locomotive.pages.index.latest_entries')
       %ul
         - current_site.pages.unscoped.latest_updated.minimal_attributes.each do |page|
           %li
+            %i.icon-chevron-right
             = link_to truncate(page.title, :length => 25), edit_page_url(page)
             %span= time_ago_in_words(page.updated_at)
 
@@ -26,15 +30,22 @@
     = submenu_entry truncate(content_type.name, :length => 15), content_entries_url(content_type.slug), :i18n => false, :css => "#{'on' if is_content_type_selected(content_type)}" do
       .wrapper
         .header
-          %p= link_to t('locomotive.content_entries.index.new'), new_content_entry_url(content_type.slug)
+          %p
+            = link_to new_content_entry_url(content_type.slug) do
+              %i.icon-plus
+              = t('locomotive.content_entries.index.new')
 
           - if can? :manage, content_type
-            %p.edit= link_to t('locomotive.content_types.index.edit'), edit_content_type_url(content_type)
+            %p.edit
+              = link_to edit_content_type_url(content_type) do
+                %i.icon-pencil
+                = t('locomotive.content_types.index.edit')
 
         .inner
           %h2!= t('locomotive.content_entries.index.latest_entries')
           %ul
             - content_type.entries.latest_updated.each do |entry|
               %li
+                %i.icon-chevron-right
                 = link_to truncate(entry._label(content_type), :length => 20), edit_content_entry_url(content_type.slug, entry)
                 %span= time_ago_in_words(entry.updated_at)

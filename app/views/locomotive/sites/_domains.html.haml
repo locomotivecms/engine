@@ -19,4 +19,4 @@
   = text_field_tag 'site[domains][]', '{{name}}', :id => '', :class => 'path'
 
   %span.actions
-    = link_to 'x', '#', :class => 'remove'
+    = link_to_icon :trash, '#', :title => t('locomotive.buttons.delete'), :class => 'remove'

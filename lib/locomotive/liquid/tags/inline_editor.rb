@@ -11,6 +11,9 @@ module Liquid
             controller = context.registers[:controller]
             controller.instance_variable_set(:@plugins, plugins)
 
+            page = context.registers[:page].to_presenter.as_json_for_html_view
+            page['lang'] = context['locale']
+
             html = <<-HTML
               %meta{ :content => true, :name => 'inline-editor' }
 
@@ -20,7 +23,7 @@ module Liquid
               %script{ :type => 'text/javascript' }
                 :plain
                   Aloha.ready(function() \{
-                    window.parent.application_view.set_page(#{controller.view_context.j context.registers[:page].to_presenter.as_json_for_html_view.to_json.html_safe});
+                    window.parent.application_view.set_page(#{controller.view_context.j page.to_json.html_safe});
                   \});
             HTML
 

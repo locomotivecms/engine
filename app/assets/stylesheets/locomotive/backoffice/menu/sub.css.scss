@@ -34,13 +34,8 @@
       margin: 15px 7px 0 8px;
 
       &.hoverable > a span {
-        em {
-          display: inline-block;
-          background: transparent image-url("locomotive/menu/icons.png") no-repeat 0 -16px;
-          width: 12px;
-          height: 7px;
+        i {
           position: relative;
-          top: 0px;
           left: 6px;
         }
       }
@@ -92,15 +87,14 @@
             @include box-shadow(transparent 0 0 0 0);
           }
 
-          span em {
-            background-position: -12px -16px;
-          }
-
           & > em {
-            @include absolute-position(bottom, 0px, right, -11px);
-            width: 13px;
-            height: 13px;
-            background: transparent image-url("locomotive/menu/popup/bottom-right-corner.png") no-repeat 0 0;
+            @include absolute-position(bottom, 1px, right, -17px);
+            @include border-bottom-left-radius(16px);
+            @include box-shadow(-4px 4px 0 2px #fff);
+            clip: rect(0px, 16px, 16px, 0px);
+            width: 16px;
+            height: 16px;
+            background: transparent none no-repeat 0 0;
           }
         }
       } // > a
@@ -131,7 +125,7 @@
       line-height: 22px;
 
       margin: 0 0 0 0;
-      padding: 0px 10px 0 15px;
+      padding: 0px 10px 0 10px;
 
       @include border-radius(10px);
       @include box-shadow(rgba(255, 255, 255, 0.2) 0 1px 0 0 inset, rgba(255, 255, 255, 0.1) 0 1px 0 0);
@@ -141,20 +135,14 @@
       text-decoration: none;
       font-size: 11px;
 
-      em {
-        display: inline-block;
-        position: relative;
-        background: transparent image-url("locomotive/menu/icons.png") no-repeat 0 0px;
-        height: 11px;
-        width: 11px;
-        top: 2px;
-        left: -5px;
-      }
+      color: #fff;
+      font-size: 11px;
+      @include single-text-shadow(rgba(0, 0, 0, 1), 1px, 1px, 1px);
 
-      span {
-        color: #fff;
-        font-size: 11px;
-        @include single-text-shadow(rgba(0, 0, 0, 1), 1px, 1px, 1px);
+      i {
+        position: relative;
+        right: 2px;
+        font-size: 10px;
       }
 
       &:hover {
@@ -221,27 +209,31 @@
 
       a {
         font-size: 13px;
-        background: transparent image-url("locomotive/menu/popup/add.png") no-repeat left 4px;
-        padding-left: 12px;
+
+        i {
+          font-size: 10px;
+          text-decoration: none;
+        }
       }
 
       &.edit {
         padding-top: 0px;
-
-        a {
-          background: transparent image-url("locomotive/menu/popup/bullet.png") no-repeat left 5px;
-        }
       }
     }
 
     ul {
-      list-style-image: image-url("locomotive/menu/popup/bullet.png");
-      margin: 0px 0px 0 15px;
+      list-style: none;
+      margin: 0px 0px 0px 0px;
 
       li {
         position: relative;
         height: 24px;
         line-height: 24px;
+
+        i {
+          font-size: 10px;
+          color: #1f82bc;
+        }
 
         a { font-size: 11px; }
 

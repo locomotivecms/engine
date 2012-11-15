@@ -54,34 +54,43 @@
     }
 
     .ui-datepicker-prev, .ui-datepicker-next {
-      top: 4px;
+      top: -3px;
 
-      width: 7px;
-      height: 13px;
+      width: 14px;
+      height: 14px;
+
+      color: transparent;
+      outline: none;
 
       span {
-        background-position: 0 0;
+        background: none;
+        text-indent: 0px;
         cursor: pointer;
+        font-size: 14px;
+        font-weight: normal;
       }
 
       &.ui-state-hover {
         border: 0px;
         @include border-radius(0px);
-        top: 5px;
+        top: -2px;
+        background: none;
+        font-size: 14px;
+        font-weight: normal;
       }
     }
 
     .ui-datepicker-prev {
-      left: 10px;
+      left: 8px;
       span {
-        background-image: image-url("locomotive/datepicker/ui-widget-left-icon.png");
+        &:before { font-family: FontAwesome; content: "\f0d9"; color: #646F75; }
       }
     }
 
     .ui-datepicker-next {
-      right: 10px;
+      right: -1px;
       span {
-        background-image: image-url("locomotive/datepicker/ui-widget-right-icon.png");
+        &:before { font-family: FontAwesome; content: "\f0da"; color: #646F75; }
       }
     }
   }

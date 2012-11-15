@@ -5,7 +5,6 @@
     - entries.each do |entry|
       %li.item{ :id => "entry-#{entry._id}" }
         %span.handle
-          = image_tag 'locomotive/form/icons/drag.png'
 
         %strong= link_to entry_label(content_type, entry), edit_content_entry_url(content_type.slug, entry)
 
@@ -16,4 +15,4 @@
             != t('locomotive.content_entries.index.updated_at')
           = l entry.updated_at, :format => :short rescue 'n/a'
 
-          = link_to 'x', content_entry_url(content_type.slug, entry), :class => 'remove', :data => { :confirm => t('locomotive.messages.confirm') }, :method => :delete
+          = link_to_icon :trash, content_entry_url(content_type.slug, entry), :title => t('locomotive.buttons.delete'), :class => 'remove', :data => { :confirm => t('locomotive.messages.confirm') }, :method => :delete
