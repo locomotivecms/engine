@@ -88,10 +88,13 @@
           }
 
           & > em {
-            @include absolute-position(bottom, 0px, right, -11px);
-            width: 13px;
-            height: 13px;
-            background: transparent image-url("locomotive/menu/popup/bottom-right-corner.png") no-repeat 0 0;
+            @include absolute-position(bottom, 1px, right, -17px);
+            @include border-bottom-left-radius(16px);
+            @include box-shadow(-4px 4px 0 2px #fff);
+            clip: rect(0px, 16px, 16px, 0px);
+            width: 16px;
+            height: 16px;
+            background: transparent none no-repeat 0 0;
           }
         }
       } // > a
