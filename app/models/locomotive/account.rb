@@ -95,6 +95,10 @@ module Locomotive
       Locomotive::DeviseMailer
     end
 
+    def to_presenter(options = {})
+      Locomotive::AccountPresenter.new(self, options)
+    end
+
     def as_json(options = {})
       Locomotive::AccountPresenter.new(self, options).as_json
     end

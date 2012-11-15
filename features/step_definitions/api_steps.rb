@@ -9,11 +9,13 @@ def do_api_request(type, url, param_string_or_hash = nil)
       if param_string_or_hash.is_a? Hash
         params = param_string_or_hash
       else
-        params = JSON.parse(param_string_or_hash)
+        # Do memory substitution from json_spec
+        params = JSON.parse(JsonSpec.remember(param_string_or_hash))
       end
     else
       params = {}
     end
+    transform_filenames_to_fixtured_files(params)
     @json_response = do_request(type, api_base_url, url,
                                params.merge({ 'CONTENT_TYPE' => 'application/json' }))
   rescue CanCan::AccessDenied, Mongoid::Errors::DocumentNotFound
@@ -27,6 +29,54 @@ end
 
 def last_status
   @json_response.try(:status) || page.status
+end
+
+# Deal with file fields
+
+def file_fields
+  @file_fields ||= []
+end
+
+def add_file_field(json_path)
+  file_fields << json_path
+end
+
+def get_field_at_path(hash, path)
+  val = hash
+  path.split('/').each do |key|
+    if val.is_a?(Array)
+      val = val[key.to_i]
+    elsif val.has_key?(key)
+      val = val[key]
+    else
+      return nil
+    end
+  end
+  val
+end
+
+def set_field_at_path(hash, path, value)
+  obj = hash
+  keys = path.split('/')
+  last_key = keys.slice!(-1)
+  keys.each do |key|
+    if obj.is_a?(Array)
+      obj = obj[key.to_i]
+    else
+      obj = obj[key]
+    end
+  end
+  obj[last_key] = value
+end
+
+def transform_filenames_to_fixtured_files(params)
+  file_fields.each do |path|
+    filename = get_field_at_path(params, path)
+    return unless filename
+
+    file = Rack::Test::UploadedFile.new(Rails.root.join('..', 'fixtures', filename))
+    set_field_at_path(params, path, file)
+  end
 end
 
 Given /^I have an? "([^"]*)" API token$/ do |role|
@@ -52,6 +102,10 @@ end
 
 Given /^I do not have an API token$/ do
   @auth_token = nil
+end
+
+Given /^the JSON request at "([^"]*)" is a file$/ do |path|
+  add_file_field(path)
 end
 
 When /^I visit "([^"]*)"$/ do |path|
@@ -101,6 +155,22 @@ When /^I do a multipart API (\w+) (?:request )?to ([\w.\/]+) with base key "([^"
   do_api_request(request_type, url, { base_key => params })
 end
 
-Then /^I print the json response$/ do
-  puts %{JSON: "#{last_json}" / #{last_json.inspect}}
+Then /^the JSON at "([^"]*)" should match \/(.+)\/$/ do |path, regex|
+  parse_json(last_json, path).should =~ /#{regex}/
+end
+
+Then /^the JSON at "([^"]*)" should be the time "(.+)"$/ do |path, time_str|
+  format = '%Y-%m-%dT%H:%M:%S%Z'
+  json_time_str = parse_json(last_json, path)
+  json_time = Time.strptime(json_time_str, format)
+  time = Time.strptime(time_str, format)
+  json_time.should == time
+end
+
+Then /^I print the JSON response$/ do
+  puts %{JSON (status=#{@json_response.status}): "#{last_json}" / #{last_json.inspect}}
+end
+
+Then /^I print the editable elements for page "([^"]*)"$/ do |id|
+  puts @site.pages.find(id).editable_elements.inspect
 end

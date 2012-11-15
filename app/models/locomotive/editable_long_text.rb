@@ -3,8 +3,8 @@ module Locomotive
 
     ## methods ##
 
-    def as_json(options = {})
-      Locomotive::EditableLongTextPresenter.new(self).as_json
+    def to_presenter
+      Locomotive::EditableLongTextPresenter.new(self)
     end
 
   end

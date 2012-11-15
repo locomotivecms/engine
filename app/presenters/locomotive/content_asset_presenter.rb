@@ -3,6 +3,8 @@ module Locomotive
 
     delegate :content_type, :width, :height, :vignette_url, :to => :source
 
+    delegate :content_type=, :width=, :height=, :source=, :to => :source
+
     def full_filename
       self.source.source_filename
     end
@@ -30,6 +32,10 @@ module Locomotive
 
     def included_methods
       super + %w(full_filename filename short_name extname content_type content_type_text url vignette_url width height)
+    end
+
+    def included_setters
+      super + %w(content_type source)
     end
 
   end

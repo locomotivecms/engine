@@ -37,8 +37,12 @@ module Locomotive
       { :url => self.source.url }.merge(self.attributes).stringify_keys
     end
 
+    def to_presenter
+      Locomotive::ContentAssetPresenter.new(self)
+    end
+
     def as_json(options = {})
-      Locomotive::ContentAssetPresenter.new(self).as_json
+      self.to_presenter.as_json
     end
 
   end

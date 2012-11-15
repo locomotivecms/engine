@@ -80,6 +80,10 @@ Feature: Sites
     When I do an API GET request to sites.json
     Then the JSON response should be an array
     And the JSON response should have 3 entries
+    And the JSON response at "0/memberships" should not have 0 entries
+    And the JSON response at "1/memberships" should not have 0 entries
+    And the JSON response at "2/memberships" should not have 0 entries
+
 
   Scenario: Creating new site as a Designer
     Given I have a "designer" API token

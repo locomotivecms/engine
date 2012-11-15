@@ -71,7 +71,7 @@ Feature: Pages
       "page": {
         "title": "New Page",
         "slug": "new-page",
-        "parent_id": "4f832c2cb0d86d3f42fffffe"
+        "parent_fullpath": "index"
       }
     }
     """
@@ -90,7 +90,7 @@ Feature: Pages
       "page": {
         "title": "New Page",
         "slug": "new-page",
-        "parent_id": "4f832c2cb0d86d3f42fffffe"
+        "parent_fullpath": "index"
       }
     }
     """
@@ -106,7 +106,7 @@ Feature: Pages
       "page": {
         "title": "New Page",
         "slug": "new-page",
-        "parent_id": "4f832c2cb0d86d3f42fffffe"
+        "parent_fullpath": "index"
       }
     }
     """

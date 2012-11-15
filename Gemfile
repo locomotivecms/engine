@@ -19,6 +19,7 @@ group :development do
   gem 'rspec-cells'
 
   gem 'unicorn' # Using unicorn_rails instead of webrick (default server)
+
 end
 
 group :assets do

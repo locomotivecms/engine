@@ -20,14 +20,20 @@ module Locomotive
       end
 
       def create
+        @site = Locomotive::Site.new
         @site.memberships.build :account => self.current_locomotive_account, :role => 'admin'
         @site.save
+        @site_presenter = @site.to_presenter
+        @site_presenter.update_attributes(params[:site])
         respond_with(@site)
       end
 
       def update
-        @site.update_attributes(params[:site])
-        respond_with(@site)
+        @site = Locomotive::Site.find(params[:id])
+        authorize! :update, @site
+        @site_presenter = @site.to_presenter
+        @site_presenter.update_attributes(params[:site])
+        respond_with @site
       end
 
       def destroy
