@@ -1,0 +1,106 @@
+pl:
+  flash:
+    locomotive:
+      pages:
+        create:
+          notice: "Strona została pomyślnie utworzona."
+          alert: "Strona nie została utworzona."
+        update:
+          notice: "Strona została pomyślnie zaktualizowana."
+          alert: "Strona nie została zaktualizowana."
+        sort:
+          notice: "Strony zostały pomyślnie posortowane."
+        destroy:
+          notice: "Strona została pomyślnie usunięta."
+
+      content_entries:
+        create:
+          notice: "Treść została pomyślnie utworzona."
+          alert: "Treść nie została utworzona."
+        update:
+          notice: "Treść została pomyślnie zaktualizowana."
+          alert: "Treść nie została zaktualizowana."
+        sort:
+          notice: "Pozycje zostały pomyślnie posortowane."
+        destroy:
+          notice: "Treść została pomyślnie usunięta."
+
+      content_types:
+        create:
+          notice: "Model został pomyślnie utworzony."
+          alert: "Model nie został utworzony."
+        update:
+          notice: "Model został pomyślnie zaktualizowany."
+          alert: "Model nie został zaktualizowany."
+        destroy:
+          notice: "Model został pomyślnie usunięty."
+
+      current_site:
+        update:
+          notice: "Bieżąca witryna została pomyślnie zaktualizowana."
+          alert: "Bieżąca witryna nie została zaktualizowana."
+
+      snippets:
+        create:
+          notice: "Wstawka została pomyślnie utworzona."
+          alert: "Wstawka nie została utworzona."
+        update:
+          notice: "Wstawka została pomyślnie zaktualizowana."
+          alert: "Wstawka nie została zaktualizowana."
+        destroy:
+          notice: "Wstawka została pomyślnie usunięta."
+
+      accounts:
+        create:
+          notice: "Konto zostało pomyślnie utworzone."
+          alert: "Konto nie zostało utworzone."
+
+      my_account:
+        update:
+          notice: "Konto zostało pomyślnie zaktualizowane."
+          alert: "Konto nie zostało zaktualizowane."
+
+      sites:
+        create:
+          notice: "Witryna została pomyślnie utworzona."
+          alert: "Witryna nie została utworzona."
+        destroy:
+          notice: "Witryna została pomyślnie usunięta."
+
+      memberships:
+        create:
+          notice: "Członkostwo zostało pomyślnie utworzone."
+          alert: "Członkostwo nie zostało utworzone."
+          already_created: "Konto już jest przypisane do bieżącej strony."
+
+      assets:
+        create:
+          notice: "Zasób został pomyślnie utworzony."
+          alert: "Zasób nie został utworzony."
+        update:
+          notice: "Zasób został pomyślnie zaktualizowany."
+          alert: "Zasób nie został zaktualizowany."
+
+      theme_assets:
+        create:
+          notice: "Plik został pomyślnie utworzony."
+          alert: "Plik nie został utworzony."
+        update:
+          notice: "Plik został pomyślnie zaktualizowany."
+          alert: "Plik nie został zaktualizowany."
+        destroy:
+          notice: "Plik został pomyślnie usunięty."
+
+      custom_fields:
+        update:
+          alert: "Pole nie zaktualizowane"
+
+      cross_domain_sessions:
+        create:
+          alert: "Musisz się zalogować"
+
+      import:
+        create:
+          done: "Twoja witryna została pomyślnie zaktualizowana."
+          notice: "Twoja witryna jest aktualizowana."
+          alert: "Nie ukończono importowania."
