@@ -106,11 +106,12 @@ module Locomotive
     # Display the image of the flag representing the locale.
     #
     # @param [ String / Symbol ] locale The locale (fr, en, ...etc)
+    # @param [ String ] size The width x height (by default, 24x24)
     #
     # @return [ String ] The HTML image tag with the path to the matching flag.
     #
-    def flag_tag(locale)
-      image_tag("locomotive/icons/flags/#{locale}.png", :class => 'flag')
+    def flag_tag(locale, size = '24x24')
+      image_tag("locomotive/icons/flags/#{locale}.png", :class => 'flag', :size => size)
     end
 
     def nocoffee_tag
