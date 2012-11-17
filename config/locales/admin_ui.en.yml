@@ -144,6 +144,9 @@ en:
           day: 1 day
           week: 1 week
           month: 1 month
+        redirect_type:
+          permanent: "Permanent (301)"
+          temporary: "Temporary (302)"
 
     snippets:
       index:

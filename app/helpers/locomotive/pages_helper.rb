@@ -65,6 +65,13 @@ module Locomotive
       ]
     end
 
+    def options_for_page_redirect_type
+      [
+        [t('.redirect_type.permanent'), 301],
+        [t('.redirect_type.temporary'), 302]
+      ]
+    end
+
     def page_response_type_to_string(page)
       options_for_page_response_type.detect { |t| t.last == page.response_type }.try(:first) || '&mdash;'
     end

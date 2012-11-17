@@ -139,6 +139,10 @@ fr:
           day: 1 jour
           week: 1 semaine
           month: 1 mois
+        redirect_type:
+          permanent: "Permanent (301)"
+          temporary: "Temporaire (302)"
+
 
     snippets:
       index:

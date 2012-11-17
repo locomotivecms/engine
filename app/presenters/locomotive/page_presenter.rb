@@ -1,9 +1,9 @@
 module Locomotive
   class PagePresenter < BasePresenter
 
-    delegate :title, :slug, :fullpath, :seo_title, :meta_keywords, :meta_description, :handle, :position, :raw_template, :published, :listed, :templatized, :templatized_from_parent, :target_klass_slug, :redirect, :redirect_url, :template_changed, :cache_strategy, :response_type, :depth, :position, :translated_in, :to => :source
+    delegate :title, :slug, :fullpath, :seo_title, :meta_keywords, :meta_description, :handle, :position, :raw_template, :published, :listed, :templatized, :templatized_from_parent, :target_klass_slug, :redirect, :redirect_url, :redirect_type, :template_changed, :cache_strategy, :response_type, :depth, :position, :translated_in, :to => :source
 
-    delegate :title=, :slug=, :fullpath=, :seo_title=, :meta_keywords=, :meta_description=, :handle=, :raw_template=, :published=, :listed=, :templatized=, :templatized_from_parent=, :target_klass_name=, :redirect=, :redirect_url=, :cache_strategy=, :response_type=, :position=, :to => :source
+    delegate :title=, :slug=, :fullpath=, :seo_title=, :meta_keywords=, :meta_description=, :handle=, :raw_template=, :published=, :listed=, :templatized=, :templatized_from_parent=, :target_klass_name=, :redirect=, :redirect_url=, :response_type=, :cache_strategy=, :response_type=, :position=, :to => :source
 
     attr_writer :editable_elements
 
@@ -50,11 +50,11 @@ module Locomotive
     end
 
     def included_methods
-      super + %w(title slug fullpath handle seo_title meta_keywords meta_description position raw_template published listed templatized templatized_from_parent target_klass_slug redirect redirect_url cache_strategy response_type depth position template_changed editable_elements localized_fullpaths translated_in)
+      super + %w(title slug fullpath handle seo_title meta_keywords meta_description position raw_template published listed templatized templatized_from_parent target_klass_slug redirect redirect_url redirect_type cache_strategy response_type depth position template_changed editable_elements localized_fullpaths translated_in)
     end
 
     def included_setters
-      super + %w(title slug fullpath seo_title meta_keywords meta_description handle raw_template published listed templatized templatized_from_parent target_klass_name redirect redirect_url cache_strategy response_type position editable_elements parent_fullpath target_entry_name)
+      super + %w(title slug fullpath seo_title meta_keywords meta_description handle raw_template published listed templatized templatized_from_parent target_klass_name redirect redirect_url redirect_type cache_strategy response_type position editable_elements parent_fullpath target_entry_name)
     end
 
     def localized_fullpaths
