@@ -33,6 +33,7 @@ module Locomotive
 
     ## callbacks ##
     before_validation   :normalize_slug
+    before_validation   :sanitize_public_submission_accounts
     after_validation    :bubble_fields_errors_up
     before_update       :update_label_field_name_in_entries
 
@@ -158,6 +159,13 @@ module Locomotive
     def normalize_slug
       self.slug = self.name.clone if self.slug.blank? && self.name.present?
       self.slug.permalink! if self.slug.present?
+    end
+
+    # We do not want to have a blank value in the list of accounts.
+    def sanitize_public_submission_accounts
+      if self.public_submission_accounts
+        self.public_submission_accounts.reject! { |id| id.blank? }
+      end
     end
 
     def bubble_fields_errors_up

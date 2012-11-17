@@ -6,7 +6,7 @@ module Locomotive
     end
 
     def options_for_account
-      current_site.accounts.collect { |a| ["#{a.name} <#{a.email}>", a.id] }
+      current_site.accounts.collect { |a| ["#{a.name} <#{a.email}>", a.id.to_s] }
     end
 
   end

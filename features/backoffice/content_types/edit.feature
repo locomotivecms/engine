@@ -17,4 +17,4 @@ Scenario: I remove all notified accounts
   Given I enable the public submission of the "Projects" model
   When I go to the "Projects" model edition page
   And I unselect the notified accounts
-  Then after the AJAX finishes, there should not be any notified accounts on the "Projects" model
+  Then there should not be any notified accounts on the "Projects" model

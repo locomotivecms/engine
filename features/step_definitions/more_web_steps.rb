@@ -51,7 +51,6 @@ Given /^I disable the CSRF protection for public submission requests$/ do
 end
 
 Then /^it returns a (\d+) error page$/ do |code|
-  puts page.status_code
   page.status_code.should == code.to_i
 end
 
@@ -61,6 +60,8 @@ def wait_for_ajax(&block)
     begin
       block.call
       break
+    rescue RSpec::Expectations::ExpectationNotMetError => e
+      raise e
     rescue
       # Try again
     end
