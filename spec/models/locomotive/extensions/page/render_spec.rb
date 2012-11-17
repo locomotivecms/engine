@@ -47,7 +47,7 @@ describe Locomotive::Extensions::Page::Render do
       render(@contact).should == 'Hello world, Contact header, Contact page'
     end
 
-    it 'renders the contact page' do
+    it 'renders the about page' do
       render(@about).should == 'Hello world, Inner header, About page'
     end
 
