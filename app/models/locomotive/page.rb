@@ -65,6 +65,10 @@ module Locomotive
       self.slug == '404' && self.depth.to_i == 0
     end
 
+    def unpublished?
+      !self.published?
+    end
+
     def index_or_not_found?
       self.index? || self.not_found?
     end

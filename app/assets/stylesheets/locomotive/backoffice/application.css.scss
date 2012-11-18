@@ -193,8 +193,6 @@ ul.list {
         @include single-text-shadow(#fff, 1px, 1px, 1px);
       }
 
-      &.hidden a { font-style: italic; font-weight: normal; }
-
       span.untranslated {
         @include label;
         background-color: #F89406;
@@ -242,6 +240,16 @@ ul.list {
         }
       }
     }
+
+    &.unpublished {
+      > .inner {
+        a {
+          font-style: italic;
+          font-weight: normal;
+        }
+      }
+    }
+
   } // #pages-list li
 
   ul {

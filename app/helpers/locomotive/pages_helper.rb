@@ -2,7 +2,7 @@ module Locomotive
   module PagesHelper
 
     def css_for_page(page)
-      %w(index not_found templatized redirect).inject([]) do |memo, state|
+      %w(index not_found templatized redirect unpublished).inject([]) do |memo, state|
         memo << state.dasherize if page.send(:"#{state}?")
         memo
       end.join(' ')
