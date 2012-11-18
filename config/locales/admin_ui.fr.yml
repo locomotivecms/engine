@@ -143,7 +143,6 @@ fr:
           permanent: "Permanent (301)"
           temporary: "Temporaire (302)"
 
-
     snippets:
       index:
         title: Liste des snippets

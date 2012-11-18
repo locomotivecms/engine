@@ -1,6 +1,6 @@
 module Locomotive
   module Public
-    class RobotsController < BaseController
+    class RobotsController < Public::BaseController
 
       include Locomotive::Render
 

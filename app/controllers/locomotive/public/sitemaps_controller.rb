@@ -1,6 +1,6 @@
 module Locomotive
   module Public
-    class SitemapsController < BaseController
+    class SitemapsController < Public::BaseController
 
       respond_to :xml
 

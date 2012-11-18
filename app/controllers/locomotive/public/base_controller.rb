@@ -14,7 +14,7 @@ module Locomotive
       protected
 
       def set_locale
-        logger.info "[public/set_locale] TODO"
+        logger.info "[public/set_locale] TO BE OVERRIDEN"
       end
 
     end

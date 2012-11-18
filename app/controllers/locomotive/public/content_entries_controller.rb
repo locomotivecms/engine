@@ -1,12 +1,10 @@
 module Locomotive
   module Public
-    class ContentEntriesController < BaseController
+    class ContentEntriesController < Public::BaseController
 
       before_filter :set_content_type
 
       before_filter :sanitize_entry_params, :only => :create
-
-      skip_load_and_authorize_resource
 
       self.responder = Locomotive::ActionController::PublicResponder # custom responder
 
