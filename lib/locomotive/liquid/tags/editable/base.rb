@@ -68,11 +68,16 @@ module Locomotive
 
           def render_default_content(context)
             begin
-              render_all(@nodelist, context).join(' ')
-            rescue
-              raise ::Liquid::SyntaxError.new("Error in the #{self.current_block_name || 'default'} block for the #{@slug} editable_element - No liquid tags are allowed inside.")
+              if @nodelist.all? { |n| n.is_a? String }
+                context ||= ::Liquid::Context.new
+
+                render_all(@nodelist, context)
+              else
+                raise ::Liquid::SyntaxError.new("Error in the #{self.current_block_name || 'default'} block for the #{@slug} editable_element - No liquid tags are allowed inside.")
+              end
             end
           end
+
         end
 
       end

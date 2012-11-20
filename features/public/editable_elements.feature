@@ -126,19 +126,6 @@ Scenario: Insert editable files
     My application file is /default.pdf
     """
 
-Scenario: Render liquid variable used as default editable file name
-  Given a page named "hello-world" with the template:
-    """
-    {% assign default_file_name = '/different-default.pdf' %}
-    My application file is {% editable_file 'a_file', hint: 'please enter a new file' %}{{ default_file_name }}{% endeditable_file %}
-    """
-  When I view the rendered page at "/hello-world"
-  Then the rendered output should look like:
-    """
-
-    My application file is /different-default.pdf
-    """
-
 Scenario: Simple select element
   Given a page named "hello-world" with the template:
     """
