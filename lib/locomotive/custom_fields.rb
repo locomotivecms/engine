@@ -25,6 +25,10 @@ module CustomFields
 
       class FileUploader < ::CarrierWave::Uploader::Base
 
+        include ::CarrierWave::MimeTypes
+
+        process :set_content_type
+
         # Set correct paths
         def store_dir
           "sites/#{model.site_id}/content_#{model.class.model_name.demodulize.underscore}/#{model.id}/files"

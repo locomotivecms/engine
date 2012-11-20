@@ -7,7 +7,10 @@ module Locomotive
 
         included do
 
+          include ::CarrierWave::MimeTypes
+
           process :set_content_type
+          process :set_content_type_of_model
           process :set_size
           process :set_width_and_height
 
@@ -28,10 +31,13 @@ module Locomotive
 
         end
 
-        def set_content_type(*args)
-          value = :other
+        def set_content_type_of_model(*args)
+          value         = :other
+          content_type  = file.content_type
 
-          content_type = file.content_type == 'application/octet-stream' ? File.mime_type?(original_filename) : file.content_type
+          if content_type.blank? || content_type == 'application/octet-stream'
+            content_type = File.mime_type?(original_filename)
+          end
 
           self.class.content_types.each_pair do |type, rules|
             rules.each do |rule|

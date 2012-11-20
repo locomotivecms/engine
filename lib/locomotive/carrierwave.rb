@@ -1,3 +1,5 @@
+require 'carrierwave/processing/mime_types'
+
 require 'locomotive/carrierwave/base'
 require 'locomotive/carrierwave/asset'
 require 'locomotive/carrierwave/patches'
