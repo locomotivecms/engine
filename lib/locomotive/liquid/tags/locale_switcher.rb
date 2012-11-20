@@ -48,7 +48,9 @@ module Locomotive
                 fullpath.gsub!('content_type_template', context['entry']._permalink)
               end
 
-              %(<a href="/#{fullpath}" class="#{locale} #{'current' if locale == context['current_locale']}">#{link_label(locale)}</a>)
+              css = link_class(locale, context['locale'])
+
+              %(<a href="/#{fullpath}" class="#{css}">#{link_label(locale)}</a>)
             end
           end.join(@options[:sep])
 
@@ -57,11 +59,17 @@ module Locomotive
 
         private
 
+        def link_class(locale, current_locale)
+          css = [locale]
+          css << 'current' if locale == current_locale
+          css.join(' ')
+        end
+
         def link_label(locale)
           case @options[:label]
-          when :iso     then locale
-          when :locale  then I18n.t("locomotive.locales.#{locale}", :locale => locale)
-          when :title   then @page.title # FIXME: this returns nil if the page has not been translated in the locale
+          when 'iso'     then locale
+          when 'locale'  then I18n.t("locomotive.locales.#{locale}", :locale => locale)
+          when 'title'   then @page.title # FIXME: this returns nil if the page has not been translated in the locale
           else
             locale
           end
