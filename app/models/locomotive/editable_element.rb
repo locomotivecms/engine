@@ -108,7 +108,7 @@ module Locomotive
         "template_dependencies.#{locale}" => { '$in' => [self.page._id] },
         'editable_elements.fixed'         => true,
         'editable_elements.block'         => self.block,
-        'editable_elements.slug'          => self.slug
+        'editable_elements.slug'          => self.slug,
       }
     end
 
