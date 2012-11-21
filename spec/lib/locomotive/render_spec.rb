@@ -137,6 +137,13 @@ describe 'Locomotive rendering system' do
         end
       end
 
+      it 'redirects to the redirect_url in the editing version if specified' do
+        @page.redirect_url = '/another_page'
+        @controller.stubs(:editing_page?).returns(true)
+        @controller.expects(:redirect_to).with('/another_page/_edit', { :status => 301 }).returns(true)
+        @controller.send(:render_locomotive_page)
+      end
+
     end
 
     context 'templatized page' do

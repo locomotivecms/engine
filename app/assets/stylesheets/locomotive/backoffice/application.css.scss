@@ -193,6 +193,13 @@ ul.list {
         @include single-text-shadow(#fff, 1px, 1px, 1px);
       }
 
+      & > i {
+        vertical-align: middle;
+        font-size: 18px;
+        color: #b3b5c7;
+        @include single-text-shadow(#fff, 1px, 1px, 1px);
+      }
+
       span.untranslated {
         @include label;
         background-color: #F89406;
@@ -263,14 +270,6 @@ ul.list {
 
     &.folder {
 
-      li {
-        & > .inner > i {
-          vertical-align: middle;
-          font-size: 18px;
-          color: #b3b5c7;
-          @include single-text-shadow(#fff, 1px, 1px, 1px);
-        }
-      } // ul.folder li
     } // ul.folder
   } // ul
 } // #pages-list

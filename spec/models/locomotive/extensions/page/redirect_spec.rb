@@ -17,6 +17,12 @@ describe Locomotive::Extensions::Page::Redirect do
       page.errors[:redirect_url].should == ["can't be blank"]
     end
 
+    it 'requires the presence of the redirect type' do
+      page.redirect_type = ''
+      page.valid?
+      page.errors[:redirect_type].should == ["can't be blank"]
+    end
+
   end
 
 end

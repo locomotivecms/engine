@@ -15,7 +15,7 @@ module Locomotive
         @page = locomotive_page
 
         if @page.present? && @page.redirect?
-          redirect_to(@page.redirect_url, :status => @page.redirect_type) and return
+          self.redirect_to_locomotive_page and return
         end
 
         render_no_page_error and return if @page.nil?
@@ -24,6 +24,18 @@ module Locomotive
 
         self.prepare_and_set_response(output)
       end
+    end
+
+    # Redirect to the url given by the redirect_url field of the
+    # Locomotive page. If we are in the editing mode, the "_edit" prefix
+    # will be added as well.
+    #
+    def redirect_to_locomotive_page
+      redirect_url = @page.redirect_url
+
+      redirect_url = "#{redirect_url}/_edit" if self.editing_page?
+
+      redirect_to(redirect_url, :status => @page.redirect_type)
     end
 
     # Render the page which tells that no page exists.
