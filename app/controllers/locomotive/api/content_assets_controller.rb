@@ -16,15 +16,15 @@ module Locomotive
 
       def create
         @content_asset = current_site.content_assets.new
-        @content_asset_presenter = @content_asset.to_presenter
-        @content_asset_presenter.update_attributes(params[:content_asset])
+        @content_asset.from_presenter(params[:content_asset])
+        @content_asset.save
         respond_with @content_asset, :location => main_app.locomotive_api_content_assets_url
       end
 
       def update
         @content_asset = current_site.content_assets.find(params[:id])
-        @content_asset_presenter = @content_asset.to_presenter
-        @content_asset_presenter.update_attributes(params[:content_asset])
+        @content_asset.from_presenter(params[:content_asset])
+        @content_asset.save
         respond_with @content_asset, :location => main_app.locomotive_api_content_assets_url
       end
 

@@ -1,25 +1,21 @@
 module Locomotive
   class SnippetPresenter < BasePresenter
 
-    delegate :name, :slug, :template, :to => :source
+    ## properties ##
 
-    delegate :name=, :slug=, :template=, :to => :source
+    properties  :name, :slug, :template
+    property    :updated_at, :only_getter => true
+
+    ## other getters / setters ##
 
     def updated_at
       I18n.l(self.source.updated_at, :format => :short)
     end
 
-    def included_methods
-      super + %w(name slug template updated_at)
-    end
-
-    def included_setters
-      super + %w(name slug template)
-    end
+    ## custom as_json ##
 
     def as_json_for_html_view
-      methods = included_methods.clone - %w(template)
-      self.as_json(methods)
+      self.as_json(self.getters - %w(template))
     end
 
   end

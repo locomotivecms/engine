@@ -1,23 +1,18 @@
 module Locomotive
   class EditableControlPresenter < EditableElementPresenter
 
-    delegate :content, :to => :source
+    ## properties ##
 
-    delegate :content=, :to => :source
+    property :content
+    property :options, :only_getter => true
+
+    ## other getters / setters ##
 
     def options
       self.source.options.map do |option|
         option['selected'] = option['value'] == self.source.content
         option
       end
-    end
-
-    def included_methods
-      super + %w(content options)
-    end
-
-    def included_setters
-      super + %w(content)
     end
 
   end

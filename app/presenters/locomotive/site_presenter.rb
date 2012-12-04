@@ -1,9 +1,16 @@
 module Locomotive
   class SitePresenter < BasePresenter
 
-    delegate :name, :locales, :subdomain, :domains, :robots_txt, :seo_title, :meta_keywords, :meta_description, :domains_without_subdomain, :to => :source
+    ## properties ##
 
-    delegate :name=, :locales=, :subdomain=, :domains=, :robots_txt=, :seo_title=, :meta_keywords=, :meta_description=, :domains_without_subdomain=, :to => :source
+    properties  :name, :locales, :subdomain, :domains, :robots_txt
+    properties  :seo_title, :meta_keywords, :meta_description, :domains_without_subdomain
+
+    with_options :only_getter => true do |presenter|
+      presenter.properties :domain_name, :memberships
+    end
+
+    ## other getters / setters ##
 
     def domain_name
       Locomotive.config.domain
@@ -13,17 +20,10 @@ module Locomotive
       self.source.memberships.map { |membership| membership.as_json(self.options) }
     end
 
-    def included_methods
-      super + %w(name locales domain_name subdomain domains robots_txt seo_title meta_keywords meta_description domains_without_subdomain memberships)
-    end
-
-    def included_setters
-      super + %w(name locales subdomain domains robots_txt seo_title meta_keywords meta_description domains_without_subdomain)
-    end
+    ## custom as_json ##
 
     def as_json_for_html_view
-      methods = included_methods.clone - %w(memberships)
-      self.as_json(methods)
+      self.as_json(self.getters - %w(memberships))
     end
 
   end

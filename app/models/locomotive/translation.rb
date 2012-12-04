@@ -18,14 +18,6 @@ class Locomotive::Translation
 
 	## methods ##
 
-	def to_presenter
-		Locomotive::TranslationPresenter.new(self)
-	end
-
-	def as_json(options = {})
-		self.to_presenter.as_json
-	end
-
 	protected
 
 	# Make sure the translation key is underscored

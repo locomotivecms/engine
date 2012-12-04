@@ -89,18 +89,6 @@ module Locomotive
       self.title_translations.keys
     end
 
-    def to_liquid
-      Locomotive::Liquid::Drops::Page.new(self)
-    end
-
-    def to_presenter
-      Locomotive::PagePresenter.new(self)
-    end
-
-    def as_json(options = {})
-      self.to_presenter.as_json
-    end
-
     protected
 
     def do_not_remove_index_and_404_pages

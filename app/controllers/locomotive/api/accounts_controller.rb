@@ -19,10 +19,9 @@ module Locomotive
       end
 
       def create
-        @account = Locomotive::Account.new
+        @account = Locomotive::Account.from_presenter(params[:account])
         authorize! :create, @account
-        @account_presenter = @account.to_presenter
-        @account_presenter.update_attributes(params[:account])
+        @account.save
         respond_with(@account)
       end
 
@@ -31,16 +30,6 @@ module Locomotive
         authorize! :destroy, @account
         @account.destroy
         respond_with(@account)
-      end
-
-      protected
-
-      def load_account
-        @account ||= load_accounts.find(params[:id])
-      end
-
-      def load_accounts
-        @accounts ||= current_site.accounts
       end
 
     end

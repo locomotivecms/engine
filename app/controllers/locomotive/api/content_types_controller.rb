@@ -16,15 +16,15 @@ module Locomotive
 
       def create
         @content_type = current_site.content_types.new
-        @content_type_presenter = @content_type.to_presenter
-        @content_type_presenter.update_attributes(params[:content_type])
+        @content_type.from_presenter(params[:content_type])
+        @content_type.save
         respond_with @content_type, :location => main_app.locomotive_api_content_types_url
       end
 
       def update
         @content_type = current_site.content_types.find(params[:id])
-        @content_type_presenter = @content_type.to_presenter
-        @content_type_presenter.update_attributes(params[:content_type])
+        @content_type.from_presenter(params[:content_type])
+        @content_type.save
         respond_with @content_type, :location => main_app.locomotive_api_content_types_url
       end
 

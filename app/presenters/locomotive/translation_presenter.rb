@@ -1,11 +1,9 @@
 module Locomotive
   class TranslationPresenter < BasePresenter
 
-    delegate :key, :values, :to => :source
+    ## properties ##
 
-    def included_methods
-      super + %w(key values)
-    end
+    properties :key, :values
 
   end
 end

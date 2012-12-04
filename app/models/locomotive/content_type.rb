@@ -71,7 +71,7 @@ module Locomotive
     end
 
     def group_by_field
-      self.entries_custom_fields.find(self.group_by_field_id) rescue nil
+      self.find_entries_custom_field(self.group_by_field_id)
     end
 
     def list_or_group_entries
@@ -103,6 +103,28 @@ module Locomotive
       super(value)
     end
 
+    # Get the class name of the entries.
+    #
+    # @return [ String ] The class name of all the entries
+    #
+    def entries_class_name
+      self.klass_with_custom_fields(:entries).to_s
+    end
+
+    # Find a custom field describing an entry based on its id
+    # in first or its name if not found.
+    #
+    # @param [ String ] id_or_name The id of name of the field
+    #
+    # @return [ Object ] The custom field or nit if not found
+    #
+    def find_entries_custom_field(id_or_name)
+      return nil if id_or_name.nil? # bypass the memoization
+
+      _field = self.entries_custom_fields.find(id_or_name) rescue nil
+      _field || self.entries_custom_fields.where(:name => id_or_name).first
+    end
+
     # Retrieve from a class name the associated content type within the scope of a site.
     # If no content type is found, the method returns nil
     #
@@ -117,14 +139,6 @@ module Locomotive
       else
         nil
       end
-    end
-
-    def to_presenter
-      Locomotive::ContentTypePresenter.new(self)
-    end
-
-    def as_json(options = {})
-      self.to_presenter.as_json
     end
 
     protected

@@ -51,14 +51,6 @@ module Locomotive
       @ability ||= Ability.new(self.account, self.site)
     end
 
-    def to_presenter(options = {})
-      Locomotive::MembershipPresenter.new(self, options)
-    end
-
-    def as_json(options = {})
-      self.to_presenter(options).as_json
-    end
-
     protected
 
     def define_role

@@ -1,6 +1,7 @@
 module Locomotive
   module Api
     class ThemeAssetsController < BaseController
+
       load_and_authorize_resource :class => Locomotive::ThemeAsset
 
       def index
@@ -15,15 +16,15 @@ module Locomotive
 
       def create
         @theme_asset = current_site.theme_assets.new
-        @theme_asset_presenter = @theme_asset.to_presenter
-        @theme_asset_presenter.update_attributes(params[:theme_asset])
+        @theme_asset.from_presenter(params[:theme_asset])
+        @theme_asset.save
         respond_with @theme_asset, :location => main_app.locomotive_api_theme_assets_url
       end
 
       def update
         @theme_asset = current_site.theme_assets.find(params[:id])
-        @theme_asset_presenter = @theme_asset.to_presenter
-        @theme_asset_presenter.update_attributes(params[:theme_asset])
+        @theme_asset.from_presenter(params[:theme_asset])
+        @theme_asset.save
         respond_with @theme_asset, :location => main_app.locomotive_api_theme_assets_url
       end
 

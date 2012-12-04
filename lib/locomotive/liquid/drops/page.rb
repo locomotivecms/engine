@@ -3,7 +3,7 @@ module Locomotive
     module Drops
       class Page < Base
 
-        delegate :seo_title, :meta_keywords, :meta_description, :to => '_source'
+        delegate :seo_title, :meta_keywords, :meta_description, :redirect_url, :to => '_source'
 
         def title
           self._source.templatized? ? @context['entry']._label : self._source.title
@@ -39,6 +39,10 @@ module Locomotive
 
         def published?
           self._source.published?
+        end
+
+        def redirect?
+          self._source.redirect?
         end
 
         def before_method(meth)

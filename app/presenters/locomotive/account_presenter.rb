@@ -1,32 +1,18 @@
 module Locomotive
   class AccountPresenter < BasePresenter
 
-    delegate :name, :email, :locale, :encrypted_password, :password_salt, :to => :source
+    ## properties ##
+    properties  :name, :email, :locale
+    property    :admin, :only_getter => true
 
-    delegate :name=, :email=, :locale=, :password=, :to => :source
+    with_options :only_setter => true do |presenter|
+      presenter.properties :password, :password_confirmation
+    end
 
-    attr_writer :encrypted_password, :password_salt
+    ## other getters / setters ##
 
     def admin
       self.source.admin?
-    end
-
-    def included_methods
-      super + %w(name email locale admin encrypted_password password_salt)
-    end
-
-    def included_setters
-      super + %w(name email locale password encrypted_password password_salt)
-    end
-
-    def save
-      if @encrypted_password && @password_salt
-        # Just need something that will pass the password validation
-        self.source.password = '0' * 20
-        self.source.encrypted_password = @encrypted_password
-        self.source.password_salt = @password_salt
-      end
-      super
     end
 
   end

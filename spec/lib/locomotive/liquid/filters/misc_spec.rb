@@ -6,12 +6,12 @@ describe Locomotive::Liquid::Filters::Misc do
   include Locomotive::Liquid::Filters::Misc
 
   it 'returns the input string every n occurences' do
-    modulo('foo', 0, 3).should == ''
-    modulo('foo', 1, 3).should == ''
-    modulo('foo', 2, 3).should == 'foo'
-    modulo('foo', 3, 3).should == ''
-    modulo('foo', 4, 3).should == ''
-    modulo('foo', 5, 3).should == 'foo'
+    str_modulo('foo', 0, 3).should == ''
+    str_modulo('foo', 1, 3).should == ''
+    str_modulo('foo', 2, 3).should == 'foo'
+    str_modulo('foo', 3, 3).should == ''
+    str_modulo('foo', 4, 3).should == ''
+    str_modulo('foo', 5, 3).should == 'foo'
   end
 
   it 'returns default values if the input is empty' do

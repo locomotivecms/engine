@@ -3,6 +3,14 @@ module Locomotive
     module Filters
       module Date
 
+        def distance_of_time_in_words(input, from_time = Time.now)
+          # make sure we deals with instances of Time
+          input     = to_time(input)
+          from_time = to_time(from_time)
+
+          ::ActionController::Base.helpers.distance_of_time_in_words(input, from_time)
+        end
+
         def localized_date(input, *args)
           return '' if input.blank?
 
@@ -26,6 +34,17 @@ module Locomotive
         end
 
         alias :format_date :localized_date
+
+        private
+
+        def to_time(input)
+          case input
+          when Date   then input.to_time
+          when String then Time.parse(input)
+          else
+            input
+          end
+        end
 
       end
 

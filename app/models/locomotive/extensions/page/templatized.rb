@@ -29,12 +29,12 @@ module Locomotive
           attr_accessor :content_entry
         end
 
-        # Returns the class specified by the target_klass_name property
+        # Return the class specified by the target_klass_name property
         #
         # @example
         #
         #   page.target_klass_name = 'Locomotive::Entry12345'
-        #   page.target_klass = Locomotive::Entry12345
+        #   page.target_klass # <Locomotive::Entry12345...>
         #
         # @return [ Class ] The target class
         #
@@ -42,8 +42,8 @@ module Locomotive
           target_klass_name.constantize
         end
 
-        # Returns the slug related to the target_klass.
-        # In other words, it returns the slug of the target content type.        
+        # Return the slug related to the target_klass.
+        # In other words, it returns the slug of the target content type.
         #
         # @return [ String ] The slug of the target class / content type. Nil if no target klass.
         #
@@ -56,7 +56,20 @@ module Locomotive
           end
         end
 
-        # Gives the name which can be used in a liquid template in order
+        # Set the target klass from the slug of a content type
+        #
+        # @param [ String ] slug The slug of the content type
+        #
+        # @return [ Object ] The content type or nil if not found
+        #
+        def target_klass_slug=(slug)
+          if @content_type = self.site.content_types.where(:slug => slug).first
+            self.target_klass_name = @content_type.entries_class_name
+          end
+          @content_type
+        end
+
+        # Give the name which can be used in a liquid template in order
         # to reference an entry. It uses the slug property if the target klass
         # is a Locomotive content type or the class name itself for the other classes.
         #
@@ -79,7 +92,7 @@ module Locomotive
           end
         end
 
-        # Finds the entry both specified by the target klass and identified by the permalink
+        # Find the entry both specified by the target klass and identified by the permalink
         #
         # @param [ String ] permalink The permalink of the entry
         #
@@ -107,7 +120,7 @@ module Locomotive
           self.slug = 'content_type_template' if self.templatized? && !self.templatized_from_parent?
         end
 
-        # Makes sure the target_klass is owned by the site OR
+        # Make sure the target_klass is owned by the site OR
         # if it belongs to the models allowed by the application
         # thanks to the models_for_templatization option.
         #
@@ -125,7 +138,7 @@ module Locomotive
           end
         end
 
-        # Sets the templatized, templatized_from_parent properties of
+        # Set the templatized, templatized_from_parent properties of
         # the children of the current page ONLY IF the templatized
         # attribute got changed.
         #

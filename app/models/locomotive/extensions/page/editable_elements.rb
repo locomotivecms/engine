@@ -14,6 +14,7 @@ module Locomotive
         end
 
         def disable_parent_editable_elements(block)
+          Rails.logger.debug "[disable_parent_editable_elements] #{block.inspect}"
           self.editable_elements.each { |el| el.disabled = true if el.from_parent? && el.block == block }
         end
 
@@ -32,6 +33,10 @@ module Locomotive
         def editable_elements_grouped_by_blocks
           groups = self.enabled_editable_elements.group_by(&:block)
           groups.delete_if { |block, elements| elements.empty? }
+        end
+
+        def find_editable_elements(block)
+          self.editable_elements.find_all { |el| el.block == block }
         end
 
         def find_editable_element(block, slug)
@@ -57,6 +62,7 @@ module Locomotive
         end
 
         def enable_editable_elements(block)
+          Rails.logger.debug "[enable_editable_elements] #{block.inspect}"
           self.editable_elements.each { |el| el.disabled = false if el.block == block }
         end
 

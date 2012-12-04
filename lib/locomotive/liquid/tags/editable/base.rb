@@ -6,6 +6,8 @@ module Locomotive
 
           Syntax = /(#{::Liquid::QuotedFragment})(\s*,\s*#{::Liquid::Expression}+)?/
 
+          attr_accessor :slug
+
           def initialize(tag_name, markup, tokens, context)
             if markup =~ Syntax
               @slug = $1.gsub('\'', '')

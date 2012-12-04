@@ -51,18 +51,6 @@ module Locomotive
       self.memberships.find_all { |m| m.admin? }
     end
 
-    def to_liquid
-      Locomotive::Liquid::Drops::Site.new(self)
-    end
-
-    def to_presenter(options = {})
-      Locomotive::SitePresenter.new(self, options)
-    end
-
-    def as_json(options = {})
-      self.to_presenter(options).as_json
-    end
-
     protected
 
     # FIXME: Currently there is no t/translate method on the I18n module

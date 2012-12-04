@@ -1,9 +1,20 @@
 module Locomotive
   class ThemeAssetPresenter < BasePresenter
 
-    delegate :content_type, :folder, :plain_text, :to => :source
+    ## properties ##
 
-    delegate :content_type=, :folder=, :plain_text_name=, :plain_text=, :plain_text_type=, :performing_plain_text=, :source=, :to => :source
+    properties  :content_type,  :folder
+    property    :plain_text,    :allow_nil => false
+
+    with_options :only_setter => true do |presenter|
+      presenter.properties :plain_text_name, :plain_text_type, :performing_plain_text, :source
+    end
+
+    with_options :only_getter => true do |presenter|
+      presenter.properties :local_path, :url, :size, :raw_size, :dimensions, :can_be_deleted
+    end
+
+    ## other getters / setters ##
 
     def local_path
       self.source.local_path(true)
@@ -33,17 +44,13 @@ module Locomotive
       self.ability.try(:can?, :destroy, self.source)
     end
 
-    def included_methods
-      default_list = %w(content_type folder local_path url size raw_size dimensions can_be_deleted updated_at)
-      default_list += %w(plain_text) if plain_text?
-      super + default_list
+    def plain_text
+      plain_text? ? self.source.plain_text : nil
     end
 
-    def included_setters
-      super + %w(content_type folder plain_text_name plain_text plain_text_type performing_plain_text source)
-    end
+    ## methods ##
 
-    private
+    protected
 
     def plain_text?
       # FIXME: self.options contains all the options passed by the responder

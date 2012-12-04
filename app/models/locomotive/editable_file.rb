@@ -67,10 +67,6 @@ module Locomotive
       super
     end
 
-    def to_presenter
-      Locomotive::EditableFilePresenter.new(self)
-    end
-
     protected
 
     def propagate_content

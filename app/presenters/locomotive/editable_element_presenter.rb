@@ -1,12 +1,18 @@
 module Locomotive
   class EditableElementPresenter < BasePresenter
 
-    delegate :slug, :block, :default_attribute, :hint, :priority, :disabled, :assignable, :from_parent, :to => :source
+    ## properties ##
 
-    delegate :slug=, :block=, :hint=, :priority=, :disabled=, :from_parent=, :to => :source
+    properties :slug, :block, :hint, :priority, :disabled, :from_parent, :allow_nil => true
+
+    with_options :only_getter => true do |presenter|
+      presenter.properties :label, :type, :block_name
+    end
+
+    ## other getters / setters ##
 
     def label
-      self.slug.humanize
+      self.labelize(self.slug)
     end
 
     def type
@@ -15,18 +21,18 @@ module Locomotive
 
     def block_name
       if self.source.block
-        self.source.block.gsub('\'', '').humanize
+        self.labelize(self.source.block.split('/').last)
       else
         I18n.t('locomotive.pages.form.default_block')
       end
     end
 
-    def included_methods
-      super + %w(type label slug block_name block default_attribute hint priority disabled assignable from_parent)
-    end
+    ## methods ##
 
-    def included_setters
-      super + %w(slug block hint priority disabled from_parent)
+    protected
+
+    def labelize(label)
+      label.gsub(/[\"\']/, '').gsub('-', ' ').humanize
     end
 
   end

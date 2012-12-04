@@ -44,7 +44,7 @@ module Locomotive
 
     def options_for_content_type
       current_site.content_types.map do |c|
-        [c.name, c.klass_with_custom_fields(:entries).to_s]
+        [c.name, c.entries_class_name]
       end.compact
     end
 
@@ -58,7 +58,7 @@ module Locomotive
               hash[type] << {
                 :label      => field.label,
                 :name       => field.name,
-                :class_name => content_type.klass_with_custom_fields(:entries).to_s
+                :class_name => content_type.entries_class_name
               }
             end
           end

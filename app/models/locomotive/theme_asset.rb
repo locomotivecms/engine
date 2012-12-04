@@ -104,21 +104,13 @@ module Locomotive
       @plain_text = sanitized_source # no need to reset the plain_text instance variable to have the last version
     end
 
-    def to_liquid
-      { :url => self.source.url }.merge(self.attributes).stringify_keys
-    end
-
-    def to_presenter(options = {})
-      Locomotive::ThemeAssetPresenter.new(self, options)
-    end
-
-    def as_json(options = {})
-      self.to_presenter(options).as_json
-    end
-
     def self.all_grouped_by_folder(site)
       assets = site.theme_assets.order_by([[:slug, :asc]])
       assets.group_by { |a| a.folder.split('/').first.to_sym }
+    end
+
+    def to_liquid
+      { :url => self.source.url }.merge(self.attributes).stringify_keys
     end
 
     protected

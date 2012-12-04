@@ -141,7 +141,7 @@ Scenario: Page extending a layout with multiple embedded blocks which extends an
   And a page named "hello-world-multiblocks" with the template:
     """
     {% extends 'custom-layout-with-sidebar' %}
-    {% block main %}{{ block.super }} Jacques{% endblock %}
+    {% block body/main %}{{ block.super }} Jacques{% endblock %}
     """
   When I view the rendered page at "/hello-world-multiblocks"
   Then the rendered output should look like:

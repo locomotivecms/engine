@@ -10,8 +10,8 @@ module Locomotive
     ## fields ##
     field :_slug
     field :_label_field_name
-    field :_position, :type => Integer, :default => 0
-    field :_visible,  :type => Boolean, :default => true
+    field :_position,         :type => Integer, :default => 0
+    field :_visible,          :type => Boolean, :default => true
 
     ## validations ##
     validates :_slug, :presence => true, :uniqueness => { :scope => :content_type_id }
@@ -120,18 +120,6 @@ module Locomotive
           entry.update_attributes :_position => position
         end
       end
-    end
-
-    def to_liquid
-      Locomotive::Liquid::Drops::ContentEntry.new(self)
-    end
-
-    def to_presenter(options = {})
-      Locomotive::ContentEntryPresenter.new(self, options)
-    end
-
-    def as_json(options = {})
-      self.to_presenter(options).as_json
     end
 
     protected

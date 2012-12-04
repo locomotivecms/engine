@@ -1,7 +1,13 @@
 module Locomotive
   class EditableFilePresenter < EditableElementPresenter
 
-    delegate :content, :to => :source
+    ## properties ##
+
+    property    :content
+    properties  :filename, :url,      :only_getter => true
+    properties  :source, :source_url, :only_setter => true
+
+    ## other getters / setters ##
 
     def filename
       File.basename(self.content)
@@ -15,12 +21,8 @@ module Locomotive
       self.source.source = value
     end
 
-    def included_methods
-      super + %w(filename content url)
-    end
-
-    def included_setters
-      super + %w(source)
+    def source_url=(url)
+      self.source.remote_source_url = url
     end
 
   end

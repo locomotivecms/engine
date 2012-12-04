@@ -11,6 +11,7 @@ module Locomotive
           input.to_s.gsub(' ', '-').gsub('/', '-').dasherize
         end
 
+        # alias newline_to_br
         def multi_line(input)
           input.to_s.gsub("\n", '<br/>')
         end
@@ -19,6 +20,16 @@ module Locomotive
           result = input.to_s
           args.flatten.each { |a| result << a.to_s }
           result
+        end
+
+        # right justify and padd a string
+        def rjust(input, integer, padstr = '')
+          input.rjust(integer, padstr)
+        end
+
+        # left justify and padd a string
+        def ljust(input, integer, padstr = '')
+          input.ljust(integer, padstr)
         end
 
         def textile(input)

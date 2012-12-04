@@ -5,14 +5,14 @@ Given %r{^I have an? "([^"]*)" model which has many "([^"]*)"$} do |parent_model
   end
   @child_model = FactoryGirl.build(:content_type, :site => @site, :name => child_model).tap do |ct|
     ct.entries_custom_fields.build :label => 'Body', :type => 'string', :required => false
-    ct.entries_custom_fields.build :label => parent_model.singularize.downcase, :type => 'belongs_to', :required => false, :class_name => @parent_model.klass_with_custom_fields(:entries).to_s
+    ct.entries_custom_fields.build :label => parent_model.singularize.downcase, :type => 'belongs_to', :required => false, :class_name => @parent_model.entries_class_name
     ct.save!
   end
 
   @parent_model.entries_custom_fields.build({
     :label          => child_model,
     :type           => 'has_many',
-    :class_name     => @child_model.klass_with_custom_fields(:entries).to_s,
+    :class_name     => @child_model.entries_class_name,
     :inverse_of     => parent_model.singularize.downcase
   })
 
@@ -26,7 +26,7 @@ Given %r{^I set up a has_many relationship between "([^"]*)" and "([^"]*)"$} do 
   source_model.entries_custom_fields.build({
     :label          => target_name,
     :type           => 'has_many',
-    :class_name     => target_model.klass_with_custom_fields(:entries).to_s,
+    :class_name     => target_model.entries_class_name,
     :inverse_of     => source_name.singularize.downcase
   })
 
@@ -40,7 +40,7 @@ Given %r{^I set up a many_to_many relationship between "([^"]*)" and "([^"]*)"$}
   first_model.entries_custom_fields.build({
     :label          => last_name,
     :type           => 'many_to_many',
-    :class_name     => last_model.klass_with_custom_fields(:entries).to_s,
+    :class_name     => last_model.entries_class_name,
     :inverse_of     => first_name.pluralize.downcase
   })
 
@@ -49,7 +49,7 @@ Given %r{^I set up a many_to_many relationship between "([^"]*)" and "([^"]*)"$}
   last_model.entries_custom_fields.build({
     :label          => first_name,
     :type           => 'many_to_many',
-    :class_name     => first_model.klass_with_custom_fields(:entries).to_s,
+    :class_name     => first_model.entries_class_name,
     :inverse_of     => last_name.pluralize.downcase
   })
 
