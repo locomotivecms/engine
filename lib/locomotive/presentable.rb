@@ -191,6 +191,21 @@ module Locomotive
         end
       end
 
+      # Get the name of the property for which
+      # the property passed in parameter is an alias.
+      #
+      # @param [ String ] alias_name Name of the alias
+      #
+      # @return [ String ] The original property
+      #
+      def alias_of(alias_name)
+        self.setters.find do |name|
+          list = [*(self.property_options[name] || {})[:alias]] || []
+          list.include?(alias_name.to_sym)
+        end
+      end
+
+
     end # ClassMethods
 
   end # Presentable

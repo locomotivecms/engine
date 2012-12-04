@@ -44,6 +44,52 @@ module Locomotive
         @memberships ||= current_site.memberships
       end
 
+      def self.description
+        {
+          overall: %{Manage the memberships of an account for the current site},
+          actions: {
+            index: {
+              description: %{Return all the memberships of the current site},
+              example: {
+                command: %{curl 'http://mysite.com/locomotive/api/memberships.json?auth_token=dtsjkqs1TJrWiSiJt2gg'},
+                response: %(TODO)
+              }
+            },
+            show: {
+              description: %{Return the attributes of a membership},
+              response: Locomotive::MembershipPresenter.getters_to_hash,
+              example: {
+                command: %{curl 'http://mysite.com/locomotive/api/memberships/4244af4ef0000002.json?auth_token=dtsjkqs1TJrWiSiJt2gg'},
+                response: %(TODO)
+              }
+            },
+            create: {
+              description: %{Create a membership},
+              params: Locomotive::MembershipPresenter.setters_to_hash,
+              example: {
+                command: %{curl -d '...' 'http://mysite.com/locomotive/api/memberships.json?auth_token=dtsjkqs1TJrWiSiJt2gg'},
+                response: %(TODO)
+              }
+            },
+            update: {
+              description: %{Update a membership},
+              params: Locomotive::MembershipPresenter.setters_to_hash,
+              example: {
+                command: %{curl -d '...' -X UPDATE 'http://mysite.com/locomotive/api/memberships/4244af4ef0000002.json?auth_token=dtsjkqs1TJrWiSiJt2gg'},
+                response: %(TODO)
+              }
+            },
+            destroy: {
+              description: %{Delete a membership},
+              example: {
+                command: %{curl -X DELETE 'http://mysite.com/locomotive/api/memberships/4244af4ef0000002.json?auth_token=dtsjkqs1TJrWiSiJt2gg'},
+                response: %(TODO)
+              }
+            }
+          }
+        }
+      end
+
     end
 
   end

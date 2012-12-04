@@ -3,9 +3,10 @@ module Locomotive
 
     ## properties ##
 
-    properties :role, :account_id, :email
-
-    properties :name, :role_name, :can_update, :grant_admin, :only_getter => true
+    property    :role
+    properties  :role_name, :can_update, :grant_admin, :only_getter => true
+    property    :account_id
+    properties  :name, :email, :only_getter => true
 
     ## other getters / setters ##
 

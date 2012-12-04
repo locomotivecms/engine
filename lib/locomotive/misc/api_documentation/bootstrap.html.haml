@@ -1,0 +1,119 @@
+!!! Strict
+%html
+  %title LocomotiveCMS Restful API
+
+  %link{ href: '//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap.no-icons.min.css', rel: 'stylesheet' }
+  %link{ href: '//netdna.bootstrapcdn.com/font-awesome/2.0/css/font-awesome.css', rel: 'stylesheet' }
+
+  %link{ href: '//netdna.bootstrapcdn.com/bootswatch/2.1.1/superhero/bootstrap.min.css', rel: 'stylesheet' }
+
+  %script{ src: '//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js' }
+
+  %body
+    .container
+      %header
+        %h1 LocomotiveCMS Restful API
+      .row
+        .span4
+          .well
+            %ul.nav.nav-list
+              - resources.each do |resource|
+                %li.nav-header= resource[:name].humanize
+                - resource[:actions].each do |name, info|
+                  %li
+                    %a{ href: "##{resource[:name].downcase}-#{name.downcase}" }
+                      = name
+                      &nbsp;
+                      - case info[:verb]
+                      - when 'GET'
+                        %span.label.label-info GET
+                      - when 'POST'
+                        %span.label.label-success POST
+                      - when 'PUT'
+                        %span.label.label-warning UPDATE
+                      - when 'DELETE'
+                        %span.label.label-important DELETE
+        .span8
+          - resources.each do |resource|
+            %h2= resource[:name].humanize
+
+            %p= resource[:overall]
+
+            %br
+
+            - resource[:actions].each do |name, info|
+              %h4{ id: "#{resource[:name].downcase}-#{name.downcase}" }
+                - case info[:verb]
+                - when 'GET'
+                  %span.label.label-info GET
+                - when 'POST'
+                  %span.label.label-success POST
+                - when 'PUT'
+                  %span.label.label-warning UPDATE
+                - when 'DELETE'
+                  %span.label.label-important DELETE
+
+                &nbsp;
+                = info[:path]
+
+              .well
+
+                %p= info[:description]
+
+                - if info[:params] || (info[:example] && info[:example][:command])
+                  %h5
+                    %i.icon-signin
+                    Params
+
+                  - if info[:params].blank?
+                    %p None
+                  - else
+                    %table.table.table-bordered.table-striped.table-hover
+                      %tr
+                        %th Name
+                        %th Type
+                        %th Required
+                      - info[:params].each do |name, attributes|
+                        %tr
+                          %td
+                            - if attributes[:required]
+                              %u= name
+                            - else
+                              %i= name
+                            - unless attributes[:alias_of].blank?
+                              alias of
+                              %span.label.label-info= attributes[:alias_of]
+                          %td= attributes[:type]
+                          %td
+                            - if attributes[:required]
+                              %i.icon-ok
+                            - else
+                              &mdash;
+
+                  - if info[:example] && info[:example][:command]
+                    %h6 Example
+                    %pre.prettyprint= info[:example][:command]
+
+                - if info[:response] || (info[:example] && info[:example][:response])
+                  %h5
+                    %i.icon-signout
+                    Response
+
+                  - if info[:response]
+                    %table.table.table-bordered.table-striped.table-hover
+                      %tr
+                        %th Name
+                        %th Type
+                      - info[:response].each do |name, type|
+                        %tr
+                          %td= name
+                          %td= type
+
+                  - if info[:example] && info[:example][:response]
+                    %h6 Example
+                    %pre.prettyprint= info[:example][:response]
+
+              %br
+
+            %hr
+

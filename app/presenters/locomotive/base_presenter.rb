@@ -8,8 +8,8 @@ class Locomotive::BasePresenter
   include ActionView::Helpers::NumberHelper
 
   ## default properties ##
-  property    :id, :alias => :_id
-  properties  :created_at, :updated_at
+  property    :id, alias: :_id
+  properties  :created_at, :updated_at, type: 'Date', only_getter: true
 
   ## utility accessors ##
   attr_reader :ability, :depth
@@ -49,6 +49,51 @@ class Locomotive::BasePresenter
   #
   def site
     self.source.try(:site)
+  end
+
+  # Return the set of setters with their options.
+  #
+  # @param [ Hash ] options Some options: with_ids (add id and _id)
+  #
+  # @return [ Hash ] The setters
+  #
+  def self.setters_to_hash(options = {})
+    options = { without_ids: true }.merge(options)
+
+    {}.tap do |hash|
+      self.setters.each do |name|
+        next if %w(id _id).include?(name.to_s) && options[:without_ids]
+
+        options   = self.property_options[name] || {}
+
+        hash[name] = {
+          type:     options[:type] || 'String',
+          required: options[:required].nil? ? true : options[:required],
+          alias_of: self.alias_of(name)
+        }
+      end
+    end
+  end
+
+  # Return the set of getters with their options.
+  #
+  # @return [ Hash ] The getters
+  #
+  def self.getters_to_hash
+    {}.tap do |hash|
+      self.getters.each do |name|
+        next if %w(created_at updated_at).include?(name)
+
+        options = self.property_options[name] || {}
+
+        hash[name] = options[:type] || 'String'
+      end
+
+      %w(created_at updated_at).each do |name|
+        options = self.property_options[name] || {}
+        hash[name] = options[:type] || 'String'
+      end
+    end
   end
 
 end
