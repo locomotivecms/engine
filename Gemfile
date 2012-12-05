@@ -13,7 +13,7 @@ group :development do
 
   # gem 'locomotive-aloha-rails', :path => '../gems/aloha-rails' # for Developers
   # gem 'locomotive-tinymce-rails', '~> 3.4.7.4', :path => '../gems/tinymce-rails' # for Developers
-  gem 'locomotive_liquid', :path => '../gems/liquid' # for Developers
+  # gem 'locomotive_liquid', :path => '../gems/liquid' # for Developers
 
   gem 'rspec-rails', '~> 2.8.0' # In order to have rspec tasks and generators
   gem 'rspec-cells'
