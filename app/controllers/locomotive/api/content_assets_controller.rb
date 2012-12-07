@@ -2,34 +2,29 @@ module Locomotive
   module Api
     class ContentAssetsController < BaseController
 
-      load_and_authorize_resource :class => Locomotive::ContentAsset
+      load_and_authorize_resource class: Locomotive::ContentAsset, through: :current_site
 
       def index
-        @content_assets = current_site.content_assets
         respond_with(@content_assets)
       end
 
       def show
-        @content_asset = current_site.content_assets.find(params[:id])
         respond_with(@content_asset)
       end
 
       def create
-        @content_asset = current_site.content_assets.new
         @content_asset.from_presenter(params[:content_asset])
         @content_asset.save
-        respond_with @content_asset, :location => main_app.locomotive_api_content_assets_url
+        respond_with @content_asset, location: main_app.locomotive_api_content_assets_url
       end
 
       def update
-        @content_asset = current_site.content_assets.find(params[:id])
         @content_asset.from_presenter(params[:content_asset])
         @content_asset.save
-        respond_with @content_asset, :location => main_app.locomotive_api_content_assets_url
+        respond_with @content_asset, location: main_app.locomotive_api_content_assets_url
       end
 
       def destroy
-        @content_asset = current_site.content_assets.find(params[:id])
         @content_asset.destroy
         respond_with @content_asset
       end

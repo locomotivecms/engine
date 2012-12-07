@@ -44,7 +44,7 @@ module Locomotive
 
         self.setters.each do |name|
           if _values.has_key?(name)
-            _options = self.property_options[name]
+            _options = self.property_options[name] || {}
 
             if _options[:if].blank? || self.instance_eval(&_options[:if])
               self.send(:"#{name}=", _values[name])

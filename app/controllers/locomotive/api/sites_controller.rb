@@ -4,11 +4,11 @@ module Locomotive
 
       skip_before_filter :require_site, :set_locale, :set_current_thread_variables
 
-      load_and_authorize_resource :class => Locomotive::Site
+      load_and_authorize_resource class: Locomotive::Site
 
       # We make an exception for the index action, we don't use the ability
       # object, we just return the sites owned by the current account.
-      skip_load_and_authorize_resource :only => :index
+      skip_load_and_authorize_resource only: :index
 
       def index
         @sites = self.current_locomotive_account.sites.all
@@ -20,14 +20,13 @@ module Locomotive
       end
 
       def create
-        @site = Locomotive::Site.from_presenter(params[:site])
-        @site.memberships.build :account => self.current_locomotive_account, :role => 'admin'
+        @site.from_presenter(params[:site])
+        @site.memberships.build account: self.current_locomotive_account, role: 'admin'
         @site.save
         respond_with(@site)
       end
 
       def update
-        @site = Locomotive::Site.find(params[:id])
         @site.from_presenter(params[:site])
         @site.save
         respond_with @site

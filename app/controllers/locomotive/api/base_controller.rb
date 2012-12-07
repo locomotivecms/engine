@@ -41,6 +41,10 @@ module Locomotive
         self.setup_i18n_fallbacks
       end
 
+      def self.cancan_resource_class
+        Locomotive::Api::CanCan::ControllerResource
+      end
+
       def self.description
         { overall: 'No documentation', actions: {} }
       end

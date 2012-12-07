@@ -11,7 +11,8 @@ module Locomotive
       def update
       	@site = current_site
       	authorize! :update, @site
-      	@site.update_attributes(params[:site])
+        @site.from_presenter(params[:site])
+        @site.save
       	respond_with(@site)
       end
 

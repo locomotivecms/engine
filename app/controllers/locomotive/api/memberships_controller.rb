@@ -2,11 +2,7 @@ module Locomotive
   module Api
     class MembershipsController < BaseController
 
-      # It's an embedded document, so we'll just load manually
-      before_filter :load_membership,   :only => [:show, :update, :destroy]
-      before_filter :load_memberships,  :only => [:index]
-
-      authorize_resource :class => Locomotive::Membership
+      load_and_authorize_resource class: Locomotive::Membership, through: :current_site
 
       def index
         respond_with(@memberships)
@@ -17,8 +13,7 @@ module Locomotive
       end
 
       def create
-        @membership = current_site.memberships.new
-        @membership.from_presenter(params[:membership].merge(:role => 'author')) # force author by default
+        @membership.from_presenter(params[:membership].merge(role: 'author')) # force author by default
         @membership.save
         respond_with(@membership)
       end
@@ -35,14 +30,6 @@ module Locomotive
       end
 
       protected
-
-      def load_membership
-        @membership ||= load_memberships.find(params[:id])
-      end
-
-      def load_memberships
-        @memberships ||= current_site.memberships
-      end
 
       def self.description
         {

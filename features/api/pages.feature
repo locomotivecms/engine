@@ -33,6 +33,7 @@ Feature: Pages
       | 3/fullpath | "goodbye-world"  |
 
   Scenario: Creating templatized page
+    # "target_entry_name": "projects",
     When I do an API POST to pages.json with:
     """
     {
@@ -40,7 +41,7 @@ Feature: Pages
         "title": "My Templatized Page",
         "templatized": "true",
         "templatized_from_parent": "false",
-        "target_entry_name": "projects",
+        "target_klass_slug": "projects",
         "parent_fullpath": "index"
       }
     }
