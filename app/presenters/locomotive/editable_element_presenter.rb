@@ -3,10 +3,17 @@ module Locomotive
 
     ## properties ##
 
-    properties :slug, :block, :hint, :priority, :disabled, :from_parent, :allow_nil => true
+    properties :slug, :block, allow_nil: true
 
-    with_options :only_getter => true do |presenter|
-      presenter.properties :label, :type, :block_name
+    with_options required: false, allow_nil: true do |presenter|
+      presenter.property  :hint
+      presenter.property  :priority, type: 'Integer'
+    end
+
+    with_options only_getter: true do |presenter|
+      presenter.properties  :label, :type, :block_name
+      presenter.properties  :from_parent, type: 'Boolean'
+      presenter.property    :disabled, type: 'Boolean'
     end
 
     ## other getters / setters ##

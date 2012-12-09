@@ -154,7 +154,7 @@ module Locomotive
       # @param [ Hash ] options The options related to the collection (:alias)
       #
       def collection(name, options = {})
-        property(name, options.merge(:collection => true))
+        property(name, options.merge(collection: true, type: 'Array'))
       end
 
       def define_getter(name, collection = false)

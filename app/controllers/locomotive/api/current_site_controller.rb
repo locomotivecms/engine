@@ -1,6 +1,6 @@
 module Locomotive
   module Api
-    class CurrentSiteController < BaseController
+    class CurrentSiteController < Api::BaseController
 
       def show
         @site = current_site

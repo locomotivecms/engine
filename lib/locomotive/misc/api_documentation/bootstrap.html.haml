@@ -2,12 +2,13 @@
 %html
   %title LocomotiveCMS Restful API
 
-  %link{ href: '//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap.no-icons.min.css', rel: 'stylesheet' }
+  %link{ href: '//netdna.bootstrapcdn.com/twitter-bootstrap/2.1.1/css/bootstrap.no-icons.min.css', rel: 'stylesheet' }
   %link{ href: '//netdna.bootstrapcdn.com/font-awesome/2.0/css/font-awesome.css', rel: 'stylesheet' }
 
   %link{ href: '//netdna.bootstrapcdn.com/bootswatch/2.1.1/superhero/bootstrap.min.css', rel: 'stylesheet' }
 
-  %script{ src: '//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js' }
+  %script{ src: '//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js' }
+  %script{ src: '//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js' }
 
   %body
     .container
@@ -73,22 +74,32 @@
                         %th Name
                         %th Type
                         %th Required
+                        %th Description
                       - info[:params].each do |name, attributes|
                         %tr
                           %td
                             - if attributes[:required]
-                              %u= name
+                              = name
                             - else
                               %i= name
                             - unless attributes[:alias_of].blank?
                               alias of
                               %span.label.label-info= attributes[:alias_of]
-                          %td= attributes[:type]
+                          %td
+                            - if attributes[:type] == 'Array' && attributes[:collection_of]
+                              - name = attributes[:collection_of][:name]
+                              Collection of
+                              %a{ href: "##{name.dasherize}" }= name.humanize
+                            - elsif attributes[:alias_of]
+                              &mdash;
+                            - else
+                              = attributes[:type]
                           %td
                             - if attributes[:required]
                               %i.icon-ok
                             - else
                               &mdash;
+                          %td= attributes[:description]
 
                   - if info[:example] && info[:example][:command]
                     %h6 Example
@@ -104,10 +115,20 @@
                       %tr
                         %th Name
                         %th Type
-                      - info[:response].each do |name, type|
+                        %th Description
+                      - info[:response].each do |name, attributes|
                         %tr
                           %td= name
-                          %td= type
+                          %td
+                            - if attributes[:type] == 'Array' && attributes[:collection_of]
+                              - name = attributes[:collection_of][:name]
+                              Collection of
+                              %a{ href: "##{name.dasherize}" }= name.humanize
+                            - elsif attributes[:alias_of]
+                              &mdash;
+                            - else
+                              = attributes[:type]
+                          %td= attributes[:description] || '&mdash;'
 
                   - if info[:example] && info[:example][:response]
                     %h6 Example
@@ -116,4 +137,60 @@
               %br
 
             %hr
+
+          %h2 Embedded resourcess
+
+          %br
+
+          - embedded_resources.each do |resource|
+            %h4{ id: resource[:name].dasherize }= resource[:name].humanize
+
+            .well
+              %ul.nav.nav-tabs
+                %li.active
+                  %a{ href: "##{resource[:name].dasherize}-getters", data: { toggle: 'tab' } } Out
+                %li
+                  %a{ href: "##{resource[:name].dasherize}-setters", data: { toggle: 'tab' } } In
+
+              .tab-content
+                - %w(getters setters).each do |type|
+                  .tab-pane{ id: "#{resource[:name].dasherize}-#{type}", class: "#{'active' if type == 'getters' }" }
+
+                    - list = resource[type.to_sym]
+
+                    %table.table.table-bordered.table-striped.table-hover
+                      %tr
+                        %th Name
+                        %th Type
+                        - if type == 'setters'
+                          %th Required
+                        %th Description
+                      - list.each do |name, attributes|
+                        %tr
+                          %td
+                            - if attributes[:required]
+                              = name
+                            - else
+                              %i= name
+                            - unless attributes[:alias_of].blank?
+                              %b alias of
+                              %span.label.label-info= attributes[:alias_of]
+                          %td
+                            - if attributes[:type] == 'Array' && attributes[:collection_of]
+                              - name = attributes[:collection_of][:name]
+                              Collection of
+                              %a{ href: "##{name.dasherize}" }= name.humanize
+                            - elsif attributes[:alias_of]
+                              &mdash;
+                            - else
+                              = attributes[:type]
+                          - if type == 'setters'
+                            %td
+                              - if attributes[:required]
+                                %i.icon-ok
+                              - else
+                                &mdash;
+                          %td= attributes[:description]
+
+            / %hr
 

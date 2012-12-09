@@ -3,9 +3,16 @@ module Locomotive
 
     ## properties ##
 
-    property    :content
-    properties  :filename, :url,      :only_getter => true
-    properties  :source, :source_url, :only_setter => true
+    with_options only_getter: true do |presenter|
+      presenter.property  :content, description: 'The default url if no uploaded file'
+      presenter.property  :url, description: 'Alias for content'
+      presenter.property  :filename
+    end
+
+    with_options only_setter: true do |presenter|
+      presenter.property    :source, description: 'A file (multipart)'
+      presenter.property    :source_url
+    end
 
     ## other getters / setters ##
 

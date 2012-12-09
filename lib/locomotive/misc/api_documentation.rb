@@ -21,7 +21,22 @@ module Locomotive
         parser = Parser.new
         parser.parse
 
-        renderer.render(parser.resources)
+        renderer.render(parser.resources, self.embedded_resources)
+      end
+
+      # Return the list of embedded resources
+      #
+      # @return [ Array ] The list of hashes (keys: name, getters, setters)
+      #
+      def self.embedded_resources
+        %w(editable_element editable_short_text editable_long_text editable_file editable_control content_field).map do |name|
+          klass = "Locomotive::#{name.camelize}Presenter".constantize
+          {
+            name:     name,
+            getters:  klass.getters_to_hash,
+            setters:  klass.setters_to_hash,
+          }
+        end
       end
 
       class Parser
@@ -53,7 +68,7 @@ module Locomotive
             resource[:actions][action] ||= {}
             resource[:actions][action].merge!(path: route.path.spec.to_s, verb: verb)
 
-            self.sanitize_params(resource[:actions][action])
+            self.sanitize_attributes(resource[:actions][action])
           end
 
           self.resources
@@ -61,14 +76,16 @@ module Locomotive
 
         protected
 
-        def sanitize_params(action)
-          return if action[:params].blank?
-
+        def sanitize_attributes(action)
           action[:params].each do |name, type_or_all|
             next unless type_or_all.is_a?(String)
-
             action[:params][name] = { type: type_or_all, required: true }
-          end
+          end unless action[:params].blank?
+
+          action[:response].each do |name, type_or_all|
+            next unless type_or_all.is_a?(String)
+            action[:response][name] = { type: type_or_all }
+          end unless action[:response].blank?
         end
 
       end # Processor
@@ -78,9 +95,10 @@ module Locomotive
         # Create a single HTML page enhanced
         # by Twitter boostrap components.
         #
-        def render(resources)
+        def render(resources, embedded_resources)
           source = File.read(self.path)
-          Haml::Engine.new(source).render(Object.new, resources: resources)
+          engine = Haml::Engine.new(source)
+          engine.render(Object.new, resources: resources, embedded_resources: embedded_resources)
         end
 
         protected

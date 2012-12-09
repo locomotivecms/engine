@@ -3,15 +3,24 @@ module Locomotive
 
     ## properties ##
 
-    properties :name, :description, :slug, :raw_item_template
+    properties  :name, :slug
 
-    collection :entries_custom_fields, :alias => :fields # must to be declared before the others
+    # must to be declared before the others
+    collection  :entries_custom_fields, alias: :fields, presenter: ContentFieldPresenter
 
-    property   :label_field_name
-    properties :order_by, :order_direction
-    property   :order_by_field_name, :only_getter => true
-    properties :group_by_field_id, :group_by_field_name
-    properties :public_submission_enabled, :public_submission_account_emails
+    property    :description, required: false
+
+    with_options required: false do |presenter|
+      presenter.property    :label_field_name
+      presenter.properties  :order_by, :order_direction
+      presenter.property    :order_by_field_name, only_getter: true
+      presenter.properties  :group_by_field_id, :group_by_field_name
+
+      presenter.property    :public_submission_enabled,         type: 'Boolean'
+      presenter.property    :public_submission_account_emails,  type: 'Array'
+
+      presenter.property    :raw_item_template
+    end
 
     ## other getters / setters ##
 
@@ -23,7 +32,7 @@ module Locomotive
         field       = self.source.find_entries_custom_field(id_or_name)
 
         if field && !!attributes.delete('_destroy')
-          destroyed_fields << { :_id => field._id, :_destroy => true }
+          destroyed_fields << { _id: field._id, _destroy: true }
           next
         end
 
@@ -58,7 +67,7 @@ module Locomotive
 
     def public_submission_account_emails=(emails)
       self.source.public_submission_accounts = emails.collect do |email|
-        Locomotive::Account.where(:email => email).first
+        Locomotive::Account.where(email: email).first
       end.compact.collect(&:id)
     end
 

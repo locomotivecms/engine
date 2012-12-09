@@ -30,7 +30,7 @@ module Locomotive
     property    :raw_template
     property    :escaped_raw_template, only_getter: true
 
-    collection  :editable_elements, type: 'Array'
+    collection  :editable_elements, presenter: EditableElementPresenter
 
     properties  :seo_title, :meta_keywords, :meta_description, required: false
 
