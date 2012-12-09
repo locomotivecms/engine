@@ -4,13 +4,13 @@ module Locomotive
     ## properties ##
 
     properties  :content_type,  :folder
-    property    :plain_text,    :allow_nil => false
+    property    :plain_text,    allow_nil: false
 
-    with_options :only_setter => true do |presenter|
+    with_options only_setter: true do |presenter|
       presenter.properties :plain_text_name, :plain_text_type, :performing_plain_text, :source
     end
 
-    with_options :only_getter => true do |presenter|
+    with_options only_getter: true do |presenter|
       presenter.properties :local_path, :url, :size, :raw_size, :dimensions, :can_be_deleted
     end
 
@@ -37,7 +37,7 @@ module Locomotive
     end
 
     def updated_at
-      I18n.l(self.source.updated_at, :format => :short)
+      I18n.l(self.source.updated_at, format: :short)
     end
 
     def can_be_deleted

@@ -4,12 +4,12 @@ module Locomotive
     ## properties ##
 
     properties  :name, :slug, :template
-    property    :updated_at, :only_getter => true
+    property    :updated_at, only_getter: true
 
     ## other getters / setters ##
 
     def updated_at
-      I18n.l(self.source.updated_at, :format => :short)
+      I18n.l(self.source.updated_at, format: :short)
     end
 
     ## custom as_json ##

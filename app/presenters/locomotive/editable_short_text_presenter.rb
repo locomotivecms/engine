@@ -6,6 +6,7 @@ module Locomotive
     properties :content, :default_content
 
     ## callbacks ##
+
     set_callback :set_attributes, :after, :set_default_content
 
     ## other getters / setters ##

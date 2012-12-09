@@ -37,9 +37,11 @@ module Locomotive
     # @param [ Hash ] value The attributes
     #
     def attributes=(values)
-      run_callbacks :set_attributes do
-        return unless values
+      return unless values
 
+      @_values = values # memoize them for the callbacks
+
+      run_callbacks :set_attributes do
         _values = values.stringify_keys
 
         self.setters.each do |name|

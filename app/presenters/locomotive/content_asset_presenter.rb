@@ -5,12 +5,12 @@ module Locomotive
 
     properties :content_type, :width, :height
 
-    with_options :only_getter => true do |presenter|
+    with_options only_getter: true do |presenter|
       presenter.properties :filename, :full_filename, :short_name, :extname
       presenter.properties :vignette_url, :url, :content_type_text
     end
 
-    property :source, :only_setter => true
+    property :source, only_setter: true
 
     ## custom getters / setters ##
 
@@ -19,15 +19,15 @@ module Locomotive
     end
 
     def filename
-      truncate(self.source.source_filename, :length => 22)
+      truncate(self.source.source_filename, length: 22)
     end
 
     def short_name
-      truncate(self.source.name, :length => 15)
+      truncate(self.source.name, length: 15)
     end
 
     def extname
-      truncate(self.source.extname, :length => 3)
+      truncate(self.source.extname, length: 3)
     end
 
     def content_type_text

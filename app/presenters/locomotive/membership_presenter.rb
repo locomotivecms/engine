@@ -4,9 +4,9 @@ module Locomotive
     ## properties ##
 
     property    :role
-    properties  :role_name, :can_update, :grant_admin, :only_getter => true
+    properties  :role_name, :can_update, :grant_admin, only_getter: true
     property    :account_id
-    properties  :name, :email, :only_getter => true
+    properties  :name, :email, only_getter: true
 
     ## other getters / setters ##
 

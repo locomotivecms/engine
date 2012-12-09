@@ -2,42 +2,44 @@ module Locomotive
   module Api
     class ContentEntriesController < BaseController
 
-      before_filter :set_content_type
+      load_and_authorize_resource({
+        class:                Locomotive::ContentEntry,
+        through:              :content_type,
+        through_association:  :entries
+        # find_by:              :permalink
+      })
 
       def index
-        @content_entries = @content_type.ordered_entries
+        @content_entries = @content_entries.order_by([content_type.order_by_definition])
         respond_with @content_entries
       end
 
       def show
-        @content_entry = @content_type.entries.any_of({ :_id => params[:id] }, { :_slug => params[:id] }).first
-        respond_with @content_entry, :status => @content_entry ? :ok : :not_found
+        # @content_entry = @content_type.entries.any_of({ _id: params[:id] }, { _slug: params[:id] }).first
+        respond_with @content_entry, status: @content_entry ? :ok : :not_found
       end
 
       def create
-        @content_entry = @content_type.entries.build
-        @content_entry_presenter = @content_entry.to_presenter
-        @content_entry_presenter.update_attributes(params[:content_entry])
-        respond_with @content_entry, :location => main_app.locomotive_api_content_entries_url(@content_type.slug)
+        @content_entry.from_presenter(params[:content_entry])
+        @content_entry.save
+        respond_with @content_entry, location: main_app.locomotive_api_content_entries_url(@content_type.slug)
       end
 
       def update
-        @content_entry = @content_type.entries.find(params[:id])
-        @content_entry_presenter = @content_entry.to_presenter
-        @content_entry_presenter.update_attributes(params[:content_entry])
-        respond_with @content_entry, :location => main_app.locomotive_api_content_entries_url(@content_type.slug)
+        @content_entry.from_presenter(params[:content_entry])
+        @content_entry.save
+        respond_with @content_entry, location: main_app.locomotive_api_content_entries_url(@content_type.slug)
       end
 
       def destroy
-        @content_entry = @content_type.entries.find(params[:id])
         @content_entry.destroy
-        respond_with @content_entry, :location => main_app.locomotive_api_content_entries_url(@content_type.slug)
+        respond_with @content_entry, location: main_app.locomotive_api_content_entries_url(@content_type.slug)
       end
 
       protected
 
-      def set_content_type
-        @content_type ||= current_site.content_types.where(:slug => params[:slug]).first
+      def content_type
+        @content_type ||= current_site.content_types.where(slug: params[:slug]).first
       end
 
     end

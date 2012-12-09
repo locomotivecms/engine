@@ -45,10 +45,18 @@ class Locomotive::BasePresenter
 
   # Shortcut to the site taken from the source.
   #
-  # @param [ Object ] The site or nil if not found
+  # @return [ Object ] The site or nil if not found
   #
   def site
     self.source.try(:site)
+  end
+
+  # Shortcut to the errors of the source
+  #
+  # @return [ Hash ] The errors or an empty hash if no errors
+  #
+  def errors
+    self.source.errors.to_hash.stringify_keys
   end
 
   # Return the set of setters with their options.
@@ -63,23 +71,24 @@ class Locomotive::BasePresenter
     {}.tap do |hash|
       self.setters.each do |name|
         next if %w(id _id).include?(name.to_s) && options[:without_ids]
-
         hash[name] = self.getters_or_setters_to_hash(name)
-        # options   = self.property_options[name] || {}
+      end
+    end
+  end
 
-        # hash[name] = {
-        #   type:         options[:type] || 'String',
-        #   required:     options[:required].nil? ? true : options[:required],
-        #   alias_of:     self.alias_of(name),
-        #   description:  options[:description]
-        # }
+  # Return the set of getters with their options.
+  #
+  # @return [ Hash ] The getters
+  #
+  def self.getters_to_hash
+    {}.tap do |hash|
+      self.getters.each do |name|
+        next if %w(created_at updated_at).include?(name)
+        hash[name] = self.getters_or_setters_to_hash(name)
+      end
 
-        # if options[:presenter]
-        #   hash[name][:collection_of] = {
-        #     name:   options[:presenter].to_s.demodulize.gsub(/Presenter$/, '').underscore,
-        #     params: options[:presenter].setters_to_hash
-        #   }
-        # end
+      %w(created_at updated_at).each do |name|
+        hash[name] = self.getters_or_setters_to_hash(name)
       end
     end
   end
@@ -102,31 +111,6 @@ class Locomotive::BasePresenter
     end
 
     attributes
-  end
-
-  # Return the set of getters with their options.
-  #
-  # @return [ Hash ] The getters
-  #
-  def self.getters_to_hash
-    # enhancer = lambda do |name|
-    #   options = self.property_options[name] || {}
-    #   {
-    #     type:         options[:type] || 'String',
-    #     description:  options[:description]
-    #   }
-    # end
-
-    {}.tap do |hash|
-      self.getters.each do |name|
-        next if %w(created_at updated_at).include?(name)
-        hash[name] = self.getters_or_setters_to_hash(name) #enhancer.call(name)
-      end
-
-      %w(created_at updated_at).each do |name|
-        hash[name] = self.getters_or_setters_to_hash(name) #enhancer.call(name)
-      end
-    end
   end
 
 end
