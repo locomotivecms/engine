@@ -82,7 +82,7 @@ module Locomotive
               existing_el.set_default_content_from(el)
 
               # only the type, hint and fixed properties can be modified from the parent element
-              %w(_type hint fixed priority).each do |attr|
+              %w(_type hint fixed priority locales).each do |attr|
                 existing_el.send(:"#{attr}=", el.send(attr.to_sym))
               end
             end

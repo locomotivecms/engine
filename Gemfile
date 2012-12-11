@@ -8,7 +8,7 @@ gemspec # Include gemspec dependencies
 # The rest of the dependencies are for use when in the locomotive development environment
 
 group :development do
-  # gem 'custom_fields', :path => '../gems/custom_fields' # for Developers
+  gem 'custom_fields', :path => '../gems/custom_fields' # for Developers
   # gem 'custom_fields', :git => 'git://github.com/locomotivecms/custom_fields.git', :branch => '2.0.0.rc' # Branch on Github
 
   # gem 'locomotive-aloha-rails', :path => '../gems/aloha-rails' # for Developers

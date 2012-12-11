@@ -32,15 +32,31 @@ module Locomotive
     ## other methods ##
 
     def as_json_with_custom_fields
-      methods       = self.source.custom_fields_safe_attributes + self.getters
-      default_json  = as_json_without_custom_field_fields(methods)
+      # methods       = self.source.custom_fields_safe_attributes + self.getters
+      # default_json  = as_json_without_custom_fields(methods)
 
-      default_json.merge(self.many_relationships_to_hash)
+      # default_json.merge(self.many_relationships_to_hash)
+
+      as_json_without_custom_fields.merge(self.custom_fields_to_hash)
     end
 
     alias_method_chain :as_json, :custom_fields
 
     protected
+
+    # Build the hash representing the values of all
+    # the custom fields of the content entry.
+    # It also includes the ones from relationships fields
+    #
+    # @return [ Hash ] key the name of the custom field and value from the source
+    #
+    def custom_fields_to_hash
+      {}.tap do |hash|
+        self.source.custom_fields_safe_attributes.each do |name|
+          hash[name] = self.source.send(name.to_sym)
+        end
+      end.merge(self.many_relationships_to_hash)
+    end
 
     # Build the hash storing for each *many* type field
     # the list of entries.
