@@ -60,9 +60,8 @@ Feature: Content Entries
         "desc": "The third",
         "type": "code",
         "started": false,
-        "formatted_due": "06/01/2012",
+        "due": "06/01/2012",
         "logo": "images/logo2.jpg",
-        "tasks": [ "t3", "t1" ],
         "workers": [ "w1", "w3" ],
         "client": "c1"
       }
@@ -77,11 +76,11 @@ Feature: Content Entries
       | 2/type              | "code"                        |
       | 2/started           | false                         |
       | 2/formatted_due     | "06/01/2012"                  |
-      | 2/tasks/0/name      | "t3"                          |
-      | 2/tasks/1/name      | "t1"                          |
-      | 2/workers/0/name    | "w1"                          |
-      | 2/workers/1/name    | "w3"                          |
+      | 2/workers/0         | "w1"                          |
+      | 2/workers/1         | "w3"                          |
+      | 2/client            | "c1"                          |
       | 2/client_id         | "4f832c2cb0d86d3f42fffff8"    |
+    # And the JSON at "2/logo" should match /logo2.jpg$/
     And the JSON at "2/logo_url" should match /logo2.jpg$/
 
   Scenario: Updating existing project

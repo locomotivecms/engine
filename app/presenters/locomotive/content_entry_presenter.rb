@@ -14,9 +14,11 @@ module Locomotive
     with_options only_getter: true do |presenter|
       presenter.properties  :content_type_slug, :translated_in
 
-      presenter.properties  :file_custom_fields, :has_many_custom_fields, :many_to_many_custom_fields
-
       presenter.property    :errors, if: Proc.new { !!options[:include_errors] }
+    end
+
+    with_options only_getter: true, if: Proc.new { html_view? } do |presenter|
+      presenter.properties  :file_custom_fields, :has_many_custom_fields, :many_to_many_custom_fields
     end
 
     ## callbacks ##
@@ -32,15 +34,15 @@ module Locomotive
     ## other methods ##
 
     def as_json_with_custom_fields
-      # methods       = self.source.custom_fields_safe_attributes + self.getters
-      # default_json  = as_json_without_custom_fields(methods)
-
-      # default_json.merge(self.many_relationships_to_hash)
-
       as_json_without_custom_fields.merge(self.custom_fields_to_hash)
     end
 
     alias_method_chain :as_json, :custom_fields
+
+    def as_json_for_html_view
+      self.options[:html_view] = true
+      as_json_without_custom_fields.merge(self.custom_fields_to_hash)
+    end
 
     protected
 
@@ -55,31 +57,169 @@ module Locomotive
         self.source.custom_fields_safe_attributes.each do |name|
           hash[name] = self.source.send(name.to_sym)
         end
-      end.merge(self.many_relationships_to_hash)
+      end.merge(self.many_relationships_to_hash).merge(self.belongs_to_to_hash)
     end
 
-    # Build the hash storing for each *many* type field
-    # the list of entries.
+    # Build the hash storing for each *belongs_to* type field the target entry.
     #
-    # @return [ Hash ] The hash whose name is the name of the relationhip
+    # @return [ Hash ] The hash whose name is the name of the belongs_to field
     #
-    def many_relationships_to_hash
+    def belongs_to_to_hash
       {}.tap do |hash|
-        (self.source.has_many_custom_fields + self.many_to_many_custom_fields).each do |name, _|
+        self.source.belongs_to_custom_fields.each do |name, _|
           if self.depth == 0
-            list = self.source.send(name.to_sym).ordered
-            hash[name.to_s] = list.map { |entry| entry.to_presenter(depth: self.depth + 1) }
+            hash[name.to_s] = self.source.send(name.to_sym).try(:_slug)
           end
         end
       end
     end
 
-    def set_dynamic_attributes(*args)
-      puts args.inspect
-      puts "----"
-      puts @_values.inspect
+    # Build the hash storing for each *many* type field
+    # the list of entries.
+    #
+    # @param [ Hash] options Some options passed to modify the output
+    #
+    # @return [ Hash ] The hash whose name is the name of the relationhip
+    #
+    def many_relationships_to_hash(options = {})
+      {}.tap do |hash|
+        (self.source.has_many_custom_fields + self.many_to_many_custom_fields).each do |name, _|
+          if self.depth == 0
+            list = self.source.send(name.to_sym).ordered
+            hash[name.to_s] = list.map do |entry|
+              if self.html_view?
+                entry.to_presenter(depth: self.depth + 1).as_json
+              else
+                entry._slug
+              end
+            end
+          end
+        end
+      end
     end
 
+    # Set the values of the dynamic attributes for the
+    # content entry instance. This method is called automatically
+    # (callback) when the attributes= is called.
+    #
+    #
+    def set_dynamic_attributes
+      self.source.custom_fields_recipe['rules'].each do |rule|
+        case rule['type'].to_sym
+        when :string, :text, :boolean
+          set_basic_attribute(rule['name'])
+        when :date
+          set_date_attribute(rule['name'])
+        when :file
+          set_file_attribute(rule['name'])
+        when :select
+          set_select_attribute(rule['name'])
+        when :belongs_to
+          set_belongs_to_attribute(rule['name'], rule['class_name'])
+        when :has_many
+          # do nothing
+        when :many_to_many
+          set_many_to_many_attribute(rule['name'], rule['class_name'])
+        end
+      end
+    end
+
+    def set_basic_attribute(name, &block)
+      return if (value = @_attributes[name]).nil?
+      value = block.call(value) if block_given?
+      self.source.send(:"#{name}=", value)
+    end
+
+    def set_date_attribute(name)
+      @_attributes["formatted_#{name}"] = @_attributes.delete(name) if @_attributes[name]
+      set_basic_attribute("formatted_#{name}")
+       #{ |value| formatted_time(value) }
+
+      # [name, "formatted_#{name}"].each do |_name|
+      #   set_basic_attribute(_name) #{ |value| formatted_time(value) }
+      # end
+
+      # formatted_date_or_not = @_attributes[name] || @_attributes["formatted_#{name}"]
+      # return unless formatted_date_or_not
+      # value = formatted_time(formatted_date_or_not)
+      # self.source.created_at = value
+
+      # return unless @_attributes.key?("formatted_#{name}")
+      # value = formatted_time(@_attributes["formatted_#{name}"])
+      # self.source.send(:"#{name}=", value) if value
+    end
+
+    def set_file_attribute(name)
+      [name, "remove_#{name}"].each do |_name|
+        self.set_basic_attribute(_name)
+      end
+    end
+
+    def set_select_attribute(name)
+      id_or_name  = @_attributes[name] || @_attributes["#{name}_id"]
+
+      return if id_or_name.nil?
+
+      options = self.source.class._select_options(name)
+
+      option = options.detect { |option| [option['_id'], option['name']].include?(id_or_name) }
+
+      self.source.send(:"#{name}_id=", option['_id'])
+    end
+
+    def set_belongs_to_attribute(name, class_name)
+      id_or_slug  = @_attributes[name] || @_attributes["#{name}_id"]
+
+      return if id_or_slug.nil?
+
+      puts "#{name} = #{id_or_slug}"
+
+      entry = self.fetch_content_entries(class_name, id_or_slug).first
+
+      if entry
+        self.source.send(:"#{name}_id=", entry._id)
+
+        # position
+        if position = @_attributes["#{name}_position"]
+          self.set_basic_attribute("#{name}_position")
+        end
+      end
+    end
+
+    def set_many_to_many_attribute(name, class_name)
+      ids_or_slugs  = @_attributes[name] || @_attributes["#{name}_ids"]
+
+      return if ids_or_slugs.nil?
+
+      entries = self.fetch_content_entries(class_name, ids_or_slugs)
+
+      unless entries.empty?
+        self.source.send(:"#{name}=", entries)
+      end
+    end
+
+    # Return all the ids of the content entries matching the ids or the slugs
+    #
+    # @param [ Array ] ids_or_slugs Array of ids or slugs
+    #
+    # @return [ Array ] ids of the matching entries
+    #
+    def fetch_content_entries(class_name, ids_or_slugs)
+      ids_or_slugs  = [*ids_or_slugs]
+      klass         = class_name.constantize
+
+      # selector = klass.any_of({ :_slug.in => ids_or_slugs }, { :_id.in => ids_or_slugs }).selector
+      # cursor   = klass.collection.find(selector, fields: { _id: 1 }).cursor
+
+      # cursor.to_a.map { |hash| klass.new(_id: hash['_id']) }.tap { |o| puts o.inspect }
+
+      # tmp = .only(:_id)
+      # puts tmp.inspect
+      # puts tmp.all.inspect
+      # tmp
+
+      klass.any_of({ :_slug.in => ids_or_slugs }, { :_id.in => ids_or_slugs })
+    end
 
     # delegate  :_label, :_slug, :_position, :translated_in, :seo_title,
     #           :meta_keywords, :meta_description, :select_custom_fields,

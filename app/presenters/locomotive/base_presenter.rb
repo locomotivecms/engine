@@ -59,6 +59,26 @@ class Locomotive::BasePresenter
     self.source.errors.to_hash.stringify_keys
   end
 
+  # Tell if the presenter is aimed to be used in a html view
+  #
+  # @return [ Boolean ] True if used in a HTML view
+  #
+  def html_view?
+    !!self.options[:html_view]
+  end
+
+  # Mimic format used by to_json
+  #
+  # @param [ String ] text The string representing the time
+  #
+  # @return [ Time ] The time or nil if the input is nil or empty
+  #
+  def formatted_time(text)
+    return nil if text.blank?
+    format = '%Y-%m-%dT%H:%M:%S%Z'
+    ::Time.strptime(text, format)
+  end
+
   # Return the set of setters with their options.
   #
   # @param [ Hash ] options Some options: with_ids (add id and _id)

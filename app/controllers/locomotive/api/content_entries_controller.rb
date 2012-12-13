@@ -11,6 +11,8 @@ module Locomotive
 
       def index
         @content_entries = @content_entries.order_by([content_type.order_by_definition])
+        puts "-----------"
+        puts @content_entries.map(&:to_json)[2].inspect
         respond_with @content_entries
       end
 
@@ -22,6 +24,7 @@ module Locomotive
       def create
         @content_entry.from_presenter(params[:content_entry])
         @content_entry.save
+        puts @content_entry.as_json #inspect
         respond_with @content_entry, location: main_app.locomotive_api_content_entries_url(@content_type.slug)
       end
 

@@ -39,7 +39,7 @@ module Locomotive
     def attributes=(values)
       return unless values
 
-      @_values = values # memoize them for the callbacks
+      @_attributes = values # memoize them for the callbacks
 
       run_callbacks :set_attributes do
         _values = values.stringify_keys

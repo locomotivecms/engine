@@ -3,7 +3,7 @@
 
 - content_for :backbone_view_data do
   :plain
-    content_entry: #{j @content_entry.to_json.html_safe},
+    content_entry: #{j @content_entry.to_presenter.as_json_for_html_view.to_json.html_safe},
     content_type: #{j @content_type.to_json.html_safe}
 
 = f.inputs :name => :attributes do
