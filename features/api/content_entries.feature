@@ -62,7 +62,7 @@ Feature: Content Entries
         "started": false,
         "due": "06/01/2012",
         "logo": "images/logo2.jpg",
-        "workers": [ "w1", "w3" ],
+        "workers": ["w1", "w3"],
         "client": "c1"
       }
     }
@@ -75,13 +75,11 @@ Feature: Content Entries
       | 2/desc              | "The third"                   |
       | 2/type              | "code"                        |
       | 2/started           | false                         |
-      | 2/formatted_due     | "06/01/2012"                  |
+      | 2/due               | "06/01/2012"                  |
       | 2/workers/0         | "w1"                          |
       | 2/workers/1         | "w3"                          |
       | 2/client            | "c1"                          |
-      | 2/client_id         | "4f832c2cb0d86d3f42fffff8"    |
-    # And the JSON at "2/logo" should match /logo2.jpg$/
-    And the JSON at "2/logo_url" should match /logo2.jpg$/
+    And the JSON at "2/logo" should match /logo2.jpg$/
 
   Scenario: Updating existing project
     Given the JSON request at "content_entry/logo" is a file
@@ -95,9 +93,8 @@ Feature: Content Entries
         "started": true,
         "formatted_due": "06/01/2012",
         "logo": "images/logo2.jpg",
-        "tasks": [ "t3", "t1" ],
-        "workers": [ "w1", "w3" ],
-        "client": "c1"
+        "workers": ["w3", "w2"],
+        "client": "c2"
       }
     }
     """
@@ -109,31 +106,29 @@ Feature: Content Entries
       | 0/desc              | "Awesome Desc"                |
       | 0/type              | "design"                      |
       | 0/started           | true                          |
-      | 0/formatted_due     | "06/01/2012"                  |
-      | 0/tasks/0/name      | "t3"                          |
-      | 0/tasks/1/name      | "t1"                          |
-      | 0/workers/0/name    | "w1"                          |
-      | 0/workers/1/name    | "w3"                          |
-      | 0/client_id         | "4f832c2cb0d86d3f42fffff8"    |
-    And the JSON at "0/logo_url" should match /logo2.jpg$/
+      | 0/due               | "06/01/2012"                  |
+      | 0/workers/0         | "w3"                          |
+      | 0/workers/1         | "w2"                          |
+      | 0/client            | "c2"                          |
+    And the JSON at "0/logo" should match /logo2.jpg$/
 
-  Scenario: Creating new project with timestamps
-    When I do an API POST to content_types/projects/entries.json with:
-    """
-    {
-      "content_entry": {
-        "name": "Project 3",
-        "formatted_created_at": "2000-02-01T17:30:00-04:00",
-        "formatted_updated_at": "2001-03-02T18:40:10-03:00"
-      }
-    }
-    """
-    When I do an API GET request to content_types/projects/entries.json
-    Then the JSON response should be an array
-    And the JSON response should have 3 entries
-    And the JSON at "2/name" should be "Project 3"
-    And the JSON at "2/created_at" should be the time "2000-02-01T17:30:00-04:00"
-    And the JSON at "2/updated_at" should be the time "2001-03-02T18:40:10-03:00"
+  # Scenario: Creating new project with timestamps
+  #   When I do an API POST to content_types/projects/entries.json with:
+  #   """
+  #   {
+  #     "content_entry": {
+  #       "name": "Project 3",
+  #       "formatted_created_at": "2000-02-01T17:30:00-04:00",
+  #       "formatted_updated_at": "2001-03-02T18:40:10-03:00"
+  #     }
+  #   }
+  #   """
+  #   When I do an API GET request to content_types/projects/entries.json
+  #   Then the JSON response should be an array
+  #   And the JSON response should have 3 entries
+  #   And the JSON at "2/name" should be "Project 3"
+  #   And the JSON at "2/created_at" should be the time "2000-02-01T17:30:00-04:00"
+  #   And the JSON at "2/updated_at" should be the time "2001-03-02T18:40:10-03:00"
 
   Scenario: Updating project SEO data
     When I do an API PUT to content_types/projects/entries/4f832c2cb0d86d3f42fffff0.json with:
@@ -151,3 +146,10 @@ Feature: Content Entries
       | seo_title           | "New super-cool SEO title"    |
       | meta_keywords       | "key1,key2"                   |
       | meta_description    | "My SEO description"          |
+
+  Scenario: View a single project
+    When I do an API GET request to content_types/projects/entries/p1.json
+    Then the JSON should have the following:
+      | name | "p1"          |
+      | desc | "first"       |
+

@@ -13,20 +13,26 @@ module Locomotive
     field :name
     field :description
     field :slug
-    field :label_field_id,              :type => BSON::ObjectId
+    field :label_field_id,              type: BSON::ObjectId
     field :label_field_name
-    field :group_by_field_id,           :type => BSON::ObjectId
+    field :group_by_field_id,           type: BSON::ObjectId
     field :order_by
-    field :order_direction,             :default => 'asc'
-    field :public_submission_enabled,   :type => Boolean, :default => false
-    field :public_submission_accounts,  :type => Array
+    field :order_direction,             default: 'asc'
+    field :public_submission_enabled,   type: Boolean, default: false
+    field :public_submission_accounts,  type: Array
 
     ## associations ##
-    belongs_to  :site,      :class_name => 'Locomotive::Site'
-    has_many    :entries,   :class_name => 'Locomotive::ContentEntry', :dependent => :destroy
+    belongs_to  :site,      class_name: 'Locomotive::Site'
+    has_many    :entries,   class_name: 'Locomotive::ContentEntry', dependent: :destroy do
+
+      def find_by_id_or_permalink(id_or_permalink)
+        any_of({ _id: id_or_permalink }, { _slug: id_or_permalink }).first
+      end
+
+    end
 
     ## named scopes ##
-    scope :ordered, :order_by => :updated_at.desc
+    scope :ordered, order_by: :updated_at.desc
 
     ## indexes ##
     index [[:site_id, Mongo::ASCENDING], [:slug, Mongo::ASCENDING]]
@@ -39,8 +45,8 @@ module Locomotive
 
     ## validations ##
     validates_presence_of   :site, :name, :slug
-    validates_uniqueness_of :slug, :scope => :site_id
-    validates_size_of       :entries_custom_fields, :minimum => 1, :message => :too_few_custom_fields
+    validates_uniqueness_of :slug, scope: :site_id
+    validates_size_of       :entries_custom_fields, minimum: 1, message: :too_few_custom_fields
 
     ## behaviours ##
     custom_fields_for :entries
@@ -92,7 +98,7 @@ module Locomotive
 
     def label_field_id=(value)
       # update the label_field_name if the label_field_id is changed
-      new_label_field_name = self.entries_custom_fields.where(:_id => value).first.try(:name)
+      new_label_field_name = self.entries_custom_fields.where(_id: value).first.try(:name)
       self.label_field_name = new_label_field_name
       super(value)
     end
@@ -122,7 +128,7 @@ module Locomotive
       return nil if id_or_name.nil? # bypass the memoization
 
       _field = self.entries_custom_fields.find(id_or_name) rescue nil
-      _field || self.entries_custom_fields.where(:name => id_or_name).first
+      _field || self.entries_custom_fields.where(name: id_or_name).first
     end
 
     # Retrieve from a class name the associated content type within the scope of a site.
@@ -152,15 +158,15 @@ module Locomotive
       all_columns.map do |column|
         if columns.include?(column._id)
           {
-            :name     => column._label(target_content_type),
-            :entries  => grouped_entries.delete(column._id)
+            name:     column._label(target_content_type),
+            entries:  grouped_entries.delete(column._id)
           }
         else
           nil
         end
       end.compact.tap do |groups|
         unless grouped_entries.empty? # "orphans" ?
-          groups << { :name => nil, :entries => grouped_entries.values.flatten }
+          groups << { name: nil, entries: grouped_entries.values.flatten }
         end
       end
     end
@@ -185,7 +191,7 @@ module Locomotive
     def bubble_fields_errors_up
       return if self.errors[:entries_custom_fields].empty?
 
-      hash = { :base => self.errors[:entries_custom_fields] }
+      hash = { base: self.errors[:entries_custom_fields] }
 
       self.entries_custom_fields.each do |field|
         next if field.valid?
@@ -197,7 +203,7 @@ module Locomotive
     end
 
     def update_label_field_name_in_entries
-      self.klass_with_custom_fields(:entries).update_all :_label_field_name => self.label_field_name
+      self.klass_with_custom_fields(:entries).update_all _label_field_name: self.label_field_name
     end
 
     # Makes sure the class_name filled in a belongs_to or has_many field
