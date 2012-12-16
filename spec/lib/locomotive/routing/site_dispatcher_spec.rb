@@ -134,7 +134,8 @@ describe Locomotive::Routing::SiteDispatcher do
         @controller.expects(:current_site).returns(false)
       end
 
-      it 'returns false' do
+      it 'halts the filter chain' do
+        @controller.stubs(:render_no_site_error)
         @controller.send(:require_site).should be_false
       end
 
@@ -150,7 +151,10 @@ describe Locomotive::Routing::SiteDispatcher do
   describe '#render_no_site_error' do
 
     before :each do
+      @request = ActionDispatch::Request.new('rack.input' => 'wtf')
+
       @controller.instance_variable_set('@_response', ActionDispatch::Response.new)
+      @controller.stubs(:request).returns(@request)
       @controller.send(:render_no_site_error)
     end
 
