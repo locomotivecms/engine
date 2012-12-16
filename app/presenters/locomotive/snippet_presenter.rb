@@ -9,7 +9,7 @@ module Locomotive
     ## other getters / setters ##
 
     def updated_at
-      I18n.l(self.source.updated_at, format: :short)
+      I18n.l(self.__source.updated_at, format: :short)
     end
 
     ## custom as_json ##

@@ -14,10 +14,11 @@ module Locomotive
     with_options only_getter: true do |presenter|
       presenter.properties  :content_type_slug, :translated_in
 
-      presenter.property    :errors, if: Proc.new { !!options[:include_errors] }
+      presenter.property    :errors, if: Proc.new { include_errors? }
     end
 
     with_options only_getter: true, if: Proc.new { html_view? } do |presenter|
+      presenter.properties  :safe_attributes
       presenter.properties  :file_custom_fields, :has_many_custom_fields, :many_to_many_custom_fields
     end
 
@@ -27,8 +28,16 @@ module Locomotive
 
     ## other getters / setters ##
 
+    def errors
+      super
+    end
+
     def content_type_slug
-      self.source.content_type.slug
+      self.__source.content_type.slug
+    end
+
+    def safe_attributes
+      self.__source.custom_fields_safe_setters
     end
 
     ## other methods ##
@@ -40,7 +49,7 @@ module Locomotive
     alias_method_chain :as_json, :custom_fields
 
     def as_json_for_html_view
-      self.options[:html_view] = true
+      self.__options[:html_view] = true
       as_json_without_custom_fields.merge(self.custom_fields_to_hash)
     end
 
@@ -53,7 +62,7 @@ module Locomotive
     # @return [ Hash ] key the name of the custom field and value from the source
     #
     def custom_fields_to_hash
-      base = self.source.custom_fields_basic_attributes
+      base = self.__source.custom_fields_basic_attributes
       base.merge!(self.many_relationships_to_hash)
       base.merge!(self.belongs_to_to_hash)
     end
@@ -64,8 +73,8 @@ module Locomotive
     #
     def belongs_to_to_hash
       {}.tap do |hash|
-        self.source.belongs_to_custom_fields.each do |name, _|
-          if self.depth == 0 && target = self.source.send(name.to_sym)
+        self.__source.belongs_to_custom_fields.each do |name, _|
+          if target = self.__source.send(name.to_sym)
             if self.html_view?
               hash["#{name}_id"] = target._id
             else
@@ -79,18 +88,16 @@ module Locomotive
     # Build the hash storing for each *many* type field
     # the list of entries.
     #
-    # @param [ Hash] options Some options passed to modify the output
-    #
     # @return [ Hash ] The hash whose name is the name of the relationhip
     #
-    def many_relationships_to_hash(options = {})
+    def many_relationships_to_hash
       {}.tap do |hash|
-        (self.source.has_many_custom_fields + self.many_to_many_custom_fields).each do |name, _|
-          if self.depth == 0
-            list = self.source.send(name.to_sym).ordered
+        (self.__source.has_many_custom_fields + self.__source.many_to_many_custom_fields).each do |name, _|
+          if self.__depth == 0
+            list = self.__source.send(name.to_sym).ordered
             hash[name.to_s] = list.map do |entry|
               if self.html_view?
-                entry.to_presenter(depth: self.depth + 1).as_json
+                entry.to_presenter(depth: self.__depth + 1, html_view: true).as_json
               else
                 entry._slug
               end
@@ -106,10 +113,10 @@ module Locomotive
     #
     def set_dynamic_attributes
       # process the basic types
-      self.source.custom_fields_basic_attributes = @_attributes
+      self.__source.custom_fields_basic_attributes = @_attributes
 
       # now the relationships
-      self.source.relationship_custom_fields.each do |rule|
+      self.__source.relationship_custom_fields.each do |rule|
         if rule['type'] == 'belongs_to'
           self.set_belongs_to_attribute(rule['name'], rule['class_name'])
         elsif rule['type'] == 'many_to_many'
@@ -126,10 +133,10 @@ module Locomotive
       entry = self.fetch_content_entries(class_name, id_or_slug).first
 
       if entry
-        self.source.send(:"#{name}_id=", entry._id)
+        self.__source.send(:"#{name}_id=", entry._id)
 
         if position = @_attributes["#{name}_position"]
-          self.source.send(:"#{name}_position=", position)
+          self.__source.send(:"#{name}_position=", position)
         end
       end
     end
@@ -147,7 +154,7 @@ module Locomotive
           (ids_or_slugs.index(b._id.to_s) || ids_or_slugs.index(b._permalink))
         end # keep the original order
 
-        self.source.send(:"#{name}=", entries.to_a)
+        self.__source.send(:"#{name}=", entries.to_a)
       end
     end
 

@@ -9,8 +9,8 @@ module Locomotive
     ## other getters / setters ##
 
     def options
-      self.source.options.map do |option|
-        option['selected'] = option['value'] == self.source.content
+      self.__source.options.map do |option|
+        option['selected'] = option['value'] == self.__source.content
         option
       end
     end

@@ -43,7 +43,7 @@
     },
 
     open : function(f, p) {
-      console.log(f);
+      // console.log(f);
 
       f = f || {};
       p = p || {};

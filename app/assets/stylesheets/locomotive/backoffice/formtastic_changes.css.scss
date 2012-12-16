@@ -197,6 +197,11 @@ form.formtastic {
           }
         } // p.inline-hints
 
+        .actions {
+          overflow: visible;
+          padding-left: 0px;
+        }
+
         div.list {
           margin-left: 160px;
         }

@@ -4,6 +4,8 @@ class Locomotive.Views.Shared.FormView extends Backbone.View
 
   el: '#content'
 
+  namespace: null
+
   render: ->
     # make title editable (if possible)
     @make_title_editable()
@@ -109,8 +111,10 @@ class Locomotive.Views.Shared.FormView extends Backbone.View
         @show_error attribute, message
 
   show_error: (attribute, message, html) ->
-    input = @$("##{@model.paramRoot}_#{attribute}")
-    input = @$("##{@model.paramRoot}_#{attribute}_id") if input.size() == 0
+    prefix = if @namespace? then "#{@namespace}_" else ''
+
+    input = @$("##{prefix}#{@model.paramRoot}_#{attribute}")
+    input = @$("##{prefix}#{@model.paramRoot}_#{attribute}_id") if input.size() == 0
 
     return unless input.size() > 0
 

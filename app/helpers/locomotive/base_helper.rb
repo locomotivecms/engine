@@ -106,6 +106,28 @@ module Locomotive
       content_for?(:backbone_view_data) ? content_for(:backbone_view_data) : ''
     end
 
+    # Build the json version of a object. If the object owns a presenter
+    # then that presenter is used instead of the default object to_json method.
+    # Furthermore, if the presenter owns a as_json_for_html_view method,
+    # then it is called instead of the default as_json method.
+    # A html_safe is processed at the end.
+    #
+    # @return [ String ] The json representation of the object
+    #
+    def to_json(object)
+      if object.respond_to?(:to_presenter)
+        presenter = object.to_presenter
+
+        if presenter.respond_to?(:as_json_for_html_view)
+          presenter.as_json_for_html_view
+        else
+          presenter.as_json
+        end.to_json
+      else
+        object.to_json
+      end.html_safe
+    end
+
     # Display the image of the flag representing the locale.
     #
     # @param [ String / Symbol ] locale The locale (fr, en, ...etc)

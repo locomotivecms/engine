@@ -12,14 +12,15 @@ module Locomotive
       # keep tracks of the getters and setters
       class << self; attr_accessor :getters, :setters, :property_options end
 
-      attr_reader :source, :options
+      # __source is a reference to the main object (__ is for variable protection)
+      attr_reader :__source, :__options
 
     end
 
     # Initializer
     def initialize(object, options = {})
-      @source   = object
-      @options  = options || {}
+      @__source   = object
+      @__options  = options || {}
 
       self.after_initialize
     end
@@ -165,10 +166,10 @@ module Locomotive
         class_eval <<-EOV
           def #{name}
             if #{collection.to_s}
-              list = self.source.send(:#{name})
+              list = self.__source.send(:#{name})
               list ? list.map(&:as_json) : []
             else
-              self.source.send(:#{name})
+              self.__source.send(:#{name})
             end
           end
         EOV
@@ -180,7 +181,7 @@ module Locomotive
 
         class_eval <<-EOV
           def #{name}=(value)
-            self.source.send(:#{name}=, value)
+            self.__source.send(:#{name}=, value)
           end
         EOV
 

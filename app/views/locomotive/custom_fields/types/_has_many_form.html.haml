@@ -1,0 +1,31 @@
+- name          = field.name.to_s
+- content_type  = Locomotive::ContentType.class_name_to_content_type(field.class_name, current_site)
+- content_entry = content_type.entries.build
+
+
+%div{ id: "#{name}-template-entry", style: 'display: none' }
+
+  %h2
+    %span.new-section= t('locomotive.content_entries.new.title', type: name.capitalize).html_safe
+    %span.edit-section= t('locomotive.content_entries.edit.title', type: name.capitalize).html_safe
+
+  = semantic_form_for content_entry, as: :content_entry, namespace: name.to_s, url: content_entries_url(content_type.slug), html: { multipart: true, data: { sending_form_message: t('locomotive.messages.sending_form') } } do |form|
+
+    = form.inputs name: :attributes do
+      - content_type.ordered_entries_custom_fields.each_with_index do |_field, index|
+
+        - next if _field.name == field.inverse_of || %w(has_many many_to_many).include?(_field.type)
+
+        = render "locomotive/custom_fields/types/#{_field.type}",
+          f:            form,
+          name:         _field.name.to_sym,
+          field:        _field,
+          highlighted:  _field._id == content_type.label_field_id
+
+  .dialog-actions
+    = link_to t('locomotive.buttons.close'), '#', id: 'close-link'
+
+    .button-wrapper
+      %span.new-section= submit_tag t('locomotive.shared.form_actions.create'), :'data-disable-with' => t('locomotive.shared.form_actions.disable_with')
+      %span.edit-section= submit_tag t('locomotive.shared.form_actions.update'), :'data-disable-with' => t('locomotive.shared.form_actions.disable_with')
+

@@ -11,25 +11,25 @@ module Locomotive
     ## other getters / setters ##
 
     def name
-      self.source.account.name
+      self.__source.account.name
     end
 
     def role_name
-      I18n.t("locomotive.memberships.roles.#{self.source.role}")
+      I18n.t("locomotive.memberships.roles.#{self.__source.role}")
     end
 
     def email
-      self.source.account.email
+      self.__source.account.email
     end
 
     def can_update
       return nil unless self.ability?
-      self.ability.can? :update, self.source
+      self.__ability.can? :update, self.__source
     end
 
     def grant_admin
       return nil unless self.ability?
-      self.ability.can? :grant_admin, self.source
+      self.__ability.can? :grant_admin, self.__source
     end
 
   end

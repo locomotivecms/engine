@@ -16,7 +16,8 @@ class Locomotive.Views.Shared.Fields.FileView extends Backbone.View
     'click a.delete': 'toggle_delete'
 
   template: ->
-    ich["#{@options.name}_file_input"]
+    prefix = if @options.namespace? then "#{@options.namespace}_" else ''
+    ich["#{prefix}#{@options.name}_file_input"]
 
   render: ->
     url   = @model.get("#{@options.name}_url") || ''

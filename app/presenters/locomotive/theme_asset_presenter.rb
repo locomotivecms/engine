@@ -17,35 +17,35 @@ module Locomotive
     ## other getters / setters ##
 
     def local_path
-      self.source.local_path(true)
+      self.__source.local_path(true)
     end
 
     def url
-      self.source.source.url
+      self.__source.source.url
     end
 
     def size
-      number_to_human_size(self.source.size)
+      number_to_human_size(self.__source.size)
     end
 
     def raw_size
-      self.source.size
+      self.__source.size
     end
 
     def dimensions
-      self.source.image? ? "#{self.source.width}px x #{self.source.height}px" : nil
+      self.__source.image? ? "#{self.__source.width}px x #{self.__source.height}px" : nil
     end
 
     def updated_at
-      I18n.l(self.source.updated_at, format: :short)
+      I18n.l(self.__source.updated_at, format: :short)
     end
 
     def can_be_deleted
-      self.ability.try(:can?, :destroy, self.source)
+      self.__ability.try(:can?, :destroy, self.__source)
     end
 
     def plain_text
-      plain_text? ? self.source.plain_text : nil
+      plain_text? ? self.__source.plain_text : nil
     end
 
     ## methods ##
@@ -53,8 +53,8 @@ module Locomotive
     protected
 
     def plain_text?
-      # FIXME: self.options contains all the options passed by the responder
-      self.options[:template] == 'update' && self.source.errors.empty? && self.source.stylesheet_or_javascript?
+      # FIXME: self.__options contains all the options passed by the responder
+      self.__options[:template] == 'update' && self.__source.errors.empty? && self.__source.stylesheet_or_javascript?
     end
 
   end

@@ -37,30 +37,30 @@ module Locomotive
     ## other getters / setters ##
 
     def escaped_raw_template
-      h(self.source.raw_template)
+      h(self.__source.raw_template)
     end
 
     def localized_fullpaths
       {}.tap do |hash|
         self.site.locales.each do |locale|
-          hash[locale] = self.site.localized_page_fullpath(self.source, locale)
+          hash[locale] = self.site.localized_page_fullpath(self.__source, locale)
         end
       end
     end
 
     def parent_fullpath=(fullpath)
-      self.source.parent = self.site.pages.where(fullpath: fullpath).first
+      self.__source.parent = self.site.pages.where(fullpath: fullpath).first
     end
 
     def editable_elements=(elements)
-      self.source.force_serialize_template # initialize the default editable_elements
+      self.__source.force_serialize_template # initialize the default editable_elements
 
       elements.each do |attributes|
         block, slug = attributes.delete(:block), attributes.delete(:slug)
 
         block = nil if block.blank? # change empty string in block to nil
 
-        if element = self.source.find_editable_element(block, slug)
+        if element = self.__source.find_editable_element(block, slug)
           element.from_presenter(attributes)
         end
       end

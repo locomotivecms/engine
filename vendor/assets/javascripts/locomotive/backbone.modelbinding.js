@@ -179,10 +179,16 @@ Backbone.ModelBinding = (function(Backbone, _, $){
         var elementType = _getElementType(element);
         var attribute_name = config.getBindingValue(element, elementType);
 
-        // HACK (Did)
+       // HACK (Did): remove prefix by view namespace (formtastic convention). Needed for popup
+        if (typeof(view.namespace) != 'undefined') {
+          regexp = new RegExp('^' + view.namespace + '_')
+          attribute_name = attribute_name.replace(regexp, '');
+        }
+
+        // HACK (Did): remove prefix by the model paramRoot (formtastic convention)
         if (model.paramRoot) {
           regexp = new RegExp('^' + model.paramRoot + '_')
-          attribute_name = attribute_name.replace(regexp, '')
+          attribute_name = attribute_name.replace(regexp, '');
         }
         // console.log(attribute_name);
 
@@ -239,7 +245,13 @@ Backbone.ModelBinding = (function(Backbone, _, $){
         var element = view.$(this);
         var attribute_name = config.getBindingValue(element, 'select');
 
-        // HACK (Did)
+        // HACK (Did): remove prefix by view namespace (formtastic convention). Needed for popup
+        if (typeof(view.namespace) != 'undefined') {
+          regexp = new RegExp('^' + view.namespace + '_')
+          attribute_name = attribute_name.replace(regexp, '');
+        }
+
+        // HACK (Did): remove prefix by the model paramRoot (formtastic convention)
         if (model.paramRoot) {
           regexp = new RegExp('^' + model.paramRoot + '_')
           attribute_name = attribute_name.replace(regexp, '')
@@ -298,14 +310,19 @@ Backbone.ModelBinding = (function(Backbone, _, $){
 
         var group_name = config.getBindingValue(element, 'radio');
 
-        // HACK (Did)
+        // HACK (Did): remove prefix by view namespace (formtastic convention). Needed for popup
         var attribute_name = group_name;
+        if (typeof(view.namespace) != 'undefined') {
+          regexp = new RegExp('^' + view.namespace + "\\[");
+          attribute_name = attribute_name.replace(regexp, '').replace(/\]$/, '');
+        }
+
+        // HACK (Did): remove prefix by the model paramRoot (formtastic convention)
         if (model.paramRoot) {
           regexp = new RegExp('^' + model.paramRoot + "\\[");
           attribute_name = attribute_name.replace(regexp, '').replace(/\]$/, '');
         }
         // console.log(attribute_name);
-        // console.log(group_name);
 
         if (!foundElements[group_name]) {
           foundElements[group_name] = true;
@@ -369,7 +386,13 @@ Backbone.ModelBinding = (function(Backbone, _, $){
         var bindingAttr = config.getBindingAttr('checkbox');
         var attribute_name = config.getBindingValue(element, 'checkbox');
 
-        // HACK (Did)
+        // HACK (Did): remove prefix by view namespace (formtastic convention). Needed for popup
+        if (typeof(view.namespace) != 'undefined') {
+          regexp = new RegExp('^' + view.namespace + '_')
+          attribute_name = attribute_name.replace(regexp, '');
+        }
+
+        // HACK (Did): remove prefix by the model paramRoot (formtastic convention)
         if (model.paramRoot) {
           regexp = new RegExp('^' + model.paramRoot + '_')
           attribute_name = attribute_name.replace(regexp, '')

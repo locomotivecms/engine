@@ -17,6 +17,10 @@ module Locomotive
     end
 
     def file_wrapper_html
+      prefix = builder.custom_namespace.present? ? "#{builder.custom_namespace}_" : ''
+
+      template_id = "#{prefix}#{method}_file_input"
+
       template.content_tag(:script,
         %(
           {{#if url}}
@@ -24,7 +28,7 @@ module Locomotive
           {{else}}
           #{without_file_html}
           {{/if}}).html_safe,
-        :type => 'text/html', :id => "#{method}_file_input")
+        :type => 'text/html', :id => template_id)
     end
 
     def with_file_html

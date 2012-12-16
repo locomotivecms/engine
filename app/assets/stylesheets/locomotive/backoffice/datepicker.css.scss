@@ -3,6 +3,11 @@
 @import "compass/css3/images";
 @import "compass/css3/text-shadow";
 
+// Note: http://www.west-wind.com/weblog/posts/2009/Sep/12/jQuery-UI-Datepicker-and-zIndex
+#ui-datepicker-div {
+  z-index: 9999999 !important;
+}
+
 .ui-datepicker {
   display: none;
 

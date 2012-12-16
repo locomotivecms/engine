@@ -20,9 +20,7 @@ module Locomotive
     end
 
     def create
-      @snippet = current_site.snippets.new
-      @snippet_presenter = @snippet.to_presenter
-      @snippet_presenter.update_attributes(params[:snippet])
+      @snippet = current_site.snippets.create(params[:snippet])
       respond_with @snippet, :location => edit_snippet_url(@snippet._id)
     end
 

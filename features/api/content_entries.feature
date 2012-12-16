@@ -112,23 +112,25 @@ Feature: Content Entries
       | 0/client            | "c2"                          |
     And the JSON at "0/logo" should match /logo2.jpg$/
 
-  # Scenario: Creating new project with timestamps
-  #   When I do an API POST to content_types/projects/entries.json with:
-  #   """
-  #   {
-  #     "content_entry": {
-  #       "name": "Project 3",
-  #       "formatted_created_at": "2000-02-01T17:30:00-04:00",
-  #       "formatted_updated_at": "2001-03-02T18:40:10-03:00"
-  #     }
-  #   }
-  #   """
-  #   When I do an API GET request to content_types/projects/entries.json
-  #   Then the JSON response should be an array
-  #   And the JSON response should have 3 entries
-  #   And the JSON at "2/name" should be "Project 3"
-  #   And the JSON at "2/created_at" should be the time "2000-02-01T17:30:00-04:00"
-  #   And the JSON at "2/updated_at" should be the time "2001-03-02T18:40:10-03:00"
+  # FIXME: (Did) What is the use case to modify the timestamps of a content entry
+  @wip
+  Scenario: Creating new project with timestamps
+    When I do an API POST to content_types/projects/entries.json with:
+    """
+    {
+      "content_entry": {
+        "name": "Project 3",
+        "formatted_created_at": "2000-02-01T17:30:00-04:00",
+        "formatted_updated_at": "2001-03-02T18:40:10-03:00"
+      }
+    }
+    """
+    When I do an API GET request to content_types/projects/entries.json
+    Then the JSON response should be an array
+    And the JSON response should have 3 entries
+    And the JSON at "2/name" should be "Project 3"
+    And the JSON at "2/created_at" should be the time "2000-02-01T17:30:00-04:00"
+    And the JSON at "2/updated_at" should be the time "2001-03-02T18:40:10-03:00"
 
   Scenario: Updating project SEO data
     When I do an API PUT to content_types/projects/entries/4f832c2cb0d86d3f42fffff0.json with:

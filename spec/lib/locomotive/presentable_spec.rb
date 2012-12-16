@@ -153,12 +153,12 @@ describe Locomotive::Presentable do
       presenter.property :notes
     end
 
-    property :retirement_place, :if => Proc.new { source.age > 60 }
+    property :retirement_place, :if => Proc.new { __source.age > 60 }
 
     set_callback :set_attributes, :after, :hello_world
 
     def name=(value)
-      self.source.name = value.capitalize
+      self.__source.name = value.capitalize
     end
 
     def unknown=(value)
@@ -166,7 +166,7 @@ describe Locomotive::Presentable do
     end
 
     def age
-      "#{self.source.age} years old"
+      "#{self.__source.age} years old"
     end
 
     def hello_world

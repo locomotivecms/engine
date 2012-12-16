@@ -17,3 +17,6 @@
   = render 'form', :f => form
 
   = render 'locomotive/shared/form_actions', :back_url => content_entries_url(@content_type.slug), :button_label => :create
+
+- content_for :foot do
+  = render_has_many_forms

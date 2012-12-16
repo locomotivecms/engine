@@ -21,7 +21,7 @@ module Locomotive
 
     def set_default_content
       # if the default content was not explicitly set, set it to false
-      self.source.default_content = @default_content.nil? ? false : @default_content
+      self.__source.default_content = @default_content.nil? ? false : @default_content
     end
 
   end

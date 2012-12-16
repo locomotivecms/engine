@@ -23,7 +23,7 @@ module Locomotive
     end
 
     def memberships
-      self.source.memberships.map { |membership| membership.as_json(self.options) }
+      self.__source.memberships.map { |membership| membership.as_json(self.__options) }
     end
 
     ## custom as_json ##

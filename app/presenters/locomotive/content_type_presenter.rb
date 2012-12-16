@@ -29,44 +29,44 @@ module Locomotive
 
       fields.each do |attributes|
         id_or_name  = attributes.delete('id') || attributes.delete('_id') || attributes['name']
-        field       = self.source.find_entries_custom_field(id_or_name)
+        field       = self.__source.find_entries_custom_field(id_or_name)
 
         if field && !!attributes.delete('_destroy')
           destroyed_fields << { _id: field._id, _destroy: true }
           next
         end
 
-        field ||= self.source.entries_custom_fields.build
+        field ||= self.__source.entries_custom_fields.build
 
         field.from_presenter(attributes)
       end
 
       # shift to the accepts_nested_attributes function to delete fields
-      self.source.entries_custom_fields_attributes = destroyed_fields
+      self.__source.entries_custom_fields_attributes = destroyed_fields
     end
 
     def order_by_field_name
-      value = self.source.order_by
-      self.source.find_entries_custom_field(value).try(:name) || value
+      value = self.__source.order_by
+      self.__source.find_entries_custom_field(value).try(:name) || value
     end
 
     def group_by_field_name
-      self.source.group_by_field.try(:name)
+      self.__source.group_by_field.try(:name)
     end
 
     def group_by_field_name=(name)
-      field = self.source.find_entries_custom_field(name)
-      self.source.group_by_field_id = field.try(:_id)
+      field = self.__source.find_entries_custom_field(name)
+      self.__source.group_by_field_id = field.try(:_id)
     end
 
     def public_submission_account_emails
-      (self.source.public_submission_accounts || []).collect do |_id|
+      (self.__source.public_submission_accounts || []).collect do |_id|
         Locomotive::Account.find(_id).email
       end
     end
 
     def public_submission_account_emails=(emails)
-      self.source.public_submission_accounts = emails.collect do |email|
+      self.__source.public_submission_accounts = emails.collect do |email|
         Locomotive::Account.where(email: email).first
       end.compact.collect(&:id)
     end

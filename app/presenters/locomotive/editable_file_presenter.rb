@@ -25,11 +25,11 @@ module Locomotive
     end
 
     def source=(value)
-      self.source.source = value
+      self.__source.source = value
     end
 
     def source_url=(url)
-      self.source.remote_source_url = url
+      self.__source.remote_source_url = url
     end
 
   end

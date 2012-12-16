@@ -86,7 +86,7 @@ module Locomotive
     end
 
     def translated_in
-      self.title_translations.keys
+      self.title_translations.try(:keys)
     end
 
     protected

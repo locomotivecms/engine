@@ -8,21 +8,23 @@ class Locomotive::BasePresenter
   include ActionView::Helpers::NumberHelper
 
   ## default properties ##
-  property    :id, alias: :_id
+  with_options allow_nil: true do |presenter|
+    presenter.properties    :id, :_id
+  end
   properties  :created_at, :updated_at, type: 'Date', only_getter: true
 
   ## utility accessors ##
-  attr_reader :ability, :depth
+  attr_reader :__ability, :__depth
 
   # Set the ability object to check if we can or not
   # get a property.
   #
   def after_initialize
-    @depth    = self.options[:depth] || 0
-    @ability  = self.options[:ability]
+    @__depth    = self.__options[:depth] || 0
+    @__ability  = self.__options[:ability]
 
-    if @options[:current_account] && @options[:current_site]
-      @ability = Locomotive::Ability.new @options[:current_account], @options[:current_site]
+    if self.__options[:current_account] && self.__options[:current_site]
+      @__ability = Locomotive::Ability.new self.__options[:current_account], self.__options[:current_site]
     end
   end
 
@@ -31,16 +33,18 @@ class Locomotive::BasePresenter
   #
   # @return [ String ] The id of the source, nil if not persisted or not embedded.
   #
-  def id
-    self.source.persisted? || self.source.embedded? ? self.source._id.to_s : nil
+  def _id
+    self.__source.persisted? || self.__source.embedded? ? self.__source._id.to_s : nil
   end
+
+  alias :id :_id
 
   # Check if there is an ability object used for permissions.
   #
   # @return [ Boolean ] True if defined, false otherwise
   #
   def ability?
-    self.ability.present?
+    self.__ability.present?
   end
 
   # Shortcut to the site taken from the source.
@@ -48,7 +52,7 @@ class Locomotive::BasePresenter
   # @return [ Object ] The site or nil if not found
   #
   def site
-    self.source.try(:site)
+    self.__source.try(:site)
   end
 
   # Shortcut to the errors of the source
@@ -56,7 +60,15 @@ class Locomotive::BasePresenter
   # @return [ Hash ] The errors or an empty hash if no errors
   #
   def errors
-    self.source.errors.to_hash.stringify_keys
+    self.__source.errors.messages.to_hash.stringify_keys
+  end
+
+  # Tell if we have to include errors or not
+  #
+  # @return [ Boolean ] True if the source has errors.
+  #
+  def include_errors?
+    !!self.__options[:include_errors]
   end
 
   # Tell if the presenter is aimed to be used in a html view
@@ -64,7 +76,7 @@ class Locomotive::BasePresenter
   # @return [ Boolean ] True if used in a HTML view
   #
   def html_view?
-    !!self.options[:html_view]
+    !!self.__options[:html_view]
   end
 
   # Mimic format used by to_json
@@ -103,7 +115,7 @@ class Locomotive::BasePresenter
   def self.getters_to_hash
     {}.tap do |hash|
       self.getters.each do |name|
-        next if %w(created_at updated_at).include?(name)
+        next if %w(_id screated_at updated_at).include?(name)
         hash[name] = self.getters_or_setters_to_hash(name)
       end
 

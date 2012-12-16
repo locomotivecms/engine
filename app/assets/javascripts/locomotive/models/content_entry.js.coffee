@@ -24,7 +24,7 @@ class Locomotive.Models.ContentEntry extends Backbone.Model
     @set data
 
   update_attributes: (attributes) ->
-    _.each attributes.file_custom_fields, (field) => # special treatment for files
+    _.each @get('file_custom_fields'), (field) => # special treatment for files
       attribute = "#{field}_url"
       @set_attribute attribute, attributes[attribute]
       @set_attribute "remove_#{field}", false

@@ -22,6 +22,8 @@ class Locomotive.Views.ContentEntries.FormView extends Locomotive.Views.Shared.F
 
     @model ||= new Locomotive.Models.ContentEntry(@options.content_entry)
 
+    @namespace = @options.namespace
+
     Backbone.ModelBinding.bind @
 
   render: ->
@@ -88,11 +90,13 @@ class Locomotive.Views.ContentEntries.FormView extends Locomotive.Views.Shared.F
 
   enable_file_fields: ->
     _.each @model.get('file_custom_fields'), (name) =>
-      view = new Locomotive.Views.Shared.Fields.FileView model: @model, name: name
+      view = new Locomotive.Views.Shared.Fields.FileView model: @model, name: name, namespace: @namespace
 
       @_file_field_views.push(view)
 
-      @$("##{@model.paramRoot}_#{name}_input label").after(view.render().el)
+      prefix = if @namespace? then "#{@namespace}_" else ''
+
+      @$("##{prefix}#{@model.paramRoot}_#{name}_input label").after(view.render().el)
 
   enable_has_many_fields: ->
     unless @model.isNew()
@@ -133,6 +137,7 @@ class Locomotive.Views.ContentEntries.FormView extends Locomotive.Views.Shared.F
     @$('li.input.toggle input[type=checkbox]').checkToggle('sync')
 
   remove: ->
+    @$('li.input.date input[type=text]').datepicker('destroy')
     @_select_field_view.remove()
     _.each @_file_field_views, (view) => view.remove()
     _.each @_has_many_field_views, (view) => view.remove()

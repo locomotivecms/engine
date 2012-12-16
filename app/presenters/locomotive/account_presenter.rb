@@ -12,7 +12,7 @@ module Locomotive
     ## other getters / setters ##
 
     def admin
-      self.source.admin?
+      self.__source.admin?
     end
 
   end

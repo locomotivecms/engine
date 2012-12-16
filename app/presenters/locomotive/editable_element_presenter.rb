@@ -23,12 +23,12 @@ module Locomotive
     end
 
     def type
-      self.source._type.to_s.demodulize
+      self.__source._type.to_s.demodulize
     end
 
     def block_name
-      if self.source.block
-        self.labelize(self.source.block.split('/').last)
+      if self.__source.block
+        self.labelize(self.__source.block.split('/').last)
       else
         I18n.t('locomotive.pages.form.default_block')
       end

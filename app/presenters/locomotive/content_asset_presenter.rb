@@ -15,28 +15,28 @@ module Locomotive
     ## custom getters / setters ##
 
     def full_filename
-      self.source.source_filename
+      self.__source.source_filename
     end
 
     def filename
-      truncate(self.source.source_filename, length: 22)
+      truncate(self.__source.source_filename, length: 22)
     end
 
     def short_name
-      truncate(self.source.name, length: 15)
+      truncate(self.__source.name, length: 15)
     end
 
     def extname
-      truncate(self.source.extname, length: 3)
+      truncate(self.__source.extname, length: 3)
     end
 
     def content_type_text
-      value = self.source.content_type.to_s == 'other' ? self.extname : self.source.content_type
+      value = self.__source.content_type.to_s == 'other' ? self.extname : self.__source.content_type
       value.blank? ? '?' : value
     end
 
     def url
-      self.source.source.url
+      self.__source.source.url
     end
 
   end

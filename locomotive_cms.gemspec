@@ -31,7 +31,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'mongoid',                         '~> 2.4.12'
   s.add_dependency 'locomotive-mongoid-tree',         '~> 0.6.2'
 
-  s.add_dependency 'custom_fields',                   '~> 2.0.0.rc13'
+  s.add_dependency 'custom_fields',                   '~> 2.1.0.rc'
 
   s.add_dependency 'kaminari',                        '~> 0.13.0'
 
@@ -43,8 +43,8 @@ Gem::Specification.new do |s|
   s.add_dependency 'locomotive-aloha-rails',          '~> 0.20.1.4'
   s.add_dependency 'flash_cookie_session',            '~> 1.1.1'
 
-  s.add_dependency 'locomotive_liquid',               '~> 2.4.1'
-  s.add_dependency 'formtastic',                      '~> 2.0.2'
+  s.add_dependency 'locomotive_liquid',               '~> 2.4.2'
+  s.add_dependency 'formtastic',                      '~> 2.2.1'
   s.add_dependency 'responders',                      '~> 0.9.2'
   s.add_dependency 'cells',                           '~> 3.8.0'
   s.add_dependency 'RedCloth',                        '~> 4.2.8'
