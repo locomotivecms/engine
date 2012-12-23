@@ -149,6 +149,19 @@ Feature: Content Entries
       | meta_keywords       | "key1,key2"                   |
       | meta_description    | "My SEO description"          |
 
+  Scenario: Updating project select field with an unknown value
+    When I do an API PUT to content_types/projects/entries/4f832c2cb0d86d3f42fffff0.json with:
+    """
+    {
+      "content_entry": {
+        "type": "unknown"
+      }
+    }
+    """
+    When I do an API GET request to content_types/projects/entries/4f832c2cb0d86d3f42fffff0.json
+    And the JSON should have the following:
+      | title           | ""    |
+
   Scenario: View a single project
     When I do an API GET request to content_types/projects/entries/p1.json
     Then the JSON should have the following:

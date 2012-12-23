@@ -38,6 +38,14 @@ PATH
       sanitize (~> 2.0.3)
       unidecoder (~> 1.1.1)
 
+PATH
+  remote: ../gems/custom_fields
+  specs:
+    custom_fields (2.1.0.rc)
+      activesupport (~> 3.2.9)
+      carrierwave-mongoid (~> 0.2.1)
+      mongoid (~> 2.4.12)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -122,10 +130,6 @@ GEM
       capybara (>= 1.1.2)
       cucumber (>= 1.1.8)
       nokogiri (>= 1.5.0)
-    custom_fields (2.1.0.rc)
-      activesupport (~> 3.2.9)
-      carrierwave-mongoid (~> 0.2.1)
-      mongoid (~> 2.4.12)
     database_cleaner (0.9.1)
     devise (2.1.2)
       bcrypt-ruby (~> 3.0)
@@ -331,6 +335,7 @@ DEPENDENCIES
   coffee-rails (~> 3.2.2)
   compass-rails
   cucumber-rails
+  custom_fields!
   database_cleaner
   factory_girl_rails (~> 1.6.0)
   json_spec
