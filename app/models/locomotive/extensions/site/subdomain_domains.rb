@@ -6,7 +6,7 @@ module Locomotive
         def enable_subdomain_n_domains_if_multi_sites
           # puts "multi_sites? #{Locomotive.config.multi_sites?} / manage_domains? #{Locomotive.config.manage_domains?} / heroku? #{Locomotive.heroku?} / bushido? #{Locomotive.bushido?}"
 
-          if Locomotive.config.multi_sites? || Locomotive.config.manage_domains?
+          if Locomotive.config.multi_sites_or_manage_domains?
 
             ## fields ##
             field :subdomain

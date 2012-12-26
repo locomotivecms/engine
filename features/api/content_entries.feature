@@ -60,7 +60,7 @@ Feature: Content Entries
         "desc": "The third",
         "type": "code",
         "started": false,
-        "due": "06/01/2012",
+        "due": "2012/06/01",
         "logo": "images/logo2.jpg",
         "workers": ["w1", "w3"],
         "client": "c1"
@@ -91,7 +91,7 @@ Feature: Content Entries
         "desc": "Awesome Desc",
         "type": "design",
         "started": true,
-        "formatted_due": "06/01/2012",
+        "formatted_due": "2012/06/12",
         "logo": "images/logo2.jpg",
         "workers": ["w3", "w2"],
         "client": "c2"
@@ -106,7 +106,7 @@ Feature: Content Entries
       | 0/desc              | "Awesome Desc"                |
       | 0/type              | "design"                      |
       | 0/started           | true                          |
-      | 0/due               | "06/01/2012"                  |
+      | 0/due               | "06/12/2012"                  |
       | 0/workers/0         | "w3"                          |
       | 0/workers/1         | "w2"                          |
       | 0/client            | "c2"                          |

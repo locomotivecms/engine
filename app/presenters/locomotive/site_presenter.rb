@@ -4,9 +4,12 @@ module Locomotive
     ## properties ##
 
     property    :name
-    properties  :locales, type: Array
-    property    :subdomain
-    property    :domains, type: Array, required: false
+    properties  :locales,   type: Array
+
+    with_options if: Proc.new { Locomotive.config.multi_sites_or_manage_domains? } do |presenter|
+      presenter.property  :subdomain
+      presenter.property  :domains,   type: Array, required: false
+    end
 
     with_options only_getter: true do |presenter|
       presenter.property :domains_without_subdomain, type: Array
