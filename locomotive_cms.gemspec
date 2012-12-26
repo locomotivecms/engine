@@ -36,7 +36,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'kaminari',                        '~> 0.13.0'
 
   s.add_dependency 'haml',                            '~> 3.1.7'
-  s.add_dependency 'jquery-rails',                    '~> 1.0.19'
+  s.add_dependency 'jquery-rails',                    '~> 2.1.4'
   s.add_dependency 'rails-backbone',                  '~> 0.6.1'
   s.add_dependency 'codemirror-rails',                '~> 2.21'
   s.add_dependency 'locomotive-tinymce-rails',        '~> 3.4.7.4'

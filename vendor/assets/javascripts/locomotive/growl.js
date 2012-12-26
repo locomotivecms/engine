@@ -5,7 +5,7 @@
  *
  * Examples at: http://fragmentedcode.com/jquery-growl
  * Copyright (c) 2008 David Higgins
- * 
+ *
  * Special thanks to Daniel Mota for inspiration:
  * http://icebeat.bitacoras.com/mootools/growl/
  */
@@ -24,7 +24,7 @@ $.growl.settings.displayTimeout = 4000;
 $.growl.settings.noticeTemplate = ''
   + '<div>'
   + '<div style="float: right; background-image: url(my.growlTheme/normalTop.png); position: relative; width: 259px; height: 16px; margin: 0pt;"></div>'
-  + '<div style="float: right; background-image: url(my.growlTheme/normalBackground.png); position: relative; display: block; color: #ffffff; font-family: Arial; font-size: 12px; line-height: 14px; width: 259px; margin: 0pt;">' 
+  + '<div style="float: right; background-image: url(my.growlTheme/normalBackground.png); position: relative; display: block; color: #ffffff; font-family: Arial; font-size: 12px; line-height: 14px; width: 259px; margin: 0pt;">'
   + '  <img style="margin: 14px; margin-top: 0px; float: left;" src="%image%" />'
   + '  <h3 style="margin: 0pt; margin-left: 77px; padding-bottom: 10px; font-size: 13px;">%title%</h3>'
   + '  <p style="margin: 0pt 14px; margin-left: 77px; font-size: 12px;">%message%</p>'
@@ -35,7 +35,7 @@ $.growl.settings.noticeCss = {
   position: 'relative'
 };
 
-To change the 'dock' look, and position: 
+To change the 'dock' look, and position:
 
 $.growl.settings.dockTemplate = '<div></div>';
 $.growl.settings.dockCss = {
@@ -44,7 +44,7 @@ $.growl.settings.dockCss = {
     right: '10px',
     width: '300px'
   };
-  
+
 The dockCss will allow you to 'dock' the notifications to a specific area
 on the page, such as TopRight (the default) or TopLeft, perhaps even in a
 smaller area with "overflow: scroll" enabled?
@@ -62,21 +62,21 @@ function create(rebuild) {
 	  if(jQuery.growl.settings.defaultStylesheet) {
 	    $('head').append('<link rel="stylesheet" type="text/css" href="' + jQuery.growl.settings.defaultStylesheet + '" />');
 	  }
-	  
+
 	} else {
 	  instance = $(instance);
 	}
 	$('body').append(instance.css(jQuery.growl.settings.dockCss));
 	return instance;
 };
-  
+
 function r(text, expr, val) {
 	while(expr.test(text)) {
 	text = text.replace(expr, val);
 	}
 	return text;
 };
-  
+
 function notify(title,message,image,priority) {
 	var instance = create();
 	var html = jQuery.growl.settings.noticeTemplate;
@@ -93,7 +93,7 @@ function notify(title,message,image,priority) {
 
 	$.growl.settings.noticeDisplay(notice);
 	instance.append(notice);
-	$('a[@rel="close"]', notice).click(function() {
+	$('a[rel="close"]', notice).click(function() {
 		notice.remove();
 	});
 	if ($.growl.settings.displayTimeout > 0) {
@@ -105,7 +105,7 @@ function notify(title,message,image,priority) {
 	}
 };
 
-  
+
 // default settings
 $.growl.settings = {
 	dockTemplate: '<div></div>',
@@ -116,7 +116,7 @@ $.growl.settings = {
 		width: '300px',
 		zIndex: 50000
 	},
-	noticeTemplate: 
+	noticeTemplate:
 		'<div class="notice">' +
 		' <h3 style="margin-top: 15px">%title%</h3>' +
 		' <p>%message%</p>' +
