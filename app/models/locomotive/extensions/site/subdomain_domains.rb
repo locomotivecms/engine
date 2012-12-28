@@ -6,7 +6,7 @@ module Locomotive
         def enable_subdomain_n_domains_if_multi_sites
           # puts "multi_sites? #{Locomotive.config.multi_sites?} / manage_domains? #{Locomotive.config.manage_domains?} / heroku? #{Locomotive.heroku?} / bushido? #{Locomotive.bushido?}"
 
-          if Locomotive.config.multi_sites? || Locomotive.config.manage_domains?
+          if Locomotive.config.multi_sites_or_manage_domains?
 
             ## fields ##
             field :subdomain
@@ -23,7 +23,8 @@ module Locomotive
             validate                  :domains_must_be_valid_and_unique
 
             ## callbacks ##
-            before_save :add_subdomain_to_domains
+            before_save   :add_subdomain_to_domains
+            after_destroy :clear_cache_for_all_domains
 
             ## named scopes ##
             scope :match_domain, lambda { |domain| { :any_in => { :domains => [*domain] } } }
@@ -81,6 +82,10 @@ module Locomotive
                 self.errors.add(:domains, :invalid_domain, :value => domain)
               end
             end
+          end
+
+          def clear_cache_for_all_domains
+            self.domains.each { |name| Rails.cache.delete(name) }
           end
 
         end

@@ -57,6 +57,10 @@ module Locomotive
       self.manage_subdomain? && self.manage_domains?
     end
 
+    def multi_sites_or_manage_domains?
+      self.multi_sites? || self.manage_domains?
+    end
+
     def reserved_subdomains
       if self.multi_sites?
         if self.multi_sites.reserved_subdomains.blank?

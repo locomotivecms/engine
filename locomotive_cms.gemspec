@@ -31,7 +31,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'mongoid',                         '~> 2.4.12'
   s.add_dependency 'locomotive-mongoid-tree',         '~> 0.6.2'
 
-  s.add_dependency 'custom_fields',                   '~> 2.1.0.rc'
+  s.add_dependency 'custom_fields',                   '~> 2.1.0.rc1'
 
   s.add_dependency 'kaminari',                        '~> 0.13.0'
 

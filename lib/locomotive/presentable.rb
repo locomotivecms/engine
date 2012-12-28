@@ -67,10 +67,11 @@ module Locomotive
       methods ||= self.getters
       {}.tap do |hash|
         methods.each do |meth|
-          value     = self.send(meth.to_sym)
-          _options  = self.property_options[meth]
+          _options = self.property_options[meth]
 
           if _options[:if].blank? || self.instance_eval(&_options[:if])
+            value = self.send(meth.to_sym)
+
             if !value.nil? || (_options && !!_options[:allow_nil])
               hash[meth] = value
             end

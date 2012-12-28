@@ -60,7 +60,7 @@ Feature: Content Entries
         "desc": "The third",
         "type": "code",
         "started": false,
-        "due": "06/01/2012",
+        "due": "2012/06/01",
         "logo": "images/logo2.jpg",
         "workers": ["w1", "w3"],
         "client": "c1"
@@ -91,7 +91,7 @@ Feature: Content Entries
         "desc": "Awesome Desc",
         "type": "design",
         "started": true,
-        "formatted_due": "06/01/2012",
+        "formatted_due": "2012/06/12",
         "logo": "images/logo2.jpg",
         "workers": ["w3", "w2"],
         "client": "c2"
@@ -106,7 +106,7 @@ Feature: Content Entries
       | 0/desc              | "Awesome Desc"                |
       | 0/type              | "design"                      |
       | 0/started           | true                          |
-      | 0/due               | "06/01/2012"                  |
+      | 0/due               | "06/12/2012"                  |
       | 0/workers/0         | "w3"                          |
       | 0/workers/1         | "w2"                          |
       | 0/client            | "c2"                          |
@@ -148,6 +148,19 @@ Feature: Content Entries
       | seo_title           | "New super-cool SEO title"    |
       | meta_keywords       | "key1,key2"                   |
       | meta_description    | "My SEO description"          |
+
+  Scenario: Updating project select field with an unknown value
+    When I do an API PUT to content_types/projects/entries/4f832c2cb0d86d3f42fffff0.json with:
+    """
+    {
+      "content_entry": {
+        "type": "unknown"
+      }
+    }
+    """
+    When I do an API GET request to content_types/projects/entries/4f832c2cb0d86d3f42fffff0.json
+    And the JSON should have the following:
+      | title           | ""    |
 
   Scenario: View a single project
     When I do an API GET request to content_types/projects/entries/p1.json

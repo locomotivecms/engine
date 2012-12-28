@@ -31,11 +31,11 @@ module Locomotive
       protected
 
       def fetch_site(domain_name)
-        site_id = Rails.cache.fetch(domain_name, :expires_in => @expires_in) do
+        site_id = Rails.cache.fetch(domain_name, expires_in: @expires_in) do
           Site.match_domain(domain_name).only(:id).first._id.to_s rescue ''
         end
 
-        site_id.blank? ? nil : Site.new(:id => site_id)
+        site_id.blank? ? nil : Site.new(id: site_id)
       end
     end
   end

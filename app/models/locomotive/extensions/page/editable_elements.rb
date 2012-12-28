@@ -15,7 +15,11 @@ module Locomotive
 
         def disable_parent_editable_elements(block)
           Rails.logger.debug "[disable_parent_editable_elements] #{block.inspect}"
-          self.editable_elements.each { |el| el.disabled = true if el.from_parent? && el.block == block }
+          self.editable_elements.each do |el|
+            if el.from_parent? && (el.block == block || el.block =~ %r(^#{block}/))
+              el.disabled = true
+            end
+          end
         end
 
         def disable_all_editable_elements

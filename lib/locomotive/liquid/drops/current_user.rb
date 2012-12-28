@@ -1,4 +1,4 @@
-module Locomotive	
+module Locomotive
   module Liquid
     module Drops
       class CurrentUser < Base
@@ -7,7 +7,7 @@ module Locomotive
           _source.present?
         end
 
-	def name
+        def name
           _source.name if logged_in?
         end
 
