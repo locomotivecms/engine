@@ -12,7 +12,7 @@ module Locomotive
     end
 
     with_options only_getter: true do |presenter|
-      presenter.property :domains_without_subdomain, type: Array
+      presenter.property :domains_without_subdomain, type: Array, if: Proc.new { Locomotive.config.multi_sites_or_manage_domains? }
       presenter.property :domain_name
       presenter.property :memberships, type: Array
     end
