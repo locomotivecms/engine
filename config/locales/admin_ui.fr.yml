@@ -26,7 +26,7 @@ fr:
     buttons:
       login: Se connecter
       send_password: Envoyer
-      change_password: Mettre à jour
+      change_password: Enregistrer
       new_item: "+ ajouter"
       switch_to_site: Aller
       delete: "Supprimer"
@@ -38,7 +38,7 @@ fr:
     shared:
       header:
         welcome: "Bonjour, %{name}"
-        see: Voir le site web
+        see: Voir le site
         switch: Passer à un autre site
         help: Aide
         logout: Se déconnecter
@@ -59,7 +59,7 @@ fr:
       form_actions:
         back: Retour sans sauvegarder
         create: Créer
-        update: Mettre à jour
+        update: Enregistrer
         send: Envoyer
         disable_with: En cours...
 
@@ -114,7 +114,7 @@ fr:
     pages:
       index:
         title: Liste des pages
-        help: "Les pages sont organisées sous forme d'un arbre. Vous pouvez classes les pages ainsi que les dossiers."
+        help: "Les pages sont organisées hiérarchiquement. Vous pouvez classer les pages ainsi que les dossiers par glisser/déposer."
         no_items: "Il n'existe pas de page. Vous pouvez commencer par créer une <a href='%{url}'>ici</a>."
         new: nouvelle page
         latest_entries: Dernières pages
@@ -125,7 +125,7 @@ fr:
         updated_at: Mise à jour le
       edit:
         show: voir
-        help: "Le titre de la page est modifiable en cliquant dessus. Pour appliquer votre modification, cliquez après sur le bouton \"Modifier\""
+        help: "Le titre de la page est modifiable en cliquant dessus. Pour appliquer votre modification, cliquez après sur le bouton \"Enregistrer\""
         ask_for_title: "Veuillez entrer le nouveau titre"
       form:
         change_file: changer
@@ -181,13 +181,13 @@ fr:
     current_site:
       edit:
         new_membership: ajouter compte
-        help: "Le nom du site est modifiable en cliquant dessus. Pour appliquer votre modification, cliquez après sur le bouton \"Modifier\""
+        help: "Le nom du site est modifiable en cliquant dessus. Pour appliquer votre modification, cliquez après sur le bouton \"Enregistrer\""
         ask_for_name: "Veuillez entrer le nouveau nom"
 
     memberships:
       roles:
         admin: Administrateur
-        designer: Designeur
+        designer: Designer
         author: Auteur
       new:
         title: "Ajout d'un compte"
@@ -207,7 +207,7 @@ fr:
     theme_assets:
       index:
         title: Liste des fichiers du thème
-        help: "Les fichiers du thème sont utilisés pour construire le gabarit de vos pages. Si vous avez besoin d'une galerie d'images, créer un modèle sera plus adéquate.<br/><b>Attention : </b> Suivant les droits que vous avez, il se peut que vous ne puissiez pas voir tous les fichiers."
+        help: "Les fichiers du thème sont utilisés pour construire le gabarit de vos pages. Si vous avez besoin d'une galerie d'images, créer un modèle sera plus adéquat.<br/><b>Attention : </b> Suivant les droits que vous avez, il se peut que vous ne puissiez pas voir tous les fichiers."
         new: nouveau fichier
         snippets: Snippets
         css_and_js: Style et javascript
@@ -282,10 +282,11 @@ fr:
       form:
         edit_select_options: éditer options
         has_many:
-          new_item: Nouvel élément
+          new_entry: Nouvel élément
 
-    image_picker:
-      link: Insérer une image dans le code
+    code_editing:
+      image_picker: Inserer une image dans le code
+      copy_template: Copier le gabarit de la langue principale
 
     cross_domain_sessions:
       new:

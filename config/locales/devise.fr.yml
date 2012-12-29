@@ -1,7 +1,7 @@
 fr:
   errors:
     messages:
-      not_found: "pas trouvé"
+      not_found: "non trouvé"
       already_confirmed: "était déjà confirmé"
       not_locked: "n'était pas verouillé"
 
@@ -60,7 +60,7 @@ fr:
         unchange_password_message: "Votre mot de passe ne sera pas changé tant vous n'aurez pas accédé au lien ci-dessus pour en créer un nouveau."
       unlock_instructions:
         # For "Your account has been locked due to an excessive amount of unsuccessful sign in attempts."
-        locked_account_message: "Votre compte est verrouillé car vous avez échoué lors de votre identification trop de fois."
+        locked_account_message: "Votre compte est verrouillé par sécurité suite à un trop grand nombre d'identifications erronées."
         # For "Click the link below to unlock your account"
         unlock_account_instruction: "Cliquez sur le lien ci-dessous pour déverrouiller votre compte:"
         unlock_my_account: "Déverrouiller mon compte"
