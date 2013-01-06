@@ -38,10 +38,10 @@ module Locomotive
         #   # context 2: i18n.locale is 'fr'
         #   contact_us.fullpath <= 'fr/nous_contacter'
         #
-        # @params [ Page ] page The page we want the localized fullpath
-        # @params [ String ] locale The optional locale in place of the current one
+        # @param [ Page ] page The page we want the localized fullpath
+        # @param [ String ] locale The optional locale in place of the current one
         #
-        # @returns [ String ] The localized fullpath according to the current locale
+        # @return [ String ] The localized fullpath according to the current locale
         #
         def localized_page_fullpath(page, locale = nil)
           return nil if page.fullpath_translations.blank?

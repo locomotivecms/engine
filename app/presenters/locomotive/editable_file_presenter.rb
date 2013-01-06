@@ -17,7 +17,7 @@ module Locomotive
     ## other getters / setters ##
 
     def filename
-      File.basename(self.content)
+      self.content ? File.basename(self.content) : nil
     end
 
     def url
