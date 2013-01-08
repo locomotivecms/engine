@@ -37,7 +37,7 @@ module Locomotive
     end
 
     def safe_attributes
-      self.__source.custom_fields_safe_setters
+      self.__source.custom_fields_safe_setters + %w(_slug seo_title meta_keywords meta_description)
     end
 
     ## other methods ##
