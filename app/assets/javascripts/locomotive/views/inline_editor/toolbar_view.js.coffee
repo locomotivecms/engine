@@ -44,7 +44,7 @@ class Locomotive.Views.InlineEditor.ToolbarView extends Backbone.View
     previous_attributes = _.clone @model.attributes
 
     @model.save {},
-      success: (model, response, xhr) =>
+      success: (model, response) =>
         model.attributes = previous_attributes
         @$('.element-actions').hide()
         @show_editing_mode_block()

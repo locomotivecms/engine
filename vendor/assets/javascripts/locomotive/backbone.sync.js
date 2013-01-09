@@ -23,7 +23,7 @@
       type:         type,
       dataType:     'json',
       beforeSend: function( xhr ) {
-        var token = $('meta[name="csrf-token"]').attr('content');
+        var token = $('meta[name="csrf-token"]').prop('content');
         if (token) xhr.setRequestHeader('X-CSRF-Token', token);
       }
     }, options);
