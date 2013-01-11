@@ -18,6 +18,12 @@ describe Locomotive::Liquid::Tags::Consume do
       end.should_not raise_error
     end
 
+    it 'should parse the correct url with complex syntax with attributes' do
+      markup = 'blog from "http://www.locomotiveapp.org" username: "john", password: "easyone"'
+      tag = Locomotive::Liquid::Tags::Consume.new('consume', markup, ["{% endconsume %}"], {})
+      tag.instance_variable(:url).shoud == "http://www.locomotiveapp.org"
+    end
+
     it 'raises an error if the syntax is incorrect' do
       markup = 'blog http://www.locomotiveapp.org'
       lambda do
@@ -42,7 +48,5 @@ describe Locomotive::Liquid::Tags::Consume do
       template = "{% consume blog from url %}{{ blog.title }}{% endconsume %}"
       Liquid::Template.parse(template).render('url' => "http://blog.locomotiveapp.org/api/read").should == 'Locomotive rocks !'
     end
-
   end
-
 end
