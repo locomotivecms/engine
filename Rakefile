@@ -6,6 +6,7 @@ rescue LoadError
 end
 
 APP_RAKEFILE = File.expand_path("../spec/dummy/Rakefile", __FILE__)
+load APP_RAKEFILE
 
 # === Locomotive tasks ===
 load 'lib/tasks/locomotive.rake'
