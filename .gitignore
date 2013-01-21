@@ -42,4 +42,5 @@ spec/dummy/public/sites
 app/assets/javascripts/old/
 app/assets/stylesheets/old/
 .rbenv-gemsets
-
+.gitignore
+Gemfile.lock
