@@ -13,7 +13,7 @@ module Locomotive
       #
       class Consume < ::Liquid::Block
 
-        Syntax = /(#{::Liquid::VariableSignature}+)\s*from\s*([#{::Liquid::QuotedString}#{::Liquid::VariableSignature}]+)/
+        Syntax = /(#{::Liquid::VariableSignature}+)\s*from\s*(#{::Liquid::QuotedString}|#{::Liquid::VariableSignature}+)/
 
         def initialize(tag_name, markup, tokens, context)
           if markup =~ Syntax
