@@ -54,7 +54,7 @@ fr:
         published: "Seuls les administrateurs authentifiés peuvent voir une page non publiée."
         cache_strategy: "Cache la page pour de meilleure performance. L'option 'Simple' est le meilleur compromis."
         templatized: "Utilise la page comme un template pour un modèle défini."
-        listed: "Controle si la page doit être visible depuis les menus automatiquement générés."
+        listed: "Contrôle si la page doit être visible depuis les menus automatiquement générés."
         target_klass_name: "Le type du contenu pour lequel cette page est un template."
         seo_title: "Définit un titre de page à mettre dans la balise TITLE de la page. Laissez le blanc pour utiliser la valeur par défaut (voir configuration du site)."
         meta_keywords: "Redéfinit les mots-clés du site. Utilisés à l'intérieur de la balise HEAD. Ils sont séparés par une virgule."
