@@ -42,6 +42,7 @@ et:
         account: Minu konto
         site: Sait
         theme_assets: Teema failid
+        translations: Tõlked
       form:
         change_file: muuda
         delete_file: kustuta
@@ -224,6 +225,18 @@ et:
         no_items: "Hetkel ei ole ühtegi pilti."
         upload: "Üleslae teema pildid"
 
+    translations:
+      untranslated: "Tõlkimata lokaalid: %{list}"
+      index:
+        title: Tõlked
+        new: uus tõlge
+      new:
+        title: "Uus tõlge"
+        help: "Lehed/Koodijupid saavad jagada sama kujundust kõikide lokaalide vahel välja arvatud mõned väljad, mida saab lahendada <b>translate</b> liquid märgisega."
+      edit:
+        title: "Redigeerimisel %{key}"
+        help: "Saad kasutada seda tõlkimisvõtit järgmise liquid koodiga: <span class='code'>{{ '%{key}' | translate }}</span>."
+        
     content_assets:
       picker:
         title: "Sisesta meedia"
