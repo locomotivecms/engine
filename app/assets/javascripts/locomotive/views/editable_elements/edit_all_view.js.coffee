@@ -62,7 +62,7 @@ class Locomotive.Views.EditableElements.EditAllView extends Backbone.View
       event.stopPropagation() & event.preventDefault()
 
       link  = $(event.target)
-      index = parseInt(link.attr('href').match(/block-(.+)/)[1])
+      index = parseInt(link.prop('href').match(/block-(.+)/)[1])
 
       @$('.wrapper ul li.block').hide()
       @$("#block-#{index}").show()

@@ -21,7 +21,7 @@ describe Locomotive::Liquid::Tags::Consume do
     it 'should parse the correct url with complex syntax with attributes' do
       markup = 'blog from "http://www.locomotiveapp.org" username: "john", password: "easyone"'
       tag = Locomotive::Liquid::Tags::Consume.new('consume', markup, ["{% endconsume %}"], {})
-      tag.instance_variable(:url).shoud == "http://www.locomotiveapp.org"
+      tag.instance_variable_get(:@url).should == "http://www.locomotiveapp.org"
     end
 
     it 'raises an error if the syntax is incorrect' do

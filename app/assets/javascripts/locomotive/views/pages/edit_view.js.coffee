@@ -10,7 +10,7 @@ class Locomotive.Views.Pages.EditView extends Locomotive.Views.Pages.FormView
     @clear_errors()
 
     @model.save {},
-      success: (model, response, xhr) =>
+      success: (model, response) =>
         form.trigger('ajax:complete')
 
         model._normalize()

@@ -54,7 +54,7 @@ class Locomotive.Views.Shared.Fields.SelectView extends Backbone.View
 
     @model.save {}, success: @on_save, error: @on_save
 
-  on_save: (model, response, xhr) =>
+  on_save: (model, response) =>
     $.rails.enableFormElements(@$buttons_pane)
     model._normalize()
     @$form.trigger('ajax:complete')

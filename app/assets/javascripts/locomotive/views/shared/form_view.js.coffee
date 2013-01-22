@@ -37,24 +37,25 @@ class Locomotive.Views.Shared.FormView extends Backbone.View
 
     previous_attributes = _.clone @model.attributes
 
-    @model.save {},
+    xhr = @model.save {},
       headers:  options.headers
       silent:   true # since we pass an empty hash above, no need to trigger the callbacks
-      success: (model, response, xhr) =>
-        form.trigger('ajax:complete')
 
-        model.attributes = previous_attributes
+    xhr.success (model, response) =>
+      form.trigger('ajax:complete')
 
-        options.on_success(response, xhr) if options.on_success
+      model.attributes = previous_attributes
 
-      error: (model, xhr) =>
-        form.trigger('ajax:complete')
+      options.on_success(response, xhr) if options.on_success
 
-        errors = JSON.parse(xhr.responseText)
+    xhr.error (model, xhr) =>
+      form.trigger('ajax:complete')
 
-        @show_errors errors
+      errors = JSON.parse(model.responseText)
 
-        options.on_error() if options.on_error
+      @show_errors errors
+
+      options.on_error() if options.on_error
 
   make_title_editable: ->
     title = @$('h2 a.editable')
