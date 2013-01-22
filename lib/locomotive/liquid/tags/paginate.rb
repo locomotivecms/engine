@@ -23,6 +23,9 @@ module Locomotive
           if markup =~ Syntax
             @collection_name = $1
             @per_page = $2.to_i
+            @options = { }
+            markup.scan(::Liquid::TagAttributes) { |key, value| @options[key.to_sym] = value.gsub(/^'/, '').gsub(/'$/, '') }
+            @window_size = @options[:window_size] ? @options[:window_size].to_i : 3
           else
             raise ::Liquid::SyntaxError.new("Syntax Error in 'paginate' - Valid syntax: paginate <collection> by <number>")
           end
@@ -90,7 +93,7 @@ module Locomotive
         end
 
         def window_size
-          3
+          @window_size
         end
 
         def no_link(title)

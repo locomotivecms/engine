@@ -59,6 +59,15 @@ describe Locomotive::Liquid::Tags::Paginate do
     text.should match /\/products\?page=2/
   end
 
+  it 'respects the window_size option' do
+    template  = Liquid::Template.parse(default_pagination_template('window_size: 10'))
+    text      = template.render!(liquid_context(collection: PaginatedCollection.new((1..100).to_a)))
+
+    text.should match /\/\?page=4/
+    text.should match /\/\?page=10/
+    text.should_not match /\/\?page=11/
+  end
+
   # ___ helpers methods ___ #
 
   def liquid_context(options = {})
@@ -80,6 +89,16 @@ describe Locomotive::Liquid::Tags::Paginate do
         !{{ project }}!
       {% endfor %}
       {{ paginate.next.url }}
+    {% endpaginate %}"
+  end
+
+  def default_pagination_template(options='')
+    "{% paginate projects by 2 #{options} %}
+      {% for project in paginate.collection %}
+        !{{ project }}!
+      {% endfor %}
+      {{ paginate.next.url }}
+      {{ paginate | default_pagination }}
     {% endpaginate %}"
   end
 
