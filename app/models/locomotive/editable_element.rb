@@ -39,7 +39,10 @@ module Locomotive
     # Determines if the current element can be edited in the back-office
     #
     def editable?
-      !self.disabled? && self.locales.include?(::Mongoid::Fields::I18n.locale.to_s) && (!self.fixed? || !self.from_parent?)
+      !self.disabled? &&
+      self.locales.include?(::Mongoid::Fields::I18n.locale.to_s) &&
+      (!self.fixed? || !self.from_parent?) &&
+      !self.destroyed?
     end
 
     def _run_rearrange_callbacks

@@ -24,12 +24,12 @@ module Locomotive
 
         # right justify and padd a string
         def rjust(input, integer, padstr = '')
-          input.rjust(integer, padstr)
+          input.to_s.rjust(integer, padstr)
         end
 
         # left justify and padd a string
         def ljust(input, integer, padstr = '')
-          input.ljust(integer, padstr)
+          input.to_s.ljust(integer, padstr)
         end
 
         def textile(input)

@@ -52,6 +52,10 @@ module Locomotive
       self.__source.parent = self.site.pages.where(fullpath: fullpath).first
     end
 
+    def editable_elements
+      self.__source.enabled_editable_elements.map(&:as_json)
+    end
+
     def editable_elements=(elements)
       self.__source.force_serialize_template # initialize the default editable_elements
 

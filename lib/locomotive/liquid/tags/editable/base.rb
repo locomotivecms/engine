@@ -10,7 +10,7 @@ module Locomotive
 
           def initialize(tag_name, markup, tokens, context)
             if markup =~ Syntax
-              @slug = $1.gsub('\'', '')
+              @slug = $1.gsub(/[\"\']/, '')
               @options = { :fixed => false }
               markup.scan(::Liquid::TagAttributes) { |key, value| @options[key.to_sym] = value.gsub(/^'/, '').gsub(/'$/, '') }
             else
