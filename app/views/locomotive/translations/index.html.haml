@@ -7,7 +7,9 @@
   - content_for :buttons do
     = local_action_button t('.new'), new_translation_path, :icon => 'icon-plus' if can?(:create, Locomotive::Translation)
 
-- if @translations.present?
+- if @translations.empty?
+  %p.no-items!= t('.no_items', :url => new_translation_path)
+- else
   %ul.list
     - @translations.each do |translation|
       %li.item

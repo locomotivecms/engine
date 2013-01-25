@@ -3,14 +3,15 @@ module Locomotive
 
     sections :settings, :translations
 
-    load_and_authorize_resource through: :current_site
-
-    respond_to :json, :only => [:create, :update]
+    respond_to :json, only: [:create, :update]
 
     def index
+      @translations = current_site.translations.ordered
+      respond_with @translations
     end
 
     def new
+      @translation = current_site.translations.build
       respond_with @translation
     end
 
@@ -28,5 +29,12 @@ module Locomotive
       @translation.update_attributes(params[:translation])
       respond_with @translation, location: translations_path
     end
+
+    def destroy
+      @translation = current_site.translations.find(params[:id])
+      @translation.destroy
+      respond_with @translation, location: translations_path
+    end
+
   end
 end

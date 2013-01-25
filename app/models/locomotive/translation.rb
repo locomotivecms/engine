@@ -13,6 +13,9 @@ class Locomotive::Translation
   validates_uniqueness_of :key, scope: :site_id
   validates_presence_of 	:site, :key
 
+  ## scopes ##
+  scope :ordered, :order_by => [[:key, :asc]]
+
   ## callbacks ##
 	before_validation :underscore_key
 

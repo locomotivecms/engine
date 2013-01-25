@@ -164,6 +164,7 @@ fr:
       index:
         title: Traductions
         new: nouvelle traduction
+        no_items: "Il n'existe pas de traduction. Vous pouvez commencer par créer une <a href='%{url}'>ici</a>."
       new:
         title: "Nouvelle traduction"
         help: "Les pages/snippets peuvent avoir le même template dans toutes les langues. Seuls diffèrent de courts bouts de texte peuvent être traduits d'une langue à une autre grâce au tag liquid <b>translate</b>."
