@@ -234,6 +234,7 @@ en:
         title: Translations
         new: new translation
         no_items: "There are no translations for now. Just click <a href=\"%{url}\">here</a> to create the first one."
+        remove: Remove %{key}
       new:
         title: "New translation"
         help: "Pages/snippets can share the same template for all the locales except for some labels which can be handled by the <b>translate</b> liquid tag."

@@ -40,3 +40,5 @@ Background:
     And I fill in "Spanish" with "Texto de ejemplo"
     And I press "Create"
     Then I should see "Translation was successfully created"
+    When I follow "Remove example_key"
+    Then I should see "Translation was successfully deleted"
