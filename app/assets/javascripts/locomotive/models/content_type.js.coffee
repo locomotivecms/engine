@@ -11,6 +11,9 @@ class Locomotive.Models.ContentType extends Backbone.Model
     @set
       entries_custom_fields: new Locomotive.Models.CustomFieldsCollection(@get('entries_custom_fields'))
 
+  find_entries_custom_field: (name) ->
+    @get('entries_custom_fields').find((field) => field.get('name') == name)
+
   toJSON: ->
     _.tap super, (hash) =>
       _.each ['label_field_id_text', 'group_by_field_id_text', 'public_submission_accounts_text', 'target_klass_name_text', 'content_type_id_text', 'public_submission_account_emails'], (key) => delete hash[key]

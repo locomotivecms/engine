@@ -22,7 +22,7 @@ class Locomotive.Views.Shared.Fields.SelectView extends Backbone.View
   render_for: (name, callback) ->
     @name = name; @on_save_callback = callback
 
-    @custom_field = @model.get('entries_custom_fields').find((field) => field.get('name') == @name)
+    @custom_field = @model.find_entries_custom_field(@name)
 
     @render()
 
@@ -57,6 +57,10 @@ class Locomotive.Views.Shared.Fields.SelectView extends Backbone.View
   on_save: (model, response) =>
     $.rails.enableFormElements(@$buttons_pane)
     model._normalize()
+
+    # the field has been changed as well as its select options, so get a fresh copy.
+    @custom_field = model.find_entries_custom_field(@custom_field.get('name'))
+
     @$form.trigger('ajax:complete')
     @on_save_callback(@custom_field.get('select_options').sortBy((option) -> option.get('position'))) if @on_save_callback?
     @close()
