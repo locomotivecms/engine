@@ -102,6 +102,22 @@ module Locomotive
           target_klass.find_by_permalink(permalink)
         end
 
+        # Find all the ordered entries of the target klass filtered or not
+        # by the conditions passed in parameter.
+        #
+        # @param [ Hash ] conditions The conditions used to filter the entries (optional)
+        #
+        # @return [ Object ] The documents
+        #
+        def fetch_target_entries(conditions = {})
+          if self.target_klass_name =~ /^Locomotive::Entry([a-z0-9]+)$/
+            @content_type ||= self.site.content_types.find($1)
+            @content_type.ordered_entries(conditions)
+          else
+            []
+          end
+        end
+
         protected
 
         def get_templatized_from_parent

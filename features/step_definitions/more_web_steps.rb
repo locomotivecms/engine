@@ -50,8 +50,19 @@ Given /^I disable the CSRF protection for public submission requests$/ do
   # pending # express the regexp above with the code you wish you had
 end
 
+Then /^the response status should be (\d+)$/ do |status|
+  page.status_code.should == status.to_i
+end
+
 Then /^it returns a (\d+) error page$/ do |code|
   page.status_code.should == code.to_i
+end
+
+Then /^I should see the following xml output:$/ do |xml_output|
+  xml_output.gsub!(':now', Date.today.to_s)
+  response = Hash.from_xml(page.source)
+  expected = Hash.from_xml(xml_output)
+  expected.diff(response).should == {}
 end
 
 def wait_for_ajax(&block)

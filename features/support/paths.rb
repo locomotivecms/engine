@@ -37,6 +37,8 @@ module NavigationHelpers
     when /the "(.*)" model edition page/
       content_type = Locomotive::Site.first.content_types.where(:name => $1).first
       edit_content_type_path(content_type)
+    when /the sitemap/
+      "/sitemap.xml"
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:

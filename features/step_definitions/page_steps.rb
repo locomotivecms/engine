@@ -36,6 +36,15 @@ Given /^a page named "([^"]*)" with id "([^"]*)" and template:$/ do |page_slug, 
   @page.save!
 end
 
+Given /^a templatized page for the "(.*?)" model and with the template:$/ do |model_name, template|
+  content_type = Locomotive::ContentType.where(name: model_name).first
+  parent = create_content_page(content_type.slug, '', '')
+  @page = @site.pages.new(parent: parent, title: "Template for #{model_name}", published: true,
+    templatized: true, target_klass_name: content_type.entries_class_name,
+    raw_template: template)
+  @page.save!
+end
+
 # change the title
 When /^I change the page title to "([^"]*)"$/ do |page_title|
   page.evaluate_script "window.prompt = function() { return '#{page_title}'; }"
