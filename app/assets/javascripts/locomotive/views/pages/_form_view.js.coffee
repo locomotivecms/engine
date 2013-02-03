@@ -111,7 +111,7 @@ class Locomotive.Views.Pages.FormView extends Locomotive.Views.Shared.FormView
     @editable_elements_view.refresh()
 
   slugify_title: ->
-    @$('#page_title').slugify(target: @$('#page_slug'))
+    @$('#page_title').slugify(target: @$('#page_slug'), url: window.permalink_service_url)
     @$('#page_slug').bind 'change', ((event) => @touched_url = true)
 
   listen_for_url_changes: ->

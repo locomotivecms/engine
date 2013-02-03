@@ -12,6 +12,7 @@ it:
         unconfirmed: "E' necessario confermare l'account prima di continuare."
         locked: 'Il tuo account è bloccato.'
         invalid: 'Email o password non validi.'
+        not_found_in_database: 'Email o password non validi.'
         no_membership: "Il tuo account non è un membro di questo sito, si prega di contattare l'amministratore del sito per ottenere l'accesso."
         invalid_token: 'Token di autenticazione non valido.'
         timeout: 'La tua sessione è scaduta, si prega di accedere nuovamente per continuare.'

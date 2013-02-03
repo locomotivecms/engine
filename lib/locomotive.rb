@@ -73,7 +73,9 @@ module Locomotive
   end
 
   def self.add_middlewares
-    self.app_middleware.insert 0, 'Dragonfly::Middleware', :images
+    self.app_middleware.insert 0, '::Locomotive::Middlewares::Permalink'
+
+    self.app_middleware.insert 1, 'Dragonfly::Middleware', :images
 
     if self.rack_cache?
       self.app_middleware.insert_before 'Dragonfly::Middleware', '::Locomotive::Middlewares::Cache', self.config.rack_cache

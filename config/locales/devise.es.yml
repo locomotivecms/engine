@@ -12,6 +12,7 @@ es:
         unconfirmed: 'Debe confirmar su cuenta para continuar.'
         locked: 'Su cuenta está bloqueada.'
         invalid: 'Email o clave no válidos.'
+        not_found_in_database: 'Email o clave no válidos.'
         no_membership: 'Su cuenta no es miembro de este sitio. Por favor contacte con su administrador para obtener acceso.'
         invalid_token: 'Token de autenticación no válido.'
         timeout: 'Su sesión ha expirado. Por favor inicie una nueva sesión para continuar.'

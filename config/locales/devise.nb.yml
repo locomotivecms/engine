@@ -12,6 +12,7 @@ nb:
         unconfirmed: 'Kontoen må aktiveres før du kan fortsette.'
         locked: 'Brukerkontoen er sperret.'
         invalid: 'Ugyldig epost eller passord.'
+        not_found_in_database: 'Ugyldig epost eller passord.'
         no_membership: 'Kontoen din er ikke medlem av denne siden, kontakt administrator for å få tilgang.'
         invalid_token: 'Invalid authentication token.'
         timeout: 'Innloggingen har utløpt. Logg inn på nytt for å fortsette.'

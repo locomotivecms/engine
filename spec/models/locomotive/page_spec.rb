@@ -109,11 +109,11 @@ describe Locomotive::Page do
     it 'should have normalized slug' do
       page = FactoryGirl.build(:page, :slug => ' Valid  ité.html ')
       page.valid?
-      page.slug.should == 'valid-ite-html'
+      page.slug.should == 'valid-ite-dot-html'
 
       page = FactoryGirl.build(:page, :title => ' Valid  ité.html ', :slug => nil, :site => page.site)
       page.should be_valid
-      page.slug.should == 'valid-ite-html'
+      page.slug.should == 'valid-ite-dot-html'
     end
 
     it 'has no cache strategy' do

@@ -51,6 +51,11 @@ class Locomotive.Views.ContentTypes.CustomFieldsView extends Backbone.View
     if labelInput.val() != ''
       custom_field = new Locomotive.Models.CustomField label: labelInput.val(), type: typeInput.val()
 
+      # slugify the name from the label asynchronously
+      params = { string: labelInput.val(), underscore: '1' }
+      $.getJSON window.permalink_service_url, params, (data, textStatus, jqXHR) ->
+        custom_field.set('name', data['value'])
+
       @model.get('entries_custom_fields').add(custom_field)
 
       @_insert_entry(custom_field)

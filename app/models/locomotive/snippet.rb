@@ -30,7 +30,7 @@ module Locomotive
 
     def normalize_slug
       self.slug = self.name.clone if self.slug.blank? && self.name.present?
-      self.slug.permalink! if self.slug.present?
+      self.slug.permalink!(true) if self.slug.present?
     end
 
     def update_templates

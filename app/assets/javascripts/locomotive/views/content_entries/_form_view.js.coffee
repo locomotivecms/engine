@@ -121,7 +121,9 @@ class Locomotive.Views.ContentEntries.FormView extends Locomotive.Views.Shared.F
         @$("##{@model.paramRoot}_#{name}_input label").after(view.render().el)
 
   slugify_label_field: ->
-    @$('li.input.highlighted > input[type=text]').slugify(target: @$('#content_entry__slug'))
+    @$('li.input.highlighted > input[type=text]').slugify
+      target: @$('#content_entry__slug')
+      url:    window.permalink_service_url
 
   refresh_file_fields: ->
     _.each @_file_field_views, (view) => view.refresh()

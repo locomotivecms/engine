@@ -80,8 +80,8 @@ Devise.setup do |config|
   # config.cookie_options = {}
 
   # ==> Configuration for :validatable
-  # Range for password length. Default is 6..128.
-  # config.password_length = 6..128
+  # Range for password length. Default is 8..128.
+  config.password_length = 6..128
 
   # Regex to use to validate the email address
   # config.email_regexp = /\A([\w\.%\+\-]+)@([\w\-]+\.)+([\w]{2,})\z/i
@@ -139,8 +139,8 @@ Devise.setup do |config|
   # If true, authentication through token does not store user in session and needs
   # to be supplied on each request. Useful if you are using the token as API token.
   # config.stateless_token = false
-  # Hint: Devise 2 
-  # Devise.stateless_token was removed. If you want to have stateless tokens, 
+  # Hint: Devise 2
+  # Devise.stateless_token was removed. If you want to have stateless tokens,
   # simply do config.skip_session_storage << :auth_token in your initializer;
 
   # ==> Scopes configuration

@@ -7,7 +7,9 @@
 $.fn.slugify = function(settings) {
 
   settings = $.extend({
-    sep: '-'
+    sep: '-',
+    url: null,
+    underscore: false
   }, settings);
 
   var target = $(settings.target);
@@ -15,11 +17,25 @@ $.fn.slugify = function(settings) {
 
   var makeSlug = function(event) {
     var source = $(this);
-    var newVal = source.val().slugify(settings.sep);
 
-    if (!target.data('touched')) {
-      target.val(newVal);
-      target.trigger('change');
+    if (settings.url != null) {
+      // Ajax call instead meaning rely on the server to get the slugified version of the field
+      params = { 'string': source.val(), 'underscore': (settings.underscore ? '1' : '0') };
+      jQuery.getJSON(settings.url, params, function(data, textStatus, jqXHR) {
+        var newVal = data['value']
+
+        if (!target.data('touched')) {
+          target.val(newVal);
+          target.trigger('change');
+        }
+      });
+    } else {
+      var newVal = source.val().slugify(settings.sep);
+
+      if (!target.data('touched')) {
+        target.val(newVal);
+        target.trigger('change');
+      }
     }
   }
 

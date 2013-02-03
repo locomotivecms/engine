@@ -12,6 +12,7 @@ pl:
         unconfirmed: 'Musisz dokonać potwierdzenia konta, aby kontunuować.'
         locked: 'Twoje konto jest zablokowane.'
         invalid: 'Niewłaściwy adres e-mailowy lub hasło.'
+        not_found_in_database: 'Niewłaściwy adres e-mailowy lub hasło.'
         no_membership: 'Twoje konto nie należy do tej witryny. Skontaktuj się z jej administratorem, aby uzyskać dostęp.'
         invalid_token: 'Błędny token uwierzytelniający.'
         timeout: 'Twoja sesja wygasła, proszę zaloguj się ponownie, aby kontynuować.'

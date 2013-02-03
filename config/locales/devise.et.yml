@@ -13,6 +13,7 @@ et:
         unconfirmed: 'Pead kinnitama oma konto enne jätkamist.'
         locked: 'Sinu konto on lukus.'
         invalid: 'Vale email või parool.'
+        not_found_in_database: 'Vale email või parool.'
         no_membership: 'Sinu konto ei ole selle saidi liige, palun võta ühendust saidi administraatoriga, et ligipääsu saada.'
         invalid_token: 'Vale autentimise identsustõend.'
         timeout: 'Sinu sessioon aegus, palun logi sisse uuesti, et jätkata.'

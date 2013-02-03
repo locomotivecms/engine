@@ -4,12 +4,13 @@
 
 class String #:nodoc
 
-  def permalink
-    self.to_ascii.parameterize('-')
+  def permalink(underscore = false)
+    permalink = self.to_url
+    underscore ? permalink.underscore : permalink
   end
 
-  def permalink!
-    replace(self.permalink)
+  def permalink!(underscore = false)
+    replace(self.permalink(underscore))
   end
 
   alias :parameterize! :permalink!

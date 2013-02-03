@@ -20,7 +20,7 @@ require 'cancan'
 require 'RMagick'
 require 'cells'
 require 'sanitize'
-require 'unidecoder'
+require 'stringex'
 
 require 'compass'
 require 'codemirror/rails'

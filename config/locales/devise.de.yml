@@ -12,6 +12,7 @@ de:
         unconfirmed: 'Du musst deinen Account aktivieren bevor es weiter geht.'
         locked: 'Dein Account ist gesperrt.'
         invalid: 'Ungültige Email oder falsches Passwort.'
+        not_found_in_database: 'Ungültige Email oder falsches Passwort.'
         invalid_token: 'Ungültiges Authentifizierungs-Merkmal.'
         timeout: 'Deine Session ist abgelaufe. Bitte logge dich erneut ein, dann geht es weiter.'
         inactive: 'Dein Account wurde noch nicht aktiviert.'

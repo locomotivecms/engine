@@ -35,7 +35,10 @@ class Locomotive.Views.ContentTypes.FormView extends Locomotive.Views.Shared.For
     @$('#custom_fields_input').append(@custom_fields_view.render().el)
 
   slugify_name: ->
-    @$('#content_type_name').slugify(target: @$('#content_type_slug'), sep: '_')
+    @$('#content_type_name').slugify
+      target:     @$('#content_type_slug')
+      url:        window.permalink_service_url
+      underscore: true
 
   enable_liquid_editing: ->
     input = @$('#content_type_raw_item_template')
