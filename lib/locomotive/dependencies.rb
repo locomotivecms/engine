@@ -1,6 +1,7 @@
 require 'mongoid'
 require 'mongoid/railtie'
 require 'mongoid/tree'
+require 'mongoid_migration'
 require 'devise'
 require 'devise/orm/mongoid'
 require 'devise-encryptable'
