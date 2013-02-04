@@ -8,6 +8,7 @@ module Locomotive
 
     isolate_namespace Locomotive
 
+    paths['mongodb/migrate'] = 'mongodb/migrate'
     # config.autoload_once_paths += %W( #{config.root}/app/controllers #{config.root}/app/models #{config.root}/app/helpers #{config.root}/app/uploaders)
 
     initializer 'locomotive.cells' do |app|

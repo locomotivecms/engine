@@ -35,6 +35,5 @@ module Locomotive
       @translation.destroy
       respond_with @translation, location: translations_path
     end
-
   end
 end
