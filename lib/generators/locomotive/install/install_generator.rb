@@ -16,6 +16,11 @@ module Locomotive
 
       template 'mongoid.yml', 'config/mongoid.yml'
     end
+    
+    def copy_migrations
+      rake("db:mongoid:migration:install")
+      rake("db:mongoid:migrate")
+    end
 
     def insert_engine_routes
       route %(
