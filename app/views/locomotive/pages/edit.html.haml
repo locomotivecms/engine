@@ -7,7 +7,7 @@
   = render 'locomotive/shared/actions/contents'
 
 - content_for :buttons do
-  = local_action_button :show, "/#{@page.fullpath}", :icon => 'icon-eye-open'
+  = local_action_button :show, "/#{current_site.localized_page_fullpath(@page, ::Mongoid::Fields::I18n.locale)}", :icon => 'icon-eye-open'
 
 %p!= t('.help')
 
