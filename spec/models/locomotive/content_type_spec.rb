@@ -53,6 +53,18 @@ describe Locomotive::ContentType do
       end
     end
 
+    it 'sets a slug from the name before the validation' do
+      content_type = FactoryGirl.build(:content_type, name: 'my content Type')
+      content_type.valid?
+      content_type.slug.should == 'my_content_type'
+    end
+
+    it 'make sure the slug is correctly set before the validation' do
+      content_type = FactoryGirl.build(:content_type, slug: 'my content-type')
+      content_type.valid?
+      content_type.slug.should == 'my_content_type'
+    end
+
   end
 
   context '#ordered_entries' do
