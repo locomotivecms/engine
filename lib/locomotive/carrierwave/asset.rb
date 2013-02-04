@@ -57,8 +57,8 @@ module Locomotive
 
         def set_width_and_height
           if model.image?
-            magick = ::Magick::Image.read(current_path).first
-            model.width, model.height = magick.columns, magick.rows
+            dragonfly_img = Dragonfly.app.fetch_file(current_path)
+            model.width, model.height = dragonfly_img.width, dragonfly_img.height
           end
         end
 
