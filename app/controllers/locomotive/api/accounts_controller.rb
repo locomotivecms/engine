@@ -18,6 +18,12 @@ module Locomotive
         respond_with(@account)
       end
 
+      def update
+        @account.from_presenter(params[:account])
+        @account.save
+        respond_with(@account)
+      end
+
       def destroy
         @account.destroy
         respond_with(@account)
