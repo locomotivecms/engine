@@ -74,5 +74,6 @@
   });
 
   // Register plugin
+  tinymce.PluginManager.requireLangPack('locomotive_media');
   tinymce.PluginManager.add('locomotive_media', tinymce.plugins.LocomotiveMediaPicker);
 })();

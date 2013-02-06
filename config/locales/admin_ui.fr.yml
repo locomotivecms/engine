@@ -56,6 +56,10 @@ fr:
         untranslated: non traduit
       footer:
         who_is_behind: "Produit développé par %{development} et désigné par <a href=\"http://www.sachagreif.com\">Sacha Greif</a> &mdash; <small>version</small> %{version}"
+      form:
+        change_file: changer
+        delete_file: supprimer
+        cancel: annuler
       form_actions:
         back: Retour sans sauvegarder
         create: Créer
@@ -128,9 +132,6 @@ fr:
         help: "Le titre de la page est modifiable en cliquant dessus. Pour appliquer votre modification, cliquez après sur le bouton \"Enregistrer\""
         ask_for_title: "Veuillez entrer le nouveau titre"
       form:
-        change_file: changer
-        delete_file: supprimer
-        cancel: annuler
         default_block: Défaut
         cache_strategy:
           none: Aucun

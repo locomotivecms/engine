@@ -13,13 +13,13 @@ class Locomotive.Views.ApplicationView extends Backbone.View
 
     @enable_content_locale_picker()
 
+    window.Locomotive.tinyMCE.defaultSettings.language = window.locale # set the default tinyMCE language
+    window.Locomotive.tinyMCE.minimalSettings.language = window.locale
+
     # render page view
     if @options.view?
       @view = new @options.view(@options.view_data || {})
       @view.render()
-
-    window.Locomotive.tinyMCE.defaultSettings.language = window.locale # set the default tinyMCE language
-    window.Locomotive.tinyMCE.minimalSettings.language = window.locale
 
     return @
 

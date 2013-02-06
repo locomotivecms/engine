@@ -4,7 +4,7 @@
  * the top of the compiled file, but it's generally better to create a new file per style scope.
  *= require_self
  *= require locomotive/blueprint/screen.css
- *= require locomotive/jquery
+ *= require locomotive/jquery/ui.css
  *= require locomotive/font-awesome
  *= require formtastic
  *= require codemirror

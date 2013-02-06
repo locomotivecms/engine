@@ -23,17 +23,28 @@ module Locomotive
       ::DeviseController.respond_to :html, :json
     end
 
-    initializer "Locomotive precompile hook", :group => :all do |app|
-      app.config.assets.precompile += %w(locomotive.js locomotive.css locomotive/inline_editor.js locomotive/inline_editor.css
-      locomotive/not_logged_in.js locomotive/not_logged_in.css
-      locomotive/aloha.js)
+    initializer "locomotive.precompile.hook", :group => :all do |app|
+      app.config.assets.precompile += %w(
+        locomotive.js
+        locomotive.css
+        locomotive/inline_editor.js
+        locomotive/inline_editor.css
+        locomotive/not_logged_in.js
+        locomotive/not_logged_in.css
+        locomotive/aloha.js
+        tinymce/plugins/jqueryinlinepopups/editor_plugin.js
+        tinymce/plugins/locomotive_media/*.js
+        tinymce/plugins/locomotive_media/langs/*.js
+        tinymce/themes/advanced/skins/locomotive/*.css
+        aloha/plugins/custom/locomotive_media/**/*.js
+        aloha/plugins/custom/locomotive_media/**/*.css)
 
       # Uncomment the lines below to view the names of assets as they are
       # precompiled for the rails asset pipeline
-      #def compile_asset?(path)
-        #puts "Compiling: #{path}"
-        #true
-      #end
+      # def compile_asset?(path)
+      #   puts "Compiling: #{path}"
+      #   true
+      # end
 
       #app.config.assets.precompile = [ method(:compile_asset?).to_proc ]
     end
