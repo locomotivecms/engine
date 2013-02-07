@@ -16,6 +16,8 @@ Bundler::GemHelper.install_tasks
 
 # === Travis
 task :travis do
+  puts "Precompile assets first to avoid potential time outs"
+  system("bundle exec assets:precompile")
   ["rspec spec", "cucumber -b"].each do |cmd|
     puts "Starting to run #{cmd}..."
     system("export DISPLAY=:99.0 && bundle exec #{cmd}")
