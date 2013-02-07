@@ -70,6 +70,12 @@ module Locomotive
 
     # enable the hosting solution if both we are not in test or dev and that the config.hosting option has been filled up
     self.enable_hosting
+
+    # Check for outdated Dragonfly config
+    conf = Dragonfly.app.configuration
+    if conf[:identify_command] == conf[:convert_command]
+      Locomotive.log :warn, "WARNING: Old Dragonfly config detected, image uploads might be broken. Use 'rails g locomotive:install' to get the latest configuration files."
+    end
   end
 
   def self.add_middlewares

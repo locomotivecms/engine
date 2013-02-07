@@ -57,8 +57,12 @@ module Locomotive
 
         def set_width_and_height
           if model.image?
-            magick = ::Magick::Image.read(current_path).first
-            model.width, model.height = magick.columns, magick.rows
+            conf = Dragonfly.app.configuration
+            if conf[:identify_command] == conf[:convert_command]
+              Rails.logger.warn "WARNING: Old Dragonfly config detected, image uploads might be broken. Use 'rails g locomotive:install' to get the latest configuration files."
+            end
+            dragonfly_img = Dragonfly.app.fetch_file(current_path)
+            model.width, model.height = dragonfly_img.width, dragonfly_img.height
           end
         end
 
