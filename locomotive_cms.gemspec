@@ -51,7 +51,6 @@ Gem::Specification.new do |s|
   s.add_dependency 'RedCloth',                        '~> 4.2.8'
   s.add_dependency 'sanitize',                        '~> 2.0.3'
   s.add_dependency 'highline',                        '~> 1.6.2'
-  # s.add_dependency 'unidecoder',                      '~> 1.1.1'
   s.add_dependency 'stringex',                        '~> 1.5.1'
 
   s.add_dependency 'carrierwave-mongoid',             '~> 0.2.1'

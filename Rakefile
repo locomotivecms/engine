@@ -25,12 +25,5 @@ task :travis do
   end
 end
 
-# === RSpec ===
-require 'rspec/core/rake_task'
-RSpec::Core::RakeTask.new(:spec)
-
-# === Cucumber ===
-load 'lib/tasks/cucumber.rake'
-
 # === Default task ===
 task :default => [:spec, :cucumber]
