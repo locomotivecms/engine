@@ -2,7 +2,6 @@ script: "bundle exec rake travis"
 before_script: ./bin/ci/before_build.sh
 services: mongodb
 rvm:
-  - 1.9.2
   - 1.9.3
 notifications:
   email:
@@ -12,4 +11,3 @@ notifications:
 branches:
   only:
     - master
-    - 1.0-stable
