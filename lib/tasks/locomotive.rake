@@ -36,9 +36,10 @@ namespace :locomotive do
     account = Locomotive::Account.create :email => email, :password => password, :password_confirmation => password_confirm, :name => name
 
     # TODO: this should be changed to work for multi-sites (see desc)
-    site = Locomotive::Site.first
-    site.memberships.build :account => account, :role => 'admin'
-    site.save!
+    if site = Locomotive::Site.first
+      site.memberships.build :account => account, :role => 'admin'
+      site.save!
+    end
   end
 
   namespace :upgrade do
