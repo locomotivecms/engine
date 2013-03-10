@@ -22,7 +22,7 @@ require 'cells'
 require 'sanitize'
 require 'stringex'
 
-require 'compass'
+require 'compass-rails'
 require 'codemirror/rails'
 require 'jquery/rails'
 require 'backbone-rails'
