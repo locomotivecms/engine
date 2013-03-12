@@ -8,7 +8,7 @@ end
 APP_RAKEFILE = File.expand_path("../spec/dummy/Rakefile", __FILE__)
 load APP_RAKEFILE
 
-# === Locomotive tasks ===
+# === LocomotiveCMS tasks ===
 load 'lib/tasks/locomotive.rake'
 
 # === Gems install tasks ===

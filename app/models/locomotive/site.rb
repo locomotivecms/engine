@@ -51,6 +51,10 @@ module Locomotive
       self.memberships.find_all { |m| m.admin? }
     end
 
+    def is_admin?(account)
+      self.memberships.detect { |m| m.admin? && m.account_id == account._id }
+    end
+
     protected
 
     # FIXME: Currently there is no t/translate method on the I18n module
