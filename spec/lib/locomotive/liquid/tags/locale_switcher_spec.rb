@@ -32,7 +32,7 @@ describe Locomotive::Liquid::Tags::LocaleSwitcher do
 
   it 'translates the label if specified' do
   	html = render_tag('en', "label: 'locale'")
-  	html.should == '<div id="locale-switcher"><a href="/" class="en current">English</a> | <a href="/fr" class="fr">Français</a></div>'
+  	html.should == '<div id="locale-switcher"><a href="/" class="en current">English</a> | <a href="/fr" class="fr">French</a></div>'
   end
 
   def render_tag(locale = 'en', options = nil)
