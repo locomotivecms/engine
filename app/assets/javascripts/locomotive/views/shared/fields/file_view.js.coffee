@@ -29,10 +29,10 @@ class Locomotive.Views.Shared.Fields.FileView extends Backbone.View
 
     # only in HTML 5
     @$('input[type=file]').bind 'change', (event) =>
-      input = $(event.target)[0]
+      input = event.target
 
       if input.files?
-        name  = $(input).attr('name')
+        name  = input.name
         hash  = {}
         hash[name.replace("#{@model.paramRoot}[", '').replace(/]$/, '')] = input.files[0]
         @model.set(hash)
