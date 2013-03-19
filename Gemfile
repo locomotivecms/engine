@@ -3,6 +3,9 @@
 
 source :rubygems
 
+# net-scp 1.0.6 was yanked
+gem 'net-scp', '1.0.4'
+
 gemspec # Include gemspec dependencies
 
 group :assets do
