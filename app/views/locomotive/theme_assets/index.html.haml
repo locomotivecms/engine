@@ -3,22 +3,24 @@
 - content_for :head do
   = render 'asset'
 
-  = render 'list', :name => 'images', :title => t('.images'), :empty_message => t('.no_items', :url => new_theme_asset_url)
-  = render 'list', :name => 'media', :title => t('.media'), :empty_message => t('.no_items', :url => new_theme_asset_url)
+  = render 'list', name: 'images', title: t('.images'), empty_message: t('.no_items', url: new_theme_asset_url)
+  = render 'list', name: 'media', title: t('.media'), empty_message: t('.no_items', url: new_theme_asset_url)
+  = render 'list', name: 'others', title: t('.others'), empty_message: t('.no_items', url: new_theme_asset_url)
 
   - if can?(:manage, Locomotive::Snippet)
     = render '/locomotive/snippets/snippet'
-    = render 'list', :name => 'snippets', :title => t('.snippets'), :empty_message => t('locomotive.snippets.index.no_items', :url => new_snippet_url)
+    = render 'list', name: 'snippets', title: t('.snippets'), empty_message: t('locomotive.snippets.index.no_items', url: new_snippet_url)
 
   - if can?(:manage, Locomotive::ThemeAsset)
-    = render 'list', :name => 'js_and_css', :title => t('.css_and_js'), :empty_message => t('.no_items', :url => new_theme_asset_url)
-    = render 'list', :name => 'fonts', :title => t('.fonts'), :empty_message => t('.no_items', :url => new_theme_asset_url)
+    = render 'list', name: 'js_and_css', title: t('.css_and_js'), empty_message: t('.no_items', url: new_theme_asset_url)
+    = render 'list', name: 'fonts', title: t('.fonts'), empty_message: t('.no_items', url: new_theme_asset_url)
 
 - content_for :backbone_view_data do
   :plain
     snippets:           #{j can?(:manage, Locomotive::Snippet) ? @snippets.map { |snippet| snippet.to_presenter.as_json_for_html_view }.to_json.html_safe : 'null'},
     images:             #{j theme_assets_to_json(@assets[:images]).html_safe},
     media:              #{j theme_assets_to_json(@assets[:media]).html_safe},
+    others:             #{j theme_assets_to_json(@assets[:others]).html_safe},
     js_and_css_assets:  #{j can?(:manage, Locomotive::ThemeAsset) ? theme_assets_to_json(@js_and_css_assets).html_safe : 'null'},
     fonts:              #{j can?(:manage, Locomotive::ThemeAsset) ? theme_assets_to_json(@assets[:fonts]).html_safe : 'null'}
 
@@ -27,12 +29,12 @@
 
 - content_for :buttons do
   - if can?(:manage, Locomotive::ThemeAsset)
-    = form_tag theme_assets_url(:json), :id => 'theme-assets-quick-upload', :class => 'quick-upload', :'data-sending-form-message' => t('locomotive.messages.sending_form')  do
-      = file_field_tag 'theme_asset[source]', :multiple => 'multiple'
-      = local_action_button :quick_upload, '#', :icon => :upload, :class => 'new'
+    = form_tag theme_assets_url(:json), id: 'theme-assets-quick-upload', class: 'quick-upload', :'data-sending-form-message' => t('locomotive.messages.sending_form')  do
+      = file_field_tag 'theme_asset[source]', multiple: 'multiple'
+      = local_action_button :quick_upload, '#', icon: :upload, class: 'new'
 
-  = local_action_button t('locomotive.snippets.index.new'), new_snippet_url, :icon => 'icon-plus' if can?(:manage, Locomotive::Snippet)
-  = local_action_button :new, new_theme_asset_url, :icon => :plus if can?(:manage, Locomotive::ThemeAsset)
+  = local_action_button t('locomotive.snippets.index.new'), new_snippet_url, icon: 'icon-plus' if can?(:manage, Locomotive::Snippet)
+  = local_action_button :new, new_theme_asset_url, icon: :plus if can?(:manage, Locomotive::ThemeAsset)
 
 %p!= t('.help')
 
@@ -48,3 +50,5 @@
   #fonts-anchor
 
 #media-anchor
+
+#others-anchor

@@ -22,6 +22,8 @@ class Locomotive.Views.ThemeAssets.IndexView extends Backbone.View
 
     @render_media()
 
+    @render_others()
+
     return @
 
   build_uploader: ->
@@ -42,13 +44,16 @@ class Locomotive.Views.ThemeAssets.IndexView extends Backbone.View
         asset.save {},
           success:  (model, response, xhr) =>
             form.trigger('ajax:complete')
+            console.log(model)
+            console.log(response)
             @insert_asset(model)
           error:    (() => form.trigger('ajax:complete'))
           headers:  { 'X-Flash': true }
 
   insert_asset: (model) ->
+    window.foo = model
     list_view = @pick_list_view(model.get('content_type'))
-    list_view.collection.add(model)
+    list_view.collection.add(model) if list_view?
 
   render_snippets: ->
     @render_list 'snippets', @options.snippets, Locomotive.Views.Snippets.ListView
@@ -64,6 +69,9 @@ class Locomotive.Views.ThemeAssets.IndexView extends Backbone.View
 
   render_media: ->
     @render_list 'media', @options.media, Locomotive.Views.ThemeAssets.ListView, ich.media_list
+
+  render_others: ->
+    @render_list 'others', @options.others, Locomotive.Views.ThemeAssets.ListView, ich.others_list
 
   render_list: (type, collection, view_klass, template) ->
     return if @$("##{type}-anchor").size() == 0
@@ -83,6 +91,7 @@ class Locomotive.Views.ThemeAssets.IndexView extends Backbone.View
       when 'javascript', 'stylesheet' then 'js-and-css'
       when 'media'                    then 'media'
       when 'font'                     then 'fonts'
+      when 'other'                    then 'others'
 
     _.find @_lists_views, (view) => view.options.type == type
 

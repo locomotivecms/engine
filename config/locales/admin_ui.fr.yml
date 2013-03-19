@@ -217,6 +217,7 @@ fr:
         images: Images
         media: Média
         fonts: Polices
+        others: Autres
         no_items: "Il n'existe pas de fichiers."
         quick_upload: "Upload rapide"
       asset:
