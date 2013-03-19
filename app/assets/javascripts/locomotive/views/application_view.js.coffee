@@ -80,7 +80,7 @@ class Locomotive.Views.ApplicationView extends Backbone.View
       picker.toggle()
 
     picker.find('li').bind 'click', (event) ->
-      locale = $(@).attr('data-locale')
+      locale = $(@).data('locale')
       window.addParameterToURL 'content_locale', locale
 
   unique_dialog_zindex: ->

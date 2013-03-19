@@ -56,14 +56,14 @@ class Locomotive.Views.EditableElements.FileView extends Backbone.View
     event.stopPropagation() & event.preventDefault()
 
     button  = $(event.target)
-    label   = button.attr('data-alt-label')
+    label   = button.data('alt-label')
 
     unless @states[state]
       options.on_change()
     else
       options.on_cancel()
 
-    button.attr('data-alt-label', button.html())
+    button.data('alt-label', button.html())
 
     button.html(label)
 

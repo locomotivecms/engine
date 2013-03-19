@@ -41,12 +41,12 @@ class Locomotive.Views.Shared.FormView extends Backbone.View
       headers:  options.headers
       silent:   true # since we pass an empty hash above, no need to trigger the callbacks
 
-    xhr.success (model, response) =>
+    xhr.success (model, response, _options) =>
       form.trigger('ajax:complete')
 
       model.attributes = previous_attributes
 
-      options.on_success(response, xhr) if options.on_success
+      options.on_success(model, xhr) if options.on_success
 
     xhr.error (model, xhr) =>
       form.trigger('ajax:complete')

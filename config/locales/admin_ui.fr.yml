@@ -30,6 +30,7 @@ fr:
       new_item: "+ ajouter"
       switch_to_site: Aller
       delete: "Supprimer"
+      close: Fermer
 
     messages:
       confirm: "Êtes-vous sûr(e) ?"

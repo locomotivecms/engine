@@ -20,7 +20,7 @@ class Locomotive.Views.ContentTypes.SelectOptionsView extends Backbone.View
   render: ->
     $(@el).html(ich.select_options_list())
 
-    @prompt_message = @$('> ul').attr('data-prompt')
+    @prompt_message = @$('> ul').data('prompt')
 
     @render_entries()
 
@@ -39,7 +39,7 @@ class Locomotive.Views.ContentTypes.SelectOptionsView extends Backbone.View
 
   refresh_position_entries: ->
     @$('> ul li.entry').each (index, view_dom) =>
-      select_option = @collection.getByCid($(view_dom).attr('data-cid'))
+      select_option = @collection.getByCid($(view_dom).data('cid'))
       select_option.set position: index
 
   do_nothing: (event) ->
@@ -58,7 +58,7 @@ class Locomotive.Views.ContentTypes.SelectOptionsView extends Backbone.View
 
     span          = $(event.target)
     view_dom      = span.closest('li')
-    select_option = @collection.getByCid(view_dom.attr('data-cid'))
+    select_option = @collection.getByCid(view_dom.data('cid'))
 
     if (name = prompt(@prompt_message, select_option.get('name'))) != ''
       select_option.set(name: name)
@@ -69,9 +69,9 @@ class Locomotive.Views.ContentTypes.SelectOptionsView extends Backbone.View
 
     link          = $(event.target)
     view_dom      = link.closest('li')
-    select_option = @collection.getByCid(view_dom.attr('data-cid'))
+    select_option = @collection.getByCid(view_dom.data('cid'))
 
-    if confirm(link.attr('data-confirm'))
+    if confirm(link.data('confirm'))
       if select_option.isNew()
         @collection.remove(select_option)
       else
@@ -82,7 +82,7 @@ class Locomotive.Views.ContentTypes.SelectOptionsView extends Backbone.View
   _insert_entry: (select_option) ->
     view_dom = ich.select_option_entry(select_option.toJSON())
 
-    view_dom.attr('data-cid', select_option.cid)
+    view_dom.data('cid', select_option.cid)
 
     @$('> ul').append(view_dom)
 

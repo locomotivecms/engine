@@ -119,7 +119,7 @@ class Locomotive.Views.Pages.FormView extends Locomotive.Views.Shared.FormView
 
   change_page_url: ->
     $.rails.ajax
-      url:        @$('#page_slug').attr('data-url')
+      url:        @$('#page_slug').data('url')
       type:       'get'
       dataType:   'json'
       data:       { parent_id:  @$('#page_parent_id').val(), slug: @$('#page_slug').val() }

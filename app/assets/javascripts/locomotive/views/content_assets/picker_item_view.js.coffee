@@ -25,6 +25,6 @@ class Locomotive.Views.ContentAssets.PickerItemView extends Backbone.View
   remove_asset: (event) ->
     event.stopPropagation() & event.preventDefault()
 
-    message = $(event.target).attr('data-confirm') || $(event.target).parent().attr('data-confirm')
+    message = $(event.target).data('confirm') || $(event.target).parent().data('confirm')
 
     @model.destroy() if confirm(message)

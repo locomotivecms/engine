@@ -20,7 +20,7 @@ class Locomotive.Views.InlineEditor.ToolbarView extends Backbone.View
     @
 
   notify: (aloha_editable) ->
-    element_id  = aloha_editable.obj.attr('data-element-id')
+    element_id  = aloha_editable.obj.data('element-id')
     @model.get('editable_elements').get(element_id).set
       content: aloha_editable.getContents()
 

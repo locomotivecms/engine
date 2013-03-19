@@ -80,7 +80,7 @@ class Locomotive.Views.Shared.Fields.ManyToManyView extends Backbone.View
   remove_entry: (event) ->
     event.stopPropagation() & event.preventDefault()
 
-    if confirm($(event.target).attr('data-confirm'))
+    if confirm($(event.target).data('confirm'))
       entry = @get_entry_from_element($(event.target))
       @collection.remove(entry)
 

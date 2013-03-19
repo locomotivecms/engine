@@ -22,10 +22,10 @@ $.fn.formSubmitNotification = function(settings) {
 
   return this.each(function() {
     var form    = $(this);
-    var message = form.attr('data-sending-form-message') || form.attr('data-sending_form_message');
+    var message = form.data('sending-form-message') || form.data('sending_form_message');
 
     if (typeof(message) == 'undefined')
-      message = form.find('input[type=submit]').attr('data-sending-form-message');
+      message = form.find('input[type=submit]').data('sending-form-message');
 
     if (typeof(message) == 'undefined')
       return ;

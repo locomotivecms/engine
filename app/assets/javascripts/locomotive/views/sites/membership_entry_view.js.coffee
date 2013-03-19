@@ -14,7 +14,8 @@ class Locomotive.Views.Sites.MembershipEntryView extends Backbone.View
 
     $(@el).html(ich.membership_entry(data))
 
-    $(@el).attr('data-role', @model.get('role'))
+    $(@el).data('role', @model.get('role'))
+    $(@el).attr('data-role', @model.get('role')) # for testing purpose
 
     @$('select').val(@model.get('role'))
 

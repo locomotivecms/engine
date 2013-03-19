@@ -32,7 +32,7 @@ class Locomotive.Views.Shared.Fields.FileView extends Backbone.View
       input = $(event.target)[0]
 
       if input.files?
-        name  = $(input).attr('name')
+        name  = $(input).prop('name')
         hash  = {}
         hash[name.replace("#{@model.paramRoot}[", '').replace(/]$/, '')] = input.files[0]
         @model.set(hash)
@@ -71,14 +71,14 @@ class Locomotive.Views.Shared.Fields.FileView extends Backbone.View
     event.stopPropagation() & event.preventDefault()
 
     button  = $(event.target)
-    label   = button.attr('data-alt-label')
+    label   = button.data('alt-label')
 
     unless @states[state]
       options.on_change()
     else
       options.on_cancel()
 
-    button.attr('data-alt-label', button.html())
+    button.data('alt-label', button.html())
 
     button.html(label)
 

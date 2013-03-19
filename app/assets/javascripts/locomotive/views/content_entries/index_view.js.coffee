@@ -20,7 +20,7 @@ class Locomotive.Views.ContentEntries.IndexView extends Backbone.View
 
   call_sort: (folder) ->
     $.rails.ajax
-      url:        folder.attr('data-url')
+      url:        folder.data('url')
       type:       'post'
       dataType:   'json'
       data:
