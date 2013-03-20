@@ -121,13 +121,13 @@ Feature: Theme Assets
     """
     {
       "theme_asset": {
-        "plain_text_name": "newer-javascript.js"
+        "folder": "changed"
       }
     }
     """
     When I do an API GET request to theme_assets/4f832c2cb0d86d3f42fffffe.json
     Then the JSON response should have the following:
-      | local_path  | "newer-javascript.js"     |
+      | local_path  | "changed/my_javascript.js"     |
 
   Scenario: Updating theme asset as a Designer
     Given I have a "designer" API token
@@ -135,13 +135,13 @@ Feature: Theme Assets
     """
     {
       "theme_asset": {
-        "plain_text_name": "newer-javascript.js"
+        "folder": "changed"
       }
     }
     """
     When I do an API GET request to theme_assets/4f832c2cb0d86d3f42fffffe.json
     Then the JSON response should have the following:
-      | local_path  | "newer-javascript.js"     |
+      | local_path  | "changed/my_javascript.js"     |
 
   Scenario: Updating theme asset as an Author
     Given I have a "author" API token
@@ -149,13 +149,13 @@ Feature: Theme Assets
     """
     {
       "theme_asset": {
-        "plain_text_name": "newer-javascript.js"
+        "folder": "changed"
       }
     }
     """
     When I do an API GET request to theme_assets/4f832c2cb0d86d3f42fffffe.json
     Then the JSON response should have the following:
-      | local_path  | "newer-javascript.js"     |
+      | local_path  | "changed/my_javascript.js"     |
 
   # destroy theme asset
 

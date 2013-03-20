@@ -1,6 +1,7 @@
 Given /^the engine is mounted on a non standard path$/ do
   Rails.application.routes.draw do
-    mount Locomotive::Engine => '/my-custom-path', :as => 'locomotive'
+    mount Locomotive::Engine => '/my-custom-path', as: 'locomotive'
+    match '/foo' => 'foo#index', as: 'foo'
   end
 end
 
@@ -10,7 +11,9 @@ Then /^I should be able to access the backend$/ do
   page.should have_content 'LocomotiveCMS'
 
   # Ensure we can update the homepage content
-  click_link 'Home page'
+  within('#pages-list') do
+    click_link 'Home page'
+  end
   click_button 'Save'
   page.should have_content 'Page was successfully updated'
 

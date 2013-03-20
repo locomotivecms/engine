@@ -43,7 +43,9 @@ end
 Then /^I should be able to add a domain to my site$/ do
   visit edit_current_site_path
 
-  fill_in 'domain', :with => 'monkeys.com'
+  within('#site_domains_input') do
+    fill_in 'domain', :with => 'monkeys.com'
+  end
   click_link '+ add'
   click_button 'Save'
 

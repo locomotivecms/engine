@@ -18,7 +18,7 @@ end
 # The rest of the dependencies are for use when in the locomotive development / test environments
 
 group :test, :development do
-  gem 'rspec-rails', '~> 2.8.0' # In order to have rspec tasks and generators
+  gem 'rspec-rails', '~> 2.13.0' # In order to have rspec tasks and generators
   gem 'rspec-cells'
 end
 
@@ -43,21 +43,22 @@ group :test do
   # gem 'ZenTest', platforms: :mri
 
   # gem 'growl-glue'
-  gem 'poltergeist',        '~> 1.0.2'
-  gem 'rspec-rails',        '~> 2.8.0'
-  gem 'shoulda-matchers'
+  gem 'poltergeist',        '~> 1.1.0'
+  gem 'shoulda-matchers',   '~> 1.5.2'
 
   gem 'factory_girl_rails', '~> 1.6.0'
   gem 'pickle'
-  gem 'mocha',              '0.9.12' # git: 'git://github.com/floehopper/mocha.git'
 
-  gem 'capybara',           '~> 1.1'
+  gem 'capybara',           '~> 2.0.2' #, require: false
 
-  gem 'xpath',              '~> 0.1.4'
+  # gem 'xpath',              '~> 0.1.4'
 
   gem 'json_spec'
 
   gem 'database_cleaner'
+
+  gem 'mocha', '~> 0.13.0', require: false
+
 
   # gem 'debugger', git: 'git://github.com/cldwalker/debugger.git'
 end

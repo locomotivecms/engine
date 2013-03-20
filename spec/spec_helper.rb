@@ -1,8 +1,10 @@
 ENV['RAILS_ENV'] ||= 'test'
 
-require 'rails/mongoid'
 require File.join(File.dirname(__FILE__), 'dummy', 'config', 'environment.rb')
 require 'rspec/rails'
+require 'rspec/autorun'
+require 'mocha/setup'
+require 'rails/mongoid'
 require 'factory_girl'
 require 'database_cleaner'
 
@@ -17,6 +19,10 @@ RSpec.configure do |config|
   config.include(Locomotive::RSpec::Matchers)
 
   config.mock_with :mocha
+
+  config.infer_base_class_for_anonymous_controllers = false
+
+  # config.order = 'random'
 
   config.before(:suite) do
     Locomotive.configure_for_test(true)

@@ -17,12 +17,12 @@ Background:
 
 Scenario: Creating a snippet
   When I go to theme assets
-  And I follow "new snippet"
+  And I follow "new snippet" within the main content
   And I fill in "Name" with "Banner"
   And I fill in "Slug" with "banner"
   And I fill in "snippet_template" with "banner"
   And I press "Create"
-  Then I should see "Snippet was successfully created."
+  Then I should see "Snippet was successfully created." in the html code
   And I should have "banner" in the banner snippet
 
 @javascript

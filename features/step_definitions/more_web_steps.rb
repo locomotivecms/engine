@@ -25,6 +25,14 @@ Then /^"([^"]*)" should not be visible$/ do |text|
   end
 end
 
+Then(/^I should see "(.*?)" in the html code$/) do |content|
+  page.body.include?(content).should be_true
+end
+
+Then(/^I should not see "(.*?)" in the html code$/) do |content|
+  page.body.include?(content).should be_false
+end
+
 Then /^"([^"]*)" should( not)? be an option for "([^"]*)"(?: within "([^\"]*)")?$/ do |value, negate, field, selector|
   with_scope(selector) do
     expectation = negate ? :should_not : :should

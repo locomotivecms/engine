@@ -19,7 +19,7 @@ Feature: Manage my site
     When I fill in "Name" with "Acme"
     And I fill in "Subdomain" with "acme"
     And I press "Create"
-    Then I should see "Site was successfully created."
+    Then I should see "Site was successfully created." in the html code
     And I should be a administrator of the "Acme" site
 
   @javascript

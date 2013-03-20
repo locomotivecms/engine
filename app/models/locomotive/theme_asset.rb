@@ -159,7 +159,7 @@ module Locomotive
       # https://github.com/jnicklas/carrierwave-mongoid/issues/23
       if self.persisted? && self.folder_changed? && !self.source_filename_changed?
         # a simple way to rename a file
-        old_asset         = self.class.find(self._id)
+        old_asset         = self.class.where(_id: self._id).first # bypass memoization by mongoid
         file              = old_asset.source.file
         file.content_type = File.mime_type?(file.path) if file.content_type.nil?
         self.source       = file

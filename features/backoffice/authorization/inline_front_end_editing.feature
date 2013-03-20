@@ -30,6 +30,7 @@ Feature: Inline frontend editing
     When I view the rendered page at "/about/_admin"
     Then I should see "Editing mode"
 
+  @javascript
   Scenario: Inline editing as a Designer
     Given I am an authenticated "designer"
     When I view the rendered page at "/about"

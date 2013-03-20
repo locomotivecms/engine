@@ -14,8 +14,11 @@ module HtmlSelectorsHelpers
     when 'the main form'
       'form.formtastic'
 
+    when 'the main content'
+      '#content'
+
     when 'the dialog popup'
-      '.ui-dialog'
+      '.content-entry-popup'
 
     when 'the list of entries'
       'li.input.relationship'

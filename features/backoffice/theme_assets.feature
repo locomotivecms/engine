@@ -17,7 +17,7 @@ Scenario: Uploading a valid image
   And I follow "new file"
   And I attach the file "spec/fixtures/assets/5k.png" to "File"
   And I press "Create"
-  Then I should see "File was successfully created."
+  Then I should see "File was successfully created." in the html code
   And I should not see "Code"
   And I should see "images/5k.png"
 
@@ -26,7 +26,7 @@ Scenario: Uploading a stylesheet
   And I follow "new file"
   And I attach the file "spec/fixtures/assets/main.css" to "File"
   And I press "Create"
-  Then I should see "File was successfully created."
+  Then I should see "File was successfully created." in the html code
   And I should see "Code"
   And I should see "stylesheets/main.css"
 
@@ -34,7 +34,7 @@ Scenario: Uploading a stylesheet
 Scenario: Updating a stylesheet
   Given a stylesheet asset named "application"
   When I go to theme assets
-  And I follow "application.css"
+  And I follow "application.css" within the main content
   And I change the theme asset code to "Lorem ipsum (updated)"
   And I press "Save"
   Then I should see "File was successfully updated."
@@ -48,7 +48,7 @@ Scenario: Uploading a javascript
   And I fill in "Folder" with "javascripts/test"
   And I attach the file "spec/fixtures/assets/application.js" to "File"
   And I press "Create"
-  Then I should see "File was successfully created."
+  Then I should see "File was successfully created." in the html code
   And I should see "Code"
   And I should see "javascripts/test/application.js"
 
@@ -69,4 +69,4 @@ Scenario: Uploading an image which already exists
   And I follow "new file"
   And I attach the file "spec/fixtures/assets/5k.png" to "File"
   And I press "Create"
-  Then I should see "File was not created."
+  Then I should see "File was not created." in the html code

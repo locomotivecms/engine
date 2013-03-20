@@ -74,7 +74,7 @@ Feature: Snippets
     Then the JSON response should be an array
     And the JSON response should have 2 entries
     And the JSON should have the following:
-      | 0/name      | "Another Snippet"             |
+      | 0/name      | "Another snippet"             |
       | 0/template  | "<h1>Another Snippet!</h1>"   |
 
   Scenario: Creating new snippet as a Designer
@@ -95,7 +95,7 @@ Feature: Snippets
     Then the JSON response should be an array
     And the JSON response should have 2 entries
     And the JSON should have the following:
-      | 0/name      | "Another Snippet" |
+      | 0/name      | "Another snippet" |
       | 0/template  | "<h1>Another Snippet!</h1>"   |
 
   Scenario: Creating new snippet as an Author

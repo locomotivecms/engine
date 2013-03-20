@@ -29,7 +29,7 @@ Background:
 @javascript
 Scenario: I attach projects to an article
   When I go to the list of "Articles"
-  And I follow "Hello world"
+  And I choose "Hello world" in the list
   Then I should see "The list is empty. Add an entry from the select box below."
   When I select "My sexy project" from "entry"
   And I follow "+ add"
@@ -38,5 +38,5 @@ Scenario: I attach projects to an article
   When I press "Save"
   Then I should see "Entry was successfully updated."
   When I go to the list of "Projects"
-  And I follow "My sexy project"
+  And I choose "My sexy project" in the list
   Then I should see "Hello world" within the list of entries

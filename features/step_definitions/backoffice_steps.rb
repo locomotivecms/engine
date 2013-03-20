@@ -18,7 +18,7 @@ Given /^I am an authenticated user$/ do
 end
 
 Then /^I should see the access denied message$/ do
-  step %{I should see "You are not authorized to access this page"}
+  page.body.include?("You are not authorized to access this page").should be_true
 end
 
 Then /^I am redirected to "([^\"]*)"$/ do |url|

@@ -24,40 +24,40 @@ Scenario:
 
 Scenario: Add a new entry
   When I go to the list of "Projects"
-  And I follow "new entry"
+  And I follow "new entry" within the main content
   Then I should see "Projects — new entry"
   When I fill in "Name" with "My other sexy project"
   And I fill in "Description" with "Lorem ipsum...."
   And I press "Create"
-  Then I should see "Entry was successfully created."
+  Then I should see "Entry was successfully created." in the html code
 
 Scenario: Add an invalid entry
   When I go to the list of "Projects"
-  And I follow "new entry"
+  And I follow "new entry" within the main content
   And I fill in "Description" with "Lorem ipsum...."
   And I press "Create"
-  Then I should not see "Entry was successfully created."
+  Then I should not see "Entry was successfully created." in the html code
 
 Scenario: Update an existing entry
   When I go to the list of "Projects"
-  And I follow "My sexy project"
+  And I follow "My sexy project" within the main content
   When I fill in "Name" with "My other sexy project (UPDATED)"
-  And I press "Save"
-  Then I should see "Entry was successfully updated."
+  And I press "Save" within the main form
+  Then I should see "Entry was successfully updated." in the html code
   When I go to the list of "Projects"
   Then I should see "My other sexy project (UPDATED)"
 
 Scenario: Update an invalid entry
   When I go to the list of "Projects"
-  And I follow "My sexy project"
+  And I follow "My sexy project" within the main content
   When I fill in "Name" with ""
-  And I press "Save"
-  Then I should not see "Entry was successfully updated."
+  And I press "Save" within the main form
+  Then I should not see "Entry was successfully updated." in the html code
 
 Scenario: Destroy an entry
   When I go to the list of "Projects"
-  And I follow "Delete"
-  Then I should see "Entry was successfully deleted."
+  And I delete the first content entry
+  Then I should see "Entry was successfully deleted." in the html code
   And I should not see "My sexy project"
 
 Scenario: Group entries by category

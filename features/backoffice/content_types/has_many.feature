@@ -30,31 +30,30 @@ Background:
 @javascript
 Scenario: I view a client without any projects
   When I go to the list of "Clients"
-  And I follow "Alpha, Inc"
+  And I choose "Alpha, Inc" in the list
   Then I should see "The list is empty" within the list of entries
 
 @javascript
 Scenario: I add a project to a client
   When I go to the list of "Projects"
-  And I follow "Fun project"
+  And I choose "Fun project" in the list
   And I select "Alpha, Inc" from "Client"
   And I press "Save"
   Then I should see "Entry was successfully updated."
   When I go to the list of "Clients"
-  And I follow "Alpha, Inc"
+  And I choose "Alpha, Inc" in the list
   Then I should see "Fun project" within the list of entries
 
 @javascript
 Scenario: I add a project to a client from the client page
   When I go to the list of "Clients"
-  And I follow "Beta, Inc"
+  And I choose "Beta, Inc" in the list
   And I follow "+ Add a new entry"
   Then I should see "Projects — new entry"
   When I press "Create" within the dialog popup
   Then I should see "Entry was not created."
   When I fill in "Name" with "Project X" within the dialog popup
   And I fill in "Description" with "Lorem ipsum" within the dialog popup
-  And I sync my form with my backbone model because of Firefox
   And I press "Create" within the dialog popup
   Then I should see "Entry was successfully created."
   And I should see "Project X" within the list of entries

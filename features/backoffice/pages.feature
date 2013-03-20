@@ -15,7 +15,7 @@ Scenario: Pages list is not accessible for non authenticated accounts
 @javascript
 Scenario: Creating a valid page
   When I go to pages
-  And I follow "new page"
+  And I follow "new page" within the main content
   And I fill in "page_title" with "Test"
   And I fill in "Slug" with "test"
   And I select "Home page" from "Parent"
@@ -27,7 +27,7 @@ Scenario: Creating a valid page
 @javascript
 Scenario: Updating a valid page
   When I go to pages
-  And I follow "Home page"
+  And I follow "Home page" within the main content
   And I change the page title to "Home page !"
   And I change the page template to "My new content is here"
   And I press "Save"
