@@ -37,7 +37,7 @@ module Locomotive
       end
 
       def setup_i18n_fallbacks
-        (current_site.locales || []).each do |locale|
+        (current_site.try(:locales) || []).each do |locale|
           ::Mongoid::Fields::I18n.fallbacks_for(locale, current_site.locale_fallbacks(locale))
         end
       end

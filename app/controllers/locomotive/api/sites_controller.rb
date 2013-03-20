@@ -2,7 +2,7 @@ module Locomotive
   module Api
     class SitesController < Api::BaseController
 
-      skip_before_filter :require_site, :set_locale, :set_current_thread_variables
+      skip_before_filter :require_site, :set_current_thread_variables
 
       load_and_authorize_resource class: Locomotive::Site
 
