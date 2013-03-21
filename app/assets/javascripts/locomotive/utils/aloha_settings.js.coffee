@@ -34,4 +34,22 @@ window.Aloha.settings =
   sidebar:
     disabled: true
 
-
+  toolbar:
+    tabs:
+      [
+        {
+          label: 'tab.format.label'
+        },
+        {
+          label: 'tab.insert.label',
+          showOn: { scope: 'Aloha.continuoustext' },
+          exclusive: true,
+          components: [
+            [
+              'createTable', 'characterPicker', 'insertLink',
+              'insertAbbr', 'insertToc','insertHorizontalRule',
+              'insertTag', 'insertlocomotivemedia'
+            ]
+          ]
+        }
+      ]

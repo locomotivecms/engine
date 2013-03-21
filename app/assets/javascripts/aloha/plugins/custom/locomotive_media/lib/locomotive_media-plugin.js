@@ -1,15 +1,13 @@
 define(
-  ['aloha/jquery', 'aloha/plugin', 'aloha/floatingmenu', 'i18n!aloha/nls/i18n', 'i18n!locomotive_media/nls/i18n', 'css!locomotive_media/css/image.css'],
-  function(aQuery, Plugin, FloatingMenu, i18nCore, i18n) {
+  ['aloha/jquery', 'aloha/plugin', 'ui/ui', 'ui/button', 'i18n!aloha/nls/i18n', 'i18n!locomotive_media/nls/i18n', 'css!locomotive_media/css/image.css'],
+  function(aQuery, Plugin, Ui, Button, i18nCore, i18n) {
       var jQuery = aQuery;
       var $ = aQuery;
       var GENTICS = window.GENTICS, Aloha = window.Aloha;
 
       return Plugin.create('locomotive_media', {
         init: function() {
-          FloatingMenu.createScope(this.name, 'Aloha.continuoustext');
-
-          this._addUIInsertButton(i18nCore.t('floatingmenu.tab.insert'));
+          this._addUIInsertButton();
         },
 
         openDialog: function() {
@@ -72,24 +70,15 @@ define(
         /**
          * Adds the insert button to the floating menu
          */
-        _addUIInsertButton: function(tabId) {
+        _addUIInsertButton: function() {
           var that = this;
-          this.insertMediaButton = new Aloha.ui.Button({
-            'name' : 'insertlocomotivemedia',
-            'iconClass': 'aloha-button aloha-locomotive-media-insert',
-            'size' : 'small',
-            'onclick' : function () { that.openDialog(); },
-            'tooltip' : i18n.t('button.addimg.tooltip'),
-            'toggle' : false
+          var button = Ui.adopt('insertlocomotivemedia', Button, {
+            tooltip: i18n.t('button.addimg.tooltip'),
+            icon: 'aloha-button aloha-locomotive-media-insert',
+            scope: 'Aloha.continuoustext',
+            click: function(){ that.openDialog(); }
           });
-
-          FloatingMenu.addButton(
-            'Aloha.continuoustext',
-            this.insertMediaButton,
-            tabId,
-            1
-          );
-        },
+        }
 
       });
   }

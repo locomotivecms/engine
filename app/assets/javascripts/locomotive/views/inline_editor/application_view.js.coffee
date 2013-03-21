@@ -83,7 +83,7 @@ class Locomotive.Views.InlineEditor.ApplicationView extends Backbone.View
     _jQuery       ||= @_$
     _window       = @_window()
 
-    _jQuery('a[class!="x-tab-right"]').live 'click', (event) ->
+    _jQuery('a[class!="ui-tabs-anchor"]').live 'click', (event) ->
       link  = _jQuery(event.target)
       url   = link.attr('href')
 
