@@ -14,12 +14,14 @@ module Locomotive
       end
 
       def create
+	params[:content_type]['entries_custom_fields'] = params[:content_type]['entries_custom_fields_attributes']
         @content_type.from_presenter(params[:content_type])
         @content_type.save
         respond_with @content_type, location: main_app.locomotive_api_content_types_url
       end
 
       def update
+	params[:content_type]['entries_custom_fields'] = params[:content_type]['entries_custom_fields_attributes']
         @content_type.from_presenter(params[:content_type])
         @content_type.save
         respond_with @content_type, location: main_app.locomotive_api_content_types_url
