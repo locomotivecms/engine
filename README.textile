@@ -45,7 +45,7 @@ We work on the procedure to upgrade from a previous version of the engine (below
 
 h2. Community
 
-* Get help or discuss locomotive CMS at the "LocomotiveCMS Google group":https://groups.google.com/forum/?fromgroups#!forum/locomotivecms or the "LocomotiveCMS Discussion Forums":http://locomotive.vanillaforums.com/ (deprecated)
+* Get help or discuss locomotive CMS at the "LocomotiveCMS Google group":https://groups.google.com/forum/?fromgroups#!forum/locomotivecms 
 * Join us on IRC "#locomotivecms at irc.freenode.net!":http://webchat.freenode.net/
 * "Follow us on twitter":http://twitter.com/locomotivecms
 
