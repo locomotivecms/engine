@@ -36,3 +36,10 @@ Feature: Manage my site
   Scenario: Removing a membership
     Given I am an authenticated user
     Then I should be able to remove a membership from my site
+
+  @javascript
+  Scenario: Saving a site with AJAX
+    Given I am an authenticated user
+    Then I should be able to save the site with AJAX
+    Given multi_sites is disabled
+    Then I should be able to save the site with AJAX
