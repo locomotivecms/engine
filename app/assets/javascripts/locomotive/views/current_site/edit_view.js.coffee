@@ -67,7 +67,8 @@ class Locomotive.Views.CurrentSite.EditView extends Locomotive.Views.Shared.Form
         onChange: (editor) => @model.set(robots_txt: editor.getValue())
 
   save: (event) ->
-    if @model.includes_domain(window.location.host)
+    # if @model.includes_domain(window.location.host)
+    if !@model.get('subdomain') || @model.includes_domain(window.location.host)
       @save_in_ajax(event)
 
   show_error: (attribute, message, html) ->

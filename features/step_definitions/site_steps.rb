@@ -28,6 +28,11 @@ Given /^the site "(.*?)" has locales "(.*?)"$/ do |name, locales|
   site.save
 end
 
+Given /^multi_sites is disabled$/ do
+  Locomotive.config.multi_sites = false
+  Locomotive.after_configure
+end
+
 Then /^I should be a administrator of the "([^"]*)" site$/ do |name|
   site = Locomotive::Site.where(:name => name).first
   m = site.memberships.detect { |m| m.account_id == @admin._id && m.admin? }
@@ -77,4 +82,19 @@ Then /^I should be able to remove a membership from my site$/ do
 
   page.should have_content 'My site was successfully updated'
   @site.reload.memberships.collect(&:account).should_not include(@new_account)
+end
+
+Then /^I should be able to save the site with AJAX$/ do
+  visit edit_current_site_path
+
+  # Prevent the default behaviour so we're sure it's AJAX
+  js = <<-EOF
+    $('form').submit(function(event) {
+      event.preventDefault();
+    });
+  EOF
+  page.execute_script(js)
+
+  click_button 'Save'
+  page.should have_content 'My site was successfully updated'
 end
