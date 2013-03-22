@@ -25,7 +25,7 @@ h2. Gems
 
 Here is a short list of main gems / technologies used in the application.
 
-* Rails 3.2.5
+* Rails 3.2.13
 * Mongoid 2.4.9 (with MongoDB 2.0)
 * Liquid
 * Devise
@@ -87,5 +87,5 @@ h2. Contact
 
 Feel free to contact me at didier at nocoffee dot fr.
 
-Copyright (c) 2012 NoCoffee, released under the MIT license
+Copyright (c) 2013 NoCoffee, released under the MIT license
 ...

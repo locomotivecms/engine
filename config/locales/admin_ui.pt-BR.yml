@@ -6,15 +6,32 @@ pt-BR:
       change_password: Mudar
       new_item: "+ adicionar"
       switch_to_site: Ir
+      delete: "Deletar"
+      close: "Fechar"
+
+    locales:
+      en: Inglês
+      de: Alemão
+      fr: Francês
+      pl: Polonês
+      pt-BR: "Português brasileiro"
+      it: Italiano
+      nl: Holandês
+      nb: Norueguês
+      es: Espanhol
+      ru: Russo
+      et: Estoniano
 
     messages:
-      confirm: Você tem certeza ?
-      sending_form: "locomotive.messages.sending_form"
+      confirm: Você tem certeza?
+      sending_form: "Seu formulário está sendo submetido"
 
     shared:
       header:
         welcome: Bem-Vindo, %{name}
         see: Ver websiste
+        switch: Ir para outro site
+        help: Ajuda
         logout: Sair
       menu:
         contents: Conteúdos
@@ -25,14 +42,21 @@ pt-BR:
         account: Minha Conta
         site: Site
         theme_assets: Arquivos do Tema
-      footer:
-        who_is_behind: "Desenvovido por %{development} e desenhado por <a href=\"http://www.sachagreif.com\">Sacha Greif</a>"
+        translations: Traduções
+      form:
+        change_file: mudar
+        delete_file: deletar
+        cancel: cancelar
       form_actions:
         back: Voltar sem salvar
         create: Criar
         update: Atualizar
         send: Enviar
-        disable_with: "locomotive.disable_with.form_actions"
+        disable_with: Aguarde...
+      list:
+        untranslated: não traduzido
+      footer:
+        who_is_behind: "Desenvovido por %{development} e desenhado por <a href=\"http://www.sachagreif.com\">Sacha Greif</a>"
 
     errors:
       "500":
@@ -124,6 +148,8 @@ pt-BR:
       new:
         title: Novo site
         help: "Preencha o formulário a seguir para criar um novo site."
+      domains:
+        empty: "Não há nenhum domínio vinculado a este site ainda. Basta adicionar seus domínios logo abaixo. <b>Não se esqueça de atualizar seu DNS.</b>"
 
     current_site:
       edit:
@@ -133,6 +159,10 @@ pt-BR:
         ask_for_name: "Por favor, digite o novo nome do site"
 
     memberships:
+      roles:
+        admin: Administrador
+        designer: Designer
+        author: Autor
       new:
         title: Novo usuário
         help: "Por favor, forneça o e-mail que deseja adicionar. Se ele não exister, você será redirecionado para o formulário de criação."
@@ -197,6 +227,7 @@ pt-BR:
     content_types:
       index:
         new: novo modelo
+        edit: editar modelo
       new:
         title: Novo modelo
         help: "Crie o seu próprio modelo de dados (Projetos, Pessoas, ...etc). Seu modelo deve conter um campo pelo menos. Os itens criados a partir desse tipo de conteúdo terão seu primeiro campo como obrigatório."
