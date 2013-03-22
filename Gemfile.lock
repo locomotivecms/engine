@@ -24,7 +24,7 @@ PATH
       locomotive-aloha-rails (~> 0.23.2.1)
       locomotive-mongoid-tree (~> 0.6.2)
       locomotive-mongoid_migration
-      locomotive-tinymce-rails (~> 3.4.7.5)
+      locomotive-tinymce-rails (~> 3.5.8.1)
       locomotive_liquid (~> 2.4.2)
       mimetype-fu (~> 0.1.2)
       mongo (~> 1.5.2)
@@ -203,7 +203,7 @@ GEM
     locomotive-mongoid_migration (0.0.5)
       mongoid (~> 2.4)
       rails (~> 3.2)
-    locomotive-tinymce-rails (3.4.7.5)
+    locomotive-tinymce-rails (3.5.8.1)
       actionpack (~> 3.2)
     locomotive_liquid (2.4.2)
     mail (2.5.3)

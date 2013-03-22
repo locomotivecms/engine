@@ -1,1 +1,1 @@
-tinyMCE.addI18n('fr.locomotive_media',{"image_desc": "Insert media"});
+tinyMCE.addI18n('en.locomotive_media',{"image_desc": "Insert media"});
