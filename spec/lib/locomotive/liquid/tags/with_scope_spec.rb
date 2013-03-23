@@ -11,13 +11,6 @@ describe Locomotive::Liquid::Tags::WithScope do
     attributes['hidden'].should == false
   end
 
-  it 'decodes more complex options' do
-    scope = Locomotive::Liquid::Tags::WithScope.new('with_scope', 'price.gt:42.0 price.lt:50', ["{% endwith_scope %}"], {})
-    attributes = scope.send(:decode, scope.instance_variable_get(:@attributes), ::Liquid::Context.new)
-    attributes['price.gt'].should == 42.0
-    attributes['price.lt'].should == 50
-  end
-
   it 'decodes context variable' do
     scope = Locomotive::Liquid::Tags::WithScope.new('with_scope', 'category: params.type', ["{% endwith_scope %}"], {})
     attributes = scope.send(:decode, scope.instance_variable_get(:@attributes), ::Liquid::Context.new({ 'params' => { 'type' => 'posts' } }))
@@ -35,11 +28,22 @@ describe Locomotive::Liquid::Tags::WithScope do
     text = template.render
     text.should == "true-foo"
   end
-  
+
   it 'allows a variable condition inside a loop' do
     template = ::Liquid::Template.parse("{%for i in (1..3)%}{% with_scope number: i %}{{ with_scope.number}}{% endwith_scope %}{%endfor%}")
     text = template.render
     text.should == "123"
+  end
+
+  describe "advanced queries thanks to h4s" do
+
+    it 'decodes criteria with gt and lt' do
+      scope = Locomotive::Liquid::Tags::WithScope.new('with_scope', 'price.gt:42.0 price.lt:50', ["{% endwith_scope %}"], {})
+      attributes = scope.send(:decode, scope.instance_variable_get(:@attributes), ::Liquid::Context.new)
+      attributes[:price.gt].should == 42.0
+      attributes[:price.lt].should == 50
+    end
+
   end
 
 end

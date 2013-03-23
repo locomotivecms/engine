@@ -20,6 +20,7 @@ module Locomotive
         def initialize(tag_name, markup, tokens, context)
           @attributes = HashWithIndifferentAccess.new
           markup.scan(TagAttributes) do |key, value|
+            key = key_to_h4s_symbol(key)
             @attributes[key] = value
           end
           super
@@ -37,6 +38,16 @@ module Locomotive
         def decode(attributes, context)
           attributes.each_pair do |key, value|
             attributes[key] = context[value]
+          end
+        end
+
+        def key_to_h4s_symbol(key)
+          _key, _operator = key.split('.')
+
+          if %w(all exists gt gte in lt lte ne nin size near within).include?(_operator)
+            _key.to_s.to_sym.send(_operator.to_sym)
+          else
+            _key
           end
         end
       end
