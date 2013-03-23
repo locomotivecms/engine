@@ -42,6 +42,13 @@ describe Locomotive::ThemeAsset do
         @asset.local_path.should == 'images/trash/5k.png'
       end
 
+      it 'should not only use the folder to build the local path' do
+        @asset.folder = 'images42'
+        @asset.source = FixturedAsset.open('5k.png')
+        @asset.save
+        @asset.local_path.should == 'images/images42/5k.png'
+      end
+
       it 'should set sanitize the local path' do
         @asset.folder = '/images/à la poubelle'
         @asset.source = FixturedAsset.open('5k.png')
