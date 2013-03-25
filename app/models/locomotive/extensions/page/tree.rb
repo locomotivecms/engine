@@ -8,6 +8,7 @@ module Locomotive
         included do
           include ::Mongoid::Tree
           include ::Mongoid::Tree::Ordering
+          include PatchedTreeMethods
 
           ## fields ##
           field :depth, :type => Integer, :default => 0
@@ -23,6 +24,17 @@ module Locomotive
           alias_method_chain :rearrange, :identity_map
           alias_method_chain :rearrange_children, :identity_map
           alias_method_chain :siblings_and_self, :scoping
+        end
+
+        module PatchedTreeMethods
+
+          private
+
+          def assign_default_position
+            return if self.position.present? && !self.persisted?
+            super
+          end
+
         end
 
         module ClassMethods
