@@ -312,7 +312,7 @@ describe Locomotive::Page do
         @site = FactoryGirl.build(:site)
         @content_type = FactoryGirl.build(:content_type, slug: 'posts', site: @site)
         @page.site = @site
-        @page.target_klass_name = 'Locomotive::Entry42'
+        @page.target_klass_name = 'Locomotive::ContentEntry5151e25587f643c2cf000001'
       end
 
       it 'has a name for the target entry' do
@@ -323,6 +323,14 @@ describe Locomotive::Page do
       it 'returns the slug of the target klass' do
         @site.stubs(:content_types).returns(mock(find: @content_type))
         @page.target_klass_slug.should == 'posts'
+      end
+
+      it 'returns the target klass in a multi-thread env (mimic it)' do
+        @page.target_klass_name = 'Locomotive::ContentEntry5151e25587f643c2cf000042'
+        Locomotive.send(:remove_const, :'ContentEntry5151e25587f643c2cf000042')
+        Locomotive::ContentType.expects(:find).with('5151e25587f643c2cf000042').returns(Foo)
+        Foo.expects(:klass_with_custom_fields).returns(Foo)
+        @page.target_klass.should == Foo
       end
 
       context '#security' do
@@ -406,7 +414,10 @@ describe Locomotive::Page do
   class Foo
   end
 
-  class Locomotive::Entry42
+  class Locomotive::ContentEntry5151e25587f643c2cf000001
+  end
+
+  class Locomotive::ContentEntry5151e25587f643c2cf000042
   end
 
   def fake_bson_id(id)

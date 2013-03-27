@@ -10,15 +10,15 @@ module Locomotive
     ## fields ##
     field :_slug
     field :_label_field_name
-    field :_position,         :type => Integer, :default => 0
-    field :_visible,          :type => Boolean, :default => true
+    field :_position,         type: Integer, default: 0
+    field :_visible,          type: Boolean, default: true
 
     ## validations ##
-    validates :_slug, :presence => true, :uniqueness => { :scope => :content_type_id }
+    validates :_slug, presence: true, uniqueness: { scope: :content_type_id }
 
     ## associations ##
-    belongs_to  :site,          :class_name => 'Locomotive::Site'
-    belongs_to  :content_type,  :class_name => 'Locomotive::ContentType', :inverse_of => :entries
+    belongs_to  :site,          class_name: 'Locomotive::Site'
+    belongs_to  :content_type,  class_name: 'Locomotive::ContentType', inverse_of: :entries, custom_fields_parent_klass: true
 
     ## callbacks ##
     before_validation :set_slug
@@ -29,8 +29,8 @@ module Locomotive
     after_create      :send_notifications
 
     ## named scopes ##
-    scope :visible, :where => { :_visible => true }
-    scope :latest_updated, :order_by => :updated_at.desc, :limit => Locomotive.config.ui[:latest_entries_nb]
+    scope :visible, where: { _visible: true }
+    scope :latest_updated, order_by: :updated_at.desc, limit: Locomotive.config.ui[:latest_entries_nb]
 
     ## methods ##
 
@@ -105,7 +105,7 @@ module Locomotive
     # @return [ Object ] The content entry matching the permalink or nil if not found
     #
     def self.find_by_permalink(permalink)
-      self.where(:_slug => permalink).first
+      self.where(_slug: permalink).first
     end
 
     # Sort the content entries from an ordered array of content entry ids.
@@ -114,10 +114,10 @@ module Locomotive
     # @param [ Array ] The ordered array of ids
     #
     def self.sort_entries!(ids)
-      list = self.any_in(:_id => ids.map { |id| BSON::ObjectId.from_string(id.to_s) }).to_a
+      list = self.any_in(_id: ids.map { |id| BSON::ObjectId.from_string(id.to_s) }).to_a
       ids.each_with_index do |id, position|
         if entry = list.detect { |e| e._id.to_s == id.to_s }
-          entry.update_attributes :_position => position
+          entry.update_attributes _position: position
         end
       end
     end
@@ -172,13 +172,13 @@ module Locomotive
     # Return the next available unique slug as a string
     def next_unique_slug
       slug        = self._slug.gsub(/-\d*$/, '')
-      last_slug   = self.class.where(:_id.ne => self._id, :_slug => /^#{slug}-?\d*?$/i).order_by(:_slug).last._slug
+      last_slug   = self.class.where(:_id.ne => self._id, _slug: /^#{slug}-?\d*?$/i).order_by(:_slug).last._slug
       next_number = last_slug.scan(/-(\d)$/).flatten.first.to_i + 1
       [slug, next_number].join('-')
     end
 
     def slug_already_taken?
-      self.class.where(:_id.ne => self._id, :_slug => self._slug).any?
+      self.class.where(:_id.ne => self._id, _slug: self._slug).any?
     end
 
     def set_site

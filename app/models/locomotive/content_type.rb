@@ -140,7 +140,7 @@ module Locomotive
     # @return [ Locomotive::ContentType ] The content type matching the class_name
     #
     def self.class_name_to_content_type(class_name, site)
-      if class_name =~ /^Locomotive::Entry(.*)/
+      if class_name =~ /^Locomotive::ContentEntry(.*)/
         site.content_types.find($1)
       else
         nil
@@ -213,7 +213,7 @@ module Locomotive
     # @param [ CustomFields::Field ] field The field to check
     #
     def ensure_class_name_security(field)
-      if field.class_name =~ /^Locomotive::Entry([a-z0-9]+)$/
+      if field.class_name =~ /^Locomotive::ContentEntry([a-z0-9]+)$/
         content_type = Locomotive::ContentType.find($1)
 
         if content_type.site_id != self.site_id

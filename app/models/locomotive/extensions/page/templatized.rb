@@ -33,8 +33,8 @@ module Locomotive
         #
         # @example
         #
-        #   page.target_klass_name = 'Locomotive::Entry12345'
-        #   page.target_klass # <Locomotive::Entry12345...>
+        #   page.target_klass_name = 'Locomotive::ContentEntry12345'
+        #   page.target_klass # <Locomotive::ContentEntry12345...>
         #
         # @return [ Class ] The target class
         #
@@ -48,7 +48,7 @@ module Locomotive
         # @return [ String ] The slug of the target class / content type. Nil if no target klass.
         #
         def target_klass_slug
-          if self.target_klass_name =~ /^Locomotive::Entry([a-z0-9]+)$/
+          if self.target_klass_name =~ /^Locomotive::ContentEntry([a-z0-9]+)$/
             @content_type ||= self.site.content_types.find($1)
             @content_type.slug
           else
@@ -75,7 +75,7 @@ module Locomotive
         #
         # @example
         #
-        #   page.target_klass_name = 'Locomotive::Entry12345' # related to the content type Articles
+        #   page.target_klass_name = 'Locomotive::ContentEntry12345' # related to the content type Articles
         #   page.target_entry_name = 'article'
         #
         #   page.target_klass_name = 'OurProduct'
@@ -84,7 +84,7 @@ module Locomotive
         # @return [ String ] The name in lowercase and underscored
         #
         def target_entry_name
-          if self.target_klass_name =~ /^Locomotive::Entry([a-z0-9]+)$/
+          if self.target_klass_name =~ /^Locomotive::ContentEntry([a-z0-9]+)$/
             @content_type ||= self.site.content_types.find($1)
             @content_type.slug.singularize
           else
@@ -110,7 +110,7 @@ module Locomotive
         # @return [ Object ] The documents
         #
         def fetch_target_entries(conditions = {})
-          if self.target_klass_name =~ /^Locomotive::Entry([a-z0-9]+)$/
+          if self.target_klass_name =~ /^Locomotive::ContentEntry([a-z0-9]+)$/
             @content_type ||= self.site.content_types.find($1)
             @content_type.ordered_entries(conditions)
           else
@@ -143,7 +143,7 @@ module Locomotive
         def ensure_target_klass_name_security
           return if !self.templatized? || self.target_klass_name.blank?
 
-          if self.target_klass_name =~ /^Locomotive::Entry([a-z0-9]+)$/
+          if self.target_klass_name =~ /^Locomotive::ContentEntry([a-z0-9]+)$/
             content_type = Locomotive::ContentType.find($1)
 
             if content_type.site_id != self.site_id

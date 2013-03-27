@@ -53,7 +53,7 @@ module Locomotive
     end
 
     def class_name=(value)
-      if value =~ /^Locomotive::Entry/
+      if value =~ /^Locomotive::ContentEntry/
         self.__source.class_name = value
       else
         if content_type = self.site.content_types.where(slug: value).first

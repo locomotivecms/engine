@@ -11,7 +11,7 @@ module Locomotive
           include PatchedTreeMethods
 
           ## fields ##
-          field :depth, :type => Integer, :default => 0
+          field :depth, type: Integer, default: 0
 
           ## callbacks ##
           before_save     :persist_depth
@@ -116,7 +116,7 @@ module Locomotive
         #
         # @return [Mongoid::Criteria] Mongoid criteria to retrieve the document's siblings and itself
         def siblings_and_self_with_scoping
-          base_class.where(:parent_id => self.parent_id, :site_id => self.site_id)
+          base_class.where(parent_id: self.parent_id, site_id: self.site_id)
         end
 
         def depth

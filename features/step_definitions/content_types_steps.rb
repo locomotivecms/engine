@@ -25,6 +25,12 @@ Given %r{^I have a custom model named "([^"]*)" with id "([^"]*)" and$} do |name
   content_type.save.should be_true
 end
 
+Given(/^the "(.*?)" model was created by another thread$/) do |name|
+  content_type = Locomotive::ContentType.where(name: name).first
+  Locomotive.send(:remove_const, :"ContentEntry#{content_type._id}")
+  "Locomotive::ContentEntry#{content_type._id}".constantize
+end
+
 Given %r{^I have a custom model named "([^"]*)" with$} do |name, fields|
   content_type = build_content_type(name)
   set_custom_fields_from_table(content_type, fields)

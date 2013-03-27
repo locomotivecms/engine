@@ -29,7 +29,7 @@ module Locomotive
 
             matching_paths = path == 'index' ? %w(index) : path_combinations(path)
 
-            site.pages.where(:depth => depth, :fullpath.in => matching_paths).each do |_page|
+            site.pages.where(depth: depth, :fullpath.in => matching_paths).each do |_page|
               if !_page.published? && !logged_in
                 next
               else

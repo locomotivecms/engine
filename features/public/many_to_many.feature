@@ -50,3 +50,15 @@ Feature: Many to Many Association
 
       </ul>
       """
+
+  Scenario: Displaying the entries of a many to many association by a different thread
+    Given the "Projects" model was created by another thread
+    And a page named "article-projects" with the template:
+      """
+      {% assign article = contents.articles.first %}{% for project in article.projects %}{{ project.name }}, {% endfor %}
+      """
+    When I view the rendered page at "/article-projects"
+    Then the rendered output should look like:
+      """
+      My sexy project, Baz project, Foo project
+      """

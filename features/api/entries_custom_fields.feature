@@ -140,11 +140,11 @@ Feature: Entries Custom Field
     """
     Then the JSON response at "entries_custom_fields" should have 3 entries
     And the JSON response should have the following:
-      | entries_custom_fields/0/label       | "Title"                                     |
-      | entries_custom_fields/0/type        | "string"                                    |
-      | entries_custom_fields/1/label       | "Content"                                   |
-      | entries_custom_fields/1/type        | "text"                                      |
-      | entries_custom_fields/2/label       | "Project"                                   |
-      | entries_custom_fields/2/type        | "belongs_to"                                |
-      | entries_custom_fields/2/class_name  | "Locomotive::Entry4f832c2cb0d86d3f42fffffe" |
-      | entries_custom_fields/2/class_slug  | "projects"                                  |
+      | entries_custom_fields/0/label       | "Title"                                             |
+      | entries_custom_fields/0/type        | "string"                                            |
+      | entries_custom_fields/1/label       | "Content"                                           |
+      | entries_custom_fields/1/type        | "text"                                              |
+      | entries_custom_fields/2/label       | "Project"                                           |
+      | entries_custom_fields/2/type        | "belongs_to"                                        |
+      | entries_custom_fields/2/class_name  | "Locomotive::ContentEntry4f832c2cb0d86d3f42fffffe"  |
+      | entries_custom_fields/2/class_slug  | "projects"                                          |
