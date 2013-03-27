@@ -1,7 +1,7 @@
 #!/usr/bin/env bundle
 # encoding: utf-8
 
-source :rubygems
+source "https://rubygems.org"
 
 # net-scp 1.0.6 was yanked
 gem 'net-scp', '1.0.4'

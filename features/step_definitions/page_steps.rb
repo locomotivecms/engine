@@ -69,6 +69,13 @@ Given /^I delete the following code "([^"]*)" from the "([^"]*)" page$/ do |code
   page.save!
 end
 
+Given(/^an unpublished (\d+) page$/) do |slug|
+  page = @site.pages.where(:slug => slug).first
+  page.published = false
+  page.save!
+end
+
+
 # try to render a page by slug
 When /^I view the rendered page at "([^"]*)"$/ do |path|
   # If we're running poltergeist then we need to use a different port

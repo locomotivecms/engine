@@ -39,7 +39,7 @@ PATH
       stringex (~> 1.5.1)
 
 GEM
-  remote: http://rubygems.org/
+  remote: https://rubygems.org/
   specs:
     RedCloth (4.2.9)
     actionmailer (3.2.13)
