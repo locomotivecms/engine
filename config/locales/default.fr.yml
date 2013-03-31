@@ -30,7 +30,7 @@ fr:
       invalid_domain: "%{value} n'est pas valide"
       needs_admin_account: "Un minimum d'un compte admin est requis"
       protected_page: "Vous ne pouvez pas supprimer les pages index et 404"
-      extname_changed: "Nouveau fichier n'a pas l'extension original"
+      extname_changed: "La nouvelle version du fichier n'a pas l'extension originale"
       array_too_short: "est trop petit (le nombre minimum d'éléments est %{count})"
       security: "présente un problème de sécurité"
       site:
