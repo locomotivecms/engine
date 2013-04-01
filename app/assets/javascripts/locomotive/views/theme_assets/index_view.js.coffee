@@ -44,8 +44,6 @@ class Locomotive.Views.ThemeAssets.IndexView extends Backbone.View
         asset.save {},
           success:  (model, response, xhr) =>
             form.trigger('ajax:complete')
-            console.log(model)
-            console.log(response)
             @insert_asset(model)
           error:    (() => form.trigger('ajax:complete'))
           headers:  { 'X-Flash': true }

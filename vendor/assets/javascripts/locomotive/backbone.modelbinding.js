@@ -350,7 +350,7 @@ Backbone.ModelBinding = (function(Backbone, _, $){
           };
 
           var group_selector = "input[type=radio][" + bindingAttr + "='" + group_name + "']";
-          console.log(group_selector)
+          //console.log(group_selector)
           view.$(group_selector).each(function(){
             var groupEl = $(this);
             modelBinder.registerElementBinding(groupEl, elementChange);
