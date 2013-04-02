@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Locomotive::Extensions::Site::Locales do
 
-  let(:site) { Factory.build(:site, :locales => [:en, :fr]) }
+  let(:site) { FactoryGirl.build(:site, :locales => [:en, :fr]) }
 
   describe '#localized_page_fullpath' do
 
@@ -37,7 +37,7 @@ describe Locomotive::Extensions::Site::Locales do
   end
 
   def build_page(slug = nil, translations = {})
-    Factory.build(:page).tap do |page|
+    FactoryGirl.build(:page).tap do |page|
       page.slug = slug if slug
       page.send(:build_fullpath)
       translations.each do |locale, translation|

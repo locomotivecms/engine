@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Locomotive::Account do
-  let!(:existing_account) { Factory(:account, :email => 'another@email.com') }
+  let!(:existing_account) { FactoryGirl.create(:account, :email => 'another@email.com') }
 
   it 'has a valid factory' do
     FactoryGirl.build(:account).should be_valid
