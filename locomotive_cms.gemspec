@@ -71,6 +71,8 @@ Gem::Specification.new do |s|
                         '{lib}/**/*',
                         '{public}/**/*',
                         '{vendor}/**/*']
+  
+  s.test_files = Dir['spec/**/*']
 
   s.require_path = 'lib'
 

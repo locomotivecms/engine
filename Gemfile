@@ -46,7 +46,7 @@ group :test do
   gem 'poltergeist',        '~> 1.1.0'
   gem 'shoulda-matchers',   '~> 1.5.2'
 
-  gem 'factory_girl_rails', '~> 1.6.0'
+  gem 'factory_girl_rails', '~> 4.2.1'
   gem 'pickle'
 
   gem 'capybara',           '~> 2.0.2' #, require: false

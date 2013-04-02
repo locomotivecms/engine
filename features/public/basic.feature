@@ -24,7 +24,6 @@ Scenario: Missing 404 page
     """
   And an unpublished 404 page
   When I view the rendered page at "/madeup"
-  Then show me the page
   Then the rendered output should look like:
     """
     No Page!
