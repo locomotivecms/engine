@@ -39,7 +39,7 @@ Here is a short list of main gems / technologies used in the application.
 
 h2. Installation
 
-See the "installation documentation on the official website":http://doc.locomotivecms.com/installation/requirements
+See the "installation documentation on the official website":http://doc.locomotivecms.com
 
 h2. Upgrading
 
