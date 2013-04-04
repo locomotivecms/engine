@@ -67,9 +67,9 @@ Gem::Specification.new do |s|
                         '{app}/**/*',
                         '{config}/**/*',
                         '{lib}/**/*',
+                        '{mongodb}/**/*',
                         '{public}/**/*',
                         '{vendor}/**/*']
-
 
   s.test_files = Dir[
     'features/**/*',
