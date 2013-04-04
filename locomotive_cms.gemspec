@@ -16,8 +16,6 @@ Gem::Specification.new do |s|
   s.summary     = 'A Next Generation Sexy CMS for Rails 3'
   s.description = 'Locomotive is a next generation CMS system with sexy admin tools, liquid templating, and inline editing powered by mongodb and rails 3.2'
 
-  s.required_rubygems_version = '>= 1.8.25'
-
   s.add_dependency 'rake',                            '~> 10.0.0'
 
   s.add_dependency 'rails',                           '~> 3.2.13'
