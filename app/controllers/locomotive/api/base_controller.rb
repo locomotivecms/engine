@@ -15,6 +15,8 @@ module Locomotive
 
       before_filter :set_current_thread_variables
 
+      rescue_from Exception, with: :render_access_denied
+
       self.responder = Locomotive::ActionController::Responder # custom responder
 
       respond_to :json, :xml
@@ -39,6 +41,15 @@ module Locomotive
         ::I18n.locale = ::Mongoid::Fields::I18n.locale
 
         self.setup_i18n_fallbacks
+      end
+
+      def render_access_denied(exception)
+        status = (case exception
+        when ::CanCan::AccessDenied               then 401
+        when ::Mongoid::Errors::DocumentNotFound  then 404
+        else 505
+        end)
+        render json: { error: exception.message }, status: status, layout: false
       end
 
       def self.cancan_resource_class
