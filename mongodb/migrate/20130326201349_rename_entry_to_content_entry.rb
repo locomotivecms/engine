@@ -81,7 +81,7 @@ class RenameEntryToContentEntry < MongoidMigration::Migration
     # paginate the whole collection to avoid mongodb cursor error
     (0..num_pages).each do |page|
       offset = per_page * page.to_i
-      collection.find.limit(per_page).skip(offset).each do |attributes|
+      collection.find.sort("_id").limit(per_page).skip(offset).each do |attributes|
         block.call(collection, attributes)
       end
     end
