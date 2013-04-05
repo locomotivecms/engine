@@ -47,7 +47,7 @@ module Locomotive
         status = (case exception
         when ::CanCan::AccessDenied               then 401
         when ::Mongoid::Errors::DocumentNotFound  then 404
-        else 505
+        else 500
         end)
         render json: { error: exception.message }, status: status, layout: false
       end
