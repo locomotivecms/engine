@@ -76,11 +76,11 @@ class RenameEntryToContentEntry < MongoidMigration::Migration
     per_page    = 100
     collection  = klass.collection.driver
     count       = collection.count
-    num_pages   = (count.to_f / per_page).ceil
+    num_pages   = (count.to_f / per_page).floor
 
     # paginate the whole collection to avoid mongodb cursor error
     (0..num_pages).each do |page|
-      offset = per_page * ([page.to_i, 1].max - 1)
+      offset = per_page * page.to_i
       collection.find.limit(per_page).skip(offset).each do |attributes|
         block.call(collection, attributes)
       end
