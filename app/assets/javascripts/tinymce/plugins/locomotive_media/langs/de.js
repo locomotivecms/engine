@@ -1,0 +1,1 @@
+tinyMCE.addI18n('en.locomotive_media',{"image_desc": "Medien einfügen"});
