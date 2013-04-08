@@ -235,7 +235,7 @@ ja:
         title: 翻訳
         new: 新規翻訳
         no_items: "現在、翻訳がありません。新規作成するには<a href=\"%{url}\">こちら</a>をクリックしてください。"
-        remove: %{key}を削除する
+        remove: "%{key}を削除する"
       new:
         title: 新規翻訳
         help: "スニペットは<b>translate</b>リキッドタグによって全てのロケールで同じテンプレートを共有することができます。"
@@ -272,7 +272,7 @@ ja:
 
     content_entries:
       index:
-        title: '"%{type}"一覧'
+        title: "%{type}一覧"
         edit: モデル編集
         destroy: モデル削除
         download: エントリダウンロード
@@ -323,7 +323,7 @@ ja:
       pages:
         show_toolbar:
           statuses:
-            loading: 読み込み中...
+            loading: "読み込み中..."
             disabled: インラインエディタは無効です。
           labels:
             save_changes: 変更を保存する：
