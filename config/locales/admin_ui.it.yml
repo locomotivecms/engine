@@ -171,6 +171,7 @@ it:
         es: Spagnolo
         ru: Russo
         et: Estone
+	ja: Giapponese
         ask_for_name: "Prego, digita il tuo nome"
 
     theme_assets:
