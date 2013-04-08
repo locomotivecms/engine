@@ -1,60 +1,61 @@
-en:
+ja:
   locomotive:
     buttons:
-      login: Log in
-      send_password: Send
-      change_password: Update
-      new_item: "+ add"
-      switch_to_site: Go
-      delete: "Delete"
-      close: "Close"
+      login: ログイン
+      send_password: 送信
+      change_password:  更新
+      new_item: "+ 追加"
+      switch_to_site: 移動
+      delete: 削除
+      close: 閉じる
 
     locales:
-      en: English
-      de: German
-      fr: French
-      pl: Polish
-      pt-BR: "Brazilian Portuguese"
-      it: Italian
-      nl: Dutch
-      nb: Norwegian
-      es: Spanish
-      ru: Russian
-      et: Estonian
+      en: 英語
+      de: ドイツ語
+      fr: フランス語
+      fr: 日本語
+      pl: ポーランド語
+      pt-BR: ブラジルポルトガル語
+      it: イタリア語
+      nl: オランダ語
+      nb: ノルウェー語
+      es: スペイン語
+      ru: ロシア語
+      et: エストニア語
 
     messages:
-      confirm: Are you sure ?
-      sending_form: Your form is being submitted
+      confirm: 本当に良いですか？
+      sending_form: 送信しました。
 
     shared:
       header:
-        welcome: Welcome, %{name}
-        see: See website
-        switch: Switch to another site
-        help: Help
-        logout: Log out
+        welcome: ようこそ%{name}さん
+        see: サイトを見る
+        switch: サイトを切り替える
+        help: ヘルプ
+        logout: ログアウト
       menu:
-        contents: Contents
-        assets: Assets
-        settings: Settings
-        pages: Pages
-        snippets: Snippets
-        account: My account
-        site: Site
-        theme_assets: Theme files
-        translations: Translations
+        contents: コンテンツ
+        assets: アセット
+        settings: 設定
+        pages: ページ
+        snippets: スニペット
+        account: アカウント
+        site: サイト
+        theme_assets: テーマファイル
+        translations: 翻訳
       form:
-        change_file: change
-        delete_file: delete
-        cancel: cancel
+        change_file: 変更
+        delete_file: 削除
+        cancel: キャンセル
       form_actions:
-        back: Back without saving
-        create: Create
-        update: Save
-        send: Send
-        disable_with: Pending...
+        back: 保存せず戻る
+        create: 新規作成
+        update: 保存
+        send: 送信
+        disable_with: お待ちください
       list:
-        untranslated: untranslated
+        untranslated: 未翻訳
       footer:
         who_is_behind: "LocomotiveCMS is developed by %{development} and designed by <a href=\"http://www.sachagreif.com\">Sacha Greif</a> &mdash; <small>version</small> %{version}"
 
@@ -108,13 +109,13 @@ en:
     passwords:
       new:
         title: Forgot password
-        link: "&rarr; Back to login page"
-        email: "Your email"
+        link: "&rarr; ログインページへ戻る"
+        email: "メールアドレス"
       edit:
-        title: Update my password
-        link: "&rarr; Back to login page"
-        password: "Your new password"
-        password_confirmation: "Confirmation of your new password"
+        title: パスワード変更
+        link: "&rarr; ログインページへ戻る"
+        password: "新しいパスワード"
+        password_confirmation: "新しいパスワード（確認）"
 
     pages:
       index:
