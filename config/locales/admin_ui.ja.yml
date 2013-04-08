@@ -5,7 +5,7 @@ ja:
       send_password: 送信
       change_password: 更新
       new_item: 新規作成
-      switch_to_site: Go
+      switch_to_site: 移動
       delete: 削除
       close: 閉じる
 
@@ -29,7 +29,7 @@ ja:
 
     shared:
       header:
-        welcome: ようこそ %{name}さん
+        welcome: "ようこそ %{name}さん"
         see: サイトを見る
         switch: サイトを切り替える
         help: ヘルプ
@@ -40,7 +40,7 @@ ja:
         settings: 設定
         pages: ページ
         snippets: スニペット
-        account: マイアカウント
+        account: アカウント
         site: サイト
         theme_assets: テーマファイル
         translations: 翻訳
@@ -53,7 +53,7 @@ ja:
         create: 新規作成
         update: 保存
         send: 送信
-        disable_with: 処理中...
+        disable_with: "処理中..."
       list:
         untranslated: 未翻訳
       footer:
@@ -200,7 +200,7 @@ ja:
     theme_assets:
       index:
         title: テーマファイル一覧
-        help: テーマファイルセクションはレイアウトやスニペットなどに必要となるファイルを管理する場所です。画像を管理する必要がある場合は新しいコンテンツタイプを作成してください。<br/><b>警告：</b>あなたに付与された権限によっては全て表示されないことがあります。"
+        help: "テーマファイルセクションはレイアウトやスニペットなどに必要となるファイルを管理する場所です。画像を管理する必要がある場合は新しいコンテンツタイプを作成してください。<br/><b>警告：</b>あなたに付与された権限によっては全て表示されないことがあります。"
         quick_upload: クイックアップロード
         new: 新規ファイル
         snippets: スニペット

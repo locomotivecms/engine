@@ -102,4 +102,3 @@ ja:
         "custom_fields/field":
           name: "リキッドテンプレートのプロパティ名（例：<span class='code'>&#123;&#123; your_object.&lt;name_of_your_field&gt; &#125;&#125;</span>）"
           hint: "モデルフォームの下に表示するテキスト"
-
