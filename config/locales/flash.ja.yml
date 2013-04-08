@@ -1,0 +1,115 @@
+en:
+  flash:
+    locomotive:
+      pages:
+        create:
+          notice: "Page was successfully created."
+          alert: "Page was not created."
+        update:
+          notice: "Page was successfully updated."
+          alert: "Page was not updated."
+        sort:
+          notice: "Pages were successfully sorted."
+        destroy:
+          notice: "Page was successfully deleted."
+
+      content_entries:
+        create:
+          notice: "Entry was successfully created."
+          alert: "Entry was not created."
+        update:
+          notice: "Entry was successfully updated."
+          alert: "Entry was not updated."
+        sort:
+          notice: "Entries were successfully sorted."
+        destroy:
+          notice: "Entry was successfully deleted."
+
+      content_types:
+        create:
+          notice: "Model was successfully created."
+          alert: "Model was not created."
+        update:
+          notice: "Model was successfully updated."
+          alert: "Model was not updated."
+        destroy:
+          notice: "Model was successfully deleted."
+
+      current_site:
+        update:
+          notice: "My site was successfully updated."
+          alert: "My site was not updated."
+
+      snippets:
+        create:
+          notice: "Snippet was successfully created."
+          alert: "Snippet was not created."
+        update:
+          notice: "Snippet was successfully updated."
+          alert: "Snippet was not updated."
+        destroy:
+          notice: "Snippet was successfully deleted."
+
+      accounts:
+        create:
+          notice: "Account was successfully created."
+          alert: "Account was not created."
+
+      my_account:
+        update:
+          notice: "My account was successfully updated."
+          alert: "My account was not updated."
+
+      sites:
+        create:
+          notice: "Site was successfully created."
+          alert: "Site was not created."
+        destroy:
+          notice: "Site was successfully deleted."
+
+      memberships:
+        create:
+          notice: "Membership was successfully created."
+          alert: "Membership was not created."
+          already_created: "Account was already added the current site."
+
+      assets:
+        create:
+          notice: "Asset was successfully created."
+          alert: "Asset was not created."
+        update:
+          notice: "Asset was successfully updated."
+          alert: "Asset was not updated."
+
+      theme_assets:
+        create:
+          notice: "File was successfully created."
+          alert: "File was not created."
+        update:
+          notice: "File was successfully updated."
+          alert: "File was not updated."
+        destroy:
+          notice: "File was successfully deleted."
+      translations:
+        create:
+          notice: "Translation was successfully created."
+          alert: "Translation was not created."
+        update:
+          notice: "Translation was successfully updated."
+          alert: "Translation was not updated."
+        destroy:
+          notice: "Translation was successfully deleted."
+
+      custom_fields:
+        update:
+          alert: "Field not updated"
+
+      cross_domain_sessions:
+        create:
+          alert: "You need to sign in"
+
+      import:
+        create:
+          done: "Your site was successfully updated."
+          notice: "Your site is being updated."
+          alert: "The import was not done."

@@ -1,0 +1,334 @@
+en:
+  locomotive:
+    buttons:
+      login: Log in
+      send_password: Send
+      change_password: Update
+      new_item: "+ add"
+      switch_to_site: Go
+      delete: "Delete"
+      close: "Close"
+
+    locales:
+      en: English
+      de: German
+      fr: French
+      pl: Polish
+      pt-BR: "Brazilian Portuguese"
+      it: Italian
+      nl: Dutch
+      nb: Norwegian
+      es: Spanish
+      ru: Russian
+      et: Estonian
+
+    messages:
+      confirm: Are you sure ?
+      sending_form: Your form is being submitted
+
+    shared:
+      header:
+        welcome: Welcome, %{name}
+        see: See website
+        switch: Switch to another site
+        help: Help
+        logout: Log out
+      menu:
+        contents: Contents
+        assets: Assets
+        settings: Settings
+        pages: Pages
+        snippets: Snippets
+        account: My account
+        site: Site
+        theme_assets: Theme files
+        translations: Translations
+      form:
+        change_file: change
+        delete_file: delete
+        cancel: cancel
+      form_actions:
+        back: Back without saving
+        create: Create
+        update: Save
+        send: Send
+        disable_with: Pending...
+      list:
+        untranslated: untranslated
+      footer:
+        who_is_behind: "LocomotiveCMS is developed by %{development} and designed by <a href=\"http://www.sachagreif.com\">Sacha Greif</a> &mdash; <small>version</small> %{version}"
+
+    errors:
+      "500":
+        title: Application Error
+        notice: "We're sorry, but something went wrong"
+        link: "&rarr; Back to the application"
+      "404":
+        title: Page not found
+        notice: "The page you requested does not exist."
+        link: "&rarr; Back to the application"
+
+    notifications:
+      new_content_entry:
+        subject: "[%{domain}][%{type}] new entry"
+        title: "Hi %{name}, just to let you know that a new instance has been created on %{date} for the site <b>%{domain}</b>"
+        type: "Model: %{type}"
+
+    sites_picker:
+      new: + new site
+
+    custom_fields:
+      edit:
+        title: Editing custom field
+      text_formatting:
+        none: None
+        html: HTML
+      types:
+        file:
+          delete_file: Delete file
+        has_many:
+          empty: The list is empty
+          new_entry: + Add a new entry
+        many_to_many:
+          empty: The list is empty. Add an entry from the select box below.
+
+      form:
+        required: Required
+        default_label: Field name
+        select_options:
+          ask_name: "Type the label of the option"
+
+    sessions:
+      new:
+        title: Log in
+        link: "I forgot my password"
+        email: "Email"
+        password: "Password"
+
+    passwords:
+      new:
+        title: Forgot password
+        link: "&rarr; Back to login page"
+        email: "Your email"
+      edit:
+        title: Update my password
+        link: "&rarr; Back to login page"
+        password: "Your new password"
+        password_confirmation: "Confirmation of your new password"
+
+    pages:
+      index:
+        title: Listing pages
+        help: "Pages are organized as a tree. You can order pages as well as folders"
+        no_items: "There are no pages for now. Just click <a href=\"%{url}\">here</a> to create the first one."
+        new: new page
+        latest_entries: Latest pages
+      new:
+        title: New page
+        help: "Please fill in the below form to create your page. Be careful, by default, the page is not published."
+      page:
+        updated_at: updated at
+      edit:
+        show: show
+        help: "The page title can be updated by clicking it. To apply your changes, click on the \"Save\" button."
+        ask_for_title: "Please type the new page title"
+      form:
+        change_file: change
+        delete_file: delete
+        cancel: cancel
+        default_block: Default
+        cache_strategy:
+          none: None
+          simple: Simple
+          hour: 1 hour
+          day: 1 day
+          week: 1 week
+          month: 1 month
+        redirect_type:
+          permanent: "Permanent (301)"
+          temporary: "Temporary (302)"
+
+    snippets:
+      index:
+        title: Listing snippets
+        help: "Snippets are portion of HTML code which can be found at different places within the site (such as a footer)."
+        no_items: "There are no snippets for now. Just click <a href=\"%{url}\">here</a> to create the first one."
+        new: new snippet
+      new:
+        title: New snippet
+        help: "Fill in the form below to update your snippet."
+      edit:
+        title: Editing snippet
+        help: "Include your snippet in your page templates with the following liquid code : <span class='code'>{% include '%{slug}' %}</span>."
+      snippet:
+        updated_at: Updated at
+
+    sites:
+      new:
+        title: New site
+        help: "Fill in the form below to create your new site."
+      domains:
+        empty: "There are no domains tied this site yet. Simply add your domains just below. <b>Do not forget to upgrade your DNS.</b>"
+
+    current_site:
+      edit:
+        new_membership: add account
+        help: "The site name can be updated by clicking it. To apply your changes, click on the \"Save\" button."
+        ask_for_name: "Please type the new site name"
+
+    memberships:
+      roles:
+        admin: Administrator
+        designer: Designer
+        author: Author
+      new:
+        title: New membership
+        help: "Please give the account email to add. If it does not exist, you will be redirected to the account creation form."
+
+    accounts:
+      new:
+        title: New account
+        help: "Fill in the form below to add a new account."
+
+    my_account:
+      edit:
+        help: "Your name can be updated by clicking it. To apply your changes, click on the \"Save\" button."
+        new_site: new site
+        ask_for_name: "Please type your new name"
+
+    theme_assets:
+      index:
+        title: Listing theme files
+        help: "The theme files section is the place where you manage the files needed by your layout, snippets...etc. If you need to manage an image gallery, create a new content type instead.<br/><b>Warning:</b> you may not see all the assets depending on your rights."
+        quick_upload: Quick upload
+        new: new file
+        snippets: Snippets
+        css_and_js: Style and javascript
+        fonts: Fonts
+        images: Images
+        media: Media
+        no_items: "There are no files for now."
+      asset:
+        updated_at: Updated at
+      new:
+        title: New file
+        help: "You have the choice to either upload any file or to copy/paste a stylesheet or a javascript in plain text."
+      edit:
+        title: "Editing %{file}"
+        help: "This asset is accessible directly from the following url: <a href='%{url}'>%{url}</a>"
+        help_image: "Include your image in your page templates or snippets with the following liquid code : <span class='code'>{{ '%{path}' | theme_image_tag }}</span>.<br/>Your current image dimensions : <b>%{width}px x %{height}px</b>.<br/>"
+        help_javascript: "Include your javascript file in your page templates or snippets with the following code : <span class='code'>{{ '%{path}' | javascript_tag }}</span>.<br/>"
+        help_stylesheet: "Include your stylesheet file in your page templates or snippets with the following code : <span class='code'>{{ '%{path}' | stylesheet_tag }}</span>.<br/>"
+      form:
+        picker_link: Insert a file into the code
+        choose_file: Choose file
+        choose_plain_text: Choose plain text
+      image_picker:
+        title: "Insert theme image"
+        no_items: "There are no images for now."
+        upload: "Upload theme images"
+
+    translations:
+      untranslated: "Untranslated locales: %{list}"
+      index:
+        title: Translations
+        new: new translation
+        no_items: "There are no translations for now. Just click <a href=\"%{url}\">here</a> to create the first one."
+        remove: Remove %{key}
+      new:
+        title: "New translation"
+        help: "Pages/snippets can share the same template for all the locales except for some labels which can be handled by the <b>translate</b> liquid tag."
+      edit:
+        title: "Editing %{key}"
+        help: "You can use that translation key with the following liquid code : <span class='code'>{{ '%{key}' | translate }}</span>."
+
+    content_assets:
+      picker:
+        title: "Insert media"
+        no_items: "There are no media for now."
+        upload: "Upload media"
+
+    content_types:
+      index:
+        new: new model
+        edit: edit model
+      new:
+        title: New model
+        help: "Create your own data model (Projects, People, ...etc). Your model should have one field at least. The items created from this content type would have their first field mandatory."
+      edit:
+        title: Editing model
+        help: "Your model should have one field at least. The items created from this content type would have their first field mandatory."
+        show_entries: show entries
+        new_entry: new entry
+      form:
+        order_by:
+          created_at: 'By creation date'
+          updated_at: 'By updating date'
+          position_in_list: Manually
+        order_direction:
+          asc: Ascending
+          desc: Descending
+
+    content_entries:
+      index:
+        title: 'Listing "%{type}"'
+        edit: edit model
+        destroy: remove model
+        download: download entries
+        new: new entry
+        category_noname: "No name"
+        latest_entries: "Latest entries"
+        updated_at: "Updated at"
+      list:
+        no_items: "There are no entries for now. Just click <a href=\"%{url}\">here</a> to create the first one."
+      new:
+        title: '%{type} &mdash; new entry'
+      edit:
+        title: '%{type} &mdash; editing entry'
+      form:
+        edit_select_options: edit options
+        has_many:
+          new_entry: New entry
+
+    code_editing:
+      image_picker: Insert an image into the code
+      copy_template: Copy template from main locale
+
+    cross_domain_sessions:
+      new:
+        title: Cross-domain authentication
+        notice: You will be redirected to the website in a couple of seconds.
+
+    installation:
+      common:
+        title: First Locomotive Installation
+        next: Next
+      step_1:
+        title: "Step 1/2 &mdash; Create account"
+        name: Account name
+        email: Email
+        password: Password
+        password_confirmation: Password confirmation
+        done: "You have already added an account:<br/><strong>%{name}</strong>, <em>%{email}</em>"
+        next: Create account
+      step_2:
+        title: "Step 2/2 &mdash; Create your first site"
+        explanations: "You are almost done. Please give a name to your first site and pick up the default locale."
+        default_site_locale: Site locale
+        default_site_locales_hints: You can add more locales in the Settings panel later.
+        next: Create site
+
+    public:
+      pages:
+        show_toolbar:
+          statuses:
+            loading: "Loading...."
+            disabled: "Inline Editor disabled"
+          labels:
+            save_changes: "Save changes: "
+            editing_mode: "Editing mode: "
+            lang: "Lang: "
+          buttons:
+            back: Return to back-office
+            confirm: Confirm
+            cancel: Cancel
