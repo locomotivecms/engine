@@ -4,7 +4,7 @@ ja:
       information: 全般
       advanced_options: 詳細設定
       meta: SEO meta データ
-      seo: SEO セッティング
+      seo: SEO設定
       robots_txt: Robots.txtファイル
       code: コード
       raw_template: テンプレート
@@ -51,7 +51,6 @@ ja:
         target_klass_name: モデル
       site:
         locales: 言語
-
     hints:
       page:
         handle: "外部からアクセスするための一意な識別子"
@@ -77,7 +76,7 @@ ja:
         edit:
           source: "同じ拡張子のファイルによって置き換えることができます。"
       translation:
-        key: ""ハイフンではなくアンダースコアを使用してください（例：welcome_message）"
+        key: "ハイフンではなくアンダースコアを使用してください（例：welcome_message）"
       asset:
         source: "任意のファイル形式が利用できます。"
         edit:

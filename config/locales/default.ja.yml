@@ -1,4 +1,7 @@
 ja:
+  time:
+    formats:
+      short: "%m/%d"
   date:
     formats:
       default: "%Y/%m/%d"
