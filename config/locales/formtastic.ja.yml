@@ -1,0 +1,103 @@
+ja:
+  formtastic:
+    titles:
+      information: 全般
+      advanced_options: 詳細設定
+      meta: SEO meta データ
+      seo: SEO設定
+      robots_txt: Robots.txtファイル
+      code: コード
+      raw_template: テンプレート
+      credentials: 身分
+      language: 言語
+      sites: サイト
+      access_points: アクセスポイント
+      memberships: アカウント
+      membership_email: メールアドレス
+      file: ファイル
+      preview: プレビュー
+      options: オプション
+      custom_fields: カスタムフィールド
+      other_fields: その他のフィールド
+      presentation: プレゼンテーション
+      attributes: 属性
+      upload: アップロード
+    labels:
+      theme_asset:
+        plain_text_name: ファイル名
+        content_type: ファイルタイプ
+        new:
+          source: ファイル
+        edit:
+          source: 新しいファイル
+      custom_fields:
+        field:
+          name: エイリアス
+      content_type:
+        raw_item_template: アイテムテンプレート
+        public_submission_enabled: Public submission
+        public_submission_accounts: Notified Accounts
+        "custom_fields/field":
+          select_options: オプション
+      content_entry:
+        _slug: 固定リンク
+      account:
+        edit:
+          locale: 言語
+          password: 新しいパスワード
+          password_confirmation: 新しいパスワード（確認）
+      page:
+        seo_title: タイトル
+        target_klass_name: モデル
+      site:
+        locales: 言語
+    hints:
+      page:
+        handle: "外部からアクセスするための一意な識別子"
+        published: "公開前のページは認証済みアカウントのみ閲覧可能です。"
+        cache_strategy: "パフォーマンス向上のためキャッシュを行なってください。 The 'Simple' choice is a good compromise."
+        templatized: "あなたが定義したモデルのためのテンプレートとしてページを使います。"
+        listed: "ページがメニューでどのように表示されるか設定することができます。"
+        target_klass_name: "The type of content this page will be a template for."
+        seo_title: "デフォルトのtitleタグを上書きすることができます。"
+        meta_keywords: "デフォルトのmeta keywordタグを上書きすることができます。コンマで区切ることによって複数入力できます。"
+        meta_description: "デフォルトのmeta descriptionタグを上書きすることができます。"
+      snippet:
+        slug: "ページ内スニペットを挿入するためにはそれを知っている必要があります。"
+      site:
+        locales: "ドラッグ&ドロップによって言語の優先順位を入れ替えられます。"
+        seo_title: "サイト全体で使用するtitleタグのデフォルト値を設定できます。"
+        meta_keywords: "サイト全体で使用するmeta keywordタグのデフォルト値を設定できます。"
+        meta_description: "サイト全体で使用するmeta descriptionタグのデフォルト値を設定できます。"
+        domain_name: "例：locomotiveapp.org"
+        robots_txt: "<span class='code'>/robots.txt</span>に記述する内容を設定できます。詳細は<a href='http://www.w3.org/TR/html4/appendix/notes.html#h-B.4.1.1'>url</a>を参照してください。"
+      theme_asset:
+        slug: "拡張子は入力不要です。"
+        edit:
+          source: "同じ拡張子のファイルによって置き換えることができます。"
+      translation:
+        key: "ハイフンではなくアンダースコアを使用してください（例：welcome_message）"
+      asset:
+        source: "任意のファイル形式が利用できます。"
+        edit:
+          source: "このファイルは次のURLで参照できます。 %{url}"
+        update:
+          source: "このファイルは次のURLで参照できます。 %{url}"
+      content_entry:
+        _slug: "URL生成に使用されるプロパティ（例：template_page/{{ your_object._permalink }}）"
+        seo_title: "SEO用のtitleタグを上書きすることができます。"
+        meta_keywords: "SEO用のmeta keywordタグを上書きすることができます。"
+        meta_description: "SEO用のmeta descriptionタグを上書きできます。"
+      import:
+        source: "database.ymlを含んだZipファイル"
+        samples: "インポート時にコンテンツ及びアセットをコピーします。"
+        reset: "インポート前に現在のサイトを完全に削除します。"
+      content_type:
+        name: "モデルには複数形を使用することを推奨します。（例：Projects, Posts, Articlesなど）"
+        slug: "テンプレートでコレクション名として使われます。（例：<span class='code'>{{ contents.my_projects }}</span>）"
+        raw_item_template: "リストに含まれるアイテムについて表示されるテキストをカスタマイズすることができます。 Simply use Liquid. （例：<span class='code'>{{ entry.name }})</span>）"
+        public_submission_enabled: "It is used to let people from outside to create new entries (example: messages in a contact form)"
+        public_submission_accounts: "If the public submission option is enabled and for each entry created, sends a notification email to the accounts listed above."
+        "custom_fields/field":
+          name: "リキッドテンプレートのプロパティ名（例：<span class='code'>&#123;&#123; your_object.&lt;name_of_your_field&gt; &#125;&#125;</span>）"
+          hint: "モデルフォームの下に表示するテキスト"
