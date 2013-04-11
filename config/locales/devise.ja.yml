@@ -1,0 +1,63 @@
+ja:
+  errors:
+    messages:
+      not_found:  "見つかりません。"
+      already_confirmed:  "確認済みです。"
+      not_locked:  "ロックされていません。"
+
+  devise:
+    failure:
+      locomotive_account:
+        unauthenticated:  "操作を継続するためにはサインインする必要があります。"
+        unconfirmed:  "操作を継続するためにはアカウントを確認する必要があります。"
+        locked:  "あなたのアカウントはロックされています。"
+        invalid:  "メールアドレスまたはパスワードが不正です。"
+        not_found_in_database:  "メールアドレスまたはパスワードが不正です。"
+        no_membership:  "このサイトへのアクセスが認められていません。サイトの管理者にアクセス権を申請してください。"
+        invalid_token:  "認証トークンが不正です。"
+        timeout:  "セッションがタイムアウトしました。再度サインインしてください。"
+        inactive:  "あなたのアカウントはアクティブではありません。"
+    sessions:
+      locomotive_account:
+        signed_in:  "サインインに成功しました。"
+        signed_out:  "サインアウトに成功しました。"
+    passwords:
+      locomotive_account:
+        send_instructions:  "パスワード変更方法に関するメールを送信しました。"
+        updated:  "あなたのパスワードは正常に変更されました。"
+    confirmations:
+      locomotive_account:
+        send_instructions:  "アカウント確認に関するメールを送信しました。"
+        confirmed:  "あなたのアカウントは正常に確認されました。"
+    registrations:
+      locomotive_account:
+        signed_up:  "アカウントを正常に作成しました。"
+        updated:  "アカウントを正常に更新しました。"
+        destroyed:  "アカウントは正常に削除されました。"
+    unlocks:
+      locomotive_account:
+        send_instructions:  "ロック解除方法に関するメールを送信しました。"
+        unlocked:  "あなたのアカウントは正常にロック解除されました。"
+    mailer:
+      locomotive_account:
+        confirmation_instructions:  "アカウントの確認方法"
+        reset_password_instructions:  "パスワードのリセット方法"
+        unlock_instructions:  "アカウントのロック解除方法"
+
+  locomotive_account:
+    devise_mailer:
+      common:
+        hello:  "こんにちは"
+
+      confirmation_instructions:
+        you_can_confirm_your_account_through_the_link_below:  "アカウントの確認を行うには以下のリンクをクリックしてください。"
+        confirm_my_account:  "アカウントを確認する"
+      reset_password_instructions:
+        reset_password_instruction:  "パスワードの変更が申請されました。変更を行うには以下のリンクをクリックしてください。"
+        change_my_password:  "パスワードを変更する"
+        wrong_request_instruction:  "このメールに心当たりがない場合はこのメールを無視してください。"
+        unchange_password_message:  "新しいパスワードを設定するまで、あなたは現在のパスワードを使用できます。"
+      unlock_instructions:
+        locked_account_message:  "ログイン失敗回数が多すぎるため、あなたのアカウントをロックしました。"
+        unlock_account_instruction:  "アカウントのロックを解除を行うには以下のリンクをクリックしてください。"
+        unlock_my_account:  "アカウントのロックを解除する"
