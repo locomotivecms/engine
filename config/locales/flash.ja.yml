@@ -1,0 +1,115 @@
+ja:
+  flash:
+    locomotive:
+      pages:
+        create:
+          notice: "ページは正常に作成されました。"
+          alert: "ページを作成できませんでした。"
+        update:
+          notice: "ページは正常に更新されました。"
+          alert: "ページを更新できませんでした。"
+        sort:
+          notice: "ページは正常にソートされました。"
+        destroy:
+          notice: "ページは正常に削除されました。"
+
+      content_entries:
+        create:
+          notice: "エントリは正常に作成されました。"
+          alert: "エントリを作成できませんでした。"
+        update:
+          notice: "エントリは正常に更新されました。"
+          alert: "エントリを更新できませんでした。"
+        sort:
+          notice: "エントリは正常にソートされました。"
+        destroy:
+          notice: "エントリは正常に削除されました。"
+
+      content_types:
+        create:
+          notice: "モデルは正常に作成されました。"
+          alert: "モデルを作成できませんでした。"
+        update:
+          notice: "モデルは正常に更新されました。"
+          alert: "モデルを更新できませんでした。"
+        destroy:
+          notice: "モデルは正常に削除されました。"
+
+      current_site:
+        update:
+          notice: "マイサイトは正常に更新されました。"
+          alert: "マイサイトを更新できませんでした。"
+
+      snippets:
+        create:
+          notice: "スニペットは正常に作成されました。"
+          alert: "スニペットを作成できませんでした。"
+        update:
+          notice: "スニペットは正常に更新されました。"
+          alert: "スニペットを更新できませんでした。"
+        destroy:
+          notice: スニペットは正常に削除されました。"
+
+      accounts:
+        create:
+          notice: "アカウントは正常に作成されました。"
+          alert: "アカウントを作成できませんでした。"
+
+      my_account:
+        update:
+          notice: "マイアカウントは正常に更新されました。"
+          alert: "マイアカウントを更新できませんでした。"
+
+      sites:
+        create:
+          notice: "サイトは正常に作成されました。"
+          alert: "サイトを作成できませんでした。"
+        destroy:
+          notice: "サイトは正常に削除されました。"
+
+      memberships:
+        create:
+          notice: "メンバーシップは正常に作成されました。"
+          alert: "メンバーシップを作成できませんでした。"
+          already_created: "アカウントは既に追加されています。"
+
+      assets:
+        create:
+          notice: "アセットは正常に作成されました。"
+          alert: "アセットを作成できませんでした。"
+        update:
+          notice: "アセットは正常に更新されました。"
+          alert: "アセットを更新できませんでした。"
+
+      theme_assets:
+        create:
+          notice: "ファイルは正常に作成されました。"
+          alert: "ファイルを作成できませんでした。"
+        update:
+          notice: "ファイルは正常に更新されました。"
+          alert: "ファイルを更新できませんでした。"
+        destroy:
+          notice: "ファイルは正常に削除されました。"
+      translations:
+        create:
+          notice: "翻訳は正常に作成されました。"
+          alert: "翻訳を作成できませんでした。"
+        update:
+          notice: "翻訳は正常に更新されました。"
+          alert: "翻訳を更新できませんでした。"
+        destroy:
+          notice: "翻訳は正常に削除されました。"
+
+      custom_fields:
+        update:
+          alert: "フィールドを更新できませんでした。"
+
+      cross_domain_sessions:
+        create:
+          alert: "サインインしてください。"
+
+      import:
+        create:
+          done: "サイトのインポートは正常に更新されました。"
+          notice: "サイトをインポート中です。"
+          alert: "インポートに失敗しました。"

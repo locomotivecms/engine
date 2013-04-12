@@ -79,6 +79,11 @@ FactoryGirl.define do
       locale 'pl'
     end
 
+    factory 'japanese user' do
+      name 'OSA Shunsuke'
+      email 'xxxcaqui@gmail.com'
+      locale 'ja'
+    end
   end
 
   ## Memberships ##
