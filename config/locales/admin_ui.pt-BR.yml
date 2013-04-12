@@ -85,6 +85,13 @@ pt-BR:
         file:
           delete_file: Excluir arquivo
 
+      form:
+        empty: Vazio
+        required: Obrigatório
+        default_label: Nome do campo
+        select_options:
+          ask_name: Digite o texto da opção
+
     sessions:
       new:
         title: Login
