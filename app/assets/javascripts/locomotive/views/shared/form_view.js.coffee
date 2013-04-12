@@ -87,7 +87,7 @@ class Locomotive.Views.Shared.FormView extends Backbone.View
   enable_save_with_keys_combination: ->
     $.cmd 'S', (() =>
       # make sure that the current text field gets saved too
-      input = @$('form input[type=text]:focus, form input[type=password]:focus')
+      input = @$('form input[type=text]:focus, form input[type=password]:focus, form textarea:focus')
       input.trigger('change') if input.size() > 0
 
       @$('form input[type=submit]').trigger('click')
