@@ -5,7 +5,9 @@ module Locomotive
 
     properties  :title, :slug
 
-    properties  :parent_fullpath, :parent_id, only_setter: true
+    property    :parent_id
+
+    property    :parent_fullpath, only_setter: true
 
     property    :position, type: 'Integer'
 
