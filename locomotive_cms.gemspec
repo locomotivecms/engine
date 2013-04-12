@@ -14,7 +14,7 @@ Gem::Specification.new do |s|
   s.email       = ['did@locomotivecms.com']
   s.homepage    = 'http://www.locomotivecms.com'
   s.summary     = 'A Next Generation Sexy CMS for Rails 3'
-  s.description = 'Locomotive is a next generation CMS system with sexy admin tools, liquid templating, and inline editing powered by mongodb and rails 3.2'
+  s.description = 'LocomotiveCMS is a next generation CMS system with sexy admin tools, liquid templating, and inline editing powered by mongodb and rails 3.2'
 
   s.add_dependency 'rake',                            '~> 10.0.0'
 
