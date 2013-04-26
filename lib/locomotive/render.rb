@@ -188,12 +188,14 @@ module Locomotive
         'path'              => request.path,
         'fullpath'          => request.fullpath,
         'url'               => request.url,
+        'ip_address'        => request.remote_ip,
         'now'               => Time.now.utc,
         'today'             => Date.today,
         'locale'            => I18n.locale.to_s,
         'default_locale'    => current_site.default_locale.to_s,
         'locales'           => current_site.locales,
-        'current_user'      => Locomotive::Liquid::Drops::CurrentUser.new(current_locomotive_account)
+        'current_user'      => Locomotive::Liquid::Drops::CurrentUser.new(current_locomotive_account),
+        'session'           => Locomotive::Liquid::Drops::SessionProxy.new
       }
     end
 

@@ -7,10 +7,10 @@ describe Locomotive::ContentEntry do
   before(:each) do
     Locomotive::Site.any_instance.stubs(:create_default_pages!).returns(true)
     @content_type = FactoryGirl.build(:content_type)
-    @content_type.entries_custom_fields.build :label => 'Title', :type => 'string'
-    @content_type.entries_custom_fields.build :label => 'Description', :type => 'text'
-    @content_type.entries_custom_fields.build :label => 'Visible ?', :type => 'boolean', :name => 'visible'
-    @content_type.entries_custom_fields.build :label => 'File', :type => 'file'
+    @content_type.entries_custom_fields.build label: 'Title', type: 'string'
+    @content_type.entries_custom_fields.build label: 'Description', type: 'text'
+    @content_type.entries_custom_fields.build label: 'Visible ?', type: 'boolean', name: 'visible'
+    @content_type.entries_custom_fields.build label: 'File', type: 'file'
     @content_type.valid?
     @content_type.send(:set_label_field)
   end
@@ -24,56 +24,57 @@ describe Locomotive::ContentEntry do
     ## Validations ##
 
     it 'requires the presence of title' do
-      content_entry = build_content_entry :title => nil
+      content_entry = build_content_entry title: nil
       content_entry.should_not be_valid
       content_entry.errors[:title].should == ["can't be blank"]
     end
 
     it 'requires the presence of the permalink (_slug)' do
-      content_entry = build_content_entry :title => nil
+      content_entry = build_content_entry title: nil
       content_entry.should_not be_valid
       content_entry.errors[:_slug].should == ["can't be blank"]
     end
 
   end
 
-  context 'setting the slug' do
+  describe '#slug' do
+
     before :each do
-      build_content_entry(:_slug => 'dogs').tap(&:save!)._slug.should == 'dogs'
+      build_content_entry(_slug: 'dogs').tap(&:save!)._slug.should == 'dogs'
     end
 
     it 'uses the given slug if it is unique' do
-      build_content_entry(:_slug => 'monkeys').tap(&:save!)._slug.should == 'monkeys'
-      build_content_entry(:_slug => 'cats-2').tap(&:save!)._slug.should == 'cats-2'
+      build_content_entry(_slug: 'monkeys').tap(&:save!)._slug.should == 'monkeys'
+      build_content_entry(_slug: 'cats-2').tap(&:save!)._slug.should == 'cats-2'
     end
 
     it 'appends a number to the end of the slug if it is not unique' do
-      build_content_entry(:_slug => 'dogs').tap(&:save!)._slug.should == 'dogs-1'
-      build_content_entry(:_slug => 'dogs').tap(&:save!)._slug.should == 'dogs-2'
-      build_content_entry(:_slug => 'dogs-2').tap(&:save!)._slug.should == 'dogs-3'
-      build_content_entry(:_slug => 'dogs-2').tap(&:save!)._slug.should == 'dogs-4'
+      build_content_entry(_slug: 'dogs').tap(&:save!)._slug.should == 'dogs-1'
+      build_content_entry(_slug: 'dogs').tap(&:save!)._slug.should == 'dogs-2'
+      build_content_entry(_slug: 'dogs-2').tap(&:save!)._slug.should == 'dogs-3'
+      build_content_entry(_slug: 'dogs-2').tap(&:save!)._slug.should == 'dogs-4'
     end
 
     it 'ignores the case of a slug' do
-      build_content_entry(:_slug => 'dogs').tap(&:save!)._slug.should == 'dogs-1'
-      build_content_entry(:_slug => 'DOGS').tap(&:save!)._slug.should == 'dogs-2'
+      build_content_entry(_slug: 'dogs').tap(&:save!)._slug.should == 'dogs-1'
+      build_content_entry(_slug: 'DOGS').tap(&:save!)._slug.should == 'dogs-2'
     end
 
     it 'correctly handles slugs with multiple numbers' do
-      build_content_entry(:_slug => 'fish-1-2').tap(&:save!)._slug.should == 'fish-1-2'
-      build_content_entry(:_slug => 'fish-1-2').tap(&:save!)._slug.should == 'fish-1-3'
+      build_content_entry(_slug: 'fish-1-2').tap(&:save!)._slug.should == 'fish-1-2'
+      build_content_entry(_slug: 'fish-1-2').tap(&:save!)._slug.should == 'fish-1-3'
 
-      build_content_entry(:_slug => 'fish-1-hi').tap(&:save!)._slug.should == 'fish-1-hi'
-      build_content_entry(:_slug => 'fish-1-hi').tap(&:save!)._slug.should == 'fish-1-hi-1'
+      build_content_entry(_slug: 'fish-1-hi').tap(&:save!)._slug.should == 'fish-1-hi'
+      build_content_entry(_slug: 'fish-1-hi').tap(&:save!)._slug.should == 'fish-1-hi-1'
     end
   end
 
-  context '#i18n' do
+  describe '#i18n' do
 
     before(:each) do
       localize_content_type @content_type
       ::Mongoid::Fields::I18n.locale = 'en'
-      @content_entry = build_content_entry(:title => 'Hello world')
+      @content_entry = build_content_entry(title: 'Hello world')
       ::Mongoid::Fields::I18n.locale = 'fr'
     end
 
@@ -90,12 +91,13 @@ describe Locomotive::ContentEntry do
   end
 
   describe "#navigation" do
+
     before(:each) do
       @content_type.order_by = '_position'
       @content_type.save
 
       %w(first second third).each_with_index do |item, index|
-        content = build_content_entry(:title => item.to_s, :_position => index)
+        content = build_content_entry(title: item.to_s, _position: index)
         content.save
         instance_variable_set "@#{item}", content
       end
@@ -196,15 +198,26 @@ describe Locomotive::ContentEntry do
     end
 
     it 'uses the to_label method if the value of the label field defined it' do
-      entry = build_content_entry(:_label_field_name => 'with_to_label')
-      entry.stubs(:with_to_label).returns(mock('with_to_label', :to_label => 'acme'))
+      entry = build_content_entry(_label_field_name: 'with_to_label')
+      entry.stubs(:with_to_label).returns(mock('with_to_label', to_label: 'acme'))
       entry._label.should == 'acme'
     end
 
     it 'uses the to_s method at last if the label field did not define the to_label method' do
-      entry = build_content_entry(:_label_field_name => 'not_a_string')
-      entry.stubs(:not_a_string).returns(mock('not_a_string', :to_s => 'not_a_string'))
+      entry = build_content_entry(_label_field_name: 'not_a_string')
+      entry.stubs(:not_a_string).returns(mock('not_a_string', to_s: 'not_a_string'))
       entry._label.should == 'not_a_string'
+    end
+
+  end
+
+  describe '#file' do
+
+    let(:entry) { build_content_entry(title: 'Hello world', file: FixturedAsset.open('5k.png')) }
+
+    it 'writes the file to the filesystem' do
+      entry.save
+      entry.file.url.should_not =~ /content_content_entry/
     end
 
   end
@@ -212,8 +225,8 @@ describe Locomotive::ContentEntry do
   describe '#public_submission' do
 
     before(:each) do
-      @account_1 = FactoryGirl.build('admin user', :id => fake_bson_id('1'))
-      @account_2 = FactoryGirl.build('frenchy user', :id => fake_bson_id('2'))
+      @account_1 = FactoryGirl.build('admin user', id: fake_bson_id('1'))
+      @account_2 = FactoryGirl.build('frenchy user', id: fake_bson_id('2'))
 
       @content_type.public_submission_enabled = true
       @content_type.public_submission_accounts = ['', @account_1._id, @account_2._id.to_s]
@@ -221,7 +234,7 @@ describe Locomotive::ContentEntry do
       site = FactoryGirl.build(:site)
       site.stubs(:accounts).returns([@account_1, @account_2])
 
-      @content_entry = build_content_entry(:site => site)
+      @content_entry = build_content_entry(site: site)
     end
 
     it 'does not send email notifications if the api is disabled' do
@@ -237,8 +250,8 @@ describe Locomotive::ContentEntry do
     end
 
     it 'sends email notifications when a new instance is created' do
-      Locomotive::Notifications.expects(:new_content_entry).with(@account_1, @content_entry).returns(mock('mailer', :deliver => true))
-      Locomotive::Notifications.expects(:new_content_entry).with(@account_2, @content_entry).returns(mock('mailer', :deliver => true))
+      Locomotive::Notifications.expects(:new_content_entry).with(@account_1, @content_entry).returns(mock('mailer', deliver: true))
+      Locomotive::Notifications.expects(:new_content_entry).with(@account_2, @content_entry).returns(mock('mailer', deliver: true))
       @content_entry.save
     end
 
@@ -260,7 +273,7 @@ describe Locomotive::ContentEntry do
   end
 
   def build_content_entry(options = {})
-    @content_type.entries.build({ :title => 'Locomotive', :description => 'Lorem ipsum....', :_label_field_name => 'title' }.merge(options))
+    @content_type.entries.build({ title: 'Locomotive', description: 'Lorem ipsum....', _label_field_name: 'title' }.merge(options))
   end
 
   def fake_bson_id(id)
