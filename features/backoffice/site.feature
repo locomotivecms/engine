@@ -43,3 +43,12 @@ Feature: Manage my site
     Then I should be able to save the site with AJAX
     Given multi_sites is disabled
     Then I should be able to save the site with AJAX
+
+  @javascript
+  Scenario: Multiple saves
+    Given I am an authenticated user
+    When I go to the site settings
+    And I press "Save"
+    Then I should see "My site was successfully updated."
+    When I press "Save"
+    Then I should see "My site was successfully updated."
