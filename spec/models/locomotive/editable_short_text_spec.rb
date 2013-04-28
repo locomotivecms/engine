@@ -8,14 +8,14 @@ describe Locomotive::EditableShortText do
       @site = FactoryGirl.create(:site)
       @home = @site.pages.root.first
 
-      @home.update_attributes :raw_template => "{% block body %}{% editable_short_text 'body' %}Lorem ipsum{% endeditable_short_text %}{% endblock %}"
+      @home.update_attributes raw_template: "{% block body %}{% editable_short_text 'body' %}Lorem ipsum{% endeditable_short_text %}{% endblock %}"
 
-      @sub_page_1 = FactoryGirl.create(:page, :slug => 'sub_page_1', :parent => @home, :raw_template => "{% extends 'parent' %}")
-      @sub_page_2 = FactoryGirl.create(:page, :slug => 'sub_page_2', :parent => @home, :raw_template => "{% extends 'parent' %}")
+      @sub_page_1 = FactoryGirl.create(:page, slug: 'sub_page_1', parent: @home, raw_template: "{% extends 'parent' %}")
+      @sub_page_2 = FactoryGirl.create(:page, slug: 'sub_page_2', parent: @home, raw_template: "{% extends 'parent' %}")
 
       @sub_page_1_el = @sub_page_1.editable_elements.first
 
-      @sub_page_1_1 = FactoryGirl.create(:page, :slug => 'sub_page_1_1', :parent => @sub_page_1, :raw_template => "{% extends 'parent' %}")
+      @sub_page_1_1 = FactoryGirl.create(:page, slug: 'sub_page_1_1', parent: @sub_page_1, raw_template: "{% extends 'parent' %}")
     end
 
     context '#locales' do
@@ -35,7 +35,7 @@ describe Locomotive::EditableShortText do
 
       it 'adds new locale within sub page elements' do
         ::Mongoid::Fields::I18n.with_locale 'fr' do
-          @home.update_attributes :title => 'Accueil', :raw_template => "{% block body %}{% editable_short_text 'body' %}Lorem ipsum{% endeditable_short_text %}{% endblock %}"
+          @home.update_attributes title: 'Accueil', raw_template: "{% block body %}{% editable_short_text 'body' %}Lorem ipsum{% endeditable_short_text %}{% endblock %}"
           page = Locomotive::Page.find(@sub_page_1._id)
           page.editable_elements.first.content = 'Lorem ipsum (FR)'
           page.save
@@ -131,11 +131,11 @@ describe Locomotive::EditableShortText do
       @site = FactoryGirl.create(:site)
       @home = @site.pages.root.first
 
-      @home.update_attributes :raw_template => "{% block body %}{% editable_short_text 'body', fixed: true %}Lorem ipsum{% endeditable_short_text %}{% endblock %}"
+      @home.update_attributes raw_template: "{% block body %}{% editable_short_text 'body', fixed: true %}Lorem ipsum{% endeditable_short_text %}{% endblock %}"
       @home_el = @home.editable_elements.first
 
-      @sub_page_1 = FactoryGirl.create(:page, :slug => 'sub_page_1', :parent => @home, :raw_template => "{% extends 'parent' %}")
-      @sub_page_2 = FactoryGirl.create(:page, :slug => 'sub_page_2', :parent => @home, :raw_template => "{% extends 'parent' %}")
+      @sub_page_1 = FactoryGirl.create(:page, slug: 'sub_page_1', parent: @home, raw_template: "{% extends 'parent' %}")
+      @sub_page_2 = FactoryGirl.create(:page, slug: 'sub_page_2', parent: @home, raw_template: "{% extends 'parent' %}")
 
       @sub_page_1_el = @sub_page_1.editable_elements.first
       @sub_page_2_el = @sub_page_2.editable_elements.first

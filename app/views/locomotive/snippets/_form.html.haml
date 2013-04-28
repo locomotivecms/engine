@@ -5,9 +5,9 @@
   :plain
     snippet: #{j @snippet.persisted? ? to_json(@snippet) : 'null'}
 
-= f.inputs :name => :information do
-  = f.input :name, :wrapper_html => { :class => 'highlighted' }
-  = f.input :slug, :required => false
+= f.inputs name: :information do
+  = f.input :name, wrapper_html: { class: 'highlighted' }
+  = f.input :slug, required: false
 
-= f.inputs :name => :code do
-  = f.input :template, :as => :'Locomotive::Code', :main_locale_template_url => snippet_main_template_path(@snippet)
+= f.inputs name: :code do
+  = f.input :template, as: :'Locomotive::Code', main_locale_template_url: snippet_main_template_path(@snippet)

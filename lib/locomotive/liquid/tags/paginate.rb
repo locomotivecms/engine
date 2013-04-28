@@ -43,8 +43,8 @@ module Locomotive
               pagination = Kaminari.paginate_array(collection).page(context['current_page']).per(@per_page).to_liquid.stringify_keys
             else
               pagination = collection.send(:paginate, {
-                :page       => context['current_page'],
-                :per_page   => @per_page
+                page:       context['current_page'],
+                per_page:   @per_page
               }).to_liquid.stringify_keys
             end
             page_count, current_page = pagination['total_pages'], pagination['current_page']

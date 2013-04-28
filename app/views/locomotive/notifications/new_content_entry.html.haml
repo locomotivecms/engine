@@ -1,7 +1,7 @@
-%p= t('.title', :name => @account.name, :domain => @domain, :date => I18n.l(Time.now), :locale => @account.locale).html_safe
+%p= t('.title', name: @account.name, domain: @domain, date: I18n.l(Time.now), locale: @account.locale).html_safe
 
 %p
-  %b= t('.type', :type => @type.name, :locale => @account.locale)
+  %b= t('.type', type: @type.name, locale: @account.locale)
   %br
   %i= @type.description
 

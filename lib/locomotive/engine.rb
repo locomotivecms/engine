@@ -16,14 +16,14 @@ module Locomotive
     end
 
     initializer 'locomotive.action_controller' do |app|
-      ::ActionController::Base.wrap_parameters :format => [:json]
+      ::ActionController::Base.wrap_parameters format: [:json]
     end
 
     initializer 'locomotive.devise' do |app|
       ::DeviseController.respond_to :html, :json
     end
 
-    initializer "locomotive.precompile.hook", :group => :all do |app|
+    initializer "locomotive.precompile.hook", group: :all do |app|
       app.config.assets.precompile += %w(
         locomotive.js
         locomotive.css

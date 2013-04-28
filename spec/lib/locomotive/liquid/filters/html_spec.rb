@@ -211,7 +211,7 @@ describe Locomotive::Liquid::Filters::Html do
     klass = Class.new
     klass.class_eval do
       def registers
-        { :site => FactoryGirl.build(:site, :id => fake_bson_id(42)) }
+        { site: FactoryGirl.build(:site, id: fake_bson_id(42)) }
       end
 
       def fake_bson_id(id)

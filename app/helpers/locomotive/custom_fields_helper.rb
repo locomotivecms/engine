@@ -56,9 +56,9 @@ module Locomotive
               type = field.type == 'belongs_to' ? 'has_many' : field.type
               hash[type] ||= []
               hash[type] << {
-                :label      => field.label,
-                :name       => field.name,
-                :class_name => content_type.entries_class_name
+                label:      field.label,
+                name:       field.name,
+                class_name: content_type.entries_class_name
               }
             end
           end

@@ -10,7 +10,7 @@ describe Locomotive::ContentType do
 
     it 'should have a valid factory' do
       content_type = FactoryGirl.build(:content_type)
-      content_type.entries_custom_fields.build :label => 'anything', :type => 'string'
+      content_type.entries_custom_fields.build label: 'anything', type: 'string'
       content_type.should be_valid
     end
 
@@ -25,29 +25,29 @@ describe Locomotive::ContentType do
     end
 
     it 'requires the presence of slug' do
-      content_type = FactoryGirl.build(:content_type, :name => nil, :slug => nil)
+      content_type = FactoryGirl.build(:content_type, name: nil, slug: nil)
       content_type.should_not be_valid
       content_type.errors[:slug].should == ["can't be blank"]
     end
 
     it 'is not valid if slug is not unique' do
       content_type = FactoryGirl.build(:content_type)
-      content_type.entries_custom_fields.build :label => 'anything', :type => 'string'
+      content_type.entries_custom_fields.build label: 'anything', type: 'string'
       content_type.save
-      (content_type = FactoryGirl.build(:content_type, :site => content_type.site)).should_not be_valid
+      (content_type = FactoryGirl.build(:content_type, site: content_type.site)).should_not be_valid
       content_type.errors[:slug].should == ["is already taken"]
     end
 
     it 'is not valid if there is not at least one field' do
       content_type = FactoryGirl.build(:content_type)
       content_type.should_not be_valid
-      content_type.errors[:entries_custom_fields].should == { :base => ['At least, one custom field is required'] }
+      content_type.errors[:entries_custom_fields].should == { base: ['At least, one custom field is required'] }
     end
 
     %w(created_at updated_at).each do |name|
       it "does not allow #{name} as name" do
         content_type = FactoryGirl.build(:content_type)
-        field = content_type.entries_custom_fields.build :label => 'anything', :type => 'string', :name => name
+        field = content_type.entries_custom_fields.build label: 'anything', type: 'string', name: name
         field.valid?.should be_false
         field.errors[:name].should == ['is reserved']
       end
@@ -70,9 +70,9 @@ describe Locomotive::ContentType do
   context '#ordered_entries' do
 
     before(:each) do
-      (@content_type = build_content_type(:order_by => 'created_at')).save
-      @content_2 = @content_type.entries.create :name => 'Sacha'
-      @content_1 = @content_type.entries.create :name => 'Did'
+      (@content_type = build_content_type(order_by: 'created_at')).save
+      @content_2 = @content_type.entries.create name: 'Sacha'
+      @content_1 = @content_type.entries.create name: 'Did'
     end
 
     it 'orders with the ASC direction by default' do
@@ -91,26 +91,26 @@ describe Locomotive::ContentType do
     end
 
     it 'returns a list of entries ordered by a column specified by order_by (ASC)' do
-      @content_type.order_by = @content_type.entries_custom_fields.where(:name => 'name').first._id
+      @content_type.order_by = @content_type.entries_custom_fields.where(name: 'name').first._id
       @content_type.ordered_entries.collect(&:name).should == %w(Did Sacha)
     end
 
     it 'returns a list of entries ordered by a column specified by order_by (DESC)' do
-      @content_type.order_by = @content_type.entries_custom_fields.where(:name => 'name').first._id
+      @content_type.order_by = @content_type.entries_custom_fields.where(name: 'name').first._id
       @content_type.order_direction = 'desc'
       @content_type.ordered_entries.collect(&:name).should == %w(Sacha Did)
     end
 
     it 'returns a list of contents ordered through condition {order_by: "name asc"}' do
-      @content_type.order_by = @content_type.entries_custom_fields.where(:name => 'name').first._id
+      @content_type.order_by = @content_type.entries_custom_fields.where(name: 'name').first._id
       @content_type.order_direction = 'desc'
-      @content_type.ordered_entries(:order_by => 'name asc').collect(&:name).should == %w(Did Sacha)
+      @content_type.ordered_entries(order_by: 'name asc').collect(&:name).should == %w(Did Sacha)
     end
 
     it 'returns a list of entries ordered by a Date column when first instance is missing the value' do
-      @content_type.order_by = @content_type.entries_custom_fields.where(:name => 'active_at').first._id
+      @content_type.order_by = @content_type.entries_custom_fields.where(name: 'active_at').first._id
       @content_2.update_attribute :active_at, Date.parse('01/01/2001')
-      content_3 = @content_type.entries.create :name => 'Mario', :active_at => Date.parse('02/02/2001')
+      content_3 = @content_type.entries.create name: 'Mario', active_at: Date.parse('02/02/2001')
 
       @content_type.ordered_entries.map(&:active_at).should == [nil, Date.parse('01/01/2001'), Date.parse('02/02/2001')]
 
@@ -125,12 +125,12 @@ describe Locomotive::ContentType do
     before(:each) do
       build_belongs_to_has_many_relationship
 
-      @category_1 = @category_content_type.entries.create :name => 'Gems'
-      @category_2 = @category_content_type.entries.create :name => 'Service'
+      @category_1 = @category_content_type.entries.create name: 'Gems'
+      @category_2 = @category_content_type.entries.create name: 'Service'
 
-      @content_1 = @content_type.entries.create :name => 'Github',        :category => @category_2
-      @content_2 = @content_type.entries.create :name => 'LocomotiveCMS', :category => @category_1, :description => 'Lorem ipsum',  :_position_in_category => 1
-      @content_3 = @content_type.entries.create :name => 'RubyOnRails',   :category => @category_1, :description => 'Zzzzzz',       :_position_in_category => 2
+      @content_1 = @content_type.entries.create name: 'Github',        category: @category_2
+      @content_2 = @content_type.entries.create name: 'LocomotiveCMS', category: @category_1, description: 'Lorem ipsum',  _position_in_category: 1
+      @content_3 = @content_type.entries.create name: 'RubyOnRails',   category: @category_1, description: 'Zzzzzz',       _position_in_category: 2
     end
 
     context '#ordering in a belongs_to/has_many relationship' do
@@ -150,7 +150,7 @@ describe Locomotive::ContentType do
       end
 
       it 'uses the order by position if the UI option is enabled' do
-        field = @category_content_type.entries_custom_fields.where(:name => 'projects').first
+        field = @category_content_type.entries_custom_fields.where(name: 'projects').first
         field.ui_enabled = true;
 
         @category_content_type.save!; @category_1 = safe_find(@category_1.class, @category_1._id)
@@ -173,14 +173,14 @@ describe Locomotive::ContentType do
       end
 
       it 'groups entries with a different columns order' do
-        @category_content_type.update_attributes :order_by => @category_content_type.entries_custom_fields.first._id, :order_direction => 'desc'
+        @category_content_type.update_attributes order_by: @category_content_type.entries_custom_fields.first._id, order_direction: 'desc'
         groups = @content_type.send(:group_by_belongs_to_field, @content_type.group_by_field)
 
         groups.map { |h| h[:name] }.should == %w(Service Gems)
       end
 
       it 'deals with entries without a value for the group_by field (orphans)' do
-        @content_type.entries.create :name => 'MacOsX'
+        @content_type.entries.create name: 'MacOsX'
         groups = @content_type.send(:group_by_belongs_to_field, @content_type.group_by_field)
 
         groups.map { |h| h[:name] }.should == ['Gems', 'Service', nil]
@@ -198,7 +198,7 @@ describe Locomotive::ContentType do
       site = FactoryGirl.build(:site)
       Locomotive::Site.stubs(:find).returns(site)
 
-      @content_type = build_content_type(:site => site)
+      @content_type = build_content_type(site: site)
       # Locomotive::ContentType.logger = Logger.new($stdout)
       # Locomotive::ContentType.db.connection.instance_variable_set(:@logger, Logger.new($stdout))
     end
@@ -207,14 +207,14 @@ describe Locomotive::ContentType do
 
       %w{label type}.each do |key|
         it "should validate presence of #{key}" do
-          field = @content_type.entries_custom_fields.build({ :label => 'Shortcut', :type => 'string' }.merge(key.to_sym => nil))
+          field = @content_type.entries_custom_fields.build({ label: 'Shortcut', type: 'string' }.merge(key.to_sym => nil))
           field.should_not be_valid
           field.errors[key.to_sym].should == ["can't be blank"]
         end
       end
 
       it 'should not have unique label' do
-        field = @content_type.entries_custom_fields.build :label => 'Active', :type => 'boolean'
+        field = @content_type.entries_custom_fields.build label: 'Active', type: 'boolean'
         field.should_not be_valid
         field.errors[:label].should == ["is already taken"]
       end
@@ -283,14 +283,14 @@ describe Locomotive::ContentType do
       end
 
       it 'adds new field' do
-        @content_type.entries_custom_fields.build :label => 'Author', :name => 'author', :type => 'string'
+        @content_type.entries_custom_fields.build label: 'Author', name: 'author', type: 'string'
         @content_type.save && @content_type.reload
         asset = @content_type.entries.first
         lambda { asset.author }.should_not raise_error
       end
 
       it 'removes a field' do
-        @content_type.entries_custom_fields.destroy_all :conditions => { :name => 'active_at' }
+        @content_type.entries_custom_fields.destroy_all conditions: { name: 'active_at' }
         @content_type.save && @content_type.reload
         asset = @content_type.entries.first
         lambda { asset.active_at }.should raise_error
@@ -298,7 +298,7 @@ describe Locomotive::ContentType do
 
       it 'removes the field used as the label when setting the original label_field_name value before' do
         @content_type.label_field_name = 'name'
-        @content_type.entries_custom_fields.destroy_all :conditions => { :name => @content_type.label_field_name }
+        @content_type.entries_custom_fields.destroy_all conditions: { name: @content_type.label_field_name }
         @content_type.save
         @content_type.label_field_name.should == 'description'
       end
@@ -317,8 +317,8 @@ describe Locomotive::ContentType do
 
       it 'adds new field' do
         @content_type.entries_custom_fields.clear
-        field = @content_type.entries_custom_fields.build :label => 'Title'
-        @content_type.entries_custom_fields_attributes = { 0 => { :id => field.id.to_s, 'label' => 'A title', 'type' => 'string' }, 1 => { 'label' => 'Tagline', 'type' => 'sring' } }
+        field = @content_type.entries_custom_fields.build label: 'Title'
+        @content_type.entries_custom_fields_attributes = { 0 => { id: field.id.to_s, 'label' => 'A title', 'type' => 'string' }, 1 => { 'label' => 'Tagline', 'type' => 'sring' } }
         @content_type.entries_custom_fields.size.should == 2
         @content_type.entries_custom_fields.first.label.should == 'A title'
         @content_type.entries_custom_fields.last.label.should == 'Tagline'
@@ -327,10 +327,10 @@ describe Locomotive::ContentType do
       it 'updates/removes fields' do
         @content_type.save
 
-        field = @content_type.entries_custom_fields.build :label => 'Title', :type => 'string'
+        field = @content_type.entries_custom_fields.build label: 'Title', type: 'string'
         @content_type.save
 
-        @content_type.update_attributes(:entries_custom_fields_attributes => {
+        @content_type.update_attributes(entries_custom_fields_attributes: {
           '0' => { '_id' => lookup_field_id(1), 'label' => 'My Description', 'type' => 'text', '_destroy' => '1' },
           '1' => { '_id' => lookup_field_id(2), 'label' => 'Active', 'type' => 'boolean', '_destroy' => '1' },
           '2' => { '_id' => field._id, 'label' => 'My Title !' },
@@ -350,10 +350,10 @@ describe Locomotive::ContentType do
 
   def build_content_type(options = {}, &block)
     FactoryGirl.build(:content_type, options).tap do |content_type|
-      content_type.entries_custom_fields.build :label => 'Name',        :type => 'string'
-      content_type.entries_custom_fields.build :label => 'Description', :type => 'text'
-      content_type.entries_custom_fields.build :label => 'Active',      :type => 'boolean'
-      content_type.entries_custom_fields.build :label => 'Active at',   :type => 'date'
+      content_type.entries_custom_fields.build label: 'Name',        type: 'string'
+      content_type.entries_custom_fields.build label: 'Description', type: 'text'
+      content_type.entries_custom_fields.build label: 'Active',      type: 'boolean'
+      content_type.entries_custom_fields.build label: 'Active at',   type: 'date'
       block.call(content_type) if block_given?
     end
   end
@@ -364,15 +364,15 @@ describe Locomotive::ContentType do
   end
 
   def build_content_entry(content_type)
-    content_type.entries.build(:name => 'Asset on steroids', :description => 'Lorem ipsum', :active => true)
+    content_type.entries.build(name: 'Asset on steroids', description: 'Lorem ipsum', active: true)
   end
 
   def build_belongs_to_has_many_relationship
-    (@category_content_type = build_content_type(:name => 'Categories')).save!
+    (@category_content_type = build_content_type(name: 'Categories')).save!
     category_klass = @category_content_type.klass_with_custom_fields(:entries).name
 
     @content_type = build_content_type.tap do |content_type|
-      field = content_type.entries_custom_fields.build :label => 'Category', :type => 'belongs_to', :class_name => category_klass
+      field = content_type.entries_custom_fields.build label: 'Category', type: 'belongs_to', class_name: category_klass
       content_type.order_by           = 'name'
       content_type.order_direction    = 'desc'
       content_type.group_by_field_id  = field._id
@@ -380,7 +380,7 @@ describe Locomotive::ContentType do
     end
     project_klass = @content_type.klass_with_custom_fields(:entries).name
 
-    field = @category_content_type.entries_custom_fields.build :label => 'Projects', :type => 'has_many', :class_name => project_klass, :inverse_of => :category, :ui_enabled => false
+    field = @category_content_type.entries_custom_fields.build label: 'Projects', type: 'has_many', class_name: project_klass, inverse_of: :category, ui_enabled: false
     @category_content_type.save!
   end
 

@@ -1,4 +1,4 @@
-%script{ :type => 'text/html', :id => 'membership_entry' }
+%script{ type: 'text/html', id: 'membership_entry' }
 
   = hidden_field_tag 'site[memberships_attributes][{{index}}][id]', '{{id}}'
   = hidden_field_tag 'site[memberships_attributes][{{index}}][_destroy]'
@@ -13,11 +13,11 @@
     {{#if grant_admin}}
     = select_tag 'site[memberships_attributes][{{index}}][role]', options_for_membership_roles
     {{else}}
-    = select_tag 'site[memberships_attributes][{{index}}][role]', options_for_membership_roles(:skip_admin => true)
+    = select_tag 'site[memberships_attributes][{{index}}][role]', options_for_membership_roles(skip_admin: true)
     {{/if}}
 
   %span.actions
-    = link_to_icon :trash, '#', :title => t('locomotive.buttons.delete'), :class => 'remove'
+    = link_to_icon :trash, '#', title: t('locomotive.buttons.delete'), class: 'remove'
 
   {{else}}
   .role

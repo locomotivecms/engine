@@ -7,13 +7,13 @@
   = render 'locomotive/shared/actions/contents'
 
 - content_for :buttons do
-  = local_action_button :show_entries, content_entries_url(@content_type.slug_was), :icon => 'icon-eye-open'
-  = local_action_button :new_entry, new_content_entry_url(@content_type.slug_was), :icon => 'icon-plus'
+  = local_action_button :show_entries, content_entries_url(@content_type.slug_was), icon: 'icon-eye-open'
+  = local_action_button :new_entry, new_content_entry_url(@content_type.slug_was), icon: 'icon-plus'
 
 %p!= t('.help')
 
-= semantic_form_for @content_type, :url => content_type_url(@content_type) do |f|
+= semantic_form_for @content_type, url: content_type_url(@content_type) do |f|
 
-  = render 'form', :f => f
+  = render 'form', f: f
 
-  = render 'locomotive/shared/form_actions', :back_url => content_entries_url(@content_type.slug_was), :button_label => :update
+  = render 'locomotive/shared/form_actions', back_url: content_entries_url(@content_type.slug_was), button_label: :update

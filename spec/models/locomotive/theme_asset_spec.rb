@@ -70,7 +70,7 @@ describe Locomotive::ThemeAsset do
         @asset.source = FixturedAsset.open('5k.png')
         @asset.save!
 
-        another_asset = FactoryGirl.build(:theme_asset, :site => @asset.site)
+        another_asset = FactoryGirl.build(:theme_asset, site: @asset.site)
         another_asset.source = FixturedAsset.open('5k.png')
         another_asset.valid?.should be_false
         another_asset.errors[:local_path].should_not be_blank
@@ -102,10 +102,10 @@ describe Locomotive::ThemeAsset do
     before(:each) do
       Locomotive::ThemeAsset.any_instance.stubs(:site_id).returns('test')
       @asset = FactoryGirl.build(:theme_asset, {
-        :site => FactoryGirl.build(:site),
-        :plain_text_name => 'test',
-        :plain_text => 'Lorem ipsum',
-        :performing_plain_text => true
+        site: FactoryGirl.build(:site),
+        plain_text_name: 'test',
+        plain_text: 'Lorem ipsum',
+        performing_plain_text: true
       })
     end
 

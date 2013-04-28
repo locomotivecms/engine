@@ -29,7 +29,7 @@ module Locomotive
           end
 
           def default_element_attributes
-            super.merge(:content_from_default => self.render_default_content(nil))
+            super.merge(content_from_default: self.render_default_content(nil))
           end
 
         end

@@ -3,7 +3,7 @@ module Locomotive
 
     ## fields ##
     field :content
-    field :options, :type => Array,   :default => []
+    field :options, type: Array,   default: []
 
     ## methods ##
 
@@ -42,7 +42,7 @@ module Locomotive
           }
         }
 
-        self.page.collection.update self._selector, operations, :multi => true
+        self.page.collection.update self._selector, operations, multi: true
       end
       true
     end

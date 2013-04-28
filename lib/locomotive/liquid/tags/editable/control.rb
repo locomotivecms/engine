@@ -8,7 +8,7 @@ module Locomotive
 
           def default_element_attributes
             if @nodelist.first.is_a?(String)
-              super.merge(:content => @nodelist.first.try(:to_s), :options => @options[:options])
+              super.merge(content: @nodelist.first.try(:to_s), options: @options[:options])
             else
               super
             end

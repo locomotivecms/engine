@@ -6,10 +6,10 @@ module Locomotive
     ## fields ##
     field :name
     field :slug
-    field :template, :localize => true
+    field :template, localize: true
 
     ## associations ##
-    referenced_in :site, :class_name => 'Locomotive::Site'
+    referenced_in :site, class_name: 'Locomotive::Site'
 
     ## callbacks ##
     before_validation :normalize_slug
@@ -18,7 +18,7 @@ module Locomotive
 
     ## validations ##
     validates_presence_of   :site, :name, :slug, :template
-    validates_uniqueness_of :slug, :scope => :site_id
+    validates_uniqueness_of :slug, scope: :site_id
 
     ## behaviours ##
     attr_protected  :id
@@ -37,7 +37,7 @@ module Locomotive
       return unless (self.site rescue false) # not run if the site is being destroyed
 
       pages = ::I18n.with_locale(::Mongoid::Fields::I18n.locale) do
-        pages = self.site.pages.any_in(:snippet_dependencies => [self.slug]).to_a
+        pages = self.site.pages.any_in(snippet_dependencies: [self.slug]).to_a
       end
 
       pages.each do |page|
@@ -46,7 +46,7 @@ module Locomotive
         page.send(:_serialize_template)
 
         Page.without_callback(:save, :after, :update_template_descendants) do
-          page.save(:validate => false)
+          page.save(validate: false)
         end
       end
     end

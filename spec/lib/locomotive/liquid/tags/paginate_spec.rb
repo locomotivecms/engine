@@ -25,7 +25,7 @@ describe Locomotive::Liquid::Tags::Paginate do
     text.should match /!jQuery!/
     text.should_not match /!mongodb!/
 
-    text = template.render!(liquid_context(:page => 2))
+    text = template.render!(liquid_context(page: 2))
 
     text.should_not match /!jQuery!/
     text.should match /!mongodb!/
@@ -37,23 +37,23 @@ describe Locomotive::Liquid::Tags::Paginate do
     template = Liquid::Template.parse(default_template)
 
     lambda do
-      template.render!(liquid_context(:collection => nil))
+      template.render!(liquid_context(collection: nil))
     end.should raise_error
 
     lambda do
-      template.render!(liquid_context(:collection => PaginatedCollection.new))
+      template.render!(liquid_context(collection: PaginatedCollection.new))
     end.should raise_error
   end
 
   it 'keeps the original GET parameters' do
-    context   = liquid_context(:fullpath => '/products?foo=1&bar=1&baz=1')
+    context   = liquid_context(fullpath: '/products?foo=1&bar=1&baz=1')
     template  = Liquid::Template.parse(default_template)
     text      = template.render!(context)
     text.should match /\/products\?foo=1&bar=1&baz=1&page=2/
   end
 
   it 'does not include twice the page parameter' do
-    context   = liquid_context(:fullpath => '/products?page=1')
+    context   = liquid_context(fullpath: '/products?page=1')
     template  = Liquid::Template.parse(default_template)
     text      = template.render!(context)
     text.should match /\/products\?page=2/
@@ -79,7 +79,7 @@ describe Locomotive::Liquid::Tags::Paginate do
       'path'          => '/',
       'fullpath'      => options[:fullpath] || '/'
     }, {
-      :page           => FactoryGirl.build(:page)
+      page:           FactoryGirl.build(:page)
     }, true)
   end
 
@@ -113,13 +113,13 @@ describe Locomotive::Liquid::Tags::Paginate do
       offset = (options[:page] - 1) * options[:per_page]
 
       {
-        :collection     => @collection[offset..(offset + options[:per_page]) - 1],
-        :current_page   => options[:page],
-        :previous_page  => options[:page] == 1 ? 1 : options[:page] - 1,
-        :next_page      => options[:page] == total_pages ? total_pages : options[:page] + 1,
-        :total_entries  => @collection.size,
-        :total_pages    => total_pages,
-        :per_page       => options[:per_page]
+        collection:     @collection[offset..(offset + options[:per_page]) - 1],
+        current_page:   options[:page],
+        previous_page:  options[:page] == 1 ? 1 : options[:page] - 1,
+        next_page:      options[:page] == total_pages ? total_pages : options[:page] + 1,
+        total_entries:  @collection.size,
+        total_pages:    total_pages,
+        per_page:       options[:per_page]
       }
     end
 

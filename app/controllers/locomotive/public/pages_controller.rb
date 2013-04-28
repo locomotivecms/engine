@@ -8,18 +8,18 @@ module Locomotive
 
       before_filter :require_site
 
-      before_filter :authenticate_locomotive_account!, :only => [:show_toolbar]
+      before_filter :authenticate_locomotive_account!, only: [:show_toolbar]
 
-      before_filter :validate_site_membership, :only => [:show_toolbar]
+      before_filter :validate_site_membership, only: [:show_toolbar]
 
-      before_filter :set_toolbar_locale, :only => :show_toolbar
+      before_filter :set_toolbar_locale, only: :show_toolbar
 
-      before_filter :set_locale, :only => [:show, :edit]
+      before_filter :set_locale, only: [:show, :edit]
 
       helper Locomotive::BaseHelper
 
       def show_toolbar
-        render :layout => false
+        render layout: false
       end
 
       def show

@@ -5,11 +5,11 @@ module Locomotive
 
     localized
 
-    before_filter :back_to_default_site_locale, :only => %w(new create)
+    before_filter :back_to_default_site_locale, only: %w(new create)
 
     before_filter :set_content_type
 
-    respond_to :json, :only => [:show, :edit, :create, :update, :sort]
+    respond_to :json, only: [:show, :edit, :create, :update, :sort]
 
     skip_load_and_authorize_resource
 
@@ -32,7 +32,7 @@ module Locomotive
 
     def create
       @content_entry = @content_type.entries.create(params[:content_entry])
-      respond_with @content_entry, :location => edit_content_entry_url(@content_type.slug, @content_entry._id)
+      respond_with @content_entry, location: edit_content_entry_url(@content_type.slug, @content_entry._id)
     end
 
     def edit
@@ -43,7 +43,7 @@ module Locomotive
     def update
       @content_entry = @content_type.entries.find(params[:id])
       @content_entry.update_attributes(params[:content_entry])
-      respond_with @content_entry, :location => edit_content_entry_url(@content_type.slug, @content_entry._id)
+      respond_with @content_entry, location: edit_content_entry_url(@content_type.slug, @content_entry._id)
     end
 
     def sort
@@ -54,13 +54,13 @@ module Locomotive
     def destroy
       @content_entry = @content_type.entries.find(params[:id])
       @content_entry.destroy
-      respond_with @content_entry, :location => content_entries_url(@content_type.slug)
+      respond_with @content_entry, location: content_entries_url(@content_type.slug)
     end
 
     protected
 
     def set_content_type
-      @content_type ||= current_site.content_types.where(:slug => params[:slug]).first
+      @content_type ||= current_site.content_types.where(slug: params[:slug]).first
     end
 
     def authorize_content

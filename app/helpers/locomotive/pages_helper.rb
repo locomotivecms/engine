@@ -11,10 +11,10 @@ module Locomotive
     def page_toggler(page)
       icon_class = cookies["folder-#{page._id}"] != 'none' ? 'icon-caret-down' : 'icon-caret-right'
       content_tag :i, '',
-        :class  => "#{icon_class} toggler",
-        :data   => {
-          :open   => 'icon-caret-down',
-          :closed => 'icon-caret-right'
+        class:  "#{icon_class} toggler",
+        data:   {
+          open:   'icon-caret-down',
+          closed: 'icon-caret-right'
         }
     end
 
@@ -85,7 +85,7 @@ module Locomotive
     #
     def page_main_template_path(page)
       if not_the_default_current_locale?
-        page_path(page, :content_locale => current_site.default_locale, :format => :json)
+        page_path(page, content_locale: current_site.default_locale, format: :json)
       else
         nil
       end

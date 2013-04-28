@@ -13,7 +13,7 @@ module Locomotive
       end
 
       def switch_to_site_url(site, options = {})
-        options = { :fullpath => true, :protocol => true }.merge(options)
+        options = { fullpath: true, protocol: true }.merge(options)
 
         url = "#{site.subdomain}.#{Locomotive.config.domain}"
         url += ":#{request.port}" if request.port != 80

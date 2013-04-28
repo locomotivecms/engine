@@ -17,7 +17,7 @@ module Locomotive
     def choices_group_wrapping(&block)
       template.content_tag(:div,
         template.capture(&block) +
-        template.content_tag(:div, '', :class => 'clear'),
+        template.content_tag(:div, '', class: 'clear'),
         choices_group_wrapping_html_options
       )
     end
@@ -33,17 +33,17 @@ module Locomotive
       check_box_without_hidden_input(choice) <<
       template.content_tag(:label,
         choice_label(choice),
-        label_html_options.merge(:for => choice_input_dom_id(choice), :class => nil)
+        label_html_options.merge(for: choice_input_dom_id(choice), class: nil)
       )
     end
 
     def choice_label(choice)
       text = I18n.t("locomotive.locales.#{choice}")
-      template.image_tag("locomotive/icons/flags/#{choice}.png", :alt => text, :size => '24x24') << text
+      template.image_tag("locomotive/icons/flags/#{choice}.png", alt: text, size: '24x24') << text
     end
 
     def choices_group_wrapping_html_options
-      { :class => 'list' }
+      { class: 'list' }
     end
 
     def choice_wrapping_html_options(choice)

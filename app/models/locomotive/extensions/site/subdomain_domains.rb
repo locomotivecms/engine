@@ -10,7 +10,7 @@ module Locomotive
 
             ## fields ##
             field :subdomain
-            field :domains, :type => Array, :default => []
+            field :domains, type: Array, default: []
 
             ## indexes
             index :domains
@@ -18,8 +18,8 @@ module Locomotive
             ## validations ##
             validates_presence_of     :subdomain
             validates_uniqueness_of   :subdomain
-            validates_exclusion_of    :subdomain, :in => Locomotive.config.reserved_subdomains
-            validates_format_of       :subdomain, :with => Locomotive::Regexps::SUBDOMAIN, :allow_blank => true
+            validates_exclusion_of    :subdomain, in: Locomotive.config.reserved_subdomains
+            validates_format_of       :subdomain, with: Locomotive::Regexps::SUBDOMAIN, allow_blank: true
             validate                  :domains_must_be_valid_and_unique
 
             ## callbacks ##
@@ -27,9 +27,9 @@ module Locomotive
             after_destroy :clear_cache_for_all_domains
 
             ## named scopes ##
-            scope :match_domain, lambda { |domain| { :any_in => { :domains => [*domain] } } }
+            scope :match_domain, lambda { |domain| { any_in: { domains: [*domain] } } }
             scope :match_domain_with_exclusion_of, lambda { |domain, site|
-              { :any_in => { :domains => [*domain] }, :where => { :_id.ne => site.id } }
+              { any_in: { domains: [*domain] }, where: { :_id.ne => site.id } }
             }
 
             send :include, InstanceMethods
@@ -75,11 +75,11 @@ module Locomotive
 
             self.domains_without_subdomain.each do |domain|
               if self.class.match_domain_with_exclusion_of(domain, self).any?
-                self.errors.add(:domains, :domain_taken, :value => domain)
+                self.errors.add(:domains, :domain_taken, value: domain)
               end
 
               if not domain =~ Locomotive::Regexps::DOMAIN
-                self.errors.add(:domains, :invalid_domain, :value => domain)
+                self.errors.add(:domains, :invalid_domain, value: domain)
               end
             end
           end

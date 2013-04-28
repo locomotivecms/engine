@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Locomotive::Extensions::Page::Redirect do
 
-  let(:page) { FactoryGirl.build(:page, :redirect => true, :redirect_url => 'http://www.locomotivecms.com') }
+  let(:page) { FactoryGirl.build(:page, redirect: true, redirect_url: 'http://www.locomotivecms.com') }
 
   describe 'redirect option enabled' do
 

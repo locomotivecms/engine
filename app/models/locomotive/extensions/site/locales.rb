@@ -8,7 +8,7 @@ module Locomotive
         included do
 
           ## fields ##
-          field :locales, :type => 'RawArray', :default => []
+          field :locales, type: 'RawArray', default: []
 
           ## validations ##
           validate :can_not_remove_default_locale
@@ -82,25 +82,25 @@ module Locomotive
 
         def can_not_remove_default_locale
           if self.persisted? && !self.locales.include?(self.default_locale_was)
-            self.errors.add :locales, I18n.t(:default_locale_removed, :scope => [:errors, :messages, :site])
+            self.errors.add :locales, I18n.t(:default_locale_removed, scope: [:errors, :messages, :site])
           end
         end
 
         def verify_localized_default_pages_integrity
           if self.persisted? && self.locales_changed?
-            self.pages.where(:"slug.#{self.default_locale_was}".in => %w(index 404), :depth => 0).each do |page|
+            self.pages.where(:"slug.#{self.default_locale_was}".in => %w(index 404), depth: 0).each do |page|
               modifications = { 'title' => {}, 'slug' => {}, 'fullpath' => {}, 'locales' => self.locales }
 
               self.locales.each do |locale|
                 slug  = page.attributes['slug'][self.default_locale_was]
-                title = page.attributes['title'][locale] || ::I18n.t("attributes.defaults.pages.#{slug}.title", :locale => locale)
+                title = page.attributes['title'][locale] || ::I18n.t("attributes.defaults.pages.#{slug}.title", locale: locale)
 
                 modifications['slug'][locale]     = slug
                 modifications['fullpath'][locale] = slug
                 modifications['title'][locale]    = title
               end
 
-              page.collection.update({ :_id => page._id }, { '$set' => modifications })
+              page.collection.update({ _id: page._id }, { '$set' => modifications })
             end
           end
         end

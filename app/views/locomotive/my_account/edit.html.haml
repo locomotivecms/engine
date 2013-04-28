@@ -1,4 +1,4 @@
-- title link_to(@account.name.blank? ? @account.name_was : @account.name, '#', :rel => 'account_name', :title => t('.ask_for_name'), :class => 'editable')
+- title link_to(@account.name.blank? ? @account.name_was : @account.name, '#', rel: 'account_name', title: t('.ask_for_name'), class: 'editable')
 
 - content_for :backbone_view_data do
   :plain
@@ -9,23 +9,23 @@
 
 - if multi_sites?
   - content_for :buttons do
-    = local_action_button t('.new_site'), new_site_url, :icon => 'icon-plus' if can?(:create, Locomotive::Site)
+    = local_action_button t('.new_site'), new_site_url, icon: 'icon-plus' if can?(:create, Locomotive::Site)
 
 %p= t('.help')
 
-= semantic_form_for @account, :url => my_account_url do |f|
+= semantic_form_for @account, url: my_account_url do |f|
 
-  = f.inputs :name => :information do
+  = f.inputs name: :information do
     = f.input :name
-    = f.input :locale, :as => '::Locomotive::Locale'
+    = f.input :locale, as: '::Locomotive::Locale'
 
-  = f.inputs :name => :credentials, :class => "inputs foldable folded" do
+  = f.inputs name: :credentials, class: "inputs foldable folded" do
     = f.input :email
-    = f.input :password, :input_html => { :autocomplete => 'off' }
-    = f.input :password_confirmation, :input_html => { :autocomplete => 'off' }
+    = f.input :password, input_html: { autocomplete: 'off' }
+    = f.input :password_confirmation, input_html: { autocomplete: 'off' }
 
   - if multi_sites?
-    = f.inputs :name => :sites, :class => "sites inputs foldable" do
+    = f.inputs name: :sites, class: "sites inputs foldable" do
       %li#account_sites_input.input.empty.no-label.last
         .list
           - @account.sites.each do |site|
@@ -34,7 +34,7 @@
               %em= site.domains.join(', ')
 
               - if admin_on?(site) && site != current_site
-                %span{ :class => 'actions' }
-                  = link_to_icon :trash, site_url(site), :class => 'remove', :data => { :confirm => t('locomotive.messages.confirm') }, :method => :delete
+                %span{ class: 'actions' }
+                  = link_to_icon :trash, site_url(site), class: 'remove', data: { confirm: t('locomotive.messages.confirm') }, method: :delete
 
-  = render 'locomotive/shared/form_actions', :button_label => :update
+  = render 'locomotive/shared/form_actions', button_label: :update

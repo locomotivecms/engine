@@ -1,33 +1,33 @@
-%script{ :type => 'text/html', :id => 'content_asset_picker' }
+%script{ type: 'text/html', id: 'content_asset_picker' }
 
   %h2!= t('.title')
 
-  %p.no-items{ :style => 'display: none' }!= t('.no_items')
+  %p.no-items{ style: 'display: none' }!= t('.no_items')
 
-  %ul.list.content-assets{ :style => 'display: none' }
+  %ul.list.content-assets{ style: 'display: none' }
     %li.clear
 
   .dialog-actions
-    = link_to t('locomotive.buttons.close'), '#', :id => 'close-link'
+    = link_to t('locomotive.buttons.close'), '#', id: 'close-link'
 
     .button-wrapper.upload
-      = form_tag content_assets_url(:json), :class => 'quick-upload' do
-        = file_field_tag 'content_asset[source]', :multiple => 'multiple'
-        = link_to t('locomotive.content_assets.image_picker.upload'), content_assets_url(:json), :class => 'new', :id => 'upload-link'
+      = form_tag content_assets_url(:json), class: 'quick-upload' do
+        = file_field_tag 'content_asset[source]', multiple: 'multiple'
+        = link_to t('locomotive.content_assets.image_picker.upload'), content_assets_url(:json), class: 'new', id: 'upload-link'
 
-%script{ :type => 'text/html', :id => 'content_asset' }
+%script{ type: 'text/html', id: 'content_asset' }
 
   %h4
-    = link_to '{{filename}}', '{{url}}', :alt => '{{full_filename}}', :title => '{{full_filename}}'
+    = link_to '{{filename}}', '{{url}}', alt: '{{full_filename}}', title: '{{full_filename}}'
   {{#if image}}
   .image
     .inside
-      %img{ :src => '{{vignette_url}}' }
+      %img{ src: '{{vignette_url}}' }
   {{else}}
-  .icon{ :class => '{{content_type}}' }
+  .icon{ class: '{{content_type}}' }
     .inside
       {{content_type_text}}
   {{/if}}
 
   .actions
-    = link_to_icon :trash, '#', :class => 'remove', :'data-confirm' => t('locomotive.messages.confirm')
+    = link_to_icon :trash, '#', class: 'remove', :'data-confirm' => t('locomotive.messages.confirm')

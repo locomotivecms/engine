@@ -17,7 +17,7 @@ module Locomotive
         def sections(main, sub = nil)
           before_filter do |c|
             sub = sub.call(c) if sub.respond_to?(:call)
-            sections = { :main => main, :sub => sub }
+            sections = { main: main, sub: sub }
             c.instance_variable_set(:@locomotive_sections, sections)
           end
         end

@@ -3,7 +3,7 @@
 module Locomotive
   class EditableFileUploader < ::CarrierWave::Uploader::Base
 
-  	include ::CarrierWave::MimeTypes
+    include ::CarrierWave::MimeTypes
 
     process :set_content_type
 

@@ -48,7 +48,7 @@ module Locomotive
       case params[:step].to_i
       when 1 # already an account in db
         if account = Account.first
-          @step_done = I18n.t('locomotive.installation.step_1.done', :name => account.name, :email => account.email)
+          @step_done = I18n.t('locomotive.installation.step_1.done', name: account.name, email: account.email)
           render 'step_1' and return false
         end
       else
@@ -62,7 +62,7 @@ module Locomotive
 
     def last_url
       if Locomotive.config.manage_domains?
-        locomotive_account_session_url(:host => Site.first.domains.first, :port => request.port)
+        locomotive_account_session_url(host: Site.first.domains.first, port: request.port)
       else
         locomotive_account_session_url
       end

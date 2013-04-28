@@ -5,8 +5,7 @@ describe Locomotive::Extensions::Page::Render do
   before(:each) do
     Locomotive::Site.any_instance.stubs(:create_default_pages!).returns(true)
     @site = FactoryGirl.create(:site)
-    @home = FactoryGirl.create(:page, :site => @site, :raw_template =>
-    """
+    @home = FactoryGirl.create(:page, site: @site, raw_template:     """
     Hello world
     {% block header %}Home header{% endblock %}
     {% block main %}My home page{% endblock %}
@@ -20,20 +19,17 @@ describe Locomotive::Extensions::Page::Render do
   describe '#inheritance' do
 
     before(:each) do
-      @inner = FactoryGirl.create(:sub_page, :slug => 'innerpage', :site => @site, :raw_template =>
-      """
+      @inner = FactoryGirl.create(:sub_page, slug: 'innerpage', site: @site, raw_template:       """
       {% extends parent %}
       {% block header %}Inner header{% endblock %}
       {% block main %}Inner page{% endblock %}
       """)
-      @contact = FactoryGirl.create(:sub_page, :slug => 'contact', :site => @site, :raw_template =>
-      """
+      @contact = FactoryGirl.create(:sub_page, slug: 'contact', site: @site, raw_template:       """
       {% extends 'innerpage' %}
       {% block header %}Contact header{% endblock %}
       {% block main %}Contact page{% endblock %}
       """)
-      @about = FactoryGirl.create(:sub_page, :slug => 'about', :site => @site, :raw_template =>
-      """
+      @about = FactoryGirl.create(:sub_page, slug: 'about', site: @site, raw_template:       """
       {% extends 'innerpage' %}
       {% block main %}About page{% endblock %}
       """)

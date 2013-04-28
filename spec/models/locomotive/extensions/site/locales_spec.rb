@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Locomotive::Extensions::Site::Locales do
 
-  let(:site) { FactoryGirl.build(:site, :locales => [:en, :fr]) }
+  let(:site) { FactoryGirl.build(:site, locales: [:en, :fr]) }
 
   describe '#localized_page_fullpath' do
 
@@ -22,7 +22,7 @@ describe Locomotive::Extensions::Site::Locales do
 
     context 'another page' do
 
-      let(:page) { build_page('about-us', { :fr => 'a-notre-sujet' }) }
+      let(:page) { build_page('about-us', { fr: 'a-notre-sujet' }) }
 
       it 'returns only the fullpath if default locale' do
         site.localized_page_fullpath(page).should == 'about-us'

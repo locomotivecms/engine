@@ -7,7 +7,7 @@ module Locomotive
     replace_field 'source', ::String, true
 
     ## fields ##
-    field :default_source_url, :localize => true
+    field :default_source_url, localize: true
 
     ## callbacks ##
     after_save :propagate_content
@@ -77,7 +77,7 @@ module Locomotive
           }
         }
 
-        self.page.collection.update self._selector, operations, :multi => true
+        self.page.collection.update self._selector, operations, multi: true
       end
     end
 

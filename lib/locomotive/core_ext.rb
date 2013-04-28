@@ -62,4 +62,3 @@ class Boolean #:nodoc
     value
   end
 end
-

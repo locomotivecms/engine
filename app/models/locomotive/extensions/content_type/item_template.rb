@@ -7,7 +7,7 @@ module Locomotive
 
         included do
           field :raw_item_template
-          field :serialized_item_template, :type => Binary
+          field :serialized_item_template, type: Binary
 
           before_validation :serialize_item_template
 
@@ -27,7 +27,7 @@ module Locomotive
             begin
               self._parse_and_serialize_item_template
             rescue ::Liquid::SyntaxError => error
-              @item_parsing_errors << I18n.t(:liquid_syntax, :error => error.to_s, :scope => [:errors, :messages])
+              @item_parsing_errors << I18n.t(:liquid_syntax, error: error.to_s, scope: [:errors, :messages])
             end
           end
         end

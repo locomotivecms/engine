@@ -1,6 +1,6 @@
-%script{ :type => 'text/html', :id => 'domains_list' }
+%script{ type: 'text/html', id: 'domains_list' }
 
-  %p.empty{ :style => 'display: none' }!= t('.empty')
+  %p.empty{ style: 'display: none' }!= t('.empty')
 
   %ul
 
@@ -8,15 +8,15 @@
 
   .new-entry
     %em http://
-    = text_field_tag 'domain', '', :id => '', :placeholder => t('formtastic.hints.site.domain_name'), :class => 'path'
+    = text_field_tag 'domain', '', id: '', placeholder: t('formtastic.hints.site.domain_name'), class: 'path'
 
     %span.actions
-      = link_to t('locomotive.buttons.new_item'), '#', :class => 'add'
+      = link_to t('locomotive.buttons.new_item'), '#', class: 'add'
 
-%script{ :type => 'text/html', :id => 'domain_entry' }
+%script{ type: 'text/html', id: 'domain_entry' }
 
   %em http://
-  = text_field_tag 'site[domains][]', '{{name}}', :id => '', :class => 'path'
+  = text_field_tag 'site[domains][]', '{{name}}', id: '', class: 'path'
 
   %span.actions
-    = link_to_icon :trash, '#', :title => t('locomotive.buttons.delete'), :class => 'remove'
+    = link_to_icon :trash, '#', title: t('locomotive.buttons.delete'), class: 'remove'

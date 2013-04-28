@@ -10,9 +10,9 @@ describe Locomotive::EditableControl do
   describe '#simple' do
 
     before(:each) do
-      @home.update_attributes :raw_template => "{% block body %}{% editable_control 'menu', options: 'true=Yes,false=No' %}false{% endeditable_control %}{% endblock %}"
+      @home.update_attributes raw_template: "{% block body %}{% editable_control 'menu', options: 'true=Yes,false=No' %}false{% endeditable_control %}{% endblock %}"
 
-      @sub_page_1 = FactoryGirl.create(:page, :slug => 'sub_page_1', :parent => @home, :raw_template => "{% extends 'parent' %}")
+      @sub_page_1 = FactoryGirl.create(:page, slug: 'sub_page_1', parent: @home, raw_template: "{% extends 'parent' %}")
     end
 
     it 'exists' do
@@ -36,11 +36,11 @@ describe Locomotive::EditableControl do
   describe '"sticky" elements' do
 
     before(:each) do
-      @home.update_attributes :raw_template => "{% block body %}{% editable_control 'menu', options: 'true=Yes,false=No', fixed: true %}false{% endeditable_control %}{% endblock %}"
+      @home.update_attributes raw_template: "{% block body %}{% editable_control 'menu', options: 'true=Yes,false=No', fixed: true %}false{% endeditable_control %}{% endblock %}"
       @home_el = @home.editable_elements.first
 
-      @sub_page_1 = FactoryGirl.create(:page, :slug => 'sub_page_1', :parent => @home, :raw_template => "{% extends 'parent' %}")
-      @sub_page_2 = FactoryGirl.create(:page, :slug => 'sub_page_2', :parent => @home, :raw_template => "{% extends 'parent' %}")
+      @sub_page_1 = FactoryGirl.create(:page, slug: 'sub_page_1', parent: @home, raw_template: "{% extends 'parent' %}")
+      @sub_page_2 = FactoryGirl.create(:page, slug: 'sub_page_2', parent: @home, raw_template: "{% extends 'parent' %}")
 
       @sub_page_1_el = @sub_page_1.editable_elements.first
       @sub_page_2_el = @sub_page_2.editable_elements.first

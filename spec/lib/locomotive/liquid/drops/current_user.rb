@@ -10,8 +10,8 @@ describe Locomotive::Liquid::Drops::CurrentUser do
 
     @controller = Locomotive::TestController.new
     @controller.stubs(:flash).returns(ActionDispatch::Flash::FlashHash.new())
-    @controller.stubs(:params).returns(:url => '/subpage')
-    @controller.stubs(:request).returns(OpenStruct.new(:url => '/subpage', :fullpath => '/subpage'))
+    @controller.stubs(:params).returns(url: '/subpage')
+    @controller.stubs(:request).returns(OpenStruct.new(url: '/subpage', fullpath: '/subpage'))
     @controller.current_site = @site
 
     @admin = FactoryGirl.build(:admin).account
@@ -20,7 +20,7 @@ describe Locomotive::Liquid::Drops::CurrentUser do
   def expect_render(template, text)
     @page.raw_template = template
     @page.send(:serialize_template)
-    @controller.expects(:render).with(:text => text, :layout => false, :status => :ok).returns(true)
+    @controller.expects(:render).with(text: text, layout: false, status: :ok).returns(true)
     @controller.send(:render_locomotive_page)
   end
 

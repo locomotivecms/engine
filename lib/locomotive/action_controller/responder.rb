@@ -15,9 +15,9 @@ module Locomotive
         ability         = current_site.nil? || current_account.nil? ? nil : self.controller.send(:current_ability)
 
         super.merge({
-          :current_site     => current_site,
-          :current_account  => current_account,
-          :ability          => ability
+          current_site:     current_site,
+          current_account:  current_account,
+          ability:          ability
         })
       end
 
@@ -26,23 +26,23 @@ module Locomotive
           display resource
         elsif has_errors?
           with_flash_message(:alert) do
-            display resource.errors, :status => :unprocessable_entity
+            display resource.errors, status: :unprocessable_entity
           end
         elsif post?
           in_header = controller.request.headers['X-Flash'] == 'true'
           with_flash_message(:notice, in_header) do
-            display resource, :location => api_location
+            display resource, location: api_location
           end
         elsif put?
           with_flash_message do |message|
-            display resource, :status => :ok, :location => api_location
+            display resource, status: :ok, location: api_location
           end
         elsif delete?
           with_flash_message do |message|
-            display resource, :status => :ok, :location => api_location
+            display resource, status: :ok, location: api_location
           end
         elsif has_empty_resource_definition?
-          display empty_resource, :status => :ok
+          display empty_resource, status: :ok
         else
           with_flash_message do
             head :ok

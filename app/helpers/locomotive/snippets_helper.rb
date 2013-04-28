@@ -10,7 +10,7 @@ module Locomotive
 		#
 		def snippet_main_template_path(snippet)
 			if not_the_default_current_locale?
-				snippet_path(snippet, :content_locale => current_site.default_locale, :format => :json)
+				snippet_path(snippet, content_locale: current_site.default_locale, format: :json)
 			else
 				nil
 			end

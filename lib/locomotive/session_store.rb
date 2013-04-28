@@ -6,7 +6,7 @@ module ActionDispatch
         include Mongoid::Document
         include Mongoid::Timestamps
 
-        field :data, :type => String, :default => [Marshal.dump({})].pack("m*")
+        field :data, type: String, default: [Marshal.dump({})].pack("m*")
         index :updated_at
       end
 
@@ -39,8 +39,8 @@ module ActionDispatch
 
         def find_session(id)
           id = BSON::ObjectId.from_string(id.to_s)
-          @@session_class.first(:conditions => { :_id => id }) ||
-            @@session_class.new(:id => id)
+          @@session_class.first(conditions: { _id: id }) ||
+            @@session_class.new(id: id)
         end
 
         def pack(data)
@@ -53,7 +53,7 @@ module ActionDispatch
         end
 
         def destroy(env)
-          session = @@session_class.first(:conditions => { :_id => env[SESSION_RECORD_KEY].id })
+          session = @@session_class.first(conditions: { _id: env[SESSION_RECORD_KEY].id })
           session.try(:destroy)
 
           env[SESSION_RECORD_KEY] = nil

@@ -2,16 +2,16 @@ require 'spec_helper'
 
 describe Locomotive::GlobalActionsCell do
 
-  let(:menu) { render_cell('locomotive/global_actions', :show, :current_locomotive_account => FactoryGirl.build('admin user'), :current_site_url => 'http://www.yahoo.fr') }
+  let(:menu) { render_cell('locomotive/global_actions', :show, current_locomotive_account: FactoryGirl.build('admin user'), current_site_url: 'http://www.yahoo.fr') }
 
   describe 'show menu' do
 
     before(:all) do
-      reset_cell(:main => 'settings', :sub => 'site')
+      reset_cell(main: 'settings', sub: 'site')
     end
 
     it 'has 3 links' do
-      menu.should have_selector('a', :count => 4)
+      menu.should have_selector('a', count: 4)
     end
 
     it 'has a link to edit my account' do
@@ -31,12 +31,12 @@ describe Locomotive::GlobalActionsCell do
   describe 'add a new menu item' do
 
     before(:all) do
-      reset_cell(:main => 'settings', :sub => 'site')
-      Locomotive::GlobalActionsCell.update_for(:testing_add) { |m| m.add(:my_link, :label => 'My link', :url => 'http://www.locomotivecms.com') }
+      reset_cell(main: 'settings', sub: 'site')
+      Locomotive::GlobalActionsCell.update_for(:testing_add) { |m| m.add(:my_link, label: 'My link', url: 'http://www.locomotivecms.com') }
     end
 
     it 'has 4 items' do
-      menu.should have_selector('a', :count => 5)
+      menu.should have_selector('a', count: 5)
     end
 
     it 'has a new link' do
@@ -48,12 +48,12 @@ describe Locomotive::GlobalActionsCell do
   describe 'remove a new menu item' do
 
     before(:all) do
-      reset_cell(:main => 'settings', :sub => 'site')
+      reset_cell(main: 'settings', sub: 'site')
       Locomotive::GlobalActionsCell.update_for(:testing_remove) { |m| m.remove(:see) }
     end
 
     it 'has 2 items' do
-      menu.should have_selector('a', :count => 3)
+      menu.should have_selector('a', count: 3)
     end
 
     it 'does not have the link to see my website' do
@@ -65,12 +65,12 @@ describe Locomotive::GlobalActionsCell do
   describe 'modify an existing menu item' do
 
     before(:all) do
-      reset_cell(:main => 'settings', :sub => 'site')
-      Locomotive::GlobalActionsCell.update_for(:testing_update) { |m| m.modify(:see, { :label => 'Modified !' }) }
+      reset_cell(main: 'settings', sub: 'site')
+      Locomotive::GlobalActionsCell.update_for(:testing_update) { |m| m.modify(:see, { label: 'Modified !' }) }
     end
 
     it 'still has 3 items' do
-      menu.should have_selector('a', :count => 4)
+      menu.should have_selector('a', count: 4)
     end
 
     it 'has a modified menu item' do

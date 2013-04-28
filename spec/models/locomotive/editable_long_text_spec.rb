@@ -6,9 +6,9 @@ describe Locomotive::EditableLongText do
     @site = FactoryGirl.create(:site)
     @home = @site.pages.root.first
 
-    @home.update_attributes :raw_template => "{% block body %}{% editable_long_text 'body' %}Lorem ipsum{% endeditable_long_text %}{% endblock %}"
+    @home.update_attributes raw_template: "{% block body %}{% editable_long_text 'body' %}Lorem ipsum{% endeditable_long_text %}{% endblock %}"
 
-    @sub_page_1 = FactoryGirl.create(:page, :slug => 'sub_page_1', :parent => @home, :raw_template => "{% extends 'parent' %}")
+    @sub_page_1 = FactoryGirl.create(:page, slug: 'sub_page_1', parent: @home, raw_template: "{% extends 'parent' %}")
   end
 
   it 'exists' do
@@ -32,7 +32,7 @@ describe Locomotive::EditableLongText do
   describe 'when modifying the raw template' do
 
     it 'can update its content from the raw template if the user has not modified it' do
-      @home.update_attributes :raw_template => "{% block body %}{% editable_long_text 'body' %}Lorem ipsum v2{% endeditable_long_text %}{% endblock %}"
+      @home.update_attributes raw_template: "{% block body %}{% editable_long_text 'body' %}Lorem ipsum v2{% endeditable_long_text %}{% endblock %}"
       @home.editable_elements.first.default_content.should be_true
       @home.editable_elements.first.content.should == 'Lorem ipsum v2'
     end

@@ -3,7 +3,7 @@ module Locomotive
 
     sections 'settings', 'account'
 
-    respond_to :json, :only => :update
+    respond_to :json, only: :update
 
     helper 'Locomotive::Accounts'
 
@@ -17,7 +17,7 @@ module Locomotive
     def update
       @account = current_locomotive_account
       @account.update_attributes(params[:account])
-      respond_with @account, :location => edit_my_account_url
+      respond_with @account, location: edit_my_account_url
     end
 
   end

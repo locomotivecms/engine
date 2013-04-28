@@ -6,7 +6,7 @@ describe Locomotive::EditableFile do
     @site = FactoryGirl.create(:site)
     @home = @site.pages.root.first
 
-    @home.update_attributes :raw_template => "{% block body %}{% editable_file 'image' %}Lorem ipsum{% endeditable_file %}{% endblock %}"
+    @home.update_attributes raw_template: "{% block body %}{% editable_file 'image' %}Lorem ipsum{% endeditable_file %}{% endblock %}"
 
     @home = @site.pages.root.first
   end
@@ -56,10 +56,10 @@ describe Locomotive::EditableFile do
   describe '"sticky" files' do
 
     before(:each) do
-      @home.update_attributes :raw_template => "{% block body %}{% editable_file 'image', fixed: true %}/foo.png{% endeditable_file %}{% endblock %}"
+      @home.update_attributes raw_template: "{% block body %}{% editable_file 'image', fixed: true %}/foo.png{% endeditable_file %}{% endblock %}"
 
-      @sub_page_1 = FactoryGirl.create(:page, :slug => 'sub_page_1', :parent => @home, :raw_template => "{% extends 'index' %}")
-      @sub_page_2 = FactoryGirl.create(:page, :slug => 'sub_page_2', :parent => @home, :raw_template => "{% extends 'index' %}")
+      @sub_page_1 = FactoryGirl.create(:page, slug: 'sub_page_1', parent: @home, raw_template: "{% extends 'index' %}")
+      @sub_page_2 = FactoryGirl.create(:page, slug: 'sub_page_2', parent: @home, raw_template: "{% extends 'index' %}")
 
       @sub_page_1_el = @sub_page_1.editable_elements.first
       @sub_page_2_el = @sub_page_2.editable_elements.first

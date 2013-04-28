@@ -1,6 +1,6 @@
 # Custom options for CustomFields
 CustomFields.options = {
-  :reserved_names => Mongoid.destructive_fields + %w(created_at updated_at)
+  reserved_names: Mongoid.destructive_fields + %w(created_at updated_at)
 }
 
 module CustomFields
@@ -9,7 +9,7 @@ module CustomFields
 
     include Locomotive::Mongoid::Presenter
 
-    field :ui_enabled, :type => Boolean, :default => true
+    field :ui_enabled, type: Boolean, default: true
 
     def class_name_to_content_type
       self._parent.send :class_name_to_content_type, self.class_name
@@ -63,4 +63,3 @@ module CustomFields
 
   end
 end
-

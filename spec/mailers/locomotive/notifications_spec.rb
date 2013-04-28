@@ -4,13 +4,13 @@ describe Locomotive::Notifications do
 
   describe 'new_content_entry' do
 
-    let(:site) { FactoryGirl.build(:site, :domains => %w{www.acme.com}) }
+    let(:site) { FactoryGirl.build(:site, domains: %w{www.acme.com}) }
 
     let(:account) { FactoryGirl.build(:account) }
 
-    let(:content_type) { FactoryGirl.build(:content_type, :site => site) }
+    let(:content_type) { FactoryGirl.build(:content_type, site: site) }
 
-    let(:content_entry) { FactoryGirl.build(:content_entry, :content_type => content_type, :site => site) }
+    let(:content_entry) { FactoryGirl.build(:content_entry, content_type: content_type, site: site) }
 
     let(:mail) { Locomotive::Notifications.new_content_entry(account, content_entry) }
 

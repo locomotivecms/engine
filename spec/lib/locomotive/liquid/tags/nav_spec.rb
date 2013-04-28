@@ -5,18 +5,18 @@ describe Locomotive::Liquid::Tags::Nav do
   before(:each) do
     @home = FactoryGirl.build(:page)
     home_children = [
-      Locomotive::Page.new(:title => 'Child #1', :fullpath => 'child_1', :slug => 'child_1', :published => true),
-      Locomotive::Page.new(:title => 'Child #2', :fullpath => 'child_2', :slug => 'child_2', :published => true)
+      Locomotive::Page.new(title: 'Child #1', fullpath: 'child_1', slug: 'child_1', published: true),
+      Locomotive::Page.new(title: 'Child #2', fullpath: 'child_2', slug: 'child_2', published: true)
     ]
     @home.stubs(:children_with_minimal_attributes).returns(home_children)
     @home.stubs(:children).returns(home_children)
 
     other_children = [
-      Locomotive::Page.new(:title => 'Child #2.1', :fullpath => 'child_2/sub_child_1', :slug => 'sub_child_1', :published => true),
-      Locomotive::Page.new(:title => 'Child #2.2', :fullpath => 'child_2/sub_child_2', :slug => 'sub_child_2', :published => true),
-      Locomotive::Page.new(:title => 'Unpublished #2.2', :fullpath => 'child_2/sub_child_unpublishd_2', :slug => 'sub_child_unpublished_2', :published => false),
-      Locomotive::Page.new(:title => 'Templatized #2.3', :fullpath => 'child_2/sub_child_template_3',   :slug => 'sub_child_template_3',    :published => true,   :templatized => true),
-      Locomotive::Page.new(:title => 'Unlisted    #2.4', :fullpath => 'child_2/sub_child_unlisted_4',   :slug => 'sub_child_unlisted_4',    :published => true,   :listed => false)
+      Locomotive::Page.new(title: 'Child #2.1', fullpath: 'child_2/sub_child_1', slug: 'sub_child_1', published: true),
+      Locomotive::Page.new(title: 'Child #2.2', fullpath: 'child_2/sub_child_2', slug: 'sub_child_2', published: true),
+      Locomotive::Page.new(title: 'Unpublished #2.2', fullpath: 'child_2/sub_child_unpublishd_2', slug: 'sub_child_unpublished_2', published: false),
+      Locomotive::Page.new(title: 'Templatized #2.3', fullpath: 'child_2/sub_child_template_3',   slug: 'sub_child_template_3',    published: true,   templatized: true),
+      Locomotive::Page.new(title: 'Unlisted    #2.4', fullpath: 'child_2/sub_child_unlisted_4',   slug: 'sub_child_unlisted_4',    published: true,   listed: false)
     ]
     @home.children.last.stubs(:children_with_minimal_attributes).returns(other_children)
     @home.children.last.stubs(:children).returns(other_children)
@@ -24,7 +24,7 @@ describe Locomotive::Liquid::Tags::Nav do
     pages = [@home]
     pages.stubs(:root).returns(pages)
     pages.stubs(:minimal_attributes).returns(pages) # iso
-    @site = FactoryGirl.build(:site, :locales => %w(en fr))
+    @site = FactoryGirl.build(:site, locales: %w(en fr))
     @site.stubs(:pages).returns(pages)
   end
 
@@ -40,7 +40,7 @@ describe Locomotive::Liquid::Tags::Nav do
 
     it 'renders from parent' do
       (page = @home.children.last.children.first).stubs(:parent).returns(@home.children.last)
-      output = render_nav 'parent', { :page => page }
+      output = render_nav 'parent', { page: page }
       output.should == '<nav id="nav"><ul><li id="sub-child-1-link" class="link on first"><a href="/child_2/sub_child_1">Child #2.1</a></li><li id="sub-child-2-link" class="link last"><a href="/child_2/sub_child_2">Child #2.2</a></li></ul></nav>'
     end
 
@@ -111,7 +111,7 @@ describe Locomotive::Liquid::Tags::Nav do
 
     it 'assigns a class other than "on" for a selected item' do
       (page = @home.children.last.children.first).stubs(:parent).returns(@home.children.last)
-      output = render_nav 'parent', { :page => page }, 'active_class: "active"'
+      output = render_nav 'parent', { page: page }, 'active_class: "active"'
       output.should match /<li id="sub-child-1-link" class="link active first">/
     end
 
@@ -132,7 +132,7 @@ describe Locomotive::Liquid::Tags::Nav do
   end
 
   def render_nav(source = 'site', registers = {}, template_option = '')
-    registers = { :site => @site, :page => @home }.merge(registers)
+    registers = { site: @site, page: @home }.merge(registers)
     liquid_context = ::Liquid::Context.new({}, {}, registers)
 
     output = Liquid::Template.parse("{% nav #{source} #{template_option} %}").render(liquid_context)

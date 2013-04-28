@@ -2,33 +2,33 @@ module Locomotive
   class Configuration
 
     @@defaults = {
-      :name                   => 'LocomotiveApp',
-      :domain                 => 'example.com',
-      :reserved_subdomains    => %w{www admin email blog webmail mail support help site sites},
-      # :forbidden_paths      => %w{layouts snippets stylesheets javascripts assets admin system api},
-      :reserved_slugs         => %w{stylesheets javascripts assets admin locomotive images api pages edit},
-      :locales                => %w{en de fr pl pt-BR it nl nb es ru et ja},
-      :site_locales           => %w{en de fr pl pt-BR it nl nb es ru et ja},
-      :cookie_key             => '_locomotive_session',
-      :enable_logs            => false,
-      :delayed_job            => false,
-      :default_locale         => :en,
-      :mailer_sender          => 'support@example.com',
-      :manage_subdomain       => false,
-      :manage_manage_domains  => false,
-      :ui                     => {
-        :latest_entries_nb    => 5,
-        :max_content_types    => 2
+      name:                   'LocomotiveApp',
+      domain:                 'example.com',
+      reserved_subdomains:    %w{www admin email blog webmail mail support help site sites},
+      # forbidden_paths:      %w{layouts snippets stylesheets javascripts assets admin system api},
+      reserved_slugs:         %w{stylesheets javascripts assets admin locomotive images api pages edit},
+      locales:                %w{en de fr pl pt-BR it nl nb es ru et ja},
+      site_locales:           %w{en de fr pl pt-BR it nl nb es ru et ja},
+      cookie_key:             '_locomotive_session',
+      enable_logs:            false,
+      delayed_job:            false,
+      default_locale:         :en,
+      mailer_sender:          'support@example.com',
+      manage_subdomain:       false,
+      manage_manage_domains:  false,
+      ui:                     {
+        latest_entries_nb:    5,
+        max_content_types:    2
       },
-      :rack_cache             => {
-        :verbose     => true,
-        :metastore   => URI.encode("file:#{Rails.root}/tmp/dragonfly/cache/meta"), # URI encoded in case of spaces
-        :entitystore => URI.encode("file:#{Rails.root}/tmp/dragonfly/cache/body")
+      rack_cache:             {
+        verbose:     true,
+        metastore:   URI.encode("file:#{Rails.root}/tmp/dragonfly/cache/meta"), # URI encoded in case of spaces
+        entitystore: URI.encode("file:#{Rails.root}/tmp/dragonfly/cache/body")
       },
-      :devise_modules             => [:rememberable, :database_authenticatable, :token_authenticatable, :recoverable, :trackable, :validatable, :encryptable, { :encryptor => :sha1 }],
-      :context_assign_extensions  => { },
-      :models_for_templatization  => [],
-      :csrf_protection            => false
+      devise_modules:             [:rememberable, :database_authenticatable, :token_authenticatable, :recoverable, :trackable, :validatable, :encryptable, { encryptor: :sha1 }],
+      context_assign_extensions:  { },
+      models_for_templatization:  [],
+      csrf_protection:            false
     }
 
     cattr_accessor :settings

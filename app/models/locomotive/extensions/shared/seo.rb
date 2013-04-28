@@ -5,9 +5,9 @@ module Locomotive
         extend ActiveSupport::Concern
 
         included do
-          field :seo_title,         :type => String, :localize => true
-          field :meta_keywords,     :type => String, :localize => true
-          field :meta_description,  :type => String, :localize => true
+          field :seo_title,         type: String, localize: true
+          field :meta_keywords,     type: String, localize: true
+          field :meta_description,  type: String, localize: true
         end
 
       end # Seo

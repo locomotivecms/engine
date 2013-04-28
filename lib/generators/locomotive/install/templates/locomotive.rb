@@ -18,8 +18,8 @@ Locomotive.configure do |config|
 
   # configure how many items we display in sub menu in the "Contents" section.
   # config.ui = {
-  #   :latest_entries_nb => 5,
-  #   :max_content_types  => 4
+  #   latest_entries_nb: 5,
+  #   max_content_types:  4
   # }
 
   # default locale (for now, only en, de, fr, pl, pt-BR, it, nb and ja are supported)
@@ -57,9 +57,9 @@ Locomotive.configure do |config|
 
   # Rack-cache settings, mainly used for the inline resizing image module. Default options:
   # config.rack_cache = {
-  #   :verbose     => true,
-  #   :metastore   => URI.encode("file:#{Rails.root}/tmp/dragonfly/cache/meta"), # URI encoded in case of spaces
-  #   :entitystore => URI.encode("file:#{Rails.root}/tmp/dragonfly/cache/body")
+  #   verbose:     true,
+  #   metastore:   URI.encode("file:#{Rails.root}/tmp/dragonfly/cache/meta"), # URI encoded in case of spaces
+  #   entitystore: URI.encode("file:#{Rails.root}/tmp/dragonfly/cache/body")
   # }
   # If you do want to disable it for good, just use the following syntax
   # config.rack_cache = false

@@ -4,25 +4,25 @@
   - new_target_content_entry  = target_content_type.entries.build(field.inverse_of => f.object)
 
   = f.input     name.to_sym,
-    :label      => field.label,
-    :hint       => field.hint,
-    :as         => :'locomotive/empty',
-    :wrapper_html => { :id => "content_entry_#{name}_input", :class => 'empty relationship input' }
+    label:      field.label,
+    hint:       field.hint,
+    as:         :'locomotive/empty',
+    wrapper_html: { id: "content_entry_#{name}_input", class: 'empty relationship input' }
 
   - content_for :head do
 
-    %script{ :type => 'text/html', :id => "#{name}_list" }
+    %script{ type: 'text/html', id: "#{name}_list" }
 
-      %p.empty{ :style => 'display: none' }!= t('.empty')
+      %p.empty{ style: 'display: none' }!= t('.empty')
 
       %ul
 
       %hr
 
       %p.actions
-        = link_to t('.new_entry'), '#', :class => 'add'
+        = link_to t('.new_entry'), '#', class: 'add'
 
-    %script{ :type => 'text/html', :id => "#{name}_entry" }
+    %script{ type: 'text/html', id: "#{name}_entry" }
       %li
         .handle.col
           %i.icon-reorder
@@ -31,8 +31,8 @@
           {{label}}
 
         %span.actions
-          = link_to_icon :pencil, '#', :class => 'edit'
-          = link_to_icon :trash, '#', :class => 'remove', :data => { :confirm => t('locomotive.messages.confirm') }
+          = link_to_icon :pencil, '#', class: 'edit'
+          = link_to_icon :trash, '#', class: 'remove', data: { confirm: t('locomotive.messages.confirm') }
 
 
   - content_for :backbone_view_data do

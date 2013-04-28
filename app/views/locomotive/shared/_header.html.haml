@@ -1,10 +1,10 @@
 %h1
   = link_to current_site.name, locomotive.pages_url
 
-= render_cell 'locomotive/global_actions', :show, :current_locomotive_account => current_locomotive_account, :current_site_url => current_site_public_url
+= render_cell 'locomotive/global_actions', :show, current_locomotive_account: current_locomotive_account, current_site_url: current_site_public_url
 
 - if multi_sites? && current_locomotive_account.sites.size > 1
   = render 'locomotive/shared/site_picker'
 
 - if localized?
-  = render_cell 'locomotive/content_locale_picker', :show, :site => current_site, :locale => current_content_locale
+  = render_cell 'locomotive/content_locale_picker', :show, site: current_site, locale: current_content_locale

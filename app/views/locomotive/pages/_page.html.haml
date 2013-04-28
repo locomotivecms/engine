@@ -1,7 +1,7 @@
 - if page.not_found?
   %li.sep &nbsp;
 
-%li{ :id => "item-#{page.id}", :class => "page #{css_for_page(page)}" }
+%li{ id: "item-#{page.id}", class: "page #{css_for_page(page)}" }
 
   - children = can?(:manage, page) ? page.children : page.children.find_all { |p| !p.templatized? }
 
@@ -15,7 +15,7 @@
     - unless page.index_or_not_found?
       %em
 
-    = link_to truncate(page.title, :length => 80), edit_page_url(page)
+    = link_to truncate(page.title, length: 80), edit_page_url(page)
 
     - if page.templatized?
       %i.icon-cog
@@ -31,12 +31,12 @@
 
     .more
       %span!= t('.updated_at')
-      = l page.updated_at, :format => :short
+      = l page.updated_at, format: :short
 
       - if !page.index_or_not_found? && can?(:manage, page)
-        = link_to_icon :trash, page_url(page), :class => 'remove', :data => { :confirm => t('locomotive.messages.confirm') }, :method => :delete
+        = link_to_icon :trash, page_url(page), class: 'remove', data: { confirm: t('locomotive.messages.confirm') }, method: :delete
 
   - if with_children
-    %ul{ :id => "folder-#{page._id}", :class => "page folder depth-#{(page.depth || 0) + 1}", :'data-url' => sort_page_url(page), :style => "display: #{cookies["folder-#{page._id}"] || 'block'}" }
+    %ul{ id: "folder-#{page._id}", class: "page folder depth-#{(page.depth || 0) + 1}", :'data-url' => sort_page_url(page), style: "display: #{cookies["folder-#{page._id}"] || 'block'}" }
 
       = render children

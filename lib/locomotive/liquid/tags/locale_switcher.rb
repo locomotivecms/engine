@@ -22,7 +22,7 @@ module Locomotive
         Syntax = /(#{::Liquid::Expression}+)?/
 
         def initialize(tag_name, markup, tokens, context)
-          @options = { :label => 'iso', :sep => ' | ' }
+          @options = { label: 'iso', sep: ' | ' }
 
           if markup =~ Syntax
             markup.scan(::Liquid::TagAttributes) { |key, value| @options[key.to_sym] = value.gsub(/"|'/, '') }

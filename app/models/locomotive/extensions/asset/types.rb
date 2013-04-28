@@ -7,7 +7,7 @@ module Locomotive
 
         included do
           %w{media image stylesheet javascript font pdf}.each do |type|
-            scope :"only_#{type}", where(:content_type => type)
+            scope :"only_#{type}", where(content_type: type)
 
             define_method("#{type}?") do
               self.content_type.to_s == type
@@ -20,7 +20,7 @@ module Locomotive
           def by_content_type(content_type)
             return self.all if content_type.blank?
 
-            self.all.where(:content_type => content_type.to_s)
+            self.all.where(content_type: content_type.to_s)
           end
 
         end

@@ -5,7 +5,7 @@ describe Locomotive::Liquid::Drops::ContentEntry do
   before(:each) do
     @list = mock('list')
     @list.stubs(:all).returns(true)
-    @category = Locomotive::Liquid::Drops::ContentEntry.new(mock('category', :projects => @list))
+    @category = Locomotive::Liquid::Drops::ContentEntry.new(mock('category', projects: @list))
   end
 
   context '#accessing a has_many relationship' do

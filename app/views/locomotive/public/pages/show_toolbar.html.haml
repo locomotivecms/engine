@@ -1,6 +1,6 @@
 !!! XML
 !!!
-%html{ :xmlns => 'http://www.w3.org/1999/xhtml'  }
+%html{ xmlns: 'http://www.w3.org/1999/xhtml'  }
   %head
     %title Locomotive
 
@@ -8,17 +8,17 @@
 
     - key = Rails.application.config.session_options[:key]
 
-    %meta{ :name => 'key-param', :content => Rails.application.config.session_options[:key] }
-    %meta{ :name => 'key-token', :content => cookies[key] }
+    %meta{ name: 'key-param', content: Rails.application.config.session_options[:key] }
+    %meta{ name: 'key-token', content: cookies[key] }
 
-    %script{ :type => 'text/javascript' }
+    %script{ type: 'text/javascript' }
       :plain
         window.Locomotive = { mounted_on: '#{Locomotive.mounted_on}' };
 
-    = stylesheet_link_tag     'locomotive/inline_editor', :media => 'screen'
+    = stylesheet_link_tag     'locomotive/inline_editor', media: 'screen'
     = javascript_include_tag  'locomotive/inline_editor'
 
-    %script{ :type => 'text/javascript' }
+    %script{ type: 'text/javascript' }
       :plain
         window.locale         = '#{I18n.locale}';
         window.content_locale = '#{::Mongoid::Fields::I18n.locale}';
@@ -37,15 +37,15 @@
 
   %body
     #page
-      %iframe{ :src => request.fullpath.gsub('_admin', '_edit'), :scrolling => 'no', :frameborder => '0' }
+      %iframe{ src: request.fullpath.gsub('_admin', '_edit'), scrolling: 'no', frameborder: '0' }
 
     #toolbar
       .background
       .inner
-        %h1{ :class => 'loading', :'data-disabled-status' => t('.statuses.disabled'), :'data-loading-status' => t('.statuses.loading') }= t('.statuses.loading')
+        %h1{ class: 'loading', :'data-disabled-status' => t('.statuses.disabled'), :'data-loading-status' => t('.statuses.loading') }= t('.statuses.loading')
 
         .back.col
-          = link_to_icon :home, '#', :class => 'button back', :title => t('.buttons.back'), :alt => t('.buttons.back')
+          = link_to_icon :home, '#', class: 'button back', title: t('.buttons.back'), alt: t('.buttons.back')
 
         - if current_site.locales.size > 1
           .lang.col
@@ -56,9 +56,9 @@
           %label= t('.labels.editing_mode')
           = check_box_tag 'edit', '1', false
 
-        .element-actions.col{ :style => 'display: none' }
+        .element-actions.col{ style: 'display: none' }
           %label= t('.labels.save_changes')
-          = link_to t('.buttons.confirm'), '#', :class => 'button blue save'
-          = link_to t('.buttons.cancel'), '#', :class => 'button cancel'
+          = link_to t('.buttons.confirm'), '#', class: 'button blue save'
+          = link_to t('.buttons.cancel'), '#', class: 'button cancel'
 
-    = render_cell 'locomotive/content_locale_picker', :show, :site => current_site, :locale => current_content_locale
+    = render_cell 'locomotive/content_locale_picker', :show, site: current_site, locale: current_content_locale

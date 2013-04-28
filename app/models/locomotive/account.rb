@@ -6,22 +6,22 @@ module Locomotive
     devise *Locomotive.config.devise_modules
 
     ## devise fields (need to be declared since 2.x) ##
-    field :remember_created_at,     :type => Time
-    field :email,                   :type => String, :null => false
-    field :encrypted_password,      :type => String, :null => false
-    field :authentication_token,    :type => String
-    field :reset_password_token,    :type => String
-    field :reset_password_sent_at,  :type => Time
-    field :password_salt,           :type => String
-    field :sign_in_count,           :type => Integer
-    field :current_sign_in_at,      :type => Time
-    field :last_sign_in_at,         :type => Time
-    field :current_sign_in_ip,      :type => String
-    field :last_sign_in_ip,         :type => String
+    field :remember_created_at,     type: Time
+    field :email,                   type: String, null: false
+    field :encrypted_password,      type: String, null: false
+    field :authentication_token,    type: String
+    field :reset_password_token,    type: String
+    field :reset_password_sent_at,  type: Time
+    field :password_salt,           type: String
+    field :sign_in_count,           type: Integer
+    field :current_sign_in_at,      type: Time
+    field :last_sign_in_at,         type: Time
+    field :current_sign_in_ip,      type: String
+    field :last_sign_in_ip,         type: String
 
     ## attributes ##
     field :name
-    field :locale, :default => Locomotive.config.default_locale.to_s or 'en'
+    field :locale, default: Locomotive.config.default_locale.to_s or 'en'
 
     ## validations ##
     validates_presence_of :name
@@ -44,7 +44,7 @@ module Locomotive
     # @return [ Boolean ] True if admin
     #
     def admin?
-      Site.where(:memberships => { '$elemMatch' => { :account_id => self._id, :role => :admin } }).count > 0
+      Site.where(memberships: { '$elemMatch' => { account_id: self._id, role: :admin } }).count > 0
     end
 
     # Create the API token which will be passed to all the requests to the Locomotive API.
@@ -61,7 +61,7 @@ module Locomotive
     def self.create_api_token(site, email, password)
       raise 'The request must contain the user email and password.' if email.blank? or password.blank?
 
-      account = self.where(:email => email.downcase).first
+      account = self.where(email: email.downcase).first
 
       raise 'Invalid email or password.' if account.nil?
 
@@ -82,7 +82,7 @@ module Locomotive
     # @return [ String ] The API token
     #
     def self.invalidate_api_token(token)
-      account = self.where(:authentication_token => token).first
+      account = self.where(authentication_token: token).first
 
       raise 'Invalid token.' if account.nil?
 
@@ -103,7 +103,7 @@ module Locomotive
 
     def remove_memberships!
       self.sites.each do |site|
-        membership = site.memberships.where(:account_id => self._id).first
+        membership = site.memberships.where(account_id: self._id).first
 
         if site.admin_memberships.size == 1 && membership.admin?
           raise ::I18n.t('errors.messages.needs_admin_account')

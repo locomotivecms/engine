@@ -17,7 +17,7 @@ module Locomotive
         options.delete(:format) if options[:format] == 'default'
 
         username, password = options.delete(:username), options.delete(:password)
-        options[:basic_auth] = { :username => username, :password => password } if username
+        options[:basic_auth] = { username: username, password: password } if username
 
         path ||= '/'
 

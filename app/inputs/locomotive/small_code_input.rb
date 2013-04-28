@@ -15,7 +15,7 @@ module Locomotive
     end
 
     def error_anchor
-      template.content_tag(:span, '', :class => 'error-anchor')
+      template.content_tag(:span, '', class: 'error-anchor')
     end
 
   end

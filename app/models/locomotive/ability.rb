@@ -7,12 +7,12 @@ module Locomotive
     def initialize(account, site)
       @account, @site = account, site
 
-      alias_action :index, :show, :edit, :update, :to => :touch
+      alias_action :index, :show, :edit, :update, to: :touch
 
       if @site
-        @membership = @site.memberships.where(:account_id => @account.id).first
+        @membership = @site.memberships.where(account_id: @account.id).first
       elsif @account.admin?
-        @membership = Membership.new(:account => @account, :role => 'admin')
+        @membership = Membership.new(account: @account, role: 'admin')
       end
 
       return false if @membership.nil?

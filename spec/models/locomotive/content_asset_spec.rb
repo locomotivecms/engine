@@ -28,7 +28,7 @@ describe Locomotive::ContentAsset do
   describe 'vignette' do
 
     before(:each) do
-      @asset = FactoryGirl.build(:asset, :source => FixturedAsset.open('5k.png'))
+      @asset = FactoryGirl.build(:asset, source: FixturedAsset.open('5k.png'))
     end
 
     it 'does not resize image smaller than 50x50' do

@@ -3,7 +3,7 @@ module Locomotive
     module Drops
       class Site < Base
 
-        delegate :name, :seo_title, :meta_keywords, :meta_description, :to => '_source'
+        delegate :name, :seo_title, :meta_keywords, :meta_description, to: '_source'
 
         def index
           @index ||= self._source.pages.root.first

@@ -3,7 +3,7 @@ module Locomotive
 
     sections 'settings'
 
-    respond_to :json, :only => [:create, :destroy]
+    respond_to :json, only: [:create, :destroy]
 
     def new
       @site = Site.new
@@ -12,9 +12,9 @@ module Locomotive
 
     def create
       @site = Site.new(params[:site])
-      @site.memberships.build :account => self.current_locomotive_account, :role => 'admin'
+      @site.memberships.build account: self.current_locomotive_account, role: 'admin'
       @site.save
-      respond_with @site, :location => edit_my_account_url
+      respond_with @site, location: edit_my_account_url
     end
 
     def destroy
@@ -26,7 +26,7 @@ module Locomotive
         @site.errors.add(:base, 'Can not destroy the site you are logging in now')
       end
 
-      respond_with @site, :location => edit_my_account_url
+      respond_with @site, location: edit_my_account_url
     end
 
   end

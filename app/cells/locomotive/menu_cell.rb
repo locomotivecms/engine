@@ -3,7 +3,7 @@ module Locomotive
 
     include ::Locomotive::Engine.routes.url_helpers
 
-    delegate :main_app, :sections, :to => :parent_controller
+    delegate :main_app, :sections, to: :parent_controller
 
     attr_accessor :list
 
@@ -19,10 +19,10 @@ module Locomotive
 
     def url_options
       super.reverse_merge(
-        :host               => request.host_with_port,
-        :protocol           => request.protocol,
-        :_path_segments     => request.symbolized_path_parameters
-      ).merge(:script_name  => request.script_name)
+        host:               request.host_with_port,
+        protocol:           request.protocol,
+        _path_segments:     request.symbolized_path_parameters
+      ).merge(script_name:  request.script_name)
     end
 
     class MenuProxy
@@ -65,7 +65,7 @@ module Locomotive
         attributes[:label] = localize_label(name)
       end
 
-      attributes.merge!(:name => name, :class => name.to_s.dasherize.downcase)
+      attributes.merge!(name: name, class: name.to_s.dasherize.downcase)
     end
 
     def add(name, attributes)

@@ -59,9 +59,9 @@ module Locomotive
         assigns = { 'site' => current_site, 'entry' => entry }
 
         registers = {
-          :controller     => self,
-          :site           => current_site,
-          :current_locomotive_account  => current_locomotive_account
+          controller:     self,
+          site:           current_site,
+          current_locomotive_account:  current_locomotive_account
         }
 
         preserve(content_type.item_template.render(::Liquid::Context.new({}, assigns, registers)))

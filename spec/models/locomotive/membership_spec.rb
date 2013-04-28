@@ -3,11 +3,11 @@ require 'spec_helper'
 describe Locomotive::Membership do
 
   it 'should have a valid factory' do
-    FactoryGirl.build(:membership, :account => FactoryGirl.build(:account)).should be_valid
+    FactoryGirl.build(:membership, account: FactoryGirl.build(:account)).should be_valid
   end
 
   it 'should validate presence of account' do
-    membership = FactoryGirl.build(:membership, :account => nil)
+    membership = FactoryGirl.build(:membership, account: nil)
     membership.should_not be_valid
     membership.errors[:account].should == ["can't be blank"]
   end
@@ -15,7 +15,7 @@ describe Locomotive::Membership do
   it 'should assign account from email' do
     Locomotive::Account.stubs(:where).returns([FactoryGirl.build(:account)])
     Locomotive::Account.stubs(:find).returns(FactoryGirl.build(:account))
-    membership = FactoryGirl.build(:membership, :account => nil)
+    membership = FactoryGirl.build(:membership, account: nil)
     membership.email = 'bart@simpson.net'
     membership.account.should_not be_nil
     membership.account.name.should == 'Bart Simpson'
@@ -24,7 +24,7 @@ describe Locomotive::Membership do
   describe 'next action to take' do
 
     before(:each) do
-      @membership = FactoryGirl.build(:membership, :site => FactoryGirl.build(:site))
+      @membership = FactoryGirl.build(:membership, site: FactoryGirl.build(:site))
       @account = FactoryGirl.build(:account)
       @account.stubs(:save).returns(true)
       Locomotive::Account.stubs(:where).returns([@account])
@@ -53,7 +53,7 @@ describe Locomotive::Membership do
     end
 
     def build_membership(account = nil)
-      FactoryGirl.build(:membership, :site => FactoryGirl.build(:site), :account => account || FactoryGirl.build(:account))
+      FactoryGirl.build(:membership, site: FactoryGirl.build(:site), account: account || FactoryGirl.build(:account))
     end
 
   end

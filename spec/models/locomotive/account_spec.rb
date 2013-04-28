@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Locomotive::Account do
-  let!(:existing_account) { FactoryGirl.create(:account, :email => 'another@email.com') }
+  let!(:existing_account) { FactoryGirl.create(:account, email: 'another@email.com') }
 
   it 'has a valid factory' do
     FactoryGirl.build(:account).should be_valid
@@ -31,8 +31,8 @@ describe Locomotive::Account do
 
   it 'owns many sites' do
     account = FactoryGirl.create(:account)
-    site_1  = FactoryGirl.create(:site, :memberships => [Locomotive::Membership.new(:account => account)])
-    site_2  = FactoryGirl.create(:site, :subdomain => 'another_one', :memberships => [Locomotive::Membership.new(:account => account)])
+    site_1  = FactoryGirl.create(:site, memberships: [Locomotive::Membership.new(account: account)])
+    site_2  = FactoryGirl.create(:site, subdomain: 'another_one', memberships: [Locomotive::Membership.new(account: account)])
     sites   = [site_1, site_2].map(&:_id)
     account.reload.sites.all? { |s| sites.include?(s._id) }.should be_true
   end
@@ -41,8 +41,8 @@ describe Locomotive::Account do
 
     before(:each) do
       @account = FactoryGirl.build(:account)
-      @site_1 = FactoryGirl.build(:site,:memberships => [FactoryGirl.build(:membership, :account => @account)])
-      @site_2 = FactoryGirl.build(:site,:memberships => [FactoryGirl.build(:membership, :account => @account)])
+      @site_1 = FactoryGirl.build(:site,memberships: [FactoryGirl.build(:membership, account: @account)])
+      @site_2 = FactoryGirl.build(:site,memberships: [FactoryGirl.build(:membership, account: @account)])
       @account.stubs(:sites).returns([@site_1, @site_2])
       Locomotive::Site.any_instance.stubs(:save).returns(true)
     end
@@ -78,8 +78,8 @@ describe Locomotive::Account do
 
     def create_site_and_account(role = 'admin')
       @account    = FactoryGirl.create(:account)
-      @membership = Locomotive::Membership.new(:account => @account, :role => role)
-      @site       = FactoryGirl.create(:site, :memberships => [@membership])
+      @membership = Locomotive::Membership.new(account: @account, role: role)
+      @site       = FactoryGirl.create(:site, memberships: [@membership])
     end
 
   end

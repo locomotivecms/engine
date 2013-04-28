@@ -9,7 +9,7 @@ describe 'Core extensions' do
       context 'from simple plain hash' do
 
         it 'underscores each key' do
-          { 'foo-bar' => 42, :foo => 42, 'foo' => 42 }.underscore_keys.should == { 'foo_bar' => 42, :foo => 42, 'foo' => 42 }
+          { 'foo-bar' => 42, foo: 42, 'foo' => 42 }.underscore_keys.should == { 'foo_bar' => 42, foo: 42, 'foo' => 42 }
         end
 
       end
@@ -17,7 +17,7 @@ describe 'Core extensions' do
       context 'from nested hashes' do
 
         it 'underscores each key' do
-          { 'foo-bar' => { 'bar-foo' => 42, :test => { 'bar-foo' => 42 } } }.underscore_keys.should == { 'foo_bar' => { 'bar_foo' => 42, :test => { 'bar_foo' => 42 } } }
+          { 'foo-bar' => { 'bar-foo' => 42, test: { 'bar-foo' => 42 } } }.underscore_keys.should == { 'foo_bar' => { 'bar_foo' => 42, test: { 'bar_foo' => 42 } } }
         end
 
       end

@@ -4,20 +4,20 @@ describe Locomotive::Liquid::Drops::Page do
 
   before(:each) do
     site  = FactoryGirl.build(:site)
-    @home = FactoryGirl.build(:page, :site => site, :meta_keywords => 'Libidinous, Angsty', :meta_description => "Quite the combination.")
+    @home = FactoryGirl.build(:page, site: site, meta_keywords: 'Libidinous, Angsty', meta_description: "Quite the combination.")
   end
 
   context '#rendering tree' do
 
     before(:each) do
       @home.stubs(:children).returns([
-        Locomotive::Page.new(:title => 'Child #1'),
-        Locomotive::Page.new(:title => 'Child #2'),
-        Locomotive::Page.new(:title => 'Child #3')
+        Locomotive::Page.new(title: 'Child #1'),
+        Locomotive::Page.new(title: 'Child #2'),
+        Locomotive::Page.new(title: 'Child #3')
         ])
       @home.children.last.stubs(:children).returns([
-        Locomotive::Page.new(:title => 'Child #3.1'),
-        Locomotive::Page.new(:title => 'Child #3.2')
+        Locomotive::Page.new(title: 'Child #3.1'),
+        Locomotive::Page.new(title: 'Child #3.2')
         ])
     end
 
@@ -43,7 +43,7 @@ describe Locomotive::Liquid::Drops::Page do
 
   context '#parent' do
     before(:each) do
-      @sub_page = FactoryGirl.build(:sub_page, :meta_keywords => 'Sub Libidinous, Angsty', :meta_description => "Sub Quite the combination.")
+      @sub_page = FactoryGirl.build(:sub_page, meta_keywords: 'Sub Libidinous, Angsty', meta_description: "Sub Quite the combination.")
     end
 
     it 'renders title of parent page' do
@@ -55,7 +55,7 @@ describe Locomotive::Liquid::Drops::Page do
 
   context '#breadcrumbs' do
     before(:each) do
-      @sub_page = FactoryGirl.build(:sub_page, :meta_keywords => 'Sub Libidinous, Angsty', :meta_description => "Sub Quite the combination.")
+      @sub_page = FactoryGirl.build(:sub_page, meta_keywords: 'Sub Libidinous, Angsty', meta_description: "Sub Quite the combination.")
       @sub_page.stubs(:ancestors_and_self).returns([FactoryGirl.build(:page), @sub_page])
     end
 
@@ -72,9 +72,9 @@ describe Locomotive::Liquid::Drops::Page do
     end
 
     it 'renders the content instance highlighted field instead for a templatized page' do
-      templatized = FactoryGirl.build(:page, :title => 'Lorem ipsum template', :templatized => true)
+      templatized = FactoryGirl.build(:page, title: 'Lorem ipsum template', templatized: true)
 
-      entry = Locomotive::Liquid::Drops::ContentEntry.new(mock('entry', :_label => 'Locomotive rocks !'))
+      entry = Locomotive::Liquid::Drops::ContentEntry.new(mock('entry', _label: 'Locomotive rocks !'))
 
       render_template('{{ page.title }}', 'page' => templatized, 'entry' => entry).should == 'Locomotive rocks !'
     end
@@ -88,9 +88,9 @@ describe Locomotive::Liquid::Drops::Page do
     end
 
     it 'renders the content instance slug instead for a templatized page' do
-      templatized = FactoryGirl.build(:page, :title => 'Lorem ipsum template', :templatized => true)
+      templatized = FactoryGirl.build(:page, title: 'Lorem ipsum template', templatized: true)
 
-      entry = Locomotive::Liquid::Drops::ContentEntry.new(mock('entry', :_slug => 'my_entry'))
+      entry = Locomotive::Liquid::Drops::ContentEntry.new(mock('entry', _slug: 'my_entry'))
 
       render_template('{{ page.slug }}', 'page' => templatized, 'entry' => entry).should == 'my_entry'
     end
@@ -102,7 +102,7 @@ describe Locomotive::Liquid::Drops::Page do
     before(:each) do
       @site = FactoryGirl.create(:site)
       @home = @site.pages.root.first
-      @home.update_attributes :raw_template => "{% block body %}{% editable_short_text 'body' %}Lorem ipsum{% endeditable_short_text %}{% endblock %}"
+      @home.update_attributes raw_template: "{% block body %}{% editable_short_text 'body' %}Lorem ipsum{% endeditable_short_text %}{% endblock %}"
       @home.editable_elements.first.content = 'Lorem ipsum'
     end
 

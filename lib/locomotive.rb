@@ -54,8 +54,8 @@ module Locomotive
 
     # cookies stored in mongodb (mongoid_store)
     Rails.application.config.session_store :mongoid_store, {
-      :key    => self.config.cookie_key,
-      :domain => :all
+      key:    self.config.cookie_key,
+      domain: :all
     }
 
     # add middlewares (dragonfly, font, seo, ...etc)
@@ -87,7 +87,7 @@ module Locomotive
       self.app_middleware.insert_before 'Dragonfly::Middleware', '::Locomotive::Middlewares::Cache', self.config.rack_cache
     end
 
-    self.app_middleware.insert_after 'Dragonfly::Middleware', '::Locomotive::Middlewares::Fonts', :path => %r{^/fonts}
+    self.app_middleware.insert_after 'Dragonfly::Middleware', '::Locomotive::Middlewares::Fonts', path: %r{^/fonts}
 
     self.app_middleware.use '::Locomotive::Middlewares::SeoTrailingSlash'
 

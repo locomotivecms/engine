@@ -4,8 +4,8 @@ describe Locomotive::Liquid::Drops::Site do
 
   before(:each) do
     @site   = FactoryGirl.build(:site)
-    page_1  = FactoryGirl.build(:page, :site => @site)
-    page_2  = FactoryGirl.build(:page, :site => @site, :title => 'About us', :slug => 'about_us')
+    page_1  = FactoryGirl.build(:page, site: @site)
+    page_2  = FactoryGirl.build(:page, site: @site, title: 'About us', slug: 'about_us')
     @site.stubs(:pages).returns([page_1, page_2])
   end
 
@@ -26,7 +26,7 @@ describe Locomotive::Liquid::Drops::Site do
       'site' => @site
     }.merge(assigns)
 
-    Liquid::Template.parse(template).render(::Liquid::Context.new({}, assigns, { :site => @site }))
+    Liquid::Template.parse(template).render(::Liquid::Context.new({}, assigns, { site: @site }))
   end
 
 end

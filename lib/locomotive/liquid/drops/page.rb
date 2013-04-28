@@ -3,7 +3,7 @@ module Locomotive
     module Drops
       class Page < Base
 
-        delegate :seo_title, :meta_keywords, :meta_description, :redirect_url, :to => '_source'
+        delegate :seo_title, :meta_keywords, :meta_description, :redirect_url, to: '_source'
 
         def title
           self._source.templatized? ? @context['entry']._label : self._source.title
@@ -46,7 +46,7 @@ module Locomotive
         end
 
         def before_method(meth)
-          self._source.editable_elements.where(:slug => meth).try(:first).try(:content)
+          self._source.editable_elements.where(slug: meth).try(:first).try(:content)
         end
 
       end

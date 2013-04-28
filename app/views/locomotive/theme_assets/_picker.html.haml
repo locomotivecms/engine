@@ -1,20 +1,20 @@
-%script{ :type => 'text/html', :id => 'theme_image_picker' }
+%script{ type: 'text/html', id: 'theme_image_picker' }
 
   %h2!= t('locomotive.theme_assets.image_picker.title')
 
-  %p.no-items{ :style => 'display: none' }!= t('locomotive.theme_assets.image_picker.no_items')
+  %p.no-items{ style: 'display: none' }!= t('locomotive.theme_assets.image_picker.no_items')
 
-  %ul.list{ :style => 'display: none' }
+  %ul.list{ style: 'display: none' }
 
   .dialog-actions
-    = link_to t('locomotive.buttons.close'), '#', :id => 'close-link'
+    = link_to t('locomotive.buttons.close'), '#', id: 'close-link'
 
     .button-wrapper.upload
-      = form_tag theme_assets_url(:json), :class => 'quick-upload' do
-        = file_field_tag 'theme_asset[source]', :multiple => 'multiple'
-        = link_to t('locomotive.theme_assets.image_picker.upload'), theme_assets_url(:json), :class => 'new', :id => 'upload-link'
+      = form_tag theme_assets_url(:json), class: 'quick-upload' do
+        = file_field_tag 'theme_asset[source]', multiple: 'multiple'
+        = link_to t('locomotive.theme_assets.image_picker.upload'), theme_assets_url(:json), class: 'new', id: 'upload-link'
 
-%script{ :type => 'text/html', :id => 'theme_asset' }
+%script{ type: 'text/html', id: 'theme_asset' }
 
   %li.item
     = link_to '{{local_path}}', '{{url}}'

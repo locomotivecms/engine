@@ -17,7 +17,7 @@ module Locomotive
           format, locale = args
 
           locale ||= I18n.locale
-          format ||= I18n.t('date.formats.default', :locale => locale)
+          format ||= I18n.t('date.formats.default', locale: locale)
 
           if input.is_a?(String)
             begin
@@ -30,7 +30,7 @@ module Locomotive
 
           return input.to_s unless input.respond_to?(:strftime)
 
-          I18n.l input, :format => format, :locale => locale
+          I18n.l input, format: format, locale: locale
         end
 
         alias :format_date :localized_date

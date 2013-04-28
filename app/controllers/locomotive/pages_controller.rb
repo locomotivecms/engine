@@ -5,9 +5,9 @@ module Locomotive
 
     localized
 
-    before_filter :back_to_default_site_locale, :only => %w(new create)
+    before_filter :back_to_default_site_locale, only: %w(new create)
 
-    respond_to    :json, :only => [:show, :create, :update, :sort, :get_path]
+    respond_to    :json, only: [:show, :create, :update, :sort, :get_path]
 
     def index
       @pages = current_site.all_pages_in_once
@@ -26,7 +26,7 @@ module Locomotive
 
     def create
       @page = current_site.pages.create(params[:page])
-      respond_with @page, :location => edit_page_url(@page._id)
+      respond_with @page, location: edit_page_url(@page._id)
     end
 
     def edit
@@ -37,7 +37,7 @@ module Locomotive
     def update
       @page = current_site.pages.find(params[:id])
       @page.update_attributes(params[:page])
-      respond_with @page, :location => edit_page_url(@page._id)
+      respond_with @page, location: edit_page_url(@page._id)
     end
 
     def destroy
@@ -53,10 +53,10 @@ module Locomotive
     end
 
     def get_path
-      page = current_site.pages.build(:parent => current_site.pages.find(params[:parent_id]), :slug => params[:slug].permalink).tap do |p|
+      page = current_site.pages.build(parent: current_site.pages.find(params[:parent_id]), slug: params[:slug].permalink).tap do |p|
         p.valid?; p.send(:build_fullpath)
       end
-      render :json => { :url => public_page_url(page), :slug => page.slug, :templatized_parent => page.templatized_from_parent? }
+      render json: { url: public_page_url(page), slug: page.slug, templatized_parent: page.templatized_from_parent? }
     end
 
   end

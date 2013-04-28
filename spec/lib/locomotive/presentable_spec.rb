@@ -4,8 +4,8 @@ require 'ostruct'
 describe Locomotive::Presentable do
 
   before(:each) do
-    @person           = OpenStruct.new(:id => 42, :name => 'John', :age => 23)
-    @project          = OpenStruct.new(:id => 1, :title => 'LocomotiveCMS')
+    @person           = OpenStruct.new(id: 42, name: 'John', age: 23)
+    @project          = OpenStruct.new(id: 1, title: 'LocomotiveCMS')
 
     @presenter        = PersonPresenter.new(@person)
     @other_presenter  = ProjectPresenter.new(@project)
@@ -48,14 +48,14 @@ describe Locomotive::Presentable do
   end
 
   it 'sets directly the attributes' do
-    @presenter.attributes = { :name => 'henry', :age => 33 }
+    @presenter.attributes = { name: 'henry', age: 33 }
     @presenter.name.should == 'Henry'
     @presenter.age.should == '33 years old'
   end
 
   it 'does not call the setter if not registered' do
     @presenter.expects(:unknown=).never
-    @presenter.attributes = { :name => 'henry', :unknown => true }
+    @presenter.attributes = { name: 'henry', unknown: true }
   end
 
   it 'handles with_options' do
@@ -85,7 +85,7 @@ describe Locomotive::Presentable do
       end
 
       it 'does not allow to change the property' do
-        @presenter.attributes = { :retirement_place => 'Mansion [UPDATE]' }
+        @presenter.attributes = { retirement_place: 'Mansion [UPDATE]' }
         @person.retirement_place.should == 'Mansion'
       end
 
@@ -102,7 +102,7 @@ describe Locomotive::Presentable do
       end
 
       it 'changes the property' do
-        @presenter.attributes = { :retirement_place => 'Mansion [UPDATE]' }
+        @presenter.attributes = { retirement_place: 'Mansion [UPDATE]' }
         @person.retirement_place.should == 'Mansion [UPDATE]'
       end
 
@@ -113,7 +113,7 @@ describe Locomotive::Presentable do
   describe '#collection' do
 
     before(:each) do
-      @another_project  = OpenStruct.new(:id => 2, :title => 'SocialTennis')
+      @another_project  = OpenStruct.new(id: 2, title: 'SocialTennis')
       @person.projects  = [@project, @another_project]
 
       @project.to_presenter = @other_presenter
@@ -145,15 +145,15 @@ describe Locomotive::Presentable do
   class PersonPresenter < BasePresenter
 
     properties  :name, :age
-    property    :address, :only_setter => true, :alias => :full_address
+    property    :address, only_setter: true, alias: :full_address
 
     collection  :projects
 
-    with_options :only_getter => true, :allow_nil => false do |presenter|
+    with_options only_getter: true, allow_nil: false do |presenter|
       presenter.property :notes
     end
 
-    property :retirement_place, :if => Proc.new { __source.age > 60 }
+    property :retirement_place, if: Proc.new { __source.age > 60 }
 
     set_callback :set_attributes, :after, :hello_world
 

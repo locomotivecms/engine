@@ -19,14 +19,14 @@ module Locomotive
         def initialize(tag_name, markup, tokens, context)
           if markup =~ Syntax
             @source = ($1 || 'page').gsub(/"|'/, '')
-            @options = { :id => 'nav', :depth => 1, :class => '', :active_class => 'on', :bootstrap => false }
+            @options = { id: 'nav', depth: 1, class: '', active_class: 'on', bootstrap: false }
             markup.scan(::Liquid::TagAttributes) { |key, value| @options[key.to_sym] = value.gsub(/"|'/, '') }
 
             @options[:exclude] = Regexp.new(@options[:exclude]) if @options[:exclude]
 
             @options[:add_attributes] = []
             if @options[:snippet]
-              template = @options[:snippet].include?('{') ? @options[:snippet] : context[:site].snippets.where(:slug => @options[:snippet] ).try(:first).try(:template)
+              template = @options[:snippet].include?('{') ? @options[:snippet] : context[:site].snippets.where(slug: @options[:snippet] ).try(:first).try(:template)
               unless template.blank?
                 @options[:liquid_render] = ::Liquid::Template.parse(template)
                 @options[:add_attributes] = ['editable_elements']

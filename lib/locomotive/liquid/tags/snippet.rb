@@ -19,7 +19,7 @@ module Locomotive
           end
 
           if @context[:site].present?
-            snippet = @context[:site].snippets.where(:slug => @slug).first
+            snippet = @context[:site].snippets.where(slug: @slug).first
             self.refresh(snippet) if snippet
           end
         end

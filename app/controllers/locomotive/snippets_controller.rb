@@ -5,9 +5,9 @@ module Locomotive
 
     localized
 
-    before_filter :back_to_default_site_locale, :only => %w(new create)
+    before_filter :back_to_default_site_locale, only: %w(new create)
 
-    respond_to    :json, :only => [:show, :create, :update, :destroy]
+    respond_to    :json, only: [:show, :create, :update, :destroy]
 
     def new
       @snippet = current_site.snippets.new
@@ -21,7 +21,7 @@ module Locomotive
 
     def create
       @snippet = current_site.snippets.create(params[:snippet])
-      respond_with @snippet, :location => edit_snippet_url(@snippet._id)
+      respond_with @snippet, location: edit_snippet_url(@snippet._id)
     end
 
     def edit
@@ -32,13 +32,13 @@ module Locomotive
     def update
       @snippet = current_site.snippets.find(params[:id])
       @snippet.update_attributes(params[:snippet])
-      respond_with @snippet, :location => edit_snippet_url(@snippet._id)
+      respond_with @snippet, location: edit_snippet_url(@snippet._id)
     end
 
     def destroy
       @snippet = current_site.snippets.find(params[:id])
       @snippet.destroy
-      respond_with @snippet, :location => theme_assets_url
+      respond_with @snippet, location: theme_assets_url
     end
 
   end

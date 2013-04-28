@@ -1,7 +1,7 @@
 module Locomotive
   class ContentAssetsController < BaseController
 
-    respond_to :json, :only => [:index, :create, :destroy]
+    respond_to :json, only: [:index, :create, :destroy]
 
     def index
       @content_assets = current_site.content_assets

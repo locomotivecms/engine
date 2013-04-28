@@ -11,7 +11,7 @@ module Locomotive
           def initialize(tag_name, markup, tokens, context)
             if markup =~ Syntax
               @slug = $1.gsub(/[\"\']/, '')
-              @options = { :fixed => false }
+              @options = { fixed: false }
               markup.scan(::Liquid::TagAttributes) { |key, value| @options[key.to_sym] = value.gsub(/^'/, '').gsub(/'$/, '') }
             else
               raise ::Liquid::SyntaxError.new("Syntax Error in 'editable_xxx' - Valid syntax: editable_xxx <slug>(, <options>)")
@@ -45,14 +45,14 @@ module Locomotive
 
           def default_element_attributes
             {
-              :block         => self.current_block_name,
-              :slug          => @slug,
-              :hint          => @options[:hint],
-              :priority      => @options[:priority] || 0,
-              :fixed         => !!@options[:fixed],
-              :disabled      => false,
-              :from_parent   => false,
-              :_type         => self.document_type.to_s
+              block:         self.current_block_name,
+              slug:          @slug,
+              hint:          @options[:hint],
+              priority:      @options[:priority] || 0,
+              fixed:         !!@options[:fixed],
+              disabled:      false,
+              from_parent:   false,
+              _type:         self.document_type.to_s
             }
           end
 

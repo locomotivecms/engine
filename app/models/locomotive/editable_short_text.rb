@@ -2,8 +2,8 @@ module Locomotive
   class EditableShortText < EditableElement
 
     ## fields ##
-    field :content,         :localize => true
-    field :default_content, :type => Boolean, :localize => true, :default => true
+    field :content,         localize: true
+    field :default_content, type: Boolean, localize: true, default: true
 
     ## methods ##
 
@@ -57,7 +57,7 @@ module Locomotive
           }
         }
 
-        self.page.collection.update self._selector, operations, :multi => true
+        self.page.collection.update self._selector, operations, multi: true
       end
       true
     end

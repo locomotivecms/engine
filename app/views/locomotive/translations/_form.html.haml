@@ -2,9 +2,9 @@
   :plain
     translation: #{j @translation.to_json.html_safe}
 
-= f.inputs :name => :information do
+= f.inputs name: :information do
 
-  = f.input :key, :wrapper_html => { :class => 'highlighted' }
+  = f.input :key, wrapper_html: { class: 'highlighted' }
 
   - current_site.locales.each do |l|
     %li.input.string

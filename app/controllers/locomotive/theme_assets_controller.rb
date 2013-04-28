@@ -3,7 +3,7 @@ module Locomotive
 
     sections 'settings', 'theme_assets'
 
-    respond_to :json, :only => [:index, :create, :update, :destroy]
+    respond_to :json, only: [:index, :create, :update, :destroy]
 
     def index
       respond_to do |format|
@@ -14,7 +14,7 @@ module Locomotive
           render
         }
         format.json {
-          render :json => current_site.theme_assets.by_content_type(params[:content_type])
+          render json: current_site.theme_assets.by_content_type(params[:content_type])
         }
       end
     end
@@ -26,7 +26,7 @@ module Locomotive
 
     def create
       @theme_asset = current_site.theme_assets.create(params[:theme_asset])
-      respond_with @theme_asset, :location => edit_theme_asset_url(@theme_asset._id)
+      respond_with @theme_asset, location: edit_theme_asset_url(@theme_asset._id)
     end
 
     def edit
@@ -38,7 +38,7 @@ module Locomotive
     def update
       @theme_asset = current_site.theme_assets.find(params[:id])
       @theme_asset.update_attributes(params[:theme_asset])
-      respond_with @theme_asset, :location => edit_theme_asset_url(@theme_asset._id)
+      respond_with @theme_asset, location: edit_theme_asset_url(@theme_asset._id)
     end
 
     def destroy

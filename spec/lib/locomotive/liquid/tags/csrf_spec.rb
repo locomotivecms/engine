@@ -15,10 +15,10 @@ describe Locomotive::Liquid::Tags::Csrf do
 
   def render_tag(tag_name = 'csrf_param')
     controller      = mock('controller', {
-      :request_forgery_protection_token => 'token',
-      :form_authenticity_token          => '42'
+      request_forgery_protection_token: 'token',
+      form_authenticity_token:          '42'
     })
-    registers       = { :controller => controller }
+    registers       = { controller: controller }
     liquid_context  = ::Liquid::Context.new({}, {}, registers)
     Liquid::Template.parse("{% #{tag_name} %}").render(liquid_context)
   end

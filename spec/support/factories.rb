@@ -3,7 +3,7 @@
 FactoryGirl.define do
 
   ## Site ##
-  factory :site, :class => Locomotive::Site do
+  factory :site, class: Locomotive::Site do
     name 'Acme Website'
     subdomain 'acme'
     created_at Time.now
@@ -13,7 +13,7 @@ FactoryGirl.define do
       subdomain 'test'
 
       after(:build) do |site_test|
-        site_test.memberships.build :account => Locomotive::Account.where(:name => 'Admin').first || create('admin user'), :role => 'admin'
+        site_test.memberships.build account: Locomotive::Account.where(name: 'Admin').first || create('admin user'), role: 'admin'
       end
 
       factory 'another site' do
@@ -28,10 +28,10 @@ FactoryGirl.define do
       subdomain 'models'
       after(:build) do |site_with_models|
         site_with_models.content_types.build(
-          :slug => 'projects',
-          :name => 'Existing name',
-          :description => 'Existing description',
-          :order_by => 'created_at')
+          slug: 'projects',
+          name: 'Existing name',
+          description: 'Existing description',
+          order_by: 'created_at')
       end
 
     end
@@ -43,7 +43,7 @@ FactoryGirl.define do
   end
 
   # Accounts ##
-  factory :account, :class => Locomotive::Account do
+  factory :account, class: Locomotive::Account do
     name 'Bart Simpson'
     email 'bart@simpson.net'
     password 'easyone'
@@ -87,75 +87,75 @@ FactoryGirl.define do
   end
 
   ## Memberships ##
-  factory :membership, :class => Locomotive::Membership do
+  factory :membership, class: Locomotive::Membership do
     role 'admin'
-    account { Locomotive::Account.where(:name => 'Bart Simpson').first || FactoryGirl.create('admin user') }
+    account { Locomotive::Account.where(name: 'Bart Simpson').first || FactoryGirl.create('admin user') }
 
     factory :admin do
       role 'admin'
-      account { FactoryGirl.create('admin user', :locale => 'en') }
+      account { FactoryGirl.create('admin user', locale: 'en') }
     end
 
     factory :designer do
       role 'designer'
-      account { FactoryGirl.create('frenchy user', :locale => 'en') }
+      account { FactoryGirl.create('frenchy user', locale: 'en') }
     end
 
     factory :author do
       role 'author'
-      account { FactoryGirl.create('brazillian user', :locale => 'en') }
+      account { FactoryGirl.create('brazillian user', locale: 'en') }
     end
 
   end
 
   ## Pages ##
-  factory :page, :class => Locomotive::Page do
+  factory :page, class: Locomotive::Page do
     title 'Home page'
     slug 'index'
     published true
-    site { Locomotive::Site.where(:subdomain => 'acme').first || FactoryGirl.create(:site) }
+    site { Locomotive::Site.where(subdomain: 'acme').first || FactoryGirl.create(:site) }
 
     factory :sub_page do
       title 'Subpage'
       slug 'subpage'
       published true
-      site { Locomotive::Site.where(:subdomain => 'acme').first || FactoryGirl.create(:site) }
-      parent { Locomotive::Page.where(:slug => 'index').first || FactoryGirl.create(:page) }
+      site { Locomotive::Site.where(subdomain: 'acme').first || FactoryGirl.create(:site) }
+      parent { Locomotive::Page.where(slug: 'index').first || FactoryGirl.create(:page) }
     end
 
   end
 
   ## Snippets ##
-  factory :snippet, :class => Locomotive::Snippet do
+  factory :snippet, class: Locomotive::Snippet do
     name 'My website title'
     slug 'header'
     template %{<title>Acme</title>}
-    site { Locomotive::Site.where(:subdomain => 'acme').first || FactoryGirl.create(:site) }
+    site { Locomotive::Site.where(subdomain: 'acme').first || FactoryGirl.create(:site) }
   end
 
 
   ## Assets ##
-  factory :asset, :class => Locomotive::ContentAsset do
-    site { Locomotive::Site.where(:subdomain => 'acme').first || FactoryGirl.create(:site) }
+  factory :asset, class: Locomotive::ContentAsset do
+    site { Locomotive::Site.where(subdomain: 'acme').first || FactoryGirl.create(:site) }
   end
 
 
   ## Theme assets ##
-  factory :theme_asset, :class => Locomotive::ThemeAsset do
-    site { Locomotive::Site.where(:subdomain => 'acme').first || FactoryGirl.create(:site) }
+  factory :theme_asset, class: Locomotive::ThemeAsset do
+    site { Locomotive::Site.where(subdomain: 'acme').first || FactoryGirl.create(:site) }
   end
 
   ## Content types ##
-  factory :content_type, :class => Locomotive::ContentType do
+  factory :content_type, class: Locomotive::ContentType do
     name 'My project'
     description 'The list of my projects'
-    site { Locomotive::Site.where(:subdomain => 'acme').first || FactoryGirl.create(:site) }
+    site { Locomotive::Site.where(subdomain: 'acme').first || FactoryGirl.create(:site) }
   end
 
-  factory :content_entry, :class => Locomotive::ContentEntry do
+  factory :content_entry, class: Locomotive::ContentEntry do
   end
-  
-  factory :translation, :class => Locomotive::Translation do
+
+  factory :translation, class: Locomotive::Translation do
   end
 
 end

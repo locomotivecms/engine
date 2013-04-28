@@ -9,8 +9,8 @@ module Locomotive
       if list.empty?
         ''
       else
-        haml_tag :span, :class => 'untranslated' do
-          haml_tag :em, I18n.t('locomotive.translations.untranslated', :list => list.to_sentence)
+        haml_tag :span, class: 'untranslated' do
+          haml_tag :em, I18n.t('locomotive.translations.untranslated', list: list.to_sentence)
         end
       end
     end

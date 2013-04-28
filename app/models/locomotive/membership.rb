@@ -4,15 +4,15 @@ module Locomotive
     include Locomotive::Mongoid::Document
 
     ## fields ##
-    field :role, :default => 'author'
+    field :role, default: 'author'
 
     ## associations ##
-    referenced_in :account, :class_name => 'Locomotive::Account', :validate => false
-    embedded_in   :site,    :class_name => 'Locomotive::Site',    :inverse_of => :memberships
+    referenced_in :account, class_name: 'Locomotive::Account', validate: false
+    embedded_in   :site,    class_name: 'Locomotive::Site',    inverse_of: :memberships
 
     ## validations ##
     validates_presence_of :account
-    validate              :can_change_role, :if => :role_changed?
+    validate              :can_change_role, if: :role_changed?
 
     ## callbacks ##
     before_save :define_role
@@ -29,7 +29,7 @@ module Locomotive
 
     def email=(email)
       @email = email
-      self.account = Locomotive::Account.where(:email => email).first
+      self.account = Locomotive::Account.where(email: email).first
     end
 
     def process!
@@ -62,7 +62,7 @@ module Locomotive
     # be an administrator
     def can_change_role
       current_site       = Thread.current[:site]
-      current_membership = current_site.memberships.where(:account_id => Thread.current[:account].id).first if current_site.present?
+      current_membership = current_site.memberships.where(account_id: Thread.current[:account].id).first if current_site.present?
 
       if current_membership.present?
         # The role cannot be set higher than the current one (we use the index in

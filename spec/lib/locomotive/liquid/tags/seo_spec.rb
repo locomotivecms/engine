@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Locomotive::Liquid::Tags::SEO do
 
   let(:site) do
-    FactoryGirl.build(:site, :seo_title => 'Site title (SEO)', :meta_description => 'A short site description', :meta_keywords => 'test only cat dog')
+    FactoryGirl.build(:site, seo_title: 'Site title (SEO)', meta_description: 'A short site description', meta_keywords: 'test only cat dog')
   end
 
   describe 'rendering' do
@@ -50,7 +50,7 @@ describe Locomotive::Liquid::Tags::SEO do
     context "when page" do
 
       context "has seo title" do
-        let(:page) { site.pages.build(:seo_title => 'Page title (SEO)', :meta_keywords => 'hulk,gamma', :meta_description => "Bruce Banner") }
+        let(:page) { site.pages.build(seo_title: 'Page title (SEO)', meta_keywords: 'hulk,gamma', meta_description: "Bruce Banner") }
         subject { render_seo_title('page' => page) }
         it { should include(%Q[<title>Page title (SEO)</title>]) }
       end
@@ -62,7 +62,7 @@ describe Locomotive::Liquid::Tags::SEO do
       end
 
       context "has metadata" do
-        let(:page) { site.pages.build(:meta_keywords => 'hulk,gamma', :meta_description => "Bruce Banner") }
+        let(:page) { site.pages.build(meta_keywords: 'hulk,gamma', meta_description: "Bruce Banner") }
         subject { render_seo_metadata('page' => page) }
         it { should include(%Q[<meta name="keywords" content="#{page.meta_keywords}">]) }
         it { should include(%Q[<meta name="description" content="#{page.meta_description}">]) }
@@ -80,13 +80,13 @@ describe Locomotive::Liquid::Tags::SEO do
     context "when content instance" do
 
       let(:content_type) do
-        FactoryGirl.build(:content_type, :site => site).tap do |ct|
-          ct.entries_custom_fields.build :label => 'anything', :type => 'string'
+        FactoryGirl.build(:content_type, site: site).tap do |ct|
+          ct.entries_custom_fields.build label: 'anything', type: 'string'
         end.tap { |_ct| _ct.valid? }
       end
 
       context "has seo title" do
-        let(:content_entry) { content_type.entries.build(:seo_title => 'Content title (SEO)', :meta_keywords => 'Libidinous, Angsty', :meta_description => "Quite the combination.") }
+        let(:content_entry) { content_type.entries.build(seo_title: 'Content title (SEO)', meta_keywords: 'Libidinous, Angsty', meta_description: "Quite the combination.") }
         subject { render_seo_title('content_entry' => content_entry) }
         it { should include(%Q[<title>Content title (SEO)</title>]) }
       end
@@ -98,7 +98,7 @@ describe Locomotive::Liquid::Tags::SEO do
       end
 
       context "has metadata" do
-        let(:content_entry) { content_type.entries.build(:meta_keywords => 'Libidinous, Angsty', :meta_description => "Quite the combination.") }
+        let(:content_entry) { content_type.entries.build(meta_keywords: 'Libidinous, Angsty', meta_description: "Quite the combination.") }
         subject { render_seo_metadata('content_entry' => content_entry) }
         it { should include(%Q[<meta name="keywords" content="#{content_entry.meta_keywords}">]) }
         it { should include(%Q[<meta name="description" content="#{content_entry.meta_description}">]) }
@@ -128,7 +128,7 @@ describe Locomotive::Liquid::Tags::SEO do
   end
 
   def render_seo_tag(tag_name, assigns = {})
-    registers = { :site => site }
+    registers = { site: site }
     liquid_context = ::Liquid::Context.new({}, assigns, registers)
     output = Liquid::Template.parse("{% #{tag_name} %}").render(liquid_context)
   end

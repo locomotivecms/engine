@@ -15,7 +15,7 @@ describe Locomotive::Configuration do
   it 'calls the hosting enabler if provided' do
     Rails.env.stubs(:test?).returns(false)
     Locomotive.expects(:enable_bushido).once
-    Locomotive.config.hosting = { :target => :bushido }
+    Locomotive.config.hosting = { target: :bushido }
     Locomotive.enable_hosting
   end
 

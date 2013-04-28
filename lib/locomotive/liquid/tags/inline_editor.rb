@@ -15,19 +15,19 @@ module Liquid
             page['lang'] = context['locale']
 
             html = <<-HTML
-              %meta{ :content => true, :name => 'inline-editor' }
+              %meta{ content: true, name: 'inline-editor' }
 
               = stylesheet_link_tag 'aloha/css/aloha.css'
               = javascript_include_tag 'locomotive/aloha', :'data-aloha-plugins' => @plugins
 
-              %script{ :type => 'text/javascript' }
+              %script{ type: 'text/javascript' }
                 :plain
                   Aloha.ready(function() \{
                     window.parent.application_view.set_page(#{controller.view_context.j page.to_json.html_safe});
                   \});
             HTML
 
-            Haml::Engine.new(html.gsub(/\n+/, "\n").gsub(/^\s{14}/, ''), :escape_html => true).render(controller.view_context)
+            Haml::Engine.new(html.gsub(/\n+/, "\n").gsub(/^\s{14}/, ''), escape_html: true).render(controller.view_context)
           else
             ''
           end

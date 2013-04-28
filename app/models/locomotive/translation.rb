@@ -11,25 +11,25 @@ class Locomotive::Translation
 
   ## validations ##
   validates_uniqueness_of :key, scope: :site_id
-  validates_presence_of 	:site, :key
+  validates_presence_of   :site, :key
 
   ## scopes ##
-  scope :ordered, :order_by => [[:key, :asc]]
+  scope :ordered, order_by: [[:key, :asc]]
 
   ## callbacks ##
-	before_validation :underscore_key
+  before_validation :underscore_key
 
-	## methods ##
+  ## methods ##
 
-	protected
+  protected
 
-	# Make sure the translation key is underscored
-	# since it is the unique way to use it in a liquid template.
-	#
-	def underscore_key
-		if self.key
-			self.key = self.key.permalink.underscore
-		end
-	end
+  # Make sure the translation key is underscored
+  # since it is the unique way to use it in a liquid template.
+  #
+  def underscore_key
+    if self.key
+      self.key = self.key.permalink.underscore
+    end
+  end
 
 end

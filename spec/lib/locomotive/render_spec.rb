@@ -9,7 +9,7 @@ describe 'Locomotive rendering system' do
     @site = FactoryGirl.build(:site)
     Locomotive::Site.stubs(:find).returns(@site)
     @controller.current_site = @site
-    @page = FactoryGirl.build(:page, :site => nil, :published => true)
+    @page = FactoryGirl.build(:page, site: nil, published: true)
   end
 
   context '#liquid_context' do
@@ -18,7 +18,7 @@ describe 'Locomotive rendering system' do
       @controller.instance_variable_set(:@page, @page)
       @controller.stubs(:flash).returns({})
       @controller.stubs(:params).returns({})
-      @controller.stubs(:request).returns(OpenStruct.new(:url => '/'))
+      @controller.stubs(:request).returns(OpenStruct.new(url: '/'))
     end
 
     it 'includes the current date and time' do
@@ -91,25 +91,25 @@ describe 'Locomotive rendering system' do
 
     it 'should retrieve the index page /' do
       @controller.request.fullpath = '/'
-      @controller.current_site.pages.expects(:where).with(:depth => 0, :fullpath.in => %w{index}).returns([@page])
+      @controller.current_site.pages.expects(:where).with(depth: 0, :fullpath.in => %w{index}).returns([@page])
       @controller.send(:locomotive_page).should_not be_nil
     end
 
     it 'should also retrieve the index page (index.html)' do
       @controller.request.fullpath = '/index.html'
-      @controller.current_site.pages.expects(:where).with(:depth => 0, :fullpath.in => %w{index}).returns([@page])
+      @controller.current_site.pages.expects(:where).with(depth: 0, :fullpath.in => %w{index}).returns([@page])
       @controller.send(:locomotive_page).should_not be_nil
     end
 
     it 'should retrieve it based on the full path' do
       @controller.request.fullpath = '/about_us/team.html'
-      @controller.current_site.pages.expects(:where).with(:depth => 2, :fullpath.in => %w{about_us/team about_us/content_type_template content_type_template/team}).returns([@page])
+      @controller.current_site.pages.expects(:where).with(depth: 2, :fullpath.in => %w{about_us/team about_us/content_type_template content_type_template/team}).returns([@page])
       @controller.send(:locomotive_page).should_not be_nil
     end
 
     it 'does not include the query string' do
       @controller.request.fullpath = '/about_us/team.html?some=params&we=use'
-      @controller.current_site.pages.expects(:where).with(:depth => 2, :fullpath.in => %w{about_us/team about_us/content_type_template content_type_template/team}).returns([@page])
+      @controller.current_site.pages.expects(:where).with(depth: 2, :fullpath.in => %w{about_us/team about_us/content_type_template content_type_template/team}).returns([@page])
       @controller.send(:locomotive_page).should_not be_nil
     end
 
@@ -126,13 +126,13 @@ describe 'Locomotive rendering system' do
         @page.redirect = true
         @page.redirect_url = 'http://www.example.com/'
         @controller.request.fullpath = '/contact'
-        @controller.current_site.pages.expects(:where).with(:depth => 1, :fullpath.in => %w{contact content_type_template}).returns([@page])
+        @controller.current_site.pages.expects(:where).with(depth: 1, :fullpath.in => %w{contact content_type_template}).returns([@page])
       end
 
       (301..302).each do |status|
         it "redirects to the redirect_url with a #{status} status" do
           @page.redirect_type = status
-          @controller.expects(:redirect_to).with('http://www.example.com/', { :status => status }).returns(true)
+          @controller.expects(:redirect_to).with('http://www.example.com/', { status: status }).returns(true)
           @controller.send(:render_locomotive_page)
         end
       end
@@ -140,7 +140,7 @@ describe 'Locomotive rendering system' do
       it 'redirects to the redirect_url in the editing version if specified' do
         @page.redirect_url = '/another_page'
         @controller.stubs(:editing_page?).returns(true)
-        @controller.expects(:redirect_to).with('/another_page/_edit', { :status => 301 }).returns(true)
+        @controller.expects(:redirect_to).with('/another_page/_edit', { status: 301 }).returns(true)
         @controller.send(:render_locomotive_page)
       end
 
@@ -149,13 +149,13 @@ describe 'Locomotive rendering system' do
     context 'templatized page' do
 
       before(:each) do
-        @content_type = FactoryGirl.build(:content_type, :site => nil)
-        @content_entry = @content_type.entries.build(:_visible => true)
+        @content_type = FactoryGirl.build(:content_type, site: nil)
+        @content_entry = @content_type.entries.build(_visible: true)
         @page.templatized = true
         @page.stubs(:fetch_target_entry).returns(@content_entry)
         @page.stubs(:fullpath).returns('/projects/content_type_template')
         @controller.request.fullpath = '/projects/edeneo.html'
-        @controller.current_site.pages.expects(:where).with(:depth => 2, :fullpath.in => %w{projects/edeneo projects/content_type_template content_type_template/edeneo}).returns([@page])
+        @controller.current_site.pages.expects(:where).with(depth: 2, :fullpath.in => %w{projects/edeneo projects/content_type_template content_type_template/edeneo}).returns([@page])
       end
 
       it 'sets the content_entry variable' do
@@ -190,7 +190,7 @@ describe 'Locomotive rendering system' do
 
       it 'should return the 404 page if the page has not been published yet' do
         @controller.request.fullpath = '/contact'
-        @controller.current_site.pages.expects(:where).with(:depth => 1, :fullpath.in => %w{contact content_type_template}).returns([@page])
+        @controller.current_site.pages.expects(:where).with(depth: 1, :fullpath.in => %w{contact content_type_template}).returns([@page])
         (klass = Locomotive::Page).expects(:published).returns([true])
         @controller.current_site.pages.expects(:not_found).returns(klass)
         @controller.send(:locomotive_page).should be_true
@@ -199,7 +199,7 @@ describe 'Locomotive rendering system' do
       it 'should not return the 404 page if the page has not been published yet and admin is logged in' do
         @controller.current_locomotive_account = true
         @controller.request.fullpath = '/contact'
-        @controller.current_site.pages.expects(:where).with(:depth => 1, :fullpath.in => %w{contact content_type_template}).returns([@page])
+        @controller.current_site.pages.expects(:where).with(depth: 1, :fullpath.in => %w{contact content_type_template}).returns([@page])
         @controller.send(:locomotive_page).should == @page
       end
 

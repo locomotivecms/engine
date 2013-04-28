@@ -1,16 +1,16 @@
-%script{ :type => 'text/html', :id => 'select_options_list' }
+%script{ type: 'text/html', id: 'select_options_list' }
 
   %ul{ :'data-prompt' => t('locomotive.custom_fields.form.select_options.ask_name') }
 
   %span.actions
-    = link_to t('locomotive.buttons.new_item'), '#', :class => 'add'
+    = link_to t('locomotive.buttons.new_item'), '#', class: 'add'
 
 
-%script{ :type => 'text/html', :id => 'select_option_entry' }
+%script{ type: 'text/html', id: 'select_option_entry' }
 
   %li.entry
     %span.name {{name}}
 
     %span.actions
-      = link_to_icon :move, '#', :class => 'drag'
-      = link_to_icon :trash, '#', :class => 'remove', :data => { :confirm => t('locomotive.messages.confirm') }
+      = link_to_icon :move, '#', class: 'drag'
+      = link_to_icon :trash, '#', class: 'remove', data: { confirm: t('locomotive.messages.confirm') }

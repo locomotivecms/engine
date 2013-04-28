@@ -34,7 +34,7 @@ module Locomotive
       ::Locomotive.log "[CanCan::AccessDenied] #{exception.inspect}"
 
       if request.xhr?
-        render :json => { :error => exception.message }
+        render json: { error: exception.message }
       else
         flash[:alert] = exception.message
 

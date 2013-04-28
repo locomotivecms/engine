@@ -42,5 +42,5 @@ describe Locomotive::Liquid::Tags::Editable::ShortText do
     end
 
   end
-  
+
 end
