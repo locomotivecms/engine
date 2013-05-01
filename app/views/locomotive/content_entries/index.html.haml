@@ -7,6 +7,8 @@
   - if can?(:manage, Locomotive::ContentType)
     = local_action_button :edit, edit_content_type_url(@content_type), icon: 'icon-pencil'
 
+  = local_action_button :export, export_content_entries_url(@content_type.slug, :csv), icon: 'icon-download'
+
   = local_action_button :new, new_content_entry_url(@content_type.slug), icon: 'icon-plus'
 
 - if @content_type.description.present?

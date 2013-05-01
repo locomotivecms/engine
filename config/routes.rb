@@ -43,7 +43,8 @@ Locomotive::Engine.routes.draw do
   resources :content_types
 
   resources :content_entries, path: 'content_types/:slug/entries' do
-    put :sort, on: :collection
+    put :sort,    on: :collection
+    get :export,  on: :collection
   end
 
   # installation guide
@@ -78,7 +79,7 @@ Rails.application.routes.draw do
 
         api.resources :content_types
 
-        api.resources :content_entries, path: 'content_types/:slug/entries'
+        api.resources :content_entries
 
         api.resources :theme_assets
 

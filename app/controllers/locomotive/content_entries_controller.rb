@@ -9,16 +9,30 @@ module Locomotive
 
     before_filter :set_content_type
 
-    respond_to :json, only: [:show, :edit, :create, :update, :sort]
-
     skip_load_and_authorize_resource
 
     before_filter :authorize_content
+
+    respond_to :json, only: [:show, :edit, :create, :update, :sort]
+    # respond_to :csv,  only: [:export]
 
     def index
       options = { page: params[:page] || 1, per_page: Locomotive.config.ui[:per_page] }
       @content_entries = @content_type.list_or_group_entries(options)
       respond_with @content_entries
+    end
+
+    def export
+      @content_entries = @content_type.ordered_entries
+      # respond_with @content_entries
+      respond_to do |format|
+        format.csv do
+          # render text: @content_entries.to_csv
+          # render
+          stream = render_to_string(template: 'locomotive/content_entries/export' )
+          send_data stream, type: 'text/csv', filename: @content_type.slug + '.csv'
+        end
+      end
     end
 
     def show
