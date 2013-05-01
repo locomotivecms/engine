@@ -16,7 +16,8 @@ module Locomotive
     before_filter :authorize_content
 
     def index
-      @content_entries = @content_type.list_or_group_entries
+      options = { page: params[:page] || 1, per_page: Locomotive.config.ui[:per_page] }
+      @content_entries = @content_type.list_or_group_entries(options)
       respond_with @content_entries
     end
 

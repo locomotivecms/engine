@@ -37,6 +37,10 @@ end
 
 ### Common
 
+When(/^I change the number of items to display per page to (\d+)$/) do |per_page|
+  Locomotive.config.ui[:per_page] = per_page
+end
+
 Then /^I debug$/ do
   debugger
   0

@@ -16,3 +16,6 @@
           = l entry.updated_at, format: :short rescue 'n/a'
 
           = link_to_icon :trash, content_entry_url(content_type.slug, entry), title: t('locomotive.buttons.delete'), class: 'remove', data: { confirm: t('locomotive.messages.confirm') }, method: :delete
+
+  - if entries.respond_to?(:current_page)
+    = paginate entries, namespace: 'locomotive'

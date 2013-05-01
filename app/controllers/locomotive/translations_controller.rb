@@ -6,7 +6,7 @@ module Locomotive
     respond_to :json, only: [:create, :update]
 
     def index
-      @translations = current_site.translations.ordered
+      @translations = current_site.translations.ordered.page(params[:page]).per(Locomotive.config.ui[:per_page])
       respond_with @translations
     end
 

@@ -18,8 +18,9 @@ Locomotive.configure do |config|
 
   # configure how many items we display in sub menu in the "Contents" section.
   # config.ui = {
-  #   latest_entries_nb: 5,
-  #   max_content_types:  4
+  #   latest_entries_nb:  5,
+  #   max_content_types:  4,
+  #   per_page:           10
   # }
 
   # default locale (for now, only en, de, fr, pl, pt-BR, it, nb and ja are supported)

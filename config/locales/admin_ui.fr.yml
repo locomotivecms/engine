@@ -75,6 +75,13 @@ fr:
         title: "Bonjour %{name}, nous voulions vous faire savoir qu'une nouvelle instance a été créée le %{date} pour le site <b>%{domain}</b>"
         type: "Modèle: %{type}"
 
+    pagination:
+      first: "&laquo;"
+      last: "&raquo;"
+      previous: "&lsaquo;"
+      next: "&rsaquo;"
+      truncate: "&hellip;"
+
     sites_picker:
       new: + nouveau site
 

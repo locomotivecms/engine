@@ -80,7 +80,7 @@ module Locomotive
       self.find_entries_custom_field(self.group_by_field_id)
     end
 
-    def list_or_group_entries
+    def list_or_group_entries(options = {})
       if self.groupable?
         if group_by_field.type == 'select'
           self.entries.group_by_select_option(self.group_by_field.name, self.order_by_definition)
@@ -88,7 +88,11 @@ module Locomotive
           group_by_belongs_to_field(self.group_by_field)
         end
       else
-        self.ordered_entries
+        if options[:page].nil?
+          self.ordered_entries
+        else
+          self.ordered_entries.page(options[:page]).per(options[:per_page])
+        end
       end
     end
 

@@ -17,10 +17,21 @@ Background:
     | My sexy project   | Lorem ipsum             | Development     |
     | Foo project       | Lorem ipsum...          | Design          |
     | Bar project       | Lorem ipsum...          | Design          |
+    | Other project #1  | Lorem ipsum...          | Design          |
+    | Other project #2  | Lorem ipsum...          | Design          |
+    | Other project #3  | Lorem ipsum...          | Design          |
 
 Scenario:
   When I go to the list of "Projects"
   Then I should see "My sexy project"
+  And I should see "Other project #2"
+  And I should see "Other project #3"
+
+Scenario:
+  When I change the number of items to display per page to 4
+  And I go to the list of "Projects"
+  Then I should not see "Other project #2"
+  And I should not see "Other project #3"
 
 Scenario: Add a new entry
   When I go to the list of "Projects"
