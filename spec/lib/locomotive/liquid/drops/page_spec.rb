@@ -3,8 +3,8 @@ require 'spec_helper'
 describe Locomotive::Liquid::Drops::Page do
 
   before(:each) do
-    site  = FactoryGirl.build(:site)
-    @home = FactoryGirl.build(:page, :site => site, :meta_keywords => 'Libidinous, Angsty', :meta_description => "Quite the combination.")
+    @site  = FactoryGirl.build(:site)
+    @home = FactoryGirl.build(:page, :site => @site, :meta_keywords => 'Libidinous, Angsty', :meta_description => "Quite the combination.")
   end
 
   context '#rendering tree' do
@@ -130,6 +130,39 @@ describe Locomotive::Liquid::Drops::Page do
   describe 'meta_description' do
     subject { render_template('{{ home.meta_description }}') }
     it { should == @home.meta_description }
+  end
+
+  describe 'templatized' do
+
+    before(:each) do
+      @content_type = FactoryGirl.build(:content_type, site: @site)
+      @content_type.entries_custom_fields.build :label => 'Name', :type => 'string'
+      @content_type.save!
+
+      @content_type.entries.create(name: 'Entry 1')
+      @content_type.entries.create(name: 'Entry 2')
+
+      @templatized_page = FactoryGirl.build(:page, :site => @site,
+        :templatized => true,
+        :target_klass_name => @content_type.klass_with_custom_fields(:entries))
+    end
+
+    it 'returns false for a page which is not templatized' do
+      render_template('{{ home.templatized? }}').should == 'false'
+    end
+
+    it 'returns true for a templatized page' do
+      assigns = { 'page' => @templatized_page }
+      render_template('{{ page.templatized? }}', assigns).should == 'true'
+    end
+
+    it 'returns a proxy collection for the target content type' do
+      assigns = { 'page' => @templatized_page }
+      render_template('{{ page.target_content_type }}', assigns).should =~ \
+        /ContentTypeProxyCollection/
+      render_template('{{ page.target_content_type.count }}', assigns).should == "2"
+    end
+
   end
 
   def render_template(template = '', assigns = {})

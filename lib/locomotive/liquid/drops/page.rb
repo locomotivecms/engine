@@ -45,6 +45,19 @@ module Locomotive
           self._source.redirect?
         end
 
+        def templatized?
+          self._source.templatized?
+        end
+
+        def target_content_type
+          if self._source.target_klass_name.to_s =~ /^Locomotive::ContentEntry([a-z0-9]+)$/
+            type = self._source.site.content_types.find($1)
+            ContentTypeProxyCollection.new(type)
+          else
+            nil
+          end
+        end
+
         def before_method(meth)
           self._source.editable_elements.where(:slug => meth).try(:first).try(:content)
         end
