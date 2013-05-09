@@ -31,11 +31,14 @@ module Locomotive
             markup.scan(::Liquid::TagAttributes) do |key, value|
               @options[key] = value if key != 'http'
             end
+            @options['timeout'] = @options['timeout'].to_f if @options['timeout']
             @expires_in = (@options.delete('expires_in') || 0).to_i
             @cache_key = Digest::SHA1.hexdigest(@target)
           else
             raise ::Liquid::SyntaxError.new("Syntax Error in 'consume' - Valid syntax: consume <var> from \"<url>\" [username: value, password: value]")
           end
+
+          @local_cache_key = self.hash
 
           super
         end
@@ -49,10 +52,25 @@ module Locomotive
 
         protected
 
+        def cached_response
+          @@local_cache ||= {}
+          @@local_cache[@local_cache_key]
+        end
+
+        def cached_response=(response)
+          @@local_cache ||= {}
+          @@local_cache[@local_cache_key] = response
+        end
+
         def render_all_and_cache_it(context)
           Rails.cache.fetch(@cache_key, :expires_in => @expires_in, :force => @expires_in == 0) do
             context.stack do
-              context.scopes.last[@target.to_s] = Locomotive::Httparty::Webservice.consume(@url, @options.symbolize_keys)
+              begin
+                context.scopes.last[@target.to_s] = Locomotive::Httparty::Webservice.consume(@url, @options.symbolize_keys)
+                self.cached_response = context.scopes.last[@target.to_s]
+              rescue Timeout::Error
+                context.scopes.last[@target.to_s] = self.cached_response
+              end
 
               render_all(@nodelist, context)
             end

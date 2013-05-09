@@ -49,4 +49,28 @@ describe Locomotive::Liquid::Tags::Consume do
       Liquid::Template.parse(template).render('url' => "http://blog.locomotiveapp.org/api/read").should == 'Locomotive rocks !'
     end
   end
+
+  context 'timeout' do
+
+    before(:each) do
+      @url = 'http://blog.locomotiveapp.org/api/read'
+      @template = %{{% consume blog from "#{@url}" timeout:5 %}{{ blog.title }}{% endconsume %}}
+    end
+
+    it 'should pass the timeout option to httparty' do
+      Locomotive::Httparty::Webservice.expects(:consume).with(@url, {timeout: 5.0})
+      Liquid::Template.parse(@template).render
+    end
+
+    it 'should return the previous successful response if a timeout occurs' do
+      Locomotive::Httparty::Webservice.stubs(:consume).returns({ 'title' => 'first response' })
+      template = Liquid::Template.parse(@template)
+
+      template.render.should == 'first response'
+
+      Locomotive::Httparty::Webservice.stubs(:consume).raises(Timeout::Error)
+      template.render.should == 'first response'
+    end
+
+  end
 end
