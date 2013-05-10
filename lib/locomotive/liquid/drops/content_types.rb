@@ -4,8 +4,12 @@ module Locomotive
       class ContentTypes < ::Liquid::Drop
 
         def before_method(meth)
-          type = @context.registers[:site].content_types.where(slug: meth.to_s).first
+          type = content_type_for_slug(meth)
           ContentTypeProxyCollection.new(type)
+        end
+
+        def content_type_for_slug(slug)
+          @context.registers[:site].content_types.where(slug: slug.to_s).first
         end
 
       end
