@@ -7,8 +7,8 @@ module Locomotive
     field :role, default: 'author'
 
     ## associations ##
-    referenced_in :account, class_name: 'Locomotive::Account', validate: false
-    embedded_in   :site,    class_name: 'Locomotive::Site',    inverse_of: :memberships
+    belongs_to  :account, class_name: 'Locomotive::Account', validate: false
+    embedded_in :site,    class_name: 'Locomotive::Site',    inverse_of: :memberships
 
     ## validations ##
     validates_presence_of :account

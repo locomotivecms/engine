@@ -36,11 +36,9 @@ pt-BR:
         liquid_syntax: "Erro de sintaxe do Liquid, por favor verifique a sintaxe"
         liquid_extend: "A página extende um template que não existe."
 
-
   date:
     formats:
       default: "%d/%m/%Y"
-
 
   attributes:
     defaults:
@@ -55,6 +53,9 @@ pt-BR:
           body: "{% extends 'parent' %}"
 
   mongoid:
+    errors:
+      messages:
+        blank_in_locale: "não pode ficar em branco"
     attributes:
       page:
         title: Título

@@ -10,7 +10,7 @@ module Locomotive
         format.html {
           @assets             = ThemeAsset.all_grouped_by_folder(current_site)
           @js_and_css_assets  = (@assets[:javascripts] || []) + (@assets[:stylesheets] || [])
-          @snippets           = current_site.snippets.order_by([[:name, :asc]]).all.to_a
+          @snippets           = current_site.snippets.order_by(:name.asc).all.to_a
           render
         }
         format.json {

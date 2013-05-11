@@ -38,9 +38,7 @@ module Locomotive
 
       can :manage, [ContentEntry, ContentAsset, Translation]
 
-      can :touch, Site do |site|
-        site == @site
-      end
+      can :touch, Site, _id: @site._id
 
       can :read, ContentType
     end
@@ -60,9 +58,7 @@ module Locomotive
 
       can :manage, Translation
 
-      can :manage, Site do |site|
-        site == @site
-      end
+      can :manage, Site, _id: @site._id
 
       can :point, Site
 

@@ -2,6 +2,7 @@ module Locomotive
   class EditableFile < EditableElement
 
     ## behaviours ##
+    # mount_uploader :source, EditableFileUploader
     mount_uploader 'source', EditableFileUploader
 
     replace_field 'source', ::String, true
@@ -10,6 +11,7 @@ module Locomotive
     field :default_source_url, localize: true
 
     ## callbacks ##
+    # before_save { |c| puts "#{c.block}/#{c.slug} saved called !"}
     after_save :propagate_content
 
     ## methods ##
@@ -40,7 +42,7 @@ module Locomotive
     def copy_attributes_from(el)
       super(el)
 
-      if el.source_translations.nil?
+      if el.source_translations.blank?
         self.attributes['default_source_url'] = el.attributes['default_source_url'] || {}
       else
         el.source_translations.keys.each do |locale|
@@ -77,7 +79,7 @@ module Locomotive
           }
         }
 
-        self.page.collection.update self._selector, operations, multi: true
+        self.page.collection.find(self._selector).update(operations, multi: true)
       end
     end
 

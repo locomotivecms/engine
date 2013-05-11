@@ -13,7 +13,7 @@ module Locomotive
             field :domains, type: Array, default: []
 
             ## indexes
-            index :domains
+            index domains: 1
 
             ## validations ##
             validates_presence_of     :subdomain

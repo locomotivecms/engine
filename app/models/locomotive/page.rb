@@ -28,9 +28,9 @@ module Locomotive
     belongs_to :site, class_name: 'Locomotive::Site'
 
     ## indexes ##
-    index :site_id
-    index :parent_id
-    index [[:fullpath, Mongo::ASCENDING], [:site_id, Mongo::ASCENDING]]
+    index site_id:    1
+    index parent_id:  1
+    index fullpath:   1, site_id: 1
 
     ## callbacks ##
     after_initialize    :set_default_raw_template
@@ -46,14 +46,14 @@ module Locomotive
     validates_exclusion_of    :slug,    in: Locomotive.config.reserved_slugs, if: Proc.new { |p| p.depth <= 1 }
 
     ## named scopes ##
-    scope :latest_updated,      order_by: [[:updated_at, :desc]], limit: Locomotive.config.ui[:latest_entries_nb]
-    scope :root,                where: { slug: 'index', depth: 0 }
-    scope :not_found,           where: { slug: '404', depth: 0 }
-    scope :published,           where: { published: true }
-    scope :fullpath,            lambda { |fullpath| { where: { fullpath: fullpath } } }
-    scope :handle,              lambda { |handle| { where: { handle: handle } } }
-    scope :minimal_attributes,  lambda { |attrs = []| { only: (attrs || []) + %w(title slug fullpath position depth published templatized redirect listed response_type parent_id parent_ids site_id created_at updated_at) } }
-    scope :dependent_from,      lambda { |id| { where: { :template_dependencies.in => [id] } } }
+    scope :latest_updated,      order_by(updated_at: :desc).limit(Locomotive.config.ui[:latest_entries_nb])
+    scope :root,                where(slug: 'index', depth: 0)
+    scope :not_found,           where(slug: '404', depth: 0)
+    scope :published,           where(published: true)
+    scope :fullpath,            ->(fullpath){ where(fullpath: fullpath) }
+    scope :handle,              ->(handle){ where(handle: handle) }
+    scope :minimal_attributes,  ->(attrs = []) { only((attrs || []) + %w(title slug fullpath position depth published templatized redirect listed response_type parent_id parent_ids site_id created_at updated_at)) }
+    scope :dependent_from,      ->(id) { where(:template_dependencies.in => [id]) }
 
     ## methods ##
 

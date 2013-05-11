@@ -5,7 +5,7 @@ module Locomotive
 
     properties  :name, :label, :type
 
-    properties  :required, :localized, type: 'Boolean'
+    properties  :required, :localized, :unique, type: 'Boolean'
 
     properties  :hint, :position, required: false
 

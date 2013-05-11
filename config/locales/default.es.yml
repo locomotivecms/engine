@@ -51,6 +51,9 @@ es:
           body: "{% extends 'parent' %}"
 
   mongoid:
+    errors:
+      messages:
+        blank_in_locale: "no puede estar en blanco"
     attributes:
       page:
         title: Título

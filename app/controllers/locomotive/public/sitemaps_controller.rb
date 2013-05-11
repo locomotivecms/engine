@@ -5,7 +5,7 @@ module Locomotive
       respond_to :xml
 
       def show
-        @pages = current_site.pages.published.order_by([:depth.asc, :position.asc])
+        @pages = current_site.pages.published.order_by(:depth.asc, :position.asc)
         respond_with @pages
       end
 

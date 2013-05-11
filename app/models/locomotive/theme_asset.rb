@@ -19,8 +19,8 @@ module Locomotive
     belongs_to :site, class_name: 'Locomotive::Site'
 
     ## indexes ##
-    index :site_id
-    index [[:site_id, Mongo::ASCENDING], [:local_path, Mongo::ASCENDING]]
+    index site_id:  1
+    index site_id:  1, local_path: 1
 
     ## callbacks ##
     before_validation :check_for_folder_changes
@@ -104,7 +104,7 @@ module Locomotive
     end
 
     def self.all_grouped_by_folder(site)
-      assets = site.theme_assets.order_by([[:slug, :asc]])
+      assets = site.theme_assets.order_by(:slug.asc)
       assets.group_by { |a| a.folder.split('/').first.to_sym }
     end
 

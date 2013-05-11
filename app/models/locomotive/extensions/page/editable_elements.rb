@@ -100,7 +100,7 @@ module Locomotive
           return if ids.empty?
 
           # super fast way to remove useless elements all in once
-          self.collection.update(self.atomic_selector, '$pull' => { 'editable_elements' => { '_id' => { '$in' => ids } } })
+          self.collection.find(self.atomic_selector).update('$pull' => { 'editable_elements' => { '_id' => { '$in' => ids } } })
 
           # mark them as destroyed
           self.editable_elements.each do |el|

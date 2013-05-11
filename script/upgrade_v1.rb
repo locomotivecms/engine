@@ -112,7 +112,7 @@ if collection = db.collections.detect { |c| c.name == 'content_types' }
           operations['$set'].merge!("entries_custom_fields.#{index}.type" => 'has_many')
 
           # reverse_lookup -> inverse_of  => hmmmmmmm
-          if _content_type = collection.find('_id' => BSON::ObjectId(field['target'][-24,24])).first
+          if _content_type = collection.find('_id' => Moped::BSON::ObjectId(field['target'][-24,24])).first
             if _field = _content_type['entries_custom_fields'].detect { |f| f['_name'] == field['reverse_lookup'] }
               operations['$set'].merge!("entries_custom_fields.#{index}.inverse_of" => _field['_alias'])
               rule_options['inverse_of'] = _field['_alias']
@@ -222,7 +222,7 @@ if collection = db.collections.detect { |c| c.name == 'content_types' }
           if !field['reverse_lookup'].blank?
             # nothing to do
           else
-            attributes["#{name.singularize}_ids"] = (content[_name] || []).map { |_id| BSON::ObjectId(_id) }
+            attributes["#{name.singularize}_ids"] = (content[_name] || []).map { |_id| Moped::BSON::ObjectId(_id) }
           end
         end
       end
@@ -385,7 +385,7 @@ if $s3
 
   bucket.files.each do |file|
     if file.key =~ /^sites\/([a-f0-9]+)\/contents\/content_instance\/([a-f0-9]+)\/files/
-      content_type_id = collection.find('_id' => BSON::ObjectId($2)).first['content_type_id'].to_s
+      content_type_id = collection.find('_id' => Moped::BSON::ObjectId($2)).first['content_type_id'].to_s
       new_key         = file.key.gsub('contents/content_instance', "content_entry#{content_type_id}")
 
       puts "new file #{new_key}"
@@ -405,7 +405,7 @@ else
     next if File.directory?(path)
 
     if path =~ /public\/sites\/([a-f0-9]+)\/contents\/content_instance\/([a-f0-9]+)\/files/
-      content_type_id = collection.find('_id' => BSON::ObjectId($2)).first['content_type_id'].to_s
+      content_type_id = collection.find('_id' => Moped::BSON::ObjectId($2)).first['content_type_id'].to_s
       new_path        = path.gsub('contents/content_instance', "content_entry#{content_type_id}")
 
       puts "new file #{new_path}"

@@ -57,7 +57,7 @@ module Locomotive
           }
         }
 
-        self.page.collection.update self._selector, operations, multi: true
+        self.page.collection.find(self._selector).update(operations, multi: true)
       end
       true
     end

@@ -24,7 +24,7 @@ ja:
   mongoid:
     errors:
       messages:
-        blank_on_locale: "は必須入力項目です。"
+        blank_in_locale: "は必須入力項目です。"
 
   errors:
       messages:

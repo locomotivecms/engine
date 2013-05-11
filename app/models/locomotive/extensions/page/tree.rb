@@ -18,8 +18,8 @@ module Locomotive
           before_destroy  :delete_descendants
 
           ## indexes ##
-          index :position
-          index [[:depth, Mongo::ASCENDING], [:position, Mongo::ASCENDING]]
+          index position: 1
+          index depth:    1, position: 1
 
           alias_method_chain :rearrange, :identity_map
           alias_method_chain :rearrange_children, :identity_map
@@ -49,7 +49,7 @@ module Locomotive
           # @return [ Array ] The first array of pages (depth = 0)
           #
           def quick_tree(site, minimal_attributes = true)
-            pages = (minimal_attributes ? site.pages.unscoped.minimal_attributes : site.pages.unscoped).order_by([:depth.asc, :position.asc]).to_a
+            pages = (minimal_attributes ? site.pages.unscoped.minimal_attributes : site.pages.unscoped).order_by(:depth.asc, :position.asc).to_a
 
             tmp = []
 
@@ -105,7 +105,7 @@ module Locomotive
         def sort_children!(ids)
           cached_children = self.children.to_a
           ids.each_with_index do |id, position|
-            child = cached_children.detect { |p| p._id == BSON::ObjectId(id) }
+            child = cached_children.detect { |p| p._id == Moped::BSON::ObjectId(id) }
             child.position = position
             child.save
           end

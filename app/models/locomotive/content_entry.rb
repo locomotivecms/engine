@@ -29,8 +29,8 @@ module Locomotive
     after_create      :send_notifications
 
     ## named scopes ##
-    scope :visible, where: { _visible: true }
-    scope :latest_updated, order_by: :updated_at.desc, limit: Locomotive.config.ui[:latest_entries_nb]
+    scope :visible, where(_visible: true)
+    scope :latest_updated, order_by(updated_at: :desc).limit(Locomotive.config.ui[:latest_entries_nb])
 
     ## methods ##
 
@@ -114,7 +114,7 @@ module Locomotive
     # @param [ Array ] The ordered array of ids
     #
     def self.sort_entries!(ids)
-      list = self.any_in(_id: ids.map { |id| BSON::ObjectId.from_string(id.to_s) }).to_a
+      list = self.any_in(_id: ids.map { |id| Moped::BSON::ObjectId.from_string(id.to_s) }).to_a
       ids.each_with_index do |id, position|
         if entry = list.detect { |e| e._id.to_s == id.to_s }
           entry.update_attributes _position: position
@@ -154,7 +154,7 @@ module Locomotive
       criterion = self.content_type.order_by_attribute.to_sym.send(matcher)
       value     = self.send(self.content_type.order_by_attribute.to_sym)
 
-      self.class.where(criterion => value).order_by([order_by]).limit(1).first
+      self.class.where(criterion => value).order_by(:order_by.asc).limit(1).first
     end
 
     # Sets the slug of the instance by using the value of the highlighted field
@@ -172,7 +172,7 @@ module Locomotive
     # Return the next available unique slug as a string
     def next_unique_slug
       slug        = self._slug.gsub(/-\d*$/, '')
-      last_slug   = self.class.where(:_id.ne => self._id, _slug: /^#{slug}-?\d*?$/i).order_by(:_slug).last._slug
+      last_slug   = self.class.where(:_id.ne => self._id, _slug: /^#{slug}-?\d*?$/i).order_by(:_slug.asc).last._slug
       next_number = last_slug.scan(/-(\d)$/).flatten.first.to_i + 1
       [slug, next_number].join('-')
     end

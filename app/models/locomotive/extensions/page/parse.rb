@@ -7,7 +7,7 @@ module Locomotive
 
         included do
           ## fields ##
-          field :serialized_template,   type: Binary, localize: true
+          field :serialized_template,   type: Moped::BSON::Binary, localize: true
           field :template_dependencies, type: Array, default: [], localize: true
           field :snippet_dependencies,  type: Array, default: [], localize: true
 
@@ -61,7 +61,7 @@ module Locomotive
         end
 
         def _serialize_template
-          self.serialized_template = BSON::Binary.new(Marshal.dump(@template))
+          self.serialized_template = Moped::BSON::Binary.new(:generic, Marshal.dump(@template))
         end
 
         def parse(context = {})

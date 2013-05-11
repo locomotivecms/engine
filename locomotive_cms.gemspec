@@ -24,13 +24,12 @@ Gem::Specification.new do |s|
   s.add_dependency 'devise-encryptable',              '~> 0.1.1'
   s.add_dependency 'cancan',                          '1.6.7'
 
-  s.add_dependency 'mongo',                           '~> 1.5.2'
-  s.add_dependency 'bson_ext',                        '~> 1.5.2'
-  s.add_dependency 'mongoid',                         '~> 2.4.12'
-  s.add_dependency 'locomotive-mongoid-tree',         '~> 0.6.2'
-  s.add_dependency 'locomotive-mongoid_migration'
+  # s.add_dependency 'mongo'
+  s.add_dependency 'mongoid',                         '~> 3.1.3'
+  s.add_dependency 'mongoid-tree',                    '~> 1.0.1'
+  s.add_dependency 'locomotive-mongoid_migration',    '~> 0.0.7'
 
-  s.add_dependency 'custom_fields',                   '~> 2.1.0'
+  # s.add_dependency 'custom_fields',                   '~> 2.1.0'
 
   s.add_dependency 'kaminari',                        '~> 0.14.1'
 
@@ -51,7 +50,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'highline',                        '~> 1.6.2'
   s.add_dependency 'stringex',                        '~> 1.5.1'
 
-  s.add_dependency 'carrierwave-mongoid',             '~> 0.2.2'
+  # s.add_dependency 'carrierwave-mongoid',             '~> 0.5.0'
   s.add_dependency 'fog',                             '~> 1.3.1'
   s.add_dependency 'dragonfly',                       '~> 0.9.8'
   s.add_dependency 'rack-cache',                      '~> 1.1'
@@ -62,6 +61,8 @@ Gem::Specification.new do |s|
   s.add_dependency 'actionmailer-with-request',       '~> 0.3.0'
 
   s.add_dependency 'SystemTimer' if RUBY_VERSION =~ /1.8/
+  
+  s.add_development_dependency "faye-websocket", '~> 0.4.7' # with 0.5, cucumber features are broken.
 
   s.files        = Dir[ 'Gemfile',
                         '{app}/**/*',

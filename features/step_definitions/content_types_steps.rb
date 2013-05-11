@@ -19,7 +19,7 @@ end
 
 Given %r{^I have a custom model named "([^"]*)" with id "([^"]*)" and$} do |name, id, fields|
   content_type = build_content_type(name)
-  content_type.id = BSON::ObjectId(id)
+  content_type.id = Moped::BSON::ObjectId(id)
   set_custom_fields_from_table(content_type, fields)
   content_type.valid?
   content_type.save.should be_true
@@ -55,8 +55,11 @@ end
 
 Given %r{^I have entries for "([^"]*)" with$} do |name, entries|
   content_type = Locomotive::ContentType.where(name: name).first
-  entries.hashes.each do |entry|
-    content_type.entries.create(entry)
+  entries.hashes.each do |attributes|
+    entry_id  = attributes.delete('id')
+    entry     = content_type.entries.build(attributes)
+    entry.id  = entry_id if entry_id
+    entry.save!
   end
   content_type.save.should be_true
 end

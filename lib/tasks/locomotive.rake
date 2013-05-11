@@ -52,7 +52,7 @@ namespace :locomotive do
 
           value = el.attributes['source']
 
-          page.collection.update({ '_id' => page._id }, { '$unset' => { "editable_elements.#{index}.content" => 1 }, '$set' => { "editable_elements.#{index}.source" => { 'en' => value } } })
+          page.collection.find(_id: page._id).update('$unset' => { "editable_elements.#{index}.content" => 1 }, '$set' => { "editable_elements.#{index}.source" => { 'en' => value } })
         end
       end
     end
@@ -104,7 +104,7 @@ namespace :locomotive do
 
           # persist the modifications
           unless modifications.empty?
-            page.collection.update({ '_id' => page._id }, { '$set' => modifications })
+            page.collection.find(_id: page._id).update('$set' => modifications)
           end
         end
       end

@@ -9,7 +9,7 @@ module Locomotive
     field :template, localize: true
 
     ## associations ##
-    referenced_in :site, class_name: 'Locomotive::Site'
+    belongs_to :site, class_name: 'Locomotive::Site'
 
     ## callbacks ##
     before_validation :normalize_slug

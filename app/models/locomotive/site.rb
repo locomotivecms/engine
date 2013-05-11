@@ -14,13 +14,13 @@ module Locomotive
     field :robots_txt
 
     ## associations ##
-    references_many :pages,           class_name: 'Locomotive::Page',          validate: false
-    references_many :snippets,        class_name: 'Locomotive::Snippet',       dependent: :destroy, validate: false
-    references_many :theme_assets,    class_name: 'Locomotive::ThemeAsset',    dependent: :destroy, validate: false
-    references_many :content_assets,  class_name: 'Locomotive::ContentAsset',  dependent: :destroy, validate: false
-    references_many :content_types,   class_name: 'Locomotive::ContentType',   dependent: :destroy, validate: false
-    references_many :translations,    class_name: 'Locomotive::Translation',   dependent: :destroy, validate: false
-    embeds_many     :memberships,     class_name: 'Locomotive::Membership'
+    has_many    :pages,           class_name: 'Locomotive::Page',          validate: false
+    has_many    :snippets,        class_name: 'Locomotive::Snippet',       dependent: :destroy, validate: false
+    has_many    :theme_assets,    class_name: 'Locomotive::ThemeAsset',    dependent: :destroy, validate: false
+    has_many    :content_assets,  class_name: 'Locomotive::ContentAsset',  dependent: :destroy, validate: false
+    has_many    :content_types,   class_name: 'Locomotive::ContentType',   dependent: :destroy, validate: false
+    has_many    :translations,    class_name: 'Locomotive::Translation',   dependent: :destroy, validate: false
+    embeds_many :memberships,     class_name: 'Locomotive::Membership'
 
     ## validations ##
     validates_presence_of :name

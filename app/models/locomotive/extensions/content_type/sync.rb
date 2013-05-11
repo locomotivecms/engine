@@ -49,11 +49,11 @@ module Locomotive
 
           operations['$set']['entries_custom_fields_version'] = content_type.entries_custom_fields_version
 
-          self.collection.update({ '_id' => content_type._id }, operations)
+          self.collection.find(_id: content_type._id).update(operations)
 
           collection, selector = content_type.entries.collection, content_type.entries.criteria.selector
 
-          collection.update selector, { '$set' => { 'custom_fields_recipe' => content_type.custom_fields_recipe_for(:entries) } }, multi: true
+          collection.find(selector).update({ '$set' => { 'custom_fields_recipe' => content_type.custom_fields_recipe_for(:entries) } }, multi: true)
         end
 
       end

@@ -7,7 +7,8 @@ module ActionDispatch
         include Mongoid::Timestamps
 
         field :data, type: String, default: [Marshal.dump({})].pack("m*")
-        index :updated_at
+
+        index updated_at: 1
       end
 
       # The class used for session storage.
@@ -18,7 +19,7 @@ module ActionDispatch
 
       private
         def generate_sid
-          BSON::ObjectId.new
+          Moped::BSON::ObjectId.new
         end
 
         def get_session(env, sid)
@@ -38,9 +39,8 @@ module ActionDispatch
         end
 
         def find_session(id)
-          id = BSON::ObjectId.from_string(id.to_s)
-          @@session_class.first(conditions: { _id: id }) ||
-            @@session_class.new(id: id)
+          id = Moped::BSON::ObjectId.from_string(id.to_s)
+          @@session_class.where(_id: id).first || @@session_class.new(id: id)
         end
 
         def pack(data)

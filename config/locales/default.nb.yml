@@ -6,7 +6,7 @@ nb:
   mongoid:
     errors:
       messages:
-        blank_on_locale: "må fylles ut"
+        blank_in_locale: "må fylles ut"
 
   errors:
     messages:

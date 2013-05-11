@@ -8,7 +8,7 @@ module Locomotive
         included do
 
           ## fields ##
-          field :locales, type: 'RawArray', default: []
+          field :locales, type: ::RawArray, default: []
 
           ## validations ##
           validate :can_not_remove_default_locale
@@ -67,7 +67,7 @@ module Locomotive
         end
 
         def default_locale_was
-          self.locales_was.first || Locomotive.config.site_locales.first
+          self.locales_was.try(:first) || Locomotive.config.site_locales.first
         end
 
         def locale_fallbacks(locale)
@@ -100,7 +100,7 @@ module Locomotive
                 modifications['title'][locale]    = title
               end
 
-              page.collection.update({ _id: page._id }, { '$set' => modifications })
+              page.collection.find(_id: page._id).update('$set' => modifications)
             end
           end
         end

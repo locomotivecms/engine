@@ -41,6 +41,8 @@
 
       = g.input :localized, as: :'Locomotive::Toggle', wrapper_html: { class: 'localized' }, input_html: { class: 'localized' }
 
+      = g.input :unique, as: :'Locomotive::Toggle', wrapper_html: {class: 'unique'}, input_html: { class: 'unique'}
+
       = g.input :select_options, as: :'Locomotive::Empty', wrapper_html: { class: 'extra select-options', style: 'display: none' }
 
       = g.input :text_formatting, as: :select, collection: options_for_text_formatting, include_blank: false, wrapper_html: { class: 'extra text-formatting' }, input_html: { class: 'text_formatting' }

@@ -19,7 +19,7 @@ end
 
 Given /^a snippet named "([^"]*)" with id "([^"]*)" and template:$/ do |name, id, template|
   @snippet = new_snippet(name, template)
-  @snippet.id = BSON::ObjectId(id)
+  @snippet.id = Moped::BSON::ObjectId(id)
   @snippet.save!
 end
 

@@ -13,9 +13,9 @@ module Locomotive
     field :name
     field :description
     field :slug
-    field :label_field_id,              type: BSON::ObjectId
+    field :label_field_id,              type: Moped::BSON::ObjectId
     field :label_field_name
-    field :group_by_field_id,           type: BSON::ObjectId
+    field :group_by_field_id,           type: Moped::BSON::ObjectId
     field :order_by
     field :order_direction,             default: 'asc'
     field :public_submission_enabled,   type: Boolean, default: false
@@ -32,10 +32,10 @@ module Locomotive
     end
 
     ## named scopes ##
-    scope :ordered, order_by: :updated_at.desc
+    scope :ordered, order_by(updated_at: :desc)
 
     ## indexes ##
-    index [[:site_id, Mongo::ASCENDING], [:slug, Mongo::ASCENDING]]
+    index site_id: 1, slug: 1
 
     ## callbacks ##
     before_validation   :normalize_slug

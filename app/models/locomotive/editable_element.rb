@@ -24,7 +24,7 @@ module Locomotive
     after_save :propagate_content, if: :fixed?
 
     ## scopes ##
-    scope :by_priority, order_by: [[:priority, :desc]]
+    scope :by_priority, order_by(priority: :desc)
 
     ## methods ##
 
@@ -61,6 +61,11 @@ module Locomotive
     # @param [ Hash ] attributes The up-to-date attributes
     #
     def copy_attributes(attributes)
+      # _type is among the mass-assign protected attributes.
+      if type = attributes.delete(:_type)
+        self._type = type
+      end
+
       self.attributes = attributes
     end
 

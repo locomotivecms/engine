@@ -215,7 +215,7 @@ describe Locomotive::Liquid::Filters::Html do
       end
 
       def fake_bson_id(id)
-        BSON::ObjectId(id.to_s.rjust(24, '0'))
+        Moped::BSON::ObjectId(id.to_s.rjust(24, '0'))
       end
     end
     klass.new

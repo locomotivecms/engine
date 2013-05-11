@@ -55,7 +55,7 @@ fr:
   mongoid:
     errors:
       messages:
-        blank_on_locale: "doit être rempli(e)"
+        blank_in_locale: "doit être rempli(e)"
 
     attributes:
       locomotive/page:

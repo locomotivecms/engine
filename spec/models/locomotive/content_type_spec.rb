@@ -290,7 +290,7 @@ describe Locomotive::ContentType do
       end
 
       it 'removes a field' do
-        @content_type.entries_custom_fields.destroy_all conditions: { name: 'active_at' }
+        @content_type.entries_custom_fields.destroy_all(name: 'active_at')
         @content_type.save && @content_type.reload
         asset = @content_type.entries.first
         lambda { asset.active_at }.should raise_error
@@ -298,7 +298,7 @@ describe Locomotive::ContentType do
 
       it 'removes the field used as the label when setting the original label_field_name value before' do
         @content_type.label_field_name = 'name'
-        @content_type.entries_custom_fields.destroy_all conditions: { name: @content_type.label_field_name }
+        @content_type.entries_custom_fields.destroy_all(name: @content_type.label_field_name)
         @content_type.save
         @content_type.label_field_name.should == 'description'
       end
@@ -360,6 +360,7 @@ describe Locomotive::ContentType do
 
   def safe_find(klass, id)
     Mongoid::IdentityMap.clear
+    Rails.logger.debug "---> reload #{klass}, #{id}!!!!!"
     klass.find(id)
   end
 

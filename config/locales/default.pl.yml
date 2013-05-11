@@ -56,7 +56,7 @@ pl:
   mongoid:
     errors:
       messages:
-        blank_on_locale: "nie może być pusty"
+        blank_in_locale: "nie może być pusty"
 
     attributes:
       locomotive/page:
@@ -314,4 +314,4 @@ pl:
       create: 'Utwórz %{model}'
       update: 'Aktualizuj %{model}'
       submit: 'Zapisz %{model}'
-  
+

@@ -57,6 +57,9 @@ it:
           body: "{% extends 'parent' %}"
 
   mongoid:
+    errors:
+      messages:
+        blank_in_locale: "non può essere lasciato in bianco"
     attributes:
       page:
         title: Titolo

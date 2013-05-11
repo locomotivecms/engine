@@ -24,7 +24,7 @@ end
 
 Given /^a javascript asset named "([^"]*)" with id "([^"]*)"$/ do |name, id|
   @asset = new_plain_text_asset(name, 'javascript')
-  @asset.id = BSON::ObjectId(id)
+  @asset.id = Moped::BSON::ObjectId(id)
   @asset.save!
 end
 
@@ -34,7 +34,7 @@ end
 
 Given /^a stylesheet asset named "([^"]*)" with id "([^"]*)"$/ do |name, id|
   @asset = new_plain_text_asset(name, 'stylesheet')
-  @asset.id = BSON::ObjectId(id)
+  @asset.id = Moped::BSON::ObjectId(id)
   @asset.save!
 end
 

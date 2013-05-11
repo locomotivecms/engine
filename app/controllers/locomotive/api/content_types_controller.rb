@@ -5,7 +5,7 @@ module Locomotive
       load_and_authorize_resource class: Locomotive::ContentType, through: :current_site
 
       def index
-        @content_types = @content_types.order_by([[:name, :asc]])
+        @content_types = @content_types.order_by(:name.asc)
         respond_with(@content_types)
       end
 

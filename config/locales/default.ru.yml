@@ -1,4 +1,4 @@
-ru:  
+ru:
   errors:
       messages:
         domain_taken: "%{value} уже занято"
@@ -15,7 +15,7 @@ ru:
           liquid_extend: "Страница '%{fullpath}' наследует (расширяет) несуществующий шаблон"
           liquid_translation: "Страница '%{fullpath}' наследует (расширяет) непереведенный шаблон"
         too_few_custom_fields: "По крайней мере одно поле является обязательным"
-        security: "проблема безопасности"  
+        security: "проблема безопасности"
 
   attributes:
     defaults:
@@ -30,6 +30,9 @@ ru:
           body: "{% extends 'parent' %}"
 
   mongoid:
+    errors:
+      messages:
+        blank_in_locale: "не может быть пустым"
     attributes:
       page:
         title: Имя
@@ -89,7 +92,7 @@ ru:
       default: "%d.%m.%Y"
       short: "%d %b"
       long: "%d %B %Y"
-    
+
     # Названия дней недели -- контекстные и отдельностоящие
     day_names: [воскресенье, понедельник, вторник, среда, четверг, пятница, суббота]
     standalone_day_names: [Воскресенье, Понедельник, Вторник, Среда, Четверг, Пятница, Суббота]
@@ -97,19 +100,19 @@ ru:
 
     # Названия месяцев -- сокращенные и полные, плюс отдельностоящие.
     # Не забудьте nil в начале массиве (~)
-    # 
+    #
     #
     # Don't forget the nil at the beginning; there's no such thing as a 0th month
     month_names: [~, января, февраля, марта, апреля, мая, июня, июля, августа, сентября, октября, ноября, декабря]
     standalone_month_names: [~, Январь, Февраль, Март, Апрель, Май, Июнь, Июль, Август, Сентябрь, Октябрь, Ноябрь, Декабрь]
     abbr_month_names: [~, янв., февр., марта, апр., мая, июня, июля, авг., сент., окт., нояб., дек.]
     standalone_abbr_month_names: [~, янв., февр., март, апр., май, июнь, июль, авг., сент., окт., нояб., дек.]
-    
+
     # Порядок компонентов даты для хелперов
     #
     #
     # Used in date_select and datime_select.
-    order: 
+    order:
       - :day
       - :month
       - :year
@@ -120,7 +123,7 @@ ru:
       default: "%a, %d %b %Y, %H:%M:%S %z"
       short: "%d %b, %H:%M"
       long: "%d %B %Y, %H:%M"
-    
+
     # am/pm решено перевести как "утра/вечера" :)
     am: "утра"
     pm: "вечера"
@@ -138,7 +141,7 @@ ru:
       delimiter: " "
       # Number of decimals, behind the separator (the number 1 with a precision of 2 gives: 1.00)
       precision: 3
-      
+
     # Used in number_to_currency()
     currency:
       format:
@@ -152,14 +155,14 @@ ru:
         separator: "."
         delimiter: " "
         precision: 2
-        
+
     # Used in number_to_percentage()
     percentage:
       format:
         # These three are to override number.format and are optional
-        # separator: 
+        # separator:
         delimiter: ""
-        
+
     # Used in number_to_precision()
     precision:
       format:
@@ -167,18 +170,18 @@ ru:
         # separator:
         delimiter: ""
         # precision:
-        
+
     # Used in number_to_human_size()
     human:
       format:
         # These three are to override number.format and are optional
-        # separator: 
+        # separator:
         delimiter: ""
         precision: 1
-      
+
       # Rails 2.2
       # storage_units: [байт, КБ, МБ, ГБ, ТБ]
-      
+
       # Rails 2.3
       storage_units:
         # Storage units output formatting.
@@ -272,7 +275,7 @@ ru:
       # Rails 2.2
       sentence_connector: "и"
       skip_last_comma: true
-      
+
       # Rails 2.3
       words_connector: ", "
       two_words_connector: " и "

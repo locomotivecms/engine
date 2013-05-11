@@ -57,7 +57,7 @@ de:
   mongoid:
     errors:
       messages:
-        blank_on_locale: "darf nicht leer sein"
+        blank_in_locale: "darf nicht leer sein"
 
     attributes:
       page:

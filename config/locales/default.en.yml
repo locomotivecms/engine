@@ -6,7 +6,7 @@ en:
   mongoid:
     errors:
       messages:
-        blank_on_locale: "can't be blank"
+        blank_in_locale: "can't be blank"
 
   errors:
       messages:

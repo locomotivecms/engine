@@ -27,6 +27,10 @@ module Locomotive
         def count
           @count ||= self.collection.count
         end
+        
+        def all
+          self.collection
+        end
 
         alias :size   :count
         alias :length :count
