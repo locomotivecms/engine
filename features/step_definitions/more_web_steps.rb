@@ -67,7 +67,7 @@ Then /^it returns a (\d+) error page$/ do |code|
 end
 
 Then /^I should see the following xml output:$/ do |xml_output|
-  xml_output.gsub!(':now', Date.today.to_s)
+  xml_output.gsub!(':now', Time.now.utc.to_date.to_s)
   response = Hash.from_xml(page.source)
   expected = Hash.from_xml(xml_output)
   expected.diff(response).should == {}

@@ -6,7 +6,7 @@ module Locomotive
     properties  :name, :slug
 
     # must to be declared before the others
-    collection  :entries_custom_fields, alias: :fields, presenter: ContentFieldPresenter
+    property    :entries_custom_fields, alias: :fields
 
     property    :description, required: false
 
@@ -23,6 +23,11 @@ module Locomotive
     end
 
     ## other getters / setters ##
+
+    def entries_custom_fields
+      list = self.__source.ordered_entries_custom_fields
+      list ? list.map(&:as_json) : []
+    end
 
     def entries_custom_fields=(fields)
       destroyed_fields = []
