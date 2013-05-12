@@ -38,7 +38,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'rails-backbone',                  '~> 0.7.2'
   s.add_dependency 'codemirror-rails',                '~> 2.21'
   s.add_dependency 'locomotive-tinymce-rails',        '~> 3.5.8.1'
-  s.add_dependency 'locomotive-aloha-rails',          '~> 0.23.2.1'
+  s.add_dependency 'locomotive-aloha-rails',          '~> 0.23.2.2'
   s.add_dependency 'flash_cookie_session',            '~> 1.1.1'
 
   s.add_dependency 'locomotive_liquid',               '~> 2.4.2'
@@ -61,7 +61,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'actionmailer-with-request',       '~> 0.3.0'
 
   s.add_dependency 'SystemTimer' if RUBY_VERSION =~ /1.8/
-  
+
   s.add_development_dependency "faye-websocket", '~> 0.4.7' # with 0.5, cucumber features are broken.
 
   s.files        = Dir[ 'Gemfile',
