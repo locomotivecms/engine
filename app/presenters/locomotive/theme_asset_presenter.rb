@@ -3,8 +3,8 @@ module Locomotive
 
     ## properties ##
 
-    properties  :content_type,  :folder
-    property    :plain_text,    allow_nil: false
+    properties  :content_type, :folder, :checksum
+    property    :plain_text,    allow_nil: false, description: 'Only returned after an update'
 
     with_options only_setter: true do |presenter|
       presenter.properties :plain_text_name, :plain_text_type, :performing_plain_text, :source

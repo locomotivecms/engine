@@ -13,6 +13,8 @@ module Locomotive
     field :height,  type: Integer
     field :size,    type: Integer
     field :folder,  default: nil
+    field :checksum
+
     mount_uploader :source, ThemeAssetUploader, mount_on: :source_filename, validate_integrity: true
 
     ## associations ##
@@ -27,6 +29,7 @@ module Locomotive
     before_validation :store_plain_text
     before_validation :sanitize_folder
     before_validation :build_local_path
+    before_save       :calculate_checksum
 
     ## validations ##
     validates_presence_of   :site
@@ -156,7 +159,7 @@ module Locomotive
     def check_for_folder_changes
       # https://github.com/jnicklas/carrierwave/issues/330
       # https://github.com/jnicklas/carrierwave-mongoid/issues/23
-      if self.persisted? && self.folder_changed? && !self.source_filename_changed?
+      if self.persisted? && self.folder_changed? && !self.changed_attributes.key?('source_filename')
         # a simple way to rename a file
         old_asset         = self.class.where(_id: self._id).first # bypass memoization by mongoid
         file              = old_asset.source.file
@@ -168,6 +171,14 @@ module Locomotive
 
     def content_type_can_not_change
       self.errors.add(:source, :extname_changed) if self.persisted? && self.content_type_changed?
+    end
+
+    def calculate_checksum
+      begin
+        self.checksum = Digest::MD5.hexdigest(self.source.read)
+      rescue Errno::ENOENT => e
+        # no file
+      end
     end
 
   end

@@ -95,6 +95,12 @@ describe Locomotive::ThemeAsset do
       @asset.size.should == 25
     end
 
+    it 'sets the checksum when it is saved' do
+      @asset.source = FixturedAsset.open('5k.png')
+      @asset.save
+      @asset.checksum.should == 'f1af16493e6cba9eaed7bc8a8643246e'
+    end
+
   end
 
   describe 'creating from plain text' do
