@@ -20,7 +20,7 @@ module Locomotive
         def initialize(tag_name, markup, tokens, context)
           @attributes = HashWithIndifferentAccess.new
           markup.scan(TagAttributes) do |key, value|
-            key = key_to_h4s_symbol(key)
+            key = prepare_key(key)
             @attributes[key] = value
           end
           super
@@ -41,9 +41,13 @@ module Locomotive
           end
         end
 
-        def key_to_h4s_symbol(key)
+        def prepare_key(key)
           _key, _operator = key.split('.')
 
+          # _slug instead of _permalink
+          _key = '_slug' if _key == '_permalink'
+
+          # key to h4s symbol
           if %w(all exists gt gte in lt lte ne nin size near within).include?(_operator)
             _key.to_s.to_sym.send(_operator.to_sym)
           else

@@ -26,13 +26,19 @@ describe Locomotive::Liquid::Tags::WithScope do
   it 'stores attributes in the context' do
     template = ::Liquid::Template.parse("{% with_scope active:true title:'foo' %}{{ with_scope.active }}-{{ with_scope.title }}{% endwith_scope %}")
     text = template.render
-    text.should == "true-foo"
+    text.should == 'true-foo'
   end
 
   it 'allows a variable condition inside a loop' do
     template = ::Liquid::Template.parse("{%for i in (1..3)%}{% with_scope number: i %}{{ with_scope.number}}{% endwith_scope %}{%endfor%}")
     text = template.render
-    text.should == "123"
+    text.should == '123'
+  end
+
+  it 'replaces _permalink by _slug' do
+    template = ::Liquid::Template.parse("{% with_scope _permalink: 'foo' %}{{ with_scope._slug }}{% endwith_scope %}")
+    text = template.render
+    text.should == 'foo'
   end
 
   describe "advanced queries thanks to h4s" do
