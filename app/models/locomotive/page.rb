@@ -38,6 +38,7 @@ module Locomotive
     before_save         :build_fullpath
     before_save         :record_current_locale
     before_destroy      :do_not_remove_index_and_404_pages
+    after_save          :update_children
 
     ## validations ##
     validates_presence_of     :site,    :title, :slug
@@ -118,6 +119,10 @@ module Locomotive
         slugs.shift unless slugs.size == 1
         self.fullpath = File.join slugs.compact
       end
+    end
+    
+    def update_children
+      self.children.map(&:save) if self.slug_changed? or self.fullpath_changed?
     end
 
     def record_current_locale

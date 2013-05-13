@@ -180,6 +180,15 @@ describe Locomotive::Page do
       archives.reload.children.count.should == 2
       archives.children.last.depth.should == 2
       archives.children.last.children.first.depth.should == 3
+      
+    end
+    
+    it "builds children fullpaths" do
+      sub_child_1 = FactoryGirl.create(:page, title: 'Sub Subpage 1', slug: 'bar', parent: @child_1, site: @home.site)
+      sub_child_1.fullpath.should == "foo/bar"
+      @child_1.slug = "milky"
+      @child_1.save
+      sub_child_1.reload.fullpath.should == "milky/bar"
     end
 
     it 'destroys descendants as well' do
