@@ -1,12 +1,3 @@
-GIT
-  remote: git://github.com/locomotivecms/carrierwave-mongoid.git
-  revision: 5010c270ae1911f8067ba832aa0b1908cef03fda
-  specs:
-    carrierwave-mongoid (0.5.0)
-      carrierwave (~> 0.8.0)
-      mongoid (>= 3.0, < 5.0)
-      mongoid-grid_fs (~> 1.3)
-
 PATH
   remote: .
   specs:
@@ -14,6 +5,7 @@ PATH
       RedCloth (~> 4.2.8)
       actionmailer-with-request (~> 0.3.0)
       cancan (= 1.6.7)
+      carrierwave-mongoid (~> 0.6.0)
       cells (~> 3.8.0)
       codemirror-rails (~> 2.21)
       devise (~> 2.2.3)
@@ -48,7 +40,7 @@ PATH
   specs:
     custom_fields (2.2.0)
       activesupport (~> 3.2.13)
-      carrierwave-mongoid (~> 0.5.0)
+      carrierwave-mongoid (~> 0.6.0)
       money (~> 5.0)
       mongoid (~> 3.1.3)
 
@@ -102,6 +94,10 @@ GEM
     carrierwave (0.8.0)
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
+    carrierwave-mongoid (0.6.0)
+      carrierwave (~> 0.8.0)
+      mongoid (>= 3.0, < 5.0)
+      mongoid-grid_fs (~> 1.3)
     cells (3.8.8)
       actionpack (>= 3.0)
       railties (>= 3.0)
@@ -134,13 +130,13 @@ GEM
       nokogiri (>= 1.5.0)
       rails (~> 3.0)
     database_cleaner (0.9.1)
-    devise (2.2.3)
+    devise (2.2.4)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.1)
       railties (~> 3.1)
       warden (~> 1.2.1)
-    devise-encryptable (0.1.1)
-      devise (>= 2.1.0.rc)
+    devise-encryptable (0.1.2)
+      devise (>= 2.1.0)
     diff-lcs (1.2.4)
     dragonfly (0.9.15)
       multi_json (~> 1.0)
@@ -179,7 +175,7 @@ GEM
       multi_json (~> 1.3)
     haml (4.0.2)
       tilt
-    highline (1.6.18)
+    highline (1.6.19)
     hike (1.2.2)
     http_parser.rb (0.5.3)
     httparty (0.8.3)
@@ -344,7 +340,6 @@ PLATFORMS
 
 DEPENDENCIES
   capybara (~> 2.0.2)
-  carrierwave-mongoid!
   coffee-rails (~> 3.2.2)
   compass-rails
   cucumber-rails

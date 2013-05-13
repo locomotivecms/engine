@@ -31,7 +31,7 @@ group :development do
   # gem 'locomotive-tinymce-rails', path: '../gems/tinymce-rails' # for Developers
   # gem 'locomotive_liquid', path: '../gems/liquid' # for Developers
 
-  gem 'carrierwave-mongoid', git: 'git://github.com/locomotivecms/carrierwave-mongoid.git'
+  # gem 'carrierwave-mongoid', git: 'git://github.com/locomotivecms/carrierwave-mongoid.git'
 
   gem 'unicorn' # Using unicorn_rails instead of webrick (default server)
 
