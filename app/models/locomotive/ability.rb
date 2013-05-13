@@ -33,8 +33,11 @@ module Locomotive
     end
 
     def setup_author_permissions!
-      can :touch, [Page, ThemeAsset]
-      can :sort, Page
+      can :touch, ThemeAsset
+
+      can [:read, :create, :update], Page
+      cannot :destroy, Page
+      cannot :customize, Page
 
       can :manage, [ContentEntry, ContentAsset, Translation]
 

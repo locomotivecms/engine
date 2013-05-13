@@ -41,7 +41,7 @@ Feature: Pages
   Scenario: Accessing pages as an Author
     Given I am an authenticated "author"
     When I go to pages
-    Then I should not see "new page"
+    Then I should see "new page"
     And I should not see delete page buttons
     And I should not see "new model"
     And I should see "Projects"
@@ -61,8 +61,8 @@ Feature: Pages
   Scenario: Accessing new page as an Author
     Given I am an authenticated "author"
     When I go to the new page
-    Then I should be on the pages list
-    And I should see the access denied message
+    Then I should see "New page"
+    And I should not see "Template"
 
   # edit page
 
@@ -90,6 +90,6 @@ Feature: Pages
     Then I should see "some title"
     And I should not see "General Information"
     And I should see "SEO settings"
-    And I should not see "Advanced options"
+    And I should see "Advanced options"
     And I should not see "Template"
 

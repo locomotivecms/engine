@@ -110,7 +110,9 @@ Feature: Pages
       }
     }
     """
-    Then an access denied error should occur
+    When I do an API GET request to pages.json
+    Then the JSON response should be an array
+    And the JSON response should have 5 entries
 
   # update page
 

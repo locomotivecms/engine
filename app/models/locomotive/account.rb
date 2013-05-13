@@ -31,6 +31,9 @@ module Locomotive
     ## callbacks ##
     before_destroy :remove_memberships!
 
+    ## scopes ##
+    scope :ordered, order_by(name: :asc)
+
     ## indexes ##
     index({ email: 1 }, { unique: true, background: true })
 

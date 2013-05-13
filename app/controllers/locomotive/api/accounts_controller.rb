@@ -5,6 +5,7 @@ module Locomotive
       load_and_authorize_resource class: Locomotive::Account
 
       def index
+        @accounts = @accounts.ordered
         respond_with(@accounts)
       end
 

@@ -42,7 +42,7 @@ module Locomotive
 
     ## validations ##
     validates_presence_of     :site,    :title, :slug
-    validates_uniqueness_of   :slug,    scope: [:site_id, :parent_id]
+    validates_uniqueness_of   :slug,    scope: [:site_id, :parent_id], allow_blank: true
     validates_uniqueness_of   :handle,  scope: :site_id, allow_blank: true
     validates_exclusion_of    :slug,    in: Locomotive.config.reserved_slugs, if: Proc.new { |p| p.depth <= 1 }
 
@@ -120,7 +120,7 @@ module Locomotive
         self.fullpath = File.join slugs.compact
       end
     end
-    
+
     def update_children
       self.children.map(&:save) if self.slug_changed? or self.fullpath_changed?
     end

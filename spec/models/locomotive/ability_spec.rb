@@ -17,15 +17,29 @@ describe Locomotive::Ability do
 
     context 'management' do
       it 'should allow management of pages from (admin, designer, author)' do
-        should     allow_permission_from :manage, @admin
-        should     allow_permission_from :manage, @designer
-        should_not allow_permission_from :manage, @author
+        should      allow_permission_from :manage, @admin
+        should      allow_permission_from :manage, @designer
+        should_not  allow_permission_from :manage, @author
       end
     end
 
-    context 'touching' do
-      it 'should allow touching of pages from (author)' do
-        should allow_permission_from :touch, @author
+    context 'customizing' do
+      it 'should allow customization of pages from (admin, designer, author)' do
+        should      allow_permission_from :customizing, @admin
+        should      allow_permission_from :customizing, @designer
+        should_not  allow_permission_from :customizing, @author
+      end
+    end
+
+    context 'author operations' do
+      it 'should allow read/create/update operations for pages' do
+        should  allow_permission_from :read, @author
+        should  allow_permission_from :create, @author
+        should  allow_permission_from :update, @author
+      end
+
+      it 'should not allow deletion of pages' do
+        should_not  allow_permission_from :destroy, @author
       end
     end
 

@@ -33,7 +33,7 @@
       %span!= t('.updated_at')
       = l page.updated_at, format: :short
 
-      - if !page.index_or_not_found? && can?(:manage, page)
+      - if !page.index_or_not_found? && can?(:destroy, page)
         = link_to_icon :trash, page_url(page), class: 'remove', data: { confirm: t('locomotive.messages.confirm') }, method: :delete
 
   - if with_children
