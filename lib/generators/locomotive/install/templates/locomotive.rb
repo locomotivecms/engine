@@ -32,6 +32,10 @@ Locomotive.configure do |config|
   # tell if logs are enabled. Useful for debug purpose.
   config.enable_logs = true
 
+  # Uncomment this line to force LocomotiveCMS to redirect all requests in the
+  # back-office to https in production.
+  # config.enable_admin_ssl = Rails.env.production?
+
   # configure the e-mail address which will be shown in the DeviseMailer, NotificationMailer, ...etc
   # if you do not put the domain name in the email, LocomotiveCMS will take the default domain name depending
   # on your deployment target (server, Heroku, Bushido, ...etc)
