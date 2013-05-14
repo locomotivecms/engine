@@ -69,7 +69,7 @@ Given /^I delete the following code "([^"]*)" from the "([^"]*)" page$/ do |code
   page.save!
 end
 
-Given(/^an unpublished (\d+) page$/) do |slug|
+Given(/^the page "(.*?)" is unpublished$/) do |slug|
   page = @site.pages.where(:slug => slug).first
   page.published = false
   page.save!

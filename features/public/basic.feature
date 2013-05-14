@@ -22,7 +22,7 @@ Scenario: Missing 404 page
     """
     Hello World
     """
-  And an unpublished 404 page
+  And the page "404" is unpublished
   When I view the rendered page at "/madeup"
   Then the rendered output should look like:
     """
