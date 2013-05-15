@@ -45,12 +45,19 @@ module CustomFields
         # we need to know the url of the file without breaking the upload process.
         # Actually, the uploaded file will be written on the filesystem after the email is sent.
         #
+        # @param [ String ] host Required to build the full url in the Filesystem is used (optional)
+        #
         # @return [ String ] The url to the soon uploaded file
         #
-        def guess_url
+        def guess_url(host = nil)
           this = self.class.new(model, mounted_as)
           this.retrieve_from_store!(model.read_uploader(mounted_as))
-          this.url.to_s
+
+          if this.url =~ /^http/ || host.blank?
+            this.url
+          else
+            URI.join("http://#{host}", this.url).to_s
+          end
         end
 
         def cache_dir

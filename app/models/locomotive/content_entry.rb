@@ -6,6 +6,7 @@ module Locomotive
     ## extensions ##
     include ::CustomFields::Target
     include Extensions::Shared::Seo
+    include Extensions::ContentEntry::Csv
 
     ## fields ##
     field :_slug
@@ -138,32 +139,6 @@ module Locomotive
     #
     def self.drop_class
       Locomotive::Liquid::Drops::ContentEntry
-    end
-
-    def self.to_csv(options = {})
-      fields = @content_type.ordered_entries_custom_fields
-      CSV.generate(options) do |csv|
-        csv << fields.map(&:label)
-        all.each do |entry|
-          values = []
-          fields.each do |field|
-            value = entry.send(field.name)
-            case field.type
-            when :string, :text, :boolean, :date
-              values << value
-            when :file
-              url = value.guess_url
-              values << url =~ /^http/ ? url : URI("http://#{options[:domain]}").join(url)
-            when :select
-              values << value
-            when :belongs_to
-              values << value.try(:_label)
-            when 'has_many', 'many_to_many'
-              values << value.map(&:_label).join(', ')
-            end
-          end
-        end
-      end
     end
 
     protected

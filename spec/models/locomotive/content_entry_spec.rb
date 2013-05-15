@@ -69,7 +69,7 @@ describe Locomotive::ContentEntry do
     end
   end
 
-  describe '#i18n' do
+  describe '#I18n' do
 
     before(:each) do
       localize_content_type @content_type
@@ -86,6 +86,55 @@ describe Locomotive::ContentEntry do
       @content_entry.translated?.should be_false
       @content_entry.title = 'Bonjour'
       @content_entry.translated?.should be_true
+    end
+
+  end
+
+  describe 'csv' do
+
+    context 'entry itself' do
+
+      subject { build_content_entry }
+
+      it { should respond_to(:to_values) }
+
+      describe '#to_values' do
+
+        subject { build_content_entry.to_values(host: 'example.com') }
+
+        its(:size) { should eq(4) }
+
+        its(:first) { should eq('Locomotive') }
+
+        its(:last) { should eq('') }
+
+        context 'with a file' do
+
+          subject { build_content_entry(file: FixturedAsset.open('5k.png')).tap(&:save).to_values(host: 'example.com') }
+
+          its(:last) { should match(/^http:\/\/example.com\/sites\/[0-9a-f]+\/content_entry\/[0-9a-f]+\/files\/5k.png$/) }
+
+        end
+
+      end
+
+    end
+
+    context 'set of entries' do
+
+      before(:each) do
+        @content_type.save
+        3.times { build_content_entry(file: FixturedAsset.open('5k.png')).save! }
+      end
+
+      subject { @content_type.ordered_entries.to_csv(host: 'example.com').split("\n") }
+
+      its(:size) { should eq(4) }
+
+      its(:first) { should eq("Title,Description,Visible ?,File") }
+
+      its(:last) { should match(/^Locomotive,Lorem ipsum....,false,http:\/\/example.com\/sites\/[0-9a-f]+\/content_entry\/[0-9a-f]+\/files\/5k.png$/) }
+
     end
 
   end

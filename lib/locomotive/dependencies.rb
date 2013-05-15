@@ -21,6 +21,7 @@ require 'cancan'
 require 'cells'
 require 'sanitize'
 require 'stringex'
+require 'csv'
 
 require 'compass-rails'
 require 'codemirror/rails'

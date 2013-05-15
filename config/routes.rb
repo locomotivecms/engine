@@ -79,7 +79,7 @@ Rails.application.routes.draw do
 
         api.resources :content_types
 
-        api.resources :content_entries
+        api.resources :content_entries, path: 'content_types/:slug/entries'
 
         api.resources :theme_assets
 

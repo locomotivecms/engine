@@ -71,6 +71,11 @@ Scenario: Destroy an entry
   Then I should see "Entry was successfully deleted." in the html code
   And I should not see "My sexy project"
 
+Scenario: Export list of entries
+  When I go to the list of "Projects"
+  And I follow "Export"
+  Then I should get a download with the filename "projects.csv"
+
 Scenario: Group entries by category
   When I go to the list of "Projects"
   Then I should not see "Development"

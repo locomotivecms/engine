@@ -8,7 +8,7 @@ module HTTPHelpers
 
   def do_request(type, base_url, url, params)
     request_method = type.downcase.to_sym
-    send(request_method, "#{base_url}/#{url}", default_params.merge(params))
+    send(request_method, URI.join(base_url, url).to_s, default_params.merge(params))
   end
 
   protected
