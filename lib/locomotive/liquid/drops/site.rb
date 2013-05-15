@@ -10,9 +10,17 @@ module Locomotive
         end
 
         def pages
-          @pages ||= liquify(*self._source.pages)
+          @pages ||= liquify(*self.scoped_pages)
         end
-
+        
+        protected
+        def scoped_pages
+          if @context["with_scope"]
+            self._source.pages.where(@context["with_scope"])
+          else
+            self._source.pages
+          end
+        end
       end
     end
   end
