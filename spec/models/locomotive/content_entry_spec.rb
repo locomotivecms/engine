@@ -67,6 +67,12 @@ describe Locomotive::ContentEntry do
       build_content_entry(_slug: 'fish-1-hi').tap(&:save!)._slug.should == 'fish-1-hi'
       build_content_entry(_slug: 'fish-1-hi').tap(&:save!)._slug.should == 'fish-1-hi-1'
     end
+    
+    it 'correctly handles more than 13 slugs with the same name' do
+      (1..15).each do |i|
+        build_content_entry(_slug: 'dogs').tap(&:save!)._slug.should == "dogs-#{i}"
+      end
+    end
   end
 
   describe '#I18n' do
