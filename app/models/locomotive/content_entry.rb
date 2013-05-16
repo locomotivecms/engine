@@ -172,9 +172,9 @@ module Locomotive
 
     # Return the next available unique slug as a string
     def next_unique_slug
-      slug        = self._slug.gsub(/-\d*$/, '')
-      last_slug   = self.class.where(:_id.ne => self._id, _slug: /^#{slug}-?\d*?$/i).order_by(:_slug.asc).last._slug
-      next_number = last_slug.scan(/-(\d)$/).flatten.first.to_i + 1
+      slug        = self._slug.gsub(/-\d+$/, '')
+      similar_slugs   = self.class.where(:_id.ne => self._id, _slug: /^#{slug}-?\d*$/i)
+      next_number = similar_slugs.map {|s| s._slug.scan(/-(\d+)$/).flatten.last.to_i }.max + 1
       [slug, next_number].join('-')
     end
 
