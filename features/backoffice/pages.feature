@@ -4,7 +4,7 @@ Feature: Manage Pages
   I want to add/edit/delete pages of my site
 
 Background:
-  Given I have the site: "test site" set up
+  Given I have the site: "test site" set up with name: "test site"
   And I am an authenticated user
 
 Scenario: Pages list is not accessible for non authenticated accounts
@@ -33,3 +33,22 @@ Scenario: Updating a valid page
   And I press "Save"
   Then I should see "Page was successfully updated."
   And I should have "My new content is here" in the index page
+
+@javascript
+Scenario: Localizing page slugs
+  Given the site "test site" has locales "en, es"
+  When I go to pages
+  And I follow "new page" within the main content
+  And I fill in "page_title" with "Translated"
+  And I press "Create"
+  Then I should see a "show" link to "/translated"
+  
+  When I switch the locale to "es"
+  And I fill in "page_title" with "Traducido"
+  Then I should see "/es/traducido"
+  
+  When I fill in "Slug" with "pagina-traducida"
+  Then I should see "/es/pagina-traducida"
+  
+  When I press "Save"
+  Then I should see a "show" link to "/es/pagina-traducida"

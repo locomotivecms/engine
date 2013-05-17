@@ -56,6 +56,17 @@ When /^I reload the page$/ do
   visit current_path
 end
 
+When(/^I switch the locale to "(.*?)"$/) do |locale|
+  click_on 'content-locale-picker-link'
+  within '#content-locale-picker' do
+    find("[data-locale='#{locale}']").click
+  end
+end
+
+When(/^I should see a "(.*?)" link to "(.*?)"$/) do |text, path|  
+  find(:link, text)['href'].should == path
+end
+
 Given /^I enable the CSRF protection for public submission requests$/ do
   Locomotive.config.csrf_protection = true
   Locomotive::Public::ContentEntriesController.any_instance.stubs(:protect_against_forgery?).returns(true)
