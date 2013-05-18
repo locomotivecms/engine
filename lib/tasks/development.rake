@@ -6,7 +6,7 @@ namespace :development do
       puts "This will wipe out all sites and accounts"
       delete = ask "Are you sure that you want to delete all of them? (y/n)"
       if delete == "y"
-        Mongoid.master.collections.select {|c| c.name !~ /system/ }.each(&:drop)
+        Mongoid.purge!
       else
         exit
       end
@@ -22,7 +22,7 @@ namespace :development do
     site.memberships.build account: account, role: 'admin'
     site.save!
 
-    puts "Now you have a www.sample.com site"
+    puts "Now you have a www.example.com site"
     puts "and a sample.example.com site as well. (add them to your /etc/hosts)"
     puts "You can login with admin@locomotivecms.com and \"locomotive\" password."
   end
