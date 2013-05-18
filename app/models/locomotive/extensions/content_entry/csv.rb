@@ -23,7 +23,7 @@ module Locomotive
             when :has_many, :many_to_many
               value.map(&:_label).join(', ')
             when :tags
-              raise 'TODO'
+              [*value].join(', ')
             else
               value
             end

@@ -10,7 +10,7 @@ PATH
       codemirror-rails (~> 2.21)
       devise (~> 2.2.3)
       devise-encryptable (~> 0.1.1)
-      dragonfly (~> 0.9.8)
+      dragonfly (~> 0.9.15)
       flash_cookie_session (~> 1.1.1)
       fog (~> 1.3.1)
       formtastic (~> 2.2.1)
