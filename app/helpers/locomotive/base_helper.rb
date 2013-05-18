@@ -102,6 +102,12 @@ module Locomotive
       "Locomotive.Views.#{controller.controller_name.camelize}.#{action}View"
     end
 
+    # Remove some unicode chars from javascript output
+    # You might want to scape then instead?
+    def j(string)
+      super(string).gsub(/\u000d|\u0009|\u000c|\u0085|\u2028|\u2029/,"")
+    end
+    
     def backbone_view_data
       content_for?(:backbone_view_data) ? content_for(:backbone_view_data) : ''
     end
