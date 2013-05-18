@@ -7,15 +7,23 @@ Then /^I should get a download with the filename "([^\"]*)"$/ do |filename|
 end
 
 When /^I wait until "([^"]*)" is visible$/ do |selector|
-  page.has_css?("#{selector}", :visible => true)
+  page.has_css?("#{selector}", visible: true)
 end
 
 When /^I wait until ([^"]*) is visible$/ do |locator|
-  page.has_css?(selector_for(locator), :visible => true)
+  page.has_css?(selector_for(locator), visible: true)
 end
 
 When /^I sync my form with my backbone model because of Firefox$/ do
   page.execute_script("$(':input').trigger('change')")
+end
+
+When /^I fill in "(.*?)" with the tags "(.*?)"$/ do |field, tags|
+  input = field_labeled(field)
+  tags.split(',').each do |tag|
+    _tag = tag.strip
+    page.execute_script("$('input[name=\"#{input[:name]}\"]').tagit('createTag', '#{_tag}')")
+  end
 end
 
 Then /^"([^"]*)" should not be visible$/ do |text|
@@ -71,6 +79,10 @@ Then /^I should see the following xml output:$/ do |xml_output|
   response = Hash.from_xml(page.source)
   expected = Hash.from_xml(xml_output)
   expected.diff(response).should == {}
+end
+
+When /^I take a screenshot$/ do
+  page.save_screenshot('/Users/didier/Desktop/cucumber.png', full: true)
 end
 
 def wait_for_ajax(&block)

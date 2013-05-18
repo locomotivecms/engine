@@ -5,6 +5,7 @@
  *= require_self
  *= require locomotive/blueprint/screen.css
  *= require locomotive/jquery/ui.css
+ *= require locomotive/jquery.tagit.css
  *= require locomotive/font-awesome
  *= require formtastic
  *= require codemirror

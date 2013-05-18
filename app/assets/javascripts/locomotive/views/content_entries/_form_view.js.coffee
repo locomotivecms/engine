@@ -31,6 +31,8 @@ class Locomotive.Views.ContentEntries.FormView extends Locomotive.Views.Shared.F
 
     @enable_checkboxes()
 
+    @enable_tags()
+
     @enable_datepickers()
 
     @enable_richtexteditor()
@@ -49,6 +51,9 @@ class Locomotive.Views.ContentEntries.FormView extends Locomotive.Views.Shared.F
 
   enable_checkboxes: ->
     @$('li.input.toggle input[type=checkbox]').checkToggle()
+
+  enable_tags: ->
+    @$('li.input.tags input[type=text]').tagit(allowSpaces: true)
 
   enable_datepickers: ->
     @$('li.input.date input[type=text]').datepicker()

@@ -1,0 +1,49 @@
+@import "locomotive/shared/helpers";
+
+ul.tagit {
+  width: 650px;
+  padding: 5px;
+  @include default-input-style;
+  @include border-radius(0px);
+
+  li {
+    margin: 2px 5px 2px 0;
+    line-height: 18px;
+    font-size: 11px;
+
+    &.tagit-choice-read-only {
+      padding: 1px 5px 1px;
+    }
+
+    &.tagit-choice-editable {
+      padding: 1px 20px 1px 5px;
+    }
+
+    &.tagit-choice-read-only, &.tagit-choice-editable {
+      @include border-radius(2px);
+      background: #c2e0f0;
+      border-color: #719fb8;
+      span {
+        color: #29739b;
+        @include text-shadow(rgba(#fff, 0.7) 0px 1px 0px);
+      }
+      span.ui-icon-close {
+        background: none;
+        text-indent: 0px;
+        text-align: center;
+        &:before {
+          position: relative;
+          top: -1px;
+          text-indent: 0px;
+          font-family: FontAwesome;
+          font-size: 9px;
+          content: "\f00d";
+        }
+      }
+    }
+
+    &.tagit-new {
+      padding: 2px 0 0 0;
+    }
+  }
+}

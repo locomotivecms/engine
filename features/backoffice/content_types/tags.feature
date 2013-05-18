@@ -9,14 +9,15 @@ Background:
     | label         | type      | required    |
     | Title         | string    | true        |
     | Tags          | tags      | false       |
-    
+
   And I am an authenticated user
 
 @javascript
 Scenario:
-  And I go to the list of "Titles"
+  When I go to the list of "Titles"
   And I follow "new entry" within the main content
   And I fill in "Title" with "My title"
-  And I fill in "Tags" with "one, two, three"
+  And I fill in "Tags" with the tags "one, two, three"
+  And I take a screenshot
   And I press "Create"
   Then I should see "Entry was successfully created."

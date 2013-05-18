@@ -231,15 +231,18 @@ form.formtastic {
           }
         } // div.inline-errors
 
-        &.string, &.password {
+        &.string, &.password, &.numeric {
           label {
             padding-top: 2px;
           }
 
-          input[type=text], input[type=password] {
+          input[type=text], input[type=password], input[type=number] {
             @include default-input-style;
-
             width: 700px;
+          }
+
+          input[type=number] {
+            width: 150px;
           }
 
           &.highlighted {
