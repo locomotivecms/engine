@@ -18,6 +18,5 @@ Scenario:
   And I follow "new entry" within the main content
   And I fill in "Title" with "My title"
   And I fill in "Tags" with the tags "one, two, three"
-  And I take a screenshot
   And I press "Create"
   Then I should see "Entry was successfully created."
