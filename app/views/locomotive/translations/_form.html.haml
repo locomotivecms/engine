@@ -1,6 +1,6 @@
 - content_for :backbone_view_data do
   :plain
-    translation: #{j @translation.to_json.html_safe}
+    translation: #{escape_json @translation.to_json.html_safe}
 
 = f.inputs name: :information do
 

@@ -360,7 +360,7 @@ describe Locomotive::ContentType do
 
   def safe_find(klass, id)
     Mongoid::IdentityMap.clear
-    Rails.logger.debug "---> reload #{klass}, #{id}!!!!!"
+    # Rails.logger.debug "---> reload #{klass}, #{id}!!!!!"
     klass.find(id)
   end
 

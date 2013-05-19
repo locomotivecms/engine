@@ -3,7 +3,7 @@
 
 - content_for :backbone_view_data do
   :plain
-    snippet: #{j @snippet.persisted? ? to_json(@snippet) : 'null'}
+    snippet: #{escape_json @snippet.persisted? ? to_json(@snippet) : 'null'}
 
 = f.inputs name: :information do
   = f.input :name, wrapper_html: { class: 'highlighted' }

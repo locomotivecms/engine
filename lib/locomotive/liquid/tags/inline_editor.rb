@@ -23,7 +23,7 @@ module Liquid
               %script{ type: 'text/javascript' }
                 :plain
                   Aloha.ready(function() \{
-                    window.parent.application_view.set_page(#{controller.view_context.j page.to_json.html_safe});
+                    window.parent.application_view.set_page(#{controller.view_context.escape_json page.to_json.html_safe});
                   \});
             HTML
 
