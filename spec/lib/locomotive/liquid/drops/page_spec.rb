@@ -3,8 +3,8 @@ require 'spec_helper'
 describe Locomotive::Liquid::Drops::Page do
 
   before(:each) do
-    site  = FactoryGirl.build(:site)
-    @home = FactoryGirl.build(:page, site: site, meta_keywords: 'Libidinous, Angsty', meta_description: "Quite the combination.")
+    @site  = FactoryGirl.build(:site)
+    @home  = FactoryGirl.build(:page, site: @site, meta_keywords: 'Libidinous, Angsty', meta_description: "Quite the combination.")
   end
 
   context '#rendering tree' do
@@ -130,6 +130,55 @@ describe Locomotive::Liquid::Drops::Page do
   describe 'meta_description' do
     subject { render_template('{{ home.meta_description }}') }
     it { should == @home.meta_description }
+  end
+
+  describe 'templatized?' do
+
+    subject { render_template('{{ page.templatized? }}', { 'page' => page }) }
+
+    context 'by default' do
+
+      let(:page) { @home }
+      it { should == 'false' }
+
+    end
+
+    context 'with the templatized flag enabled' do
+
+      let(:page) { FactoryGirl.build(:page, templatized: true) }
+      it { should == 'true' }
+
+    end
+
+  end
+
+  describe 'content_type' do
+
+    let(:content_type) do
+      FactoryGirl.build(:content_type, site: @site).tap do |_content_type|
+        _content_type.entries_custom_fields.build label: 'Name', type: 'string'
+        _content_type.save!
+        2.times { _content_type.entries.create(name: 'Example') }
+      end
+    end
+    let(:page) { FactoryGirl.build(:page, templatized: true, target_klass_name: content_type.klass_with_custom_fields(:entries).to_s) }
+
+    subject { render_template(template, { 'page' => page }) }
+
+    describe '#content_type' do
+
+      let(:template) { '{{ page.content_type }}' }
+      it { should =~ /ContentTypeProxyCollection/ }
+
+    end
+
+    describe '#content_type.count' do
+
+      let(:template) { '{{ page.content_type.count }}' }
+      it { should == '2' }
+
+    end
+
   end
 
   def render_template(template = '', assigns = {})

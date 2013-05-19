@@ -29,6 +29,18 @@ module Locomotive
           attr_accessor :content_entry
         end
 
+        # Return the content type specified by the target_klass_name property.
+        #
+        # @return [ Object ] The content type or nil if not found
+        #
+        def content_type
+          if self.target_klass_name =~ /^Locomotive::ContentEntry([a-z0-9]+)$/
+            @content_type ||= self.site.content_types.find($1)
+          else
+            nil
+          end
+        end
+
         # Return the class specified by the target_klass_name property
         #
         # @example
@@ -45,15 +57,10 @@ module Locomotive
         # Return the slug related to the target_klass.
         # In other words, it returns the slug of the target content type.
         #
-        # @return [ String ] The slug of the target class / content type. Nil if no target klass.
+        # @return [ String ] The slug of the target class / content type. Nil if no target klass matching a content type
         #
         def target_klass_slug
-          if self.target_klass_name =~ /^Locomotive::ContentEntry([a-z0-9]+)$/
-            @content_type ||= self.site.content_types.find($1)
-            @content_type.slug
-          else
-            nil
-          end
+          self.content_type.try(:slug)
         end
 
         # Set the target klass from the slug of a content type
@@ -84,9 +91,8 @@ module Locomotive
         # @return [ String ] The name in lowercase and underscored
         #
         def target_entry_name
-          if self.target_klass_name =~ /^Locomotive::ContentEntry([a-z0-9]+)$/
-            @content_type ||= self.site.content_types.find($1)
-            @content_type.slug.singularize
+          if self.content_type
+            self.content_type.slug.singularize
           else
             self.target_klass_name.underscore
           end
@@ -110,9 +116,8 @@ module Locomotive
         # @return [ Object ] The documents
         #
         def fetch_target_entries(conditions = {})
-          if self.target_klass_name =~ /^Locomotive::ContentEntry([a-z0-9]+)$/
-            @content_type ||= self.site.content_types.find($1)
-            @content_type.ordered_entries(conditions)
+          if self.content_type
+            self.content_type.ordered_entries(conditions)
           else
             []
           end
