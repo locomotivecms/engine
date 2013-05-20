@@ -63,8 +63,8 @@ When(/^I switch the locale to "(.*?)"$/) do |locale|
   end
 end
 
-When(/^I should see a "(.*?)" link to "(.*?)"$/) do |text, path|  
-  find(:link, text)['href'].should == path
+When(/^I should see a "(.*?)" link to "(.*?)"$/) do |text, path|
+  page.should have_link(text, href: path)
 end
 
 Given /^I enable the CSRF protection for public submission requests$/ do
@@ -116,4 +116,8 @@ Then /^after the AJAX finishes, (.*)$/ do |*args|
   wait_for_ajax do
     step(step_str, step_arg)
   end
+end
+
+When(/^I wait (\d+)ms$/) do |delay|
+  sleep(delay.to_i / 1000.0)
 end

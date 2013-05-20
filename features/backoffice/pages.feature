@@ -42,13 +42,12 @@ Scenario: Localizing page slugs
   And I fill in "page_title" with "Translated"
   And I press "Create"
   Then I should see a "show" link to "/translated"
-  
+
   When I switch the locale to "es"
-  And I fill in "page_title" with "Traducido"
-  Then I should see "/es/traducido"
-  
-  When I fill in "Slug" with "pagina-traducida"
+  And I fill in "Slug" with "pagina-traducida"
+  And I wait 1500ms
   Then I should see "/es/pagina-traducida"
-  
+
   When I press "Save"
   Then I should see a "show" link to "/es/pagina-traducida"
+

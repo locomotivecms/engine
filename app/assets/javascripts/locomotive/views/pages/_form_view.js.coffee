@@ -115,7 +115,7 @@ class Locomotive.Views.Pages.FormView extends Locomotive.Views.Shared.FormView
     @$('#page_slug').bind 'change', ((event) => @touched_url = true)
 
   listen_for_url_changes: ->
-    setInterval (=> (@change_page_url() & @touched_url = false) if @touched_url), 2000
+    setInterval (=> (@change_page_url() & @touched_url = false) if @touched_url), 1200
 
   change_page_url: ->
     $.rails.ajax

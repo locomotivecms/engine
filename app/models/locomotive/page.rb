@@ -3,6 +3,8 @@ module Locomotive
 
     include Locomotive::Mongoid::Document
 
+    MINIMAL_ATTRIBUTES = %w(_id title slug fullpath position depth published templatized redirect listed response_type parent_id parent_ids site_id created_at updated_at)
+
     ## Extensions ##
     include Extensions::Page::Tree
     include Extensions::Page::EditableElements
@@ -53,7 +55,7 @@ module Locomotive
     scope :published,           where(published: true)
     scope :fullpath,            ->(fullpath){ where(fullpath: fullpath) }
     scope :handle,              ->(handle){ where(handle: handle) }
-    scope :minimal_attributes,  ->(attrs = []) { only((attrs || []) + %w(title slug fullpath position depth published templatized redirect listed response_type parent_id parent_ids site_id created_at updated_at)) }
+    scope :minimal_attributes,  ->(attrs = []) { without(self.fields.keys - MINIMAL_ATTRIBUTES) }
     scope :dependent_from,      ->(id) { where(:template_dependencies.in => [id]) }
 
     ## methods ##
@@ -83,6 +85,7 @@ module Locomotive
     end
 
     def translated?
+      Rails.logger.debug "==========>" + self.title_translations.inspect
       self.title_translations.key?(::Mongoid::Fields::I18n.locale.to_s) rescue false
     end
 

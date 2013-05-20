@@ -22,7 +22,6 @@ module Locomotive
         end
 
         ::Mongoid::Fields::I18n.locale = session[:content_locale]
-        ::I18n.locale = ::Mongoid::Fields::I18n.locale
 
         self.setup_i18n_fallbacks
 

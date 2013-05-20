@@ -21,7 +21,8 @@ class Locomotive.Views.Pages.EditView extends Locomotive.Views.Pages.FormView
           @refresh_editable_elements()
 
         # refresh the show link
-        @$('#local-actions-bar > a.show').attr('href', "/#{@model.get('fullpath')}")
+        fullpath = @model.get('localized_fullpaths')[window.content_locale]
+        @$('#local-actions-bar > a.show').attr('href', "/#{fullpath}")
 
       error: (model, xhr) =>
         form.trigger('ajax:complete')
