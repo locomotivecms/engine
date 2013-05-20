@@ -49,6 +49,11 @@ describe Locomotive::Liquid::Filters::Html do
     stylesheet_url('https://cdn.example.com/trash/main').should == result
   end
 
+  it 'should return a url for a stylesheet file with respect to URL-parameters' do
+    result = "/sites/000000000000000000000042/theme/stylesheets/main.css?v=42"
+    stylesheet_url('main.css?v=42').should == result
+  end
+
   it 'should return a link tag for a stylesheet file' do
     result = "<link href=\"/sites/000000000000000000000042/theme/stylesheets/main.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\">"
     stylesheet_tag('main.css').should == result
@@ -138,6 +143,11 @@ describe Locomotive::Liquid::Filters::Html do
     result = "https://cdn.example.com/trash/main.js"
     javascript_url('https://cdn.example.com/trash/main.js').should == result
     javascript_url('https://cdn.example.com/trash/main').should == result
+  end
+  
+  it 'should return a url for a javascript file with respect to URL-parameters' do
+    result = "/sites/000000000000000000000042/theme/javascripts/main.js?v=42"
+    javascript_url('main.js?v=42').should == result
   end
 
   it 'should return a script tag for a javascript file' do
