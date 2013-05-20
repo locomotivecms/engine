@@ -57,12 +57,12 @@ module Locomotive
 
         # Write the link to javascript resource
         # input: url of the javascript file
-        def javascript_tag(input)
+        def javascript_tag(input, *args)
           return '' if input.nil?
-
+          javascript_options = inline_options(args_to_options(args))
           input = javascript_url(input)
 
-          %{<script src="#{input}" type="text/javascript"></script>}
+          "<script src=\"#{input}\" type=\"text/javascript\" #{javascript_options}></script>"
         end
 
         def theme_image_url(input)

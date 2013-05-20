@@ -151,34 +151,39 @@ describe Locomotive::Liquid::Filters::Html do
   end
 
   it 'should return a script tag for a javascript file' do
-    result = %{<script src="/sites/000000000000000000000042/theme/javascripts/main.js" type="text/javascript"></script>}
+    result = %{<script src="/sites/000000000000000000000042/theme/javascripts/main.js" type="text/javascript" ></script>}
     javascript_tag('main.js').should == result
     javascript_tag('main').should == result
     javascript_tag(nil).should == ''
   end
 
   it 'should return a script tag for a javascript file with folder' do
-    result = %{<script src="/sites/000000000000000000000042/theme/javascripts/trash/main.js" type="text/javascript"></script>}
+    result = %{<script src="/sites/000000000000000000000042/theme/javascripts/trash/main.js" type="text/javascript" ></script>}
     javascript_tag('trash/main.js').should == result
     javascript_tag('trash/main').should == result
   end
 
   it 'should return a script tag for a javascript file without touching the url that starts with "/"' do
-    result = %{<script src="/trash/main.js" type="text/javascript"></script>}
+    result = %{<script src="/trash/main.js" type="text/javascript" ></script>}
     javascript_tag('/trash/main.js').should == result
     javascript_tag('/trash/main').should == result
   end
 
   it 'should return a script tag for a javascript file without touching the url that starts with "http:"' do
-    result = %{<script src="http://cdn.example.com/trash/main.js" type="text/javascript"></script>}
+    result = %{<script src="http://cdn.example.com/trash/main.js" type="text/javascript" ></script>}
     javascript_tag('http://cdn.example.com/trash/main.js').should == result
     javascript_tag('http://cdn.example.com/trash/main').should == result
   end
 
   it 'should return a script tag for a javascript file without touching the url that starts with "https:"' do
-    result = %{<script src="https://cdn.example.com/trash/main.js" type="text/javascript"></script>}
+    result = %{<script src="https://cdn.example.com/trash/main.js" type="text/javascript" ></script>}
     javascript_tag('https://cdn.example.com/trash/main.js').should == result
     javascript_tag('https://cdn.example.com/trash/main').should == result
+  end
+  
+  it 'should return a script tag for a javascript file with "defer" option' do
+    result = %{<script src="https://cdn.example.com/trash/main.js" type="text/javascript" defer="defer" ></script>}
+    javascript_tag('https://cdn.example.com/trash/main.js', ['defer:defer']).should == result
   end
 
   it 'should return an image tag for a given theme file without parameters' do
