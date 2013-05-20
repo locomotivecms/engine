@@ -3,7 +3,7 @@ module Locomotive
     module Filters
       module Html
 
-        # Returns a link tag that browsers and news readers can use to auto-detect an RSS or ATOM feed.
+        # Return a link tag that browsers and news readers can use to auto-detect an RSS or ATOM feed.
         # input: url of the feed
         # example:
         #   {{ '/foo/bar' | auto_discovery_link_tag: 'rel:alternate', 'type:application/atom+xml', 'title:A title' }}
@@ -22,11 +22,11 @@ module Locomotive
         def stylesheet_url(input)
           return '' if input.nil?
           uri = URI(input)
-          
+
           unless input =~ /^(\/|https?:)/
             uri.path = asset_url("stylesheets/#{uri.path}")
           end
-          
+
           uri.path = "#{uri.path}.css" unless uri.path.ends_with?('.css')
           uri.to_s
         end
@@ -46,7 +46,7 @@ module Locomotive
         def javascript_url(input)
           return '' if input.nil?
           uri = URI(input)
-          
+
           unless input =~ /^(\/|https?:)/
             uri.path = asset_url("javascripts/#{uri.path}")
           end

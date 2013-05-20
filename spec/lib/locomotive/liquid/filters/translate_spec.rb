@@ -1,10 +1,11 @@
 require 'spec_helper'
 
 describe Locomotive::Liquid::Filters::Translate do
-  let(:site)     { FactoryGirl.create(:site) }
-  let(:context)  { Liquid::Context.new({}, {}, {site: site}) }
-  let(:template) { Liquid::Template.parse("{{ 'example_text' | translate }}") }
-  subject { template.render(context) }
+
+  let(:site)      { FactoryGirl.create(:site) }
+  let(:context)   { Liquid::Context.new({}, {}, {site: site}) }
+  let(:template)  { Liquid::Template.parse("{{ 'example_text' | translate }}") }
+  subject         { template.render(context) }
 
   describe '#translate' do
     before do
@@ -42,9 +43,22 @@ describe Locomotive::Liquid::Filters::Translate do
       after do
         I18n.locale = :en
       end
+
       it "translates" do
         should == "Texto de ejemplo"
       end
     end
+
+    context "specifying a scope" do
+
+      let(:template) { Liquid::Template.parse("{{ 'fr' | translate: 'en', 'locomotive.locales' }}") }
+
+      it "translates" do
+        should == "French"
+      end
+
+    end
+
   end
+
 end
