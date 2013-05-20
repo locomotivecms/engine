@@ -49,7 +49,7 @@ module Locomotive
     end
 
     def class_slug
-      self.content_type.class_name_to_content_type(self.__source.class_name).try(:slug)
+      self.content_type.class_name_to_content_type(self.__source.class_name).try(:slug) rescue ::Mongoid::Errors::DocumentNotFound
     end
 
     def class_name=(value)

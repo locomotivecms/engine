@@ -40,3 +40,11 @@ Scenario: I attach projects to an article
   When I go to the list of "Projects"
   And I choose "My sexy project" in the list
   Then I should see "Hello world" within the list of entries
+
+@javascript
+Scenario: I am able to delete a related model
+  When I go to the list of "Articles"
+  And I follow "remove model"
+  And I go to the list of "Projects"
+  And I follow "edit model"
+  Then I should see "Editing model"
