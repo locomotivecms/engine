@@ -85,7 +85,6 @@ module Locomotive
     end
 
     def translated?
-      Rails.logger.debug "==========>" + self.title_translations.inspect
       self.title_translations.key?(::Mongoid::Fields::I18n.locale.to_s) rescue false
     end
 
