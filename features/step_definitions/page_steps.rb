@@ -3,6 +3,7 @@
 # helps create a simple content page (parent: "index") with a slug, contents, and template
 def create_content_page(page_slug, page_contents, template = nil)
   page = new_content_page(page_slug, page_contents, template)
+  raise "Invalid page: #{page.errors.full_messages}" unless page.valid?
   page.should be_valid
   page.save!
   page
@@ -36,6 +37,11 @@ Given /^a page named "([^"]*)" with id "([^"]*)" and template:$/ do |page_slug, 
   @page.save!
 end
 
+Given(/^a page titled "(.*?)" with the handle "(.*?)"$/) do |title, handle|
+  @home = @site.pages.where(:slug => "index").first || FactoryGirl.create(:page)
+  @site.pages.create!(handle: handle, :parent => @home, title: title, :published => true)
+end
+
 Given /^a templatized page for the "(.*?)" model and with the template:$/ do |model_name, template|
   content_type = Locomotive::ContentType.where(name: model_name).first
   parent = create_content_page(content_type.slug, '', '')
@@ -43,6 +49,13 @@ Given /^a templatized page for the "(.*?)" model and with the template:$/ do |mo
     templatized: true, target_klass_name: content_type.entries_class_name,
     raw_template: template)
   @page.save!
+end
+
+Given(/^the page titled "(.*?)" has the title "(.*?)" in the "(.*?)" locale$/) do |original, localized, locale|
+  page = @site.pages.where(title: original).first
+  ::Mongoid::Fields::I18n.with_locale(locale) do
+    page.update_attributes!(title: localized)
+  end
 end
 
 # change the title
