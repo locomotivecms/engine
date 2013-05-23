@@ -43,6 +43,7 @@ Scenario: link_to tag
     """
     {% locale_switcher %}
     {% link_to about-us %}
+    {% link_to about-us, locale: es %}
     {% link_to about-us %}
       <i class="icon-info-sign"></i> {{ target.title }}
     {% endlink_to %}
@@ -52,6 +53,7 @@ Scenario: link_to tag
   Then the rendered output should look like:
     """
     <a href="/about-us">About us</a>
+    <a href="/es/acerca-de">Acerca de</a>
     <a href="/about-us">
       <i class="icon-info-sign"></i> About us
     </a>
@@ -59,6 +61,7 @@ Scenario: link_to tag
   When I follow "es"
   Then the rendered output should look like:
     """
+    <a href="/es/acerca-de">Acerca de</a>
     <a href="/es/acerca-de">Acerca de</a>
     <a href="/es/acerca-de">
       <i class="icon-info-sign"></i> Acerca de
