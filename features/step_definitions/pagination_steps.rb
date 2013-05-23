@@ -22,7 +22,6 @@ Then /^I should be able to display paginated models$/ do
 
   # The page should have the first two articles
   visit '/hello'
-  save_and_open_page
   page.should have_content 'First'
   page.should have_content 'Second'
   page.should_not have_content 'Third'

@@ -43,9 +43,9 @@ Scenario: link_to tag
     """
     {% locale_switcher %}
     {% link_to about-us %}
-    {% link_to_block about-us %}
-      <i class="icon-info-sign"></i> {{ linked }}
-    {% endlink_to_block %}
+    {% link_to about-us %}
+      <i class="icon-info-sign"></i> {{ target.title }}
+    {% endlink_to %}
     """
   And the page named "page-with-links" has the title "Página con links" in the "es" locale
   When I view the rendered page at "/page-with-links"
