@@ -7,23 +7,23 @@ Background:
   Given I have the site: "test site" set up with name: "test site"
 
 Scenario: List all of them
-  Given a page named "All" with the template:
+  Given a page named "all" with the template:
     """
     {% for page in site.pages %}{{ page.title }}, {% endfor %}
     """
   When I view the rendered page at "/all"
   Then the rendered output should look like:
     """
-    Home page, some title, Page not found, 
+    Home page, All, Page not found,
     """
 
 Scenario: Scoped listing
-  Given a page named "Hidden page" with the template:
+  Given a page named "hidden-page" with the template:
     """
     Hidden content
     """
   And the page "hidden-page" is unpublished
-  And a page named "Hidden pages" with the template:
+  And a page named "hidden-pages" with the template:
     """
     {% with_scope published: false %}
       {% for page in site.pages %}{{ page.slug }}, {% endfor %}
@@ -34,11 +34,12 @@ Scenario: Scoped listing
     """
     hidden-page,
     """
+
 Scenario: link_to tag
-  Given the site "test site" has locales "en, es"  
-  And a page titled "About us" with the handle "about-us"
-  And the page titled "About us" has the title "Acerca de" in the "es" locale
-  And a page named "Page with links" with the template:
+  Given the site "test site" has locales "en, es"
+  And a page named "about-us" with the handle "about-us"
+  And the page named "about-us" has the title "Acerca de" in the "es" locale
+  And a page named "page-with-links" with the template:
     """
     {% locale_switcher %}
     {% link_to about-us %}
@@ -46,8 +47,8 @@ Scenario: link_to tag
       <i class="icon-info-sign"></i> {{ linked }}
     {% endlink_to_block %}
     """
+  And the page named "page-with-links" has the title "Página con links" in the "es" locale
   When I view the rendered page at "/page-with-links"
-  Then show me the page
   Then the rendered output should look like:
     """
     <a href="/about-us">About us</a>
@@ -56,10 +57,9 @@ Scenario: link_to tag
     </a>
     """
   When I follow "es"
-  Then show me the page
   Then the rendered output should look like:
     """
-    <a href="/es/acerca-de">About us</a>
+    <a href="/es/acerca-de">Acerca de</a>
     <a href="/es/acerca-de">
       <i class="icon-info-sign"></i> Acerca de
     </a>
