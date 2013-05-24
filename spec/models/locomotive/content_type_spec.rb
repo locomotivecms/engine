@@ -117,6 +117,28 @@ describe Locomotive::ContentType do
       @content_type.order_direction = 'desc'
       @content_type.ordered_entries.map(&:active_at).should == [Date.parse('02/02/2001'), Date.parse('01/01/2001'), nil]
     end
+    
+    
+    it 'translates select fields' do
+     @content_type.entries_custom_fields.build :label => 'Department',  :type => 'select'
+      @content_type.save & @content_type.reload
+      select_field = @content_type.entries_custom_fields.where({"name" => 'department'}).first
+      select_field.should_not == nil
+      @design_cat       = select_field.select_options.build :name => 'Design'
+      @development_cat  = select_field.select_options.build :name => 'Development'
+      @content_2['department_id'] = @design_cat._id
+      @content_1['department_id'] = @development_cat._id
+      @content_1.save
+      @content_2.save
+      
+      design_entries = @content_type.ordered_entries({'department' => 'Design'}).to_ary
+      design_entries[0].name.should == 'Sacha'
+      design_entries.length.should == 1
+      
+      design_entries = @content_type.ordered_entries({'department' => 'Development'}).to_ary
+      design_entries[0].name == 'Did'
+      design_entries.length.should == 1
+    end
 
   end
 
@@ -338,9 +360,9 @@ describe Locomotive::ContentType do
         })
 
         @content_type = Locomotive::ContentType.find(@content_type.id)
-
+        
         @content_type.entries_custom_fields.size.should == 4
-        @content_type.entries_custom_fields.map(&:name).should == %w(name active_at title published_at)
+        @content_type.entries_custom_fields.map(&:name).should == %w(name  active_at title published_at)
         @content_type.entries_custom_fields[2].label.should == 'My Title !'
       end
 
