@@ -34,6 +34,25 @@ describe Locomotive::Liquid::Drops::ContentEntry do
       render(template, { 'category' => @category }).should == 'a,b,'
     end
 
+    context "filtering on select field type" do
+      before(:each) do
+        ct = FactoryGirl.build(:content_type)
+        select_field = ct.entries_custom_fields.build label: "Visibility", type: "select"
+        @option_public = select_field.select_options.build name: "Public"
+        @option_private = select_field.select_options.build name: "Private"
+        ct.save!
+      end
+
+      it "filters the list based on the select field name" do
+        template = %({% with_scope visibility: 'Public' %}{% for project in category.projects %}{{ project }},{% endfor %}{% endwith_scope %})
+
+        @list.expects(:filtered).with({ 'visibility_id' => @option_public._id}, nil).returns(%(a b))
+
+        render(template, { 'category' => @category }).should == 'a,b,'
+      end
+
+    end
+
   end
 
   def render(template, assigns = {})
