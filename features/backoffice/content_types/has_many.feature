@@ -58,3 +58,23 @@ Scenario: I add a project to a client from the client page
   Then I should see "Entry was successfully created."
   And I should see "Project X" within the list of entries
   And "p.empty" should not be visible within the list of entries
+
+Scenario: with_scope with label value
+  Given the "client" "Alpha, Inc" has "Fun project" as one of its "projects"
+  And a page named "alpha-projects" with the template:
+    """
+    <hr>
+    {% with_scope client: "Alpha, Inc" %}
+    {% for project in contents.projects %}- {{ project.name }}<br>{% endfor %}
+    {% endwith_scope %}
+    <hr>
+    """
+  When I view the rendered page at "/alpha-projects"
+  Then the rendered output should look like:
+    """
+    <hr>
+    
+    - Fun project<br>
+    
+    <hr>
+    """
