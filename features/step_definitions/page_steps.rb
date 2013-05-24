@@ -3,7 +3,7 @@
 # helps create a simple content page (parent: "index") with a slug and template
 def create_content_page(slug, template = nil)
   new_content_page(slug, template).tap do |page|
-    page.save.should be_true
+    page.save!.should be_true
   end
   # page = new_content_page(slug, page_contents, template)
   # raise "Invalid page: #{page.errors.full_messages}" unless page.valid?

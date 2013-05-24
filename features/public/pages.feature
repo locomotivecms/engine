@@ -67,3 +67,16 @@ Scenario: link_to tag
       <i class="icon-info-sign"></i> Acerca de
     </a>
     """
+
+Scenario: fetch_page tag
+  Given a page named "print-the-slug-of-a-page" with the template:
+    """
+    {% fetch_page this-is-the-page-handle as my_page %}
+    {{ my_page.slug }}
+    """
+  And a page named "this-is-the-slug" with the handle "this-is-the-page-handle"
+  When I view the rendered page at "/print-the-slug-of-a-page"
+  Then the rendered output should look like:
+    """
+    this-is-the-slug
+    """
