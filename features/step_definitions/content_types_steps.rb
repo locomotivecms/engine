@@ -64,6 +64,16 @@ Given %r{^I have entries for "([^"]*)" with$} do |name, entries|
   content_type.save.should be_true
 end
 
+#the "client" "Alpha, Inc" has "Fun project" as one of its "projects"
+Given(/^the "(.*?)" "(.*?)" has "(.*?)" as one of its "(.*?)"$/) do |source, source_label, target_label, target|
+  source_model = Locomotive::ContentType.where(name: source.classify.pluralize).first
+  source_entry = source_model.entries.where(source_model.label_field_name => source_label).first
+  target_model = Locomotive::ContentType.where(name: target.classify.pluralize).first
+  target_entry = target_model.entries.where(target_model.label_field_name => target_label).first
+  
+  source_entry.send("#{target}").send("<<", target_entry)
+end
+
 When(/^I choose "(.*?)" in the list$/) do |name|
   within('#content') do
     click_link(name)

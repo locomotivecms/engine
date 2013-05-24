@@ -41,7 +41,23 @@ module Locomotive
         protected
 
         def collection
+          if @context['with_scope']
+            relations = @content_type.klass_with_custom_fields(:entries).relations
+            @context['with_scope'].dup.each do |k,v|
+              if relation = relation_with(k, relations)
+                model = Locomotive::ContentType.class_name_to_content_type(relation.class_name, @context.registers[:site])
+                @context['with_scope'].delete(k)
+                @context['with_scope'][relation.key] = model.entries.where(model.label_field_name => v).first
+              end
+            end
+          end
+          
           @collection ||= @content_type.ordered_entries(@context['with_scope'])
+        end
+        
+        def relation_with(name, relations)
+          return relations[name] if relations.keys.include?(name)
+          return relations[name.pluralize] if relations.keys.include?(name.pluralize)
         end
       end
 
