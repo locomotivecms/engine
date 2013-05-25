@@ -29,8 +29,12 @@ end
 
 Given /^the site "(.*?)" has locales "(.*?)"$/ do |name, locales|
   site = Locomotive::Site.where(name: name).first
-  site.locales = locales.split(',').map(&:strip)
-  site.save
+  site.update_attribute :locales, locales.split(',').map(&:strip)
+
+  # very important to set the locale fallbacks
+  site.locales.each do |locale|
+    ::Mongoid::Fields::I18n.fallbacks_for(locale, site.locale_fallbacks(locale))
+  end
 end
 
 Given /^multi_sites is disabled$/ do

@@ -48,3 +48,23 @@ Scenario: I am able to delete a related model
   And I go to the list of "Projects"
   And I follow "edit model"
   Then I should see "Editing model"
+
+Scenario: with_scope with label value
+  Given the "project" "My sexy project" has "Lorem ipsum" as one of its "articles"
+  And a page named "sexy-articles" with the template:
+    """
+    <hr>
+    {% with_scope project: "My sexy project" %}
+    {% for article in contents.articles %}- {{ article.title }}<br>{% endfor %}
+    {% endwith_scope %}
+    <hr>
+    """
+  When I view the rendered page at "/sexy-articles"
+  Then the rendered output should look like:
+    """
+    <hr>
+    
+    - Lorem ipsum<br>
+    
+    <hr>
+    """
