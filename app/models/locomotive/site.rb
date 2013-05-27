@@ -66,8 +66,8 @@ module Locomotive
         %w{index 404}.each do |slug|
           self.pages.create({
             slug:         slug,
-            title:        ::I18n.t("attributes.defaults.pages.#{slug}.title"),
-            raw_template: ::I18n.t("attributes.defaults.pages.#{slug}.body"),
+            title:        ::I18n.t("attributes.defaults.pages.#{slug}.title", locale: self.default_locale),
+            raw_template: ::I18n.t("attributes.defaults.pages.#{slug}.body", locale: self.default_locale),
             published:    true
           })
         end
