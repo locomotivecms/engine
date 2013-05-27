@@ -67,6 +67,16 @@ Scenario: link_to tag
       <i class="icon-info-sign"></i> Acerca de
     </a>
     """
+    
+Scenario: Default locale fallback
+  Given the site "test site" has locales "en, es"
+  And a page named "only-english" with the template:
+    """
+    Only english, please
+    """
+  When I view the rendered page at "/es/only-english"
+  Then I should see "Only english, please"
+
 
 Scenario: fetch_page tag
   Given a page named "print-the-slug-of-a-page" with the template:

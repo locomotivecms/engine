@@ -28,8 +28,14 @@ module Locomotive
             depth = path == 'index' ? 0 : path.split('/').size
 
             matching_paths = path == 'index' ? %w(index) : path_combinations(path)
+            
+            query = if I18n.locale != I18n.default_locale
+              site.pages.where(depth: depth).any_of({:fullpath.in => matching_paths}, {"fullpath.#{I18n.default_locale}" => {'$in' => matching_paths}})
+            else
+              site.pages.where(depth: depth, :fullpath.in => matching_paths)
+            end
 
-            site.pages.where(depth: depth, :fullpath.in => matching_paths).each do |_page|
+            query.each do |_page|
               if !_page.published? && !logged_in
                 next
               else
