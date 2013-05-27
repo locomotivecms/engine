@@ -16,7 +16,11 @@ module Locomotive
 
           if scope.blank?
             translation = Locomotive::Translation.where(key: input).first
-            translation.values[locale]
+            if translation.values[locale].present?
+              translation.values[locale]
+            else
+              translation.values[I18n.default_locale.to_s]
+            end
           else
             I18n.t(input, scope: scope.split('.'), locale: locale)
           end

@@ -18,6 +18,7 @@ class Locomotive::Translation
 
   ## callbacks ##
   before_validation :underscore_key
+  before_validation :remove_blanks
 
   ## methods ##
 
@@ -30,6 +31,10 @@ class Locomotive::Translation
     if self.key
       self.key = self.key.permalink.underscore
     end
+  end
+  
+  def remove_blanks
+    self.values.delete_if { |k,v| v.blank? }
   end
 
 end
