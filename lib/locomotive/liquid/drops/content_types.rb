@@ -42,22 +42,31 @@ module Locomotive
 
         def collection
           if @context['with_scope']
-            relations = @content_type.klass_with_custom_fields(:entries).relations
-            @context['with_scope'].dup.each do |k,v|
-              if relation = relation_with(k, relations)
-                model = Locomotive::ContentType.class_name_to_content_type(relation.class_name, @context.registers[:site])
-                @context['with_scope'].delete(k)
-                @context['with_scope'][relation.key] = model.entries.where(model.label_field_name => v).first
-              end
-            end
+            self.modify_with_scope_with_relations
           end
-          
+
           @collection ||= @content_type.ordered_entries(@context['with_scope'])
         end
-        
+
+        def modify_with_scope_with_relations
+          relations = @content_type.klass_with_custom_fields(:entries).relations
+          @context['with_scope'].dup.each do |key, value|
+            if relation = self.relation_with(key, relations)
+              model = Locomotive::ContentType.class_name_to_content_type(relation.class_name, @context.registers[:site])
+              entry = model.entries.where(model.label_field_name => value).first
+
+              @context['with_scope'].delete(key)
+              @context['with_scope'][relation.key] = entry
+            end
+          end
+        end
+
         def relation_with(name, relations)
-          return relations[name] if relations.keys.include?(name)
-          return relations[name.pluralize] if relations.keys.include?(name.pluralize)
+          if relations.keys.include?(name.to_s)
+            relations[name]
+          elsif relations.keys.include?(name.to_s.pluralize)
+            relations[name.to_s.pluralize]
+          end
         end
       end
 
