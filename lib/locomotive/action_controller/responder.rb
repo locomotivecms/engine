@@ -55,7 +55,7 @@ module Locomotive
       def with_flash_message(type = :notice, in_header = true)
         if in_header
           set_flash_message!
-          message = URI::escape controller.flash[type].to_str
+          message = URI::escape(controller.flash[type].to_str) if controller.flash[type] 
 
           unless message.blank?
             controller.headers['X-Message']       = ActiveSupport::JSON::Encoding.escape(message)
