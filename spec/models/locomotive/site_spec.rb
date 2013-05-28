@@ -59,9 +59,9 @@ describe Locomotive::Site do
   end
 
   it 'should validate format of domains' do
-    site = FactoryGirl.build(:site, domains: ['barformat.superlongextension', '-foo.net'])
+    site = FactoryGirl.build(:site, domains: ['barformat.a', '-foo.net', 'goodformat.superlong'])
     site.should_not be_valid
-    site.errors[:domains].should == ['barformat.superlongextension is invalid', '-foo.net is invalid']
+    site.errors[:domains].should == ['barformat.a is invalid', '-foo.net is invalid']
   end
 
   ## Named scopes ##
