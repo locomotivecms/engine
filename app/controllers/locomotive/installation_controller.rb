@@ -7,6 +7,8 @@ module Locomotive
 
     before_filter :allow_installation?
 
+    before_filter :set_content_locale
+
     helper Locomotive::BaseHelper, Locomotive::SitesHelper
 
     def show
@@ -58,6 +60,12 @@ module Locomotive
 
     def allow_installation?
       redirect_to pages_url if Site.count > 0 && Account.count > 0
+    end
+
+    def set_content_locale
+      locale = params[:site].try(:[], :locales).try(:first) || Locomotive.config.site_locales.first
+      ::Mongoid::Fields::I18n.locale = locale
+      ::Mongoid::Fields::I18n.fallbacks_for(locale, Locomotive.config.site_locales)
     end
 
     def last_url
