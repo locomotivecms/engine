@@ -5,7 +5,7 @@ module Locomotive
 
         extend ActiveSupport::Concern
 
-        # get the values from the custom fields as an array.
+        # Get the values from the custom fields as an array.
         # Values are ordered by the position of the custom fields.
         #
         # @param [ Hash ] options For now, stores only the host for the File fields.
@@ -15,19 +15,33 @@ module Locomotive
         def to_values(options = {})
           self.content_type.ordered_entries_custom_fields.map do |field|
             value = self.send(field.name)
-            case field.type.to_sym
-            when :file
-              value.blank? ? '' : value.guess_url(options[:host])
-            when :belongs_to
-              value.try(:_label)
-            when :has_many, :many_to_many
-              value.map(&:_label).join(', ')
-            when :tags
-              [*value].join(', ')
-            else
-              value
-            end
+            self.value_from_type(field.type.to_sym, value, options)
           end.compact
+        end
+
+        protected
+
+        # Return the transformed value for a particular field type (string, text, ...etc).
+        #
+        # @param [ Symbol ] type Type of the field
+        # @param [ Object ] value Value of the field in the current instance
+        # @param [ Hash ] options For now, stores only the host for the File fields.
+        #
+        # @return [ Object ]
+        #
+        def value_from_type(type, value, options)
+          case type
+          when :file
+            value.blank? ? '' : value.guess_url(options[:host])
+          when :belongs_to
+            value.try(:_label)
+          when :has_many, :many_to_many
+            value.map(&:_label).join(', ')
+          when :tags
+            [*value].join(', ')
+          else
+            value
+          end
         end
 
         module ClassMethods

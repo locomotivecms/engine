@@ -18,26 +18,14 @@ module Locomotive
         def initialize(tag_name, markup, tokens, context)
           if markup =~ Syntax
             @target = $1
-            @url = $2
-            @is_var = false
-            if @url.match(::Liquid::QuotedString)
-              @url.gsub!(/['"]/, '')
-            elsif @url.match(::Liquid::VariableSignature)
-              @is_var = true
-            else
-              raise ::Liquid::SyntaxError.new("Syntax Error in 'consume' - Valid syntax: consume <var> from \"<url>\" [username: value, password: value]")
-            end
-            @options = {}
-            markup.scan(::Liquid::TagAttributes) do |key, value|
-              @options[key] = value if key != 'http'
-            end
-            @options['timeout'] = @options['timeout'].to_f if @options['timeout']
-            @expires_in = (@options.delete('expires_in') || 0).to_i
-            @cache_key = Digest::SHA1.hexdigest(@target)
+
+            self.prepare_url($2)
+            self.prepare_options(markup)
           else
             raise ::Liquid::SyntaxError.new("Syntax Error in 'consume' - Valid syntax: consume <var> from \"<url>\" [username: value, password: value]")
           end
 
+          @cache_key = Digest::SHA1.hexdigest(@target)
           @local_cache_key = self.hash
 
           super
@@ -52,6 +40,27 @@ module Locomotive
 
         protected
 
+        def prepare_url(url)
+          @url    = url
+          @is_var = false
+          if @url.match(::Liquid::QuotedString)
+            @url.gsub!(/['"]/, '')
+          elsif @url.match(::Liquid::VariableSignature)
+            @is_var = true
+          else
+            raise ::Liquid::SyntaxError.new("Syntax Error in 'consume' - Valid syntax: consume <var> from \"<url>\" [username: value, password: value]")
+          end
+        end
+
+        def prepare_options(markup)
+          @options = {}
+          markup.scan(::Liquid::TagAttributes) do |key, value|
+            @options[key] = value if key != 'http'
+          end
+          @options['timeout'] = @options['timeout'].to_f if @options['timeout']
+          @expires_in = (@options.delete('expires_in') || 0).to_i
+        end
+
         def cached_response
           @@local_cache ||= {}
           @@local_cache[@local_cache_key]
@@ -64,16 +73,20 @@ module Locomotive
 
         def render_all_and_cache_it(context)
           Rails.cache.fetch(@cache_key, expires_in: @expires_in, force: @expires_in == 0) do
-            context.stack do
-              begin
-                context.scopes.last[@target.to_s] = Locomotive::Httparty::Webservice.consume(@url, @options.symbolize_keys)
-                self.cached_response = context.scopes.last[@target.to_s]
-              rescue Timeout::Error
-                context.scopes.last[@target.to_s] = self.cached_response
-              end
+            self.render_all_without_cache(context)
+          end
+        end
 
-              render_all(@nodelist, context)
+        def render_all_without_cache(context)
+          context.stack do
+            begin
+              context.scopes.last[@target.to_s] = Locomotive::Httparty::Webservice.consume(@url, @options.symbolize_keys)
+              self.cached_response = context.scopes.last[@target.to_s]
+            rescue Timeout::Error
+              context.scopes.last[@target.to_s] = self.cached_response
             end
+
+            render_all(@nodelist, context)
           end
         end
 

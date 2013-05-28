@@ -5,6 +5,7 @@ module Locomotive
     include Locomotive::ActionController::LocaleHelpers
     include Locomotive::ActionController::SectionHelpers
     include Locomotive::ActionController::UrlHelpers
+    include Locomotive::ActionController::Ssl
 
     layout '/locomotive/layouts/application'
 
@@ -45,10 +46,6 @@ module Locomotive
     end
 
     protected
-
-    def require_ssl
-      redirect_to protocol: 'https://' if Locomotive.config.enable_admin_ssl && !request.ssl?
-    end
 
     def set_current_thread_variables
       Thread.current[:account]  = current_locomotive_account
