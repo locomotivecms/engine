@@ -45,7 +45,7 @@ module Locomotive
             self.modify_with_scope_with_relations
           end
 
-          @collection ||= @content_type.ordered_entries(@context['with_scope'])
+          @collection ||= @content_type.ordered_entries(@context['with_scope']).visible
         end
 
         def modify_with_scope_with_relations

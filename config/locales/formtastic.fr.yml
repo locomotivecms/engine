@@ -40,6 +40,7 @@ fr:
         api_accounts: Comptes à notifier
       content_entry:
         _slug: Permalink
+        _visible: Visible
       account:
         edit:
           locale: Langue UI
@@ -84,6 +85,7 @@ fr:
           hint: "Texte affiché dans le formulaire de l'élément juste en dessous du champ."
       content_entry:
         _slug: "Propriété utilisée pour générer l'url d'une page faisant office de template pour ce modèle (ex: \"template_de_la_page/{{ votre_object._permalink }})\"."
+        _visible: "Par défaut, le modèle sera visible sur le site. Cette propriété peut être utilisée comme moyen de publication."
         seo_title: "La valeur que vous rentrez sera utilisée comme titre SEO pour la page faisant office de template pour ce modèle."
         meta_keywords: "Redéfinit les mots-clés du site. Utilisés à l'intérieur de la balise HEAD. Ils sont séparés par une virgule."
         meta_description: "Redéfinit la description du site. Utilisée à l'intérieur de la balise HEAD."

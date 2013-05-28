@@ -7,7 +7,7 @@ module Locomotive
 
     property    :_slug
 
-    property    :_position, required: false
+    properties  :_position, :_visible, required: false
 
     properties  :seo_title, :meta_keywords, :meta_description, required: false
 
@@ -37,7 +37,7 @@ module Locomotive
     end
 
     def safe_attributes
-      self.__source.custom_fields_safe_setters + %w(_slug seo_title meta_keywords meta_description)
+      self.__source.custom_fields_safe_setters + %w(_slug _visible seo_title meta_keywords meta_description)
     end
 
     ## other methods ##
