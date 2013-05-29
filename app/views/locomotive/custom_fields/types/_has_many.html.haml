@@ -4,10 +4,10 @@
   - new_target_content_entry  = target_content_type.entries.build(field.inverse_of => f.object)
 
   = f.input     name.to_sym,
-    label:      field.label,
+    label:      custom_field_label(field),
     hint:       field.hint,
     as:         :'locomotive/empty',
-    wrapper_html: { id: "content_entry_#{name}_input", class: 'empty relationship input' }
+    wrapper_html: { id: "content_entry_#{name}_input", class: ['empty relationship input', translatable_status(field)].compact.join(' ') }
 
   - content_for :head do
 

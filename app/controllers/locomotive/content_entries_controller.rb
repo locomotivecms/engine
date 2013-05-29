@@ -13,6 +13,8 @@ module Locomotive
 
     before_filter :authorize_content
 
+    helper Locomotive::CustomFieldsHelper
+
     respond_to :json, only: [:show, :edit, :create, :update, :sort]
 
     respond_to :csv,  only: [:export]

@@ -1,4 +1,4 @@
 = f.input name,
-  label:        field.label,
+  label:        custom_field_label(field),
   hint:         field.hint,
-  wrapper_html: { class: "#{'highlighted' if highlighted}" }
+  wrapper_html: { class: [('highlighted' if highlighted), translatable_status(field)].compact.join(' ') }

@@ -31,6 +31,8 @@ nl:
       custom_fields:
         field:
           name: Alias
+          translatable: Translatable
+          untranslatable: Untranslatable
       import:
         new:
           source: Bestand

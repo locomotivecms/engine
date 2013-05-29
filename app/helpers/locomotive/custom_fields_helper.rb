@@ -66,5 +66,13 @@ module Locomotive
       end
     end
 
+    def custom_field_label(field)
+      field.label + " " + content_tag(:span, I18n.t("formtastic.labels.custom_fields.field.#{translatable_status(field)}"), class: translatable_status(field))
+    end
+
+    def translatable_status(field)
+      field.localized ? :translatable : :untranslatable
+    end
+
   end
 end

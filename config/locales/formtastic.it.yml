@@ -33,6 +33,8 @@ it:
       custom_fields:
         field:
           name: Alias
+          translatable: Traducibile
+          untranslatable: Intraducibile
       import:
         new:
           source: File

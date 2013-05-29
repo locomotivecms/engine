@@ -33,6 +33,8 @@ ru:
       custom_fields:
         field:
           name: Алиас
+          translatable: Translatable
+          untranslatable: Untranslatable
       content_type:
         raw_item_template: Шаблон элемента
         public_submission_enabled: Публичное представление

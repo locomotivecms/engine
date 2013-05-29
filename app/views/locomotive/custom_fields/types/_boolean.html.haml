@@ -1,4 +1,5 @@
 = f.input name,
-  label:  field.label,
+  label:  custom_field_label(field),
   hint:   field.hint,
-  as:     :'Locomotive::Toggle'
+  as:     :'Locomotive::Toggle',
+  wrapper_html: { class: translatable_status(field) }

@@ -169,6 +169,7 @@ form.formtastic {
 
         label, .label {
           float: left;
+          position: relative;
 
           width: 160px;
           padding: 0px 0 0 0px;
@@ -181,6 +182,41 @@ form.formtastic {
           img.flag {
             float: left;
             margin: -3px 10px 0 0;
+          }
+        }
+
+        &.translatable {
+          label {
+            span.translatable {
+              @include label;
+              position: absolute;
+              left: 0;
+              bottom: -20px;
+
+              background-color: rgb(88, 90, 105);
+            }
+          }
+        }
+
+        &.untranslatable {
+          label {
+            span.untranslatable {
+              @include label;
+              position: absolute;
+              left: 0;
+              bottom: -21px;
+              padding: 0 2px 1px;
+
+              font-size: 11px;
+              font-weight: bold;
+              color: rgb(88, 90, 105);
+              line-height: 16px;
+              @include text-shadow(none);
+
+              background: transparent;
+              border: 1px solid rgb(159, 161, 174);
+              @include border-radius(3px);
+            }
           }
         }
 

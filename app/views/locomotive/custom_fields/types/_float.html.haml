@@ -1,6 +1,6 @@
 = f.input name,
-  label:        field.label,
+  label:        custom_field_label(field),
   hint:         field.hint,
   as:           :number,
   step:         0.1,
-  wrapper_html: { class: "#{'highlighted' if highlighted}" }
+  wrapper_html: { class: [('highlighted' if highlighted), translatable_status(field)].compact.join(' ') }

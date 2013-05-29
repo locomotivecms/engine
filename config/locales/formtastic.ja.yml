@@ -33,6 +33,8 @@ ja:
       custom_fields:
         field:
           name: エイリアス
+          translatable: Translatable
+          untranslatable: Untranslatable
       content_type:
         raw_item_template: アイテムテンプレート
         public_submission_enabled: Public submission

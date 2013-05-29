@@ -30,7 +30,9 @@ Scenario: See untranslated entry in list
 Scenario: See original entry details
   When I go to the list of "Proverbs"
   And I follow "Jump on the bandwagon" within the main content
-  Then the "Proverb" field should contain "Jump on the bandwagon"
+  Then I should see "Proverb Translatable*"
+  And I should see "Author Untranslatable"
+  And the "Proverb" field should contain "Jump on the bandwagon"
   And the "Author" field should contain "John"
 
 @javascript
@@ -38,7 +40,9 @@ Scenario: See untranslated entry details
   When I switch the locale to "de"
   And I go to the list of "Proverbs"
   And I follow "Jump on the bandwagon" within the main content
-  Then the "Proverb" field should contain "Jump on the bandwagon"
+  Then I should see "Proverb Translatable*"
+  And I should see "Author Untranslatable"
+  And the "Proverb" field should contain "Jump on the bandwagon"
   And the "Author" field should contain "John"
 
 @javascript

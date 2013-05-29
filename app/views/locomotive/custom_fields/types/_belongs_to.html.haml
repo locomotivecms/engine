@@ -1,5 +1,6 @@
 = f.input :"#{name}_id",
-  label:      field.label,
+  label:      custom_field_label(field),
   hint:       field.hint,
   as:         :select,
-  collection: options_for_belongs_to_custom_field(field.class_name)
+  collection: options_for_belongs_to_custom_field(field.class_name),
+  wrapper_html: { class: translatable_status(field) }

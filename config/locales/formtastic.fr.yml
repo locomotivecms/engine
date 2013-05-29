@@ -35,6 +35,8 @@ fr:
       custom_fields:
         field:
           name: Alias
+          translatable: Traduisible
+          untranslatable: Intraduisible
       content_type:
         raw_item_template: Template d'affichage
         api_accounts: Comptes à notifier
