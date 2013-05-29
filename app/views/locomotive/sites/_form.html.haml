@@ -3,10 +3,13 @@
 
 = f.inputs name: :information do
   = f.input :name, wrapper_html: { class: 'highlighted' }
-
+  = f.input :locales, as: :select, collection: options_for_select(options_for_site_locales, current_locomotive_account.locale),
+   	label: t(:default_site_locale, scope: 'locomotive.installation.step_2'), :input_html => { :name => 'site[locales][]' }, hint: false
+  
 - if manage_subdomain_or_domains?
   = f.inputs name: :access_points do
     = f.input :subdomain, as: :'Locomotive::Subdomain', domain: application_domain, input_html: { readonly: !manage_subdomain? }
 
     - if manage_domains?
       = f.input :domains, as: :'Locomotive::Empty'
+

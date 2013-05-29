@@ -22,6 +22,17 @@ Feature: Manage my site
     Then I should see "Site was successfully created." in the html code
     And I should be a administrator of the "Acme" site
 
+  Scenario: Add a new site with chosen locale
+    Given I am an authenticated user
+    When I go to the account settings
+    And I follow "new site"
+	When I fill in "Name" with "Acme"
+    And I fill in "Subdomain" with "acme"
+    And I select "Russian" from "Site locale"
+    When I press "Create"
+	Then I want to see 
+    Then I should see "Site was successfully created." in the html code
+
   @javascript
   Scenario: Adding a domain to a site
     Given I am an authenticated user
