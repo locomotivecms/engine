@@ -43,6 +43,7 @@ en:
         _slug: Permalink
         _visible: Visible
       account:
+        api_key: API key
         edit:
           locale: UI Language
           password: New password

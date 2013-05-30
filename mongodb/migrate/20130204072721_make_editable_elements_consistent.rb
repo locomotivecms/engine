@@ -8,6 +8,8 @@ class MakeEditableElementsConsistent < MongoidMigration::Migration
 
           found_elements = []
 
+          next if page.template.nil?
+
           page.template.walk do |node, memo|
             case node
             when Locomotive::Liquid::Tags::InheritedBlock
@@ -100,7 +102,7 @@ class MakeEditableElementsConsistent < MongoidMigration::Migration
       end # loop: locales
     end # loop: sites
   end
-  
+
   def self.down
     raise MongoidMigration::IrreversibleMigration
   end

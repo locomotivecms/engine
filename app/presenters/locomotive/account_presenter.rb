@@ -3,7 +3,7 @@ module Locomotive
 
     ## properties ##
     properties  :name, :email, :locale
-    property    :admin, only_getter: true
+    properties  :admin, :api_key, only_getter: true
 
     with_options only_setter: true do |presenter|
       presenter.properties :password, :password_confirmation

@@ -40,7 +40,7 @@ class RenameEntryToContentEntry < MongoidMigration::Migration
         '_type' => replace_value_by(type, regexp, replacement),
         'custom_fields_recipe' => new_recipe
       } }
-      collection.update selector, operations
+      collection.find(selector).update(operations)
     end
     puts "content entries UPDATED"
   end
@@ -55,7 +55,7 @@ class RenameEntryToContentEntry < MongoidMigration::Migration
 
       selector    = { '_id' => attributes['_id'] }
       operations  = { '$set' => updates }
-      collection.update selector, operations
+      collection.find(selector).update(operations)
     end
     puts "content types UPDATED"
   end
@@ -66,7 +66,7 @@ class RenameEntryToContentEntry < MongoidMigration::Migration
         new_klass_name  = replace_value_by(klass_name, regexp, replacement)
         selector        = { '_id' => attributes['_id'] }
         operations      = { '$set' => { 'target_klass_name' => new_klass_name } }
-        collection.update selector, operations
+        collection.find(selector).update(operations)
       end
     end
     puts "templatized pages UPDATED"
@@ -74,14 +74,14 @@ class RenameEntryToContentEntry < MongoidMigration::Migration
 
   def self.fetch_rows(klass, &block)
     per_page    = 100
-    collection  = klass.collection.driver
-    count       = collection.count
+    collection  = klass.collection #.driver
+    count       = collection.find.count
     num_pages   = (count.to_f / per_page).floor
 
     # paginate the whole collection to avoid mongodb cursor error
     (0..num_pages).each do |page|
       offset = per_page * page.to_i
-      collection.find.sort("_id").limit(per_page).skip(offset).each do |attributes|
+      collection.find.skip(offset).limit(per_page).sort(_id: 1).each do |attributes|
         block.call(collection, attributes)
       end
     end

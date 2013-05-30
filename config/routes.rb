@@ -28,7 +28,9 @@ Locomotive::Engine.routes.draw do
 
   resources :accounts
 
-  resource :my_account, controller: 'my_account'
+  resource :my_account, controller: 'my_account' do
+    put :regenerate_api_key, on: :member
+  end
 
   resources :memberships
 

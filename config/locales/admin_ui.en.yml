@@ -85,6 +85,10 @@ en:
     sites_picker:
       new: + new site
 
+    api_key:
+      none: Please click on the next button to generate the API key.
+      button: Regenerate
+
     custom_fields:
       edit:
         title: Editing custom field

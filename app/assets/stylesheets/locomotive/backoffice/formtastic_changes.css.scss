@@ -443,6 +443,18 @@ form.formtastic {
           }
         } // li.file
 
+        &.api_key {
+          code {
+            color: #000;
+            font-weight: bold;
+            font-family: Monaco, monospace;
+          }
+          button.regenerate {
+            @include blue-button;
+            margin-left: 10px;
+          }
+        }
+
         &.subdomain {
 
           em {

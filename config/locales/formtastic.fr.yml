@@ -42,6 +42,7 @@ fr:
         _slug: Permalink
         _visible: Visible
       account:
+        api_key: Clé API
         edit:
           locale: Langue UI
           password: Nouveau mot de passe

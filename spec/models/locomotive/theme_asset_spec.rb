@@ -134,7 +134,7 @@ describe Locomotive::ThemeAsset do
 
     let(:image) { stub(source: OpenStruct.new(url: 'http://engine.dev/images/banner.png')) }
 
-    let(:subject) { asset.send(:escape_shortcut_urls, text) }
+    subject { asset.send(:escape_shortcut_urls, text) }
 
     context 'simple url' do
 

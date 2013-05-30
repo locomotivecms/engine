@@ -15,6 +15,9 @@ Given /^I have the site: "([^"]*)" set up(?: with #{capture_fields})?$/ do |site
 
   @admin = @site.memberships.first.account
   @admin.should_not be_nil
+  # same api key for all the tests
+  @admin.api_key = 'd49cd50f6f0d2b163f48fc73cb249f0244c37074'
+  @admin.save
 end
 
 Given /^I have a site set up$/ do

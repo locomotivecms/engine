@@ -85,6 +85,10 @@ fr:
     sites_picker:
       new: + nouveau site
 
+    api_key:
+      none: Cliquez sur le bouton suivant pour générer une clé API.
+      button: Re-générer
+
     custom_fields:
       edit:
         title: Editer champ personnalisé
