@@ -86,6 +86,9 @@ module Locomotive
           end
         end
 
+        # Verify if the index and 404 pages in ALL the locales of the site
+        # have a non empty slug, fullpath and title. If not, it sets them.
+        #
         def verify_localized_default_pages_integrity
           if self.persisted? && self.locales_changed?
             self.pages.where(:"slug.#{self.default_locale_was}".in => %w(index 404), depth: 0).each do |page|

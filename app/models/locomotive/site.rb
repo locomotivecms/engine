@@ -62,16 +62,20 @@ module Locomotive
     # namespaced ::I18n should be changed to just I18n when the t()
     # method is available
     def create_default_pages!
-      ::Mongoid::Fields::I18n.with_locale(self.default_locale) do
-        %w{index 404}.each do |slug|
-          self.pages.create({
-            slug:         slug,
-            title:        ::I18n.t("attributes.defaults.pages.#{slug}.title", locale: self.default_locale),
-            raw_template: ::I18n.t("attributes.defaults.pages.#{slug}.body", locale: self.default_locale),
-            published:    true
-          })
+      %w{index 404}.each do |slug|
+        page = self.pages.build(published: true)
+        self.locales.each do |locale|
+          ::Mongoid::Fields::I18n.with_locale(locale) do
+            page.attributes = {
+              slug:         slug,
+              title:        ::I18n.t("attributes.defaults.pages.#{slug}.title", locale: locale),
+              raw_template: ::I18n.t("attributes.defaults.pages.#{slug}.body", locale: locale)
+            }
+          end
         end
+        page.save
       end
+
     end
 
     def destroy_pages

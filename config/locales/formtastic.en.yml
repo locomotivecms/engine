@@ -52,6 +52,8 @@ en:
         target_klass_name: Model
       site:
         locales: Languages
+        new:
+          locales: First language
 
     hints:
       page:
@@ -73,6 +75,8 @@ en:
         meta_description: "Meta description used within the head tag of the page. Required for SEO."
         domain_name: "ex: locomotiveapp.org"
         robots_txt: "Content of the <span class='code'>/robots.txt</span> file. Check the following <a href='http://www.w3.org/TR/html4/appendix/notes.html#h-B.4.1.1'>url</a> for more information."
+        new:
+          locales: "You can add other languages once your site will be created."
       theme_asset:
         slug: "You do not need to add the extension file (.css or .js)"
         edit:

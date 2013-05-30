@@ -9,11 +9,11 @@ describe Locomotive::Liquid::Tags::LocaleSwitcher do
   end
 
   let(:page) do
-    site.pages.where(:slug => "index").first
+    site.pages.where(slug: "index").first
   end
-  
+
   let(:translated_page) do
-    page = FactoryGirl.create(:page, title: "Hello", slug: "hello", site: site, parent: site.pages.where(:slug => "index").first)
+    page = FactoryGirl.create(:page, title: "Hello", slug: "hello", site: site, parent: site.pages.where(slug: "index").first)
     ::Mongoid::Fields::I18n.with_locale(:fr) do
       page.update_attributes(title: "Bonjour")
     end
@@ -39,7 +39,7 @@ describe Locomotive::Liquid::Tags::LocaleSwitcher do
     html = render_tag('en', "label: 'locale'")
     html.should == '<div id="locale-switcher"><a href="/" class="en current">English</a> | <a href="/fr" class="fr">French</a></div>'
   end
-  
+
   it "translates fullpaths" do
     html = render_tag('en', nil, translated_page)
     html.should == '<div id="locale-switcher"><a href="/hello" class="en current">en</a> | <a href="/fr/bonjour" class="fr">fr</a></div>'

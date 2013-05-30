@@ -10,10 +10,10 @@ module Locomotive
           site.memberships.build account: account, role: 'admin'
 
           site.save
-          
+
           account.locale = site.default_locale
           account.save
-          
+
           site
         end
 
