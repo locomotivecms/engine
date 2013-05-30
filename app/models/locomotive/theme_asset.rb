@@ -18,7 +18,7 @@ module Locomotive
     mount_uploader :source, ThemeAssetUploader, mount_on: :source_filename, validate_integrity: true
 
     ## associations ##
-    belongs_to :site, class_name: 'Locomotive::Site'
+    belongs_to :site, class_name: 'Locomotive::Site', autosave: false
 
     ## indexes ##
     index site_id:  1
@@ -144,7 +144,7 @@ module Locomotive
     def escape_shortcut_urls(text)
       return if text.blank?
 
-      text.gsub(/[("'](\/(stylesheets|javascripts|images|media|others)\/(([^;.]+)\/)*([a-zA-Z_\-0-9]+)\.[a-z]{2,3})[)"']/) do |path|
+      text.gsub(/[("'](\/(stylesheets|javascripts|images|media|others)\/(([^;.]+)\/)*([a-zA-Z_\-0-9]+)\.[a-z]{2,3})(\?[0-9]+)?[)"']/) do |path|
 
         sanitized_path = path.gsub(/[("')]/, '').gsub(/^\//, '')
 
