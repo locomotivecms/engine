@@ -21,7 +21,7 @@ module Locomotive
 
     ## attributes ##
     field :name
-    field :locale, default: Locomotive.config.default_locale.to_s or 'en'
+    field :locale,  default: Locomotive.config.default_locale.to_s or 'en'
     field :api_key
 
     ## protected attributes ##
@@ -33,6 +33,7 @@ module Locomotive
     ## associations ##
 
     ## callbacks ##
+    before_validation :api_key_should_not_be_empty
     before_destroy    :remove_memberships!
 
     ## scopes ##
@@ -124,6 +125,12 @@ module Locomotive
     end
 
     protected
+
+    def api_key_should_not_be_empty
+      if self.api_key.blank?
+        self.regenerate_api_key
+      end
+    end
 
     def password_required?
       !persisted? || !password.blank? || !password_confirmation.blank?

@@ -3,8 +3,6 @@
 
 source "https://rubygems.org"
 
-# net-scp 1.0.6 was yanked
-gem 'net-scp', '1.0.4'
 # gem 'custom_fields', github: 'locomotivecms/custom_fields'
 
 gemspec # Include gemspec dependencies

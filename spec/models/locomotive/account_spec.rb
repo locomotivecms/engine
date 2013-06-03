@@ -88,6 +88,11 @@ describe Locomotive::Account do
 
     let(:account) { FactoryGirl.build(:account) }
 
+    it 'is not nil for a new account (after validation)' do
+      account.valid?
+      account.api_key.should_not be_nil
+    end
+
     it 'can be not changed by mass assignment' do
       account.attributes = { api_key: 'foo' }
       account.api_key.should_not == 'foo'
