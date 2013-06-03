@@ -41,6 +41,7 @@ Scenario: Localizing page slugs
   And I follow "new page" within the main content
   And I fill in "page_title" with "Translated"
   And I press "Create"
+  And I wait 500ms
   Then I should see a "show" link to "/translated"
 
   When I switch the locale to "es"
