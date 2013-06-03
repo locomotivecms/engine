@@ -40,8 +40,8 @@ Scenario: Localizing page slugs
   When I go to pages
   And I follow "new page" within the main content
   And I fill in "page_title" with "Translated"
+  And I wait 1500ms
   And I press "Create"
-  And I wait 1000ms
   Then I should see "Page was successfully created."
   And I should see a "show" link to "/translated"
 
