@@ -67,7 +67,7 @@ When(/^I switch the locale to "(.*?)"$/) do |locale|
   end
 end
 
-When(/^I should see a "(.*?)" link to "(.*?)"$/) do |text, path|
+Then(/^I should see a "(.*?)" link to "(.*?)"$/) do |text, path|
   page.should have_link(text, href: path)
 end
 

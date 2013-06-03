@@ -41,8 +41,9 @@ Scenario: Localizing page slugs
   And I follow "new page" within the main content
   And I fill in "page_title" with "Translated"
   And I press "Create"
-  And I wait 500ms
-  Then I should see a "show" link to "/translated"
+  And I wait 1000ms
+  Then I should see "Page was successfully created."
+  And I should see a "show" link to "/translated"
 
   When I switch the locale to "es"
   And I fill in "Slug" with "pagina-traducida"
