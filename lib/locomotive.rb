@@ -39,6 +39,7 @@ module Locomotive
 
     yield(self.config)
 
+
     after_configure
   end
 
@@ -64,8 +65,9 @@ module Locomotive
     # Load all the dynamic classes (custom fields)
     begin
       ContentType.all.collect { |content_type| content_type.klass_with_custom_fields(:entries) }
-    rescue ::Mongoid::Errors::InvalidDatabase => e
+    rescue Exception => e
       # let assume it's because of the first install (meaning no config.yml file)
+      Locomotive.log :warn, "WARNING: unable to load the content types, #{e.message}"
     end
 
     # enable the hosting solution if both we are not in test or dev and that the config.hosting option has been filled up

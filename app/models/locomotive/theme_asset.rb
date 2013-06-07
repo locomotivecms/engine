@@ -8,11 +8,11 @@ module Locomotive
 
     ## fields ##
     field :local_path
-    field :content_type
-    field :width,   type: Integer
-    field :height,  type: Integer
-    field :size,    type: Integer
-    field :folder,  default: nil
+    field :content_type,  type: Symbol
+    field :width,         type: Integer
+    field :height,        type: Integer
+    field :size,          type: Integer
+    field :folder,        default: nil
     field :checksum
 
     mount_uploader :source, ThemeAssetUploader, mount_on: :source_filename, validate_integrity: true
@@ -170,7 +170,12 @@ module Locomotive
     end
 
     def content_type_can_not_change
-      self.errors.add(:source, :extname_changed) if self.persisted? && self.content_type_changed?
+      if self.persisted?
+        # FIXME: content type used to be a String
+        if self.content_type_was.to_sym != self.content_type
+          self.errors.add(:source, :extname_changed)
+        end
+      end
     end
 
     def calculate_checksum
