@@ -84,6 +84,13 @@ describe Locomotive::Liquid::Filters::Html do
     stylesheet_tag('https://cdn.example.com/trash/main').should == result
   end
 
+  it 'should return a link tag for a stylesheet stored in Amazon S3' do
+    url = 'https://com.citrrus.locomotive.s3.amazonaws.com/sites/42/theme/stylesheets/bootstrap2.css'
+    stubs(:asset_url).returns(url)
+    result = "<link href=\"#{url}\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\">"
+    stylesheet_tag('bootstrap2.css').should == result
+  end
+
   it 'should return a link tag for a stylesheet file and media attribute set to print' do
     result = "<link href=\"/sites/000000000000000000000042/theme/stylesheets/main.css\" media=\"print\" rel=\"stylesheet\" type=\"text/css\">"
     stylesheet_tag('main.css','print').should == result
@@ -144,7 +151,7 @@ describe Locomotive::Liquid::Filters::Html do
     javascript_url('https://cdn.example.com/trash/main.js').should == result
     javascript_url('https://cdn.example.com/trash/main').should == result
   end
-  
+
   it 'should return a url for a javascript file with respect to URL-parameters' do
     result = "/sites/000000000000000000000042/theme/javascripts/main.js?v=42"
     javascript_url('main.js?v=42').should == result
@@ -180,7 +187,7 @@ describe Locomotive::Liquid::Filters::Html do
     javascript_tag('https://cdn.example.com/trash/main.js').should == result
     javascript_tag('https://cdn.example.com/trash/main').should == result
   end
-  
+
   it 'should return a script tag for a javascript file with "defer" option' do
     result = %{<script src="https://cdn.example.com/trash/main.js" type="text/javascript" defer="defer" ></script>}
     javascript_tag('https://cdn.example.com/trash/main.js', ['defer:defer']).should == result
