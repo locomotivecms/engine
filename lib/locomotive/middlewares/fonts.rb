@@ -35,7 +35,7 @@ module Locomotive
           Site.match_domain(domain_name).only(:id).first._id.to_s rescue ''
         end
 
-        site_id.blank? ? nil : Site.new(id: site_id)
+        site_id.blank? ? nil : Site.new.tap { |site| site._id = site_id }
       end
     end
   end

@@ -38,7 +38,7 @@ module CustomFields
 
         # Set correct paths
         def store_dir
-          "sites/#{model.site_id}/#{model.class.model_name.demodulize.underscore}/#{model.id}/files"
+          "sites/#{model.site_id}/#{model._type.demodulize.underscore}/#{model.id}/files"
         end
 
         # In some situations, for instance, for the notification email when a content entry is created,

@@ -67,7 +67,7 @@ describe Locomotive::ContentEntry do
       build_content_entry(_slug: 'fish-1-hi').tap(&:save!)._slug.should == 'fish-1-hi'
       build_content_entry(_slug: 'fish-1-hi').tap(&:save!)._slug.should == 'fish-1-hi-1'
     end
-    
+
     it 'correctly handles more than 13 slugs with the same name' do
       (1..15).each do |i|
         build_content_entry(_slug: 'dogs').tap(&:save!)._slug.should == "dogs-#{i}"
@@ -118,7 +118,7 @@ describe Locomotive::ContentEntry do
 
           subject { build_content_entry(file: FixturedAsset.open('5k.png')).tap(&:save).to_values(host: 'example.com') }
 
-          its(:last) { should match(/^http:\/\/example.com\/sites\/[0-9a-f]+\/content_entry\/[0-9a-f]+\/files\/5k.png$/) }
+          its(:last) { should match(/^http:\/\/example.com\/sites\/[0-9a-f]+\/content_entry[0-9a-f]+\/[0-9a-f]+\/files\/5k.png$/) }
 
         end
 
@@ -139,7 +139,7 @@ describe Locomotive::ContentEntry do
 
       its(:first) { should eq("Title,Description,Visible ?,File") }
 
-      its(:last) { should match(/^Locomotive,Lorem ipsum....,false,http:\/\/example.com\/sites\/[0-9a-f]+\/content_entry\/[0-9a-f]+\/files\/5k.png$/) }
+      its(:last) { should match(/^Locomotive,Lorem ipsum....,false,http:\/\/example.com\/sites\/[0-9a-f]+\/content_entry[0-9a-f]+\/[0-9a-f]+\/files\/5k.png$/) }
 
     end
 
