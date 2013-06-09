@@ -146,7 +146,7 @@ module Locomotive
 
       text.gsub(/[("'](\/(stylesheets|javascripts|images|media|others)\/(([^;.]+)\/)*([a-zA-Z_\-0-9]+)\.[a-z]{2,3})(\?[0-9]+)?[)"']/) do |path|
 
-        sanitized_path = path.gsub(/[("')]/, '').gsub(/^\//, '')
+        sanitized_path = path.gsub(/[("')]/, '').gsub(/^\//, '').gsub(/\?[0-9]+$/, '')
 
         if asset = self.site.theme_assets.where(local_path: sanitized_path).first
           "#{path.first}#{asset.source.url}#{path.last}"
