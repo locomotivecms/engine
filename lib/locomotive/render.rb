@@ -49,7 +49,7 @@ module Locomotive
     # the "Page Not Found" page.
     #
     def render_no_page_error
-      render template: 'locomotive/errors/no_page', layout: false, status: 404
+      render template: '/locomotive/errors/no_page', layout: false, status: 404, formats: [:html]
     end
 
     # Prepare and set the response object for the Locomotive page retrieved
