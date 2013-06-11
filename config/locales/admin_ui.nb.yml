@@ -43,6 +43,7 @@ nb:
         account: Min konto
         site: Siden
         theme_assets: Temafiler
+        translations: Oversettelser
       form:
         change_file: Endre
         delete_file: Slett
