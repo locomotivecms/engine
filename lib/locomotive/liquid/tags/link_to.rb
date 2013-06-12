@@ -22,7 +22,7 @@ module Locomotive
         
         def render(context)
           site = context.registers[:site]
-          page, link, entry = templatized_page(site, context, @options['locale']) || page(site, @handle, @options['locale'])
+          page, link, entry = templatized_page(site, context, @options) || page(site, @handle, @options['locale'])
           path = public_page_url(site, page, locale: @options['locale'], content: entry)
           
           if @render_as_block
@@ -34,12 +34,14 @@ module Locomotive
         end
         
         protected
-        def templatized_page(site, context, locale = nil)
-          ::Mongoid::Fields::I18n.with_locale(locale) do
+        def templatized_page(site, context, options)
+          ::Mongoid::Fields::I18n.with_locale(options['locale']) do
             context.scopes.reverse_each do |scope|
               if scope[@handle].is_a?(Locomotive::ContentEntry)
                 entry = scope[@handle]
-                page  = site.pages.where(target_klass_name: entry.class.to_s, templatized: true).first
+                criteria = site.pages.where(target_klass_name: entry.class.to_s, templatized: true)
+                criteria = criteria.where(handle: options['with']) if options['with']
+                page = criteria.first
                 return [page, entry._label, entry]
               end
             end
@@ -62,7 +64,7 @@ module Locomotive
             fullpath = File.join(fullpath.gsub('content_type_template', ''), content._slug)
           end
 
-          "/#{fullpath}"
+          File.join('/', fullpath)
         end
       end
 
