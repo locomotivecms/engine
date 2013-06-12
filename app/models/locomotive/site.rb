@@ -8,6 +8,7 @@ module Locomotive
     extend  Extensions::Site::FirstInstallation
     include Extensions::Shared::Seo
     include Extensions::Site::Locales
+    include Extensions::Site::Timezone
 
     ## fields ##
     field :name
