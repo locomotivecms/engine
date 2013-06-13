@@ -193,7 +193,7 @@ module Locomotive
     end
 
     def localize(object, options = nil)
-      object = object.in_time_zone(current_site.timezone) if object.is_a?(Time)
+      object = object.in_time_zone(current_site.timezone) if object.respond_to?(:in_time_zone)
       I18n.localize(object, options)
     end
     alias :l :localize
