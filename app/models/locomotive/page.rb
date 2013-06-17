@@ -50,8 +50,8 @@ module Locomotive
 
     ## named scopes ##
     scope :latest_updated,      order_by(updated_at: :desc).limit(Locomotive.config.ui[:latest_entries_nb])
-    scope :root,                where(slug: 'index', depth: 0)
-    scope :not_found,           where(slug: '404', depth: 0)
+    scope :root,                -> { where(slug: 'index', depth: 0) }
+    scope :not_found,           -> { where(slug: '404', depth: 0) }
     scope :published,           where(published: true)
     scope :fullpath,            ->(fullpath){ where(fullpath: fullpath) }
     scope :handle,              ->(handle){ where(handle: handle) }

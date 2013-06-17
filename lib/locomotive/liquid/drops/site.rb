@@ -12,7 +12,7 @@ module Locomotive
         def pages
           @pages ||= liquify(*self.scoped_pages)
         end
-        
+
         protected
         def scoped_pages
           if @context["with_scope"]

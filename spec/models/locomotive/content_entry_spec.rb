@@ -137,9 +137,9 @@ describe Locomotive::ContentEntry do
 
       its(:size) { should eq(4) }
 
-      its(:first) { should eq("Title,Description,Visible ?,File") }
+      its(:first) { should eq("Title,Description,Visible ?,File,Created at") }
 
-      its(:last) { should match(/^Locomotive,Lorem ipsum....,false,http:\/\/example.com\/sites\/[0-9a-f]+\/content_entry[0-9a-f]+\/[0-9a-f]+\/files\/5k.png$/) }
+      its(:last) { should match(/^Locomotive,Lorem ipsum....,false,http:\/\/example.com\/sites\/[0-9a-f]+\/content_entry[0-9a-f]+\/[0-9a-f]+\/files\/5k.png,\"July 05, 2013 00:00\"$/) }
 
     end
 
@@ -328,7 +328,7 @@ describe Locomotive::ContentEntry do
   end
 
   def build_content_entry(options = {})
-    @content_type.entries.build({ title: 'Locomotive', description: 'Lorem ipsum....', _label_field_name: 'title' }.merge(options))
+    @content_type.entries.build({ title: 'Locomotive', description: 'Lorem ipsum....', _label_field_name: 'title', created_at: DateTime.parse('2013-07-05 00:00:00') }.merge(options))
   end
 
   def fake_bson_id(id)
