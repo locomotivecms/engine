@@ -14,8 +14,8 @@ module Locomotive
       #
 
       class WithScope < ::Liquid::Block
-
-        TagAttributes = /(\w+|\w+\.\w+)\s*\:\s*(#{::Liquid::QuotedFragment})/
+        SlashedString = /\/[^\/]*\//
+        TagAttributes = /(\w+|\w+\.\w+)\s*\:\s*(#{SlashedString}|#{::Liquid::QuotedFragment})/
 
         def initialize(tag_name, markup, tokens, context)
           @attributes = HashWithIndifferentAccess.new
@@ -37,7 +37,7 @@ module Locomotive
 
         def decode(attributes, context)
           attributes.each_pair do |key, value|
-            attributes[key] = context[value]
+            attributes[key] = value.match(SlashedString) ? Regexp.new(value[1..-2]) : context[value]
           end
         end
 

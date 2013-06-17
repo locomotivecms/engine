@@ -124,4 +124,10 @@ Then /^I should not see delete page buttons$/ do
   page.has_css?("ul#pages-list li .more a.remove").should be_false
 end
 
+Then /^updated_at of the (.*) page should respect site's timezone$/ do |slug|
+  edited_page = @site.pages.where(slug: slug).first
+  t = edited_page.updated_at.in_time_zone(@site.timezone)
+  page.source.should =~ /#{t.strftime('%-d %b %H:%M')}/
+end
+
 

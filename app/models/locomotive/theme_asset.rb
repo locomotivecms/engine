@@ -144,7 +144,7 @@ module Locomotive
     def escape_shortcut_urls(text)
       return if text.blank?
 
-      text.gsub(/[("'](\/(stylesheets|javascripts|images|media|others)\/(([^;.]+)\/)*([a-zA-Z_\-0-9]+)\.[a-z]{2,3})(\?[0-9]+)?[)"']/) do |path|
+      text.gsub(/[("'](\/(stylesheets|javascripts|images|media|fonts|others)\/(([^;.]+)\/)*([a-zA-Z_\-0-9]+)\.[a-z]{2,3})(\?[0-9]+)?[)"']/) do |path|
 
         sanitized_path = path.gsub(/[("')]/, '').gsub(/^\//, '').gsub(/\?[0-9]+$/, '')
 

@@ -53,6 +53,7 @@ en:
         target_klass_name: Model
       site:
         locales: Languages
+        timezone_name: Timezone
         new:
           locales: First language
 

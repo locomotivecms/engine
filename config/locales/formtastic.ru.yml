@@ -48,9 +48,12 @@ ru:
           password_confirmation: Подтверждение нового пароля
       page:
         seo_title: Название
-        target_klass_name: Model
+        target_klass_name: Модель
       site:
         locales: Языки
+        timezone_name: Часовой пояс
+        new:
+          locales: Первый язык
 
     hints:
       page:

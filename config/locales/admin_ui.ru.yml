@@ -43,6 +43,7 @@ ru:
         account: Аккаунт
         site: Сайт
         theme_assets: Файлы темы
+        translations: Переводы
       form:
         change_file: изменить
         delete_file: удалить
@@ -56,7 +57,7 @@ ru:
         send: Отправить
         disable_with: В ожидании...
       list:
-        untranslated: непереведено
+        untranslated: Не переведено
 
     errors:
       "500":
@@ -75,7 +76,11 @@ ru:
         type: "Модель: %{type}"
 
     sites_picker:
-      new: + new site
+      new: + новый сайт
+
+    api_key:
+        none: Нажмите на кнопку, чтобы сгенерировать ключ API.
+        button: Создать
 
     custom_fields:
       edit:
@@ -88,7 +93,7 @@ ru:
           delete_file: Удалить файл
         has_many:
           empty: Пусто
-          new_entry: + Добавить новый элемент
+          new_entry: + новый элемент
         many_to_many:
           empty: Список пуст. Добавьте элемент из селекта ниже.
       form:
@@ -119,7 +124,7 @@ ru:
       index:
         title: Список страниц
         help: "Страницы организованы в виде дерева. Вы можете сортировать как страницы, так и папки"
-        no_items: "There are no pages for now. Just click <a href=\"%{url}\">here</a> to create the first one."
+        no_items: "Сейчас здесь нет ни одной страницы. Перейдите по <a href=\"%{url}\">ссылке</a>, чтобы создать первую."
         new: новая страница
         latest_entries: Страницы за последнее время
       new:
@@ -223,6 +228,20 @@ ru:
         title: "Вставить изображение"
         no_items: "Нет ни одного изображения."
         upload: "Upload theme images"
+
+    translations:
+        untranslated: "Ожидают перевода: %{list}"
+        index:
+            title: Переводы
+            new: новый перевод
+            no_items: "Сейчас нет ни одного перевода. Пройдите по <a href=\"%{url}\">ссылке</a>, чтобы создать перевод."
+            remove: Удалить %{key}
+        new:
+            title: "Новый перевод"
+            help: "Страницы и сниппеты могут использовать один и тот же шаблон для всех языков, тогда как некоторые надписи можно перевести с помощью liquid-тэга <b>translate</b>."
+        edit:
+            title: "Редактирование %{key}"
+            help: "Вы можете использовать этот перевод следующим образом: <span class='code'>{{ '%{key}' | translate }}</span>."
 
     content_assets:
       picker:
