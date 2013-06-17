@@ -2,7 +2,7 @@ module Locomotive
   module Liquid
     module Filters
       module Date
-
+        
         def distance_of_time_in_words(input, from_time = Time.now)
           # make sure we deals with instances of Time
           input     = to_time(input)
@@ -30,6 +30,8 @@ module Locomotive
 
           return input.to_s unless input.respond_to?(:strftime)
 
+          input = input.in_time_zone(@context.registers[:site].timezone) if input.respond_to?(:in_time_zone)
+          
           I18n.l input, format: format, locale: locale
         end
 

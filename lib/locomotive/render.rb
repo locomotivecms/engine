@@ -189,7 +189,7 @@ module Locomotive
         'fullpath'          => request.fullpath,
         'url'               => request.url,
         'ip_address'        => request.remote_ip,
-        'now'               => Time.now.utc,
+        'now'               => Time.now.in_time_zone(current_site.timezone),
         'today'             => Date.today,
         'locale'            => I18n.locale.to_s,
         'default_locale'    => current_site.default_locale.to_s,
