@@ -62,10 +62,10 @@ module Locomotive
 
             CSV.generate(csv_options) do |csv|
               # header
-              csv << fields.map(&:label)
+              csv << (fields.map(&:label) + [I18n.t('mongoid.attributes.locomotive/content_entry.created_at')])
               # body
               all.each do |entry|
-                csv << entry.to_values(options)
+                csv << (entry.to_values(options) + [I18n.l(entry.created_at, format: :long)])
               end
             end
           end
