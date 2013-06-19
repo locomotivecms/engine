@@ -83,6 +83,8 @@ fr:
         group_by_field_id: Champ pour grouper
         public_submission_enabled: Activation API
         public_submission_accounts: Comptes à notifier
+      locomotive/content_entry:
+        created_at: Date de création
       locomotive/asset:
         source: Fichier
       locomotive/account:

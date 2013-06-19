@@ -8,6 +8,8 @@
 nav.pagination {
   text-align: center;
 
+  margin-bottom: 15px;
+
   a {
     @include gray-button;
     margin: 0px 1px;

@@ -129,7 +129,7 @@ describe Locomotive::ThemeAsset do
   describe '.escape_shortcut_urls' do
 
     before(:each) do
-      site.theme_assets.stubs(:where).returns([image])
+      site.theme_assets.expects(:where).with(local_path: 'images/banner.png').returns([image])
     end
 
     let(:image) { stub(source: OpenStruct.new(url: 'http://engine.dev/images/banner.png')) }
