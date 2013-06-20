@@ -19,7 +19,7 @@ module Locomotive
 
     with_options only_getter: true, if: Proc.new { html_view? } do |presenter|
       presenter.properties  :safe_attributes
-      presenter.properties  :select_custom_fields, :file_custom_fields, :has_many_custom_fields, :many_to_many_custom_fields
+      presenter.properties  :select_custom_fields, :file_custom_fields, :belongs_to_custom_fields, :has_many_custom_fields, :many_to_many_custom_fields
     end
 
     ## callbacks ##
