@@ -1,0 +1,347 @@
+en:
+  locomotive:
+    buttons:
+      login: 登录
+      send_password: 发送 
+      change_password: 更新
+      new_item: "+ 添加"
+      switch_to_site: 去往 
+      delete: "删除"
+      close: "关闭"
+
+    locales:
+      en: 英语
+      de: 德语
+      fr: 法语
+      pl: 波兰语
+      pt-BR: "葡萄牙语（巴西）"
+      it: 意大利语
+      nl: 菏兰语
+      nb: 挪威语
+      es: 西班牙语
+      ru: 俄语
+      et: 爱沙尼亚语
+      ja: 日语
+      zh-CN: 中文
+
+    messages:
+      confirm: 确定？ 
+      sending_form: 正在提交表单
+
+    shared:
+      header:
+        welcome: 欢迎, %{name}
+        see: 查看网站
+        switch: 切换到另一个站点
+        help: 帮助
+        logout: 退出
+      menu:
+        contents: 内容
+        assets: 资产
+        settings: 设置
+        pages: 页面
+        snippets: 片段
+        account: 我的账户
+        site: 站点
+        theme_assets: 主题文件
+        translations: 翻译
+      form:
+        change_file: 更改
+        delete_file: 删除
+        cancel: 取消
+      form_actions:
+        back: 不保存返回
+        create: 创建
+        update: 保存
+        send: 发送
+        disable_with: 待定...
+      list:
+        untranslated: 未翻译的
+      footer:
+        who_is_behind: "LocomotiveCMS 由 %{development} 开发, 由 <a href=\"http://www.sachagreif.com\">Sacha Greif</a> &mdash; 开发 <small>版本</small> %{version}"
+
+    errors:
+      "500":
+        title: 应用出错
+        notice: "对不起，出错了"
+        link: "&rarr; 返回应用"
+      "404":
+        title: 页面找不到
+        notice: "你请求的页面不存在"
+        link: "&rarr; 返回应用"
+
+    notifications:
+      new_content_entry:
+        subject: "[%{domain}][%{type}] 新建条目"
+        title: "Hi %{name}, 仅仅是让你知道一个新的实例在%{date}时被创建，在站点<b>%{domain}</b>下"
+        type: "类型: %{type}"
+
+    pagination:
+      first: "第一页"
+      last: "末页"
+      previous: "前一页"
+      next: "后一页"
+      truncate: "&hellip;"
+
+    sites_picker:
+      new: + 新建站点 
+
+    api_key:
+      none: 请点击下面的按钮生成API key
+      button: 重新生成
+
+    custom_fields:
+      edit:
+        title: 编辑自定义的字段
+      text_formatting:
+        none: None
+        html: HTML
+      types:
+        file:
+          delete_file: 删除文件
+        has_many:
+          empty: 列表为空
+          new_entry: + 新建条目
+        many_to_many:
+          empty: 列表为空。从下面的选择框里添加一个条目
+
+      form:
+        required: 必需的Required
+        default_label: 字段名Field name
+        select_options:
+          ask_name: "填写选项标签"
+
+    sessions:
+      new:
+        title: 登录
+        link: "忘记密码?"
+        email: "邮箱"
+        password: "密码"
+
+    passwords:
+      new:
+        title: 忘记密码
+        link: "&rarr; 返回到登录页面"
+        email: "你的邮箱"
+      edit:
+        title: 更新密码
+        link: "&rarr; 返回到登录页面"
+        password: "新密码"
+        password_confirmation: "确认新密码"
+
+    pages:
+      index:
+        title: 页面列表
+        help: "页面是以树的方式组织的，你可以像文件夹那样排列页面"
+        no_items: "现在还没有页面，请点击<a href=\"%{url}\">这里</a>创建第一个页面"
+        new: 新建页面
+        latest_entries: 最近的页面
+      new:
+        title: 新建页面
+        help: "请填写下面的表单创建你的页面，注意页面默认是不发布的。"
+      page:
+        updated_at: 更新于
+      edit:
+        show: 显示
+        help: "页面标题可以通过点击来更新，要应用你的更新，点击保存按钮"
+        ask_for_title: "请输入新的页面标题"
+      form:
+        change_file: 更改
+        delete_file: 删除
+        cancel: 取消
+        default_block: 默认
+        cache_strategy:
+          none: 无
+          simple: 简单
+          hour: "1 小时"
+          day: "1 天"
+          week: "1 周"
+          month: "1 个月"
+        redirect_type:
+          permanent: "Permanent (301)"
+          temporary: "Temporary (302)"
+
+    snippets:
+      index:
+        title: 片段列表 
+        help: "片段是一段HTML代码，可以遍布于网站的各个地方（比如页面的页脚footer）"
+        no_items: "现在还没有片段，点击<a href=\"%{url}\">here</a> 创建第一个片段"
+        new: 新建片段
+      new:
+        title: 新建片段
+        help: "填写下面的表单来更新你的片段"
+      edit:
+        title: 编辑片段
+        help: "用如下的liquid代码包含你的片段到你的页面模板: <span class='code'>{% include '%{slug}' %}</span>."
+      snippet:
+        updated_at: 更新于
+
+    sites:
+      new:
+        title: 新建站点
+        help: "填写下面的表单来创建你的站点"
+      domains:
+        empty: "还没有域名绑定到这个站点，只要在下面简单地添加你的域名。<b>不要忘记升级你的DNS</b>"
+
+    current_site:
+      edit:
+        new_membership: 添加账户
+        help: "点击站点更新，要应用你的更改，点击\"保存\"按钮"
+        ask_for_name: "请输入新的站点名"
+
+    memberships:
+      roles:
+        admin: 管理员
+        designer: 设计师
+        author: 作者
+      new:
+        title: 新建成员
+        help: "请给一个账户的邮箱进行添加。如果该邮箱不存在，你将被跳转到创建账户的表单页面。"
+
+    accounts:
+      new:
+        title: 新建账户
+        help: "填写下面的表单来创建一个账户"
+
+    my_account:
+      edit:
+        help: "点击你的账户名更新，要应用你的更新，点击\"保存\"按钮。"
+        new_site: 新建站点
+        ask_for_name: "请输入你的新名称"
+
+    theme_assets:
+      index:
+        title: 主题文件列表
+        help: "The theme files section is the place where you manage the files needed by your layout, snippets...etc. If you need to manage an image gallery, create a new content type instead.<br/><b>Warning:</b> you may not see all the assets depending on your rights."
+        quick_upload: Quick upload
+        new: new file
+        snippets: Snippets
+        css_and_js: Style and javascript
+        fonts: Fonts
+        images: Images
+        media: Media
+        no_items: "There are no files for now."
+      asset:
+        updated_at: Updated at
+      new:
+        title: New file
+        help: "You have the choice to either upload any file or to copy/paste a stylesheet or a javascript in plain text."
+      edit:
+        title: "Editing %{file}"
+        help: "This asset is accessible directly from the following url: <a href='%{url}'>%{url}</a>"
+        help_image: "Include your image in your page templates or snippets with the following liquid code : <span class='code'>{{ '%{path}' | theme_image_tag }}</span>.<br/>Your current image dimensions : <b>%{width}px x %{height}px</b>.<br/>"
+        help_javascript: "Include your javascript file in your page templates or snippets with the following code : <span class='code'>{{ '%{path}' | javascript_tag }}</span>.<br/>"
+        help_stylesheet: "Include your stylesheet file in your page templates or snippets with the following code : <span class='code'>{{ '%{path}' | stylesheet_tag }}</span>.<br/>"
+      form:
+        picker_link: Insert a file into the code
+        choose_file: Choose file
+        choose_plain_text: Choose plain text
+      image_picker:
+        title: "Insert theme image"
+        no_items: "There are no images for now."
+        upload: "Upload theme images"
+
+    translations:
+      untranslated: "Untranslated locales: %{list}"
+      index:
+        title: Translations
+        new: new translation
+        no_items: "There are no translations for now. Just click <a href=\"%{url}\">here</a> to create the first one."
+        remove: Remove %{key}
+      new:
+        title: "New translation"
+        help: "Pages/snippets can share the same template for all the locales except for some labels which can be handled by the <b>translate</b> liquid tag."
+      edit:
+        title: "Editing %{key}"
+        help: "You can use that translation key with the following liquid code : <span class='code'>{{ '%{key}' | translate }}</span>."
+
+    content_assets:
+      picker:
+        title: "Insert media"
+        no_items: "There are no media for now."
+        upload: "Upload media"
+
+    content_types:
+      index:
+        new: new model
+        edit: edit model
+      new:
+        title: New model
+        help: "Create your own data model (Projects, People, ...etc). Your model should have one field at least. The items created from this content type would have their first field mandatory."
+      edit:
+        title: Editing model
+        help: "Your model should have one field at least. The items created from this content type would have their first field mandatory."
+        show_entries: show entries
+        new_entry: new entry
+      form:
+        order_by:
+          created_at: 'By creation date'
+          updated_at: 'By updating date'
+          position_in_list: Manually
+        order_direction:
+          asc: Ascending
+          desc: Descending
+
+    content_entries:
+      index:
+        title: 'Listing "%{type}"'
+        edit: edit model
+        destroy: remove model
+        download: download entries
+        new: new entry
+        category_noname: "No name"
+        latest_entries: "Latest entries"
+        updated_at: "Updated at"
+      list:
+        no_items: "There are no entries for now. Just click <a href=\"%{url}\">here</a> to create the first one."
+      new:
+        title: '%{type} &mdash; new entry'
+      edit:
+        title: '%{type} &mdash; editing entry'
+      form:
+        edit_select_options: edit options
+        has_many:
+          new_entry: New entry
+
+    code_editing:
+      image_picker: Insert an image into the code
+      copy_template: Copy template from main locale
+
+    cross_domain_sessions:
+      new:
+        title: Cross-domain authentication
+        notice: You will be redirected to the website in a couple of seconds.
+
+    installation:
+      common:
+        title: First Locomotive Installation
+        next: Next
+      step_1:
+        title: "Step 1/2 &mdash; Create account"
+        name: Account name
+        email: Email
+        password: Password
+        password_confirmation: Password confirmation
+        done: "You have already added an account:<br/><strong>%{name}</strong>, <em>%{email}</em>"
+        next: Create account
+      step_2:
+        title: "Step 2/2 &mdash; Create your first site"
+        explanations: "You are almost done. Please give a name to your first site and pick up the default locale."
+        default_site_locale: Site locale
+        default_site_locales_hints: You can add more locales in the Settings panel later.
+        next: Create site
+
+    public:
+      pages:
+        show_toolbar:
+          statuses:
+            loading: "Loading...."
+            disabled: "Inline Editor disabled"
+          labels:
+            save_changes: "Save changes: "
+            editing_mode: "Editing mode: "
+            lang: "Lang: "
+          buttons:
+            back: Return to back-office
+            confirm: Confirm
+            cancel: Cancel
