@@ -23,6 +23,49 @@ zh-CN:
       long: "%B %d, %Y %H:%M"
     am: "am"
     pm: "pm"
+  datetime:
+    distance_in_words:
+      half_a_minute: "半分钟"
+      less_than_x_seconds:
+        one:   "少于1秒"
+        other: "少于%{count}秒"
+      x_seconds:
+        one:   "1秒"
+        other: "%{count}秒"
+      less_than_x_minutes:
+        one:   "少于一分钟"
+        other: "少于%{count}分钟"
+      x_minutes:
+        one:   "1分钟"
+        other: "%{count}分钟"
+      about_x_hours:
+        one:   "大约1小时"
+        other: "大约%{count}小时"
+      x_days:
+        one:   "1天"
+        other: "%{count}天"
+      about_x_months:
+        one:   "大约一个月"
+        other: "大约%{count}个月"
+      x_months:
+        one:   "1个月"
+        other: "%{count}月"
+      about_x_years:
+        one:   "大约1年"
+        other: "大约%{count}年"
+      over_x_years:
+        one:   "超过1年"
+        other: "超过%{count}年"
+      almost_x_years:
+        one:   "几乎1年"
+        other: "几乎%{count}年"
+    prompts:
+      year:   "年"
+      month:  "月"
+      day:    "日"
+      hour:   "时"
+      minute: "分"
+      second: "秒"
 
   support:
     array:
