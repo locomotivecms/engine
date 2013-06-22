@@ -32,7 +32,7 @@ zh-CN:
       header:
         welcome: 欢迎, %{name}
         see: 查看网站
-        switch: 切换到另一个站点
+        switch: 切换到另一个网站
         help: 帮助
         logout: 退出
       menu:
@@ -42,7 +42,7 @@ zh-CN:
         pages: 页面
         snippets: 片段
         account: 我的账户
-        site: 站点
+        site: 网站
         theme_assets: 主题文件
         translations: 翻译
       form:
@@ -58,7 +58,7 @@ zh-CN:
       list:
         untranslated: 未翻译的
       footer:
-        who_is_behind: "LocomotiveCMS 由 %{development} 开发, 由 <a href=\"http://www.sachagreif.com\">Sacha Greif</a> &mdash; 开发 <small>版本</small> %{version}"
+        who_is_behind: "LocomotiveCMS 由 %{development} 开发, 由 <a href=\"http://www.sachagreif.com\">Sacha Greif</a> &mdash; 设计 <small>版本</small> %{version}"
 
     errors:
       "500":
@@ -73,7 +73,7 @@ zh-CN:
     notifications:
       new_content_entry:
         subject: "[%{domain}][%{type}] 新建条目"
-        title: "Hi %{name}, 仅仅是让你知道一个新的实例在%{date}时被创建，在站点<b>%{domain}</b>下"
+        title: "Hi %{name}, 仅仅是让你知道一个新的实例在%{date}时被创建，在网站<b>%{domain}</b>下"
         type: "类型: %{type}"
 
     pagination:
@@ -84,7 +84,7 @@ zh-CN:
       truncate: "&hellip;"
 
     sites_picker:
-      new: + 新建站点 
+      new: + 新建网站 
 
     api_key:
       none: 请点击下面的按钮生成API key
@@ -178,16 +178,16 @@ zh-CN:
 
     sites:
       new:
-        title: 新建站点
-        help: "填写下面的表单来创建你的站点"
+        title: 新建网站
+        help: "填写下面的表单来创建你的网站"
       domains:
-        empty: "还没有域名绑定到这个站点，只要在下面简单地添加你的域名。<b>不要忘记升级你的DNS</b>"
+        empty: "还没有域名绑定到这个网站，只要在下面简单地添加你的域名。<b>不要忘记升级你的DNS</b>"
 
     current_site:
       edit:
         new_membership: 添加账户
-        help: "点击站点更新，要应用你的更改，点击\"保存\"按钮"
-        ask_for_name: "请输入新的站点名"
+        help: "点击网站名称更新它，要应用你的更改，点击\"保存\"按钮"
+        ask_for_name: "请输入新的网站名"
 
     memberships:
       roles:
@@ -206,7 +206,7 @@ zh-CN:
     my_account:
       edit:
         help: "点击你的账户名更新，要应用你的更新，点击\"保存\"按钮。"
-        new_site: 新建站点
+        new_site: 新建网站
         ask_for_name: "请输入你的新名称"
 
     theme_assets:
