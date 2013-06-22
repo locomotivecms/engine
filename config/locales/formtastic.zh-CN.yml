@@ -93,7 +93,6 @@ en:
           source: "当前的文件通过这个地址获得 %{url}"
       content_entry:
         _slug: "这个属性用来生成作为内容类型的页面模板的地址(例如：\"template_page/{{ your_object._permalink }}\")。" 
-        "Property used to generate the url of a page working as a template for this content type (ex: \"template_page/{{ your_object._permalink }})\"." 
         _visible: "条目默认将被显示到网站上。因此它可以被作为一个发布的属性。"
         seo_title: "你填写的值将替换作为内容类型模板的SEO的标题。"
         meta_keywords: "覆盖网站的meta关键字，用在html head部分, 他们用逗号分割。"
@@ -111,4 +110,3 @@ en:
         "custom_fields/field":
           name: "用在liquid模板中的属性的名称。例如: <span class='code'>&#123;&#123; your_object.&lt;name_of_your_field&gt; &#125;&#125;</span>"
           hint: "在内容类型表单的字段下面显示的提示文本"
-
