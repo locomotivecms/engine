@@ -1,0 +1,46 @@
+en:
+  date:
+    formats:
+      default: "%m/%d/%Y"
+
+  mongoid:
+    errors:
+      messages:
+        blank_in_locale: "不能为空"
+    attributes:
+      locomotive/content_entry:
+        created_at: 创建于
+
+  errors:
+      messages:
+        domain_taken: "%{value} 已经被占用"
+        invalid_domain: "%{value} 不正确"
+        needs_admin_account: "至少需要一个管理员账户"
+        protected_page: "你不能删除index和404页面"
+        extname_changed: "新的文件没有原来的扩展名"
+        array_too_short: "太小了(最少的元素数量是 %{count})"
+        invalid_theme_file: "不能为空或不是一个zip文件"
+        site:
+          default_locale_removed: 先前的默认语言不能被正确删除。
+        page:
+          liquid_syntax: "Liquid 语法错误('%{error}' on '%{fullpath}')"
+          liquid_extend: "页面 '%{fullpath}' 扩展了一个不存在的模板"
+          liquid_translation: "页面 '%{fullpath}' 扩展了一个未被翻译的模板"
+        too_few_custom_fields: "至少需要一个自定义字段"
+        security: "存在一个安全问题"
+
+  attributes:
+    defaults:
+      pages:
+        index:
+          title: "首页"
+          body: "首页内容"
+        "404":
+          title: "页面找不到"
+          body: "404页面内容"
+        other:
+          body: "{% extends 'parent' %}"
+
+  pagination:
+    previous: "&laquo; 前一页"
+    next: "后一页 &raquo;"

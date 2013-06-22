@@ -212,136 +212,136 @@ en:
     theme_assets:
       index:
         title: 主题文件列表
-        help: "The theme files section is the place where you manage the files needed by your layout, snippets...etc. If you need to manage an image gallery, create a new content type instead.<br/><b>Warning:</b> you may not see all the assets depending on your rights."
-        quick_upload: Quick upload
-        new: new file
-        snippets: Snippets
-        css_and_js: Style and javascript
-        fonts: Fonts
-        images: Images
-        media: Media
-        no_items: "There are no files for now."
+        help: "主题文件部分是你管理那些在页面模板、HTML片段里需要的文件。如果你需要管理一个图片库，那么可以创建一个新的内容类型。<br /><b>警告</b>依赖权限的控制，你可能看不到所有的资产。"
+        quick_upload: 快速上传 
+        new: 新建文件
+        snippets: 片段
+        css_and_js: 样式css与javascript
+        fonts: 字体
+        images: 图片
+        media: 媒体
+        no_items: "现在还没有文件"
       asset:
-        updated_at: Updated at
+        updated_at: 更新于
       new:
-        title: New file
-        help: "You have the choice to either upload any file or to copy/paste a stylesheet or a javascript in plain text."
+        title: 新建文件
+        help: "你可以选择上传文件，也可以直接复制粘贴纯文本的css样式或javascript代码"
       edit:
-        title: "Editing %{file}"
-        help: "This asset is accessible directly from the following url: <a href='%{url}'>%{url}</a>"
-        help_image: "Include your image in your page templates or snippets with the following liquid code : <span class='code'>{{ '%{path}' | theme_image_tag }}</span>.<br/>Your current image dimensions : <b>%{width}px x %{height}px</b>.<br/>"
-        help_javascript: "Include your javascript file in your page templates or snippets with the following code : <span class='code'>{{ '%{path}' | javascript_tag }}</span>.<br/>"
-        help_stylesheet: "Include your stylesheet file in your page templates or snippets with the following code : <span class='code'>{{ '%{path}' | stylesheet_tag }}</span>.<br/>"
+        title: "编辑 %{file}"
+        help: "这个资产可以通过以下地址访问: <a href='%{url}'>%{url}</a>"
+        help_image: "用如下的liquid代码包含图片到你的页面模板或片段中：<span class='code'>{{ '%{path}' | theme_image_tag }}</span>.<br/>你当前的图片尺寸 : <b>%{width}px x %{height}px</b>.<br/>"
+        help_javascript: "用如下的liquid代码包含javascript文件到你的页面模板或片段中：<span class='code'>{{ '%{path}' | javascript_tag  }}</span>.<br/>"
+        help_stylesheet: "用如下的liquid代码包含样式文件到你的页面模板或片段中：<span class='code'>{{ '%{path}' | stylesheet_tag  }}</span>.<br/>"
       form:
-        picker_link: Insert a file into the code
-        choose_file: Choose file
-        choose_plain_text: Choose plain text
+        picker_link: 插入一个文件到代码中
+        choose_file: 选择文件
+        choose_plain_text: 选择纯文本
       image_picker:
-        title: "Insert theme image"
-        no_items: "There are no images for now."
-        upload: "Upload theme images"
+        title: "插入主题图片"
+        no_items: "现在还没有图片。"
+        upload: "上传主题图片"
 
     translations:
-      untranslated: "Untranslated locales: %{list}"
+      untranslated: "未翻译的语言: %{list}"
       index:
-        title: Translations
-        new: new translation
-        no_items: "There are no translations for now. Just click <a href=\"%{url}\">here</a> to create the first one."
-        remove: Remove %{key}
+        title: 翻译
+        new: 新建翻译
+        no_items: "现在还没有翻译。点击<a href=\"%{url}\">这里</a>创建第一个翻译。"
+        remove: 删除 %{key}
       new:
-        title: "New translation"
-        help: "Pages/snippets can share the same template for all the locales except for some labels which can be handled by the <b>translate</b> liquid tag."
+        title: "新建翻译"
+        help: "对于所有的语言，页面/片段可以共享同一个模板，除了那些可以被liquid tag <b>translate</b>处理的标签。"
       edit:
-        title: "Editing %{key}"
-        help: "You can use that translation key with the following liquid code : <span class='code'>{{ '%{key}' | translate }}</span>."
+        title: "编辑 %{key}"
+        help: "你可以用如下的liquid代码来使用那个翻译的key：<span class='code'>{{ '%{key}' | translate }}</span>。"
 
     content_assets:
       picker:
-        title: "Insert media"
-        no_items: "There are no media for now."
-        upload: "Upload media"
+        title: "插入媒体"
+        no_items: "现在还没有媒体There are no media for now."
+        upload: "上传媒体"
 
     content_types:
       index:
-        new: new model
-        edit: edit model
+        new: 新建内容类型 
+        edit: 编辑内容类型 
       new:
-        title: New model
-        help: "Create your own data model (Projects, People, ...etc). Your model should have one field at least. The items created from this content type would have their first field mandatory."
+        title: 新建内容类型
+        help: "创建你自己的内容类型（Projects, People, ...etc）。你的内容类型应该至少有一个字段。从头这个内容类型创建的条目必须强制性地拥有他们的第一个字段" 
       edit:
-        title: Editing model
+        title: 编辑内容类型
         help: "Your model should have one field at least. The items created from this content type would have their first field mandatory."
-        show_entries: show entries
-        new_entry: new entry
+        show_entries: 显示条目
+        new_entry: 新建条目
       form:
         order_by:
-          created_at: 'By creation date'
-          updated_at: 'By updating date'
-          position_in_list: Manually
+          created_at: 'By创建时间'
+          updated_at: 'By更新时间'
+          position_in_list: 手动
         order_direction:
-          asc: Ascending
-          desc: Descending
+          asc: 升序
+          desc: 降序
 
     content_entries:
       index:
-        title: 'Listing "%{type}"'
-        edit: edit model
-        destroy: remove model
-        download: download entries
-        new: new entry
-        category_noname: "No name"
-        latest_entries: "Latest entries"
-        updated_at: "Updated at"
+        title: '列表 "%{type}"'
+        edit: 编辑
+        destroy: 删除 
+        download: 下载条目
+        new: 新建条目
+        category_noname: "没有名称"
+        latest_entries: "最近的条目"
+        updated_at: "更新于"
       list:
-        no_items: "There are no entries for now. Just click <a href=\"%{url}\">here</a> to create the first one."
+        no_items: "现在还没有条目。点击<a href=\"%{url}\">这里</a>创建第一个。"
       new:
-        title: '%{type} &mdash; new entry'
+        title: '%{type} &mdash; 新建条目'
       edit:
-        title: '%{type} &mdash; editing entry'
+        title: '%{type} &mdash; 编辑条目'
       form:
-        edit_select_options: edit options
+        edit_select_options: 编辑选项
         has_many:
-          new_entry: New entry
+          new_entry: 新建条目
 
     code_editing:
-      image_picker: Insert an image into the code
-      copy_template: Copy template from main locale
+      image_picker: 插入一个图片到代码
+      copy_template: 从主要的语言复制模板
 
     cross_domain_sessions:
       new:
-        title: Cross-domain authentication
-        notice: You will be redirected to the website in a couple of seconds.
+        title: 夸域认证
+        notice: 几秒后将跳转到网站
 
     installation:
       common:
-        title: First Locomotive Installation
-        next: Next
+        title: 首次安装locomotive
+        next: 下一步
       step_1:
-        title: "Step 1/2 &mdash; Create account"
-        name: Account name
-        email: Email
-        password: Password
-        password_confirmation: Password confirmation
-        done: "You have already added an account:<br/><strong>%{name}</strong>, <em>%{email}</em>"
-        next: Create account
+        title: "步骤 1/2 &mdash; 创建账户"
+        name: 帐户名
+        email: 邮箱
+        password: 密码
+        password_confirmation: 确认密码
+        done: "你已经添加一个账户:<br/><strong>%{name}</strong>, <em>%{email}</em>"
+        next: 创建账户
       step_2:
-        title: "Step 2/2 &mdash; Create your first site"
-        explanations: "You are almost done. Please give a name to your first site and pick up the default locale."
-        default_site_locale: Site locale
-        default_site_locales_hints: You can add more locales in the Settings panel later.
-        next: Create site
+        title: "步骤 2/2 &mdash; 创建你的第一个网站"
+        explanations: "你已快完成了。请给你网站取个名称并选择一个默认的语言"
+        default_site_locale: 网站语言
+        default_site_locales_hints: 稍微你可以在设置面板添加更多的语言。
+        next: 创建网站
 
     public:
       pages:
         show_toolbar:
           statuses:
-            loading: "Loading...."
-            disabled: "Inline Editor disabled"
+            loading: "加载中...."
+            disabled: "Inline编辑器被禁用"
           labels:
-            save_changes: "Save changes: "
-            editing_mode: "Editing mode: "
-            lang: "Lang: "
+            save_changes: "保存更改: "
+            editing_mode: "编辑模式: "
+            lang: "语言: "
           buttons:
-            back: Return to back-office
-            confirm: Confirm
-            cancel: Cancel
+            back: 返回到管理后台
+            confirm: 确认
+            cancel: 取消
