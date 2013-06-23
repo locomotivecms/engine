@@ -78,7 +78,7 @@ class Locomotive.Views.InlineEditor.ToolbarView extends Backbone.View
 
   editable_elements: ->
     if @options.target[0].contentWindow.Aloha
-      @options.target[0].contentWindow.Aloha.jQuery('.editable-long-text, .editable-short-text')
+      @options.target[0].contentWindow.Aloha.jQuery('.editable-text')
     else
       null
 

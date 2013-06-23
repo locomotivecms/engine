@@ -1,9 +1,9 @@
 module Locomotive
-  class EditableShortTextPresenter < EditableElementPresenter
+  class EditableTextPresenter < EditableElementPresenter
 
     ## properties ##
-
     properties :content, :default_content
+    properties :format, :line_break, :rows, only_getter: true
 
     ## callbacks ##
 
@@ -24,5 +24,17 @@ module Locomotive
       self.__source.default_content = @default_content.nil? ? false : @default_content
     end
 
+  end
+end
+
+module Locomotive
+  class EditableShortTextPresenter < EditableTextPresenter
+    # @deprecated
+  end
+end
+
+module Locomotive
+  class EditableLongTextPresenter < EditableTextPresenter
+    # @deprecated
   end
 end

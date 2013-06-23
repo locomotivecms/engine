@@ -1,9 +1,16 @@
 module Locomotive
-  class EditableShortText < EditableElement
+  class EditableText < EditableElement
 
     ## fields ##
     field :content,         localize: true
     field :default_content, type: Boolean, localize: true, default: true
+    field :format,          default: 'html'
+    field :rows,            type: Integer, default: 15
+    field :line_break,      type: Boolean, default: true
+
+    ## callbacks ##
+    # before_save { |c| puts "#{c.block}/#{c.slug} saved called !"}
+    before_save :strip_content
 
     ## methods ##
 
@@ -31,6 +38,14 @@ module Locomotive
 
       self.attributes['content']          = el.content_translations || {}
       self.attributes['default_content']  = el.default_content_translations
+    end
+
+    def copy_default_attributes_from(el)
+      super(el)
+
+      %w(format rows line_break).each do |attr|
+        self.send(:"#{attr}=", el.send(attr.to_sym))
+      end
     end
 
     def set_default_content_from(el)
@@ -62,5 +77,21 @@ module Locomotive
       true
     end
 
+    def strip_content
+      self.content.strip!
+    end
+
+  end
+end
+
+module Locomotive
+  class EditableShortText < EditableText
+    # @deprecated
+  end
+end
+
+module Locomotive
+  class EditableLongText < EditableText
+    # @deprecated
   end
 end

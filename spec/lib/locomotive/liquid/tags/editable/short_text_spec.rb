@@ -1,5 +1,6 @@
 require 'spec_helper'
 
+# TODO
 describe Locomotive::Liquid::Tags::Editable::ShortText do
 
   it 'accepts a valid syntax' do

@@ -6,7 +6,7 @@ module Liquid
         def render(context)
           if context.registers[:current_locomotive_account] && context.registers[:inline_editor]
 
-            plugins = 'common/ui,common/format,common/table,common/list,common/link,common/highlighteditables,common/block,common/undo,common/contenthandler,common/paste,common/commands,common/abbr,common/align,common/horizontalruler,common/image,custom/locomotive_media'
+            plugins = 'common/ui,common/format,common/table,common/list,common/link,common/highlighteditables,common/block,common/undo,common/contenthandler,common/paste,common/commands,common/abbr,common/align,common/horizontalruler,common/image,custom/locomotive_media,custom/inputcontrol'
 
             controller = context.registers[:controller]
             controller.instance_variable_set(:@plugins, plugins)

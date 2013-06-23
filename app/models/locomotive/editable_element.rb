@@ -70,7 +70,7 @@ module Locomotive
     end
 
     # Copy attributes from an existing editable element coming
-    # from the parent page. Each editable element may or not
+    # from the parent page. Each type of an editable element may or not
     # override this method. The source element is a new record.
     #
     # @param [ EditableElement] el The source element
@@ -78,6 +78,20 @@ module Locomotive
     def copy_attributes_from(el)
       self.attributes   = el.attributes.reject { |attr| !%w(slug block hint priority fixed disabled locales from_parent).include?(attr) }
       self.from_parent  = true
+    end
+
+    # Copy the default attributes: _type, hint, fixed, priority and locales
+    # from an existing editable element coming from the parent page.
+    # Each type of an editable element may or not override this method for
+    # options for instance.
+    #
+    # @param [ EditableElement] el The source element
+    #
+    def copy_default_attributes_from(el)
+      # only the type, hint and fixed properties can be modified from the element
+      %w(_type hint fixed priority locales).each do |attr|
+        self.send(:"#{attr}=", el.send(attr.to_sym))
+      end
     end
 
     # Set the default content from an existing editable element coming
