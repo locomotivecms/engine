@@ -11,6 +11,7 @@
 //= require backbone
 //= require codemirror
 //= require tinymce-jquery
+//= require select2/select2
 //= require codemirror/utils/overlay
 //= require codemirror/modes/css
 //= require codemirror/modes/javascript

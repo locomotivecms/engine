@@ -69,7 +69,24 @@ When /^(?:|I )fill in the following:$/ do |fields|
 end
 
 When /^(?:|I )select "([^"]*)" from "([^"]*)"$/ do |value, field|
-  select(value, :from => field)
+  begin
+    select(value, :from => field)
+  rescue Capybara::ElementNotFound
+    container = find('.select2', text: field)
+    container.find('a').click
+    page.has_css?("ul.select2-results li.select2-result", visible: true)
+    clicked = false
+    page.all("ul.select2-results li.select2-result").each do |e|
+      if e.text == value
+        e.click
+        clicked = true
+        break
+      end
+    end
+    find('.select2-drop').click unless clicked
+    page.has_no_css?("ul.select2-results li.select2-result", visible: true)
+  end
+  
 end
 
 When /^(?:|I )check "([^"]*)"$/ do |field|

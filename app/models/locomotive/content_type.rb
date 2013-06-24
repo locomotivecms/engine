@@ -88,10 +88,12 @@ module Locomotive
           group_by_belongs_to_field(self.group_by_field)
         end
       else
+        conds = {}
+        conds[label_field_name.to_sym] = /#{options[:q]}/i
         if options[:page].nil?
-          self.ordered_entries
+          self.ordered_entries(conds)
         else
-          self.ordered_entries.page(options[:page]).per(options[:per_page])
+          self.ordered_entries(conds).page(options[:page]).per(options[:per_page])
         end
       end
     end
