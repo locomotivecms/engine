@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Locomotive::EditableShortText do
+describe Locomotive::EditableText do
 
   describe 'a simple case' do
 
@@ -8,7 +8,7 @@ describe Locomotive::EditableShortText do
       @site = FactoryGirl.create(:site)
       @home = @site.pages.root.first
 
-      @home.update_attributes raw_template: "{% block body %}{% editable_short_text 'body' %}Lorem ipsum{% endeditable_short_text %}{% endblock %}"
+      @home.update_attributes raw_template: "{% block body %}{% editable_text 'body' %}Lorem ipsum{% endeditable_text %}{% endblock %}"
 
       @sub_page_1 = FactoryGirl.create(:page, slug: 'sub_page_1', parent: @home, raw_template: "{% extends 'parent' %}")
       @sub_page_2 = FactoryGirl.create(:page, slug: 'sub_page_2', parent: @home, raw_template: "{% extends 'parent' %}")
@@ -18,7 +18,34 @@ describe Locomotive::EditableShortText do
       @sub_page_1_1 = FactoryGirl.create(:page, slug: 'sub_page_1_1', parent: @sub_page_1, raw_template: "{% extends 'parent' %}")
     end
 
-    context '#locales' do
+    describe 'properties' do
+
+      it 'exists' do
+        @sub_page_1.editable_elements.size.should == 1
+      end
+
+      it 'has a non-nil slug' do
+        @sub_page_1.editable_elements.first.slug.should == 'body'
+      end
+
+      it 'has a default content at first' do
+        @sub_page_1.editable_elements.first.default_content.should be_true
+        @sub_page_1.editable_elements.first.content.should == 'Lorem ipsum'
+      end
+
+      it 'is still default when it gets modified by the exact same value' do
+        @sub_page_1.editable_elements.first.content = 'Lorem ipsum'
+        @sub_page_1.editable_elements.first.default_content.should be_true
+      end
+
+      it 'strips the content' do
+        @sub_page_1.editable_elements.first.update_attribute :content, "   Lorem ipsum\n\n   "
+        @sub_page_1.editable_elements.first.content.should == 'Lorem ipsum'
+      end
+
+    end
+
+    describe 'locales' do
 
       it 'assigns the default locale' do
         @sub_page_1_el.locales.should == ['en']
@@ -35,7 +62,7 @@ describe Locomotive::EditableShortText do
 
       it 'adds new locale within sub page elements' do
         ::Mongoid::Fields::I18n.with_locale 'fr' do
-          @home.update_attributes title: 'Accueil', raw_template: "{% block body %}{% editable_short_text 'body' %}Lorem ipsum{% endeditable_short_text %}{% endblock %}"
+          @home.update_attributes title: 'Accueil', raw_template: "{% block body %}{% editable_text 'body' %}Lorem ipsum{% endeditable_text %}{% endblock %}"
           page = Locomotive::Page.find(@sub_page_1._id)
           page.editable_elements.first.content = 'Lorem ipsum (FR)'
           page.save
@@ -45,7 +72,25 @@ describe Locomotive::EditableShortText do
 
     end
 
-    context '#editable?' do
+    describe 'when modifying the raw template' do
+
+      it 'can update its content from the raw template if the user has not modified it' do
+        @home.update_attributes raw_template: "{% block body %}{% editable_text 'body' %}Lorem ipsum v2{% endeditable_text %}{% endblock %}"
+        @home.editable_elements.first.default_content.should be_true
+        @home.editable_elements.first.content.should == 'Lorem ipsum v2'
+      end
+
+      it 'does not touch the content if the user has modified it before' do
+        @home.editable_elements.first.content = 'Hello world'
+        @home.raw_template = "{% block body %}{% editable_text 'body' %}Lorem ipsum v2{% endeditable_text %}{% endblock %}"
+        @home.save
+        @home.editable_elements.first.default_content.should be_false
+        @home.editable_elements.first.content.should == 'Hello world'
+      end
+
+    end
+
+    describe '.editable?' do
 
       it 'is editable' do
         @sub_page_1_el.editable?.should be_true
@@ -78,7 +123,7 @@ describe Locomotive::EditableShortText do
 
     end
 
-    context 'in sub pages level #1' do
+    describe 'in sub pages level #1' do
 
       before(:each) do
         @sub_page_1.reload
@@ -101,7 +146,7 @@ describe Locomotive::EditableShortText do
 
     end
 
-    context 'in sub pages level #2' do
+    describe 'in sub pages level #2' do
 
       before(:each) do
         @sub_page_1_1.reload
@@ -131,7 +176,7 @@ describe Locomotive::EditableShortText do
       @site = FactoryGirl.create(:site)
       @home = @site.pages.root.first
 
-      @home.update_attributes raw_template: "{% block body %}{% editable_short_text 'body', fixed: true %}Lorem ipsum{% endeditable_short_text %}{% endblock %}"
+      @home.update_attributes raw_template: "{% block body %}{% editable_text 'body', fixed: true %}Lorem ipsum{% endeditable_text %}{% endblock %}"
       @home_el = @home.editable_elements.first
 
       @sub_page_1 = FactoryGirl.create(:page, slug: 'sub_page_1', parent: @home, raw_template: "{% extends 'parent' %}")

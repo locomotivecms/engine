@@ -78,7 +78,7 @@ module Locomotive
     end
 
     def strip_content
-      self.content.strip!
+      self.content.strip! unless self.content.blank?
     end
 
   end
