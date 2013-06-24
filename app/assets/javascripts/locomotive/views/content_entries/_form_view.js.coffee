@@ -96,21 +96,24 @@ class Locomotive.Views.ContentEntries.FormView extends Locomotive.Views.Shared.F
               $select.append(new Option(option.get('name'), option.get('id'), false, option.get('id') == @model.get("#{name}_id")))
 
   enable_belongs_to_fields: ->
+    model = @model
     _.each @model.get('belongs_to_custom_fields'), (name) =>
       input = @$("##{@model.paramRoot}_#{name}_id")
-      opts = input.data()
-      input.select2
-        width: '712px',
-        ajax:
-          url: opts.url
-          data: (term, page) ->
-            q: term,
-            page: page
-          results: (data, page) ->
-            results: data.map (item) -> {id: item._id, text: item._label}
-            more: data.size = window.per_page
-        initSelection: (el, callback) -> callback({id: el.val(), text: opts.currentValue})
-        
+      if input.is('*')
+        opts = input.data()
+        input.select2
+          width: '712px',
+          ajax:
+            url: opts.url
+            data: (term, page) ->
+              q: term,
+              page: page
+            results: (data, page) ->
+              results: data.map (item) -> {id: item._id, text: item._label}
+              more: data.size = window.per_page
+          initSelection: (el, callback) -> callback({id: el.val(), text: opts.currentValue})
+        input.on 'select2-selecting', (e) ->
+          model.set "#{name}_id", e.val
 
   enable_file_fields: ->
     _.each @model.get('file_custom_fields'), (name) =>

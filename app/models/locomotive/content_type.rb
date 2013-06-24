@@ -89,7 +89,7 @@ module Locomotive
         end
       else
         conds = {}
-        conds[label_field_name.to_sym] = /#{options[:q]}/
+        conds[label_field_name.to_sym] = /#{options[:q]}/i
         if options[:page].nil?
           self.ordered_entries(conds)
         else
