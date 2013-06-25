@@ -22,6 +22,7 @@ pl:
       ru: rosyjski
       et: estoński
       ja: japoński
+      zh-CN: chiński
 
     messages:
       confirm: Na pewno ?

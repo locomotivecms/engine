@@ -1,0 +1,115 @@
+zh-CN:
+  flash:
+    locomotive:
+      pages:
+        create:
+          notice: "页面创建成功。"
+          alert: "页面创建失败。"
+        update:
+          notice: "页面更新成功。"
+          alert: "页面更新失败。"
+        sort:
+          notice: "页面排序成功。"
+        destroy:
+          notice: "页面删除成功。"
+
+      content_entries:
+        create:
+          notice: "条目创建成功。"
+          alert: "条目创建失败。"
+        update:
+          notice: "条目更新成功。"
+          alert: "条目更新失败。"
+        sort:
+          notice: "条目排序成功。"
+        destroy:
+          notice: "条目删除成功。"
+
+      content_types:
+        create:
+          notice: "内容类型创建成功。"
+          alert: "内容类型创建失败。"
+        update:
+          notice: "内容类型更新成功。"
+          alert: "内容类型更新失败。"
+        destroy:
+          notice: "内容类型删除成功。"
+
+      current_site:
+        update:
+          notice: "我的网站更新成功。"
+          alert: "我的网站更新失败。"
+
+      snippets:
+        create:
+          notice: "片段创建成功。"
+          alert: "片段创建失败。"
+        update:
+          notice: "片段更新成功。"
+          alert: "片段更新失败。"
+        destroy:
+          notice: "片段删除成功。"
+
+      accounts:
+        create:
+          notice: "账户创建成功。"
+          alert: "账户创建失败。"
+
+      my_account:
+        update:
+          notice: "我的账户更新成功。"
+          alert: "我的账户更新失败。"
+
+      sites:
+        create:
+          notice: "网站创建成功。"
+          alert: "网站创建失败。"
+        destroy:
+          notice: "网站删除成功。"
+
+      memberships:
+        create:
+          notice: "成员创建成功。"
+          alert: "成员创建失败。"
+          already_created: "账户已经被添加到这个网站。"
+
+      assets:
+        create:
+          notice: "资产创建成功。"
+          alert: "资产创建失败。"
+        update:
+          notice: "资产更新成功。"
+          alert: "资产更新失败。"
+
+      theme_assets:
+        create:
+          notice: "文件创建成功。"
+          alert: "文件创建失败。"
+        update:
+          notice: "文件更新成功。"
+          alert: "文件更新失败。"
+        destroy:
+          notice: "文件删除成功。"
+      translations:
+        create:
+          notice: "翻译创建成功。"
+          alert: "翻译创建失败。"
+        update:
+          notice: "翻译更新成功。"
+          alert: "翻译更新失败。"
+        destroy:
+          notice: "翻译删除成功。"
+
+      custom_fields:
+        update:
+          alert: "字段更新成功"
+
+      cross_domain_sessions:
+        create:
+          alert: "你需要登录"
+
+      import:
+        create:
+          done: "你的网站更新成功。"
+          notice: "你的网站正在被更新。"
+          alert: "导入失败。"

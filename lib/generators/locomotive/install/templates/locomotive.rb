@@ -23,11 +23,11 @@ Locomotive.configure do |config|
   #   per_page:           10
   # }
 
-  # default locale (for now, only en, de, fr, pl, pt-BR, it, nb and ja are supported)
+  # default locale (for now, only en, de, fr, pl, pt-BR, it, nb, ja and zh-CN are supported)
   config.default_locale = :en
 
   # available locales suggested to "localize" a site. You will have to pick up at least one among that list.
-  # config.site_locales = %w{en de fr pl pt-BR it nl nb es ru ja}
+  # config.site_locales = %w{en de fr pl pt-BR it nl nb es ru ja zh-CN}
 
   # tell if logs are enabled. Useful for debug purpose.
   config.enable_logs = true
