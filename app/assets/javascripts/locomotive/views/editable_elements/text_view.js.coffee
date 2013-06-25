@@ -28,8 +28,7 @@ class Locomotive.Views.EditableElements.TextView extends Backbone.View
       base_settings = window.Locomotive.tinyMCE.minimalSettings
 
     _.extend {}, base_settings,
-      language:           window.locale
-      height:             @model.get('rows') * @default_line_height
+      height:   @model.get('rows') * @default_line_height
       oninit:   ((editor) =>
           $.cmd 'S', (() =>
             @model.set(content: editor.getBody().innerHTML)
