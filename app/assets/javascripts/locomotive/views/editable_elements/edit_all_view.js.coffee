@@ -9,8 +9,6 @@ class Locomotive.Views.EditableElements.EditAllView extends Backbone.View
   _editable_elements_views: []
 
   render: ->
-    window.bar = @
-
     if @collection.isEmpty()
       $(@el).hide()
     else

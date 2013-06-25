@@ -45,23 +45,19 @@ group :test do
   # gem 'autotest', platforms: :mri
   # gem 'ZenTest', platforms: :mri
 
-  # gem 'growl-glue'
   gem 'poltergeist',        '~> 1.1.0'
   gem 'shoulda-matchers',   '~> 1.5.2'
 
   gem 'factory_girl_rails', '~> 4.2.1'
   gem 'pickle'
 
-  gem 'capybara',           '~> 2.0.2' #, require: false
-
-  # gem 'xpath',              '~> 0.1.4'
+  gem 'capybara',           '~> 2.0.2'
 
   gem 'json_spec'
 
   gem 'database_cleaner'
 
   gem 'mocha', '~> 0.13.0', require: false
-
 
   # gem 'debugger', git: 'git://github.com/cldwalker/debugger.git'
 end

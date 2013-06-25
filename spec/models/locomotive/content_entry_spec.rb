@@ -108,17 +108,17 @@ describe Locomotive::ContentEntry do
 
         subject { build_content_entry.to_values(host: 'example.com') }
 
-        its(:size) { should eq(4) }
+        its(:size) { should eq(5) }
 
         its(:first) { should eq('Locomotive') }
 
-        its(:last) { should eq('') }
+        its(:last) { should eq('July 05, 2013 00:00') }
 
         context 'with a file' do
 
-          subject { build_content_entry(file: FixturedAsset.open('5k.png')).tap(&:save).to_values(host: 'example.com') }
+          subject { build_content_entry(file: FixturedAsset.open('5k.png')).tap(&:save).to_values(host: 'example.com')[3] }
 
-          its(:last) { should match(/^http:\/\/example.com\/sites\/[0-9a-f]+\/content_entry[0-9a-f]+\/[0-9a-f]+\/files\/5k.png$/) }
+          it { should match(/^http:\/\/example.com\/sites\/[0-9a-f]+\/content_entry[0-9a-f]+\/[0-9a-f]+\/files\/5k.png$/) }
 
         end
 

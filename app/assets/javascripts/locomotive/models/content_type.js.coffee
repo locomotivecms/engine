@@ -8,8 +8,9 @@ class Locomotive.Models.ContentType extends Backbone.Model
     @_normalize()
 
   _normalize: ->
-    @set
-      entries_custom_fields: new Locomotive.Models.CustomFieldsCollection(@get('entries_custom_fields'))
+    if _.isArray(@get('entries_custom_fields'))
+      @set
+        entries_custom_fields: new Locomotive.Models.CustomFieldsCollection(@get('entries_custom_fields'))
 
   find_entries_custom_field: (name) ->
     @get('entries_custom_fields').find((field) => field.get('name') == name)

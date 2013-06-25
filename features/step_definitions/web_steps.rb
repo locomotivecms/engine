@@ -44,11 +44,11 @@ When /^(?:|I )follow "([^"]*)"$/ do |link|
 end
 
 When /^(?:|I )fill in "([^"]*)" with "([^"]*)"$/ do |field, value|
-  fill_in(field, :with => value)
+  fill_in(field, with: value)
 end
 
 When /^(?:|I )fill in "([^"]*)" for "([^"]*)"$/ do |value, field|
-  fill_in(field, :with => value)
+  fill_in(field, with: value)
 end
 
 # Use this to fill in an entire form with data from a table. Example:
@@ -70,13 +70,14 @@ end
 
 When /^(?:|I )select "([^"]*)" from "([^"]*)"$/ do |value, field|
   begin
-    select(value, :from => field)
+    select(value, from: field)
   rescue Capybara::ElementNotFound
     container = find('.select2', text: field)
     container.find('a').click
-    page.has_css?("ul.select2-results li.select2-result", visible: true)
+    find(:css, 'input.select2-input').set(value.first)
+    page.has_css?('ul.select2-results li.select2-result', visible: true)
     clicked = false
-    page.all("ul.select2-results li.select2-result").each do |e|
+    page.all('ul.select2-results li.select2-result').each do |e|
       if e.text == value
         e.click
         clicked = true
@@ -86,7 +87,6 @@ When /^(?:|I )select "([^"]*)" from "([^"]*)"$/ do |value, field|
     find('.select2-drop').click unless clicked
     page.has_no_css?("ul.select2-results li.select2-result", visible: true)
   end
-  
 end
 
 When /^(?:|I )check "([^"]*)"$/ do |field|
@@ -117,9 +117,9 @@ Then /^(?:|I )should see \/([^\/]*)\/$/ do |regexp|
   regexp = Regexp.new(regexp)
 
   if page.respond_to? :should
-    page.should have_xpath('//*', :text => regexp)
+    page.should have_xpath('//*', text: regexp)
   else
-    assert page.has_xpath?('//*', :text => regexp)
+    assert page.has_xpath?('//*', text: regexp)
   end
 end
 
@@ -135,9 +135,9 @@ Then /^(?:|I )should not see \/([^\/]*)\/$/ do |regexp|
   regexp = Regexp.new(regexp)
 
   if page.respond_to? :should
-    page.should have_no_xpath('//*', :text => regexp)
+    page.should have_no_xpath('//*', text: regexp)
   else
-    assert page.has_no_xpath?('//*', :text => regexp)
+    assert page.has_no_xpath?('//*', text: regexp)
   end
 end
 

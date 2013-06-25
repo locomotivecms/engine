@@ -231,7 +231,7 @@ form.formtastic {
           }
         } // div.inline-errors
 
-        &.string, &.password, &.numeric {
+        &.string, &.password, &.numeric, &.select2 {
           label {
             padding-top: 2px;
           }
@@ -280,6 +280,20 @@ form.formtastic {
             margin-left: 10px;
           }
         } // li.select_with_edit
+
+        &.select2 {
+
+          a.select2-choice {
+            @include default-input-style;
+            padding: 0px 4px;
+            @include border-radius(0px);
+
+            & > div {
+              @include border-radius(0px);
+            }
+          }
+
+        } // li.select2
 
         &.locale, &.locales {
           .list {

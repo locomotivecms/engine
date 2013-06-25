@@ -186,7 +186,7 @@ describe Locomotive::Liquid::Drops::Page do
       'home' => @home
     }.merge(assigns)
 
-    Liquid::Template.parse(template).render assigns
+    Liquid::Template.parse(template).render!(assigns)
   end
 
 end

@@ -44,6 +44,7 @@ class Locomotive.Views.Shared.FormView extends Backbone.View
     xhr.success (model, response, _options) =>
       form.trigger('ajax:complete')
 
+      @model.set(previous_attributes)
       model.attributes = previous_attributes
 
       options.on_success(model, xhr) if options.on_success

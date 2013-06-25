@@ -10,6 +10,8 @@ class Locomotive.Views.ContentEntries.FormView extends Locomotive.Views.Shared.F
 
   _file_field_views: []
 
+  _belongs_to_field_views: []
+
   _has_many_field_views: []
 
   _many_to_many_field_views: []
@@ -96,32 +98,25 @@ class Locomotive.Views.ContentEntries.FormView extends Locomotive.Views.Shared.F
               $select.append(new Option(option.get('name'), option.get('id'), false, option.get('id') == @model.get("#{name}_id")))
 
   enable_belongs_to_fields: ->
-    model = @model
+    prefix = if @namespace? then "#{@namespace}_" else ''
+
     _.each @model.get('belongs_to_custom_fields'), (name) =>
-      input = @$("##{@model.paramRoot}_#{name}_id")
-      if input.is('*')
-        opts = input.data()
-        input.select2
-          width: '712px',
-          ajax:
-            url: opts.url
-            data: (term, page) ->
-              q: term,
-              page: page
-            results: (data, page) ->
-              results: data.map (item) -> {id: item._id, text: item._label}
-              more: data.size = window.per_page
-          initSelection: (el, callback) -> callback({id: el.val(), text: opts.currentValue})
-        input.on 'select2-selecting', (e) ->
-          model.set "#{name}_id", e.val
+      $el = @$("##{prefix}#{@model.paramRoot}_#{name}_id")
+
+      if $el.length > 0
+        view = new Locomotive.Views.Shared.Fields.BelongsToView model: @model, name: name, el: $el
+
+        @_belongs_to_field_views.push(view)
+
+        view.render()
 
   enable_file_fields: ->
+    prefix = if @namespace? then "#{@namespace}_" else ''
+
     _.each @model.get('file_custom_fields'), (name) =>
       view = new Locomotive.Views.Shared.Fields.FileView model: @model, name: name, namespace: @namespace
 
       @_file_field_views.push(view)
-
-      prefix = if @namespace? then "#{@namespace}_" else ''
 
       @$("##{prefix}#{@model.paramRoot}_#{name}_input label").after(view.render().el)
 

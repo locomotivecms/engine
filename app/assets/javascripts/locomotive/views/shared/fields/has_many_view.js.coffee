@@ -101,7 +101,7 @@ class Locomotive.Views.Shared.Fields.HasManyView extends Backbone.View
   remove_entry: (event) ->
     event.stopPropagation() & event.preventDefault()
 
-    if confirm($(event.target).data('confirm'))
+    if confirm($(event.target).closest('a').data('confirm'))
       entry = @get_entry_from_element($(event.target))
       entry.set _destroy: true
 

@@ -18,8 +18,12 @@ module Locomotive
     respond_to :csv,  only: [:export]
 
     def index
-      options = { page: params[:page] || 1, per_page: Locomotive.config.ui[:per_page], q: params[:q] || '' } 
-      @content_entries = @content_type.list_or_group_entries(options)
+      options = { page: params[:page] || 1, per_page: Locomotive.config.ui[:per_page] }
+      @content_entries = if params[:q]
+        @content_type.ordered_entries(options.merge(q: params[:q]))
+      else
+        @content_type.list_or_group_entries(options)
+      end
       respond_with @content_entries
     end
 
