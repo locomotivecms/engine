@@ -22,6 +22,7 @@ en:
       ru: Russian
       et: Estonian
       ja: Japanese
+      zh-CN: Chinese 
 
     messages:
       confirm: Are you sure ?
