@@ -36,7 +36,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'haml',                            '~> 4.0.2'
   s.add_dependency 'jquery-rails',                    '~> 2.1.4'
   s.add_dependency 'rails-backbone',                  '~> 0.7.2'
-  s.add_dependency 'codemirror-rails',                '~> 3.13' # 2.21
+  s.add_dependency 'codemirror-rails',                '~> 3.13'
   s.add_dependency 'locomotive-tinymce-rails',        '~> 3.5.8.2'
   s.add_dependency 'locomotive-aloha-rails',          '~> 0.23.2.2'
   s.add_dependency 'flash_cookie_session',            '~> 1.1.1'
@@ -58,7 +58,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'multi_json',                      '~> 1.7.3'
   s.add_dependency 'httparty',                        '~> 0.11.0'
-  s.add_dependency 'actionmailer-with-request',       '~> 0.4.0' # 0.3.0
+  s.add_dependency 'actionmailer-with-request',       '~> 0.4.0'
 
   s.add_dependency 'SystemTimer' if RUBY_VERSION =~ /1.8/
 
