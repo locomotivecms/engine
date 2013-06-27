@@ -9,13 +9,14 @@ module Locomotive
     include Extensions::ContentEntry::Csv
 
     ## fields ##
-    field :_slug
+    field :_slug,             localize: true
     field :_label_field_name
     field :_position,         type: Integer, default: 0
     field :_visible,          type: Boolean, default: true
 
     ## validations ##
-    validates :_slug, presence: true, uniqueness: { scope: :content_type_id }
+    validates_presence_of     :_slug
+    validates_uniqueness_of   :_slug, scope: :content_type_id, allow_blank: true
 
     ## associations ##
     belongs_to  :site,          class_name: 'Locomotive::Site'
@@ -60,6 +61,7 @@ module Locomotive
 
     # Tell if the content entry has been translated or not.
     # It just checks if the field used for the label has been translated.
+    # It assumes the entry is localized.
     #
     # @return [ Boolean ] True if translated, false otherwise
     #
@@ -76,11 +78,20 @@ module Locomotive
     # @return [ Array ] The list of locales. Nil if not localized
     #
     def translated_in
-      if self.respond_to?(:"#{self._label_field_name}_translations")
+      if self.localized?
         self.send(:"#{self._label_field_name}_translations").keys
       else
         nil
       end
+    end
+
+    # Tell if the entry is localized or not, meaning if the label field
+    # is localized or not.
+    #
+    # @return [ Boolean ] True if localized, false otherwise
+    #
+    def localized?
+      self.respond_to?(:"#{self._label_field_name}_translations")
     end
 
     # Return the next content entry based on the order defined in the parent content type.
@@ -158,7 +169,7 @@ module Locomotive
       self.class.where(criterion => value).order_by(:order_by.asc).limit(1).first
     end
 
-    # Sets the slug of the instance by using the value of the highlighted field
+    # Set the slug of the instance by using the value of the highlighted field
     # (if available). If a sibling content instance has the same permalink then a
     # unique one will be generated
     def set_slug
@@ -167,6 +178,23 @@ module Locomotive
       if self._slug.present?
         self._slug.permalink!
         self._slug = self.next_unique_slug if self.slug_already_taken?
+      end
+
+      # all the site locales share the same slug ONLY IF the entry is not localized.
+      self.set_same_slug_for_all_site_locales if !self.localized?
+    end
+
+    # For each locale of the site, we set the slug
+    # coming from the value for the default locale.
+    def set_same_slug_for_all_site_locales
+      return unless self.set_site.localized?
+
+      default_slug = self._slug
+
+      self.set_site.locales.each do |locale|
+        ::Mongoid::Fields::I18n.with_locale(locale) do
+          self._slug = default_slug
+        end
       end
     end
 

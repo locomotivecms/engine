@@ -37,7 +37,7 @@ describe Locomotive::ContentEntry do
 
   end
 
-  describe '#slug' do
+  describe '.slug' do
 
     before :each do
       build_content_entry(_slug: 'dogs').tap(&:save!)._slug.should == 'dogs'
@@ -73,6 +73,12 @@ describe Locomotive::ContentEntry do
         build_content_entry(_slug: 'dogs').tap(&:save!)._slug.should == "dogs-#{i}"
       end
     end
+
+    it 'copies the slug in ALL the locales of the site' do
+      Locomotive::Site.any_instance.stubs(:locales).returns(%w(en fr ru))
+      entry = build_content_entry(_slug: 'monkeys').tap(&:save!)
+      entry._slug_translations.should == { 'en' => 'monkeys', 'fr' => 'monkeys', 'ru' => 'monkeys' }
+    end
   end
 
   describe '#I18n' do
@@ -81,6 +87,7 @@ describe Locomotive::ContentEntry do
       localize_content_type @content_type
       ::Mongoid::Fields::I18n.locale = 'en'
       @content_entry = build_content_entry(title: 'Hello world')
+      @content_entry.send(:set_slug)
       ::Mongoid::Fields::I18n.locale = 'fr'
     end
 
@@ -92,6 +99,19 @@ describe Locomotive::ContentEntry do
       @content_entry.translated?.should be_false
       @content_entry.title = 'Bonjour'
       @content_entry.translated?.should be_true
+    end
+
+    describe '.slug' do
+
+      it 'is not nil in the default locale' do
+        ::Mongoid::Fields::I18n.locale = 'en'
+        @content_entry._slug.should == 'hello-world'
+      end
+
+      it 'is not translated by default in the other locale' do
+        @content_entry._slug.should be_nil # French
+      end
+
     end
 
   end
