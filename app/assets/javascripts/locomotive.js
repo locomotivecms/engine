@@ -12,7 +12,7 @@
 //= require codemirror
 //= require tinymce-jquery
 //= require select2/select2
-//= require codemirror/utils/overlay
+//= require codemirror/addons/mode/overlay
 //= require codemirror/modes/css
 //= require codemirror/modes/javascript
 //= require codemirror/modes/xml
