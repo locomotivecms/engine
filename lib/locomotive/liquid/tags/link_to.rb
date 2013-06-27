@@ -2,10 +2,11 @@ module Locomotive
   module Liquid
     module Tags
       class LinkTo < Hybrid
+
         Syntax = /(#{::Liquid::Expression}+)(#{::Liquid::TagAttributes}?)/
-        
+
         include ActionView::Helpers::UrlHelper
-        
+
         def initialize(tag_name, markup, tokens, context)
           if markup =~ Syntax
             @handle = $1
@@ -16,56 +17,82 @@ module Locomotive
           else
             raise SyntaxError.new("Syntax Error in 'link_to' - Valid syntax: link_to page_handle, locale es (locale is optional)")
           end
-          
+
           super
         end
-        
+
         def render(context)
-          site = context.registers[:site]
-          page, link, entry = templatized_page(site, context, @options) || page(site, @handle, @options['locale'])
-          path = public_page_url(site, page, locale: @options['locale'], content: entry)
-          
-          if @render_as_block
-            context.scopes.last['target'] = page
-            link_to super.html_safe, path
+          site  = context.registers[:site]
+
+          if page = self.retrieve_page_from_handle(site, context)
+            label = self.label_from_page(page)
+            path  = self.public_page_url(site, page)
+
+            if @render_as_block
+              context.scopes.last['target'] = page
+              label = super.html_safe
+            end
+
+            link_to label, path
           else
-            link_to link, path
+            '' # no page found
           end
         end
-        
+
         protected
-        def templatized_page(site, context, options)
-          ::Mongoid::Fields::I18n.with_locale(options['locale']) do
-            context.scopes.reverse_each do |scope|
-              if scope[@handle].is_a?(Locomotive::ContentEntry)
-                entry = scope[@handle]
-                criteria = site.pages.where(target_klass_name: entry.class.to_s, templatized: true)
-                criteria = criteria.where(handle: options['with']) if options['with']
-                page = criteria.first
-                return [page, entry._label, entry]
+
+        def retrieve_page_from_handle(site, context)
+          context.scopes.reverse_each do |scope|
+            handle = scope[@handle] || @handle
+
+            page = case handle
+            when Locomotive::Page         then handle
+            when String                   then fetch_page(site, handle)
+            when Locomotive::ContentEntry then fetch_page(site, handle, true)
+            else
+              nil
+            end
+
+            return page unless page.nil?
+          end
+
+          nil
+        end
+
+        def fetch_page(site, handle, templatized = false)
+          ::Mongoid::Fields::I18n.with_locale(@options['locale']) do
+            if templatized
+              criteria = site.pages.where(target_klass_name: handle.class.to_s, templatized: true)
+              criteria = criteria.where(handle: @options['with']) if @options['with']
+              criteria.first.tap do |page|
+                page.content_entry = handle if page
               end
+            else
+              site.pages.where(handle: handle).first
             end
           end
-          return false
         end
-        
-        def page(site, handle, locale = nil)
-          ::Mongoid::Fields::I18n.with_locale(locale) do
-            page = site.pages.where(handle: @handle).first
-            return [page, page.title]
+
+        def label_from_page(page)
+          ::Mongoid::Fields::I18n.with_locale(@options['locale']) do
+            if page.templatized?
+              page.content_entry._label
+            else
+              page.title
+            end
           end
         end
-        
-        def public_page_url(site, page, options = {})
-          locale    = options[:locale]
-          fullpath  = site.localized_page_fullpath(page, locale)
 
-          if content = options.delete(:content)
-            fullpath = File.join(fullpath.gsub('content_type_template', ''), content._slug)
+        def public_page_url(site, page)
+          fullpath = site.localized_page_fullpath(page, @options['locale'])
+
+          if page.templatized?
+            fullpath.gsub!('content_type_template', page.content_entry._slug)
           end
 
           File.join('/', fullpath)
         end
+
       end
 
       ::Liquid::Template.register_tag('link_to', LinkTo)
