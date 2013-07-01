@@ -140,6 +140,7 @@ de:
         cache_strategy:
           none: Keine
           simple: Einfach
+          five_minutes: 5 Minuten
           hour: 1 Stunde
           day: 1 Tag
           week: 1 Woche
