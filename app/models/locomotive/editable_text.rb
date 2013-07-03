@@ -9,7 +9,6 @@ module Locomotive
     field :line_break,      type: Boolean, default: true
 
     ## callbacks ##
-    # before_save { |c| puts "#{c.block}/#{c.slug} saved called !"}
     before_save :strip_content
 
     ## methods ##
@@ -81,17 +80,5 @@ module Locomotive
       self.content.strip! unless self.content.blank?
     end
 
-  end
-end
-
-module Locomotive
-  class EditableShortText < EditableText
-    # @deprecated
-  end
-end
-
-module Locomotive
-  class EditableLongText < EditableText
-    # @deprecated
   end
 end

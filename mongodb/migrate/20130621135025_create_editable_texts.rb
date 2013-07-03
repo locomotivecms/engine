@@ -4,6 +4,7 @@ class CreateEditableTexts < MongoidMigration::Migration
       attributes = {}
 
       page['editable_elements'].each_with_index do |element, index|
+        next unless element['_type'] =~ /Text$/
         attributes.merge!(new_attributes_for(element['_type'], index))
       end
 
