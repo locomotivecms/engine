@@ -56,6 +56,10 @@ module Locomotive
             </div>}
         end
 
+        def random(input)
+          rand(input.to_i)
+        end
+
       end
 
       ::Liquid::Template.register_filter(Misc)

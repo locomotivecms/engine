@@ -20,6 +20,32 @@ describe Locomotive::Liquid::Filters::Misc do
     default(nil, 42).should == 42
   end
 
+  describe 'random' do
+
+    context 'from an integer' do
+
+      subject { random(4) }
+      it { should be_a_kind_of(Fixnum) }
+      it { should satisfy { |n| n >=0 && n < 4 } }
+
+    end
+
+    context 'from a string' do
+
+      subject { random('4') }
+      it { should be_a_kind_of(Fixnum) }
+      it { should satisfy { |n| n >=0 && n < 4 } }
+
+    end
+
+  end
+
+  it 'returns a random number' do
+    random_number = random(4)
+    random_number.class.should == Fixnum
+
+  end
+
   it 'should return a navigation block for the pagination' do
     pagination = {
       "previous"   => nil,
