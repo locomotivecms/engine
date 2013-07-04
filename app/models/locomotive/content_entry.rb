@@ -227,7 +227,9 @@ module Locomotive
     end
 
     def add_to_list_bottom
-      self._position = self.class.max(:_position).to_i + 1
+      unless self.class.empty?
+        self._position = self.class.max(:_position).to_i + 1
+      end
     end
 
     def send_notifications

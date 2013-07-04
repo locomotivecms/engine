@@ -180,12 +180,12 @@ describe Locomotive::ContentEntry do
 
     it 'should find previous item when available' do
       @second.previous.title.should == 'first'
-      @second.previous._position.should == 1
+      @second.previous._position.should == 0
     end
 
     it 'should find next item when available' do
       @second.next.title.should == 'third'
-      @second.next._position.should == 3
+      @second.next._position.should == 2
     end
 
     it 'should return nil when fetching previous item on first in list' do
