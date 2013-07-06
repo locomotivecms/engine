@@ -65,17 +65,19 @@ module Locomotive
     # method is available
     def create_default_pages!
       %w{index 404}.each do |slug|
-        page = self.pages.build(published: true)
-        self.locales.each do |locale|
-          ::Mongoid::Fields::I18n.with_locale(locale) do
-            page.attributes = {
-              slug:         slug,
-              title:        ::I18n.t("attributes.defaults.pages.#{slug}.title", locale: locale),
-              raw_template: ::I18n.t("attributes.defaults.pages.#{slug}.body", locale: locale)
-            }
-          end
+        page = nil
+
+        self.each_locale do |locale|
+          page ||= self.pages.build(published: true) # first locale = default one
+
+          page.attributes = {
+            slug:         slug,
+            title:        ::I18n.t("attributes.defaults.pages.#{slug}.title", locale: locale),
+            raw_template: ::I18n.t("attributes.defaults.pages.#{slug}.body", locale: locale)
+          }
         end
-        page.save
+
+        self.with_default_locale { page.save! }
       end
 
     end

@@ -42,6 +42,6 @@ class Locomotive.Views.EditableElements.TextView extends Backbone.View
 
   remove: ->
     if @model.get('format') == 'html'
-      @$('textarea').tinymce().destroy()
+      @$('textarea').tinymce().remove()
 
     super

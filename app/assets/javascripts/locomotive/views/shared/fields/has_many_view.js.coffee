@@ -26,7 +26,7 @@ class Locomotive.Views.Shared.Fields.HasManyView extends Backbone.View
     @build_target_entry_view()
 
   render: ->
-    $(@el).html(@template()())
+    $(@el).html(@template()()).attr('id', "#{@model.paramRoot}_#{@options.name}")
 
     @insert_entries()
 

@@ -10,6 +10,8 @@ Feature: Contact form
       | label       | type      | required    |
       | Email       | string    | true        |
       | Message     | text      | true        |
+      | Category    | select    | true        |
+    And I have "Design, Code, Business" as "Category" values of the "Messages" model
     And I enable the public submission of the "Messages" model
     And a page named "contact" with the template:
       """
@@ -23,6 +25,13 @@ Feature: Contact form
             <label for="email">E-Mail Address</label>
             <input type="text" id="email" name="content[email]" />
             {% if message.errors.email %}Email is required{% endif %}
+            <label for="category">Category</label>
+            <select id="category" name="content[category]">
+              <option value=""></option>
+              {% for name in contents.messages.category_options %}
+              <option value="{{ name }}">{{ name }}</option>
+              {% endfor %}
+            </select>
             <label for="message">Message</label>
             <textarea name="content[message]" id="message"></textarea>
             <input name="submit" type="submit" id="submit" value="Submit" />
@@ -54,6 +63,7 @@ Feature: Contact form
     When I view the rendered page at "/contact"
     And I fill in "E-Mail Address" with "did@locomotivecms.com"
     And I fill in "Message" with "LocomotiveCMS rocks"
+    And I select "Code" from "Category"
     And I press "Submit"
     Then I should see "Thanks did@locomotivecms.com"
 
@@ -68,6 +78,7 @@ Feature: Contact form
     And I view the rendered page at "/contact"
     And I fill in "E-Mail Address" with "did@locomotivecms.com"
     And I fill in "Message" with "LocomotiveCMS rocks"
+    And I select "Code" from "Category"
     And I press "Submit"
     Then I should see "Thanks did@locomotivecms.com"
 

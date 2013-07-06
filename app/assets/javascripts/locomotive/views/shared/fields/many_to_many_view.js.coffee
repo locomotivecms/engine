@@ -25,7 +25,7 @@ class Locomotive.Views.Shared.Fields.ManyToManyView extends Backbone.View
     @all_entries  = @options.all_entries
 
   render: ->
-    $(@el).html(@template()())
+    $(@el).html(@template()()).attr('id', "#{@model.paramRoot}_#{@options.name}_ids")
 
     @insert_entries()
 
