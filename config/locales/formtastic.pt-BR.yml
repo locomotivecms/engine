@@ -30,6 +30,8 @@ pt-BR:
       custom_fields:
         field:
           name: Apelido
+          translatable: Translatable
+          untranslatable: Untranslatable
       import:
         new:
           source: Arquivo

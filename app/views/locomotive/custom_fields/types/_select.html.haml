@@ -1,8 +1,9 @@
 = f.input :"#{name}_id",
-  label:      field.label,
+  label:      custom_field_label(field),
   hint:       field.hint,
   as:         :select,
-  collection: field.ordered_select_options.map { |option| [option.name, option.id] }
+  collection: field.ordered_select_options.map { |option| [option.name, option.id] },
+  wrapper_html: { class: translatable_status(field) }
 
 - content_for :head do
 

@@ -16,8 +16,8 @@
 
 = f.inputs name: :advanced_options, class: "inputs foldable #{'folded' if inputs_folded?(@content_entry)}" do
 
-  = f.input :_slug
-  = f.input :_visible, as: :'Locomotive::Toggle'
-  = f.input :seo_title
-  = f.input :meta_keywords
-  = f.input :meta_description
+  = f.input :_slug, wrapper_html: { class: 'translatable' }
+  = f.input :_visible, as: :'Locomotive::Toggle', wrapper_html: { class: 'translatable' }
+  = f.input :seo_title, wrapper_html: { class: 'translatable' }
+  = f.input :meta_keywords, wrapper_html: { class: 'translatable' }
+  = f.input :meta_description, wrapper_html: { class: 'translatable' }

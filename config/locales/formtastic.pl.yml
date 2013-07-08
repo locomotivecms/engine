@@ -35,6 +35,8 @@ pl:
           empty: Brak pól
         field:
           name: Nazwa
+          translatable: Translatable
+          untranslatable: Untranslatable
       content_type:
         raw_item_template: Szablon treści
         public_submission_enabled: Publiczne wprowadzanie

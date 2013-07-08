@@ -1,5 +1,6 @@
 = f.input field.name.to_sym,
-  label:      field.label,
+  label:      custom_field_label(field),
   hint:       field.hint,
   as:         field.text_formatting == 'html' ? :'Locomotive::Rte' : :text,
-  input_html: { class: field.text_formatting }
+  input_html: { class: field.text_formatting },
+  wrapper_html: { class: translatable_status(field) }
