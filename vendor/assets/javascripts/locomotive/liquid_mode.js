@@ -38,5 +38,5 @@ CodeMirror.defineMode("liquid", function(config, parserConfig) {
     }
   };
 
-  return CodeMirror.overlayParser(CodeMirror.getMode(config, parserConfig.backdrop || "text/html"), liquidOverlay);
+  return CodeMirror.overlayMode(CodeMirror.getMode(config, parserConfig.backdrop || "text/html"), liquidOverlay);
 });

@@ -4,7 +4,7 @@ Feature: Manage Pages
   I want to add/edit/delete pages of my site
 
 Background:
-  Given I have the site: "test site" set up with name: "test site"
+  Given I have the site: "test site" set up with name: "test site", timezone_name: "Paris"
   And I am an authenticated user
 
 Scenario: Pages list is not accessible for non authenticated accounts
@@ -32,6 +32,8 @@ Scenario: Updating a valid page
   And I change the page template to "My new content is here"
   And I press "Save"
   Then I should see "Page was successfully updated."
+  Then I go to pages
+  And updated_at of the index page should respect site's timezone
   And I should have "My new content is here" in the index page
 
 @javascript
@@ -40,8 +42,10 @@ Scenario: Localizing page slugs
   When I go to pages
   And I follow "new page" within the main content
   And I fill in "page_title" with "Translated"
+  And I wait 1500ms
   And I press "Create"
-  Then I should see a "show" link to "/translated"
+  Then I should see "Page was successfully created."
+  And I should see a "show" link to "/translated"
 
   When I switch the locale to "es"
   And I fill in "Slug" with "pagina-traducida"

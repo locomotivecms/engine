@@ -49,7 +49,6 @@ class Locomotive.Views.ThemeAssets.IndexView extends Backbone.View
           headers:  { 'X-Flash': true }
 
   insert_asset: (model) ->
-    window.foo = model
     list_view = @pick_list_view(model.get('content_type'))
     list_view.collection.add(model) if list_view?
 

@@ -74,6 +74,26 @@ module Locomotive
           [locale.to_s] + (locales - [locale.to_s])
         end
 
+        # Iterate through all the locales of the site and for each of them
+        # call yield with the related Mongoid::Fields::I18n locale context.
+        # The first locale is the default one.
+        #
+        def each_locale(&block)
+          self.locales.each do |locale|
+            ::Mongoid::Fields::I18n.with_locale(locale) do
+              yield locale
+            end
+          end
+        end
+
+        # Call yield within the Mongoid::Fields::I18 context of the default locale.
+        #
+        def with_default_locale(&block)
+          ::Mongoid::Fields::I18n.with_locale(self.default_locale) do
+            yield
+          end
+        end
+
         protected
 
         def add_default_locale
@@ -86,6 +106,9 @@ module Locomotive
           end
         end
 
+        # Verify if the index and 404 pages in ALL the locales of the site
+        # have a non empty slug, fullpath and title. If not, it sets them.
+        #
         def verify_localized_default_pages_integrity
           if self.persisted? && self.locales_changed?
             self.pages.where(:"slug.#{self.default_locale_was}".in => %w(index 404), depth: 0).each do |page|

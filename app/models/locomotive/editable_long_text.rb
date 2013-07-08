@@ -1,5 +1,5 @@
 module Locomotive
-  class EditableLongText < EditableShortText
-
+  class EditableLongText < EditableText
+    # @deprecated
   end
 end

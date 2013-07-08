@@ -7,6 +7,9 @@ en:
     errors:
       messages:
         blank_in_locale: "can't be blank"
+    attributes:
+      locomotive/content_entry:
+        created_at: Created at
 
   errors:
       messages:

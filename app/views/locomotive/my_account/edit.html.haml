@@ -2,7 +2,7 @@
 
 - content_for :backbone_view_data do
   :plain
-    account: #{escape_json @account.to_json.html_safe}
+    account: #{escape_json to_json(@account)}
 
 - content_for :submenu do
   = render_cell 'locomotive/settings_menu', :show
@@ -23,6 +23,7 @@
     = f.input :email
     = f.input :password, input_html: { autocomplete: 'off' }
     = f.input :password_confirmation, input_html: { autocomplete: 'off' }
+    = f.input :api_key, as: '::Locomotive::ApiKey', url: regenerate_api_key_my_account_url
 
   - if multi_sites?
     = f.inputs name: :sites, class: "sites inputs foldable" do

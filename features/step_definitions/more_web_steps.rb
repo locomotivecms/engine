@@ -2,6 +2,10 @@ When /^I follow image link "([^"]*)"$/ do |img_alt|
   find(:xpath, "//img[@alt = '#{img_alt}']/parent::a").click()
 end
 
+When /^I click on the "([^"]*)" folder$/ do |name|
+  find('fieldset.foldable legend span', text: name).click
+end
+
 Then /^I should get a download with the filename "([^\"]*)"$/ do |filename|
   page.response_headers['Content-Disposition'].should include("filename=#{filename}")
 end
@@ -63,7 +67,7 @@ When(/^I switch the locale to "(.*?)"$/) do |locale|
   end
 end
 
-When(/^I should see a "(.*?)" link to "(.*?)"$/) do |text, path|
+Then(/^I should see a "(.*?)" link to "(.*?)"$/) do |text, path|
   page.should have_link(text, href: path)
 end
 

@@ -64,7 +64,8 @@ class Locomotive.Views.CurrentSite.EditView extends Locomotive.Views.Shared.Form
         passDelay:        50
         tabMode:          'shift'
         theme:            'default'
-        onChange: (editor) => @model.set(robots_txt: editor.getValue())
+
+      @editor.on 'change', (editor, change) => @model.set(robots_txt: editor.getValue())
 
   save: (event) ->
     # if @model.includes_domain(window.location.host)

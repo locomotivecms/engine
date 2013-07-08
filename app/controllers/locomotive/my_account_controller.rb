@@ -3,7 +3,7 @@ module Locomotive
 
     sections 'settings', 'account'
 
-    respond_to :json, only: :update
+    respond_to :json, only: [:update, :regenerate_api_key]
 
     helper 'Locomotive::Accounts'
 
@@ -18,6 +18,12 @@ module Locomotive
       @account = current_locomotive_account
       @account.update_attributes(params[:account])
       respond_with @account, location: edit_my_account_url
+    end
+
+    def regenerate_api_key
+      @account = current_locomotive_account
+      @account.regenerate_api_key!
+      respond_with({ api_key: @account.api_key }, location: edit_my_account_url)
     end
 
   end

@@ -20,7 +20,6 @@ require 'locomotive/cancan'
 require 'locomotive/regexps'
 require 'locomotive/render'
 require 'locomotive/middlewares'
-require 'locomotive/session_store'
 
 module Locomotive
   extend ActiveSupport::Autoload
@@ -38,6 +37,7 @@ module Locomotive
     self.config ||= Configuration.new
 
     yield(self.config)
+
 
     after_configure
   end
@@ -64,8 +64,9 @@ module Locomotive
     # Load all the dynamic classes (custom fields)
     begin
       ContentType.all.collect { |content_type| content_type.klass_with_custom_fields(:entries) }
-    rescue ::Mongoid::Errors::InvalidDatabase => e
+    rescue Exception => e
       # let assume it's because of the first install (meaning no config.yml file)
+      Locomotive.log :warn, "WARNING: unable to load the content types, #{e.message}"
     end
 
     # enable the hosting solution if both we are not in test or dev and that the config.hosting option has been filled up
@@ -86,8 +87,6 @@ module Locomotive
     if self.rack_cache?
       self.app_middleware.insert_before 'Dragonfly::Middleware', '::Locomotive::Middlewares::Cache', self.config.rack_cache
     end
-
-    self.app_middleware.insert_after 'Dragonfly::Middleware', '::Locomotive::Middlewares::Fonts', path: %r{^/fonts}
 
     self.app_middleware.use '::Locomotive::Middlewares::SeoTrailingSlash'
 

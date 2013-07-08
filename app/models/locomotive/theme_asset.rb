@@ -8,17 +8,17 @@ module Locomotive
 
     ## fields ##
     field :local_path
-    field :content_type
-    field :width,   type: Integer
-    field :height,  type: Integer
-    field :size,    type: Integer
-    field :folder,  default: nil
+    field :content_type,  type: Symbol
+    field :width,         type: Integer
+    field :height,        type: Integer
+    field :size,          type: Integer
+    field :folder,        default: nil
     field :checksum
 
     mount_uploader :source, ThemeAssetUploader, mount_on: :source_filename, validate_integrity: true
 
     ## associations ##
-    belongs_to :site, class_name: 'Locomotive::Site'
+    belongs_to :site, class_name: 'Locomotive::Site', autosave: false
 
     ## indexes ##
     index site_id:  1
@@ -144,9 +144,9 @@ module Locomotive
     def escape_shortcut_urls(text)
       return if text.blank?
 
-      text.gsub(/[("'](\/(stylesheets|javascripts|images|media|others)\/(([^;.]+)\/)*([a-zA-Z_\-0-9]+)\.[a-z]{2,3})[)"']/) do |path|
+      text.gsub(/[("'](\/(stylesheets|javascripts|images|media|fonts|others)\/(([^;.]+)\/)*([a-zA-Z_\-0-9]+)\.[a-z]{2,3})(\?[0-9]+)?[)"']/) do |path|
 
-        sanitized_path = path.gsub(/[("')]/, '').gsub(/^\//, '')
+        sanitized_path = path.gsub(/[("')]/, '').gsub(/^\//, '').gsub(/\?[0-9]+$/, '')
 
         if asset = self.site.theme_assets.where(local_path: sanitized_path).first
           "#{path.first}#{asset.source.url}#{path.last}"
@@ -170,7 +170,12 @@ module Locomotive
     end
 
     def content_type_can_not_change
-      self.errors.add(:source, :extname_changed) if self.persisted? && self.content_type_changed?
+      if self.persisted?
+        # FIXME: content type used to be a String
+        if self.content_type_was.to_sym != self.content_type
+          self.errors.add(:source, :extname_changed)
+        end
+      end
     end
 
     def calculate_checksum

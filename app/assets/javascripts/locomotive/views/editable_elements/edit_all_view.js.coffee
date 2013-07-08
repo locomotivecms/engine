@@ -9,8 +9,6 @@ class Locomotive.Views.EditableElements.EditAllView extends Backbone.View
   _editable_elements_views: []
 
   render: ->
-    window.bar = @
-
     if @collection.isEmpty()
       $(@el).hide()
     else
@@ -45,10 +43,9 @@ class Locomotive.Views.EditableElements.EditAllView extends Backbone.View
         element.set(index: index)
 
         view_class = switch element.get('type')
-          when 'EditableShortText' then Locomotive.Views.EditableElements.ShortTextView
-          when 'EditableLongText' then Locomotive.Views.EditableElements.LongTextView
-          when 'EditableFile' then Locomotive.Views.EditableElements.FileView
-          when 'EditableControl' then Locomotive.Views.EditableElements.ControlView
+          when 'EditableText'       then Locomotive.Views.EditableElements.TextView
+          when 'EditableFile'       then Locomotive.Views.EditableElements.FileView
+          when 'EditableControl'    then Locomotive.Views.EditableElements.ControlView
 
         view = new view_class(model: element)
         @$("#block-#{block.index} > fieldset > ol").append(view.render().el)

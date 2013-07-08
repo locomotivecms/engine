@@ -18,7 +18,7 @@
 
   %label{ for: 'page_editable_elements_attributes_{{index}}_content' } {{label}}
 
-  = text_area_tag 'page[editable_elements_attributes][{{index}}][content]', '{{content}}', id: 'page_editable_elements_attributes_{{index}}_content'
+  = text_area_tag 'page[editable_elements_attributes][{{index}}][content]', '{{content}}', id: 'page_editable_elements_attributes_{{index}}_content', rows: '{{rows}}'
 
   {{#if hint}}
   %p.inline-hints {{hint}}

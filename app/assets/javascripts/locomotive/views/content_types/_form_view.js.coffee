@@ -49,7 +49,8 @@ class Locomotive.Views.ContentTypes.FormView extends Locomotive.Views.Shared.For
       passDelay:        50
       tabMode:          'shift'
       theme:            'default'
-      onChange: (editor) => @model.set(raw_item_template: editor.getValue())
+
+    @editor.on 'change', (editor, change) => @model.set(raw_item_template: editor.getValue())
 
   after_inputs_fold: ->
     @editor.refresh()

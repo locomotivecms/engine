@@ -49,7 +49,10 @@ class Locomotive.Views.ContentTypes.CustomFieldEntryView extends Backbone.View
       when 'belongs_to'
         @$('li.input.localized').hide()
         @$('li.input.class-name').show()
+      when 'image'
+        @$('li.input.unique').hide()
       when 'has_many', 'many_to_many'
+        @$('li.input.unique').hide()
         @$('li.input.localized').hide()
         @$('li.input.class-name').show()
         @$('li.input.inverse-of').show()

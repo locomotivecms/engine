@@ -64,7 +64,7 @@ describe Locomotive::Account do
 
   end
 
-  describe '#admin?' do
+  describe '.admin?' do
 
     it 'is considered as an admin if she/he has a membership with an admin role' do
       create_site_and_account
@@ -80,6 +80,28 @@ describe Locomotive::Account do
       @account    = FactoryGirl.create(:account)
       @membership = Locomotive::Membership.new(account: @account, role: role)
       @site       = FactoryGirl.create(:site, memberships: [@membership])
+    end
+
+  end
+
+  describe 'api_key' do
+
+    let(:account) { FactoryGirl.build(:account) }
+
+    it 'is not nil for a new account (after validation)' do
+      account.valid?
+      account.api_key.should_not be_nil
+    end
+
+    it 'can be not changed by mass assignment' do
+      account.attributes = { api_key: 'foo' }
+      account.api_key.should_not == 'foo'
+    end
+
+    it 'can be regenerated over and over' do
+      key_1 = account.regenerate_api_key
+      key_1.should_not be_nil
+      account.regenerate_api_key.should_not == key_1
     end
 
   end

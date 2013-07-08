@@ -8,6 +8,7 @@
  *= require locomotive/jquery.tagit.css
  *= require locomotive/font-awesome
  *= require formtastic
+ *= require select2/select2.css
  *= require codemirror
  *= require codemirror/themes/neat
  *= require locomotive/toggle.css

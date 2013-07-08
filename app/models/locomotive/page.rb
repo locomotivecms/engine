@@ -27,7 +27,7 @@ module Locomotive
     field :response_type,       default: 'text/html'
 
     ## associations ##
-    belongs_to :site, class_name: 'Locomotive::Site'
+    belongs_to :site, class_name: 'Locomotive::Site', autosave: false
 
     ## indexes ##
     index site_id:    1
@@ -50,8 +50,8 @@ module Locomotive
 
     ## named scopes ##
     scope :latest_updated,      order_by(updated_at: :desc).limit(Locomotive.config.ui[:latest_entries_nb])
-    scope :root,                where(slug: 'index', depth: 0)
-    scope :not_found,           where(slug: '404', depth: 0)
+    scope :root,                -> { where(slug: 'index', depth: 0) }
+    scope :not_found,           -> { where(slug: '404', depth: 0) }
     scope :published,           where(published: true)
     scope :fullpath,            ->(fullpath){ where(fullpath: fullpath) }
     scope :handle,              ->(handle){ where(handle: handle) }

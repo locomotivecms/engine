@@ -1,0 +1,112 @@
+zh-CN:
+  formtastic:
+    titles:
+      information: 基本信息
+      advanced_options: 高级选项
+      meta: SEO 元信息
+      seo: SEO 设置
+      robots_txt: Robots.txt 文件
+      code: 代码
+      raw_template: 模板
+      credentials: 证件
+      language: 语言
+      sites: 网站
+      access_points: 接入点
+      memberships: 账户
+      membership_email: 账户邮件
+      file: 文件
+      preview: 预览
+      options: 高级选项
+      custom_fields: 自定义字段
+      other_fields: 其他信息
+      presentation: 表示
+      attributes: 属性
+      upload: 上传
+    labels:
+      theme_asset:
+        plain_text_name: 文件名
+        content_type: 文件类型
+        new:
+          source: 文件
+        edit:
+          source: 替换文件
+      custom_fields:
+        field:
+          name: 别名
+      content_type:
+        raw_item_template: 条目模板
+        public_submission_enabled: 公开提交
+        public_submission_accounts: 被通知账户
+        "custom_fields/field":
+          select_options: "选项"
+      content_entry:
+        _slug: 永久链接
+        _visible: 可见
+      account:
+        api_key: API key
+        edit:
+          locale: UI 语言
+          password: 新密码
+          password_confirmation: 新密码确认
+      page:
+        seo_title: 标题
+        target_klass_name: 内容类型
+      site:
+        locales: 语言
+        timezone_name: 时区 
+        new:
+          locales: 第一语言
+
+    hints:
+      page:
+        handle: "唯一识别码用来在一个外部的controller实例中取得这个页面"
+        published: "只有验证的账户才能看未发布的页面"
+        cache_strategy: "缓存页面获得高性能。\"简单\"选项是一个好的折中。"
+        templatized: "Use the page as a template for a model you defined."
+        listed: "控制页面是否显示在生成的菜单中。"
+        target_klass_name: "这个页面是哪个内容类型的模板"
+        seo_title: "定义一个页面标题用在html head部分的title标签处。如果你想用默认的网站设置请把这个留空。"
+        meta_keywords: "覆盖网站的meta关键字用在页面的html head部分。关键字用逗号分割。"
+        meta_description: "覆盖网站的meta 描述，用在页面的html head部分。"
+      snippet:
+        slug: "你必须知道它, 已便插入片段到一个页面"
+      site:
+        locales: "拖动一面旗到第一个位置来使它成为默认的一个。"
+        seo_title: "在这里定义一个全局的值作为html head部分的title标签的值。"
+        meta_keywords: "Meta 关键字用在html head部分，他们用逗号分割。SEO需要这个。"
+        meta_description: "Meta 描述用在html head部分。SEO需要这个"
+        domain_name: "例如: locomotiveapp.org"
+        robots_txt: "<span class='code'>/robots.txt</span>文件内容. 查阅下面的<a href='http://www.w3.org/TR/html4/appendix/notes.html#h-B.4.1.1'>url</a> 获得更多信息."
+        new:
+          locales: "一旦你的网站被创建你可以添加其他的语言。"
+      theme_asset:
+        slug: "你不需要添加扩展文件(.css 或 .js)"
+        edit:
+          source: "你可以通过拥有相同扩展名的文件替换它"
+      translation:
+        key: "不要使用划线，用下划线替换划线。例如: welcome_message."
+      asset:
+        source: "所有可接受的文件类型。"
+        edit:
+          source: "当前的文件通过这个地址获得 %{url}"
+        update:
+          source: "当前的文件通过这个地址获得 %{url}"
+      content_entry:
+        _slug: "这个属性用来生成作为内容类型的页面模板的地址(例如：\"template_page/{{ your_object._permalink }}\")。" 
+        _visible: "条目默认将被显示到网站上。因此它可以被作为一个发布的属性。"
+        seo_title: "你填写的值将替换作为内容类型模板的SEO的标题。"
+        meta_keywords: "覆盖网站的meta关键字，用在html head部分, 他们用逗号分割。"
+        meta_description: "覆盖网站的meta描述，用在html head部分。"
+      import:
+        source: "一个包含database.yml, 资产，模板的zip文件。"
+        samples: "如果启用，导入过程也将复制内容和资产"
+        reset: "如果启用，在导入新的网站之前你网站的所有数据将被删除。"
+      content_type:
+        name: "我们建议你输入内容类型的复数形式。例如: Projects, Recipes, Posts, Articles等"
+        slug: "它将在liquid模板里被用作集合的名称。 例如: <span class='code'>{{ contents.my_projects }}</span>"
+        raw_item_template: "你可以为列表中的每个条目自定义文本显示。 Liquid简单的使用例如: <span class='code'>{{ entry.name }})</span>"
+        public_submission_enabled: "他是用来让外部的人来创建新的条目(例如: 在一个联系表单里的消息)"
+        public_submission_accounts: "如果公开的提交选项是启用的，当有一个条目被创建，将发送一个通知邮件到上面列出的账户。"
+        "custom_fields/field":
+          name: "用在liquid模板中的属性的名称。例如: <span class='code'>&#123;&#123; your_object.&lt;name_of_your_field&gt; &#125;&#125;</span>"
+          hint: "在内容类型表单的字段下面显示的提示文本"

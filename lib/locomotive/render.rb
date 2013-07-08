@@ -49,7 +49,7 @@ module Locomotive
     # the "Page Not Found" page.
     #
     def render_no_page_error
-      render template: 'locomotive/errors/no_page', layout: false, status: 404
+      render template: '/locomotive/errors/no_page', layout: false, status: 404, formats: [:html]
     end
 
     # Prepare and set the response object for the Locomotive page retrieved
@@ -189,7 +189,7 @@ module Locomotive
         'fullpath'          => request.fullpath,
         'url'               => request.url,
         'ip_address'        => request.remote_ip,
-        'now'               => Time.now.utc,
+        'now'               => Time.now.in_time_zone(current_site.timezone),
         'today'             => Date.today,
         'locale'            => I18n.locale.to_s,
         'default_locale'    => current_site.default_locale.to_s,

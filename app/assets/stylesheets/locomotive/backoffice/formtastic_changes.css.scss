@@ -267,7 +267,7 @@ form.formtastic {
           }
         } // div.inline-errors
 
-        &.string, &.password, &.numeric {
+        &.string, &.password, &.numeric, &.select2 {
           label {
             padding-top: 2px;
           }
@@ -300,10 +300,10 @@ form.formtastic {
 
         &.text {
 
-          &.short textarea {
+          textarea {
             padding: 5px;
-            height: 28px;
             width: 696px;
+            height: auto;
             overflow-y: hidden;
           }
 
@@ -316,6 +316,20 @@ form.formtastic {
             margin-left: 10px;
           }
         } // li.select_with_edit
+
+        &.select2 {
+
+          a.select2-choice {
+            @include default-input-style;
+            padding: 0px 4px;
+            @include border-radius(0px);
+
+            & > div {
+              @include border-radius(0px);
+            }
+          }
+
+        } // li.select2
 
         &.locale, &.locales {
           .list {
@@ -478,6 +492,18 @@ form.formtastic {
             }
           }
         } // li.file
+
+        &.api_key {
+          code {
+            color: #000;
+            font-weight: bold;
+            font-family: Monaco, monospace;
+          }
+          button.regenerate {
+            @include blue-button;
+            margin-left: 10px;
+          }
+        }
 
         &.subdomain {
 

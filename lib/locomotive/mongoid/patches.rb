@@ -9,7 +9,6 @@ end
 # FIXME: we have serialiez templates which have references to the old BSON::ObjectId class.
 module BSON
   class ObjectId < Moped::BSON::ObjectId; end
-  # class Binary < Moped::BSON::Binary; end
 end
 
 module Mongoid#:nodoc:
@@ -52,21 +51,6 @@ module Mongoid#:nodoc:
     class ExclusionValidator < ActiveModel::Validations::ExclusionValidator
       include Localizable
     end
-
-    # class UniquenessValidator < ActiveModel::EachValidator
-
-    #   def to_validate_with_localization(document, attribute, value)
-    #     field = document.fields[attribute.to_s]
-    #     if field.try(:localized?)
-    #       # no need of the translations, just the current value
-    #       value = document.send(attribute.to_sym)
-    #     end
-    #     to_validate_without_localization(document, attribute, value)
-    #   end
-
-    #   alias_method_chain :to_validate, :localization
-
-    # end
 
     module ClassMethods
       def validates_exclusion_of(*args)

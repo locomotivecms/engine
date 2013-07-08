@@ -1,0 +1,347 @@
+zh-CN:
+  locomotive:
+    buttons:
+      login: 登录
+      send_password: 发送 
+      change_password: 更新
+      new_item: "+ 添加"
+      switch_to_site: 去往 
+      delete: "删除"
+      close: "关闭"
+
+    locales:
+      en: 英语
+      de: 德语
+      fr: 法语
+      pl: 波兰语
+      pt-BR: "葡萄牙语（巴西）"
+      it: 意大利语
+      nl: 菏兰语
+      nb: 挪威语
+      es: 西班牙语
+      ru: 俄语
+      et: 爱沙尼亚语
+      ja: 日语
+      zh-CN: 中文
+
+    messages:
+      confirm: 确定？ 
+      sending_form: 正在提交表单
+
+    shared:
+      header:
+        welcome: 欢迎, %{name}
+        see: 查看网站
+        switch: 切换到另一个网站
+        help: 帮助
+        logout: 退出
+      menu:
+        contents: 内容
+        assets: 资产
+        settings: 设置
+        pages: 页面
+        snippets: 片段
+        account: 我的账户
+        site: 网站
+        theme_assets: 主题文件
+        translations: 翻译
+      form:
+        change_file: 更改
+        delete_file: 删除
+        cancel: 取消
+      form_actions:
+        back: 不保存返回
+        create: 创建
+        update: 保存
+        send: 发送
+        disable_with: 待定...
+      list:
+        untranslated: 未翻译的
+      footer:
+        who_is_behind: "LocomotiveCMS 由 %{development} 开发, 由 <a href=\"http://www.sachagreif.com\">Sacha Greif</a> &mdash; 设计 <small>版本</small> %{version}"
+
+    errors:
+      "500":
+        title: 应用出错
+        notice: "对不起，出错了"
+        link: "&rarr; 返回应用"
+      "404":
+        title: 页面找不到
+        notice: "你请求的页面不存在"
+        link: "&rarr; 返回应用"
+
+    notifications:
+      new_content_entry:
+        subject: "[%{domain}][%{type}] 新建条目"
+        title: "Hi %{name}, 仅仅是让你知道一个新的实例在%{date}时被创建，在网站<b>%{domain}</b>下"
+        type: "类型: %{type}"
+
+    pagination:
+      first: "第一页"
+      last: "末页"
+      previous: "前一页"
+      next: "后一页"
+      truncate: "&hellip;"
+
+    sites_picker:
+      new: + 新建网站 
+
+    api_key:
+      none: 请点击下面的按钮生成API key
+      button: 重新生成
+
+    custom_fields:
+      edit:
+        title: 编辑自定义的字段
+      text_formatting:
+        none: None
+        html: HTML
+      types:
+        file:
+          delete_file: 删除文件
+        has_many:
+          empty: 列表为空
+          new_entry: + 新建条目
+        many_to_many:
+          empty: 列表为空。从下面的选择框里添加一个条目
+
+      form:
+        required: 必需的Required
+        default_label: 字段名Field name
+        select_options:
+          ask_name: "填写选项标签"
+
+    sessions:
+      new:
+        title: 登录
+        link: "忘记密码?"
+        email: "邮箱"
+        password: "密码"
+
+    passwords:
+      new:
+        title: 忘记密码
+        link: "&rarr; 返回到登录页面"
+        email: "你的邮箱"
+      edit:
+        title: 更新密码
+        link: "&rarr; 返回到登录页面"
+        password: "新密码"
+        password_confirmation: "确认新密码"
+
+    pages:
+      index:
+        title: 页面列表
+        help: "页面是以树的方式组织的，你可以像文件夹那样排列页面"
+        no_items: "现在还没有页面，请点击<a href=\"%{url}\">这里</a>创建第一个页面"
+        new: 新建页面
+        latest_entries: 最近的页面
+      new:
+        title: 新建页面
+        help: "请填写下面的表单创建你的页面，注意页面默认是不发布的。"
+      page:
+        updated_at: 更新于
+      edit:
+        show: 显示
+        help: "页面标题可以通过点击来更新，要应用你的更新，点击保存按钮"
+        ask_for_title: "请输入新的页面标题"
+      form:
+        change_file: 更改
+        delete_file: 删除
+        cancel: 取消
+        default_block: 默认
+        cache_strategy:
+          none: 无
+          simple: 简单
+          hour: "1 小时"
+          day: "1 天"
+          week: "1 周"
+          month: "1 个月"
+        redirect_type:
+          permanent: "Permanent (301)"
+          temporary: "Temporary (302)"
+
+    snippets:
+      index:
+        title: 片段列表 
+        help: "片段是一段HTML代码，可以遍布于网站的各个地方（比如页面的页脚footer）"
+        no_items: "现在还没有片段，点击<a href=\"%{url}\">here</a> 创建第一个片段"
+        new: 新建片段
+      new:
+        title: 新建片段
+        help: "填写下面的表单来更新你的片段"
+      edit:
+        title: 编辑片段
+        help: "用如下的liquid代码包含你的片段到你的页面模板: <span class='code'>{% include '%{slug}' %}</span>."
+      snippet:
+        updated_at: 更新于
+
+    sites:
+      new:
+        title: 新建网站
+        help: "填写下面的表单来创建你的网站"
+      domains:
+        empty: "还没有域名绑定到这个网站，只要在下面简单地添加你的域名。<b>不要忘记升级你的DNS</b>"
+
+    current_site:
+      edit:
+        new_membership: 添加账户
+        help: "点击网站名称更新它，要应用你的更改，点击\"保存\"按钮"
+        ask_for_name: "请输入新的网站名"
+
+    memberships:
+      roles:
+        admin: 管理员
+        designer: 设计师
+        author: 作者
+      new:
+        title: 新建成员
+        help: "请给一个账户的邮箱进行添加。如果该邮箱不存在，你将被跳转到创建账户的表单页面。"
+
+    accounts:
+      new:
+        title: 新建账户
+        help: "填写下面的表单来创建一个账户"
+
+    my_account:
+      edit:
+        help: "点击你的账户名更新，要应用你的更新，点击\"保存\"按钮。"
+        new_site: 新建网站
+        ask_for_name: "请输入你的新名称"
+
+    theme_assets:
+      index:
+        title: 主题文件列表
+        help: "主题文件部分是你管理那些在页面模板、HTML片段里需要的文件。如果你需要管理一个图片库，那么可以创建一个新的内容类型。<br /><b>警告</b>依赖权限的控制，你可能看不到所有的资产。"
+        quick_upload: 快速上传 
+        new: 新建文件
+        snippets: 片段
+        css_and_js: 样式css与javascript
+        fonts: 字体
+        images: 图片
+        media: 媒体
+        no_items: "现在还没有文件"
+      asset:
+        updated_at: 更新于
+      new:
+        title: 新建文件
+        help: "你可以选择上传文件，也可以直接复制粘贴纯文本的css样式或javascript代码"
+      edit:
+        title: "编辑 %{file}"
+        help: "这个资产可以通过以下地址访问: <a href='%{url}'>%{url}</a>"
+        help_image: "用如下的liquid代码包含图片到你的页面模板或片段中：<span class='code'>{{ '%{path}' | theme_image_tag }}</span>.<br/>你当前的图片尺寸 : <b>%{width}px x %{height}px</b>.<br/>"
+        help_javascript: "用如下的liquid代码包含javascript文件到你的页面模板或片段中：<span class='code'>{{ '%{path}' | javascript_tag  }}</span>.<br/>"
+        help_stylesheet: "用如下的liquid代码包含样式文件到你的页面模板或片段中：<span class='code'>{{ '%{path}' | stylesheet_tag  }}</span>.<br/>"
+      form:
+        picker_link: 插入一个文件到代码中
+        choose_file: 选择文件
+        choose_plain_text: 选择纯文本
+      image_picker:
+        title: "插入主题图片"
+        no_items: "现在还没有图片。"
+        upload: "上传主题图片"
+
+    translations:
+      untranslated: "未翻译的语言: %{list}"
+      index:
+        title: 翻译
+        new: 新建翻译
+        no_items: "现在还没有翻译。点击<a href=\"%{url}\">这里</a>创建第一个翻译。"
+        remove: 删除 %{key}
+      new:
+        title: "新建翻译"
+        help: "对于所有的语言，页面/片段可以共享同一个模板，除了那些可以被liquid tag <b>translate</b>处理的标签。"
+      edit:
+        title: "编辑 %{key}"
+        help: "你可以用如下的liquid代码来使用那个翻译的key：<span class='code'>{{ '%{key}' | translate }}</span>。"
+
+    content_assets:
+      picker:
+        title: "插入媒体"
+        no_items: "现在还没有媒体There are no media for now."
+        upload: "上传媒体"
+
+    content_types:
+      index:
+        new: 新建内容类型 
+        edit: 编辑内容类型 
+      new:
+        title: 新建内容类型
+        help: "创建你自己的内容类型（Projects, People, ...etc）。你的内容类型应该至少有一个字段。从这个内容类型创建的条目必须强制性地拥有他们的第一个字段" 
+      edit:
+        title: 编辑内容类型
+        help: "Your model should have one field at least. The items created from this content type would have their first field mandatory."
+        show_entries: 显示条目
+        new_entry: 新建条目
+      form:
+        order_by:
+          created_at: 'By创建时间'
+          updated_at: 'By更新时间'
+          position_in_list: 手动
+        order_direction:
+          asc: 升序
+          desc: 降序
+
+    content_entries:
+      index:
+        title: '列表 "%{type}"'
+        edit: 编辑
+        destroy: 删除 
+        download: 下载条目
+        new: 新建条目
+        category_noname: "没有名称"
+        latest_entries: "最近的条目"
+        updated_at: "更新于"
+      list:
+        no_items: "现在还没有条目。点击<a href=\"%{url}\">这里</a>创建第一个。"
+      new:
+        title: '%{type} &mdash; 新建条目'
+      edit:
+        title: '%{type} &mdash; 编辑条目'
+      form:
+        edit_select_options: 编辑选项
+        has_many:
+          new_entry: 新建条目
+
+    code_editing:
+      image_picker: 插入一个图片到代码
+      copy_template: 从主要的语言复制模板
+
+    cross_domain_sessions:
+      new:
+        title: 夸域认证
+        notice: 几秒后将跳转到网站
+
+    installation:
+      common:
+        title: 首次安装locomotive
+        next: 下一步
+      step_1:
+        title: "步骤 1/2 &mdash; 创建账户"
+        name: 帐户名
+        email: 邮箱
+        password: 密码
+        password_confirmation: 确认密码
+        done: "你已经添加一个账户:<br/><strong>%{name}</strong>, <em>%{email}</em>"
+        next: 创建账户
+      step_2:
+        title: "步骤 2/2 &mdash; 创建你的第一个网站"
+        explanations: "你已快完成了。请给你网站取个名称并选择一个默认的语言"
+        default_site_locale: 网站语言
+        default_site_locales_hints: 稍微你可以在设置面板添加更多的语言。
+        next: 创建网站
+
+    public:
+      pages:
+        show_toolbar:
+          statuses:
+            loading: "加载中...."
+            disabled: "Inline编辑器被禁用"
+          labels:
+            save_changes: "保存更改: "
+            editing_mode: "编辑模式: "
+            lang: "语言: "
+          buttons:
+            back: 返回到管理后台
+            confirm: 确认
+            cancel: 取消

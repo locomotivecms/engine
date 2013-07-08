@@ -9,19 +9,29 @@ window.Aloha.settings =
   plugins:
 
     format:
-      config: [ 'b', 'i', 'u','del','sub','sup', 'p', 'title', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'pre', 'removeFormat']
+      config: ['b', 'i', 'u', 'del', 'sub', 'sup', 'p', 'title', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'pre', 'removeFormat']
       editables:
-        '.editable-short-text' : [ 'b', 'i', 'u' ]
+        '.editable-single-text': ['b', 'i', 'u', 'del', 'sub', 'sup']
+
+    inputcontrol:
+      editables:
+        '.editable-single-text':
+          disableEnter: true
 
     link:
-      config: [ 'a' ]
-      editables:
-        '.editable-short-text': [ ]
+      config: ['a']
 
     list:
-      config: [ 'ul' ]
+      config: ['ul']
       editables:
-        '.editable-short-text': [ ]
+        '.editable-single-text': []
+
+    align:
+      config:
+        alignment: ['right','left','center','justify']
+      editables:
+        '.editable-single-text':
+          alignment: []
 
     image:
       ui:

@@ -20,10 +20,12 @@ class Locomotive.Models.Site extends Backbone.Model
 
   toJSON: ->
     _.tap super, (hash) =>
+      _.each ['locales_text', 'timezone_name_text'], (key) => delete hash[key]
       delete hash.memberships
       hash.memberships_attributes = @get('memberships').toJSONForSave() if @get('memberships')? && @get('memberships').length > 0
       delete hash.domains
       hash.domains = _.map(@get('domains'), (domain) -> domain.get('name'))
+      hash.locales = _.flatten([@get('locales')])
 
   _fix_attributes: ->
     # Be careful, domains_without_subdomain becomes domains

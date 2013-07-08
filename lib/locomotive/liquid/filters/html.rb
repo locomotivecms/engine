@@ -21,10 +21,11 @@ module Locomotive
         # input: name of the css file
         def stylesheet_url(input)
           return '' if input.nil?
-          uri = URI(input)
 
-          unless input =~ /^(\/|https?:)/
-            uri.path = asset_url("stylesheets/#{uri.path}")
+          if input =~ /^(\/|https?:)/
+            uri = URI(input)
+          else
+            uri = URI(asset_url("stylesheets/#{input}"))
           end
 
           uri.path = "#{uri.path}.css" unless uri.path.ends_with?('.css')
@@ -45,10 +46,11 @@ module Locomotive
         # input: name of the javascript file
         def javascript_url(input)
           return '' if input.nil?
-          uri = URI(input)
 
-          unless input =~ /^(\/|https?:)/
-            uri.path = asset_url("javascripts/#{uri.path}")
+          if input =~ /^(\/|https?:)/
+            uri = URI(input)
+          else
+            uri = URI(asset_url("javascripts/#{input}"))
           end
 
           uri.path = "#{uri.path}.js" unless uri.path.ends_with?('.js')

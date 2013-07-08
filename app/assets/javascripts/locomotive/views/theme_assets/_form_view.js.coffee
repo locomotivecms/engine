@@ -94,7 +94,8 @@ class Locomotive.Views.ThemeAssets.FormView extends Locomotive.Views.Shared.Form
       passDelay:        50
       tabMode:          'shift'
       theme:            'default'
-      onChange: (editor) => @model.set(plain_text: editor.getValue())
+
+    @editor.on 'change', (editor, change) => @model.set(plain_text: editor.getValue())
 
   bind_source_mode: ->
     @$('#theme_asset_plain_text_type').bind 'change', (event) =>

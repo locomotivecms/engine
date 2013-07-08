@@ -10,6 +10,12 @@ describe Locomotive::Liquid::Tags::WithScope do
     attributes['title'].should == 'foo'
     attributes['hidden'].should == false
   end
+  
+  it 'decodes regexps' do
+    scope = Locomotive::Liquid::Tags::WithScope.new('with_scope', 'title: /Like this one|or this one/', ["{% endwith_scope %}"], {})
+    attributes = scope.send(:decode, scope.instance_variable_get(:@attributes), ::Liquid::Context.new)
+    attributes['title'].should == /Like this one|or this one/
+  end
 
   it 'decodes context variable' do
     scope = Locomotive::Liquid::Tags::WithScope.new('with_scope', 'category: params.type', ["{% endwith_scope %}"], {})
