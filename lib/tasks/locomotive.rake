@@ -23,8 +23,10 @@ namespace :locomotive do
               page.send :_parse_and_serialize_template
               page.save
               puts "[#{site.name}][#{locale}] processing...#{page.title}"
-            rescue TypeError => e
+            rescue TypeError
               pages.insert(0, page)
+            rescue ::Liquid::Error => e
+              puts "\tLiquid error: #{e.message} (#{page._id})"
             end
           end
         end

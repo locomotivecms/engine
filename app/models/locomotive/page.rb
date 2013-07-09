@@ -106,7 +106,12 @@ module Locomotive
 
     def normalize_slug
       self.slug = self.title.clone if self.slug.blank? && self.title.present?
-      self.slug.permalink! if self.slug.present?
+      if self.slug.present?
+        # if the slug includes one "_" at least, we consider that the "_" is used instead of "-".
+        underscore = !self.slug.index('_').nil?
+
+        self.slug.permalink!(underscore)
+      end
     end
 
     def set_default_raw_template

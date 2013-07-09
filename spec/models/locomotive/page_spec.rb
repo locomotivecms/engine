@@ -114,6 +114,10 @@ describe Locomotive::Page do
       page = FactoryGirl.build(:page, title: ' Valid  ité.html ', slug: nil, site: page.site)
       page.should be_valid
       page.slug.should == 'valid-ite-dot-html'
+
+      page = FactoryGirl.build(:page, slug: ' convention_Valid  ité.html ')
+      page.valid?
+      page.slug.should == 'convention_valid_ite_dot_html'
     end
 
     it 'has no cache strategy' do
@@ -180,9 +184,9 @@ describe Locomotive::Page do
       archives.reload.children.count.should == 2
       archives.children.last.depth.should == 2
       archives.children.last.children.first.depth.should == 3
-      
+
     end
-    
+
     it "builds children fullpaths" do
       sub_child_1 = FactoryGirl.create(:page, title: 'Sub Subpage 1', slug: 'bar', parent: @child_1, site: @home.site)
       sub_child_1.fullpath.should == "foo/bar"
