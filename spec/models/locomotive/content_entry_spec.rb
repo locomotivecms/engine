@@ -43,6 +43,10 @@ describe Locomotive::ContentEntry do
       build_content_entry(_slug: 'dogs').tap(&:save!)._slug.should == 'dogs'
     end
 
+    it 'accepts underscore instead of dashes' do
+      build_content_entry(_slug: 'monkey_wrench').tap(&:save!)._slug.should == 'monkey_wrench'
+    end
+
     it 'uses the given slug if it is unique' do
       build_content_entry(_slug: 'monkeys').tap(&:save!)._slug.should == 'monkeys'
       build_content_entry(_slug: 'cats-2').tap(&:save!)._slug.should == 'cats-2'
