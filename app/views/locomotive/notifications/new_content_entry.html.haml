@@ -15,8 +15,6 @@
       &nbsp;-&nbsp;
       %i
         - case field.type.to_s
-        - when 'string', 'text', 'boolean', 'date'
-          = value
         - when 'file'
           - url = value.guess_url
           - url = url =~ /^http/ ? url : URI.join("http://#{@domain}", url).to_s # Amazon S3 (http/https) or local files ?
@@ -27,3 +25,7 @@
           = value.try(:_label)
         - when 'has_many', 'many_to_many'
           = value.map(&:_label).join(', ')
+        - when 'tags'
+          = value.join(', ')
+        - else
+          = value
