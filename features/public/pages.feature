@@ -67,6 +67,30 @@ Scenario: link_to tag
       <i class="icon-info-sign"></i> Acerca de
     </a>
     """
+
+Scenario: link_to templatized page
+  Given I have a custom model named "Articles" with
+      | label       | type      | required    |
+      | Title       | string    | true        |
+  And I have entries for "Articles" with
+    | title             |
+    | Hello world       |
+  And a templatized page for the "Articles" model and with the template:
+    """
+    Here is the title: "{{ article.title }}"
+    """
+  And a page named "page-with-links" with the template:
+    """
+    {% for article in contents.articles %}
+      Link to article: {% link_to article %}
+    {% endfor %}
+    """
+  When I view the rendered page at "/page-with-links"
+  And I follow "Hello world"
+  Then the rendered output should look like:
+  """
+  Here is the title: "Hello world"
+  """
     
 Scenario: Default locale fallback
   Given the site "test site" has locales "en, es"

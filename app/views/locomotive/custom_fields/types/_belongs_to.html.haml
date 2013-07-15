@@ -1,5 +1,6 @@
-= f.input :"#{name}_id",
-  label:      field.label,
-  hint:       field.hint,
-  as:         :select,
-  collection: options_for_belongs_to_custom_field(field.class_name)
+= f.input         :"#{name}_id",
+  label:          field.label,
+  hint:           field.hint,
+  as:             :string,
+  wrapper_html:   { class: 'select2' },
+  input_html:     { data: { value: f.object.send(field.name.to_sym).try(:_label), url: content_entries_url(field.class_name_to_content_type.slug, :json), per_page: Locomotive.config.ui[:per_page] } }

@@ -14,6 +14,7 @@ module Locomotive
         end
 
         protected
+
         def scoped_pages
           if @context["with_scope"]
             self._source.pages.where(@context["with_scope"])
@@ -21,6 +22,7 @@ module Locomotive
             self._source.pages
           end
         end
+
       end
     end
   end

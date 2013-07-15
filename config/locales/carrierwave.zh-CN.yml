@@ -1,0 +1,4 @@
+zh-CN:
+  carrierwave:
+    errors:
+      integrity: '是一个不允许的文件类型。'

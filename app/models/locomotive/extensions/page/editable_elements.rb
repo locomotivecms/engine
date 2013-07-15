@@ -79,16 +79,14 @@ module Locomotive
             if existing_el.nil? # new one from parents
               new_el = self.editable_elements.build({}, el.class)
               new_el.copy_attributes_from(el)
-            else
+            elsif existing_el.from_parent? # it inherits from a parent page
               existing_el.disabled = false
 
               # make sure the default content gets updated too
               existing_el.set_default_content_from(el)
 
-              # only the type, hint and fixed properties can be modified from the parent element
-              %w(_type hint fixed priority locales).each do |attr|
-                existing_el.send(:"#{attr}=", el.send(attr.to_sym))
-              end
+              # copy _type, hint, fixed, priority and locales + type custom attributes
+              existing_el.copy_default_attributes_from(el)
             end
           end
         end

@@ -1,0 +1,64 @@
+zh-CN:
+  errors:
+    messages:
+      not_found: "找不到"
+      already_confirmed: "已经被确认"
+      not_locked: "未被锁定"
+
+  devise:
+    failure:
+      locomotive_account:
+        unauthenticated: '继续之前你需要先登录或注册。'
+        unconfirmed: '继续之前你必须验证你的账户。'
+        locked: '你的账户已被锁定。'
+        invalid: '错误的邮箱或密码。'
+        not_found_in_database: '错误的邮箱或密码。'
+        no_membership: '你的账户不是这个网站的成员，请联系这个网站的管理员让你获得访问的权限。'
+        invalid_token: '无效的认证token。'
+        timeout: '你的会话已经过期，请重新登录。'
+        inactive: '你的账户还没有被激活。'
+    sessions:
+      locomotive_account:
+        signed_in: '登录成功'
+        signed_out: '退出成功'
+    passwords:
+      locomotive_account:
+        send_instructions: '几分钟后你将收到一封说明如何重置你的密码的邮件。'
+        updated: '你的密码更改成功。现在你已登录。'
+    confirmations:
+      locomotive_account:
+        send_instructions: '几分钟后你将收到一封说明关于符合验证你的账户的邮件。'
+        confirmed: '你的账户验证成功。现在你已登录。'
+    registrations:
+      locomotive_account:
+        signed_up: '你已注册成功。'
+        updated: '你的账户更新成功。'
+        destroyed: '再见! 你的账户注销成功。我们希望你再次回来。'
+    unlocks:
+      locomotive_account:
+        send_instructions: '几分钟后你将收到一封说明关于如何解锁你的账户的邮件。'
+        unlocked: '你的账户成功解锁。现在你已登录。'
+    mailer:
+      locomotive_account:
+        confirmation_instructions: '验证说明'
+        reset_password_instructions: '重置密码说明'
+        unlock_instructions: '解锁说明'
+
+
+  locomotive_account:
+    devise_mailer:
+      common:
+        hello: 你好
+
+      confirmation_instructions:
+        you_can_confirm_your_account_through_the_link_below: "你能通过如下链接验证你的账户:"
+        confirm_my_account: "验证我的账户"
+      reset_password_instructions:
+        reset_password_instruction: "某人已经请求一个链接来更改你的密码，你可以通过如下链接来进行:"
+        change_my_password: "更改我的密码"
+        wrong_request_instruction: "如果你没有请求这个，请忽略这个邮件。"
+        unchange_password_message: "你的密码将不被更改直到你访问了上面的链接并且创建了一个新的。"
+      unlock_instructions:
+        locked_account_message: "你的账户已被锁定，因为失败登录的次数过多。"
+        unlock_account_instruction: "点击下面的链接来解锁你的账户:"
+        unlock_my_account: "解锁我的账户"

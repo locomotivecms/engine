@@ -54,3 +54,16 @@ Scenario: Filter by a date
     """
     Lorem ipsum, Yadi Yada
     """
+    
+Scenario: Filter with regexp
+  Given a page named "my-articles" with the template:
+    """
+    {% with_scope title: /ello|adi/ %}
+    {% for article in contents.articles %}{{ article.title }}, {% endfor %}
+    {% endwith_scope %}
+    """
+  When I view the rendered page at "/my-articles"
+  Then the rendered output should look like:
+    """
+    Hello world, Yadi Yada
+    """

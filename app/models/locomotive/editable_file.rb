@@ -2,7 +2,6 @@ module Locomotive
   class EditableFile < EditableElement
 
     ## behaviours ##
-    # mount_uploader :source, EditableFileUploader
     mount_uploader 'source', EditableFileUploader
 
     replace_field 'source', ::String, true
@@ -11,7 +10,6 @@ module Locomotive
     field :default_source_url, localize: true
 
     ## callbacks ##
-    # before_save { |c| puts "#{c.block}/#{c.slug} saved called !"}
     after_save :propagate_content
 
     ## methods ##

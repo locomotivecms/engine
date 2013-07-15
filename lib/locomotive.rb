@@ -20,7 +20,6 @@ require 'locomotive/cancan'
 require 'locomotive/regexps'
 require 'locomotive/render'
 require 'locomotive/middlewares'
-require 'locomotive/session_store'
 
 module Locomotive
   extend ActiveSupport::Autoload
@@ -88,8 +87,6 @@ module Locomotive
     if self.rack_cache?
       self.app_middleware.insert_before 'Dragonfly::Middleware', '::Locomotive::Middlewares::Cache', self.config.rack_cache
     end
-
-    self.app_middleware.insert_after 'Dragonfly::Middleware', '::Locomotive::Middlewares::Fonts', path: %r{^/fonts}
 
     self.app_middleware.use '::Locomotive::Middlewares::SeoTrailingSlash'
 

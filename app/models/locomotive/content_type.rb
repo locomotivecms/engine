@@ -67,9 +67,31 @@ module Locomotive
       [order_by_attribute, direction]
     end
 
-    def ordered_entries(conditions = {})
-      _order_by_definition = (conditions || {}).delete(:order_by).try(:split) || self.order_by_definition
-      self.entries.order_by([_order_by_definition]).where(conditions)
+    # Order the list of entries, paginate it if requested
+    # and filter it.
+    #
+    # @param [ Hash ] options Options to filter and paginate.
+    #
+    # @return [ Criteria ] A Mongoid criteria if not paginated (array otherwise).
+    #
+    def ordered_entries(options = nil)
+      options ||= {}
+
+      page, per_page = options.delete(:page), options.delete(:per_page)
+
+      # search for a label
+      if options[:q]
+        options[label_field_name.to_sym] = /#{options.delete(:q)}/i
+      end
+
+      # order list
+      _order_by_definition = (options || {}).delete(:order_by).try(:split) || self.order_by_definition
+
+      # get list
+      _entries = self.entries.order_by([_order_by_definition]).where(options)
+
+      # pagination or full list
+      page ? _entries.page(page).per(per_page) : _entries
     end
 
     def groupable?
@@ -88,11 +110,7 @@ module Locomotive
           group_by_belongs_to_field(self.group_by_field)
         end
       else
-        if options[:page].nil?
-          self.ordered_entries
-        else
-          self.ordered_entries.page(options[:page]).per(options[:per_page])
-        end
+        self.ordered_entries(options)
       end
     end
 

@@ -45,3 +45,5 @@ app/assets/stylesheets/old/
 .gitignore
 Gemfile.lock
 dump.rdb
+doc/dump/
+doc/locomotive/new_ui.md

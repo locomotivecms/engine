@@ -10,6 +10,12 @@ module Locomotive
         [I18n.t("locomotive.locales.#{locale}"), locale]
       end
     end
+    
+    def options_for_site_timezones
+      ActiveSupport::TimeZone.all.map do |tz|
+        [tz, tz.name]
+      end
+    end
 
   end
 end

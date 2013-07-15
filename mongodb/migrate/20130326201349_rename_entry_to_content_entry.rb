@@ -74,7 +74,7 @@ class RenameEntryToContentEntry < MongoidMigration::Migration
 
   def self.fetch_rows(klass, &block)
     per_page    = 100
-    collection  = klass.collection #.driver
+    collection  = klass.collection
     count       = collection.find.count
     num_pages   = (count.to_f / per_page).floor
 

@@ -37,10 +37,14 @@ describe Locomotive::ContentEntry do
 
   end
 
-  describe '#slug' do
+  describe '.slug' do
 
     before :each do
       build_content_entry(_slug: 'dogs').tap(&:save!)._slug.should == 'dogs'
+    end
+
+    it 'accepts underscore instead of dashes' do
+      build_content_entry(_slug: 'monkey_wrench').tap(&:save!)._slug.should == 'monkey_wrench'
     end
 
     it 'uses the given slug if it is unique' do
@@ -73,6 +77,12 @@ describe Locomotive::ContentEntry do
         build_content_entry(_slug: 'dogs').tap(&:save!)._slug.should == "dogs-#{i}"
       end
     end
+
+    it 'copies the slug in ALL the locales of the site' do
+      Locomotive::Site.any_instance.stubs(:locales).returns(%w(en fr ru))
+      entry = build_content_entry(_slug: 'monkeys').tap(&:save!)
+      entry._slug_translations.should == { 'en' => 'monkeys', 'fr' => 'monkeys', 'ru' => 'monkeys' }
+    end
   end
 
   describe '#I18n' do
@@ -81,6 +91,7 @@ describe Locomotive::ContentEntry do
       localize_content_type @content_type
       ::Mongoid::Fields::I18n.locale = 'en'
       @content_entry = build_content_entry(title: 'Hello world')
+      @content_entry.send(:set_slug)
       ::Mongoid::Fields::I18n.locale = 'fr'
     end
 
@@ -92,6 +103,19 @@ describe Locomotive::ContentEntry do
       @content_entry.translated?.should be_false
       @content_entry.title = 'Bonjour'
       @content_entry.translated?.should be_true
+    end
+
+    describe '.slug' do
+
+      it 'is not nil in the default locale' do
+        ::Mongoid::Fields::I18n.locale = 'en'
+        @content_entry._slug.should == 'hello-world'
+      end
+
+      it 'is not translated by default in the other locale' do
+        @content_entry._slug.should be_nil # French
+      end
+
     end
 
   end
@@ -108,17 +132,17 @@ describe Locomotive::ContentEntry do
 
         subject { build_content_entry.to_values(host: 'example.com') }
 
-        its(:size) { should eq(4) }
+        its(:size) { should eq(5) }
 
         its(:first) { should eq('Locomotive') }
 
-        its(:last) { should eq('') }
+        its(:last) { should eq('July 05, 2013 00:00') }
 
         context 'with a file' do
 
-          subject { build_content_entry(file: FixturedAsset.open('5k.png')).tap(&:save).to_values(host: 'example.com') }
+          subject { build_content_entry(file: FixturedAsset.open('5k.png')).tap(&:save).to_values(host: 'example.com')[3] }
 
-          its(:last) { should match(/^http:\/\/example.com\/sites\/[0-9a-f]+\/content_entry[0-9a-f]+\/[0-9a-f]+\/files\/5k.png$/) }
+          it { should match(/^http:\/\/example.com\/sites\/[0-9a-f]+\/content_entry[0-9a-f]+\/[0-9a-f]+\/files\/5k.png$/) }
 
         end
 
@@ -160,12 +184,12 @@ describe Locomotive::ContentEntry do
 
     it 'should find previous item when available' do
       @second.previous.title.should == 'first'
-      @second.previous._position.should == 1
+      @second.previous._position.should == 0
     end
 
     it 'should find next item when available' do
       @second.next.title.should == 'third'
-      @second.next._position.should == 3
+      @second.next._position.should == 2
     end
 
     it 'should return nil when fetching previous item on first in list' do

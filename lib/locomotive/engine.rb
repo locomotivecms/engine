@@ -36,8 +36,10 @@ module Locomotive
         tinymce/plugins/locomotive_media/*.js
         tinymce/plugins/locomotive_media/langs/*.js
         tinymce/themes/advanced/skins/locomotive/*.css
+        aloha/plugins/custom/locomotive_media/**/*.css
         aloha/plugins/custom/locomotive_media/**/*.js
-        aloha/plugins/custom/locomotive_media/**/*.css)
+        aloha/plugins/custom/inputcontrol/**/*.css
+        aloha/plugins/custom/inputcontrol/**/*.js)
 
       # Uncomment the lines below to view the names of assets as they are
       # precompiled for the rails asset pipeline

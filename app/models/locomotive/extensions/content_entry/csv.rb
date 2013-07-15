@@ -7,16 +7,19 @@ module Locomotive
 
         # Get the values from the custom fields as an array.
         # Values are ordered by the position of the custom fields.
+        # It also adds the created_at value of the instance.
         #
         # @param [ Hash ] options For now, stores only the host for the File fields.
         #
         # @return [ Array ]
         #
         def to_values(options = {})
-          self.content_type.ordered_entries_custom_fields.map do |field|
+          values = self.content_type.ordered_entries_custom_fields.map do |field|
             value = self.send(field.name)
             self.value_from_type(field.type.to_sym, value, options)
           end.compact
+
+          values << I18n.l(self.created_at, format: :long)
         end
 
         protected
@@ -59,13 +62,14 @@ module Locomotive
             end
 
             fields = content_type.ordered_entries_custom_fields
+            labels = fields.map(&:label) << I18n.t('mongoid.attributes.locomotive/content_entry.created_at')
 
             CSV.generate(csv_options) do |csv|
               # header
-              csv << (fields.map(&:label) + [I18n.t('mongoid.attributes.locomotive/content_entry.created_at')])
+              csv << labels
               # body
               all.each do |entry|
-                csv << (entry.to_values(options) + [I18n.l(entry.created_at, format: :long)])
+                csv << entry.to_values(options)
               end
             end
           end
