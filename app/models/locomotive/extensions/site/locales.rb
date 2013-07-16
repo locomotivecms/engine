@@ -46,8 +46,8 @@ module Locomotive
         def localized_page_fullpath(page, locale = nil)
           return nil if page.fullpath_translations.blank?
 
-          locale = (locale || I18n.locale).to_s
-          fullpath = page.fullpath_translations[locale] || page.fullpath_translations[self.default_locale]
+          locale    = (locale || I18n.locale).to_s
+          fullpath  = page.fullpath_translations[locale] || page.fullpath_translations[self.default_locale]
 
           if locale == self.default_locale.to_s # no need to specify the locale
             page.index? ? '' : fullpath
