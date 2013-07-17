@@ -31,7 +31,13 @@ module Locomotive
         end
 
         def asset_url(path)
-          ThemeAssetUploader.url_for(@context.registers[:site], path)
+          # keep the query string safe
+          path.gsub!(/(\?+.+)$/, '')
+          query_string = $1
+
+          url = ThemeAssetUploader.url_for(@context.registers[:site], path)
+
+          query_string ? "#{url}#{query_string}" : url
         end
 
         def absolute_url(url)
