@@ -39,7 +39,7 @@ cs:
       too_few_custom_fields: "Je vyžadováno aspoň jedno vlastní pole"
       security: "představuje bezpečnostní problém"
     template:
-      body: 'Následující pole obsahují chybně vyplněné údaje: '
+      body: "Následující pole obsahují chybně vyplněné údaje: "
       header:
         one: "Při ukládání objektu %{model} došlo k chybám a nebylo jej možné uložit"
         few: "Při ukládání objektu %{model} došlo ke %{count} chybám a nebylo možné jej uložit"
@@ -138,36 +138,36 @@ cs:
   number:
     currency:
       format:
-        delimiter: ' '
-        format: '%n %u'
+        delimiter: " "
+        format: "%n %u"
         precision: 2
-        separator: ','
+        separator: ","
         significant: false
         strip_insignificant_zeros: false
         unit: Kč
     format:
-      delimiter: ','
+      delimiter: ","
       precision: 3
       separator: .
       significant: false
       strip_insignificant_zeros: false
     human:
       decimal_units:
-        format: '%n %u'
+        format: "%n %u"
         units:
           billion: Miliarda
           million: Milion
           quadrillion: Kvadrilion
           thousand: Tisíc
           trillion: Bilion
-          unit: ''
+          unit: ""
       format:
-        delimiter: ''
+        delimiter: ""
         precision: 1
         significant: false
         strip_insignificant_zeros: false
       storage_units:
-        format: '%n %u'
+        format: "%n %u"
         units:
           byte: B
           gb: GB
@@ -176,17 +176,17 @@ cs:
           tb: TB
     percentage:
       format:
-        delimiter: ''
+        delimiter: ""
     precision:
       format:
-        delimiter: ''
+        delimiter: ""
 
   time:
     am: am
     formats:
-      default: '%a %d. %B %Y %H:%M %z'
-      long: '%A %d. %B %Y %H:%M'
-      short: '%d. %m. %H:%M'
+      default: "%a %d. %B %Y %H:%M %z"
+      long: "%A %d. %B %Y %H:%M"
+      short: "%d. %m. %H:%M"
     pm: pm
 
   mongoid:
@@ -199,7 +199,7 @@ cs:
 
   support:
     array:
-      last_word_connector: ' a '
-      two_words_connector: ' a '
-      words_connector: ', '
+      last_word_connector: " a "
+      two_words_connector: " a "
+      words_connector: ", "
       skip_la
