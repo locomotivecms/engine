@@ -23,6 +23,7 @@ en:
       et: Estonian
       ja: Japanese
       zh-CN: Chinese 
+      cs: Czech
 
     messages:
       confirm: Are you sure ?
