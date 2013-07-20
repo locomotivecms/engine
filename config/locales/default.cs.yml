@@ -1,0 +1,46 @@
+en:
+  date:
+    formats:
+      default: "%d. %m. %Y"
+
+  mongoid:
+    errors:
+      messages:
+        blank_in_locale: "nemůže být prázdné"
+    attributes:
+      locomotive/content_entry:
+        created_at: Vytvořeno
+
+  errors:
+      messages:
+        domain_taken: "%{value} již existuje"
+        invalid_domain: "%{value} není validní"
+        needs_admin_account: "Je vyžadován aspoň jeden admin účet"
+        protected_page: "Nemůžete odstranit úvodní stránku nebo stránku 404"
+        extname_changed: "Nový soubor nemá původní koncovku"
+        array_too_short: "je moc malý (minimální počet prvků je %{count})"
+        invalid_theme_file: "nemůže být prázdný nebo se nejedná o zip archiv"
+        site:
+          default_locale_removed: Předchozí výchozí jazyk nemůže být odstraněn rovnou.
+        page:
+          liquid_syntax: "Chyba v syntaxi Liquid ('%{error}' v '%{fullpath}')"
+          liquid_extend: "Stránka '%{fullpath}' rozšiřuje šablonu, která neexistuje"
+          liquid_translation: "Stránka '%{fullpath}' rozšiřuje šablonu, která není přeložená"
+        too_few_custom_fields: "Je vyžadováno aspoň jedno vlastní pole"
+        security: "představuje bezpečnostní problém"
+
+  attributes:
+    defaults:
+      pages:
+        index:
+          title: "Úvod"
+          body: "Obsah úvodní stránky"
+        "404":
+          title: "Stránka nebyla nalezena"
+          body: "Obsah stránky 404"
+        other:
+          body: "{% extends 'parent' %}"
+
+  pagination:
+    previous: "&laquo; Předchozí"
+    next: "Další &raquo;" 
