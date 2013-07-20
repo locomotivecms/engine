@@ -172,6 +172,7 @@ it:
         ru: Russo
         et: Estone
         ja: Giapponese
+        cs: Ceco
         ask_for_name: "Prego, digita il tuo nome"
 
     theme_assets:
