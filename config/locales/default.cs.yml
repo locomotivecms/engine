@@ -59,7 +59,7 @@ cs:
 
   pagination:
     previous: "&laquo; Předchozí"
-    next: "Další &raquo;" 
+    next: "Další &raquo;"
 
   date:
     abbr_day_names: [Ne, Po, Út, St, Čt, Pá, So]
@@ -202,4 +202,4 @@ cs:
       last_word_connector: " a "
       two_words_connector: " a "
       words_connector: ", "
-      skip_la
+      skip_last_comma: true
