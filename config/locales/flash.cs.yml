@@ -1,0 +1,115 @@
+cs:
+  flash:
+    locomotive:
+      pages:
+        create:
+          notice: "Stránka byla vytvořena."
+          alert: "Stránka nebyla vytvořena."
+        update:
+          notice: "Stránka byla aktualizována."
+          alert: "Stránka nebyla aktualizována."
+        sort:
+          notice: "Stránky byly seřazeny."
+        destroy:
+          notice: "Stránka byla odstraněna."
+
+      content_entries:
+        create:
+          notice: "Záznam byl vytvořen."
+          alert: "Záznam nebyl vytvořen."
+        update:
+          notice: "Záznam byl aktualizován."
+          alert: "Záznam nebyl aktualizován."
+        sort:
+          notice: "Záznamy byly seřazeny."
+        destroy:
+          notice: "Záznam byl odstraněn."
+
+      content_types:
+        create:
+          notice: "Model byl vytvořen."
+          alert: "Model nebyl vytvořen."
+        update:
+          notice: "Model byl aktualizován."
+          alert: "Model nebyl aktualizován."
+        destroy:
+          notice: "Model by odstraněn."
+
+      current_site:
+        update:
+          notice: "Tento web byl aktualizován."
+          alert: "Tento web nebyl aktualizován."
+
+      snippets:
+        create:
+          notice: "Snippet byl vytvořen."
+          alert: "Snippet nebyl vytvořen."
+        update:
+          notice: "Snippet byl aktualizován."
+          alert: "Snippet nebyl aktualizován."
+        destroy:
+          notice: "Snippet byl odstraněn."
+
+      accounts:
+        create:
+          notice: "Účet byl vytvořen."
+          alert: "Účet nebyl vytvořen."
+
+      my_account:
+        update:
+          notice: "Váš účet byl aktualizován."
+          alert: "Váš účet nebyl aktualizován."
+
+      sites:
+        create:
+          notice: "Web byl vytvořen."
+          alert: "Web nebyl vytvořen."
+        destroy:
+          notice: "Web byl odstraněn."
+
+      memberships:
+        create:
+          notice: "Členství bylo vytvořeno."
+          alert: "Členství nebylo vytvořeno."
+          already_created: "Účet je již spojený s tímto webem."
+
+      assets:
+        create:
+          notice: "Médium bylo vytvořeno."
+          alert: "Médium nebylo vytvořeno."
+        update:
+          notice: "Médium bylo aktualizováno."
+          alert: "Médium nebylo aktualizováno."
+
+      theme_assets:
+        create:
+          notice: "Soubor byl vytvořen."
+          alert: "Soubor nebyl vytvořen."
+        update:
+          notice: "Soubor byl aktualizován."
+          alert: "Soubor nebyl aktualizován."
+        destroy:
+          notice: "Soubor byl odstraněn."
+      translations:
+        create:
+          notice: "Překlad byl vytvořen."
+          alert: "Překlad nebyl vytvořen."
+        update:
+          notice: "Překlad byl aktualizován."
+          alert: "Překlad nebyl aktualizován."
+        destroy:
+          notice: "Překlad byl odstraněn"
+
+      custom_fields:
+        update:
+          alert: "Pole nebylo aktualizováno"
+
+      cross_domain_sessions:
+        create:
+          alert: "Musíte se přihlásit"
+
+      import:
+        create:
+          done: "Váš web byl aktualizován."
+          notice: "Váš web se aktualizuje."
+          alert: "Váš web nebyl aktualizován."
