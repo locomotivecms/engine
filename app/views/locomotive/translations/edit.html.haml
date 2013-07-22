@@ -4,7 +4,7 @@
   = render_cell 'locomotive/settings_menu', :show
 
 - content_for :buttons do
-  = local_action_button t('locomotive.translations.index.new'), new_translation_url, icon: 'icon-plus'
+  = local_action_button t('locomotive.translations.index.new'), new_translation_path, icon: 'icon-plus'
 
 %p!= t('.help', key: @translation.key)
 
@@ -12,4 +12,4 @@
 
   = render 'form', f: form
 
-  = render 'locomotive/shared/form_actions', back_url: translations_url, button_label: :update
+  = render 'locomotive/shared/form_actions', back_url: translations_path, button_label: :update

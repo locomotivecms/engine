@@ -8,11 +8,11 @@
 
 - content_for :buttons do
   - if can?(:create, Locomotive::Account)
-    = local_action_button t('.new_membership'), new_membership_url, icon: 'icon-plus'
+    = local_action_button t('.new_membership'), new_membership_path, icon: 'icon-plus'
 
 %p!= t('.help')
 
-= semantic_form_for @site, url: current_site_url do |form|
+= semantic_form_for @site, url: current_site_path do |form|
 
   = render 'form', f: form
 

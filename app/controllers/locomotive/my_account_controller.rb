@@ -17,13 +17,13 @@ module Locomotive
     def update
       @account = current_locomotive_account
       @account.update_attributes(params[:account])
-      respond_with @account, location: edit_my_account_url
+      respond_with @account, location: edit_my_account_path
     end
 
     def regenerate_api_key
       @account = current_locomotive_account
       @account.regenerate_api_key!
-      respond_with({ api_key: @account.api_key }, location: edit_my_account_url)
+      respond_with({ api_key: @account.api_key }, location: edit_my_account_path)
     end
 
   end

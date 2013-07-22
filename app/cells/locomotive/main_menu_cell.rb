@@ -4,8 +4,8 @@ module Locomotive
     protected
 
     def build_list
-      add :contents,  url: pages_url,             icon: 'icon-folder-open'
-      add :settings,  url: edit_current_site_url, icon: 'icon-cog'
+      add :contents,  url: pages_path,             icon: 'icon-folder-open'
+      add :settings,  url: edit_current_site_path, icon: 'icon-cog'
     end
 
   end

@@ -4,7 +4,7 @@
 - title t('.title')
 
 - if @step_done.blank?
-  = semantic_form_for(@account, url: installation_step_url(1)) do |f|
+  = semantic_form_for(@account, url: installation_step_path(1)) do |f|
     .inner
       = f.inputs do
         = f.input :name, label: t('.name'), required: false
