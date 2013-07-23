@@ -21,14 +21,21 @@ Background:
     | Other project #2  | Lorem ipsum...          | Design          |
     | Other project #3  | Lorem ipsum...          | Design          |
 
-Scenario:
+Scenario: Listing content entries
   When I go to the list of "Projects"
   Then I should see "My sexy project"
   And I should see "Other project #2"
   And I should see "Other project #3"
 
-Scenario:
+Scenario: Listing content entries without pagination
   When I change the number of items to display per page to 4
+  And I go to the list of "Projects"
+  Then I should see "Other project #2"
+  And I should see "Other project #3"
+
+Scenario: Listing content entries with pagination
+  When I change the number of items to display per page to 4
+  And the custom model named "Projects" is ordered by "name"
   And I go to the list of "Projects"
   Then I should not see "Other project #2"
   And I should not see "Other project #3"
