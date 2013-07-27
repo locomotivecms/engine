@@ -26,6 +26,8 @@ doc/dev.txt
 *.gem
 tmp/*
 .rvmrc
+.ruby-gemset
+.ruby-version
 Capfile
 config/deploy.rb
 perf/*.rb

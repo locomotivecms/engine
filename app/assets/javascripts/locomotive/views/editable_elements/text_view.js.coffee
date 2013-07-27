@@ -31,11 +31,11 @@ class Locomotive.Views.EditableElements.TextView extends Backbone.View
       height:   @model.get('rows') * @default_line_height
       oninit:   ((editor) =>
           $.cmd 'S', (() =>
-            @model.set(content: editor.getBody().innerHTML)
+            @model.set(content: editor.getContent())
             $(@el).parents('form').trigger('submit')
           ), [], ignoreCase: true, document: editor.dom.doc),
       onchange_callback: (editor) =>
-        @model.set(content: editor.getBody().innerHTML)
+        @model.set(content: editor.getContent())
 
   refresh: ->
     # do nothing
