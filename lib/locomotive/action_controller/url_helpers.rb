@@ -9,7 +9,8 @@ module Locomotive
       end
 
       def current_site_public_url
-        request.protocol + request.host_with_port
+        # by convention, a public site is displayed in http not https.
+        'http://' + request.host_with_port
       end
 
       def switch_to_site_url(site, options = {})
