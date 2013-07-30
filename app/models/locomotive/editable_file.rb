@@ -56,6 +56,9 @@ module Locomotive
 
       locale = ::Mongoid::Fields::I18n.locale.to_s
 
+      # make sure the default_source_url is safely defined
+      self.attributes['default_source_url'] ||= { locale => nil }
+
       if self.attributes['default_source_url'][locale].nil?
         self.default_source_url = el.default_source_url
       end
