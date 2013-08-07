@@ -24,6 +24,7 @@ nb:
       ja: Anamnese
       zh-CN: Kinesisk
       cs: Tsjekkisk
+      bg: Bulgarian
 
     messages:
       confirm: Er du sikker?

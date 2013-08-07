@@ -1,0 +1,4 @@
+en:
+  carrierwave:
+    errors:
+      integrity: 'този тип файл не е позволен.'
