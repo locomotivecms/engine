@@ -18,7 +18,7 @@ module Locomotive
         end
 
         def public_submission_url
-          @context.registers[:controller].main_app.locomotive_entry_submissions_url(@content_type.slug)
+          @context.registers[:controller].main_app.locomotive_entry_submissions_path(@content_type.slug)
         end
 
         def api

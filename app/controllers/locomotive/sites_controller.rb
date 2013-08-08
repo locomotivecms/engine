@@ -14,7 +14,7 @@ module Locomotive
       @site = Site.new(params[:site])
       @site.memberships.build account: self.current_locomotive_account, role: 'admin'
       @site.save
-      respond_with @site, location: edit_my_account_url
+      respond_with @site, location: edit_my_account_path
     end
 
     def destroy
@@ -26,7 +26,7 @@ module Locomotive
         @site.errors.add(:base, 'Can not destroy the site you are logging in now')
       end
 
-      respond_with @site, location: edit_my_account_url
+      respond_with @site, location: edit_my_account_path
     end
 
   end

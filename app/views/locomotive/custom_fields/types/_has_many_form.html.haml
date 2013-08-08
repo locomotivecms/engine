@@ -9,7 +9,7 @@
     %span.new-section= t('locomotive.content_entries.new.title', type: name.capitalize).html_safe
     %span.edit-section= t('locomotive.content_entries.edit.title', type: name.capitalize).html_safe
 
-  = semantic_form_for content_entry, as: :content_entry, namespace: name.to_s, url: content_entries_url(content_type.slug), html: { multipart: true, data: { sending_form_message: t('locomotive.messages.sending_form') } } do |form|
+  = semantic_form_for content_entry, as: :content_entry, namespace: name.to_s, url: content_entries_path(content_type.slug), html: { multipart: true, data: { sending_form_message: t('locomotive.messages.sending_form') } } do |form|
 
     = form.inputs name: :attributes do
       - content_type.ordered_entries_custom_fields.each_with_index do |_field, index|

@@ -41,7 +41,7 @@ module Locomotive
       else
         flash[:alert] = exception.message
 
-        redirect_to pages_url
+        redirect_to pages_path
       end
     end
 

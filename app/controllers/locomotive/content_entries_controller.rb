@@ -49,7 +49,7 @@ module Locomotive
 
     def create
       @content_entry = @content_type.entries.create(params[:content_entry])
-      respond_with @content_entry, location: edit_content_entry_url(@content_type.slug, @content_entry._id)
+      respond_with @content_entry, location: edit_content_entry_path(@content_type.slug, @content_entry._id)
     end
 
     def edit
@@ -60,7 +60,7 @@ module Locomotive
     def update
       @content_entry = @content_type.entries.find(params[:id])
       @content_entry.update_attributes(params[:content_entry])
-      respond_with @content_entry, location: edit_content_entry_url(@content_type.slug, @content_entry._id)
+      respond_with @content_entry, location: edit_content_entry_path(@content_type.slug, @content_entry._id)
     end
 
     def sort
@@ -71,7 +71,7 @@ module Locomotive
     def destroy
       @content_entry = @content_type.entries.find(params[:id])
       @content_entry.destroy
-      respond_with @content_entry, location: content_entries_url(@content_type.slug)
+      respond_with @content_entry, location: content_entries_path(@content_type.slug)
     end
 
     protected

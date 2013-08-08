@@ -5,10 +5,10 @@
 
 %p!= t('.help')
 
-= semantic_form_for @membership, url: memberships_url do |f|
+= semantic_form_for @membership, url: memberships_path do |f|
 
   = f.inputs name: :membership_email, class: 'inputs email' do
 
     = f.input :email, label: false, wrapper_html: { class: 'no-label' }
 
-  = render 'locomotive/shared/form_actions', back_url: edit_current_site_url, button_label: :create
+  = render 'locomotive/shared/form_actions', back_url: edit_current_site_path, button_label: :create

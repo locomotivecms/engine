@@ -48,7 +48,7 @@ Feature: Contact form
     When I view the rendered page at "/contact"
     Then the rendered output should look like:
       """
-      <form action="http://test.example.com/entry_submissions/messages" method="post">
+      <form action="/entry_submissions/messages" method="post">
       """
 
   Scenario: Prevents users to post messages if the public submission option is disabled

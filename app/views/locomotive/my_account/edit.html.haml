@@ -9,11 +9,11 @@
 
 - if multi_sites?
   - content_for :buttons do
-    = local_action_button t('.new_site'), new_site_url, icon: 'icon-plus' if can?(:create, Locomotive::Site)
+    = local_action_button t('.new_site'), new_site_path, icon: 'icon-plus' if can?(:create, Locomotive::Site)
 
 %p= t('.help')
 
-= semantic_form_for @account, url: my_account_url do |f|
+= semantic_form_for @account, url: my_account_path do |f|
 
   = f.inputs name: :information do
     = f.input :name
@@ -23,7 +23,7 @@
     = f.input :email
     = f.input :password, input_html: { autocomplete: 'off' }
     = f.input :password_confirmation, input_html: { autocomplete: 'off' }
-    = f.input :api_key, as: '::Locomotive::ApiKey', url: regenerate_api_key_my_account_url
+    = f.input :api_key, as: '::Locomotive::ApiKey', url: regenerate_api_key_my_account_path
 
   - if multi_sites?
     = f.inputs name: :sites, class: "sites inputs foldable" do

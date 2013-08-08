@@ -26,7 +26,7 @@ module Locomotive
 
     def create
       @page = current_site.pages.create(params[:page])
-      respond_with @page, location: edit_page_url(@page._id)
+      respond_with @page, location: edit_page_path(@page._id)
     end
 
     def edit
@@ -37,7 +37,7 @@ module Locomotive
     def update
       @page = current_site.pages.find(params[:id])
       @page.update_attributes(params[:page])
-      respond_with @page, location: edit_page_url(@page._id)
+      respond_with @page, location: edit_page_path(@page._id)
     end
 
     def destroy

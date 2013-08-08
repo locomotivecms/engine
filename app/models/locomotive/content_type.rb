@@ -91,7 +91,7 @@ module Locomotive
       _entries = self.entries.order_by([_order_by_definition]).where(options)
 
       # pagination or full list
-      page ? _entries.page(page).per(per_page) : _entries
+      !self.order_manually? && page ? _entries.page(page).per(per_page) : _entries
     end
 
     def groupable?
