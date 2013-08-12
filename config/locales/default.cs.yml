@@ -66,9 +66,9 @@ cs:
     abbr_month_names: [~, Led, Úno, Bře, Dub, Kvě, Čvn, Čvc, Srp, Zář, Říj, Lis, Pro]
     day_names: [Neděle, Pondělí, Úterý, Středa, Čtvrtek, Pátek, Sobota]
     formats:
-      default: %d. %m. %Y
-      long: %d. %B %Y
-      short: %d %b
+      default: "%d. %m. %Y"
+      long: "%d. %B %Y"
+      short: "%d %b"
     month_names: [~, Leden, Únor, Březen, Duben, Květen, Červen, Červenec, Srpen, Září, Říjen, Listopad, Prosinec]
     order: [day, month, year]
 
@@ -129,11 +129,11 @@ cs:
 
   helpers:
     select:
-      prompt: Prosím vyberte si
+      prompt: "Prosím vyberte si"
     submit:
-      create: Vytvořit %{model}
-      submit: Uložit %{model}
-      update: Aktualizovat %{model}
+      create: "Vytvořit %{model}"
+      submit: "Uložit %{model}"
+      update: "Aktualizovat %{model}"
 
   number:
     currency:
@@ -194,6 +194,49 @@ cs:
       messages:
         blank_in_locale: "nemůže být prázdné"
     attributes:
+      page:
+        title: Titulek
+        parent: Rodič
+        pared_id: Rodič
+        slug: Slug
+        listed: V menu
+        templatized: Je šablonou
+        published: Publikováno
+        redirect: Přesměrování
+        redirect_url: URL k přesměrování
+        cache_strategy: Cache
+        response_type: Druh odpovědi
+        seo_title: SEO titulek
+      content_type:
+        name: Název
+        description: Popis
+        slug: Slug
+        order_by: Řadit dle
+        order_direction: Směr řazení
+        highlighted_field_name: Zvýrazněné pole
+        group_by_field_name: Seskupovat dle pole
+        api_enabled: Přístup přes API
+      asset:
+        source: Zdroj
+      account:
+        email: Email
+        name: Jméno
+        language: Jazyk
+        password: Heslo
+        password_confirmation: Potvrzení hesla
+      snippet:
+        body: Kód
+        slug: Slug
+        name: Název
+      theme_asset:
+        content_type: Druh obsahu
+      site:
+        name: Název webu
+        domain_name: Doména
+        subdomain: Subdoména
+        restricted_access: Aktivní?
+        access_login: Login
+        access_password: Heslo
       locomotive/content_entry:
         created_at: Vytvořeno
 
@@ -203,3 +246,4 @@ cs:
       two_words_connector: " a "
       words_connector: ", "
       skip_last_comma: true
+      sentence_connector: "a"
