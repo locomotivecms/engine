@@ -173,6 +173,7 @@ es:
         et: Estonio
         ja: Japonés
         cs: Checo
+        bg: Búlgaro
         ask_for_name: "Por favor escriba su nuevo nombre"
 
     theme_assets:

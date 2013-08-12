@@ -1,0 +1,349 @@
+en:
+  locomotive:
+    buttons:
+      login: Вход
+      send_password: Изпрати
+      change_password: Поднови
+      new_item: "+ добави"
+      switch_to_site: "Премини към сайт"
+      delete: "Изтрии"
+      close: "Затвори"
+
+    locales:
+      en: Английски
+      de: Немски
+      fr: Френски
+      pl: Полски
+      pt-BR: "Бразилски Португалски"
+      it: Италиански
+      nl: Холандски
+      nb: Норвежки
+      es: Испански
+      ru: Руски
+      et: Естонски
+      ja: Японски
+      zh-CN: Китайски
+      cs: Чешки
+      bg: Български
+
+    messages:
+      confirm: Сигурен ли си ?
+      sending_form: Вашата форма се предава
+
+    shared:
+      header:
+        welcome: Добре дошъл, %{name}
+        see: Виж сайта
+        switch: Премини към друг сайт
+        help: Помощ
+        logout: Изход
+      menu:
+        contents: Съдържание
+        assets: Asset-и
+        settings: Настройки
+        pages: Страници
+        snippets: Откъси
+        account: Моят профил
+        site: Сайт
+        theme_assets: Файлове за теми
+        translations: Преводи
+      form:
+        change_file: промени
+        delete_file: изтрий
+        cancel: отмени
+      form_actions:
+        back: Назад без запазване
+        create: Създай
+        update: Запази
+        send: Изпрати
+        disable_with: Изчакайте...
+      list:
+        untranslated: непреведено
+      footer:
+        who_is_behind: "LocomotiveCMS е разработен от %{development} и проектиран от <a href=\"http://www.sachagreif.com\">Sacha Greif</a> &mdash; <small>version</small> %{version}"
+
+    errors:
+      "500":
+        title: Грешка в приложението
+        notice: "Съжаляваме, но нещо се обърка"
+        link: "&rarr; Назад към приложението"
+      "404":
+        title: Страницата не е намерена
+        notice: "Страницата която поискахте не съществува."
+        link: "&rarr; Назад към приложението"
+
+    notifications:
+      new_content_entry:
+        subject: "[%{domain}][%{type}] нов запис"
+        title: "Здравей %{name}, осведомяваме ви че нова инстанция е създаден на %{date} за сайта <b>%{domain}</b>"
+        type: "Модел: %{type}"
+
+    pagination:
+      first: "&laquo;"
+      last: "&raquo;"
+      previous: "&lsaquo;"
+      next: "&rsaquo;"
+      truncate: "&hellip;"
+
+    sites_picker:
+      new: + нов сайт
+
+    api_key:
+      none: Моля натисни на бутона напред за да се генерира API ключ.
+      button: Възстанови
+
+    custom_fields:
+      edit:
+        title: Редактиране на пресонализирано поле
+      text_formatting:
+        none: Нищо
+        html: HTML
+      types:
+        file:
+          delete_file: Изтрий файл
+        has_many:
+          empty: Списъкът е празен
+          new_entry: + Добави нов запис
+        many_to_many:
+          empty: Списъкът е празен. Добавете запис от полето по-долу.
+
+      form:
+        required: Задължителен
+        default_label: Име на поле
+        select_options:
+          ask_name: "Въведете надписа на избора"
+
+    sessions:
+      new:
+        title: Вход
+        link: "Забравих паролата си"
+        email: "Имейл"
+        password: "Парола"
+
+    passwords:
+      new:
+        title: Забравена парола
+        link: "&rarr; Назад към страницата за вход"
+        email: "Вашият имейл"
+      edit:
+        title: Поднови парола
+        link: "&rarr; Назад към страницата за вход"
+        password: "Вашата нова парола"
+        password_confirmation: "Потвърждение на новата парола"
+
+    pages:
+      index:
+        title: Изброяване на страници
+        help: "Страниците са организирани в дървовидна структура. Може да нареждате както страници така и папки"
+        no_items: "Засега няма страници. Просто натиснете <a href=\"%{url}\">тук</a> за да създадете първата."
+        new: нова страница
+        latest_entries: Последните страници
+      new:
+        title: Нова страница
+        help: "Моля попълнете формата отдолу за да създадете вашата страница. Внимавайте, по подразбиране страницата не е публикувана."
+      page:
+        updated_at: обновена на
+      edit:
+        show: покажи
+        help: "Заглавието на страницата може да се обнови като се натисне на него. За да приложите вашите промени, натиснете на \"Запази\" бутона."
+        ask_for_title: "Моля въведете новото заглавие на страницата"
+      form:
+        change_file: промени
+        delete_file: изтрий
+        cancel: отмени
+        default_block: Подразбиране
+        cache_strategy:
+          none: Нищо
+          simple: Просто
+          hour: 1 час
+          day: 1 ден
+          week: 1 седмица
+          month: 1 месец
+        redirect_type:
+          permanent: "Постоянен (301)"
+          temporary: "Временен (302)"
+
+    snippets:
+      index:
+        title: Изброяване на откъси
+        help: "Откъсите са парче HTML код, който може да се намира на различни места в сайта (като футъра)."
+        no_items: "Няма откъси засега. Просто натиснете <a href=\"%{url}\">тук</a> за да създадете първия."
+        new: нов откъс
+      new:
+        title: Нов откъс
+        help: "Попълнете формата отдолу за да обновите вашият откъс."
+      edit:
+        title: Редактиране на откъс
+        help: "Добавете вашия откъс във вашите шаблони за страница със следния liquid код : <span class='code'>{% include '%{slug}' %}</span>."
+      snippet:
+        updated_at: Обновено на
+
+    sites:
+      new:
+        title: Нов сайт
+        help: "Попълнете формата отдолу за да създадете новия си сайт."
+      domains:
+        empty: "Няма домейни свързани към този сайт. Просто добавете вашите домейни отдолу. <b>Не забравията да обновите вашият DNS.</b>"
+
+    current_site:
+      edit:
+        new_membership: добави профил
+        help: "Този сайт може да бъде обновен чрез натискане върху него. За да запазите вашите промени, натиснете на \"Запази\" бутона."
+        ask_for_name: "Моля въведете името на новия сайт."
+
+    memberships:
+      roles:
+        admin: Администратор
+        designer: Дизайнер
+        author: Автор
+      new:
+        title: Ново членство
+        help: "Моля дайте имейла на профила за добавяне. Ако не съществува, ще бъдете пренасочени към формата за създаване на профил."
+
+    accounts:
+      new:
+        title: Нов профил
+        help: "Попълнете формата отдолу за да добавите нов профил."
+
+    my_account:
+      edit:
+        help: "Вашето име може да бъде обновено, чрез натискане върху него. За да приложите вашите промени, натиснете на \"Запази\" бутона."
+        new_site: нов сайт
+        ask_for_name: "Моля въведете вашето ново име"
+
+    theme_assets:
+      index:
+        title: Изреждане на теми
+        help: "Секцията за теми е място, където упралявате файловете нужни за вашето оформление, откъси и т.н.Ако ви трябва да управлявате галерия със снимки, създайте нов тип съдържание вместо това.<br/><b>Предупреждение:</b> може да не виждате всички asset-и, в зависимост от вашите права."
+        quick_upload: Бързо качване
+        new: нов файл
+        snippets: Откъси
+        css_and_js: Style и javascript
+        fonts: Шрифтове
+        images: Снимки
+        media: Медия
+        no_items: "За момента няма файлове."
+      asset:
+        updated_at: Обновено на
+      new:
+        title: Нов файл
+        help: "Имате избор или да качите файл или да копирате/вмъкнете stylesheet или javascript като обикновен текст."
+      edit:
+        title: "Редактиране на %{file}"
+        help: "Този asset е достъпен директно от следния линк: <a href='%{url}'>%{url}</a>"
+        help_image: "Добавете вашата снимка във вашите шаблони или откъси със следния liquid код : <span class='code'>{{ '%{path}' | theme_image_tag }}</span>.<br/>Сегашния размер на снимката: <b>%{width}px x %{height}px</b>.<br/>"
+        help_javascript: "Добавете вашия javascript файл във вашите шаблони или откъси със следния following код : <span class='code'>{{ '%{path}' | javascript_tag }}</span>.<br/>"
+        help_stylesheet: "Добавете вашия stylesheet файл във вашите шаблони или откъси със следния following код : <span class='code'>{{ '%{path}' | stylesheet_tag }}</span>.<br/>"
+      form:
+        picker_link: Вмъкни файл в кода
+        choose_file: Изберете файл
+        choose_plain_text: Изберете текст
+      image_picker:
+        title: "Вмъкни картинка за тема"
+        no_items: "Няма картинки за сега."
+        upload: "Качете картинка за тема"
+
+    translations:
+      untranslated: "Непреведени части: %{list}"
+      index:
+        title: Преводи
+        new: Нов превод
+        no_items: "Няма преводи за сега.Просто натиснете <a href=\"%{url}\">тук</a> за да създадете първия."
+        remove: Премахни %{key}
+      new:
+        title: "Нов превод"
+        help: "Страници/откъси могат да споделят един шаблон за всички части, с изключение на някой надписи, които може да се преведе с <b>translate</b> liquid тага."
+      edit:
+        title: "Редактиране на %{key}"
+        help: "Ключа за превод може да се използва със следния liquid код : <span class='code'>{{ '%{key}' | translate }}</span>."
+
+    content_assets:
+      picker:
+        title: "Вмъкни медия"
+        no_items: "Няма медия за сега."
+        upload: "Качете медия"
+
+    content_types:
+      index:
+        new: нов модел
+        edit: редактиране нa модел
+      new:
+        title: Нов модел
+        help: "Създайте ваш собствен модел(Проекти, Хора и т.н.). Вашият модел трябва да има поне едно поле. Първото поле на обектите създадени от този тип съдържание е задължително."
+      edit:
+        title: Редактиране на модел
+        help: "Вашият модел, трябва да има поне едно поле. Първото поле на обектите създадени от този тип съдържание е задължително. The items created from this content type would have their first field mandatory."
+        show_entries: Покажи записи
+        new_entry: нов запис
+      form:
+        order_by:
+          created_at: 'По дата на създаване'
+          updated_at: 'По дата на обновяване'
+          position_in_list: Ръчно
+        order_direction:
+          asc: Възходящ
+          desc: Низходящ
+
+    content_entries:
+      index:
+        title: 'Изброяване на "%{type}"'
+        edit: редактиране на модел
+        destroy: премахни модел
+        download: свали записи
+        new: нов запис
+        category_noname: "Няма име"
+        latest_entries: "Последни записи"
+        updated_at: "Обновено на"
+      list:
+        no_items: "Няма записи за сега. Просто натиснете <a href=\"%{url}\">тук</a> за да създадете първия."
+      new:
+        title: '%{type} &mdash; нов запис'
+      edit:
+        title: '%{type} &mdash; редактиране на запис'
+      form:
+        edit_select_options: редактиране на опциите
+        has_many:
+          new_entry: нов запис
+
+    code_editing:
+      image_picker: Добави картинка в кода
+      copy_template: Копирай шаблона от главния език
+
+    cross_domain_sessions:
+      new:
+        title: Между-домейнно разпознаване
+        notice: Ще бъдете пренасочени към сайта след няколко секунди.
+
+    installation:
+      common:
+        title: Пъравата Locomotive Инсталация
+        next: Следващ
+      step_1:
+        title: "Стъпка 1/2 &mdash; Създай профил"
+        name: Име на профила
+        email: Имейл
+        password: Парола
+        password_confirmation: Потвърждаване на паролата
+        done: "Вие вече сте добавили профила:<br/><strong>%{name}</strong>, <em>%{email}</em>"
+        next: Създай профил
+      step_2:
+        title: "Стъпка 2/2 &mdash; Създайте първия си сайт"
+        explanations: "Почти сте готови. Моля задайте име на вашият първи сайт и изберете език по подразбиране."
+        default_site_locale: Език на сайта
+        default_site_locales_hints: Сега можете да добавите още езици от панела Настройки.
+        next: Създай сайт
+
+    public:
+      pages:
+        show_toolbar:
+          statuses:
+            loading: "Зарежда...."
+            disabled: "Вградения редактор е изключен"
+          labels:
+            save_changes: "Запази промените: "
+            editing_mode: "Режим на редактиране: "
+            lang: "Език: "
+          buttons:
+            back: Назад към бек-офиса
+            confirm: Потвърди
+            cancel: Отмени

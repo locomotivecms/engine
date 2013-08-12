@@ -1,0 +1,46 @@
+en:
+  date:
+    formats:
+      default: "%d/%m/%Y"
+
+  mongoid:
+    errors:
+      messages:
+        blank_in_locale: "не може да е празно"
+    attributes:
+      locomotive/content_entry:
+        created_at: Създадено на
+
+  errors:
+      messages:
+        domain_taken: "%{value} вече е заето"
+        invalid_domain: "%{value} е невалиден"
+        needs_admin_account: "Поне един администраторски профил е нужен"
+        protected_page: "Не може да премахнете началната или 404 страници"
+        extname_changed: "Новият файл няма първоначалното разширение"
+        array_too_short: "е твърде малък (минималния брой елементи е %{count})"
+        invalid_theme_file: "can't be blank or isn't a zip file"
+        site:
+          default_locale_removed: Предишния език по подразбиране не може да бъд премахнат веднага.
+        page:
+          liquid_syntax: "Грешка в синтаксиса на Liquid ('%{error}' в '%{fullpath}')"
+          liquid_extend: "Страницата '%{fullpath}' разширявате шаблон, който не съществува"
+          liquid_translation: "Страницата '%{fullpath}' разширява шаблон, който не е преведен"
+        too_few_custom_fields: "Поне едно персонализирано поле е нужно"
+        security: "представлява проблем за сигурността"
+
+  attributes:
+    defaults:
+      pages:
+        index:
+          title: "Начална страница"
+          body: "Съдържание на началната страница"
+        "404":
+          title: "Страницата не е намерена"
+          body: "Съдържание на 404 страницата"
+        other:
+          body: "{% extends 'parent' %}"
+
+  pagination:
+    previous: "&laquo; Предишен"
+    next: "Следващ &raquo;"
