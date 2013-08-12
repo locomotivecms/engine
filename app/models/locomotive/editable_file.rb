@@ -10,9 +10,19 @@ module Locomotive
     field :default_source_url, localize: true
 
     ## callbacks ##
+    # before_validation { |el| Rails.logger.debug "EL SOON TO BE VALIDATED!!!" }
+    # after_validation { |el| Rails.logger.debug "-----> EL VALIDATED!!! #{el.errors.inspect}" }
+    # before_save { |el| Rails.logger.debug "-----> EL SOON TO BE SAVED!!! #{el.errors.inspect}" }
+    # after_save { |el| Rails.logger.debug "EL SAVED!!!" }
+
     after_save :propagate_content
 
     ## methods ##
+
+    # FIXME: waiting for a new release of the carrierwave-mongoid gem based on our PR.
+    def source_will_change!
+      changed_attributes['source'] = '_new_'
+    end
 
     # Returns the url or the path to the uploaded file
     # if it exists. Otherwise returns the default url.
@@ -82,6 +92,7 @@ module Locomotive
 
         self.page.collection.find(self._selector).update(operations, multi: true)
       end
+      true
     end
 
   end

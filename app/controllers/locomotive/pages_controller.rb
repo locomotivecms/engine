@@ -36,6 +36,11 @@ module Locomotive
 
     def update
       @page = current_site.pages.find(params[:id])
+      # @page.attributes = params[:page]
+      # Rails.logger.debug @page.editable_elements.map(&:changed?)
+      # Rails.logger.debug @page.editable_elements.last.source_changed?.inspect
+      # @page.save
+      # Rails.logger.debug @page.editable_elements.last.changes.inspect
       @page.update_attributes(params[:page])
       respond_with @page, location: edit_page_path(@page._id)
     end
