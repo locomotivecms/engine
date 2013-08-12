@@ -20,6 +20,8 @@ class Locomotive.Views.ContentAssets.PickerView extends Locomotive.Views.Shared.
   build_uploader: (el, link) ->
     link.bind 'click', (event) ->
       event.stopPropagation() & event.preventDefault()
+      console.log(el)
+      window.foo = el
       el.click()
 
     el.bind 'change', (event) =>

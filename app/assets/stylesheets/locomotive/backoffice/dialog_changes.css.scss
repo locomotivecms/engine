@@ -131,7 +131,7 @@
       }
 
       input[type=file] {
-        z-index: 1203;
+        z-index: 400000; // thanks to tinymce modal z-index
       }
 
     } // .button-wrapper

@@ -21,14 +21,18 @@
     el = ed.selection.getNode();
 
     if (el && (el.nodeName == 'IMG' || el.nodeName == 'A')) {
-     ed.dom.setAttribs(el, args);
+      ed.dom.setAttribs(el, args);
     } else {
       if (asset.get('image')) {
         ed.execCommand('mceInsertContent', false, '<img id="__mce_tmp" />', { skip_undo: 1 });
       } else {
         var html = ed.selection.getContent();
-        if (html == '') html = asset.get('filename');
-        ed.execCommand('mceInsertContent', false, '<a id="__mce_tmp" >' + html + '</a>', { skip_undo: 1 });
+        if (html == '') {
+          html = asset.get('filename');
+          ed.execCommand('mceInsertContent', false, '<a id="__mce_tmp" href="#">' + html + '</a>', { skip_undo: 1 });
+        } else {
+          ed.execCommand('mceReplaceContent', false, ' <a id="__mce_tmp" href="#">' + html + '</a>', { skip_undo: 1 });
+        }
       }
 
       ed.dom.setAttribs('__mce_tmp', args);
