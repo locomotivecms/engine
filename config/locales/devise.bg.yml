@@ -1,0 +1,64 @@
+en:
+  errors:
+    messages:
+      not_found: "не е намерен"
+      already_confirmed: "вече е потвърден"
+      not_locked: "не е бил заключен"
+
+  devise:
+    failure:
+      locomotive_account:
+        unauthenticated: 'Трябва да влезнете или да се регистрирате преди да продължите.'
+        unconfirmed: 'Трябва да потвърдите профила си преди да продължите.'
+        locked: 'Вашият профил е заключен.'
+        invalid: 'Невалиден имейл или парола.'
+        not_found_in_database: 'Невалиден имейл или парола'
+        no_membership: 'Профила ви не е член на този сайт, моля свържете се с администратора за да получите достъп.'
+        invalid_token: 'Невалитен токен за аутентикация.'
+        timeout: 'Сесията ви изтече, моля влезте наново за да продължите.'
+        inactive: 'Вашият профил все още не е активиран.'
+    sessions:
+      locomotive_account:
+        signed_in: 'Влязохте успешно.'
+        signed_out: 'Излязохте успешно.'
+    passwords:
+      locomotive_account:
+        send_instructions: 'Ще получите имейл с инструкции как да си възобновите паролата.'
+        updated: 'Вашата парола беше променена успешно.'
+    confirmations:
+      locomotive_account:
+        send_instructions: 'Ще получите имейл със инструкции как да си потвърдите профила.'
+        confirmed: 'Вашият профил е потвърден успешно.'
+    registrations:
+      locomotive_account:
+        signed_up: 'Регистрирахте се успешно.'
+        updated: 'Подновихте профила си успешно.'
+        destroyed: 'Довиждане! Вашият профил беше отменен успешно. Надяваме се да ви видим отново.'
+    unlocks:
+      locomotive_account:
+        send_instructions: 'Ще получите имейл с инструкции как да си отключите профула.'
+        unlocked: 'Вашият профил беше отключен успешно.'
+    mailer:
+      locomotive_account:
+        confirmation_instructions: 'Инструкции за потвърждение'
+        reset_password_instructions: 'Инструкции за възобновяване на паролата'
+        unlock_instructions: 'Инструкции за отключване'
+
+
+  locomotive_account:
+    devise_mailer:
+      common:
+        hello: Здрасти
+
+      confirmation_instructions:
+        you_can_confirm_your_account_through_the_link_below: "Може да потвърдите профила си от линка отдолу:"
+        confirm_my_account: "Потвърди моят профил"
+      reset_password_instructions:
+        reset_password_instruction: "Някой е поисакл линк за промяна на паролата ви и може да го направите от линка отдолу"
+        change_my_password: "Смяна на паролата ми"
+        wrong_request_instruction: "Ако не сте го поискали вие, моля игнорирайте този имейл."
+        unchange_password_message: "Вашата парола няма да се промени докато не посетите линка отгоре и не създадете нова."
+      unlock_instructions:
+        locked_account_message: "Вашият профил беше заключен заради много неуспешни опити за влизане."
+        unlock_account_instruction: "Натиснете линка отдолу за отключите вашият профил:"
+        unlock_my_account: "Отключи моят профил"

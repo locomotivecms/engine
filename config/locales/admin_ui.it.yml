@@ -173,6 +173,7 @@ it:
         et: Estone
         ja: Giapponese
         cs: Ceco
+        bg: Bulgaro
         ask_for_name: "Prego, digita il tuo nome"
 
     theme_assets:

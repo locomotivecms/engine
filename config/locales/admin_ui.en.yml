@@ -24,6 +24,7 @@ en:
       ja: Japanese
       zh-CN: Chinese
       cs: Czech
+      bg: Bulgarian
 
     messages:
       confirm: Are you sure ?
