@@ -38,12 +38,7 @@ cs:
         liquid_translation: "Stránka '%{fullpath}' rozšiřuje šablonu, která není přeložená"
       too_few_custom_fields: "Je vyžadováno aspoň jedno vlastní pole"
       security: "představuje bezpečnostní problém"
-    template:
-      body: "Následující pole obsahují chybně vyplněné údaje: "
-      header:
-        one: "Při ukládání objektu %{model} došlo k chybám a nebylo jej možné uložit"
-        few: "Při ukládání objektu %{model} došlo ke %{count} chybám a nebylo možné jej uložit"
-        other: "Při ukládání objektu %{model} došlo ke %{count} chybám a nebylo možné jej uložit"
+      liquid_syntax: "Chyba v syntaxi Liquid ('%{error}' v '%{fullpath}')"
 
   attributes:
     defaults:
@@ -68,7 +63,9 @@ cs:
     formats:
       default: "%d. %m. %Y"
       long: "%d. %B %Y"
+      long_ordinal: "%e %B %Y"
       short: "%d %b"
+      only_day: "%e"
     month_names: [~, Leden, Únor, Březen, Duben, Květen, Červen, Červenec, Srpen, Září, Říjen, Listopad, Prosinec]
     order: [day, month, year]
 
@@ -187,6 +184,9 @@ cs:
       default: "%a %d. %B %Y %H:%M %z"
       long: "%A %d. %B %Y %H:%M"
       short: "%d. %m. %H:%M"
+      time: "%H:%M"
+      long_ordinal: "%A %d %B %Y %H:%M:%S %Z"
+      only_second: "%S"
     pm: pm
 
   mongoid:

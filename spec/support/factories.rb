@@ -84,6 +84,12 @@ FactoryGirl.define do
       email 'xxxcaqui@gmail.com'
       locale 'ja'
     end
+
+    factory 'czech user' do
+      name 'Jan Novak'
+      email 'jan.novak@seznam.cz'
+      locale 'cs'
+    end
   end
 
   ## Memberships ##
