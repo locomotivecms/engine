@@ -24,7 +24,6 @@ cs:
       ja: Japonština
       zh-CN: Čínština
       cs: Čeština
-      bg: Bulharština
 
     messages:
       confirm: Jste si jistý?
@@ -108,6 +107,7 @@ cs:
           empty: Seznam je prázdný. Přidejte záznam z vedlejšího boxu.
 
       form:
+        empty: Prázdné
         required: Vyžadováno
         default_label: Název pole
         select_options:
@@ -223,6 +223,7 @@ cs:
         images: Obrázky
         media: Média
         no_items: "Teď tu nejsou žádné soubory."
+        others: Ostatní
       asset:
         updated_at: Aktualizováno
       new:
@@ -239,6 +240,10 @@ cs:
         choose_file: Vyberte soubor
         choose_plain_text: Vyberte text
       image_picker:
+        title: "Vložte obrázek vzhledu"
+        no_items: "Teď tu nejsou žádné obrázky."
+        upload: "Nahrát obrázky"
+      images:
         title: "Vložte obrázek vzhledu"
         no_items: "Teď tu nejsou žádné obrázky."
         upload: "Nahrát obrázky"
@@ -275,6 +280,8 @@ cs:
         help: "Váš model by měl mít aspoň jedno pole. Pro záznamy tohoto modelu bude toto pole povinné."
         show_entries: záznamy
         new_entry: nový záznam
+        show_items: záznamy
+        new_item: nový záznam
       form:
         order_by:
           created_at: 'Podle data vytvoření'
@@ -296,6 +303,7 @@ cs:
         updated_at: "Aktualizováno"
       list:
         no_items: "Nejsou tu teď žádné záznamy. Stačí ale kliknout <a href=\"%{url}\">sem</a> a nějaký přidat."
+        no_entries: "Nejsou tu teď žádné záznamy. Stačí ale kliknout <a href=\"%{url}\">sem</a> a nějaký přidat."
       new:
         title: '%{type} &mdash; nový záznam'
       edit:
@@ -304,6 +312,7 @@ cs:
         edit_select_options: možnosti úpravy
         has_many:
           new_entry: Nový záznam
+          new_item: Nový záznam
 
     code_editing:
       image_picker: Vložte do kódu obrázek
@@ -332,6 +341,7 @@ cs:
         default_site_locale: Jazyk
         default_site_locales_hints: Později budete moct v nastavení přidat další jazyky.
         next: Vytvořit web
+        back_to_default_template: "Klikněte <a href='#'>zde</a> pro návrat do standardní šablony."
 
     public:
       pages:

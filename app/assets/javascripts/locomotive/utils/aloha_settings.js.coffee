@@ -39,7 +39,7 @@ window.Aloha.settings =
         crop:   false
 
   i18n:
-    available: ['en', 'fr', 'pl', 'pt-BR', 'es', 'de', 'no', 'ru', 'nl', 'ja', 'bg']
+    available: ['en', 'fr', 'pl', 'pt-BR', 'es', 'de', 'no', 'ru', 'nl', 'ja', 'cs', 'bg']
 
   sidebar:
     disabled: true
