@@ -10,11 +10,6 @@ module Locomotive
     field :default_source_url, localize: true
 
     ## callbacks ##
-    # before_validation { |el| Rails.logger.debug "EL SOON TO BE VALIDATED!!!" }
-    # after_validation { |el| Rails.logger.debug "-----> EL VALIDATED!!! #{el.errors.inspect}" }
-    # before_save { |el| Rails.logger.debug "-----> EL SOON TO BE SAVED!!! #{el.errors.inspect}" }
-    # after_save { |el| Rails.logger.debug "EL SAVED!!!" }
-
     after_save :propagate_content
 
     ## methods ##
