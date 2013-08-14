@@ -29,7 +29,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'mongoid_migration',               '~> 0.0.8'
   s.add_dependency 'mongo_session_store-rails3',      '~> 4.1.1'
 
-  s.add_dependency 'custom_fields',                   '~> 2.2.3'
+  s.add_dependency 'custom_fields',                   '~> 2.3.0'
 
   s.add_dependency 'kaminari',                        '~> 0.14.1'
 

@@ -181,7 +181,7 @@ cs:
   time:
     am: am
     formats:
-      default: "%a %d. %B %Y %H:%M %z"
+      default: "%d. %m. %Y %H:%M"
       long: "%A %d. %B %Y %H:%M"
       short: "%d. %m. %H:%M"
       time: "%H:%M"

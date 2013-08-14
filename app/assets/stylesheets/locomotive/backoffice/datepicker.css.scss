@@ -2,10 +2,13 @@
 @import "compass/css3/border-radius";
 @import "compass/css3/images";
 @import "compass/css3/text-shadow";
+@import "compass/css3/box-shadow";
 
 // Note: http://www.west-wind.com/weblog/posts/2009/Sep/12/jQuery-UI-Datepicker-and-zIndex
 #ui-datepicker-div {
   z-index: 9999999 !important;
+
+  @include box-shadow(rgba(0, 0, 0, 0.2) 4px 4px 10px 2px);
 }
 
 .ui-datepicker {
@@ -181,3 +184,66 @@
   }
 }
 
+.ui-timepicker-div {
+
+  border-top: 1px solid #bcbfc2;
+
+  .ui-widget-header {
+    margin-bottom: 8px;
+  }
+
+  dl {
+    margin: 0px;
+  }
+
+  // dl { text-align: left; }
+  // dl dt { height: 25px; margin-bottom: -25px; }
+  // dl dd { margin: 0 10px 10px 65px; }
+  // td { font-size: 90%; }
+
+  .ui_tpicker_hour_label {
+    display: none;
+  }
+
+  .ui_tpicker_minute_label {
+    display: none;
+  }
+
+  .ui_tpicker_hour, .ui_tpicker_minute {
+    display: inline-block;
+    width: 50%;
+    text-align: right;
+    margin: 4px 0px 6px 0px;
+
+    select {
+      margin: 0 3px;
+      font-size: 11px;
+      font-family: Verdana, Arial, sans-serif;
+    }
+
+    &.ui_tpicker_minute {
+      text-align: left;
+      .ui_tpicker_minute_slider {
+        &:before { font-size: 14px; font-weight: bold; content: ':'; }
+      }
+    }
+  }
+}
+
+.ui-tpicker-grid-label {
+  background: none;
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+
+.ui-timepicker-rtl {
+  direction: rtl;
+
+  dl { text-align: right; }
+  dl dd { margin: 0 65px 10px 10px; }
+}
+
+.ui-datepicker-buttonpane {
+  display: none;
+}

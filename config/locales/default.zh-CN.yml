@@ -18,7 +18,7 @@ zh-CN:
       - :day
   time:
     formats:
-      default: "%a, %d %b %Y %H:%M:%S %z"
+      default: "%m/%d/%Y %H:%M"
       short: "%d %b %H:%M"
       long: "%B %d, %Y %H:%M"
     am: "am"

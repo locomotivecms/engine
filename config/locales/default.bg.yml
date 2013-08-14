@@ -201,7 +201,7 @@ bg:
   time:
     am: преди обяд
     formats:
-      default: ! '%a, %d %b %Y, %H:%M:%S %z'
+      default: ! '%d.%m.%Y %H:%M'
       long: ! '%d %B %Y, %H:%M'
       short: ! '%d %b, %H:%M'
     pm: следобед

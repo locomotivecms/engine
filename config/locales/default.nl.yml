@@ -28,7 +28,7 @@ nl:
   time:
     am: "'s ochtends"
     formats:
-      default: "%a %d %b %Y %H:%M:%S %Z"
+      default: "%d/%m/%Y %H:%M"
       time: "%H:%M"
       short: "%d %b %H:%M"
       only_second: "%S"
