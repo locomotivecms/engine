@@ -5,7 +5,7 @@ PATH
       RedCloth (~> 4.2.8)
       actionmailer-with-request (~> 0.4.0)
       cancan (= 1.6.7)
-      carrierwave-mongoid (~> 0.6.0)
+      carrierwave-mongoid (~> 0.6.2)
       cells (~> 3.8.0)
       codemirror-rails (~> 3.13)
       custom_fields (~> 2.3.0)

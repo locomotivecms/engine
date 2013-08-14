@@ -14,11 +14,6 @@ module Locomotive
 
     ## methods ##
 
-    # FIXME: waiting for a new release of the carrierwave-mongoid gem based on our PR.
-    def source_will_change!
-      changed_attributes['source'] = '_new_'
-    end
-
     # Returns the url or the path to the uploaded file
     # if it exists. Otherwise returns the default url.
     #
