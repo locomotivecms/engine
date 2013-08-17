@@ -5,13 +5,71 @@ describe Locomotive::Liquid::Filters::Date do
   include Locomotive::Liquid::Filters::Date
 
   before(:each) do
-    @date = Date.parse('2007/06/29')
+    Time.zone = 'Paris'
+    @date       = Date.parse('2007/06/29')
+    @date_time  = Time.zone.parse('2007-06-29 21:35:00')
+  end
+
+  describe '#parse_date' do
+
+    let(:format) { nil }
+    let(:input)  { '06/29/2007' }
+
+    subject { parse_date(input, format) }
+
+    it { should == @date }
+
+    describe 'with a specified format' do
+
+      let(:format) { '%Y-%m-%d' }
+      let(:input) { '2007-06-29' }
+
+      it { should == @date }
+
+      describe 'but incorrect' do
+
+        let(:format) { '%Y-%d-%m' }
+
+        it { should == '' }
+
+      end
+
+    end
+
+  end
+
+  describe '#parse_date_time' do
+
+    let(:format) { nil }
+    let(:input)  { '06/29/2007 21:35:00' }
+
+    subject { parse_date_time(input, format) }
+
+    it { should == @date_time }
+
+    describe 'with a specified format' do
+
+      let(:format) { '%Y-%d-%m %H:%M' }
+      let(:input) { '2007-29-06 21:35' }
+
+      it { should == @date_time }
+
+      describe 'but incorrect' do
+
+        let(:format) { '%Y-%m-%d %H:%M' }
+
+        it { should == '' }
+
+      end
+
+    end
+
   end
 
   describe '#distance_of_time_in_words' do
 
     before(:each) do
-      Time.stubs(:now).returns(Time.parse('2012/11/25 00:00:00'))
+      Time.zone.stubs(:now).returns(Time.zone.parse('2012/11/25 00:00:00'))
     end
 
     it 'prints the distance of time in words from a string' do

@@ -16,8 +16,8 @@ module Locomotive
         protected
 
         def scoped_pages
-          if @context["with_scope"]
-            self._source.pages.where(@context["with_scope"])
+          if @context['with_scope']
+            self._source.pages.where(@context['with_scope'])
           else
             self._source.pages
           end
