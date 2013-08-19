@@ -69,7 +69,8 @@ describe Locomotive::Liquid::Filters::Date do
   describe '#distance_of_time_in_words' do
 
     before(:each) do
-      Time.zone.stubs(:now).returns(Time.zone.parse('2012/11/25 00:00:00'))
+      datetime = Time.zone.parse('2012/11/25 00:00:00')
+      Time.zone.stubs(:now).returns(datetime)
     end
 
     it 'prints the distance of time in words from a string' do
