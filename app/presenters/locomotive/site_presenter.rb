@@ -4,7 +4,8 @@ module Locomotive
     ## properties ##
 
     property    :name
-    properties  :locales,   type: Array
+    properties  :locales,       type: Array
+    property    :timezone
 
     with_options if: Proc.new { Locomotive.config.multi_sites_or_manage_domains? } do |presenter|
       presenter.property  :subdomain
@@ -23,6 +24,14 @@ module Locomotive
 
     def domain_name
       Locomotive.config.domain
+    end
+
+    def timezone
+      self.__source.timezone_name
+    end
+
+    def timezone=(timezone)
+      self.__source.timezone_name = timezone
     end
 
     def memberships

@@ -189,13 +189,15 @@ module Locomotive
         'fullpath'          => request.fullpath,
         'url'               => request.url,
         'ip_address'        => request.remote_ip,
+        'post?'             => request.post?,
         'now'               => Time.now.in_time_zone(current_site.timezone),
         'today'             => Date.today,
         'locale'            => I18n.locale.to_s,
         'default_locale'    => current_site.default_locale.to_s,
         'locales'           => current_site.locales,
         'current_user'      => Locomotive::Liquid::Drops::CurrentUser.new(current_locomotive_account),
-        'session'           => Locomotive::Liquid::Drops::SessionProxy.new
+        'session'           => Locomotive::Liquid::Drops::SessionProxy.new,
+        'wagon'             => false
       }
     end
 

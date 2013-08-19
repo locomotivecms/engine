@@ -24,6 +24,10 @@ module Locomotive
 
       protected
 
+      def set_locale
+        I18n.locale = Locomotive.config.locales.first
+      end
+
       def self.description
         {
           overall: %{Manage a session token which will be passed to all the other REST calls},

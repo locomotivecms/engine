@@ -41,7 +41,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'locomotive-aloha-rails',          '~> 0.23.2.2'
   s.add_dependency 'flash_cookie_session',            '~> 1.1.1'
 
-  s.add_dependency 'locomotive_liquid',               '~> 2.4.2'
+  s.add_dependency 'locomotivecms_solid',             '~> 0.2.1'
   s.add_dependency 'formtastic',                      '~> 2.2.1'
   s.add_dependency 'responders',                      '~> 0.9.2'
   s.add_dependency 'cells',                           '~> 3.8.0'

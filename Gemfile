@@ -27,6 +27,7 @@ group :development do
   # gem 'locomotive-aloha-rails', path: '../gems/aloha-rails' # for Developers
   # gem 'locomotive-tinymce-rails', path: '../gems/tinymce-rails' # for Developers
   # gem 'locomotive_liquid', path: '../gems/liquid' # for Developers
+  # gem 'locomotivecms_solid', path: '../gems/solid' # for Developers
 
   # gem 'carrierwave-mongoid', git: 'git://github.com/locomotivecms/carrierwave-mongoid.git'
 
