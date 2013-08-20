@@ -40,6 +40,10 @@ module Locomotive
           ::RedCloth.new(input).to_html
         end
 
+        def markdown(input)
+          Locomotive::Markdown.render(input)
+        end
+
       end
 
       ::Liquid::Template.register_filter(Text)
