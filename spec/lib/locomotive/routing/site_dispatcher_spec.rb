@@ -19,7 +19,7 @@ describe Locomotive::Routing::SiteDispatcher do
     end
 
     it 'adds a helper method for current site' do
-      @controller.should respond_to :current_site
+      @controller.respond_to?(:current_site, true).should be_true
     end
 
   end
