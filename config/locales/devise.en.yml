@@ -14,6 +14,7 @@ en:
         invalid: 'Invalid email or password.'
         not_found_in_database: 'Invalid email or password.'
         no_membership: 'Your account is not a member of this site, please contact the site administrator to gain access.'
+        admin_disabled: 'Admin access has been disabled for this site, please contact the site administrator.'
         invalid_token: 'Invalid authentication token.'
         timeout: 'Your session expired, please sign in again to continue.'
         inactive: 'Your account was not activated yet.'

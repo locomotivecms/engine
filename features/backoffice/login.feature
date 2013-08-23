@@ -31,3 +31,12 @@ Scenario: Attempting to login with an account without a membership
   And I press "Log in"
   Then I should not see "Listing pages"
   And I should see "not a member of this site"
+
+Scenario: Attempting to login to a site with a disabled backend
+  Given the admin access for site: "test site" is disabled
+  When I go to login
+  And I fill in "Email" with "admin@locomotiveapp.org"
+  And I fill in "Password" with "easyone"
+  And I press "Log in"
+  Then I should not see "Listing pages"
+  And I should see "Admin access has been disabled"
