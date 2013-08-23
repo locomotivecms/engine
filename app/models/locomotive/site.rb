@@ -13,6 +13,7 @@ module Locomotive
     ## fields ##
     field :name
     field :robots_txt
+    field :public_access, type: Boolean, default: true
 
     ## associations ##
     has_many    :pages,           class_name: 'Locomotive::Page',           validate: false, autosave: false

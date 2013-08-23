@@ -28,3 +28,15 @@ Scenario: Missing 404 page
     """
     No Page!
     """
+
+Scenario: Disabled site
+  Given a page named "hello-world" with the template:
+    """
+    Hello World
+    """
+  And the site is disabled
+  When I view the rendered page at "/hello-world"
+  Then the rendered output should look like:
+    """
+    No Site!
+    """

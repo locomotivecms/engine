@@ -29,7 +29,7 @@ module Locomotive
       end
 
       def require_site
-        return true if current_site
+        return true if current_site and current_site.public_access?
 
         if Locomotive::Account.count == 0 || Locomotive::Site.count == 0
           redirect_to installation_url

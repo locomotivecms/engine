@@ -57,6 +57,10 @@ Given /^a robot_txt set to "([^"]*)"$/ do |value|
   @site.update_attributes(robots_txt: value)
 end
 
+Given /^the site is disabled$/ do
+  @site.update_attributes(public_access: false)
+end
+
 Then /^I should be able to add a domain to my site$/ do
   visit edit_current_site_path
 
