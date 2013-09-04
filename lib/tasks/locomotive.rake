@@ -14,15 +14,16 @@ namespace :locomotive do
     Locomotive::Site.all.each do |site|
       default_locale = site.default_locale
 
-      ([default_locale] + (site.locales - [default_locale])). each do |locale|
+      ([default_locale] + (site.locales - [default_locale])).each do |locale|
         Mongoid::Fields::I18n.with_locale(locale) do
           pages = site.pages.to_a
           while !pages.empty? do
             page = pages.pop
             begin
               page.send :_parse_and_serialize_template
+              page.instance_variable_set :@template_changed, true
               page.save
-              puts "[#{site.name}][#{locale}] processing...#{page.title}"
+              puts "[#{site.name}][#{locale}] processing...#{page.title} [saved]"
             rescue TypeError
               pages.insert(0, page)
             rescue ::Liquid::Error => e

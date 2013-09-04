@@ -48,45 +48,61 @@ module Locomotive
           @collection ||= @content_type.ordered_entries(@context['with_scope']).visible
         end
 
+        # Modify the attributes of the with_scope tag so that
+        # they can be resolved by MongoDB.
+        #
         def modify_with_scope
-          fields = @content_type.ordered_custom_fields(:entries)
-
           @context['with_scope'].dup.each do |key, value|
-            if relation = self.relation_with(key)
-              # belongs_to, has_many, many_to_many relationships: use the _id
-              self.modify_with_scope_with_relation(key, value, relation)
-            elsif field = fields.detect { |f| f.name == key && f.type == 'select' }
-              # use the id of the option instead of the name
-              self.modify_with_scope_with_select(key, value, field)
+            field = @content_type.find_entries_custom_field(key.to_s)
+
+            next if field.nil?
+
+            case field.type.to_sym
+            when :belongs_to
+              self.modify_with_scope_key(key, "#{key.to_s}_id", self.object_to_id(field, value))
+            when :many_to_many
+              self.modify_with_scope_key(key, "#{key.to_s.singularize}_ids", self.object_to_id(field, value))
+            when :select
+              option = field.select_options.detect { |option| [option.name, option._id.to_s].include?(value) }
+              self.modify_with_scope_key(key, "#{key.to_s}_id", option.try(:_id))
             end
           end
         end
 
-        def modify_with_scope_with_relation(key, value, relation)
-          model = Locomotive::ContentType.class_name_to_content_type(relation.class_name, @context.registers[:site])
-          entry = model.entries.where(model.label_field_name => value).first
-
-          # modify the scope
-          @context['with_scope'].delete(key)
-          @context['with_scope'][relation.key] = entry
-        end
-
-        def relation_with(name)
-          @relations ||= @content_type.klass_with_custom_fields(:entries).relations
-
-          if @relations.keys.include?(name.to_s)
-            @relations[name]
-          elsif @relations.keys.include?(name.to_s.pluralize)
-            @relations[name.to_s.pluralize]
+        # Change the value of a key of the with_scope depending of its type.
+        # If the key is a Origin::Key, we only change the name.
+        # If the key is a String, we replace it.
+        #
+        # @param [ Object ] key Either a String or a Origin::Key
+        # @param [ String ] name The new name of the key
+        # @param [ String ] value The new value associated to the key
+        #
+        def modify_with_scope_key(key, name, value)
+          if key.respond_to?(:operator)
+            key.instance_variable_set :@name, name
+            @context['with_scope'][key] = value
+          else
+            @context['with_scope'].delete(key)
+            @context['with_scope'][name] = value
           end
         end
 
-        def modify_with_scope_with_select(key, value, field)
-          option = field.select_options.detect { |option| [option.name, option._id.to_s].include?(value) }
-
-          # modify the scope
-          @context['with_scope'].delete(key)
-          @context['with_scope']["#{key}_id"] = option.try(:_id)
+        # Get the _id attribute of a object or a list of objects which
+        # can include String (needed to retrieve a model
+        # based on its permalink or its label field) or ContentEntry instances.
+        #
+        # @param [ Object ] field The custom field
+        # @param [ Object ] value An object (content entry or label) or a list of objects
+        #
+        def object_to_id(field, value)
+          if value.respond_to?(:map)
+            value.map { |el| self.object_to_id(field, el) }
+          elsif value.respond_to?(:_id)
+            value._id
+          else
+            model = Locomotive::ContentType.class_name_to_content_type(field.class_name, @content_type.site)
+            model.entries.or({ _slug: value }, { model.label_field_name => value }).first.try(:_id)
+          end
         end
 
       end

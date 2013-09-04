@@ -150,7 +150,7 @@ module Locomotive
       end
 
       # Tip: switch from false to true to enable the re-thrown exception flag
-      ::Liquid::Context.new({}, assigns, self.locomotive_default_registers, false)
+      ::Liquid::Context.new({}, assigns, self.locomotive_default_registers, true)
     end
 
     # Get the assigns from the flash object (session). For instance, once
