@@ -211,6 +211,7 @@ module Locomotive
         site:           current_site,
         page:           @page,
         inline_editor:  self.editing_page?,
+        logger:         Rails.logger,
         current_locomotive_account: current_locomotive_account
       }
     end
