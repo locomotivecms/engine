@@ -80,6 +80,7 @@ Feature: Content Entries
       | 2/workers/1         | "w3"                          |
       | 2/client            | "c1"                          |
     And the JSON at "2/logo" should match /logo2.jpg$/
+    And the response content type should match /application\/json/
 
   Scenario: Updating existing project
     Given the JSON request at "content_entry/logo" is a file
@@ -111,6 +112,7 @@ Feature: Content Entries
       | 0/workers/1         | "w2"                          |
       | 0/client            | "c2"                          |
     And the JSON at "0/logo" should match /logo2.jpg$/
+    And the response content type should match /application\/json/
 
   # FIXME: (Did) What is the use case to modify the timestamps of a content entry
   @wip
