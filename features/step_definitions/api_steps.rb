@@ -1,4 +1,3 @@
-
 def api_base_url
   "http://#{Locomotive::Site.first.domains.first}/locomotive/api/"
 end
@@ -157,6 +156,10 @@ end
 
 Then /^the JSON at "([^"]*)" should match \/(.+)\/$/ do |path, regex|
   parse_json(last_json, path).should =~ /#{regex}/
+end
+
+Then /^the response content type should match \/(.+)\/$/ do |regex|
+  @json_response.header['Content-Type'].should =~ /#{regex}/
 end
 
 Then /^the JSON at "([^"]*)" should be the time "(.+)"$/ do |path, time_str|
