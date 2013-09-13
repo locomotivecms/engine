@@ -36,14 +36,14 @@ describe Locomotive::Liquid::Tags::Consume do
   context '#rendering' do
 
     it 'puts the response into the liquid variable' do
-      response = mock('response', code: 200, underscore_keys: { 'title' => 'Locomotive rocks !' })
+      response = mock('response', code: 200, parsed_response: parsed_response('title' => 'Locomotive rocks !'))
       Locomotive::Httparty::Webservice.stubs(:get).returns(response)
       template = "{% consume blog from \"http://blog.locomotiveapp.org/api/read\" %}{{ blog.title }}{% endconsume %}"
       Liquid::Template.parse(template).render.should == 'Locomotive rocks !'
     end
 
     it 'puts the response into the liquid variable using a url from a variable' do
-      response = mock('response', code: 200, underscore_keys: { 'title' => 'Locomotive rocks !' })
+      response = mock('response', code: 200, parsed_response: parsed_response('title' => 'Locomotive rocks !'))
       Locomotive::Httparty::Webservice.stubs(:get).returns(response)
       template = "{% consume blog from url %}{{ blog.title }}{% endconsume %}"
       Liquid::Template.parse(template).render('url' => "http://blog.locomotiveapp.org/api/read").should == 'Locomotive rocks !'
@@ -72,5 +72,9 @@ describe Locomotive::Liquid::Tags::Consume do
       template.render.should == 'first response'
     end
 
+  end
+
+  def parsed_response(attributes)
+    OpenStruct.new(underscore_keys: attributes)
   end
 end

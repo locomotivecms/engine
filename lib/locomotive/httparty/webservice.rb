@@ -23,13 +23,14 @@ module Locomotive
 
         # puts "[WebService] consuming #{path}, #{options.inspect}"
 
-        response = self.get(path, options)
+        response        = self.get(path, options)
+        parsed_response = response.parsed_response
 
         if response.code == 200
-          if response.respond_to?(:underscore_keys)
-            response.underscore_keys
+          if parsed_response.respond_to?(:underscore_keys)
+            parsed_response.underscore_keys
           else
-            response.collect(&:underscore_keys)
+            parsed_response.collect(&:underscore_keys)
           end
         else
           nil

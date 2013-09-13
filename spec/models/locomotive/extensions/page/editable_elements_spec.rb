@@ -22,6 +22,12 @@ describe Locomotive::Extensions::Page::EditableElements do
       @home = Locomotive::Page.find(@home._id)
     end
 
+    it 'keeps the same number of editable elements in all the children' do
+      @home.update_attributes raw_template: "{% editable_file 'body' %}/nowhere.pdf{% endeditable_file %}"
+      @sub_page_1.reload.editable_elements.size.should == 1
+      @sub_page_1_1.reload.editable_elements.size.should == 1
+    end
+
     it 'changes the type of the element in all the children' do
       @home.update_attributes raw_template: "{% editable_file 'body' %}/nowhere.pdf{% endeditable_file %}"
       @sub_page_1.reload

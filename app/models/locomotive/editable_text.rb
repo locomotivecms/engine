@@ -56,7 +56,10 @@ module Locomotive
         self.default_content = true
 
         self.content_will_change!
-        self.attributes['content'][locale] = el.content
+
+        if self.attributes['content']
+          self.attributes['content'][locale] = el.content
+        end
       end
     end
 
