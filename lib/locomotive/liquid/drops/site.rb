@@ -13,6 +13,10 @@ module Locomotive
           @pages ||= liquify(*self.scoped_pages)
         end
 
+        def domains
+          self._source.domains
+        end
+
         protected
 
         def scoped_pages

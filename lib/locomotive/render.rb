@@ -190,6 +190,7 @@ module Locomotive
         'url'               => request.url,
         'ip_address'        => request.remote_ip,
         'post?'             => request.post?,
+        'host'              => request.host_with_port,
         'now'               => Time.now.in_time_zone(current_site.timezone),
         'today'             => Date.today,
         'locale'            => I18n.locale.to_s,

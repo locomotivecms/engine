@@ -25,6 +25,7 @@ module Locomotive
 
       def set_locale
         ::I18n.locale = params[:locale] || current_site.default_locale
+        ::Mongoid::Fields::I18n.locale = ::I18n.locale
       end
 
       def set_content_type

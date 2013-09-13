@@ -1,3 +1,7 @@
+When(/^the locale of the current ruby thread changes to "(.*?)"$/) do |locale|
+  ::I18n.locale = ::Mongoid::Fields::I18n.locale = 'fr'
+end
+
 When /^I follow image link "([^"]*)"$/ do |img_alt|
   find(:xpath, "//img[@alt = '#{img_alt}']/parent::a").click()
 end

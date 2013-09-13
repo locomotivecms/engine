@@ -87,3 +87,12 @@ Feature: Contact form
     And I fill in "Message" with "LocomotiveCMS rocks"
     And I press "Submit"
     Then I should see "Email is required"
+
+  Scenario: Make sure to use the right locale
+    When I view the rendered page at "/contact"
+    And the locale of the current ruby thread changes to "fr"
+    And I fill in "E-Mail Address" with "did@locomotivecms.com"
+    And I fill in "Message" with "LocomotiveCMS rocks"
+    And I select "Code" from "Category"
+    And I press "Submit"
+    Then I should see "Thanks did@locomotivecms.com"
