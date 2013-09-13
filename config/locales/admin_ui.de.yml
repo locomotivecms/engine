@@ -56,6 +56,8 @@ de:
         account: Mein Zugang
         site: Webseite
         theme_assets: Dateien
+        translations: Übersetzungen
+
       list:
         untranslated: "Nicht übersetzt"
       form:
@@ -302,7 +304,6 @@ de:
         default_site_locales_hints: Sie können später weitere Sprachen im Einstellungsdialog vornehmen.
         next: Webseite erstellen
         back_to_default_template: "Klicken Sie <a href='#'>hier</a> um die Standardeinstellungen wieder herzustellen"
-
 
     public:
       pages:
