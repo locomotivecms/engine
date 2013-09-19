@@ -12,6 +12,22 @@ Scenario: Pages list is not accessible for non authenticated accounts
   When I go to pages
   Then I should see "You need to sign in or sign up before continuing"
 
+Scenario: Templatized pages are avaiable to authors
+  Given I am not authenticated
+  And I am an authenticated "author"
+  And I have a custom model named "Articles" with
+      | label       | type      | required    |
+      | Title       | string    | true        |
+  And I have entries for "Articles" with
+    | title             |
+    | Hello world       |
+  And a templatized page for the "Articles" model and with the template:
+    """
+    Here is the title: "{{ article.title }}"
+    """
+  When I go to pages
+  Then I should see "Template for Articles"
+
 @javascript
 Scenario: Creating a valid page
   When I go to pages
