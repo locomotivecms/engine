@@ -29,12 +29,12 @@ module Locomotive
           end
         end
 
-        def distance_of_time_in_words(input, from_time = Time.zone.now)
+        def distance_of_time_in_words(input, from_time = Time.zone.now, include_seconds = false)
           # make sure we deals with instances of Time
           input     = to_time(input)
           from_time = to_time(from_time)
 
-          ::ActionController::Base.helpers.distance_of_time_in_words(input, from_time)
+          ::ActionController::Base.helpers.distance_of_time_in_words(input, from_time, { include_seconds: include_seconds })
         end
 
         def localized_date(input, *args)

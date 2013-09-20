@@ -35,7 +35,7 @@ module Locomotive
         #
         def content_type
           if self.target_klass_name =~ /^Locomotive::ContentEntry([a-z0-9]+)$/
-            @content_type ||= self.site.content_types.find($1)
+            @content_type ||= self.site.content_types.find($1) rescue nil
           else
             nil
           end

@@ -337,6 +337,10 @@ describe Locomotive::Page do
         @page.target_klass_name = 'Locomotive::ContentEntry5151e25587f643c2cf000001'
       end
 
+      it 'returns nil if the content type does not exit' do
+        @page.content_type.should be_nil
+      end
+
       it 'has a name for the target entry' do
         @site.stubs(:content_types).returns(mock(find: @content_type))
         @page.target_entry_name.should == 'post'
