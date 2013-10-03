@@ -28,6 +28,11 @@ module Locomotive
 
         module PatchedTreeMethods
 
+          def ancestors
+            # https://github.com/benhutton/mongoid-tree/commit/acb6eb0440dc003cd8536cb8cc6ff4b16c9c9402
+            super.order_by(:depth.asc)
+          end
+
           private
 
           def assign_default_position
