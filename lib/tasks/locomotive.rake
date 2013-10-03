@@ -28,6 +28,8 @@ namespace :locomotive do
               pages.insert(0, page)
             rescue ::Liquid::Error => e
               puts "\tLiquid error: #{e.message} (#{page._id})"
+            rescue Exception => e
+              puts "\tUnknown error: #{e.message} (#{page._id})"
             end
           end
         end
