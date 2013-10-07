@@ -3,9 +3,12 @@ module Locomotive
     class BaseController < ApplicationController
 
       include Locomotive::Routing::SiteDispatcher
+      include Locomotive::ActionController::Timezone
       include Locomotive::ActionController::LocaleHelpers
 
       skip_before_filter :verify_authenticity_token
+
+      around_filter :set_timezone
 
       before_filter :require_account
 

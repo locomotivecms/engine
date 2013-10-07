@@ -50,10 +50,6 @@ module Locomotive
 
     protected
 
-    def set_timezone(&block)
-      Time.use_zone(current_site.try(:timezone) || 'UTC', &block)
-    end
-
     def set_current_thread_variables
       Thread.current[:account]  = current_locomotive_account
       Thread.current[:site]     = current_site
