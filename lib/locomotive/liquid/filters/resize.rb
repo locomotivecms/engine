@@ -4,7 +4,9 @@ module Locomotive
       module Resize
 
         def resize(input, resize_string)
-          Locomotive::Dragonfly.resize_url(input, resize_string)
+          source = input.instance_variable_get(:@_source) || input
+
+          Locomotive::Dragonfly.resize_url(source, resize_string)
         end
 
       end
