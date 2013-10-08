@@ -15,6 +15,8 @@ class Locomotive.Views.Shared.Fields.BelongsToView extends Backbone.View
       width:                '50%'
       minimumInputLength:   1
       quietMillis:          100
+      allowClear:           true
+      placeholder:          ' '
       ajax:
         url: options.url
         data: (term, page) ->

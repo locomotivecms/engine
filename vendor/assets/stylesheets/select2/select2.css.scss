@@ -128,14 +128,14 @@ Version: 3.4.0 Timestamp: Tue May 14 08:27:33 PDT 2013
     position: absolute;
     left: 0;
     top: 0;
-    z-index: 9998;
+    z-index: 400000;
 }
 
 .select2-drop {
     width: 100%;
     margin-top:-1px;
     position: absolute;
-    z-index: 9999;
+    z-index: 400001;
     top: 100%;
 
     background: #fff;
@@ -218,7 +218,7 @@ Version: 3.4.0 Timestamp: Tue May 14 08:27:33 PDT 2013
     padding-right: 4px;
 
     position: relative;
-    z-index: 10000;
+    z-index: 400002;
 
     white-space: nowrap;
 }
