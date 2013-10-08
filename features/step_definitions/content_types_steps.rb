@@ -122,3 +122,8 @@ Then %r{^there should not be any notified accounts on the "([^"]*)" model$} do |
   content_type = Locomotive::ContentType.where(name: name).first
   content_type.reload.public_submission_accounts.should eq([])
 end
+
+Given(/^I click on the (\d+)[a-z]+ required flag$/) do |nth|
+  find(".custom-field:nth-child(#{nth}) .required-input .switchHandle").click
+  sleep(0.1)
+end
