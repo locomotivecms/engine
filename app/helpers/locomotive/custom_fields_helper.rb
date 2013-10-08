@@ -9,7 +9,7 @@ module Locomotive
 
     def options_for_label_field(content_type)
       content_type.ordered_entries_custom_fields.find_all do |field|
-        %w(string email date date_time).include?(field.type)
+        %w(file string email date date_time).include?(field.type)
       end.map do |field|
         [field.label, field._id]
       end
