@@ -12,7 +12,6 @@ module Locomotive
     # config.autoload_once_paths += %W( #{config.root}/app/controllers #{config.root}/app/models #{config.root}/app/helpers #{config.root}/app/uploaders)
 
     initializer 'locomotive.content_types' do |app|
-      puts "locomotive.content_types......"
       # Load all the dynamic classes (custom fields)
       begin
         ContentType.all.collect { |content_type| content_type.klass_with_custom_fields(:entries) }
