@@ -46,10 +46,14 @@ de:
         _slug: Permalink
       account:
         edit:
+          locale: Sprache der Oberfläche
           password: "Neues Passwort"
           password_confirmation: "Bestätigung des neuen Passworts"
       page:
         seo_title: Titel
+      site:
+        locales: Sprachen der Webseite
+        timezone_name: Zeitzone
 
     hints:
       page:
@@ -61,9 +65,12 @@ de:
         seo_title: "Wähle einen Titel für den 'title' Tag im Seiten Header. Lass es leer, wenn der Seitentitel verwendet werden soll."
         meta_keywords: "Meta-Schlagworte, die im HEAD-Bereich der Webseite genutzt werden. Die einzelnen Wörter werden durch eine Leertaste getrennt. Diese werden für die Suchmaschinen benötigt."
         meta_description: "Meta-Beschreibung, die im HEAD-Bereich der Webseite genutzt wird. Diese wird für die Suchmaschinen benötigt."
+        handle: "Eindeutige Bezeichnung um diese Seite von einer externen Controller Instanz aus anzusprechen."
       snippet:
         slug: "Um ein Snippet einzubinden, musst Du diesen Slug benutzen."
       site:
+        locales: "Ziehen Sie eine Sprache an die erste Stelle um sie als Standard-Sprache festzulegen."
+        seo_title: "Globaler Wert, der auf jeder Seite für den Titel genutzt wird."
         meta_keywords: "Meta-Schlagworte, die im HEAD-Bereich der Webseite genutzt werden. Die einzelnen Wörter werden durch eine Leertaste getrennt. Diese werden für die Suchmaschinen benötigt."
         meta_description: "Meta-Beschreibung, die im HEAD-Bereich der Webseite genutzt wird. Diese wird für die Suchmaschinen benötigt."
         domain_name: "z.B: locomotiveapp.org"
@@ -72,6 +79,8 @@ de:
         slug: "Du musst die Dateiendung nicht angeben (.css or .js)"
         edit:
           source: "Du kannst diese Datei durch eine Datei mit gleicher Dateiendung ersetzen"
+      translation:
+        key: "Nutzen Sie Unterstriche um Wörter zu trennen. Beispiel: welcome_message."
       asset:
         source: "Es werden alle Datei-Typen akzeptiert."
         edit:
