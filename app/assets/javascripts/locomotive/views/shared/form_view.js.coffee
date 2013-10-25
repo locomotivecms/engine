@@ -29,9 +29,7 @@ class Locomotive.Views.Shared.FormView extends Backbone.View
   save_in_ajax: (event, options) ->
     event.stopPropagation() & event.preventDefault()
 
-    # make sure that the current text field gets saved too
-    input = @$('form input[type=text]:focus, form input[type=password]:focus, form textarea:focus')
-    input.trigger('change') if input.size() > 0
+    @trigger_change_event_on_focused_inputs()
 
     form = $(event.target).trigger('ajax:beforeSend')
 
@@ -89,11 +87,15 @@ class Locomotive.Views.Shared.FormView extends Backbone.View
       else
         content.slideUp 100, -> parent.addClass('folded')
 
+  trigger_change_event_on_focused_inputs: ->
+    # make sure that the current text field gets saved too
+    input = @$('form input[type=text]:focus, form input[type=password]:focus, form textarea:focus')
+    input.trigger('change') if input.size() > 0
+
   enable_save_with_keys_combination: ->
     $.cmd 'S', (() =>
       @$('form input[type=submit]').trigger('click')
     ), [], ignoreCase: true
-
 
   enable_form_notifications: ->
     @$('form').formSubmitNotification()

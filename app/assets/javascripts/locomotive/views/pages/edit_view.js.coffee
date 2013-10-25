@@ -5,6 +5,8 @@ class Locomotive.Views.Pages.EditView extends Locomotive.Views.Pages.FormView
   save: (event) ->
     event.stopPropagation() & event.preventDefault()
 
+    @trigger_change_event_on_focused_inputs()
+
     form = $(event.target).trigger('ajax:beforeSend')
 
     @clear_errors()
