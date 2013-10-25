@@ -98,7 +98,7 @@ describe Locomotive::Liquid::Tags::Nav do
     end
 
     it 'renders a snippet for the title' do
-      render_nav('site', {}, 'snippet: "-{{page.title}}-"').should match /<li id="child-1-link" class="link first"><a href="\/child_1">-Child #1-<\/a><\/li>/
+      render_nav('site', {}, 'snippet: "-{{page.title}} {{ foo.png | theme_image_tag }}-"').should match /<li id="child-1-link" class="link first"><a href="\/child_1">-Child #1 <img src=\"\" >-<\/a><\/li>/
     end
 
     it 'assigns a different dom id' do
