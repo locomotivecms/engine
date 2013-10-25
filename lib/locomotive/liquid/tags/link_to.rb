@@ -46,9 +46,11 @@ module Locomotive
             handle = scope[@handle] || @handle
 
             page = case handle
-            when Locomotive::Page         then handle
-            when String                   then fetch_page(site, handle)
-            when Locomotive::ContentEntry then fetch_page(site, handle, true)
+            when Locomotive::Page                         then handle
+            when Locomotive::Liquid::Drops::Page          then handle.instance_variable_get(:@_source)
+            when String                                   then fetch_page(site, handle)
+            when Locomotive::ContentEntry                 then fetch_page(site, handle, true)
+            when Locomotive::Liquid::Drops::ContentEntry  then fetch_page(site, handle.instance_variable_get(:@_source), true)
             else
               nil
             end
