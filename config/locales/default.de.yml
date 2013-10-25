@@ -57,23 +57,24 @@ de:
   mongoid:
     errors:
       messages:
-        blank_in_locale: "darf nicht leer sein"
+        blank_in_locale: "darxf nicht leer sein"
 
     attributes:
-      page:
+      locomotive/page:
         title: Titel
-        parent: Elternprozess
-        pared_id: Elternprozess
+        parent: Übergeordnete Seite
+        pared_id: ID der übergeordneten Seite
         slug: Slug
         listed: Im Menü
-        templatized: Templatized
+        templatized: Als Vorlage nutzen
         published: Veröffentlicht
         redirect: Umleitung
         redirect_url: Umleitungs-URL
-        cache_strategy: Cache
+        cache_strategy: Cache Strategie
         response_type: Antworttyp
         seo_title: SEO-Titel
-      content_type:
+        handle: Seiten-ID
+      locomotive/content_type:
         name: Name
         description: Beschreibung
         slug: Slug
@@ -82,27 +83,30 @@ de:
         highlighted_field_name: Hervorgehobener Feld-Name
         group_by_field_name: Gruppierung nach Feld-Name
         api_enabled: API aktiviert
-      asset:
+      locomotive/asset:
         source: Quelle
-      account:
+      locomotive/account:
         email: Email
         name: Name
         language: Sprache
         password: Passwort
         password_confirmation: Bestätigung des Passworts
-      snippet:
+      locomotive/snippet:
         body: Code
         slug: Slug
         name: Name
-      theme_asset:
+      locomotive/translation:
+        key: Schlüssel
+      locomotive/theme_asset:
         content_type: Inhalts-Typ
-      site:
+      locomotive/site:
         name: Name der Webseite
+        seo_title: SEO-Titel
         domain_name: Domain
         subdomain: Subdomain
-        restricted_access: Aktiviert ?
+        restricted_access: Aktiviert?
         access_login: Benutzernamen
-        access_password: "Passwort"
+        access_password: Passwort
 
   pagination:
     previous: "&laquo; Zurück"
@@ -242,3 +246,7 @@ de:
       words_connector: ", "
       two_words_connector: " und "
       last_word_connector: " und "
+  
+  unauthorized:
+    manage:
+      all: "Für diese Aktion sind Sie nicht autorisiert!"
