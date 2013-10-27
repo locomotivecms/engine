@@ -19,7 +19,7 @@ module Locomotive
 
     ## methods ##
 
-    Ability::ROLES.each do |_role|
+    Locomotive::Ability::ROLES.each do |_role|
       define_method("#{_role}?") do
         self.role == _role
       end
@@ -48,13 +48,13 @@ module Locomotive
     end
 
     def ability
-      @ability ||= Ability.new(self.account, self.site)
+      @ability ||= Locomotive::Ability.new(self.account, self.site)
     end
 
     protected
 
     def define_role
-      self.role = Ability::ROLES.include?(role.downcase) ? role.downcase : Ability::ROLES.first
+      self.role = Locomotive::Ability::ROLES.include?(role.downcase) ? role.downcase : Locomotive::Ability::ROLES.first
     end
 
     # Users should not be able to set the role of another user to be higher than
@@ -67,7 +67,7 @@ module Locomotive
       if current_membership.present?
         # The role cannot be set higher than the current one (we use the index in
         # the roles array to check role presidence)
-        errors.add(:role, :invalid) if Ability::ROLES.index(role) < Ability::ROLES.index(current_membership.role)
+        errors.add(:role, :invalid) if Locomotive::Ability::ROLES.index(role) < Locomotive::Ability::ROLES.index(current_membership.role)
       end
     end
 
