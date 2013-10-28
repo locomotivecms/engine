@@ -32,7 +32,7 @@ module Locomotive
       end
 
       def current_ability
-        @current_ability ||= Ability.new(current_locomotive_account, current_site)
+        @current_ability ||= Locomotive::Ability.new(current_locomotive_account, current_site)
       end
 
       def require_account
