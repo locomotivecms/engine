@@ -87,7 +87,6 @@ function notify(title,message,image,priority) {
 	html = r(html, /%image%/, (image?image:jQuery.growl.settings.defaultImage));
 	html = r(html, /%priority%/, (priority?priority:'normal'));
 
-
 	var notice = $(html)
 		.hide()
 		.css(jQuery.growl.settings.noticeCss)
