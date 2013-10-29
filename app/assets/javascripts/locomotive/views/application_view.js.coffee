@@ -24,7 +24,7 @@ class Locomotive.Views.ApplicationView extends Backbone.View
 
   render_flash_messages: (messages) ->
     _.each messages, (couple) ->
-      couple[0] = ''; couple[1] = 'Welcome Home' if couple[1] is "You are already signed in."
+      couple[1] = '' if couple[1] is "You are already signed in."
       $.growl couple[0], couple[1]
 
   center_ui_dialog: ->
