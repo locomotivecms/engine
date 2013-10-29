@@ -78,9 +78,7 @@ function r(text, expr, val) {
 };
 
 function notify(title,message,image,priority) {
-	if (message === '') {
-		return false;
-	}
+	if (message === '') return false;
 	var instance = create();
 	var html = jQuery.growl.settings.noticeTemplate;
 	if(typeof(html) == 'object') html = $(html).html();
@@ -88,6 +86,7 @@ function notify(title,message,image,priority) {
 	html = r(html, /%title%/, (title?title:''));
 	html = r(html, /%image%/, (image?image:jQuery.growl.settings.defaultImage));
 	html = r(html, /%priority%/, (priority?priority:'normal'));
+
 
 	var notice = $(html)
 		.hide()
