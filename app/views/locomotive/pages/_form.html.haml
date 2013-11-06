@@ -44,6 +44,8 @@
   = f.input :redirect_url, required: true, wrapper_html: { style: "#{'display: none' unless @page.redirect?}" }
 
   = f.input :redirect_type, as: :select, collection: options_for_page_redirect_type, include_blank: false, wrapper_html: { style: "#{'display: none' unless @page.redirect?}" }
+  
+  = render_cell 'locomotive/partials', :display, :page_form, g: f
 
   - if can?(:customize, @page)
 
