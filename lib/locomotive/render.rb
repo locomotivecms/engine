@@ -96,7 +96,7 @@ module Locomotive
 
     # Get the Locomotive page matching the request and scoped by the current Locomotive site
     #
-    # @param [ String ] path An optional path overriding the default default behaviour to get a page
+    # @param [ String ] path An optional path overriding the default behaviour to get a page
     #
     # @return [ Object ] The Locomotive::Page
     #
