@@ -1,6 +1,7 @@
 require "highline/import"
 
 namespace :development do
+  desc "Setup sites and account for development"
   task bootstrap: :environment do
     if Locomotive::Site.count > 0 || Locomotive::Account.count > 0
       puts "This will wipe out all sites and accounts"
