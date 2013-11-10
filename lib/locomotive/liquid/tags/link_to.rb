@@ -42,23 +42,17 @@ module Locomotive
         protected
 
         def retrieve_page_from_handle(site, context)
-          context.scopes.reverse_each do |scope|
-            handle = scope[@handle] || @handle
+          handle = context[@handle] || @handle
 
-            page = case handle
-            when Locomotive::Page                         then handle
-            when Locomotive::Liquid::Drops::Page          then handle.instance_variable_get(:@_source)
-            when String                                   then fetch_page(site, handle)
-            when Locomotive::ContentEntry                 then fetch_page(site, handle, true)
-            when Locomotive::Liquid::Drops::ContentEntry  then fetch_page(site, handle.instance_variable_get(:@_source), true)
-            else
-              nil
-            end
-
-            return page unless page.nil?
+          case handle
+          when Locomotive::Page                         then handle
+          when Locomotive::Liquid::Drops::Page          then handle.instance_variable_get(:@_source)
+          when String                                   then fetch_page(site, handle)
+          when Locomotive::ContentEntry                 then fetch_page(site, handle, true)
+          when Locomotive::Liquid::Drops::ContentEntry  then fetch_page(site, handle.instance_variable_get(:@_source), true)
+          else
+            nil
           end
-
-          nil
         end
 
         def fetch_page(site, handle, templatized = false)
