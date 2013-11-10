@@ -43,11 +43,17 @@ describe Locomotive::Liquid::Tags::Consume do
     end
 
     it 'puts the response into the liquid variable using a url from a variable' do
-      response = mock('response', code: 200, parsed_response: parsed_response('title' => 'Locomotive rocks !'))
-      Locomotive::Httparty::Webservice.stubs(:get).returns(response)
+      base_uri = 'http://blog.locomotiveapp.org'
       template = "{% consume blog from url %}{{ blog.title }}{% endconsume %}"
-      Liquid::Template.parse(template).render('url' => "http://blog.locomotiveapp.org/api/read").should == 'Locomotive rocks !'
+      conpiled_template = Liquid::Template.parse(template)
+
+      [['/api/read', 'Locomotive rocks !'], ['/api/read_again', 'Locomotive still rocks !']].each do |path, title|
+        response = mock('response', code: 200, parsed_response: parsed_response('title' => title))
+        Locomotive::Httparty::Webservice.stubs(:get).with(path, {:base_uri => base_uri}).returns(response)
+        conpiled_template.render('url' => base_uri + path).should == title
+      end
     end
+
   end
 
   context 'timeout' do
