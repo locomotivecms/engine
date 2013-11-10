@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    locomotive_cms (2.3.0)
+    locomotive_cms (2.3.1)
       RedCloth (~> 4.2.8)
       actionmailer-with-request (~> 0.4.0)
       cancan (= 1.6.7)
@@ -182,7 +182,7 @@ GEM
       multi_json (~> 1.4)
       nokogiri (~> 1.5.2)
       oauth2
-    haml (4.0.3)
+    haml (4.0.4)
       tilt
     hashie (2.0.5)
     highline (1.6.20)
