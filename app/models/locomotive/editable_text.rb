@@ -35,6 +35,8 @@ module Locomotive
     def copy_attributes_from(el)
       super(el)
 
+      self.copy_formatting_attributes_from(el)
+
       self.attributes['content']          = el.content_translations || {}
       self.attributes['default_content']  = el.default_content_translations
     end
@@ -42,8 +44,12 @@ module Locomotive
     def copy_default_attributes_from(el)
       super(el)
 
+      self.copy_formatting_attributes_from(el)
+    end
+
+    def copy_formatting_attributes_from(el)
       %w(format rows line_break).each do |attr|
-        self.send(:"#{attr}=", el.send(attr.to_sym))
+        self.attributes[attr] = el.attributes[attr]
       end
     end
 
