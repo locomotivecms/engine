@@ -45,7 +45,7 @@ zh-CN:
         unlock_instructions: '解锁说明'
 
 
-  locomotive_account:
+  locomotive:
     devise_mailer:
       common:
         hello: 你好

@@ -45,7 +45,7 @@ pl:
         unlock_instructions: 'Instrukcje odblokowywania'
 
 
-  locomotive_account:
+  locomotive:
     devise_mailer:
       common:
         hello: Witaj

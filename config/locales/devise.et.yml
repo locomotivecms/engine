@@ -46,7 +46,7 @@ et:
         unlock_instructions: 'Lahti lukustamise juhised'
 
 
-  locomotive_account:
+  locomotive:
     devise_mailer:
       common:
         hello: Tere

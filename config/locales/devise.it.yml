@@ -45,7 +45,7 @@ it:
         unlock_instructions: "Istruzioni per lo sblocco dell'account"
 
 
-  locomotive_account:
+  locomotive:
     devise_mailer:
       common:
         hello: Ciao

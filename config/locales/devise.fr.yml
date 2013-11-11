@@ -43,7 +43,7 @@ fr:
         reset_password_instructions: "Instructions pour la réinitialisation du mot de passe"
         unlock_instructions: "Instructions pour le déverrouillage"
 
-  locomotive_account:
+  locomotive:
     devise_mailer:
       common:
         hello: Bienvenue
