@@ -25,15 +25,14 @@ module Locomotive
             raise ::Liquid::SyntaxError.new("Syntax Error in 'consume' - Valid syntax: consume <var> from \"<url>\" [username: value, password: value]")
           end
 
-          @cache_key = Digest::SHA1.hexdigest(@target)
           @local_cache_key = self.hash
 
           super
         end
 
         def render(context)
-          if @is_var
-            @url = context[@url]
+          if @var
+            @url = context[@var]
           end
           render_all_and_cache_it(context)
         end
@@ -41,12 +40,10 @@ module Locomotive
         protected
 
         def prepare_url(url)
-          @url    = url
-          @is_var = false
-          if @url.match(::Liquid::QuotedString)
-            @url.gsub!(/['"]/, '')
-          elsif @url.match(::Liquid::VariableSignature)
-            @is_var = true
+          if url.match(::Liquid::QuotedString)
+            @url = url.gsub!(/['"]/, '')
+          elsif url.match(::Liquid::VariableSignature)
+            @var = url
           else
             raise ::Liquid::SyntaxError.new("Syntax Error in 'consume' - Valid syntax: consume <var> from \"<url>\" [username: value, password: value]")
           end
@@ -72,6 +69,7 @@ module Locomotive
         end
 
         def render_all_and_cache_it(context)
+          @cache_key = Digest::SHA1.hexdigest(@url)
           Rails.cache.fetch(@cache_key, expires_in: @expires_in, force: @expires_in == 0) do
             self.render_all_without_cache(context)
           end
