@@ -435,6 +435,14 @@ form.formtastic {
 
         } // li.date
 
+        &.date-time {
+
+          input[type=text] {
+            width: 120px;
+          }
+
+        } // li.date-time
+
         &.file {
           span.file {
             a:first-child {

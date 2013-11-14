@@ -21,6 +21,10 @@ ja:
     abbr_month_names: [~, 1月, 2月, 3月, 4月, 5月, 6月, 7月, 8月, 9月, 10月, 11月, 12月]
     order: [ 年, 月, 日 ]
 
+  time:
+    formats:
+      default: "%d/%m/%Y %H:%M"
+
   mongoid:
     errors:
       messages:

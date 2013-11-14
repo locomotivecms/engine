@@ -11,6 +11,16 @@ module Locomotive
     paths['mongodb/migrate'] = 'mongodb/migrate'
     # config.autoload_once_paths += %W( #{config.root}/app/controllers #{config.root}/app/models #{config.root}/app/helpers #{config.root}/app/uploaders)
 
+    initializer 'locomotive.content_types' do |app|
+      # Load all the dynamic classes (custom fields)
+      begin
+        ContentType.all.collect { |content_type| content_type.klass_with_custom_fields(:entries) }
+      rescue Exception => e
+        # let assume it's because of the first install (meaning no config.yml file)
+        Locomotive.log :warn, "WARNING: unable to load the content types, #{e.message}"
+      end
+    end
+
     initializer 'locomotive.cells' do |app|
       Cell::Base.prepend_view_path("#{config.root}/app/cells")
     end

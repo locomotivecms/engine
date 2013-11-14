@@ -22,7 +22,9 @@ et:
       ru: Vene
       et: Eesti
       ja: Jaapanlane
-      zh-CN: Hiina 
+      zh-CN: Hiina
+      cs: Tsehhi
+      bg: Bulgaaria
 
     messages:
       confirm: Oled kindel ?

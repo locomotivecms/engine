@@ -65,7 +65,7 @@ describe 'Locomotive rendering system' do
 
     it 'sets the cache by simply using etag' do
       @page.cache_strategy = 'simple'
-      @page.stubs(:updated_at).returns(Time.now)
+      @page.stubs(:updated_at).returns(Time.zone.now)
       @controller.send(:prepare_and_set_response, 'Hello world !')
       @controller.response.to_a # force to build headers
       @controller.response.headers['Cache-Control'].should == 'public'
@@ -73,7 +73,7 @@ describe 'Locomotive rendering system' do
 
     it 'sets the cache for Varnish' do
       @page.cache_strategy = '3600'
-      @page.stubs(:updated_at).returns(Time.now)
+      @page.stubs(:updated_at).returns(Time.zone.now)
       @controller.send(:prepare_and_set_response, 'Hello world !')
       @controller.response.to_a # force to build headers
       @controller.response.headers['Cache-Control'].should == 'max-age=3600, public'

@@ -1,0 +1,359 @@
+cs:
+  locomotive:
+    buttons:
+      login: Přihlásit
+      send_password: Poslat
+      change_password: Změnit
+      new_item: "+ přidat"
+      switch_to_site: Na web
+      delete: "Odstranit"
+      close: "Zavřít"
+
+    locales:
+      en: Angličtina
+      de: Němčina
+      fr: Francouzština
+      pl: Polština
+      pt-BR: "Brazilská portugalština"
+      it: Italština
+      nl: Holandština
+      nb: Norština
+      es: Španělština
+      ru: Ruština
+      et: Estonština
+      ja: Japonština
+      zh-CN: Čínština
+      cs: Čeština
+
+    messages:
+      confirm: Jste si jistý?
+      sending_form: Formulář se právě odesílá
+
+    shared:
+      header:
+        welcome: Vítejte %{name}
+        see: Ukázat web
+        switch: Přepnout na jiný web
+        help: Nápověda
+        logout: Odhlášení
+      menu:
+        contents: Obsahy
+        assets: Soubory
+        settings: Nastavení
+        pages: Stránky
+        snippets: Snippety
+        account: Můj účet
+        site: Stránka
+        theme_assets: Soubory vzhledu
+        translations: Překlady
+      form:
+        change_file: změnit
+        delete_file: smazat
+        cancel: zrušit
+      form_actions:
+        back: Zpět bez uložení
+        create: Vytvořit
+        update: Uložit
+        send: Poslat
+        disable_with: Pracuji…
+      list:
+        untranslated: nepřeloženo
+      footer:
+        who_is_behind: "LocomotiveCMS je vyvíjen %{development} a ztvárněn <a href=\"http://www.sachagreif.com\">Sachou Greifem</a> &mdash; <small>verze</small> %{version}"
+
+    errors:
+      "500":
+        title: Chyba aplikace
+        notice: "Je nám líto, ale něco se pokazilo"
+        link: "&rarr; Zpět do aplikace"
+      "404":
+        title: Stránka nebyla nalezena
+        notice: "Požadovaná stránka neexistuje."
+        link: "&rarr; Zpět do aplikace"
+
+    notifications:
+      new_content_entry:
+        subject: "[%{domain}][%{type}] nový obsah"
+        title: "Ahoj %{name}, jen oznamuju, že %{date} byla na <b>%{domain}</b> vytvořena nová instance."
+        type: "Model: %{type}"
+
+    pagination:
+      first: "&laquo;"
+      last: "&raquo;"
+      previous: "&lsaquo;"
+      next: "&rsaquo;"
+      truncate: "&hellip;"
+
+    sites_picker:
+      new: + nový web
+
+    api_key:
+      none: Klepněte prosím na vedlejší tlačítko pro vytvoření nového API klíče.
+      button: Znovu vytvořit
+
+    custom_fields:
+      edit:
+        title: Úprava vlastního pole
+      text_formatting:
+        none: Nic
+        html: HTML
+      types:
+        file:
+          delete_file: Smazat soubor
+        has_many:
+          empty: Seznam je prázdný
+          new_entry: + Přidat záznam
+        many_to_many:
+          empty: Seznam je prázdný. Přidejte záznam z vedlejšího boxu.
+
+      form:
+        empty: Prázdné
+        required: Vyžadováno
+        default_label: Název pole
+        select_options:
+          ask_name: "Vyplňte popisek volby"
+
+    sessions:
+      new:
+        title: Přihlásit
+        link: "Zapomenuté heslo"
+        email: "Email"
+        password: "Heslo"
+
+    passwords:
+      new:
+        title: Zapomenuté heslo
+        link: "&rarr; Zpět k přihlášení"
+        email: "Váš email"
+      edit:
+        title: Změnit heslo
+        link: "&rarr; Zpět k přihlášení"
+        password: "Vaše nové heslo"
+        password_confirmation: "Potvrzení Vašeho nového hesla"
+
+    pages:
+      index:
+        title: Seznam stránek
+        help: "Stránky jsou řazeny do stromu. Můžete je řadit jako složky."
+        no_items: "Nejsou tu teď žádné stránky. Stačí ale kliknout <a href=\"%{url}\">sem</a> a nějakou přidat."
+        new: nová stránka
+        latest_entries: Poslední záznamy
+      new:
+        title: Nová stránka
+        help: "Vyplňte formulář níže k vytvoření stránky. Pozor, stránka nebude publikována, dokud to nezvolíte."
+      page:
+        updated_at: aktualizována
+      edit:
+        show: zobrazit
+        help: "Titulek stránky může být upraven kliknutím. K aplikování změn stačí kliknout na tlačítko \"Uložit\"."
+        ask_for_title: "Vyplňte prosím titulek stránky"
+      form:
+        change_file: změnit
+        delete_file: odstranit
+        cancel: zrušit
+        default_block: Standardní
+        cache_strategy:
+          none: Žádná
+          simple: Jednoduchá
+          hour: 1 hodina
+          day: 1 den
+          week: 1 týden
+          month: 1 měsíc
+        redirect_type:
+          permanent: "Permanentní (301)"
+          temporary: "Dočasné (302)"
+
+    snippets:
+      index:
+        title: Seznam snippetů
+        help: "Snippety jsou kusy HTML kódu, které naleznete na různých místech webu (třeba v patičce)."
+        no_items: "Nejsou tu teď žádné snippety. Stačí ale klinout <a href=\"%{url}\">sem</a> a nějaký přidat."
+        new: nový snippet
+      new:
+        title: Nový snippet
+        help: "Vyplňte formulář níže pro vytvoření nového snippetu."
+      edit:
+        title: Úprava snippetu
+        help: "Vložte svůj snippet do šablony za pomoci tohoto kódu: <span class='code'>{% include '%{slug}' %}</span>."
+      snippet:
+        updated_at: Aktualizováno
+
+    sites:
+      new:
+        title: Nový web
+        help: "Vyplňte formulář níže pro vytvoření nového webu."
+      domains:
+        empty: "Tento web není svázán se žádnou doménou. Domény prostě přidejte níže. <b>Nezapomeňte upravit DNS.</b>"
+
+    current_site:
+      edit:
+        new_membership: přidat účet
+        help: "Název webu může být upraven kliknutím sem. K aplikování změn stačí kliknout na tlačítko \"Uložit\"."
+        ask_for_name: "Vyplňte prosím název nového webu"
+
+    memberships:
+      roles:
+        admin: Administrátor
+        designer: Designer
+        author: Autor
+      new:
+        title: Nový účet
+        help: "Vyplňte prosím email nového účtu. Pokud neexistuje, přesměrujeme vás na stránku k vytvoření účtu."
+
+    accounts:
+      new:
+        title: Nový účet
+        help: "Vyplňte formulář níže k přidání nového účtu."
+
+    my_account:
+      edit:
+        help: "Vaše jméno můžete změnit kliknutím sem. K aplikování změn stačí kliknout na tlačítko \"Uložit\"."
+        new_site: nový web
+        ask_for_name: "Napište prosím vaše nové jméno"
+
+    theme_assets:
+      index:
+        title: Seznam souborů vzhledu
+        help: "Soubory vzhledu jsou místo, kde můžete spravovat soubory, které vyžaduje váš layout, snippety, atd. Pokud potřebujete spravovat obrázkovou galerii, vytvořte radši nový druh obsahu.<br/><b>Varování:</b> možná neuvidíte všechny soubory. Záleží na vašich právech."
+        quick_upload: Rychlý upload
+        new: nový soubor
+        snippets: Snippety
+        css_and_js: Styly a javascript
+        fonts: Fonty
+        images: Obrázky
+        media: Média
+        no_items: "Teď tu nejsou žádné soubory."
+        others: Ostatní
+      asset:
+        updated_at: Aktualizováno
+      new:
+        title: Nový soubor
+        help: "Můžete buď nahrát soubor nebo vložit ze schránky přímo stylesheet nebo javascript."
+      edit:
+        title: "Úprava %{file}"
+        help: "Tento soubor je přímo přístupný z url: <a href='%{url}'>%{url}</a>"
+        help_image: "Vložte svůj obrázek do šablony nebo snippetu za pomoci tohoto liquid kódu: <span class='code'>{{ '%{path}' | theme_image_tag }}</span>.<br/>Your current image dimensions : <b>%{width}px x %{height}px</b>.<br/>"
+        help_javascript: "Vložte svůj javascript do šablony nebo snippetu za pomoci tohoto liquid kódu: <span class='code'>{{ '%{path}' | javascript_tag }}</span>.<br/>"
+        help_stylesheet: "Vložte svůj stylesheet do šablony nebo snippetu za pomoci tohoto liquid kódu: <span class='code'>{{ '%{path}' | stylesheet_tag }}</span>.<br/>"
+      form:
+        picker_link: Vložte do kódu soubor
+        choose_file: Vyberte soubor
+        choose_plain_text: Vyberte text
+      image_picker:
+        title: "Vložte obrázek vzhledu"
+        no_items: "Teď tu nejsou žádné obrázky."
+        upload: "Nahrát obrázky"
+      images:
+        title: "Vložte obrázek vzhledu"
+        no_items: "Teď tu nejsou žádné obrázky."
+        upload: "Nahrát obrázky"
+
+    translations:
+      untranslated: "Nepřeložené jazyky: %{list}"
+      index:
+        title: Překlady
+        new: nový překlad
+        no_items: "Nejsou tu teď žádné překlady. Stačí ale kliknout <a href=\"%{url}\">sem</a> a nějaký přidat."
+        remove: Odstranit %{key}
+      new:
+        title: "Nový překlad"
+        help: "Stránky/snippety můžou sdílet šablony pro všechny překlady kromě některých popisků, které nastavíte Liquid tagem <b>translate</b>."
+      edit:
+        title: "Úprava %{key}"
+        help: "Tento překladový klíč můžete použít tímto kódem: <span class='code'>{{ '%{key}' | translate }}</span>."
+
+    content_assets:
+      picker:
+        title: "Vložte média"
+        no_items: "Nejsou tu teď žádná média."
+        upload: "Nahrát média"
+
+    content_types:
+      index:
+        new: nový model
+        edit: upravit model
+      new:
+        title: Nový model
+        help: "Vytvořte vlastní model (projekty, lidi, atd.). Váš model by měl mít aspoň jedno pole. Pro záznamy tohoto modelu bude toto pole povinné."
+      edit:
+        title: Úprava modelu
+        help: "Váš model by měl mít aspoň jedno pole. Pro záznamy tohoto modelu bude toto pole povinné."
+        show_entries: záznamy
+        new_entry: nový záznam
+        show_items: záznamy
+        new_item: nový záznam
+      form:
+        order_by:
+          created_at: 'Podle data vytvoření'
+          updated_at: 'Podle data úpravy'
+          position_in_list: Ručně
+        order_direction:
+          asc: Sestupně
+          desc: Vzestupně
+
+    content_entries:
+      index:
+        title: 'Seznam "%{type}"'
+        edit: upravit model
+        destroy: odstranit model
+        download: stáhnout záznamy
+        new: nový záznam
+        category_noname: "Beze jména"
+        latest_entries: "Poslední záznamy"
+        updated_at: "Aktualizováno"
+      list:
+        no_items: "Nejsou tu teď žádné záznamy. Stačí ale kliknout <a href=\"%{url}\">sem</a> a nějaký přidat."
+        no_entries: "Nejsou tu teď žádné záznamy. Stačí ale kliknout <a href=\"%{url}\">sem</a> a nějaký přidat."
+      new:
+        title: '%{type} &mdash; nový záznam'
+      edit:
+        title: '%{type} &mdash; úprava záznamu'
+      form:
+        edit_select_options: možnosti úpravy
+        has_many:
+          new_entry: Nový záznam
+          new_item: Nový záznam
+
+    code_editing:
+      image_picker: Vložte do kódu obrázek
+      copy_template: Kopírovat šablonu z hlavního jazyka
+
+    cross_domain_sessions:
+      new:
+        title: Autentizace z jiné domény
+        notice: Během několika se ocitnete na požadovaném webu.
+
+    installation:
+      common:
+        title: První instalace Locomotive
+        next: Dále
+      step_1:
+        title: "Krok 1/2 &mdash; Vytvoření účtu"
+        name: Název účtu
+        email: Email
+        password: Heslo
+        password_confirmation: Potvrzení hesla
+        done: "Už jste přidal účet:<br/><strong>%{name}</strong>, <em>%{email}</em>"
+        next: Vytvořit účet
+      step_2:
+        title: "Krok 2/2 &mdash; Vytvořte svůj první web"
+        explanations: "Už jste skoro u konce. Pojmenujte prosím svůj první web a nastavte mu výchozí jazyk."
+        default_site_locale: Jazyk
+        default_site_locales_hints: Později budete moct v nastavení přidat další jazyky.
+        next: Vytvořit web
+        back_to_default_template: "Klikněte <a href='#'>zde</a> pro návrat do standardní šablony."
+
+    public:
+      pages:
+        show_toolbar:
+          statuses:
+            loading: "Nahrávání…"
+            disabled: "Inline editor vypnutý"
+          labels:
+            save_changes: "Uložit změny: "
+            editing_mode: "Mód úprav: "
+            lang: "Jazyk: "
+          buttons:
+            back: Zpět do back-office
+            confirm: Potvrdit
+            cancel: Zrušit

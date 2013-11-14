@@ -8,6 +8,10 @@ describe Locomotive::Liquid::Filters::Text do
     textile('This is *my* text.').should == "<p>This is <strong>my</strong> text.</p>"
   end
 
+  it 'transforms a markdown input into HTML' do
+    markdown('# My title').should == "<h1>My title</h1>\n"
+  end
+
   it 'underscores an input' do
     underscore('foo').should == 'foo'
     underscore('home page').should == 'home_page'

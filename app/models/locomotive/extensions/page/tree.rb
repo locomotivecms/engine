@@ -20,6 +20,7 @@ module Locomotive
           ## indexes ##
           index position: 1
           index depth:    1, position: 1
+          index site_id:  1, depth:    1, position: 1
 
           alias_method_chain :rearrange, :identity_map
           alias_method_chain :rearrange_children, :identity_map
@@ -27,6 +28,11 @@ module Locomotive
         end
 
         module PatchedTreeMethods
+
+          def ancestors
+            # https://github.com/benhutton/mongoid-tree/commit/acb6eb0440dc003cd8536cb8cc6ff4b16c9c9402
+            super.order_by(:depth.asc)
+          end
 
           private
 
@@ -78,12 +84,7 @@ module Locomotive
               end
             end
 
-            current_page.instance_eval do
-              def children=(list); @children = list; end
-              def children; @children || []; end
-            end
-
-            current_page.children = children
+            current_page.instance_variable_set(:@children, children || [])
 
             current_page
           end

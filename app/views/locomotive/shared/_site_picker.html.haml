@@ -3,8 +3,8 @@
     - current_locomotive_account.sites.each do |site|
       - unless current_site._id == site._id
         %li
-          = link_to site.name, locomotive.pages_url(host: site.full_subdomain, port: request.port)
+          = link_to site.name, locomotive.pages_url(host: site.full_subdomain, port: request.port, protocol: request.ssl? ? 'https' : 'http')
 
   - if can?(:manage, Locomotive::Site)
     %p.action
-      = link_to t('locomotive.sites_picker.new'), locomotive.new_site_url
+      = link_to t('locomotive.sites_picker.new'), locomotive.new_site_path

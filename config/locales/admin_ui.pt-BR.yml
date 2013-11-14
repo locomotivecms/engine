@@ -22,7 +22,9 @@ pt-BR:
       ru: Russo
       et: Estoniano
       ja: Japonês
-      zh-CN: Chinês 
+      zh-CN: Chinês
+      cs: Tcheco
+      bg: Búlgaro
 
     messages:
       confirm: Você tem certeza?

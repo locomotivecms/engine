@@ -2,14 +2,14 @@ module Locomotive
   module CustomFieldsHelper
 
     def options_for_custom_field_type
-      %w(string text integer float boolean email date file tags select belongs_to has_many many_to_many).map do |type|
+      %w(string text integer float boolean email date date_time file tags select belongs_to has_many many_to_many).map do |type|
         [t("custom_fields.type.#{type}"), type]
       end
     end
 
     def options_for_label_field(content_type)
       content_type.ordered_entries_custom_fields.find_all do |field|
-        %w(string email date).include?(field.type)
+        %w(file string email date date_time).include?(field.type)
       end.map do |field|
         [field.label, field._id]
       end

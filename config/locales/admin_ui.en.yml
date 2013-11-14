@@ -22,7 +22,9 @@ en:
       ru: Russian
       et: Estonian
       ja: Japanese
-      zh-CN: Chinese 
+      zh-CN: Chinese
+      cs: Czech
+      bg: Bulgarian
 
     messages:
       confirm: Are you sure ?

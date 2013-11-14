@@ -54,7 +54,7 @@ Scenario: with_scope with label value
   And a page named "sexy-articles" with the template:
     """
     <hr>
-    {% with_scope project: "My sexy project" %}
+    {% with_scope projects.in: ["My sexy project"] %}
     {% for article in contents.articles %}- {{ article.title }}<br>{% endfor %}
     {% endwith_scope %}
     <hr>
@@ -63,8 +63,8 @@ Scenario: with_scope with label value
   Then the rendered output should look like:
     """
     <hr>
-    
+
     - Lorem ipsum<br>
-    
+
     <hr>
     """

@@ -3,7 +3,7 @@
 
 - title t('.title')
 
-= semantic_form_for(@site, url: installation_step_url(2), html: { multipart: true }) do |f|
+= semantic_form_for(@site, url: installation_step_path(2), html: { multipart: true }) do |f|
   .inner
 
     %p.explanations

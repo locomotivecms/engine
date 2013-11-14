@@ -50,7 +50,7 @@ module Locomotive
             css << 'first' if index == 0
             css << 'last' if index == entries.size - 1
 
-            children_output << render_entry_link(p, css.join(' '), 1)
+            children_output << render_entry_link(context, p, css.join(' '), 1)
           end
 
           output = children_output.join("\n")
@@ -81,13 +81,11 @@ module Locomotive
         end
 
         # Returns a list element, a link to the page and its children
-        def render_entry_link(page, css, depth)
-          selected = @page.fullpath =~ /^#{page.fullpath}/ ? " #{@options[:active_class]}" : ''
+        def render_entry_link(context, page, css, depth)
+          selected = @page.fullpath =~ /^#{page.fullpath}(\/.*)?$/ ? " #{@options[:active_class]}" : ''
 
-          icon = @options[:icon] ? '<span></span>' : ''
-
-          title = @options[:liquid_render] ? @options[:liquid_render].render('page' => page) : page.title
-
+          icon  = @options[:icon] ? '<span></span>' : ''
+          title = render_title(context, page)
           label = %{#{icon if @options[:icon] != 'after' }#{title}#{icon if @options[:icon] == 'after' }}
 
           link_options = caret = ''
@@ -102,7 +100,7 @@ module Locomotive
 
           output  = %{<li id="#{page.slug.to_s.dasherize}-link" class="link#{selected} #{css}">}
           output << %{<a href="#{href}"#{link_options}>#{label}#{caret}</a>}
-          output << render_entry_children(page, depth.succ) if (depth.succ <= @options[:depth].to_i)
+          output << render_entry_children(context, page, depth.succ) if (depth.succ <= @options[:depth].to_i)
           output << %{</li>}
 
           output.strip
@@ -113,7 +111,7 @@ module Locomotive
         end
 
         # Recursively creates a nested unordered list for the depth specified
-        def render_entry_children(page, depth)
+        def render_entry_children(context, page, depth)
           output = %{}
 
           children = page.children_with_minimal_attributes(@options[:add_attributes]).reject { |c| !include_page?(c) }
@@ -124,12 +122,23 @@ module Locomotive
               css << 'first' if children.first == c
               css << 'last'  if children.last  == c
 
-              output << render_entry_link(c, css.join(' '), depth)
+              output << render_entry_link(context, c, css.join(' '), depth)
             end
             output << %{</ul>}
           end
 
           output
+        end
+
+        def render_title(context, page)
+          if @options[:liquid_render]
+            context.stack do
+              context['page'] = page
+              @options[:liquid_render].render(context)
+            end
+          else
+            page.title
+          end
         end
 
         # Determines whether or not a page should be a part of the menu

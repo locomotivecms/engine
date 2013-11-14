@@ -2,7 +2,7 @@ module Locomotive
   module Api
     class TokensController < Locomotive::Api::BaseController
 
-      skip_before_filter :require_account, :require_site, :set_locale, :set_current_thread_variables
+      skip_before_filter :require_account, :require_site, :set_current_thread_variables
 
       def create
         begin
@@ -23,6 +23,10 @@ module Locomotive
       end
 
       protected
+
+      def set_locale
+        I18n.locale = Locomotive.config.locales.first
+      end
 
       def self.description
         {

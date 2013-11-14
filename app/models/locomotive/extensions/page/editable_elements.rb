@@ -82,12 +82,33 @@ module Locomotive
             elsif existing_el.from_parent? # it inherits from a parent page
               existing_el.disabled = false
 
+              # same type ? if not, convert it
+              if existing_el._type != el._type
+                existing_el = self.change_element_type(existing_el, el.class)
+              end
+
               # make sure the default content gets updated too
               existing_el.set_default_content_from(el)
 
               # copy _type, hint, fixed, priority and locales + type custom attributes
               existing_el.copy_default_attributes_from(el)
             end
+          end
+        end
+
+        def change_element_type(element, klass)
+          # build the new element
+          self.editable_elements.build({}, klass).tap do |new_element|
+            # copy the most important mongoid internal attributes
+            %w{_id _index new_record}.each do |attr|
+              new_element.send(:"#{attr}=", element.send(attr.to_sym))
+            end
+
+            # copy the main attributes from the previous version
+            new_element.attributes = element.attributes.reject { |attr| !%w(slug block from_parent).include?(attr) }
+
+            # remove the old one
+            self.editable_elements.delete_one(element)
           end
         end
 

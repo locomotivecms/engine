@@ -31,6 +31,15 @@ describe Locomotive::EditableControl do
       @sub_page_1.editable_elements.first.options.should == [{ 'value' => 'true', 'text' => 'Yes' }, { 'value' => 'false', 'text' => 'No' }]
     end
 
+    it 'removes leading and trailling characters' do
+      @home.update_attributes raw_template: %({% block body %}
+      {% editable_control 'menu', options: 'true=Yes,false=No' %}
+        true
+      {% endeditable_control %}
+      {% endblock %})
+      @home.editable_elements.first.content.should == 'true'
+    end
+
   end
 
   describe '"sticky" elements' do

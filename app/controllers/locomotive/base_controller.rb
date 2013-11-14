@@ -6,6 +6,7 @@ module Locomotive
     include Locomotive::ActionController::SectionHelpers
     include Locomotive::ActionController::UrlHelpers
     include Locomotive::ActionController::Ssl
+    include Locomotive::ActionController::Timezone
 
     layout '/locomotive/layouts/application'
 
@@ -15,13 +16,15 @@ module Locomotive
 
     before_filter :require_site
 
+    before_filter :set_back_office_locale
+
+    before_filter :set_current_content_locale
+
     before_filter :validate_site_membership
 
     load_and_authorize_resource
 
-    before_filter :set_back_office_locale
-
-    before_filter :set_current_content_locale
+    around_filter :set_timezone
 
     before_filter :set_current_thread_variables
 
@@ -41,7 +44,7 @@ module Locomotive
       else
         flash[:alert] = exception.message
 
-        redirect_to pages_url
+        redirect_to pages_path
       end
     end
 
@@ -53,7 +56,7 @@ module Locomotive
     end
 
     def current_ability
-      @current_ability ||= Ability.new(current_locomotive_account, current_site)
+      @current_ability ||= Locomotive::Ability.new(current_locomotive_account, current_site)
     end
 
     def require_account

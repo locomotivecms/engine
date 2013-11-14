@@ -23,6 +23,8 @@ nb:
       et: Estisk
       ja: Anamnese
       zh-CN: Kinesisk
+      cs: Tsjekkisk
+      bg: Bulgarian
 
     messages:
       confirm: Er du sikker?

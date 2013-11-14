@@ -3,62 +3,62 @@ module Locomotive
     module Drops
       class Page < Base
 
-        delegate :seo_title, :meta_keywords, :meta_description, :redirect_url, :handle, to: '_source'
+        delegate :seo_title, :meta_keywords, :meta_description, :redirect_url, :handle, to: :@_source
 
         def title
-          self._source.templatized? ? @context['entry']._label : self._source.title
+          @_source.templatized? ? @context['entry']._label : @_source.title
         end
 
         def slug
-          self._source.templatized? ? @context['entry']._slug.singularize : self._source.slug
+          @_source.templatized? ? @context['entry']._slug.singularize : @_source.slug
         end
 
         def parent
-          @parent ||= self._source.parent.to_liquid
+          @parent ||= @_source.parent.to_liquid
         end
 
         def breadcrumbs
-          @breadcrumbs ||= liquify(*self._source.ancestors_and_self)
+          @breadcrumbs ||= liquify(*@_source.ancestors_and_self)
         end
 
         def children
-          @children ||= liquify(*self._source.children)
+          @children ||= liquify(*@_source.children)
         end
 
         def fullpath
-          @fullpath ||= self._source.fullpath
+          @fullpath ||= @_source.fullpath
         end
 
         def depth
-          self._source.depth
+          @_source.depth
         end
 
         def listed?
-          self._source.listed?
+          @_source.listed?
         end
 
         def published?
-          self._source.published?
+          @_source.published?
         end
 
         def redirect?
-          self._source.redirect?
+          @_source.redirect?
         end
 
         def templatized?
-          self._source.templatized?
+          @_source.templatized?
         end
 
         def content_type
-          if self._source.content_type
-            ContentTypeProxyCollection.new(self._source.content_type)
+          if @_source.content_type
+            ContentTypeProxyCollection.new(@_source.content_type)
           else
             nil
           end
         end
 
         def before_method(meth)
-          self._source.editable_elements.where(slug: meth).try(:first).try(:content)
+          @_source.editable_elements.where(slug: meth).try(:first).try(:content)
         end
 
       end

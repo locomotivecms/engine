@@ -6,8 +6,11 @@ module Locomotive
       include Locomotive::ActionController::LocaleHelpers
       include Locomotive::ActionController::SectionHelpers
       include Locomotive::ActionController::UrlHelpers
+      include Locomotive::ActionController::Timezone
 
       skip_load_and_authorize_resource
+
+      around_filter :set_timezone
 
       before_filter :require_site
 

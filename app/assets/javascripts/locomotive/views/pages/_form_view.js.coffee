@@ -159,5 +159,4 @@ class Locomotive.Views.Pages.FormView extends Locomotive.Views.Shared.FormView
         @$('li#page_redirect_url_input, li#page_redirect_type_input').hide()
 
   enable_other_checkboxes: ->
-    _.each ['published', 'listed'], (exp) =>
-      @$('li#page_' + exp + '_input input[type=checkbox]').checkToggle()
+    @$('li.toggle input[type=checkbox].simple-toggle').checkToggle()

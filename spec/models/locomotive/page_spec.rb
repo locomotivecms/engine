@@ -281,6 +281,15 @@ describe Locomotive::Page do
       @page.fetch_target_entry('foo')
     end
 
+    it 'does not accept 2 templatized pages in the same folder' do
+      @home = FactoryGirl.create(:page)
+      @page.attributes = { parent_id: @home._id, site: @home.site }; @page.save!
+
+      another_page = FactoryGirl.build(:page, title: 'Lorem ipsum', parent: @home, site: @home.site, templatized: true, target_klass_name: 'Foo')
+      another_page.valid?.should be_false
+      another_page.errors['slug'].should == ['is already taken']
+    end
+
     context '#descendants' do
 
       before(:each) do
@@ -326,6 +335,10 @@ describe Locomotive::Page do
         @content_type = FactoryGirl.build(:content_type, slug: 'posts', site: @site)
         @page.site = @site
         @page.target_klass_name = 'Locomotive::ContentEntry5151e25587f643c2cf000001'
+      end
+
+      it 'returns nil if the content type does not exit' do
+        @page.content_type.should be_nil
       end
 
       it 'has a name for the target entry' do

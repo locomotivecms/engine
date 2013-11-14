@@ -1,6 +1,6 @@
 # Custom options for CustomFields
 CustomFields.options = {
-  reserved_names: Mongoid.destructive_fields + %w(created_at updated_at)
+  reserved_names: Mongoid.destructive_fields + %w(id _id send created_at updated_at)
 }
 
 module CustomFields

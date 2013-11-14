@@ -128,7 +128,7 @@ module Locomotive
       self.folder = ActiveSupport::Inflector.transliterate(self.folder).gsub(/(\s)+/, '_').gsub(/^\//, '').gsub(/\/$/, '')
 
       # folder should begin by a root folder
-      if (self.folder =~ /^(stylesheets|javascripts|images|media|fonts|others)($|\/)+/).nil?
+      if (self.folder =~ /^(stylesheets|javascripts|images|media|fonts|pdfs|others)($|\/)+/).nil?
         self.folder = File.join(self.content_type.to_s.pluralize, self.folder)
       end
     end
@@ -144,7 +144,7 @@ module Locomotive
     def escape_shortcut_urls(text)
       return if text.blank?
 
-      text.gsub(/[("'](\/(stylesheets|javascripts|images|media|fonts|others)\/(([^;.]+)\/)*([a-zA-Z_\-0-9]+)\.[a-z]{2,3})(\?[0-9]+)?[)"']/) do |path|
+      text.gsub(/[("'](\/(stylesheets|javascripts|images|media|fonts|pdfs|others)\/(([^;.]+)\/)*([a-zA-Z_\-0-9]+)\.[a-z]{2,4})(\?[0-9]+)?[)"']/) do |path|
 
         sanitized_path = path.gsub(/[("')]/, '').gsub(/^\//, '').gsub(/\?[0-9]+$/, '')
 

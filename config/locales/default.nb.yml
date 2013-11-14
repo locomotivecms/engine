@@ -103,7 +103,7 @@ nb:
       - :year
   time:
     formats:
-      default: "%A, %e. %B %Y, %H:%M"
+      default: "%d.%m.%Y %H:%M"
       short: "%e. %B, %H:%M"
       long: "%A, %e. %B %Y, %H:%M"
     am: ""

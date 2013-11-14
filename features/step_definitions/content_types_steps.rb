@@ -64,13 +64,18 @@ Given %r{^I have entries for "([^"]*)" with$} do |name, entries|
   content_type.save.should be_true
 end
 
+When(/^the custom model named "(.*?)" is ordered by "(.*?)"$/) do |name, order_by|
+  content_type = Locomotive::ContentType.where(name: name).first
+  content_type.update_attribute :order_by, order_by
+end
+
 #the "client" "Alpha, Inc" has "Fun project" as one of its "projects"
 Given(/^the "(.*?)" "(.*?)" has "(.*?)" as one of its "(.*?)"$/) do |source, source_label, target_label, target|
   source_model = Locomotive::ContentType.where(name: source.classify.pluralize).first
   source_entry = source_model.entries.where(source_model.label_field_name => source_label).first
   target_model = Locomotive::ContentType.where(name: target.classify.pluralize).first
   target_entry = target_model.entries.where(target_model.label_field_name => target_label).first
-  
+
   source_entry.send("#{target}").send("<<", target_entry)
 end
 
@@ -116,4 +121,9 @@ end
 Then %r{^there should not be any notified accounts on the "([^"]*)" model$} do |name|
   content_type = Locomotive::ContentType.where(name: name).first
   content_type.reload.public_submission_accounts.should eq([])
+end
+
+Given(/^I click on the (\d+)[a-z]+ required flag$/) do |nth|
+  find(".custom-field:nth-child(#{nth}) .required-input .switchHandle").click
+  sleep(0.1)
 end

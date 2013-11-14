@@ -5,7 +5,11 @@ class GenerateChecksumForThemeAssets < MongoidMigration::Migration
 
       puts "[#{asset.send(:safe_source_filename)}] #{asset.checksum}"
 
-      asset.save!
+      begin
+        asset.save!
+      rescue Exception => e
+        puts "\tfailed (#{e.message})"
+      end
     end
   end
 

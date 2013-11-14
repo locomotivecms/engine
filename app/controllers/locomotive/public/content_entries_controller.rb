@@ -13,7 +13,7 @@ module Locomotive
       respond_to :html, :json
 
       def create
-        @entry = @content_type.entries.create(params[:entry] || params[:content])
+        @entry = @content_type.entries.safe_create(params[:entry] || params[:content])
 
         respond_with @entry, {
           location:   self.callback_url,
@@ -25,6 +25,7 @@ module Locomotive
 
       def set_locale
         ::I18n.locale = params[:locale] || current_site.default_locale
+        ::Mongoid::Fields::I18n.locale = ::I18n.locale
       end
 
       def set_content_type

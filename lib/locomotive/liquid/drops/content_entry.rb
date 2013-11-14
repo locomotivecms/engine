@@ -3,14 +3,14 @@ module Locomotive
     module Drops
       class ContentEntry < Base
 
-        delegate :_slug, :_permalink, :seo_title, :meta_keywords, :meta_description, to: '_source'
+        delegate :_slug, :_permalink, :seo_title, :meta_keywords, :meta_description, to: :@_source
 
         def _id
-          self._source._id.to_s
+          @_source._id.to_s
         end
 
         def _label
-          @_label ||= self._source._label
+          @_label ||= @_source._label
         end
 
         # Returns the next content for the parent content type.
@@ -23,7 +23,7 @@ module Locomotive
         # {% endif %}
         #
         def next
-          @next ||= self._source.next.to_liquid
+          @next ||= @_source.next.to_liquid
         end
 
         # Returns the previous content for the parent content type.
@@ -36,14 +36,18 @@ module Locomotive
         # {% endif %}
         #
         def previous
-          @previous ||= self._source.previous.to_liquid
+          @previous ||= @_source.previous.to_liquid
+        end
+
+        def errors
+          @_source.errors.messages.to_hash.stringify_keys
         end
 
         def before_method(meth)
-          return '' if self._source.nil?
+          return '' if @_source.nil?
 
           if not @@forbidden_attributes.include?(meth.to_s)
-            value = self._source.send(meth)
+            value = @_source.send(meth)
 
             if value.respond_to?(:all) # check for an association
               filter_and_order_list(value)

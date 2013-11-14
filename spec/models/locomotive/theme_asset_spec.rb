@@ -55,6 +55,12 @@ describe Locomotive::ThemeAsset do
         asset.local_path.should == 'images/a_la_poubelle/5k.png'
       end
 
+      it 'should keep the original name for a retina image' do
+        asset.source = FixturedAsset.open('5k@2x.png')
+        asset.save
+        asset.local_path.should == 'images/5k@2x.png'
+      end
+
     end
 
     describe '#validation' do

@@ -19,7 +19,7 @@ module Locomotive
           ## callbacks ##
           before_validation :get_templatized_from_parent
           before_validation :ensure_target_klass_name_security
-          after_validation  :set_slug_if_templatized
+          before_validation :set_slug_if_templatized
           after_save        :propagate_templatized
 
           ## scopes ##
@@ -35,7 +35,7 @@ module Locomotive
         #
         def content_type
           if self.target_klass_name =~ /^Locomotive::ContentEntry([a-z0-9]+)$/
-            @content_type ||= self.site.content_types.find($1)
+            @content_type ||= self.site.content_types.find($1) rescue nil
           else
             nil
           end

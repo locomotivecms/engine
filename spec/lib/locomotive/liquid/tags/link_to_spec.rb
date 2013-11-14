@@ -43,6 +43,15 @@ describe Locomotive::Liquid::Tags::LinkTo do
 
     end
 
+    context 'with a custom label' do
+
+      let(:assigns)   { { 'page' => page } }
+      let(:template)  { "{% link_to page %}Here{% endlink_to %}" }
+
+      it { should == %{<a href="/hello-world">Here</a>} }
+
+    end
+
   end
 
   describe 'templatized page' do

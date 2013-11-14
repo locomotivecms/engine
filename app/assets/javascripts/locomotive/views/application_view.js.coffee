@@ -99,5 +99,5 @@ class Locomotive.Views.ApplicationView extends Backbone.View
     # Each modal window should have a different zIndex, otherwise there will be conflicts between them.
     window.Locomotive.jQueryModals ||= 0
 
-    998 + window.Locomotive.jQueryModals++
-
+    # 998 + window.Locomotive.jQueryModals++
+    300000 + window.Locomotive.jQueryModals++

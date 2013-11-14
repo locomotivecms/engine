@@ -4,15 +4,15 @@ module Locomotive
       class CurrentUser < Base
 
         def logged_in?
-          _source.present?
+          @_source.present?
         end
 
         def name
-          _source.name if logged_in?
+          @_source.name if logged_in?
         end
 
         def email
-          _source.email if logged_in?
+          @_source.email if logged_in?
         end
 
       end

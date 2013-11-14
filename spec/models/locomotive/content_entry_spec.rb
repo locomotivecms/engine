@@ -352,7 +352,7 @@ describe Locomotive::ContentEntry do
   end
 
   def build_content_entry(options = {})
-    @content_type.entries.build({ title: 'Locomotive', description: 'Lorem ipsum....', _label_field_name: 'title', created_at: DateTime.parse('2013-07-05 00:00:00') }.merge(options))
+    @content_type.entries.build({ title: 'Locomotive', description: 'Lorem ipsum....', _label_field_name: 'title', created_at: Time.zone.parse('2013-07-05 00:00:00') }.merge(options))
   end
 
   def fake_bson_id(id)

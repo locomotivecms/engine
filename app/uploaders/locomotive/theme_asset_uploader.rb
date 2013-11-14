@@ -24,5 +24,12 @@ module Locomotive
       uploader
     end
 
+    def self.content_types
+      # pdf is not considered as a custom content type for theme assets.
+      list = super.clone
+      list.delete(:pdf)
+      list
+    end
+
   end
 end

@@ -24,6 +24,8 @@ fr:
       et: Estonien
       ja: Japonais
       zh-CN: Chinois
+      cs: Tchèque
+      bg: Bulgare
 
     buttons:
       login: Se connecter

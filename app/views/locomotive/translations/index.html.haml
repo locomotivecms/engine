@@ -25,6 +25,6 @@
           %span!= t('.updated_at')
           = l translation.updated_at, format: :short
 
-          = link_to_icon :trash, translation_url(translation), title: t('.remove', key: translation.key, default: ''), class: 'remove', data: { confirm: t('locomotive.messages.confirm') }, method: :delete
+          = link_to_icon :trash, translation_path(translation), title: t('.remove', key: translation.key, default: ''), class: 'remove', data: { confirm: t('locomotive.messages.confirm') }, method: :delete
 
     = paginate @translations, namespace: 'locomotive'

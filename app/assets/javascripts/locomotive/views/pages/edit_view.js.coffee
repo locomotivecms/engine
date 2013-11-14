@@ -5,9 +5,16 @@ class Locomotive.Views.Pages.EditView extends Locomotive.Views.Pages.FormView
   save: (event) ->
     event.stopPropagation() & event.preventDefault()
 
+    @trigger_change_event_on_focused_inputs()
+
     form = $(event.target).trigger('ajax:beforeSend')
 
     @clear_errors()
+
+    # store the previous editable elements in case we
+    # need to use the content of these elements for
+    # the new ones (same block and slug).
+    editable_elements = _.clone @model.get('editable_elements')
 
     @model.save {},
       success: (model, response) =>
@@ -16,6 +23,7 @@ class Locomotive.Views.Pages.EditView extends Locomotive.Views.Pages.FormView
         model._normalize()
 
         if model.get('template_changed') == true
+          model.get('editable_elements').update_content_from(editable_elements)
           @reset_editable_elements()
         else
           @refresh_editable_elements()

@@ -37,6 +37,8 @@ class Locomotive.Views.ContentEntries.FormView extends Locomotive.Views.Shared.F
 
     @enable_datepickers()
 
+    @enable_datetimepickers()
+
     @enable_richtexteditor()
 
     @enable_select_fields()
@@ -61,6 +63,11 @@ class Locomotive.Views.ContentEntries.FormView extends Locomotive.Views.Shared.F
 
   enable_datepickers: ->
     @$('li.input.date input[type=text]').datepicker()
+
+  enable_datetimepickers: ->
+    @$('li.input.date-time input[type=text]').datetimepicker
+      controlType: 'select'
+      showTime: false
 
   enable_richtexteditor: ->
     _.each @$('li.input.rte textarea.html'), (textarea) =>
@@ -162,6 +169,7 @@ class Locomotive.Views.ContentEntries.FormView extends Locomotive.Views.Shared.F
 
   remove: ->
     @$('li.input.date input[type=text]').datepicker('destroy')
+    @$('li.input.date_time input[type=text]').datetimepicker('destroy')
     @_select_field_view.remove()
     _.each @_file_field_views, (view) => view.remove()
     _.each @_has_many_field_views, (view) => view.remove()

@@ -96,7 +96,7 @@ module Locomotive
 
     # Get the Locomotive page matching the request and scoped by the current Locomotive site
     #
-    # @param [ String ] path An optional path overriding the default default behaviour to get a page
+    # @param [ String ] path An optional path overriding the default behaviour to get a page
     #
     # @return [ Object ] The Locomotive::Page
     #
@@ -150,7 +150,7 @@ module Locomotive
       end
 
       # Tip: switch from false to true to enable the re-thrown exception flag
-      ::Liquid::Context.new({}, assigns, self.locomotive_default_registers, false)
+      ::Liquid::Context.new({}, assigns, self.locomotive_default_registers, true)
     end
 
     # Get the assigns from the flash object (session). For instance, once
@@ -189,13 +189,16 @@ module Locomotive
         'fullpath'          => request.fullpath,
         'url'               => request.url,
         'ip_address'        => request.remote_ip,
+        'post?'             => request.post?,
+        'host'              => request.host_with_port,
         'now'               => Time.now.in_time_zone(current_site.timezone),
         'today'             => Date.today,
         'locale'            => I18n.locale.to_s,
         'default_locale'    => current_site.default_locale.to_s,
         'locales'           => current_site.locales,
         'current_user'      => Locomotive::Liquid::Drops::CurrentUser.new(current_locomotive_account),
-        'session'           => Locomotive::Liquid::Drops::SessionProxy.new
+        'session'           => Locomotive::Liquid::Drops::SessionProxy.new,
+        'wagon'             => false
       }
     end
 
@@ -209,6 +212,7 @@ module Locomotive
         site:           current_site,
         page:           @page,
         inline_editor:  self.editing_page?,
+        logger:         Rails.logger,
         current_locomotive_account: current_locomotive_account
       }
     end

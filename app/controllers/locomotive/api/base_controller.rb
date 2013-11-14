@@ -3,9 +3,12 @@ module Locomotive
     class BaseController < ApplicationController
 
       include Locomotive::Routing::SiteDispatcher
+      include Locomotive::ActionController::Timezone
       include Locomotive::ActionController::LocaleHelpers
 
       skip_before_filter :verify_authenticity_token
+
+      around_filter :set_timezone
 
       before_filter :require_account
 
@@ -29,7 +32,7 @@ module Locomotive
       end
 
       def current_ability
-        @current_ability ||= Ability.new(current_locomotive_account, current_site)
+        @current_ability ||= Locomotive::Ability.new(current_locomotive_account, current_site)
       end
 
       def require_account

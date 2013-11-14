@@ -8,6 +8,10 @@ Locomotive::Engine.routes.draw do
     failure_app:  'Locomotive::Devise::FailureApp',
     controllers:  { sessions: 'locomotive/sessions', passwords: 'locomotive/passwords' }
 
+  authenticated :locomotive_account do
+    root to: 'pages#index'
+  end
+
   devise_scope :locomotive_account do
     match '/'         => 'sessions#new'
     delete 'signout'  => 'sessions#destroy', as: :destroy_locomotive_session

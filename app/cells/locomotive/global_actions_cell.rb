@@ -12,7 +12,7 @@ module Locomotive
     protected
 
     def build_list
-      add :welcome, url: edit_my_account_url, i18n_options: {
+      add :welcome, url: edit_my_account_path, i18n_options: {
         key:    'locomotive.shared.header.welcome',
         arg:    :name,
         value:  @current_locomotive_account.name
@@ -25,7 +25,7 @@ module Locomotive
       end
 
       add :help, url: 'http://doc.locomotivecms.com', class: 'tutorial', id: 'help', target: '_blank'
-      add :logout, url: destroy_locomotive_session_url, data: { confirm: t('locomotive.messages.confirm') }, method: :delete
+      add :logout, url: destroy_locomotive_session_path, data: { confirm: t('locomotive.messages.confirm') }, method: :delete
     end
 
     def localize_label(label, options = {})

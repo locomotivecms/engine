@@ -8,7 +8,9 @@ module Locomotive
 
           def default_element_attributes
             if @nodelist.first.is_a?(String)
-              super.merge(content: @nodelist.first.try(:to_s), options: @options[:options])
+              content = self.render_default_content(@nodelist.first)
+
+              super.merge(content: content, options: @options[:options])
             else
               super
             end
@@ -20,6 +22,14 @@ module Locomotive
 
           def document_type
             EditableControl
+          end
+
+          def render_default_content(node)
+            if node
+              node.to_s.strip
+            else
+              nil
+            end
           end
 
         end

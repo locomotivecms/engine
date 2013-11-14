@@ -1,9 +1,9 @@
-= submenu_entry 'pages', pages_url do
+= submenu_entry 'pages', pages_path do
   .wrapper
     - if can? :manage, @page
       .header
         %p
-          = link_to new_page_url do
+          = link_to new_page_path do
             %i.icon-plus
             = t('locomotive.pages.index.new')
     .inner
@@ -12,7 +12,7 @@
         - current_site.pages.unscoped.latest_updated.minimal_attributes.each do |page|
           %li
             %i.icon-chevron-right
-            = link_to truncate(page.title, length: 25), edit_page_url(page)
+            = link_to truncate(page.title, length: 25), edit_page_path(page)
             %span= time_ago_in_words(page.updated_at)
 
 - each_content_type do |menu_item|
@@ -24,20 +24,20 @@
           %ul.big-links
             - content_types.each do |content_type|
               %li
-                = link_to truncate(content_type.name, length: 20), content_entries_url(content_type.slug)
+                = link_to truncate(content_type.name, length: 20), content_entries_path(content_type.slug)
   - else
     - content_type = menu_item
-    = submenu_entry truncate(content_type.name, length: 15), content_entries_url(content_type.slug), i18n: false, css: "#{'on' if is_content_type_selected(content_type)}" do
+    = submenu_entry truncate(content_type.name, length: 15), content_entries_path(content_type.slug), i18n: false, css: "#{'on' if is_content_type_selected(content_type)}" do
       .wrapper
         .header
           %p
-            = link_to new_content_entry_url(content_type.slug) do
+            = link_to new_content_entry_path(content_type.slug) do
               %i.icon-plus
               = t('locomotive.content_entries.index.new')
 
           - if can? :manage, content_type
             %p.edit
-              = link_to edit_content_type_url(content_type) do
+              = link_to edit_content_type_path(content_type) do
                 %i.icon-pencil
                 = t('locomotive.content_types.index.edit')
 
@@ -47,5 +47,5 @@
             - content_type.entries.latest_updated.each do |entry|
               %li
                 %i.icon-chevron-right
-                = link_to truncate(entry._label(content_type), length: 20), edit_content_entry_url(content_type.slug, entry)
+                = link_to truncate(entry._label(content_type), length: 20), edit_content_entry_path(content_type.slug, entry)
                 %span= time_ago_in_words(entry.updated_at)

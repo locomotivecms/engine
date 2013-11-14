@@ -23,7 +23,9 @@ de:
       ru: Russisch
       et: Estnisch
       ja: Japanisch
-      zh-CN: Chinesisch  
+      zh-CN: Chinesisch
+      cs: Tschechisch
+      bg: Bulgarisch
 
     buttons:
       login: Einloggen
@@ -35,7 +37,7 @@ de:
       close: "Schließen"
 
     messages:
-      confirm: Sind Sie sicher ?
+      confirm: Sind Sie sicher?
       sending_form: "Formular wird gesendet"
 
     shared:
@@ -54,6 +56,8 @@ de:
         account: Mein Zugang
         site: Webseite
         theme_assets: Dateien
+        translations: Übersetzungen
+
       list:
         untranslated: "Nicht übersetzt"
       form:
@@ -115,7 +119,7 @@ de:
         title: Passwort bearbeiten
         link: "&rarr; Zurück zur Login-Seite"
         password: "Ihr neues Passwort"
-        password_confirmation: "Wiederholung ihres neuen Passworts"
+        password_confirmation: "Wiederholung Ihres neuen Passworts"
 
     pages:
       index:
@@ -131,7 +135,7 @@ de:
         updated_at: bearbeitet am
       edit:
         show: anzeigen
-        help: "Der Seiten-Titel kann durch anklicken bearbeitet werden."
+        help: "Der Seiten-Titel kann durch Anklicken bearbeitet werden."
         ask_for_title: "Bitte geben Sie den neuen Seiten-Titel ein"
       form:
         change_file: Datei ändern
@@ -162,6 +166,19 @@ de:
       snippet:
         updated_at: Aktualisiert am
 
+    translations:
+      untranslated: "Nicht übersetzt für folgende Sprachen: %{list}"
+      index:
+        title: Übersetzungen
+        new: neue Übersetzung
+        no_items: "Es gibt noch keine Terme zur Übersetzung. <a href='%{url}'>Hier</a> können Sie einen neuen Term erstellen."
+      new:
+        title: "Neue Übersetzung"
+        help: "Benutzen Sie den <b>translate</b> liquid-Filter um einen übersetzten Term einzufügen." #Pages/Snippets können die selbe Vorlage für alle Sprachen nutzen.
+      edit:
+        title: "Bearbeite Übersetzung %{key}"
+        help: "Sie können diese Übersetzung mit folgendem liquid code einbinden: <span class='code'>{{ '%{key}' | translate }}</span>."
+
     sites:
       new:
         title: Neue Webseite
@@ -182,7 +199,7 @@ de:
         author: Autor
       new:
         title: Neuer Account
-        help: "Bitte geben Sie eine Email für den neuen Account an. Wenn diese noch nicht registriert ist, werden Sie zu einem Formular zur Erstellung des Accounts weitergeleitet."
+        help: "Bitte geben Sie eine E-Mail-Adresse für den neuen Account an. Wenn diese noch nicht registriert ist, werden Sie zu einem Formular zur Erstellung des Accounts weitergeleitet."
 
     accounts:
       new:
@@ -275,7 +292,7 @@ de:
           new_item: Neues Element
 
     image_picker:
-      link: Füge ein Bild in den Code ein
+      link: Fügen Sie ein Bild in den Code ein
 
     cross_domain_sessions:
       new:
@@ -302,7 +319,6 @@ de:
         next: Webseite erstellen
         back_to_default_template: "Klicken Sie <a href='#'>hier</a> um die Standardeinstellungen wieder herzustellen"
 
-
     public:
       pages:
         show_toolbar:
@@ -314,6 +330,6 @@ de:
             editing_mode: "Bearbeitungsmodus: "
             lang: "Sprache: "
           buttons:
-            back: "Zur Administration zurück"
+            back: "Zurück zur Administration"
             confirm: Bestätigen
             cancel: Abbrechen

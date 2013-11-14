@@ -23,5 +23,16 @@ class Locomotive.Models.EditableElementsCollection extends Backbone.Collection
   by_block: (name) ->
     @filter (editable) -> editable.get('block_name') == name
 
+  find_similar: (editable) ->
+    @find (_editable) ->
+      editable.get('block') == _editable.get('block') &&
+      editable.get('slug')  == _editable.get('slug') &&
+      editable.get('type')  == _editable.get('type')
+
+  update_content_from: (collection) ->
+    collection.each (element) =>
+      _element = @find_similar(element)
+      _element.set('content', element.get('content')) if _element
+
   toJSONForSave: ->
     @map (model) => model.toJSONForSave()

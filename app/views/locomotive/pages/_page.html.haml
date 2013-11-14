@@ -3,7 +3,7 @@
 
 %li{ id: "item-#{page.id}", class: "page #{css_for_page(page)}" }
 
-  - children = can?(:manage, page) ? page.children : page.children.find_all { |p| !p.templatized? }
+  - children = page.children
 
   - with_children = !children.empty?
 

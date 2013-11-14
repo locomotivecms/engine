@@ -6,8 +6,6 @@ module Locomotive
 
         @@forbidden_attributes = %w{_id _version _index}
 
-        attr_reader :_source
-
         def initialize(source)
           @_source = source
         end

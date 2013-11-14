@@ -29,6 +29,13 @@ module Locomotive
         any_of({ _id: id_or_permalink }, { _slug: id_or_permalink }).first
       end
 
+      def safe_create(attributes = {})
+        build.tap do |entry|
+          entry.from_presenter(attributes)
+          entry.save
+        end
+      end
+
     end
 
     ## named scopes ##
@@ -91,7 +98,7 @@ module Locomotive
       _entries = self.entries.order_by([_order_by_definition]).where(options)
 
       # pagination or full list
-      page ? _entries.page(page).per(per_page) : _entries
+      !self.order_manually? && page ? _entries.page(page).per(per_page) : _entries
     end
 
     def groupable?
