@@ -54,7 +54,7 @@ module Locomotive
     def _change_snippet_inside_template(node)
       case node
       when Locomotive::Liquid::Tags::Snippet
-        node.refresh(self) if node.slug == self.slug
+        node.refresh(self, _default_context) if node.slug == self.slug
       when Locomotive::Liquid::Tags::InheritedBlock
         _change_snippet_inside_template(node.parent) if node.parent
       end
@@ -66,5 +66,8 @@ module Locomotive
       end
     end
 
+    def _default_context
+      {site: site}
+    end
   end
 end
