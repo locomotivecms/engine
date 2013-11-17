@@ -45,7 +45,7 @@ cs:
         unlock_instructions: 'Intrukce k odemčení'
 
 
-  locomotive_account:
+  locomotive:
     devise_mailer:
       common:
         hello: Ahoj

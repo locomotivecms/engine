@@ -44,7 +44,7 @@ ja:
         reset_password_instructions:  "パスワードのリセット方法"
         unlock_instructions:  "アカウントのロック解除方法"
 
-  locomotive_account:
+  locomotive:
     devise_mailer:
       common:
         hello:  "こんにちは"

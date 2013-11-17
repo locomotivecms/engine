@@ -44,7 +44,7 @@ de:
         unlock_instructions: 'Anleitung zur Entsperrung'
 
 
-  locomotive_account:
+  locomotive:
     devise_mailer:
       common:
         hello: Hallo
