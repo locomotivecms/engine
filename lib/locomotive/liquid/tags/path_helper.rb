@@ -1,18 +1,18 @@
 module Locomotive
   module Liquid
     module Tags
-      module UrlHelper
+      module PathHelper
 
-        def render_url(context, &block)
+        def render_path(context, &block)
           site  = context.registers[:site]
 
           if page = self.retrieve_page_from_handle(site, context)
-            url = self.public_page_url(site, page)
+            path = self.public_page_fullpath(site, page)
 
             if block_given?
-              block.call page, url
+              block.call page, path
             else
-              url
+              path
             end
           else
             '' # no page found
@@ -49,7 +49,7 @@ module Locomotive
           end
         end
 
-        def public_page_url(site, page)
+        def public_page_fullpath(site, page)
           fullpath = site.localized_page_fullpath(page, @options['locale'])
 
           if page.templatized?

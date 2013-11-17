@@ -2,9 +2,9 @@ module Locomotive
   module Liquid
     module Tags
 
-      class UrlTo < ::Liquid::Tag
+      class PathTo < ::Liquid::Tag
 
-        include UrlHelper
+        include PathHelper
 
         Syntax = /(#{::Liquid::Expression}+)(#{::Liquid::TagAttributes}?)/
 
@@ -16,19 +16,19 @@ module Locomotive
               @options[key] = value
             end
           else
-            raise SyntaxError.new("Syntax Error in 'url_to' - Valid syntax: url_to <page|page_handle|content_entry>(, locale: [fr|de|...], with: <page_handle>")
+            raise SyntaxError.new("Syntax Error in 'path_to' - Valid syntax: path_to <page|page_handle|content_entry>(, locale: [fr|de|...], with: <page_handle>")
           end
 
           super
         end
 
         def render(context)
-          render_url(context)
+          render_path(context)
         end
 
       end
 
-      ::Liquid::Template.register_tag('url_to', UrlTo)
+      ::Liquid::Template.register_tag('path_to', PathTo)
     end
   end
 end

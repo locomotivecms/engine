@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Locomotive::Liquid::Tags::LinkTo do
+describe Locomotive::Liquid::Tags::PathTo do
 
   before(:each) { I18n.locale = :en }
 
@@ -11,7 +11,7 @@ describe Locomotive::Liquid::Tags::LinkTo do
 
   context 'no page responding to the handle' do
 
-    let(:template) { "{% url_to unknown-page %}" }
+    let(:template) { "{% path_to unknown-page %}" }
 
     it { should be_blank }
 
@@ -20,7 +20,7 @@ describe Locomotive::Liquid::Tags::LinkTo do
   context 'no page responding to the handle' do
 
     let(:assigns)   { { 'project' => Locomotive::ContentEntry.new(_slug: 'hello-world', _label_field_name: :_slug ) } }
-    let(:template)  { "{% url_to project %}" }
+    let(:template)  { "{% path_to project %}" }
 
     it { should be_blank }
 
@@ -29,7 +29,7 @@ describe Locomotive::Liquid::Tags::LinkTo do
   describe 'page responding to the handle' do
 
     let(:page)      { create_page(site, 'Hello world', 'my-page') }
-    let(:template)  { "{% url_to my-page %}" }
+    let(:template)  { "{% path_to my-page %}" }
     before(:each)   { page }
 
     it { should == %{/hello-world} }
@@ -37,7 +37,7 @@ describe Locomotive::Liquid::Tags::LinkTo do
     context 'passing a page directly' do
 
       let(:assigns)   { { 'page' => page } }
-      let(:template)  { "{% url_to page %}" }
+      let(:template)  { "{% path_to page %}" }
 
       it { should == %{/hello-world} }
 
@@ -56,7 +56,7 @@ describe Locomotive::Liquid::Tags::LinkTo do
 
     context 'without passing the handle' do
 
-      let(:template) { "{% url_to project %}" }
+      let(:template) { "{% path_to project %}" }
 
       it { should == %{/list-of-projects/my-fancy-project} }
 
@@ -66,7 +66,7 @@ describe Locomotive::Liquid::Tags::LinkTo do
 
       let(:another_parent_page)   { create_page(site, 'Another list of projects') }
       let(:another_page)          { create_templatized_page(site, 'Template', 'another-project-template', another_parent_page, content_type) }
-      let(:template)              { "{% url_to project, with: another-project-template %}" }
+      let(:template)              { "{% path_to project, with: another-project-template %}" }
       before(:each)               { another_page }
 
       it { should == %{/another-list-of-projects/my-fancy-project} }
