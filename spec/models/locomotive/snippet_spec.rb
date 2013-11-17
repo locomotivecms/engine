@@ -49,6 +49,27 @@ describe Locomotive::Snippet do
 
     end
 
+    context 'for snippets inside a snippet' do
+      before :each do
+        @nested_snippet = FactoryGirl.create(:snippet, site: @site, slug: 'my_nested_test_snippet', template: "{% include 'my_test_snippet' %}")
+        @page = FactoryGirl.create(:page, site: @site, slug: 'my_page_here', raw_template: "{% include 'my_nested_test_snippet' %}")
+      end
+
+      it 'renders the nested snippet' do
+        Locomotive::Page.find(@page.id).render({}).should == 'a testing template'
+      end
+
+      it 'updates parent snippets with the new snippet template' do
+        @snippet.update_attributes(template: 'a new template')
+        Locomotive::Page.find(@page.id).render({}).should == 'a new template'
+      end
+
+      it 'when the parent snippet is updated child snippets are rendered correctly' do
+        @nested_snippet.update_attributes(template: "hello {% include 'my_test_snippet' %}")
+        Locomotive::Page.find(@page.id).render({}).should == 'hello a testing template'
+      end
+    end
+
     context '#i18n' do
 
       before :each do
