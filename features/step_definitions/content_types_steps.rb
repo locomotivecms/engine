@@ -85,6 +85,13 @@ When(/^I choose "(.*?)" in the list$/) do |name|
   end
 end
 
+When(/^I select2 "(.*?)" from "(.*?)"$/) do |text, from|
+  page.find("#s2id_#{from} a").click
+  find(:xpath, "//body").find("input.select2-input").set(text)
+  page.execute_script(%|$("input.select2-input:visible").keyup();|)
+  find(:xpath, '//body').find('ul.select2-results li', text: text).click
+end
+
 When(/^I delete the first content entry$/) do
   within('#content ul.list li:first') do
     click_link 'Delete'

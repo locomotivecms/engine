@@ -33,7 +33,6 @@ module Locomotive
 
             link_to label, url
           end
-
         end
 
         protected
