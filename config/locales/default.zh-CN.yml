@@ -1,38 +1,169 @@
 zh-CN:
+  errors:
+    # The default format use in full error messages.
+    format: "%{attribute} %{message}"
+
+    # The values :model, :attribute and :value are always available for interpolation
+    # The value :count is available when applicable. Can be used for pluralization.
+    messages:
+      inclusion: "包含"
+      exclusion: "不包含"
+      invalid: "无效"
+      confirmation: "确认"
+      accepted: "接受"
+      empty: "为空"
+      blank: "为空"
+      too_long: "太长"
+      too_short: "太短"
+      wrong_length: "长度错误"
+      taken: "已占用"
+      not_a_number: "不是数字"
+      greater_than: "大于%{count}"
+      greater_than_or_equal_to: "大于等于%{count}"
+      equal_to: "等于%{count}"
+      less_than: "小于%{count}"
+      less_than_or_equal_to: "小于等于%{count}"
+      odd: "奇数"
+      even: "偶数"
+
+      domain_taken: "%{value} 已经被占用"
+      invalid_domain: "%{value} 不正确"
+      needs_admin_account: "至少需要一个管理员账户"
+      protected_page: "你不能删除index和404页面"
+      extname_changed: "新的文件没有原来的扩展名"
+      array_too_short: "太小了(最少的元素数量是 %{count})"
+      security: "存在一个安全问题"
+      site:
+        default_locale_removed: 先前的默认语言不能被正确删除。
+      page:
+        liquid_syntax: "Liquid 语法错误('%{error}' on '%{fullpath}')"
+        liquid_extend: "页面 '%{fullpath}' 扩展了一个不存在的模板"
+        liquid_translation: "页面 '%{fullpath}' 扩展了一个未被翻译的模板"
+
+  attributes:
+    defaults:
+      pages:
+        index:
+          title: "首页"
+          body: "首页内容"
+        "404":
+          title: "页面找不到"
+          body: "404页面内容"
+        other:
+          body: "{% extends 'parent' %}"
+
+  mongoid:
+    errors:
+      messages:
+        blank_in_locale: "不能为空"
+
+    attributes:
+      locomotive/page:
+        title: 标题
+        parent: 父页面
+        parent_id: 父页面ID
+        slug: Slug
+        listed: 列出
+        templatized: 模板化
+        published: 已发布
+        redirect: 重定向
+        redirect_url: 重定向Url
+        cache_strategy: 缓存策略
+        response_type: 响应类型
+        seo_title: SEO标题
+      locomotive/content_type:
+        name: 名称
+        description: 描述
+        slug: Slug
+        order_by: 排序
+        order_direction: 排序方向
+        label_field_name: 字段名称
+        label_field_id: 字段ID
+        group_by_field_name: 分组字段名称
+        group_by_field_id: 分组字段ID
+        public_submission_enabled: Activation API
+        public_submission_accounts: Comptes à notifier
+      locomotive/content_entry:
+        created_at: 创建于
+      locomotive/asset:
+        source: Fichier
+      locomotive/account:
+        email: E-mail
+        name: 姓名
+        language: 语言
+        password: 密码
+        password_confirmation: 验证密码
+      locomotive/snippet:
+        body: Code
+        slug: Raccourci
+        name: Nom
+      locomotive/translation:
+        key: Clé de traduction
+      locomotive/theme_asset:
+        content_type: Type du fichier
+      locomotive/site:
+        name: 名称
+        locales: 语言
+        domain_name: 域名
+        subdomain: 子域名
+        restricted_access: Activer ?
+        access_login: Identifiant
+        access_password: "Mot de passe"
+      custom_fields/field:
+        name: 名称
+        hint: 提示
+        required: 必填?
+        text_formatting: 文字格式
+        localized: 多语言化 ?
+        select_options: 选项
+
+  date_picker:
+    close_text: Fermer
+    prev_text: '&#x3c;Préc'
+    next_text: 'Suiv&#x3e;'
+    current_text: 'Courant'
+
   date:
     formats:
       default: "%m/%d/%Y"
       short: "%b %d"
       long: "%B %d, %Y"
+      long_ordinal: "%e %B %Y"
+      only_day: "%e"
 
     day_names: [星期日, 星期一, 星期二, 星期三, 星期四, 星期五, 星期六]
     abbr_day_names: [Sun, Mon, Tue, Wed, Thu, Fri, Sat]
-
-    # Don't forget the nil at the beginning; there's no such thing as a 0th month
     month_names: [~, 一月, 二月, 三月, 四月, 五月, 六月, 七月, 八月, 九月, 十月, 十一月, 十二月]
     abbr_month_names: [~, Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]
-    # Used in date_select and datetime_select.
-    order:
-      - :year
-      - :month
-      - :day
+    order: [ day, month, year ]
+
+  pagination:
+    previous: "&laquo; 前一页"
+    next: "后一页 &raquo;"
+
   time:
     formats:
       default: "%m/%d/%Y %H:%M"
+      time: "%H:%M"
       short: "%d %b %H:%M"
       long: "%B %d, %Y %H:%M"
+      long_ordinal: "%A %d %B %Y %H:%M:%S %Z"
+      only_second: "%S"
     am: "am"
     pm: "pm"
+
   datetime:
     distance_in_words:
       half_a_minute: "半分钟"
       less_than_x_seconds:
+        zero:  "0秒"
         one:   "少于1秒"
         other: "少于%{count}秒"
       x_seconds:
         one:   "1秒"
         other: "%{count}秒"
       less_than_x_minutes:
+        zero:  "0分钟"
         one:   "少于一分钟"
         other: "少于%{count}分钟"
       x_minutes:
@@ -56,9 +187,6 @@ zh-CN:
       over_x_years:
         one:   "超过1年"
         other: "超过%{count}年"
-      almost_x_years:
-        one:   "几乎1年"
-        other: "几乎%{count}年"
     prompts:
       year:   "年"
       month:  "月"
@@ -67,50 +195,32 @@ zh-CN:
       minute: "分"
       second: "秒"
 
+  number:
+    format:
+      precision: 3
+      separator: ','
+      delimiter: ' '
+    currency:
+      format:
+        unit: '€'
+        precision: 2
+        format: '%n %u'
+    human:
+      format:
+        precision: 2
+      storage_units:
+        format: '%n %u'
+        units:
+          byte: 'Octet'
+          kb: 'ko'
+          mb: 'Mo'
+          gb: 'Go'
+          tb: 'To'
+
   support:
     array:
+      sentence_connector: 'et'
+      skip_last_comma: true
       words_connector: "，"
       two_words_connector: ""
       last_word_connector: "，"
-
-  mongoid:
-    errors:
-      messages:
-        blank_in_locale: "不能为空"
-    attributes:
-      locomotive/content_entry:
-        created_at: 创建于
-
-  errors:
-      messages:
-        domain_taken: "%{value} 已经被占用"
-        invalid_domain: "%{value} 不正确"
-        needs_admin_account: "至少需要一个管理员账户"
-        protected_page: "你不能删除index和404页面"
-        extname_changed: "新的文件没有原来的扩展名"
-        array_too_short: "太小了(最少的元素数量是 %{count})"
-        invalid_theme_file: "不能为空或不是一个zip文件"
-        site:
-          default_locale_removed: 先前的默认语言不能被正确删除。
-        page:
-          liquid_syntax: "Liquid 语法错误('%{error}' on '%{fullpath}')"
-          liquid_extend: "页面 '%{fullpath}' 扩展了一个不存在的模板"
-          liquid_translation: "页面 '%{fullpath}' 扩展了一个未被翻译的模板"
-        too_few_custom_fields: "至少需要一个自定义字段"
-        security: "存在一个安全问题"
-
-  attributes:
-    defaults:
-      pages:
-        index:
-          title: "首页"
-          body: "首页内容"
-        "404":
-          title: "页面找不到"
-          body: "404页面内容"
-        other:
-          body: "{% extends 'parent' %}"
-
-  pagination:
-    previous: "&laquo; 前一页"
-    next: "后一页 &raquo;"
