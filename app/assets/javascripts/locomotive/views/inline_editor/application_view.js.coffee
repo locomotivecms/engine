@@ -84,7 +84,7 @@ class Locomotive.Views.InlineEditor.ApplicationView extends Backbone.View
     _window       = @_window()
 
     _jQuery('a[class!="ui-tabs-anchor"]').live 'click', (event) ->
-      link  = _jQuery(event.target)
+      link  = _jQuery(this)
       url   = link.attr('href')
 
       if url? && url.indexOf('#') != 0 && /^(www|http)/.exec(url) == null && /(\/_edit)$/.exec(url) == null && /^\/sites\//.exec(url) == null
