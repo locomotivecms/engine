@@ -109,9 +109,19 @@ module Locomotive
       self.find_entries_custom_field(self.group_by_field_id)
     end
 
+    def sortable_column
+      # only the belongs_to field has a special column for relative positionning
+      # that's why we don't call groupable?
+      if self.group_by_field.try(:type) == 'belongs_to' && self.order_manually?
+        "position_in_#{self.group_by_field.name}"
+      else
+        '_position'
+      end
+    end
+
     def list_or_group_entries(options = {})
       if self.groupable?
-        if group_by_field.type == 'select'
+        if self.group_by_field.type == 'select'
           self.entries.group_by_select_option(self.group_by_field.name, self.order_by_definition)
         else
           group_by_belongs_to_field(self.group_by_field)
@@ -201,8 +211,14 @@ module Locomotive
     end
 
     def order_by_attribute
-      return self.order_by if %w(created_at updated_at _position).include?(self.order_by)
-      self.entries_custom_fields.find(self.order_by).name rescue 'created_at'
+      case self.order_by
+      when '_position'
+        self.sortable_column
+      when 'created_at', 'updated_at'
+        self.order_by
+      else
+        self.entries_custom_fields.find(self.order_by).name rescue 'created_at'
+      end
     end
 
     def normalize_slug

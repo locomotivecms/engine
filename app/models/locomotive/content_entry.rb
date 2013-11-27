@@ -123,13 +123,14 @@ module Locomotive
     # Sort the content entries from an ordered array of content entry ids.
     # Their new positions are persisted.
     #
+    # @param [ Array ] content_type The content type describing the entries
     # @param [ Array ] The ordered array of ids
     #
-    def self.sort_entries!(ids)
+    def self.sort_entries!(ids, column = :_position)
       list = self.any_in(_id: ids.map { |id| Moped::BSON::ObjectId.from_string(id.to_s) }).to_a
       ids.each_with_index do |id, position|
         if entry = list.detect { |e| e._id.to_s == id.to_s }
-          entry.update_attributes _position: position
+          entry.update_attributes column => position
         end
       end
     end

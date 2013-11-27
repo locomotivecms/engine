@@ -96,6 +96,37 @@ ul.list {
   } // ul.list li
 }
 
+#entries-list.grouped {
+
+  li.item {
+    span.handle {
+      display: none;
+    }
+  } // li.item
+
+  &.sortable {
+
+    li.item {
+      span.handle {
+        @include icon-button;
+
+        margin: 0px;
+        top: -1px !important;
+
+        i {
+          font-size: 9px;
+        }
+      }
+
+      a {
+        margin-left: 0px;
+      }
+    } // .sortable li.item
+
+  }
+
+}
+
 #entries-list.list {
 
   li.item {

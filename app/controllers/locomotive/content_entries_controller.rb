@@ -64,7 +64,7 @@ module Locomotive
     end
 
     def sort
-      @content_type.klass_with_custom_fields(:entries).sort_entries!(params[:entries])
+      @content_type.klass_with_custom_fields(:entries).sort_entries!(params[:entries], @content_type.sortable_column)
       respond_with @content_type
     end
 
