@@ -23,3 +23,21 @@ Feature: Accounts
     Then the JSON response should be an array
     And the JSON response should have 2 entries
     And the JSON response at "1/name" should be "New User"
+
+  Scenario: Updating a account
+    Given I have an "admin" API token
+    And I have accounts:
+      | name | email           | id                       |
+      | User | new-user1@a.com | 4f832c2cb0d86d3f42fffffc |
+
+    When I do an API PUT to accounts/4f832c2cb0d86d3f42fffffc.json with:
+    """
+    {
+      "account": {
+        "name": "Modified User"
+      }
+    }
+    """
+    When I do an API GET request to accounts/4f832c2cb0d86d3f42fffffc.json
+    Then the JSON response should be an hash
+    And the JSON response at "name" should be "Modified User"

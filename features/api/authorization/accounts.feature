@@ -34,9 +34,9 @@ Feature: Accounts
     Given I have an "author" API token
     When I do an API GET request to accounts.json
     Then an access denied error should occur
- 
+
   # showing account
- 
+
   Scenario: Accessing account as an Admin
     Given I have an "admin" API token
     When I do an API GET request to accounts/4f832c2cb0d86d3f42fffffc.json
@@ -45,19 +45,19 @@ Feature: Accounts
     Then the JSON response at "email" should be "new-user2@a.com"
     When I do an API GET request to accounts/4f832c2cb0d86d3f42fffffe.json
     Then the JSON response at "email" should be "new-user3@a.com"
- 
+
   Scenario: Accessing account as a Designer
     Given I have a "designer" API token
     When I do an API GET request to accounts/4f832c2cb0d86d3f42fffffc.json
     Then an access denied error should occur
- 
+
   Scenario: Accessing account as an Author
     Given I have an "author" API token
     When I do an API GET request to accounts/4f832c2cb0d86d3f42fffffc.json
     Then an access denied error should occur
- 
+
   # create account
- 
+
   Scenario: Creating new account as an Admin
     Given I have an "admin" API token
     When I do an API POST to accounts.json with:
@@ -73,7 +73,7 @@ Feature: Accounts
     When I do an API GET request to accounts.json
     Then the JSON response should be an array
     And the JSON response should have 7 entries
- 
+
   Scenario: Creating new account as a Designer
     Given I have a "designer" API token
     When I do an API POST to accounts.json with:
@@ -87,7 +87,7 @@ Feature: Accounts
     }
     """
     Then an access denied error should occur
- 
+
   Scenario: Creating new account as an Author
     Given I have an "author" API token
     When I do an API POST to accounts.json with:
@@ -101,9 +101,49 @@ Feature: Accounts
     }
     """
     Then an access denied error should occur
- 
+
+  # update account
+
+  Scenario: Creating new account as an Admin
+    Given I have an "admin" API token
+    When I do an API PUT to accounts/4f832c2cb0d86d3f42fffffc.json with:
+    """
+    {
+      "account": {
+        "name": "Modified User"
+      }
+    }
+    """
+    When I do an API GET request to accounts/4f832c2cb0d86d3f42fffffc.json
+    Then the JSON response should be an hash
+    And the JSON response at "name" should be "Modified User"
+
+  Scenario: Creating new account as a Designer
+    Given I have a "designer" API token
+    When I do an API PUT to accounts/4f832c2cb0d86d3f42fffffc.json with:
+    """
+    {
+      "account": {
+        "name": "Modified User"
+      }
+    }
+    """
+    Then an access denied error should occur
+
+  Scenario: Creating new account as an Author
+    Given I have an "author" API token
+    When I do an API PUT to accounts/4f832c2cb0d86d3f42fffffc.json with:
+    """
+    {
+      "account": {
+        "name": "Modified User"
+      }
+    }
+    """
+    Then an access denied error should occur
+
   # destroy account
- 
+
   Scenario: Destroying account as an Admin
     Given I have an "admin" API token
     When I do an API GET request to accounts.json
@@ -113,12 +153,12 @@ Feature: Accounts
     When I do an API GET request to accounts.json
     Then the JSON response should be an array
     And the JSON response should have 5 entries
- 
+
   Scenario: Destroying account as a Designer
     Given I have a "designer" API token
     When I do an API DELETE to accounts/4f832c2cb0d86d3f42fffffe.json
     Then an access denied error should occur
- 
+
   Scenario: Deleting account as an Author
     Given I have a "author" API token
     When I do an API DELETE to accounts/4f832c2cb0d86d3f42fffffe.json
