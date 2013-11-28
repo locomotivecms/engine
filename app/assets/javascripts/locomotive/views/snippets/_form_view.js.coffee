@@ -39,7 +39,6 @@ class Locomotive.Views.Snippets.FormView extends Locomotive.Views.Shared.FormVie
     @$('#snippet_name').slugify
       target:     @$('#snippet_slug')
       url:        window.permalink_service_url
-      underscore: true
 
   open_image_picker: (event) ->
     event.stopPropagation() & event.preventDefault()

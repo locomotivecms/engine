@@ -29,10 +29,10 @@ class Locomotive::Translation
   #
   def underscore_key
     if self.key
-      self.key = self.key.permalink.underscore
+      self.key = self.key.permalink(true)
     end
   end
-  
+
   def remove_blanks
     self.values.delete_if { |k,v| v.blank? }
   end

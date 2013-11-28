@@ -177,10 +177,7 @@ module Locomotive
       self._slug = self._label.dup if self._slug.blank? && self._label.present?
 
       if self._slug.present?
-        # if the slug includes one "_" at least, we consider that the "_" is used instead of "-".
-        underscore = !self._slug.index('_').nil?
-
-        self._slug.permalink!(underscore)
+        self._slug.permalink!
 
         self._slug = self.next_unique_slug if self.slug_already_taken?
       end
