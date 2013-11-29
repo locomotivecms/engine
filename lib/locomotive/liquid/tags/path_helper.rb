@@ -3,6 +3,22 @@ module Locomotive
     module Tags
       module PathHelper
 
+        Syntax = /(#{::Liquid::Expression}+)(#{::Liquid::TagAttributes}?)/
+
+        def initialize(tag_name, markup, tokens, context)
+          if markup =~ Syntax
+            @handle = $1
+            @options = {}
+            markup.scan(::Liquid::TagAttributes) do |key, value|
+              @options[key] = value
+            end
+          else
+            self.wrong_syntax!
+          end
+
+          super
+        end
+
         def render_path(context, &block)
           site  = context.registers[:site]
 

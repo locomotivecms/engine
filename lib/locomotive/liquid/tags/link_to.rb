@@ -3,24 +3,8 @@ module Locomotive
     module Tags
       class LinkTo < Hybrid
 
-        Syntax = /(#{::Liquid::Expression}+)(#{::Liquid::TagAttributes}?)/
-
         include PathHelper
         include ActionView::Helpers::UrlHelper
-
-        def initialize(tag_name, markup, tokens, context)
-          if markup =~ Syntax
-            @handle = $1
-            @options = {}
-            markup.scan(::Liquid::TagAttributes) do |key, value|
-              @options[key] = value
-            end
-          else
-            raise SyntaxError.new("Syntax Error in 'link_to' - Valid syntax: link_to page_handle, locale es (locale is optional)")
-          end
-
-          super
-        end
 
         def render(context)
           render_path(context) do |page, path|
@@ -33,6 +17,10 @@ module Locomotive
 
             link_to label, path
           end
+        end
+
+        def wrong_syntax!
+          raise SyntaxError.new("Syntax Error in 'link_to' - Valid syntax: link_to page_handle, locale es (locale is optional)")
         end
 
         protected
