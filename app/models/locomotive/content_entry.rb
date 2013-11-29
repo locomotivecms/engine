@@ -33,6 +33,7 @@ module Locomotive
     ## named scopes ##
     scope :visible, where(_visible: true)
     scope :latest_updated, order_by(updated_at: :desc).limit(Locomotive.config.ui[:latest_entries_nb])
+    scope :next_or_previous, ->(condition, order_by) { where({ _visible: true }.merge(condition)).limit(1).order_by(order_by) }
 
     ## methods ##
 
@@ -163,11 +164,13 @@ module Locomotive
     # @return [ Object ] The next or previous content entry or nil if none
     #
     def next_or_previous(matcher = :gt)
-      order_by  = self.content_type.order_by_definition(matcher == :lt)
-      criterion = self.content_type.order_by_attribute.to_sym.send(matcher)
-      value     = self.send(self.content_type.order_by_attribute.to_sym)
+      attribute, direction = self.content_type.order_by_definition(matcher == :lt)
 
-      self.class.where(criterion => value).order_by(:order_by.asc).limit(1).first
+      criterion = attribute.to_sym.send(matcher)
+      value     = self.send(attribute.to_sym)
+      order_by  = [attribute, direction]
+
+      self.class.next_or_previous({ criterion => value }, order_by).first
     end
 
     # Set the slug of the instance by using the value of the highlighted field
@@ -237,8 +240,10 @@ module Locomotive
     def send_notifications
       return if !self.content_type.public_submission_enabled? || self.content_type.public_submission_accounts.blank?
 
+      account_ids = self.content_type.public_submission_accounts.map(&:to_s)
+
       self.site.accounts.each do |account|
-        next unless self.content_type.public_submission_accounts.map(&:to_s).include?(account._id.to_s)
+        next unless account_ids.include?(account._id.to_s)
 
         Locomotive::Notifications.new_content_entry(account, self).deliver
       end
