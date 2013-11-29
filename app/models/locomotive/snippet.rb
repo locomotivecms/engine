@@ -2,6 +2,7 @@ module Locomotive
   class Snippet
 
     include Locomotive::Mongoid::Document
+    include Extensions::Shared::Slug
 
     ## fields ##
     field :name
@@ -12,7 +13,6 @@ module Locomotive
     belongs_to :site, class_name: 'Locomotive::Site'
 
     ## callbacks ##
-    before_validation :normalize_slug
     after_save        :update_templates
     after_destroy     :update_templates
 
@@ -21,17 +21,13 @@ module Locomotive
     validates_uniqueness_of :slug, scope: :site_id
 
     ## behaviours ##
+    slugify_from    :name
     attr_protected  :id
     attr_accessible :name, :slug, :template
 
     ## methods ##
 
     protected
-
-    def normalize_slug
-      self.slug = self.name.clone if self.slug.blank? && self.name.present?
-      self.slug.permalink! if self.slug.present?
-    end
 
     def update_templates
       return unless (self.site rescue false) # not run if the site is being destroyed
@@ -67,7 +63,7 @@ module Locomotive
     end
 
     def _default_context
-      {site: site}
+      { site: site }
     end
   end
 end
