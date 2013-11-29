@@ -8,8 +8,8 @@ Background:
   And I have a custom model named "ToDos" with
     | label         | type      | required    |
     | Task          | string    | true        |
-    | priority      | integer   | true        |
-    
+    | Priority      | integer   | true        |
+
   And I am an authenticated user
 
 @javascript
@@ -17,10 +17,10 @@ Scenario:
   And I go to the list of "ToDos"
   And I follow "new entry" within the main content
   And I fill in "Task" with "Buy milk"
-  And I fill in "priority" with "one"
+  And I fill in "Priority" with "one"
   And I press "Create"
   Then I should see "Entry was not created."
 
-  When I fill in "priority" with "1"
+  When I fill in "Priority" with "1"
   And I press "Create"
   Then I should see "Entry was successfully created."
