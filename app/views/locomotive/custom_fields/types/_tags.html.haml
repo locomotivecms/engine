@@ -1,4 +1,4 @@
 = f.input name,
-  label:        label_for_custom_field(field),
+  label:        label_for_custom_field(f.object, field),
   hint:         field.hint,
   wrapper_html: { class: "tags #{'highlighted' if highlighted}" }

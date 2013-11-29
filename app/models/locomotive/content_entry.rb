@@ -5,8 +5,9 @@ module Locomotive
 
     ## extensions ##
     include ::CustomFields::Target
-    include Extensions::Shared::Seo
     include Extensions::ContentEntry::Csv
+    include Extensions::ContentEntry::Localized
+    include Extensions::Shared::Seo
 
     ## fields ##
     field :_slug,             localize: true
@@ -59,41 +60,6 @@ module Locomotive
     end
 
     alias :to_label :_label
-
-    # Tell if the content entry has been translated or not.
-    # It just checks if the field used for the label has been translated.
-    # It assumes the entry is localized.
-    #
-    # @return [ Boolean ] True if translated, false otherwise
-    #
-    def translated?
-      if self.respond_to?(:"#{self._label_field_name}_translations")
-        self.send(:"#{self._label_field_name}_translations").key?(::Mongoid::Fields::I18n.locale.to_s) #rescue false
-      else
-        true
-      end
-    end
-
-    # Return the locales the content entry has been translated to.
-    #
-    # @return [ Array ] The list of locales. Nil if not localized
-    #
-    def translated_in
-      if self.localized?
-        self.send(:"#{self._label_field_name}_translations").keys
-      else
-        nil
-      end
-    end
-
-    # Tell if the entry is localized or not, meaning if the label field
-    # is localized or not.
-    #
-    # @return [ Boolean ] True if localized, false otherwise
-    #
-    def localized?
-      self.respond_to?(:"#{self._label_field_name}_translations")
-    end
 
     # Return the next content entry based on the order defined in the parent content type.
     #

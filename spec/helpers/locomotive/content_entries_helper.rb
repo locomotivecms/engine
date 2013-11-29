@@ -12,19 +12,48 @@ describe Locomotive::ContentEntriesHelper do
     @content_type.valid?
     @content_type.send(:set_label_field)
   end
+
   describe 'label_for_custom_field' do
 
-    it "should return the label with the translatable icon for localized fields" do
-      localize_content_type @content_type
-      @content_type.entries_custom_fields.map do |field|
-        label_for_custom_field(field).should == %(<span class="localized-icon"><i class="icon-flag"></i></span>#{field.label})
+    describe 'localized field' do
+
+      before do
+        localize_content_type @content_type
       end
+
+      # let(:translated_field) { false }
+      let(:content_entry) { mock('content_entry').tap { |m| m.expects(:translated_field?).returns(translated_field).at_least_once } }
+
+      describe 'translated field' do
+
+        let(:translated_field) { true }
+
+        it "should return the label with the translatable icon for localized fields" do
+          @content_type.entries_custom_fields.map do |field|
+            label_for_custom_field(content_entry, field).should == %(<span class="localized-icon "><i class="icon-flag"></i></span>#{field.label})
+          end
+        end
+
+      end
+
+      describe 'untranslated field' do
+
+        let(:translated_field) { false }
+
+        it "should return the label with the translatable icon for localized fields" do
+          @content_type.entries_custom_fields.map do |field|
+            label_for_custom_field(content_entry, field).should == %(<span class="localized-icon untranslated"><i class="icon-flag"></i></span>#{field.label})
+          end
+        end
+
+      end
+
     end
 
     it "should return the label with the translatable icon for non-localized fields" do
       localize_content_type @content_type, false
       @content_type.entries_custom_fields.map do |field|
-        label_for_custom_field(field).should == field.label
+        label_for_custom_field(nil, field).should == field.label
       end
     end
 

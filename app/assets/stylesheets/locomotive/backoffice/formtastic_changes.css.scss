@@ -194,6 +194,10 @@ form.formtastic {
             color: #fff;
             @include single-text-shadow(transparent, 0px, 0px, 0px, 0px);
             text-shadow: none;
+
+            &.untranslated {
+              background-color: #f2af00;
+            }
           }
 
         }
