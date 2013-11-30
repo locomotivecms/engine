@@ -159,7 +159,7 @@ class Locomotive.Views.ContentEntries.FormView extends Locomotive.Views.Shared.F
 
   refresh: ->
     @$('li.input.toggle input[type=checkbox]').checkToggle('sync')
-    _.each @_file_field_views, (view) => view.refresh()
+    @refresh_file_fields()
 
   reset: ->
     @$('li.input.string input[type=text], li.input.text textarea, li.input.date input[type=text]').val('').trigger('change')

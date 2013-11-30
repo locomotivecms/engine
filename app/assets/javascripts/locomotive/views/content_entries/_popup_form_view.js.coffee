@@ -70,6 +70,7 @@ class Locomotive.Views.ContentEntries.PopupFormView extends Locomotive.Views.Con
     $(@el).dialog('option', 'position', 'center')
 
   reset: (entry) =>
+    @model.reset_attributes()
     @model.set entry.attributes
 
     if entry.isNew()
