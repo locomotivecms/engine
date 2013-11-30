@@ -15,6 +15,8 @@ class Locomotive.Views.ContentEntries.PopupFormView extends Locomotive.Views.Con
     return @
 
   save: (event) ->
+    @touch_richtexteditor()
+
     @save_in_ajax event,
       headers:  { 'X-Flash': true }
       on_success: (response, xhr) =>
@@ -87,6 +89,10 @@ class Locomotive.Views.ContentEntries.PopupFormView extends Locomotive.Views.Con
 
   enable_many_to_many_fields: ->
     # disabled in a popup form
+
+  touch_richtexteditor: ->
+    _.each @$('li.input.rte textarea.html'), (textarea) =>
+      $(textarea).tinymce().save()
 
   tinyMCE_settings: ->
     window.Locomotive.tinyMCE.popupSettings
