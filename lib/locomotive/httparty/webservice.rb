@@ -15,7 +15,7 @@ module Locomotive
         username, password = options.delete(:username), options.delete(:password)
         options[:basic_auth] = { username: username, password: password } if username
 
-        self.perform_request(path, options)
+        self.perform_request_to(path, options)
       end
 
       def self.extract_base_uri_and_path(url)
@@ -29,7 +29,7 @@ module Locomotive
         [base_uri, path]
       end
 
-      def self.perform_request(path, options)
+      def self.perform_request_to(path, options)
         # [DEBUG] puts "[WebService] consuming #{path}, #{options.inspect}"
 
         response        = self.get(path, options)
