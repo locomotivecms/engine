@@ -160,3 +160,4 @@ class Locomotive.Views.Pages.FormView extends Locomotive.Views.Shared.FormView
 
   enable_other_checkboxes: ->
     @$('li.toggle input[type=checkbox].simple-toggle').checkToggle()
+    @$('li.toggle.simple-toggle input[type=checkbox]').checkToggle()
