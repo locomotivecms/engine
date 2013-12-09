@@ -60,6 +60,11 @@ Locomotive.configure do |config|
   #
   # config.csrf_protection = true
 
+  # Add the checksum of a theme asset at the end of its path to allow public caching.
+  # By default, it's disabled.
+  #
+  # config.theme_assets_checksum = true
+
   # Rack-cache settings, mainly used for the inline resizing image module. Default options:
   # config.rack_cache = {
   #   verbose:     true,

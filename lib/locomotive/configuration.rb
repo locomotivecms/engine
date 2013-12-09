@@ -30,7 +30,8 @@ module Locomotive
       devise_modules:             [:rememberable, :database_authenticatable, :token_authenticatable, :recoverable, :trackable, :validatable, :encryptable, { encryptor: :sha1 }],
       context_assign_extensions:  { },
       models_for_templatization:  [],
-      csrf_protection:            false
+      csrf_protection:            false,
+      theme_assets_checksum:      false
     }
 
     cattr_accessor :settings

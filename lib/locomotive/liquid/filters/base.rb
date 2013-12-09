@@ -37,6 +37,10 @@ module Locomotive
 
           url = ThemeAssetUploader.url_for(@context.registers[:site], path)
 
+          if checksum = @context.registers[:theme_assets_checksum][path]
+            query_string = "?#{checksum}" if query_string.blank?
+          end
+
           query_string ? "#{url}#{query_string}" : url
         end
 

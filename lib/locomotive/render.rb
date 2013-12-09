@@ -209,12 +209,13 @@ module Locomotive
     #
     def locomotive_default_registers
       {
-        controller:     self,
-        site:           current_site,
-        page:           @page,
-        inline_editor:  self.editing_page?,
-        logger:         Rails.logger,
-        current_locomotive_account: current_locomotive_account
+        controller:                 self,
+        site:                       current_site,
+        page:                       @page,
+        inline_editor:              self.editing_page?,
+        logger:                     Rails.logger,
+        current_locomotive_account: current_locomotive_account,
+        theme_assets_checksum:      Locomotive.config.theme_assets_checksum ? current_site.theme_assets.checksums : {}
       }
     end
 

@@ -40,6 +40,7 @@ module Locomotive
 
     ## named scopes ##
 
+
     ## accessors ##
     attr_accessor   :plain_text_name, :plain_text, :plain_text_type, :performing_plain_text
     attr_accessible :folder, :source, :plain_text_type, :performing_plain_text, :plain_text_name, :plain_text
@@ -109,6 +110,14 @@ module Locomotive
     def self.all_grouped_by_folder(site)
       assets = site.theme_assets.order_by(:slug.asc)
       assets.group_by { |a| a.folder.split('/').first.to_sym }
+    end
+
+    def self.checksums
+      {}.tap do |hash|
+        self.only(:local_path, :checksum).each do |asset|
+          hash[asset.local_path] = asset.checksum
+        end
+      end
     end
 
     def to_liquid

@@ -19,37 +19,43 @@ describe Locomotive::Liquid::Filters::Html do
     ).strip
   end
 
-  it 'should return a url for a stylesheet file' do
+  it 'should return an url for a stylesheet file' do
     result = "/sites/000000000000000000000042/theme/stylesheets/main.css"
     stylesheet_url('main.css').should == result
     stylesheet_url('main').should == result
     stylesheet_url(nil).should == ''
   end
 
-  it 'should return a url for a stylesheet file with folder' do
+  it 'should returns an url with the checksum' do
+    @context.registers.merge!(theme_assets_checksum: { 'stylesheets/main.css' => 42 })
+    result = "/sites/000000000000000000000042/theme/stylesheets/main.css?42"
+    stylesheet_url('main.css').should == result
+  end
+
+  it 'should return an url for a stylesheet file with folder' do
     result = "/sites/000000000000000000000042/theme/stylesheets/trash/main.css"
     stylesheet_url('trash/main.css').should == result
   end
 
-  it 'should return a url for a stylesheet file without touching the url that starts with "/"' do
+  it 'should return an url for a stylesheet file without touching the url that starts with "/"' do
     result = "/trash/main.css"
     stylesheet_url('/trash/main.css').should == result
     stylesheet_url('/trash/main').should == result
   end
 
-  it 'should return a url for a stylesheet file without touching the url that starts with "http:"' do
+  it 'should return an url for a stylesheet file without touching the url that starts with "http:"' do
     result = "http://cdn.example.com/trash/main.css"
     stylesheet_url('http://cdn.example.com/trash/main.css').should == result
     stylesheet_url('http://cdn.example.com/trash/main').should == result
   end
 
-  it 'should return a url for a stylesheet file without touching the url that starts with "https:"' do
+  it 'should return an url for a stylesheet file without touching the url that starts with "https:"' do
     result = "https://cdn.example.com/trash/main.css"
     stylesheet_url('https://cdn.example.com/trash/main.css').should == result
     stylesheet_url('https://cdn.example.com/trash/main').should == result
   end
 
-  it 'should return a url for a stylesheet file with respect to URL-parameters' do
+  it 'should return an url for a stylesheet file with respect to URL-parameters' do
     result = "/sites/000000000000000000000042/theme/stylesheets/main.css?v=42"
     stylesheet_url('main.css?v=42').should == result
   end
@@ -121,38 +127,38 @@ describe Locomotive::Liquid::Filters::Html do
     stylesheet_tag('https://cdn.example.com/trash/main','print').should == result
   end
 
-  it 'should return a url for a javascript file' do
+  it 'should return an url for a javascript file' do
     result = "/sites/000000000000000000000042/theme/javascripts/main.js"
     javascript_url('main.js').should == result
     javascript_url('main').should == result
     javascript_url(nil).should == ''
   end
 
-  it 'should return a url for a javascript file with folder' do
+  it 'should return an url for a javascript file with folder' do
     result = "/sites/000000000000000000000042/theme/javascripts/trash/main.js"
     javascript_url('trash/main.js').should == result
     javascript_url('trash/main').should == result
   end
 
-  it 'should return a url for a javascript file without touching the url that starts with "/"' do
+  it 'should return an url for a javascript file without touching the url that starts with "/"' do
     result = "/trash/main.js"
     javascript_url('/trash/main.js').should == result
     javascript_url('/trash/main').should == result
   end
 
-  it 'should return a url for a javascript file without touching the url that starts with "http:"' do
+  it 'should return an url for a javascript file without touching the url that starts with "http:"' do
     result = "http://cdn.example.com/trash/main.js"
     javascript_url('http://cdn.example.com/trash/main.js').should == result
     javascript_url('http://cdn.example.com/trash/main').should == result
   end
 
-  it 'should return a url for a javascript file without touching the url that starts with "https:"' do
+  it 'should return an url for a javascript file without touching the url that starts with "https:"' do
     result = "https://cdn.example.com/trash/main.js"
     javascript_url('https://cdn.example.com/trash/main.js').should == result
     javascript_url('https://cdn.example.com/trash/main').should == result
   end
 
-  it 'should return a url for a javascript file with respect to URL-parameters' do
+  it 'should return an url for a javascript file with respect to URL-parameters' do
     result = "/sites/000000000000000000000042/theme/javascripts/main.js?v=42"
     javascript_url('main.js?v=42').should == result
   end
@@ -233,7 +239,10 @@ describe Locomotive::Liquid::Filters::Html do
     klass = Class.new
     klass.class_eval do
       def registers
-        { site: FactoryGirl.build(:site, id: fake_bson_id(42)) }
+        @registers ||= {
+          site: FactoryGirl.build(:site, id: fake_bson_id(42)),
+          theme_assets_checksum: {}
+        }
       end
 
       def fake_bson_id(id)
