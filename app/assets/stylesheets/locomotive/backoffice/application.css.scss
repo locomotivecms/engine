@@ -244,6 +244,12 @@ ul.list {
         left: 5px;
       }
 
+      span.content-type {
+        @include label;
+        top: -1px;
+        left: 5px;
+      }
+
       .more {
         position: absolute;
         top: 0px;

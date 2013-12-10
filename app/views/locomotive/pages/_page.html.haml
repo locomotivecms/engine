@@ -20,6 +20,8 @@
     - if page.templatized?
       %i.icon-cog
 
+      %span.content-type= page.content_type.try(:name)
+
     - if page.redirect?
       %i.icon-share-alt
 
