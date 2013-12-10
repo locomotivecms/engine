@@ -2,7 +2,7 @@ module Locomotive
   module Api
     class PagesController < BaseController
 
-      load_and_authorize_resource class: Locomotive::Page, through: :current_site
+      load_and_authorize_resource class: ::Locomotive::Page, through: :current_site
 
       def index
         @pages = @pages.order_by(:depth.asc, :position.asc)

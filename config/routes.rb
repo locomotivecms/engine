@@ -65,6 +65,8 @@ Rails.application.routes.draw do
   namespace :locomotive, module: 'locomotive' do
     namespace :api do
 
+      match 'documentation' => 'documentation#show'
+
       resources :tokens, only: [:create, :destroy]
 
       resource  :current_site, controller: 'current_site', only: [:show, :update, :destroy]

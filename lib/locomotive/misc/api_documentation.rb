@@ -29,7 +29,7 @@ module Locomotive
       # @return [ Array ] The list of hashes (keys: name, getters, setters)
       #
       def self.embedded_resources
-        %w(editable_element editable_short_text editable_long_text editable_file editable_control content_field).map do |name|
+        %w(editable_element editable_text editable_file editable_control content_field).map do |name|
           klass = "Locomotive::#{name.camelize}Presenter".constantize
           {
             name:     name,
@@ -58,6 +58,8 @@ module Locomotive
             controller  = "#{route.defaults[:controller]}_controller".camelize.constantize
             action      = route.defaults[:action].to_sym
             verb        = route.verb.inspect.gsub("\/^", '').gsub("$\/", '')
+
+            next if name == 'documentation'
 
             if resource.nil?
               resource = controller.description
