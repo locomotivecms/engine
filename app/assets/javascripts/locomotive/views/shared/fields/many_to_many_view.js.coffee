@@ -1,16 +1,16 @@
 Locomotive.Views.Shared ||= {}
 Locomotive.Views.Shared.Fields ||= {}
 
-class Locomotive.Views.Shared.Fields.ManyToManyView extends Backbone.View
+class Locomotive.Views.Shared.Fields.ManyToManyView extends Locomotive.Views.Shared.Fields.RelationshipView
 
   tagName: 'div'
 
   className: 'list'
 
   events:
-    'click .new-entry a.add':         'add_entry'
-    'keypress .new-entry select':     'add_entry'
-    'click ul span.actions a.remove': 'remove_entry'
+    'click .new-entry a.add':                   'add_entry'
+    'keypress .new-entry input.selected-entry': 'add_entry'
+    'click ul span.actions a.remove':           'remove_entry'
 
   template: ->
     ich["#{@options.name}_list"]
@@ -22,7 +22,6 @@ class Locomotive.Views.Shared.Fields.ManyToManyView extends Backbone.View
     _.bindAll(@, 'refresh_position_entries')
 
     @collection   = @model.get(@options.name)
-    @all_entries  = @options.all_entries
 
   render: ->
     $(@el).html(@template()()).attr('id', "#{@model.paramRoot}_#{@options.name}_ids")
@@ -31,7 +30,7 @@ class Locomotive.Views.Shared.Fields.ManyToManyView extends Backbone.View
 
     @make_entries_sortable()
 
-    @refresh_select_field()
+    @enable_select2()
 
     return @
 
@@ -69,13 +68,17 @@ class Locomotive.Views.Shared.Fields.ManyToManyView extends Backbone.View
   add_entry: (event) ->
     event.stopPropagation() & event.preventDefault()
 
-    entry_id  = @$('.new-entry select').val()
-    entry     = @get_entry_from_id(entry_id)
+    # get the raw data of the selected entry
+    data = @$('.new-entry .selected-entry').select2('data')
 
-    return unless entry?
+    return if !data? || _.isArray(data)
+
+    # build a new instance of a content entry
+    entry = new Locomotive.Models.ContentEntry(data)
 
     @insert_entry(entry)
-    @refresh_select_field()
+
+    @$('.new-entry .selected-entry').select2('val', '')
 
   remove_entry: (event) ->
     event.stopPropagation() & event.preventDefault()
@@ -87,45 +90,53 @@ class Locomotive.Views.Shared.Fields.ManyToManyView extends Backbone.View
       $(event.target).closest('li').remove()
       @$('.empty').show() if @$('> ul > li').size() == 0
 
-      @refresh_position_entries() & @refresh_select_field()
+      @refresh_position_entries()
 
-  refresh_select_field: ->
-    @$('.new-entry select optgroup, .new-entry select option').remove()
+  enable_select2: ->
+    $input  = @$('.new-entry .selected-entry')
+    options = $input.data()
 
-    _.each @all_entries, (entry_or_group) =>
-      if _.isArray(entry_or_group.entries)
-        group_html = $('<optgroup/>').attr('label', entry_or_group.name)
+    super($input, options)
 
-        _.each entry_or_group.entries, (entry) =>
-          unless @collection.get(entry._id)?
-            option = new Option(entry._label, entry._id, false)
-            group_html.append(option)
+  #   $input.select2
+  #     width:                '50%'
+  #     minimumInputLength:   1
+  #     quietMillis:          100
+  #     allowClear:           true
+  #     placeholder:          ' '
+  #     ajax:
+  #       url: options.url
+  #       data: (term, page) ->
+  #         q:    term
+  #         page: page
+  #       results: (data, page) =>
+  #         results:  @build_results(data, options.groupBy)
+  #         more:     data.length == options.perPage
 
-        @$('.new-entry select').append(group_html)
-      else
-        unless @collection.get(entry_or_group._id)?
-          option = new Option(entry_or_group._label, entry_or_group._id, false)
-          @$('.new-entry select').append(option)
+  #     initSelection: (element, callback) -> null
+
+  # build_results: (raw_data, group_by) ->
+  #   _.tap [], (list) =>
+  #     _.each raw_data, (data) =>
+  #       unless @collection.get(data._id)?
+  #         data.text = data._label
+
+  #         if group_by?
+  #           group_name = _.result(data, group_by)
+
+  #           # does the group exist?
+  #           group = _.find list, (_group) -> _group.text == group_name
+
+  #           unless group?
+  #             # build a new group
+  #             group = { text: group_name, children: [] }
+  #             list.push(group)
+
+  #           group.children.push(data)
+  #         else
+  #           list.push(data)
 
   get_entry_from_element: (element) ->
     entry_html  = $(element).closest('li')
     id          = $(entry_html).data('data-entry-id')
     @collection.get(id)
-
-  get_entry_from_id: (id) ->
-    entry = null
-
-    _.each @all_entries, (entry_or_group) =>
-      if _.isArray(entry_or_group.entries)
-        entry ||= _.detect(entry_or_group.entries, (_entry) => _entry._id == id)
-      else
-        entry = entry_or_group if entry_or_group._id == id
-
-    if entry?
-      new Locomotive.Models.ContentEntry(entry)
-    else
-      null
-
-
-
-

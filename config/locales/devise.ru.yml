@@ -45,7 +45,7 @@ ru:
         unlock_instructions: 'Инструкции по разблокированию'
 
 
-  locomotive_account:
+  locomotive:
     devise_mailer:
       common:
         hello: Здравствуйте

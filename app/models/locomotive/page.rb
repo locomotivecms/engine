@@ -13,6 +13,7 @@ module Locomotive
     include Extensions::Page::Templatized
     include Extensions::Page::Redirect
     include Extensions::Page::Listed
+    include Extensions::Shared::Slug
     include Extensions::Shared::Seo
 
     ## fields ##
@@ -34,9 +35,11 @@ module Locomotive
     index parent_id:  1
     index fullpath:   1, site_id: 1
 
+    ## behaviours ##
+    slugify_from        :title
+
     ## callbacks ##
     after_initialize    :set_default_raw_template
-    before_validation   :normalize_slug
     before_save         :build_fullpath
     before_save         :record_current_locale
     before_destroy      :do_not_remove_index_and_404_pages
@@ -102,16 +105,6 @@ module Locomotive
       end
 
       self.errors.empty?
-    end
-
-    def normalize_slug
-      self.slug = self.title.clone if self.slug.blank? && self.title.present?
-      if self.slug.present?
-        # if the slug includes one "_" at least, we consider that the "_" is used instead of "-".
-        underscore = !self.slug.index('_').nil?
-
-        self.slug.permalink!(underscore)
-      end
     end
 
     def set_default_raw_template

@@ -31,7 +31,7 @@ Scenario: I attach projects to an article
   When I go to the list of "Articles"
   And I choose "Hello world" in the list
   Then I should see "The list is empty. Add an entry from the select box below."
-  When I select "My sexy project" from "entry"
+  When I select2 "My sexy project" from "entry"
   And I follow "+ add"
   Then I should see "My sexy project" within the list of entries
   And "p.empty" should not be visible within the list of entries

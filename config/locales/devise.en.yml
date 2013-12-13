@@ -45,7 +45,7 @@ en:
         unlock_instructions: 'Unlock Instructions'
 
 
-  locomotive_account:
+  locomotive:
     devise_mailer:
       common:
         hello: Hello

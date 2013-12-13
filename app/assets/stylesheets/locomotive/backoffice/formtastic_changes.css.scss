@@ -182,6 +182,24 @@ form.formtastic {
             float: left;
             margin: -3px 10px 0 0;
           }
+
+          .localized-icon {
+            margin-right: 8px;
+            padding: 2px;
+
+            background-color: #6D6D6B;
+            @include border-radius(8px);
+
+            font-size: 10px;
+            color: #fff;
+            @include single-text-shadow(transparent, 0px, 0px, 0px, 0px);
+            text-shadow: none;
+
+            &.untranslated {
+              background-color: #f2af00;
+            }
+          }
+
         }
 
         p.inline-hints {
@@ -195,6 +213,7 @@ form.formtastic {
             color: #5E5F64;
             @include single-text-shadow(rgba(255, 255, 255, 0.8), 0px, 1px, 1px);
           }
+
         } // p.inline-hints
 
         .actions {

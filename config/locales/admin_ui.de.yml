@@ -82,6 +82,10 @@ de:
     sites_picker:
       new: + Neue Webseite
 
+    api_key:
+      none: Bitte auf den Knopf klicken um den API Schlüssel zu generieren.
+      button: Neu generieren
+
     custom_fields:
       edit:
         title: Benutzerdefinierte Felder bearbeiten

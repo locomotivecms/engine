@@ -19,7 +19,7 @@
 
       .new-entry
 
-        = select_tag 'entry', []
+        = text_field_tag 'entry', '', class: 'selected-entry', data: { url: content_entries_path(target_content_type.slug, :json), per_page: Locomotive.config.ui[:per_page], group_by: target_content_type.group_by_field.try(:name) }
 
         %span.actions
           = link_to t('locomotive.buttons.new_item'), '#', class: 'add'
@@ -34,7 +34,3 @@
 
         %span.actions
           = link_to_icon :trash, '#', class: 'remove', data: { confirm: t('locomotive.messages.confirm') }
-
-  - content_for :backbone_view_data do
-    :plain
-      , all_#{name}_entries: #{escape_json target_content_type.list_or_group_entries.to_json(depth: 1).html_safe}

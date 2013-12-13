@@ -29,6 +29,10 @@ class Locomotive.Models.ContentEntry extends Backbone.Model
       @set_attribute attribute, attributes[attribute]
       @set_attribute "remove_#{field}", false
 
+  reset_attributes: ->
+    _.each _.keys(@attributes), (name) =>
+      @set_attribute name, null
+
   toMinJSON: ->
     _.tap {}, (hash) =>
       _.each @attributes, (val, key) =>

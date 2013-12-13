@@ -216,3 +216,10 @@ end
 Then(/^I click on "(.*?)"$/) do |selector|
   find(selector).click
 end
+
+When(/^I select2 "(.*?)" from "(.*?)"$/) do |text, from|
+  page.find("#s2id_#{from} a").click
+  find(:xpath, "//body").find("input.select2-input").set(text)
+  page.execute_script(%|$("input.select2-input:visible").keyup();|)
+  find(:xpath, '//body').find('ul.select2-results li', text: text).click
+end

@@ -37,5 +37,27 @@ module Locomotive
       end
     end
 
+    # Display the label related to a field of a content entry.
+    # If the field is not localized, we just display the label.
+    # If the field is localized, then we display a nice flag icon
+    # to let the end-user know about it.
+    #
+    # @param [ Object ] content_entry The content entry
+    # @param [ Object ] field The custom field
+    #
+    # @return [ String ] The label with or without the icon
+    #
+    def label_for_custom_field(content_entry, field)
+      if field.localized?
+        translated_css = content_entry.translated_field?(field) ? '' : 'untranslated'
+
+        icon  = content_tag(:i, '', class: 'icon-flag')
+        tag   = content_tag(:span, icon, class: "localized-icon #{translated_css}")
+        "#{tag}#{field.label}"
+      else
+        field.label
+      end
+    end
+
   end
 end

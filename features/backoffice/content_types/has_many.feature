@@ -37,7 +37,7 @@ Scenario: I view a client without any projects
 Scenario: I add a project to a client
   When I go to the list of "Projects"
   And I choose "Fun project" in the list
-  And I select "Alpha, Inc" from "Client"
+  And I select2 "Alpha, Inc" from "content_entry_client_id"
   And I press "Save"
   Then I should see "Entry was successfully updated."
   When I go to the list of "Clients"
@@ -73,8 +73,8 @@ Scenario: with_scope with label value
   Then the rendered output should look like:
     """
     <hr>
-    
+
     - Fun project<br>
-    
+
     <hr>
     """

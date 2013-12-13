@@ -3,30 +3,12 @@ module Locomotive
     module Tags
       class LinkTo < Hybrid
 
-        Syntax = /(#{::Liquid::Expression}+)(#{::Liquid::TagAttributes}?)/
-
+        include PathHelper
         include ActionView::Helpers::UrlHelper
 
-        def initialize(tag_name, markup, tokens, context)
-          if markup =~ Syntax
-            @handle = $1
-            @options = {}
-            markup.scan(::Liquid::TagAttributes) do |key, value|
-              @options[key] = value
-            end
-          else
-            raise SyntaxError.new("Syntax Error in 'link_to' - Valid syntax: link_to page_handle, locale es (locale is optional)")
-          end
-
-          super
-        end
-
         def render(context)
-          site  = context.registers[:site]
-
-          if page = self.retrieve_page_from_handle(site, context)
-            label = self.label_from_page(page)
-            path  = self.public_page_url(site, page)
+          render_path(context) do |page, path|
+            label = label_from_page(page)
 
             if @render_as_block
               context.scopes.last['target'] = page
@@ -34,40 +16,14 @@ module Locomotive
             end
 
             link_to label, path
-          else
-            '' # no page found
           end
+        end
+
+        def wrong_syntax!
+          raise SyntaxError.new("Syntax Error in 'link_to' - Valid syntax: link_to page_handle, locale es (locale is optional)")
         end
 
         protected
-
-        def retrieve_page_from_handle(site, context)
-          handle = context[@handle] || @handle
-
-          case handle
-          when Locomotive::Page                         then handle
-          when Locomotive::Liquid::Drops::Page          then handle.instance_variable_get(:@_source)
-          when String                                   then fetch_page(site, handle)
-          when Locomotive::ContentEntry                 then fetch_page(site, handle, true)
-          when Locomotive::Liquid::Drops::ContentEntry  then fetch_page(site, handle.instance_variable_get(:@_source), true)
-          else
-            nil
-          end
-        end
-
-        def fetch_page(site, handle, templatized = false)
-          ::Mongoid::Fields::I18n.with_locale(@options['locale']) do
-            if templatized
-              criteria = site.pages.where(target_klass_name: handle.class.to_s, templatized: true)
-              criteria = criteria.where(handle: @options['with']) if @options['with']
-              criteria.first.tap do |page|
-                page.content_entry = handle if page
-              end
-            else
-              site.pages.where(handle: handle).first
-            end
-          end
-        end
 
         def label_from_page(page)
           ::Mongoid::Fields::I18n.with_locale(@options['locale']) do
@@ -77,16 +33,6 @@ module Locomotive
               page.title
             end
           end
-        end
-
-        def public_page_url(site, page)
-          fullpath = site.localized_page_fullpath(page, @options['locale'])
-
-          if page.templatized?
-            fullpath.gsub!('content_type_template', page.content_entry._slug)
-          end
-
-          File.join('/', fullpath)
         end
 
       end

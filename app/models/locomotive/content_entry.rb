@@ -5,8 +5,9 @@ module Locomotive
 
     ## extensions ##
     include ::CustomFields::Target
-    include Extensions::Shared::Seo
     include Extensions::ContentEntry::Csv
+    include Extensions::ContentEntry::Localized
+    include Extensions::Shared::Seo
 
     ## fields ##
     field :_slug,             localize: true
@@ -33,6 +34,7 @@ module Locomotive
     ## named scopes ##
     scope :visible, where(_visible: true)
     scope :latest_updated, order_by(updated_at: :desc).limit(Locomotive.config.ui[:latest_entries_nb])
+    scope :next_or_previous, ->(condition, order_by) { where({ _visible: true }.merge(condition)).limit(1).order_by(order_by) }
 
     ## methods ##
 
@@ -58,41 +60,6 @@ module Locomotive
     end
 
     alias :to_label :_label
-
-    # Tell if the content entry has been translated or not.
-    # It just checks if the field used for the label has been translated.
-    # It assumes the entry is localized.
-    #
-    # @return [ Boolean ] True if translated, false otherwise
-    #
-    def translated?
-      if self.respond_to?(:"#{self._label_field_name}_translations")
-        self.send(:"#{self._label_field_name}_translations").key?(::Mongoid::Fields::I18n.locale.to_s) #rescue false
-      else
-        true
-      end
-    end
-
-    # Return the locales the content entry has been translated to.
-    #
-    # @return [ Array ] The list of locales. Nil if not localized
-    #
-    def translated_in
-      if self.localized?
-        self.send(:"#{self._label_field_name}_translations").keys
-      else
-        nil
-      end
-    end
-
-    # Tell if the entry is localized or not, meaning if the label field
-    # is localized or not.
-    #
-    # @return [ Boolean ] True if localized, false otherwise
-    #
-    def localized?
-      self.respond_to?(:"#{self._label_field_name}_translations")
-    end
 
     # Return the next content entry based on the order defined in the parent content type.
     #
@@ -123,13 +90,14 @@ module Locomotive
     # Sort the content entries from an ordered array of content entry ids.
     # Their new positions are persisted.
     #
+    # @param [ Array ] content_type The content type describing the entries
     # @param [ Array ] The ordered array of ids
     #
-    def self.sort_entries!(ids)
+    def self.sort_entries!(ids, column = :_position)
       list = self.any_in(_id: ids.map { |id| Moped::BSON::ObjectId.from_string(id.to_s) }).to_a
       ids.each_with_index do |id, position|
         if entry = list.detect { |e| e._id.to_s == id.to_s }
-          entry.update_attributes _position: position
+          entry.update_attributes column => position
         end
       end
     end
@@ -162,11 +130,13 @@ module Locomotive
     # @return [ Object ] The next or previous content entry or nil if none
     #
     def next_or_previous(matcher = :gt)
-      order_by  = self.content_type.order_by_definition(matcher == :lt)
-      criterion = self.content_type.order_by_attribute.to_sym.send(matcher)
-      value     = self.send(self.content_type.order_by_attribute.to_sym)
+      attribute, direction = self.content_type.order_by_definition(matcher == :lt)
 
-      self.class.where(criterion => value).order_by(:order_by.asc).limit(1).first
+      criterion = attribute.to_sym.send(matcher)
+      value     = self.send(attribute.to_sym)
+      order_by  = [attribute, direction]
+
+      self.class.next_or_previous({ criterion => value }, order_by).first
     end
 
     # Set the slug of the instance by using the value of the highlighted field
@@ -176,10 +146,7 @@ module Locomotive
       self._slug = self._label.dup if self._slug.blank? && self._label.present?
 
       if self._slug.present?
-        # if the slug includes one "_" at least, we consider that the "_" is used instead of "-".
-        underscore = !self._slug.index('_').nil?
-
-        self._slug.permalink!(underscore)
+        self._slug.permalink!
 
         self._slug = self.next_unique_slug if self.slug_already_taken?
       end
@@ -239,8 +206,10 @@ module Locomotive
     def send_notifications
       return if !self.content_type.public_submission_enabled? || self.content_type.public_submission_accounts.blank?
 
+      account_ids = self.content_type.public_submission_accounts.map(&:to_s)
+
       self.site.accounts.each do |account|
-        next unless self.content_type.public_submission_accounts.map(&:to_s).include?(account._id.to_s)
+        next unless account_ids.include?(account._id.to_s)
 
         Locomotive::Notifications.new_content_entry(account, self).deliver
       end

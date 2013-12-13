@@ -1,5 +1,5 @@
 = f.input :"#{name}_id",
-  label:      field.label,
+  label:      label_for_custom_field(f.object, field),
   hint:       field.hint,
   as:         :select,
   collection: field.ordered_select_options.map { |option| [option.name, option.id] }

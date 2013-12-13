@@ -45,7 +45,7 @@ en:
         unlock_instructions: 'Инструкции за отключване'
 
 
-  locomotive_account:
+  locomotive:
     devise_mailer:
       common:
         hello: Здрасти

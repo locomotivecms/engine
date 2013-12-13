@@ -54,7 +54,7 @@ module Locomotive
             @partial = nil
           else
             @snippet_id = snippet.id
-            @partial = ::Liquid::Template.parse(snippet.template, @context.clone)
+            @partial = ::Liquid::Template.parse(snippet.template, context.merge(@context))
             @partial.root.context.clear
           end
         end

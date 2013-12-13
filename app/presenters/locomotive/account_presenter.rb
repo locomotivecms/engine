@@ -2,7 +2,7 @@ module Locomotive
   class AccountPresenter < BasePresenter
 
     ## properties ##
-    properties  :name, :email, :locale
+    properties  :name, :email, :locale, :encrypted_password, :password_salt
     property    :admin, only_getter: true
 
     with_options only_setter: true do |presenter|

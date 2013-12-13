@@ -198,7 +198,8 @@ module Locomotive
         'locales'           => current_site.locales,
         'current_user'      => Locomotive::Liquid::Drops::CurrentUser.new(current_locomotive_account),
         'session'           => Locomotive::Liquid::Drops::SessionProxy.new,
-        'wagon'             => false
+        'wagon'             => false,
+        'editing'           => self.editing_page?
       }
     end
 

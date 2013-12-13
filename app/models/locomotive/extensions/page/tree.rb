@@ -15,6 +15,7 @@ module Locomotive
 
           ## callbacks ##
           before_save     :persist_depth
+          before_save     :ensure_index_position
           before_destroy  :delete_descendants
 
           ## indexes ##
@@ -138,6 +139,10 @@ module Locomotive
 
         def persist_depth
           self.depth = self.parent_ids.count
+        end
+
+        def ensure_index_position
+          self.position = 0 if self.index?
         end
 
       end
