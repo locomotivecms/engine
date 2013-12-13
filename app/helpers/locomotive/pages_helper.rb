@@ -47,6 +47,7 @@ module Locomotive
       [
         [t('.cache_strategy.none'), 'none'],
         [t('.cache_strategy.simple'), 'simple'],
+        [t('.cache_strategy.five_minutes'), 5.minutes.to_s],
         [t('.cache_strategy.hour'), 1.hour.to_s],
         [t('.cache_strategy.day'), 1.day.to_s],
         [t('.cache_strategy.week'), 1.week.to_s],
