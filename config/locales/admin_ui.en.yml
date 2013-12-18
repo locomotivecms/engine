@@ -155,6 +155,7 @@ en:
         cache_strategy:
           none: None
           simple: Simple
+          five_minutes: 5 minutes
           hour: 1 hour
           day: 1 day
           week: 1 week
