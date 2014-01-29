@@ -3,6 +3,18 @@ module Locomotive
     module ContentEntry
       module Localized
 
+        extend ActiveSupport::Concern
+
+        included do
+
+          ## fields ##
+          field :_translated, type: Boolean, localize: true
+
+          ## callbacks ##
+          before_save :persist_translated_status
+
+        end
+
         # Tell if the content entry has been translated or not.
         # It just checks if the field used for the label has been translated.
         # It assumes the entry is localized.
@@ -54,6 +66,12 @@ module Locomotive
         #
         def localized?
           self.respond_to?(:"#{self._label_field_name}_translations")
+        end
+
+        protected
+
+        def persist_translated_status
+          self._translated = self.translated?
         end
 
       end
