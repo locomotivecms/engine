@@ -149,6 +149,9 @@ fr:
         ask_for_title: "Veuillez entrer le nouveau titre"
       form:
         default_block: Défaut
+        change_file: Changer
+        cancel: Annuler
+        delete_file: Supprimer
         cache_strategy:
           none: Aucun
           simple: Simple
