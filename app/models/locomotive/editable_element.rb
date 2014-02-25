@@ -34,6 +34,7 @@ module Locomotive
 
     def disabled_in_all_translations?
       return self.disabled_translations if self.disabled_translations.is_a?(Boolean)
+      return false if disabled_translations.blank?
       self.disabled_translations.all? { |_, v| v == true }
     end
 
