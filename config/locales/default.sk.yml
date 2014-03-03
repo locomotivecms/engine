@@ -1,4 +1,4 @@
-cs:
+sk:
   errors:
     format: "%{attribute} %{message}"
     messages:

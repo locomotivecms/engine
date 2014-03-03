@@ -1,4 +1,4 @@
-cs:
+sk:
   locomotive:
     buttons:
       login: Prihlásiť
@@ -24,6 +24,7 @@ cs:
       ja: Japonština
       zh-CN: Čínština
       cs: Čeština
+      sk: Slovenčina
 
     messages:
       confirm: Jste si jistý?
