@@ -17,7 +17,7 @@ module Locomotive
           if scope.blank?
             translation = Locomotive::Translation.where(key: input).first
             if translation.nil?
-              input
+              raise "No translation for #{input} found"
             elsif translation.values[locale].present?
               translation.values[locale]
             else
