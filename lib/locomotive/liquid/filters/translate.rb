@@ -16,7 +16,9 @@ module Locomotive
 
           if scope.blank?
             translation = Locomotive::Translation.where(key: input).first
-            if translation.values[locale].present?
+            if translation.nil?
+              input
+            elsif translation.values[locale].present?
               translation.values[locale]
             else
               translation.values[I18n.default_locale.to_s]
