@@ -58,7 +58,7 @@ sk:
 
   date:
     abbr_day_names: [Ne, Po, Ut, St, Št, Pi, So]
-	abbr_month_names: [~, Jan., Feb., Mar., Apr., Máj, Jún, Júl, Aug., Sept., Okt., Nov., Dec.]
+    abbr_month_names: [~, Jan., Feb., Mar., Apr., Máj, Jún, Júl, Aug., Sept., Okt., Nov., Dec.]
     day_names: [Nedela, Pondelok, Utorok, Streda, Štvrtok, Piatok, Sobota]
     formats:
       default: "%d. %m. %Y"
@@ -66,7 +66,7 @@ sk:
       long_ordinal: "%e %B %Y"
       short: "%d %b"
       only_day: "%e"
-	month_names: [~, Január, Február, Marec, Apríl, Máj, Jún, Júl, August, September, Október, November, December]
+    month_names: [~, Január, Február, Marec, Apríl, Máj, Jún, Júl, August, September, Október, November, December]
     order: [day, month, year]
 
   datetime:
