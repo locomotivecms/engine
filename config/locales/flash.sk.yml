@@ -3,113 +3,113 @@ sk:
     locomotive:
       pages:
         create:
-          notice: "Stránka byla vytvořena."
-          alert: "Stránka nebyla vytvořena."
+          notice: "Stránka bola vytvorená."
+          alert: "Stránka nebola vytvorená."
         update:
-          notice: "Stránka byla aktualizována."
-          alert: "Stránka nebyla aktualizována."
+          notice: "Stránka bola aktualizovaná."
+          alert: "Stránka nebola aktualizovaná."
         sort:
-          notice: "Stránky byly seřazeny."
+          notice: "Stránky boli serazeny."
         destroy:
-          notice: "Stránka byla odstraněna."
+          notice: "Stránka bola odstranená."
 
       content_entries:
         create:
-          notice: "Záznam byl vytvořen."
-          alert: "Záznam nebyl vytvořen."
+          notice: "Záznam bol vytvorený."
+          alert: "Záznam nebol vytvorený."
         update:
-          notice: "Záznam byl aktualizován."
-          alert: "Záznam nebyl aktualizován."
+          notice: "Záznam bol aktualizovaný."
+          alert: "Záznam nebol aktualizovaný."
         sort:
-          notice: "Záznamy byly seřazeny."
+          notice: "Záznamy boli serazeny."
         destroy:
-          notice: "Záznam byl odstraněn."
+          notice: "Záznam bol odstranený."
 
       content_types:
         create:
-          notice: "Model byl vytvořen."
-          alert: "Model nebyl vytvořen."
+          notice: "Model bol vytvorený."
+          alert: "Model nebol vytvorený."
         update:
-          notice: "Model byl aktualizován."
-          alert: "Model nebyl aktualizován."
+          notice: "Model bol aktualizovaný."
+          alert: "Model nebol aktualizovaný."
         destroy:
-          notice: "Model by odstraněn."
+          notice: "Model bol odstranený."
 
       current_site:
         update:
-          notice: "Tento web byl aktualizován."
-          alert: "Tento web nebyl aktualizován."
+          notice: "Tento web bol aktualizovaný."
+          alert: "Tento web nebol aktualizovaný."
 
       snippets:
         create:
-          notice: "Snippet byl vytvořen."
-          alert: "Snippet nebyl vytvořen."
+          notice: "Snippet bol vytvorený."
+          alert: "Snippet nebol vytvorený."
         update:
-          notice: "Snippet byl aktualizován."
-          alert: "Snippet nebyl aktualizován."
+          notice: "Snippet bol aktualizovaný."
+          alert: "Snippet nebol aktualizovaný."
         destroy:
-          notice: "Snippet byl odstraněn."
+          notice: "Snippet bol odstranený."
 
       accounts:
         create:
-          notice: "Účet byl vytvořen."
-          alert: "Účet nebyl vytvořen."
+          notice: "Účet bol vytvorený."
+          alert: "Účet nebol vytvorený."
 
       my_account:
         update:
-          notice: "Váš účet byl aktualizován."
-          alert: "Váš účet nebyl aktualizován."
+          notice: "Váš účet bol aktualizovaný."
+          alert: "Váš účet nebol aktualizovaný."
 
       sites:
         create:
-          notice: "Web byl vytvořen."
-          alert: "Web nebyl vytvořen."
+          notice: "Web bol vytvorený."
+          alert: "Web nebol vytvorený."
         destroy:
-          notice: "Web byl odstraněn."
+          notice: "Web bol odstranený."
 
       memberships:
         create:
-          notice: "Členství bylo vytvořeno."
-          alert: "Členství nebylo vytvořeno."
-          already_created: "Účet je již spojený s tímto webem."
+          notice: "Členstvo bolo vytvorené."
+          alert: "Členstvo nebolo vytvorené."
+          already_created: "Účet je už spojený s týmto webem."
 
       assets:
         create:
-          notice: "Médium bylo vytvořeno."
-          alert: "Médium nebylo vytvořeno."
+          notice: "Médium bolo vytvorené."
+          alert: "Médium nebolo vytvorené."
         update:
-          notice: "Médium bylo aktualizováno."
-          alert: "Médium nebylo aktualizováno."
+          notice: "Médium bolo aktualizované."
+          alert: "Médium nebolo aktualizované."
 
       theme_assets:
         create:
-          notice: "Soubor byl vytvořen."
-          alert: "Soubor nebyl vytvořen."
+          notice: "Súbor bol vytvorený."
+          alert: "Súbor nebol vytvorený."
         update:
-          notice: "Soubor byl aktualizován."
-          alert: "Soubor nebyl aktualizován."
+          notice: "Súbor bol aktualizovaný."
+          alert: "Súbor nebol aktualizovaný."
         destroy:
-          notice: "Soubor byl odstraněn."
+          notice: "Súbor bol odstranený."
       translations:
         create:
-          notice: "Překlad byl vytvořen."
-          alert: "Překlad nebyl vytvořen."
+          notice: "Preklad bol vytvorený."
+          alert: "Preklad nebol vytvorený."
         update:
-          notice: "Překlad byl aktualizován."
-          alert: "Překlad nebyl aktualizován."
+          notice: "Preklad bol aktualizovaný."
+          alert: "Preklad nebol aktualizovaný."
         destroy:
-          notice: "Překlad byl odstraněn"
+          notice: "Preklad bol odstranený"
 
       custom_fields:
         update:
-          alert: "Pole nebylo aktualizováno"
+          alert: "Pole nebolo aktualizované"
 
       cross_domain_sessions:
         create:
-          alert: "Musíte se přihlásit"
+          alert: "Musíte sa prihlásiť"
 
       import:
         create:
-          done: "Váš web byl aktualizován."
-          notice: "Váš web se aktualizuje."
-          alert: "Váš web nebyl aktualizován."
+          done: "Váš web bol aktualizovaný."
+          notice: "Váš web sa aktualizuje."
+          alert: "Váš web nebol aktualizovaný."

@@ -1,125 +1,125 @@
 cs:
   formtastic:
     titles:
-      information: Hlavní informace
-      advanced_options: Další možnosti
+      information: Hlavné informácie
+      advanced_options: Dalšie možnosti
       meta: SEO Metadata
       seo: SEO možnosti
-      robots_txt: Soubor robots.txt
+      robots_txt: Súbor robots.txt
       code: Kód
       raw_template: Šablona
-      credentials: Přihlašovací údaje
+      credentials: Prihlasovacie údaje
       language: Jazyk
       sites: Weby
-      access_points: Přístupové body
+      access_points: Prístupové body
       memberships: Účty
       membership_email: Email účtu
-      file: Soubor
-      preview: Náhled
-      options: Další možnosti
-      custom_fields: Vlastní pole
-      other_fields: Další informace
-      presentation: Prezentace
-      attributes: Atributy
+      file: Súbor
+      preview: Náhľad
+      options: Dalšie možnosti
+      custom_fields: Vlastné pole
+      other_fields: Dalšie informácie
+      presentation: Prezentácia
+      attributes: Atribúty
       upload: Upload
     labels:
       theme_asset:
-        plain_text_name: Název souboru
-        content_type: Typ souboru
+        plain_text_name: Názov súboru
+        content_type: Typ súboru
         new:
-          source: Soubor
+          source: Súbor
         edit:
-          source: Nahradit soubor
+          source: Nahradiť súbor
       custom_fields:
         field:
           name: Alias
       content_type:
-        raw_item_template: Šablona položky
-        public_submission_enabled: Veřejné vkládání
+        raw_item_template: Šablóna položky
+        public_submission_enabled: Verejné vkládánie
         public_submission_accounts: Upozorňované účty
         "custom_fields/field":
           select_options: "Možnosti"
-        name: Název
+        name: Názov
         slug: Permalink
         description: Popis
-        label_field_id: Atribut názvu
-        group_by_field_id: Atribut pro seskupování
-        order_by: Řadit dle
-        order_direction: Směr řazení
+        label_field_id: Atribút názvu
+        group_by_field_id: Atribut pre zoskupovanie
+        order_by: zoradiť podľa
+        order_direction: Smer zoradenia
       content_entry:
         _slug: Permalink
-        _visible: Viditelnost
-        seo_title: SEO titulek
-        meta_keywords: Klíčová slova
+        _visible: Viditeľnosť
+        seo_title: SEO titulok
+        meta_keywords: Klúčové slová
         meta_description: Popis
       account:
-        api_key: API klíč
+        api_key: API kľúč
         edit:
-          locale: Jazyk prostředí
+          locale: Jazyk prostredia
           password: Nové heslo
-          password_confirmation: Potvrzení nového hesla
+          password_confirmation: Potvrdenie nového hesla
       page:
-        seo_title: Titulek
+        seo_title: Titulok
         target_klass_name: Model
       site:
-        seo_title: SEO titulek
-        meta_keywords: Klíčová slova
+        seo_title: SEO titulok
+        meta_keywords: Kľúčové slová
         meta_description: Popis webu
         locales: Jazyky
-        timezone_name: Časová pásma
+        timezone_name: Časové pásma
         new:
-          locales: První jazyk
+          locales: Prvý jazyk
 
     hints:
       page:
-        handle: "Unikátní identifikátor k načtení této stránky v instanci externího controlleru."
-        published: "Pouze přihlášené účty mohou vidět nepublikovaný obsah."
-        cache_strategy: "Cache stránky se využívá k vyšší rychlosti načtení. Volba 'Jednoduchá' je dobrým kompromisem."
-        templatized: "Použít stránku jako šablonu pro definovaný model."
-        listed: "Určuje, zda zobrazovat stránku v generovaných menu."
-        target_klass_name: "Druh obsahu, kterému bude tato stránka šablonou."
-        seo_title: "Hodnota, kterou doplníte, nahradí SEO titulek ze šablony přiřazené tomuto modelu. Nechte prázdné, pokud chcete použít standardní hodnotu z nastavení webu."
-        meta_keywords: "Nahradí klíčová slova webu použitá v hlavičce stránky. Jsou oddělena čárkou."
-        meta_description: "Nahradí popis webu použitý v hlavičce stránky."
+        handle: "Unikátny identifikátor k načítaniu tejto stránky v inštancí externého controlleru."
+        published: "Iba prihlásené účty môžu vidieť nepublikovaný obsah."
+        cache_strategy: "Cache stránky sa využívá k vyššej rýchlosti načítania. Voľba 'Jednoduchá' je dobrým kompromisom."
+        templatized: "Použít stránku ako šablónu pre definovaný model."
+        listed: "Určuje, či zobrazovať stránku v generovaných menu."
+        target_klass_name: "Druh obsahu, ktorému bude tato stránka šablónou."
+        seo_title: "Hodnota, ktorú doplníte, nahradí SEO titulok zo šablóny priradenej tomuto modelu. Nechajte prázdne, ak chcete použíť štandardnú hodnotu z nastavení webu."
+        meta_keywords: "Nahradí klíčové slova webu použité v hlavičke stránky. Sú oddelené čiarkou."
+        meta_description: "Nahradí popis webu použitý v hlavičke stránky."
       snippet:
-        slug: "Skrze tento název ho vložíte do stránky."
+        slug: "Cez tento názov ho vložíte do stránky."
       site:
-        locales: "Přesuňte vlajku na první místo, abyste ji udělali výchozím jazykem."
-        seo_title: "Určete obecnou hodnotu, která bude sloužit na webu jako výchozí titulek."
-        meta_keywords: "Klíčová slova webu použitá v hlavičce webu. Jsou oddělena čárkou. Vyžadována pro SEO."
-        meta_description: "Popis webu použitý v hlavičce webu. Vyžadován pro SEO."
-        domain_name: "např: locomotiveapp.org"
-        robots_txt: "Obsah souboru <span class='code'>/robots.txt</span>. Pro více informací mrkněte na tuto <a href='http://www.w3.org/TR/html4/appendix/notes.html#h-B.4.1.1'>url</a>."
+        locales: "Presuňte vlajku na prvé miesto, aby ste ju udelali predvoleným jazykom."
+        seo_title: "Určite obecnú hodnotu, ktorá bude slúžiť na webe ako východzí titulok."
+        meta_keywords: "Klúčové slová webu použitá v hlavičke webu. Sú oddelené čiarkou. Vyžadováné pre SEO."
+        meta_description: "Popis webu použitý v hlavičke webu. Vyžadovaný pre SEO."
+        domain_name: "napr: locomotiveapp.org"
+        robots_txt: "Obsah súboru <span class='code'>/robots.txt</span>. Pre viac informacií kliknite na tuto <a href='http://www.w3.org/TR/html4/appendix/notes.html#h-B.4.1.1'>url</a>."
         new:
-          locales: "Další jazyky budete moci přidat po vytvoření webu."
+          locales: "Dalšie jazyky budete môcť pridať po vytvorení webu."
       theme_asset:
-        slug: "Není potřeba přidávat koncovku (.css nebo .js)"
+        slug: "nie je potreba pridávať koncovku (.css alebo .js)"
         edit:
-          source: "Můžete ho nahradit souborem stejného typu."
+          source: "Môžete ho nahradiť súborom rovnakého typu."
       translation:
-        key: "Nepoužívejte pomlčky, ale raději podtržítka. Příklad: welcome_message."
+        key: "Nepoužívejte pomlčky, ale radšej podtržníky. Príklad: welcome_message."
       asset:
-        source: "Povoleny jsou všechny typy souborů."
+        source: "Povolené sú všetky typy súborov."
         edit:
-          source: "Současný soubor je dostupný na %{url}"
+          source: "Súčasný súbor je dostupný na %{url}"
         update:
-          source: "Současný soubor je dostupný na %{url}"
+          source: "Súčasný súbor je dostupný na %{url}"
       content_entry:
-        _slug: "Vlastnost sloužící k vygenerování url adresy stránky pro tento druh obsahu (např: \"template_page/{{ your_object._permalink }})\"."
-        _visible: "Standardně se obsah na stránce zobrazuje. Tento přepínač tedy může sloužit k označení již publikovaného obsahu."
-        seo_title: "Hodnota, kterou doplníte, nahradí SEO titulek ze šablony přiřazené tomuto modelu."
-        meta_keywords: "Nahradí klíčová slova webu použitá v hlavičce stránky. Jsou oddělena čárkou."
-        meta_description: "Nahradí popis webu použitý v hlavičce stránky."
+        _slug: "Vlastnosť slúžiaca k vygenerovaniu url adresy stránky pre tento druh obsahu (napr: \"template_page/{{ your_object._permalink }})\"."
+        _visible: "Štandardne sa obsah na stránke zobrazuje. Tento prepínač môže slúžiť k označeniu už publikovaného obsahu."
+        seo_title: "Hodnota, ktorú doplníte, nahradí SEO titulok zo šablóny priradenej tomuto modelu."
+        meta_keywords: "Nahradí kľúčová slová webu použité v hlavičke stránky. Sú oddelené čiarkou."
+        meta_description: "Nahradí popis webu použitý v hlavičke stránky."
       import:
-        source: "Archiv zip obsahující database.yml spolu se všemi šablonami a potřebnými soubory"
-        samples: "Pakliže je povoleno, budou během importu kopírovány i obsahy a soubory"
-        reset: "Pakliže je povoleno, všechna data z webu budou před importem smazána"
+        source: "Archív zip obsahujúci database.yml spolu sa všetkými šablónami a potrebnými súbory"
+        samples: "Ak je povolené, budú počas importu kopírované obsahy aj súbory"
+        reset: "Ak je povolené, všetky dáta z webu budú pred importom odstránené"
       content_type:
-        name: "Doporučujeme použít název modelu v množném čísle a v angličtině. Např.: Projects, Recipes, Posts, Articles, apod."
-        slug: "Bude použit jako název kolekce pro liquid šablony. Př.: <span class='code'>{{ contents.my_projects }}</span>"
-        raw_item_template: "Můžete specifikovat text zobrazený pro každou položku z kolekce. Jednoduše použijte Liquid. Př.: <span class='code'>{{ zaznam.nazev }})</span>"
-        public_submission_enabled: "Používá se pro vkládání obsahu lidmi z venku (příklad: zprávy v kontaktním formuláři)"
-        public_submission_accounts: "Pakliže je veřejné vkládání zapnuté, výše vypsané účty obdrží při vytvoření nového záznamu informační email."
+        name: "Odporúčame použiť názov modelu v množnom čísle a v angličtine. Napr.: Projects, Recipes, Posts, Articles, apod."
+        slug: "Bude použitý ako názov kolekcie pre liquid šablóny. Pr.: <span class='code'>{{ contents.my_projects }}</span>"
+        raw_item_template: "Môžete špecifikovať text zobrazený pre každú položku z kolekcie. Jednoducho použite Liquid. Pr.: <span class='code'>{{ zaznam.nazov }})</span>"
+        public_submission_enabled: "Používa sa pre vkladanie obsahu ľuďmi z vonku (príklad: správy v kontaktnom formulári)"
+        public_submission_accounts: "Ak je verejné vkladanie zapnuté, vyššie napísané účty obdržia pri vytvorení nového záznamu informačný email."
         "custom_fields/field":
-          name: "Název vlastnosti pro šablony liquid. Např: <span class='code'>&#123;&#123; vas_objekt.&lt;nazev_pole&gt; &#125;&#125;</span>"
-          hint: "Text zobrazený v modelu pod příslušným polem."
+          name: "Názov vlastnosti pre šablóny liquid. Napr: <span class='code'>&#123;&#123; vas_objekt.&lt;nazev_pole&gt; &#125;&#125;</span>"
+          hint: "Text zobrazený v modeli pod príslušným poľom."

@@ -25,6 +25,7 @@ pl:
       zh-CN: chiński
       cs: czeski
       bg: bułgarski
+	  sk: Słowacki
 
     messages:
       confirm: Na pewno ?
