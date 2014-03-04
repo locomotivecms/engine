@@ -24,7 +24,7 @@ cs:
       ja: Japonština
       zh-CN: Čínština
       cs: Čeština
-	  sk: Slovenština
+      sk: Slovenština
 
     messages:
       confirm: Jste si jistý?
