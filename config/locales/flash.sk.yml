@@ -1,0 +1,115 @@
+sk:
+  flash:
+    locomotive:
+      pages:
+        create:
+          notice: "Stránka bola vytvorená."
+          alert: "Stránka nebola vytvorená."
+        update:
+          notice: "Stránka bola aktualizovaná."
+          alert: "Stránka nebola aktualizovaná."
+        sort:
+          notice: "Stránky boli serazeny."
+        destroy:
+          notice: "Stránka bola odstranená."
+
+      content_entries:
+        create:
+          notice: "Záznam bol vytvorený."
+          alert: "Záznam nebol vytvorený."
+        update:
+          notice: "Záznam bol aktualizovaný."
+          alert: "Záznam nebol aktualizovaný."
+        sort:
+          notice: "Záznamy boli serazeny."
+        destroy:
+          notice: "Záznam bol odstranený."
+
+      content_types:
+        create:
+          notice: "Model bol vytvorený."
+          alert: "Model nebol vytvorený."
+        update:
+          notice: "Model bol aktualizovaný."
+          alert: "Model nebol aktualizovaný."
+        destroy:
+          notice: "Model bol odstranený."
+
+      current_site:
+        update:
+          notice: "Tento web bol aktualizovaný."
+          alert: "Tento web nebol aktualizovaný."
+
+      snippets:
+        create:
+          notice: "Snippet bol vytvorený."
+          alert: "Snippet nebol vytvorený."
+        update:
+          notice: "Snippet bol aktualizovaný."
+          alert: "Snippet nebol aktualizovaný."
+        destroy:
+          notice: "Snippet bol odstranený."
+
+      accounts:
+        create:
+          notice: "Účet bol vytvorený."
+          alert: "Účet nebol vytvorený."
+
+      my_account:
+        update:
+          notice: "Váš účet bol aktualizovaný."
+          alert: "Váš účet nebol aktualizovaný."
+
+      sites:
+        create:
+          notice: "Web bol vytvorený."
+          alert: "Web nebol vytvorený."
+        destroy:
+          notice: "Web bol odstranený."
+
+      memberships:
+        create:
+          notice: "Členstvo bolo vytvorené."
+          alert: "Členstvo nebolo vytvorené."
+          already_created: "Účet je už spojený s týmto webem."
+
+      assets:
+        create:
+          notice: "Médium bolo vytvorené."
+          alert: "Médium nebolo vytvorené."
+        update:
+          notice: "Médium bolo aktualizované."
+          alert: "Médium nebolo aktualizované."
+
+      theme_assets:
+        create:
+          notice: "Súbor bol vytvorený."
+          alert: "Súbor nebol vytvorený."
+        update:
+          notice: "Súbor bol aktualizovaný."
+          alert: "Súbor nebol aktualizovaný."
+        destroy:
+          notice: "Súbor bol odstranený."
+      translations:
+        create:
+          notice: "Preklad bol vytvorený."
+          alert: "Preklad nebol vytvorený."
+        update:
+          notice: "Preklad bol aktualizovaný."
+          alert: "Preklad nebol aktualizovaný."
+        destroy:
+          notice: "Preklad bol odstranený"
+
+      custom_fields:
+        update:
+          alert: "Pole nebolo aktualizované"
+
+      cross_domain_sessions:
+        create:
+          alert: "Musíte sa prihlásiť"
+
+      import:
+        create:
+          done: "Váš web bol aktualizovaný."
+          notice: "Váš web sa aktualizuje."
+          alert: "Váš web nebol aktualizovaný."

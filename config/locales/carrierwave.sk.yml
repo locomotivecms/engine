@@ -1,0 +1,4 @@
+sk:
+  carrierwave:
+    errors:
+      integrity: 'nie je povolený typ súboru.'
