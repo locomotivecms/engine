@@ -17,7 +17,7 @@
         %strong
           = link_to "#{translation.key}", edit_translation_path(translation)
 
-        %em= translation.values[I18n.locale.to_s]
+        %em= truncate translation.values[I18n.locale.to_s], length: 100
 
         - untranslated_locales(current_site, translation)
 

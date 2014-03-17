@@ -52,7 +52,7 @@ module Locomotive
         end
 
         def fetch_page(site, handle, templatized = false)
-          ::Mongoid::Fields::I18n.with_locale(@options['locale']) do
+          ::Mongoid::Fields::I18n.with_locale(self.locale) do
             if templatized
               criteria = site.pages.where(target_klass_name: handle.class.to_s, templatized: true)
               criteria = criteria.where(handle: @options['with']) if @options['with']
@@ -66,7 +66,7 @@ module Locomotive
         end
 
         def public_page_fullpath(site, page)
-          fullpath = site.localized_page_fullpath(page, @options['locale'])
+          fullpath = site.localized_page_fullpath(page, self.locale)
 
           if page.templatized?
             fullpath.gsub!('content_type_template', page.content_entry._slug)
@@ -75,6 +75,9 @@ module Locomotive
           File.join('/', fullpath)
         end
 
+        def locale
+          @options['locale'] || I18n.locale
+        end
 
       end
     end

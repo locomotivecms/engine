@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    locomotive_cms (2.4.0)
+    locomotive_cms (2.4.1)
       RedCloth (~> 4.2.8)
       actionmailer-with-request (~> 0.4.0)
       cancan (= 1.6.7)

@@ -3,7 +3,7 @@ module Locomotive
     module Drops
       class ContentEntry < Base
 
-        delegate :_slug, :_permalink, :seo_title, :meta_keywords, :meta_description, to: :@_source
+        delegate :_slug, :_permalink, :_translated, :seo_title, :meta_keywords, :meta_description, to: :@_source
 
         def _id
           @_source._id.to_s
