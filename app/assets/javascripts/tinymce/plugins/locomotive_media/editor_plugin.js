@@ -28,7 +28,7 @@
       } else {
         var html = ed.selection.getContent();
         if (html == '') {
-          html = asset.get('filename');
+          html = asset.get('full_filename');
           ed.execCommand('mceInsertContent', false, '<a id="__mce_tmp" href="#">' + html + '</a>', { skip_undo: 1 });
         } else {
           ed.execCommand('mceReplaceContent', false, ' <a id="__mce_tmp" href="#">' + html + '</a>', { skip_undo: 1 });

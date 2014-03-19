@@ -31,5 +31,11 @@ module Locomotive
       readme 'README'
     end
 
+    private
+
+    def generate_secret
+      SecureRandom.hex(32)
+    end
+
   end
 end

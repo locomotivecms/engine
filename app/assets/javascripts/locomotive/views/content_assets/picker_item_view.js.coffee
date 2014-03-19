@@ -15,6 +15,18 @@ class Locomotive.Views.ContentAssets.PickerItemView extends Backbone.View
 
     return @
 
+  refresh: ->
+    $(@el).html(ich.content_asset(@model.toJSON()))
+
+  uploaded_at: (loaded, total) ->
+    percentage = (loaded / total) * 100
+
+    # for UI reasons, it's better to have it begin at 20%.
+    percentage = 20 if percentage < 20
+
+    # update the progress bar
+    @$('.uploading .progress-bar').css('width', "#{percentage}%")
+
   select_asset: (event) ->
     event.stopPropagation() & event.preventDefault()
     @on_select(@model)

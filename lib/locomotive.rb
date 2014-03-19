@@ -59,27 +59,20 @@ module Locomotive
       domain: :all
     }
 
-    # add middlewares (dragonfly, font, seo, ...etc)
+    # add middlewares (font, seo, ...etc)
     self.add_middlewares
 
     # enable the hosting solution if both we are not in test or dev and that the config.hosting option has been filled up
     self.enable_hosting
 
     # Check for outdated Dragonfly config
-    conf = Dragonfly.app.configuration
-    if conf[:identify_command] == conf[:convert_command]
-      Locomotive.log :warn, "WARNING: Old Dragonfly config detected, image uploads might be broken. Use 'rails g locomotive:install' to get the latest configuration files."
+    if ::Dragonfly::VERSION =~ /^0\.9\.([0-9]+)/
+      Locomotive.log :error, "WARNING: Old Dragonfly config detected, image uploads might be broken. Use 'rails g locomotive:install' to get the latest configuration files."
     end
   end
 
   def self.add_middlewares
     self.app_middleware.insert 0, '::Locomotive::Middlewares::Permalink'
-
-    self.app_middleware.insert 1, 'Dragonfly::Middleware', :images
-
-    if self.rack_cache?
-      self.app_middleware.insert_before 'Dragonfly::Middleware', '::Locomotive::Middlewares::Cache', self.config.rack_cache
-    end
 
     self.app_middleware.use '::Locomotive::Middlewares::SeoTrailingSlash'
 
@@ -118,11 +111,6 @@ module Locomotive
     message = args.size == 1 ? args.first : args.last
 
     ::Locomotive::Logger.send(level.to_sym, message)
-  end
-
-  # rack_cache: needed by default
-  def self.rack_cache?
-    self.config.rack_cache != false
   end
 
   def self.mounted_on

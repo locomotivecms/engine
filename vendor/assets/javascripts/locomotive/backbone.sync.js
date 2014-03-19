@@ -22,9 +22,22 @@
     var params = _.extend({
       type:         type,
       dataType:     'json',
-      beforeSend: function( xhr ) {
+      beforeSend:   function(xhr, settings) {
         var token = $('meta[name="csrf-token"]').prop('content');
         if (token) xhr.setRequestHeader('X-CSRF-Token', token);
+      },
+      xhr:          function() {
+        var xhr = new window.XMLHttpRequest();
+
+        xhr.upload.addEventListener('progress', function(evt){
+          if (evt.lengthComputable) {
+            if (options.progress) {
+              options.progress(event.loaded, event.total)
+            }
+          }
+         }, false);
+
+        return xhr;
       }
     }, options);
 

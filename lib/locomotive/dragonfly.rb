@@ -2,6 +2,24 @@ module Locomotive
   module Dragonfly
 
     def self.resize_url(source, resize_string)
+      if file = self.fetch_file(source)
+        file.thumb(resize_string).url
+      else
+        Locomotive.log :error, "Unable to resize on the fly: #{source.inspect}"
+        return
+      end
+    end
+
+    def self.thumbnail_pdf(source, resize_string)
+      if file = self.fetch_file(source)
+        file.thumb(resize_string, format: 'png', frame: 0).encode('png').url
+      else
+        Locomotive.log :error, "Unable to convert the pdf: #{source.inspect}"
+        return
+      end
+    end
+
+    def self.fetch_file(source)
       file = nil
 
       if source.is_a?(String) || source.is_a?(Hash) # simple string or theme asset
@@ -22,16 +40,13 @@ module Locomotive
           file = self.app.fetch_file(source.path)
         end
 
-      else
-        Locomotive.log :error, "Unable to resize on the fly: #{source.inspect}"
-        return
       end
 
-      file.process(:thumb, resize_string).url
+      file
     end
 
     def self.app
-      ::Dragonfly[:images]
+      ::Dragonfly.app
     end
 
   end

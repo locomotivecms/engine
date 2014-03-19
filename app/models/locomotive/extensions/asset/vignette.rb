@@ -10,6 +10,8 @@ module Locomotive
             else
               Locomotive::Dragonfly.resize_url(self.source, '85x85#')
             end
+          elsif self.pdf?
+            Locomotive::Dragonfly.thumbnail_pdf(self.source, '85x85#')
           end
         end
 

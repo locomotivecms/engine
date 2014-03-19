@@ -17,9 +17,18 @@
 
 %script{ type: 'text/html', id: 'content_asset' }
 
+  {{#if uploading}}
+  %h4 {{filename}}
+  .uploading
+    .progress-bar
+      &nbsp;
+
+  {{else}}
+
   %h4
     = link_to '{{filename}}', '{{url}}', alt: '{{full_filename}}', title: '{{full_filename}}'
-  {{#if image}}
+
+  {{#if with_thumbnail}}
   .image
     .inside
       %img{ src: '{{vignette_url}}' }
@@ -31,3 +40,5 @@
 
   .actions
     = link_to_icon :trash, '#', class: 'remove', :'data-confirm' => t('locomotive.messages.confirm')
+
+  {{/if}}

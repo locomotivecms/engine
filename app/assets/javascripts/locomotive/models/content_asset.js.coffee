@@ -8,10 +8,16 @@ class Locomotive.Models.ContentAsset extends Backbone.Model
     @prepare()
 
   prepare: ->
+    @set(filename: @get('source').name.truncate(15)) if @get('uploading')
+
     @set
-      image:  @get('content_type') == 'image'
+      image:          @get('content_type') == 'image'
+      with_thumbnail: @get('content_type') == 'image' || @get('content_type') == 'pdf'
 
     return @
+
+  toJSONForSave: ->
+    { source: @get('source') }
 
 class Locomotive.Models.ContentAssetsCollection extends Backbone.Collection
 

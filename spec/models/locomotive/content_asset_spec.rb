@@ -43,4 +43,13 @@ describe Locomotive::ContentAsset do
 
   end
 
+  describe 'attaching a pdf' do
+
+    subject { FactoryGirl.build(:asset, source: FixturedAsset.open('specs.pdf')) }
+
+    its(:pdf?) { should be_true }
+    its(:vignette_url) { should =~ /^\/images\/dynamic\/.*\/specs.png/ }
+
+  end
+
 end

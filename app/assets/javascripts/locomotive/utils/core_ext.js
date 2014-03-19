@@ -10,7 +10,7 @@
 
   String.prototype.truncate = function(length) {
     if (this.length > length) {
-      return this.slice(0, length - 3) + "...";
+      return this.slice(0, length - 3) + '...';
     } else {
       return this;
     }

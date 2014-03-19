@@ -72,6 +72,10 @@
       height: 360px;
     }
 
+    &.hovered {
+      background: rgba(224, 237, 253, 1);
+    }
+
     form.formtastic {
       fieldset {
         legend, ol {

@@ -49,7 +49,7 @@ define(
         */
         insertLink: function(asset) {
           var range = Aloha.Selection.getRangeObject(),
-          linkText  = asset.get('filename'),
+          linkText  = asset.get('full_filename'),
           linkUrl   = asset.get('url'),
           linktag, newLink;
 
