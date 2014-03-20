@@ -33,3 +33,10 @@ p.no-items {
     color: #ff2900;
   }
 }
+
+/* ___ stop window scrolling (when an ui-dialog is open) ___ */
+
+.stop-scrolling {
+  height: 100%;
+  overflow: hidden;
+}

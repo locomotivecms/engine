@@ -263,6 +263,12 @@ fr:
         title: "Insérer un média"
         no_items: "Il n'y a aucun média."
         upload: "Uploader média"
+        placeholder_search: Recherche par nom de fichier
+        types:
+          pdf: pdf
+          image: image
+          media: média
+          others: autres
 
     content_types:
       index:

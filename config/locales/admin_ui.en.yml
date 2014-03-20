@@ -262,6 +262,12 @@ en:
         title: "Insert media"
         no_items: "There are no media for now."
         upload: "Upload media"
+        placeholder_search: Search by filename
+        types:
+          pdf: pdf
+          image: image
+          media: media
+          others: others
 
     content_types:
       index:

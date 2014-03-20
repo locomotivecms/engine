@@ -148,3 +148,53 @@ ul.content-assets {
   } // li.asset
 
 }
+
+.content-asset-picker-dialog {
+
+  .ui-dialog-content {
+    padding: 0px !important;
+  }
+
+  .ui-dialog-titlebar {
+    border-bottom: 1px solid transparent !important;
+  }
+
+  .filter-and-search {
+    @include background-image(linear-gradient(#55565c, #45454a));
+    padding: 10px 10px;
+    border-bottom: 1px solid #000;
+
+    .search-bar {
+      position: relative;
+      float: right;
+
+      input {
+        @include border-radius(20px);
+        outline: none;
+        border: 0px;
+        font-size: 12px;
+        padding: 3px 10px 3px 30px;
+        line-height: 20px;
+        z-index: 100;
+        width: 150px;
+      }
+
+      i.icon-search {
+        position: absolute;
+        left: 10px;
+        top: 2px;
+        font-size: 18px;
+        z-index: 101;
+      }
+    }
+  }
+
+  ul.content-assets {
+    padding: 10px;
+    margin: 0px;
+  }
+
+  .no-items {
+    margin: 50px 10px 0px;
+  }
+}

@@ -6,7 +6,10 @@ module Locomotive
         extend ActiveSupport::Concern
 
         included do
-          %w{media image stylesheet javascript font pdf}.each do |type|
+          scope :by_content_type,   ->(content_type)  { content_type.blank? ? all : where(content_type: content_type.to_s) }
+          scope :by_content_types,  ->(content_types) { content_types.blank? ? all : where(:content_type.in => [*content_types]) }
+
+          all_types.each do |type|
             scope :"only_#{type}", where(content_type: type)
 
             define_method("#{type}?") do
@@ -17,10 +20,12 @@ module Locomotive
 
         module ClassMethods
 
-          def by_content_type(content_type)
-            return self.all if content_type.blank?
+          def all_types
+            %w{media image stylesheet javascript font pdf}
+          end
 
-            self.all.where(content_type: content_type.to_s)
+          def types_for_content_editing
+            all_types - %w(stylesheet javascript font)
           end
 
         end

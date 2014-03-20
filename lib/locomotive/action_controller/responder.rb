@@ -23,6 +23,7 @@ module Locomotive
 
       def to_json
         if get?
+          add_pagination_header if resource.respond_to?(:num_pages)
           display resource
         elsif has_errors?
           with_flash_message(:alert) do
@@ -55,7 +56,7 @@ module Locomotive
       def with_flash_message(type = :notice, in_header = true)
         if in_header
           set_flash_message!
-          message = URI::escape(controller.flash[type].to_str) if controller.flash[type] 
+          message = URI::escape(controller.flash[type].to_str) if controller.flash[type]
 
           unless message.blank?
             controller.headers['X-Message']       = ActiveSupport::JSON::Encoding.escape(message)
@@ -70,6 +71,12 @@ module Locomotive
 
           yield if block_given?
         end
+      end
+
+      def add_pagination_header
+        controller.headers['X-Total-Pages']   = resource.num_pages
+        controller.headers['X-Per-Page']      = resource.limit_value
+        controller.headers['X-Total-Entries'] = resource.total_count
       end
 
     end

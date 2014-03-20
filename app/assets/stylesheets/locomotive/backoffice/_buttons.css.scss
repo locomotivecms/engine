@@ -176,3 +176,59 @@
     top: 1px;
   }
 }
+
+.button-groups {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+
+  .btn {
+    display: inline-block;
+    position: relative;
+    float: left;
+    white-space: nowrap;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    outline: none;
+    padding: 0px 5px;
+    margin: 0px;
+    margin-left: -1px;
+    border: 1px solid transparent;
+    color: #fff;
+
+    &:first-child {
+      @include border-top-left-radius(16px);
+      @include border-bottom-left-radius(16px);
+    }
+
+    &:last-child {
+      @include border-top-right-radius(16px);
+      @include border-bottom-right-radius(16px);
+    }
+
+    padding: 0px 12px 0px 12px;
+    line-height: 26px;
+    outline: none;
+    text-decoration: none;
+
+    color: #fff;
+    font-size: 12px;
+    font-weight: normal;
+    @include single-text-shadow(rgba(0, 0, 0, 1), 1px, 1px, 1px);
+
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.6);
+    @include box-shadow(rgba(255, 255, 255, 0.1) 0 1px 0 0 inset, rgba(255, 255, 255, 0.1) 0 1px 0 0);
+    @include background-image(linear-gradient(#303138, #1e1e24));
+
+    &.on, &:active {
+      border: 1px solid rgba(0, 0, 0, 0.4);
+      border-top: 1px solid rgba(0, 0, 0, 0.6);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+      @include background-image(linear-gradient(#1e1e24, #212229));
+      @include box-shadow(rgba(0, 0, 0, 0) 0 1px 0 0 inset, rgba(255, 255, 255, 0.1) 0 1px 0 0);
+    }
+  }
+}

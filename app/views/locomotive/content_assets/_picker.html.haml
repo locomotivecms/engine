@@ -2,6 +2,16 @@
 
   %h2!= t('.title')
 
+  .filter-and-search
+    .button-groups.asset-types
+      - Locomotive::ContentAsset.types_for_content_editing.each do |type|
+        %button.btn{ data: { type: type } }= t(".types.#{type}")
+      %button.btn{ data: { type: 'other'} }= t('.types.others')
+
+    .search-bar
+      %input{ type: 'text', name: 'query', placeholder: t('.placeholder_search') }
+      %i.icon-search
+
   %p.no-items{ style: 'display: none' }!= t('.no_items')
 
   %ul.list.content-assets{ style: 'display: none' }

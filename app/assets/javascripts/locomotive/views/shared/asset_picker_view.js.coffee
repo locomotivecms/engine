@@ -28,10 +28,12 @@ class Locomotive.Views.Shared.AssetPickerView extends Backbone.View
 
   create_dialog: ->
     @dialog ||= $(@el).dialog
-      autoOpen: false
-      modal:    true
-      zIndex:   window.application_view.unique_dialog_zindex()
-      width:    650,
+      autoOpen:     false
+      modal:        true
+      zIndex:       window.application_view.unique_dialog_zindex()
+      dialogClass:  @dialog_class()
+      width:        615
+      minHeight:    520
       create: (event, ui) =>
         $(@el).prev().find('.ui-dialog-title').html(@$('h2').html())
         @$('h2').remove()
@@ -46,6 +48,10 @@ class Locomotive.Views.Shared.AssetPickerView extends Backbone.View
 
       open: (event, ui, extra) =>
         $(@el).dialog('overlayEl').bind 'click', => @close()
+        $(document.body).addClass('stop-scrolling')
+
+      close: (event, ui, extra) =>
+        $(document.body).removeClass('stop-scrolling')
 
   open: ->
     $(@el).dialog('open')
@@ -73,9 +79,15 @@ class Locomotive.Views.Shared.AssetPickerView extends Backbone.View
   remove_asset: (asset) ->
     # please overide remove_asset
 
+  dialog_class: ->
+    'asset-picker-dialog'
+
   _move_to_last_asset: ->
     limit = @$('ul.list li.clear').position()
     @$('ul.list').animate(scrollTop: limit.top, 100) if limit?
+
+  _move_to_top: ->
+    @$('ul.list').animate(scrollTop: 0, 100)
 
   _refresh: ->
     if @collection.length == 0
