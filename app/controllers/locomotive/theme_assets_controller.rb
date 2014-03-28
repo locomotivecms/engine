@@ -32,6 +32,7 @@ module Locomotive
     def edit
       @theme_asset = current_site.theme_assets.find(params[:id])
       @theme_asset.performing_plain_text = true if @theme_asset.stylesheet_or_javascript?
+      @theme_asset.plain_text = @theme_asset.plain_text.force_encoding("UTF-8")
       respond_with @theme_asset
     end
 
