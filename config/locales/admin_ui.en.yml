@@ -264,9 +264,9 @@ en:
         upload: "Upload media"
         placeholder_search: Search by filename
         types:
-          pdf: pdf
-          image: image
-          media: media
+          pdf: PDFs
+          image: images
+          media: rich media
           others: others
 
     content_types:

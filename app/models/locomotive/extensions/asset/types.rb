@@ -21,7 +21,7 @@ module Locomotive
         module ClassMethods
 
           def all_types
-            %w{media image stylesheet javascript font pdf}
+            %w{image pdf media stylesheet javascript font}
           end
 
           def types_for_content_editing
