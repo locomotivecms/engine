@@ -18,7 +18,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'rake',                            '~> 10.0.0'
 
-  s.add_dependency 'rails',                           '~> 3.2.16'
+  s.add_dependency 'rails',                           '~> 3.2.17'
 
   s.add_dependency 'devise',                          '2.2.7'
   s.add_dependency 'devise-encryptable',              '~> 0.1.1'
@@ -29,6 +29,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'mongoid_migration',               '~> 0.0.8'
   s.add_dependency 'mongo_session_store-rails3',      '~> 4.1.1'
 
+  s.add_dependency 'mime-types',                      '~> 1.19'
   s.add_dependency 'custom_fields',                   '~> 2.3.1'
 
   s.add_dependency 'kaminari',                        '~> 0.14.1'
@@ -60,8 +61,6 @@ Gem::Specification.new do |s|
   s.add_dependency 'multi_json',                      '~> 1.7.3'
   s.add_dependency 'httparty',                        '~> 0.11.0'
   s.add_dependency 'actionmailer-with-request',       '~> 0.4.0'
-
-  s.add_dependency 'SystemTimer' if RUBY_VERSION =~ /1.8/
 
   s.add_development_dependency "faye-websocket", '~> 0.4.7' # with 0.5, cucumber features are broken.
 
