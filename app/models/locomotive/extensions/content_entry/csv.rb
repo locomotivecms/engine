@@ -43,7 +43,7 @@ module Locomotive
           when :tags
             [*value].join(', ')
           else
-            value
+            value == nil ? '' : value
           end
         end
 
