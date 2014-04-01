@@ -18,5 +18,5 @@ class Locomotive.Views.Shared.ListItemView extends Backbone.View
   remove_item: (event) ->
     event.stopPropagation() & event.preventDefault()
 
-    if confirm $(event.target).data('confirm')
+    if confirm $(event.target).closest('a').data('confirm')
       @model.destroy()
