@@ -357,6 +357,9 @@ GEM
       kgio (~> 2.6)
       rack
       raindrops (~> 0.7)
+    unicorn-rails (1.1.0)
+      rack
+      unicorn
     warden (1.2.3)
       rack (>= 1.0)
     websocket (1.0.7)
@@ -387,4 +390,4 @@ DEPENDENCIES
   shoulda-matchers (~> 1.5.2)
   thor
   uglifier (~> 1.2.4)
-  unicorn
+  unicorn-rails

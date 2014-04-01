@@ -34,7 +34,7 @@ group :development do
   gem 'thor'
   gem 'github_api'
 
-  gem 'unicorn' # Using unicorn_rails instead of webrick (default server)
+  gem 'unicorn-rails' # Using unicorn_rails instead of webrick (default server)
 
 end
 
