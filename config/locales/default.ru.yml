@@ -34,7 +34,7 @@ ru:
       messages:
         blank_in_locale: "не может быть пустым"
     attributes:
-      page:
+      locomotive/page:
         title: Имя
         parent: Родитель
         slug: Ссылка
@@ -43,8 +43,11 @@ ru:
         listed: Меню
         redirect: Перенаправлена
         redirect_url: Адрес перенаправления
+        redirect_type: Тип перенаправления
         cache_strategy: Стратегия кеширования
-      content_type:
+        response_type: Тип HTTP ответа
+        handle: Идентификатор
+      locomotive/content_type:
         name: Имя
         description: Описание
         slug: Ссылка
@@ -53,27 +56,35 @@ ru:
         highlighted_field_name: Выделенное имя поля
         group_by_field_name: Группировка по имени поля
         api_enabled: API включен
-      asset:
+      locomotive/translation:
+        key: Ключ
+      locomotive/asset:
         source: Файл
-      account:
+      locomotive/account:
         email: Email
         name: Имя
         language: Язык
         password: Пароль
         password_confirmation: Подтверждение пароля
-      snippet:
+      locomotive/snippet:
         body: Код
         slug: Ссылка
         name: Название
-      theme_asset:
+      locomotive/theme_asset:
         content_type: Тип содержимого
-      site:
+        folder: Папка
+      locomotive/site:
         name: Имя сайта
         domain_name: Домен
         subdomain: Поддомен
         restricted_access: Активный ?
         access_login: Имя пользователя
         access_password: "Пароль"
+      custom_fields/field:
+        name: Название
+        hint: Подсказка
+        localized: Локализованное
+        unique: Уникальное
 
   pagination:
     previous: "&laquo; Предыдущая"
