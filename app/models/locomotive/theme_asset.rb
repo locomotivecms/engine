@@ -73,11 +73,8 @@ module Locomotive
     end
 
     def plain_text
-      if RUBY_VERSION =~ /1\.9/
-        @plain_text ||= (self.source.read.force_encoding('UTF-8') rescue nil)
-      else
-        @plain_text ||= self.source.read
-      end
+      # only for ruby >= 1.9.x. Forget about ruby 1.8
+      @plain_text ||= (self.source.read.force_encoding('UTF-8') rescue nil)
     end
 
     def plain_text_type
