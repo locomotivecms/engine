@@ -102,6 +102,7 @@ ru:
           empty: Список пуст. Добавьте элемент из селекта ниже.
       form:
         required: Обязательное
+        empty: Пусто
         default_label: Название поля
         select_options:
           ask_name: "Введите название элемента"
@@ -212,6 +213,7 @@ ru:
         fonts: Шрифты
         images: Изображения
         media: Медиа
+        others: Другие файлы
         no_items: "Пока нет ни одного файла."
       asset:
         updated_at: Обновлено
@@ -231,7 +233,7 @@ ru:
       image_picker:
         title: "Вставить изображение"
         no_items: "Нет ни одного изображения."
-        upload: "Upload theme images"
+        upload: "Загрузить изображения"
 
     translations:
         untranslated: "Ожидают перевода: %{list}"
@@ -284,8 +286,9 @@ ru:
         category_noname: "Без имени"
         latest_entries: "Элементы за последнее время"
         updated_at: "Обновлено"
+        export: экспорт
       list:
-        no_entries: "На данный момент нет ни одного элемента. Нажмите <a href=\"%{url}\">здесь</a> для создания первого элемента."
+        no_items: "На данный момент нет ни одного элемента. Нажмите <a href=\"%{url}\">здесь</a> для создания первого элемента."
       new:
         title: '%{type} &mdash; новый элемент'
       edit:
@@ -294,8 +297,8 @@ ru:
         has_many:
           new_item: Новый элемент
 
-    image_picker:
-      link: Вставить изображение в код
+    code_editing:
+      image_picker: Вставить изображение в код
 
     cross_domain_sessions:
       new:
