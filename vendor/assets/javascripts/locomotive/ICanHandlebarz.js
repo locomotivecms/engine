@@ -23,7 +23,7 @@ function ICanHandlebarz() {
         self[name] = function (data, title, raw) {
             data = data || {};
             var result = self.templates[name](data);
-            return raw? result: $(result);
+            return raw? result: $(result.trim());
         };
     };
 
