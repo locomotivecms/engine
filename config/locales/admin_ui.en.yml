@@ -25,6 +25,7 @@ en:
       zh-CN: Chinese
       cs: Czech
       bg: Bulgarian
+      sk: Slovak
 
     messages:
       confirm: Are you sure ?
