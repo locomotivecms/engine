@@ -74,9 +74,9 @@ module Locomotive
       end
 
       def add_pagination_header
-        controller.headers['X-Total-Pages']   = resource.num_pages
-        controller.headers['X-Per-Page']      = resource.limit_value
-        controller.headers['X-Total-Entries'] = resource.total_count
+        controller.headers['X-Total-Pages']   = resource.num_pages.to_s
+        controller.headers['X-Per-Page']      = resource.limit_value.to_s
+        controller.headers['X-Total-Entries'] = resource.total_count.to_s
       end
 
     end
