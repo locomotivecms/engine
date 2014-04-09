@@ -187,6 +187,9 @@ fr:
       over_x_years:
         one:   "plus d'un an"
         other: "plus de %{count} ans"
+      almost_x_years:
+        one: "presque 1 an"
+        other: "presque %{count} ans"
     prompts:
       year:   "Année"
       month:  "Mois"
