@@ -281,8 +281,8 @@ fr:
       edit:
         title: Edition modèle
         help: "Votre modèle doit au moins comporter un champ. Le premier champ sera obligatoire lorsque vous ajouterez un élément de ce type-là."
-        show_items: voir éléments
-        new_item: nouvel élément
+        show_entries: voir éléments
+        new_entry: nouvel élément
       form:
         order_by:
           created_at: 'Par date de création'
