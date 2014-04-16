@@ -11,6 +11,7 @@ describe Locomotive::ContentEntry do
     @content_type.entries_custom_fields.build label: 'Description', type: 'text'
     @content_type.entries_custom_fields.build label: 'Visible ?', type: 'boolean', name: 'visible'
     @content_type.entries_custom_fields.build label: 'File', type: 'file'
+    @content_type.entries_custom_fields.build label: 'Published at', type: 'date'
     @content_type.valid?
     @content_type.send(:set_label_field)
   end
@@ -132,7 +133,7 @@ describe Locomotive::ContentEntry do
 
         subject { build_content_entry.to_values(host: 'example.com') }
 
-        its(:size) { should eq(5) }
+        its(:size) { should eq(6) }
 
         its(:first) { should eq('Locomotive') }
 
@@ -161,9 +162,9 @@ describe Locomotive::ContentEntry do
 
       its(:size) { should eq(4) }
 
-      its(:first) { should eq("Title,Description,Visible ?,File,Created at") }
+      its(:first) { should eq("Title,Description,Visible ?,File,Published at,Created at") }
 
-      its(:last) { should match(/^Locomotive,Lorem ipsum....,false,http:\/\/example.com\/sites\/[0-9a-f]+\/content_entry[0-9a-f]+\/[0-9a-f]+\/files\/5k.png,\"July 05, 2013 00:00\"$/) }
+      its(:last) { should match(/^Locomotive,Lorem ipsum....,false,http:\/\/example.com\/sites\/[0-9a-f]+\/content_entry[0-9a-f]+\/[0-9a-f]+\/files\/5k.png,\"\",\"July 05, 2013 00:00\"$/) }
 
     end
 
@@ -172,11 +173,10 @@ describe Locomotive::ContentEntry do
   describe "#navigation" do
 
     before(:each) do
-      @content_type.order_by = '_position'
-      @content_type.save
+      @content_type.update_attribute :order_by, '_position'
 
       %w(first second third).each_with_index do |item, index|
-        content = build_content_entry(title: item.to_s, _position: index, visible: true)
+        content = build_content_entry(title: item.to_s, _position: index, published_at: (index + 1).days.ago, visible: true)
         content.save!
         instance_variable_set "@#{item}", content
       end
@@ -198,6 +198,57 @@ describe Locomotive::ContentEntry do
 
     it 'should return nil when fetching next item on last in list' do
       @third.next.should == nil
+    end
+
+    context "ordered by published at" do
+
+      before do
+        @content_type.update_attributes order_by: 'published_at', order_direction: 'asc'
+
+        @very_first = build_content_entry(title: 'very first', _position: 4, published_at: Time.now, visible: true)
+        @very_first.save!
+      end
+
+      it "should find previous item" do
+        @second.previous.title.should == 'third'
+      end
+
+      it "should find next item" do
+        @first.next.title.should == 'very first'
+      end
+
+      it 'should return nil when fetching previous item on first in list' do
+        @third.previous.should == nil
+      end
+
+      it 'should return nil when fetching next item on last in list' do
+        @very_first.next.should == nil
+      end
+
+      context 'with desc direction' do
+
+        before do
+          @content_type.update_attribute :order_direction, 'desc'
+        end
+
+        it "should find previous item" do
+          @second.previous.title.should == 'first'
+        end
+
+        it "should find next item" do
+          @first.next.title.should == 'second'
+        end
+
+        it 'should return nil when fetching previous item on first in list' do
+          @very_first.previous.should == nil
+        end
+
+        it 'should return nil when fetching next item on last in list' do
+          @third.next.should == nil
+        end
+
+      end
+
     end
   end
 
