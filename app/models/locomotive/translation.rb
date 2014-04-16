@@ -7,7 +7,7 @@ class Locomotive::Translation
   field :values, type: Hash, default: {}
 
   ## associations ##
-  belongs_to :site, class_name: 'Locomotive::Site'
+  belongs_to :site, class_name: 'Locomotive::Site', validate: false, autosave: false
 
   ## validations ##
   validates_uniqueness_of :key, scope: :site_id

@@ -10,7 +10,7 @@ module Locomotive
     field :template, localize: true
 
     ## associations ##
-    belongs_to :site, class_name: 'Locomotive::Site'
+    belongs_to :site, class_name: 'Locomotive::Site', validate: false, autosave: false
 
     ## callbacks ##
     after_save        :update_templates
@@ -33,17 +33,18 @@ module Locomotive
       return unless (self.site rescue false) # not run if the site is being destroyed
 
       pages = ::I18n.with_locale(::Mongoid::Fields::I18n.locale) do
-        pages = self.site.pages.any_in(snippet_dependencies: [self.slug]).to_a
+        self.site.pages.any_in(snippet_dependencies: [self.slug]).to_a
       end
 
-      pages.each do |page|
+      pages.each_with_index do |page, index|
+        # make direct changes directly in the Liquid template
         self._change_snippet_inside_template(page.template.root)
 
-        page.send(:_serialize_template)
+        # serialize it
+        serialized_template = page.send(:_serialize_template)
 
-        Page.without_callback(:save, :after, :update_template_descendants) do
-          page.save(validate: false)
-        end
+        # persist the change to MongoDB by bypassing the validation and the callbacks
+        page.set("serialized_template.#{::Mongoid::Fields::I18n.locale}", serialized_template)
       end
     end
 

@@ -15,7 +15,7 @@ module Locomotive
     field :position,      type: Integer, default: 0
 
     ## associations ##
-    belongs_to :site, class_name: 'Locomotive::Site'
+    belongs_to :site, class_name: 'Locomotive::Site', validate: false, autosave: false
 
     ## validations ##
     validates_presence_of :source

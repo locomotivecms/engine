@@ -20,7 +20,7 @@ module Locomotive
     validates_uniqueness_of   :_slug, scope: :content_type_id, allow_blank: true
 
     ## associations ##
-    belongs_to  :site,          class_name: 'Locomotive::Site'
+    belongs_to  :site,          class_name: 'Locomotive::Site', validate: false, autosave: false
     belongs_to  :content_type,  class_name: 'Locomotive::ContentType', inverse_of: :entries, custom_fields_parent_klass: true
 
     ## callbacks ##

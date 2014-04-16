@@ -22,7 +22,7 @@ module Locomotive
     field :public_submission_accounts,  type: Array
 
     ## associations ##
-    belongs_to  :site,      class_name: 'Locomotive::Site'
+    belongs_to  :site,      class_name: 'Locomotive::Site', validate: false
     has_many    :entries,   class_name: 'Locomotive::ContentEntry', dependent: :destroy do
 
       def find_by_id_or_permalink(id_or_permalink)
