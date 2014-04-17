@@ -28,7 +28,7 @@ module Locomotive
     field :response_type,       default: 'text/html'
 
     ## associations ##
-    belongs_to :site, class_name: 'Locomotive::Site', autosave: false
+    belongs_to :site, class_name: 'Locomotive::Site', validate: false, autosave: false
 
     ## indexes ##
     index site_id:    1

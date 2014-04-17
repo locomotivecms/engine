@@ -22,6 +22,7 @@ fr:
       presentation: Présentation
       attributes: Propriétés
       upload: Envoi au serveur
+      access_points: Domaines
 
     labels:
       theme_asset:
@@ -39,8 +40,9 @@ fr:
         raw_item_template: Template d'affichage
         api_accounts: Comptes à notifier
       content_entry:
-        _slug: Permalink
+        _slug: Permalien
         _visible: Visible
+        seo_title: Titre Seo
       account:
         api_key: Clé API
         edit:
@@ -72,6 +74,7 @@ fr:
         meta_keywords: "Mots-clés utilisés à l'intérieur de la balise HEAD. Ils sont séparés par une virgule. Requis pour un meilleur référencement."
         meta_description: "Description utilisée à l'intérieur de la balise HEAD. Requis pour un meilleur référencement."
         domain_name: "ex: locomotiveapp.org"
+        robots_txt: "Contenu du fichier <span class='code'>/robots.txt</span>. Consultez cette <a href='http://www.w3.org/TR/html4/appendix/notes.html#h-B.4.1.1'>page</a> pour plus d'informations."
         new:
           locales: "Vous pourrez ajouter d'autres langues une fois le site crée."
       theme_asset:
@@ -101,3 +104,6 @@ fr:
         raw_item_template: "Personnaliser le texte affiché pour chaque élément de la liste. Utilisez simplement du code Liquid. Ex: {{ entry.name }}"
         public_submission_enabled: "Utilisé pour autoriser la création de nouvelles instances de l'extérieur (ex.: les messages dans un formulaire de contact)"
         public_submission_accounts: "Un email de notification sera envoyé à chaque compte listé ci-dessus lors de la création d'une nouvelle instance"
+        "custom_fields/field":
+          name: "Nom de l'objet pour les templates liquid. Ex: <span class='code'>&#123;&#123; votre_objet.&lt;nom_de_votre_champ&gt; &#125;&#125;</span>"
+          hint: "Texte affiché sous le formulaire de modèle juste en dessous du champ"

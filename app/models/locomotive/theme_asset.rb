@@ -18,7 +18,7 @@ module Locomotive
     mount_uploader :source, ThemeAssetUploader, mount_on: :source_filename, validate_integrity: true
 
     ## associations ##
-    belongs_to :site, class_name: 'Locomotive::Site', autosave: false
+    belongs_to :site, class_name: 'Locomotive::Site', validate: false, autosave: false
 
     ## indexes ##
     index site_id:  1
