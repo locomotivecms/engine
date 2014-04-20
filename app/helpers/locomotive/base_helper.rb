@@ -136,7 +136,7 @@ module Locomotive
     # @return [ String ] The HTML image tag with the path to the matching flag.
     #
     def flag_tag(locale, size = '24x24')
-      image_tag("locomotive/icons/flags/#{locale}.png", class: 'flag', size: size)
+      image_tag("locomotive/icons/flags/#{locale}.png", class: "flag flag-#{locale}", size: size)
     end
 
     def nocoffee_tag
