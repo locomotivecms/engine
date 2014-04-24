@@ -115,7 +115,7 @@ class Locomotive::BasePresenter
   def self.getters_to_hash
     {}.tap do |hash|
       self.getters.each do |name|
-        next if %w(_id screated_at updated_at).include?(name)
+        next if %w(_id created_at updated_at).include?(name)
         hash[name] = self.getters_or_setters_to_hash(name)
       end
 
