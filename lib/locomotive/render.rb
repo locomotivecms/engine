@@ -65,13 +65,27 @@ module Locomotive
       response.headers['Content-Type']  = "#{@page.response_type}; charset=utf-8"
       response.headers['Editable']      = 'true' unless self.editing_page? || current_locomotive_account.nil?
 
+      # Inputs which define the ETag for this response
+      etag_inputs = {
+        'page'    => @page,
+        'params'  => {
+          'page_path'   => params[:page_path],
+          'controller'  => params[:controller],
+          'action'      => params[:action],
+          'locale'      => params[:locale]
+        }
+      }
+
       if @page.with_cache?
-        fresh_when etag: @page, last_modified: @page.updated_at.utc, public: true
+        fresh_when etag: etag_inputs, last_modified: @page.updated_at.utc, public: true
 
         if @page.cache_strategy != 'simple' # varnish
           response.headers['Editable']      = ''
           response.cache_control[:max_age]  = @page.cache_strategy
         end
+      else
+        # Set the ETag on uncached responses otherwise Rails will set it based on content only
+        fresh_when etag: etag_inputs
       end
 
       render text: output, layout: false, status: page_status unless performed?
