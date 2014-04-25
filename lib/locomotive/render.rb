@@ -70,8 +70,6 @@ module Locomotive
         'page'    => @page,
         'params'  => {
           'page_path'   => params[:page_path],
-          'controller'  => params[:controller],
-          'action'      => params[:action],
           'locale'      => params[:locale]
         }
       }
