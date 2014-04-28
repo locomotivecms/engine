@@ -1,3 +1,3 @@
 module Locomotive #:nodoc
-  VERSION = '2.5.0.rc3'
+  VERSION = '2.5.0'
 end
