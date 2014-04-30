@@ -2,13 +2,14 @@ require 'spec_helper'
 
 describe Locomotive::Liquid::Filters::Resize do
   before :each do
-    @site             = FactoryGirl.create(:site)
-    @theme_asset      = FactoryGirl.create(:theme_asset, source: FixturedAsset.open('5k.png'), site: @site)
-    @theme_asset_path = "/sites/#{@theme_asset.site_id}/theme/images/5k.png"
-    @asset            = FactoryGirl.create(:asset, source: FixturedAsset.open('5k.png'), site: @site)
-    @asset_url        = @asset.source.url
-    @asset_path       = "/sites/#{@asset.site_id}/assets/#{@asset.id}/5k.png"
-    @context          = Liquid::Context.new( { }, { 'asset_url' => @asset_url, 'theme_asset' => @theme_asset.to_liquid }, { site: @site })
+    @site               = FactoryGirl.create(:site)
+    @theme_asset        = FactoryGirl.create(:theme_asset, source: FixturedAsset.open('5k.png'), site: @site)
+    @theme_asset_path   = "/sites/#{@theme_asset.site_id}/theme/images/5k.png"
+    @asset              = FactoryGirl.create(:asset, source: FixturedAsset.open('5k.png'), site: @site)
+    @asset_url          = @asset.source.url
+    @asset_url_with_ts  = "#{@asset.source.url}?24e29997bcb00e97d8252cdd29d14e2d"
+    @asset_path         = "/sites/#{@asset.site_id}/assets/#{@asset.id}/5k.png"
+    @context            = Liquid::Context.new( { }, { 'asset_url' => @asset_url, 'asset_url_with_ts' => @asset_url_with_ts, 'theme_asset' => @theme_asset.to_liquid }, { site: @site })
   end
 
   describe '#resize' do
@@ -28,6 +29,16 @@ describe Locomotive::Liquid::Filters::Resize do
       it 'accepts strings with leading and trailing empty characters' do
         @context['asset_url'] = "  \t #{@context['asset_url']}   \n\n  "
         @template.render(@context).should == Locomotive::Dragonfly.resize_url(@asset_path, '40x30')
+      end
+
+    end
+
+    context 'when an asset url with a timestamp is given' do
+
+      subject { Liquid::Template.parse('{{ asset_url_with_ts | resize: "40x30" }}').render(@context) }
+
+      it 'returns the location of the resized image' do
+        subject.should =~ /images\/dynamic\/.*\/5k.png/
       end
 
     end
@@ -57,5 +68,6 @@ describe Locomotive::Liquid::Filters::Resize do
       end
 
     end
+
   end
 end

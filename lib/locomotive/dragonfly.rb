@@ -25,7 +25,7 @@ module Locomotive
       if source.is_a?(String) || source.is_a?(Hash) # simple string or theme asset
         source = source['url'] if source.is_a?(Hash)
 
-        source.strip!
+        clean_source!(source)
 
         if source =~ /^http/
           file = self.app.fetch_url(source)
@@ -47,6 +47,16 @@ module Locomotive
 
     def self.app
       ::Dragonfly.app
+    end
+
+    protected
+
+    def self.clean_source!(source)
+      # remove the leading / trailing whitespaces
+      source.strip!
+
+      # remove the query part (usually, timestamp) if local file
+      source.sub!(/(\?.*)$/, '') unless source =~ /^http/
     end
 
   end
