@@ -67,11 +67,8 @@ module Locomotive
 
       # Inputs which define the ETag for this response
       etag_inputs = {
-        'page'    => @page,
-        'params'  => {
-          'page_path'   => params[:page_path],
-          'locale'      => params[:locale]
-        }
+        'page'   => @page.cache_key,
+        'locale' => params[:locale]
       }
 
       if @page.with_cache?
