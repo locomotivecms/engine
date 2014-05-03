@@ -15,9 +15,9 @@ module Locomotive
         @membership = Membership.new(account: @account, role: 'admin')
       end
 
-      return false if @membership.nil?
-
-      if @membership.admin?
+      if @membership.nil?
+        setup_account_without_a_site
+      elsif @membership.admin?
         setup_admin_permissions!
       else
         setup_default_permissions!
@@ -26,6 +26,12 @@ module Locomotive
 
         setup_author_permissions!  if @membership.author?
       end
+    end
+
+    def setup_account_without_a_site
+      cannot :manage, :all
+
+      can :create, Site
     end
 
     def setup_default_permissions!

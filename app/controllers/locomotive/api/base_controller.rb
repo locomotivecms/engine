@@ -40,10 +40,15 @@ module Locomotive
       end
 
       def set_locale
-        ::Mongoid::Fields::I18n.locale = params[:locale] || current_site.default_locale
+        locale = params[:locale] ||
+          current_site.try(:default_locale) ||
+          current_locomotive_account.try(:locale) ||
+          Locomotive.config.default_locale
+
+        ::Mongoid::Fields::I18n.locale = locale
         ::I18n.locale = ::Mongoid::Fields::I18n.locale
 
-        self.setup_i18n_fallbacks
+        self.setup_i18n_fallbacks if current_site
       end
 
       def render_access_denied(exception)

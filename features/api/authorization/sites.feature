@@ -84,7 +84,6 @@ Feature: Sites
     And the JSON response at "1/memberships" should not have 0 entries
     And the JSON response at "2/memberships" should not have 0 entries
 
-
   Scenario: Creating new site as a Designer
     Given I have a "designer" API token
     When I do an API POST to sites.json with:

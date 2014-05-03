@@ -78,14 +78,13 @@ module Locomotive
     # If an error occurs (invalid account, ...etc), this method raises an exception that has
     # to be caught somewhere.
     #
-    # @param [ Site ] site The site where the authentication request is made
     # @param [ String ] email The email of the account
     # @param [ String ] password The password of the account
     # @param [ String ] api_key The API key of the site.
     #
     # @return [ String ] The API token
     #
-    def self.create_api_token(site, email, password, api_key)
+    def self.create_api_token(email, password, api_key)
       if api_key.present?
         account = self.where(api_key: api_key).first
 

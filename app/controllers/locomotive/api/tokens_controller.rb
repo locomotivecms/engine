@@ -6,7 +6,7 @@ module Locomotive
 
       def create
         begin
-          token = Account.create_api_token(current_site, params[:email], params[:password], params[:api_key])
+          token = Account.create_api_token(params[:email], params[:password], params[:api_key])
           respond_with({ token: token }, location: root_url)
         rescue Exception => e
           respond_with({ message: e.message }, status: 401, location: root_url)
