@@ -78,9 +78,6 @@ module Locomotive
           response.headers['Editable']      = ''
           response.cache_control[:max_age]  = @page.cache_strategy
         end
-      else
-        # Set the ETag on uncached responses otherwise Rails will set it based on content only
-        fresh_when etag: etag_inputs
       end
 
       render text: output, layout: false, status: page_status unless performed?
