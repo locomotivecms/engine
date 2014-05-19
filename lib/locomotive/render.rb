@@ -185,6 +185,7 @@ module Locomotive
     #
     def locomotive_default_assigns
       {
+        'env'               => Rails.env,
         'site'              => current_site.to_liquid,
         'page'              => @page,
         'models'            => Locomotive::Liquid::Drops::ContentTypes.new,
