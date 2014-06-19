@@ -30,4 +30,13 @@ describe Locomotive::Httparty::Webservice do
 
   end
 
+  context 'in a real-world' do
+
+    it 'works as well' do
+      response = Locomotive::Httparty::Webservice.consume('https://api.github.com/users/did/repos', { format: "'json'", with_user_agent: true })
+      response.size.should_not eq 0
+    end
+
+  end
+
 end

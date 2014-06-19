@@ -32,6 +32,10 @@ module Locomotive
       def self.perform_request_to(path, options)
         # [DEBUG] puts "[WebService] consuming #{path}, #{options.inspect}"
 
+        # sanitize the options
+        options[:format]  = options[:format].gsub(/[\'\"]/, '').to_sym if options.has_key?(:format)
+        options[:headers] = { 'User-Agent' => 'LocomotiveCMS' } if options[:with_user_agent]
+
         response        = self.get(path, options)
         parsed_response = response.parsed_response
 
