@@ -10,6 +10,24 @@ es:
         notice: "La página requerida no existe."
         link: "&rarr; Volver"
 
+    locales:
+      es: Español
+      en: Inglés
+      fr: Francés
+      it: Italiano
+      ru: Ruso
+      de: Alemán
+      pl: Polaco
+      nl: Holandés
+      et: Estonio
+      pt-BR: "Portugués brasileño"
+      nb: Noruego
+      ja: Japonés
+      zh-CN: Chino
+      cs: Checo
+      bg: Búlgaro
+      sk: Eslovaco
+
     buttons:
       login: Iniciar sesión
       send_password: Enviar
