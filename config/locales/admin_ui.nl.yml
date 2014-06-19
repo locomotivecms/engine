@@ -7,6 +7,22 @@ nl:
       new_item: "+ voeg toe"
       switch_to_site: Ga
 
+    locales:
+      en: Engels
+      de: Duits
+      fr: Frans
+      pt-BR: "Braziliaans Portugees"
+      it: Italiaans
+      nl: Nederlands
+      nb: Noors
+      ru: Russisch
+      et: Estlands
+      ja: Japanese
+      cs: Tsjechisch
+      bg: Bulgaars
+      sk: Slowaaks
+      sr: Serbian
+
     messages:
       confirm: Weet u het zeker ?
       sending_form: "locomotive.messages.sending_form"
@@ -148,19 +164,6 @@ nl:
       edit:
         help: "Uw naam kan gewijzigd worden door het aan te klikken"
         new_site: nieuwe website
-        en: Engels
-        de: Duits
-        fr: Frans
-        pt-BR: "Braziliaans Portugees"
-        it: Italiaans
-        nl: Nederlands
-        nb: Noors
-        ru: Russisch
-        et: Estlands
-        ja: Japanese
-        cs: Tsjechisch
-        bg: Bulgaars
-        sk: Slowaaks
         ask_for_name: "Voer uw nieuwe naam in"
 
     theme_assets:

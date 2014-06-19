@@ -2,10 +2,10 @@ zh-CN:
   locomotive:
     buttons:
       login: 登录
-      send_password: 发送 
+      send_password: 发送
       change_password: 更新
       new_item: "+ 添加"
-      switch_to_site: 去往 
+      switch_to_site: 去往
       delete: "删除"
       close: "关闭"
 
@@ -26,9 +26,10 @@ zh-CN:
       cs: 捷克语
       bg: 保加利亚语
       sk: 斯洛伐克
+      sr: Serbian
 
     messages:
-      confirm: 确定？ 
+      confirm: 确定？
       sending_form: 正在提交表单
 
     shared:
@@ -87,7 +88,7 @@ zh-CN:
       truncate: "&hellip;"
 
     sites_picker:
-      new: + 新建网站 
+      new: + 新建网站
 
     api_key:
       none: 请点击下面的按钮生成API key
@@ -166,7 +167,7 @@ zh-CN:
 
     snippets:
       index:
-        title: 片段列表 
+        title: 片段列表
         help: "片段是一段HTML代码，可以遍布于网站的各个地方（比如页面的页脚footer）"
         no_items: "现在还没有片段，点击<a href=\"%{url}\">here</a> 创建第一个片段"
         new: 新建片段
@@ -216,7 +217,7 @@ zh-CN:
       index:
         title: 主题文件列表
         help: "主题文件部分是你管理那些在页面模板、HTML片段里需要的文件。如果你需要管理一个图片库，那么可以创建一个新的内容类型。<br /><b>警告</b>依赖权限的控制，你可能看不到所有的资产。"
-        quick_upload: 快速上传 
+        quick_upload: 快速上传
         new: 新建文件
         snippets: 片段
         css_and_js: 样式css与javascript
@@ -266,11 +267,11 @@ zh-CN:
 
     content_types:
       index:
-        new: 新建内容类型 
-        edit: 编辑内容类型 
+        new: 新建内容类型
+        edit: 编辑内容类型
       new:
         title: 新建内容类型
-        help: "创建你自己的内容类型（Projects, People, ...etc）。你的内容类型应该至少有一个字段。从这个内容类型创建的条目必须强制性地拥有他们的第一个字段" 
+        help: "创建你自己的内容类型（Projects, People, ...etc）。你的内容类型应该至少有一个字段。从这个内容类型创建的条目必须强制性地拥有他们的第一个字段"
       edit:
         title: 编辑内容类型
         help: "Your model should have one field at least. The items created from this content type would have their first field mandatory."
@@ -289,7 +290,7 @@ zh-CN:
       index:
         title: '列表 "%{type}"'
         edit: 编辑
-        destroy: 删除 
+        destroy: 删除
         download: 下载条目
         new: 新建条目
         category_noname: "没有名称"

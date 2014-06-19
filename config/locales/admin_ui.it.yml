@@ -1,5 +1,23 @@
 it:
   locomotive:
+    locales:
+      en: Inglese
+      de: Tedesco
+      fr: Francese
+      pl: Polacco
+      pt-BR: "Portoghese Brasiliano"
+      it: Italiano
+      nl: Olandese
+      nb: Norvegese
+      es: Spagnolo
+      ru: Russo
+      et: Estone
+      ja: Giapponese
+      cs: Ceco
+      bg: Bulgaro
+      sk: Slovacco
+      sr: Serbe
+
     buttons:
       login: Entra
       send_password: Invia
@@ -160,21 +178,6 @@ it:
       edit:
         help: "Puoi modificare il tuo nome cliccandoci sopra."
         new_site: nuovo sito
-        en: Inglese
-        de: Tedesco
-        fr: Francese
-        pl: Polacco
-        pt-BR: "Portoghese Brasiliano"
-        it: Italiano
-        nl: Olandese
-        nb: Norvegese
-        es: Spagnolo
-        ru: Russo
-        et: Estone
-        ja: Giapponese
-        cs: Ceco
-        bg: Bulgaro
-        sk: Slovacco
         ask_for_name: "Prego, digita il tuo nome"
 
     theme_assets:

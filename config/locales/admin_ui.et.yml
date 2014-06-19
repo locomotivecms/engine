@@ -26,6 +26,7 @@ et:
       cs: Tsehhi
       bg: Bulgaaria
       sk: Slovaki
+      sr: Serbian
 
     messages:
       confirm: Oled kindel ?
@@ -241,7 +242,7 @@ et:
       edit:
         title: "Redigeerimisel %{key}"
         help: "Saad kasutada seda tõlkimisvõtit järgmise liquid koodiga: <span class='code'>{{ '%{key}' | translate }}</span>."
-        
+
     content_assets:
       picker:
         title: "Sisesta meedia"
