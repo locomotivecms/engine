@@ -1,0 +1,356 @@
+        remove: Remove %{key}
+sr:
+  locomotive:
+    buttons:
+      login: Пријава
+      send_password: Пошаљи
+      change_password: Промени
+      new_item: "+ додај"
+      switch_to_site: Крени
+      delete: "Обриши"
+      close: "Затвори"
+
+    locales:
+      en: Енглески
+      de: Немачки
+      fr: Француски
+      pl: Пољски
+      pt-BR: "Португалски (Бразил)"
+      it: Италијански
+      nl: Холандски
+      nb: Норвешки
+      es: Шпански
+      ru: Руски
+      et: Естонски
+      ja: Јапански
+      zh-CN: Кинески
+      cs: Чешки
+      bg: Бугарски
+      sk: Словачки
+      sr: Српски
+
+    messages:
+      confirm: Да ли сте сигурни ?
+      sending_form: Ваш захтев је послат
+
+    shared:
+      header:
+        welcome: Добродошли, %{name}
+        see: Погледај вебсајт
+        switch: Пребаци на други сајт
+        help: Помоћ
+        logout: Одјава
+      menu:
+        contents: Садржај
+        assets: Ресурси
+        settings: Подешавања
+        pages: Стране
+        snippets: Делови кода
+        account: Налог
+        site: Сајт
+        theme_assets: Фајлови теме
+        translations: Преводи
+      form:
+        change_file: промени
+        delete_file: обриши
+        cancel: прекини
+      form_actions:
+        back: Назад без снимања
+        create: Направи
+        update: Сними
+        send: Пошаљи
+        disable_with: Причекај...
+      list:
+        untranslated: без превода
+      footer:
+        who_is_behind: "LocomotiveCMS развија %{development} и дизајнира <a href=\"http://www.sachagreif.com\">Sacha Greif</a> &mdash; <small>верзија</small> %{version}"
+
+    errors:
+      "500":
+        title: Application Error
+        notice: "We're sorry, but something went wrong"
+        link: "&rarr; Назад на апликацију"
+      "404":
+        title: Страна није пронађена
+        notice: "Страна коју тражите не постоји."
+        link: "&rarr; Назад на апликацију"
+
+    notifications:
+      new_content_entry:
+        subject: "[%{domain}][%{type}] нови унос"
+        title: "Здраво %{name}, само да вас обавестимо да је %{date} направљена нова верзија сајта <b>%{domain}</b>"
+        type: "Модел: %{type}"
+
+    pagination:
+      first: "&laquo;"
+      last: "&raquo;"
+      previous: "&lsaquo;"
+      next: "&rsaquo;"
+      truncate: "&hellip;"
+
+    sites_picker:
+      new: + нови сајт
+
+    api_key:
+      none: Молимо вас кликните на дугме да добијете АПИ број.
+      button: Освежи
+
+    custom_fields:
+      edit:
+        title: Промени поље
+      text_formatting:
+        none: Без формата
+        html: HTML
+      types:
+        file:
+          delete_file: Обриши фајл
+        has_many:
+          empty: Листа је празна
+          new_entry: + Додај нови унос
+          empty: Листа је празна. Додај нови унос из избора.
+
+      form:
+        required: Обавезно
+        default_label: Име поља
+        select_options:
+          ask_name: "Упиши наслов опције"
+
+    sessions:
+      new:
+        title: Пријава
+        link: "Заборавили сте лозинку?"
+        email: "Имејл"
+        password: "Лозинка"
+
+    passwords:
+      new:
+        title: Заборављена лозинка
+        link: "&rarr; Назад на пријаву"
+        email: "Ваш имејл"
+      edit:
+        title: Промени лозинку
+        link: "&rarr; Назад на пријаву"
+        password: "Ваша нова лозинка"
+        password_confirmation: "Потврда ваше нове лозинке"
+
+    pages:
+      index:
+        title: Листа страна
+        help: "Стране су поређане у стабло. Можете преуредити стране као и фолдере"
+        no_items: "За сада нема страна. Кликните <a href=\"%{url}\">овде</a> да направите прву."
+        new: нова страна
+        latest_entries: Последња страна
+      new:
+        title: Нова страна
+        help: "Молимо вас попуните упитник да бисте направили страну. Будите пажљиви, страна није објављена док не одобрите."
+      page:
+        updated_at: промењено
+      edit:
+        show: покажи
+        help: "Наслов стране можете променити кликом на њега. Након тога снимите измене."
+        ask_for_title: "Молимо вас упишите нови наслов стране"
+      form:
+        change_file: промени
+        delete_file: обриши
+        cancel: прекини
+        default_block: Подразумевано
+        cache_strategy:
+          none: Без
+          simple: Просто
+          hour: 1 сат
+          day: 1 дан
+          week: 1 недеља
+          month: 1 месец
+        redirect_type:
+          permanent: "Трајно (301)"
+          temporary: "Привремено (302)"
+
+    snippets:
+      index:
+        title: Списак делова кода
+        help: "Делови кода су делови HTML који се могу наћи на различитим местима унутар сајта (нпр. футер)."
+        no_items: "За сада нема делова кода. Кликом <a href=\"%{url}\">овде</a> направићете први."
+        new: нови део кода
+      new:
+        title: Нови део кода
+        help: "Попуните упитник да промените ваш део кода."
+      edit:
+        title: Промена дела кода
+        help: "Укључите ваш део кода у страну следећим изразом : <span class='code'>{% include '%{slug}' %}</span>."
+      snippet:
+        updated_at: Промењено
+
+    sites:
+      new:
+        title: Нови сајт
+        help: "Попуните упитник да бисте направили нови сајт."
+      domains:
+        empty: "Немате придружене домене за овај сајт. Додајте нови домен. <b>Не заборавите да освежите DNS.</b>"
+
+    current_site:
+      edit:
+        new_membership: додај налог
+        help: "Наслов сајта можете променити кликом на њега. Након тога снимите измене."
+        ask_for_name: "Молимо вас упишите нови наслов сајта"
+
+    memberships:
+      roles:
+        admin: Администратор
+        designer: Дизајнер
+        author: Аутор
+      new:
+        title: Нови налог
+        help: "Молимо вас упишите имејл. Уколико налог не постоји бићете упућени на упитник за креирање."
+
+    accounts:
+      new:
+        title: Нови налог
+        help: "Молимо вас попуните упитник како бисте направили нови налог."
+
+    my_account:
+      edit:
+        help: "Име налога можете променити кликом на њега. Након тога снимите измене."
+        new_site: нови сајт
+        ask_for_name: "Молимо вас упишите ново име налога"
+
+    theme_assets:
+      index:
+        title: Списак фајлова теме
+        help: "Секција фајлови теме је место где уређујете фајлове за приказ. Уколико правите галерију слика направите нови тип садржаја.<br/><b>Упозорење:</b> могуће је да не видите све ресурсе услед дозвола за ваш налог."
+        quick_upload: Брзо слање
+        new: нови фајл
+        snippets: Делови кода
+        css_and_js: CSS и javascript
+        fonts: Фонтови
+        images: Слике
+        media: Други медији
+        no_items: "За сада нема фајлова."
+      asset:
+        updated_at: Промењено
+      new:
+        title: Нови фајл
+        help: "Можете послати фајл или копирати CSS или javascrip у одговарајуће поље."
+      edit:
+        title: "Промена %{file}"
+        help: "Овај ресурс је доступан на адреси: <a href='%{url}'>%{url}</a>"
+        help_image: "Укључите ресурс следећим изразом : <span class='code'>{{ '%{path}' | theme_image_tag }}</span>.<br/>Тренутне димензије слике: <b>%{width}px x %{height}px</b>.<br/>"
+        help_javascript: "Укључите ресурс следећим изразом : <span class='code'>{{ '%{path}' | javascript_tag }}</span>.<br/>"
+        help_stylesheet: "Укључите ресурс следећим изразом : <span class='code'>{{ '%{path}' | stylesheet_tag }}</span>.<br/>"
+      form:
+        picker_link: Убаците слику у код
+        choose_file: Изаберите фајл
+        choose_plain_text: Изаберите обичан текст
+      image_picker:
+        title: "Убаците слику"
+        no_items: "За сада нема слика."
+        upload: "Пошаљите слику"
+
+    translations:
+      untranslated: "Непреведени језици: %{list}"
+      index:
+        title: Преводи
+        new: нови превод
+        no_items: "За сада нема превода. Кликните <a href=\"%{url}\">овде</a> да направите први."
+      new:
+        title: "Нови превод"
+        help: "Стране и делови кода могу делити исти шаблон за више језика осим неких поља која можете превести уз помоћ <b>translate</b> тага."
+      edit:
+        title: "Промена %{key}"
+        help: "Можете превести овај израз уз помоћ : <span class='code'>{{ '%{key}' | translate }}</span>."
+
+    content_assets:
+      picker:
+        title: "Убаците друге медије"
+        no_items: "За сада нема других медија."
+        upload: "Пошаљите друге медије"
+        placeholder_search: Претрага по имену
+        types:
+          pdf: PDF
+          image: слике
+          media: rich media
+          others: друго
+
+    content_types:
+      index:
+        new: нови модел
+        edit: промени модел
+      new:
+        title: Нови модел
+        help: "Направите свој модел података (нпр. Projects, People, итд.). Ваш модел мора имати бар једно поље. Објекти направљени на основу овог модела имаће прво поље обавезно."
+      edit:
+        title: Промена модела
+        help: "Ваш модел мора имати бар једно поље. Објекти направљени на основу овог модела имаће прво поље обавезно."
+        show_entries: покажи уносе
+        new_entry: нови унос
+      form:
+        order_by:
+          created_at: 'По датуму креирања'
+          updated_at: 'По датуму промене'
+          position_in_list: Ручно
+        order_direction:
+          asc: Растући
+          desc: Падајући
+
+    content_entries:
+      index:
+        title: 'Списак "%{type}"'
+        edit: промена модела
+        destroy: обриши модел
+        download: преузми уносе
+        new: нови унос
+        category_noname: "Без имена"
+        latest_entries: "Последљи унос"
+        updated_at: "Промењено"
+      list:
+        no_items: "За сада нема уноса. Кликните <a href=\"%{url}\">овде</a> да направите први."
+      new:
+        title: '%{type} &mdash; нови унос'
+      edit:
+        title: '%{type} &mdash; промена уноса'
+      form:
+        edit_select_options: опције за промене
+        has_many:
+          new_entry: Нови унос
+
+    code_editing:
+      image_picker: Убаците слику у код
+      copy_template: Копирај шаблон за подразумевани језик
+
+    cross_domain_sessions:
+      new:
+        title: Cross-domain аутентификација
+        notice: Бићете пребачени на вебсајт за неколико тренутака.
+
+    installation:
+      common:
+        title: Прва инсталација Locomotive
+        next: Следеће
+      step_1:
+        title: "Корак 1/2 &mdash; Направите налог"
+        name: Име налога
+        email: Имејл
+        password: Лозинка
+        password_confirmation: Потврда лозинке
+        done: "Већ сте додали налог:<br/><strong>%{name}</strong>, <em>%{email}</em>"
+        next: Направи налог
+      step_2:
+        title: "Корак 2/2 &mdash; Направи свој први сајт"
+        explanations: "Још мало до краја. Молимо вас дајте име сајту и изаберите подразумевани језик."
+        default_site_locale: Језик сајта
+        default_site_locales_hints: Касније ћете моћи да додате још језика.
+        next: Направи сајт
+
+    public:
+      pages:
+        show_toolbar:
+          statuses:
+            loading: "Учитавање...."
+            disabled: "Inline Editor онемогућен"
+          labels:
+            save_changes: "Сними измене: "
+            editing_mode: "Мод за измене: "
+            lang: "Језик: "
+          buttons:
+            back: Повратак на подешавања
+            confirm: Потврди
+            cancel: Прекини

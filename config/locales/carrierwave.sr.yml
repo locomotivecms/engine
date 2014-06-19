@@ -1,0 +1,4 @@
+sr:
+  carrierwave:
+    errors:
+      integrity: 'није дозвољен тип фајла.'

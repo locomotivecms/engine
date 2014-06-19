@@ -26,6 +26,7 @@ en:
       cs: Czech
       bg: Bulgarian
       sk: Slovak
+      sr: Serbian
 
     messages:
       confirm: Are you sure ?

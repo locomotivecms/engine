@@ -1,0 +1,50 @@
+sr:
+  date:
+    formats:
+      default: "%m/%d/%Y"
+
+  time:
+    formats:
+      default: "%m/%d/%Y %H:%M"
+
+  mongoid:
+    errors:
+      messages:
+        blank_in_locale: "не може бити празно"
+    attributes:
+      locomotive/content_entry:
+        created_at: Направљено
+
+  errors:
+      messages:
+        domain_taken: "%{value} је заузет"
+        invalid_domain: "%{value} је невалидан"
+        needs_admin_account: "Најмање један админ налог је неопходан"
+        protected_page: "Не можете обрисати индекс или 404 страну"
+        extname_changed: "Нови фајл нема исту екстензију као и претходни"
+        array_too_short: "је премали (минималан број елемената је %{count})"
+        invalid_theme_file: "не може бити празно или није архива"
+        site:
+          default_locale_removed: Претходни подразумевани језик не може одмах бити уклоњен.
+        page:
+          liquid_syntax: "Грешка у коду ('%{error}' на '%{fullpath}')"
+          liquid_extend: "Страна '%{fullpath}' користи шаблон који не постоји"
+          liquid_translation: "Страна '%{fullpath}' користи шаблон који није преведен"
+        too_few_custom_fields: "Најмање једно поље је неопходно"
+        security: "представља сигурносни проблем"
+
+  attributes:
+    defaults:
+      pages:
+        index:
+          title: "Почетна страна"
+          body: "Садржај почетне стране"
+        "404":
+          title: "Страна није пронађена"
+          body: "Садржај 404 стране"
+        other:
+          body: "{% extends 'parent' %}"
+
+  pagination:
+    previous: "&laquo; Претходни"
+    next: "Следећи &raquo;"

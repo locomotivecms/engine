@@ -1,0 +1,112 @@
+sr:
+  formtastic:
+    titles:
+      information: General information
+      advanced_options: Advanced options
+      meta: SEO Metadata
+      seo: SEO settings
+      robots_txt: Robots.txt file
+      code: Code
+      raw_template: Template
+      credentials: Credentials
+      language: Language
+      sites: Sites
+      access_points: Access points
+      memberships: Accounts
+      membership_email: Account email
+      file: File
+      preview: Preview
+      options: Advanced options
+      custom_fields: Custom fields
+      other_fields: Other information
+      presentation: Presentation
+      attributes: Attributes
+      upload: Upload
+    labels:
+      theme_asset:
+        plain_text_name: File name
+        content_type: File type
+        new:
+          source: File
+        edit:
+          source: Replace file
+      custom_fields:
+        field:
+          name: Alias
+      content_type:
+        raw_item_template: Item template
+        public_submission_enabled: Public submission
+        public_submission_accounts: Notified Accounts
+        "custom_fields/field":
+          select_options: "Options"
+      content_entry:
+        _slug: Permalink
+        _visible: Visible
+      account:
+        api_key: API key
+        edit:
+          locale: UI Language
+          password: New password
+          password_confirmation: New password confirmation
+      page:
+        seo_title: Title
+        target_klass_name: Model
+      site:
+        locales: Languages
+        timezone_name: Timezone
+        new:
+          locales: First language
+
+    hints:
+      page:
+        handle: "Unique identifier to retrieve this page within an external controller instance"
+        published: "Only authenticated accounts can view unpublished pages."
+        cache_strategy: "Cache the page for better performance. The 'Simple' choice is a good compromise."
+        templatized: "Use the page as a template for a model you defined."
+        listed: "Control whether to show the page from generated menus."
+        target_klass_name: "The type of content this page will be a template for."
+        seo_title: "Define a page title which should be used as the value for the title tag in the head section. Leave it empty if you want to use the default value from the site settings."
+        meta_keywords: "Overrides the site's meta keywords used within the head tag of the page. They are separated by a comma."
+        meta_description: "Overrides the site's meta description used within the head tag of the page."
+      snippet:
+        slug: "You need to know it in order to insert the snippet inside a page"
+      site:
+        locales: "Drag&drop a flag to the first position to make it the default one."
+        seo_title: "Define a global value here which should be used as the value for the title tag in the head section."
+        meta_keywords: "Meta keywords used within the head tag of the page. They are separated by a comma. Required for SEO."
+        meta_description: "Meta description used within the head tag of the page. Required for SEO."
+        domain_name: "ex: locomotiveapp.org"
+        robots_txt: "Content of the <span class='code'>/robots.txt</span> file. Check the following <a href='http://www.w3.org/TR/html4/appendix/notes.html#h-B.4.1.1'>url</a> for more information."
+        new:
+          locales: "You can add other languages once your site will be created."
+      theme_asset:
+        slug: "You do not need to add the extension file (.css or .js)"
+        edit:
+          source: "You can replace it by a file of the same extension"
+      translation:
+        key: "Do not use dash but underscore instead. Example: welcome_message."
+      asset:
+        source: "All file types are accepted."
+        edit:
+          source: "The current file is available here %{url}"
+        update:
+          source: "The current file is available here %{url}"
+      content_entry:
+        _slug: "Property used to generate the url of a page working as a template for this content type (ex: \"template_page/{{ your_object._permalink }})\"."
+        _visible: "By default, the entry will show up in the site. So it can be used as a published attribute."
+        seo_title: "The value you fill in will replace the SEO title of the templatized page related to your model."
+        meta_keywords: "Overrides the site's meta keywords used within the head tag of the page. They are separated by a comma."
+        meta_description: "Overrides the site's meta description used within the head tag of the page."
+      import:
+        source: "A zipfile containing a database.yml along with assets and templates"
+        samples: "If enabled, the import process will also copy contents and assets"
+        reset: "If enabled, all the data of your site will be destroyed before importing the new site"
+      content_type:
+        name: "We suggest you to type the plural form of the model. Ex: Projects, Recipes, Posts, Articles, ...etc"
+        slug: "It will be used as the name of the collection in the liquid templates. Ex: <span class='code'>{{ contents.my_projects }}</span>"
+        raw_item_template: "You can customize the text displayed for each item in the list. Simply use Liquid. Ex: <span class='code'>{{ entry.name }})</span>"
+        public_submission_enabled: "It is used to let people from outside to create new entries (example: messages in a contact form)"
+        public_submission_accounts: "If the public submission option is enabled and for each entry created, sends a notification email to the accounts listed above."
+        "custom_fields/field":
+          name: "Name of the property for liquid templates. Ex: <span class='code'>&#123;&#123; your_object.&lt;name_of_your_field&gt; &#125;&#125;</span>"
+          hint: "Text displayed in the model form just below the field"
