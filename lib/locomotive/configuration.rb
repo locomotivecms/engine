@@ -27,7 +27,7 @@ module Locomotive
         metastore:   URI.encode("file:#{Rails.root}/tmp/dragonfly/cache/meta"), # URI encoded in case of spaces
         entitystore: URI.encode("file:#{Rails.root}/tmp/dragonfly/cache/body")
       },
-      devise_modules:             [:rememberable, :database_authenticatable, :token_authenticatable, :recoverable, :trackable, :validatable, :encryptable, { encryptor: :sha1 }],
+      devise_modules:             [:rememberable, :database_authenticatable, :recoverable, :trackable, :validatable, :encryptable, { encryptor: :sha1 }],
       context_assign_extensions:  { },
       models_for_templatization:  [],
       csrf_protection:            false,
