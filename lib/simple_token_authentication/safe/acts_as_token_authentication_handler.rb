@@ -9,10 +9,6 @@ module SimpleTokenAuthentication
       private :authenticate_entity_from_token!
       private :header_token_name
       private :header_email_name
-      # This is our new function that comes before Devise's one
-      before_filter :authenticate_entity_from_token!
-      # This is Devise's authentication
-      before_filter :authenticate_entity!
 
       # This is necessary to test which arguments were passed to sign_in
       # from authenticate_entity_from_token!
@@ -20,20 +16,14 @@ module SimpleTokenAuthentication
       ActionController::Base.send :include, Devise::Controllers::SignInOut if Rails.env.test?
     end
 
-    def authenticate_entity!
-      # Caution: entity should be a singular camel-cased name but could be pluralized or underscored.
-      self.method("authenticate_#{@@entity.name.singularize.underscore}!".to_sym).call
-    end
-
-
     # For this example, we are simply using token authentication
     # via parameters. However, anyone could use Rails's token
     # authentication features to get the token from a header.
     def authenticate_entity_from_token!
       # Set the authentication token params if not already present,
       # see http://stackoverflow.com/questions/11017348/rails-api-authentication-by-headers-token
-      params_token_name = "#{@@entity.name.singularize.underscore}_token".to_sym
-      params_email_name = "#{@@entity.name.singularize.underscore}_email".to_sym
+      params_token_name = "#{entity_name.underscore}_token".to_sym
+      params_email_name = "#{entity_name.singularize.underscore}_email".to_sym
       if token = params[params_token_name].blank? && request.headers[header_token_name]
         params[params_token_name] = token
       end
@@ -44,10 +34,10 @@ module SimpleTokenAuthentication
       email = params[params_email_name].presence
       # See https://github.com/ryanb/cancan/blob/1.6.10/lib/cancan/controller_resource.rb#L108-L111
       entity = nil
-      if @@entity.respond_to? "find_by"
-        entity = email && @@entity.find_by(email: email)
-      elsif @@entity.respond_to? "find_by_email"
-        entity = email && @@entity.find_by_email(email)
+      if entity_class.respond_to? "find_by"
+        entity = email && entity_class.find_by(email: email)
+      elsif entity_class.respond_to? "find_by_email"
+        entity = email && entity_class.find_by_email(email)
       end
 
       # Notice how we use Devise.secure_compare to compare the token
@@ -67,7 +57,7 @@ module SimpleTokenAuthentication
       # if SimpleTokenAuthentication.header_names["#{@@entity.name.singularize.underscore}".to_sym].presence
       #   SimpleTokenAuthentication.header_names["#{@@entity.name.singularize.underscore}".to_sym][:authentication_token]
       # else
-        "X-#{@@entity.name.singularize.camelize}-Token"
+        "X-#{entity_name.camelize}-Token"
       # end
     end
 
@@ -76,21 +66,32 @@ module SimpleTokenAuthentication
       # if SimpleTokenAuthentication.header_names["#{@@entity.name.singularize.underscore}".to_sym].presence
       #   SimpleTokenAuthentication.header_names["#{@@entity.name.singularize.underscore}".to_sym][:email]
       # else
-        "X-#{@@entity.name.singularize.camelize}-Email"
+        "X-#{entity_name.camelize}-Email"
       # end
     end
 
-    def entity
-      self.class.entity
+   def entity_name
+      SimpleTokenAuthentication::ActsAsTokenAuthenticationHandlerMethods.entity_name
     end
+
+    def entity_class
+      SimpleTokenAuthentication::ActsAsTokenAuthenticationHandlerMethods.entity_class
+    end
+
     class << self
-      def set_entity entity
-        @entity = entity
+
+      def entity_name
+        @entity_class.name.singularize.parameterize
       end
-      def entity
-        @entity
+
+      def set_entity_class entity_class
+        @entity_class = entity_class
+      end
+      def entity_class
+        @entity_class
       end
     end
+
   end
 
   module ActsAsTokenAuthenticationHandler
@@ -105,8 +106,8 @@ module SimpleTokenAuthentication
     end
 
     module ClassMethods
-      def acts_as_token_authentication_handler_for(entity, options = {})
-        SimpleTokenAuthentication::ActsAsTokenAuthenticationHandlerMethods.set_entity entity
+      def acts_as_token_authentication_handler_for(entity_class, options = {})
+        SimpleTokenAuthentication::ActsAsTokenAuthenticationHandlerMethods.set_entity_class entity_class
         include SimpleTokenAuthentication::ActsAsTokenAuthenticationHandlerMethods
       end
 

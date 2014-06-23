@@ -39,6 +39,7 @@ module Locomotive
       end
 
       def require_account
+        authenticate_entity_from_token!
         authenticate_locomotive_account!
       end
 

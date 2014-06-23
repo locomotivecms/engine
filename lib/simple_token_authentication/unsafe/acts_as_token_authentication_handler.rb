@@ -8,22 +8,12 @@ module SimpleTokenAuthentication
     included do
       private :authenticate_entity_from_token!
       private :header_token_name
-      # This is our new function that comes before Devise's one
-      before_filter :authenticate_entity_from_token!
-      # This is Devise's authentication
-      before_filter :authenticate_entity!
 
       # This is necessary to test which arguments were passed to sign_in
       # from authenticate_entity_from_token!
       # See https://github.com/gonzalo-bulnes/simple_token_authentication/pull/32
       ActionController::Base.send :include, Devise::Controllers::SignInOut if Rails.env.test?
     end
-
-    def authenticate_entity!
-      # Caution: entity should be a singular camel-cased name but could be pluralized or underscored.
-      self.method("authenticate_#{entity_name.underscore}!".to_sym).call
-    end
-
 
     # For this example, we are simply using token authentication
     # via parameters. However, anyone could use Rails's token
