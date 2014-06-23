@@ -17,6 +17,7 @@ end
 group :test, :development do
   gem 'rspec-rails', '~> 2.13.0' # In order to have rspec tasks and generators
   gem 'rspec-cells'
+  gem 'pry'
 end
 
 group :development do
