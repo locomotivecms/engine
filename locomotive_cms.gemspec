@@ -45,6 +45,8 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'locomotivecms_solid',             '~> 0.2.2'
   s.add_dependency 'formtastic',                      '~> 2.2.1'
+  s.add_dependency 'formtastic-bootstrap',            '~> 3.0.0'
+
   s.add_dependency 'responders',                      '~> 0.9.2'
   s.add_dependency 'cells',                           '~> 3.8.0'
   s.add_dependency 'RedCloth',                        '~> 4.2.8'
