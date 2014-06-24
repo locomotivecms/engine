@@ -1,0 +1,125 @@
+@import "compass/css3/images";
+@import "compass/css3/box-shadow";
+@import "compass/css3/text-shadow";
+
+// MAIN MENU ENTRY
+
+@mixin locomotive-menu-entry($color_top, $color_bottom: $color_top) {
+  $color_bottom: $color_top !default;
+
+  z-index: 995;
+
+  a {
+    @include background-image(linear-gradient($color_top, $color_bottom));
+
+    span, i {
+      color: #fff;
+      @include single-text-shadow(rgba(0, 0, 0, 0.2), 0px, 1px, 0px);
+    }
+  }
+
+  div.right span {
+    @include background-image(linear-gradient(top right, $color_top, $color_bottom 29px));
+  }
+
+  div.left span {
+    @include background-image(linear-gradient(top left, $color_top, $color_bottom 29px));
+  }
+
+  div.shadow {
+    display: none;
+  }
+}
+
+@mixin locomotive-black-entry {
+  @include locomotive-menu-entry(#45454a, #55565c);
+}
+
+@mixin locomotive-blue-entry {
+  @include locomotive-menu-entry(#1f80ba, #398bbb);
+}
+
+@mixin locomotive-green-entry {
+  @include locomotive-menu-entry(#46b398);
+}
+
+@mixin locomotive-orange-entry {
+  @include locomotive-menu-entry(#ec8901);
+}
+
+@mixin locomotive-red-entry {
+  @include locomotive-menu-entry(#ec525b);
+}
+
+// SUB MENU
+
+@mixin locomotive-black-submenu {
+  @include box-shadow(rgba(0, 0, 0, 0.3) 0px -1px 10px 0px, rgba(0, 0, 0, 0.2) 0px 4px 6px 4px, rgba(255, 255, 255, 0.2) 0 1px 0 0 inset);
+  @include background-image(linear-gradient(#3f3f45, #23242b));
+
+  & > ul > li > a, & > .actions .button {
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.6);
+    @include box-shadow(rgba(255, 255, 255, 0.1) 0 1px 0 0 inset, rgba(255, 255, 255, 0.1) 0 1px 0 0);
+    @include background-image(linear-gradient(#303138, #1e1e24));
+
+    &.on, &:active {
+      border: 1px solid rgba(0, 0, 0, 0.4);
+      border-top: 1px solid rgba(0, 0, 0, 0.6);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+      @include background-image(linear-gradient(#1e1e24, #212229));
+      @include box-shadow(rgba(0, 0, 0, 0) 0 1px 0 0 inset, rgba(255, 255, 255, 0.2) 0 1px 0 0);
+    }
+  }
+
+  & > .actions {
+    .button:hover {
+      border: 1px solid rgba(255, 255, 255, 0.5);
+    }
+  }
+}
+
+@mixin locomotive-blue-submenu {
+  @include background-image(linear-gradient(#2478ac, #1c5d86));
+  & > ul > li > a, & > .actions .button {
+    @include background-image(linear-gradient(#1f6ea1, #135179));
+
+    &.on, &:active {
+      @include background-image(linear-gradient(#13496c, #175b88));
+    }
+  }
+}
+
+@mixin locomotive-green-submenu {
+  @include background-image(linear-gradient(#2e9a7d, #2e9a7d)); // TODO (#2e9a7d)
+  & > ul > li > a, & > .actions .button {
+    @include background-image(linear-gradient(#258c70, #13604b));
+
+    &.on, &:active {
+      @include background-image(linear-gradient(#195e4b, #166d55));
+    }
+  }
+}
+
+@mixin locomotive-orange-submenu {
+  @include background-image(linear-gradient(#ed8102, #ed8102)); // TODO (#ed8102)
+  & > ul > li > a, & > .actions .button {
+    @include background-image(linear-gradient(#e07a02, #a25804));
+
+    &.on, &:active {
+      @include background-image(linear-gradient(#965201, #9d5603));
+    }
+  }
+}
+
+@mixin locomotive-red-submenu {
+  @include background-image(linear-gradient(#d23c45, #d23c45)); // TODO (#d23c45)
+  & > ul > li > a, & > .actions .button {
+    @include background-image(linear-gradient(#b63e45, #89272d));
+
+    &.on, &:active {
+      @include background-image(linear-gradient(#7b292e, #972e35));
+    }
+  }
+}

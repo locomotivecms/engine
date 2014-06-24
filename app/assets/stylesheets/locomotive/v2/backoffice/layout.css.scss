@@ -1,0 +1,205 @@
+@import "compass/css3";
+@import "compass/css3/border-radius";
+@import "compass/css3/images";
+@import "compass/css3/text-shadow";
+@import "locomotive/shared/helpers";
+@import "buttons";
+
+body {
+  background: #000 image-url("locomotive/background/body.png") repeat 0 0;
+  font-size: 12px;
+  font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+
+  ul {
+    list-style: none;
+    padding: 0px;
+  }
+
+  /* ___ Alignements ___ */
+
+  .tcenter { text-align: center; }
+  .tright { text-align: right; }
+  .tleft { text-align: left; }
+  .tjustify { text-align: justify; }
+  .fright { float: right; }
+
+  /* ___ Margins ___ */
+
+  .nomargin { margin: 0 !important; }
+  .mt30 { margin-top: 30px !important; }
+  .mt20 { margin-top: 20px !important; }
+  .mb20 { margin-bottom: 20px !important; }
+  .m20 { margin: 20px !important; }
+  .mt10 { margin-top: 10px !important; }
+  .ml10 { margin-left: 10px !important; }
+  .mr10 { margin-right: 10px !important; }
+  .mb10 { margin-bottom: 10px !important; }
+  .m10 { margin: 10px !important; }
+}
+
+#wrapper {
+  @include background-image(linear-gradient(top, rgba(102, 102, 115, 0.3), rgba(30, 30, 42, 0.3) 252px, rgba(30, 30, 42, 0.3)));
+  height: 100%;
+
+  > .container {
+    width: 966px;
+  }
+
+  #header {
+    position: relative;
+    padding-top: 20px;
+
+    h1 {
+      margin-bottom: 0px;
+      font-size: 100%;
+
+      a {
+        margin-left: 8px;
+
+        font-size: 24px;
+        font-weight: normal;
+        color: #f0f0f0;
+        @include single-text-shadow(#000, 1px, 1px, 1px);
+        text-decoration: none;
+      }
+    } // #header h1
+
+    #global-actions-bar {
+      position: absolute;
+      top: 70px;
+      right: 8px;
+
+      color: #8b8d9a;
+      font-size: 11px;
+      @include single-text-shadow(#000, 1px, 1px, 1px);
+
+      @include locomotive-link;
+
+      span {
+        font-size: 10px;
+        color: #999;
+        margin: 0 1px;
+      }
+    } // #header #global-actions-bar
+  } // #header
+
+  #content {
+    position: relative;
+    overflow: hidden;
+    z-index: 997;
+
+    top: -1px;
+    padding-bottom: 8px;
+
+    > div.inner {
+      position: relative;
+      margin: 0px 8px;
+      padding: 10px 15px 66px 15px;
+
+      // z-index: 100;
+
+      background: #fff;
+
+      @include box-shadow(rgba(0, 0, 0, 0.3) 0px 0px 6px 4px);
+      @include border-bottom-radius(4px);
+
+      min-height: 290px;
+
+      h2 {
+        @include locomotive-link;
+
+        padding-bottom: 10px;
+        border-bottom: 1px dotted #bbbbbd;
+
+        font-size: 21px;
+        font-weight: bold;
+        color: #1e1f26;
+
+        a.editable {
+          @include editable;
+        } // h2 a.editable
+      } // > div.inner h2
+
+      h3 {
+        padding: 7px 0 10px 20px;
+
+        font-size: 14px;
+        font-weight: bold;
+        color: #1e1f26;
+        @include single-text-shadow(#fff, 1px, 1px, 1px);
+      } // > div.inner h3
+
+      p {
+        color: #8b8d9a;
+        font-size: 13px;
+
+        @include locomotive-link;
+      } // > div.inner p
+    } // #content > div.inner
+
+    #local-actions-bar {
+      position: absolute;
+      top: 16px;
+      right: 15px;
+
+      a {
+        @include gray-button;
+      } // #local-actions-bar a
+    } // #content #local-actions-bar
+
+    #local-actions-bottom-bar {
+      position: absolute;
+      bottom: 0px;
+      left: 0px;
+      height: 62px;
+      width: 950px;
+
+      background: #8b8d9a;
+      border-top: 1px solid #5f6069;
+      @include border-bottom-radius(3px);
+
+      p {
+        padding: 15px;
+        margin: 0px;
+
+        a {
+          position: relative;
+          top: 4px;
+
+          @include hover-link;
+          color: #fff;
+          font-size: 12px;
+
+          &.remove {
+            @include red-button;
+            top: 0px;
+          }
+        }
+      }
+
+      input[type=submit], button[type=submit] {
+        @include light-button;
+      }
+
+      .last p { text-align: right; }
+    } // #content #local-actions-bottom-bar
+  } // #content
+
+  #footer {
+    padding-top: 0;
+
+    p {
+      padding: 10px 8px 0 0;
+
+      font-size: 13px;
+      color: #E6E6E6;
+
+      @include locomotive-link;
+    }
+  } // #footer
+
+  /* ___ NoCoffee / Rails Tags ___ */
+
+  a#nocoffee { color: #b0b4c0 !important; text-decoration: none; line-height: 20px; padding-right: 20px; margin: 0 4px; background: transparent image-url("locomotive/nocoffee.png") no-repeat right 0px; }
+
+} // #wrapper

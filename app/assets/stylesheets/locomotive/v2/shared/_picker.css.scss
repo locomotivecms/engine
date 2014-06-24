@@ -1,0 +1,73 @@
+@import "compass/css3";
+@import "compass/css3/border-radius";
+@import "helpers";
+
+@mixin picker {
+
+  position: absolute;
+
+  padding: 0 0 0 0;
+
+  @include border-radius(4px);
+  border: 1px solid #000;
+  @include box-shadow(rgba(255, 255, 255, 0.17) 0 1px 0 0 inset, rgba(0, 0, 0, 0.4) 3px 3px 5px 0);
+  background: rgba(50, 51, 59, 1);
+
+  font-size: 12px;
+
+  p {
+    margin-bottom: 0px;
+    padding: 0 8px;
+
+    @include locomotive-link;
+
+    &, a {
+      color: #fff;
+      @include text-shadow(#000 0 1px 0);
+    }
+
+    &.action {
+      margin-top: 0px;
+      padding: 2px 8px 4px 8px;
+
+      text-align: right;
+      font-size: 11px;
+    }
+  }
+
+  ul {
+    list-style: none;
+    margin: 1px 0 0 0;
+
+    li {
+      padding: 2px 8px 6px 8px;
+
+      border-bottom: 1px solid #1e1e23;
+      @include box-shadow(#424349 0 1px 0 0);
+
+      color: #aaa;
+      cursor: pointer;
+      @include text-shadow(#000 0 1px 0);
+
+      a {
+        text-decoration: none;
+        color: #aaa;
+      }
+
+      &:hover {
+        &, a { color: #fff; }
+      }
+    }
+  }
+
+  &:before {
+    content: " ";
+    display: block;
+    width: 21px;
+    height: 13px;
+    position: absolute;
+    top: -11px;
+    right: 20px;
+    background: transparent image-url("locomotive/plugins/sites_picker_top_arrow.png") no-repeat 0 0;
+  }
+}

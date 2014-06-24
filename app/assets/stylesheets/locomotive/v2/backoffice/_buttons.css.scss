@@ -1,0 +1,234 @@
+@import "compass/css3";
+@import "compass/css3/border-radius";
+@import "compass/css3/images";
+@import "compass/css3/text-shadow";
+
+@mixin icon-button {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  line-height: 16px;
+
+  padding: 0px 0px;
+
+  border-radius: 50%;
+  background: #808080;
+
+  outline: none;
+  text-align: center;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: normal;
+  color: #fff;
+
+  @media screen and (-webkit-min-device-pixel-ratio:0) {
+    i {
+      vertical-align: middle;
+    }
+  }
+
+  i {
+    height: 16px;
+    width: 16px;
+    line-height: 16px;
+    font-weight: normal;
+
+    @include single-text-shadow(#000, 0px, 0px, 0px);
+  }
+}
+
+@mixin black-button {
+  display: inline-block;
+
+  position: relative;
+
+  cursor: pointer;
+
+  border: 1px solid #000;
+  @include border-radius(5px);
+
+  line-height: 17px !important;
+
+  padding: 5px 10px 7px 10px;
+
+  @include background-image(linear-gradient(top, #474850, #1f2027));
+  @include box-shadow(rgba(0, 0, 0, 0.3) 1px 1px 0px 0px);
+
+  font-size: 12px;
+  color: #fff;
+  text-decoration: none;
+  @include text-shadow(rgba(0, 0, 0, 0.8), 0px, 1px, 0px);
+
+  &:hover {
+    @include background-image(linear-gradient(top, #575862, #2f303b));
+  }
+
+  &:active {
+    top: 1px;
+  }
+}
+
+@mixin light-button {
+  display: inline-block;
+
+  // font-family: "Lucida Grande";
+
+  position: relative;
+  cursor: pointer;
+  line-height: 12px;
+
+  padding: 8px 10px 10px 10px;
+
+  border: 0px;
+  border-top: 1px solid rgba(255, 255, 255, 0.6);
+  @include border-radius(5px);
+  @include background-image(linear-gradient(top, #ebedf4, #d2d6e1));
+  @include box-shadow(rgba(0, 0, 0, 0.3) 1px 1px 0px 0px);
+
+  font-size: 12px;
+  color: #6B6D7A;
+  text-decoration: none;
+  @include text-shadow(rgba(255, 255, 255, 0.8), 0px, 1px, 0px);
+
+  &:hover, &.hover {
+    @include background-image(linear-gradient(top, #fff, #d7dbe7));
+  }
+
+  &:active {
+    top: 1px;
+  }
+}
+
+@mixin red-button {
+  @include light-button;
+
+  @include background-image(linear-gradient(top, #EE5F5B, #C43C35));
+  @include box-shadow(rgba(0, 0, 0, 0.4) 1px 1px 0px 0px);
+
+  @include text-shadow(rgba(0, 0, 0, 0.7) 0px -1px 0px);
+  color: #fff;
+
+  &:hover, &.hover {
+    background: #C43C35;
+  }
+}
+
+@mixin gray-button {
+  position: relative;
+  padding: 2px 10px 3px 14px;
+
+  background-color: #ebedf4;
+  @include border-radius(10px);
+  @include box-shadow(rgba(0, 0, 0, 0.4) 1px 1px 0px 0px);
+
+  color: #8b8d9a;
+  text-decoration: none;
+  @include text-shadow(rgba(255, 255, 255, 0.8) 0px 1px 0px);
+  font-size: 11px;
+  margin-left: 10px;
+
+  outline: none;
+
+  i {
+    position: relative;
+    right: 5px;
+    font-size: 9px;
+  }
+
+  &:hover, &.hover {
+    text-decoration: none;
+    color: #333;
+  }
+
+  &:active, &.active {
+    top: 1px;
+  }
+}
+
+@mixin blue-button {
+  display: inline-block;
+
+  position: relative;
+
+  cursor: pointer;
+
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  border-bottom-color: rgba(0, 0, 0, 0.6);
+  @include border-radius(5px);
+
+  line-height: 19px !important;
+
+  padding: 0px 7px;
+
+  @include background-image(linear-gradient(top, #2abaf1, #228dda));
+  @include box-shadow(rgba(0, 0, 0, 0.2) 0px 1px 0px 0px, rgba(255, 255, 255, 0.5) 0px 1px 0px 0px inset);
+
+  font-size: 12px;
+  color: #fff;
+  text-decoration: none;
+  @include text-shadow(rgba(0, 0, 0, 0.8), 0px, 1px, 0px);
+
+  &:hover {
+    @include background-image(linear-gradient(top, #26a1e9, #0d6893));
+  }
+
+  &:active {
+    top: 1px;
+  }
+}
+
+.button-groups {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+
+  .btn {
+    display: inline-block;
+    position: relative;
+    float: left;
+    white-space: nowrap;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    outline: none;
+    padding: 0px 5px;
+    margin: 0px;
+    margin-left: -1px;
+    border: 1px solid transparent;
+    color: #fff;
+
+    &:first-child {
+      @include border-top-left-radius(16px);
+      @include border-bottom-left-radius(16px);
+    }
+
+    &:last-child {
+      @include border-top-right-radius(16px);
+      @include border-bottom-right-radius(16px);
+    }
+
+    padding: 0px 12px 0px 12px;
+    line-height: 26px;
+    outline: none;
+    text-decoration: none;
+
+    color: #fff;
+    font-size: 12px;
+    font-weight: normal;
+    @include single-text-shadow(rgba(0, 0, 0, 1), 1px, 1px, 1px);
+
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.6);
+    @include box-shadow(rgba(255, 255, 255, 0.1) 0 1px 0 0 inset, rgba(255, 255, 255, 0.1) 0 1px 0 0);
+    @include background-image(linear-gradient(#303138, #1e1e24));
+
+    &.on, &:active {
+      border: 1px solid rgba(0, 0, 0, 0.4);
+      border-top: 1px solid rgba(0, 0, 0, 0.6);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+      @include background-image(linear-gradient(#1e1e24, #212229));
+      @include box-shadow(rgba(0, 0, 0, 0) 0 1px 0 0 inset, rgba(255, 255, 255, 0.1) 0 1px 0 0);
+    }
+  }
+}

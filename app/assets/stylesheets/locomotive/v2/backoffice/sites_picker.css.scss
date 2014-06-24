@@ -1,0 +1,12 @@
+@import "locomotive/shared/picker";
+
+#sites-picker {
+
+  @include picker;
+
+  top: 97px;
+
+  margin: 5px 0 0 0;
+  min-width: 160px;
+  z-index: 999;
+}

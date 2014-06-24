@@ -1,0 +1,151 @@
+@import "compass/css3";
+@import "compass/css3/border-radius";
+@import "compass/css3/images";
+@import "compass/css3/text-shadow";
+@import "locomotive/shared/helpers";
+@import "buttons";
+
+.ui-widget-overlay {
+  background: #000;
+  opacity: 0.4;
+}
+
+.ui-dialog {
+  position: absolute;
+
+  font-family: Helvetica, Arial;
+
+  background: transparent;
+
+  padding: 0px;
+  border: none;
+  @include box-shadow(rgba(0, 0, 0, 0.2) 0px 0px 10px 3px);
+
+  @include border-radius(6px);
+
+  .ui-dialog-titlebar {
+    display: block;
+    position: static;
+    height: auto;
+    z-index: 100;
+
+    background: #fff;
+
+    padding: 10px;
+    margin: 0 0 0 0;
+
+    border: 0px;
+    border-bottom: 1px dotted #bbbbbd;
+    @include border-radius(0px);
+    @include border-top-radius(6px);
+
+    text-align: left;
+
+    .ui-dialog-titlebar-close {
+      display: none;
+    }
+
+    .ui-dialog-title {
+      float: none;
+      margin: 0px;
+
+      line-height: 18px;
+
+      text-align: left;
+      color: #1E1F26;
+      font-size: 18px;
+      font-weight: bold;
+    }
+  }
+
+  .ui-dialog-content {
+    position: relative;
+    // z-index: 1200;
+
+    text-align: left;
+
+    padding: 10px;
+    background: #fff;
+
+    .list {
+      overflow: auto;
+      height: 360px;
+    }
+
+    &.hovered {
+      background: rgba(224, 237, 253, 1);
+    }
+
+    form.formtastic {
+      fieldset {
+        legend, ol {
+          width: 748px;
+        }
+
+        ol {
+          li.string {
+            input[type=text] {
+              width: 530px;
+            }
+          } // li.string
+
+          li.date {
+            input[type=text] {
+              width: 90px;
+            }
+          } // li.string
+
+          li.tags {
+            ul.tagit {
+              width: 530px;
+            }
+          }
+        }
+      }
+    } // .form.formtastic
+  } // .ui-dialog-content
+
+
+  .ui-dialog-buttonpane {
+    position: relative;
+
+    z-index: 999;
+    margin: 0px 0 0 0px;
+    padding: 10px;
+
+    line-height: 30px;
+
+    @include border-bottom-radius(6px);
+    border-top: 1px solid #5F6069;
+    background: #8B8D9A;
+
+    a {
+      outline: none;
+    }
+
+    a#close-link {
+      @include hover-link;
+      color: #fff;
+      font-size: 12px;
+    }
+
+    .button-wrapper {
+      position: absolute;
+      top: 8px;
+      right: 10px;
+
+      z-index: 1203;
+
+      a, input[type=submit] {
+        @include light-button;
+      }
+
+      input[type=file] {
+        z-index: 400000; // thanks to tinymce modal z-index
+      }
+
+    } // .button-wrapper
+
+  } // .ui-dialog-buttonpane
+}
+

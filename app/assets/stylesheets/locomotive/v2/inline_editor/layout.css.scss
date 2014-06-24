@@ -1,0 +1,22 @@
+body {
+  position: relative;
+  background: transparent;
+}
+
+#page {
+  position: relative;
+  padding-top: 40px;
+
+  iframe {
+    width: 100%;
+    height: 100%;
+    display: block;
+    min-height: 100%;
+  }
+}
+
+#content-locale-picker {
+  position: fixed;
+  top: 44px;
+  right: 70px;
+}

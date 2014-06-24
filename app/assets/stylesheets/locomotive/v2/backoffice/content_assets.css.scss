@@ -1,0 +1,200 @@
+@import "compass/css3";
+@import "compass/css3/border-radius";
+@import "compass/css3/images";
+@import "compass/css3/text-shadow";
+@import "locomotive/shared/helpers";
+@import "buttons";
+
+ul.content-assets {
+
+  list-style: none;
+  margin: 0px;
+  padding: 0px;
+  background: transparent;
+
+  li.asset {
+    position: relative;
+    float: left;
+    width: 139px;
+    height: 170px;
+    clear: none;
+
+    margin: 0 10px 10px 0;
+
+    border: 1px solid #ccced7;
+
+    @include border-radius(8px);
+    @include box-shadow(rgba(0, 0, 0, 0.4) 0px 1px 0px 0px);
+    background: #ebedf4;
+
+    &.last {
+      margin-right: 0px;
+    }
+
+    h4 {
+      margin: 0px;
+
+      line-height: 30px;
+
+      text-align: left;
+
+      @include border-top-radius(8px);
+      @include background-image(linear-gradient(#ebedf4, #d7dbe7));
+      border-bottom: 1px solid #ccced7;
+
+      padding-left: 5px;
+      font-size: 11px;
+      color: #333;
+      font-weight: bold;
+
+      a {
+        @include hover-link;
+
+        outline: none;
+        color: #1f82bc;
+      }
+    }
+
+    .uploading {
+      margin: 54px 10px 0 10px;
+      padding: 2px;
+      height: 14px;
+      background: #333;
+      border-bottom: 1px solid #fff;
+      @include border-radius(10px);
+
+      .progress-bar {
+        display: inline-block;
+        width: 20%;
+        height: 13px;
+        border-top: 1px solid #d6f6ff;
+        @include background-image(linear-gradient(#65c3ff, #008ced));
+        @include border-radius(10px);
+      }
+    }
+
+    .icon, .image {
+      width: 85px;
+      height: 85px;
+      border: 4px solid #fff;
+      margin: 20px 0 0px 22px;
+      cursor: pointer;
+
+      @include box-shadow(rgba(0, 0, 0, 0.3) 3px 3px 5px 1px);
+    }
+
+    .image {
+      background: transparent image-url("locomotive/list/empty.png") repeat 0 0;
+
+      .inside {
+        display: table-cell;
+        vertical-align: middle;
+        text-align: center;
+        width: 85px;
+        height: 90px;
+      }
+    } // .image
+
+    .icon {
+
+      .inside {
+        position: relative;
+        top: 30px;
+        width: 85px;
+
+        -webkit-transform: rotate(-45deg);
+        -moz-transform: rotate(-45deg);
+
+        color: #fff;
+        font-size: 14px;
+        font-weight: bold;
+        text-align: center;
+        text-transform: uppercase;
+        @include single-text-shadow(rgba(0, 0, 0, 0.3), 1px, 1px, 1px);
+      }
+
+      &.pdf {
+        background: #e82f2d;
+        @include background-image(linear-gradient(left top, #fc4e42, #b9101d));
+      }
+
+      &.media {
+        background: #6e489c;
+        @include background-image(linear-gradient(left top, #ba89d1, #4f317d));
+      }
+
+      &.other {
+        background: #4a4a50;
+        @include background-image(linear-gradient(left top, #92939a, #28282b));
+      }
+    } // .icon
+
+    .actions {
+      position: absolute;
+      bottom: 17px;
+      right: 17px;
+
+      a {
+        @include icon-button;
+
+        margin: 0 0 0 5px;
+
+        &:hover {
+          background: #e72635;
+        }
+      }
+    }
+
+  } // li.asset
+
+}
+
+.content-asset-picker-dialog {
+
+  .ui-dialog-content {
+    padding: 0px !important;
+  }
+
+  .ui-dialog-titlebar {
+    border-bottom: 1px solid transparent !important;
+  }
+
+  .filter-and-search {
+    @include background-image(linear-gradient(#55565c, #45454a));
+    padding: 10px 10px;
+    border-bottom: 1px solid #000;
+
+    .search-bar {
+      position: relative;
+      float: right;
+
+      input {
+        @include border-radius(20px);
+        outline: none;
+        border: 0px;
+        font-size: 12px;
+        padding: 3px 10px 3px 30px;
+        line-height: 20px;
+        z-index: 100;
+        width: 150px;
+      }
+
+      i.icon-search {
+        position: absolute;
+        left: 10px;
+        top: 2px;
+        font-size: 18px;
+        z-index: 101;
+      }
+    }
+  }
+
+  ul.content-assets {
+    padding: 10px;
+    margin: 0px;
+  }
+
+  .no-items {
+    margin: 50px 10px 0px;
+  }
+}

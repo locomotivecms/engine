@@ -1,0 +1,32 @@
+@import "colors";
+
+#menu {
+  li.contents { }
+  li.settings { }
+}
+
+body.contents {
+  #menu li.contents {
+    @include locomotive-black-entry;
+
+    // @include locomotive_blue_menu;
+    // @include locomotive_green_menu;
+  }
+
+  #submenu {
+    @include locomotive-black-submenu;
+  }
+}
+
+body.settings {
+  #menu li.settings {
+    @include locomotive-blue-entry;
+    // @include locomotive_black_menu;
+    // @include locomotive-orange-entry;
+  }
+
+  #submenu {
+    @include locomotive-blue-submenu;
+    // @include locomotive-orange-submenu;
+  }
+}

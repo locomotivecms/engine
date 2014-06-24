@@ -1,0 +1,6 @@
+@mixin absolute-position($vside, $vvalue, $hside, $hvalue, $display: block) {
+  display: $display;
+  position: absolute;
+  #{$vside}: $vvalue;
+  #{$hside}: $hvalue;
+}
