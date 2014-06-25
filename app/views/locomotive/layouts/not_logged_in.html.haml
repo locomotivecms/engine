@@ -10,9 +10,7 @@
     = yield :head
 
   %body{ class: controller.controller_name }
-    #wrapper
-      #light
-        #panel.container
-          %h1!= title
+    #panel.container
+      %h1!= title
 
-          = yield
+      = yield

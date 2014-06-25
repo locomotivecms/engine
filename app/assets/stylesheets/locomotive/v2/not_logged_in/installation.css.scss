@@ -1,0 +1,62 @@
+@import "compass/css3";
+@import "compass/css3/border-radius";
+@import "compass/css3/images";
+@import "compass/css3/text-shadow";
+@import "locomotive/shared/helpers";
+
+body.installation {
+  #panel {
+    .inner {
+
+      padding: 5px 20px 20px 20px;
+
+      a {
+        color: #1F82BC;
+        @include hover-link;
+      }
+
+      p.explanations {
+        margin-top: 10px;
+
+        color: #222;
+        font-size: 14px;
+        text-align: justify;
+      }
+
+      p.done {
+        margin: 20px 0px 15px;
+
+        color: #222;
+        font-size: 14px;
+      }
+
+      fieldset {
+        ol {
+          li.question {
+            label {
+              display: inline;
+              font-weight: normal;
+            }
+
+            input[type=checkbox] {
+              display: inline;
+              width: auto;
+              margin-right: 10px;
+            }
+          } // li.question
+
+          li {
+            &.string {
+              input[type=text] { width: 290px; }
+            }
+
+            &.password {
+              input[type=password] { width: 180px; }
+            }
+
+          } // li
+        } // ol
+      } // fieldset
+    } // inner
+  } // panel
+}
