@@ -24,6 +24,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'devise-encryptable',              '~> 0.2.0'
 
   s.add_dependency 'cancan',                          '1.6.7'
+  s.add_dependency 'pundit',                          '0.2.3'
 
   s.add_dependency 'mongoid',                         '~> 3.1.5'
   s.add_dependency 'mongoid-tree',                    '~> 1.0.3'

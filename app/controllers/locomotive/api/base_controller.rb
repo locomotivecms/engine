@@ -6,6 +6,7 @@ module Locomotive
       include Locomotive::ActionController::Timezone
       include Locomotive::ActionController::LocaleHelpers
       include SimpleTokenAuthentication::ActsAsTokenAuthenticationHandler
+      include Concerns::AuthorizationController
 
       acts_as_token_authentication_handler_for Locomotive::Account
 

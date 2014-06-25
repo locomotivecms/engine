@@ -7,7 +7,8 @@ module Locomotive
       include Locomotive::ActionController::SectionHelpers
       include Locomotive::ActionController::UrlHelpers
       include Locomotive::ActionController::Timezone
-
+      include Concerns::AuthorizationController
+      
       skip_load_and_authorize_resource
 
       around_filter :set_timezone

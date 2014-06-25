@@ -7,6 +7,7 @@ module Locomotive
     include Locomotive::ActionController::UrlHelpers
     include Locomotive::ActionController::Ssl
     include Locomotive::ActionController::Timezone
+    include Concerns::AuthorizationController
 
     layout '/locomotive/layouts/application'
 
@@ -35,18 +36,6 @@ module Locomotive
     self.responder = Locomotive::ActionController::Responder # custom responder
 
     respond_to :html
-
-    rescue_from CanCan::AccessDenied do |exception|
-      ::Locomotive.log "[CanCan::AccessDenied] #{exception.inspect}"
-
-      if request.xhr?
-        render json: { error: exception.message }
-      else
-        flash[:alert] = exception.message
-
-        redirect_to pages_path
-      end
-    end
 
     protected
 
