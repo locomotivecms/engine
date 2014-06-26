@@ -3,7 +3,7 @@ before_script: ./bin/ci/before_build.sh
 services: mongodb
 rvm:
   - 1.9.3
-  - rbx-nightly-19mode
+  - rbx-2
 notifications:
   email:
     - didier@nocoffee.fr
