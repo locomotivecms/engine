@@ -18,7 +18,7 @@ Feature: Pages
   Scenario: As an unauthenticated user
     Given I am not authenticated
     When I go to pages
-    Then I should see "Log in"
+    Then I should see the login page
 
   # listing pages
 

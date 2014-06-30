@@ -113,6 +113,14 @@ Then /^(?:|I )should see "([^"]*)"$/ do |text|
   end
 end
 
+Then /^(?:|I )should see the login page/ do
+  if current_path.respond_to? :should
+    current_path.should eq '/locomotive/sign_in'
+  else
+    assert current_path eq '/locomotive/sign_in'
+  end
+end
+
 Then /^(?:|I )should see \/([^\/]*)\/$/ do |regexp|
   regexp = Regexp.new(regexp)
 

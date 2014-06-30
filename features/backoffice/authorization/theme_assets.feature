@@ -11,7 +11,7 @@ Background:
   Scenario: As an unauthenticated user
     Given I am not authenticated
     When I go to theme assets
-    Then I should see "Log in"
+    Then I should see the login page
 
   @javascript
   Scenario: Accessing theme assets as an Admin
