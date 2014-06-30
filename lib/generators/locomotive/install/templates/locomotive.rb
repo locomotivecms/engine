@@ -65,6 +65,10 @@ Locomotive.configure do |config|
   #
   # config.theme_assets_checksum = true
 
+  # Enable serving of images, stylesheets, and JavaScripts from an asset server
+  # config.asset_host = 'http://assets.example.com'
+  # config.asset_host = -> (request, site) { ... }
+
   # Rack-cache settings, mainly used for the inline resizing image module. Default options:
   # config.rack_cache = {
   #   verbose:     true,

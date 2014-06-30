@@ -35,11 +35,15 @@ module Locomotive
           path.gsub!(/(\?+.+)$/, '')
           query_string = $1
 
-          url = ThemeAssetUploader.url_for(@context.registers[:site], path)
+          # build the url of the theme asset based on the site and without loading
+          # the whole theme asset from database
+          _url = ThemeAssetUploader.url_for(@context.registers[:site], path)
 
-          if checksum = @context.registers[:theme_assets_checksum][path]
-            query_string = "?#{checksum}" if query_string.blank?
-          end
+          # get a timestamp only the source url does not include a query string
+          timestamp = query_string.blank? ? @context.registers[:theme_assets_checksum][path] : nil
+
+          # prefix by a asset host if given
+          url = @context.registers[:asset_host].compute(_url, timestamp)
 
           query_string ? "#{url}#{query_string}" : url
         end

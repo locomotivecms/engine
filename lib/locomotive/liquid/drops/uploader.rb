@@ -3,7 +3,13 @@ module Locomotive
     module Drops
       class Uploader < Base
 
-        delegate :url, :size, to: :@_source
+        delegate :size, to: :@_source
+
+        def url
+          url, timestamp = @_source.url, @_source.model.updated_at.to_i
+
+          @context.registers[:asset_host].compute(url, timestamp)
+        end
 
         def filename
           File.basename(@_source.url)

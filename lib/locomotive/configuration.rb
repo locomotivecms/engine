@@ -31,7 +31,8 @@ module Locomotive
       context_assign_extensions:  { },
       models_for_templatization:  [],
       csrf_protection:            false,
-      theme_assets_checksum:      false
+      theme_assets_checksum:      false,
+      asset_host:                 nil
     }
 
     cattr_accessor :settings
