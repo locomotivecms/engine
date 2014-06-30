@@ -24,8 +24,8 @@ body, html {
   padding-bottom: 20px;
 }
 .content {
-  @include make-md-column-offset(4);
-  @include make-md-column(4);
+  @include make-sm-column-offset(4);
+  @include make-sm-column(4);
 }
 
 input[type=submit] {
