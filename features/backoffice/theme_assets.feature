@@ -10,7 +10,7 @@ Background:
 Scenario: Theme assets list is not accessible for non authenticated accounts
   Given I am not authenticated
   When I go to theme assets
-  Then I should see "Log in"
+  Then I should see the login page
 
 Scenario: Uploading a valid image
   When I go to theme assets
