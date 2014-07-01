@@ -22,7 +22,8 @@ Locomotive.configure_for_test
 RSpec.configure do |config|
 
   config.include(Locomotive::RSpec::Matchers)
-
+  config.include FactoryGirl::Syntax::Methods
+  config.include Devise::TestHelpers, type: :controller
   config.mock_with :mocha
 
   config.infer_base_class_for_anonymous_controllers = false

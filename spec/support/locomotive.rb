@@ -27,6 +27,9 @@ def Locomotive.configure_for_test(force = false)
 
     config.enable_admin_ssl = false
 
+    ::Mongoid::Fields::I18n.fallbacks_for(:fr, ["fr"])
+    ::Mongoid::Fields::I18n.fallbacks_for(:en, ["en"])
+
     if force
       Locomotive.define_subdomain_and_domains_options
 
