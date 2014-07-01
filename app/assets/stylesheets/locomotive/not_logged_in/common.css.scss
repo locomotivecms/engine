@@ -42,6 +42,8 @@ h1 {
   text-align: center;
   letter-spacing: 2px;
   @media (max-width: $screen-sm-max) {
-    font-size: ceil(($font-size-base));
+    font-size: ceil(($font-size-base * 1.25));
+    text-align: left;
+    font-weight: 400;
   }
 }

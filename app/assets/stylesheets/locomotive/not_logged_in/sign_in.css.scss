@@ -6,10 +6,10 @@
     @include make-sm-column(4);
   }
   h1 {
+    text-align: center;
     margin-bottom: 100px;
     @media (max-width: $screen-sm-max) {
-      margin-bottom: 0;
-      font-size: ceil(($font-size-base *1.25));
+      margin-bottom: 30px;
     }
   }
 }

@@ -1,8 +1,14 @@
+@import "compass/css3";
+@import "locomotive/bootstrap_override";
 @import "bootstrap";
+
+@import "locomotive/mixins";
+@import "locomotive/colors";
+@import "locomotive/forms";
 
 .installation{
   .content {
-    @include make-sm-column-offset(2);
+    @include make-sm-column-offset(3);
     @include make-sm-column(6);
   }
 }
