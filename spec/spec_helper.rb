@@ -7,6 +7,7 @@ require 'mocha/setup'
 require 'rails/mongoid'
 require 'factory_girl'
 require 'database_cleaner'
+require 'pundit/rspec'
 
 begin
   require 'pry'
@@ -22,6 +23,7 @@ Locomotive.configure_for_test
 RSpec.configure do |config|
 
   config.include(Locomotive::RSpec::Matchers)
+  config.include FactoryGirl::Syntax::Methods
 
   config.mock_with :mocha
 

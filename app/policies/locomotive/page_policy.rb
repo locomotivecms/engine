@@ -1,4 +1,5 @@
 module Locomotive
-  class PagePolicy
+  class PagePolicy < ApplicationPolicy
+
   end
 end

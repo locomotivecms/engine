@@ -2,7 +2,7 @@ module Locomotive
   class Ability
     include CanCan::Ability
 
-    ROLES = %w(admin designer author)
+    ROLES = %w(admin designer author guest)
 
     def initialize(account, site)
       @account, @site = account, site

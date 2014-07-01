@@ -2,7 +2,7 @@ module Locomotive
   module Api
     class SnippetsController < BaseController
 
-      load_and_authorize_resource class: Locomotive::Snippet, through: :current_site
+      include Concerns::LoadResource
 
       def index
         @snippets = @snippets.order_by(:name.asc)
@@ -81,4 +81,3 @@ module Locomotive
     end
   end
 end
-

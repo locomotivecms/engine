@@ -57,6 +57,7 @@ module Locomotive
     def admin?
       Site.where(memberships: { '$elemMatch' => { account_id: self._id, role: :admin } }).count > 0
     end
+    alias_method :is_admin?, :admin?
 
     # Regenerate the API key without saving the account.
     #
@@ -121,6 +122,15 @@ module Locomotive
 
     def devise_mailer
       Locomotive::DeviseMailer
+    end
+
+    def to_scope(resource)
+      role = is_admin? ? :admin : :guest
+      _scope = "MembershipPolicies::"
+      _scope << "#{role.to_s.pluralize.capitalize}::"
+      _scope << "#{resource.capitalize}Scope"
+
+      eval(_scope).new(self)
     end
 
     protected

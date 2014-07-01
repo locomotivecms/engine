@@ -7,7 +7,7 @@ module Locomotive
     include Locomotive::ActionController::UrlHelpers
     include Locomotive::ActionController::Ssl
     include Locomotive::ActionController::Timezone
-    include Concerns::AuthorizationController
+    include Locomotive::Concerns::AuthorizationController
 
     layout '/locomotive/layouts/application'
 

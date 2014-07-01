@@ -31,7 +31,7 @@ module Locomotive
     protected
 
     def not_restricted_user?
-      user and user.confirmed? and user.is_admin?
+      user and user.is_admin?
     end
   end
 end

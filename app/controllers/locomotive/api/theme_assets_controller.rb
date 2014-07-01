@@ -2,7 +2,7 @@ module Locomotive
   module Api
     class ThemeAssetsController < BaseController
 
-      load_and_authorize_resource class: Locomotive::ThemeAsset, through: :current_site
+      include Concerns::LoadResource
 
       def index
         respond_with(@theme_assets)

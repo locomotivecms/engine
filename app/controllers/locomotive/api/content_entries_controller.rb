@@ -2,12 +2,8 @@ module Locomotive
   module Api
     class ContentEntriesController < BaseController
 
-      load_and_authorize_resource({
-        class:                Locomotive::ContentEntry,
-        through:              :get_content_type,
-        through_association:  :entries,
-        find_by:              :find_by_id_or_permalink
-      })
+      before_filter :load_content_entry,   only: [:show, :destroy]
+      before_filter :load_content_entries, only: [:index]
 
       def index
         @content_entries = @content_entries.order_by([get_content_type.order_by_definition])
@@ -39,6 +35,16 @@ module Locomotive
 
       def get_content_type
         @content_type ||= current_site.content_types.where(slug: params[:slug]).first
+      end
+
+      private
+
+      def load_content_entry
+        @content_entry = get_content_type.entries.find_by_id_or_permalink params[:id]
+      end
+
+      def load_content_entries
+        @content_entries = get_content_type.entries
       end
 
     end

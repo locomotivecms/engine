@@ -2,7 +2,7 @@ module Locomotive
   module Api
     class ContentTypesController < BaseController
 
-      load_and_authorize_resource class: Locomotive::ContentType, through: :current_site
+      include Concerns::LoadResource
 
       def index
         @content_types = @content_types.order_by(:name.asc)

@@ -2,14 +2,14 @@ module Locomotive
   module Api
     class CurrentSiteController < Api::BaseController
 
+      before_filter :load_current_site
+
       def show
-        @site = current_site
         authorize! :show, @site
         respond_with(@site)
       end
 
       def update
-      	@site = current_site
       	authorize! :update, @site
         @site.from_presenter(params[:site])
         @site.save
@@ -17,7 +17,6 @@ module Locomotive
       end
 
       def destroy
-        @site = current_site
         authorize! :destroy, @site
         @site.destroy
         respond_with(@site)
@@ -52,6 +51,12 @@ module Locomotive
             }
           }
         }
+      end
+
+      private
+
+      def load_current_site
+        @site = current_site
       end
 
     end

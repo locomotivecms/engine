@@ -2,7 +2,8 @@ module Locomotive
   module Api
     class AccountsController < Api::BaseController
 
-      load_and_authorize_resource class: Locomotive::Account
+      before_filter :load_account,  only: [:show, :destroy]
+      before_filter :load_accounts, only: [:index]
 
       def index
         @accounts = @accounts.ordered
@@ -70,8 +71,17 @@ module Locomotive
         }
       end
 
+      private
+
+      def load_account
+        @account = Locomotive::Account.find params[:id]
+      end
+
+      def load_accounts
+        @accounts = Locomotive::Account.all
+      end
+
     end
 
   end
 end
-

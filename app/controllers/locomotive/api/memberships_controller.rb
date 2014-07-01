@@ -2,7 +2,7 @@ module Locomotive
   module Api
     class MembershipsController < BaseController
 
-      load_and_authorize_resource class: Locomotive::Membership, through: :current_site
+      include Concerns::LoadResource
 
       def index
         respond_with(@memberships)
@@ -81,4 +81,3 @@ module Locomotive
 
   end
 end
-

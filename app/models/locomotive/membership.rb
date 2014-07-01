@@ -51,6 +51,14 @@ module Locomotive
       @ability ||= Locomotive::Ability.new(self.account, self.site)
     end
 
+    def to_policy(resource, user, record, membership)
+      policy = "MembershipPolicies::"
+      policy << "#{role.pluralize.capitalize}::"
+      policy << "#{resource.capitalize}Policy"
+
+      eval(policy).new(user, record, membership)
+    end
+
     protected
 
     def define_role

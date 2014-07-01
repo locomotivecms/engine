@@ -6,8 +6,7 @@ module Locomotive
     localized
 
     skip_load_and_authorize_resource
-
-    load_and_authorize_resource class: 'Site'
+    before_filter :load_site
 
     helper 'Locomotive::Sites'
 
