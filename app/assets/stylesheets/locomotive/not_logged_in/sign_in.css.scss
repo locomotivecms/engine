@@ -1,5 +1,6 @@
 @import "locomotive/bootstrap_override";
 @import "bootstrap";
+
 .sessions{
   .content {
     @include make-sm-column-offset(4);
@@ -8,8 +9,17 @@
   h1 {
     text-align: center;
     margin-bottom: 100px;
+
     @media (max-width: $screen-sm-max) {
       margin-bottom: 30px;
+    }
+    small {
+      display: block;
+      width: 100%;
+      text-align: center;
+      color: #fff;
+      font-size: $font-size-base;
+      font-weight: 200;
     }
   }
 }
