@@ -2,8 +2,11 @@ require 'spec_helper'
 
 describe Locomotive::Api::AccountsController do
 
-  let(:site)  { FactoryGirl.create 'test site' }
-  let(:admin) { site.memberships.where(:role => 'admin').first.account }
+  let(:site)  { create(:site, domains: %w{www.acme.com}) }
+  let(:admin) { create(:account) }
+  let!(:membership) do
+    create(:membership, account: admin, site: site, role: 'admin')
+  end
   context 'admin authenticated' do
     before do
       controller.stubs(:current_site).returns(site)
@@ -41,7 +44,7 @@ describe Locomotive::Api::AccountsController do
     end
 
     describe 'PUT #update' do
-      let(:account) { FactoryGirl.create(:account) }
+      let(:account) { create(:account) }
       subject { put :update, id: account, "account" => params, format: :json }
 
       context 'valid params' do
@@ -53,7 +56,7 @@ describe Locomotive::Api::AccountsController do
           account.name.should eq 'new name'
         end
       end
-      
+
       context 'invalid params' do
         let(:params) { {'name' => '' } }
         its(:status) { should eq 422 }

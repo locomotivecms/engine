@@ -1,7 +1,5 @@
 # encoding: utf-8
-
 FactoryGirl.define do
-
   ## Site ##
   factory :site, class: Locomotive::Site do
     name 'Acme Website'
@@ -45,7 +43,7 @@ FactoryGirl.define do
   # Accounts ##
   factory :account, class: Locomotive::Account do
     name 'Bart Simpson'
-    email 'bart@simpson.net'
+    email { generate(:email) }
     password 'easyone'
     password_confirmation 'easyone'
     locale 'en'
