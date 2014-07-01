@@ -14,6 +14,8 @@ module Locomotive
       end
 
       def compute(source, timestamp = nil)
+        return source if source.nil?
+
         return add_timestamp_suffix(source, timestamp) if source =~ IsHTTP
 
         url = self.host ? URI.join(host, source).to_s : source
