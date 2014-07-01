@@ -1,0 +1,47 @@
+@import "compass/css3";
+@import "locomotive/bootstrap_override";
+@import "bootstrap";
+
+@import "locomotive/mixins";
+@import "locomotive/colors";
+@import "locomotive/forms";
+
+body, html {
+  height: 100%;
+}
+
+.wrapper {
+  width: 100%;
+  @include vertical-align-block-wrapper;
+}
+.container {
+  @include vertical-align-block;
+  height: 100%;
+
+}
+.main {
+  @include vertical-align-block-fallback;
+  @include make-row();
+  padding-bottom: 20px;
+}
+
+input[type=submit] {
+  @media (min-width: $screen-md-min) {
+    margin-top: 4em;
+  }
+  @extend .btn-block;
+  @extend .btn-danger;
+}
+
+.application-message {
+  float: right;
+  @include opacity(0.6);
+}
+
+h1 {
+  text-align: center;
+  letter-spacing: 2px;
+  @media (max-width: $screen-sm-max) {
+    font-size: ceil(($font-size-base));
+  }
+}

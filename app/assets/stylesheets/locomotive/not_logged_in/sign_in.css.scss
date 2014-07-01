@@ -1,0 +1,15 @@
+@import "locomotive/bootstrap_override";
+@import "bootstrap";
+.sessions{
+  .content {
+    @include make-sm-column-offset(4);
+    @include make-sm-column(4);
+  }
+  h1 {
+    margin-bottom: 100px;
+    @media (max-width: $screen-sm-max) {
+      margin-bottom: 0;
+      font-size: ceil(($font-size-base *1.25));
+    }
+  }
+}
