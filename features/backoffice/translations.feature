@@ -11,7 +11,7 @@ Background:
   Scenario: As an unauthenticated user
     Given I am not authenticated
     When I go to translations
-    Then I should see "Log in"
+    Then I should see the login page
 
   Scenario: As a designer
     Given I am an authenticated "designer"

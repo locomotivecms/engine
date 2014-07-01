@@ -10,7 +10,7 @@ Background:
   Scenario: As an unauthenticated user
     Given I am not authenticated
     When I go to site settings
-    Then I should see "Log in"
+    Then I should see the login page
 
   @javascript
   Scenario: Accessing site settings as an Admin

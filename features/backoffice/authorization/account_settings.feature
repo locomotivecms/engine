@@ -10,7 +10,7 @@ Background:
   Scenario: As an unauthenticated user
     Given I am not authenticated
     When I go to account settings
-    Then I should see "Log in"
+    Then I should see the login page
 
   Scenario: Accessing site settings as an Admin
     Given I am an authenticated "admin"
