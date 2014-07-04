@@ -87,6 +87,8 @@ es:
       index:
         is_required: requerido
         default_label: Nombre del campo
+      form:
+        default_label: Nombre del campo
 
     sessions:
       new:
