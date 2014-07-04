@@ -6,7 +6,7 @@ describe Locomotive::ThemeAsset do
 
   let(:site) { FactoryGirl.build(:site, domains: %w{www.acme.com}) }
 
-  let(:asset) { FactoryGirl.build(:theme_asset, site: site) }
+  let(:asset) { FactoryGirl.build(:theme_asset, site: site, updated_at: DateTime.parse('2007/06/29 21:10:00')) }
 
   describe 'attaching a file' do
 
@@ -145,21 +145,21 @@ describe Locomotive::ThemeAsset do
     context 'simple url' do
 
       let(:text) { "background: url(/images/banner.png) no-repeat 0 0" }
-      it { should == "background: url(http://engine.dev/images/banner.png) no-repeat 0 0" }
+      it { should == "background: url(http://engine.dev/images/banner.png?1183151400) no-repeat 0 0" }
 
     end
 
     context 'url with quotes' do
 
       let(:text) { "background: url(\"/images/banner.png\") no-repeat 0 0" }
-      it { should == "background: url(\"http://engine.dev/images/banner.png\") no-repeat 0 0" }
+      it { should == "background: url(\"http://engine.dev/images/banner.png?1183151400\") no-repeat 0 0" }
 
     end
 
     context 'url with quotes and timestamps' do
 
       let(:text) { "background: url(\"/images/banner.png?123456\") no-repeat 0 0" }
-      it { should == "background: url(\"http://engine.dev/images/banner.png\") no-repeat 0 0" }
+      it { should == "background: url(\"http://engine.dev/images/banner.png?1183151400\") no-repeat 0 0" }
 
     end
 

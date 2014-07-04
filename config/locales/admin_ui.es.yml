@@ -65,6 +65,7 @@ es:
         create: Crear
         update: Actualizar
         send: Enviar
+        disable_with: Pendiente...
 
     notifications:
       new_content_entry:

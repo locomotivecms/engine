@@ -54,7 +54,7 @@ Scenario: Filter by a date
     """
     Lorem ipsum, Yadi Yada
     """
-    
+
 Scenario: Filter with regexp
   Given a page named "my-articles" with the template:
     """
