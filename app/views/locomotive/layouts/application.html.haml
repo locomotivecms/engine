@@ -4,7 +4,7 @@
   %head
     = render 'locomotive/shared/head'
   %body{ class: sections }
-    #wrapper
+    .wrapper
       .container
         #header
           = render 'locomotive/shared/header'
@@ -18,7 +18,7 @@
               .actions
                 = yield :actions
 
-        #content
+        .content
           .inner
             %h2!= title
 
