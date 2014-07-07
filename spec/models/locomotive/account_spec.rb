@@ -22,8 +22,8 @@ describe Locomotive::Account do
   end
 
   it "validates the uniqueness of email" do
-    FactoryGirl.create(:account)
-    (account = FactoryGirl.build(:account)).should_not be_valid
+    FactoryGirl.create(:account, email: 'notunique@me.com')
+    (account = FactoryGirl.build(:account, email: 'notunique@me.com')).should_not be_valid
     account.errors[:email].should == ["is already taken"]
   end
 

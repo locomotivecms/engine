@@ -155,7 +155,8 @@ module Locomotive
         sanitized_path = path.gsub(/[("')]/, '').gsub(/^\//, '').gsub(/\?[0-9]+$/, '')
 
         if asset = self.site.theme_assets.where(local_path: sanitized_path).first
-          "#{path.first}#{asset.source.url}#{path.last}"
+          timestamp = self.updated_at.to_i
+          "#{path.first}#{asset.source.url}?#{timestamp}#{path.last}"
         else
           path
         end

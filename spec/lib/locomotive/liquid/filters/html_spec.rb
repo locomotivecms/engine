@@ -236,12 +236,14 @@ describe Locomotive::Liquid::Filters::Html do
   end
 
   def build_context
+
     klass = Class.new
     klass.class_eval do
       def registers
         @registers ||= {
           site: FactoryGirl.build(:site, id: fake_bson_id(42)),
-          theme_assets_checksum: {}
+          theme_assets_checksum: {},
+          asset_host: TimestampAssetHost.new
         }
       end
 

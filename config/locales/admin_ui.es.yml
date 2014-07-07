@@ -65,6 +65,7 @@ es:
         create: Crear
         update: Actualizar
         send: Enviar
+        disable_with: Pendiente...
 
     notifications:
       new_content_entry:
@@ -85,6 +86,8 @@ es:
           empty: Vacío
       index:
         is_required: requerido
+        default_label: Nombre del campo
+      form:
         default_label: Nombre del campo
 
     sessions:

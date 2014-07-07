@@ -61,7 +61,8 @@ module Locomotive
         registers = {
           controller:     self,
           site:           current_site,
-          current_locomotive_account:  current_locomotive_account
+          current_locomotive_account:  current_locomotive_account,
+          asset_host:     Locomotive::Liquid::AssetHost.new(request, current_site, Locomotive.config.asset_host)
         }
 
         preserve(content_type.item_template.render(::Liquid::Context.new({}, assigns, registers)))

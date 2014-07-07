@@ -4,6 +4,8 @@ class Locomotive.Views.Sites.MembershipsView extends Backbone.View
 
   tagName: 'div'
 
+  id: 'site_memberships'
+
   className: 'list'
 
   _entry_views = []
@@ -12,6 +14,8 @@ class Locomotive.Views.Sites.MembershipsView extends Backbone.View
     @render_entries()
 
     @enable_ui_effects()
+
+    $(@el).append('<span class="error-anchor"></span>')
 
     return @
 

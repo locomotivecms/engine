@@ -17,6 +17,10 @@ module WithinHelpers
 end
 World(WithinHelpers)
 
+When /^PENDING/ do
+  pending
+end
+
 # Single-line step scoper
 When /^(.*) within (.*[^:])$/ do |step, parent|
   with_scope(parent) { step step }
@@ -110,6 +114,14 @@ Then /^(?:|I )should see "([^"]*)"$/ do |text|
     page.should have_content(text)
   else
     assert page.has_content?(text)
+  end
+end
+
+Then /^(?:|I )should see the login page/ do
+  if current_path.respond_to? :should
+    current_path.should eq '/locomotive/sign_in'
+  else
+    assert current_path eq '/locomotive/sign_in'
   end
 end
 
