@@ -1,5 +1,6 @@
 # encoding: utf-8
 FactoryGirl.define do
+
   ## Site ##
   factory :site, class: Locomotive::Site do
     name 'Acme Website'

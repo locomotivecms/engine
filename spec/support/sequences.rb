@@ -5,4 +5,12 @@ end
 
 FactoryGirl.define do
   sequence(:email) { |n| "foo#{n}_#{random}@bar.com" }
+
+  sequence :subdomain do |n|
+    "subdomain-#{random}-#{n}"
+  end
+
+  sequence :name do |n|
+    "name_#{random}_#{n}"
+  end
 end

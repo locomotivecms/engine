@@ -2,7 +2,7 @@ module Locomotive
   module Api
     class AccountsController < Api::BaseController
 
-      before_filter :load_account,  only: [:show, :destroy]
+      before_filter :load_account,  only: [:show, :update, :destroy]
       before_filter :load_accounts, only: [:index]
 
       def index
@@ -15,6 +15,7 @@ module Locomotive
       end
 
       def create
+        @account = Locomotive::Account.new
         @account.from_presenter(params[:account])
         @account.save
         respond_with(@account)

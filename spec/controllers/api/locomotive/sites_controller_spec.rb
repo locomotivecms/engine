@@ -4,18 +4,16 @@ module Locomotive
   module Api
     describe SitesController do
 
-      let(:site)     { FactoryGirl.create(:site, domains: %w{www.acme.com}) }
-      let(:account)  { FactoryGirl.create(:account) }
+      let(:site)     { create(:site, domains: %w{www.acme.com}) }
+      let(:account)  { create(:account) }
 
       let!(:membership) do
-        FactoryGirl.create(:membership, account: account, site: site, role: 'designer')
+        create(:membership, account: account, site: site, role: 'admin') #'designer')
       end
 
       before do
-        controller.expects(:current_locomotive_account).at_least_once.returns(account)
-        controller.instance_variable_set(:@current_site, site)
-        controller.expects(:require_account).at_least_once.returns(nil)
-        controller.expects(:current_site).at_least_once.returns(site)
+        controller.stubs(:current_site).returns(site)
+        sign_in account
       end
 
       describe "#GET index" do
@@ -27,6 +25,15 @@ module Locomotive
         subject { get :show, id: 42, locale: :en, format: :json }
         it { should be_success }
       end
+
+      describe "#POST create" do
+        subject do
+          post :create, id: 42, locale: :en, site: { subdomain: generate(:subdomain), name: generate(:name) },
+            format: :json
+        end
+        it { should be_success }
+      end
+
     end
   end
 end

@@ -35,7 +35,7 @@ describe Locomotive::Api::AccountsController do
         end
       end
       context 'invalid input' do
-        let(:params) { { invalid: 'input' } }
+        let(:params) {{ invalid: 'input' }}
         its(:status) { should eq 422 }
         it 'does not create a user' do
           expect { subject }.to change(Locomotive::Account, :count).by(0)

@@ -4,7 +4,7 @@ module Locomotive
 
       skip_before_filter :require_site, :set_current_thread_variables
 
-      before_filter :load_site,  only: [:show, :destroy]
+      before_filter :load_site,  only: [:show, :update, :destroy]
       before_filter :load_sites, only: [:index]
 
       def index
@@ -18,9 +18,11 @@ module Locomotive
 
       def create
         # authorize @site
+        @site = Locomotive::Site.new
         @site.from_presenter(params[:site])
         @site.memberships.build account: self.current_locomotive_account, role: 'admin'
         @site.save
+
         respond_with(@site)
       end
 
