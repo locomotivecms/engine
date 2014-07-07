@@ -1,38 +1,18 @@
-@font-face {
-  font-family: 'Source Sans Pro';
-  font-style: normal;
-  font-weight: 200;
-  src: local('Source Sans Pro ExtraLight'), local('SourceSansPro-ExtraLight'),
-        url(fonts/sourcesanspro200.woff) format('woff'),
-        url(fonts/sourcesanspro200.ttf) format('truetype');
-}
-@font-face {
-  font-family: 'Source Sans Pro';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Source Sans Pro'), local('SourceSansPro-Regular'),
-        url(fonts/sourcesanspro400.woff) format('woff'),
-        url(fonts/sourcesanspro400.ttf) format('truetype');
-  }
+@import "compass/css3";
 
-@font-face {
-  font-family: 'Source Sans Pro';
-  font-style: bold;
-  font-weight: 700;
-  src: local('Source Sans Pro'), local('SourceSansPro-Bold'),
-        url(fonts/sourcesanspro700.woff) format('woff'),
-        url(fonts/sourcesanspro700.ttf) format('truetype');
-}
+@include font-face("Source Sans Pro",
+            font-files( "fonts/sourcesanspro200.woff",
+                        "fonts/sourcesanspro200.ttf"),
+            font-files( "fonts/sourcesanspro200.eot"),
+            200);
+@include font-face("Source Sans Pro",
+            font-files( "fonts/sourcesanspro400.woff",
+                        "fonts/sourcesanspro400.ttf"),
+            font-files( "fonts/sourcesanspro400.eot"),
+            400);
 
-
-// @font-face {
-//     font-family: 'icofonts';
-//     src:url('fonts/icofonts.eot');
-//     src:url('fonts/icofonts.eot?#iefix') format('embedded-opentype'),
-//         url('fonts/icofonts.ttf') format('truetype'),
-//         url('fonts/icofonts.woff') format('woff'),
-//         url('fonts/icofonts.svg#icofonts') format('svg');
-//     font-weight: normal;
-//     font-style: normal;
-// }
-
+@include font-face("Source Sans Pro",
+            font-files( "fonts/sourcesanspro700.woff",
+                        "fonts/sourcesanspro700.ttf"),
+            font-files( "fonts/sourcesanspro700.eot"),
+            700);
