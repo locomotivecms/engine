@@ -9,6 +9,7 @@ module Locomotive
 
       let!(:membership) do
         create(:membership, account: account, site: site, role: 'admin') #'designer')
+        # create(:membership, account: account, site: site, role: 'designer')
       end
 
       before do
@@ -34,6 +35,29 @@ module Locomotive
         it { should be_success }
         specify do
           expect { subject }.to change(Locomotive::Site, :count).by(+1)
+        end
+      end
+
+      describe "#PUT update" do
+        let!(:site) { create(:site) }
+        let(:new_name) { generate(:name) }
+        subject do
+          put :update, id: site.id, locale: :en, site: { name: new_name }, format: :json
+        end
+        it { should be_success }
+        specify do
+          expect(JSON.parse(subject.body).fetch('name')).to eq(new_name)
+        end
+      end
+
+      describe "#DELETE destroy" do
+        let!(:site) { create(:site) }
+        subject do
+          delete :destroy, id: site.id, locale: :en, format: :json
+        end
+        it { should be_success }
+        specify do
+          expect { subject }.to change(Locomotive::Site, :count).by(-1)
         end
       end
 
