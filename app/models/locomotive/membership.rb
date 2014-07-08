@@ -52,17 +52,17 @@ module Locomotive
     end
 
     def to_policy(resource, user, record, membership)
-      policy_name = "MembershipPolicies::"
+      policy_name = "Locomotive::MembershipPolicies::"
       policy_name << "#{role.pluralize.capitalize}::"
       policy_name << "#{resource.capitalize}Policy"
 
       begin
-        policy = eval(policy_name).new(self)
+        policy = eval(policy_name).new(user, record, membership)
       rescue NameError => e
-        policy = Locomotive::ApplicationPolicy.new(self)
+        policy = Locomotive::ApplicationPolicy.new(user, record, membership)
       end
 
-      eval(policy).new(user, record, membership)
+      policy
     end
 
     protected

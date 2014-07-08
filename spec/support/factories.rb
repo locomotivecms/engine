@@ -133,7 +133,7 @@ FactoryGirl.define do
   ## Snippets ##
   factory :snippet, class: Locomotive::Snippet do
     name 'My website title'
-    slug 'header'
+    sequence(:slug) { |n| "header_#{n}" }
     template %{<title>Acme</title>}
     site { Locomotive::Site.where(subdomain: 'acme').first || FactoryGirl.create(:site) }
   end

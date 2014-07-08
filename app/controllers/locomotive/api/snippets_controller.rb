@@ -2,31 +2,47 @@ module Locomotive
   module Api
     class SnippetsController < BaseController
 
-      include Concerns::LoadResource
+      before_filter :load_resources, only: [:index]
+      before_filter :load_resource,  only: [:show, :update, :destroy]
 
       def index
+        @snippets = SnippetPolicy::Scope.new(self.current_locomotive_account).resolve
         @snippets = @snippets.order_by(:name.asc)
+
         respond_with(@snippets)
       end
 
       def show
+        SnippetPolicy.new(self.current_locomotive_account, @snippet).show?
+
         respond_with @snippet
       end
 
       def create
+        @snippet = Locomotive::Snippet.new
+        SnippetPolicy.new(self.current_locomotive_account, @snippet).create?
+
         @snippet.from_presenter(params[:snippet])
+        @snippet.site = current_site
         @snippet.save
+
         respond_with @snippet, location: main_app.locomotive_api_snippets_url
       end
 
       def update
+        SnippetPolicy.new(self.current_locomotive_account, @snippet).update?
+
         @snippet.from_presenter(params[:snippet])
         @snippet.save
+
         respond_with @snippet, location: main_app.locomotive_api_snippets_url
       end
 
       def destroy
+        SnippetPolicy.new(self.current_locomotive_account, @snippet).destroy?
+
         @snippet.destroy
+
         respond_with @snippet
       end
 
@@ -76,6 +92,16 @@ module Locomotive
             }
           }
         }
+      end
+
+      private
+
+      def load_resources
+        @snippets = current_site.snippets
+      end
+
+      def load_resource
+        @snippet = current_site.snippets.find params[:id]
       end
 
     end

@@ -1,7 +1,7 @@
 module Locomotive
   module MembershipPolicies
     module Admins
-      class SitePolicy < Locomotive::MembershipPolicies::AbstractPolicy
+      class SnippetPolicy < Locomotive::MembershipPolicies::AbstractPolicy
 
         def touch?
           true

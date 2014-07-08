@@ -6,8 +6,8 @@ module Locomotive
         if self.class.method_defined? method
           self.public_send method, *args, &block
         elsif method.to_s =~ /\?$/
-          # false # fallback as unauthorized
-          raise NotImplementedError
+          false # fallback as unauthorized
+          # raise NotImplementedError
         else
           super
         end
