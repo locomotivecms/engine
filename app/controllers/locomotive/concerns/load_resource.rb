@@ -15,7 +15,7 @@ module Locomotive
 
       def self.included(base)
         base.class_eval <<-EOV, __FILE__, __LINE__
-          before_filter :load_#{singular_name}, only: [:show, :destroy]
+          before_filter :load_#{singular_name}, only: [:show, :update, :destroy]
         EOV
         base.class_eval <<-EOV, __FILE__, __LINE__
           before_filter :load_#{plural_name},   only: [:index]
