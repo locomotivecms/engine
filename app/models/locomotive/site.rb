@@ -16,12 +16,18 @@ module Locomotive
 
     ## associations ##
     has_many    :pages,           class_name: 'Locomotive::Page',           validate: false, autosave: false
-    has_many    :snippets,        class_name: 'Locomotive::Snippet',        dependent: :destroy, validate: false, autosave: false
-    has_many    :theme_assets,    class_name: 'Locomotive::ThemeAsset',     dependent: :destroy, validate: false, autosave: false
-    has_many    :content_assets,  class_name: 'Locomotive::ContentAsset',   dependent: :destroy, validate: false, autosave: false
-    has_many    :content_types,   class_name: 'Locomotive::ContentType',    dependent: :destroy, validate: false, autosave: false
-    has_many    :content_entries, class_name: 'Locomotive::ContentEntry',   dependent: :destroy, validate: false, autosave: false
-    has_many    :translations,    class_name: 'Locomotive::Translation',    dependent: :destroy, validate: false, autosave: false
+    has_many    :snippets,        class_name: 'Locomotive::Snippet',        dependent: :destroy, validate: false,
+      autosave: false
+    has_many    :theme_assets,    class_name: 'Locomotive::ThemeAsset',     dependent: :destroy, validate: false,
+      autosave: false
+    has_many    :content_assets,  class_name: 'Locomotive::ContentAsset',   dependent: :destroy, validate: false,
+      autosave: false
+    has_many    :content_types,   class_name: 'Locomotive::ContentType',    dependent: :destroy, validate: false,
+      autosave: false
+    has_many    :content_entries, class_name: 'Locomotive::ContentEntry',   dependent: :destroy, validate: false,
+      autosave: false
+    has_many    :translations,    class_name: 'Locomotive::Translation',    dependent: :destroy, validate: false,
+      autosave: false
     embeds_many :memberships,     class_name: 'Locomotive::Membership'
 
     ## validations ##

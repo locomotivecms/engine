@@ -4,10 +4,10 @@ module Locomotive
 
       skip_before_filter :require_site, :set_current_thread_variables
 
-      before_filter :load_site,  only: [:show, :update, :destroy]
+      before_filter :load_site, only: [:show, :update, :destroy]
 
       def index
-        @sites = SitePolicy::Scope.new(self.current_locomotive_account).resolve.all
+        @sites = SitePolicy::Scope.new(self.current_locomotive_account).resolve
 
         respond_with(@sites)
       end

@@ -19,7 +19,7 @@ module Locomotive
       end
 
       def create
-        @snippet = Locomotive::Snippet.new
+        @snippet = Locomotive::Snippet.new(params[:snippet])
         SnippetPolicy.new(self.current_locomotive_account, @snippet).create?
 
         @snippet.from_presenter(params[:snippet])

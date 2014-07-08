@@ -1,0 +1,3 @@
+#!/usr/bin/env ruby
+
+mongo locomotive_engine_dev --eval "db.dropDatabase()"

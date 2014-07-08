@@ -5,6 +5,7 @@ FactoryGirl.define do
   factory :site, class: Locomotive::Site do
     name 'Acme Website'
     subdomain 'acme'
+    # sequence(:subdomain) { |n| "acme#{n*rand(10_000)}" }
     created_at Time.now
 
     factory 'test site' do
@@ -117,8 +118,15 @@ FactoryGirl.define do
   factory :page, class: Locomotive::Page do
     title 'Home page'
     slug 'index'
+    # sequence(:slug) { |n| "index#{n*rand(10_000)}" }
     published true
     site { Locomotive::Site.where(subdomain: 'acme').first || FactoryGirl.create(:site) }
+
+    trait :index do
+      after(:build) do |page, evaluator|
+        page.parent = page.site.pages.root.first
+      end
+    end
 
     factory :sub_page do
       title 'Subpage'
@@ -127,13 +135,12 @@ FactoryGirl.define do
       site { Locomotive::Site.where(subdomain: 'acme').first || FactoryGirl.create(:site) }
       parent { Locomotive::Page.where(slug: 'index').first || FactoryGirl.create(:page) }
     end
-
   end
 
   ## Snippets ##
   factory :snippet, class: Locomotive::Snippet do
     name 'My website title'
-    sequence(:slug) { |n| "header_#{n}" }
+    sequence(:slug) { |n| "header#{n*rand(10_000)}" }
     template %{<title>Acme</title>}
     site { Locomotive::Site.where(subdomain: 'acme').first || FactoryGirl.create(:site) }
   end

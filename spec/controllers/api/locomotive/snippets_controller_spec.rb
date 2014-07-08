@@ -28,10 +28,10 @@ module Locomotive
       end
 
       describe "#POST create" do
-        let(:snippet_attributes) { attributes_for(:snippet) }
+        let(:snippet_attributes) { attributes_for(:snippet, site: site) }
 
         subject do
-          post :create, id: snippet.id, locale: :en, snippet: snippet_attributes, format: :json
+          post :create, locale: :en, snippet: snippet_attributes, format: :json
         end
 
         it { should be_success }

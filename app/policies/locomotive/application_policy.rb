@@ -22,17 +22,19 @@ module Locomotive
       @record = record
     end
 
-    def index?
+    def create?
       not_restricted_user?
     end
+    alias_method :new?,    :create?
+    alias_method :destroy?, :create?
 
-    alias_method :show?,      :index?
-    alias_method :create?,    :index?
-    alias_method :update?,    :index?
-    alias_method :destroy?,   :index?
-
-    def new?()  create? ; end
-    def edit?() update? ; end
+    def touch?
+      not_restricted_user?
+    end
+    alias_method :show?,   :touch?
+    alias_method :edit?,   :touch?
+    alias_method :update?, :touch?
+    alias_method :index?,  :touch?
 
     def scope
       Pundit.policy_scope!(user, record.class)
@@ -52,6 +54,20 @@ module Locomotive
 
     def not_restricted_user?
       user and user.is_admin?
+    end
+
+    def membership
+      @membership ||= begin
+        _membership = if self.record
+          self.record.memberships.where(account_id: self.user.id).first
+        elsif self.user.admin?
+          Membership.new(account: self.user, role: 'admin')
+        end
+        unless _membership
+          _membership = Membership.new(account: self.user, role: 'guest')
+        end
+        _membership
+      end
     end
   end
 end

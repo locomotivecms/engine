@@ -2,20 +2,26 @@ module Locomotive
   module Api
     class PagesController < BaseController
 
-      include Concerns::LoadResource
+      before_filter :load_page, only: [:show, :update, :destroy]
 
       def index
+        @pages = PagePolicy::Scope.new(self.current_locomotive_account, self.current_site).resolve
         @pages = @pages.order_by(:depth.asc, :position.asc)
+
         respond_with(@pages)
       end
 
       def show
+        PagePolicy.new(self.current_locomotive_account, @page).show?
+
         respond_with(@page)
       end
 
       def create
+        @page = Locomotive::Page.new(params[:page])
         @page.from_presenter(params[:page])
         @page.save
+
         respond_with @page, location: main_app.locomotive_api_pages_url
       end
 
@@ -76,6 +82,10 @@ module Locomotive
             }
           }
         }
+      end
+
+      def load_page
+        @page = current_site.pages.find params[:id]
       end
 
     end
