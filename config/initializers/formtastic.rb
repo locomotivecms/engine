@@ -10,8 +10,8 @@ module FormtasticBootstrap
 
   class FormBuilder < Formtastic::FormBuilder
 
-    configure :default_inline_error_class, 'help-inline'
-    configure :default_block_error_class,  'help-block'
+    configure :default_inline_error_class, 'error-inline'
+    configure :default_block_error_class,  'error-block'
     configure :default_inline_hint_class,  'help-inline'
     configure :default_block_hint_class,   'help-block'
 
@@ -42,6 +42,25 @@ module FormtasticBootstrap
 
   end
 
+end
+
+module FormtasticBootstrap
+  module Inputs
+    module Base
+      module Wrapping
+        def bootstrap_wrapping(&block)
+          form_group_wrapping do
+            label_html <<
+            hint_html(:inline) <<
+            error_html(:inline) <<
+            template.content_tag(:span, :class => 'form-wrapper') do
+              input_content(&block)
+            end
+          end
+        end
+      end
+    end
+  end
 end
 
 Formtastic::Helpers::FormHelper.builder = FormtasticBootstrap::FormBuilder

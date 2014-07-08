@@ -4,14 +4,14 @@
 
   = f.hidden_field :reset_password_token
 
-  .inner
+  = flash_message
+
+  = f.inputs do
     = flash_message
+    = f.input :email, label: t('.email'), required: false
 
-    = f.inputs do
-      = f.input :email, label: t('.email'), required: false
+  %p.link
+    = link_to preserve(t('.link')), new_locomotive_account_session_path
 
-    %p.link
-      = link_to preserve(t('.link')), new_locomotive_account_session_path
-
-  .footer
-    = submit_tag t('locomotive.buttons.send_password')
+  = f.actions do
+    = f.action :submit, label: t('locomotive.buttons.send_password'), as: :button
