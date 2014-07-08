@@ -8,21 +8,22 @@ module Locomotive
       before_filter :load_sites, only: [:index]
 
       def index
-        # binding.pry
         respond_with(@sites)
       end
 
       def show
         SitePolicy.new(self.current_locomotive_account, @site).show?
+
         respond_with(@site)
       end
 
       def create
-        # authorize @site
         @site = Locomotive::Site.new
+
+        SitePolicy.new(self.current_locomotive_account, @site).create?
+
         @site.from_presenter(params[:site])
         @site.memberships.build account: self.current_locomotive_account, role: 'admin'
-        # binding.pry
         @site.save
 
         respond_with(@site)

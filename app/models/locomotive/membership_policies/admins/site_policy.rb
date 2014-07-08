@@ -9,7 +9,7 @@ module Locomotive
         end
 
         def create?
-          false
+          true
         end
 
       end
