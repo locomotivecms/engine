@@ -8,12 +8,11 @@ module Locomotive
       let(:account)  { create(:account) }
 
       let!(:membership) do
-        create(:membership, account: account, site: site, role: 'admin') #'designer')
-        # create(:membership, account: account, site: site, role: 'designer')
+        create(:membership, account: account, site: site, role: 'admin')
       end
 
       before do
-        controller.stubs(:current_site).returns(site)
+        Locomotive.config.stubs(:multi_sites?).returns(false)
         sign_in account
       end
 
