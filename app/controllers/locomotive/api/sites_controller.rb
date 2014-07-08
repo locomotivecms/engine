@@ -5,9 +5,10 @@ module Locomotive
       skip_before_filter :require_site, :set_current_thread_variables
 
       before_filter :load_site,  only: [:show, :update, :destroy]
-      before_filter :load_sites, only: [:index]
 
       def index
+        @sites = SitePolicy::Scope.new(self.current_locomotive_account).resolve.all
+
         respond_with(@sites)
       end
 
@@ -20,7 +21,7 @@ module Locomotive
       def create
         @site = Locomotive::Site.new
 
-
+        SitePolicy.new(self.current_locomotive_account, @site).create?
 
         @site.from_presenter(params[:site])
         @site.memberships.build account: self.current_locomotive_account, role: 'admin'
@@ -34,6 +35,7 @@ module Locomotive
 
         @site.from_presenter(params[:site])
         @site.save
+
         respond_with @site
       end
 
@@ -41,6 +43,7 @@ module Locomotive
         SitePolicy.new(self.current_locomotive_account, @site).destroy?
 
         @site.destroy
+
         respond_with(@site)
       end
 
@@ -96,10 +99,6 @@ module Locomotive
 
       def load_site
         @site = current_site
-      end
-
-      def load_sites
-        @sites = SitePolicy::Scope.new(self.current_locomotive_account).resolve.all
       end
 
     end
