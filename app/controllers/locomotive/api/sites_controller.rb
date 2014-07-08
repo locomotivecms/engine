@@ -8,6 +8,7 @@ module Locomotive
       before_filter :load_sites, only: [:index]
 
       def index
+        # binding.pry
         respond_with(@sites)
       end
 
@@ -21,6 +22,7 @@ module Locomotive
         @site = Locomotive::Site.new
         @site.from_presenter(params[:site])
         @site.memberships.build account: self.current_locomotive_account, role: 'admin'
+        # binding.pry
         @site.save
 
         respond_with(@site)

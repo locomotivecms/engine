@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Locomotive::Ability do
+describe Locomotive::Ability, pending: true do
 
   before :each do
     @site = FactoryGirl.create(:site)

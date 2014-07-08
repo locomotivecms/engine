@@ -1,5 +1,14 @@
 # encoding: utf-8
 
+## Array
+
+class Array
+
+  def all
+    self
+  end
+end
+
 ## String
 
 class String #:nodoc

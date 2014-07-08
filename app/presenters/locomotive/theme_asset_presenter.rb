@@ -41,7 +41,7 @@ module Locomotive
     end
 
     def can_be_deleted
-      self.__ability.try(:can?, :destroy, self.__source)
+      self.__ability.destroy?
     end
 
     def plain_text

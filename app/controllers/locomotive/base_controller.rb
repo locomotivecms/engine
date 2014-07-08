@@ -23,7 +23,7 @@ module Locomotive
 
     before_filter :validate_site_membership
 
-    load_and_authorize_resource
+    # load_and_authorize_resource
 
     around_filter :set_timezone
 
@@ -45,7 +45,7 @@ module Locomotive
     end
 
     def current_ability
-      @current_ability ||= Locomotive::Ability.new(current_locomotive_account, current_site)
+      @current_ability ||= Locomotive::ApplicationPolicy.new(current_locomotive_account, current_site)
     end
 
     def require_account

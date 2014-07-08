@@ -34,7 +34,7 @@ module Locomotive
       end
 
       def current_ability
-        @current_ability ||= Locomotive::Ability.new(current_locomotive_account, current_site)
+        @current_ability ||= Locomotive::ApplicationPolicy.new(current_locomotive_account, current_site)
       end
 
       def require_account
@@ -55,7 +55,8 @@ module Locomotive
       end
 
       def self.cancan_resource_class
-        Locomotive::Api::CanCan::ControllerResource
+        # Locomotive::Api::CanCan::ControllerResource
+        raise Exception.new('No longer Locomotive::Api::CanCan::ControllerResource')
       end
 
       def self.description

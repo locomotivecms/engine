@@ -126,11 +126,18 @@ module Locomotive
 
     def to_scope(resource)
       role = is_admin? ? :admin : :guest
-      _scope = "MembershipPolicies::"
-      _scope << "#{role.to_s.pluralize.capitalize}::"
-      _scope << "#{resource.capitalize}Scope"
 
-      eval(_scope).new(self)
+      scope_policy_class = "MembershipPolicies::"
+      scope_policy_class << "#{role.to_s.pluralize.capitalize}::"
+      scope_policy_class << "#{resource.capitalize}Scope"
+
+      begin
+        scope_policy = eval(scope_policy_class).new(self)
+      rescue NameError => e
+        scope_policy = Locomotive::ApplicationPolicy::Scope.new(self)
+      end
+      
+      scope_policy
     end
 
     protected

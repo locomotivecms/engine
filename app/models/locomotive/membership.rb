@@ -48,7 +48,7 @@ module Locomotive
     end
 
     def ability
-      @ability ||= Locomotive::Ability.new(self.account, self.site)
+      @ability ||= Locomotive::ApplicationPolicy.new(self.account, self.site)
     end
 
     def to_policy(resource, user, record, membership)
@@ -70,12 +70,16 @@ module Locomotive
     # be an administrator
     def can_change_role
       current_site       = Thread.current[:site]
-      current_membership = current_site.memberships.where(account_id: Thread.current[:account].id).first if current_site.present?
+      if current_site.present?
+        current_membership = current_site.memberships.where(account_id: Thread.current[:account].id).first
+      end
 
       if current_membership.present?
         # The role cannot be set higher than the current one (we use the index in
         # the roles array to check role presidence)
-        errors.add(:role, :invalid) if Locomotive::Ability::ROLES.index(role) < Locomotive::Ability::ROLES.index(current_membership.role)
+        if Locomotive::Ability::ROLES.index(role) < Locomotive::Ability::ROLES.index(current_membership.role)
+          errors.add(:role, :invalid)
+        end
       end
     end
 

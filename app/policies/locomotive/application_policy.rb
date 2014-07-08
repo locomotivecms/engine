@@ -1,5 +1,13 @@
 module Locomotive
   class ApplicationPolicy
+
+    class Scope < Struct.new(:user)
+
+      def resolve
+        []
+      end
+    end
+
     attr_reader :user, :record
 
     READ_ACTIONS  = [:index, :show]
@@ -7,7 +15,9 @@ module Locomotive
     MANAGE_ACTIONS = READ_ACTIONS + WRITE_ACTIONS
 
     def initialize(user, record)
-      # raise Pundit::NotAuthorizedError, 'must be logged in' unless user
+      raise Pundit::NotAuthorizedError, 'must be logged in' unless user
+      raise Pundit::NotAuthorizedError, 'must provide resource for check policy' unless record
+
       @user = user
       @record = record
     end
@@ -26,6 +36,16 @@ module Locomotive
 
     def scope
       Pundit.policy_scope!(user, record.class)
+    end
+
+    def method_missing(method, *args, &block)
+      if self.class.method_defined? method
+        self.public_send method, *args, &block
+      elsif method.to_s =~ /\?$/
+        false # fallback as unauthorized
+      else
+        super
+      end
     end
 
     protected

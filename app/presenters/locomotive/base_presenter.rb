@@ -9,9 +9,9 @@ class Locomotive::BasePresenter
 
   ## default properties ##
   with_options allow_nil: true do |presenter|
-    presenter.properties    :id, :_id
+    presenter.properties :id, :_id
   end
-  properties  :created_at, :updated_at, type: 'Date', only_getter: true
+  properties :created_at, :updated_at, type: 'Date', only_getter: true
 
   ## utility accessors ##
   attr_reader :__ability, :__depth
@@ -20,11 +20,14 @@ class Locomotive::BasePresenter
   # get a property.
   #
   def after_initialize
-    @__depth    = self.__options[:depth] || 0
-    @__ability  = self.__options[:ability]
+    @__depth   = self.__options[:depth] || 0
+    @__ability = self.__options[:ability]
 
-    if self.__options[:current_account] && self.__options[:current_site]
-      @__ability = Locomotive::Ability.new self.__options[:current_account], self.__options[:current_site]
+    begin
+      @__ability = policy(self.__options[:current_account], self.__options[:current_site])
+    rescue Pundit::NotAuthorizedError => e
+      Rails.logger.warn e.message
+      @__ability = nil
     end
   end
 
@@ -36,7 +39,6 @@ class Locomotive::BasePresenter
   def _id
     self.__source.persisted? || self.__source.embedded? ? self.__source._id.to_s : nil
   end
-
   alias :id :_id
 
   # Check if there is an ability object used for permissions.
@@ -143,6 +145,18 @@ class Locomotive::BasePresenter
     end
 
     attributes
+  end
+
+  private
+
+  def policy user, record
+    policy_name = "Locomotive::#{self.class.name.split('::').last.gsub('Presenter','')}Policy"
+    begin
+      policy = eval(policy_name).new(user, record)
+    rescue NameError => e
+      policy = Locomotive::ApplicationPolicy.new(user, record)
+    end
+    policy
   end
 
 end

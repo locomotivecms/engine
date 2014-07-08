@@ -32,6 +32,9 @@ module Locomotive
             format: :json
         end
         it { should be_success }
+        specify do
+          expect { subject }.to change(Locomotive::Site, :count).by(+1)
+        end
       end
 
     end

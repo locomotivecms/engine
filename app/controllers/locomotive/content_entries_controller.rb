@@ -9,7 +9,7 @@ module Locomotive
 
     before_filter :set_content_type
 
-    skip_load_and_authorize_resource
+    # skip_load_and_authorize_resource
 
     before_filter :authorize_content
 

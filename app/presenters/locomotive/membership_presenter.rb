@@ -25,12 +25,12 @@ module Locomotive
 
     def can_update
       return nil unless self.ability?
-      self.__ability.can? :update, self.__source
+      self.__ability.update?
     end
 
     def grant_admin
       return nil unless self.ability?
-      self.__ability.can? :grant_admin, self.__source
+      self.__ability.grant_admin?
     end
 
   end
