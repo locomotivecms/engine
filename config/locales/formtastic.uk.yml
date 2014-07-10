@@ -1,0 +1,105 @@
+uk:
+  formtastic:
+    titles:
+      information: Основна інформація
+      advanced_options: Додаткові налаштування
+      meta: SEO Метадані
+      seo: SEO налаштування
+      robots_txt: Robots.txt файл
+      code: Код
+      raw_template: Шаблон
+      credentials: Обліковий запис
+      language: Мова
+      sites: Сайти
+      access_points: Точки доступа
+      memberships: Облікові записи
+      membership_email: Email акаунта
+      file: Файл
+      preview: Попередній перегляд
+      options: Додаткові налаштування
+      custom_fields: Користувацькі поля
+      other_fields: Інша інформація
+      presentation: Вигляд
+      attributes: Атрибути
+      upload: Завантажити
+    labels:
+      theme_asset:
+        plain_text_name: Назва файла
+        content_type: Тип файлу
+        new:
+          source: Файл
+        edit:
+          source: Замінити файл
+      custom_fields:
+        field:
+          name: Alias
+      content_type:
+        raw_item_template: Шаблон елемента
+        public_submission_enabled: Публічне представлення
+        public_submission_accounts: Сповіщені акаунти
+        "custom_fields/field":
+          select_options: "Опції"
+      content_entry:
+        _slug: Постійне посилання
+      account:
+        edit:
+          locale: Мова интерфейсу користувача
+          password: Новий пароль
+          password_confirmation: Підтвердження нового паролю
+      page:
+        seo_title: Назва
+        target_klass_name: Модель
+      site:
+        locales: Мови
+        timezone_name: Часовой пояс
+        new:
+          locales: Перша мова
+
+    hints:
+      page:
+        handle: "Унікальний ідентифікатор для пошуку цієї сторінки з екземпляру зовнішнього rails-контролера"
+        published: "Тільки аутентифікованим користувачам дозволяється переглядати неопубліковані сторінки."
+        cache_strategy: "Кешувати сторінку для кращої продуктивності. Варіант 'Просте' є хорошим компромісом."
+        templatized: "Використовуйте сторінку як шаблон для певної моделі."
+        listed: "Контролюйте можливість показу сторінки із згенерованих меню."
+        target_klass_name: "Тип контенту (моделі), для якого ця сторінка буде виступатт в якості шаблону."
+        seo_title: "Визначте заголовок сторінки, що буде використовуватися як значення тега title в секції head. Залиште пустимо, якщо ви хочете використовувати значення за замовчуванням з налаштувань сайту."
+        meta_keywords: "Перевизначає meta keywords сайту, які використовуються всередині тега head сторінки. Вони розділені комами."
+        meta_description: "Перевизначає meta description сайту, які використовуються всередині тега head сторінки."
+      snippet:
+        slug: "Вам необхідно знати це для вставки сніпету до сторінки"
+      site:
+        locales: "Перетягніть і відпустіть прапор на першу позицію, щоб зробити її локаллю за замовчуванням."
+        seo_title: "Задайте глобальне значення тут, яке буде використано як значення для тега title в секції head."
+        meta_keywords: "Meta keywords використовуються всередині тега head сторінки. Вони розділяються комою. Потрібно для SEO."
+        meta_description: "Meta description використовуються для тега head сторінки. Необхідно для SEO."
+        domain_name: "ex: locomotiveapp.org"
+        robots_txt: "Вмістиме файлу <span class='code'>/robots.txt</span>. Щоб отримати більше інформації дивіться <a href='http://www.w3.org/TR/html4/appendix/notes.html#h-B.4.1.1'>тут</a>."
+      theme_asset:
+        slug: "Вам не потрібно додавати розширення файлу (.css or .js)"
+        edit:
+          source: "Ви можете замінити це файлом, що має таке ж розширення"
+      asset:
+        source: "Усі типи файлів прийняті."
+        edit:
+          source: "Поточний файл доступний тут %{url}"
+        update:
+          source: "Поточний файл доступний тут %{url}"
+      content_entry:
+        _slug: "Властивість, що використовується для генерації посилання (url) на сторінку, що працює як шаблон для цього типу вмісту (напр: \"template_page/{{ your_object._permalink }})\"."
+        seo_title: "Значення, що вводиться вами, буде замінювати SEO заголовок шаблонізованої сторінки, пов'язаної з вашою моделлю."
+        meta_keywords: "Перевизначає meta keywords сайту, використовувані усередині тега head сторінки. Розділяються комою."
+        meta_description: "Перевизначає meta description сайту, використовувані усередині тега head сторінки."
+      import:
+        source: "Файл zip, що містить database.yml разом з файлами і шаблонами"
+        samples: "Якщо включено, процес імпорту також скопіює вміст і файли"
+        reset: "Якщо включено, все дані вашого сайту будуть знищені перед імпортом нового сайту"
+      content_type:
+        name: "Необхідно вводити назву моделі у множині. Наприклад: Projects, Recipes, Posts, Articles, ... і т.д."
+        slug: "Поле буде використано як ім'я коллекції в шаблонах liquid. Напр.: <span Class='code'> {{contents.my_projects}} </ span>"
+        raw_item_template: "Ви можете задавати текст, що відображається для кожного елемента в списку. Просто використовуйте Liquid. Напр.: {{Entry.name}})"
+        public_submission_enabled: "Це використовується для того, щоб дати людям ззовні можливість створювати нові екземляри (приклад: повідомлення в формі контакту)"
+        public_submission_accounts: "Лист з повідомленням буде відправлено на кожен акаунт зі списку вище кожен раз, коли створюється новий екземпляр (якщо включена опція публічного представлення)"
+        "custom_fields/field":
+          name: "Назва властивості для шаблонів liquid. Напр.: <span class='code'>&#123;&#123; your_object.&lt;name_of_your_field&gt; &#125;&#125;</span>"
+          hint: "Текст-підказка, який відображається на формі моделі під полем"
