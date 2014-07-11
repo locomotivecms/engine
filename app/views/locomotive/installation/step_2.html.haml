@@ -14,12 +14,7 @@
     - if multi_sites?
       = f.input :subdomain, required: true
 
-    = f.input :locales,
-
-    / %li{ class: 'select optional', id: 'default_site_locale' }
-    /   %label{ for: 'default_site_locale_input' }= t('.default_site_locale')
-    /   = select_tag 'site[locales][]', options_for_select(options_for_site_locales, @site.default_locale), id: 'default_site_locale_input'
-    /   %p.inline-hints!= t('.default_site_locales_hints')
+    = f.input :first_locale, as: :select, collection: options_for_site_locales, include_blank: false, label: t('.default_site_locale'), hint: t('.default_site_locales_hints')
 
   = f.actions do
     = f.action :submit, label: t('.next'), as: :button

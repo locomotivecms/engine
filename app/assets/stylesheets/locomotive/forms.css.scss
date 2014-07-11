@@ -8,6 +8,12 @@
       line-height: 18px;
     }
 
+    select {
+      -webkit-appearance: none;
+      -webkit-border-radius: 0px;
+      border-radius: 0px;
+    }
+
     .help-inline, .error-inline {
       margin-left: 10px;
     }

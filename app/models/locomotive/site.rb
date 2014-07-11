@@ -5,7 +5,7 @@ module Locomotive
 
     ## Extensions ##
     extend  Extensions::Site::SubdomainDomains
-    extend  Extensions::Site::FirstInstallation
+    include Extensions::Site::FirstInstallation
     include Extensions::Shared::Seo
     include Extensions::Site::Locales
     include Extensions::Site::Timezone
