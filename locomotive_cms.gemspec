@@ -20,8 +20,9 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'rails',                           '~> 3.2.17'
 
-  s.add_dependency 'devise',                          '2.2.7'
-  s.add_dependency 'devise-encryptable',              '~> 0.1.1'
+  s.add_dependency 'devise',                          '~> 3.2.2'
+  s.add_dependency 'devise-encryptable',              '~> 0.2.0'
+
   s.add_dependency 'cancan',                          '1.6.7'
 
   s.add_dependency 'mongoid',                         '~> 3.1.5'
@@ -44,6 +45,8 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'locomotivecms_solid',             '~> 0.2.2'
   s.add_dependency 'formtastic',                      '~> 2.2.1'
+  s.add_dependency 'formtastic-bootstrap',            '~> 3.0.0'
+
   s.add_dependency 'responders',                      '~> 0.9.2'
   s.add_dependency 'cells',                           '~> 3.8.0'
   s.add_dependency 'RedCloth',                        '~> 4.2.8'

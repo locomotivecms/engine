@@ -15,4 +15,5 @@
  *= require locomotive/liquid_mode.css
  *= require_tree ./locomotive/shared
  *= require_tree ./locomotive/backoffice
+ *= require formtastic-bootstrap
 */

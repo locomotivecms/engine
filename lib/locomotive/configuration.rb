@@ -7,8 +7,8 @@ module Locomotive
       reserved_subdomains:    %w{www admin email blog webmail mail support help site sites},
       # forbidden_paths:      %w{layouts snippets stylesheets javascripts assets admin system api},
       reserved_slugs:         %w{stylesheets javascripts assets admin locomotive images api pages edit},
-      locales:                %w{en de fr pl pt-BR it nl nb es ru et ja zh-CN cs bg sk sr},
-      site_locales:           %w{en de fr pl pt-BR it nl nb es ru et ja zh-CN cs bg sk sr},
+      locales:                %w{en de fr pl pt-BR it nl nb es ru et ja zh-CN cs bg sk sr uk},
+      site_locales:           %w{en de fr pl pt-BR it nl nb es ru et ja zh-CN cs bg sk sr uk},
       cookie_key:             '_locomotive_session',
       enable_logs:            false,
       enable_admin_ssl:       false,
@@ -27,7 +27,7 @@ module Locomotive
         metastore:   URI.encode("file:#{Rails.root}/tmp/dragonfly/cache/meta"), # URI encoded in case of spaces
         entitystore: URI.encode("file:#{Rails.root}/tmp/dragonfly/cache/body")
       },
-      devise_modules:             [:rememberable, :database_authenticatable, :token_authenticatable, :recoverable, :trackable, :validatable, :encryptable, { encryptor: :sha1 }],
+      devise_modules:             [:rememberable, :database_authenticatable, :recoverable, :trackable, :validatable, :encryptable, { encryptor: :sha1 }],
       context_assign_extensions:  { },
       models_for_templatization:  [],
       csrf_protection:            false,

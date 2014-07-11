@@ -1,0 +1,150 @@
+@import "compass/css3";
+@import "compass/css3/border-radius";
+@import "compass/css3/images";
+@import "compass/css3/text-shadow";
+
+@mixin hover-link {
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+@mixin locomotive-link {
+  a {
+    @include hover-link;
+    color: #1F82BC;
+  }
+}
+
+@mixin default-input-style {
+  padding: 4px 5px;
+
+  color: #17171B;
+  font-size: 14px;
+  font-weight: bold;
+
+  border: 1px solid #b5b7c4;
+  @include background-image(linear-gradient(top, #f0f0f0, #f9f9f9 25%, #f9f9f9 25%, #ffffff 50%, #ffffff));
+}
+
+@mixin path-input-style {
+  background: transparent;
+  outline: none;
+
+  margin: 0 5px;
+
+  width: 30%;
+
+  border: none;
+  border-bottom: 1px solid #B5B7C4;
+
+  color: #787A89;
+  font-size: 14px;
+}
+
+@mixin editable {
+  padding: 2px 6px 2px 6px;
+  color: #1e1f26;
+  outline: none;
+  cursor: pointer;
+
+  &:after { font-family: FontAwesome; color: #e8e1ad; content: "\00a0"; }
+
+  &:hover {
+    text-decoration: none;
+    background: #fffbe5;
+
+    border-bottom: 1px dotted #efe4a5;
+
+    &:after { font-family: FontAwesome; color: #e8e1ad; content: "\00a0\00a0\f040"; }
+  }
+}
+
+@mixin label {
+  display: inline-block;
+  position: relative;
+
+  background-color: #858585;
+  @include border-radius(3px);
+  padding: 1px 3px 2px;
+
+  line-height: 16px;
+  font-size: 11px;
+  font-weight: bold;
+  color: #fff;
+  @include single-text-shadow(rgba(0, 0, 0, 0.6), 0px, -1px, 0px);
+}
+
+@mixin tiny-buttons-group {
+  a.add {
+    @include gray-button;
+
+    padding-left: 10px;
+  }
+
+  a.edit, a.drag, a.remove, a.toggle {
+    @include icon-button;
+  }
+
+  a.edit:hover {
+    background: #f0c334;
+  }
+
+  a.drag:hover {
+    background: #25a7ed;
+  }
+
+  a.remove:hover {
+    background: #e72635;
+  }
+
+  a.toggle:hover {
+    background: #f3c526;
+  }
+}
+
+@mixin select-options-edit-style {
+  .list {
+    line-height: auto;
+
+    ul, li, > span.actions {
+      float: left;
+    }
+
+    ul {
+      width: 558px;
+      min-height: 34px;
+
+      li.entry {
+        background: #c2e0f0;
+        @include border-radius(2px);
+        @include box-shadow(rgba(0, 0, 0, 0.2) 0px 1px 0px 0px);
+
+        padding: 0 8px 0 8px;
+        margin: 2px 10px 8px 0;
+        height: auto;
+
+        color: #29739b;
+        line-height: 24px;
+
+        span.name {
+          cursor: pointer;
+          @include text-shadow(#fff 0px 1px 1px);
+        }
+
+        span.actions {
+          position: static;
+          margin-left: 8px;
+          line-height: 24px;
+        }
+      }
+    } // .list ul
+
+    > span.actions {
+      position: static;
+      margin-left: 15px;
+      line-height: 24px;
+    } // .list .actions
+  }
+}

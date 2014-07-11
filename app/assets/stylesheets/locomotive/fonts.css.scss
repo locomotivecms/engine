@@ -1,0 +1,18 @@
+@import "compass/css3";
+
+@include font-face("Source Sans Pro",
+            font-files( "fonts/sourcesanspro200.woff",
+                        "fonts/sourcesanspro200.ttf"),
+            font-files( "fonts/sourcesanspro200.eot"),
+            200);
+@include font-face("Source Sans Pro",
+            font-files( "fonts/sourcesanspro400.woff",
+                        "fonts/sourcesanspro400.ttf"),
+            font-files( "fonts/sourcesanspro400.eot"),
+            400);
+
+@include font-face("Source Sans Pro",
+            font-files( "fonts/sourcesanspro700.woff",
+                        "fonts/sourcesanspro700.ttf"),
+            font-files( "fonts/sourcesanspro700.eot"),
+            700);

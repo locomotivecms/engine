@@ -56,21 +56,21 @@ class Locomotive.Views.ContentEntries.FormView extends Locomotive.Views.Shared.F
     return @
 
   enable_checkboxes: ->
-    @$('li.input.toggle input[type=checkbox]').checkToggle()
+    @$('.input.toggle input[type=checkbox]').checkToggle()
 
   enable_tags: ->
-    @$('li.input.tags input[type=text]').tagit(allowSpaces: true)
+    @$('.input.tags input[type=text]').tagit(allowSpaces: true)
 
   enable_datepickers: ->
-    @$('li.input.date input[type=text]').datepicker()
+    @$('.input.date input[type=text]').datepicker()
 
   enable_datetimepickers: ->
-    @$('li.input.date-time input[type=text]').datetimepicker
+    @$('.input.date-time input[type=text]').datetimepicker
       controlType: 'select'
       showTime: false
 
   enable_richtexteditor: ->
-    _.each @$('li.input.rte textarea.html'), (textarea) =>
+    _.each @$('.input.rte textarea.html'), (textarea) =>
       settings = _.extend {}, @tinyMCE_settings(),
         oninit: ((editor) =>
           $.cmd 'S', (() =>

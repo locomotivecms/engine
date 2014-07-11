@@ -1,0 +1,16 @@
+.control-label {
+  text-transform: uppercase;
+  font-size: 85%;
+}
+.button {
+  @extend .btn
+}
+
+input[type=submit] {
+  @extend .btn;
+}
+
+form a {
+  color: #000;
+  @include opacity(0.4);
+}
