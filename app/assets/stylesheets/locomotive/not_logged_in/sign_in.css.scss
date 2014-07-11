@@ -1,18 +1,13 @@
 @import "locomotive/bootstrap_override";
 @import "bootstrap";
 
-.sessions{
+.sessions {
   .content {
     @include make-sm-column-offset(4);
     @include make-sm-column(4);
   }
-  h1 {
-    text-align: center;
-    margin-bottom: 100px;
 
-    @media (max-width: $screen-sm-max) {
-      margin-bottom: 30px;
-    }
+  h1 {
     small {
       display: block;
       width: 100%;

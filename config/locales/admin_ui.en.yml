@@ -90,6 +90,9 @@ en:
     sites_picker:
       new: + new site
 
+    not_logged_in:
+      title: "LocomotiveCMS <small>Designed to save your time</small>"
+
     api_key:
       none: Please click on the next button to generate the API key.
       button: Regenerate
@@ -117,7 +120,7 @@ en:
 
     sessions:
       new:
-        title: Log in
+        title: "Log in"
         link: "I forgot my password"
         email: "Email"
         password: "Password"

@@ -2,7 +2,7 @@
 !!!
 %html{ xmlns: 'http://www.w3.org/1999/xhtml', lang: I18n.locale }
   %head
-    %title= escape_once(title || "#{Locomotive.config.name} &mdash; #{current_site.name}")
+    %title= escape_once(strip_tags(title) || "#{Locomotive.config.name} &mdash; #{current_site.name}")
     %meta{ name:"viewport", content:"width=device-width, initial-scale=1" }
     = javascript_include_tag  'locomotive/not_logged_in'
     = stylesheet_link_tag     'locomotive/not_logged_in', media: 'screen'

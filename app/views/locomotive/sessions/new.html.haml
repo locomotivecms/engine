@@ -1,14 +1,16 @@
-- title "LocomotiveCMS <small>Designed to save your time</small>"
+- title t('locomotive.not_logged_in.title')
+
+- set_error_from_flash(resource, :email)
+
 = semantic_form_for(resource, as: resource_name, url: locomotive_account_session_path) do |f|
+
   = f.hidden_field :remember_me, value: 'true'
 
+  = flash_message
+
   = f.inputs do
-    = flash_message
     = f.input :email, label: t('.email'), required: false
-    = f.input :password, label: t('.password'), required: false
+    = f.input :password, label: t('.password'), hint: link_to(t('.link'), new_locomotive_account_password_path).html_safe, required: false
 
-  %p.link
-    = link_to t('.link'), new_locomotive_account_password_path
-
-  .footer
-    = submit_tag t('locomotive.buttons.login')
+  = f.actions do
+    = f.action :submit, label: t('locomotive.buttons.login'), as: :button

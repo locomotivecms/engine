@@ -4,5 +4,4 @@
 .wrapper {
   background-repeat: no-repeat;
   @include background-image(linear-gradient(top, #53b9cd, #5398cc));
-  border-bottom: #f7f7f7 solid 200px;
 }

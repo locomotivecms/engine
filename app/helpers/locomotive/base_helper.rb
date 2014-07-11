@@ -85,9 +85,28 @@ module Locomotive
         first_key = flash.keys.first
         content_tag :div, flash[first_key],
           id: "flash-#{first_key}",
-          class: 'application-message'
+          class: "application-message alert alert-#{flash_key_to_bootstrap_alert(first_key)}"
       else
         ''
+      end
+    end
+
+    def set_error_from_flash(resource, attribute)
+      if !flash.empty? && flash.alert
+        flash.alert.tap do |msg|
+          resource.errors.add(attribute.to_sym, msg)
+          flash.delete(:alert)
+        end
+      end
+    end
+
+    def flash_key_to_bootstrap_alert(key)
+      case key.to_sym
+      when :notice  then :success
+      when :alert   then :success
+      when :error   then :warning
+      else
+        :info
       end
     end
 
