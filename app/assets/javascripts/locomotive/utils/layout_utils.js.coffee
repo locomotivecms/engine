@@ -1,4 +1,10 @@
+
 $ ->
+
+  #
+  # same height columns
+  #
+
   jQuery.fn.equalize = ->
 
     items = @
@@ -9,7 +15,6 @@ $ ->
         console.log(max)
         h = $(@).height()
         max = Math.max(h, max)
-        console.log(max)
     @apply_max = ->
       $(items).css 'min-height': max
 
