@@ -4,20 +4,18 @@
   %head
     = render 'locomotive/shared/head'
   %body{ class: sections }
+    = render 'locomotive/shared/header'
     .wrapper
-      .container
-        #header
-          = render 'locomotive/shared/header'
+      %section.main{role:"main"}
+        .menu
           = render_cell 'locomotive/main_menu', :show
+        .submenu
+          %ul
+            = yield :submenu
 
-          #submenu
-            %ul
-              = yield :submenu
-
-            - if content_for? :actions
-              .actions
-                = yield :actions
-
+          - if content_for? :actions
+            .actions
+              = yield :actions
         .content
           .inner
             %h2!= title
@@ -28,7 +26,7 @@
 
             = yield
 
-        #footer
-          = render 'locomotive/shared/footer'
+      %footer
+        = render 'locomotive/shared/footer'
 
-    = yield :foot
+      = yield :foot
