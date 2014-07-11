@@ -213,7 +213,7 @@ describe Locomotive::ContentEntry do
         @second.previous.title.should == 'third'
       end
 
-      it "should find next item", pending: 'Failing on Travis' do
+      it "should find next item" do
         @first.next.title.should == 'very first'
       end
 

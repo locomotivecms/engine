@@ -21,7 +21,6 @@ require 'locomotive/cancan'
 require 'locomotive/regexps'
 require 'locomotive/render'
 require 'locomotive/middlewares'
-require 'simple_token_authentication'
 
 module Locomotive
   extend ActiveSupport::Autoload

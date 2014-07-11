@@ -10,7 +10,6 @@ group :assets do
   gem 'coffee-rails', '~> 3.2.2'
   gem 'uglifier',     '~> 1.2.4'
   gem 'compass-rails'
-  gem 'bootstrap-sass-rails'
 end
 
 # The rest of the dependencies are for use when in the locomotive development / test environments
@@ -18,7 +17,6 @@ end
 group :test, :development do
   gem 'rspec-rails', '~> 2.13.0' # In order to have rspec tasks and generators
   gem 'rspec-cells'
-  gem 'pry'
 end
 
 group :development do

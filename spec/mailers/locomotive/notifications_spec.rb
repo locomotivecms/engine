@@ -6,7 +6,7 @@ describe Locomotive::Notifications do
 
     let(:site) { FactoryGirl.build(:site, domains: %w{www.acme.com}) }
 
-    let(:account) { FactoryGirl.build(:account, email: 'bart@simpson.net') }
+    let(:account) { FactoryGirl.build(:account) }
 
     let(:content_type) { FactoryGirl.build(:content_type, site: site) }
 

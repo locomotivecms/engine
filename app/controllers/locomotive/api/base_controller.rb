@@ -5,9 +5,6 @@ module Locomotive
       include Locomotive::Routing::SiteDispatcher
       include Locomotive::ActionController::Timezone
       include Locomotive::ActionController::LocaleHelpers
-      include SimpleTokenAuthentication::ActsAsTokenAuthenticationHandler
-
-      acts_as_token_authentication_handler_for Locomotive::Account
 
       skip_before_filter :verify_authenticity_token
 
@@ -39,7 +36,6 @@ module Locomotive
       end
 
       def require_account
-        authenticate_entity_from_token!
         authenticate_locomotive_account!
       end
 

@@ -2,7 +2,7 @@ module Locomotive
   class Account
 
     include Locomotive::Mongoid::Document
-    include SimpleTokenAuthentication::ActsAsTokenAuthenticatable
+
     devise *Locomotive.config.devise_modules
 
     ## devise fields (need to be declared since 2.x) ##
