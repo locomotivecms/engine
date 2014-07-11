@@ -61,6 +61,12 @@ FactoryGirl.define do
       locale 'fr'
     end
 
+    factory 'portuguese user' do
+      name 'Tiago Fernandes'
+      email 'tjg.fernandes@gmail.com'
+      locale 'pt'
+    end
+
     factory 'brazillian user' do
       name 'Jose Carlos'
       email 'jose@carlos.com.br'
