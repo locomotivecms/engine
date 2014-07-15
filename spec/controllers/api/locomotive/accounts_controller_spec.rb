@@ -7,11 +7,13 @@ describe Locomotive::Api::AccountsController do
   let!(:membership) do
     create(:membership, account: admin, site: site, role: 'admin')
   end
+
   context 'admin authenticated' do
     before do
-      controller.stubs(:current_site).returns(site)
+      Locomotive.config.stubs(:multi_sites?).returns(false)
       sign_in admin
     end
+
     describe 'POST #create' do
       let(:params) {
         {
@@ -62,8 +64,17 @@ describe Locomotive::Api::AccountsController do
         its(:status) { should eq 422 }
       end
     end
-  end
 
+    describe "#GET show" do
+      subject { get :show, id: admin.id, locale: :en, format: :json }
+      it { should be_success }
+      specify do
+        subject
+        expect(assigns(:account)).to be_present
+      end
+    end
+
+  end
 
   def json_response
     JSON.parse(subject.body)

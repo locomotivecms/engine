@@ -28,12 +28,14 @@ module Locomotive
       end
 
       def update
+        PagePolicy.new(self.current_locomotive_account, @page).update?
         @page.from_presenter(params[:page])
         @page.save
         respond_with @page, location: main_app.locomotive_api_pages_url
       end
 
       def destroy
+        PagePolicy.new(self.current_locomotive_account, @page).destroy?
         @page.destroy
         respond_with @page
       end

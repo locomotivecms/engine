@@ -1,5 +1,6 @@
 module Locomotive
   class PagePolicy < ApplicationPolicy
+
     class Scope < Struct.new(:user, :site)
 
       def resolve

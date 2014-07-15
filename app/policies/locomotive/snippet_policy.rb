@@ -1,5 +1,6 @@
 module Locomotive
   class SnippetPolicy < ApplicationPolicy
+
     class Scope < Struct.new(:user)
 
       def resolve
