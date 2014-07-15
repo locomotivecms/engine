@@ -15,8 +15,10 @@ module Locomotive
       protected
 
       def fetch_site
-        Locomotive.log "[fetch site] host = #{request.host} / #{request.env['HTTP_HOST']}"
-        Locomotive::SitePolicy::Scope.new(request.host).resolve
+        @current_site ||= begin
+          Locomotive.log "[fetch site] host = #{request.host} / #{request.env['HTTP_HOST']}"
+          Locomotive::SitePolicy::Scope.new(request).resolve
+        end
       end
 
       def current_site

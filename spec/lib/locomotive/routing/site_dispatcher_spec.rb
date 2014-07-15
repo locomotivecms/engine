@@ -36,6 +36,8 @@ describe Locomotive::Routing::SiteDispatcher do
     end
 
     it 'returns the current site instance if available' do
+      # Locomotive.config.stubs(:multi_sites?).returns(false)
+
       @controller.instance_variable_set(:@current_site, @site)
       @controller.send(:fetch_site).should == @site
     end

@@ -1,7 +1,7 @@
 module Locomotive
   class SitePolicy < ApplicationPolicy
 
-    class Scope < Struct.new(:host)
+    class Scope < Struct.new(:request)
 
       def resolve
         if Locomotive.config.multi_sites?
