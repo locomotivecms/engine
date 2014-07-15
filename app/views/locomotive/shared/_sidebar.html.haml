@@ -1,0 +1,13 @@
+%section
+  %h1
+    = link_to t('.dashboard'), '#'
+
+= render_cell 'locomotive/pages', :show, site: current_site
+
+%section
+  %h1
+    = link_to t('.assets'), '#'
+
+%section
+  %h1
+    = link_to t('.settings'), '#'

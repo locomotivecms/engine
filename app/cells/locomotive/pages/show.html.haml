@@ -1,0 +1,11 @@
+%section.pages-tree
+  %h1= t(:title, scope: 'locomotive.pages.index')
+
+  %ul.root-node
+
+    - @pages.each do |(page, children)|
+      = render({ state: :show_page }, page, children)
+
+    %li.new-content
+      %i.fa.fa-plus.icon
+      = link_to t(:new, scope: 'locomotive.pages.index'), new_page_path

@@ -1,0 +1,20 @@
+.sidebar {
+
+  background: $sidebar_background_color;
+  color: $sidebar_text_color;
+
+  * {
+    color: $sidebar_text_color;
+  }
+
+  section {
+    border-bottom: 1px solid $sidebar_section_border_color;
+
+    h1 {
+      font-size: 12px;
+      text-transform: uppercase;
+      color: $sidebar_section_title_color;
+    }
+  }
+
+}

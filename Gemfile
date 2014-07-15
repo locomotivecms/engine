@@ -9,8 +9,6 @@ group :assets do
   gem 'sass-rails',   '~> 3.2.4'
   gem 'coffee-rails', '~> 3.2.2'
   gem 'uglifier',     '~> 1.2.4'
-  gem 'compass-rails'
-  gem 'bootstrap-sass-rails'
 end
 
 # The rest of the dependencies are for use when in the locomotive development / test environments

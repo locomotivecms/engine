@@ -1,0 +1,40 @@
+@import "../globals/all";
+
+.formtastic {
+
+  .form-group {
+
+    .control-label {
+      text-transform: uppercase;
+      font-size: 85%;
+      line-height: 18px;
+    }
+
+    select {
+      -webkit-appearance: none;
+      -webkit-border-radius: 0px;
+      border-radius: 0px;
+    }
+
+    .help-inline, .error-inline {
+      margin-left: 10px;
+      font-family: $alt-font-family-sans-serif;
+    }
+
+    .error-inline {
+      color: $state-danger-text;
+    }
+
+  }
+
+  a {
+    color: #000;
+    @include opacity(0.4);
+  }
+
+  .has-error {
+    @include form-control-validation($text-color, $input-border, $state-danger-bg);
+  }
+}
+
+

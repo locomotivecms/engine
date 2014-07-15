@@ -44,11 +44,14 @@ Gem::Specification.new do |s|
   s.add_dependency 'flash_cookie_session',            '~> 1.1.1'
 
   s.add_dependency 'locomotivecms_solid',             '~> 0.2.2'
+  s.add_dependency 'compass-rails',                   '~> 1.1.7'
+  s.add_dependency 'bootstrap-sass-rails',            '~> 3.1.0.0'
   s.add_dependency 'formtastic',                      '~> 2.2.1'
   s.add_dependency 'formtastic-bootstrap',            '~> 3.0.0'
+  s.add_dependency 'font-awesome-sass',               '~> 4.1.0'
 
   s.add_dependency 'responders',                      '~> 0.9.2'
-  s.add_dependency 'cells',                           '~> 3.8.0'
+  s.add_dependency 'cells',                           '~> 3.11.1'
   s.add_dependency 'RedCloth',                        '~> 4.2.8'
   s.add_dependency 'redcarpet',                       '~> 3.0.0'
   s.add_dependency 'sanitize',                        '2.0.3'

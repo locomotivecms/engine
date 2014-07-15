@@ -4,6 +4,7 @@
 body {
   background: #f7f7f7;
 }
+
 .wrapper {
   background-repeat: no-repeat;
   @include background-image(linear-gradient(top, #53b9cd, #5398cc));

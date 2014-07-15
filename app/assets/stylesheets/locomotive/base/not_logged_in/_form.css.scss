@@ -1,0 +1,10 @@
+$form_input_border_color: #4999b2;
+
+.formtastic {
+
+  .form-wrapper {
+    display: block;
+    border: 3px solid $form_input_border_color;
+  }
+
+}

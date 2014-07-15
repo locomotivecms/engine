@@ -1,0 +1,31 @@
+@import "../globals/all";
+
+$nli_gradient_start: #54b9cd;
+$nli_gradient_end: #5488cc;
+
+body, html {
+  height: 100%;
+}
+
+.wrapper {
+  width: 100%;
+  @include vertical-align-block-wrapper;
+
+  background-repeat: no-repeat;
+  @include background-image(linear-gradient(top, $nli_gradient_start 0%, $nli_gradient_start 50%, $nli_gradient_end));
+}
+
+.container {
+  @include vertical-align-block;
+  height: 100%;
+}
+
+.main {
+  @include vertical-align-block-fallback;
+  @include make-row();
+  padding-bottom: 20px;
+
+  .content {
+    background: transparent;
+  }
+}

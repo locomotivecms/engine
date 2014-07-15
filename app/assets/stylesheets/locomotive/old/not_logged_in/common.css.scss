@@ -24,6 +24,10 @@ body, html {
   @include vertical-align-block-fallback;
   @include make-row();
   padding-bottom: 20px;
+
+  .content {
+    background: transparent;
+  }
 }
 
 button[type=submit] {

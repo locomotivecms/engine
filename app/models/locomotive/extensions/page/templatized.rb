@@ -29,13 +29,37 @@ module Locomotive
           attr_accessor :content_entry
         end
 
+        # Return the id of the content type specified by the target_klass_name property.
+        #
+        # @return [ Object ] The id of the content type or nil if not found
+        #
+        def content_type_id
+          if self.target_klass_name =~ /^Locomotive::ContentEntry([a-z0-9]+)$/
+            $1
+          else
+            nil
+          end
+        end
+
         # Return the content type specified by the target_klass_name property.
         #
         # @return [ Object ] The content type or nil if not found
         #
         def content_type
-          if self.target_klass_name =~ /^Locomotive::ContentEntry([a-z0-9]+)$/
-            @content_type ||= self.site.content_types.find($1) rescue nil
+          if id = self.content_type_id
+            @content_type ||= self.site.content_types.find(id) rescue nil
+          else
+            nil
+          end
+        end
+
+        # Return the main information about the related content type
+        #
+        # @return [ Hash ] Name and slug or nil if not found
+        #
+        def content_type_with_main_attributes
+          if id = self.content_type_id
+            content_type = self.site.content_types.where(_id: id).only(:name, :slug).first
           else
             nil
           end

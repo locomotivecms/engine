@@ -1,16 +1,10 @@
-@import "compass/css3";
-@import "locomotive/bootstrap_override";
-@import "bootstrap";
-@import "locomotive/colors";
-@import "locomotive/mixins";
-
 .wrapper {
   @extend .container-fluid;
 }
 .main {
   @include make-row();
 }
-.menu {
+.sidebar {
   @include make-sm-column(3);
 }
 .submenu {

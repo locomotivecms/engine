@@ -143,6 +143,7 @@ en:
         help: "Pages are organized as a tree. You can order pages as well as folders"
         no_items: "There are no pages for now. Just click <a href=\"%{url}\">here</a> to create the first one."
         new: new page
+        new_content_entry: "New %{name}"
         latest_entries: Latest pages
       new:
         title: New page

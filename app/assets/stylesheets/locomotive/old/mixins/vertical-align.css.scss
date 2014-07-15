@@ -1,0 +1,59 @@
+////
+// Vertical alignement for block
+// Inspired by http://css-tricks.com/snippets/css/center-div-with-dynamic-height/
+//
+// @usage
+// --sass
+// @include vertical-align-block-page; // if your content is the entire webpage
+// .v-align-wrapper { @include vertical-align-block-wrapper }
+// .v-align-content { @include vertical-align-block }
+// --html
+// <body>
+//     <div class="v-align-wrapper">
+//         <div class="v-align-content">
+//             <div class="v-align-fallback"> <!-- wrapper for ie lte 7 support -->
+//             Your content !
+//             </div>
+//         </div>
+//     </div>
+// </body>
+//
+// @thanks Chris Coyier @chriscoyier
+// @author Maxime Thirouin m@moox.fr @MoOx
+///
+
+// Use this if your content is the entire webpage
+@mixin vertical-align-block-page
+{
+    html,
+    body
+    {
+        height:100%;
+        margin: 0;
+        padding: 0;
+    }
+}
+
+@mixin vertical-align-block-wrapper
+{
+
+    display: table;
+    overflow: hidden;
+    margin-left: auto;
+    margin-right: auto;
+    height: 100%;
+}
+
+@mixin vertical-align-block
+{
+    display: table-cell;
+    vertical-align: middle;
+}
+
+@mixin vertical-align-block-fallback
+{
+    // ie6 ie7
+    *position: relative;
+    *top: -50%;
+}
+

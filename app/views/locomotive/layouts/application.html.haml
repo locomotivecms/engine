@@ -6,9 +6,9 @@
   %body{ class: sections }
     = render 'locomotive/shared/header'
     .wrapper
-      %section.main{role:"main"}
-        .menu
-          = render_cell 'locomotive/main_menu', :show
+      %section.main{ role: 'main' }
+        %nav.sidebar
+          = render 'locomotive/shared/sidebar'
         .submenu
           %ul
             = yield :submenu

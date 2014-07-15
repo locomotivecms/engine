@@ -1,0 +1,11 @@
+.installation {
+  .content {
+    @include make-sm-column-offset(3);
+    @include make-sm-column(6);
+  }
+
+  .done {
+    text-align: center;
+  }
+}
+
