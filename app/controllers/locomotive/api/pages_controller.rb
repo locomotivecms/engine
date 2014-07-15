@@ -19,6 +19,8 @@ module Locomotive
 
       def create
         @page = Locomotive::Page.new(params[:page])
+        PagePolicy.new(self.current_locomotive_account, @page).create?
+
         @page.from_presenter(params[:page])
         @page.save
 

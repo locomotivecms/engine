@@ -16,12 +16,7 @@ module Locomotive
 
       def fetch_site
         Locomotive.log "[fetch site] host = #{request.host} / #{request.env['HTTP_HOST']}"
-
-        if Locomotive.config.multi_sites?
-          @current_site ||= Locomotive::Site.match_domain(request.host).first
-        else
-          @current_site ||= Locomotive::Site.first
-        end
+        Locomotive::SitePolicy::Scope.new(request.host).resolve
       end
 
       def current_site

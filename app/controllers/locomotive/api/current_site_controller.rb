@@ -5,19 +5,19 @@ module Locomotive
       before_filter :load_current_site
 
       def show
-        authorize! :show, @site
+        SitePolicy.new(self.current_locomotive_account, @site).show?
         respond_with(@site)
       end
 
       def update
-      	authorize! :update, @site
+        SitePolicy.new(self.current_locomotive_account, @site).update?
         @site.from_presenter(params[:site])
         @site.save
       	respond_with(@site)
       end
 
       def destroy
-        authorize! :destroy, @site
+        SitePolicy.new(self.current_locomotive_account, @site).destroy?
         @site.destroy
         respond_with(@site)
       end

@@ -125,6 +125,7 @@ FactoryGirl.define do
     trait :index do
       after(:build) do |page, evaluator|
         page.parent = page.site.pages.root.first
+        page.raw_template = nil
       end
     end
 
