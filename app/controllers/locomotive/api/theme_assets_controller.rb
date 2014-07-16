@@ -2,29 +2,36 @@ module Locomotive
   module Api
     class ThemeAssetsController < BaseController
 
-      include Concerns::LoadResource
+      before_filter :load_theme_asset,  only: [:show, :update, :destroy]
+      before_filter :load_theme_assets, only: [:index]
 
       def index
         respond_with(@theme_assets)
       end
 
       def show
+        ThemeAssetPolicy.new(self.current_locomotive_account, self.current_site).show?
         respond_with @theme_asset
       end
 
       def create
+        ThemeAssetPolicy.new(self.current_locomotive_account, self.current_site).create?
+        @theme_asset = Locomotive::ThemeAsset.new(params[:theme_asset])
         @theme_asset.from_presenter(params[:theme_asset])
+        @theme_asset.site = current_site
         @theme_asset.save
         respond_with @theme_asset, location: main_app.locomotive_api_theme_assets_url
       end
 
       def update
+        ThemeAssetPolicy.new(self.current_locomotive_account, self.current_site).update?
         @theme_asset.from_presenter(params[:theme_asset])
         @theme_asset.save
         respond_with @theme_asset, location: main_app.locomotive_api_theme_assets_url
       end
 
       def destroy
+        ThemeAssetPolicy.new(self.current_locomotive_account, self.current_site).destroy?
         @theme_asset.destroy
         respond_with @theme_asset
       end
@@ -75,6 +82,15 @@ module Locomotive
         }
       end
 
+      private
+
+      def load_theme_asset
+        @theme_asset = current_site.theme_assets.find params[:id]
+      end
+
+      def load_theme_assets
+        @theme_assets = ThemeAssetPolicy::Scope.new(current_locomotive_account, current_site).resolve
+      end
 
     end
   end
