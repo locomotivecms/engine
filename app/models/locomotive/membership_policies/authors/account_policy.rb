@@ -1,7 +1,7 @@
 module Locomotive
   module MembershipPolicies
     module Authors
-      class AccountPolicy < Locomotive::MembershipPolicies::AbstractPolicy
+      class AccountPolicy < AbstractPolicy
 
         def touch?
           user == record # Can modify your account

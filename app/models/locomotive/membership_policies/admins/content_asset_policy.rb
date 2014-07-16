@@ -1,7 +1,7 @@
 module Locomotive
   module MembershipPolicies
     module Admins
-      class ContentAssetPolicy < Locomotive::MembershipPolicies::AbstractPolicy
+      class ContentAssetPolicy < AbstractPolicy
 
         def create?
           true

@@ -1,7 +1,7 @@
 module Locomotive
   module MembershipPolicies
     module Guests
-      class ThemeAssetPolicy < Locomotive::MembershipPolicies::AbstractPolicy
+      class ThemeAssetPolicy < AbstractPolicy
 
         def create?
           true

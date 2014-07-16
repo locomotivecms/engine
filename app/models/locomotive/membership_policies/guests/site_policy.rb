@@ -1,7 +1,7 @@
 module Locomotive
   module MembershipPolicies
     module Guests
-      class SitePolicy < Locomotive::MembershipPolicies::AbstractPolicy
+      class SitePolicy < AbstractPolicy
 
       end
     end
