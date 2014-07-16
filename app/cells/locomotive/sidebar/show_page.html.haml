@@ -4,7 +4,7 @@
     = link_to @page.title, edit_page_path(@page)
 
     - unless @templatized_page
-      %span.fold-unfold{ class: fold_state(@page) }
+      %span.fold-unfold{ class: @fold_state }
         %i.fa.fa-sort-desc.unfolded
         %i.fa.fa-sort-asc.folded
 

@@ -40,6 +40,10 @@ en:
         switch: Switch to another site
         help: Help
         logout: Log out
+      sidebar:
+        dashboard: Dashboard
+        assets: Assets
+        settings: General Settings
       menu:
         contents: Contents
         assets: Assets

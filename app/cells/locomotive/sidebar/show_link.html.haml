@@ -1,0 +1,10 @@
+%section.link
+
+  = link_to @attributes[:url] do
+
+    %span.arrow
+      %i.fa.fa-angle-right
+
+    %i.icon.fa{ class: @attributes[:icon] }
+
+    = @attributes[:label]

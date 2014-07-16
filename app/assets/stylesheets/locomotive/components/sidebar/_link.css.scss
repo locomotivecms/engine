@@ -1,0 +1,36 @@
+$sidebar_link_height: 45px;
+$sidebar_link_arrow_color: #616161;
+$sidebar_link_icon_color: #949999;
+$sidebar_link_color: #dfe5e5;
+
+.sidebar {
+
+  .link {
+
+    a {
+      display: block;
+      overflow: auto;
+      height: $sidebar_link_height;
+      line-height: $sidebar_link_height;
+      font-size: 12px;
+      color: $sidebar_link_color;
+    }
+
+    .icon {
+      margin-right: 5px;
+      font-size: 14px;
+      color: $sidebar_link_icon_color;
+    }
+
+    .arrow {
+      float: right;
+      font-size: 18px;
+
+      i {
+        color: $sidebar_link_arrow_color;
+      }
+    }
+
+  }
+
+}

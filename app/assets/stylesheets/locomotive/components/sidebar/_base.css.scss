@@ -10,6 +10,9 @@
   section {
     border-bottom: 1px solid $sidebar_section_border_color;
 
+    padding-left:  ($grid-gutter-width / 2);
+    padding-right: ($grid-gutter-width / 2);
+
     h1 {
       font-size: 12px;
       text-transform: uppercase;
