@@ -163,6 +163,11 @@ FactoryGirl.define do
     name 'My project'
     description 'The list of my projects'
     site { Locomotive::Site.where(subdomain: 'acme').first || FactoryGirl.create(:site) }
+    trait :with_field do
+      after(:build) do |content_type, evaluator|
+        content_type.entries_custom_fields.build label: 'Title', type: 'string'
+      end
+    end
   end
 
   factory :content_entry, class: Locomotive::ContentEntry do
