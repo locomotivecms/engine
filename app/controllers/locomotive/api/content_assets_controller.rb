@@ -2,31 +2,44 @@ module Locomotive
   module Api
     class ContentAssetsController < BaseController
 
-      include Concerns::LoadResource
+      before_filter :load_content_asset, only: [:show, :update, :destroy]
 
       def index
+        @content_assets = Locomotive::ContentAssetPolicy::Scope.new(
+          self.current_locomotive_account, self.current_site).resolve
         respond_with(@content_assets)
       end
 
       def show
+        ContentAssetPolicy.new(self.current_locomotive_account, self.current_site).show?
         respond_with(@content_asset)
       end
 
       def create
+        @content_asset = Locomotive::ContentAsset.new(params[:content_asset])
+        ContentAssetPolicy.new(self.current_locomotive_account, self.current_site).create?
         @content_asset.from_presenter(params[:content_asset])
         @content_asset.save
         respond_with @content_asset, location: main_app.locomotive_api_content_assets_url
       end
 
       def update
+        ContentAssetPolicy.new(self.current_locomotive_account, self.current_site).update?
         @content_asset.from_presenter(params[:content_asset])
         @content_asset.save
         respond_with @content_asset, location: main_app.locomotive_api_content_assets_url
       end
 
       def destroy
+        ContentAssetPolicy.new(self.current_locomotive_account, self.current_site).destroy?
         @content_asset.destroy
         respond_with @content_asset
+      end
+
+      private
+
+      def load_content_asset
+        @content_asset = Locomotive::ContentAsset.find params[:id]
       end
 
     end

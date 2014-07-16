@@ -1,7 +1,26 @@
 module Locomotive
-  class ApplicationPolicy
 
-    class Scope < Struct.new(:user)
+  module AccountSiteWrapper
+    def membership
+      @membership ||= begin
+        _membership = if self.record
+          self.record.memberships.where(account_id: self.user.id).first
+        elsif self.user.admin?
+          Membership.new(account: self.user, role: 'admin')
+        end
+        unless _membership
+          _membership = Membership.new(account: self.user, role: 'guest')
+        end
+        _membership
+      end
+    end
+  end
+
+  class ApplicationPolicy
+    include AccountSiteWrapper
+
+    class Scope < Struct.new(:user, :record)
+      include AccountSiteWrapper
 
       def resolve
         []
@@ -54,20 +73,6 @@ module Locomotive
 
     def not_restricted_user?
       user and user.is_admin?
-    end
-
-    def membership
-      @membership ||= begin
-        _membership = if self.record
-          self.record.memberships.where(account_id: self.user.id).first
-        elsif self.user.admin?
-          Membership.new(account: self.user, role: 'admin')
-        end
-        unless _membership
-          _membership = Membership.new(account: self.user, role: 'guest')
-        end
-        _membership
-      end
     end
   end
 end

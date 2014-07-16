@@ -146,12 +146,11 @@ FactoryGirl.define do
     site { Locomotive::Site.where(subdomain: 'acme').first || FactoryGirl.create(:site) }
   end
 
-
   ## Assets ##
   factory :asset, class: Locomotive::ContentAsset do
+    source {Rack::Test::UploadedFile.new(File.join(Rails.root, '..', '..', 'spec', 'fixtures', 'images', 'rails.png'))}
     site { Locomotive::Site.where(subdomain: 'acme').first || FactoryGirl.create(:site) }
   end
-
 
   ## Theme assets ##
   factory :theme_asset, class: Locomotive::ThemeAsset do
