@@ -22,4 +22,4 @@ $ ->
     @apply_max()
     @
 
-  $('section.main > div').equalize()
+  $('section.main > *').equalize()
