@@ -35,16 +35,21 @@ module Locomotive
       render view: :show_pages
     end
 
-    def show_page(page, children)
+    def page(page, children)
       @page           = page
       @children       = children
-      @fold_state     = cookies["folder-#{page._id}"] != 'folded' ? 'unfolded' : 'folded'
+      @fold_state     = cookies["node-#{page._id}"] != 'folded' ? 'unfolded' : 'folded'
       @with_children  = !children.blank?
+      @fixed          = page.index_or_not_found? ? 'fixed' : ''
+      @published      = page.published? ? 'published' : 'unpublished'
+      @draggable      = !page.index_or_not_found? && !page.templatized? ? 'draggable' : ''
 
       if @with_children
         @templatized_page = @children.find { |(child, _)| child.templatized? }.try(:first)
         @content_type     = @templatized_page.try(:content_type_with_main_attributes)
       end
+
+      @link = render view: :page_link
 
       render
     end

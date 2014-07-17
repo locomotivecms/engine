@@ -57,11 +57,13 @@ module Locomotive
         # @param [ Array ] ids The ordered list of page ids (string)
         #
         def sort_children!(ids)
-          cached_children = self.children.to_a
-          ids.each_with_index do |id, position|
-            child = cached_children.detect { |p| p._id == Moped::BSON::ObjectId(id) }
-            child.position = position
-            child.save
+          position, cached_children = 0, self.children.to_a
+          ids.each do |id|
+            if child = cached_children.detect { |p| p._id == Moped::BSON::ObjectId(id) }
+              child.position = position
+              child.save
+              position += 1
+            end
           end
         end
 

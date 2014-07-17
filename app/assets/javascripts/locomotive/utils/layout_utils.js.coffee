@@ -12,7 +12,7 @@ $ ->
 
     @find_max = ->
       $(items).each ()->
-        console.log(max)
+        # console.log(max)
         h = $(@).height()
         max = Math.max(h, max)
     @apply_max = ->

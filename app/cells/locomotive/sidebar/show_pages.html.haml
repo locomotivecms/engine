@@ -1,10 +1,10 @@
 %section.pages-tree
   %h1= t(:title, scope: 'locomotive.pages.index')
 
-  %ul.root-node
+  %ul.root{ data: { url: sort_page_path(@pages.first) } }
 
     - @pages.each do |(page, children)|
-      = render({ state: :show_page }, page, children)
+      = render({ state: :page }, page, children)
 
     %li.new-content
       %i.fa.fa-plus.icon
