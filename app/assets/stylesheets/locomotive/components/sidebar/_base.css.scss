@@ -21,6 +21,15 @@
       margin-top: 15px;
       margin-bottom: 8px;
     }
+
+    a:hover {
+      text-decoration: none;
+      span.text {
+        // @include text-shadow(rgba(#fff, 0.5) 0px 0px 1px);
+        @include transition(all 0.3s ease-in-out);
+        color: $sidebar_hovered_link_color !important;
+      }
+    }
   }
 
 }

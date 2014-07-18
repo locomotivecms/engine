@@ -14,7 +14,8 @@
       - if @templatized_page && @content_type
         %li.new-content
           %i.fa.fa-plus.icon
-          = link_to t(:new_content_entry, name: @content_type.name.singularize, scope: 'locomotive.pages.index'), new_content_entry_path(@templatized_page.content_type.slug)
+          = link_to new_content_entry_path(@templatized_page.content_type.slug) do
+            %span.text= t(:new_content_entry, name: @content_type.name.singularize, scope: 'locomotive.pages.index')
 
 - else
   %li.page.leaf{ id: "node-#{@page.id}", class: @published }

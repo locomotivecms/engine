@@ -16,6 +16,11 @@ $sidebar_link_color: #dfe5e5;
       color: $sidebar_link_color;
     }
 
+    .text {
+      @include transition(all 0.3s ease-in-out);
+      color: $sidebar_link_color;
+    }
+
     .icon {
       margin-right: 5px;
       font-size: 14px;

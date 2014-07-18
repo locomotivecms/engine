@@ -35,7 +35,8 @@ $pt_placeholder_color:  #2f2f2f;
           }
         }
 
-        a {
+        a, a .text {
+          @include transition(all 0.3s ease-in-out);
           color: $pt_page_link_color;
         }
 
@@ -67,6 +68,11 @@ $pt_placeholder_color:  #2f2f2f;
             margin-left: 1px;
             color: $pt_new_link_color;
             text-transform: capitalize;
+
+            .text {
+              @include transition(all 0.3s ease-in-out);
+              color: $pt_new_link_color;
+            }
           }
         }
       }
