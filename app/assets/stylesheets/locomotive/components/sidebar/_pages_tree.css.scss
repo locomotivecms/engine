@@ -1,5 +1,4 @@
 $pt_icon_color:         #636666;
-$pt_page_link_color:    #dfe5e5;
 $pt_border_color:       #4a4d4d;
 $pt_new_link_color:     #949999;
 $pt_placeholder_color:  #2f2f2f;
@@ -17,8 +16,7 @@ $pt_placeholder_color:  #2f2f2f;
       }
 
       li {
-        font-size: 12px;
-        margin: 7px 0px;
+        margin: 9px 0px;
 
         .icon {
           @include user-select(none);
@@ -33,11 +31,6 @@ $pt_placeholder_color:  #2f2f2f;
           &.draggable {
             cursor: move;
           }
-        }
-
-        a, a .text {
-          @include transition(all 0.3s ease-in-out);
-          color: $pt_page_link_color;
         }
 
         &.unpublished > a {

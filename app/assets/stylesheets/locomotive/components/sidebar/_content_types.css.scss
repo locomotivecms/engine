@@ -1,0 +1,25 @@
+.sidebar {
+
+  .content-types {
+
+    ul {
+      list-style: none outside none;
+      padding: 0px;
+
+      li {
+        margin: 9px 0px;
+
+        a {
+          margin-right: 5px;
+        }
+
+        .badge {
+          font-size: 10px;
+          padding: 2px 3px;
+        }
+      }
+    }
+
+  }
+
+}

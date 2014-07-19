@@ -1,7 +1,6 @@
 $sidebar_link_height: 45px;
 $sidebar_link_arrow_color: #616161;
 $sidebar_link_icon_color: #949999;
-$sidebar_link_color: #dfe5e5;
 
 .sidebar {
 
@@ -12,8 +11,6 @@ $sidebar_link_color: #dfe5e5;
       overflow: auto;
       height: $sidebar_link_height;
       line-height: $sidebar_link_height;
-      font-size: 12px;
-      color: $sidebar_link_color;
     }
 
     .text {
@@ -29,7 +26,9 @@ $sidebar_link_color: #dfe5e5;
 
     .arrow {
       float: right;
-      font-size: 18px;
+      font-size: 22px;
+      position: relative;
+      top: -2px;
 
       i {
         color: $sidebar_link_arrow_color;

@@ -5,9 +5,10 @@ module Locomotive
 
     ## extensions ##
     include ::CustomFields::Target
+    include Extensions::Shared::Seo
     include Extensions::ContentEntry::Csv
     include Extensions::ContentEntry::Localized
-    include Extensions::Shared::Seo
+    include Extensions::ContentEntry::Counter
 
     ## fields ##
     field :_slug,             localize: true

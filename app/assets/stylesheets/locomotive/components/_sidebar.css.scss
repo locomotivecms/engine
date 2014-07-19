@@ -2,8 +2,11 @@ $sidebar_background_color:      #383838;
 $sidebar_text_color:            #fff;
 $sidebar_section_border_color:  #474747;
 $sidebar_section_title_color:   #949999;
+$sidebar_link_color:            #ccc;
 $sidebar_hovered_link_color:    #fff;
+$sidebar_font_size:             $font-size-base;
 
 @import "sidebar/base";
-@import "sidebar/pages_tree";
 @import "sidebar/link";
+@import "sidebar/pages_tree";
+@import "sidebar/content_types";

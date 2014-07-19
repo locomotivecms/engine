@@ -4,6 +4,7 @@
 = render_cell 'locomotive/sidebar', :show, site: current_site, list: [  |
     { icon: 'fa-dashboard', label: t('.dashboard'), url: root_path },   |
     :pages,                                                             |
+    :content_types,                                                     |
     { icon: 'fa-picture-o', label: t('.assets'), url: root_path },      |
     { icon: 'fa-gear', label: t('.settings'), url: root_path }          |
   ]                                                                     |

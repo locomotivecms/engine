@@ -12,13 +12,13 @@ body {
   left: 0px;
   right: 0px;
   bottom: 0px;
-  width: 20em;
+  width: $sidebar_width;
 }
 
 .content {
   position: absolute;
   top: 0px;
-  left: 20em;
+  left: $sidebar_width;
   right: 0px;
   bottom: 0px;
   background: red; // DEBUG
