@@ -5,28 +5,30 @@
     = render 'locomotive/shared/head'
   %body{ class: sections }
     = render 'locomotive/shared/header'
+    / .wrapper
+    / %section.main{ role: 'main' }
     .wrapper
-      %section.main{ role: 'main' }
-        %nav.sidebar
+      %nav.sidebar
+        .scrollable
           = render 'locomotive/shared/sidebar'
-        .submenu
-          %ul
-            = yield :submenu
+      / .submenu
+      /   %ul
+      /     = yield :submenu
 
-          - if content_for? :actions
-            .actions
-              = yield :actions
-        .content
-          .inner
-            %h2!= title
+      /   - if content_for? :actions
+      /     .actions
+      /       = yield :actions
+      .content
+        .scrollable
+          %h2!= title
 
-            #local-actions-bar
-              &nbsp;
-              = yield :buttons
+          #local-actions-bar
+            &nbsp;
+            = yield :buttons
 
-            = yield
+          = yield
 
       / %footer
       /   = render 'locomotive/shared/footer'
 
-      = yield :foot
+    = yield :foot
