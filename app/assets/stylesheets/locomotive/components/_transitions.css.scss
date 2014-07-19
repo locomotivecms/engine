@@ -1,87 +1,107 @@
-@media (max-width: $screen-xs-max) {
-  .main {
-    position: relative;
-    -webkit-transition: all .25s ease-out;
-         -o-transition: all .25s ease-out;
-            transition: all .25s ease-out;
-    left: 0;
-    .sidebar {
-      left: -50%;
-      position: absolute;
-      top: 0;
-      overflow: hidden;
-      width: 50%;
-    }
-    .submenu {
-      overflow: hidden;
-      width: 100%;
-      -webkit-transition: all .25s ease-out;
-           -o-transition: all .25s ease-out;
-              transition: all .25s ease-out;
-    }
-    .content {
-      -webkit-transition: all .25s ease-out;
-           -o-transition: all .25s ease-out;
-              transition: all .25s ease-out;
-      left: 0;
-      position: absolute;
-      top: 0;
-      width: 100%;
-    }
+.sidebar {
+  @include transition(left 0.1s ease-in-out);
+}
+
+.content {
+  @include transition(left 0.1s ease-in-out);
+}
+
+body.sidebar-closed {
+  .sidebar {
+    @include transition(left 0.1s ease-in-out);
+    left: -20em;
   }
-  .main.menu_active {
-    left: 50%;
-  }
-  .main.submenu_active {
-    .content {
-      left:100%;
-    }
-    .menu {
-      left : -50%;
-    }
+
+  .content {
+    @include transition(left 0.1s ease-in-out);
+    left: 0px;
   }
 }
 
-@media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
-  .main {
-    position: relative;
-    -webkit-transition: all .25s ease-out;
-         -o-transition: all .25s ease-out;
-            transition: all .25s ease-out;
-    left: 0;
-    .sidebar {
-      left: -33%;
-      position: absolute;
-      top: 0;
-      overflow: hidden;
-      width: 33%;
-    }
-    .submenu {
-      overflow: hidden;
-      width: 50%;
-      -webkit-transition: all .25s ease-out;
-           -o-transition: all .25s ease-out;
-              transition: all .25s ease-out;
-    }
-    .content {
-      -webkit-transition: all .25s ease-out;
-           -o-transition: all .25s ease-out;
-              transition: all .25s ease-out;
-      left: 0;
-      position: absolute;
-      top: 0;
-      width: 100%;
-    }
-  }
-  .main.menu_active {
-    left: 33%;
-  }
-  .main.submenu_active {
-    .content {
-      left:50%;
-    }
-    .menu {
-      left : -33%;
-    }
-  }
-}
+// @media (max-width: $screen-xs-max) {
+//   .main {
+//     position: relative;
+//     -webkit-transition: all .25s ease-out;
+//          -o-transition: all .25s ease-out;
+//             transition: all .25s ease-out;
+//     left: 0;
+//     .sidebar {
+//       left: -50%;
+//       position: absolute;
+//       top: 0;
+//       overflow: hidden;
+//       width: 50%;
+//     }
+//     .submenu {
+//       overflow: hidden;
+//       width: 100%;
+//       -webkit-transition: all .25s ease-out;
+//            -o-transition: all .25s ease-out;
+//               transition: all .25s ease-out;
+//     }
+//     .content {
+//       -webkit-transition: all .25s ease-out;
+//            -o-transition: all .25s ease-out;
+//               transition: all .25s ease-out;
+//       left: 0;
+//       position: absolute;
+//       top: 0;
+//       width: 100%;
+//     }
+//   }
+//   .main.menu_active {
+//     left: 50%;
+//   }
+//   .main.submenu_active {
+//     .content {
+//       left:100%;
+//     }
+//     .menu {
+//       left : -50%;
+//     }
+//   }
+// }
+
+// @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
+//   .main {
+//     position: relative;
+//     -webkit-transition: all .25s ease-out;
+//          -o-transition: all .25s ease-out;
+//             transition: all .25s ease-out;
+//     left: 0;
+//     .sidebar {
+//       left: -33%;
+//       position: absolute;
+//       top: 0;
+//       overflow: hidden;
+//       width: 33%;
+//     }
+//     .submenu {
+//       overflow: hidden;
+//       width: 50%;
+//       -webkit-transition: all .25s ease-out;
+//            -o-transition: all .25s ease-out;
+//               transition: all .25s ease-out;
+//     }
+//     .content {
+//       -webkit-transition: all .25s ease-out;
+//            -o-transition: all .25s ease-out;
+//               transition: all .25s ease-out;
+//       left: 0;
+//       position: absolute;
+//       top: 0;
+//       width: 100%;
+//     }
+//   }
+//   .main.menu_active {
+//     left: 33%;
+//   }
+//   .main.submenu_active {
+//     .content {
+//       left:50%;
+//     }
+//     .menu {
+//       left : -33%;
+//     }
+//   }
+// }
