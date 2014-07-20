@@ -3,12 +3,17 @@ class Locomotive.Views.ApplicationView extends Backbone.View
   el: 'body'
 
   initialize: ->
+    @header_view  = new Locomotive.Views.Shared.HeaderView()
     @sidebar_view = new Locomotive.Views.Shared.SidebarView()
 
   render: ->
     @render_flash_messages(@options.flash)
 
     @sidebar_view.render()
+
+    @set_max_height()
+
+    @automatic_max_height()
 
     # @add_submenu_behaviours()
 
@@ -30,6 +35,17 @@ class Locomotive.Views.ApplicationView extends Backbone.View
   render_flash_messages: (messages) ->
     _.each messages, (couple) ->
       $.growl couple[0], couple[1]
+
+  automatic_max_height: ->
+    $(window).on 'resize', => @set_max_height()
+
+  set_max_height: ->
+    # max_height  = Math.max $(document).height(), $(window).height(), document.documentElement.clientHeight
+    max_height  = $(window).height()
+    height      = max_height - @header_view.height()
+
+    @$('> .wrapper').height(height)
+
 
   # center_ui_dialog: ->
   #   $(window).resize ->

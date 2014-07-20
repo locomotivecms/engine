@@ -4,7 +4,7 @@
   color: $sidebar_text_color;
 
   * {
-    color: $sidebar_text_color;
+    // color: $sidebar_text_color;
   }
 
   section {
@@ -14,12 +14,26 @@
     padding-right: ($grid-gutter-width / 2);
 
     h1 {
-      font-size: 12px;
+      font-size: $sidebar_font_size;
       text-transform: uppercase;
       color: $sidebar_section_title_color;
 
       margin-top: 15px;
       margin-bottom: 8px;
+    }
+
+    a, a .text {
+      font-size: $sidebar_font_size;
+      @include transition(all 0.3s ease-in-out);
+      color: $sidebar_link_color;
+    }
+
+    a:hover {
+      text-decoration: none;
+      span.text {
+        @include transition(all 0.3s ease-in-out);
+        color: $sidebar_hovered_link_color !important;
+      }
     }
   }
 

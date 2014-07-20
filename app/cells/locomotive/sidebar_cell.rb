@@ -26,6 +26,14 @@ module Locomotive
       render view: :show_link
     end
 
+    ## Content Types ##
+
+    def show_content_types(site)
+      @list = content_types_service.list
+
+      render view: :show_content_types
+    end
+
     ## Pages ##
 
     def show_pages(site)
@@ -57,7 +65,11 @@ module Locomotive
     protected
 
     def pages_service
-      @service ||= Locomotive::PagesService.new(@current_site)
+      @pages_service ||= Locomotive::PagesService.new(@current_site)
+    end
+
+    def content_types_service
+      @content_types_service ||= Locomotive::ContentTypesService.new(@current_site)
     end
 
   end

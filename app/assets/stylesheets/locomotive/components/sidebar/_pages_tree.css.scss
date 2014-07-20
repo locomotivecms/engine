@@ -1,8 +1,8 @@
 $pt_icon_color:         #636666;
-$pt_page_link_color:    #dfe5e5;
 $pt_border_color:       #4a4d4d;
 $pt_new_link_color:     #949999;
 $pt_placeholder_color:  #2f2f2f;
+$pt_warning_color:      #F89406;
 
 .sidebar {
 
@@ -17,8 +17,7 @@ $pt_placeholder_color:  #2f2f2f;
       }
 
       li {
-        font-size: 12px;
-        margin: 7px 0px;
+        margin: 9px 0px;
 
         .icon {
           @include user-select(none);
@@ -35,12 +34,13 @@ $pt_placeholder_color:  #2f2f2f;
           }
         }
 
-        a {
-          color: $pt_page_link_color;
-        }
-
         &.unpublished > a {
           font-style: italic;
+        }
+
+        .untranslated {
+          margin-left: 5px;
+          color: $pt_warning_color;
         }
 
         .fold-unfold {
@@ -67,6 +67,11 @@ $pt_placeholder_color:  #2f2f2f;
             margin-left: 1px;
             color: $pt_new_link_color;
             text-transform: capitalize;
+
+            .text {
+              @include transition(all 0.3s ease-in-out);
+              color: $pt_new_link_color;
+            }
           }
         }
       }

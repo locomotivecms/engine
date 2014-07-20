@@ -8,4 +8,5 @@
 
     %li.new-content
       %i.fa.fa-plus.icon
-      = link_to t(:new, scope: 'locomotive.pages.index'), new_page_path
+      = link_to new_page_path do
+        %span.text= t(:new, scope: 'locomotive.pages.index')

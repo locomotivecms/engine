@@ -282,6 +282,7 @@ en:
 
     content_types:
       index:
+        title: Listing models
         new: new model
         edit: edit model
       new:

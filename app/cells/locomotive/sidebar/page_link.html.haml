@@ -11,4 +11,8 @@
 - else
   %i.fa.fa-file-text-o.fa-flip-horizontal.icon{ class: @draggable }
 
-= link_to @page.title, edit_page_path(@page)
+= link_to edit_page_path(@page) do
+  %span.text= @page.title
+
+- unless @page.translated?
+  %i.fa.fa-globe.untranslated
