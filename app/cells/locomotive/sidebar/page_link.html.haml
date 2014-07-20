@@ -13,3 +13,6 @@
 
 = link_to edit_page_path(@page) do
   %span.text= @page.title
+
+- unless @page.translated?
+  %i.fa.fa-globe.untranslated
