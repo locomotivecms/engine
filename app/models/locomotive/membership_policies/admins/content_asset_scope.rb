@@ -4,7 +4,6 @@ module Locomotive
       class ContentAssetScope < AbstractScope
 
         def resolve
-          binding.pry
           ContentAsset
         end
       end

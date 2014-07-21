@@ -5,9 +5,6 @@ module Locomotive
       before_filter :load_content_asset, only: [:show, :update, :destroy]
 
       def index
-        # binding.pry
-        # @content_assets = ApplicationPolicy::Scope.new(
-        #   self.current_locomotive_account, self.current_site).resolve
         @content_assets = current_site.content_assets
         respond_with(@content_assets)
       end
