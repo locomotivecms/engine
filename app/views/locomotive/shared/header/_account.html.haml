@@ -1,5 +1,6 @@
 = link_to '#', class: 'dropdowtoggle', data: { toggle: 'dropdown' } do
-  = image_tag 'locomotive/user.png', width: '35px', class: 'img-circle', alt: @current_locomotive_account.name
+
+  = image_tag avatar_url(@current_locomotive_account), width: '35px', class: 'img-circle', alt: @current_locomotive_account.name
 
   = t('locomotive.shared.header.welcome', name: @current_locomotive_account.name)
 

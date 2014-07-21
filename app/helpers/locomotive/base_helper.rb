@@ -162,6 +162,16 @@ module Locomotive
       link_to 'noCoffee', 'http://www.nocoffee.fr', id: 'nocoffee'
     end
 
+    # accounts
+
+    def avatar_url(account, size = '35x35<')
+      if account.avatar?
+        Locomotive::Dragonfly.resize_url account.avatar.url, size
+      else
+        'locomotive/user.png'
+      end
+    end
+
     # sites
 
     def application_domain
