@@ -1,14 +1,41 @@
-%nav.navbar.navbar-default{role: 'navigation'}
+%nav.navbar.navbar-default{ role: 'navigation' }
+
   .container-fluid
+
     .navbar-header
-      = link_to current_site.name, locomotive.pages_path, class: 'navbar-brand'
-    .collapse.navbar-collapse
-      = render_cell 'locomotive/global_actions', :show, current_locomotive_account: current_locomotive_account, current_site_url: current_site_public_url
 
-      - if multi_sites? && current_locomotive_account.sites.size > 1
-        = render 'locomotive/shared/site_picker'
+      %button{ type: 'button', class: 'navbar-toggle', data: { toggle: 'collapse', target: '#account-menu-collapse' } }
+        %span.sr-only Toggle navigation
+        .icon-bar
+        .icon-bar
+        .icon-bar
 
-      - if localized?
-        = render_cell 'locomotive/content_locale_picker', :show, site: current_site, locale: current_content_locale
+      .navbar-brand
+        = render 'locomotive/shared/header/brand'
 
-      = render 'locomotive/shared/main_app_header'
+    .collapse.navbar-collapse#account-menu-collapse
+      %ul.nav.navbar-nav.nav-center
+        %li
+          = render 'locomotive/shared/header/site'
+
+      %ul.nav.navbar-nav.navbar-right
+        %li.dropdown
+          = render 'locomotive/shared/header/account'
+
+          %ul.dropdown-menu{ role: 'menu' }
+            = render 'locomotive/shared/header/account_menu'
+
+
+    / .navbar-header
+    /   = link_to current_site.name, locomotive.pages_path, class: 'navbar-brand'
+
+    / .collapse.navbar-collapse
+    /   = render_cell 'locomotive/global_actions', :show, current_locomotive_account: current_locomotive_account, current_site_url: current_site_public_url
+
+    /   - if multi_sites? && current_locomotive_account.sites.size > 1
+    /     = render 'locomotive/shared/site_picker'
+
+    /   - if localized?
+    /     = render_cell 'locomotive/content_locale_picker', :show, site: current_site, locale: current_content_locale
+
+    /   = render 'locomotive/shared/main_app_header'

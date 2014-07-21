@@ -24,12 +24,6 @@ body {
   background: red; // DEBUG
 }
 
-.navbar-brand {
-  padding-left: 18px + $navbar-padding-horizontal;
-  background: transparent url(image_path('locomotive/mini_logo.png')) $navbar-padding-horizontal floor($navbar-height/2) no-repeat;
-  font-size: $font-size-base;
-}
-
 .scrollable {
   position: absolute;
   top: 0px;
