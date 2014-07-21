@@ -18,7 +18,7 @@ module Locomotive
           actions: {
             show: {
               description: %{Return the attributes of my account},
-              response: Locomotive::AccountPresenter.getters_to_hash,
+              response: AccountPresenter.getters_to_hash,
               example: {
                 command: %{curl 'http://mysite.com/locomotive/api/my_account.json'},
                 response: %(TODO)
@@ -32,4 +32,3 @@ module Locomotive
 
   end
 end
-

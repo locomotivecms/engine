@@ -1,7 +1,7 @@
 module Locomotive
   module MembershipPolicies
     module Guest
-      class AccountScope < Locomotive::MembershipPolicies::AbstractScope
+      class AccountScope < AbstractScope
 
         def resolve
           []

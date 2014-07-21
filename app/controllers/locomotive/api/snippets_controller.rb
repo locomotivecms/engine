@@ -13,14 +13,14 @@ module Locomotive
       end
 
       def show
-        SnippetPolicy.new(self.current_locomotive_account, @snippet).show?
+        ApplicationPolicy.new(self.current_locomotive_account, @snippet).show?
 
         respond_with @snippet
       end
 
       def create
-        @snippet = Locomotive::Snippet.new(params[:snippet])
-        SnippetPolicy.new(self.current_locomotive_account, @snippet).create?
+        @snippet = Snippet.new(params[:snippet])
+        ApplicationPolicy.new(self.current_locomotive_account, @snippet).create?
 
         @snippet.from_presenter(params[:snippet])
         @snippet.site = current_site
@@ -30,7 +30,7 @@ module Locomotive
       end
 
       def update
-        SnippetPolicy.new(self.current_locomotive_account, @snippet).update?
+        ApplicationPolicy.new(self.current_locomotive_account, @snippet).update?
 
         @snippet.from_presenter(params[:snippet])
         @snippet.save
@@ -39,7 +39,7 @@ module Locomotive
       end
 
       def destroy
-        SnippetPolicy.new(self.current_locomotive_account, @snippet).destroy?
+        ApplicationPolicy.new(self.current_locomotive_account, @snippet).destroy?
 
         @snippet.destroy
 
@@ -61,7 +61,7 @@ module Locomotive
             },
             show: {
               description: %{Return the attributes of a snippet},
-              response: Locomotive::SnippetPresenter.getters_to_hash,
+              response: SnippetPresenter.getters_to_hash,
               example: {
                 command: %{curl 'http://mysite.com/locomotive/api/snippets/4244af4ef0000002.json?auth_token=dtsjkqs1TJrWiSiJt2gg'},
                 response: %(TODO)
@@ -69,7 +69,7 @@ module Locomotive
             },
             create: {
               description: %{Create a snippet},
-              params: Locomotive::SnippetPresenter.setters_to_hash,
+              params: SnippetPresenter.setters_to_hash,
               example: {
                 command: %{curl -d '...' 'http://mysite.com/locomotive/api/snippets.json?auth_token=dtsjkqs1TJrWiSiJt2gg'},
                 response: %(TODO)
@@ -77,7 +77,7 @@ module Locomotive
             },
             update: {
               description: %{Update a snippet},
-              params: Locomotive::SnippetPresenter.setters_to_hash,
+              params: SnippetPresenter.setters_to_hash,
               example: {
                 command: %{curl -d '...' -X UPDATE 'http://mysite.com/locomotive/api/snippets/4244af4ef0000002.json?auth_token=dtsjkqs1TJrWiSiJt2gg'},
                 response: %(TODO)

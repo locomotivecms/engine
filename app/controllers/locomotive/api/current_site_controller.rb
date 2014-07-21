@@ -5,19 +5,19 @@ module Locomotive
       before_filter :load_current_site
 
       def show
-        SitePolicy.new(self.current_locomotive_account, @site).show?
+        ApplicationPolicy.new(self.current_locomotive_account, @site).show?
         respond_with(@site)
       end
 
       def update
-        SitePolicy.new(self.current_locomotive_account, @site).update?
+        ApplicationPolicy.new(self.current_locomotive_account, @site).update?
         @site.from_presenter(params[:site])
         @site.save
       	respond_with(@site)
       end
 
       def destroy
-        SitePolicy.new(self.current_locomotive_account, @site).destroy?
+        ApplicationPolicy.new(self.current_locomotive_account, @site).destroy?
         @site.destroy
         respond_with(@site)
       end
@@ -28,7 +28,7 @@ module Locomotive
           actions: {
             show: {
               description: %{Return the attributes of the current site},
-              response: Locomotive::SitePresenter.getters_to_hash,
+              response: SitePresenter.getters_to_hash,
               example: {
                 command: %{curl 'http://mysite.com/locomotive/api/tokens.json'},
                 response: %(TODO)
@@ -36,7 +36,7 @@ module Locomotive
             },
             update: {
               description: %{Update the current site},
-              params: Locomotive::SitePresenter.setters_to_hash,
+              params: SitePresenter.setters_to_hash,
               example: {
                 command: %{curl -d '...' -X UPDATE 'http://mysite.com/locomotive/api/current_site.json?auth_token=dtsjkqs1TJrWiSiJt2gg'},
                 response: %(TODO)

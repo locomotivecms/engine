@@ -9,7 +9,7 @@ module Locomotive
       skip_before_filter :require_site, only: [:create]
 
       def index
-        @accounts = Locomotive::AccountPolicy::Scope.new(self.current_locomotive_account).resolve
+        @accounts = AccountPolicy::Scope.new(self.current_locomotive_account).resolve
         @accounts = @accounts.try(:ordered)
         respond_with(@accounts)
       end
@@ -19,21 +19,21 @@ module Locomotive
       end
 
       def create
-        @account = Locomotive::Account.new
+        @account = Account.new
         @account.from_presenter(params[:account])
         @account.save
         respond_with(@account)
       end
 
       def update
-        # AccountPolicy.new(self.current_locomotive_account, @account).update?
+        # ApplicationPolicy.new(self.current_locomotive_account, @account).update?
         @account.from_presenter(params[:account])
         @account.save
         respond_with(@account)
       end
 
       def destroy
-        # AccountPolicy.new(self.current_locomotive_account, @account).destroy?
+        # ApplicationPolicy.new(self.current_locomotive_account, @account).destroy?
         @account.destroy
         respond_with(@account)
       end
@@ -81,7 +81,7 @@ module Locomotive
       private
 
       def load_account
-        @account = Locomotive::AccountPolicy::Scope.new(self.current_locomotive_account).find params[:id]
+        @account = AccountPolicy::Scope.new(self.current_locomotive_account).find params[:id]
       end
 
     end

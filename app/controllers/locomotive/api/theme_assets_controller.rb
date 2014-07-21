@@ -10,13 +10,13 @@ module Locomotive
       end
 
       def show
-        ThemeAssetPolicy.new(self.current_locomotive_account, self.current_site).show?
+        ApplicationPolicy.new(self.current_locomotive_account, self.current_site).show?
         respond_with @theme_asset
       end
 
       def create
-        ThemeAssetPolicy.new(self.current_locomotive_account, self.current_site).create?
-        @theme_asset = Locomotive::ThemeAsset.new(params[:theme_asset])
+        ApplicationPolicy.new(self.current_locomotive_account, self.current_site).create?
+        @theme_asset = ThemeAsset.new(params[:theme_asset])
         @theme_asset.from_presenter(params[:theme_asset])
         @theme_asset.site = current_site
         @theme_asset.save
@@ -24,14 +24,14 @@ module Locomotive
       end
 
       def update
-        ThemeAssetPolicy.new(self.current_locomotive_account, self.current_site).update?
+        ApplicationPolicy.new(self.current_locomotive_account, self.current_site).update?
         @theme_asset.from_presenter(params[:theme_asset])
         @theme_asset.save
         respond_with @theme_asset, location: main_app.locomotive_api_theme_assets_url
       end
 
       def destroy
-        ThemeAssetPolicy.new(self.current_locomotive_account, self.current_site).destroy?
+        ApplicationPolicy.new(self.current_locomotive_account, self.current_site).destroy?
         @theme_asset.destroy
         respond_with @theme_asset
       end
@@ -49,7 +49,7 @@ module Locomotive
             },
             show: {
               description: %{Return the attributes of a theme asset},
-              response: Locomotive::ThemeAssetPresenter.getters_to_hash,
+              response: ThemeAssetPresenter.getters_to_hash,
               example: {
                 command: %{curl 'http://mysite.com/locomotive/api/theme_assets/4244af4ef0000002.json?auth_token=dtsjkqs1TJrWiSiJt2gg'},
                 response: %(TODO)
@@ -57,7 +57,7 @@ module Locomotive
             },
             create: {
               description: %{Create a theme asset},
-              params: Locomotive::ThemeAssetPresenter.setters_to_hash,
+              params: ThemeAssetPresenter.setters_to_hash,
               example: {
                 command: %{curl -d '...' 'http://mysite.com/locomotive/api/theme_assets.json?auth_token=dtsjkqs1TJrWiSiJt2gg'},
                 response: %(TODO)
@@ -65,7 +65,7 @@ module Locomotive
             },
             update: {
               description: %{Update a theme asset},
-              params: Locomotive::ThemeAssetPresenter.setters_to_hash,
+              params: ThemeAssetPresenter.setters_to_hash,
               example: {
                 command: %{curl -d '...' -X UPDATE 'http://mysite.com/locomotive/api/theme_assets/4244af4ef0000002.json?auth_token=dtsjkqs1TJrWiSiJt2gg'},
                 response: %(TODO)

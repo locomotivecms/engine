@@ -136,8 +136,12 @@ module Locomotive
       rescue NameError => e
         scope_policy = Locomotive::ApplicationPolicy::Scope.new(self)
       end
-      
+
       scope_policy
+    end
+
+    def to_role
+      is_admin? ? :admin : :guest
     end
 
     protected

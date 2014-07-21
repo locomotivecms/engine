@@ -2,7 +2,7 @@ module Locomotive
   module Api
     class TranslationsController < BaseController
 
-      include Concerns::LoadResource
+      # include Concerns::LoadResource
 
       def index
         respond_with(@translations)

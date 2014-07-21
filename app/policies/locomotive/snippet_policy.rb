@@ -9,11 +9,13 @@ module Locomotive
     end
 
     def create?
-      super or self.membership.to_policy(:site, user, record, membership).create?
+      super or Wallet.authorized?(user, record, :create)
+      # super or self.membership.to_policy(:site, user, record, membership).create?
     end
 
     def touch?
-      not_restricted_user? or self.membership.to_policy(:site, user, record, membership).touch?
+      not_restricted_user? or Wallet.authorized?(user, record, :touch)
+      # not_restricted_user? or self.membership.to_policy(:site, user, record, membership).touch?
     end
   end
 end

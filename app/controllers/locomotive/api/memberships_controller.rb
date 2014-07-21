@@ -2,7 +2,7 @@ module Locomotive
   module Api
     class MembershipsController < BaseController
 
-      include Concerns::LoadResource
+      # include Concerns::LoadResource
 
       def index
         respond_with(@memberships)

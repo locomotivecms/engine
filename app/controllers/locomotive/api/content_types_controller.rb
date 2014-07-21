@@ -15,7 +15,7 @@ module Locomotive
       end
 
       def create
-        @content_type = Locomotive::ContentType.new
+        @content_type = ContentType.new
         @content_type.from_presenter(params[:content_type])
         @content_type.site = current_site
         @content_type.save
@@ -48,7 +48,7 @@ module Locomotive
             },
             show: {
               description: %{Return the attributes of a content type},
-              response: Locomotive::ContentTypePresenter.getters_to_hash,
+              response: ContentTypePresenter.getters_to_hash,
               example: {
                 command: %{curl 'http://mysite.com/locomotive/api/content_types/4244af4ef0000002.json?auth_token=dtsjkqs1TJrWiSiJt2gg'},
                 response: %(TODO)
@@ -56,7 +56,7 @@ module Locomotive
             },
             create: {
               description: %{Create a content type},
-              params: Locomotive::ContentTypePresenter.setters_to_hash,
+              params: ContentTypePresenter.setters_to_hash,
               example: {
                 command: %{curl -d '...' 'http://mysite.com/locomotive/api/content_types.json?auth_token=dtsjkqs1TJrWiSiJt2gg'},
                 response: %(TODO)
@@ -64,7 +64,7 @@ module Locomotive
             },
             update: {
               description: %{Update a content type},
-              params: Locomotive::ContentTypePresenter.setters_to_hash,
+              params: ContentTypePresenter.setters_to_hash,
               example: {
                 command: %{curl -d '...' -X UPDATE 'http://mysite.com/locomotive/api/content_types/4244af4ef0000002.json?auth_token=dtsjkqs1TJrWiSiJt2gg'},
                 response: %(TODO)

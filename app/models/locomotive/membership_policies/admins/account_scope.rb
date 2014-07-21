@@ -1,7 +1,7 @@
 module Locomotive
   module MembershipPolicies
     module Admins
-      class AccountScope < Locomotive::MembershipPolicies::AbstractScope
+      class AccountScope < AbstractScope
 
         def resolve
           Locomotive::Account

@@ -1,10 +1,11 @@
 module Locomotive
   module MembershipPolicies
     module Admins
-      class SiteScope < AbstractScope
+      class ContentAssetScope < AbstractScope
 
         def resolve
-          Site
+          binding.pry
+          ContentAsset
         end
       end
     end

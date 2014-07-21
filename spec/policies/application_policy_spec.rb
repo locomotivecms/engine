@@ -3,7 +3,7 @@ require 'spec_helper'
 module Locomotive
   describe ApplicationPolicy do
     let(:record) { mock('record') }
-    let(:user)   { mock('user') }
+    let(:user)   { create('admin user') }
 
     subject { ApplicationPolicy }
 
@@ -18,9 +18,7 @@ module Locomotive
     end
 
     context 'anybody else' do
-      before do
-        user.expects(:is_admin?).at_least_once.returns(false)
-      end
+      let(:user) { create(:account) }
 
       permissions *ApplicationPolicy::MANAGE_ACTIONS.map { |action| action.to_s + '?' } do
         it('no') { expect(subject).to_not permit(user, record) }

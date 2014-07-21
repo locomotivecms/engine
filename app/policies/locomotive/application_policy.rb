@@ -4,13 +4,17 @@ module Locomotive
     def membership
       @membership ||= begin
         _membership = if self.record
-          self.record.memberships.where(account_id: self.user.id).first
+          if self.record.is_a?(Locomotive::Site)
+            self.record.memberships.where(account_id: self.user.id).first
+          end
         elsif self.user.admin?
           Membership.new(account: self.user, role: 'admin')
         end
+
         unless _membership
           _membership = Membership.new(account: self.user, role: 'guest')
         end
+
         _membership
       end
     end
@@ -42,23 +46,20 @@ module Locomotive
     end
 
     def create?
-      not_restricted_user?
+      not_restricted_user? or Wallet.authorized?(user, record, :create, membership)
     end
     alias_method :new?,    :create?
     alias_method :destroy?, :create?
 
     def touch?
-      not_restricted_user?
+      not_restricted_user? or Wallet.authorized?(user, record, :touch, membership)
     end
     alias_method :show?,   :touch?
     alias_method :edit?,   :touch?
     alias_method :update?, :touch?
     alias_method :index?,  :touch?
 
-    def scope
-      Pundit.policy_scope!(user, record.class)
-    end
-
+    # For any actions without setting return false as fallback
     def method_missing(method, *args, &block)
       if self.class.method_defined? method
         self.public_send method, *args, &block

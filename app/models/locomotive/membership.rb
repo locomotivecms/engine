@@ -51,18 +51,8 @@ module Locomotive
       @ability ||= Locomotive::ApplicationPolicy.new(self.account, self.site)
     end
 
-    def to_policy(resource, user, record, membership)
-      policy_name = "Locomotive::MembershipPolicies::"
-      policy_name << "#{role.pluralize.capitalize}::"
-      policy_name << "#{resource.to_s.classify}Policy"
-
-      begin
-        policy = eval(policy_name).new(user, record, membership)
-      rescue NameError => e
-        policy = Locomotive::ApplicationPolicy.new(user, record)
-      end
-
-      policy
+    def to_policy(user, record, membership)
+      Locomotive::ApplicationPolicy.new(user, record)
     end
 
     protected
@@ -75,7 +65,7 @@ module Locomotive
     # their own. A designer for example should not be able to set another user to
     # be an administrator
     def can_change_role
-      current_site       = Thread.current[:site]
+      current_site = Thread.current[:site]
       if current_site.present?
         current_membership = current_site.memberships.where(account_id: Thread.current[:account].id).first
       end

@@ -12,14 +12,14 @@ module Locomotive
       end
 
       def show
-        PagePolicy.new(self.current_locomotive_account, @page).show?
+        ApplicationPolicy.new(self.current_locomotive_account, @page).show?
 
         respond_with(@page)
       end
 
       def create
-        @page = Locomotive::Page.new(params[:page])
-        PagePolicy.new(self.current_locomotive_account, @page).create?
+        @page = Page.new(params[:page])
+        ApplicationPolicy.new(self.current_locomotive_account, @page).create?
 
         @page.from_presenter(params[:page])
         @page.save
@@ -28,14 +28,14 @@ module Locomotive
       end
 
       def update
-        PagePolicy.new(self.current_locomotive_account, @page).update?
+        ApplicationPolicy.new(self.current_locomotive_account, @page).update?
         @page.from_presenter(params[:page])
         @page.save
         respond_with @page, location: main_app.locomotive_api_pages_url
       end
 
       def destroy
-        PagePolicy.new(self.current_locomotive_account, @page).destroy?
+        ApplicationPolicy.new(self.current_locomotive_account, @page).destroy?
         @page.destroy
         respond_with @page
       end
@@ -55,7 +55,7 @@ module Locomotive
             },
             show: {
               description: %{Return the attributes of a page},
-              response: Locomotive::PagePresenter.getters_to_hash,
+              response: PagePresenter.getters_to_hash,
               example: {
                 command: %{curl 'http://mysite.com/locomotive/api/pages/4244af4ef0000002.json?auth_token=dtsjkqs1TJrWiSiJt2gg'},
                 response: %(TODO)
@@ -63,7 +63,7 @@ module Locomotive
             },
             create: {
               description: %{Create a page},
-              params: Locomotive::PagePresenter.setters_to_hash,
+              params: PagePresenter.setters_to_hash,
               example: {
                 command: %{curl -d '...' 'http://mysite.com/locomotive/api/pages.json?auth_token=dtsjkqs1TJrWiSiJt2gg'},
                 response: %(TODO)
@@ -71,7 +71,7 @@ module Locomotive
             },
             update: {
               description: %{Update a page},
-              params: Locomotive::PagePresenter.setters_to_hash,
+              params: PagePresenter.setters_to_hash,
               example: {
                 command: %{curl -d '...' -X UPDATE 'http://mysite.com/locomotive/api/pages/4244af4ef0000002.json?auth_token=dtsjkqs1TJrWiSiJt2gg'},
                 response: %(TODO)

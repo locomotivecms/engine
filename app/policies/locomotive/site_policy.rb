@@ -17,7 +17,8 @@ module Locomotive
     end
 
     def update?
-      super or self.membership.to_policy(:site, user, record, membership).touch?
+      super or Wallet.authorized?(user, record, :touch)
+      # super or self.membership.to_policy(:site, user, record, membership).touch?
     end
     alias_method :destroy?, :update?
 

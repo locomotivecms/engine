@@ -1,3 +1,10 @@
 #!/usr/bin/env ruby
 
-mongo locomotive_engine_dev --eval "db.dropDatabase()"
+# start
+# /usr/local/Cellar/mongodb/2.4.1-x86_64/mongod run --rest --config /usr/local/etc/mongod.conf &
+#
+# stop
+# mongo --eval "db.getSiblingDB('admin').shutdownServer()"
+#
+# clean
+# mongo locomotive_engine_dev --eval "db.dropDatabase()"

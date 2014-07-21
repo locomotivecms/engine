@@ -13,15 +13,15 @@ module Locomotive
       end
 
       def show
-        SitePolicy.new(self.current_locomotive_account, @site).show?
+        ApplicationPolicy.new(self.current_locomotive_account, @site).show?
 
         respond_with(@site)
       end
 
       def create
-        @site = Locomotive::Site.new
+        @site = Site.new
 
-        SitePolicy.new(self.current_locomotive_account, @site).create?
+        ApplicationPolicy.new(self.current_locomotive_account, @site).create?
 
         @site.from_presenter(params[:site])
         @site.memberships.build account: self.current_locomotive_account, role: 'admin'
@@ -31,7 +31,7 @@ module Locomotive
       end
 
       def update
-        SitePolicy.new(self.current_locomotive_account, @site).update?
+        ApplicationPolicy.new(self.current_locomotive_account, @site).update?
 
         @site.from_presenter(params[:site])
         @site.save
@@ -40,7 +40,7 @@ module Locomotive
       end
 
       def destroy
-        SitePolicy.new(self.current_locomotive_account, @site).destroy?
+        ApplicationPolicy.new(self.current_locomotive_account, @site).destroy?
 
         @site.destroy
 
@@ -62,7 +62,7 @@ module Locomotive
             },
             show: {
               description: %{Return the attributes of a site},
-              response: Locomotive::SitePresenter.getters_to_hash,
+              response: SitePresenter.getters_to_hash,
               example: {
                 command: %{curl 'http://mysite.com/locomotive/api/sites/4244af4ef0000002.json?auth_token=dtsjkqs1TJrWiSiJt2gg'},
                 response: %(TODO)
@@ -70,7 +70,7 @@ module Locomotive
             },
             create: {
               description: %{Create a site},
-              params: Locomotive::SitePresenter.setters_to_hash,
+              params: SitePresenter.setters_to_hash,
               example: {
                 command: %{curl -d '...' 'http://mysite.com/locomotive/api/sites.json?auth_token=dtsjkqs1TJrWiSiJt2gg'},
                 response: %(TODO)
@@ -78,7 +78,7 @@ module Locomotive
             },
             update: {
               description: %{Update a site},
-              params: Locomotive::SitePresenter.setters_to_hash,
+              params: SitePresenter.setters_to_hash,
               example: {
                 command: %{curl -d '...' -X UPDATE 'http://mysite.com/locomotive/api/sites/4244af4ef0000002.json?auth_token=dtsjkqs1TJrWiSiJt2gg'},
                 response: %(TODO)
