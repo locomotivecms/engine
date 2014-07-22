@@ -23,11 +23,12 @@ module Locomotive
   class ApplicationPolicy
     include AccountSiteWrapper
 
-    class Scope < Struct.new(:user, :record)
+    class Scope < Struct.new(:user, :record, :site)
       include AccountSiteWrapper
 
       def resolve
-        []
+        return [] unless user
+        Wallet.scope(user, record, site, membership)
       end
     end
 

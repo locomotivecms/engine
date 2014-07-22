@@ -7,14 +7,12 @@ module Locomotive
       before_filter :load_site, only: [:show, :update, :destroy]
 
       def index
-        @sites = SitePolicy::Scope.new(self.current_locomotive_account).resolve
-
+        @sites = self.current_locomotive_account.to_scope(:site, self.current_site)
         respond_with(@sites)
       end
 
       def show
         ApplicationPolicy.new(self.current_locomotive_account, @site).show?
-
         respond_with(@site)
       end
 

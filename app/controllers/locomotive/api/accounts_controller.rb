@@ -2,19 +2,20 @@ module Locomotive
   module Api
     class AccountsController < Api::BaseController
 
-      before_filter :load_account,  only: [:show, :update, :destroy]
+      before_filter :load_account, only: [:show, :update, :destroy]
 
       skip_before_filter :verify_authenticity_token, only: [:create]
       skip_before_filter :require_account, only: [:create]
       skip_before_filter :require_site, only: [:create]
 
       def index
-        @accounts = AccountPolicy::Scope.new(self.current_locomotive_account).resolve
+        @accounts = self.current_locomotive_account.to_scope(:account, self.current_site)
         @accounts = @accounts.try(:ordered)
         respond_with(@accounts)
       end
 
       def show
+        ApplicationPolicy.new(self.current_locomotive_account, @account).show?
         respond_with(@account)
       end
 
@@ -26,14 +27,14 @@ module Locomotive
       end
 
       def update
-        # ApplicationPolicy.new(self.current_locomotive_account, @account).update?
+        ApplicationPolicy.new(self.current_locomotive_account, @account).update?
         @account.from_presenter(params[:account])
         @account.save
         respond_with(@account)
       end
 
       def destroy
-        # ApplicationPolicy.new(self.current_locomotive_account, @account).destroy?
+        ApplicationPolicy.new(self.current_locomotive_account, @account).destroy?
         @account.destroy
         respond_with(@account)
       end
@@ -81,7 +82,7 @@ module Locomotive
       private
 
       def load_account
-        @account = AccountPolicy::Scope.new(self.current_locomotive_account).find params[:id]
+        @account = Locomotive::Account.find params[:id]
       end
 
     end

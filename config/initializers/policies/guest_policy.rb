@@ -20,5 +20,18 @@ Locomotive::Wallet.generate_policy_for do
       right(:touch)  { |u, r, m| false }
       right(:create) { |u, r, m| false }
     end
+
+    scope :content_asset do |user, site, membership|
+      []
+    end
+    scope :page do |user, site, membership|
+      []
+    end
+    scope :snippet do |user, site, membership|
+      []
+    end
+    scope :theme_asset do |user, site, membership|
+      []
+    end
   end
 end

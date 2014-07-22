@@ -21,7 +21,7 @@ module Locomotive
         it { should be_success }
         specify do
           subject
-          expect(assigns(:pages)).to eq(site.pages)
+          expect(assigns(:pages).to_a).to eq(site.pages.all)
         end
       end
 

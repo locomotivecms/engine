@@ -5,7 +5,7 @@ module Locomotive
       before_filter :load_page, only: [:show, :update, :destroy]
 
       def index
-        @pages = PagePolicy::Scope.new(self.current_locomotive_account, self.current_site).resolve
+        @pages = self.current_locomotive_account.to_scope(:page, self.current_site)
         @pages = @pages.order_by(:depth.asc, :position.asc)
 
         respond_with(@pages)

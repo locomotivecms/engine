@@ -6,7 +6,7 @@ module Locomotive
       before_filter :load_resource,  only: [:show, :update, :destroy]
 
       def index
-        @snippets = SnippetPolicy::Scope.new(self.current_locomotive_account).resolve
+        @snippets = self.current_locomotive_account.to_scope(:snippet, self.current_site)
         @snippets = @snippets.order_by(:name.asc)
 
         respond_with(@snippets)

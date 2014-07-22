@@ -124,20 +124,8 @@ module Locomotive
       Locomotive::DeviseMailer
     end
 
-    def to_scope(resource)
-      role = is_admin? ? :admin : :guest
-
-      scope_policy_class = "MembershipPolicies::"
-      scope_policy_class << "#{role.to_s.pluralize.capitalize}::"
-      scope_policy_class << "#{resource.capitalize}Scope"
-
-      begin
-        scope_policy = eval(scope_policy_class).new(self)
-      rescue NameError => e
-        scope_policy = Locomotive::ApplicationPolicy::Scope.new(self)
-      end
-
-      scope_policy
+    def to_scope(resource, site)
+      ApplicationPolicy::Scope.new(self, resource, site).resolve
     end
 
     def to_role

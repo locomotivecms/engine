@@ -29,12 +29,25 @@ module Locomotive
       def authorized? user, resource, action, membership
         role = user.to_role
         policies = PolicyRegistry.instance[role].policies
-        klass = resource.class.name.downcase.to_sym
+        klass = resource.class.name.underscore.to_sym
         policy = policies[klass]
         policy.send(:"#{action}?", user, resource, membership)
-      rescue
+      rescue Exception => e
+        # binding.pry
         false
       end
+
+      def scope user, resource, site, membership
+        role = user.to_role
+        scopes = PolicyRegistry.instance[role].scopes
+        klass = resource #.class.name.underscore.to_sym
+        scope = scopes[klass]
+        scope.resolve user, site, membership
+      rescue Exception => e
+        # binding.pry
+        []
+      end
+
     end
   end
 end

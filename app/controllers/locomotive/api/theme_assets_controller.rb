@@ -89,7 +89,7 @@ module Locomotive
       end
 
       def load_theme_assets
-        @theme_assets = ThemeAssetPolicy::Scope.new(current_locomotive_account, current_site).resolve
+        @theme_assets = self.current_locomotive_account.to_scope(:theme_asset, self.current_site)
       end
 
     end
