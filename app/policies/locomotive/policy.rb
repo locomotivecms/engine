@@ -18,7 +18,7 @@ module Locomotive
         action_name = method.to_s.chop.to_sym
         if (right = self.rights[action_name])
           user, resource, membership = args
-          right.authorized? user, record, membership
+          right.authorized? user, resource, membership
         else
           super
         end

@@ -3,19 +3,14 @@ module Locomotive
   module AccountSiteWrapper
     def membership
       @membership ||= begin
-        _membership = if self.record
-          if self.record.is_a?(Locomotive::Site)
-            self.record.memberships.where(account_id: self.user.id).first
-          end
-        elsif self.user.admin?
-          Membership.new(account: self.user, role: 'admin')
+        begin
+          membership = self.site.memberships.where(account_id: self.user.id).first
+          membership = Membership.new(account: self.user, role: 'admin') if self.user.admin?
+          membership
+        rescue
+          Membership.new(account: self.user, role: 'guest')
         end
 
-        unless _membership
-          _membership = Membership.new(account: self.user, role: 'guest')
-        end
-
-        _membership
       end
     end
   end
@@ -23,37 +18,39 @@ module Locomotive
   class ApplicationPolicy
     include AccountSiteWrapper
 
-    class Scope < Struct.new(:user, :record, :site)
+    class Scope < Struct.new(:user, :site, :record)
       include AccountSiteWrapper
 
       def resolve
         return [] unless user
-        Wallet.scope(user, record, site, membership)
+        Wallet.scope(user, site, record, membership)
       end
     end
 
-    attr_reader :user, :record
+    attr_reader :user, :site, :record
 
     READ_ACTIONS  = [:index, :show]
     WRITE_ACTIONS = [:create, :new, :update, :edit, :destroy]
     MANAGE_ACTIONS = READ_ACTIONS + WRITE_ACTIONS
 
-    def initialize(user, record)
+    def initialize(user, site, record=nil)
       raise Pundit::NotAuthorizedError, 'must be logged in' unless user
-      raise Pundit::NotAuthorizedError, 'must provide resource for check policy' unless record
 
-      @user = user
+      @user   = user
+      @site   = site
       @record = record
     end
 
     def create?
-      not_restricted_user? or Wallet.authorized?(user, record, :create, membership)
+      return true if not_restricted_user? or Wallet.authorized?(user, :create, record, membership)
+      raise Pundit::NotAuthorizedError.new("not allowed to create #{record} for #{user.email}")
     end
     alias_method :new?,    :create?
     alias_method :destroy?, :create?
 
     def touch?
-      not_restricted_user? or Wallet.authorized?(user, record, :touch, membership)
+      return true if not_restricted_user? or Wallet.authorized?(user, :touch, record, membership)
+      raise Pundit::NotAuthorizedError.new("not allowed to modify #{record} for #{user.email}")
     end
     alias_method :show?,   :touch?
     alias_method :edit?,   :touch?

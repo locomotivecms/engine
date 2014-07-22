@@ -2,47 +2,37 @@ module Locomotive
   module Api
     class SnippetsController < BaseController
 
-      before_filter :load_resources, only: [:index]
-      before_filter :load_resource,  only: [:show, :update, :destroy]
+      before_filter :load_snippets, only: [:index]
+      before_filter :load_snippet,  only: [:show, :update, :destroy]
 
       def index
-        @snippets = self.current_locomotive_account.to_scope(:snippet, self.current_site)
         @snippets = @snippets.order_by(:name.asc)
-
         respond_with(@snippets)
       end
 
       def show
-        ApplicationPolicy.new(self.current_locomotive_account, @snippet).show?
-
         respond_with @snippet
       end
 
       def create
         @snippet = Snippet.new(params[:snippet])
-        ApplicationPolicy.new(self.current_locomotive_account, @snippet).create?
-
+        ApplicationPolicy.new(self.current_locomotive_account, self.current_site, :snippet).create?
         @snippet.from_presenter(params[:snippet])
         @snippet.site = current_site
         @snippet.save
-
         respond_with @snippet, location: main_app.locomotive_api_snippets_url
       end
 
       def update
-        ApplicationPolicy.new(self.current_locomotive_account, @snippet).update?
-
+        ApplicationPolicy.new(self.current_locomotive_account, self.current_site, :snippet).update?
         @snippet.from_presenter(params[:snippet])
         @snippet.save
-
         respond_with @snippet, location: main_app.locomotive_api_snippets_url
       end
 
       def destroy
-        ApplicationPolicy.new(self.current_locomotive_account, @snippet).destroy?
-
+        ApplicationPolicy.new(self.current_locomotive_account, self.current_site, :snippet).destroy?
         @snippet.destroy
-
         respond_with @snippet
       end
 
@@ -96,11 +86,11 @@ module Locomotive
 
       private
 
-      def load_resources
+      def load_snippets
         @snippets = current_site.snippets
       end
 
-      def load_resource
+      def load_snippet
         @snippet = current_site.snippets.find params[:id]
       end
 

@@ -2,7 +2,7 @@ module Locomotive
   module Api
     class ContentEntriesController < BaseController
 
-      before_filter :load_content_entry,   only: [:show, :destroy]
+      before_filter :load_content_entry,   only: [:show, :update, :destroy]
       before_filter :load_content_entries, only: [:index]
 
       def index
@@ -15,18 +15,22 @@ module Locomotive
       end
 
       def create
+        @content_entry = Locomotive::ContentEntry.new(params[:content_entry])
+        ApplicationPolicy.new(self.current_locomotive_account, self.current_site, :content_entry).create?
         @content_entry.from_presenter(params[:content_entry] || params[:entry])
         @content_entry.save
         respond_with @content_entry, location: main_app.locomotive_api_content_entries_url(@content_type.slug)
       end
 
       def update
+        ApplicationPolicy.new(self.current_locomotive_account, self.current_site, :content_entry).update?
         @content_entry.from_presenter(params[:content_entry] || params[:entry])
         @content_entry.save
         respond_with @content_entry, location: main_app.locomotive_api_content_entries_url(@content_type.slug)
       end
 
       def destroy
+        ApplicationPolicy.new(self.current_locomotive_account, self.current_site, :content_entry).destroy?
         @content_entry.destroy
         respond_with @content_entry, location: main_app.locomotive_api_content_entries_url(@content_type.slug)
       end

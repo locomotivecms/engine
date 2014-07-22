@@ -1,5 +1,9 @@
 Locomotive::Wallet.generate_policy_for do
   role :guest do
+    policy :translation do
+      right(:touch)  { |u, r, m| false }
+      right(:create) { |u, r, m| false }
+    end
     policy :post do
       right(:touch)  { |u, r, m| false }
       right(:create) { |u, r, m| false }
@@ -31,6 +35,9 @@ Locomotive::Wallet.generate_policy_for do
       []
     end
     scope :theme_asset do |user, site, membership|
+      []
+    end
+    scope :translation do |user, site, membership|
       []
     end
   end

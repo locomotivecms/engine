@@ -5,19 +5,18 @@ module Locomotive
       before_filter :load_current_site
 
       def show
-        ApplicationPolicy.new(self.current_locomotive_account, @site).show?
         respond_with(@site)
       end
 
       def update
-        ApplicationPolicy.new(self.current_locomotive_account, @site).update?
+        ApplicationPolicy.new(self.current_locomotive_account, self.current_site, :site).update?
         @site.from_presenter(params[:site])
         @site.save
       	respond_with(@site)
       end
 
       def destroy
-        ApplicationPolicy.new(self.current_locomotive_account, @site).destroy?
+        ApplicationPolicy.new(self.current_locomotive_account, self.current_site, :site).destroy?
         @site.destroy
         respond_with(@site)
       end

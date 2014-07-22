@@ -171,9 +171,16 @@ FactoryGirl.define do
   end
 
   factory :content_entry, class: Locomotive::ContentEntry do
+    sequence(:_slug) { |n| "slug_of_content_entry_#{n*rand(10_000)}" }
+    _label_field_name '_label_field_name'
+    site { Locomotive::Site.where(subdomain: 'acme').first || FactoryGirl.create(:site) }
+    content_type { FactoryGirl.create(:content_type, :with_field) }
   end
 
   factory :translation, class: Locomotive::Translation do
+    sequence(:key) { |n| "key_#{n*rand(10_000)}" }
+    values {{ en: 'foo', fr: 'bar', wk: 'wuuuu' }}
+    site { Locomotive::Site.where(subdomain: 'acme').first || FactoryGirl.create(:site) }
   end
 
 end

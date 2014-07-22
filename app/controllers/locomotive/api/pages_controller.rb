@@ -2,40 +2,35 @@ module Locomotive
   module Api
     class PagesController < BaseController
 
-      before_filter :load_page, only: [:show, :update, :destroy]
+      before_filter :load_page,  only: [:show, :update, :destroy]
+      before_filter :load_pages, only: [:index]
 
       def index
-        @pages = self.current_locomotive_account.to_scope(:page, self.current_site)
         @pages = @pages.order_by(:depth.asc, :position.asc)
-
         respond_with(@pages)
       end
 
       def show
-        ApplicationPolicy.new(self.current_locomotive_account, @page).show?
-
         respond_with(@page)
       end
 
       def create
         @page = Page.new(params[:page])
-        ApplicationPolicy.new(self.current_locomotive_account, @page).create?
-
+        ApplicationPolicy.new(self.current_locomotive_account, self.current_site, :page).create?
         @page.from_presenter(params[:page])
         @page.save
-
         respond_with @page, location: main_app.locomotive_api_pages_url
       end
 
       def update
-        ApplicationPolicy.new(self.current_locomotive_account, @page).update?
+        ApplicationPolicy.new(self.current_locomotive_account, self.current_site, :page).update?
         @page.from_presenter(params[:page])
         @page.save
         respond_with @page, location: main_app.locomotive_api_pages_url
       end
 
       def destroy
-        ApplicationPolicy.new(self.current_locomotive_account, @page).destroy?
+        ApplicationPolicy.new(self.current_locomotive_account, self.current_site, :page).destroy?
         @page.destroy
         respond_with @page
       end
@@ -88,8 +83,14 @@ module Locomotive
         }
       end
 
+      private
+
       def load_page
         @page = current_site.pages.find params[:id]
+      end
+
+      def load_pages
+        @pages = current_site.pages
       end
 
     end

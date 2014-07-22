@@ -1,5 +1,9 @@
 Locomotive::Wallet.generate_policy_for do
   role :author do
+    policy :translation do
+      right(:touch)  { |u, r, m| true }
+      right(:create) { |u, r, m| true }
+    end
     policy :account do
       right(:touch)  { |u, r, m| u == r }
     end
@@ -41,6 +45,13 @@ Locomotive::Wallet.generate_policy_for do
     scope :theme_asset do |user, site, membership|
       if user.sites.include?(site)
         site.theme_assets
+      else
+        []
+      end
+    end
+    scope :translation do |user, site, membership|
+      if user.sites.include?(site)
+        site.translations
       else
         []
       end

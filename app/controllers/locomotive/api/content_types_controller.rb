@@ -6,6 +6,7 @@ module Locomotive
       before_filter :load_content_types, only: [:index]
 
       def index
+        binding.pry
         @content_types = @content_types.order_by(:name.asc)
         respond_with(@content_types)
       end
@@ -16,6 +17,7 @@ module Locomotive
 
       def create
         @content_type = ContentType.new
+        ApplicationPolicy.new(self.current_locomotive_account, self.current_site, :content_type).create?
         @content_type.from_presenter(params[:content_type])
         @content_type.site = current_site
         @content_type.save
@@ -23,12 +25,14 @@ module Locomotive
       end
 
       def update
+        ApplicationPolicy.new(self.current_locomotive_account, self.current_site, :content_type).update?
         @content_type.from_presenter(params[:content_type])
         @content_type.save
         respond_with @content_type, location: main_app.locomotive_api_content_types_url
       end
 
       def destroy
+        ApplicationPolicy.new(self.current_locomotive_account, self.current_site, :content_type).destroy?
         @content_type.destroy
         respond_with @content_type
       end
@@ -88,6 +92,7 @@ module Locomotive
       end
 
       def load_content_types
+        binding.pry
         @content_types = current_site.content_types
       end
 

@@ -125,7 +125,7 @@ module Locomotive
     end
 
     def to_scope(resource, site)
-      ApplicationPolicy::Scope.new(self, resource, site).resolve
+      ApplicationPolicy::Scope.new(self, site, resource).resolve
     end
 
     def to_role

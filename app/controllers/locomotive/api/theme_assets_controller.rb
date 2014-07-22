@@ -10,12 +10,11 @@ module Locomotive
       end
 
       def show
-        ApplicationPolicy.new(self.current_locomotive_account, self.current_site).show?
         respond_with @theme_asset
       end
 
       def create
-        ApplicationPolicy.new(self.current_locomotive_account, self.current_site).create?
+        ApplicationPolicy.new(self.current_locomotive_account, self.current_site, :theme_asset).create?
         @theme_asset = ThemeAsset.new(params[:theme_asset])
         @theme_asset.from_presenter(params[:theme_asset])
         @theme_asset.site = current_site
@@ -24,14 +23,14 @@ module Locomotive
       end
 
       def update
-        ApplicationPolicy.new(self.current_locomotive_account, self.current_site).update?
+        ApplicationPolicy.new(self.current_locomotive_account, self.current_site, :theme_asset).update?
         @theme_asset.from_presenter(params[:theme_asset])
         @theme_asset.save
         respond_with @theme_asset, location: main_app.locomotive_api_theme_assets_url
       end
 
       def destroy
-        ApplicationPolicy.new(self.current_locomotive_account, self.current_site).destroy?
+        ApplicationPolicy.new(self.current_locomotive_account, self.current_site, :theme_asset).destroy?
         @theme_asset.destroy
         respond_with @theme_asset
       end
@@ -89,7 +88,7 @@ module Locomotive
       end
 
       def load_theme_assets
-        @theme_assets = self.current_locomotive_account.to_scope(:theme_asset, self.current_site)
+        @theme_assets = current_site.theme_assets
       end
 
     end

@@ -55,6 +55,10 @@ module Locomotive
       Locomotive::ApplicationPolicy.new(user, record)
     end
 
+    def to_role
+      self.role.to_sym
+    end
+
     protected
 
     def define_role

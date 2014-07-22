@@ -49,11 +49,12 @@ module Locomotive
         end
       end
 
-      describe "#DELETE destroy" do
+      describe "#DELETE destroy", pending: true do
         let!(:site) { create(:site) }
         subject do
           delete :destroy, id: site.id, locale: :en, format: :json
         end
+        it { subject ;  binding.pry }
         it { should be_success }
         specify do
           expect { subject }.to change(Locomotive::Site, :count).by(-1)
