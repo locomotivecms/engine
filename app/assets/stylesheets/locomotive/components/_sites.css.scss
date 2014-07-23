@@ -1,11 +1,8 @@
 $site_wrapper_max_width:  600px;
-
 $site_background:         #37a9bf;
 $site_hover_background:   #2f95a8;
 $site_domain_color:       #abdde6;
 $site_arrow_color:        #2a8091;
-
-
 
 body.sites {
 
@@ -19,15 +16,6 @@ body.sites {
 
     width: $site_wrapper_max_width;
     margin: 0 auto;
-
-    // -webkit-align-items: center;
-    // align-items: center;
-    // -webkit-justify-content: center;
-    // justify-content: center;
-    // -webkit-flex-flow: column;
-    // flex-flow: column;
-    // -webkit-align-content: stretch;
-    // align-content: stretch;
 
     .site {
       margin: 0px 10px 10px 10px;
@@ -80,5 +68,22 @@ body.sites {
 
   }
 
+}
+
+@media (max-width: $screen-sm-min) {
+
+  body.sites {
+
+    .sites {
+      padding: 20px;
+      width: auto;
+
+      .site {
+        float: none;
+        width: auto;
+      }
+    }
+
+  }
 
 }
