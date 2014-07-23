@@ -40,7 +40,6 @@ class Locomotive.Views.ApplicationView extends Backbone.View
     $(window).on 'resize', => @set_max_height()
 
   set_max_height: ->
-    # max_height  = Math.max $(document).height(), $(window).height(), document.documentElement.clientHeight
     max_height  = $(window).height()
     height      = max_height - @header_view.height()
 

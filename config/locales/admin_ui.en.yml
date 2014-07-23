@@ -190,6 +190,8 @@ en:
         updated_at: Updated at
 
     sites:
+      index:
+        title: Choose a site
       new:
         title: New site
         help: "Fill in the form below to create your new site."

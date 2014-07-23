@@ -1,0 +1,17 @@
+.site
+  = link_to root_url(host: site.full_subdomain, port: request.port, protocol: request.ssl? ? 'https' : 'http'), class: 'media' do
+
+    .pull-right.arrow
+      %span
+        %i.fa.fa-angle-right
+
+    .pull-left
+      = image_tag site_picture_url(site), width: '40px', class: 'img-circle', alt: site.name
+
+    .media-body
+      %h2= site.name.truncate(22)
+
+      .domain
+        = site.main_domain.truncate(28)
+
+

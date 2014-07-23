@@ -1,9 +1,14 @@
 module Locomotive
   class SitesController < BaseController
 
-    sections 'settings'
+    sections 'sites'
 
     respond_to :json, only: [:create, :destroy]
+
+    def index
+      @sites = service.list
+      respond_with @sites, layout: '/locomotive/layouts/without_sidebar'
+    end
 
     def new
       @site = Site.new
@@ -11,9 +16,7 @@ module Locomotive
     end
 
     def create
-      @site = Site.new(params[:site])
-      @site.memberships.build account: self.current_locomotive_account, role: 'admin'
-      @site.save
+      @site = service.create(params[:site])
       respond_with @site, location: edit_my_account_path
     end
 
@@ -27,6 +30,12 @@ module Locomotive
       end
 
       respond_with @site, location: edit_my_account_path
+    end
+
+    protected
+
+    def service
+      @service ||= Locomotive::SitesService.new(self.current_locomotive_account)
     end
 
   end

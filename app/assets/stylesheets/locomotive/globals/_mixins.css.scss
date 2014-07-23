@@ -57,3 +57,9 @@
     *top: -50%;
 }
 
+@mixin locomotive_gradient
+{
+  background-repeat: no-repeat;
+  @include background-image(linear-gradient(top, $background_gradient_start 60px, $background_gradient_start 20%, $background_gradient_end));
+}
+

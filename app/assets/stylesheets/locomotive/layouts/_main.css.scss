@@ -6,6 +6,13 @@ body {
   position: relative;
 }
 
+body.no-sidebar {
+
+  .wrapper {
+    @include locomotive_gradient;
+  }
+}
+
 .sidebar {
   position: absolute;
   top: 0px;

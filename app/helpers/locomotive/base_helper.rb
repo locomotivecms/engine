@@ -164,7 +164,7 @@ module Locomotive
 
     # accounts
 
-    def avatar_url(account, size = '35x35<')
+    def account_avatar_url(account, size = '35x35<')
       if account.avatar?
         Locomotive::Dragonfly.resize_url account.avatar.url, size
       else
@@ -173,6 +173,14 @@ module Locomotive
     end
 
     # sites
+
+    def site_picture_url(site, size = '40x40<')
+      if site.picture?
+        Locomotive::Dragonfly.resize_url site.picture.url, size
+      else
+        'locomotive/site.png'
+      end
+    end
 
     def application_domain
       domain = Locomotive.config.domain

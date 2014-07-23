@@ -38,6 +38,10 @@ module Locomotive
 
         module InstanceMethods
 
+          def main_domain
+            domains_without_subdomain.first || full_subdomain
+          end
+
           def subdomain=(subdomain)
             super(subdomain.try(:downcase))
           end

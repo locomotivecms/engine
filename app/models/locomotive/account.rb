@@ -19,7 +19,7 @@ module Locomotive
     field :current_sign_in_ip,      type: String
     field :last_sign_in_ip,         type: String
 
-    mount_uploader :avatar, AvatarUploader, validate_integrity: true
+    mount_uploader :avatar, PictureUploader, validate_integrity: true
 
     ## attributes ##
     field :name

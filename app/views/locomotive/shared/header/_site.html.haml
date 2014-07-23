@@ -1,4 +1,7 @@
-= link_to '#' do
-  = current_site.name
-  - # TODO: display the caret only if multi-sites + sites > 1
-  %span.caret
+- if multi_sites? && current_locomotive_account.sites.size > 1
+  = link_to sites_path do
+    = current_site.name
+    %span.caret
+- else
+  %p.navbar-text
+    = current_site.name

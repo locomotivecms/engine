@@ -4,9 +4,14 @@
   %head
     = render 'locomotive/shared/head'
   %body{ class: sections }
+
+    - # HEADER: brand + current site + account
     = render 'locomotive/shared/header'
+
     / .wrapper
     / %section.main{ role: 'main' }
+
+    - # WRAPPER
     .wrapper
       %nav.sidebar
         .scrollable
@@ -18,6 +23,7 @@
       /   - if content_for? :actions
       /     .actions
       /       = yield :actions
+
       .content
         .scrollable
           %h2!= title

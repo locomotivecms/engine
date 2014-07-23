@@ -1,8 +1,5 @@
 @import "../globals/all";
 
-$nli_gradient_start: #54b9cd;
-$nli_gradient_end: #5488cc;
-
 body, html {
   height: 100%;
 }
@@ -10,9 +7,7 @@ body, html {
 .wrapper {
   width: 100%;
   @include vertical-align-block-wrapper;
-
-  background-repeat: no-repeat;
-  @include background-image(linear-gradient(top, $nli_gradient_start 0%, $nli_gradient_start 50%, $nli_gradient_end));
+  @include locomotive_gradient;
 }
 
 .container {
