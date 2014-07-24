@@ -1,5 +1,71 @@
-.navbar-brand {
-  padding-left: 18px + $navbar-padding-horizontal;
-  background: transparent url(image_path('locomotive/mini_logo.png')) $navbar-padding-horizontal floor($navbar-height/2) no-repeat;
-  font-size: $font-size-base;
+$header_brand_color:          $header_default_color;
+$header_brand_font_size:      15px;
+$header_site_arrow_color:     #349cb0;
+
+.navbar-header {
+  width: 30%;
+
+  .navbar-brand {
+    font-size: $header_brand_font_size;
+    color: $header_brand_color;
+
+    padding-top: 15px;
+    padding-bottom: 15px;
+
+    img {
+      vertical-align: baseline;
+    }
+
+    span.default {
+      font-family: $alt-font-family-sans-serif;
+      color: rgba($header_brand_color, 0.7);
+    }
+  }
+
+}
+
+.navbar-collapse {
+  padding: 0px;
+
+  .nav-center {
+    width: 40%;
+    @include display-flex;
+    @include flex-justify-content(center);
+
+    li {
+      a {
+        font-weight: bold;
+
+        span.arrow {
+          margin-left: 5px;
+          position: relative;
+          top: 3px;
+
+          i {
+            font-size: 22px;
+            font-weight: bold;
+            color: $header_site_arrow_color;
+          }
+        }
+
+        &:hover {
+          // TODO: cf Mathieu
+        }
+      }
+    }
+  }
+
+  .navbar-right {
+    width: 30%;
+
+    > li {
+      float: right
+    }
+  }
+
+  .navbar-nav > li > a {
+    line-height: 35px;
+    padding-top: 8px;
+    padding-bottom: 7px;
+  }
 }

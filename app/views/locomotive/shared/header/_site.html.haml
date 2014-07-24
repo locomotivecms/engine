@@ -1,7 +1,8 @@
 - if multi_sites? && current_locomotive_account.sites.size > 1
   = link_to sites_path do
     = current_site.name
-    %span.caret
+    %span.arrow
+      %i.fa.fa-angle-down
 - else
   %p.navbar-text
     = current_site.name
