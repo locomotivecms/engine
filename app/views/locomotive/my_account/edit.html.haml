@@ -1,41 +1,35 @@
-- title link_to(@account.name.blank? ? @account.name_was : @account.name, '#', rel: 'account_name', title: t('.ask_for_name'), class: 'editable')
+- title t('.title')
 
-- content_for :backbone_view_data do
-  :plain
-    account: #{escape_json to_json(@account)}
+- content_for :buttons do
+  = semantic_form_button @account
 
-- content_for :submenu do
-  = render_cell 'locomotive/settings_menu', :show
-
-- if multi_sites?
-  - content_for :buttons do
-    = local_action_button t('.new_site'), new_site_path, icon: 'icon-plus' if can?(:create, Locomotive::Site)
-
-%p= t('.help')
+= help t('.help', default: '')
 
 = semantic_form_for @account, url: my_account_path do |f|
 
-  = f.inputs name: :information do
-    = f.input :name
-    = f.input :locale, as: '::Locomotive::Locale'
+  %ul.nav.nav-tabs{ role: 'tablist' }
+    %li.active
+      = link_to t('formtastic.titles.information'), '#main', role: 'tab', data: { toggle: 'tab' }
+    %li
+      = link_to t('formtastic.titles.credentials'), '#credentials', role: 'tab', data: { toggle: 'tab' }
+    %li
+      = link_to t('formtastic.titles.api'), '#api', role: 'tab', data: { toggle: 'tab' }
 
-  = f.inputs name: :credentials, class: "inputs foldable folded" do
-    = f.input :email
-    = f.input :password, input_html: { autocomplete: 'off' }
-    = f.input :password_confirmation, input_html: { autocomplete: 'off' }
-    = f.input :api_key, as: '::Locomotive::ApiKey', url: regenerate_api_key_my_account_path
+  .tab-content
+    #main.tab-pane.active
+      = f.inputs name: :information do
+        = f.input :name
+        = f.input :locale, as: :select, collection: options_for_locale
 
-  - if multi_sites?
-    = f.inputs name: :sites, class: "sites inputs foldable" do
-      %li#account_sites_input.input.empty.no-label.last
-        .list
-          - @account.sites.each do |site|
-            .entry
-              %strong= link_to site.name, switch_to_site_url(site)
-              %em= site.domains.join(', ')
+    #credentials.tab-pane
+      = f.inputs name: :credentials do
+        = f.input :email
+        = f.input :password, input_html: { autocomplete: 'off' }
+        = f.input :password_confirmation, input_html: { autocomplete: 'off' }
 
-              - if admin_on?(site) && site != current_site
-                %span{ class: 'actions' }
-                  = link_to_icon :trash, site_url(site), class: 'remove', data: { confirm: t('locomotive.messages.confirm') }, method: :delete
+    #api.tab-pane
+      = f.inputs name: :api do
+        = f.input :api_key, as: '::Locomotive::ApiKey', url: regenerate_api_key_my_account_path
 
-  = render 'locomotive/shared/form_actions', button_label: :update
+  = f.actions do
+    = f.action :submit, as: :button

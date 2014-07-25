@@ -220,7 +220,6 @@ en:
 
     my_account:
       edit:
-        help: "Your name can be updated by clicking it. To apply your changes, click on the \"Save\" button."
         new_site: new site
         ask_for_name: "Please type your new name"
 

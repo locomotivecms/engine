@@ -11,6 +11,7 @@ body.no-sidebar {
   .wrapper {
     @include locomotive_gradient;
   }
+
 }
 
 .sidebar {
@@ -28,7 +29,7 @@ body.no-sidebar {
   left: $sidebar_width;
   right: 0px;
   bottom: 0px;
-  background: red; // DEBUG
+
 }
 
 .scrollable {

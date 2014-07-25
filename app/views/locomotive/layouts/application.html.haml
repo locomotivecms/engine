@@ -8,33 +8,22 @@
     - # HEADER: brand + current site + account
     = render 'locomotive/shared/header'
 
-    / .wrapper
-    / %section.main{ role: 'main' }
-
     - # WRAPPER
     .wrapper
       %nav.sidebar
         .scrollable
           = render 'locomotive/shared/sidebar'
-      / .submenu
-      /   %ul
-      /     = yield :submenu
-
-      /   - if content_for? :actions
-      /     .actions
-      /       = yield :actions
 
       .content
         .scrollable
-          %h2!= title
+          .container-fluid.main{ role: 'main' }
+            .row
+              .col-md-8
+                %h1!= title
 
-          #local-actions-bar
-            &nbsp;
-            = yield :buttons
+              .col-md-4
+                = yield :buttons
 
-          = yield
-
-      / %footer
-      /   = render 'locomotive/shared/footer'
+            = yield
 
     = yield :foot

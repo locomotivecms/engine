@@ -10,6 +10,23 @@ module Locomotive
       end
     end
 
+    def help(text)
+      if text.present?
+        content_tag :p, text, class: 'text'
+      else
+        ''
+      end
+    end
+
+    #= Formtastic helperrs
+
+    def semantic_form_button(resource)
+      key   = resource.persisted? ? 'update' : 'create'
+      scope = 'locomotive.shared.form_actions'
+
+      content_tag :button, I18n.t(key, scope: scope), class: 'btn btn-primary'
+    end
+
     def inputs_folded?(resource)
       resource.persisted? && resource.errors.empty?
     end

@@ -1,20 +1,14 @@
 module Locomotive
-  class ApiKeyInput
-    include Formtastic::Inputs::Base
+  class ApiKeyInput < Formtastic::Inputs::StringInput
+
+    include FormtasticBootstrap::Inputs::Base
+    include FormtasticBootstrap::Inputs::Base::Stringish
 
     def to_html
-      input_wrapping do
-        label_html <<
+      bootstrap_wrapping do
         api_key_html <<
         regenerate_button
       end
-    end
-
-    def input_wrapping(&block)
-      template.content_tag(:li,
-        [template.capture(&block), hint_html].join("\n").html_safe,
-        wrapper_html_options
-      )
     end
 
     def api_key_html
@@ -25,7 +19,7 @@ module Locomotive
     def regenerate_button
       url = options[:url]
       template.content_tag :button, I18n.t('locomotive.api_key.button'),
-        class:  'regenerate',
+        class:  'btn btn-default btn-sm',
         data:   {
           url:      url,
           confirm:  I18n.t('locomotive.messages.confirm')

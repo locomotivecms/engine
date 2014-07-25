@@ -22,6 +22,7 @@ en:
       presentation: Presentation
       attributes: Attributes
       upload: Upload
+      api: API
     labels:
       theme_asset:
         plain_text_name: File name
