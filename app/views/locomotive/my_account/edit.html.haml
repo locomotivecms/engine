@@ -1,6 +1,6 @@
 - title t('.title')
 
-- content_for :buttons do
+- content_for :actions do
   = semantic_form_button @account
 
 = help t('.help', default: '')
@@ -19,7 +19,7 @@
     #main.tab-pane.active
       = f.inputs name: :information do
         = f.input :name
-        = f.input :locale, as: :select, collection: options_for_locale
+        = f.input :locale, as: :select, collection: options_for_locale, include_blank: false
 
     #credentials.tab-pane
       = f.inputs name: :credentials do

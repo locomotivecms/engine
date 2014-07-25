@@ -2,38 +2,46 @@
 
 .formtastic {
 
-  .form-group {
+  fieldset {
+    padding-top: 20px;
 
-    .control-label {
-      text-transform: uppercase;
-      font-size: 85%;
-      line-height: 18px;
+    legend {
+      display: none;
     }
 
-    select {
-      -webkit-appearance: none;
-      -webkit-border-radius: 0px;
-      border-radius: 0px;
+    > .input {
+      background: $form_input_background_color;
+      padding: $form_input_padding;
+      @include border-radius($form_input_radius);
+
+      .control-label {
+        display: block;
+        font-size: $form_input_label_size;
+        font-weight: bold;
+        text-transform: uppercase;
+        color: $form_input_label_color;
+
+        abbr {
+          margin-left: 5px;
+        }
+      }
+
+      .form-wrapper {
+        margin-top: 12px;
+        display: block;
+        border: $form_input_control_border_size solid $form_input_control_border_color;
+        @include border-radius($form_input_control_border_size);
+
+        > input, > select {
+          border: none;
+          @include border-radius(0px);
+        }
+      }
     }
 
-    .help-inline, .error-inline {
-      margin-left: 10px;
-      font-family: $alt-font-family-sans-serif;
+    .has-error {
+      @include form-control-validation($text-color, $input-border, $state-danger-bg);
     }
-
-    .error-inline {
-      color: $state-danger-text;
-    }
-
-  }
-
-  a {
-    color: #000;
-    @include opacity(0.4);
-  }
-
-  .has-error {
-    @include form-control-validation($text-color, $input-border, $state-danger-bg);
   }
 }
 

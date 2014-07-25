@@ -1,8 +1,16 @@
 // custom variables go here
 
-$alt-font-family-sans-serif:  "Muli", sans-serif;
+$alt-font-family-sans-serif:        "Muli", sans-serif;
 
-$sidebar_width:               21em;
+$sidebar_width:                     21em;
 
-$background_gradient_start:   #54b9cd;
-$background_gradient_end:     #5488cc;
+$background_gradient_start:         #54b9cd;
+$background_gradient_end:           #5488cc;
+
+$form_input_background_color:       #f7f7f7;
+$form_input_padding:                15px;
+$form_input_radius:                 4px;
+$form_input_label_color:            #555;
+$form_input_label_size:             11px;
+$form_input_control_border_size:    4px;
+$form_input_control_border_color:   #d7d7d7;

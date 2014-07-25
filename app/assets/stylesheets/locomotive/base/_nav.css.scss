@@ -1,0 +1,38 @@
+$nav-tabs-link-color: #a6a6a6;
+
+.nav-tabs {
+
+  border-bottom: 2px solid $nav-tabs-border-color;
+
+  > li {
+    margin-bottom: -2px;
+
+    &:first-child a {
+      padding-left: 0px;
+      padding-right: 0px;
+    }
+
+    > a {
+      border: none;
+      border-bottom: 2px solid transparent;
+
+      color: $nav-tabs-link-color;
+      font-size: 12px;
+      text-transform: uppercase;
+
+      &:hover {
+        border-color: $nav-tabs-link-hover-border-color $nav-tabs-link-hover-border-color $nav-tabs-border-color;
+      }
+    }
+
+    &.active > a {
+      &,
+      &:hover,
+      &:focus {
+        border: none;
+        border-bottom: 2px solid $nav-tabs-active-link-hover-border-color;
+      }
+    }
+  }
+
+}

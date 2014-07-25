@@ -24,7 +24,7 @@ module Locomotive
       key   = resource.persisted? ? 'update' : 'create'
       scope = 'locomotive.shared.form_actions'
 
-      content_tag :button, I18n.t(key, scope: scope), class: 'btn btn-primary'
+      content_tag :button, I18n.t(key, scope: scope), class: 'btn btn-success btn-sm'
     end
 
     def inputs_folded?(resource)

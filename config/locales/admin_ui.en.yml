@@ -220,6 +220,7 @@ en:
 
     my_account:
       edit:
+        title: Editing my account
         new_site: new site
         ask_for_name: "Please type your new name"
 

@@ -18,11 +18,11 @@
         .scrollable
           .container-fluid.main{ role: 'main' }
             .row
-              .col-md-8
+              .col-md-8.col-xs-9
                 %h1!= title
 
-              .col-md-4
-                = yield :buttons
+              .col-md-4.col-xs-3.actions
+                = yield :actions
 
             = yield
 

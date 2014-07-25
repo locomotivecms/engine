@@ -381,9 +381,14 @@ $navbar-default-link-hover-color:          #eee !default;
 // $nav-open-link-hover-color:                 #fff !default;
 
 // //== Tabs
+$nav-tabs-border-color:                        #ccc !default;
 // $nav-tabs-border-color:                     #ddd !default;
 
 // $nav-tabs-link-hover-border-color:          $gray-lighter !default;
+
+$nav-tabs-active-link-hover-bg:                transparent !default;
+$nav-tabs-active-link-hover-color:             #595959 !default;
+$nav-tabs-active-link-hover-border-color:      #5199e0 !default;
 
 // $nav-tabs-active-link-hover-bg:             $body-bg !default;
 // $nav-tabs-active-link-hover-color:          $gray !default;
