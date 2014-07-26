@@ -10,8 +10,8 @@ describe Locomotive::GlobalActionsCell do
       reset_cell(main: 'settings', sub: 'site')
     end
 
-    it 'has 3 links' do
-      menu.should have_selector('a', count: 4)
+    it 'has 5 links' do
+      menu.should have_selector('a', count: 5)
     end
 
     it 'has a link to edit my account' do
@@ -35,8 +35,8 @@ describe Locomotive::GlobalActionsCell do
       Locomotive::GlobalActionsCell.update_for(:testing_add) { |m| m.add(:my_link, label: 'My link', url: 'http://www.locomotivecms.com') }
     end
 
-    it 'has 4 items' do
-      menu.should have_selector('a', count: 5)
+    it 'has 6 items' do
+      menu.should have_selector('a', count: 6)
     end
 
     it 'has a new link' do
@@ -52,8 +52,8 @@ describe Locomotive::GlobalActionsCell do
       Locomotive::GlobalActionsCell.update_for(:testing_remove) { |m| m.remove(:see) }
     end
 
-    it 'has 2 items' do
-      menu.should have_selector('a', count: 3)
+    it 'has 4 items' do
+      menu.should have_selector('a', count: 4)
     end
 
     it 'does not have the link to see my website' do
@@ -69,8 +69,8 @@ describe Locomotive::GlobalActionsCell do
       Locomotive::GlobalActionsCell.update_for(:testing_update) { |m| m.modify(:see, { label: 'Modified !' }) }
     end
 
-    it 'still has 3 items' do
-      menu.should have_selector('a', count: 4)
+    it 'still has 5 items' do
+      menu.should have_selector('a', count: 5)
     end
 
     it 'has a modified menu item' do
