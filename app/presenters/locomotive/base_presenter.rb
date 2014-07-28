@@ -24,7 +24,8 @@ class Locomotive::BasePresenter
     @__ability = self.__options[:ability]
 
     begin
-      @__ability = policy(self.__options[:current_account], self.__options[:current_site])
+      @__ability = policy(self.__options[:current_account], self.__options[:current_site], self.__options[:resource])
+
     rescue Pundit::NotAuthorizedError => e
       Rails.logger.warn e.message
       @__ability = nil
@@ -149,12 +150,12 @@ class Locomotive::BasePresenter
 
   private
 
-  def policy user, record
+  def policy user, site, resource
     policy_name = "Locomotive::#{self.class.name.split('::').last.gsub('Presenter','')}Policy"
     begin
-      policy = eval(policy_name).new(user, record)
+      policy = eval(policy_name).new(user, site, resource)
     rescue NameError => e
-      policy = Locomotive::ApplicationPolicy.new(user, record)
+      policy = Locomotive::ApplicationPolicy.new(user, site, resource)
     end
     policy
   end
