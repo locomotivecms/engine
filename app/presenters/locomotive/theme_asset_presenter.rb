@@ -40,8 +40,9 @@ module Locomotive
       I18n.l(self.__source.updated_at, format: :short)
     end
 
+    # TODO always return false
     def can_be_deleted
-      self.__ability.destroy?
+      self.__ability.try(:destroy?)
     end
 
     def plain_text
