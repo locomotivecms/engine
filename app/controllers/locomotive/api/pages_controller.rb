@@ -15,22 +15,22 @@ module Locomotive
       end
 
       def create
+        authorize :page
         @page = Page.new(params[:page])
-        ApplicationPolicy.new(self.current_locomotive_account, self.current_site, :page).create?
         @page.from_presenter(params[:page])
         @page.save
         respond_with @page, location: main_app.locomotive_api_pages_url
       end
 
       def update
-        ApplicationPolicy.new(self.current_locomotive_account, self.current_site, :page).update?
+        authorize :page
         @page.from_presenter(params[:page])
         @page.save
         respond_with @page, location: main_app.locomotive_api_pages_url
       end
 
       def destroy
-        ApplicationPolicy.new(self.current_locomotive_account, self.current_site, :page).destroy?
+        authorize :page
         @page.destroy
         respond_with @page
       end

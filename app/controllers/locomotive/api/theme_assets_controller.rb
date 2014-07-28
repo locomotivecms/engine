@@ -23,14 +23,14 @@ module Locomotive
       end
 
       def update
-        ApplicationPolicy.new(self.current_locomotive_account, self.current_site, :theme_asset).update?
+        authorize :theme_assete
         @theme_asset.from_presenter(params[:theme_asset])
         @theme_asset.save
         respond_with @theme_asset, location: main_app.locomotive_api_theme_assets_url
       end
 
       def destroy
-        ApplicationPolicy.new(self.current_locomotive_account, self.current_site, :theme_asset).destroy?
+        authorize :theme_asset
         @theme_asset.destroy
         respond_with @theme_asset
       end

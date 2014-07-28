@@ -15,8 +15,8 @@ module Locomotive
       end
 
       def create
+        authorize :content_type
         @content_type = ContentType.new
-        ApplicationPolicy.new(self.current_locomotive_account, self.current_site, :content_type).create?
         @content_type.from_presenter(params[:content_type])
         @content_type.site = current_site
         @content_type.save
@@ -24,14 +24,14 @@ module Locomotive
       end
 
       def update
-        ApplicationPolicy.new(self.current_locomotive_account, self.current_site, :content_type).update?
+        authorize :content_type
         @content_type.from_presenter(params[:content_type])
         @content_type.save
         respond_with @content_type, location: main_app.locomotive_api_content_types_url
       end
 
       def destroy
-        ApplicationPolicy.new(self.current_locomotive_account, self.current_site, :content_type).destroy?
+        authorize :content_type
         @content_type.destroy
         respond_with @content_type
       end

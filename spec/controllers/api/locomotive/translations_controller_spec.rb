@@ -7,7 +7,7 @@ module Locomotive
       let(:site)     { create(:site, domains: %w{www.acme.com}) }
       let(:account)  { create(:account) }
       let!(:membership) do
-        create(:membership, account: account, site: site, role: 'designer')
+        create(:membership, account: account, site: site, role: 'admin')
       end
       let!(:translation) { create(:translation, site: site) }
 
@@ -16,10 +16,10 @@ module Locomotive
         sign_in account
       end
 
-      after do
-        Thread.current[:site] = nil
-        Thread.current[:account] = nil
-      end
+      # after do
+      #   Thread.current[:site] = nil
+      #   Thread.current[:account] = nil
+      # end
 
       describe "..." do
         specify do
@@ -29,13 +29,13 @@ module Locomotive
 
       describe "..." do
         specify do
-          expect(account.to_role).to eq :guest
+          expect(account.to_role).to eq :admin
         end
       end
 
       describe "..." do
         specify do
-          expect(membership.to_role).to eq :designer
+          expect(membership.to_role).to eq :admin
         end
       end
 

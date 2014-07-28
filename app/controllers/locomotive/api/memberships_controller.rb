@@ -14,22 +14,22 @@ module Locomotive
       end
 
       def create
+        authorize :membership
         @membership = Locomotive::Membership.new(params[:membership])
-        ApplicationPolicy.new(self.current_locomotive_account, self.current_site, :membership).create?
         @membership.from_presenter(params[:membership].merge(role: 'author')) # force author by default
         @membership.save
         respond_with(@membership)
       end
 
       def update
-        ApplicationPolicy.new(self.current_locomotive_account, self.current_site, :membership).update?
+        authorize :membership
         @membership.from_presenter(params[:membership])
         @membership.save
         respond_with(@membership)
       end
 
       def destroy
-        ApplicationPolicy.new(self.current_locomotive_account, self.current_site, :membership).destroy?
+        authorize :membership
         @membership.destroy
         respond_with(@membership)
       end

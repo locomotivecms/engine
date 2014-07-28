@@ -9,14 +9,14 @@ module Locomotive
       end
 
       def update
-        ApplicationPolicy.new(self.current_locomotive_account, self.current_site, :site).update?
+        authorize :content_asset
         @site.from_presenter(params[:site])
         @site.save
       	respond_with(@site)
       end
 
       def destroy
-        ApplicationPolicy.new(self.current_locomotive_account, self.current_site, :site).destroy?
+        authorize :content_asset
         @site.destroy
         respond_with(@site)
       end

@@ -15,7 +15,7 @@ module Locomotive
       end
 
       def show
-        ApplicationPolicy.new(self.current_locomotive_account, self.current_site, :account).show?
+        authorize :account
         respond_with(@account)
       end
 
@@ -27,14 +27,14 @@ module Locomotive
       end
 
       def update
-        ApplicationPolicy.new(self.current_locomotive_account, self.current_site, :account).update?
+        authorize :account
         @account.from_presenter(params[:account])
         @account.save
         respond_with(@account)
       end
 
       def destroy
-        ApplicationPolicy.new(self.current_locomotive_account, self.current_site, :account).destroy?
+        authorize :account
         @account.destroy
         respond_with(@account)
       end

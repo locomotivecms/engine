@@ -16,8 +16,8 @@ module Locomotive
       end
 
       def create
+        authorize :site
         @site = Site.new
-        ApplicationPolicy.new(self.current_locomotive_account, self.current_site, :site).create?
         @site.from_presenter(params[:site])
         @site.memberships.build account: self.current_locomotive_account, role: 'admin'
         @site.save
@@ -25,14 +25,14 @@ module Locomotive
       end
 
       def update
-        ApplicationPolicy.new(self.current_locomotive_account, self.current_site, :site).update?
+        authorize :site
         @site.from_presenter(params[:site])
         @site.save
         respond_with @site
       end
 
       def destroy
-        ApplicationPolicy.new(self.current_locomotive_account, self.current_site, :site).destroy?
+        authorize :site
         @site.destroy
         respond_with(@site)
       end

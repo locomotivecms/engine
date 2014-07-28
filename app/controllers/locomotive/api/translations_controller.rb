@@ -10,12 +10,11 @@ module Locomotive
       end
 
       def show
-        ApplicationPolicy.new(self.current_locomotive_account, self.current_site, :translation).show?
         respond_with @translation
       end
 
       def create
-        ApplicationPolicy.new(self.current_locomotive_account, self.current_site, :translation).create?
+        authorize :translation
         @translation = Locomotive::Translation.new(params[:translation])
         @translation.from_presenter(params[:translation])
         @translation.save
@@ -23,13 +22,13 @@ module Locomotive
       end
 
       def update
-        ApplicationPolicy.new(self.current_locomotive_account, self.current_site, :translation).update?
+        authorize :translation
         @translation.update_attributes(params[:translation])
         respond_with @translation, location: main_app.locomotive_api_translation_path(@translation)
       end
 
       def destroy
-        ApplicationPolicy.new(self.current_locomotive_account, self.current_site, :translation).destroy?
+        authorize :translation
         @translation.destroy
         respond_with @translation
       end

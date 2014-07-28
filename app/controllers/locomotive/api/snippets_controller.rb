@@ -2,8 +2,8 @@ module Locomotive
   module Api
     class SnippetsController < BaseController
 
-      before_filter :load_snippets, only: [:index]
       before_filter :load_snippet,  only: [:show, :update, :destroy]
+      before_filter :load_snippets, only: [:index]
 
       def index
         @snippets = @snippets.order_by(:name.asc)
@@ -15,8 +15,8 @@ module Locomotive
       end
 
       def create
+        authorize :snippet
         @snippet = Snippet.new(params[:snippet])
-        ApplicationPolicy.new(self.current_locomotive_account, self.current_site, :snippet).create?
         @snippet.from_presenter(params[:snippet])
         @snippet.site = current_site
         @snippet.save
@@ -24,14 +24,14 @@ module Locomotive
       end
 
       def update
-        ApplicationPolicy.new(self.current_locomotive_account, self.current_site, :snippet).update?
+        authorize :snippet
         @snippet.from_presenter(params[:snippet])
         @snippet.save
         respond_with @snippet, location: main_app.locomotive_api_snippets_url
       end
 
       def destroy
-        ApplicationPolicy.new(self.current_locomotive_account, self.current_site, :snippet).destroy?
+        authorize :snippet
         @snippet.destroy
         respond_with @snippet
       end
@@ -86,12 +86,12 @@ module Locomotive
 
       private
 
-      def load_snippets
-        @snippets = current_site.snippets
-      end
-
       def load_snippet
         @snippet = current_site.snippets.find params[:id]
+      end
+
+      def load_snippets
+        @snippets = current_site.snippets
       end
 
     end
