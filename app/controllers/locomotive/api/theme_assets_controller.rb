@@ -14,7 +14,7 @@ module Locomotive
       end
 
       def create
-        ApplicationPolicy.new(self.current_locomotive_account, self.current_site, :theme_asset).create?
+        authorize :theme_asset
         @theme_asset = ThemeAsset.new(params[:theme_asset])
         @theme_asset.from_presenter(params[:theme_asset])
         @theme_asset.site = current_site
