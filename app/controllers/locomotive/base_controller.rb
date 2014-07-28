@@ -23,8 +23,6 @@ module Locomotive
 
     before_filter :validate_site_membership
 
-    # load_and_authorize_resource
-
     around_filter :set_timezone
 
     before_filter :set_current_thread_variables
