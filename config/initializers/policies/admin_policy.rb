@@ -4,10 +4,6 @@ Locomotive::Wallet.generate_policy_for do
       right(:touch)  { |u, r, m| true }
       right(:create) { |u, r, m| true }
     end
-    policy :post do
-      right(:touch)  { |u, r, m| true }
-      right(:create) { |u, r, m| true }
-    end
     policy :content_asset do |user, resource|
       right(:touch)  { |u, r, m| true }
       right(:create) { |u, r, m| true }
