@@ -16,7 +16,7 @@ module Locomotive
 
       def create
         authorize :content_entry
-        @content_entry = Locomotive::ContentEntry.new(params[:content_entry])
+        @content_entry = get_content_type.entries.new
         @content_entry.from_presenter(params[:content_entry] || params[:entry])
         @content_entry.save
         respond_with @content_entry, location: main_app.locomotive_api_content_entries_url(@content_type.slug)
