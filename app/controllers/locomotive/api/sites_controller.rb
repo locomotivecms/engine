@@ -5,7 +5,7 @@ module Locomotive
       skip_before_filter :require_site, :set_current_thread_variables
 
       before_filter :load_site, only: [:show, :update, :destroy]
-      before_filter :load_pages, only: [:index]
+      before_filter :load_sites, only: [:index]
 
       def index
         respond_with(@sites)
