@@ -6,6 +6,7 @@ class Locomotive::BasePresenter
   extend  ActionView::Helpers::SanitizeHelper::ClassMethods
   include ActionView::Helpers::TextHelper
   include ActionView::Helpers::NumberHelper
+  include ::Pundit
 
   ## default properties ##
   with_options allow_nil: true do |presenter|
