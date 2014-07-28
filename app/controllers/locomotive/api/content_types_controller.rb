@@ -6,7 +6,6 @@ module Locomotive
       before_filter :load_content_types, only: [:index]
 
       def index
-        binding.pry
         @content_types = @content_types.order_by(:name.asc)
         respond_with(@content_types)
       end
@@ -92,7 +91,6 @@ module Locomotive
       end
 
       def load_content_types
-        binding.pry
         @content_types = current_site.content_types
       end
 
