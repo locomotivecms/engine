@@ -9,11 +9,7 @@ module Locomotive
 
     before_filter :set_content_type
 
-    # skip_load_and_authorize_resource
-
-    before_filter :authorize_content
-
-    respond_to :json, only: [:index, :show, :edit, :create, :update, :sort]
+    respond_to :json, only: [:index, :show, :edit, :create, :update, :sort, :destroy]
 
     respond_to :csv,  only: [:export]
 
@@ -48,6 +44,7 @@ module Locomotive
     end
 
     def create
+      authorize :content_entry
       @content_entry = @content_type.entries.create(params[:content_entry])
       respond_with @content_entry, location: edit_content_entry_path(@content_type.slug, @content_entry._id)
     end
@@ -58,6 +55,7 @@ module Locomotive
     end
 
     def update
+      authorize :content_entry
       @content_entry = @content_type.entries.find(params[:id])
       @content_entry.update_attributes(params[:content_entry])
       respond_with @content_entry, location: edit_content_entry_path(@content_type.slug, @content_entry._id)
@@ -69,6 +67,7 @@ module Locomotive
     end
 
     def destroy
+      authorize :content_entry
       @content_entry = @content_type.entries.find(params[:id])
       @content_entry.destroy
       respond_with @content_entry, location: content_entries_path(@content_type.slug)
@@ -78,10 +77,6 @@ module Locomotive
 
     def set_content_type
       @content_type ||= current_site.content_types.where(slug: params[:slug]).first
-    end
-
-    def authorize_content
-      authorize! params[:action].to_sym, ContentEntry
     end
 
   end
