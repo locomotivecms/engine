@@ -41,7 +41,7 @@ module Locomotive
       end
 
       def load_translations
-        @translations = self.current_locomotive_account.to_scope(:translation, self.current_site)
+        @translations = self.current_site.translations
       end
 
     end
