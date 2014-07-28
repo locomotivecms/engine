@@ -16,6 +16,11 @@ module Locomotive
         sign_in account
       end
 
+      after do
+        Thread.current[:site] = nil
+        Thread.current[:account] = nil
+      end
+
       describe "..." do
         specify do
           expect(account.sites).to include site
