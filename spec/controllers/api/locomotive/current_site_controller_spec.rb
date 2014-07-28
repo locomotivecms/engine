@@ -28,7 +28,6 @@ module Locomotive
         subject do
           delete :destroy, id: site.id, locale: :en, format: :json
         end
-        # it { subject ; # binding.pry }
         it { should be_success }
         specify do
           expect { subject }.to change(Locomotive::Site, :count).by(-1)
