@@ -34,7 +34,7 @@ module Locomotive
       end
 
       def current_ability
-        @current_ability ||= Locomotive::ApplicationPolicy.new(current_locomotive_account, current_site)
+        raise Exception.new('No longer use Base Controller current_ability')
       end
 
       def require_account
