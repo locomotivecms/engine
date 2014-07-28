@@ -160,6 +160,7 @@ FactoryGirl.define do
 
   ## Content types ##
   factory :content_type, class: Locomotive::ContentType do
+    sequence(:slug) { |n| "slug_of_content_type_#{n*rand(10_000)}" }
     name 'My project'
     description 'The list of my projects'
     site { Locomotive::Site.where(subdomain: 'acme').first || FactoryGirl.create(:site) }
