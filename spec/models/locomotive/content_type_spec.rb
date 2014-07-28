@@ -34,7 +34,8 @@ describe Locomotive::ContentType do
       content_type = FactoryGirl.build(:content_type)
       content_type.entries_custom_fields.build label: 'anything', type: 'string'
       content_type.save
-      (content_type = FactoryGirl.build(:content_type, site: content_type.site)).should_not be_valid
+      (content_type = FactoryGirl.build(:content_type, site: content_type.site,
+        slug: content_type.slug)).should_not be_valid
       content_type.errors[:slug].should == ["is already taken"]
     end
 
@@ -56,7 +57,7 @@ describe Locomotive::ContentType do
     it 'sets a slug from the name before the validation' do
       content_type = FactoryGirl.build(:content_type, name: 'my content Type')
       content_type.valid?
-      content_type.slug.should == 'my_content_type'
+      content_type.slug.should match /slug_of_content_type_/
     end
 
     it 'make sure the slug is correctly set before the validation' do
