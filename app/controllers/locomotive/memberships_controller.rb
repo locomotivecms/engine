@@ -4,6 +4,7 @@ module Locomotive
     sections 'settings'
 
     def create
+      authorize :membership
       @membership = current_site.memberships.build(params[:membership])
       @membership.role = 'author' # force author by default
 
@@ -15,11 +16,13 @@ module Locomotive
       when :error
         respond_with @membership, flash: true
       when :already_created
-        respond_with @membership, alert: t('flash.locomotive.memberships.create.already_created'), location: edit_current_site_path
+        respond_with @membership, alert: t('flash.locomotive.memberships.create.already_created'),
+          location: edit_current_site_path
       end
     end
 
     def destroy
+      authorize :membership
       @membership = current_site.memberships.find(params[:id])
       @membership.destroy
       respond_with @membership, location: edit_current_site_path
