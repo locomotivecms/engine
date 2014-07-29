@@ -3,13 +3,13 @@ module Locomotive
     class AccountsController < Api::BaseController
 
       before_filter :load_account, only: [:show, :update, :destroy]
+      before_filter :load_accounts, only: [:index]
 
       skip_before_filter :verify_authenticity_token, only: [:create]
       skip_before_filter :require_account, only: [:create]
       skip_before_filter :require_site, only: [:create]
 
       def index
-        @accounts = self.current_locomotive_account.to_scope(:account, self.current_site)
         @accounts = @accounts.try(:ordered)
         respond_with(@accounts)
       end
@@ -83,6 +83,10 @@ module Locomotive
 
       def load_account
         @account = Locomotive::Account.find params[:id]
+      end
+
+      def load_accounts
+        @accounts = self.current_locomotive_account.to_scope(current_site, :account)
       end
 
     end

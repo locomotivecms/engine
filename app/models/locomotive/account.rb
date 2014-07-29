@@ -124,7 +124,7 @@ module Locomotive
       Locomotive::DeviseMailer
     end
 
-    def to_scope(resource, site)
+    def to_scope(site, resource)
       ApplicationPolicy::Scope.new(self, site, resource).resolve
     end
 

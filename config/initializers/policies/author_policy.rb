@@ -24,37 +24,11 @@ Locomotive::Wallet.generate_policy_for do
       right(:touch)  { |u, r, m| true }
       right(:create) { |u, r, m| true }
     end
-
-    scope :content_asset do |user, site, membership|
-      site.content_assets
+    scope :account do |user, site, membership|
+      []
     end
-    scope :page do |user, site, membership|
-      if user.sites.include?(site)
-        site.pages
-      else
-        []
-      end
-    end
-    scope :snippet do |user, site, membership|
-      if user.sites.include?(site)
-        site.snippets
-      else
-        []
-      end
-    end
-    scope :theme_asset do |user, site, membership|
-      if user.sites.include?(site)
-        site.theme_assets
-      else
-        []
-      end
-    end
-    scope :translation do |user, site, membership|
-      if user.sites.include?(site)
-        site.translations
-      else
-        []
-      end
+    scope :site do |user, site, membership|
+      [site]
     end
   end
 end
