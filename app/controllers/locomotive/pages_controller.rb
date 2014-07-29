@@ -7,7 +7,7 @@ module Locomotive
 
     before_filter :back_to_default_site_locale, only: %w(new create)
 
-    respond_to    :json, only: [:show, :create, :update, :sort, :get_path]
+    respond_to :json, only: [:show, :create, :update, :sort, :get_path]
 
     def index
       @pages = current_site.all_pages_in_once
@@ -25,6 +25,7 @@ module Locomotive
     end
 
     def create
+      authorize :page
       @page = current_site.pages.create(params[:page])
       respond_with @page, location: edit_page_path(@page._id)
     end
@@ -35,18 +36,21 @@ module Locomotive
     end
 
     def update
+      authorize :page
       @page = current_site.pages.find(params[:id])
       @page.update_attributes(params[:page])
       respond_with @page, location: edit_page_path(@page._id)
     end
 
     def destroy
+      authorize :page
       @page = current_site.pages.find(params[:id])
       @page.destroy
       respond_with @page
     end
 
     def sort
+      authorize :page, :touch?
       @page = current_site.pages.find(params[:id])
       @page.sort_children!(params[:children])
       respond_with @page
