@@ -5,7 +5,6 @@ module Locomotive
 
     localized
 
-    # skip_load_and_authorize_resource
     before_filter :load_site
 
     helper 'Locomotive::Sites'
@@ -17,22 +16,23 @@ module Locomotive
     respond_to :json, only: :update
 
     def edit
-      @site = current_site
+      authorize :site
       respond_with @site
     end
 
     def update
-      @site = current_site
+      authorize :site
       @site.update_attributes(params[:site])
       respond_with @site, location: edit_current_site_path(new_host_if_subdomain_changed)
     end
 
     protected
 
+    # TODO Replace by Strong parameter
     def filter_attributes
-      unless can?(:manage, Locomotive::Membership)
-        params[:site].delete(:memberships_attributes) if params[:site]
-      end
+      # unless can?(:manage, Locomotive::Membership)
+      #   params[:site].delete(:memberships_attributes) if params[:site]
+      # end
     end
 
     def new_host_if_subdomain_changed
@@ -45,6 +45,12 @@ module Locomotive
 
     def ensure_domains_list
       params[:site][:domains] = [] unless params[:site][:domains]
+    end
+
+    private
+
+    def load_site
+      @site = current_site
     end
 
   end
