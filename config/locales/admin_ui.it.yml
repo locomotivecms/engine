@@ -46,6 +46,7 @@ it:
         account: Mio account
         site: Sito
         theme_assets: Files del tema
+        translations: Traduzioni
       footer:
         who_is_behind: "Servizio sviluppato da %{development} e desig di <a href=\"http://www.sachagreif.com\">Sacha Greif</a>"
       form_actions:
