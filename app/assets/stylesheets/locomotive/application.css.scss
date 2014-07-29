@@ -1,4 +1,6 @@
 //= require font-awesome
+//= require select2
+//= require select2-bootstrap
 
 @import "./globals/bootstrap";
 @import "bootstrap";
@@ -7,6 +9,7 @@
 
 @import "layouts/main";
 
+@import "components/vendor/select2";
 @import "components/transitions";
 @import "components/header";
 @import "components/sidebar";

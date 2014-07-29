@@ -12,7 +12,7 @@
 //= require backbone
 //= require codemirror
 //= require tinymce-jquery
-//= require select2/select2
+//= require select2
 //= require codemirror/addons/mode/overlay
 //= require codemirror/modes/css
 //= require codemirror/modes/javascript

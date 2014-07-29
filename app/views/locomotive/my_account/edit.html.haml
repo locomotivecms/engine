@@ -19,7 +19,7 @@
     #main.tab-pane.active
       = f.inputs name: :information do
         = f.input :name
-        = f.input :locale, as: :select, collection: options_for_locale, include_blank: false
+        = f.input :locale, as: :select, collection: options_for_locale, include_blank: false, wrapper_html: { class: 'select2' }
 
     #credentials.tab-pane
       = f.inputs name: :credentials do

@@ -4,19 +4,25 @@ Locomotive.Views.MyAccount ||= {}
 
 class Locomotive.Views.MyAccount.EditView extends Locomotive.Views.Shared.FormView
 
-  el: '#content'
+  el: '.main'
 
   events:
     'click .api_key.input button': 'regenerate_api_key'
-    'submit': 'save'
+    # 'submit': 'save'
 
   initialize: ->
-    @model = new Locomotive.Models.CurrentAccount(@options.account)
+    # @model = new Locomotive.Models.CurrentAccount(@options.account)
 
-    Backbone.ModelBinding.bind @
+    # Backbone.ModelBinding.bind @
 
   render: ->
-    super()
+    @$('#account_locale_input select').select2
+      formatResult:     @format_locale
+      formatSelection:  @format_locale
+      width:            -> { '923px' }
+      escapeMarkup:     (m) -> { m }
+
+    # super()
 
   save: (event) ->
     if @model.get('locale') == window.locale
@@ -34,5 +40,12 @@ class Locomotive.Views.MyAccount.EditView extends Locomotive.Views.Shared.FormVi
         dataType:   'json'
         success:    (data) =>
           button.prev('code').html(data.api_key)
+
+  format_locale: (state) ->
+    return state.text unless state.id?
+
+    flag_url = $(state.element).data('flag')
+
+    "<img class='flag' src='#{flag_url}' width='24px' />" + state.text
 
 

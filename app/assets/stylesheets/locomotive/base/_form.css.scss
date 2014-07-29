@@ -37,6 +37,10 @@
           @include border-radius(0px);
         }
       }
+
+      &.select2 .form-wrapper {
+        border: none;
+      }
     }
 
     .has-error {

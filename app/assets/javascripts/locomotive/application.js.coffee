@@ -8,5 +8,6 @@ window.Locomotive =
   Models:       {}
   Collections:  {}
   Views:        {}
+  Flags:        {}
 
 window.Locomotive.Views.Memberships = {}
