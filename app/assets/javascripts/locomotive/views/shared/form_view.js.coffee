@@ -2,21 +2,21 @@ Locomotive.Views.Shared ||= {}
 
 class Locomotive.Views.Shared.FormView extends Backbone.View
 
-  el: '#content'
+  el: '.main'
 
   namespace: null
 
   render: ->
     # make title editable (if possible)
-    @make_title_editable()
+    # @make_title_editable()
 
-    @_hide_last_separator()
+    # @_hide_last_separator()
 
     # make inputs foldable (if specified)
-    @make_inputs_foldable()
+    # @make_inputs_foldable()
 
-    # allow users to save with CTRL+S or CMD+s
-    @enable_save_with_keys_combination()
+    # TODO: allow users to save with CTRL+S or CMD+s
+    # @enable_save_with_keys_combination()
 
     # enable form notifications
     @enable_form_notifications()

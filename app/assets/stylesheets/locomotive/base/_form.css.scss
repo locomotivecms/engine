@@ -1,52 +1,5 @@
 @import "../globals/all";
 
-.formtastic {
-
-  fieldset {
-    padding-top: 20px;
-
-    legend {
-      display: none;
-    }
-
-    > .input {
-      background: $form_input_background_color;
-      padding: $form_input_padding;
-      @include border-radius($form_input_radius);
-
-      .control-label {
-        display: block;
-        font-size: $form_input_label_size;
-        font-weight: bold;
-        text-transform: uppercase;
-        color: $form_input_label_color;
-
-        abbr {
-          margin-left: 5px;
-        }
-      }
-
-      .form-wrapper {
-        margin-top: 12px;
-        display: block;
-        border: $form_input_control_border_size solid $form_input_control_border_color;
-        @include border-radius($form_input_control_border_size);
-
-        > input, > select {
-          border: none;
-          @include border-radius(0px);
-        }
-      }
-
-      &.select2 .form-wrapper {
-        border: none;
-      }
-    }
-
-    .has-error {
-      @include form-control-validation($text-color, $input-border, $state-danger-bg);
-    }
-  }
-}
-
-
+@import "./form/base";
+@import "./form/select2";
+@import "./form/api_key";

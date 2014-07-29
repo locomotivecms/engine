@@ -1,5 +1,13 @@
-$select2-vertical-padding:        10px;
+$select2-vertical-padding:        9px;
 $select2-horizontal-padding:      5px;
+
+.formtastic {
+
+  fieldset .input.select2 .form-wrapper {
+    border: none;
+  }
+
+}
 
 .form-control.select2-container {
 

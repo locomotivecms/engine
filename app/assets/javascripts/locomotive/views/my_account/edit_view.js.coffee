@@ -8,25 +8,19 @@ class Locomotive.Views.MyAccount.EditView extends Locomotive.Views.Shared.FormVi
 
   events:
     'click .api_key.input button': 'regenerate_api_key'
-    # 'submit': 'save'
 
   initialize: ->
-    # @model = new Locomotive.Models.CurrentAccount(@options.account)
-
-    # Backbone.ModelBinding.bind @
 
   render: ->
+    @render_locale_picker()
+
+    super()
+
+  render_locale_picker: ->
     @$('#account_locale_input select').select2
       formatResult:     @format_locale
       formatSelection:  @format_locale
-      width:            -> { '923px' }
       escapeMarkup:     (m) -> { m }
-
-    # super()
-
-  save: (event) ->
-    if @model.get('locale') == window.locale
-      @save_in_ajax(event)
 
   regenerate_api_key: (event) ->
     event.stopPropagation() & event.preventDefault()
