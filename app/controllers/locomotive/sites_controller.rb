@@ -11,6 +11,7 @@ module Locomotive
     end
 
     def create
+      authorize :site
       @site = Site.new(params[:site])
       @site.memberships.build account: self.current_locomotive_account, role: 'admin'
       @site.save
@@ -18,6 +19,7 @@ module Locomotive
     end
 
     def destroy
+      authorize :site
       @site = self.current_locomotive_account.sites.find(params[:id])
 
       if @site != current_site
