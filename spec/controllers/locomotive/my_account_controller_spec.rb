@@ -1,0 +1,44 @@
+require 'spec_helper'
+
+describe Locomotive::MyAccountController do
+  routes { Locomotive::Engine.routes }
+
+  let(:site)     { create(:site, domains: %w{www.acme.com}) }
+  let(:account)  { create(:account) }
+  let!(:membership) do
+    create(:membership, account: account, site: site, role: 'admin')
+  end
+
+  before do
+    Locomotive.config.stubs(:multi_sites?).returns(false)
+    sign_in account
+  end
+
+  describe "#GET edit" do
+    subject { get :edit, id: account.id, locale: :en }
+    it { should be_success }
+    specify do
+      subject
+      expect(assigns(:account)).to be_present
+    end
+  end
+
+  describe "#PUT update" do
+    let(:name) { generate(:name) }
+    subject do
+      put :update, id: account.id, locale: :en, account: { name: name }, format: :json
+    end
+    it { should be_success }
+    specify do
+      subject
+      expect(assigns(:account).name).to eq(name)
+    end
+  end
+
+  describe "#PUT regenerate_api_key" do
+    subject do
+      put :regenerate_api_key, format: :json
+    end
+    it { should be_success }
+  end
+end
