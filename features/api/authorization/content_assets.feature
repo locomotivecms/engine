@@ -1,6 +1,6 @@
 Feature: Content Assets
   In order to ensure content assets are not tampered with
-  As an admin, designer or author
+  As an admin, designer, author or consumer
   I will be restricted based on my role
 
   Background:
@@ -36,6 +36,12 @@ Feature: Content Assets
     Then the JSON response should be an array
     And the JSON response should have 2 entries
 
+  Scenario: Accessing content assets as a Consumer
+    Given I have a "consumer" API token
+    When I do an API GET request to content_assets.json
+    Then the JSON response should be an array
+    And the JSON response should have 2 entries
+
   # showing content asset
 
   Scenario: Accessing content asset as an Admin
@@ -50,6 +56,11 @@ Feature: Content Assets
 
   Scenario: Accessing content asset as an Author
     Given I have an "author" API token
+    When I do an API GET request to content_assets/4f832c2cb0d86d3f42fffffe.json
+    Then the JSON response at "filename" should be "5k.png"
+
+  Scenario: Accessing content asset as a Consumer
+    Given I have a "consumer" API token
     When I do an API GET request to content_assets/4f832c2cb0d86d3f42fffffe.json
     Then the JSON response at "filename" should be "5k.png"
 
@@ -90,6 +101,15 @@ Feature: Content Assets
     Then the JSON response should be an array
     And the JSON response should have 3 entries
     And the JSON at "2/filename" should be "application.js"
+    
+  Scenario: Creating new content asset as a Consumer
+    Given I have an "consumer" API token
+    When I do an API GET request to content_assets.json
+    Then the JSON response should be an array
+    And the JSON response should have 2 entries
+    When I do a multipart API POST to content_assets.json with base key "content_asset" and:
+      | source  | assets/application.js     |
+    Then an access denied error should occur
 
   # update content asset
 
@@ -113,6 +133,12 @@ Feature: Content Assets
       | source  | assets/main.css   |
     When I do an API GET request to content_assets/4f832c2cb0d86d3f42fffffe.json
     Then the JSON response at "filename" should be "main.css"
+
+  Scenario: Updating content asset as a Consumer
+    Given I have a "consumer" API token
+    When I do a multipart API PUT to content_assets/4f832c2cb0d86d3f42fffffe.json with base key "content_asset" and:
+      | source  | assets/main.css   |
+    Then an access denied error should occur
 
   # destroy content asset
 
@@ -145,3 +171,11 @@ Feature: Content Assets
     When I do an API GET request to content_assets.json
     Then the JSON response should be an array
     And the JSON response should have 1 entry
+
+  Scenario: Deleting content asset as a Consumer
+    Given I have a "consumer" API token
+    When I do an API GET request to content_assets.json
+    Then the JSON response should be an array
+    And the JSON response should have 2 entries
+    When I do an API DELETE to content_assets/4f832c2cb0d86d3f42fffffe.json
+    Then an access denied error should occur

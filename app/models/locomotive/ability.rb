@@ -2,7 +2,7 @@ module Locomotive
   class Ability
     include CanCan::Ability
 
-    ROLES = %w(admin designer author)
+    ROLES = %w(admin designer author consumer)
 
     def initialize(account, site)
       @account, @site = account, site
@@ -25,6 +25,8 @@ module Locomotive
         setup_designer_permissions! if @membership.designer?
 
         setup_author_permissions!  if @membership.author?
+        
+        setup_consumer_permissions! if @membership.consumer?
       end
     end
 
@@ -81,6 +83,12 @@ module Locomotive
         @membership.account_id == membership.account_id || # can not edit myself
         membership.admin? # can not modify an administrator
       end
+    end
+    
+    def setup_consumer_permissions!
+      can :read, [Page, ContentEntry, ContentType, ContentAsset, Translation]
+      
+      can :read, Site, _id: @site._id
     end
 
     def setup_admin_permissions!

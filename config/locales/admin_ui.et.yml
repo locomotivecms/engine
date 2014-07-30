@@ -184,6 +184,7 @@ et:
         admin: Administraator
         designer: Disainer
         author: Autor
+        consumer: Tarbija
       new:
         title: Uus liige
         help: "Palun anna kontole email, mida lisada. Kui seda ei eksisteeri siis suunatakse sind konto loomise vormile."

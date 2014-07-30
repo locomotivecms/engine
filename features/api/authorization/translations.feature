@@ -1,6 +1,6 @@
 Feature: Translations
   In order to ensure translations are not tampered with
-  As an admin, designer or author
+  As an admin, designer, author or consumer
   I will be restricted based on my role
 
   Background:
@@ -33,6 +33,12 @@ Feature: Translations
     Then the JSON response should be an array
     And the JSON response should have 1 entry
 
+  Scenario: Accessing translations as a Consumer
+    Given I have a "consumer" API token
+    When I do an API GET request to translations.json
+    Then the JSON response should be an array
+    And the JSON response should have 1 entry
+
   Scenario: Accessing translations as an Admin
     Given I have an "admin" API token
     When I do an API GET request to translations/4f832c2cb0d86d3f42fffffe.json
@@ -57,6 +63,17 @@ Feature: Translations
 
   Scenario: Accessing translation as an Author
     Given I have an "author" API token
+    When I do an API GET request to translations/4f832c2cb0d86d3f42fffffe.json
+    Then the JSON response at "values" should be:
+      """
+        {
+          "en": "The cake is a lie",
+          "es": "La tarta es mentira"
+        }
+      """
+
+  Scenario: Accessing translation as a Consumer
+    Given I have a "consumer" API token
     When I do an API GET request to translations/4f832c2cb0d86d3f42fffffe.json
     Then the JSON response at "values" should be:
       """
@@ -155,6 +172,24 @@ Feature: Translations
           }
         }
       """
+
+  Scenario: Creating new translation as a Consumer
+    Given I have a "consumer" API token
+    When I do an API POST to translations.json with:
+    """
+    {
+      "translation": {
+        "key": "hello_world",
+        "values": {
+          "en": "Hello, World",
+          "es": "Hola, Mundo",
+          "fr": "Bonjour, le Monde"
+        }
+      }
+    }
+    """
+    Then an access denied error should occur
+
   # update translation
 
   Scenario: Updating translation as an Admin
@@ -229,6 +264,21 @@ Feature: Translations
         }
       """
 
+  Scenario: Updating translation as a Consumer
+    Given I have a "consumer" API token
+    When I do an API PUT to translations/4f832c2cb0d86d3f42fffffe.json with:
+    """
+    {
+      "translation": {
+        "key": "the_cake_is_true",
+        "values": {
+          "en": "The cake is true"
+        }
+      }
+    }
+    """
+    Then an access denied error should occur
+
   # destroy translation
 
   Scenario: Destroying translation as an Admin
@@ -251,3 +301,8 @@ Feature: Translations
     When I do an API GET request to translations.json
     Then the JSON response should be an array
     And the JSON response should have 0 entries
+
+  Scenario: Deleting translation as a Consumer
+    Given I have a "consumer" API token
+    When I do an API DELETE to translations/4f832c2cb0d86d3f42fffffe.json
+    Then an access denied error should occur

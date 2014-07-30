@@ -1,6 +1,6 @@
 Feature: Site Settings
   In order to ensure site settings are not tampered with
-  As an admin, designer or author
+  As an admin, designer, author or consumer
   I will be restricted based on my role
 
 Background:
@@ -43,6 +43,18 @@ Background:
   @javascript
   Scenario: Accessing site settings as an Author
     Given I am an authenticated "author"
+    When I go to site settings
+    Then I should not see "add account"
+    And I should see "SEO settings"
+    And I should not see "Access points"
+    And I should not see "Accounts"
+    # Paranoid Checks
+    And I should not see any role dropdowns
+    And I should not see any delete buttons
+
+  @javascript
+  Scenario: Accessing site settings as a Consumer
+    Given I am an authenticated "consumer"
     When I go to site settings
     Then I should not see "add account"
     And I should see "SEO settings"

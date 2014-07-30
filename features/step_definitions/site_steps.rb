@@ -24,10 +24,11 @@ Given /^I have a site set up$/ do
   step %{I have the site: "test site" set up}
 end
 
-Given /^I have a designer and an author$/ do
+Given /^I have a designer, author and a consumer$/ do
   site = Locomotive::Site.first
   FactoryGirl.create(:designer, site: site)
   FactoryGirl.create(:author, site: site)
+  FactoryGirl.create(:consumer, site: site)
 end
 
 Given /^the site "(.*?)" has locales "(.*?)"$/ do |name, locales|

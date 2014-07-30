@@ -198,6 +198,7 @@ sk:
         admin: Administrátor
         designer: Designer
         author: Autor
+        consumer: Spotrebiteľ
       new:
         title: Nový účet
         help: "Vyplňte prosím email nového účtu. Pokiaľ neexistuje, presmerujeme vás na stránku k vytvoreniu účtu."

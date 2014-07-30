@@ -1,6 +1,6 @@
 Feature: Pages
   In order to ensure pages are not tampered with
-  As an admin, designer or author
+  As an admin, designer, author or consumer
   I will be restricted based on my role
 
   Background:
@@ -46,6 +46,14 @@ Feature: Pages
     And I should not see "new model"
     And I should see "Projects"
 
+  Scenario: Accessing pages as an Consumer
+    Given I am an authenticated "consumer"
+    When I go to pages
+    Then I should not see "new page"
+    And I should not see delete page buttons
+    And I should not see "new model"
+    And I should see "Projects"
+
   # new page
 
   Scenario: Accessing new page as an Admin
@@ -62,6 +70,12 @@ Feature: Pages
     Given I am an authenticated "author"
     When I go to the new page
     Then I should see "New page"
+    And I should not see "Template"
+
+  Scenario: Accessing new page as a Consumer
+    Given I am an authenticated "consumer"
+    When I go to the new page
+    Then I should not see "New page"
     And I should not see "Template"
 
   # edit page
@@ -93,3 +107,11 @@ Feature: Pages
     And I should see "Advanced options"
     And I should not see "Template"
 
+  Scenario: Accessing edit page as a Consumer
+    Given I am an authenticated "consumer"
+    When I go to the "hello-world" edition page
+    Then I should see "Hello world"
+    And I should not see "General Information"
+    And I should see "SEO settings"
+    And I should not see "Advanced options"
+    And I should not see "Template"

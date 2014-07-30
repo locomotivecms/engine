@@ -9,6 +9,7 @@ describe Locomotive::Ability do
     @admin    = FactoryGirl.create(:membership, account: FactoryGirl.build(:account), site: FactoryGirl.build(:site))
     @designer = FactoryGirl.create(:membership, account: FactoryGirl.build(:account), site: @site, role: %(designer))
     @author   = FactoryGirl.create(:membership, account: FactoryGirl.build(:account), site: @site, role: %(author))
+    @consumer = FactoryGirl.create(:membership, account: FactoryGirl.build(:account), site: @site, role: %(consumer))
   end
 
   context 'pages' do
@@ -20,6 +21,7 @@ describe Locomotive::Ability do
         should      allow_permission_from :manage, @admin
         should      allow_permission_from :manage, @designer
         should_not  allow_permission_from :manage, @author
+        should_not  allow_permission_from :manage, @consumer
       end
     end
 
@@ -28,6 +30,7 @@ describe Locomotive::Ability do
         should      allow_permission_from :customizing, @admin
         should      allow_permission_from :customizing, @designer
         should_not  allow_permission_from :customizing, @author
+        should_not  allow_permission_from :customizing, @consumer
       end
     end
 
@@ -54,6 +57,7 @@ describe Locomotive::Ability do
         should allow_permission_from :manage, @admin
         should allow_permission_from :manage, @designer
         should allow_permission_from :manage, @author
+        should_not allow_permission_from :manage, @consumer
       end
     end
 
@@ -68,6 +72,7 @@ describe Locomotive::Ability do
         should     allow_permission_from :manage, @admin
         should     allow_permission_from :manage, @designer
         should_not allow_permission_from :manage, @author
+        should_not allow_permission_from :manage, @consumer
       end
     end
 
@@ -88,6 +93,7 @@ describe Locomotive::Ability do
         should     allow_permission_from :manage, @admin
         should     allow_permission_from :manage, @designer
         should_not allow_permission_from :manage, @author
+        should_not allow_permission_from :manage, @consumer
       end
     end
 
@@ -108,6 +114,7 @@ describe Locomotive::Ability do
         should     allow_permission_from :manage, @admin
         should_not allow_permission_from :manage, @designer
         should_not allow_permission_from :manage, @author
+        should_not allow_permission_from :manage, @consumer
       end
     end
 
@@ -115,6 +122,7 @@ describe Locomotive::Ability do
       it 'should allow importing of sites from (designer)' do
         should     allow_permission_from :point, @designer
         should_not allow_permission_from :point, @author
+        should_not allow_permission_from :point, @consumer
       end
     end
 
@@ -129,6 +137,7 @@ describe Locomotive::Ability do
         should     allow_permission_from :manage, @admin
         should     allow_permission_from :manage, @designer
         should_not allow_permission_from :manage, @author
+        should_not allow_permission_from :manage, @consumer
       end
     end
 
@@ -137,6 +146,7 @@ describe Locomotive::Ability do
         should     allow_permission_from :grant_admin, @admin
         should_not allow_permission_from :grant_admin, @designer
         should_not allow_permission_from :grant_admin, @author
+        should_not allow_permission_from :grant_admin, @consumer
       end
 
     end

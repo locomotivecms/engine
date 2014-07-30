@@ -1,6 +1,6 @@
 Feature: Content Entries
   In order to ensure content entries are not tampered with
-  As an admin, designer or author
+  As an admin, designer, author or consumer
   I will be restricted based on my role
 
   Background:
@@ -40,6 +40,12 @@ Feature: Content Entries
     Then the JSON response should be an array
     And the JSON response should have 2 entries
 
+  Scenario: Accessing content entries as a Consumer
+    Given I have a "consumer" API token
+    When I do an API GET request to content_types/projects/entries.json
+    Then the JSON response should be an array
+    And the JSON response should have 2 entries
+
   # showing content entry
 
   Scenario: Accessing content entry as an Admin
@@ -56,6 +62,12 @@ Feature: Content Entries
 
   Scenario: Accessing content entry as an Author
     Given I have an "author" API token
+    When I do an API GET request to content_types/projects/entries/4f832c2cb0d86d3f42fffffe.json
+    Then the JSON response at "id" should be "4f832c2cb0d86d3f42fffffe"
+    And the JSON response at "name" should be "Project 1"
+
+  Scenario: Accessing content entry as a Consumer
+    Given I have a "consumer" API token
     When I do an API GET request to content_types/projects/entries/4f832c2cb0d86d3f42fffffe.json
     Then the JSON response at "id" should be "4f832c2cb0d86d3f42fffffe"
     And the JSON response at "name" should be "Project 1"
@@ -125,6 +137,22 @@ Feature: Content Entries
       | 2/name          | "Project 3"       |
       | 2/description   | "The third..."    |
 
+  Scenario: Creating new content entry as a Consumer
+    Given I have a "consumer" API token
+    When I do an API GET request to content_types/projects/entries.json
+    Then the JSON response should be an array
+    And the JSON response should have 2 entries
+    When I do an API POST to content_types/projects/entries.json with:
+    """
+    {
+      "content_entry": {
+        "name": "Project 3",
+        "description": "The third..."
+      }
+    }
+    """
+    Then an access denied error should occur
+
   # update content entry
 
   Scenario: Updating content entry as an Admin
@@ -169,6 +197,18 @@ Feature: Content Entries
     Then the JSON response at "name" should be "Project 1"
     And the JSON response at "description" should be "The awesomest project ever!"
 
+  Scenario: Updating content entry as a Consumer
+    Given I have a "consumer" API token
+    When I do an API PUT to content_types/projects/entries/4f832c2cb0d86d3f42fffffe.json with:
+    """
+    {
+      "content_entry": {
+        "description": "The awesomest project ever!"
+      }
+    }
+    """
+    Then an access denied error should occur
+
   # destroy content entry
 
   Scenario: Destroying content entry as an Admin
@@ -200,3 +240,11 @@ Feature: Content Entries
     When I do an API GET request to content_types/projects/entries.json
     Then the JSON response should be an array
     And the JSON response should have 1 entry
+
+  Scenario: Deleting content entry as a Consumer
+    Given I have a "consumer" API token
+    When I do an API GET request to content_types/projects/entries.json
+    Then the JSON response should be an array
+    And the JSON response should have 2 entries
+    When I do an API DELETE to content_types/projects/entries/4f832c2cb0d86d3f42fffffe.json
+    Then an access denied error should occur

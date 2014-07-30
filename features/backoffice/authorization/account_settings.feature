@@ -1,6 +1,6 @@
 Feature: Account Settings
   In order to ensure sites are not tampered with
-  As an admin, designer or author
+  As an admin, designer, author or consumer
   I will be restricted based on my role
 
 Background:
@@ -24,5 +24,10 @@ Background:
 
   Scenario: Accessing site settings as an Author
     Given I am an authenticated "author"
+    When I go to account settings
+    Then I should not see "new site"
+
+  Scenario: Accessing site settings as an Consumer
+    Given I am an authenticated "consumer"
     When I go to account settings
     Then I should not see "new site"

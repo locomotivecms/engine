@@ -165,6 +165,7 @@ it:
         admin: Amministratore
         designer: Designer
         author: Autore
+        consumer: utente
       new:
         title: Nuova partecipazione
         help: "Prego, indica l'email dell'account da aggiungere. Se questo non esiste, sarai rediretto al modulo di creazione account."

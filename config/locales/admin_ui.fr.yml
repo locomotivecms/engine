@@ -212,6 +212,7 @@ fr:
         admin: Administrateur
         designer: Designer
         author: Auteur
+        consumer: Consommateur
       new:
         title: "Ajout d'un compte"
         help: "Donnez l'adresse email du compte à ajouter. S'il n'existe pas, vous serez redirigé(e) vers le formulaire de création d'un compte."

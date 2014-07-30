@@ -183,6 +183,7 @@ pl:
         admin: Administrator
         designer: Projektant
         author: Autor
+        consumer: Konsument
       new:
         title: Nowe członkostwo
         help: "Podaj e-mail skojarzony z kontem. Jeśli jeszcze nie istnieje, nastąpi przekierowanie do formularza tworzenia konta."

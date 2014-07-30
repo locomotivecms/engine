@@ -1,6 +1,6 @@
 Feature: Snippets
   In order to ensure snippets are not tampered with
-  As an admin, designer or author
+  As an admin, designer, author or consumer
   I will be restricted based on my role
 
   Background:
@@ -35,6 +35,11 @@ Feature: Snippets
     When I do an API GET request to snippets.json
     Then an access denied error should occur
 
+  Scenario: Accessing snippets as a Consumer
+    Given I have a "consumer" API token
+    When I do an API GET request to snippets.json
+    Then an access denied error should occur
+
   # showing snippet
 
   Scenario: Accessing snippet as an Admin
@@ -51,6 +56,11 @@ Feature: Snippets
 
   Scenario: Accessing snippet as an Author
     Given I have an "author" API token
+    When I do an API GET request to snippets/4f832c2cb0d86d3f42fffffe.json
+    Then an access denied error should occur
+
+  Scenario: Accessing snippet as a Consumer
+    Given I have a "consumer" API token
     When I do an API GET request to snippets/4f832c2cb0d86d3f42fffffe.json
     Then an access denied error should occur
 
@@ -111,6 +121,19 @@ Feature: Snippets
     """
     Then an access denied error should occur
 
+  Scenario: Creating new snippet as a Consumer
+    Given I have a "consumer" API token
+    When I do an API POST to snippets.json with:
+    """
+    {
+      "snippet": {
+        "name": "Another snippet",
+        "template": "<h1>Another Snippet!</h1>"
+      }
+    }
+    """
+    Then an access denied error should occur
+
   # update snippet
 
   Scenario: Updating snippet as an Admin
@@ -151,6 +174,18 @@ Feature: Snippets
     """
     Then an access denied error should occur
 
+  Scenario: Updating snippet as a Consumer
+    Given I have a "consumer" API token
+    When I do an API PUT to snippets/4f832c2cb0d86d3f42fffffe.json with:
+    """
+    {
+      "snippet": {
+        "name": "Brand new updated name"
+      }
+    }
+    """
+    Then an access denied error should occur
+
   # destroy snippet
 
   Scenario: Destroying snippet as an Admin
@@ -175,5 +210,10 @@ Feature: Snippets
 
   Scenario: Deleting snippet as an Author
     Given I have a "author" API token
+    When I do an API DELETE to snippets/4f832c2cb0d86d3f42fffffe.json
+    Then an access denied error should occur
+
+  Scenario: Deleting snippet as a Consumer
+    Given I have a "consumer" API token
     When I do an API DELETE to snippets/4f832c2cb0d86d3f42fffffe.json
     Then an access denied error should occur

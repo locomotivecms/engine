@@ -184,6 +184,7 @@ nb:
         admin: Administrator
         designer: Designer
         author: Forfatter
+        consumer: Forbruker
       new:
         title: Nytt medlemsskap
         help: "Oppgi epostadressen til brukerkontoen. Hvis denne ikke finnes blir du sendt til skjemaet for å opprette ny konto."

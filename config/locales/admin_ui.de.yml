@@ -202,6 +202,7 @@ de:
         admin: Administrator
         designer: Designer
         author: Autor
+        consumer: Verbraucher
       new:
         title: Neuer Account
         help: "Bitte geben Sie eine E-Mail-Adresse für den neuen Account an. Wenn diese noch nicht registriert ist, werden Sie zu einem Formular zur Erstellung des Accounts weitergeleitet."

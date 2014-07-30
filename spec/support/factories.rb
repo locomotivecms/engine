@@ -112,6 +112,11 @@ FactoryGirl.define do
       account { FactoryGirl.create('brazillian user', locale: 'en') }
     end
 
+    factory :consumer do
+      role 'consumer'
+      account { FactoryGirl.create('english user', locale: 'en') }
+    end
+
   end
 
   ## Pages ##
