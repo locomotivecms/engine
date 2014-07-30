@@ -86,6 +86,11 @@ it:
       index:
         is_required: è richiesto
         default_label: Nome campo
+      form:
+        required: Obbligatorio
+        default_label: Nome campo
+        select_options:
+          ask_name: "Inserisci il label della option"
 
     sessions:
       new:
@@ -300,3 +305,18 @@ it:
         explanations: "Questo è l'ultimo passo dell'installazione. Puoi caricare un tema come file zip. Noi abbiao dei temi gratuiti <a href=\"http://www.locomotivecms.com/support/themes\">qui</a>."
         back_to_default_template: "Invece clicca <a href='#'>qui</a> per selezionare il modello di sito predefinito"
         next: Crea sito
+        
+    public:
+      pages:
+        show_toolbar:
+          statuses:
+            loading: "Loading...."
+            disabled: "Inline Editor disabilitato"
+          labels:
+            save_changes: "Salva modifiche: "
+            editing_mode: "Modalità di modifica: "
+            lang: "Lingua: "
+          buttons:
+            back: "Ritorna all'amministrazione"
+            confirm: Conferma
+            cancel: Annulla        
