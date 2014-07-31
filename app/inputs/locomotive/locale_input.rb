@@ -1,3 +1,4 @@
+# FIXME: @deprecated
 module Locomotive
   class LocaleInput < Formtastic::Inputs::TextInput
 

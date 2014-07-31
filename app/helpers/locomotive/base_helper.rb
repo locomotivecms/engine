@@ -18,15 +18,36 @@ module Locomotive
       end
     end
 
-    #= Formtastic helperrs
+    #= Formtastic helpers
 
-    def semantic_form_button(resource)
+    def semantic_form_button(resource, misc_class = '')
       key   = resource.persisted? ? 'update' : 'create'
       scope = 'locomotive.shared.form_actions'
 
-      content_tag :button, I18n.t(key, scope: scope), class: 'btn btn-success btn-sm'
+      content_tag :button,
+        I18n.t(key, scope: scope),
+        type:   'submit',
+        class:  "btn btn-success btn-sm #{misc_class}",
+        data:   {
+          loading_text: t('locomotive.messages.sending_form')
+        }
     end
 
+    def form_nav_tab(name, first = false, &block)
+      active = (first && params[:active_tab].blank?) || params[:active_tab] == name.to_s
+
+      content_tag(:li, capture(&block), class: active ? 'active' : '')
+    end
+
+    def form_tab_pane(name, first = false, &block)
+      active  = (first && params[:active_tab].blank?) || params[:active_tab] == name.to_s
+      css     = ['tab-pane', active ? 'active' : nil].compact.join(' ')
+
+      content_tag(:div, capture(&block), id: name, class: css)
+    end
+
+
+    # @deprecated
     def inputs_folded?(resource)
       resource.persisted? && resource.errors.empty?
     end
@@ -181,7 +202,7 @@ module Locomotive
 
     # accounts
 
-    def account_avatar_url(account, size = '35x35<')
+    def account_avatar_url(account, size = '70x70#')
       if account.avatar?
         Locomotive::Dragonfly.resize_url account.avatar.url, size
       else
@@ -191,7 +212,7 @@ module Locomotive
 
     # sites
 
-    def site_picture_url(site, size = '40x40<')
+    def site_picture_url(site, size = '80x80#')
       if site.picture?
         Locomotive::Dragonfly.resize_url site.picture.url, size
       else

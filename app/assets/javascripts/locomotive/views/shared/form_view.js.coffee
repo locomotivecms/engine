@@ -7,6 +7,8 @@ class Locomotive.Views.Shared.FormView extends Backbone.View
   namespace: null
 
   render: ->
+    @display_active_nav()
+
     # make title editable (if possible)
     # @make_title_editable()
 
@@ -19,12 +21,32 @@ class Locomotive.Views.Shared.FormView extends Backbone.View
     # @enable_save_with_keys_combination()
 
     # enable form notifications
-    @enable_form_notifications()
+    # @enable_form_notifications()
 
     return @
 
+  display_active_nav: ->
+    url = document.location.toString()
+    if url.match('#')
+      name = url.split('#')[1]
+      @$(".nav-tabs a[href='##{name}']").tab('show')
+
+  record_active_tab: ->
+    tab_name = $('form .nav-tabs li.active a').attr('href').replace('#', '')
+    @$('#active_tab').val(tab_name)
+
+  change_state: ->
+    @$('form button[type=submit]').button('loading')
+
   save: (event) ->
-    # by default, follow the default behaviour
+    @change_state()
+    @record_active_tab()
+
+  # ===============================
+
+  # save: (event) ->
+  #   alert('foo')
+  #   by default, follow the default behaviour
 
   save_in_ajax: (event, options) ->
     event.stopPropagation() & event.preventDefault()
@@ -145,3 +167,6 @@ class Locomotive.Views.Shared.FormView extends Backbone.View
     _.each @$('fieldset'), (fieldset) =>
       $(fieldset).find('li.last').removeClass('last')
       $(_.last($(fieldset).find('li.input:visible'))).addClass('last')
+
+  enable_form_notifications: ->
+    @$('form').formSubmitNotification()

@@ -1,6 +1,6 @@
 - if multi_sites? && current_locomotive_account.sites.size > 1
   = link_to sites_path do
-    = current_site.name
+    = current_site.name_was
     %span.arrow
       %i.fa.fa-angle-down
 - else

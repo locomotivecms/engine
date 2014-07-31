@@ -17,7 +17,7 @@ module Locomotive
     def update
       @account = current_locomotive_account
       @account.update_attributes(params[:account])
-      respond_with @account, location: edit_my_account_path
+      respond_with @account, location: edit_my_account_path(anchor: params[:active_tab])
     end
 
     def regenerate_api_key

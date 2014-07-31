@@ -13,7 +13,7 @@
       @include border-radius($form_input_radius);
 
       .control-label {
-        display: block;
+        display: inline-block;
         font-size: $form_input_label_size;
         font-weight: bold;
         text-transform: uppercase;
@@ -22,6 +22,15 @@
         abbr {
           margin-left: 5px;
         }
+      }
+
+      .help-inline, .error-inline {
+        margin-left: 10px;
+        font-family: $alt-font-family-sans-serif;
+      }
+
+      .error-inline {
+        color: $state-danger-text;
       }
 
       .form-wrapper {
