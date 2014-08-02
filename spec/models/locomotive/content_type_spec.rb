@@ -348,6 +348,37 @@ describe Locomotive::ContentType do
 
   end
 
+  describe 'finding by id or slug' do
+
+    let(:content_type) { build_content_type }
+    let(:id_or_slug) { 'unknown' }
+
+    subject { Locomotive::ContentType.by_id_or_slug(id_or_slug).first }
+
+    before { content_type.save }
+
+    describe 'unknown id' do
+
+      it { should eq nil }
+
+    end
+
+    describe 'existing id' do
+
+      let(:id_or_slug) { content_type._id.to_s }
+      its(:name) { should eq 'My project' }
+
+    end
+
+    describe 'existing slug' do
+
+      let(:id_or_slug) { 'my_project' }
+      its(:name) { should eq 'My project' }
+
+    end
+
+  end
+
   def build_content_type(options = {}, &block)
     FactoryGirl.build(:content_type, options).tap do |content_type|
       content_type.entries_custom_fields.build label: 'Name',        type: 'string'

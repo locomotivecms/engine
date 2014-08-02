@@ -38,7 +38,7 @@ module Locomotive
       protected
 
       def get_content_type
-        @content_type ||= current_site.content_types.where(slug: params[:slug]).first
+        @content_type ||= current_site.content_types.by_id_or_slug(params[:slug]).first
       end
 
     end
