@@ -200,5 +200,18 @@ module Locomotive
     end
     alias :l :localize
 
+    # other helpers
+
+    # MongoDB crashes when performing a query on a big collection
+    # where there is a sort without an index on the fields to sort.
+    def empty_collection?(collection)
+      # criteria ?
+      if collection.respond_to?(:without_sorting)
+        collection.without_sorting.empty?
+      else
+        collection.empty?
+      end
+    end
+
   end
 end

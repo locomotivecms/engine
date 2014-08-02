@@ -22,8 +22,33 @@ module Mongoid#:nodoc:
   end
 
   class Criteria
+    def without_sorting
+      clone.tap { |crit| crit.options.delete(:sort) }
+    end
+
+    # http://code.dblock.org/paging-and-iterating-over-large-mongo-collections
+    def each_by(by, &block)
+      idx = total = 0
+      set_limit = options[:limit]
+      while ((results = ordered_clone.limit(by).skip(idx)) && results.any?)
+        results.each do |result|
+          return self if set_limit and set_limit >= total
+          total += 1
+          yield result
+        end
+        idx += by
+      end
+      self
+    end
+
     def to_liquid
       Locomotive::Liquid::Drops::ProxyCollection.new(self)
+    end
+
+    private
+
+    def ordered_clone
+      options[:sort] ? clone : clone.asc(:_id)
     end
   end
 
