@@ -36,6 +36,12 @@ module Locomotive
     scope :latest_updated, order_by(updated_at: :desc).limit(Locomotive.config.ui[:latest_entries_nb])
     scope :next_or_previous, ->(condition, order_by) { where({ _visible: true }.merge(condition)).limit(1).order_by(order_by) }
 
+    ## indexes ##
+    index site_id: 1
+    index site_id: 1, content_type_id: 1
+    index content_type_id: 1, created_at: 1
+    index content_type_id: 1, _type: 1, created_at: 1
+
     ## methods ##
 
     alias :visible? :_visible?
