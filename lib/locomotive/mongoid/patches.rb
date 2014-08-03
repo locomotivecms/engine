@@ -41,6 +41,19 @@ module Mongoid#:nodoc:
       self
     end
 
+    # Optimized version of the max aggregate method.
+    # It works efficiently only if the field is part of a MongoDB index.
+    # more here: http://stackoverflow.com/questions/4762980/getting-the-highest-value-of-a-column-in-mongodb
+    def indexed_max(field)
+      _criteria = criteria.order_by(field.to_sym.desc).only(field.to_sym)
+      selector  = _criteria.send(:selector_with_type_selection)
+      fields    = _criteria.options[:fields]
+      sort      = _criteria.options[:sort]
+
+      document = collection.find(selector).select(fields).sort(sort).limit(1).first
+      document ? document[field.to_s].to_i : nil
+    end
+
     def to_liquid
       Locomotive::Liquid::Drops::ProxyCollection.new(self)
     end
@@ -49,6 +62,12 @@ module Mongoid#:nodoc:
 
     def ordered_clone
       options[:sort] ? clone : clone.asc(:_id)
+    end
+  end
+
+  module Finders
+    def indexed_max(field)
+      with_default_scope.indexed_max(field)
     end
   end
 

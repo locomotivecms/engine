@@ -37,10 +37,16 @@ module Locomotive
     scope :next_or_previous, ->(condition, order_by) { where({ _visible: true }.merge(condition)).limit(1).order_by(order_by) }
 
     ## indexes ##
-    index site_id: 1
-    index site_id: 1, content_type_id: 1
+    index _type: 1
+    index content_type_id: 1
+    Locomotive.config.site_locales.each do |locale|
+      index _type: 1, "_slug.#{locale}" => 1
+      index content_type_id: 1, "_slug.#{locale}" => 1
+    end
     index content_type_id: 1, created_at: 1
     index content_type_id: 1, _type: 1, created_at: 1
+    index _type: 1, _position: 1
+    index content_type_id: 1, _position: 1
 
     ## methods ##
 
@@ -209,9 +215,8 @@ module Locomotive
     end
 
     def add_to_list_bottom
-      unless self.class.empty?
-        self._position = self.class.max(:_position).to_i + 1
-      end
+      max = self.class.indexed_max(:_position)
+      self._position = max + 1 if max
     end
 
     def send_notifications
