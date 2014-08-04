@@ -46,7 +46,7 @@ group :test do
   # gem 'autotest', platforms: :mri
   # gem 'ZenTest', platforms: :mri
 
-  gem 'poltergeist',        '~> 1.1.0'
+  gem 'poltergeist'
   gem 'shoulda-matchers'
   gem 'factory_girl_rails', '~> 4.2.1'
   gem 'pickle'
