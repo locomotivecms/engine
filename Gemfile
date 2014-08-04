@@ -57,7 +57,7 @@ group :test do
 
   gem 'database_cleaner'
 
-  gem 'mocha', '~> 0.13.0', require: false
+  gem 'mocha', require: false
 
   # gem 'debugger', git: 'git://github.com/cldwalker/debugger.git'
 end

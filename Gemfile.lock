@@ -238,7 +238,7 @@ GEM
     method_source (0.8.2)
     mime-types (1.25.1)
     mimetype-fu (0.1.2)
-    mocha (0.13.3)
+    mocha (1.1.0)
       metaclass (~> 0.0.1)
     money (5.1.1)
       i18n (~> 0.6.0)
@@ -401,7 +401,7 @@ DEPENDENCIES
   json_spec
   launchy
   locomotive_cms!
-  mocha (~> 0.13.0)
+  mocha
   pickle
   poltergeist
   pry
