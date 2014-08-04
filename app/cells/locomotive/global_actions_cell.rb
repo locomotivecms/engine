@@ -12,13 +12,9 @@ module Locomotive
     protected
 
     def build_list
-      add :welcome, url: edit_my_account_path, i18n_options: {
-        key:    'locomotive.shared.header.welcome',
-        arg:    :name,
-        value:  @current_locomotive_account.name
-      }
-
       add :see, url: current_site_url, id: 'viewsite', target: '_blank'
+
+      add :account, url: edit_my_account_path
 
       if Locomotive.config.multi_sites? && current_locomotive_account.sites.size > 1
         add :switch, url: '#', id: 'sites-picker-link'

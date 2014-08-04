@@ -4,15 +4,17 @@ module Locomotive
     include Locomotive::Mongoid::Document
 
     ## Extensions ##
-    extend  Extensions::Site::SubdomainDomains
-    extend  Extensions::Site::FirstInstallation
     include Extensions::Shared::Seo
+    extend  Extensions::Site::SubdomainDomains
+    include Extensions::Site::FirstInstallation
     include Extensions::Site::Locales
     include Extensions::Site::Timezone
 
     ## fields ##
     field :name
     field :robots_txt
+
+    mount_uploader :picture, PictureUploader, validate_integrity: true
 
     ## associations ##
     has_many    :pages,           class_name: 'Locomotive::Page',           validate: false, autosave: false

@@ -1,0 +1,11 @@
+h1 {
+  text-align: center;
+  // letter-spacing: 2px;
+  margin-bottom: 100px;
+
+  @media (max-width: $screen-sm-max) {
+    margin-bottom: 30px;
+    font-size: ceil(($font-size-base * 1.25));
+    font-weight: 400;
+  }
+}

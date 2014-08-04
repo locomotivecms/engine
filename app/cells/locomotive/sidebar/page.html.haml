@@ -1,0 +1,23 @@
+- if @with_children
+  %li.page.node{ id: "node-#{@page.id}", class: [@fixed, @published].join(' ') }
+
+    = @link
+
+    %span.fold-unfold{ class: @fold_state }
+      %i.fa.fa-sort-desc.unfolded
+      %i.fa.fa-sort-asc.folded
+
+    %ul.leaves{ data: { url: sort_page_path(@page) } }
+      - @children.each do |(child, children)|
+        = render({ state: :page }, child, children)
+
+      - if @templatized_page && @content_type
+        %li.new-content
+          %i.fa.fa-plus.icon
+          = link_to new_content_entry_path(@templatized_page.content_type.slug) do
+            %span.text= t(:new_content_entry, name: @content_type.name.singularize, scope: 'locomotive.pages.index')
+
+- else
+  %li.page.leaf{ id: "node-#{@page.id}", class: @published }
+
+    = @link

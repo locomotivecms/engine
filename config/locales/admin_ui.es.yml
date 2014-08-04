@@ -60,6 +60,10 @@ es:
         disable_with: "locomotive.disable_with.form_actions"
       footer:
         who_is_behind: "Servicio desarrollado por %{development} y diseñado por <a href=\"http://www.sachagreif.com\">Sacha Greif</a>"
+      form:
+        change_file: cambiar
+        delete_file: eliminar
+        cancel: cancelar
       form_actions:
         back: Volver sin guardar
         create: Crear

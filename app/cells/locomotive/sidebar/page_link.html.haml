@@ -1,0 +1,18 @@
+- if @page.templatized?
+  %i.fa.fa-gear.icon
+- elsif @page.redirect?
+  %i.fa.fa-link.icon{ class: @draggable }
+- elsif @page.response_type == 'application/rss+xml'
+  %i.fa.fa-rss.icon{ class: @draggable }
+- elsif @page.response_type == 'application/json'
+  %i.fa.fa-file-code-o.icon{ class: @draggable }
+- elsif @page.response_type == 'text/xml'
+  %i.fa.fa-file-code-o.icon{ class: @draggable }
+- else
+  %i.fa.fa-file-text-o.fa-flip-horizontal.icon{ class: @draggable }
+
+= link_to edit_page_path(@page) do
+  %span.text= @page.title
+
+- unless @page.translated?
+  %i.fa.fa-globe.untranslated

@@ -1,0 +1,10 @@
+button[type=submit] {
+  @media (min-width: $screen-md-min) {
+    margin-top: 4em;
+  }
+  @extend .btn-block;
+  @extend .btn-danger;
+  @extend .btn;
+
+  font-family: $alt-font-family-sans-serif;
+}

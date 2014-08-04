@@ -1,0 +1,21 @@
+$sign_in_legend_color: #a2e4f1;
+
+.sessions {
+  .content {
+    @include make-sm-column-offset(4);
+    @include make-sm-column(4);
+  }
+
+  h1 {
+    small {
+      display: block;
+      width: 100%;
+      text-align: center;
+      text-transform: lowercase;
+      color: $sign_in_legend_color;
+      font-size: $font-size-base;
+      font-weight: 200;
+      margin-top: 10px;
+    }
+  }
+}

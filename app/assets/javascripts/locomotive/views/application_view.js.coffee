@@ -2,18 +2,28 @@ class Locomotive.Views.ApplicationView extends Backbone.View
 
   el: 'body'
 
+  initialize: ->
+    @header_view  = new Locomotive.Views.Shared.HeaderView()
+    @sidebar_view = new Locomotive.Views.Shared.SidebarView()
+
   render: ->
     @render_flash_messages(@options.flash)
 
-    @add_submenu_behaviours()
+    @sidebar_view.render()
 
-    @center_ui_dialog()
+    @set_max_height()
 
-    @enable_sites_picker()
+    @automatic_max_height()
 
-    @enable_content_locale_picker()
+    # @add_submenu_behaviours()
 
-    @set_locale_for_tinymce_widgets()
+    # @center_ui_dialog()
+
+    # @enable_sites_picker()
+
+    # @enable_content_locale_picker()
+
+    # @set_locale_for_tinymce_widgets()
 
     # render page view
     if @options.view?
@@ -26,73 +36,83 @@ class Locomotive.Views.ApplicationView extends Backbone.View
     _.each messages, (couple) ->
       $.growl couple[0], couple[1]
 
-  center_ui_dialog: ->
-    $(window).resize ->
-      $('.ui-dialog-content:visible').dialog('option', 'position', 'center')
+  automatic_max_height: ->
+    $(window).on 'resize', => @set_max_height()
 
-  add_submenu_behaviours: ->
-    $('#submenu ul li.hoverable').each ->
-      timer = null
-      link  = $(@)
-      (popup = link.find('.popup')).removeClass('popup').addClass('submenu-popup'
-      ).bind('show', ->
-        link.find('a').addClass('hover') & popup.css(
-          top:  link.offset().top + link.height() - 2
-          left: link.offset().left - parseInt(popup.css('padding-left'))
-        ).show()
-      ).bind('hide', ->
-        link.find('a').removeClass('hover') & $(@).hide()
-      ).bind('mouseleave', -> popup.trigger('hide')
-      ).bind 'mouseenter', -> clearTimeout(timer)
+  set_max_height: ->
+    max_height  = $(window).height()
+    height      = max_height - @header_view.height()
 
-      $(document.body).append(popup)
+    @$('> .wrapper').height(height)
 
-      link.hover(
-        -> popup.trigger('show')
-        -> timer = window.setTimeout (-> popup.trigger('hide')), 30
-      )
 
-    css = $('#submenu > ul').attr('class')
-    $("#submenu > ul > li.#{css}").addClass('on') if css != ''
+  # center_ui_dialog: ->
+  #   $(window).resize ->
+  #     $('.ui-dialog-content:visible').dialog('option', 'position', 'center')
 
-  enable_sites_picker: ->
-    link    = @$('#sites-picker-link')
-    picker  = @$('#sites-picker')
+  # add_submenu_behaviours: ->
+  #   $('#submenu ul li.hoverable').each ->
+  #     timer = null
+  #     link  = $(@)
+  #     (popup = link.find('.popup')).removeClass('popup').addClass('submenu-popup'
+  #     ).bind('show', ->
+  #       link.find('a').addClass('hover') & popup.css(
+  #         top:  link.offset().top + link.height() - 2
+  #         left: link.offset().left - parseInt(popup.css('padding-left'))
+  #       ).show()
+  #     ).bind('hide', ->
+  #       link.find('a').removeClass('hover') & $(@).hide()
+  #     ).bind('mouseleave', -> popup.trigger('hide')
+  #     ).bind 'mouseenter', -> clearTimeout(timer)
 
-    return if picker.size() == 0
+  #     $(document.body).append(popup)
 
-    left = link.position().left + link.parent().position().left - (picker.width() - link.width())
-    picker.css('left', left)
+  #     link.hover(
+  #       -> popup.trigger('show')
+  #       -> timer = window.setTimeout (-> popup.trigger('hide')), 30
+  #     )
 
-    link.bind 'click', (event) ->
-      event.stopPropagation() & event.preventDefault()
-      picker.toggle()
+  #   css = $('#submenu > ul').attr('class')
+  #   $("#submenu > ul > li.#{css}").addClass('on') if css != ''
 
-  enable_content_locale_picker: ->
-    link    = @$('#content-locale-picker-link')
-    picker  = @$('#content-locale-picker')
+  # enable_sites_picker: ->
+  #   link    = @$('#sites-picker-link')
+  #   picker  = @$('#sites-picker')
 
-    return if picker.size() == 0
+  #   return if picker.size() == 0
 
-    link.bind 'click', (event) ->
-      event.stopPropagation() & event.preventDefault()
-      picker.toggle()
+  #   left = link.position().left + link.parent().position().left - (picker.width() - link.width())
+  #   picker.css('left', left)
 
-    picker.find('li').bind 'click', (event) ->
-      locale = $(@).data('locale')
-      window.addParameterToURL 'content_locale', locale
+  #   link.bind 'click', (event) ->
+  #     event.stopPropagation() & event.preventDefault()
+  #     picker.toggle()
 
-  set_locale_for_tinymce_widgets: ->
-    # tinyMCE likes only lowercase locales
-    tinymce_locale = window.locale.toLowerCase()
+  # enable_content_locale_picker: ->
+  #   link    = @$('#content-locale-picker-link')
+  #   picker  = @$('#content-locale-picker')
 
-    # pt-BR does not exist, pt does though
-    tinymce_locale = 'pt' if tinymce_locale == 'pt-br'
+  #   return if picker.size() == 0
 
-    # set the default tinyMCE language
-    window.Locomotive.tinyMCE.defaultSettings.language  = tinymce_locale
-    window.Locomotive.tinyMCE.minimalSettings.language  = tinymce_locale
-    window.Locomotive.tinyMCE.popupSettings.language    = tinymce_locale
+  #   link.bind 'click', (event) ->
+  #     event.stopPropagation() & event.preventDefault()
+  #     picker.toggle()
+
+  #   picker.find('li').bind 'click', (event) ->
+  #     locale = $(@).data('locale')
+  #     window.addParameterToURL 'content_locale', locale
+
+  # set_locale_for_tinymce_widgets: ->
+  #   # tinyMCE likes only lowercase locales
+  #   tinymce_locale = window.locale.toLowerCase()
+
+  #   # pt-BR does not exist, pt does though
+  #   tinymce_locale = 'pt' if tinymce_locale == 'pt-br'
+
+  #   # set the default tinyMCE language
+  #   window.Locomotive.tinyMCE.defaultSettings.language  = tinymce_locale
+  #   window.Locomotive.tinyMCE.minimalSettings.language  = tinymce_locale
+  #   window.Locomotive.tinyMCE.popupSettings.language    = tinymce_locale
 
   unique_dialog_zindex: ->
     # returns the number of jQuery UI modals created in order to set a valid zIndex for each of them.

@@ -20,6 +20,7 @@ module Locomotive
     field :order_direction,             default: 'asc'
     field :public_submission_enabled,   type: Boolean, default: false
     field :public_submission_accounts,  type: Array
+    field :number_of_entries
 
     ## associations ##
     belongs_to  :site,      class_name: 'Locomotive::Site', validate: false

@@ -45,6 +45,7 @@ fr:
     shared:
       header:
         welcome: "Bonjour, %{name}"
+        account: Mon compte
         see: Voir le site
         switch: Passer à un autre site
         help: Aide

@@ -1,0 +1,20 @@
+@import "locomotive/bootstrap_override";
+@import "bootstrap";
+
+.sessions {
+  .content {
+    @include make-sm-column-offset(4);
+    @include make-sm-column(4);
+  }
+
+  h1 {
+    small {
+      display: block;
+      width: 100%;
+      text-align: center;
+      color: #fff;
+      font-size: $font-size-base;
+      font-weight: 200;
+    }
+  }
+}

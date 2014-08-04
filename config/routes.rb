@@ -9,7 +9,7 @@ Locomotive::Engine.routes.draw do
     controllers:  { sessions: 'locomotive/sessions', passwords: 'locomotive/passwords' }
 
   authenticated :locomotive_account do
-    root to: 'pages#index'
+    root to: 'dashboard#show'
   end
 
   devise_scope :locomotive_account do
@@ -17,7 +17,9 @@ Locomotive::Engine.routes.draw do
     delete 'signout'  => 'sessions#destroy', as: :destroy_locomotive_session
   end
 
-  root to: 'pages#index'
+  root to: 'dashboard#show'
+
+  resource :dashboard, controller: 'dashboard', only: :show
 
   resources :pages do
     put :sort, on: :member

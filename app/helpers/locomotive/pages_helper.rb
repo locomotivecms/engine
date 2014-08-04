@@ -1,12 +1,12 @@
 module Locomotive
   module PagesHelper
 
-    def css_for_page(page)
-      %w(index not_found templatized redirect unpublished).inject([]) do |memo, state|
-        memo << state.dasherize if page.send(:"#{state}?")
-        memo
-      end.join(' ')
-    end
+    # def css_for_page(page)
+    #   %w(index not_found templatized redirect unpublished).inject([]) do |memo, state|
+    #     memo << state.dasherize if page.send(:"#{state}?")
+    #     memo
+    #   end.join(' ')
+    # end
 
     def page_toggler(page)
       icon_class = cookies["folder-#{page._id}"] != 'none' ? 'icon-caret-down' : 'icon-caret-right'

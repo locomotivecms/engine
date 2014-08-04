@@ -85,9 +85,28 @@ module Locomotive
         first_key = flash.keys.first
         content_tag :div, flash[first_key],
           id: "flash-#{first_key}",
-          class: 'application-message'
+          class: "application-message alert alert-#{flash_key_to_bootstrap_alert(first_key)}"
       else
         ''
+      end
+    end
+
+    def set_error_from_flash(resource, attribute)
+      if !flash.empty? && flash.alert
+        flash.alert.tap do |msg|
+          resource.errors.add(attribute.to_sym, msg)
+          flash.delete(:alert)
+        end
+      end
+    end
+
+    def flash_key_to_bootstrap_alert(key)
+      case key.to_sym
+      when :notice  then :success
+      when :alert   then :success
+      when :error   then :warning
+      else
+        :info
       end
     end
 
@@ -143,7 +162,25 @@ module Locomotive
       link_to 'noCoffee', 'http://www.nocoffee.fr', id: 'nocoffee'
     end
 
+    # accounts
+
+    def account_avatar_url(account, size = '35x35<')
+      if account.avatar?
+        Locomotive::Dragonfly.resize_url account.avatar.url, size
+      else
+        'locomotive/user.png'
+      end
+    end
+
     # sites
+
+    def site_picture_url(site, size = '40x40<')
+      if site.picture?
+        Locomotive::Dragonfly.resize_url site.picture.url, size
+      else
+        'locomotive/site.png'
+      end
+    end
 
     def application_domain
       domain = Locomotive.config.domain

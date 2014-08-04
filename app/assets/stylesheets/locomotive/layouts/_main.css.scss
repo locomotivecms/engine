@@ -1,0 +1,41 @@
+body {
+  overflow: hidden;
+}
+
+.wrapper {
+  position: relative;
+}
+
+body.no-sidebar {
+
+  .wrapper {
+    @include locomotive_gradient;
+  }
+}
+
+.sidebar {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  width: $sidebar_width;
+}
+
+.content {
+  position: absolute;
+  top: 0px;
+  left: $sidebar_width;
+  right: 0px;
+  bottom: 0px;
+  background: red; // DEBUG
+}
+
+.scrollable {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  overflow: auto;
+}

@@ -1,0 +1,26 @@
+@import "../globals/all";
+
+body, html {
+  height: 100%;
+}
+
+.wrapper {
+  width: 100%;
+  @include vertical-align-block-wrapper;
+  @include locomotive_gradient;
+}
+
+.container {
+  @include vertical-align-block;
+  height: 100%;
+}
+
+.main {
+  @include vertical-align-block-fallback;
+  @include make-row();
+  padding-bottom: 20px;
+
+  .content {
+    background: transparent;
+  }
+}

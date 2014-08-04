@@ -1,0 +1,34 @@
+@media (min-width: $screen-sm-min) {
+
+  .account-menu-wrapper {
+
+    > li.dropdown ul.dropdown-menu {
+
+      li:first-child:before {
+        font-family: FontAwesome;
+        content: "\f0d8";
+        position: absolute;
+        top: -15px;
+        left: 0px;
+        right: 0px;
+        text-align: center;
+        color: $header_dropdown_background_color;
+        font-size: 18px;
+      }
+
+    }
+  }
+
+}
+
+@media (max-width: $screen-sm-min) {
+
+  .navbar-header, .navbar-collapse .nav-center, .navbar-collapse .navbar-right {
+    width: auto;
+  }
+
+  .navbar-collapse .navbar-right > li {
+    float: none;
+  }
+
+}
