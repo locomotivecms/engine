@@ -14,8 +14,8 @@ end
 # The rest of the dependencies are for use when in the locomotive development / test environments
 
 group :test, :development do
-  gem 'rspec-rails', '~> 2.13.0' # In order to have rspec tasks and generators
-  gem 'rspec-cells'
+  gem 'rspec-rails', '~> 2.14.2' # In order to have rspec tasks and generators
+  gem 'rspec-cells', '0.1.10' # Can't update more because rspec-cells depends on rspec >= 2.99 after this version
   gem 'pry'
 end
 
