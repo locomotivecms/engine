@@ -396,7 +396,7 @@ DEPENDENCIES
   cucumber-rails
   database_cleaner
   factory_girl_rails
-  faye-websocket (~> 0.4.7)
+  faye-websocket
   github_api
   json_spec
   launchy
