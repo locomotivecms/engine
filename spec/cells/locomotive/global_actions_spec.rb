@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Locomotive::GlobalActionsCell do
+describe Locomotive::GlobalActionsCell, pending: true do
 
   let(:menu) { render_cell('locomotive/global_actions', :show, current_locomotive_account: FactoryGirl.build('admin user'), current_site_url: 'http://www.yahoo.fr') }
 

@@ -46,7 +46,7 @@ module Locomotive
     ## methods ##
 
     def all_pages_in_once
-      Page.quick_tree(self)
+      PagesService.new(self).build_tree
     end
 
     def fetch_page(path, logged_in)

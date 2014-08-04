@@ -20,7 +20,7 @@ module Locomotive
 
     def parent_pages_options
       [].tap do |list|
-        root = Locomotive::Page.quick_tree(current_site).first
+        root = Locomotive::PagesService.new(current_site).build_tree.first
 
         add_children_to_options(root, list)
       end
