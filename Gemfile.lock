@@ -160,10 +160,10 @@ GEM
     eventmachine (1.0.3)
     excon (0.23.0)
     execjs (2.0.2)
-    factory_girl (4.2.0)
+    factory_girl (4.4.0)
       activesupport (>= 3.0.0)
-    factory_girl_rails (4.2.1)
-      factory_girl (~> 4.2.0)
+    factory_girl_rails (4.4.1)
+      factory_girl (~> 4.4.0)
       railties (>= 3.0.0)
     faraday (0.8.9)
       multipart-post (~> 1.2.0)
@@ -395,7 +395,7 @@ DEPENDENCIES
   coffee-rails (~> 3.2.2)
   cucumber-rails
   database_cleaner
-  factory_girl_rails (~> 4.2.1)
+  factory_girl_rails
   faye-websocket (~> 0.4.7)
   github_api
   json_spec
