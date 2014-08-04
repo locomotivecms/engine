@@ -377,11 +377,11 @@ GEM
     uglifier (1.2.7)
       execjs (>= 0.3.0)
       multi_json (~> 1.3)
-    unicorn (4.8.2)
+    unicorn (4.8.3)
       kgio (~> 2.6)
       rack
       raindrops (~> 0.7)
-    unicorn-rails (1.1.0)
+    unicorn-rails (2.1.1)
       rack
       unicorn
     warden (1.2.3)
@@ -411,7 +411,7 @@ DEPENDENCIES
   rspec-cells
   rspec-rails (~> 2.13.0)
   sass-rails (~> 3.2.4)
-  shoulda-matchers (~> 1.5.2)
+  shoulda-matchers
   thor
   uglifier (~> 1.2.4)
   unicorn-rails
