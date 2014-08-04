@@ -47,8 +47,7 @@ group :test do
   # gem 'ZenTest', platforms: :mri
 
   gem 'poltergeist',        '~> 1.1.0'
-  gem 'shoulda-matchers',   '~> 1.5.2'
-
+  gem 'shoulda-matchers'
   gem 'factory_girl_rails', '~> 4.2.1'
   gem 'pickle'
 
