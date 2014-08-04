@@ -5,7 +5,6 @@ module Locomotive
 
     respond_to :json, only: [:index, :create, :update, :destroy]
 
-    before_filter :override_current_ability, only: :index
     before_filter :load_theme_asset, only: [:edit, :update, :destroy]
 
     def index
@@ -51,11 +50,6 @@ module Locomotive
 
     def load_theme_asset
       @theme_asset = current_site.theme_assets.find(params[:id])
-    end
-
-    # TODO replace by Locomotive::ThemeAssetPolicy.new(user, record)
-    def override_current_ability
-      @current_ability = Locomotive::ApplicationPolicy.new(current_locomotive_account, current_site, :theme_asset)
     end
   end
 end

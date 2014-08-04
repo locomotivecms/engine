@@ -21,12 +21,10 @@ class Locomotive::BasePresenter
   # get a property.
   #
   def after_initialize
-    @__depth   = self.__options[:depth] || 0
-    @__ability = self.__options[:ability]
-
+    @__depth = self.__options[:depth] || 0
     begin
-      @__ability = policy(self.__options[:current_account], self.__options[:current_site], self.__options[:resource])
-
+      user, site, resource = [__options[:current_account], __options[:current_site], __options[:resource]]
+      @__ability = Locomotive::ApplicationPolicy.new(user, site, resource)
     rescue Pundit::NotAuthorizedError => e
       Rails.logger.warn e.message
       @__ability = nil
@@ -147,18 +145,6 @@ class Locomotive::BasePresenter
     end
 
     attributes
-  end
-
-  private
-
-  def policy user, site, resource
-    policy_name = "Locomotive::#{self.class.name.split('::').last.gsub('Presenter','')}Policy"
-    begin
-      policy = eval(policy_name).new(user, site, resource)
-    rescue NameError => e
-      policy = Locomotive::ApplicationPolicy.new(user, site, resource)
-    end
-    policy
   end
 
 end

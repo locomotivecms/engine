@@ -42,10 +42,6 @@ module Locomotive
       Thread.current[:site]     = current_site
     end
 
-    def current_ability
-      raise Exception.new('No longer use Base Controller current_ability')
-    end
-
     def require_account
       authenticate_locomotive_account!
     end

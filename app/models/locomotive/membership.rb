@@ -47,14 +47,6 @@ module Locomotive
       end
     end
 
-    def ability
-      @ability ||= Locomotive::ApplicationPolicy.new(self.account, self.site)
-    end
-
-    def to_policy(user, record, membership)
-      Locomotive::ApplicationPolicy.new(user, record)
-    end
-
     def to_role
       self.role.to_sym
     end

@@ -33,10 +33,6 @@ module Locomotive
         Thread.current[:site]     = current_site
       end
 
-      def current_ability
-        raise Exception.new('No longer use Base Controller current_ability')
-      end
-
       def require_account
         authenticate_entity_from_token!
         authenticate_locomotive_account!
@@ -52,11 +48,6 @@ module Locomotive
         ::I18n.locale = ::Mongoid::Fields::I18n.locale
 
         self.setup_i18n_fallbacks if current_site
-      end
-
-      def self.cancan_resource_class
-        # Locomotive::Api::CanCan::ControllerResource
-        raise Exception.new('No longer Locomotive::Api::CanCan::ControllerResource')
       end
 
       def self.description

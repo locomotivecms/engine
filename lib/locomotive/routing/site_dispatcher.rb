@@ -29,6 +29,12 @@ module Locomotive
         @current_site || fetch_site
       end
 
+      def current_resource
+        self.class.name.demodulize.underscore.gsub('_controller','').to_sym
+      rescue
+        :no_current_resource
+      end
+
       def require_site
         return true if current_site
 

@@ -39,7 +39,7 @@ module Locomotive
     WRITE_ACTIONS = [:create, :new, :update, :edit, :destroy]
     MANAGE_ACTIONS = READ_ACTIONS + WRITE_ACTIONS
 
-    def initialize(user, site, resource=nil)
+    def initialize(user, site, resource)
       raise Pundit::NotAuthorizedError, 'must be logged in' unless user
       raise Pundit::NotAuthorizedError, 'should have a site' unless site
       raise Pundit::NotAuthorizedError, 'should have a resource' unless resource

@@ -24,13 +24,11 @@ module Locomotive
     end
 
     def can_update
-      return nil unless self.ability?
-      self.__ability.update?
+      self.__ability.try(:touch?)
     end
 
     def grant_admin
-      return nil unless self.ability?
-      self.__ability.grant_admin?
+      self.__ability.try(:grant_admin?)
     end
 
   end
