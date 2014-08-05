@@ -37,6 +37,7 @@ module Locomotive
     scope :next_or_previous, ->(condition, order_by) { where({ _visible: true }.merge(condition)).limit(1).order_by(order_by) }
 
     ## indexes ##
+    index site_id: 1
     index _type: 1
     index content_type_id: 1
     Locomotive.config.site_locales.each do |locale|
@@ -165,7 +166,7 @@ module Locomotive
       if self._slug.present?
         self._slug.permalink!
 
-        self._slug = self.next_unique_slug if self.slug_already_taken?
+        self.find_next_unique_slug if self.slug_already_taken?
       end
 
       # all the site locales share the same slug ONLY IF the entry is not localized.
@@ -186,12 +187,36 @@ module Locomotive
       end
     end
 
-    # Return the next available unique slug as a string
-    def next_unique_slug
-      slug        = self._slug.gsub(/-\d+$/, '')
-      similar_slugs   = self.class.where(:_id.ne => self._id, _slug: /^#{slug}-?\d*$/i)
-      next_number = similar_slugs.map {|s| s._slug.scan(/-(\d+)$/).flatten.last.to_i }.max + 1
-      [slug, next_number].join('-')
+    # Find the next available unique slug as a string
+    # and replace the current _slug.
+    def find_next_unique_slug
+      _index  = 0
+      _base   = self._slug.gsub(/-\d+$/, '')
+
+      if _similar = similar_slug(_base)
+        _index = _similar.scan(/-(\d+)$/).flatten.last.to_i
+      end
+
+      loop do
+        _index += 1
+        self._slug = [_base, _index].join('-')
+        break unless self.slug_already_taken?
+      end
+    end
+
+    def similar_slug(slug)
+      _last = self.class.where(:_id.ne => self._id, _slug: /^#{slug}-?\d*$/i)
+                .only(:_slug)
+                .order_by(:_id.desc)
+                .context
+                .query
+                .first
+
+      if _last
+        _last['_slug'][::Mongoid::Fields::I18n.locale.to_s]
+      else
+        nil
+      end
     end
 
     def slug_already_taken?
