@@ -34,7 +34,7 @@ module Locomotive
         # end
 
         def template
-          @template ||= Marshal.load(self.serialized_template.to_s) rescue nil
+          @template ||= Marshal.load(self.serialized_template.data)
         end
 
         def force_serialize_template
@@ -45,11 +45,8 @@ module Locomotive
         protected
 
         def serialize_template
-          if !@done_serialize_template &&
-              (self.new_record? || self.raw_template_changed?)
-            @template_changed = true
-
-            @parsing_errors = []
+          if !@done_serialize_template && (self.new_record? || self.raw_template_changed?)
+            @template_changed, @parsing_errors = true, []
 
             begin
               self._parse_and_serialize_template

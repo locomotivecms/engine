@@ -44,7 +44,7 @@ module Locomotive
         serialized_template = page.send(:_serialize_template)
 
         # persist the change to MongoDB by bypassing the validation and the callbacks
-        page.set("serialized_template.#{::Mongoid::Fields::I18n.locale}", serialized_template)
+        page.set(serialized_template: { ::Mongoid::Fields::I18n.locale => serialized_template })
       end
     end
 
