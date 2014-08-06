@@ -7,11 +7,14 @@ class RawArray < ::Array
 end
 
 # FIXME: we have serialiez templates which have references to the old BSON::ObjectId class.
-module BSON
-  class ObjectId < Moped::BSON::ObjectId; end
+module Moped
+  module BSON
+    class ObjectId < ::BSON::ObjectId; end
+  end
 end
+# BSON::ObjectId
 
-module Mongoid#:nodoc:
+module Mongoid #:nodoc:
 
   module Document #:nodoc:
     def as_json(options = {})
@@ -35,18 +38,18 @@ module Mongoid#:nodoc:
   end
 
   # without callback feature
-  module Callbacks #:nodoc:
-    module ClassMethods #:nodoc:
-      def without_callback(*args, &block)
-        skip_callback(*args)
-        yield
-        set_callback(*args)
-      end
-    end
-  end
+  # module Callbacks #:nodoc:
+  #   module ClassMethods #:nodoc:
+  #     def without_callback(*args, &block)
+  #       skip_callback(*args)
+  #       yield
+  #       set_callback(*args)
+  #     end
+  #   end
+  # end
 
   # make the validators work with localized field
-  module Validations #:nodoc:
+  module Validatable #:nodoc:
 
     class ExclusionValidator < ActiveModel::Validations::ExclusionValidator
       include Localizable

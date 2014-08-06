@@ -5,13 +5,24 @@ source "https://rubygems.org"
 
 gemspec # Include gemspec dependencies
 
-group :assets do
-  gem 'sass-rails',   '~> 3.2.4'
-  gem 'coffee-rails', '~> 3.2.2'
-  gem 'uglifier',     '~> 1.2.4'
-end
+gem 'sass-rails',   '~> 4.0.0'
+gem 'coffee-rails', '~> 4.0.0'
+gem 'uglifier',     '>= 1.3.0'
 
 # The rest of the dependencies are for use when in the locomotive development / test environments
+
+gem 'custom_fields', path: '../custom_fields'
+
+gem 'activeresource'
+
+gem 'bson'
+gem 'moped', github: 'mongoid/moped'
+
+# add these gems to help with the transition:
+gem 'protected_attributes'
+gem 'rails-observers'
+gem 'actionpack-page_caching'
+gem 'actionpack-action_caching'
 
 group :test, :development do
   gem 'rspec-rails', '~> 2.14.2' # In order to have rspec tasks and generators

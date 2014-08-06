@@ -7,16 +7,18 @@ module Locomotive
 
         included do
           ## fields ##
-          field :serialized_template,   type: Moped::BSON::Binary, localize: true
+          field :serialized_template,   type: BSON::Binary, localize: true
           field :template_dependencies, type: Array, default: [], localize: true
           field :snippet_dependencies,  type: Array, default: [], localize: true
 
           ## virtual attributes
           attr_reader :template_changed
+          attr_accessor :updating_descendants
 
           ## callbacks ##
           before_validation :serialize_template
           after_save        :update_template_descendants
+          skip_callback     :save, :after, :update_template_descendants, if: -> { self.updating_descendants }
 
           ## validations ##
           validate :template_must_be_valid
@@ -24,6 +26,12 @@ module Locomotive
           ## scopes ##
           scope :pages, lambda { |domain| { any_in: { domains: [*domain] } } }
         end
+
+        # module ClassMethods #:nodoc:
+        #   def foo bar
+        #     bar.updating_descendants
+        #   end
+        # end
 
         def template
           @template ||= Marshal.load(self.serialized_template.to_s) rescue nil
@@ -61,7 +69,8 @@ module Locomotive
         end
 
         def _serialize_template
-          self.serialized_template = Moped::BSON::Binary.new(:generic, Marshal.dump(@template))
+          # self.serialized_template = BSON::Binary.new(:generic, Marshal.dump(@template))
+          self.serialized_template = BSON::Binary.new(Marshal.dump(@template), :generic)
         end
 
         def parse(context = {})
@@ -90,7 +99,8 @@ module Locomotive
           return unless @template_changed == true
 
           # we admit at this point that the current template is up-to-date
-          template_descendants = self.site.pages.any_in("template_dependencies.#{::Mongoid::Fields::I18n.locale}" => [self.id]).to_a
+          condition = { "template_dependencies.#{::Mongoid::Fields::I18n.locale}" => [self.id] }
+          template_descendants = self.site.pages.any_in(condition).to_a
 
           # group them by fullpath for better performance
           cached = template_descendants.inject({}) { |memo, page| memo[page.fullpath] = page; memo }
@@ -98,10 +108,8 @@ module Locomotive
           self._update_direct_template_descendants(template_descendants.clone, cached)
 
           # finally save them all
-          ::Locomotive::Page.without_callback(:save, :after, :update_template_descendants) do
-            template_descendants.each do |page|
-              page.save(validate: false)
-            end
+          template_descendants.each do |page|
+            page.update_without_validation_and_callback!
           end
         end
 
@@ -112,9 +120,7 @@ module Locomotive
 
           direct_descendants.each do |page|
             page.send(:_parse_and_serialize_template, { cached_parent: self, cached_pages: cached })
-
             template_descendants.delete(page) # no need to loop over it next time
-
             page.send(:_update_direct_template_descendants, template_descendants, cached) # move down
           end
         end

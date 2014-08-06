@@ -61,5 +61,12 @@ module Locomotive
       #app.config.assets.precompile = [ method(:compile_asset?).to_proc ]
     end
 
+    initializer 'locomotive.middleware' do |app|
+      # app.middleware.use '::Locomotive::Middlewares::Permalink'
+      app.middleware.insert_before(Rack::Runtime, '::Locomotive::Middlewares::Permalink', nil)
+      app.middleware.use '::Locomotive::Middlewares::SeoTrailingSlash'
+      app.middleware.use '::Locomotive::Middlewares::InlineEditor'
+    end
+
   end
 end

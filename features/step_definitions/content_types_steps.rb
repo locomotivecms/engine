@@ -19,7 +19,7 @@ end
 
 Given %r{^I have a custom model named "([^"]*)" with id "([^"]*)" and$} do |name, id, fields|
   content_type = build_content_type(name)
-  content_type.id = Moped::BSON::ObjectId(id)
+  content_type.id = BSON::ObjectId(id)
   set_custom_fields_from_table(content_type, fields)
   content_type.valid?
   content_type.save.should be_true

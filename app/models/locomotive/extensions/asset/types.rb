@@ -10,7 +10,7 @@ module Locomotive
           scope :by_content_types,  ->(content_types) { content_types.blank? ? all : where(:content_type.in => [*content_types]) }
 
           all_types.each do |type|
-            scope :"only_#{type}", where(content_type: type)
+            scope :"only_#{type}", -> { where(content_type: type) }
 
             define_method("#{type}?") do
               self.content_type.to_s == type

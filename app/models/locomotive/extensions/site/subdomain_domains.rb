@@ -19,7 +19,8 @@ module Locomotive
             validates_presence_of     :subdomain
             validates_uniqueness_of   :subdomain
             validates_exclusion_of    :subdomain, in: Locomotive.config.reserved_subdomains
-            validates_format_of       :subdomain, with: Locomotive::Regexps::SUBDOMAIN, allow_blank: true
+            validates_format_of       :subdomain, with: Locomotive::Regexps::SUBDOMAIN, allow_blank: true,
+              multiline: true
             validate                  :domains_must_be_valid_and_unique
 
             ## callbacks ##

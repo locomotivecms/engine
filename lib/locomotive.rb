@@ -61,7 +61,7 @@ module Locomotive
     }
 
     # add middlewares (font, seo, ...etc)
-    self.add_middlewares
+    # self.add_middlewares
 
     # enable the hosting solution if both we are not in test or dev and that the config.hosting option has been filled up
     self.enable_hosting
@@ -72,13 +72,11 @@ module Locomotive
     end
   end
 
-  def self.add_middlewares
-    self.app_middleware.insert 0, '::Locomotive::Middlewares::Permalink'
-
-    self.app_middleware.use '::Locomotive::Middlewares::SeoTrailingSlash'
-
-    self.app_middleware.use '::Locomotive::Middlewares::InlineEditor'
-  end
+  # def self.add_middlewares
+  #   self.app_middleware.insert 0, '::Locomotive::Middlewares::Permalink'
+  #   self.app_middleware.use '::Locomotive::Middlewares::SeoTrailingSlash'
+  #   self.app_middleware.use '::Locomotive::Middlewares::InlineEditor'
+  # end
 
   def self.configure_multi_sites
     if self.config.multi_sites?

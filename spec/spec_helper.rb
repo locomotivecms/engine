@@ -42,7 +42,7 @@ RSpec.configure do |config|
   end
 
   config.before(:each) do
-    Mongoid::IdentityMap.clear
+    # Mongoid::IdentityMap.clear
   end
 
   config.before(:each) do

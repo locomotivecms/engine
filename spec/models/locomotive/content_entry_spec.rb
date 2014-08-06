@@ -407,6 +407,6 @@ describe Locomotive::ContentEntry do
   end
 
   def fake_bson_id(id)
-    Moped::BSON::ObjectId(id.to_s.rjust(24, '0'))
+    BSON::ObjectId(id.to_s.rjust(24, '0'))
   end
 end

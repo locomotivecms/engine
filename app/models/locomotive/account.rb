@@ -27,7 +27,7 @@ module Locomotive
     field :api_key
 
     ## protected attributes ##
-    attr_protected :api_key
+    # attr_protected :api_key
 
     ## validations ##
     validates_presence_of :name
@@ -39,7 +39,7 @@ module Locomotive
     before_destroy    :remove_memberships!
 
     ## scopes ##
-    scope :ordered, order_by(name: :asc)
+    scope :ordered, -> { order_by(name: :asc) }
 
     ## indexes ##
     index({ email: 1 }, { unique: true, background: true })

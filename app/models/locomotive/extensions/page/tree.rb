@@ -59,7 +59,7 @@ module Locomotive
         def sort_children!(ids)
           position, cached_children = 0, self.children.to_a
           ids.each do |id|
-            if child = cached_children.detect { |p| p._id == Moped::BSON::ObjectId(id) }
+            if child = cached_children.detect { |p| p._id == BSON::ObjectId(id) }
               child.position = position
               child.save
               position += 1
@@ -82,7 +82,7 @@ module Locomotive
         protected
 
         def rearrange_with_identity_map
-          ::Mongoid::IdentityMap.clear
+          # ::Mongoid::IdentityMap.clear
           rearrange_without_identity_map
         end
 

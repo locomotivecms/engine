@@ -7,7 +7,7 @@ module Locomotive
 
         included do
           field :raw_item_template
-          field :serialized_item_template, type: Moped::BSON::Binary
+          field :serialized_item_template, type: BSON::Binary
 
           before_validation :serialize_item_template
 
@@ -34,7 +34,7 @@ module Locomotive
 
         def _parse_and_serialize_item_template
           item_template = ::Liquid::Template.parse(self.raw_item_template, {})
-          self.serialized_item_template = Moped::BSON::Binary.new(:generic, Marshal.dump(item_template))
+          self.serialized_item_template = BSON::Binary.new(Marshal.dump(item_template), :generic)
         end
 
         def item_template_must_be_valid

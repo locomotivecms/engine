@@ -7,6 +7,9 @@ require "sprockets/railtie"
 
 Bundler.require *Rails.groups(:assets) if defined?(Bundler)
 
+require 'bson'
+require 'moped'
+
 require 'locomotive/engine'
 
 module Dummy
@@ -54,4 +57,3 @@ module Dummy
     # end
   end
 end
-

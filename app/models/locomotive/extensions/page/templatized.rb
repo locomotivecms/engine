@@ -23,7 +23,7 @@ module Locomotive
           after_save        :propagate_templatized
 
           ## scopes ##
-          scope :templatized, where(templatized: true)
+          scope :templatized, -> { where(templatized: true) }
 
           ## virtual attributes ##
           attr_accessor :content_entry

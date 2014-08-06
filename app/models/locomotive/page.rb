@@ -52,12 +52,12 @@ module Locomotive
     validates_exclusion_of    :slug,    in: Locomotive.config.reserved_slugs, if: Proc.new { |p| p.depth <= 1 }
 
     ## named scopes ##
-    scope :latest_updated,      order_by(updated_at: :desc).limit(Locomotive.config.ui[:latest_entries_nb])
+    scope :latest_updated,      -> { order_by(updated_at: :desc).limit(Locomotive.config.ui[:latest_entries_nb]) }
     scope :root,                -> { where(slug: 'index', depth: 0) }
     scope :not_found,           -> { where(slug: '404', depth: 0) }
-    scope :published,           where(published: true)
-    scope :fullpath,            ->(fullpath){ where(fullpath: fullpath) }
-    scope :handle,              ->(handle){ where(handle: handle) }
+    scope :published,           -> { where(published: true) }
+    scope :fullpath,            ->(fullpath) { where(fullpath: fullpath) }
+    scope :handle,              ->(handle) { where(handle: handle) }
     scope :minimal_attributes,  ->(attrs = []) { without(self.fields.keys - MINIMAL_ATTRIBUTES) }
     scope :dependent_from,      ->(id) { where(:template_dependencies.in => [id]) }
 
@@ -93,6 +93,12 @@ module Locomotive
 
     def translated_in
       self.title_translations.try(:keys)
+    end
+
+    def update_without_validation_and_callback!
+      self.updating_descendants = true
+      self.save(validate: false)
+      self.updating_descendants = false
     end
 
     protected

@@ -24,7 +24,7 @@ module Locomotive
     mount_uploader :source, ContentAssetUploader, mount_on: :source_filename
 
     ## scopes ##
-    scope :ordered,     order_by(created_at: :desc)
+    scope :ordered, -> { order_by(created_at: :desc) }
     scope :by_filename, ->(query) { where(source_filename: /.*#{query}.*/i) }
 
     ## methods ##
