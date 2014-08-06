@@ -1,7 +1,6 @@
 module Locomotive
   class EditableElement
 
-    # include ::Mongoid::Document
     include Locomotive::Mongoid::Document
 
     ## fields ##

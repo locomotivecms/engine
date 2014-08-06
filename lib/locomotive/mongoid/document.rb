@@ -8,6 +8,7 @@ module Locomotive
       included do
         include ::Mongoid::Document
         include ::Mongoid::Timestamps
+        include ::Mongoid::Attributes::Dynamic
 
         include Locomotive::Mongoid::Presenter
         include Locomotive::Mongoid::Liquid
