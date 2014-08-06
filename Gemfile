@@ -10,9 +10,6 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'uglifier',     '>= 1.3.0'
 
 # The rest of the dependencies are for use when in the locomotive development / test environments
-
-gem 'custom_fields', path: '../custom_fields'
-
 gem 'activeresource'
 
 gem 'bson'
@@ -31,6 +28,7 @@ group :test, :development do
 end
 
 group :development do
+  gem 'custom_fields', path: '../custom_fields'
   # gem 'custom_fields', path: '../gems/custom_fields' # for Developers
   # gem 'custom_fields', github: 'locomotivecms/custom_fields'
   # gem 'custom_fields', git: 'git://github.com/locomotivecms/custom_fields.git', branch: '2.0.0.rc' # Branch on Github
