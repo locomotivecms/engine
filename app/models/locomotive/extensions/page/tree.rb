@@ -16,7 +16,7 @@ module Locomotive
           ## callbacks ##
           before_save     :persist_depth
           before_save     :ensure_index_position
-          before_destroy  :delete_descendants
+          before_destroy  :destroy_children
 
           ## indexes ##
           index position: 1
