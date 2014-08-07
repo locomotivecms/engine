@@ -6,7 +6,7 @@ class RawArray < ::Array
   def resizable?; false; end
 end
 
-# FIXME: we have serialiez templates which have references to the old BSON::ObjectId class.
+# FIXME: we have serialized templates which have references to the old BSON::ObjectId class.
 module Moped
   module BSON
     class ObjectId < ::BSON::ObjectId; end
@@ -15,6 +15,48 @@ end
 # BSON::ObjectId
 
 module Mongoid #:nodoc:
+
+  # FIXME: https://github.com/benedikt/mongoid-tree/issues/58
+  # We replace all the @_#{name} occurences by @_#{name}_ivar.
+  module Relations
+    module Accessors
+      def reset_relation_criteria(name)
+        if instance_variable_defined?("@_#{name}_ivar")
+          send(name).reset_unloaded
+        end
+      end
+      def set_relation(name, relation)
+        instance_variable_set("@_#{name}_ivar", relation)
+      end
+    end
+    def reload_relations
+      relations.each_pair do |name, meta|
+        if instance_variable_defined?("@_#{name}_ivar")
+          if _parent.nil? || instance_variable_get("@_#{name}_ivar") != _parent
+            remove_instance_variable("@_#{name}_ivar")
+          end
+        end
+      end
+    end
+  end
+  module Extensions
+    module Object
+      def ivar(name)
+        if instance_variable_defined?("@_#{name}_ivar")
+          return instance_variable_get("@_#{name}_ivar")
+        else
+          false
+        end
+      end
+      def remove_ivar(name)
+        if instance_variable_defined?("@_#{name}_ivar")
+          return remove_instance_variable("@_#{name}_ivar")
+        else
+          false
+        end
+      end
+    end
+  end
 
   module Document #:nodoc:
     def as_json(options = {})
