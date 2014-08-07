@@ -59,7 +59,7 @@ module Locomotive
         def sort_children!(ids)
           position, cached_children = 0, self.children.to_a
           ids.each do |id|
-            if child = cached_children.detect { |p| p._id == BSON::ObjectId(id) }
+            if child = cached_children.detect { |p| p._id == BSON::ObjectId.from_string(id) }
               child.position = position
               child.save
               position += 1

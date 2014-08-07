@@ -27,14 +27,20 @@ module Locomotive
           scope :pages, lambda { |domain| { any_in: { domains: [*domain] } } }
         end
 
-        # module ClassMethods #:nodoc:
-        #   def foo bar
-        #     bar.updating_descendants
-        #   end
-        # end
-
         def template
-          @template ||= Marshal.load(self.serialized_template.data)
+          return @template if @template.present?
+
+          if self.serialized_template.present?
+            begin
+              @template = Marshal.load(self.serialized_template.data)
+            rescue Exception => e
+              Locomotive.log :warn, "[Page][#{self._id}] unable to de-serialize the template, error: #{e.message}"
+              nil
+            end
+          else
+            nil
+          end
+          # @template ||= Marshal.load(self.serialized_template.data) rescue nil
         end
 
         def force_serialize_template

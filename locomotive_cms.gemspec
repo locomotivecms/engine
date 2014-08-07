@@ -32,7 +32,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'mongo_session_store-rails4',      '~> 5.1.0'
 
   s.add_dependency 'mime-types',                      '~> 1.19'
-  # s.add_dependency 'custom_fields',                   '~> 2.3.1'
+  s.add_dependency 'custom_fields',                   '~> 2.4.0.rc1'
 
   s.add_dependency 'kaminari',                        '~> 0.14.1'
 
