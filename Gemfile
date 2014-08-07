@@ -5,9 +5,9 @@ source "https://rubygems.org"
 
 gemspec # Include gemspec dependencies
 
-gem 'sass-rails',   '~> 4.0.0'
-gem 'coffee-rails', '~> 4.0.0'
-gem 'uglifier',     '>= 1.3.0'
+gem 'sass-rails',   '~> 4.0.3'
+gem 'coffee-rails', '~> 4.0.1'
+gem 'uglifier',     '>= 2.5.3'
 
 # The rest of the dependencies are for use when in the locomotive development / test environments
 gem 'activeresource'
