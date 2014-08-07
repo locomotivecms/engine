@@ -10,12 +10,12 @@ describe Locomotive::EditableText do
 
       @home.update_attributes raw_template: "{% block body %}{% editable_text 'body' %}Lorem ipsum{% endeditable_text %}{% endblock %}"
 
-      @sub_page_1 = FactoryGirl.create(:page, slug: 'sub_page_1', parent: @home, raw_template: "{% extends 'parent' %}")
-      @sub_page_2 = FactoryGirl.create(:page, slug: 'sub_page_2', parent: @home, raw_template: "{% extends 'parent' %}")
+      @sub_page_1 = FactoryGirl.create(:page, title: '1', slug: 'sub_page_1', parent: @home, raw_template: "{% extends 'parent' %}")
+      @sub_page_2 = FactoryGirl.create(:page, title: '2', slug: 'sub_page_2', parent: @home, raw_template: "{% extends 'parent' %}")
 
       @sub_page_1_el = @sub_page_1.editable_elements.first
 
-      @sub_page_1_1 = FactoryGirl.create(:page, slug: 'sub_page_1_1', parent: @sub_page_1, raw_template: "{% extends 'parent' %}")
+      @sub_page_1_1 = FactoryGirl.create(:page, title: '1_1', slug: 'sub_page_1_1', parent: @sub_page_1, raw_template: "{% extends 'parent' %}")
     end
 
     describe 'properties' do
