@@ -93,11 +93,6 @@ describe Locomotive::Account do
       account.api_key.should_not be_nil
     end
 
-    it 'can be not changed by mass assignment' do
-      account.attributes = { api_key: 'foo' }
-      account.api_key.should_not == 'foo'
-    end
-
     it 'can be regenerated over and over' do
       key_1 = account.regenerate_api_key
       key_1.should_not be_nil
