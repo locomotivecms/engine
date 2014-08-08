@@ -17,6 +17,7 @@ module Locomotive
         when ::Pundit::NotAuthorizedError         then 401
         when ::Mongoid::Errors::DocumentNotFound  then 404
         else 500
+          raise exception
         end)
 
         if request.xhr?
