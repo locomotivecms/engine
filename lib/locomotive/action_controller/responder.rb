@@ -59,7 +59,7 @@ module Locomotive
           message = URI::escape(controller.flash[type].to_str) if controller.flash[type]
 
           unless message.blank?
-            controller.headers['X-Message']       = ActiveSupport::JSON::Encoding.escape(message)
+            controller.headers['X-Message']       = ActiveSupport::JSON.encode(message)
             controller.headers['X-Message-Type']  = type.to_s
           end
 
