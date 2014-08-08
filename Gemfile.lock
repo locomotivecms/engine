@@ -18,6 +18,7 @@ PATH
       cells (~> 3.11.1)
       codemirror-rails (~> 3.13)
       compass-rails (~> 1.1.7)
+      custom_fields (~> 2.4.0.rc1)
       devise (~> 3.2.2)
       devise-encryptable (~> 0.2.0)
       dragonfly (~> 1.0.4)
@@ -47,15 +48,6 @@ PATH
       responders (~> 1.1.0)
       sanitize (= 2.0.3)
       stringex (~> 2.0.3)
-
-PATH
-  remote: ../custom_fields
-  specs:
-    custom_fields (2.3.1)
-      activesupport (~> 4.1.4)
-      carrierwave-mongoid (~> 0.7.1)
-      money (~> 5.1.1)
-      mongoid (~> 4.0.0)
 
 GEM
   remote: https://rubygems.org/
@@ -161,6 +153,11 @@ GEM
       mime-types (~> 1.16)
       nokogiri (~> 1.5)
       rails (>= 3, < 5)
+    custom_fields (2.4.0.rc1)
+      activesupport (~> 4.0.8)
+      carrierwave-mongoid (~> 0.7)
+      money (~> 5.1.1)
+      mongoid (~> 4.0.0)
     database_cleaner (1.3.0)
     devise (3.2.4)
       bcrypt (~> 3.0)
@@ -417,7 +414,6 @@ DEPENDENCIES
   capybara (~> 2.0.2)
   coffee-rails (~> 4.0.1)
   cucumber-rails
-  custom_fields!
   database_cleaner
   factory_girl_rails
   faye-websocket

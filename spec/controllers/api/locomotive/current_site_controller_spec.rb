@@ -24,7 +24,7 @@ module Locomotive
         end
       end
 
-      describe "#DELETE destroy", pending: true do
+      describe "#DELETE destroy" do
         subject do
           delete :destroy, id: site.id, locale: :en, format: :json
         end
