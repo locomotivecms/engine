@@ -1,0 +1,81 @@
+.formtastic {
+
+  fieldset .input.file {
+    .form-wrapper {
+      background: #fff;
+      padding: 6px 12px 7px 12px;
+
+      .file {
+        position: relative;
+        overflow: hidden;
+
+        input[type=file] {
+          cursor: inherit;
+          display: block;
+          filter: alpha(opacity=0);
+          opacity: 0;
+          position: absolute;
+          right: 0;
+          top: 0;
+          height: 1px;
+          width: 1px;
+          text-indent: -99999;
+        }
+
+        .current-file {
+          img {
+            border: 2px solid $form_input_control_border_color;
+            width: 29px;
+            height: 29px;
+            margin-right: 5px;
+          }
+        }
+
+        .current-file, .new-file, .no-file {
+          line-height: 30px;
+          height: 30px;
+        }
+      }
+
+      .buttons {
+        text-align: right;
+
+        .btn {
+          margin-right: 5px;
+        }
+      }
+    }
+
+    &.mark-as-removed {
+
+      .current-file {
+        @include opacity(0.3);
+        img {
+
+        }
+
+        text-decoration: line-through;
+      }
+
+    }
+  }
+}
+
+@media (max-width: $screen-sm-min) {
+
+  .formtastic {
+    fieldset .input.file {
+      .form-wrapper {
+        .buttons {
+          margin-top: 5px;
+          text-align: left;
+
+          .btn {
+            margin-right: 5px;
+          }
+        }
+      }
+    }
+  }
+
+}
