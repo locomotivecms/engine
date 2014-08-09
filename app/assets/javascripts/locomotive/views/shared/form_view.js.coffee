@@ -53,6 +53,9 @@ class Locomotive.Views.Shared.FormView extends Backbone.View
       view.render()
       self.inputs.push(view)
 
+  remove: ->
+    self.inputs.each (view) -> view.remove()
+
   # ===============================
 
   # save: (event) ->
