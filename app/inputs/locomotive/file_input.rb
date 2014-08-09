@@ -2,14 +2,10 @@ module Locomotive
   class FileInput < Formtastic::Inputs::FileInput
 
     include FormtasticBootstrap::Inputs::Base
-    # include FormtasticBootstrap::Inputs::Base::Stringish
-
-    # include Formtastic::Inputs::Base
 
     def to_html
       bootstrap_wrapping do
         file_wrapper_html
-        # builder.file_field(method, input_html_options)
       end
     end
 
@@ -21,20 +17,27 @@ module Locomotive
 
     def file_html
       col_wrapping :file do
-        builder.file_field(method, input_html_options)
+        no_file_html +
+        new_file_html +
+        filename_or_image +
+        builder.file_field(method, input_html_options) +
+        builder.hidden_field(:"remove_#{method}")
       end
     end
 
     def buttons_html
       col_wrapping :buttons do
-        template.link_to 'change', '#', class: 'btn btn-primary btn-sm'
+        template.link_to(text(:choose), '#', class: "choose btn btn-primary btn-sm #{hidden_css(:choose)}") +
+        template.link_to(text(:change), '#', class: "change btn btn-primary btn-sm #{hidden_css(:change)}") +
+        template.link_to(text(:cancel), '#', class: "cancel btn btn-primary btn-sm #{hidden_css(:cancel)}") +
+        template.link_to(trash_icon, '#', class: "delete #{hidden_css(:delete)}")
       end
     end
 
     def row_wrapping(&block)
       template.content_tag(:div,
         template.capture(&block).html_safe,
-        class: 'row')
+        class: 'row', data: { persisted: persisted_file?, persisted_file: persisted_file? })
     end
 
     def col_wrapping(css, &block)
@@ -44,46 +47,61 @@ module Locomotive
       )
     end
 
-    def no_file_html
-
+    def trash_icon
+      template.content_tag(:i, '', class: 'fa fa-trash-o')
     end
 
+    def filename_or_image
+      if persisted_file?
+        css = "current-file #{persisted_file.image? ? 'image' : ''}"
+        template.content_tag :span, image_html + filename_html, class: css
+      else
+        ''
+      end
+    end
 
-    # def input_wrapping(&block)
-    #   template.content_tag(:li,
-    #     [template.capture(&block), file_wrapper_html, error_html, hint_html].join("\n").html_safe,
-    #     wrapper_html_options
-    #   )
-    # end
+    def no_file_html
+      template.content_tag :span, text(:no), class: "no-file #{hidden_css(:no_file)}"
+    end
 
-    # def file_wrapper_html
-    #   prefix = builder.custom_namespace.present? ? "#{builder.custom_namespace}_" : ''
+    def new_file_html
+      template.content_tag :span, 'New file here', class: "new-file #{hidden_css(:new_file)}"
+    end
 
-    #   template_id = "#{prefix}#{method}_file_input"
+    def image_html
+      if persisted_file.image?
+        url = Locomotive::Dragonfly.resize_url persisted_file.url, '60x60#'
+        template.image_tag(url)
+      else
+        ''
+      end
+    end
 
-    #   template.content_tag(:script,
-    #     %(
-    #       {{#if url}}
-    #       #{with_file_html}
-    #       {{else}}
-    #       #{without_file_html}
-    #       {{/if}}).html_safe,
-    #     type: 'text/html', id: template_id)
-    # end
+    def filename_html
+      template.link_to(File.basename(persisted_file.to_s), persisted_file.url)
+    end
 
-    # def with_file_html
-    #   cancel_message = I18n.t('locomotive.shared.form.cancel')
+    def persisted_file?
+      self.object.send(:"#{method}?")
+    end
 
-    #   html =  template.link_to '{{filename}}', '{{url}}', target: '_blank'
-    #   html += builder.file_field(method, input_html_options.merge(style: 'display: none'))
-    #   html += template.link_to I18n.t('locomotive.shared.form.change_file'), '#', class: 'change', :'data-alt-label' => cancel_message
-    #   html += template.link_to I18n.t('locomotive.shared.form.delete_file'), '#', class: 'delete', :'data-alt-label' => cancel_message
-    #   html += builder.hidden_field "remove_#{method}", class: 'remove-flag'
-    # end
+    def persisted_file
+      self.object.send(method.to_sym)
+    end
 
-    # def without_file_html
-    #   builder.file_field(method, input_html_options).html_safe
-    # end
+    def hidden_css(name)
+      displayed = case name
+      when :choose, :no_file then !object.persisted? || !persisted_file?
+      when :change, :delete then persisted_file?
+      else false
+      end
+
+      displayed ? '' : 'hide'
+    end
+
+    def text(name)
+      I18n.t("locomotive.shared.form.#{name}_file")
+    end
 
   end
 end

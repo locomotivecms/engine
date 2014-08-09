@@ -27,7 +27,7 @@ module Locomotive
     field :api_key
 
     ## protected attributes ##
-    attr_protected :api_key
+    attr_protected  :api_key
 
     ## validations ##
     validates_presence_of :name

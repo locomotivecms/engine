@@ -55,9 +55,11 @@ en:
         theme_assets: Theme files
         translations: Translations
       form:
+        no_file: no file
+        choose_file: choose
         change_file: change
         delete_file: delete
-        cancel: cancel
+        cancel_file: cancel
       form_actions:
         back: Back without saving
         create: Create

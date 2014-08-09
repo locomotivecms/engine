@@ -6,8 +6,12 @@ class Locomotive.Views.Shared.FormView extends Backbone.View
 
   namespace: null
 
+  inputs: []
+
   render: ->
     @display_active_nav()
+
+    @enable_file_inputs()
 
     # make title editable (if possible)
     # @make_title_editable()
@@ -41,6 +45,13 @@ class Locomotive.Views.Shared.FormView extends Backbone.View
   save: (event) ->
     @change_state()
     @record_active_tab()
+
+  enable_file_inputs: (event) ->
+    self = @
+    @$('.input.file').each ->
+      view = new Locomotive.Views.Inputs.FileView(el: $(@))
+      view.render()
+      self.inputs.push(view)
 
   # ===============================
 
