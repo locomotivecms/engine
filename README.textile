@@ -44,7 +44,7 @@ See the "installation documentation on the official website":http://doc.locomoti
 
 h2. Upgrading
 
-We work on the procedure to upgrade from a previous version of the engine (below the 2.0.0)
+See the "engine upgrade guide on the official website":http://doc.locomotivecms.com/guides/upgrading-engine
 
 h2. Community
 
