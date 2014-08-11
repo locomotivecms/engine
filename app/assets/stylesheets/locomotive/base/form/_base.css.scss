@@ -29,6 +29,11 @@
         font-family: $alt-font-family-sans-serif;
       }
 
+      .help-inline {
+        color: $form_input_help_color;
+        font-size: $form_input_help_size;
+      }
+
       .error-inline {
         color: $state-danger-text;
       }

@@ -28,6 +28,14 @@ module Locomotive
       respond_with @site, location: edit_current_site_path(new_host_if_subdomain_changed)
     end
 
+    def new_domain
+      if params[:domain].present?
+        render partial: 'domain', locals: { domain: params[:domain] }
+      else
+        head :unprocessable_entity
+      end
+    end
+
     protected
 
     def filter_attributes

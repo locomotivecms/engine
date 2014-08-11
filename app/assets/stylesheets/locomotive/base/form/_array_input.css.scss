@@ -1,0 +1,71 @@
+.formtastic {
+
+  fieldset .input.array {
+    .form-wrapper {
+      background: #fff;
+      padding: 0px $padding-base-horizontal;
+
+      .list {
+
+        .item {
+          padding-top: 6px;
+          padding-bottom: 6px;
+          border-bottom: $form_input_array_border_size solid $form_input_array_border_color;
+
+          line-height: $form_input_array_item_height;
+
+          .draggable {
+            margin-right: 6px;
+            color: $form_input_array_draggable_color;
+            font-size: 16px;
+            cursor: move;
+            @include user-select(none);
+          }
+
+          &.ui-sortable-helper {
+            background: #fff;
+            border: $form_input_array_border_size solid $form_input_array_border_color;
+          }
+
+        }
+
+        .sortable-placeholder {
+          background-color: $form_input_array_placeholder_background;
+          @include make-row();
+          height: $form_input_array_placeholder_height + $form_input_array_placeholder_margin * 2;
+
+          .inner {
+            background-color: $form_input_array_placeholder;
+            @include border-radius($form_input_array_placeholder_height / 2);
+            border: none;
+            margin-top: $form_input_array_placeholder_margin - ($form_input_array_border_size / 2);
+            margin-bottom: $form_input_array_placeholder_margin;
+            margin-left: $form_input_array_border_size;
+            margin-right: $form_input_array_border_size;
+            height: $form_input_array_placeholder_height
+          }
+
+        }
+
+      }
+
+      .new-field {
+
+        .field, .button {
+          height: 44px;
+          line-height: 44px;
+        }
+
+        .field {
+          padding-left: $form_input_control_border_size;
+
+          input[type=text] {
+            @include box-shadow(none);
+            padding-left: $padding-base-horizontal - $form_input_control_border_size;
+          }
+        }
+
+      }
+    }
+  }
+}

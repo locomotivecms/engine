@@ -1,19 +1,31 @@
-- title link_to(@site.name.blank? ? @site.name_was : @site.name, '#', rel: 'site_name', title: t('.ask_for_name'), class: 'editable')
+- title t('.title')
 
-- content_for :submenu do
-  = render_cell 'locomotive/settings_menu', :show
+= help t('.help', default: '')
 
-- content_for :actions do
-  = locale_picker_link
+= semantic_form_for @site, url: current_site_path do |f|
 
-- content_for :buttons do
-  - if can?(:create, Locomotive::Account)
-    = local_action_button t('.new_membership'), new_membership_path, icon: 'icon-plus'
+  = hidden_field_tag :active_tab, ''
 
-%p!= t('.help')
+  = semantic_form_button @site, 'hide'
 
-= semantic_form_for @site, url: current_site_path do |form|
+  = render 'form', f: f
 
-  = render 'form', f: form
 
-  = render 'locomotive/shared/form_actions', button_label: :update
+
+/ - title link_to(@site.name.blank? ? @site.name_was : @site.name, '#', rel: 'site_name', title: t('.ask_for_name'), class: 'editable')
+
+/ - content_for :submenu do
+/   = render_cell 'locomotive/settings_menu', :show
+
+/ - content_for :actions do
+/   = locale_picker_link
+
+/ - content_for :buttons do
+/   - if can?(:create, Locomotive::Account)
+/     = local_action_button t('.new_membership'), new_membership_path, icon: 'icon-plus'
+
+/ = semantic_form_for @site, url: current_site_path do |form|
+
+/   = render 'form', f: form
+
+/   / = render 'locomotive/shared/form_actions', button_label: :update

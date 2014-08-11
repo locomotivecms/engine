@@ -30,7 +30,9 @@ Locomotive::Engine.routes.draw do
 
   resources :sites
 
-  resource :current_site, controller: 'current_site'
+  resource :current_site, controller: 'current_site' do
+    get :new_domain
+  end
 
   resources :accounts
 

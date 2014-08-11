@@ -12,6 +12,7 @@ class Locomotive.Views.Shared.FormView extends Backbone.View
     @display_active_nav()
 
     @enable_file_inputs()
+    @enable_array_inputs()
 
     # make title editable (if possible)
     # @make_title_editable()
@@ -50,6 +51,13 @@ class Locomotive.Views.Shared.FormView extends Backbone.View
     self = @
     @$('.input.file').each ->
       view = new Locomotive.Views.Inputs.FileView(el: $(@))
+      view.render()
+      self.inputs.push(view)
+
+  enable_array_inputs: (event) ->
+    self = @
+    @$('.input.array').each ->
+      view = new Locomotive.Views.Inputs.ArrayView(el: $(@))
       view.render()
       self.inputs.push(view)
 

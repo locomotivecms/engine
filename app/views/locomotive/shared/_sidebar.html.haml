@@ -1,10 +1,10 @@
 - # Note: do not forget to add a "|" character at the end of each line
 - # http://haml.info/docs/yardoc/file.REFERENCE.html#multiline
 
-= render_cell 'locomotive/sidebar', :show, site: current_site, list: [  |
-    { icon: 'fa-dashboard', label: t('.dashboard'), url: root_path },   |
-    :pages,                                                             |
-    :content_types,                                                     |
-    { icon: 'fa-picture-o', label: t('.assets'), url: root_path },      |
-    { icon: 'fa-gear', label: t('.settings'), url: root_path }          |
-  ]                                                                     |
+= render_cell 'locomotive/sidebar', :show, site: current_site, list: [      |
+    { icon: 'fa-dashboard', label: t('.dashboard'), url: root_path },       |
+    :pages,                                                                 |
+    :content_types,                                                         |
+    { icon: 'fa-picture-o', label: t('.assets'), url: root_path },          |
+    { icon: 'fa-gear', label: t('.settings'), url: edit_current_site_path } |
+  ]                                                                         |

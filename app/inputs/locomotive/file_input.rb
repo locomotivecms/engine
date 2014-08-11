@@ -61,7 +61,7 @@ module Locomotive
     end
 
     def no_file_html
-      template.content_tag :span, text(:no), class: "no-file #{hidden_css(:no_file)}"
+      template.content_tag :span, text(:none), class: "no-file #{hidden_css(:no_file)}"
     end
 
     def new_file_html
@@ -100,7 +100,7 @@ module Locomotive
     end
 
     def text(name)
-      I18n.t("locomotive.shared.form.#{name}_file")
+      I18n.t("locomotive.shared.form.file_input.#{name}")
     end
 
   end

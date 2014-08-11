@@ -8,34 +8,4 @@
 
   = semantic_form_button @account, 'hide'
 
-  %ul.nav.nav-tabs{ role: 'tablist' }
-    = form_nav_tab :main, true do
-      = link_to t('formtastic.titles.information'), '#main', role: 'tab', data: { toggle: 'tab' }
-    = form_nav_tab :credentials do
-      = link_to t('formtastic.titles.credentials'), '#credentials', role: 'tab', data: { toggle: 'tab' }
-    = form_nav_tab :api do
-      = link_to t('formtastic.titles.api'), '#api', role: 'tab', data: { toggle: 'tab' }
-
-  .tab-content
-    = form_tab_pane :main, true do
-      = f.inputs name: :information do
-        = f.input :name
-        = f.input :avatar, as: '::Locomotive::File'
-        = f.input :locale, as: :select, collection: options_for_locale, include_blank: false, wrapper_html: { class: 'select2' }
-
-      = f.actions class: 'text-right' do
-        = semantic_form_button @account
-
-    = form_tab_pane :credentials do
-      = f.inputs name: :credentials do
-        = f.input :email
-        = f.input :password, input_html: { autocomplete: 'off' }
-        = f.input :password_confirmation, input_html: { autocomplete: 'off' }
-
-      = f.actions class: 'text-right' do
-        = semantic_form_button @account
-
-    = form_tab_pane :api do
-      = f.inputs name: :api do
-        = f.input :api_key, as: '::Locomotive::ApiKey', url: regenerate_api_key_my_account_path
-
+  = render 'form', f: f

@@ -55,11 +55,14 @@ en:
         theme_assets: Theme files
         translations: Translations
       form:
-        no_file: no file
-        choose_file: choose
-        change_file: change
-        delete_file: delete
-        cancel_file: cancel
+        file_input:
+          none: no file
+          choose: choose
+          change: change
+          delete: delete
+          cancel: cancel
+        array_input:
+          add: add
       form_actions:
         back: Back without saving
         create: Create
@@ -197,13 +200,11 @@ en:
       new:
         title: New site
         help: "Fill in the form below to create your new site."
-      domains:
-        empty: "There are no domains tied this site yet. Simply add your domains just below. <b>Do not forget to upgrade your DNS.</b>"
 
     current_site:
       edit:
+        title: Editing the current site
         new_membership: add account
-        help: "The site name can be updated by clicking it. To apply your changes, click on the \"Save\" button."
         ask_for_name: "Please type the new site name"
 
     memberships:

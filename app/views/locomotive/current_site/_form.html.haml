@@ -1,37 +1,89 @@
-- content_for :head do
-  = render 'locomotive/sites/domains'
-  = render 'locomotive/sites/memberships'
+%ul.nav.nav-tabs{ role: 'tablist' }
+  = form_nav_tab :main, true do
+    = link_to t('formtastic.titles.information'), '#main', role: 'tab', data: { toggle: 'tab' }
 
-- content_for :backbone_view_data do
-  :plain
-    site:   #{escape_json @site.to_json(current_account: current_locomotive_account, current_site: current_site).html_safe},
-    errors: #{@site.errors.to_json}
+  - if can?(:point, Locomotive::Site)
+    = form_nav_tab :access_points do
+      = link_to t('formtastic.titles.access_points'), '#access_points', role: 'tab', data: { toggle: 'tab' }
 
-= f.inputs name: :information  do
-  = f.input :name, wrapper_html: { style: 'display: none' }
-  = f.input :locales, as: '::Locomotive::Locales', collection: ordered_current_site_locales, input_html: { class: 'locales' }
-  = f.input :timezone_name, as: :select, include_blank: false, collection: options_for_site_timezones
+  = form_nav_tab :credentials do
+    = link_to t('formtastic.titles.seo'), '#seo', role: 'tab', data: { toggle: 'tab' }
 
-- if can?(:point, Locomotive::Site)
-  - if manage_subdomain_or_domains?
-    = f.inputs name: :access_points do
-      = f.input :subdomain, as: :'Locomotive::Subdomain', domain: application_domain, input_html: { readonly: !manage_subdomain? }
+  = form_nav_tab :api do
+    = link_to t('formtastic.titles.advanced'), '#advanced', role: 'tab', data: { toggle: 'tab' }
 
-      - if manage_domains?
-        = f.input :domains, as: :'Locomotive::Empty'
+.tab-content
+  = form_tab_pane :main, true do
+    = f.inputs name: :information do
+      = f.input :name
+      = f.input :picture, as: '::Locomotive::File'
+
+    = f.actions class: 'text-right' do
+      = semantic_form_button @site
+
+  - if can?(:point, Locomotive::Site)
+    = form_tab_pane :access_points do
+      = f.inputs name: :access_points do
+        - if manage_subdomain_or_domains?
+          - if manage_subdomain?
+            = f.input :subdomain, prepend: 'http://', append: '.' + application_domain
+
+          - if manage_domains?
+            = f.input :domains, as: 'Locomotive::Array', list: f.object.domains_without_subdomain, partial: :domain, template_url: new_domain_current_site_path
+
+      = f.actions class: 'text-right' do
+        = semantic_form_button @site
+
+  = form_tab_pane :seo do
+    = f.inputs name: :seo do
+      = f.input :seo_title
+      = f.input :meta_keywords
+      = f.input :meta_description
+
+    = f.actions class: 'text-right' do
+      = semantic_form_button @site
+
+  = form_tab_pane :advanced do
+    = f.inputs name: :advanced do
+      = f.input :timezone_name, as: :select, include_blank: false, collection: options_for_site_timezones
+
+    = f.actions class: 'text-right' do
+      = semantic_form_button @site
+
+/ - content_for :head do
+/   = render 'locomotive/sites/domains'
+/   = render 'locomotive/sites/memberships'
+
+/ - content_for :backbone_view_data do
+/   :plain
+/     site:   #{escape_json @site.to_json(current_account: current_locomotive_account, current_site: current_site).html_safe},
+/     errors: #{@site.errors.to_json}
+
+/ = f.inputs name: :information  do
+/   = f.input :name, wrapper_html: { style: 'display: none' }
+/   = f.input :locales, as: '::Locomotive::Locales', collection: ordered_current_site_locales, input_html: { class: 'locales' }
+/   = f.input :timezone_name, as: :select, include_blank: false, collection: options_for_site_timezones
+
+/ - if can?(:point, Locomotive::Site)
+/   - if manage_subdomain_or_domains?
+/     = f.inputs name: :access_points do
+/       = f.input :subdomain, as: :'Locomotive::Subdomain', domain: application_domain, input_html: { readonly: !manage_subdomain? }
+
+/       - if manage_domains?
+/         = f.input :domains, as: :'Locomotive::Empty'
 
 
-= f.inputs name: :seo, class: "inputs foldable #{'folded' if inputs_folded?(@site)}" do
-  = f.input :seo_title
-  = f.input :meta_keywords
-  = f.input :meta_description
+/ = f.inputs name: :seo, class: "inputs foldable #{'folded' if inputs_folded?(@site)}" do
+/   = f.input :seo_title
+/   = f.input :meta_keywords
+/   = f.input :meta_description
 
-- if can?(:index, Locomotive::Membership)
+/ - if can?(:index, Locomotive::Membership)
 
-  = f.inputs name: :memberships do
-    = f.input :memberships, as: :'Locomotive::Empty', label: false, wrapper_html: { id: 'site_memberships_input' }
+/   = f.inputs name: :memberships do
+/     = f.input :memberships, as: :'Locomotive::Empty', label: false, wrapper_html: { id: 'site_memberships_input' }
 
-- if can?(:manage, current_site)
+/ - if can?(:manage, current_site)
 
-  = f.inputs name: :robots_txt, class: "inputs foldable #{'folded' if inputs_folded?(@site)}" do
-    = f.input :robots_txt, as: :'Locomotive::Code', picker: false, wrapper_html: { class: 'small no-label' }
+/   = f.inputs name: :robots_txt, class: "inputs foldable #{'folded' if inputs_folded?(@site)}" do
+/     = f.input :robots_txt, as: :'Locomotive::Code', picker: false, wrapper_html: { class: 'small no-label' }

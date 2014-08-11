@@ -1,0 +1,12 @@
+.item.row
+
+  = hidden_field_tag 'site[domains][]', domain
+
+  .text.col-md-10.col-xs-9
+    %i.fa.fa-bars.draggable
+
+    = domain
+
+  .buttons.col-md-2.col-xs-3.text-right
+    = link_to '#', class: 'delete' do
+      %i.fa.fa-trash-o
