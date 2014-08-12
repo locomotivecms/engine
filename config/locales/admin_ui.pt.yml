@@ -1,12 +1,12 @@
-pt-BR:
+pt:
   locomotive:
     buttons:
       login: Entrar
       send_password: Enviar
-      change_password: Mudar
+      change_password: Alterar
       new_item: "+ adicionar"
-      switch_to_site: Ir
-      delete: "Deletar"
+      switch_to_site: Entrar
+      delete: "Apagar"
       close: "Fechar"
 
     locales:
@@ -14,6 +14,7 @@ pt-BR:
       de: Alemão
       fr: Francês
       pl: Polonês
+      pt: Portugês
       pt-BR: "Português brasileiro"
       it: Italiano
       nl: Holandês
@@ -29,8 +30,8 @@ pt-BR:
       sr: Serbian
 
     messages:
-      confirm: Você tem certeza?
-      sending_form: "Seu formulário está sendo submetido"
+      confirm: Tem a certeza?
+      sending_form: "O seu formulário está a ser enviado"
 
     shared:
       header:
@@ -45,16 +46,16 @@ pt-BR:
         settings: Configurações
         pages: Páginas
         snippets: Blocos de código
-        account: Minha Conta
+        account: A Minha Conta
         site: Site
-        theme_assets: Arquivos do Tema
+        theme_assets: Arquivos do Template
         translations: Traduções
       form:
         change_file: mudar
-        delete_file: deletar
+        delete_file: apagar
         cancel: cancelar
       form_actions:
-        back: Voltar sem salvar
+        back: Voltar sem guardar
         create: Criar
         update: Atualizar
         send: Enviar
@@ -66,23 +67,23 @@ pt-BR:
 
     errors:
       "500":
-        title: Erro de aplicação
-        notice: "Desculpe-nos, algo não está funcionando como deveria"
-        link: "&rarr; Voltar a aplicação"
+        title: Erro na aplicação
+        notice: "Desculpe-nos, algo não está a funcioanr como devia"
+        link: "&rarr; Voltar á aplicação"
       "404":
         title: Página não encontrada
-        notice: "A página requisitada não existe."
-        link: "&rarr; Voltar a aplicação"
+        notice: "A página não existe."
+        link: "&rarr; Voltar á aplicação"
 
     notifications:
       new_content_entry:
         subject: "[%{domain}] Novo [%{type}] "
-        title: "Olá %{name}, apenas informando que uma nova instância foi criada em %{date}"
+        title: "Olá %{name}, apenas para informar que foir criada uma nova instância a %{date}"
         type: "Modelo: %{type}"
 
     custom_fields:
       edit:
-        title: Editando campo customizado
+        title: Editar campo personalizado
       text_formatting:
         none: Nenhum
         html: HTML
@@ -95,45 +96,45 @@ pt-BR:
         required: Obrigatório
         default_label: Nome do campo
         select_options:
-          ask_name: Digite o texto da opção
+          ask_name: Introduza o texto da opção
 
     sessions:
       new:
         title: Login
-        link: "Esqueci minha senha"
+        link: "Esqueci-me da minha password"
         email: "Email"
         password: "Senha"
 
     passwords:
       new:
-        title: Esqueci minha senha
-        link: "&rarr; Voltar a página de login"
+        title: Esqueci-e da minha password
+        link: "&rarr; Voltar á página de login"
         email: "Seu email"
       edit:
-        title: Atualizar minha senha
+        title: Atualizar a minha password
         link: "&rarr; Voltar a página de login"
-        password: "Sua nova senha"
-        password_confirmation: "Confirmação da sua nova senha"
+        password: "A sua nova password"
+        password_confirmation: "Confirmação da sua nova password"
 
     pages:
       index:
-        title: Listando páginas
+        title: Lista de páginas
         help: "As páginas são organizadas como uma árvore. Você pode reordenar as páginas como se fossem pastas"
         no_items: "Não existe nenhuma página ainda. Clique <a href=\"%{url}\">aqui</a> para criar a primeira."
         new: nova página
         latest_entries: Últimas páginas
       new:
         title: Nova página
-        help: "Por favor, preencha o formulário a seguir para criar sua página. Atenção: Por padrão a página não é publicada."
+        help: "Por favor, preencha o formulário a seguir para criar sua página. Atenção: Por defeito a página não é publicada."
       page:
-        updated_at: atualizada em
+        updated_at: atualizada a
       edit:
         show: mostrar
-        help: "O título da página pode ser alterado clicando nele."
-        ask_for_title: "Por favor preencha o novo título"
+        help: "O título da página pode ser alterado se clicar nele."
+        ask_for_title: "Por favor insira o novo título"
       form:
         delete_file: Excluir arquivo
-        default_block: Padrão
+        default_block: Bloco por defeito
         cache_strategy:
           none: Nenhum
           simple: Simples
@@ -144,32 +145,32 @@ pt-BR:
 
     snippets:
       index:
-        title: Listando Blocos de Código
+        title: Lista de Blocos de Código
         help: "Blocos de código são alguns códigos HTML que podem ser encontrados em diferentes lugares do site e podem ser reutilizados ( como o rodapé )."
-        no_items: "Você ainda não tem blocos de código. Clique <a href=\"%{url}\">aqui</a> para criar o primeiro."
+        no_items: "Ainda não existem blocos de código. Clique <a href=\"%{url}\">aqui</a> para criar o primeiro."
         new: novo bloco
       new:
         title: Novo bloco
         help: "Preecha o formulário a seguir para atualizar o seu bloco de código."
       edit:
-        title: Editing snippet
+        title: Editar bloco
         help: "Preecha o formulário a seguir para atualizar o seu bloco de código."
       snippet:
-        updated_at: Atualizado em
+        updated_at: Atualizado a
 
     sites:
       new:
         title: Novo site
         help: "Preencha o formulário a seguir para criar um novo site."
       domains:
-        empty: "Não há nenhum domínio vinculado a este site ainda. Basta adicionar seus domínios logo abaixo. <b>Não se esqueça de atualizar seu DNS.</b>"
+        empty: "Não existe nenhum domínio vinculado a este site. Basta adicionar os seus domínios em baixo. <b>Não se esqueça de atualizar seu DNS.</b>"
 
     current_site:
       edit:
         import: importar
         new_membership: adicionar conta
-        help: "O nome do site pode ser alterado clicando nele."
-        ask_for_name: "Por favor, digite o novo nome do site"
+        help: "O nome do site pode ser alterado se clicar nele."
+        ask_for_name: "Por favor, insira o novo nome do site"
 
     memberships:
       roles:
@@ -177,8 +178,8 @@ pt-BR:
         designer: Designer
         author: Autor
       new:
-        title: Novo usuário
-        help: "Por favor, forneça o e-mail que deseja adicionar. Se ele não existir, você será redirecionado para o formulário de criação."
+        title: Novo utilizador
+        help: "Por favor, indique o e-mail que deseja adicionar. Se não existir, você será redirecionado para um formulário de modo a criar o utilizador."
 
     accounts:
       new:
@@ -187,12 +188,13 @@ pt-BR:
 
     my_account:
       edit:
-        help: "Seu nome pode ser atualizado clicando nele."
+        help: "O seu nome pode ser atualizado se clicar nele."
         new_site: novo site
         en: Inglês
         de: Alemão
         fr: Francês
         pl: Polonês
+        pt: Portugês
         pt-BR: "Português do Brasil"
         it: Italiano
         nl: Holandês
@@ -204,38 +206,38 @@ pt-BR:
 
     theme_assets:
       index:
-        title: Listando arquivos do tema
-        help: "Nesta seção todos os arquivos relacionados a layout são armazenados e gerenciados. Se você precisa de uma galeria de imagens, vá a seção de Arquivos."
-        new: novo arquivo
+        title: Lista de ficheiros do template
+        help: "É nesta secção que todos os ficheiros relacionados com o layout são armazenados e geridos. Se você precisa de uma galeria de imagens, vá a seção de Ficheiros."
+        new: novo ficheiro
         snippets: Blocos
         css_and_js: CSS e Javascript
         fonts: Fontes
         images: Imagens
         media: Mídia
-        no_items: "Ainda não existem arquivos. Clique <a href=\"%{url}\">aqui</a> para criar o primeiro."
+        no_items: "Ainda não existem ficheiros. Clique <a href=\"%{url}\">aqui</a> para criar o primeiro."
       asset:
-        updated_at: Atualizado em
+        updated_at: Atualizado a
       new:
-        title: Novo arquivo
-        help: "Você pode escolher em enviar qualquer arquivo ou copiar/colar um arquivo de css/javascript em texto."
+        title: Novo ficheiro
+        help: "Pode escolher e enviar qualquer ficheiro ou copiar/colar um ficheiro de css/javascript em texto."
       edit:
-        title: "Editando %{file}"
-        help: "Esse arquivo pode ser acessado pela seguinte URL: <a href='%{url}'>%{url}</a>"
+        title: "Editar %{file}"
+        help: "Este ficheiro pode ser acedido através do seguinte URL: <a href='%{url}'>%{url}</a>"
       form:
-        picker_link: Insira um arquivo no código
-        choose_file: Escolha um arquivo
-        choose_plain_text: Escolher texto plano
+        picker_link: Insira um ficheiro no código
+        choose_file: Escolha um ficheiro
+        choose_plain_text: Escolher texto simples
       images:
-        title: Listando imagens
-        no_items: "Não existem imagens ainda."
+        title: Lista de imagens
+        no_items: "Ainda não existem imagens."
 
     assets:
       new:
-        title: Novo arquivo
-        help: "Preencha o formulário a seguir para criar o seu arquivo."
+        title: Novo recurso
+        help: "Preencha o seguinte formulário para criar o seu recurso."
       edit:
-        title: Editar arquivo
-        help: "Preencha o formulário a seguir para atualizar o seu arquivo."
+        title: Editar recurso
+        help: "Preencha o seguinte formulário para atualizar o seu recurso."
 
     content_types:
       index:
@@ -243,10 +245,10 @@ pt-BR:
         edit: editar modelo
       new:
         title: Novo modelo
-        help: "Crie o seu próprio modelo de dados (Projetos, Pessoas, ...etc). Seu modelo deve conter um campo pelo menos. Os itens criados a partir desse tipo de conteúdo terão seu primeiro campo como obrigatório."
+        help: "Crie o seu próprio modelo de dados (Projetos, Pessoas, ...etc). O seu modelo deve conter pelo menos um campo. Os itens criados a partir deste tipo de conteúdo terão o seu primeiro campo como obrigatório."
       edit:
         title: Editar modelo
-        help: "Seu modelo deve conter um campo pelo menos. Os itens criados a partir desse tipo de conteúdo terão seu primeiro campo como obrigatório."
+        help: "O seu modelo deve conter um campo pelo menos. Os itens criados a partir deste tipo de conteúdo terão o seu primeiro campo como obrigatório."
         show_items: mostrar itens
         new_item: novo item
       form:
@@ -257,7 +259,7 @@ pt-BR:
 
     content_entries:
       index:
-        title: 'Listando "%{type}"'
+        title: 'A listar "%{type}"'
         edit: editar modelo
         destroy: excluir modelo
         download: download dos itens
@@ -270,7 +272,7 @@ pt-BR:
       new:
         title: '%{type} &mdash; novo item'
       edit:
-        title: '%{type} &mdash; editando item'
+        title: '%{type} &mdash; editar item'
       form:
         has_many:
           new_item: Novo item
@@ -286,19 +288,19 @@ pt-BR:
     import:
       new:
         title: Importar
-        help: "Tenha cuidado ao enviar um novo tema ao seu site que já existe, seus dados atuais podem ser atualizados ou até removidos."
+        help: "Tenha cuidado ao enviar um novo template para o seu site que já existe, os seus dados atuais podem ser atualizados ou até removidos."
       show:
         title: Importação em progresso
-        help: "Seu site está sendo atualizado pelo arquivo zip enviado. Irá demorar alguns segundos."
+        help: "O seu site está a ser atualizado pelo arquivo zip enviado. Irá demorar alguns segundos."
         steps:
           site: Informações do site
-          content_types: Tipos de Conteúdo customizados
-          assets: Arquivos do Tema
+          content_types: Tipos de Conteúdo personalizados
+          assets: Arquivos do Template
           snippets: Blocos
           pages: Páginas
         messages:
-          success: "Seu site foi atualizado com sucesso"
-          failure: "A importação não funcionou."
+          success: "O seu site foi atualizado com sucesso"
+          failure: "A importação falhou."
 
     installation:
       common:
@@ -308,11 +310,11 @@ pt-BR:
         title: "Passo 1/2 &mdash; Criar conta"
         name: Nome da Conta
         email: Email
-        password: Senha
-        password_confirmation: Confirmação da Senha
+        password: Password
+        password_confirmation: Confirmação da Password
         done: "Você ja adicionou uma conta com:<br/><strong>%{name}</strong>, <em>%{email}</em>"
         next: Criar Conta
       step_2:
         title: "Passo 2/2 &mdash; Criar primeiro site"
-        explanations: "Este é o último passo da instalação. Você pode enviar um tema como um arquivo zip. Nós temos alguns temas de graça para download <a href=\"http://www.locomotivecms.com/support/themes\">aqui</a>."
+        explanations: "Este é o último passo da instalação. Você pode enviar um template como um arquivo zip. Nós temos alguns templates de graça para download <a href=\"http://www.locomotivecms.com/support/themes\">aqui</a>."
         next: Criar Site
