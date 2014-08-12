@@ -7,7 +7,6 @@ class Locomotive.Views.CurrentSite.EditView extends Locomotive.Views.Shared.Form
 
   el: '.main'
 
-
   # el: '#content'
 
   # events:

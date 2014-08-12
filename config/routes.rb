@@ -32,6 +32,7 @@ Locomotive::Engine.routes.draw do
 
   resource :current_site, controller: 'current_site' do
     get :new_domain
+    get :new_locale
   end
 
   resources :accounts

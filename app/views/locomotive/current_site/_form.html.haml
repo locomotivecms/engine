@@ -45,6 +45,8 @@
 
   = form_tab_pane :advanced do
     = f.inputs name: :advanced do
+      = f.input :locales, as: 'Locomotive::Array', partial: :locale, template_url: new_locale_current_site_path, select_options: options_for_site_locales
+
       = f.input :timezone_name, as: :select, include_blank: false, collection: options_for_site_timezones
 
     = f.actions class: 'text-right' do

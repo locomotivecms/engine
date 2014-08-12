@@ -22,9 +22,6 @@
     window.content_locale             = '#{::Mongoid::Fields::I18n.locale}';
     window.permalink_service_url      = '#{Locomotive.mounted_on}/_permalink.json';
 
-    window.Locomotive.current_site    = new Locomotive.Models.Site(#{escape_json to_json(current_site)});
-    window.Locomotive.current_account = new Locomotive.Models.Account(#{escape_json to_json(current_locomotive_account)});
-
     $(document).ready(function() {
 
       window.application_view = new Locomotive.Views.ApplicationView({

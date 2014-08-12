@@ -65,6 +65,24 @@
           }
         }
 
+        .form-control.select2-container {
+          background: transparent;
+          border: none;
+          @include border-radius(0px);
+          left: -$form_input_control_border_size - 1px;
+          padding: $select2-vertical-padding $form_input_control_border_size * 2;
+
+          &.select2-dropdown-open {
+            padding-top: $select2-vertical-padding;
+            padding-bottom: $select2-vertical-padding + 1px;
+          }
+
+          &.select2-dropdown-open.select2-drop-above {
+            padding-top: $select2-vertical-padding;
+            padding-bottom: $select2-vertical-padding;
+          }
+        }
+
       }
     }
   }

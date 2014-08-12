@@ -4,6 +4,7 @@ module Locomotive
     include FormtasticBootstrap::Inputs::Base
 
     def to_html
+      puts block_given?
       bootstrap_wrapping do
         list_html + new_field_html
       end
@@ -24,12 +25,21 @@ module Locomotive
     def new_field_html
       template.content_tag :div,
         template.content_tag(:div,
-          template.text_field_tag(method.to_s.singularize, '', form_control_input_html_options),
+          input_html,
           class: 'field col-md-10 col-xs-9') +
         template.content_tag(:div,
           template.content_tag(:a, text(:add), class: 'btn btn-primary btn-sm add', href: options[:template_url]),
           class: 'button col-md-2 col-xs-3 text-right'),
         class: 'row new-field'
+    end
+
+    def input_html
+      if options[:select_options]
+        puts options[:select_options].inspect
+        template.select_tag 'locale', template.options_for_select(options[:select_options]), include_blank: false
+      else
+        template.text_field_tag(method.to_s.singularize, '', form_control_input_html_options)
+      end
     end
 
     def row_wrapping(&block)

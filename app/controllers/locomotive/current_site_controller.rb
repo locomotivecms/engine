@@ -36,6 +36,14 @@ module Locomotive
       end
     end
 
+    def new_locale
+      if params[:locale].present?
+        render partial: 'locale', locals: { locale: params[:locale] }
+      else
+        head :unprocessable_entity
+      end
+    end
+
     protected
 
     def filter_attributes
