@@ -118,6 +118,13 @@ Rails.application.routes.draw do
   match ':locale/*path/_edit'   => 'locomotive/public/pages#edit', locale: /(#{Locomotive.config.site_locales.join('|')})/
   match '*path/_edit'           => 'locomotive/public/pages#edit'
 
+  constraints Locomotive::Routing::PostContentEntryConstraint.new do
+    root to:                'locomotive/public/content_entries#create',     path: 'index'
+    match ':locale'         => 'locomotive/public/content_entries#create',  path: 'index', locale: /(#{Locomotive.config.site_locales.join('|')})/
+    match ':locale/*path'   => 'locomotive/public/content_entries#create',  locale: /(#{Locomotive.config.site_locales.join('|')})/
+    match '*path'           => 'locomotive/public/content_entries#create'
+  end
+
   root to:                      'locomotive/public/pages#show'
   match ':locale'               => 'locomotive/public/pages#show', page_path: 'index', locale: /(#{Locomotive.config.site_locales.join('|')})/
   match ':locale/*path'         => 'locomotive/public/pages#show', locale: /(#{Locomotive.config.site_locales.join('|')})/

@@ -1,4 +1,4 @@
-Feature: Contact form [Old way]
+Feature: Contact form [New way]
   As a visitor
   In order to keep in touch with the site
   I want to be able to send them a message
@@ -18,10 +18,8 @@ Feature: Contact form [Old way]
       <html>
         <head></head>
         <body>
-          <form action="{{ contents.messages.public_submission_url }}" method="post">
-            {% csrf_param %}
-            <input type="hidden" value="/success" name="success_callback" />
-            <input type="hidden" value="/contact" name="error_callback" />
+          {% if message %}Thanks {{ message.email }}{% endif %}
+          {% model_form "messages" %}
             <label for="email">E-Mail Address</label>
             <input type="text" id="email" name="content[email]" />
             {% if message.errors.email %}Email is required{% endif %}
@@ -35,47 +33,47 @@ Feature: Contact form [Old way]
             <label for="message">Message</label>
             <textarea name="content[message]" id="message"></textarea>
             <input name="submit" type="submit" id="submit" value="Submit" />
-          </form>
+          {% endmodel_form %}
+        </body>
+      </html>
+      """
+    And a page named "contact_with_redirection" with the template:
+      """
+      <html>
+        <head></head>
+        <body>
+          {% model_form "messages", success: "/success" %}
+            <label for="email">E-Mail Address</label>
+            <input type="text" id="email" name="content[email]" />
+            {% if message.errors.email %}Email is required{% endif %}
+            <label for="category">Category</label>
+            <select id="category" name="content[category]">
+              <option value=""></option>
+              {% for name in contents.messages.category_options %}
+              <option value="{{ name }}">{{ name }}</option>
+              {% endfor %}
+            </select>
+            <label for="message">Message</label>
+            <textarea name="content[message]" id="message"></textarea>
+            <input name="submit" type="submit" id="submit" value="Submit" />
+          {% endmodel_form %}
         </body>
       </html>
       """
     And a page named "success" with the template:
       """
-      Thanks {{ message.email }}
+      Thanks {{ message.email }}!
       """
 
-  Scenario: Setting the right url for the contact form
+  Scenario: Use the url of the current page for the contact form
     When I view the rendered page at "/contact"
     Then the rendered output should look like:
       """
-      <form action="/entry_submissions/messages" method="post">
+      <form method="POST" enctype="multipart/form-data">
       """
-
-  Scenario: Prevents users to post messages if the public submission option is disabled
-    Given I disable the public submission of the "Messages" model
-    When I view the rendered page at "/contact"
-    And I fill in "E-Mail Address" with "did@locomotivecms.com"
-    And I fill in "Message" with "LocomotiveCMS rocks"
-    And I press "Submit"
-    Then I should not see "Thanks did@locomotivecms.com"
 
   Scenario: Sending a message with success
     When I view the rendered page at "/contact"
-    And I fill in "E-Mail Address" with "did@locomotivecms.com"
-    And I fill in "Message" with "LocomotiveCMS rocks"
-    And I select "Code" from "Category"
-    And I press "Submit"
-    Then I should see "Thanks did@locomotivecms.com"
-
-  Scenario: Can not send a message if the csrf tag is missing
-    Given I delete the following code "{% csrf_param %}" from the "contact" page
-    When I view the rendered page at "/contact"
-    And I press "Submit"
-    Then I should see "Content of the home page"
-
-  Scenario: Can send a message if the csrf protection is disabled
-    Given I disable the CSRF protection for public submission requests
-    And I view the rendered page at "/contact"
     And I fill in "E-Mail Address" with "did@locomotivecms.com"
     And I fill in "Message" with "LocomotiveCMS rocks"
     And I select "Code" from "Category"
@@ -88,11 +86,10 @@ Feature: Contact form [Old way]
     And I press "Submit"
     Then I should see "Email is required"
 
-  Scenario: Make sure to use the right locale
-    When I view the rendered page at "/contact"
-    And the locale of the current ruby thread changes to "fr"
-    And I fill in "E-Mail Address" with "did@locomotivecms.com"
+  Scenario: Redirection after success
+    When I view the rendered page at "/contact_with_redirection"
+    And I fill in "E-Mail Address" with "estelle@locomotivecms.com"
     And I fill in "Message" with "LocomotiveCMS rocks"
     And I select "Code" from "Category"
     And I press "Submit"
-    Then I should see "Thanks did@locomotivecms.com"
+    Then I should see "Thanks estelle@locomotivecms.com!"
