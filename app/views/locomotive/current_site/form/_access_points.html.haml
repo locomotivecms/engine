@@ -1,0 +1,11 @@
+- if can?(:point, Locomotive::Site)
+  = f.inputs name: :access_points do
+    - if manage_subdomain_or_domains?
+      - if manage_subdomain?
+        = f.input :subdomain, prepend: 'http://', append: '.' + application_domain
+
+      - if manage_domains?
+        = f.input :domains, as: 'Locomotive::Array', list: f.object.domains_without_subdomain, partial: :domain, template_url: new_domain_current_site_path
+
+  = f.actions class: 'text-right' do
+    = semantic_form_button @site

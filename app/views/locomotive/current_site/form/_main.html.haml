@@ -1,0 +1,6 @@
+= f.inputs name: :information do
+  = f.input :name
+  = f.input :picture, as: '::Locomotive::File'
+
+= f.actions class: 'text-right' do
+  = semantic_form_button @site

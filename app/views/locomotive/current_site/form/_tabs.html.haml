@@ -1,0 +1,13 @@
+%ul.nav.nav-tabs{ role: 'tablist' }
+  = form_nav_tab :main, true do
+    = link_to t('formtastic.titles.information'), '#main', role: 'tab', data: { toggle: 'tab' }
+
+  - if can?(:point, Locomotive::Site)
+    = form_nav_tab :access_points do
+      = link_to t('formtastic.titles.access_points'), '#access_points', role: 'tab', data: { toggle: 'tab' }
+
+  = form_nav_tab :credentials do
+    = link_to t('formtastic.titles.seo'), '#seo', role: 'tab', data: { toggle: 'tab' }
+
+  = form_nav_tab :api do
+    = link_to t('formtastic.titles.advanced'), '#advanced', role: 'tab', data: { toggle: 'tab' }

@@ -1,0 +1,7 @@
+= f.inputs name: :information do
+  = f.input :name
+  = f.input :avatar, as: '::Locomotive::File'
+  = f.input :locale, as: :select, collection: options_for_locale, include_blank: false, wrapper_html: { class: 'select2' }
+
+= f.actions class: 'text-right' do
+  = semantic_form_button @account

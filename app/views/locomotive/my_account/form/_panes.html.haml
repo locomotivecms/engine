@@ -1,0 +1,4 @@
+.tab-content
+  - %w(main credentials api).each_with_index do |name, index|
+    = form_tab_pane name.to_sym, index == 0 do
+      = render "locomotive/my_account/form/#{name}", f: f

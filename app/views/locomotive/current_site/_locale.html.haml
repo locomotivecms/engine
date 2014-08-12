@@ -10,5 +10,6 @@
     = I18n.t("locomotive.locales.#{locale}")
 
   .buttons.col-md-2.col-xs-3.text-right
-    = link_to '#', class: 'delete' do
-      %i.fa.fa-trash-o
+    - if current_site.default_locale != locale
+      = link_to '#', class: 'delete' do
+        %i.fa.fa-trash-o
