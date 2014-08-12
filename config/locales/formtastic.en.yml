@@ -78,6 +78,7 @@ en:
         meta_description: "Meta description used within the head tag of the page. Required for SEO."
         robots_txt: "Content of the <span class='code'>/robots.txt</span> file. Check the following <a href='http://www.w3.org/TR/html4/appendix/notes.html#h-B.4.1.1'>url</a> for more information."
         domains: "Simply add your domains just below. <b>Do not forget to upgrade your DNS.</b>"
+        memberships: "bla bla bla"
         new:
           locales: "You can add other languages once your site will be created."
       theme_asset:

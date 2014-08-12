@@ -245,13 +245,11 @@ module Locomotive
     # memberships
 
     def options_for_membership_roles(options = {})
-      list = (unless options[:skip_admin]
-        Locomotive::Ability::ROLES.map { |r| [t("locomotive.memberships.roles.#{r}"), r] }
+      if options[:skip_admin]
+        (Locomotive::Ability::ROLES - ['admin']).map { |r| [t("locomotive.memberships.roles.#{r}"), r.to_s] }
       else
-        (Locomotive::Ability::ROLES - ['admin']).map { |r| [t("locomotive.memberships.roles.#{r}"), r] }
-      end)
-
-      options_for_select(list)
+        Locomotive::Ability::ROLES.map { |r| [t("locomotive.memberships.roles.#{r}"), r.to_s] }
+      end
     end
 
     # locales

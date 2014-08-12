@@ -70,7 +70,11 @@ class Locomotive.Views.Inputs.ArrayView extends Backbone.View
     @reset_text_field()
 
   delete_item: (event) ->
-    $(event.target).parents('.item').remove()
+    $link = $(event.target)
+
+    return if $link.attr('href') != '#'
+
+    $link.parents('.item').remove()
 
     @hideEl(@$list) if @$list.find('> .item').size() == 0
 

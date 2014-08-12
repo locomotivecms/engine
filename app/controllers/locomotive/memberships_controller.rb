@@ -19,10 +19,27 @@ module Locomotive
       end
     end
 
+    def edit
+      @membership = current_site.memberships.find(params[:id])
+      respond_with @membership
+    end
+
+    def update
+      @membership = current_site.memberships.find(params[:id])
+      self.service.change_role(@membership, params[:membership][:role])
+      respond_with @membership, location: edit_current_site_path
+    end
+
     def destroy
       @membership = current_site.memberships.find(params[:id])
       @membership.destroy
       respond_with @membership, location: edit_current_site_path
+    end
+
+    protected
+
+    def service
+      @service ||= Locomotive::MembershipsService.new(current_ability)
     end
 
   end

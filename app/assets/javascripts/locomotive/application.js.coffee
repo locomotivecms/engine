@@ -9,5 +9,3 @@ window.Locomotive =
   Collections:  {}
   Views:        {}
   Flags:        {}
-
-window.Locomotive.Views.Memberships = {}

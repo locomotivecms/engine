@@ -2,10 +2,10 @@
 
 = help t('.help', default: '')
 
-= semantic_form_for @membership, url: memberships_path do |f|
+= semantic_form_for @membership do |f|
 
   = f.inputs name: :membership_email, class: 'inputs email' do
-    = f.input :email
+    = f.input :role, as: :select, collection: options_for_membership_roles(skip_admin: cannot?(:grant_admin, @membership)), include_blank: false
 
   = f.actions do
     .row

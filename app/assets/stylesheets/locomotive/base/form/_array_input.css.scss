@@ -7,7 +7,7 @@
 
       .list {
 
-        .item {
+        & > .item {
           padding-top: 6px;
           padding-bottom: 6px;
           border-bottom: $form_input_array_border_size solid $form_input_array_border_color;
@@ -27,6 +27,10 @@
             border: $form_input_array_border_size solid $form_input_array_border_color;
           }
 
+        }
+
+        &.no-new-field > .item:last-child {
+          border-bottom: none;
         }
 
         .sortable-placeholder {

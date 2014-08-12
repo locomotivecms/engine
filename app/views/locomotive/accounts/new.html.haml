@@ -1,9 +1,6 @@
 - title t('.title')
 
-- content_for :submenu do
-  = render_cell 'locomotive/settings_menu', :show
-
-%p!= t('.help')
+= help t('.help', default: '')
 
 = semantic_form_for @account, url: accounts_path do |f|
 
@@ -12,10 +9,14 @@
     - unless f.object.respond_to?(:password)
       = f.input :email
 
-  - if f.object.respond_to?(:password)
-    = f.inputs name: :credentials do
+    - if f.object.respond_to?(:password)
       = f.input :email
       = f.input :password, input_html: { autocomplete: 'off' }
       = f.input :password_confirmation, input_html: { autocomplete: 'off' }
 
-  = render 'locomotive/shared/form_actions', back_url: edit_current_site_path, button_label: :create
+  = f.actions do
+    .row
+      .col-md-6
+        = link_to escape_once('&larr;&nbsp;') + t('.back'), edit_current_site_path
+      .col-md-6.text-right
+        = semantic_form_button @account

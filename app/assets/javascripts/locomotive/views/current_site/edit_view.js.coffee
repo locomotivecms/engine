@@ -1,5 +1,4 @@
 #= require ../shared/form_view
-#= require ../sites/domains_view
 
 Locomotive.Views.CurrentSite ||= {}
 

@@ -1,0 +1,15 @@
+.item.row
+  .text.col-md-10.col-xs-9
+
+    = membership.account.name
+
+    %small (#{membership.account.email})
+
+    %span.label.label-default
+      = t("locomotive.memberships.roles.#{membership.role}")
+
+  .buttons.col-md-2.col-xs-3.text-right
+    - if membership.account != current_locomotive_account
+      = link_to 'Edit', edit_membership_path(membership), class: 'choose btn btn-primary btn-sm'
+    = link_to membership_path(membership), class: 'delete', data: { confirm: t('locomotive.messages.confirm') }, method: :delete do
+      %i.fa.fa-trash-o

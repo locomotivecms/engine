@@ -1,4 +1,6 @@
 = f.inputs name: :information do
+  = f.input :memberships, as: 'Locomotive::Array', partial: :membership, new_item_url: new_membership_path, wrapper_html: { class: 'memberships' }
+
   = f.input :name
   = f.input :picture, as: '::Locomotive::File'
 
