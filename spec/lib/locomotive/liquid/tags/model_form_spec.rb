@@ -24,6 +24,14 @@ describe Locomotive::Liquid::Tags::ModelForm do
 
     end
 
+    context 'with an id (dom)' do
+
+      let(:options) { '"articles", id: "my-form"' }
+
+      it { should include '<form method="POST" enctype="multipart/form-data" id="my-form">' }
+
+    end
+
     context 'using callbacks' do
 
       let(:options) { '"articles", success: "/success", error: "/error"' }

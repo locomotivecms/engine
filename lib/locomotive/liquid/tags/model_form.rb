@@ -1,6 +1,20 @@
 module Locomotive
   module Liquid
     module Tags
+
+      # Display the form html tag with the appropriate hidden fields in order to create
+      # a content entry from a public site.
+      # It handles callbacks, csrf and target url out of the box.
+      #
+      # Usage:
+      #
+      # {% model_form 'newsletter_addresses' %}
+      #    <input type='text' name='content[email]' />
+      #     <input type='submit' value='Add' />
+      # {% endform_form %}
+      #
+      # {% model_form 'newsletter_addresses', class: 'a-css-class', success: 'http://www.google.fr', error: '/error' %}...{% endform_form %}
+      #
       class ModelForm < Solid::Block
 
         tag_name :model_form
@@ -9,7 +23,7 @@ module Locomotive
           name    = options.shift
           options = options.shift || {}
 
-          form_attributes = { method: 'POST', enctype: 'multipart/form-data' }.merge(options.slice(:class))
+          form_attributes = { method: 'POST', enctype: 'multipart/form-data' }.merge(options.slice(:id, :class))
 
           html_content_tag :form,
             content_type_html(name) + csrf_html + callbacks_html(options) + yield,
