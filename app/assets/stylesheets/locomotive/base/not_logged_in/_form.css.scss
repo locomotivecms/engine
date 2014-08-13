@@ -1,35 +1,44 @@
+$form_input_label_color:  #333;
 $form_input_border_color: #4999b2;
 
 .formtastic {
 
-  .form-group {
+  fieldset {
 
-    .control-label {
-      text-transform: uppercase;
-      font-size: 85%;
-      line-height: 18px;
+    > .input {
+
+      background: transparent;
+
+      .form-wrapper {
+        display: block;
+        margin-top: 0px;
+        border: 3px solid $form_input_border_color;
+      }
+
+      .control-label {
+        text-transform: uppercase;
+        font-size: 85%;
+        line-height: 18px;
+        color: $form_input_label_color;
+      }
+
+      select {
+        -webkit-appearance: none;
+        -webkit-border-radius: 0px;
+        border-radius: 0px;
+      }
+
+      .help-inline, .error-inline {
+        margin-left: 10px;
+        font-family: $alt-font-family-sans-serif;
+      }
+
+      .error-inline {
+        color: $state-danger-text;
+      }
+
     }
 
-    select {
-      -webkit-appearance: none;
-      -webkit-border-radius: 0px;
-      border-radius: 0px;
-    }
-
-    .help-inline, .error-inline {
-      margin-left: 10px;
-      font-family: $alt-font-family-sans-serif;
-    }
-
-    .error-inline {
-      color: $state-danger-text;
-    }
-
-  }
-
-  .form-wrapper {
-    display: block;
-    border: 3px solid $form_input_border_color;
   }
 
   a {
