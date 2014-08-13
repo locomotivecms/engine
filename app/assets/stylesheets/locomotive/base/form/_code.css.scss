@@ -1,0 +1,15 @@
+.formtastic {
+
+  fieldset .input.code {
+
+    &.small {
+      .form-wrapper {
+        textarea {
+          height: 100px;
+        }
+      }
+    }
+
+  }
+
+}

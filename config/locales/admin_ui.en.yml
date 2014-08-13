@@ -57,12 +57,14 @@ en:
       form:
         file_input:
           none: no file
-          choose: choose
-          change: change
-          delete: delete
-          cancel: cancel
+          choose: Choose
+          change: Change
+          delete: Delete
+          cancel: Cancel
         array_input:
-          add: add
+          new: New
+          add: Add
+          edit: Edit
       form_actions:
         back: Back without saving
         create: Create

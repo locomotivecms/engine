@@ -27,6 +27,15 @@
             border: $form_input_array_border_size solid $form_input_array_border_color;
           }
 
+          .media {
+            line-height: $line-height-computed;
+
+            .img-circle {
+              width: 35px;
+              border: 1px solid $form_input_array_media_border_color;
+            }
+          }
+
         }
 
         &.no-new-field > .item:last-child {

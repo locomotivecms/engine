@@ -24,7 +24,7 @@ module Locomotive
     def new_item_link_html
       if options[:new_item_url]
         template.content_tag :div,
-          template.link_to('New', options[:new_item_url]),
+          template.link_to(I18n.t(:new, scope: 'locomotive.shared.form.array_input'), options[:new_item_url]),
           class: 'pull-right'
       else
         ''
