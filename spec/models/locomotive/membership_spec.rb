@@ -21,6 +21,12 @@ describe Locomotive::Membership do
     membership.account.name.should == 'Bart Simpson'
   end
 
+  it 'should assign account from email (case insensitive)' do
+    membership = FactoryGirl.build(:membership)
+    Locomotive::Account.expects(:where).with(email: 'bart@simpson.net')
+    membership.email = 'Bart@Simpson.net'
+  end
+
   describe 'next action to take' do
 
     before(:each) do
