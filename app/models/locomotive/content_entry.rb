@@ -6,6 +6,7 @@ module Locomotive
     ## extensions ##
     include ::CustomFields::Target
     include Extensions::Shared::Seo
+    include Extensions::Shared::Userstamp
     include Extensions::ContentEntry::Csv
     include Extensions::ContentEntry::Localized
     include Extensions::ContentEntry::Counter

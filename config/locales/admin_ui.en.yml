@@ -318,7 +318,8 @@ en:
         new: new entry
         category_noname: "No name"
         latest_entries: "Latest entries"
-        updated_at: "Updated at"
+        updated_at: "Last modified %{distance}"
+        updated_by: "Last modified %{distance} by %{who}"
       list:
         no_items: "There are no entries for now. Just click <a href=\"%{url}\">here</a> to create the first one."
       new:

@@ -61,6 +61,7 @@
 {
     display: flexbox;
     display: -webkit-flex;
+    display: -ms-flexbox;
     display: flex;
 }
 
@@ -71,10 +72,23 @@
             justify-content: $alignment;
 }
 
+@mixin flex-align($alignment)
+{
+  -webkit-flex-align: $alignment;
+  -ms-flex-align: $alignment;
+  -webkit-align-items: $alignment;
+  align-items: $alignment;
+}
+
 @mixin locomotive_gradient
 {
   background-repeat: no-repeat;
   @include background-image(linear-gradient(top, $background_gradient_start 60px, $background_gradient_start 20%, $background_gradient_end));
 }
 
+@mixin draggable
+{
+  cursor: move;
+  @include user-select(none);
+}
 

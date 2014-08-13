@@ -1,6 +1,16 @@
 module Locomotive
   module BaseHelper
 
+    def body_class
+      action = case controller.action_name
+      when 'create' then 'New'
+      when 'update' then 'Edit'
+      else controller.action_name
+      end
+
+      [self.controller.controller_name, action].map(&:dasherize).join(' ')
+    end
+
     def title(title = nil)
       if title.nil?
         @content_for_title
@@ -82,6 +92,7 @@ module Locomotive
       end
     end
 
+    # @deprecated
     def submenu_entry(name, url, options = {}, &block)
       default_options = { i18n: true, css: name.dasherize.downcase }
       default_options.merge!(options)
@@ -99,6 +110,7 @@ module Locomotive
       end
     end
 
+    # @deprecated
     def local_action_button(text, url, options = {})
       text = text.is_a?(Symbol) ? t(".#{text}") : text
 

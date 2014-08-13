@@ -1,8 +1,6 @@
 module Locomotive
   class MyAccountController < BaseController
 
-    sections 'settings', 'account'
-
     respond_to :json, only: [:update, :regenerate_api_key]
 
     helper 'Locomotive::Accounts'

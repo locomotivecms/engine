@@ -1,8 +1,6 @@
 module Locomotive
   class CurrentSiteController < BaseController
 
-    sections 'settings', 'site'
-
     localized
 
     skip_load_and_authorize_resource

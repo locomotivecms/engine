@@ -1,8 +1,6 @@
 module Locomotive
   class AccountsController < BaseController
 
-    sections 'settings'
-
     def new
       @account = Account.new(email: params[:email])
       respond_with @account

@@ -3,8 +3,6 @@ module Locomotive
 
     skip_load_and_authorize_resource
 
-    sections :dashboard
-
     def show
     end
 

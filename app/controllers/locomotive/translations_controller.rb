@@ -1,8 +1,6 @@
 module Locomotive
   class TranslationsController < BaseController
 
-    sections :settings, :translations
-
     respond_to :json, only: [:create, :update]
 
     def index

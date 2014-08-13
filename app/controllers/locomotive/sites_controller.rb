@@ -1,8 +1,6 @@
 module Locomotive
   class SitesController < BaseController
 
-    sections 'sites'
-
     respond_to :json, only: [:create, :destroy]
 
     def index

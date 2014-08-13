@@ -4,7 +4,7 @@ module Locomotive
 
       include Locomotive::Routing::SiteDispatcher
       include Locomotive::ActionController::LocaleHelpers
-      include Locomotive::ActionController::SectionHelpers
+      # include Locomotive::ActionController::SectionHelpers
       include Locomotive::ActionController::UrlHelpers
       include Locomotive::ActionController::Timezone
 

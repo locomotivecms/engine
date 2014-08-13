@@ -1,8 +1,6 @@
 module Locomotive
   class ContentEntriesController < BaseController
 
-    sections 'contents'
-
     localized
 
     before_filter :back_to_default_site_locale, only: %w(new create)

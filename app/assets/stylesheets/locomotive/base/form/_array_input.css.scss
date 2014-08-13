@@ -18,8 +18,7 @@
             margin-right: 6px;
             color: $form_input_array_draggable_color;
             font-size: 16px;
-            cursor: move;
-            @include user-select(none);
+            @include draggable;
           }
 
           &.ui-sortable-helper {

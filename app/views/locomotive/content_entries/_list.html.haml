@@ -1,23 +1,50 @@
 - if entries.empty?
-  %p.no-items!= t('.no_items', url: new_content_entry_path(content_type.slug))
+  .alert.alert-warning
+    != t('.no_items', url: new_content_entry_path(content_type.slug))
 - else
-  %ul{ id: 'entries-list', class: "#{content_type.groupable? ? 'grouped' : 'list'} #{'sortable' if content_type.order_manually?}", :'data-url' => sort_content_entries_path(content_type.slug, :json) }
+  #entries-list{ class: "row big-list #{'grouped' if content_type.groupable?} #{'sortable' if content_type.order_manually?}", :'data-url' => sort_content_entries_path(content_type.slug, :json) }
     - entries.each do |entry|
-      %li.item{ id: "entry-#{entry._id}" }
-        %span.handle
-          - if content_type.groupable?
-            %i.icon-reorder
+      .item{ class: 'col-md-12', data: { id: entry._id } }
+        .draggable
+          %i.fa.fa-bars.draggable
 
-        %strong= link_to entry_label(content_type, entry), edit_content_entry_path(content_type.slug, entry)
+        .text
+          %strong= link_to entry_label(content_type, entry), edit_content_entry_path(content_type.slug, entry)
+          .stamp
+            != content_entry_stamp(entry)
 
-        - unless entry.translated?
-          %span.untranslated= t('locomotive.shared.list.untranslated')
-        .more
-          %span
-            != t('locomotive.content_entries.index.updated_at')
-          = l entry.updated_at, format: :short rescue 'n/a'
+        .actions
+          = link_to content_entry_path(content_type.slug, entry), title: t('locomotive.buttons.delete'), class: 'remove', data: { confirm: t('locomotive.messages.confirm') }, method: :delete do
+            %i.fa.fa-trash-o
 
-          = link_to_icon :trash, content_entry_path(content_type.slug, entry), title: t('locomotive.buttons.delete'), class: 'remove', data: { confirm: t('locomotive.messages.confirm') }, method: :delete
+    / .col-md-12
+    /   - entries.each do |entry|
+    /     .row.item{ data: { id: entry._id } }
+    /       .col-md-10.col-xs-9
+    /         - if content_type.order_manually?
+    /           .draggable.pull-left
+    /             %i.fa.fa-bars.draggable
+
+    /         .text.pull-left
+    /           %strong= link_to entry_label(content_type, entry), edit_content_entry_path(content_type.slug, entry)
+    /           .stamp
+    /             != content_entry_stamp(entry)
+
+    /       .col-md-2.col-xs-3.text-right
+    /         = link_to content_entry_path(content_type.slug, entry), title: t('locomotive.buttons.delete'), class: 'remove', data: { confirm: t('locomotive.messages.confirm') }, method: :delete do
+    /           %i.fa.fa-trash-o
+
+
+    / %strong= link_to entry_label(content_type, entry), edit_content_entry_path(content_type.slug, entry)
+
+    / - unless entry.translated?
+    /   %span.untranslated= t('locomotive.shared.list.untranslated')
+    / .more
+    /   %span
+    /     != t('locomotive.content_entries.index.updated_at')
+    /   = l entry.updated_at, format: :short rescue 'n/a'
+
+    /   = link_to_icon :trash, content_entry_path(content_type.slug, entry), title: t('locomotive.buttons.delete'), class: 'remove', data: { confirm: t('locomotive.messages.confirm') }, method: :delete
 
   - if entries.respond_to?(:current_page)
     = paginate entries, namespace: 'locomotive'

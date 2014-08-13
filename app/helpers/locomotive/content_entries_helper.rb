@@ -1,6 +1,19 @@
 module Locomotive
   module ContentEntriesHelper
 
+    def content_entry_stamp(entry)
+      distance = distance_of_time_in_words(Time.now, entry.updated_at, true)
+
+      if account = entry.updated_by
+        avatar  = image_tag(account_avatar_url(account, '40x40#'), class: 'img-circle', style: 'width: 20px')
+        profile = avatar + account.name
+
+        t('locomotive.content_entries.index.updated_by', distance: distance, who: profile)
+      else
+        t('locomotive.content_entries.index.updated_at', distance: distance)
+      end
+    end
+
     # Keep track of the form used to create / edit content entries
     # from a has_many custom field.
     # Because of formtastic which does not work with embedded forms,

@@ -7,6 +7,8 @@ $sidebar_width:                     21em;
 $background_gradient_start:         #54b9cd;
 $background_gradient_end:           #5488cc;
 
+$background_content_list:           #f1f4f5;
+
 $form_input_background_color:       #f7f7f7;
 $form_input_padding:                15px;
 $form_input_radius:                 4px;
@@ -26,3 +28,11 @@ $form_input_array_placeholder_margin:       6px;
 $form_input_array_border_size:              2px;
 $form_input_array_border_color:             $form_input_control_border_color;
 $form_input_array_media_border_color:       $form_input_control_border_color;
+
+$content_list_item_background_color:        #fff;
+$content_list_item_border_color:            #dadada;
+$content_list_item_border_size:             1px;
+$content_list_item_link_color:              #595959;
+$content_list_item_stamp_color:             #949999;
+$content_list_item_stamp_size:              12px;
+

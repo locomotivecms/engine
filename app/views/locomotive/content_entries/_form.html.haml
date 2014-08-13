@@ -1,10 +1,10 @@
-- content_for :head do
-  = render '/locomotive/content_assets/picker'
+/ - content_for :head do
+/   = render '/locomotive/content_assets/picker'
 
-- content_for :backbone_view_data do
-  :plain
-    content_entry: #{escape_json to_json(@content_entry)},
-    content_type: #{escape_json to_json(@content_type)}
+/ - content_for :backbone_view_data do
+/   :plain
+/     content_entry: #{escape_json to_json(@content_entry)},
+/     content_type: #{escape_json to_json(@content_type)}
 
 = f.inputs name: :attributes do
   - @content_type.ordered_entries_custom_fields.each_with_index do |field, index|
