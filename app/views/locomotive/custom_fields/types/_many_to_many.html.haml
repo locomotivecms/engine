@@ -1,36 +1,36 @@
-- if field.ui_enabled?
-  - target_content_type = Locomotive::ContentType.class_name_to_content_type(field.class_name, current_site)
+/ - if field.ui_enabled?
+/   - target_content_type = Locomotive::ContentType.class_name_to_content_type(field.class_name, current_site)
 
-  = f.input       name.to_sym,
-    label:        field.label,
-    hint:         field.hint,
-    as:           :'Locomotive::Empty',
-    wrapper_html: { id: "content_entry_#{name}_input", class: 'empty relationship input' }
+/   = f.input       name.to_sym,
+/     label:        field.label,
+/     hint:         field.hint,
+/     as:           :'Locomotive::Empty',
+/     wrapper_html: { id: "content_entry_#{name}_input", class: 'empty relationship input' }
 
-  - content_for :head do
+/   - content_for :head do
 
-    %script{ type: 'text/html', id: "#{name}_list" }
+/     %script{ type: 'text/html', id: "#{name}_list" }
 
-      %p.empty{ style: 'display: none' }!= t('.empty')
+/       %p.empty{ style: 'display: none' }!= t('.empty')
 
-      %ul
+/       %ul
 
-      %hr
+/       %hr
 
-      .new-entry
+/       .new-entry
 
-        = text_field_tag 'entry', '', class: 'selected-entry', data: { url: content_entries_path(target_content_type.slug, :json), per_page: Locomotive.config.ui[:per_page], group_by: target_content_type.group_by_field.try(:name) }
+/         = text_field_tag 'entry', '', class: 'selected-entry', data: { url: content_entries_path(target_content_type.slug, :json), per_page: Locomotive.config.ui[:per_page], group_by: target_content_type.group_by_field.try(:name) }
 
-        %span.actions
-          = link_to t('locomotive.buttons.new_item'), '#', class: 'add'
+/         %span.actions
+/           = link_to t('locomotive.buttons.new_item'), '#', class: 'add'
 
-    %script{ type: 'text/html', id: "#{name}_entry" }
-      %li
-        .handle.col
-          %i.icon-reorder
+/     %script{ type: 'text/html', id: "#{name}_entry" }
+/       %li
+/         .handle.col
+/           %i.icon-reorder
 
-        .label.col
-          {{label}}
+/         .label.col
+/           {{label}}
 
-        %span.actions
-          = link_to_icon :trash, '#', class: 'remove', data: { confirm: t('locomotive.messages.confirm') }
+/         %span.actions
+/           = link_to_icon :trash, '#', class: 'remove', data: { confirm: t('locomotive.messages.confirm') }
