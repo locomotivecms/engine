@@ -6,16 +6,17 @@ module Locomotive
         extend ActiveSupport::Concern
 
         included do
-          after_save :sync_relationships_order_by
+          before_update :sync_relationships_order_by_for_has_many_fields
+          after_save :sync_relationships_order_by_for_belongs_to_fields
         end
 
         protected
 
-        # If the user changes the order of the content type, we have to make
-        # sure that other related content types tied to the current one through
-        # a belongs_to / has_many relationship also gets updated.
+        # If an user changes the default order of a content type, we need to make sure
+        # that all the content types referencing this content type through a has_many
+        # relationship without UI enabled (this is very important) have the new order_by.
         #
-        def sync_relationships_order_by
+        def sync_relationships_order_by_for_belongs_to_fields
           current_class_name = self.klass_with_custom_fields(:entries).name
 
           self.entries_custom_fields.where(type: 'belongs_to').each do |field|
@@ -34,6 +35,16 @@ module Locomotive
             unless operations['$set'].empty?
               persist_content_type_changes target_content_type, operations
             end
+          end
+        end
+
+        # If an user enables the UI option for a has_many relationship in the current content type,
+        # then all the content entries of that content type should order the entries of the has_many relationship
+        # from the "position_in_<field name>" value.
+        #
+        def sync_relationships_order_by_for_has_many_fields
+          self.entries_custom_fields.where(:type.in => %w(has_many), ui_enabled: true).each do |field|
+            field.order_by = nil # that will force the content entry to use the position_in_<inverse_of> field
           end
         end
 
