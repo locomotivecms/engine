@@ -9,7 +9,7 @@ gemfile = File.expand_path('../../../../Gemfile', __FILE__)
 # delayed job version is released?
 #
 require 'yaml'
-YAML::ENGINE.yamler = 'syck' if defined?(YAML::ENGINE)
+YAML::ENGINE.yamler = 'syck' if defined?(Delayed::Worker)
 
 if File.exist?(gemfile)
   ENV['BUNDLE_GEMFILE'] = gemfile
