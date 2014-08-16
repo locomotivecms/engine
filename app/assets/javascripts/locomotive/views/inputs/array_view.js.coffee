@@ -18,7 +18,7 @@ class Locomotive.Views.Inputs.ArrayView extends Backbone.View
 
   render: ->
     @make_sortable()
-    @render_select()
+    @make_selectable()
 
   make_sortable: ->
     @$list.sortable
@@ -30,7 +30,7 @@ class Locomotive.Views.Inputs.ArrayView extends Backbone.View
       start:        (e, ui) ->
         ui.placeholder.html('<div class="inner">&nbsp;</div>')
 
-  render_select: ->
+  make_selectable: ->
     @$select_field.select2
       containerCssClass:  'form-control'
       formatResult:       @format_select_result

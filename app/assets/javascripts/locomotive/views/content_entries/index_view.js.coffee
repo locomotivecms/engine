@@ -2,35 +2,14 @@ Locomotive.Views.ContentEntries ||= {}
 
 class Locomotive.Views.ContentEntries.IndexView extends Backbone.View
 
-  el: '#content'
+  el: '.main'
+
+  initialize: ->
+    @list_view = new Locomotive.Views.Shared.ListView(el: @$('.big-list'))
 
   render: ->
-    @make_sortable()
+    @list_view.render()
 
-    return @
-
-  make_sortable: ->
-    self = @
-
-    @$('ul#entries-list.sortable').sortable
-      handle: 'span.handle'
-      items:  'li.item'
-      axis:   'y'
-      update: (event, ui) -> self.call_sort $(@)
-
-  call_sort: (folder) ->
-    $.rails.ajax
-      url:        folder.data('url')
-      type:       'post'
-      dataType:   'json'
-      data:
-        entries: (_.map folder.sortable('toArray'), (el) -> el.replace('entry-', ''))
-        _method:  'put'
-      success:    @.on_successful_sort
-      error:      @.on_failed_sort
-
-  on_successful_sort: (data, status, xhr) ->
-    $.growl('success', decodeURIComponent $.parseJSON xhr.getResponseHeader('X-Message'))
-
-  on_failed_sort: (data, status, xhr) ->
-    $.growl('error', decodeURIComponent $.parseJSON xhr.getResponseHeader('X-Message'))
+  remove: ->
+    @list_view.remove()
+    super()

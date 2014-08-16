@@ -2,7 +2,7 @@
   .alert.alert-warning
     != t('.no_items', url: new_content_entry_path(content_type.slug))
 - else
-  #entries-list{ class: "row big-list #{'grouped' if content_type.groupable?} #{'sortable' if content_type.order_manually?}", :'data-url' => sort_content_entries_path(content_type.slug, :json) }
+  #entries-list{ class: "row big-list #{'grouped' if content_type.groupable?} #{'sortable' if content_type.order_manually?}", :'data-sort-url' => sort_content_entries_path(content_type.slug, :json) }
     - entries.each do |entry|
       .item{ class: 'col-md-12', data: { id: entry._id } }
         - if content_type.order_manually?
