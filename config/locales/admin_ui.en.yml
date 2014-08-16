@@ -318,6 +318,7 @@ en:
         new: new entry
         category_noname: "No name"
         latest_entries: "Latest entries"
+        created_by: "Created %{distance} by %{who}"
         updated_at: "Last modified %{distance}"
         updated_by: "Last modified %{distance} by %{who}"
       list:

@@ -222,6 +222,11 @@ module Locomotive
       end
     end
 
+    def account_avatar_and_name(account, size = '70x70#')
+      avatar  = image_tag(account_avatar_url(account, size), class: 'img-circle', style: 'width: 20px')
+      profile = avatar + account.name
+    end
+
     # sites
 
     def site_picture_url(site, size = '80x80#')
