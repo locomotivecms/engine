@@ -2,11 +2,13 @@ $form_input_label_color:  #333;
 $form_input_border_color: #4999b2;
 
 .formtastic {
+  width: 100%;
 
   fieldset {
 
     > .input {
 
+      padding: 0px;
       background: transparent;
 
       .form-wrapper {
@@ -44,6 +46,12 @@ $form_input_border_color: #4999b2;
   a {
     color: #000;
     @include opacity(0.4);
+  }
+
+  .form-actions {
+    button[type="submit"] {
+      margin-top: 0px;
+    }
   }
 
 }
