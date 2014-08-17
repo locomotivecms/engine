@@ -65,6 +65,9 @@ en:
           new: New
           add: Add
           edit: Edit
+        toggle_input:
+          on_text: "Yes"
+          off_text: "No"
       form_actions:
         back: Back without saving
         create: Create

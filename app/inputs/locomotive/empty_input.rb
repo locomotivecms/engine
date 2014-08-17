@@ -1,3 +1,4 @@
+# @deprecated
 module Locomotive
   class EmptyInput
     include Formtastic::Inputs::Base

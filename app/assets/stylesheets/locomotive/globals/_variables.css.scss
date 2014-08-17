@@ -9,15 +9,16 @@ $background_gradient_end:           #5488cc;
 
 $background_content_list:           #f1f4f5;
 
-$form_input_background_color:       #f7f7f7;
-$form_input_padding:                15px;
-$form_input_radius:                 4px;
-$form_input_label_color:            #555;
-$form_input_label_size:             11px;
-$form_input_control_border_size:    4px;
-$form_input_control_border_color:   #d7d7d7;
-$form_input_help_color:             #828787;
-$form_input_help_size:              12px;
+$form_input_background_color:         #f7f7f7;
+$form_input_padding:                  15px;
+$form_input_radius:                   4px;
+$form_input_label_color:              #555;
+$form_input_label_size:               11px;
+$form_input_control_border_size:      4px;
+$form_input_control_border_color:     #d7d7d7;
+$form_input_help_color:               #828787;
+$form_input_help_size:                12px;
+$form_input_wrapper_background_color: #fff;
 
 $form_input_array_item_height:              30px;
 $form_input_array_draggable_color:          #ccc;
@@ -28,6 +29,8 @@ $form_input_array_placeholder_margin:       6px;
 $form_input_array_border_size:              2px;
 $form_input_array_border_color:             $form_input_control_border_color;
 $form_input_array_media_border_color:       $form_input_control_border_color;
+
+$form_input_toggle_width:                   50px;
 
 $content_list_item_background_color:        #fff;
 $content_list_item_border_color:            #dadada;

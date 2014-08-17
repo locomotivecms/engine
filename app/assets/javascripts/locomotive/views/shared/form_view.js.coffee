@@ -16,6 +16,7 @@ class Locomotive.Views.Shared.FormView extends Backbone.View
 
     @enable_file_inputs()
     @enable_array_inputs()
+    @enable_toggle_inputs()
 
     # make title editable (if possible)
     # @make_title_editable()
@@ -63,6 +64,14 @@ class Locomotive.Views.Shared.FormView extends Backbone.View
       view = new Locomotive.Views.Inputs.ArrayView(el: $(@))
       view.render()
       self.inputs.push(view)
+
+  enable_toggle_inputs: (event) ->
+    @$('.input.toggle input[type=checkbox]').each ->
+      $toggle = $(@)
+      $toggle.data('label-text', (if $toggle.is(':checked') then $toggle.data('off-text') else $toggle.data('on-text')))
+      $toggle.bootstrapSwitch
+        onSwitchChange: (event, state) ->
+          $toggle.data('bootstrap-switch').labelText((if state then $toggle.data('off-text') else $toggle.data('on-text')))
 
   remove: ->
     self.inputs.each (view) -> view.remove()
