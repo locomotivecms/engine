@@ -62,6 +62,12 @@ module Locomotive
       resource.persisted? && resource.errors.empty?
     end
 
+    ## Tag helpers ##
+
+    def icon_tag(name)
+      content_tag :i, '', class: ['fa', name].join(' ')
+    end
+
     # Like link_to but instead of passing a label, we
     # pass the name of an Font Awesome icon.
     # If the name is a Symbol, we append "icon-" to the

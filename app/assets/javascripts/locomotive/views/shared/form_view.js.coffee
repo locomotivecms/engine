@@ -17,6 +17,7 @@ class Locomotive.Views.Shared.FormView extends Backbone.View
     @enable_file_inputs()
     @enable_array_inputs()
     @enable_toggle_inputs()
+    @enable_date_inputs()
 
     # make title editable (if possible)
     # @make_title_editable()
@@ -72,6 +73,13 @@ class Locomotive.Views.Shared.FormView extends Backbone.View
       $toggle.bootstrapSwitch
         onSwitchChange: (event, state) ->
           $toggle.data('bootstrap-switch').labelText((if state then $toggle.data('off-text') else $toggle.data('on-text')))
+
+  enable_date_inputs: (event) ->
+    @$('.input.date input[type=text]').each ->
+      $(@).datetimepicker
+        language: window.content_locale
+        pickTime: false
+        widgetParent: '.main'
 
   remove: ->
     self.inputs.each (view) -> view.remove()
