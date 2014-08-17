@@ -80,6 +80,12 @@
   align-items: $alignment;
 }
 
+@mixin flex-wrap
+{
+  -webkit-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
 @mixin locomotive_gradient
 {
   background-repeat: no-repeat;
