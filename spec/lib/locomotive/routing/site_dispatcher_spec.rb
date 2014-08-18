@@ -24,47 +24,6 @@ describe Locomotive::Routing::SiteDispatcher do
 
   end
 
-  describe '#fetch_site' do
-
-    before :each do
-      @request    = Object.new
-      @site       = FactoryGirl.build(:site)
-
-      @controller.stubs(:request).returns(@request)
-      @request.stubs(:host).returns('host')
-      @request.stubs(:env).returns({})
-    end
-
-    it 'returns the current site instance if available' do
-      @controller.instance_variable_set(:@current_site, @site)
-      @controller.send(:fetch_site).should == @site
-    end
-
-    it 'returns the site with matching domain if there is no current site instance' do
-      Locomotive::Site.expects(:match_domain).with('host').returns([@site])
-      @controller.send(:fetch_site).should == @site
-    end
-
-  end
-
-  describe '#current_site' do
-
-    before :each do
-      @site = FactoryGirl.build(:site)
-    end
-
-    it 'returns the current site instance if available' do
-      @controller.instance_variable_set(:@current_site, @site)
-      @controller.send(:current_site).should == @site
-    end
-
-    it 'runs fetch site if no instance is available' do
-      @controller.stubs(:fetch_site).returns(@site)
-      @controller.send(:current_site).should == @site
-    end
-
-  end
-
   describe '#require_site' do
 
     context 'when there is a current site' do
