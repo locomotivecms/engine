@@ -29,7 +29,7 @@ module Locomotive
 
     def email=(email)
       @email = email
-      self.account = Locomotive::Account.where(email: email.downcase).try(:first)
+      self.account = Locomotive::Account.where(email: email).first
     end
 
     def process!
