@@ -1,5 +1,6 @@
 = f.input :"formatted_#{name}",
   label:        label_for_custom_field(f.object, field),
   hint:         field.hint,
+  append:       icon_tag('fa-clock-o'),
   wrapper_html: { class: 'date-time' },
-  input_html:   { maxlength: 10 }
+  input_html:   { data: { format: I18n.t('time.formats.default').gsub('%d', 'dd').gsub('%m', 'mm').gsub('%Y', 'YYYY').gsub('%H', 'H').gsub('%M', 'm') }, maxlength: 10 }

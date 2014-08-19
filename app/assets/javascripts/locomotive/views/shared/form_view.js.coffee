@@ -18,6 +18,7 @@ class Locomotive.Views.Shared.FormView extends Backbone.View
     @enable_array_inputs()
     @enable_toggle_inputs()
     @enable_date_inputs()
+    @enable_datetime_inputs()
 
     # make title editable (if possible)
     # @make_title_editable()
@@ -52,21 +53,21 @@ class Locomotive.Views.Shared.FormView extends Backbone.View
     @change_state()
     @record_active_tab()
 
-  enable_file_inputs: (event) ->
+  enable_file_inputs: ->
     self = @
     @$('.input.file').each ->
       view = new Locomotive.Views.Inputs.FileView(el: $(@))
       view.render()
       self.inputs.push(view)
 
-  enable_array_inputs: (event) ->
+  enable_array_inputs: ->
     self = @
     @$('.input.array').each ->
       view = new Locomotive.Views.Inputs.ArrayView(el: $(@))
       view.render()
       self.inputs.push(view)
 
-  enable_toggle_inputs: (event) ->
+  enable_toggle_inputs: ->
     @$('.input.toggle input[type=checkbox]').each ->
       $toggle = $(@)
       $toggle.data('label-text', (if $toggle.is(':checked') then $toggle.data('off-text') else $toggle.data('on-text')))
@@ -74,12 +75,22 @@ class Locomotive.Views.Shared.FormView extends Backbone.View
         onSwitchChange: (event, state) ->
           $toggle.data('bootstrap-switch').labelText((if state then $toggle.data('off-text') else $toggle.data('on-text')))
 
-  enable_date_inputs: (event) ->
+  enable_date_inputs: ->
     @$('.input.date input[type=text]').each ->
       $(@).datetimepicker
         language: window.content_locale
         pickTime: false
         widgetParent: '.main'
+
+  enable_datetime_inputs: ->
+    @$('.input.date-time input[type=text]').each ->
+      $(@).datetimepicker
+        language: window.content_locale
+        pickTime: true
+        widgetParent: '.main'
+        use24hours: true
+        useseconds: false
+        format: $(@).data('format')
 
   remove: ->
     self.inputs.each (view) -> view.remove()

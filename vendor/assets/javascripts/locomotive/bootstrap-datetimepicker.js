@@ -110,7 +110,16 @@ THE SOFTWARE.
                     }
                 }
             }
-            picker.use24hours = (picker.format.toLowerCase().indexOf('a') < 0 && picker.format.indexOf('h') < 0);
+
+            if (picker.options.use24hours !== undefined) {
+                picker.use24hours = picker.options.use24hours
+            } else {
+                picker.use24hours = (picker.format.toLowerCase().indexOf('a') < 0 && picker.format.indexOf('h') < 0);
+            }
+
+            // if (picker.options.use24hours == undefined) {
+                // picker.use24hours = (picker.format.toLowerCase().indexOf('a') < 0 && picker.format.indexOf('h') < 0);
+            // }
 
             if (picker.component) {
                 icon = picker.component.find('span');
@@ -277,6 +286,9 @@ THE SOFTWARE.
             }
             if (eData.dateDaysofweekdisabled !== undefined) {
                 picker.options.daysOfWeekDisabled = eData.dateDaysofweekdisabled;
+            }
+            if (eData.use24hours !== undefined) {
+                picker.options.use24hours = eData.use24hours;
             }
 //            $.each(defaults, function (key) {
 //                var attributeName = 'date' + key.charAt(0).toUpperCase() + key.slice(1);

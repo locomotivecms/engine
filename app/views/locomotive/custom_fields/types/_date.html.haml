@@ -3,4 +3,4 @@
   hint:         field.hint,
   append:       icon_tag('fa-calendar'),
   wrapper_html: { class: 'date' },
-  input_html:   { data: { format: I18n.t('date.formats.default').gsub('%d', 'dd').gsub('%m', 'mm').gsub('%Y', 'yy') } }
+  input_html:   { data: { :dateFormat => I18n.t('date.formats.default').gsub('%d', 'dd').gsub('%m', 'mm').gsub('%Y', 'yy') }, maxlength: 10 }
