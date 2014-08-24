@@ -92,7 +92,7 @@ module Locomotive
       end
 
       def load_sites
-        @sites = self.current_locomotive_account.to_scope(current_site, :site)
+        @sites = self.current_locomotive_account.to_scope(current_site, :sites)
       end
 
     end

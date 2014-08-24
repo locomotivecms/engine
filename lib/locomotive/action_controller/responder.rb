@@ -24,7 +24,7 @@ module Locomotive
       def to_json
         if get?
           add_pagination_header if resource.respond_to?(:num_pages)
-          display resource
+          display(resource)
         elsif has_errors?
           with_flash_message(:alert) do
             display resource.errors, status: :unprocessable_entity

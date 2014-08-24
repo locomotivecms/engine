@@ -17,7 +17,7 @@ module Locomotive
       end
 
       describe "#GET index" do
-        subject { get :index, locale: :en, format: :json }
+        subject { get(:index, locale: :en, format: :json) }
         it { should be_success }
       end
 

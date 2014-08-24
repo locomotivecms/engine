@@ -29,11 +29,11 @@ Locomotive::Wallet.generate_policy_for do
       right(:create)      { |u, r, m| true }
       right(:grant_admin) { |u, r, m| true }
     end
-    scope :account do |user, site, membership|
-      Locomotive::Account
+    scope :accounts do |user, site, membership|
+      site.accounts
     end
-    scope :site do |user, site, membership|
-      Locomotive::Site
+    scope :sites do |user, site, membership|
+      user.sites
     end
   end
 end

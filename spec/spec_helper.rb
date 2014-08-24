@@ -30,8 +30,6 @@ RSpec.configure do |config|
 
   config.infer_base_class_for_anonymous_controllers = false
 
-  # config.order = 'random'
-
   config.before(:suite) do
     Locomotive.configure_for_test(true)
   end
@@ -52,4 +50,10 @@ RSpec.configure do |config|
   config.after(:suite) do
     DatabaseCleaner.clean
   end
+
+  # Run specs in random order to surface order dependencies. If you find an
+  # order dependency and want to debug it, you can fix the order by providing
+  # the seed, which is printed after each run.
+  #     --seed 1234
+  config.order = "random"
 end

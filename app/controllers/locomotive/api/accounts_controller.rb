@@ -86,7 +86,7 @@ module Locomotive
       end
 
       def load_accounts
-        @accounts = self.current_locomotive_account.to_scope(current_site, :account)
+        @accounts = self.current_locomotive_account.to_scope(current_site, :accounts)
       end
 
     end
