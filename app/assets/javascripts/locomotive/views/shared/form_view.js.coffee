@@ -81,6 +81,7 @@ class Locomotive.Views.Shared.FormView extends Backbone.View
         language: window.content_locale
         pickTime: false
         widgetParent: '.main'
+        format: $(@).data('format')
 
   enable_datetime_inputs: ->
     @$('.input.date-time input[type=text]').each ->

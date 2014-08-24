@@ -296,5 +296,20 @@ module Locomotive
     end
     alias :l :localize
 
+    # Dates
+
+    def date_moment_format
+      datetime_moment_format(I18n.t('date.formats.default'))
+    end
+
+    def datetime_moment_format(format = nil)
+      (format || I18n.t('time.formats.default'))
+        .gsub('%d', 'DD')
+        .gsub('%m', 'MM')
+        .gsub('%Y', 'YYYY')
+        .gsub('%H', 'H')
+        .gsub('%M', 'm')
+    end
+
   end
 end
