@@ -21,3 +21,5 @@ wysihtml5.commands.strike =
 
 )(wysihtml5)
 
+
+

@@ -12,7 +12,7 @@
  *    ... becomes ...
  *    <img class="wysiwyg-float-left" src="http://foobar.com/image.png" alt="">
  *
- *    <div>foo<script>alert(document.cookie)</script></div>
+ *    <div>foo<script>alert(document.cookie);</script></div>
  *    ... becomes ...
  *    <div>foo</div>
  *
@@ -36,6 +36,7 @@ var wysihtml5ParserRules = {
     /**
      * CSS Class white-list
      * Following CSS classes won't be removed when parsed by the wysihtml5 HTML parser
+     * If all classes should pass "any" as classes value. Ex: "classes": "any"
      */
     "classes": {
         "wysiwyg-clear-both": 1,
@@ -73,6 +74,83 @@ var wysihtml5ParserRules = {
         "wysiwyg-text-align-left": 1,
         "wysiwyg-text-align-right": 1
     },
+    
+    
+    "type_definitions": {
+
+        "visible_content_object": {
+            "methods": {
+                "has_visible_contet": 1
+            }
+        },
+        
+        "alignment_object": {
+            "classes": {
+                "wysiwyg-text-align-center": 1,
+                "wysiwyg-text-align-justify": 1,
+                "wysiwyg-text-align-left": 1,
+                "wysiwyg-text-align-right": 1,
+                "wysiwyg-float-left": 1,
+                "wysiwyg-float-right": 1
+            },
+            "styles": {
+                "float": ["left", "right"],
+                "text-align": ["left", "right", "center"]
+            }
+        },
+        
+        "valid_image_src": {
+            "attrs": {
+                "src": /^[^data\:]/i
+            }
+        },
+        
+        "text_color_object": {
+          "styles": {
+            "color": true,
+            "background-color": true
+          }
+        },
+        
+        "text_fontsize_object": {
+          "styles": {
+            "font-size": true
+          }
+        },
+        
+        "text_formatting_object": {
+            "classes": {
+                "wysiwyg-color-aqua": 1,
+                "wysiwyg-color-black": 1,
+                "wysiwyg-color-blue": 1,
+                "wysiwyg-color-fuchsia": 1,
+                "wysiwyg-color-gray": 1,
+                "wysiwyg-color-green": 1,
+                "wysiwyg-color-lime": 1,
+                "wysiwyg-color-maroon": 1,
+                "wysiwyg-color-navy": 1,
+                "wysiwyg-color-olive": 1,
+                "wysiwyg-color-purple": 1,
+                "wysiwyg-color-red": 1,
+                "wysiwyg-color-silver": 1,
+                "wysiwyg-color-teal": 1,
+                "wysiwyg-color-white": 1,
+                "wysiwyg-color-yellow": 1,
+                "wysiwyg-font-size-large": 1,
+                "wysiwyg-font-size-larger": 1,
+                "wysiwyg-font-size-medium": 1,
+                "wysiwyg-font-size-small": 1,
+                "wysiwyg-font-size-smaller": 1,
+                "wysiwyg-font-size-x-large": 1,
+                "wysiwyg-font-size-x-small": 1,
+                "wysiwyg-font-size-xx-large": 1,
+                "wysiwyg-font-size-xx-small": 1
+            }
+        }
+    },
+
+    "comments": 1, // if set allows comments to pass
+    
     /**
      * Tag list
      *
@@ -107,7 +185,7 @@ var wysihtml5ParserRules = {
      *                            - href:           allows something like "mailto:bert@foo.com", "http://google.com", "/foobar.jpg"
      *                            - alt:            strips unwanted characters. if the attribute is not set, then it gets set (to ensure valid and compatible HTML)
      *                            - numbers:  ensures that the attribute only contains numeric characters
-     *                            - any:            allows anything to pass
+     *                            - any:            allows anything to pass 
      */
     "tags": {
         "tr": {
@@ -116,10 +194,10 @@ var wysihtml5ParserRules = {
             }
         },
         "strike": {
-            "remove": 1
+            "unwrap": 1
         },
         "form": {
-            "rename_tag": "div"
+            "unwrap": 1
         },
         "rt": {
             "rename_tag": "span"
@@ -134,7 +212,7 @@ var wysihtml5ParserRules = {
             }
         },
         "details": {
-            "rename_tag": "div"
+            "unwrap": 1
         },
         "h4": {
             "add_class": {
@@ -146,13 +224,13 @@ var wysihtml5ParserRules = {
             "remove": 1
         },
         "multicol": {
-            "rename_tag": "div"
+            "unwrap": 1
         },
         "figure": {
-            "rename_tag": "div"
+            "unwrap": 1
         },
         "xmp": {
-            "rename_tag": "span"
+            "unwrap": 1
         },
         "small": {
             "rename_tag": "span",
@@ -162,45 +240,47 @@ var wysihtml5ParserRules = {
             "remove": 1
         },
         "time": {
-            "rename_tag": "span"
+            "unwrap": 1
         },
         "dir": {
             "rename_tag": "ul"
         },
         "bdi": {
-            "rename_tag": "span"
+            "unwrap": 1
         },
         "command": {
-            "remove": 1
+            "unwrap": 1
         },
         "ul": {},
         "progress": {
             "rename_tag": "span"
         },
         "dfn": {
-            "rename_tag": "span"
+            "unwrap": 1
         },
         "iframe": {
             "remove": 1
         },
         "figcaption": {
-            "rename_tag": "div"
+            "unwrap": 1
         },
         "a": {
             "check_attributes": {
-                "target": "any",
-                "href": "any", // if you compiled master manually then change this from 'url' to 'href'
-                "title": "any"
+                "href": "href", // if you compiled master manually then change this from 'url' to 'href'
+                "target": "any"
             },
             "set_attributes": {
                 "rel": "nofollow"
             }
         },
         "img": {
+            "one_of_type": {
+                "valid_image_src": 1
+            },
             "check_attributes": {
                 "width": "numbers",
                 "alt": "alt",
-                "src": "url", // if you compiled master manually then change this from 'url' to 'src'
+                "src": "src", // if you compiled master manually then change this from 'url' to 'src'
                 "height": "numbers"
             },
             "add_class": {
@@ -208,7 +288,7 @@ var wysihtml5ParserRules = {
             }
         },
         "rb": {
-            "rename_tag": "span"
+            "unwrap": 1
         },
         "footer": {
             "rename_tag": "div"
@@ -217,23 +297,23 @@ var wysihtml5ParserRules = {
             "remove": 1
         },
         "abbr": {
-            "rename_tag": "span"
+            "unwrap": 1
         },
         "u": {},
         "bgsound": {
             "remove": 1
         },
         "sup": {
-            "rename_tag": "span"
+            "unwrap": 1
         },
         "address": {
-            "rename_tag": "div"
+            "unwrap": 1
         },
         "basefont": {
             "remove": 1
         },
         "nav": {
-            "rename_tag": "div"
+            "unwrap": 1
         },
         "h1": {
             "add_class": {
@@ -241,7 +321,7 @@ var wysihtml5ParserRules = {
             }
         },
         "head": {
-            "remove": 1
+            "unwrap": 1
         },
         "tbody": {
             "add_class": {
@@ -249,16 +329,18 @@ var wysihtml5ParserRules = {
             }
         },
         "dd": {
-            "rename_tag": "div"
+            "unwrap": 1
         },
         "s": {
-            "rename_tag": "span"
+            "unwrap": 1
         },
         "li": {},
         "td": {
             "check_attributes": {
                 "rowspan": "numbers",
-                "colspan": "numbers"
+                "colspan": "numbers",
+                "valign": "any",
+                "align": "any"
             },
             "add_class": {
                 "align": "align_text"
@@ -267,16 +349,26 @@ var wysihtml5ParserRules = {
         "object": {
             "remove": 1
         },
+        
         "div": {
+            "one_of_type": {
+                "visible_content_object": 1
+            },
+            "remove_action": "unwrap",
+            "keep_styles": {
+                "textAlign": 1,
+                "float": 1
+            },
             "add_class": {
                 "align": "align_text"
             }
         },
+        
         "option": {
-            "rename_tag": "span"
+            "remove":1
         },
         "select": {
-            "rename_tag": "span"
+            "remove":1
         },
         "i": {},
         "track": {
@@ -286,14 +378,14 @@ var wysihtml5ParserRules = {
             "remove": 1
         },
         "fieldset": {
-            "rename_tag": "div"
+            "unwrap": 1
         },
         "big": {
             "rename_tag": "span",
             "set_class": "wysiwyg-font-size-larger"
         },
         "button": {
-            "rename_tag": "span"
+            "unwrap": 1
         },
         "noscript": {
             "remove": 1
@@ -317,13 +409,13 @@ var wysihtml5ParserRules = {
             "remove": 1
         },
         "map": {
-            "rename_tag": "div"
+            "remove": 1
         },
         "isindex": {
             "remove": 1
         },
         "mark": {
-            "rename_tag": "span"
+            "unwrap": 1
         },
         "caption": {
             "add_class": {
@@ -346,10 +438,10 @@ var wysihtml5ParserRules = {
             "remove": 1
         },
         "output": {
-            "rename_tag": "span"
+            "unwrap": 1
         },
         "marquee": {
-            "rename_tag": "span"
+            "unwrap": 1
         },
         "b": {},
         "q": {
@@ -360,9 +452,21 @@ var wysihtml5ParserRules = {
         "applet": {
             "remove": 1
         },
-        "span": {},
+        "span": {
+            "one_of_type": {
+                "text_formatting_object": 1,
+                "text_color_object": 1,
+                "text_fontsize_object": 1
+            },
+            "keep_styles": {
+                "color": 1,
+                "backgroundColor": 1,
+                "fontSize": 1
+            },
+            "remove_action": "unwrap"
+        },
         "rp": {
-            "rename_tag": "span"
+            "unwrap": 1
         },
         "spacer": {
             "remove": 1
@@ -380,23 +484,23 @@ var wysihtml5ParserRules = {
             "rename_tag": "div"
         },
         "body": {
-            "rename_tag": "div"
+            "unwrap": 1
         },
         "ol": {},
         "nobr": {
-            "rename_tag": "span"
+            "unwrap": 1
         },
         "html": {
-            "rename_tag": "div"
+            "unwrap": 1
         },
         "summary": {
-            "rename_tag": "span"
+            "unwrap": 1
         },
         "var": {
-            "rename_tag": "span"
+            "unwrap": 1
         },
         "del": {
-            "remove": 1
+            "unwrap": 1
         },
         "blockquote": {
             "check_attributes": {
@@ -410,7 +514,7 @@ var wysihtml5ParserRules = {
             "remove": 1
         },
         "meter": {
-            "rename_tag": "span"
+            "unwrap": 1
         },
         "h3": {
             "add_class": {
@@ -418,13 +522,13 @@ var wysihtml5ParserRules = {
             }
         },
         "textarea": {
-            "rename_tag": "span"
+            "unwrap": 1
         },
         "embed": {
             "remove": 1
         },
         "hgroup": {
-            "rename_tag": "div"
+            "unwrap": 1
         },
         "font": {
             "rename_tag": "span",
@@ -433,7 +537,7 @@ var wysihtml5ParserRules = {
             }
         },
         "tt": {
-            "rename_tag": "span"
+            "unwrap": 1
         },
         "noembed": {
             "remove": 1
@@ -444,10 +548,10 @@ var wysihtml5ParserRules = {
             }
         },
         "blink": {
-            "rename_tag": "span"
+            "unwrap": 1
         },
         "plaintext": {
-            "rename_tag": "span"
+            "unwrap": 1
         },
         "xml": {
             "remove": 1
@@ -470,23 +574,23 @@ var wysihtml5ParserRules = {
             }
         },
         "legend": {
-            "rename_tag": "span"
+            "unwrap": 1
         },
         "hr": {},
         "label": {
-            "rename_tag": "span"
+            "unwrap": 1
         },
         "dl": {
-            "rename_tag": "div"
+            "unwrap": 1
         },
         "kbd": {
-            "rename_tag": "span"
+            "unwrap": 1
         },
         "listing": {
-            "rename_tag": "div"
+            "unwrap": 1
         },
         "dt": {
-            "rename_tag": "span"
+            "unwrap": 1
         },
         "nextid": {
             "remove": 1
@@ -500,10 +604,10 @@ var wysihtml5ParserRules = {
             "remove": 1
         },
         "datalist": {
-            "rename_tag": "span"
+            "unwrap": 1
         },
         "samp": {
-            "rename_tag": "span"
+            "unwrap": 1
         },
         "col": {
             "remove": 1
@@ -519,7 +623,7 @@ var wysihtml5ParserRules = {
             "remove": 1
         },
         "bdo": {
-            "rename_tag": "span"
+            "unwrap": 1
         },
         "menu": {
             "rename_tag": "ul"
@@ -528,7 +632,7 @@ var wysihtml5ParserRules = {
             "remove": 1
         },
         "ruby": {
-            "rename_tag": "span"
+            "unwrap": 1
         },
         "h2": {
             "add_class": {
@@ -536,7 +640,7 @@ var wysihtml5ParserRules = {
             }
         },
         "ins": {
-            "rename_tag": "span"
+            "unwrap": 1
         },
         "p": {
             "add_class": {
@@ -544,7 +648,7 @@ var wysihtml5ParserRules = {
             }
         },
         "sub": {
-            "rename_tag": "span"
+            "unwrap": 1
         },
         "comment": {
             "remove": 1
@@ -553,7 +657,7 @@ var wysihtml5ParserRules = {
             "remove": 1
         },
         "optgroup": {
-            "rename_tag": "span"
+            "unwrap": 1
         },
         "header": {
             "rename_tag": "div"

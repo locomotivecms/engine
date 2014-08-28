@@ -95,13 +95,11 @@ class Locomotive.Views.Shared.FormView extends Backbone.View
         format: $(@).data('format')
 
   enable_rte_inputs: ->
-    @$('.input.rte textarea').each ->
-      $textarea = $(@)
-      console.log $textarea.attr('id') #$textarea.attr('id')
-      new wysihtml5.Editor 'content_entry_body',
-        toolbar:      'wysihtml5-toolbar'
-        parserRules:  wysihtml5ParserRules
-        stylesheets:  ['<%= stylesheet_path("locomotive/wysihtml5_reset") %>', '<%= stylesheet_path("locomotive/wysihtml5_editor") %>']
+    self = @
+    @$('.input.rte').each ->
+      view = new Locomotive.Views.Inputs.RteView(el: $(@))
+      view.render()
+      self.inputs.push(view)
 
   remove: ->
     self.inputs.each (view) -> view.remove()
