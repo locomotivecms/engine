@@ -8,9 +8,17 @@ module Locomotive
       end
     end
 
+    def wysihtml5_prefix
+      dom_id.to_s
+    end
+
+    def link_text(name)
+      I18n.t(name, scope: 'locomotive.inputs.rte.link')
+    end
+
     def toolbar_html
       %{
-      <div id="wysihtml5-toolbar" class="wysihtml5-toolbar" style="display: none;">
+      <div id="wysihtml5-toolbar-#{wysihtml5_prefix}" class="wysihtml5-toolbar" style="display: none;">
         <span class="wysihtml5-toolbar-group">
           <a data-wysihtml5-command="bold"><i class="fa fa-bold"></i></a>
           <a data-wysihtml5-command="italic"><i class="fa fa-italic"></i></a>
@@ -42,73 +50,36 @@ module Locomotive
           <a data-wysihtml5-command="createLink"><i class="fa fa-chain"></i></a>
           <div class="link-dialog-content" style="display: none">
             <div class="form-group">
-              <label for="wysihtml5-link-url">Link URL</label>
-              <input type="text" name="url" class="form-control" id="wysihtml5-link-url">
+              <label for="wysihtml5-#{wysihtml5_prefix}-link-url">#{link_text(:url)}</label>
+              <input type="text" name="url" class="form-control" id="wysihtml5-#{wysihtml5_prefix}-link-url">
             </div>
             <div class="form-group">
-              <label for="wysihtml5-link-target">Target</label>
-              <select name="target" id="wysihtml5-link-target" class="form-control">
-                <option value>-- Not Set--</option>
-                <option value="_self">Open Link in the Same window</option>
-                <option value="_blank">Open Link in a New Window</option>
+              <label for="wysihtml5-#{wysihtml5_prefix}-link-target">#{link_text(:target)}</label>
+              <select name="target" id="wysihtml5-#{wysihtml5_prefix}-link-target" class="form-control">
+                <option value>#{link_text('target_options.not_set')}</option>
+                <option value="_self">#{link_text('target_options.self')}</option>
+                <option value="_blank">#{link_text('target_options.blank')}</option>
               </select>
             </div>
             <div class="form-group">
-              <label for="wysihtml5-link-title">Title</label>
-              <input type="text" name="title" class="form-control" id="wysihtml5-link-title">
+              <label for="wysihtml5-#{wysihtml5_prefix}-link-title">#{link_text(:title)}</label>
+              <input type="text" name="title" class="form-control" id="wysihtml5-#{wysihtml5_prefix}-link-title">
             </div>
             <p class="text-right">
-              <a class="btn btn-primary btn-sm apply">Ok</a>
+              <a class="btn btn-primary btn-sm apply">#{link_text(:ok)}</a>
               &nbsp;
-              <a class="btn btn-default btn-sm cancel">Cancel</a>
+              <a class="btn btn-default btn-sm cancel">#{link_text(:cancel)}</a>
             </p>
           </div>
           <a data-wysihtml5-command="removeLink"><i class="fa fa-chain-broken"></i></a>
         </span>
 
-
         <span class="wysihtml5-toolbar-group">
           <a data-wysihtml5-action="change_view"><i class="fa fa-code"></i></a>
         </span>
-
-        <!-- Some wysihtml5 commands require extra parameters -->
-        <!--
-        <a data-wysihtml5-command="foreColor" data-wysihtml5-command-value="red">red</a>
-        <a data-wysihtml5-command="foreColor" data-wysihtml5-command-value="green">green</a>
-        <a data-wysihtml5-command="foreColor" data-wysihtml5-command-value="blue">blue</a>
-        -->
       </div>
       }.html_safe
     end
-
-    # def bootstrap_wrapping(&block)
-    #   form_group_wrapping do
-    #     label_html <<
-    #     hint_html(:inline) <<
-    #     error_html(:inline) <<
-    #     toolbar_html <<
-    #     template.content_tag(:span, :class => 'form-wrapper') do
-    #       input_content(&block)
-    #     end
-    #   end
-    # end
-
-    # def form_wrapper_html(&block)
-    #   toolbar_html +
-    #   template.content_tag(:span, class: 'form-wrapper') do
-    #     input_content(&block)
-    #   end
-    # end
-
-    #< Formtastic::Inputs::TextInput
-
-    # def to_html
-    #   input_wrapping do
-    #     label_html <<
-    #     builder.text_area(method, input_html_options) <<
-    #     template.content_tag(:span, '', class: 'error-anchor')
-    #   end
-    # end
 
   end
 end

@@ -3,23 +3,18 @@ Locomotive.Views.Inputs ||= {}
 class Locomotive.Views.Inputs.RteView extends Backbone.View
 
   events:
-    'click a.style':      'open_styles_dialog'
-    # 'click a[data-wysihtml5-command=createLink]': 'open_link_dialog'
+    'click a.style': 'open_styles_dialog'
 
   initialize: ->
-    $textarea             = @$('textarea')
-    @$create_link_button  = @$('a[data-wysihtml5-command=createLink]')
-    console.log $textarea.attr('id') #$textarea.attr('id')
+    $textarea = @$('textarea')
 
-    @editor = new wysihtml5.Editor 'content_entry_body',
-      toolbar:        'wysihtml5-toolbar'
+    @editor = new wysihtml5.Editor $textarea.attr('id'),
+      toolbar:        "wysihtml5-toolbar-#{$textarea.attr('id')}"
       useLineBreaks:  false
       parserRules:    wysihtml5ParserRules
       stylesheets:    ['<%= stylesheet_path("locomotive/wysihtml5_reset") %>', '<%= stylesheet_path("locomotive/wysihtml5_editor") %>']
 
-    window.foo = @editor
     that = @
-
     setTimeout(
       -> that.create_link_view()
     , 200)
@@ -44,30 +39,3 @@ class Locomotive.Views.Inputs.RteView extends Backbone.View
 
   remove: ->
     @link_view.remove()
-
-  # open_link_dialog: (event) ->
-  #   console.log '[open_link_dialog] start'
-  #   true
-
-  # create_link_dialog: ->
-  #   editor  = @editor
-  #   command = @editor.toolbar.commandMapping['createLink:null']
-
-  #   popover_link = @$create_link_button.popover
-  #     placement:  'bottom'
-  #     content:    @$create_link_button.next('.link-dialog-content').html()
-  #     html:       true
-  #     title:      undefined
-
-  #   dialog_proxy =
-  #     show: (state) ->
-  #       console.log('Opening new create link dialog')
-  #       window.bar = state
-  #       popover_link.popover('show')
-  #     hide: ->
-  #       console.log('Closing new create link dialog')
-  #       popover_link.popover('hide')
-
-  #   command.dialog = dialog_proxy
-
-

@@ -2,8 +2,6 @@ Locomotive.Views.Inputs.Rte ||= {}
 
 class Locomotive.Views.Inputs.Rte.LinkView extends Backbone.View
 
-  CLASS_NAME_OPENED: 'wysihtml5-command-dialog-opened'
-
   opened: false
 
   initialize: ->
@@ -14,7 +12,6 @@ class Locomotive.Views.Inputs.Rte.LinkView extends Backbone.View
     @$content   = @$link.next('.link-dialog-content')
 
   render: ->
-    console.log 'render LINKVIEW'
     @create_popover()
 
     @attach_events()
@@ -42,7 +39,6 @@ class Locomotive.Views.Inputs.Rte.LinkView extends Backbone.View
     command.dialog = @
 
   apply: (event) ->
-    console.log 'apply!!!'
     url = @$content.find('input[name=url]').val()
 
     unless _.isEmpty(url)
@@ -55,13 +51,6 @@ class Locomotive.Views.Inputs.Rte.LinkView extends Backbone.View
       @hide()
 
   show: (state) ->
-    console.log('Opening new create link dialog')
-    window.bar = state
-    window.foo = @$link
-    window.link = @
-
-    # @$link.addClass(@CLASS_NAME_OPENED)
-
     if state?
       $link = $(state)
       @$content.find('input[name=url]').val($link.attr('href'))
@@ -75,17 +64,8 @@ class Locomotive.Views.Inputs.Rte.LinkView extends Backbone.View
     @opened = true
 
   hide: ->
-    console.log('Closing new create link dialog')
-    # @$link.removeClass(@CLASS_NAME_OPENED)
     @$link.popover('hide')
     @opened = false
 
   remove: ->
     @$link.popover('destroy')
-
-  # get: ->
-  #   $form   = @$content.parents('form')
-  #   $inputs = $form.find('input, select')
-
-
-
