@@ -72,8 +72,8 @@ Feature: Theme Assets
     Then the JSON response should be an array
     And the JSON response should have 3 entries
     And the JSON should have the following:
-      | 2/local_path    | "new-javascript.js"           |
-      | 2/content_type  | "javascript"                  |
+      | 1/local_path    | "new-javascript.js"           |
+      | 1/content_type  | "javascript"                  |
 
   Scenario: Creating new theme asset as a Designer
     Given I have a "designer" API token
@@ -95,8 +95,8 @@ Feature: Theme Assets
     Then the JSON response should be an array
     And the JSON response should have 3 entries
     And the JSON should have the following:
-      | 2/local_path    | "new-javascript.js"           |
-      | 2/content_type  | "javascript"                  |
+      | 1/local_path    | "new-javascript.js"           |
+      | 1/content_type  | "javascript"                  |
 
   Scenario: Creating new theme asset as an Author
     Given I have an "author" API token

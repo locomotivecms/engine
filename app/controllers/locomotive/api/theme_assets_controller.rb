@@ -5,7 +5,7 @@ module Locomotive
       load_and_authorize_resource class: Locomotive::ThemeAsset, through: :current_site
 
       def index
-        respond_with(@theme_assets)
+        respond_with(@theme_assets.sort_by(&:local_path))
       end
 
       def show

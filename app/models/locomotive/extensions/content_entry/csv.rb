@@ -68,7 +68,7 @@ module Locomotive
               # header
               csv << labels
               # body
-              all.each do |entry|
+              all.each_by(100) do |entry|
                 csv << entry.to_values(options)
               end
             end
