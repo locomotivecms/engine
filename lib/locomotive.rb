@@ -80,6 +80,12 @@ module Locomotive
     self.app_middleware.use '::Locomotive::Middlewares::SeoTrailingSlash'
 
     self.app_middleware.use '::Locomotive::Middlewares::InlineEditor'
+
+    self.app_middleware.use '::Locomotive::Middlewares::Site'
+
+    self.app_middleware.use '::Locomotive::Middlewares::Locale'
+
+    self.app_middleware.use '::Locomotive::Middlewares::LocaleRedirection'
   end
 
   def self.configure_multi_sites

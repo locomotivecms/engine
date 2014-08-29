@@ -9,6 +9,7 @@ module Locomotive
 
           ## fields ##
           field :locales, type: ::RawArray, default: []
+          field :prefix_default_locale, type: ::Boolean, default: false
 
           ## validations ##
           validate :can_not_remove_default_locale
@@ -17,6 +18,10 @@ module Locomotive
           after_validation  :add_default_locale
           before_update     :verify_localized_default_pages_integrity
 
+        end
+
+        def prefix_default_locale?
+          self.prefix_default_locale
         end
 
         # Tell if the site serves other locales than the default one.
@@ -47,15 +52,9 @@ module Locomotive
           return nil if page.fullpath_translations.blank?
 
           locale    = (locale || I18n.locale).to_s
-          fullpath  = page.fullpath_translations[locale] || page.fullpath_translations[self.default_locale]
-
-          if locale == self.default_locale.to_s # no need to specify the locale
-            page.index? ? '' : fullpath
-          elsif page.index? # avoid /en/index or /fr/index, prefer /en or /fr instead
-            locale
-          else
-            File.join(locale, fullpath)
-          end
+          fullpath  = page.index? ? nil : (page.fullpath_translations[locale] || page.fullpath_translations[self.default_locale])
+          locale_prefix = is_default_locale?(locale) && !prefix_default_locale ? nil : locale
+          [locale_prefix, fullpath].compact.join '/'
         end
 
         def locales=(array)
@@ -64,6 +63,10 @@ module Locomotive
 
         def default_locale
           self.locales.first || Locomotive.config.site_locales.first
+        end
+
+        def is_default_locale?(locale)
+          locale == default_locale.to_s
         end
 
         def default_locale_was
