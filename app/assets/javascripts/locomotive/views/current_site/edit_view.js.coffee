@@ -28,6 +28,8 @@ class Locomotive.Views.CurrentSite.EditView extends Locomotive.Views.Shared.Form
 
     @enable_liquid_editing()
 
+    @enable_checkboxes()
+
   add_toggle_mode_for_locales: ->
     @$('#site_locales_input .list input[type=checkbox]').bind 'change', (event) ->
       el = $(event.target)
@@ -66,6 +68,9 @@ class Locomotive.Views.CurrentSite.EditView extends Locomotive.Views.Shared.Form
         theme:            'default'
 
       @editor.on 'change', (editor, change) => @model.set(robots_txt: editor.getValue())
+
+  enable_checkboxes: ->
+    @_enable_checkbox('prefix_default_locale')
 
   save: (event) ->
     # if @model.includes_domain(window.location.host)
