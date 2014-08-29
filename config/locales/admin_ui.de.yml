@@ -73,7 +73,7 @@ de:
         send: Senden
         disable_with: "Transfer..."
       footer:
-        who_is_behind: "LocomitveCMS - entwickelt von %{development} und entworfen von <a href=\"http://www.sachagreif.com\">Sacha Greif</a> &mdash; <small>version</small> %{version}"
+        who_is_behind: "LocomotiveCMS - entwickelt von %{development} und entworfen von <a href=\"http://www.sachagreif.com\">Sacha Greif</a> &mdash; <small>version</small> %{version}"
 
     notifications:
       new_content_entry:
