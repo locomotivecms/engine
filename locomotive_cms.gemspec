@@ -18,7 +18,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'rake',                            '~> 10.0.0'
 
-  s.add_dependency 'rails',                           '~> 3.2.17'
+  s.add_dependency 'rails',                           '~> 3.2.19'
 
   s.add_dependency 'devise',                          '2.2.7'
   s.add_dependency 'devise-encryptable',              '~> 0.1.1'
@@ -41,6 +41,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'locomotive-tinymce-rails',        '~> 3.5.8.2'
   s.add_dependency 'locomotive-aloha-rails',          '~> 0.23.2.2'
   s.add_dependency 'flash_cookie_session',            '~> 1.1.1'
+  s.add_dependency 'compass-rails',                   '~> 2.0.0'
 
   s.add_dependency 'locomotivecms_solid',             '~> 0.2.2'
   s.add_dependency 'formtastic',                      '~> 2.2.1'
