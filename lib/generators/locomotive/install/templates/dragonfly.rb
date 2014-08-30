@@ -1,12 +1,8 @@
-require 'dragonfly'
-
 # Configure
 Dragonfly.app.configure do
   plugin :imagemagick,
     convert_command:  `which convert`.strip.presence || '/usr/local/bin/convert',
     identify_command: `which identify`.strip.presence || '/usr/local/bin/identify'
-
-  protect_from_dos_attacks true
 
   secret '<%= generate_secret %>'
 
