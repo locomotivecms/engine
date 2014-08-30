@@ -18,21 +18,29 @@ module Locomotive
 
       def redirect_url(env)
         request = Rack::Request.new(env)
+
         site, locale = env['locomotive.site'], env['locomotive.locale']
-        if site.try(:localized?) and request.get? and !is_backoffice?(request) and !is_assets?(request)
-          components = request.path.split '/'
+
+        if apply_redirection?(site, request)
+          segments = request.path.split '/'
+
           if !locale && site.prefix_default_locale
             # force locale in path by redirecting
-            components.insert(1, "#{site.default_locale}")
-            modify_url(request, components.join('/'))
+            segments.insert(1, "#{site.default_locale}")
+            modify_url(request, segments.join('/'))
+
           elsif locale == site.default_locale && !site.prefix_default_locale
             # strip locale
-            components.delete_at(1)
-            modify_url(request, components.join('/'))
+            segments.delete_at(1)
+            modify_url(request, segments.join('/'))
           end
         end
       end
- 
+
+      def apply_redirection?(site, request)
+        site.try(:localized?) && request.get? && !is_backoffice?(request) && !is_assets?(request)
+      end
+
     end
   end
 end

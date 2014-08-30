@@ -22,7 +22,7 @@ module Locomotive
       protected
 
       def set_locale
-        ::I18n.locale = params[:locale] || current_site.default_locale
+        ::I18n.locale = request.env['locomotive.locale'] || params[:locale] || current_site.default_locale
         ::Mongoid::Fields::I18n.locale = ::I18n.locale
       end
 

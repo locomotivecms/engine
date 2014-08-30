@@ -14,7 +14,7 @@ Scenario: List all of them
   When I view the rendered page at "/all"
   Then the rendered output should look like:
     """
-    Home page, All, Page not found,
+    Home page, Page not found, All,
     """
 
 Scenario: Scoped listing
@@ -91,7 +91,7 @@ Scenario: link_to templatized page
   """
   Here is the title: "Hello world"
   """
-    
+
 Scenario: Default locale fallback
   Given the site "test site" has locales "en, es"
   And a page named "only-english" with the template:

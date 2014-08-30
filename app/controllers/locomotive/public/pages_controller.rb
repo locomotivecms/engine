@@ -39,7 +39,7 @@ module Locomotive
       end
 
       def set_locale
-        ::Mongoid::Fields::I18n.locale = params[:locale] || current_site.default_locale
+        ::Mongoid::Fields::I18n.locale = request.env['locomotive.locale'] || params[:locale] || current_site.default_locale
         ::I18n.locale = ::Mongoid::Fields::I18n.locale
 
         self.setup_i18n_fallbacks

@@ -41,6 +41,16 @@ module Locomotive
       Page.quick_tree(self)
     end
 
+    # Get all the pages in the right order: depth and position, both ASC.
+    #
+    # @param [ Hash ] conditions Extra conditions passed to the Mongoid criteria
+    #
+    # @return [ Criteria ] a Mongoid criteria
+    #
+    def ordered_pages(conditions = {})
+      self.pages.unscoped.order_by_depth_and_position
+    end
+
     def fetch_page(path, logged_in)
       Locomotive::Page.fetch_page_from_path self, path, logged_in
     end

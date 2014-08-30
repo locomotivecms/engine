@@ -19,9 +19,9 @@ module Locomotive
           before_destroy  :delete_descendants
 
           ## indexes ##
-          index position: 1
-          index depth:    1, position: 1
           index site_id:  1, depth:    1, position: 1
+          index depth:    1, position: 1
+          index position: 1
 
           alias_method_chain :rearrange, :identity_map
           alias_method_chain :rearrange_children, :identity_map
@@ -46,6 +46,10 @@ module Locomotive
 
         module ClassMethods
 
+          def order_by_depth_and_position
+            order_by(:depth.asc, :position.asc)
+          end
+
           # Returns the tree of pages from the site with the most minimal amount of queries.
           # This method should only be used for read-only purpose since
           # the mongodb returns the minimal set of required attributes to build
@@ -56,7 +60,7 @@ module Locomotive
           # @return [ Array ] The first array of pages (depth = 0)
           #
           def quick_tree(site, minimal_attributes = true)
-            pages = (minimal_attributes ? site.pages.unscoped.minimal_attributes : site.pages.unscoped).order_by(:depth.asc, :position.asc).to_a
+            pages = (minimal_attributes ? site.pages.unscoped.minimal_attributes : site.pages.unscoped).order_by_depth_and_position.to_a
 
             tmp = []
 
