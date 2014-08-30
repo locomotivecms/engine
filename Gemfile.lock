@@ -12,7 +12,7 @@ PATH
       custom_fields (~> 2.3.2)
       devise (= 2.2.7)
       devise-encryptable (~> 0.1.1)
-      dragonfly (~> 1.0.4)
+      dragonfly (~> 1.0.7)
       flash_cookie_session (~> 1.1.1)
       fog (~> 1.12.1)
       formtastic (~> 2.2.1)
