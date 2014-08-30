@@ -11,6 +11,7 @@ nl:
       en: Engels
       de: Duits
       fr: Frans
+      pt: "Portugees"
       pt-BR: "Braziliaans Portugees"
       it: Italiaans
       nl: Nederlands
@@ -22,6 +23,9 @@ nl:
       bg: Bulgaars
       sk: Slowaaks
       sr: Serbian
+      pl: Pools
+      es: Spaans
+      zh-CN: "Chinees"
 
     messages:
       confirm: Weet u het zeker ?

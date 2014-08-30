@@ -5,6 +5,7 @@ it:
       de: Tedesco
       fr: Francese
       pl: Polacco
+      pt: Portoghese
       pt-BR: "Portoghese Brasiliano"
       it: Italiano
       nl: Olandese
@@ -17,6 +18,7 @@ it:
       bg: Bulgaro
       sk: Slovacco
       sr: Serbe
+      zh-CN: "Chiński"
 
     buttons:
       login: Entra
@@ -306,7 +308,7 @@ it:
         explanations: "Questo è l'ultimo passo dell'installazione. Puoi caricare un tema come file zip. Noi abbiao dei temi gratuiti <a href=\"http://www.locomotivecms.com/support/themes\">qui</a>."
         back_to_default_template: "Invece clicca <a href='#'>qui</a> per selezionare il modello di sito predefinito"
         next: Crea sito
-        
+
     public:
       pages:
         show_toolbar:
@@ -320,4 +322,4 @@ it:
           buttons:
             back: "Ritorna all'amministrazione"
             confirm: Conferma
-            cancel: Annulla        
+            cancel: Annulla

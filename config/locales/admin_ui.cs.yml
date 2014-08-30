@@ -14,6 +14,7 @@ cs:
       de: Němčina
       fr: Francouzština
       pl: Polština
+      pt: Portugalština
       pt-BR: "Brazilská portugalština"
       it: Italština
       nl: Holandština
@@ -26,6 +27,7 @@ cs:
       cs: Čeština
       sk: Slovenština
       sr: Serbian
+      bg: Bulgarian
 
     messages:
       confirm: Jste si jistý?
