@@ -22,36 +22,41 @@ describe Locomotive::Liquid::Drops::ContentEntry do
 
   describe 'a list of entries' do
 
-    before(:each) do
-      @list = mock('list')
-      @list.stubs(:all).returns(true)
-      @category = Locomotive::Liquid::Drops::ContentEntry.new(mock('category', projects: @list))
-    end
+    let(:list) { stub('list', all: true, to_a: %w(a b)) }
+    let(:category) { Locomotive::Liquid::Drops::ContentEntry.new(mock('category', projects: list)) }
 
-    context '#accessing a has_many relationship' do
+    subject { render(template, { 'category' => category }) }
 
-      it 'loops through the list' do
-        template = %({% for project in category.projects %}{{ project }},{% endfor %})
+    describe 'accessing a has_many relationship' do
 
-        @list.expects(:ordered).returns(%w(a b))
+      describe 'looping through the list' do
 
-        render(template, { 'category' => @category }).should == 'a,b,'
+        let(:template) { %({% for project in category.projects %}{{ project }},{% endfor %}) }
+
+        before { list.expects(:filtered).with({ '_visible' => true }, nil).returns(list.to_a) }
+
+        it { should eq 'a,b,' }
+
       end
 
-      it 'filters the list' do
-        template = %({% with_scope order_by: 'name ASC', active: true %}{% for project in category.projects %}{{ project }},{% endfor %}{% endwith_scope %})
+      describe 'filtering the list' do
 
-        @list.expects(:filtered).with({ 'active' => true }, ['name', 'ASC']).returns(%w(a b))
+        let(:template) { %({% with_scope order_by: 'name ASC', active: true %}{% for project in category.projects %}{{ project }},{% endfor %}{% endwith_scope %}) }
 
-        render(template, { 'category' => @category }).should == 'a,b,'
+        before { list.expects(:filtered).with({ 'active' => true, '_visible' => true }, ['name', 'ASC']).returns(list.to_a) }
+
+        it { should eq 'a,b,' }
+
       end
 
-      it 'filters the list and uses the default order' do
-        template = %({% with_scope active: true %}{% for project in category.projects %}{{ project }},{% endfor %}{% endwith_scope %})
+      describe 'filtering the list with the default order' do
 
-        @list.expects(:filtered).with({ 'active' => true }, nil).returns(%w(a b))
+        let(:template) { %({% with_scope active: true %}{% for project in category.projects %}{{ project }},{% endfor %}{% endwith_scope %}) }
 
-        render(template, { 'category' => @category }).should == 'a,b,'
+        before { list.expects(:filtered).with({ 'active' => true, '_visible' => true }, nil).returns(list.to_a) }
+
+        it { should eq 'a,b,' }
+
       end
 
     end
