@@ -1,18 +1,21 @@
-$main_title_color: #666;
+.main {
 
-.main > .row {
+  background: $main_background_color;
 
-  padding: 20px 0px;
+  > .row {
 
-  h1 {
-    font-size: 22px;
-    font-family: $font-family-sans-serif;
-    color: $main_title_color;
-    margin: 0px;
+    padding: 20px 0px;
+
+    h1 {
+      font-size: 22px;
+      font-family: $font-family-sans-serif;
+      color: $main_title_color;
+      margin: 0px;
+    }
+
+    .actions {
+      text-align: right;
+    }
+
   }
-
-  .actions {
-    text-align: right;
-  }
-
 }

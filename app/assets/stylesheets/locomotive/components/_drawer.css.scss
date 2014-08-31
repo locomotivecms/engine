@@ -1,0 +1,18 @@
+.drawer {
+  background: $drawer_background_color;
+
+  > .close-button {
+    display: none;
+    position: absolute;
+    top: $drawer_close_button_size;
+    left: -$drawer_close_button_size;
+    font-size: 20px;
+    cursor: pointer;
+    width: $drawer_close_button_size;
+    height: $drawer_close_button_size;
+    line-height: $drawer_close_button_size;
+    text-align: center;
+    background: $drawer_background_color;
+    color: $drawer_close_button_color;
+  }
+}

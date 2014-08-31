@@ -1,13 +1,30 @@
 // custom variables go here
 
-$alt-font-family-sans-serif:        "Muli", sans-serif;
+$alt-font-family-sans-serif:          "Muli", sans-serif;
 
-$sidebar_width:                     21em;
+$background_gradient_start:           #54b9cd;
+$background_gradient_end:             #5488cc;
 
-$background_gradient_start:         #54b9cd;
-$background_gradient_end:           #5488cc;
+$overlay_background:                  #333;
 
-$background_content_list:           #f1f4f5;
+$main_title_color:                    #666;
+$main_background_color:               #fff;
+
+$background_content_list:             #f1f4f5;
+
+$sidebar_width:                       21em;
+$sidebar_background_color:            #383838;
+$sidebar_text_color:                  #fff;
+$sidebar_section_border_color:        #474747;
+$sidebar_section_title_color:         #949999;
+$sidebar_link_color:                  #ccc;
+$sidebar_hovered_link_color:          #fff;
+$sidebar_font_size:                   $font-size-base;
+
+$drawer_width:                        21em;
+$drawer_background_color:             white;
+$drawer_close_button_size:            30px;
+$drawer_close_button_color:           #333;
 
 $form_input_background_color:         #f7f7f7;
 $form_input_padding:                  15px;

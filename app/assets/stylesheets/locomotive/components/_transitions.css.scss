@@ -1,3 +1,5 @@
+// Sidebar
+
 .sidebar {
   @include transition(left 0.1s ease-in-out);
 }
@@ -8,14 +10,53 @@
 
 body.sidebar-closed {
   .sidebar {
-    @include transition(left 0.1s ease-in-out);
-    left: -$sidebar_width
+    left: -$sidebar_width;
   }
 
   .content {
-    @include transition(left 0.1s ease-in-out);
     left: 0px;
   }
+}
+
+// Drawer
+
+.content > .overlay {
+  @include transition(all 0.5s ease-in-out);
+}
+
+.content::after {
+  position: absolute;
+  top: 0px;
+  left: 0;
+  right: 0px;
+  bottom: 0px;
+  width: 0px;
+  height: 0px;
+  background: $overlay_background;
+  @include opacity(0.0);
+  content: '';
+}
+
+.drawer {
+  @include transition(right 0.1s ease-in-out);
+}
+
+body.drawer-opened {
+
+  .content::after {
+    width: 100%;
+    height: 100%;
+    @include opacity(0.3);
+  }
+
+  .drawer {
+    right: 0;
+
+    > .close-button {
+      display: block;
+    }
+  }
+
 }
 
 // @media (max-width: $screen-xs-max) {
