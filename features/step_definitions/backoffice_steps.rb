@@ -17,6 +17,11 @@ Given /^I am an authenticated user$/ do
   step %{I am an authenticated "admin"}
 end
 
+Given /^the admin access for site: "(.*?)" is disabled$/ do |site_factory|
+  @site.admin_access = false
+  @site.save
+end
+
 Then /^I should see the access denied message$/ do
   page.body.include?("You are not authorized to access this page").should be_true
 end

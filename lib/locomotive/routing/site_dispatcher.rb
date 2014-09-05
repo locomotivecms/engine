@@ -59,6 +59,13 @@ module Locomotive
         redirect_to new_locomotive_account_session_url and return false
       end
 
+      def validate_site_admin_access
+        return true if current_site.present? && current_site.admin_access?
+        sign_out(current_locomotive_account)
+        flash[:alert] = I18n.t(:admin_disabled, scope: [:devise, :failure, :locomotive_account])
+        redirect_to new_locomotive_account_session_url and return false
+      end
+
     end
 
   end

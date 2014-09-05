@@ -22,6 +22,8 @@ module Locomotive
 
     before_filter :validate_site_membership
 
+    before_filter :validate_site_admin_access
+
     load_and_authorize_resource
 
     around_filter :set_timezone

@@ -13,6 +13,7 @@ module Locomotive
     ## fields ##
     field :name
     field :robots_txt
+    field :admin_access, type: Boolean, default: true
 
     mount_uploader :picture, PictureUploader, validate_integrity: true
 
