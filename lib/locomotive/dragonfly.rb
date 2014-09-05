@@ -27,6 +27,7 @@ module Locomotive
 
         clean_source!(source)
 
+        source.gsub!(/^\/\//, "https://")
         if source =~ /^http/
           file = self.app.fetch_url(source)
         else
