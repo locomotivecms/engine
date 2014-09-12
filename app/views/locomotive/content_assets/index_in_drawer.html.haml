@@ -1,0 +1,23 @@
+/ .row.content-assets-header
+/   .col-md-12
+/     - title t('.title')
+
+.content-assets-in-drawer
+
+  .dropzone-container
+    .container-fluid
+      .row
+        .col-md-12
+          = render 'dropzone'
+
+  .nav-container
+    .container-fluid
+      .row
+        .col-md-12
+          = render 'nav'
+
+  .list-container.scrollable
+    .container-fluid
+      .row
+        .col-md-12
+          = render 'list'

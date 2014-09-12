@@ -72,6 +72,7 @@ module Locomotive
             </p>
           </div>
           <a data-wysihtml5-command="removeLink"><i class="fa fa-chain-broken"></i></a>
+          <a data-wysihtml5-command="insertFile" data-url="#{template.content_assets_path}"><i class="fa fa-file-o"></i></a>
         </span>
 
         <span class="wysihtml5-toolbar-group">

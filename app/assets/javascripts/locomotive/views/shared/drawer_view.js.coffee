@@ -7,8 +7,14 @@ class Locomotive.Views.Shared.DrawerView extends Backbone.View
   events:
     'click .close-button': 'close'
 
-  open: ->
-    $('body').addClass('drawer-opened')
+  open: (url) ->
+    if url?
+      @$('> .inner').load url, =>
+        # @$('.inner .after-scrollable').appendTo($(@el))
+        $('body').addClass('drawer-opened')
+    else
+      $('body').addClass('drawer-opened')
 
   close: ->
     $('body').removeClass('drawer-opened')
+    # @$('> .after-scrollable').remove()

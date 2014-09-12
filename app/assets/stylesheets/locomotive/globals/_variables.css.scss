@@ -10,6 +10,8 @@ $overlay_background:                  #333;
 $main_title_color:                    #666;
 $main_background_color:               #fff;
 
+$header_default_color:                #fff;
+
 $background_content_list:             #f1f4f5;
 
 $sidebar_width:                       21em;
@@ -21,10 +23,12 @@ $sidebar_link_color:                  #ccc;
 $sidebar_hovered_link_color:          #fff;
 $sidebar_font_size:                   $font-size-base;
 
-$drawer_width:                        21em;
+$drawer_width:                        40em;
 $drawer_background_color:             white;
 $drawer_close_button_size:            30px;
-$drawer_close_button_color:           #333;
+$drawer_close_button_color:           #fff; //#333;
+$drawer_close_background_color:       #333;
+$drawer_title_color:                  #666;
 
 $form_input_background_color:         #f7f7f7;
 $form_input_padding:                  15px;
@@ -63,3 +67,11 @@ $content_list_item_stamp_size:              12px;
 $content_list_item_min_height:              70px;
 $content_list_item_placeholder:             #bdbdbd;
 $content_list_item_placeholder_background:  #d7d7d7;
+
+
+$site_wrapper_max_width:  600px; //$screen-sm-min;
+$site_title_color:        #fff;
+$site_background:         #37a9bf;
+$site_hover_background:   #2f95a8;
+$site_domain_color:       #abdde6;
+$site_arrow_color:        #2a8091;

@@ -1,15 +1,12 @@
-$site_wrapper_max_width:  600px; //$screen-sm-min;
-$site_title_color:        #fff;
-$site_background:         #37a9bf;
-$site_hover_background:   #2f95a8;
-$site_domain_color:       #abdde6;
-$site_arrow_color:        #2a8091;
-
 body.sites {
 
-  .main > .row h1 {
-    margin-top: 20px;
-    color: $site_title_color;
+  .main {
+    background: transparent;
+
+     > .row h1 {
+      margin-top: 20px;
+      color: $site_title_color;
+    }
   }
 
   .sites {

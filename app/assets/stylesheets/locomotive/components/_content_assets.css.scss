@@ -1,0 +1,119 @@
+.content-assets-in-drawer {
+
+  > .nav-container {
+    z-index: 10;
+    position: absolute;
+    top: 140px;
+    height: 39px;
+    width: 100%;
+    background: #fff;
+    padding: 3px 0px 10px 0px;
+  }
+
+  > .list-container {
+    margin-top: 192px;
+  }
+
+  > .dropzone-container {
+    z-index: 10;
+    position: absolute;
+    top: 0px;
+    height: 140px;
+    width: 100%;
+    background: #f1f4f5;
+
+    // h1 {
+    //   color: #555;
+    //   margin-top: 10px;
+    //   display: none;
+    // }
+
+    .instructions {
+      margin-top: 10px;
+      text-align: center;
+
+      color: #8c8c8c;
+      font-size: 12px;
+
+      strong {
+        color: #555;
+        font-size: 14px;
+      }
+
+      i {
+        color: #bec1c2;
+        font-size: 65px;
+      }
+    }
+  }
+}
+
+.content-assets-list {
+
+  margin-top: 10px;
+
+  @include display-flex;
+  @include flex-direction(row);
+  @include flex-wrap;
+  @include flex-align(left);
+  // @include flex-justify-content(center);
+
+  .asset {
+    @include border-radius(4px);
+    background: #f7f7f7;
+    padding: 15px;
+    margin: 10px 20px 10px 0px;
+
+    width: 240px;
+    height: 240px;
+
+    h2 {
+      color: #333;
+      font-size: 14px;
+      margin: 8px 0px 20px 0px;
+    }
+
+    .small-thumbnail {
+      display: inline-block;
+      background: #d7d7d7;
+      @include border-radius(4px);
+      padding: 4px;
+
+      img {
+        border: 2px solid #acacac;
+      }
+
+      .not-a-image {
+        position: relative;
+        width: 120px;
+        height: 120px;
+        border: 2px solid #acacac;
+
+        &.pdf { background: #e82f2d; }
+        &.media { background: #6e489c; }
+        &.other { background: #4a4a50; }
+
+        span {
+          display: block;
+          position: relative;
+          top: 40px;
+
+          color: #fff;
+          font-size: 22px;
+          font-weight: bold;
+          text-align: center;
+          text-transform: uppercase;
+
+          // FIXME: Disabled because it slows down the scrolling
+          // @include transform(rotate(-45deg));
+        }
+      }
+    }
+
+    a.remove {
+      color: #7b7b7b;
+    }
+
+  }
+
+}

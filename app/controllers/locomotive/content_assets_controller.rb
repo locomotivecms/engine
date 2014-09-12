@@ -9,7 +9,10 @@ module Locomotive
         .by_content_types(params[:types])
         .by_filename(params[:query])
         .page(params[:page] || 1).per(params[:per_page] || Locomotive.config.ui[:per_page])
-      respond_with(@content_assets)
+
+      respond_with(@picture) do |format|
+        format.html { render request.xhr? ? 'index_in_drawer' : 'index', layout: !request.xhr? }
+      end
     end
 
     def create

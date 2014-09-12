@@ -11,11 +11,13 @@
 
 @import "layouts/main";
 
+@import "components/misc";
 @import "components/transitions";
 @import "components/header";
 @import "components/sidebar";
 @import "components/drawer";
 @import "components/main";
 @import "components/list";
+@import "components/content_assets";
 
 @import "components/sites";

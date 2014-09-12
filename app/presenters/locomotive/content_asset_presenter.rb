@@ -7,7 +7,7 @@ module Locomotive
 
     with_options only_getter: true do |presenter|
       presenter.properties :filename, :full_filename, :short_name, :extname, :raw_size
-      presenter.properties :vignette_url, :url, :content_type_text
+      presenter.properties :vignette_url, :alternative_vignette_url, :url, :content_type_text
     end
 
     property :source, only_setter: true
@@ -33,6 +33,10 @@ module Locomotive
     def content_type_text
       value = self.__source.content_type.to_s == 'other' ? self.extname : self.__source.content_type
       value.blank? ? '?' : value
+    end
+
+    def with_thumbnail
+      %w(image pdf).include?(self.__source.content_type)
     end
 
     def raw_size

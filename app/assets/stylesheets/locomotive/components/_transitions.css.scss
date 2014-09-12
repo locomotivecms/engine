@@ -34,11 +34,13 @@ body.sidebar-closed {
   height: 0px;
   background: $overlay_background;
   @include opacity(0.0);
+  @include transition(opacity 0.3s ease-in-out, width 0.1s 0.3s, height 0.1s 0.3s);
   content: '';
 }
 
 .drawer {
-  @include transition(right 0.1s ease-in-out);
+  @include transition(all 0.3s ease-in-out);
+  @include transform(translate3d(100%, 0, 0));
 }
 
 body.drawer-opened {
@@ -47,14 +49,11 @@ body.drawer-opened {
     width: 100%;
     height: 100%;
     @include opacity(0.3);
+    @include transition(opacity 0.3s ease-in-out);
   }
 
   .drawer {
-    right: 0;
-
-    > .close-button {
-      display: block;
-    }
+    @include transform(translate3d(0, 0, 0));
   }
 
 }

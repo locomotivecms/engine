@@ -1,0 +1,33 @@
+.nav {
+
+  .search-bar {
+
+    .form-group {
+      border: 1px solid #dadada;
+      position: relative;
+      top: 2px;
+
+      padding: 4px 6px;
+
+      margin-bottom: 0px;
+
+      input[type=text] {
+        width: 120px;
+        display: inline-block;
+        border: none;
+        @include box-shadow(none);
+        padding: 0px;
+        height: 19px;
+        font-size: 12px;
+      }
+
+      .icon {
+        display: inline-block;
+        color: $nav-tabs-link-color;
+      }
+    }
+
+
+  }
+
+}

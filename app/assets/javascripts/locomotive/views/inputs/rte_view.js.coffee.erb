@@ -16,7 +16,9 @@ class Locomotive.Views.Inputs.RteView extends Backbone.View
 
     that = @
     setTimeout(
-      -> that.create_link_view()
+      ->
+        that.create_link_view()
+        that.create_file_view()
     , 200)
 
   render: ->
@@ -37,5 +39,14 @@ class Locomotive.Views.Inputs.RteView extends Backbone.View
 
     @link_view.render()
 
+  create_file_view: ->
+    @file_view = new Locomotive.Views.Inputs.Rte.FileView
+      el:     @$('a[data-wysihtml5-command=insertFile]')
+      editor: @editor
+
+    @file_view.render()
+
   remove: ->
     @link_view.remove()
+    @file_view.remove()
+

@@ -279,16 +279,21 @@ en:
         help: "You can use that translation key with the following liquid code : <span class='code'>{{ '%{key}' | translate }}</span>."
 
     content_assets:
-      picker:
-        title: "Insert media"
+      index:
+        title: "Listing assets"
+      index_in_drawer:
+        title: "Insert asset"
+
+      list:
         no_items: "There are no media for now."
-        upload: "Upload media"
-        placeholder_search: Search by filename
+
+      nav:
         types:
           pdf: PDFs
           image: images
           media: rich media
           others: others
+        placeholder_search: Search by filename
 
     content_types:
       index:

@@ -15,8 +15,12 @@ module Locomotive
       if title.nil?
         @content_for_title
       else
-        @content_for_title = title
-        ''
+        if request.xhr?
+          concat content_tag(:h1, title)
+        else
+          @content_for_title = title
+          ''
+        end
       end
     end
 

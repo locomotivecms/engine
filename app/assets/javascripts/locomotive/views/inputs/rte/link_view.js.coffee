@@ -17,8 +17,6 @@ class Locomotive.Views.Inputs.Rte.LinkView extends Backbone.View
     @attach_events()
     @attach_popover()
 
-    window.view = @
-
   create_popover: ->
     @$content.show()
     @$link.popover

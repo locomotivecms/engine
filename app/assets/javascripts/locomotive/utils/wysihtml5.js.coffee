@@ -21,5 +21,19 @@ wysihtml5.commands.strike =
 
 )(wysihtml5)
 
+# New command: insert file
+((wysihtml5) ->
+
+  wysihtml5.commands.insertFile =
+    exec: (composer, command, param) ->
+      # do nothing
+      console.log "[insertFile] exec(#{command}, #{param})"
+
+    state: (composer, command) ->
+      console.log "[insertFile] state(#{command})"
+      return wysihtml5.commands.insertImage.state(composer, command, "IMG")
+      # wysihtml5.commands.formatBlock.state(composer, "formatBlock", null, CLASS_NAME, REG_EXP)
+
+)(wysihtml5)
 
 

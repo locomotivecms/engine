@@ -50,3 +50,5 @@ Gemfile.lock
 dump.rdb
 doc/dump/
 doc/locomotive/new_ui.md
+dragonfly.log
+spec/dummy/dragonfly.log
