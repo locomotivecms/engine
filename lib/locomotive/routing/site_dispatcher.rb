@@ -14,7 +14,7 @@ module Locomotive
       protected
 
       def current_site
-        @current_site ||= env['locomotive.site']
+        @current_site ||= request.env['locomotive.site']
       end
 
       def require_site
