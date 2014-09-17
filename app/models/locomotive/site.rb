@@ -48,7 +48,7 @@ module Locomotive
     # @return [ Criteria ] a Mongoid criteria
     #
     def ordered_pages(conditions = {})
-      self.pages.unscoped.order_by_depth_and_position
+      self.pages.unscoped.where(conditions || {}).order_by_depth_and_position
     end
 
     def fetch_page(path, logged_in)
