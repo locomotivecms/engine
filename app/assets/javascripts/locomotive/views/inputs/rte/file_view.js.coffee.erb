@@ -1,3 +1,5 @@
+#= require ../../content_assets/picker_view
+
 Locomotive.Views.Inputs.Rte ||= {}
 
 class Locomotive.Views.Inputs.Rte.FileView extends Backbone.View
@@ -5,35 +7,14 @@ class Locomotive.Views.Inputs.Rte.FileView extends Backbone.View
   opened: false
 
   initialize: ->
-    # _.bindAll(@, 'apply', 'show', 'hide')
-    console.log 'YOUPI'
-
+    _.bindAll(@, 'create_picker_view')
     @$link      = $(@el)
     @editor     = @options.editor
-    # @$content   = @$link.next('.link-dialog-content')
 
   render: ->
-    # @create_popover()
-
-    # @attach_events()
     @attach_drawer()
 
     @show() # debug
-
-  # create_popover: ->
-  #   @$content.show()
-  #   @$link.popover
-  #     container:  '.main'
-  #     placement:  'bottom'
-  #     content:    @$content
-  #     html:       true
-  #     template:   '<div class="popover" role="tooltip"><div class="arrow"></div><form><div class="popover-content"></div></form></div>'
-  #   @$link.data('bs.popover').setContent()
-
-  # attach_events: ->
-  #   @$content.parents('form').on 'click', '.apply', @apply
-  #   @$content.on 'click', '.apply', @apply
-  #   @$content.on 'click', '.cancel', @hide
 
   attach_drawer: ->
     command = @editor.toolbar.commandMapping['insertFile:null']
@@ -41,38 +22,28 @@ class Locomotive.Views.Inputs.Rte.FileView extends Backbone.View
 
     console.log "[insertFileView] attach_drawer"
 
-  # apply: (event) ->
-  #   url = @$content.find('input[name=url]').val()
+  create_picker_view: (container) ->
+    console.log '[insertFileView] create_picker_view'
 
-  #   unless _.isEmpty(url)
-  #     @editor.composer.commands.exec 'createLink',
-  #       href:   url
-  #       target: @$content.find('select[name=target]').val()
-  #       title:  @$content.find('input[name=title]').val()
-  #       rel:    "nofollow"
+    return if @picker_view?
 
-  #     @hide()
+    @picker_view = new Locomotive.Views.ContentAssets.PickerView(el: container).render()
 
   show: (state) ->
     console.log "[insertFileView] show #{state}"
-    window.application_view.drawer_view.open(@$link.data('url'))
 
-    #   if state?
-    #     $link = $(state)
-    #     @$content.find('input[name=url]').val($link.attr('href'))
-    #     @$content.find('select[name=target]').val($link.attr('target'))
-    #     @$content.find('input[name=title]').val($link.attr('title'))
-
-    #     @$link.popover('show') if !@opened
-    #   else
-    #     @$content.parents('form')[0].reset()
+    window.application_view.drawer_view.open(@$link.data('url'), @create_picker_view)
 
     @opened = true
 
   hide: ->
-    # @$link.popover('hide')
     window.application_view.drawer_view.close()
+    # @picker_view.remove()
     @opened = false
 
-  # remove: ->
-  #   @$link.popover('destroy')
+  remove: ->
+    @picker_view.remove() if @picker_view?
+
+    super
+
+    # console: destroy view
