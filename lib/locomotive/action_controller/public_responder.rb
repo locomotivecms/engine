@@ -20,9 +20,15 @@ module Locomotive
           path = page_path ? page_path : extract_locale_and_path(error_location)
 
           # render the locomotive page
-          self.controller.send :render_locomotive_page, path, {
-            content_entry.content_type.slug.singularize => content_entry.to_presenter(include_errors: true).as_json
-          }
+          assigns = {}
+
+          if content_entry
+            slug  = content_entry.content_type.slug.singularize
+            entry = content_entry.to_presenter(include_errors: true).as_json
+            assigns[slug] = entry
+          end
+
+          self.controller.send :render_locomotive_page, path, assigns
         end
       end
 
