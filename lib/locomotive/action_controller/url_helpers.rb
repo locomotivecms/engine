@@ -25,13 +25,11 @@ module Locomotive
       end
 
       def public_page_url(page, options = {})
-        # Rails.logger.debug "[public_page_url] =====> #{page.attributes.inspect} / #{page.fullpath.inspect} / #{current_site_public_url}\n\n"
-
         locale    = options[:locale]
         fullpath  = current_site.localized_page_fullpath(page, locale)
 
         if content = options.delete(:content)
-          fullpath = File.join(fullpath.gsub('content_type_template', ''), content._slug)
+          fullpath = fullpath.gsub('content_type_template', content._slug)
         end
 
         File.join(current_site_public_url, fullpath)
