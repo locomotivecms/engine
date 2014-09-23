@@ -1,17 +1,21 @@
 .content-assets-in-drawer {
 
-  > .nav-container {
-    z-index: 10;
-    position: absolute;
-    top: 140px;
-    height: 39px;
-    width: 100%;
-    background: #fff;
-    padding: 3px 0px 10px 0px;
-  }
+  .updatable {
+    margin-top: 140px;
 
-  > .list-container {
-    margin-top: 192px;
+    > .nav-container {
+      height: 39px;
+      padding: 3px 0px 10px 0px;
+    }
+
+    > .list-container {
+      margin-top: 192px;
+
+      .pagination {
+        margin-top: 10px;
+      }
+    }
+
   }
 
   > .dropzone-container {
@@ -21,6 +25,10 @@
     height: 140px;
     width: 100%;
     background: #f1f4f5;
+
+    &.hovered {
+      background: #f7f7d2;
+    }
 
     // h1 {
     //   color: #555;
@@ -45,6 +53,19 @@
         font-size: 65px;
       }
     }
+
+    .progress {
+      margin-top: 10px;
+
+      background: #d7d7d7;
+      height: 6px;
+      @include border-radius(3px);
+      @include box-shadow(none);
+
+      .progress-bar {
+        background: #fd4c4c;
+      }
+    }
   }
 }
 
@@ -62,7 +83,7 @@
     @include border-radius(4px);
     background: #f7f7f7;
     padding: 15px;
-    margin: 10px 20px 10px 0px;
+    margin: 0px 20px 20px 0px;
 
     width: 240px;
     height: 240px;

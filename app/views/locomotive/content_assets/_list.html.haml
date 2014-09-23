@@ -20,12 +20,12 @@
         %h2= presenter.filename
 
         .actions
-          = link_to 'Select', '#', class: 'btn btn-primary btn-sm'
+          = link_to 'Select', '#', class: 'btn btn-primary btn-sm select'
 
           &nbsp;
 
-          = link_to content_asset_path(asset), class: 'remove', data: { confirm: t('locomotive.messages.confirm') }, title: t('locomotive.buttons.delete') do
+          = link_to content_asset_path(asset, params.slice(:types, :query, :page, :per_page)), class: 'remove', method: :delete, data: { confirm: t('locomotive.messages.confirm'), return_url: request.original_url }, title: t('locomotive.buttons.delete'), remote: true do
             %i.fa.fa-trash-o
 
   .text-center
-    = paginate @content_assets, theme: 'twitter-bootstrap-3', pagination_class: 'pagination-sm'
+    = paginate @content_assets, theme: 'twitter-bootstrap-3', pagination_class: 'pagination-sm', remote: true

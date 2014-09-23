@@ -7,7 +7,7 @@ class Locomotive.Views.Inputs.Rte.FileView extends Backbone.View
   opened: false
 
   initialize: ->
-    _.bindAll(@, 'create_picker_view')
+    _.bindAll(@, 'create_picker_view', 'remove_picker_view')
     @$link      = $(@el)
     @editor     = @options.editor
 
@@ -32,18 +32,22 @@ class Locomotive.Views.Inputs.Rte.FileView extends Backbone.View
   show: (state) ->
     console.log "[insertFileView] show #{state}"
 
-    window.application_view.drawer_view.open(@$link.data('url'), @create_picker_view)
+    window.application_view.drawer_view.open(@$link.data('url'), @create_picker_view, @remove_picker_view)
 
     @opened = true
 
   hide: ->
     window.application_view.drawer_view.close()
-    # @picker_view.remove()
+    @remove_picker_view()
     @opened = false
 
-  remove: ->
+  remove_picker_view: ->
     @picker_view.remove() if @picker_view?
+    @picker_view = null
+
+  remove: ->
+    console.log "[insertFileView] remove #{@picker_view}"
+
+    @remove_picker_view()
 
     super
-
-    # console: destroy view

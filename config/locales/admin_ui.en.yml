@@ -289,6 +289,7 @@ en:
 
       nav:
         types:
+          all: All
           pdf: PDFs
           image: images
           media: rich media

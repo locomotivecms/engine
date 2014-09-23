@@ -4,20 +4,21 @@
 
 .content-assets-in-drawer
 
-  .dropzone-container
+  .dropzone-container{ data: { url: bulk_create_content_assets_path(:json) } }
     .container-fluid
       .row
         .col-md-12
           = render 'dropzone'
 
-  .nav-container
-    .container-fluid
-      .row
-        .col-md-12
-          = render 'nav'
+  .updatable
+    .nav-container
+      .container-fluid
+        .row
+          .col-md-12
+            = render 'nav'
 
-  .list-container.scrollable
-    .container-fluid
-      .row
-        .col-md-12
-          = render 'list'
+    .list-container.scrollable
+      .container-fluid
+        .row
+          .col-md-12
+            = render 'list'

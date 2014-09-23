@@ -1,27 +1,46 @@
+#= require ./dropzone_view
+
 Locomotive.Views.ContentAssets ||= {}
 
 class Locomotive.Views.ContentAssets.PickerView extends Backbone.View
 
-  events:
-      'click .pagination a':  'change_page'
+  ajaxified_elements: [
+    '.nav-tabs a',
+    '.pagination a',
+    '.search-bar form',
+    '.asset a.remove',
+    'a.refresh'
+  ]
 
   render: ->
     console.log '[PickerView] rendering'
 
-    console.log @el
+    @ajaxify()
+    @enable_dropzone()
 
-    @
+    super
 
-  change_page: (event) ->
-    event.stopPropagation() & event.preventDefault()
+  ajaxify: ->
+    for selector in @ajaxified_elements
+      $(@el).on 'ajax:success', selector, (event, data, status, xhr) =>
+        @$('.updatable').html($(data).find('.updatable').html())
 
-    $(@el).load $(event.target).attr('href')
+  unjaxify: ->
+    for selector in @ajaxified_elements
+      $(@el).off 'ajax:success', selector
+
+  enable_dropzone: ->
+    @dropzone = new Locomotive.Views.ContentAssets.DropzoneView(el: @$('.dropzone-container')).render()
 
   remove: ->
     console.log '[PickerView] remove'
+
+    @unjaxify()
+    @dropzone.remove()
+
     super
 
-#= require ../shared/asset_picker_view
+## require ../shared/asset_picker_view
 # class Locomotive.Views.ContentAssets.PickerView extends Locomotive.Views.Shared.AssetPickerView
 
 #   number_items_per_row: 4
