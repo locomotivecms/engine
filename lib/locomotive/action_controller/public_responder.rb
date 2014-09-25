@@ -12,6 +12,10 @@ module Locomotive
         end
       end
 
+      def api_location
+        success_location
+      end
+
       def navigation_error_behavior
         if error_location =~ %r(^http://)
           # simple redirection for outside urls

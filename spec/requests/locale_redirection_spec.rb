@@ -9,12 +9,12 @@ describe 'Locomotive::Middlewares::LocaleRedirection' do
   let(:middleware)  { Locomotive::Middlewares::LocaleRedirection.new(app) }
   let(:locale)      { 'de' }
 
-  subject do 
+  subject do
     code, env = middleware.call(env_for(url, 'locomotive.site' => site, 'locomotive.locale' => locale))
     [code, env['Location']]
   end
 
-  describe 'not prefixed by locale' do 
+  describe 'not prefixed by locale' do
 
     describe 'strip default locale from root path' do
       let(:url) { 'http://models.example.com/de' }
@@ -50,10 +50,7 @@ describe 'Locomotive::Middlewares::LocaleRedirection' do
 
   end
 
-
-
-
-  describe 'prefixed by locale' do 
+  describe 'prefixed by locale' do
 
     let(:prefixed)    { true }
 
@@ -89,7 +86,7 @@ describe 'Locomotive::Middlewares::LocaleRedirection' do
     end
 
     describe 'with locale' do
-      
+
      describe 'dont add default locale if already present' do
         let(:locale) { 'de' }
         let(:url)    { 'http://models.example.com/de/hello/world' }
