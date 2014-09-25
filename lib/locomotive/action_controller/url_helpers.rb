@@ -31,7 +31,7 @@ module Locomotive
         fullpath  = current_site.localized_page_fullpath(page, locale)
 
         if content = options.delete(:content)
-          fullpath = File.join(fullpath.gsub('content_type_template', ''), content._slug)
+          fullpath = fullpath.gsub('content_type_template', content._slug)
         end
 
         File.join(current_site_public_url, fullpath)
