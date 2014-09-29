@@ -4,6 +4,9 @@ Locomotive.Views.ContentAssets ||= {}
 
 class Locomotive.Views.ContentAssets.PickerView extends Backbone.View
 
+  events:
+    'click a.select': 'select'
+
   ajaxified_elements: [
     '.nav-tabs a',
     '.pagination a',
@@ -28,6 +31,12 @@ class Locomotive.Views.ContentAssets.PickerView extends Backbone.View
   unjaxify: ->
     for selector in @ajaxified_elements
       $(@el).off 'ajax:success', selector
+
+  select: (event) ->
+    console.log '[PickerView] select'
+    event.stopPropagation() & event.preventDefault()
+
+    $link = $(event.target)
 
   enable_dropzone: ->
     @dropzone = new Locomotive.Views.ContentAssets.DropzoneView(el: @$('.dropzone-container')).render()
