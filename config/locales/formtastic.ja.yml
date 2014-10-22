@@ -8,7 +8,7 @@ ja:
       robots_txt: Robots.txtファイル
       code: コード
       raw_template: テンプレート
-      credentials: 身分
+      credentials: 認証情報
       language: 言語
       sites: サイト
       access_points: アクセスポイント
