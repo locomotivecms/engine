@@ -59,7 +59,7 @@ module Locomotive
         end
 
         def set_api_options(context)
-          @api_options  = @api_arguments.interpolate(context).first || {}
+          @api_options  = @api_arguments ? @api_arguments.interpolate(context).first || {} : {}
           @expires_in   = @api_options.delete(:expires_in) || 0
         end
 
