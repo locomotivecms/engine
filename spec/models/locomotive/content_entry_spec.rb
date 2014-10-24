@@ -176,7 +176,7 @@ describe Locomotive::ContentEntry do
       @content_type.update_attribute :order_by, '_position'
 
       %w(first second third).each_with_index do |item, index|
-        content = build_content_entry(title: item.to_s, _position: index, published_at: (index + 1).days.ago, visible: true)
+        content = build_content_entry(title: item.to_s, _position: index, published_at: (index + 2).days.ago, visible: true)
         content.save!
         instance_variable_set "@#{item}", content
       end
