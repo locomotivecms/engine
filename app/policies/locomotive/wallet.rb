@@ -23,7 +23,7 @@ module Locomotive
       end
 
       def []= role_name, role
-        Locomotive::PolicyRegistry.instance[role_name] = role
+        PolicyRegistry.instance[role_name] = role
       end
 
       def authorized? user, action, resource, membership

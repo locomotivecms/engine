@@ -1,120 +1,120 @@
-require 'spec_helper'
+# require 'spec_helper'
 
-describe Locomotive::Liquid::Tags::LinkTo do
+# describe Locomotive::Liquid::Tags::LinkTo do
 
-  before(:each) { I18n.locale = :en }
+#   before(:each) { I18n.locale = :en }
 
-  let(:site)    { FactoryGirl.create("test site") }
-  let(:assigns) { {} }
+#   let(:site)    { FactoryGirl.create("test site") }
+#   let(:assigns) { {} }
 
-  subject { render(template, assigns) }
+#   subject { render(template, assigns) }
 
-  context 'no page responding to the handle' do
+#   context 'no page responding to the handle' do
 
-    let(:template) { "{% link_to unknown-page %}" }
+#     let(:template) { "{% link_to unknown-page %}" }
 
-    it { should be_blank }
+#     it { should be_blank }
 
-  end
+#   end
 
-  context 'no page responding to the handle' do
+#   context 'no page responding to the handle' do
 
-    let(:assigns)   { { 'project' => Locomotive::ContentEntry.new(_slug: 'hello-world', _label_field_name: :_slug ) } }
-    let(:template)  { "{% link_to project %}" }
+#     let(:assigns)   { { 'project' => Locomotive::ContentEntry.new(_slug: 'hello-world', _label_field_name: :_slug ) } }
+#     let(:template)  { "{% link_to project %}" }
 
-    it { should be_blank }
+#     it { should be_blank }
 
-  end
+#   end
 
-  describe 'page responding to the handle' do
+#   describe 'page responding to the handle' do
 
-    let(:page)      { create_page(site, 'Hello world', 'my-page') }
-    let(:template)  { "{% link_to my-page %}" }
-    before(:each)   { page }
+#     let(:page)      { create_page(site, 'Hello world', 'my-page') }
+#     let(:template)  { "{% link_to my-page %}" }
+#     before(:each)   { page }
 
-    it { should == %{<a href="/hello-world">Hello world</a>} }
+#     it { should == %{<a href="/hello-world">Hello world</a>} }
 
-    context 'passing a page directly' do
+#     context 'passing a page directly' do
 
-      let(:assigns)   { { 'page' => page } }
-      let(:template)  { "{% link_to page %}" }
+#       let(:assigns)   { { 'page' => page } }
+#       let(:template)  { "{% link_to page %}" }
 
-      it { should == %{<a href="/hello-world">Hello world</a>} }
+#       it { should == %{<a href="/hello-world">Hello world</a>} }
 
-    end
+#     end
 
-    context 'with a custom label' do
+#     context 'with a custom label' do
 
-      let(:assigns)   { { 'page' => page } }
-      let(:template)  { "{% link_to page %}Here{% endlink_to %}" }
+#       let(:assigns)   { { 'page' => page } }
+#       let(:template)  { "{% link_to page %}Here{% endlink_to %}" }
 
-      it { should == %{<a href="/hello-world">Here</a>} }
+#       it { should == %{<a href="/hello-world">Here</a>} }
 
-    end
+#     end
 
-  end
+#   end
 
-  describe 'templatized page' do
+#   describe 'templatized page' do
 
-    let(:parent_page)   { create_page(site, 'List of projects') }
-    let(:page)          { create_templatized_page(site, 'Template', 'project-template', parent_page, content_type) }
-    let(:content_type)  { create_content_type(site, 'Projects') }
-    let(:content_entry) { create_content_entry(content_type, name: 'My fancy project') }
-    let(:assigns)       { { 'project' => content_entry } }
-    before(:each)       { page }
+#     let(:parent_page)   { create_page(site, 'List of projects') }
+#     let(:page)          { create_templatized_page(site, 'Template', 'project-template', parent_page, content_type) }
+#     let(:content_type)  { create_content_type(site, 'Projects') }
+#     let(:content_entry) { create_content_entry(content_type, name: 'My fancy project') }
+#     let(:assigns)       { { 'project' => content_entry } }
+#     before(:each)       { page }
 
-    context 'without passing the handle' do
+#     context 'without passing the handle' do
 
-      let(:template) { "{% link_to project %}" }
+#       let(:template) { "{% link_to project %}" }
 
-      it { should == %{<a href="/list-of-projects/my-fancy-project">My fancy project</a>} }
+#       it { should == %{<a href="/list-of-projects/my-fancy-project">My fancy project</a>} }
 
-    end
+#     end
 
-    context 'forcing the page' do
+#     context 'forcing the page' do
 
-      let(:another_parent_page)   { create_page(site, 'Another list of projects') }
-      let(:another_page)          { create_templatized_page(site, 'Template', 'another-project-template', another_parent_page, content_type) }
-      let(:template)              { "{% link_to project, with: another-project-template %}" }
-      before(:each)               { another_page }
+#       let(:another_parent_page)   { create_page(site, 'Another list of projects') }
+#       let(:another_page)          { create_templatized_page(site, 'Template', 'another-project-template', another_parent_page, content_type) }
+#       let(:template)              { "{% link_to project, with: another-project-template %}" }
+#       before(:each)               { another_page }
 
-      it { should == %{<a href="/another-list-of-projects/my-fancy-project">My fancy project</a>} }
+#       it { should == %{<a href="/another-list-of-projects/my-fancy-project">My fancy project</a>} }
 
-    end
+#     end
 
-  end
+#   end
 
-  def render(template, assigns = {})
-    liquid_context = ::Liquid::Context.new({},
-      { 'contents' => Locomotive::Liquid::Drops::ContentTypes.new }.merge(assigns),
-      { site: site })
-    output = Liquid::Template.parse(template).render(liquid_context)
-    output.gsub(/\n\s{0,}/, '')
-  end
+#   def render(template, assigns = {})
+#     liquid_context = ::Liquid::Context.new({},
+#       { 'contents' => Locomotive::Liquid::Drops::ContentTypes.new }.merge(assigns),
+#       { site: site })
+#     output = Liquid::Template.parse(template).render(liquid_context)
+#     output.gsub(/\n\s{0,}/, '')
+#   end
 
-  def create_page(site, title, handle = nil, parent = nil)
-    parent ||= site.pages.root.first
-    site.pages.create!(parent: parent, title: title, slug: title.permalink, handle: handle)
-  end
+#   def create_page(site, title, handle = nil, parent = nil)
+#     parent ||= site.pages.root.first
+#     site.pages.create!(parent: parent, title: title, slug: title.permalink, handle: handle)
+#   end
 
-  def create_templatized_page(site, title, handle, parent, content_type)
-    site.pages.create!(
-      parent:             parent,
-      title:              title,
-      handle:             handle,
-      templatized:        true,
-      target_klass_name:  content_type.klass_with_custom_fields(:entries).to_s)
-  end
+#   def create_templatized_page(site, title, handle, parent, content_type)
+#     site.pages.create!(
+#       parent:             parent,
+#       title:              title,
+#       handle:             handle,
+#       templatized:        true,
+#       target_klass_name:  content_type.klass_with_custom_fields(:entries).to_s)
+#   end
 
-  def create_content_type(site, name)
-    FactoryGirl.build(:content_type, site: site, name: name).tap do |content_type|
-      content_type.entries_custom_fields.build(name: 'name', type: 'string', label: 'name')
-      content_type.save!
-    end
-  end
+#   def create_content_type(site, name)
+#     FactoryGirl.build(:content_type, site: site, name: name).tap do |content_type|
+#       content_type.entries_custom_fields.build(name: 'name', type: 'string', label: 'name')
+#       content_type.save!
+#     end
+#   end
 
-  def create_content_entry(content_type, attributes)
-    content_type.entries.create!(attributes)
-  end
+#   def create_content_entry(content_type, attributes)
+#     content_type.entries.create!(attributes)
+#   end
 
-end
+# end

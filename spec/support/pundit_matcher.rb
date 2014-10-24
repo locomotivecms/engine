@@ -5,7 +5,7 @@ module Pundit
 
       matcher :permit do |user, site, resource|
         match_for_should do |policy|
-          permissions.all? { |permission| policy.new(user, site, resource).public_send(permission) }
+          permissions.all? { |permission| puts permission.inspect; policy.new(user, site, resource).public_send(permission) }
         end
 
         match_for_should_not do |policy|
@@ -29,7 +29,7 @@ module Pundit
 
     module DSL
       def permissions(*list, &block)
-        describe(list.to_sentence, :permissions => list, :caller => caller) { instance_eval(&block) }
+        describe(list.to_sentence, permissions: list, caller: caller) { instance_eval(&block) }
       end
     end
 
@@ -46,7 +46,7 @@ module Pundit
 end
 
 RSpec.configure do |config|
-  config.include Pundit::RSpec::PolicyExampleGroup, :type => :policy, :example_group => {
-    :file_path => /spec\/policies/
+  config.include Pundit::RSpec::PolicyExampleGroup, type: :policy, example_group: {
+    file_path: /spec\/policies/
   }
 end

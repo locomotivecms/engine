@@ -56,6 +56,7 @@ module Locomotive
     alias_method :destroy?, :create?
 
     def touch?
+      puts "membership = #{membership.inspect}"
       not_restricted_user? or Wallet.authorized?(user, :touch, resource, membership)
     end
     alias_method :show?,   :touch?
