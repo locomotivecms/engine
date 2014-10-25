@@ -57,9 +57,43 @@ module Locomotive
           end
         end
 
+        def editable_elements
+          @editable_elements_hash ||= build_editable_elements_hash
+        end
+
         def before_method(meth)
+          # @deprecated
           @_source.editable_elements.where(slug: meth).try(:first).try(:content)
         end
+
+        private
+
+        def build_editable_elements_hash
+            {}.tap do |hash|
+              @_source.editable_elements.each do |el|
+                safe_slug = el.slug.parameterize.underscore
+                keys      = el.block.try(:split, '/').compact
+
+                _hash = _build_editable_elements_hashes(hash, keys)
+
+                _hash[safe_slug] = el.content
+              end
+            end
+          end
+
+          def _build_editable_elements_hashes(hash, keys)
+            _hash = hash
+
+            keys.each do |key|
+              safe_key = key.parameterize.underscore
+
+              _hash[safe_key] = {} if _hash[safe_key].nil?
+
+              _hash = _hash[safe_key]
+            end
+
+            _hash
+          end
 
       end
     end
