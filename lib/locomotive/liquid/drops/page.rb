@@ -72,7 +72,7 @@ module Locomotive
             {}.tap do |hash|
               @_source.editable_elements.each do |el|
                 safe_slug = el.slug.parameterize.underscore
-                keys      = el.block.try(:split, '/').compact
+                keys      = el.block.try(:split, '/').try(:compact) || []
 
                 _hash = _build_editable_elements_hashes(hash, keys)
 
