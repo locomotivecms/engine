@@ -6,11 +6,21 @@ module Locomotive
         delegate :seo_title, :meta_keywords, :meta_description, :redirect_url, :handle, to: :@_source
 
         def title
-          @_source.templatized? ? @context['entry']._label : @_source.title
+          title =  @_source.templatized? ? @context['entry'].try(:_label) : nil
+          title || @_source.title
         end
 
         def slug
-          @_source.templatized? ? @context['entry']._slug.singularize : @_source.slug
+          slug = @_source.templatized? ? @context['entry'].try(:_slug).try(:singularize) : nil
+          slug || @_source.slug
+        end
+
+        def original_title
+          @_source.title
+        end
+
+        def original_slug
+          @_source.slug
         end
 
         def parent

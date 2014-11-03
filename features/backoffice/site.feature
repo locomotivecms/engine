@@ -35,7 +35,7 @@ Scenario: Add a new site with chosen locale
 Scenario: Change timezone of site
   Given I am an authenticated user
   When I go to the site settings
-  And I select "(GMT+04:00) Moscow" from "Timezone"
+  And I select "(GMT+03:00) Moscow" from "Timezone"
   Then I press "Save"
   Then I should see "My site was successfully updated." in the html code
 
