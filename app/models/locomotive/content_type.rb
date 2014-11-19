@@ -80,25 +80,21 @@ module Locomotive
     # Order the list of entries, paginate it if requested
     # and filter it.
     #
-    # @param [ Hash ] options Options to filter and paginate.
+    # @param [ Hash ] options Options to filter (where key), order (order_by key) and paginate (page, per_page keys)
     #
     # @return [ Criteria ] A Mongoid criteria if not paginated (array otherwise).
     #
     def ordered_entries(options = nil)
       options ||= {}
 
+      # pagination
       page, per_page = options.delete(:page), options.delete(:per_page)
-
-      # search for a label
-      if options[:q]
-        options[label_field_name.to_sym] = /#{options.delete(:q)}/i
-      end
 
       # order list
       _order_by_definition = (options || {}).delete(:order_by).try(:split) || self.order_by_definition
 
       # get list
-      _entries = self.entries.order_by([_order_by_definition]).where(options)
+      _entries = self.entries.order_by([_order_by_definition]).where(options[:where] || {})
 
       # pagination or full list
       !self.order_manually? && page ? _entries.page(page).per(per_page) : _entries

@@ -10,8 +10,8 @@ module Locomotive
       })
 
       def index
-        @content_entries = @content_entries.order_by([get_content_type.order_by_definition])
-        respond_with @content_entries
+        @content_entries = service.all(params.slice(:page, :per_page, :order_by, :where))
+        respond_with(@content_entries)
       end
 
       def show
@@ -39,6 +39,10 @@ module Locomotive
 
       def get_content_type
         @content_type ||= current_site.content_types.by_id_or_slug(params[:slug]).first
+      end
+
+      def service
+        @service ||= Locomotive::ContentEntryService.new(get_content_type)
       end
 
     end

@@ -7,7 +7,7 @@ module Locomotive
 
     before_filter :back_to_default_site_locale, only: %w(new create)
 
-    before_filter :set_content_type
+    before_filter :get_content_type
 
     skip_load_and_authorize_resource
 
@@ -18,12 +18,7 @@ module Locomotive
     respond_to :csv,  only: [:export]
 
     def index
-      options = { page: params[:page] || 1, per_page: Locomotive.config.ui[:per_page] }
-      @content_entries = if params[:q]
-        @content_type.ordered_entries(options.merge(q: params[:q]))
-      else
-        @content_type.list_or_group_entries(options)
-      end
+      @content_entries = service.all(params.slice(:page, :per_page, :q, :where))
       respond_with @content_entries
     end
 
@@ -76,8 +71,12 @@ module Locomotive
 
     protected
 
-    def set_content_type
+    def get_content_type
       @content_type ||= current_site.content_types.by_id_or_slug(params[:slug]).first
+    end
+
+    def service
+      @service ||= Locomotive::ContentEntryService.new(get_content_type)
     end
 
     def authorize_content
