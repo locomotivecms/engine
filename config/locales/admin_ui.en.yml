@@ -155,6 +155,7 @@ en:
         delete_file: delete
         cancel: cancel
         default_block: Default
+        no_layout: Do not use a layout
         cache_strategy:
           none: None
           simple: Simple

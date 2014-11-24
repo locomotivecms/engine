@@ -39,6 +39,14 @@ module Locomotive
         authenticate_locomotive_account!
       end
 
+      def require_site
+        return true if current_site
+
+        render_no_site_error
+
+        false # halt chain
+      end
+
       def set_locale
         locale = params[:locale] ||
           current_site.try(:default_locale) ||

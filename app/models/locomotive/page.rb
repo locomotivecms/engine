@@ -8,6 +8,7 @@ module Locomotive
     ## Extensions ##
     include Extensions::Page::Tree
     include Extensions::Page::EditableElements
+    include Extensions::Page::Layout
     include Extensions::Page::Parse
     include Extensions::Page::Render
     include Extensions::Page::Templatized

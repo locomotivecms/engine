@@ -55,6 +55,10 @@ module Locomotive
           @_source.redirect?
         end
 
+        def is_layout?
+          @_source.is_layout?
+        end
+
         def templatized?
           @_source.templatized?
         end

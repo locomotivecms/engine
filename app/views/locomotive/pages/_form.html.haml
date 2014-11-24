@@ -16,6 +16,9 @@
 
   = f.input :slug, required: false, hint: @page.slug.blank? ? t('.empty_slug') : public_page_url(@page, locale: current_content_locale), input_html: { :'data-url' => get_path_pages_path, disabled: @page.index? || @page.not_found? }, wrapper_html: { style: "#{'display: none' if @page.templatized? && !@page.templatized_from_parent?};", class: 'em-inline-hints' }
 
+  - if display_page_layouts?
+    = f.input :layout, as: :select, collection: options_for_page_layouts, include_blank: false
+
 = f.inputs name: :seo, class: "inputs foldable #{'folded' if inputs_folded?(@page)}" do
 
   = f.input :seo_title
@@ -28,6 +31,10 @@
 
   - if can?(:customize, @page)
     = f.input :handle
+
+    = f.input :is_layout, as: :'Locomotive::Toggle', input_html: { class: 'simple-toggle' }
+
+    = f.input :allow_layout, as: :'Locomotive::Toggle', input_html: { class: 'simple-toggle' }
 
     = f.input :response_type, as: :select, collection: options_for_page_response_type, include_blank: false
 
@@ -51,7 +58,7 @@
 
     = f.input :cache_strategy, as: :select, collection: options_for_page_cache_strategy, include_blank: false, wrapper_html: { style: "#{'display: none' if @page.redirect?}" }
 
-- if can?(:customize, @page)
+- if can?(:customize, @page) && @page.layout.nil?
   = f.inputs name: :raw_template, class: "inputs foldable #{'folded' if inputs_folded?(@page)}" do
 
     = f.input :raw_template, as: :'Locomotive::Code', main_locale_template_url: page_main_template_path(@page)
