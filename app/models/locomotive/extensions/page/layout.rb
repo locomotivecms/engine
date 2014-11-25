@@ -9,7 +9,7 @@ module Locomotive
 
           ## fields ##
           field :is_layout,     type: Boolean, default: false
-          field :allow_layout,  type: Boolean, default: false
+          field :allow_layout,  type: Boolean, default: ->{ new_record? }
 
           ## associations ##
           belongs_to  :layout, class_name: 'Locomotive::Page', inverse_of: :layout_children, validate: false

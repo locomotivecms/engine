@@ -7,6 +7,28 @@ describe Locomotive::Extensions::Page::Layout do
   let(:layout)        { Locomotive::Page.new(is_layout: true, fullpath: 'awesome-layout') }
   let(:page)          { Locomotive::Page.new(layout: layout, allow_layout: allow_layout, site: site) }
 
+  describe 'allow_layout default value' do
+
+    let(:page) { Locomotive::Page.new }
+
+    subject { page.allow_layout }
+
+    describe 'true for a new page' do
+
+      it { should eq true }
+
+    end
+
+    describe 'false for an existing page without the allow_layout attribute' do
+
+      let(:page) { p = Locomotive::Page.new; p.save(validate: false); p.unset(:allow_layout); Locomotive::Page.find(p._id) }
+
+      it { should eq false }
+
+    end
+
+  end
+
   describe 'use a layout' do
 
     before { page.valid? }
