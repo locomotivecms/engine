@@ -12,7 +12,7 @@ module Locomotive
             if markup =~ Syntax
               @slug = $1.gsub(/[\"\']/, '')
               @options = { fixed: false }
-              markup.scan(::Liquid::TagAttributes) { |key, value| @options[key.to_sym] = value.gsub(/^'/, '').gsub(/'$/, '') }
+              markup.scan(::Liquid::TagAttributes) { |key, value| @options[key.to_sym] = value.gsub(/^[\"\']/, '').gsub(/[\"\']$/, '') }
             else
               raise ::Liquid::SyntaxError.new("Syntax Error in 'editable_xxx' - Valid syntax: editable_xxx <slug>(, <options>)")
             end
