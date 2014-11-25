@@ -67,6 +67,8 @@ Rails.application.routes.draw do
 
       match 'documentation' => 'documentation#show'
 
+      match 'version' => 'version#show'
+
       resources :tokens, only: [:create, :destroy]
 
       resource  :current_site, controller: 'current_site', only: [:show, :update, :destroy]
