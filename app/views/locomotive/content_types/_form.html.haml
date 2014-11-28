@@ -34,6 +34,8 @@
 
     = f.input :order_direction, as: :select, collection: options_for_order_direction, include_blank: false, wrapper_html: { style: "#{'display: none' if @content_type.order_manually?}" }
 
+    = f.input :filter_fields, as: :select, collection: options_for_filter_fields(@content_type), include_blank: false, multiple: true, wrapper_html: { class: 'multiple' }
+
     = f.input :public_submission_enabled, as: :'Locomotive::Toggle'
 
     = f.input :public_submission_accounts, as: :select, collection: options_for_account, include_blank: false, multiple: true, wrapper_html: { class: 'multiple', style: (@content_type.public_submission_enabled? ? '' : 'display: none') }

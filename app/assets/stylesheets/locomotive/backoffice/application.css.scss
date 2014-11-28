@@ -367,3 +367,36 @@ p span.code {
     }
   }
 }
+
+/* ___ search box (content_entries) ___ */
+
+.search-box {
+  float: right;
+  margin-bottom: 15px;
+
+  form {
+    display: inline-block;
+    @include border-radius(16px);
+    border: 4px solid #cbcbcb;
+    line-height: 20px;
+
+    .icon-search {
+      position: relative;
+      top: 2px;
+      margin-left: 10px;
+      color: #8b8d9a;
+      font-size: 18px;
+    }
+
+    input[type=text] {
+      display: inline-block;
+      min-width: 240px;
+      margin: 0 10px 0 6px;
+      line-height: 20px;
+      border: none;
+      font-size: 13px;
+      color: #8b8d9a;
+      font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+    }
+  }
+}

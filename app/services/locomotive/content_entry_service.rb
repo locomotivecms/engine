@@ -48,10 +48,26 @@ module Locomotive
       end).with_indifferent_access
 
       if options[:q]
-        where[content_type.label_field_name.to_sym] = /#{options[:q]}/i
+        where.merge!(prepare_query_statement(options[:q]))
       end
 
       where
+    end
+
+    def prepare_query_statement(query)
+      regexp  = /.*#{query.split.map { |q| Regexp.escape(q) }.join('.*')}.*/i
+
+      {}.tap do |where|
+        if self.content_type.filter_fields.blank?
+          where[content_type.label_field_name.to_sym] = regexp
+        else
+          where['$or'] = []
+          self.content_type.filter_fields.each do |field_id|
+            field = self.content_type.entries_custom_fields.find(field_id)
+            where['$or'] << { field.name => regexp }
+          end
+        end
+      end
     end
 
   end

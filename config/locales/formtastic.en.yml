@@ -107,6 +107,7 @@ en:
         name: "We suggest you to type the plural form of the model. Ex: Projects, Recipes, Posts, Articles, ...etc"
         slug: "It will be used as the name of the collection in the liquid templates. Ex: <span class='code'>{{ contents.my_projects }}</span>"
         raw_item_template: "You can customize the text displayed for each item in the list. Simply use Liquid. Ex: <span class='code'>{{ entry.name }})</span>"
+        filter_fields: "If not empty, a filter bar will be displayed on the page listing the entries. The entries will be then filtered by the field(s) selected in the select box above."
         public_submission_enabled: "It is used to let people from outside to create new entries (example: messages in a contact form)"
         public_submission_accounts: "If the public submission option is enabled and for each entry created, sends a notification email to the accounts listed above."
         "custom_fields/field":

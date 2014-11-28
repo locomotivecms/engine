@@ -20,6 +20,7 @@ module Locomotive
     field :order_direction,             default: 'asc'
     field :public_submission_enabled,   type: Boolean, default: false
     field :public_submission_accounts,  type: Array
+    field :filter_fields,               type: Array
 
     ## associations ##
     belongs_to  :site,      class_name: 'Locomotive::Site', validate: false
@@ -50,6 +51,7 @@ module Locomotive
     ## callbacks ##
     before_validation   :normalize_slug
     before_validation   :sanitize_public_submission_accounts
+    before_validation   :sanitize_filter_fields
     after_validation    :bubble_fields_errors_up
     before_update       :update_label_field_name_in_entries
 
@@ -229,6 +231,13 @@ module Locomotive
     def sanitize_public_submission_accounts
       if self.public_submission_accounts
         self.public_submission_accounts.reject! { |id| id.blank? }
+      end
+    end
+
+    # We do not want to have a blank value in the list of fields used to filter the entries.
+    def sanitize_filter_fields
+      if self.filter_fields
+        self.filter_fields.reject! { |id| id.blank? }
       end
     end
 

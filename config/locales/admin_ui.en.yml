@@ -304,6 +304,7 @@ en:
         category_noname: "No name"
         latest_entries: "Latest entries"
         updated_at: "Updated at"
+        search_placeholder: "Enter your search keywords here"
       list:
         no_items: "There are no entries for now. Just click <a href=\"%{url}\">here</a> to create the first one."
       new:

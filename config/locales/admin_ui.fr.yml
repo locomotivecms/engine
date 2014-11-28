@@ -304,6 +304,7 @@ fr:
         category_noname: "Pas de nom"
         latest_entries: "Eléments récents"
         updated_at: "Mis à jour le"
+        search_placeholder: "Tapez votre recherche ici"
       list:
         no_entries: "Il n'existe pas d'éléments. Vous pouvez commencer par créer un <a href='%{url}'>ici</a>"
       new:
