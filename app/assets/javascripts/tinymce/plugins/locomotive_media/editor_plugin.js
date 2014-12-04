@@ -24,7 +24,7 @@
       ed.dom.setAttribs(el, args);
     } else {
       if (asset.get('image')) {
-        ed.execCommand('mceInsertContent', false, '<img id="__mce_tmp" />', { skip_undo: 1 });
+        ed.execCommand('mceInsertContent', false, '<img width="400" id="__mce_tmp" />', { skip_undo: 1 });
       } else {
         var html = ed.selection.getContent();
         if (html == '') {
