@@ -88,6 +88,20 @@ describe Locomotive::ContentEntryService do
 
   end
 
+  describe '#destroy_all' do
+
+    subject { service.destroy_all }
+
+    before {
+      create_content_entry(title: 'Hello world', body: 'Lorem ipsum', published: true)
+      create_content_entry(title: 'Bla bla', body: 'Lorem ipsum', published: false)
+    }
+
+    it { should eq 2 }
+    it { subject; content_type.entries.count.should eq 0 }
+
+  end
+
   def create_content_type
     FactoryGirl.build(:content_type, site: site, name: 'Articles').tap do |content_type|
       content_type.entries_custom_fields.build(name: 'title', type: 'string', label: 'Title')
