@@ -7,8 +7,8 @@ module Locomotive
       def show
         respond_to do |format|
           format.html { render text: Locomotive::VERSION }
-          format.json { render json: { engine: Locomotive::VERSION} }
-          format.xml  { render xml: { engine: Locomotive::VERSION} }
+          format.json { render json: { engine: Locomotive::VERSION } }
+          format.xml  { render xml: { engine: Locomotive::VERSION } }
         end
       end
 

@@ -25,6 +25,13 @@ module Locomotive
       end
     end
 
+    # Destroy all the entries of a content type.
+    # Runs each entry's destroy callbacks.
+    #
+    def destroy_all
+      content_type.entries.destroy_all
+    end
+
     protected
 
     def prepare_options_for_all(options)

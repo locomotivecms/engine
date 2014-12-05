@@ -89,7 +89,9 @@ Rails.application.routes.draw do
 
         api.resources :content_types
 
-        api.resources :content_entries, path: 'content_types/:slug/entries'
+        api.resources :content_entries, path: 'content_types/:slug/entries' do
+          delete :index, on: :collection, action: :destroy_all
+        end
 
         api.resources :theme_assets
 

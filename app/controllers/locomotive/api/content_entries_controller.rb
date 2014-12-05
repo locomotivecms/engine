@@ -35,6 +35,15 @@ module Locomotive
         respond_with @content_entry, location: main_app.locomotive_api_content_entries_url(@content_type.slug)
       end
 
+      def destroy_all
+        service.destroy_all
+        respond_to do |format|
+          format.html { render text: true }
+          format.json { render json: { success: true } }
+          format.xml  { render xml: { success: true } }
+        end
+      end
+
       protected
 
       def get_content_type
