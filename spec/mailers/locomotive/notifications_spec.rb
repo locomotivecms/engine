@@ -4,15 +4,13 @@ describe Locomotive::Notifications do
 
   describe 'new_content_entry' do
 
-    let(:site) { FactoryGirl.build(:site, domains: %w{www.acme.com}) }
-
-    let(:account) { FactoryGirl.build(:account) }
-
-    let(:content_type) { FactoryGirl.build(:content_type, site: site) }
-
+    let(:now)           { Time.parse('Sep 16 1982 9:00pm') }
+    let(:site)          { FactoryGirl.build(:site, domains: %w{www.acme.com}, timezone_name: 'CET') }
+    let(:account)       { FactoryGirl.build(:account) }
+    let(:content_type)  { FactoryGirl.build(:content_type, site: site) }
     let(:content_entry) { FactoryGirl.build(:content_entry, content_type: content_type, site: site) }
 
-    let(:mail) { Locomotive::Notifications.new_content_entry(account, content_entry) }
+    let(:mail) { set_timezone { Locomotive::Notifications.new_content_entry(account, content_entry) } }
 
     it 'renders the subject' do
       mail.subject.should == '[www.acme.com][My project] new entry'
@@ -24,6 +22,11 @@ describe Locomotive::Notifications do
 
     it 'renders the sender email' do
       mail.from.should == ['support@dummy.com']
+    end
+
+    it 'outputs the current time in the correct time zone' do
+      Time.stubs(:now).returns(now)
+      mail.body.encoded.should match('a new instance has been created on 09/16/1982 21:00')
     end
 
     it 'outputs the domain in the email body' do
@@ -52,6 +55,10 @@ describe Locomotive::Notifications do
 
     end
 
+  end
+
+  def set_timezone(&block)
+    Time.use_zone(site.try(:timezone) || 'UTC', &block)
   end
 
 end
