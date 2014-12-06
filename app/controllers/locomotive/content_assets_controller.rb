@@ -7,7 +7,7 @@ module Locomotive
     before_filter :load_content_assets, only: [:index]
 
     def index
-      authorize Locomotive::ContentAsset
+      authorize ContentAsset
       @content_assets = @content_assets
         .ordered
         .by_content_types(params[:types])
@@ -17,7 +17,7 @@ module Locomotive
     end
 
     def create
-      authorize Locomotive::ContentAsset
+      authorize ContentAsset
       @content_asset = current_site.content_assets.create(params[:content_asset])
       respond_with @content_asset
     end
