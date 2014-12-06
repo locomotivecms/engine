@@ -40,9 +40,8 @@ module Locomotive
       I18n.l(self.__source.updated_at, format: :short)
     end
 
-    # NOTE Locomotive::BasePresenter.__ability
     def can_be_deleted
-      self.__ability.try(:destroy?)
+      self.__policy.try(:destroy?)
     end
 
     def plain_text

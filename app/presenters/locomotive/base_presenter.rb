@@ -8,7 +8,6 @@ class Locomotive::BasePresenter
   include ActionView::Helpers::TextHelper
   include ActionView::Helpers::NumberHelper
 
-
   ## default properties ##
   with_options allow_nil: true do |presenter|
     presenter.properties :id, :_id
@@ -16,20 +15,14 @@ class Locomotive::BasePresenter
   properties :created_at, :updated_at, type: 'Date', only_getter: true
 
   ## utility accessors ##
-  attr_reader :__ability, :__depth
+  attr_reader :__policy, :__depth
 
-  # Set the ability object to check if we can or not
+  # Set the policy object to check if we can or not
   # get a property.
   #
   def after_initialize
-    @__depth = self.__options[:depth] || 0
-    begin
-      user, site, resource = [__options[:current_account], __options[:current_site], __options[:resource]]
-      @__ability = Locomotive::ApplicationPolicy.new(user, site, resource)
-    rescue Pundit::NotAuthorizedError => e
-      Rails.logger.warn e.message
-      @__ability = nil
-    end
+    @__depth  = self.__options[:depth] || 0
+    @__policy = self.__options[:policy]
   end
 
   # Get the id of the source only if it has been persisted
@@ -42,12 +35,12 @@ class Locomotive::BasePresenter
   end
   alias :id :_id
 
-  # Check if there is an ability object used for permissions.
+  # Check if there is a policy object used for authorization/permission.
   #
   # @return [ Boolean ] True if defined, false otherwise
   #
-  def ability?
-    self.__ability.present?
+  def policy?
+    self.__policy.present?
   end
 
   # Shortcut to the site taken from the source.

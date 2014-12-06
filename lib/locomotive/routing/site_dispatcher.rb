@@ -9,6 +9,7 @@ module Locomotive
           before_filter :fetch_site
 
           helper_method :current_site
+          helper_method :current_membership
         end
       end
 
@@ -58,8 +59,18 @@ module Locomotive
         end
       end
 
+      def current_membership
+        return @current_membership if @current_membership
+
+        if current_site.present? && current_locomotive_account.present?
+          @current_membership = current_site.membership_for(current_locomotive_account)
+        else
+          nil
+        end
+      end
+
       def validate_site_membership
-        return true if current_site.present? && current_site.accounts.include?(current_locomotive_account)
+        return true if current_membership
 
         sign_out(current_locomotive_account)
         flash[:alert] = I18n.t(:no_membership, scope: [:devise, :failure, :locomotive_account])

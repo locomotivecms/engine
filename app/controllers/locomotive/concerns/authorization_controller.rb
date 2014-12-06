@@ -1,14 +1,15 @@
-require 'pundit'
-
 module Locomotive
   module Concerns
     module AuthorizationController
+
       extend ActiveSupport::Concern
+      include ::Pundit
 
       included do
-        include ::Pundit
         rescue_from Exception, with: :render_access_denied
       end
+
+      private
 
       def render_access_denied(exception)
         ::Locomotive.log "[AccessDenied] #{exception.inspect}"
@@ -26,6 +27,10 @@ module Locomotive
           flash[:alert] = exception.message
           redirect_to pages_path
         end
+      end
+
+      def pundit_user
+        current_membership
       end
 
     end

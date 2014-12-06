@@ -1,14 +1,14 @@
-module Locomotive
-  class Right
-    attr_reader :action, :rule
-    def initialize(action, &rule)
-      @action = action
-      @rule = rule
-    end
+# module Locomotive
+#   class Right
+#     attr_reader :action, :rule
+#     def initialize(action, &rule)
+#       @action = action
+#       @rule = rule
+#     end
 
-    def authorized? user, record, membership
-      self.rule.call user, record, membership
-    end
+#     def authorized? user, record, membership
+#       self.rule.call user, record, membership
+#     end
 
-  end
-end
+#   end
+# end

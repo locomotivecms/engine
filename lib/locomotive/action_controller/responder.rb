@@ -10,15 +10,10 @@ module Locomotive
       end
 
       def options
-        current_site     = self.controller.send(:current_site)
-        current_account  = self.controller.send(:current_locomotive_account)
-        current_resource = self.controller.send(:current_resource)
+        membership  = self.controller.send(:current_membership)
+        policy      = Pundit.policy(membership, resource)
 
-        super.merge({
-          current_site:     current_site,
-          current_account:  current_account,
-          current_resource: current_resource
-        })
+        super.merge(policy: policy)
       end
 
       def to_json

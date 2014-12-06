@@ -24,11 +24,11 @@ module Locomotive
     end
 
     def can_update
-      self.__ability.try(:touch?)
+      self.__policy.try(:touch?)
     end
 
     def grant_admin
-      self.__ability.try(:grant_admin?)
+      self.__policy.try(:grant_admin?)
     end
 
   end

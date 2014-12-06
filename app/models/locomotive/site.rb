@@ -57,6 +57,10 @@ module Locomotive
       Account.criteria.in(_id: self.memberships.map(&:account_id))
     end
 
+    def membership_for(account)
+      self.memberships.where(account_id: account._id).first
+    end
+
     def admin_memberships
       self.memberships.find_all { |m| m.admin? }
     end
