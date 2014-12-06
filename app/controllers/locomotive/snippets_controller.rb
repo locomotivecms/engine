@@ -11,32 +11,35 @@ module Locomotive
     respond_to    :json, only: [:show, :create, :update, :destroy]
 
     def new
+      authorize Snippet
       @snippet = current_site.snippets.new
       respond_with @snippet
     end
 
     def show
+      authorize @snippet
       respond_with @snippet
     end
 
     def create
-      authorize :snippet
+      authorize Snippet
       @snippet = current_site.snippets.create(params[:snippet])
       respond_with @snippet, location: edit_snippet_path(@snippet._id)
     end
 
     def edit
+      authorize @snippet
       respond_with @snippet
     end
 
     def update
-      authorize :snippet
+      authorize @snippet
       @snippet.update_attributes(params[:snippet])
       respond_with @snippet, location: edit_snippet_path(@snippet._id)
     end
 
     def destroy
-      authorize :snippet
+      authorize @snippet
       @snippet.destroy
       respond_with @snippet, location: theme_assets_path
     end

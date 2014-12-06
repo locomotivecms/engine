@@ -16,12 +16,12 @@ module Locomotive
     respond_to :json, only: :update
 
     def edit
-      authorize :site
+      authorize @site
       respond_with @site
     end
 
     def update
-      authorize :site
+      authorize @site
       @site.update_attributes(params[:site])
       respond_with @site, location: edit_current_site_path(new_host_if_subdomain_changed)
     end

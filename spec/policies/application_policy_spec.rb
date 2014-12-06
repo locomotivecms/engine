@@ -1,38 +1,40 @@
-require 'spec_helper'
+# FIXME (Did): DEPRECATED
 
-module Locomotive
+# require 'spec_helper'
 
-  describe ApplicationPolicy do
-    let(:resource)  { :site }
-    let(:user)      { create('admin user').tap { |a| puts a._id.inspect } }
-    let(:site)      { create :site }
+# module Locomotive
 
-    subject { ApplicationPolicy }
+#   describe ApplicationPolicy do
+#     let(:resource)  { :site }
+#     let(:user)      { create('admin user').tap { |a| puts a._id.inspect } }
+#     let(:site)      { create :site }
 
-    context 'admin' do
+#     subject { ApplicationPolicy }
 
-      before do
-        ApplicationPolicy.any_instance.stubs(:membership).returns(Membership.new(account: self.user, role: 'guest'))
-      end
+#     context 'admin' do
 
-      before do
-        user.expects(:is_admin?).at_least_once.returns(true)
-      end
+#       before do
+#         ApplicationPolicy.any_instance.stubs(:membership).returns(Membership.new(account: self.user, role: 'guest'))
+#       end
 
-      permissions *ApplicationPolicy::MANAGE_ACTIONS.map { |action| action.to_s + '?' } do
-        it('yes') { expect(subject).to permit(user, site, resource) }
-      end
-    end
+#       before do
+#         user.expects(:is_admin?).at_least_once.returns(true)
+#       end
 
-    # context 'anybody else' do
+#       permissions *ApplicationPolicy::MANAGE_ACTIONS.map { |action| action.to_s + '?' } do
+#         it('yes') { expect(subject).to permit(user, site, resource) }
+#       end
+#     end
 
-    #   before do
-    #     ApplicationPolicy.any_instance.stubs(:membership).returns(Membership.new(account: self.user, role: 'guest'))
-    #   end
+#     # context 'anybody else' do
 
-    #   permissions *ApplicationPolicy::MANAGE_ACTIONS.map { |action| action.to_s + '?' } do
-    #     it('no') { expect(subject).to_not permit(user, site, resource) }
-    #   end
-    # end
-  end
-end
+#     #   before do
+#     #     ApplicationPolicy.any_instance.stubs(:membership).returns(Membership.new(account: self.user, role: 'guest'))
+#     #   end
+
+#     #   permissions *ApplicationPolicy::MANAGE_ACTIONS.map { |action| action.to_s + '?' } do
+#     #     it('no') { expect(subject).to_not permit(user, site, resource) }
+#     #   end
+#     # end
+#   end
+# end

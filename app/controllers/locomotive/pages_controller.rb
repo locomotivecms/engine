@@ -7,51 +7,52 @@ module Locomotive
 
     before_filter :back_to_default_site_locale, only: %w(new create)
 
+    before_filter :load_page, only: [:show, :edit, :update, :sort, :destroy]
+
     respond_to :json, only: [:show, :create, :update, :sort, :get_path]
 
     def index
+      authorize Page
       @pages = current_site.all_pages_in_once
       respond_with(@pages)
     end
 
     def show
-      @page = current_site.pages.find(params[:id])
+      authorize @page
       respond_with @page
     end
 
     def new
+      authorize Page
       @page = current_site.pages.build
       respond_with @page
     end
 
     def create
-      authorize :page
+      authorize Page
       @page = current_site.pages.create(params[:page])
       respond_with @page, location: edit_page_path(@page._id)
     end
 
     def edit
-      @page = current_site.pages.find(params[:id])
+      authorize @page
       respond_with @page
     end
 
     def update
-      authorize :page
-      @page = current_site.pages.find(params[:id])
+      authorize @page
       @page.update_attributes(params[:page])
       respond_with @page, location: edit_page_path(@page._id)
     end
 
     def destroy
-      authorize :page
-      @page = current_site.pages.find(params[:id])
+      authorize @page
       @page.destroy
       respond_with @page
     end
 
     def sort
-      authorize :page, :touch?
-      @page = current_site.pages.find(params[:id])
+      authorize @page, :update?
       @page.sort_children!(params[:children])
       respond_with @page
     end
@@ -65,6 +66,12 @@ module Locomotive
         slug:               page.slug,
         templatized_parent: page.templatized_from_parent?
       }
+    end
+
+    private
+
+    def load_page
+      @page = current_site.pages.find(params[:id])
     end
 
   end

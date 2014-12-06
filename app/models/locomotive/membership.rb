@@ -14,7 +14,7 @@ module Locomotive
 
     ## validations ##
     validates_presence_of :account
-    # validate              :can_change_role, if: :role_changed?
+    validate              :can_change_role, if: :role_changed?
 
     ## callbacks ##
     before_save :define_role
@@ -60,24 +60,27 @@ module Locomotive
       self.role = ROLES.include?(role.downcase) ? role.downcase : ROLES.first
     end
 
-    # TODO: membership policy
-    # # Users should not be able to set the role of another user to be higher than
-    # # their own. A designer for example should not be able to set another user to
-    # # be an administrator
-    # def can_change_role
-    #   current_site = Thread.current[:site]
-    #   if current_site.present?
-    #     current_membership = current_site.memberships.where(account_id: Thread.current[:account].id).first
-    #   end
+    # Users should not be able to set the role of another user to be higher than
+    # their own. A designer for example should not be able to set another user to
+    # be an administrator
+    #
+    # Note (Did): in order to call Thread.current, this code has to be moved into a site service.
+    # We also should use the MembershipPolicy to control if the user can change the role or not.
+    #
+    def can_change_role
+      current_site = Thread.current[:site]
+      if current_site.present?
+        current_membership = current_site.memberships.where(account_id: Thread.current[:account].id).first
+      end
 
-    #   if current_membership.present?
-    #     # The role cannot be set higher than the current one (we use the index in
-    #     # the roles array to check role presidence)
-    #     if ROLES.index(role) < ROLES.index(current_membership.role)
-    #       errors.add(:role, :invalid)
-    #     end
-    #   end
-    # end
+      if current_membership.present?
+        # The role cannot be set higher than the current one (we use the index in
+        # the roles array to check role presidence)
+        if ROLES.index(role) < ROLES.index(current_membership.role)
+          errors.add(:role, :invalid)
+        end
+      end
+    end
 
   end
 end

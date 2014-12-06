@@ -5,12 +5,8 @@ module Locomotive
       membership.admin?
     end
 
-    def edit?
-      membership.admin?
-    end
-
     def update?
-      membership.admin? || membership.account_id == resource._id
+      membership.admin? || @resource._id == membership.account_id
     end
 
     def destroy?

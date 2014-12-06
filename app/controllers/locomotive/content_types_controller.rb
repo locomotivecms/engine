@@ -11,28 +11,30 @@ module Locomotive
     helper 'Locomotive::Accounts', 'Locomotive::CustomFields'
 
     def new
+      authorize ContentType
       @content_type = current_site.content_types.new
       respond_with @content_type
     end
 
     def create
-      authorize :content_type
+      authorize ContentType
       @content_type = current_site.content_types.create(params[:content_type])
       respond_with @content_type, location: edit_content_type_path(@content_type._id)
     end
 
     def edit
+      authorize @content_type
       respond_with @content_type
     end
 
     def update
-      authorize :content_type
+      authorize @content_type
       @content_type.update_attributes(params[:content_type])
       respond_with @content_type, location: edit_content_type_path(@content_type._id)
     end
 
     def destroy
-      authorize :content_type
+      authorize @content_type
       @content_type.destroy
       respond_with @content_type, location: pages_path
     end

@@ -5,6 +5,7 @@ module Locomotive
 
     attr_reader :membership
 
+    # The resource is always scoped by the site defined by the membership.
     def initialize(membership, resource)
       @membership = membership
       @resource   = resource
@@ -12,6 +13,38 @@ module Locomotive
       raise Pundit::NotAuthorizedError, 'must be logged in' unless account
       raise Pundit::NotAuthorizedError, 'should have a site' unless site
       raise Pundit::NotAuthorizedError, 'should have a resource' unless resource
+    end
+
+    def index?
+      false
+    end
+
+    def show?
+      index?
+    end
+
+    def edit?
+      update?
+    end
+
+    def update?
+      false
+    end
+
+    def new?
+      create?
+    end
+
+    def create?
+      false
+    end
+
+    def destroy?
+      false
+    end
+
+    def local_admin?
+      membership.admin? || membership.designer?
     end
 
   end

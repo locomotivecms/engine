@@ -4,7 +4,7 @@ module Locomotive
     sections 'settings'
 
     def create
-      authorize :membership
+      authorize Membership
       @membership = current_site.memberships.build(params[:membership])
       @membership.role = 'author' # force author by default
 
@@ -22,8 +22,8 @@ module Locomotive
     end
 
     def destroy
-      authorize :membership
       @membership = current_site.memberships.find(params[:id])
+      authorize @membership
       @membership.destroy
       respond_with @membership, location: edit_current_site_path
     end
