@@ -6,15 +6,17 @@ module Locomotive
       before_filter :load_translations, only: [:index]
 
       def index
-        respond_with(@translations)
+        authorize Translation
+        respond_with @translations
       end
 
       def show
+        authorize @translation
         respond_with @translation
       end
 
       def create
-        authorize :translation
+        authorize Translation
         @translation = Locomotive::Translation.new(params[:translation])
         @translation.from_presenter(params[:translation])
         @translation.save
@@ -22,13 +24,13 @@ module Locomotive
       end
 
       def update
-        authorize :translation
+        authorize @translation
         @translation.update_attributes(params[:translation])
         respond_with @translation, location: main_app.locomotive_api_translation_path(@translation)
       end
 
       def destroy
-        authorize :translation
+        authorize @translation
         @translation.destroy
         respond_with @translation
       end

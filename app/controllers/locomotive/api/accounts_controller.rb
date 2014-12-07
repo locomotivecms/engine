@@ -8,14 +8,16 @@ module Locomotive
       skip_before_filter :verify_authenticity_token, only: [:create]
       skip_before_filter :require_account, only: [:create]
       skip_before_filter :require_site, only: [:create]
+      skip_before_filter :validate_site_membership
 
       def index
+        authorize Account
         @accounts = @accounts.try(:ordered)
-        respond_with(@accounts)
+        respond_with @accounts
       end
 
       def show
-        authorize :account
+        authorize @account
         respond_with(@account)
       end
 

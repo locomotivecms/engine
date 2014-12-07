@@ -6,15 +6,17 @@ module Locomotive
       before_filter :load_theme_assets, only: [:index]
 
       def index
+        authorize ThemeAsset
         respond_with(@theme_assets)
       end
 
       def show
+        authorize @theme_asset
         respond_with @theme_asset
       end
 
       def create
-        authorize :theme_asset
+        authorize ThemeAsset
         @theme_asset = ThemeAsset.new(params[:theme_asset])
         @theme_asset.from_presenter(params[:theme_asset])
         @theme_asset.site = current_site
@@ -23,14 +25,14 @@ module Locomotive
       end
 
       def update
-        authorize :theme_assete
+        authorize @theme_asset
         @theme_asset.from_presenter(params[:theme_asset])
         @theme_asset.save
         respond_with @theme_asset, location: main_app.locomotive_api_theme_assets_url
       end
 
       def destroy
-        authorize :theme_asset
+        authorize @theme_asset
         @theme_asset.destroy
         respond_with @theme_asset
       end

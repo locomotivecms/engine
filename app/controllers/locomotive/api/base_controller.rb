@@ -18,6 +18,8 @@ module Locomotive
 
       before_filter :require_site
 
+      before_filter :validate_site_membership
+
       before_filter :set_locale
 
       before_filter :set_current_thread_variables
