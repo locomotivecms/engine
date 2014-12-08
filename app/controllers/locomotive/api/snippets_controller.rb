@@ -6,88 +6,39 @@ module Locomotive
       before_filter :load_snippets, only: [:index]
 
       def index
+        authorize Locomotive::Snippet
         @snippets = @snippets.order_by(:name.asc)
         respond_with(@snippets)
       end
 
       def show
+        authorize @snippet
         respond_with @snippet
       end
 
       def create
-        authorize :snippet
-        @snippet = Snippet.new(params[:snippet])
-        @snippet.from_presenter(params[:snippet])
-        @snippet.site = current_site
-        @snippet.save
+        authorize Locomotive::Snippet
+        @snippet = current_site.snippets.build
+        @snippet.from_presenter(params[:snippet]).save
         respond_with @snippet, location: main_app.locomotive_api_snippets_url
       end
 
       def update
-        authorize :snippet
-        @snippet.from_presenter(params[:snippet])
-        @snippet.save
+        authorize @snippet
+        @snippet.from_presenter(params[:snippet]).save
         respond_with @snippet, location: main_app.locomotive_api_snippets_url
       end
 
       def destroy
-        authorize :snippet
+        authorize Locomotive::Snippet
         @snippet.destroy
         respond_with @snippet
-      end
-
-      protected
-
-      def self.description
-        {
-          overall: %{Manage the snippets},
-          actions: {
-            index: {
-              description: %{Return all the snippets ordered by the depth and position},
-              example: {
-                command: %{curl 'http://mysite.com/locomotive/api/snippets.json?auth_token=dtsjkqs1TJrWiSiJt2gg'},
-                response: %(TODO)
-              }
-            },
-            show: {
-              description: %{Return the attributes of a snippet},
-              response: SnippetPresenter.getters_to_hash,
-              example: {
-                command: %{curl 'http://mysite.com/locomotive/api/snippets/4244af4ef0000002.json?auth_token=dtsjkqs1TJrWiSiJt2gg'},
-                response: %(TODO)
-              }
-            },
-            create: {
-              description: %{Create a snippet},
-              params: SnippetPresenter.setters_to_hash,
-              example: {
-                command: %{curl -d '...' 'http://mysite.com/locomotive/api/snippets.json?auth_token=dtsjkqs1TJrWiSiJt2gg'},
-                response: %(TODO)
-              }
-            },
-            update: {
-              description: %{Update a snippet},
-              params: SnippetPresenter.setters_to_hash,
-              example: {
-                command: %{curl -d '...' -X UPDATE 'http://mysite.com/locomotive/api/snippets/4244af4ef0000002.json?auth_token=dtsjkqs1TJrWiSiJt2gg'},
-                response: %(TODO)
-              }
-            },
-            destroy: {
-              description: %{Delete a snippet},
-              example: {
-                command: %{curl -X DELETE 'http://mysite.com/locomotive/api/snippets/4244af4ef0000002.json?auth_token=dtsjkqs1TJrWiSiJt2gg'},
-                response: %(TODO)
-              }
-            }
-          }
-        }
       end
 
       private
 
       def load_snippet
-        @snippet = current_site.snippets.find params[:id]
+        @snippet = current_site.snippets.find(params[:id])
       end
 
       def load_snippets

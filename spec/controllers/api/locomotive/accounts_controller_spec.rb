@@ -2,16 +2,31 @@ require 'spec_helper'
 
 describe Locomotive::Api::AccountsController do
 
-  let(:site)  { create(:site, domains: %w{www.acme.com}) }
-  let(:admin) { create(:account) }
-  let!(:membership) do
-    create(:membership, account: admin, site: site, role: 'admin')
-  end
+  let(:admin) { create(:account, name: 'AAA', super_admin: true) }
+  let!(:account) { create(:account) }
 
-  context 'admin authenticated' do
+  context 'super_admin authenticated' do
     before do
       Locomotive.config.stubs(:multi_sites?).returns(false)
       sign_in admin
+    end
+
+    describe "#GET index" do
+      subject { get :index, locale: :en, format: :json }
+      it { should be_success }
+      specify do
+        subject
+        expect(assigns(:accounts).all.to_a).to eq([admin, account])
+      end
+    end
+
+    describe "#GET show" do
+      subject { get :show, id: admin.id, locale: :en, format: :json }
+      it { should be_success }
+      specify do
+        subject
+        expect(assigns(:account)).to be_present
+      end
     end
 
     describe 'POST #create' do
@@ -65,12 +80,14 @@ describe Locomotive::Api::AccountsController do
       end
     end
 
-    describe "#GET show" do
-      subject { get :show, id: admin.id, locale: :en, format: :json }
+    describe "#DELETE destroy" do
+      let(:account) { create(:account) }
+      subject do
+        delete :destroy, id: account.id, locale: :en, format: :json
+      end
       it { should be_success }
       specify do
-        subject
-        expect(assigns(:account)).to be_present
+        expect { subject }.to change(Locomotive::Account, :count).by(-1)
       end
     end
 

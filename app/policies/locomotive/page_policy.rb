@@ -14,7 +14,7 @@ module Locomotive
     end
 
     def destroy?
-      local_admin?
+      site_admin_or_designer?
     end
 
   end

@@ -21,7 +21,6 @@ module Locomotive
 
     ## methods ##
 
-    # Locomotive::Ability::ROLES.each do |_role|
     ROLES.each do |_role|
       define_method("#{_role}?") do
         self.role == _role
@@ -76,7 +75,7 @@ module Locomotive
       if current_membership.present?
         # The role cannot be set higher than the current one (we use the index in
         # the roles array to check role presidence)
-        if ROLES.index(role) < ROLES.index(current_membership.role)
+        if ROLES.index(current_membership.role) < ROLES.index(role)
           errors.add(:role, :invalid)
         end
       end

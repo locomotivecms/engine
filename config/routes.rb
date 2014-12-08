@@ -67,15 +67,13 @@ Rails.application.routes.draw do
   namespace :locomotive, module: 'locomotive' do
     namespace :api do
 
-      match 'documentation' => 'documentation#show', via: :all
-
       resources :tokens, only: [:create, :destroy]
 
       resource  :current_site, controller: 'current_site', only: [:show, :update, :destroy]
 
       resources :memberships, only: [:index, :show, :create, :update, :destroy]
 
-      resource  :my_account, controller: 'my_account', only: :show
+      resource  :my_account, controller: 'my_account', only: [:show, :create, :update]
 
       with_options only: [:index, :show, :create, :update, :destroy] do |api|
 

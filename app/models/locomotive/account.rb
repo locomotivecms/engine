@@ -25,6 +25,7 @@ module Locomotive
     field :name
     field :locale,  default: Locomotive.config.default_locale.to_s or 'en'
     field :api_key
+    field :super_admin, type: Boolean, default: false
 
     ## protected attributes ##
     # attr_protected :api_key
@@ -50,16 +51,14 @@ module Locomotive
       @sites ||= Site.where('memberships.account_id' => self._id)
     end
 
-    # Tell if the account has admin privileges or not.
-    # Actually, an account is considered as an admin if
-    # it owns at least one admin membership in all its sites.
+    # Tell if the account has admin privileges for one (at least)
+    # of his/her sites.
     #
-    # @return [ Boolean ] True if admin
+    # @return [ Boolean ] True if admin in one of his/her sites.
     #
-    def admin?
+    def local_admin?
       Site.where(memberships: { '$elemMatch' => { account_id: self._id, role: :admin } }).count > 0
     end
-    alias_method :is_admin?, :admin?
 
     # Regenerate the API key without saving the account.
     #
@@ -126,13 +125,13 @@ module Locomotive
       Locomotive::DeviseMailer
     end
 
-    def to_scope(site, resource)
-      ApplicationPolicy::Scope.new(self, site, resource).resolve
-    end
+    # def to_scope(site, resource)
+    #   ApplicationPolicy::Scope.new(self, site, resource).resolve
+    # end
 
-    def to_role
-      is_admin? ? :admin : :guest
-    end
+    # def to_role
+    #   is_admin? ? :admin : :guest
+    # end
 
     protected
 

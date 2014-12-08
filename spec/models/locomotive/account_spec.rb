@@ -64,22 +64,42 @@ describe Locomotive::Account do
 
   end
 
-  describe '.admin?' do
+  describe '#super_admin?' do
 
-    it 'is considered as an admin if she/he has a membership with an admin role' do
-      create_site_and_account
-      @account.admin?.should be_true
+    let(:account) { FactoryGirl.build(:account, super_admin: true) }
+    subject { account.super_admin? }
+
+    it { should be_true }
+
+    context 'by default' do
+
+      let(:account) { FactoryGirl.build(:account) }
+      it { should be_false }
+
     end
 
-    it 'is not considered as an admin if she/he does not have a membership with an admin role' do
-      create_site_and_account('author')
-      @account.admin?.should be_false
+  end
+
+  describe '#local_admin?' do
+
+    let(:role)        { 'admin' }
+    let(:account)     { FactoryGirl.create(:account) }
+    let(:membership)  { Locomotive::Membership.new(account: account, role: role) }
+    let!(:site)       { FactoryGirl.create(:site, memberships: [membership]) }
+
+    subject { account.local_admin? }
+
+    context 'she/he is an admin for the site' do
+
+      it { should be_true }
+
     end
 
-    def create_site_and_account(role = 'admin')
-      @account    = FactoryGirl.create(:account)
-      @membership = Locomotive::Membership.new(account: @account, role: role)
-      @site       = FactoryGirl.create(:site, memberships: [@membership])
+    context 'she/he is an author for the site' do
+
+      let(:role) { 'author' }
+      it { should be_false }
+
     end
 
   end

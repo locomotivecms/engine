@@ -2,20 +2,25 @@ module Locomotive
   class AccountPolicy < ApplicationPolicy
 
     def index?
-      # TODO: only super admin
+      super_admin?
+    end
+
+    def show?
+      super_admin? || @resource._id == membership.account_id
     end
 
     def create?
-      membership.admin?
+      # everybody can create an account
+      true
     end
 
     def update?
-      membership.admin? || @resource._id == membership.account_id
+      super_admin? || @resource._id == membership.account_id
     end
 
     def destroy?
-      # TODO: only super admin
-      # membership.admin?
+      # can not delete himself/herself
+      super_admin? && @resource._id != membership.account_id
     end
 
   end

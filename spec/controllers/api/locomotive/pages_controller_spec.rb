@@ -31,8 +31,8 @@ module Locomotive
       end
 
       describe "#POST create" do
-        let(:page_attributes) do
-          FactoryGirl.attributes_for(:page, site: site, parent: site.pages.root.first)
+        let(:page_attributes)  do
+          attributes_for(:sub_page, parent_id: site.pages.root.first._id)
         end
         subject do
           post :create, locale: :en, page: page_attributes, format: :json
@@ -55,13 +55,7 @@ module Locomotive
       end
 
       describe "#DELETE destroy" do
-        let!(:child_page) do
-          parent = FactoryGirl.create(:page, :index)
-          child  = FactoryGirl.build(:page)
-          child.parent = parent
-          child.save!
-          child
-        end
+        let!(:child_page) { create(:sub_page, parent: page, site: site) }
         subject do
           delete :destroy, id: child_page.id, locale: :en, format: :json
         end

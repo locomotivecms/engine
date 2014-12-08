@@ -3,10 +3,10 @@ module Locomotive
     module AuthorizationController
 
       extend ActiveSupport::Concern
-      include ::Pundit
+      include Pundit
 
       included do
-        rescue_from Exception, with: :render_access_denied
+        rescue_from Pundit::NotAuthorizedError, with: :render_access_denied
       end
 
       private
@@ -14,15 +14,8 @@ module Locomotive
       def render_access_denied(exception)
         ::Locomotive.log "[AccessDenied] #{exception.inspect}"
 
-        status = (case exception
-        when ::Pundit::NotAuthorizedError         then 401
-        when ::Mongoid::Errors::DocumentNotFound  then 404
-        else 500
-          raise exception
-        end)
-
         if request.xhr?
-          render json: { error: exception.message }, status: status, layout: false
+          render json: { error: exception.message }, status: 401, layout: false
         else
           flash[:alert] = exception.message
           redirect_to pages_path

@@ -2,19 +2,19 @@ module Locomotive
   class SnippetPolicy < ApplicationPolicy
 
     def index?
-      local_admin?
+      site_admin_or_designer?
     end
 
     def create?
-      local_admin?
+      site_admin_or_designer?
     end
 
     def update?
-      local_admin?
+      site_admin_or_designer?
     end
 
     def destroy?
-      local_admin?
+      site_admin_or_designer?
     end
 
   end

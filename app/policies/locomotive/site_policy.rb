@@ -1,16 +1,36 @@
 module Locomotive
   class SitePolicy < ApplicationPolicy
 
+    class Scope < Scope
+
+      def resolve
+        if membership.account.super_admin?
+          scope.all
+        else
+          membership.account.sites
+        end
+      end
+
+    end
+
+    def index?
+      true
+    end
+
+    def show?
+      true
+    end
+
     def create?
-      membership.admin?
+      true
     end
 
     def update?
-      @resource._id == site._id
+      true
     end
 
     def destroy?
-      @resource._id != site._id
+      super_admin? || site_admin?
     end
 
   end

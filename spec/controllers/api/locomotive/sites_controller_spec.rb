@@ -4,60 +4,103 @@ module Locomotive
   module Api
     describe SitesController do
 
-      let(:site)     { create(:site, domains: %w{www.acme.com}) }
-      let(:account)  { create(:account) }
+      let(:site)        { create(:site, domains: %w{www.acme.com}) }
+      let(:site_bis)    { create('another site') }
+      let(:super_admin) { false }
+      let(:account)     { create(:account, super_admin: super_admin) }
 
       let!(:membership) do
         create(:membership, account: account, site: site, role: 'admin')
       end
 
-      before do
-        Locomotive.config.stubs(:multi_sites?).returns(false)
-        sign_in account
+      context 'super_admin authenticated' do
+        let(:super_admin) { true }
+
+        before do
+          Locomotive.config.stubs(:multi_sites?).returns(false)
+          site_bis
+          sign_in account
+        end
+
+        describe "#GET index" do
+          subject { get(:index, locale: :en, format: :json) }
+          it { should be_success }
+          specify do
+            subject
+            expect(assigns(:sites).to_a).to eq([site, site_bis])
+          end
+        end
+
+        describe "#GET show" do
+          subject { get :show, id: site._id, locale: :en, format: :json }
+          it { should be_success }
+
+          context 'a site not owned by the current account' do
+            subject { get :show, id: site_bis._id, locale: :en, format: :json }
+            it { should be_success }
+          end
+        end
+
       end
 
-      describe "#GET index" do
-        subject { get(:index, locale: :en, format: :json) }
-        it { should be_success }
-      end
+      context 'simple local admin authenticated' do
 
-      describe "#GET show" do
-        subject { get :show, id: 42, locale: :en, format: :json }
-        it { should be_success }
-      end
+        before do
+          Locomotive.config.stubs(:multi_sites?).returns(false)
+          sign_in account
+        end
 
-      describe "#POST create" do
-        subject do
-          post :create, id: 42, locale: :en, site: { subdomain: generate(:subdomain), name: generate(:name) },
-            format: :json
+        describe "#GET index" do
+          subject { get(:index, locale: :en, format: :json) }
+          it { should be_success }
+          specify do
+            subject
+            expect(assigns(:sites).to_a).to eq([site])
+          end
         end
-        it { should be_success }
-        specify do
-          expect { subject }.to change(Locomotive::Site, :count).by(+1)
-        end
-      end
 
-      describe "#PUT update" do
-        let!(:site) { create(:site) }
-        let(:new_name) { generate(:name) }
-        subject do
-          put :update, id: site.id, locale: :en, site: { name: new_name }, format: :json
-        end
-        it { should be_success }
-        specify do
-          expect(JSON.parse(subject.body).fetch('name')).to eq(new_name)
-        end
-      end
+        describe "#GET show" do
+          subject { get :show, id: site._id, locale: :en, format: :json }
+          it { should be_success }
 
-      describe "#DELETE destroy" do
-        let!(:site) { create(:site) }
-        subject do
-          delete :destroy, id: site.id, locale: :en, format: :json
+          context 'a site not owned by the current account' do
+            subject { get :show, id: site_bis._id, locale: :en, format: :json }
+            it { should_not be_success }
+          end
         end
-        it { should be_success }
-        specify do
-          expect { subject }.to change(Locomotive::Site, :count).by(-1)
+
+        describe "#POST create" do
+          subject do
+            post :create, locale: :en, site: { subdomain: generate(:subdomain), name: generate(:name) },
+              format: :json
+          end
+          it { should be_success }
+          specify do
+            expect { subject }.to change(Locomotive::Site, :count).by(+1)
+          end
         end
+
+        describe "#PUT update" do
+          let(:new_name) { generate(:name) }
+          subject do
+            put :update, id: site.id, locale: :en, site: { name: new_name }, format: :json
+          end
+          it { should be_success }
+          specify do
+            expect(JSON.parse(subject.body).fetch('name')).to eq(new_name)
+          end
+        end
+
+        describe "#DELETE destroy" do
+          subject do
+            delete :destroy, id: site.id, locale: :en, format: :json
+          end
+          it { should be_success }
+          specify do
+            expect { subject }.to change(Locomotive::Site, :count).by(-1)
+          end
+        end
+
       end
 
     end

@@ -2,28 +2,51 @@ module Locomotive
   module Api
     class MyAccountController < BaseController
 
-      skip_before_filter :require_site, :set_locale, :set_current_thread_variables
+      before_filter :load_account
+      before_filter :must_not_be_logged_in, only: :create
+
+      skip_before_filter :set_locale
+      skip_before_filter :set_current_thread_variables
+
+      skip_before_filter :require_account, only: :create
+      skip_before_filter :require_site
+      skip_before_filter :validate_site_membership
 
       def show
-        respond_with current_locomotive_account
+        authorize @account
+        respond_with(@account)
       end
 
-      protected
+      def create
+        @account = Account.new
+        @account.from_presenter(account_params).save
+        respond_with(@account)
+      end
 
-      def self.description
-        {
-          overall: %{Manage the current account (my account)},
-          actions: {
-            show: {
-              description: %{Return the attributes of my account},
-              response: AccountPresenter.getters_to_hash,
-              example: {
-                command: %{curl 'http://mysite.com/locomotive/api/my_account.json'},
-                response: %(TODO)
-              }
-            }
-          }
-        }
+      def update
+        authorize @account
+        @account.from_presenter(account_params).save
+        respond_with(@account)
+      end
+
+      private
+
+      def load_account
+        @account = current_locomotive_account
+      end
+
+      def account_params
+        params.require(:account).permit(:name, :email, :password, :password_confirmation)
+      end
+
+      def must_not_be_logged_in
+        raise Pundit::NotAuthorizedError.new('You must be not logged in') if current_locomotive_account
+      end
+
+      def current_membership
+        if current_locomotive_account
+          Locomotive::Membership.new(account: current_locomotive_account)
+        end
       end
 
     end

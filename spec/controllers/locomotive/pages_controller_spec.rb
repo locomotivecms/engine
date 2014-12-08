@@ -32,7 +32,7 @@ describe Locomotive::PagesController do
 
   describe "#POST create" do
     let(:page_attributes)  do
-      attributes_for(:page, site: site, parent: site.pages.root.first)
+      attributes_for(:sub_page, parent: site.pages.root.first)
     end
     subject do
       post :create, locale: :en, page: page_attributes, format: :json

@@ -11,7 +11,7 @@ module Locomotive
 
       def options
         membership  = self.controller.send(:current_membership)
-        policy      = Pundit.policy(membership, resource)
+        policy      = membership ? Pundit.policy(membership, resource) : nil
 
         super.merge(policy: policy)
       end

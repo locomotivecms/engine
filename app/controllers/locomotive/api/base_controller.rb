@@ -6,7 +6,9 @@ module Locomotive
       include Locomotive::ActionController::Timezone
       include Locomotive::ActionController::LocaleHelpers
       include SimpleTokenAuthentication::ActsAsTokenAuthenticationHandler
-      include Concerns::AuthorizationController
+      include Locomotive::Concerns::ExceptionController
+      include Locomotive::Concerns::MembershipController
+      include Locomotive::Concerns::AuthorizationController
 
       acts_as_token_authentication_handler_for Locomotive::Account
 
@@ -50,10 +52,6 @@ module Locomotive
         ::I18n.locale = ::Mongoid::Fields::I18n.locale
 
         self.setup_i18n_fallbacks if current_site
-      end
-
-      def self.description
-        { overall: 'No documentation', actions: {} }
       end
 
     end

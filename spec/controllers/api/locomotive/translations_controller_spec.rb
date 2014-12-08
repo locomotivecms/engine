@@ -16,34 +16,6 @@ module Locomotive
         sign_in account
       end
 
-      # after do
-      #   Thread.current[:site] = nil
-      #   Thread.current[:account] = nil
-      # end
-
-      describe "..." do
-        specify do
-          expect(account.sites).to include site
-        end
-      end
-
-      describe "..." do
-        specify do
-          expect(account.to_role).to eq :admin
-        end
-      end
-
-      describe "..." do
-        specify do
-          expect(membership.to_role).to eq :admin
-        end
-      end
-
-      #
-      # def sites
-      #   @sites ||= Site.where('memberships.account_id' => self._id)
-      # end
-
       describe "#GET index" do
         subject { get :index, locale: :en, format: :json }
         it { should be_success }

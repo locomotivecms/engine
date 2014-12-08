@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe Locomotive::AccountsController do
+
   routes { Locomotive::Engine.routes }
 
   let(:site)    { create(:site, domains: %w{www.acme.com}) }
