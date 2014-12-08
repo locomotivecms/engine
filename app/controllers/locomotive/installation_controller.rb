@@ -28,7 +28,7 @@ module Locomotive
     def handle_post
       case params[:step].to_i
       when 1 # create account
-        @account = Account.create(params[:account])
+        @account = Account.create(params[:account].merge(super_admin: true))
         if @account.valid?
           redirect_to installation_step_url(2)
         else
