@@ -29,7 +29,7 @@ module Locomotive
 
     before_filter :set_current_thread_variables
 
-    helper_method :sections, :current_ability
+    helper_method :sections
 
     helper Locomotive::BaseHelper, Locomotive::ContentTypesHelper
 

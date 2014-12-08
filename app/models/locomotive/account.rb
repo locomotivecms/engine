@@ -125,14 +125,6 @@ module Locomotive
       Locomotive::DeviseMailer
     end
 
-    # def to_scope(site, resource)
-    #   ApplicationPolicy::Scope.new(self, site, resource).resolve
-    # end
-
-    # def to_role
-    #   is_admin? ? :admin : :guest
-    # end
-
     protected
 
     def api_key_should_not_be_empty
