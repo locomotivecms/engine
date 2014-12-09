@@ -7,7 +7,7 @@ module Locomotive
 
       def index
         authorize Locomotive::ThemeAsset
-        respond_with(@theme_assets)
+        respond_with(@theme_assets.sort_by(&:local_path))
       end
 
       def show

@@ -20,11 +20,7 @@ module Locomotive
         protected
 
         def scoped_pages
-          if @context['with_scope']
-            @_source.pages.where(@context['with_scope'])
-          else
-            @_source.pages
-          end
+          @_source.ordered_pages(@context['with_scope'])
         end
 
       end

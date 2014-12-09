@@ -12,7 +12,7 @@ module Locomotive
       let!(:content_type) { create(:content_type, :with_field, site: site) }
 
       before do
-        Locomotive.config.stubs(:multi_sites?).returns(false)
+        request_site site
         sign_in account
       end
 

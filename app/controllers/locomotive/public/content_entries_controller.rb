@@ -10,26 +10,24 @@ module Locomotive
 
       before_filter :sanitize_entry_params, only: :create
 
+      self.responder = Locomotive::ActionController::PublicResponder
+
       respond_to :html, :json
 
       def create
         @entry = @content_type.entries.safe_create(params[:entry] || params[:content])
-
-        respond_with @entry, {
-          location:   self.callback_url,
-          responder:  Locomotive::ActionController::PublicResponder
-        }
+        respond_with @entry
       end
 
       protected
 
       def set_locale
-        ::I18n.locale = params[:locale] || current_site.default_locale
+        ::I18n.locale = request.env['locomotive.locale'] || params[:locale] || current_site.default_locale
         ::Mongoid::Fields::I18n.locale = ::I18n.locale
       end
 
       def set_content_type
-        @content_type = current_site.content_types.where(slug: params[:slug]).first
+        @content_type = current_site.content_types.where(slug: params[:content_type_slug] || params[:slug]).first
 
         # check if ability to receive public submissions
         unless @content_type.public_submission_enabled?
@@ -41,10 +39,6 @@ module Locomotive
         end
       end
 
-      def callback_url
-        (@entry.errors.empty? ? params[:success_callback] : params[:error_callback]) || main_app.root_path
-      end
-
       def sanitize_entry_params
         entry_params = params[:entry] || params[:content] || {}
         entry_params.each do |key, value|
@@ -53,6 +47,7 @@ module Locomotive
         end
       end
 
+      # only verify csrf protection if it has been enable in the Locomotive config file
       def handle_unverified_request
         if Locomotive.config.csrf_protection
           reset_session

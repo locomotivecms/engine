@@ -20,6 +20,7 @@ es:
       pl: Polaco
       nl: Holandés
       et: Estonio
+      pt: Portugués
       pt-BR: "Portugués brasileño"
       nb: Noruego
       ja: Japonés
@@ -39,7 +40,7 @@ es:
 
     messages:
       confirm: Por favor confirme
-      sending_form: "locomotive.messages.sending_form"
+      sending_form: El formulario está siendo enviado
 
     shared:
       header:

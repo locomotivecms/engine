@@ -22,8 +22,7 @@ Scenario: Install Locomotive with Russian locale
 
 	When I press "Create site"
 
-	Then I should see the login page
-	And the current locale is "ru"
+	Then I should see "Войти"
 	And I fill in the following:
 		| Email | admin@example.com |
 		| Пароль | easyone |

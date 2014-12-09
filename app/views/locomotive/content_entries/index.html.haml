@@ -11,8 +11,16 @@
 
   = local_action_button :new, new_content_entry_path(@content_type.slug), icon: 'icon-plus'
 
+- if @content_type.filter_fields.present?
+  .search-box
+    = form_tag content_entries_path(@content_type.slug), method: :get do
+      %i.icon-search
+      = text_field_tag :q, params[:q], placeholder: t('.search_placeholder')
+
 - if @content_type.description.present?
   %p= @content_type.description
+
+.clear
 
 - if @content_type.groupable?
   - @content_entries.each do |group|

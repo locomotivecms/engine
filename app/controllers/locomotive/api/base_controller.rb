@@ -2,10 +2,10 @@ module Locomotive
   module Api
     class BaseController < ApplicationController
 
+      include SimpleTokenAuthentication::ActsAsTokenAuthenticationHandler
       include Locomotive::Routing::SiteDispatcher
       include Locomotive::ActionController::Timezone
       include Locomotive::ActionController::LocaleHelpers
-      include SimpleTokenAuthentication::ActsAsTokenAuthenticationHandler
       include Locomotive::Concerns::ExceptionController
       include Locomotive::Concerns::MembershipController
       include Locomotive::Concerns::AuthorizationController
@@ -38,8 +38,15 @@ module Locomotive
       end
 
       def require_account
-        authenticate_entity_from_token!
         authenticate_locomotive_account!
+      end
+
+      def require_site
+        return true if current_site
+
+        render_no_site_error
+
+        false # halt chain
       end
 
       def set_locale

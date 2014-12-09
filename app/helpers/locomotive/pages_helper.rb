@@ -36,6 +36,18 @@ module Locomotive
       list
     end
 
+    def display_page_layouts?
+      ((@page.persisted? && @page.allow_layout?) || !@page.persisted?) &&
+      !current_site.pages.layouts.empty?
+    end
+
+    def options_for_page_layouts
+      layouts = current_site.pages.layouts.map do |_layout|
+        [_layout.title, _layout._id]
+      end
+      [[t('.no_layout'), nil]] + layouts
+    end
+
     def options_for_target_klass_name
       base_models = current_site.content_types.map do |type|
         [type.name.humanize, type.klass_with_custom_fields(:entries)]

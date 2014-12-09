@@ -1,32 +1,32 @@
-module Locomotive
-  class TestController < ApplicationController
+# module Locomotive
+#   class TestController < ApplicationController
 
-    include Locomotive::Render
+#     include Locomotive::Render
 
-    attr_accessor :output, :status, :current_site, :current_locomotive_account
+#     attr_accessor :output, :status, :current_site, :current_locomotive_account
 
-    def render(options = {})
-      self.output = options[:text]
-      self.status = options[:status]
-    end
+#     def render(options = {})
+#       self.output = options[:text]
+#       self.status = options[:status]
+#     end
 
-    def response
-      @_response ||= TestResponse.new
-    end
+#     def response
+#       @_response ||= TestResponse.new
+#     end
 
-    def request
-      @_request ||= TestRequest.new
-    end
+#     def request
+#       @_request ||= TestRequest.new
+#     end
 
-  end
+#   end
 
-  class TestResponse < ActionDispatch::TestResponse
+#   class TestResponse < ActionDispatch::TestResponse
 
-  end
+#   end
 
-  class TestRequest < ActionDispatch::TestRequest
+#   class TestRequest < ActionDispatch::TestRequest
 
-    attr_accessor :fullpath
+#     attr_accessor :fullpath
 
-  end
-end
+#   end
+# end

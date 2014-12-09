@@ -17,7 +17,7 @@ module Locomotive
         let(:super_admin) { true }
 
         before do
-          Locomotive.config.stubs(:multi_sites?).returns(false)
+          request_site site
           site_bis
           sign_in account
         end
@@ -46,7 +46,7 @@ module Locomotive
       context 'simple local admin authenticated' do
 
         before do
-          Locomotive.config.stubs(:multi_sites?).returns(false)
+          request_site site
           sign_in account
         end
 

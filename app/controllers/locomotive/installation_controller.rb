@@ -15,7 +15,7 @@ module Locomotive
       request.get? ? self.handle_get : self.handle_post
     end
 
-    protected
+    private
 
     def handle_get
       case params[:step].to_i

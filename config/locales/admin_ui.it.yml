@@ -5,6 +5,7 @@ it:
       de: Tedesco
       fr: Francese
       pl: Polacco
+      pt: Portoghese
       pt-BR: "Portoghese Brasiliano"
       it: Italiano
       nl: Olandese
@@ -17,6 +18,7 @@ it:
       bg: Bulgaro
       sk: Slovacco
       sr: Serbe
+      zh-CN: "Chiński"
 
     buttons:
       login: Entra
@@ -46,6 +48,7 @@ it:
         account: Mio account
         site: Sito
         theme_assets: Files del tema
+        translations: Traduzioni
       footer:
         who_is_behind: "Servizio sviluppato da %{development} e desig di <a href=\"http://www.sachagreif.com\">Sacha Greif</a>"
       form_actions:
@@ -86,6 +89,11 @@ it:
       index:
         is_required: è richiesto
         default_label: Nome campo
+      form:
+        required: Obbligatorio
+        default_label: Nome campo
+        select_options:
+          ask_name: "Inserisci il label della option"
 
     sessions:
       new:
@@ -300,3 +308,18 @@ it:
         explanations: "Questo è l'ultimo passo dell'installazione. Puoi caricare un tema come file zip. Noi abbiao dei temi gratuiti <a href=\"http://www.locomotivecms.com/support/themes\">qui</a>."
         back_to_default_template: "Invece clicca <a href='#'>qui</a> per selezionare il modello di sito predefinito"
         next: Crea sito
+
+    public:
+      pages:
+        show_toolbar:
+          statuses:
+            loading: "Loading...."
+            disabled: "Inline Editor disabilitato"
+          labels:
+            save_changes: "Salva modifiche: "
+            editing_mode: "Modalità di modifica: "
+            lang: "Lingua: "
+          buttons:
+            back: "Ritorna all'amministrazione"
+            confirm: Conferma
+            cancel: Annulla

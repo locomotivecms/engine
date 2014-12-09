@@ -68,7 +68,7 @@ module Locomotive
       # Inputs which define the ETag for this response
       etag_inputs = {
         'page'   => @page.cache_key,
-        'locale' => params[:locale]
+        'locale' => request.env['locomotive.locale'] || params[:locale]
       }
 
       if @page.with_cache?
@@ -108,11 +108,31 @@ module Locomotive
     #
     def locomotive_page(path = nil)
       # TODO: params[:path] is more consistent
-      path ||= (params[:path] || params[:page_path] || request.fullpath).clone
+      path = self.locomotive_path(path)
 
       path = self.sanitize_locomotive_page_path(path)
 
       current_site.fetch_page path, current_locomotive_account.present?
+    end
+
+    # Get the Locomotive path by testing different sources:
+    # - request.env['locomotive.path'] (set only for urls with the locale inside)
+    # - params[:path]
+    # - params[:page_path]
+    # - request.fullpath
+    #
+    # It performs a clone of the path before returning it.
+    #
+    # @param [ String ] path Nil by default. In case we force a path.
+    #
+    # @return [ STring ] The LocomotiveCMS path
+    #
+    def locomotive_path(path = nil)
+      (path ||
+      request.env['locomotive.path'] ||
+      params[:path] ||
+      params[:page_path] ||
+      request.fullpath).clone
     end
 
     # Clean the path that can be understood by Locomotive in order to retrieve

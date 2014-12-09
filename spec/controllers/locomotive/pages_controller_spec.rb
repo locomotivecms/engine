@@ -11,7 +11,7 @@ describe Locomotive::PagesController do
   let(:page) { site.pages.root.first }
 
   before do
-    Locomotive.config.stubs(:multi_sites?).returns(false)
+    request_site site
     sign_in account
   end
 

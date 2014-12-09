@@ -51,16 +51,13 @@ module Locomotive
 
     # Devise
     mail_address = self.config.mailer_sender
-    # ::Devise.mailer_sender = mail_address =~ /.+@.+/ ? mail_address : "#{mail_address}@#{Locomotive.config.domain}"
+    ::Devise.mailer_sender = mail_address =~ /.+@.+/ ? mail_address : "#{mail_address}@#{Locomotive.config.domain}"
 
     # cookies stored in mongodb (mongoid_store)
     Rails.application.config.session_store :mongoid_store, {
       key:    self.config.cookie_key,
       domain: :all
     }
-
-    # add middlewares (font, seo, ...etc)
-    # self.add_middlewares
 
     # enable the hosting solution if both we are not in test or dev and that the config.hosting option has been filled up
     self.enable_hosting
@@ -69,13 +66,10 @@ module Locomotive
     if ::Dragonfly::VERSION =~ /^0\.9\.([0-9]+)/
       Locomotive.log :error, "WARNING: Old Dragonfly config detected, image uploads might be broken. Use 'rails g locomotive:install' to get the latest configuration files."
     end
-  end
 
-  # def self.add_middlewares
-  #   self.app_middleware.insert 0, '::Locomotive::Middlewares::Permalink'
-  #   self.app_middleware.use '::Locomotive::Middlewares::SeoTrailingSlash'
-  #   self.app_middleware.use '::Locomotive::Middlewares::InlineEditor'
-  # end
+    # avoid I18n warnings
+    I18n.enforce_available_locales = false
+  end
 
   def self.configure_multi_sites
     if self.config.multi_sites?

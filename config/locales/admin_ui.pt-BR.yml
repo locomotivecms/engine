@@ -14,6 +14,7 @@ pt-BR:
       de: Alemão
       fr: Francês
       pl: Polonês
+      pt: Português
       pt-BR: "Português brasileiro"
       it: Italiano
       nl: Holandês
@@ -121,7 +122,7 @@ pt-BR:
         help: "As páginas são organizadas como uma árvore. Você pode reordenar as páginas como se fossem pastas"
         no_items: "Não existe nenhuma página ainda. Clique <a href=\"%{url}\">aqui</a> para criar a primeira."
         new: nova página
-        latest_entries: Últmas páginas
+        latest_entries: Últimas páginas
       new:
         title: Nova página
         help: "Por favor, preencha o formulário a seguir para criar sua página. Atenção: Por padrão a página não é publicada."
@@ -145,15 +146,15 @@ pt-BR:
     snippets:
       index:
         title: Listando Blocos de Código
-        help: "Blocos de código são alguns códigos HTML que pode sem encontrados em diferentes lugares do site e podem ser reutilizados ( como o rodapé )."
+        help: "Blocos de código são alguns códigos HTML que podem ser encontrados em diferentes lugares do site e podem ser reutilizados ( como o rodapé )."
         no_items: "Você ainda não tem blocos de código. Clique <a href=\"%{url}\">aqui</a> para criar o primeiro."
         new: novo bloco
       new:
         title: Novo bloco
-        help: "Preecha o formulário a seguirar para atulizar o seu bloco de código."
+        help: "Preecha o formulário a seguir para atualizar o seu bloco de código."
       edit:
         title: Editing snippet
-        help: "Preecha o formulário a seguirar para atulizar o seu bloco de código."
+        help: "Preecha o formulário a seguir para atualizar o seu bloco de código."
       snippet:
         updated_at: Atualizado em
 
@@ -178,7 +179,7 @@ pt-BR:
         author: Autor
       new:
         title: Novo usuário
-        help: "Por favor, forneça o e-mail que deseja adicionar. Se ele não exister, você será redirecionado para o formulário de criação."
+        help: "Por favor, forneça o e-mail que deseja adicionar. Se ele não existir, você será redirecionado para o formulário de criação."
 
     accounts:
       new:

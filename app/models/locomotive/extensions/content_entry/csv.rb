@@ -37,7 +37,7 @@ module Locomotive
           when :file
             value.blank? ? '' : value.guess_url(options[:host])
           when :belongs_to
-            value.try(:_label)
+            value.try(:_label) || ''
           when :has_many, :many_to_many
             value.map(&:_label).join(', ')
           when :tags
@@ -68,7 +68,7 @@ module Locomotive
               # header
               csv << labels
               # body
-              all.each do |entry|
+              all.each_by(100) do |entry|
                 csv << entry.to_values(options)
               end
             end

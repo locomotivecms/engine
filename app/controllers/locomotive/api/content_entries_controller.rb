@@ -8,8 +8,8 @@ module Locomotive
 
       def index
         authorize Locomotive::ContentEntry
-        @content_entries = @content_entries.order_by([@content_type.order_by_definition])
-        respond_with @content_entries
+        @content_entries = service.all(params.slice(:page, :per_page, :order_by, :where))
+        respond_with(@content_entries)
       end
 
       def show
@@ -36,6 +36,16 @@ module Locomotive
         respond_with @content_entry, location: main_app.locomotive_api_content_entries_url(@content_type.slug)
       end
 
+      def destroy_all
+        authorize Locomotive::ContentEntry
+        service.destroy_all
+        respond_to do |format|
+          format.html { render text: true }
+          format.json { render json: { success: true } }
+          format.xml  { render xml: { success: true } }
+        end
+      end
+
       private
 
       def load_content_type
@@ -48,6 +58,10 @@ module Locomotive
 
       def load_content_entries
         @content_entries = @content_type.entries
+      end
+
+      def service
+        @service ||= Locomotive::ContentEntryService.new(@content_type)
       end
 
       def content_entry_params

@@ -1,6 +1,7 @@
 module Locomotive
   module Liquid
       module Tags
+
       # Consume web services as easy as pie directly in liquid !
       #
       # Usage:
@@ -13,14 +14,14 @@ module Locomotive
       #
       class Consume < ::Liquid::Block
 
-        Syntax = /(#{::Liquid::VariableSignature}+)\s*from\s*(#{::Liquid::QuotedString}|#{::Liquid::VariableSignature}+)/
+        Syntax = /(#{::Liquid::VariableSignature}+)\s*from\s*(#{::Liquid::QuotedString}|#{::Liquid::VariableSignature}+)(.*)?/
 
         def initialize(tag_name, markup, tokens, context)
           if markup =~ Syntax
             @target = $1
 
             self.prepare_url($2)
-            self.prepare_options(markup)
+            self.prepare_api_arguments($3)
           else
             raise ::Liquid::SyntaxError.new("Syntax Error in 'consume' - Valid syntax: consume <var> from \"<url>\" [username: value, password: value]")
           end
@@ -31,9 +32,12 @@ module Locomotive
         end
 
         def render(context)
+          self.set_api_options(context)
+
           if instance_variable_defined? :@variable_name
             @url = context[@variable_name]
           end
+
           render_all_and_cache_it(context)
         end
 
@@ -49,13 +53,14 @@ module Locomotive
           end
         end
 
-        def prepare_options(markup)
-          @options = {}
-          markup.scan(::Liquid::TagAttributes) do |key, value|
-            @options[key] = value if key != 'http'
-          end
-          @options['timeout'] = @options['timeout'].to_f if @options['timeout']
-          @expires_in = (@options.delete('expires_in') || 0).to_i
+        def prepare_api_arguments(string)
+          string = string.gsub(/^(\s*,)/, '').strip
+          @api_arguments = Solid::Arguments.parse(string)
+        end
+
+        def set_api_options(context)
+          @api_options  = @api_arguments ? @api_arguments.interpolate(context).first || {} : {}
+          @expires_in   = @api_options.delete(:expires_in) || 0
         end
 
         def page_fragment_cache_key(url)
@@ -81,7 +86,7 @@ module Locomotive
         def render_all_without_cache(context)
           context.stack do
             begin
-              context.scopes.last[@target.to_s] = Locomotive::Httparty::Webservice.consume(@url, @options.symbolize_keys)
+              context.scopes.last[@target.to_s] = Locomotive::Httparty::Webservice.consume(@url, @api_options)
               self.cached_response = context.scopes.last[@target.to_s]
             rescue Timeout::Error
               context.scopes.last[@target.to_s] = self.cached_response

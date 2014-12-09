@@ -15,12 +15,7 @@ module Locomotive
 
     def index
       authorize ContentEntry
-      options = { page: params[:page] || 1, per_page: Locomotive.config.ui[:per_page] }
-      @content_entries = if params[:q]
-        @content_type.ordered_entries(options.merge(q: params[:q]))
-      else
-        @content_type.list_or_group_entries(options)
-      end
+      @content_entries = service.all(params.slice(:page, :per_page, :q, :where))
       respond_with @content_entries
     end
 
@@ -75,7 +70,7 @@ module Locomotive
       respond_with @content_entry, location: content_entries_path(@content_type.slug)
     end
 
-    protected
+    private
 
     def load_content_type
       @content_type ||= current_site.content_types.where(slug: params[:slug]).first
@@ -83,6 +78,10 @@ module Locomotive
 
     def load_content_entry
       @content_entry = @content_type.entries.find(params[:id])
+    end
+
+    def service
+      @service ||= Locomotive::ContentEntryService.new(load_content_type)
     end
 
   end

@@ -10,10 +10,6 @@ describe Locomotive::Api::TokensController do
     }
   end
 
-  before do
-    Locomotive.config.stubs(:multi_sites?).returns(false)
-  end
-
   describe 'POST #create' do
 
     subject { post :create, params.merge(format: :json) }

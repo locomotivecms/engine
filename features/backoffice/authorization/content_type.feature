@@ -14,7 +14,7 @@ Background:
   Scenario: As an unauthenticated user
     Given I am not authenticated
     When I go to the "Projects" model edition page
-    Then I should see the login page
+    Then I should see "Log in"
 
   Scenario: Accessing edition functionality as an Admin
     Given I am an authenticated "admin"

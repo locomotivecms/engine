@@ -12,7 +12,7 @@ module Locomotive
       let!(:content_asset) { create(:asset, site: site) }
 
       before do
-        Locomotive.config.stubs(:multi_sites?).returns(false)
+        request_site site
         sign_in account
       end
 

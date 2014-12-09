@@ -1,0 +1,62 @@
+pt:
+  errors:
+    messages:
+      not_found: "não encontrado"
+      already_confirmed: "já foi confirmado"
+      not_locked: "não está bloqueado"
+
+  devise:
+    failure:
+      locomotive_account:
+        unauthenticated: 'É necessário registar ou fazer o login antes de continuar.'
+        unconfirmed: 'Deve confirmar sua conta antes de continuar.'
+        locked: 'A sua conta está bloqueada.'
+        invalid: 'Email ou senha inválidos.'
+        not_found_in_database: 'Email ou senha inválidos.'
+        invalid_token: 'Autenticação inválida.'
+        timeout: 'A sua sessão expirou. Por favor, faça o login novamente para continuar.'
+        inactive: 'A sua conta ainda não foi ativada.'
+    sessions:
+      locomotive_account:
+        signed_in: 'Login efectuado com sucesso.'
+        signed_out: 'Logout efectuado com sucesso.'
+    passwords:
+      locomotive_account:
+        send_instructions: 'Vai receber um email com as instruções sobre como alterar a sua password em poucos minutos.'
+        updated: 'A sua password foi alterada com sucesso. Está autenticado.'
+    confirmations:
+      locomotive_account:
+        send_instructions: 'Vai receber um email com as instruções sobre como confirmar a sua conta em poucos minutos.'
+        confirmed: 'A sua conta foi confirmada com sucesso. Está autenticado.'
+    registrations:
+      locomotive_account:
+        signed_up: 'Autenticou com sucesso.'
+        updated: 'Atualização da conta feita com sucesso.'
+        destroyed: 'A sua conta foi cancelada com sucesso. Esperamos voltar a vê-lo por aqui, obrigado e Adeus!'
+    unlocks:
+      locomotive_account:
+        send_instructions: 'Irá receber um email com as intruções de como desbloquear a sua conta em poucos minutos.'
+        unlocked: 'A sua conta foi desbloqueada com sucesso. Está autenticado.'
+    mailer:
+      locomotive_account:
+        confirmation_instructions: 'Instruções de confirmação'
+        reset_password_instructions: 'Instruções para fazer o reset á password.'
+        unlock_instructions: 'Instruções de desbloqueio'
+
+
+  locomotive:
+    devise_mailer:
+      common:
+        hello: Olá
+      confirmation_instructions:
+        you_can_confirm_your_account_through_the_link_below: "Pode confirmar a sua conta através do link em baixo."
+        confirm_my_account: "Confirmar a minha conta"
+      reset_password_instructions:
+        reset_password_instruction: "Alguém solicitou um link para alterar a sua password. Você poderá fazer isto através do link em baixo:"
+        change_my_password: "Alterar a minha password"
+        wrong_request_instruction: "Se você não solicitou esta operação, por favor ignore este email."
+        unchange_password_message: "A sua password não irá ser alterada até que você aceda ao link em cima e crie uma nova password."
+      unlock_instructions:
+        locked_account_message: "A sua conta foi bloqueada devido a excessivas tentativas de autenticação sem sucesso."
+        unlock_account_instruction: "Clique no link em baixo para desbloquear a sua conta:"
+        unlock_my_account: "Desbloquear a minha conta"

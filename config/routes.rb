@@ -17,7 +17,7 @@ Locomotive::Engine.routes.draw do
     delete 'signout'  => 'sessions#destroy', as: :destroy_locomotive_session
   end
 
-  root to: 'dashboard#show'
+  # root to: 'dashboard#show'
 
   resource :dashboard, controller: 'dashboard', only: :show
 
@@ -67,6 +67,8 @@ Rails.application.routes.draw do
   namespace :locomotive, module: 'locomotive' do
     namespace :api do
 
+      get 'version', to: 'version#show'
+
       resources :tokens, only: [:create, :destroy]
 
       resource  :current_site, controller: 'current_site', only: [:show, :update, :destroy]
@@ -87,7 +89,9 @@ Rails.application.routes.draw do
 
         api.resources :content_types
 
-        api.resources :content_entries, path: 'content_types/:slug/entries'
+        api.resources :content_entries, path: 'content_types/:slug/entries' do
+          delete :index, on: :collection, action: :destroy_all
+        end
 
         api.resources :theme_assets
 
@@ -99,27 +103,27 @@ Rails.application.routes.draw do
   end
 
   # sitemap
-  match '/sitemap.xml'  => 'locomotive/public/sitemaps#show', format: 'xml', via: :all
+  get '/sitemap.xml', to: 'locomotive/public/sitemaps#show', format: 'xml'
 
   # robots.txt
-  match '/robots.txt'   => 'locomotive/public/robots#show', format: 'txt', via: :all
+  get '/robots.txt', to: 'locomotive/public/robots#show', format: 'txt'
 
   # public content entry submissions
   resources :locomotive_entry_submissions, controller: 'locomotive/public/content_entries', path: 'entry_submissions/:slug'
 
   # magic urls
-  match '/_admin'               => 'locomotive/public/pages#show_toolbar', via: :all
-  match ':locale/_admin'        => 'locomotive/public/pages#show_toolbar', locale: /(#{Locomotive.config.site_locales.join('|')})/, via: :all
-  match ':locale/*path/_admin'  => 'locomotive/public/pages#show_toolbar', locale: /(#{Locomotive.config.site_locales.join('|')})/, via: :all
-  match '*path/_admin'          => 'locomotive/public/pages#show_toolbar', via: :all
+  # match '/_admin'               => 'locomotive/public/pages#show_toolbar'
+  # match '*path/_admin'          => 'locomotive/public/pages#show_toolbar'
 
-  match '/_edit'                => 'locomotive/public/pages#edit', via: :all
-  match ':locale/_edit'         => 'locomotive/public/pages#edit', page_path: 'index', locale: /(#{Locomotive.config.site_locales.join('|')})/, via: :all
-  match ':locale/*path/_edit'   => 'locomotive/public/pages#edit', locale: /(#{Locomotive.config.site_locales.join('|')})/, via: :all
-  match '*path/_edit'           => 'locomotive/public/pages#edit', via: :all
+  # match '/_edit'                => 'locomotive/public/pages#edit'
+  # match '*path/_edit'           => 'locomotive/public/pages#edit'
 
-  root to:                      'locomotive/public/pages#show'
-  match ':locale'               => 'locomotive/public/pages#show', page_path: 'index', locale: /(#{Locomotive.config.site_locales.join('|')})/, via: :all
-  match ':locale/*path'         => 'locomotive/public/pages#show', locale: /(#{Locomotive.config.site_locales.join('|')})/, via: :all
-  match '*path'                 => 'locomotive/public/pages#show', via: :all
+  constraints Locomotive::Routing::PostContentEntryConstraint.new do
+    # root to:                    'locomotive/public/content_entries#create', path: 'index', via: :post
+    post  '/',    to: 'locomotive/public/content_entries#create'
+    post '*path', to: 'locomotive/public/content_entries#create'
+  end
+
+  # root to:                      'locomotive/public/pages#show'
+  match '*path'   => 'locomotive/public/pages#show', via: :all
 end

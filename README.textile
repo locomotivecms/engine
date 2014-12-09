@@ -28,7 +28,7 @@ h2. Gems
 Here is a short list of main gems / technologies used in the application.
 
 * Ruby 2.x
-* Rails 3.2.17 (Rails 4.0 planned for the beginning of 2014)
+* Rails 3.2.19 (Rails 4.0 planned for the beginning of 2014)
 * Mongoid 3.1.5 (with MongoDB 2.x)
 * Liquid
 * Devise
@@ -44,7 +44,7 @@ See the "installation documentation on the official website":http://doc.locomoti
 
 h2. Upgrading
 
-We work on the procedure to upgrade from a previous version of the engine (below the 2.0.0)
+See the "engine upgrade guide on the official website":http://doc.locomotivecms.com/guides/upgrading-engine
 
 h2. Community
 
@@ -89,5 +89,5 @@ h2. Contact
 
 Feel free to contact me at didier at nocoffee dot fr.
 
-Copyright (c) 2013 NoCoffee, released under the MIT license
+Copyright (c) 2014 NoCoffee, released under the MIT license
 ...

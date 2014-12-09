@@ -1,192 +1,194 @@
-# require 'spec_helper'
+require 'spec_helper'
 
-# describe Locomotive::Liquid::Drops::Page do
+describe Locomotive::Liquid::Drops::Page do
 
-#   before(:each) do
-#     @site  = FactoryGirl.build(:site)
-#     @home  = FactoryGirl.build(:page, site: @site, meta_keywords: 'Libidinous, Angsty', meta_description: "Quite the combination.")
-#   end
+  before(:each) do
+    @site  = FactoryGirl.build(:site)
+    @home  = FactoryGirl.build(:page, site: @site, meta_keywords: 'Libidinous, Angsty', meta_description: "Quite the combination.")
+  end
 
-#   context '#rendering tree' do
+  context '#rendering tree' do
 
-#     before(:each) do
-#       @home.stubs(:children).returns([
-#         Locomotive::Page.new(title: 'Child #1'),
-#         Locomotive::Page.new(title: 'Child #2'),
-#         Locomotive::Page.new(title: 'Child #3')
-#         ])
-#       @home.children.last.stubs(:children).returns([
-#         Locomotive::Page.new(title: 'Child #3.1'),
-#         Locomotive::Page.new(title: 'Child #3.2')
-#         ])
-#     end
+    before(:each) do
+      @home.stubs(:children).returns([
+        Locomotive::Page.new(title: 'Child #1'),
+        Locomotive::Page.new(title: 'Child #2'),
+        Locomotive::Page.new(title: 'Child #3')
+        ])
+      @home.children.last.stubs(:children).returns([
+        Locomotive::Page.new(title: 'Child #3.1'),
+        Locomotive::Page.new(title: 'Child #3.2')
+        ])
+    end
 
-#     context '#children' do
+    context '#children' do
 
-#       it 'renders title of all children pages' do
-#         content = render_template '{% for child in home.children %}{{ child.title }},{% endfor %}'
-#         content.should == 'Child #1,Child #2,Child #3,'
-#       end
+      it 'renders title of all children pages' do
+        content = render_template '{% for child in home.children %}{{ child.title }},{% endfor %}'
+        content.should == 'Child #1,Child #2,Child #3,'
+      end
 
-#     end
+    end
 
-#     context '#sub children' do
+    context '#sub children' do
 
-#       it 'renders title of all sub children pages' do
-#         content = render_template '{% for child in home.children.last.children %}{{ child.title }},{% endfor %}'
-#         content.should == 'Child #3.1,Child #3.2,'
-#       end
+      it 'renders title of all sub children pages' do
+        content = render_template '{% for child in home.children.last.children %}{{ child.title }},{% endfor %}'
+        content.should == 'Child #3.1,Child #3.2,'
+      end
 
-#     end
+    end
 
-#   end
+  end
 
-#   context '#parent' do
-#     before(:each) do
-#       @sub_page = FactoryGirl.build(:sub_page, meta_keywords: 'Sub Libidinous, Angsty', meta_description: "Sub Quite the combination.")
-#     end
+  context '#parent' do
+    before(:each) do
+      @sub_page = FactoryGirl.build(:sub_page, meta_keywords: 'Sub Libidinous, Angsty', meta_description: "Sub Quite the combination.")
+    end
 
-#     it 'renders title of parent page' do
-#       content = render_template '{{ sub_page.parent.title }}', { 'sub_page' => @sub_page }
-#       content.should == "Home page"
-#     end
+    it 'renders title of parent page' do
+      content = render_template '{{ sub_page.parent.title }}', { 'sub_page' => @sub_page }
+      content.should == "Home page"
+    end
 
-#   end
+  end
 
-#   context '#breadcrumbs' do
-#     before(:each) do
-#       @sub_page = FactoryGirl.build(:sub_page, meta_keywords: 'Sub Libidinous, Angsty', meta_description: "Sub Quite the combination.")
-#       @sub_page.stubs(:ancestors_and_self).returns([FactoryGirl.build(:page), @sub_page])
-#     end
+  context '#breadcrumbs' do
+    before(:each) do
+      @sub_page = FactoryGirl.build(:sub_page, meta_keywords: 'Sub Libidinous, Angsty', meta_description: "Sub Quite the combination.")
+      @sub_page.stubs(:ancestors_and_self).returns([FactoryGirl.build(:page), @sub_page])
+    end
 
-#     it 'renders breadcrumbs of current page' do
-#       content = render_template '{% for crumb in sub_page.breadcrumbs %}{{ crumb.title }},{% endfor %}', { 'sub_page' => @sub_page }
-#       content.should == 'Home page,Subpage,'
-#     end
-#   end
+    it 'renders breadcrumbs of current page' do
+      content = render_template '{% for crumb in sub_page.breadcrumbs %}{{ crumb.title }},{% endfor %}', { 'sub_page' => @sub_page }
+      content.should == 'Home page,Subpage,'
+    end
+  end
 
-#   context '#rendering page title' do
+  context '#rendering page title' do
 
-#     it 'renders the title of a normal page' do
-#       render_template('{{ home.title }}').should == 'Home page'
-#     end
+    it 'renders the title of a normal page' do
+      render_template('{{ home.title }}').should == 'Home page'
+    end
 
-#     it 'renders the content instance highlighted field instead for a templatized page' do
-#       templatized = FactoryGirl.build(:page, title: 'Lorem ipsum template', templatized: true)
+    it 'renders the content instance highlighted field instead for a templatized page' do
+      templatized = FactoryGirl.build(:page, title: 'Lorem ipsum template', templatized: true)
 
-#       entry = Locomotive::Liquid::Drops::ContentEntry.new(mock('entry', _label: 'Locomotive rocks !'))
+      entry = Locomotive::Liquid::Drops::ContentEntry.new(mock('entry', _label: 'Locomotive rocks !'))
 
-#       render_template('{{ page.title }}', 'page' => templatized, 'entry' => entry).should == 'Locomotive rocks !'
-#     end
+      render_template('{{ page.title }}', 'page' => templatized, 'entry' => entry).should == 'Locomotive rocks !'
+      render_template('{{ page.original_title }}', 'page' => templatized, 'entry' => entry).should == 'Lorem ipsum template'
+    end
 
-#   end
+  end
 
-#   context '#rendering page slug' do
+  context '#rendering page slug' do
 
-#     it 'renders the slug of a normal page' do
-#       render_template('{{ home.slug }}').should == 'index'
-#     end
+    it 'renders the slug of a normal page' do
+      render_template('{{ home.slug }}').should == 'index'
+    end
 
-#     it 'renders the content instance slug instead for a templatized page' do
-#       templatized = FactoryGirl.build(:page, title: 'Lorem ipsum template', templatized: true)
+    it 'renders the content instance slug instead for a templatized page' do
+      templatized = FactoryGirl.build(:page, title: 'Lorem ipsum template', slug: 'content-type-template', templatized: true)
 
-#       entry = Locomotive::Liquid::Drops::ContentEntry.new(mock('entry', _slug: 'my_entry'))
+      entry = Locomotive::Liquid::Drops::ContentEntry.new(mock('entry', _slug: 'my_entry'))
 
-#       render_template('{{ page.slug }}', 'page' => templatized, 'entry' => entry).should == 'my_entry'
-#     end
+      render_template('{{ page.slug }}', 'page' => templatized, 'entry' => entry).should == 'my_entry'
+      render_template('{{ page.original_slug }}', 'page' => templatized, 'entry' => entry).should == 'content-type-template'
+    end
 
-#   end
+  end
 
-#   context '#rendering page with editable_elements' do
+  context '#rendering page with editable_elements' do
 
-#     before(:each) do
-#       @site = FactoryGirl.create(:site)
-#       @home = @site.pages.root.first
-#       @home.update_attributes raw_template: "{% block body %}{% editable_short_text 'body' %}Lorem ipsum{% endeditable_short_text %}{% endblock %}"
-#       @home.editable_elements.first.content = 'Lorem ipsum'
-#     end
+    before(:each) do
+      @site = FactoryGirl.create(:site)
+      @home = @site.pages.root.first
+      @home.update_attributes raw_template: "{% editable_text title %}Hello world{% endeditable_text %}{% block body %}{% editable_short_text 'message' %}Lorem ipsum{% endeditable_short_text %}{% endblock %}"
+      @home.editable_elements.first.content = 'Lorem ipsum'
+    end
 
-#     it 'renders the text of the editable field' do
-#       render_template('{{ home.body }}').should == 'Lorem ipsum'
-#     end
+    it 'renders the text of the editable field' do
+      render_template('{{ home.editable_elements.body.message }}').should == 'Lorem ipsum'
+    end
 
-#   end
+  end
 
-#   describe 'published?' do
-#     subject { render_template('{{ home.published? }}') }
-#     it { should == @home.published?.to_s }
-#   end
+  describe 'published?' do
+    subject { render_template('{{ home.published? }}') }
+    it { should == @home.published?.to_s }
+  end
 
-#   describe 'listed?' do
-#     subject { render_template('{{ home.listed? }}') }
-#     it { should == @home.listed?.to_s }
-#   end
+  describe 'listed?' do
+    subject { render_template('{{ home.listed? }}') }
+    it { should == @home.listed?.to_s }
+  end
 
-#   describe 'meta_keywords' do
-#     subject { render_template('{{ home.meta_keywords }}') }
-#     it { should == @home.meta_keywords }
-#   end
+  describe 'meta_keywords' do
+    subject { render_template('{{ home.meta_keywords }}') }
+    it { should == @home.meta_keywords }
+  end
 
-#   describe 'meta_description' do
-#     subject { render_template('{{ home.meta_description }}') }
-#     it { should == @home.meta_description }
-#   end
+  describe 'meta_description' do
+    subject { render_template('{{ home.meta_description }}') }
+    it { should == @home.meta_description }
+  end
 
-#   describe 'templatized?' do
+  describe 'templatized?' do
 
-#     subject { render_template('{{ page.templatized? }}', { 'page' => page }) }
+    subject { render_template('{{ page.templatized? }}', { 'page' => page }) }
 
-#     context 'by default' do
+    context 'by default' do
 
-#       let(:page) { @home }
-#       it { should == 'false' }
+      let(:page) { @home }
+      it { should == 'false' }
 
-#     end
+    end
 
-#     context 'with the templatized flag enabled' do
+    context 'with the templatized flag enabled' do
 
-#       let(:page) { FactoryGirl.build(:page, templatized: true) }
-#       it { should == 'true' }
+      let(:page) { FactoryGirl.build(:page, templatized: true) }
+      it { should == 'true' }
 
-#     end
+    end
 
-#   end
+  end
 
-#   describe 'content_type' do
+  describe 'content_type' do
 
-#     let(:content_type) do
-#       FactoryGirl.build(:content_type, site: @site).tap do |_content_type|
-#         _content_type.entries_custom_fields.build label: 'Name', type: 'string'
-#         _content_type.save!
-#         2.times { _content_type.entries.create(name: 'Example') }
-#       end
-#     end
-#     let(:page) { FactoryGirl.build(:page, templatized: true, target_klass_name: content_type.klass_with_custom_fields(:entries).to_s) }
+    let(:content_type) do
+      FactoryGirl.build(:content_type, site: @site).tap do |_content_type|
+        _content_type.entries_custom_fields.build label: 'Name', type: 'string'
+        _content_type.save!
+        2.times { _content_type.entries.create(name: 'Example') }
+      end
+    end
+    let(:page) { FactoryGirl.build(:page, templatized: true, target_klass_name: content_type.klass_with_custom_fields(:entries).to_s) }
 
-#     subject { render_template(template, { 'page' => page }) }
+    subject { render_template(template, { 'page' => page }) }
 
-#     describe '#content_type' do
+    describe '#content_type' do
 
-#       let(:template) { '{{ page.content_type }}' }
-#       it { should =~ /ContentTypeProxyCollection/ }
+      let(:template) { '{{ page.content_type }}' }
+      it { should =~ /ContentTypeProxyCollection/ }
 
-#     end
+    end
 
-#     describe '#content_type.count' do
+    describe '#content_type.count' do
 
-#       let(:template) { '{{ page.content_type.count }}' }
-#       it { should == '2' }
+      let(:template) { '{{ page.content_type.count }}' }
+      it { should == '2' }
 
-#     end
+    end
 
-#   end
+  end
 
-#   def render_template(template = '', assigns = {})
-#     assigns = {
-#       'home' => @home
-#     }.merge(assigns)
+  def render_template(template = '', assigns = {})
+    assigns = {
+      'home' => @home
+    }.merge(assigns)
 
-#     Liquid::Template.parse(template).render!(assigns)
-#   end
+    Liquid::Template.parse(template).render!(assigns)
+  end
 
-# end
+end

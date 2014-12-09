@@ -1,3 +1,4 @@
+# TODO: move it to app/controllers/locomotive/concerns
 module Locomotive
   module Routing
     module SiteDispatcher
@@ -6,27 +7,14 @@ module Locomotive
 
       included do
         if self.respond_to?(:before_filter)
-          before_filter :fetch_site
-
           helper_method :current_site
         end
       end
 
       protected
 
-      def fetch_site
-        @current_site ||= begin
-          Locomotive.log "[fetch site] host = #{request.host} / #{request.env['HTTP_HOST']}"
-          if Locomotive.config.multi_sites?
-            Locomotive::Site.match_domain(request.host).first
-          else
-            Locomotive::Site.first
-          end
-        end
-      end
-
       def current_site
-        @current_site || fetch_site
+        @current_site ||= request.env['locomotive.site']
       end
 
       def current_resource

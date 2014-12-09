@@ -19,6 +19,7 @@ Feature: Content Entries
       | Logo    | file          | false     |           |
       | Client  | belongs_to    | false     | Clients   |
     And I have "code, design" as "Type" values of the "Projects" model
+    And I have the "Projects" entries ordered by the "Name" field
     And I have a custom model named "Workers" with
       | label       | type          | required  |
       | Name        | string        | true      |
@@ -48,6 +49,18 @@ Feature: Content Entries
       | 4f832c2cb0d86d3f42fffff0    | p1    | first | code    | false     | 2012-07-01  | logo1.jpg   |
       | 4f832c2cb0d86d3f42fffff1    | p2    | 2nd   | design  | true      | 2012-11-30  | logo1.jpg   |
 
+  # paginating the content entries
+  Scenario: Paginating content entries
+    When I do an API GET request to content_types/projects/entries.json with:
+    """
+    {
+      "page": 1,
+      "per_page": 1
+    }
+    """
+    Then the JSON response should be an array
+    And the JSON response should have 1 entries
+
   # create content entry
 
   Scenario: Creating new project
@@ -71,15 +84,15 @@ Feature: Content Entries
     Then the JSON response should be an array
     And the JSON response should have 3 entries
     And the JSON should have the following:
-      | 2/name              | "Project 3"                   |
-      | 2/desc              | "The third"                   |
-      | 2/type              | "code"                        |
-      | 2/started           | false                         |
-      | 2/due               | "06/01/2012"                  |
-      | 2/workers/0         | "w1"                          |
-      | 2/workers/1         | "w3"                          |
-      | 2/client            | "c1"                          |
-    And the JSON at "2/logo" should match /logo2.jpg$/
+      | 0/name              | "Project 3"                   |
+      | 0/desc              | "The third"                   |
+      | 0/type              | "code"                        |
+      | 0/started           | false                         |
+      | 0/due               | "06/01/2012"                  |
+      | 0/workers/0         | "w1"                          |
+      | 0/workers/1         | "w3"                          |
+      | 0/client            | "c1"                          |
+    And the JSON at "0/logo" should match /logo2.jpg$/
     And the response content type should match /application\/json/
 
   Scenario: Updating existing project

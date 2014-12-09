@@ -13,8 +13,8 @@ Gem::Specification.new do |s|
   s.authors     = ['Didier Lafforgue']
   s.email       = ['did@locomotivecms.com']
   s.homepage    = 'http://www.locomotivecms.com'
-  s.summary     = 'A Next Generation Sexy CMS for Rails 3'
-  s.description = 'LocomotiveCMS is a next generation CMS system with sexy admin tools, liquid templating, and inline editing powered by mongodb and rails 3.2'
+  s.summary     = 'A platform to create, publish and edit sites'
+  s.description = 'LocomotiveCMS is designed to save your time and help you focus on what matters: front-end technology, standard development process and no learning time for your client.'
 
   s.add_dependency 'rake',                            '~> 10.0.0'
 
@@ -24,6 +24,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'devise-encryptable',              '~> 0.2.0'
 
   s.add_dependency 'pundit',                          '~> 0.3.0'
+
 
   s.add_dependency 'mongoid',                         '~> 4.0.0'
   s.add_dependency 'mongoid-tree',                    '~> 2.0.0'
@@ -45,7 +46,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'flash_cookie_session',            '~> 1.1.1'
 
   s.add_dependency 'locomotivecms_solid',             '~> 0.2.2'
-  s.add_dependency 'compass-rails',                   '~> 1.1.7'
+  s.add_dependency 'compass-rails',                   '~> 2.0.0'
   s.add_dependency 'bootstrap-sass-rails',            '~> 3.1.0.0'
   s.add_dependency 'formtastic',                      '~> 2.2.1'
   s.add_dependency 'formtastic-bootstrap',            '~> 3.0.0'
@@ -53,6 +54,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'responders',                      '~> 1.1.0'
   s.add_dependency 'cells',                           '~> 3.11.1'
+
   s.add_dependency 'RedCloth',                        '~> 4.2.8'
   s.add_dependency 'redcarpet',                       '~> 3.0.0'
   s.add_dependency 'sanitize',                        '2.0.3'
@@ -61,7 +63,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'carrierwave-mongoid',             '~> 0.7'
   s.add_dependency 'fog',                             '~> 1.12.1'
-  s.add_dependency 'dragonfly',                       '~> 1.0.4'
+  s.add_dependency 'dragonfly',                       '~> 1.0.7'
   s.add_dependency 'rack-cache',                      '~> 1.1'
   s.add_dependency 'mimetype-fu',                     '~> 0.1.2'
 

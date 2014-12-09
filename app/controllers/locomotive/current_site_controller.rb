@@ -26,7 +26,11 @@ module Locomotive
       respond_with @site, location: edit_current_site_path(new_host_if_subdomain_changed)
     end
 
-    protected
+    private
+
+    def load_site
+      @site = current_site
+    end
 
     # TODO Replace by Strong parameter
     def filter_attributes
@@ -45,12 +49,6 @@ module Locomotive
 
     def ensure_domains_list
       params[:site][:domains] = [] unless params[:site][:domains]
-    end
-
-    private
-
-    def load_site
-      @site = current_site
     end
 
   end

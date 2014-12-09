@@ -12,6 +12,8 @@ module Locomotive
 
       template 'carrierwave.rb', 'config/initializers/carrierwave.rb'
 
+      template 'devise.rb', 'config/initializers/devise.rb'
+
       template 'dragonfly.rb', 'config/initializers/dragonfly.rb'
 
       template 'mongoid.yml', 'config/mongoid.yml'

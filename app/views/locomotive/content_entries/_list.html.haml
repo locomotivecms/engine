@@ -1,4 +1,4 @@
-- if entries.empty?
+- if empty_collection?(entries)
   %p.no-items!= t('.no_items', url: new_content_entry_path(content_type.slug))
 - else
   %ul{ id: 'entries-list', class: "#{content_type.groupable? ? 'grouped' : 'list'} #{'sortable' if content_type.order_manually?}", :'data-url' => sort_content_entries_path(content_type.slug, :json) }

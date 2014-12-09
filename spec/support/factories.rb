@@ -1,4 +1,5 @@
 # encoding: utf-8
+
 FactoryGirl.define do
 
   ## Site ##
@@ -59,6 +60,12 @@ FactoryGirl.define do
       name 'Jean Claude'
       email 'jean@frenchy.fr'
       locale 'fr'
+    end
+
+    factory 'portuguese user' do
+      name 'Tiago Fernandes'
+      email 'tjg.fernandes@gmail.com'
+      locale 'pt'
     end
 
     factory 'brazillian user' do

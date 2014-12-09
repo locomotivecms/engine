@@ -10,6 +10,7 @@
 = f.inputs name: :information  do
   = f.input :name, wrapper_html: { style: 'display: none' }
   = f.input :locales, as: '::Locomotive::Locales', collection: ordered_current_site_locales, input_html: { class: 'locales' }
+  = f.input :prefix_default_locale, as: :'Locomotive::Toggle', input_html: { class: 'simple-toggle' }
   = f.input :timezone_name, as: :select, include_blank: false, collection: options_for_site_timezones
 
 - if can?(:point, Locomotive::Site)

@@ -1,92 +1,110 @@
-# require 'spec_helper'
+require 'spec_helper'
 
-# describe Locomotive::Liquid::Tags::Consume do
+describe Locomotive::Liquid::Tags::Consume do
 
-#   context '#validating syntax' do
+  context '#validating syntax' do
 
-#     it 'validates a basic syntax' do
-#       markup = 'blog from "http://blog.locomotiveapp.org"'
-#       lambda do
-#         Locomotive::Liquid::Tags::Consume.new('consume', markup, ["{% endconsume %}"], {})
-#       end.should_not raise_error
-#     end
+    let(:markup) { '' }
+    let(:tag) { Locomotive::Liquid::Tags::Consume.new('consume', markup, ["{% endconsume %}"], {}) }
+    subject { lambda { tag } }
 
-#     it 'validates more complex syntax with attributes' do
-#       markup = 'blog from "http://www.locomotiveapp.org" username: "john", password: "easyone"'
-#       lambda do
-#         Locomotive::Liquid::Tags::Consume.new('consume', markup, ["{% endconsume %}"], {})
-#       end.should_not raise_error
-#     end
+    describe 'validates a basic syntax' do
 
-#     it 'should parse the correct url with complex syntax with attributes' do
-#       markup = 'blog from "http://www.locomotiveapp.org" username: "john", password: "easyone"'
-#       tag = Locomotive::Liquid::Tags::Consume.new('consume', markup, ["{% endconsume %}"], {})
-#       tag.instance_variable_get(:@url).should == "http://www.locomotiveapp.org"
-#     end
+      let(:markup) { 'blog from "http://blog.locomotiveapp.org"' }
+      it { should_not raise_exception }
 
-#     it 'raises an error if the syntax is incorrect' do
-#       markup = 'blog http://www.locomotiveapp.org'
-#       lambda do
-#         Locomotive::Liquid::Tags::Consume.new('consume', markup, ["{% endconsume %}"], {})
-#       end.should raise_error
-#     end
+    end
 
-#   end
+    describe 'validates more complex syntax with attributes' do
 
-#   context '#rendering' do
+      let(:markup) { 'blog from "http://www.locomotiveapp.org", username: "john", password: password_from_context' }
+      it { should_not raise_exception }
 
-#     it 'puts the response into the liquid variable' do
-#       response = mock('response', code: 200, parsed_response: parsed_response('title' => 'Locomotive rocks !'))
-#       Locomotive::Httparty::Webservice.stubs(:get).returns(response)
-#       template = "{% consume blog from \"http://blog.locomotiveapp.org/api/read\" %}{{ blog.title }}{% endconsume %}"
-#       Liquid::Template.parse(template).render.should == 'Locomotive rocks !'
-#     end
+    end
 
-#     it 'puts the response into the liquid variable using a url from a variable' do
-#       response = mock('response', code: 200, parsed_response: parsed_response('title' => 'Locomotive rocks !'))
-#       Locomotive::Httparty::Webservice.stubs(:get).returns(response)
-#       template = "{% consume blog from url %}{{ blog.title }}{% endconsume %}"
-#       Liquid::Template.parse(template).render('url' => "http://blog.locomotiveapp.org/api/read").should == 'Locomotive rocks !'
-#     end
+    describe 'should parse the correct url with complex syntax with attributes' do
 
-#     it 'puts the response into the liquid variable using a url from a variable that changes within an iteration' do
-#       base_uri = 'http://blog.locomotiveapp.org'
-#       template = "{% consume blog from url %}{{ blog.title }}{% endconsume %}"
-#       compiled_template = Liquid::Template.parse(template)
+      let(:markup) { 'blog from "http://www.locomotiveapp.org" username: "john", password: "easyone"' }
+      it { should_not raise_exception }
+      it { tag.instance_variable_get(:@url).should eq "http://www.locomotiveapp.org" }
 
-#       [['/api/read', 'Locomotive rocks !'], ['/api/read_again', 'Locomotive still rocks !']].each do |path, title|
-#         response = mock('response', code: 200, parsed_response: parsed_response('title' => title))
-#         Locomotive::Httparty::Webservice.stubs(:get).with(path, {:base_uri => base_uri}).returns(response)
-#         compiled_template.render('url' => base_uri + path).should == title
-#       end
-#     end
-#   end
+    end
 
-#   context 'timeout' do
+    describe 'raises an error if the syntax is incorrect' do
 
-#     before(:each) do
-#       @url = 'http://blog.locomotiveapp.org/api/read'
-#       @template = %{{% consume blog from "#{@url}" timeout:5 %}{{ blog.title }}{% endconsume %}}
-#     end
+      let(:markup) { 'blog http://www.locomotiveapp.org' }
+      it { should raise_exception }
 
-#     it 'should pass the timeout option to httparty' do
-#       Locomotive::Httparty::Webservice.expects(:consume).with(@url, {timeout: 5.0})
-#       Liquid::Template.parse(@template).render
-#     end
+    end
 
-#     it 'should return the previous successful response if a timeout occurs' do
-#       Locomotive::Httparty::Webservice.stubs(:consume).returns({ 'title' => 'first response' })
-#       template = Liquid::Template.parse(@template)
+  end
 
-#       template.render.should == 'first response'
+  context '#rendering' do
 
-#       Locomotive::Httparty::Webservice.stubs(:consume).raises(Timeout::Error)
-#       template.render.should == 'first response'
-#     end
+    let(:assigns)     { {} }
+    let(:template)    { '' }
+    let(:api_options) { { base_uri: 'http://blog.locomotiveapp.org' } }
+    let(:response)    { { 'title' => 'Locomotive rocks !' } }
+    let(:mocked_response) { mock('response', code: 200, parsed_response: parsed_response(response)) }
 
-#   end
+    before { Locomotive::Httparty::Webservice.expects(:get).with('/api/read', api_options).returns(mocked_response) }
 
-#   def parsed_response(attributes)
-#     OpenStruct.new(underscore_keys: attributes)
-#   end
-# end
+    subject { render_template(template, assigns) }
+
+    describe 'assign the response into the liquid variable' do
+
+      let(:template) { "{% consume blog from \"http://blog.locomotiveapp.org/api/read\" %}{{ blog.title }}{% endconsume %}" }
+      it { should eq 'Locomotive rocks !' }
+
+    end
+
+    describe 'assign the response into the liquid variable using a url from a variable' do
+
+      let(:assigns)   { { 'url' => 'http://blog.locomotiveapp.org/api/read' } }
+      let(:template)  { "{% consume blog from url %}{{ blog.title }}{% endconsume %}" }
+      it { should eq 'Locomotive rocks !' }
+
+    end
+
+    describe 'accept options for the web service' do
+
+      let(:assigns)     { { 'secret_password' => 'bar' } }
+      let(:api_options) { { base_uri: 'http://blog.locomotiveapp.org', basic_auth: { username: 'foo', password: 'bar' } } }
+      let(:template) { "{% consume blog from \"http://blog.locomotiveapp.org/api/read\", username: 'foo', password: secret_password %}{{ blog.title }}{% endconsume %}" }
+      it { should eq 'Locomotive rocks !' }
+
+    end
+
+  end
+
+  context 'timeout' do
+
+    let(:url) { 'http://blog.locomotiveapp.org/api/read' }
+    let(:template) { %{{% consume blog from "#{url}" timeout:5.0 %}{{ blog.title }}{% endconsume %}} }
+
+    subject { render_template(template) }
+
+    it 'should pass the timeout option to httparty' do
+      Locomotive::Httparty::Webservice.expects(:consume).with(url, { timeout: 5.0 })
+      subject
+    end
+
+    it 'should return the previous successful response if a timeout occurs' do
+      Locomotive::Httparty::Webservice.stubs(:consume).returns({ 'title' => 'first response' })
+      subject.should eq 'first response'
+
+      Locomotive::Httparty::Webservice.stubs(:consume).raises(Timeout::Error)
+      subject.should eq 'first response'
+    end
+
+  end
+
+  def parsed_response(attributes)
+    OpenStruct.new(underscore_keys: attributes)
+  end
+
+  def render_template(template, assigns = {})
+    _context = Liquid::Context.new(assigns, {}, {})
+    Liquid::Template.parse(template).render(_context)
+  end
+end

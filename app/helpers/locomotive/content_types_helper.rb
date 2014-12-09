@@ -69,5 +69,20 @@ module Locomotive
       end
     end
 
+    # List the fields which could be used to filter the content entries
+    # in the back-office.
+    # Not all the types are included. Only: string, text, integer, float, email
+    #
+    # @param [ ContentType ] content_type The content type owning the fields
+    #
+    # @return [ Array ] Used as it by the select_tag method
+    #
+    def options_for_filter_fields(content_type)
+      allowed_types = %w(string text integer float email)
+      fields = content_type.entries_custom_fields.where(:type.in => allowed_types)
+
+      fields.map { |field| [field.label, field._id] }
+    end
+
   end
 end

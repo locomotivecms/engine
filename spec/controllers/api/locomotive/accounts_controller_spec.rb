@@ -7,7 +7,6 @@ describe Locomotive::Api::AccountsController do
 
   context 'super_admin authenticated' do
     before do
-      Locomotive.config.stubs(:multi_sites?).returns(false)
       sign_in admin
     end
 
@@ -75,7 +74,7 @@ describe Locomotive::Api::AccountsController do
       end
 
       context 'invalid params' do
-        let(:params) { {'name' => '' } }
+        let(:params) { { 'name' => '' } }
         its(:status) { should eq 422 }
       end
     end

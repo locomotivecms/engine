@@ -141,7 +141,7 @@ module Locomotive
         #
         def fetch_target_entries(conditions = {})
           if self.content_type
-            self.content_type.ordered_entries(conditions)
+            self.content_type.ordered_entries(where: conditions)
           else
             []
           end

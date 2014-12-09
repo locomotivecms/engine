@@ -127,3 +127,9 @@ Given(/^I click on the (\d+)[a-z]+ required flag$/) do |nth|
   find(".custom-field:nth-child(#{nth}) .required-input .switchHandle").click
   sleep(0.1)
 end
+
+Given(/^I have the "(.*?)" entries ordered by the "(.*?)" field$/) do |name, field|
+  content_type = Locomotive::ContentType.where(name: name).first
+  field = content_type.entries_custom_fields.detect { |f| f.label == field }
+  content_type.update_attribute :order_by, field.name
+end

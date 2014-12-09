@@ -36,7 +36,7 @@ module Locomotive
       respond_with @site, location: edit_my_account_path
     end
 
-    protected
+    private
 
     def service
       @service ||= Locomotive::SitesService.new(self.current_locomotive_account)

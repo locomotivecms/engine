@@ -20,6 +20,7 @@ module Locomotive
     field :order_direction,             default: 'asc'
     field :public_submission_enabled,   type: Boolean, default: false
     field :public_submission_accounts,  type: Array
+    field :filter_fields,               type: Array
     field :number_of_entries
 
     ## associations ##
@@ -41,6 +42,9 @@ module Locomotive
 
     ## named scopes ##
     scope :ordered, -> { order_by(updated_at: :desc) }
+    scope :by_id_or_slug, ->(id_or_slug) {
+      any_of({ _id: id_or_slug }, { slug: id_or_slug })
+    }
 
     ## indexes ##
     index site_id: 1, slug: 1
@@ -48,6 +52,7 @@ module Locomotive
     ## callbacks ##
     before_validation   :normalize_slug
     before_validation   :sanitize_public_submission_accounts
+    before_validation   :sanitize_filter_fields
     after_validation    :bubble_fields_errors_up
     before_update       :update_label_field_name_in_entries
 
@@ -78,25 +83,21 @@ module Locomotive
     # Order the list of entries, paginate it if requested
     # and filter it.
     #
-    # @param [ Hash ] options Options to filter and paginate.
+    # @param [ Hash ] options Options to filter (where key), order (order_by key) and paginate (page, per_page keys)
     #
     # @return [ Criteria ] A Mongoid criteria if not paginated (array otherwise).
     #
     def ordered_entries(options = nil)
       options ||= {}
 
+      # pagination
       page, per_page = options.delete(:page), options.delete(:per_page)
-
-      # search for a label
-      if options[:q]
-        options[label_field_name.to_sym] = /#{options.delete(:q)}/i
-      end
 
       # order list
       _order_by_definition = (options || {}).delete(:order_by).try(:split) || self.order_by_definition
 
       # get list
-      _entries = self.entries.order_by([_order_by_definition]).where(options)
+      _entries = self.entries.order_by([_order_by_definition]).where(options[:where] || {})
 
       # pagination or full list
       !self.order_manually? && page ? _entries.page(page).per(per_page) : _entries
@@ -231,6 +232,13 @@ module Locomotive
     def sanitize_public_submission_accounts
       if self.public_submission_accounts
         self.public_submission_accounts.reject! { |id| id.blank? }
+      end
+    end
+
+    # We do not want to have a blank value in the list of fields used to filter the entries.
+    def sanitize_filter_fields
+      if self.filter_fields
+        self.filter_fields.reject! { |id| id.blank? }
       end
     end
 
