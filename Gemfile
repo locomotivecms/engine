@@ -10,10 +10,10 @@ gem 'coffee-rails', '~> 4.0.1'
 gem 'uglifier',     '>= 2.5.3'
 
 # The rest of the dependencies are for use when in the locomotive development / test environments
-gem 'activeresource'
+# gem 'activeresource'
 
-gem 'bson'
-gem 'moped', github: 'mongoid/moped'
+# gem 'bson'
+# gem 'moped', github: 'mongoid/moped'
 
 # add these gems to help with the transition:
 gem 'protected_attributes'

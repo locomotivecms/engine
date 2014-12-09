@@ -13,7 +13,7 @@ module Locomotive
     def each_content_type(&block)
       visible, others = [], []
 
-      current_site.content_types.ordered.only(:site_id, :name, :slug, :label_field_name).each_with_index do |content_type, index|
+      current_site.content_types.ordered.only(:_id, :site_id, :name, :slug, :label_field_name).each_with_index do |content_type, index|
         next if !content_type.persisted?
 
         if index >= Locomotive.config.ui[:max_content_types]

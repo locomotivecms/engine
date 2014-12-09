@@ -4,6 +4,7 @@ module Locomotive
     include Locomotive::Mongoid::Document
     include SimpleTokenAuthentication::ActsAsTokenAuthenticatable
     devise *Locomotive.config.devise_modules
+    include Locomotive::Concerns::Account::DevisePatch
 
     ## devise fields (need to be declared since 2.x) ##
     field :remember_created_at,     type: Time
