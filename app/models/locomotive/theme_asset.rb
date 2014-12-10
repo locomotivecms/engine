@@ -4,7 +4,7 @@ module Locomotive
     include Locomotive::Mongoid::Document
 
     ## extensions ##
-    include Extensions::Asset::Types
+    include Concerns::Asset::Types
 
     ## fields ##
     field :local_path

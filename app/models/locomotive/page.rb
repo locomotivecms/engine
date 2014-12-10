@@ -5,17 +5,17 @@ module Locomotive
 
     MINIMAL_ATTRIBUTES = %w(_id title slug fullpath position depth published templatized target_klass_name redirect listed response_type parent_id parent_ids site_id created_at updated_at raw_template)
 
-    ## Extensions ##
-    include Extensions::Page::Tree
-    include Extensions::Page::EditableElements
-    include Extensions::Page::Layout
-    include Extensions::Page::Parse
-    include Extensions::Page::Render
-    include Extensions::Page::Templatized
-    include Extensions::Page::Redirect
-    include Extensions::Page::Listed
-    include Extensions::Shared::Slug
-    include Extensions::Shared::Seo
+    ## concerns ##
+    include Concerns::Page::Tree
+    include Concerns::Page::EditableElements
+    include Concerns::Page::Layout
+    include Concerns::Page::Parse
+    include Concerns::Page::Render
+    include Concerns::Page::Templatized
+    include Concerns::Page::Redirect
+    include Concerns::Page::Listed
+    include Concerns::Shared::Slug
+    include Concerns::Shared::Seo
 
     ## fields ##
     field :title,               localize: true

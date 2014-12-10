@@ -4,11 +4,11 @@ module Locomotive
     include Locomotive::Mongoid::Document
 
     ## Extensions ##
-    include Extensions::Shared::Seo
-    extend  Extensions::Site::SubdomainDomains
-    include Extensions::Site::FirstInstallation
-    include Extensions::Site::Locales
-    include Extensions::Site::Timezone
+    include Concerns::Shared::Seo
+    extend  Concerns::Site::SubdomainDomains
+    include Concerns::Site::FirstInstallation
+    include Concerns::Site::Locales
+    include Concerns::Site::Timezone
 
     ## fields ##
     field :name
@@ -82,7 +82,7 @@ module Locomotive
     protected
 
     # FIXME: Currently there is no t/translate method on the I18n module
-    # Extensions::Site::I18n which is breaking the testing. The
+    # Concerns::Site::I18n which is breaking the testing. The
     # namespaced ::I18n should be changed to just I18n when the t()
     # method is available
     def create_default_pages!

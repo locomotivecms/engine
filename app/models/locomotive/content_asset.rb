@@ -4,8 +4,8 @@ module Locomotive
     include Locomotive::Mongoid::Document
 
     ## extensions ##
-    include Extensions::Asset::Types
-    include Extensions::Asset::Vignette
+    include Concerns::Asset::Types
+    include Concerns::Asset::Vignette
 
     ## fields ##
     field :content_type,  type: String

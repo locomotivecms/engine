@@ -5,9 +5,9 @@ module Locomotive
 
     ## extensions ##
     include CustomFields::Source
-    include Extensions::ContentType::DefaultValues
-    include Extensions::ContentType::ItemTemplate
-    include Extensions::ContentType::Sync
+    include Concerns::ContentType::DefaultValues
+    include Concerns::ContentType::ItemTemplate
+    include Concerns::ContentType::Sync
 
     ## fields ##
     field :name

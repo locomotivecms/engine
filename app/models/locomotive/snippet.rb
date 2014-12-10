@@ -2,7 +2,7 @@ module Locomotive
   class Snippet
 
     include Locomotive::Mongoid::Document
-    include Extensions::Shared::Slug
+    include Concerns::Shared::Slug
 
     ## fields ##
     field :name
