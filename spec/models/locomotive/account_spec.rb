@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe Locomotive::Account do
+
   let!(:existing_account) { FactoryGirl.create(:account, email: 'another@email.com') }
 
   it 'has a valid factory' do
@@ -22,8 +23,7 @@ describe Locomotive::Account do
   end
 
   it "validates the uniqueness of email" do
-    FactoryGirl.create(:account)
-    (account = FactoryGirl.build(:account)).should_not be_valid
+    (account = FactoryGirl.build(:account, email: existing_account.email)).should_not be_valid
     account.errors[:email].should == ["is already taken"]
   end
 

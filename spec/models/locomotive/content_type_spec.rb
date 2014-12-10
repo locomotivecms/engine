@@ -351,7 +351,7 @@ describe Locomotive::ContentType do
 
   describe 'finding by id or slug' do
 
-    let(:content_type) { build_content_type }
+    let(:content_type) { build_content_type(slug: 'my_project') }
     let(:id_or_slug) { 'unknown' }
 
     subject { Locomotive::ContentType.by_id_or_slug(id_or_slug).first }

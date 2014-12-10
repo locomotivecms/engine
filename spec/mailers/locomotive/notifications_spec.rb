@@ -6,7 +6,7 @@ describe Locomotive::Notifications do
 
     let(:now)           { Time.parse('Sep 16 1982 9:00pm') }
     let(:site)          { FactoryGirl.build(:site, domains: %w{www.acme.com}, timezone_name: 'CET') }
-    let(:account)       { FactoryGirl.build(:account) }
+    let(:account)       { FactoryGirl.build(:account, email: 'bart@simpson.net') }
     let(:content_type)  { FactoryGirl.build(:content_type, site: site) }
     let(:content_entry) { FactoryGirl.build(:content_entry, content_type: content_type, site: site) }
 

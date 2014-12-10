@@ -18,6 +18,9 @@ module Locomotive
           before_save     :ensure_index_position
           before_destroy  :destroy_children
 
+          ## scopes ##
+          scope :order_by_depth_and_position, -> { order_by(:depth.asc, :position.asc) }
+
           ## indexes ##
           index site_id:  1, depth:    1, position: 1
           index depth:    1, position: 1

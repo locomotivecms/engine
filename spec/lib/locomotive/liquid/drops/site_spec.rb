@@ -9,7 +9,7 @@ describe Locomotive::Liquid::Drops::Site do
 
   before { about_us_page && contact_page }
 
-  describe '.pages' do
+  describe '#pages' do
 
     let(:template) { '' }
     subject { render_template(template) }

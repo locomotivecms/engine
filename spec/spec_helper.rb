@@ -39,6 +39,7 @@ RSpec.configure do |config|
     # TODO: called by the membership.rb model. Use services instead
     Thread.current[:site] = nil
     Thread.current[:account] = nil
+    I18n.locale = Mongoid::Fields::I18n.locale = 'en'
     DatabaseCleaner.clean
   end
 
@@ -50,6 +51,6 @@ RSpec.configure do |config|
   # order dependency and want to debug it, you can fix the order by providing
   # the seed, which is printed after each run.
   #     --seed 1234
-  config.order = "random"
-  # config.seed = '56471'
+  # config.order = "random"
+  config.seed = '37049'
 end

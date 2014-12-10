@@ -38,7 +38,7 @@ module Locomotive
     def pages_with_minimun_attributes
       @site.pages.unscoped.
         minimal_attributes.
-        order_by(:depth.asc, :position.asc).
+        order_by_depth_and_position.
         to_a
     end
 
