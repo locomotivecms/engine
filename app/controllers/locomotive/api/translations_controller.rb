@@ -20,19 +20,19 @@ module Locomotive
         @translation = Locomotive::Translation.new(params[:translation])
         @translation.from_presenter(params[:translation])
         @translation.save
-        respond_with @translation, location: main_app.locomotive_api_translation_path(@translation)
+        respond_with @translation, location: main_app.locomotive_api_translation_url(@translation)
       end
 
       def update
         authorize @translation
         @translation.update_attributes(params[:translation])
-        respond_with @translation, location: main_app.locomotive_api_translation_path(@translation)
+        respond_with @translation, location: main_app.locomotive_api_translation_url(@translation)
       end
 
       def destroy
         authorize @translation
         @translation.destroy
-        respond_with @translation
+        respond_with @translation, location: main_app.locomotive_api_translations_url
       end
 
       private

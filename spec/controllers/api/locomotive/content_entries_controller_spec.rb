@@ -70,6 +70,16 @@ module Locomotive
         end
       end
 
+      describe "#DELETE destroy_all" do
+        subject do
+          delete :destroy_all, slug: content_type.slug, locale: :en, format: :json
+        end
+        it { should be_success }
+        specify do
+          expect { subject }.to change(Locomotive::ContentEntry, :count).by(-1)
+        end
+      end
+
     end
   end
 end

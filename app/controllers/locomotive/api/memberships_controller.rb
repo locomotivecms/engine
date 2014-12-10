@@ -7,31 +7,31 @@ module Locomotive
 
       def index
         authorize Locomotive::Membership
-        respond_with(@memberships)
+        respond_with @memberships
       end
 
       def show
         authorize @membership
-        respond_with(@membership)
+        respond_with @membership
       end
 
       def create
         authorize Locomotive::Membership
         @membership = current_site.memberships.build
         @membership.from_presenter(params[:membership]).save
-        respond_with(@membership)
+        respond_with @membership, location: main_app.locomotive_api_membership_url(@membership._id)
       end
 
       def update
         authorize @membership
         @membership.from_presenter(params[:membership]).save
-        respond_with(@membership)
+        respond_with @membership, location: main_app.locomotive_api_membership_url(@membership._id)
       end
 
       def destroy
         authorize @membership
         @membership.destroy
-        respond_with(@membership)
+        respond_with @membership, location: main_app.locomotive_api_memberships_url
       end
 
       private

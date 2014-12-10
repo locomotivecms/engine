@@ -8,7 +8,7 @@ module Locomotive
       def index
         authorize Locomotive::ContentType
         @content_types = @content_types.order_by(:name.asc)
-        respond_with(@content_types)
+        respond_with @content_types
       end
 
       def show
@@ -20,13 +20,13 @@ module Locomotive
         authorize Locomotive::ContentType
         @content_type = current_site.content_types.build
         @content_type.from_presenter(params[:content_type]).save
-        respond_with @content_type, location: main_app.locomotive_api_content_types_url
+        respond_with @content_type, location: main_app.locomotive_api_content_type_url(@content_type._id)
       end
 
       def update
         authorize @content_type
         @content_type.from_presenter(params[:content_type]).save
-        respond_with @content_type, location: main_app.locomotive_api_content_types_url
+        respond_with @content_type, location: main_app.locomotive_api_content_type_url(@content_type._id)
       end
 
       def destroy
@@ -38,7 +38,7 @@ module Locomotive
       private
 
       def load_content_type
-        @content_type = current_site.content_types.find params[:id]
+        @content_type = current_site.content_types.find(params[:id])
       end
 
       def load_content_types

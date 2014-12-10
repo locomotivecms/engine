@@ -125,5 +125,6 @@ Rails.application.routes.draw do
   end
 
   # root to:                      'locomotive/public/pages#show'
+  get '/',        to: 'locomotive/public/pages#show'
   match '*path'   => 'locomotive/public/pages#show', via: :all
 end

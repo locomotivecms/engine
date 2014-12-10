@@ -8,7 +8,7 @@ module Locomotive
       def index
         authorize Locomotive::Snippet
         @snippets = @snippets.order_by(:name.asc)
-        respond_with(@snippets)
+        respond_with @snippets
       end
 
       def show
@@ -20,19 +20,19 @@ module Locomotive
         authorize Locomotive::Snippet
         @snippet = current_site.snippets.build
         @snippet.from_presenter(params[:snippet]).save
-        respond_with @snippet, location: main_app.locomotive_api_snippets_url
+        respond_with @snippet, location: main_app.locomotive_api_snippet_url(@snippet._id)
       end
 
       def update
         authorize @snippet
         @snippet.from_presenter(params[:snippet]).save
-        respond_with @snippet, location: main_app.locomotive_api_snippets_url
+        respond_with @snippet, location: main_app.locomotive_api_snippet_url(@snippet._id)
       end
 
       def destroy
         authorize Locomotive::Snippet
         @snippet.destroy
-        respond_with @snippet
+        respond_with @snippet, location: main_app.locomotive_api_snippets_url
       end
 
       private

@@ -14,19 +14,19 @@ module Locomotive
 
       def show
         authorize @account
-        respond_with(@account)
+        respond_with @account
       end
 
       def create
         @account = Account.new
         @account.from_presenter(account_params).save
-        respond_with(@account)
+        respond_with @account, location: main_app.locomotive_api_my_account_url
       end
 
       def update
         authorize @account
         @account.from_presenter(account_params).save
-        respond_with(@account)
+        respond_with @account, location: main_app.locomotive_api_my_account_url
       end
 
       private

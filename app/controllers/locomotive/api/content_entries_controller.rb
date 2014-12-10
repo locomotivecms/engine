@@ -9,7 +9,7 @@ module Locomotive
       def index
         authorize Locomotive::ContentEntry
         @content_entries = service.all(params.slice(:page, :per_page, :order_by, :where))
-        respond_with(@content_entries)
+        respond_with @content_entries
       end
 
       def show
@@ -21,13 +21,13 @@ module Locomotive
         authorize Locomotive::ContentEntry
         @content_entry = @content_type.entries.build
         @content_entry.from_presenter(content_entry_params).save
-        respond_with @content_entry, location: main_app.locomotive_api_content_entries_url(@content_type.slug)
+        respond_with @content_entry, location: main_app.locomotive_api_content_entry_url(@content_type.slug, @content_entry._id)
       end
 
       def update
         authorize @content_entry
         @content_entry.from_presenter(content_entry_params).save
-        respond_with @content_entry, location: main_app.locomotive_api_content_entries_url(@content_type.slug)
+        respond_with @content_entry, location: main_app.locomotive_api_content_entry_url(@content_type.slug, @content_entry._id)
       end
 
       def destroy
@@ -37,13 +37,9 @@ module Locomotive
       end
 
       def destroy_all
-        authorize Locomotive::ContentEntry
+        authorize Locomotive::ContentEntry, :destroy?
         service.destroy_all
-        respond_to do |format|
-          format.html { render text: true }
-          format.json { render json: { success: true } }
-          format.xml  { render xml: { success: true } }
-        end
+        respond_with({ success: true }, location: main_app.locomotive_api_content_entries_url(@content_type.slug))
       end
 
       private

@@ -9,12 +9,12 @@ module Locomotive
 
       def index
         authorize Locomotive::Site
-        respond_with(@sites)
+        respond_with @sites
       end
 
       def show
         authorize @site
-        respond_with(@site)
+        respond_with @site
       end
 
       def create
@@ -22,19 +22,19 @@ module Locomotive
         @site = Site.from_presenter(params[:site])
         @site.memberships.build account: self.current_locomotive_account, role: 'admin'
         @site.save
-        respond_with(@site)
+        respond_with @site, location: main_app.locomotive_api_site_url(@site._id)
       end
 
       def update
         authorize @site
         @site.from_presenter(params[:site]).save
-        respond_with @site
+        respond_with @site, location: main_app.locomotive_api_site_url(@site._id)
       end
 
       def destroy
         authorize @site
         @site.destroy
-        respond_with(@site)
+        respond_with @site, location: main_app.locomotive_api_sites_url
       end
 
       private

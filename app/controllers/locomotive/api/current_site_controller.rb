@@ -6,19 +6,19 @@ module Locomotive
 
       def show
         authorize @site
-        respond_with(@site)
+        respond_with @site
       end
 
       def update
         authorize @site
         @site.from_presenter(params[:site]).save
-      	respond_with(@site)
+      	respond_with @site, location: main_app.locomotive_api_current_site_url
       end
 
       def destroy
         authorize @site
         @site.destroy
-        respond_with(@site)
+        respond_with @site, location: main_app.locomotive_api_my_account_url
       end
 
       private

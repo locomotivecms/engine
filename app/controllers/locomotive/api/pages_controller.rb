@@ -8,31 +8,31 @@ module Locomotive
       def index
         authorize Locomotive::Page
         @pages = @pages.order_by(:depth.asc, :position.asc)
-        respond_with(@pages)
+        respond_with @pages
       end
 
       def show
         authorize @page
-        respond_with(@page)
+        respond_with @page
       end
 
       def create
         authorize Locomotive::Page
         @page = current_site.pages.build
         @page.from_presenter(params[:page]).save
-        respond_with @page, location: main_app.locomotive_api_pages_url
+        respond_with @page, location: main_app.locomotive_api_page_url(@page._id)
       end
 
       def update
         authorize @page
         @page.from_presenter(params[:page]).save
-        respond_with @page, location: main_app.locomotive_api_pages_url
+        respond_with @page, location: main_app.locomotive_api_page_url(@page._id)
       end
 
       def destroy
         authorize @page
         @page.destroy
-        respond_with @page
+        respond_with @page, location: main_app.locomotive_api_pages_url
       end
 
       private

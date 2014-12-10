@@ -24,6 +24,13 @@ module Locomotive
         end
       end
 
+      describe "#PUT update" do
+        subject do
+          put :update, locale: :en, site: { name: 'My website' }, format: :json
+        end
+        it { should be_success }
+      end
+
       describe "#DELETE destroy" do
         subject do
           delete :destroy, id: site.id, locale: :en, format: :json
