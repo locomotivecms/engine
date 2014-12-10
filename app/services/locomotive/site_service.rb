@@ -1,5 +1,5 @@
 module Locomotive
-  class SitesService
+  class SiteService
 
     def initialize(account)
       @account = account

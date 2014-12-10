@@ -29,7 +29,7 @@ module Locomotive
     ## Content Types ##
 
     def show_content_types(site)
-      @list = content_types_service.list
+      @list = content_type_service.list
 
       render view: :show_content_types
     end
@@ -38,7 +38,7 @@ module Locomotive
 
     def show_pages(site)
       @current_site ||= site
-      @pages        = pages_service.build_tree
+      @pages        = page_service.build_tree
 
       render view: :show_pages
     end
@@ -64,12 +64,12 @@ module Locomotive
 
     protected
 
-    def pages_service
-      @pages_service ||= Locomotive::PagesService.new(@current_site)
+    def page_service
+      @page_service ||= Locomotive::PageService.new(@current_site)
     end
 
-    def content_types_service
-      @content_types_service ||= Locomotive::ContentTypesService.new(@current_site)
+    def content_type_service
+      @content_type_service ||= Locomotive::ContentTypeService.new(@current_site)
     end
 
   end

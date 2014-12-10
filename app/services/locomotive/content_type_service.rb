@@ -1,5 +1,5 @@
 module Locomotive
-  class ContentTypesService
+  class ContentTypeService
 
     def initialize(site)
       @site = site

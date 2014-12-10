@@ -39,7 +39,7 @@ module Locomotive
     private
 
     def service
-      @service ||= Locomotive::SitesService.new(self.current_locomotive_account)
+      @service ||= Locomotive::SiteService.new(self.current_locomotive_account)
     end
 
   end

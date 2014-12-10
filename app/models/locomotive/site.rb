@@ -46,7 +46,7 @@ module Locomotive
     ## methods ##
 
     def all_pages_in_once
-      PagesService.new(self).build_tree
+      PageService.new(self).build_tree
     end
 
     # Get all the pages in the right order: depth and position, both ASC.

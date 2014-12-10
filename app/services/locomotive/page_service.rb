@@ -1,5 +1,5 @@
 module Locomotive
-  class PagesService
+  class PageService
 
     def initialize(site)
       @site = site

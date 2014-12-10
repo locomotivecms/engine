@@ -2,10 +2,10 @@
 
 require 'spec_helper'
 
-describe Locomotive::PagesService do
+describe Locomotive::PageService do
 
   let(:site)    { create_site }
-  let(:service) { Locomotive::PagesService.new(site) }
+  let(:service) { Locomotive::PageService.new(site) }
 
   describe '.tree' do
 
