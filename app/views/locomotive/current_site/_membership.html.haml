@@ -1,20 +1,21 @@
 .item.row
-  .text.col-md-10.col-xs-9
-    .media
-      .pull-left
-        = image_tag account_avatar_url(membership.account), class: 'media-object img-circle'
-      .media-body
-        %p.media-heading
-          = membership.account.name
-          %small
-            %span.label.label-default
-              = t(membership.role, scope: 'locomotive.memberships.roles')
-        %small
-          = membership.account.email
 
+  .inner-row.col-md-12
 
-  .buttons.col-md-2.col-xs-3.text-right
-    - if membership.account != current_locomotive_account
-      = link_to t(:edit, scope: 'locomotive.shared.form.array_input'), edit_membership_path(membership), class: 'choose btn btn-primary btn-sm'
-      = link_to membership_path(membership), class: 'delete', data: { confirm: t('locomotive.messages.confirm') }, method: :delete do
-        %i.fa.fa-trash-o
+    .icon
+      = image_tag account_avatar_url(membership.account), class: 'media-object img-circle'
+
+    .text
+      %strong= membership.account.name
+      %small
+        %span.label.label-default
+          = t(membership.role, scope: 'locomotive.memberships.roles')
+      %br
+      %small
+        = membership.account.email
+
+    .buttons
+      - if membership.account != current_locomotive_account
+        = link_to t(:edit, scope: 'locomotive.shared.form.array_input'), edit_membership_path(membership), class: 'choose btn btn-primary btn-sm'
+        = link_to membership_path(membership), class: 'delete', data: { confirm: t('locomotive.messages.confirm') }, method: :delete do
+          %i.fa.fa-trash-o

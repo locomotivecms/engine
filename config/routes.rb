@@ -49,7 +49,9 @@ Locomotive::Engine.routes.draw do
 
   resources :translations
 
-  resources :content_assets
+  resources :content_assets do
+    post :bulk_create, on: :collection
+  end
 
   resources :content_types
 

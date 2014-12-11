@@ -1,12 +1,26 @@
 module Locomotive
   module BaseHelper
 
+    def body_class
+      action = case controller.action_name
+      when 'create' then 'New'
+      when 'update' then 'Edit'
+      else controller.action_name
+      end
+
+      [self.controller.controller_name, action].map(&:dasherize).join(' ')
+    end
+
     def title(title = nil)
       if title.nil?
         @content_for_title
       else
-        @content_for_title = title
-        ''
+        if request.xhr?
+          concat content_tag(:h1, title)
+        else
+          @content_for_title = title
+          ''
+        end
       end
     end
 
@@ -52,6 +66,12 @@ module Locomotive
       resource.persisted? && resource.errors.empty?
     end
 
+    ## Tag helpers ##
+
+    def icon_tag(name)
+      content_tag :i, '', class: ['fa', name].join(' ')
+    end
+
     # Like link_to but instead of passing a label, we
     # pass the name of an Font Awesome icon.
     # If the name is a Symbol, we append "icon-" to the
@@ -82,6 +102,7 @@ module Locomotive
       end
     end
 
+    # @deprecated
     def submenu_entry(name, url, options = {}, &block)
       default_options = { i18n: true, css: name.dasherize.downcase }
       default_options.merge!(options)
@@ -99,6 +120,7 @@ module Locomotive
       end
     end
 
+    # @deprecated
     def local_action_button(text, url, options = {})
       text = text.is_a?(Symbol) ? t(".#{text}") : text
 
@@ -210,6 +232,11 @@ module Locomotive
       end
     end
 
+    def account_avatar_and_name(account, size = '70x70#')
+      avatar  = image_tag(account_avatar_url(account, size), class: 'img-circle', style: 'width: 20px')
+      profile = avatar + account.name
+    end
+
     # sites
 
     def site_picture_url(site, size = '80x80#')
@@ -272,6 +299,21 @@ module Locomotive
       I18n.localize(object, options)
     end
     alias :l :localize
+
+    # Dates
+
+    def date_moment_format
+      datetime_moment_format(I18n.t('date.formats.default'))
+    end
+
+    def datetime_moment_format(format = nil)
+      (format || I18n.t('time.formats.default'))
+        .gsub('%d', 'DD')
+        .gsub('%m', 'MM')
+        .gsub('%Y', 'YYYY')
+        .gsub('%H', 'H')
+        .gsub('%M', 'm')
+    end
 
   end
 end

@@ -1,8 +1,6 @@
 module Locomotive
   class MembershipsController < BaseController
 
-    sections 'settings'
-
     def create
       @membership = current_site.memberships.build(params[:membership])
       @membership.role = 'author' # force author by default

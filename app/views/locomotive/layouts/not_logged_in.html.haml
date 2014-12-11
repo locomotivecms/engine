@@ -10,10 +10,9 @@
 
     = yield :head
 
-  %body{ class: controller.controller_name }
-    .wrapper
-      .container
-        .main
-          .content
-            %h1!= title
-            = yield
+  %body{ class: [controller.controller_name, flash.empty? ? '' : 'with-flash'].join(' ') }
+    .wrapper.container-fluid
+      .main
+        .content
+          %h1!= title
+          = yield

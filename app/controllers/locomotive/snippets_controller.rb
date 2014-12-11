@@ -1,8 +1,6 @@
 module Locomotive
   class SnippetsController < BaseController
 
-    sections 'settings', 'theme_assets'
-
     localized
 
     before_filter :back_to_default_site_locale, only: %w(new create)

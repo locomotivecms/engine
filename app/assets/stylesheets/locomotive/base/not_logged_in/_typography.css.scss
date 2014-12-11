@@ -1,7 +1,8 @@
 h1 {
   text-align: center;
+  min-height: 50px;
   // letter-spacing: 2px;
-  margin-bottom: 100px;
+  margin-bottom: 50px;
 
   @media (max-width: $screen-sm-max) {
     margin-bottom: 30px;

@@ -53,9 +53,13 @@ module FormtasticBootstrap
             label_html <<
             hint_html(:inline) <<
             error_html(:inline) <<
-            template.content_tag(:span, :class => 'form-wrapper') do
-              input_content(&block)
-            end
+            form_wrapper_html(&block)
+          end
+        end
+
+        def form_wrapper_html(&block)
+          template.content_tag(:span, class: 'form-wrapper') do
+            input_content(&block)
           end
         end
       end

@@ -1,0 +1,14 @@
+en:
+  locomotive:
+    inputs:
+      rte:
+        link:
+          url: Link URL
+          target: Target
+          target_options:
+            "not_set": "--Not set--"
+            "self": "Open link in the same window"
+            "blank": "Open link in a new window"
+          title: Title
+          ok: Ok
+          cancel: Cancel

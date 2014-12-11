@@ -1,5 +1,6 @@
 = f.input :"formatted_#{name}",
   label:        label_for_custom_field(f.object, field),
   hint:         field.hint,
+  append:       icon_tag('fa-calendar'),
   wrapper_html: { class: 'date' },
-  input_html:   { maxlength: 10 }
+  input_html:   { data: { format: date_moment_format }, maxlength: 10 }

@@ -1,0 +1,54 @@
+Locomotive.Views.Inputs ||= {}
+
+class Locomotive.Views.Inputs.RteView extends Backbone.View
+
+  events:
+    'click a.style': 'open_styles_dialog'
+
+  initialize: ->
+    $textarea = @$('textarea')
+
+    @editor = new wysihtml5.Editor $textarea.attr('id'),
+      toolbar:        "wysihtml5-toolbar-#{$textarea.attr('id')}"
+      useLineBreaks:  false
+      parserRules:    wysihtml5ParserRules
+      stylesheets:    ['<%= stylesheet_path("locomotive/wysihtml5_reset") %>', '<%= stylesheet_path("locomotive/wysihtml5_editor") %>']
+
+    that = @
+    setTimeout(
+      ->
+        that.create_link_view()
+        that.create_file_view()
+    , 200)
+
+  render: ->
+    # do nothing
+
+  open_styles_dialog: (event) ->
+    $button = $(event.target).closest('a')
+    @$style_popover = @$style_popover || ($button.popover
+      placement:  'bottom'
+      content:    $button.next('.style-dialog-content').html()
+      html:       true
+      title:      undefined).popover('show')
+
+  create_link_view: ->
+    @link_view = new Locomotive.Views.Inputs.Rte.LinkView
+      el:     @$('a[data-wysihtml5-command=createLink]')
+      editor: @editor
+
+    @link_view.render()
+
+  create_file_view: ->
+    @file_view = new Locomotive.Views.Inputs.Rte.FileView
+      el:     @$('a[data-wysihtml5-command=insertFile]')
+      editor: @editor
+
+    @file_view.render()
+
+  remove: ->
+    @link_view.remove()
+    @file_view.remove()
+
+    super
+

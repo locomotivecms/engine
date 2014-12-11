@@ -32,7 +32,7 @@ module Locomotive
     alias :name :source_filename
 
     def extname
-      return nil unless self.source?
+      return nil unless self.source? && self.source_filename
       File.extname(self.source_filename).gsub(/^\./, '')
     end
 

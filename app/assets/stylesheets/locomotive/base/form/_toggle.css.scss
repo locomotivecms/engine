@@ -1,0 +1,62 @@
+.formtastic {
+
+  fieldset .input.toggle {
+    @include display-flex;
+    @include flex-align(center);
+
+    .form-wrapper {
+      background: transparent;
+      border: none;
+      margin-top: 0px;
+      margin-left: auto;
+
+      input[type=checkbox] {
+        float: none;
+        margin-left: 0;
+      }
+
+      .bootstrap-switch {
+        border-color: transparent;
+      }
+
+      .bootstrap-switch.bootstrap-switch-small {
+        min-width: 84px;
+      }
+
+      .bootstrap-switch.bootstrap-switch-focused {
+        @include box-shadow(none);
+      }
+
+      .bootstrap-switch .bootstrap-switch-label {
+        background: #ccc;
+        color: #fff;
+      }
+
+      .bootstrap-switch.bootstrap-switch-focused {
+        border-color: transparent;
+      }
+
+      .bootstrap-switch.bootstrap-switch-on .bootstrap-switch-handle-on,
+      .bootstrap-switch.bootstrap-switch-off .bootstrap-switch-handle-off {
+        @include box-shadow(0px -1px 0px 0px rgba(0, 0, 0, 0.15) inset);
+      }
+
+    }
+
+  }
+
+}
+
+@media (max-width: $screen-sm-min) {
+
+  .formtastic {
+    fieldset .input.toggle {
+      display: block;
+
+      .form-wrapper {
+        margin-top: 5px;
+      }
+    }
+  }
+
+}

@@ -1,0 +1,17 @@
+- # Filter assets
+%ul.nav.nav-tabs{ role: 'tablist' }
+  %li{ class: "#{'active' if params[:types].nil? }" }
+    = link_to t('.types.all'), content_assets_path(query: params[:query]), remote: true
+
+  - Locomotive::ContentAsset.types_for_content_editing.each do |type|
+    %li{ class: "#{'active' if params[:types] == type }" }
+      = link_to t(".types.#{type}"), content_assets_path(types: type, query: params[:query]), remote: true
+  %li{ class: "#{'active' if params[:types] == 'other' }" }
+    = link_to t('.types.others'), content_assets_path(types: 'other', query: params[:query]), remote: true
+
+  %li.pull-right.search-bar
+    = form_tag content_assets_path, method: 'GET', remote: true do
+      = hidden_field_tag :types, params[:types] if params[:types]
+      .form-group
+        = text_field_tag :query, params[:query], placeholder: t('.placeholder_search'), class: 'form-control'
+        %i.fa.fa-search.icon

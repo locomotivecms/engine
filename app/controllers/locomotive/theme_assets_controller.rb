@@ -1,8 +1,6 @@
 module Locomotive
   class ThemeAssetsController < BaseController
 
-    sections 'settings', 'theme_assets'
-
     respond_to :json, only: [:index, :create, :update, :destroy]
 
     def index

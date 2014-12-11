@@ -29,7 +29,15 @@ body.no-sidebar {
   left: $sidebar_width;
   right: 0px;
   bottom: 0px;
+}
 
+.drawer {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  width: $drawer_width;
+  z-index: 990;
 }
 
 .scrollable {

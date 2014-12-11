@@ -65,6 +65,9 @@ en:
           new: New
           add: Add
           edit: Edit
+        toggle_input:
+          on_text: "Yes"
+          off_text: "No"
       form_actions:
         back: Back without saving
         create: Create
@@ -276,16 +279,22 @@ en:
         help: "You can use that translation key with the following liquid code : <span class='code'>{{ '%{key}' | translate }}</span>."
 
     content_assets:
-      picker:
-        title: "Insert media"
+      index:
+        title: "Listing assets"
+      index_in_drawer:
+        title: "Insert asset"
+
+      list:
         no_items: "There are no media for now."
-        upload: "Upload media"
-        placeholder_search: Search by filename
+
+      nav:
         types:
+          all: All
           pdf: PDFs
           image: images
           media: rich media
           others: others
+        placeholder_search: Search by filename
 
     content_types:
       index:
@@ -318,7 +327,9 @@ en:
         new: new entry
         category_noname: "No name"
         latest_entries: "Latest entries"
-        updated_at: "Updated at"
+        created_by: "Created %{distance} by %{who}"
+        updated_at: "Last modified %{distance}"
+        updated_by: "Last modified %{distance} by %{who}"
       list:
         no_items: "There are no entries for now. Just click <a href=\"%{url}\">here</a> to create the first one."
       new:

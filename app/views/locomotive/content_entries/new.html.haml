@@ -1,22 +1,34 @@
 - title t('.title', type: @content_type.name.capitalize)
 
-- content_for :submenu do
-  = render 'locomotive/shared/menu/contents'
+= help @content_type.description
 
-- content_for :actions do
-  = render 'locomotive/shared/actions/contents'
+= semantic_form_for @content_entry, as: :content_entry, url: content_entries_path(@content_type.slug), html: { multipart: true } do |f|
 
-- if can?(:manage, Locomotive::ContentType)
-  - content_for :buttons do
-    = local_action_button t('locomotive.content_entries.index.edit'), edit_content_type_path(@content_type), icon: 'icon-pencil'
+  = hidden_field_tag :active_tab, ''
 
-%p= @content_type.description
+  = semantic_form_button @content_entry, 'hide'
 
-= semantic_form_for @content_entry, as: :content_entry, url: content_entries_path(@content_type.slug), html: { multipart: true } do |form|
+  = render 'locomotive/content_entries/form/tabs', f: f
 
-  = render 'form', f: form
+  = render 'locomotive/content_entries/form/panes', f: f
 
-  = render 'locomotive/shared/form_actions', back_url: content_entries_path(@content_type.slug), button_label: :create
+/ - content_for :submenu do
+/   = render 'locomotive/shared/menu/contents'
 
-- content_for :foot do
-  = render_has_many_forms
+/ - content_for :actions do
+/   = render 'locomotive/shared/actions/contents'
+
+/ - if can?(:manage, Locomotive::ContentType)
+/   - content_for :buttons do
+/     = local_action_button t('locomotive.content_entries.index.edit'), edit_content_type_path(@content_type), icon: 'icon-pencil'
+
+/ %p= @content_type.description
+
+/ = semantic_form_for @content_entry, as: :content_entry, url: content_entries_path(@content_type.slug), html: { multipart: true } do |form|
+
+/   = render 'form', f: form
+
+/   = render 'locomotive/shared/form_actions', back_url: content_entries_path(@content_type.slug), button_label: :create
+
+/ - content_for :foot do
+/   = render_has_many_forms

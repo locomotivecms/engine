@@ -2,52 +2,39 @@ Locomotive.Views.Shared ||= {}
 
 class Locomotive.Views.Shared.ListView extends Backbone.View
 
-  tagName: 'div'
-
-  _item_views = []
-
   initialize: ->
-    _.bindAll(@, 'insert_item', 'remove_item')
-    @collection.bind('add', @insert_item)
-    @collection.bind('remove', @remove_item)
-
-  template: ->
-    # please overide template
-
-  item_view_class: ->
-    # please overide item_view_class
+    @sort_url = $(@el).data('sort-url')
 
   render: ->
-    $(@el).html(@template()())
+    @make_sortable() if @sort_url?
 
-    @render_items()
+  make_sortable: ->
+    self = @
 
-    return @
+    $(@el).sortable
+      items:        '> .item'
+      handle:       '.draggable'
+      axis:         'y'
+      placeholder:  'sortable-placeholder'
+      cursor:       'move'
+      start:        (e, ui) ->
+        ui.placeholder.html('<div class="inner">&nbsp;</div>')
+      update: (event, ui)  ->
+        self.call_sort(ui)
 
-  render_items: ->
-    if @collection.length == 0
-      @$('.no-items').show()
-    else
-      @collection.each (item) =>
-        @insert_item(item)
+  call_sort: ->
+    $.rails.ajax
+      url:        @sort_url
+      type:       'post'
+      dataType:   'json'
+      data:
+        entries:  _.map $(@el).find('> .item'), (el) -> $(el).data('id')
+        _method:  'put'
+      success:    @.on_successful_sort
+      error:      @.on_failed_sort
 
-  insert_item: (item) ->
-    klass = @item_view_class()
-    view = new klass model: item, parent_view: @
+  on_successful_sort: (data, status, xhr) ->
+    $.growl('success', decodeURIComponent $.parseJSON xhr.getResponseHeader('X-Message'))
 
-    (@_item_views ||= []).push(view)
-
-    @$('.no-items').hide()
-    @$('ul').append(view.render().el)
-
-  remove_item: (item) ->
-    @$('.no-items').show() if @collection.length == 0
-    view = _.find @_item_views, (tmp) -> tmp.model == item
-    view.remove() if view?
-
-  remove: ->
-    _.each @_item_views, (view) => view.remove()
-    super
-
-
-
+  on_failed_sort: (data, status, xhr) ->
+    $.growl('error', decodeURIComponent $.parseJSON xhr.getResponseHeader('X-Message'))

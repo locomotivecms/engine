@@ -1,26 +1,34 @@
 @import "../globals/all";
 
+html {
+  background-color: $background_gradient_end;
+}
+
 body, html {
   height: 100%;
 }
 
-.wrapper {
-  width: 100%;
-  @include vertical-align-block-wrapper;
+body {
   @include locomotive_gradient;
-}
-
-.container {
-  @include vertical-align-block;
-  height: 100%;
-}
-
-.main {
-  @include vertical-align-block-fallback;
-  @include make-row();
   padding-bottom: 20px;
+}
 
-  .content {
-    background: transparent;
+.wrapper {
+  height: 100%;
+
+  .main {
+    @include full-space();
+    left: $grid-gutter-width;
+    right: $grid-gutter-width;
+    @include make-row();
+
+    .content {
+      height: 100%;
+      @include display-flex;
+      @include flex-direction(column);
+      @include flex-align(center);
+      @include flex-justify-content(center);
+    }
   }
+
 }

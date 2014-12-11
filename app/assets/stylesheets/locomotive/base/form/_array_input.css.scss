@@ -2,40 +2,46 @@
 
   fieldset .input.array {
     .form-wrapper {
-      background: #fff;
       padding: 0px $padding-base-horizontal;
 
       .list {
-
         & > .item {
           padding-top: 6px;
           padding-bottom: 6px;
           border-bottom: $form_input_array_border_size solid $form_input_array_border_color;
 
-          line-height: $form_input_array_item_height;
+          .inner-row {
+            @include display-flex;
+            @include flex-align(center);
 
-          .draggable {
-            margin-right: 6px;
-            color: $form_input_array_draggable_color;
-            font-size: 16px;
-            cursor: move;
-            @include user-select(none);
+            min-height: $form_input_array_item_height;
+
+            > .icon {
+              line-height: $line-height-computed;
+              margin-right: $padding-base-horizontal;
+
+              .img-circle {
+                width: 35px;
+                border: 1px solid $form_input_array_media_border_color;
+              }
+            }
+
+            > .draggable {
+              margin-right: $padding-base-horizontal;
+              color: $form_input_array_draggable_color;
+              font-size: 16px;
+              @include draggable;
+            }
+
+            > .buttons {
+              margin-left: auto;
+            }
           }
 
           &.ui-sortable-helper {
             background: #fff;
             border: $form_input_array_border_size solid $form_input_array_border_color;
           }
-
-          .media {
-            line-height: $line-height-computed;
-
-            .img-circle {
-              width: 35px;
-              border: 1px solid $form_input_array_media_border_color;
-            }
-          }
-
         }
 
         &.no-new-field > .item:last-child {
@@ -99,4 +105,30 @@
       }
     }
   }
+}
+
+@media (max-width: $screen-sm-min) {
+
+  .formtastic {
+    fieldset .input.array {
+      .form-wrapper {
+        .list {
+          & > .item {
+            .inner-row {
+              @include flex-wrap;
+
+              > .text {
+                margin-right: $padding-base-horizontal;
+              }
+
+              > .buttons {
+                margin-left: 0px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
 }

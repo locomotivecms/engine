@@ -1,0 +1,30 @@
+.formtastic {
+
+  fieldset .input.rte {
+
+    .form-wrapper {
+
+      .wysihtml5-toolbar {
+        padding: 6px 12px;
+
+        > .wysihtml5-toolbar-group {
+          margin-right: 20px;
+        }
+
+        a {
+          font-size: $form_input_rte_command_font_size;
+          color: $form_input_rte_command_color;
+          margin-right: 6px;
+
+          &.wysihtml5-command-active {
+            color: $form_input_rte_command_active_color;
+          }
+        }
+
+      }
+
+    }
+
+  }
+
+}

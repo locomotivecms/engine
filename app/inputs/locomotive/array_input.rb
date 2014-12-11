@@ -67,7 +67,7 @@ module Locomotive
     end
 
     def text(name)
-      I18n.t("locomotive.shared.form.array_input.#{name}")
+      I18n.t(name, scope: 'locomotive.shared.form.array_input')
     end
 
     def new_field?

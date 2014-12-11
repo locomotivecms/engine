@@ -43,6 +43,7 @@
       .form-wrapper {
         margin-top: 12px;
         display: block;
+        background: $form_input_wrapper_background_color;
         border: $form_input_control_border_size solid $form_input_control_border_color;
         @include border-radius($form_input_control_border_size);
 

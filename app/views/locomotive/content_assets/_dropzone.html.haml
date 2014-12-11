@@ -1,0 +1,17 @@
+/ %h1= t('.dropzone.title')
+
+.instructions
+  %i.fa.fa-cloud-upload
+  %br
+  %strong Drop files from your computer here.
+  %br
+  You can also
+  = link_to 'browse for a file', '#', class: 'upload'
+
+= form_tag('', class: 'hide') do
+  = file_field_tag :source, multiple: true
+
+= link_to 'Refresh', request.fullpath, remote: true, class: 'refresh hide'
+
+.progress.hide
+  .progress-bar{ role: 'progressbar', aria: { valuenow: 0, valuemin: 0, valuemax: '100' } }

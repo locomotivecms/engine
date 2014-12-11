@@ -1,0 +1,4 @@
+.tab-content
+  - %w(main seo advanced).each_with_index do |name, index|
+    = form_tab_pane name.to_sym, index == 0 do
+      = render "locomotive/content_entries/form/#{name}", f: f

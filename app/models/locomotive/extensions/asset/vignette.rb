@@ -15,6 +15,20 @@ module Locomotive
           end
         end
 
+        def alternative_vignette_url
+          format = if self.image?
+            if self.width > self.height
+              '190x120>'
+            else
+              '190x120>'
+            end
+          elsif self.pdf?
+            '190x120#'
+          end
+
+          Locomotive::Dragonfly.thumbnail_pdf(self.source, format) if format
+        end
+
       end
     end
   end

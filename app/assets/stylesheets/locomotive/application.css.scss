@@ -1,6 +1,8 @@
 //= require font-awesome
 //= require select2
 //= require select2-bootstrap
+//= require locomotive/bootstrap-switch
+//= require locomotive/bootstrap-datetimepicker
 
 @import "./globals/bootstrap";
 @import "bootstrap";
@@ -9,9 +11,13 @@
 
 @import "layouts/main";
 
+@import "components/misc";
 @import "components/transitions";
 @import "components/header";
 @import "components/sidebar";
+@import "components/drawer";
 @import "components/main";
+@import "components/list";
+@import "components/content_assets";
 
 @import "components/sites";
