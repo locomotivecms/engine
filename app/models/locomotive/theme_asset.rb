@@ -4,7 +4,7 @@ module Locomotive
     include Locomotive::Mongoid::Document
 
     ## extensions ##
-    include Extensions::Asset::Types
+    include Concerns::Asset::Types
 
     ## fields ##
     field :local_path
@@ -43,7 +43,7 @@ module Locomotive
 
     ## accessors ##
     attr_accessor   :plain_text_name, :plain_text, :plain_text_type, :performing_plain_text
-    attr_accessible :folder, :source, :plain_text_type, :performing_plain_text, :plain_text_name, :plain_text
+    # attr_accessible :folder, :source, :plain_text_type, :performing_plain_text, :plain_text_name, :plain_text
 
     ## methods ##
 

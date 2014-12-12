@@ -27,8 +27,11 @@ module Locomotive
       #
       # @param [ Hash ] attributes The document attributes
       #
+      # @return [ Object ] The document
+      #
       def from_presenter(attributes = {})
         self.to_presenter.attributes = attributes
+        self
       end
 
       def as_json(options = {})

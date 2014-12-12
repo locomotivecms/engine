@@ -2,6 +2,7 @@ module Locomotive
   class MembershipsController < BaseController
 
     def create
+      authorize Membership
       @membership = current_site.memberships.build(params[:membership])
       @membership.role = 'author' # force author by default
 
@@ -13,7 +14,8 @@ module Locomotive
       when :error
         respond_with @membership, flash: true
       when :already_created
-        respond_with @membership, alert: t('flash.locomotive.memberships.create.already_created'), location: edit_current_site_path
+        respond_with @membership, alert: t('flash.locomotive.memberships.create.already_created'),
+          location: edit_current_site_path
       end
     end
 
@@ -30,6 +32,7 @@ module Locomotive
 
     def destroy
       @membership = current_site.memberships.find(params[:id])
+      authorize @membership
       @membership.destroy
       respond_with @membership, location: edit_current_site_path
     end

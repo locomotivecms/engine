@@ -1,0 +1,32 @@
+module Locomotive
+  module Concerns
+    module ExceptionController
+
+      extend ActiveSupport::Concern
+
+      included do
+        rescue_from Exception, with: :render_exception
+      end
+
+      private
+
+      def render_exception(exception)
+        ::Locomotive.log "[ApplicationError] #{exception.inspect}"
+
+        status = (case exception
+        when ::Mongoid::Errors::DocumentNotFound  then 404
+        else
+          raise exception # 500
+        end)
+
+        if request.xhr?
+          render json: { error: exception.message }, status: status, layout: false
+        else
+          flash[:alert] = exception.message
+          redirect_to pages_path
+        end
+      end
+
+    end
+  end
+end

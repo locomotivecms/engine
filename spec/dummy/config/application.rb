@@ -1,11 +1,17 @@
 require File.expand_path('../boot', __FILE__)
 
-require 'action_controller/railtie'
-require 'action_mailer/railtie'
-require 'active_resource/railtie'
+# Pick the frameworks you want:
+# require "active_record/railtie"
+require "action_controller/railtie"
+require "action_mailer/railtie"
+require "action_view/railtie"
 require "sprockets/railtie"
+# require "rails/test_unit/railtie"
 
-Bundler.require *Rails.groups(:assets) if defined?(Bundler)
+Bundler.require(*Rails.groups)
+
+# require 'bson'
+# require 'moped'
 
 require 'locomotive/engine'
 
@@ -36,22 +42,8 @@ module Dummy
     # Configure the default encoding used in templates for Ruby 1.9.
     config.encoding = 'utf-8'
 
-    # Configure sensitive parameters which will be filtered from the log file.
-    config.filter_parameters += [:password]
-
-    # Enable the asset pipeline
-    config.assets.enabled = true
-
-    # Version of your assets, change this if you want to expire all your assets
-    config.assets.version = '1.0'
-
-    config.assets.initialize_on_precompile = false
-
-    config.assets.precompile += ['locomotive_misc.js']
-
     # config.after_initialize do |c|
     #   c.middleware.delete(Sass::Plugin::Rack)
     # end
   end
 end
-

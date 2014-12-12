@@ -6,7 +6,7 @@
 - content_for :actions do
   = render 'locomotive/shared/actions/contents'
 
-- if can? :create, Locomotive::Page
+- if policy(Locomotive::Page).create?
   - content_for :buttons do
     = local_action_button :new, new_page_path, icon: 'icon-plus', id: 'newpage'
 
@@ -16,4 +16,4 @@
   %p.no-items!= t('.no_items', url: new_page_path)
 - else
   %ul#pages-list
-    = render @pages
+    = render partial: 'page', collection: @pages

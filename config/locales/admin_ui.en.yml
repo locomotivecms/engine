@@ -14,6 +14,7 @@ en:
       de: German
       fr: French
       pl: Polish
+      pt: Portuguese
       pt-BR: "Brazilian Portuguese"
       it: Italian
       nl: Dutch
@@ -173,6 +174,7 @@ en:
         delete_file: delete
         cancel: cancel
         default_block: Default
+        no_layout: Do not use a layout
         cache_strategy:
           none: None
           simple: Simple
@@ -330,6 +332,8 @@ en:
         created_by: "Created %{distance} by %{who}"
         updated_at: "Last modified %{distance}"
         updated_by: "Last modified %{distance} by %{who}"
+        updated_at: "Updated at"
+        search_placeholder: "Enter your search keywords here"
       list:
         no_items: "There are no entries for now. Just click <a href=\"%{url}\">here</a> to create the first one."
       new:

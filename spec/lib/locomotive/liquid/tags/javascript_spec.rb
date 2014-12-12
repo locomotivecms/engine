@@ -9,10 +9,10 @@ describe Locomotive::Liquid::Tags::Javascript do
       end.should_not raise_error
     end
   end
-  
+
   context '#rendering' do
     template = "{% javascript %}alert('Locomotive rocks!'){% endjavascript %}"
-    rendered = "<script type=\"text/javascript\">\n//<![CDATA[\nalert('Locomotive rocks!')\n//]]>\n</script>"
+    rendered = "<script>\n//<![CDATA[\nalert('Locomotive rocks!')\n//]]>\n</script>"
     Liquid::Template.parse(template).render.should == rendered
   end
 end

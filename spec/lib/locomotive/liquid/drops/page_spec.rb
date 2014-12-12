@@ -77,6 +77,7 @@ describe Locomotive::Liquid::Drops::Page do
       entry = Locomotive::Liquid::Drops::ContentEntry.new(mock('entry', _label: 'Locomotive rocks !'))
 
       render_template('{{ page.title }}', 'page' => templatized, 'entry' => entry).should == 'Locomotive rocks !'
+      render_template('{{ page.original_title }}', 'page' => templatized, 'entry' => entry).should == 'Lorem ipsum template'
     end
 
   end
@@ -88,11 +89,12 @@ describe Locomotive::Liquid::Drops::Page do
     end
 
     it 'renders the content instance slug instead for a templatized page' do
-      templatized = FactoryGirl.build(:page, title: 'Lorem ipsum template', templatized: true)
+      templatized = FactoryGirl.build(:page, title: 'Lorem ipsum template', slug: 'content-type-template', templatized: true)
 
       entry = Locomotive::Liquid::Drops::ContentEntry.new(mock('entry', _slug: 'my_entry'))
 
       render_template('{{ page.slug }}', 'page' => templatized, 'entry' => entry).should == 'my_entry'
+      render_template('{{ page.original_slug }}', 'page' => templatized, 'entry' => entry).should == 'content-type-template'
     end
 
   end
@@ -102,12 +104,12 @@ describe Locomotive::Liquid::Drops::Page do
     before(:each) do
       @site = FactoryGirl.create(:site)
       @home = @site.pages.root.first
-      @home.update_attributes raw_template: "{% block body %}{% editable_short_text 'body' %}Lorem ipsum{% endeditable_short_text %}{% endblock %}"
+      @home.update_attributes raw_template: "{% editable_text title %}Hello world{% endeditable_text %}{% block body %}{% editable_short_text 'message' %}Lorem ipsum{% endeditable_short_text %}{% endblock %}"
       @home.editable_elements.first.content = 'Lorem ipsum'
     end
 
     it 'renders the text of the editable field' do
-      render_template('{{ home.body }}').should == 'Lorem ipsum'
+      render_template('{{ home.editable_elements.body.message }}').should == 'Lorem ipsum'
     end
 
   end

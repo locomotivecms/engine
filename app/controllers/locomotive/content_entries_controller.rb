@@ -3,80 +3,83 @@ module Locomotive
 
     localized
 
-    before_filter :back_to_default_site_locale, only: %w(new create)
+    before_filter :back_to_default_site_locale, only: [:new, :create]
 
-    skip_load_and_authorize_resource
+    before_filter :load_content_type
+    before_filter :load_content_entry, only: [:show, :edit, :update, :destroy]
 
-    before_filter :authorize_content
-
-    respond_to :json, only: [:index, :show, :edit, :create, :update, :sort]
-
+    respond_to :json, only: [:index, :show, :edit, :create, :update, :sort, :destroy]
     respond_to :csv,  only: [:export]
 
     def index
-      options = { q: params[:q], page: params[:page] || 1, per_page: Locomotive.config.ui[:per_page] }
-      @content_entries = service.list(options)
+      authorize ContentEntry
+      @content_entries = service.all(params.slice(:page, :per_page, :q, :where))
       respond_with @content_entries
     end
 
     def export
-      @content_entries = content_type.ordered_entries
+      authorize ContentEntry, :index?
+      @content_entries = @content_type.ordered_entries
       respond_with @content_entries, {
-        filename:     content_type.slug,
+        filename:     @content_type.slug,
         col_sep:      ';',
-        content_type: content_type,
+        content_type: @content_type,
         host:         request.host_with_port
       }
     end
 
     def show
-      @content_entry = content_type.entries.find(params[:id])
+      authorize @content_entry
+      @content_entry = @content_type.entries.find(params[:id])
       respond_with @content_entry
     end
 
     def new
-      @content_entry = content_type.entries.build
+      @content_entry = @content_type.entries.build
       respond_with @content_entry
     end
 
     def create
-      @content_entry = service.create(params[:content_entry])
-      respond_with @content_entry, location: edit_content_entry_path(content_type.slug, @content_entry._id)
+      authorize ContentEntry
+      @content_entry = @content_type.entries.create(params[:content_entry])
+      respond_with @content_entry, location: edit_content_entry_path(@content_type.slug, @content_entry._id)
     end
 
     def edit
-      @content_entry = content_type.entries.find(params[:id])
+      authorize @content_entry
       respond_with @content_entry
     end
 
     def update
-      @content_entry = service.update(params[:id], params[:content_entry])
-      respond_with @content_entry, location: edit_content_entry_path(content_type.slug, @content_entry._id)
+      authorize @content_entry
+      @content_entry.update_attributes(params[:content_entry])
+      respond_with @content_entry, location: edit_content_entry_path(@content_type.slug, @content_entry._id)
     end
 
     def sort
-      content_type.klass_with_custom_fields(:entries).sort_entries!(params[:entries], content_type.sortable_column)
-      respond_with content_type
+      authorize ContentEntry, :update?
+      @content_type.klass_with_custom_fields(:entries).sort_entries!(params[:entries], @content_type.sortable_column)
+      respond_with @content_type
     end
 
     def destroy
-      @content_entry = content_type.entries.find(params[:id])
+      authorize @content_entry
       @content_entry.destroy
-      respond_with @content_entry, location: content_entries_path(content_type.slug)
+      respond_with @content_entry, location: content_entries_path(@content_type.slug)
     end
 
-    protected
+    private
 
-    def service
-      @service ||= Locomotive::ContentEntriesService.new(current_locomotive_account, content_type)
-    end
-
-    def content_type
+    def load_content_type
       @content_type ||= current_site.content_types.where(slug: params[:slug]).first
     end
 
-    def authorize_content
-      authorize! params[:action].to_sym, ContentEntry
+    def load_content_entry
+      @content_entry = @content_type.entries.find(params[:id])
+    end
+
+    def service
+      @service ||= Locomotive::ContentEntryService.new(load_content_type)
     end
 
   end

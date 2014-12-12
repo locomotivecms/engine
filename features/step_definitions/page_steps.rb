@@ -30,13 +30,13 @@ end
 
 Given /^a page named "([^"]*)" with id "([^"]*)"$/ do |slug, id|
   @page = new_content_page(slug, '')
-  @page.id = Moped::BSON::ObjectId(id)
+  @page.id = BSON::ObjectId(id)
   @page.save!
 end
 
 Given /^a page named "([^"]*)" with id "([^"]*)" and template:$/ do |slug, id, template|
   @page = new_content_page(slug, template)
-  @page.id = Moped::BSON::ObjectId(id)
+  @page.id = BSON::ObjectId(id)
   @page.save!
 end
 

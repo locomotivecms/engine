@@ -1,4 +1,4 @@
-Feature: Contact form
+Feature: Contact form [Old way]
   As a visitor
   In order to keep in touch with the site
   I want to be able to send them a message

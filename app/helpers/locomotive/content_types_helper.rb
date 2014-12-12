@@ -13,7 +13,7 @@ module Locomotive
     def each_content_type(&block)
       visible, others = [], []
 
-      current_site.content_types.ordered.only(:site_id, :name, :slug, :label_field_name).each_with_index do |content_type, index|
+      current_site.content_types.ordered.only(:_id, :site_id, :name, :slug, :label_field_name).each_with_index do |content_type, index|
         next if !content_type.persisted?
 
         if index >= Locomotive.config.ui[:max_content_types]
@@ -30,7 +30,7 @@ module Locomotive
 
       end.each do |content_type|
         # make sure to have a fresh copy of the content types because for now we don't have the full content types (ie: content_types.only(...))
-        ::Mongoid::IdentityMap.remove(content_type)
+        # ::Mongoid::IdentityMap.remove(content_type)
       end
 
       if visible.size > 0
@@ -67,6 +67,21 @@ module Locomotive
 
         preserve(content_type.item_template.render(::Liquid::Context.new({}, assigns, registers)))
       end
+    end
+
+    # List the fields which could be used to filter the content entries
+    # in the back-office.
+    # Not all the types are included. Only: string, text, integer, float, email
+    #
+    # @param [ ContentType ] content_type The content type owning the fields
+    #
+    # @return [ Array ] Used as it by the select_tag method
+    #
+    def options_for_filter_fields(content_type)
+      allowed_types = %w(string text integer float email)
+      fields = content_type.entries_custom_fields.where(:type.in => allowed_types)
+
+      fields.map { |field| [field.label, field._id] }
     end
 
   end

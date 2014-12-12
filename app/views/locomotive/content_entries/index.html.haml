@@ -5,6 +5,12 @@
 - content_for :actions do
   = link_to t('.new'), new_content_entry_path(@content_type.slug), class: 'btn btn-primary btn-sm'
 
+- if @content_type.filter_fields.present?
+  .search-box
+    = form_tag content_entries_path(@content_type.slug), method: :get do
+      %i.icon-search
+      = text_field_tag :q, params[:q], placeholder: t('.search_placeholder')
+
 - if @content_type.groupable?
   %p TODO
   / - @content_entries.each do |group|
@@ -17,26 +23,6 @@
 
 / - content_for :actions do
 /   = render 'locomotive/shared/actions/contents'
-
-/ - content_for :buttons do
-/   - if can?(:manage, Locomotive::ContentType)
-/     = local_action_button :edit, edit_content_type_path(@content_type), icon: 'icon-pencil'
-
-/   = local_action_button :export, export_content_entries_path(@content_type.slug, :csv), icon: 'icon-download'
-
-/   = local_action_button :new, new_content_entry_path(@content_type.slug), icon: 'icon-plus'
-
-/ - if @content_type.description.present?
-/   %p= @content_type.description
-
-/ - if @content_type.groupable?
-/   - @content_entries.each do |group|
-/     .box
-/       %h3= group[:name] || t('.category_noname')
-/       .inner
-/         = render 'list', content_type: @content_type, entries: group[:entries]
-/ - else
-/   = render 'list', content_type: @content_type, entries: @content_entries
 
 / - # Note: submenu has to be here in order to have the previous entries correctly rendered since we do not return
 / - #       all the attributes of the content types in the following code (causing stale documents)

@@ -17,7 +17,7 @@ def do_api_request(type, url, param_string_or_hash = nil)
     transform_filenames_to_fixtured_files(params)
     @json_response = do_request(type, api_base_url, url,
                                params.merge({ 'CONTENT_TYPE' => 'application/json' }))
-  rescue CanCan::AccessDenied, Mongoid::Errors::DocumentNotFound
+  rescue Pundit::NotAuthorizedError, Mongoid::Errors::DocumentNotFound
     @error = $!
   end
 end

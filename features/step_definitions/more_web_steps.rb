@@ -129,7 +129,3 @@ end
 When(/^I wait (\d+)ms$/) do |delay|
   sleep(delay.to_i / 1000.0)
 end
-
-Then(/^the current locale is "(.*?)"$/) do |locale|
-  page.should have_xpath("/html[@lang='#{locale}']")
-end

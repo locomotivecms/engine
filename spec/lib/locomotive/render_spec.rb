@@ -12,7 +12,7 @@ describe 'Locomotive rendering system' do
     @page = FactoryGirl.build(:page, site: nil, published: true)
   end
 
-  context '#liquid_context' do
+  describe '#liquid_context' do
 
     before(:each) do
       @controller.instance_variable_set(:@page, @page)

@@ -62,16 +62,14 @@ module Locomotive
         protected
 
         def filter_and_order_list(list)
-          # filter ?
-          if @context['with_scope']
-            conditions  = HashWithIndifferentAccess.new(@context['with_scope'])
-            order_by    = conditions.delete(:order_by).try(:split)
+          conditions, order_by = HashWithIndifferentAccess.new(_visible: true), nil
 
-            list.filtered(conditions, order_by)
-          else
-            # no filter, default order
-            list.ordered
+          if @context['with_scope']
+            conditions.merge!(@context['with_scope'])
+            order_by = conditions.delete(:order_by).try(:split)
           end
+
+          list.filtered(conditions, order_by)
         end
 
       end

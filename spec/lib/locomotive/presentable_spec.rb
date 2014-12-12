@@ -134,7 +134,7 @@ describe Locomotive::Presentable do
 
   ## classes for tests ##
 
-  class BasePresenter
+  class FakeBasePresenter
 
     include Locomotive::Presentable
 
@@ -142,7 +142,7 @@ describe Locomotive::Presentable do
 
   end
 
-  class PersonPresenter < BasePresenter
+  class PersonPresenter < FakeBasePresenter
 
     properties  :name, :age
     property    :address, only_setter: true, alias: :full_address
@@ -175,7 +175,7 @@ describe Locomotive::Presentable do
 
   end
 
-  class ProjectPresenter < BasePresenter
+  class ProjectPresenter < FakeBasePresenter
 
     property  :title
 

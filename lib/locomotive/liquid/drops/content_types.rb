@@ -41,11 +41,17 @@ module Locomotive
         protected
 
         def collection
+          options = {}
+
           if @context['with_scope']
             self.modify_with_scope
+
+            options = { where: @context['with_scope'] }
+
+            options[:order_by] = options[:where].delete(:order_by)
           end
 
-          @collection ||= @content_type.ordered_entries(@context['with_scope']).visible
+          @collection ||= @content_type.ordered_entries(options).visible
         end
 
         # Modify the attributes of the with_scope tag so that

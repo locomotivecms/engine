@@ -17,6 +17,12 @@ module Locomotive
           input.blank? ? value : input
         end
 
+        # FIXME: to be removed once we use liquid > 2.6
+        # https://github.com/Shopify/liquid/blob/master/lib/liquid/standardfilters.rb#L81
+        def split(input, pattern)
+          input.to_s.split(pattern)
+        end
+
         # Render the navigation for a paginated collection
         def default_pagination(paginate, *args)
           return '' if paginate['parts'].empty?

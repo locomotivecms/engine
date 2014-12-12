@@ -1,4 +1,4 @@
-%p= t('.title', name: @account.name, domain: @domain, date: I18n.l(Time.zone.now), locale: @account.locale).html_safe
+%p= t('.title', name: @account.name, domain: @domain, date: I18n.l(Time.now.in_time_zone), locale: @account.locale).html_safe
 
 %p
   %b= t('.type', type: @type.name, locale: @account.locale)

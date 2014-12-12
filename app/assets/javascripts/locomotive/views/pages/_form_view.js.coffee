@@ -93,7 +93,7 @@ class Locomotive.Views.Pages.FormView extends Locomotive.Views.Shared.FormView
       @editor.on 'change', (editor, change) => @model.set(raw_template: editor.getValue())
 
   after_inputs_fold: ->
-    @editor.refresh()
+    @editor.refresh() if @editor?
 
   render_editable_elements: ->
     @$('.formtastic fieldset.inputs:first').before(@editable_elements_view.render().el)

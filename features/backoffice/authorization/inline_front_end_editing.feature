@@ -21,7 +21,7 @@ Feature: Inline frontend editing
     Then I should not see "Admin"
     When I view the rendered page at "/about/_admin"
     Then I should not see "Editing mode"
-    And I should see the login page
+    And I should see "Log in"
 
   Scenario: Inline editing as an Admin
     Given I am an authenticated "admin"

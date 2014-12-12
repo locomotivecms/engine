@@ -2,76 +2,61 @@ module Locomotive
   module Api
     class AccountsController < Api::BaseController
 
-      load_and_authorize_resource class: Locomotive::Account
+      before_filter :load_account, only: [:show, :update, :destroy]
+      before_filter :load_accounts, only: [:index]
+
+      skip_before_filter :require_account, only: [:create]
+      skip_before_filter :require_site
+      skip_before_filter :validate_site_membership
 
       def index
+        authorize Locomotive::Account
         @accounts = @accounts.ordered
-        respond_with(@accounts)
+        respond_with @accounts
       end
 
       def show
-        respond_with(@account)
+        authorize @account
+        respond_with @account
       end
 
       def create
-        @account.from_presenter(params[:account])
-        @account.save
-        respond_with(@account)
+        @account = Account.new
+        @account.from_presenter(account_params_on_create).save
+        respond_with @account, location: main_app.locomotive_api_account_url(@account._id)
       end
 
       def update
-        @account.from_presenter(params[:account])
-        @account.save
-        respond_with(@account)
+        authorize @account
+        @account.from_presenter(params[:account]).save
+        respond_with @account, location: main_app.locomotive_api_account_url(@account._id)
       end
 
       def destroy
+        authorize @account
         @account.destroy
-        respond_with(@account)
+        respond_with @account
       end
 
-      protected
+      private
 
-      def self.description
-        {
-          overall: %{Manage the accounts (only if logged as an admin) no matter the site they belong to},
-          actions: {
-            index: {
-              description: %{Return all the accounts},
-              example: {
-                command: %{curl 'http://mysite.com/locomotive/api/accounts.json?auth_token=dtsjkqs1TJrWiSiJt2gg'},
-                response: %(TODO)
-              }
-            },
-            show: {
-              description: %{Return the attributes of an account},
-              response: Locomotive::AccountPresenter.getters_to_hash,
-              example: {
-                command: %{curl 'http://mysite.com/locomotive/api/accounts/4244af4ef0000002.json?auth_token=dtsjkqs1TJrWiSiJt2gg'},
-                response: %(TODO)
-              }
-            },
-            create: {
-              description: %{Create an account},
-              params: Locomotive::AccountPresenter.setters_to_hash,
-              example: {
-                command: %{curl -d '...' 'http://mysite.com/locomotive/api/accounts.json?auth_token=dtsjkqs1TJrWiSiJt2gg'},
-                response: %(TODO)
-              }
-            },
-            destroy: {
-              description: %{Delete an account},
-              example: {
-                command: %{curl -X DELETE 'http://mysite.com/locomotive/api/accounts.json?auth_token=dtsjkqs1TJrWiSiJt2gg'},
-                response: %(TODO)
-              }
-            }
-          }
-        }
+      def load_account
+        @account = Locomotive::Account.find(params[:id])
+      end
+
+      def load_accounts
+        @accounts = Locomotive::Account.all
+      end
+
+      def current_membership
+        Locomotive::Membership.new(account: current_locomotive_account)
+      end
+
+      def account_params_on_create
+        params.require(:account).permit(:name, :email, :password, :password_confirmation)
       end
 
     end
 
   end
 end
-

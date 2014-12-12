@@ -10,21 +10,16 @@ module Locomotive
       end
 
       def options
-        current_site    = self.controller.send(:current_site)
-        current_account = self.controller.send(:current_locomotive_account)
-        ability         = current_site.nil? || current_account.nil? ? nil : self.controller.send(:current_ability)
+        membership  = self.controller.send(:current_membership)
+        policy      = membership ? Pundit.policy(membership, resource) : nil
 
-        super.merge({
-          current_site:     current_site,
-          current_account:  current_account,
-          ability:          ability
-        })
+        super.merge(policy: policy)
       end
 
       def to_json
         if get?
           add_pagination_header if resource.respond_to?(:num_pages)
-          display resource
+          display(resource)
         elsif has_errors?
           with_flash_message(:alert) do
             display resource.errors, status: :unprocessable_entity
@@ -59,7 +54,7 @@ module Locomotive
           message = URI::escape(controller.flash[type].to_str) if controller.flash[type]
 
           unless message.blank?
-            controller.headers['X-Message']       = ActiveSupport::JSON::Encoding.escape(message)
+            controller.headers['X-Message']       = ActiveSupport::JSON.encode(message)
             controller.headers['X-Message-Type']  = type.to_s
           end
 

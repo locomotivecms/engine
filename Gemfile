@@ -5,21 +5,30 @@ source "https://rubygems.org"
 
 gemspec # Include gemspec dependencies
 
-group :assets do
-  gem 'sass-rails',   '~> 3.2.4'
-  gem 'coffee-rails', '~> 3.2.2'
-  gem 'uglifier',     '~> 1.2.4'
-end
+gem 'sass-rails',   '~> 4.0.3'
+gem 'coffee-rails', '~> 4.0.1'
+gem 'uglifier',     '>= 2.5.3'
 
 # The rest of the dependencies are for use when in the locomotive development / test environments
+# gem 'activeresource'
+
+# gem 'bson'
+# gem 'moped', github: 'mongoid/moped'
+
+# add these gems to help with the transition:
+gem 'protected_attributes'
+gem 'rails-observers'
+gem 'actionpack-page_caching'
+gem 'actionpack-action_caching'
 
 group :test, :development do
-  gem 'rspec-rails', '~> 2.13.0' # In order to have rspec tasks and generators
-  gem 'rspec-cells'
+  gem 'rspec-rails', '~> 2.14.2' # In order to have rspec tasks and generators
+  gem 'rspec-cells', '0.1.10' # Can't update more because rspec-cells depends on rspec >= 2.99 after this version
   gem 'pry'
 end
 
 group :development do
+  gem 'custom_fields', path: '../custom_fields'
   # gem 'custom_fields', path: '../gems/custom_fields' # for Developers
   # gem 'custom_fields', github: 'locomotivecms/custom_fields'
   # gem 'custom_fields', git: 'git://github.com/locomotivecms/custom_fields.git', branch: '2.0.0.rc' # Branch on Github
@@ -46,10 +55,9 @@ group :test do
   # gem 'autotest', platforms: :mri
   # gem 'ZenTest', platforms: :mri
 
-  gem 'poltergeist',        '~> 1.1.0'
-  gem 'shoulda-matchers',   '~> 1.5.2'
-
-  gem 'factory_girl_rails', '~> 4.2.1'
+  gem 'poltergeist'
+  gem 'shoulda-matchers'
+  gem 'factory_girl_rails'
   gem 'pickle'
 
   gem 'capybara',           '~> 2.0.2'
@@ -58,7 +66,7 @@ group :test do
 
   gem 'database_cleaner'
 
-  gem 'mocha', '~> 0.13.0', require: false
+  gem 'mocha', require: false
 
   # gem 'debugger', git: 'git://github.com/cldwalker/debugger.git'
 end

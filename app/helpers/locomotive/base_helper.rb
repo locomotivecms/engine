@@ -272,11 +272,13 @@ module Locomotive
     # memberships
 
     def options_for_membership_roles(options = {})
+      # list =
       if options[:skip_admin]
-        (Locomotive::Ability::ROLES - ['admin']).map { |r| [t("locomotive.memberships.roles.#{r}"), r.to_s] }
+        (ROLES - ['admin']).map { |r| [t("locomotive.memberships.roles.#{r}"), r.to_s] }
       else
-        Locomotive::Ability::ROLES.map { |r| [t("locomotive.memberships.roles.#{r}"), r.to_s] }
-      end
+        ROLES.map { |r| [t("locomotive.memberships.roles.#{r}"), r.to_s] }
+      end #)
+      # options_for_select(list) # TODO: TO BE TESTED
     end
 
     # locales
@@ -313,6 +315,19 @@ module Locomotive
         .gsub('%Y', 'YYYY')
         .gsub('%H', 'H')
         .gsub('%M', 'm')
+    end
+
+    # Other helpers
+
+    # MongoDB crashes when performing a query on a big collection
+    # where there is a sort without an index on the fields to sort.
+    def empty_collection?(collection)
+      # criteria ?
+      if collection.respond_to?(:without_sorting)
+        collection.without_sorting.empty?
+      else
+        collection.empty?
+      end
     end
 
   end

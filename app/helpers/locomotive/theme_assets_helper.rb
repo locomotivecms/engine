@@ -22,8 +22,8 @@ module Locomotive
     end
 
     def theme_assets_to_json(list)
-      return nil.to_json if list.nil?
-      list.map { |asset| asset.as_json(ability: current_ability) }.to_json
+      return nil.to_json unless list
+      list.map { |asset| asset.as_json }.to_json
     end
 
   end

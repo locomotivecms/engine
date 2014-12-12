@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe Locomotive::Liquid::Filters::Misc do
 
+  include Liquid::StandardFilters
   include Locomotive::Liquid::Filters::Base
   include Locomotive::Liquid::Filters::Misc
 
@@ -18,6 +19,23 @@ describe Locomotive::Liquid::Filters::Misc do
     default('foo', 42).should == 'foo'
     default('', 42).should == 42
     default(nil, 42).should == 42
+  end
+
+  describe 'split' do
+
+    let(:string) { nil }
+    subject { split(string, ',') }
+
+    it { should eq [] }
+
+    context 'a not nil value' do
+
+      let(:string) { 'foo,bar'}
+
+      it { should eq %w(foo bar) }
+
+    end
+
   end
 
   describe 'random' do

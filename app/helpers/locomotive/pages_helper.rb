@@ -20,7 +20,7 @@ module Locomotive
 
     def parent_pages_options
       [].tap do |list|
-        root = Locomotive::Page.quick_tree(current_site).first
+        root = Locomotive::PagesService.new(current_site).build_tree.first
 
         add_children_to_options(root, list)
       end
@@ -34,6 +34,18 @@ module Locomotive
       list << ["#{offset}#{page.title}", page.id]
       page.children.each { |child| add_children_to_options(child, list) }
       list
+    end
+
+    def display_page_layouts?
+      ((@page.persisted? && @page.allow_layout?) || !@page.persisted?) &&
+      !current_site.pages.layouts.empty?
+    end
+
+    def options_for_page_layouts
+      layouts = current_site.pages.layouts.map do |_layout|
+        [_layout.title, _layout._id]
+      end
+      [[t('.no_layout'), nil]] + layouts
     end
 
     def options_for_target_klass_name

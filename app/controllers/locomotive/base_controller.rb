@@ -7,6 +7,9 @@ module Locomotive
     include Locomotive::ActionController::UrlHelpers
     include Locomotive::ActionController::Ssl
     include Locomotive::ActionController::Timezone
+    include Locomotive::Concerns::ExceptionController
+    include Locomotive::Concerns::MembershipController
+    include Locomotive::Concerns::AuthorizationController
 
     layout '/locomotive/layouts/application'
 
@@ -22,13 +25,11 @@ module Locomotive
 
     before_filter :validate_site_membership
 
-    load_and_authorize_resource
-
     around_filter :set_timezone
 
     before_filter :set_current_thread_variables
 
-    helper_method :sections, :current_ability
+    helper_method :sections
 
     helper Locomotive::BaseHelper, Locomotive::ContentTypesHelper
 
@@ -36,27 +37,11 @@ module Locomotive
 
     respond_to :html
 
-    rescue_from CanCan::AccessDenied do |exception|
-      ::Locomotive.log "[CanCan::AccessDenied] #{exception.inspect}"
-
-      if request.xhr?
-        render json: { error: exception.message }
-      else
-        flash[:alert] = exception.message
-
-        redirect_to pages_path
-      end
-    end
-
     protected
 
     def set_current_thread_variables
       Thread.current[:account]  = current_locomotive_account
       Thread.current[:site]     = current_site
-    end
-
-    def current_ability
-      @current_ability ||= Locomotive::Ability.new(current_locomotive_account, current_site)
     end
 
     def require_account

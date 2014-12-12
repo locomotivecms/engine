@@ -1,4 +1,4 @@
-- if can? :manage, Locomotive::ContentType
+- if policy(Locomotive::ContentType).index?
   .action
     = link_to new_content_type_path, class: 'button' do
       %i.icon-plus

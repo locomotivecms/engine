@@ -23,6 +23,12 @@ describe Locomotive::Liquid::Tags::WithScope do
     options[:category].should == 'posts'
   end
 
+  it 'decodes a regexp stored in a context variable' do
+    scope   = Locomotive::Liquid::Tags::WithScope.new('with_scope', 'title: my_regexp', ["{% endwith_scope %}"], {})
+    options = decode_options(scope, { 'my_regexp' => '/^Hello World/' })
+    options[:title].should == /^Hello World/
+  end
+
   it 'allows order_by option' do
     scope   = Locomotive::Liquid::Tags::WithScope.new('with_scope', 'order_by:\'name DESC\'', ["{% endwith_scope %}"], {})
     options = decode_options(scope)

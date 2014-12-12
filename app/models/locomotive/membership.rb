@@ -3,6 +3,8 @@ module Locomotive
 
     include Locomotive::Mongoid::Document
 
+    ROLES = %w(author designer admin)
+
     ## fields ##
     field :role, default: 'author'
 
@@ -19,7 +21,7 @@ module Locomotive
 
     ## methods ##
 
-    Locomotive::Ability::ROLES.each do |_role|
+    ROLES.each do |_role|
       define_method("#{_role}?") do
         self.role == _role
       end
@@ -47,27 +49,35 @@ module Locomotive
       end
     end
 
-    def ability
-      @ability ||= Locomotive::Ability.new(self.account, self.site)
+    def to_role
+      self.role.to_sym
     end
 
     protected
 
     def define_role
-      self.role = Locomotive::Ability::ROLES.include?(role.downcase) ? role.downcase : Locomotive::Ability::ROLES.first
+      self.role = ROLES.include?(role.downcase) ? role.downcase : ROLES.first
     end
 
     # Users should not be able to set the role of another user to be higher than
     # their own. A designer for example should not be able to set another user to
     # be an administrator
+    #
+    # Note (Did): in order to call Thread.current, this code has to be moved into a site service.
+    # We also should use the MembershipPolicy to control if the user can change the role or not.
+    #
     def can_change_role
-      current_site       = Thread.current[:site]
-      current_membership = current_site.memberships.where(account_id: Thread.current[:account].id).first if current_site.present?
+      current_site = Thread.current[:site]
+      if current_site.present?
+        current_membership = current_site.memberships.where(account_id: Thread.current[:account].id).first
+      end
 
       if current_membership.present?
         # The role cannot be set higher than the current one (we use the index in
         # the roles array to check role presidence)
-        errors.add(:role, :invalid) if Locomotive::Ability::ROLES.index(role) < Locomotive::Ability::ROLES.index(current_membership.role)
+        if ROLES.index(current_membership.role) < ROLES.index(role)
+          errors.add(:role, :invalid)
+        end
       end
     end
 

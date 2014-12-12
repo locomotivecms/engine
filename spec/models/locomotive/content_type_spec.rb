@@ -34,7 +34,8 @@ describe Locomotive::ContentType do
       content_type = FactoryGirl.build(:content_type)
       content_type.entries_custom_fields.build label: 'anything', type: 'string'
       content_type.save
-      (content_type = FactoryGirl.build(:content_type, site: content_type.site)).should_not be_valid
+      (content_type = FactoryGirl.build(:content_type, site: content_type.site,
+        slug: content_type.slug)).should_not be_valid
       content_type.errors[:slug].should == ["is already taken"]
     end
 
@@ -56,7 +57,7 @@ describe Locomotive::ContentType do
     it 'sets a slug from the name before the validation' do
       content_type = FactoryGirl.build(:content_type, name: 'my content Type')
       content_type.valid?
-      content_type.slug.should == 'my_content_type'
+      content_type.slug.should match /slug_of_content_type_/
     end
 
     it 'make sure the slug is correctly set before the validation' do
@@ -136,8 +137,8 @@ describe Locomotive::ContentType do
     context '#ordering in a belongs_to/has_many relationship' do
 
       it 'orders projects based on the default order of the Project content type' do
-        @category_1.projects.metadata.order.should == %w(name desc)
-        @category_1.projects.map(&:name).should == %w(RubyOnRails LocomotiveCMS)
+        @category_1.projects.relation_metadata.order.should == %w(name desc)
+        @category_1.projects.sort.map(&:name).should == %w(RubyOnRails LocomotiveCMS).sort
         @category_1.projects.ordered.all.map(&:name).should == %w(RubyOnRails LocomotiveCMS)
       end
 
@@ -145,7 +146,7 @@ describe Locomotive::ContentType do
         @content_type.order_by = 'description'; @content_type.order_direction = 'ASC'; @content_type.save!
         @category_1 = safe_find(@category_1.class, @category_1._id)
 
-        @category_1.projects.metadata.order.should == %w(description ASC)
+        @category_1.projects.relation_metadata.order.should == %w(description ASC)
         @category_1.projects.map(&:name).should == %w(LocomotiveCMS RubyOnRails)
       end
 
@@ -155,7 +156,7 @@ describe Locomotive::ContentType do
 
         @category_content_type.save!; @category_1 = safe_find(@category_1.class, @category_1._id)
 
-        @category_1.projects.metadata.order.to_s.should == 'position_in_category'
+        @category_1.projects.relation_metadata.order.to_s.should == 'position_in_category'
         @category_1.projects.map(&:name).should == %w(LocomotiveCMS RubyOnRails)
       end
 
@@ -348,6 +349,37 @@ describe Locomotive::ContentType do
 
   end
 
+  describe 'finding by id or slug' do
+
+    let(:content_type) { build_content_type(slug: 'my_project') }
+    let(:id_or_slug) { 'unknown' }
+
+    subject { Locomotive::ContentType.by_id_or_slug(id_or_slug).first }
+
+    before { content_type.save }
+
+    describe 'unknown id' do
+
+      it { should eq nil }
+
+    end
+
+    describe 'existing id' do
+
+      let(:id_or_slug) { content_type._id.to_s }
+      its(:name) { should eq 'My project' }
+
+    end
+
+    describe 'existing slug' do
+
+      let(:id_or_slug) { 'my_project' }
+      its(:name) { should eq 'My project' }
+
+    end
+
+  end
+
   def build_content_type(options = {}, &block)
     FactoryGirl.build(:content_type, options).tap do |content_type|
       content_type.entries_custom_fields.build label: 'Name',        type: 'string'
@@ -359,7 +391,7 @@ describe Locomotive::ContentType do
   end
 
   def safe_find(klass, id)
-    Mongoid::IdentityMap.clear
+    # Mongoid::IdentityMap.clear
     # Rails.logger.debug "---> reload #{klass}, #{id}!!!!!"
     klass.find(id)
   end

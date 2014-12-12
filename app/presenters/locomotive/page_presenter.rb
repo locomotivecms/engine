@@ -16,7 +16,7 @@ module Locomotive
     property    :redirect, type: 'Boolean'
     properties  :redirect_url, :redirect_type
 
-    properties  :listed, :published, :templatized, type: 'Boolean'
+    properties  :listed, :published, :templatized, :is_layout, :allow_layout, type: 'Boolean'
 
     property    :templatized_from_parent, type: 'Boolean', only_getter: true
     property    :target_klass_slug, alias: [:target_klass_name, :target_entry_name]

@@ -19,7 +19,7 @@ end
 
 Given %r{^I have a custom model named "([^"]*)" with id "([^"]*)" and$} do |name, id, fields|
   content_type = build_content_type(name)
-  content_type.id = Moped::BSON::ObjectId(id)
+  content_type.id = BSON::ObjectId(id)
   set_custom_fields_from_table(content_type, fields)
   content_type.valid?
   content_type.save.should be_true
@@ -126,4 +126,10 @@ end
 Given(/^I click on the (\d+)[a-z]+ required flag$/) do |nth|
   find(".custom-field:nth-child(#{nth}) .required-input .switchHandle").click
   sleep(0.1)
+end
+
+Given(/^I have the "(.*?)" entries ordered by the "(.*?)" field$/) do |name, field|
+  content_type = Locomotive::ContentType.where(name: name).first
+  field = content_type.entries_custom_fields.detect { |f| f.label == field }
+  content_type.update_attribute :order_by, field.name
 end

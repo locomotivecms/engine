@@ -49,7 +49,12 @@ module Locomotive
               # key to h4s symbol
               _key = _key.to_s.to_sym.send(_operator.to_sym) if _operator
 
-              hash[_key] = value
+              hash[_key] = (case value
+                # regexp inside a string
+              when /^\/[^\/]*\/$/ then Regexp.new(value[1..-2])
+              else
+                value
+              end)
             end
           end
         end

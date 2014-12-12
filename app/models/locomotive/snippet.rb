@@ -2,7 +2,7 @@ module Locomotive
   class Snippet
 
     include Locomotive::Mongoid::Document
-    include Extensions::Shared::Slug
+    include Concerns::Shared::Slug
 
     ## fields ##
     field :name
@@ -22,8 +22,8 @@ module Locomotive
 
     ## behaviours ##
     slugify_from    :name
-    attr_protected  :id
-    attr_accessible :name, :slug, :template
+    # attr_protected  :id
+    # attr_accessible :name, :slug, :template
 
     ## methods ##
 
@@ -44,7 +44,9 @@ module Locomotive
         serialized_template = page.send(:_serialize_template)
 
         # persist the change to MongoDB by bypassing the validation and the callbacks
-        page.set("serialized_template.#{::Mongoid::Fields::I18n.locale}", serialized_template)
+        ::I18n.with_locale(::Mongoid::Fields::I18n.locale) do
+          page.set(serialized_template: serialized_template)
+        end
       end
     end
 

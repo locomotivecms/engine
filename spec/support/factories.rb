@@ -1,9 +1,12 @@
 # encoding: utf-8
+
 FactoryGirl.define do
+
   ## Site ##
   factory :site, class: Locomotive::Site do
     name 'Acme Website'
     subdomain 'acme'
+    # sequence(:subdomain) { |n| "acme#{n*rand(10_000)}" }
     created_at Time.now
 
     factory 'test site' do
@@ -57,6 +60,12 @@ FactoryGirl.define do
       name 'Jean Claude'
       email 'jean@frenchy.fr'
       locale 'fr'
+    end
+
+    factory 'portuguese user' do
+      name 'Tiago Fernandes'
+      email 'tjg.fernandes@gmail.com'
+      locale 'pt'
     end
 
     factory 'brazillian user' do
@@ -116,8 +125,16 @@ FactoryGirl.define do
   factory :page, class: Locomotive::Page do
     title 'Home page'
     slug 'index'
+    # sequence(:slug) { |n| "index#{n*rand(10_000)}" }
     published true
     site { Locomotive::Site.where(subdomain: 'acme').first || FactoryGirl.create(:site) }
+
+    trait :index do
+      after(:build) do |page, evaluator|
+        page.parent = page.site.pages.root.first
+        page.raw_template = nil
+      end
+    end
 
     factory :sub_page do
       title 'Subpage'
@@ -126,40 +143,52 @@ FactoryGirl.define do
       site { Locomotive::Site.where(subdomain: 'acme').first || FactoryGirl.create(:site) }
       parent { Locomotive::Page.where(slug: 'index').first || FactoryGirl.create(:page) }
     end
-
   end
 
   ## Snippets ##
   factory :snippet, class: Locomotive::Snippet do
     name 'My website title'
-    slug 'header'
+    sequence(:slug) { |n| "header#{n*rand(10_000)}" }
     template %{<title>Acme</title>}
     site { Locomotive::Site.where(subdomain: 'acme').first || FactoryGirl.create(:site) }
   end
 
-
   ## Assets ##
   factory :asset, class: Locomotive::ContentAsset do
+    source{Rack::Test::UploadedFile.new(File.join(Rails.root, '..', '..', 'spec', 'fixtures', 'images', 'rails.png'))}
     site { Locomotive::Site.where(subdomain: 'acme').first || FactoryGirl.create(:site) }
   end
 
-
   ## Theme assets ##
   factory :theme_asset, class: Locomotive::ThemeAsset do
+    # source{Rack::Test::UploadedFile.new(File.join(Rails.root, '..', '..', 'spec', 'fixtures', 'images', 'rails.png'))}
     site { Locomotive::Site.where(subdomain: 'acme').first || FactoryGirl.create(:site) }
   end
 
   ## Content types ##
   factory :content_type, class: Locomotive::ContentType do
+    sequence(:slug) { |n| "slug_of_content_type_#{n*rand(10_000)}" }
     name 'My project'
     description 'The list of my projects'
     site { Locomotive::Site.where(subdomain: 'acme').first || FactoryGirl.create(:site) }
+    trait :with_field do
+      after(:build) do |content_type, evaluator|
+        content_type.entries_custom_fields.build label: 'Title', type: 'string'
+      end
+    end
   end
 
   factory :content_entry, class: Locomotive::ContentEntry do
+    sequence(:_slug) { |n| "slug_of_content_entry_#{n*rand(10_000)}" }
+    _label_field_name '_label_field_name'
+    site { Locomotive::Site.where(subdomain: 'acme').first || FactoryGirl.create(:site) }
+    content_type { FactoryGirl.create(:content_type, :with_field) }
   end
 
   factory :translation, class: Locomotive::Translation do
+    sequence(:key) { |n| "key_#{n*rand(10_000)}" }
+    values {{ en: 'foo', fr: 'bar', wk: 'wuuuu' }}
+    site { Locomotive::Site.where(subdomain: 'acme').first || FactoryGirl.create(:site) }
   end
 
 end

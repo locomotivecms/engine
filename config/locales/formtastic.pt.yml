@@ -1,0 +1,70 @@
+pt:
+  formtastic:
+    titles:
+      information: Informação geral
+      meta: Metadata SEO
+      code: Código
+      raw_template: Template
+      credentials: Credenciais
+      language: Língua
+      sites: Sites
+      access_points: Pontos de acesso
+      memberships: Contas
+      membership_email: Conta de email
+      file: Ficheiro
+      preview: Pré-visualizar
+      options: Opções avançadas
+      custom_fields: Campos personalizáveis
+      other_fields: Outras informações
+      presentation: Apresentação
+      attributes: Atributos
+      upload: Upload
+    labels:
+      theme_asset:
+        plain_text_name: Nome do ficheiro
+        content_type: Tipo do ficheiro
+        new:
+          source: Ficheiro
+        edit:
+          source: Substituir ficheiro
+      custom_fields:
+        field:
+          name: Apelido
+      import:
+        new:
+          source: Ficheiro
+          samples: Amostras
+          reset: Reiniciar site
+      content_type:
+        api_accounts: Contas notificadas
+      account:
+        edit:
+          password: Nova password
+          password_confirmation: Confirmação da nova password
+
+    hints:
+      page:
+        published: "Apenas contas autenticadas podem ver as páginas não publicadas."
+        cache_strategy: 'Faça o Cache da página para obter melhor desempenho. A escolha do "Simples" é um bom compromisso'
+        templatized: "Utilize a página como template para o modelo definido."
+      snippet:
+        slug: "Necessita de saber a ordem para inserir blocos dentro da página."
+      site:
+        meta_keywords: "Palavras chave utilizadas dentro da tag 'head' da página. Elas são separadas por um espaço em branco. Necessário para SEO."
+        meta_description: "Descrição chave utilizada dentro da tag 'head' da página. Necessário para SEO."
+        domain_name: "ex: locomotiveapp.org"
+      theme_asset:
+        slug: "Não necessita de adicionar as extensões do arquivo (.css or .js)"
+        edit:
+          source: "Pode substituir por um ficheiro com a mesma extensão."
+      custom_fields:
+        field:
+          name: "Propriedades disponíveis em templates LIQUID."
+          hint: "Texto apresentado no formulário do modelo encontra-se por baixo do campo."
+      import:
+        source: "Um ficheiro .zip contendo um ficheiro database.yml com recursos e templates"
+        samples: "Se activado, a importação também irá copiar conteúdos e recursos."
+        reset: "Se activado, todos os dados do site serão apagados antes da importação do novo site."
+      content_type:
+        api_enabled: "É utilizado para permitir que as pessoas de fora possam criar novas instâncias (exemplo: mensagens no formulário de contato)"
+        api_accounts: "Um email de notificação será enviado para os emails contidos na lista quando uma nova instância for criada."

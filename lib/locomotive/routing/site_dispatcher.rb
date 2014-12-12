@@ -1,3 +1,4 @@
+# TODO: move it to app/controllers/locomotive/concerns
 module Locomotive
   module Routing
     module SiteDispatcher
@@ -6,26 +7,20 @@ module Locomotive
 
       included do
         if self.respond_to?(:before_filter)
-          before_filter :fetch_site
-
           helper_method :current_site
         end
       end
 
       protected
 
-      def fetch_site
-        Locomotive.log "[fetch site] host = #{request.host} / #{request.env['HTTP_HOST']}"
-
-        if Locomotive.config.multi_sites?
-          @current_site ||= Locomotive::Site.match_domain(request.host).first
-        else
-          @current_site ||= Locomotive::Site.first
-        end
+      def current_site
+        @current_site ||= request.env['locomotive.site']
       end
 
-      def current_site
-        @current_site || fetch_site
+      def current_resource
+        self.class.name.demodulize.underscore.gsub('_controller','').to_sym
+      rescue
+        :no_current_resource
       end
 
       def require_site
@@ -51,15 +46,6 @@ module Locomotive
         end
       end
 
-      def validate_site_membership
-        return true if current_site.present? && current_site.accounts.include?(current_locomotive_account)
-
-        sign_out(current_locomotive_account)
-        flash[:alert] = I18n.t(:no_membership, scope: [:devise, :failure, :locomotive_account])
-        redirect_to new_locomotive_account_session_url and return false
-      end
-
     end
-
   end
 end

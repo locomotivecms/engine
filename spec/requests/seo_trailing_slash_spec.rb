@@ -25,7 +25,7 @@ describe 'Locomotive::Middlewares::SeoTrailingSlash' do
   it 'removes the trailing slash but preserves the query' do
     get '/hello_world/?test=name'
     response.status.should be(301)
-    response.location.should == '/hello_world?test=name'
+    response.location.should == 'http://www.example.com/hello_world?test=name'
   end
 
 end

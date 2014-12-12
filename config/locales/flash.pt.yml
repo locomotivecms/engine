@@ -1,0 +1,106 @@
+pt:
+  flash:
+    locomotive:
+      pages:
+        create:
+          notice: "Página criada com sucesso."
+          alert: "Página não criada."
+        update:
+          notice: "Página atualizada com sucesso."
+          alert: "Página não atualizada."
+        sort:
+          notice: "Páginas ordenadas com sucesso."
+        destroy:
+          notice: "Páginas apagadas com sucesso."
+
+      content_entries:
+        create:
+          notice: "Conteúdo criado com sucesso."
+          alert: "Conteúdo não criado."
+        update:
+          notice: "Conteúdo atualizado com sucesso."
+          alert: "Conteúdo não atualizado."
+        sort:
+          notice: "Conteúdos ordenados com sucesso."
+        destroy:
+          notice: "Conteúdos apagados com sucesso."
+
+      content_types:
+        create:
+          notice: "Modelo criado com sucesso."
+          alert: "Modelo não criado."
+        update:
+          notice: "Modelo atualizado com sucesso."
+          alert: "Modelo não atualizado."
+        destroy:
+          notice: "Modelo apagado com sucesso."
+
+      current_site:
+        update:
+          notice: "Site atualizado com sucesso."
+          alert: "Site não atualizado."
+
+      snippets:
+        create:
+          notice: "Bloco criado com sucesso."
+          alert: "Bloco não criado."
+        update:
+          notice: "Bloco atualizado com sucesso."
+          alert: "Bloco não atualizado."
+        destroy:
+          notice: "Bloco apagado com sucesso."
+
+      accounts:
+        create:
+          notice: "Conta criada com sucesso."
+          alert: "Conta não criada."
+
+      my_account:
+        update:
+          notice: "A minha conta foi atualizada com sucesso."
+          alert: "A minha conta não foi atualizada."
+
+      sites:
+        create:
+          notice: "Site criado com sucesso."
+          alert: "Site não criado."
+        destroy:
+          notice: "Site removido com sucesso."
+
+      memberships:
+        create:
+          notice: "Conta adicionada com sucesso."
+          alert: "Conta não adicionada."
+          already_created: "A conta já foi adicionada ao site atual."
+
+      assets:
+        create:
+          notice: "Recurso criado com sucesso."
+          alert: "Recurso não criado."
+        update:
+          notice: "Recurso atualizado com sucesso."
+          alert: "Recurso não atualizado."
+
+      theme_assets:
+        create:
+          notice: "Ficheiro criado com sucesso."
+          alert: "Ficheiro não criado."
+        update:
+          notice: "Ficheiro atualizado com sucesso."
+          alert: "Ficheiro não atualizado."
+        destroy:
+          notice: "Ficheiro removido com sucesso."
+
+      custom_fields:
+        update:
+          alert: "Campo não atualizado."
+
+      cross_domain_sessions:
+        create:
+          alert: "É necessário autenticar"
+
+      import:
+        create:
+          done: "O seu site foi atualizado com sucesso."
+          notice: "O seu site está em atualização."
+          alert: "A importação não foi efetuada."

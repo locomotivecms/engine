@@ -3,15 +3,18 @@ module Locomotive
 
     respond_to :json, only: [:create, :bulk_create]
 
-    def index
-      self.list_assets
+    before_filter :load_content_assets, only: :index
+    before_filter :load_content_asset,  only: :destroy
 
-      respond_with(@content_asset) do |format|
+    def index
+      authorize Locomotive::ContentAsset
+      respond_with(@content_assets) do |format|
         format.html { render_index }
       end
     end
 
     def create
+      authorize Locomotive::ContentAsset
       @content_asset = current_site.content_assets.create(params[:content_asset])
       respond_with @content_asset, location: content_assets_path
     end
@@ -22,28 +25,32 @@ module Locomotive
     end
 
     def destroy
-      @content_asset = current_site.content_assets.find(params[:id])
+      authorize @content_asset
       @content_asset.destroy
-
-      self.list_assets
-
       respond_with(@content_asset) do |format|
-        format.html { render_index }
+        format.html do
+          load_content_assets
+          render_index
+        end
       end
     end
 
-    protected
+    private
 
-    def service
-      @service ||= Locomotive::ContentAssetsService.new(current_site)
+    def load_content_assets
+      @content_assets = service.list(params.slice(:types, :query, :page, :per_page))
     end
 
-    def list_assets
-      @content_assets = service.list(params.slice(:types, :query, :page, :per_page))
+    def load_content_asset
+      @content_asset = self.current_site.content_assets.find(params[:id])
     end
 
     def render_index
       render request.xhr? ? 'index_in_drawer' : 'index', layout: !request.xhr?
+    end
+
+    def service
+      @service ||= Locomotive::ContentAssetsService.new(current_site)
     end
 
   end

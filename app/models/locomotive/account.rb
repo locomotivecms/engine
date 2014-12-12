@@ -4,6 +4,7 @@ module Locomotive
     include Locomotive::Mongoid::Document
     include SimpleTokenAuthentication::ActsAsTokenAuthenticatable
     devise *Locomotive.config.devise_modules
+    include Locomotive::Concerns::Account::DevisePatch
 
     ## devise fields (need to be declared since 2.x) ##
     field :remember_created_at,     type: Time
@@ -25,9 +26,10 @@ module Locomotive
     field :name
     field :locale,  default: Locomotive.config.default_locale.to_s or 'en'
     field :api_key
+    field :super_admin, type: Boolean, default: false
 
     ## protected attributes ##
-    attr_protected  :api_key
+    # attr_protected :api_key
 
     ## validations ##
     validates_presence_of :name
@@ -39,7 +41,7 @@ module Locomotive
     before_destroy    :remove_memberships!
 
     ## scopes ##
-    scope :ordered, order_by(name: :asc)
+    scope :ordered, -> { order_by(name: :asc) }
 
     ## indexes ##
     index({ email: 1 }, { unique: true, background: true })
@@ -50,13 +52,12 @@ module Locomotive
       @sites ||= Site.where('memberships.account_id' => self._id)
     end
 
-    # Tell if the account has admin privileges or not.
-    # Actually, an account is considered as an admin if
-    # it owns at least one admin membership in all its sites.
+    # Tell if the account has admin privileges for one (at least)
+    # of his/her sites.
     #
-    # @return [ Boolean ] True if admin
+    # @return [ Boolean ] True if admin in one of his/her sites.
     #
-    def admin?
+    def local_admin?
       Site.where(memberships: { '$elemMatch' => { account_id: self._id, role: :admin } }).count > 0
     end
 

@@ -1,6 +1,6 @@
 = submenu_entry 'pages', pages_path do
   .wrapper
-    - if can? :manage, @page
+    - if policy(Locomotive::Page).create?
       .header
         %p
           = link_to new_page_path do
@@ -35,7 +35,7 @@
               %i.icon-plus
               = t('locomotive.content_entries.index.new')
 
-          - if can? :manage, content_type
+          - if policy(content_type).edit?
             %p.edit
               = link_to edit_content_type_path(content_type) do
                 %i.icon-pencil

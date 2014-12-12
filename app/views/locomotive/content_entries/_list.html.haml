@@ -1,4 +1,4 @@
-- if entries.empty?
+- if empty_collection?(entries)
   .alert.alert-warning
     != t('.no_items', url: new_content_entry_path(content_type.slug))
 - else

@@ -1,20 +1,10 @@
 require 'rubygems'
-gemfile = File.expand_path('../../../../Gemfile', __FILE__)
 
-# Need to explicitly use syck for yaml. This fixes a problem with the current
-# delayed job parsing of YAML
-#
-# FIXME: I don't expect end users to have to modify their config/boot.rb for an
-# app using the locomotiveCMS gem. Perhaps we can remove this when a newer
-# delayed job version is released?
-#
-require 'yaml'
-YAML::ENGINE.yamler = 'syck' if defined?(YAML::ENGINE)
+# Force encoding to UTF-8
+Encoding.default_internal = Encoding.default_external = 'UTF-8'
 
-if File.exist?(gemfile)
-  ENV['BUNDLE_GEMFILE'] = gemfile
-  require 'bundler'
-  Bundler.setup
-end
+# Set up gems listed in the Gemfile.
+ENV['BUNDLE_GEMFILE'] ||= File.expand_path('../../../../Gemfile', __FILE__)
 
-$:.unshift File.expand_path('../../../../lib', __FILE__)
+require 'bundler/setup' if File.exist?(ENV['BUNDLE_GEMFILE'])
+$LOAD_PATH.unshift File.expand_path('../../../../lib', __FILE__)

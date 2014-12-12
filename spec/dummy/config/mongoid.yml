@@ -20,7 +20,7 @@ development:
         # Change the default consistency model to :eventual or :strong.
         # :eventual will send reads to secondaries, :strong sends everything
         # to master. (default: :eventual)
-        consistency: :strong
+        # consistency: :strong
   # Configure Mongoid specific options. (optional)
   options:
     # Configuration for whether or not to allow access to fields that do
@@ -28,7 +28,7 @@ development:
     # allow_dynamic_fields: true
 
     # Enable the identity map, needed for eager loading. (default: false)
-    identity_map_enabled: true
+    # identity_map_enabled: true
 
     # Includes the root model name in json serialization. (default: false)
     # include_root_in_json: false
@@ -68,8 +68,8 @@ test:
       hosts:
         - localhost:27017
       options:
-        consistency: :strong
-        identity_map_enabled: true
+        # consistency: :strong
+        # identity_map_enabled: true
 
 production:
   sessions:
@@ -78,8 +78,8 @@ production:
       hosts:
         - localhost:27017
       options:
-        consistency: :strong
-        identity_map_enabled: true
+        # consistency: :strong
+        # identity_map_enabled: true
 
 # defaults: &defaults
 #   host: localhost

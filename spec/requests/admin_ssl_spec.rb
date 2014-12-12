@@ -44,4 +44,8 @@ describe 'Enable SSL admin' do
 
   end
 
+  after(:all) do
+    Locomotive.config.enable_admin_ssl = false
+  end
+
 end

@@ -10,7 +10,7 @@ describe Locomotive::EditableControl do
   describe '#simple' do
 
     before(:each) do
-      @home.update_attributes raw_template: "{% block body %}{% editable_control 'menu', options: 'true=Yes,false=No' %}false{% endeditable_control %}{% endblock %}"
+      @home.update_attributes raw_template: %({% block body %}{% editable_control 'menu', options: "true=Yes,false=No" %}false{% endeditable_control %}{% endblock %}%)
 
       @sub_page_1 = FactoryGirl.create(:page, slug: 'sub_page_1', parent: @home, raw_template: "{% extends 'parent' %}")
     end

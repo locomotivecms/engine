@@ -176,7 +176,7 @@ describe Locomotive::ContentEntry do
       @content_type.update_attribute :order_by, '_position'
 
       %w(first second third).each_with_index do |item, index|
-        content = build_content_entry(title: item.to_s, _position: index, published_at: (index + 1).days.ago, visible: true)
+        content = build_content_entry(title: item.to_s, _position: index, published_at: (index + 2).days.ago, visible: true)
         content.save!
         instance_variable_set "@#{item}", content
       end
@@ -213,7 +213,7 @@ describe Locomotive::ContentEntry do
         @second.previous.title.should == 'third'
       end
 
-      it "should find next item", pending: 'Failing on Travis' do
+      it "should find next item" do
         @first.next.title.should == 'very first'
       end
 
@@ -407,6 +407,6 @@ describe Locomotive::ContentEntry do
   end
 
   def fake_bson_id(id)
-    Moped::BSON::ObjectId(id.to_s.rjust(24, '0'))
+    BSON::ObjectId.from_string(id.to_s.rjust(24, '0'))
   end
 end

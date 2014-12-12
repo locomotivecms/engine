@@ -6,12 +6,57 @@ class RawArray < ::Array
   def resizable?; false; end
 end
 
-# FIXME: we have serialiez templates which have references to the old BSON::ObjectId class.
-module BSON
-  class ObjectId < Moped::BSON::ObjectId; end
+# FIXME: we have serialized templates which have references to the old BSON::ObjectId class.
+module Moped
+  module BSON
+    class ObjectId < ::BSON::ObjectId; end
+  end
 end
+# BSON::ObjectId
 
-module Mongoid#:nodoc:
+module Mongoid #:nodoc:
+
+  # FIXME: https://github.com/benedikt/mongoid-tree/issues/58
+  # We replace all the @_#{name} occurences by @_#{name}_ivar.
+  module Relations
+    module Accessors
+      def reset_relation_criteria(name)
+        if instance_variable_defined?("@_#{name}_ivar")
+          send(name).reset_unloaded
+        end
+      end
+      def set_relation(name, relation)
+        instance_variable_set("@_#{name}_ivar", relation)
+      end
+    end
+    def reload_relations
+      relations.each_pair do |name, meta|
+        if instance_variable_defined?("@_#{name}_ivar")
+          if _parent.nil? || instance_variable_get("@_#{name}_ivar") != _parent
+            remove_instance_variable("@_#{name}_ivar")
+          end
+        end
+      end
+    end
+  end
+  module Extensions
+    module Object
+      def ivar(name)
+        if instance_variable_defined?("@_#{name}_ivar")
+          return instance_variable_get("@_#{name}_ivar")
+        else
+          false
+        end
+      end
+      def remove_ivar(name)
+        if instance_variable_defined?("@_#{name}_ivar")
+          return remove_instance_variable("@_#{name}_ivar")
+        else
+          false
+        end
+      end
+    end
+  end
 
   module Document #:nodoc:
     def as_json(options = {})
@@ -22,8 +67,52 @@ module Mongoid#:nodoc:
   end
 
   class Criteria
+    def without_sorting
+      clone.tap { |crit| crit.options.delete(:sort) }
+    end
+
+    # http://code.dblock.org/paging-and-iterating-over-large-mongo-collections
+    def each_by(by, &block)
+      idx = total = 0
+      set_limit = options[:limit]
+      while ((results = ordered_clone.limit(by).skip(idx)) && results.any?)
+        results.each do |result|
+          return self if set_limit and set_limit >= total
+          total += 1
+          yield result
+        end
+        idx += by
+      end
+      self
+    end
+
+    # Optimized version of the max aggregate method.
+    # It works efficiently only if the field is part of a MongoDB index.
+    # more here: http://stackoverflow.com/questions/4762980/getting-the-highest-value-of-a-column-in-mongodb
+    def indexed_max(field)
+      _criteria = criteria.order_by(field.to_sym.desc).only(field.to_sym)
+      selector  = _criteria.send(:selector_with_type_selection)
+      fields    = _criteria.options[:fields]
+      sort      = _criteria.options[:sort]
+
+      document = collection.find(selector).select(fields).sort(sort).limit(1).first
+      document ? document[field.to_s].to_i : nil
+    end
+
     def to_liquid
       Locomotive::Liquid::Drops::ProxyCollection.new(self)
+    end
+
+    private
+
+    def ordered_clone
+      options[:sort] ? clone : clone.asc(:_id)
+    end
+  end
+
+  module Findable
+    def indexed_max(field)
+      with_default_scope.indexed_max(field)
     end
   end
 
@@ -35,18 +124,18 @@ module Mongoid#:nodoc:
   end
 
   # without callback feature
-  module Callbacks #:nodoc:
-    module ClassMethods #:nodoc:
-      def without_callback(*args, &block)
-        skip_callback(*args)
-        yield
-        set_callback(*args)
-      end
-    end
-  end
+  # module Callbacks #:nodoc:
+  #   module ClassMethods #:nodoc:
+  #     def without_callback(*args, &block)
+  #       skip_callback(*args)
+  #       yield
+  #       set_callback(*args)
+  #     end
+  #   end
+  # end
 
   # make the validators work with localized field
-  module Validations #:nodoc:
+  module Validatable #:nodoc:
 
     class ExclusionValidator < ActiveModel::Validations::ExclusionValidator
       include Localizable

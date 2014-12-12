@@ -2,6 +2,7 @@ class Locomotive::BasePresenter
 
   include Locomotive::Presentable
 
+  include ::Pundit
   include ActionView::Helpers::SanitizeHelper
   extend  ActionView::Helpers::SanitizeHelper::ClassMethods
   include ActionView::Helpers::TextHelper
@@ -9,23 +10,19 @@ class Locomotive::BasePresenter
 
   ## default properties ##
   with_options allow_nil: true do |presenter|
-    presenter.properties    :id, :_id
+    presenter.properties :id, :_id
   end
-  properties  :created_at, :updated_at, type: 'Date', only_getter: true
+  properties :created_at, :updated_at, type: 'Date', only_getter: true
 
   ## utility accessors ##
-  attr_reader :__ability, :__depth
+  attr_reader :__policy, :__depth
 
-  # Set the ability object to check if we can or not
+  # Set the policy object to check if we can or not
   # get a property.
   #
   def after_initialize
-    @__depth    = self.__options[:depth] || 0
-    @__ability  = self.__options[:ability]
-
-    if self.__options[:current_account] && self.__options[:current_site]
-      @__ability = Locomotive::Ability.new self.__options[:current_account], self.__options[:current_site]
-    end
+    @__depth  = self.__options[:depth] || 0
+    @__policy = self.__options[:policy]
   end
 
   # Get the id of the source only if it has been persisted
@@ -36,15 +33,14 @@ class Locomotive::BasePresenter
   def _id
     self.__source.persisted? || self.__source.embedded? ? self.__source._id.to_s : nil
   end
-
   alias :id :_id
 
-  # Check if there is an ability object used for permissions.
+  # Check if there is a policy object used for authorization/permission.
   #
   # @return [ Boolean ] True if defined, false otherwise
   #
-  def ability?
-    self.__ability.present?
+  def policy?
+    self.__policy.present?
   end
 
   # Shortcut to the site taken from the source.
