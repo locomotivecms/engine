@@ -1,1 +1,0 @@
-tinyMCE.addI18n('zh-cn.locomotive_media',{"image_desc": "插入媒体"});

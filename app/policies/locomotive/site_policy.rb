@@ -33,5 +33,9 @@ module Locomotive
       super_admin? || site_admin?
     end
 
+    def point?
+      super_admin? || site_admin?
+    end
+
   end
 end

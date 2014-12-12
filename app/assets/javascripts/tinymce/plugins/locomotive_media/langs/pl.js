@@ -1,1 +1,0 @@
-tinyMCE.addI18n('pl.locomotive_media',{"image_desc": "Włóż nośnik"});

@@ -2,7 +2,7 @@
   = form_nav_tab :main, true do
     = link_to t('formtastic.titles.information'), '#main', role: 'tab', data: { toggle: 'tab' }
 
-  - if can?(:point, Locomotive::Site)
+  - if policy(current_site).point?
     = form_nav_tab :access_points do
       = link_to t('formtastic.titles.access_points'), '#access_points', role: 'tab', data: { toggle: 'tab' }
 

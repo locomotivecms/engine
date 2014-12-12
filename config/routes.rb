@@ -19,7 +19,8 @@ Locomotive::Engine.routes.draw do
 
   # root to: 'dashboard#show'
 
-  resource :dashboard, controller: 'dashboard', only: :show
+  get 'dashboard', to: 'dashboard#show', as: :dashboard
+  # resource :dashboard, controller: 'dashboard', only: :show
 
   resources :pages do
     put :sort, on: :member

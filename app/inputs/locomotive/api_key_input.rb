@@ -1,18 +1,12 @@
 module Locomotive
-  class ApiKeyInput < Formtastic::Inputs::StringInput
+  class ApiKeyInput < SimpleForm::Inputs::Base
 
-    include FormtasticBootstrap::Inputs::Base
-    include FormtasticBootstrap::Inputs::Base::Stringish
-
-    def to_html
-      bootstrap_wrapping do
-        api_key_html <<
-        regenerate_button
-      end
+    def input(wrapper_options)
+      api_key_html + regenerate_button
     end
 
     def api_key_html
-      api_key = self.object.api_key || I18n.t('locomotive.api_key.none')
+      api_key = object.api_key || I18n.t('locomotive.api_key.none')
       template.content_tag :code, api_key
     end
 
@@ -24,10 +18,6 @@ module Locomotive
           url:      url,
           confirm:  I18n.t('locomotive.messages.confirm')
         }
-    end
-
-    def errors?
-      false
     end
 
   end

@@ -1,1 +1,0 @@
-tinyMCE.addI18n('et.locomotive_media',{"image_desc": "Sisesta meedia"});

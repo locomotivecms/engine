@@ -31,7 +31,7 @@ class Locomotive.Views.MyAccount.EditView extends Locomotive.Views.Shared.FormVi
           button.prev('code').html(data.api_key)
 
   render_locale_select: ->
-    @$('#account_locale_input select').select2
+    @$('.locomotive_account_locale.input select').select2
       formatResult:     @format_locale
       formatSelection:  @format_locale
       escapeMarkup:     (m) -> { m }

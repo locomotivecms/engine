@@ -2,11 +2,11 @@
 
 = help t('.help', default: '')
 
-= semantic_form_for @account, url: my_account_path, html: { multipart: true } do |f|
+= locomotive_form_for @account, url: my_account_path, html: { multipart: true } do |f|
 
   = hidden_field_tag :active_tab, ''
 
-  = semantic_form_button @account, 'hide'
+  = simple_form_button @account, 'hide'
 
   = render 'locomotive/my_account/form/tabs', f: f
 

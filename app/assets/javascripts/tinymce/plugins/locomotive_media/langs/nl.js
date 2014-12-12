@@ -1,1 +1,0 @@
-tinyMCE.addI18n('nl.locomotive_media',{"image_desc": "Steek media"});

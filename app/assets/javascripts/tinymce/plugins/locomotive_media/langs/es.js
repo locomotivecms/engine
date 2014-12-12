@@ -1,1 +1,0 @@
-tinyMCE.addI18n('es.locomotive_media',{"image_desc": "Inserte los medios de comunicación"});

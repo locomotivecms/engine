@@ -77,7 +77,7 @@ module Locomotive
     def bootstrap_wrapping(&block)
       form_group_wrapping do
         template.content_tag(:header, new_item_link_html + label_html + hint_html(:inline) + error_html(:inline)) <<
-        template.content_tag(:span, :class => 'form-wrapper') do
+        template.content_tag(:span, class: 'form-wrapper') do
           input_content(&block)
         end
       end

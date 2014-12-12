@@ -11,13 +11,7 @@
 //= require underscore
 //= require backbone
 //= require codemirror
-//= require tinymce-jquery
 //= require select2
-//= require codemirror/addons/mode/overlay
-//= require codemirror/modes/css
-//= require codemirror/modes/javascript
-//= require codemirror/modes/xml
-//= require codemirror/modes/htmlmixed
 //= require locomotive/vendor
 //= require ./locomotive/application
 

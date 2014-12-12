@@ -3,7 +3,7 @@ module Locomotive
 
     include ::Locomotive::Engine.routes.url_helpers
 
-    delegate :cookies, to: :parent_controller
+    # delegate :cookies, to: :parent_controller
 
     def show(args)
       @current_site = args[:site]
@@ -62,7 +62,7 @@ module Locomotive
       render
     end
 
-    protected
+    private
 
     def page_service
       @page_service ||= Locomotive::PageService.new(@current_site)
@@ -70,6 +70,10 @@ module Locomotive
 
     def content_type_service
       @content_type_service ||= Locomotive::ContentTypeService.new(@current_site)
+    end
+
+    def cookies
+      parent_controller.send(:cookies)
     end
 
   end

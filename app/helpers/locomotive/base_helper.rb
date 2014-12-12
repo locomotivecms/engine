@@ -32,6 +32,28 @@ module Locomotive
       end
     end
 
+    #= SimpleForm helpers
+
+    def locomotive_form_for(object, *args, &block)
+      options = args.extract_options!
+      options[:wrapper] = :locomotive
+      simple_form_for(object, *(args << options.merge(builder: Locomotive::FormBuilder)), &block)
+    end
+
+    def simple_form_button(resource, misc_class = '')
+      key   = resource.persisted? ? 'update' : 'create'
+      scope = 'locomotive.shared.form_actions'
+
+      content_tag :button,
+        I18n.t(key, scope: scope),
+        type:   'submit',
+        class:  "btn btn-success btn-sm #{misc_class}",
+        data:   {
+          loading_text: t('locomotive.messages.sending_form')
+        }
+    end
+
+
     #= Formtastic helpers
 
     def semantic_form_button(resource, misc_class = '')

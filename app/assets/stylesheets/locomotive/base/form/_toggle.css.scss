@@ -1,4 +1,4 @@
-.formtastic {
+.simple_form {
 
   fieldset .input.toggle {
     @include display-flex;
@@ -49,7 +49,7 @@
 
 @media (max-width: $screen-sm-min) {
 
-  .formtastic {
+  .simple_form {
     fieldset .input.toggle {
       display: block;
 

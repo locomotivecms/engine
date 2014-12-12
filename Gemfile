@@ -5,7 +5,7 @@ source "https://rubygems.org"
 
 gemspec # Include gemspec dependencies
 
-gem 'sass-rails',   '~> 4.0.3'
+gem 'sass-rails',   '~> 4.0.5'
 gem 'coffee-rails', '~> 4.0.1'
 gem 'uglifier',     '>= 2.5.3'
 
@@ -43,7 +43,10 @@ group :development do
   gem 'thor'
   gem 'github_api'
 
-  gem 'unicorn-rails' # Using unicorn_rails instead of webrick (default server)
+  gem 'quiet_assets'
+
+  # gem 'unicorn-rails' # Using unicorn_rails instead of webrick (default server)
+  gem 'thin'
 
 end
 

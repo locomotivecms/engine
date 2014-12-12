@@ -1,15 +1,7 @@
 module Locomotive
-  class FileInput < Formtastic::Inputs::FileInput
+  class FileInput < SimpleForm::Inputs::FileInput
 
-    include FormtasticBootstrap::Inputs::Base
-
-    def to_html
-      bootstrap_wrapping do
-        file_wrapper_html
-      end
-    end
-
-    def file_wrapper_html
+    def input(wrapper_options = nil)
       row_wrapping do
         file_html + buttons_html
       end
@@ -20,8 +12,8 @@ module Locomotive
         no_file_html +
         new_file_html +
         filename_or_image +
-        builder.file_field(method, input_html_options) +
-        builder.hidden_field(:"remove_#{method}")
+        @builder.file_field(attribute_name, input_html_options) +
+        @builder.hidden_field(:"remove_#{attribute_name}")
       end
     end
 
@@ -82,11 +74,11 @@ module Locomotive
     end
 
     def persisted_file?
-      self.object.send(:"#{method}?")
+      object.send(:"#{attribute_name}?")
     end
 
     def persisted_file
-      self.object.send(method.to_sym)
+      self.object.send(attribute_name.to_sym)
     end
 
     def hidden_css(name)

@@ -1,1 +1,0 @@
-tinyMCE.addI18n('no.locomotive_media',{"image_desc": "Sett inn media"});

@@ -35,23 +35,11 @@ module Locomotive
 
     initializer "locomotive.precompile.hook", group: :all do |app|
       app.config.assets.precompile += %w(
+        locomotive/wysihtml5_reset.css
         locomotive.js
         locomotive.css
-
         locomotive/not_logged_in.js
         locomotive/not_logged_in.css)
-
-      # locomotive/aloha.js
-      # locomotive/inline_editor.js
-      # locomotive/inline_editor.css
-      # tinymce/plugins/jqueryinlinepopups/editor_plugin.js
-      # tinymce/plugins/locomotive_media/*.js
-      # tinymce/plugins/locomotive_media/langs/*.js
-      # tinymce/themes/advanced/skins/locomotive/*.css
-      # aloha/plugins/custom/locomotive_media/**/*.css
-      # aloha/plugins/custom/locomotive_media/**/*.js
-      # aloha/plugins/custom/inputcontrol/**/*.css
-      # aloha/plugins/custom/inputcontrol/**/*.js
 
       # Uncomment the lines below to view the names of assets as they are
       # precompiled for the rails asset pipeline
@@ -60,13 +48,12 @@ module Locomotive
       #   true
       # end
 
-      #app.config.assets.precompile = [ method(:compile_asset?).to_proc ]
+      # app.config.assets.precompile = [ method(:compile_asset?).to_proc ]
     end
 
     initializer 'locomotive.middlewares' do |app|
       app.middleware.insert_before(Rack::Runtime, '::Locomotive::Middlewares::Permalink', nil)
       app.middleware.use '::Locomotive::Middlewares::SeoTrailingSlash'
-      # app.middleware.use '::Locomotive::Middlewares::InlineEditor'
       app.middleware.use '::Locomotive::Middlewares::Site'
       app.middleware.use '::Locomotive::Middlewares::Locale'
       app.middleware.use '::Locomotive::Middlewares::LocaleRedirection'
