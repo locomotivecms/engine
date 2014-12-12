@@ -1,5 +1,5 @@
 module Locomotive
-  class ContentEntryService < Struct.new(:content_type)
+  class ContentEntryService < Struct.new(:content_type, :account)
 
     # List all the entries of a content type.
     #
@@ -22,6 +22,34 @@ module Locomotive
         content_type.list_or_group_entries(_options)
       else
         content_type.ordered_entries(_options)
+      end
+    end
+
+    # Create a content entry from the attributes passed in parameter.
+    # It sets the created_by column with the current account.
+    #
+    # @param [ Hash ] attributes The attributes of new content entry.
+    #
+    # @return [ Object ] An instance of the content entry.
+    def create(attributes)
+      content_type.entries.build(attributes).tap do |entry|
+        entry.created_by = account
+        entry.save
+      end
+    end
+
+    # Update a content entry from the attributes passed in parameter.
+    # It sets the updated_by column with the current account.
+    #
+    # @param [ Object ] entry The content entry to update.
+    # @param [ Hash ] attributes The attributes of new content entry.
+    #
+    # @return [ Object ] The instance of the content entry.
+    def update(entry, attributes)
+      entry.tap do |entry|
+        entry.attributes = attributes
+        entry.updated_by = account
+        entry.save
       end
     end
 

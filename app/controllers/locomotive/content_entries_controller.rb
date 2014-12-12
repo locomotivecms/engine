@@ -41,7 +41,7 @@ module Locomotive
 
     def create
       authorize ContentEntry
-      @content_entry = @content_type.entries.create(params[:content_entry])
+      @content_entry = service.create(params[:content_entry])
       respond_with @content_entry, location: edit_content_entry_path(@content_type.slug, @content_entry._id)
     end
 
@@ -52,7 +52,7 @@ module Locomotive
 
     def update
       authorize @content_entry
-      @content_entry.update_attributes(params[:content_entry])
+      service.update(@content_entry, params[:content_entry])
       respond_with @content_entry, location: edit_content_entry_path(@content_type.slug, @content_entry._id)
     end
 
@@ -79,7 +79,7 @@ module Locomotive
     end
 
     def service
-      @service ||= Locomotive::ContentEntryService.new(load_content_type)
+      @service ||= Locomotive::ContentEntryService.new(load_content_type, current_locomotive_account)
     end
 
   end

@@ -4,9 +4,10 @@ require 'spec_helper'
 
 describe Locomotive::ContentEntryService do
 
-  let(:site)          { FactoryGirl.create('test site') }
+  let(:site)          { create('test site') }
+  let(:account)       { create(:account) }
   let(:content_type)  { create_content_type }
-  let(:service)       { Locomotive::ContentEntryService.new(content_type) }
+  let(:service)       { Locomotive::ContentEntryService.new(content_type, account) }
 
   describe '#all' do
 
@@ -99,6 +100,38 @@ describe Locomotive::ContentEntryService do
 
     it { should eq 2 }
     it { subject; content_type.entries.count.should eq 0 }
+
+  end
+
+  describe '#create' do
+
+    let(:attributes) { { title: 'Hello world', body: 'Lorem ipsum', published: true } }
+
+    subject { service.create(attributes) }
+
+    it { expect(subject.created_by).to eq account }
+    it { expect { subject }.to change(Locomotive::ContentEntry, :count).by(1) }
+
+    context 'missing attributes' do
+
+      let(:attributes) { {} }
+
+      it { expect(subject.errors.blank?).to eq false }
+      it { expect { subject }.not_to change(Locomotive::ContentEntry, :count).by(1) }
+
+    end
+
+  end
+
+  describe '#update' do
+
+    let!(:entry) { create_content_entry(title: 'Hello world', body: 'Lorem ipsum', published: true) }
+    let(:attributes) { { title: 'Goodbye' } }
+
+    subject { service.update(entry, attributes) }
+
+    it { expect(subject.title).to eq 'Goodbye' }
+    it { expect(subject.updated_by).to eq account }
 
   end
 

@@ -50,7 +50,7 @@ module Locomotive
     end
 
     def service
-      @service ||= Locomotive::ContentAssetsService.new(current_site)
+      @service ||= Locomotive::ContentAssetService.new(current_site)
     end
 
   end
