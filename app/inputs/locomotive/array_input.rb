@@ -1,42 +1,56 @@
 module Locomotive
-  class ArrayInput < Formtastic::Inputs::StringInput
+  class ArrayInput < SimpleForm::Inputs::Base
 
-    include FormtasticBootstrap::Inputs::Base
+    include Locomotive::BootstrapFormHelper
 
-    def to_html
-      bootstrap_wrapping do
-        list_html + new_field_html
-      end
+    def input(wrapper_options)
+      array_wrapper + new_item_wrapper
     end
 
-    def list_html
+    def array_wrapper
       row_wrapping do
         template.content_tag :div,
-          list.map { |item| item_html(item) }.join("\n").html_safe,
-          class: "col-md-12 list #{'hide' if list.empty?} #{'no-new-field' unless new_field?}"
+          collection_to_html,
+          class: array_wrapper_class
       end
     end
 
-    def item_html(item)
-      template.render options[:partial].to_s, method.to_s.singularize.to_sym => item
+    def array_wrapper_class
+      %w(col-md-12 list).tap do |wrapper_class|
+        wrapper_class << 'hide' if collection.empty?
+        wrapper_class << 'new-input-disabled' unless include_input_for_new_item?
+      end.join(' ')
     end
 
-    def new_item_link_html
-      if options[:new_item_url]
+    def collection_to_html
+      collection.map do |item|
+        key = attribute_name.to_s.singularize.to_sym
+        template.render(options[:template].to_s, key => item)
+      end.join("\n").html_safe
+    end
+
+    def collection
+      @collection ||= (options[:collection] || object.send(attribute_name.to_sym))
+    end
+
+    def new_item_link(wrapper_options)
+      if _options = options[:new_item]
+        label = _options[:label] || I18n.t(:new, scope: 'locomotive.shared.form.array_input')
+        url   = _options[:url]
         template.content_tag :div,
-          template.link_to(I18n.t(:new, scope: 'locomotive.shared.form.array_input'), options[:new_item_url]),
+          template.link_to(label, url),
           class: 'pull-right'
       else
         ''
-      end.html_safe
+      end
     end
 
-    def new_field_html
-      return '' unless new_field?
+    def new_item_wrapper
+      return '' unless include_input_for_new_item?
 
       template.content_tag :div,
         template.content_tag(:div,
-          input_html,
+          new_item_input,
           class: 'field col-md-10 col-xs-9') +
         template.content_tag(:div,
           template.content_tag(:a, text(:add), class: 'btn btn-primary btn-sm add', href: options[:template_url]),
@@ -44,43 +58,22 @@ module Locomotive
         class: 'row new-field'
     end
 
-    def input_html
+    def new_item_input
       if options[:select_options]
-        template.select_tag 'locale', template.options_for_select(options[:select_options]), include_blank: false
+        template.select_tag('locale', template.options_for_select(options[:select_options]))
       else
-        template.text_field_tag(method.to_s.singularize, '', form_control_input_html_options)
+        text_options = input_html_options.dup
+        text_options[:class] << 'form-control'
+        template.text_field_tag(attribute_name.to_s.singularize, '', text_options)
       end
     end
 
-    def row_wrapping(&block)
-      template.content_tag(:div,
-        template.capture(&block).html_safe,
-        class: 'row')
-    end
-
-    def trash_icon
-      template.content_tag(:i, '', class: 'fa fa-trash-o')
-    end
-
-    def list
-      @list ||= (options[:list] || object.send(method.to_sym))
+    def include_input_for_new_item?
+      options[:template_url].present?
     end
 
     def text(name)
       I18n.t(name, scope: 'locomotive.shared.form.array_input')
-    end
-
-    def new_field?
-      options[:template_url].present?
-    end
-
-    def bootstrap_wrapping(&block)
-      form_group_wrapping do
-        template.content_tag(:header, new_item_link_html + label_html + hint_html(:inline) + error_html(:inline)) <<
-        template.content_tag(:span, class: 'form-wrapper') do
-          input_content(&block)
-        end
-      end
     end
 
   end

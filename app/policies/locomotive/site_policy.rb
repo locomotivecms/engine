@@ -37,5 +37,9 @@ module Locomotive
       super_admin? || site_admin?
     end
 
+    def update_advanced?
+      super_admin? || site_admin?
+    end
+
   end
 end

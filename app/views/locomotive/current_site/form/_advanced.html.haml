@@ -1,9 +1,9 @@
-= f.inputs name: :advanced do
-  = f.input :locales, as: 'Locomotive::Array', partial: :locale, template_url: new_locale_current_site_path, select_options: options_for_site_locales
+= f.inputs :advanced do
+  = f.input :locales, as: :array, template: :locale, template_url: new_locale_current_site_path, select_options: options_for_site_locales
 
   = f.input :timezone_name, as: :select, include_blank: false, collection: options_for_site_timezones
 
-  = f.input :robots_txt, as: 'Locomotive::Code', wrapper_html: { class: 'small' }
+  = f.input :robots_txt, as: :code, wrapper_html: { class: 'small' }
 
-= f.actions class: 'text-right' do
-  = semantic_form_button @site
+= f.actions do
+  = locomotive_form_button @site

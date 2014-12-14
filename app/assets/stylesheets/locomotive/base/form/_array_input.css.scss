@@ -44,7 +44,7 @@
           }
         }
 
-        &.no-new-field > .item:last-child {
+        &.new-input-disabled > .item:last-child {
           border-bottom: none;
         }
 

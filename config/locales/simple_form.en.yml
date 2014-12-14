@@ -122,5 +122,6 @@ en:
             hint: "Text displayed in the model form just below the field"
 
     placeholders:
-      site:
-        domains: "Ex: mysite.com"
+      locomotive:
+        site:
+          domains: "Ex: mysite.com"

@@ -1,7 +1,7 @@
-= f.inputs name: :information do
+= f.inputs :information do
   = f.input :name
-  = f.input :picture, as: '::Locomotive::File'
-  = f.input :memberships, as: 'Locomotive::Array', partial: :membership, new_item_url: new_membership_path, wrapper_html: { class: 'memberships' }
+  = f.input :picture, as: :file
+  = f.input :memberships, as: :array, template: :membership, new_item: { url: new_membership_path }, wrapper_html: { class: 'memberships' }
 
-= f.actions class: 'text-right' do
-  = semantic_form_button @site
+= f.actions do
+  = locomotive_form_button @site

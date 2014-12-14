@@ -1,7 +1,7 @@
-= f.inputs name: :seo do
+= f.inputs :seo do
   = f.input :seo_title
   = f.input :meta_keywords
   = f.input :meta_description
 
-= f.actions class: 'text-right' do
-  = semantic_form_button @site
+= f.actions do
+  = locomotive_form_button @site

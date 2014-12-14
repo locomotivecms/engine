@@ -1,4 +1,22 @@
 module Locomotive
+
+  module BootstrapFormHelper
+
+    def row_wrapping(options = {}, &block)
+      options.merge!(class: 'row')
+      template.content_tag(:div,
+        template.capture(&block).html_safe,
+        options)
+    end
+
+    def col_wrapping(class_name, column = 6, &block)
+      template.content_tag(:div,
+        template.capture(&block).html_safe,
+        class: "col-md-#{column} #{class_name}")
+    end
+
+  end
+
   class FormBuilder < SimpleForm::FormBuilder
 
     def inputs(name, &block)

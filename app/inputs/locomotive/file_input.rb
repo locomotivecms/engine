@@ -1,8 +1,10 @@
 module Locomotive
   class FileInput < SimpleForm::Inputs::FileInput
 
+    include Locomotive::BootstrapFormHelper
+
     def input(wrapper_options = nil)
-      row_wrapping do
+      row_wrapping(data: { persisted: persisted_file?, persisted_file: persisted_file? }) do
         file_html + buttons_html
       end
     end
@@ -24,19 +26,6 @@ module Locomotive
         template.link_to(text(:cancel), '#', class: "cancel btn btn-primary btn-sm #{hidden_css(:cancel)}") +
         template.link_to(trash_icon, '#', class: "delete #{hidden_css(:delete)}")
       end
-    end
-
-    def row_wrapping(&block)
-      template.content_tag(:div,
-        template.capture(&block).html_safe,
-        class: 'row', data: { persisted: persisted_file?, persisted_file: persisted_file? })
-    end
-
-    def col_wrapping(css, &block)
-      template.content_tag(:div,
-        template.capture(&block).html_safe,
-        class: "col-md-6 #{css}"
-      )
     end
 
     def trash_icon
