@@ -5,7 +5,7 @@ PATH
       RedCloth (~> 4.2.8)
       actionmailer-with-request (~> 0.4.0)
       autoprefixer-rails (~> 4.0.2.1)
-      backbone-rails (~> 1.1.2)
+      backbone-on-rails (~> 1.1.2.0)
       bootstrap-kaminari-views (~> 0.0.5)
       bootstrap-sass (~> 3.3.1.0)
       carrierwave-mongoid (~> 0.7)
@@ -80,6 +80,10 @@ GEM
       activemodel (= 4.1.8)
       activesupport (= 4.1.8)
       arel (~> 5.0.0)
+    activeresource (4.0.0)
+      activemodel (~> 4.0)
+      activesupport (~> 4.0)
+      rails-observers (~> 0.1.1)
     activesupport (4.1.8)
       i18n (~> 0.6, >= 0.6.9)
       json (~> 1.7, >= 1.7.7)
@@ -90,8 +94,15 @@ GEM
     arel (5.0.1.20140414130214)
     autoprefixer-rails (4.0.2.1)
       execjs
-    backbone-rails (1.1.2)
-      rails (>= 3.0.0)
+    backbone-on-rails (1.1.2.0)
+      actionmailer
+      actionpack
+      activemodel
+      activeresource
+      eco
+      ejs
+      jquery-rails
+      railties
     bcrypt (3.1.9)
     bootstrap-kaminari-views (0.0.5)
       kaminari (>= 0.13)
@@ -168,6 +179,12 @@ GEM
       addressable (~> 2.3)
       multi_json (~> 1.0)
       rack
+    eco (1.0.0)
+      coffee-script
+      eco-source
+      execjs
+    eco-source (1.1.0.rc.1)
+    ejs (1.1.1)
     erubis (2.7.0)
     eventmachine (1.0.3)
     excon (0.23.0)

@@ -43,12 +43,11 @@ Gem::Specification.new do |s|
 
 
   s.add_dependency 'jquery-rails',                    '~> 2.1.4'
-  s.add_dependency 'backbone-rails',                  '~> 1.1.2'
+  s.add_dependency 'backbone-on-rails',               '~> 1.1.2.0'
   s.add_dependency 'codemirror-rails',                '~> 4.8'
   s.add_dependency 'flash_cookie_session',            '~> 1.1.1'
   s.add_dependency 'select2-rails',                   '~> 3.5.9'
   s.add_dependency 'compass-rails',                   '2.0.0'
-  # s.add_dependency 'bootstrap-sass-rails',            '~> 3.1.0.0'
   s.add_dependency 'bootstrap-sass',                  '~> 3.3.1.0'
   s.add_dependency 'autoprefixer-rails',              '~> 4.0.2.1'
 
