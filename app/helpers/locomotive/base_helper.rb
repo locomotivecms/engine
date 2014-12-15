@@ -121,6 +121,12 @@ module Locomotive
       end
     end
 
+    def flash_messages_to_json
+      flash.map do |(key, message)|
+        [flash_key_to_bootstrap_alert(key), message]
+      end.to_json
+    end
+
     def set_error_from_flash(resource, attribute)
       if !flash.empty? && flash.alert
         flash.alert.tap do |msg|
@@ -133,7 +139,7 @@ module Locomotive
     def flash_key_to_bootstrap_alert(key)
       case key.to_sym
       when :notice  then :success
-      when :alert   then :success
+      when :alert   then :info
       when :error   then :warning
       else
         :info

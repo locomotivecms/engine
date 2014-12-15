@@ -25,7 +25,7 @@
     $(document).ready(function() {
 
       window.application_view = new Locomotive.Views.ApplicationView({
-        flash:      #{flash.to_json},
+        flash:      #{flash_messages_to_json},
         view:       #{backbone_view_class_name},
         view_data:  { #{backbone_view_data} }
       });

@@ -40,7 +40,6 @@ module Locomotive
 
     ## named scopes ##
 
-
     ## accessors ##
     attr_accessor   :plain_text_name, :plain_text, :plain_text_type, :performing_plain_text
     # attr_accessible :folder, :source, :plain_text_type, :performing_plain_text, :plain_text_name, :plain_text
