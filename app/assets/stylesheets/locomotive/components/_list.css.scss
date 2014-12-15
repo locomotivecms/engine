@@ -17,6 +17,19 @@ body.content-entries.index {
 
       @include display-flex;
       @include flex-align(center);
+      position: relative;
+
+      &:hover {
+        .text > :before {
+          position: absolute;
+          top: 0px;
+          left: 0px;
+          height: 100%;
+          width: $content_list_item_border_hover_size;
+          background-color: $content_list_item_border_hover_color;
+          content: " ";
+        }
+      }
 
       &:last-child {
         border-bottom: $content_list_item_border_size solid $content_list_item_border_color;
@@ -54,6 +67,7 @@ body.content-entries.index {
       }
 
       .actions {
+        position: relative;
         margin-left: auto;
 
         i {

@@ -8,7 +8,7 @@ module Locomotive
     #
     # @return [ String ] The html output
     def content_entry_stamp(entry)
-      distance = distance_of_time_in_words(Time.now, entry.updated_at, true)
+      distance = time_ago_in_words(entry.updated_at)
 
       if account = entry.updated_by || entry.created_by
         profile = account_avatar_and_name(account, '40x40#')
