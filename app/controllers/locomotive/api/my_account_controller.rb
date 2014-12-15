@@ -6,7 +6,6 @@ module Locomotive
       before_filter :must_not_be_logged_in, only: :create
 
       skip_before_filter :set_locale
-      skip_before_filter :set_current_thread_variables
 
       skip_before_filter :require_account, only: :create
       skip_before_filter :require_site

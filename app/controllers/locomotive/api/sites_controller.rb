@@ -2,8 +2,6 @@ module Locomotive
   module Api
     class SitesController < Api::BaseController
 
-      skip_before_filter :require_site, :set_current_thread_variables
-
       before_filter :load_site, only: [:show, :update, :destroy]
       before_filter :load_sites, only: [:index]
 
