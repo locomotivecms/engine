@@ -14,7 +14,7 @@ module Locomotive
 
     delegate :site, :account, to: :membership
 
-    attr_reader :membership
+    attr_reader :membership, :resource
 
     # The resource is always scoped by the site defined by the membership.
     def initialize(membership, resource)

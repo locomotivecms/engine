@@ -5,7 +5,6 @@
 # - I have the site: "some site" set up with name: "Something", domain: "test2"
 #
 Given /^I have the site: "([^"]*)" set up(?: with #{capture_fields})?$/ do |site_factory, fields|
-  Thread.current[:site] = nil
   attributes = parse_fields(fields)
   id    = attributes.delete('id')
   @site = FactoryGirl.build(site_factory, attributes)

@@ -2,59 +2,41 @@ require 'spec_helper'
 
 describe Locomotive::Membership do
 
-  it 'should have a valid factory' do
-    FactoryGirl.build(:membership, account: FactoryGirl.build(:account)).should be_valid
+  subject { build(:membership) }
+
+  describe 'validation' do
+
+    it { should be_valid }
+
+    it 'requires the presence of an account' do
+      subject.account = nil
+      expect(subject.valid?).to eq false
+      expect(subject.errors[:account]).to eq ["can't be blank"]
+    end
+
+    it 'requires the uniqueness of an account' do
+      subject.site.memberships.stubs(:where).returns([1, 2])
+      expect(subject.valid?).to eq false
+      expect(subject.errors[:account]).to eq ["is already used"]
+      expect(subject.errors[:email]).to eq ["is already used"]
+    end
+
   end
 
-  it 'should validate presence of account' do
-    membership = FactoryGirl.build(:membership, account: nil)
-    membership.should_not be_valid
-    membership.errors[:account].should == ["can't be blank"]
+  describe "#email" do
+
+    let(:email) { 'john@doe.net' }
+    before { subject.email = email }
+
+    it { expect(subject.email).to eq email }
+
   end
 
-  it 'should assign account from email' do
-    Locomotive::Account.stubs(:where).returns([FactoryGirl.build(:account)])
-    Locomotive::Account.stubs(:find).returns(FactoryGirl.build(:account))
-    membership = FactoryGirl.build(:membership, account: nil)
-    membership.email = 'bart@simpson.net'
-    membership.account.should_not be_nil
-    membership.account.name.should == 'Bart Simpson'
-  end
+  describe 'roles' do
 
-  describe 'next action to take' do
-
-    before(:each) do
-      @membership = FactoryGirl.build(:membership, site: FactoryGirl.build(:site))
-      @account = FactoryGirl.build(:account)
-      @account.stubs(:save).returns(true)
-      Locomotive::Account.stubs(:where).returns([@account])
-      Locomotive::Account.stubs(:find).returns(@account)
-    end
-
-    it 'should tell error' do
-      @membership.process!.should == :error
-    end
-
-    it 'should tell we need to create a new account' do
-      Locomotive::Account.stubs(:where).returns([])
-      @membership.email = 'homer@simpson'
-      @membership.process!.should == :create_account
-    end
-
-    it 'should tell nothing to do' do
-      @membership.email = 'bart@simpson.net'
-      @membership.site.stubs(:memberships).returns([self.build_membership(@account), self.build_membership])
-      @membership.process!.should == :already_created
-    end
-
-    it 'should tell membership has to be saved' do
-      @membership.email = 'bart@simpson.net'
-      @membership.process!.should == :save_it
-    end
-
-    def build_membership(account = nil)
-      FactoryGirl.build(:membership, site: FactoryGirl.build(:site), account: account || FactoryGirl.build(:account))
-    end
+    it { expect(subject.author?).to eq false }
+    it { expect(subject.designer?).to eq false }
+    it { expect(subject.admin?).to eq true }
 
   end
 

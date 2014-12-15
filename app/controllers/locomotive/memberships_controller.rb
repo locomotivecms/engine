@@ -1,37 +1,34 @@
 module Locomotive
   class MembershipsController < BaseController
 
+    before_filter :load_membership, only: [:edit, :update, :destroy]
+
+    def new
+      authorize Membership
+      @membership = current_site.memberships.build
+      respond_with @membership
+    end
+
     def create
       authorize Membership
-      @membership = current_site.memberships.build(params[:membership])
-      @membership.role = 'author' # force author by default
-
-      case @membership.process!
-      when :create_account
-        redirect_to new_account_path(email: @membership.email)
-      when :save_it
-        respond_with @membership, location: edit_current_site_path
-      when :error
-        respond_with @membership, flash: true
-      when :already_created
-        respond_with @membership, alert: t('flash.locomotive.memberships.create.already_created'),
-          location: edit_current_site_path
+      if @membership = service.create(membership_params[:email])
+        respond_with @membership, location: edit_current_site_path, flash: true
+      else
+        redirect_to new_account_path(email: membership_params[:email])
       end
     end
 
     def edit
-      @membership = current_site.memberships.find(params[:id])
       respond_with @membership
     end
 
     def update
-      @membership = current_site.memberships.find(params[:id])
-      self.service.change_role(@membership, params[:membership][:role])
+      authorize @membership
+      self.service.change_role(@membership, membership_params[:role])
       respond_with @membership, location: edit_current_site_path
     end
 
     def destroy
-      @membership = current_site.memberships.find(params[:id])
       authorize @membership
       @membership.destroy
       respond_with @membership, location: edit_current_site_path
@@ -40,7 +37,16 @@ module Locomotive
     protected
 
     def service
-      @service ||= Locomotive::MembershipsService.new(current_ability)
+      policy = MembershipPolicy.new(pundit_user, @membership || Membership)
+      @service ||= Locomotive::MembershipService.new(current_site, policy)
+    end
+
+    def load_membership
+      @membership = current_site.memberships.find(params[:id])
+    end
+
+    def membership_params
+      params.require(:membership).permit(*policy(@membership || Membership).permitted_attributes)
     end
 
   end

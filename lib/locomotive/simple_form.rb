@@ -19,13 +19,15 @@ module Locomotive
 
   class FormBuilder < SimpleForm::FormBuilder
 
-    def inputs(name, &block)
+    def inputs(name, options = {}, &block)
       label = I18n.t(name, scope: 'simple_form.titles.locomotive')
 
       html = template.content_tag(:legend, template.content_tag(:span, label))
       html += template.capture(&block)
 
-      template.content_tag(:fieldset, html, { class: 'inputs' })
+      options[:class] ||= 'inputs'
+
+      template.content_tag(:fieldset, html, options)
     end
 
     def actions(options = {}, &block)

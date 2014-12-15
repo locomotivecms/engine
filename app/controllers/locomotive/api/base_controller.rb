@@ -24,18 +24,11 @@ module Locomotive
 
       before_filter :set_locale
 
-      before_filter :set_current_thread_variables
-
       self.responder = Locomotive::ActionController::Responder # custom responder
 
       respond_to :json, :xml
 
       protected
-
-      def set_current_thread_variables
-        Thread.current[:account]  = current_locomotive_account
-        Thread.current[:site]     = current_site
-      end
 
       def require_account
         authenticate_locomotive_account!

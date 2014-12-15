@@ -11,27 +11,34 @@ en:
     errors:
       messages:
         blank_in_locale: "can't be blank"
+      models:
+        locomotive/membership:
+          attributes:
+            account:
+              unique_account: "is already used"
+            email:
+              unique_account: "is already used"
     attributes:
       locomotive/content_entry:
         created_at: Created at
 
   errors:
-      messages:
-        domain_taken: "%{value} is already taken"
-        invalid_domain: "%{value} is invalid"
-        needs_admin_account: "One admin account is required at least"
-        protected_page: "You can not remove index or 404 pages"
-        extname_changed: "New file does not have the original extension"
-        array_too_short: "is too small (minimum element number is %{count})"
-        invalid_theme_file: "can't be blank or isn't a zip file"
-        site:
-          default_locale_removed: The previous default locale can not be removed right away.
-        page:
-          liquid_syntax: "Liquid Syntax error ('%{error}' on '%{fullpath}')"
-          liquid_extend: "The page '%{fullpath}' extends a template which does not exist"
-          liquid_translation: "The page '%{fullpath}' extends a template which is not translated"
-        too_few_custom_fields: "At least, one custom field is required"
-        security: "presents a security problem"
+    messages:
+      domain_taken: "%{value} is already taken"
+      invalid_domain: "%{value} is invalid"
+      needs_admin_account: "One admin account is required at least"
+      protected_page: "You can not remove index or 404 pages"
+      extname_changed: "New file does not have the original extension"
+      array_too_short: "is too small (minimum element number is %{count})"
+      invalid_theme_file: "can't be blank or isn't a zip file"
+      site:
+        default_locale_removed: The previous default locale can not be removed right away.
+      page:
+        liquid_syntax: "Liquid Syntax error ('%{error}' on '%{fullpath}')"
+        liquid_extend: "The page '%{fullpath}' extends a template which does not exist"
+        liquid_translation: "The page '%{fullpath}' extends a template which is not translated"
+      too_few_custom_fields: "At least, one custom field is required"
+      security: "presents a security problem"
 
   attributes:
     defaults:

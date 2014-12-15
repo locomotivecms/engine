@@ -15,7 +15,7 @@
         = membership.account.email
 
     .buttons
-      - if membership.account != current_locomotive_account
+      - if membership.account != current_locomotive_account && policy(membership).edit?
         = link_to t(:edit, scope: 'locomotive.shared.form.array_input'), edit_membership_path(membership), class: 'choose btn btn-primary btn-sm'
         = link_to membership_path(membership), class: 'delete', data: { confirm: t('locomotive.messages.confirm') }, method: :delete do
           %i.fa.fa-trash-o

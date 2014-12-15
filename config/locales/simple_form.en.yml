@@ -59,6 +59,9 @@ en:
           timezone_name: Timezone
           new:
             locales: First language
+        membership:
+          edit:
+            role: New role
 
     hints:
       locomotive:

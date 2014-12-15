@@ -16,16 +16,23 @@ describe Locomotive::MembershipsController do
 
   describe "#POST create" do
     let(:email) { generate(:email) }
-    let(:membership_attributes) do
-      { email: email }
-    end
+    let(:membership_attributes) { { email: email } }
     subject do
       post :create, locale: :en, membership: membership_attributes
     end
     it { should redirect_to new_account_path(email: email) }
-    specify do
-      expect { subject }.to_not change(Locomotive::Membership, :count)
+
+    describe 'no existing membership' do
+      let(:another_account) { create(:account) }
+      let(:email) { another_account.email }
+      it { should redirect_to edit_current_site_path }
     end
+
+    describe 'existing membership' do
+      let(:email) { account.email }
+      it { expect(subject.code).to eq('200') }
+    end
+
   end
 
   describe "#DELETE destroy" do

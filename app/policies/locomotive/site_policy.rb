@@ -41,5 +41,14 @@ module Locomotive
       super_admin? || site_admin?
     end
 
+    def permitted_attributes
+      defaults = [:name, :picture, :remove_picture, :subdomain, :domains, :seo_title, :meta_keywords, :meta_description, :locales, :timezone_name, :robots_txt]
+
+      defaults -= [:subdomain, :domains] unless point?
+      defaults -= [:locales, :timezone_name, :robots_txt] unless update_advanced?
+
+      defaults
+    end
+
   end
 end

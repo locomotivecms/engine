@@ -7,8 +7,6 @@ module Locomotive
 
     helper 'Locomotive::Sites'
 
-    before_filter :filter_attributes
-
     before_filter :ensure_domains_list, only: :update
 
     respond_to :json, only: :update
@@ -20,7 +18,7 @@ module Locomotive
 
     def update
       authorize @site
-      @site.update_attributes(params[:site])
+      @site.update_attributes(site_params)
       respond_with @site, location: edit_current_site_path(new_host_if_subdomain_changed)
     end
 
@@ -46,11 +44,8 @@ module Locomotive
       @site = current_site
     end
 
-    # TODO Replace by Strong parameter
-    def filter_attributes
-      # unless can?(:manage, Locomotive::Membership)
-      #   params[:site].delete(:memberships_attributes) if params[:site]
-      # end
+    def site_params
+      params.require(:site).permit(*policy(@site || Site).permitted_attributes)
     end
 
     def new_host_if_subdomain_changed

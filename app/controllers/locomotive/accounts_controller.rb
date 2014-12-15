@@ -2,6 +2,7 @@ module Locomotive
   class AccountsController < BaseController
 
     def new
+      authorize Membership
       @account = Account.new(email: params[:email])
       respond_with @account
     end

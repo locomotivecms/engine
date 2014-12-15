@@ -1,15 +1,15 @@
-- title t('.title')
+- title t('.title', name: @membership.account.name)
 
 = help t('.help', default: '')
 
-= semantic_form_for @membership do |f|
+= locomotive_form_for @membership do |f|
 
-  = f.inputs name: :membership_email, class: 'inputs email' do
-    = f.input :role, as: :select, collection: options_for_membership_roles(skip_admin: cannot?(:grant_admin, @membership)), include_blank: false
+  = f.inputs :membership_email, class: 'inputs email' do
+    = f.input :role, as: :select, collection: options_for_membership_roles(@membership), include_blank: false
 
   = f.actions do
     .row
-      .col-md-6
+      .col-md-6.text-left
         = link_to escape_once('&larr;&nbsp;') + t('.back'), edit_current_site_path
       .col-md-6.text-right
-        = semantic_form_button @membership
+        = locomotive_form_button @membership

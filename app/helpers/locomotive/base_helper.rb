@@ -32,7 +32,7 @@ module Locomotive
       end
     end
 
-    #= SimpleForm helpers
+    #= Form helpers
 
     def locomotive_form_for(object, *args, &block)
       options = args.extract_options!
@@ -53,21 +53,6 @@ module Locomotive
         }
     end
 
-    #= Formtastic helpers
-
-    # def semantic_form_button(resource, misc_class = '')
-    #   key   = resource.persisted? ? 'update' : 'create'
-    #   scope = 'locomotive.shared.form_actions'
-
-    #   content_tag :button,
-    #     I18n.t(key, scope: scope),
-    #     type:   'submit',
-    #     class:  "btn btn-success btn-sm #{misc_class}",
-    #     data:   {
-    #       loading_text: t('locomotive.messages.sending_form')
-    #     }
-    # end
-
     def form_nav_tab(name, first = false, &block)
       active = (first && params[:active_tab].blank?) || params[:active_tab] == name.to_s
 
@@ -79,12 +64,6 @@ module Locomotive
       css     = ['tab-pane', active ? 'active' : nil].compact.join(' ')
 
       content_tag(:div, capture(&block), id: name, class: css)
-    end
-
-
-    # @deprecated
-    def inputs_folded?(resource)
-      resource.persisted? && resource.errors.empty?
     end
 
     ## Tag helpers ##
@@ -288,18 +267,6 @@ module Locomotive
 
     def multi_sites?
       Locomotive.config.multi_sites?
-    end
-
-    # memberships
-
-    def options_for_membership_roles(options = {})
-      # list =
-      if options[:skip_admin]
-        (ROLES - ['admin']).map { |r| [t("locomotive.memberships.roles.#{r}"), r.to_s] }
-      else
-        ROLES.map { |r| [t("locomotive.memberships.roles.#{r}"), r.to_s] }
-      end #)
-      # options_for_select(list) # TODO: TO BE TESTED
     end
 
     # locales

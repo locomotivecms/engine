@@ -1,7 +1,7 @@
 = f.inputs :information do
   = f.input :name
   = f.input :picture, as: :file
-  = f.input :memberships, as: :array, template: :membership, new_item: { url: new_membership_path }, wrapper_html: { class: 'memberships' }
+  = f.input :memberships, as: :array, template: :membership, new_item: policy(Locomotive::Membership).create? ? { label: t('.new_membership'), url: new_membership_path } : nil, wrapper_html: { class: 'memberships' }
 
 = f.actions do
   = locomotive_form_button @site

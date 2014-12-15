@@ -2,14 +2,14 @@
 
 = help t('.help', default: '')
 
-= semantic_form_for @membership, url: memberships_path do |f|
+= locomotive_form_for @membership, url: memberships_path do |f|
 
-  = f.inputs name: :membership_email, class: 'inputs email' do
+  = f.inputs :membership_email, class: 'inputs email' do
     = f.input :email
 
   = f.actions do
     .row
-      .col-md-6
+      .col-md-6.text-left
         = link_to escape_once('&larr;&nbsp;') + t('.back'), edit_current_site_path
       .col-md-6.text-right
-        = semantic_form_button @membership
+        = locomotive_form_button @membership

@@ -41,7 +41,8 @@ module Locomotive
     before_destroy    :remove_memberships!
 
     ## scopes ##
-    scope :ordered, -> { order_by(name: :asc) }
+    scope :ordered,   -> { order_by(name: :asc) }
+    scope :by_email,  ->(email) { where(email: email).first }
 
     ## indexes ##
     index({ email: 1 }, { unique: true, background: true })
@@ -120,6 +121,16 @@ module Locomotive
       account.reset_authentication_token!
 
       token
+    end
+
+    # Find the first account matching the email parameter
+    #
+    # @param [ String ] email The email
+    #
+    # @return [ Object ] The account or nil (if none)
+    #
+    def self.find_by_email(email)
+      where(email: email).first
     end
 
     def devise_mailer
