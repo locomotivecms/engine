@@ -1,6 +1,6 @@
-= f.inputs name: :advanced do
+= f.inputs :advanced do
   = f.input :_slug
-  = f.input :_visible, as: :'Locomotive::Toggle'
+  = f.input :_visible, as: :toggle
 
-= f.actions class: 'text-right' do
-  = semantic_form_button @content_entry
+= f.actions do
+  = locomotive_form_button @content_entry

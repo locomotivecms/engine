@@ -6,7 +6,8 @@ SimpleForm.setup do |config|
   config.boolean_style = :nested
 
   config.wrapper_mappings = {
-    array: :locomotive_array
+    array:  :locomotive_array,
+    toggle: :locomotive_toggle
   }
 
   config.wrappers :locomotive, tag: 'div', class: 'form-group input', error_class: 'has-error',
@@ -25,6 +26,21 @@ SimpleForm.setup do |config|
       c.optional :pattern
       c.optional :readonly
 
+      c.use :input, class: 'form-control'
+    end
+  end
+
+  config.wrappers :locomotive_toggle, tag: 'div', class: 'form-group input', error_class: 'has-error',
+      defaults: { input_html: { class: 'default_class' } } do |b|
+
+    b.wrapper tag: :div do |h|
+      h.use :label, class: 'control-label'
+      h.use :hint,  wrap_with: { tag: 'span', class: 'help-inline' }
+    end
+
+    b.wrapper tag: :span, class: 'form-wrapper' do |c|
+      c.use :html5
+      c.optional :readonly
       c.use :input, class: 'form-control'
     end
   end

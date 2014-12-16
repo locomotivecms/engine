@@ -1,4 +1,4 @@
-= f.inputs name: :attributes do
+= f.inputs :attributes do
   - @content_type.ordered_entries_custom_fields.each_with_index do |field, index|
     = render "locomotive/custom_fields/types/#{field.type}",
       f:            f,
@@ -6,5 +6,5 @@
       field:        field,
       highlighted:  field._id == @content_type.label_field_id
 
-= f.actions class: 'text-right' do
-  = semantic_form_button @content_entry
+= f.actions do
+  = locomotive_form_button @content_entry

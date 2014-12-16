@@ -2,11 +2,11 @@
 
 = help @content_type.description
 
-= semantic_form_for @content_entry, as: :content_entry, url: content_entry_path(@content_type.slug, @content_entry), html: { multipart: true } do |f|
+= locomotive_form_for @content_entry, as: :content_entry, url: content_entry_path(@content_type.slug, @content_entry), html: { multipart: true } do |f|
 
   = hidden_field_tag :active_tab, ''
 
-  = semantic_form_button @content_entry, 'hide'
+  = locomotive_form_button @content_entry, 'hide'
 
   = render 'locomotive/content_entries/form/tabs', f: f
 
