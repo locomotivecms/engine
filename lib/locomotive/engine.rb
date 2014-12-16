@@ -36,6 +36,7 @@ module Locomotive
     initializer "locomotive.precompile.hook", group: :all do |app|
       app.config.assets.precompile += %w(
         locomotive/wysihtml5_reset.css
+        locomotive/wysihtml5_editor.css
         locomotive.js
         locomotive.css
         locomotive/not_logged_in.js
