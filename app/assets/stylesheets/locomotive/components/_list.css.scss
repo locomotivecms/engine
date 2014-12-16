@@ -19,18 +19,6 @@ body.content-entries.index {
       @include flex-align(center);
       position: relative;
 
-      &:hover {
-        .text > :before {
-          position: absolute;
-          top: 0px;
-          left: 0px;
-          height: 100%;
-          width: $content_list_item_border_hover_size;
-          background-color: $content_list_item_border_hover_color;
-          content: " ";
-        }
-      }
-
       &:last-child {
         border-bottom: $content_list_item_border_size solid $content_list_item_border_color;
       }
@@ -50,6 +38,17 @@ body.content-entries.index {
       }
 
       .text {
+        > :before {
+          position: absolute;
+          top: 0px;
+          left: 0px;
+          height: 100%;
+          width: $content_list_item_border_hover_size;
+          background-color: transparent;
+          content: " ";
+          @include transition(all 0.2s ease-in-out);
+        }
+
         a {
           color: $content_list_item_link_color;
         }
@@ -63,6 +62,12 @@ body.content-entries.index {
             border: 1px solid $content_list_item_stamp_color;
             margin: 0px 6px;
           }
+        }
+      }
+
+      &:hover {
+        .text > :before {
+          background-color: $content_list_item_border_hover_color;
         }
       }
 
