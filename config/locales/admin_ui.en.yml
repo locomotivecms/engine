@@ -337,7 +337,6 @@ en:
         created_by: "Created %{distance} by %{who}"
         updated_at: "Last modified %{distance}"
         updated_by: "Last modified %{distance} by %{who}"
-        updated_at: "Updated at"
         search_placeholder: "Enter your search keywords here"
       list:
         no_items: "There are no entries for now. Just click <a href=\"%{url}\">here</a> to create the first one."

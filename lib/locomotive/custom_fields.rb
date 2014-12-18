@@ -41,6 +41,10 @@ module CustomFields
           "sites/#{model.site_id}/#{model._type.demodulize.underscore}/#{model.id}/files"
         end
 
+        def image?
+          !(content_type =~ /image/).nil?
+        end
+
         # In some situations, for instance, for the notification email when a content entry is created,
         # we need to know the url of the file without breaking the upload process.
         # Actually, the uploaded file will be written on the filesystem after the email is sent.
