@@ -2,17 +2,17 @@ require 'spec_helper'
 
 describe Locomotive::Snippet do
 
-  it 'should have a valid factory' do
-    FactoryGirl.build(:snippet).should be_valid
+  it 'has a valid factory' do
+    expect(FactoryGirl.build(:snippet)).to be_valid
   end
 
   # Validations ##
 
   %w{site name template}.each do |field|
-    it "should validate presence of #{field}" do
+    it "validates presence of #{field}" do
       template = FactoryGirl.build(:snippet, field.to_sym => nil)
-      template.should_not be_valid
-      template.errors[field.to_sym].should == ["can't be blank"]
+      expect(template).to_not be_valid
+      expect(template.errors[field.to_sym]).to eq(["can't be blank"])
     end
   end
 
@@ -31,7 +31,7 @@ describe Locomotive::Snippet do
 
       it 'updates templates with the new snippet template' do
         @snippet.update_attributes(template: 'a new template')
-        Locomotive::Page.find(@page.id).render({}).should == 'a new template'
+        expect(Locomotive::Page.find(@page.id).render({})).to eq('a new template')
       end
 
     end
@@ -44,7 +44,7 @@ describe Locomotive::Snippet do
 
       it 'updates templates with the new snippet template' do
         @snippet.update_attributes(template: 'a new template')
-        Locomotive::Page.find(@page.id).render({}).should == 'a new template'
+        expect(Locomotive::Page.find(@page.id).render({})).to eq('a new template')
       end
 
     end
@@ -56,17 +56,17 @@ describe Locomotive::Snippet do
       end
 
       it 'renders the nested snippet' do
-        Locomotive::Page.find(@page.id).render({}).should == 'a testing template'
+        expect(Locomotive::Page.find(@page.id).render({})).to eq('a testing template')
       end
 
       it 'updates parent snippets with the new snippet template' do
         @snippet.update_attributes(template: 'a new template')
-        Locomotive::Page.find(@page.id).render({}).should == 'a new template'
+        expect(Locomotive::Page.find(@page.id).render({})).to eq('a new template')
       end
 
       it 'when the parent snippet is updated child snippets are rendered correctly' do
         @nested_snippet.update_attributes(template: "hello {% include 'my_test_snippet' %}")
-        Locomotive::Page.find(@page.id).render({}).should == 'hello a testing template'
+        expect(Locomotive::Page.find(@page.id).render({})).to eq('hello a testing template')
       end
     end
 
@@ -80,14 +80,14 @@ describe Locomotive::Snippet do
       end
 
       it 'returns the snippet dependencies depending on the UI locale' do
-        Mongoid::Fields::I18n.with_locale(:fr) { @page.snippet_dependencies.should_not be_empty }
-        Mongoid::Fields::I18n.with_locale(:en) { @page.snippet_dependencies.should be_nil }
+        Mongoid::Fields::I18n.with_locale(:fr) { expect(@page.snippet_dependencies).to_not be_empty }
+        Mongoid::Fields::I18n.with_locale(:en) { expect(@page.snippet_dependencies).to eq(nil) }
       end
 
       it 'updates the templates with the new snippet' do
         Mongoid::Fields::I18n.with_locale(:fr) do
           @snippet.update_attributes(template: 'a new template')
-          Locomotive::Page.find(@page.id).render({}).should == 'a new template'
+          expect(Locomotive::Page.find(@page.id).render({})).to eq('a new template')
         end
       end
 

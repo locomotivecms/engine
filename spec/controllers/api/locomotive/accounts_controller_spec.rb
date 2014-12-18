@@ -12,7 +12,7 @@ describe Locomotive::Api::AccountsController do
 
     describe "#GET index" do
       subject { get :index, locale: :en, format: :json }
-      it { should be_success }
+      it { is_expected.to be_success }
       specify do
         subject
         expect(assigns(:accounts).all.to_a).to eq([admin, account])
@@ -21,7 +21,7 @@ describe Locomotive::Api::AccountsController do
 
     describe "#GET show" do
       subject { get :show, id: admin.id, locale: :en, format: :json }
-      it { should be_success }
+      it { is_expected.to be_success }
       specify do
         subject
         expect(assigns(:account)).to be_present
@@ -41,10 +41,10 @@ describe Locomotive::Api::AccountsController do
       subject { post :create, "account" => params, format: :json }
 
       context 'valid input' do
-        it { should be_success }
+        it { is_expected.to be_success }
         it 'renders the created user' do
-          json_response['email'].should eq 'new-user4@a.com'
-          json_response['id'].should_not be_blank
+          expect(json_response['email']).to eq 'new-user4@a.com'
+          expect(json_response['id']).to_not be_blank
         end
         it 'creates a new user' do
           expect { subject }.to change(Locomotive::Account, :count).by(1)
@@ -65,11 +65,11 @@ describe Locomotive::Api::AccountsController do
 
       context 'valid params' do
         let(:params) { {'name' => 'new name' } }
-        it { should be_success }
+        it { is_expected.to be_success }
         it 'updates the user' do
           subject
           account.reload
-          account.name.should eq 'new name'
+          expect(account.name).to eq 'new name'
         end
       end
 
@@ -84,7 +84,7 @@ describe Locomotive::Api::AccountsController do
       subject do
         delete :destroy, id: account.id, locale: :en, format: :json
       end
-      it { should be_success }
+      it { is_expected.to be_success }
       specify do
         expect { subject }.to change(Locomotive::Account, :count).by(-1)
       end

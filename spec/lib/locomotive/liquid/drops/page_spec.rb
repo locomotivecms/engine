@@ -25,7 +25,7 @@ describe Locomotive::Liquid::Drops::Page do
 
       it 'renders title of all children pages' do
         content = render_template '{% for child in home.children %}{{ child.title }},{% endfor %}'
-        content.should == 'Child #1,Child #2,Child #3,'
+        expect(content).to eq 'Child #1,Child #2,Child #3,'
       end
 
     end
@@ -34,7 +34,7 @@ describe Locomotive::Liquid::Drops::Page do
 
       it 'renders title of all sub children pages' do
         content = render_template '{% for child in home.children.last.children %}{{ child.title }},{% endfor %}'
-        content.should == 'Child #3.1,Child #3.2,'
+        expect(content).to eq 'Child #3.1,Child #3.2,'
       end
 
     end
@@ -48,7 +48,7 @@ describe Locomotive::Liquid::Drops::Page do
 
     it 'renders title of parent page' do
       content = render_template '{{ sub_page.parent.title }}', { 'sub_page' => @sub_page }
-      content.should == "Home page"
+      expect(content).to eq "Home page"
     end
 
   end
@@ -61,14 +61,14 @@ describe Locomotive::Liquid::Drops::Page do
 
     it 'renders breadcrumbs of current page' do
       content = render_template '{% for crumb in sub_page.breadcrumbs %}{{ crumb.title }},{% endfor %}', { 'sub_page' => @sub_page }
-      content.should == 'Home page,Subpage,'
+      expect(content).to eq 'Home page,Subpage,'
     end
   end
 
   context '#rendering page title' do
 
     it 'renders the title of a normal page' do
-      render_template('{{ home.title }}').should == 'Home page'
+      expect(render_template('{{ home.title }}')).to eq 'Home page'
     end
 
     it 'renders the content instance highlighted field instead for a templatized page' do
@@ -76,8 +76,8 @@ describe Locomotive::Liquid::Drops::Page do
 
       entry = Locomotive::Liquid::Drops::ContentEntry.new(mock('entry', _label: 'Locomotive rocks !'))
 
-      render_template('{{ page.title }}', 'page' => templatized, 'entry' => entry).should == 'Locomotive rocks !'
-      render_template('{{ page.original_title }}', 'page' => templatized, 'entry' => entry).should == 'Lorem ipsum template'
+      expect(render_template('{{ page.title }}', 'page' => templatized, 'entry' => entry)).to eq 'Locomotive rocks !'
+      expect(render_template('{{ page.original_title }}', 'page' => templatized, 'entry' => entry)).to eq 'Lorem ipsum template'
     end
 
   end
@@ -85,7 +85,7 @@ describe Locomotive::Liquid::Drops::Page do
   context '#rendering page slug' do
 
     it 'renders the slug of a normal page' do
-      render_template('{{ home.slug }}').should == 'index'
+      expect(render_template('{{ home.slug }}')).to eq 'index'
     end
 
     it 'renders the content instance slug instead for a templatized page' do
@@ -93,8 +93,8 @@ describe Locomotive::Liquid::Drops::Page do
 
       entry = Locomotive::Liquid::Drops::ContentEntry.new(mock('entry', _slug: 'my_entry'))
 
-      render_template('{{ page.slug }}', 'page' => templatized, 'entry' => entry).should == 'my_entry'
-      render_template('{{ page.original_slug }}', 'page' => templatized, 'entry' => entry).should == 'content-type-template'
+      expect(render_template('{{ page.slug }}', 'page' => templatized, 'entry' => entry)).to eq 'my_entry'
+      expect(render_template('{{ page.original_slug }}', 'page' => templatized, 'entry' => entry)).to eq 'content-type-template'
     end
 
   end
@@ -109,29 +109,29 @@ describe Locomotive::Liquid::Drops::Page do
     end
 
     it 'renders the text of the editable field' do
-      render_template('{{ home.editable_elements.body.message }}').should == 'Lorem ipsum'
+      expect(render_template('{{ home.editable_elements.body.message }}')).to eq 'Lorem ipsum'
     end
 
   end
 
   describe 'published?' do
     subject { render_template('{{ home.published? }}') }
-    it { should == @home.published?.to_s }
+    it { is_expected.to eq @home.published?.to_s }
   end
 
   describe 'listed?' do
     subject { render_template('{{ home.listed? }}') }
-    it { should == @home.listed?.to_s }
+    it { is_expected.to eq @home.listed?.to_s }
   end
 
   describe 'meta_keywords' do
     subject { render_template('{{ home.meta_keywords }}') }
-    it { should == @home.meta_keywords }
+    it { is_expected.to eq @home.meta_keywords }
   end
 
   describe 'meta_description' do
     subject { render_template('{{ home.meta_description }}') }
-    it { should == @home.meta_description }
+    it { is_expected.to eq @home.meta_description }
   end
 
   describe 'templatized?' do
@@ -141,14 +141,14 @@ describe Locomotive::Liquid::Drops::Page do
     context 'by default' do
 
       let(:page) { @home }
-      it { should == 'false' }
+      it { is_expected.to eq 'false' }
 
     end
 
     context 'with the templatized flag enabled' do
 
       let(:page) { FactoryGirl.build(:page, templatized: true) }
-      it { should == 'true' }
+      it { is_expected.to eq 'true' }
 
     end
 
@@ -170,14 +170,14 @@ describe Locomotive::Liquid::Drops::Page do
     describe '#content_type' do
 
       let(:template) { '{{ page.content_type }}' }
-      it { should =~ /ContentTypeProxyCollection/ }
+      it { is_expected.to match /ContentTypeProxyCollection/ }
 
     end
 
     describe '#content_type.count' do
 
       let(:template) { '{{ page.content_type.count }}' }
-      it { should == '2' }
+      it { is_expected.to eq '2' }
 
     end
 

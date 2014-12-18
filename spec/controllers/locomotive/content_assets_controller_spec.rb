@@ -22,7 +22,7 @@ describe Locomotive::ContentAssetsController do
         controller: 'locomotive/content_assets', action: 'index')
     end
     subject { get :index, locale: :en }
-    it { should be_success }
+    it { is_expected.to be_success }
     specify do
       subject
       expect(assigns(:content_assets).all).to eq([content_asset])
@@ -36,7 +36,7 @@ describe Locomotive::ContentAssetsController do
     subject do
       post :create, locale: :en, content_asset: content_asset_attributes
     end
-    it { should be_redirect }
+    it { is_expected.to be_redirect }
     specify do
       expect { subject }.to change(Locomotive::ContentAsset, :count).by(+1)
     end
@@ -47,7 +47,7 @@ describe Locomotive::ContentAssetsController do
     subject do
       delete :destroy, id: content_asset.id, locale: :en
     end
-    it { should be_success }
+    it { is_expected.to be_success }
     specify do
       expect { subject }.to change(Locomotive::ContentAsset, :count).by(-1)
     end

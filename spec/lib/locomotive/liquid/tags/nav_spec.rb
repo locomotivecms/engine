@@ -31,101 +31,101 @@ describe Locomotive::Liquid::Tags::Nav do
   context '#rendering' do
 
     it 'renders from site' do
-      render_nav.should == '<nav id="nav"><ul><li id="child-1-link" class="link first"><a href="/child_1">Child #1</a></li><li id="child-2-link" class="link last"><a href="/child_2">Child #2</a></li></ul></nav>'
+      expect(render_nav).to eq('<nav id="nav"><ul><li id="child-1-link" class="link first"><a href="/child_1">Child #1</a></li><li id="child-2-link" class="link last"><a href="/child_2">Child #2</a></li></ul></nav>')
     end
 
     it 'renders from page' do
-      render_nav('page').should == '<nav id="nav"><ul><li id="child-1-link" class="link first"><a href="/child_1">Child #1</a></li><li id="child-2-link" class="link last"><a href="/child_2">Child #2</a></li></ul></nav>'
+      expect(render_nav('page')).to eq('<nav id="nav"><ul><li id="child-1-link" class="link first"><a href="/child_1">Child #1</a></li><li id="child-2-link" class="link last"><a href="/child_2">Child #2</a></li></ul></nav>')
     end
 
     it 'renders from parent' do
       (page = @home.children.last.children.first).stubs(:parent).returns(@home.children.last)
       output = render_nav 'parent', { page: page }
-      output.should == '<nav id="nav"><ul><li id="sub-child-1-link" class="link on first"><a href="/child_2/sub_child_1">Child #2.1</a></li><li id="sub-child-2-link" class="link last"><a href="/child_2/sub_child_2">Child #2.2</a></li></ul></nav>'
+      expect(output).to eq('<nav id="nav"><ul><li id="sub-child-1-link" class="link on first"><a href="/child_2/sub_child_1">Child #2.1</a></li><li id="sub-child-2-link" class="link last"><a href="/child_2/sub_child_2">Child #2.2</a></li></ul></nav>')
     end
 
     it 'renders children to depth' do
       output = render_nav('site', {}, 'depth: 2')
 
-      output.should match /<nav id="nav">/
-      output.should match /<ul>/
-      output.should match /<li id="child-1-link" class="link first">/
-      output.should match /<\/a><ul id="nav-child-2" class="">/
-      output.should match /<li id="sub-child-1-link" class="link first">/
-      output.should match /<li id="sub-child-2-link" class="link last">/
-      output.should match /<\/a><\/li><\/ul><\/li><\/ul><\/nav>/
+      expect(output).to match /<nav id="nav">/
+      expect(output).to match /<ul>/
+      expect(output).to match /<li id="child-1-link" class="link first">/
+      expect(output).to match /<\/a><ul id="nav-child-2" class="">/
+      expect(output).to match /<li id="sub-child-1-link" class="link first">/
+      expect(output).to match /<li id="sub-child-2-link" class="link last">/
+      expect(output).to match /<\/a><\/li><\/ul><\/li><\/ul><\/nav>/
     end
 
     it 'does not render templatized pages' do
       output = render_nav('site', {}, 'depth: 2')
 
-      output.should_not match /sub-child-template-3/
+      expect(output).to_not match /sub-child-template-3/
     end
 
     it 'does not render unpublished pages' do
       output = render_nav('site', {}, 'depth: 2')
 
-      output.should_not match /sub-child-unpublished-3/
+      expect(output).to_not match /sub-child-unpublished-3/
     end
 
     it 'does not render unlisted pages' do
       output = render_nav('site', {}, 'depth: 2')
 
-      output.should_not match /sub-child-unlisted-3/
+      expect(output).to_not match /sub-child-unlisted-3/
     end
 
     it 'does not render nested excluded pages' do
       output = render_nav('site', {}, 'depth: 2, exclude: "child_2/sub_child_2"')
 
-      output.should     match /<li id="child-2-link" class="link last">/
-      output.should     match /<li id="sub-child-1-link" class="link first last">/
-      output.should_not match /sub-child-2/
+      expect(output).to     match /<li id="child-2-link" class="link last">/
+      expect(output).to     match /<li id="sub-child-1-link" class="link first last">/
+      expect(output).to_not match /sub-child-2/
 
       output = render_nav('site', {}, 'depth: 2, exclude: "child_2"')
 
-      output.should     match /<li id="child-1-link" class="link first last">/
-      output.should_not match /child-2/
-      output.should_not match /sub-child/
+      expect(output).to     match /<li id="child-1-link" class="link first last">/
+      expect(output).to_not match /child-2/
+      expect(output).to_not match /sub-child/
     end
 
     it 'adds an icon before the link' do
-      render_nav('site', {}, 'icon: true').should match /<li id="child-1-link" class="link first"><a href="\/child_1"><span><\/span>Child #1<\/a>/
-      render_nav('site', {}, 'icon: before').should match /<li id="child-1-link" class="link first"><a href="\/child_1"><span><\/span>Child #1<\/a>/
+      expect(render_nav('site', {}, 'icon: true')).to match /<li id="child-1-link" class="link first"><a href="\/child_1"><span><\/span>Child #1<\/a>/
+      expect(render_nav('site', {}, 'icon: before')).to match /<li id="child-1-link" class="link first"><a href="\/child_1"><span><\/span>Child #1<\/a>/
     end
 
     it 'adds an icon after the link' do
-      render_nav('site', {}, 'icon: after').should match /<li id="child-1-link" class="link first"><a href="\/child_1">Child #1<span><\/span><\/a><\/li>/
+      expect(render_nav('site', {}, 'icon: after')).to match /<li id="child-1-link" class="link first"><a href="\/child_1">Child #1<span><\/span><\/a><\/li>/
     end
 
     it 'renders a snippet for the title' do
-      render_nav('site', {}, 'snippet: "-{{page.title}} {{ foo.png | theme_image_tag }}-"').should match /<li id="child-1-link" class="link first"><a href="\/child_1">-Child #1 <img src=\"\" >-<\/a><\/li>/
+      expect(render_nav('site', {}, 'snippet: "-{{page.title}} {{ foo.png | theme_image_tag }}-"')).to match /<li id="child-1-link" class="link first"><a href="\/child_1">-Child #1 <img src=\"\" >-<\/a><\/li>/
     end
 
     it 'assigns a different dom id' do
-      render_nav('site', {}, 'id: "main-nav"').should match /<nav id="main-nav">/
+      expect(render_nav('site', {}, 'id: "main-nav"')).to match /<nav id="main-nav">/
     end
 
     it 'assigns a class' do
-      render_nav('site', {}, 'class: "nav"').should match /<nav id="nav" class="nav">/
+      expect(render_nav('site', {}, 'class: "nav"')).to match /<nav id="nav" class="nav">/
     end
 
     it 'assigns a class other than "on" for a selected item' do
       (page = @home.children.last.children.first).stubs(:parent).returns(@home.children.last)
       output = render_nav 'parent', { page: page }, 'active_class: "active"'
-      output.should match /<li id="sub-child-1-link" class="link active first">/
+      expect(output).to match /<li id="sub-child-1-link" class="link active first">/
     end
 
     it 'excludes entries based on a regexp' do
-      render_nav('page', {}, 'exclude: "child_1"').should == '<nav id="nav"><ul><li id="child-2-link" class="link first last"><a href="/child_2">Child #2</a></li></ul></nav>'
+      expect(render_nav('page', {}, 'exclude: "child_1"')).to eq('<nav id="nav"><ul><li id="child-2-link" class="link first last"><a href="/child_2">Child #2</a></li></ul></nav>')
     end
 
     it 'does not render the parent ul' do
-      render_nav('site', {}, 'no_wrapper: true').should_not match /<ul id="nav">/
+      expect(render_nav('site', {}, 'no_wrapper: true')).to_not match /<ul id="nav">/
     end
 
     it 'localizes the links' do
       I18n.with_locale('fr') do
-        render_nav.should == '<nav id="nav"><ul><li id="child-1-link" class="link first"><a href="/fr/child_1">Child #1</a></li><li id="child-2-link" class="link last"><a href="/fr/child_2">Child #2</a></li></ul></nav>'
+        expect(render_nav).to eq('<nav id="nav"><ul><li id="child-1-link" class="link first"><a href="/fr/child_1">Child #1</a></li><li id="child-2-link" class="link last"><a href="/fr/child_2">Child #2</a></li></ul></nav>')
       end
     end
 

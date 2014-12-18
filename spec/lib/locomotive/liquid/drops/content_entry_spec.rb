@@ -14,7 +14,7 @@ describe Locomotive::Liquid::Drops::ContentEntry do
 
       subject { render('{{ article.file.url }}', { 'article' => content_entry_drop }) }
 
-      it { should include '5k.png?1183150800' }
+      it { is_expected.to include '5k.png?1183150800' }
 
     end
 
@@ -35,7 +35,7 @@ describe Locomotive::Liquid::Drops::ContentEntry do
 
         before { list.expects(:filtered).with({ '_visible' => true }, nil).returns(list.to_a) }
 
-        it { should eq 'a,b,' }
+        it { is_expected.to eq 'a,b,' }
 
       end
 
@@ -45,7 +45,7 @@ describe Locomotive::Liquid::Drops::ContentEntry do
 
         before { list.expects(:filtered).with({ 'active' => true, '_visible' => true }, ['name', 'ASC']).returns(list.to_a) }
 
-        it { should eq 'a,b,' }
+        it { is_expected.to eq 'a,b,' }
 
       end
 
@@ -55,7 +55,7 @@ describe Locomotive::Liquid::Drops::ContentEntry do
 
         before { list.expects(:filtered).with({ 'active' => true, '_visible' => true }, nil).returns(list.to_a) }
 
-        it { should eq 'a,b,' }
+        it { is_expected.to eq 'a,b,' }
 
       end
 

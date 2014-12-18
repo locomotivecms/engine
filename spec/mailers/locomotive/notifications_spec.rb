@@ -13,28 +13,28 @@ describe Locomotive::Notifications do
     let(:mail) { set_timezone { Locomotive::Notifications.new_content_entry(account, content_entry) } }
 
     it 'renders the subject' do
-      mail.subject.should == '[www.acme.com][My project] new entry'
+      expect(mail.subject).to eq('[www.acme.com][My project] new entry')
     end
 
     it 'renders the receiver email' do
-      mail.to.should == ['bart@simpson.net']
+      expect(mail.to).to eq(['bart@simpson.net'])
     end
 
     it 'renders the sender email' do
-      mail.from.should == ['support@dummy.com']
+      expect(mail.from).to eq(['support@dummy.com'])
     end
 
     it 'outputs the current time in the correct time zone' do
       Time.stubs(:now).returns(now)
-      mail.body.encoded.should match('a new instance has been created on 09/16/1982 21:00')
+      expect(mail.body.encoded).to match('a new instance has been created on 09/16/1982 21:00')
     end
 
     it 'outputs the domain in the email body' do
-      mail.body.encoded.should match('<b>www.acme.com</b>')
+      expect(mail.body.encoded).to match('<b>www.acme.com</b>')
     end
 
     it 'outputs the description of the content type in the email body' do
-      mail.body.encoded.should match('The list of my projects')
+      expect(mail.body.encoded).to match('The list of my projects')
     end
 
     context 'multi-site not enabled' do
@@ -45,12 +45,12 @@ describe Locomotive::Notifications do
 
       it 'renders the subject with the domain name coming from the ActionMailer settings' do
         ActionMailer::Base.default_url_options = { host: 'www.acme.fr' }
-        mail.subject.should == '[www.acme.fr][My project] new entry'
+        expect(mail.subject).to eq('[www.acme.fr][My project] new entry')
       end
 
       it 'renders the subject without setting ActionMailer' do
         ActionMailer::Base.default_url_options[:host] = nil
-        mail.subject.should == '[localhost][My project] new entry'
+        expect(mail.subject).to eq('[localhost][My project] new entry')
       end
 
     end

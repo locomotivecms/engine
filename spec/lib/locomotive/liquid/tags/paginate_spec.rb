@@ -4,16 +4,16 @@ describe Locomotive::Liquid::Tags::Paginate do
 
   it 'has a valid syntax' do
     markup = "contents.projects by 5"
-    lambda do
+    expect do
       Locomotive::Liquid::Tags::Paginate.new('paginate', markup, ["{% endpaginate %}"], {})
-    end.should_not raise_error
+    end.to_not raise_error
   end
 
   it 'raises an error if the syntax is incorrect' do
     ["contents.projects by a", "contents.projects", "contents.projects 5"].each do |markup|
-      lambda do
+      expect do
         Locomotive::Liquid::Tags::Paginate.new('paginate', markup, ["{% endpaginate %}"], {})
-      end.should raise_error
+      end.to raise_error
     end
   end
 
@@ -21,51 +21,51 @@ describe Locomotive::Liquid::Tags::Paginate do
     template  = Liquid::Template.parse(default_template)
     text      = template.render!(liquid_context)
 
-    text.should match /!Ruby on Rails!/
-    text.should match /!jQuery!/
-    text.should_not match /!mongodb!/
+    expect(text).to match /!Ruby on Rails!/
+    expect(text).to match /!jQuery!/
+    expect(text).to_not match /!mongodb!/
 
     text = template.render!(liquid_context(page: 2))
 
-    text.should_not match /!jQuery!/
-    text.should match /!mongodb!/
-    text.should match /!Liquid!/
-    text.should_not match /!sqlite3!/
+    expect(text).to_not match /!jQuery!/
+    expect(text).to match /!mongodb!/
+    expect(text).to match /!Liquid!/
+    expect(text).to_not match /!sqlite3!/
   end
 
   it 'does not paginate if collection is nil or empty' do
     template = Liquid::Template.parse(default_template)
 
-    lambda do
+    expect do
       template.render!(liquid_context(collection: nil))
-    end.should raise_error
+    end.to raise_error
 
-    lambda do
+    expect do
       template.render!(liquid_context(collection: PaginatedCollection.new))
-    end.should raise_error
+    end.to raise_error
   end
 
   it 'keeps the original GET parameters' do
     context   = liquid_context(fullpath: '/products?foo=1&bar=1&baz=1')
     template  = Liquid::Template.parse(default_template)
     text      = template.render!(context)
-    text.should match /\/products\?foo=1&bar=1&baz=1&page=2/
+    expect(text).to match /\/products\?foo=1&bar=1&baz=1&page=2/
   end
 
   it 'does not include twice the page parameter' do
     context   = liquid_context(fullpath: '/products?page=1')
     template  = Liquid::Template.parse(default_template)
     text      = template.render!(context)
-    text.should match /\/products\?page=2/
+    expect(text).to match /\/products\?page=2/
   end
 
   it 'respects the window_size option' do
     template  = Liquid::Template.parse(default_pagination_template('window_size: 10'))
     text      = template.render!(liquid_context(collection: PaginatedCollection.new((1..100).to_a)))
 
-    text.should match /\/\?page=4/
-    text.should match /\/\?page=10/
-    text.should_not match /\/\?page=11/
+    expect(text).to match /\/\?page=4/
+    expect(text).to match /\/\?page=10/
+    expect(text).to_not match /\/\?page=11/
   end
 
   # ___ helpers methods ___ #

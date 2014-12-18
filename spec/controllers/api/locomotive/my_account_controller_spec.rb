@@ -33,7 +33,7 @@ describe Locomotive::Api::MyAccountController do
 
     describe "#POST create" do
       subject { post :create, 'account' => params, format: :json }
-      it { should_not be_success }
+      it { is_expected.to_not be_success }
     end
 
     describe 'PUT #update' do
@@ -65,7 +65,7 @@ describe Locomotive::Api::MyAccountController do
 
     describe '#GET show' do
       subject { get :show, locale: :en, format: :json }
-      it { should_not be_success }
+      it { is_expected.to_not be_success }
     end
 
     describe "#POST create" do
@@ -78,7 +78,7 @@ describe Locomotive::Api::MyAccountController do
 
     describe 'PUT #update' do
       subject { put :update, "account" => params, format: :json }
-      it { should_not be_success }
+      it { is_expected.to_not be_success }
     end
 
   end

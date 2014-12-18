@@ -29,7 +29,7 @@ module Locomotive
           expect(content_type.entries.count).to eq(1)
         end
         subject { get :index, locale: :en, slug: content_type.slug, format: :json }
-        it { should be_success }
+        it { is_expected.to be_success }
         specify do
           subject
           expect(assigns(:content_entries)).to eq([content_entry])
@@ -38,7 +38,7 @@ module Locomotive
 
       describe "#GET show" do
         subject { get :show, slug: content_type.slug, id: content_entry.id, locale: :en, format: :json }
-        it { should be_success }
+        it { is_expected.to be_success }
       end
 
       describe "#POST create" do
@@ -46,7 +46,7 @@ module Locomotive
         subject do
           post :create, locale: :en, slug: content_type.slug, content_entry: content_type_attributes, format: :json
         end
-        it { should be_success }
+        it { is_expected.to be_success }
         specify do
           expect { subject }.to change(Locomotive::ContentEntry, :count).by(+1)
         end
@@ -57,14 +57,14 @@ module Locomotive
           put :update, slug: content_type.slug, id: content_entry.id, locale: :en,
             content_entry: { title: "title-#{4}-#{rand(10000 * 4)}" }, format: :json
         end
-        it { should be_success }
+        it { is_expected.to be_success }
       end
 
       describe "#DELETE destroy" do
         subject do
           delete :destroy, slug: content_type.slug, id: content_entry.id, locale: :en, format: :json
         end
-        it { should be_success }
+        it { is_expected.to be_success }
         specify do
           expect { subject }.to change(Locomotive::ContentEntry, :count).by(-1)
         end
@@ -74,7 +74,7 @@ module Locomotive
         subject do
           delete :destroy_all, slug: content_type.slug, locale: :en, format: :json
         end
-        it { should be_success }
+        it { is_expected.to be_success }
         specify do
           expect { subject }.to change(Locomotive::ContentEntry, :count).by(-1)
         end

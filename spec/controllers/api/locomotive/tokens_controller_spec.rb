@@ -15,7 +15,7 @@ describe Locomotive::Api::TokensController do
     subject { post :create, params.merge(format: :json) }
 
     context 'valid credentials' do
-      it { should be_success }
+      it { is_expected.to be_success }
       it 'returns a token' do
         expect(json_response['token']).to_not be_blank
       end
@@ -36,7 +36,7 @@ describe Locomotive::Api::TokensController do
     subject do
       delete :destroy, id: token, locale: :en, format: :json
     end
-    it { should be_success }
+    it { is_expected.to be_success }
   end
 
   def json_response

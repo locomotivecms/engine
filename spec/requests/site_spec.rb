@@ -11,7 +11,7 @@ describe 'Locomotive::Middlewares::Site' do
 
   describe 'no site' do
 
-    it { should be_nil }
+    it { is_expected.to eq(nil) }
 
   end
 

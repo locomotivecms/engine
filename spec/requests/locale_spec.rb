@@ -22,35 +22,35 @@ describe 'Locomotive::Middlewares::Locale' do
 
     describe 'without locale in URL' do
 
-      it { should be_nil }
+      it { is_expected.to eq(nil) }
 
     end
 
     describe 'the locale happens to be in the path' do
 
       let(:url) { 'http://models.example.com/english' }
-      it { should be_nil }
+      it { is_expected.to eq(nil) }
 
     end
 
     describe 'with locale in URL' do
 
       let(:url) { 'http://models.example.com/en' }
-      it { should eq 'en' }
+      it { is_expected.to eq 'en' }
 
     end
 
     describe 'with locale in URL (ending slash)' do
 
       let(:url) { 'http://models.example.com/fr/' }
-      it { should eq 'fr' }
+      it { is_expected.to eq 'fr' }
 
     end
 
     describe 'with locale in URL (long path)' do
 
       let(:url) { 'http://models.example.com/de/guten_morgen' }
-      it { should eq 'de' }
+      it { is_expected.to eq 'de' }
 
     end
 
@@ -60,21 +60,21 @@ describe 'Locomotive::Middlewares::Locale' do
 
       describe 'without locale in URL' do
 
-        it { should be_nil }
+        it { is_expected.to eq(nil) }
 
       end
 
       describe 'with locale in URL (ending slash)' do
 
         let(:url) { 'http://models.example.com/fr/' }
-        it { should eq '/' }
+        it { is_expected.to eq '/' }
 
       end
 
       describe 'with locale in URL (long path)' do
 
         let(:url) { 'http://models.example.com/de/guten_morgen' }
-        it { should eq '/guten_morgen' }
+        it { is_expected.to eq '/guten_morgen' }
 
       end
 

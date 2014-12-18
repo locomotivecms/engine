@@ -16,7 +16,7 @@ module Locomotive
 
       describe "#GET show" do
         subject { get :show, params.merge(id: 123) }
-        it { should be_success }
+        it { is_expected.to be_success }
         specify do
           subject
           expect(assigns(:site)).to be_present
@@ -29,7 +29,7 @@ module Locomotive
             request.headers['X-Locomotive-Account-Email'] = account.email
           end
           subject { get(:show, params.merge(id: 123)) }
-          it { should be_success }
+          it { is_expected.to be_success }
         end
       end
 
@@ -37,14 +37,14 @@ module Locomotive
         subject do
           put :update, params.merge(site: { name: 'My website' })
         end
-        it { should be_success }
+        it { is_expected.to be_success }
       end
 
       describe "#DELETE destroy" do
         subject do
           delete :destroy, params.merge(id: site.id)
         end
-        it { should be_success }
+        it { is_expected.to be_success }
         specify do
           expect { subject }.to change(Locomotive::Site, :count).by(-1)
         end

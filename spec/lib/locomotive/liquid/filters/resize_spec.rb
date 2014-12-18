@@ -19,16 +19,16 @@ describe Locomotive::Liquid::Filters::Resize do
       end
 
       it 'returns the location of the resized image' do
-        @template.render(@context).should =~ /images\/dynamic\/.*\/5k.png/
+        expect(@template.render(@context)).to match(/images\/dynamic\/.*\/5k.png/)
       end
 
       it 'uses the path in the public folder to generate a location' do
-        @template.render(@context).should == Locomotive::Dragonfly.resize_url(@asset_path, '40x30')
+        expect(@template.render(@context)).to eq(Locomotive::Dragonfly.resize_url(@asset_path, '40x30'))
       end
 
       it 'accepts strings with leading and trailing empty characters' do
         @context['asset_url'] = "  \t #{@context['asset_url']}   \n\n  "
-        @template.render(@context).should == Locomotive::Dragonfly.resize_url(@asset_path, '40x30')
+        expect(@template.render(@context)).to eq(Locomotive::Dragonfly.resize_url(@asset_path, '40x30'))
       end
 
     end
@@ -38,7 +38,7 @@ describe Locomotive::Liquid::Filters::Resize do
       subject { Liquid::Template.parse('{{ asset_url_with_ts | resize: "40x30" }}').render(@context) }
 
       it 'returns the location of the resized image' do
-        subject.should =~ /images\/dynamic\/.*\/5k.png/
+        expect(subject).to match(/images\/dynamic\/.*\/5k.png/)
       end
 
     end
@@ -49,11 +49,11 @@ describe Locomotive::Liquid::Filters::Resize do
       end
 
       it 'returns the location of the resized image' do
-        @template.render(@context).should =~ /images\/dynamic\/.*\/5k.png/
+        expect(@template.render(@context)).to match(/images\/dynamic\/.*\/5k.png/)
       end
 
       it 'uses the path of the theme asset to generate a location' do
-        @template.render(@context).should == Locomotive::Dragonfly.resize_url(@theme_asset_path, '300x400')
+        expect(@template.render(@context)).to eq(Locomotive::Dragonfly.resize_url(@theme_asset_path, '300x400'))
       end
     end
 
@@ -64,7 +64,7 @@ describe Locomotive::Liquid::Filters::Resize do
       end
 
       it 'returns a liquid error' do
-        @template.render(@context).should include 'Liquid error: wrong number of arguments'
+        expect(@template.render(@context)).to include 'Liquid error: wrong number of arguments'
       end
 
     end

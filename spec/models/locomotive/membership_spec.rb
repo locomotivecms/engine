@@ -6,7 +6,7 @@ describe Locomotive::Membership do
 
   describe 'validation' do
 
-    it { should be_valid }
+    it { is_expected.to be_valid }
 
     it 'requires the presence of an account' do
       subject.account = nil

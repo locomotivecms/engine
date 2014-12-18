@@ -13,12 +13,12 @@ describe Locomotive::Liquid::Tags::Editable::File do
 
     let(:asset_host) { IsoAssetHost.new }
     before { add_editable_file({}) }
-    it { should eq 'http://www.placehold.it/500x500' }
+    it { is_expected.to eq 'http://www.placehold.it/500x500' }
 
     context 'a timestamp is not applicable' do
 
       let(:asset_host) { TimestampAssetHost.new }
-      it { should eq 'http://www.placehold.it/500x500' }
+      it { is_expected.to eq 'http://www.placehold.it/500x500' }
 
     end
 
@@ -27,12 +27,12 @@ describe Locomotive::Liquid::Tags::Editable::File do
   describe 'with a default source url' do
 
     before { add_editable_file(default_source_url: '/assets/42/assets/1/foo.png') }
-    it { should eq 'http://cdn.locomotivecms.com/assets/42/assets/1/foo.png' }
+    it { is_expected.to eq 'http://cdn.locomotivecms.com/assets/42/assets/1/foo.png' }
 
     context 'has a timestamp' do
 
       let(:asset_host) { TimestampAssetHost.new }
-      it { should eq '/assets/42/assets/1/foo.png?1183150800' }
+      it { is_expected.to eq '/assets/42/assets/1/foo.png?1183150800' }
 
     end
 
@@ -41,12 +41,12 @@ describe Locomotive::Liquid::Tags::Editable::File do
   describe 'with an uploaded file' do
 
     before { add_editable_file }
-    it { should match /^http:\/\/cdn\.locomotivecms\.com\/spec\/(.*)\/5k.png$/ }
+    it { is_expected.to match /^http:\/\/cdn\.locomotivecms\.com\/spec\/(.*)\/5k.png$/ }
 
     context 'has a timestamp' do
 
       let(:asset_host) { TimestampAssetHost.new }
-      it { should match /^\/spec\/(.*)\/5k.png\?1183150800$/ }
+      it { is_expected.to match /^\/spec\/(.*)\/5k.png\?1183150800$/ }
 
     end
 

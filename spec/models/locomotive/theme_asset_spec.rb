@@ -12,13 +12,13 @@ describe Locomotive::ThemeAsset do
 
     describe 'file is a picture' do
 
-      it 'should process picture' do
+      it 'processes picture' do
         asset.source = FixturedAsset.open('5k.png')
         expect(asset.source.file.content_type).to_not eq(nil)
         expect(asset.image?).to eq(true)
       end
 
-      it 'should get width and height from the image' do
+      it 'gets width and height from the image' do
         asset.source = FixturedAsset.open('5k.png')
         expect(asset.width).to eq(32)
         expect(asset.height).to eq(32)
@@ -28,34 +28,34 @@ describe Locomotive::ThemeAsset do
 
     describe 'local path and folder' do
 
-      it 'should set the local path based on the content type' do
+      it 'sets the local path based on the content type' do
         asset.source = FixturedAsset.open('5k.png')
         asset.save
         expect(asset.local_path).to eq('images/5k.png')
       end
 
-      it 'should set the local path based on the folder' do
+      it 'sets the local path based on the folder' do
         asset.folder = 'trash'
         asset.source = FixturedAsset.open('5k.png')
         asset.save
         expect(asset.local_path).to eq('images/trash/5k.png')
       end
 
-      it 'should not only use the folder to build the local path' do
+      it 'does not only use the folder to build the local path' do
         asset.folder = 'images42'
         asset.source = FixturedAsset.open('5k.png')
         asset.save
         expect(asset.local_path).to eq('images/images42/5k.png')
       end
 
-      it 'should set sanitize the local path' do
+      it 'sets sanitize the local path' do
         asset.folder = '/images/à la poubelle'
         asset.source = FixturedAsset.open('5k.png')
         asset.save
         expect(asset.local_path).to eq('images/a_la_poubelle/5k.png')
       end
 
-      it 'should keep the original name for a retina image' do
+      it 'keeps the original name for a retina image' do
         asset.source = FixturedAsset.open('5k@2x.png')
         asset.save
         expect(asset.local_path).to eq('images/5k@2x.png')
@@ -83,19 +83,19 @@ describe Locomotive::ThemeAsset do
 
     end
 
-    it 'should process stylesheet' do
+    it 'processes stylesheet' do
       asset.source = FixturedAsset.open('main.css')
       expect(asset.source.file.content_type).to_not eq(nil)
       expect(asset.stylesheet?).to eq(true)
     end
 
-    it 'should process javascript' do
+    it 'processes javascript' do
       asset.source = FixturedAsset.open('application.js')
       expect(asset.source.file.content_type).to_not eq(nil)
       expect(asset.javascript?).to eq(true)
     end
 
-    it 'should get size' do
+    it 'gets size' do
       asset.source = FixturedAsset.open('main.css')
       expect(asset.size).to eq(25)
     end
@@ -116,14 +116,14 @@ describe Locomotive::ThemeAsset do
         plain_text: 'Lorem ipsum',
         performing_plain_text: true) }
 
-    it 'should handle stylesheet' do
+    it 'handles stylesheet' do
       asset.plain_text_type = 'stylesheet'
       expect(asset.valid?).to eq(true)
       expect(asset.stylesheet?).to eq(true)
       expect(asset.source).to_not eq(nil)
     end
 
-    it 'should handle javascript' do
+    it 'handles javascript' do
       asset.plain_text_type = 'javascript'
       expect(asset.valid?).to eq(true)
       expect(asset.javascript?).to eq(true)
@@ -145,21 +145,21 @@ describe Locomotive::ThemeAsset do
     context 'simple url' do
 
       let(:text) { "background: url(/images/banner.png) no-repeat 0 0" }
-      it { should == "background: url(http://engine.dev/images/banner.png?1183151400) no-repeat 0 0" }
+      it { is_expected.to eq "background: url(http://engine.dev/images/banner.png?1183151400) no-repeat 0 0" }
 
     end
 
     context 'url with quotes' do
 
       let(:text) { "background: url(\"/images/banner.png\") no-repeat 0 0" }
-      it { should == "background: url(\"http://engine.dev/images/banner.png?1183151400\") no-repeat 0 0" }
+      it { is_expected.to eq "background: url(\"http://engine.dev/images/banner.png?1183151400\") no-repeat 0 0" }
 
     end
 
     context 'url with quotes and timestamps' do
 
       let(:text) { "background: url(\"/images/banner.png?123456\") no-repeat 0 0" }
-      it { should == "background: url(\"http://engine.dev/images/banner.png?1183151400\") no-repeat 0 0" }
+      it { is_expected.to eq "background: url(\"http://engine.dev/images/banner.png?1183151400\") no-repeat 0 0" }
 
     end
 

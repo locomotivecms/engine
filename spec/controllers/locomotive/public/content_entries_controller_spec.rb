@@ -22,7 +22,7 @@ describe Locomotive::Public::ContentEntriesController do
       describe 'wrong entry' do
 
         it 'returns a 200 code' do
-          response.status.should eq(200)
+          expect(response.status).to eq(200)
         end
 
       end
@@ -32,8 +32,8 @@ describe Locomotive::Public::ContentEntriesController do
         let(:entry_params) { { email: 'john@doe.net', message: 'hello world' } }
 
         it 'returns a 200 code' do
-          response.status.should eq(302)
-          controller.flash['submitted_entry_id'].should_not eq(nil)
+          expect(response.status).to eq(302)
+          expect(controller.flash['submitted_entry_id']).not_to eq(nil)
         end
 
       end
@@ -47,7 +47,7 @@ describe Locomotive::Public::ContentEntriesController do
       describe 'wrong entry' do
 
         it 'returns a 422 error code' do
-          response.status.should eq(422)
+          expect(response.status).to eq(422)
         end
 
       end
@@ -57,7 +57,7 @@ describe Locomotive::Public::ContentEntriesController do
         let(:entry_params) { { email: 'john@doe.net', message: 'hello world' } }
 
         it 'returns a 201 code' do
-          response.status.should eq(201)
+          expect(response.status).to eq(201)
         end
 
       end

@@ -24,24 +24,24 @@ describe Locomotive::Concerns::Page::EditableElements do
 
     it 'keeps the same number of editable elements in all the children' do
       @home.update_attributes raw_template: "{% editable_file 'body' %}/nowhere.pdf{% endeditable_file %}"
-      @sub_page_1.reload.editable_elements.size.should == 1
-      @sub_page_1_1.reload.editable_elements.size.should == 1
+      expect(@sub_page_1.reload.editable_elements.size).to eq(1)
+      expect(@sub_page_1_1.reload.editable_elements.size).to eq(1)
     end
 
     it 'changes the type of the element in all the children' do
       @home.update_attributes raw_template: "{% editable_file 'body' %}/nowhere.pdf{% endeditable_file %}"
       @sub_page_1.reload
-      @sub_page_1.editable_elements.first._type.should == 'Locomotive::EditableFile'
+      expect(@sub_page_1.editable_elements.first._type).to eq('Locomotive::EditableFile')
       @sub_page_1_1.reload
-      @sub_page_1_1.editable_elements.first._type.should == 'Locomotive::EditableFile'
+      expect(@sub_page_1_1.editable_elements.first._type).to eq('Locomotive::EditableFile')
     end
 
     it 'changes the hint of the element in all the children' do
       @home.update_attributes raw_template: "{% editable_text 'body', hint: 'My very useful hint' %}Lorem ipsum{% endeditable_text %}"
       @sub_page_1.reload
-      @sub_page_1.editable_elements.first.hint.should == 'My very useful hint'
+      expect(@sub_page_1.editable_elements.first.hint).to eq('My very useful hint')
       @sub_page_1_1.reload
-      @sub_page_1_1.editable_elements.first.hint.should == 'My very useful hint'
+      expect(@sub_page_1_1.editable_elements.first.hint).to eq('My very useful hint')
     end
 
   end
@@ -53,7 +53,7 @@ describe Locomotive::Concerns::Page::EditableElements do
         @home.update_attributes raw_template: "{% editable_text 'corps' %}Lorem ipsum{% endeditable_text %}"
       end
       @home.reload
-      @home.editable_elements.count.should == 2
+      expect(@home.editable_elements.count).to eq(2)
     end
 
     it 'removes the editable elements which are not present in at least one locale' do
@@ -61,11 +61,11 @@ describe Locomotive::Concerns::Page::EditableElements do
         @home.update_attributes raw_template: ''
       end
       @home.reload
-      @home.editable_elements.count.should == 1
+      expect(@home.editable_elements.count).to eq(1)
 
       @home.update_attributes raw_template: ''
       @home.reload
-      @home.editable_elements.count.should == 0
+      expect(@home.editable_elements.count).to eq(0)
     end
 
   end

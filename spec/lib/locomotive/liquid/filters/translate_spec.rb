@@ -16,14 +16,14 @@ describe Locomotive::Liquid::Filters::Translate do
     end
 
     it "uses default locale " do
-      should == "Example text"
+      is_expected.to eq "Example text"
     end
 
     context "specifying a locale" do
       let(:template) { Liquid::Template.parse("{{ 'example_text' | translate:'es' }}") }
 
       it "translates" do
-        should == "Texto de ejemplo"
+        is_expected.to eq "Texto de ejemplo"
       end
     end
 
@@ -31,7 +31,7 @@ describe Locomotive::Liquid::Filters::Translate do
       let(:template) { Liquid::Template.parse("{{ 'example_text' | translate [locale: nl] }}") }
 
       it "reverts to default locale" do
-        should == "Example text"
+        is_expected.to eq "Example text"
       end
     end
 
@@ -45,7 +45,7 @@ describe Locomotive::Liquid::Filters::Translate do
       end
 
       it "translates" do
-        should == "Texto de ejemplo"
+        is_expected.to eq "Texto de ejemplo"
       end
     end
 
@@ -54,7 +54,7 @@ describe Locomotive::Liquid::Filters::Translate do
       let(:template) { Liquid::Template.parse("{{ 'fr' | translate: 'en', 'locomotive.locales' }}") }
 
       it "translates" do
-        should == "French"
+        is_expected.to eq "French"
       end
 
     end

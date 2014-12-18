@@ -14,13 +14,13 @@ describe Locomotive::Liquid::Tags::ModelForm do
 
     subject { tag_class.new('model_form', options, tokens).render(context) }
 
-    it { should be == '<form method="POST" enctype="multipart/form-data"><input type="hidden" name="content_type_slug" value="articles" /><input type="hidden" name="token" value="42" />Hello world</form>' }
+    it { is_expected.to eq '<form method="POST" enctype="multipart/form-data"><input type="hidden" name="content_type_slug" value="articles" /><input type="hidden" name="token" value="42" />Hello world</form>' }
 
     context 'with a css class' do
 
       let(:options) { '"articles", class: "col-md-12"' }
 
-      it { should include '<form method="POST" enctype="multipart/form-data" class="col-md-12">' }
+      it { is_expected.to include '<form method="POST" enctype="multipart/form-data" class="col-md-12">' }
 
     end
 
@@ -28,7 +28,7 @@ describe Locomotive::Liquid::Tags::ModelForm do
 
       let(:options) { '"articles", id: "my-form"' }
 
-      it { should include '<form method="POST" enctype="multipart/form-data" id="my-form">' }
+      it { is_expected.to include '<form method="POST" enctype="multipart/form-data" id="my-form">' }
 
     end
 
@@ -36,8 +36,8 @@ describe Locomotive::Liquid::Tags::ModelForm do
 
       let(:options) { '"articles", success: "/success", error: "/error"' }
 
-      it { should include '<input type="hidden" name="success_callback" value="/success" />' }
-      it { should include '<input type="hidden" name="error_callback" value="/error" />' }
+      it { is_expected.to include '<input type="hidden" name="success_callback" value="/success" />' }
+      it { is_expected.to include '<input type="hidden" name="error_callback" value="/error" />' }
 
     end
 

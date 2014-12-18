@@ -16,7 +16,7 @@ describe Locomotive::SitesController do
 
   describe "#GET new" do
     subject { get :new, locale: :en }
-    it { should be_success }
+    it { is_expected.to be_success }
   end
 
   describe "#POST create" do
@@ -26,7 +26,7 @@ describe Locomotive::SitesController do
     subject do
       post :create, locale: :en, site: site_attributes, format: :json
     end
-    it { should be_success }
+    it { is_expected.to be_success }
     specify do
       expect { subject }.to change(Locomotive::Site, :count).by(+1)
     end
@@ -40,7 +40,7 @@ describe Locomotive::SitesController do
     subject do
       delete :destroy, id: another_site.id, locale: :en, format: :json
     end
-    it { should be_success }
+    it { is_expected.to be_success }
     specify do
       expect { subject }.to change(Locomotive::Site, :count).by(-1)
     end

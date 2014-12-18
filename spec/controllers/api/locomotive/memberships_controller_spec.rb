@@ -18,7 +18,7 @@ module Locomotive
 
       describe "#GET index" do
         subject { get :index, locale: :en, format: :json }
-        it { should be_success }
+        it { is_expected.to be_success }
         specify do
           subject
           expect(assigns(:memberships)).to eq([membership])
@@ -27,7 +27,7 @@ module Locomotive
 
       describe "#GET show" do
         subject { get :show, id: membership.id, locale: :en, format: :json }
-        it { should be_success }
+        it { is_expected.to be_success }
       end
 
       describe "#POST create" do
@@ -35,7 +35,7 @@ module Locomotive
         subject do
           post :create, locale: :en, membership: membership_attributes, format: :json
         end
-        it { should be_success }
+        it { is_expected.to be_success }
         specify do
           subject
           expect(assigns(:membership).persisted?).to eq(true)
@@ -50,7 +50,7 @@ module Locomotive
         subject do
           put :update, id: membership_bis._id, locale: :en, membership: membership_attributes, format: :json
         end
-        it { should be_success }
+        it { is_expected.to be_success }
         specify do
           subject
           expect(assigns(:membership).role).to eq('designer')
@@ -64,7 +64,7 @@ module Locomotive
         subject do
           delete :destroy, id: membership_bis._id, locale: :en, format: :json
         end
-        it { should be_success }
+        it { is_expected.to be_success }
       end
 
     end

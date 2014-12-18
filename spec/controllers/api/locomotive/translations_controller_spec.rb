@@ -18,7 +18,7 @@ module Locomotive
 
       describe "#GET index" do
         subject { get :index, locale: :en, format: :json }
-        it { should be_success }
+        it { is_expected.to be_success }
         specify do
           subject
           expect(assigns(:translations).all).to eq([translation])
@@ -27,7 +27,7 @@ module Locomotive
 
       describe "#GET show" do
         subject { get :show, id: translation.id, locale: :en, format: :json }
-        it { should be_success }
+        it { is_expected.to be_success }
       end
 
       describe "#POST create" do
@@ -37,7 +37,7 @@ module Locomotive
         subject do
           post :create, locale: :en, translation: translation_attributes, format: :json
         end
-        it { should be_success }
+        it { is_expected.to be_success }
         specify do
           expect { subject }.to change(Locomotive::Translation, :count).by(+1)
         end
@@ -47,14 +47,14 @@ module Locomotive
         subject do
           put :update, id: translation.id, locale: :en, translation: { }, format: :json
         end
-        it { should be_success }
+        it { is_expected.to be_success }
       end
 
       describe "#DELETE destroy" do
         subject do
           delete :destroy, id: translation.id, locale: :en, format: :json
         end
-        it { should be_success }
+        it { is_expected.to be_success }
         specify do
           expect { subject }.to change(Locomotive::Translation, :count).by(-1)
         end

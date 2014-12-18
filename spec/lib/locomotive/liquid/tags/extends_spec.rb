@@ -13,7 +13,7 @@ describe Locomotive::Liquid::Tags::Extends do
 
   it 'works' do
     page = FactoryGirl.build(:page, slug: 'sub_page_1', parent: @home)
-    parse('parent', page).render.should == 'Hello world'
+    expect(parse('parent', page).render).to eq 'Hello world'
   end
 
   it 'looks for the index with the right locale' do
@@ -26,26 +26,26 @@ describe Locomotive::Liquid::Tags::Extends do
 
     ::Mongoid::Fields::I18n.with_locale 'fr' do
       page = FactoryGirl.build(:page, slug: 'sub_page_1', parent: @home)
-      parse('index', page).render.should == 'Bonjour le monde'
+      expect(parse('index', page).render).to eq 'Bonjour le monde'
     end
   end
 
   context '#errors' do
 
     it 'raises an error if the source page does not exist' do
-      lambda {
+      expect {
         @site.pages.expects(:where).with('fullpath.en' => 'foo').returns([])
         parse('foo')
-      }.should raise_error(Locomotive::Liquid::PageNotFound, "Page with fullpath 'foo' was not found")
+      }.to raise_error(Locomotive::Liquid::PageNotFound, "Page with fullpath 'foo' was not found")
     end
 
     it 'raises an error if the source page is not translated' do
-      lambda {
+      expect {
         ::Mongoid::Fields::I18n.with_locale 'fr' do
           page = FactoryGirl.build(:page, slug: 'sub_page_1', parent: @home)
           parse('parent', page)
         end
-      }.should raise_error(Locomotive::Liquid::PageNotTranslated, "Page with fullpath 'parent' was not translated")
+      }.to raise_error(Locomotive::Liquid::PageNotTranslated, "Page with fullpath 'parent' was not translated")
     end
 
   end

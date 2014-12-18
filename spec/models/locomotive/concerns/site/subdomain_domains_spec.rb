@@ -8,7 +8,7 @@ describe Locomotive::Concerns::Site::SubdomainDomains do
     it 'downcases the subdomain' do
       site.subdomain = 'MiXeDCaSe'
 
-      site.subdomain.should == 'mixedcase'
+      expect(site.subdomain).to eq('mixedcase')
     end
   end
 
@@ -18,7 +18,7 @@ describe Locomotive::Concerns::Site::SubdomainDomains do
     it 'downcases the domains' do
       site.domains = ['FIRST.com', 'second.com', 'THIRD.com']
 
-      site.domains.should == ['first.com', 'second.com', 'third.com']
+      expect(site.domains).to eq(['first.com', 'second.com', 'third.com'])
     end
   end
 

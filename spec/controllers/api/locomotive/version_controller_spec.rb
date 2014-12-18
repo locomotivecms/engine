@@ -6,9 +6,9 @@ describe Locomotive::Api::VersionController do
 
     subject { get :show, format: :json }
 
-    it { should be_success }
+    it { is_expected.to be_success }
     it 'returns a the version' do
-      json_response['engine'].should eq Locomotive::VERSION
+      expect(json_response['engine']).to eq Locomotive::VERSION
     end
 
   end

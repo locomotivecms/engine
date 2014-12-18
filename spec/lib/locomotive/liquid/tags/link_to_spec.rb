@@ -13,7 +13,7 @@ describe Locomotive::Liquid::Tags::LinkTo do
 
     let(:template) { "{% link_to unknown-page %}" }
 
-    it { should be_blank }
+    it { is_expected.to be_blank }
 
   end
 
@@ -22,7 +22,7 @@ describe Locomotive::Liquid::Tags::LinkTo do
     let(:assigns)   { { 'project' => Locomotive::ContentEntry.new(_slug: 'hello-world', _label_field_name: :_slug ) } }
     let(:template)  { "{% link_to project %}" }
 
-    it { should be_blank }
+    it { is_expected.to be_blank }
 
   end
 
@@ -32,14 +32,14 @@ describe Locomotive::Liquid::Tags::LinkTo do
     let(:template)  { "{% link_to my-page %}" }
     before(:each)   { page }
 
-    it { should == %{<a href="/hello-world">Hello world</a>} }
+    it { is_expected.to eq %{<a href="/hello-world">Hello world</a>} }
 
     context 'passing a page directly' do
 
       let(:assigns)   { { 'page' => page } }
       let(:template)  { "{% link_to page %}" }
 
-      it { should == %{<a href="/hello-world">Hello world</a>} }
+      it { is_expected.to eq %{<a href="/hello-world">Hello world</a>} }
 
     end
 
@@ -48,7 +48,7 @@ describe Locomotive::Liquid::Tags::LinkTo do
       let(:assigns)   { { 'page' => page } }
       let(:template)  { "{% link_to page %}Here{% endlink_to %}" }
 
-      it { should == %{<a href="/hello-world">Here</a>} }
+      it { is_expected.to eq %{<a href="/hello-world">Here</a>} }
 
     end
 
@@ -67,7 +67,7 @@ describe Locomotive::Liquid::Tags::LinkTo do
 
       let(:template) { "{% link_to project %}" }
 
-      it { should == %{<a href="/list-of-projects/my-fancy-project">My fancy project</a>} }
+      it { is_expected.to eq %{<a href="/list-of-projects/my-fancy-project">My fancy project</a>} }
 
     end
 
@@ -78,7 +78,7 @@ describe Locomotive::Liquid::Tags::LinkTo do
       let(:template)              { "{% link_to project, with: another-project-template %}" }
       before(:each)               { another_page }
 
-      it { should == %{<a href="/another-list-of-projects/my-fancy-project">My fancy project</a>} }
+      it { is_expected.to eq %{<a href="/another-list-of-projects/my-fancy-project">My fancy project</a>} }
 
     end
 

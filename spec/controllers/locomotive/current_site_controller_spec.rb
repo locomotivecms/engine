@@ -16,7 +16,7 @@ describe Locomotive::CurrentSiteController do
 
   describe "#GET edit" do
     subject { get :edit, id: site.id, locale: :en }
-    it { should be_success }
+    it { is_expected.to be_success }
     specify do
       subject
       expect(assigns(:site)).to be_present
@@ -27,7 +27,7 @@ describe Locomotive::CurrentSiteController do
     subject do
       put :update, id: site.id, locale: :en, site: { name: 'foooo' }, format: :json
     end
-    it { should be_success }
+    it { is_expected.to be_success }
     specify do
       subject
       expect(assigns(:site).name).to eq('foooo')

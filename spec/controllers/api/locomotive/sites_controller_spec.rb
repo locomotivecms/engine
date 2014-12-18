@@ -24,7 +24,7 @@ module Locomotive
 
         describe "#GET index" do
           subject { get(:index, locale: :en, format: :json) }
-          it { should be_success }
+          it { is_expected.to be_success }
           specify do
             subject
             expect(assigns(:sites).to_a).to eq([site, site_bis])
@@ -33,11 +33,11 @@ module Locomotive
 
         describe "#GET show" do
           subject { get :show, id: site._id, locale: :en, format: :json }
-          it { should be_success }
+          it { is_expected.to be_success }
 
           context 'a site not owned by the current account' do
             subject { get :show, id: site_bis._id, locale: :en, format: :json }
-            it { should be_success }
+            it { is_expected.to be_success }
           end
         end
 
@@ -52,7 +52,7 @@ module Locomotive
 
         describe "#GET index" do
           subject { get(:index, locale: :en, format: :json) }
-          it { should be_success }
+          it { is_expected.to be_success }
           specify do
             subject
             expect(assigns(:sites).to_a).to eq([site])
@@ -61,11 +61,11 @@ module Locomotive
 
         describe "#GET show" do
           subject { get :show, id: site._id, locale: :en, format: :json }
-          it { should be_success }
+          it { is_expected.to be_success }
 
           context 'a site not owned by the current account' do
             subject { get :show, id: site_bis._id, locale: :en, format: :json }
-            it { should_not be_success }
+            it { is_expected.to_not be_success }
           end
         end
 
@@ -74,7 +74,7 @@ module Locomotive
             post :create, locale: :en, site: { subdomain: generate(:subdomain), name: generate(:name) },
               format: :json
           end
-          it { should be_success }
+          it { is_expected.to be_success }
           specify do
             expect { subject }.to change(Locomotive::Site, :count).by(+1)
           end
@@ -85,7 +85,7 @@ module Locomotive
           subject do
             put :update, id: site.id, locale: :en, site: { name: new_name }, format: :json
           end
-          it { should be_success }
+          it { is_expected.to be_success }
           specify do
             expect(JSON.parse(subject.body).fetch('name')).to eq(new_name)
           end
@@ -95,7 +95,7 @@ module Locomotive
           subject do
             delete :destroy, id: site.id, locale: :en, format: :json
           end
-          it { should be_success }
+          it { is_expected.to be_success }
           specify do
             expect { subject }.to change(Locomotive::Site, :count).by(-1)
           end

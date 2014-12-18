@@ -11,13 +11,13 @@ describe Locomotive::PageService do
 
     subject { service.build_tree.map(&:first) }
 
-    it { subject.map(&:title).should eq ['Home page', 'Blog', 'Features', 'Page not found'] }
+    it { expect(subject.map(&:title)).to eq ['Home page', 'Blog', 'Features', 'Page not found'] }
 
     describe 'depth = 1' do
 
       subject { service.build_tree[2].last.map(&:first) }
 
-      it { subject.map(&:title).should eq ['Awesome feature #1', 'Awesome feature #2'] }
+      it { expect(subject.map(&:title)).to eq ['Awesome feature #1', 'Awesome feature #2'] }
 
     end
 

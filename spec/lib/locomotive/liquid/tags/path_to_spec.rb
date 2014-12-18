@@ -13,7 +13,7 @@ describe Locomotive::Liquid::Tags::PathTo do
 
     let(:template) { "{% path_to unknown-page %}" }
 
-    it { should be_blank }
+    it { is_expected.to be_blank }
 
   end
 
@@ -22,7 +22,7 @@ describe Locomotive::Liquid::Tags::PathTo do
     let(:assigns)   { { 'project' => Locomotive::ContentEntry.new(_slug: 'hello-world', _label_field_name: :_slug ) } }
     let(:template)  { "{% path_to project %}" }
 
-    it { should be_blank }
+    it { is_expected.to be_blank }
 
   end
 
@@ -32,14 +32,14 @@ describe Locomotive::Liquid::Tags::PathTo do
     let(:template)  { "{% path_to my-page %}" }
     before(:each)   { page }
 
-    it { should == %{/hello-world} }
+    it { is_expected.to eq %{/hello-world} }
 
     context 'passing a page directly' do
 
       let(:assigns)   { { 'page' => page } }
       let(:template)  { "{% path_to page %}" }
 
-      it { should == %{/hello-world} }
+      it { is_expected.to eq %{/hello-world} }
 
     end
 
@@ -58,7 +58,7 @@ describe Locomotive::Liquid::Tags::PathTo do
 
       let(:template) { "{% path_to project %}" }
 
-      it { should == %{/list-of-projects/my-fancy-project} }
+      it { is_expected.to eq %{/list-of-projects/my-fancy-project} }
 
     end
 
@@ -69,7 +69,7 @@ describe Locomotive::Liquid::Tags::PathTo do
       let(:template)              { "{% path_to project, with: another-project-template %}" }
       before(:each)               { another_page }
 
-      it { should == %{/another-list-of-projects/my-fancy-project} }
+      it { is_expected.to eq %{/another-list-of-projects/my-fancy-project} }
 
     end
 

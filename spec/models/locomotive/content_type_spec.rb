@@ -8,7 +8,7 @@ describe Locomotive::ContentType do
 
   context 'when validating' do
 
-    it 'should have a valid factory' do
+    it 'haves a valid factory' do
       content_type = FactoryGirl.build(:content_type)
       content_type.entries_custom_fields.build label: 'anything', type: 'string'
       expect(content_type).to be_valid
@@ -207,20 +207,20 @@ describe Locomotive::ContentType do
     context 'validation' do
 
       %w{label type}.each do |key|
-        it "should validate presence of #{key}" do
+        it "validates presence of #{key}" do
           field = @content_type.entries_custom_fields.build({ label: 'Shortcut', type: 'string' }.merge(key.to_sym => nil))
           expect(field).to_not be_valid
           expect(field.errors[key.to_sym]).to eq(["can't be blank"])
         end
       end
 
-      it 'should not have unique label' do
+      it 'does not have unique label' do
         field = @content_type.entries_custom_fields.build label: 'Active', type: 'boolean'
         expect(field).to_not be_valid
         expect(field.errors[:label]).to eq(["is already taken"])
       end
 
-      it 'should invalidate parent if custom field is not valid' do
+      it 'invalidates parent if custom field is not valid' do
         field = @content_type.entries_custom_fields.build
         expect(@content_type).to_not be_valid
         expect(@content_type.entries_custom_fields.last.errors[:label]).to eq(["can't be blank"])
@@ -230,7 +230,7 @@ describe Locomotive::ContentType do
 
     context 'define core attributes' do
 
-      it 'should have an unique name' do
+      it 'has an unique name' do
         @content_type.valid?
         expect(@content_type.entries_custom_fields.first.name).to eq('name')
         expect(@content_type.entries_custom_fields.last.name).to eq('active_at')
@@ -244,7 +244,7 @@ describe Locomotive::ContentType do
         @content_type.save
       end
 
-      it 'should build asset' do
+      it 'builds asset' do
         asset = @content_type.entries.build
         expect {
           asset.name
@@ -253,13 +253,13 @@ describe Locomotive::ContentType do
         }.not_to raise_error
       end
 
-      it 'should assign values to newly built asset' do
+      it 'assigns values to newly built asset' do
         asset = build_content_entry(@content_type)
         expect(asset.description).to eq('Lorem ipsum')
         expect(asset.active).to eq(true)
       end
 
-      it 'should save asset' do
+      it 'saves asset' do
         asset = build_content_entry(@content_type)
         asset.save and @content_type.reload
         asset = @content_type.entries.first
@@ -267,7 +267,7 @@ describe Locomotive::ContentType do
         expect(asset.active).to eq(true)
       end
 
-      it 'should not modify entries from another content type' do
+      it 'does not modify entries from another content type' do
         asset = build_content_entry(@content_type)
         asset.save and @content_type.reload
         another_content_type = Locomotive::ContentType.new

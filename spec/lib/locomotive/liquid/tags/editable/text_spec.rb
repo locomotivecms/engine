@@ -28,19 +28,19 @@ describe Locomotive::Liquid::Tags::Editable::Text do
     let(:content) { '' }
     subject { build_tag('text', content).send(:default_element_attributes) }
 
-    it { should include(slug: 'title') }
-    it { should include(hint: 'Simple short text') }
-    it { should include(_type: 'Locomotive::EditableText') }
-    it { should include(format: 'html') }
-    it { should include(rows: 10) }
-    it { should include(line_break: true) }
+    it { is_expected.to include(slug: 'title') }
+    it { is_expected.to include(hint: 'Simple short text') }
+    it { is_expected.to include(_type: 'Locomotive::EditableText') }
+    it { is_expected.to include(format: 'html') }
+    it { is_expected.to include(rows: 10) }
+    it { is_expected.to include(line_break: true) }
 
     describe 'default content' do
 
       context 'only text' do
 
         let(:content) { 'Lorem ipsum' }
-        it { should include(content_from_default: 'Lorem ipsum') }
+        it { is_expected.to include(content_from_default: 'Lorem ipsum') }
 
       end
 
@@ -57,9 +57,9 @@ describe Locomotive::Liquid::Tags::Editable::Text do
 
       subject { build_tag('short_text').send(:default_element_attributes) }
 
-      it { should include(format: 'raw') }
-      it { should include(rows: 2) }
-      it { should include(line_break: false) }
+      it { is_expected.to include(format: 'raw') }
+      it { is_expected.to include(rows: 2) }
+      it { is_expected.to include(line_break: false) }
 
     end
 
@@ -67,9 +67,9 @@ describe Locomotive::Liquid::Tags::Editable::Text do
 
       subject { build_tag('long_text').send(:default_element_attributes) }
 
-      it { should include(format: 'html') }
-      it { should include(rows: 15) }
-      it { should include(line_break: true) }
+      it { is_expected.to include(format: 'html') }
+      it { is_expected.to include(rows: 15) }
+      it { is_expected.to include(line_break: true) }
 
     end
 

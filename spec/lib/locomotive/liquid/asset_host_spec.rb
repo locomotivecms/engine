@@ -13,19 +13,19 @@ describe Locomotive::Liquid::AssetHost do
 
   describe 'no host provided' do
 
-    it { should eq '/sites/42/assets/1/banner.png' }
+    it { is_expected.to eq '/sites/42/assets/1/banner.png' }
 
   end
 
   describe 'with a timestamp' do
 
     let(:timestamp) { '42' }
-    it { should eq '/sites/42/assets/1/banner.png?42' }
+    it { is_expected.to eq '/sites/42/assets/1/banner.png?42' }
 
     context 'the source already includes a query string' do
 
       let(:source) { '/sites/42/assets/1/banner.png?foo' }
-      it { should eq '/sites/42/assets/1/banner.png?foo' }
+      it { is_expected.to eq '/sites/42/assets/1/banner.png?foo' }
 
     end
 
@@ -34,12 +34,12 @@ describe Locomotive::Liquid::AssetHost do
   describe 'the source is already a full url' do
 
     let(:source) { 'http://somewhere.net/sites/42/assets/1/banner.png' }
-    it { should eq 'http://somewhere.net/sites/42/assets/1/banner.png' }
+    it { is_expected.to eq 'http://somewhere.net/sites/42/assets/1/banner.png' }
 
     describe 'also with https' do
 
       let(:source) { 'https://somewhere.net/sites/42/assets/1/banner.png' }
-      it { should eq 'https://somewhere.net/sites/42/assets/1/banner.png' }
+      it { is_expected.to eq 'https://somewhere.net/sites/42/assets/1/banner.png' }
 
     end
 
@@ -48,7 +48,7 @@ describe Locomotive::Liquid::AssetHost do
   describe 'the host is a string' do
 
     let(:host) { 'http://assets.locomotivecms.com' }
-    it { should eq 'http://assets.locomotivecms.com/sites/42/assets/1/banner.png' }
+    it { is_expected.to eq 'http://assets.locomotivecms.com/sites/42/assets/1/banner.png' }
 
   end
 
@@ -58,19 +58,19 @@ describe Locomotive::Liquid::AssetHost do
     let(:site)        { stub(cdn: true) }
     let(:host) { ->(request, site) { site.cdn ? "http#{request.ssl ? 's' : ''}://assets.locomotivecms.com" : nil } }
 
-    it { should eq 'https://assets.locomotivecms.com/sites/42/assets/1/banner.png' }
+    it { is_expected.to eq 'https://assets.locomotivecms.com/sites/42/assets/1/banner.png' }
 
     context 'with a different request var' do
 
       let(:request) { stub(ssl: false) }
-      it { should eq 'http://assets.locomotivecms.com/sites/42/assets/1/banner.png' }
+      it { is_expected.to eq 'http://assets.locomotivecms.com/sites/42/assets/1/banner.png' }
 
     end
 
     context 'with a different site var' do
 
       let(:site) { stub(cdn: false) }
-      it { should eq '/sites/42/assets/1/banner.png' }
+      it { is_expected.to eq '/sites/42/assets/1/banner.png' }
 
     end
 

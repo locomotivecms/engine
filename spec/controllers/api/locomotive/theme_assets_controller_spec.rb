@@ -29,7 +29,7 @@ module Locomotive
 
       describe "#GET index" do
         subject { get :index, locale: :en, format: :json }
-        it { should be_success }
+        it { is_expected.to be_success }
         specify do
           subject
           expect(assigns(:theme_assets).all).to eq([theme_asset])
@@ -38,7 +38,7 @@ module Locomotive
 
       describe "#GET show" do
         subject { get :show, id: theme_asset.id, locale: :en, format: :json }
-        it { should be_success }
+        it { is_expected.to be_success }
       end
 
       describe "#POST create" do
@@ -52,7 +52,7 @@ module Locomotive
         subject do
           post :create, locale: :en, theme_asset: theme_asset_attributes, format: :json
         end
-        it { should be_success }
+        it { is_expected.to be_success }
         specify do
           expect { subject }.to change(Locomotive::ThemeAsset, :count).by(+1)
         end
@@ -62,14 +62,14 @@ module Locomotive
         subject do
           put :update, id: theme_asset.id, locale: :en, theme_asset: { }, format: :json
         end
-        it { should be_success }
+        it { is_expected.to be_success }
       end
 
       describe "#DELETE destroy" do
         subject do
           delete :destroy, id: theme_asset.id, locale: :en, format: :json
         end
-        it { should be_success }
+        it { is_expected.to be_success }
         specify do
           expect { subject }.to change(Locomotive::ThemeAsset, :count).by(-1)
         end

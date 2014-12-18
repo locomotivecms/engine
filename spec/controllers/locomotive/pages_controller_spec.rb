@@ -17,17 +17,17 @@ describe Locomotive::PagesController do
 
   describe "#GET index" do
     subject { get :index, locale: :en }
-    it { should be_success }
+    it { is_expected.to be_success }
   end
 
   describe "#GET show" do
     subject { get :show, id: page.id, locale: :en, format: :json }
-    it { should be_success }
+    it { is_expected.to be_success }
   end
 
   describe "#GET new" do
     subject { get :new, locale: :en }
-    it { should be_success }
+    it { is_expected.to be_success }
   end
 
   describe "#POST create" do
@@ -37,7 +37,7 @@ describe Locomotive::PagesController do
     subject do
       post :create, locale: :en, page: page_attributes, format: :json
     end
-    it { should be_success }
+    it { is_expected.to be_success }
     specify do
       expect { subject }.to change(Locomotive::Page, :count).by(+1)
     end
@@ -45,7 +45,7 @@ describe Locomotive::PagesController do
 
   describe "#GET edit" do
     subject { get :edit, id: page.id, locale: :en }
-    it { should be_success }
+    it { is_expected.to be_success }
     specify do
       subject
       expect(assigns(:page)).to be_present
@@ -57,7 +57,7 @@ describe Locomotive::PagesController do
     subject do
       put :update, id: page.id, locale: :en, page: { title: title }, format: :json
     end
-    it { should be_success }
+    it { is_expected.to be_success }
     specify do
       subject
       expect(assigns(:page).title).to eq(title)
@@ -86,12 +86,12 @@ describe Locomotive::PagesController do
       subject do
         put :sort, id: page.id, children: [child_page.id], locale: :en, format: :json
       end
-      it { should be_success }
+      it { is_expected.to be_success }
     end
 
     describe "#GET get_path" do
       subject { get :get_path, parent_id: page.id, slug: page.slug, locale: :en }
-      it { should be_success }
+      it { is_expected.to be_success }
     end
   end
 end

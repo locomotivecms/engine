@@ -17,12 +17,12 @@ describe Locomotive::SnippetsController do
 
   describe "#GET show" do
     subject { get :show, id: snippet.id, locale: :en, format: :json }
-    it { should be_success }
+    it { is_expected.to be_success }
   end
 
   describe "#GET new" do
     subject { get :new, locale: :en }
-    it { should be_success }
+    it { is_expected.to be_success }
   end
 
   describe "#POST create" do
@@ -30,7 +30,7 @@ describe Locomotive::SnippetsController do
     subject do
       post :create, locale: :en, snippet: snippet_attributes, format: :json
     end
-    it { should be_success }
+    it { is_expected.to be_success }
     specify do
       expect { subject }.to change(Locomotive::Snippet, :count).by(+1)
     end
@@ -38,7 +38,7 @@ describe Locomotive::SnippetsController do
 
   describe "#GET edit" do
     subject { get :edit, id: snippet.id, locale: :en }
-    it { should be_success }
+    it { is_expected.to be_success }
     specify do
       subject
       expect(assigns(:snippet)).to be_present
@@ -50,7 +50,7 @@ describe Locomotive::SnippetsController do
     subject do
       put :update, id: snippet.id, locale: :en, snippet: { name: new_name }, format: :json
     end
-    it { should be_success }
+    it { is_expected.to be_success }
     specify do
       subject
       expect(assigns(:snippet).name).to eq(new_name)

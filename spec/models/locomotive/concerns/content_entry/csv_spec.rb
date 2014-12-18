@@ -15,7 +15,7 @@ module Locomotive
           @content_type.save!
         end
 
-        it 'should export nil fields as empty strings' do
+        it 'exports nil fields as empty strings' do
           @entry = @content_type.entries.create!({
             title: 'Locomotive',
             visible: true

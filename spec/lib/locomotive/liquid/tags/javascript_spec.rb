@@ -4,15 +4,19 @@ describe Locomotive::Liquid::Tags::Javascript do
 
   context '#validating syntax' do
     it 'validates a basic syntax' do
-      lambda do
+      expect do
         Locomotive::Liquid::Tags::Javascript.new('javascript', '', ["{% endjavascript %}"], {})
-      end.should_not raise_error
+      end.to_not raise_error
     end
   end
 
   context '#rendering' do
-    template = "{% javascript %}alert('Locomotive rocks!'){% endjavascript %}"
-    rendered = "<script>\n//<![CDATA[\nalert('Locomotive rocks!')\n//]]>\n</script>"
-    Liquid::Template.parse(template).render.should == rendered
+
+    let(:template) { "{% javascript %}alert('Locomotive rocks!'){% endjavascript %}" }
+
+    subject { Liquid::Template.parse(template).render }
+
+    it { is_expected.to eq("<script>\n//<![CDATA[\nalert('Locomotive rocks!')\n//]]>\n</script>") }
+
   end
 end

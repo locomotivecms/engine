@@ -10,233 +10,232 @@ describe Locomotive::Liquid::Filters::Html do
   end
 
   it 'writes the tag to display a rss/atom feed' do
-    auto_discovery_link_tag('/foo/bar').should == %(
+    expect(auto_discovery_link_tag('/foo/bar')).to eq %(
       <link rel="alternate" type="application/rss+xml" title="RSS" href="/foo/bar">
     ).strip
 
-    auto_discovery_link_tag('/foo/bar', 'rel:alternate2', 'type:atom', 'title:Hello world').should == %(
+    expect(auto_discovery_link_tag('/foo/bar', 'rel:alternate2', 'type:atom', 'title:Hello world')).to eq %(
       <link rel="alternate2" type="atom" title="Hello world" href="/foo/bar">
     ).strip
   end
 
-  it 'should return an url for a stylesheet file' do
+  it 'returns an url for a stylesheet file' do
     result = "/sites/000000000000000000000042/theme/stylesheets/main.css"
-    stylesheet_url('main.css').should == result
-    stylesheet_url('main').should == result
-    stylesheet_url(nil).should == ''
+    expect(stylesheet_url('main.css')).to eq(result)
+    expect(stylesheet_url('main')).to eq(result)
+    expect(stylesheet_url(nil)).to eq('')
   end
 
-  it 'should returns an url with the checksum' do
+  it 'returnss an url with the checksum' do
     @context.registers.merge!(theme_assets_checksum: { 'stylesheets/main.css' => 42 })
     result = "/sites/000000000000000000000042/theme/stylesheets/main.css?42"
-    stylesheet_url('main.css').should == result
+    expect(stylesheet_url('main.css')).to eq(result)
   end
 
-  it 'should return an url for a stylesheet file with folder' do
+  it 'returns an url for a stylesheet file with folder' do
     result = "/sites/000000000000000000000042/theme/stylesheets/trash/main.css"
-    stylesheet_url('trash/main.css').should == result
+    expect(stylesheet_url('trash/main.css')).to eq(result)
   end
 
-  it 'should return an url for a stylesheet file without touching the url that starts with "/"' do
+  it 'returns an url for a stylesheet file without touching the url that starts with "/"' do
     result = "/trash/main.css"
-    stylesheet_url('/trash/main.css').should == result
-    stylesheet_url('/trash/main').should == result
+    expect(stylesheet_url('/trash/main.css')).to eq(result)
+    expect(stylesheet_url('/trash/main')).to eq(result)
   end
 
-  it 'should return an url for a stylesheet file without touching the url that starts with "http:"' do
+  it 'returns an url for a stylesheet file without touching the url that starts with "http:"' do
     result = "http://cdn.example.com/trash/main.css"
-    stylesheet_url('http://cdn.example.com/trash/main.css').should == result
-    stylesheet_url('http://cdn.example.com/trash/main').should == result
+    expect(stylesheet_url('http://cdn.example.com/trash/main.css')).to eq(result)
+    expect(stylesheet_url('http://cdn.example.com/trash/main')).to eq(result)
   end
 
-  it 'should return an url for a stylesheet file without touching the url that starts with "https:"' do
+  it 'returns an url for a stylesheet file without touching the url that starts with "https:"' do
     result = "https://cdn.example.com/trash/main.css"
-    stylesheet_url('https://cdn.example.com/trash/main.css').should == result
-    stylesheet_url('https://cdn.example.com/trash/main').should == result
+    expect(stylesheet_url('https://cdn.example.com/trash/main.css')).to eq(result)
+    expect(stylesheet_url('https://cdn.example.com/trash/main')).to eq(result)
   end
 
-  it 'should return an url for a stylesheet file with respect to URL-parameters' do
+  it 'returns an url for a stylesheet file with respect to URL-parameters' do
     result = "/sites/000000000000000000000042/theme/stylesheets/main.css?v=42"
-    stylesheet_url('main.css?v=42').should == result
+    expect(stylesheet_url('main.css?v=42')).to eq(result)
   end
 
-  it 'should return a link tag for a stylesheet file' do
+  it 'returns a link tag for a stylesheet file' do
     result = "<link href=\"/sites/000000000000000000000042/theme/stylesheets/main.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\">"
-    stylesheet_tag('main.css').should == result
-    stylesheet_tag('main').should == result
-    stylesheet_tag(nil).should == ''
+    expect(stylesheet_tag('main.css')).to eq(result)
+    expect(stylesheet_tag('main')).to eq(result)
+    expect(stylesheet_tag(nil)).to eq('')
   end
 
-  it 'should return a link tag for a stylesheet file with folder' do
+  it 'returns a link tag for a stylesheet file with folder' do
     result = "<link href=\"/sites/000000000000000000000042/theme/stylesheets/trash/main.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\">"
-    stylesheet_tag('trash/main.css').should == result
+    expect(stylesheet_tag('trash/main.css')).to eq(result)
   end
 
-  it 'should return a link tag for a stylesheet file without touching the url that starts with "/"' do
+  it 'returns a link tag for a stylesheet file without touching the url that starts with "/"' do
     result = "<link href=\"/trash/main.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\">"
-    stylesheet_tag('/trash/main.css').should == result
-    stylesheet_tag('/trash/main').should == result
+    expect(stylesheet_tag('/trash/main.css')).to eq(result)
+    expect(stylesheet_tag('/trash/main')).to eq(result)
   end
 
-  it 'should return a link tag for a stylesheet file without touching the url that starts with "http:"' do
+  it 'returns a link tag for a stylesheet file without touching the url that starts with "http:"' do
     result = "<link href=\"http://cdn.example.com/trash/main.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\">"
-    stylesheet_tag('http://cdn.example.com/trash/main.css').should == result
-    stylesheet_tag('http://cdn.example.com/trash/main').should == result
+    expect(stylesheet_tag('http://cdn.example.com/trash/main.css')).to eq(result)
+    expect(stylesheet_tag('http://cdn.example.com/trash/main')).to eq(result)
   end
 
-  it 'should return a link tag for a stylesheet file without touching the url that starts with "https:"' do
+  it 'returns a link tag for a stylesheet file without touching the url that starts with "https:"' do
     result = "<link href=\"https://cdn.example.com/trash/main.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\">"
-    stylesheet_tag('https://cdn.example.com/trash/main.css').should == result
-    stylesheet_tag('https://cdn.example.com/trash/main').should == result
+    expect(stylesheet_tag('https://cdn.example.com/trash/main.css')).to eq(result)
+    expect(stylesheet_tag('https://cdn.example.com/trash/main')).to eq(result)
   end
 
-  it 'should return a link tag for a stylesheet stored in Amazon S3' do
+  it 'returns a link tag for a stylesheet stored in Amazon S3' do
     url = 'https://com.citrrus.locomotive.s3.amazonaws.com/sites/42/theme/stylesheets/bootstrap2.css'
     stubs(:asset_url).returns(url)
     result = "<link href=\"#{url}\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\">"
-    stylesheet_tag('bootstrap2.css').should == result
+    expect(stylesheet_tag('bootstrap2.css')).to eq(result)
   end
 
-  it 'should return a link tag for a stylesheet file and media attribute set to print' do
+  it 'returns a link tag for a stylesheet file and media attribute set to print' do
     result = "<link href=\"/sites/000000000000000000000042/theme/stylesheets/main.css\" media=\"print\" rel=\"stylesheet\" type=\"text/css\">"
-    stylesheet_tag('main.css','print').should == result
-    stylesheet_tag('main','print').should == result
-    stylesheet_tag(nil).should == ''
+    expect(stylesheet_tag('main.css','print')).to eq(result)
+    expect(stylesheet_tag('main','print')).to eq(result)
+    expect(stylesheet_tag(nil)).to eq('')
   end
 
-  it 'should return a link tag for a stylesheet file with folder and media attribute set to print' do
+  it 'returns a link tag for a stylesheet file with folder and media attribute set to print' do
     result = "<link href=\"/sites/000000000000000000000042/theme/stylesheets/trash/main.css\" media=\"print\" rel=\"stylesheet\" type=\"text/css\">"
-    stylesheet_tag('trash/main.css','print').should == result
+    expect(stylesheet_tag('trash/main.css','print')).to eq(result)
   end
 
-  it 'should return a link tag for a stylesheet file without touching the url that starts with "/" and media attribute set to print' do
+  it 'returns a link tag for a stylesheet file without touching the url that starts with "/" and media attribute set to print' do
     result = "<link href=\"/trash/main.css\" media=\"print\" rel=\"stylesheet\" type=\"text/css\">"
-    stylesheet_tag('/trash/main.css','print').should == result
-    stylesheet_tag('/trash/main','print').should == result
+    expect(stylesheet_tag('/trash/main.css','print')).to eq(result)
+    expect(stylesheet_tag('/trash/main','print')).to eq(result)
   end
 
-  it 'should return a link tag for a stylesheet file without touching the url that starts with "http:" and media attribute set to print' do
+  it 'returns a link tag for a stylesheet file without touching the url that starts with "http:" and media attribute set to print' do
     result = "<link href=\"http://cdn.example.com/trash/main.css\" media=\"print\" rel=\"stylesheet\" type=\"text/css\">"
-    stylesheet_tag('http://cdn.example.com/trash/main.css','print').should == result
-    stylesheet_tag('http://cdn.example.com/trash/main','print').should == result
+    expect(stylesheet_tag('http://cdn.example.com/trash/main.css','print')).to eq(result)
+    expect(stylesheet_tag('http://cdn.example.com/trash/main','print')).to eq(result)
   end
 
-  it 'should return a link tag for a stylesheet file without touching the url that starts with "https:" and media attribute set to print' do
+  it 'returns a link tag for a stylesheet file without touching the url that starts with "https:" and media attribute set to print' do
     result = "<link href=\"https://cdn.example.com/trash/main.css\" media=\"print\" rel=\"stylesheet\" type=\"text/css\">"
-    stylesheet_tag('https://cdn.example.com/trash/main.css','print').should == result
-    stylesheet_tag('https://cdn.example.com/trash/main','print').should == result
+    expect(stylesheet_tag('https://cdn.example.com/trash/main.css','print')).to eq(result)
+    expect(stylesheet_tag('https://cdn.example.com/trash/main','print')).to eq(result)
   end
 
-  it 'should return an url for a javascript file' do
+  it 'returns an url for a javascript file' do
     result = "/sites/000000000000000000000042/theme/javascripts/main.js"
-    javascript_url('main.js').should == result
-    javascript_url('main').should == result
-    javascript_url(nil).should == ''
+    expect(javascript_url('main.js')).to eq(result)
+    expect(javascript_url('main')).to eq(result)
+    expect(javascript_url(nil)).to eq('')
   end
 
-  it 'should return an url for a javascript file with folder' do
+  it 'returns an url for a javascript file with folder' do
     result = "/sites/000000000000000000000042/theme/javascripts/trash/main.js"
-    javascript_url('trash/main.js').should == result
-    javascript_url('trash/main').should == result
+    expect(javascript_url('trash/main.js')).to eq(result)
+    expect(javascript_url('trash/main')).to eq(result)
   end
 
-  it 'should return an url for a javascript file without touching the url that starts with "/"' do
+  it 'returns an url for a javascript file without touching the url that starts with "/"' do
     result = "/trash/main.js"
-    javascript_url('/trash/main.js').should == result
-    javascript_url('/trash/main').should == result
+    expect(javascript_url('/trash/main.js')).to eq(result)
+    expect(javascript_url('/trash/main')).to eq(result)
   end
 
-  it 'should return an url for a javascript file without touching the url that starts with "http:"' do
+  it 'returns an url for a javascript file without touching the url that starts with "http:"' do
     result = "http://cdn.example.com/trash/main.js"
-    javascript_url('http://cdn.example.com/trash/main.js').should == result
-    javascript_url('http://cdn.example.com/trash/main').should == result
+    expect(javascript_url('http://cdn.example.com/trash/main.js')).to eq(result)
+    expect(javascript_url('http://cdn.example.com/trash/main')).to eq(result)
   end
 
-  it 'should return an url for a javascript file without touching the url that starts with "https:"' do
+  it 'returns an url for a javascript file without touching the url that starts with "https:"' do
     result = "https://cdn.example.com/trash/main.js"
-    javascript_url('https://cdn.example.com/trash/main.js').should == result
-    javascript_url('https://cdn.example.com/trash/main').should == result
+    expect(javascript_url('https://cdn.example.com/trash/main.js')).to eq(result)
+    expect(javascript_url('https://cdn.example.com/trash/main')).to eq(result)
   end
 
-  it 'should return an url for a javascript file with respect to URL-parameters' do
+  it 'returns an url for a javascript file with respect to URL-parameters' do
     result = "/sites/000000000000000000000042/theme/javascripts/main.js?v=42"
-    javascript_url('main.js?v=42').should == result
+    expect(javascript_url('main.js?v=42')).to eq(result)
   end
 
-  it 'should return a script tag for a javascript file' do
+  it 'returns a script tag for a javascript file' do
     result = %{<script src="/sites/000000000000000000000042/theme/javascripts/main.js" type="text/javascript" ></script>}
-    javascript_tag('main.js').should == result
-    javascript_tag('main').should == result
-    javascript_tag(nil).should == ''
+    expect(javascript_tag('main.js')).to eq(result)
+    expect(javascript_tag('main')).to eq(result)
+    expect(javascript_tag(nil)).to eq('')
   end
 
-  it 'should return a script tag for a javascript file with folder' do
+  it 'returns a script tag for a javascript file with folder' do
     result = %{<script src="/sites/000000000000000000000042/theme/javascripts/trash/main.js" type="text/javascript" ></script>}
-    javascript_tag('trash/main.js').should == result
-    javascript_tag('trash/main').should == result
+    expect(javascript_tag('trash/main.js')).to eq(result)
+    expect(javascript_tag('trash/main')).to eq(result)
   end
 
-  it 'should return a script tag for a javascript file without touching the url that starts with "/"' do
+  it 'returns a script tag for a javascript file without touching the url that starts with "/"' do
     result = %{<script src="/trash/main.js" type="text/javascript" ></script>}
-    javascript_tag('/trash/main.js').should == result
-    javascript_tag('/trash/main').should == result
+    expect(javascript_tag('/trash/main.js')).to eq(result)
+    expect(javascript_tag('/trash/main')).to eq(result)
   end
 
-  it 'should return a script tag for a javascript file without touching the url that starts with "http:"' do
+  it 'returns a script tag for a javascript file without touching the url that starts with "http:"' do
     result = %{<script src="http://cdn.example.com/trash/main.js" type="text/javascript" ></script>}
-    javascript_tag('http://cdn.example.com/trash/main.js').should == result
-    javascript_tag('http://cdn.example.com/trash/main').should == result
+    expect(javascript_tag('http://cdn.example.com/trash/main.js')).to eq(result)
+    expect(javascript_tag('http://cdn.example.com/trash/main')).to eq(result)
   end
 
-  it 'should return a script tag for a javascript file without touching the url that starts with "https:"' do
+  it 'returns a script tag for a javascript file without touching the url that starts with "https:"' do
     result = %{<script src="https://cdn.example.com/trash/main.js" type="text/javascript" ></script>}
-    javascript_tag('https://cdn.example.com/trash/main.js').should == result
-    javascript_tag('https://cdn.example.com/trash/main').should == result
+    expect(javascript_tag('https://cdn.example.com/trash/main.js')).to eq(result)
+    expect(javascript_tag('https://cdn.example.com/trash/main')).to eq(result)
   end
 
-  it 'should return a script tag for a javascript file with "defer" option' do
+  it 'returns a script tag for a javascript file with "defer" option' do
     result = %{<script src="https://cdn.example.com/trash/main.js" type="text/javascript" defer="defer" ></script>}
-    javascript_tag('https://cdn.example.com/trash/main.js', ['defer:defer']).should == result
+    expect(javascript_tag('https://cdn.example.com/trash/main.js', ['defer:defer'])).to eq(result)
   end
 
-  it 'should return an image tag for a given theme file without parameters' do
-    theme_image_tag('foo.jpg').should == "<img src=\"/sites/000000000000000000000042/theme/images/foo.jpg\" >"
+  it 'returns an image tag for a given theme file without parameters' do
+    expect(theme_image_tag('foo.jpg')).to eq("<img src=\"/sites/000000000000000000000042/theme/images/foo.jpg\" >")
   end
 
-  it 'should return an image tag for a given theme file with size' do
-    theme_image_tag('foo.jpg', 'width:100', 'height:100').should == "<img src=\"/sites/000000000000000000000042/theme/images/foo.jpg\" height=\"100\" width=\"100\" >"
+  it 'returns an image tag for a given theme file with size' do
+    expect(theme_image_tag('foo.jpg', 'width:100', 'height:100')).to eq("<img src=\"/sites/000000000000000000000042/theme/images/foo.jpg\" height=\"100\" width=\"100\" >")
   end
 
-  it 'should return an image tag without parameters' do
-    image_tag('foo.jpg').should == "<img src=\"foo.jpg\" >"
+  it 'returns an image tag without parameters' do
+    expect(image_tag('foo.jpg')).to eq("<img src=\"foo.jpg\" >")
   end
 
-  it 'should return an image tag with size' do
-    image_tag('foo.jpg', 'width:100', 'height:50').should == "<img src=\"foo.jpg\" height=\"50\" width=\"100\" >"
+  it 'returns an image tag with size' do
+    expect(image_tag('foo.jpg', 'width:100', 'height:50')).to eq("<img src=\"foo.jpg\" height=\"50\" width=\"100\" >")
   end
 
-  it 'should return a flash tag without parameters' do
-    flash_tag('foo.flv').should == %{
+  it 'returns a flash tag without parameters' do
+    expect(flash_tag('foo.flv')).to eq(%{
             <object>
               <param name="movie" value="foo.flv">
               <embed src="foo.flv">
               </embed>
             </object>
-    }.strip
+    }.strip)
   end
 
-  it 'should return a flash tag with size' do
-    flash_tag('foo.flv', 'width:100', 'height:50').should == %{
+  it 'returns a flash tag with size' do
+    expect(flash_tag('foo.flv', 'width:100', 'height:50')).to eq(%{
             <object height=\"50\" width=\"100\">
               <param name="movie" value="foo.flv">
               <embed src="foo.flv" height=\"50\" width=\"100\">
               </embed>
             </object>
-    }.strip
+    }.strip)
   end
 
   def build_context
-
     klass = Class.new
     klass.class_eval do
       def registers
@@ -248,7 +247,6 @@ describe Locomotive::Liquid::Filters::Html do
       end
 
       def fake_bson_id(id)
-        # BSON::ObjectId(id.to_s.rjust(24, '0'))
         BSON::ObjectId.from_string(id.to_s.rjust(24, '0'))
       end
     end

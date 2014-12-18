@@ -130,7 +130,7 @@ describe Locomotive::ContentEntry do
 
       subject { build_content_entry }
 
-      it { should respond_to(:to_values) }
+      it { is_expected.to respond_to(:to_values) }
 
       describe '#to_values' do
 
@@ -144,7 +144,7 @@ describe Locomotive::ContentEntry do
 
           subject { build_content_entry(file: FixturedAsset.open('5k.png')).tap(&:save).to_values(host: 'example.com')[3] }
 
-          it { should match(/^http:\/\/example.com\/sites\/[0-9a-f]+\/content_entry[0-9a-f]+\/[0-9a-f]+\/files\/5k.png$/) }
+          it { is_expected.to match(/^http:\/\/example.com\/sites\/[0-9a-f]+\/content_entry[0-9a-f]+\/[0-9a-f]+\/files\/5k.png$/) }
 
         end
 
@@ -181,21 +181,21 @@ describe Locomotive::ContentEntry do
       end
     end
 
-    it 'should find previous item when available' do
+    it 'finds previous item when available' do
       expect(@second.previous.title).to eq('first')
       expect(@second.previous._position).to eq(0)
     end
 
-    it 'should find next item when available' do
+    it 'finds next item when available' do
       expect(@second.next.title).to eq('third')
       expect(@second.next._position).to eq(2)
     end
 
-    it 'should return nil when fetching previous item on first in list' do
+    it 'returns nil when fetching previous item on first in list' do
       expect(@first.previous).to eq(nil)
     end
 
-    it 'should return nil when fetching next item on last in list' do
+    it 'returns nil when fetching next item on last in list' do
       expect(@third.next).to eq(nil)
     end
 
@@ -208,19 +208,19 @@ describe Locomotive::ContentEntry do
         @very_first.save!
       end
 
-      it "should find previous item" do
+      it "finds previous item" do
         expect(@second.previous.title).to eq('third')
       end
 
-      it "should find next item" do
+      it "finds next item" do
         expect(@first.next.title).to eq('very first')
       end
 
-      it 'should return nil when fetching previous item on first in list' do
+      it 'returns nil when fetching previous item on first in list' do
         expect(@third.previous).to eq(nil)
       end
 
-      it 'should return nil when fetching next item on last in list' do
+      it 'returns nil when fetching next item on last in list' do
         expect(@very_first.next).to eq(nil)
       end
 
@@ -230,19 +230,19 @@ describe Locomotive::ContentEntry do
           @content_type.update_attribute :order_direction, 'desc'
         end
 
-        it "should find previous item" do
+        it "finds previous item" do
           expect(@second.previous.title).to eq('first')
         end
 
-        it "should find next item" do
+        it "finds next item" do
           expect(@first.next.title).to eq('second')
         end
 
-        it 'should return nil when fetching previous item on first in list' do
+        it 'returns nil when fetching previous item on first in list' do
           expect(@very_first.previous).to eq(nil)
         end
 
-        it 'should return nil when fetching next item on last in list' do
+        it 'returns nil when fetching next item on last in list' do
           expect(@third.next).to eq(nil)
         end
 

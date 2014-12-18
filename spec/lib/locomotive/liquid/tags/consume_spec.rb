@@ -11,29 +11,29 @@ describe Locomotive::Liquid::Tags::Consume do
     describe 'validates a basic syntax' do
 
       let(:markup) { 'blog from "http://blog.locomotiveapp.org"' }
-      it { should_not raise_exception }
+      it { is_expected.not_to raise_exception }
 
     end
 
     describe 'validates more complex syntax with attributes' do
 
       let(:markup) { 'blog from "http://www.locomotiveapp.org", username: "john", password: password_from_context' }
-      it { should_not raise_exception }
+      it { is_expected.not_to raise_exception }
 
     end
 
     describe 'should parse the correct url with complex syntax with attributes' do
 
       let(:markup) { 'blog from "http://www.locomotiveapp.org" username: "john", password: "easyone"' }
-      it { should_not raise_exception }
-      it { tag.instance_variable_get(:@url).should eq "http://www.locomotiveapp.org" }
+      it { is_expected.not_to raise_exception }
+      it { expect(tag.instance_variable_get(:@url)).to eq "http://www.locomotiveapp.org" }
 
     end
 
     describe 'raises an error if the syntax is incorrect' do
 
       let(:markup) { 'blog http://www.locomotiveapp.org' }
-      it { should raise_exception }
+      it { is_expected.to raise_exception }
 
     end
 
@@ -54,7 +54,7 @@ describe Locomotive::Liquid::Tags::Consume do
     describe 'assign the response into the liquid variable' do
 
       let(:template) { "{% consume blog from \"http://blog.locomotiveapp.org/api/read\" %}{{ blog.title }}{% endconsume %}" }
-      it { should eq 'Locomotive rocks !' }
+      it { is_expected.to eq 'Locomotive rocks !' }
 
     end
 
@@ -62,7 +62,7 @@ describe Locomotive::Liquid::Tags::Consume do
 
       let(:assigns)   { { 'url' => 'http://blog.locomotiveapp.org/api/read' } }
       let(:template)  { "{% consume blog from url %}{{ blog.title }}{% endconsume %}" }
-      it { should eq 'Locomotive rocks !' }
+      it { is_expected.to eq 'Locomotive rocks !' }
 
     end
 
@@ -71,7 +71,7 @@ describe Locomotive::Liquid::Tags::Consume do
       let(:assigns)     { { 'secret_password' => 'bar' } }
       let(:api_options) { { base_uri: 'http://blog.locomotiveapp.org', basic_auth: { username: 'foo', password: 'bar' } } }
       let(:template) { "{% consume blog from \"http://blog.locomotiveapp.org/api/read\", username: 'foo', password: secret_password %}{{ blog.title }}{% endconsume %}" }
-      it { should eq 'Locomotive rocks !' }
+      it { is_expected.to eq 'Locomotive rocks !' }
 
     end
 
@@ -91,10 +91,10 @@ describe Locomotive::Liquid::Tags::Consume do
 
     it 'should return the previous successful response if a timeout occurs' do
       Locomotive::Httparty::Webservice.stubs(:consume).returns({ 'title' => 'first response' })
-      subject.should eq 'first response'
+      is_expected.to eq 'first response'
 
       Locomotive::Httparty::Webservice.stubs(:consume).raises(Timeout::Error)
-      subject.should eq 'first response'
+      is_expected.to eq 'first response'
     end
 
   end

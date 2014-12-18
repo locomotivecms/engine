@@ -11,11 +11,11 @@ describe Locomotive::Concerns::Site::Locales do
       let(:page) { build_page }
 
       it 'returns an empty string if default locale' do
-        site.localized_page_fullpath(page).should == ''
+        expect(site.localized_page_fullpath(page)).to eq('')
       end
 
       it 'returns only the locale if another locale ' do
-        site.localized_page_fullpath(page, 'fr').should == 'fr'
+        expect(site.localized_page_fullpath(page, 'fr')).to eq('fr')
       end
 
     end
@@ -25,11 +25,11 @@ describe Locomotive::Concerns::Site::Locales do
       let(:page) { build_page('about-us', { fr: 'a-notre-sujet' }) }
 
       it 'returns only the fullpath if default locale' do
-        site.localized_page_fullpath(page).should == 'about-us'
+        expect(site.localized_page_fullpath(page)).to eq('about-us')
       end
 
       it 'returns the fullpath if another locale' do
-        site.localized_page_fullpath(page, 'fr').should == 'fr/a-notre-sujet'
+        expect(site.localized_page_fullpath(page, 'fr')).to eq('fr/a-notre-sujet')
       end
 
     end

@@ -17,7 +17,7 @@ describe Locomotive::MyAccountController do
 
   describe "#GET edit" do
     subject { get :edit, id: account.id, locale: :en }
-    it { should be_success }
+    it { is_expected.to be_success }
     specify do
       subject
       expect(assigns(:account)).to be_present
@@ -29,7 +29,7 @@ describe Locomotive::MyAccountController do
     subject do
       put :update, id: account.id, locale: :en, account: { name: name }, format: :json
     end
-    it { should be_success }
+    it { is_expected.to be_success }
     specify do
       subject
       expect(assigns(:account).name).to eq(name)
@@ -40,6 +40,6 @@ describe Locomotive::MyAccountController do
     subject do
       put :regenerate_api_key, format: :json
     end
-    it { should be_success }
+    it { is_expected.to be_success }
   end
 end

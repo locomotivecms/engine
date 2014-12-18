@@ -17,7 +17,7 @@ describe Locomotive::ContentTypesController do
 
   describe "#GET edit" do
     subject { get :edit, id: content_type.id, locale: :en }
-    it { should be_success }
+    it { is_expected.to be_success }
   end
 
   describe "#POST create" do
@@ -29,7 +29,7 @@ describe Locomotive::ContentTypesController do
     subject do
       post :create, locale: :en, content_type: content_type_attributes, format: :json
     end
-    it { should be_success }
+    it { is_expected.to be_success }
     specify do
       expect { subject }.to change(Locomotive::ContentType, :count).by(+1)
     end
@@ -39,14 +39,14 @@ describe Locomotive::ContentTypesController do
     subject do
       put :update, id: content_type.id, locale: :en, content_type: { }, format: :json
     end
-    it { should be_success }
+    it { is_expected.to be_success }
   end
 
   describe "#DELETE destroy" do
     subject do
       delete :destroy, id: content_type.id, locale: :en, format: :json
     end
-    it { should be_success }
+    it { is_expected.to be_success }
     specify do
       expect { subject }.to change(Locomotive::ContentType, :count).by(-1)
     end

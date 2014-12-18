@@ -1,3 +1,0 @@
-- 2 modes for editing a page
-  - admin mode => pure html / liquid
-  - editor: only "editable" tags can be edited !

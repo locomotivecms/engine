@@ -18,7 +18,7 @@ module Locomotive
 
       describe "#GET index" do
         subject { get :index, locale: :en, format: :json }
-        it { should be_success }
+        it { is_expected.to be_success }
         specify do
           subject
           expect(assigns(:content_assets).all).to eq([content_asset])
@@ -27,7 +27,7 @@ module Locomotive
 
       describe "#GET show" do
         subject { get :show, id: content_asset.id, locale: :en, format: :json }
-        it { should be_success }
+        it { is_expected.to be_success }
       end
 
       describe "#POST create" do
@@ -37,7 +37,7 @@ module Locomotive
         subject do
           post :create, locale: :en, content_asset: content_asset_attributes, format: :json
         end
-        it { should be_success }
+        it { is_expected.to be_success }
         specify do
           expect { subject }.to change(Locomotive::ContentAsset, :count).by(+1)
         end
@@ -55,7 +55,7 @@ module Locomotive
         subject do
           put :update, id: content_asset.id, locale: :en, content_asset: { source: upload }, format: :json
         end
-        it { should be_success }
+        it { is_expected.to be_success }
         specify do
           subject
           expect(assigns(:content_asset).attributes['source_filename']).to eq('logo1.jpg')
@@ -67,7 +67,7 @@ module Locomotive
         subject do
           delete :destroy, id: content_asset.id, locale: :en, format: :json
         end
-        it { should be_success }
+        it { is_expected.to be_success }
         specify do
           expect { subject }.to change(Locomotive::ContentAsset, :count).by(-1)
         end

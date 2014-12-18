@@ -18,7 +18,7 @@ module Locomotive
 
       describe "#GET index" do
         subject { get :index, locale: :en, format: :json }
-        it { should be_success }
+        it { is_expected.to be_success }
         specify do
           subject
           expect(assigns(:content_types).all).to eq([content_type])
@@ -27,7 +27,7 @@ module Locomotive
 
       describe "#GET show" do
         subject { get :show, id: content_type.id, locale: :en, format: :json }
-        it { should be_success }
+        it { is_expected.to be_success }
       end
 
       describe "#POST create" do
@@ -39,7 +39,7 @@ module Locomotive
         subject do
           post :create, locale: :en, content_type: content_type_attributes, format: :json
         end
-        it { should be_success }
+        it { is_expected.to be_success }
         specify do
           expect { subject }.to change(Locomotive::ContentType, :count).by(+1)
         end
@@ -49,14 +49,14 @@ module Locomotive
         subject do
           put :update, id: content_type.id, locale: :en, content_type: { }, format: :json
         end
-        it { should be_success }
+        it { is_expected.to be_success }
       end
 
       describe "#DELETE destroy" do
         subject do
           delete :destroy, id: content_type.id, locale: :en, format: :json
         end
-        it { should be_success }
+        it { is_expected.to be_success }
         specify do
           expect { subject }.to change(Locomotive::ContentType, :count).by(-1)
         end

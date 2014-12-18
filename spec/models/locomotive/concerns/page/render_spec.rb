@@ -13,7 +13,7 @@ describe Locomotive::Concerns::Page::Render do
   end
 
   it 'renders the home page' do
-    render(@home).should == 'Hello world, Home header, My home page'
+    expect(render(@home)).to eq('Hello world, Home header, My home page')
   end
 
   describe '#inheritance' do
@@ -36,15 +36,15 @@ describe Locomotive::Concerns::Page::Render do
     end
 
     it 'renders the inner page' do
-      render(@inner).should == 'Hello world, Inner header, Inner page'
+      expect(render(@inner)).to eq('Hello world, Inner header, Inner page')
     end
 
     it 'renders the contact page' do
-      render(@contact).should == 'Hello world, Contact header, Contact page'
+      expect(render(@contact)).to eq('Hello world, Contact header, Contact page')
     end
 
     it 'renders the about page' do
-      render(@about).should == 'Hello world, Inner header, About page'
+      expect(render(@about)).to eq('Hello world, Inner header, About page')
     end
 
     context 'when parent page got modified' do
@@ -62,15 +62,15 @@ describe Locomotive::Concerns::Page::Render do
       end
 
       it 'reflects changes on the inner page' do
-        render(@inner).should == 'Hello world (UPDATED), Inner header, Inner page'
+        expect(render(@inner)).to eq('Hello world (UPDATED), Inner header, Inner page')
       end
 
       it 'reflects changes on the contact page' do
-        render(@contact).should == 'Hello world (UPDATED), Contact header, Contact page'
+        expect(render(@contact)).to eq('Hello world (UPDATED), Contact header, Contact page')
       end
 
       it 'reflects changes on the about page' do
-        render(@about).should == 'Hello world (UPDATED), Inner header, About page'
+        expect(render(@about)).to eq('Hello world (UPDATED), Inner header, About page')
       end
 
     end

@@ -20,12 +20,12 @@ describe Locomotive::MembershipsController do
     subject do
       post :create, locale: :en, membership: membership_attributes
     end
-    it { should redirect_to new_account_path(email: email) }
+    it { is_expected.to redirect_to new_account_path(email: email) }
 
     describe 'no existing membership' do
       let(:another_account) { create(:account) }
       let(:email) { another_account.email }
-      it { should redirect_to edit_current_site_path }
+      it { is_expected.to redirect_to edit_current_site_path }
     end
 
     describe 'existing membership' do
@@ -39,6 +39,6 @@ describe Locomotive::MembershipsController do
     subject do
       delete :destroy, id: membership.id, locale: :en
     end
-    it { should redirect_to edit_current_site_path }
+    it { is_expected.to redirect_to edit_current_site_path }
   end
 end

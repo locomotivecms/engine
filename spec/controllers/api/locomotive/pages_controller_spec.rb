@@ -18,7 +18,7 @@ module Locomotive
 
       describe "#GET index" do
         subject { get :index, locale: :en, format: :json }
-        it { should be_success }
+        it { is_expected.to be_success }
         specify do
           subject
           expect(assigns(:pages).to_a).to eq(site.pages.all)
@@ -27,7 +27,7 @@ module Locomotive
 
       describe "#GET show" do
         subject { get :show, id: page.id, locale: :en, format: :json }
-        it { should be_success }
+        it { is_expected.to be_success }
       end
 
       describe "#POST create" do
@@ -37,7 +37,7 @@ module Locomotive
         subject do
           post :create, locale: :en, page: page_attributes, format: :json
         end
-        it { should be_success }
+        it { is_expected.to be_success }
         specify do
           expect { subject }.to change(Locomotive::Page, :count).by(+1)
         end
@@ -48,7 +48,7 @@ module Locomotive
         subject do
           put :update, id: page.id, locale: :en, page: { title: new_name }, format: :json
         end
-        it { should be_success }
+        it { is_expected.to be_success }
         specify do
           expect(JSON.parse(subject.body).fetch('title')).to eq(new_name)
         end
@@ -59,7 +59,7 @@ module Locomotive
         subject do
           delete :destroy, id: child_page.id, locale: :en, format: :json
         end
-        it { should be_success }
+        it { is_expected.to be_success }
         specify do
           expect { subject }.to change(Locomotive::Page, :count).by(-1)
         end

@@ -11,8 +11,8 @@ describe 'Enable SSL admin' do
 
   it 'should redirect to SSL on admin when enabled' do
     get '/locomotive/pages'
-    response.status.should == 302
-    response.location.should =~ /https/
+    expect(response.status).to eq(302)
+    expect(response.location).to match(/https/)
   end
 
   context 'admin ssl disabled' do
@@ -23,8 +23,8 @@ describe 'Enable SSL admin' do
 
     it 'should not redirect to SSL on admin when disabled' do
       get '/locomotive/pages'
-      response.status.should == 302
-      response.location.should =~ /http/
+      expect(response.status).to eq(302)
+      expect(response.location).to match(/http/)
     end
 
   end
@@ -38,8 +38,8 @@ describe 'Enable SSL admin' do
 
     it 'should not redirect to SSL' do
       get '/locomotive/pages'
-      response.status.should == 302
-      response.location.should =~ /http/
+      expect(response.status).to eq(302)
+      expect(response.location).to match(/http/)
     end
 
   end

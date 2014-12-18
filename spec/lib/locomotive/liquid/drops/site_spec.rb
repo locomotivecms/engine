@@ -17,14 +17,14 @@ describe Locomotive::Liquid::Drops::Site do
     describe 'display the number of pages' do
 
       let(:template) { '{{ site.pages.size }}' }
-      it { should eq '4' }
+      it { is_expected.to eq '4' }
 
     end
 
     describe 'display the title of all the pages' do
 
       let(:template) { '{% for page in site.pages %}{{ page.title }} {% endfor %}' }
-      it { should eq 'Home page Page not found About us Contact ' }
+      it { is_expected.to eq 'Home page Page not found About us Contact ' }
 
     end
 

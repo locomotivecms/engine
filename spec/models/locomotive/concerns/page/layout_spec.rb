@@ -15,7 +15,7 @@ describe Locomotive::Concerns::Page::Layout do
 
     describe 'true for a new page' do
 
-      it { should eq true }
+      it { is_expected.to eq true }
 
     end
 
@@ -23,7 +23,7 @@ describe Locomotive::Concerns::Page::Layout do
 
       let(:page) { p = Locomotive::Page.new; p.save(validate: false); p.unset(:allow_layout); Locomotive::Page.find(p._id) }
 
-      it { should eq false }
+      it { is_expected.to eq false }
 
     end
 
@@ -35,13 +35,13 @@ describe Locomotive::Concerns::Page::Layout do
 
     subject { page.raw_template }
 
-    it { should eq '{% extends "awesome-layout" %}' }
+    it { is_expected.to eq '{% extends "awesome-layout" %}' }
 
     describe 'but changing the layout is not allowed' do
 
       let(:allow_layout) { false }
 
-      it { should eq "{% extends 'parent' %}" }
+      it { is_expected.to eq "{% extends 'parent' %}" }
 
     end
 

@@ -19,12 +19,12 @@ module Locomotive
 
       describe "#GET index" do
         subject { get :index, locale: :en, format: :json }
-        it { should be_success }
+        it {  is_expected.to be_success }
       end
 
       describe "#GET show" do
         subject { get :show, id: snippet.id, locale: :en, format: :json }
-        it { should be_success }
+        it {  is_expected.to be_success }
       end
 
       describe "#POST create" do
@@ -34,7 +34,7 @@ module Locomotive
           post :create, locale: :en, snippet: snippet_attributes, format: :json
         end
 
-        it { should be_success }
+        it {  is_expected.to be_success }
         specify do
           expect { subject }.to change(Locomotive::Snippet, :count).by(+1)
         end
@@ -46,7 +46,7 @@ module Locomotive
         subject do
           put :update, id: snippet.id, locale: :en, snippet: { name: new_name }, format: :json
         end
-        it { should be_success }
+        it {  is_expected.to be_success }
         specify do
           expect(JSON.parse(subject.body).fetch('name')).to eq(new_name)
         end
@@ -56,7 +56,7 @@ module Locomotive
         subject do
           delete :destroy, id: snippet.id, locale: :en, format: :json
         end
-        it { should be_success }
+        it {  is_expected.to be_success }
         specify do
           expect { subject }.to change(Locomotive::Snippet, :count).by(-1)
         end

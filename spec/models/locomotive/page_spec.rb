@@ -9,7 +9,7 @@ describe Locomotive::Page do
     Locomotive::Page.any_instance.stubs(:set_default_raw_template).returns(true)
   end
 
-  it 'should have a valid factory' do
+  it 'has a valid factory' do
     expect(FactoryGirl.build(:page)).to be_valid
   end
 
@@ -100,14 +100,14 @@ describe Locomotive::Page do
 
   describe 'once created' do
 
-    it 'should tell if the page is the index one' do
+    it 'tells if the page is the index one' do
       expect(FactoryGirl.build(:page, slug: 'index', site: nil).index?).to eq(true)
       page = FactoryGirl.build(:page, slug: 'index', site: nil)
       page.stubs(:depth).returns(1)
       expect(page.index?).to eq(false)
     end
 
-    it 'should have normalized slug' do
+    it 'has normalized slug' do
       page = FactoryGirl.build(:page, slug: ' Valid  ité.html ')
       page.valid?
       expect(page.slug).to eq('valid-ite-dot-html')
@@ -188,7 +188,7 @@ describe Locomotive::Page do
 
     end
 
-    it "builds children fullpaths" do
+    it 'builds children fullpaths' do
       sub_child_1 = FactoryGirl.create(:page, title: 'Sub Subpage 1', slug: 'bar', parent: @child_1, site: @home.site)
       expect(sub_child_1.fullpath).to eq("foo/bar")
       @child_1.slug = "milky"
@@ -218,11 +218,11 @@ describe Locomotive::Page do
       @child_3 = FactoryGirl.create(:page, title: 'Subpage 3', slug: 'acme', parent: @home, site: @home.site)
     end
 
-    it 'should be at the bottom of the folder once created' do
+    it 'is at the bottom of the folder once created' do
       [@child_1, @child_2, @child_3].each_with_index { |c, i| expect(c.position).to eq(i) }
     end
 
-    it 'should have its position updated if a sibling is removed' do
+    it 'has its position updated if a sibling is removed' do
       @child_2.destroy
       [@child_1, @child_3.reload].each_with_index { |c, i| expect(c.position).to eq(i) }
     end
