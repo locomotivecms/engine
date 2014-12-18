@@ -2,8 +2,8 @@ module Locomotive
   class Account
 
     include Locomotive::Mongoid::Document
-    include SimpleTokenAuthentication::ActsAsTokenAuthenticatable
     devise *Locomotive.config.devise_modules
+    acts_as_token_authenticatable
     include Locomotive::Concerns::Account::DevisePatch
     include Locomotive::Concerns::Account::ApiKey
 

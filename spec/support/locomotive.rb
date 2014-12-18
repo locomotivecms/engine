@@ -1,8 +1,16 @@
 module Locomotive
   module TestHelpers
+
     def request_site(site)
       @request.env['locomotive.site'] = site
     end
+
+    def account_token(account)
+      account.ensure_authentication_token
+      account.save
+      account.authentication_token
+    end
+
   end
 end
 

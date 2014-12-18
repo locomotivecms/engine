@@ -9,6 +9,7 @@ module Locomotive
           token = Account.create_api_token(params[:email], params[:password], params[:api_key])
           respond_with({ token: token }, location: location_after_request)
         rescue Exception => e
+          logger.error "Unable to create a token, reason: #{e.message}"
           respond_with({ message: e.message }, status: 401, location: location_after_request)
         end
       end

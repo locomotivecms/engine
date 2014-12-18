@@ -2,6 +2,7 @@ require 'locomotive/version'
 require 'locomotive/core_ext'
 require 'locomotive/configuration'
 require 'locomotive/devise'
+require 'locomotive/simple_token_authentication'
 require 'locomotive/logger'
 require 'locomotive/haml'
 require 'locomotive/simple_form'
@@ -20,7 +21,6 @@ require 'locomotive/routing'
 require 'locomotive/regexps'
 require 'locomotive/render'
 require 'locomotive/middlewares'
-require 'simple_token_authentication'
 
 module Locomotive
   extend ActiveSupport::Autoload

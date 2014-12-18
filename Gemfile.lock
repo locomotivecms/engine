@@ -14,6 +14,7 @@ PATH
       compass-rails (= 2.0.0)
       devise (~> 3.4.1)
       devise-encryptable (~> 0.2.0)
+      devise-encryptable (~> 0.2.0)
       dragonfly (~> 1.0.7)
       flash_cookie_session (~> 1.1.1)
       fog (~> 1.12.1)
@@ -39,6 +40,7 @@ PATH
       sanitize (= 2.0.3)
       select2-rails (~> 3.5.9)
       simple_form (~> 3.1.0)
+      simple_token_authentication (~> 1.7.0)
       stringex (~> 2.0.3)
 
 PATH
@@ -379,6 +381,10 @@ GEM
     simple_form (3.1.0)
       actionpack (~> 4.0)
       activemodel (~> 4.0)
+    simple_token_authentication (1.7.0)
+      actionmailer (>= 3.2.6, < 5)
+      actionpack (>= 3.2.6, < 5)
+      devise (~> 3.2)
     slop (3.6.0)
     sprockets (2.12.3)
       hike (~> 1.2)
