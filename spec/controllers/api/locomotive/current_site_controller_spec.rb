@@ -10,7 +10,7 @@ module Locomotive
       let!(:membership) do
         create(:membership, account: account, site: site, role: 'admin')
       end
-      let(:params)    { { locale: :en, token: token, format: :json } }
+      let(:params)    { { locale: :en, auth_token: token, format: :json } }
 
       before { request_site(site) }
 
@@ -22,7 +22,7 @@ module Locomotive
           expect(assigns(:site)).to be_present
         end
 
-        context 'passign the authentication token in the http header' do
+        context 'passing the authentication token in the http header' do
           before do
             Locomotive.config.stubs(:unsafe_token_authentication).returns(false)
             request.headers['X-Locomotive-Account-Token'] = token

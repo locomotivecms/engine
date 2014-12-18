@@ -24,7 +24,7 @@ module Locomotive
 
       def unsafe_token_authentication_params
         if Locomotive.config.unsafe_token_authentication
-          params[:locomotive_account_token] = params[:token]
+          params[:locomotive_account_token] = params[:auth_token]
         end
       end
 

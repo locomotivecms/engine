@@ -1,6 +1,6 @@
 module Locomotive
   module Api
-    class ContentTypesController < BaseController
+    class ContentTypesController < Api::BaseController
 
       before_filter :load_content_type,  only: [:show, :update, :destroy]
       before_filter :load_content_types, only: [:index]

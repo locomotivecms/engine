@@ -1,6 +1,6 @@
 module Locomotive
   module Api
-    class ThemeAssetsController < BaseController
+    class ThemeAssetsController < Api::BaseController
 
       before_filter :load_theme_asset,  only: [:show, :update, :destroy]
       before_filter :load_theme_assets, only: [:index]

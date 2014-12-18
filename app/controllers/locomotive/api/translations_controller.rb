@@ -1,6 +1,6 @@
 module Locomotive
   module Api
-    class TranslationsController < BaseController
+    class TranslationsController < Api::BaseController
 
       before_filter :load_translation,  only: [:show, :update, :destroy]
       before_filter :load_translations, only: [:index]

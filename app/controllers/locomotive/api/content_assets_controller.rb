@@ -1,6 +1,6 @@
 module Locomotive
   module Api
-    class ContentAssetsController < BaseController
+    class ContentAssetsController < Api::BaseController
 
       before_filter :load_content_asset, only: [:show, :update, :destroy]
       before_filter :load_content_assets, only: [:index]

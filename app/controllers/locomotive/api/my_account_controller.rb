@@ -1,6 +1,6 @@
 module Locomotive
   module Api
-    class MyAccountController < BaseController
+    class MyAccountController < Api::BaseController
 
       before_filter :load_account
       before_filter :must_not_be_logged_in, only: :create

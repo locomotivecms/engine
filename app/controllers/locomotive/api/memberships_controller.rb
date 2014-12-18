@@ -1,6 +1,6 @@
 module Locomotive
   module Api
-    class MembershipsController < BaseController
+    class MembershipsController < Api::BaseController
 
       before_filter :load_membership,  only: [:show, :update, :destroy]
       before_filter :load_memberships, only: [:index]
