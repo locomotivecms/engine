@@ -7,9 +7,12 @@ module Locomotive
     include ::CustomFields::Target
     include Concerns::Shared::Seo
     include Concerns::Shared::Userstamp
+    include Concerns::ContentEntry::Slug
     include Concerns::ContentEntry::Csv
     include Concerns::ContentEntry::Localized
     include Concerns::ContentEntry::Counter
+    include Concerns::ContentEntry::NextPrevious
+    include Concerns::ContentEntry::Notifications
 
     ## fields ##
     field :_slug,             localize: true
@@ -26,12 +29,10 @@ module Locomotive
     belongs_to  :content_type,  class_name: 'Locomotive::ContentType', inverse_of: :entries, custom_fields_parent_klass: true
 
     ## callbacks ##
-    before_validation :set_slug
     before_save       :set_site
     before_save       :set_visibility
     before_save       :set_label_field_name
     before_create     :add_to_list_bottom
-    after_create      :send_notifications
 
     ## named scopes ##
     scope :visible, -> { where(_visible: true) }
@@ -76,22 +77,6 @@ module Locomotive
     end
 
     alias :to_label :_label
-
-    # Return the next content entry based on the order defined in the parent content type.
-    #
-    # @param [ Object ] The next content entry or nil if not found
-    #
-    def next
-      next_or_previous :gt
-    end
-
-    # Return the previous content entry based on the order defined in the parent content type.
-    #
-    # @param [ Object ] The previous content entry or nil if not found
-    #
-    def previous
-      next_or_previous :lt
-    end
 
     # Find a content entry by its permalink
     #
@@ -138,94 +123,6 @@ module Locomotive
 
     protected
 
-    # Retrieve the next or the previous entry following the order
-    # defined in the parent content type.
-    #
-    # @param [ Symbol ] :gt for the next element, :lt for the previous element
-    #
-    # @return [ Object ] The next or previous content entry or nil if none
-    #
-    def next_or_previous(matcher = :gt)
-      # the matchers is supposed to be fine for the default direction, meaning 'asc'
-      # if the direction is not ascending, we need to reverse the matcher
-      matcher = matcher == :gt ? :lt : :gt if self.content_type.order_direction != 'asc'
-
-      attribute = self.content_type.order_by_attribute
-      direction = matcher == :gt ? 'asc' : 'desc'
-
-      criterion = attribute.to_sym.send(matcher)
-      value     = self.send(attribute.to_sym)
-      order_by  = [attribute, direction]
-
-      self.class.next_or_previous({ criterion => value }, order_by).first
-    end
-
-    # Set the slug of the instance by using the value of the highlighted field
-    # (if available). If a sibling content instance has the same permalink then a
-    # unique one will be generated
-    def set_slug
-      self._slug = self._label.dup if self._slug.blank? && self._label.present?
-
-      if self._slug.present?
-        self._slug.permalink!
-
-        self.find_next_unique_slug if self.slug_already_taken?
-      end
-
-      # all the site locales share the same slug ONLY IF the entry is not localized.
-      self.set_same_slug_for_all_site_locales if !self.localized?
-    end
-
-    # For each locale of the site, we set the slug
-    # coming from the value for the default locale.
-    def set_same_slug_for_all_site_locales
-      return unless self.set_site.localized?
-
-      default_slug = self._slug
-
-      self.set_site.locales.each do |locale|
-        ::Mongoid::Fields::I18n.with_locale(locale) do
-          self._slug = default_slug
-        end
-      end
-    end
-
-    # Find the next available unique slug as a string
-    # and replace the current _slug.
-    def find_next_unique_slug
-      _index  = 0
-      _base   = self._slug.gsub(/-\d+$/, '')
-
-      if _similar = similar_slug(_base)
-        _index = _similar.scan(/-(\d+)$/).flatten.last.to_i
-      end
-
-      loop do
-        _index += 1
-        self._slug = [_base, _index].join('-')
-        break unless self.slug_already_taken?
-      end
-    end
-
-    def similar_slug(slug)
-      _last = self.class.where(:_id.ne => self._id, _slug: /^#{slug}-?\d*$/i)
-                .only(:_slug)
-                .order_by(:_id.desc)
-                .context
-                .query
-                .first
-
-      if _last
-        _last['_slug'][::Mongoid::Fields::I18n.locale.to_s]
-      else
-        nil
-      end
-    end
-
-    def slug_already_taken?
-      self.class.where(:_id.ne => self._id, _slug: self._slug).any?
-    end
-
     def set_site
       self.site ||= self.content_type.site
     end
@@ -245,18 +142,6 @@ module Locomotive
     def add_to_list_bottom
       max = self.class.indexed_max(:_position)
       self._position = max + 1 if max
-    end
-
-    def send_notifications
-      return if !self.content_type.public_submission_enabled? || self.content_type.public_submission_accounts.blank?
-
-      account_ids = self.content_type.public_submission_accounts.map(&:to_s)
-
-      self.site.accounts.each do |account|
-        next unless account_ids.include?(account._id.to_s)
-
-        Locomotive::Notifications.new_content_entry(account, self).deliver
-      end
     end
 
   end
