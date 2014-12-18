@@ -22,8 +22,8 @@ gem 'actionpack-page_caching'
 gem 'actionpack-action_caching'
 
 group :test, :development do
-  gem 'rspec-rails', '~> 2.14.2' # In order to have rspec tasks and generators
-  gem 'rspec-cells', '0.1.10' # Can't update more because rspec-cells depends on rspec >= 2.99 after this version
+  gem 'rspec-rails', '~> 3.1.0' #~> 2.14.2' # In order to have rspec tasks and generators
+  gem 'rspec-cells', '~> 0.2.2' # Can't update more because rspec-cells depends on rspec >= 2.99 after this version
   gem 'pry'
 end
 
@@ -51,24 +51,16 @@ group :development do
 end
 
 group :test do
-  gem 'launchy'
+  # gem 'launchy'
+  # gem 'capybara',           '~> 2.0.2'
+  # gem 'cucumber-rails', require: false
+  # gem 'poltergeist'
 
-  gem 'cucumber-rails', require: false
-
-  # gem 'autotest', platforms: :mri
-  # gem 'ZenTest', platforms: :mri
-
-  gem 'poltergeist'
-  gem 'shoulda-matchers'
+  gem 'shoulda-matchers',   '~> 2.7.0'
   gem 'factory_girl_rails'
   gem 'pickle'
-
-  gem 'capybara',           '~> 2.0.2'
-
-  gem 'json_spec'
-
+  gem 'json_spec',          '~> 1.1.4'
   gem 'database_cleaner'
-
   gem 'mocha', require: false
 
   # gem 'debugger', git: 'git://github.com/cldwalker/debugger.git'

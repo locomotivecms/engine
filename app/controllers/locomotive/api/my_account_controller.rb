@@ -7,6 +7,7 @@ module Locomotive
 
       skip_before_filter :set_locale
 
+      skip_before_filter :authenticate_locomotive_account_from_token!, only: :create
       skip_before_filter :require_account, only: :create
       skip_before_filter :require_site
       skip_before_filter :validate_site_membership

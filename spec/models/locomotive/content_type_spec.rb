@@ -11,7 +11,7 @@ describe Locomotive::ContentType do
     it 'should have a valid factory' do
       content_type = FactoryGirl.build(:content_type)
       content_type.entries_custom_fields.build label: 'anything', type: 'string'
-      content_type.should be_valid
+      expect(content_type).to be_valid
     end
 
     # Validations ##
@@ -19,51 +19,51 @@ describe Locomotive::ContentType do
     %w{site name}.each do |field|
       it "requires the presence of #{field}" do
         content_type = FactoryGirl.build(:content_type, field.to_sym => nil)
-        content_type.should_not be_valid
-        content_type.errors[field.to_sym].should == ["can't be blank"]
+        expect(content_type).to_not be_valid
+        expect(content_type.errors[field.to_sym]).to eq(["can't be blank"])
       end
     end
 
     it 'requires the presence of slug' do
       content_type = FactoryGirl.build(:content_type, name: nil, slug: nil)
-      content_type.should_not be_valid
-      content_type.errors[:slug].should == ["can't be blank"]
+      expect(content_type).to_not be_valid
+      expect(content_type.errors[:slug]).to eq(["can't be blank"])
     end
 
     it 'is not valid if slug is not unique' do
       content_type = FactoryGirl.build(:content_type)
       content_type.entries_custom_fields.build label: 'anything', type: 'string'
       content_type.save
-      (content_type = FactoryGirl.build(:content_type, site: content_type.site,
-        slug: content_type.slug)).should_not be_valid
-      content_type.errors[:slug].should == ["is already taken"]
+      content_type = FactoryGirl.build(:content_type, site: content_type.site, slug: content_type.slug)
+      expect(content_type).to_not be_valid
+      expect(content_type.errors[:slug]).to eq(["is already taken"])
     end
 
     it 'is not valid if there is not at least one field' do
       content_type = FactoryGirl.build(:content_type)
-      content_type.should_not be_valid
-      content_type.errors[:entries_custom_fields].should == { base: ['At least, one custom field is required'] }
+      expect(content_type).to_not be_valid
+      expect(content_type.errors[:entries_custom_fields]).to eq({ base: ['At least, one custom field is required'] })
     end
 
     %w(created_at updated_at).each do |name|
       it "does not allow #{name} as name" do
         content_type = FactoryGirl.build(:content_type)
         field = content_type.entries_custom_fields.build label: 'anything', type: 'string', name: name
-        field.valid?.should be_false
-        field.errors[:name].should == ['is reserved']
+        expect(field.valid?).to eq(false)
+        expect(field.errors[:name]).to eq(['is reserved'])
       end
     end
 
     it 'sets a slug from the name before the validation' do
       content_type = FactoryGirl.build(:content_type, name: 'my content Type')
       content_type.valid?
-      content_type.slug.should match /slug_of_content_type_/
+      expect(content_type.slug).to match(/slug_of_content_type_/)
     end
 
     it 'make sure the slug is correctly set before the validation' do
       content_type = FactoryGirl.build(:content_type, slug: 'my content-type')
       content_type.valid?
-      content_type.slug.should == 'my_content_type'
+      expect(content_type.slug).to eq('my_content_type')
     end
 
   end
@@ -77,35 +77,35 @@ describe Locomotive::ContentType do
     end
 
     it 'orders with the ASC direction by default' do
-      @content_type.order_direction.should == 'asc'
+      expect(@content_type.order_direction).to eq('asc')
     end
 
     it 'has a getter for manual order' do
-      @content_type.order_manually?.should == false
+      expect(@content_type.order_manually?).to eq(false)
       @content_type.order_by = '_position'
-      @content_type.order_manually?.should == true
+      expect(@content_type.order_manually?).to eq(true)
     end
 
     it 'returns a list of entries ordered manually' do
       @content_type.order_by = '_position'
-      @content_type.ordered_entries.collect(&:name).should == %w(Sacha Did)
+      expect(@content_type.ordered_entries.collect(&:name)).to eq(%w(Sacha Did))
     end
 
     it 'returns a list of entries ordered by a column specified by order_by (ASC)' do
       @content_type.order_by = @content_type.entries_custom_fields.where(name: 'name').first._id
-      @content_type.ordered_entries.collect(&:name).should == %w(Did Sacha)
+      expect(@content_type.ordered_entries.collect(&:name)).to eq(%w(Did Sacha))
     end
 
     it 'returns a list of entries ordered by a column specified by order_by (DESC)' do
       @content_type.order_by = @content_type.entries_custom_fields.where(name: 'name').first._id
       @content_type.order_direction = 'desc'
-      @content_type.ordered_entries.collect(&:name).should == %w(Sacha Did)
+      expect(@content_type.ordered_entries.collect(&:name)).to eq(%w(Sacha Did))
     end
 
     it 'returns a list of contents ordered through condition {order_by: "name asc"}' do
       @content_type.order_by = @content_type.entries_custom_fields.where(name: 'name').first._id
       @content_type.order_direction = 'desc'
-      @content_type.ordered_entries(order_by: 'name asc').collect(&:name).should == %w(Did Sacha)
+      expect(@content_type.ordered_entries(order_by: 'name asc').collect(&:name)).to eq(%w(Did Sacha))
     end
 
     it 'returns a list of entries ordered by a Date column when first instance is missing the value' do
@@ -113,10 +113,10 @@ describe Locomotive::ContentType do
       @content_2.update_attribute :active_at, Date.parse('01/01/2001')
       content_3 = @content_type.entries.create name: 'Mario', active_at: Date.parse('02/02/2001')
 
-      @content_type.ordered_entries.map(&:active_at).should == [nil, Date.parse('01/01/2001'), Date.parse('02/02/2001')]
+      expect(@content_type.ordered_entries.map(&:active_at)).to eq([nil, Date.parse('01/01/2001'), Date.parse('02/02/2001')])
 
       @content_type.order_direction = 'desc'
-      @content_type.ordered_entries.map(&:active_at).should == [Date.parse('02/02/2001'), Date.parse('01/01/2001'), nil]
+      expect(@content_type.ordered_entries.map(&:active_at)).to eq([Date.parse('02/02/2001'), Date.parse('01/01/2001'), nil])
     end
 
   end
@@ -137,17 +137,17 @@ describe Locomotive::ContentType do
     context '#ordering in a belongs_to/has_many relationship' do
 
       it 'orders projects based on the default order of the Project content type' do
-        @category_1.projects.relation_metadata.order.should == %w(name desc)
-        @category_1.projects.sort.map(&:name).should == %w(RubyOnRails LocomotiveCMS).sort
-        @category_1.projects.ordered.all.map(&:name).should == %w(RubyOnRails LocomotiveCMS)
+        expect(@category_1.projects.relation_metadata.order).to eq(%w(name desc))
+        expect(@category_1.projects.sort.map(&:name)).to eq(%w(RubyOnRails LocomotiveCMS).sort)
+        expect(@category_1.projects.ordered.all.map(&:name)).to eq(%w(RubyOnRails LocomotiveCMS))
       end
 
       it 'updates the information about the order of a has_many relationship if the target class changes its order' do
         @content_type.order_by = 'description'; @content_type.order_direction = 'ASC'; @content_type.save!
         @category_1 = safe_find(@category_1.class, @category_1._id)
 
-        @category_1.projects.relation_metadata.order.should == %w(description ASC)
-        @category_1.projects.map(&:name).should == %w(LocomotiveCMS RubyOnRails)
+        expect(@category_1.projects.relation_metadata.order).to eq(%w(description ASC))
+        expect(@category_1.projects.map(&:name)).to eq(%w(LocomotiveCMS RubyOnRails))
       end
 
       it 'uses the order by position if the UI option is enabled' do
@@ -156,8 +156,8 @@ describe Locomotive::ContentType do
 
         @category_content_type.save!; @category_1 = safe_find(@category_1.class, @category_1._id)
 
-        @category_1.projects.relation_metadata.order.to_s.should == 'position_in_category'
-        @category_1.projects.map(&:name).should == %w(LocomotiveCMS RubyOnRails)
+        expect(@category_1.projects.relation_metadata.order.to_s).to eq('position_in_category')
+        expect(@category_1.projects.map(&:name)).to eq(%w(LocomotiveCMS RubyOnRails))
       end
 
     end
@@ -167,26 +167,26 @@ describe Locomotive::ContentType do
       it 'groups entries' do
         groups = @content_type.send(:group_by_belongs_to_field, @content_type.group_by_field)
 
-        groups.map { |h| h[:name] }.should == %w(Gems Service)
+        expect(groups.map { |h| h[:name] }).to eq(%w(Gems Service))
 
-        groups.first[:entries].map(&:name).should == %w(RubyOnRails LocomotiveCMS)
-        groups.last[:entries].map(&:name).should == %w(Github)
+        expect(groups.first[:entries].map(&:name)).to eq(%w(RubyOnRails LocomotiveCMS))
+        expect(groups.last[:entries].map(&:name)).to eq(%w(Github))
       end
 
       it 'groups entries with a different columns order' do
         @category_content_type.update_attributes order_by: @category_content_type.entries_custom_fields.first._id, order_direction: 'desc'
         groups = @content_type.send(:group_by_belongs_to_field, @content_type.group_by_field)
 
-        groups.map { |h| h[:name] }.should == %w(Service Gems)
+        expect(groups.map { |h| h[:name] }).to eq(%w(Service Gems))
       end
 
       it 'deals with entries without a value for the group_by field (orphans)' do
         @content_type.entries.create name: 'MacOsX'
         groups = @content_type.send(:group_by_belongs_to_field, @content_type.group_by_field)
 
-        groups.map { |h| h[:name] }.should == ['Gems', 'Service', nil]
+        expect(groups.map { |h| h[:name] }).to eq(['Gems', 'Service', nil])
 
-        groups.last[:entries].map(&:name).should == %w(MacOsX)
+        expect(groups.last[:entries].map(&:name)).to eq(%w(MacOsX))
       end
 
     end
@@ -209,21 +209,21 @@ describe Locomotive::ContentType do
       %w{label type}.each do |key|
         it "should validate presence of #{key}" do
           field = @content_type.entries_custom_fields.build({ label: 'Shortcut', type: 'string' }.merge(key.to_sym => nil))
-          field.should_not be_valid
-          field.errors[key.to_sym].should == ["can't be blank"]
+          expect(field).to_not be_valid
+          expect(field.errors[key.to_sym]).to eq(["can't be blank"])
         end
       end
 
       it 'should not have unique label' do
         field = @content_type.entries_custom_fields.build label: 'Active', type: 'boolean'
-        field.should_not be_valid
-        field.errors[:label].should == ["is already taken"]
+        expect(field).to_not be_valid
+        expect(field.errors[:label]).to eq(["is already taken"])
       end
 
       it 'should invalidate parent if custom field is not valid' do
         field = @content_type.entries_custom_fields.build
-        @content_type.should_not be_valid
-        @content_type.entries_custom_fields.last.errors[:label].should == ["can't be blank"]
+        expect(@content_type).to_not be_valid
+        expect(@content_type.entries_custom_fields.last.errors[:label]).to eq(["can't be blank"])
       end
 
     end
@@ -232,8 +232,8 @@ describe Locomotive::ContentType do
 
       it 'should have an unique name' do
         @content_type.valid?
-        @content_type.entries_custom_fields.first.name.should == 'name'
-        @content_type.entries_custom_fields.last.name.should == 'active_at'
+        expect(@content_type.entries_custom_fields.first.name).to eq('name')
+        expect(@content_type.entries_custom_fields.last.name).to eq('active_at')
       end
 
     end
@@ -246,32 +246,32 @@ describe Locomotive::ContentType do
 
       it 'should build asset' do
         asset = @content_type.entries.build
-        lambda {
+        expect {
           asset.name
           asset.description
           asset.active
-        }.should_not raise_error
+        }.not_to raise_error
       end
 
       it 'should assign values to newly built asset' do
         asset = build_content_entry(@content_type)
-        asset.description.should == 'Lorem ipsum'
-        asset.active.should == true
+        expect(asset.description).to eq('Lorem ipsum')
+        expect(asset.active).to eq(true)
       end
 
       it 'should save asset' do
         asset = build_content_entry(@content_type)
         asset.save and @content_type.reload
         asset = @content_type.entries.first
-        asset.description.should == 'Lorem ipsum'
-        asset.active.should == true
+        expect(asset.description).to eq('Lorem ipsum')
+        expect(asset.active).to eq(true)
       end
 
       it 'should not modify entries from another content type' do
         asset = build_content_entry(@content_type)
         asset.save and @content_type.reload
         another_content_type = Locomotive::ContentType.new
-        lambda { another_content_type.entries.build.description }.should raise_error
+        expect { another_content_type.entries.build.description }.to raise_error
       end
 
     end
@@ -287,21 +287,21 @@ describe Locomotive::ContentType do
         @content_type.entries_custom_fields.build label: 'Author', name: 'author', type: 'string'
         @content_type.save && @content_type.reload
         asset = @content_type.entries.first
-        lambda { asset.author }.should_not raise_error
+        expect { asset.author }.to_not raise_error
       end
 
       it 'removes a field' do
         @content_type.entries_custom_fields.destroy_all(name: 'active_at')
         @content_type.save && @content_type.reload
         asset = @content_type.entries.first
-        lambda { asset.active_at }.should raise_error
+        expect { asset.active_at }.to raise_error
       end
 
       it 'removes the field used as the label when setting the original label_field_name value before' do
         @content_type.label_field_name = 'name'
         @content_type.entries_custom_fields.destroy_all(name: @content_type.label_field_name)
         @content_type.save
-        @content_type.label_field_name.should == 'description'
+        expect(@content_type.label_field_name).to eq('description')
       end
 
       it 'renames field label' do
@@ -309,7 +309,7 @@ describe Locomotive::ContentType do
         @content_type.entries_custom_fields[1].name = nil
         @content_type.save && @content_type.reload
         asset = @content_type.entries.first
-        asset.simple_description.should == 'Lorem ipsum'
+        expect(asset.simple_description).to eq('Lorem ipsum')
       end
 
     end
@@ -320,9 +320,9 @@ describe Locomotive::ContentType do
         @content_type.entries_custom_fields.clear
         field = @content_type.entries_custom_fields.build label: 'Title'
         @content_type.entries_custom_fields_attributes = { 0 => { id: field.id.to_s, 'label' => 'A title', 'type' => 'string' }, 1 => { 'label' => 'Tagline', 'type' => 'sring' } }
-        @content_type.entries_custom_fields.size.should == 2
-        @content_type.entries_custom_fields.first.label.should == 'A title'
-        @content_type.entries_custom_fields.last.label.should == 'Tagline'
+        expect(@content_type.entries_custom_fields.size).to eq(2)
+        expect(@content_type.entries_custom_fields.first.label).to eq('A title')
+        expect(@content_type.entries_custom_fields.last.label).to eq('Tagline')
       end
 
       it 'updates/removes fields' do
@@ -340,9 +340,9 @@ describe Locomotive::ContentType do
 
         @content_type = Locomotive::ContentType.find(@content_type.id)
 
-        @content_type.entries_custom_fields.size.should == 4
-        @content_type.entries_custom_fields.map(&:name).should == %w(name active_at title published_at)
-        @content_type.entries_custom_fields[2].label.should == 'My Title !'
+        expect(@content_type.entries_custom_fields.size).to eq(4)
+        expect(@content_type.entries_custom_fields.map(&:name)).to eq(%w(name active_at title published_at))
+        expect(@content_type.entries_custom_fields[2].label).to eq('My Title !')
       end
 
     end
@@ -367,14 +367,14 @@ describe Locomotive::ContentType do
     describe 'existing id' do
 
       let(:id_or_slug) { content_type._id.to_s }
-      its(:name) { should eq 'My project' }
+      it { expect(subject.name).to eq 'My project' }
 
     end
 
     describe 'existing slug' do
 
       let(:id_or_slug) { 'my_project' }
-      its(:name) { should eq 'My project' }
+      it { expect(subject.name).to eq 'My project' }
 
     end
 

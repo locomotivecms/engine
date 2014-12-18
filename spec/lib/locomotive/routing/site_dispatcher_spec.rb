@@ -19,7 +19,7 @@ describe Locomotive::Routing::SiteDispatcher do
     end
 
     it 'adds a helper method for current site' do
-      @controller.respond_to?(:current_site, true).should be_true
+      expect(@controller.respond_to?(:current_site, true)).to eq(true)
     end
 
   end
@@ -33,7 +33,7 @@ describe Locomotive::Routing::SiteDispatcher do
       end
 
       it 'returns true' do
-        @controller.send(:require_site).should be_true
+        expect(@controller.send(:require_site)).to eq(true)
       end
 
     end
@@ -50,7 +50,7 @@ describe Locomotive::Routing::SiteDispatcher do
       end
 
       it 'returns false' do
-        @controller.send(:require_site).should be_false
+        expect(@controller.send(:require_site)).to eq(false)
       end
 
       it 'redirects to the admin installation url' do
@@ -73,7 +73,7 @@ describe Locomotive::Routing::SiteDispatcher do
       end
 
       it 'returns false' do
-        @controller.send(:require_site).should be_false
+        expect(@controller.send(:require_site)).to eq(false)
       end
 
       it 'redirects to the admin installation url' do
@@ -95,7 +95,7 @@ describe Locomotive::Routing::SiteDispatcher do
 
       it 'halts the filter chain' do
         @controller.stubs(:render_no_site_error)
-        @controller.send(:require_site).should be_false
+        expect(@controller.send(:require_site)).to eq(false)
       end
 
       it 'renders the no site error' do
@@ -117,12 +117,12 @@ describe Locomotive::Routing::SiteDispatcher do
       @controller.send(:render_no_site_error)
     end
 
-    it 'should have a no site error message' do
-      @controller.response.body.should include 'No Site'
+    it 'has a no site error message' do
+      expect(@controller.response.body).to include 'No Site'
     end
 
-    it 'should have a 404 not found status' do
-      @controller.response.should be_not_found
+    it 'has a 404 not found status' do
+      expect(@controller.response.status).to eq(404)
     end
 
   end

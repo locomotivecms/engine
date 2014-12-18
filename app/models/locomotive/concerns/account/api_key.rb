@@ -66,7 +66,8 @@ module Locomotive
               raise 'The request must contain either the user email and password OR the API key.'
             end
 
-            account.ensure_authentication_token!
+            account.ensure_authentication_token
+            account.save
 
             account.authentication_token
           end

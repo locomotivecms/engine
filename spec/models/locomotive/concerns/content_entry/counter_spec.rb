@@ -12,7 +12,7 @@ module Locomotive
 
         describe 'by default' do
 
-          its(:number_of_entries) { should be_nil }
+          it { expect(subject.number_of_entries).to be_nil }
 
         end
 
@@ -20,13 +20,13 @@ module Locomotive
 
           before { 2.times { create_content_entry } }
 
-          its(:number_of_entries) { should eq 2 }
+          it { expect(subject.number_of_entries).to eq(2) }
 
           describe 'then removing a single entry' do
 
             before { subject.entries.last.destroy; content_type.reload }
 
-            its(:number_of_entries) { should eq 1 }
+            it { expect(subject.number_of_entries).to eq(1) }
 
           end
 

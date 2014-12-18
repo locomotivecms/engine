@@ -12,45 +12,45 @@ describe Locomotive::Presentable do
   end
 
   it 'delegates a property to the source' do
-    @presenter.name.should == 'John'
+    expect(@presenter.name).to eq('John')
   end
 
   it 'has properties from the parent' do
-    @presenter.id.should == 42
+    expect(@presenter.id).to eq(42)
   end
 
   it 'does not have properties from another sibling class' do
-    @presenter.respond_to?(:title).should be_false
-    @other_presenter.respond_to?(:name).should be_false
-    @other_presenter.respond_to?(:id).should be_true
+    expect(@presenter.respond_to?(:title)).to eq(false)
+    expect(@other_presenter.respond_to?(:name)).to eq(false)
+    expect(@other_presenter.respond_to?(:id)).to eq(true)
   end
 
   it 'uses the overridden getter' do
-    @presenter.age.should == '23 years old'
+    expect(@presenter.age).to eq('23 years old')
   end
 
   it 'can set a value and retrieve it' do
     @presenter.age = 33
-    @presenter.age.should == '33 years old'
+    expect(@presenter.age).to eq('33 years old')
   end
 
   it 'does not add a getter if specified' do
-    lambda { @presenter.address }.should raise_exception
+    expect { @presenter.address }.to raise_exception
   end
 
   it 'responds to aliases' do
     @presenter.full_address = '700 S Laflin, Chicago'
-    @person.address.should == '700 S Laflin, Chicago'
+    expect(@person.address).to eq('700 S Laflin, Chicago')
   end
 
   it 'returns the attributes' do
-    @presenter.as_json.should == { 'id' => 42, 'name' => 'John', 'age' => '23 years old', 'projects' => [] }
+    expect(@presenter.as_json).to eq({ 'id' => 42, 'name' => 'John', 'age' => '23 years old', 'projects' => [] })
   end
 
   it 'sets directly the attributes' do
     @presenter.attributes = { name: 'henry', age: 33 }
-    @presenter.name.should == 'Henry'
-    @presenter.age.should == '33 years old'
+    expect(@presenter.name).to eq('Henry')
+    expect(@presenter.age).to eq('33 years old')
   end
 
   it 'does not call the setter if not registered' do
@@ -59,12 +59,12 @@ describe Locomotive::Presentable do
   end
 
   it 'handles with_options' do
-    @presenter.respond_to?(:notes).should be_true
-    @presenter.respond_to?(:notes=).should be_false
+    expect(@presenter.respond_to?(:notes)).to eq(true)
+    expect(@presenter.respond_to?(:notes=)).to eq(false)
   end
 
   it 'stores the list of getters' do
-    @presenter.getters.should == %w(id name age projects notes retirement_place)
+    expect(@presenter.getters).to eq(%w(id name age projects notes retirement_place))
   end
 
   it 'executes custom code after setting attributes' do
@@ -81,12 +81,12 @@ describe Locomotive::Presentable do
     context 'false' do
 
       it 'does not return the property' do
-        @presenter.as_json.keys.should_not include('retirement_place')
+        expect(@presenter.as_json.keys).to_not include('retirement_place')
       end
 
       it 'does not allow to change the property' do
         @presenter.attributes = { retirement_place: 'Mansion [UPDATE]' }
-        @person.retirement_place.should == 'Mansion'
+        expect(@person.retirement_place).to eq('Mansion')
       end
 
     end
@@ -98,12 +98,12 @@ describe Locomotive::Presentable do
       end
 
       it 'returns the property if the block returns true' do
-        @presenter.as_json.keys.should include('retirement_place')
+        expect(@presenter.as_json.keys).to include('retirement_place')
       end
 
       it 'changes the property' do
         @presenter.attributes = { retirement_place: 'Mansion [UPDATE]' }
-        @person.retirement_place.should == 'Mansion [UPDATE]'
+        expect(@person.retirement_place).to eq('Mansion [UPDATE]')
       end
 
     end
@@ -121,13 +121,13 @@ describe Locomotive::Presentable do
     end
 
     it 'has a getter for the collection' do
-      @presenter.respond_to?(:projects)
+      expect(@presenter).to respond_to(:projects)
     end
 
     it 'returns a hash as the collection' do
       @project.expects(:as_json).returns({ 'id' => 1 }).once
       @another_project.expects(:as_json).returns({ 'id' => 2 }).once
-      @presenter.projects.should == [{ 'id' => 1 }, { 'id' => 2 }]
+      expect(@presenter.projects).to eq([{ 'id' => 1 }, { 'id' => 2 }])
     end
 
   end

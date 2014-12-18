@@ -34,7 +34,7 @@ describe Locomotive::Concerns::MembershipController do
       end
 
       it 'returns true' do
-        controller.send(:validate_site_membership).should be_true
+        expect(controller.send(:validate_site_membership)).to eq(true)
       end
 
     end
@@ -52,7 +52,7 @@ describe Locomotive::Concerns::MembershipController do
 
       it 'adds a flash message for no membership' do
         controller.send(:validate_site_membership)
-        controller.flash[:alert].should be_present
+        expect(controller.flash[:alert]).to be_present
       end
 
       it 'redirects to the new session url' do
@@ -61,7 +61,7 @@ describe Locomotive::Concerns::MembershipController do
       end
 
       it 'returns false' do
-        controller.send(:validate_site_membership).should be_false
+        expect(controller.send(:validate_site_membership)).to eq(false)
       end
 
     end
@@ -81,7 +81,7 @@ describe Locomotive::Concerns::MembershipController do
 
     it 'adds a flash message for no membership' do
       controller.send(:validate_site_membership)
-      controller.flash[:alert].should be_present
+      expect(controller.flash[:alert]).to be_present
     end
 
     it 'redirects to the new session url' do
@@ -90,7 +90,7 @@ describe Locomotive::Concerns::MembershipController do
     end
 
     it 'returns false' do
-      controller.send(:validate_site_membership).should be_false
+      expect(controller.send(:validate_site_membership)).to eq(false)
     end
   end
 end

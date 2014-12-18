@@ -19,21 +19,21 @@ describe Locomotive::ContentEntry do
   describe '#validation' do
 
     it 'is valid' do
-      build_content_entry.should be_valid
+      expect(build_content_entry).to be_valid
     end
 
     ## Validations ##
 
     it 'requires the presence of title' do
       content_entry = build_content_entry title: nil
-      content_entry.should_not be_valid
-      content_entry.errors[:title].should == ["can't be blank"]
+      expect(content_entry).to_not be_valid
+      expect(content_entry.errors[:title]).to eq(["can't be blank"])
     end
 
     it 'requires the presence of the permalink (_slug)' do
       content_entry = build_content_entry title: nil
-      content_entry.should_not be_valid
-      content_entry.errors[:_slug].should == ["can't be blank"]
+      expect(content_entry).to_not be_valid
+      expect(content_entry.errors[:_slug]).to eq(["can't be blank"])
     end
 
   end
@@ -41,48 +41,51 @@ describe Locomotive::ContentEntry do
   describe '.slug' do
 
     before :each do
-      build_content_entry(_slug: 'dogs').tap(&:save!)._slug.should == 'dogs'
+      build_content_entry(_slug: 'dogs').tap do |entry|
+        entry.save!
+        expect(entry._slug).to eq('dogs')
+      end
     end
 
     it 'accepts underscore instead of dashes' do
-      build_content_entry(_slug: 'monkey_wrench').tap(&:save!)._slug.should == 'monkey_wrench'
+      expect(build_content_entry(_slug: 'monkey_wrench').tap(&:save!)._slug).to eq('monkey_wrench')
     end
 
     it 'uses the given slug if it is unique' do
-      build_content_entry(_slug: 'monkeys').tap(&:save!)._slug.should == 'monkeys'
-      build_content_entry(_slug: 'cats-2').tap(&:save!)._slug.should == 'cats-2'
+      expect(build_content_entry(_slug: 'monkeys').tap(&:save!)._slug).to eq('monkeys')
+      expect(build_content_entry(_slug: 'cats-2').tap(&:save!)._slug).to eq('cats-2')
     end
 
     it 'appends a number to the end of the slug if it is not unique' do
-      build_content_entry(_slug: 'dogs').tap(&:save!)._slug.should == 'dogs-1'
-      build_content_entry(_slug: 'dogs').tap(&:save!)._slug.should == 'dogs-2'
-      build_content_entry(_slug: 'dogs-2').tap(&:save!)._slug.should == 'dogs-3'
-      build_content_entry(_slug: 'dogs-2').tap(&:save!)._slug.should == 'dogs-4'
+      expect(build_content_entry(_slug: 'dogs').tap(&:save!)._slug).to eq('dogs-1')
+      expect(build_content_entry(_slug: 'dogs').tap(&:save!)._slug).to eq('dogs-2')
+      expect(build_content_entry(_slug: 'dogs-2').tap(&:save!)._slug).to eq('dogs-3')
+      expect(build_content_entry(_slug: 'dogs-2').tap(&:save!)._slug).to eq('dogs-4')
     end
 
     it 'ignores the case of a slug' do
-      build_content_entry(_slug: 'dogs').tap(&:save!)._slug.should == 'dogs-1'
-      build_content_entry(_slug: 'DOGS').tap(&:save!)._slug.should == 'dogs-2'
+      expect(build_content_entry(_slug: 'dogs').tap(&:save!)._slug).to eq('dogs-1')
+      expect(build_content_entry(_slug: 'DOGS').tap(&:save!)._slug).to eq('dogs-2')
     end
 
     it 'correctly handles slugs with multiple numbers' do
-      build_content_entry(_slug: 'fish-1-2').tap(&:save!)._slug.should == 'fish-1-2'
-      build_content_entry(_slug: 'fish-1-2').tap(&:save!)._slug.should == 'fish-1-3'
+      expect(build_content_entry(_slug: 'fish-1-2').tap(&:save!)._slug).to eq('fish-1-2')
+      expect(build_content_entry(_slug: 'fish-1-2').tap(&:save!)._slug).to eq('fish-1-3')
 
-      build_content_entry(_slug: 'fish-1-hi').tap(&:save!)._slug.should == 'fish-1-hi'
-      build_content_entry(_slug: 'fish-1-hi').tap(&:save!)._slug.should == 'fish-1-hi-1'
+      expect(build_content_entry(_slug: 'fish-1-hi').tap(&:save!)._slug).to eq('fish-1-hi')
+      expect(build_content_entry(_slug: 'fish-1-hi').tap(&:save!)._slug).to eq('fish-1-hi-1')
     end
 
     it 'correctly handles more than 13 slugs with the same name' do
       (1..15).each do |i|
-        build_content_entry(_slug: 'dogs').tap(&:save!)._slug.should == "dogs-#{i}"
+        expect(build_content_entry(_slug: 'dogs').tap(&:save!)._slug).to eq("dogs-#{i}")
       end
     end
 
     it 'copies the slug in ALL the locales of the site' do
       Locomotive::Site.any_instance.stubs(:locales).returns(%w(en fr ru))
       entry = build_content_entry(_slug: 'monkeys').tap(&:save!)
-      entry._slug_translations.should == { 'en' => 'monkeys', 'fr' => 'monkeys', 'ru' => 'monkeys' }
+      expect(entry._slug_translations).to eq({ 'en' => 'monkeys', 'fr' => 'monkeys', 'ru' => 'monkeys' })
     end
   end
 
@@ -101,20 +104,20 @@ describe Locomotive::ContentEntry do
     end
 
     it 'tells if an entry has been translated or not' do
-      @content_entry.translated?.should be_false
+      expect(@content_entry.translated?).to eq(false)
       @content_entry.title = 'Bonjour'
-      @content_entry.translated?.should be_true
+      expect(@content_entry.translated?).to eq(true)
     end
 
     describe '.slug' do
 
       it 'is not nil in the default locale' do
         ::Mongoid::Fields::I18n.locale = 'en'
-        @content_entry._slug.should == 'hello-world'
+        expect(@content_entry._slug).to eq('hello-world')
       end
 
       it 'is not translated by default in the other locale' do
-        @content_entry._slug.should be_nil # French
+        expect(@content_entry._slug).to eq(nil) # French
       end
 
     end
@@ -133,11 +136,9 @@ describe Locomotive::ContentEntry do
 
         subject { build_content_entry.to_values(host: 'example.com') }
 
-        its(:size) { should eq(6) }
-
-        its(:first) { should eq('Locomotive') }
-
-        its(:last) { should eq('July 05, 2013 00:00') }
+        it { expect(subject.size).to eq(6) }
+        it { expect(subject.first).to eq('Locomotive') }
+        it { expect(subject.last).to eq('July 05, 2013 00:00') }
 
         context 'with a file' do
 
@@ -160,11 +161,9 @@ describe Locomotive::ContentEntry do
 
       subject { @content_type.ordered_entries.to_csv(host: 'example.com').split("\n") }
 
-      its(:size) { should eq(4) }
-
-      its(:first) { should eq("Title,Description,Visible ?,File,Published at,Created at") }
-
-      its(:last) { should match(/^Locomotive,Lorem ipsum....,false,http:\/\/example.com\/sites\/[0-9a-f]+\/content_entry[0-9a-f]+\/[0-9a-f]+\/files\/5k.png,\"\",\"July 05, 2013 00:00\"$/) }
+      it { expect(subject.size).to eq(4) }
+      it { expect(subject.first).to eq("Title,Description,Visible ?,File,Published at,Created at") }
+      it { expect(subject.last).to match(/^Locomotive,Lorem ipsum....,false,http:\/\/example.com\/sites\/[0-9a-f]+\/content_entry[0-9a-f]+\/[0-9a-f]+\/files\/5k.png,\"\",\"July 05, 2013 00:00\"$/) }
 
     end
 
@@ -183,21 +182,21 @@ describe Locomotive::ContentEntry do
     end
 
     it 'should find previous item when available' do
-      @second.previous.title.should == 'first'
-      @second.previous._position.should == 0
+      expect(@second.previous.title).to eq('first')
+      expect(@second.previous._position).to eq(0)
     end
 
     it 'should find next item when available' do
-      @second.next.title.should == 'third'
-      @second.next._position.should == 2
+      expect(@second.next.title).to eq('third')
+      expect(@second.next._position).to eq(2)
     end
 
     it 'should return nil when fetching previous item on first in list' do
-      @first.previous.should == nil
+      expect(@first.previous).to eq(nil)
     end
 
     it 'should return nil when fetching next item on last in list' do
-      @third.next.should == nil
+      expect(@third.next).to eq(nil)
     end
 
     context "ordered by published at" do
@@ -210,19 +209,19 @@ describe Locomotive::ContentEntry do
       end
 
       it "should find previous item" do
-        @second.previous.title.should == 'third'
+        expect(@second.previous.title).to eq('third')
       end
 
       it "should find next item" do
-        @first.next.title.should == 'very first'
+        expect(@first.next.title).to eq('very first')
       end
 
       it 'should return nil when fetching previous item on first in list' do
-        @third.previous.should == nil
+        expect(@third.previous).to eq(nil)
       end
 
       it 'should return nil when fetching next item on last in list' do
-        @very_first.next.should == nil
+        expect(@very_first.next).to eq(nil)
       end
 
       context 'with desc direction' do
@@ -232,19 +231,19 @@ describe Locomotive::ContentEntry do
         end
 
         it "should find previous item" do
-          @second.previous.title.should == 'first'
+          expect(@second.previous.title).to eq('first')
         end
 
         it "should find next item" do
-          @first.next.title.should == 'second'
+          expect(@first.next.title).to eq('second')
         end
 
         it 'should return nil when fetching previous item on first in list' do
-          @very_first.previous.should == nil
+          expect(@very_first.previous).to eq(nil)
         end
 
         it 'should return nil when fetching next item on last in list' do
-          @third.next.should == nil
+          expect(@third.next).to eq(nil)
         end
 
       end
@@ -260,38 +259,38 @@ describe Locomotive::ContentEntry do
 
     it 'has a default value based on the highlighted field' do
       @content_entry.send(:set_slug)
-      @content_entry._permalink.should == 'locomotive'
+      expect(@content_entry._permalink).to eq('locomotive')
     end
 
     it 'is empty if no value for the highlighted field is provided' do
       @content_entry.title = nil; @content_entry.send(:set_slug)
-      @content_entry._permalink.should be_nil
+      expect(@content_entry._permalink).to eq(nil)
     end
 
     it 'includes dashes instead of white spaces' do
       @content_entry.title = 'my content instance'; @content_entry.send(:set_slug)
-      @content_entry._permalink.should == 'my-content-instance'
+      expect(@content_entry._permalink).to eq('my-content-instance')
     end
 
     it 'removes accentued characters' do
       @content_entry.title = "une chèvre dans le pré"; @content_entry.send(:set_slug)
-      @content_entry._permalink.should == 'une-chevre-dans-le-pre'
+      expect(@content_entry._permalink).to eq('une-chevre-dans-le-pre')
     end
 
     it 'removes dots' do
       @content_entry.title = "my.test"; @content_entry.send(:set_slug)
-      @content_entry._permalink.should == 'my-dot-test'
+      expect(@content_entry._permalink).to eq('my-dot-test')
     end
 
     it 'accepts non-latin chars' do
       @content_entry.title = "абракадабра"; @content_entry.send(:set_slug)
-      @content_entry._permalink.should == 'abrakadabra'
+      expect(@content_entry._permalink).to eq('abrakadabra')
     end
 
     it 'also accepts a file field as the highlighted field' do
       @content_entry.stubs(:_label_field_name).returns('file')
       @content_entry.file = FixturedAsset.open('5k.png'); @content_entry.send(:set_slug)
-      @content_entry._permalink.should == '5k'
+      expect(@content_entry._permalink).to eq('5k')
     end
 
   end
@@ -304,19 +303,19 @@ describe Locomotive::ContentEntry do
 
     it 'is not visible by default' do
       @content_entry.send(:set_visibility)
-      @content_entry.visible?.should be_false
+      expect(@content_entry.visible?).to eq(false)
     end
 
     it 'can be visible even if it is nil' do
       @content_entry.visible = nil
       @content_entry.send(:set_visibility)
-      @content_entry.visible?.should be_true
+      expect(@content_entry.visible?).to eq(true)
     end
 
     it 'can not be visible' do
       @content_entry.visible = false
       @content_entry.send(:set_visibility)
-      @content_entry.visible?.should be_false
+      expect(@content_entry.visible?).to eq(false)
     end
 
   end
@@ -324,19 +323,19 @@ describe Locomotive::ContentEntry do
   describe '#label' do
 
     it 'has a label based on the value of the first field' do
-      build_content_entry._label.should == 'Locomotive'
+      expect(build_content_entry._label).to eq('Locomotive')
     end
 
     it 'uses the to_label method if the value of the label field defined it' do
       entry = build_content_entry(_label_field_name: 'with_to_label')
       entry.stubs(:with_to_label).returns(mock('with_to_label', to_label: 'acme'))
-      entry._label.should == 'acme'
+      expect(entry._label).to eq('acme')
     end
 
     it 'uses the to_s method at last if the label field did not define the to_label method' do
       entry = build_content_entry(_label_field_name: 'not_a_string')
       entry.stubs(:not_a_string).returns(mock('not_a_string', to_s: 'not_a_string'))
-      entry._label.should == 'not_a_string'
+      expect(entry._label).to eq('not_a_string')
     end
 
   end
@@ -347,7 +346,7 @@ describe Locomotive::ContentEntry do
 
     it 'writes the file to the filesystem' do
       entry.save
-      entry.file.url.should_not =~ /content_content_entry/
+      expect(entry.file.url).to_not match(/content_content_entry/)
     end
 
   end
@@ -392,7 +391,7 @@ describe Locomotive::ContentEntry do
     it 'assigns a site when saving the content entry' do
       content_entry = build_content_entry
       content_entry.save
-      content_entry.site.should_not be_nil
+      expect(content_entry.site).to_not eq(nil)
     end
 
   end

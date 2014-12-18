@@ -2,7 +2,6 @@ ENV['RAILS_ENV'] ||= 'test'
 
 require File.join(File.dirname(__FILE__), 'dummy', 'config', 'environment.rb')
 require 'rspec/rails'
-require 'rspec/autorun'
 require 'mocha/setup'
 require 'rails/mongoid'
 require 'factory_girl'
@@ -23,6 +22,8 @@ RSpec.configure do |config|
   config.include Locomotive::TestHelpers, type: :controller
 
   config.mock_with :mocha
+
+  config.infer_spec_type_from_file_location!
 
   config.infer_base_class_for_anonymous_controllers = false
 

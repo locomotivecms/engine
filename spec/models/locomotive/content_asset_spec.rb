@@ -13,14 +13,14 @@ describe Locomotive::ContentAsset do
 
     it 'should process picture' do
       @asset.source = FixturedAsset.open('5k.png')
-      @asset.source.file.content_type.should_not be_nil
-      @asset.image?.should be_true
+      expect(@asset.source.file.content_type).to_not eq(nil)
+      expect(@asset.image?).to eq(true)
     end
 
     it 'should get width and height from the image' do
       @asset.source = FixturedAsset.open('5k.png')
-      @asset.width.should == 32
-      @asset.height.should == 32
+      expect(@asset.width).to eq(32)
+      expect(@asset.height).to eq(32)
     end
 
   end
@@ -32,13 +32,13 @@ describe Locomotive::ContentAsset do
     end
 
     it 'does not resize image smaller than 50x50' do
-      @asset.vignette_url.should =~ /^\/spec\/.*\/5k.png/
+      expect(@asset.vignette_url).to match(/^\/spec\/.*\/5k.png/)
     end
 
     it 'has any possible resized versions' do
       @asset.stubs(:with).returns(90)
       @asset.stubs(:height).returns(90)
-      @asset.vignette_url.should =~ /^\/images\/dynamic\/.*\/5k.png/
+      expect(@asset.vignette_url).to match(/^\/images\/dynamic\/.*\/5k.png/)
     end
 
   end
@@ -47,8 +47,8 @@ describe Locomotive::ContentAsset do
 
     subject { FactoryGirl.build(:asset, source: FixturedAsset.open('specs.pdf')) }
 
-    its(:pdf?) { should be_true }
-    its(:vignette_url) { should =~ /^\/images\/dynamic\/.*\/specs.png/ }
+    it { expect(subject.pdf?).to eq(true) }
+    it { expect(subject.vignette_url).to match(/^\/images\/dynamic\/.*\/specs.png/) }
 
   end
 

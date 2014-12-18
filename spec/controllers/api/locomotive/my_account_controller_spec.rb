@@ -24,7 +24,7 @@ describe Locomotive::Api::MyAccountController do
 
     describe "#GET show" do
       subject { get :show, locale: :en, format: :json }
-      it { should be_success }
+      it { is_expected.to be_success }
       specify do
         subject
         expect(assigns(:account)).to eq(account)
@@ -41,17 +41,17 @@ describe Locomotive::Api::MyAccountController do
 
       context 'valid params' do
         let(:params) { {'name' => 'new name' } }
-        it { should be_success }
+        it { is_expected.to be_success }
         it 'updates the account' do
           subject
           account.reload
-          account.name.should eq 'new name'
+          expect(account.name).to eq 'new name'
         end
       end
 
       context 'invalid params' do
         let(:params) { {'name' => '' } }
-        its(:status) { should eq 422 }
+        it { expect(subject.status).to eq(422) }
       end
     end
 
@@ -70,7 +70,7 @@ describe Locomotive::Api::MyAccountController do
 
     describe "#POST create" do
       subject { post :create, 'account' => params, format: :json }
-      it { should be_success }
+      it { is_expected.to be_success }
       it 'creates a new account' do
         expect { subject }.to change(Locomotive::Account, :count).by(1)
       end

@@ -23,22 +23,13 @@ module Locomotive
         end
 
         context 'passign the authentication token in the http header' do
-
           before do
             Locomotive.config.stubs(:unsafe_token_authentication).returns(false)
+            request.headers['X-Locomotive-Account-Token'] = token
+            request.headers['X-Locomotive-Account-Email'] = account.email
           end
-
-          let(:headers) {
-            {
-              'X-Locomotive-Account-Token' => token,
-              'X-Locomotive-Account-Email' => account.email
-            }
-          }
-
-          subject { get :show, params.merge(id: 123), headers }
-
-          # it { should be_success }
-
+          subject { get(:show, params.merge(id: 123)) }
+          it { should be_success }
         end
       end
 

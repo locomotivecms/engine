@@ -6,10 +6,10 @@ describe 'Locomotive::Middlewares::Site' do
   let(:url)         { 'http://models.example.com' }
   let(:app)         { ->(env) { [200, env, "app"] } }
   let(:middleware)  { Locomotive::Middlewares::Site.new(app) }
-  
+
   subject { code, env = middleware.call(env_for(url)); env['locomotive.site'] }
 
-  describe 'no site' do 
+  describe 'no site' do
 
     it { should be_nil }
 
@@ -19,8 +19,8 @@ describe 'Locomotive::Middlewares::Site' do
 
     before { site }
 
-    its(:name) { should eq 'Locomotive site with existing models' }
-    its(:subdomain) { should eq 'models' }
+    it { expect(subject.name).to eq('Locomotive site with existing models') }
+    it { expect(subject.subdomain).to eq('models') }
 
   end
 

@@ -7,9 +7,9 @@ describe Locomotive::Configuration do
   end
 
   it 'allows a different value for the reserved subdomains' do
-    Locomotive.config.reserved_subdomains.include?('www').should be_true # by default
+    expect(Locomotive.config.reserved_subdomains.include?('www')).to eq(true) # by default
     Locomotive.config.multi_sites { |multi_sites| multi_sites.reserved_subdomains = %w(empty) }
-    Locomotive.config.reserved_subdomains.should == ['empty']
+    expect(Locomotive.config.reserved_subdomains).to eq(['empty'])
   end
 
   it 'calls the hosting enabler if provided' do

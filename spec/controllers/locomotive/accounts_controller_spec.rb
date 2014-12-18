@@ -23,16 +23,16 @@ describe Locomotive::AccountsController do
     subject do
       post :create, locale: :en, account: account_attributes
     end
-    it { should be_redirect }
+    it { is_expected.to be_redirect }
     specify do
-      expect { subject }.to change(Locomotive::Account, :count).by(+1)
+      expect { subject }.to change(Locomotive::Account, :count)
     end
 
     context 'when logged in as a designer' do
       let(:role) { 'author' }
-      it { should be_redirect }
+      it { is_expected.to be_redirect }
       specify do
-        expect { subject }.not_to change(Locomotive::Account, :count).by(+1)
+        expect { subject }.not_to change(Locomotive::Account, :count)
       end
 
     end

@@ -16,19 +16,19 @@ describe Locomotive::EditableControl do
     end
 
     it 'exists' do
-      @sub_page_1.editable_elements.size.should == 1
+      expect(@sub_page_1.editable_elements.size).to eq(1)
     end
 
     it 'has a non-nil slug' do
-      @sub_page_1.editable_elements.first.slug.should == 'menu'
+      expect(@sub_page_1.editable_elements.first.slug).to eq('menu')
     end
 
     it 'has a default value' do
-      @sub_page_1.editable_elements.first.content.should == 'false'
+      expect(@sub_page_1.editable_elements.first.content).to eq('false')
     end
 
     it 'has a list of options' do
-      @sub_page_1.editable_elements.first.options.should == [{ 'value' => 'true', 'text' => 'Yes' }, { 'value' => 'false', 'text' => 'No' }]
+      expect(@sub_page_1.editable_elements.first.options).to eq([{ 'value' => 'true', 'text' => 'Yes' }, { 'value' => 'false', 'text' => 'No' }])
     end
 
     it 'removes leading and trailling characters' do
@@ -37,7 +37,7 @@ describe Locomotive::EditableControl do
         true
       {% endeditable_control %}
       {% endblock %})
-      @home.editable_elements.first.content.should == 'true'
+      expect(@home.editable_elements.first.content).to eq('true')
     end
 
   end
@@ -56,13 +56,13 @@ describe Locomotive::EditableControl do
     end
 
     it 'exists in sub pages' do
-      @sub_page_1.editable_elements.size.should == 1
-      @sub_page_2.editable_elements.size.should == 1
+      expect(@sub_page_1.editable_elements.size).to eq(1)
+      expect(@sub_page_2.editable_elements.size).to eq(1)
     end
 
     it 'is marked as fixed' do
-      @sub_page_1_el.fixed?.should be_true
-      @sub_page_2_el.fixed?.should be_true
+      expect(@sub_page_1_el.fixed?).to eq(true)
+      expect(@sub_page_2_el.fixed?).to eq(true)
     end
 
     it 'gets also updated when updating the very first element' do
@@ -70,8 +70,8 @@ describe Locomotive::EditableControl do
       @home.save
       @sub_page_1.reload; @sub_page_1_el = @sub_page_1.editable_elements.first
       @sub_page_2.reload; @sub_page_2_el = @sub_page_2.editable_elements.first
-      @sub_page_1_el.content.should == 'true'
-      @sub_page_2_el.content.should == 'true'
+      expect(@sub_page_1_el.content).to eq('true')
+      expect(@sub_page_2_el.content).to eq('true')
     end
 
   end

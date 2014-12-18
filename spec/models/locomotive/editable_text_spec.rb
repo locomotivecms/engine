@@ -21,26 +21,26 @@ describe Locomotive::EditableText do
     describe 'properties' do
 
       it 'exists' do
-        @sub_page_1.editable_elements.size.should == 1
+        expect(@sub_page_1.editable_elements.size).to eq(1)
       end
 
       it 'has a non-nil slug' do
-        @sub_page_1.editable_elements.first.slug.should == 'body'
+        expect(@sub_page_1.editable_elements.first.slug).to eq('body')
       end
 
       it 'has a default content at first' do
-        @sub_page_1.editable_elements.first.default_content.should be_true
-        @sub_page_1.editable_elements.first.content.should == 'Lorem ipsum'
+        expect(@sub_page_1.editable_elements.first.default_content).to eq(true)
+        expect(@sub_page_1.editable_elements.first.content).to eq('Lorem ipsum')
       end
 
       it 'is still default when it gets modified by the exact same value' do
         @sub_page_1.editable_elements.first.content = 'Lorem ipsum'
-        @sub_page_1.editable_elements.first.default_content.should be_true
+        expect(@sub_page_1.editable_elements.first.default_content).to eq(true)
       end
 
       it 'strips the content' do
         @sub_page_1.editable_elements.first.update_attribute :content, "   Lorem ipsum\n\n   "
-        @sub_page_1.editable_elements.first.content.should == 'Lorem ipsum'
+        expect(@sub_page_1.editable_elements.first.content).to eq('Lorem ipsum')
       end
 
     end
@@ -48,7 +48,7 @@ describe Locomotive::EditableText do
     describe 'locales' do
 
       it 'assigns the default locale' do
-        @sub_page_1_el.locales.should == ['en']
+        expect(@sub_page_1_el.locales).to eq(['en'])
       end
 
       it 'adds new locale' do
@@ -56,7 +56,7 @@ describe Locomotive::EditableText do
           page = Locomotive::Page.find(@home._id)
           page.editable_elements.first.content = 'Lorem ipsum (FR)'
           page.save
-          page.editable_elements.first.locales.should == %w(en fr)
+          expect(page.editable_elements.first.locales).to eq(%w(en fr))
         end
       end
 
@@ -66,7 +66,7 @@ describe Locomotive::EditableText do
           page = Locomotive::Page.find(@sub_page_1._id)
           page.editable_elements.first.content = 'Lorem ipsum (FR)'
           page.save
-          page.editable_elements.first.locales.should == %w(en fr)
+          expect(page.editable_elements.first.locales).to eq(%w(en fr))
         end
       end
 
@@ -76,16 +76,16 @@ describe Locomotive::EditableText do
 
       it 'can update its content from the raw template if the user has not modified it' do
         @home.update_attributes raw_template: "{% block body %}{% editable_text 'body' %}Lorem ipsum v2{% endeditable_text %}{% endblock %}"
-        @home.editable_elements.first.default_content.should be_true
-        @home.editable_elements.first.content.should == 'Lorem ipsum v2'
+        expect(@home.editable_elements.first.default_content).to eq(true)
+        expect(@home.editable_elements.first.content).to eq('Lorem ipsum v2')
       end
 
       it 'does not touch the content if the user has modified it before' do
         @home.editable_elements.first.content = 'Hello world'
         @home.raw_template = "{% block body %}{% editable_text 'body' %}Lorem ipsum v2{% endeditable_text %}{% endblock %}"
         @home.save
-        @home.editable_elements.first.default_content.should be_false
-        @home.editable_elements.first.content.should == 'Hello world'
+        expect(@home.editable_elements.first.default_content).to eq(false)
+        expect(@home.editable_elements.first.content).to eq('Hello world')
       end
 
     end
@@ -93,32 +93,32 @@ describe Locomotive::EditableText do
     describe '.editable?' do
 
       it 'is editable' do
-        @sub_page_1_el.editable?.should be_true
+        expect(@sub_page_1_el.editable?).to eq(true)
       end
 
       it 'is not editable if the element is disabled' do
         @sub_page_1_el.disabled = true
-        @sub_page_1_el.editable?.should be_false
+        expect(@sub_page_1_el.editable?).to eq(false)
       end
 
       it 'is not editable if it is a fixed one' do
         @sub_page_1_el.fixed = true
-        @sub_page_1_el.editable?.should be_false
+        expect(@sub_page_1_el.editable?).to eq(false)
       end
 
       it 'is not editable if it does exist for the current locale' do
         ::Mongoid::Fields::I18n.with_locale 'fr' do
-          @sub_page_1_el.editable?.should be_false
+          expect(@sub_page_1_el.editable?).to eq(false)
         end
       end
 
       it 'is among the editable elements of the page' do
-        @sub_page_1.enabled_editable_elements.map(&:slug).should == %w(body)
+        expect(@sub_page_1.enabled_editable_elements.map(&:slug)).to eq(%w(body))
       end
 
       it 'is not among the editable elements of the page if disabled' do
         @sub_page_1_el.disabled = true
-        @sub_page_1.enabled_editable_elements.map(&:slug).should == []
+        expect(@sub_page_1.enabled_editable_elements.map(&:slug)).to eq([])
       end
 
     end
@@ -131,17 +131,17 @@ describe Locomotive::EditableText do
       end
 
       it 'exists' do
-        @sub_page_1.editable_elements.size.should == 1
-        @sub_page_2.editable_elements.size.should == 1
+        expect(@sub_page_1.editable_elements.size).to eq(1)
+        expect(@sub_page_2.editable_elements.size).to eq(1)
       end
 
       it 'has a non-nil slug' do
-        @sub_page_1.editable_elements.first.slug.should == 'body'
+        expect(@sub_page_1.editable_elements.first.slug).to eq('body')
       end
 
       it 'does not have a content at first' do
-        @sub_page_1_el.default_content.should be_true
-        @sub_page_1_el.content.should == 'Lorem ipsum'
+        expect(@sub_page_1_el.default_content).to eq(true)
+        expect(@sub_page_1_el.content).to eq('Lorem ipsum')
       end
 
     end
@@ -153,17 +153,17 @@ describe Locomotive::EditableText do
       end
 
       it 'exists' do
-        @sub_page_1_1.editable_elements.size.should == 1
+        expect(@sub_page_1_1.editable_elements.size).to eq(1)
       end
 
       it 'has a non-nil slug' do
-        @sub_page_1_1.editable_elements.first.slug.should == 'body'
+        expect(@sub_page_1_1.editable_elements.first.slug).to eq('body')
       end
 
       it 'removes editable elements' do
         @sub_page_1_1.editable_elements.destroy_all
         @sub_page_1_1.reload
-        @sub_page_1_1.editable_elements.size.should == 0
+        expect(@sub_page_1_1.editable_elements.size).to eq(0)
       end
 
     end
@@ -187,22 +187,22 @@ describe Locomotive::EditableText do
     end
 
     it 'exists in sub pages' do
-      @sub_page_1.editable_elements.size.should == 1
-      @sub_page_2.editable_elements.size.should == 1
+      expect(@sub_page_1.editable_elements.size).to eq(1)
+      expect(@sub_page_2.editable_elements.size).to eq(1)
     end
 
     it 'is marked as fixed' do
-      @sub_page_1_el.fixed?.should be_true
-      @sub_page_2_el.fixed?.should be_true
+      expect(@sub_page_1_el.fixed?).to eq(true)
+      expect(@sub_page_2_el.fixed?).to eq(true)
     end
 
     it 'enables the default content when it just got created' do
-      @sub_page_1_el.default_content?.should be_true
+      expect(@sub_page_1_el.default_content?).to eq(true)
     end
 
     it 'disables the default content if the content changed' do
       @sub_page_1_el.content = 'Bla bla'
-      @sub_page_1_el.default_content?.should be_false
+      expect(@sub_page_1_el.default_content?).to eq(false)
     end
 
     it 'gets also updated when updating the very first element' do
@@ -210,8 +210,8 @@ describe Locomotive::EditableText do
       @home.save
       @sub_page_1.reload; @sub_page_1_el = @sub_page_1.editable_elements.first
       @sub_page_2.reload; @sub_page_2_el = @sub_page_2.editable_elements.first
-      @sub_page_1_el.content.should == 'Hello world'
-      @sub_page_2_el.content.should == 'Hello world'
+      expect(@sub_page_1_el.content).to eq('Hello world')
+      expect(@sub_page_2_el.content).to eq('Hello world')
     end
 
   end

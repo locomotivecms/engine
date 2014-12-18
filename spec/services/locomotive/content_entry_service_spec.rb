@@ -20,17 +20,17 @@ describe Locomotive::ContentEntryService do
     }
 
     context 'no options' do
-      its(:count) { should eq 2 }
+      it { expect(subject.count).to eq(2) }
     end
 
     context 'search for a title' do
       let(:options) { { q: 'llo' } }
-      its(:count) { should eq 1 }
+      it { expect(subject.count).to eq(1) }
     end
 
     context 'search for published articles' do
       let(:options) { { where: '{"published":true}' } }
-      its(:count) { should eq 1 }
+      it { expect(subject.count).to eq(1) }
     end
 
   end
@@ -41,16 +41,16 @@ describe Locomotive::ContentEntryService do
     subject { service.send(:prepare_where_statement, options) }
 
     context 'no options' do
-      it { subject.should eq({}) }
+      it { is_expected.to eq({}) }
     end
 
     context 'with q option' do
       let(:options) { { q: 'Lorem ipsum' } }
-      it { subject.should eq({ "title" => /.*Lorem.*ipsum.*/i }) }
+      it { is_expected.to eq({ "title" => /.*Lorem.*ipsum.*/i }) }
 
       context 'the content type has some filter fields' do
         before { add_filter_fields('Title', 'Body') }
-        it { subject.should eq({ "$or" => [{ "title" => /.*Lorem.*ipsum.*/i }, { "body" => /.*Lorem.*ipsum.*/i }] }) }
+        it { is_expected.to eq({ "$or" => [{ "title" => /.*Lorem.*ipsum.*/i }, { "body" => /.*Lorem.*ipsum.*/i }] }) }
       end
     end
 
@@ -58,24 +58,24 @@ describe Locomotive::ContentEntryService do
 
       context 'empty JSON' do
         let(:options) { { where: '' } }
-        it { subject.should eq({}) }
+        it { is_expected.to eq({}) }
       end
 
       context 'a simple JSON' do
         let(:options) { { where: '{"published":true}' } }
-        it { subject.should eq({ "published" => true }) }
+        it { is_expected.to eq({ "published" => true }) }
       end
 
     end
 
     context 'with the where option (Hash)' do
       let(:options) { { where: { published: true } } }
-      it { subject.should eq({ "published" => true }) }
+      it { is_expected.to eq({ "published" => true }) }
     end
 
     context 'using both the q and where keys' do
       let(:options) { { q: 'Lorem ipsum', where: '{"published":true}' } }
-      it { subject.should eq({ "title" => /.*Lorem.*ipsum.*/i, "published" => true }) }
+      it { is_expected.to eq({ "title" => /.*Lorem.*ipsum.*/i, "published" => true }) }
     end
 
   end
@@ -85,7 +85,7 @@ describe Locomotive::ContentEntryService do
     let(:options) { { page: 1, q: 'o', where: '{"published":true}' } }
     subject { service.send(:prepare_options_for_all, options) }
 
-    it { subject.should eq({ page: 1, per_page: 10, where: { "title" => /.*o.*/i, "published" => true }, grouping: false }) }
+    it { is_expected.to eq({ page: 1, per_page: 10, where: { "title" => /.*o.*/i, "published" => true }, grouping: false }) }
 
   end
 
@@ -98,8 +98,8 @@ describe Locomotive::ContentEntryService do
       create_content_entry(title: 'Bla bla', body: 'Lorem ipsum', published: false)
     }
 
-    it { should eq 2 }
-    it { subject; content_type.entries.count.should eq 0 }
+    it { is_expected.to eq 2 }
+    it { subject; expect(content_type.entries.count).to eq 0 }
 
   end
 
@@ -110,14 +110,14 @@ describe Locomotive::ContentEntryService do
     subject { service.create(attributes) }
 
     it { expect(subject.created_by).to eq account }
-    it { expect { subject }.to change(Locomotive::ContentEntry, :count).by(1) }
+    it { expect { subject }.to change { Locomotive::ContentEntry.count }.by(1) }
 
     context 'missing attributes' do
 
       let(:attributes) { {} }
 
       it { expect(subject.errors.blank?).to eq false }
-      it { expect { subject }.not_to change(Locomotive::ContentEntry, :count).by(1) }
+      it { expect { subject }.to_not change { Locomotive::ContentEntry.count } }
 
     end
 

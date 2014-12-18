@@ -113,13 +113,6 @@ GEM
       sass (~> 3.2)
     bson (2.3.0)
     builder (3.2.2)
-    capybara (2.0.3)
-      mime-types (>= 1.16)
-      nokogiri (>= 1.3.3)
-      rack (>= 1.0.0)
-      rack-test (>= 0.5.4)
-      selenium-webdriver (~> 2.0)
-      xpath (~> 1.0.0)
     carrierwave (0.10.0)
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
@@ -133,8 +126,6 @@ GEM
       actionpack (>= 3.0)
       railties (>= 3.0)
       uber (~> 0.0.8)
-    childprocess (0.5.5)
-      ffi (~> 1.0, >= 1.0.11)
     chunky_png (1.3.3)
     codemirror-rails (4.8)
       railties (>= 3.0, < 5)
@@ -159,12 +150,6 @@ GEM
       gherkin (~> 2.12)
       multi_json (>= 1.7.5, < 2.0)
       multi_test (>= 0.1.1)
-    cucumber-rails (1.4.2)
-      capybara (>= 1.1.2, < 3)
-      cucumber (>= 1.3.8, < 2)
-      mime-types (>= 1.16, < 3)
-      nokogiri (~> 1.5)
-      rails (>= 3, < 5)
     daemons (1.1.9)
     database_cleaner (1.3.0)
     devise (3.4.1)
@@ -198,9 +183,9 @@ GEM
       railties (>= 3.0.0)
     faraday (0.8.9)
       multipart-post (~> 1.2.0)
-    faye-websocket (0.4.7)
+    faye-websocket (0.9.1)
       eventmachine (>= 0.12.0)
-    ffi (1.9.6)
+      websocket-driver (>= 0.5.1)
     flash_cookie_session (1.1.6)
       rails (>= 3.0)
     fog (1.12.1)
@@ -231,7 +216,6 @@ GEM
     hashie (3.3.2)
     highline (1.6.21)
     hike (1.2.3)
-    http_parser.rb (0.5.3)
     httparty (0.11.0)
       multi_json (~> 1.0)
       multi_xml (>= 0.5.2)
@@ -247,8 +231,6 @@ GEM
     kaminari (0.14.1)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
-    launchy (2.4.3)
-      addressable (~> 2.3)
     locomotive_liquid (2.4.2)
     locomotivecms_solid (0.2.2)
       locomotive_liquid (~> 2.4.2)
@@ -258,7 +240,7 @@ GEM
     method_source (0.8.2)
     mime-types (1.25.1)
     mimetype-fu (0.1.2)
-    minitest (5.4.3)
+    minitest (5.5.0)
     mocha (1.1.0)
       metaclass (~> 0.0.1)
     money (5.1.1)
@@ -299,10 +281,6 @@ GEM
     pickle (0.5.0)
       cucumber (>= 0.8)
       rake
-    poltergeist (1.1.2)
-      capybara (~> 2.0.1)
-      faye-websocket (~> 0.4.4)
-      http_parser.rb (~> 0.5.3)
     protected_attributes (1.0.8)
       activemodel (>= 4.0.1, < 5.0)
     pry (0.10.1)
@@ -339,28 +317,31 @@ GEM
     redcarpet (3.0.0)
     responders (1.1.2)
       railties (>= 3.2, < 4.2)
-    rspec (2.14.1)
-      rspec-core (~> 2.14.0)
-      rspec-expectations (~> 2.14.0)
-      rspec-mocks (~> 2.14.0)
-    rspec-cells (0.1.10)
+    rspec (3.1.0)
+      rspec-core (~> 3.1.0)
+      rspec-expectations (~> 3.1.0)
+      rspec-mocks (~> 3.1.0)
+    rspec-cells (0.2.2)
       cells (>= 3.4.0)
       railties (>= 3.0)
-      rspec-rails (>= 2.2.0)
-    rspec-core (2.14.8)
-    rspec-expectations (2.14.5)
-      diff-lcs (>= 1.1.3, < 2.0)
-    rspec-mocks (2.14.6)
-    rspec-rails (2.14.2)
+      rspec-rails (>= 2.14)
+    rspec-core (3.1.7)
+      rspec-support (~> 3.1.0)
+    rspec-expectations (3.1.2)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.1.0)
+    rspec-mocks (3.1.3)
+      rspec-support (~> 3.1.0)
+    rspec-rails (3.1.0)
       actionpack (>= 3.0)
-      activemodel (>= 3.0)
       activesupport (>= 3.0)
       railties (>= 3.0)
-      rspec-core (~> 2.14.0)
-      rspec-expectations (~> 2.14.0)
-      rspec-mocks (~> 2.14.0)
+      rspec-core (~> 3.1.0)
+      rspec-expectations (~> 3.1.0)
+      rspec-mocks (~> 3.1.0)
+      rspec-support (~> 3.1.0)
+    rspec-support (3.1.2)
     ruby-hmac (0.4.0)
-    rubyzip (1.1.6)
     sanitize (2.0.3)
       nokogiri (>= 1.4.4, < 1.6)
     sass (3.2.19)
@@ -371,11 +352,6 @@ GEM
       sprockets-rails (~> 2.0)
     select2-rails (3.5.9.1)
       thor (~> 0.14)
-    selenium-webdriver (2.44.0)
-      childprocess (~> 0.5)
-      multi_json (~> 1.0)
-      rubyzip (~> 1.0)
-      websocket (~> 1.0)
     shoulda-matchers (2.7.0)
       activesupport (>= 3.0.0)
     simple_form (3.1.0)
@@ -411,9 +387,9 @@ GEM
       json (>= 1.8.0)
     warden (1.2.3)
       rack (>= 1.0)
-    websocket (1.2.1)
-    xpath (1.0.0)
-      nokogiri (~> 1.3)
+    websocket-driver (0.5.1)
+      websocket-extensions (>= 0.1.0)
+    websocket-extensions (0.1.1)
 
 PLATFORMS
   ruby
@@ -421,28 +397,24 @@ PLATFORMS
 DEPENDENCIES
   actionpack-action_caching
   actionpack-page_caching
-  capybara (~> 2.0.2)
   coffee-rails (~> 4.0.1)
-  cucumber-rails
   custom_fields!
   database_cleaner
   factory_girl_rails
   faye-websocket
   github_api
-  json_spec
-  launchy
+  json_spec (~> 1.1.4)
   locomotive_cms!
   mocha
   pickle
-  poltergeist
   protected_attributes
   pry
   quiet_assets
   rails-observers
-  rspec-cells (= 0.1.10)
-  rspec-rails (~> 2.14.2)
+  rspec-cells (~> 0.2.2)
+  rspec-rails (~> 3.1.0)
   sass-rails (~> 4.0.5)
-  shoulda-matchers
+  shoulda-matchers (~> 2.7.0)
   thin
   thor
   uglifier (>= 2.5.3)

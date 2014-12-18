@@ -17,13 +17,13 @@ describe Locomotive::Api::TokensController do
     context 'valid credentials' do
       it { should be_success }
       it 'returns a token' do
-        json_response['token'].should_not be_blank
+        expect(json_response['token']).to_not be_blank
       end
     end
 
     context 'invalid credentials' do
       let(:params) { { email: 'dontknow', password: 'same' } }
-      its(:status) { should eq 401 }
+      it { expect(subject.status).to eq(401) }
     end
   end
 
