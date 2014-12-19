@@ -2,7 +2,7 @@
 
 - set_error_from_flash(resource, :email)
 
-= semantic_form_for(resource, as: resource_name, url: locomotive_account_session_path) do |f|
+= locomotive_form_for(resource, as: resource_name, url: locomotive_account_session_path) do |f|
 
   = f.hidden_field :remember_me, value: 'true'
 
@@ -13,4 +13,4 @@
     = f.input :password, label: t('.password'), hint: link_to(t('.link'), new_locomotive_account_password_path).html_safe, required: false, input_html: { tabindex: 2 }
 
   = f.actions do
-    = f.action :submit, label: t('locomotive.buttons.login'), as: :button
+    = f.button :submit, t('locomotive.buttons.login'), class: 'btn'

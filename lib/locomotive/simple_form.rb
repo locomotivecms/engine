@@ -19,8 +19,8 @@ module Locomotive
 
   class FormBuilder < SimpleForm::FormBuilder
 
-    def inputs(name, options = {}, &block)
-      label = I18n.t(name, scope: 'simple_form.titles.locomotive')
+    def inputs(name = nil, options = {}, &block)
+      label = name ? I18n.t(name, scope: 'simple_form.titles.locomotive') : ''
 
       html = template.content_tag(:legend, template.content_tag(:span, label))
       html += template.capture(&block)

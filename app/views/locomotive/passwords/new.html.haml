@@ -1,6 +1,6 @@
 - title t('.title')
 
-= semantic_form_for(resource, as: resource_name, url: locomotive_account_password_path) do |f|
+= locomotive_form_for(resource, as: resource_name, url: locomotive_account_password_path) do |f|
 
   = f.hidden_field :reset_password_token
 
@@ -14,4 +14,4 @@
     = link_to preserve(t('.link')), new_locomotive_account_session_path
 
   = f.actions do
-    = f.action :submit, label: t('locomotive.buttons.send_password'), as: :button
+    = f.button :submit, t('locomotive.buttons.send_password'), class: 'btn'

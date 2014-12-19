@@ -1,7 +1,7 @@
 $form_input_label_color:  #333;
 $form_input_border_color: #4999b2;
 
-.formtastic {
+.simple_form {
   width: 100%;
 
   fieldset {
@@ -49,7 +49,7 @@ $form_input_border_color: #4999b2;
   }
 
   .form-actions {
-    button[type="submit"] {
+    input[type="submit"] {
       margin-top: 0px;
     }
   }

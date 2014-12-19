@@ -1,4 +1,4 @@
-button[type=submit] {
+button[type=submit], input[type=submit] {
   @media (min-width: $screen-md-min) {
     margin-top: 4em;
   }
