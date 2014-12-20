@@ -138,3 +138,37 @@
   }
 
 }
+
+.edit-assets-container {
+  @include full-space();
+
+  .actions {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+  }
+
+  // .edit-btn-group {
+  //   position: absolute;
+  //   top: 50px;
+  //   right: 15px;
+  // }
+
+  .image-container {
+    background-color: #f7f7f7;
+    overflow: hidden;
+    width: 100%;
+    text-align: center;
+  }
+
+  .image-container {
+    box-shadow: inset 0 0 5px #eee;
+    height: 100%;
+  }
+
+  .image-container > img {
+    max-width: 100%;
+    max-height: inherit;
+  }
+
+}

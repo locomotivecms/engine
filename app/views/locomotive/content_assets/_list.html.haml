@@ -20,11 +20,11 @@
         %h2= presenter.filename
 
         .actions
-          = link_to 'Select', '#', class: 'btn btn-primary btn-sm select', data: { image: asset.image? }
+          = link_to 'Select', presenter.url, class: 'btn btn-primary btn-sm select', data: { image: asset.image? }
 
           - if asset.image?
-            .image-dialog-content
-              %p TODO
+            &nbsp;
+            = link_to 'Edit', edit_content_asset_path(presenter._id), class: 'btn btn-primary btn-sm edit'
 
           &nbsp;
 

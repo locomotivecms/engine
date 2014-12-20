@@ -4,7 +4,7 @@ module Locomotive
     respond_to :json, only: [:create, :bulk_create]
 
     before_filter :load_content_assets, only: :index
-    before_filter :load_content_asset,  only: :destroy
+    before_filter :load_content_asset,  only: [:edit, :update, :destroy]
 
     def index
       authorize Locomotive::ContentAsset
@@ -22,6 +22,13 @@ module Locomotive
     def bulk_create
       @content_assets = service.bulk_create(params[:content_assets])
       respond_with @content_assets, location: content_assets_path
+    end
+
+    def edit
+      authorize @content_asset
+      respond_with(@content_asset) do |format|
+        format.html { render_edit }
+      end
     end
 
     def destroy
@@ -47,6 +54,10 @@ module Locomotive
 
     def render_index
       render request.xhr? ? 'index_in_drawer' : 'index', layout: !request.xhr?
+    end
+
+    def render_edit
+      render request.xhr? ? 'edit_in_drawer' : 'edit', layout: !request.xhr?
     end
 
     def service

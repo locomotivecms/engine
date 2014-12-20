@@ -2,3 +2,12 @@
   border-width: 0px;
   border-bottom-width: 2px;
 }
+
+.btn-group-vertical > .btn {
+  &:first-child:not(:last-child) {
+    border-top-right-radius: 3px;
+  }
+  &:last-child:not(:first-child) {
+    border-bottom-left-radius: 3px;
+  }
+}

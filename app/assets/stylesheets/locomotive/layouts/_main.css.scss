@@ -36,8 +36,12 @@ body.no-sidebar {
   top: 0px;
   right: 0px;
   bottom: 0px;
-  width: $drawer_width;
+  width: 100%;
   z-index: 990;
+
+  &.small-width-drawer {
+    width: $drawer_width;
+  }
 }
 
 .scrollable {

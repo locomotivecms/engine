@@ -10,7 +10,6 @@ class Locomotive.Views.ContentAssets.DropzoneView extends Backbone.View
     'drop':                     'drop_files'
     'change input[type=file]':  'drop_files'
 
-
   render: ->
     console.log '[DropzoneView] rendering'
     super

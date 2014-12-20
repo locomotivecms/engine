@@ -20,7 +20,7 @@ class Locomotive.Views.Inputs.Rte.LinkView extends Backbone.View
   create_popover: ->
     @$content.show()
     @$link.popover
-      container:  '.main'
+      container:  '.drawer'
       placement:  'bottom'
       content:    @$content
       html:       true
@@ -66,4 +66,7 @@ class Locomotive.Views.Inputs.Rte.LinkView extends Backbone.View
     @opened = false
 
   remove: ->
-    @$link.popover('destroy')
+    @$('.popover').remove()
+    # @$link.popover('destroy')
+    # TODO: unattach events
+

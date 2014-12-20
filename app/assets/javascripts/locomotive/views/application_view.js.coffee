@@ -5,7 +5,7 @@ class Locomotive.Views.ApplicationView extends Backbone.View
   initialize: ->
     @header_view  = new Locomotive.Views.Shared.HeaderView()
     @sidebar_view = new Locomotive.Views.Shared.SidebarView()
-    @drawer_view = new Locomotive.Views.Shared.DrawerView()
+    @drawer_view  = new Locomotive.Views.Shared.DrawerView()
 
   render: ->
     @render_flash_messages(@options.flash)
