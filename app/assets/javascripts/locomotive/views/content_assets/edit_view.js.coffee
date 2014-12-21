@@ -12,9 +12,10 @@ class Locomotive.Views.ContentAssets.EditView extends Backbone.View
     super
 
   render: ->
-    @width = parseInt(@$('.image-container').data('width'))
-    @height = parseInt(@$('.image-container').data('height'))
-    @ratio = @width / @height
+    @filename   = @$('.image-container').data('filename')
+    @width      = parseInt(@$('.image-container').data('width'))
+    @height     = parseInt(@$('.image-container').data('height'))
+    @ratio      = @width / @height
 
     @create_cropper()
     @create_resize_popover()
@@ -43,6 +44,7 @@ class Locomotive.Views.ContentAssets.EditView extends Backbone.View
     @$link.data('bs.popover').setContent()
 
   enable_crop: (event) ->
+    @cropper_enabled = true
     @$cropper.cropper('clear')
     @$cropper.cropper('setDragMode', 'crop')
 
@@ -86,8 +88,23 @@ class Locomotive.Views.ContentAssets.EditView extends Backbone.View
   apply: (event) ->
     event.stopPropagation() & event.preventDefault()
 
-    data = @$(".image-container > img").cropper('getData')
-    console.log data
+    return unless @cropper_enabled
+
+    $link     = $(event.target).closest('.apply-btn')
+    image_url = @$cropper.cropper('getDataURL')
+    blob      = window.dataURLtoBlob(image_url)
+
+    form_data = new FormData()
+    form_data.append('xhr', true)
+    form_data.append('content_asset[source]', blob, @filename)
+
+    $.ajax
+      url:          $link.data('url')
+      type:         'POST'
+      data:         form_data
+      processData:  false
+      contentType:  false
+      success: (data) => @options.drawer.close()
 
   set_cropper_height: ->
     container_height = @$('.edit-assets-container').height()

@@ -74,7 +74,7 @@ class Locomotive.Views.Shared.DrawerView extends Backbone.View
   _show: (entry, container) ->
     _klass = entry.view_klass
 
-    entry.view = new _klass(el: container, parent_view: entry.parent_view)
+    entry.view = new _klass(el: container, parent_view: entry.parent_view, drawer: @)
     entry.view.render()
 
     $('body').addClass('drawer-opened')

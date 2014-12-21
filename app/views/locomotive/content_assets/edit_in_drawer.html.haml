@@ -1,5 +1,5 @@
 .edit-assets-container
-  .image-container{ data: { height: @content_asset.height, width: @content_asset.width } }
+  .image-container{ data: { height: @content_asset.height, width: @content_asset.width, filename: @content_asset.name } }
     = image_tag @content_asset.source.url
 
   .resize-form{ style: 'display: none' }
@@ -25,5 +25,5 @@
         %i.fa.fa-compress
       %button.btn.btn-sm.btn-primary.crop-btn{ title: 'Crop' }
         %i.fa.fa-crop
-      %button.btn.btn-sm.btn-success.apply-btn{ title: 'Apply' }
+      %button.btn.btn-sm.btn-success.apply-btn{ title: 'Apply', data: { url: content_assets_path(format: :json) } }
         %i.fa.fa-check

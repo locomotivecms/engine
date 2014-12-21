@@ -64,5 +64,9 @@ module Locomotive
       @service ||= Locomotive::ContentAssetService.new(current_site)
     end
 
+    def content_asset_params
+      params.require(:content_asset).permit(:source)
+    end
+
   end
 end

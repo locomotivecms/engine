@@ -88,6 +88,10 @@
     width: 240px;
     height: 240px;
 
+    > .top {
+      min-height: 155px;
+    }
+
     h2 {
       color: #333;
       font-size: 14px;

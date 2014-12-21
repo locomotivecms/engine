@@ -66,7 +66,7 @@ class Locomotive.Views.Inputs.Rte.LinkView extends Backbone.View
     @opened = false
 
   remove: ->
+    @$link.popover('destroy')
     @$('.popover').remove()
-    # @$link.popover('destroy')
-    # TODO: unattach events
+    # TODO: unattach events?
 
