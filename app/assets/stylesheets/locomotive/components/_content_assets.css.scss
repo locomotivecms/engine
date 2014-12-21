@@ -164,4 +164,14 @@
     max-height: inherit;
   }
 
+  .cropper-label {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background: #000;
+    color: #fff;
+    font-size: 11px;
+    padding: 3px 6px;
+  }
+
 }

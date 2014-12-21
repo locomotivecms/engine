@@ -8,7 +8,7 @@ class Locomotive.Views.ContentAssets.EditView extends Backbone.View
     'click .crop-btn':      'enable_crop'
 
   initialize: ->
-    _.bindAll(@, 'change_size', 'apply_resizing')
+    _.bindAll(@, 'change_size', 'apply_resizing', 'update_cropper_label')
     super
 
   render: ->
@@ -25,7 +25,7 @@ class Locomotive.Views.ContentAssets.EditView extends Backbone.View
     @set_cropper_height()
     @$cropper.cropper
       autoCrop: false
-      done: (data) => @update_crop_size_label(data)
+      done: @update_cropper_label
 
   create_resize_popover: ->
     @$link    = @$('.resize-btn')
@@ -97,10 +97,17 @@ class Locomotive.Views.ContentAssets.EditView extends Backbone.View
     else
       @$('.image-container').css('max-height', 'inherit')
 
-  update_crop_size_label: (data) ->
-    width   = Math.round(data.width)
-    height  = Math.round(data.height)
-    @$('.crop-size').html("#{width} x #{height}")
+  update_cropper_label: (data) ->
+    $dragger  = @$('.cropper-dragger')
+    width     = Math.round(data.width)
+    height    = Math.round(data.height)
+
+    $label = $dragger.find('> .cropper-label')
+
+    if $label.size() == 0
+      $label = $dragger.append('<span class="cropper-label"><span>').find('> .cropper-label')
+
+    $label.html("#{width} x #{height}")
 
   remove: ->
     console.log '[EditView] remove'
