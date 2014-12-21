@@ -1,16 +1,6 @@
 .edit-assets-container
-  / .image-container{ style: "height: #{@content_asset.height}px" }
-  / .image-container{ style: "width: 1280px;" }
-  / .image-container
-  / .image-container{ style: "width: #{@content_asset.width}px; height: #{@content_asset.height}px" }
   .image-container{ data: { height: @content_asset.height, width: @content_asset.width } }
     = image_tag @content_asset.source.url
-
-  / .btn-group-vertical.edit-btn-group{ role: 'group', aria: { label: '...' } }
-  / %button.btn.btn-sm.btn-primary.resize-btn
-  /   %i.fa.fa-compress
-  / %button.btn.btn-sm.btn-primary.crop-btn
-  /   %i.fa.fa-crop
 
   .resize-form{ style: 'display: none' }
     %form.form{ role: 'form' }
@@ -30,23 +20,10 @@
           Resize
 
   .actions
-    %button.btn.btn-sm.btn-primary.resize-btn
-      %i.fa.fa-compress
-    &nbsp;
-    %button.btn.btn-sm.btn-success.apply-btn
-      Apply
-
-
-
-  / .container-fluid
-  /   .row
-  /     .col-md-12
-  /       / .image-container{ style: "width: #{@content_asset.width}px; height: #{@content_asset.height}px; max-width: 100%; max-height: 600px;" }
-  /       .image-container{ style: "height: #{@content_asset.height}px; max-height: 600px;" }
-  /         = image_tag @content_asset.source.url
-
-  /     / .col-md-2
-  /     /   .image-preview
-
-  /     /   %p
-  /     /     TODO
+    .btn-group-vertical{ role: 'group' }
+      %button.btn.btn-sm.btn-primary.resize-btn{ title: 'Resize' }
+        %i.fa.fa-compress
+      %button.btn.btn-sm.btn-primary.crop-btn{ title: 'Crop' }
+        %i.fa.fa-crop
+      %button.btn.btn-sm.btn-success.apply-btn{ title: 'Apply' }
+        %i.fa.fa-check

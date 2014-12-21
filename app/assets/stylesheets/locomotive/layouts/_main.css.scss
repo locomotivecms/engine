@@ -42,6 +42,10 @@ body.no-sidebar {
   &.small-width-drawer {
     width: $drawer_width;
   }
+
+  > .inner {
+    height: 100%;
+  }
 }
 
 .scrollable {

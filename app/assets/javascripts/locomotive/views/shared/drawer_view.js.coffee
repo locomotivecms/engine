@@ -4,7 +4,9 @@ class Locomotive.Views.Shared.DrawerView extends Backbone.View
 
   el: 'section.drawer'
 
-  delay: 200
+  delays:
+    fade:   50 # see the _transitions.css.scss file
+    remove: 200
 
   events:
     'click .close-button': 'close'
@@ -34,24 +36,31 @@ class Locomotive.Views.Shared.DrawerView extends Backbone.View
   show: (entry) ->
     return if entry == null
 
-    _container  = @container()
+    # if first time the drawer is opened, we do not need to wait
+    # for the fading out of the previous screen
+    timeout = if @stack.length == 1 then 0 else @delays.fade
 
-    if entry.url?
-      _container.load entry.url, =>
+    setTimeout =>
+      _container  = @container()
+      if entry.url?
+        _container.load entry.url, =>
+          @_show(entry, _container)
+      else
         @_show(entry, _container)
-    else
-      @_show(entry, _container)
+    , timeout
 
   hide: (entry, callback) ->
     return if entry == null
 
     if @stack.length == 0
       $('body').removeClass('drawer-opened')
+    else
+      entry.view.$el.addClass('fadeout')
 
     setTimeout ->
       entry.view.remove()
       callback() if callback?
-    , @delay
+    , @delays.remove
 
   last_entry: ->
     if @stack.length == 0
@@ -65,10 +74,7 @@ class Locomotive.Views.Shared.DrawerView extends Backbone.View
   _show: (entry, container) ->
     _klass = entry.view_klass
 
-    $('body').addClass('drawer-opened')
-
     entry.view = new _klass(el: container, parent_view: entry.parent_view)
     entry.view.render()
 
-
-
+    $('body').addClass('drawer-opened')

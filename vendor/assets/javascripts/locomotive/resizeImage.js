@@ -1,17 +1,20 @@
+// jQuery / Underscore version of this script:
+// https://gist.github.com/fisch0920/37bac5e741eaec60e983
+// by Travis Fischer (https://gist.github.com/fisch0920)
+// Inspired by this article:
+// http://www.benknowscode.com/2014/01/resizing-images-in-browser-using-canvas.html
+
 (function() {
   var NUM_LOBES = 3
   var lanczos = lanczosGenerator(NUM_LOBES)
   var $timeout = _.delay;
 
   // resize via lanczos-sinc convolution
-  // window.resizeImage = function (img, width, height, callback) {
   window.resizeImage = function (img, width, height) {
     var self = { }
 
     self.type    = "image/png"
     self.quality = 1.0
-    // self.callback = callback
-    // self.resultD = $q.defer()
     self.resultD = $.Deferred()
 
     self.canvas = document.createElement('canvas')
@@ -52,10 +55,7 @@
       self.icenter   = {}
 
       $timeout(function () { applyLanczosColumn(self, 0) })
-      // applyLanczosColumn(self, 0);
     }
-
-    // return self.resultD.promise
 
     return self.resultD.promise()
   }
@@ -118,12 +118,6 @@
     } else {
       $timeout(function () { finalizeLanczos(self) })
     }
-
-    // if (++u < self.dest.width) {
-    //   applyLanczosColumn(self, u)
-    // } else {
-    //   finalizeLanczos(self)
-    // }
   }
 
   function finalizeLanczos (self) {
@@ -149,22 +143,18 @@
     var result = new Image()
 
     result.onload = function () {
-      // self.callback(result)
       self.resultD.resolve(result)
     }
 
     result.onerror = function (err) {
-      // self.callback(null)
       self.resultD.reject(err)
     }
 
     result.src = self.canvas.toDataURL(self.type, self.quality)
-
-    // return result
   }
 
   // resize by stepping down
-  window.resizeStep = function (img, width, height, quality) {
+  window.resizeImageStep = function (img, width, height, quality) {
     quality = quality || 1.0
 
     // var resultD = $q.defer()
@@ -194,7 +184,6 @@
       dst.src = canvas.toDataURL(type, quality)
 
       if (cW <= width || cH <= height) {
-        // return dst;
         resultD.resolve(dst)
       }
 
@@ -217,7 +206,6 @@
       stepDown()
     }
 
-    // return resultD.promise
     return resultD.promise()
   }
 

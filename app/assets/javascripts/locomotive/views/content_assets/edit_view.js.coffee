@@ -3,8 +3,9 @@ Locomotive.Views.ContentAssets ||= {}
 class Locomotive.Views.ContentAssets.EditView extends Backbone.View
 
   events:
-    'click .apply-btn':           'apply'
-    'click .resize-btn':          'toggle_resize_modal'
+    'click .apply-btn':     'apply'
+    'click .resize-btn':    'toggle_resize_modal'
+    'click .crop-btn':      'enable_crop'
 
   initialize: ->
     _.bindAll(@, 'change_size', 'apply_resizing')
@@ -22,7 +23,9 @@ class Locomotive.Views.ContentAssets.EditView extends Backbone.View
     @$cropper = @$(".image-container > img")
 
     @set_cropper_height()
-    @$cropper.cropper()
+    @$cropper.cropper
+      autoCrop: false
+      done: (data) => @update_crop_size_label(data)
 
   create_resize_popover: ->
     @$link    = @$('.resize-btn')
@@ -33,11 +36,15 @@ class Locomotive.Views.ContentAssets.EditView extends Backbone.View
 
     @$link.popover
       container:  '.main'
-      placement:  'top'
+      placement:  'left'
       content:    @$content
       html:       true
       template:   '<div class="popover" role="tooltip"><div class="arrow"></div><form><div class="popover-content"></div></form></div>'
     @$link.data('bs.popover').setContent()
+
+  enable_crop: (event) ->
+    @$cropper.cropper('clear')
+    @$cropper.cropper('setDragMode', 'crop')
 
   toggle_resize_modal: (event) ->
     state = if @resize_modal_opened then 'hide' else 'show'
@@ -46,8 +53,9 @@ class Locomotive.Views.ContentAssets.EditView extends Backbone.View
 
   change_size: (event) ->
     $input  = $(event.target)
-    value   = parseInt($input.val())
-    value   = 100 if _.isNaN(value)
+    value   = parseInt($input.val().replace(/\D+/, ''))
+
+    return if _.isNaN(value)
 
     # make sure the value is an integer
     $input.val(value)
@@ -66,7 +74,7 @@ class Locomotive.Views.ContentAssets.EditView extends Backbone.View
     width   = parseInt(@$content.find('input[name=width]').val())
     height  = parseInt(@$content.find('input[name=height]').val())
 
-    window.resizeImage(@$cropper[0], width, height)
+    window.resizeImageStep @$cropper[0], width, height
       .then (image) =>
         @width  = width
         @height = height
@@ -74,17 +82,6 @@ class Locomotive.Views.ContentAssets.EditView extends Backbone.View
         @set_cropper_height()
         $btn.button('reset')
         @toggle_resize_modal()
-
-    # _.defer =>
-    #   window.resizeImage @$cropper[0], width, height, (result) =>
-    #     console.log('done')
-    #     # @width  = width
-    #     # @height = height
-    #     # @$cropper.cropper('replace', result.src)
-    #     # @set_cropper_height()
-    #     # @toggle_resize_modal()
-    #     # $btn.button('reset')
-
 
   apply: (event) ->
     event.stopPropagation() & event.preventDefault()
@@ -99,6 +96,11 @@ class Locomotive.Views.ContentAssets.EditView extends Backbone.View
       @$('.image-container').css('max-height', @height)
     else
       @$('.image-container').css('max-height', 'inherit')
+
+  update_crop_size_label: (data) ->
+    width   = Math.round(data.width)
+    height  = Math.round(data.height)
+    @$('.crop-size').html("#{width} x #{height}")
 
   remove: ->
     console.log '[EditView] remove'
