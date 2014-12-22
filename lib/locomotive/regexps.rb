@@ -3,7 +3,7 @@ module Locomotive
 
     SUBDOMAIN           = /^[a-z][a-z0-9_-]*[a-z0-9]{1}$/
 
-    DOMAIN              = /^(([a-z])([a-z\d-]){0,61}([a-z\d]))(\.([a-z])([a-z\d-]){0,61}([a-z\d]))*$/i
+    DOMAIN              = /^(([a-z\d])([a-z\d-]){0,61}([a-z\d]))(\.([a-z\d])([a-z\d-]){0,61}([a-z\d]))*$/i
 
     URL                 = /((http|https|ftp):\/)?\/\S*/
 

@@ -16,57 +16,76 @@ describe Locomotive::Site do
     expect(site.errors[:name]).to eq(["can't be blank"])
   end
 
-  it 'validates presence of subdomain' do
-    site = FactoryGirl.build(:site, subdomain: nil)
-    expect(site).to_not be_valid
-    expect(site.errors[:subdomain]).to eq(["can't be blank"])
-  end
+  describe 'domains' do
 
-  %w{test test42 foo_bar}.each do |subdomain|
-    it "accepts subdomain like '#{subdomain}'" do
-      expect(FactoryGirl.build(:site, subdomain: subdomain)).to be_valid
+    let(:domains) { ['goodformat.superlong', 'local.lb-service', 'www.9troisquarts.com', 'nocoffee.photography'] }
+    subject { FactoryGirl.build(:site, domains: domains) }
+
+    it { is_expected.to be_valid }
+
+    context 'bad format' do
+
+      let(:domains) { ['barformat.a', '-foo.net'] }
+
+      it { is_expected.to_not be_valid }
+      it 'tells what domains are invalid' do
+        subject.valid?
+        expect(subject.errors[:domains]).to eq(['barformat.a is invalid', '-foo.net is invalid'])
+      end
+
     end
+
   end
 
-  ['-', '_test', 'test_', 't est', '42', '42test'].each do |subdomain|
-    it "does not accept subdomain like '#{subdomain}'" do
-      site = FactoryGirl.build(:site, subdomain: subdomain)
+  describe 'subdomain' do
+
+    it 'validates presence of subdomain' do
+      site = FactoryGirl.build(:site, subdomain: nil)
       expect(site).to_not be_valid
-      expect(site.errors[:subdomain]).to eq(['is invalid'])
+      expect(site.errors[:subdomain]).to eq(["can't be blank"])
     end
-  end
 
-  it "does not use reserved keywords as subdomain" do
-    %w{www admin email blog webmail mail support help site sites}.each do |subdomain|
-      site = FactoryGirl.build(:site, subdomain: subdomain)
+    %w{test test42 foo_bar}.each do |subdomain|
+      it "accepts subdomain like '#{subdomain}'" do
+        expect(FactoryGirl.build(:site, subdomain: subdomain)).to be_valid
+      end
+    end
+
+    ['-', '_test', 'test_', 't est', '42', '42test'].each do |subdomain|
+      it "does not accept subdomain like '#{subdomain}'" do
+        site = FactoryGirl.build(:site, subdomain: subdomain)
+        expect(site).to_not be_valid
+        expect(site.errors[:subdomain]).to eq(['is invalid'])
+      end
+    end
+
+    it "does not use reserved keywords as subdomain" do
+      %w{www admin email blog webmail mail support help site sites}.each do |subdomain|
+        site = FactoryGirl.build(:site, subdomain: subdomain)
+        expect(site).to_not be_valid
+        expect(site.errors[:subdomain]).to eq(['is reserved'])
+      end
+    end
+
+    it 'validates uniqueness of subdomain' do
+      FactoryGirl.create(:site)
+      site = FactoryGirl.build(:site)
       expect(site).to_not be_valid
-      expect(site.errors[:subdomain]).to eq(['is reserved'])
+      expect(site.errors[:subdomain]).to eq(["is already taken"])
     end
-  end
 
-  it 'validates uniqueness of subdomain' do
-    FactoryGirl.create(:site)
-    site = FactoryGirl.build(:site)
-    expect(site).to_not be_valid
-    expect(site.errors[:subdomain]).to eq(["is already taken"])
-  end
+    it 'validates uniqueness of domains' do
+      FactoryGirl.create(:site, domains: %w{www.acme.net www.acme.com})
 
-  it 'validates uniqueness of domains' do
-    FactoryGirl.create(:site, domains: %w{www.acme.net www.acme.com})
+      site = FactoryGirl.build(:site, domains: %w{www.acme.com})
+      expect(site).to_not be_valid
+      expect(site.errors[:domains]).to eq(["www.acme.com is already taken"])
 
-    site = FactoryGirl.build(:site, domains: %w{www.acme.com})
-    expect(site).to_not be_valid
-    expect(site.errors[:domains]).to eq(["www.acme.com is already taken"])
+      site = FactoryGirl.build(:site, subdomain: 'foo', domains: %w{acme.example.com})
+      expect(site).to_not be_valid
+      expect(site.errors[:domains]).to eq(["acme.example.com is already taken"])
+    end
 
-    site = FactoryGirl.build(:site, subdomain: 'foo', domains: %w{acme.example.com})
-    expect(site).to_not be_valid
-    expect(site.errors[:domains]).to eq(["acme.example.com is already taken"])
-  end
-
-  it 'validates format of domains' do
-    site = FactoryGirl.build(:site, domains: ['barformat.a', '-foo.net', 'goodformat.superlong', 'local.lb-service'])
-    expect(site).to_not be_valid
-    expect(site.errors[:domains]).to eq(['barformat.a is invalid', '-foo.net is invalid'])
   end
 
   ## Named scopes ##
