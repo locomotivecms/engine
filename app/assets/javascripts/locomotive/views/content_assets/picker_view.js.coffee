@@ -17,6 +17,9 @@ class Locomotive.Views.ContentAssets.PickerView extends Backbone.View
     'a.refresh'
   ]
 
+  initialize: ->
+    @editor = @options.parent_view.editor
+
   render: ->
     console.log '[PickerView] rendering'
 
@@ -40,7 +43,9 @@ class Locomotive.Views.ContentAssets.PickerView extends Backbone.View
 
     $link = $(event.target)
 
-    alert('TODO')
+    @editor.composer.commands.exec 'insertImage', $link.attr('href')
+    @options.parent_view.hide()
+    # src:   $link.attr('href')
 
   open_edit_drawer: (event) ->
     console.log '[PickerView] open_edit_drawer'

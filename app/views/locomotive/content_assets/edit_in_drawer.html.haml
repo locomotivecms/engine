@@ -3,21 +3,18 @@
     = image_tag @content_asset.source.url
 
   .resize-form{ style: 'display: none' }
-    %form.form{ role: 'form' }
-      .form-group
-        %label{ for: 'content-asset-width-input' } Width
-        .input-group
-          %input#content-asset-width-input.form-control{ type: 'integer', name: 'width', value: @content_asset.width, autocomplete: 'off' }
-          .input-group-addon px
-      .form-group
-        %label#content-asset-width-height{ for: 'content-asset-width-height' } Height
-        .input-group
-          %input.form-control{ type: 'integer', name: 'height', value: @content_asset.height, autocomplete: 'off' }
-          .input-group-addon px
+    - resize_form = image_resize_form(@content_asset)
+    = locomotive_form_for resize_form, url: '#' do |f|
+      = f.inputs do
+        = f.input :width
+        = f.input :height
 
       .text-right
-        %button.btn.btn-sm.btn-success.apply-resizing-btn{ autocomplete: 'off', data: { 'loading-text' => 'Resizing...' } }
-          Resize
+        %button.btn.btn-sm.btn-success.apply-resizing-btn{ autocomplete: 'off', data: { loading_text: f.submit_text(:loading_text) } }
+          = f.submit_text
+        &nbsp;
+        %button.btn.btn-sm.btn-default.cancel-resizing-btn{ autocomplete: 'off' }
+          = f.submit_text :cancel
 
   .actions
     .btn-group-vertical{ role: 'group' }

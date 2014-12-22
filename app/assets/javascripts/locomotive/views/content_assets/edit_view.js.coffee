@@ -8,7 +8,7 @@ class Locomotive.Views.ContentAssets.EditView extends Backbone.View
     'click .crop-btn':      'enable_crop'
 
   initialize: ->
-    _.bindAll(@, 'change_size', 'apply_resizing', 'update_cropper_label')
+    _.bindAll(@, 'change_size', 'apply_resizing', 'cancel_resizing', 'update_cropper_label')
     super
 
   render: ->
@@ -34,6 +34,7 @@ class Locomotive.Views.ContentAssets.EditView extends Backbone.View
 
     @$content.find('input').on 'keyup', @change_size
     @$content.find('.apply-resizing-btn').on 'click', @apply_resizing
+    @$content.find('.cancel-resizing-btn').on 'click', @cancel_resizing
 
     @$link.popover
       container:  '.main'
@@ -62,19 +63,22 @@ class Locomotive.Views.ContentAssets.EditView extends Backbone.View
     # make sure the value is an integer
     $input.val(value)
 
-    if $input.attr('name') == 'width'
+    if $input.attr('name') == 'image_resize_form[width]'
       _value = Math.round(value / @ratio)
-      @$content.find('input[name=height]').val(_value)
+      @_resize_input_el('height').val(_value)
     else
       _value = Math.round(value * @ratio)
-      @$content.find('input[name=width]').val(_value)
+      @_resize_input_el('width').val(_value)
 
   apply_resizing: (event) ->
     event.stopPropagation() & event.preventDefault()
-    $btn = $(event.target).button('loading')
 
-    width   = parseInt(@$content.find('input[name=width]').val())
-    height  = parseInt(@$content.find('input[name=height]').val())
+    width   = parseInt(@_resize_input_el('width').val())
+    height  = parseInt(@_resize_input_el('height').val())
+
+    return if _.isNaN(width) || _.isNaN(height)
+
+    $btn = $(event.target).button('loading')
 
     window.resizeImageStep @$cropper[0], width, height
       .then (image) =>
@@ -84,6 +88,10 @@ class Locomotive.Views.ContentAssets.EditView extends Backbone.View
         @set_cropper_height()
         $btn.button('reset')
         @toggle_resize_modal()
+
+  cancel_resizing: (event) ->
+    event.stopPropagation() & event.preventDefault()
+    @toggle_resize_modal()
 
   apply: (event) ->
     event.stopPropagation() & event.preventDefault()
@@ -125,6 +133,10 @@ class Locomotive.Views.ContentAssets.EditView extends Backbone.View
       $label = $dragger.append('<span class="cropper-label"><span>').find('> .cropper-label')
 
     $label.html("#{width} x #{height}")
+
+  _resize_input_el: (property) ->
+    name = "image_resize_form[#{property}]"
+    @$content.find("input[name=\"#{name}\"]")
 
   remove: ->
     console.log '[EditView] remove'

@@ -20,7 +20,7 @@ module Locomotive
   class FormBuilder < SimpleForm::FormBuilder
 
     def inputs(name = nil, options = {}, &block)
-      label = name ? I18n.t(name, scope: 'simple_form.titles.locomotive') : ''
+      label = translate_text(name, :titles)
 
       html = template.content_tag(:legend, template.content_tag(:span, label))
       html += template.capture(&block)
@@ -33,6 +33,41 @@ module Locomotive
     def actions(options = {}, &block)
       options[:class] ||= 'text-right'
       template.content_tag(:div, options, &block)
+    end
+
+    def action(misc_class = '')
+      action        = object.persisted? ? :update : :create
+      label         = translate_text(action, :buttons)
+      loading_text  = translate_text(:loading_text, :buttons)
+
+      template.content_tag :button, label,
+        type:   'submit',
+        class:  "btn btn-success btn-sm #{misc_class}",
+        data:   { loading_text: loading_text }
+    end
+
+    def submit_text(action = :submit)
+      translate_text(action, :buttons, action)
+    end
+
+    # Translate text for the submits and titles namespace.
+    # it differs from the simple_form translate_from_namespace method
+    # in that this does not care about the attribute.
+    #
+    def translate_text(key, namespace, default = '')
+      model_names = lookup_model_names.dup
+      lookups     = []
+
+      while !model_names.empty?
+        joined_model_names = model_names.join(".")
+        model_names.shift
+
+        lookups << :"#{joined_model_names}.#{key}"
+      end
+      lookups << :"defaults.locomotive.#{key}"
+      lookups << default.to_s
+
+      I18n.t(lookups.shift, scope: :"#{i18n_scope}.#{namespace}", default: lookups).presence
     end
 
     # Extract the model names from the object_name mess, ignoring numeric and
@@ -53,6 +88,10 @@ module Locomotive
         names.each { |name| name.gsub!('_attributes', '') }
         names.freeze
       end
+    end
+
+    def i18n_scope
+      SimpleForm.i18n_scope
     end
 
   end

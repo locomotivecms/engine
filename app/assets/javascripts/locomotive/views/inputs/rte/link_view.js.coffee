@@ -21,10 +21,10 @@ class Locomotive.Views.Inputs.Rte.LinkView extends Backbone.View
     @$content.show()
     @$link.popover
       container:  '.drawer'
-      placement:  'bottom'
+      placement:  'left'
       content:    @$content
       html:       true
-      template:   '<div class="popover" role="tooltip"><div class="arrow"></div><form><div class="popover-content"></div></form></div>'
+      template:   '<div class="popover" role="tooltip"><div class="arrow"></div><form class="simple_form"><div class="popover-content"></div></form></div>'
     @$link.data('bs.popover').setContent()
 
   attach_events: ->
@@ -37,13 +37,13 @@ class Locomotive.Views.Inputs.Rte.LinkView extends Backbone.View
     command.dialog = @
 
   apply: (event) ->
-    url = @$content.find('input[name=url]').val()
+    url = @_input_el('url').val()
 
     unless _.isEmpty(url)
       @editor.composer.commands.exec 'createLink',
         href:   url
-        target: @$content.find('select[name=target]').val()
-        title:  @$content.find('input[name=title]').val()
+        target: @_input_el('target', 'select').val()
+        title:  @_input_el('title').val()
         rel:    "nofollow"
 
       @hide()
@@ -51,9 +51,9 @@ class Locomotive.Views.Inputs.Rte.LinkView extends Backbone.View
   show: (state) ->
     if state?
       $link = $(state)
-      @$content.find('input[name=url]').val($link.attr('href'))
-      @$content.find('select[name=target]').val($link.attr('target'))
-      @$content.find('input[name=title]').val($link.attr('title'))
+      @_input_el('url').val($link.attr('href'))
+      @_input_el('target', 'select').val($link.attr('target'))
+      @_input_el('title').val($link.attr('title'))
 
       @$link.popover('show') if !@opened
     else
@@ -64,6 +64,11 @@ class Locomotive.Views.Inputs.Rte.LinkView extends Backbone.View
   hide: ->
     @$link.popover('hide')
     @opened = false
+
+  _input_el: (property, type) ->
+    type ||= 'input'
+    name = "rte_input_link_form[#{property}]"
+    @$content.find("#{type}[name=\"#{name}\"]")
 
   remove: ->
     @$link.popover('destroy')

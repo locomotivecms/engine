@@ -6,7 +6,7 @@
 
   = hidden_field_tag :active_tab, ''
 
-  = locomotive_form_button @account, 'hide'
+  = f.action 'hide'
 
   = render 'locomotive/my_account/form/tabs', f: f
 

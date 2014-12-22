@@ -1,29 +1,30 @@
 en:
   simple_form:
     titles:
-      locomotive:
-        information: General information
-        advanced_options: Advanced options
-        meta: SEO Metadata
-        seo: SEO settings
-        robots_txt: Robots.txt file
-        code: Code
-        raw_template: Template
-        credentials: Credentials
-        language: Language
-        sites: Sites
-        access_points: Access points
-        memberships: Accounts
-        membership_email: Account email
-        file: File
-        preview: Preview
-        options: Advanced options
-        custom_fields: Custom fields
-        other_fields: Other information
-        presentation: Presentation
-        attributes: Attributes
-        upload: Upload
-        api: API
+      defaults:
+        locomotive:
+          information: General information
+          advanced_options: Advanced options
+          meta: SEO Metadata
+          seo: SEO settings
+          robots_txt: Robots.txt file
+          code: Code
+          raw_template: Template
+          credentials: Credentials
+          language: Language
+          sites: Sites
+          access_points: Access points
+          memberships: Accounts
+          membership_email: Account email
+          file: File
+          preview: Preview
+          options: Advanced options
+          custom_fields: Custom fields
+          other_fields: Other information
+          presentation: Presentation
+          attributes: Attributes
+          upload: Upload
+          api: API
     labels:
       locomotive:
         theme_asset:
@@ -62,6 +63,13 @@ en:
         membership:
           edit:
             role: New role
+        rte_input_link_form:
+          url: Link URL
+          target: Target
+          title: Title
+        image_resize_form:
+          width: Width
+          height: Height
 
     hints:
       locomotive:
@@ -124,7 +132,33 @@ en:
             name: "Name of the property for liquid templates. Ex: <span class='code'>&#123;&#123; your_object.&lt;name_of_your_field&gt; &#125;&#125;</span>"
             hint: "Text displayed in the model form just below the field"
 
+        image_resize_form:
+          width: "in px"
+          height: "in px"
+
     placeholders:
       locomotive:
         site:
           domains: "Ex: mysite.com"
+
+    options:
+      locomotive:
+        rte_input_link_form:
+          target:
+            not_set: "Not set"
+            self: "Open link in the same window"
+            blank: "Open link in a new window"
+
+    buttons:
+      defaults:
+        locomotive:
+          create: Create
+          update: Save
+          submit: Ok
+          cancel: Cancel
+          loading_text: "Your form is being submitted"
+      locomotive:
+        image_resize_form:
+          loading_text: Resizing...
+          submit: Resize
+

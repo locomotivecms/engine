@@ -24,12 +24,18 @@ class Locomotive.Views.Inputs.Rte.FileView extends Backbone.View
   show: (state) ->
     console.log "[insertFileView] show #{state}"
 
-    window.application_view.drawer_view.open(@$link.data('url'), Locomotive.Views.ContentAssets.PickerView, @) #, @create_picker_view, @remove_picker_view)
-    @opened = true
+    if state?
+      console.log state
+      console.log 'TODO popover'
+    else
+      window.application_view.drawer_view.open(@$link.data('url'), Locomotive.Views.ContentAssets.PickerView, @)
+      @opened = true
 
   hide: ->
-    window.application_view.drawer_view.close()
-    @opened = false
+    console.log "[insertFileView] hide"
+    if @opened
+      window.application_view.drawer_view.close()
+      @opened = false
 
   remove: ->
     console.log "[insertFileView] remove"

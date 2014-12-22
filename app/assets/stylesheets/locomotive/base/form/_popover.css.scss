@@ -1,0 +1,44 @@
+.popover {
+  .simple_form {
+    padding-bottom: 0px;
+
+    fieldset {
+      padding-top: 0px;
+
+      .input {
+        padding: 0px;
+        background: transparent;
+        margin-bottom: 10px;
+
+        .control-label {
+          font-size: 10px;
+        }
+
+        .form-wrapper {
+          margin-top: 0px;
+          border-width: 3px;
+
+          .form-control {
+            padding: 5px 6px;
+            height: 22px;
+            font-size: 12px;
+          }
+
+          .input-group {
+            .form-control {
+              border: none;
+            }
+            .input-group-addon {
+              border: none;
+              padding: 3px 4px;
+            }
+          }
+        }
+      }
+    }
+
+    p {
+      margin: 3px 0px;
+    }
+  }
+}

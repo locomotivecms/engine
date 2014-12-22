@@ -40,19 +40,6 @@ module Locomotive
       simple_form_for(object, *(args << options.merge(builder: Locomotive::FormBuilder)), &block)
     end
 
-    def locomotive_form_button(resource, misc_class = '')
-      key   = resource.persisted? ? 'update' : 'create'
-      scope = 'locomotive.shared.form_actions'
-
-      content_tag :button,
-        I18n.t(key, scope: scope),
-        type:   'submit',
-        class:  "btn btn-success btn-sm #{misc_class}",
-        data:   {
-          loading_text: t('locomotive.messages.sending_form')
-        }
-    end
-
     def form_nav_tab(name, first = false, &block)
       active = (first && params[:active_tab].blank?) || params[:active_tab] == name.to_s
 

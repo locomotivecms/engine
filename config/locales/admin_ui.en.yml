@@ -31,7 +31,6 @@ en:
 
     messages:
       confirm: Are you sure ?
-      sending_form: Your form is being submitted
 
     shared:
       header:
