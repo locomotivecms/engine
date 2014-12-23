@@ -8,7 +8,7 @@ module Locomotive
 
     def toolbar_html
       template.render(
-        partial:  'locomotive/shared/inputs/toolbar',
+        partial:  'locomotive/shared/rte/toolbar',
         locals:   {
           wysihtml5_prefix: wysihtml5_prefix,
           link_popover:     link_popover,
@@ -27,7 +27,7 @@ module Locomotive
 
     def link_popover
       remove_form(template.render(
-        partial:  'locomotive/shared/inputs/link_popover',
+        partial:  'locomotive/shared/rte/link_popover',
         locals:   { link_form: LinkForm.new }
       )).html_safe
     end

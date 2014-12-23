@@ -25,6 +25,7 @@ class Locomotive.Views.ContentAssets.PickerView extends Backbone.View
 
     @ajaxify()
     @enable_dropzone()
+    @create_image_popover()
 
     super
 
@@ -36,6 +37,18 @@ class Locomotive.Views.ContentAssets.PickerView extends Backbone.View
   unajaxify: ->
     for selector in @ajaxified_elements
       $(@el).off 'ajax:success', selector
+
+  create_image_popover: ->
+    @$image_popover = @$('.image-dialog-content')
+    @$content.show()
+    @$link.popover
+      container:  '.drawer'
+      placement:  'left'
+      content:    @$content
+      html:       true
+      template:   '<div class="popover" role="tooltip"><div class="arrow"></div><form class="simple_form"><div class="popover-content"></div></form></div>'
+    @$link.data('bs.popover').setContent()
+
 
   select: (event) ->
     console.log '[PickerView] select'
