@@ -69,6 +69,10 @@ class Locomotive.Views.ContentAssets.PickerView extends Backbone.View
   remove: ->
     console.log '[PickerView] remove'
 
+    # we might need to re-open this view further
+    if @options.parent_view
+      @options.parent_view.opened.picker = false
+
     @unajaxify()
     @dropzone.remove()
 

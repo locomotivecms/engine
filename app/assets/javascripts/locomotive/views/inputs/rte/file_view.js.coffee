@@ -61,6 +61,10 @@ class Locomotive.Views.Inputs.Rte.FileView extends Backbone.View
   show: (state) ->
     console.log "[insertFileView] show #{state}"
 
+    # FIXME (did): if opened without the focus, it will cause an error
+    # when executing a command
+    @editor.focus()
+
     if state?
       $image = $(state)
       @_input_el('src').val($image.attr('src'))

@@ -117,7 +117,9 @@ class Locomotive.Views.ContentAssets.EditView extends Backbone.View
   set_cropper_height: ->
     container_height = @$('.edit-assets-container').height()
 
-    if @height < container_height
+    if @height < 150
+      @$('.image-container').css('max-height', @height * 2)
+    else if @height < container_height
       @$('.image-container').css('max-height', @height)
     else
       @$('.image-container').css('max-height', 'inherit')
