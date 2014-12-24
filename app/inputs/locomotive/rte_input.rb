@@ -21,8 +21,10 @@ module Locomotive
     end
 
     def image_popover
-      %{
-      }.html_safe
+      remove_form(template.render(
+        partial:  'locomotive/shared/rte/image_popover',
+        locals:   { image_form: ImageForm.new }
+      )).html_safe
     end
 
     def link_popover
@@ -39,6 +41,10 @@ module Locomotive
     end
 
     class LinkForm < Struct.new(:url, :target, :title)
+      include ActiveModel::Model
+    end
+
+    class ImageForm < Struct.new(:src, :title, :alignment)
       include ActiveModel::Model
     end
   end

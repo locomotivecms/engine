@@ -28,34 +28,34 @@
     %a.style
       %i.fa.fa-paragraph
 
-  .style-dialog-content{ style: 'display: none' }
-    %a{ data: { wysihtml5_command: 'formatBlock', wysihtml5_command_value: 'h1' } } H1
-    %br
-    %a{ data: { wysihtml5_command: 'formatBlock', wysihtml5_command_value: 'h2' } } H2
-    %br
-    %a{ data: { wysihtml5_command: 'formatBlock', wysihtml5_command_value: 'h3' } } H3
-    %br
-    %a{ data: { wysihtml5_command: 'formatBlock', wysihtml5_command_value: 'h3' } } H4
-    %br
-    %a{ data: { wysihtml5_command: 'formatBlock', wysihtml5_command_value: 'h3' } } H5
-    %br
-    %a{ data: { wysihtml5_command: 'formatBlock', wysihtml5_command_value: 'h3' } } H6
-    %br
-    %a{ data: { wysihtml5_command: 'formatBlock', wysihtml5_command_value: 'p' } } P
-    %br
-    %a{ data: { wysihtml5_command: 'formatBlock', wysihtml5_command_value: 'blockquote' } }
-      %i.fa.fa-quote-right
-    %br
+    .style-dialog-content{ style: 'display: none' }
+      %a{ data: { wysihtml5_command: 'formatBlock', wysihtml5_command_value: 'h1' } } H1
+      %br
+      %a{ data: { wysihtml5_command: 'formatBlock', wysihtml5_command_value: 'h2' } } H2
+      %br
+      %a{ data: { wysihtml5_command: 'formatBlock', wysihtml5_command_value: 'h3' } } H3
+      %br
+      %a{ data: { wysihtml5_command: 'formatBlock', wysihtml5_command_value: 'h3' } } H4
+      %br
+      %a{ data: { wysihtml5_command: 'formatBlock', wysihtml5_command_value: 'h3' } } H5
+      %br
+      %a{ data: { wysihtml5_command: 'formatBlock', wysihtml5_command_value: 'h3' } } H6
+      %br
+      %a{ data: { wysihtml5_command: 'formatBlock', wysihtml5_command_value: 'p' } } P
+      %br
+      %a{ data: { wysihtml5_command: 'formatBlock', wysihtml5_command_value: 'blockquote' } }
+        %i.fa.fa-quote-right
+      %br
 
-  %a{ data: { wysihtml5_command: 'createLink' } }
-    %i.fa.fa-chain
-  = link_popover
-  %a{ data: { wysihtml5_command: 'removeLink' } }
-    %i.fa.fa-chain-broken
+    %a{ data: { wysihtml5_command: 'createLink' } }
+      %i.fa.fa-chain
+    = link_popover
+    %a{ data: { wysihtml5_command: 'removeLink' } }
+      %i.fa.fa-chain-broken
 
-  %a{ data: { url: content_assets_path, wysihtml5_command: 'insertFile' } }
-    %i.fa.fa-file-o
-  = image_popover
+    %a{ data: { url: content_assets_path, wysihtml5_command: 'insertFile' } }
+      %i.fa.fa-file-o
+    = image_popover
 
   %span.wysihtml5-toolbar-group
     %a{ data: { wysihtml5_action: 'change_view' } }

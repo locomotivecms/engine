@@ -1,2 +1,18 @@
 .image-dialog-content{ style: 'display: none' }
-  %p TODO
+  = locomotive_form_for image_form, url: '#' do |f|
+    = f.inputs do
+      = f.input :src
+      = f.input :title
+      = f.input :alignment, include_blank: false, collection: [[:default, ''],
+        [:left, 'wysiwyg-float-left'],
+        [:right, 'wysiwyg-float-right']],
+        label_method: ->(el) { t("simple_form.options.locomotive.rte_input_image_form.target.#{el.first}") }
+
+    %p.text-right
+      %a.btn.btn-success.btn-sm.apply
+        = f.submit_text
+
+      &nbsp;
+
+      %a.btn.btn-default.btn-sm.cancel
+        = f.submit_text :cancel
