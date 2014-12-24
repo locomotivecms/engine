@@ -21,7 +21,7 @@
           %h2= presenter.filename
 
         .actions
-          = link_to 'Select', presenter.url, class: 'btn btn-primary btn-sm select', data: { image: asset.image? }
+          = link_to 'Select', presenter.url, class: 'btn btn-primary btn-sm select', title: presenter.filename, data: { image: asset.image? }
 
           - if asset.image?
             &nbsp;

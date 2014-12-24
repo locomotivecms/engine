@@ -41,11 +41,19 @@ class Locomotive.Views.ContentAssets.PickerView extends Backbone.View
     console.log '[PickerView] select'
     event.stopPropagation() & event.preventDefault()
 
-    $link = $(event.target)
+    $link   = $(event.target)
+    title   = $link.attr('title')
+    url     = $link.attr('href')
 
-    @editor.composer.commands.exec 'insertImage', $link.attr('href')
+    if $link.data('image')
+      @editor.composer.commands.exec 'insertImage',
+        src:    url
+        title:  title
+    else
+      html = "<a href='#{url}' title='#{title}'>#{title}</a>"
+      @editor.composer.commands.exec 'insertHTML', html
+
     @options.parent_view.hide()
-    # src:   $link.attr('href')
 
   open_edit_drawer: (event) ->
     console.log '[PickerView] open_edit_drawer'
