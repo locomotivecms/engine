@@ -1,12 +1,8 @@
-/ %h1= t('.dropzone.title')
-
 .instructions
   %i.fa.fa-cloud-upload
   %br
-  %strong Drop files from your computer here.
-  %br
-  You can also
-  = link_to 'browse for a file', '#', class: 'upload'
+  = t('.instructions').html_safe
+  = link_to t('.browse'), '#', class: 'upload'
 
 = form_tag('', class: 'hide') do
   = file_field_tag :source, multiple: true

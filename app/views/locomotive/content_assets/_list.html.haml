@@ -21,11 +21,11 @@
           %h2= presenter.filename
 
         .actions
-          = link_to 'Select', presenter.url, class: 'btn btn-primary btn-sm select', title: presenter.filename, data: { image: asset.image? }
+          = link_to t('.buttons.select'), presenter.url, class: 'btn btn-primary btn-sm select', title: presenter.filename, data: { image: asset.image? }
 
           - if asset.image?
             &nbsp;
-            = link_to 'Edit', edit_content_asset_path(presenter._id), class: 'btn btn-primary btn-sm edit'
+            = link_to t('.buttons.edit'), edit_content_asset_path(presenter._id), class: 'btn btn-primary btn-sm edit'
 
           &nbsp;
 

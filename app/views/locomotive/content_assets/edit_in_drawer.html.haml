@@ -18,9 +18,9 @@
 
   .actions
     .btn-group-vertical{ role: 'group' }
-      %button.btn.btn-sm.btn-primary.resize-btn{ title: 'Resize' }
+      %button.btn.btn-sm.btn-primary.resize-btn{ title: t('.buttons.resize') }
         %i.fa.fa-compress
-      %button.btn.btn-sm.btn-primary.crop-btn{ title: 'Crop' }
+      %button.btn.btn-sm.btn-primary.crop-btn{ title: t('.buttons.crop') }
         %i.fa.fa-crop
-      %button.btn.btn-sm.btn-success.apply-btn{ title: 'Apply', data: { url: content_assets_path(format: :json) } }
+      %button.btn.btn-sm.btn-success.apply-btn{ title: t('.buttons.apply'), data: { url: content_assets_path(format: :json) } }
         %i.fa.fa-check

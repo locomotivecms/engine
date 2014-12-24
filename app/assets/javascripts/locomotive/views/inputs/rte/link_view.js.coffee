@@ -81,5 +81,3 @@ class Locomotive.Views.Inputs.Rte.LinkView extends Backbone.View
     @$link.popover('destroy')
     @$('.popover').remove()
 
-    # TODO: unattach events?
-

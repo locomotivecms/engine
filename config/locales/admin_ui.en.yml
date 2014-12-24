@@ -287,11 +287,22 @@ en:
     content_assets:
       index:
         title: "Listing assets"
-      index_in_drawer:
-        title: "Insert asset"
+
+      edit_in_drawer:
+        buttons:
+          resize: "Resize"
+          crop: "Crop"
+          apply: "Apply"
+
+      dropzone:
+        instructions: "<strong>Drop files from your computer here.</strong><br/>You can also"
+        browse: "browse for a file"
 
       list:
         no_items: "There are no media for now."
+        buttons:
+          select: "Select"
+          edit: "Edit"
 
       nav:
         types:
