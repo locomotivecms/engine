@@ -118,7 +118,7 @@ describe Locomotive::Site do
     site.memberships.build(account: account_1, admin: true)
     site.memberships.build(account: account_2)
     expect(site.memberships.size).to eq(2)
-    expect(site.accounts).to eq([account_1, account_2])
+    expect(site.accounts.to_a).to eq([account_1, account_2])
   end
 
   ## Methods ##
