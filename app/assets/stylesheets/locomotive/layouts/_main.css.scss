@@ -55,4 +55,8 @@ body.no-sidebar {
   bottom: 0px;
   left: 0px;
   overflow: auto;
+
+  > .main {
+    height: 100%;
+  }
 }

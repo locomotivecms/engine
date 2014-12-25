@@ -21,16 +21,17 @@
           %h2= presenter.filename
 
         .actions
-          = link_to t('.buttons.select'), presenter.url, class: 'btn btn-primary btn-sm select', title: presenter.filename, data: { image: asset.image? }
+          - if enable_select
+            = link_to t('.buttons.select'), presenter.url, class: 'btn btn-primary btn-sm select', title: presenter.filename, data: { image: asset.image? }
+            &nbsp;
 
           - if asset.image?
-            &nbsp;
             = link_to t('.buttons.edit'), edit_content_asset_path(presenter._id), class: 'btn btn-primary btn-sm edit'
 
           &nbsp;
 
-          = link_to content_asset_path(asset, params.slice(:types, :query, :page, :per_page)), class: 'remove', method: :delete, data: { confirm: t('locomotive.messages.confirm'), return_url: request.original_url }, title: t('locomotive.buttons.delete'), remote: true do
+          = link_to content_asset_path(asset, params.slice(:types, :query, :page, :per_page)), class: 'remove', method: :delete, data: { confirm: t('locomotive.messages.confirm'), return_url: request.original_url }, title: t('locomotive.buttons.delete'), remote: remote do
             %i.fa.fa-trash-o
 
   .text-center
-    = paginate @content_assets, theme: 'twitter-bootstrap-3', pagination_class: 'pagination-sm', remote: true
+    = paginate @content_assets, theme: 'twitter-bootstrap-3', pagination_class: 'pagination-sm', remote: remote

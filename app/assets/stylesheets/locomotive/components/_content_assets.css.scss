@@ -1,4 +1,9 @@
-.content-assets-in-drawer {
+.content-assets {
+  // height: 100%;
+
+  > .row {
+    // height: 100%;
+  }
 
   .updatable {
     margin-top: 140px;
@@ -15,25 +20,40 @@
         margin-top: 10px;
       }
     }
-
   }
 
-  > .dropzone-container {
+  .sidebar-dropzone {
+    height: 100%;
+  }
+
+  .top-dropzone {
     z-index: 10;
     position: absolute;
     top: 0px;
     height: 140px;
     width: 100%;
+  }
+
+  .dropzone {
     background: #f1f4f5;
 
     &.hovered {
       background: #f7f7d2;
     }
 
-    // h1 {
-    //   color: #555;
-    //   margin-top: 10px;
-    //   display: none;
+    .dropzone-inner {
+      position: fixed;
+      top: 100px;
+    }
+
+    // .dropzone-container {
+    //   position: absolute;
+    //   top: 0px;
+    //   right: 0px;
+    //   left: 0px;
+    //   bottom: 0px;
+    //   // width: 100%;
+    //   // height: 100%;
     // }
 
     .instructions {

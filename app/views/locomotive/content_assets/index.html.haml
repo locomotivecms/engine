@@ -1,7 +1,19 @@
-- title t('.title')
+.content-assets
+  .row
+    .col-md-9.col-xs-12.col-sm-12
+      .row.header-row
+        .col-md-8.col-xs-9
+          %h1!= t('.title')
+        .col-md-4.col-xs-3.actions
+          .visible-xs-block.visible-sm-block
+            %p.text-right
+              = link_to t('.upload'), bulk_create_content_assets_path(:json), class: 'btn btn-sm btn-primary'
 
-.row
-  .col-md-12
-    = render 'nav'
+      .nav-container
+        = render 'nav', remote: false
 
-    = render 'list'
+      = render 'list', remote: false, enable_select: false
+
+    .col-md-3.dropzone.sidebar-dropzone.hidden-xs.hidden-sm{ data: { url: bulk_create_content_assets_path(:json) } }
+      .dropzone-inner
+        = render 'dropzone'

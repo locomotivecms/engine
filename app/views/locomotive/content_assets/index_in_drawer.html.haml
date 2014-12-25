@@ -1,4 +1,4 @@
-.content-assets-in-drawer
+.content-assets
 
   .dropzone-container{ data: { url: bulk_create_content_assets_path(:json) } }
     .container-fluid
@@ -11,10 +11,10 @@
       .container-fluid
         .row
           .col-md-12
-            = render 'nav'
+            = render 'nav', remote: true
 
     .list-container.scrollable
       .container-fluid
         .row
           .col-md-12
-            = render 'list'
+            = render 'list', remote: true, enable_select: true

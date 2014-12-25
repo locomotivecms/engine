@@ -19,7 +19,7 @@ module Locomotive
     end
 
     def filename
-      truncate(self.__source.source_filename, length: 22)
+      truncate(self.__source.source_filename, length: 28)
     end
 
     def short_name

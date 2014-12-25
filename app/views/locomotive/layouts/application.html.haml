@@ -17,12 +17,13 @@
       .content
         .scrollable
           .container-fluid.main{ role: 'main' }
-            .row
-              .col-md-8.col-xs-9
-                %h1!= title
+            - if title
+              .row
+                .col-md-8.col-xs-9
+                  %h1!= title
 
-              .col-md-4.col-xs-3.actions
-                = yield :actions
+                .col-md-4.col-xs-3.actions
+                  = yield :actions
 
             = yield
 
