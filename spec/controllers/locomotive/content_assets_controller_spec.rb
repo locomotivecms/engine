@@ -16,7 +16,7 @@ describe Locomotive::ContentAssetsController do
     sign_in account
   end
 
-  describe "#GET index" do
+  describe '#GET index' do
     specify do
       expect(get: '/content_assets', action: 'index').to route_to(
         controller: 'locomotive/content_assets', action: 'index')
@@ -29,7 +29,7 @@ describe Locomotive::ContentAssetsController do
     end
   end
 
-  describe "#POST create" do
+  describe '#POST create' do
     let(:content_asset_attributes) do
       attributes_for(:asset, site: site)
     end
@@ -38,11 +38,27 @@ describe Locomotive::ContentAssetsController do
     end
     it { is_expected.to be_redirect }
     specify do
-      expect { subject }.to change(Locomotive::ContentAsset, :count).by(+1)
+      expect { subject }.to change(Locomotive::ContentAsset, :count).by(1)
     end
   end
 
-  describe "#DELETE destroy" do
+  describe '#POST bulk_create' do
+    let(:content_assets_attributes) do
+      [
+        { source: FixturedAsset.open('5k.png') },
+        { source: FixturedAsset.open('5k_2.png') }
+      ]
+    end
+    subject do
+      post :bulk_create, locale: :en, content_assets: content_assets_attributes, format: :json
+    end
+    it { is_expected.to be_success }
+    specify do
+      expect { subject }.to change(Locomotive::ContentAsset, :count).by(2)
+    end
+  end
+
+  describe '#DELETE destroy' do
     let!(:content_asset) { create(:asset) }
     subject do
       delete :destroy, id: content_asset.id, locale: :en
