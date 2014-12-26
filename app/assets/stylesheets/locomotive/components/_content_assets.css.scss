@@ -30,10 +30,10 @@
   }
 
   .dropzone {
-    background: #f1f4f5;
+    background: $assets_dropzone_background_color;
 
     &.hovered {
-      background: #f7f7d2;
+      background: $assets_dropzone_background_hover_color;
     }
 
     .dropzone-inner {
@@ -45,7 +45,7 @@
       margin-top: 10px;
       text-align: center;
 
-      color: #8c8c8c;
+      color: $assets_dropzone_instructions_color;
       font-size: 12px;
 
       strong {
@@ -62,13 +62,13 @@
     .progress {
       margin-top: 10px;
 
-      background: #d7d7d7;
-      height: 6px;
-      @include border-radius(3px);
+      background: $assets_dropzone_progress_background;
+      height: $assets_dropzone_progress_size;
+      @include border-radius($assets_dropzone_progress_size / 2);
       @include box-shadow(none);
 
       .progress-bar {
-        background: #fd4c4c;
+        background: $assets_dropzone_progress_bar_color;
       }
     }
   }
@@ -85,50 +85,50 @@
   // @include flex-justify-content(center);
 
   .asset {
-    @include border-radius(4px);
-    background: #f7f7f7;
+    @include border-radius($asset_border_radius);
+    background: $asset_background;
     padding: 15px;
     margin: 0px 20px 20px 0px;
 
-    width: 240px;
-    height: 240px;
+    width: $asset_width;
+    height: $asset_height;
 
     > .top {
-      min-height: 155px;
+      min-height: $asset_height - 85;
     }
 
     h2 {
-      color: #333;
+      color: $asset_title_color;
       font-size: 14px;
       margin: 8px 0px 20px 0px;
     }
 
     .small-thumbnail {
       display: inline-block;
-      background: #d7d7d7;
-      @include border-radius(4px);
-      padding: 4px;
+      background: $asset_thumbnail_background;
+      @include border-radius($asset_thumbnail_border_radius);
+      padding: $asset_thumbnail_border_radius;
 
       img {
-        border: 2px solid #acacac;
+        border: $asset_thumbnail_img_border;
       }
 
       .not-a-image {
         position: relative;
         width: 120px;
         height: 120px;
-        border: 2px solid #acacac;
+        border: 2px solid $asset_not_image_border_color;
 
-        &.pdf { background: #e82f2d; }
-        &.media { background: #6e489c; }
-        &.other { background: #4a4a50; }
+        &.pdf { background: $asset_pdf_background; }
+        &.media { background: $asset_media_background; }
+        &.other { background: $asset_other_background; }
 
         span {
           display: block;
           position: relative;
           top: 40px;
 
-          color: #fff;
+          color: $asset_not_image_text_color;
           font-size: 22px;
           font-weight: bold;
           text-align: center;
@@ -141,7 +141,7 @@
     }
 
     a.remove {
-      color: #7b7b7b;
+      color: $asset_remove_icon_color;
     }
 
   }
@@ -158,7 +158,7 @@
   }
 
   .image-container {
-    background-color: #f7f7f7;
+    background-color: $cropping_asset_background;
     overflow: hidden;
     width: 100%;
     text-align: center;
@@ -177,8 +177,8 @@
     position: absolute;
     top: 0px;
     left: 0px;
-    background: #000;
-    color: #fff;
+    background: $cropping_asset_label_background;
+    color: $cropping_asset_label_color;
     font-size: 11px;
     padding: 3px 6px;
   }

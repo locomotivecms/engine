@@ -21,7 +21,7 @@ class Locomotive.Views.ContentAssets.EditView extends Backbone.View
     @create_resize_popover()
 
   create_cropper: ->
-    @$cropper = @$(".image-container > img")
+    @$cropper = @$('.image-container > img')
 
     @set_cropper_height()
     @$cropper.cropper
