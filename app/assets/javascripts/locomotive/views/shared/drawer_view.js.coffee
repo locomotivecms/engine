@@ -57,7 +57,8 @@ class Locomotive.Views.Shared.DrawerView extends Backbone.View
     else
       entry.view.$el.addClass('fadeout')
 
-    setTimeout ->
+    setTimeout =>
+      entry.view.hide_from_drawer(@stack.length) if entry.view.hide_from_drawer?
       entry.view.remove()
       callback() if callback?
     , @delays.remove

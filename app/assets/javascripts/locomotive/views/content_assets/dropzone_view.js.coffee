@@ -50,7 +50,14 @@ class Locomotive.Views.ContentAssets.DropzoneView extends Backbone.View
       @$('.instructions').effect('shake')
     .done =>
       console.log 'uploaded'
-      @$('a.refresh').trigger 'click'
+      @_refresh()
+
+  _refresh: ->
+    $link = @$('a.refresh')
+    if $link.data('remote')
+      $link.trigger 'click'
+    else
+      $link[0].click()
 
   _ajax_options: (data) ->
     url:          $(@el).data('url')

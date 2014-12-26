@@ -64,14 +64,16 @@ class Locomotive.Views.ContentAssets.PickerView extends Backbone.View
     window.application_view.drawer_view.open($link.attr('href'), Locomotive.Views.ContentAssets.EditView)
 
   enable_dropzone: ->
-    @dropzone = new Locomotive.Views.ContentAssets.DropzoneView(el: @$('.dropzone-container')).render()
+    @dropzone = new Locomotive.Views.ContentAssets.DropzoneView(el: @$('.dropzone')).render()
+
+  hide_from_drawer: (stack_size) ->
+    console.log '[PickerView] hide_from_drawer'
+    # we might need to re-open this view further
+    if @options.parent_view && stack_size == 0
+      @options.parent_view.opened.picker = false
 
   remove: ->
     console.log '[PickerView] remove'
-
-    # we might need to re-open this view further
-    if @options.parent_view
-      @options.parent_view.opened.picker = false
 
     @unajaxify()
     @dropzone.remove()

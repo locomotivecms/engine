@@ -47,7 +47,6 @@ class Locomotive.Views.ApplicationView extends Backbone.View
 
     @$('> .wrapper').height(height)
 
-
   # center_ui_dialog: ->
   #   $(window).resize ->
   #     $('.ui-dialog-content:visible').dialog('option', 'position', 'center')

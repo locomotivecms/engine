@@ -63,7 +63,7 @@ describe Locomotive::ContentAssetsController do
     subject do
       delete :destroy, id: content_asset.id, locale: :en
     end
-    it { is_expected.to be_success }
+    it { is_expected.to be_redirect }
     specify do
       expect { subject }.to change(Locomotive::ContentAsset, :count).by(-1)
     end

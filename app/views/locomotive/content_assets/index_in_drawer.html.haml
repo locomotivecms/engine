@@ -1,10 +1,10 @@
 .content-assets
 
-  .dropzone-container{ data: { url: bulk_create_content_assets_path(:json) } }
+  .dropzone.top-dropzone{ data: { url: bulk_create_content_assets_path(:json) } }
     .container-fluid
       .row
         .col-md-12
-          = render 'dropzone'
+          = render 'dropzone', remote: true
 
   .updatable
     .nav-container

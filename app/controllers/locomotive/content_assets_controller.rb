@@ -36,8 +36,12 @@ module Locomotive
       @content_asset.destroy
       respond_with(@content_asset) do |format|
         format.html do
-          load_content_assets
-          render_index
+          if request.xhr?
+            load_content_assets
+            render_index
+          else
+            redirect_to content_assets_path
+          end
         end
       end
     end

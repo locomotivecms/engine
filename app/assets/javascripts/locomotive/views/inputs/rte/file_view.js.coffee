@@ -51,7 +51,7 @@ class Locomotive.Views.Inputs.Rte.FileView extends Backbone.View
     @$popover.on 'click', '.cancel', @hide
 
   change_image: (event) ->
-    @editor.composer.commands.exec 'insertImage', attributes
+    @editor.composer.commands.exec 'insertImage',
       src:    @_input_el('src').val()
       class:  @_input_el('alignment', 'select').val()
       title:  @_input_el('title').val()
@@ -88,12 +88,14 @@ class Locomotive.Views.Inputs.Rte.FileView extends Backbone.View
 
   hide: ->
     console.log "[insertFileView] hide"
+    console.log @opened
     if @opened.picker
       @hide_picker()
     else if @opened.popover
       @hide_popover()
 
   hide_picker: ->
+    console.log "[insertFileView] hide picker"
     window.application_view.drawer_view.close()
     @opened.picker = false
 

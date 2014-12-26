@@ -286,7 +286,7 @@ en:
 
     content_assets:
       index:
-        title: "Listing assets"
+        title: "Assets"
 
       edit_in_drawer:
         buttons:
