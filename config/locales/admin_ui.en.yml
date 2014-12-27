@@ -311,7 +311,9 @@ en:
           image: images
           media: rich media
           others: others
-        placeholder_search: Search by filename
+
+      search_form:
+        placeholder: Search by filename
 
     content_types:
       index:

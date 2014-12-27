@@ -1,18 +1,20 @@
-.nav {
+.search-bar {
+  text-align: right;
 
-  .search-bar {
+  form {
+    display: inline-block;
 
     .form-group {
       border: 1px solid #dadada;
       position: relative;
-      top: 2px;
+      top: -6px;
 
       padding: 4px 6px;
 
       margin-bottom: 0px;
 
       input[type=text] {
-        width: 120px;
+        width: 200px;
         display: inline-block;
         border: none;
         @include box-shadow(none);
@@ -27,7 +29,34 @@
       }
     }
 
+  }
 
+  &.search-bar-in-nav {
+    float: right;
+
+    .form-group {
+      top: 2px;
+    }
+  }
+
+}
+
+@media (max-width: $screen-md-min) {
+
+  .search-bar {
+    text-align: left;
+    margin-bottom: 16px;
+
+    form {
+      .form-group {
+        top: 0px;
+      }
+    }
+
+    &.search-bar-in-nav {
+      float: none;
+      margin-top: 16px;
+    }
   }
 
 }

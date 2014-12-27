@@ -1,15 +1,21 @@
 - title t('.title', type: @content_type.name.capitalize)
 
-= help @content_type.description
-
 - content_for :actions do
   = link_to t('.new'), new_content_entry_path(@content_type.slug), class: 'btn btn-primary btn-sm'
 
 - if @content_type.filter_fields.present?
-  .search-box
-    = form_tag content_entries_path(@content_type.slug), method: :get do
-      %i.icon-search
-      = text_field_tag :q, params[:q], placeholder: t('.search_placeholder')
+  .row
+    .col-md-6
+      = help @content_type.description
+    .col-md-6
+      .search-bar
+        = form_tag content_entries_path(@content_type.slug), method: :get do
+          .form-group
+            = text_field_tag :q, params[:q], placeholder: t('.search_placeholder'), class: 'form-control'
+            %i.fa.fa-search.icon
+
+- else
+  = help @content_type.description
 
 - if @content_type.groupable?
   %p TODO
