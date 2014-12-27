@@ -19,16 +19,21 @@
             %i.fa.fa-trash-o
 
 
-    / %strong= link_to entry_label(content_type, entry), edit_content_entry_path(content_type.slug, entry)
+- if entries.respond_to?(:current_page)
+  .text-center
+    = paginate entries, theme: 'twitter-bootstrap-3', pagination_class: 'pagination-sm'
 
-    / - unless entry.translated?
-    /   %span.untranslated= t('locomotive.shared.list.untranslated')
-    / .more
-    /   %span
-    /     != t('locomotive.content_entries.index.updated_at')
-    /   = l entry.updated_at, format: :short rescue 'n/a'
+/ - if entries.respond_to?(:current_page)
+/   = paginate entries, namespace: 'locomotive'
 
-    /   = link_to_icon :trash, content_entry_path(content_type.slug, entry), title: t('locomotive.buttons.delete'), class: 'remove', data: { confirm: t('locomotive.messages.confirm') }, method: :delete
 
-  - if entries.respond_to?(:current_page)
-    = paginate entries, namespace: 'locomotive'
+/ %strong= link_to entry_label(content_type, entry), edit_content_entry_path(content_type.slug, entry)
+
+/ - unless entry.translated?
+/   %span.untranslated= t('locomotive.shared.list.untranslated')
+/ .more
+/   %span
+/     != t('locomotive.content_entries.index.updated_at')
+/   = l entry.updated_at, format: :short rescue 'n/a'
+
+/   = link_to_icon :trash, content_entry_path(content_type.slug, entry), title: t('locomotive.buttons.delete'), class: 'remove', data: { confirm: t('locomotive.messages.confirm') }, method: :delete
