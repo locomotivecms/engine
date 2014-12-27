@@ -15,9 +15,9 @@ class Locomotive.Views.Shared.DrawerView extends Backbone.View
     @stack = []
     super
 
-  open: (url, view_klass, parent_view) ->
+  open: (url, view_klass, options = {}) ->
     console.log "[DrawerView] open, stack(#{@stack.length}) opened = #{$('body').hasClass('drawer-opened')}, #{url}"
-    entry = { url: url, view_klass: view_klass, parent_view: parent_view }
+    entry = { url: url, view_klass: view_klass, options: options }
     @push(entry)
 
   close: ->
@@ -73,9 +73,10 @@ class Locomotive.Views.Shared.DrawerView extends Backbone.View
     @$('> .inner').html('<div></div>').find('> div')
 
   _show: (entry, container) ->
-    _klass = entry.view_klass
+    _klass      = entry.view_klass
+    attributes  = _.extend { el: container, drawer: @ }, entry.options
 
-    entry.view = new _klass(el: container, parent_view: entry.parent_view, drawer: @)
+    entry.view = new _klass(attributes)
     entry.view.render()
 
     $('body').addClass('drawer-opened')

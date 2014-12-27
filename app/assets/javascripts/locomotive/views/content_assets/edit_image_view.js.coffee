@@ -1,6 +1,6 @@
 Locomotive.Views.ContentAssets ||= {}
 
-class Locomotive.Views.ContentAssets.EditView extends Backbone.View
+class Locomotive.Views.ContentAssets.EditImageView extends Backbone.View
 
   events:
     'click .apply-btn':     'apply'
@@ -112,7 +112,9 @@ class Locomotive.Views.ContentAssets.EditView extends Backbone.View
       data:         form_data
       processData:  false
       contentType:  false
-      success: (data) => @options.drawer.close()
+      success: (data) =>
+        @options.on_apply_callback(data) if @options.on_apply_callback?
+        @options.drawer.close()
 
   set_cropper_height: ->
     container_height = @$('.edit-assets-container').height()

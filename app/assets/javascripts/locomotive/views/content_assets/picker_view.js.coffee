@@ -1,4 +1,4 @@
-#= require ./edit_view
+#= require ./edit_image_view
 #= require ./dropzone_view
 
 Locomotive.Views.ContentAssets ||= {}
@@ -61,7 +61,7 @@ class Locomotive.Views.ContentAssets.PickerView extends Backbone.View
 
     $link = $(event.target)
 
-    window.application_view.drawer_view.open($link.attr('href'), Locomotive.Views.ContentAssets.EditView)
+    window.application_view.drawer_view.open($link.attr('href'), Locomotive.Views.ContentAssets.EditImageView)
 
   enable_dropzone: ->
     @dropzone = new Locomotive.Views.ContentAssets.DropzoneView(el: @$('.dropzone')).render()

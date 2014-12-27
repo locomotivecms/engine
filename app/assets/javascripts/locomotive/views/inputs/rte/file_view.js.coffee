@@ -17,10 +17,7 @@ class Locomotive.Views.Inputs.Rte.FileView extends Backbone.View
 
   render: ->
     @attach_editor()
-
     @create_popover()
-
-    # @show() # debug
 
   attach_editor: ->
     command = @editor.toolbar.commandMapping['insertFile:null']
@@ -78,7 +75,10 @@ class Locomotive.Views.Inputs.Rte.FileView extends Backbone.View
 
   show_picker: ->
     if @opened.picker == false
-      window.application_view.drawer_view.open(@$link.data('url'), Locomotive.Views.ContentAssets.PickerView, @)
+      window.application_view.drawer_view.open(
+        @$link.data('url'),
+        Locomotive.Views.ContentAssets.PickerView,
+        { parent_view: @ })
       @opened.picker = true
 
   show_popover: ->

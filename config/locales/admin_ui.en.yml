@@ -337,7 +337,7 @@ en:
 
     content_entries:
       index:
-        title: 'Listing "%{type}"'
+        title: '%{type}'
         edit: edit model
         destroy: remove model
         download: download entries
