@@ -131,6 +131,8 @@ en:
           "custom_fields/field":
             name: "Name of the property for liquid templates. Ex: <span class='code'>&#123;&#123; your_object.&lt;name_of_your_field&gt; &#125;&#125;</span>"
             hint: "Text displayed in the model form just below the field"
+        content_type_entry_field:
+          select_options: "Add/edit/re-arrange the options."
 
         image_resize_form:
           width: "in px"
@@ -140,6 +142,8 @@ en:
       locomotive:
         site:
           domains: "Ex: mysite.com"
+        content_type_entry_field:
+          select_options: "Type the label of your new option here"
 
     options:
       locomotive:

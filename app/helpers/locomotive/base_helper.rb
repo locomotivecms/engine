@@ -141,7 +141,10 @@ module Locomotive
         controller.action_name
       end.camelize
 
-      "Locomotive.Views.#{controller.controller_name.camelize}.#{action}View"
+      (parts = controller.controller_path.split('/')).shift
+      name  = parts.map(&:camelize).join('.')
+
+      "Locomotive.Views.#{name}.#{action}View"
     end
 
     def backbone_view_data

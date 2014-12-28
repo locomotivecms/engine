@@ -104,6 +104,10 @@ class Locomotive.Views.Shared.FormView extends Backbone.View
   remove: ->
     self.inputs.each (view) -> view.remove()
 
+  _stop_event: (event) ->
+    event.stopPropagation() & event.preventDefault()
+
+
   # ===============================
 
   # save: (event) ->

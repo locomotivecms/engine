@@ -33,13 +33,11 @@ module Locomotive
       @collection ||= (options[:collection] || object.send(attribute_name.to_sym))
     end
 
-    def new_item_link(wrapper_options)
+    def link(wrapper_options)
       if _options = options[:new_item]
         label = _options[:label] || I18n.t(:new, scope: 'locomotive.shared.form.array_input')
         url   = _options[:url]
-        template.content_tag :div,
-          template.link_to(label, url),
-          class: 'pull-right'
+        template.link_to(label, url)
       else
         ''
       end

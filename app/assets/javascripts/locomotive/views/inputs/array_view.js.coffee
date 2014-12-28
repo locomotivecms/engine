@@ -72,11 +72,22 @@ class Locomotive.Views.Inputs.ArrayView extends Backbone.View
   delete_item: (event) ->
     $link = $(event.target).closest('a')
 
+    # call the url directly
     return if $link.attr('href') != '#'
 
-    $link.parents('.item').remove()
+    $item           = $link.parents('.item')
+    $destroy_input  = $item.find('.mark-as-destroyed')
 
-    @hideEl(@$list) if @$list.find('> .item').size() == 0
+    if $destroy_input.size() > 0
+      # mark item as destroyed and hide the item
+      $destroy_input.val('1')
+      $item.addClass('hide')
+    else
+      # remove the item from the dom
+      $item.remove()
+
+    # do not display the list if no visible items
+    @hideEl(@$list) if @$list.find('> .item:not(".hide")').size() == 0
 
   is_unique: ->
     _.indexOf(@get_ids(), @$new_field.val()) == -1

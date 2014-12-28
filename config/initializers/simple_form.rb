@@ -6,8 +6,9 @@ SimpleForm.setup do |config|
   config.boolean_style = :nested
 
   config.wrapper_mappings = {
-    array:  :locomotive_array,
-    toggle: :locomotive_toggle
+    array:              :locomotive_link,
+    editable_select:    :locomotive_link,
+    toggle:             :locomotive_inline
   }
 
   config.wrappers :locomotive, tag: 'div', class: 'form-group input', error_class: 'has-error',
@@ -30,27 +31,12 @@ SimpleForm.setup do |config|
     end
   end
 
-  config.wrappers :locomotive_toggle, tag: 'div', class: 'form-group input', error_class: 'has-error',
-      defaults: { input_html: { class: 'default_class' } } do |b|
-
-    b.wrapper tag: :div do |h|
-      h.use :label, class: 'control-label'
-      h.use :hint,  wrap_with: { tag: 'span', class: 'help-inline' }
-    end
-
-    b.wrapper tag: :span, class: 'form-wrapper' do |c|
-      c.use :html5
-      c.optional :readonly
-      c.use :input, class: 'form-control'
-    end
-  end
-
-  config.wrappers :locomotive_array, tag: 'div', class: 'form-group input', error_class: 'has-error',
+  config.wrappers :locomotive_link, tag: 'div', class: 'form-group input', error_class: 'has-error',
       defaults: { input_html: { class: 'default_class' } } do |b|
 
     b.wrapper tag: :header do |h|
       h.wrapper tag: :div, class: 'pull-right' do |l|
-        l.use :new_item_link
+        l.use :link
       end
       h.use :label, class: 'control-label'
       h.use :hint, wrap_with: { tag: 'span', class: 'help-inline' }
@@ -65,6 +51,21 @@ SimpleForm.setup do |config|
       c.optional :pattern
       c.optional :readonly
 
+      c.use :input, class: 'form-control'
+    end
+  end
+
+  config.wrappers :locomotive_inline, tag: 'div', class: 'form-group input', error_class: 'has-error',
+      defaults: { input_html: { class: 'default_class' } } do |b|
+
+    b.wrapper tag: :div do |h|
+      h.use :label, class: 'control-label'
+      h.use :hint,  wrap_with: { tag: 'span', class: 'help-inline' }
+    end
+
+    b.wrapper tag: :span, class: 'form-wrapper' do |c|
+      c.use :html5
+      c.optional :readonly
       c.use :input, class: 'form-control'
     end
   end

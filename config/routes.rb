@@ -61,6 +61,12 @@ Locomotive::Engine.routes.draw do
     get :export,  on: :collection
   end
 
+  namespace :custom_fields, path: 'content_types/:slug/fields/:name' do
+    resource :select_options, only: [:edit, :update] do
+      get :new_option
+    end
+  end
+
   # installation guide
   match '/installation'       => 'installation#show', defaults: { step: 1 }, as: :installation, via: :all
   match '/installation/:step' => 'installation#show', as: :installation_step, via: :all

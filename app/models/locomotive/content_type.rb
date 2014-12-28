@@ -4,7 +4,7 @@ module Locomotive
     include Locomotive::Mongoid::Document
 
     ## extensions ##
-    include CustomFields::Source
+    include ::CustomFields::Source
     include Concerns::ContentType::DefaultValues
     include Concerns::ContentType::ItemTemplate
     include Concerns::ContentType::Sync

@@ -7,5 +7,5 @@ window.Locomotive =
   mounted_on:   window.Locomotive.mounted_on
   Models:       {}
   Collections:  {}
-  Views:        {}
+  Views:        { CustomFields: {} }
   Flags:        {}

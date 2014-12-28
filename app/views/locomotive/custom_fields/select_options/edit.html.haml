@@ -1,0 +1,20 @@
+- title t('.title', type: @content_type.name.capitalize, name: @custom_field.name)
+
+= locomotive_form_for @custom_field, method: :put, url: custom_fields_select_options_path(@content_type.slug, @custom_field.name) do |f|
+
+  = f.inputs do
+    = f.input :select_options,
+      as:             :array,
+      collection:     @custom_field.ordered_select_options,
+      label:          @custom_field.name,
+      placeholder:    true,
+      template:       :option,
+      template_url:   new_option_custom_fields_select_options_path(@content_type.slug, @custom_field.name)
+
+  = f.actions do
+    .row
+      .col-md-6.text-left
+        = link_to escape_once('&larr;&nbsp;') + t('.back'), content_entries_path(@content_type.slug)
+      .col-md-6.text-right
+        = f.action
+

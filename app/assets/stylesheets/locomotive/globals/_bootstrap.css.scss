@@ -146,7 +146,7 @@ $btn-default-bg:                    #eee !default;
 // $btn-default-border:             #ccc !default;
 
 // $btn-primary-color:                 #fff !default;
-$btn-primary-bg:                    #54b9cd !default;
+$btn-primary-bg:                    $brand-primary !default;
 $btn-primary-border:                darken($btn-primary-bg, 10%) !default;
 
 // $btn-success-color:              #fff !default;

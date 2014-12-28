@@ -90,6 +90,7 @@ en:
           alert: "File was not updated."
         destroy:
           notice: "File was successfully deleted."
+
       translations:
         create:
           notice: "Translation was successfully created."
@@ -101,8 +102,10 @@ en:
           notice: "Translation was successfully deleted."
 
       custom_fields:
-        update:
-          alert: "Field not updated"
+        select_options:
+          update:
+            notice: "Field was successfully updated."
+            alert: "Field was not updated."
 
       cross_domain_sessions:
         create:

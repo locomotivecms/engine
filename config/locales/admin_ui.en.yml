@@ -113,12 +113,23 @@ en:
       button: Regenerate
 
     custom_fields:
+      select_options:
+        edit:
+          title: "%{type} &mdash; editing options"
+          back: "Back to the list"
+        option:
+          edit: Edit
+          apply: Apply
+          cancel: Cancel
+
       edit:
         title: Editing custom field
       text_formatting:
         none: None
         html: HTML
       types:
+        select:
+          edit: Edit options
         file:
           delete_file: Delete file
         has_many:
