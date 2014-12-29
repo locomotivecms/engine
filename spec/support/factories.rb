@@ -156,7 +156,7 @@ FactoryGirl.define do
 
   ## Assets ##
   factory :asset, class: Locomotive::ContentAsset do
-    source{Rack::Test::UploadedFile.new(File.join(Rails.root, '..', '..', 'spec', 'fixtures', 'images', 'rails.png'))}
+    source { Rack::Test::UploadedFile.new(File.join(Rails.root, '..', '..', 'spec', 'fixtures', 'images', 'rails.png'))}
     site { Locomotive::Site.where(subdomain: 'acme').first || FactoryGirl.create(:site) }
   end
 
@@ -169,12 +169,28 @@ FactoryGirl.define do
   ## Content types ##
   factory :content_type, class: Locomotive::ContentType do
     sequence(:slug) { |n| "slug_of_content_type_#{n*rand(10_000)}" }
+
     name 'My project'
     description 'The list of my projects'
     site { Locomotive::Site.where(subdomain: 'acme').first || FactoryGirl.create(:site) }
+
     trait :with_field do
       after(:build) do |content_type, evaluator|
         content_type.entries_custom_fields.build label: 'Title', type: 'string'
+      end
+    end
+
+    trait :with_select_field do
+      after(:build) do |content_type, evaluator|
+        content_type.entries_custom_fields.build(label: 'Category', type: 'select')
+      end
+    end
+
+    trait :with_select_field_and_options do
+      after(:build) do |content_type, evaluator|
+        field = content_type.entries_custom_fields.build(label: 'Category', type: 'select')
+        field.select_options.build name: 'Development'
+        field.select_options.build name: 'Design'
       end
     end
   end
@@ -191,5 +207,20 @@ FactoryGirl.define do
     values {{ en: 'foo', fr: 'bar', wk: 'wuuuu' }}
     site { Locomotive::Site.where(subdomain: 'acme').first || FactoryGirl.create(:site) }
   end
+
+  # factory :custom_field, class: CustomFields::Field do
+  #   name 'A field'
+
+  #   factory 'select field' do
+  #     type 'select'
+
+  #     factory 'select field with options' do
+  #       after(:build) do |field|
+  #         field.select_options.build name: 'Development'
+  #         field.select_options.build name: 'Marketing'
+  #       end
+  #     end
+  #   end
+  # end
 
 end

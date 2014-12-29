@@ -8,6 +8,8 @@ module Locomotive
     # @return [ Array ] The new list of options
     #
     def update_select_options(options)
+      return nil if options.blank?
+
       # set the right position
       options.each_with_index do |option, position|
         option['position'] = position
