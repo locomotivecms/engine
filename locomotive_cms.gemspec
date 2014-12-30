@@ -18,10 +18,9 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'rake',                            '~> 10.0.0'
 
-  s.add_dependency 'rails',                           '~> 4.1.8'
+  s.add_dependency 'rails',                           '~> 4.2.0'
 
   s.add_dependency 'devise',                          '~> 3.4.1'
-  s.add_dependency 'devise-encryptable',              '~> 0.2.0'
   s.add_dependency 'devise-encryptable',              '~> 0.2.0'
   s.add_dependency 'simple_token_authentication',     '~> 1.7.0'
 
@@ -40,9 +39,8 @@ Gem::Specification.new do |s|
   s.add_dependency 'simple_form',                     '~> 3.1.0'
   s.add_dependency 'kaminari',                        '~> 0.14.1'
   s.add_dependency 'bootstrap-kaminari-views',        '~> 0.0.5'
-  s.add_dependency 'responders',                      '~> 1.1.2'
-  s.add_dependency 'cells',                           '~> 3.11.2'
-
+  s.add_dependency 'responders',                      '~> 2.0.2'
+  s.add_dependency 'cells',                           '~> 3.11.3'
 
   s.add_dependency 'jquery-rails',                    '~> 2.1.4'
   s.add_dependency 'backbone-on-rails',               '~> 1.1.2.0'
@@ -59,12 +57,12 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'RedCloth',                        '~> 4.2.8'
   s.add_dependency 'redcarpet',                       '~> 3.0.0'
-  s.add_dependency 'sanitize',                        '2.0.3'
+  s.add_dependency 'sanitize',                        '~> 3.1.0'
   s.add_dependency 'highline',                        '~> 1.6.2'
   s.add_dependency 'stringex',                        '~> 2.0.3'
 
   s.add_dependency 'carrierwave-mongoid',             '~> 0.7'
-  s.add_dependency 'fog',                             '~> 1.12.1'
+  s.add_dependency 'fog',                             '~> 1.26.0'
   s.add_dependency 'dragonfly',                       '~> 1.0.7'
   s.add_dependency 'rack-cache',                      '~> 1.1'
   s.add_dependency 'mimetype-fu',                     '~> 0.1.2'
