@@ -23,13 +23,13 @@ module Locomotive
       def create
         @account = Account.new
         @account.from_presenter(account_params_on_create).save
-        respond_with @account, location: main_app.locomotive_api_account_url(@account._id)
+        respond_with @account, location: -> { main_app.locomotive_api_account_url(@account) }
       end
 
       def update
         authorize @account
         @account.from_presenter(params[:account]).save
-        respond_with @account, location: main_app.locomotive_api_account_url(@account._id)
+        respond_with @account, location: main_app.locomotive_api_account_url(@account)
       end
 
       def destroy

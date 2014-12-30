@@ -19,13 +19,13 @@ module Locomotive
         authorize Locomotive::Membership
         @membership = current_site.memberships.build
         @membership.from_presenter(params[:membership]).save
-        respond_with @membership, location: main_app.locomotive_api_membership_url(@membership._id)
+        respond_with @membership, location: -> { main_app.locomotive_api_membership_url(@membership) }
       end
 
       def update
         authorize @membership
         @membership.from_presenter(params[:membership]).save
-        respond_with @membership, location: main_app.locomotive_api_membership_url(@membership._id)
+        respond_with @membership, location: main_app.locomotive_api_membership_url(@membership)
       end
 
       def destroy

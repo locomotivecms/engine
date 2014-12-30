@@ -42,7 +42,7 @@ module Locomotive
     def create
       authorize ContentEntry
       @content_entry = service.create(params[:content_entry])
-      respond_with @content_entry, location: edit_content_entry_path(@content_type.slug, @content_entry._id)
+      respond_with @content_entry, location: -> { edit_content_entry_path(@content_type.slug, @content_entry) }
     end
 
     def edit
@@ -53,7 +53,7 @@ module Locomotive
     def update
       authorize @content_entry
       service.update(@content_entry, params[:content_entry])
-      respond_with @content_entry, location: edit_content_entry_path(@content_type.slug, @content_entry._id)
+      respond_with @content_entry, location: edit_content_entry_path(@content_type.slug, @content_entry)
     end
 
     def sort

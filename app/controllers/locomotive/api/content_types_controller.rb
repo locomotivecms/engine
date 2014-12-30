@@ -20,13 +20,13 @@ module Locomotive
         authorize Locomotive::ContentType
         @content_type = current_site.content_types.build
         @content_type.from_presenter(params[:content_type]).save
-        respond_with @content_type, location: main_app.locomotive_api_content_type_url(@content_type._id)
+        respond_with @content_type, location: -> { main_app.locomotive_api_content_type_url(@content_type) }
       end
 
       def update
         authorize @content_type
         @content_type.from_presenter(params[:content_type]).save
-        respond_with @content_type, location: main_app.locomotive_api_content_type_url(@content_type._id)
+        respond_with @content_type, location: main_app.locomotive_api_content_type_url(@content_type)
       end
 
       def destroy

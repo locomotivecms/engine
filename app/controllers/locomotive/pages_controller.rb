@@ -29,7 +29,7 @@ module Locomotive
     def create
       authorize Page
       @page = current_site.pages.create(params[:page])
-      respond_with @page, location: edit_page_path(@page._id)
+      respond_with @page, location: -> { edit_page_path(@page) }
     end
 
     def edit
@@ -40,7 +40,7 @@ module Locomotive
     def update
       authorize @page
       @page.update_attributes(params[:page])
-      respond_with @page, location: edit_page_path(@page._id)
+      respond_with @page, location: edit_page_path(@page)
     end
 
     def destroy

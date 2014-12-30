@@ -21,13 +21,13 @@ module Locomotive
         authorize Locomotive::ContentEntry
         @content_entry = @content_type.entries.build
         @content_entry.from_presenter(content_entry_params).save
-        respond_with @content_entry, location: main_app.locomotive_api_content_entry_url(@content_type.slug, @content_entry._id)
+        respond_with @content_entry, location: -> { main_app.locomotive_api_content_entry_url(@content_type.slug, @content_entry) }
       end
 
       def update
         authorize @content_entry
         @content_entry.from_presenter(content_entry_params).save
-        respond_with @content_entry, location: main_app.locomotive_api_content_entry_url(@content_type.slug, @content_entry._id)
+        respond_with @content_entry, location: main_app.locomotive_api_content_entry_url(@content_type.slug, @content_entry)
       end
 
       def destroy

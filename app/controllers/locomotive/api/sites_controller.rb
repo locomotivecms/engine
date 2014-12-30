@@ -20,13 +20,13 @@ module Locomotive
         @site = Site.from_presenter(params[:site])
         @site.memberships.build account: self.current_locomotive_account, role: 'admin'
         @site.save
-        respond_with @site, location: main_app.locomotive_api_site_url(@site._id)
+        respond_with @site, location: -> { main_app.locomotive_api_site_url(@site) }
       end
 
       def update
         authorize @site
         @site.from_presenter(params[:site]).save
-        respond_with @site, location: main_app.locomotive_api_site_url(@site._id)
+        respond_with @site, location: main_app.locomotive_api_site_url(@site)
       end
 
       def destroy

@@ -20,13 +20,13 @@ module Locomotive
         authorize Locomotive::Page
         @page = current_site.pages.build
         @page.from_presenter(params[:page]).save
-        respond_with @page, location: main_app.locomotive_api_page_url(@page._id)
+        respond_with @page, location: -> { main_app.locomotive_api_page_url(@page) }
       end
 
       def update
         authorize @page
         @page.from_presenter(params[:page]).save
-        respond_with @page, location: main_app.locomotive_api_page_url(@page._id)
+        respond_with @page, location: main_app.locomotive_api_page_url(@page)
       end
 
       def destroy

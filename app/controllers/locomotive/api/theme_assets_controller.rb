@@ -19,13 +19,13 @@ module Locomotive
         authorize Locomotive::ThemeAsset
         @theme_asset = current_site.theme_assets.build
         @theme_asset.from_presenter(params[:theme_asset]).save
-        respond_with @theme_asset, location: main_app.locomotive_api_theme_asset_url(@theme_asset._id)
+        respond_with @theme_asset, location: -> { main_app.locomotive_api_theme_asset_url(@theme_asset) }
       end
 
       def update
         authorize @theme_asset
         @theme_asset.from_presenter(params[:theme_asset]).save
-        respond_with @theme_asset, location: main_app.locomotive_api_theme_asset_url(@theme_asset._id)
+        respond_with @theme_asset, location: main_app.locomotive_api_theme_asset_url(@theme_asset)
       end
 
       def destroy

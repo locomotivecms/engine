@@ -20,13 +20,13 @@ module Locomotive
         authorize Locomotive::Snippet
         @snippet = current_site.snippets.build
         @snippet.from_presenter(params[:snippet]).save
-        respond_with @snippet, location: main_app.locomotive_api_snippet_url(@snippet._id)
+        respond_with @snippet, location: -> { main_app.locomotive_api_snippet_url(@snippet) }
       end
 
       def update
         authorize @snippet
         @snippet.from_presenter(params[:snippet]).save
-        respond_with @snippet, location: main_app.locomotive_api_snippet_url(@snippet._id)
+        respond_with @snippet, location: main_app.locomotive_api_snippet_url(@snippet)
       end
 
       def destroy

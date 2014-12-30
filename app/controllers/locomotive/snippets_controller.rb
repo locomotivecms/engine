@@ -22,7 +22,7 @@ module Locomotive
     def create
       authorize Snippet
       @snippet = current_site.snippets.create(params[:snippet])
-      respond_with @snippet, location: edit_snippet_path(@snippet._id)
+      respond_with @snippet, location: -> { edit_snippet_path(@snippet) }
     end
 
     def edit
@@ -33,7 +33,7 @@ module Locomotive
     def update
       authorize @snippet
       @snippet.update_attributes(params[:snippet])
-      respond_with @snippet, location: edit_snippet_path(@snippet._id)
+      respond_with @snippet, location: edit_snippet_path(@snippet)
     end
 
     def destroy

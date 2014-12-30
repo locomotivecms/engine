@@ -17,7 +17,7 @@ module Locomotive
     def create
       authorize ContentType
       @content_type = current_site.content_types.create(params[:content_type])
-      respond_with @content_type, location: edit_content_type_path(@content_type._id)
+      respond_with @content_type, location: -> { edit_content_type_path(@content_type) }
     end
 
     def edit
