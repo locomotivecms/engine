@@ -7,4 +7,8 @@
       highlighted:  field._id == @content_type.label_field_id
 
 = f.actions do
-  = f.action
+  .row
+    .col-md-6.text-left
+      = link_to escape_once('&larr;&nbsp;') + t('.back'), content_entries_path(@content_type.slug)
+    .col-md-6.text-right
+      = f.action

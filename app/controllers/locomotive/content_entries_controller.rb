@@ -7,6 +7,7 @@ module Locomotive
 
     before_filter :load_content_type
     before_filter :load_content_entry, only: [:show, :edit, :update, :destroy]
+    before_filter :store_location, only: [:edit, :update]
 
     respond_to :json, only: [:index, :show, :edit, :create, :update, :sort, :destroy]
     respond_to :csv,  only: [:export]

@@ -9,6 +9,7 @@ module Locomotive
     include Locomotive::Concerns::ExceptionController
     include Locomotive::Concerns::MembershipController
     include Locomotive::Concerns::AuthorizationController
+    include Locomotive::Concerns::StoreLocationController
 
     layout '/locomotive/layouts/application'
 

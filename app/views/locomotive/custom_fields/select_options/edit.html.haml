@@ -14,7 +14,7 @@
   = f.actions do
     .row
       .col-md-6.text-left
-        = link_to escape_once('&larr;&nbsp;') + t('.back'), content_entries_path(@content_type.slug)
+        = link_to escape_once('&larr;&nbsp;') + t('.back'), last_saved_location(content_entries_path(@content_type.slug))
       .col-md-6.text-right
         = f.action
 
