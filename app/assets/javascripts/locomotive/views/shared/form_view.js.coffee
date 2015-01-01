@@ -20,6 +20,7 @@ class Locomotive.Views.Shared.FormView extends Backbone.View
     @enable_date_inputs()
     @enable_datetime_inputs()
     @enable_rte_inputs()
+    @enable_tags_inputs()
 
     # make title editable (if possible)
     # @make_title_editable()
@@ -101,8 +102,13 @@ class Locomotive.Views.Shared.FormView extends Backbone.View
       view.render()
       self.inputs.push(view)
 
+  enable_tags_inputs: ->
+    @$('.input.tags input[type=text]').tagsinput()
+    # tagClass: 'big'
+
   remove: ->
     self.inputs.each (view) -> view.remove()
+    @$('.input.tags input[type=text').tagsinput('destroy')
 
   _stop_event: (event) ->
     event.stopPropagation() & event.preventDefault()
