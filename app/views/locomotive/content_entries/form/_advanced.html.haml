@@ -2,5 +2,4 @@
   = f.input :_slug, required: false
   = f.input :_visible, as: :toggle
 
-= f.actions do
-  = f.action
+= f.actions back_url: content_entries_path(@content_type.slug)

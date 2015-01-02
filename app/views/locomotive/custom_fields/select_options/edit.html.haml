@@ -11,10 +11,4 @@
       template:       :option,
       template_url:   new_option_custom_fields_select_options_path(@content_type.slug, @custom_field.name)
 
-  = f.actions do
-    .row
-      .col-md-6.text-left
-        = link_to escape_once('&larr;&nbsp;') + t('.back'), last_saved_location(content_entries_path(@content_type.slug))
-      .col-md-6.text-right
-        = f.action
-
+  = f.actions back_url: content_entries_path(@content_type.slug),use_stored_location: true

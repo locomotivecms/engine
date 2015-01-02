@@ -14,9 +14,4 @@
       = f.input :password, input_html: { autocomplete: 'off' }
       = f.input :password_confirmation, input_html: { autocomplete: 'off' }
 
-  = f.actions do
-    .row
-      .col-md-6.text-left
-        = link_to escape_once('&larr;&nbsp;') + t('.back'), edit_current_site_path
-      .col-md-6.text-right
-        = f.action
+  = f.actions back_url: edit_current_site_path

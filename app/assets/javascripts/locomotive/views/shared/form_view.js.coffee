@@ -104,7 +104,6 @@ class Locomotive.Views.Shared.FormView extends Backbone.View
 
   enable_tags_inputs: ->
     @$('.input.tags input[type=text]').tagsinput()
-    # tagClass: 'big'
 
   remove: ->
     self.inputs.each (view) -> view.remove()

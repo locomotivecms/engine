@@ -31,8 +31,32 @@ module Locomotive
     end
 
     def actions(options = {}, &block)
-      options[:class] ||= 'text-right'
-      template.content_tag(:div, options, &block)
+      if options[:back_url]
+        actions_with_back_button(options)
+      else
+        options[:class] ||= 'text-right'
+        template.content_tag(:div, options, &block)
+      end
+    end
+
+    def actions_with_back_button(options = {})
+      back_button = back_button_action(options)
+
+      template.content_tag(:div,
+        template.content_tag(:div, back_button, class: 'col-md-6 text-left') +
+        template.content_tag(:div, action, class: 'col-md-6 text-right'),
+        class: 'row')
+    end
+
+    def back_button_action(options = {})
+      label  = template.escape_once('&larr;&nbsp;') + template.t('.back')
+      url    = options[:back_url]
+
+      if options[:use_stored_location]
+        url = template.last_saved_location(url)
+      end
+
+      template.link_to(label, url)
     end
 
     def action(misc_class = '')

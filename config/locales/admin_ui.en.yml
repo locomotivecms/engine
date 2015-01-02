@@ -116,7 +116,7 @@ en:
       select_options:
         edit:
           title: "%{type} &mdash; editing options"
-          back: "Back to the list"
+          back: "Back to the entry"
         option:
           edit: Edit
           apply: Apply
