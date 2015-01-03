@@ -21,6 +21,7 @@ class Locomotive.Views.Shared.FormView extends Backbone.View
     @enable_datetime_inputs()
     @enable_rte_inputs()
     @enable_tags_inputs()
+    @enable_document_picker_inputs()
 
     # make title editable (if possible)
     # @make_title_editable()
@@ -104,6 +105,13 @@ class Locomotive.Views.Shared.FormView extends Backbone.View
 
   enable_tags_inputs: ->
     @$('.input.tags input[type=text]').tagsinput()
+
+  enable_document_picker_inputs: ->
+    self = @
+    @$('.input.document_picker').each ->
+      view = new Locomotive.Views.Inputs.DocumentPickerView(el: $(@))
+      view.render()
+      self.inputs.push(view)
 
   remove: ->
     self.inputs.each (view) -> view.remove()

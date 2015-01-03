@@ -63,7 +63,7 @@ module Locomotive
     end
 
     def persisted_file?
-      object.send(:"#{attribute_name}?")
+      self.object.send(:"#{attribute_name}?")
     end
 
     def persisted_file
