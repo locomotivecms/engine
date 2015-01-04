@@ -60,6 +60,20 @@ $select2-horizontal-padding:      5px;
 
 }
 
+.select2-results {
+  .select2-no-results, .select2-searching {
+    color: $form_input_help_color;
+    font-size: $form_input_help_size;
+    background: $form_input_background_color;
+    font-family: $alt-font-family-sans-serif;
+  }
+
+  .select2-highlighted {
+    background: $brand-primary;
+  }
+}
+
+
 .select2-drop-active {
   border: $form_input_control_border_size solid $form_input_control_border_color;
   border-top: none;

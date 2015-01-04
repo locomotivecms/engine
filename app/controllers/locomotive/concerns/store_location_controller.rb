@@ -11,7 +11,9 @@ module Locomotive
       private
 
       def store_location
-        session[:return_to] = request.fullpath if request.get?
+        if request.get? && params[:_location].blank?
+          session[:return_to] = request.fullpath
+        end
       end
 
       def last_saved_location(default)

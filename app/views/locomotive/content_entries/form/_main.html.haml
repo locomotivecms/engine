@@ -1,9 +1,4 @@
 = f.inputs :attributes do
-  - @content_type.ordered_entries_custom_fields.each_with_index do |field, index|
-    = render "locomotive/custom_fields/types/#{field.type}",
-      f:            f,
-      name:         field.name.to_sym,
-      field:        field,
-      highlighted:  field._id == @content_type.label_field_id
+  = render_custom_fields(@content_type, f)
 
-= f.actions back_url: content_entries_path(@content_type.slug)
+= f.actions back_url: content_entries_path(@content_type.slug), use_stored_location: params[:_location].present?

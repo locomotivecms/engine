@@ -5,30 +5,10 @@
 = locomotive_form_for @content_entry, as: :content_entry, url: content_entries_path(@content_type.slug), html: { multipart: true } do |f|
 
   = hidden_field_tag :active_tab, ''
+  = hidden_field_tag :_location,  params[:_location]
 
   = f.action 'hide'
 
   = render 'locomotive/content_entries/form/tabs', f: f
 
   = render 'locomotive/content_entries/form/panes', f: f
-
-/ - content_for :submenu do
-/   = render 'locomotive/shared/menu/contents'
-
-/ - content_for :actions do
-/   = render 'locomotive/shared/actions/contents'
-
-/ - if can?(:manage, Locomotive::ContentType)
-/   - content_for :buttons do
-/     = local_action_button t('locomotive.content_entries.index.edit'), edit_content_type_path(@content_type), icon: 'icon-pencil'
-
-/ %p= @content_type.description
-
-/ = semantic_form_for @content_entry, as: :content_entry, url: content_entries_path(@content_type.slug), html: { multipart: true } do |form|
-
-/   = render 'form', f: form
-
-/   = render 'locomotive/shared/form_actions', back_url: content_entries_path(@content_type.slug), button_label: :create
-
-/ - content_for :foot do
-/   = render_has_many_forms

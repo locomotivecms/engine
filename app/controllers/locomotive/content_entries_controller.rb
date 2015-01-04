@@ -12,6 +12,8 @@ module Locomotive
     respond_to :json, only: [:index, :show, :edit, :create, :update, :sort, :destroy]
     respond_to :csv,  only: [:export]
 
+    helper 'Locomotive::CustomFields'
+
     def index
       authorize ContentEntry
       @content_entries = service.all(params.slice(:page, :per_page, :q, :where))
@@ -43,7 +45,7 @@ module Locomotive
     def create
       authorize ContentEntry
       @content_entry = service.create(params[:content_entry])
-      respond_with @content_entry, location: -> { edit_content_entry_path(@content_type.slug, @content_entry) }
+      respond_with @content_entry, location: -> { location_after_persisting }
     end
 
     def edit
@@ -54,7 +56,7 @@ module Locomotive
     def update
       authorize @content_entry
       service.update(@content_entry, params[:content_entry])
-      respond_with @content_entry, location: edit_content_entry_path(@content_type.slug, @content_entry)
+      respond_with @content_entry, location: -> { location_after_persisting }
     end
 
     def sort
@@ -81,6 +83,16 @@ module Locomotive
 
     def service
       @service ||= Locomotive::ContentEntryService.new(load_content_type, current_locomotive_account)
+    end
+
+    def location_after_persisting
+      default = edit_content_entry_path(@content_type.slug, @content_entry)
+
+      if params[:_location].present?
+        last_saved_location!(default)
+      else
+        default
+      end
     end
 
   end

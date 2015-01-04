@@ -4,34 +4,40 @@ class Locomotive.Views.Inputs.DocumentPickerView extends Backbone.View
 
   initialize: ->
     super
-    @$input = @$('input[type=hidden]')
+    @$input   = @$('input[type=hidden]')
+    @$link    = @$('a.edit')
 
   render: ->
-    @enable_select2()
-
-  enable_select2: ->
     @$input.select2
-      width:                '50%'
       minimumInputLength:   1
       quietMillis:          100
       allowClear:           true
-      placeholder:          ' '
+      formatNoMatches:      @$input.data('no-matches')
+      formatSearching:      @$input.data('searching')
+      formatInputTooShort:  @$input.data('too-short')
       initSelection:        (element, callback) =>
-        @$input.data('label')
+        callback(text: @$input.data('label'))
       ajax:
-        url: @$input.data('url')
+        url: @$input.data('list-url')
         data: (term, page) ->
           q:    term
           page: page
         results: (data, page) =>
-          results:  @build_results(data, options.groupBy)
-          more:     data.length == options.perPage
+          results:  @build_results(data)
+          more:     data.length == @$input.data('per-page')
 
-  build_results: (raw_data, group_by) ->
+    # hide the edit button if the user changes the selected document
+    @$input.on 'select2-selecting', (el) =>
+      @$link.addClass('hide')
+
+  build_results: (raw_data, label_method, group_by) ->
+    label_method  = @$input.data('label-method')
+    group_by      = @$input.data('group-by')
+
     _.tap [], (list) =>
       _.each raw_data, (data) =>
         if !@collection? || !@collection.get(data._id)?
-          data.text = data._label
+          data.text = data[label_method]
 
           if group_by?
             group_name = _.result(data, group_by)
@@ -48,7 +54,6 @@ class Locomotive.Views.Inputs.DocumentPickerView extends Backbone.View
           else
             list.push(data)
 
-
   remove: ->
-    console.log 'TODO'
+    @$input.select2('destroy')
     super

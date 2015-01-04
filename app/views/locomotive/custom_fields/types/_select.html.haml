@@ -1,6 +1,0 @@
-= f.input :"#{name}_id",
-  label:                label_for_custom_field(f.object, field),
-  hint:                 field.hint,
-  as:                   :editable_select,
-  manage_collection:    { label: t('.edit'), url: edit_custom_fields_select_options_path(f.object.content_type.slug, name) },
-  collection:           field.ordered_select_options.map { |option| [option.name, option.id] }
