@@ -1,7 +1,8 @@
 module Locomotive
-  class ArrayInput < SimpleForm::Inputs::Base
+  class ArrayInput < ::SimpleForm::Inputs::Base
 
-    include Locomotive::BootstrapFormHelper
+    include Locomotive::SimpleForm::BootstrapHelpers
+    include Locomotive::SimpleForm::HeaderLink
 
     def input(wrapper_options)
       array_wrapper + new_item_wrapper
@@ -23,9 +24,17 @@ module Locomotive
     end
 
     def collection_to_html
+      _template = options[:template]
+      key       = attribute_name.to_s.singularize.to_sym
+
+      path, locals = (if _template.respond_to?(:has_key?)
+       [_template[:path].to_s, _template[:locals] || {}]
+      else
+        [_template.to_s, {}]
+      end)
+
       collection.map do |item|
-        key = attribute_name.to_s.singularize.to_sym
-        template.render(options[:template].to_s, key => item)
+        template.render(path, locals.merge(key => item, item: item))
       end.join("\n").html_safe
     end
 
@@ -34,13 +43,7 @@ module Locomotive
     end
 
     def link(wrapper_options)
-      if _options = options[:new_item]
-        label = _options[:label] || I18n.t(:new, scope: 'locomotive.shared.form.array_input')
-        url   = _options[:url]
-        template.link_to(label, url)
-      else
-        ''
-      end
+      _header_link(:new_item, :array_input)
     end
 
     def new_item_wrapper

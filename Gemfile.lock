@@ -47,7 +47,7 @@ PATH
   specs:
     custom_fields (2.4.0.rc1)
       activesupport (~> 4.2.0)
-      carrierwave-mongoid (~> 0.7)
+      carrierwave-mongoid (~> 0.7.1)
       monetize (~> 1.1.0)
       mongoid (~> 4.0.0)
 

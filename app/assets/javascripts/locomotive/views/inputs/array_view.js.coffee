@@ -19,6 +19,7 @@ class Locomotive.Views.Inputs.ArrayView extends Backbone.View
   render: ->
     @make_sortable()
     @make_selectable()
+    @hide_if_empty()
 
   make_sortable: ->
     @$list.sortable
@@ -29,6 +30,9 @@ class Locomotive.Views.Inputs.ArrayView extends Backbone.View
       cursor:       'move'
       start:        (e, ui) ->
         ui.placeholder.html('<div class="inner">&nbsp;</div>')
+      update:       (e, ui) =>
+        @$list.find('> .item:not(".hide")').each (index) ->
+          $(this).find('.position-in-list').val(index)
 
   make_selectable: ->
     @$select_field.select2
@@ -82,12 +86,22 @@ class Locomotive.Views.Inputs.ArrayView extends Backbone.View
       # mark item as destroyed and hide the item
       $destroy_input.val('1')
       $item.addClass('hide')
+
+      @$list.find('> .item.last-child').removeClass('last-child')
+      @$list.find('> .item:not(".hide"):last').addClass('last-child')
     else
       # remove the item from the dom
       $item.remove()
 
     # do not display the list if no visible items
-    @hideEl(@$list) if @$list.find('> .item:not(".hide")').size() == 0
+    @hide_if_empty()
+
+  hide_if_empty: ->
+    if @$list.find('> .item:not(".hide")').size() == 0
+      @hideEl(@$list)
+
+      if @$list.hasClass('new-input-disabled')
+        $(@el).find('> .form-wrapper').hide()
 
   is_unique: ->
     _.indexOf(@get_ids(), @$new_field.val()) == -1

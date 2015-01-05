@@ -34,8 +34,6 @@ class Locomotive.Views.CustomFields.SelectOptions.EditView extends Locomotive.Vi
     $label          = $input.prev('span').html($input.val()).removeClass('hide')
 
   mark_as_destroyed: (event) ->
-    alert 'Youpi...'
-
     $destroy_input = $(event.target).parents('.item').find('.mark-as-destroyed')
 
     if $destroy_input.size() > 0

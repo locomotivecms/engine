@@ -1,7 +1,7 @@
 module Locomotive
-  class DocumentPickerInput < SimpleForm::Inputs::Base
+  class DocumentPickerInput < ::SimpleForm::Inputs::Base
 
-    include Locomotive::BootstrapFormHelper
+    include Locomotive::SimpleForm::BootstrapHelpers
 
     def input(wrapper_options)
       data = extract_data

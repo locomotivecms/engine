@@ -38,7 +38,7 @@ module Locomotive
     end
 
     def new
-      @content_entry = @content_type.entries.build
+      @content_entry = @content_type.entries.build(params[:content_entry])
       respond_with @content_entry
     end
 

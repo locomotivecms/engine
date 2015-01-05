@@ -1,5 +1,5 @@
 module Locomotive
-  class ToggleInput < SimpleForm::Inputs::Base
+  class ToggleInput < ::SimpleForm::Inputs::Base
 
     def input(wrapper_options)
       template.content_tag(:span, class: 'form-wrapper') do

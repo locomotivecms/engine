@@ -1,7 +1,7 @@
 module Locomotive
-  class FileInput < SimpleForm::Inputs::FileInput
+  class FileInput < ::SimpleForm::Inputs::FileInput
 
-    include Locomotive::BootstrapFormHelper
+    include Locomotive::SimpleForm::BootstrapHelpers
 
     def input(wrapper_options = nil)
       row_wrapping(data: { persisted: persisted_file?, persisted_file: persisted_file? }) do

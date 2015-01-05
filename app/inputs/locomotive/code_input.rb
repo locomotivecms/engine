@@ -1,5 +1,5 @@
 module Locomotive
-  class CodeInput < SimpleForm::Inputs::TextInput # FormtasticBootstrap::Inputs::TextInput
+  class CodeInput < ::SimpleForm::Inputs::TextInput # FormtasticBootstrap::Inputs::TextInput
 
     # def input_wrapping(&block)
     #   elements = [template.capture(&block), error_html, toolbar_html, hint_html]

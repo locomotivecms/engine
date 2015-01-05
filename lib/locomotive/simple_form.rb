@@ -1,23 +1,38 @@
 module Locomotive
+  module SimpleForm
+    module BootstrapHelpers
 
-  module BootstrapFormHelper
+      def row_wrapping(options = {}, &block)
+        options.merge!(class: 'row')
+        template.content_tag(:div,
+          template.capture(&block).html_safe,
+          options)
+      end
 
-    def row_wrapping(options = {}, &block)
-      options.merge!(class: 'row')
-      template.content_tag(:div,
-        template.capture(&block).html_safe,
-        options)
+      def col_wrapping(class_name, column = 6, &block)
+        template.content_tag(:div,
+          template.capture(&block).html_safe,
+          class: "col-md-#{column} #{class_name}")
+      end
+
     end
 
-    def col_wrapping(class_name, column = 6, &block)
-      template.content_tag(:div,
-        template.capture(&block).html_safe,
-        class: "col-md-#{column} #{class_name}")
-    end
+    module HeaderLink
 
+      def _header_link(name, type)
+        if _options = options[name]
+          label = _options[:label] || I18n.t(:edit, scope: ['locomotive.shared.form', type])
+          url   = _options[:url]
+          template.link_to(label, url, class: 'action')
+        else
+          ''
+        end
+      end
+
+    end
   end
 
-  class FormBuilder < SimpleForm::FormBuilder
+  class FormBuilder < ::SimpleForm::FormBuilder
 
     def inputs(name = nil, options = {}, &block)
       label = translate_text(name, :titles)
@@ -115,7 +130,7 @@ module Locomotive
     end
 
     def i18n_scope
-      SimpleForm.i18n_scope
+      ::SimpleForm.i18n_scope
     end
 
   end

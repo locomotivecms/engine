@@ -1,6 +1,7 @@
 .simple_form {
 
   fieldset .input.array {
+
     .form-wrapper {
       padding: 0px $padding-base-horizontal;
 
@@ -44,7 +45,9 @@
           }
         }
 
-        &.new-input-disabled > .item:last-child {
+        &.new-input-disabled > .item:last-child,
+        &.new-input-disabled > .item.last-child
+         {
           border-bottom: none;
         }
 

@@ -14,6 +14,12 @@
       padding: $form_input_padding;
       @include border-radius($form_input_radius);
 
+      header {
+        a.action {
+          font-size: 13px;
+        }
+      }
+
       .control-label {
         display: inline-block;
         font-size: $form_input_label_size;

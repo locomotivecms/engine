@@ -25,16 +25,23 @@ module Locomotive
     #
     def render_custom_field(field, form)
       highlighted     = field._id == field._parent.label_field_id
-      method          = "#{field.type}_custom_field_options"
       default_options = default_custom_field_options(field, form, highlighted)
+      field_options   = custom_field_options(field, form)
+
+      return '' if field_options.nil?
+
+      options = default_options.merge(field_options)
+
+      form.input options.delete(:name), options
+    end
+
+    def custom_field_options(field, form)
+      method = "#{field.type}_custom_field_options"
 
       begin
-        field_options = send(method, field, form.object)
-        options       = default_options.merge(field_options)
-
-        form.input options.delete(:name), options
+        send(method, field, form.object)
       rescue NoMethodError
-        ''
+        nil
       end
     end
 
@@ -50,15 +57,18 @@ module Locomotive
     end
 
     def belongs_to_custom_field_options(field, entry)
+      slug      = field.class_name_to_content_type.slug
+      target_id = entry.send(:"#{field.name}_id")
+
       {
         as:       :document_picker,
         edit:     {
           label:  custom_field_t(:edit, field.type),
-          url:    edit_content_entry_path_from_field(field, entry, _location: false)
+          url:    target_id ? edit_content_entry_path(slug, target_id, _location: false) : nil
         },
         picker:   {
           label_method: :_label,
-          list_url:     content_entries_path_from_field(field),
+          list_url:     content_entries_path(slug, format: :json),
           placeholder:  custom_field_t(:placeholder, field.type, name: field.label.downcase),
           searching:    custom_field_t(:searching, field.type),
           no_matches:   custom_field_t(:no_matches, field.type),
@@ -101,6 +111,28 @@ module Locomotive
 
     def float_custom_field_options(field, entry)
       { as: :float, step: 0.1 }
+    end
+
+    def has_many_custom_field_options(field, entry)
+      return nil if entry.new_record? || !field.ui_enabled?
+
+      slug = field.class_name_to_content_type.slug
+
+      {
+        as:           :array,
+        template:     {
+          path:   'locomotive/custom_fields/types/has_many_entry',
+          locals: { field: field, slug: slug }
+        },
+        wrapper_html: { class: 'has_many' },
+        new_item: {
+          label:  custom_field_t(:new_label, field.type),
+          url:    new_content_entry_path(slug, {
+            "content_entry[#{field.inverse_of}_id]" => entry._id,
+            _location: false
+          })
+        }
+      }
     end
 
     def integer_custom_field_options(field, entry)

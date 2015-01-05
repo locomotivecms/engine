@@ -40,20 +40,5 @@ module Locomotive
       end
     end
 
-    def edit_content_entry_path_from_field(field, object, options = {})
-      if id = object.send(:"#{field.name}_id")
-        slug = field.class_name_to_content_type.slug
-
-        edit_content_entry_path(slug, id, options)
-      else
-        nil
-      end
-    end
-
-    def content_entries_path_from_field(field)
-      slug = field.class_name_to_content_type.slug
-      content_entries_path(slug, :json)
-    end
-
   end
 end

@@ -19,7 +19,7 @@ body.content-entries.index {
       @include flex-align(center);
       position: relative;
 
-      &:last-child {
+      &:not(.hide):last-child {
         border-bottom: $content_list_item_border_size solid $content_list_item_border_color;
       }
 

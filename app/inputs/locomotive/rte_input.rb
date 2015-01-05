@@ -1,5 +1,5 @@
 module Locomotive
-  class RteInput < SimpleForm::Inputs::Base
+  class RteInput < ::SimpleForm::Inputs::Base
 
     def input(wrapper_options)
       input_html_options[:class] << 'form-control'

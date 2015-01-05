@@ -140,8 +140,7 @@ en:
         file:
           delete_file: Delete file
         has_many:
-          empty: The list is empty
-          new_entry: + Add a new entry
+          new_label: Add a new one
         many_to_many:
           empty: The list is empty. Add an entry from the select box below.
 
