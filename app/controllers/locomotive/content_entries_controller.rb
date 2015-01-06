@@ -6,7 +6,7 @@ module Locomotive
     before_filter :back_to_default_site_locale, only: [:new, :create]
 
     before_filter :load_content_type
-    before_filter :load_content_entry, only: [:show, :edit, :update, :destroy]
+    before_filter :load_content_entry, only: [:show, :show_in_form, :edit, :update, :destroy]
     before_filter :store_location, only: [:edit, :update]
 
     respond_to :json, only: [:index, :show, :edit, :create, :update, :sort, :destroy]
@@ -33,8 +33,18 @@ module Locomotive
 
     def show
       authorize @content_entry
-      @content_entry = @content_type.entries.find(params[:id])
       respond_with @content_entry
+    end
+
+    def show_in_form
+      authorize @content_entry, :show?
+      _content_type = current_site.content_types.where(slug: params[:parent_slug]).first
+      @field        = _content_type.entries_custom_fields.find(params[:field_id])
+      render partial: 'entry', locals: {
+        slug:   params[:slug],
+        item:   @content_entry,
+        field:  @field
+      }
     end
 
     def new
@@ -44,7 +54,7 @@ module Locomotive
 
     def create
       authorize ContentEntry
-      @content_entry = service.create(params[:content_entry])
+      @content_entry = service.create(content_entry_params)
       respond_with @content_entry, location: -> { location_after_persisting }
     end
 
@@ -55,7 +65,7 @@ module Locomotive
 
     def update
       authorize @content_entry
-      service.update(@content_entry, params[:content_entry])
+      service.update(@content_entry, content_entry_params)
       respond_with @content_entry, location: -> { location_after_persisting }
     end
 
@@ -83,6 +93,10 @@ module Locomotive
 
     def service
       @service ||= Locomotive::ContentEntryService.new(load_content_type, current_locomotive_account)
+    end
+
+    def content_entry_params
+      params.require(:content_entry).permit(service.permitted_attributes)
     end
 
     def location_after_persisting

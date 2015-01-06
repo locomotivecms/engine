@@ -57,8 +57,9 @@ Locomotive::Engine.routes.draw do
   resources :content_types
 
   resources :content_entries, path: 'content_types/:slug/entries' do
-    put :sort,    on: :collection
-    get :export,  on: :collection
+    get :show_in_form,  on: :collection
+    put :sort,          on: :collection
+    get :export,        on: :collection
   end
 
   namespace :custom_fields, path: 'content_types/:slug/fields/:name' do

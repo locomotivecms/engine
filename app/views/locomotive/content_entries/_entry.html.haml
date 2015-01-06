@@ -1,0 +1,22 @@
+.item.row{ data: { id: item._id } }
+
+  - if field.type == 'has_many'
+    = hidden_field_tag "content_entry[#{field.name}_attributes][][_id]", item._id
+    = hidden_field_tag "content_entry[#{field.name}_attributes][][position_in_#{field.inverse_of}]", item.send(:"position_in_#{field.inverse_of}"), class: 'position-in-list'
+    = hidden_field_tag "content_entry[#{field.name}_attributes][][_destroy]", '0', class: 'mark-as-destroyed'
+
+  - elsif field.type == 'many_to_many'
+    = hidden_field_tag "content_entry[#{field.name.singularize}_ids][]", item._id
+
+  .inner-row.col-md-12
+
+    .draggable
+      %i.fa.fa-bars
+
+    .text
+      = item._label
+
+    .buttons
+      = link_to t(:edit, scope: 'locomotive.shared.form.array_input'), edit_content_entry_path(slug, item, _location: false), class: 'choose btn btn-primary btn-sm'
+      = link_to '#', class: 'delete' do
+        %i.fa.fa-trash-o

@@ -42,12 +42,20 @@ module Locomotive
     end
 
     def permitted_attributes
-      defaults = [:name, :picture, :remove_picture, :subdomain, :domains, :seo_title, :meta_keywords, :meta_description, :locales, :timezone_name, :robots_txt]
+      plain = [:name, :picture, :remove_picture, :seo_title, :meta_keywords, :meta_description, :timezone_name, :robots_txt]
+      hash  = { domains: [], locales: [] }
 
-      defaults -= [:subdomain, :domains] unless point?
-      defaults -= [:locales, :timezone_name, :robots_txt] unless update_advanced?
+      unless update_advanced?
+        plain -= [:timezone_name, :robots_txt]
+        hash.delete(:locales)
+      end
 
-      defaults
+      unless point?
+        plain -= [:subdomain]
+        hash.delete(:domains)
+      end
+
+      plain << hash
     end
 
   end

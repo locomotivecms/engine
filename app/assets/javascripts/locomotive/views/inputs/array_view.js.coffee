@@ -9,9 +9,7 @@ class Locomotive.Views.Inputs.ArrayView extends Backbone.View
 
   initialize: ->
     @$list          = @$('.list')
-    @$text_field    = @$('.new-field input[type=text]')
-    @$select_field  = @$('.new-field select')
-    @$new_field     = if @$text_field.size() == 1 then @$text_field else @$select_field
+    @$new_input     = @$('.new-field .input')
     @$new_button    = @$('.new-field a')
 
     @template_url   = @$new_button.attr('href')
@@ -35,7 +33,16 @@ class Locomotive.Views.Inputs.ArrayView extends Backbone.View
           $(this).find('.position-in-list').val(index)
 
   make_selectable: ->
-    @$select_field.select2
+    if @$new_input.prop('tagName') == 'SELECT'
+      @make_simple_selectable()
+    else if @$new_input.attr('type') == 'hidden'
+      @make_remote_selectable()
+
+  make_remote_selectable: ->
+    Select2.helpers.build @$new_input
+
+  make_simple_selectable: ->
+    @$new_input.select2
       containerCssClass:  'form-control'
       formatResult:       @format_select_result
       formatSelection:    @format_select_result
@@ -58,7 +65,7 @@ class Locomotive.Views.Inputs.ArrayView extends Backbone.View
     return unless @is_unique()
 
     data = {}
-    data[@$new_field.attr('name')] = @$new_field.val()
+    data[@$new_input.attr('name')] = @$new_input.val()
 
     $.ajax
       url:      @template_url
@@ -71,7 +78,7 @@ class Locomotive.Views.Inputs.ArrayView extends Backbone.View
     @showEl(@$list)
 
     # refresh the text field
-    @reset_text_field()
+    @reset_input_field()
 
   delete_item: (event) ->
     $link = $(event.target).closest('a')
@@ -104,14 +111,14 @@ class Locomotive.Views.Inputs.ArrayView extends Backbone.View
         $(@el).find('> .form-wrapper').hide()
 
   is_unique: ->
-    _.indexOf(@get_ids(), @$new_field.val()) == -1
+    _.indexOf(@get_ids(), @$new_input.val()) == -1
 
   get_ids: ->
     _.map @$list.find('> .item'), (item, i) -> $(item).data('id')
 
-  reset_text_field: ->
-    if @$text_field.size() == 1
-      @$new_field.val('')
+  reset_input_field: ->
+    @$new_input.val('')
+    @$new_input.select2('val', '')
 
   showEl: (el) -> el.removeClass('hide')
   hideEl: (el) -> el.addClass('hide')

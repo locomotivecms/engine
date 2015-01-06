@@ -31,7 +31,10 @@ module Locomotive
     # @param [ Hash ] attributes The attributes of new content entry.
     #
     # @return [ Object ] An instance of the content entry.
+    #
     def create(attributes)
+      sanitize_attributes!(attributes)
+
       content_type.entries.build(attributes).tap do |entry|
         entry.created_by = account
         entry.save
@@ -45,7 +48,10 @@ module Locomotive
     # @param [ Hash ] attributes The attributes of new content entry.
     #
     # @return [ Object ] The instance of the content entry.
+    #
     def update(entry, attributes)
+      sanitize_attributes!(attributes)
+
       entry.tap do |entry|
         entry.attributes = attributes
         entry.updated_by = account
@@ -60,7 +66,47 @@ module Locomotive
       content_type.entries.destroy_all
     end
 
+    # Give the list of permitted attributes for a content entry.
+    # It includes:
+    # - the default ones (_slug, seo, ...etc)
+    # - the dynamic simple attributes (strings, texts, dates, belongs_to, ...etc)
+    # - the relationships (has_many + many_to_many)
+    #
+    # @return [ Array ] List of permitted attributes
+    #
+    def permitted_attributes
+      # needed to get the custom fields
+      _entry = content_type.entries.build
+
+      default     = %w(_slug _position _visible seo_title meta_keywords meta_description)
+      dynamic     = _entry.custom_fields_safe_setters
+      referenced  = {}
+
+      # has_many
+      has_many = _entry.has_many_custom_fields.each do |n, inverse_of|
+        referenced["#{n}_attributes"] = [:_id, :_destroy, :"position_in_#{inverse_of}"]
+      end
+
+      # many_to_many
+      many_to_many = _entry.many_to_many_custom_fields.each do |(_, s)|
+        referenced[s] = []
+      end
+
+      (default + dynamic + [referenced.empty? ? nil : referenced]).compact
+    end
+
     protected
+
+    def sanitize_attributes!(attributes)
+      # needed to get the custom fields
+      _entry = content_type.entries.build
+
+      # if the user deletes all the entries of a many_to_many,
+      # make sure the list gets empty instead of nil.
+      _entry.many_to_many_custom_fields.each do |(_, s)|
+        attributes[s] = [] unless attributes.has_key?(s)
+      end
+    end
 
     def prepare_options_for_all(options)
       where = prepare_where_statement(options)

@@ -134,15 +134,17 @@ en:
           searching: Searching...
           no_matches: No matches found
           too_short: Please enter 1 or more character
-          formatInputTooShort:
+        many_to_many:
+          placeholder: "Choose one of the %{name}"
+          searching: Searching...
+          no_matches: No matches found
+          too_short: Please enter 1 or more character
         select:
           edit: Edit options
         file:
           delete_file: Delete file
         has_many:
           new_label: Add a new one
-        many_to_many:
-          empty: The list is empty. Add an entry from the select box below.
 
       form:
         required: Required

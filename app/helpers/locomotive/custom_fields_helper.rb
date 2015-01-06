@@ -66,14 +66,7 @@ module Locomotive
           label:  custom_field_t(:edit, field.type),
           url:    target_id ? edit_content_entry_path(slug, target_id, _location: false) : nil
         },
-        picker:   {
-          label_method: :_label,
-          list_url:     content_entries_path(slug, format: :json),
-          placeholder:  custom_field_t(:placeholder, field.type, name: field.label.downcase),
-          searching:    custom_field_t(:searching, field.type),
-          no_matches:   custom_field_t(:no_matches, field.type),
-          too_short:    custom_field_t(:too_short, field.type)
-        }
+        picker:   custom_field_picker_options(field, slug)
       }
     end
 
@@ -121,7 +114,7 @@ module Locomotive
       {
         as:           :array,
         template:     {
-          path:   'locomotive/custom_fields/types/has_many_entry',
+          path:   'locomotive/content_entries/entry',
           locals: { field: field, slug: slug }
         },
         wrapper_html: { class: 'has_many' },
@@ -137,6 +130,21 @@ module Locomotive
 
     def integer_custom_field_options(field, entry)
       { as: :integer }
+    end
+
+    def many_to_many_custom_field_options(field, entry)
+      slug = field.class_name_to_content_type.slug
+
+      {
+        as:           :array,
+        collection:   entry.send(field.name).filtered,
+        template:     {
+          path:   'locomotive/content_entries/entry',
+          locals: { field: field, slug: slug }
+        },
+        template_url: show_in_form_content_entries_path(slug, parent_slug: entry.content_type.slug, field_id: field._id),
+        picker:       custom_field_picker_options(field, slug)
+      }
     end
 
     def select_custom_field_options(field, entry)
@@ -161,6 +169,17 @@ module Locomotive
 
     def text_custom_field_options(field, entry)
       { as: field.text_formatting ? :rte : :text }
+    end
+
+    def custom_field_picker_options(field, slug)
+      {
+        label_method: :_label,
+        list_url:     content_entries_path(slug, format: :json),
+        placeholder:  custom_field_t(:placeholder, field.type, name: field.label.downcase),
+        searching:    custom_field_t(:searching, field.type),
+        no_matches:   custom_field_t(:no_matches, field.type),
+        too_short:    custom_field_t(:too_short, field.type)
+      }
     end
 
     def custom_field_t(name, type, interpolation = {})

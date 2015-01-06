@@ -58,6 +58,7 @@ module Locomotive
         end
 
         def locales=(array)
+          array.reject!(&:blank?)
           array = [] if array.blank?; super(array)
         end
 
