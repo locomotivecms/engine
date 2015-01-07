@@ -76,10 +76,12 @@ end
 
 Rails.application.routes.draw do
 
+  mount Locomotive::API => '/locomotive/api_test'
+  
   # API
   namespace :locomotive, module: 'locomotive' do
     namespace :api do
-
+      
       get 'version', to: 'version#show'
 
       resources :tokens, only: [:create, :destroy]

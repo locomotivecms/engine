@@ -37,3 +37,6 @@ require 'compass-rails'
 require 'codemirror/rails'
 require 'jquery/rails'
 require 'backbone-on-rails'
+
+require 'grape'
+require 'grape-entity'
