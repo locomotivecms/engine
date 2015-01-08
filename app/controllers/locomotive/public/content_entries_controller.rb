@@ -15,11 +15,15 @@ module Locomotive
       respond_to :html, :json
 
       def create
-        @entry = @content_type.entries.safe_create(params[:entry] || params[:content])
+        @entry = service.public_create(params[:entry] || params[:content])
         respond_with @entry
       end
 
       protected
+
+      def service
+        @service ||= Locomotive::ContentEntryService.new(@content_type, nil)
+      end
 
       def set_locale
         ::I18n.locale = request.env['locomotive.locale'] || params[:locale] || current_site.default_locale

@@ -359,8 +359,6 @@ en:
     content_entries:
       index:
         title: '%{type}'
-        edit: edit model
-        destroy: remove model
         download: download entries
         new: new entry
         category_noname: "No name"
@@ -369,6 +367,9 @@ en:
         updated_at: "Last modified %{distance}"
         updated_by: "Last modified %{distance} by %{who}"
         search_placeholder: "Enter your search keywords here"
+        group_by:
+          all: All
+
       list:
         no_items: "There are no entries for now. Just click <a href=\"%{url}\">here</a> to create the first one."
       new:

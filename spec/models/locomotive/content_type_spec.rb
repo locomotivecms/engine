@@ -162,32 +162,13 @@ describe Locomotive::ContentType do
 
     end
 
-    context '#group_by belongs_to field' do
+    describe '#list_of_groups' do
 
-      it 'groups entries' do
-        groups = @content_type.send(:group_by_belongs_to_field, @content_type.group_by_field)
+      subject { @content_type.send(:list_of_groups) }
 
-        expect(groups.map { |h| h[:name] }).to eq(%w(Gems Service))
-
-        expect(groups.first[:entries].map(&:name)).to eq(%w(RubyOnRails LocomotiveCMS))
-        expect(groups.last[:entries].map(&:name)).to eq(%w(Github))
-      end
-
-      it 'groups entries with a different columns order' do
-        @category_content_type.update_attributes order_by: @category_content_type.entries_custom_fields.first._id, order_direction: 'desc'
-        groups = @content_type.send(:group_by_belongs_to_field, @content_type.group_by_field)
-
-        expect(groups.map { |h| h[:name] }).to eq(%w(Service Gems))
-      end
-
-      it 'deals with entries without a value for the group_by field (orphans)' do
-        @content_type.entries.create name: 'MacOsX'
-        groups = @content_type.send(:group_by_belongs_to_field, @content_type.group_by_field)
-
-        expect(groups.map { |h| h[:name] }).to eq(['Gems', 'Service', nil])
-
-        expect(groups.last[:entries].map(&:name)).to eq(%w(MacOsX))
-      end
+      it { expect(subject.size).to eq 2 }
+      it { expect(subject[0][:name]).to eq 'Gems' }
+      it { expect(subject[1][:name]).to eq 'Service' }
 
     end
 

@@ -88,6 +88,16 @@ module Locomotive
       self.where(_slug: permalink).first
     end
 
+    # Find a content entry by its permalink or its id
+    #
+    # @param [ String ] The id_or_permalink Permalink (slug) or id
+    #
+    # @return [ Object ] The content entry matching the permalink/_id or nil if not found
+    #
+    def self.find_by_id_or_permalink(id_or_permalink)
+        any_of({ _id: id_or_permalink }, { _slug: id_or_permalink }).first
+      end
+
     # Sort the content entries from an ordered array of content entry ids.
     # Their new positions are persisted.
     #

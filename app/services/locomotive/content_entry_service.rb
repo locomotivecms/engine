@@ -18,11 +18,7 @@ module Locomotive
     def all(options = {})
       _options = prepare_options_for_all(options)
 
-      if _options[:grouping]
-        content_type.list_or_group_entries(_options)
-      else
-        content_type.ordered_entries(_options)
-      end
+      content_type.ordered_entries(_options)
     end
 
     # Create a content entry from the attributes passed in parameter.
@@ -36,7 +32,23 @@ module Locomotive
       sanitize_attributes!(attributes)
 
       content_type.entries.build(attributes).tap do |entry|
-        entry.created_by = account
+        entry.created_by = account if account
+        entry.save
+      end
+    end
+
+    # Create a content entry from the attributes passed in parameter.
+    # It does not set the created_by column since it's called
+    # from the public side of the site with no logged in account.
+    # The attributes are filtered through the corresponding presenter.
+    #
+    # @param [ Hash ] attributes The attributes of new content entry.
+    #
+    # @return [ Object ] An instance of the content entry.
+    #
+    def public_create(attributes)
+      content_type.entries.build.tap do |entry|
+        entry.from_presenter(attributes)
         entry.save
       end
     end
@@ -101,7 +113,7 @@ module Locomotive
       # needed to get the custom fields
       _entry = content_type.entries.build
 
-      # if the user deletes all the entries of a many_to_many,
+      # if the user deletes all the entries of a many_to_many field,
       # make sure the list gets empty instead of nil.
       _entry.many_to_many_custom_fields.each do |(_, s)|
         attributes[s] = [] unless attributes.has_key?(s)
@@ -114,7 +126,6 @@ module Locomotive
       {
         page:           options[:page] || 1,
         per_page:       options[:per_page] || Locomotive.config.ui[:per_page],
-        grouping:       options[:grouping] || options[:q].blank?,
         where:          where
       }.tap do |_options|
         _options[:order_by] = options[:order_by] if options[:order_by]

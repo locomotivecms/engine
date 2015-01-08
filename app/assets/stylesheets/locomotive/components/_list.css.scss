@@ -82,6 +82,10 @@ body.content-entries.index {
       }
     }
 
+    &.grouped .item:first-child {
+      border-top: none;
+    }
+
     .sortable-placeholder {
       height: $content_list_item_min_height;
       @include make-sm-column(12);

@@ -7,6 +7,7 @@ module Locomotive
     # @param [ Object ] entry The content entry instance
     #
     # @return [ String ] The html output
+    #
     def content_entry_stamp(entry)
       distance = time_ago_in_words(entry.updated_at)
 
@@ -24,19 +25,45 @@ module Locomotive
     # If the field is localized, then we display a nice flag icon
     # to let the end-user know about it.
     #
-    # @param [ Object ] content_entry The content entry
+    # @param [ Object ] entry The content entry
     # @param [ Object ] field The custom field
     #
     # @return [ String ] The label with or without the icon
-    def label_for_custom_field(content_entry, field)
+    #
+    def label_for_custom_field(entry, field)
       if field.localized?
-        translated_css = content_entry.translated_field?(field) ? '' : 'untranslated'
+        translated_css = entry.translated_field?(field) ? '' : 'untranslated'
 
         icon  = content_tag(:i, '', class: 'icon-flag')
         tag   = content_tag(:span, icon, class: "localized-icon #{translated_css}")
         "#{tag}#{field.label}"
       else
         field.label
+      end
+    end
+
+    # List the labels and url of "groups" used to group the entries
+    # of a content type. 2 sources:
+    # - from a select field
+    # - from a belongs_to field
+    #
+    # @param [ Object ] content_type The content type
+    #
+    # @return [ Array ] The list of labels and urls (Hash)
+    #
+    def each_content_entry_group(content_type, &block)
+      field   = content_type.group_by_field
+      groups  = content_type.list_of_groups || []
+
+      groups.each do |group|
+        block.call({
+          name: group[:name],
+          url:  content_entries_path(content_type.slug, {
+            group:  group[:name],
+            where:  %({"#{field.name}_id": "#{group[:_id]}"}),
+            q:      params[:q]
+          })
+        })
       end
     end
 
