@@ -30,3 +30,14 @@
           = link_to group[:name], group[:url]
 
 = render 'list', content_type: @content_type, entries: @content_entries
+
+
+- unless empty_collection?(@content_entries)
+  .row
+    .col-md-12
+      %br
+      %p.text-right
+        = link_to export_content_entries_path(@content_type.slug, :csv), class: 'btn btn-primary btn-sm' do
+          %i.fa.fa-download
+          = t('.download')
+
