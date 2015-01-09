@@ -17,7 +17,7 @@ module Locomotive
 
           case field.type.to_sym
           when :select
-            self.entries_class._select_options(field.name)
+            self.entries_class._select_options(field.name).map(&:with_indifferent_access)
           when :belongs_to
             target  = self.class_name_to_content_type(field.class_name)
             label   = target.label_field_name.to_sym
