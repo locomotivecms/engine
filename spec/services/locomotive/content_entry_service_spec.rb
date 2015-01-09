@@ -135,6 +135,23 @@ describe Locomotive::ContentEntryService do
 
   end
 
+  describe '#sort' do
+
+    let(:sometime)    { Time.parse('2015/01/06 00:00:00') }
+    let(:entry)       { create_content_entry(title: 'Goodbye', body: 'Lorem ipsum', published: true, _position: 0, updated_at: sometime) }
+    let(:last_entry)  { create_content_entry(title: 'Hello world', body: 'Lorem ipsum', published: true, _position: 1, updated_at: sometime) }
+
+    let(:attributes)  { [last_entry._id.to_s, entry._id.to_s] }
+
+    before { service.sort(attributes) }
+
+    subject { content_type.ordered_entries }
+
+    it { expect(subject.pluck(:title)).to eq ['Hello world', 'Goodbye'] }
+    it { expect(subject.pluck(:updated_at)).to eq [sometime, sometime] }
+
+  end
+
   describe '#permitted_attributes' do
 
     subject { service.permitted_attributes }

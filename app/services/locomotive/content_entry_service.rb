@@ -21,6 +21,15 @@ module Locomotive
       content_type.ordered_entries(_options)
     end
 
+    # Sort the entries of a content type.
+    #
+    # @param [ Array ] ids Ordered list of content entry ids.
+    #
+    def sort(ids)
+      klass = self.content_type.klass_with_custom_fields(:entries)
+      klass.sort_entries!(ids, self.content_type.sortable_column)
+    end
+
     # Create a content entry from the attributes passed in parameter.
     # It sets the created_by column with the current account.
     #

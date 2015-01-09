@@ -108,7 +108,7 @@ module Locomotive
       list = self.any_in(_id: ids.map { |id| BSON::ObjectId.from_string(id.to_s) }).to_a
       ids.each_with_index do |id, position|
         if entry = list.detect { |e| e._id.to_s == id.to_s }
-          entry.update_attributes column => position
+          entry.set column => position
         end
       end
     end
