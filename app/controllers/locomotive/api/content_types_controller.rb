@@ -32,7 +32,7 @@ module Locomotive
       def destroy
         authorize @content_type
         @content_type.destroy
-        respond_with @content_type
+        respond_with @content_type, location: -> { main_app.locomotive_api_content_types_url }
       end
 
       private

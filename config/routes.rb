@@ -27,8 +27,6 @@ Locomotive::Engine.routes.draw do
     get :get_path, on: :collection
   end
 
-  resources :snippets
-
   resources :sites
 
   resource :current_site, controller: 'current_site' do
@@ -44,17 +42,11 @@ Locomotive::Engine.routes.draw do
 
   resources :memberships
 
-  resources :theme_assets do
-    get :all, action: 'index', on: :collection, defaults: { all: true }
-  end
-
   resources :translations
 
   resources :content_assets do
     post :bulk_create, on: :collection
   end
-
-  resources :content_types
 
   resources :content_entries, path: 'content_types/:slug/entries' do
     get :show_in_form,  on: :collection
