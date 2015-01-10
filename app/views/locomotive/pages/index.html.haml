@@ -1,19 +1,22 @@
 - title t('.title')
 
-- content_for :submenu do
-  = render 'locomotive/shared/menu/contents'
+.alert.alert-danger
+  Under development
 
-- content_for :actions do
-  = render 'locomotive/shared/actions/contents'
+/ - content_for :submenu do
+/   = render 'locomotive/shared/menu/contents'
 
-- if policy(Locomotive::Page).create?
-  - content_for :buttons do
-    = local_action_button :new, new_page_path, icon: 'icon-plus', id: 'newpage'
+/ - content_for :actions do
+/   = render 'locomotive/shared/actions/contents'
 
-%p!= t('.help')
+/ - if policy(Locomotive::Page).create?
+/   - content_for :buttons do
+/     = local_action_button :new, new_page_path, icon: 'icon-plus', id: 'newpage'
 
-- if @pages.empty?
-  %p.no-items!= t('.no_items', url: new_page_path)
-- else
-  %ul#pages-list
-    = render partial: 'page', collection: @pages
+/ %p!= t('.help')
+
+/ - if @pages.empty?
+/   %p.no-items!= t('.no_items', url: new_page_path)
+/ - else
+/   %ul#pages-list
+/     = render partial: 'page', collection: @pages
