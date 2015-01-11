@@ -57,7 +57,7 @@ describe Locomotive::TranslationsController do
 
   describe "#PUT update" do
     subject do
-      put :update, id: translation.id, locale: :en, translation: { }, format: :json
+      put :update, id: translation.id, locale: :en, translation: { key: 'foo' }, format: :json
     end
     it { is_expected.to be_success }
   end

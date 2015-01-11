@@ -28,7 +28,7 @@ module Locomotive
 
     def create
       authorize Page
-      @page = current_site.pages.create(params[:page])
+      @page = current_site.pages.create(page_params)
       respond_with @page, location: -> { edit_page_path(@page) }
     end
 
@@ -39,7 +39,7 @@ module Locomotive
 
     def update
       authorize @page
-      @page.update_attributes(params[:page])
+      @page.update_attributes(page_params)
       respond_with @page, location: edit_page_path(@page)
     end
 
@@ -51,7 +51,7 @@ module Locomotive
 
     def sort
       authorize @page, :update?
-      @page.sort_children!(params[:children])
+      @page.sort_children!(params.require(:children))
       respond_with @page
     end
 
@@ -70,6 +70,10 @@ module Locomotive
 
     def load_page
       @page = current_site.pages.find(params[:id])
+    end
+
+    def page_params
+      params.require(:page).permit(:title, :slug, :published, :parent, :parent_id, :raw_template)
     end
 
   end

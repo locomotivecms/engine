@@ -10,13 +10,13 @@ module Locomotive
       end
 
       def update
-        @options = service.update_select_options(params[:select_options])
+        @options = service.update_select_options(options_params)
         respond_with @custom_field, location: -> { last_saved_location!(content_entries_path(@content_type.slug)) }
       end
 
       def new_option
         if params[:select_option].present?
-          option = @custom_field.select_options.build(name: params[:select_option])
+          option = @custom_field.select_options.build(name: option_name_param)
           render partial: 'option', locals: { select_option: option }
         else
           head :unprocessable_entity
@@ -35,6 +35,14 @@ module Locomotive
 
       def service
         @service ||= Locomotive::CustomFieldService.new(@custom_field)
+      end
+
+      def options_params
+        params.require(:select_options).map { |p| p.permit(:_id, :name, :_destroyed) }
+      end
+
+      def option_name_param
+        params.require(:select_option)
       end
 
     end

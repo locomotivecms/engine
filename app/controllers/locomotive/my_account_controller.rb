@@ -14,7 +14,7 @@ module Locomotive
 
     def update
       authorize @account
-      @account.update_attributes(params[:account])
+      @account.update_attributes(account_params)
       respond_with @account, location: edit_my_account_path(anchor: params[:active_tab])
     end
 
@@ -28,6 +28,10 @@ module Locomotive
 
     def load_account
       @account = current_locomotive_account
+    end
+
+    def account_params
+      params.require(:account).permit(:name, :email, :password, :password_confirmation)
     end
 
   end

@@ -1,7 +1,7 @@
 %section.pages-tree
   %h1= t(:title, scope: 'locomotive.pages.index')
 
-  %ul.root{ data: { url: sort_page_path(@pages.first) } }
+  %ul.root{ data: { url: sort_page_path(@pages.first.first) } }
 
     - @pages.each do |(page, children)|
       = render({ state: :page }, page, children)

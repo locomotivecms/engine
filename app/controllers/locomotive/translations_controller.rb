@@ -19,7 +19,7 @@ module Locomotive
 
     def create
       authorize ThemeAsset
-      @translation = current_site.translations.create(params[:translation])
+      @translation = current_site.translations.create(translation_params)
       respond_with @translation, location: translations_path
     end
 
@@ -30,7 +30,7 @@ module Locomotive
 
     def update
       authorize @translation
-      @translation.update_attributes(params[:translation])
+      @translation.update_attributes(translation_params)
       respond_with @translation, location: translations_path
     end
 
@@ -45,5 +45,10 @@ module Locomotive
     def load_translation
       @translation = current_site.translations.find(params[:id])
     end
+
+    def translation_params
+      params.require(:translation).permit(:key, :values)
+    end
+
   end
 end

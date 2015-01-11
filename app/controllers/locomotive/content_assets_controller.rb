@@ -15,12 +15,12 @@ module Locomotive
 
     def create
       authorize Locomotive::ContentAsset
-      @content_asset = current_site.content_assets.create(params[:content_asset])
+      @content_asset = current_site.content_assets.create(content_asset_params)
       respond_with @content_asset, location: content_assets_path
     end
 
     def bulk_create
-      @content_assets = service.bulk_create(params[:content_assets])
+      @content_assets = service.bulk_create(content_assets_params)
       respond_with @content_assets, location: content_assets_path
     end
 
@@ -70,6 +70,10 @@ module Locomotive
 
     def content_asset_params
       params.require(:content_asset).permit(:source)
+    end
+
+    def content_assets_params
+      params.require(:content_assets).map { |p| p.permit(:source) }
     end
 
   end

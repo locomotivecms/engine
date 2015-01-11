@@ -22,8 +22,6 @@ module Locomotive
 
     ## behaviours ##
     slugify_from    :name
-    # attr_protected  :id
-    # attr_accessible :name, :slug, :template
 
     ## methods ##
 

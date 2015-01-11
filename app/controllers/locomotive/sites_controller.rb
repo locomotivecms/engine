@@ -17,7 +17,7 @@ module Locomotive
 
     def create
       authorize Site
-      @site = service.create(params[:site])
+      @site = service.create(site_params)
       respond_with @site, location: edit_my_account_path
     end
 
@@ -38,6 +38,10 @@ module Locomotive
 
     def service
       @service ||= Locomotive::SiteService.new(self.current_locomotive_account)
+    end
+
+    def site_params
+      params.require(:site).permit(:name, :subdomain)
     end
 
   end

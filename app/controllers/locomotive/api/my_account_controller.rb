@@ -19,13 +19,13 @@ module Locomotive
 
       def create
         @account = Account.new
-        @account.from_presenter(account_params).save
+        @account.from_presenter(params[:account]).save
         respond_with @account, location: main_app.locomotive_api_my_account_url
       end
 
       def update
         authorize @account
-        @account.from_presenter(account_params).save
+        @account.from_presenter(params[:account]).save
         respond_with @account, location: main_app.locomotive_api_my_account_url
       end
 
@@ -33,10 +33,6 @@ module Locomotive
 
       def load_account
         @account = current_locomotive_account
-      end
-
-      def account_params
-        params.require(:account).permit(:name, :email, :password, :password_confirmation)
       end
 
       def must_not_be_logged_in

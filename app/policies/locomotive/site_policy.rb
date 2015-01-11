@@ -42,7 +42,7 @@ module Locomotive
     end
 
     def permitted_attributes
-      plain = [:name, :picture, :remove_picture, :seo_title, :meta_keywords, :meta_description, :timezone_name, :robots_txt]
+      plain = [:name, :subdomain, :picture, :remove_picture, :seo_title, :meta_keywords, :meta_description, :timezone_name, :robots_txt]
       hash  = { domains: [], locales: [] }
 
       unless update_advanced?

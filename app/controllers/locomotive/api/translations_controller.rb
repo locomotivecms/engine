@@ -17,15 +17,14 @@ module Locomotive
 
       def create
         authorize Translation
-        @translation = Locomotive::Translation.new(params[:translation])
-        @translation.from_presenter(params[:translation])
-        @translation.save
+        @translation = self.current_site.translations.build
+        @translation.from_presenter(params[:translation]).save
         respond_with @translation, location: -> { main_app.locomotive_api_translation_url(@translation) }
       end
 
       def update
         authorize @translation
-        @translation.update_attributes(params[:translation])
+        @translation.from_presenter(params[:translation]).save
         respond_with @translation, location: main_app.locomotive_api_translation_url(@translation)
       end
 

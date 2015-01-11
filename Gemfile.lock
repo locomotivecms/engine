@@ -71,10 +71,6 @@ GEM
       rack-test (~> 0.6.2)
       rails-dom-testing (~> 1.0, >= 1.0.5)
       rails-html-sanitizer (~> 1.0, >= 1.0.1)
-    actionpack-action_caching (1.1.1)
-      actionpack (>= 4.0.0, < 5.0)
-    actionpack-page_caching (1.0.2)
-      actionpack (>= 4.0.0, < 5)
     actionview (4.2.0)
       activesupport (= 4.2.0)
       builder (~> 3.1)
@@ -363,8 +359,6 @@ GEM
     pickle (0.5.0)
       cucumber (>= 0.8)
       rake
-    protected_attributes (1.0.8)
-      activemodel (>= 4.0.1, < 5.0)
     pry (0.10.1)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -487,8 +481,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  actionpack-action_caching
-  actionpack-page_caching
   coffee-rails (~> 4.0.1)
   custom_fields!
   database_cleaner
@@ -499,10 +491,8 @@ DEPENDENCIES
   locomotive_cms!
   mocha
   pickle
-  protected_attributes
   pry
   quiet_assets
-  rails-observers
   rspec-cells (~> 0.2.2)
   rspec-rails (~> 3.1.0)
   sass-rails (~> 4.0.5)
