@@ -1,7 +1,6 @@
-# TODO: move it to app/controllers/locomotive/concerns
 module Locomotive
-  module Routing
-    module SiteDispatcher
+  module Concerns
+    module SiteDispatcherController
 
       extend ActiveSupport::Concern
 
@@ -15,12 +14,6 @@ module Locomotive
 
       def current_site
         @current_site ||= request.env['locomotive.site']
-      end
-
-      def current_resource
-        self.class.name.demodulize.underscore.gsub('_controller','').to_sym
-      rescue
-        :no_current_resource
       end
 
       def require_site

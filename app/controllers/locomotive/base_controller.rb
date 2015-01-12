@@ -1,7 +1,7 @@
 module Locomotive
   class BaseController < ApplicationController
 
-    include Locomotive::Routing::SiteDispatcher
+    include Locomotive::Concerns::SiteDispatcherController
     include Locomotive::ActionController::LocaleHelpers
     include Locomotive::ActionController::UrlHelpers
     include Locomotive::ActionController::Ssl
