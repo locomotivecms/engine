@@ -14,7 +14,7 @@ Gem::Specification.new do |s|
   s.email       = ['did@locomotivecms.com']
   s.homepage    = 'http://www.locomotivecms.com'
   s.summary     = 'A platform to create, publish and edit sites'
-  s.description = 'LocomotiveCMS is designed to save your time and help you focus on what matters: front-end technology, standard development process and no learning time for your client.'
+  s.description = 'Locomotive is designed to save your time and help you focus on what matters: front-end technology, standard development process and no learning time for your client.'
 
   s.add_dependency 'rake',                            '~> 10.0.0'
 
