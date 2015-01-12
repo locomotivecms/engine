@@ -45,6 +45,7 @@ group :test do
 
   gem 'rspec-cells', '~> 0.2.2' # Can't update more because rspec-cells depends on rspec >= 2.99 after this version
   gem 'shoulda-matchers',   '~> 2.7.0'
+  gem 'grape-entity-matchers'
   gem 'factory_girl_rails'
   gem 'pickle'
   gem 'json_spec',          '~> 1.1.4'

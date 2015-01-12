@@ -301,6 +301,9 @@ GEM
     grape-entity (0.4.4)
       activesupport
       multi_json (>= 1.3.2)
+    grape-entity-matchers (1.0.0)
+      grape-entity (~> 0.4.0)
+      rspec (>= 3.0.0.beta)
     haml (4.0.6)
       tilt
     hashie (3.3.2)
@@ -519,6 +522,7 @@ DEPENDENCIES
   factory_girl_rails
   faye-websocket
   github_api
+  grape-entity-matchers
   json_spec (~> 1.1.4)
   locomotive_cms!
   mocha
