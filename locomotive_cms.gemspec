@@ -94,7 +94,7 @@ Gem::Specification.new do |s|
 
   s.extra_rdoc_files = [
     'LICENSE',
-     'README.textile'
+     'README.md'
   ]
 
 end
