@@ -9,6 +9,8 @@ gem 'sass-rails',   '~> 5.0.1'
 gem 'coffee-rails', '~> 4.1.0'
 gem 'uglifier',     '>= 2.5.3'
 
+gem 'coveralls',    require: false
+
 group :test, :development do
   gem 'rspec-rails', '~> 3.1.0' #~> 2.14.2' # In order to have rspec tasks and generators
   gem 'pry'

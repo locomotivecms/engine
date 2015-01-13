@@ -5,8 +5,10 @@ tmp/**/*
 .DS_Store
 rerun.txt
 uploads
+coverage/
 spec/tmp
 spec/fixtures/themes/default
+spec/dummy/public/assets/
 public/assets
 public/sites
 public/uploads
