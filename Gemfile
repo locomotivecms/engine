@@ -5,8 +5,8 @@ source "https://rubygems.org"
 
 gemspec # Include gemspec dependencies
 
-gem 'sass-rails',   '~> 4.0.5'
-gem 'coffee-rails', '~> 4.0.1'
+gem 'sass-rails',   '~> 5.0.1'
+gem 'coffee-rails', '~> 4.1.0'
 gem 'uglifier',     '>= 2.5.3'
 
 group :test, :development do
