@@ -3,7 +3,7 @@ module Locomotive
 
     include ::Locomotive::Engine.routes.url_helpers
 
-    # delegate :cookies, to: :parent_controller
+    helper ::Locomotive::Shared::AccountsHelper
 
     def show(args)
       @current_site = args[:site]
@@ -24,6 +24,14 @@ module Locomotive
       @attributes = attributes
 
       render view: :show_link
+    end
+
+    ## My account ##
+
+    def show_my_account(site)
+      @account = parent_controller.send(:current_locomotive_account)
+
+      render view: :show_my_account
     end
 
     ## Content Types ##

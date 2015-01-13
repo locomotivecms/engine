@@ -5,7 +5,7 @@ module Locomotive
 
     before_filter :load_site
 
-    helper 'Locomotive::Sites'
+    helper Locomotive::SitesHelper
 
     before_filter :ensure_domains_list, only: :update
 

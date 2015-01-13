@@ -29,7 +29,10 @@ module Locomotive
 
     helper_method :sections
 
-    helper Locomotive::BaseHelper, Locomotive::ContentTypesHelper
+    helper  Locomotive::BaseHelper,
+            Locomotive::Shared::AccountsHelper,
+            Locomotive::Shared::SitesHelper,
+            Locomotive::ContentTypesHelper
 
     self.responder = Locomotive::ActionController::Responder # custom responder
 

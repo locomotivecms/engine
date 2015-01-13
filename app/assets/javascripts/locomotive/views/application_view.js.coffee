@@ -2,6 +2,9 @@ class Locomotive.Views.ApplicationView extends Backbone.View
 
   el: 'body'
 
+  events:
+    'click .navbar .navbar-toggle': 'slide_sidebar'
+
   initialize: ->
     @header_view  = new Locomotive.Views.Shared.HeaderView()
     @sidebar_view = new Locomotive.Views.Shared.SidebarView()
@@ -17,22 +20,15 @@ class Locomotive.Views.ApplicationView extends Backbone.View
 
     @automatic_max_height()
 
-    # @add_submenu_behaviours()
-
-    # @center_ui_dialog()
-
-    # @enable_sites_picker()
-
-    # @enable_content_locale_picker()
-
-    # @set_locale_for_tinymce_widgets()
-
     # render page view
     if @options.view?
       @view = new @options.view(@options.view_data || {})
       @view.render()
 
     return @
+
+  slide_sidebar: (event) ->
+    $('body').toggleClass('slide-top-sidebar')
 
   render_flash_messages: (messages) ->
     _.each messages, (couple) ->

@@ -1,5 +1,9 @@
 body.sites {
 
+  .wrapper {
+    @include locomotive_gradient;
+  }
+
   .main {
     background: transparent;
 

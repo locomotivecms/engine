@@ -1,11 +1,11 @@
 // Sidebar
 
 .sidebar {
-  @include transition(left 0.1s ease-in-out);
+  @include transition(left 0.3s ease-in-out);
 }
 
 .content {
-  @include transition(left 0.1s ease-in-out);
+  @include transition(left 0.3s ease-in-out);
 }
 
 body.sidebar-closed {
@@ -14,6 +14,12 @@ body.sidebar-closed {
   }
 
   .content {
+    left: 0px;
+  }
+}
+
+body.slide-top-sidebar {
+  .sidebar {
     left: 0px;
   }
 }

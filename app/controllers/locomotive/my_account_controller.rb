@@ -3,9 +3,9 @@ module Locomotive
 
     respond_to :json, only: [:update, :regenerate_api_key]
 
-    helper 'Locomotive::Accounts'
-
     before_filter :load_account
+
+    layout '/locomotive/layouts/without_site'
 
     def edit
       authorize @account

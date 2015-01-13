@@ -2,8 +2,11 @@ $sign_in_legend_color: #a2e4f1;
 
 .sessions {
   .content {
-    @include make-sm-column-offset(4);
-    @include make-sm-column(4);
+    @include make-sm-column-offset(3);
+    @include make-sm-column(6);
+
+    @include make-md-column-offset(4);
+    @include make-md-column(4);
   }
 
   h1 {

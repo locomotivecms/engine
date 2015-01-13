@@ -1,0 +1,12 @@
+@media (max-width: $screen-sm-min) {
+
+  .sidebar {
+    z-index: 10;
+    left: -$sidebar_width;
+  }
+
+  .content {
+    left: 0px;
+  }
+
+}

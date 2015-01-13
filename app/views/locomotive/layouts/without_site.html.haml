@@ -3,7 +3,11 @@
 %html{ xmlns: 'http://www.w3.org/1999/xhtml'  }
   %head
     = render 'locomotive/shared/head'
-  %body{ class: "#{body_class} no-sidebar"  }
+  %body{ class: "#{body_class} without-site"  }
+
+    %nav.sidebar
+      .scrollable
+        = render 'locomotive/shared/sidebar_without_site'
 
     = render 'locomotive/shared/header'
 

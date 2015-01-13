@@ -35,6 +35,7 @@ en:
     shared:
       header:
         welcome: Welcome, %{name}
+        sites: My sites
         account: Account settings
         see: See website
         switch: Switch to another site
@@ -221,7 +222,7 @@ en:
 
     sites:
       index:
-        title: Choose a site
+        title: My sites
       new:
         title: New site
         help: "Fill in the form below to create your new site."
