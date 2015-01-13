@@ -4,7 +4,7 @@ describe Locomotive::Notifications do
 
   describe 'new_content_entry' do
 
-    let(:now)           { Time.local(1982, 'sep', 16, 21, 0) }
+    let(:now)           { Time.use_zone('America/Chicago') { Time.zone.local(1982, 'sep', 16, 14, 0) } }
     let(:site)          { FactoryGirl.build(:site, domains: %w{www.acme.com}, timezone_name: 'CET') }
     let(:account)       { FactoryGirl.build(:account, email: 'bart@simpson.net') }
     let(:content_type)  { FactoryGirl.build(:content_type, site: site) }
