@@ -42,13 +42,14 @@ group :test do
   # gem 'cucumber-rails', require: false
   # gem 'poltergeist'
 
-  gem 'rspec-cells', '~> 0.2.2' # Can't update more because rspec-cells depends on rspec >= 2.99 after this version
+  gem 'rspec-cells',        '~> 0.2.2' # Can't update more because rspec-cells depends on rspec >= 2.99 after this version
   gem 'shoulda-matchers',   '~> 2.7.0'
   gem 'factory_girl_rails'
   gem 'pickle'
   gem 'json_spec',          '~> 1.1.4'
   gem 'database_cleaner'
-  gem 'mocha', require: false
+  gem 'mocha',              require: false
+  gem 'timecop',            '~> 0.7.1'
 
   # gem 'debugger', git: 'git://github.com/cldwalker/debugger.git'
 end

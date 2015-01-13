@@ -4,7 +4,7 @@ describe Locomotive::Notifications do
 
   describe 'new_content_entry' do
 
-    let(:now)           { Time.parse('Sep 16 1982 9:00pm') }
+    let(:now)           { Time.local(1982, 'sep', 16, 21, 0) }
     let(:site)          { FactoryGirl.build(:site, domains: %w{www.acme.com}, timezone_name: 'CET') }
     let(:account)       { FactoryGirl.build(:account, email: 'bart@simpson.net') }
     let(:content_type)  { FactoryGirl.build(:content_type, site: site) }
@@ -25,8 +25,9 @@ describe Locomotive::Notifications do
     end
 
     it 'outputs the current time in the correct time zone' do
-      Time.stubs(:now).returns(now)
-      expect(set_timezone { mail.body.encoded }).to match('a new instance has been created on 09/16/1982 21:00')
+      Timecop.freeze(now) do
+        expect(set_timezone { mail.body.encoded }).to match('a new instance has been created on 09/16/1982 21:00')
+      end
     end
 
     it 'outputs the domain in the email body' do
