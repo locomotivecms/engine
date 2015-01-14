@@ -14,19 +14,11 @@ load 'lib/tasks/locomotive.rake'
 # === Gems install tasks ===
 Bundler::GemHelper.install_tasks
 
-# === Cucumber tasks ===
-
-require 'cucumber/rake/task'
-
-Cucumber::Rake::Task.new do |t|
-  t.rcov = false
-end
-
 # === Travis ===
 task :travis do
   puts "Precompile assets first to avoid potential time outs"
   system("bundle exec rake assets:precompile")
-  ["rspec spec", "cucumber -b"].each do |cmd|
+  ["rspec spec"].each do |cmd|
     puts "Starting to run #{cmd}..."
     system("export DISPLAY=:99.0 && bundle exec #{cmd}")
     raise "#{cmd} failed!" unless $?.exitstatus == 0
@@ -34,4 +26,4 @@ task :travis do
 end
 
 # === Default task ===
-task :default => [:spec, :cucumber]
+task :default => [:spec]

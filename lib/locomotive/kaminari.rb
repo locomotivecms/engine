@@ -2,20 +2,6 @@ require 'kaminari'
 
 module Kaminari
 
-  module Helpers
-    class Tag
-      def to_s(locals = {})
-        path = "kaminari/#{@theme}#{self.class.name.demodulize.underscore}"
-
-        if namespace = @options[:namespace]
-          path = "#{namespace}/#{path}"
-        end
-
-        @template.render partial: path, locals: @options.merge(locals)
-      end
-    end
-  end
-
   class PaginatableArray < Array
     def to_liquid(options = {})
       {

@@ -1,8 +1,0 @@
-%script{ type: 'text/html', id: 'snippet_item' }
-
-  %strong= link_to "{{name}}", edit_snippet_path('snippet_id').gsub(/\/snippet_id\//, '/{{id}}/')
-  .more
-    %span!= t('.updated_at')
-    {{updated_at}}
-
-    = link_to_icon :trash, '#', class: 'remove', data: { confirm: t('locomotive.messages.confirm') }

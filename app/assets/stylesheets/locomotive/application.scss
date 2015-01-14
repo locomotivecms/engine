@@ -1,0 +1,29 @@
+//= require select2
+//= require select2-bootstrap
+//= require locomotive/cropper
+//= require locomotive/bootstrap-switch
+//= require locomotive/bootstrap-datetimepicker
+//= require locomotive/bootstrap-tagsinput
+
+@import "font-awesome-sprockets";
+@import "font-awesome";
+
+@import "bootstrap-sprockets";
+@import "./globals/bootstrap";
+@import "bootstrap";
+
+@import "./base/all";
+
+@import "layouts/main";
+@import "layouts/responsive";
+
+@import "components/misc";
+@import "components/transitions";
+@import "components/header";
+@import "components/sidebar";
+@import "components/drawer";
+@import "components/main";
+@import "components/list";
+@import "components/content_assets";
+
+@import "components/sites";

@@ -2,7 +2,7 @@ module Locomotive
   module Api
     class BaseController < ApplicationController
 
-      include Locomotive::Routing::SiteDispatcher
+      include Locomotive::Concerns::SiteDispatcherController
       include Locomotive::ActionController::Timezone
       include Locomotive::ActionController::LocaleHelpers
       include Locomotive::Concerns::TokenAuthenticationController

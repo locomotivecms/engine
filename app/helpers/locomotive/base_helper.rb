@@ -147,32 +147,6 @@ module Locomotive
       "Locomotive.Views.#{name}.#{action}View"
     end
 
-    def backbone_view_data
-      content_for?(:backbone_view_data) ? content_for(:backbone_view_data) : ''
-    end
-
-    # Build the json version of a object. If the object owns a presenter
-    # then that presenter is used instead of the default object to_json method.
-    # Furthermore, if the presenter owns a as_json_for_html_view method,
-    # then it is called instead of the default as_json method.
-    # A html_safe is processed at the end.
-    #
-    # @return [ String ] The json representation of the object
-    #
-    def to_json(object)
-      if object.respond_to?(:to_presenter)
-        presenter = object.to_presenter
-
-        if presenter.respond_to?(:as_json_for_html_view)
-          presenter.as_json_for_html_view
-        else
-          presenter.as_json
-        end.to_json
-      else
-        object.to_json
-      end.html_safe
-    end
-
     # Display the image of the flag representing the locale.
     #
     # @param [ String / Symbol ] locale The locale (fr, en, ...etc)
@@ -188,51 +162,12 @@ module Locomotive
       link_to 'noCoffee', 'http://www.nocoffee.fr', id: 'nocoffee'
     end
 
-    # accounts
-
-    def account_avatar_url(account, size = '70x70#')
-      if account.avatar?
-        Locomotive::Dragonfly.resize_url account.avatar.url, size
-      else
-        'locomotive/user.png'
-      end
-    end
-
-    def account_avatar_and_name(account, size = '70x70#')
-      avatar  = image_tag(account_avatar_url(account, size), class: 'img-circle', style: 'width: 20px')
-      profile = avatar + account.name
-    end
-
     # sites
-
-    def site_picture_url(site, size = '80x80#')
-      if site.picture?
-        Locomotive::Dragonfly.resize_url site.picture.url, size
-      else
-        'locomotive/site.png'
-      end
-    end
 
     def application_domain
       domain = Locomotive.config.domain
       domain += ":#{request.port}" if request.port != 80
       domain
-    end
-
-    def manage_subdomain_or_domains?
-      Locomotive.config.manage_subdomain? || Locomotive.config.manage_domains?
-    end
-
-    def manage_subdomain?
-      Locomotive.config.manage_subdomain?
-    end
-
-    def manage_domains?
-      Locomotive.config.manage_domains?
-    end
-
-    def multi_sites?
-      Locomotive.config.multi_sites?
     end
 
     # locales

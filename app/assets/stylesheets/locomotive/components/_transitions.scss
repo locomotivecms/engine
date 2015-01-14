@@ -1,0 +1,78 @@
+// Sidebar
+
+.sidebar {
+  @include transition(left 0.3s ease-in-out);
+}
+
+.content {
+  @include transition(left 0.3s ease-in-out);
+}
+
+body.sidebar-closed {
+  .sidebar {
+    left: -$sidebar_width;
+  }
+
+  .content {
+    left: 0px;
+  }
+}
+
+body.slide-top-sidebar {
+  .sidebar {
+    left: 0px;
+  }
+}
+
+// Drawer
+
+.content > .overlay {
+  @include transition(all 0.5s ease-in-out);
+}
+
+.content::after {
+  position: absolute;
+  top: 0px;
+  left: 0;
+  right: 0px;
+  bottom: 0px;
+  width: 0px;
+  height: 0px;
+  background: $overlay_background;
+  @include opacity(0.0);
+  @include transition(opacity 0.3s ease-in-out, width 0.1s 0.3s, height 0.1s 0.3s);
+  content: '';
+}
+
+.drawer {
+  @include transition(all 0.3s ease-in-out);
+  @include transform(translate3d(100%, 0, 0));
+}
+
+body.drawer-opened {
+
+  .content::after {
+    width: 100%;
+    height: 100%;
+    @include opacity(0.3);
+    @include transition(opacity 0.3s ease-in-out);
+  }
+
+  .drawer {
+    @include transform(translate3d(0, 0, 0));
+
+    > .inner > div {
+      @include transition(opacity 0.05s ease-in-out);
+
+      &.fadeout {
+        @include opacity(0);
+      }
+
+      &.fadein {
+        @include opacity(1);
+      }
+    }
+  }
+
+}
+

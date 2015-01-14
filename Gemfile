@@ -5,9 +5,11 @@ source "https://rubygems.org"
 
 gemspec # Include gemspec dependencies
 
-gem 'sass-rails',   '~> 4.0.5'
-gem 'coffee-rails', '~> 4.0.1'
+gem 'sass-rails',   '~> 5.0.1'
+gem 'coffee-rails', '~> 4.1.0'
 gem 'uglifier',     '>= 2.5.3'
+
+gem 'coveralls',    '~> 0.7.2', require: false
 
 group :test, :development do
   gem 'rspec-rails', '~> 3.1.0' #~> 2.14.2' # In order to have rspec tasks and generators
@@ -15,10 +17,9 @@ group :test, :development do
 end
 
 group :development do
-  gem 'custom_fields', path: '../custom_fields'
+  # gem 'custom_fields', path: '../custom_fields'
   # gem 'custom_fields', path: '../gems/custom_fields' # for Developers
-  # gem 'custom_fields', github: 'locomotivecms/custom_fields'
-  # gem 'custom_fields', git: 'git://github.com/locomotivecms/custom_fields.git', branch: '2.0.0.rc' # Branch on Github
+  gem 'custom_fields', github: 'locomotivecms/custom_fields', ref: '15cceb66ed'
 
   # gem 'locomotive-aloha-rails', path: '../gems/aloha-rails' # for Developers
   # gem 'locomotive-tinymce-rails', path: '../gems/tinymce-rails' # for Developers
@@ -43,14 +44,15 @@ group :test do
   # gem 'cucumber-rails', require: false
   # gem 'poltergeist'
 
-  gem 'rspec-cells', '~> 0.2.2' # Can't update more because rspec-cells depends on rspec >= 2.99 after this version
+  gem 'rspec-cells',        '~> 0.2.2' # Can't update more because rspec-cells depends on rspec >= 2.99 after this version
   gem 'shoulda-matchers',   '~> 2.7.0'
   gem 'grape-entity-matchers'
   gem 'factory_girl_rails'
   gem 'pickle'
   gem 'json_spec',          '~> 1.1.4'
   gem 'database_cleaner'
-  gem 'mocha', require: false
+  gem 'mocha',              require: false
+  gem 'timecop',            '~> 0.7.1'
 
   # gem 'debugger', git: 'git://github.com/cldwalker/debugger.git'
 end

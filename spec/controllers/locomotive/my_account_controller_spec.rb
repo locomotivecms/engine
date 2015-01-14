@@ -27,9 +27,9 @@ describe Locomotive::MyAccountController do
   describe "#PUT update" do
     let(:name) { generate(:name) }
     subject do
-      put :update, id: account.id, locale: :en, account: { name: name }, format: :json
+      put :update, id: account.id, locale: :en, account: { name: name }
     end
-    it { is_expected.to be_success }
+    it { is_expected.to be_redirect }
     specify do
       subject
       expect(assigns(:account).name).to eq(name)

@@ -1,0 +1,107 @@
+$header_brand_color:          $header_default_color;
+$header_brand_font_size:      15px;
+$header_site_arrow_color:     #349cb0;
+
+.navbar-header {
+  width: 30%;
+
+  .navbar-brand, .navbar-site, .navbar-text {
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+
+  .navbar-site {
+    margin-top: 2px;
+    margin-bottom: 0px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .navbar-brand {
+    font-size: $header_brand_font_size;
+    color: $header_brand_color;
+
+    padding-top: 15px;
+    padding-bottom: 15px;
+
+    img {
+      vertical-align: baseline;
+    }
+
+    span.default {
+      font-family: $alt-font-family-sans-serif;
+      color: rgba($header_brand_color, 0.8);
+    }
+  }
+
+}
+
+.navbar-collapse {
+  padding: 0px;
+
+  .navbar-right {
+    width: 30%;
+
+    > li {
+      float: right
+    }
+  }
+
+  .navbar-nav > li > a {
+    line-height: 35px;
+    padding-top: 8px;
+    padding-bottom: 7px;
+  }
+}
+
+.navbar-site {
+  width: 40%;
+  @include display-flex;
+  @include flex-justify-content(center);
+
+  li {
+    a {
+      display: inline-block;
+      span.arrow {
+        margin-left: 5px;
+        position: relative;
+        top: 3px;
+
+        i {
+          font-size: 22px;
+          font-weight: bold;
+          color: $header_site_arrow_color;
+        }
+      }
+
+      &:hover {
+        // TODO: cf Mathieu
+      }
+    }
+  }
+}
+
+.navbar-default {
+  .navbar-toggle {
+    z-index: 10;
+    border-color: transparent;
+    background-color: rgba(#000, 0.2);
+
+    &:focus, &:active {
+      background-color: rgba(#000, 0.2);
+    }
+
+    .icon-bar {
+      background-color: rgba(#fff, 0.6);
+      @include transition(all 0.3s ease-in-out);
+    }
+
+    &:hover {
+      background-color: rgba(#000, 0.2);
+
+      .icon-bar {
+        background-color: #fff;
+      }
+    }
+  }
+}

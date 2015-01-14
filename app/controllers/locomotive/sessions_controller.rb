@@ -1,7 +1,7 @@
 module Locomotive
   class SessionsController < ::Devise::SessionsController
 
-    include Locomotive::Routing::SiteDispatcher
+    include Locomotive::Concerns::SiteDispatcherController
 
     layout '/locomotive/layouts/not_logged_in'
 

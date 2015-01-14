@@ -1,3 +1,6 @@
+require 'coveralls'
+Coveralls.wear!('rails')
+
 ENV['RAILS_ENV'] ||= 'test'
 
 require File.join(File.dirname(__FILE__), 'dummy', 'config', 'environment.rb')
@@ -51,5 +54,5 @@ RSpec.configure do |config|
   # the seed, which is printed after each run.
   #     --seed 1234
   config.order = 'random'
-  # config.seed = '37049' # example
+  # config.seed = '5581' # example
 end

@@ -1,8 +1,11 @@
-- if multi_sites? && current_locomotive_account.sites.size > 1
+- if (_title = yield(:site_title)).present?
+  .navbar-text
+    = _title
+- elsif multi_sites?
   = link_to sites_path do
     = current_site.name_was
     %span.arrow
       %i.fa.fa-angle-down
 - else
-  %p.navbar-text
+  .navbar-text
     = current_site.name_was

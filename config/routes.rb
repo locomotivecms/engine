@@ -118,13 +118,6 @@ Rails.application.routes.draw do
   # public content entry submissions
   resources :locomotive_entry_submissions, controller: 'locomotive/public/content_entries', path: 'entry_submissions/:slug'
 
-  # magic urls
-  # match '/_admin'               => 'locomotive/public/pages#show_toolbar'
-  # match '*path/_admin'          => 'locomotive/public/pages#show_toolbar'
-
-  # match '/_edit'                => 'locomotive/public/pages#edit'
-  # match '*path/_edit'           => 'locomotive/public/pages#edit'
-
   constraints Locomotive::Routing::PostContentEntryConstraint.new do
     # root to:                    'locomotive/public/content_entries#create', path: 'index', via: :post
     post  '/',    to: 'locomotive/public/content_entries#create'

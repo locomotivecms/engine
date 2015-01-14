@@ -1,5 +1,5 @@
 .site
-  = link_to root_url(host: site.full_subdomain, port: request.port, protocol: request.ssl? ? 'https' : 'http'), class: 'media' do
+  = link_to safe_dashboard_url(site), class: 'media' do
 
     .pull-right.arrow
       %span

@@ -1,0 +1,6 @@
+= f.actions do
+  .row
+    .col-xs-6.text-left.visible-xs-block
+      = link_to t(:logout, scope: 'locomotive.shared.header'), destroy_locomotive_session_path, data: { confirm: t('locomotive.messages.confirm') }, class:'btn btn-sm btn-danger', method: :delete
+    .col-xs-6.col-sm-12.text-right
+      = f.action

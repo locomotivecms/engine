@@ -1,6 +1,22 @@
 module Locomotive
   module SitesHelper
 
+    # domains #
+
+    def manage_subdomain_or_domains?
+      Locomotive.config.manage_subdomain? || Locomotive.config.manage_domains?
+    end
+
+    def manage_subdomain?
+      Locomotive.config.manage_subdomain?
+    end
+
+    def manage_domains?
+      Locomotive.config.manage_domains?
+    end
+
+    # forms
+
     def ordered_current_site_locales
       current_site.locales + (Locomotive.config.site_locales - current_site.locales)
     end

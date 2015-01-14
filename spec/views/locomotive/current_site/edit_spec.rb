@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe 'locomotive/current_site/edit', type: :view do
 
-  helper(Locomotive::BaseHelper, Locomotive::SitesHelper, Locomotive::Engine.routes.url_helpers)
+  helper(Locomotive::BaseHelper, Locomotive::Shared::AccountsHelper, Locomotive::Shared::SitesHelper, Locomotive::SitesHelper, Locomotive::Engine.routes.url_helpers)
 
   let(:site)    { build('test site') }
   let(:policy)  { stub(create?: false, point?: false, update_advanced?: false) }

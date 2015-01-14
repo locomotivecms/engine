@@ -1,7 +1,7 @@
 module Locomotive
   class PasswordsController < ::Devise::PasswordsController
 
-    include Locomotive::Routing::SiteDispatcher
+    include Locomotive::Concerns::SiteDispatcherController
 
     layout '/locomotive/layouts/not_logged_in'
 

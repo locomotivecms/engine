@@ -2,7 +2,7 @@ module Locomotive
   module Public
     class PagesController < ApplicationController
 
-      include Locomotive::Routing::SiteDispatcher
+      include Locomotive::Concerns::SiteDispatcherController
       include Locomotive::Render
       include Locomotive::ActionController::LocaleHelpers
 

@@ -24,9 +24,9 @@ describe Locomotive::SitesController do
       { subdomain: generate(:subdomain), name: generate(:name) }
     end
     subject do
-      post :create, locale: :en, site: site_attributes, format: :json
+      post :create, locale: :en, site: site_attributes
     end
-    it { is_expected.to be_success }
+    it { is_expected.to be_redirect }
     specify do
       expect { subject }.to change(Locomotive::Site, :count).by(+1)
     end
@@ -38,9 +38,9 @@ describe Locomotive::SitesController do
       create(:membership, account: account, site: another_site, role: 'admin')
     end
     subject do
-      delete :destroy, id: another_site.id, locale: :en, format: :json
+      delete :destroy, id: another_site.id, locale: :en
     end
-    it { is_expected.to be_success }
+    it { is_expected.to be_redirect }
     specify do
       expect { subject }.to change(Locomotive::Site, :count).by(-1)
     end

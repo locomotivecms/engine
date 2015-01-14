@@ -5,11 +5,9 @@ module Locomotive
 
     before_filter :load_site
 
-    helper 'Locomotive::Sites'
+    helper Locomotive::SitesHelper
 
     before_filter :ensure_domains_list, only: :update
-
-    respond_to :json, only: :update
 
     def edit
       authorize @site

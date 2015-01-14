@@ -5,5 +5,4 @@
 
   = f.input :robots_txt, as: :code, wrapper_html: { class: 'small' }
 
-= f.actions do
-  = f.action
+= render 'locomotive/current_site/form/actions', f: f
