@@ -9,8 +9,6 @@ module Locomotive
 
     before_filter :ensure_domains_list, only: :update
 
-    respond_to :json, only: :update
-
     def edit
       authorize @site
       respond_with @site

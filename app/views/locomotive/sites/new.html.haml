@@ -1,12 +1,17 @@
-- title t('.title')
+- content_for :site_title do
+  = t('.title')
 
-- content_for :submenu do
-  = render_cell 'locomotive/settings_menu', :show
+= help t('.help', default: '')
 
-%p!= t('.help')
+= locomotive_form_for @site, url: sites_path, html: { multipart: true } do |f|
 
-= semantic_form_for @site, url: sites_path do |form|
+  = f.inputs :information do
+    = f.input :name
 
-  = render 'form', f: form
+    - if policy(@site).point?
+      = f.inputs :access_points do
+        - if manage_subdomain_or_domains?
+          - if manage_subdomain?
+            = f.input :subdomain, prepend: 'http://', append: '.' + application_domain
 
-  = render 'locomotive/shared/form_actions', back_url: edit_my_account_path, button_label: :create
+  = f.actions back_url: sites_path

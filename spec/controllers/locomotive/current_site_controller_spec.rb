@@ -25,9 +25,9 @@ describe Locomotive::CurrentSiteController do
 
   describe "#PUT update" do
     subject do
-      put :update, id: site.id, locale: :en, site: { name: 'foooo' }, format: :json
+      put :update, id: site.id, locale: :en, site: { name: 'foooo' }
     end
-    it { is_expected.to be_success }
+    it { is_expected.to be_redirect }
     specify do
       subject
       expect(assigns(:site).name).to eq('foooo')

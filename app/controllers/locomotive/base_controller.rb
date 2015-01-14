@@ -2,14 +2,15 @@ module Locomotive
   class BaseController < ApplicationController
 
     include Locomotive::Concerns::SiteDispatcherController
+    include Locomotive::Concerns::UrlHelpersController
     include Locomotive::ActionController::LocaleHelpers
-    include Locomotive::ActionController::UrlHelpers
     include Locomotive::ActionController::Ssl
     include Locomotive::ActionController::Timezone
     include Locomotive::Concerns::ExceptionController
     include Locomotive::Concerns::MembershipController
     include Locomotive::Concerns::AuthorizationController
     include Locomotive::Concerns::StoreLocationController
+
 
     layout '/locomotive/layouts/application'
 

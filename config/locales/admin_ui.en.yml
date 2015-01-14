@@ -205,24 +205,10 @@ en:
           permanent: "Permanent (301)"
           temporary: "Temporary (302)"
 
-    snippets:
-      index:
-        title: Listing snippets
-        help: "Snippets are portion of HTML code which can be found at different places within the site (such as a footer)."
-        no_items: "There are no snippets for now. Just click <a href=\"%{url}\">here</a> to create the first one."
-        new: new snippet
-      new:
-        title: New snippet
-        help: "Fill in the form below to update your snippet."
-      edit:
-        title: Editing snippet
-        help: "Include your snippet in your page templates with the following liquid code : <span class='code'>{% include '%{slug}' %}</span>."
-      snippet:
-        updated_at: Updated at
-
     sites:
       index:
         title: My sites
+        new: Add a new site
       new:
         title: New site
         help: "Fill in the form below to create your new site."
@@ -257,38 +243,6 @@ en:
         title: Editing my account
         new_site: new site
         ask_for_name: "Please type your new name"
-
-    theme_assets:
-      index:
-        title: Listing theme files
-        help: "The theme files section is the place where you manage the files needed by your layout, snippets...etc. If you need to manage an image gallery, create a new content type instead.<br/><b>Warning:</b> you may not see all the assets depending on your rights."
-        quick_upload: Quick upload
-        new: new file
-        snippets: Snippets
-        css_and_js: Style and javascript
-        fonts: Fonts
-        images: Images
-        media: Media
-        no_items: "There are no files for now."
-      asset:
-        updated_at: Updated at
-      new:
-        title: New file
-        help: "You have the choice to either upload any file or to copy/paste a stylesheet or a javascript in plain text."
-      edit:
-        title: "Editing %{file}"
-        help: "This asset is accessible directly from the following url: <a href='%{url}'>%{url}</a>"
-        help_image: "Include your image in your page templates or snippets with the following liquid code : <span class='code'>{{ '%{path}' | theme_image_tag }}</span>.<br/>Your current image dimensions : <b>%{width}px x %{height}px</b>.<br/>"
-        help_javascript: "Include your javascript file in your page templates or snippets with the following code : <span class='code'>{{ '%{path}' | javascript_tag }}</span>.<br/>"
-        help_stylesheet: "Include your stylesheet file in your page templates or snippets with the following code : <span class='code'>{{ '%{path}' | stylesheet_tag }}</span>.<br/>"
-      form:
-        picker_link: Insert a file into the code
-        choose_file: Choose file
-        choose_plain_text: Choose plain text
-      image_picker:
-        title: "Insert theme image"
-        no_items: "There are no images for now."
-        upload: "Upload theme images"
 
     translations:
       untranslated: "Untranslated locales: %{list}"

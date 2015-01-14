@@ -7,7 +7,7 @@ module Locomotive
       end
 
       def site_picture_url(site, size = '80x80#')
-        if site.picture?
+        if site && site.picture?
           Locomotive::Dragonfly.resize_url site.picture.url, size
         else
           'locomotive/site.png'

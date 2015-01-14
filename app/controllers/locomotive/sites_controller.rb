@@ -1,8 +1,6 @@
 module Locomotive
   class SitesController < BaseController
 
-    respond_to :json, only: [:create, :destroy]
-
     layout '/locomotive/layouts/without_site'
 
     def index
@@ -20,7 +18,7 @@ module Locomotive
     def create
       authorize Site
       @site = service.create(site_params)
-      respond_with @site, location: edit_my_account_path
+      respond_with @site, location: -> { safe_dashboard_url(@site) }
     end
 
     def destroy

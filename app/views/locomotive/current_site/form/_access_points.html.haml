@@ -7,5 +7,4 @@
       - if manage_domains?
         = f.input :domains, as: :array, placeholder: true, collection: f.object.domains_without_subdomain, template: :domain, template_url: new_domain_current_site_path
 
-  = f.actions do
-    = f.action
+  = render 'locomotive/current_site/form/actions', f: f

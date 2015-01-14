@@ -1,7 +1,9 @@
 body.sites {
 
-  .wrapper {
-    @include locomotive_gradient;
+  &.index {
+    .wrapper {
+      @include locomotive_gradient;
+    }
   }
 
   .main {
@@ -67,6 +69,35 @@ body.sites {
 
           i {
             color: $site_arrow_color;
+          }
+        }
+      }
+
+      &.new-site {
+        a {
+          background: transparent;
+          border: 2px dashed rgba($site_new_color, 0.6);
+
+          &:hover {
+            border-color: $site_new_color;
+          }
+        }
+
+        .media-body {
+          height: 32px;
+        }
+
+        h2 {
+          font-size: 14px;
+          margin-top: 0px;
+          line-height: 32px;
+        }
+
+        .arrow {
+          span {
+            i {
+              color: $site_new_color;
+            }
           }
         }
       }

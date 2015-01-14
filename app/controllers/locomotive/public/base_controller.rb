@@ -3,8 +3,8 @@ module Locomotive
     class BaseController < ApplicationController
 
       include Locomotive::Concerns::SiteDispatcherController
+      include Locomotive::Concerns::UrlHelpersController
       include Locomotive::ActionController::LocaleHelpers
-      include Locomotive::ActionController::UrlHelpers
       include Locomotive::ActionController::Timezone
       include Concerns::AuthorizationController
 

@@ -1,7 +1,7 @@
 module Locomotive
   class MyAccountController < BaseController
 
-    respond_to :json, only: [:update, :regenerate_api_key]
+    respond_to :json, only: [:regenerate_api_key]
 
     before_filter :load_account
 
