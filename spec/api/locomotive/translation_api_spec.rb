@@ -28,8 +28,4 @@ describe Locomotive::TranslationAPI do
     end
   end
 
-  def parsed_response
-    JSON.parse(response.body)
-  end
-
 end
