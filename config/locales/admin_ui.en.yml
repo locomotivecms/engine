@@ -219,6 +219,8 @@ en:
       form:
         main:
           new_membership: "Add account"
+        actions:
+          confirm_destroy: "Please confirm by typing the site name in the following input"
 
     memberships:
       roles:
