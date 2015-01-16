@@ -5,7 +5,7 @@ describe 'locomotive/current_site/edit', type: :view do
   helper(Locomotive::BaseHelper, Locomotive::Shared::AccountsHelper, Locomotive::Shared::SitesHelper, Locomotive::SitesHelper, Locomotive::Engine.routes.url_helpers)
 
   let(:site)    { build('test site') }
-  let(:policy)  { stub(create?: false, point?: false, update_advanced?: false) }
+  let(:policy)  { stub(create?: false, point?: false, update_advanced?: false, destroy?: false) }
 
   before do
     view.stubs(:policy).returns policy
@@ -23,7 +23,7 @@ describe 'locomotive/current_site/edit', type: :view do
 
     describe 'logged as a local administrator' do
 
-      let(:policy) { stub(create?: true, point?: true, update_advanced?: true) }
+      let(:policy) { stub(create?: true, point?: true, update_advanced?: true, destroy?: false) }
 
       it 'renders the tab about domains' do
         expect(subject).to include('Advanced')
@@ -41,7 +41,7 @@ describe 'locomotive/current_site/edit', type: :view do
 
     describe 'logged as a local administrator' do
 
-      let(:policy) { stub(create?: true, point?: true, update_advanced?: true) }
+      let(:policy) { stub(create?: true, point?: true, update_advanced?: true, destroy?: false) }
 
       it 'renders the placeholder text in the new domain input' do
         expect(subject).to include('Ex: mysite.com')

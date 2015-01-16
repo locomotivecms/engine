@@ -20,6 +20,12 @@ module Locomotive
       respond_with @site, location: edit_current_site_path(new_host_if_subdomain_changed)
     end
 
+    def destroy
+      authorize @site
+      @site.destroy
+      respond_with @site, location: sites_path
+    end
+
     def new_domain
       if params[:domain].present?
         render partial: 'domain', locals: { domain: params[:domain] }

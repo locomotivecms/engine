@@ -32,18 +32,4 @@ describe Locomotive::SitesController do
     end
   end
 
-  describe "#DELETE destroy" do
-    let(:another_site) { create(:site, subdomain: generate(:subdomain)) }
-    before do
-      create(:membership, account: account, site: another_site, role: 'admin')
-    end
-    subject do
-      delete :destroy, id: another_site.id, locale: :en
-    end
-    it { is_expected.to be_redirect }
-    specify do
-      expect { subject }.to change(Locomotive::Site, :count).by(-1)
-    end
-  end
-
 end

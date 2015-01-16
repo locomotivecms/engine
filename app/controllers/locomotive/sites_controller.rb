@@ -21,18 +21,18 @@ module Locomotive
       respond_with @site, location: -> { safe_dashboard_url(@site) }
     end
 
-    def destroy
-      @site = self.current_locomotive_account.sites.find(params[:id])
-      authorize @site
+    # def destroy
+    #   @site = self.current_locomotive_account.sites.find(params[:id])
+    #   authorize @site
 
-      if @site != current_site
-        @site.destroy
-      else
-        @site.errors.add(:base, 'Can not destroy the site you are logging in now')
-      end
+    #   if @site != current_site
+    #     @site.destroy
+    #   else
+    #     @site.errors.add(:base, 'Can not destroy the site you are logging in now')
+    #   end
 
-      respond_with @site, location: edit_my_account_path
-    end
+    #   respond_with @site, location: edit_my_account_path
+    # end
 
     private
 

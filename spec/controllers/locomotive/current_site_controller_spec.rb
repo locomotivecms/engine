@@ -33,4 +33,15 @@ describe Locomotive::CurrentSiteController do
       expect(assigns(:site).name).to eq('foooo')
     end
   end
+
+  describe "#DELETE destroy" do
+    subject do
+      delete :destroy, locale: :en
+    end
+    it { is_expected.to be_redirect }
+    specify do
+      expect { subject }.to change(Locomotive::Site, :count).by(-1)
+    end
+  end
+
 end
