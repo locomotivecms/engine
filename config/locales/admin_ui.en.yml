@@ -77,8 +77,6 @@ en:
         disable_with: Pending...
       list:
         untranslated: untranslated
-      footer:
-        who_is_behind: "LocomotiveCMS is developed by %{development} and designed by <a href=\"http://www.sachagreif.com\">Sacha Greif</a> &mdash; <small>version</small> %{version}"
 
     errors:
       "500":
@@ -107,7 +105,7 @@ en:
       new: + new site
 
     not_logged_in:
-      title: "LocomotiveCMS <small>Designed to save your time</small>"
+      title: "Locomotive <small>Designed to save your time</small>"
 
     api_key:
       none: Please click on the next button to generate the API key.

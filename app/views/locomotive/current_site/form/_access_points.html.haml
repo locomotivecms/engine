@@ -1,10 +1,6 @@
 - if policy(@site).point?
   = f.inputs :access_points do
-    - if manage_subdomain_or_domains?
-      - if manage_subdomain?
-        = f.input :subdomain, prepend: 'http://', append: '.' + application_domain
-
-      - if manage_domains?
-        = f.input :domains, as: :array, placeholder: true, collection: f.object.domains_without_subdomain, template: :domain, template_url: new_domain_current_site_path
+    = f.input :handle
+    = f.input :domains, as: :array, placeholder: true, collection: f.object.domains, template: :domain, template_url: new_domain_current_site_path(current_site)
 
   = render 'locomotive/current_site/form/actions', f: f

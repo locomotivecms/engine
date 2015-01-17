@@ -3,7 +3,7 @@ module Locomotive
 
     def new
       authorize Membership
-      @account = Account.new(email: params.require(:email))
+      @account = Account.new(email: params[:email])
       respond_with @account
     end
 
@@ -11,7 +11,7 @@ module Locomotive
       authorize Membership
       @account = Account.create(account_params)
       current_site.memberships.create(account: @account) if @account.errors.empty?
-      respond_with @account, location: edit_current_site_path
+      respond_with @account, location: edit_current_site_path(current_site)
     end
 
     private

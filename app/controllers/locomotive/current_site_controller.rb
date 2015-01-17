@@ -17,7 +17,7 @@ module Locomotive
     def update
       authorize @site
       @site.update_attributes(site_params)
-      respond_with @site, location: edit_current_site_path(new_host_if_subdomain_changed)
+      respond_with @site, location: -> { edit_current_site_path(current_site) }
     end
 
     def destroy
@@ -50,14 +50,6 @@ module Locomotive
 
     def site_params
       params.require(:site).permit(*policy(@site || Site).permitted_attributes)
-    end
-
-    def new_host_if_subdomain_changed
-      if !Locomotive.config.manage_subdomain? || @site.domains.include?(request.host)
-        {}
-      else
-        { host: site_url(@site, { fullpath: false, protocol: false }) }
-      end
     end
 
     def ensure_domains_list

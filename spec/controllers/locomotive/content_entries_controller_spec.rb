@@ -28,7 +28,7 @@ module Locomotive
       specify do
         expect(content_type.entries.count).to eq(1)
       end
-      subject { get :index, locale: :en, slug: content_type.slug, format: :json }
+      subject { get :index, site_handle: site, locale: :en, slug: content_type.slug, format: :json }
       it { is_expected.to be_success }
       specify do
         subject
@@ -37,14 +37,14 @@ module Locomotive
     end
 
     describe "#GET show" do
-      subject { get :show, slug: content_type.slug, id: content_entry.id, locale: :en, format: :json }
+      subject { get :show, site_handle: site, slug: content_type.slug, id: content_entry.id, locale: :en, format: :json }
       it { is_expected.to be_success }
     end
 
     describe "#POST create" do
       let(:content_type_attributes) {{ title: "title-#{4}-#{rand(10000 * 4)}" }}
       subject do
-        post :create, locale: :en, slug: content_type.slug, content_entry: content_type_attributes, format: :json
+        post :create, site_handle: site, locale: :en, slug: content_type.slug, content_entry: content_type_attributes, format: :json
       end
       it { is_expected.to be_success }
       specify do
@@ -54,7 +54,7 @@ module Locomotive
 
     describe "#PUT update" do
       subject do
-        put :update, slug: content_type.slug, id: content_entry.id, locale: :en,
+        put :update, site_handle: site, slug: content_type.slug, id: content_entry.id, locale: :en,
           content_entry: { title: "title-#{4}-#{rand(10000 * 4)}" }, format: :json
       end
       it { is_expected.to be_success }
@@ -62,7 +62,7 @@ module Locomotive
 
     describe "#DELETE destroy" do
       subject do
-        delete :destroy, slug: content_type.slug, id: content_entry.id, locale: :en, format: :json
+        delete :destroy, site_handle: site, slug: content_type.slug, id: content_entry.id, locale: :en, format: :json
       end
       it { is_expected.to be_success }
       specify do

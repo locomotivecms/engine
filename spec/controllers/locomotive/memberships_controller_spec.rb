@@ -18,9 +18,9 @@ describe Locomotive::MembershipsController do
     let(:email) { generate(:email) }
     let(:membership_attributes) { { email: email } }
     subject do
-      post :create, locale: :en, membership: membership_attributes
+      post :create, site_handle: site, locale: :en, membership: membership_attributes
     end
-    it { is_expected.to redirect_to new_account_path(email: email) }
+    it { is_expected.to redirect_to new_account_path(site, email: email) }
 
     describe 'no existing membership' do
       let(:another_account) { create(:account) }
@@ -37,8 +37,8 @@ describe Locomotive::MembershipsController do
 
   describe "#DELETE destroy" do
     subject do
-      delete :destroy, id: membership.id, locale: :en
+      delete :destroy, site_handle: site, id: membership.id, locale: :en
     end
-    it { is_expected.to redirect_to edit_current_site_path }
+    it { is_expected.to redirect_to edit_current_site_path(site) }
   end
 end

@@ -19,7 +19,7 @@ describe Locomotive::Snippet do
   describe '#update_templates' do
 
     before :each do
-      @site    = FactoryGirl.create(:site, subdomain: 'omg')
+      @site    = FactoryGirl.create(:site, handle: 'omg')
       @snippet = FactoryGirl.create(:snippet, site: @site, slug: 'my_test_snippet', template: 'a testing template')
     end
 

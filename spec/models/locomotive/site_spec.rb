@@ -37,41 +37,41 @@ describe Locomotive::Site do
 
   end
 
-  describe 'subdomain' do
+  describe 'handle' do
 
-    it 'validates presence of subdomain' do
-      site = FactoryGirl.build(:site, subdomain: nil)
+    it 'validates presence of handle' do
+      site = FactoryGirl.build(:site, handle: nil)
       expect(site).to_not be_valid
-      expect(site.errors[:subdomain]).to eq(["can't be blank"])
+      expect(site.errors[:handle]).to eq(["can't be blank"])
     end
 
-    %w{test test42 foo_bar}.each do |subdomain|
-      it "accepts subdomain like '#{subdomain}'" do
-        expect(FactoryGirl.build(:site, subdomain: subdomain)).to be_valid
+    %w{test test42 foo_bar}.each do |handle|
+      it "accepts handle like '#{handle}'" do
+        expect(FactoryGirl.build(:site, handle: handle)).to be_valid
       end
     end
 
-    ['-', '_test', 'test_', 't est', '42', '42test'].each do |subdomain|
-      it "does not accept subdomain like '#{subdomain}'" do
-        site = FactoryGirl.build(:site, subdomain: subdomain)
+    ['-', '_test', 'test_', 't est', '42', '42test'].each do |handle|
+      it "does not accept handle like '#{handle}'" do
+        site = FactoryGirl.build(:site, handle: handle)
         expect(site).to_not be_valid
-        expect(site.errors[:subdomain]).to eq(['is invalid'])
+        expect(site.errors[:handle]).to eq(['is invalid'])
       end
     end
 
-    it "does not use reserved keywords as subdomain" do
-      %w{www admin email blog webmail mail support help site sites}.each do |subdomain|
-        site = FactoryGirl.build(:site, subdomain: subdomain)
+    it "does not use reserved keywords as handle" do
+      %w{sign_in sign_out sites my_account}.each do |handle|
+        site = FactoryGirl.build(:site, handle: handle)
         expect(site).to_not be_valid
-        expect(site.errors[:subdomain]).to eq(['is reserved'])
+        expect(site.errors[:handle]).to eq(['is reserved'])
       end
     end
 
-    it 'validates uniqueness of subdomain' do
+    it 'validates uniqueness of handle' do
       FactoryGirl.create(:site)
       site = FactoryGirl.build(:site)
       expect(site).to_not be_valid
-      expect(site.errors[:subdomain]).to eq(["is already taken"])
+      expect(site.errors[:handle]).to eq(["is already taken"])
     end
 
     it 'validates uniqueness of domains' do
@@ -80,10 +80,6 @@ describe Locomotive::Site do
       site = FactoryGirl.build(:site, domains: %w{www.acme.com})
       expect(site).to_not be_valid
       expect(site.errors[:domains]).to eq(["www.acme.com is already taken"])
-
-      site = FactoryGirl.build(:site, subdomain: 'foo', domains: %w{acme.example.com})
-      expect(site).to_not be_valid
-      expect(site.errors[:domains]).to eq(["acme.example.com is already taken"])
     end
 
   end
@@ -92,17 +88,13 @@ describe Locomotive::Site do
 
   it 'retrieves sites by domain' do
     site_1 = FactoryGirl.create(:site, domains: %w{www.acme.net})
-    site_2 = FactoryGirl.create(:site, subdomain: 'test', domains: %w{www.example.com})
+    site_2 = FactoryGirl.create(:site, handle: 'test', domains: %w{www.example.com})
 
     sites = Locomotive::Site.match_domain('www.acme.net')
     expect(sites.size).to eq(1)
     expect(sites.first).to eq(site_1)
 
     sites = Locomotive::Site.match_domain('www.example.com')
-    expect(sites.size).to eq(1)
-    expect(sites.first).to eq(site_2)
-
-    sites = Locomotive::Site.match_domain('test.example.com')
     expect(sites.size).to eq(1)
     expect(sites.first).to eq(site_2)
 
@@ -122,12 +114,6 @@ describe Locomotive::Site do
   end
 
   ## Methods ##
-
-  it 'returns domains without subdomain' do
-    site = FactoryGirl.create(:site, domains: %w{www.acme.net www.acme.com})
-    expect(site.domains).to eq(%w{www.acme.net www.acme.com acme.example.com})
-    expect(site.domains_without_subdomain).to eq(%w{www.acme.net www.acme.com})
-  end
 
   describe 'once created' do
 

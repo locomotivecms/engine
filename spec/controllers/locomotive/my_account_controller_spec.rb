@@ -16,7 +16,7 @@ describe Locomotive::MyAccountController do
   end
 
   describe "#GET edit" do
-    subject { get :edit, id: account.id, locale: :en }
+    subject { get :edit, site_handle: site, id: account.id, locale: :en }
     it { is_expected.to be_success }
     specify do
       subject
@@ -27,7 +27,7 @@ describe Locomotive::MyAccountController do
   describe "#PUT update" do
     let(:name) { generate(:name) }
     subject do
-      put :update, id: account.id, locale: :en, account: { name: name }
+      put :update, site_handle: site, id: account.id, locale: :en, account: { name: name }
     end
     it { is_expected.to be_redirect }
     specify do

@@ -10,7 +10,7 @@ end
 
 puts "Starting test..."
 
-site = Site.create :name => 'Benchmark Website', :subdomain => 'benchmark'
+site = Site.create :name => 'Benchmark Website', :handle => 'benchmark'
 
 simple = site.pages.create :title => 'Simple', :slug => 'simple', :raw_template => %{
   <html>

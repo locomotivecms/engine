@@ -16,17 +16,17 @@ describe Locomotive::PagesController do
   end
 
   describe "#GET index" do
-    subject { get :index, locale: :en }
+    subject { get :index, site_handle: site, locale: :en }
     it { is_expected.to be_success }
   end
 
   describe "#GET show" do
-    subject { get :show, id: page.id, locale: :en, format: :json }
+    subject { get :show, site_handle: site, id: page.id, locale: :en, format: :json }
     it { is_expected.to be_success }
   end
 
   describe "#GET new" do
-    subject { get :new, locale: :en }
+    subject { get :new, site_handle: site, locale: :en }
     it { is_expected.to be_success }
   end
 
@@ -35,7 +35,7 @@ describe Locomotive::PagesController do
       attributes_for(:sub_page, parent_id: site.pages.root.first._id, raw_template: 'Hello world')
     end
     subject do
-      post :create, locale: :en, page: page_attributes, format: :json
+      post :create, site_handle: site, locale: :en, page: page_attributes, format: :json
     end
     it { is_expected.to be_success }
     specify do
@@ -44,7 +44,7 @@ describe Locomotive::PagesController do
   end
 
   describe "#GET edit" do
-    subject { get :edit, id: page.id, locale: :en }
+    subject { get :edit, site_handle: site, id: page.id, locale: :en }
     it { is_expected.to be_success }
     specify do
       subject
@@ -55,7 +55,7 @@ describe Locomotive::PagesController do
   describe "#PUT update" do
     let(:title) { generate(:name) }
     subject do
-      put :update, id: page.id, locale: :en, page: { title: title }, format: :json
+      put :update, site_handle: site, id: page.id, locale: :en, page: { title: title }, format: :json
     end
     it { is_expected.to be_success }
     specify do
@@ -75,7 +75,7 @@ describe Locomotive::PagesController do
 
     describe "#DELETE destroy" do
       subject do
-        delete :destroy, id: child_page.id, locale: :en
+        delete :destroy, site_handle: site, id: child_page.id, locale: :en
       end
       specify do
         expect { subject }.to change(Locomotive::Page, :count).by(-1)
@@ -84,13 +84,13 @@ describe Locomotive::PagesController do
 
     describe "#PUT sort" do
       subject do
-        put :sort, id: page.id, children: [child_page.id], locale: :en, format: :json
+        put :sort, site_handle: site, id: page.id, children: [child_page.id], locale: :en, format: :json
       end
       it { is_expected.to be_success }
     end
 
     describe "#GET get_path" do
-      subject { get :get_path, parent_id: page.id, slug: page.slug, locale: :en }
+      subject { get :get_path, site_handle: site, parent_id: page.id, slug: page.slug, locale: :en }
       it { is_expected.to be_success }
     end
   end

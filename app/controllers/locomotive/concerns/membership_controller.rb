@@ -15,6 +15,8 @@ module Locomotive
 
         if current_site.present? && current_locomotive_account.present?
           @current_membership = current_site.membership_for(current_locomotive_account)
+        elsif current_locomotive_account.present?
+          @current_membership = Locomotive::Membership.new(account: current_locomotive_account)
         else
           nil
         end

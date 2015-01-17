@@ -21,7 +21,7 @@ describe Locomotive::SitesController do
 
   describe "#POST create" do
     let(:site_attributes) do
-      { subdomain: generate(:subdomain), name: generate(:name) }
+      { handle: generate(:handle), name: generate(:name) }
     end
     subject do
       post :create, locale: :en, site: site_attributes

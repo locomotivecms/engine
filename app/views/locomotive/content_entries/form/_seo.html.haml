@@ -3,4 +3,4 @@
   = f.input :meta_keywords
   = f.input :meta_description
 
-= f.actions back_url: content_entries_path(@content_type.slug), use_stored_location: params[:_location].present?
+= render 'locomotive/content_entries/form/actions', f: f

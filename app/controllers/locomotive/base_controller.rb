@@ -11,7 +11,6 @@ module Locomotive
     include Locomotive::Concerns::AuthorizationController
     include Locomotive::Concerns::StoreLocationController
 
-
     layout '/locomotive/layouts/application'
 
     before_filter :require_ssl

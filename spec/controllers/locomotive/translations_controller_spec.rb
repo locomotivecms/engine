@@ -16,7 +16,7 @@ describe Locomotive::TranslationsController do
   end
 
   describe "#GET index" do
-    subject { get :index, locale: :en }
+    subject { get :index, site_handle: site, locale: :en }
     it { is_expected.to be_success }
     specify do
       subject
@@ -25,7 +25,7 @@ describe Locomotive::TranslationsController do
   end
 
   describe "#GET new" do
-    subject { get :new, locale: :en }
+    subject { get :new, site_handle: site, locale: :en }
     it { is_expected.to be_success }
     specify do
       subject
@@ -38,7 +38,7 @@ describe Locomotive::TranslationsController do
       attributes_for(:translation, site: site)
     end
     subject do
-      post :create, locale: :en, translation: translation_attributes, format: :json
+      post :create, site_handle: site, locale: :en, translation: translation_attributes, format: :json
     end
     it { is_expected.to be_success }
     specify do
@@ -47,7 +47,7 @@ describe Locomotive::TranslationsController do
   end
 
   describe "#GET edit" do
-    subject { get :edit, id: translation.id, locale: :en }
+    subject { get :edit, site_handle: site, id: translation.id, locale: :en }
     it { is_expected.to be_success }
     specify do
       subject
@@ -57,16 +57,16 @@ describe Locomotive::TranslationsController do
 
   describe "#PUT update" do
     subject do
-      put :update, id: translation.id, locale: :en, translation: { key: 'foo' }, format: :json
+      put :update, site_handle: site, id: translation.id, locale: :en, translation: { key: 'foo' }, format: :json
     end
     it { is_expected.to be_success }
   end
 
   describe "#DELETE destroy" do
     subject do
-      delete :destroy, id: translation.id, locale: :en
+      delete :destroy, site_handle: site, id: translation.id, locale: :en
     end
-    it { is_expected.to redirect_to translations_path }
+    it { is_expected.to redirect_to translations_path(site) }
     specify do
       expect { subject }.to change(Locomotive::Translation, :count).by(-1)
     end

@@ -12,10 +12,6 @@ describe Locomotive::Api::MyAccountController do
     }
   end
 
-  before do
-    Locomotive.config.stubs(:multi_sites?).returns(false)
-  end
-
   context 'logged in' do
 
     before do

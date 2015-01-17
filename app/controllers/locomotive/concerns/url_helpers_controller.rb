@@ -5,15 +5,7 @@ module Locomotive
       extend ActiveSupport::Concern
 
       included do
-        helper_method :safe_dashboard_url, :current_site_public_url, :public_page_url
-      end
-
-      def safe_dashboard_url(site)
-        dashboard_url({
-          host:     site.full_subdomain,
-          port:     request.port,
-          protocol: request.ssl? ? 'https' : 'http'
-        })
+        helper_method :public_page_url
       end
 
       def current_site_public_url

@@ -78,7 +78,7 @@ module Locomotive
     def destroy
       authorize @content_entry
       @content_entry.destroy
-      respond_with @content_entry, location: content_entries_path(@content_type.slug)
+      respond_with @content_entry, location: content_entries_path(current_site, @content_type.slug)
     end
 
     private
@@ -100,7 +100,7 @@ module Locomotive
     end
 
     def location_after_persisting
-      default = edit_content_entry_path(@content_type.slug, @content_entry)
+      default = edit_content_entry_path(current_site, @content_type.slug, @content_entry)
 
       if params[:_location].present?
         last_saved_location!(default)

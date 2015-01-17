@@ -2,7 +2,7 @@
 
 = help t('.help', default: '')
 
-= locomotive_form_for @membership, url: memberships_path do |f|
+= locomotive_form_for @membership, url: memberships_path(current_site) do |f|
 
   = f.inputs :membership_email, class: 'inputs email' do
     = f.input :email

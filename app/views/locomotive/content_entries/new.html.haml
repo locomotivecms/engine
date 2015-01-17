@@ -2,7 +2,7 @@
 
 = help @content_type.description
 
-= locomotive_form_for @content_entry, as: :content_entry, url: content_entries_path(@content_type.slug), html: { multipart: true } do |f|
+= locomotive_form_for @content_entry, as: :content_entry, url: content_entries_path(current_site, @content_type.slug), html: { multipart: true } do |f|
 
   = hidden_field_tag :active_tab, ''
   = hidden_field_tag :_location,  params[:_location]

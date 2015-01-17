@@ -39,16 +39,10 @@ module Locomotive
 
     yield(self.config)
 
-
     after_configure
   end
 
   def self.after_configure
-    self.define_subdomain_and_domains_options
-
-    # multi sites support
-    self.configure_multi_sites
-
     # Devise
     mail_address = self.config.mailer_sender
     ::Devise.mailer_sender = mail_address =~ /.+@.+/ ? mail_address : "#{mail_address}@#{Locomotive.config.domain}"
@@ -59,9 +53,6 @@ module Locomotive
       domain: :all
     }
 
-    # enable the hosting solution if both we are not in test or dev and that the config.hosting option has been filled up
-    self.enable_hosting
-
     # Check for outdated Dragonfly config
     if ::Dragonfly::VERSION =~ /^0\.9\.([0-9]+)/
       Locomotive.log :error, "WARNING: Old Dragonfly config detected, image uploads might be broken. Use 'rails g locomotive:install' to get the latest configuration files."
@@ -69,33 +60,6 @@ module Locomotive
 
     # avoid I18n warnings
     I18n.enforce_available_locales = false
-  end
-
-  def self.configure_multi_sites
-    if self.config.multi_sites?
-      domain_name = self.config.multi_sites.domain
-
-      raise '[Error] Locomotive needs a domain name when used as a multi sites platform' if domain_name.blank?
-
-      self.config.domain = domain_name
-    end
-  end
-
-  def self.enable_hosting
-    return if Rails.env.test? || Rails.env.development? || self.config.hosting.blank?
-
-    target = self.config.hosting[:target]
-    method = :"enable_#{target}"
-
-    self.send(method) if self.respond_to?(method)
-  end
-
-  def self.define_subdomain_and_domains_options
-    if self.config.multi_sites?
-      self.config.manage_subdomain = self.config.manage_domains = true
-    else
-      self.config.manage_domains = self.config.manage_subdomain = false
-    end
   end
 
   def self.log(*args)

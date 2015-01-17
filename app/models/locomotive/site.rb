@@ -5,8 +5,7 @@ module Locomotive
 
     ## Extensions ##
     include Concerns::Shared::Seo
-    extend  Concerns::Site::SubdomainDomains
-    include Concerns::Site::FirstInstallation
+    include Concerns::Site::AccessPoints
     include Concerns::Site::Locales
     include Concerns::Site::Timezone
 
@@ -40,7 +39,6 @@ module Locomotive
     after_destroy   :destroy_pages
 
     ## behaviours ##
-    enable_subdomain_n_domains_if_multi_sites
     accepts_nested_attributes_for :memberships, allow_destroy: true
 
     ## methods ##

@@ -5,8 +5,6 @@ module Locomotive
 
     layout '/locomotive/layouts/not_logged_in'
 
-    before_filter :require_site
-
     helper 'locomotive/base'
 
     private

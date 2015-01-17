@@ -1,25 +1,10 @@
 Locomotive.configure do |config|
 
-  # A single locomotiveCMS instance can serve one single site or many.
-  # If you want to run many different websites, you will have to specify
-  # your own domain name (ex: locomotivehosting.com).
-  #
-  # Ex:
-  # config.multi_sites do |multi_sites|
-  #   # each new website you add will have a default entry based on a subdomain
-  #   # and the multi_site_domain value (ex: website_1.locomotivehosting.com).
-  #   multi_sites.domain = 'example.com' #'myhostingplatform.com'
-  #
-  #   # define the reserved subdomains
-  #   # Ex:
-  #   multi_sites.reserved_subdomains = %w(www admin email blog webmail mail support help site sites)
-  # end
-  config.multi_sites = false
+  # list of reserved handles for a site because there might be in conflicts with internal resources.
+  # config.reserved_site_handles = %w(sites my_account password sign_in sign_out)
 
   # configure how many items we display in sub menu in the "Contents" section.
   # config.ui = {
-  #   latest_entries_nb:  5,
-  #   max_content_types:  4,
   #   per_page:           10
   # }
 

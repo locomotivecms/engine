@@ -5,13 +5,13 @@ FactoryGirl.define do
   ## Site ##
   factory :site, class: Locomotive::Site do
     name 'Acme Website'
-    subdomain 'acme'
-    # sequence(:subdomain) { |n| "acme#{n*rand(10_000)}" }
+    handle 'acme'
+    # sequence(:handle) { |n| "acme#{n*rand(10_000)}" }
     created_at Time.now
 
     factory 'test site' do
       name 'Locomotive test website'
-      subdomain 'test'
+      handle 'test'
 
       after(:build) do |site_test|
         site_test.memberships.build account: Locomotive::Account.where(name: 'Admin').first || create('admin user'), role: 'admin'
@@ -19,14 +19,14 @@ FactoryGirl.define do
 
       factory 'another site' do
         name 'Locomotive test website #2'
-        subdomain 'test2'
+        handle 'test2'
       end
 
     end
 
     factory 'existing site' do
       name 'Locomotive site with existing models'
-      subdomain 'models'
+      handle 'models'
       after(:build) do |site_with_models|
         site_with_models.content_types.build(
           slug: 'projects',
@@ -128,7 +128,7 @@ FactoryGirl.define do
     slug 'index'
     # sequence(:slug) { |n| "index#{n*rand(10_000)}" }
     published true
-    site { Locomotive::Site.where(subdomain: 'acme').first || FactoryGirl.create(:site) }
+    site { Locomotive::Site.where(handle: 'acme').first || FactoryGirl.create(:site) }
 
     trait :index do
       after(:build) do |page, evaluator|
@@ -141,7 +141,7 @@ FactoryGirl.define do
       title 'Subpage'
       slug 'subpage'
       published true
-      site { Locomotive::Site.where(subdomain: 'acme').first || FactoryGirl.create(:site) }
+      site { Locomotive::Site.where(handle: 'acme').first || FactoryGirl.create(:site) }
       parent { Locomotive::Page.where(slug: 'index').first || FactoryGirl.create(:page) }
     end
   end
@@ -151,19 +151,19 @@ FactoryGirl.define do
     name 'My website title'
     sequence(:slug) { |n| "header#{n*rand(10_000)}" }
     template %{<title>Acme</title>}
-    site { Locomotive::Site.where(subdomain: 'acme').first || FactoryGirl.create(:site) }
+    site { Locomotive::Site.where(handle: 'acme').first || FactoryGirl.create(:site) }
   end
 
   ## Assets ##
   factory :asset, class: Locomotive::ContentAsset do
     source { Rack::Test::UploadedFile.new(File.join(Rails.root, '..', '..', 'spec', 'fixtures', 'images', 'rails.png'))}
-    site { Locomotive::Site.where(subdomain: 'acme').first || FactoryGirl.create(:site) }
+    site { Locomotive::Site.where(handle: 'acme').first || FactoryGirl.create(:site) }
   end
 
   ## Theme assets ##
   factory :theme_asset, class: Locomotive::ThemeAsset do
     # source{Rack::Test::UploadedFile.new(File.join(Rails.root, '..', '..', 'spec', 'fixtures', 'images', 'rails.png'))}
-    site { Locomotive::Site.where(subdomain: 'acme').first || FactoryGirl.create(:site) }
+    site { Locomotive::Site.where(handle: 'acme').first || FactoryGirl.create(:site) }
   end
 
   ## Content types ##
@@ -172,7 +172,7 @@ FactoryGirl.define do
 
     name 'My project'
     description 'The list of my projects'
-    site { Locomotive::Site.where(subdomain: 'acme').first || FactoryGirl.create(:site) }
+    site { Locomotive::Site.where(handle: 'acme').first || FactoryGirl.create(:site) }
 
     trait :with_field do
       after(:build) do |content_type, evaluator|
@@ -198,14 +198,14 @@ FactoryGirl.define do
   factory :content_entry, class: Locomotive::ContentEntry do
     sequence(:_slug) { |n| "slug_of_content_entry_#{n*rand(10_000)}" }
     _label_field_name '_label_field_name'
-    site { Locomotive::Site.where(subdomain: 'acme').first || FactoryGirl.create(:site) }
+    site { Locomotive::Site.where(handle: 'acme').first || FactoryGirl.create(:site) }
     content_type { FactoryGirl.create(:content_type, :with_field) }
   end
 
   factory :translation, class: Locomotive::Translation do
     sequence(:key) { |n| "key_#{n*rand(10_000)}" }
     values {{ en: 'foo', fr: 'bar', wk: 'wuuuu' }}
-    site { Locomotive::Site.where(subdomain: 'acme').first || FactoryGirl.create(:site) }
+    site { Locomotive::Site.where(handle: 'acme').first || FactoryGirl.create(:site) }
   end
 
   # factory :custom_field, class: CustomFields::Field do

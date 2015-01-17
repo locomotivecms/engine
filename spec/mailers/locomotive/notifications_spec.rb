@@ -40,10 +40,6 @@ describe Locomotive::Notifications do
 
     context 'multi-site not enabled' do
 
-      before(:each) do
-        Locomotive.config.stubs(:multi_sites_or_manage_domains?).returns(false)
-      end
-
       it 'renders the subject with the domain name coming from the ActionMailer settings' do
         ActionMailer::Base.default_url_options = { host: 'www.acme.fr' }
         expect(mail.subject).to eq('[www.acme.fr][My project] new entry')
