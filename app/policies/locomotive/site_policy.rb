@@ -26,7 +26,7 @@ module Locomotive
     end
 
     def update?
-      true
+      super_admin? || site_staff?
     end
 
     def destroy?

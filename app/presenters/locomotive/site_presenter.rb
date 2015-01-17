@@ -4,13 +4,11 @@ module Locomotive
     ## properties ##
 
     property    :name
-    properties  :locales,       type: Array
+    properties  :locales,   type: Array
     property    :timezone
 
-    with_options do |presenter|
-      presenter.property  :handle
-      presenter.property  :domains,   type: Array, required: false
-    end
+    property  :handle
+    property  :domains,     type: Array, required: false
 
     with_options only_getter: true do |presenter|
       presenter.property :memberships, type: Array

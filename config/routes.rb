@@ -1,7 +1,7 @@
 # Back-office: sign in/out + list of sites + my account
 Locomotive::Engine.routes.draw do
 
-  # Devise
+  # Authentication
   devise_for :locomotive_account,
     class_name:   'Locomotive::Account',
     path:         '',
@@ -59,135 +59,72 @@ Locomotive::Engine.routes.draw do
       get :new_locale
     end
 
+    # Public: rendering + create public content entries
+
+    scope :preview do
+
+      # sitemap
+      get '/sitemap.xml', to: 'public/sitemaps#show', format: 'xml'
+
+      # robots.txt
+      get '/robots.txt', to: 'public/robots#show', format: 'txt'
+
+      # public content entry submissions
+      resources :locomotive_entry_submissions, controller: 'public/content_entries', path: 'entry_submissions/:slug'
+
+      constraints Locomotive::Routing::PostContentEntryConstraint.new do
+        post  '/',    to: 'public/content_entries#create'
+        post '*path', to: 'public/content_entries#create'
+      end
+
+      get '/',        to: 'public/pages#show'
+      match '*path'   => 'public/pages#show', via: :all
+
+    end
+
   end
 end
 
-# Locomotive::Engine.routes.draw do
+Rails.application.routes.draw do
 
-#   # authentication
-#   devise_for :locomotive_account,
-#     class_name:   'Locomotive::Account',
-#     path:         '',
-#     path_prefix:  nil,
-#     failure_app:  'Locomotive::Devise::FailureApp',
-#     controllers:  { sessions: 'locomotive/sessions', passwords: 'locomotive/passwords' }
+  # API
+  namespace :locomotive, module: 'locomotive' do
+    namespace :api do
 
-#   # authenticated :locomotive_account do
-#   #   root to: 'dashboard#show'
-#   # end
+      get 'version', to: 'version#show'
 
-#   # devise_scope :locomotive_account do
-#   #   match '/'         => 'sessions#new', via: :all
-#   #   # match '/signin'   => 'sessions#new', via: :all
-#   #   delete 'signout'  => 'sessions#destroy', as: :destroy_locomotive_session
-#   # end
+      resources :tokens, only: [:create, :destroy]
 
-#   # root to: 'dashboard#show'
+      resource  :current_site, controller: 'current_site', only: [:show, :update, :destroy]
 
-#   get 'dashboard', to: 'dashboard#show', as: :dashboard
-#   # resource :dashboard, controller: 'dashboard', only: :show
+      resources :memberships, only: [:index, :show, :create, :update, :destroy]
 
-#   resources :pages do
-#     put :sort, on: :member
-#     get :get_path, on: :collection
-#   end
+      resource  :my_account, controller: 'my_account', only: [:show, :create, :update]
 
-#   resources :sites
+      with_options only: [:index, :show, :create, :update, :destroy] do |api|
 
-#   resource :current_site, controller: 'current_site' do
-#     get :new_domain
-#     get :new_locale
-#   end
+        api.resources :accounts
 
-#   resources :accounts
+        api.resources :sites
 
-#   resource :my_account, controller: 'my_account' do
-#     put :regenerate_api_key, on: :member
-#   end
+        api.resources :pages
 
-#   resources :memberships
+        api.resources :snippets
 
-#   resources :translations
+        api.resources :content_types
 
-#   resources :content_assets do
-#     post :bulk_create, on: :collection
-#   end
+        api.resources :content_entries, path: 'content_types/:slug/entries' do
+          delete :index, on: :collection, action: :destroy_all
+        end
 
-#   resources :content_entries, path: 'content_types/:slug/entries' do
-#     get :show_in_form,  on: :collection
-#     put :sort,          on: :collection
-#     get :export,        on: :collection
-#   end
+        api.resources :theme_assets
 
-#   namespace :custom_fields, path: 'content_types/:slug/fields/:name' do
-#     resource :select_options, only: [:edit, :update] do
-#       get :new_option
-#     end
-#   end
+        api.resources :translations
 
-#   # installation guide
-#   match '/installation'       => 'installation#show', defaults: { step: 1 }, as: :installation, via: :all
-#   match '/installation/:step' => 'installation#show', as: :installation_step, via: :all
+        api.resources :content_assets
+      end
 
-# end
+    end
+  end
 
-# Rails.application.routes.draw do
-
-#   # API
-#   namespace :locomotive, module: 'locomotive' do
-#     namespace :api do
-
-#       get 'version', to: 'version#show'
-
-#       resources :tokens, only: [:create, :destroy]
-
-#       resource  :current_site, controller: 'current_site', only: [:show, :update, :destroy]
-
-#       resources :memberships, only: [:index, :show, :create, :update, :destroy]
-
-#       resource  :my_account, controller: 'my_account', only: [:show, :create, :update]
-
-#       with_options only: [:index, :show, :create, :update, :destroy] do |api|
-
-#         api.resources :accounts
-
-#         api.resources :sites
-
-#         api.resources :pages
-
-#         api.resources :snippets
-
-#         api.resources :content_types
-
-#         api.resources :content_entries, path: 'content_types/:slug/entries' do
-#           delete :index, on: :collection, action: :destroy_all
-#         end
-
-#         api.resources :theme_assets
-
-#         api.resources :translations
-
-#         api.resources :content_assets
-#       end
-#     end
-#   end
-
-#   # sitemap
-#   get '/sitemap.xml', to: 'locomotive/public/sitemaps#show', format: 'xml'
-
-#   # robots.txt
-#   get '/robots.txt', to: 'locomotive/public/robots#show', format: 'txt'
-
-#   # public content entry submissions
-#   resources :locomotive_entry_submissions, controller: 'locomotive/public/content_entries', path: 'entry_submissions/:slug'
-
-#   constraints Locomotive::Routing::PostContentEntryConstraint.new do
-#     # root to:                    'locomotive/public/content_entries#create', path: 'index', via: :post
-#     post  '/',    to: 'locomotive/public/content_entries#create'
-#     post '*path', to: 'locomotive/public/content_entries#create'
-#   end
-
-#   # root to:                      'locomotive/public/pages#show'
-#   get '/',        to: 'locomotive/public/pages#show'
-#   match '*path'   => 'locomotive/public/pages#show', via: :all
-# end
+end

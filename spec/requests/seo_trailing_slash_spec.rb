@@ -2,10 +2,10 @@ require 'spec_helper'
 
 describe 'Locomotive::Middlewares::SeoTrailingSlash' do
 
-  it 'does not process the "/" url' do
-    get '/'
-    expect(response.status).to_not eq(301)
-  end
+  # it 'does not process the "/" url' do
+  #   get '/'
+  #   expect(response.status).to_not eq(301)
+  # end
 
   it 'does not process the "/locomotive/" url' do
     get '/locomotive/'

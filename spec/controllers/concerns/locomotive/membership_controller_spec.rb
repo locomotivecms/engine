@@ -11,8 +11,8 @@ describe Locomotive::Concerns::MembershipController do
 
   after(:all) { Object.send :remove_const, :MyController }
 
-  let(:account)         { FactoryGirl.build(:account) }
-  let(:site)            { FactoryGirl.build(:site) }
+  let(:account)         { build(:account) }
+  let(:site)            { build('test site') }
   let(:request)         { ActionDispatch::Request.new({}) }
 
   let!(:my_controller)  { MyController.new }
@@ -34,7 +34,7 @@ describe Locomotive::Concerns::MembershipController do
     context 'and the user has a membership' do
 
       before do
-        site.stubs(:membership_for).returns(account)
+        site.stubs(:membership_for).returns(site.memberships.first)
       end
 
       it 'returns true' do

@@ -23,7 +23,7 @@ module Locomotive
       end
 
       def validate_site_membership
-        return true if current_membership
+        return true if current_membership.try(:site).present?
 
         sign_out(current_locomotive_account)
         flash[:alert] = I18n.t(:no_membership, scope: [:devise, :failure, :locomotive_account])

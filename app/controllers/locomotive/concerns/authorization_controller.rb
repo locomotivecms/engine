@@ -18,7 +18,7 @@ module Locomotive
           render json: { error: exception.message }, status: 401, layout: false
         else
           flash[:alert] = exception.message
-          redirect_to pages_path
+          redirect_to current_site ? dashboard_path(current_site) : sites_path
         end
       end
 

@@ -33,7 +33,7 @@ module Locomotive
       end
 
       def site_handle_regexp
-        @regexp ||= /#{Locomotive.mounted_on}\/([^\/]+)\//o
+        @regexp ||= /#{Locomotive.mounted_on}\/([^\/]+)/o
       end
 
     end

@@ -2,6 +2,8 @@ require 'spec_helper'
 
 describe Locomotive::Public::ContentEntriesController do
 
+  routes { Locomotive::Engine.routes }
+
   let(:site) { FactoryGirl.create('existing site') }
   let(:content_type) { build_content_type }
 
@@ -15,7 +17,7 @@ describe Locomotive::Public::ContentEntriesController do
     let(:format) { 'html' }
     let(:entry_params) { {} }
 
-    before { post :create, { format: format, slug: content_type.slug, entry: entry_params } }
+    before { post :create, { site_handle: site, format: format, slug: content_type.slug, entry: entry_params } }
 
     describe 'in HTML' do
 
@@ -31,7 +33,7 @@ describe Locomotive::Public::ContentEntriesController do
 
         let(:entry_params) { { email: 'john@doe.net', message: 'hello world' } }
 
-        it 'returns a 200 code' do
+        it 'returns a 302 code' do
           expect(response.status).to eq(302)
           expect(controller.flash['submitted_entry_id']).not_to eq(nil)
         end
