@@ -1,0 +1,14 @@
+stage:
+  before:
+    - ./.sandbox.sh
+
+  run:
+    - cd /tmp/sandbox && bundle exec rails server
+
+  database:
+    - cd /tmp/sandbox && bundle exec rake db:create db:migrate development:bootstrap
+
+config:
+  database: mongodb
+  services:
+    - mongodb
