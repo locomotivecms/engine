@@ -77,7 +77,7 @@ Locomotive::Engine.routes.draw do
         post '*path', to: 'public/content_entries#create'
       end
 
-      get '/',        to: 'public/pages#show'
+      get '/',        to: 'public/pages#show', as: :preview
       match '*path'   => 'public/pages#show', via: :all
 
     end
