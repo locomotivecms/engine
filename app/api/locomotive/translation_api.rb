@@ -13,10 +13,17 @@ module Locomotive
     # end
 
 
-    resource :translation do
+    resource :translations do
+      before do
+        authenticate_locomotive_account!
+      end
       desc 'Returns list of translations'
       get :index do
-        translations = Translation.all # TODO: to be scoped by the current_site
+        
+        translations = current_site.translations.all # TODO: to be scoped by the current_site
+
+        authorize translations
+
         present translations, with: Locomotive::TranslationEntity
       end
     end

@@ -7,6 +7,7 @@ module Locomotive
       end
 
       def call(env)
+        # binding.pry
         if url = redirect_url(env)
           redirect_to url
         else
