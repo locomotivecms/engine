@@ -22,7 +22,8 @@ $sidebar_section_border_color:        #474747;
 $sidebar_section_title_color:         #949999;
 $sidebar_link_color:                  #ccc;
 $sidebar_hovered_link_color:          #fff;
-$sidebar_font_size:                   $font-size-base;
+$sidebar_font_size:                   $font-size-base - 1;
+$sidebar_title_font_size:             $font-size-base - 2;
 
 $drawer_width:                        40em;
 $drawer_background_color:             white;
