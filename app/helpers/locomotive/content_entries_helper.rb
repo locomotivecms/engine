@@ -58,7 +58,7 @@ module Locomotive
       groups.each do |group|
         block.call({
           name: group[:name],
-          url:  content_entries_path(content_type.slug, {
+          url:  content_entries_path(current_site, content_type.slug, {
             group:  group[:name],
             where:  %({"#{field.name}_id": "#{group[:_id]}"}),
             q:      params[:q]

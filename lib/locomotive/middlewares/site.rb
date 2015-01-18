@@ -3,7 +3,7 @@ module Locomotive
     class Site
 
       def initialize(app, opts = {})
-        @app = app
+        @app    = app
       end
 
       def call(env)
@@ -13,12 +13,27 @@ module Locomotive
 
       def fetch_site(env)
         request = Rack::Request.new(env)
-        Locomotive.log "[fetch site] host = #{request.host} / #{env['HTTP_HOST']}"
-        if Locomotive.config.multi_sites?
-          Locomotive::Site.match_domain(request.host).first
+        handle  = site_handle(request)
+
+        Locomotive.log "[fetch site] host = #{request.host} / site_handle = #{handle.inspect}"
+
+        if handle
+          Locomotive::Site.where(handle: handle).first
         else
-          Locomotive::Site.first
+          Locomotive::Site.match_domain(request.host).first
         end
+      end
+
+      def site_handle(request)
+        if request.path_info =~ site_handle_regexp
+          return $1 if !Locomotive.config.reserved_site_handles.include?($1)
+        end
+
+        nil
+      end
+
+      def site_handle_regexp
+        @regexp ||= /#{Locomotive.mounted_on}\/([^\/]+)/o
       end
 
     end

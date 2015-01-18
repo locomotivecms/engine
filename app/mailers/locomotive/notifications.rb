@@ -6,11 +6,9 @@ module Locomotive
     def new_content_entry(account, entry)
       @account, @entry, @type = account, entry, entry.content_type
 
-      if Locomotive.config.multi_sites_or_manage_domains?
-        @domain = entry.site.domains.first
-      else
-        @domain = ActionMailer::Base.default_url_options[:host] || 'localhost'
-      end
+      @domain = entry.site.domains.first ||
+        ActionMailer::Base.default_url_options[:host] ||
+        'localhost'
 
       subject = t('locomotive.notifications.new_content_entry.subject', domain: @domain, type: @type.name, locale: account.locale)
 

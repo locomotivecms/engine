@@ -1,7 +1,7 @@
 - title t('.title', type: @content_type.name.capitalize)
 
 - content_for :actions do
-  = link_to t('.new'), new_content_entry_path(@content_type.slug), class: 'btn btn-primary btn-sm'
+  = link_to t('.new'), new_content_entry_path(current_site, @content_type.slug), class: 'btn btn-primary btn-sm'
 
 - if @content_type.filter_fields.present?
   .row
@@ -9,7 +9,7 @@
       = help @content_type.description
     .col-md-6
       .search-bar
-        = form_tag content_entries_path(@content_type.slug), method: :get do
+        = form_tag content_entries_path(current_site, @content_type.slug), method: :get do
           .form-group
             = hidden_field_tag :group, params[:group]
             = hidden_field_tag :where, params[:where]
@@ -23,7 +23,7 @@
   .nav-container
     %ul.nav.nav-tabs{ role: 'tablist' }
       %li{ class: "#{'active' if params[:group].nil? }" }
-        = link_to t('.group_by.all'), content_entries_path(@content_type.slug, query: params[:query])
+        = link_to t('.group_by.all'), content_entries_path(current_site, @content_type.slug, query: params[:query])
 
       - each_content_entry_group(@content_type) do |group|
         %li{ class: "#{'active' if params[:group] == group[:name] }" }
@@ -37,7 +37,7 @@
     .col-md-12
       %br
       %p.text-right
-        = link_to export_content_entries_path(@content_type.slug, :csv), class: 'btn btn-primary btn-sm' do
+        = link_to export_content_entries_path(current_site, @content_type.slug, :csv), class: 'btn btn-primary btn-sm' do
           %i.fa.fa-download
           = t('.download')
 

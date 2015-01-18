@@ -12,7 +12,7 @@ module Locomotive
     def create
       authorize Membership
       if @membership = service.create(membership_params[:email])
-        respond_with @membership, location: edit_current_site_path, flash: true
+        respond_with @membership, location: edit_current_site_path(current_site), flash: true
       else
         redirect_to new_account_path(email: membership_params[:email])
       end

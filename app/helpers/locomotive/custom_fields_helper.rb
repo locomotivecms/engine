@@ -64,7 +64,7 @@ module Locomotive
         as:       :document_picker,
         edit:     {
           label:  custom_field_t(:edit, field.type),
-          url:    target_id ? edit_content_entry_path(slug, target_id, _location: false) : nil
+          url:    target_id ? edit_content_entry_path(current_site, slug, target_id, _location: false) : nil
         },
         picker:   custom_field_picker_options(field, slug)
       }
@@ -120,7 +120,7 @@ module Locomotive
         wrapper_html: { class: 'has_many' },
         new_item: {
           label:  custom_field_t(:new_label, field.type),
-          url:    new_content_entry_path(slug, {
+          url:    new_content_entry_path(current_site, slug, {
             "content_entry[#{field.inverse_of}_id]" => entry._id,
             _location: false
           })
@@ -142,7 +142,7 @@ module Locomotive
           path:   'locomotive/content_entries/entry',
           locals: { field: field, slug: slug }
         },
-        template_url: show_in_form_content_entries_path(slug, parent_slug: entry.content_type.slug, field_id: field._id),
+        template_url: show_in_form_content_entries_path(current_site, slug, parent_slug: entry.content_type.slug, field_id: field._id),
         picker:       custom_field_picker_options(field, slug)
       }
     end
@@ -154,7 +154,7 @@ module Locomotive
         collection:   field.ordered_select_options.map { |option| [option.name, option.id] },
         manage_collection:    {
           label:  custom_field_t(:edit, field.type),
-          url:    edit_custom_fields_select_options_path(entry.content_type.slug, field.name)
+          url:    edit_custom_fields_select_options_path(current_site, entry.content_type.slug, field.name)
         }
       }
     end
@@ -174,7 +174,7 @@ module Locomotive
     def custom_field_picker_options(field, slug)
       {
         label_method: :_label,
-        list_url:     content_entries_path(slug, format: :json),
+        list_url:     content_entries_path(current_site, slug, format: :json),
         placeholder:  custom_field_t(:placeholder, field.type, name: field.label.downcase),
         searching:    custom_field_t(:searching, field.type),
         no_matches:   custom_field_t(:no_matches, field.type),

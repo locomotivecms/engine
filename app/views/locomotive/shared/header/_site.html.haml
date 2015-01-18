@@ -1,11 +1,8 @@
 - if (_title = yield(:site_title)).present?
   .navbar-text
     = _title
-- elsif multi_sites?
-  = link_to sites_path do
+- else
+  = link_to preview_path(current_site) do
     = current_site.name_was
     %span.arrow
-      %i.fa.fa-angle-down
-- else
-  .navbar-text
-    = current_site.name_was
+      %i.fa.fa-external-link

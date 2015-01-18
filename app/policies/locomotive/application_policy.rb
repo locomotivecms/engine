@@ -59,6 +59,10 @@ module Locomotive
       false
     end
 
+    def site_staff?
+      membership.site.present?
+    end
+
     def super_admin?
       account.super_admin?
     end

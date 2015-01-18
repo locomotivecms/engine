@@ -71,7 +71,7 @@ module Locomotive
 
         describe "#POST create" do
           subject do
-            post :create, locale: :en, site: { subdomain: generate(:subdomain), name: generate(:name) },
+            post :create, locale: :en, site: { handle: generate(:handle), name: generate(:name) },
               format: :json
           end
           it { is_expected.to be_success }

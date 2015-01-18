@@ -35,7 +35,7 @@ module Locomotive
       def destroy
         authorize @account
         @account.destroy
-        respond_with @account
+        respond_with @account, location: main_app.locomotive_api_accounts_url
       end
 
       private

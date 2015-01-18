@@ -33,7 +33,7 @@ describe Locomotive::Account do
   it 'owns many sites' do
     account = FactoryGirl.create(:account)
     site_1  = FactoryGirl.create(:site, memberships: [Locomotive::Membership.new(account: account)])
-    site_2  = FactoryGirl.create(:site, subdomain: 'another_one', memberships: [Locomotive::Membership.new(account: account)])
+    site_2  = FactoryGirl.create(:site, handle: 'another_one', memberships: [Locomotive::Membership.new(account: account)])
     sites   = [site_1, site_2].map(&:_id)
     expect(account.reload.sites.all? { |s| sites.include?(s._id) }).to eq(true)
   end

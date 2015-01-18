@@ -6,7 +6,9 @@ describe 'locomotive/my_account/edit', type: :view do
 
   let(:account) { build(:account, api_key: 42) }
 
-  before { assign(:account, account) }
+  before do
+    assign(:account, account)
+  end
 
   subject { render }
 

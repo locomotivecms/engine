@@ -7,11 +7,6 @@
 
   = f.inputs :information do
     = f.input :name
-
-    - if policy(@site).point?
-      = f.inputs :access_points do
-        - if manage_subdomain_or_domains?
-          - if manage_subdomain?
-            = f.input :subdomain, prepend: 'http://', append: '.' + application_domain
+    = f.input :handle
 
   = f.actions back_url: sites_path

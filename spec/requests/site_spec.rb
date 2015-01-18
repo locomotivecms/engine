@@ -2,9 +2,9 @@ require 'spec_helper'
 
 describe 'Locomotive::Middlewares::Site' do
 
-  let(:site)        { FactoryGirl.create('existing site') }
-  let(:url)         { 'http://models.example.com' }
-  let(:app)         { ->(env) { [200, env, "app"] } }
+  let(:site)        { create('existing site', domains: ['steve.me']) }
+  let(:url)         { 'http://example.com/locomotive/models' }
+  let(:app)         { ->(env) { [200, env, 'app'] } }
   let(:middleware)  { Locomotive::Middlewares::Site.new(app) }
 
   subject { code, env = middleware.call(env_for(url)); env['locomotive.site'] }
@@ -20,8 +20,17 @@ describe 'Locomotive::Middlewares::Site' do
     before { site }
 
     it { expect(subject.name).to eq('Locomotive site with existing models') }
-    it { expect(subject.subdomain).to eq('models') }
+    it { expect(subject.handle).to eq('models') }
+
+    context 'fetching from the host' do
+
+      let(:url) { 'http://steve.me/about' }
+
+      it { expect(subject.name).to eq('Locomotive site with existing models') }
+
+    end
 
   end
+
 
 end

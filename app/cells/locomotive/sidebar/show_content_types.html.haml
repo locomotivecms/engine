@@ -9,7 +9,7 @@
     %ul
       - @list.each do |content_type|
         %li
-          = link_to content_entries_path(content_type.slug) do
+          = link_to content_entries_path(@current_site, content_type.slug) do
             %span.text= content_type.name
 
           %span.badge= content_type.number_of_entries || '?'

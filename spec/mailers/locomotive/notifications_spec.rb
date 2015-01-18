@@ -38,24 +38,6 @@ describe Locomotive::Notifications do
       expect(mail.body.encoded).to match('The list of my projects')
     end
 
-    context 'multi-site not enabled' do
-
-      before(:each) do
-        Locomotive.config.stubs(:multi_sites_or_manage_domains?).returns(false)
-      end
-
-      it 'renders the subject with the domain name coming from the ActionMailer settings' do
-        ActionMailer::Base.default_url_options = { host: 'www.acme.fr' }
-        expect(mail.subject).to eq('[www.acme.fr][My project] new entry')
-      end
-
-      it 'renders the subject without setting ActionMailer' do
-        ActionMailer::Base.default_url_options[:host] = nil
-        expect(mail.subject).to eq('[localhost][My project] new entry')
-      end
-
-    end
-
   end
 
   def set_timezone(&block)

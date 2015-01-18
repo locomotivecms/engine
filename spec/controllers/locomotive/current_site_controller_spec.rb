@@ -15,7 +15,7 @@ describe Locomotive::CurrentSiteController do
   end
 
   describe "#GET edit" do
-    subject { get :edit, id: site.id, locale: :en }
+    subject { get :edit, site_handle: site, locale: :en }
     it { is_expected.to be_success }
     specify do
       subject
@@ -25,7 +25,7 @@ describe Locomotive::CurrentSiteController do
 
   describe "#PUT update" do
     subject do
-      put :update, id: site.id, locale: :en, site: { name: 'foooo' }
+      put :update, site_handle: site, locale: :en, site: { name: 'foooo' }
     end
     it { is_expected.to be_redirect }
     specify do
@@ -33,4 +33,15 @@ describe Locomotive::CurrentSiteController do
       expect(assigns(:site).name).to eq('foooo')
     end
   end
+
+  describe "#DELETE destroy" do
+    subject do
+      delete :destroy, site_handle: site, locale: :en
+    end
+    it { is_expected.to be_redirect }
+    specify do
+      expect { subject }.to change(Locomotive::Site, :count).by(-1)
+    end
+  end
+
 end

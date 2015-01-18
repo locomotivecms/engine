@@ -19,14 +19,14 @@ describe Locomotive::CustomFields::SelectOptionsController do
 
   describe "#PUT update" do
 
-    let(:attributes) { { slug: content_type.slug, name: field.name, locale: :en, select_options: [{ name: 'Development' }] } }
+    let(:attributes) { { site_handle: site, slug: content_type.slug, name: field.name, locale: :en, select_options: [{ name: 'Development' }] } }
     let(:session) { {} }
 
     subject do
       put :update, attributes, session
     end
 
-    it { is_expected.to redirect_to content_entries_path(content_type.slug) }
+    it { is_expected.to redirect_to content_entries_path(site, content_type.slug) }
     specify do
       subject
       expect(assigns(:custom_field).select_options.map(&:name)).to eq ['Development']
@@ -34,8 +34,8 @@ describe Locomotive::CustomFields::SelectOptionsController do
 
     context 'return to another page if success' do
 
-      let(:session) { { return_to: dashboard_path } }
-      it { is_expected.to redirect_to dashboard_path }
+      let(:session) { { return_to: dashboard_path(site) } }
+      it { is_expected.to redirect_to dashboard_path(site) }
 
     end
   end

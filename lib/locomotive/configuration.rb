@@ -4,10 +4,9 @@ module Locomotive
     @@default_locales = %w{en de fr pl pt pt-BR it nl nb es ru et ja zh-CN cs bg sk sr}
 
     @@defaults = {
-      name:                         'LocomotiveApp',
-      domain:                       'example.com',
-      reserved_subdomains:          %w{www admin email blog webmail mail support help site sites},
+      name:                         'Locomotive',
       # forbidden_paths:            %w{layouts snippets stylesheets javascripts assets admin system api},
+      reserved_site_handles:        %w(sites my_account password sign_in sign_out),
       reserved_slugs:               %w{stylesheets javascripts assets admin locomotive images api pages edit},
       locales:                      @@default_locales,
       site_locales:                 @@default_locales,
@@ -17,12 +16,8 @@ module Locomotive
       delayed_job:                  false,
       default_locale:               :en,
       mailer_sender:                'support@example.com',
-      manage_subdomain:             false,
-      manage_manage_domains:        false,
       unsafe_token_authentication:  false,
       ui:                     {
-        latest_entries_nb:    5,
-        max_content_types:    2,
         per_page:             10
       },
       rack_cache:             {
@@ -46,38 +41,6 @@ module Locomotive
 
     def self.settings
       @@settings
-    end
-
-    def multi_sites?
-      self.multi_sites != false
-    end
-
-    def manage_subdomain?
-      self.manage_subdomain == true
-    end
-
-    def manage_domains?
-      self.manage_domains == true
-    end
-
-    def manage_subdomain_n_domains?
-      self.manage_subdomain? && self.manage_domains?
-    end
-
-    def multi_sites_or_manage_domains?
-      self.multi_sites? || self.manage_domains?
-    end
-
-    def reserved_subdomains
-      if self.multi_sites?
-        if self.multi_sites.reserved_subdomains.blank?
-          @@defaults[:reserved_subdomains]
-        else
-          self.multi_sites.reserved_subdomains
-        end
-      else
-        []
-      end
     end
 
     def method_missing(name, *args, &block)

@@ -11,7 +11,7 @@ module Locomotive
 
       def update
         @options = service.update_select_options(options_params)
-        respond_with @custom_field, location: -> { last_saved_location!(content_entries_path(@content_type.slug)) }
+        respond_with @custom_field, location: -> { last_saved_location!(default_back_location) }
       end
 
       def new_option
@@ -43,6 +43,10 @@ module Locomotive
 
       def option_name_param
         params.require(:select_option)
+      end
+
+      def default_back_location
+        content_entries_path(current_site, @content_type.slug)
       end
 
     end

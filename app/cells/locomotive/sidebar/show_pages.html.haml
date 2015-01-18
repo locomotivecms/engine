@@ -1,12 +1,12 @@
 %section.pages-tree
   %h1= t(:title, scope: 'locomotive.pages.index')
 
-  %ul.root{ data: { url: sort_page_path(@pages.first.first) } }
+  %ul.root{ data: { url: sort_page_path(@current_site, @pages.first.first) } }
 
     - @pages.each do |(page, children)|
       = render({ state: :page }, page, children)
 
     %li.new-content
       %i.fa.fa-plus.icon
-      = link_to new_page_path do
+      = link_to new_page_path(@current_site) do
         %span.text= t(:new, scope: 'locomotive.pages.index')

@@ -3,11 +3,11 @@
   %br
 
   .alert.alert-warning
-    != t('.no_items', url: new_content_entry_path(content_type.slug))
+    != t('.no_items', url: new_content_entry_path(current_site, content_type.slug))
 
 - else
 
-  #entries-list{ class: "row big-list #{'grouped' if content_type.groupable?} #{'sortable' if content_type.order_manually?}", :'data-sort-url' => sort_content_entries_path(content_type.slug, :json) }
+  #entries-list{ class: "row big-list #{'grouped' if content_type.groupable?} #{'sortable' if content_type.order_manually?}", :'data-sort-url' => sort_content_entries_path(current_site, content_type.slug, :json) }
     - entries.each do |entry|
       .item{ class: 'col-md-12', data: { id: entry._id } }
         - if content_type.order_manually?
@@ -15,12 +15,12 @@
             %i.fa.fa-bars.draggable
 
         .text
-          %strong= link_to entry_label(content_type, entry), edit_content_entry_path(content_type.slug, entry)
+          %strong= link_to entry_label(content_type, entry), edit_content_entry_path(current_site, content_type.slug, entry)
           .stamp
             != content_entry_stamp(entry)
 
         .actions
-          = link_to content_entry_path(content_type.slug, entry), title: t('locomotive.buttons.delete'), class: 'remove', data: { confirm: t('locomotive.messages.confirm') }, method: :delete do
+          = link_to content_entry_path(current_site, content_type.slug, entry), title: t('locomotive.buttons.delete'), class: 'remove', data: { confirm: t('locomotive.messages.confirm') }, method: :delete do
             %i.fa.fa-trash-o
 
 

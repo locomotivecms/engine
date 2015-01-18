@@ -15,13 +15,15 @@ module Locomotive
 
         if current_site.present? && current_locomotive_account.present?
           @current_membership = current_site.membership_for(current_locomotive_account)
+        elsif current_locomotive_account.present?
+          @current_membership = Locomotive::Membership.new(account: current_locomotive_account)
         else
           nil
         end
       end
 
       def validate_site_membership
-        return true if current_membership
+        return true if current_membership.try(:site).present?
 
         sign_out(current_locomotive_account)
         flash[:alert] = I18n.t(:no_membership, scope: [:devise, :failure, :locomotive_account])

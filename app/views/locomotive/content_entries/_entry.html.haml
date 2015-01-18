@@ -17,6 +17,6 @@
       = item._label
 
     .buttons
-      = link_to t(:edit, scope: 'locomotive.shared.form.array_input'), edit_content_entry_path(slug, item, _location: false), class: 'choose btn btn-primary btn-sm'
+      = link_to t(:edit, scope: 'locomotive.shared.form.array_input'), edit_content_entry_path(current_site, slug, item, _location: false), class: 'choose btn btn-primary btn-sm'
       = link_to '#', class: 'delete' do
         %i.fa.fa-trash-o

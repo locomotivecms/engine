@@ -1,35 +1,10 @@
 Locomotive.configure do |config|
 
-  # A single locomotive instance can serve one single site or many.
-  # If you want to run many different websites, you will have to specify
-  # your own domain name (ex: locomotivehosting.com).
-  #
-  # Ex:
-  config.multi_sites do |multi_sites|
-    # each new website you add will have a default entry based on a subdomain
-    # and the multi_site_domain value (ex: website_1.locomotivehosting.com).
-    # multi_sites.domain = 'example.com'
-    multi_sites.domain = 'lvh.me'
-
-    # define the reserved subdomains
-    # Ex:
-    multi_sites.reserved_subdomains = %w(www admin email blog webmail mail support help site sites)
-  end
-  # config.multi_sites = false
-
-  # In case you host Locomotive in Heroku, the engine uses the heroku api to add / remove domains.
-  # there are 2 ways of passing heroku credentials to Locomotive
-  #   - from ENV variables: HEROKU_LOGIN & HEROKU_PASSWORD
-  #   - from this file, see the example below and uncomment it if needed
-  # config.heroku = {
-  #   login:      '<your_heroku_login>',
-  #   password:   '<your_heroku_password>'
-  # }
+  # list of forbidden handles for a site because there are in conflicts with internal resources.
+  # config.reserved_site_handles = %w(sites my_account password sign_in sign_out)
 
   # configure how many items we display in sub menu in the "Contents" section.
   config.ui = {
-    latest_entries_nb:  5,
-    max_content_types:  4,
     per_page:           10
   }
 

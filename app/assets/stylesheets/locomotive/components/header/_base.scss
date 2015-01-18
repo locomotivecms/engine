@@ -30,7 +30,7 @@ $header_site_arrow_color:     #349cb0;
 
     span.default {
       font-family: $alt-font-family-sans-serif;
-      color: rgba($header_brand_color, 0.8);
+      color: rgba($header_brand_color, 1);
     }
   }
 
@@ -65,10 +65,10 @@ $header_site_arrow_color:     #349cb0;
       span.arrow {
         margin-left: 5px;
         position: relative;
-        top: 3px;
+        top: 1px;
 
         i {
-          font-size: 22px;
+          font-size: 14px;
           font-weight: bold;
           color: $header_site_arrow_color;
         }

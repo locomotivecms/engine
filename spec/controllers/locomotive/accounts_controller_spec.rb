@@ -21,7 +21,7 @@ describe Locomotive::AccountsController do
       attributes_for('frenchy user', site: site)
     end
     subject do
-      post :create, locale: :en, account: account_attributes
+      post :create, site_handle: site, locale: :en, account: account_attributes
     end
     it { is_expected.to be_redirect }
     specify do

@@ -2,7 +2,7 @@
 
 = help t('.help', default: '')
 
-= locomotive_form_for @account, url: accounts_path do |f|
+= locomotive_form_for @account, url: accounts_path(current_site) do |f|
 
   = f.inputs :information do
     = f.input :name
@@ -14,4 +14,4 @@
       = f.input :password, input_html: { autocomplete: 'off' }
       = f.input :password_confirmation, input_html: { autocomplete: 'off' }
 
-  = f.actions back_url: edit_current_site_path
+  = f.actions back_url: edit_current_site_path(current_site)

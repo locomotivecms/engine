@@ -2,19 +2,19 @@ module Locomotive
   class ContentAssetPolicy < ApplicationPolicy
 
     def index?
-      true
+      site_staff?
     end
 
     def create?
-      true
+      site_staff?
     end
 
     def update?
-      true
+      site_staff?
     end
 
     def destroy?
-      true
+      site_staff?
     end
 
   end

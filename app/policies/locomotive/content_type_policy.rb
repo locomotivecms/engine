@@ -2,7 +2,7 @@ module Locomotive
   class ContentTypePolicy < ApplicationPolicy
 
     def index?
-      true
+      site_staff?
     end
 
     def create?

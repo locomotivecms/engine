@@ -3,10 +3,10 @@
 
 = render_cell 'locomotive/sidebar', :show, site: current_site, list: [        |
     :my_account,                                                              |
-    { icon: 'fa-dashboard', label: t('.dashboard'), url: dashboard_path },    |
+    { icon: 'fa-dashboard', label: t('.dashboard'), url: dashboard_path(current_site) },    |
     :pages,                                                                   |
     :content_types,                                                           |
-    { icon: 'fa-picture-o', label: t('.assets'), url: content_assets_path },                                                                        |
-    { icon: 'fa-gear', label: t('.settings'), url: edit_current_site_path },  |
+    { icon: 'fa-picture-o', label: t('.assets'), url: content_assets_path(current_site) },                                                                        |
+    { icon: 'fa-gear', label: t('.settings'), url: edit_current_site_path(current_site)  },  |
     { icon: 'fa-suitcase', label: t(:sites, scope: 'locomotive.shared.header'), url: sites_path, section_class: 'visible-xs-block' }    |
   ]                                                                           |

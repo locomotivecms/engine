@@ -26,7 +26,7 @@ module Locomotive
     end
 
     def update?
-      true
+      super_admin? || site_staff?
     end
 
     def destroy?
@@ -42,7 +42,7 @@ module Locomotive
     end
 
     def permitted_attributes
-      plain = [:name, :subdomain, :picture, :remove_picture, :seo_title, :meta_keywords, :meta_description, :timezone_name, :robots_txt]
+      plain = [:name, :handle, :picture, :remove_picture, :seo_title, :meta_keywords, :meta_description, :timezone_name, :robots_txt]
       hash  = { domains: [], locales: [] }
 
       unless update_advanced?
@@ -51,7 +51,7 @@ module Locomotive
       end
 
       unless point?
-        plain -= [:subdomain]
+        plain -= [:handle]
         hash.delete(:domains)
       end
 

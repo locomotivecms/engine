@@ -20,7 +20,7 @@ module Locomotive
     def create
       authorize ThemeAsset
       @translation = current_site.translations.create(translation_params)
-      respond_with @translation, location: translations_path
+      respond_with @translation, location: translations_path(current_site)
     end
 
     def edit
@@ -31,13 +31,13 @@ module Locomotive
     def update
       authorize @translation
       @translation.update_attributes(translation_params)
-      respond_with @translation, location: translations_path
+      respond_with @translation, location: translations_path(current_site)
     end
 
     def destroy
       authorize @translation
       @translation.destroy
-      respond_with @translation, location: translations_path
+      respond_with @translation, location: translations_path(current_site)
     end
 
     private

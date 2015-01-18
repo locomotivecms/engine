@@ -31,7 +31,7 @@ module Locomotive
       def destroy
         authorize @content_asset
         @content_asset.destroy
-        respond_with @content_asset
+        respond_with @content_asset, location: main_app.locomotive_api_content_assets_url
       end
 
       private

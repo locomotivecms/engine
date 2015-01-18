@@ -1,6 +1,10 @@
 module Locomotive
   class SitesController < BaseController
 
+    skip_before_filter :require_site
+    skip_before_filter :set_current_content_locale
+    skip_before_filter :validate_site_membership
+
     layout '/locomotive/layouts/without_site'
 
     def index
@@ -18,20 +22,7 @@ module Locomotive
     def create
       authorize Site
       @site = service.create(site_params)
-      respond_with @site, location: -> { safe_dashboard_url(@site) }
-    end
-
-    def destroy
-      @site = self.current_locomotive_account.sites.find(params[:id])
-      authorize @site
-
-      if @site != current_site
-        @site.destroy
-      else
-        @site.errors.add(:base, 'Can not destroy the site you are logging in now')
-      end
-
-      respond_with @site, location: edit_my_account_path
+      respond_with @site, location: -> { dashboard_path(@site) }
     end
 
     private
@@ -41,7 +32,7 @@ module Locomotive
     end
 
     def site_params
-      params.require(:site).permit(:name, :subdomain)
+      params.require(:site).permit(:name, :handle)
     end
 
   end

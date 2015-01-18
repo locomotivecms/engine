@@ -21,7 +21,7 @@ describe Locomotive::SitesController do
 
   describe "#POST create" do
     let(:site_attributes) do
-      { subdomain: generate(:subdomain), name: generate(:name) }
+      { handle: generate(:handle), name: generate(:name) }
     end
     subject do
       post :create, locale: :en, site: site_attributes
@@ -29,20 +29,6 @@ describe Locomotive::SitesController do
     it { is_expected.to be_redirect }
     specify do
       expect { subject }.to change(Locomotive::Site, :count).by(+1)
-    end
-  end
-
-  describe "#DELETE destroy" do
-    let(:another_site) { create(:site, subdomain: generate(:subdomain)) }
-    before do
-      create(:membership, account: account, site: another_site, role: 'admin')
-    end
-    subject do
-      delete :destroy, id: another_site.id, locale: :en
-    end
-    it { is_expected.to be_redirect }
-    specify do
-      expect { subject }.to change(Locomotive::Site, :count).by(-1)
     end
   end
 
