@@ -19,12 +19,14 @@ module Locomotive
       end
       desc 'Returns list of translations'
       get :index do
-        
-        translations = current_site.translations.all # TODO: to be scoped by the current_site
+        binding.pry
+        puts current_site.inspect
+         translations = current_site.translations # TODO: to be scoped by the current_site
 
-        authorize translations
+         authorize translations
 
-        present translations, with: Locomotive::TranslationEntity
+         present translations, with: Locomotive::TranslationEntity
+        {'hello' => true}
       end
     end
 

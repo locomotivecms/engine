@@ -12,6 +12,7 @@ module Locomotive
 
     def authenticate_locomotive_account!
       error!('401 Unauthorized', 401) unless current_user
+      true
     end
 
   end

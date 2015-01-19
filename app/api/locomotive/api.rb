@@ -4,9 +4,11 @@ module Locomotive
 
     helpers APIAuthenticationHelpers
     include Concerns::ExceptionController
-    include Concerns::AuthorizationController
+
     include Concerns::SiteDispatcherController
 
+    helpers Pundit
+    # membership controller holds methods required to authorize on relationship.
 
     # Authentication needs email + token
     # 1. simple authentication pattern
