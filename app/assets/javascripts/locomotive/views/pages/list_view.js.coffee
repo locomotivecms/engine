@@ -55,8 +55,8 @@ class Locomotive.Views.Pages.ListView extends Backbone.View
 
   make_hoverable: ->
     @$('a').hover ->
-      $(@).previous('i.icon').addClass('on')
-    , -> $(@).previous('i.icon').removeClass('on')
+      $(@).prev('i.icon').addClass('on')
+    , -> $(@).prev('i.icon').removeClass('on')
 
   call_sort: (folder) ->
     $.rails.ajax
