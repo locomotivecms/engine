@@ -1,7 +1,5 @@
-- title link_to(@page.title.blank? ? @page.title_was : @page.title, '#', rel: 'page_title', title: t('.ask_for_title'), class: 'editable')
-
-.alert.alert-danger
-  Under development
+.embed-responsive.embed-page
+  %iframe.embed-responsive-item{ src: preview_path(current_site) + '/' + current_site.localized_page_fullpath(@page) }
 
 / - content_for :submenu do
 /   = render 'locomotive/shared/menu/contents'

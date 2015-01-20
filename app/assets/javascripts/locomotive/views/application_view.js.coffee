@@ -28,7 +28,7 @@ class Locomotive.Views.ApplicationView extends Backbone.View
     return @
 
   slide_sidebar: (event) ->
-    $('body').toggleClass('slide-top-sidebar')
+    $('body').toggleClass('slide-right-sidebar')
 
   render_flash_messages: (messages) ->
     _.each messages, (couple) ->

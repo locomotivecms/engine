@@ -7,6 +7,8 @@ module Locomotive
 
     before_filter :load_page, only: [:show, :edit, :update, :sort, :destroy]
 
+    layout 'locomotive/layouts/preview', only: [:edit]
+
     respond_to :json, only: [:show, :create, :update, :sort, :get_path]
 
     def index

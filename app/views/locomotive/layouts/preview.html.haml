@@ -1,0 +1,31 @@
+!!! XML
+!!!
+%html{ xmlns: 'http://www.w3.org/1999/xhtml'  }
+  %head
+    = render 'locomotive/shared/head'
+  %body{ class: body_class + ' sidebar-closed' }
+
+    - # HEADER: brand + current site + account
+    = render 'locomotive/shared/header'
+
+    - # WRAPPER
+    .wrapper
+      %nav.sidebar
+        .scrollable
+          = render 'locomotive/shared/sidebar'
+
+      .content
+        .scrollable
+          = yield
+
+      %section.drawer
+        .close-button
+          %i.fa.fa-times
+        .inner
+          .scrollable
+            .container-fluid
+              .row
+                .col-md-12
+                  %p TODO
+
+    = yield :foot

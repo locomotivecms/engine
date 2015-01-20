@@ -9,6 +9,8 @@ class Locomotive.Views.Pages.ListView extends Backbone.View
 
     @make_sortable()
 
+    @make_hoverable()
+
     return @
 
   make_foldable: ->
@@ -50,6 +52,11 @@ class Locomotive.Views.Pages.ListView extends Backbone.View
         if $(@).hasClass('root')
           position = ui.item.index()
           $(@).sortable('cancel') if position == 0 || position >= $(@).find('> li').size() - 2
+
+  make_hoverable: ->
+    @$('a').hover ->
+      $(@).previous('i.icon').addClass('on')
+    , -> $(@).previous('i.icon').removeClass('on')
 
   call_sort: (folder) ->
     $.rails.ajax

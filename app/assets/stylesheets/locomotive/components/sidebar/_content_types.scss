@@ -7,15 +7,20 @@
       padding: 0px;
 
       li {
-        margin: 9px 0px;
-
         a {
-          margin-right: 5px;
-        }
+          display: block;
+          overflow: auto;
+          padding-top: 5px;
+          padding-bottom: 5px;
 
-        .badge {
-          font-size: 10px;
-          padding: 2px 3px;
+          .text {
+            margin-right: 5px;
+          }
+
+          .badge {
+            font-size: 10px;
+            padding: 2px 3px;
+          }
         }
       }
     }
