@@ -19,7 +19,7 @@ $form_input_border_color: #4999b2;
 
       .control-label {
         text-transform: uppercase;
-        font-size: 85%;
+        font-size: $font-size-base - 3;
         line-height: 18px;
         color: $form_input_label_color;
       }
@@ -35,6 +35,11 @@ $form_input_border_color: #4999b2;
         font-family: $alt-font-family-sans-serif;
       }
 
+      .help-inline {
+        color: #000;
+        @include opacity(0.4);
+      }
+
       .error-inline {
         color: $state-danger-text;
       }
@@ -45,12 +50,21 @@ $form_input_border_color: #4999b2;
 
   a {
     color: #000;
-    @include opacity(0.4);
   }
 
   .form-actions {
     input[type="submit"] {
       margin-top: 0px;
+    }
+
+    p {
+      text-align: center;
+      margin-top: 10px;
+      a {
+        font-size: $font-size-base - 1;
+        color: #fff;
+        @include opacity(0.8);
+      }
     }
   }
 

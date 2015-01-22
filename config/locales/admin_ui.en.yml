@@ -1,7 +1,8 @@
 en:
   locomotive:
     buttons:
-      login: Log in
+      sign_in: Sign in
+      sign_up: Sign up
       send_password: Send
       change_password: Update
       new_item: "+ add"
@@ -157,6 +158,11 @@ en:
         link: "I forgot my password"
         email: "Email"
         password: "Password"
+        sign_up: Do not have an account?
+
+    registrations:
+      new:
+        sign_in: Already have an account?
 
     passwords:
       new:

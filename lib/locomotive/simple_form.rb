@@ -49,7 +49,7 @@ module Locomotive
       if options[:back_url]
         actions_with_back_button(options)
       else
-        options[:class] ||= 'text-right'
+        options[:class] ||= 'text-right form-actions'
         template.content_tag(:div, options, &block)
       end
     end
