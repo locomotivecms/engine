@@ -2,11 +2,11 @@ module Locomotive
   module Public
     class PagesController < ApplicationController
 
-      include Locomotive::Concerns::SiteDispatcherController
-      include Locomotive::Render
-      include Locomotive::ActionController::LocaleHelpers
+      include Locomotive::Concerns::WithinSiteController
 
-      before_filter :require_site
+      within_site
+
+      include Locomotive::Render
 
       before_filter :set_locale, only: [:show, :edit]
 

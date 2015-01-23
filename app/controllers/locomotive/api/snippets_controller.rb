@@ -2,6 +2,8 @@ module Locomotive
   module Api
     class SnippetsController < Api::BaseController
 
+      account_required & within_site
+
       before_filter :load_snippet,  only: [:show, :update, :destroy]
       before_filter :load_snippets, only: [:index]
 

@@ -2,8 +2,7 @@ module Locomotive
   module Api
     class SitesController < Api::BaseController
 
-      skip_before_filter :require_site
-      skip_before_filter :validate_site_membership
+      account_required
 
       before_filter :load_site, only: [:show, :update, :destroy]
       before_filter :load_sites, only: [:index]

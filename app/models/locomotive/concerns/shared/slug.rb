@@ -11,6 +11,7 @@ module Locomotive
               before_validation { |object| object.send(:normalize_slug, :#{field.to_s}) }
             EOV
           end
+
         end
 
         protected

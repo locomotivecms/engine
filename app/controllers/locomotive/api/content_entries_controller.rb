@@ -2,6 +2,8 @@ module Locomotive
   module Api
     class ContentEntriesController < Api::BaseController
 
+      account_required & within_site
+
       before_filter :load_content_type
       before_filter :load_content_entry,   only: [:show, :update, :destroy]
       before_filter :load_content_entries, only: [:index]

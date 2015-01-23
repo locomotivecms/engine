@@ -1,6 +1,6 @@
 module Locomotive
-  module ActionController
-    module Timezone
+  module Concerns
+    module TimezoneController
 
       protected
 

@@ -1,13 +1,11 @@
 module Locomotive
   class MyAccountController < BaseController
 
+    account_required
+
     respond_to :json, only: [:regenerate_api_key]
 
     before_filter :load_account
-
-    skip_before_filter :require_site
-    skip_before_filter :set_current_content_locale
-    skip_before_filter :validate_site_membership
 
     layout '/locomotive/layouts/without_site'
 

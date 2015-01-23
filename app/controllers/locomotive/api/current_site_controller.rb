@@ -2,6 +2,8 @@ module Locomotive
   module Api
     class CurrentSiteController < Api::BaseController
 
+      account_required & within_site
+
       before_filter :load_current_site
 
       def show

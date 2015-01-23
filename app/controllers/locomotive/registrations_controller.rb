@@ -3,11 +3,9 @@ module Locomotive
 
     layout '/locomotive/layouts/not_logged_in'
 
-    skip_before_filter :set_locale
-
     before_action :configure_permitted_parameters
 
-    helper 'locomotive/base'
+    helper Locomotive::BaseHelper
 
     private
 

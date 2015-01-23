@@ -2,8 +2,6 @@ module Locomotive
   module Api
     class TokensController < Api::BaseController
 
-      skip_before_filter :authenticate_locomotive_account_from_token!, :require_account, :require_site, :validate_site_membership
-
       def create
         begin
           token = Account.create_api_token(params[:email], params[:password], params[:api_key])

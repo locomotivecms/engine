@@ -2,12 +2,10 @@ module Locomotive
   module Api
     class AccountsController < Api::BaseController
 
+      account_required
+
       before_filter :load_account, only: [:show, :update, :destroy]
       before_filter :load_accounts, only: [:index]
-
-      skip_before_filter :require_account, only: [:create]
-      skip_before_filter :require_site
-      skip_before_filter :validate_site_membership
 
       def index
         authorize Locomotive::Account

@@ -1,11 +1,13 @@
 module Locomotive
   class PasswordsController < ::Devise::PasswordsController
 
-    include Locomotive::Concerns::SiteDispatcherController
+    include Locomotive::Concerns::WithinSiteController
+
+    within_site_only_if_existing
 
     layout '/locomotive/layouts/not_logged_in'
 
-    helper 'locomotive/base'
+    helper Locomotive::BaseHelper
 
     private
 

@@ -1,6 +1,6 @@
 module Locomotive
-  module ActionController
-    module LocaleHelpers
+  module Concerns
+    module LocaleHelpersController
 
       extend ActiveSupport::Concern
 
@@ -26,10 +26,6 @@ module Locomotive
         self.setup_i18n_fallbacks
 
         # logger.debug "*** content locale = #{session[:content_locale]} / #{::Mongoid::Fields::I18n.locale}"
-      end
-
-      def set_back_office_locale
-        ::I18n.locale = current_locomotive_account.locale rescue Locomotive.config.default_locale
       end
 
       def back_to_default_site_locale

@@ -13,7 +13,7 @@ describe Locomotive::Concerns::SiteDispatcherController do
 
   let(:my_controller) { MyController.new }
 
-  context 'inheriting the site dispatcher' do
+  context 'inheriting from athe site dispatcher' do
 
     it 'adds a helper method for current site' do
       expect(my_controller.respond_to?(:current_site, true)).to eq(true)
@@ -29,73 +29,6 @@ describe Locomotive::Concerns::SiteDispatcherController do
 
       it 'returns true' do
         expect(my_controller.send(:require_site)).to eq(true)
-      end
-
-    end
-
-    context 'when there are no accounts' do
-
-      before do
-        Locomotive::Account.expects(:count).returns(0)
-
-        my_controller.instance_variable_set('@_response', ActionDispatch::Response.new)
-        my_controller.expects(:current_site).returns(false)
-        my_controller.stubs(:installation_url).returns('/locomotive/install/url/')
-        my_controller.stubs(:redirect_to).with('/locomotive/install/url/')
-      end
-
-      it 'returns false' do
-        expect(my_controller.send(:require_site)).to eq(false)
-      end
-
-      it 'redirects to the admin installation url' do
-        my_controller.expects(:redirect_to).with('/locomotive/install/url/')
-        my_controller.send(:require_site)
-      end
-
-    end
-
-    context 'when there are no sites' do
-
-      before do
-        Locomotive::Account.expects(:count).returns(1)
-        Locomotive::Site.expects(:count).returns(0)
-
-        my_controller.instance_variable_set('@_response', ActionDispatch::Response.new)
-        my_controller.expects(:current_site).returns(false)
-        my_controller.stubs(:installation_url).returns('/locomotive/install/url/')
-        my_controller.stubs(:redirect_to).with('/locomotive/install/url/')
-      end
-
-      it 'returns false' do
-        expect(my_controller.send(:require_site)).to eq(false)
-      end
-
-      it 'redirects to the admin installation url' do
-        my_controller.expects(:redirect_to).with('/locomotive/install/url/')
-        my_controller.send(:require_site)
-      end
-
-    end
-
-    context 'when there is no current site' do
-
-      before do
-        Locomotive::Account.expects(:count).returns(1)
-        Locomotive::Site.expects(:count).returns(1)
-
-        my_controller.instance_variable_set('@_response', ActionDispatch::Response.new)
-        my_controller.expects(:current_site).returns(false)
-      end
-
-      it 'halts the filter chain' do
-        my_controller.stubs(:render_no_site_error)
-        expect(my_controller.send(:require_site)).to eq(false)
-      end
-
-      it 'renders the no site error' do
-        my_controller.expects(:render_no_site_error)
-        my_controller.send(:require_site)
       end
 
     end
