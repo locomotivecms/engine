@@ -223,7 +223,8 @@ en:
       form:
         main:
           new_membership: "Add account"
-        actions:
+        advanced:
+          destroy: "Destroy this site"
           confirm_destroy: "Please confirm by typing the site name in the following input"
 
     memberships:
