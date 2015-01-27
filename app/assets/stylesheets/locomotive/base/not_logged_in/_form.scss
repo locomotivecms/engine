@@ -42,6 +42,7 @@ $form_input_border_color: #4999b2;
 
       .error-inline {
         color: $state-danger-text;
+        @include opacity(1.0);
       }
 
     }
