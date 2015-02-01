@@ -1,7 +1,7 @@
 module Locomotive
-  class TranslationEntity < Grape::Entity
-    
+  class TranslationEntity < BaseEntity
+
     expose :key, :values
-     
+
   end
 end

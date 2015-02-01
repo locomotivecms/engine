@@ -31,26 +31,32 @@ module Locomotive
       end
     end
 
-
     context 'authenticated site' do
       before do
         header 'X-Locomotive-Account-Token', account.api_token
         header 'X-Locomotive-Account-Email', account.email
         header 'X-Locomotive-Site-Handle', site.handle
-        #current_session.env('HTTP_HOST', site.domains.first)
       end
 
       describe "GET /locomotive/acme/api_test/v2/translations/index.json" do
         context 'JSON' do
+          before { get '/locomotive/acme/api_test/v2/translations/index.json' }
           it 'returns a successful response' do
-            get '/locomotive/acme/api_test/v2/translations/index.json'
             expect(last_response).to be_successful
           end
 
           it 'returns one translation' do
-            get '/locomotive/acme/api_test/v2/translations/index.json'
             entity = entity_to_hash(TranslationEntity.new(translation))
             expect(subject).to include(entity)
+          end
+        end
+      end
+
+      describe "GET /locomotive/acme/api_test/v2/translations/[id].json" do
+        context 'JSON' do
+          before { get "/locomotive/acme/api_test/v2/translations/#{translation.id}.json" }
+          it 'returns a successful response' do
+            expect(last_response).to be_successful
           end
         end
       end

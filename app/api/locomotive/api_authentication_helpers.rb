@@ -24,9 +24,22 @@ module Locomotive
       membership || Locomotive::Membership.new(account: current_account)
     end
 
-    # def pundit_user
-    #   current_membership
-    # end
+    def authorize(obj)
+      policy = policy_for(obj)
+      error!("user unauthorized for this") unless policy_for(obj).new(current_user, obj)
+      true
+    end
 
+    private
+
+    def policy_for(obj)
+      locomotive_klass = model_klass(obj)
+      "#{locomotive_klass}Policy".constantize
+    end
+
+    def model_klass(obj)
+      model_name = obj.model_name.to_s
+      model_name.classify
+    end
   end
 end

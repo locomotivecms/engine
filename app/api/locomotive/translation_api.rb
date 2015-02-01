@@ -14,15 +14,44 @@ module Locomotive
 
 
     resource :translations do
+      entity_class = Locomotive::TranslationEntity
       before do
         authenticate_locomotive_account!
       end
+
       desc 'Returns list of translations'
       get :index do
         translations = current_site.translations
-        error!("user unaothorized for this") unless TranslationPolicy.new(current_user, translations)
-        present translations, with: Locomotive::TranslationEntity
+        authorize translations
+
+        present translations, with: entity_class
       end
+
+      desc "Return a translation"
+      params do
+        requires :id, type: String, desc: 'Translation ID'
+      end
+      route_param :id do
+        get do
+          translation = current_site.translations.where(id: params[:id])
+          authorize translation
+
+          present translation, with: entity_class
+        end
+      end
+
+      desc "Create a translation"
+      params do
+        requires :key, type: String, desc: 'Translation key'
+        requires :value, type: Hash
+      end
+      #TODO incomplete
+      post do
+        translation = current_site.translation.new()
+        authorize translation
+        translation
+      end
+
     end
 
   end

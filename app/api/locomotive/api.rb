@@ -5,8 +5,6 @@ module Locomotive
 
     helpers APIAuthenticationHelpers
 
-    helpers Pundit
-
     content_type :xml, 'application/xml'
     content_type :json, 'application/json'
 
