@@ -11,6 +11,7 @@ module Locomotive
 
     let!(:membership) do
       create(:membership, account: account, site: site, role: 'admin')
+      binding.pry
     end
 
     subject { parsed_response }
@@ -57,6 +58,16 @@ module Locomotive
           before { get "/locomotive/acme/api_test/v2/translations/#{translation.id}.json" }
           it 'returns a successful response' do
             expect(last_response).to be_successful
+          end
+        end
+      end
+
+      describe "POST /locomotive/acme/api_test/v2/translations.json" do
+        context 'JSON' do
+          let(:json) { { key: :site, values: { one: :one } }.to_json }
+
+          it 'creates a translation on the current site' do
+            expect{ post("/locomotive/acmi/api_test/v2/translations.json", translation: json) }.to change{ Locomotive::Translation.count }.by(1)
           end
         end
       end

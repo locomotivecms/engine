@@ -41,15 +41,13 @@ module Locomotive
       end
 
       desc "Create a translation"
-      params do
-        requires :key, type: String, desc: 'Translation key'
-        requires :value, type: Hash
-      end
+
       #TODO incomplete
       post do
-        translation = current_site.translation.new()
-        authorize translation
-        translation
+        authorize Translation, :create?
+        translation = current_site.translation.build(params[:translation])
+        binding.pry
+        entity_class.new(translation).save!
       end
 
     end

@@ -24,10 +24,14 @@ module Locomotive
       membership || Locomotive::Membership.new(account: current_account)
     end
 
-    def authorize(obj)
-      policy = policy_for(obj)
-      error!("user unauthorized for this") unless policy_for(obj).new(current_user, obj)
-      true
+    def authorize(obj, method = :index?)
+      policy = policy_for(obj).new(current_user, obj)
+      binding.pry
+      if policy.send(method)
+        return true
+      else
+        error!("user unauthorized for this")
+      end
     end
 
     private
