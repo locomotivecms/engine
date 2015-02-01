@@ -2,7 +2,7 @@ module Locomotive
   module APIAuthenticationHelpers
     include Concerns::SiteDispatcherController
 
-    def current_user
+    def current_account
       @current_user ||= begin
         token = headers['X-Locomotive-Account-Token']
         email = headers['X-Locomotive-Account-Email']
@@ -13,6 +13,19 @@ module Locomotive
     def authenticate_locomotive_account!
       error!('401 Unauthorized', 401) unless current_user
     end
+
+    def current_site
+      @current_site ||= request.env['locomotive.site']
+    end
+
+    def current_user
+      membership = @site ? @site.membership_for(current_account) : nil
+      membership || Locomotive::Membership.new(account: current_account)
+    end
+
+    # def pundit_user
+    #   current_membership
+    # end
 
   end
 end

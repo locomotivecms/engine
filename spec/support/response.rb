@@ -1,3 +1,7 @@
 def parsed_response
-  JSON.parse(last_response.body)
+  parse_json(last_response.body)
+end
+
+def parse_json(response)
+  JSON.parse(response)
 end

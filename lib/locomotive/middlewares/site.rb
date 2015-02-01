@@ -38,6 +38,7 @@ module Locomotive
       end
 
       def site_handle(request)
+
         if request.path_info =~ site_handle_regexp
           return $1 if !Locomotive.config.reserved_site_handles.include?($1)
         end
