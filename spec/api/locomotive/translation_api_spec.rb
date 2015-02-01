@@ -31,14 +31,13 @@ module Locomotive
       end
     end
 
-    context 'authenticated site' do
 
+    context 'authenticated site' do
       before do
-        current_session.env('locomotive.site', site)
-        current_session.env('locomotive.locale', :en)
         header 'X-Locomotive-Account-Token', account.api_token
         header 'X-Locomotive-Account-Email', account.email
-        current_session.env('HTTP_HOST', site.domains.first)
+        header 'X-Locomotive-Site-Handle', site.handle
+        #current_session.env('HTTP_HOST', site.domains.first)
       end
 
       describe "GET /locomotive/acme/api_test/v2/translations/index.json" do

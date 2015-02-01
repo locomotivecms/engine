@@ -4,6 +4,7 @@ module Locomotive
   class API < Grape::API
 
     helpers APIAuthenticationHelpers
+
     helpers Pundit
 
     content_type :xml, 'application/xml'

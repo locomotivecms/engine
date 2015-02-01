@@ -19,10 +19,8 @@ module Locomotive
       end
       desc 'Returns list of translations'
       get :index do
-
         translations = current_site.translations
         error!("user unaothorized for this") unless TranslationPolicy.new(current_user, translations)
-
         present translations, with: Locomotive::TranslationEntity
       end
     end
