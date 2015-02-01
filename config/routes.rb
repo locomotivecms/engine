@@ -4,13 +4,13 @@ Locomotive::Engine.routes.draw do
   # Authentication
   devise_for :locomotive_account,
     class_name:   'Locomotive::Account',
+    skip:         [:registrations],
     path:         '',
-    path_prefix:  nil,
-    failure_app:  'Locomotive::Devise::FailureApp',
-    controllers:  { sessions: 'locomotive/sessions', passwords: 'locomotive/passwords' }
+    failure_app:  'Locomotive::Devise::FailureApp'
 
   devise_scope :locomotive_account do
-    delete 'signout'  => 'sessions#destroy', as: :signout
+    get   'sign_up'  => 'registrations#new', as: :sign_up
+    post  'sign_up'  => 'registrations#create'
   end
 
   root to: 'sites#index'

@@ -5,4 +5,13 @@
 
   = f.input :robots_txt, as: :code, wrapper_html: { class: 'small' }
 
-= render 'locomotive/current_site/form/actions', f: f
+- if policy(@site).destroy?
+  = f.actions do
+    .row
+      .col-sm-6.text-left
+        = link_to t('.destroy'), current_site_path(current_site), data: { safe_confirm: { question: t('.confirm_destroy'), answer: @site.name } }, class:'btn btn-sm btn-danger', method: :delete
+      .col-sm-6.text-right
+        = f.action
+
+- else
+  = f.actions

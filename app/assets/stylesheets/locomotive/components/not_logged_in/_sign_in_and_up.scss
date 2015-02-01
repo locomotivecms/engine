@@ -1,6 +1,6 @@
 $sign_in_legend_color: #a2e4f1;
 
-.sessions {
+body.sessions, body.registrations {
   .content {
     @include make-sm-column-offset(3);
     @include make-sm-column(6);

@@ -37,7 +37,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'haml',                            '~> 4.0.2'
   s.add_dependency 'simple_form',                     '~> 3.1.0'
-  s.add_dependency 'kaminari',                        '~> 0.16.1'
+  s.add_dependency 'kaminari',                        '0.16.1' # https://github.com/amatsuda/kaminari/issues/642
   s.add_dependency 'bootstrap-kaminari-views',        '~> 0.0.5'
   s.add_dependency 'responders',                      '~> 2.0.2'
   s.add_dependency 'cells',                           '~> 3.11.3'
@@ -49,8 +49,8 @@ Gem::Specification.new do |s|
   s.add_dependency 'flash_cookie_session',            '~> 1.1.1'
   s.add_dependency 'select2-rails',                   '~> 3.5.9'
   s.add_dependency 'compass-rails',                   '2.0.4'
-  s.add_dependency 'bootstrap-sass',                  '~> 3.3.1.0'
-  s.add_dependency 'autoprefixer-rails',              '~> 4.0.2.1'
+  s.add_dependency 'bootstrap-sass',                  '~> 3.3.3'
+  s.add_dependency 'autoprefixer-rails',              '~> 5.0.0.2'
 
   s.add_dependency 'font-awesome-sass',               '~> 4.2.2'
 

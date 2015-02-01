@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe Locomotive::PagesController do
+
   routes { Locomotive::Engine.routes }
 
   let(:site)     { create(:site, domains: %w{www.acme.com}) }
@@ -20,11 +21,6 @@ describe Locomotive::PagesController do
     it { is_expected.to be_success }
   end
 
-  describe "#GET show" do
-    subject { get :show, site_handle: site, id: page.id, locale: :en, format: :json }
-    it { is_expected.to be_success }
-  end
-
   describe "#GET new" do
     subject { get :new, site_handle: site, locale: :en }
     it { is_expected.to be_success }
@@ -35,9 +31,9 @@ describe Locomotive::PagesController do
       attributes_for(:sub_page, parent_id: site.pages.root.first._id, raw_template: 'Hello world')
     end
     subject do
-      post :create, site_handle: site, locale: :en, page: page_attributes, format: :json
+      post :create, site_handle: site, locale: :en, page: page_attributes
     end
-    it { is_expected.to be_success }
+    it { is_expected.to be_redirect }
     specify do
       expect { subject }.to change(Locomotive::Page, :count).by(+1)
     end
@@ -55,9 +51,9 @@ describe Locomotive::PagesController do
   describe "#PUT update" do
     let(:title) { generate(:name) }
     subject do
-      put :update, site_handle: site, id: page.id, locale: :en, page: { title: title }, format: :json
+      put :update, site_handle: site, id: page.id, locale: :en, page: { title: title }
     end
-    it { is_expected.to be_success }
+    it { is_expected.to be_redirect }
     specify do
       subject
       expect(assigns(:page).title).to eq(title)
@@ -89,9 +85,5 @@ describe Locomotive::PagesController do
       it { is_expected.to be_success }
     end
 
-    describe "#GET get_path" do
-      subject { get :get_path, site_handle: site, parent_id: page.id, slug: page.slug, locale: :en }
-      it { is_expected.to be_success }
-    end
   end
 end

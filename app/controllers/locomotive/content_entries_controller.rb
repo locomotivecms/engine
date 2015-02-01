@@ -1,6 +1,8 @@
 module Locomotive
   class ContentEntriesController < BaseController
 
+    account_required & within_site
+
     localized
 
     before_filter :back_to_default_site_locale, only: [:new, :create]
@@ -9,7 +11,7 @@ module Locomotive
     before_filter :load_content_entry, only: [:show, :show_in_form, :edit, :update, :destroy]
     before_filter :store_location, only: [:edit, :update]
 
-    respond_to :json, only: [:index, :show, :edit, :create, :update, :sort, :destroy]
+    respond_to :json, only: [:sort]
     respond_to :csv,  only: [:export]
 
     helper 'Locomotive::CustomFields'
@@ -29,11 +31,6 @@ module Locomotive
         content_type: @content_type,
         host:         request.host_with_port
       }
-    end
-
-    def show
-      authorize @content_entry
-      respond_with @content_entry
     end
 
     def show_in_form

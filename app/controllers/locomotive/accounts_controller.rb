@@ -1,6 +1,8 @@
 module Locomotive
   class AccountsController < BaseController
 
+    account_required & within_site
+
     def new
       authorize Membership
       @account = Account.new(email: params[:email])

@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe Locomotive::TranslationsController do
+
   routes { Locomotive::Engine.routes }
 
   let(:site)     { create(:site, domains: %w{www.acme.com}) }
@@ -38,9 +39,9 @@ describe Locomotive::TranslationsController do
       attributes_for(:translation, site: site)
     end
     subject do
-      post :create, site_handle: site, locale: :en, translation: translation_attributes, format: :json
+      post :create, site_handle: site, locale: :en, translation: translation_attributes
     end
-    it { is_expected.to be_success }
+    it { is_expected.to be_redirect }
     specify do
       expect { subject }.to change(Locomotive::Translation, :count).by(+1)
     end
@@ -57,9 +58,9 @@ describe Locomotive::TranslationsController do
 
   describe "#PUT update" do
     subject do
-      put :update, site_handle: site, id: translation.id, locale: :en, translation: { key: 'foo' }, format: :json
+      put :update, site_handle: site, id: translation.id, locale: :en, translation: { key: 'foo' }
     end
-    it { is_expected.to be_success }
+    it { is_expected.to be_redirect }
   end
 
   describe "#DELETE destroy" do

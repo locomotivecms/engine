@@ -18,8 +18,21 @@ module Locomotive
         Locomotive.log "[fetch site] host = #{request.host} / site_handle = #{handle.inspect}"
 
         if handle
+          # The site is not rendered from a domain but from the back-office
+          # we need to get:
+          # - the path of "mouting point" (basically: locomotive/:handle/preview)
+          # - the real path of the page
+          #
+          # FIXME: move that in a different middleware
+          mounted_on = "#{Locomotive.mounted_on}/#{handle}/preview"
+
+          env['locomotive.mounted_on']  = mounted_on
+          env['locomotive.path']        = request.path_info.gsub(mounted_on, '')
+
           Locomotive::Site.where(handle: handle).first
         else
+          env['locomotive.path'] = request.path_info
+
           Locomotive::Site.match_domain(request.host).first
         end
       end

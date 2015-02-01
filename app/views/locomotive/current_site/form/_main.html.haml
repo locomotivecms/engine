@@ -3,4 +3,5 @@
   = f.input :picture, as: :file
   = f.input :memberships, as: :array, template: :membership, new_item: policy(Locomotive::Membership).create? ? { label: t('.new_membership'), url: new_membership_path(current_site) } : nil, wrapper_html: { class: 'memberships' }
 
-= render 'locomotive/current_site/form/actions', f: f
+= f.actions do
+  = f.action

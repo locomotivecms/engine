@@ -2,15 +2,9 @@ module Locomotive
   module Public
     class BaseController < ApplicationController
 
-      include Locomotive::Concerns::SiteDispatcherController
-      include Locomotive::Concerns::UrlHelpersController
-      include Locomotive::ActionController::LocaleHelpers
-      include Locomotive::ActionController::Timezone
-      include Concerns::AuthorizationController
+      include Locomotive::Concerns::WithinSiteController
 
-      around_filter :set_timezone
-
-      before_filter :require_site
+      within_site_but_as_guest
 
       protected
 

@@ -1,4 +1,4 @@
-- title t('locomotive.not_logged_in.title')
+- title current_site ? current_site.name : t('locomotive.not_logged_in.title')
 
 - set_error_from_flash(resource, :email)
 
@@ -13,4 +13,10 @@
     = f.input :password, label: t('.password'), hint: link_to(t('.link'), new_locomotive_account_password_path).html_safe, required: false, input_html: { tabindex: 2 }
 
   = f.actions do
-    = f.button :submit, t('locomotive.buttons.login'), class: 'btn'
+    = f.button :submit, t('locomotive.buttons.sign_in'), class: 'btn'
+
+    - if current_site.nil?
+
+      %br
+
+      %p= link_to t('.sign_up'), sign_up_path

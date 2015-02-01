@@ -1,6 +1,8 @@
 module Locomotive
   class ContentAssetsController < BaseController
 
+    account_required & within_site
+
     respond_to :json, only: [:create, :bulk_create]
 
     before_filter :load_content_assets, only: :index

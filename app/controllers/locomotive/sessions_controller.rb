@@ -1,13 +1,15 @@
 module Locomotive
   class SessionsController < ::Devise::SessionsController
 
-    include Locomotive::Concerns::SiteDispatcherController
+    include Locomotive::Concerns::WithinSiteController
+
+    within_site_only_if_existing
 
     layout '/locomotive/layouts/not_logged_in'
 
     before_filter :set_locale
 
-    helper 'locomotive/base'
+    helper Locomotive::BaseHelper
 
     private
 
@@ -20,7 +22,7 @@ module Locomotive
     end
 
     def set_locale
-      if current_site
+      if current_site?
         I18n.locale = current_site.accounts.first.locale
       end
     end

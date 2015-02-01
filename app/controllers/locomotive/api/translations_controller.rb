@@ -2,6 +2,8 @@ module Locomotive
   module Api
     class TranslationsController < Api::BaseController
 
+      account_required & within_site
+
       before_filter :load_translation,  only: [:show, :update, :destroy]
       before_filter :load_translations, only: [:index]
 

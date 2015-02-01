@@ -4,6 +4,7 @@ module Locomotive
   module Api
 
     describe CurrentSiteController do
+
       let(:site)      { create(:site, domains: %w{www.acme.com}) }
       let(:account)   { create(:account) }
       let(:token)     { account_token(account) }
@@ -12,7 +13,10 @@ module Locomotive
       end
       let(:params)    { { locale: :en, auth_token: token, format: :json } }
 
-      before { request_site(site) }
+      before do
+        request_site(site)
+        sign_in account
+      end
 
       describe "#GET show" do
         subject { get :show, params.merge(id: 123) }

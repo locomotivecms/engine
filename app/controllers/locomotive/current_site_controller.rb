@@ -1,6 +1,8 @@
 module Locomotive
   class CurrentSiteController < BaseController
 
+    account_required & within_site
+
     localized
 
     before_filter :load_site

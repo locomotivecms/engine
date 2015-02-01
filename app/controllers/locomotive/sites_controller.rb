@@ -1,9 +1,7 @@
 module Locomotive
   class SitesController < BaseController
 
-    skip_before_filter :require_site
-    skip_before_filter :set_current_content_locale
-    skip_before_filter :validate_site_membership
+    account_required
 
     layout '/locomotive/layouts/without_site'
 

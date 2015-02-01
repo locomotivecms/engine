@@ -2,6 +2,8 @@ module Locomotive
   module Api
     class PagesController < Api::BaseController
 
+      account_required & within_site
+
       before_filter :load_page,  only: [:show, :update, :destroy]
       before_filter :load_pages, only: [:index]
 

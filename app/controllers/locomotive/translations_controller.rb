@@ -1,7 +1,7 @@
 module Locomotive
   class TranslationsController < BaseController
 
-    respond_to :json, only: [:create, :update]
+    account_required & within_site
 
     before_filter :load_translation, only: [:edit, :update, :destroy]
 

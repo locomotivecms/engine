@@ -13,7 +13,15 @@ $pt_warning_color:      #F89406;
       padding: 0px;
 
       &.root {
-        padding-top: 2px;
+        padding-top: 0px;
+        padding-left:  ($grid-gutter-width / 2);
+        padding-right: ($grid-gutter-width / 2);
+        margin-top: 13px;
+      }
+
+      a {
+        padding-left: 0px;
+        padding-right: 0px;
       }
 
       li {
@@ -31,6 +39,10 @@ $pt_warning_color:      #F89406;
 
           &.draggable {
             cursor: move;
+          }
+
+          &.on {
+            color: #fff;
           }
         }
 

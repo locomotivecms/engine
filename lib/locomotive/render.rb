@@ -15,6 +15,7 @@ module Locomotive
     # @param [ Hash ] assigns The liquid context passed to the page can be enhanced by assigns coming from the controller for instance.
     #
     def render_locomotive_page(path = nil, assigns = {})
+      Rails.logger.debug "[render_locomotive_page] #{request.fullpath}"
       if request.fullpath =~ /^\/#{Locomotive.mounted_on}\//
         render template: '/locomotive/errors/404', layout: '/locomotive/layouts/not_logged_in', status: :not_found
       else
@@ -141,7 +142,7 @@ module Locomotive
     # @return [ String ] The path to the Locomotive page
     #
     def sanitize_locomotive_page_path(path)
-      path = path.split('?').first # take everything before the query string or the lookup fails
+      path = path.split('?').first || '' # take everything before the query string or the lookup fails
       path.gsub!(/\.[a-zA-Z][a-zA-Z0-9]{2,}$/, '') # remove the page extension
       path.gsub!(/^\//, '') # remove the leading slash
 
@@ -206,6 +207,7 @@ module Locomotive
     def locomotive_default_assigns
       {
         'env'               => Rails.env,
+        'mounted_on'        => env['locomotive.mounted_on'],
         'site'              => current_site.to_liquid,
         'page'              => @page,
         'models'            => Locomotive::Liquid::Drops::ContentTypes.new,

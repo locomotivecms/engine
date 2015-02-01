@@ -16,16 +16,14 @@ module Locomotive
         @current_site ||= request.env['locomotive.site']
       end
 
+      def current_site?
+        !current_site.nil?
+      end
+
       def require_site
-        return true if current_site
+        return true if current_site?
 
-        if Locomotive::Account.count == 0 || Locomotive::Site.count == 0
-          redirect_to installation_url
-        else
-          render_no_site_error
-        end
-
-        false # halt chain
+        render_no_site_error
       end
 
       def render_no_site_error

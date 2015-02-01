@@ -10,9 +10,14 @@ $header_dropdown_hovered_link_color:        #fff;
     & > a {
       outline: none;
       line-height: 20px;
+      font-size: $font-size-base - 1;
 
       font-family: $alt-font-family-sans-serif;
-      color: rgba($header_default_color, 0.8);
+      color: rgba($header_default_color, 1.0);
+
+      &:hover, &:focus {
+        color: rgba($header_default_color, 1.0);
+      }
 
       img {
         margin-right: 7px;
@@ -22,7 +27,7 @@ $header_dropdown_hovered_link_color:        #fff;
 
     &.open > a, &.open > a:hover, &.open > a:focus {
       background: $navbar-default-bg;
-      color: rgba($header_default_color, 0.7);
+      color: rgba($header_default_color, 1.0) !important;
     }
 
     ul.dropdown-menu {
@@ -38,6 +43,7 @@ $header_dropdown_hovered_link_color:        #fff;
 
       a {
         color: $header_dropdown_link_color;
+        font-size: $font-size-base - 1;
 
         &:hover {
           background: $header_dropdown_hovered_background_color;

@@ -2,15 +2,10 @@ module Locomotive
   module Api
     class MyAccountController < Api::BaseController
 
+      account_required except: :create
+
       before_filter :load_account
       before_filter :must_not_be_logged_in, only: :create
-
-      skip_before_filter :set_locale
-
-      skip_before_filter :authenticate_locomotive_account_from_token!, only: :create
-      skip_before_filter :require_account, only: :create
-      skip_before_filter :require_site
-      skip_before_filter :validate_site_membership
 
       def show
         authorize @account
@@ -36,7 +31,7 @@ module Locomotive
       end
 
       def must_not_be_logged_in
-        raise Pundit::NotAuthorizedError.new('You must be not logged in') if current_locomotive_account
+        raise Pundit::NotAuthorizedError.new('You must not be logged in') if current_locomotive_account
       end
 
       def current_membership

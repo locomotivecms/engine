@@ -10,16 +10,21 @@
   section {
     border-bottom: 1px solid $sidebar_section_border_color;
 
-    padding-left:  ($grid-gutter-width / 2);
-    padding-right: ($grid-gutter-width / 2);
-
     h1 {
       font-size: $sidebar_title_font_size;
       text-transform: uppercase;
       color: $sidebar_section_title_color;
 
+      padding-left:  ($grid-gutter-width / 2);
+      padding-right: ($grid-gutter-width / 2);
+
       margin-top: 15px;
       margin-bottom: 8px;
+    }
+
+    a {
+      padding-left:  ($grid-gutter-width / 2);
+      padding-right: ($grid-gutter-width / 2);
     }
 
     a, a .text {
@@ -28,9 +33,21 @@
       color: $sidebar_link_color;
     }
 
+    .icon {
+      @include transition(all 0.3s ease-in-out);
+      color: $sidebar_link_icon_color;
+    }
+
     a:hover {
+      background-color: $sidebar_link_background_hover_color;
+
       text-decoration: none;
       span.text {
+        @include transition(all 0.3s ease-in-out);
+        color: $sidebar_hovered_link_color !important;
+      }
+
+      .icon {
         @include transition(all 0.3s ease-in-out);
         color: $sidebar_hovered_link_color !important;
       }

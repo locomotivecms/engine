@@ -73,6 +73,8 @@ en:
 
     hints:
       locomotive:
+        locomotive_account:
+          password: 6 characters minimum
         account:
           api_key: "Used by Wagon to deploy your site (check your config/deploy.yml file of your Wagon site)."
         page:
