@@ -3,7 +3,9 @@ require 'pundit'
 module Locomotive
   class API < Grape::API
 
+    helpers Pundit
     helpers APIAuthenticationHelpers
+    helpers APIParamsHelper
 
     content_type :xml, 'application/xml'
     content_type :json, 'application/json'

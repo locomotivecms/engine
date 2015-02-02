@@ -10,8 +10,7 @@ module Locomotive
     let(:params) { { locale: :en } }
 
     let!(:membership) do
-      create(:membership, account: account, site: site, role: 'admin')
-      binding.pry
+      create(:admin, account: account, site: site, role: 'admin')
     end
 
     subject { parsed_response }
@@ -64,7 +63,7 @@ module Locomotive
 
       describe "POST /locomotive/acme/api_test/v2/translations.json" do
         context 'JSON' do
-          let(:json) { { key: :site, values: { one: :one } }.to_json }
+          let(:json) { { key: :site, values: { one: :one } } }
 
           it 'creates a translation on the current site' do
             expect{ post("/locomotive/acmi/api_test/v2/translations.json", translation: json) }.to change{ Locomotive::Translation.count }.by(1)

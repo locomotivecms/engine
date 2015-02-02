@@ -14,7 +14,9 @@ module Locomotive
 
 
     resource :translations do
+      model_class = Locomotive::Translation
       entity_class = Locomotive::TranslationEntity
+
       before do
         authenticate_locomotive_account!
       end
@@ -22,7 +24,7 @@ module Locomotive
       desc 'Returns list of translations'
       get :index do
         translations = current_site.translations
-        authorize translations
+        authorize translations, :index?
 
         present translations, with: entity_class
       end
@@ -34,20 +36,33 @@ module Locomotive
       route_param :id do
         get do
           translation = current_site.translations.where(id: params[:id])
-          authorize translation
+          authorize translation, :show?
 
           present translation, with: entity_class
         end
       end
 
+      def repository
+        @repository ||= TranslationRepository.new(current_site)
+      end
+
+      repository.all
+      repository.create(permitted_params[:translation])
+
       desc "Create a translation"
 
       #TODO incomplete
+      params do
+        requires :translation, type: Hash do
+          requires :key, type: String
+          requires :values, type: Hash
+        end
+      end
       post do
         authorize Translation, :create?
-        translation = current_site.translation.build(params[:translation])
-        binding.pry
-        entity_class.new(translation).save!
+        translation = TranslationForm.new(params[:translation])
+        translation = current_site.translations.create(permitted_params[:translation])
+
       end
 
     end

@@ -11,7 +11,7 @@ module Locomotive
     end
 
     def authenticate_locomotive_account!
-      error!('401 Unauthorized', 401) unless current_user
+      error!('401 Unauthorized', 401) unless current_membership
       true
     end
 
@@ -19,31 +19,15 @@ module Locomotive
       @current_site ||= request.env['locomotive.site']
     end
 
-    def current_user
-      membership = @site ? @site.membership_for(current_account) : nil
+    def current_membership
+      return nil if current_account.nil?
+      membership = current_site ? current_site.membership_for(current_account) : nil
       membership || Locomotive::Membership.new(account: current_account)
     end
 
-    def authorize(obj, method = :index?)
-      policy = policy_for(obj).new(current_user, obj)
-      binding.pry
-      if policy.send(method)
-        return true
-      else
-        error!("user unauthorized for this")
-      end
+    def pundit_user
+      current_membership
     end
 
-    private
-
-    def policy_for(obj)
-      locomotive_klass = model_klass(obj)
-      "#{locomotive_klass}Policy".constantize
-    end
-
-    def model_klass(obj)
-      model_name = obj.model_name.to_s
-      model_name.classify
-    end
   end
 end
