@@ -1,20 +1,14 @@
 module Locomotive
   class TranslationAPI < Grape::API
 
-    #  needs email + token + site (env['locomotive.site'] )
-    #       include Pundit
-    # authorization
-    # desc "hide a post"
-    # post :hide do
-    #   authenticate!
-    #   error!( "user unauthorized for this" ) unless PostPolicy.new(current_user, @post).hide_post?
-    #   @post.update hidden: true
-    #   { hidden: @post.hidden }
-    # end
-
+    helpers do
+      def translation_params
+        permitted_params[:translation].merge(site: current_site)
+      end
+    end
 
     resource :translations do
-      model_class = Locomotive::Translation
+
       entity_class = Locomotive::TranslationEntity
 
       before do
@@ -42,16 +36,7 @@ module Locomotive
         end
       end
 
-      def repository
-        @repository ||= TranslationRepository.new(current_site)
-      end
-
-      repository.all
-      repository.create(permitted_params[:translation])
-
       desc "Create a translation"
-
-      #TODO incomplete
       params do
         requires :translation, type: Hash do
           requires :key, type: String
@@ -60,11 +45,22 @@ module Locomotive
       end
       post do
         authorize Translation, :create?
-        translation = TranslationForm.new(params[:translation])
-        translation = current_site.translations.create(permitted_params[:translation])
-
+        translation = TranslationForm.new(translation_params)
+        translation.save
       end
 
+      desc "Edit a translation"
+      params do
+        requires :translation, type: Hash do
+          requires :key, type: String
+          requires :values, type: Hash
+        end
+      end
+      post do
+        authorize Translation, :edit?
+        translation = TranslationForm.new(translation_params)
+        translation.save
+      end
     end
 
   end

@@ -63,7 +63,7 @@ module Locomotive
 
       describe "POST /locomotive/acme/api_test/v2/translations.json" do
         context 'JSON' do
-          let(:json) { { key: :site, values: { one: :one } } }
+          let(:json) { { key: :site, values: { one: :uno } } }
 
           it 'creates a translation on the current site' do
             expect{ post("/locomotive/acmi/api_test/v2/translations.json", translation: json) }.to change{ Locomotive::Translation.count }.by(1)
