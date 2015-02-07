@@ -32,6 +32,8 @@ module Locomotive
       setup_singular_method
     end
 
+    private
+
     def singular
       @singular ||= repository_klass.name.demodulize.underscore
     end
@@ -39,8 +41,6 @@ module Locomotive
     def plural
       @plural ||= singular.pluralize
     end
-
-    private
 
     def setup_params_method
       self.class.send(:define_method, "#{singular}_params") do
