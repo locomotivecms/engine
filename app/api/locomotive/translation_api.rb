@@ -1,40 +1,44 @@
 module Locomotive
   class TranslationAPI < Grape::API
 
-    helpers do
-      def translation_params
-        permitted_params[:translation].merge(site: current_site)
-      end
-    end
-
     resource :translations do
 
       entity_class = Locomotive::TranslationEntity
 
       before do
+        setup_methods_for(Translation)
         authenticate_locomotive_account!
       end
 
-      desc 'Returns list of translations'
+      desc 'Index of translations'
       get :index do
-        translations = current_site.translations
-        authorize translations, :index?
+        auth :index?
 
         present translations, with: entity_class
       end
 
-      desc "Return a translation"
+
+      desc "New translation"
+      get :new do
+        auth :new?
+        translation = translations.build
+
+        present translation, with: entity_class
+      end
+
+
+      desc "Show a translation"
       params do
         requires :id, type: String, desc: 'Translation ID'
       end
       route_param :id do
         get do
-          translation = current_site.translations.where(id: params[:id])
-          authorize translation, :show?
+          auth :show?
 
           present translation, with: entity_class
         end
       end
+
 
       desc "Create a translation"
       params do
@@ -44,23 +48,58 @@ module Locomotive
         end
       end
       post do
-        authorize Translation, :create?
-        translation = TranslationForm.new(translation_params)
+        auth :create?
+
+        translation = translations.new(translation_params)
+
         translation.save
+
+        present translation, with: entity_class
       end
+
 
       desc "Edit a translation"
       params do
+        requires :id, type: String, desc: 'Translation ID'
+      end
+      get ':id/edit' do
+        auth :edit?
+
+        present translation, with: entity_class
+      end
+
+
+      desc "Update a translation"
+      params do
+        requires :id, type: String, desc: 'Translation ID'
         requires :translation, type: Hash do
-          requires :key, type: String
-          requires :values, type: Hash
+          optional :key, type: String
+          optional :values, type: Hash
         end
       end
-      post do
-        authorize Translation, :edit?
-        translation = TranslationForm.new(translation_params)
+      put ':id' do
+        auth :update?
+
+        translation.update(translation_params)
+
         translation.save
+
+        present translation, with: entity_class
       end
+
+
+      desc "Destroy a translation"
+      params do
+        requires :id, type: String, desc: 'Translation ID'
+      end
+      delete ':id' do
+        auth :destroy?
+
+        translation.destroy
+
+        present translation, with: entity_class
+      end
+
     end
 
   end

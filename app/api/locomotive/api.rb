@@ -6,6 +6,7 @@ module Locomotive
     helpers Pundit
     helpers APIAuthenticationHelpers
     helpers APIParamsHelper
+    helpers RepositoryHelper
 
     content_type :xml, 'application/xml'
     content_type :json, 'application/json'
@@ -19,10 +20,9 @@ module Locomotive
       error_response(message: { 'error' => '401 Unauthorized' }, status: 401)
     end
 
-
     mount TranslationAPI
     mount TokenAPI
-
+    mount VersionAPI
 
   end
 end

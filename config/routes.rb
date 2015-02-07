@@ -89,8 +89,8 @@ end
 Rails.application.routes.draw do
 
 
-  mount Locomotive::API => '/locomotive/:site_handle/api_test'
-  
+  mount Locomotive::API => '/locomotive(/:site_handle)/api_test'
+
   # API
   namespace :locomotive, module: 'locomotive' do
     namespace :api do
