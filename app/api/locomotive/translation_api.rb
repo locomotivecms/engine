@@ -63,7 +63,7 @@ module Locomotive
         requires :id, type: String, desc: 'Translation ID'
       end
       get ':id/edit' do
-        auth :edit?
+        object_auth :edit?
 
         present translation, with: entity_class
       end
@@ -78,7 +78,7 @@ module Locomotive
         end
       end
       put ':id' do
-        auth :update?
+        object_auth :update?
 
         translation.update(translation_params)
 
@@ -93,7 +93,7 @@ module Locomotive
         requires :id, type: String, desc: 'Translation ID'
       end
       delete ':id' do
-        auth :destroy?
+        object_auth :destroy?
 
         translation.destroy
 

@@ -3,7 +3,5 @@ module Locomotive
     #http://www.rubydoc.info/gems/lotus-model
     expose :key, :values
 
-
-
   end
 end

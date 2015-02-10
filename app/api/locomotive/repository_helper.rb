@@ -26,10 +26,11 @@ module Locomotive
     def setup_methods_for(repository_klass)
       self.repository_klass = repository_klass
 
-      setup_params_method
-      setup_auth_method
       setup_plural_method
       setup_singular_method
+      setup_params_method
+      setup_auth_method
+      setup_object_auth_method
     end
 
     private
@@ -48,9 +49,17 @@ module Locomotive
       end
     end
 
+    # Authenticate an action against a class
     def setup_auth_method
       self.class.send(:define_method, :auth) do |meth|
         authorize repository_klass, meth
+      end
+    end
+
+    # Authenticate an action against an instance
+    def setup_object_auth_method
+      self.class.send(:define_method, :object_auth) do |meth|
+        authorize send(singular), meth
       end
     end
 

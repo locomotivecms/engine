@@ -1,18 +1,9 @@
 module Locomotive
   class BaseEntity < Grape::Entity
+    include ActionView::Helpers::NumberHelper
 
-    def save!
-      object.save!
-    end
+    format_with(:human_size) { |number| number_to_human_size(number) }
+    format_with(:short_date) { |date| I18n.l(date, format: :short) }
 
-    def update_attribute(attribute, value)
-      object.send("#{attribute}=", value)
-    end
-
-    private
-
-    def persistence_klass
-      self.class.name.gsub(/Entity/,'').constantize
-    end
   end
 end
