@@ -21,19 +21,25 @@ module Locomotive
   #
   module RepositoryHelper
 
-    attr_accessor :repository_klass
+    attr_accessor :repository_klass, :use_form_object
 
-    def setup_methods_for(repository_klass)
+    def setup_methods_for(repository_klass, opts = {})
       self.repository_klass = repository_klass
+      self.use_form_object = opts[:use_form_object]
 
       setup_plural_method
       setup_singular_method
       setup_params_method
       setup_auth_method
       setup_object_auth_method
+      setup_form_method if use_form_object?
     end
 
     private
+
+    def use_form_object?
+      use_form_object
+    end
 
     def singular
       @singular ||= repository_klass.name.demodulize.underscore
@@ -60,6 +66,13 @@ module Locomotive
     def setup_object_auth_method
       self.class.send(:define_method, :object_auth) do |meth|
         authorize send(singular), meth
+      end
+    end
+
+    def setup_form_method
+      self.class.send(:define_method, "#{singular}_form") do
+        unscoped_class = "#{singular}_form".classify
+        "Locomotive::#{unscoped_class}".constantize
       end
     end
 
