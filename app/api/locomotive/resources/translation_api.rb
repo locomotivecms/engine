@@ -7,7 +7,7 @@ module Locomotive
         entity_class = Locomotive::TranslationEntity
 
         before do
-          setup_methods_for(Translation)
+          setup_methods_for(Translation, use_form_object: true)
           authenticate_locomotive_account!
         end
 
@@ -51,11 +51,11 @@ module Locomotive
         post do
           auth :create?
 
-          translation = translations.new(translation_params)
+          form = translation_form.new(translation_params)
+          form.site = current_site
+          form.save
 
-          translation.save
-
-          present translation, with: entity_class
+          present form, with: entity_class
         end
 
 
@@ -80,12 +80,13 @@ module Locomotive
         end
         put ':id' do
           object_auth :update?
+          form = translation_form.existing(translation)
 
-          translation.update(translation_params)
+          form.update(translation_params)
 
-          translation.save
+          form.save
 
-          present translation, with: entity_class
+          present form, with: entity_class
         end
 
 
