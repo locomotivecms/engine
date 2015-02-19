@@ -5,13 +5,6 @@ module Locomotive
       resource :sites do
         entity_klass = Locomotive::SiteEntity
 
-        helpers do
-          def service
-            @service ||= Locomotive::SiteService.new(current_account)
-          end
-
-        end
-
         before do
           authenticate_locomotive_account!
         end
@@ -32,7 +25,7 @@ module Locomotive
           get do
             site = policy_scope(Locomotive::Site).find(params[:id])
             authorize(site, :show?)
-            
+
             present site, with: entity_klass
           end
         end
