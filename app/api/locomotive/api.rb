@@ -24,6 +24,7 @@ module Locomotive
     mount Resources::TranslationAPI
     mount Resources::VersionAPI
     mount Resources::ThemeAssetAPI
+    mount Resources::SiteAPI
 
   end
 end
