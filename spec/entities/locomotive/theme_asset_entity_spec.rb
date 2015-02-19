@@ -16,7 +16,7 @@ describe Locomotive::ThemeAssetEntity do
 
     describe 'raw_size' do
       it 'returns the raw size' do
-        expect(exposure[:raw_size]).to eq(theme_asset.size)
+        expect(exposure[:raw_size]).to eq(theme_asset.source.size)
       end
     end
 
@@ -46,7 +46,25 @@ describe Locomotive::ThemeAssetEntity do
         end
       end
     end
-    
+
+    describe 'can_be_deleted' do
+
+      subject { Locomotive::ThemeAssetEntity.new(theme_asset, policy: policy) }
+      context 'admin' do
+        let(:policy) { Locomotive::ThemeAssetPolicy.new(create(:admin), theme_asset) }
+        it 'returns true for admin membership' do
+          expect(exposure[:can_be_deleted]).to eq true
+        end
+      end
+
+      context 'author' do
+        let(:policy) { Locomotive::ThemeAssetPolicy.new(create(:author), theme_asset) }
+        it 'returns false for author membership' do
+          expect(exposure[:can_be_deleted]).to eq false
+        end
+      end
+    end
+
   end
 
 end

@@ -1,7 +1,7 @@
 module Locomotive
   class TranslationForm < BaseForm
 
-    attrs :key, :values, :site
+    attrs :key, :values
 
   end
 end

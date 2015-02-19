@@ -8,10 +8,10 @@ module Locomotive
 
       context 'with email and password' do
 
-        describe 'POST /locomotive/api_test/v2/token' do
+        describe 'POST create' do
           context 'JSON' do
             before do
-              post('/locomotive/api_test/v2/token.json', { email: account.email, password: 'easyone' })
+              post('/locomotive/api_test/v2/tokens.json', { email: account.email, password: 'easyone' })
             end
 
             subject { last_response }

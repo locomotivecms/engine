@@ -4,10 +4,10 @@ module Locomotive
 
       resource :translations do
 
-        entity_class = Locomotive::TranslationEntity
+        entity_klass = Locomotive::TranslationEntity
 
         before do
-          setup_methods_for(Translation, use_form_object: true)
+          setup_resource_methods_for(:translations)
           authenticate_locomotive_account!
         end
 
@@ -15,16 +15,7 @@ module Locomotive
         get :index do
           auth :index?
 
-          present translations, with: entity_class
-        end
-
-
-        desc "New translation"
-        get :new do
-          auth :new?
-          translation = translations.build
-
-          present translation, with: entity_class
+          present translations, with: entity_klass
         end
 
 
@@ -36,7 +27,7 @@ module Locomotive
           get do
             auth :show?
 
-            present translation, with: entity_class
+            present translation, with: entity_klass
           end
         end
 
@@ -51,22 +42,10 @@ module Locomotive
         post do
           auth :create?
 
-          form = translation_form.new(translation_params)
-          form.site = current_site
-          form.save
+          form = form_klass.new(translation_params)
+          persist_from_form(form)
 
-          present form, with: entity_class
-        end
-
-
-        desc "Edit a translation"
-        params do
-          requires :id, type: String, desc: 'Translation ID'
-        end
-        get ':id/edit' do
-          object_auth :edit?
-
-          present translation, with: entity_class
+          present translation, with: entity_klass
         end
 
 
@@ -80,17 +59,14 @@ module Locomotive
         end
         put ':id' do
           object_auth :update?
-          form = translation_form.existing(translation)
+          form = form_klass.new(translation_params)
+          persist_from_form(form)
 
-          form.update(translation_params)
-
-          form.save
-
-          present form, with: entity_class
+          present translation, with: entity_klass
         end
 
 
-        desc "Destroy a translation"
+        desc "Delete a translation"
         params do
           requires :id, type: String, desc: 'Translation ID'
         end
@@ -99,7 +75,7 @@ module Locomotive
 
           translation.destroy
 
-          present translation, with: entity_class
+          present translation, with: entity_klass
         end
 
       end

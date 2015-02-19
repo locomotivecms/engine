@@ -14,7 +14,9 @@ module Locomotive
     end
 
     with_options(format_with: :human_size) do
-      expose :size
+      expose :size do |theme_asset, _|
+        theme_asset.size
+      end
     end
 
     with_options(format_with: :short_date) do
@@ -33,10 +35,9 @@ module Locomotive
       theme_asset.size
     end
 
-    # # TODO: How to access policy? N.B. -- send in as an option like user: current_user
-    # expose :can_be_deleted do |theme_asset, _|
-    #   self.__policy.try(:destroy?)
-    # end
+    expose :can_be_deleted do |_, options|
+      options[:policy].try(:destroy?)
+    end
 
     private
 

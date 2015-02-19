@@ -1,13 +1,11 @@
 module Locomotive
+  # @note do not try using the :site relation through the form without
+  #  explicitely setting it.  
   class BaseForm
     include ActiveModel::Model
     include ActiveModel::Serialization
 
-    attr_accessor :persisted
-
-    delegate :save, to: :model_object
-
-    attr_writer :model_object
+    attr_accessor :_persisted, :_policy
 
     class << self
       def attributes
@@ -19,26 +17,10 @@ module Locomotive
         self.send(:attr_accessor, *@attributes)
       end
 
-      def existing(model_object)
-        existing = new
-        existing.persisted = true
-        existing.model_object = model_object
-        existing
-      end
-    end
-
-    def model_object
-      @model_object ||= model.new(serializable_hash)
     end
 
     def persisted?
-      !!persisted
-    end
-
-    def update(*args)
-      return false unless persisted?
-      model_object.update(*args)
-      model_object
+      false
     end
 
     def attributes
@@ -47,10 +29,5 @@ module Locomotive
       end
     end
 
-    private
-
-    def model
-      self.class.name.gsub(/Form/, '').constantize
-    end
   end
 end

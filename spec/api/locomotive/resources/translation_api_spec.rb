@@ -45,7 +45,7 @@ module Locomotive
           header 'X-Locomotive-Site-Handle', site.handle
         end
 
-        describe "GET /locomotive/acme/api_test/v2/translations/index.json" do
+        describe "GET index" do
           context 'JSON' do
             before { get "#{url_prefix}/index.json" }
             it 'returns a successful response' do
@@ -58,7 +58,7 @@ module Locomotive
           end
         end
 
-        describe "GET /locomotive/acme/api_test/v2/translations/[:id].json" do
+        describe "GET show" do
           context 'JSON' do
             before { get "#{url_prefix}/#{translation.id}.json" }
             it 'returns a successful response' do
@@ -67,16 +67,7 @@ module Locomotive
           end
         end
 
-        describe "GET /locomotive/acme/api_test/v2/translations/new.json" do
-          context 'JSON' do
-            before { get "#{url_prefix}/new.json" }
-            it 'returns an empty translation' do
-              expect(subject).to eq({ "key"=>nil, "values"=>{ } })
-            end
-          end
-        end
-
-        describe "POST /locomotive/acme/api_test/v2/translations.json" do
+        describe "POST create" do
           context 'JSON' do
             let(:json) { { key: :site, values: { one: :uno } } }
 
@@ -87,16 +78,7 @@ module Locomotive
           end
         end
 
-        describe "GET /locomotive/acme/api_test/v2/translations/[:id]/edit.json" do
-          context 'JSON' do
-            it 'returns the existing record' do
-              get("#{url_prefix}/#{translation.id}/edit.json")
-              expect(subject).to eq(translation_hash)
-            end
-          end
-        end
-
-        describe "PUT /locomotive/acme/api_test/v2/translations/[:id].json" do
+        describe "PUT update" do
           context 'JSON' do
             let(:json) { { key: translation.key, values: { one: :uno } } }
             let(:put_request) { put("#{url_prefix}/#{translation.id}.json", translation: json) }
@@ -113,7 +95,7 @@ module Locomotive
           end
         end
 
-        describe "PUT /locomotive/acme/api_test/v2/translations/[:id].json" do
+        describe "DELETE destroy" do
           context 'JSON' do
             let(:delete_request) { delete("#{url_prefix}/#{translation.id}.json") }
 

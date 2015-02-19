@@ -2,7 +2,7 @@ module Locomotive
   module Resources
     class TokenAPI < Grape::API
 
-      resource :token do
+      resource :tokens do
         desc 'Create session token'
         params do
           requires :email, type: String, desc: 'Your Email address.'

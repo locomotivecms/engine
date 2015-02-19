@@ -6,7 +6,7 @@ module Locomotive
     helpers Pundit
     helpers APIAuthenticationHelpers
     helpers APIParamsHelper
-    helpers RepositoryHelper
+    helpers PersistenceHelper
 
     content_type :xml, 'application/xml'
     content_type :json, 'application/json'
