@@ -54,6 +54,22 @@ describe Locomotive::Liquid::Tags::LinkTo do
 
   end
 
+  describe 'with a custom css class' do
+    let(:page)      { create_page(site, 'Hello world', 'my-page') }
+    let(:template)  { "{% link_to my-page, class: 'custom-class' %}" }
+    before(:each)   { page }
+
+    it { should == %{<a href="/hello-world" class="custom-class">Hello world</a>} }
+  end
+
+  describe 'with multiple css classes' do
+    let(:page)      { create_page(site, 'Hello world', 'my-page') }
+    let(:template)  { "{% link_to my-page, class: 'custom-class-one custom-class-two' %}" }
+    before(:each)   { page }
+
+    it { should == %{<a href="/hello-world" class="custom-class-one custom-class-two">Hello world</a>} }
+  end
+
   describe 'templatized page' do
 
     let(:parent_page)   { create_page(site, 'List of projects') }

@@ -15,7 +15,12 @@ module Locomotive
               label = super.html_safe
             end
 
-            link_to label, path
+            if @options['class']
+              css_classes = @options['class'].gsub("'", '')
+              css_classes = css_classes.split(' ')
+            end
+
+            link_to label, path, {:class => css_classes}
           end
         end
 
