@@ -11,8 +11,8 @@ module Locomotive
     content_type :xml, 'application/xml'
     content_type :json, 'application/json'
 
-    format :json
     format :xml
+    format :json
 
     prefix 'v2'
 
