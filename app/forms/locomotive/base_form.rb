@@ -1,6 +1,5 @@
 module Locomotive
-  # @note do not try using the :site relation through the form without
-  #  explicitely setting it.  
+ 
   class BaseForm
     include ActiveModel::Model
     include ActiveModel::Serialization

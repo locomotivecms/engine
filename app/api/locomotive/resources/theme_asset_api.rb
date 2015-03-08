@@ -44,7 +44,7 @@ module Locomotive
           end
         end
         post do
-          auth :create?
+          authorize ThemeAsset, :create?
 
           form = form_klass.new(theme_asset_params)
           persist_from_form(form)
@@ -66,7 +66,8 @@ module Locomotive
           end
         end
         put ':id' do
-          object_auth :update?
+          authorize theme_asset, :update?
+
           form = form_klass.new(theme_asset_params)
           persist_from_form(form)
 
