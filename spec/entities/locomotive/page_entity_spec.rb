@@ -8,7 +8,6 @@ module Locomotive
         title
         slug
         parent_id
-        parent_fullpath
         position
         handle
         response_type
@@ -24,18 +23,18 @@ module Locomotive
         templatized_from_parent
         target_klass_slug
         target_klass_name
-        target_entry_name
         raw_template
-        escaped_raw_template
         seo_title
         meta_keywords
         meta_description
         fullpath
-        localized_fullpaths
         depth
         template_changed
         translated_in
       )
+
+      # Not methods on the model object:
+      # parent_fullpath, target_entry_name, localized_fullpaths
 
     attributes.each do |exposure|
         it { is_expected.to represent(exposure) }
@@ -48,7 +47,25 @@ module Locomotive
       let(:exposure) { subject.serializable_hash }
 
       describe 'editable_elements' do
-        it 'returns the embedded documents'
+        it 'returns the embedded documents' do
+          expect(exposure[:editable_elements]).to eq []
+        end
+      end
+
+      describe 'escaped_raw_template' do
+        it 'returns the template'
+      end
+
+      describe 'parent_fullpath' do
+        it 'returns the parent_fullpath'
+      end
+
+      describe 'target_entry_name' do
+        it 'returns the target_entry_name'
+      end
+
+      describe 'localized_fullpaths' do
+        it 'returns the localized_fullpaths'
       end
     end
 

@@ -22,12 +22,24 @@ module Locomotive
         end
       end
 
-      describe '#type' do
-        it 'returns the type'
-      end
-
       describe '#block_name' do
-        it 'returns the block name'
+        context 'with block name set' do
+          subject do
+            editable_element = page.editable_elements.first
+            editable_element.update_attributes(block: 'not-main')
+            editable_element = Locomotive::EditableElementEntity.new(page.editable_elements.first)
+          end
+
+          it 'returns the block name' do
+            expect(subject.object.block).to eq 'not-main'
+          end
+        end
+
+        context 'without a set block name' do
+          it 'returns the default block name' do
+            expect(exposure[:block_name]).to eq 'main'
+          end
+        end
       end
 
     end
