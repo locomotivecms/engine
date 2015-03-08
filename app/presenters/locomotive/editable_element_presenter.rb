@@ -44,4 +44,3 @@ module Locomotive
 
   end
 end
-

@@ -4,7 +4,6 @@ module Locomotive
     expose    :name, :handle, :seo_title, :meta_keywords, :meta_description,
               :robots_txt
 
-    # exposed as arrays.
     expose :locales, :domains, :memberships
 
     expose :timezone do |site, _|
