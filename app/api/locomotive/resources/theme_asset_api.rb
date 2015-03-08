@@ -1,8 +1,7 @@
 module Locomotive
   module Resources
     class ThemeAssetAPI < Grape::API
-      # 1. How to get policy in to entities
-
+    
       resource :theme_assets do
 
         entity_klass = Locomotive::ThemeAssetEntity
