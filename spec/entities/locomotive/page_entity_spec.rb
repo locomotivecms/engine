@@ -47,7 +47,7 @@ module Locomotive
       let(:exposure) { subject.serializable_hash }
 
       describe 'editable_elements' do
-        it 'returns the embedded documents' do
+        it 'returns the editable elements' do
           expect(exposure[:editable_elements]).to eq []
         end
       end
