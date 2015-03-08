@@ -41,14 +41,13 @@ module Locomotive
       end
 
     context 'overrides' do
-      let(:site) { create(:site) }
-      let(:page) { site.pages.root.first }
+      let(:page) { create(:page_with_editable_element) }
       subject { Locomotive::PageEntity.new(page) }
       let(:exposure) { subject.serializable_hash }
 
       describe 'editable_elements' do
         it 'returns the editable elements' do
-          expect(exposure[:editable_elements]).to eq []
+          expect(exposure[:editable_elements].count).to eq 1
         end
       end
 
