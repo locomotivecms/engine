@@ -3,24 +3,16 @@ require 'spec_helper'
 module Locomotive
   module Resources
     describe TranslationAPI do
-      include Rack::Test::Methods
-      let!(:site) { create(:site, domains: %w{www.acme.com}) }
-      let!(:translation) { create(:translation, site: site) }
+      include_context 'api site setup'
 
-      let!(:account) { create(:account) }
+      let!(:translation) { create(:translation, site: site) }
       let(:params) { { locale: :en } }
       let(:url_prefix) { '/locomotive/acmi/api_test/v2/translations' }
-
-      let!(:membership) do
-        create(:admin, account: account, site: site, role: 'admin')
-      end
 
       let(:translation_hash) do
         values = translation.values.stringify_keys
         { 'key' => translation.key, 'values' => values }
       end
-
-      subject { parsed_response }
 
       context 'no authenticated site' do
         describe "GET /locomotive/acme/api_test/v2/translations/index.json" do
@@ -39,11 +31,7 @@ module Locomotive
       end
 
       context 'authenticated site' do
-        before do
-          header 'X-Locomotive-Account-Token', account.api_token
-          header 'X-Locomotive-Account-Email', account.email
-          header 'X-Locomotive-Site-Handle', site.handle
-        end
+        include_context 'api header setup'
 
         describe "GET index" do
           context 'JSON' do
