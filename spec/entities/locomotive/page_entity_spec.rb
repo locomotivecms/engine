@@ -33,7 +33,7 @@ module Locomotive
         translated_in
       )
 
-      # Not methods on the model object:
+      # Not direct methods on the model object:
       # parent_fullpath, target_entry_name, localized_fullpaths
 
     attributes.each do |exposure|
@@ -41,7 +41,8 @@ module Locomotive
       end
 
     context 'overrides' do
-      let(:page) { create(:page_with_editable_element) }
+      let(:parent_page) { create(:page, title: 'parent', slug: 'parent', raw_template: nil) }
+      let(:page) { create(:page_with_editable_element, parent: parent_page) }
       subject { Locomotive::PageEntity.new(page) }
       let(:exposure) { subject.serializable_hash }
 
@@ -52,21 +53,48 @@ module Locomotive
       end
 
       describe 'escaped_raw_template' do
-        it 'returns the template'
+        it 'returns the template' do
+          expect(exposure[:escaped_raw_template]).to eq("&lt;a&gt;a&lt;/a&gt;")
+        end
       end
 
       describe 'parent_fullpath' do
-        it 'returns the parent_fullpath'
+        it 'returns the parent_fullpath' do
+          expect(exposure[:parent_fullpath]).to eq parent_page.fullpath
+        end
+
+        context 'no parent' do
+          let(:page) { create(:page, title: 'no_parent', slug: 'no_parent', raw_template: nil) }
+          it 'returns nil' do
+            expect(exposure[:parent_fullpath]).to be_nil
+          end
+        end
       end
 
       describe 'target_entry_name' do
-        it 'returns the target_entry_name'
+        before do
+          allow(page).to receive(:target_klass_name).and_return("KlassClass")
+        end
+
+        it 'returns the target_entry_name' do
+          expect(exposure[:target_entry_name]).to eq 'klass_class'
+        end
       end
 
       describe 'localized_fullpaths' do
-        it 'returns the localized_fullpaths'
-      end
-    end
+        context 'with a current site' do
+          subject { Locomotive::PageEntity.new(page, site: page.site) }
+          it 'returns the localized_fullpaths' do
+          end
+        end
 
+        context 'without a current site' do
+          it 'returns an empty hash' do
+            expect(exposure[:localized_fullpaths]).to eq({})
+          end
+        end
+      end
+
+    end
   end
 end

@@ -26,6 +26,7 @@ module Locomotive
     mount Resources::ThemeAssetAPI
     mount Resources::SiteAPI
     mount Resources::SnippetAPI
+    mount Resources::PageAPI
 
   end
 end

@@ -149,7 +149,7 @@ FactoryGirl.define do
       slug 'with_editable_element'
       after(:build) do |page, _|
         page.editable_elements << FactoryGirl.build(:editable_element)
-        page.raw_template = nil
+        page.raw_template = '<a>a</a>'
         page.save
       end
     end
