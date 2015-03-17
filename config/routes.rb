@@ -59,28 +59,8 @@ Locomotive::Engine.routes.draw do
       get :new_locale
     end
 
-    # Public: rendering + create public content entries
-
-    scope :preview do
-
-      # sitemap
-      get '/sitemap.xml', to: 'public/sitemaps#show', format: 'xml'
-
-      # robots.txt
-      get '/robots.txt', to: 'public/robots#show', format: 'txt'
-
-      # public content entry submissions
-      resources :locomotive_entry_submissions, controller: 'public/content_entries', path: 'entry_submissions/:slug'
-
-      constraints Locomotive::Routing::PostContentEntryConstraint.new do
-        post  '/',    to: 'public/content_entries#create'
-        post '*path', to: 'public/content_entries#create'
-      end
-
-      get '/',        to: 'public/pages#show', as: :preview
-      match '*path'   => 'public/pages#show', via: :all
-
-    end
+    # Preview mode handled by Steam
+    mount Locomotive::Steam::Server.to_app => '/preview', as: 'preview', anchor: false
 
   end
 end

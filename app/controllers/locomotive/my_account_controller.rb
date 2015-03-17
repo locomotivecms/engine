@@ -33,7 +33,7 @@ module Locomotive
     end
 
     def account_params
-      params.require(:account).permit(:name, :email, :password, :password_confirmation)
+      params.require(:account).permit(:name, :email, :password, :password_confirmation, :avatar, :remove_avatar, :locale)
     end
 
   end

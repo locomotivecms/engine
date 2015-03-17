@@ -3,11 +3,11 @@ module Locomotive
     class Site
 
       def initialize(app, opts = {})
-        @app    = app
+        @app = app
       end
 
       def call(env)
-        env['locomotive.site'] = fetch_site(env)
+        env['locomotive.site'] = env['steam.site'] = fetch_site(env)
         @app.call(env)
       end
 

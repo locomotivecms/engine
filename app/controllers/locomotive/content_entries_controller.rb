@@ -11,7 +11,7 @@ module Locomotive
     before_filter :load_content_entry, only: [:show, :show_in_form, :edit, :update, :destroy]
     before_filter :store_location, only: [:edit, :update]
 
-    respond_to :json, only: [:sort]
+    respond_to :json, only: [:index, :sort]
     respond_to :csv,  only: [:export]
 
     helper 'Locomotive::CustomFields'
