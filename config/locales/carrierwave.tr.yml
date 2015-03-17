@@ -1,0 +1,4 @@
+en:
+  carrierwave:
+    errors:
+      integrity: 'izin verilen bir dosya türü değil.'

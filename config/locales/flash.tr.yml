@@ -1,0 +1,118 @@
+en:
+  flash:
+    locomotive:
+      pages:
+        create:
+          notice: "Sayfa başarıyla oluşturuldu."
+          alert: "Sayfa oluşturulamadı."
+        update:
+          notice: "Sayfa başarıyla güncellendi."
+          alert: "Sayfa güncellenemedi."
+        sort:
+          notice: "Sayfalar başarıyla sıralandı."
+        destroy:
+          notice: "Sayfa başarıyla silindi."
+
+      content_entries:
+        create:
+          notice: "Girdi başarıyla oluşturuldu."
+          alert: "Girdi oluşturulamadı."
+        update:
+          notice: "Girdi başarıyla güncellendi."
+          alert: "Girdi güncellenemedi."
+        sort:
+          notice: "Entries were successfully sorted."
+        destroy:
+          notice: "Girdi başarıyla silindi."
+
+      content_types:
+        create:
+          notice: "Model başarıyla oluşturuldu."
+          alert: "Model oluşturulamadı."
+        update:
+          notice: "Model başarıyla güncellendi."
+          alert: "Model güncellenemedi."
+        destroy:
+          notice: "Model başarıyla silindi."
+
+      current_site:
+        update:
+          notice: "Site başarıyla güncellendi."
+          alert: "Site güncellenemedi."
+
+      snippets:
+        create:
+          notice: "Parça başarıyla oluşturuldu."
+          alert: "Parça oluşturulamadı."
+        update:
+          notice: "Parça başarıyla güncellendi."
+          alert: "Parça güncellenemedi."
+        destroy:
+          notice: "Parça başarıyla silindi."
+
+      accounts:
+        create:
+          notice: "Hesap başarıyla oluşturuldu."
+          alert: "Hesap oluşturulamadı."
+
+      my_account:
+        update:
+          notice: "Hesabınız başarıyla güncellendi."
+          alert: "Hesabınız güncellenemedi."
+
+      sites:
+        create:
+          notice: "Site başarıyla oluşturuldu."
+          alert: "Site oluşturulamadı."
+        destroy:
+          notice: "Site başarıyla silindi."
+
+      memberships:
+        create:
+          notice: "Üyelik başarıyla oluşturuldu."
+          alert: "Üyelik oluşturulamadı."
+          already_created: "Hesap zaten bu siteye eklenmiş."
+
+      assets:
+        create:
+          notice: "Kaynak başarıyla oluşturuldu."
+          alert: "Kaynak oluşturulamadı."
+        update:
+          notice: "Kaynak başarıyla güncellendi."
+          alert: "Kaynak güncellenemedi."
+
+      theme_assets:
+        create:
+          notice: "Dosya başarıyla oluşturuldu."
+          alert: "Dosya oluşturulamadı."
+        update:
+          notice: "Dosya başarıyla güncellendi."
+          alert: "Dosya güncellenemedi."
+        destroy:
+          notice: "Dosya başarıyla silindi."
+
+      translations:
+        create:
+          notice: "Çeviri başarıyla oluşturuldu."
+          alert: "Çeviri oluşturulamadı."
+        update:
+          notice: "Çeviri başarıyla güncellendi."
+          alert: "Çeviri güncellenemedi."
+        destroy:
+          notice: "Çeviri başarıyla silindi."
+
+      custom_fields:
+        select_options:
+          update:
+            notice: "Alan başarıyla güncellendi."
+            alert: "Alan güncellenemedi."
+
+      cross_domain_sessions:
+        create:
+          alert: "Giriş yapmalısınız"
+
+      import:
+        create:
+          done: "Siteniz başarıyla güncellendi."
+          notice: "Siteniz güncelleniyor."
+          alert: "Aktarım yapılamadı."

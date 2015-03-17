@@ -1,0 +1,64 @@
+en:
+  errors:
+    messages:
+      not_found: "bulunamadı"
+      already_confirmed: "zaten onaylanmıştı"
+      not_locked: "kilitlenemedi"
+
+  devise:
+    failure:
+      locomotive_account:
+        unauthenticated: 'Devam etmeden önce giriş yapmanız gerekir.'
+        unconfirmed: 'Devam etmeden önce hesabınızı onaylamalısınız.'
+        locked: 'Hesabınız kilitli.'
+        invalid: 'Geçersiz eposta veya şifre.'
+        not_found_in_database: 'Geçersiz eposta veya şifre.'
+        no_membership: 'Hesabınız bu siteye erişmek içın yetkili değil. Yetkilendirilmek için site yöneticisi ile temasa geçin.'
+        invalid_token: 'Geçersiz doğrulama kodu.'
+        timeout: 'Seansınız zaman aşımına uğradı. Lütfen tekrar giriş yapın.'
+        inactive: 'Hesabınız henüz aktif değil.'
+    sessions:
+      locomotive_account:
+        signed_in: 'Giriş başarılı.'
+        signed_out: 'Çıkış başarılı.'
+    passwords:
+      locomotive_account:
+        send_instructions: 'Birkaç dakika içinde şifrenizi nasıl yeniden belirleyebileceğinizi açıklayan bir eposta alacaksınız.'
+        updated: 'Şifreniz başarıyla değiştirildi. Şu anda giriş yapmış sayılıyorsunuz.'
+    confirmations:
+      locomotive_account:
+        send_instructions: 'Birkaç dakika içinde hesabınızı nasıl aktif hale getirebileceğınizi açıklayan bir eposta alacaksınız.'
+        confirmed: 'Hesabınız başarıyla onaylandı. Şu anda giriş yapmış sayılıyorsunuz.'
+    registrations:
+      locomotive_account:
+        signed_up: 'Başarıyla bir hesap oluşturdunuz.'
+        updated: 'Başarıyla hesabınızı güncellediniz.'
+        destroyed: 'Hesabınız silindi. Güle güle. Tekrar görüşebilmek dileği ile.'
+    unlocks:
+      locomotive_account:
+        send_instructions: 'Birkaç dakika içinde hesabınızı nasıl yeniden açabileceğinizi açıklayan bir eposta alacaksınız.'
+        unlocked: 'Hesabınız başarıyla açıldı. Şu anda giriş yapmış sayılıyorsunuz.'
+    mailer:
+      locomotive_account:
+        confirmation_instructions: 'Onay yönergesi'
+        reset_password_instructions: 'Şifre sıfırlama yönergesi'
+        unlock_instructions: 'Kilit kaldırma yönergesi'
+
+
+  locomotive:
+    devise_mailer:
+      common:
+        hello: Merhaba
+
+      confirmation_instructions:
+        you_can_confirm_your_account_through_the_link_below: "Aşağıdaki linkten hesabınızı onaylayabilirsiniz:"
+        confirm_my_account: "Hesabımı onayla"
+      reset_password_instructions:
+        reset_password_instruction: "Birisi şifrenizi yenilemek içın bir talepte bulundu. Bunu aşağıdaki linkten gerçekleştirebilirsiniz:"
+        change_my_password: "Şifremi değiştir"
+        wrong_request_instruction: "Bu talebi yapan siz degilseniz lütfen bu epostayı gözardı edin."
+        unchange_password_message: "Şifreniz, yukarıdaki linkten siz yenisini oluşturana kadar değişmeyecektir."
+      unlock_instructions:
+        locked_account_message: "Hesabınız çok sayıda başarısız giriş denemesi yapıldiğı için kilitlendi"
+        unlock_account_instruction: "Kilidi kaldırmak içın aşağıdaki linki takip edin:"
+        unlock_my_account: "Hesabımdan kilidi kaldır"
