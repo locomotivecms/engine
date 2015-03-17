@@ -258,7 +258,7 @@ en:
         title: Çeviriler
         new: yeni çeviri
         no_items: "Şimdilik hiç çeviri yok <a href=\"%{url}\">İlk çeviriyi oluşturun</a>."
-        remove: %{key}'i sil
+        remove: "%{key}'i sil"
       new:
         title: "Yeni çeviri"
         help: "Sayfalar ve parçalarda aynı şablon tüm yöreler için kullanılıp sadece bazı sözler liquid dilindeki <b>translate</b> etiketi kullanarak çevrilebilir."
