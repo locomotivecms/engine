@@ -1,0 +1,11 @@
+%section.pages-tree
+  %h1= t(:title, scope: 'locomotive.pages.index')
+
+  %ul.root{ data: { url: sort_page_path(current_site, root) } }
+
+    = render partial: 'locomotive/shared/sidebar/page', collection: nodes
+
+    %li.new-content
+      %i.fa.fa-plus.icon
+      = link_to new_page_path(current_site) do
+        %span.text= t(:new, scope: 'locomotive.pages.index')

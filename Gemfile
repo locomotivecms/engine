@@ -35,9 +35,10 @@ group :development do
 
   gem 'quiet_assets'
 
+  gem 'ruby-prof'
+
   # gem 'unicorn-rails' # Using unicorn_rails instead of webrick (default server)
   gem 'thin'
-
 end
 
 group :test do
@@ -46,7 +47,6 @@ group :test do
   # gem 'cucumber-rails', require: false
   # gem 'poltergeist'
 
-  gem 'rspec-cells',        '~> 0.2.2' # Can't update more because rspec-cells depends on rspec >= 2.99 after this version
   gem 'shoulda-matchers',   '~> 2.7.0'
   gem 'factory_girl_rails'
   gem 'pickle'

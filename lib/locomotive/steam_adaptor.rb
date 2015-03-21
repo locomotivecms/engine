@@ -2,8 +2,7 @@ require 'locomotive/steam'
 require 'locomotive/steam/server'
 
 Locomotive::Steam.configure do |config|
-  # config.site_path = Rails.root.join('spec', 'fixtures', 'portfolio')
-  config.assets_path = Rails.root.join('spec', 'dummy', 'public')
+  config.asset_path = Rails.root.join('spec', 'dummy', 'public')
 
   # rely on Mongoid for the connection information
   mongoid = Mongoid.configure.sessions[:default]
