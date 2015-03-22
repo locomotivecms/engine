@@ -30,6 +30,7 @@ module Locomotive
     mount Resources::PageAPI
     mount Resources::MyAccountAPI
     mount Resources::MembershipAPI
+    mount Resources::CurrentSiteAPI
 
   end
 end

@@ -1,7 +1,12 @@
 module Locomotive
   class MembershipEntity < BaseEntity
 
-    expose :role, :account_id
+    expose :role
+
+    # render the BSON id
+    expose :account_id do |membership, _|
+      membership.account_id.to_s
+    end
 
     expose :name do |membership, _|
       membership.account.name

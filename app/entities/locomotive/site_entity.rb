@@ -4,7 +4,9 @@ module Locomotive
     expose    :name, :handle, :seo_title, :meta_keywords, :meta_description,
               :robots_txt
 
-    expose :locales, :domains, :memberships
+    expose :locales, :domains
+
+    expose :memberships, using: Locomotive::MembershipEntity
 
     expose :timezone do |site, _|
       site.timezone_name
