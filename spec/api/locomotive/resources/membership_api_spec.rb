@@ -76,7 +76,8 @@ module Locomotive
 
             it 'deletes the membership' do
               expect{ delete_request }.to change{ site.reload.memberships.count }
-                .by(-1)            end
+                .by(-1)
+            end
 
           end
         end
