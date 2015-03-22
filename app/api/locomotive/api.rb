@@ -20,6 +20,7 @@ module Locomotive
       error_response(message: { 'error' => '401 Unauthorized' }, status: 401)
     end
 
+
     mount Resources::TokenAPI
     mount Resources::TranslationAPI
     mount Resources::VersionAPI
@@ -27,6 +28,7 @@ module Locomotive
     mount Resources::SiteAPI
     mount Resources::SnippetAPI
     mount Resources::PageAPI
+    mount Resources::MyAccountAPI
 
   end
 end
