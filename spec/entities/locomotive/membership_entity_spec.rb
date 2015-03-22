@@ -5,7 +5,6 @@ module Locomotive
     subject { MembershipEntity }
 
     it { is_expected.to represent(:role) }
-    it { is_expected.to represent(:account_id) }
 
     context 'overrides' do
       let!(:account) { create(:account) }
@@ -17,6 +16,12 @@ module Locomotive
       describe 'name' do
         it 'returns the name from the account' do
           expect(exposure[:name]).to eq account.name
+        end
+      end
+
+      describe 'account_id' do
+        it 'returns the string value of the account id' do
+          expect(exposure[:account_id]).to eq(account.id.to_s)
         end
       end
 

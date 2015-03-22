@@ -84,8 +84,7 @@ module Locomotive
       describe 'localized_fullpaths' do
         context 'with a current site' do
           subject { Locomotive::PageEntity.new(page, site: page.site) }
-          it 'returns the localized_fullpaths' do
-          end
+          it 'returns the localized_fullpaths' 
         end
 
         context 'without a current site' do
