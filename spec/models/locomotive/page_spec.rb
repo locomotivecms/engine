@@ -234,26 +234,6 @@ describe Locomotive::Page do
 
   end
 
-  describe 'render module' do
-
-    context '#path combinations' do
-
-      it 'generates them for a path depth equals to 1' do
-        expect(Locomotive::Page.path_combinations('foo')).to eq(['foo', 'content_type_template'])
-      end
-
-      it 'generates them for a path depth equals to 2' do
-        expect(Locomotive::Page.path_combinations('foo/bar')).to eq(['foo/bar', 'foo/content_type_template', 'content_type_template/bar'])
-      end
-
-      it 'generates them for a path depth equals to 3' do
-        expect(Locomotive::Page.path_combinations('foo/bar/baz')).to eq(['foo/bar/baz', 'foo/bar/content_type_template', 'foo/content_type_template/baz', 'content_type_template/bar/baz'])
-      end
-
-    end
-
-  end
-
   describe 'templatized extension' do
 
     before(:each) do

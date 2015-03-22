@@ -25,7 +25,6 @@ module Locomotive
       presenter.property :fullpath
       presenter.property :localized_fullpaths,  type: 'Hash'
       presenter.property :depth,                type: 'Integer'
-      presenter.property :template_changed,     type: 'Boolean'
       presenter.property :translated_in,        type: 'Array'
     end
 

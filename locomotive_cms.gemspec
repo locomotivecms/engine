@@ -18,7 +18,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'rake',                            '~> 10.4.2'
 
-  s.add_dependency 'rails',                           '~> 4.2.0'
+  s.add_dependency 'rails',                           '~> 4.2.1'
 
   s.add_dependency 'devise',                          '~> 3.4.1'
   s.add_dependency 'devise-encryptable',              '~> 0.2.0'
@@ -26,7 +26,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'pundit',                          '~> 0.3.0'
 
-  s.add_dependency 'mongoid',                         '~> 4.0.0'
+  s.add_dependency 'mongoid',                         '~> 4.0.2'
   s.add_dependency 'mongoid-tree',                    '~> 2.0.0'
   # s.add_dependency 'mongoid_migration',               '~> 0.0.8'
   # s.add_dependency 'mongo_session_store',             '~> 2.0.0'
@@ -57,7 +57,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'stringex',                        '~> 2.5.2'
 
   s.add_dependency 'carrierwave-mongoid',             '~> 0.7'
-  s.add_dependency 'fog',                             '~> 1.27.0'
+  s.add_dependency 'fog',                             '~> 1.28.0'
   s.add_dependency 'dragonfly',                       '~> 1.0.7'
   s.add_dependency 'rack-cache',                      '~> 1.1'
   s.add_dependency 'mimetype-fu',                     '~> 0.1.2'

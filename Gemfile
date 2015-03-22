@@ -12,7 +12,7 @@ gem 'uglifier',     '>= 2.5.3'
 gem 'coveralls',    '~> 0.7.2', require: false
 
 group :test, :development do
-  gem 'rspec-rails', '~> 3.1.0' #~> 2.14.2' # In order to have rspec tasks and generators
+  gem 'rspec-rails', '~> 3.2.1' #~> 2.14.2' # In order to have rspec tasks and generators
   gem 'pry'
 end
 
@@ -21,7 +21,8 @@ group :development do
   # gem 'custom_fields', path: '../gems/custom_fields' # for Developers
   gem 'custom_fields', github: 'locomotivecms/custom_fields', ref: '15cceb66ed'
 
-  gem 'locomotivecms_steam', path: '../in_progress/steam'
+  # gem 'locomotivecms_steam', path: '../in_progress/steam', require: false
+  gem 'locomotivecms_steam', github: 'locomotivecms/steam', ref: '6011db7', require: false
 
   # gem 'locomotive-aloha-rails', path: '../gems/aloha-rails' # for Developers
   # gem 'locomotive-tinymce-rails', path: '../gems/tinymce-rails' # for Developers

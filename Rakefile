@@ -25,5 +25,14 @@ task :travis do
   end
 end
 
+# # require 'rspec/core/rake_task'
+# require 'rspec/core'
+# require 'rspec/core/rake_task'
+
+# desc "Run all Locomotive specs in spec directory"
+# RSpec::Core::RakeTask.new(:spec) do |spec|
+#   spec.exclude_pattern = 'spec/lib/locomotive/liquid/**/*_spec.rb'
+# end
+
 # === Default task ===
 task :default => [:spec]

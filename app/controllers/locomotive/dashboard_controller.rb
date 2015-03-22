@@ -4,7 +4,6 @@ module Locomotive
     account_required & within_site
 
     def show
-      # render layout: false
     end
 
   end
