@@ -5,7 +5,6 @@ module Locomotive
     include ActiveModel::Serialization
     include ActiveModel::Dirty
 
-
     attr_accessor :_persisted, :_policy
 
     class << self

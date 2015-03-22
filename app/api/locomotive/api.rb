@@ -29,6 +29,7 @@ module Locomotive
     mount Resources::SnippetAPI
     mount Resources::PageAPI
     mount Resources::MyAccountAPI
+    mount Resources::MembershipAPI
 
   end
 end
