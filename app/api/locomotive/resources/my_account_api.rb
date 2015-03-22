@@ -26,7 +26,6 @@ module Locomotive
             optional :encrypte_password
             optional :password_salt
             optional :api_key
-            optional :super_admin
             optional :password
             optional :password_confirmation
           end
@@ -51,7 +50,6 @@ module Locomotive
             optional :email
             optional :locale
             optional :api_key
-            optional :super_admin
             optional :password
             optional :password_confirmation
           end

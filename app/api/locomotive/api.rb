@@ -31,6 +31,7 @@ module Locomotive
     mount Resources::MyAccountAPI
     mount Resources::MembershipAPI
     mount Resources::CurrentSiteAPI
+    mount Resources::AccountAPI
 
   end
 end

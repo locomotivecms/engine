@@ -1,6 +1,6 @@
 module Locomotive
   class MyAccountForm < BaseForm
-    attrs :name, :email, :locale, :api_key, :super_admin, :password, 
+    attrs :name, :email, :locale, :api_key, :password, 
           :password_confirmation
   end
 end
