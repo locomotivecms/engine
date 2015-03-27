@@ -75,7 +75,7 @@ Rails.application.routes.draw do
 
       resources :memberships, only: [:index, :show, :create, :update, :destroy]
 
-      resource  :my_account, controller: 'my_account', only: [:show, :create]
+      resource  :my_account, controller: 'my_account', only: [:show, :create, :update]
 
       with_options only: [:index, :show, :create, :update, :destroy] do |api|
 

@@ -13,8 +13,16 @@ module Locomotive
       end
 
       def create
-        @account = Locomotive::Account.create(params[:account])
-        respond_with @account
+        @account = Locomotive::Account.new
+        @account.from_presenter(params[:account])
+        @account.save
+        respond_with(@account)
+      end
+
+      def update
+        current_locomotive_account.from_presenter(params[:account])
+        current_locomotive_account.save
+        respond_with(current_locomotive_account)
       end
 
       protected
