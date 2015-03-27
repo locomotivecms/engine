@@ -12,11 +12,13 @@ Background:
     | Body          | string    | false       |
     | Hidden        | boolean   | false       |
     | Published at  | date      | false       |
+    | Category      | select    | false       |
+  And I have "Design, Development" as "Category" values of the "Articles" model
   And I have entries for "Articles" with
-    | title             | body                    | published_at  | hidden  |
-    | Hello world       | Lorem ipsum             | 2015-01-01    | false   |
-    | Lorem ipsum       | Lorem ipsum...          | 2013-03-23    | false   |
-    | Yadi Yada         | Lorem ipsum...          | 2013-03-23    | true    |
+    | title             | body                    | published_at  | category    | hidden  |
+    | Hello world       | Lorem ipsum             | 2015-01-01    | Development | false   |
+    | Lorem ipsum       | Lorem ipsum...          | 2013-03-23    | Development | false   |
+    | Yadi Yada         | Lorem ipsum...          | 2013-03-23    | Design      | true    |
 
 Scenario: List all of them
   Given a page named "my-articles" with the template:
@@ -27,6 +29,19 @@ Scenario: List all of them
   Then the rendered output should look like:
     """
     Hello world, Lorem ipsum, Yadi Yada
+    """
+
+Scenario: Filter by a select field
+  Given a page named "my-articles" with the template:
+    """
+    {% with_scope category: 'Development' %}
+    {% for article in contents.articles %}{{ article.title }}, {% endfor %}
+    {% endwith_scope %}
+    """
+  When I view the rendered page at "/my-articles"
+  Then the rendered output should look like:
+    """
+    Hello world, Lorem ipsum
     """
 
 Scenario: Filter by a boolean
