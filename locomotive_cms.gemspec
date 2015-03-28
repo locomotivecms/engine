@@ -22,7 +22,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'devise',                          '~> 3.4.1'
   s.add_dependency 'devise-encryptable',              '~> 0.2.0'
-  s.add_dependency 'simple_token_authentication',     '~> 1.7.0'
+  s.add_dependency 'simple_token_authentication',     '~> 1.8.0'
 
   s.add_dependency 'pundit',                          '~> 0.3.0'
 
@@ -37,23 +37,23 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'haml',                            '~> 4.0.2'
   s.add_dependency 'simple_form',                     '~> 3.1.0'
-  s.add_dependency 'kaminari',                        '~> 0.16.3' # https://github.com/amatsuda/kaminari/issues/642
+  s.add_dependency 'kaminari',                        '~> 0.16.3'
   s.add_dependency 'bootstrap-kaminari-views',        '~> 0.0.5'
-  s.add_dependency 'responders',                      '~> 2.0.2'
+  s.add_dependency 'responders',                      '~> 2.1.0'
 
   s.add_dependency 'jquery-rails',                    '~> 4.0.3'
   s.add_dependency 'jquery-ui-rails',                 '~> 5.0.3'
   s.add_dependency 'backbone-on-rails',               '~> 1.1.2.0'
-  s.add_dependency 'codemirror-rails',                '~> 4.8'
+  s.add_dependency 'codemirror-rails',                '~> 5.0'
   s.add_dependency 'flash_cookie_session',            '~> 1.1.1'
   s.add_dependency 'select2-rails',                   '~> 3.5.9'
   s.add_dependency 'compass-rails',                   '2.0.4'
   s.add_dependency 'bootstrap-sass',                  '~> 3.3.3'
-  s.add_dependency 'autoprefixer-rails',              '~> 5.0.0.2'
+  s.add_dependency 'autoprefixer-rails',              '~> 5.1.8'
 
-  s.add_dependency 'font-awesome-sass',               '~> 4.2.2'
+  s.add_dependency 'font-awesome-sass',               '~> 4.3.2.1'
 
-  s.add_dependency 'highline',                        '~> 1.6.2'
+  s.add_dependency 'highline',                        '~> 1.7.1'
   s.add_dependency 'stringex',                        '~> 2.5.2'
 
   s.add_dependency 'carrierwave-mongoid',             '~> 0.7'
@@ -62,7 +62,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'rack-cache',                      '~> 1.1'
   s.add_dependency 'mimetype-fu',                     '~> 0.1.2'
 
-  s.add_dependency 'multi_json',                      '~> 1.10.1'
+  s.add_dependency 'multi_json',                      '~> 1.11.0'
   s.add_dependency 'httparty',                        '~> 0.13.3'
   s.add_dependency 'actionmailer-with-request',       '~> 0.4.0'
 
