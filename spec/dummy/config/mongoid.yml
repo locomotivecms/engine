@@ -61,6 +61,16 @@ development:
     # Ensure all times are UTC in the app side. (default: false)
     # use_utc: false
 
+profile:
+  sessions:
+    default:
+      database: locomotive_engine_dev
+      hosts:
+        - localhost:27017
+      options:
+        # consistency: :strong
+        # identity_map_enabled: true
+
 test:
   sessions:
     default:

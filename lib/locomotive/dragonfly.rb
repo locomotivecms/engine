@@ -46,7 +46,7 @@ module Locomotive
     end
 
     def self.app
-      ::Dragonfly.app
+      ::Dragonfly.app(:engine)
     end
 
     protected

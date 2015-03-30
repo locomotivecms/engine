@@ -1,0 +1,10 @@
+%section.link{ class: defined?(section_class) ? section_class : nil }
+
+  = link_to url do
+
+    %span.arrow
+      %i.fa.fa-angle-right
+
+    %i.icon.fa{ class: icon }
+
+    %span.text= label

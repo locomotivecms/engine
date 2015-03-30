@@ -1,9 +1,6 @@
 module Locomotive
-  class PageService
 
-    def initialize(site)
-      @site = site
-    end
+  class PageService < Struct.new(:site)
 
     # Returns the tree of pages from the site with the most minimal amount of queries.
     # This method should only be used for read-only purpose since
@@ -36,7 +33,7 @@ module Locomotive
 
     #:nodoc:
     def pages_with_minimun_attributes
-      @site.pages.unscoped.
+      site.pages.unscoped.
         minimal_attributes.
         order_by_depth_and_position.
         to_a

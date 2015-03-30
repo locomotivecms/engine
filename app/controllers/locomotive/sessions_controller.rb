@@ -3,7 +3,7 @@ module Locomotive
 
     include Locomotive::Concerns::WithinSiteController
 
-    within_site_only_if_existing
+    within_site_only_if_existing true # Note: do not validate the membership
 
     layout '/locomotive/layouts/not_logged_in'
 
@@ -14,7 +14,7 @@ module Locomotive
     private
 
     def after_sign_in_path_for(resource)
-      sites_path
+      current_site? ? dashboard_path(current_site) : sites_path
     end
 
     def after_sign_out_path_for(resource)

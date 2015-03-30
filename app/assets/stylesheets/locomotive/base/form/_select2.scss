@@ -1,5 +1,6 @@
-$select2-vertical-padding:        9px;
+$select2-vertical-padding:        6px;
 $select2-horizontal-padding:      5px;
+$select2-height:                  32px;
 
 .simple_form {
 
@@ -19,11 +20,23 @@ $select2-horizontal-padding:      5px;
 
   padding: $select2-vertical-padding $select2-horizontal-padding;
 
+  height: auto;
+
   @include transition(none);
 
   .select2-choice {
     background: transparent;
     @include box-shadow(none);
+    border: none;
+
+    height: $select2-height;
+    line-height: $select2-height;
+
+    padding-left: 8px;
+
+    .select2-chosen {
+      padding: 0px;
+    }
 
     .select2-arrow {
       background: transparent;

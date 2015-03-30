@@ -25,14 +25,15 @@ module Locomotive
 
         helper  Locomotive::Shared::SitesHelper,
                 Locomotive::Shared::AccountsHelper,
+                Locomotive::Shared::PagesHelper,
                 Locomotive::ContentTypesHelper
 
       end
 
       module ClassMethods
 
-        def within_site_only_if_existing
-          within_site(false)
+        def within_site_only_if_existing(guest = false)
+          within_site(false, guest)
         end
 
         def within_site_but_as_guest
@@ -41,15 +42,15 @@ module Locomotive
 
         def within_site(required = true, guest = false)
           class_eval do
-            before_filter :require_site if required
+            before_action :require_site if required
 
             unless guest
-              before_filter :validate_site_membership, if: :current_site?
+              before_action :validate_site_membership, if: :current_site?
             end
 
-            around_filter :set_timezone, if: :current_site?
+            around_action :set_timezone, if: :current_site?
 
-            before_filter :set_current_content_locale, if: :current_site?
+            before_action :set_current_content_locale, if: :current_site?
           end
         end
 
