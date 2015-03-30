@@ -126,6 +126,23 @@ module Locomotive
     end
 
     def set_belongs_to_attribute(name, class_name)
+      # article belongs to an author
+
+      # GET /content_entries/<SLUG_OR_ID>
+      # resource itself without any related content entries
+
+
+      # { title: 'Hello world', author_id: '42', author_slug: 'john-doe', content_type_slug: 'articles', content_type_id: <ID> } <= WAGON
+      # { title: 'Hello world', author_id: 'john-doe' } <= not sure if it's used but let's keep it for backward compatiblity
+
+      # author_id and author_slug
+
+      # author_position => WRONG
+
+
+      # author = ContentEntry.find_by_slug('john-doe')
+      # author.articles # ordered by the position_in_author field # position_in_<name>
+
       id_or_slug  = @_attributes[name] || @_attributes["#{name}_id"]
 
       return if id_or_slug.nil?
@@ -143,6 +160,8 @@ module Locomotive
 
     def set_many_to_many_attribute(name, class_name)
       ids_or_slugs  = @_attributes[name] || @_attributes["#{name}_ids"]
+
+      # { title: 'Hello world', author_ids: ['slug-author-A', 'slug-author-B'] }
 
       return if ids_or_slugs.nil?
 
