@@ -49,6 +49,7 @@ group :test do
   # gem 'poltergeist'
 
   gem 'shoulda-matchers',   '~> 2.7.0'
+  gem 'grape-entity-matchers'
   gem 'factory_girl_rails'
   gem 'pickle'
   gem 'json_spec',          '~> 1.1.4'

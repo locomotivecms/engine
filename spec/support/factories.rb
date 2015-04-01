@@ -144,6 +144,15 @@ FactoryGirl.define do
       site { Locomotive::Site.where(handle: 'acme').first || FactoryGirl.create(:site) }
       parent { Locomotive::Page.where(slug: 'index').first || FactoryGirl.create(:page) }
     end
+
+    factory :page_with_editable_element do
+      slug 'with_editable_element'
+      after(:build) do |page, _|
+        page.editable_elements << FactoryGirl.build(:editable_element)
+        page.raw_template = '<a>a</a>'
+        page.save
+      end
+    end
   end
 
   ## Snippets ##
@@ -206,6 +215,14 @@ FactoryGirl.define do
     sequence(:key) { |n| "key_#{n*rand(10_000)}" }
     values {{ en: 'foo', fr: 'bar', wk: 'wuuuu' }}
     site { Locomotive::Site.where(handle: 'acme').first || FactoryGirl.create(:site) }
+  end
+
+  factory :editable_element, class: Locomotive::EditableElement do
+    slug 'editable-element'
+    block 'main'
+    hint 'hint'
+    priority 0
+    disabled false
   end
 
   # factory :custom_field, class: CustomFields::Field do

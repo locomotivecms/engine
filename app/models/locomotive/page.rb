@@ -62,6 +62,8 @@ module Locomotive
     scope :minimal_attributes,  ->(attrs = []) { without(self.fields.keys - MINIMAL_ATTRIBUTES) }
     scope :dependent_from,      ->(id) { where(:template_dependencies.in => [id]) }
 
+    delegate :fullpath, to: :parent, prefix: true
+
     ## methods ##
 
     def index?

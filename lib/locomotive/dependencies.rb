@@ -33,3 +33,6 @@ require 'codemirror/rails'
 require 'jquery/rails'
 require 'jquery-ui-rails'
 require 'backbone-on-rails'
+
+require 'grape'
+require 'grape-entity'

@@ -43,6 +43,9 @@ module Locomotive
     ## indexes ##
     index({ email: 1 }, { unique: true, background: true })
 
+    ## aliases ##
+    alias_attribute :api_token, :api_key
+
     ## methods ##
 
     def sites
