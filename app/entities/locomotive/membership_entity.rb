@@ -20,13 +20,5 @@ module Locomotive
       membership.account.email
     end
 
-    expose :can_update do |_, options|
-      options[:policy].try(:update?)
-    end
-
-    expose :grant_admin do |_, options|
-      options[:policy].try(:grant_admin?)
-    end
-
   end
 end

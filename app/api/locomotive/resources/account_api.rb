@@ -7,16 +7,15 @@ module Locomotive
 
         before do
           setup_resource_methods_for(:accounts)
-          authenticate_locomotive_account!
         end
 
         desc 'Index of accounts'
         get :index do
+          authenticate_locomotive_account!
           authorize accounts, :index?
 
           present accounts, with: entity_klass
         end
-
 
         desc 'Show an account'
         params do
@@ -24,12 +23,12 @@ module Locomotive
         end
         route_param :id do
           get do
+            authenticate_locomotive_account!
             authorize account, :show?
 
             present account, with: entity_klass
           end
         end
-
 
         desc 'Create an account'
         params do
@@ -48,7 +47,6 @@ module Locomotive
           present account, with: entity_klass
         end
 
-
         desc 'Update an account'
         params do
           requires :account, type: Hash do
@@ -58,10 +56,11 @@ module Locomotive
             optional :password_confirmation
             optional :locale
             optional :api_key
-            optional :super_admin, type: Boolean
+            optional :super_admin
           end
         end
         put ':id' do
+          authenticate_locomotive_account!
           authorize account, :update?
 
           form = form_klass.new(account_params)
@@ -70,12 +69,12 @@ module Locomotive
           present account, with: entity_klass
         end
 
-
         desc 'Delete an account'
         params do
           requires :id, type: String, desc: 'Account ID'
         end
         delete ':id' do
+          authenticate_locomotive_account!
           authorize account, :destroy?
 
           account.destroy

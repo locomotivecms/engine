@@ -25,7 +25,7 @@ describe Locomotive::Concerns::SiteDispatcherController do
 
     context 'when there is a current site' do
 
-      before { my_controller.expects(:current_site).returns(true) }
+      before { expect(my_controller).to receive(:current_site).and_return(true) }
 
       it 'returns true' do
         expect(my_controller.send(:require_site)).to eq(true)

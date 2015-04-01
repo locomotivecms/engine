@@ -14,7 +14,7 @@ Locomotive::Steam.configure do |config|
   config.middleware.delete Rack::Session::Moneta
 
   config.services_hook = -> (services) {
-    puts "TODO: change content entry submission"
+    Rails.logger.warn "TODO: change content entry submission"
   }
 end
 

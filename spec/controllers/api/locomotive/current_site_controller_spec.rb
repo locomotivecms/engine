@@ -28,7 +28,7 @@ module Locomotive
 
         context 'passing the authentication token in the http header' do
           before do
-            Locomotive.config.stubs(:unsafe_token_authentication).returns(false)
+            allow(Locomotive.config).to receive(:unsafe_token_authentication).and_return(false)
             request.headers['X-Locomotive-Account-Token'] = token
             request.headers['X-Locomotive-Account-Email'] = account.email
           end

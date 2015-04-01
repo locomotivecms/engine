@@ -5,7 +5,7 @@ module Locomotive
     module ContentEntry
       describe Csv do
         before(:each) do
-          Locomotive::Site.any_instance.stubs(:create_default_pages!).returns(true)
+          allow_any_instance_of(Locomotive::Site).to receive(:create_default_pages!).and_return(true)
           @content_type = FactoryGirl.build(:content_type)
           @content_type.entries_custom_fields.build label: 'Title', type: 'string'
           @content_type.entries_custom_fields.build label: 'Description', type: 'text'

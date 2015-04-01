@@ -65,8 +65,9 @@ Gem::Specification.new do |s|
   s.add_dependency 'multi_json',                      '~> 1.11.0'
   s.add_dependency 'httparty',                        '~> 0.13.3'
   s.add_dependency 'actionmailer-with-request',       '~> 0.4.0'
-  s.add_dependency 'grape',                           '~> 0.9.0'
-  s.add_dependency 'grape-entity',                    '~> 0.4.4'
+
+  s.add_dependency 'grape',                           '~> 0.11.0'
+  s.add_dependency 'grape-entity',                    '~> 0.4.5'
 
   s.add_development_dependency "faye-websocket"
 

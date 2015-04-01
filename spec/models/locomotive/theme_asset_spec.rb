@@ -135,10 +135,10 @@ describe Locomotive::ThemeAsset do
   describe '.escape_shortcut_urls' do
 
     before(:each) do
-      site.theme_assets.expects(:where).with(local_path: 'images/banner.png').returns([image])
+      expect(site.theme_assets).to receive(:where).with(local_path: 'images/banner.png').and_return([image])
     end
 
-    let(:image) { stub(source: OpenStruct.new(url: 'http://engine.dev/images/banner.png')) }
+    let(:image) { instance_double('ThemeAsset', source: OpenStruct.new(url: 'http://engine.dev/images/banner.png')) }
 
     subject { asset.send(:escape_shortcut_urls, text) }
 

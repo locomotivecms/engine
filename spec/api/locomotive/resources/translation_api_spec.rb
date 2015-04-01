@@ -5,17 +5,17 @@ module Locomotive
     describe TranslationAPI do
       include_context 'api site setup'
 
-      let!(:translation) { create(:translation, site: site) }
+      let!(:translation) { Timecop.freeze(Time.zone.local(2015, 4, 1, 12, 0, 0)) { create(:translation, site: site) } }
       let(:params) { { locale: :en } }
-      let(:url_prefix) { '/locomotive/acmi/api_test/v2/translations' }
+      let(:url_prefix) { '/locomotive/acmi/api/v3/translations' }
 
       let(:translation_hash) do
         values = translation.values.stringify_keys
-        { 'key' => translation.key, 'values' => values }
+        { 'key' => translation.key, 'values' => values, 'created_at' => '2015-04-01T12:00:00Z', 'updated_at' => '2015-04-01T12:00:00Z' }
       end
 
       context 'no authenticated site' do
-        describe "GET /locomotive/acme/api_test/v2/translations/index.json" do
+        describe "GET /locomotive/acme/api/v3/translations/index.json" do
           context 'JSON' do
             it 'returns unauthorized message' do
               get "#{url_prefix}/index.json"

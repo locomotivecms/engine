@@ -5,7 +5,6 @@ ENV['RAILS_ENV'] ||= 'test'
 
 require File.join(File.dirname(__FILE__), 'dummy', 'config', 'environment.rb')
 require 'rspec/rails'
-require 'mocha/setup'
 require 'rails/mongoid'
 require 'factory_girl'
 require 'database_cleaner'
@@ -24,8 +23,6 @@ RSpec.configure do |config|
   config.include Devise::TestHelpers, type: :controller
   config.include Locomotive::TestHelpers, type: :controller
   config.include RSpec::Rails::RequestExampleGroup, type: :request, file_path: /spec\/api/
-
-  config.mock_with :mocha
 
   config.infer_spec_type_from_file_location!
 

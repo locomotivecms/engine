@@ -6,7 +6,7 @@ module Locomotive
       include_context 'api site setup'
 
       let(:params) { { locale: :en } }
-      let(:url_prefix) { '/locomotive/acmi/api_test/v2/memberships' }
+      let(:url_prefix) { '/locomotive/acmi/api/v3/memberships' }
       let(:target_account) { create(:account, email: 'ex@example.com')}
 
       context 'authenticated site' do

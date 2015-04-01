@@ -1,5 +1,6 @@
 require 'active_support/all'
 require 'pundit'
+
 module Locomotive
   class API < Grape::API
 
@@ -14,7 +15,7 @@ module Locomotive
     format :xml
     format :json
 
-    prefix 'v2'
+    prefix 'v3'
 
     rescue_from Pundit::NotAuthorizedError do
       error_response(message: { 'error' => '401 Unauthorized' }, status: 401)

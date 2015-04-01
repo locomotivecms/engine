@@ -7,7 +7,7 @@ describe Locomotive::ContentAsset do
   describe 'attaching a file' do
 
     before(:each) do
-      Locomotive::ContentAsset.any_instance.stubs(:site_id).returns('test')
+      allow_any_instance_of(Locomotive::ContentAsset).to receive(:site_id).and_return('test')
       @asset = FactoryGirl.build(:asset)
     end
 
@@ -36,8 +36,8 @@ describe Locomotive::ContentAsset do
     end
 
     it 'has any possible resized versions' do
-      @asset.stubs(:with).returns(90)
-      @asset.stubs(:height).returns(90)
+      allow(@asset).to receive(:with).and_return(90)
+      allow(@asset).to receive(:height).and_return(90)
       expect(@asset.vignette_url).to match(/^\/images\/dynamic\/.*\/5k.png/)
     end
 

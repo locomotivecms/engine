@@ -17,8 +17,7 @@ module Locomotive
 
       describe '#label' do
         it 'labelizes the slug' do
-          expect(subject).to receive(:labelize)
-          exposure[:label]
+          expect(exposure[:label]).to eq 'editable-element'
         end
       end
 

@@ -15,7 +15,7 @@ describe Locomotive::Membership do
     end
 
     it 'requires the uniqueness of an account' do
-      subject.site.memberships.stubs(:where).returns([1, 2])
+      allow(subject.site.memberships).to receive(:where).and_return([1, 2])
       expect(subject.valid?).to eq false
       expect(subject.errors[:account]).to eq ["is already used"]
       expect(subject.errors[:email]).to eq ["is already used"]

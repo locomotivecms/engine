@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Locomotive::ContentType do
 
   before(:each) do
-    Locomotive::Site.any_instance.stubs(:create_default_pages!).returns(true)
+    allow_any_instance_of(Locomotive::Site).to receive(:create_default_pages!).and_return(true)
   end
 
   context 'when validating' do
@@ -178,7 +178,7 @@ describe Locomotive::ContentType do
 
     before(:each) do
       site = FactoryGirl.build(:site)
-      Locomotive::Site.stubs(:find).returns(site)
+      allow(Locomotive::Site).to receive(:find).and_return(site)
 
       @content_type = build_content_type(site: site)
       # Locomotive::ContentType.logger = Logger.new($stdout)

@@ -7,7 +7,7 @@ module Locomotive
 
       let!(:account) { create(:account) }
       let(:params) { { locale: :en } }
-      let(:url_prefix) { '/locomotive/acmi/api_test/v2/my_account' }
+      let(:url_prefix) { '/locomotive/acmi/api/v3/my_account' }
       let(:post_request) { post("#{url_prefix}.json", account: account_params) }
 
       context 'authenticated site' do

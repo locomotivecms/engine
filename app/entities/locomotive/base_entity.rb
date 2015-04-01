@@ -1,10 +1,14 @@
 module Locomotive
-  class BaseEntity < Grape::Entity
+  class BaseEntity < ::Grape::Entity
+
     include ActionView::Helpers::NumberHelper
 
     format_with(:human_size) { |number| number_to_human_size(number) }
-    format_with(:short_date) { |date| I18n.l(date, format: :short) }
+    format_with(:iso_timestamp) { |date_time| date_time.try(:iso8601) }
     format_with(:labelize) { |label| label.gsub(/[\"\']/, '').gsub('-', ' ').humanize }
+
+    expose :created_at, format_with: :iso_timestamp
+    expose :updated_at, format_with: :iso_timestamp
 
   end
 end

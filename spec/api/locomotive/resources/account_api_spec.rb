@@ -6,7 +6,7 @@ module Locomotive
       include_context 'api site setup'
 
       let(:params) { { locale: :en } }
-      let(:url_prefix) { '/locomotive/acmi/api_test/v2/accounts' }
+      let(:url_prefix) { '/locomotive/api/v3/accounts' }
       let!(:new_account) { create(:account, email: 'abc@example.com', name: 'Lisa Johnson') }
 
       context 'authenticated site as super admin' do
@@ -41,9 +41,9 @@ module Locomotive
         describe 'POST create' do
           context 'JSON' do
             let(:new_account) do
-              attributes_for('account').tap do |acct|
-                acct[:name] = 'Homer Simpson'
-                acct[:email] = 'homer@example.com'
+              attributes_for('account').tap do |_account|
+                _account[:name] = 'Homer Simpson'
+                _account[:email] = 'homer@example.com'
               end
             end
 

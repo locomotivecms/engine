@@ -33,7 +33,7 @@ module Locomotive
         end
 
         def create_content_type
-          Locomotive::Site.any_instance.stubs(:create_default_pages!).returns(true)
+          allow_any_instance_of(Locomotive::Site).to receive(:create_default_pages!).and_return(true)
           FactoryGirl.build(:content_type).tap do |content_type|
             content_type.entries_custom_fields.build label: 'Title', type: 'string'
             content_type.valid?

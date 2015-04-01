@@ -11,16 +11,15 @@ module Locomotive
         position
         handle
         response_type
-        cache_strategy
         redirect
         redirect_url
         redirect_type
         listed
         published
         templatized
+        templatized_from_parent
         is_layout
         allow_layout
-        templatized_from_parent
         target_klass_slug
         target_klass_name
         raw_template
@@ -29,7 +28,6 @@ module Locomotive
         meta_description
         fullpath
         depth
-        template_changed
         translated_in
       )
 
@@ -58,19 +56,6 @@ module Locomotive
         end
       end
 
-      describe 'parent_fullpath' do
-        it 'returns the parent_fullpath' do
-          expect(exposure[:parent_fullpath]).to eq parent_page.fullpath
-        end
-
-        context 'no parent' do
-          let(:page) { create(:page, title: 'no_parent', slug: 'no_parent', raw_template: nil) }
-          it 'returns nil' do
-            expect(exposure[:parent_fullpath]).to be_nil
-          end
-        end
-      end
-
       describe 'target_entry_name' do
         before do
           allow(page).to receive(:target_klass_name).and_return("KlassClass")
@@ -84,7 +69,7 @@ module Locomotive
       describe 'localized_fullpaths' do
         context 'with a current site' do
           subject { Locomotive::PageEntity.new(page, site: page.site) }
-          it 'returns the localized_fullpaths' 
+          it 'returns the localized_fullpaths'
         end
 
         context 'without a current site' do

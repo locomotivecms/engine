@@ -56,8 +56,8 @@ PATH
       flash_cookie_session (~> 1.1.1)
       fog (~> 1.28.0)
       font-awesome-sass (~> 4.3.2.1)
-      grape (~> 0.9.0)
-      grape-entity (~> 0.4.4)
+      grape (~> 0.11.0)
+      grape-entity (~> 0.4.5)
       haml (~> 4.0.2)
       highline (~> 1.7.1)
       httparty (~> 0.13.3)
@@ -344,7 +344,7 @@ GEM
       oauth2
     globalid (0.3.3)
       activesupport (>= 4.1.0)
-    grape (0.9.0)
+    grape (0.11.0)
       activesupport
       builder
       hashie (>= 2.1.0)
@@ -362,7 +362,7 @@ GEM
       rspec (>= 3.2.0)
     haml (4.0.6)
       tilt
-    hashie (3.4.0)
+    hashie (3.4.1)
     highline (1.7.1)
     hike (1.2.3)
     http-cookie (1.0.2)
@@ -392,20 +392,19 @@ GEM
     locomotivecms-liquid (4.0.0.alpha2)
     locomotivecms-solid (4.0.0.alpha2)
       locomotivecms-liquid (~> 4.0.0.alpha2)
-    locomotivecms_common (0.0.2)
+    locomotivecms_common (0.0.3)
+      activesupport (~> 4.2.1)
       colorize
+      stringex (~> 2.5.2)
     loofah (2.0.1)
       nokogiri (>= 1.5.9)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
-    metaclass (0.0.4)
     method_source (0.8.2)
     mime-types (2.4.3)
     mimetype-fu (0.1.2)
     mini_portile (0.6.2)
     minitest (5.5.1)
-    mocha (1.1.0)
-      metaclass (~> 0.0.1)
     moneta (0.8.0)
     monetize (1.1.0)
       money (~> 6.5.0)
@@ -614,7 +613,6 @@ DEPENDENCIES
   json_spec (~> 1.1.4)
   locomotive_cms!
   locomotivecms_steam!
-  mocha
   pickle
   pry
   quiet_assets

@@ -6,5 +6,6 @@ module Locomotive
     expose :local_admin do |account, _|
       account.local_admin?
     end
+
   end
 end

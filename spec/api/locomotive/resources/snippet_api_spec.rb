@@ -5,7 +5,7 @@ module Locomotive
     describe SnippetAPI do
       include_context 'api site setup'
 
-      let(:url_prefix) { '/locomotive/acmi/api_test/v2/snippets' }
+      let(:url_prefix) { '/locomotive/acmi/api/v3/snippets' }
       let!(:snippet) { create(:snippet) }
 
       context 'authenticated site' do
