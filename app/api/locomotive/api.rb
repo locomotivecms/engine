@@ -2,12 +2,14 @@ require 'active_support/all'
 require 'pundit'
 
 module Locomotive
-  class API < Grape::API
+  class DispatchAPI < Grape::API
 
     helpers Pundit
     helpers APIAuthenticationHelpers
     helpers APIParamsHelper
     helpers PersistenceHelper
+
+    include APIExceptionRescuers
 
     content_type :xml, 'application/xml'
     content_type :json, 'application/json'
@@ -16,11 +18,6 @@ module Locomotive
     format :json
 
     prefix 'v3'
-
-    rescue_from Pundit::NotAuthorizedError do
-      error_response(message: { 'error' => '401 Unauthorized' }, status: 401)
-    end
-
 
     mount Resources::TokenAPI
     mount Resources::TranslationAPI
@@ -34,5 +31,14 @@ module Locomotive
     mount Resources::CurrentSiteAPI
     mount Resources::AccountAPI
 
+    route :any, '*path' do
+      error!({ error: "Unrecognized request path: #{params[:path]}" }, 404)
+    end
+
+  end
+
+  API = Rack::Builder.new do
+    use Locomotive::APILogger
+    run Locomotive::DispatchAPI
   end
 end

@@ -3,8 +3,8 @@ module Locomotive
     class SiteAPI < Grape::API
 
       # This API does not use the persistence helper because it is quite different
-      #  from the other APIs.  Any changes to the persistence layer will need to
-      #  be manually applied to this API.  N.B.
+      # from the other APIs.  Any changes to the persistence layer will need to
+      # be manually applied to this API.  N.B.
 
       resource :sites do
         entity_klass = Locomotive::SiteEntity
@@ -19,17 +19,15 @@ module Locomotive
           end
         end
 
-
         desc 'Index of sites'
-        get :index do
+        get '/' do
           sites = policy_scope(Locomotive::Site)
           authorize(sites, :index?)
 
           present sites, with: entity_klass
         end
 
-
-        desc "Show a site"
+        desc 'Show a site'
         params do
           requires :id, type: String, desc: 'Site ID'
         end
@@ -41,7 +39,6 @@ module Locomotive
             present site, with: entity_klass
           end
         end
-
 
         desc 'Create a site'
         params do
@@ -67,7 +64,6 @@ module Locomotive
           site.save
           present site, with: entity_klass
         end
-
 
         desc 'Update a site'
         params do
@@ -95,8 +91,7 @@ module Locomotive
           present site, with: entity_klass
         end
 
-
-        desc "Delete a site"
+        desc 'Delete a site'
         params do
           requires :id, type: String, desc: 'Site ID'
         end

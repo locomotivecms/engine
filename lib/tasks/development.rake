@@ -1,12 +1,12 @@
 require "highline/import"
 
 namespace :development do
-  
+
   desc "Display the API routes"
   task api_routes: :environment do
-    puts Locomotive::API.routes.map(&:to_s).join("\n")
+    puts Locomotive::DispatchAPI.routes.map(&:to_s).join("\n")
   end
-  
+
   desc "Setup sites and account for development"
   task bootstrap: :environment do
     if Locomotive::Site.count > 0 || Locomotive::Account.count > 0

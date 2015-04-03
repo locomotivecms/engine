@@ -13,7 +13,7 @@ module Locomotive
 
         describe 'GET index' do
           context 'JSON' do
-            before { get "#{url_prefix}/index.json" }
+            before { get "#{url_prefix}.json" }
             it 'returns a successful response' do
 
               expect(last_response).to be_successful

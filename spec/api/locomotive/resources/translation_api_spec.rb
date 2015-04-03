@@ -35,12 +35,15 @@ module Locomotive
 
         describe "GET index" do
           context 'JSON' do
+
             before { get "#{url_prefix}/index.json" }
+
             it 'returns a successful response' do
               expect(last_response).to be_successful
             end
 
             it 'returns the translation in an array' do
+              expect(subject.first.delete('_id')).to match /^[a-z0-9]+$/
               expect(subject).to eq [translation_hash]
             end
           end
@@ -93,6 +96,7 @@ module Locomotive
 
             it 'returns the deleted translation' do
               delete_request
+              expect(subject.delete('_id')).to match /^[a-z0-9]+$/
               expect(subject).to eq(translation_hash)
             end
           end
