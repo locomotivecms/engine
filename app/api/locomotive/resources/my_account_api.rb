@@ -4,7 +4,7 @@ module Locomotive
 
       resource :my_account do
 
-        entity_klass = Locomotive::AccountEntity
+        entity_klass = Locomotive::API::AccountEntity
 
         helpers do
           def must_not_be_logged_in

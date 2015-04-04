@@ -4,7 +4,7 @@ module Locomotive
 
       resource :snippets do
 
-        entity_klass = Locomotive::SnippetEntity
+        entity_klass = Locomotive::API::SnippetEntity
 
         before do
           setup_resource_methods_for(:snippets)

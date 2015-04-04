@@ -3,7 +3,7 @@ module Locomotive
     class AccountAPI < Grape::API
 
       resource :accounts do
-        entity_klass = Locomotive::AccountEntity
+        entity_klass = Locomotive::API::AccountEntity
 
         before do
           setup_resource_methods_for(:accounts)

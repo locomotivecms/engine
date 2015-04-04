@@ -4,7 +4,7 @@ module Locomotive
 
       resource :translations do
 
-        entity_klass = Locomotive::TranslationEntity
+        entity_klass = Locomotive::API::TranslationEntity
 
         before do
           setup_resource_methods_for(:translations)

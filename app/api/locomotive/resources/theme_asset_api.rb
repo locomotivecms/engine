@@ -1,10 +1,10 @@
 module Locomotive
   module Resources
     class ThemeAssetAPI < Grape::API
-    
+
       resource :theme_assets do
 
-        entity_klass = Locomotive::ThemeAssetEntity
+        entity_klass = Locomotive::API::ThemeAssetEntity
 
         before do
           setup_resource_methods_for(:theme_assets)

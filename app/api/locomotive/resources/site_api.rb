@@ -7,7 +7,7 @@ module Locomotive
       # be manually applied to this API.  N.B.
 
       resource :sites do
-        entity_klass = Locomotive::SiteEntity
+        entity_klass = Locomotive::API::SiteEntity
 
         before do
           authenticate_locomotive_account!

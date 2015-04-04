@@ -3,7 +3,7 @@ module Locomotive
     class MembershipAPI < Grape::API
 
       resource :memberships do
-        entity_klass = Locomotive::MembershipEntity
+        entity_klass = Locomotive::API::MembershipEntity
 
         before do
           setup_resource_methods_for(:memberships)
@@ -71,7 +71,7 @@ module Locomotive
         end
         delete ':id' do
           authorize membership, :destroy?
-          
+
           membership.destroy
 
           present membership, with: entity_klass

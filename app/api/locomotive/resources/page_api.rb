@@ -3,7 +3,7 @@ module Locomotive
     class PageAPI < Grape::API
 
       resource :pages do
-        entity_klass = Locomotive::PageEntity
+        entity_klass = Locomotive::API::PageEntity
 
         before do
           setup_resource_methods_for(:pages)

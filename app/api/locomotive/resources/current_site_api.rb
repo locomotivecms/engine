@@ -1,8 +1,9 @@
 module Locomotive
   module Resources
     class CurrentSiteAPI < Grape::API
+
       resource :current_site do
-        entity_klass = Locomotive::SiteEntity
+        entity_klass = Locomotive::API::SiteEntity
 
         before do
           authenticate_locomotive_account!
@@ -52,5 +53,6 @@ module Locomotive
 
       end
     end
+
   end
 end
