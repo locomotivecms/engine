@@ -24,7 +24,7 @@ describe Locomotive::API::AccountEntity do
   context 'overrides' do
     let!(:account) { create(:account) }
     let(:exposure) { subject.serializable_hash }
-    subject { Locomotive::AccountEntity.new(account) }
+    subject { described_class.new(account) }
 
     describe 'local_admin' do
       context 'is a local_admin' do

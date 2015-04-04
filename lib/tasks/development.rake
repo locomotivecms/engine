@@ -4,7 +4,7 @@ namespace :development do
 
   desc "Display the API routes"
   task api_routes: :environment do
-    puts Locomotive::DispatchAPI.routes.map(&:to_s).join("\n")
+    puts Locomotive::API::Dispatch.routes.map(&:to_s).join("\n")
   end
 
   desc "Setup sites and account for development"

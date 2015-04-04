@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   mount Locomotive::Engine => '/locomotive', as: 'locomotive'
 
-  mount Locomotive::API => '/locomotive(/:site_handle)/api'
+  mount Locomotive::API.to_app => '/locomotive(/:site_handle)/api'
 
   mount Locomotive::Steam::Server.to_app => '/', anchor: false
 

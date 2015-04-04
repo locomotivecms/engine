@@ -1,33 +1,32 @@
 require 'spec_helper'
-module Locomotive
-  describe SiteEntity do
-    subject { SiteEntity }
 
+describe Locomotive::API::SiteEntity do
 
-    %i(name locales handle domains seo_title meta_keywords
-      meta_description robots_txt).each do |exposure|
-        it { is_expected.to represent(exposure) }
-      end
+  subject { described_class }
 
-    context 'overrides' do
-      let!(:admin) { create(:admin) }
-      let!(:site) { admin.site }
+  %i(name locales handle domains seo_title meta_keywords
+    meta_description robots_txt).each do |exposure|
+      it { is_expected.to represent(exposure) }
+    end
 
-      subject { Locomotive::SiteEntity.new(site) }
-      let(:exposure) { subject.serializable_hash }
+  context 'overrides' do
+    let!(:admin) { create(:admin) }
+    let!(:site) { admin.site }
 
-      describe 'timezones' do
-        it 'returns the timezone name' do
-          expect(exposure[:timezone]).to eq 'UTC'
-        end
-      end
+    subject { described_class.new(site) }
+    let(:exposure) { subject.serializable_hash }
 
-      describe 'memberships' do
-        it 'returns an array of memberships' do
-          expect(exposure[:memberships]).to be_kind_of(Array)
-        end
+    describe 'timezones' do
+      it 'returns the timezone name' do
+        expect(exposure[:timezone]).to eq 'UTC'
       end
     end
 
+    describe 'memberships' do
+      it 'returns an array of memberships' do
+        expect(exposure[:memberships]).to be_kind_of(Array)
+      end
+    end
   end
+
 end

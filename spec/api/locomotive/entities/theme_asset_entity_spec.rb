@@ -1,10 +1,10 @@
 require 'spec_helper'
 
-describe Locomotive::ThemeAssetEntity do
+describe Locomotive::API::ThemeAssetEntity do
 
   before { Time.zone = ActiveSupport::TimeZone['Chicago'] }
 
-  subject { Locomotive::ThemeAssetEntity }
+  subject { described_class }
 
   it { is_expected.to represent(:content_type) }
   it { is_expected.to represent(:folder) }
@@ -15,7 +15,7 @@ describe Locomotive::ThemeAssetEntity do
     let(:path) { Rails.root.join('../../spec/fixtures/images/rails.png').to_s }
     let(:rack_upload) { Rack::Test::UploadedFile.new(path) }
     let(:theme_asset) { create(:theme_asset, source: rack_upload) }
-    subject { Locomotive::ThemeAssetEntity.new(theme_asset) }
+    subject { described_class.new(theme_asset) }
     let(:exposure) { subject.serializable_hash }
 
     describe 'raw_size' do

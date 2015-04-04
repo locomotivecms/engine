@@ -1,31 +1,30 @@
 require 'spec_helper'
 
-module Locomotive
-  describe MembershipEntity do
-    subject { MembershipEntity }
+describe Locomotive::API::MembershipEntity do
 
-    it { is_expected.to represent(:role) }
+  subject { described_class }
 
-    context 'overrides' do
-      let!(:account) { create(:account) }
-      let!(:membership) { create(:membership, account: account) }
-      subject { Locomotive::MembershipEntity.new(membership) }
-      let(:exposure) { subject.serializable_hash }
+  it { is_expected.to represent(:role) }
+
+  context 'overrides' do
+    let!(:account) { create(:account) }
+    let!(:membership) { create(:membership, account: account) }
+    subject { described_class.new(membership) }
+    let(:exposure) { subject.serializable_hash }
 
 
-      describe 'name' do
-        it 'returns the name from the account' do
-          expect(exposure[:name]).to eq account.name
-        end
+    describe 'name' do
+      it 'returns the name from the account' do
+        expect(exposure[:name]).to eq account.name
       end
+    end
 
-      describe 'account_id' do
-        it 'returns the string value of the account id' do
-          expect(exposure[:account_id]).to eq(account.id.to_s)
-        end
+    describe 'account_id' do
+      it 'returns the string value of the account id' do
+        expect(exposure[:account_id]).to eq(account.id.to_s)
       end
-
     end
 
   end
+
 end

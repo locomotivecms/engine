@@ -1,30 +1,29 @@
 require 'spec_helper'
-module Locomotive
-  describe SnippetEntity do
 
-    before { Time.zone = ActiveSupport::TimeZone['Chicago'] }
+describe Locomotive::API::SnippetEntity do
 
-    subject { SnippetEntity }
+  subject { described_class }
 
-    it { is_expected.to represent(:name) }
-    it { is_expected.to represent(:slug) }
-    it { is_expected.to represent(:template) }
+  before { Time.zone = ActiveSupport::TimeZone['Chicago'] }
 
-    context 'overrides' do
+  it { is_expected.to represent(:name) }
+  it { is_expected.to represent(:slug) }
+  it { is_expected.to represent(:template) }
 
-      let(:snippet) { create(:snippet) }
-      subject { Locomotive::SnippetEntity.new(snippet) }
-      let(:exposure) { subject.serializable_hash }
+  context 'overrides' do
 
-      describe 'updated_at' do
-        it 'runs updated_at through #iso_timestamp' do
-          Timecop.freeze(Time.zone.local(2015, 4, 1, 12, 0, 0)) do
-            expect(exposure[:updated_at]).to eq '2015-04-01T12:00:00Z'
-          end
+    let(:snippet) { create(:snippet) }
+    subject { described_class.new(snippet) }
+    let(:exposure) { subject.serializable_hash }
+
+    describe 'updated_at' do
+      it 'runs updated_at through #iso_timestamp' do
+        Timecop.freeze(Time.zone.local(2015, 4, 1, 12, 0, 0)) do
+          expect(exposure[:updated_at]).to eq '2015-04-01T12:00:00Z'
         end
       end
-
     end
 
   end
+
 end
