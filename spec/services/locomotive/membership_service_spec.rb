@@ -25,7 +25,7 @@ describe Locomotive::MembershipService do
       let(:account) { build(:account) }
       let(:email) { account.email }
 
-      before { Locomotive::Account.stubs(:find_by_email).with(account.email).returns(account) }
+      before { allow(Locomotive::Account).to receive(:find_by_email).with(account.email).and_return(account) }
 
       it { expect(subject).not_to eq nil }
 

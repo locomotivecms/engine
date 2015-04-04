@@ -25,5 +25,13 @@ task :travis do
   end
 end
 
+Rake::Task[:default].clear
+Rake::Task[:spec].clear
+
+desc "Run all Locomotive specs in spec directory"
+RSpec::Core::RakeTask.new(:spec) do |spec|
+  spec.exclude_pattern = 'spec/controllers/api/locomotive/**/*_spec.rb,spec/lib/locomotive/presentable_spec.rb'
+end
+
 # === Default task ===
 task :default => [:spec]

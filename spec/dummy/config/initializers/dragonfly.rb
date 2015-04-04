@@ -1,7 +1,7 @@
 require 'dragonfly'
 
 # Configure
-Dragonfly.app.configure do
+Dragonfly.app(:engine).configure do
   plugin :imagemagick,
     convert_command:  `which convert`.strip.presence || '/usr/local/bin/convert',
     identify_command: `which identify`.strip.presence || '/usr/local/bin/identify'
@@ -21,4 +21,4 @@ end
 Dragonfly.logger = Rails.logger
 
 # Mount as middleware
-Rails.application.middleware.use Dragonfly::Middleware
+Rails.application.middleware.use Dragonfly::Middleware, :engine

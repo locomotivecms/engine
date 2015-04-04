@@ -6,14 +6,14 @@ module Locomotive
       include_context 'api site setup'
 
       let(:params) { { locale: :en } }
-      let(:url_prefix) { '/locomotive/acmi/api_test/v2/sites' }
+      let(:url_prefix) { '/locomotive/acmi/api/v3/sites' }
 
       context 'authenticated site' do
         include_context 'api header setup'
 
         describe 'GET index' do
           context 'JSON' do
-            before { get "#{url_prefix}/index.json" }
+            before { get "#{url_prefix}.json" }
             it 'returns a successful response' do
 
               expect(last_response).to be_successful

@@ -5,7 +5,7 @@ require 'spec_helper'
 describe Locomotive::ContentEntry do
 
   before(:each) do
-    Locomotive::Site.any_instance.stubs(:create_default_pages!).returns(true)
+    allow_any_instance_of(Locomotive::Site).to receive(:create_default_pages!).and_return(true)
     @content_type = FactoryGirl.build(:content_type)
     @content_type.entries_custom_fields.build label: 'Title', type: 'string'
     @content_type.entries_custom_fields.build label: 'Description', type: 'text'
@@ -83,7 +83,7 @@ describe Locomotive::ContentEntry do
     end
 
     it 'copies the slug in ALL the locales of the site' do
-      Locomotive::Site.any_instance.stubs(:locales).returns(%w(en fr ru))
+      allow_any_instance_of(Locomotive::Site).to receive(:locales).and_return(%w(en fr ru))
       entry = build_content_entry(_slug: 'monkeys').tap(&:save!)
       expect(entry._slug_translations).to eq({ 'en' => 'monkeys', 'fr' => 'monkeys', 'ru' => 'monkeys' })
     end
@@ -288,7 +288,7 @@ describe Locomotive::ContentEntry do
     end
 
     it 'also accepts a file field as the highlighted field' do
-      @content_entry.stubs(:_label_field_name).returns('file')
+      allow(@content_entry).to receive(:_label_field_name).and_return('file')
       @content_entry.file = FixturedAsset.open('5k.png'); @content_entry.send(:set_slug)
       expect(@content_entry._permalink).to eq('5k')
     end
@@ -328,13 +328,13 @@ describe Locomotive::ContentEntry do
 
     it 'uses the to_label method if the value of the label field defined it' do
       entry = build_content_entry(_label_field_name: 'with_to_label')
-      entry.stubs(:with_to_label).returns(mock('with_to_label', to_label: 'acme'))
+      allow(entry).to receive(:with_to_label).and_return(instance_double('with_to_label', to_label: 'acme'))
       expect(entry._label).to eq('acme')
     end
 
     it 'uses the to_s method at last if the label field did not define the to_label method' do
       entry = build_content_entry(_label_field_name: 'not_a_string')
-      entry.stubs(:not_a_string).returns(mock('not_a_string', to_s: 'not_a_string'))
+      allow(entry).to receive(:not_a_string).and_return(instance_double('not_a_string', to_s: 'not_a_string'))
       expect(entry._label).to eq('not_a_string')
     end
 
@@ -361,26 +361,26 @@ describe Locomotive::ContentEntry do
       @content_type.public_submission_accounts = ['', @account_1._id, @account_2._id.to_s]
 
       site = FactoryGirl.build(:site)
-      site.stubs(:accounts).returns([@account_1, @account_2])
+      allow(site).to receive(:accounts).and_return([@account_1, @account_2])
 
       @content_entry = build_content_entry(site: site)
     end
 
     it 'does not send email notifications if the api is disabled' do
       @content_type.public_submission_enabled = false
-      Locomotive::Notifications.expects(:new_content_entry).never
+      expect(Locomotive::Notifications).to_not receive(:new_content_entry)
       @content_entry.save
     end
 
     it 'does not send email notifications if no api accounts' do
       @content_type.public_submission_accounts = nil
-      Locomotive::Notifications.expects(:new_content_entry).never
+      expect(Locomotive::Notifications).to_not receive(:new_content_entry)
       @content_entry.save
     end
 
     it 'sends email notifications when a new instance is created' do
-      Locomotive::Notifications.expects(:new_content_entry).with(@account_1, @content_entry).returns(mock('mailer', deliver: true))
-      Locomotive::Notifications.expects(:new_content_entry).with(@account_2, @content_entry).returns(mock('mailer', deliver: true))
+      expect(Locomotive::Notifications).to receive(:new_content_entry).with(@account_1, @content_entry).and_return(instance_double('mailer', deliver: true))
+      expect(Locomotive::Notifications).to receive(:new_content_entry).with(@account_2, @content_entry).and_return(instance_double('mailer', deliver: true))
       @content_entry.save
     end
 

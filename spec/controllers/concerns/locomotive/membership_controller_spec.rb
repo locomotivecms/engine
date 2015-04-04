@@ -19,22 +19,22 @@ describe Locomotive::Concerns::MembershipController do
 
   before do
     my_controller.instance_variable_set('@_response', ActionDispatch::Response.new)
-    my_controller.stubs(:request).returns(request)
-    my_controller.stubs(:current_locomotive_account).returns(account)
-    my_controller.stubs(:sign_out).with(account)
-    my_controller.stubs(:new_locomotive_account_session_url).returns('/locomotive/session/new')
+    allow(my_controller).to receive(:request).and_return(request)
+    allow(my_controller).to receive(:current_locomotive_account).and_return(account)
+    allow(my_controller).to receive(:sign_out).with(account)
+    allow(my_controller).to receive(:new_locomotive_account_session_url).and_return('/locomotive/session/new')
   end
 
   context 'when a site is present' do
 
     before do
-      my_controller.stubs(:current_site).returns(site)
+      allow(my_controller).to receive(:current_site).and_return(site)
     end
 
     context 'and the user has a membership' do
 
       before do
-        site.stubs(:membership_for).returns(site.memberships.first)
+        allow(site).to receive(:membership_for).and_return(site.memberships.first)
       end
 
       it 'returns true' do
@@ -46,11 +46,11 @@ describe Locomotive::Concerns::MembershipController do
     context 'and the user does not have a membership' do
 
       before do
-        site.stubs(:membership_for).returns(nil)
+        allow(site).to receive(:membership_for).and_return(nil)
       end
 
       it 'signs out the user' do
-        my_controller.expects(:sign_out).with(account)
+        expect(my_controller).to receive(:sign_out).with(account)
         my_controller.send(:validate_site_membership)
       end
 
@@ -60,7 +60,7 @@ describe Locomotive::Concerns::MembershipController do
       end
 
       it 'redirects to the new session url' do
-        my_controller.expects(:redirect_to).with('/locomotive/session/new')
+        expect(my_controller).to receive(:redirect_to).with('/locomotive/session/new')
         my_controller.send(:validate_site_membership)
       end
 
@@ -75,11 +75,11 @@ describe Locomotive::Concerns::MembershipController do
   context 'when no site is present' do
 
     before do
-      my_controller.stubs(:current_site).returns(nil)
+      allow(my_controller).to receive(:current_site).and_return(nil)
     end
 
     it 'signs out the user' do
-      my_controller.expects(:sign_out).with(account)
+      expect(my_controller).to receive(:sign_out).with(account)
       my_controller.send(:validate_site_membership)
     end
 
@@ -89,7 +89,7 @@ describe Locomotive::Concerns::MembershipController do
     end
 
     it 'redirects to the new session url' do
-      my_controller.expects(:redirect_to).with('/locomotive/session/new')
+      expect(my_controller).to receive(:redirect_to).with('/locomotive/session/new')
       my_controller.send(:validate_site_membership)
     end
 

@@ -6,11 +6,11 @@ describe 'locomotive/memberships/edit', type: :view do
 
   let(:site)        { create('test site') }
   let(:membership)  { site.memberships.first }
-  let(:policy)      { stub(change_role?: true) }
+  let(:policy)      { instance_double('policy', change_role?: true) }
 
   before do
-    view.stubs(:current_site).returns site
-    view.stubs(:policy).returns policy
+    allow(view).to receive(:current_site).and_return(site)
+    allow(view).to receive(:policy).and_return(policy)
     assign(:membership, membership)
   end
 

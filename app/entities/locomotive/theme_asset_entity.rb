@@ -13,15 +13,7 @@ module Locomotive
       theme_asset.source.url
     end
 
-    with_options(format_with: :human_size) do
-      expose :size do |theme_asset, _|
-        theme_asset.size
-      end
-    end
-
-    with_options(format_with: :short_date) do
-      expose :updated_at
-    end
+    expose :size, format_with: :human_size
 
     expose :dimensions do |theme_asset, _|
       "#{theme_asset.width}px x #{theme_asset.height}px" if theme_asset.image?
@@ -33,10 +25,6 @@ module Locomotive
 
     expose :raw_size do |theme_asset, _|
       theme_asset.size
-    end
-
-    expose :can_be_deleted do |_, options|
-      options[:policy].try(:destroy?)
     end
 
     private

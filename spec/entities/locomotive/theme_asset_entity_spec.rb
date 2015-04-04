@@ -2,15 +2,19 @@ require 'spec_helper'
 
 describe Locomotive::ThemeAssetEntity do
 
+  before { Time.zone = ActiveSupport::TimeZone['Chicago'] }
+
   subject { Locomotive::ThemeAssetEntity }
+
   it { is_expected.to represent(:content_type) }
   it { is_expected.to represent(:folder) }
   it { is_expected.to represent(:checksum) }
 
   context 'overrides' do
+
     let(:path) { Rails.root.join('../../spec/fixtures/images/rails.png').to_s }
     let(:rack_upload) { Rack::Test::UploadedFile.new(path) }
-    let!(:theme_asset) { create(:theme_asset, source: rack_upload) }
+    let(:theme_asset) { create(:theme_asset, source: rack_upload) }
     subject { Locomotive::ThemeAssetEntity.new(theme_asset) }
     let(:exposure) { subject.serializable_hash }
 
@@ -34,33 +38,15 @@ describe Locomotive::ThemeAssetEntity do
 
     describe 'size' do
       it 'runs size through #number_to_human_size' do
-        expect(subject).to receive(:number_to_human_size)
+        expect(subject).to receive(:number_to_human_size).and_return('6.49 KB')
         exposure[:size]
       end
     end
 
     describe 'updated_at' do
-      it 'runs updated_at through #short_date' do
-        expect(subject).to receive(:short_date) do
-          exposure[:updated_at]
-        end
-      end
-    end
-
-    describe 'can_be_deleted' do
-
-      subject { Locomotive::ThemeAssetEntity.new(theme_asset, policy: policy) }
-      context 'admin' do
-        let(:policy) { Locomotive::ThemeAssetPolicy.new(create(:admin), theme_asset) }
-        it 'returns true for admin membership' do
-          expect(exposure[:can_be_deleted]).to eq true
-        end
-      end
-
-      context 'author' do
-        let(:policy) { Locomotive::ThemeAssetPolicy.new(create(:author), theme_asset) }
-        it 'returns false for author membership' do
-          expect(exposure[:can_be_deleted]).to eq false
+      it 'runs updated_at through #iso_timestamp' do
+        Timecop.freeze(Time.zone.local(2015, 4, 1, 12, 0, 0)) do
+          expect(exposure[:updated_at]).to eq '2015-04-01T12:00:00Z'
         end
       end
     end

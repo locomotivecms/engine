@@ -1,7 +1,9 @@
 module Locomotive
   module Resources
     class MyAccountAPI < Grape::API
+
       resource :my_account do
+
         entity_klass = Locomotive::AccountEntity
 
         helpers do
@@ -16,7 +18,6 @@ module Locomotive
           present current_account, with: entity_klass
         end
 
-
         desc 'Update my account'
         params do
           requires :account, type: Hash do
@@ -26,7 +27,6 @@ module Locomotive
             optional :encrypte_password
             optional :password_salt
             optional :api_key
-            optional :super_admin
             optional :password
             optional :password_confirmation
           end
@@ -47,24 +47,21 @@ module Locomotive
         desc 'Create account'
         params do
           requires :account, type: Hash do
-            optional :name
-            optional :email
-            optional :locale
-            optional :api_key
-            optional :super_admin
-            optional :password
+            requires :name
+            requires :email
+            requires :password
             optional :password_confirmation
+            optional :locale
           end
         end
         post do
           must_not_be_logged_in
 
           my_account_form = MyAccountForm.new(permitted_params[:account])
-          my_account = Account.create(my_account_form.serializable_hash)
+          my_account = Account.create!(my_account_form.serializable_hash)
 
           present my_account, with: entity_klass
         end
-
 
       end
     end

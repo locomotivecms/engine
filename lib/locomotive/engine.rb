@@ -11,6 +11,10 @@ module Locomotive
     paths['mongodb/migrate'] = 'mongodb/migrate'
     # config.autoload_once_paths += %W( #{config.root}/app/controllers #{config.root}/app/models #{config.root}/app/helpers #{config.root}/app/uploaders)
 
+    initializer 'steam' do |app|
+      require 'locomotive/steam_adaptor'
+    end
+
     initializer 'locomotive.content_types' do |app|
       # Load all the dynamic classes (custom fields)
       begin
@@ -19,10 +23,6 @@ module Locomotive
         # let assume it's because of the first install (meaning no config.yml file)
         Locomotive.log :warn, "WARNING: unable to load the content types, #{e.message}"
       end
-    end
-
-    initializer 'locomotive.cells' do |app|
-      Cell::Base.prepend_view_path("#{config.root}/app/cells")
     end
 
     initializer 'locomotive.action_controller' do |app|
@@ -54,10 +54,7 @@ module Locomotive
 
     initializer 'locomotive.middlewares' do |app|
       app.middleware.insert_before(Rack::Runtime, '::Locomotive::Middlewares::Permalink', nil)
-      app.middleware.use '::Locomotive::Middlewares::SeoTrailingSlash'
       app.middleware.use '::Locomotive::Middlewares::Site'
-      app.middleware.use '::Locomotive::Middlewares::Locale'
-      app.middleware.use '::Locomotive::Middlewares::LocaleRedirection'
     end
 
   end

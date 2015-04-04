@@ -1,0 +1,8 @@
+%section.link.my-account.visible-xs-block
+
+  = link_to edit_my_account_url do
+
+    = image_tag account_avatar_url(current_locomotive_account, '60x60#'), class: 'img-circle', alt: @current_locomotive_account.name_was
+
+    %span.text
+      = current_locomotive_account.name_was

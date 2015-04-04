@@ -9,8 +9,8 @@ module Locomotive
     include Concerns::Page::Tree
     include Concerns::Page::EditableElements
     include Concerns::Page::Layout
-    include Concerns::Page::Parse
-    include Concerns::Page::Render
+    # include Concerns::Page::Parse
+    # include Concerns::Page::Render
     include Concerns::Page::Templatized
     include Concerns::Page::Redirect
     include Concerns::Page::Listed

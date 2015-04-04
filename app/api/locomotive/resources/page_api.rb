@@ -56,10 +56,7 @@ module Locomotive
             optional :depth, type: Integer
             optional :template_changed, type: Boolean
             optional :translated_in, type: Array
-            # Aliases for target_klass_slug
             optional :target_klass_slug
-            optional :target_klass_name
-            optional :target_entry_name
             # End Aliases
             optional :seo_title
             optional :meta_keywords

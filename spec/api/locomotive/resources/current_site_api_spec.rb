@@ -6,7 +6,7 @@ module Locomotive
       include_context 'api site setup'
 
       let(:params) { { locale: :en } }
-      let(:url_prefix) { '/locomotive/acmi/api_test/v2/current_site' }
+      let(:url_prefix) { '/locomotive/acmi/api/v3/current_site' }
 
       context 'authenticated site' do
         include_context 'api header setup'

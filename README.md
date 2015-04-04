@@ -1,6 +1,6 @@
 # Locomotive
 
-[![Build Status](https://travis-ci.org/locomotivecms/engine.svg?branch=master)](https://travis-ci.org/locomotivecms/engine) [![Code Climate](https://codeclimate.com/github/locomotivecms/engine/badges/gpa.svg)](https://codeclimate.com/github/locomotivecms/engine) [![Dependency Status](https://gemnasium.com/locomotivecms/engine.svg)](https://gemnasium.com/locomotivecms/engine) [![Coverage Status](https://img.shields.io/coveralls/locomotivecms/engine.svg)](https://coveralls.io/r/locomotivecms/engine?branch=master)
+[![Build Status](https://travis-ci.org/locomotivecms/engine.svg?branch=master)](https://travis-ci.org/locomotivecms/engine) [![Code Climate](https://codeclimate.com/github/locomotivecms/engine/badges/gpa.svg)](https://codeclimate.com/github/locomotivecms/engine) [![Dependency Status](https://gemnasium.com/locomotivecms/engine.svg)](https://gemnasium.com/locomotivecms/engine) [![Coverage Status](https://img.shields.io/coveralls/locomotivecms/engine.svg)](https://coveralls.io/r/locomotivecms/engine?branch=master) [![Join the chat at https://gitter.im/locomotivecms/engine](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/locomotivecms/engine?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 ![Locomotive Screenshot](https://wagonapp.s3.amazonaws.com/doc/v3_backoffice.png)
 
@@ -17,6 +17,11 @@ Visit the Locomotive official website [here](http://www.locomotivecms.com) for m
 ## Development Status ##
 
 As you can see from the commit logs, we are intensively working on the new V3 version. We kept all the features from our stable [v2 version](https://github.com/locomotivecms/engine/tree/v2.5.x), we just replace the UI, upgrade the gems and refactor our code.
+
+**[UPDATES]** Finally, we've been doing much more than we planed at first. We extracted the rendering functionality from the Engine and make it a gem named [Steam](https://github.com/locomotivecms/steam). This gem is also now used by [Wagon](https://github.com/locomotivecms/wagon) (version 2.0 in progress) which makes sure you get the same result between Wagon and Engine when you preview a page.
+And last but not least, we added a Ruby API client for Locomotive that we called [Coal](https://github.com/locomotivecms/coal). That client consumes the API from Engine which embeds now GrapeAPI. [Nic Boie](https://github.com/boie0025) is in charge of it. Kudos to him!
+
+**TRELLO** [here](https://trello.com/b/kRiy1dZu/locomotive-v3)
 
 ## Getting Started ##
 
@@ -42,9 +47,11 @@ Here is a list of the main gems used to power the Locomotive backend:
 - Mongoid 4.0 - *Object-Document-Mapper for MongoDB*
 - Devise 3.4  - *Authentication*
 - Carrierwave - *Upload*
+- Pundit      - *Permissions*
 
 ## Community ##
 
+- [Gitter](https://gitter.im/locomotivecms/engine?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) for technical discussions.
 - Get help or discuss Locomotive at the [Locomotive Google group](https://groups.google.com/forum/?fromgroups#!forum/locomotivecms)
 - [Follow us on twitter](http://twitter.com/locomotivecms)
 

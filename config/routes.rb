@@ -60,75 +60,8 @@ Locomotive::Engine.routes.draw do
       get :new_locale
     end
 
-    # Public: rendering + create public content entries
-
-    scope :preview do
-
-      # sitemap
-      get '/sitemap.xml', to: 'public/sitemaps#show', format: 'xml'
-
-      # robots.txt
-      get '/robots.txt', to: 'public/robots#show', format: 'txt'
-
-      # public content entry submissions
-      resources :locomotive_entry_submissions, controller: 'public/content_entries', path: 'entry_submissions/:slug'
-
-      constraints Locomotive::Routing::PostContentEntryConstraint.new do
-        post  '/',    to: 'public/content_entries#create'
-        post '*path', to: 'public/content_entries#create'
-      end
-
-      get '/',        to: 'public/pages#show', as: :preview
-      match '*path'   => 'public/pages#show', via: :all
-
-    end
+    # Preview mode handled by Steam
+    mount Locomotive::Steam::Server.to_app => '/preview', as: 'preview', anchor: false
 
   end
-end
-
-Rails.application.routes.draw do
-
-
-  mount Locomotive::API => '/locomotive(/:site_handle)/api_test'
-
-  # API
-  namespace :locomotive, module: 'locomotive' do
-    namespace :api do
-
-      get 'version', to: 'version#show'
-
-      resources :tokens, only: [:create, :destroy]
-
-      resource  :current_site, controller: 'current_site', only: [:show, :update, :destroy]
-
-      resources :memberships, only: [:index, :show, :create, :update, :destroy]
-
-      resource  :my_account, controller: 'my_account', only: [:show, :create, :update]
-
-      with_options only: [:index, :show, :create, :update, :destroy] do |api|
-
-        api.resources :accounts
-
-        api.resources :sites
-
-        api.resources :pages
-
-        api.resources :snippets
-
-        api.resources :content_types
-
-        api.resources :content_entries, path: 'content_types/:slug/entries' do
-          delete :index, on: :collection, action: :destroy_all
-        end
-
-        api.resources :theme_assets
-
-        api.resources :translations
-
-        api.resources :content_assets
-      end
-
-    end
-  end
-
 end

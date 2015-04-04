@@ -41,4 +41,6 @@ Dummy::Application.configure do
     :port => 1025,
     :domain => "example.com"
   }
+
+  # config.log_level = :info
 end

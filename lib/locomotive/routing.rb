@@ -1,1 +1,0 @@
-require 'locomotive/routing/post_content_entry_constraint'

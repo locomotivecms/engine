@@ -3,17 +3,19 @@ module Locomotive
     class Site
 
       def initialize(app, opts = {})
-        @app    = app
+        @app = app
       end
 
       def call(env)
-        env['locomotive.site'] = fetch_site(env)
+        env['locomotive.site'] = env['steam.site'] = fetch_site(env)
         @app.call(env)
       end
 
       def fetch_site(env)
         request = Rack::Request.new(env)
         handle  = site_handle(request)
+
+        return nil if handle == 'api'
 
         Locomotive.log "[fetch site] host = #{request.host} / site_handle = #{handle.inspect}"
 
@@ -38,7 +40,6 @@ module Locomotive
       end
 
       def site_handle(request)
-
         if handle = request.env['HTTP_X_LOCOMOTIVE_SITE_HANDLE']
           return handle
         elsif request.path_info =~ site_handle_regexp

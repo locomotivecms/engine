@@ -3,11 +3,12 @@ require 'spec_helper'
 module Locomotive
   module Resources
     describe MyAccountAPI do
+
       include_context 'api site setup'
 
       let!(:account) { create(:account) }
       let(:params) { { locale: :en } }
-      let(:url_prefix) { '/locomotive/acmi/api_test/v2/my_account' }
+      let(:url_prefix) { '/locomotive/acmi/api/v3/my_account' }
       let(:post_request) { post("#{url_prefix}.json", account: account_params) }
 
       context 'authenticated site' do
@@ -28,7 +29,7 @@ module Locomotive
             let(:put_request) { put("#{url_prefix}.json", account: account_params) }
             let(:account_params) { { name: 'changed name' } }
             it 'changes the name' do
-              expect{ put_request }.to change{ account.reload[:name] }.to 'changed name'
+              expect { put_request }.to change{ account.reload[:name] }.to 'changed name'
             end
           end
         end
@@ -57,9 +58,26 @@ module Locomotive
 
         context 'JSON' do
           it 'creates the account' do
-            expect{ post_request }.to change{ Account.count }.by(1)
+            expect { post_request }.to change { Account.count }.by(1)
+          end
+
+          context 'invalid account' do
+            let(:account_params) { { name: 'Wrong account' } }
+
+            it 'does not create the account' do
+              expect { post_request }.to change { Account.count }.by(0)
+            end
+
+            it 'sends the errors in the JSON response' do
+              post_request
+              expect(parsed_response[:error]).to eq('Resource invalid')
+              expect(parsed_response[:attributes].keys.sort).to eq(['email', 'password'])
+              expect(["can't be blank", "is missing"]).to include(parsed_response[:attributes].values.first.first)
+            end
+
           end
         end
+
       end
 
     end

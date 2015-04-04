@@ -1,1 +1,3 @@
-= render_cell 'locomotive/sidebar', :show, site: nil, list: [:my_account, { icon: 'fa-suitcase', label: t(:sites, scope: 'locomotive.shared.header'), url: sites_path }]
+= render 'locomotive/shared/sidebar/my_account'
+
+= render 'locomotive/shared/sidebar/link', icon: 'fa-suitcase', label: t(:sites, scope: 'locomotive.shared.header'), url: sites_path

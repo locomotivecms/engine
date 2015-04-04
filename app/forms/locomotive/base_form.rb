@@ -1,6 +1,7 @@
 module Locomotive
 
   class BaseForm
+
     include ActiveModel::Model
     include ActiveModel::Serialization
     include ActiveModel::Dirty

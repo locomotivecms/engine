@@ -6,7 +6,7 @@ module Locomotive
       include_context 'api site setup'
 
       let(:params) { { locale: :en } }
-      let(:url_prefix) { '/locomotive/acmi/api_test/v2/pages' }
+      let(:url_prefix) { '/locomotive/acmi/api/v3/pages' }
       let(:page) { create(:page, :index, site: site) }
 
       context 'authenticated site' do
@@ -52,7 +52,7 @@ module Locomotive
 
         describe "PUT update" do
           context 'JSON' do
-            let(:page_params) { page.serializable_hash.merge(title: 'changed title') }
+            let(:page_params) { page.serializable_hash.merge(title: 'changed title').tap { |p| p.delete('target_klass_name') } }
             let(:put_request) { put("#{url_prefix}/#{page.id}.json", page: page_params) }
 
             it 'changes the page title' do

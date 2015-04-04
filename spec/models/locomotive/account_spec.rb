@@ -44,20 +44,20 @@ describe Locomotive::Account do
       @account = FactoryGirl.build(:account)
       @site_1 = FactoryGirl.build(:site,memberships: [FactoryGirl.build(:membership, account: @account)])
       @site_2 = FactoryGirl.build(:site,memberships: [FactoryGirl.build(:membership, account: @account)])
-      @account.stubs(:sites).returns([@site_1, @site_2])
-      Locomotive::Site.any_instance.stubs(:save).returns(true)
+      allow(@account).to receive(:sites).and_return([@site_1, @site_2])
+      allow_any_instance_of(Locomotive::Site).to receive(:save).and_return(true)
     end
 
     it 'also deletes memberships' do
-      Locomotive::Site.any_instance.stubs(:admin_memberships).returns(['junk', 'dirt'])
-      @site_1.memberships.first.expects(:destroy)
-      @site_2.memberships.first.expects(:destroy)
+      allow_any_instance_of(Locomotive::Site).to receive(:admin_memberships).and_return(['junk', 'dirt'])
+      expect(@site_1.memberships.first).to receive(:destroy)
+      expect(@site_2.memberships.first).to receive(:destroy)
       @account.destroy
     end
 
     it 'raises an exception if account is the only remaining admin' do
-      @site_1.memberships.first.stubs(:admin?).returns(true)
-      @site_1.stubs(:admin_memberships).returns(['junk'])
+      allow(@site_1.memberships.first).to receive(:admin?).and_return(true)
+      allow(@site_1).to receive(:admin_memberships).and_return(['junk'])
       expect {
         @account.destroy
       }.to raise_error(Exception, "One admin account is required at least")

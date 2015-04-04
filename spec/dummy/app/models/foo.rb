@@ -1,7 +1,7 @@
-class Foo
+# class Foo
 
-  include Mongoid::Document
+#   include Mongoid::Document
 
-  field :name
+#   field :name
 
-end
+# end

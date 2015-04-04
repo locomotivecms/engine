@@ -8,7 +8,7 @@ describe 'locomotive/memberships/new', type: :view do
   let(:membership)  { site.memberships.first }
 
   before do
-    view.stubs(:current_site).returns site
+    allow(view).to receive(:current_site).and_return(site)
     assign(:membership, membership)
   end
 
