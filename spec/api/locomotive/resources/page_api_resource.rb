@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Locomotive::API::PageResource do
+describe Locomotive::API::Resources::PageResource do
 
   include_context 'api site setup'
 

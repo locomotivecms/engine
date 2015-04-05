@@ -1,11 +1,13 @@
 module Locomotive
   module API
+    module Forms
 
-    class SnippetForm < BaseForm
+      class SnippetForm < BaseForm
 
-      attrs :name, :slug, :template
+        attrs :name, :slug, :template
+
+      end
 
     end
-
   end
 end

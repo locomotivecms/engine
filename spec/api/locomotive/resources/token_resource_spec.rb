@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Locomotive::API::TokenResource do
+describe Locomotive::API::Resources::TokenResource do
 
   include Rack::Test::Methods
   let(:account) { create :account }

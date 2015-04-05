@@ -1,13 +1,17 @@
 module Locomotive
   module API
-    class VersionResource < Grape::API
+    module Resources
 
-      resource :version do
+      class VersionResource < Grape::API
 
-        desc 'Show current engine version'
-        get do
-          { engine: Locomotive::VERSION }
+        resource :version do
+
+          desc 'Show current engine version'
+          get do
+            { engine: Locomotive::VERSION }
+          end
         end
+
       end
 
     end

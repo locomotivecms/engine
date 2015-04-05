@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Locomotive::API::VersionResource do
+describe Locomotive::API::Resources::VersionResource do
 
   include Rack::Test::Methods
 

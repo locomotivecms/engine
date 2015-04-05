@@ -1,4 +1,4 @@
 require 'spec_helper'
 
-describe Locomotive::API::PageForm do
+describe Locomotive::API::Forms::PageForm do
 end

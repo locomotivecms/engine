@@ -1,80 +1,84 @@
 module Locomotive
   module API
-    class MembershipResource < Grape::API
+    module Resources
 
-      resource :memberships do
-        entity_klass = Locomotive::API::MembershipEntity
+      class MembershipResource < Grape::API
 
-        before do
-          setup_resource_methods_for(:memberships)
-          authenticate_locomotive_account!
-        end
+        resource :memberships do
+          entity_klass = Entities::MembershipEntity
 
-        desc 'Index of memberships'
-        get :index do
-          authorize(memberships, :index?)
+          before do
+            setup_resource_methods_for(:memberships)
+            authenticate_locomotive_account!
+          end
 
-          present memberships, with: entity_klass
-        end
+          desc 'Index of memberships'
+          get :index do
+            authorize(memberships, :index?)
+
+            present memberships, with: entity_klass
+          end
 
 
-        desc "Show a membership"
-        params do
-          requires :id, type: String, desc: 'Membership ID'
-        end
-        route_param :id do
-          get do
-            authorize(membership, :show?)
+          desc "Show a membership"
+          params do
+            requires :id, type: String, desc: 'Membership ID'
+          end
+          route_param :id do
+            get do
+              authorize(membership, :show?)
+
+              present membership, with: entity_klass
+            end
+          end
+
+
+          desc 'Create a membership'
+          params do
+            requires :membership, type: Hash do
+              optional :role
+              optional :account_id
+            end
+          end
+          post do
+            authorize Membership, :create?
+
+            form = form_klass.new(membership_params)
+            persist_from_form(form)
+
+            present membership, with: entity_klass, policy: current_policy
+          end
+
+
+          desc 'Update a membership'
+          params do
+            requires :id, type: String, desc: 'Membership ID'
+            requires :membership, type: Hash do
+              optional :role
+              optional :account_id
+            end
+          end
+          put ':id' do
+            authorize membership, :update?
+            form = form_klass.new(membership_params)
+            persist_from_form(form)
 
             present membership, with: entity_klass
           end
-        end
 
 
-        desc 'Create a membership'
-        params do
-          requires :membership, type: Hash do
-            optional :role
-            optional :account_id
+          desc "Delete a membership"
+          params do
+            requires :id, type: String, desc: 'Membership ID'
           end
-        end
-        post do
-          authorize Membership, :create?
+          delete ':id' do
+            authorize membership, :destroy?
 
-          form = form_klass.new(membership_params)
-          persist_from_form(form)
+            membership.destroy
 
-          present membership, with: entity_klass, policy: current_policy
-        end
-
-
-        desc 'Update a membership'
-        params do
-          requires :id, type: String, desc: 'Membership ID'
-          requires :membership, type: Hash do
-            optional :role
-            optional :account_id
+            present membership, with: entity_klass
           end
-        end
-        put ':id' do
-          authorize membership, :update?
-          form = form_klass.new(membership_params)
-          persist_from_form(form)
 
-          present membership, with: entity_klass
-        end
-
-
-        desc "Delete a membership"
-        params do
-          requires :id, type: String, desc: 'Membership ID'
-        end
-        delete ':id' do
-          authorize membership, :destroy?
-
-          membership.destroy
-
-          present membership, with: entity_klass
         end
 
       end

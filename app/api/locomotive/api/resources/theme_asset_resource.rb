@@ -1,93 +1,96 @@
 module Locomotive
   module API
-    class ThemeAssetResource < Grape::API
+    module Resources
 
-      resource :theme_assets do
+      class ThemeAssetResource < Grape::API
 
-        entity_klass = Locomotive::API::ThemeAssetEntity
+        resource :theme_assets do
 
-        before do
-          setup_resource_methods_for(:theme_assets)
-          authenticate_locomotive_account!
-        end
+          entity_klass = Entities::ThemeAssetEntity
 
-        desc 'Index of theme assets'
-        get :index do
-          auth :index?
-
-          present theme_assets, with: entity_klass
-        end
-
-        desc 'Show a theme asset'
-        params do
-          requires :id, type: String, desc: 'Theme asset ID'
-        end
-        route_param :id do
-          get do
-            auth :show?
-
-            present theme_asset, with: entity_klass, policy: current_policy
+          before do
+            setup_resource_methods_for(:theme_assets)
+            authenticate_locomotive_account!
           end
-        end
 
-        desc 'Create a theme asset'
-        params do
-          requires :theme_asset, type: Hash do
-            requires :source
-            optional :local_path
-            optional :content_type, type: String
-            optional :folder
-            optional :plain_text_name
-            optional :plain_text_type
-            optional :performing_plain_text
+          desc 'Index of theme assets'
+          get :index do
+            auth :index?
+
+            present theme_assets, with: entity_klass
           end
-        end
-        post do
-          authorize ThemeAsset, :create?
 
-          form = form_klass.new(theme_asset_params)
-          persist_from_form(form)
-
-          present theme_asset, with: entity_klass, policy: current_policy(theme_asset)
-        end
-
-        desc "Update a theme asset"
-        params do
-          requires :id, type: String, desc: 'Theme asset ID'
-          requires :theme_asset, type: Hash do
-            optional :source
-            optional :local_path
-            optional :content_type, type: String
-            optional :folder
-            optional :plain_text_name
-            optional :plain_text_type
-            optional :performing_plain_text
+          desc 'Show a theme asset'
+          params do
+            requires :id, type: String, desc: 'Theme asset ID'
           end
-        end
-        put ':id' do
-          authorize theme_asset, :update?
+          route_param :id do
+            get do
+              auth :show?
 
-          form = form_klass.new(theme_asset_params)
-          persist_from_form(form)
+              present theme_asset, with: entity_klass, policy: current_policy
+            end
+          end
 
-          present theme_asset, with: entity_klass, policy: current_policy(theme_asset)
-        end
+          desc 'Create a theme asset'
+          params do
+            requires :theme_asset, type: Hash do
+              requires :source
+              optional :local_path
+              optional :content_type, type: String
+              optional :folder
+              optional :plain_text_name
+              optional :plain_text_type
+              optional :performing_plain_text
+            end
+          end
+          post do
+            authorize ThemeAsset, :create?
 
-        desc "Delete a theme asset"
-        params do
-          requires :id, type: String, desc: 'Theme asset ID'
-        end
-        delete ':id' do
-          object_auth :destroy?
+            form = form_klass.new(theme_asset_params)
+            persist_from_form(form)
 
-          theme_asset.destroy
+            present theme_asset, with: entity_klass, policy: current_policy(theme_asset)
+          end
 
-          present theme_asset, with: entity_klass
+          desc "Update a theme asset"
+          params do
+            requires :id, type: String, desc: 'Theme asset ID'
+            requires :theme_asset, type: Hash do
+              optional :source
+              optional :local_path
+              optional :content_type, type: String
+              optional :folder
+              optional :plain_text_name
+              optional :plain_text_type
+              optional :performing_plain_text
+            end
+          end
+          put ':id' do
+            authorize theme_asset, :update?
+
+            form = form_klass.new(theme_asset_params)
+            persist_from_form(form)
+
+            present theme_asset, with: entity_klass, policy: current_policy(theme_asset)
+          end
+
+          desc "Delete a theme asset"
+          params do
+            requires :id, type: String, desc: 'Theme asset ID'
+          end
+          delete ':id' do
+            object_auth :destroy?
+
+            theme_asset.destroy
+
+            present theme_asset, with: entity_klass
+          end
+
         end
 
       end
 
     end
   end
-
 end

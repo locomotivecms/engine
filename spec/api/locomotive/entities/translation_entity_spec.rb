@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Locomotive::API::TranslationEntity do
+describe Locomotive::API::Entities::TranslationEntity do
 
   subject { described_class }
 

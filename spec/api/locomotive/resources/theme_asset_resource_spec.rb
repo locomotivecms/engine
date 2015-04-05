@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Locomotive::API::ThemeAssetResource do
+describe Locomotive::API::Resources::ThemeAssetResource do
 
   include_context 'api site setup'
 

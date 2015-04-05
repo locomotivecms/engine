@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Locomotive::API::EditableElementEntity do
+describe Locomotive::API::Entities::EditableElementEntity do
 
   subject { described_class }
 

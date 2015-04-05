@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Locomotive::API::SnippetEntity do
+describe Locomotive::API::Entities::SnippetEntity do
 
   subject { described_class }
 

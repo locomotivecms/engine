@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Locomotive::API::ThemeAssetEntity do
+describe Locomotive::API::Entities::ThemeAssetEntity do
 
   before { Time.zone = ActiveSupport::TimeZone['Chicago'] }
 

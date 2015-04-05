@@ -1,19 +1,12 @@
 require 'active_support/all'
 require 'pundit'
 
-require_relative 'api/entities'
-require_relative 'api/resources'
-require_relative 'api/forms'
-require_relative 'api/middlewares'
-require_relative 'api/helpers'
-require_relative 'api/exception_rescuers'
-
 module Locomotive
   module API
 
     def self.to_app
       Rack::Builder.new do
-        use Locomotive::API::LoggerMiddleware
+        use Locomotive::API::Middlewares::LoggerMiddleware
         run Locomotive::API::Dispatch
       end
     end
@@ -21,9 +14,9 @@ module Locomotive
     class Dispatch < Grape::API
 
       helpers Pundit
-      helpers API::AuthenticationHelper
-      helpers API::ParamsHelper
-      helpers API::PersistenceHelper
+      helpers API::Helpers::AuthenticationHelper
+      helpers API::Helpers::ParamsHelper
+      helpers API::Helpers::PersistenceHelper
 
       include API::ExceptionRescuers
 
@@ -35,17 +28,17 @@ module Locomotive
 
       prefix 'v3'
 
-      mount API::TokenResource
-      mount API::AccountResource
-      mount API::TranslationResource
-      mount API::VersionResource
-      mount API::ThemeAssetResource
-      mount API::SiteResource
-      mount API::SnippetResource
-      mount API::PageResource
-      mount API::MyAccountResource
-      mount API::MembershipResource
-      mount API::CurrentSiteResource
+      mount API::Resources::TokenResource
+      mount API::Resources::AccountResource
+      mount API::Resources::TranslationResource
+      mount API::Resources::VersionResource
+      mount API::Resources::ThemeAssetResource
+      mount API::Resources::SiteResource
+      mount API::Resources::SnippetResource
+      mount API::Resources::PageResource
+      mount API::Resources::MyAccountResource
+      mount API::Resources::MembershipResource
+      mount API::Resources::CurrentSiteResource
 
       route :any, '*path' do
         error!({ error: "Unrecognized request path: #{params[:path]}" }, 404)

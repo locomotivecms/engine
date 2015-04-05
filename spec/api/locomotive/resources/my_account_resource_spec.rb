@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Locomotive::API::MyAccountResource do
+describe Locomotive::API::Resources::MyAccountResource do
 
   include_context 'api site setup'
 

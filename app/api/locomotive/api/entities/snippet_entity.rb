@@ -1,11 +1,13 @@
 module Locomotive
   module API
+    module Entities
 
-    class SnippetEntity < BaseEntity
+      class SnippetEntity < BaseEntity
 
-      expose :name, :slug, :template
+        expose :name, :slug, :template
+
+      end
 
     end
-
   end
 end
