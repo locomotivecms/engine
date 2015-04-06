@@ -10,22 +10,43 @@ module Locomotive
         attr_accessor :_persisted, :_policy
 
         class << self
+
           def attributes
             @attributes
           end
 
           # Set up accessor methods, and define setters to notify Dirty that they've
-          #  changed.
+          # changed.
           def attrs(*args)
-            self.define_attribute_methods(*args)
-            @attributes = [attributes, *args].uniq.compact
-            @attributes.each do |attribute|
-              define_method("#{attribute}=") do |val|
-                send("#{attribute}_will_change!") unless send(attribute) == val
-                instance_variable_set("@#{attribute}", val)
+            options = args.last.is_a?(Hash) ? args.pop : { localized: false }
+
+            @attributes ||= []
+
+            args.each do |name|
+              @attributes << define_attribute(name, options[:localized])
+
+              if options[:localized]
+                @attributes << define_attribute(:"#{name}_translations")
               end
             end
-            self.send(:attr_reader, *@attributes)
+          end
+
+          def define_attribute(name, localized = false)
+            # activemodel
+            define_attribute_method(name)
+
+            # getter
+            self.send(:attr_reader, name)
+
+            # setter
+            define_method(:"#{name}=") do |val|
+              if localized && val.is_a?(Hash)
+                self.send(:"#{name}_translations=", val)
+              else
+                send("#{name}_will_change!") unless send(name) == val
+                instance_variable_set("@#{name}", val)
+              end
+            end
           end
 
         end

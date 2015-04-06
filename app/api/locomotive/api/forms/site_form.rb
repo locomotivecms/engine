@@ -4,9 +4,9 @@ module Locomotive
 
       class SiteForm < BaseForm
 
-        attrs :name, :handle, :seo_title, :meta_keywords, :meta_description,
-              :robots_txt, :locales, :domains, :timezone
+        attrs :name, :handle, :robots_txt, :locales, :domains, :timezone
 
+        attrs :seo_title, :meta_keywords, :meta_description, localized: true
 
         # Make sure locales and domains are in arrays.
         def locales
@@ -14,7 +14,7 @@ module Locomotive
         end
 
         def domains
-          [*@locales]
+          [*@domains]
         end
 
       end

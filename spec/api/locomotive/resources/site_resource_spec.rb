@@ -66,6 +66,18 @@ describe Locomotive::API::Resources::SiteResource do
             expect{ put_request }.to change{ Locomotive::Site.find(new_site.id).name }
               .to('changed name')
           end
+
+          context 'localized params' do
+            let(:new_site_params) do
+              new_site.serializable_hash.merge(seo_title: { 'en' => 'Hi', 'fr' => 'Bonjour' })
+            end
+
+            it 'changes the site seo_title' do
+              expect{ put_request }.to change{ Locomotive::Site.find(new_site.id).seo_title_translations }
+                .to({ 'en' => 'Hi', 'fr' => 'Bonjour' })
+            end
+
+          end
         end
       end
 
