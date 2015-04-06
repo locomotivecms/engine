@@ -6,7 +6,7 @@ module Locomotive
     include ActiveModel::Serialization
     include ActiveModel::Dirty
 
-    attr_accessor :_persisted, :_policy
+    attr_accessor :_persisted, :_policy, :_site
 
     class << self
       def attributes

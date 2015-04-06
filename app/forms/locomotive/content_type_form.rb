@@ -1,12 +1,57 @@
 module Locomotive
   class ContentTypeForm < BaseForm
 
+    attr_accessor :_id
+
     attrs :name, :slug, :description, :label_field_name,
           :order_by, :order_direction, :group_by_field_id,
           :group_by_field_name, :public_submission_enabled,
           :public_submission_account_emails, :raw_item_template,
           :entries_custom_fields_attributes
 
+    # If the current content type exists, look up the fields and add their IDs
+    #  to the attributes hash.  If not, set the entries_custom_fields_attributes
+    #  as-is
+    def entries_custom_fields_attributes=(fields)
+      entries_custom_fields_attributes_will_change!
+      @entries_custom_fields_attributes =
+        if existing_content_type.present?
+          fields.map do |attrs|
+            if field = existing_content_type.find_entries_custom_field(attrs[:name])
+              attrs[:_id] = field._id
+              if attrs[:_destroy] # slim down hash if destroying.
+                attrs = { _id: attrs[:_id], _destroy: true }
+              end
+            end
+            attrs
+          end
+        else
+          fields
+        end
+    end
+
+    def entries_custom_fields
+      list = self.__source.ordered_entries_custom_fields
+      list ? list.map(&:as_json) : []
+    end
+
+    private
+
+    def existing_content_type
+      @existing_content_type ||= content_type_service.find_by_slug(slug)
+    end
+
+    delegate :find_by_slug, to: :content_type_service
+
+    def content_type_service
+      @content_type_service ||= ContentTypeService.new(_site)
+    end
+
+    def custom_field_finder_service
+      @custom_field_finder_service ||= begin
+        CustomFieldFinderService.new(existing_content_type)
+      end
+    end
 
     # # lookup content type by slug
     # content_type = ContentTypeService.find_by_slug(attr[:slug])
