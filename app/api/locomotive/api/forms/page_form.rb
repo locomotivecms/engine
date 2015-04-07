@@ -9,7 +9,7 @@ module Locomotive
               :listed, :published, :templatized, :is_layout, :allow_layout,
               :templatized_from_parent, :fullpath, :localized_fullpaths, :depth,
               :template_changed, :translated_in, :seo_title, :meta_keywords,
-              :meta_description, :target_klass_slug
+              :meta_description, :target_klass_slug, :editable_elements
 
       end
 
