@@ -6,7 +6,7 @@ describe Locomotive::CustomFieldService do
 
   let(:content_type)  { build(:content_type, :with_select_field) }
   let(:field)         { content_type.entries_custom_fields.last }
-  let(:service)       { Locomotive::CustomFieldService.new(field) }
+  let(:service)       { described_class.new(field) }
 
   describe '#update_select_options' do
 

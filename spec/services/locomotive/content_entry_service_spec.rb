@@ -7,7 +7,7 @@ describe Locomotive::ContentEntryService do
   let(:site)          { create('test site') }
   let(:account)       { create(:account) }
   let(:content_type)  { create_content_type }
-  let(:service)       { Locomotive::ContentEntryService.new(content_type, account) }
+  let(:service)       { described_class.new(content_type, account) }
 
   describe '#all' do
 

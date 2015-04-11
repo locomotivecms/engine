@@ -26,6 +26,7 @@ require 'dragonfly'
 require 'pundit'
 require 'sanitize'
 require 'stringex'
+require 'bazaar'
 require 'csv'
 
 require 'compass-rails'
