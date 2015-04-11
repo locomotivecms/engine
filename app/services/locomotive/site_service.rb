@@ -6,7 +6,7 @@ module Locomotive
         site_a.name.downcase <=> site_b.name.downcase
       end
 
-      @account.sites.order_by(:name.asc).to_a.sort(&sorter)
+      account.sites.order_by(:name.asc).to_a.sort(&sorter)
     end
 
     def build_new

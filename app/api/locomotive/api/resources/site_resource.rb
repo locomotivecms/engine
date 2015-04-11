@@ -8,6 +8,14 @@ module Locomotive
         # from the other APIs.  Any changes to the persistence layer will need to
         # be manually applied to this API.  N.B.
 
+        helpers do
+
+          def service
+            @service ||= Locomotive::SiteService.new(current_account)
+          end
+
+        end
+
         resource :sites do
           entity_klass = Entities::SiteEntity
 
@@ -62,10 +70,8 @@ module Locomotive
             authorize Site, :create?
 
             site_form = Forms::SiteForm.new(permitted_params[:site])
-            site = Locomotive::Site.new(site_form.serializable_hash)
-            site.memberships.build account: current_account, role: 'admin'
+            site = service.create(site_form.serializable_hash)
 
-            site.save
             present site, with: entity_klass
           end
 

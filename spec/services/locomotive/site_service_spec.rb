@@ -7,6 +7,13 @@ describe Locomotive::SiteService do
   let(:account) { create(:account) }
   let(:service) { described_class.new(account) }
 
+  describe '#list' do
+
+    subject { service.list }
+
+    it { is_expected.to eq [] }
+  end
+
   describe '#build_new' do
 
     subject { service.build_new }
