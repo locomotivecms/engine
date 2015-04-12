@@ -68,7 +68,7 @@ module Locomotive
           end
           post do
             authorize Page, :create?
-            form = form_klass.new(site, page_params)
+            form = form_klass.new(page_params)
             persist_from_form(form)
 
             present page, with: entity_klass

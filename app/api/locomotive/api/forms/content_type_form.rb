@@ -12,7 +12,7 @@ module Locomotive
               :entries_custom_fields, # alias to entries_custom_fields_attributes
               :entries_custom_fields_attributes
 
-
+        # @param [ Site ] the current site, or site to scope to
         def initialize(site, attributes = {})
           _site = site
           super(attributes)
@@ -36,10 +36,23 @@ module Locomotive
             end
         end
 
-        # def entries_custom_fields
-        #   list = self.__source.ordered_entries_custom_fields
-        #   list ? list.map(&:as_json) : []
-        # end
+        # TODO: figure out what to do without existing_content_type
+        def group_by_field_name=(name)
+          super
+          if existing_content_type.present?
+            field = existing_content_type.find_entries_custom_field(name)
+            self.group_by_field_id = field.try(:_id)
+          end
+        end
+
+        # TODO: figure out what to do without existing_content_type
+        def public_submission_account_emails=(emails)
+          if existing_content_type.present?
+            existing_content_type.public_submission_accounts = emails.collect do |email|
+              Locomotive::Account.where(email: email).first
+            end.compact.collect(&:id)
+          end
+        end
 
         private
 
@@ -59,38 +72,6 @@ module Locomotive
           end
         end
 
-        # # lookup content type by slug
-        # content_type = ContentTypeService.find_by_slug(attr[:slug])
-        # fields.each
-        #   # lookup field by name
-        #   if field = CustomFieldService.find_by_name(content_type, attr[:name])
-        #     # existing field
-        #     attr[:_id] = field._id
-        #   end
-        #
-
-        # override
-        # def entries_custom_fields=(fields)
-        #   entries_custom_fields_will_change! unless entries_custom_fields == fields
-        #   destroyed_fields = []
-        #
-        #   fields.each do |attributes|
-        #     id_or_name  = attributes.delete('id') || attributes.delete('_id') || attributes['name']
-        #     field       = self.__source.find_entries_custom_field(id_or_name)
-        #
-        #     if field && !!attributes.delete('_destroy')
-        #       destroyed_fields << { _id: field._id, _destroy: true }
-        #       next
-        #     end
-        #
-        #     field ||= self.__source.entries_custom_fields.build
-        #
-        #     field.from_presenter(attributes)
-        #   end
-        #
-        #   # shift to the accepts_nested_attributes function to delete fields
-        #   self.__source.entries_custom_fields_attributes = destroyed_fields
-        # end
       end
     end
   end
