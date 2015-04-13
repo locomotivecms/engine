@@ -62,11 +62,11 @@ module Locomotive
           false
         end
 
-        def attributes
-          self.class.attributes.inject({}) do |hash, attribute|
-            hash.merge(attribute => send(attribute))
-          end
-        end
+        # def attributes
+        #   self.class.attributes.inject({}) do |hash, attribute|
+        #     hash.merge(attribute => send(attribute))
+        #   end
+        # end
 
       end
 

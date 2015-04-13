@@ -32,5 +32,22 @@ describe Locomotive::SiteService do
 
   end
 
+  describe '#create!' do
+
+    let(:attributes) { { name: 'Acme' } }
+    subject { service.create!(attributes) }
+
+    it { expect { subject }.to change { Locomotive::Site.count }.by(1) }
+
+    context 'with error' do
+
+      let(:attributes) { {} }
+
+      it { expect { subject }.to raise_error }
+
+    end
+
+  end
+
 
 end

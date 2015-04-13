@@ -70,7 +70,7 @@ module Locomotive
             authorize Site, :create?
 
             site_form = Forms::SiteForm.new(permitted_params[:site])
-            site = service.create(site_form.serializable_hash)
+            site = service.create!(site_form.serializable_hash)
 
             present site, with: entity_klass
           end
@@ -96,7 +96,7 @@ module Locomotive
 
             site_form = Forms::SiteForm.new(permitted_params[:site])
             site.assign_attributes(site_form.serializable_hash)
-            site.save
+            site.save!
 
             present site, with: entity_klass
           end

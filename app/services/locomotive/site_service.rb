@@ -13,7 +13,7 @@ module Locomotive
       Site.new(handle: unique_handle)
     end
 
-    def create(attributes)
+    def create(attributes, raise_if_not_valid = false)
       if attributes[:handle].blank?
         attributes[:handle] = unique_handle
       end
@@ -21,8 +21,12 @@ module Locomotive
       Site.new(attributes).tap do |site|
         site.memberships.build account: account, role: 'admin'
 
-        site.save
+        raise_if_not_valid ? site.save! : site.save
       end
+    end
+
+    def create!(attributes)
+      create(attributes, true)
     end
 
     private
