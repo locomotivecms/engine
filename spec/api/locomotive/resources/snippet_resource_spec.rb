@@ -35,8 +35,8 @@ describe Locomotive::API::Resources::SnippetResource do
         let(:snippet) { attributes_for(:snippet) }
 
         it 'creates a snippet' do
-          expect{ post("#{url_prefix}.json", snippet: snippet) }
-            .to change{ Locomotive::Snippet.count }.by(1)
+          expect { post("#{url_prefix}.json", snippet: snippet) }
+            .to change { Locomotive::Snippet.count }.by(1)
         end
       end
     end
@@ -45,19 +45,34 @@ describe Locomotive::API::Resources::SnippetResource do
       context 'JSON' do
         let(:updated_snippet) do
           snippet.serializable_hash.merge(name: 'new snippet')
-
         end
 
         let(:put_request) { put("#{url_prefix}/#{snippet.id}.json", snippet: updated_snippet) }
 
         it 'does not change the number of existing snippets' do
-          expect{ put_request }.to_not change{ Locomotive::Snippet.count }
+          expect { put_request }.to_not change { Locomotive::Snippet.count }
         end
 
         it 'updates the existing snippet' do
-          expect{ put_request }
-            .to change{ Locomotive::Snippet.find(snippet.id).name }.to('new snippet')
+          expect { put_request }
+            .to change { Locomotive::Snippet.find(snippet.id).name }.to('new snippet')
         end
+
+        context 'the snippet does not exist so create it' do
+
+          let(:snippet) { instance_double('Snippet', id: 'another-snippet') }
+          let(:updated_snippet) { { name: 'Another snippet', template: 'Hello world' } }
+
+          it 'changes the number of existing snippets' do
+            expect { put_request }.to change { Locomotive::Snippet.count }.by(1)
+          end
+
+          it 'creates a new snippet' do
+            expect { put_request }.to change { Locomotive::Snippet.where(slug: 'another-snippet').count }.by(1)
+          end
+
+        end
+
       end
     end
 
@@ -66,7 +81,7 @@ describe Locomotive::API::Resources::SnippetResource do
         let(:delete_request) { delete("#{url_prefix}/#{snippet.id}.json") }
 
         it 'deletes the translation' do
-          expect{ delete_request }.to change { Locomotive::Snippet.count }.by(-1)
+          expect { delete_request }.to change { Locomotive::Snippet.count }.by(-1)
         end
 
       end

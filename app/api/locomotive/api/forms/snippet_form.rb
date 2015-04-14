@@ -4,7 +4,8 @@ module Locomotive
 
       class SnippetForm < BaseForm
 
-        attrs :name, :slug, :template
+        attrs :name, :slug
+        attrs :template, localized: true
 
       end
 

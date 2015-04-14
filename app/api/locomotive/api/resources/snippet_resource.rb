@@ -51,7 +51,7 @@ module Locomotive
 
           desc "Update a Snippet"
           params do
-            requires :id, type: String, desc: 'Snippet ID'
+            requires :id, type: String, desc: 'Snippet ID (or slug for a new one)'
             requires :snippet, type: Hash do
               optional :name
               optional :slug
@@ -59,7 +59,12 @@ module Locomotive
             end
           end
           put ':id' do
-            authorize snippet, :update?
+            if @snippet = current_site.snippets.where(_id: params[:id]).first
+              authorize @snippet, :update?
+            else
+              authorize Snippet, :create?
+              @snippet = current_site.snippets.build
+            end
 
             form = form_klass.new(snippet_params)
             persist_from_form(form)
