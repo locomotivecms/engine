@@ -16,6 +16,9 @@ module Locomotive
     validates_presence_of   :site, :name, :slug, :template
     validates_uniqueness_of :slug, scope: :site_id
 
+    ## named scopes ##
+    scope :by_id_or_slug, ->(id_or_slug) { all.or({ _id: id_or_slug }, { slug: id_or_slug }) }
+
     ## behaviours ##
     slugify_from    :name
 

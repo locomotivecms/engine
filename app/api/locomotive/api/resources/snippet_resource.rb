@@ -59,7 +59,7 @@ module Locomotive
             end
           end
           put ':id' do
-            if @snippet = current_site.snippets.where(_id: params[:id]).first
+            if @snippet = current_site.snippets.by_id_or_slug(params[:id]).first
               authorize @snippet, :update?
             else
               authorize Snippet, :create?
