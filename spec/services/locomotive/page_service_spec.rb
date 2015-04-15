@@ -5,7 +5,7 @@ require 'spec_helper'
 describe Locomotive::PageService do
 
   let(:site)    { create_site }
-  let(:service) { Locomotive::PageService.new(site) }
+  let(:service) { described_class.new(site) }
 
   describe '.tree' do
 

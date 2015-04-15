@@ -7,7 +7,7 @@ describe Locomotive::MembershipService do
   let(:site)                { create('test site') }
   let(:current_membership)  { site.memberships.first }
   let(:policy)              { nil }
-  let(:service)             { Locomotive::MembershipService.new(site, policy) }
+  let(:service)             { described_class.new(site, policy) }
 
   describe '#create' do
 

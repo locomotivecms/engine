@@ -13,7 +13,7 @@ module Locomotive
 
     def new
       authorize Site
-      @site = Site.new
+      @site = service.build_new
       respond_with @site
     end
 

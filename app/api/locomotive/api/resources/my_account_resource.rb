@@ -28,7 +28,6 @@ module Locomotive
               optional :locale
               optional :encrypte_password
               optional :password_salt
-              optional :api_key
               optional :password
               optional :password_confirmation
             end

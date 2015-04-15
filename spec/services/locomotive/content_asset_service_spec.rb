@@ -5,7 +5,7 @@ require 'spec_helper'
 describe Locomotive::ContentAssetService do
 
   let(:site)    { create('test site') }
-  let(:service) { Locomotive::ContentAssetService.new(site) }
+  let(:service) { described_class.new(site) }
 
   describe '#list' do
 
