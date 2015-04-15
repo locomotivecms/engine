@@ -14,15 +14,15 @@ describe Locomotive::API::Resources::TranslationResource do
   end
 
   context 'no authenticated site' do
-    describe "GET /locomotive/acme/api/v3/translations/index.json" do
+    describe "GET /locomotive/acme/api/v3/translations.json" do
       context 'JSON' do
         it 'returns unauthorized message' do
-          get "#{url_prefix}/index.json"
+          get "#{url_prefix}.json"
           expect(subject).to eq({ 'error' => '401 Unauthorized' })
         end
 
         it 'returns unauthorized response' do
-          get "#{url_prefix}/index.json"
+          get "#{url_prefix}.json"
           expect(last_response.status).to eq(401)
         end
       end
@@ -35,7 +35,7 @@ describe Locomotive::API::Resources::TranslationResource do
     describe "GET index" do
       context 'JSON' do
 
-        before { get "#{url_prefix}/index.json" }
+        before { get "#{url_prefix}.json" }
 
         it 'returns a successful response' do
           expect(last_response).to be_successful

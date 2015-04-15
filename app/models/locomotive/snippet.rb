@@ -20,7 +20,7 @@ module Locomotive
     scope :by_id_or_slug, ->(id_or_slug) { all.or({ _id: id_or_slug }, { slug: id_or_slug }) }
 
     ## behaviours ##
-    slugify_from    :name
+    slugify_from :name
 
     ## methods ##
 

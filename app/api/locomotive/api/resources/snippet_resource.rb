@@ -14,7 +14,7 @@ module Locomotive
           end
 
           desc 'Index of snippets'
-          get :index do
+          get '/' do
             authorize Snippet, :index?
 
             present snippets, with: entity_klass
@@ -49,9 +49,9 @@ module Locomotive
             present snippet, with: entity_klass
           end
 
-          desc "Update a Snippet"
+          desc 'Update a Snippet (or create one)'
           params do
-            requires :id, type: String, desc: 'Snippet ID (or slug for a new one)'
+            requires :id, type: String, desc: 'Snippet ID or Slug'
             requires :snippet, type: Hash do
               optional :name
               optional :slug
