@@ -9,12 +9,8 @@ describe Locomotive::API::Entities::AccountEntity do
       name
       email
       locale
-      encrypted_password
-      password_salt
       api_key
       super_admin
-      password
-      password_confirmation
     )
 
   attributes.each do |exposure|

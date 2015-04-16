@@ -6,7 +6,7 @@ module Locomotive
     end
 
     def show?
-      super_admin? || @resource._id == membership.account_id
+      super_admin? || owner?
     end
 
     def create?
@@ -15,12 +15,18 @@ module Locomotive
     end
 
     def update?
-      super_admin? || @resource._id == membership.account_id
+      super_admin? || owner?
     end
 
     def destroy?
       # can not delete himself/herself
-      super_admin? && @resource._id != membership.account_id
+      super_admin? && !owner?
+    end
+
+    private
+
+    def owner?
+      @resource._id == membership.account_id
     end
 
   end
