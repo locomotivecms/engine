@@ -16,12 +16,19 @@ describe Locomotive::API::Resources::ThemeAssetResource do
 
     describe 'GET index' do
       context 'JSON' do
-        before { get "#{url_prefix}/index.json" }
+        before { get "#{url_prefix}.json" }
         it 'returns a successful response' do
-
           expect(last_response).to be_successful
         end
+      end
+    end
 
+    describe 'GET checksums' do
+      context 'JSON' do
+        before { get "#{url_prefix}/checksums.json" }
+        it 'returns a successful response' do
+          expect(last_response).to be_successful
+        end
       end
     end
 
