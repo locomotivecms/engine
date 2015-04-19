@@ -4,11 +4,7 @@ module Locomotive
 
       class ThemeAssetForm < BaseForm
 
-        attrs :source, :folder, :performing_plain_text
-
-        def performing_plain_text
-          false
-        end
+        attrs :source, :folder, :checksum
 
       end
 

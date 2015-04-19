@@ -51,7 +51,7 @@ module Locomotive
     end
 
     def local_path(short = false)
-      if short
+      if short && self.read_attribute(:local_path)
         # self.read_attribute(:local_path).gsub(/^#{self.content_type.to_s.pluralize}\//, '')
         self.read_attribute(:local_path).split('/')[1..-1].join('/')
       else
@@ -186,7 +186,9 @@ module Locomotive
 
     def calculate_checksum
       begin
-        self.checksum = Digest::MD5.hexdigest(self.source.read)
+        if self.checksum.blank?
+          self.checksum = Digest::MD5.hexdigest(self.source.read)
+        end
       rescue Errno::ENOENT => e
         # no file
       end

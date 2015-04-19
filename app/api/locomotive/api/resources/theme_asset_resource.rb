@@ -45,6 +45,7 @@ module Locomotive
             requires :theme_asset, type: Hash do
               requires :source
               optional :folder
+              optional :checksum
             end
           end
           post do
@@ -62,6 +63,7 @@ module Locomotive
             requires :theme_asset, type: Hash do
               optional :source
               optional :folder
+              optional :checksum
             end
           end
           put ':id' do
