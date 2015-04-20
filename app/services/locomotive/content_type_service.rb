@@ -7,5 +7,8 @@ module Locomotive
         .order_by(:name.asc).to_a
     end
 
+    delegate :content_types, to: :site
+    delegate :find_by_slug, to: :content_types
+
   end
 end

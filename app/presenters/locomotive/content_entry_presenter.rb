@@ -144,6 +144,8 @@ module Locomotive
     def set_many_to_many_attribute(name, class_name)
       ids_or_slugs  = @_attributes[name] || @_attributes["#{name}_ids"]
 
+      # { title: 'Hello world', author_ids: ['slug-author-A', 'slug-author-B'] }
+
       return if ids_or_slugs.nil?
 
       entries = self.fetch_content_entries(class_name, ids_or_slugs)

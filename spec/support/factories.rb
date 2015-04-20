@@ -185,7 +185,7 @@ FactoryGirl.define do
 
     trait :with_field do
       after(:build) do |content_type, evaluator|
-        content_type.entries_custom_fields.build label: 'Title', type: 'string'
+        content_type.entries_custom_fields.build label: 'Title', name: 'title', type: 'string'
       end
     end
 

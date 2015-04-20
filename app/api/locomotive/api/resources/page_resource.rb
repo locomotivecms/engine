@@ -55,6 +55,7 @@ module Locomotive
               optional :templatized_from_parent, type: Boolean
               optional :fullpath
               optional :localized_fullpaths, type: Hash
+              optional :editable_elements, type: Array
               optional :depth, type: Integer
               optional :template_changed, type: Boolean
               optional :translated_in, type: Array
@@ -96,6 +97,7 @@ module Locomotive
               optional :templatized_from_parent, type: Boolean
               optional :fullpath
               optional :localized_fullpaths, type: Hash
+              optional :editable_elements, type: Array
               optional :depth, type: Integer
               optional :template_changed, type: Boolean
               optional :translated_in, type: Array
