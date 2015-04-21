@@ -14,11 +14,19 @@ module Locomotive
           end
 
           desc 'Index of theme assets'
-          get :index do
+          get '/' do
             auth :index?
 
             present theme_assets, with: entity_klass
           end
+
+          desc 'Get the checksums of all theme assets'
+          get '/checksums' do
+            auth :index?
+
+            current_site.theme_assets.checksums
+          end
+
 
           desc 'Show a theme asset'
           params do
@@ -28,7 +36,7 @@ module Locomotive
             get do
               auth :show?
 
-              present theme_asset, with: entity_klass, policy: current_policy
+              present theme_asset, with: entity_klass
             end
           end
 
@@ -36,12 +44,8 @@ module Locomotive
           params do
             requires :theme_asset, type: Hash do
               requires :source
-              optional :local_path
-              optional :content_type, type: String
               optional :folder
-              optional :plain_text_name
-              optional :plain_text_type
-              optional :performing_plain_text
+              optional :checksum
             end
           end
           post do
@@ -50,7 +54,7 @@ module Locomotive
             form = form_klass.new(theme_asset_params)
             persist_from_form(form)
 
-            present theme_asset, with: entity_klass, policy: current_policy(theme_asset)
+            present theme_asset, with: entity_klass
           end
 
           desc "Update a theme asset"
@@ -58,12 +62,8 @@ module Locomotive
             requires :id, type: String, desc: 'Theme asset ID'
             requires :theme_asset, type: Hash do
               optional :source
-              optional :local_path
-              optional :content_type, type: String
               optional :folder
-              optional :plain_text_name
-              optional :plain_text_type
-              optional :performing_plain_text
+              optional :checksum
             end
           end
           put ':id' do
@@ -72,7 +72,7 @@ module Locomotive
             form = form_klass.new(theme_asset_params)
             persist_from_form(form)
 
-            present theme_asset, with: entity_klass, policy: current_policy(theme_asset)
+            present theme_asset, with: entity_klass
           end
 
           desc "Delete a theme asset"

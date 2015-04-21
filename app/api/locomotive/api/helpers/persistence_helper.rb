@@ -55,7 +55,7 @@ module Locomotive
         # @note if the object exists it will be updated
         def persist_from_form(form_object)
           send(singular).assign_attributes(form_object.serializable_hash)
-          send(singular).save
+          send(singular).save!
         end
 
         def auth(meth)

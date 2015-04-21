@@ -4,8 +4,7 @@ module Locomotive
 
       class AccountEntity < BaseEntity
 
-        expose  :name, :email, :locale, :encrypted_password, :password_salt, :api_key,
-                :super_admin, :password, :password_confirmation
+        expose  :name, :email, :locale, :api_key, :super_admin
 
         expose :local_admin do |account, _|
           account.local_admin?

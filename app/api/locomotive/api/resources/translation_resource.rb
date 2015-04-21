@@ -14,7 +14,7 @@ module Locomotive
           end
 
           desc 'Index of translations'
-          get :index do
+          get '/' do
             auth :index?
 
             present translations, with: entity_klass
@@ -51,16 +51,22 @@ module Locomotive
           end
 
 
-          desc "Update a translation"
+          desc "Update a Translation (or create one)"
           params do
-            requires :id, type: String, desc: 'Translation ID'
+            requires :id, type: String, desc: 'Translation ID or Key'
             requires :translation, type: Hash do
               optional :key, type: String
               optional :values, type: Hash
             end
           end
           put ':id' do
-            object_auth :update?
+            if @translation = current_site.translations.by_id_or_key(params[:id]).first
+              authorize @translation, :update?
+            else
+              authorize Translation, :create?
+              @translation = current_site.translations.build
+            end
+
             form = form_klass.new(translation_params)
             persist_from_form(form)
 
