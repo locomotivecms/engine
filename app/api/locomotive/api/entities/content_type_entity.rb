@@ -4,20 +4,17 @@ module Locomotive
 
       class ContentTypeEntity < BaseEntity
 
-        expose  :name, :slug, :description, :label_field_name, :order_by,
-                :order_direction, :group_by_field_id, :public_submission_enabled,
-                :raw_item_template
+        expose :name, :slug, :description, :label_field_name, :order_direction, :public_submission_enabled, :raw_item_template
 
-        expose :entries_custom_fields do |content_type, _|
+        expose :fields, using: ContentTypeFieldEntity do |content_type, _|
           content_type.ordered_entries_custom_fields || []
         end
 
-        expose :order_by_field_name do |content_type, _|
-          value = content_type.order_by
-          content_type.find_entries_custom_field(value).try(:name) || value
+        expose :order_by do |content_type, _|
+          content_type.order_by_attribute
         end
 
-        expose :group_by_field_name do |content_type, _|
+        expose :group_by do |content_type, _|
           content_type.group_by_field.try(:name)
         end
 

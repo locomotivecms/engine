@@ -17,18 +17,6 @@ module Locomotive
           [order_by_attribute, direction]
         end
 
-        def sortable_column
-          # only the belongs_to field has a special column for relative positionning
-          # that's why we don't call groupable?
-          if self.group_by_field.try(:type) == 'belongs_to' && self.order_manually?
-            "position_in_#{self.group_by_field.name}"
-          else
-            '_position'
-          end
-        end
-
-        protected
-
         def order_by_attribute
           case self.order_by
           when '_position'
@@ -37,6 +25,16 @@ module Locomotive
             self.order_by
           else
             self.entries_custom_fields.find(self.order_by).name rescue 'created_at'
+          end
+        end
+
+        def sortable_column
+          # only the belongs_to field has a special column for relative positionning
+          # that's why we don't call groupable?
+          if self.group_by_field.try(:type) == 'belongs_to' && self.order_manually?
+            "position_in_#{self.group_by_field.name}"
+          else
+            '_position'
           end
         end
 

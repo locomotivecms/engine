@@ -202,6 +202,19 @@ FactoryGirl.define do
         field.select_options.build name: 'Design'
       end
     end
+
+    trait :grouped do
+      after(:build) do |content_type, _|
+        content_type.group_by_field_id = content_type.entries_custom_fields.last._id
+      end
+    end
+
+    trait :public_submission_enabled do
+      after(:build) do |content_type, _|
+        content_type.public_submission_enabled = true
+        content_type.public_submission_accounts = [create('admin user')._id]
+      end
+    end
   end
 
   factory :content_entry, class: Locomotive::ContentEntry do

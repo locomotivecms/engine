@@ -10,9 +10,7 @@ describe Locomotive::API::Entities::ContentTypeEntity do
       slug
       description
       label_field_name
-      order_by
       order_direction
-      group_by_field_id
       public_submission_enabled
       raw_item_template
     )
@@ -22,24 +20,34 @@ describe Locomotive::API::Entities::ContentTypeEntity do
   end
 
   context 'overrides' do
-    let!(:content_type) { create(:content_type) }
+
+    let!(:content_type) { create(:content_type, :with_field, :with_select_field, :grouped, :public_submission_enabled) }
     let(:exposure) { subject.serializable_hash }
+
     subject { described_class.new(content_type) }
 
     describe 'entries_custom_fields' do
-      it 'returns the correct custom fields'
+      it 'returns the correct custom fields' do
+        expect(exposure[:fields].size).to eq 2
+      end
     end
 
-    describe 'order_by_field_name' do
-      it 'returns the correct field names'
+    describe 'order_by' do
+      it 'returns the correct field name' do
+        expect(exposure[:order_by]).to eq 'created_at'
+      end
     end
 
-    describe 'group_by_field_name' do
-      it 'returns grouped field names'
+    describe 'group_by' do
+      it 'returns grouped field name' do
+        expect(exposure[:group_by]).to eq 'category'
+      end
     end
 
     describe 'public_submission_account_emails' do
-      it 'returns the correct emails'
+      it 'returns the correct emails' do
+        expect(exposure[:public_submission_account_emails]).to eq ['admin@locomotiveapp.org']
+      end
     end
 
   end
