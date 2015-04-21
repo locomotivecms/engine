@@ -238,19 +238,24 @@ FactoryGirl.define do
     disabled false
   end
 
-  # factory :custom_field, class: CustomFields::Field do
-  #   name 'A field'
+  factory :custom_field, class: CustomFields::Field do
+    name 'A field'
 
-  #   factory 'select field' do
-  #     type 'select'
+    factory 'text field' do
+      type 'text'
+      text_formatting 'html'
+    end
 
-  #     factory 'select field with options' do
-  #       after(:build) do |field|
-  #         field.select_options.build name: 'Development'
-  #         field.select_options.build name: 'Marketing'
-  #       end
-  #     end
-  #   end
-  # end
+    factory 'select field' do
+      type 'select'
+
+      factory 'select field with options' do
+        after(:build) do |field|
+          field.select_options.build name: 'Development'
+          field.select_options.build name: 'Marketing'
+        end
+      end
+    end
+  end
 
 end
