@@ -44,6 +44,19 @@ describe Locomotive::API::Entities::ContentTypeFieldEntity do
       end
     end
 
+    describe 'has_many' do
+      let!(:field) { build('has_many field', _parent: content_type) }
+      let(:content_type) { instance_double('Posts', class_name_to_content_type: target_content_type) }
+      let(:target_content_type) { instance_double('Photos', slug: 'photos') }
+
+      it 'returns the correct options' do
+        expect(exposure[:type]).to eq 'has_many'
+        expect(exposure[:inverse_of]).to eq 'somefield'
+        expect(exposure[:order_by]).to eq 'someotherfield'
+        expect(exposure[:target]).to eq 'photos'
+      end
+    end
+
   end
 
 end

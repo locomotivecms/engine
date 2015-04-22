@@ -256,6 +256,15 @@ FactoryGirl.define do
         end
       end
     end
+
+    factory 'has_many field' do
+      type        'has_many'
+      class_name  'Locomotive::ContentType42'
+      inverse_of  'somefield'
+      order_by    'someotherfield'
+      ui_enabled  true
+    end
+
   end
 
 end
