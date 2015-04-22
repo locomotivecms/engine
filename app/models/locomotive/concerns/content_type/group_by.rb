@@ -36,6 +36,10 @@ module Locomotive
           self.find_entries_custom_field(self.group_by_field_id)
         end
 
+        def group_by=(name)
+          @group_by = name
+        end
+
       end
     end
   end

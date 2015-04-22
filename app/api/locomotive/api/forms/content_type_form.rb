@@ -6,10 +6,10 @@ module Locomotive
         attr_accessor :_site
 
         attrs :name, :slug, :description, :label_field_name,
-              :order_by, :order_direction, :group_by_field_id,
-              :group_by_field_name, :public_submission_enabled,
-              :public_submission_account_emails, :raw_item_template,
-              :entries_custom_fields, # alias to entries_custom_fields_attributes
+              :order_by, :order_direction, :group_by,
+              :public_submission_enabled,
+              :public_submission_accounts,
+              :raw_item_template,
               :entries_custom_fields_attributes
 
         # @param [ Site ] the current site, or site to scope to
@@ -21,7 +21,7 @@ module Locomotive
         # If the current content type exists, look up the fields and add their IDs
         #  to the attributes hash.  If not, set the entries_custom_fields_attributes
         #  as-is
-        def entries_custom_fields=(fields)
+        def fields=(fields)
           # entries_custom_fields_attributes_will_change!
           self.entries_custom_fields_attributes =
             if existing_content_type.present?
@@ -36,22 +36,10 @@ module Locomotive
             end
         end
 
-        # TODO: figure out what to do without existing_content_type
-        def group_by_field_name=(name)
-          super
-          if existing_content_type.present?
-            field = existing_content_type.find_entries_custom_field(name)
-            self.group_by_field_id = field.try(:_id)
-          end
-        end
-
-        # TODO: figure out what to do without existing_content_type
         def public_submission_account_emails=(emails)
-          if existing_content_type.present?
-            existing_content_type.public_submission_accounts = emails.collect do |email|
-              Locomotive::Account.where(email: email).first
-            end.compact.collect(&:id)
-          end
+          self.public_submission_accounts = emails.collect do |email|
+            Locomotive::Account.where(email: email).first
+          end.compact.map(&:id)
         end
 
         private

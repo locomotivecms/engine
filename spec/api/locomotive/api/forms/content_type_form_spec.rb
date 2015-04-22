@@ -5,13 +5,13 @@ describe Locomotive::API::Forms::ContentTypeForm do
   let(:attributes) { { } }
   let(:form) { described_class.new(nil, attributes) }
 
-  describe '#entries_custom_fields=' do
+  describe '#fields=' do
 
     let(:fields) { [{ name: 'title', type: 'string' }, { name: 'body', type: 'string' }] }
 
     before do
       allow(form).to receive(:existing_content_type).and_return(content_type)
-      form.entries_custom_fields = fields
+      form.fields = fields
     end
 
     subject { form.entries_custom_fields_attributes }
@@ -43,11 +43,29 @@ describe Locomotive::API::Forms::ContentTypeForm do
 
     context 'with entries_custom_fields' do
 
-      let(:attributes) { { entries_custom_fields: [{ name: 'title', type: 'string' }, { name: 'body', type: 'string' }] } }
+      let(:attributes) { { fields: [{ name: 'title', type: 'string' }, { name: 'body', type: 'string' }] } }
 
-      it { expect(subject[:entries_custom_fields]).to eq nil }
+      it { expect(subject[:fields]).to eq nil }
       it { is_expected.to eq('entries_custom_fields_attributes' => [{ 'name' => 'title', 'type' => 'string' }, { 'name' => 'body', 'type' => 'string' }]) }
 
+    end
+
+  end
+
+  describe '#public_submission_account_emails=' do
+
+    let(:emails) { ['admin@locomotiveapp.org'] }
+
+    before do
+      create('admin user')
+      form.public_submission_account_emails = emails
+    end
+
+    subject { form.public_submission_accounts }
+
+    it 'uses the id of the account instead of its email' do
+      expect(subject.size).to eq 1
+      expect(subject.first).not_to eq 'admin@locomotiveapp.org'
     end
 
   end

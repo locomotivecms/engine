@@ -20,7 +20,7 @@ module Locomotive
     field :label_field_id,              type: BSON::ObjectId
     field :label_field_name
     field :group_by_field_id,           type: BSON::ObjectId
-    field :order_by
+    field :order_by # either a BSON::ObjectId (field id) or a String (:_position, ...etc)
     field :order_direction,             default: 'asc'
     field :public_submission_enabled,   type: Boolean, default: false
     field :public_submission_accounts,  type: Array

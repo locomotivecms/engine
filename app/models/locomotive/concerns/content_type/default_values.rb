@@ -7,6 +7,7 @@ module Locomotive
 
         included do
           before_save :set_order_by
+          before_save :set_group_by
           before_save :set_label_field
           before_save :set_default_order_by_for_has_many_fields
         end
@@ -21,6 +22,14 @@ module Locomotive
           end
 
           self.order_by ||= 'created_at'
+        end
+
+        def set_group_by
+          if @group_by
+            if field = self.find_entries_custom_field(@group_by)
+              self.group_by_field_id = field._id
+            end
+          end
         end
 
         def set_label_field
