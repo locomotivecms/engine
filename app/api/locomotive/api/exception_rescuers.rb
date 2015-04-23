@@ -25,7 +25,7 @@ module Locomotive
 
         rescue_from Grape::Exceptions::ValidationErrors do |e|
           attributes = {}.tap do |hash|
-            e.errors.each { |k, v| hash[k.first.match(/\[(.+)\]/).try(:[], 1) || k.first] = v.map { |error| error.to_s } }
+            e.errors.each { |k, v| hash[k.first.match(/\[([^\[\]]+)\]/).try(:[], 1) || k.first] = v.map { |error| error.to_s } }
           end
           error_response(message: { error: 'Resource invalid', attributes: attributes }, status: 422)
         end

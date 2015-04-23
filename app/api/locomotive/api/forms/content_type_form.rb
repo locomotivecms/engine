@@ -3,7 +3,7 @@ module Locomotive
     module Forms
       class ContentTypeForm < BaseForm
 
-        attr_accessor :_site
+        attr_accessor :site
 
         attrs :name, :slug, :description, :label_field_name,
               :order_by, :order_direction, :group_by,
@@ -14,7 +14,7 @@ module Locomotive
 
         # @param [ Site ] the current site, or site to scope to
         def initialize(site, attributes = {})
-          _site = site
+          self.site = site
           super(attributes)
         end
 
@@ -48,17 +48,15 @@ module Locomotive
           @existing_content_type ||= content_type_service.find_by_slug(slug)
         end
 
-        delegate :find_by_slug, to: :content_type_service
-
         def content_type_service
-          @content_type_service ||= ContentTypeService.new(_site)
+          @content_type_service ||= ContentTypeService.new(self.site)
         end
 
-        def custom_field_finder_service
-          @custom_field_finder_service ||= begin
-            CustomFieldFinderService.new(existing_content_type)
-          end
-        end
+        # def custom_field_finder_service
+        #   @custom_field_finder_service ||= begin
+        #     CustomFieldFinderService.new(existing_content_type)
+        #   end
+        # end
 
       end
     end

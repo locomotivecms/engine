@@ -35,6 +35,7 @@ module Locomotive
       mount API::Resources::ThemeAssetResource
       mount API::Resources::SiteResource
       mount API::Resources::SnippetResource
+      mount API::Resources::ContentTypeResource
       mount API::Resources::PageResource
       mount API::Resources::MyAccountResource
       mount API::Resources::MembershipResource

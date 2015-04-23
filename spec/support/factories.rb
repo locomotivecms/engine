@@ -183,6 +183,11 @@ FactoryGirl.define do
     description 'The list of my projects'
     site { Locomotive::Site.where(handle: 'acme').first || FactoryGirl.create(:site) }
 
+    factory 'tasks content type' do
+      name 'Tasks'
+      description 'The list of my tasks'
+    end
+
     trait :with_field do
       after(:build) do |content_type, evaluator|
         content_type.entries_custom_fields.build label: 'Title', name: 'title', type: 'string'
@@ -239,7 +244,8 @@ FactoryGirl.define do
   end
 
   factory :custom_field, class: CustomFields::Field do
-    name 'A field'
+    name 'a_field'
+    label 'A field'
 
     factory 'text field' do
       type 'text'
