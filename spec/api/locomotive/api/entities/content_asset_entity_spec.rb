@@ -63,14 +63,42 @@ describe Locomotive::API::Entities::ContentAssetEntity do
     end
 
     describe 'with_thumbnail' do
-      context 'content_type is image' do
+      context 'content_type is other' do
+        it 'returns false' do
+          expect(exposure[:with_thumbnail]).to be_falsey
+        end
+      end
 
+      context 'content_type is image or pdf' do
+        before do
+          subject.object.width = '50'
+          subject.object.height = '50'
+        end
+
+        specify 'image returns true' do
+          subject.object.content_type = 'image'
+          expect(exposure[:with_thumbnail]).to be_truthy
+        end
+
+        specify 'pdf returns true' do
+          subject.object.content_type = 'pdf'
+          expect(exposure[:with_thumbnail]).to be_truthy
+        end
       end
     end
 
+    describe 'raw_size' do
+      it 'returns the size' do
+        expect(exposure[:raw_size]).to eq asset.size
+      end
+    end
+
+    describe 'url' do
+      it 'returns the source URL' do
+        expect(exposure[:url]).to eq asset.source.url
+      end
+    end
 
   end
-
-
-
+  
 end
