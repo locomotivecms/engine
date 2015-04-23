@@ -39,6 +39,7 @@ module Locomotive
       mount API::Resources::MyAccountResource
       mount API::Resources::MembershipResource
       mount API::Resources::CurrentSiteResource
+      mount API::Resources::ContentAssetResource
 
       route :any, '*path' do
         error!({ error: "Unrecognized request path: #{params[:path]}" }, 404)
