@@ -20,7 +20,7 @@ describe Locomotive::API::Forms::ContentTypeForm do
 
       let(:content_type) { nil }
 
-      it { is_expected.to eq([{ name: 'title', type: 'string' }, { name: 'body', type: 'string' }]) }
+      it { is_expected.to eq([{ 'name' => 'title', 'type' => 'string' }, { 'name' => 'body', 'type' => 'string' }]) }
 
     end
 

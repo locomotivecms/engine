@@ -1,6 +1,7 @@
 module Locomotive
   module API
     module Forms
+
       class ContentTypeForm < BaseForm
 
         attr_accessor :site
@@ -23,17 +24,14 @@ module Locomotive
         #  as-is
         def fields=(fields)
           # entries_custom_fields_attributes_will_change!
-          self.entries_custom_fields_attributes =
-            if existing_content_type.present?
-              fields.map do |attrs|
-                if field = existing_content_type.find_entries_custom_field(attrs[:name])
-                  attrs[:_id] = field._id
-                end
-                attrs
-              end
-            else
-              fields
+
+          self.entries_custom_fields_attributes = fields.map do |attrs|
+            if field = existing_content_type.try(:find_entries_custom_field, attrs[:name])
+              attrs[:_id] = field._id
             end
+
+            ContentTypeFieldForm.new(content_type_service, field, attrs).serializable_hash
+          end
         end
 
         def public_submission_account_emails=(emails)
@@ -52,13 +50,8 @@ module Locomotive
           @content_type_service ||= ContentTypeService.new(self.site)
         end
 
-        # def custom_field_finder_service
-        #   @custom_field_finder_service ||= begin
-        #     CustomFieldFinderService.new(existing_content_type)
-        #   end
-        # end
-
       end
+
     end
   end
 end
