@@ -3,6 +3,7 @@ module Locomotive
     module Entities
 
       class ContentAssetEntity < BaseEntity
+
         expose :content_type, :width, :height, :vignette_url, :alternative_vignette_url
 
         expose :filename do |content_asset, _|
@@ -14,7 +15,6 @@ module Locomotive
         end
 
         expose :extname, format_with: :truncate_to_3
-
 
         expose :full_filename do |content_asset, _|
           content_asset.source_filename

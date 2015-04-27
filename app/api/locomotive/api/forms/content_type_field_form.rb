@@ -19,7 +19,7 @@ module Locomotive
         end
 
         def target=(slug)
-          if content_type = self.content_type_service.find_by_slug(slug)
+          if content_type = self.content_type_service.find_by_slug(slug).first
             self.class_name = content_type.entries_class_name
           end
         end

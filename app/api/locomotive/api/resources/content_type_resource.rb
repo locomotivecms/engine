@@ -81,7 +81,7 @@ module Locomotive
               optional :description
               optional :fields, type: Array do
                 requires :name
-                requires :type
+                optional :type
                 optional :label
                 optional :hint
                 optional :required
