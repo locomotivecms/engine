@@ -49,7 +49,6 @@ module Locomotive
           policy_klass.new(pundit_user, obj)
         end
 
-
         # @param [Object] an object that responds to #serializable_hash is fed into
         #  the persistence class and save is called.
         # @note if the object exists it will be updated
