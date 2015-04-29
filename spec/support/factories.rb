@@ -188,6 +188,42 @@ FactoryGirl.define do
       description 'The list of my tasks'
     end
 
+    factory 'article content type' do
+      name 'Articles'
+      description 'The list of articles'
+      after(:build) do |content_type, _|
+        content_type.entries_custom_fields.build label: 'Title', name: 'title', type: 'string'
+        content_type.entries_custom_fields.build label: 'Body', name: 'body', type: 'text'
+        content_type.entries_custom_fields.build label: 'Header picture', name: 'picture', type: 'file'
+        content_type.entries_custom_fields.build label: 'Featured', name: 'featured', type: 'boolean'
+        content_type.entries_custom_fields.build label: 'Published on', name: 'published_on', type: 'date_time'
+        content_type.entries_custom_fields.build label: 'Author email', name: 'author_email', type: 'email'
+        content_type.entries_custom_fields.build label: 'Grade', name: 'grade', type: 'float'
+        content_type.entries_custom_fields.build label: 'Duration', name: 'duration', type: 'integer'
+        content_type.entries_custom_fields.build label: 'Tags', name: 'tags', type: 'tags'
+        content_type.entries_custom_fields.build label: 'Price', name: 'price', type: 'money'
+        content_type.entries_custom_fields.build label: 'Archived at', name: 'archived_at', type: 'date'
+      end
+    end
+
+    factory 'localized article content type' do
+      name 'Articles'
+      description 'The list of articles'
+      after(:build) do |content_type, _|
+        content_type.entries_custom_fields.build label: 'Title', name: 'title', type: 'string', localized: true
+        content_type.entries_custom_fields.build label: 'Body', name: 'body', type: 'text', localized: true
+        content_type.entries_custom_fields.build label: 'Header picture', name: 'picture', type: 'file', localized: true
+        content_type.entries_custom_fields.build label: 'Featured', name: 'featured', type: 'boolean', localized: true
+        content_type.entries_custom_fields.build label: 'Published on', name: 'published_on', type: 'date_time', localized: true
+        content_type.entries_custom_fields.build label: 'Author email', name: 'author_email', type: 'email', localized: true
+        content_type.entries_custom_fields.build label: 'Grade', name: 'grade', type: 'float', localized: true
+        content_type.entries_custom_fields.build label: 'Duration', name: 'duration', type: 'integer', localized: true
+        content_type.entries_custom_fields.build label: 'Tags', name: 'tags', type: 'tags', localized: true
+        content_type.entries_custom_fields.build label: 'Price', name: 'price', type: 'money', localized: true
+        content_type.entries_custom_fields.build label: 'Archived at', name: 'archived_at', type: 'date', localized: true
+      end
+    end
+
     trait :with_field do
       after(:build) do |content_type, evaluator|
         content_type.entries_custom_fields.build label: 'Title', name: 'title', type: 'string'
