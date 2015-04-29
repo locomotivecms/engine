@@ -1,5 +1,5 @@
-require 'coveralls'
-Coveralls.wear!('rails')
+# require 'coveralls'
+# Coveralls.wear!('rails')
 
 ENV['RAILS_ENV'] ||= 'test'
 

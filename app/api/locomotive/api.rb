@@ -6,6 +6,7 @@ module Locomotive
 
     def self.to_app
       Rack::Builder.new do
+        use Locomotive::API::Middlewares::LocaleMiddleware
         use Locomotive::API::Middlewares::LoggerMiddleware
         run Locomotive::API::Dispatch
       end
@@ -17,6 +18,7 @@ module Locomotive
       helpers API::Helpers::AuthenticationHelper
       helpers API::Helpers::ParamsHelper
       helpers API::Helpers::PersistenceHelper
+      helpers API::Helpers::PaginationHelper
 
       include API::ExceptionRescuers
 
@@ -36,6 +38,7 @@ module Locomotive
       mount API::Resources::SiteResource
       mount API::Resources::SnippetResource
       mount API::Resources::ContentTypeResource
+      mount API::Resources::ContentEntryResource
       mount API::Resources::PageResource
       mount API::Resources::MyAccountResource
       mount API::Resources::MembershipResource
