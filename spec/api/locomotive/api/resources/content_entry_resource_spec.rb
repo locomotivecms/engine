@@ -4,7 +4,7 @@ describe Locomotive::API::Resources::ContentEntryResource do
 
   include_context 'api site setup'
 
-  let(:content_type) { create('article content type', site: site) }
+  let(:content_type) { create('article content type', :with_select_field_and_options, site: site) }
   let!(:content_entry) { content_type.entries.create(title: 'Hello world', body: 'Lorem ipsum', site: site) }
   let(:url_prefix) { "/locomotive/acmi/api/v3/content_types/#{content_type.slug}/entries" }
 
@@ -33,86 +33,88 @@ describe Locomotive::API::Resources::ContentEntryResource do
 
     describe "POST create" do
       context 'JSON' do
-        let(:content_entry) do
+        let(:content_entry_params) do
           {
             title:          'Article #1',
             body:           'Lorem ipsum',
             featured:       true,
-            published_on:   '2009/09/10 09:00:00'
+            picture:        Rack::Test::UploadedFile.new(FixturedAsset.path('5k.png')),
+            published_on:   '2009/09/10 09:00:00',
+            author_email:   'john@doe.net',
+            grade:          4.2,
+            duration:       420,
+            tags:           ['foo', 'bar'],
+            price:          '$42.0',
+            category:       'Development',
+            archived_at:    '2009/09/12'
           }
         end
 
         it 'creates a content type' do
-          expect { post("#{url_prefix}.json", content_entry: content_entry) }
+          expect { post("#{url_prefix}.json", content_entry: content_entry_params) }
             .to change { Locomotive::ContentEntry.count }.by(1)
         end
       end
     end
 
-    # describe "PUT update" do
-    #   context 'JSON' do
-    #     let(:updated_content_entry) do
-    #       content_entry.serializable_hash.merge(name: 'new content type')
-    #     end
+    describe "PUT update" do
+      context 'JSON' do
+        let(:content_entry_params) { { title: 'Hello world [UPDATED]' } }
 
-    #     let(:put_request) { put("#{url_prefix}/#{content_entry.id}.json", content_entry: updated_content_entry) }
+        let(:put_request) { put("#{url_prefix}/#{content_entry.id}.json", content_entry: content_entry_params) }
 
-    #     it 'does not change the number of existing content types' do
-    #       expect { put_request }.to_not change { Locomotive::ContentEntry.count }
-    #     end
+        it 'does not change the number of existing content types' do
+          expect { put_request }.to_not change { Locomotive::ContentEntry.count }
+        end
 
-    #     it 'updates the existing content type' do
-    #       expect { put_request }
-    #         .to change { Locomotive::ContentEntry.find(content_entry.id).name }.to('new content type')
-    #     end
+        it 'updates the existing content type' do
+          expect { put_request }
+            .to change { Locomotive::ContentEntry.find(content_entry.id).title }.to('Hello world [UPDATED]')
+        end
 
-    #     context 'the content_entry exists but we pass the slug instead of the id' do
+        context 'the content entry exists but we pass the slug instead of the id' do
 
-    #       let(:put_request) { put("#{url_prefix}/#{content_entry.slug}.json", content_entry: updated_content_entry) }
+          let(:put_request) { put("#{url_prefix}/#{content_entry._slug}.json", content_entry: content_entry_params) }
 
-    #       it 'does not change the number of existing content types' do
-    #         expect { put_request }.to_not change { Locomotive::ContentEntry.count }
-    #       end
+          it 'does not change the number of existing content types' do
+            expect { put_request }.to_not change { Locomotive::ContentEntry.count }
+          end
 
-    #       it 'updates the existing content type' do
-    #         expect { put_request }
-    #           .to change { Locomotive::ContentEntry.find(content_entry.id).name }.to('new content type')
-    #       end
+          it 'updates the existing content type' do
+            expect { put_request }
+              .to change { Locomotive::ContentEntry.find(content_entry.id).title }.to('Hello world [UPDATED]')
+          end
 
-    #     end
+        end
 
-    #     context 'the content_entry does not exist so create it' do
+        context 'the content entry does not exist so create it' do
 
-    #       let(:content_entry) { instance_double('ContentEntry', id: 'another-content-type') }
-    #       let(:updated_content_entry) {
-    #         attributes_for('tasks content type', slug: 'another-content-type').merge({
-    #           fields: [attributes_for('text field')]
-    #         })
-    #        }
+          let(:content_entry) { instance_double('ContentEntry', id: 'another-content-entry') }
+          let(:content_entry_params) { { title: 'A new test', _slug: 'another-content-entry' } }
 
-    #       it 'changes the number of existing content types' do
-    #         expect { put_request }.to change { Locomotive::ContentEntry.count }.by(1)
-    #       end
+          it 'changes the number of existing content types' do
+            expect { put_request }.to change { Locomotive::ContentEntry.count }.by(1)
+          end
 
-    #       it 'creates a new content type' do
-    #         expect { put_request }.to change { Locomotive::ContentEntry.where(slug: 'another_content_entry').count }.by(1)
-    #       end
+          it 'creates a new content type' do
+            expect { put_request }.to change { Locomotive::ContentEntry.where(_slug: 'another-content-entry').count }.by(1)
+          end
 
-    #     end
+        end
 
-    #   end
-    # end
+      end
+    end
 
-    # describe "DELETE destroy" do
-    #   context 'JSON' do
-    #     let(:delete_request) { delete("#{url_prefix}/#{content_entry.id}.json") }
+    describe "DELETE destroy" do
+      context 'JSON' do
+        let(:delete_request) { delete("#{url_prefix}/#{content_entry.id}.json") }
 
-    #     it 'deletes the content type' do
-    #       expect { delete_request }.to change { Locomotive::ContentEntry.count }.by(-1)
-    #     end
+        it 'deletes the content entry' do
+          expect { delete_request }.to change { Locomotive::ContentEntry.count }.by(-1)
+        end
 
-    #   end
-    # end
+      end
+    end
 
   end
 

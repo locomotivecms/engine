@@ -106,6 +106,12 @@ describe Locomotive::API::Entities::ContentEntryEntity do
       }
 
       before do
+        # Hack because other specs change the fallbacks.
+        fallbacks = ::Mongoid::Fields::I18n.fallbacks
+        if fallbacks && fallbacks[:fr].nil?
+          ::Mongoid::Fields::I18n.fallbacks_for(:fr, [])
+        end
+
         ::Mongoid::Fields::I18n.with_locale(:fr) do
           content_entry.title = 'Bonjour monde'
           content_entry.save

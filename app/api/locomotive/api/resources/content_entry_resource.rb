@@ -38,7 +38,7 @@ module Locomotive
 
           desc 'Show a content entry'
           params do
-            requires :id, type: String, desc: 'ContentEntryResource ID or SLUG'
+            requires :id, type: String, desc: 'Content entry ID or SLUG'
           end
           route_param :id do
             get do
@@ -60,73 +60,45 @@ module Locomotive
             authorize ContentEntry, :create?
 
             form = form_klass.new(content_type, content_entry_params)
-
-            # puts form.serializable_hash.inspect
-
             content_entry = service.create(form.serializable_hash)
-
-            # puts content_entry.inspect
 
             present content_entry, with: entity_klass
           end
 
-          # desc 'Update a ContentEntryResource (or create one)'
-          # params do
-          #   requires :id, type: String, desc: 'ContentEntryResource ID or Slug'
-          #   requires :content_entry, type: Hash do
-          #     requires :name
-          #     optional :slug
-          #     optional :description
-          #     optional :fields, type: Array do
-          #       requires :name
-          #       optional :type
-          #       optional :label
-          #       optional :hint
-          #       optional :required
-          #       optional :localized
-          #       optional :unique
-          #       optional :position
-          #       optional :text_formatting
-          #       optional :select_options
-          #       optional :target
-          #       optional :inverse_of
-          #       optional :order_by
-          #       optional :ui_enabled
-          #     end
-          #     optional :order_by
-          #     optional :order_direction
-          #     optional :group_by
-          #     optional :label_field_name
-          #     optional :raw_item_template
-          #     optional :public_submission_account_emails
-          #     optional :public_submission_accounts
-          #   end
-          # end
-          # put ':id' do
-          #   if @content_entry = current_site.content_entries.by_id_or_slug(params[:id]).first
-          #     authorize @content_entry, :update?
-          #   else
-          #     authorize ContentEntry, :create?
-          #     @content_entry = current_site.content_entries.build
-          #   end
+          desc 'Update a content entry (or create one)'
+          params do
+            requires :id, type: String, desc: 'Content entry ID or SLUG'
+            requires :content_entry, type: Hash
+          end
+          put ':id' do
+            form = form_klass.new(content_type, content_entry_params)
 
-          #   form = form_klass.new(current_site, content_entry_params)
-          #   persist_from_form(form)
+            if @content_entry = content_type.entries.by_id_or_slug(params[:id]).first
+              authorize @content_entry, :update?
+              service.update(@content_entry, form.serializable_hash)
+            else
+              authorize ContentEntry, :create?
+              content_entry = service.create(form.serializable_hash)
+            end
 
-          #   present content_entry, with: entity_klass
-          # end
+            present content_entry, with: entity_klass
+          end
 
-          # desc "Delete a content_entry"
-          # params do
-          #   requires :id, type: String, desc: 'ContentEntry ID'
-          # end
-          # delete ':id' do
-          #   authorize content_entry, :destroy?
+          desc "Delete a content entry"
+          params do
+            requires :id, type: String, desc: 'Content entry ID or SLUG'
+          end
+          delete ':id' do
+            @content_entry = content_type.entries.by_id_or_slug(params[:id]).first
 
-          #   content_entry.destroy
+            raise ::Mongoid::Errors::DocumentNotFound.new(content_type.entries, { id: params[:id] }) if @content_entry.nil?
 
-          #   present content_entry, with: entity_klass
-          # end
+            authorize content_entry, :destroy?
+
+            content_entry.destroy
+
+            present content_entry, with: entity_klass
+          end
 
         end
 

@@ -4,71 +4,77 @@ module Locomotive
 
       class ContentEntryForm < BaseForm
 
-        attr_accessor :content_type
+        attr_accessor :content_type, :dynamic_attributes
 
         attrs :_slug, :_position, :_visible, :seo_title, :meta_keywords, :meta_description
 
         def initialize(content_type, attributes)
           self.content_type = content_type
+          self.dynamic_attributes = {}
           super(attributes)
         end
 
-        def set_string_attribute(name, value)
-          set_attribute(name, value)
+        def set_date_time(field, value)
+          dynamic_attributes[:"formatted_#{field.name}"] = value
         end
 
-        alias :set_text_attribute :set_string_attribute
-        alias :set_boolean_attribute :set_string_attribute
+        alias :set_date :set_date_time
 
-        def set_date_time_attribute(name, value)
-          set_attribute(:"formatted_#{name}", value)
+        def set_belongs_to(field, value)
+          dynamic_attributes[field.name.to_sym] = fetch_entry_ids(field.class_name, value).first
         end
 
-        def get_string_attribute(name)
-          get_attribute(name)
+        def set_many_to_many(field, value)
+          dynamic_attributes[:"#{field.name}_ids"] = fetch_entry_ids(field.class_name, value).sort do |a, b|
+            (value.index(a.first.to_s) || value.index(a.last)) <=>
+            (value.index(b.first.to_s) || value.index(b.last))
+          end # keep the original order
         end
 
-        alias :get_text_attribute :get_string_attribute
-        alias :get_boolean_attribute :get_string_attribute
-
-        def get_date_time_attribute(name)
-          get_attribute(:"formatted_#{name}")
-        end
-
-        def method_missing(symbol, *args, &block)
-          if field = find_field(symbol)
-            if symbol.to_s =~ /=$/
-              send(:"set_#{field.type}_attribute", field.name, args.first)
+        def method_missing(name, *args, &block)
+          if field = find_field(name)
+            if respond_to?(:"set_#{field.type}")
+              public_send(:"set_#{field.type}", field, args.first)
             else
-              send(:"get_#{field.type}_attribute", field.name)
+              dynamic_attributes[field.name.to_sym] = args.first
             end
           else
             super
           end
         end
 
-        def respond_to?(symbol, include_all = false)
-          if super
-            true
-          else
-            find_field(symbol).present?
-          end
+        def serializable_hash
+          super.merge(self.dynamic_attributes)
         end
 
         private
 
         def find_field(name)
-          _name = name.to_s.gsub(/=$/, '').gsub(/^formatted_/, '')
-          self.content_type.entries_custom_fields.where(name: _name).first
+          _name = name.to_s.gsub(/=$/, '')
+          dynamic_setters[_name]
         end
 
-        def set_attribute(name, value)
-          attribute_will_change!(name)
-          instance_variable_set(:"@#{name}", value)
+        def dynamic_setters
+          @dynamic_setters ||= self.content_type.entries_custom_fields.inject({}) do |hash, field|
+            case field.type.to_sym
+            when :file
+              hash[field.name] = hash["remote_#{field.name}_url"] = hash["remove_#{field.name}"] = field
+            when :belongs_to
+              hash[field.name] = hash["position_in_#{field.name}"] = field
+            else
+              hash[field.name] = field
+            end
+            hash
+          end.with_indifferent_access
         end
 
-        def get_attribute(name)
-          instance_variable_get(:"@#{name}")
+        def fetch_entry_ids(class_name, ids_or_slugs)
+          return if ids_or_slugs.blank?
+
+          ids_or_slugs  = [*ids_or_slugs]
+          klass         = class_name.constantize
+
+          klass.by_ids_or_slugs(ids_or_slugs).pluck(:_id, :_slug)
         end
 
       end

@@ -17,7 +17,7 @@ module Locomotive
         expose :dynamic_fields
 
         def serializable_hash(runtime_options = {})
-          super.dup.tap do |hash|
+          (super || {}).dup.tap do |hash|
             hash.merge!(hash.delete(:dynamic_fields) || hash.delete('dynamic_fields') || {})
           end
         end
