@@ -50,7 +50,7 @@ describe Locomotive::API::Resources::ContentEntryResource do
           }
         end
 
-        it 'creates a content type' do
+        it 'creates a content entry' do
           expect { post("#{url_prefix}.json", content_entry: content_entry_params) }
             .to change { Locomotive::ContentEntry.count }.by(1)
         end
@@ -59,28 +59,43 @@ describe Locomotive::API::Resources::ContentEntryResource do
 
     describe "PUT update" do
       context 'JSON' do
+
+        let(:locale) { 'en' }
         let(:content_entry_params) { { title: 'Hello world [UPDATED]' } }
 
-        let(:put_request) { put("#{url_prefix}/#{content_entry.id}.json", content_entry: content_entry_params) }
+        let(:put_request) { put("#{url_prefix}/#{content_entry.id}.json", { content_entry: content_entry_params }, { 'X-Locomotive-Locale' => locale }) }
 
-        it 'does not change the number of existing content types' do
+        it 'does not change the number of existing content entries' do
           expect { put_request }.to_not change { Locomotive::ContentEntry.count }
         end
 
-        it 'updates the existing content type' do
+        it 'updates the existing content entry' do
           expect { put_request }
             .to change { Locomotive::ContentEntry.find(content_entry.id).title }.to('Hello world [UPDATED]')
+        end
+
+        context 'updates an existing and localized content entry' do
+
+          let(:content_type) { create('localized article content type', site: site) }
+          let(:content_entry_params) { { title: 'Bonjour monde' } }
+          let(:locale) { 'fr' }
+
+          it 'updates the existing content entry' do
+            expect { put_request }
+              .to change { Locomotive::ContentEntry.find(content_entry.id).title_translations }.to({ en: 'Hello world', fr: 'Bonjour monde' })
+          end
+
         end
 
         context 'the content entry exists but we pass the slug instead of the id' do
 
           let(:put_request) { put("#{url_prefix}/#{content_entry._slug}.json", content_entry: content_entry_params) }
 
-          it 'does not change the number of existing content types' do
+          it 'does not change the number of existing content entries' do
             expect { put_request }.to_not change { Locomotive::ContentEntry.count }
           end
 
-          it 'updates the existing content type' do
+          it 'updates the existing content entry' do
             expect { put_request }
               .to change { Locomotive::ContentEntry.find(content_entry.id).title }.to('Hello world [UPDATED]')
           end
@@ -92,11 +107,11 @@ describe Locomotive::API::Resources::ContentEntryResource do
           let(:content_entry) { instance_double('ContentEntry', id: 'another-content-entry') }
           let(:content_entry_params) { { title: 'A new test', _slug: 'another-content-entry' } }
 
-          it 'changes the number of existing content types' do
+          it 'changes the number of existing content entries' do
             expect { put_request }.to change { Locomotive::ContentEntry.count }.by(1)
           end
 
-          it 'creates a new content type' do
+          it 'creates a new content entry' do
             expect { put_request }.to change { Locomotive::ContentEntry.where(_slug: 'another-content-entry').count }.by(1)
           end
 
