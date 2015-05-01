@@ -19,6 +19,23 @@ describe Locomotive::API::Resources::ContentEntryResource do
           expect(last_response).to be_successful
         end
 
+        describe 'pagination' do
+
+          before do
+            content_type.entries.create title: 'Lorem ipsum'
+            get "#{url_prefix}.json", page: 2, per_page: 1
+          end
+
+          it 'returns a successful response' do
+            expect(last_response).to be_successful
+            expect(parsed_response.size).to eq 1
+            expect(last_response.header['X-Per-Page'].to_i).to eq 1
+            expect(last_response.header['X-Total-Entries'].to_i).to eq 2
+            expect(last_response.header['X-Total-Pages'].to_i).to eq 2
+          end
+
+        end
+
       end
     end
 
@@ -50,10 +67,17 @@ describe Locomotive::API::Resources::ContentEntryResource do
           }
         end
 
+        subject { post("#{url_prefix}.json", content_entry: content_entry_params) }
+
         it 'creates a content entry' do
-          expect { post("#{url_prefix}.json", content_entry: content_entry_params) }
-            .to change { Locomotive::ContentEntry.count }.by(1)
+          expect { subject }.to change { Locomotive::ContentEntry.count }.by(1)
         end
+
+        it 'returns the new content entry' do
+          subject
+          expect(parsed_response[:title]).to eq 'Article #1'
+        end
+
       end
     end
 

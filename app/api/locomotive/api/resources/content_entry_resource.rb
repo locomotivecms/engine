@@ -60,7 +60,7 @@ module Locomotive
             authorize ContentEntry, :create?
 
             form = form_klass.new(content_type, content_entry_params)
-            content_entry = service.create(form.serializable_hash)
+            @content_entry = service.create(form.serializable_hash)
 
             present content_entry, with: entity_klass
           end
@@ -75,13 +75,13 @@ module Locomotive
 
             if @content_entry = content_type.entries.by_id_or_slug(params[:id]).first
               authorize @content_entry, :update?
-              service.update(@content_entry, form.serializable_hash)
+              @content_entry = service.update(@content_entry, form.serializable_hash)
             else
               authorize ContentEntry, :create?
-              content_entry = service.create(form.serializable_hash)
+              @content_entry = service.create(form.serializable_hash)
             end
 
-            present content_entry, with: entity_klass
+            present @content_entry, with: entity_klass
           end
 
           desc "Delete a content entry"
