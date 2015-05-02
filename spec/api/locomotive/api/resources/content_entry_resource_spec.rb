@@ -87,7 +87,7 @@ describe Locomotive::API::Resources::ContentEntryResource do
         let(:locale) { 'en' }
         let(:content_entry_params) { { title: 'Hello world [UPDATED]' } }
 
-        let(:put_request) { put("#{url_prefix}/#{content_entry.id}.json", { content_entry: content_entry_params }, { 'X-Locomotive-Locale' => locale }) }
+        let(:put_request) { put("#{url_prefix}/#{content_entry.id}.json", { content_entry: content_entry_params }, { 'HTTP_X_LOCOMOTIVE_LOCALE' => locale }) }
 
         it 'does not change the number of existing content entries' do
           expect { put_request }.to_not change { Locomotive::ContentEntry.count }
