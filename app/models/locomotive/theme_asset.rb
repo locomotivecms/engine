@@ -5,6 +5,7 @@ module Locomotive
 
     ## extensions ##
     include Concerns::Asset::Types
+    include Concerns::Asset::Checksum
 
     ## fields ##
     field :local_path
@@ -13,7 +14,6 @@ module Locomotive
     field :height,        type: Integer
     field :size,          type: Integer
     field :folder,        default: nil
-    field :checksum
 
     mount_uploader :source, ThemeAssetUploader, mount_on: :source_filename, validate_integrity: true
 
@@ -29,7 +29,6 @@ module Locomotive
     before_validation :store_plain_text
     before_validation :sanitize_folder
     before_validation :build_local_path
-    before_save       :calculate_checksum
 
     ## validations ##
     validates_presence_of   :site
@@ -181,16 +180,6 @@ module Locomotive
         if self.content_type_was.to_sym != self.content_type
           self.errors.add(:source, :extname_changed)
         end
-      end
-    end
-
-    def calculate_checksum
-      begin
-        if self.checksum.blank?
-          self.checksum = Digest::MD5.hexdigest(self.source.read)
-        end
-      rescue Errno::ENOENT => e
-        # no file
       end
     end
 

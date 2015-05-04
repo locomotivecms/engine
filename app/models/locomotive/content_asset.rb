@@ -6,6 +6,7 @@ module Locomotive
     ## extensions ##
     include Concerns::Asset::Types
     include Concerns::Asset::Vignette
+    include Concerns::Asset::Checksum
 
     ## fields ##
     field :content_type,  type: String

@@ -4,7 +4,7 @@ module Locomotive
 
       class ContentAssetEntity < BaseEntity
 
-        expose :content_type, :width, :height, :vignette_url, :alternative_vignette_url
+        expose :content_type, :width, :height, :vignette_url, :alternative_vignette_url, :checksum
 
         expose :filename do |content_asset, _|
           truncate(content_asset.source_filename, length: 28)
