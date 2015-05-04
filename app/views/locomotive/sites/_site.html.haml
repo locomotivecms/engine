@@ -12,6 +12,5 @@
       %h2= site.name.truncate(22)
 
       .domain
-        = site.main_domain.truncate(28)
-
+        = site.main_domain.try(:truncate, 28) || t('.no_domain')
 
