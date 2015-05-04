@@ -32,12 +32,22 @@ module Locomotive
               name = translations[content_type_service.site.default_locale]
             end
 
-            if field && option = field.select_options.where(name: name).first
-              # update the option instead of creating it
-              attributes[:_id] = option._id
-            end
+            attach_id_to_option(name, attributes)
 
             attributes
+          end
+        end
+
+        private
+
+        def attach_id_to_option(name, attributes)
+          field = content_type.try(:find_entries_custom_field, self.name)
+
+          return if field.nil?
+
+          if option = field.select_options.where(name: name).first
+            # update the option instead of creating it
+            attributes[:_id] = option._id
           end
         end
 

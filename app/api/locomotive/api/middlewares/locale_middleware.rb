@@ -25,9 +25,9 @@ module Locomotive
         private
 
         def find_locale(env)
-          env['HTTP_X_LOCOMOTIVE_LOCALE'] ||
-          Rack::Request.new(env).params[:locale] ||
-          env['locomotive.site'].try(:default_locale) ||
+          env['HTTP_X_LOCOMOTIVE_LOCALE'].presence ||
+          Rack::Request.new(env).params[:locale].presence ||
+          env['locomotive.site'].try(:default_locale).presence ||
           Locomotive.config.site_locales.first
         end
 

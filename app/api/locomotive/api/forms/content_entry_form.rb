@@ -21,7 +21,7 @@ module Locomotive
         alias :set_date :set_date_time
 
         def set_belongs_to(field, value)
-          dynamic_attributes[field.name.to_sym] = fetch_entry_ids(field.class_name, value).first
+          dynamic_attributes[field.name.to_sym] = fetch_entry_id(field.class_name, value)
         end
 
         def set_many_to_many(field, value)
@@ -66,6 +66,12 @@ module Locomotive
             end
             hash
           end.with_indifferent_access
+        end
+
+        def fetch_entry_id(class_name, id_or_slug)
+          if entry = fetch_entry_ids(class_name, id_or_slug).first
+            entry.first
+          end
         end
 
         def fetch_entry_ids(class_name, ids_or_slugs)
