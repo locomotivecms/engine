@@ -68,8 +68,12 @@ describe Locomotive::API::Entities::PageEntity do
 
     describe 'localized_fullpaths' do
       context 'with a current site' do
+
         subject { described_class.new(page, site: page.site) }
-        it 'returns the localized_fullpaths'
+
+        it 'returns the localized_fullpaths' do
+          expect(exposure[:localized_fullpaths]).to eq "todo"
+        end
       end
 
       context 'without a current site' do
