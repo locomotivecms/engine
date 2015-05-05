@@ -7,11 +7,14 @@ describe Locomotive::API::Entities::PageEntity do
   attributes =
     %i(
       title
-      slug
       parent_id
       position
       handle
+      depth
+      translated_in
       response_type
+      slug
+      fullpath
       redirect
       redirect_url
       redirect_type
@@ -21,28 +24,22 @@ describe Locomotive::API::Entities::PageEntity do
       templatized_from_parent
       is_layout
       allow_layout
-      target_klass_slug
-      target_klass_name
-      raw_template
       seo_title
       meta_keywords
       meta_description
-      fullpath
-      depth
-      translated_in
     )
 
-    # Not direct methods on the model object:
-    # parent_fullpath, target_entry_name, localized_fullpaths
-
   attributes.each do |exposure|
-      it { is_expected.to represent(exposure) }
-    end
+    it { is_expected.to represent(exposure) }
+  end
 
   context 'overrides' do
+
     let(:parent_page) { create(:page, title: 'parent', slug: 'parent', raw_template: nil) }
     let(:page) { create(:page_with_editable_element, parent: parent_page) }
+
     subject { described_class.new(page) }
+
     let(:exposure) { subject.serializable_hash }
 
     describe 'editable_elements' do
@@ -51,19 +48,21 @@ describe Locomotive::API::Entities::PageEntity do
       end
     end
 
-    describe 'escaped_raw_template' do
+    describe 'template' do
       it 'returns the template' do
-        expect(exposure[:escaped_raw_template]).to eq("&lt;a&gt;a&lt;/a&gt;")
+        expect(exposure[:template]).to eq '<a>a</a>'
       end
     end
 
-    describe 'target_entry_name' do
-      before do
-        allow(page).to receive(:target_klass_name).and_return("KlassClass")
-      end
+    describe 'content_type' do
+
+      let(:content_type) { instance_double('ContentType', slug: 'articles') }
+
+      before { allow(page).to receive(:content_type).and_return(content_type) }
+
 
       it 'returns the target_entry_name' do
-        expect(exposure[:target_entry_name]).to eq 'klass_class'
+        expect(exposure[:content_type]).to eq 'articles'
       end
     end
 
