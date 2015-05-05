@@ -35,7 +35,8 @@ describe Locomotive::API::Entities::PageEntity do
 
   context 'overrides' do
 
-    let(:parent_page) { create(:page, title: 'parent', slug: 'parent', raw_template: nil) }
+    let(:site) { create(:site, locales: [:en, :fr]) }
+    let(:parent_page) { create(:page, title: 'parent', slug: 'parent', site: site, raw_template: nil) }
     let(:page) { create(:page_with_editable_element, parent: parent_page) }
 
     subject { described_class.new(page) }
@@ -72,7 +73,7 @@ describe Locomotive::API::Entities::PageEntity do
         subject { described_class.new(page, site: page.site) }
 
         it 'returns the localized_fullpaths' do
-          expect(exposure[:localized_fullpaths]).to eq "todo"
+          expect(exposure[:localized_fullpaths]).to eq({ en: 'with_editable_element', fr: 'fr/with_editable_element' })
         end
       end
 

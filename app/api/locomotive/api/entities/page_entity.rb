@@ -13,18 +13,8 @@ module Locomotive
 
         expose :localized_fullpaths do |page, options|
           (options[:site].try(:locales) || []).inject({}) do |hash, locale|
-            hash.merge(locale => site.localized_page_fullpath(page, locale))
+            hash.merge(locale => options[:site].localized_page_fullpath(page, locale))
           end
-
-          # if (site = options[:site])
-          #   {}.tap do |hash|
-          #     site.locales.each do |locale|
-          #       hash[locale] = site.localized_page_fullpath(page, locale)
-          #     end
-          #   end
-          # else
-          #   {}
-          # end
         end
 
         # Redirection
