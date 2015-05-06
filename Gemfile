@@ -16,8 +16,8 @@ end
 group :test, :development do
 
   gem 'test-unit'
-  # gem 'rspec-rails', '~> 2.13.0' # In order to have rspec tasks and generators
-  # gem 'rspec-cells', '0.1.10'
+  gem 'rspec-rails', '~> 2.13.0' # In order to have rspec tasks and generators
+  gem 'rspec-cells', '0.1.10'
 end
 
 group :development do
@@ -44,24 +44,24 @@ end
 group :test do
   gem 'launchy'
 
-  # gem 'cucumber-rails', require: false
+  gem 'cucumber-rails', require: false
 
-  # gem 'autotest', platforms: :mri
-  # gem 'ZenTest', platforms: :mri
+  gem 'autotest', platforms: :mri
+  gem 'ZenTest', platforms: :mri
 
-  # gem 'poltergeist',        '~> 1.1.0'
-  # gem 'shoulda-matchers',   '~> 1.5.2'
+  gem 'poltergeist',        '~> 1.1.0'
+  gem 'shoulda-matchers',   '~> 1.5.2'
 
-  # gem 'factory_girl_rails', '~> 4.2.1'
-  # gem 'pickle'
+  gem 'factory_girl_rails', '~> 4.2.1'
+  gem 'pickle'
 
-  # gem 'capybara',           '~> 2.0.2'
+  gem 'capybara',           '~> 2.0.2'
 
-  # gem 'json_spec'
+  gem 'json_spec'
 
-  # gem 'database_cleaner'
+  gem 'database_cleaner'
 
-  # gem 'mocha', '~> 0.13.0', require: false
+  gem 'mocha', '~> 0.13.0', require: false
 
-  # gem 'debugger', git: 'git://github.com/cldwalker/debugger.git'
+  gem 'debugger', git: 'git://github.com/cldwalker/debugger.git'
 end
