@@ -1,0 +1,508 @@
+@font-face {
+	font-family: 'picediticons';
+	src: url(data:application/x-font-ttf;charset=utf-8;base64,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) format('truetype'),
+		 url(data:application/font-woff;charset=utf-8;base64,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h4uHCItLBYuHiYeIiIiIh4mHiwh7i4v71JuLBfxkUxWLiYyJjImNio2KjYsIm4sFjYuNjI2MjI2MjYuNCIubBYuNio2KjYmMiYyJiwh7iwWJi4mKiYqKiYqJi4kIi3sFq/hEFYuNio2KjYmMiYyJiwh7iwWJi4mKiYqKiYqJi4kIi3sFi4mMiYyJjYqNio2LCJuLBY2LjYyNjIyNjI2LjQiLmwX39GMVi5v71IuLewWLh4mHiIiIiIeJh4sIe4uL+9SbiwWPi4+JjoiOiI2Hi4cIi3v31IuLmwWLj42Pjo6Ojo+Nj4sIm4uL99R7iwWHi4eNiI6IjomPi48Iy7MVi42KjYqNiYyJjImLCHuLBYmLiYqJioqJiomLiQiLewWLiYyJjImNio2KjYsIm4sFjYuNjI2MjI2MjYuNCIubBYP8LBV7iwWJi4mKiYqKiYqJi4kIi3sFi4mMiYyJjYqNio2LCJuLBY2LjYyNjIyNjI2LjQiLmwWLjYqNio2JjImMiYsI+333IRXV1gWRkZOOlIuVi5OIkYUIo3KL+xNFiwX7Hvc0FX6Lf5CClIKUhpeLmIuYkJeUlJSUl5CYi5iLl4aUgpSCkH+Lfot+hn+CgoKCf4Z+iwiTQhXhNPsii4vZlJQFkZGTj5SLlYuTh5GFCA74kPIVVFTBVQWOiI2Hi4eLh4mHiIiIiIiKh4uHi4eNiI4IVcFUVQWIiIeJh4uHi4iMiI6IjoqPi4+Lj4yPjo4IwsFUwgWIjomPi4+Lj42Ojo6Ojo6Nj4uPi4+JjogIwlTCwgWOjo6Nj4uPi4+JjoiOiIyIi4eLh4qHiIgITvftFYFLBYmCh4SEhYSEg4iCi4KLhY6GkoaRiZKMlIyPjJCKj4uPiY6JjoiOhY2DjYKMf4x8iwiCi4OIhIWEhYeDioIIZvtUBYmCjIOOhY6FkYiTi5OLkYiQhY+FjYOKgomCh4SFhYSEhIiDiwj7FosFgYuEjoaShZGJko2UjJSQk5ORkpGUjpSLlIuVjpaSlZGRk42TCK/3VAWNlImThpGGkYSOg4t+i4GKg4qCioWKh4mGioiIiIiJh4mIi4mKiYqIi4aJgoeEhIUIhISDiIKLgouFjoaShpGJkoyUCJbLBYyUkJOSkZKRk46Tiwj3yosFlIuSiJCFkIWMg4qCCCz8JBWLhomIiIiIiIeJh4sI+9SLBYeL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AAAAAAEAAAACAAAAAgAAAAIAAAACAAAAAgAAAAIAAAACAAAAAgAAAAIAAAACAAAAAgAAIwIAAAACAAAAAgAAAAIAAAACAAAAAgAAMwIAAAACAAAAAgAAAAIAAAACAAAUAgAAIAIAAEAAAFAAABwAAAAAAA4ArgABAAAAAAABABgAAAABAAAAAAACAA4AagABAAAAAAADABgALgABAAAAAAAEABgAeAABAAAAAAAFABYAGAABAAAAAAAGAAwARgABAAAAAAAKACgAkAADAAEECQABABgAAAADAAEECQACAA4AagADAAEECQADABgALgADAAEECQAEABgAeAADAAEECQAFABYAGAADAAEECQAGABgAUgADAAEECQAKACgAkABwAGkAYwBlAGQAaQB0AGkAYwBvAG4AcwBWAGUAcgBzAGkAbwBuACAAMQAuADAAcABpAGMAZQBkAGkAdABpAGMAbwBuAHNwaWNlZGl0aWNvbnMAcABpAGMAZQBkAGkAdABpAGMAbwBuAHMAUgBlAGcAdQBsAGEAcgBwAGkAYwBlAGQAaQB0AGkAYwBvAG4AcwBHAGUAbgBlAHIAYQB0AGUAZAAgAGIAeQAgAEkAYwBvAE0AbwBvAG4AAAADAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA) format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+[class^="ico-picedit-"], [class*=" ico-picedit-"] {
+	font-family: 'picediticons';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.ico-picedit-infinite-loop:before {
+	content: "\e60f";
+}
+.ico-picedit-arrow-maximise:before {
+	content: "\e60e";
+}
+.ico-picedit-insertpicture:before {
+	content: "\e60c";
+}
+.ico-picedit-clearfont:before {
+	content: "\e60d";
+}
+.ico-picedit-eraser:before {
+	content: "\e607";
+}
+.ico-picedit-close:before {
+	content: "\e618";
+}
+.ico-picedit-pencil:before {
+	content: "\e609";
+}
+.ico-picedit-droplet:before {
+	content: "\e61a";
+}
+.ico-picedit-picture:before {
+	content: "\e617";
+}
+.ico-picedit-camera:before {
+	content: "\e608";
+}
+.ico-picedit-undo:before {
+	content: "\e613";
+}
+.ico-picedit-redo:before {
+	content: "\e614";
+}
+.ico-picedit-bubble:before {
+	content: "\e605";
+}
+.ico-picedit-expand:before {
+	content: "\e606";
+}
+.ico-picedit-cogs:before {
+	content: "\e604";
+}
+.ico-picedit-link:before {
+	content: "\e60b";
+}
+.ico-picedit-brightness:before {
+	content: "\e602";
+}
+.ico-picedit-contrast:before {
+	content: "\e603";
+}
+.ico-picedit-checkmark:before {
+	content: "\e610";
+}
+.ico-picedit-crop:before {
+	content: "\e615";
+}
+.ico-picedit-font:before {
+	content: "\e612";
+}
+.ico-picedit-libreoffice:before {
+	content: "\e619";
+}
+.ico-picedit-clock:before {
+	content: "\e601";
+}
+.ico-picedit-circle-half:before {
+	content: "\e600";
+}
+
+.picedit_box {
+    display: inline-block;
+    position: relative;
+    border: 1px solid #ddd;
+	font-family: "Myriad Pro", Arial, Helvetica, sans-serif;
+	font-size: 1rem;
+    width: 400px;
+    height: 200px;
+    color: #aaa;
+    overflow: hidden;
+}
+.picedit_canvas_box:hover .picedit_action_btns, .picedit_action_btns.active {
+	z-index: 8;
+	opacity: 0.6;
+}
+.picedit_canvas_box.dragging {
+	-webkit-box-shadow: inset 0px 0px 6px 0px #555555;
+	box-shadow: inset 0px 0px 6px 0px #555555;
+}
+.picedit_nav_box {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 98%;
+    padding: 1% 1% 1.5% 1%;
+    z-index: 15;
+    opacity: 0;
+	
+	-webkit-transition: opacity 200ms ease-out;
+	-moz-transition: opacity 200ms ease-out;
+	-ms-transition: opacity 200ms ease-out;
+	-o-transition: opacity 200ms ease-out;
+	transition: opacity 200ms ease-out;
+}
+.picedit_nav_box:hover, .picedit_nav_box.active {
+	opacity: 0.8;
+}
+.picedit_control {
+    padding: 0 0.25em;
+    cursor: pointer;
+    display: inline-block;
+    opacity: 1;
+    vertical-align: middle;
+	-webkit-transition: all 200ms ease-in-out;
+	-moz-transition: all 200ms ease-in-out;
+	-ms-transition: all 200ms ease-in-out;
+	-o-transition: all 200ms ease-in-out;
+	transition: all 200ms ease-in-out;
+}
+.picedit_control:hover, .picedit_element.active > .picedit_control, .picedit_control.active {
+	opacity: 1;
+	text-shadow: 0px 0.3px 0px rgba(255, 255, 255, 0.8), 0 0 0 rgba(107, 107, 107, 0.62), 0px 0.3px 0px #FFF;
+	color: transparent;
+}
+.picedit_gray_gradient {
+	background: -moz-linear-gradient(top,  rgba(0,0,0,1) 0%, rgba(0,0,0,0.4) 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,1)), color-stop(100%,rgba(0,0,0,0.4)));
+	background: -webkit-linear-gradient(top,  rgba(0,0,0,1) 0%,rgba(0,0,0,0.4) 100%);
+	background: -o-linear-gradient(top,  rgba(0,0,0,1) 0%,rgba(0,0,0,0.4) 100%);
+	background: -ms-linear-gradient(top,  rgba(0,0,0,1) 0%,rgba(0,0,0,0.4) 100%);
+	background: linear-gradient(to bottom,  rgba(0, 0, 0, 1) 0%,rgba(0, 0, 0, 0.4) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#00000000',GradientType=0 );
+}
+.picedit_pos_elements {}
+.picedit_nav_elements {
+    position: relative;
+    width: 100%;
+    text-align: right;
+    padding: 0.3em 0;
+    z-index: 20;
+}
+.picedit_element {
+    display: inline-block;
+    cursor: pointer;
+}
+.picedit_element > .picedit_control {
+	font-size: 1.6em;
+	position:  relative;
+	z-index: 40;
+}
+.picedit_element > .picedit_control.ico-picedit-arrow-maximise {
+}
+.picedit_control_menu {
+    display: inline-block;
+    position: absolute;
+    top: 1.3em;
+    right: 1%;
+    z-index: 30;
+    padding-top: 1.3em;
+    width: auto;
+    opacity: 0;
+	-moz-transform: scaleY(0);
+	-webkit-transform: scaleY(0);
+	-o-transform: scaleY(0);
+	-ms-transform: scaleY(0);
+	transform: scaleY(0);
+	-webkit-transition: all 200ms ease-out;
+	-moz-transition: all 200ms ease-out;
+	-ms-transition: all 200ms ease-out;
+	-o-transition: all 200ms ease-out;
+	transition: all 200ms ease-out;
+}
+.picedit_control_menu label {
+    display: inline-block;
+    margin: 0 0.5em;
+}
+.picedit_control_menu label > span {
+}
+/*.picedit_element:hover .picedit_control_menu, */.picedit_element.active .picedit_control_menu {
+    opacity: 1;
+	-moz-transform: scaleY(1);
+	-webkit-transform: scaleY(1);
+	-o-transform: scaleY(1);
+	-ms-transform: scaleY(1);
+	transform: scaleY(1);
+}
+.picedit_control_menu_container {
+}
+.picedit_tooltip {}
+.picedit_tooltip.picedit_elm_1:after, .picedit_tooltip.picedit_elm_1:before {
+    left: 70%;
+}
+.picedit_tooltip.picedit_elm_2:after, .picedit_tooltip.picedit_elm_2:before {
+    left: 96%;
+}
+.picedit_tooltip.picedit_elm_3:after, .picedit_tooltip.picedit_elm_3:before {
+    left: 12%;
+}
+.picedit_tooltip {
+	position: relative;
+	background: #ffffff;
+	border: 1px solid #949494;
+	padding: 9px 4px 7px;
+	-webkit-box-shadow: 0em 0em 0.2em 0.1em rgba(95, 95, 95, 0.55);
+	box-shadow: 0em 0em 0.2em 0.1em rgba(95, 95, 95, 0.55);
+	white-space: nowrap;
+}
+.picedit_tooltip:after, .picedit_tooltip:before {
+	bottom: 100%;
+	left: 50%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+}
+
+.picedit_tooltip:after {
+	border-color: rgba(255, 255, 255, 0);
+	border-bottom-color: #ffffff;
+	border-width: 8px;
+	margin-left: -8px;
+}
+.picedit_tooltip:before {
+	border-color: rgba(204, 204, 204, 0);
+	border-bottom-color: #cccccc;
+	border-width: 9px;
+	margin-left: -9px;
+}
+.picedit_input {
+    width: 3em;
+}
+.picedit_canvas_box {
+    width: 100%;
+    height: 100%;
+    display: block;
+	text-align: center;
+	position: relative;
+}
+.picedit_canvas {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	display: none;
+	z-index: 5;
+}
+.picedit_action_btns .center {
+    text-align: center;
+    font-size: 0.3em;
+    color: #CACACA;
+    position: absolute;
+    bottom: -0.5em;
+    left: 0;
+    width: 100%;
+    height: auto;
+    font-style: italic;
+}
+.picedit_action_btns .center:hover {
+	-webkit-box-shadow: none;
+	box-shadow: none;
+	text-shadow: none;
+}
+.picedit_action_btns {
+	font-size: 3em;
+	color: #ddd;
+	width: 60%;
+	height: 50%;
+	display: inline-table;
+	margin: 12% auto 0% auto;
+	position: relative;
+	opacity: 0;
+	
+	z-index: 4;
+	-webkit-transition: all 200ms ease-in-out;
+	-moz-transition: all 200ms ease-in-out;
+	-ms-transition: all 200ms ease-in-out;
+	-o-transition: all 200ms ease-in-out;
+	transition: all 200ms ease-in-out;
+}
+.picedit_action_btns > div {
+    display: table-cell;
+    vertical-align: middle;
+    height: 100%;
+}
+.picedit_action_btns input.imageload {
+	display: none;
+}
+.picedit_action_btns > div:hover {
+	text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.8), 0 0 0 rgba(65, 65, 65, 0.75), 1px 1px 0px #FFF;
+}
+.picedit_nomargin {
+	margin: 0;
+}
+.picedit_message { 
+    position: absolute;
+    padding: 1.4em 2.5em 1em 1em;
+    bottom: -100px;
+    border: 1px solid #eee;
+    margin-bottom: 3%;
+    margin-left: 3%;
+    margin-right: 3%;
+    z-index: 180;
+    background-color: #F7F5D4;
+    opacity: 0.8;
+    -webkit-border-radius: 4px 4px 4px 4px;
+    border-radius: 4px 4px 4px 4px;
+    -webkit-box-shadow: 0 0 2px 1px #D8D8D8;
+    box-shadow: 0 0 0.3em 0.2em #D8D8D8;
+	
+	-webkit-transition: bottom 200ms ease-out;
+	-moz-transition: bottom 200ms ease-out;
+	-ms-transition: bottom 200ms ease-out;
+	-o-transition: bottom 200ms ease-out;
+	transition: bottom 200ms ease-out;
+}
+.picedit_message.active {
+	bottom: 0;
+}
+.picedit_message > span {
+    position: absolute;
+    top: 0.6em;
+    right: 0.4em;
+    z-index: 200;
+}
+.picedit_message.no_close_button > span {
+	display: none;
+}
+.picedit_message > div {
+    font-style: italic;
+    color: #888;
+}
+.picedit_drag_resize, .picedit_drag_resize_canvas {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.picedit_drag_resize {
+	z-index: 300;
+	overflow: hidden;
+	display: none;
+	color: #eee;
+}
+.picedit_drag_resize.active {
+	display: block;
+}
+.picedit_drag_resize_canvas {
+    z-index: 20;
+}
+.picedit_drag_resize_box {
+    position: absolute;
+    top: 20%;
+    left: 20%;
+    width: 60%;
+    height: 60%;
+    z-index: 30;
+    border: 1px dashed #eee;
+}
+.picedit_drag_resize_box_corner_wrap {
+    position: absolute;
+    bottom: -1.5em;
+    right: -1.5em;
+    padding: 1.5em;
+}
+.picedit_drag_resize_box_corner {
+    width: 0px;
+    height: 0px;
+    border-style: solid;
+    border-width: 0 0 1.2em 1.2em;
+    border-color: transparent transparent #ddd transparent;
+    opacity: 0.8;
+    z-index: 40;
+	cursor: se-resize;
+}
+.picedit_drag_resize_box_elements {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+.picedit_colors span {
+    width: 1.2em;
+    height: 1.2em;
+    border: 1px solid #757575;
+    padding: 0;
+    vertical-align: middle;
+    margin: 0.1em;
+    opacity: 0.3;
+}
+.picedit_black {
+    background-color: black;
+}
+.picedit_red {
+    background-color: red;
+}
+.picedit_green {
+    background-color: green;
+}
+.picedit_sizes span {
+    padding: 0.1em;
+    border-radius: 50%;
+    background-color: #111;
+    vertical-align: middle;
+    margin: 0.1em;
+    opacity: 0.5;
+}
+.picedit_large {
+    width: 1.2em;
+    height: 1.2em;
+}
+.picedit_medium {
+    width: 0.75em;
+    height: 0.75em;
+}
+.picedit_small {
+    width: 0.30em;
+    height: 0.30em;
+}
+.picedit_elm_3 {
+    display: table;
+}
+.picedit_elm_3 > label {
+    display: table-cell;
+    padding-bottom: 0.2em;
+    padding-top: 0.2em;
+    padding-left: 0.2em;
+    padding-right: 0.2em;
+}
+.picedit_video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 100;
+    display: none;
+}
+.picedit_video.active {
+    display: block;
+}
+.picedit_video video {
+    width: 100%;
+    height: auto;
+}
+.picedit_video_controls {
+    position: absolute;
+    bottom: 0.5em;
+    width: 100%;
+    text-align: center;
+}
+.picedit_video_controls span {
+    font-size: 1.5em;
+    border: 1px solid #bbb;
+    padding: 0.3em;
+    border-radius: 50%;
+    color: #ccc;
+    margin: 0 0.4em;
+    vertical-align: -webkit-baseline-middle;
+}
+.picedit_sizes span.active {
+    background-color: #111;
+    border: 1px solid #757575;
+}
+.picedit_painter {
+    display: none;
+    position: absolute;
+    z-index: 3;
+    left: 0;
+    cursor: crosshair;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+.picedit_painter.active {
+    display: block;
+    z-index: 12;
+}
+.picedit_painter.active + .picedit_canvas {
+    z-index: 10;
+}

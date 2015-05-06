@@ -19,6 +19,7 @@
 //= require codemirror/modes/htmlmixed
 //= require locomotive/vendor
 //= require ./locomotive/application
+//= require ./picedit
 
 $(document).ready(function() {
   $.datepicker.setDefaults($.datepicker.regional[window.locale]);
