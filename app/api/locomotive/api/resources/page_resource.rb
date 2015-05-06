@@ -16,7 +16,7 @@ module Locomotive
           get :index do
             authorize(pages, :index?)
 
-            present pages, with: entity_klass
+            present pages, with: entity_klass, site: current_site
           end
 
 
@@ -28,10 +28,9 @@ module Locomotive
             get do
               authorize(page, :show?)
 
-              present page, with: entity_klass
+              present page, with: entity_klass, site: current_site
             end
           end
-
 
           desc 'Create a page'
           params do
@@ -39,28 +38,18 @@ module Locomotive
               optional :title
               optional :slug
               optional :parent_id
-              optional :parent_fullpath
               optional :position, type: Integer
               optional :handle
               optional :response_type
-              optional :cache_strategy
-              optional :redirect, type: Boolean
               optional :redirect_url
               optional :redirect_type
               optional :listed, type: Boolean
               optional :published, type: Boolean
               optional :templatized, type: Boolean
+              optional :content_type, type: String
               optional :is_layout, type: Boolean
               optional :allow_layout, type: Boolean
-              optional :templatized_from_parent, type: Boolean
-              optional :fullpath
-              optional :localized_fullpaths, type: Hash
               optional :editable_elements, type: Array
-              optional :depth, type: Integer
-              optional :template_changed, type: Boolean
-              optional :translated_in, type: Array
-              optional :target_klass_slug
-              # End Aliases
               optional :seo_title
               optional :meta_keywords
               optional :meta_description
@@ -71,7 +60,7 @@ module Locomotive
             form = form_klass.new(page_params)
             persist_from_form(form)
 
-            present page, with: entity_klass
+            present page, with: entity_klass, site: current_site
           end
 
           desc 'Update a page'
@@ -81,31 +70,17 @@ module Locomotive
               optional :title
               optional :slug
               optional :parent_id
-              optional :parent_fullpath
               optional :position, type: Integer
               optional :handle
               optional :response_type
-              optional :cache_strategy
-              optional :redirect, type: Boolean
               optional :redirect_url
               optional :redirect_type
               optional :listed, type: Boolean
               optional :published, type: Boolean
-              optional :templatized, type: Boolean
+              optional :content_type, type: Boolean
               optional :is_layout, type: Boolean
               optional :allow_layout, type: Boolean
-              optional :templatized_from_parent, type: Boolean
-              optional :fullpath
-              optional :localized_fullpaths, type: Hash
               optional :editable_elements, type: Array
-              optional :depth, type: Integer
-              optional :template_changed, type: Boolean
-              optional :translated_in, type: Array
-              # Aliases for target_klass_slug
-              optional :target_klass_slug
-              optional :target_klass_name
-              optional :target_entry_name
-              # End Aliases
               optional :seo_title
               optional :meta_keywords
               optional :meta_description
@@ -116,7 +91,7 @@ module Locomotive
             form = form_klass.new(page_params)
             persist_from_form(form)
 
-            present page, with: entity_klass
+            present page, with: entity_klass, site: current_site
           end
 
           desc "Delete a page"
@@ -128,7 +103,7 @@ module Locomotive
 
             page.destroy
 
-            present page, with: entity_klass
+            present page, with: entity_klass, site: current_site
           end
 
         end
