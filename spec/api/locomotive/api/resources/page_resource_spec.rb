@@ -13,7 +13,7 @@ describe Locomotive::API::Resources::PageResource do
 
     describe 'GET index' do
       context 'JSON' do
-        before { get "#{url_prefix}/index.json" }
+        before { get "#{url_prefix}.json" }
 
         it 'returns a successful response' do
           expect(last_response).to be_successful
@@ -37,7 +37,7 @@ describe Locomotive::API::Resources::PageResource do
         attributes_for('page').tap do |test_page|
           test_page[:title] = 'title'
           test_page[:slug] = 'slug'
-          test_page[:parent_id] = site.pages.first.id
+          test_page[:parent] = site.pages.first.id
         end
       end
 

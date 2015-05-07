@@ -10,7 +10,7 @@ module Locomotive
         attrs :parent_id, :position, :listed
 
         # Template
-        attrs :is_layout, :allow_layout, :template
+        attrs :is_layout, :allow_layout, :raw_template
 
         # Redirection
         attrs  :redirect, :redirect_url, :redirect_type
@@ -24,12 +24,21 @@ module Locomotive
         # Editable elements
         attrs :editable_elements_attributes
 
-        def initialize(attributes = {}, existing_page = nil)
+        def initialize(site, attributes = {}, existing_page = nil)
+          @site = site
           @existing_page = existing_page
           super(attributes)
         end
 
         ## Custom setters ##
+
+        def parent=(id_or_path)
+          self.parent_id = @site.pages.by_id_or_fullpath(id_or_path).pluck(:_id).first
+        end
+
+        def template=(template)
+          self.raw_template = template
+        end
 
         def editable_elements=(elements)
           self.editable_elements_attributes = elements.map do |attrs|

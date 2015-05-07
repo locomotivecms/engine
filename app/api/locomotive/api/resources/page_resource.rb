@@ -13,7 +13,7 @@ module Locomotive
           end
 
           desc 'Index of pages'
-          get :index do
+          get '/' do
             authorize(pages, :index?)
 
             present pages, with: entity_klass, site: current_site
@@ -35,9 +35,9 @@ module Locomotive
           desc 'Create a page'
           params do
             requires :page, type: Hash do
-              optional :title
-              optional :slug
-              optional :parent_id
+              requires :title
+              requires :slug
+              requires :parent
               optional :position, type: Integer
               optional :handle
               optional :response_type
@@ -57,7 +57,7 @@ module Locomotive
           end
           post do
             authorize Page, :create?
-            form = form_klass.new(page_params)
+            form = form_klass.new(current_site, page_params)
             persist_from_form(form)
 
             present page, with: entity_klass, site: current_site
@@ -69,7 +69,7 @@ module Locomotive
             requires :page, type: Hash do
               optional :title
               optional :slug
-              optional :parent_id
+              optional :parent
               optional :position, type: Integer
               optional :handle
               optional :response_type
@@ -89,7 +89,7 @@ module Locomotive
           end
           put ':id' do
             object_auth :update?
-            form = form_klass.new(page_params, page)
+            form = form_klass.new(current_site, page_params, page)
             persist_from_form(form)
 
             present page, with: entity_klass, site: current_site
