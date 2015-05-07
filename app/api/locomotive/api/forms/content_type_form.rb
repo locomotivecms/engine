@@ -23,8 +23,6 @@ module Locomotive
         #  to the attributes hash.  If not, set the entries_custom_fields_attributes
         #  as-is
         def fields=(fields)
-          # entries_custom_fields_attributes_will_change!
-
           self.entries_custom_fields_attributes = fields.map do |attrs|
             if field = existing_content_type.try(:find_entries_custom_field, attrs[:name])
               attrs[:_id] = field._id

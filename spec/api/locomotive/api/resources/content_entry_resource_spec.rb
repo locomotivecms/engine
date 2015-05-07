@@ -55,7 +55,7 @@ describe Locomotive::API::Resources::ContentEntryResource do
             title:          'Article #1',
             body:           'Lorem ipsum',
             featured:       true,
-            picture:        Rack::Test::UploadedFile.new(FixturedAsset.path('5k.png')),
+            picture:        rack_asset('5k.png'),
             published_on:   '2009/09/10 09:00:00',
             author_email:   'john@doe.net',
             grade:          4.2,

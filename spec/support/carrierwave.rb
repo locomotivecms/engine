@@ -26,25 +26,14 @@ module FixturedAsset
     FileUtils.mkdir(File.join(File.dirname(__FILE__), '..', 'tmp'))
   end
 end
+FixturedAsset.reset!
 
-module FixturedTheme
-  def self.open(filename)
-    File.new(self.path(filename))
-  end
-
-  def self.path(filename)
-    File.join(File.dirname(__FILE__), '..', 'fixtures', 'themes', filename)
-  end
-
-  def self.duplicate(filename)
-    dst = File.join(File.dirname(__FILE__), '..', 'tmp', filename)
-    FileUtils.cp self.path(filename), dst
-    dst
-  end
-
-  def self.duplicate_and_open(filename)
-    File.open(self.duplicate(filename))
-  end
+def rack_asset(filename)
+  file = FixturedAsset.open(filename)
+  Rack::Test::UploadedFile.new(file)
 end
 
-FixturedAsset.reset!
+def rack_theme_image(filename)
+  file = FixturedAsset.open(File.join('..', 'images', filename))
+  Rack::Test::UploadedFile.new(file)
+end

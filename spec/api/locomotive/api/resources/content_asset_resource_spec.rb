@@ -4,10 +4,7 @@ describe Locomotive::API::Resources::ContentAssetResource do
 
   include_context 'api site setup'
 
-  let(:rack_upload) { Rack::Test::UploadedFile.new(path) }
-  let(:path) { Rails.root.join('../../spec/fixtures/images/rails.png').to_s }
-
-  let!(:asset) { create(:asset, site: site, source: rack_upload) }
+  let!(:asset) { create(:asset, site: site, source: rack_theme_image('rails.png')) }
   let(:params) { { locale: :en } }
   let(:url_prefix) { '/locomotive/acmi/api/v3/content_assets' }
 
@@ -41,9 +38,7 @@ describe Locomotive::API::Resources::ContentAssetResource do
       context 'JSON' do
         let(:asset) do
           attributes_for(:asset).tap do |attributes|
-            attributes[:source] = Rack::Test::UploadedFile.new(
-              File.join(Rails.root, '..', '..', 'spec', 'fixtures', 'images', 'rails_2.png')
-            )
+            attributes[:source] = rack_theme_image('rails_2.png')
           end
         end
 

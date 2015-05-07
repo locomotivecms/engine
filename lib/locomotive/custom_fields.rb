@@ -7,16 +7,10 @@ module CustomFields
 
   class Field
 
-    include Locomotive::Mongoid::Presenter
-
     field :ui_enabled, type: Boolean, default: true
 
     def class_name_to_content_type
       self._parent.send :class_name_to_content_type, self.class_name
-    end
-
-    def self.presenter_class
-      Locomotive::ContentFieldPresenter
     end
 
     protected

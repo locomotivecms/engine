@@ -12,10 +12,10 @@ describe Locomotive::API::Entities::ThemeAssetEntity do
 
   context 'overrides' do
 
-    let(:path) { Rails.root.join('../../spec/fixtures/images/rails.png').to_s }
-    let(:rack_upload) { Rack::Test::UploadedFile.new(path) }
-    let(:theme_asset) { create(:theme_asset, source: rack_upload) }
+    let(:theme_asset) { create(:theme_asset, source: rack_theme_image('rails.png')) }
+
     subject { described_class.new(theme_asset) }
+
     let(:exposure) { subject.serializable_hash }
 
     describe 'raw_size' do

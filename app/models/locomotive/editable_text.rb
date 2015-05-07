@@ -20,70 +20,70 @@ module Locomotive
       super
     end
 
-    def default_content?
-      !!self.default_content
-    end
+    # def default_content?
+    #   !!self.default_content
+    # end
 
-    def content_from_default=(content)
-      if self.default_content?
-        self.content_will_change!
-        self.attributes['content'] ||= {}
-        self.attributes['content'][::Mongoid::Fields::I18n.locale.to_s] = content
-      end
-    end
+    # def content_from_default=(content)
+    #   if self.default_content?
+    #     self.content_will_change!
+    #     self.attributes['content'] ||= {}
+    #     self.attributes['content'][::Mongoid::Fields::I18n.locale.to_s] = content
+    #   end
+    # end
 
-    def copy_attributes_from(el)
-      super(el)
+    # def copy_attributes_from(el)
+    #   super(el)
 
-      self.copy_formatting_attributes_from(el)
+    #   self.copy_formatting_attributes_from(el)
 
-      self.attributes['content']          = el.content_translations || {}
-      self.attributes['default_content']  = el.default_content_translations
-    end
+    #   self.attributes['content']          = el.content_translations || {}
+    #   self.attributes['default_content']  = el.default_content_translations
+    # end
 
-    def copy_default_attributes_from(el)
-      super(el)
+    # def copy_default_attributes_from(el)
+    #   super(el)
 
-      self.copy_formatting_attributes_from(el)
-    end
+    #   self.copy_formatting_attributes_from(el)
+    # end
 
-    def copy_formatting_attributes_from(el)
-      %w(format rows line_break).each do |attr|
-        self.attributes[attr] = el.attributes[attr]
-      end
-    end
+    # def copy_formatting_attributes_from(el)
+    #   %w(format rows line_break).each do |attr|
+    #     self.attributes[attr] = el.attributes[attr]
+    #   end
+    # end
 
-    def set_default_content_from(el)
-      super(el)
+    # def set_default_content_from(el)
+    #   super(el)
 
-      locale = ::Mongoid::Fields::I18n.locale.to_s
+    #   locale = ::Mongoid::Fields::I18n.locale.to_s
 
-      if self.default_content? || self.attributes['default_content'][locale].nil?
-        self.default_content = true
+    #   if self.default_content? || self.attributes['default_content'][locale].nil?
+    #     self.default_content = true
 
-        self.content_will_change!
+    #     self.content_will_change!
 
-        if self.attributes['content']
-          self.attributes['content'][locale] = el.content
-        end
-      end
-    end
+    #     if self.attributes['content']
+    #       self.attributes['content'][locale] = el.content
+    #     end
+    #   end
+    # end
 
     protected
 
-    def propagate_content
-      if self.content_changed?
-        operations  = {
-          '$set' => {
-            "editable_elements.$.content.#{::Mongoid::Fields::I18n.locale}"         => self.content,
-            "editable_elements.$.default_content.#{::Mongoid::Fields::I18n.locale}" => false,
-          }
-        }
+    # def propagate_content
+    #   if self.content_changed?
+    #     operations  = {
+    #       '$set' => {
+    #         "editable_elements.$.content.#{::Mongoid::Fields::I18n.locale}"         => self.content,
+    #         "editable_elements.$.default_content.#{::Mongoid::Fields::I18n.locale}" => false,
+    #       }
+    #     }
 
-        self.page.collection.find(self._selector).update(operations, multi: true)
-      end
-      true
-    end
+    #     self.page.collection.find(self._selector).update(operations, multi: true)
+    #   end
+    #   true
+    # end
 
     def strip_content
       self.content.strip! unless self.content.blank?

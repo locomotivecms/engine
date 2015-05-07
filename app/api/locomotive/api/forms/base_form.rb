@@ -43,8 +43,7 @@ module Locomotive
               if localized && val.is_a?(Hash)
                 self.send(:"#{name}_translations=", val)
               else
-                send("#{name}_will_change!") unless send(name) == val
-                instance_variable_set("@#{name}", val)
+                set_attribute(name, val)
               end
             end
           end
@@ -60,6 +59,11 @@ module Locomotive
 
         def persisted?
           false
+        end
+
+        def set_attribute(name, value)
+          send("#{name}_will_change!") unless send(name) == value
+          instance_variable_set("@#{name}", value)
         end
 
         # def attributes

@@ -80,6 +80,7 @@ module Locomotive
               optional :content_type, type: Boolean
               optional :is_layout, type: Boolean
               optional :allow_layout, type: Boolean
+              optional :template
               optional :editable_elements, type: Array
               optional :seo_title
               optional :meta_keywords
@@ -88,7 +89,7 @@ module Locomotive
           end
           put ':id' do
             object_auth :update?
-            form = form_klass.new(page_params)
+            form = form_klass.new(page_params, page)
             persist_from_form(form)
 
             present page, with: entity_klass, site: current_site
