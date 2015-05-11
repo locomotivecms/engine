@@ -118,7 +118,11 @@ module Locomotive
     end
 
     def set_default_raw_template
-      self.raw_template ||= ::I18n.t('attributes.defaults.pages.other.body')
+      begin
+        self.raw_template ||= ::I18n.t('attributes.defaults.pages.other.body')
+      rescue ActiveModel::MissingAttributeError
+        # page not loaded from MongoDB without the raw_template attribute
+      end
     end
 
     def build_fullpath
@@ -127,7 +131,7 @@ module Locomotive
       else
         slugs = self.ancestors_and_self.map(&:slug)
         slugs.shift unless slugs.size == 1
-        self.fullpath = File.join slugs.compact
+        self.fullpath = slugs.compact.join('/')
       end
     end
 

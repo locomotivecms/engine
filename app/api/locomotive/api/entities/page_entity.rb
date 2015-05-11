@@ -42,6 +42,15 @@ module Locomotive
 
       end
 
+      class FullpathPageEntity < BaseEntity
+
+        expose :fullpath
+
+        unexpose :created_at
+        unexpose :updated_at
+
+      end
+
     end
   end
 end

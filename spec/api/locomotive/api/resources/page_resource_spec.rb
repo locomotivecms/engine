@@ -22,6 +22,19 @@ describe Locomotive::API::Resources::PageResource do
       end
     end
 
+    describe 'GET fullpaths' do
+      context 'JSON' do
+        before { get "#{url_prefix}/fullpaths.json" }
+
+        it 'returns a successful response' do
+          expect(parsed_response.size).to eq 2
+          expect(parsed_response.first.keys).to eq %w(_id fullpath)
+          expect(parsed_response.map { |h| h['fullpath'] }).to eq %w(index 404)
+        end
+
+      end
+    end
+
     describe 'GET show' do
       context 'JSON' do
         before { get "#{url_prefix}/#{page.id}.json"}

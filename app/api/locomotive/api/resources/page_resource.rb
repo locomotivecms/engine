@@ -19,6 +19,12 @@ module Locomotive
             present pages, with: entity_klass, site: current_site
           end
 
+          desc 'Only full path of pages'
+          get '/fullpaths' do
+            authorize(pages, :index?)
+
+            present pages.only(:_id, :fullpath), with: Locomotive::API::Entities::FullpathPageEntity
+          end
 
           desc "Show a page"
           params do
