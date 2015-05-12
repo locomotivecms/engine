@@ -22,17 +22,17 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'devise',                          '~> 3.4.1'
   s.add_dependency 'devise-encryptable',              '~> 0.2.0'
-  s.add_dependency 'simple_token_authentication',     '~> 1.8.0'
+  s.add_dependency 'simple_token_authentication',     '~> 1.9.1'
 
-  s.add_dependency 'pundit',                          '~> 0.3.0'
+  s.add_dependency 'pundit',                          '~> 1.0.0'
 
   s.add_dependency 'mongoid',                         '~> 4.0.2'
   s.add_dependency 'mongoid-tree',                    '~> 2.0.0'
   # s.add_dependency 'mongoid_migration',               '~> 0.0.8'
   # s.add_dependency 'mongo_session_store',             '~> 2.0.0'
-  s.add_dependency 'mongo_session_store-rails4',      '~> 5.1.0'
+  s.add_dependency 'mongo_session_store-rails4',      '~> 6.0.0'
 
-  s.add_dependency 'mime-types',                      '~> 2.4.3'
+  s.add_dependency 'mime-types',                      '~> 2.5'
   # s.add_dependency 'custom_fields',                   '~> 2.4.0.rc1'
 
   s.add_dependency 'haml',                            '~> 4.0.2'
@@ -58,7 +58,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'bazaar',                          '~> 0.0.2'
 
   s.add_dependency 'carrierwave-mongoid',             '~> 0.7'
-  s.add_dependency 'fog',                             '~> 1.28.0'
+  s.add_dependency 'fog',                             '~> 1.30.0'
   s.add_dependency 'dragonfly',                       '~> 1.0.7'
   s.add_dependency 'rack-cache',                      '~> 1.1'
   s.add_dependency 'mimetype-fu',                     '~> 0.1.2'

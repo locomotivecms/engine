@@ -22,7 +22,7 @@ group :development do
   gem 'custom_fields', github: 'locomotivecms/custom_fields', ref: '15cceb66ed'
 
   # gem 'locomotivecms_steam', path: '../in_progress/steam', require: false
-  gem 'locomotivecms_steam', github: 'locomotivecms/steam', ref: '6011db7', require: false
+  gem 'locomotivecms_steam', github: 'locomotivecms/steam', ref: 'b626a21', require: false
 
   # gem 'locomotive-aloha-rails', path: '../gems/aloha-rails' # for Developers
   # gem 'locomotive-tinymce-rails', path: '../gems/tinymce-rails' # for Developers
@@ -37,6 +37,9 @@ group :development do
   gem 'quiet_assets'
 
   gem 'ruby-prof'
+
+  gem 'better_errors'
+  gem 'binding_of_caller'
 
   # gem 'unicorn-rails' # Using unicorn_rails instead of webrick (default server)
   gem 'thin'
