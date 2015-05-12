@@ -83,7 +83,7 @@ module Locomotive
               optional :redirect_type
               optional :listed, type: Boolean
               optional :published, type: Boolean
-              optional :content_type, type: Boolean
+              optional :content_type
               optional :is_layout, type: Boolean
               optional :allow_layout, type: Boolean
               optional :template
