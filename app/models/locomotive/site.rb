@@ -77,6 +77,11 @@ module Locomotive
       self.memberships.detect { |m| m.admin? && m.account_id == account._id }
     end
 
+    def to_liquid
+      repository = Locomotive::Steam::Services.build_instance.repositories.site
+      repository.build(self.attributes).to_liquid
+    end
+
     protected
 
     # FIXME: Currently there is no t/translate method on the I18n module
