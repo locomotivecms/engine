@@ -47,11 +47,12 @@ describe Locomotive::API::Resources::PageResource do
 
     describe 'POST create' do
       let(:new_page) do
-        attributes_for('page').tap do |test_page|
-          test_page[:title] = 'title'
-          test_page[:slug] = 'slug'
-          test_page[:parent] = site.pages.first.id
-        end
+        attributes_for('page').merge({
+          title:    'title',
+          slug:     'slug',
+          parent:   site.pages.first.id,
+          template: 'Hello world'
+        })
       end
 
       context 'JSON' do

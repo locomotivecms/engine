@@ -44,6 +44,7 @@ module Locomotive
               requires :title
               requires :slug
               requires :parent
+              optional :template
               optional :position, type: Integer
               optional :handle
               optional :response_type
