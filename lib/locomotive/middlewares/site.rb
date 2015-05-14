@@ -28,7 +28,7 @@ module Locomotive
           # FIXME: move that in a different middleware
           mounted_on = "#{Locomotive.mounted_on}/#{handle}/preview"
 
-          env['locomotive.mounted_on']  = mounted_on
+          env['locomotive.mounted_on']  = env['steam.mounted_on'] = mounted_on
           env['locomotive.path']        = request.path_info.gsub(mounted_on, '')
 
           Locomotive::Site.where(handle: handle).first

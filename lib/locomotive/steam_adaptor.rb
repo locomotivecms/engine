@@ -13,9 +13,9 @@ Locomotive::Steam.configure do |config|
   config.middleware.delete Rack::Lint
   config.middleware.delete Rack::Session::Moneta
 
-  config.services_hook = -> (services) {
-    Rails.logger.warn "TODO: change content entry submission"
-  }
+  # config.services_hook = -> (services) {
+  #   Rails.logger.warn "TODO: change content entry submission"
+  # }
 end
 
 Locomotive::Common.reset
