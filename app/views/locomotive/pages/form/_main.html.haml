@@ -1,0 +1,12 @@
+= f.inputs :information do
+
+  = f.input :title
+
+  - if not @page.index? and not @page.not_found?
+    = f.input :parent_id, as: :select, collection: parent_pages_options, include_blank: false
+
+  = f.input :published, as: :toggle
+
+  = f.input :listed, as: :toggle
+
+= render 'locomotive/pages/form/actions', f: f

@@ -189,9 +189,7 @@ en:
       page:
         updated_at: updated at
       edit:
-        show: show
-        help: "The page title can be updated by clicking it. To apply your changes, click on the \"Save\" button."
-        ask_for_title: "Please type the new page title"
+        title: "%{title} &mdash; <small>%{fullpath}</small>"
       form:
         change_file: change
         delete_file: delete

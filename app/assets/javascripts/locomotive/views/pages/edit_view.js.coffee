@@ -1,3 +1,11 @@
+#= require ../shared/form_view
+
+Locomotive.Views.Pages ||= {}
+
+class Locomotive.Views.Pages.EditView extends Locomotive.Views.Shared.FormView
+
+  el: '.main'
+
 # Locomotive.Views.Pages ||= {}
 
 # class Locomotive.Views.Pages.EditView extends Locomotive.Views.Pages.FormView

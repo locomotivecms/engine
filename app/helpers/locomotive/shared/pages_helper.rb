@@ -3,10 +3,14 @@ module Locomotive
     module PagesHelper
 
       def render_pages
-        tree  = Locomotive::PageService.new(current_site).build_tree
+        tree  = build_page_tree
         nodes = tree.map { |page, children| Node.new(page, children, controller) }
 
         render 'locomotive/shared/sidebar/pages', nodes: nodes, root: tree.first.first
+      end
+
+      def build_page_tree
+        @page_tree ||= Locomotive::PageService.new(current_site).build_tree
       end
 
       class Node < Struct.new(:page, :children, :controller)
