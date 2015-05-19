@@ -5,8 +5,9 @@ Locomotive::Steam.configure do |config|
   config.asset_path = Rails.root.join('spec', 'dummy', 'public')
 
   # rely on Mongoid for the connection information
-  mongoid = Mongoid.configure.sessions[:default]
-  config.adapter = { name: :'mongoDB', database: mongoid[:database], hosts: mongoid[:hosts] }
+  if mongoid = Mongoid.configure.sessions[:default]
+    config.adapter = { name: :'mongoDB', database: mongoid[:database], hosts: mongoid[:hosts] }
+  end
 
   # if Steam is used inside the engine, we can rely on the Rails
   # middlewares for the session and the request.

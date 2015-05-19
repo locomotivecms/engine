@@ -14,14 +14,12 @@ The Locomotive Engine has been correctly installed in your Rails application.
 
   2. Launch the server
 
-    > bundle exec unicorn_rails
+    > bundle exec rails server
 
   3. Open your browser
 
-    > open localhost:8080
+    > open localhost:3000
 
-  4. Follow the installation wizard steps
-
-  5. Enjoy !
+  4. Enjoy !
 
 ===============================================================================

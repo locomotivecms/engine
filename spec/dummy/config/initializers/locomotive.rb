@@ -23,7 +23,7 @@ Locomotive.configure do |config|
   # the "token" request param instead although it is considered unsafe.
   config.unsafe_token_authentication = true
 
-  # Uncomment this line to force LocomotiveCMS to redirect all requests in the
+  # Uncomment this line to force Locomotive to redirect all requests in the
   # back-office to https in production.
   # config.enable_admin_ssl = Rails.env.production?
 
@@ -33,23 +33,7 @@ Locomotive.configure do |config|
   #
   # Ex:
   # config.mailer_sender = 'support'
-  # # => 'support@heroku.com' (Heroku), 'support@bushi.do' (Bushido), 'support@example.com' (Dev) or 'support@<your_hosting_platform>' (Multi-sites)
   config.mailer_sender = 'support@dummy.com'
-
-  # allow apps using the engine to add their own Liquid drops, variables and similar available
-  # in Liquid templates, extending the assigns used while rendering.
-  # follow the Dependency Injection pattern
-  # config.context_assign_extensions = {}
-
-  # add extra classes other than the defined content types among a site which will potentially used by the templatized pages.
-  config.models_for_templatization = %w(Foo)
-
-  # "Public" forms can be protected from Cross-Site Request Forgery (CSRF) attacks.
-  # By default, that protection is disabled (false) in order to keep backwards compatibility with the existing public forms.
-  #
-  # Note: we strongly recommend to enable it. See the documentation about the "csrf_param" liquid tag.
-  #
-  # config.csrf_protection = true
 
   # Add the checksum of a theme asset at the end of its path to allow public caching.
   # By default, it's disabled.
