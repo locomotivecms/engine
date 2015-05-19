@@ -1,31 +1,3 @@
-GIT
-  remote: git://github.com/locomotivecms/steam.git
-  revision: 7e41d29d6aacfb805bd7f2bc4dd636ac8c6ae398
-  ref: 7e41d29d6a
-  specs:
-    locomotivecms_steam (1.0.0.pre.alpha)
-      RedCloth (~> 4.2.9)
-      chronic (~> 0.10.2)
-      coffee-script (~> 2.4.1)
-      compass (~> 1.0.3)
-      dragonfly (~> 1.0.9)
-      haml (~> 4.0.6)
-      httparty (~> 0.13.3)
-      kramdown (~> 1.7.0)
-      locomotivecms-solid (~> 4.0.0.alpha2)
-      locomotivecms_common (~> 0.0.4)
-      mime-types (~> 2.5.0)
-      mimetype-fu (~> 0.1.2)
-      moneta (~> 0.8.0)
-      morphine (~> 0.1.1)
-      rack-cache (~> 1.2)
-      rack-rewrite (~> 1.5.1)
-      rack_csrf (~> 2.5.0)
-      sanitize (~> 4.0.0)
-      sprockets (~> 2.12.3)
-      sprockets-less (~> 0.6.1)
-      sprockets-sass (~> 1.3.1)
-
 PATH
   remote: .
   specs:
@@ -39,6 +11,7 @@ PATH
       carrierwave-mongoid (~> 0.7)
       codemirror-rails (~> 5.0)
       compass-rails (= 2.0.4)
+      custom_fields (~> 2.4.0.rc2)
       devise (~> 3.4.1)
       devise-encryptable (~> 0.2.0)
       dragonfly (~> 1.0.7)
@@ -53,6 +26,7 @@ PATH
       jquery-rails (~> 4.0.3)
       jquery-ui-rails (~> 5.0.3)
       kaminari (~> 0.16.3)
+      locomotivecms_steam (~> 1.0.0.pre.alpha.1)
       mime-types (~> 2.5)
       mimetype-fu (~> 0.1.2)
       mongo_session_store-rails4 (~> 6.0.0)
@@ -68,15 +42,6 @@ PATH
       simple_form (~> 3.1.0)
       simple_token_authentication (~> 1.9.1)
       stringex (~> 2.5.2)
-
-PATH
-  remote: ../gems/custom_fields
-  specs:
-    custom_fields (2.4.0.rc2)
-      activesupport (~> 4.2.1)
-      carrierwave-mongoid (~> 0.7.1)
-      monetize (~> 1.1.0)
-      mongoid (~> 4.0.2)
 
 GEM
   remote: https://rubygems.org/
@@ -208,6 +173,11 @@ GEM
       multi_test (>= 0.1.2)
     cucumber-core (1.1.3)
       gherkin (~> 2.12.0)
+    custom_fields (2.4.0.rc2)
+      activesupport (~> 4.2.1)
+      carrierwave-mongoid (~> 0.7.1)
+      monetize (~> 1.1.0)
+      mongoid (~> 4.0.2)
     daemons (1.2.2)
     database_cleaner (1.4.1)
     debug_inspector (0.0.2)
@@ -226,10 +196,10 @@ GEM
     docile (1.1.5)
     domain_name (0.5.24)
       unf (>= 0.0.5, < 1.0.0)
-    dragonfly (1.0.9)
+    dragonfly (1.0.10)
       addressable (~> 2.3)
       multi_json (~> 1.0)
-      rack
+      rack (>= 1.3.0)
     eco (1.0.0)
       coffee-script
       eco-source
@@ -388,7 +358,7 @@ GEM
     hike (1.2.3)
     http-cookie (1.0.2)
       domain_name (~> 0.5)
-    httparty (0.13.3)
+    httparty (0.13.4)
       json (~> 1.8)
       multi_xml (>= 0.5.2)
     i18n (0.7.0)
@@ -419,6 +389,28 @@ GEM
       activesupport (~> 4.2.1)
       colorize
       stringex (~> 2.5.2)
+    locomotivecms_steam (1.0.0.pre.alpha.1)
+      RedCloth (~> 4.2.9)
+      chronic (~> 0.10.2)
+      coffee-script (~> 2.4.1)
+      compass (~> 1.0.3)
+      dragonfly (~> 1.0.9)
+      haml (~> 4.0.6)
+      httparty (~> 0.13.3)
+      kramdown (~> 1.7.0)
+      locomotivecms-solid (~> 4.0.0.alpha2)
+      locomotivecms_common (~> 0.0.4)
+      mime-types (~> 2.5.0)
+      mimetype-fu (~> 0.1.2)
+      moneta (~> 0.8.0)
+      morphine (~> 0.1.1)
+      rack-cache (~> 1.2)
+      rack-rewrite (~> 1.5.1)
+      rack_csrf (~> 2.5.0)
+      sanitize (~> 4.0.0)
+      sprockets (~> 2.12.3)
+      sprockets-less (~> 0.6.1)
+      sprockets-sass (~> 1.3.1)
     loofah (2.0.2)
       nokogiri (>= 1.5.9)
     mail (2.6.3)
@@ -632,7 +624,6 @@ DEPENDENCIES
   binding_of_caller
   coffee-rails (~> 4.1.0)
   coveralls (~> 0.7.2)
-  custom_fields!
   database_cleaner
   factory_girl_rails
   faye-websocket
@@ -640,7 +631,6 @@ DEPENDENCIES
   grape-entity-matchers
   json_spec (~> 1.1.4)
   locomotivecms!
-  locomotivecms_steam!
   pickle
   pry
   quiet_assets
