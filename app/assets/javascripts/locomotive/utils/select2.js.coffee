@@ -40,8 +40,6 @@ Select2.helpers = (->
     options   ||= {}
     _options  = _.extend(default_build_options(input), options)
 
-    console.log _options
-
     input.select2 _options
 
 )()

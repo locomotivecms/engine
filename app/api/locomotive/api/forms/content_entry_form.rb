@@ -25,10 +25,14 @@ module Locomotive
         end
 
         def set_many_to_many(field, value)
-          dynamic_attributes[:"#{field.name}_ids"] = fetch_entry_ids(field.class_name, value).sort do |a, b|
-            (value.index(a.first.to_s) || value.index(a.last)) <=>
-            (value.index(b.first.to_s) || value.index(b.last))
-          end # keep the original order
+          if value.blank?
+            dynamic_attributes[:"#{field.name}_ids"] = [] # reset it
+          else
+            dynamic_attributes[:"#{field.name}_ids"] = fetch_entry_ids(field.class_name, value).sort do |a, b|
+              (value.index(a.first.to_s) || value.index(a.last)) <=>
+              (value.index(b.first.to_s) || value.index(b.last))
+            end # keep the original order
+          end
         end
 
         def method_missing(name, *args, &block)

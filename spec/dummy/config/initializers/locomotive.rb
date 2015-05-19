@@ -35,6 +35,9 @@ Locomotive.configure do |config|
   # config.mailer_sender = 'support'
   config.mailer_sender = 'support@dummy.com'
 
+  # add extra classes other than the defined content types among a site which will potentially used by the templatized pages.
+  config.models_for_templatization = %w(Foo)
+
   # Add the checksum of a theme asset at the end of its path to allow public caching.
   # By default, it's disabled.
   #

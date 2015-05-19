@@ -25,7 +25,7 @@ module Locomotive
         end
 
         def payload(response, env)
-          params = env["api.endpoint"].params.to_hash
+          params = env['api.endpoint'].params.to_hash
           params.delete_if { |k, _| %w(route_info format).include?(k) }
 
           [

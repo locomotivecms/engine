@@ -1,15 +1,4 @@
 GIT
-  remote: git://github.com/locomotivecms/custom_fields.git
-  revision: 15cceb66ed22e96af57b5cacc1f131665997ab50
-  ref: 15cceb66ed
-  specs:
-    custom_fields (2.4.0.rc1)
-      activesupport (~> 4.2.0)
-      carrierwave-mongoid (~> 0.7.1)
-      monetize (~> 1.1.0)
-      mongoid (~> 4.0.0)
-
-GIT
   remote: git://github.com/locomotivecms/steam.git
   revision: 7e41d29d6aacfb805bd7f2bc4dd636ac8c6ae398
   ref: 7e41d29d6a
@@ -79,6 +68,15 @@ PATH
       simple_form (~> 3.1.0)
       simple_token_authentication (~> 1.9.1)
       stringex (~> 2.5.2)
+
+PATH
+  remote: ../gems/custom_fields
+  specs:
+    custom_fields (2.4.0.rc2)
+      activesupport (~> 4.2.1)
+      carrierwave-mongoid (~> 0.7.1)
+      monetize (~> 1.1.0)
+      mongoid (~> 4.0.2)
 
 GEM
   remote: https://rubygems.org/
