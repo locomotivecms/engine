@@ -1,6 +1,6 @@
 = f.inputs :information do
 
-  = f.input :title
+  = f.input :title, input_html: { class: 'input-lg' }
 
   - if display_page_layouts?
     = f.input :layout, as: :select, collection: options_for_page_layouts, include_blank: false

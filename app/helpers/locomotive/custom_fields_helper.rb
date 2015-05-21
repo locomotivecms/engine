@@ -50,8 +50,8 @@ module Locomotive
         name:   field.name,
         label:  label_for_custom_field(form.object, field),
         hint:   field.hint,
-        wrapper_html: {
-          class: "#{'highlighted' if highlighted}"
+        input_html: {
+          class: "#{'input-lg' if highlighted}"
         }
       }
     end

@@ -5,7 +5,8 @@
 = locomotive_form_for @account, url: accounts_path(current_site) do |f|
 
   = f.inputs :information do
-    = f.input :name
+    = f.input :name, input_html: { class: 'input-lg' }
+
     - unless f.object.respond_to?(:password)
       = f.input :email
 
