@@ -191,21 +191,11 @@ en:
       edit:
         title: "%{title} &mdash; <small>%{fullpath}</small>"
       form:
-        change_file: change
-        delete_file: delete
-        cancel: cancel
-        default_block: Default
-        no_layout: Do not use a layout
-        cache_strategy:
-          none: None
-          simple: Simple
-          hour: 1 hour
-          day: 1 day
-          week: 1 week
-          month: 1 month
-        redirect_type:
-          permanent: "Permanent (301)"
-          temporary: "Temporary (302)"
+        main:
+          no_layout: Use the layout of the parent page
+          redirect_type:
+            permanent: "Permanent (301)"
+            temporary: "Temporary (302)"
 
     sites:
       index:

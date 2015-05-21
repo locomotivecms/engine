@@ -25,17 +25,17 @@ module Locomotive
       list
     end
 
-    # def display_page_layouts?
-    #   ((@page.persisted? && @page.allow_layout?) || !@page.persisted?) &&
-    #   !current_site.pages.layouts.empty?
-    # end
+    def display_page_layouts?
+      ((@page.persisted? && @page.allow_layout?) || !@page.persisted?) &&
+      !current_site.pages.layouts.empty?
+    end
 
-    # def options_for_page_layouts
-    #   layouts = current_site.pages.layouts.map do |_layout|
-    #     [_layout.title, _layout._id]
-    #   end
-    #   [[t('.no_layout'), nil]] + layouts
-    # end
+    def options_for_page_layouts
+      layouts = current_site.pages.layouts.map do |_layout|
+        [_layout.title, _layout._id]
+      end
+      [[t('.no_layout'), nil]] + layouts
+    end
 
     # def options_for_page_response_type
     #   [
@@ -46,12 +46,13 @@ module Locomotive
     #   ]
     # end
 
-    # def options_for_page_redirect_type
-    #   [
-    #     [t('.redirect_type.permanent'), 301],
-    #     [t('.redirect_type.temporary'), 302]
-    #   ]
-    # end
+    def options_for_page_redirect_type
+      puts t('.redirect_type.permanent').inspect
+      [
+        [t('.redirect_type.permanent'), 301],
+        [t('.redirect_type.temporary'), 302]
+      ]
+    end
 
     # def page_response_type_to_string(page)
     #   options_for_page_response_type.detect { |t| t.last == page.response_type }.try(:first) || '&mdash;'

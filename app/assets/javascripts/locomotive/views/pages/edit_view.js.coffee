@@ -2,7 +2,7 @@
 
 Locomotive.Views.Pages ||= {}
 
-class Locomotive.Views.Pages.EditView extends Locomotive.Views.Shared.FormView
+class Locomotive.Views.Pages.EditView extends Locomotive.Views.Pages.FormView
 
   el: '.main'
 

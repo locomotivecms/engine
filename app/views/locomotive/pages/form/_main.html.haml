@@ -2,11 +2,25 @@
 
   = f.input :title
 
-  - if not @page.index? and not @page.not_found?
+  - if display_page_layouts?
+    = f.input :layout, as: :select, collection: options_for_page_layouts, include_blank: false
+
+  - if !@page.index? && !@page.not_found? && !@page.templatized?
+
+    = f.input :slug
+
     = f.input :parent_id, as: :select, collection: parent_pages_options, include_blank: false
+
+    = f.input :redirect, as: :toggle
+
+    = f.input :redirect_url, wrapper_html: { class: "#{'hide' unless @page.redirect?}" }
+
+    = f.input :redirect_type, as: :select, collection: options_for_page_redirect_type, include_blank: false, wrapper_html: {class: "#{'hide' unless @page.redirect?}" }
 
   = f.input :published, as: :toggle
 
-  = f.input :listed, as: :toggle
+  - unless @page.not_found?
+
+    = f.input :listed, as: :toggle
 
 = render 'locomotive/pages/form/actions', f: f

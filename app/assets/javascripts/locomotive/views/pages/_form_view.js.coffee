@@ -1,10 +1,20 @@
-# #= require ../shared/form_view
+#= require ../shared/form_view
 
-# Locomotive.Views.Pages ||= {}
+Locomotive.Views.Pages ||= {}
 
-# class Locomotive.Views.Pages.FormView extends Locomotive.Views.Shared.FormView
+class Locomotive.Views.Pages.FormView extends Locomotive.Views.Shared.FormView
 
-#   el: '#content'
+  el: '#content'
+
+  initialize: ->
+    @attach_events_on_redirect_attribute()
+
+  attach_events_on_redirect_attribute: ->
+    @$('#page_redirect').on 'switchChange.bootstrapSwitch', (event, state) ->
+      $inputs = $('.locomotive_page_redirect_url, .locomotive_page_redirect_type')
+      $inputs.toggleClass('hide')
+
+
 
 #   events:
 #     'change   #page_parent_id':       'change_page_url'
