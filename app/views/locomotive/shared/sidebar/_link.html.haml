@@ -1,6 +1,6 @@
 %section.link{ class: defined?(section_class) ? section_class : nil }
 
-  = link_to url do
+  = link_to url, data: defined?(data) ? data : {} do
 
     %span.arrow
       %i.fa.fa-angle-right
