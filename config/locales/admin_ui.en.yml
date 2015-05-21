@@ -191,8 +191,8 @@ en:
       edit:
         title: "%{title} &mdash; <small>%{fullpath}</small>"
       form:
+        no_layout: Use the layout of the parent page
         main:
-          no_layout: Use the layout of the parent page
           redirect_type:
             permanent: "Permanent (301)"
             temporary: "Temporary (302)"
