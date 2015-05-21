@@ -20,7 +20,7 @@ module Locomotive
         def_delegators :page, :_id, :title, :index_or_not_found?, :published?, :templatized?, :translated?, :redirect?, :response_type
 
         def fold_state
-          controller.send(:cookies)["node-#{_id}"] != 'folded' ? 'unfolded' : 'folded'
+          controller.send(:cookies)["node-#{_id}"] != 'unfolded' ? 'folded' : 'unfolded'
         end
 
         def nodes
