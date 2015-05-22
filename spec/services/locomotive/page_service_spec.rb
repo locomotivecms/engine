@@ -4,37 +4,27 @@ require 'spec_helper'
 
 describe Locomotive::PageService do
 
-  let(:site)    { create_site }
-  let(:service) { described_class.new(site) }
+  let!(:site)    { create(:site) }
+  let(:account) { create(:account) }
+  let(:service) { described_class.new(site, account) }
 
-  describe '.tree' do
+  describe '#create' do
 
-    subject { service.build_tree.map(&:first) }
+    subject { service.create(title: 'Hello world') }
 
-    it { expect(subject.map(&:title)).to eq ['Home page', 'Blog', 'Features', 'Page not found'] }
+    it { expect { subject }.to change { Locomotive::Page.count }.by 1 }
 
-    describe 'depth = 1' do
-
-      subject { service.build_tree[2].last.map(&:first) }
-
-      it { expect(subject.map(&:title)).to eq ['Awesome feature #1', 'Awesome feature #2'] }
-
-    end
+    it { expect(subject.title).to eq 'Hello world' }
 
   end
 
-  def create_site
-    FactoryGirl.create(:site).tap do |site|
-      index = site.pages.first
+  describe '#update' do
 
-      # depth 1
-      FactoryGirl.create(:page, title: 'Blog', slug: nil, site: site, parent: index)
-      features = FactoryGirl.create(:page, title: 'Features', slug: nil, site: site, parent: index)
+    let(:page) { site.pages.root.first }
 
-      # depth 2
-      FactoryGirl.create(:page, title: 'Awesome feature #1', slug: nil, site: site, parent: features)
-      FactoryGirl.create(:page, title: 'Awesome feature #2', slug: nil, site: site, parent: features)
-    end
+    subject { service.update(page, title: 'My new home page') }
+
+    it { expect(subject.title).to eq 'My new home page' }
 
   end
 

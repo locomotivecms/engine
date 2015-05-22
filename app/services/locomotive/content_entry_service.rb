@@ -56,6 +56,7 @@ module Locomotive
     # @return [ Object ] An instance of the content entry.
     #
     def public_create(attributes)
+      raise 'TODO'
       content_type.entries.build.tap do |entry|
         entry.from_presenter(attributes)
         entry.save

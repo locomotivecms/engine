@@ -10,7 +10,7 @@ module Locomotive
       end
 
       def build_page_tree
-        @page_tree ||= Locomotive::PageService.new(current_site).build_tree
+        @page_tree ||= Locomotive::PageTreeService.new(current_site).build_tree
       end
 
       class Node < Struct.new(:page, :children, :controller)

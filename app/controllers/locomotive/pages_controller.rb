@@ -25,7 +25,7 @@ module Locomotive
 
     def create
       authorize Page
-      @page = current_site.pages.create(page_params)
+      @page = service.create(page_params)
       respond_with @page, location: -> { edit_page_path(current_site, @page) }
     end
 
@@ -36,7 +36,7 @@ module Locomotive
 
     def update
       authorize @page
-      @page.update_attributes(page_params)
+      service.update(@page, page_params)
       respond_with @page, location: edit_page_path(current_site, @page)
     end
 
@@ -60,6 +60,10 @@ module Locomotive
 
     def page_params
       params.require(:page).permit(:title, :parent_id, :listed, :published)
+    end
+
+    def service
+      @service ||= Locomotive::PageService.new(current_site)
     end
 
   end
