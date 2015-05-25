@@ -64,6 +64,7 @@ module Locomotive
               optional :locales, type: Array
               optional :domains, type: Array
               optional :timezone
+              optional :picture
             end
           end
           post do
@@ -88,6 +89,7 @@ module Locomotive
               optional :locales, type: Array
               optional :domains, type: Array
               optional :timezone
+              optional :picture
             end
           end
           put ':id' do

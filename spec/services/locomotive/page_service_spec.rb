@@ -4,9 +4,9 @@ require 'spec_helper'
 
 describe Locomotive::PageService do
 
-  let!(:site)    { create(:site) }
-  let(:account) { create(:account) }
-  let(:service) { described_class.new(site, account) }
+  let!(:site)     { create(:site) }
+  let(:account)   { create(:account) }
+  let(:service)   { described_class.new(site, account) }
 
   describe '#create' do
 
