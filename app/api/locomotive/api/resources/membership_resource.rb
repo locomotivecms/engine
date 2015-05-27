@@ -13,7 +13,7 @@ module Locomotive
           end
 
           desc 'Index of memberships'
-          get :index do
+          get do
             authorize(memberships, :index?)
 
             present memberships, with: entity_klass
@@ -38,12 +38,13 @@ module Locomotive
             requires :membership, type: Hash do
               optional :role
               optional :account_id
+              optional :account_email
             end
           end
           post do
             authorize Membership, :create?
 
-            form = form_klass.new(membership_params)
+            form = form_klass.new(current_site, membership_params)
             persist_from_form(form)
 
             present membership, with: entity_klass, policy: current_policy
@@ -60,7 +61,8 @@ module Locomotive
           end
           put ':id' do
             authorize membership, :update?
-            form = form_klass.new(membership_params)
+
+            form = form_klass.new(current_site, membership_params)
             persist_from_form(form)
 
             present membership, with: entity_klass
