@@ -8,6 +8,20 @@ module Locomotive
       )
     end
 
+    def asset_with_thumbnail?(asset)
+      %w(image pdf).include?(asset.content_type)
+    end
+
+    def asset_filename(asset)
+      truncate(asset.source_filename, length: 28)
+    end
+
+    def asset_text(asset)
+      extname = truncate(asset.extname, length: 3)
+      value = asset.content_type.to_s == 'other' ? extname : asset.content_type
+      value.blank? ? '?' : value
+    end
+
   end
 
   class ImageResizeForm

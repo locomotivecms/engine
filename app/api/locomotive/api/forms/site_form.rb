@@ -4,7 +4,7 @@ module Locomotive
 
       class SiteForm < BaseForm
 
-        attrs :name, :handle, :robots_txt, :locales, :domains, :timezone
+        attrs :name, :handle, :robots_txt, :locales, :domains, :timezone, :picture
 
         attrs :seo_title, :meta_keywords, :meta_description, localized: true
 

@@ -2,13 +2,12 @@
 
   fieldset .input.toggle {
     @include display-flex;
-    @include flex-align(center);
+    @include justify-content(space-between);
 
-    .form-wrapper {
+    & > .form-wrapper {
       background: transparent;
       border: none;
       margin-top: 0px;
-      margin-left: auto;
 
       input[type=checkbox] {
         float: none;

@@ -67,7 +67,7 @@ module Locomotive
         end
 
         def expose_many_to_many_field(name)
-          dynamic_value_of(name).ordered.pluck(:_slug)
+          dynamic_value_of(name).pluck_with_natural_order(:_slug)
         end
 
         def dynamic_value_of(name)

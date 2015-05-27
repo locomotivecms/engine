@@ -1,19 +1,16 @@
 - title t('.title')
 
-.alert.alert-danger
-  Under development
+= help t('.help', default: '')
 
+= locomotive_form_for @page, url: pages_path(current_site), html: { multipart: true } do |f|
 
-/ - content_for :submenu do
-/   = render 'locomotive/shared/menu/contents'
+  = f.inputs :information do
 
-/ - content_for :actions do
-/   = render 'locomotive/shared/actions/contents'
+    = f.input :title, input_html: { class: 'input-lg' }
 
-/ %p!= t('.help')
+    = f.input :parent_id, as: :select, collection: parent_pages_options, include_blank: false
 
-/ = semantic_form_for @page, url: pages_path do |form|
+    = f.input :layout, as: :select, collection: options_for_page_layouts, include_blank: false
 
-/   = render 'form', f: form
-
-/   = render 'locomotive/shared/form_actions', back_url: pages_path, button_label: :create
+  = f.actions do
+    = f.action

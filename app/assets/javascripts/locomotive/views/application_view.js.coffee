@@ -32,7 +32,7 @@ class Locomotive.Views.ApplicationView extends Backbone.View
 
   render_flash_messages: (messages) ->
     _.each messages, (couple) ->
-      $.growl couple[1], { type: couple[0] }
+      Locomotive.notify couple[1], couple[0]
 
   automatic_max_height: ->
     $(window).on 'resize', => @set_max_height()

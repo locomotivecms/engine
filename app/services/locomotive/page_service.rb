@@ -1,63 +1,35 @@
 module Locomotive
 
-  class PageService < Struct.new(:site)
+  class PageService < Struct.new(:site, :account)
 
-    # Returns the tree of pages from the site with the most minimal amount of queries.
-    # This method should only be used for read-only purpose since
-    # the mongodb returns the minimal set of required attributes to build
-    # the tree.
+    # Create a page from the attributes passed in parameter.
+    # It sets the created_by column with the current account.
     #
-    # @return [ Array ] The first array of pages (index + page not found + pages with depth == 1)
+    # @param [ Hash ] attributes The attributes of new page.
     #
-    def build_tree
-      pages, page_not_found = pages_with_minimun_attributes, nil
-
-      [].tap do |tree|
-        while page = pages.shift
-          if page.not_found?
-            # move the "page not found" (404) at the end of the array
-            page_not_found = page
-          elsif page.index?
-            # make the index page without children
-            tree << [page, nil]
-          else
-            tree << _build_tree(page, pages)
-          end
-        end
-
-        tree << [page_not_found, nil]
+    # @return [ Object ] An instance of the page.
+    #
+    def create(attributes)
+      site.pages.build(attributes).tap do |page|
+        page.created_by = account if account
+        page.save
       end
     end
 
-    protected
-
-    #:nodoc:
-    def pages_with_minimun_attributes
-      site.pages.unscoped.
-        minimal_attributes.
-        order_by_depth_and_position.
-        to_a
-    end
-
-    #:nodoc:
-    def _build_tree(current_page, pages)
-      i, children = 0, []
-
-      while !pages.empty?
-        page = pages[i]
-
-        break if page.nil? # end of the array
-
-        if page.parent_id == current_page.id
-          page = pages.delete_at(i)
-
-          children << _build_tree(page, pages)
-        else
-          i += 1
-        end
+    # Update a page from the attributes passed in parameter.
+    # It sets the updated_by column with the current account.
+    #
+    # @param [ Object ] entry The page to update.
+    # @param [ Hash ] attributes The attributes of new page.
+    #
+    # @return [ Object ] The instance of the page.
+    #
+    def update(page, attributes)
+      page.tap do
+        page.attributes = attributes
+        page.updated_by = account
+        page.save
       end
-
-      [current_page, children]
     end
 
   end

@@ -6,13 +6,16 @@ class RawArray < ::Array
   def resizable?; false; end
 end
 
-# FIXME: we have serialized templates which have references to the old BSON::ObjectId class.
-module Moped
-  module BSON
-    class ObjectId < ::BSON::ObjectId; end
+module BSON
+  class ObjectId
+    def to_json(*)
+      to_s.to_json
+    end
+    def as_json(*)
+      to_s.as_json
+    end
   end
 end
-# BSON::ObjectId
 
 module Mongoid #:nodoc:
 
@@ -61,7 +64,7 @@ module Mongoid #:nodoc:
   module Document #:nodoc:
     def as_json(options = {})
       attrs = super(options)
-      attrs["id"] = attrs["_id"]
+      attrs['id'] = attrs['_id']
       attrs
     end
   end

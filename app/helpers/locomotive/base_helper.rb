@@ -125,9 +125,8 @@ module Locomotive
 
     def flash_key_to_bootstrap_alert(key)
       case key.to_sym
-      when :notice  then :success
-      when :alert   then :info
-      when :error   then :warning
+      when :notice          then :success
+      when :alert, :error   then :danger
       else
         :info
       end

@@ -3,10 +3,14 @@ module Locomotive
     module PagesHelper
 
       def render_pages
-        tree  = Locomotive::PageService.new(current_site).build_tree
+        tree  = build_page_tree
         nodes = tree.map { |page, children| Node.new(page, children, controller) }
 
         render 'locomotive/shared/sidebar/pages', nodes: nodes, root: tree.first.first
+      end
+
+      def build_page_tree
+        @page_tree ||= Locomotive::PageTreeService.new(current_site).build_tree
       end
 
       class Node < Struct.new(:page, :children, :controller)
@@ -16,7 +20,7 @@ module Locomotive
         def_delegators :page, :_id, :title, :index_or_not_found?, :published?, :templatized?, :translated?, :redirect?, :response_type
 
         def fold_state
-          controller.send(:cookies)["node-#{_id}"] != 'folded' ? 'unfolded' : 'folded'
+          controller.send(:cookies)["node-#{_id}"] != 'unfolded' ? 'folded' : 'unfolded'
         end
 
         def nodes

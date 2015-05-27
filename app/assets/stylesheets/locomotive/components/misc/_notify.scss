@@ -1,0 +1,27 @@
+[data-notify="container"] {
+  border: none;
+
+  [data-notify="icon"] {
+    font-size: 18px;
+    margin-right: 9px;
+    color: #fff;
+  }
+
+  [data-notify="message"] {
+    color: #fff;
+  }
+}
+
+[data-notify="container"].alert-success {
+  background-color: $brand-success;
+}
+
+[data-notify="container"].alert-danger {
+  background-color: $brand-danger;
+}
+
+[data-notify="container"].alert-info {
+  [data-notify="icon"],  [data-notify="message"] {
+    color: $state-info-text;
+  }
+}

@@ -6,7 +6,7 @@
 = locomotive_form_for @site, url: sites_path, html: { multipart: true } do |f|
 
   = f.inputs :information do
-    = f.input :name
+    = f.input :name, input_html: { class: 'input-lg' }
     = f.input :handle
 
   = f.actions back_url: sites_path

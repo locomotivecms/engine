@@ -15,6 +15,10 @@ module Locomotive
           site.timezone_name
         end
 
+        expose :picture_url do |site, _|
+          site.picture.url
+        end
+
       end
 
     end

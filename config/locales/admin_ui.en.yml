@@ -181,33 +181,21 @@ en:
         help: "Pages are organized as a tree. You can order pages as well as folders"
         no_items: "There are no pages for now. Just click <a href=\"%{url}\">here</a> to create the first one."
         new: new page
+        list_content_entries: "List %{name}"
         new_content_entry: "New %{name}"
-        latest_entries: Latest pages
       new:
         title: New page
         help: "Please fill in the below form to create your page. Be careful, by default, the page is not published."
       page:
         updated_at: updated at
       edit:
-        show: show
-        help: "The page title can be updated by clicking it. To apply your changes, click on the \"Save\" button."
-        ask_for_title: "Please type the new page title"
+        title: "%{title} &mdash; <small>%{fullpath}</small>"
       form:
-        change_file: change
-        delete_file: delete
-        cancel: cancel
-        default_block: Default
-        no_layout: Do not use a layout
-        cache_strategy:
-          none: None
-          simple: Simple
-          hour: 1 hour
-          day: 1 day
-          week: 1 week
-          month: 1 month
-        redirect_type:
-          permanent: "Permanent (301)"
-          temporary: "Temporary (302)"
+        no_layout: Use the layout of the parent page
+        main:
+          redirect_type:
+            permanent: "Permanent (301)"
+            temporary: "Temporary (302)"
 
     sites:
       index:

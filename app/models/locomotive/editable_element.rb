@@ -24,7 +24,8 @@ module Locomotive
     # after_save :propagate_content, if: :fixed?
 
     ## scopes ##
-    scope :by_priority, -> { order_by(priority: :desc) }
+    scope :by_priority,         -> { order_by(priority: :desc) }
+    scope :by_block_and_slug,   ->(block, slug) { where(block: block, slug: slug) }
 
     ## methods ##
 

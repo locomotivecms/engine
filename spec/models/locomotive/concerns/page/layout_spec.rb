@@ -47,4 +47,30 @@ describe Locomotive::Concerns::Page::Layout do
 
   end
 
+  describe '#is_layout_or_related?' do
+
+    let(:fullpath) { 'foo' }
+
+    before { allow(page).to receive(:fullpath).and_return(fullpath) }
+
+    subject { page.is_layout_or_related? }
+
+    it { is_expected.to eq false }
+
+    context 'page is the layouts folder' do
+
+      let(:fullpath) { 'layouts' }
+      it { is_expected.to eq true }
+
+    end
+
+    context 'page under layouts' do
+
+      let(:fullpath) { 'layouts/foo' }
+      it { is_expected.to eq true }
+
+    end
+
+  end
+
 end

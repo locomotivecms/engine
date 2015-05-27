@@ -7,6 +7,7 @@ require 'locomotive/carrierwave/patches'
 # register missing mime types
 EXTENSIONS[:eot] = 'application/vnd.ms-fontobject'
 EXTENSIONS[:woff] = 'application/x-woff'
+EXTENSIONS[:woff2] = 'application/x-woff2'
 EXTENSIONS[:otf] = 'application/octet-stream'
 
 # Allow retina images

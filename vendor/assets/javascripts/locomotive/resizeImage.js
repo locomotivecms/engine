@@ -23,7 +23,6 @@
     self.ctx.imageSmoothingEnabled       = true
     self.ctx.mozImageSmoothingEnabled    = true
     self.ctx.oImageSmoothingEnabled      = true
-    self.ctx.webkitImageSmoothingEnabled = true
 
     if (img.naturalWidth <= width || img.naturalHeight <= height) {
       console.log("FAST resizing image", img.naturalWidth, img.naturalHeight, "=>", width, height)
@@ -215,7 +214,6 @@
     context.imageSmoothingEnabled       = true
     context.mozImageSmoothingEnabled    = true
     context.oImageSmoothingEnabled      = true
-    context.webkitImageSmoothingEnabled = true
 
     return context
   }

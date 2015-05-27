@@ -21,7 +21,8 @@ class Locomotive.Views.ContentAssets.EditImageView extends Backbone.View
     @create_resize_popover()
 
   create_cropper: ->
-    @$cropper = @$('.image-container > img')
+    @$cropper         = @$('.image-container > img')
+    @cropper_enabled  = false
 
     @set_cropper_height()
     @$cropper.cropper
@@ -84,6 +85,7 @@ class Locomotive.Views.ContentAssets.EditImageView extends Backbone.View
       .then (image) =>
         @width  = width
         @height = height
+        @cropper_enabled = true
         @$cropper.cropper('replace', image.src)
         @set_cropper_height()
         $btn.button('reset')
@@ -99,7 +101,7 @@ class Locomotive.Views.ContentAssets.EditImageView extends Backbone.View
     return unless @cropper_enabled
 
     $link     = $(event.target).closest('.apply-btn')
-    image_url = @$cropper.cropper('getDataURL')
+    image_url = @$cropper.cropper('getDataURL') || @$cropper.attr('src')
     blob      = window.dataURLtoBlob(image_url)
 
     form_data = new FormData()

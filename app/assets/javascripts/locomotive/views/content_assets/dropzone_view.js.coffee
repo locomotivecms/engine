@@ -38,7 +38,7 @@ class Locomotive.Views.ContentAssets.DropzoneView extends Backbone.View
     form_data = new FormData()
 
     _.each event.target.files || event.originalEvent.dataTransfer.files, (file, i) ->
-      form_data.append("content_assets[#{i}][source]", file)
+      form_data.append("content_assets[][source]", file)
 
     @upload_files(form_data)
 

@@ -236,35 +236,33 @@ describe Locomotive::Page do
 
   describe 'templatized extension' do
 
-    before(:each) do
-      @page = build(:page, parent: build(:page, templatized: false), templatized: true, target_klass_name: 'Foo')
-    end
+    let!(:page) { build(:page, parent: build(:page, templatized: false), templatized: true, target_klass_name: 'Foo') }
 
     it 'is considered as a templatized page' do
-      expect(@page.templatized?).to eq(true)
+      expect(page.templatized?).to eq(true)
     end
 
     it 'fills in the slug field' do
-      @page.valid?
-      expect(@page.slug).to eq('content_type_template')
+      page.valid?
+      expect(page.slug).to eq('content_type_template')
     end
 
     it 'returns the target klass' do
-      expect(@page.target_klass).to eq(Foo)
+      expect(page.target_klass).to eq(Foo)
     end
 
     it 'has a name for the target entry' do
-      expect(@page.target_entry_name).to eq('foo')
+      expect(page.target_entry_name).to eq('foo')
     end
 
     it 'uses the find_by_permalink method when fetching the entry' do
       expect(Foo).to receive(:find_by_permalink)
-      @page.fetch_target_entry('foo')
+      page.fetch_target_entry('foo')
     end
 
     it 'does not accept 2 templatized pages in the same folder' do
       @home = create(:page)
-      @page.attributes = { parent_id: @home._id, site: @home.site }; @page.save!
+      page.attributes = { parent_id: @home._id, site: @home.site }; page.save!
 
       another_page = build(:page, title: 'Lorem ipsum', parent: @home, site: @home.site, templatized: true, target_klass_name: 'Foo')
       expect(another_page.valid?).to eq(false)
@@ -275,8 +273,8 @@ describe Locomotive::Page do
 
       before(:each) do
         @home = create(:page)
-        @page.attributes = { parent_id: @home._id, site: @home.site }; @page.save!
-        @sub_page = build(:page, title: 'Subpage', slug: 'foo', parent: @page, site: @home.site, templatized: false)
+        page.attributes = { parent_id: @home._id, site: @home.site }; page.save!
+        @sub_page = build(:page, title: 'Subpage', slug: 'foo', parent: page, site: @home.site, templatized: false)
       end
 
       it 'inherits the templatized property from its parent' do
@@ -287,11 +285,11 @@ describe Locomotive::Page do
       end
 
       it 'gets templatized if its parent is' do
-        @page.attributes = { templatized: false, target_klass_name: nil }; @page.save!
+        page.attributes = { templatized: false, target_klass_name: nil }; page.save!
         expect(@sub_page.save).to eq(true)
         expect(@sub_page.templatized?).to eq(false)
 
-        @page.attributes = { templatized: true, target_klass_name: 'Foo' }; @page.save!
+        page.attributes = { templatized: true, target_klass_name: 'Foo' }; page.save!
         @sub_page.reload
         expect(@sub_page.templatized?).to eq(true)
         expect(@sub_page.templatized_from_parent?).to eq(true)
@@ -300,7 +298,7 @@ describe Locomotive::Page do
 
       it 'is not templatized if its parent is no more a templatized page' do
         expect(@sub_page.save).to eq(true)
-        @page.templatized = false; @page.save!
+        page.templatized = false; page.save!
         @sub_page.reload
         expect(@sub_page.templatized).to eq(false)
         expect(@sub_page.templatized_from_parent).to eq(false)
@@ -314,30 +312,30 @@ describe Locomotive::Page do
       before(:each) do
         @site = build(:site)
         @content_type = build(:content_type, slug: 'posts', site: @site)
-        @page.site = @site
-        @page.target_klass_name = 'Locomotive::ContentEntry5151e25587f643c2cf000001'
+        page.site = @site
+        page.target_klass_name = 'Locomotive::ContentEntry5151e25587f643c2cf000001'
       end
 
       it 'returns nil if the content type does not exit' do
-        expect(@page.content_type).to be_nil
+        expect(page.content_type).to be_nil
       end
 
       it 'has a name for the target entry' do
         allow(@site).to receive(:content_types).and_return(instance_double('ContentType', find: @content_type))
-        expect(@page.target_entry_name).to eq('post')
+        expect(page.target_entry_name).to eq('post')
       end
 
       it 'returns the slug of the target klass' do
         allow(@site).to receive(:content_types).and_return(instance_double('ContentType', find: @content_type))
-        expect(@page.target_klass_slug).to eq('posts')
+        expect(page.target_klass_slug).to eq('posts')
       end
 
       it 'returns the target klass in a multi-thread env (mimic it)' do
-        @page.target_klass_name = 'Locomotive::ContentEntry5151e25587f643c2cf000042'
+        page.target_klass_name = 'Locomotive::ContentEntry5151e25587f643c2cf000042'
         Locomotive.send(:remove_const, :'ContentEntry5151e25587f643c2cf000042')
         expect(Locomotive::ContentType).to receive(:find).with('5151e25587f643c2cf000042').and_return(Foo)
         expect(Foo).to receive(:klass_with_custom_fields).and_return(Foo)
-        expect(@page.target_klass).to eq(Foo)
+        expect(page.target_klass).to eq(Foo)
       end
 
       context '#security' do
@@ -347,14 +345,14 @@ describe Locomotive::Page do
         end
 
         it 'is valid if the content type belongs to the site' do
-          @page.send(:ensure_target_klass_name_security)
-          expect(@page.errors).to be_empty
+          page.send(:ensure_target_klass_name_security)
+          expect(page.errors).to be_empty
         end
 
         it 'does not valid the page if the content type does not belong to the site' do
           @content_type.site = build(:site)
-          @page.send(:ensure_target_klass_name_security)
-          expect(@page.errors[:target_klass_name]).to eq(['presents a security problem'])
+          page.send(:ensure_target_klass_name_security)
+          expect(page.errors[:target_klass_name]).to eq(['presents a security problem'])
         end
 
       end

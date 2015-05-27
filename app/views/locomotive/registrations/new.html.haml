@@ -5,7 +5,8 @@
   = flash_message
 
   = f.inputs do
-    = f.input :email, required: true, autofocus: true
+    = f.input :name, required: true, autofocus: true
+    = f.input :email, required: true
     = f.input :password, required: true, hint: !@minimum_password_length.nil?
     = f.input :password_confirmation, required: true
 

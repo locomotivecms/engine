@@ -1,19 +1,14 @@
-.embed-responsive.embed-page
-  %iframe.embed-responsive-item{ src: preview_path(current_site) + '/' + current_site.localized_page_fullpath(@page) }
+- title t('.title', title: @page.title, fullpath: @page.fullpath)
 
-/ - content_for :submenu do
-/   = render 'locomotive/shared/menu/contents'
+= help t('.help', default: '')
 
-/ - content_for :actions do
-/   = render 'locomotive/shared/actions/contents'
+= locomotive_form_for @page, url: page_path(current_site, @page), html: { multipart: true } do |f|
 
-/ - content_for :buttons do
-/   = local_action_button :show, "/#{current_site.localized_page_fullpath(@page, current_content_locale)}", class: 'show', icon: 'icon-eye-open'
+  = hidden_field_tag :active_tab, ''
+  = hidden_field_tag :_location,  params[:_location]
 
-/ %p!= t('.help')
+  = f.action 'hide'
 
-/ = semantic_form_for @page, url: page_path(@page), html: { multipart: true } do |form|
+  = render 'locomotive/pages/form/tabs', f: f
 
-/   = render 'form', f: form
-
-/   = render 'locomotive/shared/form_actions', back_url: pages_path, button_label: :update
+  = render 'locomotive/pages/form/panes', f: f

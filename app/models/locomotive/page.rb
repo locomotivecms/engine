@@ -3,19 +3,18 @@ module Locomotive
 
     include Locomotive::Mongoid::Document
 
-    MINIMAL_ATTRIBUTES = %w(_id title slug fullpath position depth published templatized target_klass_name redirect listed response_type parent_id parent_ids site_id created_at updated_at raw_template)
+    MINIMAL_ATTRIBUTES = %w(_id title slug fullpath position depth published templatized target_klass_name redirect listed response_type parent_id parent_ids site_id created_at updated_at raw_template is_layout)
 
     ## concerns ##
     include Concerns::Page::Tree
     include Concerns::Page::EditableElements
     include Concerns::Page::Layout
-    # include Concerns::Page::Parse
-    # include Concerns::Page::Render
     include Concerns::Page::Templatized
     include Concerns::Page::Redirect
     include Concerns::Page::Listed
     include Concerns::Shared::Slug
     include Concerns::Shared::Seo
+    include Concerns::Shared::Userstamp
 
     ## fields ##
     field :title,               localize: true

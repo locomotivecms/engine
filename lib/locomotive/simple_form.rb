@@ -58,8 +58,8 @@ module Locomotive
       back_button = back_button_action(options)
 
       template.content_tag(:div,
-        template.content_tag(:div, back_button, class: 'col-md-6 text-left') +
-        template.content_tag(:div, action, class: 'col-md-6 text-right'),
+        template.content_tag(:div, back_button, class: 'col-xs-6 text-left') +
+        template.content_tag(:div, action, class: 'col-xs-6 text-right'),
         class: 'row')
     end
 

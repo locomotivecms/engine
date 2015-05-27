@@ -6,6 +6,8 @@ describe 'locomotive/my_account/edit', type: :view do
 
   let(:account) { build(:account, api_key: 42) }
 
+  before { allow(view).to receive(:last_saved_location).and_return(nil) }
+
   before do
     assign(:account, account)
   end

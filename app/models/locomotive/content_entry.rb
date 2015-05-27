@@ -80,6 +80,10 @@ module Locomotive
 
     alias :to_label :_label
 
+    def as_json(*args)
+      super.tap { |json| json['_label'] = _label }
+    end
+
     # Find a content entry by its permalink
     #
     # @param [ String ] The permalink
@@ -113,15 +117,6 @@ module Locomotive
           entry.set column => position
         end
       end
-    end
-
-    # All the content entries no matter the content type they belong to
-    # share the same presenter class.
-    #
-    # @param [ Class ] The content entry presenter class
-    #
-    def self.presenter_class
-      Locomotive::ContentEntryPresenter
     end
 
     # All the content entries no matter the content type they belong to

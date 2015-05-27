@@ -7,22 +7,9 @@ module Locomotive
 
     before_filter :back_to_default_site_locale, only: %w(new create)
 
-    before_filter :load_page, only: [:show, :edit, :update, :sort, :destroy]
-
-    layout 'locomotive/layouts/preview', only: [:edit]
+    before_filter :load_page, only: [:edit, :update, :sort, :destroy]
 
     respond_to :json, only: [:sort]
-
-    def index
-      authorize Page
-      @pages = current_site.all_pages_in_once
-      respond_with(@pages)
-    end
-
-    def show
-      authorize @page
-      respond_with @page
-    end
 
     def new
       authorize Page
@@ -32,7 +19,7 @@ module Locomotive
 
     def create
       authorize Page
-      @page = current_site.pages.create(page_params)
+      @page = service.create(page_params)
       respond_with @page, location: -> { edit_page_path(current_site, @page) }
     end
 
@@ -43,7 +30,7 @@ module Locomotive
 
     def update
       authorize @page
-      @page.update_attributes(page_params)
+      service.update(@page, page_params)
       respond_with @page, location: edit_page_path(current_site, @page)
     end
 
@@ -66,7 +53,11 @@ module Locomotive
     end
 
     def page_params
-      params.require(:page).permit(:title, :slug, :published, :parent, :parent_id, :raw_template)
+      params.require(:page).permit(:title, :parent_id, :listed, :published)
+    end
+
+    def service
+      @service ||= Locomotive::PageService.new(current_site)
     end
 
   end

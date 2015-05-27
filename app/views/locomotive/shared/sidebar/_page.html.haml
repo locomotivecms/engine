@@ -19,7 +19,12 @@
       = render partial: 'locomotive/shared/sidebar/page', collection: page.nodes
 
       - if page.content_type
-        %li.new-content
+        %li.list-entries
+          %i.fa.fa-list-ul.icon
+          = link_to content_entries_path(current_site, page.templatized_page.content_type.slug) do
+            %span.text= t(:list_content_entries, name: page.content_type.name.pluralize, scope: 'locomotive.pages.index')
+
+        %li.new-entry
           %i.fa.fa-plus.icon
           = link_to new_content_entry_path(current_site, page.templatized_page.content_type.slug) do
             %span.text= t(:new_content_entry, name: page.content_type.name.singularize, scope: 'locomotive.pages.index')

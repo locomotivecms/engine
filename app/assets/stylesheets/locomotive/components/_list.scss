@@ -35,7 +35,7 @@
       }
 
       .text {
-        > :before {
+        &:before {
           position: absolute;
           top: 0px;
           left: 0px;
@@ -63,7 +63,7 @@
       }
 
       &:hover {
-        .text > :before {
+        .text:before {
           background-color: $content_list_item_border_hover_color;
         }
       }

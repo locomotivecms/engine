@@ -33,6 +33,8 @@ Locomotive::Engine.routes.draw do
       get :get_path, on: :collection
     end
 
+    resources :editable_elements, only: [:index], path: 'pages/:page_id/editable_elements'
+
     resources :accounts
 
     resources :memberships

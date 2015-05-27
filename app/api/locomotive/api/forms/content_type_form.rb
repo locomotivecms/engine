@@ -41,7 +41,7 @@ module Locomotive
         private
 
         def existing_content_type
-          @existing_content_type ||= content_type_service.find_by_slug(slug)
+          @existing_content_type ||= content_type_service.find_by_slug(slug).first
         end
 
         def content_type_service

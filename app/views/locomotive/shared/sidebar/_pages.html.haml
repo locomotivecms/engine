@@ -5,7 +5,7 @@
 
     = render partial: 'locomotive/shared/sidebar/page', collection: nodes
 
-    %li.new-content
+    %li.new-page
       %i.fa.fa-plus.icon
       = link_to new_page_path(current_site) do
         %span.text= t(:new, scope: 'locomotive.pages.index')

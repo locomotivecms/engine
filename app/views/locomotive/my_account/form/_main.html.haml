@@ -1,5 +1,5 @@
 = f.inputs :information do
-  = f.input :name
+  = f.input :name, input_html: { class: 'input-lg' }
   = f.input :avatar, as: :file
   = f.input :locale, as: :select, collection: options_for_locale, include_blank: false, wrapper_html: { class: 'select2' }
 
