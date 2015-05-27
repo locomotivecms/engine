@@ -20,7 +20,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'rails',                           '~> 4.2.1'
 
-  s.add_dependency 'devise',                          '~> 3.4.1'
+  s.add_dependency 'devise',                          '~> 3.5.1'
   s.add_dependency 'devise-encryptable',              '~> 0.2.0'
   s.add_dependency 'simple_token_authentication',     '~> 1.9.1'
 
@@ -35,7 +35,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'mime-types',                      '~> 2.5'
   s.add_dependency 'custom_fields',                   '~> 2.4.0.rc2'
 
-  # s.add_dependency 'locomotivecms_steam',             '~> 1.0.0-alpha.1'
+  s.add_dependency 'locomotivecms_steam',             '~> 1.0.0-alpha.2'
 
   s.add_dependency 'haml',                            '~> 4.0.2'
   s.add_dependency 'simple_form',                     '~> 3.1.0'
