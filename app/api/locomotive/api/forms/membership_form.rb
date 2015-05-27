@@ -3,7 +3,21 @@ module Locomotive
     module Forms
 
       class MembershipForm < BaseForm
-        attrs :account_id, :role
+        attrs :account_id, :role, :account_email, :account
+
+        attr_accessor :site
+
+        def initialize(site, attributes = {})
+          self.site = site
+          super(attributes)
+        end
+
+        # @note if account_email is set, use it to find the account.
+        def account_email=(email)
+          self.account = Account.find_by(email: email)
+          self.account_id = account._id
+          set_attribute(:account_email, email)
+        end
       end
 
     end

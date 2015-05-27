@@ -23,6 +23,10 @@ namespace :development do
     account.api_key = 'd49cd50f6f0d2b163f48fc73cb249f0244c37074'
     account.save!
 
+    unassociated_account = Locomotive::Account.new email: "new_admin@locomotivecms.com", password: "locomotive", password_confirmation: "locomotive", name: "New Admin"
+    unassociated_account.api_key = 'd49cd50f6f0d2b163f48fc73cb249f0244c37074'
+    unassociated_account.save!
+
     site = Locomotive::Site.create! name: "LocomotiveCMS", handle: "www", domains: ["www.example.com"]
     site.memberships.build account: account, role: 'admin'
     site.save!
