@@ -43,10 +43,6 @@ module Locomotive
 
     ## methods ##
 
-    def all_pages_in_once
-      PageTreeService.new(self).build_tree
-    end
-
     # Get all the pages in the right order: depth and position, both ASC.
     #
     # @param [ Hash ] conditions Extra conditions passed to the Mongoid criteria

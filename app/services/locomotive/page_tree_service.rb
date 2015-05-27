@@ -20,7 +20,7 @@ module Locomotive
           elsif page.index?
             # make the index page without children
             tree << [page, nil]
-          else
+          elsif !page.is_layout_or_related?
             tree << _build_tree(page, pages)
           end
         end

@@ -11,12 +11,6 @@ module Locomotive
 
     respond_to :json, only: [:sort]
 
-    def index
-      authorize Page
-      @pages = current_site.all_pages_in_once
-      respond_with(@pages)
-    end
-
     def new
       authorize Page
       @page = current_site.pages.build

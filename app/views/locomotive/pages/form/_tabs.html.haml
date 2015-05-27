@@ -1,6 +1,7 @@
 %ul.nav.nav-tabs{ role: 'tablist' }
-  = form_nav_tab :content do
-    = link_to t('simple_form.titles.locomotive.content'), editable_elements_path(current_site, @page)
+  - unless @page.templatized?
+    = form_nav_tab :content do
+      = link_to t('simple_form.titles.locomotive.content'), editable_elements_path(current_site, @page)
 
   = form_nav_tab :main, true do
     = link_to t('simple_form.titles.locomotive.information'), '#main', role: 'tab', data: { toggle: 'tab' }

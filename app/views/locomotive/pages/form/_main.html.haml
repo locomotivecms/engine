@@ -13,13 +13,13 @@
 
     = f.input :redirect, as: :toggle
 
-    = f.input :redirect_url, wrapper_html: { class: "#{'hide' unless @page.redirect?}" }
+    = f.input :redirect_url, as: :string, wrapper_html: { class: "#{'hide' unless @page.redirect?}" }
 
     = f.input :redirect_type, as: :select, collection: options_for_page_redirect_type, include_blank: false, wrapper_html: {class: "#{'hide' unless @page.redirect?}" }
 
   = f.input :published, as: :toggle
 
-  - unless @page.not_found?
+  - unless @page.not_found? || @page.templatized?
 
     = f.input :listed, as: :toggle
 

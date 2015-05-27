@@ -23,6 +23,10 @@ module Locomotive
 
         end
 
+        def is_layout_or_related?
+          !(self.fullpath =~ /^layouts($|\/)/).nil?
+        end
+
         private
 
         def set_default_raw_template_if_layout

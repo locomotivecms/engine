@@ -74,7 +74,7 @@ $pt_warning_color:      #F89406;
           &.folded .folded, &.unfolded .unfolded { display: inline; }
         }
 
-        &.new-content {
+        &.new-entry, &.list-entries, &.new-page {
           a {
             margin-left: 1px;
             color: $pt_new_link_color;
