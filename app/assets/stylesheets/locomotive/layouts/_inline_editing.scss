@@ -1,0 +1,34 @@
+body.inline-editing {
+
+  .content {
+    .expand-button {
+      @include control-window-button;
+    }
+  }
+
+  &.drawer-opened {
+
+    .content {
+      right: $inline_editing_drawer_width;
+
+      &::after {
+        display: none;
+      }
+
+      .expand-button {
+        display: none;
+      }
+    }
+
+    .drawer {
+      width: $inline_editing_drawer_width;
+      right: 0;
+
+      > .inner {
+        border-left: 1px solid $inline_editing_drawer_border_color;
+      }
+    }
+
+  }
+
+}

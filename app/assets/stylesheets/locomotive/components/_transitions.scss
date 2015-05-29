@@ -6,6 +6,7 @@
 
 .content {
   @include transition(left 0.3s ease-in-out);
+  @include transition(right 0.3s ease-in-out);
 }
 
 body.sidebar-closed {

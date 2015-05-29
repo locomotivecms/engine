@@ -34,10 +34,14 @@ $sidebar_link_background_hover_color: #474747;
 
 $drawer_width:                        40em;
 $drawer_background_color:             white;
-$drawer_close_button_size:            30px;
-$drawer_close_button_color:           #fff; //#333;
-$drawer_close_background_color:       #333;
 $drawer_title_color:                  #666;
+
+$control_window_button_size:          30px;
+$control_window_button_color:         #fff; //#333;
+$control_window_background_color:     #333;
+
+$inline_editing_drawer_width:         40em;
+$inline_editing_drawer_border_color:  $navbar-default-bg;
 
 $form_input_background_color:         #f7f7f7;
 $form_input_padding:                  15px;

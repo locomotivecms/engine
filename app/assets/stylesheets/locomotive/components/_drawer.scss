@@ -13,18 +13,19 @@
   }
 
   > .close-button {
-    position: absolute;
-    z-index: 991;
-    top: 0px;
-    right: 0px;
-    font-size: 15px;
-    cursor: pointer;
-    width: $drawer_close_button_size;
-    height: $drawer_close_button_size;
-    line-height: $drawer_close_button_size;
-    text-align: center;
-    background: $drawer_close_background_color;
-    color: $drawer_close_button_color;
+    @include control-window-button;
+    // position: absolute;
+    // z-index: 991;
+    // top: 0px;
+    // right: 0px;
+    // font-size: 15px;
+    // cursor: pointer;
+    // width: $drawer_close_button_size;
+    // height: $drawer_close_button_size;
+    // line-height: $drawer_close_button_size;
+    // text-align: center;
+    // background: $drawer_close_background_color;
+    // color: $drawer_close_button_color;
   }
 
   h1 {

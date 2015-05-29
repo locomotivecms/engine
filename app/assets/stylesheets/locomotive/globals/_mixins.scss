@@ -63,3 +63,19 @@
   @include user-select(none);
 }
 
+@mixin control-window-button
+{
+  position: absolute;
+  z-index: 991;
+  top: 0px;
+  right: 0px;
+  font-size: 15px;
+  cursor: pointer;
+  width: $control_window_button_size;
+  height: $control_window_button_size;
+  line-height: $control_window_button_size;
+  text-align: center;
+  background: $control_window_background_color;
+  color: $control_window_button_color;
+}
+

@@ -3,7 +3,7 @@
 %html{ xmlns: 'http://www.w3.org/1999/xhtml'  }
   %head
     = render 'locomotive/shared/head'
-  %body{ class: body_class + ' sidebar-closed' }
+  %body{ class: 'inline-editing sidebar-closed drawer-opened' }
 
     - # HEADER: brand + current site + account
     = render 'locomotive/shared/header'
@@ -15,6 +15,8 @@
           = render 'locomotive/shared/sidebar'
 
       .content
+        .expand-button
+          %i.fa.fa-times
         .scrollable
           = yield
 
@@ -26,6 +28,6 @@
             .container-fluid
               .row
                 .col-md-12
-                  %p TODO
+                  = yield :drawer
 
     = yield :foot
