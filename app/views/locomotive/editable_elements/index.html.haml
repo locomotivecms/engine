@@ -2,4 +2,19 @@
   %iframe.embed-responsive-item{ src: preview_path(current_site) + '/' + current_site.localized_page_fullpath(@page) }
 
 - content_for :drawer do
-  %p TEST!!!
+
+  .row.header-row
+    .col-md-12
+      %h1= t('locomotive.pages.edit.title', title: @page.title, fullpath: @page.fullpath).html_safe
+
+  %ul.nav.nav-tabs{ role: 'tablist' }
+    - unless @page.templatized?
+      = form_nav_tab :content, true do
+        = link_to t('simple_form.titles.locomotive.content'), editable_elements_path(current_site, @page)
+
+    = form_nav_tab :main do
+      = link_to t('simple_form.titles.locomotive.information'), edit_page_path(current_site, @page)
+
+    = form_nav_tab :seo do
+      = link_to t('simple_form.titles.locomotive.seo'), edit_page_path(current_site, @page, anchor: 'seo')
+

@@ -2,7 +2,7 @@
 
   %i{ class: "fa #{page.icon} icon #{page.draggable}" }
 
-  = link_to edit_page_path(current_site, page) do
+  = link_to editable_elements_path(current_site, page) do
     %span.text= page.title
 
   - unless page.translated?

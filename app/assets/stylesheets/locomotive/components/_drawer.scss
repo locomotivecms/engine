@@ -5,31 +5,20 @@
     padding: 20px 0px 10px 0px;
   }
 
+  .header-row {
+    padding: 15px 0px;
+  }
+
   h1 {
     font-size: 22px;
     font-family: $font-family-sans-serif;
-    color: $main_title_color;
+    // color: $main_title_color;
+    color: $drawer_title_color;
     margin: 0px;
   }
 
   > .close-button {
     @include control-window-button;
-    // position: absolute;
-    // z-index: 991;
-    // top: 0px;
-    // right: 0px;
-    // font-size: 15px;
-    // cursor: pointer;
-    // width: $drawer_close_button_size;
-    // height: $drawer_close_button_size;
-    // line-height: $drawer_close_button_size;
-    // text-align: center;
-    // background: $drawer_close_background_color;
-    // color: $drawer_close_button_color;
-  }
-
-  h1 {
-    color: $drawer_title_color;
   }
 
 }
