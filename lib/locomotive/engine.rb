@@ -50,7 +50,6 @@ module Locomotive
     initializer 'locomotive.middlewares' do |app|
       require 'locomotive/middlewares'
 
-      app.middleware.insert_before(Rack::Runtime, '::Locomotive::Middlewares::Permalink', nil)
       app.middleware.use '::Locomotive::Middlewares::Site'
     end
 
