@@ -14,6 +14,8 @@ Locomotive::Steam.configure do |config|
   config.middleware.delete Rack::Lint
   config.middleware.delete Rack::Session::Moneta
 
+  config.middleware.insert_after Locomotive::Steam::Middlewares::Page, Locomotive::Middlewares::PageEditing
+
   # config.services_hook = -> (services) {
   #   Rails.logger.warn "TODO: change content entry submission"
   # }

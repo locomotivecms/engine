@@ -30,8 +30,21 @@ class Locomotive.Views.Shared.DrawerView extends Backbone.View
     @show(entry)
 
   pop: ->
-    entry = @stack.pop(entry)
+    entry = @stack.pop()
     @hide entry, => @show(@last_entry())
+
+  replace: (entry) ->
+    last_entry = @stack.pop()
+    _container = @container(true)
+
+    @stack.push(entry)
+
+    if entry.url?
+      _container.load entry.url, =>
+        last_entry.view.remove() if last_entry
+        @_show(entry, _container)
+    else
+      @_show(entry, _container)
 
   show: (entry) ->
     return if entry == null
@@ -69,8 +82,11 @@ class Locomotive.Views.Shared.DrawerView extends Backbone.View
     else
       @stack[@stack.length - 1]
 
-  container: ->
-    @$('> .inner').html('<div></div>').find('> div')
+  container: (preserve) ->
+    if preserve? && preserve
+      @$('> .inner').find('> div')
+    else
+      @$('> .inner').html('<div></div>').find('> div')
 
   _show: (entry, container) ->
     _klass      = entry.view_klass

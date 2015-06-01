@@ -114,8 +114,8 @@ class Locomotive.Views.Shared.FormView extends Backbone.View
       self.inputs.push(view)
 
   remove: ->
-    self.inputs.each (view) -> view.remove()
-    @$('.input.tags input[type=text').tagsinput('destroy')
+    _.each @inputs.each, (view) -> view.remove()
+    @$('.input.tags input[type=text]').tagsinput('destroy')
 
   _stop_event: (event) ->
     event.stopPropagation() & event.preventDefault()

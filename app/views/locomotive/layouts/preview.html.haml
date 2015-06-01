@@ -24,10 +24,6 @@
         .close-button
           %i.fa.fa-chevron-right
         .inner
-          .scrollable
-            .container-fluid
-              .row
-                .col-md-12
-                  = yield :drawer
+          = yield :drawer
 
     = yield :foot

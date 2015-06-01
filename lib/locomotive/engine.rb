@@ -10,10 +10,6 @@ module Locomotive
 
     paths['mongodb/migrate'] = 'mongodb/migrate'
 
-    initializer 'steam' do |app|
-      require 'locomotive/steam_adaptor'
-    end
-
     initializer 'locomotive.content_types' do |app|
       # Load all the dynamic classes (custom fields)
       begin
@@ -52,8 +48,14 @@ module Locomotive
     end
 
     initializer 'locomotive.middlewares' do |app|
+      require 'locomotive/middlewares'
+
       app.middleware.insert_before(Rack::Runtime, '::Locomotive::Middlewares::Permalink', nil)
       app.middleware.use '::Locomotive::Middlewares::Site'
+    end
+
+    initializer 'steam' do |app|
+      require 'locomotive/steam_adaptor'
     end
 
   end
