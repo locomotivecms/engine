@@ -6,6 +6,11 @@ body.inline-editing {
     }
   }
 
+  .drawer {
+    width: $inline_editing_drawer_width;
+    @include transform(translate3d($inline_editing_drawer_width, 0, 0));
+  }
+
   &.drawer-opened {
 
     .content {
@@ -21,8 +26,7 @@ body.inline-editing {
     }
 
     .drawer {
-      width: $inline_editing_drawer_width;
-      right: 0;
+      @include transform(translate3d(0, 0, 0));
 
       > .inner {
         border-left: 1px solid $inline_editing_drawer_border_color;

@@ -5,8 +5,7 @@
 }
 
 .content {
-  @include transition(left 0.3s ease-in-out);
-  @include transition(right 0.3s ease-in-out);
+  @include transition(left 0.3s ease-in-out, right 0.3s ease-in-out);
 }
 
 body.sidebar-closed {
@@ -75,5 +74,16 @@ body.drawer-opened {
     }
   }
 
+}
+
+body.inline-editing {
+
+  .content {
+    @include transition(left 0.3s ease-in-out, right 0.1s linear);
+  }
+
+  .drawer {
+    @include transition(all 0.1s linear);
+  }
 }
 
