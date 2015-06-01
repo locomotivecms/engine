@@ -2,7 +2,7 @@
   .navbar-text
     = _title
 - else
+  = link_to current_site.name_was, dashboard_path(current_site)
   = link_to preview_path(current_site) do
-    = current_site.name_was
     %span.arrow
       %i.fa.fa-external-link

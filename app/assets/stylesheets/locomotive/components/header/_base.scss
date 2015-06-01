@@ -64,8 +64,12 @@ $header_site_arrow_color:     #349cb0;
   li {
     a {
       display: inline-block;
+
+      &:first-child {
+        padding-right: 0px;
+      }
+
       span.arrow {
-        margin-left: 5px;
         position: relative;
         top: 1px;
 
