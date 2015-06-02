@@ -37,6 +37,10 @@ module Locomotive
       nil
     end
 
+    def page_id
+      self._parent.try(:_id)
+    end
+
     # def disabled_in_all_translations?
     #   return self.disabled_translations if self.disabled_translations.is_a?(Boolean)
     #   return false if disabled_translations.blank?

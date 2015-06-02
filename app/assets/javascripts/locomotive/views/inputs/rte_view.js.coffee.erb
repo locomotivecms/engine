@@ -8,6 +8,8 @@ class Locomotive.Views.Inputs.RteView extends Backbone.View
   initialize: ->
     $textarea = @$('textarea')
 
+    console.log "wysihtml5-toolbar-#{$textarea.attr('id')}"
+
     @editor = new wysihtml5.Editor $textarea.attr('id'),
       toolbar:        "wysihtml5-toolbar-#{$textarea.attr('id')}"
       useLineBreaks:  false

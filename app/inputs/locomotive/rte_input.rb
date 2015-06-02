@@ -17,7 +17,8 @@ module Locomotive
     end
 
     def wysihtml5_prefix
-      "#{object_name}_#{attribute_name}"
+      _object_name = @builder.template.send(:sanitize_to_id, object_name)
+      "#{_object_name}_#{attribute_name}"
     end
 
     def image_popover

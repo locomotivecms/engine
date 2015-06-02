@@ -11,6 +11,9 @@ module Locomotive
 
     def index
       authorize @page
+
+      @editable_elements = service.find_or_create_editable_elements(@page)
+
       respond_with(@page) do |format|
         format.html { render_index }
       end
@@ -30,6 +33,9 @@ module Locomotive
       @page = current_site.pages.find(params[:page_id])
     end
 
+    def service
+      @service ||= Locomotive::PageParsingService.new(current_site, current_content_locale)
+    end
 
   end
 end
