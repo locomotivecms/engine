@@ -19,7 +19,7 @@ module Locomotive
 
     def index
       @content_entries = service.all(params.slice(:page, :per_page, :q, :where))
-      respond_with @content_entries
+      respond_with @content_entries, html_view: true
     end
 
     def export
