@@ -3,7 +3,7 @@
 
     .row.header-row
       .col-md-12
-        %h1= t('locomotive.pages.edit.title', title: @page.title, fullpath: @page.fullpath).html_safe
+        %h1= t('locomotive.pages.edit.title', title: @page.title, fullpath: '/' + @page.fullpath).html_safe
 
     .row
       .col-md-12
