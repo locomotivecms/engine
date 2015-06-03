@@ -94,7 +94,11 @@ module Locomotive
       {}.tap do |hash|
         (self.__source.has_many_custom_fields + self.__source.many_to_many_custom_fields).each do |name, _|
           if self.__depth == 0
-            list = self.__source.send(name.to_sym).ordered
+            field = self.__source.content_type.find_entries_custom_field(name.to_s)
+
+            next if self.html_view? && !field.ui_enabled?
+
+            list  = self.__source.send(name.to_sym).ordered
             hash[name.to_s] = list.map do |entry|
               if self.html_view?
                 entry.to_presenter(depth: self.__depth + 1, html_view: true).as_json
