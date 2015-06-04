@@ -20,7 +20,7 @@
 
         #editable-elements
 
-          = locomotive_form_for @page, url: update_all_editable_elements_path(current_site, @page), html: { multipart: true } do |f|
+          = locomotive_form_for @page, url: update_all_editable_elements_path(current_site, @page), remote: true, html: { multipart: true } do |f|
 
             - @editable_elements.each_with_index do |(page, editable_element), index|
               = f.simple_fields_for :editable_elements, editable_element, child_index: index do |g|
@@ -33,3 +33,7 @@
 
                   - if editable_element.type.to_sym == :editable_file
                     = g.input :source, as: :file, label: editable_element.slug
+
+            = f.actions do
+              = f.action
+

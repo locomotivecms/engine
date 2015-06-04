@@ -46,11 +46,15 @@ class Locomotive.Views.Shared.FormView extends Backbone.View
       @$(".nav-tabs a[href='##{name}']").tab('show')
 
   record_active_tab: ->
-    tab_name = $('form .nav-tabs li.active a').attr('href').replace('#', '')
-    @$('#active_tab').val(tab_name)
+    if $('form .nav-tabs li.active a').size() > 0
+      tab_name = $('form .nav-tabs li.active a').attr('href').replace('#', '')
+      @$('#active_tab').val(tab_name)
 
   change_state: ->
     @$('form button[type=submit]').button('loading')
+
+  reset_state: ->
+    @$('form button[type=submit]').button('reset')
 
   save: (event) ->
     @change_state()

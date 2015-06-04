@@ -19,6 +19,16 @@ module Locomotive
       end
     end
 
+    def update_all
+      logger.debug 'youpi...'
+
+      @editable_elements = service.find_or_create_editable_elements(@page)
+
+      respond_with(@page, notice: "Crazy!!!") do |format|
+        format.html { render_index }
+      end
+    end
+
     private
 
     def render_index

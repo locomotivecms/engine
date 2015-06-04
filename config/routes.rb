@@ -33,8 +33,8 @@ Locomotive::Engine.routes.draw do
       get :get_path, on: :collection
     end
 
-    resources :editable_elements, only: [:index], path: 'pages/:page_id/editable_elements' do
-      put :update_all, on: :collection
+    resources :editable_elements, only: [:index, :update_all], path: 'pages/:page_id/editable_elements' do
+      patch :update_all, on: :collection
     end
 
     resources :accounts
