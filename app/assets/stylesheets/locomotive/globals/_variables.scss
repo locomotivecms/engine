@@ -1,58 +1,60 @@
 // custom variables go here
 
-$alt-font-family-sans-serif:          "Muli", sans-serif;
+$alt-font-family-sans-serif:              "Muli", sans-serif;
 
-$background_gradient_start:           #54b9cd;
-$background_gradient_end:             #5488cc;
+$background_gradient_start:               #54b9cd;
+$background_gradient_end:                 #5488cc;
 
-$overlay_background:                  #333;
+$overlay_background:                      #333;
 
-$main_title_color:                    #666;
-$main_background_color:               #fff;
+$main_title_color:                        #666;
+$main_background_color:                   #fff;
 
-$paragraph_color:                     #595959;
+$paragraph_color:                         #595959;
 
-$header_default_color:                #fff;
+$header_default_color:                    #fff;
 
-$background_content_list:             #f1f4f5;
+$background_content_list:                 #f1f4f5;
 
-$sidebar_width:                       21em;
-$sidebar_darker_background_color:     #2f2f2f;
-$sidebar_background_color:            #383838;
-$sidebar_text_color:                  #fff;
-$sidebar_section_border_color:        #474747;
-$sidebar_section_title_color:         #949999;
-$sidebar_link_color:                  rgba(#fff, 0.8);
-$sidebar_hovered_link_color:          #fff;
-$sidebar_font_size:                   $font-size-base - 1;
-$sidebar_title_font_size:             $font-size-base - 2;
+$sidebar_width:                           21em;
+$sidebar_darker_background_color:         #2f2f2f;
+$sidebar_background_color:                #383838;
+$sidebar_text_color:                      #fff;
+$sidebar_section_border_color:            #474747;
+$sidebar_section_title_color:             #949999;
+$sidebar_link_color:                      rgba(#fff, 0.8);
+$sidebar_hovered_link_color:              #fff;
+$sidebar_font_size:                       $font-size-base - 1;
+$sidebar_title_font_size:                 $font-size-base - 2;
 
-$sidebar_link_height:                 45px;
-$sidebar_link_arrow_color:            #616161;
-$sidebar_link_icon_color:             #949999;
-$sidebar_link_background_hover_color: #474747;
+$sidebar_link_height:                     45px;
+$sidebar_link_arrow_color:                #616161;
+$sidebar_link_icon_color:                 #949999;
+$sidebar_link_background_hover_color:     #474747;
 
-$drawer_width:                        40em;
-$drawer_background_color:             white;
-$drawer_title_color:                  #666;
+$drawer_width:                            40em;
+$drawer_background_color:                 white;
+$drawer_title_color:                      #666;
 
-$control_window_button_size:          30px;
-$control_window_button_color:         #fff; //#333;
-$control_window_background_color:     #333;
+$control_window_button_size:              30px;
+$control_window_button_color:             #fff; //#333;
+$control_window_background_color:         #333;
 
-$inline_editing_drawer_width:         40em;
-$inline_editing_drawer_border_color:  $navbar-default-bg;
+$live_editing_content_width:                40em;
+$live_editing_content_border_color:         $navbar-default-bg;
+$live_editing_content_background_color:     #fff;
+$live_editing_content_alt_background_color: #333;
 
-$form_input_background_color:         #f7f7f7;
-$form_input_padding:                  15px;
-$form_input_radius:                   4px;
-$form_input_label_color:              #555;
-$form_input_label_size:               11px;
-$form_input_control_border_size:      4px;
-$form_input_control_border_color:     #d7d7d7;
-$form_input_help_color:               #828787;
-$form_input_help_size:                12px;
-$form_input_wrapper_background_color: #fff;
+$form_input_background_color:             #f7f7f7;
+$form_input_padding:                      15px;
+$form_input_radius:                       4px;
+$form_input_label_color:                  #555;
+$form_input_label_size:                   11px;
+$form_input_control_border_size:          4px;
+$form_input_control_border_color:         #d7d7d7;
+$form_input_help_color:                   #828787;
+$form_input_help_size:                    12px;
+$form_input_wrapper_background_color:     #fff;
 
 $form_input_array_item_height:              30px;
 $form_input_array_draggable_color:          #ccc;

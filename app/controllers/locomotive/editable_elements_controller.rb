@@ -7,7 +7,7 @@ module Locomotive
 
     before_filter :load_page
 
-    layout 'locomotive/layouts/preview'
+    layout 'locomotive/layouts/live_editing'
 
     def index
       authorize @page

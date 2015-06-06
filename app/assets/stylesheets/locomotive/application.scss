@@ -15,8 +15,8 @@
 @import "./base/all";
 
 @import "layouts/main";
-@import "layouts/inline_editing";
 @import "layouts/responsive";
+@import "layouts/live_editing";
 
 @import "components/misc";
 @import "components/transitions";
@@ -26,5 +26,6 @@
 @import "components/main";
 @import "components/list";
 @import "components/content_assets";
+@import "components/live_editing";
 
 @import "components/sites";

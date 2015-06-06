@@ -1,39 +1,18 @@
-.scrollable
-  .container-fluid
+= locomotive_form_for @page, url: update_all_editable_elements_path(current_site, @page), remote: true, html: { multipart: true } do |f|
 
-    .row.header-row
-      .col-md-12
-        %h1= t('locomotive.pages.edit.title', title: @page.title, fullpath: '/' + @page.fullpath).html_safe
+  .editable-elements
+    - @editable_elements.each_with_index do |(page, editable_element), index|
+      = f.simple_fields_for :editable_elements, editable_element, child_index: index do |g|
+        = g.inputs editable_element.block do
 
-    .row
-      .col-md-12
-        %ul.nav.nav-tabs{ role: 'tablist' }
-          - unless @page.templatized?
-            = form_nav_tab :content, true do
-              = link_to t('simple_form.titles.locomotive.content'), editable_elements_path(current_site, @page)
+          = g.hidden_field :page_id
 
-          = form_nav_tab :main do
-            = link_to t('simple_form.titles.locomotive.information'), edit_page_path(current_site, @page)
+          - if editable_element.type.to_sym == :editable_text
+            = g.input :content, as: editable_element.format == 'html' ? :rte : :text, label: editable_element.slug
 
-          = form_nav_tab :seo do
-            = link_to t('simple_form.titles.locomotive.seo'), edit_page_path(current_site, @page, anchor: 'seo')
+          - if editable_element.type.to_sym == :editable_file
+            = g.input :source, as: :file, label: editable_element.slug
 
-        #editable-elements
-
-          = locomotive_form_for @page, url: update_all_editable_elements_path(current_site, @page), remote: true, html: { multipart: true } do |f|
-
-            - @editable_elements.each_with_index do |(page, editable_element), index|
-              = f.simple_fields_for :editable_elements, editable_element, child_index: index do |g|
-                = g.inputs editable_element.block do
-
-                  = g.hidden_field :page_id
-
-                  - if editable_element.type.to_sym == :editable_text
-                    = g.input :content, as: editable_element.format == 'html' ? :rte : :text, label: editable_element.slug
-
-                  - if editable_element.type.to_sym == :editable_file
-                    = g.input :source, as: :file, label: editable_element.slug
-
-            = f.actions do
-              = f.action
+  / = f.actions do
+  /   = f.action
 

@@ -24,6 +24,57 @@ body.slide-right-sidebar {
   }
 }
 
+// Live editing
+
+body.live-editing {
+
+  // STATE: SHRINKED
+
+  .content {
+    @include transform(translate3d(0, 0, 0));
+    @include transition(transform 0.3s ease-in-out);
+
+    > .inner {
+      @include transition(opacity 0.0s ease-in-out);
+    }
+
+    .close-button {
+      @include transition(opacity 0.0s ease-in-out);
+    }
+  }
+
+  .preview {
+    @include transform(translate3d(0, 0, 0));
+    @include transition(transform 0.3s ease-in-out, border-left-width 0.6s ease);
+  }
+
+  &.full-width-preview {
+
+    // STATE: EXPANDED
+
+    .content {
+      @include transform(translate3d($live_editing_content_width - 2em, 0, 0));
+
+      @include transition(transform 0.3s ease-in-out, background-color 0.1s ease-in-out 0.2s);
+      > .inner {
+        @include transition(opacity 0.1s ease-in-out 0.2s);
+      }
+
+      .close-button {
+        @include transition(opacity 0.2s ease-in-out 0.2s);
+      }
+    }
+
+    .preview {
+      @include transform(translate3d($live_editing_content_width - 2em, 0, 0));
+      border-left-width: 2em;
+      @include transition(transform 0.3s ease-in-out);
+    }
+
+  }
+
+}
+
 // Drawer
 
 .content > .overlay {
@@ -76,14 +127,14 @@ body.drawer-opened {
 
 }
 
-body.inline-editing {
+// body.inline-editing {
 
-  .content {
-    @include transition(left 0.3s ease-in-out, right 0.1s linear);
-  }
+//   .content {
+//     @include transition(left 0.3s ease-in-out, right 0.1s linear);
+//   }
 
-  .drawer {
-    @include transition(all 0.1s linear);
-  }
-}
+//   .drawer {
+//     @include transition(all 0.1s linear);
+//   }
+// }
 

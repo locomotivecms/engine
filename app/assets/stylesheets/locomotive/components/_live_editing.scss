@@ -1,0 +1,55 @@
+body.live-editing {
+
+  .content .close-button, .content .expand-button {
+    @include control-window-button;
+    z-index: 995;
+  }
+
+  .content .close-button {
+    @include opacity(0);
+    left: 0px;
+  }
+
+  &.full-width-preview {
+    .content .close-button {
+      @include opacity(1);
+    }
+
+    .content.expand-button {
+      display: none;
+    }
+
+    .content {
+      background-color: $live_editing_content_alt_background_color;
+      > .inner {
+        @include opacity(0);
+      }
+    }
+  }
+
+  .preview {
+    border-left: $live_editing_content_width solid #fff;
+    left: -$live_editing_content_width;
+  }
+
+  .content {
+    background-color: $live_editing_content_background_color;
+    > .inner {
+      border-left: 1px solid $live_editing_content_border_color;
+    }
+
+    .scrollable {
+      margin-top: 60px;
+    }
+
+    .header-row {
+      padding: 15px 0px 15px 0px;
+    }
+
+    .editable-elements fieldset:first-child {
+      padding-top: 0px;
+    }
+  }
+
+
+}

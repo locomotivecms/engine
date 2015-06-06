@@ -1,0 +1,58 @@
+body.live-editing {
+
+  .preview {
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: $live_editing_content_width;
+  }
+
+  .content {
+    left: auto;
+    right: 0px;
+    width: $live_editing_content_width;
+
+    .inner {
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      right: 0px;
+      bottom: 0px;
+    }
+  }
+
+  &.sidebar-closed .content {
+    left: auto;
+  }
+
+  // .drawer {
+  //   width: $inline_editing_drawer_width;
+  //   @include transform(translate3d($inline_editing_drawer_width, 0, 0));
+  // }
+
+  // &.drawer-opened {
+
+  //   .content {
+  //     right: $inline_editing_drawer_width;
+
+  //     &::after {
+  //       display: none;
+  //     }
+
+  //     .expand-button {
+  //       display: none;
+  //     }
+  //   }
+
+  //   .drawer {
+  //     @include transform(translate3d(0, 0, 0));
+
+  //     > .inner {
+  //       border-left: 1px solid $inline_editing_drawer_border_color;
+  //     }
+  //   }
+
+  // }
+
+}

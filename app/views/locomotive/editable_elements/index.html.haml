@@ -1,6 +1,20 @@
-.embed-responsive.embed-page
-  %iframe.embed-responsive-item{ src: preview_path(current_site) + '/' + current_site.localized_page_fullpath(@page) }
+.container-fluid.main{ role: 'main' }
+  .row.header-row
+    .col-md-8
+      %h1= t('locomotive.pages.edit.title', title: @page.title, fullpath: '/' + @page.fullpath).html_safe
 
-- content_for :drawer do
+    .col-md-4
+      %p TODO
 
-  = render 'form'
+.scrollable
+  .container-fluid
+    .row
+      .col-md-12
+        = render 'form'
+
+- content_for :preview do
+  .embed-responsive.embed-page
+    %iframe.embed-responsive-item{ src: preview_path(current_site) + '/' + current_site.localized_page_fullpath(@page) }
+
+
+

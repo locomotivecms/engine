@@ -3,7 +3,7 @@
 %html{ xmlns: 'http://www.w3.org/1999/xhtml'  }
   %head
     = render 'locomotive/shared/head'
-  %body{ class: 'inline-editing sidebar-closed drawer-opened' }
+  %body{ class: 'live-editing sidebar-closed' }
 
     - # HEADER: brand + current site + account
     = render 'locomotive/shared/header'
@@ -14,15 +14,21 @@
         .scrollable
           = render 'locomotive/shared/sidebar'
 
-      .content
-        .expand-button
-          %i.fa.fa-chevron-left
+      %section.preview
         .scrollable
+          = yield :preview
+
+      .content
+        .close-button
+          %i.fa.fa-chevron-left
+        .expand-button
+          %i.fa.fa-chevron-right
+        .inner
           = yield
 
       %section.drawer
         .close-button
-          %i.fa.fa-chevron-right
+          %i.fa.fa-times
         .inner
           = yield :drawer
 
