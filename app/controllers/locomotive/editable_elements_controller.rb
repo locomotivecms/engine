@@ -33,7 +33,7 @@ module Locomotive
 
     def render_index
       if request.xhr?
-        render partial: 'form'
+        render partial: 'edit'
       else
         render 'index'
       end

@@ -1,16 +1,4 @@
-.container-fluid.main{ role: 'main' }
-  .row.header-row
-    .col-md-8
-      %h1= t('locomotive.pages.edit.title', title: @page.title, fullpath: '/' + @page.fullpath).html_safe
-
-    .col-md-4
-      %p TODO
-
-.scrollable
-  .container-fluid
-    .row
-      .col-md-12
-        = render 'form'
+= render 'edit'
 
 - content_for :preview do
   .embed-responsive.embed-page

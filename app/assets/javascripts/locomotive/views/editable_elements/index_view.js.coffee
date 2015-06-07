@@ -15,9 +15,13 @@ class Locomotive.Views.EditableElements.IndexView extends Backbone.View
     $('body').removeClass('full-width-preview')
 
   initialize: ->
-    # @replace_drawer_view()
+    @edit_view = new Locomotive.Views.EditableElements.EditView()
 
     $('iframe').load => @on_iframe_load(_)
+
+  render: ->
+    super()
+    @edit_view.render()
 
   on_iframe_load: ->
     $target_window = $('iframe')[0].contentWindow
@@ -30,11 +34,13 @@ class Locomotive.Views.EditableElements.IndexView extends Backbone.View
       unless editable_elements_path == window.location.pathname
         history.pushState(null, null, editable_elements_path)
 
-        # @replace_drawer_view(editable_elements_path)
+        @replace_edit_view(editable_elements_path)
 
     else
       alert 'TODO: not a page of this site. Can not be edited'
 
-  # replace_drawer_view: (url) ->
-  #   drawer_view = window.application_view.drawer_view
-  #   drawer_view.replace(url: url, view_klass: Locomotive.Views.EditableElements.EditView)
+  replace_edit_view: (url) ->
+    $(@edit_view.el).load url, =>
+      @edit_view.remove()
+      @edit_view = new Locomotive.Views.EditableElements.EditView()
+      @edit_view.render()
