@@ -45,6 +45,8 @@ class Locomotive.Views.Inputs.FileView extends Backbone.View
 
     if file.type.match('image.*')
       @image_to_base_64 file, (base64) =>
+        @$new_file.html("<img src='#{base64}' /> #{@$new_file.html()}")
+
         PubSub.publish 'inputs.image_changed', { view: @, url: base64, file: file }
 
   cancel_new_file: (event) ->

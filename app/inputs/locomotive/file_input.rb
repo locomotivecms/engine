@@ -10,7 +10,7 @@ module Locomotive
     end
 
     def file_html
-      col_wrapping :file do
+      col_wrapping :file, 9 do
         no_file_html +
         new_file_html +
         filename_or_image +
@@ -20,7 +20,7 @@ module Locomotive
     end
 
     def buttons_html
-      col_wrapping :buttons do
+      col_wrapping :buttons, 3 do
         template.link_to(text(:choose), '#', class: "choose btn btn-primary btn-sm #{hidden_css(:choose)}") +
         template.link_to(text(:change), '#', class: "change btn btn-primary btn-sm #{hidden_css(:change)}") +
         template.link_to(text(:cancel), '#', class: "cancel btn btn-primary btn-sm #{hidden_css(:cancel)}") +

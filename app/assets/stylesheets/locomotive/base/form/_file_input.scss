@@ -21,7 +21,7 @@
           text-indent: -99999;
         }
 
-        .current-file {
+        .current-file, .new-file {
           img {
             border: 2px solid $form_input_control_border_color;
             width: 29px;
