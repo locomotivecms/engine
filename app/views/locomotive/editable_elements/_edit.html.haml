@@ -1,13 +1,25 @@
-.container-fluid.main{ role: 'main' }
-  .row.header-row
-    .col-md-8
-      %h1= t('locomotive.pages.edit.title', title: @page.title, fullpath: '/' + @page.fullpath).html_safe
+= locomotive_form_for @page, url: update_all_editable_elements_path(current_site, @page), remote: true, html: { multipart: true } do |f|
 
-    .col-md-4
-      %p TODO
-
-.scrollable
-  .container-fluid
-    .row
+  .container-fluid.main{ role: 'main' }
+    .row.header-row
       .col-md-12
-        = render 'form'
+        %h1= @page.title
+
+    .row.info-row
+      .col-md-8
+        %p
+          %span.fullpath= '/' + @page.fullpath
+
+      .col-md-4
+        %p.text-right
+          = link_to edit_page_path(current_site, @page) do
+            %i.fa.fa-gear
+            Settings
+
+          = f.action
+
+  .scrollable
+    .container-fluid
+      .row
+        .col-md-12
+          = render 'form', f: f

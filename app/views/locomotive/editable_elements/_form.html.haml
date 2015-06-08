@@ -1,18 +1,16 @@
-= locomotive_form_for @page, url: update_all_editable_elements_path(current_site, @page), remote: true, html: { multipart: true } do |f|
+.editable-elements
+  - @editable_elements.each_with_index do |(page, editable_element), index|
+    = f.simple_fields_for :editable_elements, editable_element, child_index: index do |g|
+      = g.inputs editable_element.block do
 
-  .editable-elements
-    - @editable_elements.each_with_index do |(page, editable_element), index|
-      = f.simple_fields_for :editable_elements, editable_element, child_index: index do |g|
-        = g.inputs editable_element.block do
+        = g.hidden_field :page_id
 
-          = g.hidden_field :page_id
+        - if editable_element.type.to_sym == :editable_text
+          = g.input :content, as: editable_element.format == 'html' ? :rte : :text, label: editable_element.slug
 
-          - if editable_element.type.to_sym == :editable_text
-            = g.input :content, as: editable_element.format == 'html' ? :rte : :text, label: editable_element.slug
+        - if editable_element.type.to_sym == :editable_file
+          = g.input :source, as: :file, label: editable_element.slug
 
-          - if editable_element.type.to_sym == :editable_file
-            = g.input :source, as: :file, label: editable_element.slug
-
-  / = f.actions do
-  /   = f.action
+/ = f.actions do
+/   = f.action
 

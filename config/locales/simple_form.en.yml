@@ -162,7 +162,7 @@ en:
           update: Save
           submit: Ok
           cancel: Cancel
-          loading_text: "Your form is being submitted"
+          loading_text: "Saving..."
       locomotive:
         image_resize_form:
           loading_text: Resizing...
