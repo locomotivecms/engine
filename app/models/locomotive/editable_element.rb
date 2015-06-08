@@ -41,6 +41,10 @@ module Locomotive
       self._parent.try(:_id)
     end
 
+    def humanized_id
+      [self.block, self.slug].compact.join('_').gsub('/', '_')
+    end
+
     # def disabled_in_all_translations?
     #   return self.disabled_translations if self.disabled_translations.is_a?(Boolean)
     #   return false if disabled_translations.blank?

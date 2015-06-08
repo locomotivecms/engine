@@ -33,7 +33,8 @@ class Locomotive.Views.Inputs.FileView extends Backbone.View
     @$file.click()
 
   change_file: (event) ->
-    text = if event.target.files then event.target.files[0].name else 'New file'
+    file = if event.target.files then event.target.files[0] else null
+    text = if file? then file.name else 'New file'
     @$new_file.html(text)
 
     # show new file, hide the current one
@@ -41,6 +42,10 @@ class Locomotive.Views.Inputs.FileView extends Backbone.View
 
     # only show the cancel button
     @hideEl(@$change_btn) && @hideEl(@$delete_btn) && @hideEl(@$choose_btn) && @showEl(@$cancel_btn)
+
+    if file.type.match('image.*')
+      @image_to_base_64 file, (base64) =>
+        PubSub.publish 'inputs.image_changed', { view: @, url: base64, file: file }
 
   cancel_new_file: (event) ->
     # hide the new file
@@ -71,6 +76,8 @@ class Locomotive.Views.Inputs.FileView extends Backbone.View
       # display the choose button
       @showEl(@$choose_btn)
 
+    PubSub.publish 'inputs.image_changed', { view: @ }
+
   mark_file_as_deleted: (event) ->
     # set true (or 1) as value for the remove_<method> hidden field
     @$remove_file.val('1')
@@ -80,6 +87,11 @@ class Locomotive.Views.Inputs.FileView extends Backbone.View
 
     # hide the change / delete buttons, show the cancel button
     @hideEl(@$change_btn) && @hideEl(@$delete_btn) && @showEl(@$cancel_btn)
+
+  image_to_base_64: (file, callback) ->
+    reader = new FileReader()
+    reader.onload = (e) -> callback(e.target.result)
+    reader.readAsDataURL(file)
 
   showEl: (el) -> el.removeClass('hide')
   hideEl: (el) -> el.addClass('hide')
