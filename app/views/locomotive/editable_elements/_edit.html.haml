@@ -6,11 +6,11 @@
         %h1= @page.title
 
     .row.info-row
-      .col-md-8
+      .col-md-7
         %p
           %span.fullpath= '/' + @page.fullpath
 
-      .col-md-4
+      .col-md-5
         %p.text-right
           = link_to edit_page_path(current_site, @page) do
             %i.fa.fa-gear

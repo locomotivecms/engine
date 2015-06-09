@@ -72,5 +72,6 @@ class Locomotive.Views.EditableElements.IndexView extends Backbone.View
       @edit_view.render()
 
   remove: ->
+    super
     @edit_view.remove()
     PubSub.unsubscribe(@pubsub_token)

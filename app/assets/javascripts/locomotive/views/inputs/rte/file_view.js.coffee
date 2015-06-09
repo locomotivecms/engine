@@ -9,11 +9,13 @@ class Locomotive.Views.Inputs.Rte.FileView extends Backbone.View
     picker:   false
 
   initialize: ->
-    _.bindAll(@, 'change_image', 'hide')
+    _.bindAll(@, 'change_image', 'insert_file', 'hide')
 
-    @$link      = $(@el)
-    @editor     = @options.editor
-    @$popover   = @$link.next('.image-dialog-content')
+    @$link        = $(@el)
+    @editor       = @options.editor
+    @$popover     = @$link.next('.image-dialog-content')
+
+    @pubsub_token = PubSub.subscribe('file_picker.select', @insert_file)
 
   render: ->
     @attach_editor()
@@ -52,6 +54,17 @@ class Locomotive.Views.Inputs.Rte.FileView extends Backbone.View
       src:    @_input_el('src').val()
       class:  @_input_el('alignment', 'select').val()
       title:  @_input_el('title').val()
+
+    @hide()
+
+  insert_file: (msg, data) ->
+    if data.image
+      @editor.composer.commands.exec 'insertImage',
+        src:    data.url
+        title:  data.title
+    else
+      html = "<a href='#{data.url}' title='#{data.title}'>#{data.title}</a>"
+      @editor.composer.commands.exec 'insertHTML', html
 
     @hide()
 
@@ -99,6 +112,10 @@ class Locomotive.Views.Inputs.Rte.FileView extends Backbone.View
     window.application_view.drawer_view.close()
     @opened.picker = false
 
+  hide_from_picker: (stack_size) ->
+    if stack_size == 0
+      @opened.picker = false
+
   hide_popover: ->
     @$link.popover('hide')
     @opened.popover = false
@@ -113,4 +130,5 @@ class Locomotive.Views.Inputs.Rte.FileView extends Backbone.View
     @detach_popover_events()
     @$link.popover('destroy')
     @$('.popover').remove()
+    PubSub.unsubscribe(@pubsub_token)
     super
