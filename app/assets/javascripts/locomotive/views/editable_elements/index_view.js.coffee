@@ -15,8 +15,8 @@ class Locomotive.Views.EditableElements.IndexView extends Backbone.View
     $('body').removeClass('full-width-preview')
 
   initialize: ->
-    @edit_view = new Locomotive.Views.EditableElements.EditView()
-    @pubsub_image_token = PubSub.subscribe('inputs.image_changed', @refresh_image)
+    @edit_view    = new Locomotive.Views.EditableElements.EditView()
+    @pubsub_token = PubSub.subscribe('inputs.image_changed', @refresh_image)
 
     $('iframe').load => @on_iframe_load()
 
@@ -73,4 +73,4 @@ class Locomotive.Views.EditableElements.IndexView extends Backbone.View
 
   remove: ->
     @edit_view.remove()
-    PubSub.unsubscribe(@pubsub_image_token)
+    PubSub.unsubscribe(@pubsub_token)

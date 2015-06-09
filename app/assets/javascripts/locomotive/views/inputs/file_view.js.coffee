@@ -6,35 +6,69 @@ class Locomotive.Views.Inputs.FileView extends Backbone.View
     'change input[type=file]':  'change_file'
     'click a.choose':           'begin_choose_file'
     'click a.change':           'begin_change_file'
+    'click a.content-assets':   'open_content_assets_drawer'
     'click a.cancel':           'cancel_new_file'
     'click a.delete':           'mark_file_as_deleted'
 
   initialize: ->
+    _.bindAll(@, 'use_content_asset')
+
     @$file          = @$('input[type=file]')
-    @$remove_file   = @$('input[type=hidden]')
+    @$remove_file   = @$('input[type=hidden].remove')
+    @$remote_url    = @$('input[type=hidden].remote-url')
     @$current_file  = @$('.current-file')
     @$no_file       = @$('.no-file')
     @$new_file      = @$('.new-file')
 
-    @$choose_btn    = @$('.buttons .choose')
-    @$change_btn    = @$('.buttons .change')
+    @$choose_btn    = @$('.buttons > .choose')
+    @$change_btn    = @$('.buttons > .change')
     @$cancel_btn    = @$('.buttons .cancel')
     @$delete_btn    = @$('.buttons .delete')
 
     @persisted_file = @$('.row').data('persisted-file')
 
-  render: ->
-    # do nothing
+    @pubsub_token   = PubSub.subscribe 'file_picker.select', @use_content_asset
 
-  begin_change_file: ->
-    @$file.click()
+  begin_change_file: -> @$file.click()
+  begin_choose_file: -> @$file.click()
 
-  begin_choose_file: ->
-    @$file.click()
+  open_content_assets_drawer: (event) ->
+    event.stopPropagation() & event.preventDefault()
+
+    window.application_view.drawer_view.open(
+      $(event.target).attr('href'),
+      Locomotive.Views.ContentAssets.PickerView,
+      { parent_view: @ })
+
+  use_content_asset: (msg, data) ->
+    return unless data.parent_view.cid == @.cid
+
+    window.application_view.drawer_view.close()
+
+    url = @absolute_url(data.url)
+
+    @update_ui_on_changing_file(data.title)
+
+    @$remote_url.val(url)
+
+    if data.image
+      @$new_file.html("<img src='#{url}' /> #{@$new_file.html()}")
+
+      PubSub.publish 'inputs.image_changed', { view: @, url: url }
 
   change_file: (event) ->
     file = if event.target.files then event.target.files[0] else null
     text = if file? then file.name else 'New file'
+
+    @update_ui_on_changing_file(text)
+
+    if file.type.match('image.*')
+      @image_to_base_64 file, (base64) =>
+        @$new_file.html("<img src='#{base64}' /> #{@$new_file.html()}")
+
+        PubSub.publish 'inputs.image_changed', { view: @, url: base64, file: file }
+
+  update_ui_on_changing_file: (text) ->
     @$new_file.html(text)
 
     # show new file, hide the current one
@@ -43,15 +77,12 @@ class Locomotive.Views.Inputs.FileView extends Backbone.View
     # only show the cancel button
     @hideEl(@$change_btn) && @hideEl(@$delete_btn) && @hideEl(@$choose_btn) && @showEl(@$cancel_btn)
 
-    if file.type.match('image.*')
-      @image_to_base_64 file, (base64) =>
-        @$new_file.html("<img src='#{base64}' /> #{@$new_file.html()}")
-
-        PubSub.publish 'inputs.image_changed', { view: @, url: base64, file: file }
-
   cancel_new_file: (event) ->
     # hide the new file
     @hideEl(@$new_file)
+
+    # reset remote url
+    @$remote_url.val('')
 
     # reset the file input
     @$file.wrap('<form>').closest('form').get(0).reset()
@@ -95,5 +126,16 @@ class Locomotive.Views.Inputs.FileView extends Backbone.View
     reader.onload = (e) -> callback(e.target.result)
     reader.readAsDataURL(file)
 
+  absolute_url: (url) ->
+    return url if url.indexOf('http') == 0
+
+    http = location.protocol
+    slashes = http.concat("//")
+    slashes.concat(window.location.host).concat(url)
+
   showEl: (el) -> el.removeClass('hide')
   hideEl: (el) -> el.addClass('hide')
+
+  remove: ->
+    super
+    PubSub.unsubscribe(@pubsub_token)

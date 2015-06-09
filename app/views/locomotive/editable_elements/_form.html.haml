@@ -11,6 +11,6 @@
           = g.input :content, as: editable_element.format == 'html' ? :rte : :text, label: editable_element.slug
 
         - if editable_element.type.to_sym == :editable_file
-          = g.input :source, as: :file, label: editable_element.slug
+          = g.input :source, as: :file, label: editable_element.slug, select_among_content_assets: true
 
           = g.hidden_field :content

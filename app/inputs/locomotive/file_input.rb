@@ -1,6 +1,10 @@
 module Locomotive
   class FileInput < ::SimpleForm::Inputs::FileInput
 
+    extend Forwardable
+
+    def_delegators :template, :link_to, :content_tag
+
     include Locomotive::SimpleForm::BootstrapHelpers
 
     def input(wrapper_options = nil)
@@ -15,16 +19,33 @@ module Locomotive
         new_file_html +
         filename_or_image +
         @builder.file_field(attribute_name, input_html_options) +
-        @builder.hidden_field(:"remove_#{attribute_name}")
+        @builder.hidden_field(:"remove_#{attribute_name}", class: 'remove') +
+        @builder.hidden_field(:"remote_#{attribute_name}_url", class: 'remote-url')
       end
     end
 
     def buttons_html
       col_wrapping :buttons, 3 do
-        template.link_to(text(:choose), '#', class: "choose btn btn-primary btn-sm #{hidden_css(:choose)}") +
-        template.link_to(text(:change), '#', class: "change btn btn-primary btn-sm #{hidden_css(:change)}") +
-        template.link_to(text(:cancel), '#', class: "cancel btn btn-primary btn-sm #{hidden_css(:cancel)}") +
+        button_html(:choose, options[:select_among_content_assets]) +
+        button_html(:change, options[:select_among_content_assets]) +
+        button_html(:cancel, false) +
         template.link_to(trash_icon, '#', class: "delete #{hidden_css(:delete)}")
+      end
+    end
+
+    def button_html(name, dropdown = true)
+      if dropdown
+        content_tag(:div,
+          content_tag(:button,
+            (text(name) + ' ' + content_tag(:span, '', class: 'caret')).html_safe,
+            class: 'btn btn-primary btn-sm dropdown-toggle', data: { toggle: 'dropdown', aria_expanded: false }) +
+          content_tag(:ul,
+            content_tag(:li, content_tag(:a, 'Local file', href: '#', class: "local-file #{name}")) +
+            content_tag(:li, content_tag(:a, 'Select among assets', href: template.content_assets_path, class: 'content-assets')),
+            class: 'dropdown-menu dropdown-menu-right', role: 'menu'),
+          class: "btn-group #{name} #{hidden_css(name)}")
+      else
+        template.link_to(text(name), '#', class: "#{name} btn btn-primary btn-sm #{hidden_css(name)}")
       end
     end
 

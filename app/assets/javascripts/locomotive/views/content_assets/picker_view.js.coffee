@@ -17,8 +17,8 @@ class Locomotive.Views.ContentAssets.PickerView extends Backbone.View
     'a.refresh'
   ]
 
-  initialize: ->
-    @editor = @options.parent_view.editor
+  # initialize: ->
+  #   @editor = @options.parent_view.editor
 
   render: ->
     console.log '[PickerView] rendering'
@@ -39,21 +39,28 @@ class Locomotive.Views.ContentAssets.PickerView extends Backbone.View
 
   select: (event) ->
     console.log '[PickerView] select'
+
     event.stopPropagation() & event.preventDefault()
 
     $link   = $(event.target)
-    title   = $link.attr('title')
-    url     = $link.attr('href')
 
-    if $link.data('image')
-      @editor.composer.commands.exec 'insertImage',
-        src:    url
-        title:  title
-    else
-      html = "<a href='#{url}' title='#{title}'>#{title}</a>"
-      @editor.composer.commands.exec 'insertHTML', html
+    PubSub.publish 'file_picker.select',
+      parent_view:  @options.parent_view
+      image:        $link.data('image')
+      title:        $link.attr('title')
+      url:          $link.attr('href')
 
-    @options.parent_view.hide()
+    # TODO: rte/file_view
+    #
+    # if $link.data('image')
+    #   @editor.composer.commands.exec 'insertImage',
+    #     src:    url
+    #     title:  title
+    # else
+    #   html = "<a href='#{url}' title='#{title}'>#{title}</a>"
+    #   @editor.composer.commands.exec 'insertHTML', html
+
+    # @options.parent_view.hide()
 
   open_edit_drawer: (event) ->
     console.log '[PickerView] open_edit_drawer'
@@ -69,8 +76,11 @@ class Locomotive.Views.ContentAssets.PickerView extends Backbone.View
   hide_from_drawer: (stack_size) ->
     console.log '[PickerView] hide_from_drawer'
     # we might need to re-open this view further
-    if @options.parent_view && stack_size == 0
-      @options.parent_view.opened.picker = false
+    @options.parent_view.hide_picker() if @options.parent_view && @options.parent_view.hide_picker
+
+    # TODO: rte/file_view
+    # if @options.parent_view && stack_size == 0
+    #   @options.parent_view.opened.picker = false
 
   remove: ->
     console.log '[PickerView] remove'
