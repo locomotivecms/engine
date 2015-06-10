@@ -12,3 +12,22 @@ en:
           title: Title
           ok: Ok
           cancel: Cancel
+
+      file:
+        none: no file
+        choose: Choose
+        change: Change
+        delete: Delete
+        cancel: Cancel
+        select_local_file: Upload local file
+        select_content_asset: Select among assets
+
+      array:
+        new: New
+        add: Add
+        edit: Edit
+
+      toggle:
+        on_text: "Yes"
+        off_text: "No"
+

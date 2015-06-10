@@ -99,7 +99,7 @@ module Locomotive
     end
 
     def file_custom_field_options(field, entry)
-      { as: :file, select_among_content_assets: true }
+      { as: :file, select_content_asset: true }
     end
 
     def float_custom_field_options(field, entry)

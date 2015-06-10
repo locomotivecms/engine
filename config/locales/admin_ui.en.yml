@@ -56,20 +56,6 @@ en:
         site: Site
         theme_assets: Theme files
         translations: Translations
-      form:
-        file_input:
-          none: no file
-          choose: Choose
-          change: Change
-          delete: Delete
-          cancel: Cancel
-        array_input:
-          new: New
-          add: Add
-          edit: Edit
-        toggle_input:
-          on_text: "Yes"
-          off_text: "No"
       form_actions:
         back: Back without saving
         create: Create

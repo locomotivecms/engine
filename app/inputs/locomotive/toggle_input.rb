@@ -14,7 +14,7 @@ module Locomotive
     end
 
     def text(name)
-      I18n.t(name, scope: 'locomotive.shared.form.toggle_input')
+      I18n.t(name, scope: 'locomotive.inputs.toggle')
     end
 
   end

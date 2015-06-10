@@ -78,7 +78,7 @@ module Locomotive
     end
 
     def text(name)
-      I18n.t(name, scope: 'locomotive.shared.form.array_input')
+      I18n.t(name, scope: 'locomotive.inputs.array')
     end
 
   end

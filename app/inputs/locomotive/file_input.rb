@@ -26,8 +26,8 @@ module Locomotive
 
     def buttons_html
       col_wrapping :buttons, 3 do
-        button_html(:choose, options[:select_among_content_assets]) +
-        button_html(:change, options[:select_among_content_assets]) +
+        button_html(:choose, options[:select_content_asset]) +
+        button_html(:change, options[:select_content_asset]) +
         button_html(:cancel, false) +
         template.link_to(trash_icon, '#', class: "delete #{hidden_css(:delete)}")
       end
@@ -40,8 +40,8 @@ module Locomotive
             (text(name) + ' ' + content_tag(:span, '', class: 'caret')).html_safe,
             class: 'btn btn-primary btn-sm dropdown-toggle', data: { toggle: 'dropdown', aria_expanded: false }) +
           content_tag(:ul,
-            content_tag(:li, content_tag(:a, 'Local file', href: '#', class: "local-file #{name}")) +
-            content_tag(:li, content_tag(:a, 'Select among assets', href: template.content_assets_path, class: 'content-assets')),
+            content_tag(:li, content_tag(:a, text(:select_local_file), href: '#', class: "local-file #{name}")) +
+            content_tag(:li, content_tag(:a, text(:select_content_asset), href: template.content_assets_path, class: 'content-assets')),
             class: 'dropdown-menu dropdown-menu-right', role: 'menu'),
           class: "btn-group #{name} #{hidden_css(name)}")
       else
@@ -102,7 +102,7 @@ module Locomotive
     end
 
     def text(name)
-      I18n.t("locomotive.shared.form.file_input.#{name}")
+      I18n.t(name, scope: 'locomotive.inputs.file')
     end
 
   end
