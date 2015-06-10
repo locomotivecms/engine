@@ -18,7 +18,7 @@ class Locomotive.Views.EditableElements.IndexView extends Backbone.View
     @edit_view    = new Locomotive.Views.EditableElements.EditView()
     @pubsub_token = PubSub.subscribe('inputs.image_changed', @refresh_image)
 
-    $('iframe').load => @on_iframe_load()
+    $('.preview iframe').load (event) => @on_iframe_load(event)
 
   render: ->
     super()
@@ -49,21 +49,29 @@ class Locomotive.Views.EditableElements.IndexView extends Backbone.View
       $el = $iframe_document.find("img[src*='#{old_image_url}']").addClass(class_name)
       $el.attr('src', image_url)
 
-  on_iframe_load: ->
-    $target_window = $('iframe')[0].contentWindow
-    $iframe = $($target_window.document)
+  on_iframe_load: (event) ->
+    $iframe = $('.preview iframe')
+    $target_window = $iframe[0].contentWindow
+    editable_elements_path = null
 
-    target_path = $target_window.location.href
-    editable_elements_path = $iframe.find('meta[name=locomotive-editable-elements-path]').attr('content')
+    # unable to display the iframe in the frame because it set 'X-Frame-Options' to 'SAMEORIGIN'
+    try
+      $iframe_document = $($target_window.document)
+      editable_elements_path = $iframe_document.find('meta[name=locomotive-editable-elements-path]').attr('content')
+    catch e
+      # reload the iframe with the previous url and display an error message
+      $iframe.attr('src', @preview_url)
+      Locomotive.notify $iframe.data('redirection-error'), 'warning'
+      return
+
+    # store the url
+    @preview_url = $('.preview iframe')[0].contentWindow.document.location.href
 
     if editable_elements_path?
       unless editable_elements_path == window.location.pathname
         history.pushState(null, null, editable_elements_path)
 
         @replace_edit_view(editable_elements_path)
-
-    else
-      alert 'TODO: not a page of this site. Can not be edited'
 
   replace_edit_view: (url) ->
     $(@edit_view.el).load url, =>

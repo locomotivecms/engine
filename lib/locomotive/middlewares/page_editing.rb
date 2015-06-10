@@ -12,7 +12,7 @@ module Locomotive
         status, headers, response = @app.call(env)
         site, page = env['steam.site'], env['steam.page']
 
-        if page && page.response_type == 'text/html'
+        if page && !page.redirect && page.response_type == 'text/html'
           html = %(
             <meta name="locomotive-editable-elements-path" content="#{editable_elements_path(site, page._id)}" />
             <meta name="locomotive-page-id" content="#{page._id}" />

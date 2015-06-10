@@ -47,7 +47,6 @@ module Locomotive
     # end
 
     def options_for_page_redirect_type
-      puts t('.redirect_type.permanent').inspect
       [
         [t('.redirect_type.permanent'), 301],
         [t('.redirect_type.temporary'), 302]

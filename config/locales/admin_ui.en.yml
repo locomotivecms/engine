@@ -183,6 +183,10 @@ en:
             permanent: "Permanent (301)"
             temporary: "Temporary (302)"
 
+    editable_elements:
+      index:
+        redirection_error: "Editing a non Locomotive page is not allowed."
+
     sites:
       index:
         title: My sites
