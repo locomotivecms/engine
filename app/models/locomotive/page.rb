@@ -58,7 +58,7 @@ module Locomotive
     scope :published,           -> { where(published: true) }
     scope :fullpath,            ->(fullpath) { where(fullpath: fullpath) }
     scope :handle,              ->(handle) { where(handle: handle) }
-    scope :minimal_attributes,  ->(attrs = []) { without(self.fields.keys - MINIMAL_ATTRIBUTES) }
+    scope :minimal_attributes,  -> { without(:raw_template, :template) }
     scope :dependent_from,      ->(id) { where(:template_dependencies.in => [id]) }
     scope :by_id_or_fullpath,   ->(id_or_fullpath) { all.or({ _id: id_or_fullpath }, { fullpath: id_or_fullpath }) }
 

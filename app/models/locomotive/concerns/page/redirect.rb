@@ -9,7 +9,7 @@ module Locomotive
 
           ## fields ##
           field :redirect,      type: Boolean, default:  false
-          field :redirect_url,  type: String,  localize: true
+          field :redirect_url,  type: String,  localize: true, default: ''
           field :redirect_type, type: Integer, default:  301
 
           ## validations ##

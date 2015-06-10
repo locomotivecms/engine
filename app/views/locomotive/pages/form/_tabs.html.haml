@@ -1,5 +1,5 @@
 %ul.nav.nav-tabs{ role: 'tablist' }
-  - unless @page.templatized?
+  - unless @page.templatized? || @page.redirect?
     = form_nav_tab :content do
       = link_to t('simple_form.titles.locomotive.content'), editable_elements_path(current_site, @page)
 
