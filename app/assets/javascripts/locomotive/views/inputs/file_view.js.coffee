@@ -35,6 +35,8 @@ class Locomotive.Views.Inputs.FileView extends Backbone.View
   open_content_assets_drawer: (event) ->
     event.stopPropagation() & event.preventDefault()
 
+    $(event.target).closest('.btn-group').removeClass('open')
+
     window.application_view.drawer_view.open(
       $(event.target).attr('href'),
       Locomotive.Views.ContentAssets.PickerView,
