@@ -10,6 +10,11 @@ module Locomotive
 
     paths['mongodb/migrate'] = 'mongodb/migrate'
 
+    initializer "locomotive.params.filter" do |app|
+      # Do not log remote_<field>_url params because they can contain huge base64 string
+      app.config.filter_parameters += [/\Aremote_.+_url\Z/]
+    end
+
     initializer 'locomotive.content_types' do |app|
       # Load all the dynamic classes (custom fields)
       begin

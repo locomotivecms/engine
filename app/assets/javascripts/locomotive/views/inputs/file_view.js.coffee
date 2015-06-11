@@ -47,14 +47,21 @@ class Locomotive.Views.Inputs.FileView extends Backbone.View
 
     url = @absolute_url(data.url)
 
-    @update_ui_on_changing_file(data.title)
+    window.remote_file_to_base64 url, (base64) =>
+      if base64
+        @update_ui_on_changing_file(data.title)
 
-    @$remote_url.val(url)
+        # add the filename to the base64 string
+        base64 = base64.replace(';base64,', ";#{data.filename};base64,")
 
-    if data.image
-      @$new_file.html("<img src='#{url}' /> #{@$new_file.html()}")
+        @$remote_url.val(base64)
 
-      PubSub.publish 'inputs.image_changed', { view: @, url: url }
+        if data.image
+          @$new_file.html("<img src='#{url}' /> #{@$new_file.html()}")
+
+          PubSub.publish 'inputs.image_changed', { view: @, url: url }
+      else
+        Locomotive.notify 'Unable to load the asset', 'error'
 
   change_file: (event) ->
     file = if event.target.files then event.target.files[0] else null

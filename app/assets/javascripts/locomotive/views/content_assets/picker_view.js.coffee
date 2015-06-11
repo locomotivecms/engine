@@ -39,13 +39,14 @@ class Locomotive.Views.ContentAssets.PickerView extends Backbone.View
 
     event.stopPropagation() & event.preventDefault()
 
-    $link   = $(event.target)
+    $link = $(event.target)
 
     PubSub.publish 'file_picker.select',
       parent_view:  @options.parent_view
       image:        $link.data('image')
       title:        $link.attr('title')
       url:          $link.attr('href')
+      filename:     $link.attr('href').split(/[\\/]/).pop()
 
   open_edit_drawer: (event) ->
     console.log '[PickerView] open_edit_drawer'

@@ -58,6 +58,8 @@ class Locomotive.Views.Inputs.Rte.FileView extends Backbone.View
     @hide()
 
   insert_file: (msg, data) ->
+    return unless data.parent_view.cid == @.cid
+
     if data.image
       @editor.composer.commands.exec 'insertImage',
         src:    data.url
