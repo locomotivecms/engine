@@ -3,7 +3,7 @@ module Locomotive
     module Drops
       class Page < Base
 
-        delegate :seo_title, :meta_keywords, :meta_description, :redirect_url, :handle, to: :@_source
+        delegate :seo_title, :meta_keywords, :meta_description, :redirect_url, :handle, :layout, to: :@_source
 
         def title
           title =  @_source.templatized? ? @context['entry'].try(:_label) : nil

@@ -3,8 +3,8 @@ require 'spec_helper'
 describe Locomotive::Liquid::Drops::Page do
 
   before(:each) do
-    @site  = FactoryGirl.build(:site)
-    @home  = FactoryGirl.build(:page, site: @site, meta_keywords: 'Libidinous, Angsty', meta_description: "Quite the combination.")
+    @site   = FactoryGirl.build(:site)
+    @home   = FactoryGirl.build(:page, site: @site, meta_keywords: 'Libidinous, Angsty', meta_description: "Quite the combination.")
   end
 
   context '#rendering tree' do
@@ -49,6 +49,19 @@ describe Locomotive::Liquid::Drops::Page do
     it 'renders title of parent page' do
       content = render_template '{{ sub_page.parent.title }}', { 'sub_page' => @sub_page }
       content.should == "Home page"
+    end
+
+  end
+
+  context '#layout' do
+    before(:each) do
+      @layout = FactoryGirl.build(:page, title: 'Simple playout', is_layout: true)
+      @home.layout = @layout
+    end
+
+    it 'renders title of parent page' do
+      content = render_template '{{ page.layout.title }}', { 'page' => @home }
+      content.should == "Simple playout"
     end
 
   end
