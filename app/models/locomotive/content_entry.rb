@@ -16,7 +16,6 @@ module Locomotive
 
     ## fields ##
     field :_slug,             localize: true
-    field :_label_field_name
     field :_position,         type: Integer, default: 0
     field :_visible,          type: Boolean, default: true
 
@@ -31,7 +30,6 @@ module Locomotive
     ## callbacks ##
     before_save       :set_site
     before_save       :set_visibility
-    before_save       :set_label_field_name
     before_create     :add_to_list_bottom
 
     ## named scopes ##
@@ -69,11 +67,7 @@ module Locomotive
     # @return [ String ] The "label" of the content entry
     #
     def _label(type = nil)
-      value = if self._label_field_name
-        self.send(self._label_field_name.to_sym)
-      else
-        self.send((type || self.content_type).label_field_name.to_sym)
-      end
+      value = self.send(_label_field_name(type))
 
       value.respond_to?(:to_label) ? value.to_label : value.to_s
     end
@@ -142,13 +136,13 @@ module Locomotive
       end
     end
 
-    def set_label_field_name
-      self._label_field_name = self.content_type.label_field_name
-    end
-
     def add_to_list_bottom
       max = self.class.indexed_max(:_position)
       self._position = max + 1 if max
+    end
+
+    def _label_field_name(type = nil)
+      (type || self.content_type).label_field_name.to_sym
     end
 
   end

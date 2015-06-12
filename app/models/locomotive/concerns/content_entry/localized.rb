@@ -22,8 +22,8 @@ module Locomotive
         # @return [ Boolean ] True if translated, false otherwise
         #
         def translated?
-          if self.respond_to?(:"#{self._label_field_name}_translations")
-            self.send(:"#{self._label_field_name}_translations").key?(::Mongoid::Fields::I18n.locale.to_s) #rescue false
+          if self.respond_to?(:"#{_label_field_name}_translations")
+            self.send(:"#{_label_field_name}_translations").key?(::Mongoid::Fields::I18n.locale.to_s) #rescue false
           else
             true
           end
@@ -35,7 +35,7 @@ module Locomotive
         #
         def translated_in
           if self.localized?
-            self.send(:"#{self._label_field_name}_translations").keys
+            self.send(:"#{_label_field_name}_translations").keys
           else
             nil
           end
@@ -65,7 +65,7 @@ module Locomotive
         # @return [ Boolean ] True if localized, false otherwise
         #
         def localized?
-          self.respond_to?(:"#{self._label_field_name}_translations")
+          self.respond_to?(:"#{_label_field_name}_translations")
         end
 
         protected

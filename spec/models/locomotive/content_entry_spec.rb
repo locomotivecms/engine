@@ -322,18 +322,20 @@ describe Locomotive::ContentEntry do
 
   describe '#label' do
 
+    let(:entry) { build_content_entry }
+
     it 'has a label based on the value of the first field' do
       expect(build_content_entry._label).to eq('Locomotive')
     end
 
     it 'uses the to_label method if the value of the label field defined it' do
-      entry = build_content_entry(_label_field_name: 'with_to_label')
+      allow(entry).to receive(:_label_field_name).and_return(:with_to_label)
       allow(entry).to receive(:with_to_label).and_return(instance_double('with_to_label', to_label: 'acme'))
       expect(entry._label).to eq('acme')
     end
 
     it 'uses the to_s method at last if the label field did not define the to_label method' do
-      entry = build_content_entry(_label_field_name: 'not_a_string')
+      allow(entry).to receive(:_label_field_name).and_return(:not_a_string)
       allow(entry).to receive(:not_a_string).and_return(instance_double('not_a_string', to_s: 'not_a_string'))
       expect(entry._label).to eq('not_a_string')
     end

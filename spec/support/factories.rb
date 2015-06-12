@@ -260,7 +260,6 @@ FactoryGirl.define do
 
   factory :content_entry, class: Locomotive::ContentEntry do
     sequence(:_slug) { |n| "slug_of_content_entry_#{n*rand(10_000)}" }
-    _label_field_name '_label_field_name'
     site { Locomotive::Site.where(handle: 'acme').first || FactoryGirl.create(:site) }
     content_type { FactoryGirl.create(:content_type, :with_field) }
   end

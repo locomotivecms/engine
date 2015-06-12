@@ -7,7 +7,6 @@ module Locomotive
 
         included do
           before_update :sync_relationships_order_by_for_has_many_fields
-          before_update :sync_label_field_name_in_entries
           after_save    :sync_relationships_order_by_for_belongs_to_fields
         end
 
@@ -66,10 +65,6 @@ module Locomotive
           collection, selector = content_type.entries.collection, content_type.entries.criteria.selector
 
           collection.find(selector).update({ '$set' => { 'custom_fields_recipe' => content_type.custom_fields_recipe_for(:entries) } }, multi: true)
-        end
-
-        def sync_label_field_name_in_entries
-          self.klass_with_custom_fields(:entries).update_all _label_field_name: self.label_field_name
         end
 
       end
