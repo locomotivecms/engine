@@ -18,7 +18,7 @@ Visit the Locomotive official website [here](http://www.locomotivecms.com) for m
 
 As you can see from the commit logs, we are intensively working on the new V3 version. We kept all the features from our stable [v2 version](https://github.com/locomotivecms/engine/tree/v2.5.x), we just replace the UI, upgrade the gems and refactor our code.
 
-**[UPDATES]** Finally, we've been doing much more than we planed at first. We extracted the rendering functionality from the Engine and make it a gem named [Steam](https://github.com/locomotivecms/steam). This gem is also now used by [Wagon](https://github.com/locomotivecms/wagon) (version 2.0 in progress) which makes sure you get the same result between Wagon and Engine when you preview a page.
+**[UPDATES]** Finally, we've been doing much more than we planned at first. We extracted the rendering functionality from the Engine and make it a gem named [Steam](https://github.com/locomotivecms/steam). This gem is also now used by [Wagon](https://github.com/locomotivecms/wagon) (version 2.0 in progress) which makes sure you get the same result between Wagon and Engine when you preview a page.
 And last but not least, we added a Ruby API client for Locomotive that we called [Coal](https://github.com/locomotivecms/coal). That client consumes the API from Engine which embeds now GrapeAPI. [Nic Boie](https://github.com/boie0025) is in charge of it. Kudos to him!
 
 **TRELLO** [here](https://trello.com/b/kRiy1dZu/locomotive-v3)
