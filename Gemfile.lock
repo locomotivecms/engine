@@ -31,20 +31,20 @@ PATH
   specs:
     locomotivecms (3.0.0.pre.alpha.2)
       actionmailer-with-request (~> 0.4.0)
-      autoprefixer-rails (~> 5.1.8)
-      backbone-on-rails (~> 1.1.2.0)
+      autoprefixer-rails (~> 5.2.0)
+      backbone-on-rails (~> 1.2.0.0)
       bazaar (~> 0.0.2)
       bootstrap-kaminari-views (~> 0.0.5)
       bootstrap-sass (~> 3.3.3)
       carrierwave-mongoid (~> 0.7)
       codemirror-rails (~> 5.0)
       compass-rails (= 2.0.4)
-      custom_fields (~> 2.4.0.rc2)
+      custom_fields (~> 2.4.0.rc3)
       devise (~> 3.5.1)
       devise-encryptable (~> 0.2.0)
       dragonfly (~> 1.0.7)
       flash_cookie_session (~> 1.1.1)
-      fog (~> 1.30.0)
+      fog (~> 1.31.0)
       font-awesome-sass (~> 4.3.2.1)
       grape (~> 0.11.0)
       grape-entity (~> 0.4.5)
@@ -67,7 +67,7 @@ PATH
       responders (~> 2.1.0)
       select2-rails (~> 3.5.9)
       simple_form (~> 3.1.0)
-      simple_token_authentication (~> 1.9.1)
+      simple_token_authentication (~> 1.10.0)
       stringex (~> 2.5.2)
 
 GEM
@@ -114,14 +114,14 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.3.8)
     arel (6.0.0)
-    autoprefixer-rails (5.1.11)
+    autoprefixer-rails (5.2.0)
       execjs
       json
     axiom-types (0.1.1)
       descendants_tracker (~> 0.0.4)
       ice_nine (~> 0.11.0)
       thread_safe (~> 0.3, >= 0.3.1)
-    backbone-on-rails (1.1.2.1)
+    backbone-on-rails (1.2.0.0)
       eco
       ejs
       jquery-rails
@@ -140,7 +140,7 @@ GEM
     bootstrap-sass (3.3.4.1)
       autoprefixer-rails (>= 5.0.0.1)
       sass (>= 3.2.19)
-    bson (2.3.0)
+    bson (3.1.0)
     builder (3.2.2)
     carrierwave (0.10.0)
       activemodel (>= 3.2.0)
@@ -153,7 +153,7 @@ GEM
       mongoid-grid_fs (>= 1.3, < 3.0)
     chronic (0.10.2)
     chunky_png (1.3.4)
-    codemirror-rails (5.2)
+    codemirror-rails (5.3)
       railties (>= 3.0, < 5)
     coderay (1.1.0)
     coercible (1.0.0)
@@ -200,7 +200,7 @@ GEM
       multi_test (>= 0.1.2)
     cucumber-core (1.1.3)
       gherkin (~> 2.12.0)
-    custom_fields (2.4.0.rc2)
+    custom_fields (2.4.0.rc3)
       activesupport (~> 4.2.1)
       carrierwave-mongoid (~> 0.7.1)
       monetize (~> 1.1.0)
@@ -253,11 +253,11 @@ GEM
       CFPropertyList (~> 2.2)
     flash_cookie_session (1.1.6)
       rails (>= 3.0)
-    fog (1.30.0)
+    fog (1.31.0)
       fog-atmos
       fog-aws (~> 0.0)
       fog-brightbox (~> 0.4)
-      fog-core (~> 1.27, >= 1.27.4)
+      fog-core (~> 1.30)
       fog-ecloud
       fog-google (>= 0.0.2)
       fog-json
@@ -279,7 +279,7 @@ GEM
     fog-atmos (0.1.0)
       fog-core
       fog-xml
-    fog-aws (0.3.0)
+    fog-aws (0.4.0)
       fog-core (~> 1.27)
       fog-json (~> 1.0)
       fog-xml (~> 0.1)
@@ -295,23 +295,23 @@ GEM
       mime-types
       net-scp (~> 1.1)
       net-ssh (>= 2.1.3)
-    fog-ecloud (0.1.1)
+    fog-ecloud (0.1.3)
       fog-core
       fog-xml
     fog-google (0.0.5)
       fog-core
       fog-json
       fog-xml
-    fog-json (1.0.1)
+    fog-json (1.0.2)
       fog-core (~> 1.0)
-      multi_json (~> 1.0)
+      multi_json (~> 1.10)
     fog-local (0.2.1)
       fog-core (~> 1.27)
     fog-powerdns (0.1.1)
       fog-core (~> 1.27)
       fog-json (~> 1.0)
       fog-xml (~> 0.1)
-    fog-profitbricks (0.0.2)
+    fog-profitbricks (0.0.3)
       fog-core
       fog-xml
       nokogiri
@@ -442,8 +442,8 @@ GEM
       mongoid (>= 3.0, < 5.0)
     mongoid-tree (2.0.0)
       mongoid (>= 4.0, <= 5.0)
-    moped (2.0.4)
-      bson (~> 2.2)
+    moped (2.0.6)
+      bson (~> 3.0)
       connection_pool (~> 2.0)
       optionable (~> 0.2.0)
     morphine (0.1.1)
@@ -475,7 +475,7 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
-    pundit (1.0.0)
+    pundit (1.0.1)
       activesupport (>= 3.0.0)
     quiet_assets (1.1.0)
       railties (>= 3.1, < 5.0)
@@ -565,7 +565,7 @@ GEM
     simple_form (3.1.0)
       actionpack (~> 4.0)
       activemodel (~> 4.0)
-    simple_token_authentication (1.9.1)
+    simple_token_authentication (1.10.0)
       actionmailer (>= 3.2.6, < 5)
       actionpack (>= 3.2.6, < 5)
       devise (~> 3.2)
