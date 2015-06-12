@@ -128,5 +128,27 @@ module Locomotive
       self.errors.set(:entries_custom_fields, hash)
     end
 
+    # Makes sure the class_name filled in a belongs_to or has_many field
+    # does not belong to another site. Adds an error if it presents a
+    # security problem.
+    #
+    # @param [ CustomFields::Field ] field The field to check
+    #
+    def ensure_class_name_security(field)
+      if field.class_name =~ /^Locomotive::ContentEntry([a-z0-9]+)$/
+        # if the content type does not exist (anymore), bypass the security checking
+        content_type = Locomotive::ContentType.find($1) rescue nil
+
+        return if content_type.nil?
+
+        if content_type.site_id != self.site_id
+          field.errors.add :class_name, :security
+        end
+      else
+        # for now, does not allow external classes
+        field.errors.add :class_name, :security
+      end
+    end
+
   end
 end
