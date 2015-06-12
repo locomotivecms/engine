@@ -268,7 +268,9 @@ module Locomotive
     def ensure_class_name_security(field)
       if field.class_name =~ /^Locomotive::ContentEntry([a-z0-9]+)$/
         # if the content type does not exist (anymore), bypass the security checking
-        content_type = Locomotive::ContentType.find($1) rescue return
+        content_type = Locomotive::ContentType.find($1) rescue nil
+
+        return if content_type.nil?
 
         if content_type.site_id != self.site_id
           field.errors.add :class_name, :security
