@@ -15,8 +15,9 @@ class Locomotive.Views.EditableElements.IndexView extends Backbone.View
     $('body').removeClass('full-width-preview')
 
   initialize: ->
-    @edit_view    = new Locomotive.Views.EditableElements.EditView()
-    @pubsub_token = PubSub.subscribe('inputs.image_changed', @refresh_image)
+    @edit_view          = new Locomotive.Views.EditableElements.EditView()
+    @pubsub_image_token = PubSub.subscribe('inputs.image_changed', @refresh_image)
+    @pubsub_text_token  = PubSub.subscribe('inputs.text_changed', @refresh_text)
 
     $('.preview iframe').load (event) => @on_iframe_load(event)
 
@@ -48,6 +49,18 @@ class Locomotive.Views.EditableElements.IndexView extends Backbone.View
       # looking for IMGs with src attribute matching the previous image url
       $el = $iframe_document.find("img[src*='#{old_image_url}']").addClass(class_name)
       $el.attr('src', image_url)
+
+  refresh_text: (msg, data) ->
+    console.log(data)
+
+    # TODO
+    # 1. get page[editable_elements_attributes][1][humanized_id] => <block>_<slug>
+    # 2. find the span element in the iframe matching the humanized_id
+    # 3. Patch Steam to display that span element
+    #     -> html
+    #     -> css
+    #     -> add wysihtml css file
+    # 4. Update the element with the new content
 
   on_iframe_load: (event) ->
     $iframe = $('.preview iframe')
@@ -82,4 +95,5 @@ class Locomotive.Views.EditableElements.IndexView extends Backbone.View
   remove: ->
     super
     @edit_view.remove()
-    PubSub.unsubscribe(@pubsub_token)
+    PubSub.unsubscribe(@pubsub_image_token)
+    PubSub.unsubscribe(@pubsub_text_token)

@@ -30,7 +30,7 @@ wysihtml5.commands.strike =
       console.log "[insertFile] exec(#{command}, #{param})"
 
     state: (composer, command) ->
-      console.log "[insertFile] state(#{command})"
+      # console.log "[insertFile] state(#{command})"
       wysihtml5.commands.insertImage.state(composer, command, "IMG")
       # wysihtml5.commands.formatBlock.state(composer, "formatBlock", null, CLASS_NAME, REG_EXP)
 
