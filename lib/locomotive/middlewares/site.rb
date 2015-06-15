@@ -31,6 +31,8 @@ module Locomotive
           env['locomotive.mounted_on']  = env['steam.mounted_on'] = mounted_on
           env['locomotive.path']        = request.path_info.gsub(mounted_on, '')
 
+          env['steam.live_editing']     = true
+
           Locomotive::Site.where(handle: handle).first
         else
           env['locomotive.path'] = request.path_info

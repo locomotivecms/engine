@@ -15,6 +15,8 @@ class Locomotive.Views.EditableElements.IndexView extends Backbone.View
     $('body').removeClass('full-width-preview')
 
   initialize: ->
+    _.bindAll(@, 'refresh_elements', 'refresh_image', 'refresh_text')
+
     @edit_view          = new Locomotive.Views.EditableElements.EditView()
     @pubsub_image_token = PubSub.subscribe('inputs.image_changed', @refresh_image)
     @pubsub_text_token  = PubSub.subscribe('inputs.text_changed', @refresh_text)
@@ -25,42 +27,38 @@ class Locomotive.Views.EditableElements.IndexView extends Backbone.View
     super()
     @edit_view.render()
 
-  refresh_image: (msg, data) ->
-    $parent_view  = $(data.view.el).parent()
-    element_id    = $parent_view.find('input[name*="[humanized_id]"]').val()
-    old_image_url = $parent_view.find('input[name*="[content]"]').val()
-    image_url     = data.url || old_image_url
-    class_name    = "locomotive-#{element_id}"
+  refresh_elements: (type, view, callback) ->
+    $parent_view  = $(view.el).parent()
+    element_id    = $parent_view.find('input[name*="[humanized_id]"]').val().replace(/_/g, '-')
+    dom_id        = "locomotive-editable-#{type}-#{element_id}"
 
     $iframe_document = $($('iframe')[0].contentWindow.document)
 
-    # look for elements pointing to the editable file
-    if ($elements = $iframe_document.find(".#{class_name}")).size() > 0
-      $elements.each ->
-        if this.nodeName == 'IMG'
-          $(this).attr('src', image_url)
-        else
-          $(this).css("background-image", "url('" + image_url + "')")
-    else
-      # looking for DIVs with background-url property matching the previous image url
-      $el = $iframe_document.find("*[style*='#{old_image_url}']").addClass(class_name)
-      $el.css("background-image", "url('" + image_url + "')")
+    callback($iframe_document.find("##{dom_id}"), dom_id, $iframe_document, $parent_view)
 
-      # looking for IMGs with src attribute matching the previous image url
-      $el = $iframe_document.find("img[src*='#{old_image_url}']").addClass(class_name)
-      $el.attr('src', image_url)
+  refresh_image: (msg, data) ->
+    @refresh_elements 'image', data.view, ($elements, dom_id, $iframe_document, $parent_view) ->
+      old_image_url = $parent_view.find('input[name*="[content]"]').val()
+      image_url     = data.url || old_image_url
+
+      if $elements.size() > 0
+        $elements.each ->
+          if this.nodeName == 'IMG'
+            $(this).attr('src', image_url)
+          else
+            $(this).css("background-image", "url('" + image_url + "')")
+      else
+        # looking for DIVs with background-url property matching the previous image url
+        $el = $iframe_document.find("*[style*='#{old_image_url}']").attr('id', dom_id)
+        $el.css("background-image", "url('" + image_url + "')")
+
+        # looking for IMGs with src attribute matching the previous image url
+        $el = $iframe_document.find("img[src*='#{old_image_url}']").attr('id', dom_id)
+        $el.attr('src', image_url)
 
   refresh_text: (msg, data) ->
-    console.log(data)
-
-    # TODO
-    # 1. get page[editable_elements_attributes][1][humanized_id] => <block>_<slug>
-    # 2. find the span element in the iframe matching the humanized_id
-    # 3. Patch Steam to display that span element
-    #     -> html
-    #     -> css
-    #     -> add wysihtml css file
-    # 4. Update the element with the new content
+    @refresh_elements 'text', data.view, ($elements) ->
+      $elements.each -> $(this).html(data.content)
 
   on_iframe_load: (event) ->
     $iframe = $('.preview iframe')

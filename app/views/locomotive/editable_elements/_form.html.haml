@@ -8,9 +8,9 @@
         = g.hidden_field :humanized_id
 
         - if editable_element.type.to_sym == :editable_text
-          = g.input :content, as: editable_element.format == 'html' ? :rte : :text, label: editable_element.slug
+          = g.input :content, as: editable_element.format == 'html' ? :rte : :text, label: editable_element.slug, placeholder: false, hint: editable_element.hint, input_html: { rows: editable_element.rows }
 
         - if editable_element.type.to_sym == :editable_file
-          = g.input :source, as: :file, label: editable_element.slug, select_content_asset: true
+          = g.input :source, as: :file, label: editable_element.slug, select_content_asset: true, placeholder: false, hint: editable_element.hint
 
           = g.hidden_field :content

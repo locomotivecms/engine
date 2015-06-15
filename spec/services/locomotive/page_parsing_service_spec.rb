@@ -16,8 +16,17 @@ describe Locomotive::PageParsingService do
 
     subject { service.find_or_create_editable_elements(page) }
 
-    it { expect(subject.size).to eq 3 }
-    it { expect { subject }.to change { page.editable_elements.count }.by(2) }
+    it { expect(subject.size).to eq 2 }
+    it { expect { subject }.to change { page.editable_elements.count }.by(1) }
+
+    context 'super called' do
+
+      let(:page) { create(:sub_page, site: site, parent: home, raw_template: '{% extends parent %}{% block body %}{% editable_text top %}Hello world{% endeditable_text %}{{ block.super }}{% endblock %}') }
+
+      it { expect(subject.size).to eq 3 }
+      it { expect { subject }.to change { page.editable_elements.count }.by(2) }
+
+    end
 
   end
 
