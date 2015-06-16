@@ -59,6 +59,15 @@
         }
       }
 
+      &.hovered {
+        background-color: $form_input_hovered_background_color;
+
+        .form-wrapper {
+          border-color: $form_input_hovered_control_border_color;
+        }
+      }
+
+
     }
 
     .has-error {

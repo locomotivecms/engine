@@ -92,7 +92,6 @@ module Locomotive
     end
 
     def add_or_modify_editable_element(page, attributes)
-      puts attributes.inspect
       if element = page.editable_elements.by_block_and_slug(attributes[:block], attributes[:slug]).first
         element.attributes = attributes
         element

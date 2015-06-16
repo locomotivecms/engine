@@ -14,6 +14,8 @@ class Locomotive.Views.Shared.FormView extends Backbone.View
   render: ->
     @display_active_nav()
 
+    @enable_hover()
+
     @enable_file_inputs()
     @enable_array_inputs()
     @enable_toggle_inputs()
@@ -45,6 +47,12 @@ class Locomotive.Views.Shared.FormView extends Backbone.View
   save: (event) ->
     @change_state()
     @record_active_tab()
+
+  enable_hover: ->
+    $('.form-group.input').hover ->
+      $(this).addClass('hovered')
+    , ->
+      $(this).removeClass('hovered')
 
   enable_file_inputs: ->
     self = @

@@ -6,11 +6,9 @@ class Locomotive.Views.Inputs.RteView extends Backbone.View
     'click a.style': 'open_styles_dialog'
 
   initialize: ->
-    _.bindAll(@, 'register_keydown_event')
+    _.bindAll(@, 'register_keydown_event', 'on_content_change')
 
     $textarea = @$('textarea')
-
-    console.log "wysihtml5-toolbar-#{$textarea.attr('id')}"
 
     @editor = new wysihtml5.Editor $textarea.attr('id'),
       toolbar:        "wysihtml5-toolbar-#{$textarea.attr('id')}"
@@ -19,6 +17,8 @@ class Locomotive.Views.Inputs.RteView extends Backbone.View
       stylesheets:    ['<%= stylesheet_path("locomotive/wysihtml5_editor") %>']
 
     @editor.on 'load', @register_keydown_event
+    @editor.on 'change', @on_content_change
+    @editor.on 'aftercommand:composer', @on_content_change
 
     that = @
     setTimeout(
@@ -54,7 +54,10 @@ class Locomotive.Views.Inputs.RteView extends Backbone.View
 
   register_keydown_event: ->
     @$('.wysihtml5-sandbox').contents().find('body').on 'keyup', =>
-      PubSub.publish 'inputs.text_changed',
+      @on_content_change()
+
+  on_content_change: ->
+    PubSub.publish 'inputs.text_changed',
       view:     @
       content:  @editor.getValue()
 
@@ -63,6 +66,7 @@ class Locomotive.Views.Inputs.RteView extends Backbone.View
     @file_view.remove()
 
     @editor.stopObserving('onLoad', @register_keydown_event)
+    @editor.stopObserving('onChange', @on_content_change)
 
     super
 
