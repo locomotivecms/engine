@@ -24,7 +24,11 @@ $.rails.allowAction = (element) ->
 # Feature: AJAX File upload
 # Enhance the form: upload files in AJAX without monkey patching jQuery-UJS
 # Information: https://github.com/rails/jquery-ujs/issues/374
-$.rails.ajax = (options) -> $.ajax(_.extend(options, contentType: false))
+$.rails.ajax = (options) ->
+  if _.isArray(options.data) # FormData
+    $.ajax(_.extend(options, contentType: false))
+  else
+    $.ajax(options)
 
 $ ->
   # Tell the server to return flash messages in the header of the response
