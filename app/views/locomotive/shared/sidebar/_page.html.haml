@@ -18,7 +18,8 @@
 
     %ul.leaves{ data: { url: sort_page_path(current_site, page) } }
 
-      = render partial: 'locomotive/shared/sidebar/page', collection: page.nodes
+      - unless page.content_type && page.nodes.count == 1
+        = render partial: 'locomotive/shared/sidebar/page', collection: page.nodes
 
       - if page.content_type
         %li.list-entries
