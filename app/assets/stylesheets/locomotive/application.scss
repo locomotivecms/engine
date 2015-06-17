@@ -12,6 +12,10 @@
 @import "./globals/bootstrap";
 @import "bootstrap";
 
+@import "./globals/nprogress";
+@import "nprogress";
+@import "nprogress-bootstrap";
+
 @import "./base/all";
 
 @import "layouts/main";

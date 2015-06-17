@@ -54,6 +54,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'autoprefixer-rails',              '~> 5.2.0'
 
   s.add_dependency 'font-awesome-sass',               '~> 4.3.2.1'
+  s.add_dependency 'nprogress-rails',                 '~> 0.1.6.7'
 
   s.add_dependency 'highline',                        '~> 1.7.1'
   s.add_dependency 'stringex',                        '~> 2.5.2'

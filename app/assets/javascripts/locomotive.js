@@ -12,6 +12,8 @@
 //= require backbone
 //= require codemirror
 //= require select2
+//= require nprogress
+//= require nprogress-ajax
 //= require locomotive/vendor
 //= require ./locomotive/application
 

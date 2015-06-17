@@ -163,7 +163,7 @@ en:
 
     pages:
       index:
-        title: Listing pages
+        title: Pages
         help: "Pages are organized as a tree. You can order pages as well as folders"
         no_items: "There are no pages for now. Just click <a href=\"%{url}\">here</a> to create the first one."
         new: new page
@@ -276,7 +276,7 @@ en:
 
     content_types:
       index:
-        title: Listing models
+        title: Models
         new: new model
         edit: edit model
       new:
