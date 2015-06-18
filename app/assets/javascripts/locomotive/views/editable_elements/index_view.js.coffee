@@ -80,7 +80,7 @@ class Locomotive.Views.EditableElements.IndexView extends Backbone.View
 
     if editable_elements_path?
       unless editable_elements_path == window.location.pathname
-        history.pushState(null, null, editable_elements_path)
+        History.replaceState({ live_editing: true, url: @preview_url }, '', editable_elements_path)
 
         @replace_edit_view(editable_elements_path)
 
@@ -92,6 +92,8 @@ class Locomotive.Views.EditableElements.IndexView extends Backbone.View
 
   remove: ->
     super
+
     @edit_view.remove()
+
     PubSub.unsubscribe(@pubsub_image_token)
     PubSub.unsubscribe(@pubsub_text_token)
