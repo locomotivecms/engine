@@ -65,7 +65,7 @@ development:
 profile:
   sessions:
     default:
-      database: locomotive_engine_dev
+      database: locomotive_engine_coal_dev
       hosts:
         - localhost:27017
       options:
@@ -85,7 +85,7 @@ test:
 production:
   sessions:
     default:
-      database: locomotive_engine_production
+      database: locomotive_engine_coal_dev
       hosts:
         - localhost:27017
       options:

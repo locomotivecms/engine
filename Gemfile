@@ -42,7 +42,8 @@ group :development do
   gem 'binding_of_caller'
 
   # gem 'unicorn-rails' # Using unicorn_rails instead of webrick (default server)
-  gem 'thin'
+  # gem 'thin'
+  gem 'puma'
 end
 
 group :test do

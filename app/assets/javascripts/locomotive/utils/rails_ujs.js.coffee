@@ -32,12 +32,12 @@ $.rails.ajax = (options) ->
 
 $ ->
   # Tell the server to return flash messages in the header of the response
-  $($.rails.formSubmitSelector).on 'ajax:beforeSend', (event, xhr, settings) ->
+  $('body').delegate $.rails.formSubmitSelector, 'ajax:beforeSend', (event, xhr, settings) ->
     xhr.setRequestHeader('X-Flash', true)
 
   # Once we receive the response from the server, we display a notification
   # and also reset the submit button to its initial state (bootstrap)
-  $($.rails.formSubmitSelector).on 'ajax:complete', (event, xhr, status) ->
+  $('body').delegate $.rails.formSubmitSelector, 'ajax:complete', (event, xhr, status) ->
     $(this).find('button[type=submit], input[type=submit]').button('reset')
 
     if message = xhr.getResponseHeader('X-Message')
@@ -45,12 +45,12 @@ $ ->
       Locomotive.notify decodeURIComponent($.parseJSON(message)), type
 
   # We do not want forms to be aborted because of a file input
-  $($.rails.formSubmitSelector).on 'ajax:aborted:file', (element) ->
+  $('body').delegate $.rails.formSubmitSelector, 'ajax:aborted:file', (element) ->
     $.rails.handleRemote($(this))
     false
 
   # Use the "new" FormData object (HTML5) to store the data, especially the uploaded files
-  $($.rails.formSubmitSelector).on 'ajax:beforeSend', (event, xhr, settings) ->
+  $('body').delegate $.rails.formSubmitSelector, 'ajax:beforeSend', (event, xhr, settings) ->
     settings.data = new FormData($(this)[0])
     $(this).find('input[type=file]').each -> settings.data.append($(this).attr('name'), this.files[0])
     true
