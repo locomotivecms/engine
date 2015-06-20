@@ -24,6 +24,14 @@ module Locomotive
         end
       end
 
+      def to_js
+        if controller.request.headers['X-Flash'] == 'true'
+          with_flash_message(:notice, true) { super }
+        else
+          super
+        end
+      end
+
       def to_json
         if get?
           add_pagination_header if resource.respond_to?(:num_pages)

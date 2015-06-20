@@ -23,7 +23,7 @@ module CarrierWave
         attr_accessor :file_format, :original_filename
 
         def initialize(encoded_file)
-          description, encoded_bytes = encoded_file.split(",")
+          description, encoded_bytes = encoded_file.split(',')
 
           raise ArgumentError unless encoded_bytes
 

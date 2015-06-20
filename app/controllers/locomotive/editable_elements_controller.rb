@@ -12,7 +12,7 @@ module Locomotive
     def index
       authorize @page
 
-      @editable_elements = service.find_or_create_editable_elements(@page)
+      @editable_elements = parsing_service.find_or_create_editable_elements(@page)
 
       respond_with(@page) do |format|
         format.html { render_index }
@@ -20,14 +20,32 @@ module Locomotive
     end
 
     def update_all
-      @editable_elements = service.find_or_create_editable_elements(@page)
+      authorize @page, :update?
 
-      respond_with(@page, notice: "Crazy!!!") do |format|
-        format.html { render_index }
+      persisting_service.update_all(page_params[:editable_elements_attributes])
+
+      respond_with(@page, notice: t(:notice, scope: 'flash.locomotive.pages.update'), location: editable_elements_path(current_site, @page)) do |format|
+        format.js { render nothing: true }
       end
     end
 
     private
+
+    def load_page
+      @page = current_site.pages.find(params[:page_id])
+    end
+
+    def page_params
+      params.require(:page).permit(editable_elements_attributes: [:id, :page_id, :source, :remove_source, :remote_source_url, :content])
+    end
+
+    def parsing_service
+      @parsing_service ||= Locomotive::PageParsingService.new(current_site, current_content_locale)
+    end
+
+    def persisting_service
+      @persisting_service ||= Locomotive::EditableElementService.new(current_site, current_locomotive_account)
+    end
 
     def render_index
       if request.xhr?
@@ -35,14 +53,6 @@ module Locomotive
       else
         render 'index'
       end
-    end
-
-    def load_page
-      @page = current_site.pages.find(params[:page_id])
-    end
-
-    def service
-      @service ||= Locomotive::PageParsingService.new(current_site, current_content_locale)
     end
 
   end
