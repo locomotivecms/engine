@@ -11,6 +11,5 @@
           = g.input :content, as: editable_element.format == 'html' ? :rte : :text, label: editable_element.slug, placeholder: false, hint: editable_element.hint, input_html: { rows: editable_element.rows }
 
         - if editable_element.type.to_sym == :editable_file
-          = g.input :source, as: :file, label: editable_element.slug, select_content_asset: true, placeholder: false, hint: editable_element.hint, wrapper_html: { id: "editable-file-#{index}" }
+          = g.input :source, as: :file, label: editable_element.slug, select_content_asset: true, placeholder: false, hint: editable_element.hint, wrapper_html: { id: "editable-file-#{index}" }, hidden_fields: [:content, :default_source_url]
 
-          = g.hidden_field :content

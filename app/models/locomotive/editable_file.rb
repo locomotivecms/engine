@@ -68,7 +68,6 @@ module Locomotive
 
     def remove_source=(value)
       self.source_will_change! # notify the page to run the callbacks for that element
-      self.default_source_url = nil
       super
     end
 

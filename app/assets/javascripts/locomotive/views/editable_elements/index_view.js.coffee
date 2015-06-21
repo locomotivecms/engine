@@ -36,18 +36,16 @@ class Locomotive.Views.EditableElements.IndexView extends Backbone.View
 
     $iframe_document = $($('iframe')[0].contentWindow.document)
 
-    callback($iframe_document.find("##{dom_id}"), dom_id, $iframe_document, $parent_view)
+    callback($iframe_document.find("##{dom_id}"), dom_id, $iframe_document)
 
   refresh_image_on_remove: (msg, data) ->
     data.url = $(data.view.el).parent().find('input[name*="[default_source_url]"]').val()
     @refresh_image(msg, data)
 
   refresh_image: (msg, data) ->
-    @refresh_elements 'image', data.view, ($elements, dom_id, $iframe_document, $parent_view) ->
-      old_image_url = $parent_view.find('input[name*="[content]"]').val()
-      image_url     = data.url || old_image_url
-
-      console.log(image_url)
+    @refresh_elements 'image', data.view, ($elements, dom_id, $iframe_document) ->
+      current_image_url = data.view.$('input[name*="[content]"]').val()
+      image_url         = data.url || current_image_url
 
       if $elements.size() > 0
         $elements.each ->
@@ -57,11 +55,11 @@ class Locomotive.Views.EditableElements.IndexView extends Backbone.View
             $(this).css("background-image", "url('" + image_url + "')")
       else
         # looking for DIVs with background-url property matching the previous image url
-        $el = $iframe_document.find("*[style*='#{old_image_url}']").attr('id', dom_id)
+        $el = $iframe_document.find("*[style*='#{current_image_url}']").attr('id', dom_id)
         $el.css("background-image", "url('" + image_url + "')")
 
         # looking for IMGs with src attribute matching the previous image url
-        $el = $iframe_document.find("img[src*='#{old_image_url}']").attr('id', dom_id)
+        $el = $iframe_document.find("img[src*='#{current_image_url}']").attr('id', dom_id)
         $el.attr('src', image_url)
 
   refresh_text: (msg, data) ->

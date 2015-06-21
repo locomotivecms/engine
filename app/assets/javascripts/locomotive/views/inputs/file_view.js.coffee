@@ -118,7 +118,7 @@ class Locomotive.Views.Inputs.FileView extends Backbone.View
       # display the choose button
       @showEl(@$choose_btn)
 
-    PubSub.publish 'inputs.image_changed', { view: @ } if event?
+    PubSub.publish 'inputs.image_changed', { view: @ }
 
   mark_file_as_deleted: (event) ->
     # set true (or 1) as value for the remove_<method> hidden field
@@ -148,39 +148,6 @@ class Locomotive.Views.Inputs.FileView extends Backbone.View
   hideEl: (el) -> el.addClass('hide')
 
   need_refresh: -> true
-
-  # refresh: ->
-  #   # FIXME: only called after saving the form in AJAX
-  #   if $(@el).hasClass('mark-as-removed')
-  #     # CASE: previous existing file + remove file + SAVE
-  #     @$current_file.remove()
-
-  #     @persisted_file = false
-
-  #     @cancel_new_file()
-
-  #   else
-  #     if @persisted_file
-  #       # CASE: previous existing file + new_file + SAVE
-  #       unless @$new_file.hasClass('hide')
-  #         @$current_file.html(@$new_file.html())
-
-  #         @$current_file.addClass('image') if @$current_file.find('img').size() > 0
-
-  #         @cancel_new_file()
-  #     else
-  #       unless @$new_file.hasClass('hide')
-  #         # CASE: no previous file + new_file + SAVE
-
-  #         # create the missing current_file dom element
-  #         @$current_file = $('<span class="current-file"></span>').html(@$new_file.html())
-  #         @$current_file.insertAfter(@$new_file)
-
-  #         @$current_file.addClass('image') if @$current_file.find('img').size() > 0
-
-  #         @persisted_file = true
-
-  #         @cancel_new_file()
 
   remove: ->
     super

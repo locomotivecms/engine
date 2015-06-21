@@ -20,7 +20,8 @@ module Locomotive
         filename_or_image +
         @builder.file_field(attribute_name, input_html_options) +
         @builder.hidden_field(:"remove_#{attribute_name}", class: 'remove', value: '0') +
-        @builder.hidden_field(:"remote_#{attribute_name}_url", class: 'remote-url', value: '')
+        @builder.hidden_field(:"remote_#{attribute_name}_url", class: 'remote-url', value: '') +
+        hidden_fields
       end
     end
 
@@ -77,6 +78,12 @@ module Locomotive
       else
         ''
       end
+    end
+
+    def hidden_fields
+      (options[:hidden_fields] || []).map do |name|
+        @builder.hidden_field(name)
+      end.join.html_safe
     end
 
     def filename_html
