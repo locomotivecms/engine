@@ -67,6 +67,10 @@ en:
           url: Link URL
           target: Target
           title: Title
+        rte_input_image_form:
+          src: Source
+          title: Title
+          alignment: Alignment
         image_resize_form:
           width: Width
           height: Height
@@ -154,6 +158,11 @@ en:
             not_set: "Not set"
             self: "Open link in the same window"
             blank: "Open link in a new window"
+        rte_input_image_form:
+          alignment:
+            default: Default
+            left: Left
+            right: Right
 
     buttons:
       defaults:

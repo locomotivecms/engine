@@ -19,8 +19,8 @@ module Locomotive
         new_file_html +
         filename_or_image +
         @builder.file_field(attribute_name, input_html_options) +
-        @builder.hidden_field(:"remove_#{attribute_name}", class: 'remove') +
-        @builder.hidden_field(:"remote_#{attribute_name}_url", class: 'remote-url')
+        @builder.hidden_field(:"remove_#{attribute_name}", class: 'remove', value: '0') +
+        @builder.hidden_field(:"remote_#{attribute_name}_url", class: 'remote-url', value: '')
       end
     end
 

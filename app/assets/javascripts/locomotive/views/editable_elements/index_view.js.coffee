@@ -15,11 +15,13 @@ class Locomotive.Views.EditableElements.IndexView extends Backbone.View
     $('body').removeClass('full-width-preview')
 
   initialize: ->
-    _.bindAll(@, 'refresh_elements', 'refresh_image', 'refresh_text')
+    _.bindAll(@, 'refresh_elements', 'refresh_image', 'refresh_image_on_remove', 'refresh_text')
 
     @edit_view          = new Locomotive.Views.EditableElements.EditView()
-    @pubsub_image_token = PubSub.subscribe('inputs.image_changed', @refresh_image)
     @pubsub_text_token  = PubSub.subscribe('inputs.text_changed', @refresh_text)
+
+    @pubsub_image_changed_token = PubSub.subscribe('inputs.image_changed', @refresh_image)
+    @pubsub_image_removed_token = PubSub.subscribe('inputs.image_removed', @refresh_image_on_remove)
 
     $('.preview iframe').load (event) => @on_iframe_load(event)
 
@@ -36,10 +38,16 @@ class Locomotive.Views.EditableElements.IndexView extends Backbone.View
 
     callback($iframe_document.find("##{dom_id}"), dom_id, $iframe_document, $parent_view)
 
+  refresh_image_on_remove: (msg, data) ->
+    data.url = $(data.view.el).parent().find('input[name*="[default_source_url]"]').val()
+    @refresh_image(msg, data)
+
   refresh_image: (msg, data) ->
     @refresh_elements 'image', data.view, ($elements, dom_id, $iframe_document, $parent_view) ->
       old_image_url = $parent_view.find('input[name*="[content]"]').val()
       image_url     = data.url || old_image_url
+
+      console.log(image_url)
 
       if $elements.size() > 0
         $elements.each ->
@@ -95,5 +103,6 @@ class Locomotive.Views.EditableElements.IndexView extends Backbone.View
 
     @edit_view.remove()
 
-    PubSub.unsubscribe(@pubsub_image_token)
+    PubSub.unsubscribe(@pubsub_image_changed_token)
+    PubSub.unsubscribe(@pubsub_image_removed_token)
     PubSub.unsubscribe(@pubsub_text_token)

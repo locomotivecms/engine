@@ -1,5 +1,5 @@
 .link-dialog-content{ style: 'display: none' }
-  = locomotive_form_for link_form, url: '#' do |f|
+  = locomotive_form_for link_form, url: '#', defaults: { placeholder: false, hint: false } do |f|
     = f.inputs do
       = f.input :url
       = f.input :target, include_blank: false, collection: [[:not_set, ''],

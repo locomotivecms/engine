@@ -22,10 +22,10 @@ module Locomotive
     def update_all
       authorize @page, :update?
 
-      persisting_service.update_all(page_params[:editable_elements_attributes])
+      @editable_elements = persisting_service.update_all(page_params[:editable_elements_attributes].values)
 
       respond_with(@page, notice: t(:notice, scope: 'flash.locomotive.pages.update'), location: editable_elements_path(current_site, @page)) do |format|
-        format.js { render nothing: true }
+        format.html { render_index }
       end
     end
 

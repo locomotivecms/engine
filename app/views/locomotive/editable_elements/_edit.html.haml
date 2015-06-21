@@ -1,4 +1,4 @@
-= locomotive_form_for @page, url: update_all_editable_elements_path(current_site, @page), remote: true, html: { multipart: true } do |f|
+= locomotive_form_for @page, url: update_all_editable_elements_path(current_site, @page), remote: true, html: { multipart: true }, defaults: { placeholder: false, hint: false } do |f|
 
   .container-fluid.main{ role: 'main' }
     .row.header-row

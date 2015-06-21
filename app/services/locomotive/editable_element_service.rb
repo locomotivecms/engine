@@ -2,22 +2,25 @@ module Locomotive
 
   class EditableElementService < Struct.new(:site, :account)
 
-    def update_all(elements)
-      pages = {}
+    def update_all(list_of_attributes)
+      [].tap do |elements|
+        pages = {}
 
-      elements.values.each do |attributes|
-        page_id = attributes[:page_id]
+        list_of_attributes.each do |attributes|
+          page_id = attributes[:page_id]
 
-        if page = (pages[page_id] || Locomotive::Page.find(page_id))
-          pages[page_id] = page
+          if page = (pages[page_id] || Locomotive::Page.find(page_id))
+            pages[page_id] = page
 
-          if element = page.editable_elements.find(attributes[:id])
-            element.attributes = clean_attributes_for(element, attributes)
+            if element = page.editable_elements.find(attributes[:id])
+              element.attributes = clean_attributes_for(element, attributes)
+              elements << [page, element]
+            end
           end
         end
-      end
 
-      save_all_pages(pages.values)
+        save_all_pages(pages.values)
+      end
     end
 
     private
