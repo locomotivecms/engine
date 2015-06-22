@@ -24,6 +24,7 @@ class Locomotive.Views.Shared.FormView extends Backbone.View
     @enable_rte_inputs()
     @enable_tags_inputs()
     @enable_document_picker_inputs()
+    @enable_select_inputs()
 
     return @
 
@@ -104,6 +105,9 @@ class Locomotive.Views.Shared.FormView extends Backbone.View
   enable_tags_inputs: ->
     @$('.input.tags input[type=text]').tagsinput()
 
+  enable_select_inputs: ->
+    @$('.input.select select').select2()
+
   enable_document_picker_inputs: ->
     self = @
     @$('.input.document_picker').each ->
@@ -114,6 +118,7 @@ class Locomotive.Views.Shared.FormView extends Backbone.View
   remove: ->
     _.each @inputs.each, (view) -> view.remove()
     @$('.input.tags input[type=text]').tagsinput('destroy')
+    @$('.input.select select').select2('destroy')
 
   _stop_event: (event) ->
     event.stopPropagation() & event.preventDefault()

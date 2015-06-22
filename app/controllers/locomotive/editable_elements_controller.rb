@@ -48,6 +48,8 @@ module Locomotive
     end
 
     def render_index
+      @editable_elements_by_block = @editable_elements.group_by { |(_, e)| e.block }
+
       if request.xhr?
         render partial: 'edit'
       else

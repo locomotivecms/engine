@@ -186,6 +186,8 @@ en:
     editable_elements:
       index:
         redirection_error: "Editing a non Locomotive page is not allowed."
+      edit:
+        settings_link: 'Settings'
 
     sites:
       index:
