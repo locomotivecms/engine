@@ -1,6 +1,6 @@
 = f.inputs :information do
   = f.input :name, input_html: { class: 'input-lg' }
   = f.input :avatar, as: :file
-  = f.input :locale, as: :select, collection: options_for_locale, include_blank: false, wrapper_html: { class: 'select2' }
+  = f.input :locale, as: :select, collection: options_for_locale, include_blank: false, input_html: { class: 'disable-select2' }
 
 = render 'locomotive/my_account/form/actions', f: f

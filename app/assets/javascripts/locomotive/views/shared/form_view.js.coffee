@@ -106,7 +106,7 @@ class Locomotive.Views.Shared.FormView extends Backbone.View
     @$('.input.tags input[type=text]').tagsinput()
 
   enable_select_inputs: ->
-    @$('.input.select select').select2()
+    @$('.input.select select:not(.disable-select2)').select2()
 
   enable_document_picker_inputs: ->
     self = @
