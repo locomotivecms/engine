@@ -29,14 +29,14 @@ describe Locomotive::EditableElementService do
     }
 
     let(:elements_params) {
-      HashWithIndifferentAccess.new({
-        '0' => { 'id' => home.editable_elements.first._id, 'page_id' => home._id, source: FixturedAsset.open('5k.png') },
-        '1' => { 'id' => page.editable_elements.first._id, 'page_id' => page._id, content: 'Hello world!' }
-      })
+      [
+        HashWithIndifferentAccess.new('id' => home.editable_elements.first._id, 'page_id' => home._id, source: FixturedAsset.open('5k.png')),
+        HashWithIndifferentAccess.new('id' => page.editable_elements.first._id, 'page_id' => page._id, content: 'Hello world!')
+      ]
     }
 
     subject { service.update_all(elements_params) }
-    it { expect(subject).to eq true }
+    it { expect(subject.size).to eq 2 }
 
     describe 'update pages' do
 
