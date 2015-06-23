@@ -68,29 +68,6 @@ body.live-editing {
       fieldset.inputs {
         .form-group.input {
           margin-bottom: 0px;
-
-          .form-wrapper {
-            margin-top: 0px;
-            margin-left: 15px;
-            float: right;
-            position: relative;
-            top: -8px;
-
-            .select2-container {
-              width: 280px;
-
-              .select2-choice {
-                height: 18px;
-                line-height: 18px;
-
-                .select2-arrow {
-                  b {
-                    background-position: 0px -2px;
-                  }
-                }
-              }
-            }
-          }
         }
       }
     }
@@ -99,6 +76,4 @@ body.live-editing {
       padding-top: 0px;
     }
   }
-
-
 }

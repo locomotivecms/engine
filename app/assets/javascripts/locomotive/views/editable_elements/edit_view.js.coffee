@@ -27,6 +27,6 @@ class Locomotive.Views.EditableElements.EditView extends Locomotive.Views.Shared
       $el = $(view.el)
 
       if block == '' || (block == '_unknown' && $el.data('block') == '') || $el.data('block') == block
-        $el.show()
+        $el.parent().show()
       else
-        $el.hide()
+        $el.parent().hide()

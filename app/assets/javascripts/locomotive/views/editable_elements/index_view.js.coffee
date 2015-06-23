@@ -17,7 +17,9 @@ class Locomotive.Views.EditableElements.IndexView extends Backbone.View
   initialize: ->
     _.bindAll(@, 'refresh_elements', 'refresh_image', 'refresh_image_on_remove', 'refresh_text')
 
-    @edit_view          = new Locomotive.Views.EditableElements.EditView()
+    view_options = if $('body').hasClass('live-editing') then {} else { el: '.main' }
+
+    @edit_view          = new Locomotive.Views.EditableElements.EditView(view_options)
     @pubsub_text_token  = PubSub.subscribe('inputs.text_changed', @refresh_text)
 
     @pubsub_image_changed_token = PubSub.subscribe('inputs.image_changed', @refresh_image)

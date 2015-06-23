@@ -7,7 +7,7 @@ module Locomotive
 
     before_filter :load_page
 
-    layout 'locomotive/layouts/live_editing'
+    layout :editable_elements_layout
 
     def index
       authorize @page
@@ -31,6 +31,10 @@ module Locomotive
 
     private
 
+    def editable_elements_layout
+      @page.default_response_type? ? 'locomotive/layouts/live_editing' : '/locomotive/layouts/application'
+    end
+
     def load_page
       @page = current_site.pages.find(params[:page_id])
     end
@@ -53,7 +57,7 @@ module Locomotive
       if request.xhr?
         render partial: 'edit'
       else
-        render 'index'
+        render @page.default_response_type? ? 'index' : 'index_without_preview'
       end
     end
 
