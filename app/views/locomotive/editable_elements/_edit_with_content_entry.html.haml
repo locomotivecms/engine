@@ -1,0 +1,21 @@
+.container-fluid.main{ role: 'main' }
+  .row.header-row
+    .col-md-12
+      %h1= @content_entry._label
+
+  .row
+    .col-md-12
+      %ul.nav.nav-tabs{ role: 'tablist' }
+        = form_nav_tab :content_entry, true do
+          = link_to t('simple_form.titles.locomotive.attributes'), '#content_entry', role: 'tab', data: { toggle: 'tab' }
+
+        = form_nav_tab :editable_elements do
+          = link_to t('simple_form.titles.locomotive.page_elements'), '#editable_elements', role: 'tab', data: { toggle: 'tab' }
+
+      %br
+
+      .tab-content
+        - %w(content_entry editable_elements).each_with_index do |name, index|
+          = form_tab_pane name.to_sym, index == 0 do
+            %p TODO #{name}
+

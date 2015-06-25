@@ -12,9 +12,9 @@ module Locomotive
         status, headers, response = @app.call(env)
         site, page = env['steam.site'], env['steam.page']
 
-        if page && !page.redirect && page.response_type == 'text/html'
+        if page && !page.redirect && page.response_type == 'text/html' && response.first
           html = %(
-            <meta name="locomotive-editable-elements-path" content="#{editable_elements_path(site, page._id)}" />
+            <meta name="locomotive-editable-elements-path" content="#{editable_elements_path(site, page, env)}" />
             <meta name="locomotive-page-id" content="#{page._id}" />
           )
           response.first.gsub!('</head>', %(#{html}</head>))
@@ -22,6 +22,20 @@ module Locomotive
 
         [status, headers, response]
       end
+
+      def editable_elements_path(site, page, env)
+        options = {}
+
+        if content_entry_id = env['steam.content_entry'].try(:_id)
+          options = {
+            content_entry_id: content_entry_id,
+            preview_path:     env['steam.path']
+          }
+        end
+
+        super(site, page._id, options)
+      end
+
     end
   end
 end

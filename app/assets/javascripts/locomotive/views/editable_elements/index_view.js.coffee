@@ -87,7 +87,7 @@ class Locomotive.Views.EditableElements.IndexView extends Backbone.View
     @preview_url = $('.preview iframe')[0].contentWindow.document.location.href
 
     if editable_elements_path?
-      unless editable_elements_path == window.location.pathname
+      unless editable_elements_path == (window.location.pathname + window.location.search)
         History.replaceState({ live_editing: true, url: @preview_url }, '', editable_elements_path)
 
         @replace_edit_view(editable_elements_path)

@@ -3,12 +3,12 @@
   .container-fluid.main{ role: 'main' }
     .row.header-row
       .col-md-12
-        %h1= @page.title
+        %h1= truncate(@content_entry.try(:_label) || @page.title, length: 50)
 
     .row.info-row
       .col-md-9
         %p
-          %span.fullpath= '/' + @page.fullpath
+          %span.fullpath= nice_editable_elements_path
 
           &nbsp;
           &mdash;
@@ -20,8 +20,9 @@
 
 
       .col-md-3
-        %p.text-right
-          = f.action
+        - unless @editable_elements.empty?
+          %p.text-right
+            = f.action
 
       .col-md-12
         %fieldset.inputs
@@ -30,9 +31,18 @@
             %span.form-wrapper
               = select_tag 'block', options_for_page_blocks(@editable_elements_by_block)
 
-
   .scrollable
     .container-fluid
       .row
         .col-md-12
+          - if @content_entry
+            %fieldset.inputs
+              .form-group.input.link.optional
+                %label.link.control-label.optional
+                  %span.label.label-primary= @content_entry.content_type.name
+                  \ &nbsp;
+                  = @content_entry._label
+                %span.form_wrapper
+                  = link_to 'Edit', edit_content_entry_path(current_site, @content_entry.content_type.slug, @content_entry, _location: request.fullpath), class: 'btn btn-primary btn-sm'
+
           = render 'form', f: f

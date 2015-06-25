@@ -1,6 +1,13 @@
 module Locomotive
   module EditableElementsHelper
 
+    def nice_editable_elements_path
+      _path = params[:preview_path] || current_site.localized_page_fullpath(@page)
+      _path = 'index' if _path.blank?
+
+      truncate('/' + _path, length: 50)
+    end
+
     def ordered_editable_elements(editable_elements_by_block)
       list = []
       @editable_elements_by_block.each do |block, editable_elements|

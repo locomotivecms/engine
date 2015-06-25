@@ -6,6 +6,7 @@ module Locomotive
     localized
 
     before_filter :load_page
+    after_filter  :store_location_if_content_entry
 
     layout :editable_elements_layout
 
@@ -54,11 +55,17 @@ module Locomotive
     def render_index
       @editable_elements_by_block = @editable_elements.group_by { |(_, e)| e.block }
 
+      @content_entry = @page.content_type.entries.find(params[:content_entry_id]) if params[:content_entry_id]
+
       if request.xhr?
         render partial: 'edit'
       else
         render @page.default_response_type? ? 'index' : 'index_without_preview'
       end
+    end
+
+    def store_location_if_content_entry
+      store_location if @content_entry
     end
 
   end
