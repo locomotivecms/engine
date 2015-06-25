@@ -41,6 +41,10 @@ body.live-editing {
     .scrollable {
       margin-top: 173px;
 
+      &.no-editable-elements {
+        margin-top: 105px;
+      }
+
       fieldset.inputs {
         padding-top: 0px;
       }
