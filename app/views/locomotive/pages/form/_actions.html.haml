@@ -1,2 +1,1 @@
-= f.actions do
-  = f.action
+= f.actions back_url: @page.default_response_type? ? editable_elements_path(current_site, @page) : nil, use_stored_location: @page.templatized?

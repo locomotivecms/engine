@@ -14,7 +14,7 @@
           &mdash;
           &nbsp;
 
-          = link_to edit_page_path(current_site, @page) do
+          = link_to edit_page_path(current_site, @page, _location: request.fullpath) do
             %i.fa.fa-gear
             = t('.settings_link')
 
