@@ -14,7 +14,7 @@ module Locomotive
     end
 
     def destroy?
-      site_admin_or_designer?
+      site_staff? && !@resource.index_or_not_found?
     end
 
   end

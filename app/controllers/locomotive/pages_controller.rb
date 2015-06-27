@@ -37,7 +37,7 @@ module Locomotive
     def destroy
       authorize @page
       @page.destroy
-      respond_with @page, location: pages_path(current_site)
+      respond_with @page, location: editable_elements_path(current_site, current_site.pages.root.first)
     end
 
     def sort

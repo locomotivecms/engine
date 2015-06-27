@@ -57,14 +57,15 @@ module Locomotive
     def actions_with_back_button(options = {})
       back_button = back_button_action(options)
 
-      template.content_tag(:div,
-        template.content_tag(:div, back_button, class: 'col-xs-6 text-left') +
-        template.content_tag(:div, action, class: 'col-xs-6 text-right'),
-        class: 'row')
+      template.content_tag(:div, action +
+        '&nbsp;'.html_safe +
+        template.t('simple_form.buttons.default.locomotive.or') +
+        '&nbsp;'.html_safe +
+        back_button, class: 'text-right form-actions')
     end
 
     def back_button_action(options = {})
-      label  = template.escape_once('&larr;&nbsp;') + template.t('.back')
+      label  = template.t('simple_form.buttons.default.locomotive.cancel')
       url    = options[:back_url]
 
       if options[:use_stored_location]
