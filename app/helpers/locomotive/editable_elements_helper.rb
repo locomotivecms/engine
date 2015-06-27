@@ -1,6 +1,18 @@
 module Locomotive
   module EditableElementsHelper
 
+    def editable_element_input_options(editable_element, index, options = {})
+      {
+        label:        editable_element.slug,
+        placeholder:  false,
+        hint:         editable_element.hint,
+        wrapper_html: {
+          id:   "#{editable_element.type.to_s.dasherize}-#{index}",
+          data: { block: editable_element.block || '' }
+        }
+      }.merge(options)
+    end
+
     def nice_editable_elements_path
       _path = params[:preview_path] || current_site.localized_page_fullpath(@page)
       _path = 'index' if _path.blank?

@@ -37,7 +37,7 @@ module Locomotive
       when Locomotive::EditableFile
         attributes.delete(:source) if attributes[:source] == 'undefined'
         attributes.slice(:source, :remove_source, :remote_source_url)
-      when Locomotive::EditableText
+      when Locomotive::EditableText, Locomotive::EditableControl
         attributes.slice(:content)
       end
     end

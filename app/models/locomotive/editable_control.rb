@@ -3,6 +3,7 @@ module Locomotive
 
     ## fields ##
     field :content
+    field :default_content, type: Boolean, default: true
     field :options, type: Array, default: []
 
     ## methods ##
@@ -19,33 +20,17 @@ module Locomotive
       super(value)
     end
 
-    # def default_content?
-    #   false
-    # end
+    def content=(value)
+      return if value == self.content
+      self.default_content = false unless self.new_record?
+      super
+    end
 
-    # def copy_attributes_from(el)
-    #   super(el)
-
-    #   %w(content options).each do |meth|
-    #     self.attributes[meth] = el.attributes[meth]
-    #   end
-    # end
-
-    # protected
-
-    # def propagate_content
-    #   if self.content_changed?
-    #     operations  = {
-    #       '$set' => {
-    #         'editable_elements.$.content' => self.content,
-    #         'editable_elements.$.options' => self.options,
-    #       }
-    #     }
-
-    #     self.page.collection.find(self._selector).update(operations, multi: true)
-    #   end
-    #   true
-    # end
+    def content_from_default=(content)
+      if self.default_content?
+        self.content = content.to_s
+      end
+    end
 
   end
 end

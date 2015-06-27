@@ -10,9 +10,14 @@
 
         = g.hidden_field :humanized_id
 
-        - if editable_element.type.to_sym == :editable_text
-          = g.input :content, as: editable_element.format == 'html' ? :rte : :text, label: editable_element.slug, placeholder: false, hint: editable_element.hint, wrapper_html: { data: { block: editable_element.block || '' } }, input_html: { rows: editable_element.rows }
+        - case editable_element.type.to_sym
 
-        - if editable_element.type.to_sym == :editable_file
-          = g.input :source, as: :file, label: editable_element.slug, select_content_asset: true, placeholder: false, hint: editable_element.hint, wrapper_html: { id: "editable-file-#{index}", data: { block: editable_element.block || '' } }, hidden_fields: [:content, :default_source_url]
+        - when :editable_text
+          = g.input :content, editable_element_input_options(editable_element, index, as: editable_element.format == 'html' ? :rte : :text, input_html: { rows: editable_element.rows })
+
+        - when :editable_file
+          = g.input :source, editable_element_input_options(editable_element, index, as: :file, select_content_asset: true, hidden_fields: [:content, :default_source_url])
+
+        - when :editable_control
+          = g.input :content, editable_element_input_options(editable_element, index, as: :select, collection: editable_element.options.map { |attributes| [attributes['text'], attributes['value']] })
 
