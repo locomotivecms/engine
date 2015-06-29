@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    locomotivecms (3.0.0.pre.alpha.2)
+    locomotivecms (3.0.0.pre.alpha.3)
       actionmailer-with-request (~> 0.4.0)
       autoprefixer-rails (~> 5.2.0)
       backbone-on-rails (~> 1.2.0.0)
