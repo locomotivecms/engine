@@ -1,30 +1,48 @@
 - title t('.title')
 
-- content_for :submenu do
-  = render_cell 'locomotive/settings_menu', :show
+.row
+  .col-md-7
+    = help t('.help')
+  .col-md-5
+    .search-bar
+      = form_tag translations_path(current_site), method: :get do
+        .form-group
+          = hidden_field_tag :filter_by, params[:filter_by]
+          = text_field_tag :q, params[:q], placeholder: t('.search_placeholder'), class: 'form-control'
+          %i.fa.fa-search.icon
 
-- if can? :create, Locomotive::Translation
-  - content_for :buttons do
-    = local_action_button t('.new'), new_translation_path, icon: 'icon-plus' if can?(:create, Locomotive::Translation)
+.nav-container
+  %ul.nav.nav-tabs{ role: 'tablist' }
+    %li{ class: "#{'active' if params[:filter_by].blank? }" }
+      = link_to t('.filter_by.all'), translations_path(current_site, q: params[:q])
+
+    %li{ class: "#{'active' if params[:filter_by] == 'done' }" }
+      = link_to t('.filter_by.done'), translations_path(current_site, filter_by: 'done', q: params[:q])
+
+    %li{ class: "#{'active' if params[:filter_by] == 'partially' }" }
+      = link_to t('.filter_by.partially'), translations_path(current_site, filter_by: 'partially', q: params[:q])
+
+    %li{ class: "#{'active' if params[:filter_by] == 'none' }" }
+      = link_to t('.filter_by.none'), translations_path(current_site, filter_by: 'none', q: params[:q])
 
 - if @translations.empty?
-  %p.no-items!= t('.no_items', url: new_translation_path)
+  %br
+
+  .alert.alert-warning
+    != t('.no_items')
+
 - else
-  %ul.list
+
+  #translations-list.row.big-list
     - @translations.each do |translation|
-      %li.item
+      .item.col-md-12{ class: translation_completion_to_class(current_site, translation) }
+        .text
+          %strong= link_to translation.key, edit_translation_path(current_site, translation)
+          .stamp
+            != document_stamp(translation)
 
-        %strong
-          = link_to "#{translation.key}", edit_translation_path(translation)
+        .actions
+          %span.completion
+            %i.fa.fa-circle
 
-        %em= truncate translation.values[I18n.locale.to_s], length: 100
-
-        - untranslated_locales(current_site, translation)
-
-        .more
-          %span!= t('.updated_at')
-          = l translation.updated_at, format: :short
-
-          = link_to_icon :trash, translation_path(translation), title: t('.remove', key: translation.key, default: ''), class: 'remove', data: { confirm: t('locomotive.messages.confirm') }, method: :delete
-
-    = paginate @translations, namespace: 'locomotive'
+    = paginate @translations, theme: 'twitter-bootstrap-3', pagination_class: 'pagination-sm'

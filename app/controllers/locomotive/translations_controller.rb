@@ -7,20 +7,8 @@ module Locomotive
 
     def index
       authorize ThemeAsset
-      @translations = current_site.translations.ordered.page(params[:page]).per(Locomotive.config.ui[:per_page])
+      @translations = service.all(params.slice(:page, :per_page, :q, :filter_by))
       respond_with @translations
-    end
-
-    def new
-      authorize ThemeAsset
-      @translation = current_site.translations.build
-      respond_with @translation
-    end
-
-    def create
-      authorize ThemeAsset
-      @translation = current_site.translations.create(translation_params)
-      respond_with @translation, location: translations_path(current_site)
     end
 
     def edit
@@ -30,13 +18,7 @@ module Locomotive
 
     def update
       authorize @translation
-      @translation.update_attributes(translation_params)
-      respond_with @translation, location: translations_path(current_site)
-    end
-
-    def destroy
-      authorize @translation
-      @translation.destroy
+      service.update(@translation, translation_params[:values])
       respond_with @translation, location: translations_path(current_site)
     end
 
@@ -47,7 +29,11 @@ module Locomotive
     end
 
     def translation_params
-      params.require(:translation).permit(:key, :values)
+      params.require(:translation).permit(:values)
+    end
+
+    def service
+      @service ||= Locomotive::TranslationService.new(current_site, current_locomotive_account)
     end
 
   end

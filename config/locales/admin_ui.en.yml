@@ -64,6 +64,9 @@ en:
         disable_with: Pending...
       list:
         untranslated: untranslated
+        created_by: "Created %{distance} by %{who}"
+        updated_at: "Last modified %{distance}"
+        updated_by: "Last modified %{distance} by %{who}"
 
     errors:
       "500":
@@ -237,15 +240,11 @@ en:
       untranslated: "Untranslated locales: %{list}"
       index:
         title: Translations
-        new: new translation
-        no_items: "There are no translations for now. Just click <a href=\"%{url}\">here</a> to create the first one."
-        remove: Remove %{key}
-      new:
-        title: "New translation"
-        help: "Pages/snippets can share the same template for all the locales except for some labels which can be handled by the <b>translate</b> liquid tag."
+        no_items: "We have not found any translations."
+        search_placeholder: "Enter a key or a translation"
+        help: "Translate all the entries with a orange (partially localized) or red (not localized) dots."
       edit:
         title: "Editing %{key}"
-        help: "You can use that translation key with the following liquid code : <span class='code'>{{ '%{key}' | translate }}</span>."
 
     content_assets:
       index:
@@ -307,9 +306,6 @@ en:
         new: new entry
         category_noname: "No name"
         latest_entries: "Latest entries"
-        created_by: "Created %{distance} by %{who}"
-        updated_at: "Last modified %{distance}"
-        updated_by: "Last modified %{distance} by %{who}"
         search_placeholder: "Enter your search keywords here"
         group_by:
           all: All

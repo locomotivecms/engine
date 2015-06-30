@@ -1,0 +1,13 @@
+#translations-list {
+
+  .item {
+    &:first-child {
+      border-top: none;
+    }
+
+    &.zero-done .completion i { color: $brand-danger; }
+    &.partially-done .completion i { color: $brand-warning; }
+    &.all-done .completion i { color: $brand-success; }
+  }
+
+}

@@ -8,6 +8,9 @@
 
 = render 'locomotive/shared/sidebar/link', icon: 'fa-picture-o', label: t('.assets'), url: content_assets_path(current_site)
 
+- if current_site.localized?
+  = render 'locomotive/shared/sidebar/link', icon: 'fa-globe', label: t('.translations'), url: translations_path(current_site)
+
 = render 'locomotive/shared/sidebar/link', icon: 'fa-gear', label: t('.settings'), url: edit_current_site_path(current_site)
 
 = render 'locomotive/shared/sidebar/link', icon: 'fa-suitcase', label: t(:sites, scope: 'locomotive.shared.header'), url: sites_path, section_class: 'visible-xs-block'

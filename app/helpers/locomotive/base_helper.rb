@@ -218,5 +218,17 @@ module Locomotive
       end
     end
 
+    def document_stamp(document)
+      distance = time_ago_in_words(document.updated_at)
+
+      if account = document.updated_by || document.created_by
+        profile = account_avatar_and_name(account, '40x40#')
+        key     = document.updated_by ? :updated_by : :created_by
+        t(key, scope: 'locomotive.shared.list', distance: distance, who: profile)
+      else
+        t(:updated_at, scope: 'locomotive.shared.list', distance: distance)
+      end
+    end
+
   end
 end

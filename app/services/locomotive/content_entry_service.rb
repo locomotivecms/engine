@@ -157,7 +157,7 @@ module Locomotive
     end
 
     def prepare_query_statement(query)
-      regexp  = /.*#{query.split.map { |q| Regexp.escape(q) }.join('.*')}.*/i
+      regexp = /.*#{query.split.map { |q| Regexp.escape(q) }.join('.*')}.*/i
 
       {}.tap do |where|
         if self.content_type.filter_fields.blank?

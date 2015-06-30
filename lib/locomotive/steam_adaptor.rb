@@ -14,7 +14,10 @@ Locomotive::Steam.configure do |config|
   config.middleware.delete Rack::Lint
   config.middleware.delete Rack::Session::Moneta
 
+  require_relative 'steam/middlewares/missing_translations'
+
   config.middleware.insert_after Locomotive::Steam::Middlewares::Page, Locomotive::Middlewares::PageEditing
+  config.middleware.insert_after Locomotive::Steam::Middlewares::Page, Locomotive::Steam::Middlewares::MissingTranslations
 
   # config.services_hook = -> (services) {
   #   Rails.logger.warn "TODO: change content entry submission"
