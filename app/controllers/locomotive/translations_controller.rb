@@ -19,7 +19,7 @@ module Locomotive
     def update
       authorize @translation
       service.update(@translation, translation_params[:values])
-      respond_with @translation, location: translations_path(current_site)
+      respond_with @translation, location: translations_path(current_site, params[:_location])
     end
 
     private
@@ -29,7 +29,7 @@ module Locomotive
     end
 
     def translation_params
-      params.require(:translation).permit(:values)
+      params.require(:translation).permit(values: current_site.locales)
     end
 
     def service

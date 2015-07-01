@@ -36,7 +36,7 @@ describe Locomotive::TranslationsController do
 
   describe "#PUT update" do
     subject do
-      put :update, site_handle: site, id: translation.id, locale: :en, translation: { key: 'foo' }
+      put :update, site_handle: site, id: translation.id, locale: :en, translation: { values: { fr: 'foo' } }
     end
     it { is_expected.to be_redirect }
   end

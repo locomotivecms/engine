@@ -13,17 +13,10 @@
 
 .nav-container
   %ul.nav.nav-tabs{ role: 'tablist' }
-    %li{ class: "#{'active' if params[:filter_by].blank? }" }
-      = link_to t('.filter_by.all'), translations_path(current_site, q: params[:q])
+    - %i(all done partially none).each_with_index do |name, index|
 
-    %li{ class: "#{'active' if params[:filter_by] == 'done' }" }
-      = link_to t('.filter_by.done'), translations_path(current_site, filter_by: 'done', q: params[:q])
-
-    %li{ class: "#{'active' if params[:filter_by] == 'partially' }" }
-      = link_to t('.filter_by.partially'), translations_path(current_site, filter_by: 'partially', q: params[:q])
-
-    %li{ class: "#{'active' if params[:filter_by] == 'none' }" }
-      = link_to t('.filter_by.none'), translations_path(current_site, filter_by: 'none', q: params[:q])
+      %li{ class: "#{'active' if params[:filter_by] == name || (index == 0 && params[:filter_by].blank?) }" }
+        = link_to t(".filter_by.#{name}"), translations_path(current_site, q: params[:q], filter_by: index == 0 ? '' : name)
 
 - if @translations.empty?
   %br
@@ -37,7 +30,7 @@
     - @translations.each do |translation|
       .item.col-md-12{ class: translation_completion_to_class(current_site, translation) }
         .text
-          %strong= link_to translation.key, edit_translation_path(current_site, translation)
+          %strong= link_to translation.key, edit_translation_path(current_site, translation, _location: params.slice(:filter_by, :q))
           .stamp
             != document_stamp(translation)
 

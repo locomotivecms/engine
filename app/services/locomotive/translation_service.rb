@@ -20,6 +20,7 @@ module Locomotive
       translation.tap do
         translation.values = values
         translation.updated_by = account if account
+        translation.save
       end
     end
 

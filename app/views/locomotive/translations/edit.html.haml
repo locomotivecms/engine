@@ -1,15 +1,7 @@
 - title t('.title', key: @translation.key )
 
-- content_for :submenu do
-  = render_cell 'locomotive/settings_menu', :show
+= locomotive_form_for @translation, url: translation_path(current_site, @translation) do |f|
 
-- content_for :buttons do
-  = local_action_button t('locomotive.translations.index.new'), new_translation_path, icon: 'icon-plus'
+  = render 'form', f: f
 
-%p!= t('.help', key: @translation.key)
-
-= semantic_form_for @translation, html: { class: 'save-with-shortcut' } do |form|
-
-  = render 'form', f: form
-
-  = render 'locomotive/shared/form_actions', back_url: translations_path, button_label: :update
+  = f.actions back_url: translations_path(current_site, params[:_location] || {}), use_stored_location: false

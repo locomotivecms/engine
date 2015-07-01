@@ -244,7 +244,9 @@ en:
         search_placeholder: "Enter a key or a translation"
         help: "Translate all the entries with a orange (partially localized) or red (not localized) dots."
       edit:
-        title: "Editing %{key}"
+        title: "Translations &mdash; editing %{key}"
+      form:
+        not_translated: "Not translated"
 
     content_assets:
       index:

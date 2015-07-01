@@ -23,7 +23,7 @@ module Locomotive
     ## callbacks ##
     before_validation :underscore_key
     before_validation :set_completion
-    # before_validation :remove_blanks
+    before_validation :remove_blanks
 
     ## indexes ##
     index site_id: 1
@@ -48,9 +48,9 @@ module Locomotive
       self.completion = values.count { |_, v| v.present? }
     end
 
-    # def remove_blanks
-    #   self.values.delete_if { |k,v| v.blank? }
-    # end
+    def remove_blanks
+      self.values.delete_if { |_, v| v.is_a?(String) && v.empty? }
+    end
 
   end
 end

@@ -27,8 +27,12 @@
         text-transform: uppercase;
         color: $form_input_label_color;
 
+        img.flag {
+          margin-right: 5px;
+        }
+
         abbr {
-          margin-left: 5px;
+          margin-right: 5px;
         }
       }
 

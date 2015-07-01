@@ -1,12 +1,9 @@
-- content_for :backbone_view_data do
-  :plain
-    translation: #{escape_json @translation.to_json.html_safe}
+- (params[:_location] || {}).each do |name, value|
+  = hidden_field_tag "_location[#{name}]", value
 
-= f.inputs name: :information do
+= f.inputs do
 
-  = f.input :key, wrapper_html: { class: 'highlighted' }
+  = f.simple_fields_for :values, OpenStruct.new(@translation.values) do |g|
 
-  - current_site.locales.each do |l|
-    %li.input.string
-      = f.label "values[#{l}]", flag_tag(l) + t("locomotive.locales.#{l}")
-      = f.text_field "values[#{l}]", value: @translation.values[l]
+    - current_site.locales.each do |l|
+      = g.input l, label: flag_tag(l) + t(l, scope: 'locomotive.locales'), required: false, placeholder: t('.not_translated')
