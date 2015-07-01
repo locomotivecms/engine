@@ -218,6 +218,13 @@ module Locomotive
       end
     end
 
+    # Display the name of the account (+ avatar) who created or updated the document
+    # (content_entry, translation, ...etc) as well as the date when it occured.
+    #
+    # @param [ Object ] document The model
+    #
+    # @return [ String ] The html output
+    #
     def document_stamp(document)
       distance = time_ago_in_words(document.updated_at)
 

@@ -17,7 +17,7 @@
         .text
           %strong= link_to entry_label(content_type, entry), edit_content_entry_path(current_site, content_type.slug, entry)
           .stamp
-            != content_entry_stamp(entry)
+            != document_stamp(entry)
 
         .actions
           = link_to content_entry_path(current_site, content_type.slug, entry), title: t('locomotive.buttons.delete'), class: 'remove', data: { confirm: t('locomotive.messages.confirm') }, method: :delete do

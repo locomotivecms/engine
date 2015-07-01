@@ -15,8 +15,9 @@ Locomotive::Steam.configure do |config|
   config.middleware.delete Rack::Session::Moneta
 
   require_relative 'steam/middlewares/missing_translations'
+  require_relative 'steam/middlewares/page_editing'
 
-  config.middleware.insert_after Locomotive::Steam::Middlewares::Page, Locomotive::Middlewares::PageEditing
+  config.middleware.insert_after Locomotive::Steam::Middlewares::Page, Locomotive::Steam::Middlewares::PageEditing
   config.middleware.insert_after Locomotive::Steam::Middlewares::Page, Locomotive::Steam::Middlewares::MissingTranslations
 
   # config.services_hook = -> (services) {
