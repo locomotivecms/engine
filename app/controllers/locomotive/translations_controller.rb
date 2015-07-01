@@ -3,7 +3,7 @@ module Locomotive
 
     account_required & within_site
 
-    before_filter :load_translation, only: [:edit, :update, :destroy]
+    before_filter :load_translation, only: [:edit, :update]
 
     def index
       authorize ThemeAsset

@@ -27,7 +27,9 @@ class Locomotive.Views.EditableElements.EditView extends Locomotive.Views.Shared
       dom_id    = $(view.el).attr('id')
       $new_el   = $html.find("##{dom_id}")
 
-      view.replace $new_el if $new_el.size() > 0
+      view.replace $new_el
+
+      view
 
   filter_elements_by: (block) ->
     @$('.editable-elements .form-group.input').each ->

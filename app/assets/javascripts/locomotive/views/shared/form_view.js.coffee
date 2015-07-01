@@ -6,10 +6,11 @@ class Locomotive.Views.Shared.FormView extends Backbone.View
 
   namespace: null
 
-  inputs: []
-
   events:
     'submit form': 'save'
+
+  initialize: ->
+    @inputs = []
 
   render: ->
     @display_active_nav()
@@ -116,7 +117,7 @@ class Locomotive.Views.Shared.FormView extends Backbone.View
       self.inputs.push(view)
 
   remove: ->
-    _.each @inputs.each, (view) -> view.remove()
+    _.each @inputs, (view) -> view.remove()
     @$('.input.tags input[type=text]').tagsinput('destroy')
     @$('.input.select select').select2('destroy')
 
