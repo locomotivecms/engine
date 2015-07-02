@@ -1,6 +1,10 @@
 - title t('.title', type: @content_type.name.capitalize)
 
 - content_for :actions do
+  - if @content_type.localized?
+    = locale_picker_link
+    &nbsp;
+
   = link_to t('.new'), new_content_entry_path(current_site, @content_type.slug), class: 'btn btn-primary btn-sm'
 
 - if @content_type.filter_fields.present?

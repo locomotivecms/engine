@@ -16,7 +16,7 @@ module Locomotive
 
           ## callbacks ##
           after_validation  :add_default_locale
-          before_update     :verify_localized_default_pages_integrity
+          # before_update     :verify_localized_default_pages_integrity
 
         end
 

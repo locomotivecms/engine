@@ -93,6 +93,11 @@ module Locomotive
       _field || self.entries_custom_fields.where(name: id_or_name).first
     end
 
+    # A localized content type owns at least one localized field.
+    def localized?
+      self.entries_custom_fields.where(localized: true).count > 0
+    end
+
     protected
 
     def normalize_slug

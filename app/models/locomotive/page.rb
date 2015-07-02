@@ -64,6 +64,8 @@ module Locomotive
 
     delegate :fullpath, to: :parent, prefix: true
 
+    attr_accessor :skip_update_children
+
     ## methods ##
 
     def index?
@@ -135,6 +137,7 @@ module Locomotive
     end
 
     def update_children
+      return if skip_update_children
       self.children.map(&:save) if self.slug_changed? or self.fullpath_changed?
     end
 

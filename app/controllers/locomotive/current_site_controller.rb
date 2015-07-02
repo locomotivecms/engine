@@ -18,7 +18,7 @@ module Locomotive
 
     def update
       authorize @site
-      @site.update_attributes(site_params)
+      service.update(@site, site_params)
       respond_with @site, location: -> { edit_current_site_path(current_site) }
     end
 
@@ -52,6 +52,10 @@ module Locomotive
 
     def site_params
       params.require(:site).permit(*policy(@site || Site).permitted_attributes)
+    end
+
+    def service
+      @service ||= Locomotive::SiteService.new(locomotive_current_account)
     end
 
     def ensure_domains_list

@@ -85,7 +85,7 @@ Gem::Specification.new do |s|
 
   s.test_files = Dir[
     'features/**/*',
-    'spec/{cells,fixtures,lib,mailers,models,requests,support}/**/*',
+    'spec/{fixtures,lib,mailers,models,requests,support}/**/*',
     'spec/dummy/Rakefile',
     'spec/dummy/config.ru',
     'spec/dummy/{app,config,lib,script}/**/*',

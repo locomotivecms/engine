@@ -59,22 +59,6 @@ module Locomotive
       content_tag :i, '', class: ['fa', name].join(' ')
     end
 
-    # Like link_to but instead of passing a label, we
-    # pass the name of an Font Awesome icon.
-    # If the name is a Symbol, we append "icon-" to the
-    # dasherized version of the name.
-    #
-    # @param [ String / Symbol ] name The class name or a symbol
-    # @param [ Array ] *args
-    #
-    # @return [ String ] The HTML <a> tag
-    #
-    def link_to_icon(name, *args, &block)
-      name = name.is_a?(Symbol) ? "icon-#{name.to_s.dasherize}" : name
-      icon = content_tag(:i, '', class: name)
-      link_to(icon, *args, &block).html_safe
-    end
-
     # Execute the code only once during the request time. It avoids duplicated
     # dom elements in the rendered rails page.
     #
@@ -89,13 +73,10 @@ module Locomotive
       end
     end
 
-    # def locale_picker_link
-    #   if current_site.locales.size > 1 && localized?
-    #     content_tag :div, render('locomotive/shared/locale_picker_link'), class: 'action'
-    #   else
-    #     nil
-    #   end
-    # end
+    def locale_picker_link
+      return '' if current_site.locales.size == 1
+      render 'locomotive/shared/locale_picker_link'
+    end
 
     def flash_message
       if not flash.empty?
