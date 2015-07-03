@@ -40,7 +40,9 @@ module Locomotive
 
     ## callbacks ##
     after_initialize    :set_default_raw_template
-    before_save         :build_fullpath, unless: :skip_callbacks_on_update
+    before_create       :localize_slug
+    before_create       :build_fullpath
+    before_update       :build_fullpath, unless: :skip_callbacks_on_update
     before_save         :record_current_locale, unless: :skip_callbacks_on_update
     before_destroy      :do_not_remove_index_and_404_pages
     after_save          :update_children, unless: :skip_callbacks_on_update
@@ -127,22 +129,31 @@ module Locomotive
       end
     end
 
-    def build_fullpath
-      return true unless self.slug_changed?
+    # The slug of a new page should be the same in all
+    # the locales of a site.
+    def localize_slug
+      _slug = self.slug
 
+      self.site.each_locale(false) do |locale|
+        self.slug = _slug
+      end
+    end
+
+    def build_fullpath
       if self.index_or_not_found?
         self.fullpath = self.slug
       else
-        ancestors = self.ancestors_and_self
-        self.site.each_locale(false) do
-          slugs = ancestors.map(&:slug)
-          slugs.shift unless slugs.size == 1
-          self.fullpath = slugs.compact.join('/')
-        end
+        _parent = self.parent # do not hit the database more than once
 
-        slugs = self.ancestors_and_self.map(&:slug)
-        slugs.shift unless slugs.size == 1
-        self.fullpath = slugs.compact.join('/')
+        self.site.each_locale do |locale|
+          # if the page has been already persisted, we do not update the fullpath
+          # in the locales other than the default one.
+          next if self.persisted? && locale != site.default_locale
+
+          parent_fullpath = self.depth == 1 ? nil : _parent.fullpath
+
+          self.fullpath = [parent_fullpath, self.slug].compact.join('/')
+        end
       end
     end
 

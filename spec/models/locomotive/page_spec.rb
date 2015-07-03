@@ -134,8 +134,8 @@ describe Locomotive::Page do
 
     subject { create(:sub_page, site: site) }
 
-    it { expect(subject.slug_translations).to eq(en: 'subpage', fr: 'subpage') }
-    it { expect(subject.fullpath_translations).to eq(en: 'subpage', fr: 'subpage') }
+    it { expect(subject.slug_translations).to eq('en' => 'subpage', 'fr' => 'subpage') }
+    it { expect(subject.fullpath_translations).to eq('en' => 'subpage', 'fr' => 'subpage') }
 
   end
 

@@ -41,7 +41,7 @@ module Locomotive
     # x generic way to skip a callback in Mongoid. skip_callbacks accessor?
     # x build_fullpath from the previous loaded pages
     # 3. test if existing localized slug
-    # 4. creating a new page: -> set the same slug in all the locales of the site + FULLPATH
+    # x creating a new page: -> set the same slug in all the locales of the site + FULLPATH
     # x give a nice title of the index/404 page if blank
     # 6. use locales to check if the page has been translated or not
 

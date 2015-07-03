@@ -82,7 +82,7 @@ module Locomotive
         # The first locale is the default one.
         #
         def each_locale(include_default_locale = true, &block)
-          _locales = include_default_locale ? self.locales : (self.locales - self.default_locale)
+          _locales = include_default_locale ? self.locales : (self.locales - [self.default_locale])
 
           _locales.each do |locale|
             ::Mongoid::Fields::I18n.with_locale(locale) do
