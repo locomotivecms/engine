@@ -16,7 +16,6 @@ module Locomotive
 
           ## callbacks ##
           after_validation  :add_default_locale
-          # before_update     :verify_localized_default_pages_integrity
 
         end
 
@@ -82,8 +81,10 @@ module Locomotive
         # call yield with the related Mongoid::Fields::I18n locale context.
         # The first locale is the default one.
         #
-        def each_locale(&block)
-          self.locales.each do |locale|
+        def each_locale(include_default_locale = true, &block)
+          _locales = include_default_locale ? self.locales : (self.locales - self.default_locale)
+
+          _locales.each do |locale|
             ::Mongoid::Fields::I18n.with_locale(locale) do
               yield locale
             end
@@ -107,28 +108,6 @@ module Locomotive
         def can_not_remove_default_locale
           if self.persisted? && !self.locales.include?(self.default_locale_was)
             self.errors.add :locales, I18n.t(:default_locale_removed, scope: [:errors, :messages, :site])
-          end
-        end
-
-        # Verify if the index and 404 pages in ALL the locales of the site
-        # have a non empty slug, fullpath and title. If not, it sets them.
-        #
-        def verify_localized_default_pages_integrity
-          if self.persisted? && self.locales_changed?
-            self.pages.where(:"slug.#{self.default_locale_was}".in => %w(index 404), depth: 0).each do |page|
-              modifications = { 'title' => {}, 'slug' => {}, 'fullpath' => {}, 'locales' => self.locales }
-
-              self.locales.each do |locale|
-                slug  = page.attributes['slug'][self.default_locale_was]
-                title = page.attributes['title'][locale] || ::I18n.t("attributes.defaults.pages.#{slug}.title", locale: locale)
-
-                modifications['slug'][locale]     = slug
-                modifications['fullpath'][locale] = slug
-                modifications['title'][locale]    = title
-              end
-
-              page.collection.find(_id: page._id).update('$set' => modifications)
-            end
           end
         end
 

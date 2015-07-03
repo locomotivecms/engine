@@ -128,6 +128,17 @@ describe Locomotive::Page do
 
   end
 
+  describe 'localizing slugs and fullpaths' do
+
+    let(:site)  { create(:site, locales: %w(en fr)) }
+
+    subject { create(:sub_page, site: site) }
+
+    it { expect(subject.slug_translations).to eq(en: 'subpage', fr: 'subpage') }
+    it { expect(subject.fullpath_translations).to eq(en: 'subpage', fr: 'subpage') }
+
+  end
+
   describe '#deleting' do
 
     before(:each) do

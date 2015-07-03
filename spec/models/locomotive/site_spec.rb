@@ -144,42 +144,6 @@ describe Locomotive::Site do
         expect(site.pages.map(&:fullpath).sort).to eq(%w{404 index})
       end
 
-      it 'translates the index/404 pages if a new locale is added' do
-        site.update_attributes locales: %w(en fr)
-
-        expect(site.errors).to be_empty
-
-        ::Mongoid::Fields::I18n.with_locale('fr') do
-          site.pages.root.first.tap do |page|
-            expect(page.title).to eq("Page d'accueil")
-            expect(page.slug).to eq('index')
-          end
-
-          site.pages.not_found.first.tap do |page|
-            expect(page.title).to eq('Page non trouvée')
-            expect(page.slug).to eq('404')
-          end
-        end
-      end
-
-      it 'translates the index/404 pages if the default locale changes' do
-        site.update_attributes locales: %w(fr en)
-
-        expect(site.errors).to be_empty
-
-        ::Mongoid::Fields::I18n.with_locale('fr') do
-          site.pages.root.first.tap do |page|
-            expect(page.title).to eq("Page d'accueil")
-            expect(page.slug).to eq('index')
-          end
-
-          site.pages.not_found.first.tap do |page|
-            expect(page.title).to eq('Page non trouvée')
-            expect(page.slug).to eq('404')
-          end
-        end
-      end
-
       it 'does not allow to remove the default locale' do
         site.update_attributes locales: %w(fr)
         expect(site.errors[:locales]).to eq(['The previous default locale can not be removed right away.'])

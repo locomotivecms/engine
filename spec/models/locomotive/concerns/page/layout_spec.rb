@@ -37,7 +37,7 @@ describe Locomotive::Concerns::Page::Layout do
 
     it { is_expected.to eq '{% extends "awesome-layout" %}' }
 
-    describe 'but changing the layout is not allowed' do
+    context 'but changing the layout is not allowed' do
 
       let(:allow_layout) { false }
 

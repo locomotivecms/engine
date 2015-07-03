@@ -30,29 +30,65 @@ describe Locomotive::PageService do
 
   describe '#localize' do
 
-    let!(:site) { create(:site) }
-    let!(:page) { create(:sub_page, site: site )}
+    let!(:site)         { create(:site) }
+    let!(:sub_page)     { create(:sub_page, site: site )}
+    let!(:sub_sub_page) { create(:sub_page, title: 'Sub sub page', site: site, parent: sub_page) }
+    let(:new_locales)   { ['fr'] }
     let(:previous_default_locale) { nil }
 
-    before do
-      # site.update_attribute :locales, %w(en fr)
-      service.localize(['fr'], previous_default_locale)
-    end
+    before { service.localize(new_locales, previous_default_locale) }
 
     context 'index page' do
 
       subject { site.pages.root.first }
-      it { expect(subject.attributes[:title]).to eq('en' => 'Home page') }
-      it { expect(subject.attributes[:slug]).to eq('en' => 'index', 'fr' => 'index') }
+
+      it 'sets a nice default title, the slug and the fullpath' do
+        expect(subject.title_translations).to eq('en' => 'Home page', 'fr' => "Page d'accueil")
+        expect(subject.slug_translations).to eq('en' => 'index', 'fr' => 'index')
+        expect(subject.fullpath_translations).to eq('en' => 'index', 'fr' => 'index')
+      end
 
     end
 
-    context 'sub page' do
+    context 'a sub_page' do
 
-      subject { page.reload; page }
-      it { expect(subject.title_translations).to eq('en' => 'Subpage') }
-      it { expect(subject.attributes[:slug]).to eq('en' => 'subpage', 'fr' => 'subpage') }
-      it { expect(subject.attributes[:fullpath]).to eq('en' => 'subpage', 'fr' => 'subpage') }
+      subject { sub_page.reload }
+
+      it 'sets the slug and the fullpath but not the title' do
+        expect(subject.title_translations).to eq('en' => 'Subpage')
+        expect(subject.slug_translations).to eq('en' => 'subpage', 'fr' => 'subpage')
+        expect(subject.fullpath_translations).to eq('en' => 'subpage', 'fr' => 'subpage')
+      end
+
+    end
+
+    context 'a sub sub page' do
+
+      subject { sub_sub_page.reload }
+
+      it 'sets the slug and the fullpath but not the title' do
+        expect(subject.title_translations).to eq('en' => 'Sub sub page')
+        expect(subject.slug_translations).to eq('en' => 'subpage', 'fr' => 'subpage')
+        expect(subject.fullpath_translations).to eq('en' => 'subpage/subpage', 'fr' => 'subpage/subpage')
+      end
+
+    end
+
+    context 'add a new locale and make it the default one' do
+
+      let!(:site) { create(:site).tap { |site| site.locales = %w(fr en) } }
+      let(:previous_default_locale) { 'en' }
+
+      context 'index page' do
+
+        subject { site.pages.root.first }
+
+        it 'sets a nice default title, the slug and the fullpath' do
+          expect(subject.title_translations).to eq('en' => 'Home page', 'fr' => "Page d'accueil")
+          expect(subject.slug_translations).to eq('en' => 'index', 'fr' => 'index')
+        end
+
+      end
 
     end
 

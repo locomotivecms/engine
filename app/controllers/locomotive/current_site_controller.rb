@@ -55,7 +55,7 @@ module Locomotive
     end
 
     def service
-      @service ||= Locomotive::SiteService.new(locomotive_current_account)
+      @service ||= Locomotive::SiteService.new(current_locomotive_account)
     end
 
     def ensure_domains_list

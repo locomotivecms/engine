@@ -40,10 +40,10 @@ module Locomotive
 
     ## callbacks ##
     after_initialize    :set_default_raw_template
-    before_save         :build_fullpath
-    before_save         :record_current_locale
+    before_save         :build_fullpath, unless: :skip_callbacks_on_update
+    before_save         :record_current_locale, unless: :skip_callbacks_on_update
     before_destroy      :do_not_remove_index_and_404_pages
-    after_save          :update_children
+    after_save          :update_children, unless: :skip_callbacks_on_update
 
     ## validations ##
     validates_presence_of     :site,    :title, :slug
@@ -64,7 +64,7 @@ module Locomotive
 
     delegate :fullpath, to: :parent, prefix: true
 
-    attr_accessor :skip_update_children
+    attr_accessor :skip_callbacks_on_update
 
     ## methods ##
 
@@ -111,7 +111,7 @@ module Locomotive
     def do_not_remove_index_and_404_pages
       return if self.site.nil? || self.site.destroyed?
 
-      if self.index? || self.not_found?
+      if self.index_or_not_found?
         self.errors[:base] << ::I18n.t('errors.messages.protected_page')
       end
 
@@ -120,16 +120,26 @@ module Locomotive
 
     def set_default_raw_template
       begin
-        self.raw_template ||= ::I18n.t('attributes.defaults.pages.other.body')
+        return true if self.raw_template.present?
+        self.raw_template ||= self.index? ? '' : "{% extends 'parent' %}"
       rescue ActiveModel::MissingAttributeError
         # page not loaded from MongoDB without the raw_template attribute
       end
     end
 
     def build_fullpath
-      if self.index? || self.not_found?
+      return true unless self.slug_changed?
+
+      if self.index_or_not_found?
         self.fullpath = self.slug
       else
+        ancestors = self.ancestors_and_self
+        self.site.each_locale(false) do
+          slugs = ancestors.map(&:slug)
+          slugs.shift unless slugs.size == 1
+          self.fullpath = slugs.compact.join('/')
+        end
+
         slugs = self.ancestors_and_self.map(&:slug)
         slugs.shift unless slugs.size == 1
         self.fullpath = slugs.compact.join('/')
@@ -137,7 +147,6 @@ module Locomotive
     end
 
     def update_children
-      return if skip_update_children
       self.children.map(&:save) if self.slug_changed? or self.fullpath_changed?
     end
 

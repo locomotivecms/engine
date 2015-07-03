@@ -11,6 +11,14 @@ module Locomotive
             authenticate_locomotive_account!
           end
 
+          helpers do
+
+            def service
+              @service ||= Locomotive::SiteService.new(current_account)
+            end
+
+          end
+
           desc 'Show current_site'
           get do
             authorize current_site, :show?
@@ -37,8 +45,7 @@ module Locomotive
             authorize current_site, :update?
 
             current_site_form = Forms::SiteForm.new(permitted_params[:site])
-            current_site.assign_attributes(current_site_form.serializable_hash)
-            current_site.save
+            service.update(current_site, current_site_form.serializable_hash)
 
             present current_site, with: entity_klass
           end

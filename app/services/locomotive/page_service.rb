@@ -27,68 +27,55 @@ module Locomotive
     def update(page, attributes)
       page.tap do
         page.attributes = attributes
-        page.updated_by = account
+        page.updated_by = account if account
         page.save
       end
     end
 
-    # For all the pages of a site, use the title and template properties in
+    # For all the pages of a site, use the slug property from
     # the default locale for all the new locales passed as the first argument.
     # Do not erase existing values in the new locales.
+    # This method is called when an user has changed the locales of a site.
     #
-    def localize(locales, previous_default_locale)
-      default_locale = previous_default_locale || site.default_locale
+    # TODO:
+    # x generic way to skip a callback in Mongoid. skip_callbacks accessor?
+    # x build_fullpath from the previous loaded pages
+    # 3. test if existing localized slug
+    # 4. creating a new page: -> set the same slug in all the locales of the site + FULLPATH
+    # x give a nice title of the index/404 page if blank
+    # 6. use locales to check if the page has been translated or not
 
-      puts "---- #{default_locale.inspect} ----"
+    # STEAM TODO:
+    # - render a localized page even if there is no template (take the one in the default locale)
+    def localize(locales, previous_default_locale)
+      parent_fullpaths  = {}
+      default_locale    = previous_default_locale || site.default_locale
 
       site.pages.without_sorting.order_by(:depth.asc).each_by(50) do |page|
-        puts page.attributes.inspect
+        _localize(page, locales, default_locale, parent_fullpaths)
 
-        slug = page.attributes[:slug][default_locale]
-
-        # if slug == 'index' || slug == '404'
-          locales.each do |locale|
-            next if locale == default_locale
-            ::Mongoid::Fields::I18n.with_locale(locale) do
-              page.slug ||= slug
-            end
-          end
-        # end
-
-        puts page.changes
-
-        page.skip_update_children = true
+        page.skip_callbacks_on_update = true
         page.save if page.changed?
       end
+    end
 
-      # second time: refresh fullpath
-      # page.send(:build_fullpath)
+    def _localize(page, locales, default_locale, parent_fullpaths)
+      slug = page.slug_translations[default_locale]
 
+      locales.each do |locale|
+        next if locale == default_locale
 
-      # site.pages.only(:title, :slug).each_by(50) do |page|
-      #   puts page.attributes.inspect
-      #   site.locales.each do |locale|
-      #     next if page.attributes[:title][locale].present? && page.attributes[:slug][locale].present?
-      #     puts "got job to do in #{locale}"
+        ::Mongoid::Fields::I18n.with_locale(locale) do
+          page.slug     ||= slug
+          page.fullpath ||= page.depth > 1 ? parent_fullpaths[page.parent_id][locale] + '/' + slug : slug
 
-      #     if locale != site.default_locale
-      #       puts "simple case: copy content from default_locale or previous_default_locale"
-      #     end
-      #   end
-      # end
+          if page.depth == 0 && (slug == 'index' || slug == '404')
+            page.title ||= ::I18n.t("attributes.defaults.pages.#{slug}.title", locale: locale)
+          end
 
-      # ::Mongoid::Fields::I18n.with_locale(site.default_locale) do
-      #   site.pages.any_of({ title: nil }, { slug: nil }).each do |page|
-      #     page.title ||= page.attributes[:title][previous_default_locale]
-      #     page.slug ||= page.attributes[:slug][previous_default_locale]
-      #     page.save
-      #   end
-      # end
-      # default_locale = site.default_locale
-      # # the pages must have a title/slug in the default locale
-      # site.pages.where('$or' => [{ "title.#{default_locale}" => nil }, { "slug.#{default_locale}" => nil }]).each do |page|
-      #   page.
-      # end
+          (parent_fullpaths[page._id] ||= {})[locale] = page.fullpath
+        end
+      end
     end
 
   end

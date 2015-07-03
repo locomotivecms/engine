@@ -51,7 +51,7 @@ describe Locomotive::SiteService do
 
   describe '#update' do
 
-    let(:site)        { create(:site) }
+    let!(:site)        { create(:site) }
     let(:attributes)  { { name: 'Acme Corp' } }
 
     subject { service.update(site, attributes) }
@@ -64,7 +64,19 @@ describe Locomotive::SiteService do
       let(:attributes)    { { locales: %w(en fr de) } }
 
       before { service.page_service = page_service }
-      before { expect(page_service).to receive(:localize).with(%w(fr de)) }
+      before { expect(page_service).to receive(:localize).with(%w(fr de), 'en') }
+
+      it { is_expected.to eq true }
+
+    end
+
+    context 'default locale changed' do
+
+      let(:page_service)  { instance_double('PageService', :site= => true) }
+      let(:attributes)    { { locales: %w(fr en de) } }
+
+      before { service.page_service = page_service }
+      before { expect(page_service).to receive(:localize).with(%w(fr de), 'en') }
 
       it { is_expected.to eq true }
 
