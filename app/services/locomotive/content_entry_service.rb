@@ -81,6 +81,28 @@ module Locomotive
       end
     end
 
+    # Make sure the content entries has a non-blank slug in the new locales.
+    # We take the slug in the default locale or the previous default locale (if provided)
+    # in the other locales.
+    #
+    def localize(new_locales, previous_default_locale)
+      default_locale = previous_default_locale || content_type.site.default_locale
+
+      content_type.entries.each_by(50) do |entry|
+        slug = entry._slug_translations[default_locale]
+
+        new_locales.each do |locale|
+          next if locale == default_locale
+
+          ::Mongoid::Fields::I18n.with_locale(locale) do
+            entry._slug ||= slug
+          end
+        end
+
+        entry.save if entry.changed?
+      end
+    end
+
     # Destroy all the entries of a content type.
     # Runs each entry's destroy callbacks.
     #

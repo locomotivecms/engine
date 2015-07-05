@@ -37,15 +37,14 @@ describe Locomotive::Concerns::Site::Locales do
   end
 
   def build_page(slug = nil, translations = {})
-    FactoryGirl.build(:page).tap do |page|
+    FactoryGirl.build(:page, site: site).tap do |page|
       page.slug = slug if slug
-      page.send(:build_fullpath)
       translations.each do |locale, translation|
         ::Mongoid::Fields::I18n.with_locale(locale) do
           page.slug = translation
-          page.send(:build_fullpath)
         end
       end
+      page.send(:build_fullpath)
     end
   end
 

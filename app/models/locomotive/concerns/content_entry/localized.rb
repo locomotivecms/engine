@@ -11,7 +11,8 @@ module Locomotive
           field :_translated, type: Boolean, localize: true
 
           ## callbacks ##
-          before_save :persist_translated_status
+          before_create :localize_slug
+          before_save   :persist_translated_status
 
         end
 
@@ -69,6 +70,16 @@ module Locomotive
         end
 
         protected
+
+        def localize_slug
+          return unless localized?
+
+          current_slug = self._slug
+
+          self.site.each_locale(false) do |locale, _|
+            self._slug = current_slug
+          end
+        end
 
         def persist_translated_status
           self._translated = self.translated?

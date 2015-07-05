@@ -51,8 +51,15 @@ describe Locomotive::SiteService do
 
   describe '#update' do
 
-    let!(:site)        { create(:site) }
-    let(:attributes)  { { name: 'Acme Corp' } }
+    let!(:site)                 { create(:site) }
+    let(:attributes)            { { name: 'Acme Corp' } }
+    let(:page_service)          { instance_double('PageService', :site= => true) }
+    let(:content_entry_service) { instance_double('ContentEntryService', :content_type= => true) }
+
+    before {
+      service.page_service          = page_service
+      service.content_entry_service = content_entry_service
+    }
 
     subject { service.update(site, attributes) }
 
@@ -60,10 +67,8 @@ describe Locomotive::SiteService do
 
     context 'locales changed' do
 
-      let(:page_service)  { instance_double('PageService', :site= => true) }
-      let(:attributes)    { { locales: %w(en fr de) } }
+      let(:attributes) { { locales: %w(en fr de) } }
 
-      before { service.page_service = page_service }
       before { expect(page_service).to receive(:localize).with(%w(fr de), 'en') }
 
       it { is_expected.to eq true }
@@ -72,11 +77,13 @@ describe Locomotive::SiteService do
 
     context 'default locale changed' do
 
-      let(:page_service)  { instance_double('PageService', :site= => true) }
-      let(:attributes)    { { locales: %w(fr en de) } }
+      let(:attributes) { { locales: %w(fr en de) } }
 
-      before { service.page_service = page_service }
-      before { expect(page_service).to receive(:localize).with(%w(fr de), 'en') }
+      before {
+        allow(site).to receive(:localized_content_types).and_return([true])
+        expect(page_service).to receive(:localize).with(%w(fr de), 'en')
+        expect(content_entry_service).to receive(:localize).with(%w(fr de), 'en')
+      }
 
       it { is_expected.to eq true }
 

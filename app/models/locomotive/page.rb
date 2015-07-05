@@ -134,7 +134,7 @@ module Locomotive
     def localize_slug
       _slug = self.slug
 
-      self.site.each_locale(false) do |locale|
+      self.site.each_locale(false) do |locale, _|
         self.slug = _slug
       end
     end
@@ -145,12 +145,12 @@ module Locomotive
       else
         _parent = self.parent # do not hit the database more than once
 
-        self.site.each_locale do |locale|
-          # if the page has been already persisted, we do not update the fullpath
-          # in the locales other than the default one.
-          next if self.persisted? && locale != site.default_locale
+        self.site.each_locale do |locale, current|
+          # if the page has been already persisted, we don't need to update the fullpath
+          # in the locales other than in the current one.
+          next if self.persisted? && !current
 
-          parent_fullpath = self.depth == 1 ? nil : _parent.fullpath
+          parent_fullpath = self.depth == 1 ? nil : _parent.try(:fullpath)
 
           self.fullpath = [parent_fullpath, self.slug].compact.join('/')
         end

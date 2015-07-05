@@ -21,7 +21,7 @@ describe Locomotive::Concerns::Page::Layout do
 
     describe 'false for an existing page without the allow_layout attribute' do
 
-      let(:page) { p = Locomotive::Page.new; p.save(validate: false); p.unset(:allow_layout); Locomotive::Page.find(p._id) }
+      let(:page) { p = Locomotive::Page.new(site: site); p.save(validate: false); p.unset(:allow_layout); Locomotive::Page.find(p._id) }
 
       it { is_expected.to eq false }
 

@@ -36,6 +36,7 @@ module Locomotive
     scope :by_id_or_slug, ->(id_or_slug) {
       any_of({ _id: id_or_slug }, { slug: id_or_slug })
     }
+    scope :localized, -> { elem_match(entries_custom_fields: { localized: true }) }
 
     ## indexes ##
     index site_id: 1, slug: 1

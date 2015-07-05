@@ -147,7 +147,7 @@ describe Locomotive::ContentEntryService do
 
     subject { content_type.ordered_entries }
 
-    it { expect(subject.pluck(:title)).to eq ['Hello world', 'Goodbye'] }
+    it { expect(subject.pluck(:title)).to eq [{ "en" => "Hello world" }, { "en" => "Goodbye" }] }
     it { expect(subject.pluck(:updated_at)).to eq [sometime, sometime] }
 
   end
@@ -160,13 +160,29 @@ describe Locomotive::ContentEntryService do
 
   end
 
+  describe '#localize' do
+
+    let(:new_locales)   { ['fr'] }
+    let(:previous_default_locale) { nil }
+    let!(:entry_1) { create_content_entry(title: 'Hello world', body: 'Lorem ipsum', published: true) }
+    let!(:entry_2) { create_content_entry(title: 'Bla bla', body: 'Lorem ipsum', published: false) }
+
+    before { service.localize(new_locales, previous_default_locale) }
+
+    it 'sets the slug in the new locale' do
+      expect(entry_1.reload._slug_translations).to eq('en' => 'hello-world', 'fr' => 'hello-world')
+      expect(entry_2.reload._slug_translations).to eq('en' => 'bla-bla', 'fr' => 'bla-bla')
+    end
+
+  end
+
   def create_content_type
     FactoryGirl.build(:content_type, site: site, name: 'Articles').tap do |content_type|
-      content_type.entries_custom_fields.build(name: 'title', type: 'string', label: 'Title')
-      content_type.entries_custom_fields.build(name: 'body', type: 'text', label: 'Body')
+      content_type.entries_custom_fields.build(name: 'title', type: 'string', label: 'Title', localized: true)
+      content_type.entries_custom_fields.build(name: 'body', type: 'text', label: 'Body', localized: true)
       content_type.entries_custom_fields.build(name: 'published', type: 'boolean', label: 'Published')
       content_type.save!
-    end
+    end.reload
   end
 
   def add_filter_fields(*labels)

@@ -57,6 +57,10 @@ module Locomotive
       Locomotive::Page.fetch_page_from_path self, path, logged_in
     end
 
+    def localized_content_types
+      self.content_types.localized
+    end
+
     def accounts
       Account.criteria.in(_id: self.memberships.map(&:account_id))
     end
@@ -88,7 +92,7 @@ module Locomotive
       %w{index 404}.each do |slug|
         page = nil
 
-        self.each_locale do |locale|
+        self.each_locale do |locale, _|
           page ||= self.pages.build(published: true) # first locale = default one
 
           page.attributes = {

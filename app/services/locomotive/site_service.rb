@@ -7,6 +7,10 @@ module Locomotive
       Locomotive::PageService.new(nil, account)
     end
 
+    register :content_entry_service do
+      Locomotive::ContentEntryService.new(nil, account)
+    end
+
     def list
       sorter = lambda do |site_a, site_b|
         site_a.name.downcase <=> site_b.name.downcase
@@ -42,18 +46,27 @@ module Locomotive
       previous_default_locale = site.default_locale_was
 
       site.save.tap do |success|
-        if success && new_locales.present?
-          # localize all the existing pages
-          page_service.site = site
-          page_service.localize(new_locales, previous_default_locale)
-
-          # localize all the content entries
-          # TODO
+        if success
+          localize_pages_and_content_entries(site, new_locales, previous_default_locale)
         end
       end
     end
 
     private
+
+    def localize_pages_and_content_entries(site, new_locales, previous_default_locale)
+      return unless new_locales.present?
+
+      # localize all the existing pages
+      page_service.site = site
+      page_service.localize(new_locales, previous_default_locale)
+
+      # localize all the content entries of localized content types
+      site.localized_content_types.each do |content_type|
+        content_entry_service.content_type = content_type
+        content_entry_service.localize(new_locales, previous_default_locale)
+      end
+    end
 
     def unique_handle
       Bazaar.heroku do |value|

@@ -10,7 +10,7 @@ describe Locomotive::PageService do
 
   describe '#create' do
 
-    subject { service.create(title: 'Hello world') }
+    subject { service.create(title: 'Hello world', parent: site.pages.root.first) }
 
     it { expect { subject }.to change { Locomotive::Page.count }.by 1 }
 
@@ -31,7 +31,7 @@ describe Locomotive::PageService do
   describe '#localize' do
 
     let!(:site)         { create(:site) }
-    let!(:sub_page)     { create(:sub_page, site: site )}
+    let!(:sub_page)     { create(:sub_page, site: site) }
     let!(:sub_sub_page) { create(:sub_page, title: 'Sub sub page', site: site, parent: sub_page) }
     let(:new_locales)   { ['fr'] }
     let(:previous_default_locale) { nil }

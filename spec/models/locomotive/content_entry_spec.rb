@@ -109,7 +109,7 @@ describe Locomotive::ContentEntry do
       expect(@content_entry.translated?).to eq(true)
     end
 
-    describe '.slug' do
+    describe '#slug' do
 
       it 'is not nil in the default locale' do
         ::Mongoid::Fields::I18n.locale = 'en'
@@ -118,6 +118,14 @@ describe Locomotive::ContentEntry do
 
       it 'is not translated by default in the other locale' do
         expect(@content_entry._slug).to eq(nil) # French
+      end
+
+      it 'is translated in all the locales when being created' do
+        @content_entry.site.locales = %w(en fr)
+        ::Mongoid::Fields::I18n.locale = 'en'
+        @content_entry.send(:localize_slug)
+        ::Mongoid::Fields::I18n.locale = 'fr'
+        expect(@content_entry._slug).to eq('hello-world') # French
       end
 
     end
@@ -411,7 +419,9 @@ describe Locomotive::ContentEntry do
   end
 
   def build_content_entry(options = {})
-    @content_type.entries.build({ title: 'Locomotive', description: 'Lorem ipsum....', _label_field_name: 'title', created_at: Time.zone.parse('2013-07-05 00:00:00') }.merge(options))
+    @content_type.entries.build({ title: 'Locomotive', description: 'Lorem ipsum....', _label_field_name: 'title', created_at: Time.zone.parse('2013-07-05 00:00:00') }.merge(options)).tap do |entry|
+      entry.send(:set_site)
+    end
   end
 
   def fake_bson_id(id)
