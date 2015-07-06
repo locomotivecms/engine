@@ -27,7 +27,11 @@
         text-transform: uppercase;
         color: $form_input_label_color;
 
-        img.flag {
+        .untranslated {
+          color: $form_input_label_untranslated_color;
+        }
+
+        .flag {
           margin-right: 5px;
         }
 

@@ -19,6 +19,7 @@ class Locomotive.Views.EditableElements.IndexView extends Backbone.View
 
     view_options = if $('body').hasClass('live-editing') then {} else { el: '.main' }
 
+    @startup            = true
     @edit_view          = new Locomotive.Views.EditableElements.EditView(view_options)
     @pubsub_text_token  = PubSub.subscribe('inputs.text_changed', @refresh_text)
 
@@ -86,10 +87,11 @@ class Locomotive.Views.EditableElements.IndexView extends Backbone.View
     # store the url
     @preview_url = $('.preview iframe')[0].contentWindow.document.location.href
 
-    if editable_elements_path?
-      unless editable_elements_path == (window.location.pathname + window.location.search)
-        History.replaceState({ live_editing: true, url: @preview_url }, '', editable_elements_path)
-        @replace_edit_view(editable_elements_path)
+    if editable_elements_path? && @startup == false
+      History.replaceState({ live_editing: true, url: @preview_url }, '', editable_elements_path)
+      @replace_edit_view(editable_elements_path)
+    else
+      @startup = false
 
   replace_edit_view: (url) ->
     $(@edit_view.el).load url, =>

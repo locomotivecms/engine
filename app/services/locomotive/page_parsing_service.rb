@@ -50,7 +50,7 @@ module Locomotive
 
     def parse(page)
       entity = repository.build(page.attributes.dup)
-      decorated_page = Locomotive::Steam::Decorators::TemplateDecorator.new(entity, self.locale)
+      decorated_page = Locomotive::Steam::Decorators::TemplateDecorator.new(entity, self.locale, self.site.default_locale)
 
       parser = services.liquid_parser
       parser.parse(decorated_page)

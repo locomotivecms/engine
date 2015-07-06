@@ -14,6 +14,7 @@ module Locomotive
 
             if element = page.editable_elements.find(attributes[:id])
               element.attributes = clean_attributes_for(element, attributes)
+
               elements << [page, element]
             end
           end

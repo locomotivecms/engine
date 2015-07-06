@@ -7,21 +7,23 @@
 
     .row.info-row
       .col-md-9
-        %p
-          %span.fullpath= nice_editable_elements_path
+        %span.fullpath= nice_editable_elements_path
 
-          &nbsp;
-          &mdash;
-          &nbsp;
+        &nbsp;
+        &mdash;
+        &nbsp;
 
-          = link_to edit_page_path(current_site, @page, _location: request.fullpath) do
-            %i.fa.fa-gear
-            = t('.settings_link')
+        = link_to edit_page_path(current_site, @page, _location: request.fullpath) do
+          %i.fa.fa-gear
+          = t('.settings_link')
 
 
       .col-md-3
-        - unless @editable_elements.empty?
-          %p.text-right
+        %p.text-right
+          - if current_site.localized?
+            = locale_picker_link
+          - unless @editable_elements.empty?
+            &nbsp;
             = f.action
 
       - unless @editable_elements.empty?
