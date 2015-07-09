@@ -188,6 +188,15 @@ FactoryGirl.define do
       description 'The list of my tasks'
     end
 
+    factory 'message content type' do
+      name 'Messages'
+      description 'Messages posted from the contact form'
+      after(:build) do |content_type, _|
+        content_type.entries_custom_fields.build label: 'Name', name: 'name', type: 'string'
+        content_type.entries_custom_fields.build label: 'Message', name: 'message', type: 'text'
+      end
+    end
+
     factory 'article content type' do
       name 'Articles'
       description 'The list of articles'

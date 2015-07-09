@@ -46,22 +46,22 @@ module Locomotive
       end
     end
 
-    # Create a content entry from the attributes passed in parameter.
-    # It does not set the created_by column since it's called
-    # from the public side of the site with no logged in account.
-    # The attributes are filtered through the corresponding presenter.
-    #
-    # @param [ Hash ] attributes The attributes of new content entry.
-    #
-    # @return [ Object ] An instance of the content entry.
-    #
-    def public_create(attributes)
-      raise 'TODO'
-      content_type.entries.build.tap do |entry|
-        entry.from_presenter(attributes)
-        entry.save
-      end
-    end
+    # # Create a content entry from the attributes passed in parameter.
+    # # It does not set the created_by column since it's called
+    # # from the public side of the site with no logged in account.
+    # # The attributes are filtered through the corresponding presenter.
+    # #
+    # # @param [ Hash ] attributes The attributes of new content entry.
+    # #
+    # # @return [ Object ] An instance of the content entry.
+    # #
+    # def public_create(attributes)
+    #   raise 'TODO'
+    #   content_type.entries.build.tap do |entry|
+    #     entry.from_presenter(attributes)
+    #     entry.save
+    #   end
+    # end
 
     # Update a content entry from the attributes passed in parameter.
     # It sets the updated_by column with the current account.

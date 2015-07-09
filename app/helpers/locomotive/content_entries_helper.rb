@@ -15,9 +15,8 @@ module Locomotive
       if field.localized?
         translated_css = entry.translated_field?(field) ? '' : 'untranslated'
 
-        icon  = content_tag(:i, '', class: "fa fa-globe #{translated_css}")
-        # tag   = content_tag(:span, icon, class: "localized-icon #{translated_css}")
-        # "#{tag}#{field.label}"
+        icon = content_tag(:i, '', class: "fa fa-globe #{translated_css}")
+
         "#{icon}&nbsp;#{field.label}".html_safe
       else
         field.label

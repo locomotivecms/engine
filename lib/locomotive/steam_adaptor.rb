@@ -20,9 +20,12 @@ Locomotive::Steam.configure do |config|
   config.middleware.insert_after Locomotive::Steam::Middlewares::Page, Locomotive::Steam::Middlewares::PageEditing
   config.middleware.insert_after Locomotive::Steam::Middlewares::Page, Locomotive::Steam::Middlewares::MissingTranslations
 
-  # config.services_hook = -> (services) {
-  #   Rails.logger.warn "TODO: change content entry submission"
-  # }
+  require_relative 'steam/services/api_entry_submission_service'
+
+  config.services_hook = -> (services) {
+    Rails.logger.warn "[DEV] change content entry submission"
+    services.entry_submission_service = Locomotive::Steam::APIEntrySubmissionService.new(services.current_site, services.locale)
+  }
 end
 
 Locomotive::Common.reset

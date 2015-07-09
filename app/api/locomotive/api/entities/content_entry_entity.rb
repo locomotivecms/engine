@@ -28,6 +28,7 @@ module Locomotive
             method_name = :"expose_#{field.type}_field"
 
             hash[name] = send(method_name, name) if respond_to?(method_name)
+
             hash
           end
         end
