@@ -23,8 +23,7 @@ Locomotive::Steam.configure do |config|
   require_relative 'steam/services/api_entry_submission_service'
 
   config.services_hook = -> (services) {
-    Rails.logger.warn "[DEV] change content entry submission"
-    services.entry_submission_service = Locomotive::Steam::APIEntrySubmissionService.new(services.current_site, services.locale)
+    services.entry_submission = Locomotive::Steam::APIEntrySubmissionService.new(services.current_site, services.locale) if services.request
   }
 end
 

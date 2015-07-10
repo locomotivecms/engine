@@ -64,9 +64,10 @@ en:
         disable_with: Pending...
       list:
         untranslated: untranslated
-        created_by: "Created %{distance} by %{who}"
-        updated_at: "Last modified %{distance}"
-        updated_by: "Last modified %{distance} by %{who}"
+        created_at: "Created %{distance} ago"
+        created_by: "Created %{distance} ago by %{who}"
+        updated_at: "Last modified %{distance} ago"
+        updated_by: "Last modified %{distance} ago by %{who}"
 
     errors:
       "500":

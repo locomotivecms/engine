@@ -20,7 +20,7 @@ describe Locomotive::Steam::APIEntrySubmissionService do
       expect(subject.message).to eq 'Hello'
     end
 
-  end
+  end #
 
   describe '#to_json' do
 

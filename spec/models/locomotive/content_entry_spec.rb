@@ -368,41 +368,6 @@ describe Locomotive::ContentEntry do
 
   end
 
-  describe '#public_submission' do
-
-    before(:each) do
-      @account_1 = FactoryGirl.build('admin user', id: fake_bson_id('1'))
-      @account_2 = FactoryGirl.build('frenchy user', id: fake_bson_id('2'))
-
-      @content_type.public_submission_enabled = true
-      @content_type.public_submission_accounts = ['', @account_1._id, @account_2._id.to_s]
-
-      site = FactoryGirl.build(:site)
-      allow(site).to receive(:accounts).and_return([@account_1, @account_2])
-
-      @content_entry = build_content_entry(site: site)
-    end
-
-    it 'does not send email notifications if the api is disabled' do
-      @content_type.public_submission_enabled = false
-      expect(Locomotive::Notifications).to_not receive(:new_content_entry)
-      @content_entry.save
-    end
-
-    it 'does not send email notifications if no api accounts' do
-      @content_type.public_submission_accounts = nil
-      expect(Locomotive::Notifications).to_not receive(:new_content_entry)
-      @content_entry.save
-    end
-
-    it 'sends email notifications when a new instance is created' do
-      expect(Locomotive::Notifications).to receive(:new_content_entry).with(@account_1, @content_entry).and_return(instance_double('mailer', deliver: true))
-      expect(Locomotive::Notifications).to receive(:new_content_entry).with(@account_2, @content_entry).and_return(instance_double('mailer', deliver: true))
-      @content_entry.save
-    end
-
-  end
-
   describe '#site' do
 
     it 'assigns a site when saving the content entry' do

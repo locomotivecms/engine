@@ -207,14 +207,16 @@ module Locomotive
     # @return [ String ] The html output
     #
     def document_stamp(document)
-      distance = time_ago_in_words(document.updated_at)
+      distance  = distance_of_time_in_words_to_now(document.updated_at)
+      update    = document.updated_at && document.updated_at != document.created_at
 
-      if account = document.updated_by || document.created_by
+      if account = (document.updated_by || document.created_by)
         profile = account_avatar_and_name(account, '40x40#')
-        key     = document.updated_by ? :updated_by : :created_by
+        key     = update ? :updated_by : :created_by
         t(key, scope: 'locomotive.shared.list', distance: distance, who: profile)
       else
-        t(:updated_at, scope: 'locomotive.shared.list', distance: distance)
+        key = update ? :updated_at : :created_at
+        t(key, scope: 'locomotive.shared.list', distance: distance)
       end
     end
 

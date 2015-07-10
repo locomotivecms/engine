@@ -9,21 +9,23 @@ module Locomotive
       end
 
       def to_json(entry)
-        entity = Locomotive::API::Entities::ContentEntryEntity.represent(entry)
-        entity.to_json
+        make_entity(entry).to_json
       end
 
       private
 
+      def load_content_type(slug)
+        @content_type = site.content_types.where(slug: slug).first
+      end
+
       def create_entry(attributes)
         ::Mongoid::Fields::I18n.with_locale(locale) do
-          form = Locomotive::API::Forms::ContentEntryForm.new(@content_type, attributes)
-          service.create(form.serializable_hash)
+          service.public_create(attributes)
         end
       end
 
-      def load_content_type(slug)
-        @content_type = site.content_types.where(slug: slug).first
+      def make_entity(entry)
+        Locomotive::API::Entities::ContentEntryEntity.represent(entry)
       end
 
       def service

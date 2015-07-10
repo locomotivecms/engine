@@ -176,11 +176,64 @@ describe Locomotive::ContentEntryService do
 
   end
 
-  def create_content_type
+  describe '#public_create' do
+
+    let(:attributes) { { title: 'Hello world', body: 'Lorem ipsum' } }
+
+    subject { service.public_create(attributes) }
+
+    it { expect { subject }.to change { content_type.entries.count } }
+    it { expect(service).to receive(:send_notifications); subject }
+
+    context 'invalid' do
+
+      let(:attributes) { {} }
+
+      it { expect { subject }.not_to change { content_type.entries.count } }
+      it { expect(service).not_to receive(:send_notifications); subject }
+
+    end
+
+  end
+
+  describe '#send_notifications' do
+
+    let(:enabled)       { true }
+    let(:account_1)     { create(:designer, site: site).account }
+    let(:account_2)     { create('brazillian user') }
+    let(:content_type)  { create_content_type(public_submission_enabled: enabled, public_submission_accounts: ['', account_1._id, account_2._id]) }
+    let(:entry)         { create_content_entry(title: 'Shoot an email', body: 'now') }
+
+    subject { service.send_notifications(entry) }
+
+    context 'public_submission disabled' do
+
+      let(:enabled) { false }
+
+      it { expect(Locomotive::Notifications).not_to receive(:new_content_entry); subject }
+
+    end
+
+    context 'public_submission enabled' do
+
+      it 'sends email notifications only to the members of the site' do
+        expect(Locomotive::Notifications).to receive(:new_content_entry).with(account_1, entry).and_return(instance_double('mailer', deliver: true))
+        expect(Locomotive::Notifications).not_to receive(:new_content_entry).with(account_2, entry)
+        subject
+      end
+
+    end
+
+  end
+
+  def create_content_type(attributes = {})
     FactoryGirl.build(:content_type, site: site, name: 'Articles').tap do |content_type|
       content_type.entries_custom_fields.build(name: 'title', type: 'string', label: 'Title', localized: true)
       content_type.entries_custom_fields.build(name: 'body', type: 'text', label: 'Body', localized: true)
       content_type.entries_custom_fields.build(name: 'published', type: 'boolean', label: 'Published')
+
+      content_type.attributes = attributes
+
       content_type.save!
     end.reload
   end

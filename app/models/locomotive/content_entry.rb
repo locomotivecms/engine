@@ -12,7 +12,6 @@ module Locomotive
     include Concerns::ContentEntry::Localized
     include Concerns::ContentEntry::Counter
     include Concerns::ContentEntry::NextPrevious
-    include Concerns::ContentEntry::Notifications
 
     ## fields ##
     field :_slug,             localize: true

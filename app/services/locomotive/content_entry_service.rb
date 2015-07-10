@@ -46,22 +46,22 @@ module Locomotive
       end
     end
 
-    # # Create a content entry from the attributes passed in parameter.
-    # # It does not set the created_by column since it's called
-    # # from the public side of the site with no logged in account.
-    # # The attributes are filtered through the corresponding presenter.
-    # #
-    # # @param [ Hash ] attributes The attributes of new content entry.
-    # #
-    # # @return [ Object ] An instance of the content entry.
-    # #
-    # def public_create(attributes)
-    #   raise 'TODO'
-    #   content_type.entries.build.tap do |entry|
-    #     entry.from_presenter(attributes)
-    #     entry.save
-    #   end
-    # end
+    # Create a content entry from the attributes passed in parameter.
+    # It does not set the created_by column since it's called
+    # from the public side of the site with no logged in account.
+    # The attributes are filtered through the Grape::Entity / Form.
+    # A notification email is sent to the selected members of the site.
+    #
+    # @param [ Hash ] attributes The attributes of new content entry.
+    #
+    # @return [ Object ] An instance of the content entry.
+    #
+    def public_create(attributes)
+      form = Locomotive::API::Forms::ContentEntryForm.new(self.content_type, attributes)
+      create(form.serializable_hash).tap do |entry|
+        send_notifications(entry) if entry.errors.empty?
+      end
+    end
 
     # Update a content entry from the attributes passed in parameter.
     # It sets the updated_by column with the current account.
@@ -108,6 +108,18 @@ module Locomotive
     #
     def destroy_all
       content_type.entries.destroy_all
+    end
+
+    def send_notifications(entry)
+      return unless self.content_type.public_submission_enabled?
+
+      account_ids = (self.content_type.public_submission_accounts || []).map(&:to_s)
+
+      self.content_type.site.accounts.each do |account|
+        next unless account_ids.include?(account._id.to_s)
+
+        Locomotive::Notifications.new_content_entry(account, entry).deliver
+      end
     end
 
     # Give the list of permitted attributes for a content entry.
