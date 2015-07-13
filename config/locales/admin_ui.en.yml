@@ -280,6 +280,10 @@ en:
       search_form:
         placeholder: Search by filename
 
+    public_submission_accounts:
+      edit:
+        title: "%{name} &mdash; Notification settings"
+
     content_types:
       index:
         title: Models
@@ -307,6 +311,7 @@ en:
         title: '%{type}'
         download: download entries
         new: new entry
+        edit_notification_settings: Edit notification settings
         category_noname: "No name"
         latest_entries: "Latest entries"
         search_placeholder: "Enter your search keywords here"

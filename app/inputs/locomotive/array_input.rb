@@ -25,7 +25,7 @@ module Locomotive
 
     def collection_to_html
       _template = options[:template]
-      key       = attribute_name.to_s.singularize.to_sym
+      key       = self.singularized_name
 
       path, locals = (if _template.respond_to?(:has_key?)
        [_template[:path].to_s, _template[:locals] || {}]
@@ -63,18 +63,22 @@ module Locomotive
       css = 'form-control input'
 
       if options[:select_options]
-        template.select_tag('locale', template.options_for_select(options[:select_options]), class: css)
+        template.select_tag(singularized_name, template.options_for_select(options[:select_options]), class: css)
       elsif data = options[:picker]
         template.hidden_field_tag('id', '', class: css, data: data)
       else
         text_options = input_html_options.dup
         text_options[:class] << css
-        template.text_field_tag(attribute_name.to_s.singularize, '', text_options)
+        template.text_field_tag(singularized_name, '', text_options)
       end
     end
 
     def include_input_for_new_item?
       options[:template_url].present?
+    end
+
+    def singularized_name
+      attribute_name.to_s.singularize.to_sym
     end
 
     def text(name)

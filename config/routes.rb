@@ -47,6 +47,10 @@ Locomotive::Engine.routes.draw do
       post :bulk_create, on: :collection
     end
 
+    resource :public_submission_accounts, only: [:edit, :update], path: 'content_types/:slug/public_submission_accounts' do
+      get :new_account
+    end
+
     resources :content_entries, path: 'content_types/:slug/entries' do
       get :show_in_form,  on: :collection
       put :sort,          on: :collection

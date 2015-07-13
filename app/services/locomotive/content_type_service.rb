@@ -11,5 +11,9 @@ module Locomotive
       site.content_types.by_id_or_slug(slug)
     end
 
+    def update(content_type, attributes = {})
+      content_type.update_attributes(attributes)
+    end
+
   end
 end

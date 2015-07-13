@@ -48,5 +48,9 @@ module Locomotive
       end
     end
 
+    def can_edit_public_submission_accounts?(content_type)
+      policy(content_type).update? && content_type.public_submission_enabled?
+    end
+
   end
 end
