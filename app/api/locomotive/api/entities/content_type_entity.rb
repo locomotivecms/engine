@@ -4,7 +4,8 @@ module Locomotive
 
       class ContentTypeEntity < BaseEntity
 
-        expose :name, :slug, :description, :label_field_name, :order_direction, :public_submission_enabled, :raw_item_template
+        expose  :name, :slug, :description, :label_field_name, :order_direction,
+                :public_submission_enabled, :raw_item_template, :display_settings
 
         expose :fields, using: ContentTypeFieldEntity do |content_type, _|
           content_type.ordered_entries_custom_fields || []

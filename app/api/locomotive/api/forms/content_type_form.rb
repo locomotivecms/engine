@@ -11,7 +11,8 @@ module Locomotive
               :public_submission_enabled,
               :public_submission_accounts,
               :raw_item_template,
-              :entries_custom_fields_attributes
+              :entries_custom_fields_attributes,
+              :display_settings
 
         # @param [ Site ] the current site, or site to scope to
         def initialize(site, attributes = {})
@@ -36,6 +37,11 @@ module Locomotive
           self.public_submission_accounts = emails.collect do |email|
             Locomotive::Account.where(email: email).first
           end.compact.map(&:id)
+        end
+
+        def display_settings=(settings)
+          (settings || {}).each { |k, v| settings[k] = v == 'true' }
+          set_attribute(:display_settings, settings)
         end
 
         private

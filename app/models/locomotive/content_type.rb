@@ -26,6 +26,7 @@ module Locomotive
     field :public_submission_accounts,  type: Array
     field :filter_fields,               type: Array
     field :number_of_entries
+    field :display_settings,            type: Hash
 
     ## associations ##
     belongs_to  :site,      class_name: 'Locomotive::Site', validate: false

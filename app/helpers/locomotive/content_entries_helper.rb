@@ -1,6 +1,15 @@
 module Locomotive
   module ContentEntriesHelper
 
+    # Tell if the tab specified by the name argument should
+    # be displayed or not. It is based on the display_settings
+    # property of the content type.
+    def display_content_entry_tab?(content_type, name)
+      return true if content_type.display_settings.blank?
+
+      content_type.display_settings[name.to_s] != false
+    end
+
     # Display the label related to a field of a content entry.
     # If the field is not localized, we just display the label.
     # If the field is localized, then we display a nice flag icon
