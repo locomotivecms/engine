@@ -3,8 +3,8 @@ module Locomotive
 
     def list
       site.content_types
-        .only(:_id, :name, :slug, :number_of_entries)
-        .order_by(:name.asc).to_a
+        .only(:_id, :name, :slug, :number_of_entries, :display_settings)
+        .order_by(:'display_settings.position'.asc, :name.asc).to_a
     end
 
     def find_by_slug(slug)

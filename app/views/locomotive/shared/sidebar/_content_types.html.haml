@@ -6,10 +6,11 @@
 
     %ul
       - list.each do |content_type|
-        %li
-          = link_to content_entries_path(current_site, content_type.slug) do
-            %span.text= content_type.name
+        - if policy(content_type).show?
+          %li
+            = link_to content_entries_path(current_site, content_type.slug) do
+              %span.text= content_type.name
 
-            %span.badge= content_type.number_of_entries || '?'
+              %span.badge= content_type.number_of_entries || '?'
 
 

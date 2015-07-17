@@ -100,6 +100,10 @@ module Locomotive
       self.entries_custom_fields.where(localized: true).count > 0
     end
 
+    def hidden?
+      (self.display_settings || {})['hidden']
+    end
+
     protected
 
     def normalize_slug

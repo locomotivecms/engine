@@ -40,7 +40,13 @@ module Locomotive
         end
 
         def display_settings=(settings)
-          (settings || {}).each { |k, v| settings[k] = v == 'true' }
+          (settings || {}).each do |k, v|
+            if k == 'position'
+              settings[k] = v.to_i
+            else
+              settings[k] = v == 'true'
+            end
+          end
           set_attribute(:display_settings, settings)
         end
 

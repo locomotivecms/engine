@@ -17,5 +17,9 @@ module Locomotive
       site_admin_or_designer?
     end
 
+    def show?
+      site_admin_or_designer? || !@resource.hidden?
+    end
+
   end
 end
