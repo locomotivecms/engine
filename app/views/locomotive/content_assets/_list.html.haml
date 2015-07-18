@@ -10,14 +10,16 @@
     - @content_assets.each do |asset|
       .asset
         .top
+          %h2= asset_filename(asset)
+          .size= human_asset_size(asset)
+
+        .body
           .small-thumbnail
             - if asset_with_thumbnail?(asset)
               = image_tag asset.alternative_vignette_url
             - else
               .not-a-image{ class: asset.content_type }
                 %span= asset_text(asset)
-
-          %h2= asset_filename(asset)
 
         .actions
           - if enable_select

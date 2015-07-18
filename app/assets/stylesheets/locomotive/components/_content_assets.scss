@@ -87,20 +87,33 @@
   .asset {
     @include border-radius($asset_border_radius);
     background: $asset_background;
-    padding: 15px;
+    padding: 10px 15px;
     margin: 0px 20px 20px 0px;
+    position: relative;
 
     width: $asset_width;
     height: $asset_height;
 
-    > .top {
-      min-height: $asset_height - 85;
-    }
-
     h2 {
       color: $asset_title_color;
       font-size: 14px;
-      margin: 8px 0px 20px 0px;
+      margin: 0px 0px 4px 0px;
+      text-align: right;
+    }
+
+    .size {
+      font-size: 11px;
+      text-align: right;
+      color: $asset_size_color;
+      margin-bottom: 10px;
+    }
+
+    .body {
+      width: 100%;
+      height: $asset_height - 106;
+      @include display-flex;
+      @include flex-align(center);
+      @include flex-justify-content(center);
     }
 
     .small-thumbnail {
@@ -140,8 +153,14 @@
       }
     }
 
-    a.remove {
-      color: $asset_remove_icon_color;
+    .actions {
+      position: absolute;
+      bottom: 10px;
+      right: 15px;
+
+      a.remove {
+        color: $asset_remove_icon_color;
+      }
     }
 
   }

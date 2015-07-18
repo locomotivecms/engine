@@ -22,6 +22,14 @@ module Locomotive
       value.blank? ? '?' : value
     end
 
+    def human_asset_size(asset)
+      if asset.image?
+        "#{asset.width} X #{asset.height} px"
+      else
+        number_to_human_size(asset.size)
+      end
+    end
+
   end
 
   class ImageResizeForm

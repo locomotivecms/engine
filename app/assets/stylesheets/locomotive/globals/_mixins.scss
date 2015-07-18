@@ -18,10 +18,15 @@
 
 @mixin flex-justify-content($alignment)
 {
+           -webkit-box-pack: $alignment;
+              -moz-box-pack: $alignment;
+              -ms-flex-pack: $alignment;
     -webkit-justify-content: $alignment;
        -moz-justify-content: $alignment;
             justify-content: $alignment;
 }
+
+
 
 @mixin flex-align($alignment)
 {
