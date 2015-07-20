@@ -61,7 +61,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'bazaar',                          '~> 0.0.2'
 
   s.add_dependency 'carrierwave-mongoid',             '~> 0.7'
-  s.add_dependency 'fog',                             '~> 1.31.0'
+  s.add_dependency 'fog',                             '~> 1.32.0'
   s.add_dependency 'dragonfly',                       '~> 1.0.7'
   s.add_dependency 'rack-cache',                      '~> 1.1'
   s.add_dependency 'mimetype-fu',                     '~> 0.1.2'
@@ -70,7 +70,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'httparty',                        '~> 0.13.3'
   s.add_dependency 'actionmailer-with-request',       '~> 0.4.0'
 
-  s.add_dependency 'grape',                           '~> 0.11.0'
+  s.add_dependency 'grape',                           '~> 0.12.0'
   s.add_dependency 'grape-entity',                    '~> 0.4.5'
 
   s.add_development_dependency "faye-websocket"
