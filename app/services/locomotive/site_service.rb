@@ -1,6 +1,7 @@
 module Locomotive
   class SiteService < Struct.new(:account)
 
+    include Locomotive::Concerns::ActivityService
     include Morphine
 
     register :page_service do
@@ -31,7 +32,9 @@ module Locomotive
       Site.new(attributes).tap do |site|
         site.memberships.build account: account, role: 'admin'
 
-        raise_if_not_valid ? site.save! : site.save
+        success = raise_if_not_valid ? site.save! : site.save
+
+        create_activity 'site.created', site: site if success
       end
     end
 

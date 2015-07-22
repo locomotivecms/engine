@@ -1,0 +1,17 @@
+- title t('.title')
+
+.row
+  .col-md-12
+    %h3= t('.activity')
+
+    %ul
+      - @activities.each do |activity|
+        %li
+          = activity.key
+          \/
+          = activity.actor.name
+          \/
+          = activity.created_at
+          \/
+          = activity.parameters.inspect
+
