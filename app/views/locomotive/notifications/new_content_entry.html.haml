@@ -27,5 +27,7 @@
           = value.map(&:_label).join(', ')
         - when 'tags'
           = value.join(', ')
+        - when 'text'
+          = raw(value.gsub(/(\r\n|\r|\n)/, "<br />"))
         - else
           = value
