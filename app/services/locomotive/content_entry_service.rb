@@ -1,6 +1,8 @@
 module Locomotive
   class ContentEntryService < Struct.new(:content_type, :account)
 
+    include Locomotive::Concerns::ActivityService
+
     # List all the entries of a content type.
     #
     # If the content type allows the pagination, in other words, if the entries are not
@@ -28,6 +30,8 @@ module Locomotive
     def sort(ids)
       klass = self.content_type.klass_with_custom_fields(:entries)
       klass.sort_entries!(ids, self.content_type.sortable_column)
+
+      create_activity 'content_entries.sorted', parameters: activity_parameters
     end
 
     # Create a content entry from the attributes passed in parameter.
@@ -42,7 +46,10 @@ module Locomotive
 
       content_type.entries.build(attributes).tap do |entry|
         entry.created_by = account if account
-        entry.save
+
+        if entry.save
+          create_activity 'content_entry.created', parameters: activity_parameters(entry)
+        end
       end
     end
 
@@ -59,7 +66,11 @@ module Locomotive
     def public_create(attributes)
       form = Locomotive::API::Forms::ContentEntryForm.new(self.content_type, attributes)
       create(form.serializable_hash).tap do |entry|
-        send_notifications(entry) if entry.errors.empty?
+        if entry.errors.empty?
+          # send an email to selected local accounts
+          send_notifications(entry)
+
+          create_activity 'content_entry.public_submission', parameters: activity_parameters(entry)
       end
     end
 
@@ -77,7 +88,16 @@ module Locomotive
       entry.tap do |entry|
         entry.attributes = attributes
         entry.updated_by = account
-        entry.save
+
+        if entry.save
+          create_activity 'content_entry.updated', parameters: activity_parameters(entry)
+        end
+      end
+    end
+
+    def destroy(entry)
+      entry.destroy.tap do
+        create_activity 'content_entry.destroy', parameters: activity_parameters(entry)
       end
     end
 
@@ -204,6 +224,15 @@ module Locomotive
           end
         end
       end
+    end
+
+    def activity_parameters(entry = nil)
+      {
+        _id:                entry.try(:_id),
+        label:              entry.try(:_label),
+        content_type:       content_type.name,
+        content_type_slug:  content_type.slug
+      }
     end
 
   end

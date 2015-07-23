@@ -2,10 +2,13 @@ en:
   date:
     formats:
       default: "%m/%d/%Y"
+    today_at: "today at"
+    yesterday_at: "yesterday at"
 
   time:
     formats:
       default: "%m/%d/%Y %H:%M"
+      time: "%H:%M"
 
   mongoid:
     errors:

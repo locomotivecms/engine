@@ -74,7 +74,7 @@ module Locomotive
 
     def destroy
       authorize @content_entry
-      @content_entry.destroy
+      service.destroy(@content_entry)
       respond_with @content_entry, location: content_entries_path(current_site, @content_type.slug)
     end
 

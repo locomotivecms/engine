@@ -1,18 +1,28 @@
 module Locomotive
   class MembershipService < Struct.new(:site, :policy)
 
+    include Locomotive::Concerns::ActivityService
+
     # Create a new membership for the site assigned to that service.
     # In case, no account is found from the email passed in parameter,
     # this method will return nil.
     # By default, the author role will be set to the new membership.
     #
-    # @param [ String ] email The email
+    # @param [ Object ] email_or_account The email or the account ifself
     #
     # @return [ Object ] A new membership (with errors or not) or nil (no account found)
     #
-    def create(email)
-      if account = Locomotive::Account.find_by_email(email)
-        site.memberships.create(account: account, email: email)
+    def create(email_or_account)
+      account = if email_or_account.respond_to?(:email)
+        email_or_account
+      else
+        Locomotive::Account.find_by_email(email_or_account)
+      end
+
+      if account
+        if site.memberships.create(account: account, email: account.email)
+          create_activity 'membership.added', parameters: { name: account.name, email: account.email }
+        end
       else
         nil
       end

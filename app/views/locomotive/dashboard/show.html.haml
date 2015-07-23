@@ -4,14 +4,14 @@
   .col-md-12
     %h3= t('.activity')
 
-    %ul
+    %ul.activity-feed
       - @activities.each do |activity|
         %li
-          = activity.key
-          \/
-          = activity.actor.name
-          \/
-          = activity.created_at
-          \/
-          = activity.parameters.inspect
+          %h4
+            = activity.actor.name
+            %small= activity.created_at.to_s(:humanized_ago)
+          %p.sentence
+            = render_activity_sentence(activity)
+            / = activity.key
+            / = activity.parameters.inspect
 

@@ -85,6 +85,17 @@ en:
         title: "Hi %{name}, just to let you know that a new instance has been created on %{date} for the site <b>%{domain}</b>"
         type: "Model: %{type}"
 
+    activity:
+      site:
+        created: 'created the site'
+      page:
+        created: 'created the %{page} page'
+        updated: 'updated the %{page} page'
+        destroyed: 'deleted the %{page} page'
+      content_asset:
+        created_bulk: 'uploaded %{count} asset(s)'
+        destroyed: 'deleted the %{filename} asset'
+
     pagination:
       first: "&laquo;"
       last: "&raquo;"

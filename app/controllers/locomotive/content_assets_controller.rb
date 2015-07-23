@@ -35,7 +35,7 @@ module Locomotive
 
     def destroy
       authorize @content_asset
-      @content_asset.destroy
+      service.destroy(@content_asset)
       respond_with(@content_asset) do |format|
         format.html do
           if request.xhr?
@@ -67,7 +67,7 @@ module Locomotive
     end
 
     def service
-      @service ||= Locomotive::ContentAssetService.new(current_site)
+      @service ||= Locomotive::ContentAssetService.new(current_site, current_locomotive_account)
     end
 
     def content_asset_params

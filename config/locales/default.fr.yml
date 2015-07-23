@@ -137,6 +137,9 @@ fr:
     abbr_month_names: [~, jan., fév., mar., avr., mai, juin, juil., août, sept., oct., nov., déc.]
     order: [ day, month, year ]
 
+    today_at: "aujourd'hui à"
+    yesterday_at: "hier à"
+
   pagination:
     previous: "&laquo; Précédent"
     next: "Suivant &raquo;"

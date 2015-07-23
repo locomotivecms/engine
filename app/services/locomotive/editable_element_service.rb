@@ -1,10 +1,11 @@
 module Locomotive
-
   class EditableElementService < Struct.new(:site, :account)
+
+    include Locomotive::Concerns::ActivityService
 
     def update_all(list_of_attributes)
       [].tap do |elements|
-        pages = {}
+        pages = {}, modified_pages = {}
 
         list_of_attributes.each do |attributes|
           page_id = attributes[:page_id]
@@ -15,12 +16,18 @@ module Locomotive
             if element = page.editable_elements.find(attributes[:id])
               element.attributes = clean_attributes_for(element, attributes)
 
+              modified_pages[page_id] = page if element.changed?
+
               elements << [page, element]
             end
           end
         end
 
         save_all_pages(pages.values)
+
+        create_activity 'editable_elements.modified', parameters: {
+          pages: modified_pages.values.map { |p| { title: p.title, _id: p._id } }
+        } unless modified_pages.empty?
       end
     end
 
@@ -44,5 +51,4 @@ module Locomotive
     end
 
   end
-
 end

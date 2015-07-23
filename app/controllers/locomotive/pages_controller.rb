@@ -36,13 +36,13 @@ module Locomotive
 
     def destroy
       authorize @page
-      @page.destroy
+      service.destroy(@page)
       respond_with @page, location: editable_elements_path(current_site, current_site.pages.root.first)
     end
 
     def sort
       authorize @page, :update?
-      @page.sort_children!(params.require(:children))
+      service.sort(@page, params.require(:children))
       respond_with @page, location: edit_page_path(current_site, @page)
     end
 
@@ -57,7 +57,7 @@ module Locomotive
     end
 
     def service
-      @service ||= Locomotive::PageService.new(current_site)
+      @service ||= Locomotive::PageService.new(current_site, current_locomotive_account)
     end
 
   end

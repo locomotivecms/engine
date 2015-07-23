@@ -2,6 +2,8 @@ module Locomotive
 
   class PageService < Struct.new(:site, :account)
 
+    include Locomotive::Concerns::ActivityService
+
     # Create a page from the attributes passed in parameter.
     # It sets the created_by column with the current account.
     #
@@ -12,7 +14,16 @@ module Locomotive
     def create(attributes)
       site.pages.build(attributes).tap do |page|
         page.created_by = account if account
-        page.save
+
+        if page.save
+          create_activity 'page.created', parameters: { title: page.title, _id: page._id }
+        end
+      end
+    end
+
+    def sort(page, children)
+      page.sort_children!(children).tap do
+        create_activity 'pages.sorted', parameters: { title: page.title, _id: page._id }
       end
     end
 
@@ -28,7 +39,16 @@ module Locomotive
       page.tap do
         page.attributes = attributes
         page.updated_by = account if account
-        page.save
+
+        if page.save
+          create_activity 'page.updated', parameters: { title: page.title, _id: page._id }
+        end
+      end
+    end
+
+    def destroy(page)
+      page.destroy.tap do
+        create_activity 'page.destroyed', parameters: { title: page.title }
       end
     end
 

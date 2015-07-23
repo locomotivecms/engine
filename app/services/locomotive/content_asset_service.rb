@@ -1,5 +1,7 @@
 module Locomotive
-  class ContentAssetService < Struct.new(:site)
+  class ContentAssetService < Struct.new(:site, :account)
+
+    include Locomotive::Concerns::ActivityService
 
     def list(options = {})
       options[:per_page] ||= Locomotive.config.ui[:per_page]
@@ -13,8 +15,20 @@ module Locomotive
 
     def bulk_create(list)
       list = list.values if list.is_a?(Hash)
-      list.map do |params|
+
+      assets = list.map do |params|
         site.content_assets.create(params)
+      end
+
+      valid_assets = assets.map { |a| a.errors.empty? ? { name: a.source_filename, url: a.source.url } : nil }.compact
+      create_activity 'content_asset.created_bulk', parameters: { assets: valid_assets } unless valid_assets.empty?
+
+      assets
+    end
+
+    def destroy(asset)
+      asset.destroy.tap do
+        create_activity 'content_asset.destroyed', parameters: { name: asset.source_filename }
       end
     end
 
