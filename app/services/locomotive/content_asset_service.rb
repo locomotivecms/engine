@@ -20,15 +20,15 @@ module Locomotive
         site.content_assets.create(params)
       end
 
-      valid_assets = assets.map { |a| a.errors.empty? ? { name: a.source_filename, url: a.source.url } : nil }.compact
-      create_activity 'content_asset.created_bulk', parameters: { assets: valid_assets } unless valid_assets.empty?
+      valid_assets = assets.map { |a| a.errors.empty? ? { name: a.source_filename, url: a.source.url, image: a.image? } : nil }.compact
+      track_activity 'content_asset.created_bulk', parameters: { assets: valid_assets } unless valid_assets.empty?
 
       assets
     end
 
     def destroy(asset)
       asset.destroy.tap do
-        create_activity 'content_asset.destroyed', parameters: { name: asset.source_filename }
+        track_activity 'content_asset.destroyed', parameters: { name: asset.source_filename }
       end
     end
 

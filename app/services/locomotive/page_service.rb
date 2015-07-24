@@ -16,14 +16,14 @@ module Locomotive
         page.created_by = account if account
 
         if page.save
-          create_activity 'page.created', parameters: { title: page.title, _id: page._id }
+          track_activity 'page.created', parameters: { title: page.title, _id: page._id }
         end
       end
     end
 
     def sort(page, children)
       page.sort_children!(children).tap do
-        create_activity 'pages.sorted', parameters: { title: page.title, _id: page._id }
+        track_activity 'page.sorted', parameters: { title: page.title, _id: page._id }
       end
     end
 
@@ -41,14 +41,14 @@ module Locomotive
         page.updated_by = account if account
 
         if page.save
-          create_activity 'page.updated', parameters: { title: page.title, _id: page._id }
+          track_activity 'page.updated', parameters: { title: page.title, _id: page._id }
         end
       end
     end
 
     def destroy(page)
       page.destroy.tap do
-        create_activity 'page.destroyed', parameters: { title: page.title }
+        track_activity 'page.destroyed', parameters: { title: page.title }
       end
     end
 

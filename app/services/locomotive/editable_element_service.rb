@@ -5,7 +5,7 @@ module Locomotive
 
     def update_all(list_of_attributes)
       [].tap do |elements|
-        pages = {}, modified_pages = {}
+        pages, modified_pages = {}, {}
 
         list_of_attributes.each do |attributes|
           page_id = attributes[:page_id]
@@ -25,7 +25,7 @@ module Locomotive
 
         save_all_pages(pages.values)
 
-        create_activity 'editable_elements.modified', parameters: {
+        track_activity 'editable_elements.modified', parameters: {
           pages: modified_pages.values.map { |p| { title: p.title, _id: p._id } }
         } unless modified_pages.empty?
       end

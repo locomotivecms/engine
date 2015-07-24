@@ -34,7 +34,7 @@ module Locomotive
 
         success = raise_if_not_valid ? site.save! : site.save
 
-        create_activity 'site.created', site: site, parameters: { name: site.name } if success
+        track_activity 'site.created', site: site, parameters: { name: site.name } if success
       end
     end
 

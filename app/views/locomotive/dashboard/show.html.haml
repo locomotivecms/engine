@@ -2,16 +2,19 @@
 
 .row
   .col-md-12
-    %h3= t('.activity')
-
     %ul.activity-feed
       - @activities.each do |activity|
-        %li
+        %li{ class: activity.domain }
+          %span.icon.fa-stack.fa-lg
+            %i.fa.fa-circle.fa-stack-2x
+            %i.fa.fa-stack-1x.fa-inverse{ class: activity_to_icon(activity) }
+
           %h4
-            = activity.actor.name
-            %small= activity.created_at.to_s(:humanized_ago)
-          %p.sentence
+            = account_avatar_and_name(activity.actor, size = '70x70#')
+            &middot;
+            %span.time= activity.created_at.to_s(:humanized_ago)
+
+          .sentence
             = render_activity_sentence(activity)
-            / = activity.key
-            / = activity.parameters.inspect
+            .clearfix
 

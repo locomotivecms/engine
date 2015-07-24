@@ -13,15 +13,17 @@ module Locomotive
     # @return [ Object ] A new membership (with errors or not) or nil (no account found)
     #
     def create(email_or_account)
-      account = if email_or_account.respond_to?(:email)
+      _account = if email_or_account.respond_to?(:email)
         email_or_account
       else
         Locomotive::Account.find_by_email(email_or_account)
       end
 
-      if account
-        if site.memberships.create(account: account, email: account.email)
-          create_activity 'membership.added', parameters: { name: account.name, email: account.email }
+      if _account
+        site.memberships.create(account: _account, email: _account.email).tap do |success|
+          if success
+            track_activity 'membership.created', parameters: { name: _account.name, email: _account.email }
+          end
         end
       else
         nil
@@ -49,6 +51,10 @@ module Locomotive
         membership.errors.add(:role, :invalid)
         false
       end
+    end
+
+    def account
+      policy.account
     end
 
   end

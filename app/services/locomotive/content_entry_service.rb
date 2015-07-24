@@ -31,7 +31,7 @@ module Locomotive
       klass = self.content_type.klass_with_custom_fields(:entries)
       klass.sort_entries!(ids, self.content_type.sortable_column)
 
-      create_activity 'content_entries.sorted', parameters: activity_parameters
+      track_activity 'content_entry.sorted', parameters: activity_parameters
     end
 
     # Create a content entry from the attributes passed in parameter.
@@ -48,7 +48,7 @@ module Locomotive
         entry.created_by = account if account
 
         if entry.save
-          create_activity 'content_entry.created', parameters: activity_parameters(entry)
+          track_activity 'content_entry.created', parameters: activity_parameters(entry)
         end
       end
     end
@@ -65,12 +65,14 @@ module Locomotive
     #
     def public_create(attributes)
       form = Locomotive::API::Forms::ContentEntryForm.new(self.content_type, attributes)
-      create(form.serializable_hash).tap do |entry|
+
+      without_tracking_activity { create(form.serializable_hash) }.tap do |entry|
         if entry.errors.empty?
           # send an email to selected local accounts
           send_notifications(entry)
 
-          create_activity 'content_entry.public_submission', parameters: activity_parameters(entry)
+          track_activity 'content_entry.created_public', parameters: activity_parameters(entry)
+        end
       end
     end
 
@@ -90,14 +92,14 @@ module Locomotive
         entry.updated_by = account
 
         if entry.save
-          create_activity 'content_entry.updated', parameters: activity_parameters(entry)
+          track_activity 'content_entry.updated', parameters: activity_parameters(entry)
         end
       end
     end
 
     def destroy(entry)
       entry.destroy.tap do
-        create_activity 'content_entry.destroy', parameters: activity_parameters(entry)
+        track_activity 'content_entry.destroyed', parameters: activity_parameters(entry)
       end
     end
 
@@ -169,6 +171,10 @@ module Locomotive
       end
 
       (default + dynamic + [referenced.empty? ? nil : referenced]).compact
+    end
+
+    def site
+      self.content_type.site
     end
 
     protected
