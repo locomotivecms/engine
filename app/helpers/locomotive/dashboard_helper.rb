@@ -18,11 +18,17 @@ module Locomotive
       when 'membership.created' then { name: activity_emphasize(params[:name]) }
       when /\Acontent_entry\./  then activity_content_entry_options(params)
       when /\Apage\./           then activity_page_options(params)
-      when 'content_asset.created_bulk' then activity_bulk_content_assets_options(params)
-      when 'content_asset.destroyed' then { name: activity_emphasize(params[:name]) }
+      when 'content_asset.created_bulk' then { count: activity_emphasize(params[:assets].size) }
+      when 'content_asset.destroyed'    then { name:  activity_emphasize(params[:name]) }
       end
 
       activity_key_to_sentence(activity.key, options)
+    end
+
+    def render_activity_additional_information(activity)
+      if activity.key == 'content_asset.created_bulk'
+        activity_bulk_content_assets(activity.parameters)
+      end
     end
 
     def activity_key_to_sentence(key, options = nil)
@@ -57,7 +63,7 @@ module Locomotive
       { entry: entry, content_type: content_type }
     end
 
-    def activity_bulk_content_assets_options(params)
+    def activity_bulk_content_assets(params)
       list = params[:assets].map do |asset|
         if asset[:image]
           content_tag(:li, link_to(image_tag(Locomotive::Dragonfly.resize_url(asset[:url], '60x60#'), alt: asset[:name]), asset[:url]))
@@ -66,10 +72,7 @@ module Locomotive
         end
       end.join("\n").html_safe
 
-      {
-        count:  activity_emphasize(params[:assets].size),
-        list:   content_tag(:ul, list, class: 'assets')
-      }
+      content_tag(:ul, list, class: 'assets') + content_tag(:div, '', class: 'clearfix')
     end
 
   end

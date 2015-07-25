@@ -99,7 +99,7 @@ en:
         updated: 'updated %{entry} from %{content_type}'
         destroyed: 'deleted %{entry} from %{content_type}'
       content_asset:
-        created_bulk: 'uploaded %{count} asset(s) %{list}'
+        created_bulk: 'uploaded %{count} asset(s)'
         destroyed: 'deleted the %{name} asset'
       membership:
         created: 'added %{name} to the site'
