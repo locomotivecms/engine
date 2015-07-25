@@ -9,34 +9,6 @@ namespace :locomotive do
   #   puts '...done'
   # end
 
-  desc 'Rebuild the serialized template of all the site pages'
-  task rebuild_serialized_page_templates: :environment do
-    Locomotive::Site.all.each do |site|
-      default_locale = site.default_locale
-
-      ([default_locale] + (site.locales - [default_locale])).each do |locale|
-        Mongoid::Fields::I18n.with_locale(locale) do
-          pages = site.pages.to_a
-          while !pages.empty? do
-            page = pages.pop
-            begin
-              page.send :_parse_and_serialize_template
-              page.instance_variable_set :@template_changed, true
-              page.save
-              puts "[#{site.name}][#{locale}] processing...#{page.title} [saved]"
-            rescue TypeError
-              pages.insert(0, page)
-            rescue ::Liquid::Error => e
-              puts "\tLiquid error: #{e.message} (#{page._id})"
-            rescue Exception => e
-              puts "\tUnknown error: #{e.message} (#{page._id})"
-            end
-          end
-        end
-      end
-    end
-  end
-
   desc 'Add a new admin user (NOTE: currently only supports adding user to first site)'
   task add_admin: :environment do
     name = ask('Display name: ') { |q| q.echo = true }
@@ -55,36 +27,25 @@ namespace :locomotive do
 
   namespace :upgrade do
 
-    desc 'Fix issue with the editable file and i18n in the 2.0.0.rc'
-    task fix_editable_files: :environment do
-      Locomotive::Page.all.each do |page|
-        page.editable_elements.each_with_index do |el, index|
-          next if el._type != 'Locomotive::EditableFile' || el.attributes['source'].is_a?(Hash)
 
-          value = el.attributes['source']
-
-          page.collection.find(_id: page._id).update('$unset' => { "editable_elements.#{index}.content" => 1 }, '$set' => { "editable_elements.#{index}.source" => { 'en' => value } })
-        end
-      end
-    end
 
   end # namespace: upgrade
 
-  desc 'Generate the documentation about the REST API'
-  task generate_api_doc: :environment do
-
-    require 'locomotive/misc/api_documentation'
-
-    output = Locomotive::Misc::ApiDocumentation.generate
-
-    path = File.join(Dir.pwd, 'public')
-
-    File.open(File.join(path, 'locomotive_api.html'), 'w') do |file|
-      file.write(output)
-    end
-  end
 
   namespace :maintenance do
+
+    desc 'Delete items older than N_DAYS days (30 by default) from the activity feed'
+    task clean_activity_feed: :environment do
+      days      = (ENV['N_DAYS'] ? ENV['N_DAYS'].to_i : 30).days.ago
+      criteria  = Locomotive::Activity.where(:created_at.lt => days)
+
+      if (size = criteria.count) > 0
+        criteria.destroy_all
+        puts "#{size} items from the activity feed have been deleted"
+      else
+        puts "No items from the activity feed have been deleted"
+      end
+    end
 
     desc 'Unset the translation of the editable elements for a LOCALE'
     task unset_editable_elements_translation: :environment do
