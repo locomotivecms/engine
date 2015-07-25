@@ -56,7 +56,7 @@ en:
           seo_title: Title
           target_klass_name: Model
         editable_element:
-          region: Region
+          region: Sections
         site:
           locales: Languages
           timezone_name: Timezone
