@@ -93,6 +93,8 @@ en:
         updated: 'updated the %{page} page'
         destroyed: 'deleted the %{page} page'
         sorted: 'sorted pages'
+      editable_element:
+        updated_bulk: 'modified the content of %{pages}'
       content_entry:
         created: 'added %{entry} to %{content_type}'
         created_public: 'added %{entry} to %{content_type} from a public form'

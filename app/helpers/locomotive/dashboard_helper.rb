@@ -3,11 +3,12 @@ module Locomotive
 
     def activity_to_icon(activity)
       case activity.domain
-      when 'site'           then 'fa-cog'
-      when 'page'           then 'fa-file-text'
-      when 'content_entry'  then activity.action == 'created_public' ? 'fa-comment' : 'fa-archive'
-      when 'membership'     then 'fa-user'
-      when 'content_asset'  then 'fa-file-picture-o'
+      when 'site'             then 'fa-cog'
+      when 'page'             then 'fa-file-text'
+      when 'editable_element' then 'fa-file-text'
+      when 'content_entry'    then activity.action == 'created_public' ? 'fa-comment' : 'fa-archive'
+      when 'content_asset'    then 'fa-file-picture-o'
+      when 'membership'       then 'fa-user'
       end
     end
 
@@ -15,19 +16,22 @@ module Locomotive
       params = activity.parameters
 
       options = case activity.key
-      when 'membership.created' then { name: activity_emphasize(params[:name]) }
-      when /\Acontent_entry\./  then activity_content_entry_options(params)
-      when /\Apage\./           then activity_page_options(params)
-      when 'content_asset.created_bulk' then { count: activity_emphasize(params[:assets].size) }
-      when 'content_asset.destroyed'    then { name:  activity_emphasize(params[:name]) }
+      when /\Apage\./                       then activity_page_options(params)
+      when /\Acontent_entry\./              then activity_content_entry_options(params)
+      when 'editable_element.updated_bulk'  then activity_bulk_editable_elements_options(params)
+      when 'content_asset.created_bulk'     then { count: activity_emphasize(params[:assets].size) }
+      when 'content_asset.destroyed'        then { name:  activity_emphasize(params[:name]) }
+      when 'membership.created'             then { name: activity_emphasize(params[:name]) }
       end
 
       activity_key_to_sentence(activity.key, options)
     end
 
     def render_activity_additional_information(activity)
-      if activity.key == 'content_asset.created_bulk'
-        activity_bulk_content_assets(activity.parameters)
+      case activity.key
+      when 'content_asset.created_bulk' then activity_bulk_content_assets(activity.parameters)
+      # when 'editable_element.updated_bulk' then activity_bulk_editable_elements(activity.parameters)
+      else nil
       end
     end
 
@@ -47,6 +51,14 @@ module Locomotive
       else
         nil
       end
+    end
+
+    def activity_bulk_editable_elements_options(params)
+      pages = params[:pages].map do |page|
+        link_to truncate(page[:title]),  editable_elements_path(current_site, page[:_id])
+      end.join(', ').html_safe
+
+      { pages: pages }
     end
 
     def activity_content_entry_options(params)

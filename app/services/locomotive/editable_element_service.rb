@@ -25,7 +25,7 @@ module Locomotive
 
         save_all_pages(pages.values)
 
-        track_activity 'editable_elements.modified', parameters: {
+        track_activity 'editable_element.updated_bulk', parameters: {
           pages: modified_pages.values.map { |p| { title: p.title, _id: p._id } }
         } unless modified_pages.empty?
       end
