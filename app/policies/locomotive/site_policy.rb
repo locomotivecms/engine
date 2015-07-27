@@ -41,6 +41,10 @@ module Locomotive
       super_admin? || site_admin?
     end
 
+    def show_developers_documentation?
+      super_admin? || site_admin?
+    end
+
     def permitted_attributes
       plain = [:name, :handle, :picture, :remove_picture, :seo_title, :meta_keywords, :meta_description, :timezone_name, :robots_txt]
       hash  = { domains: [], locales: [] }

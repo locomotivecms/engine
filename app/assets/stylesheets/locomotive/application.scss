@@ -4,6 +4,7 @@
 //= require locomotive/bootstrap-switch
 //= require locomotive/bootstrap-datetimepicker
 //= require locomotive/bootstrap-tagsinput
+//= require locomotive/highlightjs/github
 
 @import "font-awesome-sprockets";
 @import "font-awesome";
@@ -33,5 +34,6 @@
 @import "components/translations";
 @import "components/live_editing";
 @import "components/activity_feed";
+@import "components/developers";
 
 @import "components/sites";

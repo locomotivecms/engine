@@ -28,6 +28,8 @@ Locomotive::Engine.routes.draw do
     get '/',          to: 'dashboard#show'
     get 'dashboard',  to: 'dashboard#show', as: :dashboard
 
+    get 'developers', to: 'developers_documentation#show', as: :developers_documentation
+
     resources :pages do
       put :sort, on: :member
       get :get_path, on: :collection
