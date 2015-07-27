@@ -12,6 +12,7 @@ module Locomotive
     field :email,                   type: String, default: ''
     field :encrypted_password,      type: String, default: ''
     field :authentication_token,    type: String
+    field :api_token,               type: String
     field :reset_password_token,    type: String
     field :reset_password_sent_at,  type: Time
     field :password_salt,           type: String
