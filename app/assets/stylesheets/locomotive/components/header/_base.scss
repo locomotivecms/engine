@@ -33,6 +33,8 @@ $header_site_arrow_color:     #349cb0;
     span.default {
       font-family: $alt-font-family-sans-serif;
       color: rgba($header_brand_color, 1);
+      text-transform: uppercase;
+      font-size: 14px;
     }
   }
 
