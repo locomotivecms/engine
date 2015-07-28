@@ -13,5 +13,9 @@ module Locomotive
       self.file ? self.file.content_type : false
     end
 
+    def store_dir
+      self.build_store_dir('uploaded_assets', model.id)
+    end
+
   end
 end

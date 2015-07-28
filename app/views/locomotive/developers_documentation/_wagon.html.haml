@@ -14,7 +14,7 @@
 
 %pre
   %code.bash
-    wagon clone #{current_site.name.underscore.gsub(/(\W+)/, '_')} #{request.scheme}://#{request.host_with_port} -e #{current_locomotive_account.email} -a #{current_locomotive_account.api_key}
+    wagon clone #{current_site.name.underscore.gsub(/(\W+)/, '_')} #{request.scheme}://#{request.host_with_port} -h #{current_site.handle} -e #{current_locomotive_account.email} -a #{current_locomotive_account.api_key}
 
 %h3 Run locally your site
 

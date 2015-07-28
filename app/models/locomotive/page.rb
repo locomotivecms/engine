@@ -123,7 +123,12 @@ module Locomotive
     def set_default_raw_template
       begin
         return true if self.raw_template.present?
-        self.raw_template ||= self.index? ? '' : "{% extends 'parent' %}"
+
+        self.raw_template = if self.index? || !self.site.is_default_locale?(::Mongoid::Fields::I18n.locale.to_s)
+          ''
+        else
+          "{% extends 'parent' %}"
+        end
       rescue ActiveModel::MissingAttributeError
         # page not loaded from MongoDB without the raw_template attribute
       end

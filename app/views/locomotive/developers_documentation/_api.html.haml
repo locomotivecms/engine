@@ -25,8 +25,14 @@
 
 %pre
   %code.ruby
-    site = client.sites.by_handle('#{current_site.handle}')<br/>
-    site_client = client.scope_by(site)
+    site_client = client.scope_by('#{current_site.handle}')
+
+%h3 Get the name of the site and update it
+
+%pre
+  %code.ruby
+    puts "Old name is \#{site_client.current_site.get.name}"<br/>
+    site_client.current_site.update name: "A better #{current_site.name}"
 
 - current_site.content_types.each do |content_type|
   %h3 Get entries of the #{content_type.name} content type

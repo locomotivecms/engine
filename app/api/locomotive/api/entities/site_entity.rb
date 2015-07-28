@@ -19,6 +19,10 @@ module Locomotive
           site.picture.url
         end
 
+        expose :picture_thumbnail_url do |site, _|
+          Locomotive::Dragonfly.resize_url site.picture.url, '100x100#'
+        end
+
       end
 
     end
