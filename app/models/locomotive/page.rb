@@ -39,7 +39,6 @@ module Locomotive
     slugify_from        :title
 
     ## callbacks ##
-    after_initialize    :set_default_raw_template
     before_create       :localize_slug
     before_create       :build_fullpath
     before_update       :build_fullpath, unless: :skip_callbacks_on_update
@@ -118,20 +117,6 @@ module Locomotive
       end
 
       self.errors.empty?
-    end
-
-    def set_default_raw_template
-      begin
-        return true if self.raw_template.present?
-
-        self.raw_template = if self.index? || !self.site.is_default_locale?(::Mongoid::Fields::I18n.locale.to_s)
-          ''
-        else
-          "{% extends 'parent' %}"
-        end
-      rescue ActiveModel::MissingAttributeError
-        # page not loaded from MongoDB without the raw_template attribute
-      end
     end
 
     # The slug of a new page should be the same in all
