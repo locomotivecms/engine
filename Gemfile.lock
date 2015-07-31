@@ -1,9 +1,9 @@
 GIT
   remote: git://github.com/locomotivecms/steam.git
-  revision: 18001f79d80d568ea00c67799dbbfba53f6fc206
-  ref: 18001f7
+  revision: f96d63bab20643f47ec6f390c7ba2691206ae841
+  ref: f96d63b
   specs:
-    locomotivecms_steam (1.0.0.pre.alpha.3)
+    locomotivecms_steam (1.0.0.pre.beta.1)
       RedCloth (~> 4.2.9)
       chronic (~> 0.10.2)
       coffee-script (~> 2.4.1)
@@ -11,7 +11,7 @@ GIT
       dragonfly (~> 1.0.10)
       haml (~> 4.0.6)
       httparty (~> 0.13.5)
-      kramdown (~> 1.7.0)
+      kramdown (~> 1.8.0)
       locomotivecms-solid (~> 4.0.0.alpha2)
       locomotivecms_common (~> 0.0.4)
       mime-types (~> 2.6.1)
@@ -54,7 +54,7 @@ PATH
       jquery-rails (~> 4.0.3)
       jquery-ui-rails (~> 5.0.3)
       kaminari (~> 0.16.3)
-      locomotivecms_steam (~> 1.0.0.pre.alpha.3)
+      locomotivecms_steam (~> 1.0.0.pre.beta.1)
       mime-types (~> 2.5)
       mimetype-fu (~> 0.1.2)
       mongo_session_store-rails4 (~> 6.0.0)
@@ -142,7 +142,7 @@ GEM
     bootstrap-sass (3.3.5.1)
       autoprefixer-rails (>= 5.0.0.1)
       sass (>= 3.3.0)
-    bson (3.1.2)
+    bson (3.2.1)
     builder (3.2.2)
     carrierwave (0.10.0)
       activemodel (>= 3.2.0)
@@ -280,7 +280,7 @@ GEM
     fog-atmos (0.1.0)
       fog-core
       fog-xml
-    fog-aws (0.7.3)
+    fog-aws (0.7.4)
       fog-core (~> 1.27)
       fog-json (~> 1.0)
       fog-xml (~> 0.1)
@@ -312,7 +312,7 @@ GEM
       fog-core (~> 1.27)
       fog-json (~> 1.0)
       fog-xml (~> 0.1)
-    fog-profitbricks (0.0.3)
+    fog-profitbricks (0.0.5)
       fog-core
       fog-xml
       nokogiri
@@ -407,7 +407,7 @@ GEM
     kaminari (0.16.3)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
-    kramdown (1.7.0)
+    kramdown (1.8.0)
     less (2.6.0)
       commonjs (~> 0.2.7)
     locomotivecms-liquid (4.0.0.alpha2)
