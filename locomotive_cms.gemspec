@@ -28,8 +28,6 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'mongoid',                         '~> 4.0.2'
   s.add_dependency 'mongoid-tree',                    '~> 2.0.0'
-  # s.add_dependency 'mongoid_migration',               '~> 0.0.8'
-  # s.add_dependency 'mongo_session_store',             '~> 2.0.0'
   s.add_dependency 'mongo_session_store-rails4',      '~> 6.0.0'
 
   s.add_dependency 'mime-types',                      '~> 2.5'

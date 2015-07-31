@@ -27,7 +27,26 @@ namespace :locomotive do
 
   namespace :upgrade do
 
+    desc 'Upgrade to Locomotive v3 from v2.5.x'
+    task v3: :environment do
+      puts '...'
 
+      # content asset checksums
+      Locomotive::ContentAsset.all.each do |asset|
+        asset.send(:calculate_checksum)
+        asset.save
+      end
+      puts '[x] generate checksums for existing content assets'
+
+      # translation completion
+      Locomotive::Translation.all.each do |translation|
+        translation.send(:set_completion)
+        translation.save
+      end
+      puts '[x] set completion for translations'
+
+      puts "\nDone!"
+    end
 
   end # namespace: upgrade
 
