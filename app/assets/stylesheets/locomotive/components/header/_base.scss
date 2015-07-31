@@ -18,7 +18,7 @@ $header_site_arrow_color:     #349cb0;
   }
 
   .navbar-brand {
-    font-size: $header_brand_font_size;
+    font-size: $font-size-base + 2;
     color: $header_brand_color;
 
     padding-top: 15px;
@@ -34,7 +34,8 @@ $header_site_arrow_color:     #349cb0;
       font-family: $alt-font-family-sans-serif;
       color: rgba($header_brand_color, 1);
       text-transform: uppercase;
-      font-size: 14px;
+      font-weight: 300;
+      font-size: $font-size-base + 2;
     }
   }
 

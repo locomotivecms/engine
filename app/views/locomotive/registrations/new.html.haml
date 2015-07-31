@@ -2,8 +2,6 @@
 
 = locomotive_form_for resource, as: resource_name, url: sign_up_path do |f|
 
-  = flash_message
-
   = f.inputs do
     = f.input :name, required: true, autofocus: true
     = f.input :email, required: true

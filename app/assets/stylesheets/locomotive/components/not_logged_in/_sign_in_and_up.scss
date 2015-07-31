@@ -1,6 +1,6 @@
 $sign_in_legend_color: #a2e4f1;
 
-body.sessions, body.registrations {
+body.sessions, body.registrations, body.passwords {
   .content {
     @include make-sm-column-offset(3);
     @include make-sm-column(6);
@@ -10,6 +10,16 @@ body.sessions, body.registrations {
   }
 
   h1 {
+    text-transform: uppercase;
+    font-size: $font-size-base + 2;
+    font-family: $alt-font-family-sans-serif;
+
+    img {
+      position: relative;
+      top: -2px;
+      width: 16px;
+    }
+
     small {
       display: block;
       width: 100%;

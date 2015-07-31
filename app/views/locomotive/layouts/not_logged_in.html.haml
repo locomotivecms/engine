@@ -8,11 +8,17 @@
     = javascript_include_tag  'locomotive/not_logged_in'
     = stylesheet_link_tag     'locomotive/not_logged_in', media: 'screen'
 
+    %script{ type: 'text/javascript' }
+      :plain
+        window.flash_messages = #{flash_messages_to_json};
+
     = yield :head
 
   %body{ class: [controller.controller_name, flash.empty? ? '' : 'with-flash'].join(' ') }
     .wrapper.container-fluid
       .main
         .content
-          %h1!= title
+          %h1
+            = image_tag 'locomotive/logo.png'
+            != title
           = yield

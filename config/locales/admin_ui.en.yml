@@ -3,8 +3,8 @@ en:
     buttons:
       sign_in: Sign in
       sign_up: Sign up
-      send_password: Send
-      change_password: Update
+      send_password: Forgot password
+      change_password: Update my password
       new_item: "+ add"
       switch_to_site: Go
       delete: "Delete"
@@ -177,11 +177,9 @@ en:
 
     passwords:
       new:
-        title: Forgot password
         link: "&rarr; Back to login page"
         email: "Your email"
       edit:
-        title: Update my password
         link: "&rarr; Back to login page"
         password: "Your new password"
         password_confirmation: "Confirmation of your new password"

@@ -1,3 +1,6 @@
+@import "font-awesome-sprockets";
+@import "font-awesome";
+
 @import "./globals/bootstrap";
 @import "bootstrap";
 
@@ -6,6 +9,7 @@
 
 @import "layouts/not_logged_in";
 
+@import "components/misc/notify";
 @import "components/not_logged_in/sign_in_and_up";
 @import "components/not_logged_in/passwords";
 
