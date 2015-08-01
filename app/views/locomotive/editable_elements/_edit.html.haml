@@ -6,7 +6,7 @@
         %h1= truncate(@content_entry.try(:_label) || @page.title, length: 50)
 
     .row.info-row
-      .col-md-9
+      .col-sm-8.col-xs-8
         %span.fullpath= nice_editable_elements_path
 
         &nbsp;
@@ -17,9 +17,8 @@
           %i.fa.fa-gear
           = t('.settings_link')
 
-
-      .col-md-3
-        %p.text-right
+      .col-sm-4.col-xs-4
+        .text-right
           - if current_site.localized?
             = locale_picker_link
           - unless @editable_elements.empty?
@@ -27,7 +26,7 @@
             = f.action
 
       - unless @editable_elements.empty?
-        .col-md-12
+        .col-sm-12.col-xs-12
           %fieldset.inputs
             .form-group.input.select.optional.inline
               %label.select.optional.control-label{ for: 'page_block' }= t(:region, scope: 'simple_form.labels.locomotive.editable_element')
