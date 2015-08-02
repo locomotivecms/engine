@@ -10,20 +10,28 @@ module Locomotive
       benchmark "Parse page #{page._id} find_or_create_editable_elements" do
         parsed = { extends: {}, blocks: {}, elements: [] }
 
-        subscribe(parsed)
+        subscribe(parsed) do
+          parse(page)
 
-        parse(page)
-
-        persist_editable_elements(page, parsed)
+          persist_editable_elements(page, parsed)
+        end
       end
     end
 
     private
 
-    def subscribe(parsed)
-      subscribe_to_extends(parsed[:extends])
-      subscribe_to_blocks(parsed[:blocks])
-      subscribe_to_editable_elements(parsed[:elements])
+    def subscribe(parsed, &block)
+      subscribers = [
+        subscribe_to_extends(parsed[:extends]),
+        subscribe_to_blocks(parsed[:blocks]),
+        subscribe_to_editable_elements(parsed[:elements])
+      ]
+
+      yield.tap do
+        subscribers.each do |subscriber|
+          ActiveSupport::Notifications.unsubscribe(subscriber)
+        end
+      end
     end
 
     def subscribe_to_extends(extends)
