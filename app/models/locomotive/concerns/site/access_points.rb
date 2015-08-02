@@ -23,7 +23,9 @@ module Locomotive
           validate                  :domains_must_be_valid_and_unique
 
           ## callbacks ##
-          after_destroy :clear_cache_for_all_domains
+          before_validation :prepare_domain_sync
+          after_save        :emit_domain_sync_event
+          after_destroy     :emit_domain_deletion_event
 
           ## named scopes ##
           scope :match_domain, lambda { |domain| { any_in: { domains: [*domain] } } }
@@ -51,6 +53,12 @@ module Locomotive
 
         protected
 
+        def prepare_domain_sync
+          previous_domains  = self.domains_was || []
+          @added_domains    = self.domains - previous_domains
+          @removed_domains  = previous_domains - self.domains
+        end
+
         def domains_must_be_valid_and_unique
           return if self.domains.empty?
 
@@ -65,8 +73,21 @@ module Locomotive
           end
         end
 
-        def clear_cache_for_all_domains
-          self.domains.each { |name| Rails.cache.delete(name) }
+        def emit_domain_sync_event
+          return if @added_domains.blank? && @removed_domains.blank?
+
+          ActiveSupport::Notifications.instrument 'locomotive.site.domain_sync', {
+            added:    @added_domains,
+            removed:  @removed_domains
+          }
+        end
+
+        def emit_domain_deletion_event
+          return if self.domains.empty?
+
+          ActiveSupport::Notifications.instrument 'locomotive.site.domain_sync', {
+            removed: self.domains
+          }
         end
 
       end
