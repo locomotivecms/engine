@@ -73,9 +73,7 @@ production:
   sessions:
     default:
       database: <%= Rails.application.class.parent.to_s.underscore.downcase %>_production
-      hosts:
-        - localhost:27017
       options:
         # consistency: :strong
         # identity_map_enabled: true
-      # uri: <%%= ENV['MONGOLAB_URI'] || ENV['MONGOHQ_URL'] %>
+      uri: <%%= ENV['MONGOLAB_URI'] || ENV['MONGOHQ_URL'] %>

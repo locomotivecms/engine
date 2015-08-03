@@ -3,6 +3,8 @@ module Locomotive
 
     source_root File.expand_path('../../../../../', __FILE__)
 
+    class_option :heroku, type: :boolean, default: false, description: 'if the Engine runs on Heroku'
+
     def copy_initializers
       @source_paths = nil # reset it for the find_in_source_paths method
 
@@ -31,8 +33,39 @@ module Locomotive
   mount Locomotive::Steam::Server.to_app => '/', anchor: false)
     end
 
+    def enable_heroku
+      if options.heroku?
+        template 'heroku.rb', 'config/initializers/heroku.rb'
+        template 'mongoid_heroku.yml', 'config/mongoid.yml', force: true
+
+        inject_into_file 'config/environments/production.rb', after: "  # config.action_mailer.raise_delivery_errors = false\n" do <<-'RUBY'
+  config.action_mailer.raise_delivery_errors  = true
+  config.action_mailer.delivery_method        = :smtp
+  config.action_mailer.smtp_settings          = {
+    :address        => 'smtp.sendgrid.net',
+    :port           => 25,
+    :authentication => :plain,
+    :user_name      => ENV['SENDGRID_USERNAME'],
+    :password       => ENV['SENDGRID_PASSWORD'],
+    :domain         => ENV['SENDGRID_DOMAIN']
+}
+        RUBY
+        end
+
+        gem 'platform-api', '~> 0.3.0'
+      end
+    end
+
     def remove_index_html
       remove_file 'public/index.html'
+    end
+
+    def use_puma_as_app_server
+      inject_into_file 'Gemfile', after: "# gem 'unicorn'\n" do <<-'RUBY'
+# Use Puma as the app server
+gem 'puma'
+      RUBY
+      end
     end
 
     def show_readme
