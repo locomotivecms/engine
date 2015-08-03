@@ -65,7 +65,6 @@ Gem::Specification.new do |s|
   s.add_dependency 'mimetype-fu',                     '~> 0.1.2'
 
   s.add_dependency 'multi_json',                      '~> 1.11.0'
-  s.add_dependency 'httparty',                        '~> 0.13.3'
   s.add_dependency 'actionmailer-with-request',       '~> 0.4.0'
 
   s.add_dependency 'grape',                           '~> 0.12.0'

@@ -35,6 +35,14 @@ module Locomotive
 
     def enable_heroku
       if options.heroku?
+        inject_into_file 'Gemfile', after: "source 'https://rubygems.org'\n" do <<-'RUBY'
+
+if ENV['HEROKU_APP_NAME']
+  ruby '2.2.2'
+end
+        RUBY
+        end
+
         template 'heroku.rb', 'config/initializers/heroku.rb'
         template 'mongoid_heroku.yml', 'config/mongoid.yml', force: true
 
