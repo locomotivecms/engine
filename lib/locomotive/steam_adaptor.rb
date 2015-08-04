@@ -2,7 +2,15 @@ require 'locomotive/steam'
 require 'locomotive/steam/server'
 
 Locomotive::Steam.configure do |config|
-  config.asset_path = Rails.root.join('spec', 'dummy', 'public')
+
+  # asset_host or asset_path? Depends on the Carrierwave configuration
+  storage = CarrierWave::Uploader::Base.storage.to_s
+
+  if asset_host = CarrierWave::Uploader::Base.asset_host
+    config.asset_host = asset_host
+  elsif CarrierWave::Uploader::Base.storage_engines.invert[storage] == :file
+    config.asset_path = Rails.application.root.join('public')
+  end
 
   # rely on Mongoid for the connection information
   if mongoid = Mongoid.configure.sessions[:default]
