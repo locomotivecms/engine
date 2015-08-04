@@ -15,16 +15,6 @@ module Locomotive
       app.config.filter_parameters += [/\Aremote_.+_url\Z/]
     end
 
-    initializer 'locomotive.content_types' do |app|
-      # Load all the dynamic classes (custom fields)
-      begin
-        ContentType.all.collect { |content_type| content_type.klass_with_custom_fields(:entries) }
-      rescue Exception => e
-        # let assume it's because of the first install (meaning no config.yml file)
-        Locomotive.log :warn, "WARNING: unable to load the content types, #{e.message}"
-      end
-    end
-
     initializer 'locomotive.action_controller' do |app|
       ::ActionController::Base.wrap_parameters format: [:json]
     end

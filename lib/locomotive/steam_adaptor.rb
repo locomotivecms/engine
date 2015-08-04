@@ -7,7 +7,8 @@ Locomotive::Steam.configure do |config|
   storage = CarrierWave::Uploader::Base.storage.to_s
 
   if asset_host = CarrierWave::Uploader::Base.asset_host
-    config.asset_host = asset_host
+    config.asset_host   = asset_host
+    config.serve_assets = false
   elsif CarrierWave::Uploader::Base.storage_engines.invert[storage] == :file
     config.asset_path = Rails.application.root.join('public')
   end
