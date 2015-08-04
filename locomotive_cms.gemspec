@@ -20,6 +20,9 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'rails',                           '~> 4.2.1'
 
+  # https://github.com/net-ssh/net-ssh/issues/260
+  s.add_dependency 'net-ssh',                         '~> 2.10.1.rc1'
+
   s.add_dependency 'devise',                          '~> 3.5.1'
   s.add_dependency 'devise-encryptable',              '~> 0.2.0'
   s.add_dependency 'simple_token_authentication',     '~> 1.10.0'
@@ -68,7 +71,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'actionmailer-with-request',       '~> 0.4.0'
 
   s.add_dependency 'grape',                           '~> 0.12.0'
-  s.add_dependency 'grape-entity',                    '~> 0.4.5'
+  s.add_dependency 'grape-entity',                    '0.4.5'
 
   s.add_development_dependency "faye-websocket"
 
