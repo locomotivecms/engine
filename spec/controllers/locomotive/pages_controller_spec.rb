@@ -16,10 +16,11 @@ describe Locomotive::PagesController do
     sign_in account
   end
 
-  describe "#GET index" do
-    subject { get :index, site_handle: site, locale: :en }
-    it { is_expected.to be_success }
-  end
+  # FIXME: no more index action
+  # describe "#GET index" do
+  #   subject { get :index, site_handle: site, locale: :en }
+  #   it { is_expected.to be_success }
+  # end
 
   describe "#GET new" do
     subject { get :new, site_handle: site, locale: :en }
