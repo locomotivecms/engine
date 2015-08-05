@@ -1,0 +1,30 @@
+nav.navbar.navbar-default role='navigation'
+
+  .container-fluid
+
+    .navbar-header
+
+      button type='button' class='navbar-toggle'
+        span.sr-only Toggle navigation
+        .icon-bar
+        .icon-bar
+        .icon-bar
+
+      .navbar-brand.hidden-xs
+        = render 'locomotive/shared/header/brand'
+
+      ul.nav.navbar-nav.navbar-site.visible-xs
+        li
+          = render 'locomotive/shared/header/site'
+
+    .navbar-collapse#account-menu-collapse.hidden-xs
+      ul.nav.navbar-nav.navbar-site
+        li
+          = render 'locomotive/shared/header/site'
+
+      ul.nav.navbar-nav.navbar-right.account-menu-wrapper
+        li.dropdown
+          = render 'locomotive/shared/header/account'
+
+          ul.dropdown-menu role='menu'
+            = render 'locomotive/shared/header/account_menu'

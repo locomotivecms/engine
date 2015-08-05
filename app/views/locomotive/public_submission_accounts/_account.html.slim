@@ -1,0 +1,19 @@
+- if account = current_site.accounts.all.detect { |a| a._id.to_s == public_submission_account.to_s }
+
+  .item.row data-id=account._id
+
+    = hidden_field_tag 'content_type[public_submission_accounts][]', account._id
+
+    .inner-row.col-md-12
+
+      .icon
+        = image_tag account_avatar_url(account, '35x35#'), class: 'img-circle', style: 'width: 35px'
+
+      .text
+        = account.name
+
+        small= "<# account.email >"
+
+      .buttons
+        = link_to '#', class: 'delete' do
+          i.fa.fa-trash-o

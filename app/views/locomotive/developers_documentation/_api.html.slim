@@ -1,0 +1,44 @@
+.alert.alert-info
+  | <a href="https://github.com/locomotivecms/coal"><strong>Coal</strong></a> is our Ruby API client for Locomotive. You can still use curl to fetch our Restful API. See our <a href="http://doc.locomotivecms.com" />documentation site</a> for more information.
+
+h3 Install Coal
+
+pre
+  code.bash
+    | gem install locomotivecms_coal --pre
+
+h3 Authentication
+
+p Load the gem
+
+pre
+  code.ruby
+    | require 'locomotive/coal'
+
+p Authenticate
+
+pre
+  code.ruby
+    | client = Locomotive::Coal::Client.new('#{request.scheme}://#{request.host_with_port}', { email: '#{current_locomotive_account.email}', api_key: '#{current_locomotive_account.api_key}' })
+
+p Set the site context
+
+pre
+  code.ruby
+    | site_client = client.scope_by('#{current_site.handle}')
+
+h3 Get the name of the site and update it
+
+pre
+  code.ruby
+    | puts "Old name is \#{site_client.current_site.get.name}"<br/>
+    | site_client.current_site.update name: "A better #{current_site.name}"
+
+- current_site.content_types.each do |content_type|
+  h3 Get entries of the # content_type.name  content type
+
+  p Example: get the first 10 entries
+
+  pre
+    code.ruby
+      | #{content_type.slug} = site_client.contents.#{content_type.slug}.all

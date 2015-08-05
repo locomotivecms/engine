@@ -1,0 +1,19 @@
+.link-dialog-content style='display: none'
+  = locomotive_form_for link_form, url: '#', defaults: { placeholder: false, hint: false } do |f|
+    = f.inputs do
+      = f.input :url
+      = f.input :target, include_blank: false, collection: [[:not_set, ''],
+        [:self, '_self'],
+        [:blank, '_blank']],
+        label_method: ->(el) { t("simple_form.options.locomotive.rte_input_link_form.target.#{el.first}") }
+      = f.input :title
+
+    p.text-right
+      a.btn.btn-success.btn-sm.apply
+        = f.submit_text
+
+      | &nbsp;
+
+      a.btn.btn-default.btn-sm.cancel
+        = f.submit_text :cancel
+

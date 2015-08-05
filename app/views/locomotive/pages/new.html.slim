@@ -1,0 +1,16 @@
+- title t('.title')
+
+= help t('.help', default: '')
+
+= locomotive_form_for @page, url: pages_path(current_site), html: { multipart: true } do |f|
+
+  = f.inputs :information do
+
+    = f.input :title, input_html: { class: 'input-lg' }
+
+    = f.input :parent_id, as: :select, collection: parent_pages_options, include_blank: false
+
+    = f.input :layout_id, as: :select, collection: options_for_page_layouts, include_blank: false
+
+  = f.actions do
+    = f.action

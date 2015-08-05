@@ -1,0 +1,34 @@
+- title t('.title', title: @page.title, fullpath: @page.fullpath)
+
+= help t('.help', default: '')
+
+= locomotive_form_for @page, url: update_all_editable_elements_path(current_site, @page), defaults: { placeholder: false, hint: false } do |f|
+
+  = f.action 'hide'
+
+  ul.nav.nav-tabs role='tablist'
+    = form_nav_tab :content, true do
+      = link_to t('simple_form.titles.locomotive.content'), '#content', role: 'tab', data: { toggle: 'tab' }
+
+    = form_nav_tab :main do
+      = link_to t('simple_form.titles.locomotive.settings'), edit_page_path(current_site, @page)
+
+  .tab-content
+
+    = form_tab_pane :content, true do
+
+      .row
+        .col-md-12
+          fieldset.inputs.info-row
+            .form-group.input.select.optional.inline
+              label.select.optional.control-label for='page_block'
+                = t(:region, scope: 'simple_form.labels.locomotive.editable_element')
+              span.form-wrapper
+                = select_tag 'block', options_for_page_blocks(@editable_elements_by_block)
+
+        .col-md-12
+          = render 'form', f: f
+
+          = f.actions do
+            = f.action
+

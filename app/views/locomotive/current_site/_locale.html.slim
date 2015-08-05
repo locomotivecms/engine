@@ -1,0 +1,18 @@
+.item.row data-id=locale
+
+  = hidden_field_tag 'site[locales][]', locale
+
+  .inner-row.col-md-12
+
+    .draggable
+      i.fa.fa-bars
+
+    .text
+      = image_tag "locomotive/icons/flags/#{locale}.png", alt: locale, size: '24x24'
+      | &nbsp;
+      = I18n.t("locomotive.locales.#{locale}")
+
+    .buttons
+      - if current_site.default_locale != locale
+        = link_to '#', class: 'delete' do
+          i.fa.fa-trash-o

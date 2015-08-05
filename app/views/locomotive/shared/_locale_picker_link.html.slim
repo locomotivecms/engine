@@ -1,0 +1,11 @@
+.btn-group
+  button.btn.btn-primary.btn-sm.dropdown-toggle data-toggle='dropdown' data-aria-haspopup='true' data-aria-expanded='false'
+    = flag_tag current_content_locale, '17x17'
+    span.caret
+  ul.dropdown-menu.dropdown-menu-right
+    - current_site.locales.each do |locale|
+      li
+        a href="?content_locale=#{locale}"
+          = flag_tag locale, '17x17'
+          | &nbsp;
+          = t(locale, scope: 'locomotive.locales')

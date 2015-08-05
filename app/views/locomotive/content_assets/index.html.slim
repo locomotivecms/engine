@@ -1,0 +1,19 @@
+.content-assets  data-refresh-url=content_assets_path(current_site)
+  .row
+    .col-md-9.col-xs-12.col-sm-12
+      .row.header-row
+        .col-md-8.col-xs-9
+          h1== t('.title')
+        .col-md-4.col-xs-3.actions
+          .visible-xs-block.visible-sm-block
+            p.text-right
+              = link_to t('.upload'), bulk_create_content_assets_path(current_site, :json), class: 'btn btn-sm btn-primary upload'
+
+      .nav-container
+        = render 'nav', remote: false
+
+      = render 'list', remote: false, enable_select: false
+
+    .col-md-3.dropzone.sidebar-dropzone.hidden-xs.hidden-sm data-url= bulk_create_content_assets_path(current_site, :json)
+      .dropzone-inner
+        = render 'dropzone', remote: false

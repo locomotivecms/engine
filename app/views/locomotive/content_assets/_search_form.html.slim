@@ -1,0 +1,5 @@
+= form_tag content_assets_path(current_site), method: 'GET', remote: remote do
+  = hidden_field_tag :types, params[:types] if params[:types]
+  .form-group
+    = text_field_tag :query, params[:query], placeholder: t('.placeholder'), class: 'form-control'
+    i.fa.fa-search.icon

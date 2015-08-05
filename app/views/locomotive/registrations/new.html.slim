@@ -1,0 +1,17 @@
+- title t('locomotive.not_logged_in.title')
+
+= locomotive_form_for resource, as: resource_name, url: sign_up_path do |f|
+
+  = f.inputs do
+    = f.input :name, required: true, autofocus: true
+    = f.input :email, required: true
+    = f.input :password, required: true, hint: !@minimum_password_length.nil?
+    = f.input :password_confirmation, required: true
+
+  = f.actions do
+    = f.button :submit, t('locomotive.buttons.sign_up'), class: 'btn'
+
+    br
+
+    p
+      = link_to t('.sign_in'), new_locomotive_account_session_path

@@ -1,0 +1,7 @@
+- title t('.title', key: @translation.key )
+
+= locomotive_form_for @translation, url: translation_path(current_site, @translation) do |f|
+
+  = render 'form', f: f
+
+  = f.actions back_url: translations_path(current_site, params[:_location] || {}), use_stored_location: false

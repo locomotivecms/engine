@@ -1,0 +1,42 @@
+doctype XML
+doctype html
+html xmlns='http://www.w3.org/1999/xhtml'
+  head
+    = render 'locomotive/shared/head'
+  body class=body_class
+
+    - # HEADER: brand + current site + account
+    = render 'locomotive/shared/header'
+
+    - # WRAPPER
+    .wrapper
+      nav.sidebar
+        .scrollable
+          = render 'locomotive/shared/sidebar'
+
+      .content
+        .scrollable
+          .container-fluid.main role='main'
+            - if title
+              .row
+                .col-md-8.col-xs-9
+                  h1== title
+
+                .col-md-4.col-xs-3.actions
+                  = yield :actions
+
+            = yield
+
+      section.drawer
+        .close-button
+          i.fa.fa-times
+        .inner
+          .scrollable
+            .container-fluid
+              .row
+                .col-md-12
+                  h1 TEST
+                  p
+                    | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc placerat   tincidunt massa, vitae mollis dui volutpat eu. Sed ullamcorper id turpis vel pulvinar. Nullam dignissim purus vel libero sodales finibus. Donec ut pellentesque velit, nec semper felis. Curabitur lacinia egestas condimentum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nullam non feugiat erat. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nulla enim nibh, consectetur vel mollis eu, venenatis eget elit. Nulla eget massa tincidunt, scelerisque mi non, lacinia ante. In scelerisque, nisi ut ullamcorper aliquet, nulla quam faucibus est, a congue odio enim ac nulla. Cras dictum cursus ex vel scelerisque. Vestibulum elementum auctor tellus vitae imperdiet.
+
+    = yield :foot

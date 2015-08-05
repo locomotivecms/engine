@@ -1,0 +1,27 @@
+.edit-assets-container
+  .image-container data-height=@content_asset.height data-width=@content_asset.width data-filename=@content_asset.name
+
+    = image_tag @content_asset.source.url
+
+  .resize-form style='display: none'
+    - resize_form = image_resize_form(@content_asset)
+    = locomotive_form_for resize_form, url: '#' do |f|
+      = f.inputs do
+        = f.input :width
+        = f.input :height
+
+      .text-right
+        button.btn.btn-sm.btn-success.apply-resizing-btn autocomplete='off' data-loading-text=f.submit_text(:loading_text)
+          = f.submit_text
+        | &nbsp;
+        button.btn.btn-sm.btn-default.cancel-resizing-btn autocomplete="off"
+          = f.submit_text :cancel
+
+  .actions
+    .btn-group-vertical role="group"
+      button.btn.btn-sm.btn-primary.resize-btn title=t('.buttons.resize')
+        i.fa.fa-compress
+      button.btn.btn-sm.btn-primary.crop-btn  title=t('.buttons.crop')
+        i.fa.fa-crop
+      button.btn.btn-sm.btn-success.apply-btn title=t('.buttons.apply') data-url=content_assets_path(current_site, format: :json)
+        i.fa.fa-check

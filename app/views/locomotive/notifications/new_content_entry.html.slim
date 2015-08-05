@@ -1,0 +1,31 @@
+p= t('.title', name: @account.name, domain: @domain, date: I18n.l(Time.now.in_time_zone), locale: @account.locale).html_safe
+
+p
+  b= t('.type', type: @type.name, locale: @account.locale)
+  br
+  i= @type.description
+
+hr
+
+ul
+  - @type.ordered_entries_custom_fields.each do |field|
+    - value = @entry.send(field.name)
+    li
+      strong= field.label
+      | &nbsp;-&nbsp;
+      i
+        - case field.type.to_s
+        - when 'file'
+          - url = value.guess_url
+          - url = url =~ /^http/ ? url : URI.join("http://#{@domain}", url).to_s # Amazon S3 (http/https) or local files ?
+          = link_to File.basename(url), url
+        - when 'select'
+          = value
+        - when 'belongs_to'
+          = value.try(:_label)
+        - when 'has_many', 'many_to_many'
+          = value.map(&:_label).join(', ')
+        - when 'tags'
+          = value.join(', ')
+        - else
+          = value

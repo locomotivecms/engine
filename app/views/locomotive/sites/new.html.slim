@@ -1,0 +1,12 @@
+- content_for :site_title do
+  = t('.title')
+
+= help t('.help', default: '')
+
+= locomotive_form_for @site, url: sites_path, html: { multipart: true } do |f|
+
+  = f.inputs :information do
+    = f.input :name, input_html: { class: 'input-lg' }
+    = f.input :handle
+
+  = f.actions back_url: sites_path

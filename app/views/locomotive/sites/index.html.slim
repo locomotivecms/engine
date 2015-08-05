@@ -1,0 +1,23 @@
+- content_for :site_title do
+  = t('.title')
+
+.row
+  .sites
+    = render @sites
+
+    .site.new-site
+      = link_to new_site_url, class: 'media' do
+
+        .pull-right.arrow
+          span
+            i.fa.fa-plus
+
+        .media-body
+          h2= t('.new')
+
+    .clearfix
+
+
+
+
+

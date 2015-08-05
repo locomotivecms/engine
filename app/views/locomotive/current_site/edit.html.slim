@@ -1,0 +1,13 @@
+- title t('.title')
+
+= help t('.help', default: '')
+
+= locomotive_form_for @site, url: current_site_path(current_site), html: { multipart: true } do |f|
+
+  = hidden_field_tag :active_tab, ''
+
+  = f.action 'hide'
+
+  = render 'locomotive/current_site/form/tabs', f: f
+
+  = render 'locomotive/current_site/form/panes', f: f

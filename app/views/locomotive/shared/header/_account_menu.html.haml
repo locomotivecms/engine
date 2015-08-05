@@ -1,5 +1,0 @@
-%li= link_to t(:sites, scope: 'locomotive.shared.header'), sites_path
-%li= link_to t(:account, scope: 'locomotive.shared.header'), edit_my_account_path(_location: request.fullpath)
-%li= link_to t(:help, scope: 'locomotive.shared.header'), 'http://doc.locomotivecms.com'
-%li.divider
-%li= link_to t(:logout, scope: 'locomotive.shared.header'), destroy_locomotive_account_session_path, data: { confirm: t('locomotive.messages.confirm') }

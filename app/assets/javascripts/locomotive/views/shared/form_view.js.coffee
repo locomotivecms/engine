@@ -9,10 +9,9 @@ class Locomotive.Views.Shared.FormView extends Backbone.View
   events:
     'submit form': 'save'
 
-  initialize: ->
+  render: ->
     @inputs = []
 
-  render: ->
     @display_active_nav()
 
     @enable_hover()

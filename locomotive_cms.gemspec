@@ -38,7 +38,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'locomotivecms_steam',             '~> 1.0.0-beta.1'
 
-  s.add_dependency 'haml',                            '~> 4.0.2'
+  s.add_dependency 'slim',                            '~> 3.0.6'
   s.add_dependency 'simple_form',                     '~> 3.1.0'
   s.add_dependency 'kaminari',                        '~> 0.16.3'
   s.add_dependency 'bootstrap-kaminari-views',        '~> 0.0.5'

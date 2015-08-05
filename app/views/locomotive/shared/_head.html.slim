@@ -1,0 +1,37 @@
+- if current_site
+  title= escape_once("#{Locomotive.config.name} &mdash; #{current_site.name}")
+- else
+  title= escape_once(Locomotive.config.name)
+
+= csrf_meta_tag
+
+- key = Rails.application.config.session_options[:key]
+
+meta name='key-param' content=Rails.application.config.session_options[:key]
+meta name='key-token' content=cookies[key]
+
+javascript:
+  window.Locomotive = { mounted_on: '#{Locomotive.mounted_on}' }
+
+= stylesheet_link_tag     'locomotive/application', media: 'screen'
+= javascript_include_tag  'locomotive'
+
+= render 'locomotive/shared/main_app_head_before_backbone'
+
+javascript:
+  window.locale                     = '#{I18n.locale}';
+  window.content_locale             = '#{::Mongoid::Fields::I18n.locale}';
+
+  $(document).ready(function() {
+
+    window.application_view = new Locomotive.Views.ApplicationView({
+      flash:      #{{flash_messages_to_json}},
+      view:       #{backbone_view_class_name}
+    });
+    window.application_view.render();
+
+  });
+
+= yield :head
+
+= render 'locomotive/shared/main_app_head'

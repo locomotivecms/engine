@@ -1,0 +1,15 @@
+.item.row data-id=domain
+
+  = hidden_field_tag 'site[domains][]', domain
+
+  .inner-row.col-md-12
+
+    .draggable
+      i.fa.fa-bars
+
+    .text
+      = domain
+
+    .buttons
+      = link_to '#', class: 'delete' do
+        i.fa.fa-trash-o

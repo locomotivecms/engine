@@ -1,0 +1,23 @@
+.editable-elements
+
+  - ordered_editable_elements(@editable_elements_by_block).each_with_index do |(page, editable_element), index|
+
+    = f.inputs :editable_element do
+
+      = f.simple_fields_for :editable_elements, editable_element, child_index: index do |g|
+
+        = g.hidden_field :page_id
+
+        = g.hidden_field :humanized_id
+
+        - case editable_element.type.to_sym
+
+        - when :editable_text
+          = g.input :content, editable_element_input_options(editable_element, index, as: editable_element.format == 'html' ? :rte : :text, input_html: { rows: editable_element.rows })
+
+        - when :editable_file
+          = g.input :source, editable_element_input_options(editable_element, index, as: :file, select_content_asset: true, hidden_fields: [:content, :default_source_url])
+
+        - when :editable_control
+          = g.input :content, editable_element_input_options(editable_element, index, as: :select, collection: editable_element.options.map { |attributes| [attributes['text'], attributes['value']] })
+

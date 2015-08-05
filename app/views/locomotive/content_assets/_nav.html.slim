@@ -1,0 +1,17 @@
+- # Filter assets
+ul.nav.nav-tabs  role='tablist'
+  li class="#{'active' if params[:types].nil? }"
+    = link_to t('.types.all'), content_assets_path(current_site, query: params[:query]), remote: remote
+
+  - Locomotive::ContentAsset.types_for_content_editing.each do |type|
+    li class="#{'active' if params[:types] == type }"
+      = link_to t(".types.#{type}"), content_assets_path(current_site, types: type, query: params[:query]), remote: remote
+  li class="#{'active' if params[:types] == 'other' }"
+    = link_to t('.types.others'), content_assets_path(current_site, types: 'other', query: params[:query]), remote: remote
+
+  li.search-bar.search-bar-in-nav.visible-md-block.visible-lg-block
+    = render 'search_form', remote: remote
+
+.search-bar.search-bar-in-nav.visible-xs-block.visible-sm-block
+  = render 'search_form', remote: remote
+

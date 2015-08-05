@@ -1,0 +1,9 @@
+- (params[:_location] || {}).each do |name, value|
+  = hidden_field_tag "_location[#{name}]", value
+
+= f.inputs do
+
+  = f.simple_fields_for :values, OpenStruct.new(@translation.values) do |g|
+
+    - current_site.locales.each do |l|
+      = g.input l, label: flag_tag(l) + t(l, scope: 'locomotive.locales'), required: false, placeholder: t('.not_translated')
