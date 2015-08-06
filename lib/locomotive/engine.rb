@@ -10,7 +10,13 @@ module Locomotive
 
     paths['mongodb/migrate'] = 'mongodb/migrate'
 
-    initializer "locomotive.params.filter" do |app|
+    config.to_prepare do
+      Dir.glob(Rails.root + 'app/decorators/**/*_decorator*.rb').each do |c|
+        require_dependency(c)
+      end
+    end
+
+    initializer 'locomotive.params.filter' do |app|
       # Do not log remote_<field>_url params because they can contain huge base64 string
       app.config.filter_parameters += [/\Aremote_.+_url\Z/]
     end
@@ -23,7 +29,7 @@ module Locomotive
       ::DeviseController.respond_to :html, :json
     end
 
-    initializer "locomotive.precompile.hook", group: :all do |app|
+    initializer 'locomotive.precompile.hook', group: :all do |app|
       app.config.assets.precompile += %w(
         locomotive/wysihtml5_reset.css
         locomotive/wysihtml5_editor.css

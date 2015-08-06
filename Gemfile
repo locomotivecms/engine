@@ -32,7 +32,6 @@ group :development do
   # gem 'carrierwave-mongoid', git: 'git://github.com/locomotivecms/carrierwave-mongoid.git'
 
   gem 'thor'
-  gem 'github_api'
 
   gem 'quiet_assets'
 
