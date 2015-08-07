@@ -39,6 +39,7 @@ module Locomotive
               optional :locales, type: Array
               optional :domains, type: Array
               optional :timezone
+              optional :picture
             end
           end
           put do

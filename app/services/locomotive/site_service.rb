@@ -34,6 +34,8 @@ module Locomotive
 
         success = raise_if_not_valid ? site.save! : site.save
 
+        ActiveSupport::Notifications.instrument 'locomotive.site.created', account: account, site: site
+
         track_activity 'site.created', site: site, parameters: { name: site.name } if success
       end
     end
