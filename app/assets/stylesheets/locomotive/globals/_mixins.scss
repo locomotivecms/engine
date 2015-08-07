@@ -26,8 +26,6 @@
             justify-content: $alignment;
 }
 
-
-
 @mixin flex-align($alignment)
 {
   -webkit-flex-align: $alignment;
