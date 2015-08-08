@@ -29,7 +29,7 @@
           - if asset.image?
             = link_to t('.buttons.edit'), edit_content_asset_path(current_site, asset._id), class: 'btn btn-primary btn-sm edit'
 
-          | &nbsp;
+          | &nbsp;&nbsp;
 
           = link_to content_asset_path(current_site, asset, params.slice(:types, :query, :page, :per_page)), class: 'remove', method: :delete, data: { confirm: t('locomotive.messages.confirm'), return_url: request.original_url }, title: t('locomotive.buttons.delete'), remote: remote do
             i.fa.fa-trash-o

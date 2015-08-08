@@ -7,10 +7,12 @@
   - if can_edit_public_submission_accounts?(@content_type)
     = link_to edit_public_submission_accounts_path(current_site, @content_type.slug), class: 'btn btn-primary btn-sm' do
       i.fa.fa-pencil
+      | &nbsp;
       = t('.edit_notification_settings')
 
   = link_to new_content_entry_path(current_site, @content_type.slug), class: 'btn btn-primary btn-sm' do
     i.fa.fa-plus
+    | &nbsp;
     = t('.new')
 
 
@@ -49,5 +51,6 @@
       p.text-right
         = link_to export_content_entries_path(current_site, @content_type.slug, :csv), class: 'btn btn-primary btn-sm' do
           i.fa.fa-download
+          | &nbsp;
           = t('.download')
 
