@@ -21,6 +21,7 @@ class Locomotive.Views.Shared.FormView extends Backbone.View
     @enable_toggle_inputs()
     @enable_date_inputs()
     @enable_datetime_inputs()
+    @enable_text_inputs()
     @enable_rte_inputs()
     @enable_tags_inputs()
     @enable_document_picker_inputs()
@@ -94,6 +95,13 @@ class Locomotive.Views.Shared.FormView extends Backbone.View
         use24hours: true
         useseconds: false
         format: $(@).data('format')
+
+  enable_text_inputs: ->
+    self = @
+    @$('.input.text').each ->
+      view = new Locomotive.Views.Inputs.TextView(el: $(@))
+      view.render()
+      self.inputs.push(view)
 
   enable_rte_inputs: ->
     self = @
