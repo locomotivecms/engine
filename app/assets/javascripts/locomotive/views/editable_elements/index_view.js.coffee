@@ -34,19 +34,18 @@ class Locomotive.Views.EditableElements.IndexView extends Backbone.View
 
   refresh_elements: (type, view, callback) ->
     $parent_view  = $(view.el).parent()
-    element_id    = $parent_view.find('input[name*="[humanized_id]"]').val().replace(/_/g, '-')
-    dom_id        = "locomotive-editable-#{type}-#{element_id}"
+    element_id    = $parent_view.find('input[name*="[id]"]').val()
 
     $iframe_document = $($('iframe')[0].contentWindow.document)
 
-    callback($iframe_document.find("##{dom_id}"), dom_id, $iframe_document)
+    callback($iframe_document.find("*[data-element-id=#{element_id}]"), element_id, $iframe_document)
 
   refresh_image_on_remove: (msg, data) ->
     data.url = $(data.view.el).parent().find('input[name*="[default_source_url]"]').val()
     @refresh_image(msg, data)
 
   refresh_image: (msg, data) ->
-    @refresh_elements 'image', data.view, ($elements, dom_id, $iframe_document) ->
+    @refresh_elements 'image', data.view, ($elements, element_id, $iframe_document) ->
       current_image_url = data.view.$('input[name*="[content]"]').val()
       image_url         = data.url || current_image_url
 
@@ -58,11 +57,11 @@ class Locomotive.Views.EditableElements.IndexView extends Backbone.View
             $(this).css("background-image", "url('" + image_url + "')")
       else
         # looking for DIVs with background-url property matching the previous image url
-        $el = $iframe_document.find("*[style*='#{current_image_url}']").attr('id', dom_id)
+        $el = $iframe_document.find("*[style*='#{current_image_url}']").attr('data-element-id', element_id)
         $el.css("background-image", "url('" + image_url + "')")
 
         # looking for IMGs with src attribute matching the previous image url
-        $el = $iframe_document.find("img[src*='#{current_image_url}']").attr('id', dom_id)
+        $el = $iframe_document.find("img[src*='#{current_image_url}']").attr('data-element-id', element_id)
         $el.attr('src', image_url)
 
   refresh_text: (msg, data) ->
