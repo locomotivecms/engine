@@ -13,7 +13,9 @@ module Locomotive
         subscribe(parsed) do
           parse(page)
 
-          persist_editable_elements(page, parsed)
+          persist_editable_elements(page, parsed).tap do |elements|
+            remove_useless_editable_elements(page, elements)
+          end
         end
       end
     end
@@ -75,8 +77,8 @@ module Locomotive
         # Note: _page is a Steam entity but we need a Mongoid document to save the elements
         _page = attributes[:fixed] ? Locomotive::Page.find(_page._id) : page
 
-        element   = add_or_modify_editable_element(_page, attributes)
-        couple[1] = element # we get now a Mongoid document instead of a Steam entity
+        element = add_or_modify_editable_element(_page, attributes)
+        couple[0], couple[1] = _page, element # we get now a Mongoid document instead of a Steam entity
 
         modified_pages << _page
 
@@ -90,13 +92,34 @@ module Locomotive
 
     def persist_editable_element?(page, parsed, _page, attributes)
       page_id, block_name = _page._id, attributes[:block]
-      descendant  = parsed[:extends][page_id]
-      found_super = parsed[:blocks][descendant].try(:[], block_name)
 
-      page._id == _page._id ||  # same page
-      block_name.blank?     ||  # an editable_element out of a block (impossible to remove it in pages extending this template)
-      found_super.nil?      ||  # block does not get overriden
-      found_super               # if block.super is present in the descendant page
+      if page._id == _page._id  # same page
+        true
+      elsif block_name.blank?   # an editable_element out of a block (impossible to remove it in pages extending this template)
+        true
+      else
+        block_visible?(_page._id, parsed, attributes)
+      end
+    end
+
+    def block_visible?(page_id, parsed, attributes)
+      block_name = attributes[:block]
+      descendant = parsed[:extends][page_id]
+
+      return true if descendant.nil?
+
+      # find if the descendant hides the block
+      if (blocks = parsed[:blocks][descendant]).blank?
+        # we can not know for sure, ask the descendant of the descendant
+        block_visible?(descendant, parsed, attributes)
+      else
+        found_super = blocks[block_name]
+        hidden = blocks.keys.any? { |name| block_name =~ /\A#{name}(\Z|\/)/ }
+        if found_super || !hidden
+          # again, we need to ask the descendant of the descendant
+          block_visible?(descendant, parsed, attributes)
+        end
+      end
     end
 
     def add_or_modify_editable_element(page, attributes)
@@ -106,6 +129,12 @@ module Locomotive
       else
         klass = "Locomotive::#{attributes[:type].to_s.classify}".constantize
         element = page.editable_elements.build(attributes, klass)
+      end
+    end
+
+    def remove_useless_editable_elements(page, elements)
+      if _elements = (elements.map { |p, _elements| p._id == page._id ? _elements : nil }.flatten.compact)
+        page.editable_elements.where(:_id.nin => _elements.map(&:_id)).destroy_all
       end
     end
 
