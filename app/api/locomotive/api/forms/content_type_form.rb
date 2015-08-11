@@ -21,8 +21,8 @@ module Locomotive
         end
 
         # If the current content type exists, look up the fields and add their IDs
-        #  to the attributes hash.  If not, set the entries_custom_fields_attributes
-        #  as-is
+        # to the attributes hash.  If not, set the entries_custom_fields_attributes
+        # as-is
         def fields=(fields)
           self.entries_custom_fields_attributes = fields.map do |attrs|
             if field = existing_content_type.try(:find_entries_custom_field, attrs[:name])

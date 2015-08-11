@@ -4,7 +4,7 @@ module Locomotive
 
       class ContentTypeFieldForm < BaseForm
 
-        attr_accessor :content_type_service, :content_type
+        attr_accessor :content_type_service, :existing_field
 
         attrs :_id, :name, :type, :label, :hint,
               :required, :localized, :unique, :position,
@@ -12,9 +12,9 @@ module Locomotive
               :target, :inverse_of, :order_by, :ui_enabled,
               :class_name
 
-        def initialize(content_type_service, content_type, attributes)
+        def initialize(content_type_service, existing_field, attributes)
           self.content_type_service = content_type_service
-          self.content_type = content_type
+          self.existing_field = existing_field
           super(attributes)
         end
 
@@ -41,12 +41,9 @@ module Locomotive
         private
 
         def attach_id_to_option(name, attributes)
-          field = content_type.try(:find_entries_custom_field, self.name)
+          return if existing_field.nil?
 
-          return if field.nil?
-
-          if option = field.select_options.where(name: name).first
-            # update the option instead of creating it
+          if option = existing_field.select_options.where(name: name).first
             attributes[:_id] = option._id
           end
         end
