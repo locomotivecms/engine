@@ -8,6 +8,7 @@ module Locomotive
       Rack::Builder.new do
         use Locomotive::API::Middlewares::LocaleMiddleware
         use Locomotive::API::Middlewares::LoggerMiddleware
+        use Locomotive::API::Middlewares::ParamsDecoderMiddleware
         run Locomotive::API::Dispatch
       end
     end

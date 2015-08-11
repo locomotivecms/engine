@@ -36,7 +36,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'mime-types',                      '~> 2.5'
   s.add_dependency 'custom_fields',                   '~> 2.4.0.rc3'
 
-  s.add_dependency 'locomotivecms_steam',             '~> 1.0.0-beta.1'
+  s.add_dependency 'locomotivecms_steam',             '~> 1.0.0-beta.2'
 
   s.add_dependency 'slim',                            '~> 3.0.6'
   s.add_dependency 'simple_form',                     '~> 3.1.0'

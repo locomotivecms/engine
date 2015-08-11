@@ -95,6 +95,7 @@ module Locomotive
                 optional :inverse_of
                 optional :order_by
                 optional :ui_enabled
+                optional :_destroy
               end
               optional :order_by
               optional :order_direction
