@@ -38,7 +38,7 @@ module Locomotive
       end
 
       def options_params
-        params.require(:select_options).map { |p| p.permit(:_id, :name, :_destroyed) }
+        params.require(:select_options).map { |p| p.permit(:_id, :name, :_destroy) }
       end
 
       def option_name_param
