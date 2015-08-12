@@ -19,7 +19,7 @@ p Authenticate
 
 pre
   code.ruby
-    | client = Locomotive::Coal::Client.new('#{request.scheme}://#{request.host_with_port}', { email: '#{current_locomotive_account.email}', api_key: '#{current_locomotive_account.api_key}' })
+    | client = Locomotive::Coal::Client.new('#{current_request_url}', { email: '#{current_locomotive_account.email}', api_key: '#{current_locomotive_account.api_key}' })
 
 p Set the site context
 
