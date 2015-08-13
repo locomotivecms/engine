@@ -26,7 +26,7 @@ module Locomotive
     def options_for_site_timezones
       Rails.cache.fetch('views/helpers/timezones') do
         ActiveSupport::TimeZone.all.map do |tz|
-          [tz, tz.name]
+          [tz.to_s, tz.name]
         end
       end
     end
