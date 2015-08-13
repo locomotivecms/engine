@@ -3,7 +3,7 @@
 
 = help t('.help', default: '')
 
-= locomotive_form_for @account, url: my_account_path, html: { multipart: true } do |f|
+= locomotive_form_for @account, url: my_account_path, html: { multipart: true }, defaults: { placeholder: false } do |f|
 
   = hidden_field_tag :active_tab, ''
 

@@ -44,6 +44,32 @@ PATH
       slim (~> 3.0.6)
       stringex (~> 2.5.2)
 
+PATH
+  remote: ../in_progress/steam
+  specs:
+    locomotivecms_steam (1.0.0.pre.beta.2)
+      RedCloth (~> 4.2.9)
+      chronic (~> 0.10.2)
+      coffee-script (~> 2.4.1)
+      compass (~> 1.0.3)
+      dragonfly (~> 1.0.10)
+      haml (~> 4.0.6)
+      httparty (~> 0.13.5)
+      kramdown (~> 1.8.0)
+      locomotivecms-solid (~> 4.0.0.alpha2)
+      locomotivecms_common (~> 0.0.4)
+      mime-types (~> 2.6.1)
+      mimetype-fu (~> 0.1.2)
+      moneta (~> 0.8.0)
+      morphine (~> 0.1.1)
+      rack-cache (~> 1.2)
+      rack-rewrite (~> 1.5.1)
+      rack_csrf (~> 2.5.0)
+      sanitize (~> 4.0.0)
+      sprockets (~> 2.12.3)
+      sprockets-less (~> 0.6.1)
+      sprockets-sass (~> 1.3.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -116,6 +142,8 @@ GEM
       sass (>= 3.3.0)
     bson (3.2.1)
     builder (3.2.2)
+    byebug (4.0.5)
+      columnize (= 0.9.0)
     carrierwave (0.10.0)
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
@@ -140,6 +168,7 @@ GEM
       execjs
     coffee-script-source (1.9.1.1)
     colorize (0.7.7)
+    columnize (0.9.0)
     commonjs (0.2.7)
     compass (1.0.3)
       chunky_png (~> 1.2)
@@ -183,7 +212,7 @@ GEM
     debug_inspector (0.0.2)
     descendants_tracker (0.0.4)
       thread_safe (~> 0.3, >= 0.3.1)
-    devise (3.5.1)
+    devise (3.5.2)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 3.2.6, < 5)
@@ -259,7 +288,7 @@ GEM
       fog-core (~> 1.22)
       fog-json
       inflecto (~> 0.0.2)
-    fog-core (1.32.0)
+    fog-core (1.32.1)
       builder
       excon (~> 0.45)
       formatador (~> 0.2)
@@ -378,28 +407,6 @@ GEM
       activesupport (~> 4.2.1)
       colorize
       stringex (~> 2.5.2)
-    locomotivecms_steam (1.0.0.pre.beta.2)
-      RedCloth (~> 4.2.9)
-      chronic (~> 0.10.2)
-      coffee-script (~> 2.4.1)
-      compass (~> 1.0.3)
-      dragonfly (~> 1.0.10)
-      haml (~> 4.0.6)
-      httparty (~> 0.13.5)
-      kramdown (~> 1.8.0)
-      locomotivecms-solid (~> 4.0.0.alpha2)
-      locomotivecms_common (~> 0.0.4)
-      mime-types (~> 2.6.1)
-      mimetype-fu (~> 0.1.2)
-      moneta (~> 0.8.0)
-      morphine (~> 0.1.1)
-      rack-cache (~> 1.2)
-      rack-rewrite (~> 1.5.1)
-      rack_csrf (~> 2.5.0)
-      sanitize (~> 4.0.0)
-      sprockets (~> 2.12.3)
-      sprockets-less (~> 0.6.1)
-      sprockets-sass (~> 1.3.1)
     loofah (2.0.2)
       nokogiri (>= 1.5.9)
     mail (2.6.3)
@@ -453,6 +460,9 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
+    pry-byebug (3.1.0)
+      byebug (~> 4.0)
+      pry (~> 0.10)
     puma (2.12.3)
     pundit (1.0.1)
       activesupport (>= 3.0.0)
@@ -614,8 +624,10 @@ DEPENDENCIES
   grape-entity-matchers
   json_spec (~> 1.1.4)
   locomotivecms!
+  locomotivecms_steam!
   pickle
   pry
+  pry-byebug
   puma
   quiet_assets
   rspec-rails (~> 3.2.1)

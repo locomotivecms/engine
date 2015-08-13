@@ -1,6 +1,8 @@
 module Locomotive
   class RteInput < ::SimpleForm::Inputs::Base
 
+    include Locomotive::SimpleForm::Inputs::FasterTranslate
+
     def input(wrapper_options)
       input_html_options[:class] << 'form-control'
       toolbar_html + @builder.text_area(attribute_name, input_html_options)

@@ -2,6 +2,7 @@ module Locomotive
   class DocumentPickerInput < ::SimpleForm::Inputs::Base
 
     include Locomotive::SimpleForm::BootstrapHelpers
+    include Locomotive::SimpleForm::Inputs::FasterTranslate
 
     def input(wrapper_options)
       data = extract_data

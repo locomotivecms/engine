@@ -3,6 +3,7 @@ module Locomotive
 
     include Locomotive::SimpleForm::BootstrapHelpers
     include Locomotive::SimpleForm::HeaderLink
+    include Locomotive::SimpleForm::Inputs::FasterTranslate
 
     def input(wrapper_options)
       array_wrapper + new_item_wrapper

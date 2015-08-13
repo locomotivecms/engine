@@ -10,7 +10,7 @@ body.sessions, body.registrations, body.passwords {
   }
 
   h1 {
-    text-transform: uppercase;
+    text-transform: capitalize;
     font-size: $font-size-base + 2;
     font-family: $alt-font-family-sans-serif;
 

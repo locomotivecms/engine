@@ -1,6 +1,16 @@
 en:
   simple_form:
     titles:
+      locomotive:
+        account:
+          information: Main
+          api: API
+        site:
+          information: Main
+          access_points: Access points
+          seo: SEO
+          advanced: Advanced
+
       defaults:
         locomotive:
           information: General information
@@ -24,7 +34,7 @@ en:
           presentation: Presentation
           attributes: Attributes
           upload: Upload
-          api: API
+          api: API3
     labels:
       locomotive:
         theme_asset:

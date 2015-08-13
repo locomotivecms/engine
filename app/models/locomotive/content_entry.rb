@@ -52,6 +52,9 @@ module Locomotive
     index _type: 1, _position: 1
     index content_type_id: 1, _position: 1
 
+    index site_id: 1, content_type_id: 1, _visible: 1
+    index site_id: 1, content_type_id: 1, _visible: 1, _position: 1
+
     ## methods ##
 
     alias :visible? :_visible?
