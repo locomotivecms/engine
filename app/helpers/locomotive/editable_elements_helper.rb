@@ -7,7 +7,7 @@ module Locomotive
         placeholder:  false,
         hint:         editable_element.hint,
         wrapper_html: {
-          id:   "#{editable_element.type.to_s.dasherize}-#{index}",
+          id:   "#{editable_element.type.to_s.dasherize}-#{editable_element._id}",
           data: { block: editable_element.block || '' }
         }
       }.merge(options)
@@ -23,7 +23,7 @@ module Locomotive
     def ordered_editable_elements(editable_elements_by_block)
       list = []
       @editable_elements_by_block.each do |block, editable_elements|
-        list += editable_elements.sort { |(page, element)| element.priority || 1 }
+        list += editable_elements.sort { |(_, a), (_, b) | (b.priority || 1) <=> (a.priority || 1) }
       end
       list
     end
