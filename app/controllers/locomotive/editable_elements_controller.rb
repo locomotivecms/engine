@@ -41,7 +41,7 @@ module Locomotive
     end
 
     def page_params
-      params.require(:page).permit(editable_elements_attributes: [:id, :page_id, :source, :remove_source, :remote_source_url, :content])
+      params.require(:page).permit(editable_elements_attributes: [:id, :_id, :page_id, :source, :remove_source, :remote_source_url, :content])
     end
 
     def parsing_service

@@ -6,9 +6,9 @@
 
       = f.simple_fields_for :editable_elements, editable_element, child_index: index do |g|
 
-        = g.hidden_field :page_id
+        = g.hidden_field :_id
 
-        = g.hidden_field :humanized_id
+        = g.hidden_field :page_id
 
         - case editable_element.type.to_sym
 

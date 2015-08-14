@@ -67,7 +67,7 @@ module Locomotive
     end
 
     def persist_editable_elements(page, parsed)
-      modified_pages = [] # group modifications by page
+      modified_pages, pages = [], { page._id => page } # group modifications by page
 
       elements = parsed[:elements].map do |couple|
         _page, attributes = couple
@@ -75,7 +75,7 @@ module Locomotive
         next if !persist_editable_element?(page, parsed, _page, attributes)
 
         # Note: _page is a Steam entity but we need a Mongoid document to save the elements
-        _page = attributes[:fixed] ? Locomotive::Page.find(_page._id) : page
+        _page = attributes[:fixed] ? find_page(_page._id, pages) : page
 
         element = add_or_modify_editable_element(_page, attributes)
         couple[0], couple[1] = _page, element # we get now a Mongoid document instead of a Steam entity
@@ -147,6 +147,10 @@ module Locomotive
 
     def repository
       services.repositories.page
+    end
+
+    def find_page(id, in_memory)
+      in_memory[id] ||= Locomotive::Page.find(id)
     end
 
     def logger

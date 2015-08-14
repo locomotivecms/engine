@@ -13,7 +13,7 @@ module Locomotive
           if page = (pages[page_id] || Locomotive::Page.find(page_id))
             pages[page_id] = page
 
-            if element = page.editable_elements.find(attributes[:id])
+            if element = page.editable_elements.find(attributes[:_id])
               element.attributes = clean_attributes_for(element, attributes)
 
               modified_pages[page_id] = page if element.changed?

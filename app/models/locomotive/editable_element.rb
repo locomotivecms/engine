@@ -40,10 +40,6 @@ module Locomotive
       self._parent.try(:_id)
     end
 
-    def humanized_id
-      [self.block, self.slug].compact.join('_').gsub('/', '_')
-    end
-
     # Make sure the current locale is added to the list
     # of locales for the current element so that we know
     # in which languages the element was translated.

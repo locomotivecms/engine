@@ -21,6 +21,7 @@ describe Locomotive::PageParsingService do
 
     it { expect(subject.size).to eq 2 }
     it { expect { subject }.to change { page.editable_elements.count }.by(1) }
+    it { expect { subject }.to change { home.reload.editable_elements.count }.by(1) }
 
     context 'super called' do
 
