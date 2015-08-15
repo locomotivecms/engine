@@ -9,6 +9,9 @@ module Locomotive
     ## fields ##
     field :default_source_url, localize: true
 
+    ## callbacks ##
+    after_initialize :init_localized_source
+
     ## methods ##
 
     # Returns the url or the path to the uploaded file
@@ -27,6 +30,13 @@ module Locomotive
     def remove_source=(value)
       self.source_will_change! # notify the page to run the callbacks for that element
       super
+    end
+
+    private
+
+    def init_localized_source
+      # FIXME: the source of the element is not correctly set for the first time (certainly because the source is localized)
+      attributes[:source] = {} unless self.persisted?
     end
 
   end

@@ -40,17 +40,16 @@ module Locomotive
         def set_default_raw_template_if_layout
           if self.layout
             self.raw_template = %({% extends "#{self.layout.fullpath}" %})
-          elsif self.layout_id_was
-            # use case: layout -> no layout
-            self.raw_template = nil # FIXME: not sure about that
+          elsif self.layout_id == 'parent'
+            self.raw_template = "{% extends 'parent' %}"
           end
         end
 
         def set_default_raw_template_if_no_layout
           return true if self.raw_template.present?
 
-          self.raw_template = if self.index? || !self.site.is_default_locale?(::Mongoid::Fields::I18n.locale.to_s)
-            ''
+          self.raw_template = if self.index? || !self.site.is_default_locale?(::Mongoid::Fields::I18n.locale)
+            '' # need it by Steam to get the template in the default locale
           else
             "{% extends 'parent' %}"
           end

@@ -69,6 +69,8 @@ module Locomotive
       end
     end
 
+    private
+
     def _localize(page, locales, default_locale, parent_fullpaths)
       slug = page.slug_translations[default_locale]
 

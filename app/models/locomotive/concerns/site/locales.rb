@@ -66,7 +66,7 @@ module Locomotive
         end
 
         def is_default_locale?(locale)
-          locale == default_locale.to_s
+          locale.to_s == default_locale.to_s
         end
 
         def default_locale_was

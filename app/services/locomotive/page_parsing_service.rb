@@ -128,7 +128,7 @@ module Locomotive
         element
       else
         klass = "Locomotive::#{attributes[:type].to_s.classify}".constantize
-        element = page.editable_elements.build(attributes, klass)
+        page.editable_elements.build(attributes, klass)
       end
     end
 
