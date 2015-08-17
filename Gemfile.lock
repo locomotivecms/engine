@@ -622,6 +622,7 @@ DEPENDENCIES
   ruby-prof
   sass-rails (~> 5.0.1)
   shoulda-matchers (~> 2.7.0)
+  simplecov
   thor
   timecop (~> 0.7.1)
   uglifier (>= 2.5.3)

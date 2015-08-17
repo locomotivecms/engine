@@ -51,6 +51,7 @@ group :test do
   # gem 'capybara',           '~> 2.0.2'
   # gem 'cucumber-rails', require: false
   # gem 'poltergeist'
+  gem 'simplecov'
 
   gem 'shoulda-matchers',   '~> 2.7.0'
   gem 'grape-entity-matchers'
