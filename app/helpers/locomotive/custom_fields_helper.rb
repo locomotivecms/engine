@@ -151,6 +151,7 @@ module Locomotive
       {
         name:         "#{field.name}_id",
         as:           :editable_select,
+        wrapper_html: { class: 'select' },
         collection:   field.ordered_select_options.map { |option| [option.name, option.id] },
         manage_collection:    {
           label:  custom_field_t(:edit, field.type),
