@@ -10,6 +10,8 @@
 meta name='key-param' content=Rails.application.config.session_options[:key]
 meta name='key-token' content=cookies[key]
 
+link rel="icon" type="image/png" href="#{asset_url('locomotive/favicon.png')}" sizes="32x32"
+
 javascript:
   window.Locomotive = { mounted_on: '#{Locomotive.mounted_on}' }
 
