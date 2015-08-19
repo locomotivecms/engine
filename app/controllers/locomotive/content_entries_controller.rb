@@ -69,7 +69,7 @@ module Locomotive
     def sort
       authorize ContentEntry, :update?
       service.sort(params[:entries])
-      respond_with @content_type
+      respond_with @content_type, location: content_entries_path(current_site, @content_type.slug)
     end
 
     def destroy

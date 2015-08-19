@@ -39,6 +39,11 @@ module Locomotive
           end.compact.map(&:id)
         end
 
+        def order_by=(field)
+          field = '_position' if field == 'manually'
+          set_attribute(:order_by, field)
+        end
+
         def display_settings=(settings)
           (settings || {}).each do |k, v|
             if k == 'position'
