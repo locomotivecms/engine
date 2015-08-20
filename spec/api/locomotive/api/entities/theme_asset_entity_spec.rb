@@ -26,7 +26,7 @@ describe Locomotive::API::Entities::ThemeAssetEntity do
 
     describe 'local_path' do
       it 'returns the local path' do
-        expect(exposure[:local_path]).to eq(theme_asset.local_path(true))
+        expect(exposure[:local_path]).to eq(theme_asset.local_path)
       end
     end
 

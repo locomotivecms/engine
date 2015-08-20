@@ -4,10 +4,10 @@ module Locomotive
 
       class ThemeAssetEntity < BaseEntity
 
-        expose :content_type, :folder, :checksum
+        expose :content_type, :local_path, :folder, :checksum
 
-        expose :local_path do |theme_asset, _|
-          theme_asset.local_path(true)
+        expose :filename do |theme_asset, _|
+          theme_asset.read_attribute(:source_filename)
         end
 
         expose :url do |theme_asset, _|
