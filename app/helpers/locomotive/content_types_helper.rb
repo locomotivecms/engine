@@ -16,7 +16,7 @@ module Locomotive
       else
         assigns = { 'site' => current_site, 'entry' => entry }
 
-        # TODO
+        # Locomotive::Liquid::AssetHost does not exist anymore
         registers = {
           controller:     self,
           site:           current_site,
@@ -24,6 +24,7 @@ module Locomotive
           asset_host:     Locomotive::Liquid::AssetHost.new(request, current_site, Locomotive.config.asset_host)
         }
 
+        # preserve is not available anymore (we switched over to SLIM)
         preserve(content_type.item_template.render(::Liquid::Context.new({}, assigns, registers)))
       end
     end
