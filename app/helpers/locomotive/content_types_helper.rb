@@ -16,6 +16,7 @@ module Locomotive
       else
         assigns = { 'site' => current_site, 'entry' => entry }
 
+        # TODO
         registers = {
           controller:     self,
           site:           current_site,

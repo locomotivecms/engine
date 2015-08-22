@@ -5,6 +5,7 @@ module Locomotive
 
     @@defaults = {
       name:                         'Locomotive',
+      host:                         nil,
       # forbidden_paths:            %w{layouts snippets stylesheets javascripts assets admin system api},
       reserved_site_handles:        %w(sites my_account password sign_in sign_out),
       reserved_slugs:               %w{stylesheets javascripts assets admin locomotive images api pages edit},
@@ -25,12 +26,7 @@ module Locomotive
         metastore:   URI.encode("file:#{Rails.root}/tmp/dragonfly/cache/meta"), # URI encoded in case of spaces
         entitystore: URI.encode("file:#{Rails.root}/tmp/dragonfly/cache/body")
       },
-      devise_modules:             [:registerable, :rememberable, :database_authenticatable, :recoverable, :trackable, :validatable, :encryptable, { encryptor: :sha1 }],
-      context_assign_extensions:  { },
-      models_for_templatization:  [],
-      csrf_protection:            false,
-      theme_assets_checksum:      false,
-      asset_host:                 nil
+      devise_modules:             [:registerable, :rememberable, :database_authenticatable, :recoverable, :trackable, :validatable, :encryptable, { encryptor: :sha1 }]
     }
 
     cattr_accessor :settings

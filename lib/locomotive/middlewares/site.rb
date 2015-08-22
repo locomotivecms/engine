@@ -20,25 +20,36 @@ module Locomotive
         Locomotive.log "[fetch site] host = #{request.host} / site_handle = #{handle.inspect}"
 
         if handle
-          # The site is not rendered from a domain but from the back-office
-          # we need to get:
-          # - the path of "mouting point" (basically: locomotive/:handle/preview)
-          # - the real path of the page
-          #
-          # FIXME: move that in a different middleware
-          mounted_on = "#{Locomotive.mounted_on}/#{handle}/preview"
-
-          env['locomotive.mounted_on']  = env['steam.mounted_on'] = mounted_on
-          env['locomotive.path']        = request.path_info.gsub(mounted_on, '')
-
-          env['steam.live_editing']     = true
-
-          Locomotive::Site.where(handle: handle).first
+          fetch_from_handle(handle, env, request)
+        elsif !request_for_the_back_office_and_default_host?(request)
+          fetch_from_host(env, request)
         else
-          env['locomotive.path'] = request.path_info
-
-          Locomotive::Site.match_domain(request.host).first
+          nil
         end
+      end
+
+      # The site is not rendered from a domain but from the back-office
+      # we need to get:
+      # - the path of "mouting point" (basically: locomotive/:handle/preview)
+      # - the real path of the page
+      #
+      # FIXME: move that in a different middleware
+      def fetch_from_handle(handle, env, request)
+        mounted_on = "#{Locomotive.mounted_on}/#{handle}/preview"
+
+        env['locomotive.mounted_on']  = env['steam.mounted_on'] = mounted_on
+        env['locomotive.path']        = request.path_info.gsub(mounted_on, '')
+
+        env['steam.live_editing']     = true
+
+        Locomotive::Site.where(handle: handle).first
+      end
+
+      # The request is for one of the domains registered in Locomotive.
+      # Find the related site.
+      def fetch_from_host(env, request)
+        env['locomotive.path'] = request.path_info
+        Locomotive::Site.match_domain(request.host).first
       end
 
       def site_handle(request)
@@ -53,6 +64,16 @@ module Locomotive
 
       def site_handle_regexp
         @regexp ||= /#{Locomotive.mounted_on}\/([^\/]+)/o
+      end
+
+      # Is it a request for the back-office AND the domain used to also
+      # render the site of the Rails application?
+      def request_for_the_back_office_and_default_host?(request)
+        default_host && request.host == default_host && request.path_info =~ /#{Locomotive.mounted_on}\//
+      end
+
+      def default_host
+        Locomotive.config.host
       end
 
     end
