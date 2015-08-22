@@ -52,10 +52,14 @@ group :test do
   # gem 'launchy'
   # gem 'capybara',           '~> 2.0.2'
   # gem 'cucumber-rails', require: false
-  gem 'poltergeist'
+
 
   gem 'capybara',             '~> 2.4.4'
+  gem 'poltergeist'
+
   gem 'grape-entity-matchers'
+  gem 'shoulda-matchers',     '2.7.0'
+
   gem 'factory_girl_rails'
   gem 'pickle'
   gem 'json_spec',            '~> 1.1.4'
