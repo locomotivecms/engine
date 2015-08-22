@@ -32,7 +32,8 @@ module Locomotive
       models_for_templatization:  [],
       csrf_protection:            false,
       theme_assets_checksum:      false,
-      asset_host:                 nil
+      asset_host:                 nil,
+      preload_content_types:      true
     }
 
     cattr_accessor :settings

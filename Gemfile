@@ -63,5 +63,5 @@ group :test do
 
   gem 'mocha', '~> 0.13.0', require: false
 
-  gem 'debugger', git: 'git://github.com/cldwalker/debugger.git'
+  # gem 'debugger', git: 'git://github.com/cldwalker/debugger.git'
 end

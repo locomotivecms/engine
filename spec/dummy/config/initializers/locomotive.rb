@@ -1,5 +1,7 @@
 Locomotive.configure do |config|
 
+  config.preload_content_types = false
+
   # A single locomotive instance can serve one single site or many.
   # If you want to run many different websites, you will have to specify
   # your own domain name (ex: locomotivehosting.com).
