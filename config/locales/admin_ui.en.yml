@@ -93,6 +93,7 @@ en:
         created_public: 'added %{entry} to %{content_type} from a public form'
         updated: 'updated %{entry} from %{content_type}'
         destroyed: 'deleted %{entry} from %{content_type}'
+        sorted: 'sorted %{content_type}'
       content_asset:
         created_bulk: 'uploaded %{count} asset(s)'
         destroyed: 'deleted the %{name} asset'
