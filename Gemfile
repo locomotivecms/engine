@@ -52,15 +52,15 @@ group :test do
   # gem 'launchy'
   # gem 'capybara',           '~> 2.0.2'
   # gem 'cucumber-rails', require: false
-  # gem 'poltergeist'
+  gem 'poltergeist'
 
-  gem 'shoulda-matchers',   '~> 2.7.0'
+  gem 'capybara',             '~> 2.4.4'
   gem 'grape-entity-matchers'
   gem 'factory_girl_rails'
   gem 'pickle'
-  gem 'json_spec',          '~> 1.1.4'
+  gem 'json_spec',            '~> 1.1.4'
   gem 'database_cleaner'
-  gem 'timecop',            '~> 0.7.1'
+  gem 'timecop',              '~> 0.7.1'
 
   # gem 'debugger', git: 'git://github.com/cldwalker/debugger.git'
 end
