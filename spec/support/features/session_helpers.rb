@@ -2,7 +2,7 @@ module Features
   module SessionHelpers
 
     def sign_up_with(name, email, password, password_confirmation = nil)
-      visit '/locomotive/sign_up'
+      visit locomotive.sign_up_path
       fill_in 'Name', with: name
       fill_in 'Email', with: email
       fill_in 'locomotive_account[password]', with: password
@@ -10,12 +10,12 @@ module Features
       click_button 'Sign up'
     end
 
-    # def sign_in
-    #   user = create(:user)
-    #   visit sign_in_path
-    #   fill_in 'Email', with: user.email
-    #   fill_in 'Password', with: user.password
-    #   click_button 'Sign in'
-    # end
+    def sign_in
+      account = create(:account)
+      visit locomotive.new_locomotive_account_session_path
+      fill_in 'Email', with: account.email
+      fill_in 'Password', with: account.password
+      click_button 'Sign in'
+    end
   end
 end
