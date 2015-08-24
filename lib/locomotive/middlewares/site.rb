@@ -8,8 +8,15 @@ module Locomotive
 
       def call(env)
         env['locomotive.site'] = env['steam.site'] = fetch_site(env)
-        @app.call(env)
+        begin
+          @app.call(env)
+        rescue ::Locomotive::Steam::NoSiteException => exception
+          # no_site!
+          Locomotive::ErrorsController.action(:no_site).call(env)
+        end
       end
+
+      private
 
       def fetch_site(env)
         request = Rack::Request.new(env)
@@ -27,6 +34,11 @@ module Locomotive
           nil
         end
       end
+
+      # def no_site!(env)
+      #   Locomotive::ErrorsController.action(:no_site).call(env)
+      #   # [200, { 'Content-Type' => 'text/html' }, ['Hello world']]
+      # end
 
       # The site is not rendered from a domain but from the back-office
       # we need to get:

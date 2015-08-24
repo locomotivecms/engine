@@ -16,7 +16,8 @@ module Locomotive
         status = (case exception
         when ::Mongoid::Errors::DocumentNotFound  then 404
         else
-          raise exception # 500
+          raise exception unless request.xhr?
+          500
         end)
 
         if request.xhr?

@@ -1,1 +1,24 @@
-= yield
+doctype XML
+doctype html
+html xmlns='http://www.w3.org/1999/xhtml'
+  head
+    title== error_title
+    meta name="viewport" content="width=device-width, initial-scale=1"
+
+    link rel="icon" type="image/png" href="#{asset_url('locomotive/favicon.png')}" sizes="32x32"
+
+    = stylesheet_link_tag 'locomotive/error', media: 'screen'
+
+  body
+    .wrapper.container-fluid
+      .main
+        .content
+          h1.text-center
+            = image_tag 'locomotive/logo.png'
+            | &nbsp;
+            == 'Locomotive'
+            small== error_title
+
+          = yield
+
+

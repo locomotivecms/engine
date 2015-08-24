@@ -45,5 +45,9 @@ module Dummy
     # config.after_initialize do |c|
     #   c.middleware.delete(Sass::Plugin::Rack)
     # end
+
+    # let Locomotive handle custom error page
+    require 'locomotive/middlewares/custom_public_exceptions'
+    config.exceptions_app = Locomotive::Middlewares::CustomPublicExceptions.new(Rails.public_path)
   end
 end

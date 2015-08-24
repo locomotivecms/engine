@@ -1,1 +1,7 @@
-| No Site!
+- message, link = no_site_message_and_link
+
+h2.text-center
+  == message
+
+p.text-center.next
+  = link_to t('.next').html_safe, link

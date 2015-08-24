@@ -41,6 +41,8 @@ describe Locomotive::Concerns::SiteDispatcherController do
 
     controller do
       include Locomotive::Concerns::SiteDispatcherController
+      include Locomotive::Engine.routes.url_helpers
+      helper Locomotive::ErrorsHelper
       def test_render_no_site
         render_no_site_error
       end
@@ -52,7 +54,7 @@ describe Locomotive::Concerns::SiteDispatcherController do
 
     it 'has a no site error message' do
       get :test_render_no_site
-      expect(response.body).to include 'No Site'
+      expect(response.body).to include 'Site not found'
     end
 
     it 'has a 404 not found status' do

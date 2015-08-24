@@ -65,12 +65,17 @@ en:
     errors:
       "500":
         title: Application Error
-        notice: "We're sorry, but something went wrong"
-        link: "&rarr; Back to the application"
+        message: "We're sorry, but something went wrong"
       "404":
         title: Page not found
-        notice: "The page you requested does not exist."
-        link: "&rarr; Back to the application"
+        message: "The page you requested does not exist."
+      no_site:
+        title: Site not found
+        next: "Next &rarr;"
+        message:
+          create_account: "Please create first an account and then create a site."
+          add_domain: "Add the <strong>%{host}</strong> domain to the list of domains of one of your sites."
+          sign_in: "Please sign in first. Then, add the <strong>%{host}</strong> domain to the list of domains of one of your sites."
 
     notifications:
       new_content_entry:

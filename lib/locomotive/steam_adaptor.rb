@@ -32,6 +32,9 @@ Locomotive::Steam.configure do |config|
 
   require_relative 'steam/services/api_entry_submission_service'
 
+  # let the Rails engine handle the "no site" error
+  config.render_404_if_no_site = false
+
   config.services_hook = -> (services) {
     services.entry_submission = Locomotive::Steam::APIEntrySubmissionService.new(services.current_site, services.locale) if services.request
   }
