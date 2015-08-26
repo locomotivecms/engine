@@ -31,9 +31,10 @@ module Locomotive
     belongs_to :site, class_name: 'Locomotive::Site', validate: false, autosave: false
 
     ## indexes ##
-    index site_id:    1
-    index parent_id:  1
-    index fullpath:   1, site_id: 1
+    index site_id: 1
+    index site_id: 1, handle: 1
+    index parent_id: 1
+    index site_id: 1, fullpath: 1
 
     ## behaviours ##
     slugify_from        :title
