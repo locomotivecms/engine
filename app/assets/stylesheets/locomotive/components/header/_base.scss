@@ -30,10 +30,14 @@ $header_site_arrow_color:     #349cb0;
       margin-right: 3px;
     }
 
-    span.default {
+    span.default, span.default a {
       font-family: $alt-font-family-sans-serif;
       color: rgba($header_brand_color, 1);
       font-size: $font-size-base + 2;
+
+      &:hover {
+        text-decoration: none;
+      }
     }
   }
 
