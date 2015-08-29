@@ -219,6 +219,11 @@ en:
         title: "%{title} &mdash; <small>%{fullpath}</small>"
       edit:
         settings_link: 'Settings'
+      form:
+        model:
+          buttons:
+            list: Manage
+            edit: Edit
 
     sites:
       index:

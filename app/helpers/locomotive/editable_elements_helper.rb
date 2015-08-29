@@ -23,7 +23,7 @@ module Locomotive
     def ordered_editable_elements(editable_elements_by_block)
       list = []
       @editable_elements_by_block.each do |block, editable_elements|
-        list += editable_elements.sort { |(_, a), (_, b) | (b.priority || 1) <=> (a.priority || 1) }
+        list += editable_elements.sort { |(_, a), (_, b) | (b.priority || 0) <=> (a.priority || 0) }
       end
       list
     end

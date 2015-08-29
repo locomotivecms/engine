@@ -47,6 +47,6 @@
                   | &nbsp; / &nbsp;
                   = @content_entry._label
                 span.form_wrapper
-                  = link_to 'Edit', edit_content_entry_path(current_site, @content_entry.content_type.slug, @content_entry, _location: request.fullpath), class: 'btn btn-primary btn-sm'
+                  = link_to t(:edit, scope: 'locomotive.editable_elements.form.model.buttons'), edit_content_entry_path(current_site, @content_entry.content_type.slug, @content_entry, _location: request.fullpath), class: 'btn btn-primary btn-sm'
 
           = render 'form', f: f
