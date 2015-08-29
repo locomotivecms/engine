@@ -3,7 +3,7 @@ module Locomotive
 
     def editable_element_input_options(editable_element, index, options = {})
       {
-        label:        editable_element.slug,
+        label:        editable_element_label(editable_element),
         placeholder:  false,
         hint:         editable_element.hint,
         wrapper_html: {
@@ -11,6 +11,16 @@ module Locomotive
           data: { block: editable_element.block || '' }
         }
       }.merge(options)
+    end
+
+    def editable_element_label(editable_element)
+      label = <<-HTML
+      <span class="label label-primary">#{editable_element.block}</span>
+      &nbsp;
+      #{editable_element.label}
+      HTML
+
+      label.html_safe
     end
 
     def nice_editable_elements_path

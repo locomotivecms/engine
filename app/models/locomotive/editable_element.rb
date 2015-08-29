@@ -28,6 +28,10 @@ module Locomotive
 
     ## methods ##
 
+    def label
+      self.slug
+    end
+
     def disabled?
       !!self.disabled # the original method does not work quite well with the localization
     end

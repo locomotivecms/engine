@@ -24,7 +24,7 @@
         - when :editable_model
           fieldset.inputs
             .form-group.input.link.optional data-block=editable_element.block
-              label.link.control-label.optional= editable_element.content_type.name
+              label.link.control-label.optional= editable_element_label(editable_element)
               - if editable_element.hint.present?
                 span class="help-inline"= editable_element.hint
               span.form_wrapper
