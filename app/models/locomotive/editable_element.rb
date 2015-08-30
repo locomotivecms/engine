@@ -26,10 +26,17 @@ module Locomotive
     scope :by_priority,         -> { order_by(priority: :desc) }
     scope :by_block_and_slug,   ->(block, slug) { where(block: block, slug: slug) }
 
+    ## non-persisted attributes ##
+    attr_accessor :block_name, :block_priority
+
     ## methods ##
 
     def label
       self.slug
+    end
+
+    def block_label
+      (@block_name || self.block).humanize
     end
 
     def disabled?

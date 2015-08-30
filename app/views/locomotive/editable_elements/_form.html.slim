@@ -1,6 +1,6 @@
 .editable-elements
 
-  - ordered_editable_elements(@editable_elements_by_block).each_with_index do |(page, editable_element), index|
+  - each_editable_element(@blocks, @editable_elements_by_block) do |page, editable_element, index|
 
     = f.inputs :editable_element do
 
