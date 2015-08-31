@@ -52,7 +52,6 @@ group :test do
   # gem 'launchy'
   # gem 'capybara',           '~> 2.0.2'
   # gem 'cucumber-rails', require: false
-  # gem 'poltergeist'
   gem 'simplecov'
 
 
