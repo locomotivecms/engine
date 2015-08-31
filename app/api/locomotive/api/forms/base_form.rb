@@ -66,12 +66,6 @@ module Locomotive
           instance_variable_set("@#{name}", value)
         end
 
-        # def attributes
-        #   self.class.attributes.inject({}) do |hash, attribute|
-        #     hash.merge(attribute => send(attribute))
-        #   end
-        # end
-
       end
 
     end

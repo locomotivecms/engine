@@ -42,7 +42,6 @@ module Locomotive
 
         def attach_id_to_option(name, attributes)
           return if existing_field.nil?
-
           if option = existing_field.select_options.where(name: name).first
             attributes[:_id] = option._id
           end

@@ -14,7 +14,7 @@ h3 Get the source code of your site locally
 
 pre
   code.bash
-    | wagon clone #{current_site.name.underscore.gsub(/(\W+)/, '_')} #{request.scheme}://#{request.host_with_port} -h #{current_site.handle} -e #{current_locomotive_account.email} -a #{current_locomotive_account.api_key}
+    = developer_documentation_wagon_clone_string
 
 p
   | If you already have a Wagon site, just add the following code inside your <strong>config/deploy.yml</strong> file.
@@ -27,12 +27,11 @@ pre
     |   email: #{current_locomotive_account.email}<br/>
     |   api_key: #{current_locomotive_account.api_key}
 
-h3 Run locally your site
+h3 Run your site locally
 
 pre
   code.bash
-    | cd #{current_site.name.underscore.gsub(/(\W+)/, '_')}<br/>
-    | wagon serve
+    | cd #{current_site_name_with_underscores}</br>wagon serve
 
 p Now, update any files of your site and see the results locally.
 
@@ -41,6 +40,3 @@ h3 Deploy your modifications
 pre
   code.bash
     | wagon push production
-
-
-
