@@ -26,7 +26,18 @@ module Locomotive
     scope :by_priority,         -> { order_by(priority: :desc) }
     scope :by_block_and_slug,   ->(block, slug) { where(block: block, slug: slug) }
 
+    ## non-persisted attributes ##
+    attr_accessor :block_name, :block_priority
+
     ## methods ##
+
+    def label
+      self.slug
+    end
+
+    def block_label
+      (@block_name || self.block).humanize
+    end
 
     def disabled?
       !!self.disabled # the original method does not work quite well with the localization
@@ -38,10 +49,6 @@ module Locomotive
 
     def page_id
       self._parent.try(:_id)
-    end
-
-    def humanized_id
-      [self.block, self.slug].compact.join('_').gsub('/', '_')
     end
 
     # Make sure the current locale is added to the list

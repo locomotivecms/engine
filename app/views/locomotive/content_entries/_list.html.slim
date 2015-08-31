@@ -15,7 +15,8 @@
             i.fa.fa-bars.draggable
 
         .text
-          strong= link_to entry_label(content_type, entry), edit_content_entry_path(current_site, content_type.slug, entry)
+          .item-label
+            = entry_label(content_type, entry)
           .stamp
             == document_stamp(entry)
 

@@ -33,7 +33,7 @@
               label.select.optional.control-label for='page_block'
                 = t(:region, scope: 'simple_form.labels.locomotive.editable_element')
               span.form-wrapper
-                = select_tag 'block', options_for_page_blocks(@editable_elements_by_block)
+                = select_tag 'block', options_for_page_blocks(@blocks)
 
   .scrollable class="#{'no-editable-elements' if @editable_elements.empty?}"
     .container-fluid
@@ -47,6 +47,6 @@
                   | &nbsp; / &nbsp;
                   = @content_entry._label
                 span.form_wrapper
-                  = link_to 'Edit', edit_content_entry_path(current_site, @content_entry.content_type.slug, @content_entry, _location: request.fullpath), class: 'btn btn-primary btn-sm'
+                  = link_to t(:edit, scope: 'locomotive.editable_elements.form.model.buttons'), edit_content_entry_path(current_site, @content_entry.content_type.slug, @content_entry, _location: request.fullpath), class: 'btn btn-primary btn-sm'
 
           = render 'form', f: f

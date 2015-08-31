@@ -21,6 +21,7 @@ describe Locomotive::PageParsingService do
 
     it { expect(subject.size).to eq 2 }
     it { expect { subject }.to change { page.editable_elements.count }.by(1) }
+    it { expect { subject }.to change { home.reload.editable_elements.count }.by(1) }
 
     context 'super called' do
 
@@ -47,6 +48,61 @@ describe Locomotive::PageParsingService do
         it { expect { subject }.to change { page.editable_elements.count }.by(2) }
 
       end
+
+    end
+
+  end
+
+  describe '#group_and_sort_editable_elements' do
+
+    let(:list) { [] }
+
+    subject { service.group_and_sort_editable_elements(list) }
+
+    it { expect(subject.size).to eq 0 }
+
+    context 'with some elements' do
+
+      let(:element_1) { instance_double('FakeEditableElementOne', block: nil) }
+      let(:element_2) { instance_double('FakeEditableElementTwo', slug: 'Two', block: 'main', priority: 0) }
+      let(:element_3) { instance_double('FakeEditableElementThree', slug: 'Three', block: 'main', priority: 1) }
+
+      let(:list) { [[instance_double('FakePage'), element_1], [instance_double('FakePage'), element_2], [instance_double('FakePage'), element_3]] }
+
+      it { expect(subject.size).to eq 2 }
+      it { expect(subject['main'].map { |(_, el)| el.slug }).to eq ['Three', 'Two'] }
+
+    end
+
+  end
+
+  describe '#blocks_from_grouped_editable_elements' do
+
+    let(:groups) { {} }
+
+    subject { service.blocks_from_grouped_editable_elements(groups) }
+
+    it { expect(subject.size).to eq 0 }
+
+    context 'with some elements' do
+
+      let(:element_1) { instance_double('FakeEditableElementOne', block: nil, block_label: nil, block_priority: 0) }
+      let(:element_2) { instance_double('FakeEditableElementTwo', block: 'main', block_label: 'Main', block_priority: 1) }
+      let(:element_3) { instance_double('FakeEditableElementThree', block: 'main', block_label: 'Main', block_priority: 1) }
+
+      let(:groups) {
+        {
+          nil     => [[instance_double('FakePage'), element_1]],
+          'main'  => [
+            [instance_double('FakePage'), element_3],
+            [instance_double('FakePage'), element_2]
+          ]
+        }
+      }
+
+      it { expect(subject.size).to eq 2 }
+      it { expect(subject.map { |b| b[:name] }).to eq ['main', nil] }
+      it { expect(subject.map { |b| b[:label] }).to eq ['Main', nil] }
 
     end
 

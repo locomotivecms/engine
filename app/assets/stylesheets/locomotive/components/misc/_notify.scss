@@ -10,7 +10,7 @@
   }
 }
 
-[data-notify="container"].alert-success, [data-notify="container"].alert-danger {
+[data-notify="container"].alert-success, [data-notify="container"].alert-danger, [data-notify="container"].alert-error {
    [data-notify="icon"], [data-notify="message"] {
     color: #fff;
   }
@@ -20,6 +20,6 @@
   background-color: $brand-success;
 }
 
-[data-notify="container"].alert-danger {
+[data-notify="container"].alert-danger, [data-notify="container"].alert-error {
   background-color: $brand-danger;
 }

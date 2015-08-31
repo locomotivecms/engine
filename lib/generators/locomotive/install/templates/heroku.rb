@@ -9,6 +9,7 @@ if Rails.env.production? && (api_key = ENV['HEROKU_API_KEY']) && (app_name = ENV
 
   ActiveSupport::Notifications.subscribe('locomotive.site.domain_sync') do |name, start, finish, id, payload|
     (payload[:added] || []).each do |domain|
+      next if Locomotive.config.host == domain
       begin
         heroku.domain.create(app_name, hostname: domain)
       rescue Exception => e
@@ -17,6 +18,7 @@ if Rails.env.production? && (api_key = ENV['HEROKU_API_KEY']) && (app_name = ENV
     end
 
     (payload[:removed] || []).each do |domain|
+      next if Locomotive.config.host == domain
       begin
         heroku.domain.delete(app_name, domain)
       rescue Exception => e

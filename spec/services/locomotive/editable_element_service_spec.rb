@@ -30,8 +30,8 @@ describe Locomotive::EditableElementService do
 
     let(:elements_params) {
       [
-        HashWithIndifferentAccess.new('id' => home.editable_elements.first._id, 'page_id' => home._id, source: FixturedAsset.open('5k.png')),
-        HashWithIndifferentAccess.new('id' => page.editable_elements.first._id, 'page_id' => page._id, content: 'Hello world!')
+        HashWithIndifferentAccess.new('_id' => home.editable_elements.first._id, 'page_id' => home._id, source: FixturedAsset.open('5k.png')),
+        HashWithIndifferentAccess.new('_id' => page.editable_elements.first._id, 'page_id' => page._id, content: 'Hello world!')
       ]
     }
 

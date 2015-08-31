@@ -29,7 +29,8 @@ module Locomotive
       def render_no_site_error
         respond_to do |format|
           format.html do
-            render template: '/locomotive/errors/no_site', layout: false, status: :not_found
+            @title = t(:title, scope: 'locomotive.errors.no_site')
+            render template: '/locomotive/errors/no_site', layout: 'locomotive/layouts/error', status: :not_found
           end
           format.json do
             render json: { error: 'No site found' }, status: :not_found

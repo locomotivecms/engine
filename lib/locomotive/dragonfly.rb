@@ -22,7 +22,7 @@ module Locomotive
     def self.fetch_file(source)
       file = nil
 
-      if source.is_a?(String) || source.is_a?(Hash) # simple string or theme asset
+      if source.is_a?(String) || source.is_a?(Hash) # simple string or drop
         source = source['url'] if source.is_a?(Hash)
 
         clean_source!(source)
@@ -34,12 +34,11 @@ module Locomotive
         end
 
       elsif source.respond_to?(:url) # carrierwave uploader
-        if source.file.respond_to?(:url)
-          file = self.app.fetch_url(source.url) # amazon s3, cloud files, ...etc
-        else
+        if source.path.first == '/'
           file = self.app.fetch_file(source.path)
+        else
+          file = self.app.fetch_url(source.url)
         end
-
       end
 
       file

@@ -37,8 +37,10 @@ class Locomotive.Views.ContentAssets.EditImageView extends Backbone.View
     @$content.find('.apply-resizing-btn').on 'click', @apply_resizing
     @$content.find('.cancel-resizing-btn').on 'click', @cancel_resizing
 
+    container = if $('.drawer').size() > 0 then '.drawer' else '.main'
+
     @$link.popover
-      container:  '.main'
+      container:  container
       placement:  'left'
       content:    @$content
       html:       true

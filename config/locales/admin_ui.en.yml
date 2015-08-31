@@ -65,12 +65,17 @@ en:
     errors:
       "500":
         title: Application Error
-        notice: "We're sorry, but something went wrong"
-        link: "&rarr; Back to the application"
+        message: "We're sorry, but something went wrong"
       "404":
         title: Page not found
-        notice: "The page you requested does not exist."
-        link: "&rarr; Back to the application"
+        message: "The page you requested does not exist."
+      no_site:
+        title: Site not found
+        next: "Next &rarr;"
+        message:
+          create_account: "Please create first an account and then create a site."
+          add_domain: "Add the <strong>%{host}</strong> domain to the list of domains of one of your sites."
+          sign_in: "Please sign in first. Then, add the <strong>%{host}</strong> domain to the list of domains of one of your sites."
 
     notifications:
       new_content_entry:
@@ -93,6 +98,7 @@ en:
         created_public: 'added %{entry} to %{content_type} from a public form'
         updated: 'updated %{entry} from %{content_type}'
         destroyed: 'deleted %{entry} from %{content_type}'
+        sorted: 'sorted %{content_type}'
       content_asset:
         created_bulk: 'uploaded %{count} asset(s)'
         destroyed: 'deleted the %{name} asset'
@@ -213,6 +219,11 @@ en:
         title: "%{title} &mdash; <small>%{fullpath}</small>"
       edit:
         settings_link: 'Settings'
+      form:
+        model:
+          buttons:
+            list: Manage
+            edit: Edit
 
     sites:
       index:

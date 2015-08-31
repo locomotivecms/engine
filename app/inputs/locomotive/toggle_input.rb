@@ -1,6 +1,8 @@
 module Locomotive
   class ToggleInput < ::SimpleForm::Inputs::Base
 
+    include Locomotive::SimpleForm::Inputs::FasterTranslate
+
     def input(wrapper_options)
       template.content_tag(:div, class: 'toggle-wrapper') do
         @builder.check_box attribute_name, data: {

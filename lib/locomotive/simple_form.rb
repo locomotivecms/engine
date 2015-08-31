@@ -1,3 +1,5 @@
+# require 'pry-byebug'
+
 module Locomotive
   module SimpleForm
     module BootstrapHelpers
@@ -30,14 +32,47 @@ module Locomotive
       end
 
     end
+
+    module Inputs
+
+      module FasterTranslate
+
+        def translate_from_namespace(namespace, default = '')
+          if (model_names = lookup_model_names)[0] == 'locomotive'
+            model_name = model_names.join('.')
+
+            _key = [
+              I18n.locale,
+              template.instance_variable_get(:"@virtual_path"),
+              namespace,
+              model_name,
+              reflection_or_attribute_name].join('/')
+
+            Rails.cache.fetch(_key) do
+              lookups = [:"#{model_name}.#{lookup_action}.#{reflection_or_attribute_name}"]
+              lookups << :"#{model_name}.#{reflection_or_attribute_name}"
+              lookups << default
+
+              t(lookups.shift, scope: :"#{i18n_scope}.#{namespace}", default: lookups).presence
+            end
+          else
+            super
+          end
+        end
+
+      end
+
+      ::SimpleForm::FormBuilder.mappings.values.uniq.each do |klass|
+        klass.send(:include, FasterTranslate)
+      end
+    end
+
   end
 
   class FormBuilder < ::SimpleForm::FormBuilder
 
     def inputs(name = nil, options = {}, &block)
-      label = translate_text(name, :titles)
-
-      html = template.content_tag(:legend, template.content_tag(:span, label))
+      html = template.content_tag(:legend, template.content_tag(:span, name))
       html += template.capture(&block)
 
       options[:class] ||= 'inputs'
@@ -59,13 +94,13 @@ module Locomotive
 
       template.content_tag(:div, action +
         '&nbsp;'.html_safe +
-        template.t('simple_form.buttons.defaults.locomotive.or') +
+        translate_button(:or) +
         '&nbsp;'.html_safe +
         back_button, class: 'text-right form-actions')
     end
 
     def back_button_action(options = {})
-      label  = template.t('simple_form.buttons.defaults.locomotive.cancel')
+      label  = translate_button(:cancel)
       url    = options[:back_url]
 
       if options[:use_stored_location]
@@ -77,8 +112,8 @@ module Locomotive
 
     def action(misc_class = '')
       action        = object.persisted? ? :update : :create
-      label         = translate_text(action, :buttons)
-      loading_text  = translate_text(:loading_text, :buttons)
+      label         = translate_button(action)
+      loading_text  = translate_button(:loading_text)
 
       template.content_tag :button, label,
         type:   'submit',
@@ -87,27 +122,33 @@ module Locomotive
     end
 
     def submit_text(action = :submit)
-      translate_text(action, :buttons, action)
+      translate_button(action)
     end
 
-    # Translate text for the submits and titles namespace.
-    # it differs from the simple_form translate_from_namespace method
-    # in that this does not care about the attribute.
-    #
-    def translate_text(key, namespace, default = '')
-      model_names = lookup_model_names.dup
-      lookups     = []
+    # # Translate text for the submits and titles namespace.
+    # # it differs from the simple_form translate_from_namespace method
+    # # in that this does not care about the attribute.
+    # #
+    # def translate_text(key, namespace, default = '')
+    #   model_names = lookup_model_names.dup
+    #   lookups     = []
 
-      while !model_names.empty?
-        joined_model_names = model_names.join(".")
-        model_names.shift
+    #   while !model_names.empty?
+    #     joined_model_names = model_names.join(".")
+    #     model_names.shift
 
-        lookups << :"#{joined_model_names}.#{key}"
-      end
-      lookups << :"defaults.locomotive.#{key}"
-      lookups << default.to_s
+    #     lookups << :"#{joined_model_names}.#{key}"
+    #   end
+    #   lookups << :"defaults.locomotive.#{key}"
+    #   lookups << default.to_s
 
-      I18n.t(lookups.shift, scope: :"#{i18n_scope}.#{namespace}", default: lookups).presence
+    #   puts "#{i18n_scope}.#{namespace}.#{lookups.first} - #{lookups.inspect}"
+
+    #   I18n.t(lookups.shift, scope: :"#{i18n_scope}.#{namespace}", default: lookups).presence
+    # end
+
+    def translate_button(key)
+      template.t("simple_form.buttons.defaults.locomotive.#{key}")
     end
 
     # Extract the model names from the object_name mess, ignoring numeric and
@@ -130,9 +171,9 @@ module Locomotive
       end
     end
 
-    def i18n_scope
-      ::SimpleForm.i18n_scope
-    end
+    # def i18n_scope
+    #   ::SimpleForm.i18n_scope
+    # end
 
   end
 end

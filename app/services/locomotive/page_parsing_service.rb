@@ -8,7 +8,7 @@ module Locomotive
 
     def find_or_create_editable_elements(page)
       benchmark "Parse page #{page._id} find_or_create_editable_elements" do
-        parsed = { extends: {}, blocks: {}, elements: [] }
+        parsed = { extends: {}, blocks: {}, super_blocks: {}, elements: [] }
 
         subscribe(parsed) do
           parse(page)
@@ -20,12 +20,31 @@ module Locomotive
       end
     end
 
+    # Each element of the elements parameter is a couple: Page, EditableElement
+    def group_and_sort_editable_elements(elements)
+      elements.group_by { |(_, el)| el.block }.tap do |groups|
+        groups.each do |_, list|
+          list.sort! { |(_, a), (_, b)| (b.priority || 0) <=> (a.priority || 0) }
+        end
+      end
+    end
+
+    def blocks_from_grouped_editable_elements(groups)
+      groups.map do |block, elements|
+        next if elements.empty?
+
+        element = elements.first.last
+
+        { name: block, label: element.block_label, priority: element.block_priority }
+      end.sort { |a, b| b[:priority] <=> a[:priority] }
+    end
+
     private
 
     def subscribe(parsed, &block)
       subscribers = [
         subscribe_to_extends(parsed[:extends]),
-        subscribe_to_blocks(parsed[:blocks]),
+        subscribe_to_blocks(parsed[:blocks], parsed[:super_blocks]),
         subscribe_to_editable_elements(parsed[:elements])
       ]
 
@@ -43,11 +62,13 @@ module Locomotive
       end
     end
 
-    def subscribe_to_blocks(blocks)
+    def subscribe_to_blocks(blocks, super_blocks)
       ActiveSupport::Notifications.subscribe('steam.parse.inherited_block') do |name, start, finish, id, payload|
         page_id, block_name, found_super = payload[:page]._id, payload[:name], payload[:found_super]
-        blocks[page_id] ||= {}
-        blocks[page_id][block_name] = found_super
+        super_blocks[page_id] ||= {}
+        super_blocks[page_id][block_name] = found_super
+
+        blocks[block_name] ||= payload.slice(:short_name, :priority)
       end
     end
 
@@ -67,7 +88,7 @@ module Locomotive
     end
 
     def persist_editable_elements(page, parsed)
-      modified_pages = [] # group modifications by page
+      modified_pages, pages = [], { page._id => page } # group modifications by page
 
       elements = parsed[:elements].map do |couple|
         _page, attributes = couple
@@ -75,10 +96,12 @@ module Locomotive
         next if !persist_editable_element?(page, parsed, _page, attributes)
 
         # Note: _page is a Steam entity but we need a Mongoid document to save the elements
-        _page = attributes[:fixed] ? Locomotive::Page.find(_page._id) : page
+        _page = attributes[:fixed] ? find_page(_page._id, pages) : page
 
         element = add_or_modify_editable_element(_page, attributes)
         couple[0], couple[1] = _page, element # we get now a Mongoid document instead of a Steam entity
+
+        assign_block_information(element, parsed[:blocks])
 
         modified_pages << _page
 
@@ -109,7 +132,7 @@ module Locomotive
       return true if descendant.nil?
 
       # find if the descendant hides the block
-      if (blocks = parsed[:blocks][descendant]).blank?
+      if (blocks = parsed[:super_blocks][descendant]).blank?
         # we can not know for sure, ask the descendant of the descendant
         block_visible?(descendant, parsed, attributes)
       else
@@ -128,13 +151,20 @@ module Locomotive
         element
       else
         klass = "Locomotive::#{attributes[:type].to_s.classify}".constantize
-        element = page.editable_elements.build(attributes, klass)
+        page.editable_elements.build(attributes, klass)
       end
     end
 
     def remove_useless_editable_elements(page, elements)
       if _elements = (elements.map { |p, _elements| p._id == page._id ? _elements : nil }.flatten.compact)
         page.editable_elements.where(:_id.nin => _elements.map(&:_id)).destroy_all
+      end
+    end
+
+    def assign_block_information(element, blocks)
+      if element.block && (options = blocks[element.block])
+        element.block_name      = element.block.split('/').last if options[:short_name]
+        element.block_priority  = options[:priority]
       end
     end
 
@@ -147,6 +177,10 @@ module Locomotive
 
     def repository
       services.repositories.page
+    end
+
+    def find_page(id, in_memory)
+      in_memory[id] ||= Locomotive::Page.find(id)
     end
 
     def logger

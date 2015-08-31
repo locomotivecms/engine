@@ -18,10 +18,6 @@ def Locomotive.configure_for_test(force = false)
   Locomotive.configure do |config|
     config.enable_logs = true
 
-    config.csrf_protection = true
-
-    config.theme_assets_checksum = true
-
     config.enable_admin_ssl = false
 
     if force

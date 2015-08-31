@@ -1,11 +1,14 @@
 Locomotive.configure do |config|
 
+  # enable it if you want Locomotive to render the site of the Rails application embedding the engine
+  # config.host = 'mylocomotiveapp.com'
+
   # list of forbidden handles for a site because there are in conflicts with internal resources.
   # config.reserved_site_handles = %w(sites my_account password sign_in sign_out)
 
-  # configure how many items we display in sub menu in the "Contents" section.
+  # configure how many items we display in sub menu in the "Models" section.
   config.ui = {
-    per_page:           10
+    per_page: 10
   }
 
   # default locale (for now, only en, de, fr, pl, pt, pt-BR, it, nl, nb, ja, cs, bg and sk are supported)

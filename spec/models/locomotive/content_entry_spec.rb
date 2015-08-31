@@ -378,6 +378,16 @@ describe Locomotive::ContentEntry do
 
   end
 
+  describe '#to_liquid' do
+
+    let(:entry) { build_content_entry }
+
+    subject { entry.to_liquid }
+
+    it { expect(subject._label).to eq 'Locomotive' }
+
+  end
+
   def localize_content_type(content_type)
     content_type.entries_custom_fields.first.localized = true
     content_type.save

@@ -17,7 +17,7 @@ describe 'locomotive/my_account/edit', type: :view do
   describe 'api_key input' do
 
     it 'renders the url to generate a new API key' do
-      expect(subject).to include('<legend><span>API</span></legend>')
+      expect(subject).to include('<legend><span>api</span></legend>')
       expect(subject).to include('data-url="/my_account/regenerate_api_key"')
     end
 

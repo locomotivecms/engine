@@ -12,7 +12,7 @@ describe Locomotive::API::Entities::ContentTypeEntity do
       label_field_name
       order_direction
       public_submission_enabled
-      raw_item_template
+      entry_template
     )
 
   attributes.each do |exposure|

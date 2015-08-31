@@ -22,7 +22,7 @@ group :development do
   # gem 'custom_fields', github: 'locomotivecms/custom_fields', ref: '15cceb66ed'
 
   # gem 'locomotivecms_steam', path: '../in_progress/steam', require: false
-  # gem 'locomotivecms_steam', github: 'locomotivecms/steam', ref: '89e9445', require: false
+  gem 'locomotivecms_steam', github: 'locomotivecms/steam', ref: '2650a1c', require: false
 
   # gem 'locomotive-aloha-rails', path: '../gems/aloha-rails' # for Developers
   # gem 'locomotive-tinymce-rails', path: '../gems/tinymce-rails' # for Developers
@@ -35,15 +35,17 @@ group :development do
 
   gem 'quiet_assets'
 
-  gem 'ruby-prof'
-
   gem 'better_errors'
   gem 'binding_of_caller'
-  # gem 'pry-byebug'
+  gem 'pry-byebug'
 
   # gem 'unicorn-rails' # Using unicorn_rails instead of webrick (default server)
   # gem 'thin'
   gem 'puma'
+end
+
+group :profile, :development do
+  gem 'ruby-prof'
 end
 
 group :test do
@@ -53,13 +55,18 @@ group :test do
   # gem 'poltergeist'
   gem 'simplecov'
 
-  gem 'shoulda-matchers',   '~> 2.7.0'
+
+  gem 'capybara',             '~> 2.4.4'
+  gem 'poltergeist'
+
   gem 'grape-entity-matchers'
+  gem 'shoulda-matchers',     '2.7.0'
+
   gem 'factory_girl_rails'
   gem 'pickle'
-  gem 'json_spec',          '~> 1.1.4'
+  gem 'json_spec',            '~> 1.1.4'
   gem 'database_cleaner'
-  gem 'timecop',            '~> 0.7.1'
+  gem 'timecop',              '~> 0.7.1'
 
   # gem 'debugger', git: 'git://github.com/cldwalker/debugger.git'
 end

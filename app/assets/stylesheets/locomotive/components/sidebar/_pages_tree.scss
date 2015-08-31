@@ -58,7 +58,7 @@ $pt_warning_color:      #f89406;
         .fold-unfold {
           @include user-select(none);
 
-          margin-left: 3px;
+          margin-left: 8px;
 
           i {
             color: $pt_icon_color;

@@ -41,19 +41,12 @@ module Locomotive
     end
 
     def page_params
-      params.require(:page).permit(editable_elements_attributes: [:id, :page_id, :source, :remove_source, :remote_source_url, :content])
-    end
-
-    def parsing_service
-      @parsing_service ||= Locomotive::PageParsingService.new(current_site, current_content_locale)
-    end
-
-    def persisting_service
-      @persisting_service ||= Locomotive::EditableElementService.new(current_site, current_locomotive_account)
+      params.require(:page).permit(editable_elements_attributes: [:id, :_id, :page_id, :source, :remove_source, :remote_source_url, :content])
     end
 
     def render_index
-      @editable_elements_by_block = @editable_elements.group_by { |(_, e)| e.block }
+      @editable_elements_by_block = parsing_service.group_and_sort_editable_elements(@editable_elements)
+      @blocks = parsing_service.blocks_from_grouped_editable_elements(@editable_elements_by_block)
 
       @content_entry = @page.content_type.entries.find(params[:content_entry_id]) if params[:content_entry_id]
 
@@ -62,6 +55,14 @@ module Locomotive
       else
         render @page.default_response_type? ? 'index' : 'index_without_preview'
       end
+    end
+
+    def parsing_service
+      @parsing_service ||= Locomotive::PageParsingService.new(current_site, current_content_locale)
+    end
+
+    def persisting_service
+      @persisting_service ||= Locomotive::EditableElementService.new(current_site, current_locomotive_account)
     end
 
     def store_location_if_content_entry

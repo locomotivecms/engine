@@ -14,7 +14,7 @@ module Locomotive
 
     before_filter :require_ssl
 
-    helper  Locomotive::BaseHelper
+    helper Locomotive::BaseHelper, Locomotive::ErrorsHelper
 
     self.responder = Locomotive::ActionController::Responder # custom responder
 

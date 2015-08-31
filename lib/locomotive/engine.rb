@@ -36,7 +36,8 @@ module Locomotive
         locomotive.js
         locomotive.css
         locomotive/not_logged_in.js
-        locomotive/not_logged_in.css)
+        locomotive/not_logged_in.css
+        locomotive/error.css)
 
       # Uncomment the lines below to view the names of assets as they are
       # precompiled for the rails asset pipeline

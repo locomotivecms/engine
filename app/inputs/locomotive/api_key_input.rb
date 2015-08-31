@@ -1,6 +1,8 @@
 module Locomotive
   class ApiKeyInput < ::SimpleForm::Inputs::Base
 
+    include Locomotive::SimpleForm::Inputs::FasterTranslate
+
     def input(wrapper_options)
       api_key_html + regenerate_button
     end

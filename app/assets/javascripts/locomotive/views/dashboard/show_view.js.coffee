@@ -10,6 +10,13 @@ class Locomotive.Views.Dashboard.ShowView extends Backbone.View
     'ajax:beforeSend  a[data-behavior~=load-more]': 'loading_activity_feed'
     'ajax:success     a[data-behavior~=load-more]': 'refresh_activity_feed'
 
+  render: ->
+    super
+
+    # replace the img by the name of the file
+    @$('.assets img').error ->
+      $(this).parent().html($(this).attr('alt'))
+
   loading_activity_feed: (event) -> $(event.target).button('loading')
 
   refresh_activity_feed: (event, data, status, xhr) ->

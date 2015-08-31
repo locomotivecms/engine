@@ -16,6 +16,17 @@ pre
   code.bash
     = developer_documentation_wagon_clone_string
 
+p
+  | If you already have a Wagon site, just add the following code inside your <strong>config/deploy.yml</strong> file.
+
+pre
+  code.yaml
+    | production:<br/>
+    |   host: #{request.scheme}://#{request.host_with_port}<br/>
+    |   handle: #{current_site.handle}<br/>
+    |   email: #{current_locomotive_account.email}<br/>
+    |   api_key: #{current_locomotive_account.api_key}
+
 h3 Run your site locally
 
 pre

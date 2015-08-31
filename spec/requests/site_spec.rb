@@ -15,6 +15,34 @@ describe 'Locomotive::Middlewares::Site' do
 
   end
 
+  describe 'the requested site is also the default host' do
+
+    before { site }
+    before { allow(middleware).to receive(:default_host).and_return('steve.me') }
+
+    context 'home page' do
+
+      let(:url) { 'http://steve.me' }
+      it { expect(subject.name).to eq('Locomotive site with existing models') }
+
+    end
+
+    context 'about page' do
+
+      let(:url) { 'http://steve.me/about' }
+      it { expect(subject.name).to eq('Locomotive site with existing models') }
+
+    end
+
+    context 'locomotive app section' do
+
+      let(:url) { 'http://steve.me/locomotive/sites' }
+      it { is_expected.to eq(nil) }
+
+    end
+
+  end
+
   describe 'existing site' do
 
     before { site }

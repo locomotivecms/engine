@@ -34,7 +34,7 @@ module Locomotive
       layouts = current_site.pages.layouts.map do |_layout|
         [_layout.title, _layout._id]
       end
-      [[t(:no_layout, scope: 'locomotive.pages.form'), nil]] + layouts
+      [[t(:no_layout, scope: 'locomotive.pages.form'), 'parent']] + layouts
     end
 
     # def options_for_page_response_type

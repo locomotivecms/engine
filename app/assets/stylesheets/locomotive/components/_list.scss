@@ -50,6 +50,12 @@
           color: $content_list_item_link_color;
         }
 
+        .item-label {
+          a:first-child {
+            font-weight: bold;
+          }
+        }
+
         .stamp {
           margin-top: 5px;
           color: $content_list_item_stamp_color;
