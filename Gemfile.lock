@@ -1,35 +1,7 @@
-GIT
-  remote: git://github.com/locomotivecms/steam.git
-  revision: 2650a1c43e6ba4f3c33e091ecbbc214830854c69
-  ref: 2650a1c
-  specs:
-    locomotivecms_steam (1.0.0.pre.beta.2)
-      RedCloth (~> 4.2.9)
-      chronic (~> 0.10.2)
-      coffee-script (~> 2.4.1)
-      compass (~> 1.0.3)
-      dragonfly (~> 1.0.10)
-      haml (~> 4.0.6)
-      httparty (~> 0.13.5)
-      kramdown (~> 1.8.0)
-      locomotivecms-solid (~> 4.0.0.alpha2)
-      locomotivecms_common (~> 0.0.4)
-      mime-types (~> 2.6.1)
-      mimetype-fu (~> 0.1.2)
-      moneta (~> 0.8.0)
-      morphine (~> 0.1.1)
-      rack-cache (~> 1.2)
-      rack-rewrite (~> 1.5.1)
-      rack_csrf (~> 2.5.0)
-      sanitize (~> 4.0.0)
-      sprockets (~> 2.12.3)
-      sprockets-less (~> 0.6.1)
-      sprockets-sass (~> 1.3.1)
-
 PATH
   remote: .
   specs:
-    locomotivecms (3.0.0.pre.alpha.3)
+    locomotivecms (3.0.0.pre.beta.1)
       actionmailer-with-request (~> 0.4.0)
       autoprefixer-rails (~> 5.2.0)
       backbone-on-rails (~> 1.2.0.0)
@@ -52,7 +24,7 @@ PATH
       jquery-rails (~> 4.0.3)
       jquery-ui-rails (~> 5.0.3)
       kaminari (~> 0.16.3)
-      locomotivecms_steam (~> 1.0.0.pre.beta.2)
+      locomotivecms_steam (~> 1.0.0.pre.beta.3)
       mime-types (~> 2.5)
       mimetype-fu (~> 0.1.2)
       mongo_session_store-rails4 (~> 6.0.0)
@@ -416,6 +388,28 @@ GEM
       activesupport (~> 4.2.1)
       colorize
       stringex (~> 2.5.2)
+    locomotivecms_steam (1.0.0.pre.beta.3)
+      RedCloth (~> 4.2.9)
+      chronic (~> 0.10.2)
+      coffee-script (~> 2.4.1)
+      compass (~> 1.0.3)
+      dragonfly (~> 1.0.10)
+      haml (~> 4.0.6)
+      httparty (~> 0.13.5)
+      kramdown (~> 1.8.0)
+      locomotivecms-solid (~> 4.0.0.alpha2)
+      locomotivecms_common (~> 0.0.4)
+      mime-types (~> 2.6.1)
+      mimetype-fu (~> 0.1.2)
+      moneta (~> 0.8.0)
+      morphine (~> 0.1.1)
+      rack-cache (~> 1.2)
+      rack-rewrite (~> 1.5.1)
+      rack_csrf (~> 2.5.0)
+      sanitize (~> 4.0.0)
+      sprockets (~> 2.12.3)
+      sprockets-less (~> 0.6.1)
+      sprockets-sass (~> 1.3.1)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
     mail (2.6.3)
@@ -641,7 +635,6 @@ DEPENDENCIES
   grape-entity-matchers
   json_spec (~> 1.1.4)
   locomotivecms!
-  locomotivecms_steam!
   pickle
   poltergeist
   pry
