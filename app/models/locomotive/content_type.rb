@@ -7,7 +7,7 @@ module Locomotive
     include ::CustomFields::Source
     include Concerns::ContentType::Label
     include Concerns::ContentType::DefaultValues
-    include Concerns::ContentType::ItemTemplate
+    include Concerns::ContentType::EntryTemplate
     include Concerns::ContentType::Sync
     include Concerns::ContentType::GroupBy
     include Concerns::ContentType::OrderBy

@@ -58,7 +58,8 @@ module Locomotive
               optional :order_direction
               optional :group_by
               optional :label_field_name
-              optional :raw_item_template
+              optional :entry_template
+              optional :raw_item_template # deprecated
               optional :display_settings
               optional :public_submission_account_emails
               optional :public_submission_accounts
@@ -101,7 +102,8 @@ module Locomotive
               optional :order_direction
               optional :group_by
               optional :label_field_name
-              optional :raw_item_template
+              optional :entry_template
+              optional :raw_item_template # deprecated
               optional :display_settings
               optional :public_submission_account_emails
               optional :public_submission_accounts

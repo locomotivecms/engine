@@ -1,7 +1,7 @@
 module Locomotive
   module ContentTypesHelper
 
-    # Renders the label of a content type entry. If no raw_item_template filled in the content type,
+    # Renders the label of a content type entry. If no entry_template filled in the content type,
     # it just calls the _label method of the entry (based on the label_field_id). Otherwise, it
     # parses and renders the liquid template.
     #
@@ -11,21 +11,16 @@ module Locomotive
     # @return [ String ] The label of the content type entry
     #
     def entry_label(content_type, entry)
-      if content_type.raw_item_template.blank?
-        entry._label # default one
+      link = edit_content_entry_path(current_site, content_type.slug, entry)
+
+      if content_type.entry_template.blank?
+        link_to entry._label, link  # default one
       else
-        assigns = { 'site' => current_site, 'entry' => entry }
+        assigns   = { 'site' => current_site, 'entry' => entry.to_liquid(content_type), 'link' => link, 'today' => Date.today, 'now' => Time.zone.now }
+        registers = { site: current_site, locale: ::Mongoid::Fields::I18n.locale.to_s, services: Locomotive::Steam::Services.build_instance }
+        context   = ::Liquid::Context.new({}, assigns, registers)
 
-        # Locomotive::Liquid::AssetHost does not exist anymore
-        registers = {
-          controller:     self,
-          site:           current_site,
-          current_locomotive_account:  current_locomotive_account,
-          asset_host:     Locomotive::Liquid::AssetHost.new(request, current_site, Locomotive.config.asset_host)
-        }
-
-        # preserve is not available anymore (we switched over to SLIM)
-        preserve(content_type.item_template.render(::Liquid::Context.new({}, assigns, registers)))
+        content_type.render_entry_template(context).html_safe
       end
     end
 

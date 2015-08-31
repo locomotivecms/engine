@@ -37,9 +37,5 @@ module Locomotive
       File.extname(self.source_filename).gsub(/^\./, '')
     end
 
-    def to_liquid
-      { url: self.source.url }.merge(self.attributes).stringify_keys
-    end
-
   end
 end

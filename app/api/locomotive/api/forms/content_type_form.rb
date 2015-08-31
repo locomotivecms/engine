@@ -10,7 +10,7 @@ module Locomotive
               :order_by, :order_direction, :group_by,
               :public_submission_enabled,
               :public_submission_accounts,
-              :raw_item_template,
+              :entry_template,
               :entries_custom_fields_attributes,
               :display_settings
 
@@ -37,6 +37,11 @@ module Locomotive
           self.public_submission_accounts = emails.collect do |email|
             Locomotive::Account.where(email: email).first
           end.compact.map(&:id)
+        end
+
+        # deprecated
+        def raw_item_template=(template)
+          set_attribute(:entry_template, template)
         end
 
         def order_by=(field)

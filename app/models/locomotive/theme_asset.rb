@@ -115,10 +115,6 @@ module Locomotive
       end
     end
 
-    def to_liquid
-      { url: self.source.url }.merge(self.attributes).stringify_keys
-    end
-
     protected
 
     def safe_source_filename

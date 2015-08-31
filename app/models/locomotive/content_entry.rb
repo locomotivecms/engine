@@ -115,13 +115,13 @@ module Locomotive
       end
     end
 
-    # All the content entries no matter the content type they belong to
-    # share the same liquid drop class.
-    #
-    # @param [ Class ] The liquid drop class
-    #
-    def self.drop_class
-      Locomotive::Liquid::Drops::ContentEntry
+    def to_liquid(type = nil)
+      (type || self.content_type).to_steam_entry(self).to_liquid
+
+      # repositories  = Locomotive::Steam::Services.build_instance.repositories
+      # _content_type = repositories.content_type.build(content_type.attributes.symbolize_keys)
+
+      # repositories.content_entry.with(_content_type).build(self.attributes.symbolize_keys).to_liquid
     end
 
     protected

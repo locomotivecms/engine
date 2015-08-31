@@ -48,7 +48,7 @@ en:
           field:
             name: Alias
         content_type:
-          raw_item_template: Item template
+          entry_template: Entry template
           public_submission_enabled: Public submission
           public_submission_accounts: Notified Accounts
           "custom_fields/field":
