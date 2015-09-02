@@ -169,7 +169,13 @@ module Locomotive
     end
 
     def text_custom_field_options(field, entry)
-      { as: field.text_formatting ? :rte : :text }
+      type = case field.text_formatting
+      when 'html', nil, ''  then :rte
+      when 'markdown'       then :markdown
+      else :text
+      end
+
+      { as: type }
     end
 
     def custom_field_picker_options(field, slug)
