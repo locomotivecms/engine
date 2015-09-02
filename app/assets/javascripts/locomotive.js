@@ -11,6 +11,7 @@
 //= require underscore
 //= require backbone
 //= require codemirror
+//= require codemirror/modes/markdown
 //= require select2
 //= require nprogress
 //= require nprogress-ajax

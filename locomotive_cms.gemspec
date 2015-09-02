@@ -47,7 +47,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'jquery-rails',                    '~> 4.0.3'
   s.add_dependency 'jquery-ui-rails',                 '~> 5.0.3'
   s.add_dependency 'backbone-on-rails',               '~> 1.2.0.0'
-  s.add_dependency 'codemirror-rails',                '~> 5.0'
+  s.add_dependency 'codemirror-rails',                '~> 5.6'
   s.add_dependency 'flash_cookie_session',            '~> 1.1.1'
   s.add_dependency 'select2-rails',                   '~> 3.5.9'
   s.add_dependency 'compass-rails',                   '2.0.4'

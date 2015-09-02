@@ -10,6 +10,14 @@ module Locomotive
       end
     end
 
+    def editable_text_format_to_input_type(editable_element)
+      case editable_element.format
+      when 'html'     then :rte
+      when 'markdown' then :markdown
+      else :text
+      end
+    end
+
     def editable_element_input_options(editable_element, index, options = {})
       {
         label:        editable_element_label(editable_element),

@@ -1,0 +1,42 @@
+.wysihtml5-toolbar id="markdown-toolbar-#{wysihtml5_prefix}"
+
+  span.wysihtml5-toolbar-group
+    a data-markdown-command='bold'
+      i.fa.fa-bold
+    a data-markdown-command='italic'
+      i.fa.fa-italic
+
+  span.wysihtml5-toolbar-group
+    / a data-markdown-command='insertUnorderedList'
+    /   i.fa.fa-list-ul
+    / a data-markdown-command='insertOrderedList'
+    /   i.fa.fa-list-ol
+    / a.style
+    /   i.fa.fa-paragraph
+
+    / .style-dialog-content style='display: none'
+    /   a data-markdown-command='formatBlock' data-markdown-command-value='h1' H1
+    /   br
+    /   a data-markdown-command='formatBlock' data-markdown-command-value='h2' H2
+    /   br
+    /   a data-markdown-command='formatBlock' data-markdown-command-value='h3' H3
+    /   br
+    /   a data-markdown-command='formatBlock' data-markdown-command-value='h3' H4
+    /   br
+    /   a data-markdown-command='formatBlock' data-markdown-command-value='h3' H5
+    /   br
+    /   a data-markdown-command='formatBlock' data-markdown-command-value='h3' H6
+    /   br
+    /   a data-markdown-command='formatBlock' data-markdown-command-value='blockquote'
+    /     i.fa.fa-quote-right
+    /   br
+
+    / a data-markdown-command='createLink'
+    /   i.fa.fa-chain
+    / = link_popover
+    / a data-markdown-command='removeLink'
+    /   i.fa.fa-chain-broken
+
+    a data-url=content_assets_path data-markdown-command='insertFile'
+      i.fa.fa-file-o
+    = image_popover

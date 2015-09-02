@@ -1,6 +1,6 @@
 .simple_form {
 
-  fieldset .input.rte {
+  fieldset .input.rte, fieldset .input.markdown {
 
     .form-wrapper {
 
@@ -15,6 +15,7 @@
           font-size: $form_input_rte_command_font_size;
           color: $form_input_rte_command_color;
           margin-right: 6px;
+          cursor: pointer;
 
           &.wysihtml5-command-active {
             color: $form_input_rte_command_active_color;

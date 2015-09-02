@@ -13,4 +13,7 @@ class Locomotive.Views.Inputs.TextView extends Backbone.View
   content_change: (event) ->
     PubSub.publish 'inputs.text_changed',
       view:     @
-      content:  $(event.target).val()
+      content:  @text_value($(event.target))
+
+  text_value: (textarea) ->
+    textarea.val()
