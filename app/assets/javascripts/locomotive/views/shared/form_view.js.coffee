@@ -27,6 +27,7 @@ class Locomotive.Views.Shared.FormView extends Backbone.View
     @enable_tags_inputs()
     @enable_document_picker_inputs()
     @enable_select_inputs()
+    @enable_color_inputs()
 
     return @
 
@@ -118,6 +119,9 @@ class Locomotive.Views.Shared.FormView extends Backbone.View
       view.render()
       self.inputs.push(view)
 
+  enable_color_inputs: ->
+    @$('.input.color .input-group').colorpicker(container: false, align: 'right')
+
   enable_tags_inputs: ->
     @$('.input.tags input[type=text]').tagsinput()
 
@@ -135,6 +139,7 @@ class Locomotive.Views.Shared.FormView extends Backbone.View
     _.each @inputs, (view) -> view.remove()
     @$('.input.tags input[type=text]').tagsinput('destroy')
     @$('.input.select select').select2('destroy')
+    @$('.input.color .input-group').colorpicker('destroy')
 
   _stop_event: (event) ->
     event.stopPropagation() & event.preventDefault()

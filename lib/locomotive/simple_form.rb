@@ -1,5 +1,3 @@
-# require 'pry-byebug'
-
 module Locomotive
   module SimpleForm
     module BootstrapHelpers
@@ -125,28 +123,6 @@ module Locomotive
       translate_button(action)
     end
 
-    # # Translate text for the submits and titles namespace.
-    # # it differs from the simple_form translate_from_namespace method
-    # # in that this does not care about the attribute.
-    # #
-    # def translate_text(key, namespace, default = '')
-    #   model_names = lookup_model_names.dup
-    #   lookups     = []
-
-    #   while !model_names.empty?
-    #     joined_model_names = model_names.join(".")
-    #     model_names.shift
-
-    #     lookups << :"#{joined_model_names}.#{key}"
-    #   end
-    #   lookups << :"defaults.locomotive.#{key}"
-    #   lookups << default.to_s
-
-    #   puts "#{i18n_scope}.#{namespace}.#{lookups.first} - #{lookups.inspect}"
-
-    #   I18n.t(lookups.shift, scope: :"#{i18n_scope}.#{namespace}", default: lookups).presence
-    # end
-
     def translate_button(key)
       template.t("simple_form.buttons.defaults.locomotive.#{key}")
     end
@@ -170,10 +146,6 @@ module Locomotive
         names.freeze
       end
     end
-
-    # def i18n_scope
-    #   ::SimpleForm.i18n_scope
-    # end
 
   end
 end

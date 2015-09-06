@@ -31,6 +31,11 @@ module Locomotive
 
     initializer 'locomotive.precompile.hook', group: :all do |app|
       app.config.assets.precompile += %w(
+        locomotive/bootstrap-colorpicker/saturation.png
+        locomotive/bootstrap-colorpicker/alpha-horizontal.png
+        locomotive/bootstrap-colorpicker/alpha.png
+        locomotive/bootstrap-colorpicker/hue-horizontal.png
+        locomotive/bootstrap-colorpicker/hue.png
         locomotive/wysihtml5_reset.css
         locomotive/wysihtml5_editor.css
         locomotive.js

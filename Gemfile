@@ -54,7 +54,6 @@ group :test do
   # gem 'cucumber-rails', require: false
   gem 'simplecov'
 
-
   gem 'capybara',             '~> 2.4.4'
   gem 'poltergeist'
 

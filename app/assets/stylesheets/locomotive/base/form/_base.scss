@@ -61,9 +61,15 @@
         border: $form_input_control_border_size solid $form_input_control_border_color;
         @include border-radius($form_input_control_border_size);
 
-        > input, > select {
+        > input, > select, .input-group > input {
           border: none;
           @include border-radius(0px);
+        }
+
+        .input-group {
+          .input-group-addon {
+            border: none;
+          }
         }
       }
 
