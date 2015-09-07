@@ -4,7 +4,7 @@
 
 = locomotive_form_for @page, url: update_all_editable_elements_path(current_site, @page), defaults: { placeholder: false, hint: false } do |f|
 
-  = f.action 'hide'
+  = f.action class: 'hide'
 
   ul.nav.nav-tabs role='tablist'
     = form_nav_tab :content, true do

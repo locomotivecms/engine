@@ -9,7 +9,7 @@
       display: none;
     }
 
-    > .input {
+    .input {
       background: $form_input_background_color;
       padding: $form_input_padding;
       @include border-radius($form_input_radius);

@@ -65,6 +65,11 @@ module Locomotive
       protected
 
       def with_flash_message(type = :notice, in_header = true)
+        unless set_flash_message?
+          yield if block_given?
+          return
+        end
+
         if in_header
           set_flash_message!
           message = URI::escape(controller.flash[type].to_str) if controller.flash[type]

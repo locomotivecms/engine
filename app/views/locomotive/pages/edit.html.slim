@@ -7,7 +7,7 @@
   = hidden_field_tag :active_tab, ''
   = hidden_field_tag :_location,  params[:_location]
 
-  = f.action 'hide'
+  = f.action class: 'hide'
 
   = render 'locomotive/pages/form/tabs', f: f
 

@@ -108,14 +108,14 @@ module Locomotive
       template.link_to(label, url)
     end
 
-    def action(misc_class = '')
+    def action(options = {})
       action        = object.persisted? ? :update : :create
-      label         = translate_button(action)
+      label         = options[:label] || translate_button(action)
       loading_text  = translate_button(:loading_text)
 
       template.content_tag :button, label,
         type:   'submit',
-        class:  "btn btn-success btn-sm #{misc_class}",
+        class:  "btn btn-success btn-sm #{options[:class]}",
         data:   { loading_text: loading_text }
     end
 
