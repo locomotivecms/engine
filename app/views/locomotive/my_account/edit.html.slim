@@ -3,12 +3,14 @@
 
 = help t('.help', default: '')
 
-= locomotive_form_for @account, url: my_account_path, html: { multipart: true }, defaults: { placeholder: false } do |f|
+.row
+  .col-sm-offset-2.col-sm-8
+    = locomotive_form_for @account, url: my_account_path, html: { multipart: true }, defaults: { placeholder: false } do |f|
 
-  = hidden_field_tag :active_tab, ''
+      = hidden_field_tag :active_tab, ''
 
-  = f.action class: 'hide'
+      = f.action class: 'hide'
 
-  = render 'locomotive/my_account/form/tabs', f: f
+      = render 'locomotive/my_account/form/tabs', f: f
 
-  = render 'locomotive/my_account/form/panes', f: f
+      = render 'locomotive/my_account/form/panes', f: f
