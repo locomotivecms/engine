@@ -30,6 +30,7 @@ module Locomotive
       end
 
       Site.new(attributes).tap do |site|
+        site.created_by = account
         site.memberships.build account: account, role: 'admin'
 
         success = raise_if_not_valid ? site.save! : site.save

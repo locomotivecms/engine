@@ -8,7 +8,7 @@ class Locomotive.Views.Shared.FormView extends Backbone.View
 
   events:
     'submit form':            'save'
-    'ajax:aborted:required':  'reset_state'
+    'ajax:aborted:required':  'show_empty_form_message'
 
   render: ->
     @inputs = []
@@ -52,6 +52,13 @@ class Locomotive.Views.Shared.FormView extends Backbone.View
   save: (event) ->
     @change_state()
     @record_active_tab()
+
+  show_empty_form_message: (event) ->
+    message = @$('form').data('blank-required-fields-message')
+
+    Locomotive.notify message, 'error' if message?
+
+    @reset_state()
 
   enable_hover: ->
     $('.form-group.input').hover ->

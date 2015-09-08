@@ -32,9 +32,10 @@ module Locomotive
     validates_presence_of :name
 
     ## associations ##
+    has_many :created_sites, class_name: 'Locomotive::Site', validate: false, autosave: false
 
     ## callbacks ##
-    before_destroy    :remove_memberships!
+    before_destroy :remove_memberships!
 
     ## scopes ##
     scope :ordered,   -> { order_by(name: :asc) }

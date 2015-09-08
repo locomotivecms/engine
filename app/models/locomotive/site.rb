@@ -16,6 +16,8 @@ module Locomotive
     mount_uploader :picture, PictureUploader, validate_integrity: true
 
     ## associations ##
+    belongs_to  :created_by,      class_name: 'Locomotive::Account'
+    embeds_many :memberships,     class_name: 'Locomotive::Membership'
     has_many    :pages,           class_name: 'Locomotive::Page',           validate: false, autosave: false
     has_many    :snippets,        class_name: 'Locomotive::Snippet',        dependent: :destroy, validate: false, autosave: false
     has_many    :theme_assets,    class_name: 'Locomotive::ThemeAsset',     dependent: :destroy, validate: false, autosave: false
@@ -24,7 +26,6 @@ module Locomotive
     has_many    :content_entries, class_name: 'Locomotive::ContentEntry',   dependent: :destroy, validate: false, autosave: false
     has_many    :translations,    class_name: 'Locomotive::Translation',    dependent: :destroy, validate: false, autosave: false
     has_many    :activities,      class_name: 'Locomotive::Activity',       dependent: :destroy, validate: false, autosave: false
-    embeds_many :memberships,     class_name: 'Locomotive::Membership'
 
     ## validations ##
     validates_presence_of :name
