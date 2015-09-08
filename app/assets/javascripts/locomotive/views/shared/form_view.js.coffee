@@ -7,7 +7,8 @@ class Locomotive.Views.Shared.FormView extends Backbone.View
   namespace: null
 
   events:
-    'submit form': 'save'
+    'submit form':            'save'
+    'ajax:aborted:required':  'reset_state'
 
   render: ->
     @inputs = []
