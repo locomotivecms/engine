@@ -2,7 +2,7 @@ Locomotive.Views.Shared ||= {}
 
 class Locomotive.Views.Shared.HeaderView extends Backbone.View
 
-  el: 'nav.navbar'
+  el: '.header'
 
   initialize: ->
 
