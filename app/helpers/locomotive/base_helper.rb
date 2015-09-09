@@ -37,6 +37,7 @@ module Locomotive
     def locomotive_form_for(object, *args, &block)
       options = args.extract_options!
       options[:wrapper] = :locomotive
+      (options[:data] ||= {})[:blank_required_fields_message] = t(:blank_required_fields, scope: 'simple_form')
       simple_form_for(object, *(args << options.merge(builder: Locomotive::FormBuilder)), &block)
     end
 

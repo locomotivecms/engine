@@ -1,5 +1,7 @@
 en:
   simple_form:
+    blank_required_fields: "You haven't filled all the required inputs."
+
     titles:
       locomotive:
         account:

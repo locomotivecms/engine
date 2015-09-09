@@ -10,6 +10,6 @@
   = f.actions do
     .row
       .col-md-6.text-left
-        = link_to escape_once('&larr;&nbsp;') + t('.back'), edit_current_site_path(current_site)
+        = link_to "&larr;&nbsp;#{t('.back')}".html_safe, edit_current_site_path(current_site)
       .col-md-6.text-right
         = f.action
