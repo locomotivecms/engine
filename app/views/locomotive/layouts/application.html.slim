@@ -17,8 +17,11 @@ html xmlns='http://www.w3.org/1999/xhtml'
       .content
         .scrollable
           .container-fluid.main role='main'
+            .row
+              = yield :local_warning_message
+
             - if title
-              .row
+              .row.header-row
                 .col-md-8.col-xs-9
                   h1== title
 
