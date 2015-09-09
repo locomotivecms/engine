@@ -19,7 +19,6 @@ module Locomotive
             present memberships, with: entity_klass
           end
 
-
           desc "Show a membership"
           params do
             requires :id, type: String, desc: 'Membership ID'
@@ -31,7 +30,6 @@ module Locomotive
               present membership, with: entity_klass
             end
           end
-
 
           desc 'Create a membership'
           params do
@@ -50,7 +48,6 @@ module Locomotive
             present membership, with: entity_klass, policy: current_policy
           end
 
-
           desc 'Update a membership'
           params do
             requires :id, type: String, desc: 'Membership ID'
@@ -67,7 +64,6 @@ module Locomotive
 
             present membership, with: entity_klass
           end
-
 
           desc "Delete a membership"
           params do

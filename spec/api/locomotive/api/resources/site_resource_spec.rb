@@ -4,7 +4,8 @@ describe Locomotive::API::Resources::SiteResource do
 
   include_context 'api site setup'
 
-  let(:params) { { locale: :en } }
+  let(:locale) { :en }
+  let(:params) { { locale: locale } }
   let(:url_prefix) { '/locomotive/acmi/api/v3/sites' }
 
   context 'authenticated site' do
@@ -50,7 +51,7 @@ describe Locomotive::API::Resources::SiteResource do
 
     context 'additional existing site' do
       let!(:new_site) do
-        new_site = create('test site')
+        new_site = create('test site', seo_title: 'Hi')
         create(:admin, account: account, site: new_site, role: 'admin')
         new_site
       end
@@ -60,7 +61,7 @@ describe Locomotive::API::Resources::SiteResource do
           let(:new_site_params) do
             new_site.serializable_hash.merge(name: 'changed name')
           end
-          let(:put_request) { put("#{url_prefix}/#{new_site.id}.json", site: new_site_params) }
+          let(:put_request) { put("#{url_prefix}/#{new_site.id}.json", site: new_site_params, locale: locale) }
 
           it 'changes the site name' do
             expect{ put_request }.to change{ Locomotive::Site.find(new_site.id).name }
@@ -68,8 +69,9 @@ describe Locomotive::API::Resources::SiteResource do
           end
 
           context 'localized params' do
+            let(:locale) { 'fr' }
             let(:new_site_params) do
-              new_site.serializable_hash.merge(seo_title: { 'en' => 'Hi', 'fr' => 'Bonjour' })
+              new_site.serializable_hash.merge(seo_title: 'Bonjour')
             end
 
             it 'changes the site seo_title' do
