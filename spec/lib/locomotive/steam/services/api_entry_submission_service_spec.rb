@@ -4,7 +4,8 @@ describe Locomotive::Steam::APIEntrySubmissionService do
 
   let(:site)          { create(:site) }
   let(:locale)        { :en }
-  let!(:content_type) { create('message content type', site: site).reload }
+  let(:enabled)       { true }
+  let!(:content_type) { create('message content type', site: site, public_submission_enabled: enabled).reload }
   let(:service)       { described_class.new(site, locale) }
 
   describe '#submit' do
@@ -18,6 +19,14 @@ describe Locomotive::Steam::APIEntrySubmissionService do
     it 'returns a content entry' do
       expect(subject.name).to eq 'John Doe'
       expect(subject.message).to eq 'Hello'
+    end
+
+    context 'no public submission allowed' do
+
+      let(:enabled) { false }
+
+      it { expect(subject).to eq nil }
+
     end
 
   end #

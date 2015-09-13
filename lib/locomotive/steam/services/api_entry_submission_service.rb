@@ -4,8 +4,11 @@ module Locomotive
     class APIEntrySubmissionService < Struct.new(:site, :locale)
 
       def submit(slug, attributes = {})
-        load_content_type(slug)
-        create_entry(attributes)
+        if load_content_type(slug)
+          create_entry(attributes)
+        else
+          nil
+        end
       end
 
       def to_json(entry)
