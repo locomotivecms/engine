@@ -15,7 +15,7 @@ module Locomotive
       private
 
       def load_content_type(slug)
-        @content_type = site.content_types.where(slug: slug).first
+        @content_type = site.content_types.where(slug: slug, public_submission_enabled: true).first
       end
 
       def create_entry(attributes)

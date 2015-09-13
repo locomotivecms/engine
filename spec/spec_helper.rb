@@ -25,6 +25,7 @@ RSpec.configure do |config|
 
   config.include Rails.application.routes.url_helpers
   config.include Features::SessionHelpers, type: :feature
+  config.include Features::SiteHelpers, type: :feature
 
   config.include Locomotive::RSpec::Matchers
   config.include FactoryGirl::Syntax::Methods

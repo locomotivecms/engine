@@ -22,8 +22,8 @@ module Locomotive
     field :group_by_field_id,           type: BSON::ObjectId
     field :order_by # either a BSON::ObjectId (field id) or a String (:_position, ...etc)
     field :order_direction,             default: 'asc'
-    field :public_submission_enabled,   type: Boolean, default: false
-    field :public_submission_accounts,  type: Array
+    field :public_submission_enabled,   type: Boolean,  default: false
+    field :public_submission_accounts,  type: Array,    default: []
     field :filter_fields,               type: Array
     field :number_of_entries
     field :display_settings,            type: Hash

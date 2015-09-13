@@ -62,7 +62,7 @@ module Locomotive
               optional :raw_item_template # deprecated
               optional :display_settings
               optional :public_submission_account_emails
-              optional :public_submission_accounts
+              optional :public_submission_enabled
             end
           end
           post do
@@ -106,7 +106,7 @@ module Locomotive
               optional :raw_item_template # deprecated
               optional :display_settings
               optional :public_submission_account_emails
-              optional :public_submission_accounts
+              optional :public_submission_enabled
             end
           end
           put ':id' do

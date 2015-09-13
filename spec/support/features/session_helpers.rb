@@ -11,11 +11,12 @@ module Features
     end
 
     def sign_in
-      account = create(:account)
+      @account = create(:account)
       visit locomotive.new_locomotive_account_session_path
-      fill_in 'Email', with: account.email
-      fill_in 'Password', with: account.password
+      fill_in 'Email', with: @account.email
+      fill_in 'Password', with: @account.password
       click_button 'Sign in'
     end
+
   end
 end
