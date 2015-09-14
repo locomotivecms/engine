@@ -2,6 +2,9 @@ require 'spec_helper'
 
 describe Locomotive::Liquid::Tags::Extends do
 
+  before(:all)  { ::Mongoid::Fields::I18n.fallbacks_for('fr', ['fr']) }
+  after(:all)   { ::Mongoid::Fields::I18n.clear_fallbacks }
+
   before(:each) do
     @home = FactoryGirl.build(:page, raw_template: 'Hello world')
     @home.send :serialize_template

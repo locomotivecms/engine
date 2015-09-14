@@ -15,7 +15,7 @@ describe Locomotive::Liquid::Tags::LocaleSwitcher do
   let(:translated_page) do
     page = FactoryGirl.create(:page, title: "Hello", slug: "hello", site: site, parent: site.pages.where(slug: "index").first)
     ::Mongoid::Fields::I18n.with_locale(:fr) do
-      page.update_attributes(title: "Bonjour")
+      page.update_attributes(title: "Bonjour", slug: "bonjour")
     end
     page
   end

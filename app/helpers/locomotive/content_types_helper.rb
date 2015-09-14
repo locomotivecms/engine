@@ -54,7 +54,7 @@ module Locomotive
     #
     def entry_label(content_type, entry)
       if content_type.raw_item_template.blank?
-        entry._label # default one
+        entry._label(content_type).presence || t('locomotive.shared.list.untranslated')
       else
         assigns = { 'site' => current_site, 'entry' => entry }
 

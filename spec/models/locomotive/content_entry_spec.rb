@@ -114,7 +114,7 @@ describe Locomotive::ContentEntry do
       end
 
       it 'is not translated by default in the other locale' do
-        @content_entry._slug.should be_nil # French
+        @content_entry._slug_translations['fr'].should be_nil # French
       end
 
     end

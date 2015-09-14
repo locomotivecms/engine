@@ -21,7 +21,7 @@ group :test, :development do
 end
 
 group :development do
-  # gem 'custom_fields', path: '../gems/custom_fields' # for Developers
+  # gem 'custom_fields', path: '~/Documents/LocomotiveCMS/gems/custom_fields' # for Developers
   # gem 'custom_fields', github: 'locomotivecms/custom_fields'
   # gem 'custom_fields', git: 'git://github.com/locomotivecms/custom_fields.git', branch: '2.0.0.rc' # Branch on Github
 
