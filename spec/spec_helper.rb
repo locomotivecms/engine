@@ -24,6 +24,10 @@ Locomotive.configure_for_test
 RSpec.configure do |config|
 
   config.include Rails.application.routes.url_helpers
+  config.before :each, type: :helper do
+    helper.class.include Locomotive::Engine.routes.url_helpers
+  end
+
   config.include Features::SessionHelpers, type: :feature
   config.include Features::SiteHelpers, type: :feature
 

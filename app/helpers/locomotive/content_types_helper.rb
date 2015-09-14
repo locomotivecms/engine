@@ -14,7 +14,8 @@ module Locomotive
       link = edit_content_entry_path(current_site, content_type.slug, entry)
 
       if content_type.entry_template.blank?
-        link_to entry._label, link  # default one
+        label = entry._label(content_type).presence || t(:untranslated, scope: 'locomotive.shared.list')
+        link_to label, link  # default one
       else
         assigns   = { 'site' => current_site, 'entry' => entry.to_liquid(content_type), 'link' => link, 'today' => Date.today, 'now' => Time.zone.now }
         registers = { site: current_site, locale: ::Mongoid::Fields::I18n.locale.to_s, services: Locomotive::Steam::Services.build_instance }

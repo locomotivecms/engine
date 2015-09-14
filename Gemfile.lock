@@ -39,7 +39,7 @@ PATH
       carrierwave-mongoid (~> 0.7)
       codemirror-rails (~> 5.6)
       compass-rails (= 2.0.4)
-      custom_fields (~> 2.4.0.rc4)
+      custom_fields (~> 2.4.0.rc5)
       devise (~> 3.5.1)
       devise-encryptable (~> 0.2.0)
       dragonfly (~> 1.0.7)
@@ -212,7 +212,7 @@ GEM
       multi_test (>= 0.1.2)
     cucumber-core (1.2.0)
       gherkin (~> 2.12.0)
-    custom_fields (2.4.0.rc4)
+    custom_fields (2.4.0.rc5)
       activesupport (~> 4.2.1)
       carrierwave-mongoid (~> 0.7.1)
       monetize (~> 1.1.0)
@@ -332,7 +332,7 @@ GEM
       fog-core
       fog-json
       fog-xml
-    fog-sakuracloud (1.1.0)
+    fog-sakuracloud (1.1.1)
       fog-core
       fog-json
     fog-serverlove (0.1.2)
@@ -437,9 +437,9 @@ GEM
       moped (~> 2.0.0)
       origin (~> 2.1)
       tzinfo (>= 0.3.37)
-    mongoid-grid_fs (2.1.0)
+    mongoid-grid_fs (2.2.0)
       mime-types (>= 1.0, < 3.0)
-      mongoid (>= 3.0, < 5.0)
+      mongoid (>= 3.0, <= 6.0)
     mongoid-tree (2.0.0)
       mongoid (>= 4.0, <= 5.0)
     moped (2.0.7)
@@ -452,7 +452,7 @@ GEM
     multi_xml (0.5.5)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
-    net-ssh (2.10.1.rc1)
+    net-ssh (2.10.1.rc2)
     netrc (0.10.3)
     nokogiri (1.6.6.2)
       mini_portile (~> 0.6.0)

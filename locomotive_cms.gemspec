@@ -34,7 +34,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'mongo_session_store-rails4',      '~> 6.0.0'
 
   s.add_dependency 'mime-types',                      '~> 2.5'
-  s.add_dependency 'custom_fields',                   '~> 2.4.0.rc4'
+  s.add_dependency 'custom_fields',                   '~> 2.4.0.rc5'
 
   s.add_dependency 'locomotivecms_steam',             '~> 1.0.0-beta.3'
 
