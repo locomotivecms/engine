@@ -73,7 +73,7 @@ en:
         title: Site not found
         next: "Next &rarr;"
         message:
-          create_account: "Please create first an account and then create a site."
+          create_account: "Please create an account first and then create a site."
           add_domain: "Add the <strong>%{host}</strong> domain to the list of domains of one of your sites."
           sign_in: "Please sign in first. Then, add the <strong>%{host}</strong> domain to the list of domains of one of your sites."
 
