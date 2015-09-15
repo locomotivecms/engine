@@ -1,5 +1,17 @@
 body.live-editing {
 
+  .slide-sidebar {
+    position: fixed;
+    background: #383838;
+    height: 100%;
+    width: $live_editing_expand_bar_width;
+    z-index: 999;
+
+    .bar {
+      @include control-window-button;
+    }
+  }
+
   .content .close-button, .content .expand-button {
     @include control-window-button;
     z-index: 995;
@@ -29,7 +41,7 @@ body.live-editing {
 
   .preview {
     border-left: $live_editing_content_width solid #fff;
-    left: -$live_editing_content_width;
+    left: -$live_editing_content_width + $live_editing_expand_bar_width;
   }
 
   .content {

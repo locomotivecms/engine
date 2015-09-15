@@ -37,13 +37,14 @@ $drawer_background_color:                 white;
 $drawer_title_color:                      #666;
 
 $control_window_button_size:              30px;
-$control_window_button_color:             #fff; //#333;
-$control_window_background_color:         #333;
+$control_window_button_color:             #fff;
+$control_window_background_color:         #383838;
 
 $live_editing_content_width:                40em;
 $live_editing_content_border_color:         $navbar-default-bg;
 $live_editing_content_background_color:     #fff;
-$live_editing_content_alt_background_color: #333;
+$live_editing_content_alt_background_color: #383838;
+$live_editing_expand_bar_width:             2em;
 
 $form_input_background_color:             #f7f7f7;
 $form_input_hovered_background_color:     #f7f8d1;

@@ -3,6 +3,7 @@ doctype html
 html xmlns='http://www.w3.org/1999/xhtml'
   head
     = render 'locomotive/shared/head'
+
   body class="live-editing sidebar-closed"
 
     - # HEADER: brand + current site + account
@@ -10,6 +11,14 @@ html xmlns='http://www.w3.org/1999/xhtml'
 
     - # WRAPPER
     .wrapper
+      .slide-sidebar
+        .bar
+          .expand-button
+            i.fa.fa-chevron-right
+        nav.sidebar
+          .scrollable
+            = render 'locomotive/shared/sidebar'
+
       section.preview
         .scrollable
           = yield :preview

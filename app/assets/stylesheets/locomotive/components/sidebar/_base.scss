@@ -9,6 +9,7 @@
 
   section {
     border-bottom: 1px solid $sidebar_section_border_color;
+    -webkit-font-smoothing: subpixel-antialiased; // avoid thin fonts in Safari when the sidebar is sliding
 
     h1 {
       font-size: $sidebar_title_font_size;

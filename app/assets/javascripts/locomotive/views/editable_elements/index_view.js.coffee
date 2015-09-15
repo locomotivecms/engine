@@ -5,8 +5,8 @@ class Locomotive.Views.EditableElements.IndexView extends Backbone.View
   el: '.wrapper'
 
   events:
-    'click .expand-button': 'expand_preview'
-    'click .close-button':  'shrink_preview'
+    'click .content .expand-button': 'expand_preview'
+    'click .content .close-button':  'shrink_preview'
 
   expand_preview: (event) ->
     $('body').addClass('full-width-preview')

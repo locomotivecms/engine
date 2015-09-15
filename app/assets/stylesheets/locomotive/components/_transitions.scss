@@ -28,6 +28,27 @@ body.slide-right-sidebar {
 
 body.live-editing {
 
+  // SIDEBAR
+  .slide-sidebar {
+    .bar {
+      @include transition(opacity 0.3s ease-in-out);
+    }
+    .sidebar {
+      @include transform(translate3d(0, 0, 0));
+      @include transition(transform 0.2s ease-in-out);
+    }
+
+    &:hover {
+      .bar {
+        @include opacity(0);
+      }
+      .sidebar {
+        @include transform(translate3d($sidebar_width, 0, 0));
+      }
+    }
+  }
+
+
   // STATE: SHRINKED
 
   .content {
@@ -53,7 +74,7 @@ body.live-editing {
     // STATE: EXPANDED
 
     .content {
-      @include transform(translate3d($live_editing_content_width - 2em, 0, 0));
+      @include transform(translate3d($live_editing_content_width - $live_editing_expand_bar_width, 0, 0));
 
       @include transition(transform 0.3s ease-in-out, background-color 0.1s ease-in-out 0.2s);
       > .inner {
@@ -66,8 +87,8 @@ body.live-editing {
     }
 
     .preview {
-      @include transform(translate3d($live_editing_content_width - 2em, 0, 0));
-      border-left-width: 2em;
+      @include transform(translate3d($live_editing_content_width - $live_editing_expand_bar_width, 0, 0));
+      border-left-width: $live_editing_expand_bar_width;
       @include transition(transform 0.3s ease-in-out);
     }
 
