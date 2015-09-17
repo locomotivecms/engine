@@ -1,0 +1,26 @@
+h3 class="activity"= t('.title')
+
+ul.activity-feed
+  - @activities.each do |activity|
+    li class=activity.domain
+      span.icon.fa-stack.fa-lg
+        i.fa.fa-circle.fa-stack-2x
+        i.fa.fa-stack-1x.fa-inverse class=activity_to_icon(activity)
+
+      p
+        = account_avatar_and_name(activity.actor, size = '70x70#')
+        | &nbsp;
+        | &middot;
+        | &nbsp;
+        span.time= activity.created_at.to_s(:humanized_ago)
+        | &nbsp;
+        | &middot;
+        | &nbsp;
+        span.sentence= render_activity_sentence(activity)
+
+      - if info = render_activity_additional_information(activity)
+        .additional-information= info
+
+- if @activities.current_page < @activities.total_pages
+  p.text-center
+    = link_to t('.load_more'), { page: @activities.current_page + 1 }, class: 'btn btn-primary btn-sm', data: { behavior: 'load-more', loading_text: t('.loading_activity_feed') }, remote: true

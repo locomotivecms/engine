@@ -164,7 +164,13 @@ en:
 
     dashboard:
       show:
-        title: 'Activity'
+        title: 'Dashboard'
+      url:
+        title: "URL of your site:"
+        visit: 'Visit'
+        change_domain: 'Use your own domain name'
+      activity:
+        title: Activity
         unknown_account: Someone
         load_more: Loading more
         loading_activity_feed: Loading...

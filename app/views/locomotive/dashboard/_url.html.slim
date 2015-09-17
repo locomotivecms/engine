@@ -1,0 +1,9 @@
+h3 class="url"
+  = t('.title')
+
+  strong
+    = current_site_url
+  = link_to t('.visit'), current_site_url, target: '_blank', class: 'btn btn-sm btn-primary'
+
+  - if current_site.domains.blank?
+    = link_to t('.change_domain'), edit_current_site_path(current_site, anchor: 'access_points'), class: 'btn btn-sm btn-primary'

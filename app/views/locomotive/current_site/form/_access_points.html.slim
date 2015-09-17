@@ -2,7 +2,7 @@
   = f.inputs :access_points do
     = f.input :handle
 
-    = f.input :domains, as: :array, placeholder: true, collection: f.object.domains, template: :domain, template_url: new_domain_current_site_path(current_site)
+    = f.input :domains, as: :array, hint: t(:domains, scope: 'simple_form.hints.locomotive.site', domain: Locomotive.config.host || request.host).html_safe, placeholder: true, collection: f.object.domains, template: :domain, template_url: new_domain_current_site_path(current_site)
 
   = f.actions do
     = f.action

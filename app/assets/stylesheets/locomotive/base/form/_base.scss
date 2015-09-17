@@ -48,6 +48,11 @@
       .help-inline {
         color: $form_input_help_color;
         font-size: $form_input_help_size;
+
+        b {
+          font-weight: bold;
+          color: #555;
+        }
       }
 
       .error-inline {
