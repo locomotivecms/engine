@@ -4,8 +4,8 @@ RSpec.shared_examples_for 'model scoped by a site' do
 
   describe 'touch' do
 
-    let(:date) { Time.zone.local(2015, 4, 1, 12, 0, 0) }
-    let(:attribute) { :template_version }
+    let!(:site)     { model.site }
+    let(:date)      { Time.zone.local(2015, 4, 1, 12, 0, 0) }
 
     subject { model.save! }
 

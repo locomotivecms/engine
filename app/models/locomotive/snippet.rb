@@ -11,7 +11,7 @@ module Locomotive
     field :template, localize: true
 
     ## validations ##
-    validates_presence_of   :site, :name, :slug, :template
+    validates_presence_of   :name, :slug, :template
     validates_uniqueness_of :slug, scope: :site_id
 
     ## named scopes ##

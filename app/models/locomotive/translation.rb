@@ -2,6 +2,7 @@ module Locomotive
   class Translation
 
     include Locomotive::Mongoid::Document
+    include Concerns::Shared::SiteScope
     include Concerns::Shared::Userstamp
 
     ## fields ##
@@ -9,12 +10,9 @@ module Locomotive
     field :values,      type: Hash,     default: {}
     field :completion,  type: Integer,  default: 0
 
-    ## associations ##
-    belongs_to :site, class_name: 'Locomotive::Site', validate: false, autosave: false
-
     ## validations ##
     validates_uniqueness_of :key, scope: :site_id
-    validates_presence_of   :site, :key
+    validates_presence_of   :key
 
     ## named scopes ##
     scope :ordered,       -> { order_by(key: :asc) }
@@ -26,12 +24,15 @@ module Locomotive
     before_validation :remove_blanks
 
     ## indexes ##
-    index site_id: 1
     index site_id: 1, key: 1
     index site_id: 1, completion: 1
     index site_id: 1, key: 1, completion: 1
 
     ## methods ##
+
+    def touch_site_attribute
+      :content_version
+    end
 
     protected
 

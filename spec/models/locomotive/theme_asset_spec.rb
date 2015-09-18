@@ -167,11 +167,8 @@ describe Locomotive::ThemeAsset do
 
   it_should_behave_like 'model scoped by a site' do
 
-    let(:source)    { FixturedAsset.open('5k.png') }
-    let(:model)     { asset }
+    let(:model)     { build(:theme_asset, source: FixturedAsset.open('5k.png')) }
     let(:attribute) { :template_version }
-
-    before { site.save }
 
   end
 

@@ -2,8 +2,7 @@ require 'spec_helper'
 
 describe Locomotive::Snippet do
 
-  let(:site)    { build(:site) }
-  let(:snippet) { build(:snippet, site: site) }
+  let(:snippet) { build(:snippet) }
 
   it 'has a valid factory' do
     expect(snippet).to be_valid
@@ -23,8 +22,6 @@ describe Locomotive::Snippet do
 
     let(:model)     { snippet }
     let(:attribute) { :template_version }
-
-    before { site.save! }
 
   end
 
