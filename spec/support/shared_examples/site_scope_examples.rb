@@ -1,6 +1,6 @@
 RSpec.shared_examples_for 'model scoped by a site' do
 
-  it { allow(model).to receive(:site) }
+  it { expect(model).to respond_to(:site) }
 
   describe 'touch' do
 

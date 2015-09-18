@@ -2,15 +2,13 @@ module Locomotive
   class Snippet
 
     include Locomotive::Mongoid::Document
+    include Concerns::Shared::SiteScope
     include Concerns::Shared::Slug
 
     ## fields ##
     field :name
     field :slug
     field :template, localize: true
-
-    ## associations ##
-    belongs_to :site, class_name: 'Locomotive::Site', validate: false, autosave: false
 
     ## validations ##
     validates_presence_of   :site, :name, :slug, :template
@@ -23,6 +21,10 @@ module Locomotive
     slugify_from :name
 
     ## methods ##
+
+    def touch_site_attribute
+      :template_version
+    end
 
   end
 end

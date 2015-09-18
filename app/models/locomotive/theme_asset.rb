@@ -28,7 +28,6 @@ module Locomotive
     before_validation :build_local_path
 
     ## validations ##
-    validates_presence_of   :site
     validates_presence_of   :source, on: :create
     validates_uniqueness_of :local_path, scope: :site_id
     validate                :content_type_can_not_change
@@ -36,6 +35,10 @@ module Locomotive
     ## named scopes ##
 
     ## methods ##
+
+    def touch_site_attribute
+      :template_version
+    end
 
     def stylesheet_or_javascript?
       self.stylesheet? || self.javascript?
@@ -48,10 +51,6 @@ module Locomotive
       else
         self.read_attribute(:local_path)
       end
-    end
-
-    def touch_site_attribute
-      :template_version
     end
 
     def self.all_grouped_by_folder(site)

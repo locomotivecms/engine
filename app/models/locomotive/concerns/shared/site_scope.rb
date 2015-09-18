@@ -10,6 +10,9 @@ module Locomotive
           ## associations ##
           belongs_to :site, class_name: 'Locomotive::Site', validate: false, autosave: false, touch: :true
 
+          ## validations ##
+          validates_presence_of :site
+
           ## indexes ##
           index site_id: 1
 

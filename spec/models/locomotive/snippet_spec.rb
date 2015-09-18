@@ -2,18 +2,30 @@ require 'spec_helper'
 
 describe Locomotive::Snippet do
 
+  let(:site)    { build(:site) }
+  let(:snippet) { build(:snippet, site: site) }
+
   it 'has a valid factory' do
-    expect(FactoryGirl.build(:snippet)).to be_valid
+    expect(snippet).to be_valid
   end
 
   # Validations ##
 
   %w{site name template}.each do |field|
     it "validates presence of #{field}" do
-      template = FactoryGirl.build(:snippet, field.to_sym => nil)
-      expect(template).to_not be_valid
-      expect(template.errors[field.to_sym]).to eq(["can't be blank"])
+      snippet.send(:"#{field}=", nil)
+      expect(snippet).to_not be_valid
+      expect(snippet.errors[field.to_sym].first).to eq("can't be blank")
     end
+  end
+
+  it_should_behave_like 'model scoped by a site' do
+
+    let(:model)     { snippet }
+    let(:attribute) { :template_version }
+
+    before { site.save! }
+
   end
 
 end
