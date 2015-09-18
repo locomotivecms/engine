@@ -4,9 +4,9 @@ require 'spec_helper'
 
 describe Locomotive::ThemeAsset do
 
-  let(:site) { FactoryGirl.build(:site, domains: %w{www.acme.com}) }
-
-  let(:asset) { FactoryGirl.build(:theme_asset, site: site, updated_at: DateTime.parse('2007/06/29 21:10:00')) }
+  let(:site)    { build(:site, domains: %w{www.acme.com}) }
+  let(:source)  { nil }
+  let(:asset)   { build(:theme_asset, site: site, source: source, updated_at: DateTime.parse('2007/06/29 21:10:00')) }
 
   describe 'attaching a file' do
 
@@ -162,6 +162,16 @@ describe Locomotive::ThemeAsset do
       it { is_expected.to eq "background: url(\"http://engine.dev/images/banner.png?1183151400\") no-repeat 0 0" }
 
     end
+
+  end
+
+  it_should_behave_like 'model scoped by a site' do
+
+    let(:source)    { FixturedAsset.open('5k.png') }
+    let(:model)     { asset }
+    let(:attribute) { :template_version }
+
+    before { site.save }
 
   end
 

@@ -4,6 +4,7 @@ module Locomotive
     include Locomotive::Mongoid::Document
 
     ## extensions ##
+    include Concerns::Shared::SiteScope
     include Concerns::Asset::Types
     include Concerns::Asset::Checksum
 
@@ -17,12 +18,8 @@ module Locomotive
 
     mount_uploader :source, ThemeAssetUploader, mount_on: :source_filename, validate_integrity: true
 
-    ## associations ##
-    belongs_to :site, class_name: 'Locomotive::Site', validate: false, autosave: false
-
-    ## indexes ##
-    index site_id:  1
-    index site_id:  1, local_path: 1
+    # indexes
+    index site_id: 1, local_path: 1
 
     ## callbacks ##
     before_validation :check_for_folder_changes
@@ -41,7 +38,6 @@ module Locomotive
 
     ## accessors ##
     attr_accessor   :plain_text_name, :plain_text, :plain_text_type, :performing_plain_text
-    # attr_accessible :folder, :source, :plain_text_type, :performing_plain_text, :plain_text_name, :plain_text
 
     ## methods ##
 
@@ -100,6 +96,10 @@ module Locomotive
       })
 
       @plain_text = sanitized_source # no need to reset the plain_text instance variable to have the last version
+    end
+
+    def touch_site_attribute
+      :template_version
     end
 
     def self.all_grouped_by_folder(site)

@@ -8,6 +8,7 @@ module Locomotive
     include Concerns::Site::AccessPoints
     include Concerns::Site::Locales
     include Concerns::Site::Timezone
+    include Concerns::Site::Cache
 
     ## fields ##
     field :name
