@@ -427,6 +427,26 @@ describe Locomotive::Page do
 
   end
 
+  it_should_behave_like 'model scoped by a site' do
+
+    let(:model)     { create(:page) }
+    let(:attribute) { :content_version }
+
+    describe 'the raw_template has been modified' do
+
+      let(:date) { Time.zone.local(2015, 4, 1, 12, 0, 0) }
+
+      it 'updates the template_version attribute of the site' do
+        model.raw_template = 'new one'
+        Timecop.freeze(date) do
+          expect { model.save! }.to change { site.template_version }.to date
+        end
+      end
+
+    end
+
+  end
+
   class Foo
   end
 

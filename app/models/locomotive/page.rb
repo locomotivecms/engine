@@ -6,15 +6,16 @@ module Locomotive
     MINIMAL_ATTRIBUTES = %w(_id title slug fullpath position depth published templatized target_klass_name redirect listed response_type parent_id parent_ids site_id created_at updated_at raw_template is_layout)
 
     ## concerns ##
+    include Concerns::Shared::SiteScope
+    include Concerns::Shared::Userstamp
+    include Concerns::Shared::Slug
+    include Concerns::Shared::Seo
     include Concerns::Page::Tree
     include Concerns::Page::EditableElements
     include Concerns::Page::Layout
     include Concerns::Page::Templatized
     include Concerns::Page::Redirect
     include Concerns::Page::Listed
-    include Concerns::Shared::Slug
-    include Concerns::Shared::Seo
-    include Concerns::Shared::Userstamp
 
     ## fields ##
     field :title,               localize: true
@@ -27,11 +28,7 @@ module Locomotive
     field :cache_strategy,      default: 'none'
     field :response_type,       default: 'text/html'
 
-    ## associations ##
-    belongs_to :site, class_name: 'Locomotive::Site', validate: false, autosave: false
-
     ## indexes ##
-    index site_id: 1
     index site_id: 1, handle: 1
     index parent_id: 1
     index site_id: 1, fullpath: 1
@@ -48,7 +45,7 @@ module Locomotive
     after_save          :update_children, unless: :skip_callbacks_on_update
 
     ## validations ##
-    validates_presence_of     :site,    :title, :slug
+    validates_presence_of     :title, :slug
     validates_uniqueness_of   :slug,    scope: [:site_id, :parent_id], allow_blank: true
     validates_uniqueness_of   :handle,  scope: :site_id, allow_blank: true
     validates_exclusion_of    :slug,    in: Locomotive.config.reserved_slugs, if: Proc.new { |p| p.depth <= 1 }
@@ -106,6 +103,10 @@ module Locomotive
       self.updating_descendants = true
       self.save(validate: false)
       self.updating_descendants = false
+    end
+
+    def touch_site_attribute
+      self.raw_template_changed? ? :template_version : :content_version
     end
 
     protected
