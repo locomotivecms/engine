@@ -5,6 +5,7 @@ module Locomotive
 
     ## extensions ##
     include ::CustomFields::Target
+    include Concerns::Shared::SiteScope
     include Concerns::Shared::Seo
     include Concerns::Shared::Userstamp
     include Concerns::ContentEntry::Slug
@@ -24,11 +25,10 @@ module Locomotive
     validates_uniqueness_of   :_slug, scope: :content_type_id, allow_blank: true
 
     ## associations ##
-    belongs_to  :site,          class_name: 'Locomotive::Site', validate: false, autosave: false
     belongs_to  :content_type,  class_name: 'Locomotive::ContentType', inverse_of: :entries, custom_fields_parent_klass: true
 
     ## callbacks ##
-    before_save       :set_site
+    before_validation :set_site
     before_save       :set_visibility
     before_create     :add_to_list_bottom
 
@@ -41,7 +41,6 @@ module Locomotive
     scope :by_ids_or_slugs, ->(ids_or_slugs) { all.any_of({ :_slug.in => [*ids_or_slugs] }, { :_id.in => [*ids_or_slugs] }) }
 
     ## indexes ##
-    index site_id: 1
     index _type: 1
     index content_type_id: 1
     Locomotive.config.site_locales.each do |locale|
@@ -118,11 +117,10 @@ module Locomotive
 
     def to_liquid(type = nil)
       (type || self.content_type).to_steam_entry(self).to_liquid
+    end
 
-      # repositories  = Locomotive::Steam::Services.build_instance.repositories
-      # _content_type = repositories.content_type.build(content_type.attributes.symbolize_keys)
-
-      # repositories.content_entry.with(_content_type).build(self.attributes.symbolize_keys).to_liquid
+    def touch_site_attribute
+      :content_version
     end
 
     protected

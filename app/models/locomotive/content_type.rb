@@ -5,6 +5,7 @@ module Locomotive
 
     ## extensions ##
     include ::CustomFields::Source
+    include Concerns::Shared::SiteScope
     include Concerns::ContentType::Label
     include Concerns::ContentType::DefaultValues
     include Concerns::ContentType::EntryTemplate
@@ -29,7 +30,7 @@ module Locomotive
     field :display_settings,            type: Hash
 
     ## associations ##
-    belongs_to  :site,      class_name: 'Locomotive::Site', validate: false
+    # belongs_to  :site,      class_name: 'Locomotive::Site', validate: false
     has_many    :entries,   class_name: 'Locomotive::ContentEntry', dependent: :destroy
 
     ## named scopes ##
@@ -40,7 +41,7 @@ module Locomotive
     scope :localized, -> { elem_match(entries_custom_fields: { localized: true }) }
 
     ## indexes ##
-    index site_id: 1, slug: 1
+    # index site_id: 1, slug: 1
 
     ## callbacks ##
     before_validation   :normalize_slug
@@ -49,7 +50,8 @@ module Locomotive
     after_validation    :bubble_fields_errors_up
 
     ## validations ##
-    validates_presence_of   :site, :name, :slug
+    # validates_presence_of   :site, :name, :slug
+    validates_presence_of   :name, :slug
     validates_uniqueness_of :slug, scope: :site_id
     validates_size_of       :entries_custom_fields, minimum: 1, message: :too_few_custom_fields
 
@@ -102,6 +104,10 @@ module Locomotive
 
     def hidden?
       (self.display_settings || {})['hidden']
+    end
+
+    def touch_site_attribute
+      :content_version
     end
 
     protected

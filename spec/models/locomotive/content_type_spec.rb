@@ -9,7 +9,7 @@ describe Locomotive::ContentType do
   context 'when validating' do
 
     it 'haves a valid factory' do
-      content_type = FactoryGirl.build(:content_type)
+      content_type = build(:content_type)
       content_type.entries_custom_fields.build label: 'anything', type: 'string'
       expect(content_type).to be_valid
     end
@@ -18,36 +18,36 @@ describe Locomotive::ContentType do
 
     %w{site name}.each do |field|
       it "requires the presence of #{field}" do
-        content_type = FactoryGirl.build(:content_type, field.to_sym => nil)
+        content_type = build(:content_type, field.to_sym => nil)
         expect(content_type).to_not be_valid
         expect(content_type.errors[field.to_sym]).to eq(["can't be blank"])
       end
     end
 
     it 'requires the presence of slug' do
-      content_type = FactoryGirl.build(:content_type, name: nil, slug: nil)
+      content_type = build(:content_type, name: nil, slug: nil)
       expect(content_type).to_not be_valid
       expect(content_type.errors[:slug]).to eq(["can't be blank"])
     end
 
     it 'is not valid if slug is not unique' do
-      content_type = FactoryGirl.build(:content_type)
+      content_type = build(:content_type)
       content_type.entries_custom_fields.build label: 'anything', type: 'string'
       content_type.save
-      content_type = FactoryGirl.build(:content_type, site: content_type.site, slug: content_type.slug)
+      content_type = build(:content_type, site: content_type.site, slug: content_type.slug)
       expect(content_type).to_not be_valid
       expect(content_type.errors[:slug]).to eq(["is already taken"])
     end
 
     it 'is not valid if there is not at least one field' do
-      content_type = FactoryGirl.build(:content_type)
+      content_type = build(:content_type)
       expect(content_type).to_not be_valid
       expect(content_type.errors[:entries_custom_fields]).to eq({ base: ['At least, one custom field is required'] })
     end
 
     %w(created_at updated_at).each do |name|
       it "does not allow #{name} as name" do
-        content_type = FactoryGirl.build(:content_type)
+        content_type = build(:content_type)
         field = content_type.entries_custom_fields.build label: 'anything', type: 'string', name: name
         expect(field.valid?).to eq(false)
         expect(field.errors[:name]).to eq(['is reserved'])
@@ -55,13 +55,13 @@ describe Locomotive::ContentType do
     end
 
     it 'sets a slug from the name before the validation' do
-      content_type = FactoryGirl.build(:content_type, name: 'my content Type')
+      content_type = build(:content_type, name: 'my content Type')
       content_type.valid?
       expect(content_type.slug).to match(/slug_of_content_type_/)
     end
 
     it 'make sure the slug is correctly set before the validation' do
-      content_type = FactoryGirl.build(:content_type, slug: 'my content-type')
+      content_type = build(:content_type, slug: 'my content-type')
       content_type.valid?
       expect(content_type.slug).to eq('my_content_type')
     end
@@ -177,7 +177,7 @@ describe Locomotive::ContentType do
   describe 'custom fields' do
 
     before(:each) do
-      site = FactoryGirl.build(:site)
+      site = build(:site)
       allow(Locomotive::Site).to receive(:find).and_return(site)
 
       @content_type = build_content_type(site: site)
@@ -361,8 +361,15 @@ describe Locomotive::ContentType do
 
   end
 
+  it_should_behave_like 'model scoped by a site' do
+
+    let(:model)         { build_content_type(slug: 'my_project') }
+    let(:attribute)     { :content_version }
+
+  end
+
   def build_content_type(options = {}, &block)
-    FactoryGirl.build(:content_type, options).tap do |content_type|
+    build(:content_type, options).tap do |content_type|
       content_type.entries_custom_fields.build label: 'Name',        type: 'string'
       content_type.entries_custom_fields.build label: 'Description', type: 'text'
       content_type.entries_custom_fields.build label: 'Active',      type: 'boolean'

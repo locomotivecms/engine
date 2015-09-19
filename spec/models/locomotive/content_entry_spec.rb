@@ -388,6 +388,13 @@ describe Locomotive::ContentEntry do
 
   end
 
+  it_should_behave_like 'model scoped by a site' do
+
+    let(:model)         { build_content_entry }
+    let(:attribute)     { :content_version }
+
+  end
+
   def localize_content_type(content_type)
     content_type.entries_custom_fields.first.localized = true
     content_type.save
