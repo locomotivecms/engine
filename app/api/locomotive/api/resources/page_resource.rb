@@ -57,6 +57,7 @@ module Locomotive
               optional :is_layout, type: Boolean
               optional :allow_layout, type: Boolean
               optional :editable_elements, type: Array
+              optional :cache_enabled
               optional :seo_title
               optional :meta_keywords
               optional :meta_description
@@ -89,6 +90,7 @@ module Locomotive
               optional :allow_layout, type: Boolean
               optional :template
               optional :editable_elements, type: Array
+              optional :cache_enabled
               optional :seo_title
               optional :meta_keywords
               optional :meta_description

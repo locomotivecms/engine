@@ -25,7 +25,7 @@ module Locomotive
     field :raw_template,        localize: true
     field :locales,             type: Array
     field :published,           type: Boolean, default: false
-    field :cache_strategy,      default: 'none'
+    field :cache_enabled,       type: Boolean, default: true
     field :response_type,       default: 'text/html'
 
     ## indexes ##
@@ -81,10 +81,6 @@ module Locomotive
 
     def index_or_not_found?
       self.index? || self.not_found?
-    end
-
-    def with_cache?
-      self.cache_strategy != 'none'
     end
 
     def default_response_type?

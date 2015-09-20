@@ -65,6 +65,7 @@ module Locomotive
               optional :domains, type: Array
               optional :timezone
               optional :picture
+              optional :cache_enabled
             end
           end
           post do
@@ -90,6 +91,7 @@ module Locomotive
               optional :domains, type: Array
               optional :timezone
               optional :picture
+              optional :cache_enabled
             end
           end
           put ':id' do

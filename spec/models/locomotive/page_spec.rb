@@ -121,9 +121,9 @@ describe Locomotive::Page do
       expect(page.slug).to eq('convention_valid_ite_dot_html')
     end
 
-    it 'has no cache strategy' do
+    it 'has cache enabled' do
       page = build(:page, site: nil)
-      expect(page.with_cache?).to eq(false)
+      expect(page.cache_enabled?).to eq(true)
     end
 
   end

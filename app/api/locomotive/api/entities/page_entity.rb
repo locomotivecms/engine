@@ -6,7 +6,7 @@ module Locomotive
 
         expose  :title, :parent_id, :position,
                 :handle, :depth, :response_type,
-                :listed, :published, :translated_in
+                :listed, :published, :translated_in, :cache_enabled
 
         # Path
         expose :slug, :fullpath

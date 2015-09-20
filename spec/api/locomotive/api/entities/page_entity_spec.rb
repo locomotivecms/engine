@@ -24,6 +24,7 @@ describe Locomotive::API::Entities::PageEntity do
       templatized_from_parent
       is_layout
       allow_layout
+      cache_enabled
       seo_title
       meta_keywords
       meta_description
