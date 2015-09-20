@@ -20,4 +20,19 @@ describe Locomotive::Concerns::Site::Cache do
 
   end
 
+  describe '#save' do
+
+    let(:date) { Time.zone.local(2015, 4, 1, 12, 0, 0) }
+
+    before { site.save }
+
+    it 'bumps content_version' do
+      site.name = 'New name'
+      Timecop.freeze(date) do
+        expect { site.save! }.to change { site.content_version }.to date
+      end
+    end
+
+  end
+
 end

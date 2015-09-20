@@ -12,7 +12,17 @@ module Locomotive
           field :template_version,  type: DateTime
           field :content_version,   type: DateTime
 
+          ## callbacks ##
+          before_save  :touch_content_version
+
+          def touch_content_version
+            touch(:content_version)
+            true
+          end
+
         end
+
+
 
       end
     end
