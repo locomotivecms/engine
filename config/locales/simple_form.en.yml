@@ -72,6 +72,7 @@ en:
         site:
           locales: Languages
           timezone_name: Timezone
+          cache_enabled: Cache
           new:
             locales: First language
         membership:
@@ -99,6 +100,7 @@ en:
           handle: "Unique identifier to retrieve this page within an external controller instance"
           published: "Only authenticated accounts can view unpublished pages."
           templatized: "Use the page as a template for a model you defined."
+          cache_enabled: "When enabled, your page will be cached as long as the content doesn't change."
           listed: "Control whether to show the page from generated menus."
           target_klass_name: "The type of content this page will be a template for."
           seo_title: "Define a page title which should be used as the value for the title tag in the head section. Leave it empty if you want to use the default value from the site settings."
@@ -116,6 +118,7 @@ en:
           robots_txt: "Content of the <span class='code'>/robots.txt</span> file. Check the following <a href='http://www.w3.org/TR/html4/appendix/notes.html#h-B.4.1.1'>url</a> for more information."
           domains: "Add your domains just below. Then, register a CNAME DNS record pointing to <b>%{domain}</b>."
           memberships: "You can invite other accounts to edit/manage the site."
+          cache_enabled: "When enabled, your pages will be cached as long as the content doesn't change. Disabling cache per page is allowed."
           new:
             locales: "You can add other languages once your site will be created."
         theme_asset:

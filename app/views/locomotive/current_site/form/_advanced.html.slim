@@ -5,6 +5,8 @@
 
   = f.input :robots_txt, as: :code, wrapper_html: { class: 'small' }
 
+  = f.input :cache_enabled, as: :toggle
+
 - if policy(@site).destroy?
   = f.actions do
     .row

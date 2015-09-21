@@ -23,4 +23,7 @@
 
     = f.input :listed, as: :toggle
 
+  - if current_site.cache_enabled?
+    = f.input :cache_enabled, as: :toggle
+
 = render 'locomotive/pages/form/actions', f: f
