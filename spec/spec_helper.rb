@@ -65,4 +65,5 @@ RSpec.configure do |config|
   #     --seed 1234
   config.order = 'random'
   # config.seed = '5581' # example
+  # config.seed = '2606'
 end

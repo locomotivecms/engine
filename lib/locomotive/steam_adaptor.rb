@@ -31,12 +31,16 @@ Locomotive::Steam.configure do |config|
   config.middleware.insert_after Locomotive::Steam::Middlewares::Page, Locomotive::Steam::Middlewares::MissingTranslations
 
   require_relative 'steam/services/api_entry_submission_service'
+  require_relative 'steam/services/liquid_parser_with_cache_service'
 
   # let the Rails engine handle the "no site" error
   config.render_404_if_no_site = false
 
   config.services_hook = -> (services) {
-    services.entry_submission = Locomotive::Steam::APIEntrySubmissionService.new(services.current_site, services.locale) if services.request
+    if services.request
+      services.entry_submission = Locomotive::Steam::APIEntrySubmissionService.new(services.current_site, services.locale)
+      services.defer(:liquid_parser) { Locomotive::Steam::LiquidParserWithCacheService.new(services.current_site, services.parent_finder, services.snippet_finder, services.locale) }
+    end
   }
 end
 
