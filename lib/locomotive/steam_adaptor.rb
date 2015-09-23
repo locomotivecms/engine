@@ -26,7 +26,9 @@ Locomotive::Steam.configure do |config|
 
   require_relative 'steam/middlewares/missing_translations'
   require_relative 'steam/middlewares/page_editing'
+  require_relative 'steam/middlewares/cache'
 
+  config.middleware.insert_after Locomotive::Steam::Middlewares::Page, Locomotive::Steam::Middlewares::Cache
   config.middleware.insert_after Locomotive::Steam::Middlewares::Page, Locomotive::Steam::Middlewares::PageEditing
   config.middleware.insert_after Locomotive::Steam::Middlewares::Page, Locomotive::Steam::Middlewares::MissingTranslations
 

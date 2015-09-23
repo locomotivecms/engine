@@ -12,9 +12,9 @@ module Locomotive
 
         def call(env)
           status, headers, response = @app.call(env)
-          site, page, locale = env['steam.site'], env['steam.page'], env['steam.locale'].to_s
+          site, page, locale, live_editing = env['steam.site'], env['steam.page'], env['steam.locale'].to_s, env['steam.live_editing']
 
-          if page && !page.redirect && page.response_type == 'text/html' && response.first
+          if editable?(page, response, live_editing)
             html = %(
               <meta name="locomotive-locale" content="#{locale}" />
               <meta name="locomotive-editable-elements-path" content="#{editable_elements_path(site, page, locale, env)}" />
@@ -24,6 +24,12 @@ module Locomotive
           end
 
           [status, headers, response]
+        end
+
+        protected
+
+        def editable?(page, response, live_editing)
+          live_editing && page && !page.redirect && page.response_type == 'text/html' && response.first
         end
 
         def editable_elements_path(site, page, locale, env)

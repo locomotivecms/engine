@@ -35,11 +35,6 @@ module Locomotive
         end
       end
 
-      # def no_site!(env)
-      #   Locomotive::ErrorsController.action(:no_site).call(env)
-      #   # [200, { 'Content-Type' => 'text/html' }, ['Hello world']]
-      # end
-
       # The site is not rendered from a domain but from the back-office
       # we need to get:
       # - the path of "mouting point" (basically: locomotive/:handle/preview)
