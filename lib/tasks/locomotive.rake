@@ -31,6 +31,14 @@ namespace :locomotive do
     task v3: :environment do
       puts '...'
 
+      # subdomain to handle
+      Locomotive::Site.all.each_by(10) do |site|
+        if subdomain = site.attributes['subdomain']
+          site.set handle: subdomain
+        end
+      end
+      puts '[x] set the handle attribute for all the sites'
+
       # content asset checksums
       Locomotive::ContentAsset.all.each do |asset|
         asset.send(:calculate_checksum)
