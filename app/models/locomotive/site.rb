@@ -74,9 +74,13 @@ module Locomotive
       self.memberships.detect { |m| m.admin? && m.account_id == account._id }
     end
 
-    def to_liquid
+    def to_steam
       repository = Locomotive::Steam::Services.build_instance.repositories.site
-      repository.build(self.attributes).to_liquid
+      repository.build(self.attributes)
+    end
+
+    def to_liquid
+      to_steam.to_liquid
     end
 
     protected

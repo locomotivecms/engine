@@ -6,15 +6,15 @@ module Locomotive
 
         attr_reader :app
 
+        CACHEABLE_REQUEST_METHODS = %w(GET HEAD).freeze
+
         def initialize(app)
           @app = app
         end
 
         def call(env)
-          site, page, path, live_editing = env['steam.site'], env['steam.page'], env['steam.path'], env['steam.live_editing']
-
-          if cache_enabled?(site, page, live_editing)
-            fetch_cached_response(site, path, env)
+          if cacheable?(env)
+            fetch_cached_response(env)
           else
             app.call(env)
           end
@@ -22,8 +22,8 @@ module Locomotive
 
         private
 
-        def fetch_cached_response(site, path, env)
-          key = cache_key(site, path)
+        def fetch_cached_response(env)
+          key = cache_key(env)
 
           if marshaled = Rails.cache.read(key)
             Marshal.load(marshaled)
@@ -37,17 +37,22 @@ module Locomotive
         def marshal(response)
           code, headers, body = response
 
-          _headers = headers.dup.delete_if { |name, _| name.include?('.') }
+          _headers = headers.dup.reject! { |key, val| key =~ /[^0-9A-Z_]/ || !val.respond_to?(:to_str) }
 
           Marshal.dump([code, _headers, body])
         end
 
-        def cache_enabled?(site, page, live_editing)
-          !live_editing && site.try(:cache_enabled) && page.try(:cache_enabled)
+        def cacheable?(env)
+          CACHEABLE_REQUEST_METHODS.include?(env['REQUEST_METHOD']) &&
+          !env['steam.live_editing'] &&
+          env['steam.site'].try(:cache_enabled) &&
+          env['steam.page'].try(:cache_enabled)
         end
 
-        def cache_key(site, path)
-          "site/#{site._id}/#{site.template_version.to_i}/#{site.content_version.to_i}/page/#{path}"
+        def cache_key(env)
+          site, path, query = env['steam.site'], env['PATH_INFO'], env['QUERY_STRING']
+          key = "site/#{site._id}/#{site.last_modified_at.to_i}/page/#{path}/#{query}"
+          Digest::MD5.hexdigest(key)
         end
 
       end

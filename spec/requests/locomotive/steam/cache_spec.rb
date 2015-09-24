@@ -4,14 +4,13 @@ describe 'Locomotive::Middlewares::Site' do
 
   let(:site_cache)  { false }
   let(:page_cache)  { false }
-  let(:site)        { instance_double('CacheSite', _id: '0001', cache_enabled: site_cache, template_version: DateTime.parse('2007/06/29 00:00:00'), content_version: DateTime.parse('2009/09/10 00:00:00')) }
+  let(:site)        { instance_double('CacheSite', _id: '0001', cache_enabled: site_cache, last_modified_at: DateTime.parse('2007/06/29 00:00:00')) }
   let(:page)        { instance_double('CachedPage', _id: '0042', cache_enabled: page_cache) }
   let(:app)         { ->(env) { [200, env, 'app'] } }
   let(:middleware)  { Locomotive::Steam::Middlewares::Cache.new(app) }
+  let(:steam_env)   { { 'REQUEST_METHOD' => 'GET', 'steam.site' => site, 'steam.page' => page, 'steam.live_editing' => false, 'PATH_INFO' => 'foo', 'QUERY_STRING' => 'a=1&c=3' } }
 
   describe '#call' do
-
-    let(:steam_env) { { 'steam.site' => site, 'steam.page' => page, 'steam.live_editing' => false, 'steam.path' => 'foo' } }
 
     subject { middleware.call(env_for('foo', steam_env)) }
 
@@ -38,15 +37,15 @@ describe 'Locomotive::Middlewares::Site' do
 
   describe '#cache_key' do
 
-    subject { middleware.send(:cache_key, site, 'foo/bar') }
+    subject { middleware.send(:cache_key, steam_env) }
 
-    it { expect(subject).to eq 'site/0001/1183075200/1252540800/page/foo/bar' }
+    it { expect(subject).to eq '4212647cbb73f7bd3407df0dd5b177c4' }
 
   end
 
-  describe '#cache_enabled?' do
+  describe '#cacheable?' do
 
-    subject { middleware.send(:cache_enabled?, site, page, live_editing) }
+    subject { middleware.send(:cacheable?, steam_env) }
 
     let(:live_editing) { true }
     it { expect(subject).to eq false }
@@ -65,6 +64,13 @@ describe 'Locomotive::Middlewares::Site' do
 
           let(:page_cache) { true }
           it { expect(subject).to eq true }
+
+          context 'POST method' do
+
+            let(:steam_env) { { 'REQUEST_METHOD' => 'POST', 'steam.site' => site, 'steam.page' => page, 'steam.live_editing' => false, 'PATH_INFO' => 'foo' } }
+            it { expect(subject).to eq false }
+
+          end
 
         end
 

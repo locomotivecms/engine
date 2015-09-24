@@ -44,7 +44,7 @@ module Locomotive
 
           options[:content_locale] = locale if site.locales.size > 1
 
-          super(site, page._id, options)
+          super(site.handle, page._id, options)
         end
 
       end

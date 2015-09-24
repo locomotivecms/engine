@@ -7,7 +7,11 @@ module Locomotive
       end
 
       def call(env)
-        env['locomotive.site'] = env['steam.site'] = fetch_site(env)
+        env['locomotive.site'] = site = fetch_site(env)
+
+        # deal with the Steam entity instead of a Mongoid document
+        env['steam.site'] = site.try(:to_steam)
+
         begin
           @app.call(env)
         rescue ::Locomotive::Steam::NoSiteException => exception
