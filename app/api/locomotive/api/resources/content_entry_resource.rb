@@ -59,6 +59,8 @@ module Locomotive
           post do
             authorize ContentEntry, :create?
 
+            back_to_default_site_locale
+
             form = form_klass.new(content_type, content_entry_params)
             @content_entry = service.create(form.serializable_hash)
 

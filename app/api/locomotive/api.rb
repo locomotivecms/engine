@@ -20,6 +20,7 @@ module Locomotive
       helpers API::Helpers::ParamsHelper
       helpers API::Helpers::PersistenceHelper
       helpers API::Helpers::PaginationHelper
+      helpers API::Helpers::LocalesHelper
 
       include API::ExceptionRescuers
 

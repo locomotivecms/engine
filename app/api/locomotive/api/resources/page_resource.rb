@@ -38,7 +38,7 @@ module Locomotive
             end
           end
 
-          desc 'Create a page'
+          desc 'Create a page (in the default locale)'
           params do
             requires :page, type: Hash do
               requires :title
@@ -65,6 +65,9 @@ module Locomotive
           end
           post do
             authorize Page, :create?
+
+            back_to_default_site_locale
+
             form = form_klass.new(current_site, page_params)
             persist_from_form(form)
 
