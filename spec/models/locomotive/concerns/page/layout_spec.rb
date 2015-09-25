@@ -2,13 +2,38 @@ require 'spec_helper'
 
 describe Locomotive::Concerns::Page::Layout do
 
-  let(:site)          { FactoryGirl.build(:site) }
+  let(:site)          { build(:site) }
   let(:allow_layout)  { true }
   let(:template)      { nil }
-  let(:layout)        { Locomotive::Page.new(is_layout: true, fullpath: 'awesome-layout') }
+  let(:layout)        { Locomotive::Page.new(_id: 42, is_layout: true, fullpath: 'awesome-layout') }
   let(:page)          { Locomotive::Page.new(layout: layout, allow_layout: allow_layout, site: site, raw_template: template) }
 
-  describe '#check_allow_layout_consistency' do
+  describe '#find_layout' do
+
+    subject { page.find_layout; page.layout_id }
+
+    it { is_expected.to eq 42 }
+
+    context 'from the raw_template' do
+
+      let(:page) { build(:page, raw_template: ' {% extends foo/bar %}  ', site: site) }
+
+      it 'looks for the layout based on the extends liquid tag' do
+        expect(page.site.pages).to receive(:fullpath).with('foo/bar').and_return([layout])
+        is_expected.to eq 42
+      end
+
+      it 'switches to the default locale' do
+        allow(page.site).to receive(:is_default_locale?).and_return(false)
+        expect(page.site).to receive(:with_default_locale).and_return(layout)
+        is_expected.to eq 42
+      end
+
+    end
+
+  end
+
+  describe '#valid_allow_layout_consistency' do
 
     before  { page.valid? }
     subject { page.allow_layout? }
@@ -152,23 +177,5 @@ describe Locomotive::Concerns::Page::Layout do
     end
 
   end
-
-  # describe 'use a layout' do
-
-  #   before { page.valid? }
-
-  #   subject { page.raw_template }
-
-  #   it { is_expected.to eq '{% extends "awesome-layout" %}' }
-
-  #   context 'but changing the layout is not allowed' do
-
-  #     let(:allow_layout) { false }
-
-  #     it { is_expected.to eq "{% extends 'parent' %}" }
-
-  #   end
-
-  # end
 
 end

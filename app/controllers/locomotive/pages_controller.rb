@@ -25,6 +25,7 @@ module Locomotive
 
     def edit
       authorize @page
+      @page.find_layout
       respond_with @page
     end
 

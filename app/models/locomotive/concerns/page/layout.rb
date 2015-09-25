@@ -5,10 +5,11 @@ module Locomotive
 
         extend ActiveSupport::Concern
 
-        IS_LAYOUT_REGEX       = /^layouts($|\/)/o.freeze
-        EXTENDS_REGEX         = /\{%\s+extends\s/o.freeze
-        EXTENDS_PARENT_REGEX  = /\{%\s+extends\s"?parent"?\s%}/o.freeze
-        BLOCK_REGEX           = /\{%\s+block\s/o.freeze
+        IS_LAYOUT_REGEX         = /^layouts($|\/)/o.freeze
+        EXTENDS_REGEX           = /\{%\s+extends\s/o.freeze
+        EXTENDS_PARENT_REGEX    = /\{%\s+extends\s"?parent"?\s%}/o.freeze
+        EXTENDS_FULLPATH_REGEX  = /\{%\s+extends\s"?(\S+)"?\s%}/o.freeze
+        BLOCK_REGEX             = /\{%\s+block\s/o.freeze
 
 
         included do
@@ -22,7 +23,7 @@ module Locomotive
           has_many    :layout_children, class_name: 'Locomotive::Page', inverse_of: :layout
 
           ## callbacks ##
-          before_validation :check_allow_layout_consistency
+          before_validation :valid_allow_layout_consistency
           before_validation :set_raw_template_on_create, if: :new_record?
           before_validation :set_raw_template_on_update, unless: :new_record?
 
@@ -38,12 +39,28 @@ module Locomotive
           !(self.fullpath =~ IS_LAYOUT_REGEX).nil?
         end
 
+        # The layout is also defined in the raw_template. The UI
+        # needs it in order to select the layout in the layouts dropdown menu
+        def find_layout
+          return if !self.allow_layout? || self.layout_id
+
+          if self.raw_template =~ EXTENDS_FULLPATH_REGEX
+            # first in the current locale
+            if (page = self.site.pages.fullpath($1).first).nil? && !self.site.is_default_locale?(::Mongoid::Fields::I18n.locale)
+              # give it a try in the default locale too
+              page = self.site.with_default_locale { self.site.pages.fullpath($1).first }
+            end
+
+            self.layout_id = page.try(:_id)
+          end
+        end
+
         private
 
         # Even if the allow_layout attribute is true in a first time, we need
         # to make sure the the raw_template includes only the "extends" liquid tag
         # without any other code.
-        def check_allow_layout_consistency
+        def valid_allow_layout_consistency
           if allow_layout && raw_template.present? && raw_template =~ EXTENDS_REGEX
             self.allow_layout = (raw_template =~ BLOCK_REGEX).nil?
           end
