@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Locomotive::Steam::LiquidParserWithCacheService do
 
   let(:cache)         { false }
-  let(:site)          { build(:site, cache_enabled: cache, template_version: DateTime.parse('2009/09/10 00:00:00')) }
+  let(:site)          { build(:site, cache_enabled: cache, template_version: DateTime.parse('2009/09/10 00:00:00')).to_steam }
   let(:parent_finder) { nil}
   let(:service)       { described_class.new(site, parent_finder, nil, 'en') }
 

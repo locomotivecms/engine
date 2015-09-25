@@ -8,7 +8,7 @@ module Locomotive
       attr_accessor_initialize :current_site, :parent_finder, :snippet_finder, :locale
 
       def parse(page)
-        return super unless current_site.cache_enabled?
+        return super unless current_site.cache_enabled
 
         read_template_from_cache(page) || write_template_in_cache(page, super)
       end

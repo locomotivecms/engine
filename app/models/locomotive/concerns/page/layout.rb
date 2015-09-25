@@ -49,7 +49,7 @@ module Locomotive
           return true if self.raw_template.present?
 
           self.raw_template = if self.index? || !self.site.is_default_locale?(::Mongoid::Fields::I18n.locale)
-            '' # need it by Steam to get the template in the default locale
+            '' # needed it by Steam to get the template in the default locale
           else
             "{% extends 'parent' %}"
           end
