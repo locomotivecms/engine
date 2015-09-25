@@ -15,6 +15,10 @@ en:
       messages:
         blank_in_locale: "can't be blank"
       models:
+        locomotive/page:
+          attributes:
+            layout_id:
+              index_can_not_extend_parent: "The index page can't have its parent page as a layout"
         locomotive/membership:
           attributes:
             account:

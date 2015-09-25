@@ -15,12 +15,16 @@ describe Locomotive::Page do
 
   describe 'validation' do
 
-    %w{site title}.each do |field|
-      it "requires the presence of the #{field}" do
-        page = build(:page, field.to_sym => nil)
-        expect(page).to_not be_valid
-        expect(page.errors[field.to_sym]).to eq(["can't be blank"])
-      end
+    it 'requires the presence of a site' do
+      page = build(:page, site: nil)
+      expect(page).to_not be_valid
+      expect(page.errors[:site]).to eq(["can't be blank"])
+    end
+
+    it 'requires the presence of a title' do
+      page = build(:page, title: nil, site: build(:site))
+      expect(page).to_not be_valid
+      expect(page.errors[:title]).to eq(["can't be blank"])
     end
 
     it 'requires the presence of the slug' do
