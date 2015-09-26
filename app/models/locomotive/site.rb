@@ -76,7 +76,7 @@ module Locomotive
 
     def to_steam
       repository = Locomotive::Steam::Services.build_instance.repositories.site
-      repository.build(self.attributes)
+      repository.build(self.attributes.dup)
     end
 
     def to_liquid
