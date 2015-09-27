@@ -29,9 +29,10 @@ module Locomotive
     field :response_type,       default: 'text/html'
 
     ## indexes ##
-    index site_id: 1, handle: 1
     index parent_id: 1
+    index site_id: 1, handle: 1
     index site_id: 1, fullpath: 1
+    index site_id: 1, updated_at: 1
 
     ## behaviours ##
     slugify_from        :title

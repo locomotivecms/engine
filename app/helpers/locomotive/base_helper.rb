@@ -221,5 +221,23 @@ module Locomotive
       end
     end
 
+    # cache keys
+
+    def cache_key_for_sidebar
+      "#{Locomotive::VERSION}/site/#{current_site._id}/sidebar/#{current_site.last_modified_at.to_i}/role/#{current_membership.role}/locale/#{::Mongoid::Fields::I18n.locale}"
+    end
+
+    def cache_key_for_sidebar_pages
+      count          = current_site.pages.count
+      max_updated_at = current_site.pages.max(:updated_at).try(:utc).try(:to_s, :number).to_i
+      "#{Locomotive::VERSION}/site/#{current_site._id}/sidebar/pages-#{count}-#{max_updated_at}/locale/#{::Mongoid::Fields::I18n.locale}"
+    end
+
+    def cache_key_for_sidebar_content_types
+      count          = current_site.content_types.count
+      max_updated_at = current_site.content_entries.max(:updated_at).try(:utc).try(:to_s, :number).to_i
+      "#{Locomotive::VERSION}/site/#{current_site._id}/sidebar/content_types-#{count}-#{max_updated_at}"
+    end
+
   end
 end

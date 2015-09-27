@@ -14,7 +14,7 @@ module Locomotive
       end
 
       def cache_key(page)
-        "site/#{current_site._id}/template/#{current_site.template_version.to_i}/page/#{page._id}/#{locale}"
+        "#{Locomotive::VERSION}/site/#{current_site._id}/template/#{current_site.template_version.to_i}/page/#{page._id}/#{locale}"
       end
 
       private

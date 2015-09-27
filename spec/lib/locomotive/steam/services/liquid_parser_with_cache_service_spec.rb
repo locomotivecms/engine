@@ -13,7 +13,7 @@ describe Locomotive::Steam::LiquidParserWithCacheService do
 
     subject { service.cache_key(page) }
 
-    it { expect(subject).to match /\Asite\/[a-z0-9]+\/template\/1252540800\/page\/0001\/en\Z/ }
+    it { expect(subject).to match %r{\A#{Locomotive::VERSION}/site\/[a-z0-9]+\/template\/1252540800\/page\/0001\/en\Z} }
 
   end
 

@@ -51,7 +51,7 @@ module Locomotive
 
         def cache_key(env)
           site, path, query = env['steam.site'], env['PATH_INFO'], env['QUERY_STRING']
-          key = "site/#{site._id}/#{site.last_modified_at.to_i}/page/#{path}/#{query}"
+          key = "#{Locomotive::VERSION}/site/#{site._id}/#{site.last_modified_at.to_i}/page/#{path}/#{query}"
           Digest::MD5.hexdigest(key)
         end
 

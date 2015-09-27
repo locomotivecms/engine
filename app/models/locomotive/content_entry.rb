@@ -42,6 +42,7 @@ module Locomotive
 
     ## indexes ##
     index _type: 1
+    index site_id: 1, updated_at: 1
     index content_type_id: 1
     Locomotive.config.site_locales.each do |locale|
       index _type: 1, "_slug.#{locale}" => 1

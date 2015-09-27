@@ -22,6 +22,10 @@ module Locomotive
 
         end
 
+        def last_modified_at
+          [self.content_version, self.template_version].compact.sort.last || self.updated_at
+        end
+
       end
     end
   end
