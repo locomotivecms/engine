@@ -33,7 +33,7 @@ class Locomotive.Views.Inputs.RteView extends Backbone.View
   open_styles_dialog: (event) ->
     $button = $(event.target).closest('a')
     @$style_popover = @$style_popover || ($button.popover
-      placement:  'bottom'
+      placement:  'top'
       content:    $button.next('.style-dialog-content').html()
       html:       true
       title:      undefined).popover('show')

@@ -21,7 +21,7 @@ class Locomotive.Views.Inputs.Rte.LinkView extends Backbone.View
     @$content.show()
     @$link.popover
       container:  '.main'
-      placement:  'left'
+      placement:  'top'
       content:    @$content
       html:       true
       template:   '<div class="popover" role="tooltip"><div class="arrow"></div><form class="simple_form"><div class="popover-content"></div></form></div>'

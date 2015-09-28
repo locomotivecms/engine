@@ -34,6 +34,28 @@
             }
           }
         }
+
+        &.select {
+          .form-wrapper {
+            border: none;
+            .form-control {
+              border-width: 3px;
+              height: 28px;
+              line-height: 28px;
+
+              .select2-choice {
+                padding-left: 0px;
+                height: 28px;
+                line-height: 14px;
+
+                .select2-arrow {
+                  top: -8px;
+                  height: 28px;
+                }
+              }
+            }
+          }
+        }
       }
     }
 
