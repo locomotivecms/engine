@@ -25,7 +25,7 @@ class Locomotive.Views.Inputs.Rte.FileView extends Backbone.View
     command = @editor.toolbar.commandMapping['insertFile:null']
     command.dialog = @
 
-    console.log "[insertFileView] attach_editor"
+    # console.log "[insertFileView] attach_editor"
 
   create_popover: ->
     @$popover.show()

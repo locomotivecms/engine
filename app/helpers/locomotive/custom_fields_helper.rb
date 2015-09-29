@@ -38,11 +38,11 @@ module Locomotive
     def custom_field_options(field, form)
       method = "#{field.type}_custom_field_options"
 
-      # begin
+      begin
         send(method, field, form.object)
-      # rescue NoMethodError
-        # nil
-      # end
+      rescue NoMethodError
+        nil
+      end
     end
 
     def default_custom_field_options(field, form, highlighted)

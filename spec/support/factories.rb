@@ -233,6 +233,15 @@ FactoryGirl.define do
       end
     end
 
+    factory 'photo content type' do
+      name 'Photos'
+      description 'The list of photos'
+      after(:build) do |content_type, _|
+        content_type.entries_custom_fields.build label: 'Title', name: 'title', type: 'string'
+        content_type.entries_custom_fields.build label: 'Photo', name: 'photo', type: 'file'
+      end
+    end
+
     trait :with_field do
       after(:build) do |content_type, evaluator|
         content_type.entries_custom_fields.build label: 'Title', name: 'title', type: 'string'
