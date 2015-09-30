@@ -63,7 +63,7 @@ group :test do
   gem 'factory_girl_rails'
   gem 'pickle'
   gem 'json_spec',            '~> 1.1.4'
-  gem 'database_cleaner'
+  gem 'database_cleaner',     '~> 1.4.1'
   gem 'timecop',              '~> 0.7.1'
 
   # gem 'debugger', git: 'git://github.com/cldwalker/debugger.git'

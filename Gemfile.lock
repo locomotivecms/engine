@@ -31,7 +31,7 @@ PATH
   specs:
     locomotivecms (3.0.0.pre.beta.1)
       actionmailer-with-request (~> 0.4.0)
-      autoprefixer-rails (~> 5.2.0)
+      autoprefixer-rails (~> 6.0.3)
       backbone-on-rails (~> 1.2.0.0)
       bazaar (~> 0.0.2)
       bootstrap-kaminari-views (~> 0.0.5)
@@ -44,8 +44,8 @@ PATH
       devise-encryptable (~> 0.2.0)
       dragonfly (~> 1.0.7)
       flash_cookie_session (~> 1.1.1)
-      fog (~> 1.32.0)
-      font-awesome-sass (~> 4.3.2.1)
+      fog (~> 1.34.0)
+      font-awesome-sass (~> 4.4.0)
       grape (~> 0.12.0)
       grape-entity (= 0.4.5)
       highline (~> 1.7.1)
@@ -117,7 +117,7 @@ GEM
     addressable (2.3.8)
     arel (6.0.3)
     attr_extras (4.4.0)
-    autoprefixer-rails (5.2.1.3)
+    autoprefixer-rails (6.0.3)
       execjs
       json
     axiom-types (0.1.1)
@@ -204,15 +204,15 @@ GEM
       term-ansicolor (~> 1.3)
       thor (~> 0.19.1)
     crass (1.0.2)
-    cucumber (2.0.2)
+    cucumber (2.1.0)
       builder (>= 2.1.2)
-      cucumber-core (~> 1.2.0)
+      cucumber-core (~> 1.3.0)
       diff-lcs (>= 1.1.3)
-      gherkin (~> 2.12)
+      gherkin3 (~> 3.1.0)
       multi_json (>= 1.7.5, < 2.0)
       multi_test (>= 0.1.2)
-    cucumber-core (1.2.0)
-      gherkin (~> 2.12.0)
+    cucumber-core (1.3.0)
+      gherkin3 (~> 3.1.0)
     custom_fields (2.4.0.rc5)
       activesupport (~> 4.2.1)
       carrierwave-mongoid (~> 0.7.1)
@@ -263,12 +263,13 @@ GEM
       CFPropertyList (~> 2.2)
     flash_cookie_session (1.1.6)
       rails (>= 3.0)
-    fog (1.32.0)
+    fog (1.34.0)
       fog-atmos
       fog-aws (>= 0.6.0)
       fog-brightbox (~> 0.4)
       fog-core (~> 1.32)
-      fog-ecloud (= 0.1.1)
+      fog-dynect (~> 0.0.2)
+      fog-ecloud (~> 0.1)
       fog-google (>= 0.0.2)
       fog-json
       fog-local
@@ -305,10 +306,14 @@ GEM
       mime-types
       net-scp (~> 1.1)
       net-ssh (>= 2.1.3)
-    fog-ecloud (0.1.1)
+    fog-dynect (0.0.2)
+      fog-core
+      fog-json
+      fog-xml
+    fog-ecloud (0.3.0)
       fog-core
       fog-xml
-    fog-google (0.0.9)
+    fog-google (0.1.1)
       fog-core
       fog-json
       fog-xml
@@ -333,7 +338,7 @@ GEM
       fog-core
       fog-json
       fog-xml
-    fog-sakuracloud (1.3.2)
+    fog-sakuracloud (1.3.3)
       fog-core
       fog-json
     fog-serverlove (0.1.2)
@@ -357,11 +362,10 @@ GEM
     fog-xml (0.1.2)
       fog-core
       nokogiri (~> 1.5, >= 1.5.11)
-    font-awesome-sass (4.3.2.1)
-      sass (~> 3.2)
+    font-awesome-sass (4.4.0)
+      sass (>= 3.2)
     formatador (0.2.5)
-    gherkin (2.12.2)
-      multi_json (~> 1.3)
+    gherkin3 (3.1.1)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     grape (0.12.0)
@@ -423,10 +427,10 @@ GEM
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
     method_source (0.8.2)
-    mime-types (2.6.1)
+    mime-types (2.6.2)
     mimetype-fu (0.1.2)
     mini_portile (0.6.2)
-    minitest (5.8.0)
+    minitest (5.8.1)
     moneta (0.8.0)
     monetize (1.1.0)
       money (~> 6.5.0)
@@ -467,19 +471,19 @@ GEM
     pickle (0.5.1)
       cucumber (>= 0.8)
       rake
-    poltergeist (1.6.0)
+    poltergeist (1.7.0)
       capybara (~> 2.1)
       cliver (~> 0.3.1)
       multi_json (~> 1.0)
       websocket-driver (>= 0.2.0)
-    pry (0.10.1)
+    pry (0.10.2)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
     pry-byebug (3.2.0)
       byebug (~> 5.0)
       pry (~> 0.10)
-    puma (2.13.4)
+    puma (2.14.0)
     pundit (1.0.1)
       activesupport (>= 3.0.0)
     quiet_assets (1.1.0)
@@ -591,7 +595,7 @@ GEM
     sprockets-less (0.6.1)
       less (~> 2.4)
       tilt (~> 1.1)
-    sprockets-rails (2.3.2)
+    sprockets-rails (2.3.3)
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (>= 2.8, < 4.0)
@@ -637,7 +641,7 @@ DEPENDENCIES
   capybara (~> 2.4.4)
   coffee-rails (~> 4.1.0)
   coveralls (~> 0.7.2)
-  database_cleaner
+  database_cleaner (~> 1.4.1)
   factory_girl_rails
   faye-websocket
   grape-entity-matchers

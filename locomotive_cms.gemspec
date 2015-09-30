@@ -52,9 +52,9 @@ Gem::Specification.new do |s|
   s.add_dependency 'select2-rails',                   '~> 3.5.9'
   s.add_dependency 'compass-rails',                   '2.0.4'
   s.add_dependency 'bootstrap-sass',                  '~> 3.3.3'
-  s.add_dependency 'autoprefixer-rails',              '~> 5.2.0'
+  s.add_dependency 'autoprefixer-rails',              '~> 6.0.3'
 
-  s.add_dependency 'font-awesome-sass',               '~> 4.3.2.1'
+  s.add_dependency 'font-awesome-sass',               '~> 4.4.0'
   s.add_dependency 'nprogress-rails',                 '~> 0.1.6.7'
 
   s.add_dependency 'highline',                        '~> 1.7.1'
@@ -62,7 +62,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'bazaar',                          '~> 0.0.2'
 
   s.add_dependency 'carrierwave-mongoid',             '~> 0.7.1'
-  s.add_dependency 'fog',                             '~> 1.32.0'
+  s.add_dependency 'fog',                             '~> 1.34.0'
   s.add_dependency 'dragonfly',                       '~> 1.0.7'
   s.add_dependency 'rack-cache',                      '~> 1.1'
   s.add_dependency 'mimetype-fu',                     '~> 0.1.2'
