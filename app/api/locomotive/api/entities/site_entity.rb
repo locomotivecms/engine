@@ -19,6 +19,14 @@ module Locomotive
           site.picture.url
         end
 
+        expose :content_version do |site, _|
+          site.content_version.to_i
+        end
+
+        expose :template_version do |site, _|
+          site.template_version.to_i
+        end
+
         expose :picture_thumbnail_url do |site, _|
           Locomotive::Dragonfly.resize_url site.picture.url, '100x100#'
         end

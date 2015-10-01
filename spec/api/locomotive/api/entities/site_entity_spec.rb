@@ -16,6 +16,18 @@ describe Locomotive::API::Entities::SiteEntity do
     subject { described_class.new(site) }
     let(:exposure) { subject.serializable_hash }
 
+    describe 'content_version' do
+      it 'returns the content version (integer)' do
+        expect(exposure[:content_version]).to eq 0
+      end
+    end
+
+    describe 'template_version' do
+      it 'returns the template version (integer)' do
+        expect(exposure[:template_version]).not_to eq 0
+      end
+    end
+
     describe 'timezones' do
       it 'returns the timezone name' do
         expect(exposure[:timezone]).to eq 'UTC'
