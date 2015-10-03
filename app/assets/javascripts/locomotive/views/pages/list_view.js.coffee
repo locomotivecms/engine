@@ -72,6 +72,9 @@ class Locomotive.Views.Pages.ListView extends Backbone.View
   on_successful_sort: (data, status, xhr) ->
     Locomotive.notify decodeURIComponent($.parseJSON(xhr.getResponseHeader('X-Message'))), 'success'
 
+    # maybe some components depends on it (ex: refreshing a menu if live editing is on)
+    PubSub.publish 'pages.sorted'
+
   on_failed_sort: (data, status, xhr) ->
     Locomotive.notify decodeURIComponent($.parseJSON(xhr.getResponseHeader('X-Message'))), 'error'
 

@@ -15,7 +15,7 @@ class Locomotive.Views.EditableElements.IndexView extends Backbone.View
     $('body').removeClass('full-width-preview')
 
   initialize: ->
-    _.bindAll(@, 'refresh_elements', 'refresh_image', 'refresh_image_on_remove', 'refresh_text')
+    _.bindAll(@, 'refresh_elements', 'refresh_image', 'refresh_image_on_remove', 'refresh_text', 'reload_page')
 
     view_options = if $('body').hasClass('live-editing') then {} else { el: '.main' }
 
@@ -25,6 +25,7 @@ class Locomotive.Views.EditableElements.IndexView extends Backbone.View
 
     @pubsub_image_changed_token = PubSub.subscribe('inputs.image_changed', @refresh_image)
     @pubsub_image_removed_token = PubSub.subscribe('inputs.image_removed', @refresh_image_on_remove)
+    @pubsub_pages_sorted_token  = PubSub.subscribe('pages.sorted', @reload_page)
 
     $('.preview iframe').load (event) => @on_iframe_load(event)
 
@@ -68,6 +69,11 @@ class Locomotive.Views.EditableElements.IndexView extends Backbone.View
     @refresh_elements 'text', data.view, ($elements) ->
       $elements.each -> $(this).html(data.content)
 
+  reload_page: (event) ->
+    $iframe = $('.preview iframe')
+    $target_window = $iframe[0].contentWindow
+    $iframe.attr('src', @preview_url)
+
   on_iframe_load: (event) ->
     $iframe = $('.preview iframe')
     $target_window = $iframe[0].contentWindow
@@ -106,3 +112,4 @@ class Locomotive.Views.EditableElements.IndexView extends Backbone.View
     PubSub.unsubscribe(@pubsub_image_changed_token)
     PubSub.unsubscribe(@pubsub_image_removed_token)
     PubSub.unsubscribe(@pubsub_text_token)
+    PubSub.unsubscribe(@pubsub_pages_sorted_token)
