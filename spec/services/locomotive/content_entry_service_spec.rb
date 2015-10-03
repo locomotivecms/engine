@@ -87,6 +87,14 @@ describe Locomotive::ContentEntryService do
 
     it { is_expected.to eq({ page: 1, per_page: 10, where: { "title" => /.*o.*/i, "published" => true } }) }
 
+    context 'no pagination asked' do
+
+      let(:options) { { page: 1, q: 'o', where: '{"published":true}', no_pagination: true } }
+
+      it { is_expected.to eq({ where: { "title" => /.*o.*/i, "published" => true } }) }
+
+    end
+
   end
 
   describe '#destroy_all' do

@@ -80,7 +80,7 @@ module Locomotive
       _entries = self.entries.order_by([_order_by_definition]).where(options[:where] || {})
 
       # pagination or full list
-      !self.order_manually? && page ? _entries.page(page).per(per_page) : _entries
+      page ? _entries.page(page).per(per_page) : _entries
     end
 
     # Find a custom field describing an entry based on its id

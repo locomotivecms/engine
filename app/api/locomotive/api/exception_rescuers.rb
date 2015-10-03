@@ -9,10 +9,9 @@ module Locomotive
 
         rescue_from :all do |e|
           if Rails.env.development? || Rails.env.test?
-            raise e
-          else
-            error_response(message: { error: e.message }, status: 500)
+            puts e.message + "\"" + e.backtrace.join("\n")
           end
+          error_response(message: { error: e.message }, status: 500)
         end
 
         rescue_from ::Mongoid::Errors::DocumentNotFound do

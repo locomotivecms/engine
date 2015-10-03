@@ -13,6 +13,8 @@ module Locomotive
     #
     # For a more powerful search, you can use the "where" key which accepts a JSON string or a Hash.
     #
+    # The no_pagination option is used to skip the pagination of the content entries
+    #
     # @param [ Hash ] options The options for the pagination and the filtering
     #
     # @return [ Object ] a paginated list of content entries
@@ -191,13 +193,12 @@ module Locomotive
     end
 
     def prepare_options_for_all(options)
-      where = prepare_where_statement(options)
+      { where: prepare_where_statement(options) }.tap do |_options|
+        unless options[:no_pagination]
+          _options[:page]     = options[:page] || 1
+          _options[:per_page] = options[:per_page] || Locomotive.config.ui[:per_page]
+        end
 
-      {
-        page:           options[:page] || 1,
-        per_page:       options[:per_page] || Locomotive.config.ui[:per_page],
-        where:          where
-      }.tap do |_options|
         _options[:order_by] = options[:order_by] if options[:order_by]
       end
     end

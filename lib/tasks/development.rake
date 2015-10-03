@@ -31,9 +31,13 @@ namespace :development do
     site.memberships.build account: account, role: 'admin'
     site.save!
 
+    puts "\"LocomotiveCMS\" created: #{site._id}"
+
     site = Locomotive::Site.create! name: "Sample site", handle: "sample", domains: ["sample.example.com"]
     site.memberships.build account: account, role: 'admin'
     site.save!
+
+    puts "\"Sample site\" created: #{site._id}"
 
     puts "Now you have a www.example.com site"
     puts "and a sample.example.com site as well. (add them to your /etc/hosts)"

@@ -18,7 +18,7 @@ module Locomotive
 
     def index
       authorize ContentEntry
-      @content_entries = service.all(params.slice(:page, :per_page, :q, :where))
+      @content_entries = service.all(list_params)
       respond_with @content_entries
     end
 
@@ -90,6 +90,14 @@ module Locomotive
 
     def service
       @service ||= Locomotive::ContentEntryService.new(load_content_type, current_locomotive_account)
+    end
+
+    def list_params
+      if @content_type.order_manually?
+        params.slice(:q, :where).merge(no_pagination: true)
+      else
+        params.slice(:page, :per_page, :q, :where)
+      end
     end
 
     def content_entry_params
