@@ -39,6 +39,12 @@ namespace :locomotive do
       end
       puts '[x] set the handle attribute for all the sites'
 
+      # number_of_entries by content type
+      Locomotive::ContentType.all.each_by(10) do |content_type|
+        content_type.set number_of_entries: content_type.entries.count
+      end
+      puts '[x] set the number of entries by content type'
+
       # content asset checksums
       Locomotive::ContentAsset.all.each do |asset|
         asset.send(:calculate_checksum)
