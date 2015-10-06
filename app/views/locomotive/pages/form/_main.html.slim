@@ -19,7 +19,7 @@
 
   = f.input :published, as: :toggle
 
-  - unless @page.not_found? || @page.templatized?
+  - if !@page.not_found? && !@page.templatized? && @page.default_response_type?
 
     = f.input :listed, as: :toggle
 

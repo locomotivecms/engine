@@ -41,10 +41,7 @@ module Locomotive
     end
 
     def nice_editable_elements_path
-      _path = params[:preview_path] || current_site.localized_page_fullpath(@page, current_content_locale)
-      _path = 'index' if _path.blank?
-
-      truncate('/' + _path, length: 50)
+      preview_page_path(@page)
     end
 
     def options_for_page_blocks(blocks)

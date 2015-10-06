@@ -26,7 +26,13 @@
             | &nbsp;
             = f.action
 
-      - unless @editable_elements.empty?
+      - if @editable_elements.empty?
+        .col-sm-12.col-xs-12
+          br
+          .alert.alert-warning.text-center role="alert"
+            = t('.no_editable_elements')
+
+      - else
         .col-sm-12.col-xs-12
           fieldset.inputs
             .form-group.input.select.optional.inline

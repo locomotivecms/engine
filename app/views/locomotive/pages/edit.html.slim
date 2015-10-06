@@ -1,6 +1,4 @@
-- title t('.title', title: @page.title, fullpath: @page.fullpath)
-
-= help t('.help', default: '')
+= render 'locomotive/pages/header'
 
 = locomotive_form_for @page, url: page_path(current_site, @page), html: { multipart: true } do |f|
 

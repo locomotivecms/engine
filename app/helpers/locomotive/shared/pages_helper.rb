@@ -2,6 +2,23 @@ module Locomotive
   module Shared
     module PagesHelper
 
+      def preview_page_path(page)
+        _path = params[:preview_path] || current_site.localized_page_fullpath(page, current_content_locale)
+        _path = 'index' if _path.blank?
+
+        _path += response_type_name(page)
+
+        truncate('/' + _path, length: 50)
+      end
+
+      def response_type_name(page)
+        if page.default_response_type?
+          ''
+        else
+          '.' + (MIME::Types[page.response_type.to_s].first.try(:preferred_extension) || 'html')
+        end
+      end
+
       def render_pages
         tree  = build_page_tree
         nodes = tree.map { |page, children| Node.new(page, children, controller) }

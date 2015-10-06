@@ -1,0 +1,7 @@
+- title t(:title, title: @page.title, fullpath: preview_page_path(@page), scope: 'locomotive.pages.edit')
+
+= help t('.help', default: '')
+
+- if current_site.localized?
+  - content_for :actions do
+    = locale_picker_link

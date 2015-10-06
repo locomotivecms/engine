@@ -198,8 +198,6 @@ en:
 
     pages:
       index:
-        title: Pages
-        help: "Pages are organized as a tree. You can order pages as well as folders"
         no_items: "There are no pages for now. Just click <a href=\"%{url}\">here</a> to create the first one."
         new: new page
         list_content_entries: "List %{name}"
@@ -225,6 +223,7 @@ en:
         title: "%{title} &mdash; <small>%{fullpath}</small>"
       edit:
         settings_link: 'Settings'
+        no_editable_elements: 'No editable elements found'
       form:
         model:
           buttons:

@@ -1,6 +1,4 @@
-- title t('.title', title: @page.title, fullpath: @page.fullpath)
-
-= help t('.help', default: '')
+= render 'locomotive/pages/header'
 
 = locomotive_form_for @page, url: update_all_editable_elements_path(current_site, @page), defaults: { placeholder: false, hint: false } do |f|
 
@@ -18,17 +16,25 @@
     = form_tab_pane :content, true do
 
       .row
-        .col-md-12
-          fieldset.inputs.info-row
-            .form-group.input.select.optional.inline
-              label.select.optional.control-label for='page_block'
-                = t(:region, scope: 'simple_form.labels.locomotive.editable_element')
-              span.form-wrapper
-                = select_tag 'block', options_for_page_blocks(@editable_elements_by_block)
 
-        .col-md-12
-          = render 'form', f: f
+        - if @editable_elements.empty?
+          .col-md-12
+            br
+            .alert.alert-warning.text-center role="alert"
+              = t('.no_editable_elements')
 
-          = f.actions do
-            = f.action
+        - else
+          .col-md-12
+            fieldset.inputs.info-row
+              .form-group.input.select.optional.inline
+                label.select.optional.control-label for='page_block'
+                  = t(:region, scope: 'simple_form.labels.locomotive.editable_element')
+                span.form-wrapper
+                  = select_tag 'block', options_for_page_blocks(@editable_elements_by_block)
+
+          .col-md-12
+            = render 'form', f: f
+
+            = f.actions do
+              = f.action
 
