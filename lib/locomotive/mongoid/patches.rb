@@ -98,7 +98,7 @@ module Mongoid #:nodoc:
       fields    = _criteria.options[:fields]
       sort      = _criteria.options[:sort]
 
-      document = collection.find(selector).select(fields).sort(sort).limit(1).first
+      document = collection.find(selector).projection(fields).sort(sort).limit(1).first
       document ? document[field.to_s].to_i : nil
     end
 

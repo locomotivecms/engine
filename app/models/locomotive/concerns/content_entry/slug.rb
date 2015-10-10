@@ -65,8 +65,6 @@ module Locomotive
           _last = self.class.where(:_id.ne => self._id, _slug: /^#{slug}-?\d*$/i)
                     .only(:_slug)
                     .order_by(:_id.desc)
-                    .context
-                    .query
                     .first
 
           if _last

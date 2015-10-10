@@ -199,7 +199,7 @@ module Locomotive
             }
           }
 
-          self.collection.find(selector).update(operations, multi: true)
+          self.collection.find(selector).update_many(operations)
         end
 
       end

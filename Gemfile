@@ -18,11 +18,11 @@ end
 
 group :development do
   # gem 'custom_fields', path: '../custom_fields'
-  # gem 'custom_fields', path: '../gems/custom_fields' # for Developers
+  gem 'custom_fields', path: '../gems/custom_fields' # for Developers
   # gem 'custom_fields', github: 'locomotivecms/custom_fields', ref: '15cceb66ed'
 
-  # gem 'locomotivecms_steam', path: '../in_progress/steam', require: false
-  gem 'locomotivecms_steam', github: 'locomotivecms/steam', ref: '552b013e147ef', require: false
+  gem 'locomotivecms_steam', path: '../in_progress/steam', require: false
+  # gem 'locomotivecms_steam', github: 'locomotivecms/steam', ref: '552b013e147ef', require: false
 
   # gem 'locomotive-aloha-rails', path: '../gems/aloha-rails' # for Developers
   # gem 'locomotive-tinymce-rails', path: '../gems/tinymce-rails' # for Developers
@@ -63,7 +63,7 @@ group :test do
   gem 'factory_girl_rails'
   gem 'pickle'
   gem 'json_spec',            '~> 1.1.4'
-  gem 'database_cleaner',     '~> 1.4.1'
+  gem 'database_cleaner',     git: 'https://github.com/DatabaseCleaner/database_cleaner.git'
   gem 'timecop',              '~> 0.7.1'
 
   # gem 'debugger', git: 'git://github.com/cldwalker/debugger.git'

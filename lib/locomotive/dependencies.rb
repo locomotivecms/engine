@@ -1,5 +1,5 @@
 require 'bson'
-require 'moped'
+require 'mongo'
 require 'mongoid'
 require 'mongoid/railtie'
 require 'mongoid/tree'
