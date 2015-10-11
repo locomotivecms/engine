@@ -15,6 +15,30 @@ describe 'Locomotive::Middlewares::Site' do
 
   end
 
+  describe 'requesting the back-office assets' do
+
+    before { site }
+    before { allow(middleware).to receive(:default_host).and_return('steve.me') }
+
+    let(:url) { 'http://steve.me/assets/foo.png' }
+    it { is_expected.to eq(nil) }
+
+    context 'localhost' do
+
+      let(:url) { 'http://localhost/assets/foo.png' }
+      it { is_expected.to eq(nil) }
+
+    end
+
+    context '0.0.0.0' do
+
+      let(:url) { 'http://0.0.0.0/assets/foo.png' }
+      it { is_expected.to eq(nil) }
+
+    end
+
+  end
+
   describe 'the requested site is also the default host' do
 
     before { site }
