@@ -18,10 +18,11 @@
       .row
 
         - if @editable_elements.empty?
-          .col-md-12
-            br
-            .alert.alert-warning.text-center role="alert"
-              = t('.no_editable_elements')
+          - if @content_entry.nil?
+            .col-md-12
+              br
+              .alert.alert-warning.text-center role="alert"
+                = t('.no_editable_elements')
 
         - else
           .col-md-12

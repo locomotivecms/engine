@@ -27,10 +27,11 @@
             = f.action
 
       - if @editable_elements.empty?
-        .col-sm-12.col-xs-12
-          br
-          .alert.alert-warning.text-center role="alert"
-            = t('.no_editable_elements')
+        - if @content_entry.nil?
+          .col-sm-12.col-xs-12
+            br
+            .alert.alert-warning.text-center role="alert"
+              = t('.no_editable_elements')
 
       - else
         .col-sm-12.col-xs-12
