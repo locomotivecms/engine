@@ -245,6 +245,9 @@ GEM
       execjs
     eco-source (1.1.0.rc.1)
     ejs (1.1.1)
+    email_spec (1.6.0)
+      launchy (~> 2.1)
+      mail (~> 2.2)
     equalizer (0.0.11)
     erubis (2.7.0)
     eventmachine (1.0.8)
@@ -412,6 +415,8 @@ GEM
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
     kramdown (1.8.0)
+    launchy (2.4.3)
+      addressable (~> 2.3)
     less (2.6.0)
       commonjs (~> 0.2.7)
     locomotivecms-liquid (4.0.0.alpha2)
@@ -642,6 +647,7 @@ DEPENDENCIES
   coffee-rails (~> 4.1.0)
   coveralls (~> 0.7.2)
   database_cleaner (~> 1.4.1)
+  email_spec
   factory_girl_rails
   faye-websocket
   grape-entity-matchers

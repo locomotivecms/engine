@@ -66,5 +66,7 @@ group :test do
   gem 'database_cleaner',     '~> 1.4.1'
   gem 'timecop',              '~> 0.7.1'
 
+  gem 'email_spec'
+
   # gem 'debugger', git: 'git://github.com/cldwalker/debugger.git'
 end

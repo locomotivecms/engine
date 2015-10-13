@@ -14,6 +14,7 @@ require 'pundit/rspec'
 require 'capybara/rails'
 require 'capybara/rspec'
 require 'capybara/poltergeist'
+require 'email_spec'
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
@@ -28,8 +29,10 @@ RSpec.configure do |config|
     helper.class.include Locomotive::Engine.routes.url_helpers
   end
 
-  config.include Features::SessionHelpers, type: :feature
-  config.include Features::SiteHelpers, type: :feature
+  config.include Features::SessionHelpers,  type: :feature
+  config.include Features::SiteHelpers,     type: :feature
+  config.include EmailSpec::Helpers,        type: :feature
+  config.include EmailSpec::Matchers,       type: :feature
 
   config.include Locomotive::RSpec::Matchers
   config.include FactoryGirl::Syntax::Methods

@@ -18,5 +18,20 @@ module Features
       click_button 'Sign in'
     end
 
+    def forgot_password(js = false, &block)
+      sign_up_with 'John Doe', 'john@doe.net', 'password'
+      click_link 'Welcome, John Doe' if js
+      within('.header') { click_link 'Log out' }
+      click_link 'I forgot my password'
+      fill_in 'Your email', with: 'john@doe.net'
+      click_button 'Forgot password'
+
+      if block_given?
+        last_email = ActionMailer::Base.deliveries.last
+        last_email.body.to_s =~ /<a href="http:\/\/localhost:9886(\S+)">/
+        yield last_email, $1
+      end
+    end
+
   end
 end
