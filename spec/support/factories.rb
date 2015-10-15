@@ -248,6 +248,12 @@ FactoryGirl.define do
       end
     end
 
+    trait :with_text_field do
+      after(:build) do |content_type, evaluator|
+        content_type.entries_custom_fields.build label: 'Description', name: 'description', type: 'text'
+      end
+    end
+
     trait :with_select_field do
       after(:build) do |content_type, evaluator|
         content_type.entries_custom_fields.build(label: 'Category', type: 'select')

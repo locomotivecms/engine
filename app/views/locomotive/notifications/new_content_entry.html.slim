@@ -15,6 +15,8 @@ ul
       | &nbsp;-&nbsp;
       i
         - case field.type.to_s
+        - when 'text'
+          = raw(value.gsub(/(\r\n|\r|\n)/, '<br/>'))
         - when 'file'
           - url = value.guess_url
           - url = url =~ /^http/ ? url : URI.join("http://#{@domain}", url).to_s # Amazon S3 (http/https) or local files ?

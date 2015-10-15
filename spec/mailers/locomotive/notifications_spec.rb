@@ -38,6 +38,17 @@ describe Locomotive::Notifications do
       expect(mail.body.encoded).to match('The list of my projects')
     end
 
+    describe 'rendering based on fied type' do
+
+      let(:content_type)  { FactoryGirl.build(:content_type, :with_text_field, site: site) }
+      let(:content_entry) { content_type.entries.build(description: "hello\nworld", site: site) }
+
+      it 'outputs the domain in the email body' do
+        expect(mail.body.encoded).to match('hello<br/>world')
+      end
+
+    end
+
   end
 
   def set_timezone(&block)
