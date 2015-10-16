@@ -13,17 +13,6 @@ module Locomotive
       %w(jpg jpeg gif png css js swf flv eot svg ttf woff woff2 otf ico htc map)
     end
 
-    def self.url_for(site, path)
-      build(site, path).url
-    end
-
-    def self.build(site, path)
-      asset     = site.theme_assets.build(folder: File.dirname(path))
-      uploader  = ThemeAssetUploader.new(asset)
-      uploader.retrieve_from_store!(File.basename(path))
-      uploader
-    end
-
     def self.content_types
       # pdf is not considered as a custom content type for theme assets.
       list = super.clone

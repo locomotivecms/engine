@@ -3,14 +3,13 @@ require 'locomotive/steam/server'
 
 Locomotive::Steam.configure do |config|
 
-  # asset_host or asset_path? Depends on the Carrierwave configuration
-  storage = CarrierWave::Uploader::Base.storage.to_s
+  # Serving assets is Rails / Nginx job, not embedded Steam's
+  config.serve_assets = false
 
   if asset_host = CarrierWave::Uploader::Base.asset_host
-    config.asset_host   = asset_host
-    config.serve_assets = false
-  elsif CarrierWave::Uploader::Base.storage_engines.invert[storage] == :file
-    config.asset_path = Rails.application.root.join('public')
+    config.asset_host = asset_host
+  else
+    config.asset_host = CarrierWave.base_host
   end
 
   # rely on Mongoid for the connection information

@@ -10,14 +10,19 @@ CarrierWave.configure do |config|
 
   when :production
     # the following configuration works for Amazon S3
-    config.storage          = :fog
-    config.fog_credentials  = {
-      provider:                 'AWS',
-      aws_access_key_id:        ENV['S3_KEY_ID'],
-      aws_secret_access_key:    ENV['S3_SECRET_KEY'],
-      region:                   ENV['S3_BUCKET_REGION']
+    #
+    # WARNING: add the "carrierwave-aws" gem in your Rails app Gemfile.
+    # More information here: https://github.com/sorentwo/carrierwave-aws
+    #
+    config.storage          = :aws
+    config.aws_bucket       = ENV['S3_BUCKET']
+    config.aws_acl          = 'public-read'
+
+    config.aws_credentials  = {
+      access_key_id:      ENV['S3_KEY_ID'],
+      secret_access_key:  ENV['S3_SECRET_KEY'],
+      region:             ENV['S3_BUCKET_REGION']
     }
-    config.fog_directory    = ENV['S3_BUCKET']
 
   else
     # settings for the local filesystem

@@ -62,7 +62,6 @@ Gem::Specification.new do |s|
   s.add_dependency 'bazaar',                          '~> 0.0.2'
 
   s.add_dependency 'carrierwave-mongoid',             '~> 0.7.1'
-  s.add_dependency 'fog',                             '~> 1.34.0'
   s.add_dependency 'dragonfly',                       '~> 1.0.7'
   s.add_dependency 'rack-cache',                      '~> 1.1'
   s.add_dependency 'mimetype-fu',                     '~> 0.1.2'
