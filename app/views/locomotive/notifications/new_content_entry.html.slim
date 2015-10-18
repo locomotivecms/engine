@@ -27,6 +27,8 @@ ul
           = value.try(:_label)
         - when 'has_many', 'many_to_many'
           = value.map(&:_label).join(', ')
+        - when 'time', 'date_time'
+          = I18n.l(value.in_time_zone(@site.timezone))
         - when 'tags'
           = value.join(', ')
         - else

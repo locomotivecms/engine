@@ -254,6 +254,12 @@ FactoryGirl.define do
       end
     end
 
+    trait :with_date_time_field do
+      after(:build) do |content_type, evaluator|
+        content_type.entries_custom_fields.build label: 'Time', name: 'time', type: 'date_time'
+      end
+    end
+
     trait :with_select_field do
       after(:build) do |content_type, evaluator|
         content_type.entries_custom_fields.build(label: 'Category', type: 'select')
