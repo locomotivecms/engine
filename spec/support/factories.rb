@@ -190,9 +190,11 @@ FactoryGirl.define do
 
     factory 'message content type' do
       name 'Messages'
+      slug 'messages'
       description 'Messages posted from the contact form'
+      public_submission_enabled true
       after(:build) do |content_type, _|
-        content_type.entries_custom_fields.build label: 'Name', name: 'name', type: 'string'
+        content_type.entries_custom_fields.build label: 'Name', name: 'name', type: 'string', required: true
         content_type.entries_custom_fields.build label: 'Message', name: 'message', type: 'text'
       end
     end

@@ -38,7 +38,7 @@ describe Locomotive::Steam::APIEntrySubmissionService do
     subject { service.to_json(entry) }
 
     it 'includes _id and fields' do
-      expect(subject).to match('"_id":"42"')
+      expect(subject).to match('"_id":42')
       expect(subject).to match('"name":"John Doe"')
       expect(subject).to match('"message":"Hello"')
     end

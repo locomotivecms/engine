@@ -39,7 +39,7 @@ Locomotive::Steam.configure do |config|
 
   config.services_hook = -> (services) {
     if services.request
-      services.entry_submission = Locomotive::Steam::APIEntrySubmissionService.new(services.current_site, services.locale)
+      services.entry_submission = Locomotive::Steam::APIEntrySubmissionService.new(services.request.env['locomotive.site'], services.locale)
       services.defer(:liquid_parser) { Locomotive::Steam::LiquidParserWithCacheService.new(services.current_site, services.parent_finder, services.snippet_finder, services.locale) }
     end
   }

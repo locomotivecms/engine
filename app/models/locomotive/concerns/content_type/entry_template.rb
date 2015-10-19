@@ -25,7 +25,13 @@ module Locomotive
         def to_steam_entry(entry)
           entry_attributes = entry.attributes.symbolize_keys
 
-          steam_repositories.content_entry.with(to_steam).build(entry_attributes)
+          steam_repositories.content_entry.with(to_steam).build(entry_attributes).tap do |entity|
+            # copy error messages
+            entry.errors.each do |name, message|
+              next if name == :_slug
+              entity.errors.add(name, message)
+            end
+          end
         end
 
         def steam_repositories
