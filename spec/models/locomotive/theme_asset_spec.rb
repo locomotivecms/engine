@@ -194,11 +194,11 @@ describe Locomotive::ThemeAsset do
 
   end
 
-  # it_should_behave_like 'model scoped by a site' do
+  it_should_behave_like 'model scoped by a site' do
 
-  #   let(:model)     { build(:theme_asset, source: FixturedAsset.open('5k.png')) }
-  #   let(:attribute) { :template_version }
+    let(:model)     { build(:theme_asset, source: FixturedAsset.open('5k.png')) }
+    let(:attribute) { :template_version }
 
-  # end
+  end
 
 end
