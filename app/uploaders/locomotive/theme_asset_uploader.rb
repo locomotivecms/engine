@@ -13,6 +13,14 @@ module Locomotive
       %w(jpg jpeg gif png css js swf flv eot svg ttf woff woff2 otf ico htc map)
     end
 
+    def apply_content_type_exception(value)
+      if content_type == 'image/svg+xml' && model.folder.starts_with?('fonts')
+        :font
+      else
+        value
+      end
+    end
+
     def self.content_types
       # pdf is not considered as a custom content type for theme assets.
       list = super.clone
