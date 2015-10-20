@@ -13,6 +13,7 @@ module Locomotive
     include Concerns::ContentType::GroupBy
     include Concerns::ContentType::OrderBy
     include Concerns::ContentType::ClassHelpers
+    include Concerns::ContentType::PublicSubmissionTitleTemplate
 
     ## fields ##
     field :name

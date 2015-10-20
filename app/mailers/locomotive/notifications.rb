@@ -11,10 +11,20 @@ module Locomotive
         ActionMailer::Base.default_url_options[:host] ||
         'localhost'
 
-      subject = t('locomotive.notifications.new_content_entry.subject', domain: @domain, type: @type.name, locale: account.locale)
+      subject = new_content_entry_subject(entry, domain: @domain, type: @type.name, locale: account.locale)
 
       mail subject: subject, to: account.email
     end
-  end
 
+    protected
+
+    def new_content_entry_subject(entry, options)
+      if entry.content_type.public_submission_title_template.blank?
+        t('locomotive.notifications.new_content_entry.subject', options)
+      else
+        entry.content_type.public_submission_title(entry, options)
+      end
+    end
+
+  end
 end
