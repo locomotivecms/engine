@@ -12,6 +12,8 @@ describe Locomotive::API::Entities::ContentTypeEntity do
       label_field_name
       order_direction
       public_submission_enabled
+      public_submission_accounts
+      public_submission_title_template
       entry_template
     )
 
