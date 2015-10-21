@@ -119,6 +119,7 @@ en:
           domains: "Add your domains just below. Then, register a CNAME DNS record pointing to <b>%{domain}</b>."
           memberships: "You can invite other accounts to edit/manage the site."
           cache_enabled: "When enabled, your pages will be cached as long as the content doesn't change. Disabling cache per page is allowed."
+          redirect_to_first_domain: "When enabled, requests made to any domains listed above will be redirected to the first domain."
           new:
             locales: "You can add other languages once your site will be created."
         theme_asset:
