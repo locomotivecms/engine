@@ -22,10 +22,8 @@ group :development do
   # gem 'custom_fields', github: 'locomotivecms/custom_fields', ref: '15cceb66ed'
 
   # gem 'locomotivecms_steam', path: '../in_progress/steam', require: false
-  gem 'locomotivecms_steam', github: 'locomotivecms/steam', ref: '25e6852', require: false
+  gem 'locomotivecms_steam', github: 'locomotivecms/steam', ref: 'cdb2d94', require: false
 
-  # gem 'locomotive-aloha-rails', path: '../gems/aloha-rails' # for Developers
-  # gem 'locomotive-tinymce-rails', path: '../gems/tinymce-rails' # for Developers
   # gem 'locomotive_liquid', path: '../gems/liquid' # for Developers
   # gem 'locomotivecms_solid', path: '../gems/solid' # for Developers
 

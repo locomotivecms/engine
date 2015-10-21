@@ -18,6 +18,7 @@ module Locomotive
 
           # deal with the Steam entity instead of a Mongoid document
           env['steam.site'] = site.try(:to_steam)
+          env['steam.is_default_host'] = default_host?(request)
 
           begin
             @app.call(env)
