@@ -54,4 +54,6 @@ Locomotive.configure do |config|
   #
   # Note: by default, rack/cache is disabled in the Heroku platform
 
+  # Dragonfly within Steam uses it to generate the protective SHA
+  # config.steam_image_resizer_secret = 'please change it'
 end

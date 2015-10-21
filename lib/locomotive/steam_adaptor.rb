@@ -6,6 +6,9 @@ Locomotive::Steam.configure do |config|
   # Serving assets is Rails / Nginx job, not embedded Steam's
   config.serve_assets = false
 
+  # Dragonfly instance embedded in Steam needs a secret key
+  config.image_resizer_secret = Locomotive.config.steam_image_resizer_secret
+
   if asset_host = CarrierWave::Uploader::Base.asset_host
     config.asset_host = asset_host
   else
