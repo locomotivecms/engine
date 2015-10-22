@@ -68,6 +68,7 @@ Locomotive::Engine.routes.draw do
     resource :current_site, controller: 'current_site' do
       get :new_domain
       get :new_locale
+      get :new_url_redirection
     end
 
     # Preview mode handled by Steam

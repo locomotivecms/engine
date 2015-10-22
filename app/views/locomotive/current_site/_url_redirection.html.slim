@@ -1,0 +1,17 @@
+.item.row data-id=url_redirection.first
+
+  = hidden_field_tag "site[url_redirections][]", url_redirection.first
+  = hidden_field_tag "site[url_redirections][]", url_redirection.last
+
+  .inner-row.col-md-12
+
+    .text
+      = url_redirection.first
+      | &nbsp;&nbsp;&nbsp;
+      i class="fa fa-arrow-right"
+      | &nbsp;&nbsp;&nbsp;
+      = url_redirection.last
+
+    .buttons
+      = link_to '#', class: 'delete' do
+        i class="fa fa-trash-o"

@@ -9,6 +9,7 @@ module Locomotive
     include Concerns::Site::Locales
     include Concerns::Site::Timezone
     include Concerns::Site::Cache
+    include Concerns::Site::UrlRedirections
 
     ## fields ##
     field :name

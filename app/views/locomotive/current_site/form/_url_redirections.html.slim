@@ -1,0 +1,5 @@
+= f.inputs :url_redirections do
+  = f.input :url_redirections, as: :array, hint: t(:url_redirections, scope: 'simple_form.hints.locomotive.site').html_safe, placeholder: true, collection: f.object.url_redirections.to_a, template: :url_redirection, template_url: new_url_redirection_current_site_path(current_site)
+
+= f.actions do
+  = f.action

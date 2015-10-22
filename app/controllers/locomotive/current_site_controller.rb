@@ -44,6 +44,14 @@ module Locomotive
       end
     end
 
+    def new_url_redirection
+      if params[:url_redirection].present? && params[:url_redirection].include?(' ')
+        render partial: 'url_redirection', locals: { url_redirection: params[:url_redirection].split(' ') }
+      else
+        head :unprocessable_entity
+      end
+    end
+
     private
 
     def load_site

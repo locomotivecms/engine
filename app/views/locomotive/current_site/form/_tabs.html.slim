@@ -9,6 +9,9 @@ ul.nav.nav-tabs role='tablist'
   = form_nav_tab :seo do
     = link_to t('simple_form.titles.locomotive.site.seo'), '#seo', role: 'tab', data: { toggle: 'tab' }
 
+  = form_nav_tab :url_redirections do
+    = link_to t('simple_form.titles.locomotive.site.url_redirections'), '#url_redirections', role: 'tab', data: { toggle: 'tab' }
+
   - if policy(@site).update_advanced?
     = form_nav_tab :advanced do
       = link_to t('simple_form.titles.locomotive.site.advanced'), '#advanced', role: 'tab', data: { toggle: 'tab' }
