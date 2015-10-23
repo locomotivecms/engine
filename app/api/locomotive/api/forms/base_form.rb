@@ -52,9 +52,11 @@ module Locomotive
 
         # @override - only return set attributes
         def serializable_hash
-          changed.inject({}) do |hash, attribute|
+          changed.sort_by do |name|
+            self.class.attributes.index(:"#{name}=")
+          end.inject({}) do |hash, attribute|
             hash.merge({ attribute => send(attribute) })
-          end.with_indifferent_access
+          end.to_h.with_indifferent_access
         end
 
         def persisted?

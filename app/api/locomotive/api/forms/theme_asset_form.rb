@@ -4,7 +4,7 @@ module Locomotive
 
       class ThemeAssetForm < BaseForm
 
-        attrs :source, :folder, :checksum
+        attrs :folder, :source, :checksum
 
       end
 
