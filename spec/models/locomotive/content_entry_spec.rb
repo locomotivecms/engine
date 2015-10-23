@@ -106,7 +106,7 @@ describe Locomotive::ContentEntry do
       @content_entry.translated?.should be_true
     end
 
-    describe '.slug' do
+    describe '#slug' do
 
       it 'is not nil in the default locale' do
         ::Mongoid::Fields::I18n.locale = 'en'
@@ -115,6 +115,22 @@ describe Locomotive::ContentEntry do
 
       it 'is not translated by default in the other locale' do
         @content_entry._slug_translations['fr'].should be_nil # French
+      end
+
+    end
+
+    describe 'file and validation' do
+
+      before do
+        @content_type.entries_custom_fields.all[3].required = true
+        @content_type.save
+        ::Mongoid::Fields::I18n.locale = 'en'
+        @content_entry = build_content_entry(title: 'Hello world', file: FixturedAsset.open('5k.png'))
+      end
+
+      it 'should be valid' do
+        @content_entry.valid?
+        @content_entry.valid?.should == true
       end
 
     end
@@ -343,11 +359,30 @@ describe Locomotive::ContentEntry do
 
   describe '#file' do
 
-    let(:entry) { build_content_entry(title: 'Hello world', file: FixturedAsset.open('5k.png')) }
+    let(:attributes) { { title: 'Hello world', file: FixturedAsset.open('5k.png') } }
+    let(:entry) { build_content_entry(attributes) }
 
     it 'writes the file to the filesystem' do
       entry.save
       entry.file.url.should_not =~ /content_content_entry/
+    end
+
+    describe 'required' do
+
+      before do
+        @content_type.entries_custom_fields.all[3].required = true
+        @content_type.save
+      end
+
+      let(:attributes) { { title: 'Hello world' } }
+
+      it 'does not save the entry if file is missing' do
+        entry.save.should == false
+        entry.errors[:file].should == ["can't be blank"]
+        entry.file = FixturedAsset.open('5k.png')
+        entry.valid?.should == true
+      end
+
     end
 
   end
@@ -399,6 +434,7 @@ describe Locomotive::ContentEntry do
 
   def localize_content_type(content_type)
     content_type.entries_custom_fields.first.localized = true
+    content_type.entries_custom_fields.all[3].localized = true
     content_type.save
   end
 
