@@ -6,9 +6,15 @@ module Locomotive
 
       respond_to :xml
 
+      include Locomotive::Render
+
       def show
-        @pages = current_site.pages.published.order_by(:depth.asc, :position.asc)
-        respond_with @pages
+        if page = current_site.pages.where(fullpath: 'sitemap').first
+          render_locomotive_page('sitemap')
+        else
+          @pages = current_site.pages.published.order_by(:depth.asc, :position.asc)
+          respond_with @pages
+        end
       end
 
       protected

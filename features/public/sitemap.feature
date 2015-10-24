@@ -5,6 +5,20 @@ Feature: Sitemap
 Background:
   Given I have the site: "test site" set up
 
+Scenario: Locomotive page overriding the default sitemap
+  Given a page named "sitemap" with the template:
+    """
+    <?xml version="1.0" encoding="UTF-8"?>
+    <fake-tag>My sitemap</fake-tag>
+    """
+    When I go to the sitemap
+    Then the response status should be 200
+    And I should see the following xml output:
+      """
+      <?xml version="1.0" encoding="UTF-8"?>
+      <fake-tag>My sitemap</fake-tag>
+      """
+
 Scenario: Simple sitemap
   Given a page named "about" with the template:
     """
