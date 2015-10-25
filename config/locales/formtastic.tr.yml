@@ -1,0 +1,112 @@
+sr:
+  formtastic:
+    titles:
+      information: Genel bilgi
+      advanced_options: Gelişmiş seçenekler
+      meta: SEO Metadata
+      seo: SEO ayarları
+      robots_txt: Robots.txt dosyası
+      code: Kod
+      raw_template: Şablon
+      credentials: Kimlik
+      language: Dil
+      sites: Siteler
+      access_points: Erişim noktaları
+      memberships: Hesaplar
+      membership_email: Hesap epostası
+      file: Dosya
+      preview: Önizleme
+      options: Seçenekler
+      custom_fields: Özel alan
+      other_fields: Diğer alanlar
+      presentation: Sunum
+      attributes: Özellikler
+      upload: Yükle
+    labels:
+      theme_asset:
+        plain_text_name: Dosya adı
+        content_type: Dosya türü
+        new:
+          source: Dosya
+        edit:
+          source: Dosyayı değiştir
+      custom_fields:
+        field:
+          name: Rumuz
+      content_type:
+        raw_item_template: Kalem şablonu
+        public_submission_enabled: Açık gönderim
+        public_submission_accounts: Bildirilen hesaplar
+        "custom_fields/field":
+          select_options: "seçenekler"
+      content_entry:
+        _slug: Sabit adres
+        _visible: Görünür
+      account:
+        api_key: API anahtarı
+        edit:
+          locale: Arayüz dili
+          password: Yeni şifre
+          password_confirmation: Yeni şifre onay
+      page:
+        seo_title: Başlık
+        target_klass_name: Model
+      site:
+        locales: Diller
+        timezone_name: Saat dilimi
+        new:
+          locales: Ana dil
+
+    hints:
+      page:
+        handle: "Bu sayfaya başka bir şablondan erişmek için özgün isim"
+        published: "Sadece yetkili hesaplar yayınlanmamış sayfaları görebilir."
+        cache_strategy: "İyi performans için sayfayı zulalayın. 'Basit' seçeneği dengelidir."
+        templatized: "Sayfayı tanımladığınız bir model için şablon olarak kullanın."
+        listed: "Otomatik oluşturulan menülerde sayfanın görünüp görünmeyeceğini belirleyin."
+        target_klass_name: "Bu sayfanın şablon olarak kullanılacağı içerik modeli."
+        seo_title: "'title' elemanı içerisinde kullanılacak sayfa başlığı. Site ayarlarındaki varsayılan değeri kullanmak için boş bırakın."
+        meta_keywords: "Sayfanın 'head' kısmında kullanılacak 'meta keywords' (anahtar kelimeler) içeriği. Virgül ile ayırın."
+        meta_description: "Sayfanın 'head' kısmında kullanılacak 'meta description' (tanım) içeriği."
+      snippet:
+        slug: "Parçayı bir sayfada kullanmak için bunu bilmeniz gerekir"
+      site:
+        locales: "Bir yöreyi varsayılan yapmak için ilgili bayrağı ilk sıraya sürükleyip bırakın."
+        seo_title: "Site genelinde 'title' elemanı içerisinde kullanılacak sayfa başlığı."
+        meta_keywords: "Site genelinde 'head' kısmında kullanılacak 'meta keywords' (anahtar kelimeler) içeriği. Virgül ile ayırın."
+        meta_description: "Site genelinde 'head' kısmında kullanılacak 'meta description' (tanım) içeriği."
+        domain_name: "örn: locomotiveapp.org"
+        robots_txt: "<span class='code'>/robots.txt</span> dosyasının içeriği. <a href='http://www.w3.org/TR/html4/appendix/notes.html#h-B.4.1.1'>Daha fazla bilgi…</a>."
+        new:
+          locales: "Siteniz oluşturulduğunda başka diller ekleyebilirsiniz."
+      theme_asset:
+        slug: "Dosya uzantısını eklemeniz gerekmez (.css veya .js)"
+        edit:
+          source: "Aynı uzantıya sahip başka bir dosya ile değiştirebilirsiniz"
+      translation:
+        key: "Tire degil alt çizgi kullanın. Örnek: karsilama_mesaji."
+      asset:
+        source: "Tüm dosya türleri uygundur."
+        edit:
+          source: "Mevcut dosya şuradadır %{url}"
+        update:
+          source: "Mevcut dosya şuradadır  %{url}"
+      content_entry:
+        _slug: "Bu model için şablon olarak kullanılan bir sayfanın adresini oluşturmakta kullanılır (örn: \"sablon_sayfasi/{{ modelim._permalink }})\"."
+        _visible: "Bu girdinin sitede görünür olup olmayacağı."
+        seo_title: "Şablon sayfanın başlığının yerine geçer."
+        meta_keywords: "Şablon sayfanın 'meta keywords'ü yerine geçer.."
+        meta_description: "Şablon sayfanın 'meta description'ı yerine geçer."
+      import:
+        source: "Bir database.yml şablonlar ve kaynaklar içeren bir zip dosyası"
+        samples: "Seçili ise içe aktarım sürecinde kaynaklar ve içerik de içe aktarılır"
+        reset: "Seçili ise içe aktarım yapılmadan önce sitenizin tüm mevcut verileri silinir"
+      content_type:
+        name: "Model adının çoğul halini kullanmanızı öneririz. Örn: Projeler, Tarifler, Makaleler, Yazılar vs."
+        slug: "liquid şablon dilinde modelin adı olarak kullanılacaktır. Örn: <span class='code'>{{ contents.projeler }}</span>"
+        raw_item_template: "Listedeki her kalem içın gösterilen metni özelleştirebilirsiniz. Sadece Liquid kullanın. Örn: <span class='code'>{{ entry.name }})</span>"
+        public_submission_enabled: "Harici site kullanıcılarının bu modele kayıt göndermesine olanak verir (mesela bir iletişim formundan mesaj göndermek gibi)"
+        public_submission_accounts: "Eğer açık gönderim seçeneği aktifse oluşturulan her yeni girdi için belirtilen hesaplara bir bildirim epostası gönderilir"
+        "custom_fields/field":
+          name: "Liquid şablonlarında kullanılacak alan adı. Örn: <span class='code'>&#123;&#123; your_object.&lt;name_of_your_field&gt; &#125;&#125;</span>"
+          hint: "Yeni girdi formunda alan adı altında yer alan bilgilendirme"

@@ -29,6 +29,7 @@ en:
       bg: Bulgarian
       sk: Slovak
       sr: Serbian
+      tr: Turkish
 
     messages:
       confirm: Are you sure ?

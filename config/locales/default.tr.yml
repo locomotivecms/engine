@@ -1,0 +1,57 @@
+en:
+  date:
+    formats:
+      default: "%d.%m.%Y"
+
+  time:
+    formats:
+      default: "%d.%m%Y %H:%M"
+
+  mongoid:
+    errors:
+      messages:
+        blank_in_locale: "boş bırakılamaz"
+      models:
+        locomotive/membership:
+          attributes:
+            account:
+              unique_account: "zaten kayıtlı"
+            email:
+              unique_account: "zaten kayıtlı"
+    attributes:
+      locomotive/content_entry:
+        created_at: Olusturma tarihi
+
+  errors:
+    messages:
+      domain_taken: "%{value} zaten kayıtlı"
+      invalid_domain: "%{value} geçersiz"
+      needs_admin_account: "En az bir yönetici hesabı gerekli"
+      protected_page: "index ve 404 sayfalarını silemezsiniz"
+      extname_changed: "Yeni dosya aynı uzantıya sahip değil"
+      array_too_short: "çok az (en az %{count} adet olmalı)"
+      invalid_theme_file: "boş veya bir zip dosyası değil"
+      site:
+        default_locale_removed: Bir önceki varsayılan yöre hemen silinemez.
+      page:
+        liquid_syntax: "Liquid Yazım hatası ('%{fullpath}' üzerinde '%{error}')"
+        liquid_extend: "'%{fullpath}' sayfası olmayan bir şablona dayanıyor"
+        liquid_translation: "'%{fullpath}' sayfası çevirilmemış bir şablona dayanıyor"
+      too_few_custom_fields: "En az bir özel alan gereklidir"
+      security: "bir güvenlik sorunu oluşturuyor"
+
+  attributes:
+    defaults:
+      pages:
+        index:
+          title: "Ana sayfa"
+          body: "Ana sayfa içeriği"
+        "404":
+          title: "Sayfa bulunamadı"
+          body: "404 sayfası içeriği"
+        other:
+          body: "{% extends 'parent' %}"
+
+  pagination:
+    previous: "&laquo; Önceki"
+    next: "Sonraki &raquo;"
