@@ -8,7 +8,7 @@
 
     = hidden_field_tag 'content_type[public_submission_accounts][]', nil
 
-    = f.input :public_submission_accounts, as: :array, template: :account, template_url: new_account_public_submission_accounts_path(current_site, @content_type.slug), select_options: options_for_public_submission_accounts
+    = f.input :public_submission_accounts, as: :array, template: :account, template_url: new_account_public_submission_accounts_path(current_site, @content_type.slug), select_options: options_for_public_submission_accounts, label: t(:public_submission_accounts, scope: 'simple_form.labels.locomotive.content_type')
 
   = f.actions back_url: content_entries_path(current_site, @content_type.slug)
 

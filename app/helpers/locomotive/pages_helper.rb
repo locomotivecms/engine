@@ -39,8 +39,8 @@ module Locomotive
 
     def options_for_page_redirect_type
       [
-        [t('.redirect_type.permanent'), 301],
-        [t('.redirect_type.temporary'), 302]
+        [t('redirect_type.permanent', scope: 'locomotive.pages.form'), 301],
+        [t('redirect_type.temporary', scope: 'locomotive.pages.form'), 302]
       ]
     end
 

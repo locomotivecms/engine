@@ -1,4 +1,0 @@
-nb:
-  carrierwave:
-    errors:
-      integrity: 'er ikke en tillatt filtype.'

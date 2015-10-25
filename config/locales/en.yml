@@ -1,14 +1,7 @@
 en:
   locomotive:
-    buttons:
-      sign_in: Sign in
-      sign_up: Sign up
-      send_password: Forgot password
-      change_password: Update my password
-      new_item: "+ add"
-      switch_to_site: Go
-      delete: "Delete"
-      close: "Close"
+    not_logged_in:
+      title: "Locomotive <small>Designed to save your time</small>"
 
     locales:
       en: English
@@ -39,7 +32,6 @@ en:
         sites: My sites
         account: Account settings
         see: See website
-        switch: Switch to another site
         help: Help
         logout: Log out
       sidebar:
@@ -49,12 +41,7 @@ en:
         developers: Developers
         content_types:
           title: Models
-      form_actions:
-        back: Back without saving
-        create: Create
-        update: Save
-        send: Send
-        disable_with: Pending...
+        translations: Translations
       list:
         untranslated: untranslated
         created_at: "Created %{distance} ago"
@@ -112,16 +99,6 @@ en:
       next: "&rsaquo;"
       truncate: "&hellip;"
 
-    sites_picker:
-      new: + new site
-
-    not_logged_in:
-      title: "Locomotive <small>Designed to save your time</small>"
-
-    api_key:
-      none: Please click on the next button to generate the API key.
-      button: Regenerate
-
     custom_fields:
       select_options:
         edit:
@@ -131,12 +108,6 @@ en:
           edit: Edit
           apply: Apply
           cancel: Cancel
-
-      edit:
-        title: Editing custom field
-      text_formatting:
-        none: None
-        html: HTML
       types:
         belongs_to:
           edit: Edit
@@ -177,44 +148,45 @@ en:
 
     sessions:
       new:
-        title: "Log in"
+        title: "Sign in"
         link: "I forgot my password"
         email: "Email"
         password: "Password"
         sign_up: Do not have an account?
+        submit: Sign in
 
     registrations:
       new:
         sign_in: Already have an account?
+        submit: Sign up
 
     passwords:
       new:
         link: "&rarr; Back to login page"
         email: "Your email"
+        submit: Forgot password
       edit:
         link: "&rarr; Back to login page"
         password: "Your new password"
         password_confirmation: "Confirmation of your new password"
+        submit: "Update my password"
 
     pages:
       index:
-        no_items: "There are no pages for now. Just click <a href=\"%{url}\">here</a> to create the first one."
-        new: new page
+        title: 'Pages'
+        new: 'New page'
         list_content_entries: "List %{name}"
         new_content_entry: "New %{name}"
       new:
         title: New page
         help: "Please fill in the below form to create your page. Be careful, by default, the page is not published."
-      page:
-        updated_at: updated at
       edit:
         title: "%{title} &mdash; <small>%{fullpath}</small>"
       form:
         no_layout: Use the layout of the parent page
-        main:
-          redirect_type:
-            permanent: "Permanent (301)"
-            temporary: "Temporary (302)"
+        redirect_type:
+          permanent: "Permanent (301)"
+          temporary: "Temporary (302)"
 
     editable_elements:
       index:
@@ -224,6 +196,9 @@ en:
       edit:
         settings_link: 'Settings'
         no_editable_elements: 'No editable elements found'
+        blocks:
+          all: All
+          unknown: Unknown
       form:
         model:
           buttons:
@@ -237,6 +212,8 @@ en:
       new:
         title: New site
         help: "Fill in the form below to create your new site."
+      site:
+        no_domain: No domain
 
     current_site:
       edit:
@@ -269,8 +246,6 @@ en:
     my_account:
       edit:
         title: Editing my account
-        new_site: new site
-        ask_for_name: "Please type your new name"
 
     translations:
       untranslated: "Untranslated locales: %{list}"
@@ -287,6 +262,7 @@ en:
     content_assets:
       index:
         title: "Assets"
+        upload: Upload files
 
       edit_in_drawer:
         buttons:
@@ -329,8 +305,6 @@ en:
         download: download entries
         new: new entry
         edit_notification_settings: Edit notification settings
-        category_noname: "No name"
-        latest_entries: "Latest entries"
         search_placeholder: "Enter your search keywords here"
         group_by:
           all: All
@@ -341,50 +315,10 @@ en:
         title: '%{type} &mdash; new entry'
       edit:
         title: '%{type} &mdash; editing entry'
-      form:
-        edit_select_options: edit options
-        has_many:
-          new_entry: New entry
 
-    code_editing:
-      image_picker: Insert an image into the code
-      copy_template: Copy template from main locale
+    developers_documentation:
+      show:
+        title: Developers
+        wagon: Wagon
+        api: API
 
-    cross_domain_sessions:
-      new:
-        title: Cross-domain authentication
-        notice: You will be redirected to the website in a couple of seconds.
-
-    installation:
-      common:
-        title: First Locomotive Installation
-        next: Next
-      step_1:
-        title: "Step 1/2 &mdash; Create account"
-        name: Account name
-        email: Email
-        password: Password
-        password_confirmation: Password confirmation
-        done: "You have already added an account:<br/><strong>%{name}</strong>, <em>%{email}</em>"
-        next: Create account
-      step_2:
-        title: "Step 2/2 &mdash; Create your first site"
-        explanations: "You are almost done. Please give a name to your first site and pick up the default locale."
-        default_site_locale: Site locale
-        default_site_locales_hints: You can add more locales in the Settings panel later.
-        next: Create site
-
-    public:
-      pages:
-        show_toolbar:
-          statuses:
-            loading: "Loading...."
-            disabled: "Inline Editor disabled"
-          labels:
-            save_changes: "Save changes: "
-            editing_mode: "Editing mode: "
-            lang: "Lang: "
-          buttons:
-            back: Return to back-office
-            confirm: Confirm
-            cancel: Cancel

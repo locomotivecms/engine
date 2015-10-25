@@ -43,6 +43,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'kaminari',                        '~> 0.16.3'
   s.add_dependency 'bootstrap-kaminari-views',        '~> 0.0.5'
   s.add_dependency 'responders',                      '~> 2.1.0'
+  s.add_dependency 'rails-i18n',                      '~> 4.0.6'
 
   s.add_dependency 'jquery-rails',                    '~> 4.0.3'
   s.add_dependency 'jquery-ui-rails',                 '~> 5.0.3'

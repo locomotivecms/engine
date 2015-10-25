@@ -11,7 +11,7 @@
     = f.input :password, label: t('.password'), hint: link_to(t('.link'), new_locomotive_account_password_path).html_safe, required: false, input_html: { tabindex: 2 }
 
   = f.actions do
-    = f.button :submit, t('locomotive.buttons.sign_in'), class: 'btn'
+    = f.button :submit, t('.submit'), class: 'btn'
 
     - if current_site.nil?
 

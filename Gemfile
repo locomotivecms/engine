@@ -40,6 +40,9 @@ group :development do
   # gem 'unicorn-rails' # Using unicorn_rails instead of webrick (default server)
   # gem 'thin'
   gem 'puma'
+
+  # i18n-tasks helps you find and manage missing and unused translations.
+  gem 'i18n-tasks', '~> 0.8.7'
 end
 
 group :profile, :development do

@@ -26,29 +26,14 @@ en:
           notice: "Entry was successfully deleted."
 
       content_types:
-        create:
-          notice: "Model was successfully created."
-          alert: "Model was not created."
         update:
           notice: "Model was successfully updated."
           alert: "Model was not updated."
-        destroy:
-          notice: "Model was successfully deleted."
 
       current_site:
         update:
           notice: "My site was successfully updated."
           alert: "My site was not updated."
-
-      snippets:
-        create:
-          notice: "Snippet was successfully created."
-          alert: "Snippet was not created."
-        update:
-          notice: "Snippet was successfully updated."
-          alert: "Snippet was not updated."
-        destroy:
-          notice: "Snippet was successfully deleted."
 
       accounts:
         create:
@@ -73,23 +58,19 @@ en:
           alert: "Membership was not created."
           already_created: "Account was already added the current site."
 
-      assets:
+      content_assets:
         create:
-          notice: "Asset was successfully created."
-          alert: "Asset was not created."
+          notice: "Asset was successfully uploaded."
+          alert: "Asset was not uploaded."
+        bulk_create:
+          notice: "Assets were successfully uploaded."
+          alert: "Assets were not uploaded."
         update:
           notice: "Asset was successfully updated."
           alert: "Asset was not updated."
-
-      theme_assets:
-        create:
-          notice: "File was successfully created."
-          alert: "File was not created."
-        update:
-          notice: "File was successfully updated."
-          alert: "File was not updated."
         destroy:
-          notice: "File was successfully deleted."
+          notice: "Asset was successfully deleted."
+          alert: "Asset was not deleted."
 
       translations:
         create:
@@ -106,13 +87,3 @@ en:
           update:
             notice: "Field was successfully updated."
             alert: "Field was not updated."
-
-      cross_domain_sessions:
-        create:
-          alert: "You need to sign in"
-
-      import:
-        create:
-          done: "Your site was successfully updated."
-          notice: "Your site is being updated."
-          alert: "The import was not done."

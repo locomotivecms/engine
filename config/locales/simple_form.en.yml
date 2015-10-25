@@ -7,59 +7,34 @@ en:
         account:
           information: Main
           api: API
+          credentials: Credentials
         site:
           information: Main
           access_points: Access points
           seo: SEO
           advanced: Advanced
+          url_redirections: URL redirections
+        page:
+          content: Content
+          settings: Settings
+          seo: SEO
+        content_entry:
+          content: Content
+          advanced: Advanced
+          seo: SEO
 
-      defaults:
-        locomotive:
-          information: General information
-          advanced_options: Advanced options
-          meta: SEO Metadata
-          seo: SEO settings
-          robots_txt: Robots.txt file
-          code: Code
-          raw_template: Template
-          credentials: Credentials
-          language: Language
-          sites: Sites
-          access_points: Access points
-          memberships: Accounts
-          membership_email: Account email
-          file: File
-          preview: Preview
-          options: Advanced options
-          custom_fields: Custom fields
-          other_fields: Other information
-          presentation: Presentation
-          attributes: Attributes
-          upload: Upload
-          api: API3
     labels:
       locomotive:
-        theme_asset:
-          plain_text_name: File name
-          content_type: File type
-          new:
-            source: File
-          edit:
-            source: Replace file
-        custom_fields:
-          field:
-            name: Alias
-        content_type:
-          entry_template: Entry template
-          public_submission_enabled: Public submission
-          public_submission_accounts: Notified Accounts
-          "custom_fields/field":
-            select_options: "Options"
         content_entry:
           _slug: Permalink
           _visible: Visible
+        content_type:
+          public_submission_accounts: "Notified Accounts"
+          # "custom_fields/field":
+          #   select_options: "Options"
         account:
           api_key: API key
+          no_api_key: None
           edit:
             locale: UI Language
             password: New password
@@ -92,10 +67,9 @@ en:
 
     hints:
       locomotive:
-        locomotive_account:
-          password: 6 characters minimum
         account:
           api_key: "Used by Wagon to deploy your site (check your config/deploy.yml file of your Wagon site)."
+          password: 6 characters minimum
         page:
           handle: "Unique identifier to retrieve this page within an external controller instance"
           published: "Only authenticated accounts can view unpublished pages."
@@ -108,8 +82,6 @@ en:
           meta_description: "Overrides the site's meta description used within the head tag of the page."
           is_layout: "If true, this page can used as a layout for other pages."
           allow_layout: "Let authors change or not the layout of that page."
-        snippet:
-          slug: "You need to know it in order to insert the snippet inside a page"
         site:
           locales: "Drag&drop a flag to the first position to make it the default one."
           seo_title: "Define a global value here which should be used as the value for the title tag in the head section."
@@ -123,37 +95,16 @@ en:
           url_redirections: "Redirect (301) legacy urls to pages you created in the back-office. The origin and the destination URLs are separated by a <u>space</u>."
           new:
             locales: "You can add other languages once your site will be created."
-        theme_asset:
-          slug: "You do not need to add the extension file (.css or .js)"
-          edit:
-            source: "You can replace it by a file of the same extension"
         translation:
           key: "Do not use dash but underscore instead. Example: welcome_message."
-        asset:
-          source: "All file types are accepted."
-          edit:
-            source: "The current file is available here %{url}"
-          update:
-            source: "The current file is available here %{url}"
         content_entry:
           _slug: "Property used to generate the url of a page working as a template for this content type (ex: \"template_page/{{ your_object._permalink }})\"."
           _visible: "By default, the entry will show up in the site. So it can be used as a published attribute."
           seo_title: "The value you fill in will replace the SEO title of the templatized page related to your model."
           meta_keywords: "Overrides the site's meta keywords used within the head tag of the page. They are separated by a comma."
           meta_description: "Overrides the site's meta description used within the head tag of the page."
-        import:
-          source: "A zipfile containing a database.yml along with assets and templates"
-          samples: "If enabled, the import process will also copy contents and assets"
-          reset: "If enabled, all the data of your site will be destroyed before importing the new site"
         content_type:
-          name: "We suggest you to type the plural form of the model. Ex: Projects, Recipes, Posts, Articles, ...etc"
-          slug: "It will be used as the name of the collection in the liquid templates. Ex: <span class='code'>{{ contents.my_projects }}</span>"
-          raw_item_template: "You can customize the text displayed for each item in the list. Simply use Liquid. Ex: <span class='code'>{{ entry.name }})</span>"
-          public_submission_enabled: "It is used to let people from outside to create new entries (example: messages in a contact form)"
           public_submission_accounts: "When an entry is created, send a notification email to the accounts listed below."
-        content_type_entry_field:
-          select_options: "Add/edit/re-arrange the options."
-
         image_resize_form:
           width: "in px"
           height: "in px"
@@ -186,10 +137,17 @@ en:
           update: Save
           submit: Ok
           cancel: Cancel
+          delete: Delete
+          close: Close
           loading_text: "Saving..."
           or: or
+
       locomotive:
+        account:
+          new_api_key: Regenerate
         image_resize_form:
           loading_text: Resizing...
           submit: Resize
+        site:
+          delete: Destroy this site
 
