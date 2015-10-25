@@ -308,13 +308,14 @@ en:
         search_placeholder: "Enter your search keywords here"
         group_by:
           all: All
-
       list:
         no_items: "There are no entries for now. Just click <a href=\"%{url}\">here</a> to create the first one."
       new:
         title: '%{type} &mdash; new entry'
       edit:
         title: '%{type} &mdash; editing entry'
+      shared:
+        back: '&larr; Back to list'
 
     developers_documentation:
       show:
