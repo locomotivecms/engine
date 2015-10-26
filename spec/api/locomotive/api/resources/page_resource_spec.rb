@@ -24,12 +24,27 @@ describe Locomotive::API::Resources::PageResource do
 
     describe 'GET fullpaths' do
       context 'JSON' do
-        before { get "#{url_prefix}/fullpaths.json" }
+
+        let(:locale) { nil }
+
+        before { get "#{url_prefix}/fullpaths.json", {}, { 'HTTP_X_LOCOMOTIVE_LOCALE' => locale } }
 
         it 'returns a successful response' do
           expect(parsed_response.size).to eq 2
           expect(parsed_response.first.keys).to eq %w(_id fullpath)
           expect(parsed_response.map { |h| h['fullpath'] }).to eq %w(index 404)
+        end
+
+        context 'in a different locale' do
+
+          let(:locale) { 'fr' }
+
+          it 'returns a successful response' do
+            expect(parsed_response.size).to eq 2
+            expect(parsed_response.first.keys).to eq %w(_id fullpath)
+            expect(parsed_response.map { |h| h['fullpath'] }).to eq %w(index 404)
+          end
+
         end
 
       end

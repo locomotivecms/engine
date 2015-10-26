@@ -130,7 +130,7 @@ module Locomotive
 
     def build_fullpath
       if self.index_or_not_found?
-        self.fullpath = self.slug
+        self.site.each_locale { |locale, current| self.fullpath = self.slug }
       else
         _parent = self.parent # do not hit the database more than once
 
