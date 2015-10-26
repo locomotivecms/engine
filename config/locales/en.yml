@@ -254,6 +254,11 @@ en:
         no_items: "We have not found any translations."
         search_placeholder: "Enter a key or a translation"
         help: "Translate all the entries with a orange (partially localized) or red (not localized) dots."
+        filter_by:
+          all: All
+          done: Translated
+          partially: Partially translated
+          none: Not translated
       edit:
         title: "Translations &mdash; editing %{key}"
       form:
