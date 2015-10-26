@@ -1,0 +1,12 @@
+fr:
+  attributes:
+    defaults:
+      pages:
+        index:
+          title: "Page d'accueil"
+          body: "Contenu de la page d'accueil"
+        '404':
+          title: "Page non trouvée"
+          body: "Contenu de la page d'erreur 404"
+        other:
+          body: "{% extends 'parent' %}"

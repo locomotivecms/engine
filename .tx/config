@@ -1,0 +1,51 @@
+[main]
+host = https://www.transifex.com
+
+[locomotive-engine.carrierwaveenyml]
+file_filter = config/locales/carrierwave.<lang>.yml
+source_file = config/locales/carrierwave.en.yml
+source_lang = en
+type = YML
+
+[locomotive-engine.defaultenyml]
+file_filter = config/locales/default.<lang>.yml
+source_file = config/locales/default.en.yml
+source_lang = en
+type = YML
+
+[locomotive-engine.deviseenyml]
+file_filter = config/locales/devise.<lang>.yml
+source_file = config/locales/devise.en.yml
+source_lang = en
+type = YML
+
+[locomotive-engine.enyml]
+file_filter = config/locales/<lang>.yml
+source_file = config/locales/en.yml
+source_lang = en
+type = YML
+
+[locomotive-engine.flashenyml]
+file_filter = config/locales/flash.<lang>.yml
+source_file = config/locales/flash.en.yml
+source_lang = en
+type = YML
+
+[locomotive-engine.inputsenyml]
+file_filter = config/locales/inputs.<lang>.yml
+source_file = config/locales/inputs.en.yml
+source_lang = en
+type = YML
+
+[locomotive-engine.mongoidenyml]
+file_filter = config/locales/mongoid.<lang>.yml
+source_file = config/locales/mongoid.en.yml
+source_lang = en
+type = YML
+
+[locomotive-engine.simple_formenyml]
+file_filter = config/locales/simple_form.<lang>.yml
+source_file = config/locales/simple_form.en.yml
+source_lang = en
+type = YML
+
