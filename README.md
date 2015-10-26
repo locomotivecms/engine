@@ -40,7 +40,7 @@ If you can not wait for playing with our new version, you still can use the curr
 
 ## Technologies ##
 
-Here is a list of the main gems used to power the Locomotive backend:
+Here is a list of the main gems used to power the Locomotive platform:
 
 - Rails 4.2   - *web framework*
 - Bootstrap   - *UI framework*
@@ -54,6 +54,12 @@ Here is a list of the main gems used to power the Locomotive backend:
 - [Gitter](https://gitter.im/locomotivecms/engine?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) for technical discussions.
 - Get help or discuss Locomotive at the [Locomotive Google group](https://groups.google.com/forum/?fromgroups#!forum/locomotivecms)
 - [Follow us on twitter](http://twitter.com/locomotivecms)
+
+## Translating the back-office ##
+
+By default, the Locomotive back-office is fully translated in English. But adding a new language is pretty straightforward since we now manage all our I18n translation keys in [Transifex](https://www.transifex.com), a platform dedicated to this kind of task.
+
+Here is our Transifex portal page: [https://www.transifex.com/locomotive/locomotive-engine](https://www.transifex.com/locomotive/locomotive-engine). Feel free to sign up and translate!
 
 ## Contributing to Locomotive ##
 
