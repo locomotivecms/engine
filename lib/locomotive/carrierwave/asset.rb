@@ -50,7 +50,11 @@ module Locomotive
         def set_width_and_height
           if model.image?
             dragonfly_img = ::Dragonfly.app(:engine).fetch_file(current_path)
-            model.width, model.height = dragonfly_img.width, dragonfly_img.height
+            begin
+              model.width, model.height = dragonfly_img.width, dragonfly_img.height
+            rescue Exception => e
+              Rails.logger.error "[Dragonfly] Unable to get the width and the height, error: #{e.message}\n#{e.backtrace.join("\n")}"
+            end
           end
         end
 
