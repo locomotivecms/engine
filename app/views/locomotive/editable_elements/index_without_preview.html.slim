@@ -6,10 +6,10 @@
 
   ul.nav.nav-tabs role='tablist'
     = form_nav_tab :content, true do
-      = link_to t('simple_form.titles.locomotive.content'), '#content', role: 'tab', data: { toggle: 'tab' }
+      = link_to t('simple_form.titles.locomotive.page.content'), '#content', role: 'tab', data: { toggle: 'tab' }
 
     = form_nav_tab :main do
-      = link_to t('simple_form.titles.locomotive.settings'), edit_page_path(current_site, @page)
+      = link_to t('simple_form.titles.locomotive.page.settings'), edit_page_path(current_site, @page)
 
   .tab-content
 
@@ -18,10 +18,11 @@
       .row
 
         - if @editable_elements.empty?
-          .col-md-12
-            br
-            .alert.alert-warning.text-center role="alert"
-              = t('.no_editable_elements')
+          - if @content_entry.nil?
+            .col-md-12
+              br
+              .alert.alert-warning.text-center role="alert"
+                = t(:no_editable_elements, scope: 'locomotive.editable_elements.edit')
 
         - else
           .col-md-12

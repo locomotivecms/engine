@@ -18,7 +18,7 @@ describe Locomotive::API::Resources::TranslationResource do
       context 'JSON' do
         it 'returns unauthorized message' do
           get "#{url_prefix}.json"
-          expect(subject).to eq({ 'error' => '401 Unauthorized' })
+          expect(subject).to eq({ 'error' => 'Unauthorized' })
         end
 
         it 'returns unauthorized response' do

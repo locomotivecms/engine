@@ -46,9 +46,9 @@ module Locomotive
 
     def options_for_page_blocks(blocks)
       options_for_select(
-        [[t('.blocks.all'), '']] +
+        [[t(:all, scope: 'locomotive.editable_elements.edit.blocks'), '']] +
         blocks.map do |block|
-          block[:name].nil? ? [t('.blocks.unknown'), '_unknown'] : [block[:label], block[:name]]
+          block[:name].nil? ? [t(:unknown, scope: 'locomotive.editable_elements.edit.blocks'), '_unknown'] : [block[:label], block[:name]]
         end)
     end
 

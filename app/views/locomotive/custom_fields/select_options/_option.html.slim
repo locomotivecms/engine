@@ -11,13 +11,15 @@
 
       = text_field_tag 'select_options[][name]', select_option.name, class: 'hide'
 
+      | &nbsp;
       a.apply.btn.btn-sm.btn-primary.hide= t('.apply')
+      | &nbsp;
       a.cancel.btn.btn-default.btn-sm.hide= t('.cancel')
 
     .buttons
       = link_to t('.edit'), '#', class: 'btn btn-sm btn-primary edit'
       | &nbsp;
-      = link_to '#', class: 'delete foo' do
+      = link_to '#', class: 'delete' do
         i.fa.fa-trash-o
 
   - if select_option.persisted?

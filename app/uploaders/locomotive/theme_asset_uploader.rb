@@ -13,15 +13,12 @@ module Locomotive
       %w(jpg jpeg gif png css js swf flv eot svg ttf woff woff2 otf ico htc map)
     end
 
-    def self.url_for(site, path)
-      build(site, path).url
-    end
-
-    def self.build(site, path)
-      asset     = site.theme_assets.build(folder: File.dirname(path))
-      uploader  = ThemeAssetUploader.new(asset)
-      uploader.retrieve_from_store!(File.basename(path))
-      uploader
+    def apply_content_type_exception(value)
+      if content_type == 'image/svg+xml' && model.folder.starts_with?('fonts')
+        :font
+      else
+        value
+      end
     end
 
     def self.content_types

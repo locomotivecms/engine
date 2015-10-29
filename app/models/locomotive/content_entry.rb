@@ -77,6 +77,10 @@ module Locomotive
 
     alias :to_label :_label
 
+    def content_type_slug
+      self.content_type.try(:slug)
+    end
+
     def as_json(*args)
       super.tap { |json| json['_label'] = _label }
     end
@@ -116,8 +120,12 @@ module Locomotive
       end
     end
 
+    def to_steam(type = nil)
+      (type || self.content_type).to_steam_entry(self)
+    end
+
     def to_liquid(type = nil)
-      (type || self.content_type).to_steam_entry(self).to_liquid
+      to_steam(type).to_liquid
     end
 
     def touch_site_attribute

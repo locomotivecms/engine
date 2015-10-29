@@ -56,10 +56,10 @@ module Locomotive
           # @return [ String ] The well-generated CSV document
           #
           def to_csv(options = {})
-            puts "to_csv #{all.count.inspect} / #{all.first.inspect}"
-            puts "#{all.first.content_type_id.inspect}"
-            puts "#{all.first.content_type.inspect}"
-            binding.pry
+            # puts "to_csv #{all.count.inspect} / #{all.first.inspect}"
+            # puts "#{all.first.content_type_id.inspect}"
+            # puts "#{all.first.content_type.inspect}"
+            # binding.pry
             content_type  = options.delete(:content_type) || all.first.try(:content_type)
             csv_options   = options.select do |k, v|
               CSV::DEFAULT_OPTIONS.keys.include?(k.to_sym)

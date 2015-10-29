@@ -3,14 +3,16 @@ require 'locomotive/steam/server'
 
 Locomotive::Steam.configure do |config|
 
-  # asset_host or asset_path? Depends on the Carrierwave configuration
-  storage = CarrierWave::Uploader::Base.storage.to_s
+  # Serving assets is Rails / Nginx job, not embedded Steam's
+  config.serve_assets = false
+
+  # Dragonfly instance embedded in Steam needs a secret key
+  config.image_resizer_secret = Locomotive.config.steam_image_resizer_secret
 
   if asset_host = CarrierWave::Uploader::Base.asset_host
-    config.asset_host   = asset_host
-    config.serve_assets = false
-  elsif CarrierWave::Uploader::Base.storage_engines.invert[storage] == :file
-    config.asset_path = Rails.application.root.join('public')
+    config.asset_host = asset_host
+  else
+    config.asset_host = CarrierWave.base_host
   end
 
   # rely on Mongoid for the connection information
@@ -40,7 +42,7 @@ Locomotive::Steam.configure do |config|
 
   config.services_hook = -> (services) {
     if services.request
-      services.entry_submission = Locomotive::Steam::APIEntrySubmissionService.new(services.current_site, services.locale)
+      services.entry_submission = Locomotive::Steam::APIEntrySubmissionService.new(services.request.env['locomotive.site'], services.locale)
       services.defer(:liquid_parser) { Locomotive::Steam::LiquidParserWithCacheService.new(services.current_site, services.parent_finder, services.snippet_finder, services.locale) }
     end
   }

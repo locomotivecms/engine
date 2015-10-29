@@ -7,6 +7,23 @@ describe Locomotive::API::Resources::CurrentSiteResource do
   let(:params) { { locale: :en } }
   let(:url_prefix) { '/locomotive/acmi/api/v3/current_site' }
 
+  context 'unknown site' do
+    include_context 'api header setup'
+
+    before { header('X-Locomotive-Site-Handle', nil) }
+
+    describe 'GET show' do
+      context 'JSON' do
+        before { get "#{url_prefix}.json" }
+        it 'returns an 404 error' do
+          expect(last_response).not_to be_successful
+          expect(parsed_response['error']).to eq('Unknown site')
+        end
+      end
+    end
+
+  end
+
   context 'authenticated site' do
     include_context 'api header setup'
 

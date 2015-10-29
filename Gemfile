@@ -18,14 +18,12 @@ end
 
 group :development do
   # gem 'custom_fields', path: '../custom_fields'
-  gem 'custom_fields', path: '../gems/custom_fields' # for Developers
-  # gem 'custom_fields', github: 'locomotivecms/custom_fields', ref: '15cceb66ed'
+  # gem 'custom_fields', path: '../gems/custom_fields' # for Developers
+  gem 'custom_fields', github: 'locomotivecms/custom_fields', ref: '05478c0'
 
-  gem 'locomotivecms_steam', path: '../in_progress/steam', require: false
-  # gem 'locomotivecms_steam', github: 'locomotivecms/steam', ref: '552b013e147ef', require: false
+  # gem 'locomotivecms_steam', path: '../in_progress/steam', require: false
+  # gem 'locomotivecms_steam', github: 'locomotivecms/steam', ref: 'c1d1120', require: false
 
-  # gem 'locomotive-aloha-rails', path: '../gems/aloha-rails' # for Developers
-  # gem 'locomotive-tinymce-rails', path: '../gems/tinymce-rails' # for Developers
   # gem 'locomotive_liquid', path: '../gems/liquid' # for Developers
   # gem 'locomotivecms_solid', path: '../gems/solid' # for Developers
 
@@ -42,6 +40,9 @@ group :development do
   # gem 'unicorn-rails' # Using unicorn_rails instead of webrick (default server)
   # gem 'thin'
   gem 'puma'
+
+  # i18n-tasks helps you find and manage missing and unused translations.
+  gem 'i18n-tasks', '~> 0.8.7'
 end
 
 group :profile, :development do
@@ -65,6 +66,8 @@ group :test do
   gem 'json_spec',            '~> 1.1.4'
   gem 'database_cleaner',     git: 'https://github.com/DatabaseCleaner/database_cleaner.git'
   gem 'timecop',              '~> 0.7.1'
+
+  gem 'email_spec'
 
   # gem 'debugger', git: 'git://github.com/cldwalker/debugger.git'
 end

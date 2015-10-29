@@ -1,2 +1,2 @@
-Mongoid.logger.level = Logger::DEBUG
-Mongo::Logger.logger.level = Logger::DEBUG
+Mongoid.logger.level = Logger::INFO
+Mongo::Logger.logger.level = Logger::INFO

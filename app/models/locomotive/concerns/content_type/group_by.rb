@@ -22,7 +22,9 @@ module Locomotive
             target  = self.class_name_to_content_type(field.class_name)
             label   = target.label_field_name.to_sym
 
-            target.ordered_entries.only(:_id, label).map do |entry|
+            # FIXME: applying "only" with _id and label sounds like a good option for performance
+            # but it fails because of Mongoid and its way of dealing with localized attributes.
+            target.ordered_entries.map do |entry|
               { _id: entry._id, name: entry.send(label) }
             end
           end

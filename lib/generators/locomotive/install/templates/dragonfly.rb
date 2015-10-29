@@ -8,7 +8,7 @@ Dragonfly.app(:engine).configure do
 
   secret '<%= generate_secret %>'
 
-  url_format '/images/dynamic/:job/:basename.:ext'
+  url_format '/images/dynamic/:job/:sha/:basename.:ext'
 
   fetch_file_whitelist /public/
 

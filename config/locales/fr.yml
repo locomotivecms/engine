@@ -1,0 +1,5 @@
+fr:
+  locomotive:
+    errors:
+      '404':
+        title: Page non trouvée

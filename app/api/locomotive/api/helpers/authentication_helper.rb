@@ -14,12 +14,17 @@ module Locomotive
         end
 
         def authenticate_locomotive_account!
-          error!('401 Unauthorized', 401) unless current_membership
+          error!('Unauthorized', 401) unless current_membership
           true
         end
 
         def current_site
           @current_site ||= request.env['locomotive.site']
+        end
+
+        def require_site!
+          error!('Unknown site', 404) unless current_site
+          true
         end
 
         def current_membership

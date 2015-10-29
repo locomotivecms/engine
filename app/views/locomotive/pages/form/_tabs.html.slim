@@ -1,11 +1,11 @@
 ul.nav.nav-tabs role='tablist'
   - unless @page.redirect?
     = form_nav_tab :content do
-      = link_to t('simple_form.titles.locomotive.content'), editable_elements_path(current_site, @page)
+      = link_to t('simple_form.titles.locomotive.page.content'), editable_elements_path(current_site, @page)
 
   = form_nav_tab :main, true do
-    = link_to t('simple_form.titles.locomotive.settings'), '#main', role: 'tab', data: { toggle: 'tab' }
+    = link_to t('simple_form.titles.locomotive.page.settings'), '#main', role: 'tab', data: { toggle: 'tab' }
 
   - if @page.default_response_type?
     = form_nav_tab :seo do
-      = link_to t('simple_form.titles.locomotive.seo'), '#seo', role: 'tab', data: { toggle: 'tab' }
+      = link_to t('simple_form.titles.locomotive.page.seo'), '#seo', role: 'tab', data: { toggle: 'tab' }

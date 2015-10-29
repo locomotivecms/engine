@@ -19,14 +19,15 @@ module Locomotive
       mailer_sender:                'support@example.com',
       unsafe_token_authentication:  false,
       ui:                     {
-        per_page:             10
+        per_page:     10
       },
       rack_cache:             {
-        verbose:     true,
-        metastore:   URI.encode("file:#{Rails.root}/tmp/dragonfly/cache/meta"), # URI encoded in case of spaces
-        entitystore: URI.encode("file:#{Rails.root}/tmp/dragonfly/cache/body")
+        verbose:      true,
+        metastore:    URI.encode("file:#{Rails.root}/tmp/dragonfly/cache/meta"), # URI encoded in case of spaces
+        entitystore:  URI.encode("file:#{Rails.root}/tmp/dragonfly/cache/body")
       },
-      devise_modules:             [:registerable, :rememberable, :database_authenticatable, :recoverable, :trackable, :validatable, :encryptable, { encryptor: :sha1 }]
+      devise_modules:               [:registerable, :rememberable, :database_authenticatable, :recoverable, :trackable, :validatable, :encryptable, { encryptor: :sha1 }],
+      steam_image_resizer_secret:   'please change it'
     }
 
     cattr_accessor :settings

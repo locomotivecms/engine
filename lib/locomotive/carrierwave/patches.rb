@@ -1,5 +1,23 @@
 module CarrierWave
 
+  # This method returns the minimal host of the current storage.
+  # For instance, if the chosen storage is AWS S3, then it returns
+  # something similar to https://<BUCKET>.s3-<REGION>.amazonaws.com.
+  # The returned value is bound to the current storage.
+  #
+  # Special case: if the storage is file, then it'll return nil
+  #
+  def self.base_host
+    # don't treat the 'file' storage
+    storage_klass = CarrierWave::Uploader::Base.storage.to_s
+    return nil if CarrierWave::Uploader::Base.storage_engines.invert[storage_klass] == :file
+
+    uploader = CarrierWave::Uploader::Base.new
+    uploader.retrieve_from_store!(nil)
+
+    uploader.url.gsub('/' + uploader.path, '')
+  end
+
   class SanitizedFile
 
     # FIXME (Did) CarrierWave speaks mime type now

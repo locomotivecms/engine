@@ -1,0 +1,330 @@
+en:
+  locomotive:
+    not_logged_in:
+      title: "Locomotive <small>Designed to save your time</small>"
+
+    locales:
+      en: English
+      de: German
+      fr: French
+      pl: Polish
+      pt: Portuguese
+      pt-BR: "Brazilian Portuguese"
+      it: Italian
+      nl: Dutch
+      nb: Norwegian
+      es: Spanish
+      ru: Russian
+      et: Estonian
+      ja: Japanese
+      zh-CN: Chinese
+      cs: Czech
+      bg: Bulgarian
+      sk: Slovak
+      sr: Serbian
+
+    messages:
+      confirm: Are you sure ?
+
+    shared:
+      header:
+        welcome: Welcome, %{name}
+        sites: My sites
+        account: Account settings
+        see: See website
+        help: Help
+        logout: Log out
+      sidebar:
+        dashboard: Dashboard
+        assets: Assets
+        settings: General Settings
+        developers: Developers
+        content_types:
+          title: Models
+        translations: Translations
+      list:
+        untranslated: untranslated
+        created_at: "Created %{distance} ago"
+        created_by: "Created %{distance} ago by %{who}"
+        updated_at: "Last modified %{distance} ago"
+        updated_by: "Last modified %{distance} ago by %{who}"
+
+    errors:
+      "500":
+        title: Application Error
+        message: "We're sorry, but something went wrong"
+      "404":
+        title: Page not found
+        message: "The page you requested does not exist."
+      no_site:
+        title: Site not found
+        next: "Next &rarr;"
+        message:
+          create_account: "Please create an account first and then create a site."
+          add_domain: "Add the <strong>%{host}</strong> domain to the list of domains of one of your sites."
+          sign_in: "Please sign in first. Then, add the <strong>%{host}</strong> domain to the list of domains of one of your sites."
+
+    notifications:
+      new_content_entry:
+        subject: "[%{domain}][%{type}] new entry"
+        title: "Hi %{name}, just to let you know that a new instance has been created on %{date} for the site <b>%{domain}</b>"
+        type: "Model: %{type}"
+
+    activity:
+      site:
+        created: 'created the site'
+      page:
+        created: 'created the %{page} page'
+        updated: 'updated the %{page} page'
+        destroyed: 'deleted the %{page} page'
+        sorted: 'sorted pages'
+      editable_element:
+        updated_bulk: 'modified the content of %{pages}'
+      content_entry:
+        created: 'added %{entry} to %{content_type}'
+        created_public: 'added %{entry} to %{content_type} from a public form'
+        updated: 'updated %{entry} from %{content_type}'
+        destroyed: 'deleted %{entry} from %{content_type}'
+        sorted: 'sorted %{content_type}'
+      content_asset:
+        created_bulk: 'uploaded %{count} asset(s)'
+        destroyed: 'deleted the %{name} asset'
+      membership:
+        created: 'added %{name} to the site'
+
+    pagination:
+      first: "&laquo;"
+      last: "&raquo;"
+      previous: "&lsaquo;"
+      next: "&rsaquo;"
+      truncate: "&hellip;"
+
+    custom_fields:
+      select_options:
+        edit:
+          title: "%{type} &mdash; editing options"
+          back: "Back to the entry"
+        option:
+          edit: Edit
+          apply: Apply
+          cancel: Cancel
+      types:
+        belongs_to:
+          edit: Edit
+          placeholder: "Choose a %{name}"
+          searching: Searching...
+          no_matches: No matches found
+          too_short: Please enter 1 or more character
+        many_to_many:
+          placeholder: "Choose one of the %{name}"
+          searching: Searching...
+          no_matches: No matches found
+          too_short: Please enter 1 or more character
+        select:
+          edit: Edit options
+        file:
+          delete_file: Delete file
+        has_many:
+          new_label: Add a new one
+
+      form:
+        required: Required
+        default_label: Field name
+        select_options:
+          ask_name: "Type the label of the option"
+
+    dashboard:
+      show:
+        title: 'Dashboard'
+      url:
+        title: "URL of your site:"
+        visit: 'Visit'
+        change_domain: 'Use your own domain name'
+      activity:
+        title: Activity
+        unknown_account: Someone
+        load_more: Loading more
+        loading_activity_feed: Loading...
+
+    sessions:
+      new:
+        title: "Sign in"
+        link: "I forgot my password"
+        email: "Email"
+        password: "Password"
+        sign_up: Do not have an account?
+        submit: Sign in
+
+    registrations:
+      new:
+        sign_in: Already have an account?
+        submit: Sign up
+
+    passwords:
+      new:
+        link: "&rarr; Back to login page"
+        email: "Your email"
+        submit: Forgot password
+      edit:
+        link: "&rarr; Back to login page"
+        password: "Your new password"
+        password_confirmation: "Confirmation of your new password"
+        submit: "Update my password"
+
+    pages:
+      index:
+        title: 'Pages'
+        new: 'New page'
+        list_content_entries: "List %{name}"
+        new_content_entry: "New %{name}"
+      new:
+        title: New page
+        help: "Please fill in the below form to create your page. Be careful, by default, the page is not published."
+      edit:
+        title: "%{title} &mdash; <small>%{fullpath}</small>"
+      form:
+        no_layout: Use the layout of the parent page
+        redirect_type:
+          permanent: "Permanent (301)"
+          temporary: "Temporary (302)"
+
+    editable_elements:
+      index:
+        redirection_error: "Editing a non Locomotive page is not allowed."
+      index_without_preview:
+        title: "%{title} &mdash; <small>%{fullpath}</small>"
+      edit:
+        settings_link: 'Settings'
+        no_editable_elements: 'No editable elements found'
+        blocks:
+          all: All
+          unknown: Unknown
+      form:
+        model:
+          buttons:
+            list: Manage
+            edit: Edit
+
+    sites:
+      index:
+        title: My sites
+        new: Add a new site
+      new:
+        title: New site
+        help: "Fill in the form below to create your new site."
+      site:
+        no_domain: No domain
+
+    current_site:
+      edit:
+        title: Editing the current site
+      form:
+        main:
+          new_membership: "Add account"
+        advanced:
+          destroy: "Destroy this site"
+          confirm_destroy: "Please confirm by typing the site name in the following input"
+
+    memberships:
+      roles:
+        admin: Administrator
+        designer: Designer
+        author: Author
+      new:
+        title: New membership
+        help: "Please give the account email to add. If it does not exist, you will be redirected to the account creation form."
+        back: "Back to your site settings"
+      edit:
+        title: "Edit membership for <b>%{name}</b>"
+        back: "Back to your site settings"
+
+    accounts:
+      new:
+        title: New account
+        help: "Fill in the form below to add a new account."
+
+    my_account:
+      edit:
+        title: Editing my account
+
+    translations:
+      untranslated: "Untranslated locales: %{list}"
+      index:
+        title: Translations
+        no_items: "We have not found any translations."
+        search_placeholder: "Enter a key or a translation"
+        help: "Translate all the entries with a orange (partially localized) or red (not localized) dots."
+        filter_by:
+          all: All
+          done: Translated
+          partially: Partially translated
+          none: Not translated
+      edit:
+        title: "Translations &mdash; editing %{key}"
+      form:
+        not_translated: "Not translated"
+
+    content_assets:
+      index:
+        title: "Assets"
+        upload: Upload files
+
+      edit_in_drawer:
+        buttons:
+          resize: "Resize"
+          crop: "Crop"
+          apply: "Apply"
+
+      dropzone:
+        instructions: "<strong>Drop files from your computer here.</strong><br/>You can also"
+        browse: "browse for a file"
+
+      list:
+        no_items: "There are no media for now."
+        buttons:
+          select: "Select"
+          edit: "Edit"
+
+      nav:
+        types:
+          all: All
+          pdf: PDFs
+          image: images
+          media: rich media
+          others: others
+
+      search_form:
+        placeholder: Search by filename
+
+    public_submission_accounts:
+      edit:
+        title: "%{name} &mdash; Notification settings"
+
+    developers_documentation:
+      show:
+        title: Developers
+
+    content_entries:
+      index:
+        title: '%{type}'
+        download: download entries
+        new: new entry
+        edit_notification_settings: Edit notification settings
+        search_placeholder: "Enter your search keywords here"
+        group_by:
+          all: All
+      list:
+        no_items: "There are no entries for now. Just click <a href=\"%{url}\">here</a> to create the first one."
+      new:
+        title: '%{type} &mdash; new entry'
+      edit:
+        title: '%{type} &mdash; editing entry'
+      shared:
+        back: '&larr; Back to list'
+
+    developers_documentation:
+      show:
+        title: Developers
+        wagon: Wagon
+        api: API
+

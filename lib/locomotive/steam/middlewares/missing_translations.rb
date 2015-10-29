@@ -9,7 +9,7 @@ module Locomotive
         end
 
         def call(env)
-          find_and_persist_missing_translations(env['steam.site']) do
+          find_and_persist_missing_translations(env['locomotive.site']) do
             @app.call(env)
           end
         end

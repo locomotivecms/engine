@@ -11,6 +11,12 @@ module Locomotive
         end
       end
 
+      def find(type_slug, slug)
+        if entry = load_content_type(type_slug).entries.where(_slug: slug).first
+          make_entity(entry)
+        end
+      end
+
       def to_json(entry)
         make_entity(entry).to_json
       end
@@ -28,7 +34,8 @@ module Locomotive
       end
 
       def make_entity(entry)
-        Locomotive::API::Entities::ContentEntryEntity.represent(entry)
+        entity = entry.to_steam(@content_type)
+        Locomotive::Steam::Decorators::I18nDecorator.new(entity, locale)
       end
 
       def service

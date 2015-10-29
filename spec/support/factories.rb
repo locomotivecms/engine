@@ -190,9 +190,11 @@ FactoryGirl.define do
 
     factory 'message content type' do
       name 'Messages'
+      slug 'messages'
       description 'Messages posted from the contact form'
+      public_submission_enabled true
       after(:build) do |content_type, _|
-        content_type.entries_custom_fields.build label: 'Name', name: 'name', type: 'string'
+        content_type.entries_custom_fields.build label: 'Name', name: 'name', type: 'string', required: true
         content_type.entries_custom_fields.build label: 'Message', name: 'message', type: 'text'
       end
     end
@@ -245,6 +247,18 @@ FactoryGirl.define do
     trait :with_field do
       after(:build) do |content_type, evaluator|
         content_type.entries_custom_fields.build label: 'Title', name: 'title', type: 'string'
+      end
+    end
+
+    trait :with_text_field do
+      after(:build) do |content_type, evaluator|
+        content_type.entries_custom_fields.build label: 'Description', name: 'description', type: 'text'
+      end
+    end
+
+    trait :with_date_time_field do
+      after(:build) do |content_type, evaluator|
+        content_type.entries_custom_fields.build label: 'Time', name: 'time', type: 'date_time'
       end
     end
 

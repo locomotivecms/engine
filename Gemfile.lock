@@ -1,4 +1,15 @@
 GIT
+  remote: git://github.com/locomotivecms/custom_fields.git
+  revision: 05478c095be3d2899a7caac2f02933ee37d13219
+  ref: 05478c0
+  specs:
+    custom_fields (2.5.0.rc1)
+      activesupport (~> 4.2.4)
+      carrierwave-mongoid (~> 0.8.1)
+      monetize (~> 1.1.0)
+      mongoid (~> 5.0.0)
+
+GIT
   remote: https://github.com/DatabaseCleaner/database_cleaner.git
   revision: b87f00320f8aa0f7e499d183128f05ce29cedc33
   specs:
@@ -7,7 +18,7 @@ GIT
 PATH
   remote: .
   specs:
-    locomotivecms (3.0.0.pre.beta.1)
+    locomotivecms (3.0.0.rc2)
       actionmailer-with-request (~> 0.4.0)
       autoprefixer-rails (~> 6.0.3)
       backbone-on-rails (~> 1.2.0.0)
@@ -21,7 +32,6 @@ PATH
       devise-encryptable (~> 0.2.0)
       dragonfly (~> 1.0.7)
       flash_cookie_session (~> 1.1.1)
-      fog (~> 1.34.0)
       font-awesome-sass (~> 4.4.0)
       grape (~> 0.12.0)
       grape-entity (= 0.4.5)
@@ -29,6 +39,7 @@ PATH
       jquery-rails (~> 4.0.3)
       jquery-ui-rails (~> 5.0.3)
       kaminari (~> 0.16.3)
+      locomotivecms_steam (~> 1.0.0.rc2)
       mime-types (~> 2.5)
       mimetype-fu (~> 0.1.2)
       mongo_session_store-rails4 (~> 6.0.0)
@@ -40,6 +51,7 @@ PATH
       pundit (~> 1.0.0)
       rack-cache (~> 1.1)
       rails (~> 4.2.4)
+      rails-i18n (~> 4.0.6)
       rake (~> 10.4.2)
       responders (~> 2.1.0)
       select2-rails (~> 3.5.9)
@@ -48,45 +60,9 @@ PATH
       slim (~> 3.0.6)
       stringex (~> 2.5.2)
 
-PATH
-  remote: ../gems/custom_fields
-  specs:
-    custom_fields (2.5.0.rc1)
-      activesupport (~> 4.2.4)
-      carrierwave-mongoid (~> 0.8.1)
-      monetize (~> 1.1.0)
-      mongoid (~> 5.0.0)
-
-PATH
-  remote: ../in_progress/steam
-  specs:
-    locomotivecms_steam (1.0.0.pre.beta.3)
-      RedCloth (~> 4.2.9)
-      chronic (~> 0.10.2)
-      coffee-script (~> 2.4.1)
-      compass (~> 1.0.3)
-      dragonfly (~> 1.0.12)
-      haml (~> 4.0.6)
-      httparty (~> 0.13.6)
-      kramdown (~> 1.8.0)
-      locomotivecms-solid (~> 4.0.0.alpha2)
-      locomotivecms_common (~> 0.0.5)
-      mime-types (~> 2.6.1)
-      mimetype-fu (~> 0.1.2)
-      moneta (~> 0.8.0)
-      morphine (~> 0.1.1)
-      rack-cache (~> 1.2)
-      rack-rewrite (~> 1.5.1)
-      rack_csrf (~> 2.5.0)
-      sanitize (~> 4.0.0)
-      sprockets (~> 2.12.3)
-      sprockets-less (~> 0.6.1)
-      sprockets-sass (~> 1.3.1)
-
 GEM
   remote: https://rubygems.org/
   specs:
-    CFPropertyList (2.3.2)
     RedCloth (4.2.9)
     actionmailer (4.2.4)
       actionpack (= 4.2.4)
@@ -174,7 +150,7 @@ GEM
       mongoid (>= 3.0, < 6.0)
       mongoid-grid_fs (>= 1.3, < 3.0)
     chronic (0.10.2)
-    chunky_png (1.3.4)
+    chunky_png (1.3.5)
     cliver (0.3.2)
     codemirror-rails (5.6)
       railties (>= 3.0, < 5)
@@ -243,16 +219,22 @@ GEM
       addressable (~> 2.3)
       multi_json (~> 1.0)
       rack (>= 1.3.0)
+    easy_translate (0.5.0)
+      json
+      thread
+      thread_safe
     eco (1.0.0)
       coffee-script
       eco-source
       execjs
     eco-source (1.1.0.rc.1)
     ejs (1.1.1)
+    email_spec (1.6.0)
+      launchy (~> 2.1)
+      mail (~> 2.2)
     equalizer (0.0.11)
     erubis (2.7.0)
     eventmachine (1.0.8)
-    excon (0.45.4)
     execjs (2.6.0)
     factory_girl (4.5.0)
       activesupport (>= 3.0.0)
@@ -263,112 +245,10 @@ GEM
       eventmachine (>= 0.12.0)
       websocket-driver (>= 0.5.1)
     ffi (1.9.10)
-    fission (0.5.0)
-      CFPropertyList (~> 2.2)
     flash_cookie_session (1.1.6)
       rails (>= 3.0)
-    fog (1.34.0)
-      fog-atmos
-      fog-aws (>= 0.6.0)
-      fog-brightbox (~> 0.4)
-      fog-core (~> 1.32)
-      fog-dynect (~> 0.0.2)
-      fog-ecloud (~> 0.1)
-      fog-google (>= 0.0.2)
-      fog-json
-      fog-local
-      fog-powerdns (>= 0.1.1)
-      fog-profitbricks
-      fog-radosgw (>= 0.0.2)
-      fog-riakcs
-      fog-sakuracloud (>= 0.0.4)
-      fog-serverlove
-      fog-softlayer
-      fog-storm_on_demand
-      fog-terremark
-      fog-vmfusion
-      fog-voxel
-      fog-xml (~> 0.1.1)
-      ipaddress (~> 0.5)
-      nokogiri (~> 1.5, >= 1.5.11)
-    fog-atmos (0.1.0)
-      fog-core
-      fog-xml
-    fog-aws (0.7.6)
-      fog-core (~> 1.27)
-      fog-json (~> 1.0)
-      fog-xml (~> 0.1)
-      ipaddress (~> 0.8)
-    fog-brightbox (0.9.0)
-      fog-core (~> 1.22)
-      fog-json
-      inflecto (~> 0.0.2)
-    fog-core (1.32.1)
-      builder
-      excon (~> 0.45)
-      formatador (~> 0.2)
-      mime-types
-      net-scp (~> 1.1)
-      net-ssh (>= 2.1.3)
-    fog-dynect (0.0.2)
-      fog-core
-      fog-json
-      fog-xml
-    fog-ecloud (0.3.0)
-      fog-core
-      fog-xml
-    fog-google (0.1.1)
-      fog-core
-      fog-json
-      fog-xml
-    fog-json (1.0.2)
-      fog-core (~> 1.0)
-      multi_json (~> 1.10)
-    fog-local (0.2.1)
-      fog-core (~> 1.27)
-    fog-powerdns (0.1.1)
-      fog-core (~> 1.27)
-      fog-json (~> 1.0)
-      fog-xml (~> 0.1)
-    fog-profitbricks (0.0.5)
-      fog-core
-      fog-xml
-      nokogiri
-    fog-radosgw (0.0.4)
-      fog-core (>= 1.21.0)
-      fog-json
-      fog-xml (>= 0.0.1)
-    fog-riakcs (0.1.0)
-      fog-core
-      fog-json
-      fog-xml
-    fog-sakuracloud (1.3.3)
-      fog-core
-      fog-json
-    fog-serverlove (0.1.2)
-      fog-core
-      fog-json
-    fog-softlayer (0.4.7)
-      fog-core
-      fog-json
-    fog-storm_on_demand (0.1.1)
-      fog-core
-      fog-json
-    fog-terremark (0.1.0)
-      fog-core
-      fog-xml
-    fog-vmfusion (0.1.0)
-      fission
-      fog-core
-    fog-voxel (0.1.0)
-      fog-core
-      fog-xml
-    fog-xml (0.1.2)
-      fog-core
-      nokogiri (~> 1.5, >= 1.5.11)
     font-awesome-sass (4.4.0)
       sass (>= 3.2)
-    formatador (0.2.5)
     gherkin3 (3.1.1)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
@@ -390,8 +270,8 @@ GEM
       rspec (>= 3.2.0)
     haml (4.0.7)
       tilt
-    hashie (3.4.2)
-    highline (1.7.7)
+    hashie (3.4.3)
+    highline (1.7.8)
     hike (1.2.3)
     http-cookie (1.0.2)
       domain_name (~> 0.5)
@@ -399,9 +279,15 @@ GEM
       json (~> 1.8)
       multi_xml (>= 0.5.2)
     i18n (0.7.0)
+    i18n-tasks (0.8.7)
+      activesupport (>= 2.3.18)
+      easy_translate (>= 0.5.0)
+      erubis
+      highline (>= 1.7.3)
+      i18n
+      term-ansicolor (>= 1.3.2)
+      terminal-table (>= 1.5.1)
     ice_nine (0.11.1)
-    inflecto (0.0.2)
-    ipaddress (0.8.0)
     jquery-rails (4.0.5)
       rails-dom-testing (~> 1.0)
       railties (>= 4.2.0)
@@ -416,6 +302,8 @@ GEM
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
     kramdown (1.8.0)
+    launchy (2.4.3)
+      addressable (~> 2.3)
     less (2.6.0)
       commonjs (~> 0.2.7)
     locomotivecms-liquid (4.0.0.alpha2)
@@ -426,6 +314,28 @@ GEM
       attr_extras (~> 4.4.0)
       colorize
       stringex (~> 2.5.2)
+    locomotivecms_steam (1.0.0.rc2)
+      RedCloth (~> 4.2.9)
+      chronic (~> 0.10.2)
+      coffee-script (~> 2.4.1)
+      compass (~> 1.0.3)
+      dragonfly (~> 1.0.12)
+      haml (~> 4.0.6)
+      httparty (~> 0.13.6)
+      kramdown (~> 1.8.0)
+      locomotivecms-solid (~> 4.0.0.alpha2)
+      locomotivecms_common (~> 0.0.5)
+      mime-types (~> 2.6.1)
+      mimetype-fu (~> 0.1.2)
+      moneta (~> 0.8.0)
+      morphine (~> 0.1.1)
+      rack-cache (~> 1.2)
+      rack-rewrite (~> 1.5.1)
+      rack_csrf (~> 2.5.0)
+      sanitize (~> 4.0.0)
+      sprockets (~> 2.12.3)
+      sprockets-less (~> 0.6.1)
+      sprockets-sass (~> 1.3.1)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
     mail (2.6.3)
@@ -440,7 +350,7 @@ GEM
       money (~> 6.5.0)
     money (6.5.1)
       i18n (>= 0.6.4, <= 0.7.0)
-    mongo (2.1.1)
+    mongo (2.1.2)
       bson (~> 3.0)
     mongo_session_store-rails4 (6.0.0)
       actionpack (>= 3.1)
@@ -458,8 +368,6 @@ GEM
     multi_json (1.11.2)
     multi_test (0.1.2)
     multi_xml (0.5.5)
-    net-scp (1.2.1)
-      net-ssh (>= 2.6.5)
     net-ssh (2.10.1.rc2)
     netrc (0.10.3)
     nokogiri (1.6.6.2)
@@ -492,7 +400,7 @@ GEM
     rack (1.6.4)
     rack-accept (0.4.5)
       rack (>= 0.4)
-    rack-cache (1.2)
+    rack-cache (1.5.1)
       rack (>= 0.4)
     rack-mount (0.8.3)
       rack (>= 1.0.0)
@@ -520,6 +428,9 @@ GEM
       rails-deprecated_sanitizer (>= 1.0.1)
     rails-html-sanitizer (1.0.2)
       loofah (~> 2.0)
+    rails-i18n (4.0.6)
+      i18n (~> 0.7)
+      railties (~> 4.0)
     railties (4.2.4)
       actionpack (= 4.2.4)
       activesupport (= 4.2.4)
@@ -607,7 +518,9 @@ GEM
     temple (0.7.6)
     term-ansicolor (1.3.2)
       tins (~> 1.0)
+    terminal-table (1.5.2)
     thor (0.19.1)
+    thread (0.2.2)
     thread_safe (0.3.5)
     tilt (1.4.1)
     timecop (0.7.4)
@@ -644,12 +557,13 @@ DEPENDENCIES
   coveralls (~> 0.7.2)
   custom_fields!
   database_cleaner!
+  email_spec
   factory_girl_rails
   faye-websocket
   grape-entity-matchers
+  i18n-tasks (~> 0.8.7)
   json_spec (~> 1.1.4)
   locomotivecms!
-  locomotivecms_steam!
   pickle
   poltergeist
   pry

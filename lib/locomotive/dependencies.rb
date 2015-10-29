@@ -27,6 +27,7 @@ require 'sanitize'
 require 'stringex'
 require 'bazaar'
 require 'csv'
+require 'rails-i18n'
 
 require 'compass-rails'
 require 'codemirror/rails'

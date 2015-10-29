@@ -40,6 +40,7 @@ class Locomotive.Views.Inputs.ArrayView extends Backbone.View
 
   make_remote_selectable: ->
     Select2.helpers.build @$new_input
+    @$new_input.on 'change', (e) => @begin_add_item(e)
 
   make_simple_selectable: ->
     @$new_input.select2

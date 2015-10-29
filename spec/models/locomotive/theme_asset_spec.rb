@@ -108,6 +108,35 @@ describe Locomotive::ThemeAsset do
 
   end
 
+  describe 'SVG assets' do
+
+    let(:asset) { build(:theme_asset, site: site, folder: folder, source: FixturedAsset.open('ruby_logo.svg'), updated_at: DateTime.parse('2007/06/29 21:10:00')) }
+
+    before { asset.save }
+
+    describe 'uploaded in the fonts folder' do
+
+      let(:folder) { 'fonts' }
+
+      it 'is considered as a font' do
+        expect(asset.content_type).to eq :font
+      end
+
+    end
+
+
+    describe 'uploaded in the images folder' do
+
+      let(:folder) { 'images' }
+
+      it 'is considered as an image' do
+        expect(asset.content_type).to eq :image
+      end
+
+    end
+
+  end
+
   describe 'creating from plain text' do
 
     let(:asset) { FactoryGirl.build(:theme_asset,

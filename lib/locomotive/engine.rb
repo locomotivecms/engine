@@ -60,6 +60,10 @@ module Locomotive
       app.middleware.use '::Locomotive::Middlewares::Site'
     end
 
+    initializer 'locomotive.i18n' do |app|
+      app.config.i18n.available_locales = Locomotive.config.locales
+    end
+
     initializer 'steam' do |app|
       require 'locomotive/steam_adaptor'
     end

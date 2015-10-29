@@ -9,6 +9,7 @@ module Locomotive
 
           before do
             authenticate_locomotive_account!
+            require_site!
           end
 
           helpers do

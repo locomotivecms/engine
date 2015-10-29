@@ -15,6 +15,8 @@ ul
       | &nbsp;-&nbsp;
       i
         - case field.type.to_s
+        - when 'text'
+          = raw(value.gsub(/(\r\n|\r|\n)/, '<br/>'))
         - when 'file'
           - url = value.guess_url
           - url = url =~ /^http/ ? url : URI.join("http://#{@domain}", url).to_s # Amazon S3 (http/https) or local files ?
@@ -25,6 +27,8 @@ ul
           = value.try(:_label)
         - when 'has_many', 'many_to_many'
           = value.map(&:_label).join(', ')
+        - when 'time', 'date_time'
+          = I18n.l(value.in_time_zone(@site.timezone))
         - when 'tags'
           = value.join(', ')
         - else

@@ -34,15 +34,16 @@ Gem::Specification.new do |s|
   s.add_dependency 'mongo_session_store-rails4',      '~> 6.0.0'
 
   s.add_dependency 'mime-types',                      '~> 2.5'
-  # s.add_dependency 'custom_fields',                   '~> 2.4.0.rc5'
+  # s.add_dependency 'custom_fields',                   '~> 2.4.0.rc8'
 
-  # s.add_dependency 'locomotivecms_steam',             '~> 1.0.0-beta.3'
+  s.add_dependency 'locomotivecms_steam',             '~> 1.0.0.rc2'
 
   s.add_dependency 'slim',                            '~> 3.0.6'
   s.add_dependency 'simple_form',                     '~> 3.2.0'
   s.add_dependency 'kaminari',                        '~> 0.16.3'
   s.add_dependency 'bootstrap-kaminari-views',        '~> 0.0.5'
   s.add_dependency 'responders',                      '~> 2.1.0'
+  s.add_dependency 'rails-i18n',                      '~> 4.0.6'
 
   s.add_dependency 'jquery-rails',                    '~> 4.0.3'
   s.add_dependency 'jquery-ui-rails',                 '~> 5.0.3'
@@ -62,7 +63,6 @@ Gem::Specification.new do |s|
   s.add_dependency 'bazaar',                          '~> 0.0.2'
 
   s.add_dependency 'carrierwave-mongoid',             '~> 0.8.1'
-  s.add_dependency 'fog',                             '~> 1.34.0'
   s.add_dependency 'dragonfly',                       '~> 1.0.7'
   s.add_dependency 'rack-cache',                      '~> 1.1'
   s.add_dependency 'mimetype-fu',                     '~> 0.1.2'
