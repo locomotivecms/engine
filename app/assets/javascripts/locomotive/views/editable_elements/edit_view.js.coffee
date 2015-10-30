@@ -14,6 +14,7 @@ class Locomotive.Views.EditableElements.EditView extends Locomotive.Views.Shared
         @refresh_inputs $(data)
 
     $('.info-row select[name=block]').select2().on 'change', (event) =>
+      PubSub.publish 'editable_elements.block_selected', name: event.val
       @filter_elements_by(event.val)
 
     # editable control elements
