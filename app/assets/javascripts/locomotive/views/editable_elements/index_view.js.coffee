@@ -115,35 +115,108 @@ class Locomotive.Views.EditableElements.IndexView extends Backbone.View
 
   # TODO: create a custom backbone view for the iframe
   highlight_editable_elements: (iframe_document) ->
+    $selector = @find_or_build_selector(iframe_document)
+
+    $selector.on 'mouseenter', (event) =>
+      # stop the process of hiding the selectors
+      clearTimeout(@highlighted_hiding_timeout) if @highlighted_hiding_timeout?
+
+
+    # VO
+    # $selector.on 'mouseenter', (event) =>
+    #   console.log 'hovering the selector'
+    #   @highlight_selector_on = true
+    # $selector.on 'mouseleave', (event) =>
+    #   console.log 'leaving the selector'
+    #   @highlight_selector_on = false
+
     # TODO: mouseexit?
     iframe_document.on 'mouseenter', '.locomotive-editable-text', (event) =>
-      $el = $(event.target).closest('.locomotive-editable-text')
+      console.log '[editable] entering'
+      $el = $(event.target)
+      $el = $el.parents('.locomotive-editable-text') unless $el.hasClass('locomotive-editable-text')
+
+      window.bar = $el
+
+      # V0
+      # @highlighted_element_id = $el.attr('id')
 
       if $el.size() > 0
-        offset  = $el.offset()
-
-        # TODO: make sure the selector doesn't go off the screen
         $selector = @find_or_build_selector(iframe_document)
-        $selector.offset(top: offset.top, left: offset.left - 10).show()
+        offset    = $el.offset()
+        window.foo = $selector
+
+        # stop the process of hiding the selectors
+        clearTimeout(@highlighted_hiding_timeout) if @highlighted_hiding_timeout?
+
+        # show actions
+        $action = $selector.first().show()
+        $action.offset('top': parseInt(offset.top) - 32, 'left': parseInt(offset.left) - 15)
+
+        # show bar
+        $bar = $selector.last().show()
+        $bar.offset('top': parseInt(offset.top), 'left': parseInt(offset.left) - 10)
 
         height = $el.height()
         height = $el.css('display', 'block').height() if height == 0
-        # another way:
-        # height = _.reduce($el.find('>'), function(sum, el) { return sum + $(el).height() }, 0)
 
-        $selector.height(height)
+        $bar.height(height).show()
+
+        # VO
+        # console.log 'entering the editable text'
+        # offset  = $el.offset()
+
+        # # TODO: make sure the selector doesn't go off the screen
+        # $selector = @find_or_build_selector(iframe_document)
+        # $selector.offset(top: offset.top, left: offset.left - 10).show()
+
+        # height = $el.height()
+        # height = $el.css('display', 'block').height() if height == 0
+        # # another way:
+        # # height = _.reduce($el.find('>'), function(sum, el) { return sum + $(el).height() }, 0)
+
+        # $selector.height(height)
       else
         console.log 'is that possible?'
         console.log $el
 
-  # TODO: move this method to the iframe view
+    iframe_document.on 'mouseleave', '.locomotive-editable-text', (event) =>
+      console.log '[editable][mouseleave] TODO'
+      $el = $(event.target).closest('.locomotive-editable-text')
+
+      @highlighted_hiding_timeout = setTimeout ( =>
+        # if @highlighted_element_id == $el.attr('id')
+        $selector.hide()
+        # @highlighted_element_id = null
+      ), 300
+
+      # V0
+
+      # $el = $(event.target).closest('.locomotive-editable-text')
+
+      # console.log "leaving #{$el.attr('id')} / previous: #{@highlighted_element_id} / selector on #{@highlight_selector_on}"
+
+      # setTimeout ( =>
+      #   console.log "hiding? knowing that selector is on #{@highlight_selector_on}"
+      #   if @highlighted_element_id == $el.attr('id') && @highlight_selector_on != true
+      #     @find_or_build_selector(iframe_document).hide()
+      # ), 300
+
+      # # @highlighted_element_id = null
+
+  # TODO: move this method to the iframe view OR BETTER a selector view
   find_or_build_selector: (iframe_document) ->
-    $selector = iframe_document.find('#locomotive-selector')
+    $selector = iframe_document.find('.locomotive-selector')
 
     return $selector if $selector.size() > 0
 
-    iframe_document.find('body').append('<div id="locomotive-selector" style="position: absolute; top: 0px; left: 0px; display: block;border-left: 5px solid yellow;z-index:10000"><a href="#" style="position: relative; top: -37px; left: -10px; color: #fff; ' + @button_css() + '">Edit</a></div>')
-    iframe_document.find('#locomotive-selector').hide()
+    actions_html  = '<div id="locomotive-selector-actions" class="locomotive-selector" style="position: absolute; top: 0px; left: 0px; z-index: 10000"><a href="#" style="' + @button_css() + '">Edit</a></div>'
+    bar_html      = '<div id="locomotive-selector-bar" class="locomotive-selector" style="position: absolute; top: 0px; left: 0px; display: block; background-color: yellow; width: 5px; min-height: 10px; z-index: 10000;"></div>'
+
+    iframe_document.find('body').append(actions_html)
+    iframe_document.find('body').append(bar_html)
+
+    iframe_document.find('.locomotive-selector').hide()
 
   # TODO: refactor it
   button_css: ->
