@@ -13,6 +13,7 @@
       background: $form_input_background_color;
       padding: $form_input_padding;
       @include border-radius($form_input_radius);
+      @include transition(background-color 0.2s ease-in-out);
 
       header {
         a.action {
@@ -84,8 +85,12 @@
         .form-wrapper {
           border-color: $form_input_hovered_control_border_color;
         }
+
       }
 
+      &.highlighted {
+        background-color: yellow;
+      }
 
     }
 

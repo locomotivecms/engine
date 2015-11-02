@@ -37,6 +37,7 @@ class Locomotive.Views.EditableElements.TextHighLighterView extends Backbone.Vie
     # show actions
     $action = $highliter.first().show()
     $action.offset('top': parseInt(offset.top) - 32, 'left': parseInt(offset.left) - 10)
+    $action.width(offset.width).show()
 
     # show bar
     $bar = $highliter.last().show()
@@ -46,7 +47,7 @@ class Locomotive.Views.EditableElements.TextHighLighterView extends Backbone.Vie
   hide: (event) ->
     @hiding_timeout = setTimeout ( =>
       @$('.locomotive-highlighter-text').hide()
-    ), 300
+    ), 600
 
   clear_hiding_timeout: ->
     # stop the process of hiding the selectors
@@ -64,7 +65,7 @@ class Locomotive.Views.EditableElements.TextHighLighterView extends Backbone.Vie
     # keep track of the ID of the highlighted text
     @highlighted_element_id = $el.data('element-id')
 
-    _.extend $el.offset(), height: $el.height()
+    _.extend $el.offset(), height: $el.height(), width: $el.width()
 
   localize: (key) ->
     @options.button_labels[key]

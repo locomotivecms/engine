@@ -3,7 +3,8 @@ Locomotive.Views.Inputs ||= {}
 class Locomotive.Views.Inputs.RteView extends Backbone.View
 
   events:
-    'click a.style': 'open_styles_dialog'
+    'click a.style':        'open_styles_dialog'
+    'highlight textarea':   'highlight'
 
   initialize: ->
     _.bindAll(@, 'register_keydown_event', 'on_content_change')
@@ -60,6 +61,9 @@ class Locomotive.Views.Inputs.RteView extends Backbone.View
     PubSub.publish 'inputs.text_changed',
       view:     @
       content:  @editor.getValue()
+
+  highlight: (event) ->
+    @editor.focus()
 
   remove: ->
     @link_view.remove()
