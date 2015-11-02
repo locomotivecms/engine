@@ -20,7 +20,7 @@ module Locomotive
         site.content_assets.create(params)
       end
 
-      valid_assets = assets.map { |a| a.errors.empty? ? { name: a.source_filename, url: a.source.url, image: a.image? } : nil }.compact
+      valid_assets = assets.map { |a| a.errors.empty? ? { name: a.source_filename, url: a.source.url, image: a.image?, id: a._id } : nil }.compact
       track_activity 'content_asset.created_bulk', parameters: { assets: valid_assets } unless valid_assets.empty?
 
       assets

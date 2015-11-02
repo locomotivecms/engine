@@ -89,7 +89,7 @@ module Locomotive
 
     def activity_bulk_content_assets(params)
       list = params[:assets].map do |asset|
-        if asset[:image]
+        if asset[:image] && asset[:id] && current_site.content_assets.where(_id: asset[:id]).exists?
           content_tag(:li, link_to(image_tag(Locomotive::Dragonfly.resize_url(asset[:url], '60x60#'), alt: asset[:name]), asset[:url]))
         else
           content_tag(:li, link_to(truncate(asset[:name], length: 20), asset[:url]))
