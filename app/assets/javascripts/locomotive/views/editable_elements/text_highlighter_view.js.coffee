@@ -17,6 +17,9 @@ class Locomotive.Views.EditableElements.TextHighLighterView extends Backbone.Vie
 
   edit: (event) ->
     event.stopPropagation() & event.preventDefault()
+
+    @$('.locomotive-highlighter-text').hide()
+
     PubSub.publish 'editable_elements.highlighted_text', element_id: @highlighted_element_id
 
   build: ->

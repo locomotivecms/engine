@@ -11,6 +11,10 @@ class Locomotive.Views.EditableElements.IndexView extends Backbone.View
   initialize: ->
     view_options = if $('body').hasClass('live-editing') then {} else { el: '.main' }
 
+    @tokens = [
+      PubSub.subscribe 'editable_elements.highlighted_text', @shrink_preview
+    ]
+
     # order is important here
     @views = [
       new Locomotive.Views.EditableElements.EditView(view_options),
@@ -34,4 +38,5 @@ class Locomotive.Views.EditableElements.IndexView extends Backbone.View
 
   remove: ->
     super()
+    _.each @tokens, (token) -> PubSub.unsubscribe(token)
     _.invoke @views, 'remove'
