@@ -191,6 +191,9 @@ en:
     editable_elements:
       index:
         redirection_error: "Editing a non Locomotive page is not allowed."
+        iframe:
+          buttons:
+            edit: edit
       index_without_preview:
         title: "%{title} &mdash; <small>%{fullpath}</small>"
       edit:

@@ -14,8 +14,14 @@ class Locomotive.Views.EditableElements.PageView extends Backbone.View
       PubSub.subscribe 'pages.sorted',                      @refresh_all
     ]
 
+    # create the highlighter view
+    @views = [new Locomotive.Views.EditableElements.TextHighLighterView(el: @el, button_labels: @options.button_labels)]
+
   render: ->
     console.log "rendering page..."
+
+    # render the highlighter view
+    _.invoke @views, 'render'
 
   scroll_to_block: (msg, data) ->
     $anchor = $(@el).find("span.locomotive-block-anchor[data-element-id=\"#{data.name}\"]")
@@ -70,3 +76,4 @@ class Locomotive.Views.EditableElements.PageView extends Backbone.View
   remove: ->
     super()
     _.each @tokens, (token) -> PubSub.unsubscribe(token)
+    _.invoke @views, 'remove'

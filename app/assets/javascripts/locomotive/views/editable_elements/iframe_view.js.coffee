@@ -43,8 +43,15 @@ class Locomotive.Views.EditableElements.IframeView extends Backbone.View
 
   build_and_render_page_view: ->
     @page_view.remove() if @page_view?
-    @page_view = new Locomotive.Views.EditableElements.PageView(el: $(@window.document.body), parent_view: @)
+    @page_view = new Locomotive.Views.EditableElements.PageView
+      el:           $(@window.document.body)
+      parent_view:  @
+      button_labels:
+        edit: $(@el).data('edit-label')
     @page_view.render()
+
+    # insert the highlighter CSS (path to the CSS in the iframe data)
+    window.addStylesheet(@window.document, $(@el).data('style-path'))
 
   remove: ->
     super()
