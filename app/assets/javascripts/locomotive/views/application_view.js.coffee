@@ -35,10 +35,14 @@ class Locomotive.Views.ApplicationView extends Backbone.View
       Locomotive.notify couple[1], couple[0]
 
   automatic_max_height: ->
-    $(window).on 'resize', => @set_max_height()
+    $(window).on 'resize', =>
+      height = @set_max_height()
+      PubSub.publish 'application_view.resize', height: height
 
   set_max_height: ->
     max_height  = $(window).height()
     height      = max_height - @header_view.height()
 
     @$('> .wrapper').height(height)
+
+    height

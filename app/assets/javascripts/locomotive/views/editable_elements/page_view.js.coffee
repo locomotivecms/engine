@@ -19,8 +19,6 @@ class Locomotive.Views.EditableElements.PageView extends Backbone.View
     @views = [new Locomotive.Views.EditableElements.TextHighLighterView(el: @el, button_labels: @options.button_labels)]
 
   render: ->
-    console.log "rendering page..."
-
     # render the highlighter view
     _.invoke @views, 'render'
 

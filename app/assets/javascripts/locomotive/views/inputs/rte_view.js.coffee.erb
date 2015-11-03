@@ -4,11 +4,22 @@ class Locomotive.Views.Inputs.RteView extends Backbone.View
 
   events:
     'click a.style':        'open_styles_dialog'
+    'click a.expand':       'expand'
     'highlight textarea':   'highlight'
 
   initialize: ->
-    _.bindAll(@, 'register_keydown_event', 'on_content_change')
+    _.bindAll(@, 'register_keydown_event', 'on_content_change', 'resize')
 
+    @tokens = [
+      PubSub.subscribe 'application_view.resize', @resize
+    ]
+
+    @build_editor()
+
+  render: ->
+    # do nothing
+
+  build_editor: ->
     $textarea = @$('textarea')
 
     @editor = new wysihtml5.Editor $textarea.attr('id'),
@@ -28,8 +39,13 @@ class Locomotive.Views.Inputs.RteView extends Backbone.View
         that.create_file_view()
     , 200)
 
-  render: ->
-    # do nothing
+  expand: (event) ->
+    event.stopPropagation() & event.preventDefault()
+
+    $(@el).parents('.inputs').toggleClass('expanded')
+    $(@el).toggleClass('expanded')
+
+    @resize()
 
   open_styles_dialog: (event) ->
     $button = $(event.target).closest('a')
@@ -65,6 +81,21 @@ class Locomotive.Views.Inputs.RteView extends Backbone.View
   highlight: (event) ->
     @editor.focus()
 
+  resize: ->
+    $iframe   = @$('.form-wrapper .wysihtml5-sandbox')
+    $inputs   = $(@el).parents('.inputs')
+    $wrapper  = @$('.form-wrapper')
+
+    if $inputs.hasClass('expanded')
+      delta_height        = $wrapper.outerHeight() - $iframe.outerHeight()
+      wrapper_max_height  = $(@el).height() - ($wrapper.outerHeight() - $wrapper.height() + parseInt($wrapper.css('margin-top')) + parseInt($(@el).css('padding-bottom')))
+      height              = wrapper_max_height - delta_height
+
+      $iframe.data('height', $iframe.css('height')) unless $iframe.data('height')?
+      $iframe.css('min-height', height)
+    else
+      $iframe.css('min-height', $iframe.data('height'))
+
   remove: ->
     @link_view.remove()
     @file_view.remove()
@@ -72,5 +103,7 @@ class Locomotive.Views.Inputs.RteView extends Backbone.View
     @editor.stopObserving('onLoad', @register_keydown_event)
     @editor.stopObserving('onChange', @on_content_change)
 
-    super
+    _.each @tokens, (token) -> PubSub.unsubscribe(token)
+
+    super()
 
