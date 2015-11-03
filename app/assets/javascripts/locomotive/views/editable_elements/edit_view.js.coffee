@@ -4,6 +4,10 @@ class Locomotive.Views.EditableElements.EditView extends Locomotive.Views.Shared
 
   el: '.content > .inner'
 
+  events:
+    'click .form-group.rte label':  'select_editable_text'
+    'click .form-group.text label': 'select_editable_text'
+
   initialize: ->
     _.bindAll(@, 'highlight_form_group')
 
@@ -28,10 +32,16 @@ class Locomotive.Views.EditableElements.EditView extends Locomotive.Views.Shared
     $('.editable-elements .form-group.input.select select').select2().on 'change', (event) =>
       @need_reload = true
 
+  select_editable_text: (event) ->
+    element_id = $(event.target).parents('.form-group').attr('id').replace('editable-text-', '')
+    PubSub.publish 'editable_elements.form_group_selected', element_id: element_id
+
   highlight_form_group: (msg, data) ->
     $form_group = $(@el).find("#editable-text-#{data.element_id}")
 
     return false if $form_group.size() == 0
+
+    @filter_elements_by('')
 
     highlight_effect = =>
       $form_group.clearQueue().queue (next) ->

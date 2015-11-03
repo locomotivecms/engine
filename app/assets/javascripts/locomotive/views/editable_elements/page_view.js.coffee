@@ -3,15 +3,16 @@ Locomotive.Views.EditableElements ||= {}
 class Locomotive.Views.EditableElements.PageView extends Backbone.View
 
   initialize: ->
-    _.bindAll(@, 'refresh_all', 'refresh_text', 'refresh_image', 'refresh_image_on_remove', 'scroll_to_block')
+    _.bindAll(@, 'refresh_all', 'refresh_text', 'refresh_image', 'refresh_image_on_remove', 'scroll_to_block', 'scroll_to_element')
 
     # Global event subscriptions
     @tokens = [
-      PubSub.subscribe 'editable_elements.block_selected',  @scroll_to_block
-      PubSub.subscribe 'inputs.text_changed',               @refresh_text,
-      PubSub.subscribe 'inputs.image_changed',              @refresh_image,
-      PubSub.subscribe 'inputs.image_removed',              @refresh_image_on_remove,
-      PubSub.subscribe 'pages.sorted',                      @refresh_all
+      PubSub.subscribe 'editable_elements.block_selected',      @scroll_to_block
+      PubSub.subscribe 'editable_elements.form_group_selected', @scroll_to_element
+      PubSub.subscribe 'inputs.text_changed',                   @refresh_text,
+      PubSub.subscribe 'inputs.image_changed',                  @refresh_image,
+      PubSub.subscribe 'inputs.image_removed',                  @refresh_image_on_remove,
+      PubSub.subscribe 'pages.sorted',                          @refresh_all
     ]
 
     # create the highlighter view
@@ -24,11 +25,14 @@ class Locomotive.Views.EditableElements.PageView extends Backbone.View
     _.invoke @views, 'render'
 
   scroll_to_block: (msg, data) ->
-    $anchor = $(@el).find("span.locomotive-block-anchor[data-element-id=\"#{data.name}\"]")
+    @_scroll_to @$("span.locomotive-block-anchor[data-element-id=\"#{data.name}\"]")
 
-    return false if $anchor.size() == 0
+  scroll_to_element: (msg, data) ->
+    @_scroll_to @$("span.locomotive-editable-text[data-element-id=\"#{data.element_id}\"]")
 
-    $(@el).animate({ scrollTop: $anchor.offset().top }, 500)
+  _scroll_to: (element) ->
+    return false if element.size() == 0
+    $(@el).animate({ scrollTop: element.offset().top }, 500)
 
   refresh_all: (msg, data) ->
     @options.parent_view.reload()
