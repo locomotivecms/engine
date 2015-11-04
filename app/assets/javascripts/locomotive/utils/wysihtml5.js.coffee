@@ -1,10 +1,14 @@
-# New command: strike
-wysihtml5.commands.strike =
-  exec: (composer, command, param) ->
-    wysihtml5.commands.formatInline.exec(composer, command, 'strike')
+((wysihtml5) ->
 
-  state: (composer, command) ->
-     wysihtml5.commands.formatInline.state(composer, command, 'strike')
+  # New command: strike
+  wysihtml5.commands.strike =
+    exec: (composer, command) ->
+      wysihtml5.commands.formatInline.exec(composer, command, 'STRIKE')
+
+    state: (composer, command) ->
+      wysihtml5.commands.formatInline.state(composer, command, 'STRIKE', null, null)
+
+)(wysihtml5)
 
 # New command: justify full
 # https://github.com/xing/wysihtml5/blob/56960b31adc37e07797382d8e8b10109f206b19c/src/commands/justifyFull.js

@@ -28,34 +28,45 @@
 
   }
 
-  fieldset.inputs.expanded {
-    .form-group.input {
-      display: none;
+  &.rte-expanded {
 
-      &.expanded {
-        display: block;
+    .scrollable {
+      position: static;
+
+      .col-md-12 {
+        position: static;
       }
     }
-  }
 
-  fieldset.inputs.expanded {
-    position: fixed;
-    top: 84px;
-    left: 1px;
-    right: 0px;
-    bottom: 0px;
-    padding: 15px !important;
-    background: #fff;
-
-    .form-group.input {
-      height: 100%;
-    }
-  }
-
-  .tab-pane {
     fieldset.inputs.expanded {
-      top: 102px;
-      left: 21em;
+      .form-group.input {
+        display: none;
+
+        &.expanded {
+          display: block;
+        }
+      }
+    }
+
+    fieldset.inputs.expanded {
+      position: fixed;
+      top: 84px;
+      left: 1px;
+      right: 0px;
+      bottom: 0px;
+      padding: 15px !important;
+      background: #fff;
+
+      .form-group.input {
+        height: 100%;
+      }
+    }
+
+    .tab-pane {
+      fieldset.inputs.expanded {
+        top: 102px;
+        left: 21em;
+      }
     }
   }
 

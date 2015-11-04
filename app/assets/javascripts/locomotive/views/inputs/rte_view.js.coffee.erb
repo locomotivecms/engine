@@ -42,6 +42,7 @@ class Locomotive.Views.Inputs.RteView extends Backbone.View
   expand: (event) ->
     event.stopPropagation() & event.preventDefault()
 
+    $(@el).parents('.simple_form').toggleClass('rte-expanded')
     $(@el).parents('.inputs').toggleClass('expanded')
     $(@el).toggleClass('expanded')
 
@@ -54,6 +55,8 @@ class Locomotive.Views.Inputs.RteView extends Backbone.View
       content:    $button.next('.style-dialog-content').html()
       html:       true
       title:      undefined).popover('show')
+
+    # TODO: if already created, then update HTML
 
   create_link_view: ->
     @link_view = new Locomotive.Views.Inputs.Rte.LinkView

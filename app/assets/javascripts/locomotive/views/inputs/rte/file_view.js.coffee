@@ -8,6 +8,9 @@ class Locomotive.Views.Inputs.Rte.FileView extends Backbone.View
     popover:  false
     picker:   false
 
+  container:
+    dataset: []
+
   initialize: ->
     _.bindAll(@, 'change_image', 'insert_file', 'hide')
 
@@ -71,22 +74,22 @@ class Locomotive.Views.Inputs.Rte.FileView extends Backbone.View
     @hide()
 
   show: (state) ->
-    console.log "[insertFileView] show #{state}"
+    # console.log "[insertFileView] show #{state} / #{state?}"
 
     # FIXME (did): if opened without the focus, it will cause an error
     # when executing a command
     @editor.focus()
 
-    if state?
+    if state == false
+      @hide_popover()
+      @show_picker()
+    else
       $image = $(state)
       @_input_el('src').val($image.attr('src'))
       @_input_el('alignment', 'select').val($image.attr('class'))
       @_input_el('title').val($image.attr('title'))
 
       @show_popover()
-    else
-      @hide_popover()
-      @show_picker()
 
   show_picker: ->
     if @opened.picker == false
@@ -102,15 +105,14 @@ class Locomotive.Views.Inputs.Rte.FileView extends Backbone.View
       @opened.popover = true
 
   hide: ->
-    console.log "[insertFileView] hide"
-    console.log @opened
+    # console.log "[insertFileView] hide, opened =#{@opened}"
     if @opened.picker
       @hide_picker()
     else if @opened.popover
       @hide_popover()
 
   hide_picker: ->
-    console.log "[insertFileView] hide picker"
+    # console.log "[insertFileView] hide picker"
     window.application_view.drawer_view.close()
     @opened.picker = false
 
@@ -128,7 +130,7 @@ class Locomotive.Views.Inputs.Rte.FileView extends Backbone.View
     @$popover.find("#{type}[name=\"#{name}\"]")
 
   remove: ->
-    console.log "[insertFileView] remove"
+    # console.log "[insertFileView] remove"
     @detach_popover_events()
     @$link.popover('destroy')
     @$('.popover').remove()

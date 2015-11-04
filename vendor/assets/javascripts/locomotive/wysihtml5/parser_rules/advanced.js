@@ -115,19 +115,13 @@ var wysihtml5ParserRules = {
                 "align": "align_text"
             }
         },
-        "strike": {
-            "remove": 1
-        },
-        "form": {
-            "rename_tag": "div"
-        },
+        "strike": {},
+        "form": {},
         "rt": {
             "rename_tag": "span"
         },
         "code": {},
-        "acronym": {
-            "rename_tag": "span"
-        },
+        "acronym": {},
         "br": {
             "add_class": {
                 "clear": "clear_br"
@@ -148,9 +142,7 @@ var wysihtml5ParserRules = {
         "multicol": {
             "rename_tag": "div"
         },
-        "figure": {
-            "rename_tag": "div"
-        },
+        "figure": {},
         "xmp": {
             "rename_tag": "span"
         },
@@ -180,9 +172,7 @@ var wysihtml5ParserRules = {
         "dfn": {
             "rename_tag": "span"
         },
-        "iframe": {
-            "remove": 1
-        },
+        "iframe": { "check_attributes": { "class": "any" } },
         "figcaption": {
             "rename_tag": "div"
         },
@@ -190,7 +180,8 @@ var wysihtml5ParserRules = {
             "check_attributes": {
                 "target": "any",
                 "href": "any", // if you compiled master manually then change this from 'url' to 'href'
-                "title": "any"
+                "title": "any",
+                "class": "any"
             },
             "set_attributes": {
                 "rel": "nofollow"
@@ -201,7 +192,8 @@ var wysihtml5ParserRules = {
                 "width": "numbers",
                 "alt": "alt",
                 "src": "any", // if you compiled master manually then change this from 'url' to 'src'
-                "height": "numbers"
+                "height": "numbers",
+                "class": "any"
             },
             "add_class": {
                 "align": "align_img"
@@ -226,9 +218,7 @@ var wysihtml5ParserRules = {
         "sup": {
             "rename_tag": "span"
         },
-        "address": {
-            "rename_tag": "div"
-        },
+        "address": { "check_attributes": { "class": "any" } },
         "basefont": {
             "remove": 1
         },
@@ -272,12 +262,8 @@ var wysihtml5ParserRules = {
                 "align": "align_text"
             }
         },
-        "option": {
-            "rename_tag": "span"
-        },
-        "select": {
-            "rename_tag": "span"
-        },
+        "option": {},
+        "select": {},
         "i": {},
         "track": {
             "remove": 1
@@ -292,19 +278,15 @@ var wysihtml5ParserRules = {
             "rename_tag": "span",
             "set_class": "wysiwyg-font-size-larger"
         },
-        "button": {
-            "rename_tag": "span"
-        },
+        "button": {},
         "noscript": {
             "remove": 1
         },
         "svg": {
             "remove": 1
         },
-        "input": {
-            "remove": 1
-        },
-        "table": {},
+        "input": {},
+        "table": { "check_attributes": { "class": "alt" } },
         "keygen": {
             "remove": 1
         },
@@ -338,13 +320,9 @@ var wysihtml5ParserRules = {
         "base": {
             "remove": 1
         },
-        "video": {
-            "remove": 1
-        },
+        "video": {},
         "strong": {},
-        "canvas": {
-            "remove": 1
-        },
+        "canvas": {},
         "output": {
             "rename_tag": "span"
         },
@@ -395,9 +373,9 @@ var wysihtml5ParserRules = {
         "var": {
             "rename_tag": "span"
         },
-        "del": {
-            "remove": 1
-        },
+        // "del": {
+        //     "remove": 1
+        // },
         "blockquote": {
             "check_attributes": {
                 "cite": "url"
@@ -417,9 +395,7 @@ var wysihtml5ParserRules = {
                 "align": "align_text"
             }
         },
-        "textarea": {
-            "rename_tag": "span"
-        },
+        "textarea": {},
         "embed": {
             "remove": 1
         },
@@ -552,9 +528,7 @@ var wysihtml5ParserRules = {
         "frameset": {
             "remove": 1
         },
-        "optgroup": {
-            "rename_tag": "span"
-        },
+        "optgroup": {},
         "header": {
             "rename_tag": "div"
         }

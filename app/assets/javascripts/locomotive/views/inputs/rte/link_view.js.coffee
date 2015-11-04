@@ -21,7 +21,7 @@ class Locomotive.Views.Inputs.Rte.LinkView extends Backbone.View
     @$content.show()
     @$link.popover
       container:  '.main'
-      placement:  'top'
+      placement:  'left'
       content:    @$content
       html:       true
       template:   '<div class="popover" role="tooltip"><div class="arrow"></div><form class="simple_form"><div class="popover-content"></div></form></div>'
@@ -54,7 +54,7 @@ class Locomotive.Views.Inputs.Rte.LinkView extends Backbone.View
       @hide()
 
   show: (state) ->
-    console.log "[LinkView] show (#{state})"
+    # console.log "[LinkView] show (#{state})"
     if state?
       $link = $(state)
       @_input_el('url').val($link.attr('href'))
