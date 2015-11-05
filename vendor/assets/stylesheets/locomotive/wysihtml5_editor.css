@@ -131,3 +131,25 @@
 .wysiwyg-clear-left {
   clear: left;
 }
+
+.wysihtml5-editor table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #eee;
+}
+
+.wysihtml5-editor table th, .wysihtml5-editor table td {
+  padding: 8px;
+}
+
+.wysihtml5-editor table th {
+  border: 1px solid #dfdfdf;
+}
+
+.wysihtml5-editor table td {
+  border: 1px solid #eee;
+}
+
+.wysihtml5-editor table td.wysiwyg-tmp-selected-cell, .wysihtml5-editor table th.wysiwyg-tmp-selected-cell {
+  background-color: #fafafa;
+}

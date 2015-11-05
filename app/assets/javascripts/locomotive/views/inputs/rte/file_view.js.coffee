@@ -14,7 +14,7 @@ class Locomotive.Views.Inputs.Rte.FileView extends Backbone.View
   initialize: ->
     _.bindAll(@, 'change_image', 'insert_file', 'hide')
 
-    @$link        = $(@el)
+    @$link        = @$('a[data-wysihtml5-command=insertFile]')
     @editor       = @options.editor
     @$popover     = @$link.next('.image-dialog-content')
 

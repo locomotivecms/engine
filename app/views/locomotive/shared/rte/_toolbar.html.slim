@@ -46,8 +46,11 @@
       a data-wysihtml5-command='formatBlock' data-wysihtml5-command-value='blockquote'
         i.fa.fa-quote-right
       | &nbsp;
-      a data-wysihtml5-command='formatBlock' data-wysihtml5-command-value='code' Code
-      a data-wysihtml5-command='formatBlock' data-wysihtml5-command-value='pre' Pre
+      a data-wysihtml5-command='formatBlock' data-wysihtml5-command-value='code'
+        | Code
+      | &nbsp;
+      a data-wysihtml5-command='formatBlock' data-wysihtml5-command-value='pre'
+        | Pre
 
     a data-wysihtml5-command='createLink'
       i.fa.fa-chain
@@ -58,6 +61,35 @@
     a data-url=content_assets_path data-wysihtml5-command='insertFile'
       i.fa.fa-file-o
     = image_popover
+
+    a data-wysihtml5-command='createTable'
+      i.fa.fa-table
+    = table_popover
+
+    a data-wysihtml5-hiddentools='table' class="edit-table" style="display: none"
+      i.fa.fa-table
+
+    .table-dialog-content style='display: none'
+      a data-wysihtml5-command="mergeTableCells" unselectable="on"
+        | Merge
+      br
+      a data-wysihtml5-command="addTableCells" data-wysihtml5-command-value="above" unselectable="on"
+        | Insert row before
+      br
+      a data-wysihtml5-command="addTableCells" data-wysihtml5-command-value="below"
+        | Insert row after
+      br
+      a data-wysihtml5-command="addTableCells" data-wysihtml5-command-value="before" unselectable="on"
+        | Insert col before
+      br
+      a data-wysihtml5-command="addTableCells" data-wysihtml5-command-value="after" unselectable="on"
+        | Insert col after
+      br
+      a data-wysihtml5-command="deleteTableCells" data-wysihtml5-command-value="row" unselectable="on"
+        | Delete row
+      br
+      a data-wysihtml5-command="deleteTableCells" data-wysihtml5-command-value="column" unselectable="on"
+        | Delete col
 
   span.wysihtml5-toolbar-group
     a.expand

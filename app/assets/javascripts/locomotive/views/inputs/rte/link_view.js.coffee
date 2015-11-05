@@ -4,10 +4,13 @@ class Locomotive.Views.Inputs.Rte.LinkView extends Backbone.View
 
   opened: false
 
+  container:
+    dataset: []
+
   initialize: ->
     _.bindAll(@, 'apply', 'show', 'hide')
 
-    @$link      = $(@el)
+    @$link      = @$('a[data-wysihtml5-command=createLink]')
     @editor     = @options.editor
     @$content   = @$link.next('.link-dialog-content')
 
