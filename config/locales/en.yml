@@ -48,6 +48,17 @@ en:
         created_by: "Created %{distance} ago by %{who}"
         updated_at: "Last modified %{distance} ago"
         updated_by: "Last modified %{distance} ago by %{who}"
+      rte:
+        toolbar:
+          table:
+            merge: Merge
+            insert_row_before: Insert row before
+            insert_row_after: Insert row after
+            insert_col_before: Insert column before
+            insert_col_after: Insert column after
+            delete_row: Delete row
+            delete_col: Delete column
+
 
     errors:
       "500":

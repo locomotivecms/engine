@@ -64,6 +64,12 @@ en:
         image_resize_form:
           width: Width
           height: Height
+        rte_input_table_form:
+          cols: "Columns"
+          rows: "Rows"
+          head: "Head row?"
+          class_name: "CSS class"
+
 
     hints:
       locomotive:

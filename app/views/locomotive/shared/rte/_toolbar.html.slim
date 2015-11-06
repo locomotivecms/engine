@@ -71,25 +71,25 @@
 
     .table-dialog-content style='display: none'
       a data-wysihtml5-command="mergeTableCells" unselectable="on"
-        | Merge
+        = t('.table.merge')
       br
       a data-wysihtml5-command="addTableCells" data-wysihtml5-command-value="above" unselectable="on"
-        | Insert row before
+        = t('.table.insert_row_before')
       br
       a data-wysihtml5-command="addTableCells" data-wysihtml5-command-value="below"
-        | Insert row after
+        = t('.table.insert_row_after')
       br
       a data-wysihtml5-command="addTableCells" data-wysihtml5-command-value="before" unselectable="on"
-        | Insert col before
+        = t('.table.insert_col_before')
       br
       a data-wysihtml5-command="addTableCells" data-wysihtml5-command-value="after" unselectable="on"
-        | Insert col after
+        = t('.table.insert_col_after')
       br
       a data-wysihtml5-command="deleteTableCells" data-wysihtml5-command-value="row" unselectable="on"
-        | Delete row
+        = t('.table.delete_row')
       br
       a data-wysihtml5-command="deleteTableCells" data-wysihtml5-command-value="column" unselectable="on"
-        | Delete col
+        = t('.table.delete_col')
 
   span.wysihtml5-toolbar-group
     a.expand
