@@ -71,6 +71,8 @@ class Locomotive.Views.Inputs.Rte.FileView extends Backbone.View
       html = "<a href='#{data.url}' title='#{data.title}'>#{data.title}</a>"
       @editor.composer.commands.exec 'insertHTML', html
 
+    @editor.toolbar._preventInstantFocus()
+
     @hide()
 
   show: (state) ->

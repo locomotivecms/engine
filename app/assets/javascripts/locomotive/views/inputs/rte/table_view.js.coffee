@@ -55,13 +55,13 @@ class Locomotive.Views.Inputs.Rte.TableView extends Backbone.View
     @hide()
 
   show: (state) ->
-    console.log "[TableView] show (#{state})"
+    # console.log "[TableView] show (#{state})"
     @$link.popover('toggle')
 
     @$content.parents('form')[0].reset()
 
   hide: ->
-    console.log "[TableView] hide"
+    # console.log "[TableView] hide"
     @$link.popover('hide')
 
   show_link: ->

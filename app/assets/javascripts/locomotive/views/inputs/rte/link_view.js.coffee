@@ -2,10 +2,11 @@ Locomotive.Views.Inputs.Rte ||= {}
 
 class Locomotive.Views.Inputs.Rte.LinkView extends Backbone.View
 
-  opened: false
+  isOpen: false
 
   container:
-    dataset: []
+    dataset:
+      showdialogonselection: true
 
   initialize: ->
     _.bindAll(@, 'apply', 'show', 'hide')
@@ -15,28 +16,28 @@ class Locomotive.Views.Inputs.Rte.LinkView extends Backbone.View
     @$content   = @$link.next('.link-dialog-content')
 
   render: ->
-    @create_popover()
-
-    @attach_events()
     @attach_editor()
+    @create_popover()
+    @attach_events()
 
   create_popover: ->
     @$content.show()
     @$link.popover
-      container:  '.main'
+      container:  '.content'
       placement:  'left'
       content:    @$content
       html:       true
+      trigger:    'manual'
       template:   '<div class="popover" role="tooltip"><div class="arrow"></div><form class="simple_form"><div class="popover-content"></div></form></div>'
     @$link.data('bs.popover').setContent()
 
   attach_events: ->
-    @$content.parents('form').on 'click', '.apply', @apply
+    # @$content.parents('form').on 'click', '.apply', @apply
     @$content.on 'click', '.apply', @apply
     @$content.on 'click', '.cancel', @hide
 
   detach_events: ->
-    @$content.parents('form').off 'click', '.apply', @apply
+    # @$content.parents('form').off 'click', '.apply', @apply
     @$content.off 'click', '.apply', @apply
     @$content.off 'click', '.cancel', @hide
 
@@ -54,25 +55,31 @@ class Locomotive.Views.Inputs.Rte.LinkView extends Backbone.View
         title:  @_input_el('title').val()
         rel:    "nofollow"
 
+      # prevents the popover to be opened right after inserting the link.
+      @editor.toolbar._preventInstantFocus()
+
       @hide()
 
   show: (state) ->
-    # console.log "[LinkView] show (#{state})"
-    if state?
+    # Fix a bug when opening an existing link for the first time
+    return if @isOpen && state != false
+
+    if state == false
+      @$content.parents('form')[0].reset()
+    else
       $link = $(state)
       @_input_el('url').val($link.attr('href'))
       @_input_el('target', 'select').val($link.attr('target'))
       @_input_el('title').val($link.attr('title'))
 
-      @$link.popover('show') if !@opened
-    else
-      @$content.parents('form')[0].reset()
+    @$link.popover('toggle')
+    @_input_el('url').focus() # first field
 
-    @opened = true
+    @isOpen = true
 
   hide: ->
     @$link.popover('hide')
-    @opened = false
+    @isOpen = false
 
   _input_el: (property, type) ->
     type ||= 'input'
