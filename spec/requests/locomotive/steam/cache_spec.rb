@@ -1,13 +1,13 @@
 require 'spec_helper'
 
-describe 'Locomotive::Middlewares::Site' do
+describe Locomotive::Steam::Middlewares::Cache do
 
   let(:site_cache)  { false }
   let(:page_cache)  { false }
   let(:site)        { instance_double('CacheSite', _id: '0001', cache_enabled: site_cache, last_modified_at: DateTime.parse('2007/06/29 00:00:00')) }
   let(:page)        { instance_double('CachedPage', _id: '0042', cache_enabled: page_cache) }
   let(:app)         { ->(env) { [200, env, 'app'] } }
-  let(:middleware)  { Locomotive::Steam::Middlewares::Cache.new(app) }
+  let(:middleware)  { described_class.new(app) }
   let(:steam_env)   { { 'REQUEST_METHOD' => 'GET', 'steam.site' => site, 'steam.page' => page, 'steam.live_editing' => false, 'PATH_INFO' => 'foo', 'QUERY_STRING' => 'a=1&c=3' } }
 
   describe '#call' do

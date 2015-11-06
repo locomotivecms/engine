@@ -1,11 +1,11 @@
 require 'spec_helper'
 
-describe 'Locomotive::Middlewares::Site' do
+describe Locomotive::Middlewares::Site do
 
   let(:site)        { create('existing site', domains: ['steve.me']) }
   let(:url)         { 'http://example.com/locomotive/models' }
   let(:app)         { ->(env) { [200, env, 'app'] } }
-  let(:middleware)  { Locomotive::Middlewares::Site.new(app) }
+  let(:middleware)  { described_class.new(app) }
 
   subject { code, env = middleware.call(env_for(url)); env['locomotive.site'] }
 

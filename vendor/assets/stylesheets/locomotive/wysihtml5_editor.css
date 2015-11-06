@@ -153,3 +153,7 @@
 .wysihtml5-editor table td.wysiwyg-tmp-selected-cell, .wysihtml5-editor table th.wysiwyg-tmp-selected-cell {
   background-color: #fafafa;
 }
+
+.wysihtml5-editor a {
+  color: #4fb9ce;
+}
