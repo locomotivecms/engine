@@ -51,6 +51,19 @@ describe Locomotive::PageParsingService do
 
     end
 
+    describe "don't deal with untyped editable element" do
+
+      before do
+        page.editable_elements.create(slug: 'top', block: 'body', content: 'Overridden')
+        service.find_or_create_editable_elements(page)
+      end
+
+      subject { page.reload.editable_elements.first.class }
+
+      it { expect(subject).to eq(Locomotive::EditableText) }
+
+    end
+
   end
 
   describe '#group_and_sort_editable_elements' do

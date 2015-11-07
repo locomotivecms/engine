@@ -36,7 +36,7 @@ module Locomotive
     end
 
     def block_label
-      (@block_name || self.block).humanize
+      (@block_name || self.block).try(:humanize)
     end
 
     def disabled?

@@ -8,8 +8,6 @@ module Locomotive
         included do
           embeds_many   :editable_elements, class_name: 'Locomotive::EditableElement', cascade_callbacks: true
 
-          # after_save    :remove_disabled_editable_elements
-
           accepts_nested_attributes_for :editable_elements
         end
 

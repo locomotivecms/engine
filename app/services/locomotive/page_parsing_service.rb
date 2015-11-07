@@ -147,6 +147,8 @@ module Locomotive
 
     def add_or_modify_editable_element(page, attributes)
       if element = page.editable_elements.by_block_and_slug(attributes[:block], attributes[:slug]).first
+        # FIXME: we don't want to deal here with the generic Locomotive::EditableElement class
+        element = page.editable_elements.with_same_class!(element, "Locomotive::#{attributes[:type].to_s.classify}".constantize)
         element.attributes = attributes
         element
       else
