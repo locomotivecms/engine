@@ -43,6 +43,7 @@ module Locomotive
         locomotive/not_logged_in.js
         locomotive/not_logged_in.css
         locomotive/live_editing_iframe.css
+        locomotive/live_editing_error.css
         locomotive/error.css)
 
       # Uncomment the lines below to view the names of assets as they are

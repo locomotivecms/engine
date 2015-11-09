@@ -26,7 +26,7 @@ Locomotive::Steam.configure do |config|
   config.middleware.delete Rack::Lint
   config.middleware.delete Rack::Session::Moneta
 
-  %w(cache page_editing missing_translations wysihtml_css).each do |name|
+  %w(cache catch_error page_editing missing_translations wysihtml_css).each do |name|
     require_relative "steam/middlewares/#{name}"
     config.middleware.insert_after Locomotive::Steam::Middlewares::Page, Locomotive::Steam::Middlewares.const_get(name.camelize)
   end
