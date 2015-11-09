@@ -1,0 +1,13 @@
+nl:
+  date:
+    formats:
+      default: "%m/%d/%Y"
+    today_at: "Vandaag om"
+    yesterday_at: "Gisteren om"
+  time:
+    formats:
+      default: "%m/%d/%Y %H:%M"
+      time: "%H:%M"
+  pagination:
+    previous: "&laquo; Vorige"
+    next: "Volgende &raquo;"

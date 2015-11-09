@@ -1,0 +1,148 @@
+nl:
+  simple_form:
+    blank_required_fields: "U hebt niet alle vereiste velden ingevuld."
+    titles:
+      locomotive:
+        account:
+          information: Main
+          api: API
+          credentials: Aanmeldingsgegevens
+        site:
+          information: Main
+          access_points: Toegangspunten
+          seo: SEO
+          advanced: Geavanceerd
+          url_redirections: URL doorverwijzingen
+        page:
+          content: Inhoud
+          settings: Instellingen
+          seo: SEO
+        content_entry:
+          content: Inhoud
+          advanced: Geavanceerd
+          seo: SEO
+    labels:
+      locomotive:
+        content_entry:
+          _slug: Permalink
+          _visible: Zichtbaar
+        content_type:
+          public_submission_accounts: "Meegedeelde accounts"
+        account:
+          api_key: API key
+          no_api_key: Geen
+          edit:
+            locale: Gebruiksinterface taal
+            password: Nieuw wachtwoord
+            password_confirmation: Nieuw wachtwoord bevestigen
+        page:
+          seo_title: Titel
+          target_klass_name: Model
+        editable_element:
+          region: Secties
+        site:
+          locales: Talen
+          timezone_name: Tijdzone
+          cache_enabled: Cache
+          new:
+            locales: Eerste taal
+        membership:
+          edit:
+            role: Nieuwe rol
+        rte_input_link_form:
+          url: Link URL
+          target: Doelwit
+          title: Titel
+        rte_input_image_form:
+          src: Bron
+          title: Titel
+          alignment: Opstelling
+        image_resize_form:
+          width: Breedte
+          height: Hoogte
+        rte_input_table_form:
+          cols: "Kolommen"
+          rows: "Rijen"
+          head: "Hoofd rij?"
+          class_name: "CSS class"
+    hints:
+      locomotive:
+        account:
+          api_key: "Gebruik Wagon om uw site te implementeren (controleer config/deploy.yml van uw Wagon site)."
+          password: Minimum 6 karakters
+        page:
+          handle: "Unieke identificatie nodig om deze pagina te ontvangen binnenin een externe controller instance."
+          published: "Enkel aangemelde accounts kunnen ongepubliceerde pagina's bekijken."
+          templatized: "Gebruik de pagina als een voorbeeld voor een model dat u hebt aangemaakt."
+          cache_enabled: "Wanneer ingeschakeld, dan wordt uw pagina gecached zo lang de inhoud niet wijzigt."
+          listed: "Controleer of u een pagina wil tonen van de gegenereerde menus."
+          target_klass_name: "Het type van de inhoud dat deze pagina een template zal voor zijn."
+          seo_title: "Definieer een pagina titel die zal gebruikt worden als de waarde voor de SEO titel tag. Laat het leeg als u de standaard waarde van de site instellingen wilt gebruiken."
+          meta_keywords: "Overschrijf de site zijn keywords die gebruikt worden voor SEO doeleinden. Ze zijn gescheiden door een komma."
+          meta_description: "Overschrijf de site meta omschrijving die gebruikt wordt voor SEO doeleinden."
+          is_layout: "Indien waar, dan kan deze pagina gebruikt worden als layout voor andere pagina's."
+          allow_layout: "Laat auteurs de layout van een pagina wijzigen of niet."
+        site:
+          locales: "Sleep een flag naar de eerste positie om de standaard taal te kiezen."
+          seo_title: "Definieer hier een globale waarde die zou gebruikt worden voor de waarde van de title tag in de head sectie voor SEO doeleinden."
+          meta_keywords: "Keywords gebruikt in de head tag van de pagina. Ze zijn gescheiden door een komma en worden gebruikt voor SEO doeleinden."
+          meta_description: "Meta omschrijving gebruikt in de head tag van de pagina. Gebruikt voor SEO doeleinden."
+          robots_txt: "Inhoud van het <span class='code'>/robots.txt</span> bestand. Controleer de volgende <a href='http://www.w3.org/TR/html4/appendix/notes.html#h-B.4.1.1'>link</a> voor meer info."
+          domains: "Voeg domeinnamen toe hieronder. Daarna registreer een CNAME DNS record die wijst naar <b>%{domain}</b>."
+          memberships: "U kan andere account uitnodigen om de site te beheren."
+          cache_enabled: "Wanneer ingeschakeld, uw pagina's zullen worden gecached zolang de inhoud niet veranderd. Het uitschakelen van de cache per pagina is toegestaan."
+          redirect_to_first_domain: "Wanneer ingeschakeld, requests gemaakt naar gelijk welke domeinnaam zal worden doorgestuurd naar het eerste domein."
+          url_redirections: "Redirect (301) verouderde urls naar pagina's die u gecreëerd hebt in de back-office. De oorsprong en de bestemming URLs zijn gescheiden door een <u>spatie</u>."
+          new:
+            locales: "U kan andere talen toevoegen eenmaal de site gecreëerd is."
+        translation:
+          key: "Gebruik geen streepje maar een underscore. Voorbeeld: welcome_message."
+        content_entry:
+          _slug: "Eigenschap gebruikt om de url van een pagina die werkt als een template voor dit content type (voorbeeld: \"template_page/{{ your_object._permalink }})\"."
+          _visible: "Standaard zal het item tonen in de site. Dus het kan gebruikt worden als een gepubliceerde eigenschap."
+          seo_title: "De waarde die u hier invult zal de SEO titel vervangen van de templatized pagina gerelateerd aan uw model."
+          meta_keywords: "Overschrijft de site zijn keywords die gebruikt worden voor SEO doeleinden. Ze zijn gescheiden door een komma."
+          meta_description: "Overschrijf de site meta omschrijving die gebruikt wordt voor SEO doeleinden."
+        content_type:
+          public_submission_accounts: "Wanneer een item gecreëerd is, stuur dan een notificatie email naar de accounts hieronder."
+        image_resize_form:
+          width: "in px"
+          height: "in px"
+    placeholders:
+      locomotive:
+        site:
+          domains: "Bijvoorbeeld: mysite.com"
+          url_redirections: "Bijvoorbeeld: oude-url nieuwe-url-in-locomotive"
+        content_type_entry_field:
+          select_options: "Typ de label van uw nieuwe optie hier"
+    options:
+      locomotive:
+        rte_input_link_form:
+          target:
+            not_set: "Niet ingesteld"
+            self: "Open de link in hetzelfde venster"
+            blank: "Open een link in een nieuw venster"
+        rte_input_image_form:
+          alignment:
+            default: Standaard
+            left: Links
+            right: Rechts
+    buttons:
+      defaults:
+        locomotive:
+          create: Creëer
+          update: Opslaan
+          submit: Ok
+          cancel: Annuleer
+          delete: Verwijder
+          close: Sluiten
+          loading_text: "Aan het opslaan..."
+          or: of
+      locomotive:
+        account:
+          new_api_key: Regenereren
+        image_resize_form:
+          loading_text: Aan het wijzigen...
+          submit: Formaat wijzigen
+        site:
+          delete: Verwijder deze site

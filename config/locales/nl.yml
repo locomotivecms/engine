@@ -1,0 +1,308 @@
+nl:
+  locomotive:
+    not_logged_in:
+      title: "Locomotive <small>Designed to save your time</small>"
+    locales:
+      en: Engels
+      de: Duits
+      fr: Frans
+      pl: Pools
+      pt: Portugees
+      pt-BR: "Braziliaans"
+      it: Italiaans
+      nl: Nederlands
+      nb: Noors
+      es: Spaans
+      ru: Russisch
+      et: Ests
+      ja: Japans
+      zh-CN: Chinees
+      cs: Tsjechisch
+      bg: Bulgaars
+      sk: Slowaaks
+      sr: Servisch
+    messages:
+      confirm: Weet u het zeker?
+    shared:
+      header:
+        welcome: Welkom, %{name}
+        sites: Mijn sites
+        account: Account instellingen
+        see: Bekijk website
+        help: Help
+        logout: Log uit
+      sidebar:
+        dashboard: Dashboard
+        assets: Assets
+        settings: Algemene instellingen
+        developers: 'Ontwikkelaars '
+        content_types:
+          title: Models
+        translations: Vertalingen
+      list:
+        untranslated: niet vertaald
+        created_at: "%{distance} geleden aangemaakt"
+        created_by: "%{distance} geleden aangemaakt door %{who}"
+        updated_at: "Laatst gewijzigd  %{distance} geleden"
+        updated_by: "Laatst gewijzigd %{distance} geleden door {%who}"
+      rte:
+        toolbar:
+          table:
+            merge: Samenvoegen
+            insert_row_before: Voeg rij in ervoor
+            insert_row_after: Voeg rij in erna
+            insert_col_before: Voeg kolom in ervoor
+            insert_col_after: Voeg kolom in erna
+            delete_row: Verwijder rij
+            delete_col: Verwijder kolom
+    errors:
+      '500':
+        title: Applicatie fout
+        message: "Oeps, er is iets fout gegaan"
+      '404':
+        title: Pagina niet gevonden
+        message: "De pagina die u probeert te bereiken, bestaat niet."
+      no_site:
+        title: Site niet gevonden
+        next: "Volgende &rarr;"
+        message:
+          create_account: "Maak eerst een account aan voordat u een site maakt."
+          add_domain: "Voeg de <strong>%{host}</strong> domein toe aan de lijst van domeinen van één van uw sites."
+          sign_in: "Gelieve eerst aan te melden. Daarna kan u de <strong>%{host}</strong> domein toevoegen aan de lijst van domeinen voor één van uw sites."
+    notifications:
+      new_content_entry:
+        subject: "[%{domain}][%{type}] nieuw item"
+        title: "Hallo %{name}, we wilden u laten weten dat er een nieuwe instantie werd aangemaakt op  %{date} voor de site <b>%{domain}</b>"
+        type: "Model: %{type}"
+    activity:
+      site:
+        created: 'De site is aangemaakt'
+      page:
+        created: 'Pagina %{page} is aangemaakt'
+        updated: 'Pagina %{page} is aangepast '
+        destroyed: 'Pagina %{page} is verwijderd'
+        sorted: 'Gesorteerde pagina''s'
+      editable_element:
+        updated_bulk: 'inhoud aangepast van %{pages}'
+      content_entry:
+        created: '%{entry} toegevoegd in %{content_type}'
+        created_public: '%{entry} toegevoegd in %{content_type} van een publiek formulier'
+        updated: '%{entry} gewijzigd van %{content_type}'
+        destroyed: '%{entry} verwijderd uit %{content_type}'
+        sorted: '%{content_type} gesorteerd'
+      content_asset:
+        created_bulk: '%{count} bestand(en) geupload'
+        destroyed: '%{name} bestand verwijderd.'
+      membership:
+        created: '%{name} toegevoegd aan de site'
+    pagination:
+      first: "&laquo;"
+      last: "&raquo;"
+      previous: "&lsaquo;"
+      next: "&rsaquo;"
+      truncate: "&hellip;"
+    custom_fields:
+      select_options:
+        edit:
+          title: "%{type} &mdash; bewerkingsopties"
+          back: "Terug naar het item"
+        option:
+          edit: Bewerk
+          apply: Toepassen
+          cancel: Annuleer
+      types:
+        belongs_to:
+          edit: Bewerk
+          placeholder: "Kies een %{name}"
+          searching: Zoeken...
+          no_matches: Geen overeenkomsten gevonden
+          too_short: Vul minstens 1 karakter in
+        many_to_many:
+          placeholder: "Kies uit een van de %{name}"
+          searching: Zoeken...
+          no_matches: Geen overeenkomsten gevonden
+          too_short: Vul minstens 1 karakter in
+        select:
+          edit: Opties aanpassen
+        file:
+          delete_file: Verwijder bestand
+        has_many:
+          new_label: Voeg een nieuwe toe
+      form:
+        required: Verplicht
+        default_label: Veld naam
+        select_options:
+          ask_name: "Typ het label van de optie"
+    dashboard:
+      show:
+        title: 'Dashboard'
+      url:
+        title: "URL van uw site"
+        visit: 'Bezoek'
+        change_domain: 'Gebruik uw eigen domeinnaam'
+      activity:
+        title: 'Activieit '
+        unknown_account: Iemand
+        load_more: Meer laden
+        loading_activity_feed: Laden...
+    sessions:
+      new:
+        title: "Aanmelden"
+        link: "Wachtwoord vergeten"
+        email: "Email"
+        password: "Wachtwoord"
+        sign_up: Heeft u geen account?
+        submit: Aanmelden
+    registrations:
+      new:
+        sign_in: Heeft u al een account?
+        submit: Registeren
+    passwords:
+      new:
+        link: "&rarr; Terug naar de inlog pagina"
+        email: "Uw email"
+        submit: Wachtwoord vergeten
+      edit:
+        link: "&rarr; Terug naar de inlog pagina"
+        password: "Uw nieuwe wachtwoord"
+        password_confirmation: "Herhaal uw nieuwe wachtwoord"
+        submit: "Verander mijn wachtwoord"
+    pages:
+      index:
+        title: 'Pagina''s'
+        new: 'Nieuwe pagina'
+        list_content_entries: "Lijst %{name}"
+        new_content_entry: "Nieuw %{name}"
+      new:
+        title: Nieuwe pagina
+        help: "Vul onderstaand formulier in om een pagina aan te maken. Let op, deze pagina wordt standaard niet gepubliceerd."
+      edit:
+        title: "%{title} &mdash; <small>%{fullpath}</small>"
+      form:
+        no_layout: Gebruik de layout van de hoofd pagina
+        redirect_type:
+          permanent: "Permanent (301)"
+          temporary: "Tijdelijk (302)"
+    editable_elements:
+      index:
+        redirection_error: "Het bewerken van een niet Locomotive pagina is verboden"
+        iframe:
+          buttons:
+            edit: bewerk
+      index_without_preview:
+        title: "%{title} &mdash; <small>%{fullpath}</small>"
+      edit:
+        settings_link: 'Instellingen'
+        no_editable_elements: 'Geen bewerkbare elementen gevonden'
+        blocks:
+          all: Alles
+          unknown: Onbekend
+      form:
+        model:
+          buttons:
+            list: Beheer
+            edit: Bewerk
+    sites:
+      index:
+        title: Mijn sites
+        new: Voeg een nieuwe site toe
+      new:
+        title: Nieuwe site
+        help: "Vul onderstaand formulier in om een nieuwe site aan te maken."
+      site:
+        no_domain: Geen domein
+    current_site:
+      edit:
+        title: De huidige site bewerken
+      form:
+        main:
+          new_membership: "Voeg een account toe"
+        advanced:
+          destroy: "Verwijder deze site"
+          confirm_destroy: "Bevestig uw actie door de naam van de site in te vullen"
+    memberships:
+      roles:
+        admin: Beheerder
+        designer: Ontwerper
+        author: Auteur
+      new:
+        title: Nieuw lidmaatschap
+        help: "Gelieve een account email ingeven om toe te voegen. Als het niet bestaat, dan zal u doorverwezen worden naar het account creatie formulier."
+        back: "Terug naar de site instellingen"
+      edit:
+        title: "Lidmaatschap wijzigen voor <b>%{name}</b>"
+        back: "Terug naar de site instellingen"
+    accounts:
+      new:
+        title: Nieuw account
+        help: "Vul onderstaand formulier in om een account aan te maken."
+    my_account:
+      edit:
+        title: Account bewerken
+    translations:
+      untranslated: "Onvertaalde landinstellingen: %{list}"
+      index:
+        title: Vertalingen
+        no_items: "We hebben geen vertalingen gevonden."
+        search_placeholder: "Vul een key of vertaling in"
+        help: "Vertaal alle items met een oranje (deels vertaald) of rode (niet vertaald) stip."
+        filter_by:
+          all: Alle
+          done: Vertaald
+          partially: Deels vertaald
+          none: Niet vertaald
+      edit:
+        title: "Vertalingen &mdash; wijzigen %{key}"
+      form:
+        not_translated: "Niet vertaald"
+    content_assets:
+      index:
+        title: "Media"
+        upload: Upload bestanden
+      edit_in_drawer:
+        buttons:
+          resize: "Formaat wijzigen"
+          crop: "Bijsnijden"
+          apply: "Toepassen"
+      dropzone:
+        instructions: "<strong>Sleep  bestanden van uw computer hier naartoe.</strong><br/>U kunt ook"
+        browse: "Zoeken naar een bestand"
+      list:
+        no_items: "Er is geen media op dit moment."
+        buttons:
+          select: "Selecteer"
+          edit: "Bewerk"
+      nav:
+        types:
+          all: Alles
+          pdf: PDF's
+          image: Afbeeldingen
+          media: andere bestanden
+          others: overige
+      search_form:
+        placeholder: Zoeken bij bestandsnaam
+    public_submission_accounts:
+      edit:
+        title: "%{name} &mdash; Notificatie instellingen"
+    content_entries:
+      index:
+        title: '%{type}'
+        download: Download items
+        new: Nieuwe item
+        edit_notification_settings: Wijzig notificatie instellingen
+        search_placeholder: "Voeg uw zoek kernwoorden hier in"
+        group_by:
+          all: Alles
+      list:
+        no_items: "Er zijn geen items beschikbaar. Klik <a href=\"%{url}\">hier</a> om een eerste aan te maken."
+      new:
+        title: '%{type} &mdash; nieuw item'
+      edit:
+        title: '%{type} &mdash; item aanpassen'
+      shared:
+        back: '&larr; Terug naar de lijst'
+    developers_documentation:
+      show:
+        title: Ontwikkelaars
+        wagon: Wagon
+        api: API

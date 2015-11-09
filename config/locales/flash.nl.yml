@@ -1,0 +1,79 @@
+nl:
+  flash:
+    locomotive:
+      pages:
+        create:
+          notice: "Pagina is succesvol gecreëerd."
+          alert: "Pagina kon niet worden gecreëerd."
+        update:
+          notice: "Pagina werd succesvol aangepast."
+          alert: "Pagina kon niet worden aangepast."
+        sort:
+          notice: "Pagina's zijn succesvol gesorteerd."
+        destroy:
+          notice: "Pagina werd succesvol verwijderd."
+      content_entries:
+        create:
+          notice: "Item is succesvol aangemaakt."
+          alert: "Item kon niet worden aangemaakt."
+        update:
+          notice: "Item werd succesvol gewijzigd."
+          alert: "Item kon niet worden gewijzigd."
+        sort:
+          notice: "Items werden succesvol gesorteerd."
+        destroy:
+          notice: "Item werd succesvol verwijderd."
+      content_types:
+        update:
+          notice: "Model werd succesvol gewijzigd."
+          alert: "Model kon niet worden gewijzigd."
+      current_site:
+        update:
+          notice: "Mijn site werd succesvol gewijzigd."
+          alert: "Mijn site kon niet worden gewijzigd."
+      accounts:
+        create:
+          notice: "Account werd succesvol aangemaakt."
+          alert: "Account kon niet worden aangemaakt."
+      my_account:
+        update:
+          notice: "Account werd succesvol gewijzigd."
+          alert: "Account kon niet worden gewijzigd."
+      sites:
+        create:
+          notice: "Site is succesvol aangemaakt."
+          alert: "Site kon niet worden aangemaakt."
+        destroy:
+          notice: "Site werd succesvol verwijderd."
+      memberships:
+        create:
+          notice: "Lidmaatschap is succesvol aangemaakt."
+          alert: "Lidmaatschap kon niet worden aangemaakt."
+          already_created: "Account werd voorheen al toegevoegd aan de huidige website."
+      content_assets:
+        create:
+          notice: "Bestand is succesvol geupload."
+          alert: "Bestand kon niet worden geupload."
+        bulk_create:
+          notice: "Bestanden zijn succesvol geupload."
+          alert: "Bestanden konden niet worden geupload."
+        update:
+          notice: "Bestand is succesvol gewijzigd."
+          alert: "Bestand kon niet worden gewijzigd."
+        destroy:
+          notice: "Bestand werd succesvol verwijderd."
+          alert: "Bestand kon niet verwijderd worden."
+      translations:
+        create:
+          notice: "Vertaling is succesvol aangemaakt."
+          alert: "Vertaling kon niet worden verwijderd."
+        update:
+          notice: "Vertaling is succesvol gewijzigd."
+          alert: "Vertaling kon niet worden gewijzigd."
+        destroy:
+          notice: "Vertaling werd succesvol verwijderd."
+      custom_fields:
+        select_options:
+          update:
+            notice: "Veld werd succesvol aangepast."
+            alert: "Veld kon niet worden gewijzigd."
