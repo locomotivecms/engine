@@ -1,0 +1,50 @@
+// =============================================================================
+// Public
+// =============================================================================
+
+.public-background {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  text-align: center;
+  background: linear-gradient(top, #54b9cd 60px, #54b9cd 20%, #5488cc);
+  background-position: left top;
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+.public-logo {
+  display: inline-block;
+  margin: 50px 0 15px;
+  img,
+  span {
+    display: inline-block;
+    vertical-align: middle;
+  }
+  img {
+    display: inline-block;
+    height: 22px;
+    margin-right: 10px;
+    vertical-align: middle;
+  }
+  span {
+    font-family: $font-family-sans-serif-brand;
+    font-size: 18px;
+    font-weight: 400;
+    color: $white;
+  }
+}
+
+.public-form-wrapper {
+  display: inline-block;
+  width: 100%;
+  max-width: 700px;
+  text-align: center;
+}
+
+.public-form {
+  display: block;
+  text-align: left;
+}

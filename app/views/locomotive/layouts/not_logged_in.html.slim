@@ -7,8 +7,10 @@ html xmlns='http://www.w3.org/1999/xhtml' lang=I18n.locale
 
     link rel="icon" type="image/png" href="#{asset_url('locomotive/favicon.png')}" sizes="32x32"
 
+    link href="https://fonts.googleapis.com/css?family=Muli:400,300" rel="stylesheet" type="text/css"
+
     = javascript_include_tag  'locomotive/not_logged_in'
-    = stylesheet_link_tag     'locomotive/not_logged_in', media: 'screen'
+    = stylesheet_link_tag     'locomotive/unauthorized', media: 'screen'
 
     javascript:
       window.flash_messages = #{{flash_messages_to_json}};
@@ -16,11 +18,9 @@ html xmlns='http://www.w3.org/1999/xhtml' lang=I18n.locale
     = yield :head
 
   body class=[controller.controller_name, flash.empty? ? '' : 'with-flash'].join(' ')
-    .wrapper.container-fluid
-      .main
-        .content
-          h1
-            = image_tag 'locomotive/logo.png'
-            | &nbsp;
-            == title
-          = yield
+    .public-background
+      .public-form-wrapper
+        = link_to sites_path, class: 'public-logo' do
+          = image_tag 'locomotive/logo.png'
+          span Locomotive
+        = yield

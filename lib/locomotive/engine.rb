@@ -41,7 +41,7 @@ module Locomotive
         locomotive.js
         locomotive.css
         locomotive/not_logged_in.js
-        locomotive/not_logged_in.css
+        locomotive/unauthorized.css
         locomotive/live_editing_iframe.css
         locomotive/live_editing_error.css
         locomotive/error.css)
