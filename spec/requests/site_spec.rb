@@ -15,6 +15,17 @@ describe Locomotive::Middlewares::Site do
 
   end
 
+  describe 'no account' do
+
+    let(:app) { ->(env) { raise ::Locomotive::Steam::NoSiteException.new } }
+
+    subject { middleware.call(env_for(url)) }
+
+    it { expect(subject.first).to eq 301 }
+    it { expect(subject[1]['Location']).to eq '/locomotive/sign_up' }
+
+  end
+
   describe 'requesting the back-office assets' do
 
     before { site }

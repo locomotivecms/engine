@@ -2,6 +2,8 @@ module Locomotive
   module Middlewares
     class Site
 
+      include Locomotive::Engine.routes.url_helpers
+
       def initialize(app, opts = {})
         @app = app
       end
@@ -23,8 +25,7 @@ module Locomotive
           begin
             @app.call(env)
           rescue ::Locomotive::Steam::NoSiteException => exception
-            # no_site!
-            Locomotive::ErrorsController.action(:no_site).call(env)
+            handle_no_account_or_site(env)
           end
         end
       end
@@ -44,6 +45,17 @@ module Locomotive
           fetch_from_host(request)
         else
           nil
+        end
+      end
+
+      # if no account in the database, must be a fresh install,
+      # then ask the user to create the first account.
+      # if accounts but not no site, render a specific error page.
+      def handle_no_account_or_site(env)
+        if Locomotive::Account.count == 0
+          [301, { 'Location' => sign_up_path, 'Content-Type' => 'text/html' }, []]
+        else
+          Locomotive::ErrorsController.action(:no_site).call(env)
         end
       end
 
