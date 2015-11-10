@@ -15,37 +15,16 @@
 
 // Core CSS
 
-@import "bootstrap/reboot";
-@import "bootstrap/type";
-@import "bootstrap/images";
+@import "bootstrap/scaffolding";
+@import "unauthorized/type";
 @import "bootstrap/grid";
-@import "bootstrap/forms";
+@import "unauthorized/forms";
 @import "bootstrap/buttons";
 
 // Components
 
-@import "bootstrap/alert";
+@import "bootstrap/alerts";
 
 // Custom components
 
 @import "unauthorized/public";
-
-
-
-
-// Old
-
-// @import "font-awesome-sprockets";
-// @import "font-awesome";
-
-// @import "./globals/variables";
-// @import "bootstrap";
-
-// @import "./base/all";
-// @import "./base/not_logged_in/all";
-
-// @import "layouts/not_logged_in";
-
-// @import "components/misc/notify";
-// @import "components/not_logged_in/sign_in_and_up";
-// @import "components/not_logged_in/passwords";

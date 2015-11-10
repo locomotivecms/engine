@@ -168,8 +168,12 @@ en:
 
     registrations:
       new:
+        confirm_password: Confirm password
+        description: "Looks like you are the first one here, create an account below to start using Locomotive."
+        register: Register
         sign_in: Already have an account?
-        submit: Sign up
+        submit: Register
+        title: Register
 
     passwords:
       new:

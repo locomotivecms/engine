@@ -1,0 +1,33 @@
+// =============================================================================
+// Forms
+// =============================================================================
+
+@import "bootstrap/forms";
+
+// Hack to hide simple form legend tag, should be removed in simple form
+// instead of here.
+
+legend {
+  display: none;
+}
+
+label {
+  margin-bottom: 8px;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: .1em;
+  color: $gray;
+  text-transform: uppercase;
+}
+
+.form-control {
+  box-shadow: none;
+  &:hover {
+    border-color: $gray-light;
+  }
+  &:focus,
+  &:active {
+    outline: none;
+    box-shadow: none;
+  }
+}

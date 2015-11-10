@@ -2,10 +2,22 @@
 // Variables
 // =============================================================================
 
+// Shades of gray
+
+$black: #000;
+$gray-darkest: #232528;
+$gray-darker: lighten($gray-darkest, 15);
+$gray-dark: lighten($gray-darkest, 30);
+$gray: lighten($gray-darkest, 45);
+$gray-light: lighten($gray-darkest, 65);
+$gray-lighter: lighten($gray-darkest, 75);
+$gray-lightest: lighten($gray-darkest, 85);
+$white: #fff;
+
 // Colors
 
-$white: #fff;
 $brand-primary: #54b9cd;
+$brand-primary-alt: #5488cc;
 $brand-success: #54cc68;
 $brand-warning: #f0ad4e;
 $brand-danger: #d9684c;
@@ -14,5 +26,28 @@ $brand-danger: #d9684c;
 
 $font-family-sans-serif: "Noto Sans", sans-serif;
 $font-family-sans-serif-brand: "Muli", sans-serif;
+$font-size-base: 14px;
+
+// Common
+
+$border-radius-base: 3px;
+$border-color-base: $gray-lighter;
+$padding-base-vertical: 12px;
+$padding-base-horizontal: 15px;
+$base-transition-speed: .3s;
+
+// Headings
+
+$headings-font-family: $font-family-sans-serif-brand;
+$headings-color: $gray-dark;
+
+// Forms
+
+$input-bg: $white;
+$input-color: $gray-dark;
+$input-border: $gray-lighter;
+$input-border-focus: $gray;
+$input-box-shadow-focus: 0;
+$input-color-placeholder: $gray-light;
 
 @import "bootstrap/variables";
