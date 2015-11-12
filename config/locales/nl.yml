@@ -147,17 +147,16 @@ nl:
         loading_activity_feed: Laden...
     sessions:
       new:
-        title: "Aanmelden"
-        link: "Wachtwoord vergeten"
         email: "Email"
+        link: "Wachtwoord vergeten"
         password: "Wachtwoord"
         sign_up: Heeft u geen account?
         submit: Aanmelden
+        title: Aanmelden
     registrations:
       new:
         confirm_password: Wachtwoord bevestigen
         description: "Het ziet er naar uit dat u de eerste hier bent, creëer een account hieronder om Locomotive te gebruiken."
-        register: Registeren
         sign_in: Heeft u al een account?
         submit: Registeren
         title: "Registreer"

@@ -78,8 +78,11 @@
   display: block;
   margin-bottom: 20px;
   text-align: center;
+  h3 {
+    margin-bottom: 15px;
+  }
   p {
-    margin: 15px 0 30px;
+    margin-bottom: 30px;
     color: $gray-light;
   }
 }
@@ -97,6 +100,7 @@
   &:focus {
     color: $white;
     text-decoration: none;
+    outline: none;
   }
 }
 

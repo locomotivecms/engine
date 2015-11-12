@@ -159,18 +159,17 @@ en:
 
     sessions:
       new:
-        title: "Sign in"
-        link: "I forgot my password"
         email: "Email"
+        link: "Forgot my password"
         password: "Password"
         sign_up: Do not have an account?
         submit: Sign in
+        title: Sign in
 
     registrations:
       new:
         confirm_password: Confirm password
         description: "Looks like you are the first one here, create an account below to start using Locomotive."
-        register: Register
         sign_in: Already have an account?
         submit: Register
         title: Register

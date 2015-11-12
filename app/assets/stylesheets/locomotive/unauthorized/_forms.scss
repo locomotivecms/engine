@@ -18,6 +18,26 @@ label {
   letter-spacing: .1em;
   color: $gray;
   text-transform: uppercase;
+  vertical-align: middle;
+}
+
+.help-inline {
+  display: inline-block;
+  margin-bottom: 8px;
+  margin-left: 10px;
+  text-transform: uppercase;
+  vertical-align: middle;
+  a {
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: .1em;
+    color: $gray-light;
+    transition: color $base-transition-speed linear;
+    &:hover {
+      color: $brand-primary;
+      text-decoration: none;
+    }
+  }
 }
 
 .form-control {
