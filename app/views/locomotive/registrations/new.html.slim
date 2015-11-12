@@ -4,6 +4,7 @@
   .public-form-text
     h3= t('locomotive.registrations.new.title')
     p= t('locomotive.registrations.new.description')
+
   = locomotive_form_for resource, as: resource_name, url: sign_up_path do |f|
     = f.inputs do
       = f.input :name, required: true, autofocus: true

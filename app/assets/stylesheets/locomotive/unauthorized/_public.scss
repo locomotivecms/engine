@@ -21,11 +21,16 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  display: inline-block;
+  display: block;
   width: 100%;
   max-width: 480px;
   padding: 20px;
-  margin: -360px 0 0 -240px;
+  margin-left: -240px;
+  &.is-fixed {
+    top: 0;
+    margin-top: 25px;
+    margin-bottom: 25px;
+  }
 }
 
 // Adds a logo above the public form.
@@ -56,7 +61,7 @@
 // height calculated.
 
 .public-form {
-  display: inline-block;
+  display: block;
   padding: 50px;
   margin: 25px 0 20px;
   background: $white;
@@ -111,21 +116,10 @@
   .public-form-wrapper {
     left: 0;
     padding: 20px 10px;
-    margin: -360px 0 0 0;
+    margin-left: 0;
   }
   .public-form {
     display: inline-block;
     padding: 50px 20px;
-  }
-}
-
-// When viewport height is smaller then the public form wrapper then it pops
-// nicely on top of the page.
-
-@media all and (max-height: 743px) {
-  .public-form-wrapper {
-    top: 0;
-    margin-top: 25px;
-    margin-bottom: 25px;
   }
 }

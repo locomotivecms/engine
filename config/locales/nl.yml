@@ -1,7 +1,5 @@
 nl:
   locomotive:
-    not_logged_in:
-      title: "Locomotive <small>Designed to save your time</small>"
     locales:
       en: Engels
       de: Duits
@@ -153,9 +151,10 @@ nl:
         sign_up: Heeft u geen account?
         submit: Aanmelden
         title: Aanmelden
+
     registrations:
       new:
-        confirm_password: Wachtwoord bevestigen
+        confirm_password: "Herhaal uw nieuwe wachtwoord"
         description: "Het ziet er naar uit dat u de eerste hier bent, creëer een account hieronder om Locomotive te gebruiken."
         sign_in: Heeft u al een account?
         submit: Registeren
@@ -163,14 +162,19 @@ nl:
 
     passwords:
       new:
-        link: "&rarr; Terug naar de inlog pagina"
+        description: "Vul uw email in hieronder en ontvang een email met instructies over hoe u uw wachtwoord kunt wijzigen."
+        link: "Ga terug naar de login pagina"
         email: "Uw email"
-        submit: Wachtwoord vergeten
+        submit: "Verzenden"
+        title: "Wachtwoord vergeten"
       edit:
-        link: "&rarr; Terug naar de inlog pagina"
+        description: "Vul uw nieuw wachtwoord in hieronder."
+        link: "Ga terug naar de login pagina"
         password: "Uw nieuwe wachtwoord"
         password_confirmation: "Herhaal uw nieuwe wachtwoord"
-        submit: "Verander mijn wachtwoord"
+        submit: "Wachtwoord veranderen"
+        title: Wachtwoord veranderen
+
     pages:
       index:
         title: 'Pagina''s'

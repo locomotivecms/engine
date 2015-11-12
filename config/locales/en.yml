@@ -1,8 +1,5 @@
 en:
   locomotive:
-    not_logged_in:
-      title: "Locomotive <small>Designed to save your time</small>"
-
     locales:
       en: English
       de: German
@@ -176,14 +173,18 @@ en:
 
     passwords:
       new:
-        link: "&rarr; Back to login page"
+        description: "Fill in your email below and you'll receive an email with instruction on how to reset your password."
+        link: "Go back to login page"
         email: "Your email"
-        submit: Forgot password
+        submit: "Submit"
+        title: "Forgot your password"
       edit:
-        link: "&rarr; Back to login page"
+        description: "Fill in your new password below."
+        link: "Go back to login page"
         password: "Your new password"
-        password_confirmation: "Confirmation of your new password"
+        password_confirmation: "Confirm password"
         submit: "Update my password"
+        title: Reset password
 
     pages:
       index:

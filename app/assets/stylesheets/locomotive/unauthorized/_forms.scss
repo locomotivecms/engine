@@ -21,25 +21,6 @@ label {
   vertical-align: middle;
 }
 
-.help-inline {
-  display: inline-block;
-  margin-bottom: 8px;
-  margin-left: 10px;
-  text-transform: uppercase;
-  vertical-align: middle;
-  a {
-    font-size: 12px;
-    font-weight: 400;
-    letter-spacing: .1em;
-    color: $gray-light;
-    transition: color $base-transition-speed linear;
-    &:hover {
-      color: $brand-primary;
-      text-decoration: none;
-    }
-  }
-}
-
 .form-control {
   box-shadow: none;
   &:hover {
@@ -50,4 +31,32 @@ label {
     outline: none;
     box-shadow: none;
   }
+}
+
+// Inline validations
+// =============================================================================
+
+.help-inline,
+.help-inline a {
+  display: inline-block;
+  margin-left: 10px;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: .1em;
+  color: $gray-light;
+  text-transform: uppercase;
+  vertical-align: middle;
+  a {
+    margin-bottom: 8px;
+    color: $gray-light;
+    transition: color $base-transition-speed linear;
+    &:hover {
+      color: $brand-primary;
+      text-decoration: none;
+    }
+  }
+}
+
+.error-inline {
+  color: rgba($brand-danger, .7);
 }
