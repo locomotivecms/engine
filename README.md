@@ -65,9 +65,10 @@ Here is our Transifex portal page: [https://www.transifex.com/locomotive/locomot
 
 Locomotive is an open source project, we encourage contributions. If you have found a bug and want to contribute a fix, or have a new feature you would like to add, follow the steps below to get your patch into the project:
 
-- Install ruby and mongoDB
+- Install ruby, mongoDB and phantomjs
 - Clone the project <code>git clone git@github.com:locomotivecms/engine.git</code>
 - Setup a virtual host entry for <code>test.example.com</code> to point to localhost
+- Start mongodb if it is not already running
 - Run the tests <code>bundle exec rake</code>
 - Write your failing tests
 - Make the tests pass
