@@ -8,10 +8,13 @@
 
 @import "unauthorized/variables";
 @import "bootstrap/mixins";
+@import "unauthorized/keyframes";
 
 // Reset and dependencies
 
 @import "bootstrap/normalize";
+@import "font-awesome-sprockets";
+@import "font-awesome";
 
 // Core CSS
 
@@ -27,4 +30,5 @@
 
 // Custom components
 
+@import "unauthorized/notify";
 @import "unauthorized/public";

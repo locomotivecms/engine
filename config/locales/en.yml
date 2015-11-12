@@ -184,7 +184,7 @@ en:
         password: "Your new password"
         password_confirmation: "Confirm password"
         submit: "Update my password"
-        title: Reset password
+        title: "Reset password"
 
     pages:
       index:

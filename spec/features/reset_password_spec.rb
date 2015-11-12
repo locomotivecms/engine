@@ -9,7 +9,7 @@ describe 'User resets her/his password' do
 
       visit url
       fill_in 'Your new password', with: 'newpassword'
-      fill_in 'Confirmation of your new password', with: 'newpassword'
+      fill_in 'Confirm password', with: 'newpassword'
       click_button 'Update my password'
       expect(page).to have_content('Your password was changed successfully. You are now signed in.')
     end
@@ -19,7 +19,7 @@ describe 'User resets her/his password' do
     forgot_password do |_, url|
       visit url
       fill_in 'Your new password', with: 'a'
-      fill_in 'Confirmation of your new password', with: 'b'
+      fill_in 'Confirm password', with: 'b'
       click_button 'Update my password'
       expect(page).to have_content("doesn't match Password")
     end
@@ -29,7 +29,7 @@ describe 'User resets her/his password' do
     forgot_password do |_, url|
       visit url
       fill_in 'Your new password', with: ''
-      fill_in 'Confirmation of your new password', with: ''
+      fill_in 'Confirm password', with: ''
       click_button 'Update my password'
       expect(page).to have_content("can't be blank")
     end

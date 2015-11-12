@@ -39,7 +39,8 @@ label {
 .help-inline,
 .help-inline a {
   display: inline-block;
-  margin-left: 10px;
+  margin-bottom: 8px;
+  margin-left: 15px;
   font-size: 12px;
   font-weight: 400;
   letter-spacing: .1em;
@@ -47,7 +48,7 @@ label {
   text-transform: uppercase;
   vertical-align: middle;
   a {
-    margin-bottom: 8px;
+    margin: 0;
     color: $gray-light;
     transition: color $base-transition-speed linear;
     &:hover {
