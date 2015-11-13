@@ -35,8 +35,8 @@ module Locomotive
 
         element = elements.first.last
 
-        { name: block, label: element.block_label, priority: element.block_priority }
-      end.sort { |a, b| b[:priority] <=> a[:priority] }
+        { name: block, label: element.block_label, priority: element.block_priority || 0 }
+      end.compact.sort { |a, b| b[:priority] <=> a[:priority] }
     end
 
     private
