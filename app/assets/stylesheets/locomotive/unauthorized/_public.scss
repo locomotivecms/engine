@@ -1,0 +1,129 @@
+// =============================================================================
+// Public
+// =============================================================================
+
+// Adds an outer div which is fixed and spans the entire viewport.
+
+.public-background {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: auto;
+  text-align: center;
+  background: linear-gradient(to bottom, $brand-primary 60px, $brand-primary 20%, $brand-primary-alt);
+}
+
+// Centers the content of a public page.
+.public-container {
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  animation: fade-down 1s ease-out;
+  &:before {
+    content: ' ';
+    display: inline-block;
+    vertical-align: middle;
+    height: 100%;
+  }
+}
+
+// Wraps and centers all content of the public forms.
+
+.public-form-wrapper {
+  width: 480px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+// Adds a logo above the public form.
+
+.public-logo {
+  display: inline-block;
+  img,
+  span {
+    display: inline-block;
+    vertical-align: middle;
+  }
+  img {
+    display: inline-block;
+    height: 26px;
+    margin-right: 10px;
+    vertical-align: middle;
+  }
+  span {
+    margin-top: 2px;
+    font-family: $font-family-sans-serif-brand;
+    font-size: 20px;
+    line-height: 1.6;
+    color: $white;
+  }
+}
+
+// Contains the form styling. Note that each form should have a different
+// height calculated.
+
+.public-form {
+  display: block;
+  padding: 50px;
+  margin: 25px 0 20px;
+  background: $white;
+  border-radius: $border-radius-base;
+  box-shadow: 0 1px 10px rgba($black, .2);
+  form {
+    display: block;
+    width: 100%;
+    text-align: left;
+  }
+  .btn {
+    margin-top: 22px;
+  }
+}
+
+// Styles intro title and text above the public form.
+
+.public-form-text {
+  display: block;
+  margin-bottom: 20px;
+  text-align: center;
+  h3 {
+    margin-bottom: 15px;
+  }
+  p {
+    margin-bottom: 30px;
+    color: $gray-light;
+  }
+}
+
+// Creates a link below the public form.
+
+.public-link {
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 400;
+  color: rgba($white, .7);
+  transition: color $base-transition-speed linear;
+  &:hover,
+  &:active,
+  &:focus {
+    color: $white;
+    text-decoration: none;
+    outline: none;
+  }
+}
+
+// Responsive
+// =============================================================================
+
+@media (max-width: $screen-xs-min) {
+  .public-form-wrapper {
+    left: 0;
+    padding: 20px 10px;
+    margin-left: 0;
+  }
+  .public-form {
+    display: inline-block;
+    padding: 50px 20px;
+  }
+}

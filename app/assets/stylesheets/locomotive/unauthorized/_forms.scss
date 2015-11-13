@@ -1,0 +1,63 @@
+// =============================================================================
+// Forms
+// =============================================================================
+
+@import "bootstrap/forms";
+
+// Hack to hide simple form legend tag, should be removed in simple form
+// instead of here.
+
+legend {
+  display: none;
+}
+
+label {
+  margin-bottom: 8px;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: .1em;
+  color: $gray;
+  text-transform: uppercase;
+  vertical-align: middle;
+}
+
+.form-control {
+  box-shadow: none;
+  &:hover {
+    border-color: $gray-light;
+  }
+  &:focus,
+  &:active {
+    outline: none;
+    box-shadow: none;
+  }
+}
+
+// Inline validations
+// =============================================================================
+
+.help-inline,
+.help-inline a {
+  display: inline-block;
+  margin-bottom: 8px;
+  margin-left: 15px;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: .1em;
+  color: $gray-light;
+  text-transform: uppercase;
+  vertical-align: middle;
+  a {
+    margin: 0;
+    color: $gray-light;
+    transition: color $base-transition-speed linear;
+    &:hover {
+      color: $brand-primary;
+      text-decoration: none;
+    }
+  }
+}
+
+.error-inline {
+  color: rgba($brand-danger, .7);
+}

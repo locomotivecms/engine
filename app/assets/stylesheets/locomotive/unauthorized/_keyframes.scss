@@ -1,0 +1,31 @@
+// =============================================================================
+// Keyframes
+// =============================================================================
+
+// Fades a element down while increasing its opacity.
+
+@keyframes fade-down {
+  0% {
+    opacity: .5;
+    transform: translateY(-10px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Fades a element to the left while increasing its opacity.
+
+@keyframes fade-left {
+  0% {
+    opacity: .5;
+    transform: translateX(10px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}

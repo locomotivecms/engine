@@ -5,6 +5,8 @@ SimpleForm.setup do |config|
 
   config.boolean_style = :nested
 
+  config.label_text = lambda { |label, required, explicit_label| "#{} #{label}" }
+
   config.wrapper_mappings = {
     array:              :locomotive_link,
     editable_select:    :locomotive_link,

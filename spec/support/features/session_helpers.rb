@@ -7,7 +7,7 @@ module Features
       fill_in 'Email', with: email
       fill_in 'locomotive_account[password]', with: password
       fill_in 'locomotive_account[password_confirmation]', with: password_confirmation || password
-      click_button 'Sign up'
+      click_button 'Register'
     end
 
     def sign_in
@@ -22,9 +22,9 @@ module Features
       sign_up_with 'John Doe', 'john@doe.net', 'password'
       click_link 'Welcome, John Doe' if js
       within('.header') { click_link 'Log out' }
-      click_link 'I forgot my password'
+      click_link 'Forgot my password'
       fill_in 'Your email', with: 'john@doe.net'
-      click_button 'Forgot password'
+      click_button 'Submit'
 
       if block_given?
         last_email = ActionMailer::Base.deliveries.last
