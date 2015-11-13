@@ -29,6 +29,10 @@ module Locomotive
       ::DeviseController.respond_to :html, :json
     end
 
+    initializer 'locomotive.assets' do |app|
+      app.config.assets.paths << root.join('vendor', 'assets', 'components', 'locomotive')
+    end
+
     initializer 'locomotive.precompile.hook', group: :all do |app|
       app.config.assets.precompile += %w(
         locomotive/bootstrap-colorpicker/saturation.png

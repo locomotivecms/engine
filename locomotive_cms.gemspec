@@ -36,7 +36,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'mime-types',                      '~> 2.5'
   s.add_dependency 'custom_fields',                   '~> 2.4.0.rc8'
 
-  s.add_dependency 'locomotivecms_steam',             '~> 1.0.0.rc2'
+  s.add_dependency 'locomotivecms_steam',             '~> 1.0.0.rc3'
 
   s.add_dependency 'slim',                            '~> 3.0.6'
   s.add_dependency 'simple_form',                     '~> 3.2.0'
@@ -47,7 +47,6 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'jquery-rails',                    '~> 4.0.3'
   s.add_dependency 'jquery-ui-rails',                 '~> 5.0.3'
-  s.add_dependency 'backbone-on-rails',               '~> 1.2.0.0'
   s.add_dependency 'codemirror-rails',                '~> 5.6'
   s.add_dependency 'flash_cookie_session',            '~> 1.1.1'
   s.add_dependency 'select2-rails',                   '~> 3.5.9'
