@@ -51,7 +51,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'flash_cookie_session',            '~> 1.1.1'
   s.add_dependency 'select2-rails',                   '~> 3.5.9'
   s.add_dependency 'compass-rails',                   '2.0.4'
-  s.add_dependency 'bootstrap-sass',                  '~> 3.3.3'
+  s.add_dependency 'bootstrap-sass',                  '~> 3.3.5.1'
   s.add_dependency 'autoprefixer-rails',              '~> 6.0.3'
 
   s.add_dependency 'font-awesome-sass',               '~> 4.4.0'

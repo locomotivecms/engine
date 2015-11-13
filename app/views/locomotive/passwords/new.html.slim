@@ -1,17 +1,20 @@
-- title current_site ? current_site.name : t('locomotive.not_logged_in.title')
+- title t('locomotive.passwords.new.title')
 
-= locomotive_form_for(resource, as: resource_name, url: locomotive_account_password_path) do |f|
+.public-form
+  .public-form-text
+    h3= t('locomotive.passwords.new.title')
+    p= t('locomotive.passwords.new.description')
 
-  = f.hidden_field :reset_password_token
+  = locomotive_form_for(resource, as: resource_name, url: locomotive_account_password_path) do |f|
 
-  = f.inputs do
-    = flash_message
-    = f.input :email, label: t('.email'), required: false
+    = f.hidden_field :reset_password_token
 
-  = f.actions do
-    = f.button :submit, t('.submit'), class: 'btn'
+    = f.inputs do
+      = flash_message
+      = f.input :email, label: t('.email'), required: false
 
-    br
+    = f.actions do
+      = f.button :submit, t('.submit'), class: 'btn btn-primary'
 
-    p
-      = link_to t('.link').html_safe, new_locomotive_account_session_path
+
+= link_to t('.link').html_safe, new_locomotive_account_session_path, class: "public-link"

@@ -1,0 +1,34 @@
+// =============================================================================
+// Unauthorized
+// =============================================================================
+
+// Stylesheet for all un-authorized pages like register, sign in, ...
+
+// Core variables and mixins
+
+@import "unauthorized/variables";
+@import "bootstrap/mixins";
+@import "unauthorized/keyframes";
+
+// Reset and dependencies
+
+@import "bootstrap/normalize";
+@import "font-awesome-sprockets";
+@import "font-awesome";
+
+// Core CSS
+
+@import "bootstrap/scaffolding";
+@import "unauthorized/type";
+@import "bootstrap/grid";
+@import "unauthorized/forms";
+@import "bootstrap/buttons";
+
+// Components
+
+@import "bootstrap/alerts";
+
+// Custom components
+
+@import "unauthorized/notify";
+@import "unauthorized/public";
