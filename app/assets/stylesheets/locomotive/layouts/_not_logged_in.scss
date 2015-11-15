@@ -1,10 +1,12 @@
-@import "../globals/all";
+@import "../globals/variables";
+@import "../globals/mixins";
 
 html {
   background-color: $background_gradient_end;
 }
 
-body, html {
+body,
+html {
   height: 100%;
 }
 
@@ -15,20 +17,17 @@ body {
 
 .wrapper {
   height: 100%;
-
   .main {
     @include full-space();
-    left: $grid-gutter-width;
-    right: $grid-gutter-width;
     @include make-row();
-
+    right: $grid-gutter-width;
+    left: $grid-gutter-width;
     .content {
-      height: 100%;
       @include display-flex;
       @include flex-direction(column);
       @include flex-align(center);
       @include flex-justify-content(center);
+      height: 100%;
     }
   }
-
 }

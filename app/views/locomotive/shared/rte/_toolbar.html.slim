@@ -30,22 +30,27 @@
 
     .style-dialog-content style='display: none'
       a data-wysihtml5-command='formatBlock' data-wysihtml5-command-value='h1' H1
-      br
+      | &nbsp;
       a data-wysihtml5-command='formatBlock' data-wysihtml5-command-value='h2' H2
-      br
+      | &nbsp;
       a data-wysihtml5-command='formatBlock' data-wysihtml5-command-value='h3' H3
-      br
-      a data-wysihtml5-command='formatBlock' data-wysihtml5-command-value='h3' H4
-      br
-      a data-wysihtml5-command='formatBlock' data-wysihtml5-command-value='h3' H5
-      br
-      a data-wysihtml5-command='formatBlock' data-wysihtml5-command-value='h3' H6
-      br
+      | &nbsp;
+      a data-wysihtml5-command='formatBlock' data-wysihtml5-command-value='h4' H4
+      | &nbsp;
+      a data-wysihtml5-command='formatBlock' data-wysihtml5-command-value='h5' H5
+      | &nbsp;
+      a data-wysihtml5-command='formatBlock' data-wysihtml5-command-value='h6' H6
+      | &nbsp;
       a data-wysihtml5-command='formatBlock' data-wysihtml5-command-value='p' P
-      br
+      | &nbsp;
       a data-wysihtml5-command='formatBlock' data-wysihtml5-command-value='blockquote'
         i.fa.fa-quote-right
-      br
+      | &nbsp;
+      a data-wysihtml5-command='formatBlock' data-wysihtml5-command-value='code'
+        | Code
+      | &nbsp;
+      a data-wysihtml5-command='formatBlock' data-wysihtml5-command-value='pre'
+        | Pre
 
     a data-wysihtml5-command='createLink'
       i.fa.fa-chain
@@ -57,6 +62,38 @@
       i.fa.fa-file-o
     = image_popover
 
+    a data-wysihtml5-command='createTable'
+      i.fa.fa-table
+    = table_popover
+
+    a data-wysihtml5-hiddentools='table' class="edit-table" style="display: none"
+      i.fa.fa-table
+
+    .table-dialog-content style='display: none'
+      a data-wysihtml5-command="mergeTableCells" unselectable="on"
+        = t('.table.merge')
+      br
+      a data-wysihtml5-command="addTableCells" data-wysihtml5-command-value="above" unselectable="on"
+        = t('.table.insert_row_before')
+      br
+      a data-wysihtml5-command="addTableCells" data-wysihtml5-command-value="below"
+        = t('.table.insert_row_after')
+      br
+      a data-wysihtml5-command="addTableCells" data-wysihtml5-command-value="before" unselectable="on"
+        = t('.table.insert_col_before')
+      br
+      a data-wysihtml5-command="addTableCells" data-wysihtml5-command-value="after" unselectable="on"
+        = t('.table.insert_col_after')
+      br
+      a data-wysihtml5-command="deleteTableCells" data-wysihtml5-command-value="row" unselectable="on"
+        = t('.table.delete_row')
+      br
+      a data-wysihtml5-command="deleteTableCells" data-wysihtml5-command-value="column" unselectable="on"
+        = t('.table.delete_col')
+
   span.wysihtml5-toolbar-group
+    a.expand
+      i.fa.fa-expand
     a data-wysihtml5-action='change_view'
       i.fa.fa-code
+

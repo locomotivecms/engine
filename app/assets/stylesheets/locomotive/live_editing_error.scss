@@ -1,0 +1,19 @@
+@import "font-awesome-sprockets";
+@import "font-awesome";
+
+@import "./globals/variables";
+@import "bootstrap";
+
+@import "./base/fonts";
+@import "./base/typography";
+
+
+.container {
+  padding-top: 100px;
+  .alert {
+    margin-top: 50px;
+    h4 {
+      font-weight: bold;
+    }
+  }
+}

@@ -26,12 +26,13 @@ module Locomotive
 
         def set_many_to_many(field, value)
           if value.blank?
-            dynamic_attributes[:"#{field.name}_ids"] = [] # reset it
+            dynamic_attributes[:"#{field.name.singularize}_ids"] = [] # reset it
           else
-            dynamic_attributes[:"#{field.name}_ids"] = fetch_entry_ids(field.class_name, value).sort do |a, b|
+            dynamic_attributes[:"#{field.name.singularize}_ids"] = fetch_entry_ids(field.class_name, value).sort do |a, b|
+              # keep the original order
               (value.index(a.first.to_s) || value.index(a.last)) <=>
               (value.index(b.first.to_s) || value.index(b.last))
-            end # keep the original order
+            end.map(&:first)
           end
         end
 

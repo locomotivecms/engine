@@ -26,13 +26,10 @@ Locomotive::Steam.configure do |config|
   config.middleware.delete Rack::Lint
   config.middleware.delete Rack::Session::Moneta
 
-  require_relative 'steam/middlewares/missing_translations'
-  require_relative 'steam/middlewares/page_editing'
-  require_relative 'steam/middlewares/cache'
-
-  config.middleware.insert_after Locomotive::Steam::Middlewares::Page, Locomotive::Steam::Middlewares::Cache
-  config.middleware.insert_after Locomotive::Steam::Middlewares::Page, Locomotive::Steam::Middlewares::PageEditing
-  config.middleware.insert_after Locomotive::Steam::Middlewares::Page, Locomotive::Steam::Middlewares::MissingTranslations
+  %w(cache catch_error page_editing missing_translations wysihtml_css).each do |name|
+    require_relative "steam/middlewares/#{name}"
+    config.middleware.insert_after Locomotive::Steam::Middlewares::Page, Locomotive::Steam::Middlewares.const_get(name.camelize)
+  end
 
   require_relative 'steam/services/api_entry_submission_service'
   require_relative 'steam/services/liquid_parser_with_cache_service'

@@ -32,6 +32,8 @@ describe Locomotive::API::Resources::CurrentSiteResource do
         before { get "#{url_prefix}.json" }
         it 'returns the current site' do
           expect(parsed_response[:name]).to eq(site.name)
+          expect(parsed_response[:preview_url]).to eq('http://example.org/locomotive/acme/preview')
+          expect(parsed_response[:sign_in_url]).to eq('http://example.org/locomotive/sign_in')
         end
       end
     end

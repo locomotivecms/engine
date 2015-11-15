@@ -1,0 +1,4 @@
+lt:
+  carrierwave:
+    errors:
+      integrity: 'yra neleistinas failo tipas.'

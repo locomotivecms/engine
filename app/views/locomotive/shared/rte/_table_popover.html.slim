@@ -1,0 +1,17 @@
+.table-dialog-content style='display: none'
+  = locomotive_form_for table_form, url: '#', defaults: { placeholder: false, hint: false } do |f|
+    = f.inputs do
+      = f.input :cols, input_html: { value: 3 }
+      = f.input :rows, input_html: { value: 1 }
+      = f.input :head, as: :toggle
+      = f.input :class_name
+
+    p.text-right
+      a.btn.btn-success.btn-sm.apply
+        = f.submit_text
+
+      | &nbsp;
+
+      a.btn.btn-default.btn-sm.cancel
+        = f.submit_text :cancel
+

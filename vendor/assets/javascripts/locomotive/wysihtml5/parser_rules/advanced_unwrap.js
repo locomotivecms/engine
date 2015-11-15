@@ -1,3 +1,4 @@
+console.log('[ADVANCED UNWRAP] wysihtml5ParserRules');
 /**
  * Full HTML5 compatibility rule set
  * These rules define which tags and CSS classes are supported and which tags should be specially treated.
@@ -74,8 +75,8 @@ var wysihtml5ParserRules = {
         "wysiwyg-text-align-left": 1,
         "wysiwyg-text-align-right": 1
     },
-    
-    
+
+
     "type_definitions": {
 
         "visible_content_object": {
@@ -83,7 +84,7 @@ var wysihtml5ParserRules = {
                 "has_visible_contet": 1
             }
         },
-        
+
         "alignment_object": {
             "classes": {
                 "wysiwyg-text-align-center": 1,
@@ -98,26 +99,26 @@ var wysihtml5ParserRules = {
                 "text-align": ["left", "right", "center"]
             }
         },
-        
+
         "valid_image_src": {
             "attrs": {
                 "src": /^[^data\:]/i
             }
         },
-        
+
         "text_color_object": {
           "styles": {
             "color": true,
             "background-color": true
           }
         },
-        
+
         "text_fontsize_object": {
           "styles": {
             "font-size": true
           }
         },
-        
+
         "text_formatting_object": {
             "classes": {
                 "wysiwyg-color-aqua": 1,
@@ -150,7 +151,7 @@ var wysihtml5ParserRules = {
     },
 
     "comments": 1, // if set allows comments to pass
-    
+
     /**
      * Tag list
      *
@@ -185,7 +186,7 @@ var wysihtml5ParserRules = {
      *                            - href:           allows something like "mailto:bert@foo.com", "http://google.com", "/foobar.jpg"
      *                            - alt:            strips unwanted characters. if the attribute is not set, then it gets set (to ensure valid and compatible HTML)
      *                            - numbers:  ensures that the attribute only contains numeric characters
-     *                            - any:            allows anything to pass 
+     *                            - any:            allows anything to pass
      */
     "tags": {
         "tr": {
@@ -349,7 +350,7 @@ var wysihtml5ParserRules = {
         "object": {
             "remove": 1
         },
-        
+
         "div": {
             "one_of_type": {
                 "visible_content_object": 1
@@ -363,7 +364,7 @@ var wysihtml5ParserRules = {
                 "align": "align_text"
             }
         },
-        
+
         "option": {
             "remove":1
         },

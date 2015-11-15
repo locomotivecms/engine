@@ -1,125 +1,206 @@
-// custom variables go here
+// =============================================================================
+// Variables
+// =============================================================================
 
-$alt-font-family-sans-serif:              "Muli", sans-serif;
+// Bootstrap variables
+// =============================================================================
 
-$background_gradient_start:               #54b9cd;
-$background_gradient_end:                 #5488cc;
+$brand-primary: #54b9cd !default;
+$brand-success: #54cc68 !default;
+$brand-warning: #f0ad4e !default;
+$brand-danger: #d9684c !default;
 
-$overlay_background:                      #333;
+// Typography
 
-$main_title_color:                        #666;
-$main_background_color:                   #fff;
+$font-family-sans-serif: "Noto Sans", sans-serif !default;
+$font-family-serif: Georgia, "Times New Roman", Times, serif !default;
+$font-size-base: 14px !default;
+$font-size-large: 18px !default;
+$font-size-small: 12px !default;
+$line-height-base: 1.428571429 !default;
+$line-height-computed: 20px !default;
 
-$paragraph_color:                         #595959;
+// Headings
 
-$header_default_color:                    #fff;
+$headings-font-weight: 200 !default;
+$headings-color: #fff !default;
 
-$background_content_list:                 #f1f4f5;
+// Components
 
-$sidebar_width:                           21em;
-$sidebar_darker_background_color:         #2f2f2f;
-$sidebar_background_color:                #383838;
-$sidebar_text_color:                      #fff;
-$sidebar_section_border_color:            #474747;
-$sidebar_section_title_color:             #949999;
-$sidebar_link_color:                      rgba(#fff, 0.8);
-$sidebar_hovered_link_color:              #fff;
-$sidebar_font_size:                       $font-size-base - 1;
-$sidebar_title_font_size:                 $font-size-base - 2;
+$padding-base-vertical: 10px !default;
+$border-radius-base: 0 !default;
 
-$sidebar_link_height:                     45px;
-$sidebar_link_arrow_color:                #616161;
-$sidebar_link_icon_color:                 #949999;
-$sidebar_link_background_hover_color:     #474747;
+// Buttons
 
-$drawer_width:                            40em;
-$drawer_background_color:                 white;
-$drawer_title_color:                      #666;
+$btn-default-bg: #eee !default;
+$btn-primary-bg: $brand-primary !default;
+$btn-primary-border: darken($btn-primary-bg, 10%) !default;
+$btn-success-bg: $brand-success !default;
+$btn-success-border: darken($btn-success-bg, 10%) !default;
 
-$control_window_button_size:              30px;
-$control_window_button_color:             #fff;
-$control_window_background_color:         #383838;
+// Inputs
 
-$live_editing_content_width:                40em;
-$live_editing_content_border_color:         $navbar-default-bg;
-$live_editing_content_background_color:     #fff;
+$input-border: #fff !default;
+$input-height-base: ($line-height-computed + ($padding-base-vertical * 2) + 4) !default;
+
+// Media queries breakpoints
+
+$screen-xs: 480px !default;
+$screen-xs-min: $screen-xs !default;
+$screen-phone: $screen-xs-min !default;
+$screen-sm: 768px !default;
+$screen-sm-min: $screen-sm !default;
+$screen-tablet: $screen-sm-min !default;
+$screen-md: 992px !default;
+$screen-md-min: $screen-md !default;
+$screen-desktop: $screen-md-min !default;
+$screen-lg: 1200px !default;
+$screen-lg-min: $screen-lg !default;
+$screen-lg-desktop: $screen-lg-min !default;
+$screen-xs-max: ($screen-sm-min - 1) !default;
+$screen-sm-max: ($screen-md-min - 1) !default;
+$screen-md-max: ($screen-lg-min - 1) !default;
+
+// Navbar
+
+$navbar-margin-bottom: 0 !default;
+$navbar-border-radius: 0 !default;
+$navbar-padding-vertical: 20px !default;
+$navbar-default-color: #fff !default;
+$navbar-default-bg: #59b9cc !default;
+$navbar-default-border: transparent;
+$navbar-default-link-color: #fff !default;
+$navbar-default-link-hover-color: #eee !default;
+
+// Nav tabs
+
+$nav-tabs-border-color: #ccc !default;
+$nav-tabs-active-link-hover-bg: transparent !default;
+$nav-tabs-active-link-hover-color: #595959 !default;
+$nav-tabs-active-link-hover-border-color: $brand-primary !default; // #5199e0 !default;
+
+// States
+
+$state-warning-text: #8a6d3b !default;
+$state-warning-bg: #fcf8e3 !default;
+
+// Alerts
+
+$alert-warning-bg: $state-warning-bg !default;
+$alert-warning-text: $state-warning-text !default;
+
+// Badges
+
+$badge-color: #dedfe0 !default;
+$badge-bg: #616161 !default;
+$badge-font-weight: normal !default;
+$badge-border-radius: 3px !default;
+
+// Custom variables
+// =============================================================================
+
+$alt-font-family-sans-serif: "Muli", sans-serif;
+$background_gradient_start: #54b9cd;
+$background_gradient_end: #5488cc;
+$overlay_background: #333;
+$main_title_color: #666;
+$main_background_color: #fff;
+$paragraph_color: #595959;
+$header_default_color: #fff;
+$background_content_list: #f1f4f5;
+$sidebar_width: 21em;
+$sidebar_darker_background_color: #2f2f2f;
+$sidebar_background_color: #383838;
+$sidebar_text_color: #fff;
+$sidebar_section_border_color: #474747;
+$sidebar_section_title_color: #949999;
+$sidebar_link_color: rgba(#fff, .8);
+$sidebar_hovered_link_color: #fff;
+$sidebar_font_size: $font-size-base - 1;
+$sidebar_title_font_size: $font-size-base - 2;
+$sidebar_link_height: 45px;
+$sidebar_link_arrow_color: #616161;
+$sidebar_link_icon_color: #949999;
+$sidebar_link_background_hover_color: #474747;
+$drawer_width: 40em;
+$drawer_background_color: white;
+$drawer_title_color: #666;
+$control_window_button_size: 30px;
+$control_window_button_color: #fff;
+$control_window_background_color: #383838;
+$live_editing_content_width: 40em;
+$live_editing_content_border_color: $navbar-default-bg;
+$live_editing_content_background_color: #fff;
 $live_editing_content_alt_background_color: #383838;
-$live_editing_expand_bar_width:             2em;
-
-$form_input_background_color:             #f7f7f7;
-$form_input_hovered_background_color:     #f7f8d1;
-$form_input_padding:                      15px;
-$form_input_radius:                       4px;
-$form_input_label_color:                  #555;
-$form_input_label_untranslated_color:     #f89406;
-$form_input_label_size:                   11px;
-$form_input_control_border_size:          4px;
-$form_input_control_border_color:         #d7d7d7;
+$live_editing_expand_bar_width: 2em;
+$form_input_background_color: #f7f7f7;
+$form_input_hovered_background_color: #f7f8d1;
+$form_input_padding: 15px;
+$form_input_radius: 4px;
+$form_input_label_color: #555;
+$form_input_label_untranslated_color: #f89406;
+$form_input_label_size: 11px;
+$form_input_control_border_size: 4px;
+$form_input_control_border_color: #d7d7d7;
 $form_input_hovered_control_border_color: #d9d9ba;
-$form_input_help_color:                   #828787;
-$form_input_help_size:                    12px;
-$form_input_wrapper_background_color:     #fff;
-
-$form_input_array_item_height:              30px;
-$form_input_array_draggable_color:          #ccc;
-$form_input_array_placeholder:              #bdbdbd;
-$form_input_array_placeholder_background:   #d7d7d7;
-$form_input_array_placeholder_height:       30px;
-$form_input_array_placeholder_margin:       6px;
-$form_input_array_border_size:              2px;
-$form_input_array_border_color:             $form_input_control_border_color;
-$form_input_array_media_border_color:       $form_input_control_border_color;
-
-$form_input_toggle_width:                   50px;
-
-$form_input_rte_command_font_size:          12px;
-$form_input_rte_command_color:              #999;
-$form_input_rte_command_active_color:       #333;
-
-$content_list_item_background_color:        #fff;
-$content_list_item_border_color:            #dadada;
-$content_list_item_border_size:             1px;
-$content_list_item_border_hover_color:      #54b9cd;
-$content_list_item_border_hover_size:       4px;
-$content_list_item_link_color:              #595959;
-$content_list_item_stamp_color:             #949999;
-$content_list_item_stamp_size:              12px;
-
-$content_list_item_min_height:              70px;
-$content_list_item_placeholder:             #bdbdbd;
-$content_list_item_placeholder_background:  #d7d7d7;
-
-$assets_dropzone_background_color:          #f1f4f5;
-$assets_dropzone_background_hover_color:    #f7f7d2;
-$assets_dropzone_instructions_color:        #8c8c8c;
-$assets_dropzone_progress_background:       #d7d7d7;
-$assets_dropzone_progress_bar_color:        #fd4c4c;
-$assets_dropzone_progress_size:             6px;
-
-$asset_background:                          #f7f7f7;
-$asset_border_radius:                       4px;
-$asset_width:                               240px;
-$asset_height:                              240px;
-$asset_title_color:                         #333;
-$asset_size_color:                          #aaa;
-$asset_thumbnail_background:                #d7d7d7;
-$asset_thumbnail_border_radius:             4px;
-$asset_thumbnail_img_border:                2px solid #acacac;
-$asset_not_image_border_color:              #acacac;
-$asset_not_image_text_color:                #fff;
-$asset_pdf_background:                      #e82f2d;
-$asset_media_background:                    #6e489c;
-$asset_other_background:                    #4a4a50;
-$asset_remove_icon_color:                   #7b7b7b;
-
-$cropping_asset_background:                 #f7f7f7;
-$cropping_asset_label_background:           #000;
-$cropping_asset_label_color:                #fff;
-
-$site_wrapper_max_width:  600px; //$screen-sm-min;
-$site_title_color:        #fff;
-$site_background:         #37a9bf;
-$site_hover_background:   #2f95a8;
-$site_domain_color:       #abdde6;
-$site_arrow_color:        #2a8091;
-$site_new_color:          #fff;
+$form_input_help_color: #828787;
+$form_input_help_size: 12px;
+$form_input_wrapper_background_color: #fff;
+$form_input_array_item_height: 30px;
+$form_input_array_draggable_color: #ccc;
+$form_input_array_placeholder: #bdbdbd;
+$form_input_array_placeholder_background: #d7d7d7;
+$form_input_array_placeholder_height: 30px;
+$form_input_array_placeholder_margin: 6px;
+$form_input_array_border_size: 2px;
+$form_input_array_border_color: $form_input_control_border_color;
+$form_input_array_media_border_color: $form_input_control_border_color;
+$form_input_toggle_width: 50px;
+$form_input_rte_command_font_size: 12px;
+$form_input_rte_command_color: #999;
+$form_input_rte_command_active_color: #333;
+$content_list_item_background_color: #fff;
+$content_list_item_border_color: #dadada;
+$content_list_item_border_size: 1px;
+$content_list_item_border_hover_color: #54b9cd;
+$content_list_item_border_hover_size: 4px;
+$content_list_item_link_color: #595959;
+$content_list_item_stamp_color: #949999;
+$content_list_item_stamp_size: 12px;
+$content_list_item_min_height: 70px;
+$content_list_item_placeholder: #bdbdbd;
+$content_list_item_placeholder_background: #d7d7d7;
+$assets_dropzone_background_color: #f1f4f5;
+$assets_dropzone_background_hover_color: #f7f7d2;
+$assets_dropzone_instructions_color: #8c8c8c;
+$assets_dropzone_progress_background: #d7d7d7;
+$assets_dropzone_progress_bar_color: #fd4c4c;
+$assets_dropzone_progress_size: 6px;
+$asset_background: #f7f7f7;
+$asset_border_radius: 4px;
+$asset_width: 240px;
+$asset_height: 240px;
+$asset_title_color: #333;
+$asset_size_color: #aaa;
+$asset_thumbnail_background: #d7d7d7;
+$asset_thumbnail_border_radius: 4px;
+$asset_thumbnail_img_border: 2px solid #acacac;
+$asset_not_image_border_color: #acacac;
+$asset_not_image_text_color: #fff;
+$asset_pdf_background: #e82f2d;
+$asset_media_background: #6e489c;
+$asset_other_background: #4a4a50;
+$asset_remove_icon_color: #7b7b7b;
+$cropping_asset_background: #f7f7f7;
+$cropping_asset_label_background: #000;
+$cropping_asset_label_color: #fff;
+$site_wrapper_max_width: 600px; //$screen-sm-min;
+$site_title_color: #fff;
+$site_background: #37a9bf;
+$site_hover_background: #2f95a8;
+$site_domain_color: #abdde6;
+$site_arrow_color: #2a8091;
+$site_new_color: #fff;
+$nprogress-color: #fec145;
+$nprogress-height: 10px;
+$nprogress-zindex: 10100;

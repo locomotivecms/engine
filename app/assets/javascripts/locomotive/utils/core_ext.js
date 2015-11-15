@@ -60,7 +60,7 @@
     doc.body.appendChild(script);
   }
 
-  window.addStylesheet = function(doc, src, options) {
+  window.addStylesheet = function(doc, src) {
     var stylesheet = doc.createElement('link');
     stylesheet.style = 'text/css';
     stylesheet.href = src;

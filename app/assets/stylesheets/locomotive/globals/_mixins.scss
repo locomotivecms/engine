@@ -1,85 +1,78 @@
-@mixin full-space
-{
-    position: absolute;
-    top: 0px;
-    bottom: 0px;
-    left: 0px;
-    right: 0px;
+@mixin full-space {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
 }
 
-@mixin display-flex
-{
+@mixin display-flex {
   display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
-  display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+  display:    -moz-box;      /* OLD - Firefox 19- (buggy but mostly works) */
   display: -ms-flexbox;      /* TWEENER - IE 10 */
   display: -webkit-flex;     /* NEW - Chrome */
-  display: flex;             /* NEW, Spec - Opera 12.1, Firefox 20+ */
+  display:         flex;     /* NEW, Spec - Opera 12.1, Firefox 20+ */
 }
 
-@mixin flex-justify-content($alignment)
-{
-           -webkit-box-pack: $alignment;
-              -moz-box-pack: $alignment;
-              -ms-flex-pack: $alignment;
-    -webkit-justify-content: $alignment;
-       -moz-justify-content: $alignment;
-            justify-content: $alignment;
+@mixin flex-justify-content($alignment) {
+          justify-content: $alignment;
+
+  -webkit-box-pack: $alignment;
+     -moz-box-pack: $alignment;
+  -ms-flex-pack: $alignment;
+  -webkit-justify-content: $alignment;
+     -moz-justify-content: $alignment;
 }
 
-@mixin flex-align($alignment)
-{
+@mixin flex-align($alignment) {
+          align-items: $alignment;
+
   -webkit-flex-align: $alignment;
-  -ms-flex-align: $alignment;
+      -ms-flex-align: $alignment;
   -webkit-align-items: $alignment;
-  align-items: $alignment;
 }
 
-@mixin flex-direction($direction)
-{
+@mixin flex-direction($direction) {
+          flex-direction: $direction;
+
   -webkit-flex-direction: $direction;
-  flex-direction: $direction;
 }
 
-@mixin flex-wrap
-{
+@mixin flex-wrap {
+          flex-wrap: wrap;
+
   -webkit-flex-wrap: wrap;
-  flex-wrap: wrap;
 }
 
-@mixin flex-justify-content($content)
-{
-  justify-content: $content;
+@mixin flex-justify-content($content) {
+          justify-content: $content;
+
   -webkit-justify-content: $content;
 }
 
-@mixin locomotive_gradient
-{
+@mixin locomotive_gradient {
+  @include background-image(linear-gradient(top, $background_gradient_start 60px, $background_gradient_start 20%, $background_gradient_end));
+  background-position: left top;
   background-repeat: no-repeat;
   background-size: 100%;
-  background-repeat: no-repeat;
-  background-position: left top;
-  @include background-image(linear-gradient(top, $background_gradient_start 60px, $background_gradient_start 20%, $background_gradient_end));
 }
 
-@mixin draggable
-{
-  cursor: move;
+@mixin draggable {
   @include user-select(none);
+  cursor: move;
 }
 
-@mixin control-window-button
-{
+@mixin control-window-button {
   position: absolute;
+  top: 0;
+  right: 0;
   z-index: 991;
-  top: 0px;
-  right: 0px;
-  font-size: 15px;
-  cursor: pointer;
   width: $control_window_button_size;
   height: $control_window_button_size;
+  font-size: 15px;
   line-height: $control_window_button_size;
-  text-align: center;
-  background: $control_window_background_color;
   color: $control_window_button_color;
+  text-align: center;
+  cursor: pointer;
+  background: $control_window_background_color;
 }
-

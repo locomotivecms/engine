@@ -46,7 +46,7 @@ module Locomotive
           put do
             authorize current_site, :update?
 
-            current_site_form = Forms::SiteForm.new(permitted_params_from_policy(current_site, :site))
+            current_site_form = Forms::SiteForm.new(permitted_params_from_policy(current_site, :site, [:picture]))
             service.update(current_site, current_site_form.serializable_hash)
 
             present current_site, with: entity_klass

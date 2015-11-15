@@ -1,6 +1,6 @@
 #= require jquery
 #= require_self
-#= require underscore
+#= require underscore/underscore
 #= require locomotive/bootstrap-notify
 #= require ./utils/notify
 

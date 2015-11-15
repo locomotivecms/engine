@@ -41,6 +41,35 @@ module Mongoid #:nodoc:
         end
       end
     end
+
+    module Embedded
+      class Many < Relations::Many
+
+        def with_same_class!(document, klass)
+          return document if document.is_a?(klass)
+
+          Factory.build(klass, {}).tap do |_document|
+            # make it part of the relationship
+            _document.apply_post_processed_defaults
+            integrate(_document)
+
+            # make it look like the old document
+            attributes = document.attributes
+            attributes['_type'] = _document._type
+
+            _document.instance_variable_set(:@attributes, attributes)
+            _document.new_record  = document.new_record?
+            _document._index      = document._index
+
+            # finally, make the change in the lists
+            target[_document._index]    = _document
+            _unscoped[_document._index] = _document
+          end
+        end
+
+      end
+    end
+
   end
   module Extensions
     module Object

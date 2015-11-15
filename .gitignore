@@ -56,3 +56,4 @@ doc/locomotive/new_ui.md
 dragonfly.log
 spec/dummy/dragonfly.log
 config/old-locales/
+vendor/assets/components/locomotive_sources

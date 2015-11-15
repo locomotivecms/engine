@@ -8,8 +8,8 @@
 //= require jquery-ui
 //= require jquery_ujs
 //= require bootstrap-sprockets
-//= require underscore
-//= require backbone
+//= require underscore/underscore
+//= require backbone/backbone
 //= require codemirror
 //= require codemirror/modes/markdown
 //= require select2

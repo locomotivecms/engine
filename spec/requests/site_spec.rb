@@ -1,17 +1,28 @@
 require 'spec_helper'
 
-describe 'Locomotive::Middlewares::Site' do
+describe Locomotive::Middlewares::Site do
 
   let(:site)        { create('existing site', domains: ['steve.me']) }
   let(:url)         { 'http://example.com/locomotive/models' }
   let(:app)         { ->(env) { [200, env, 'app'] } }
-  let(:middleware)  { Locomotive::Middlewares::Site.new(app) }
+  let(:middleware)  { described_class.new(app) }
 
   subject { code, env = middleware.call(env_for(url)); env['locomotive.site'] }
 
   describe 'no site' do
 
     it { is_expected.to eq(nil) }
+
+  end
+
+  describe 'no account' do
+
+    let(:app) { ->(env) { raise ::Locomotive::Steam::NoSiteException.new } }
+
+    subject { middleware.call(env_for(url)) }
+
+    it { expect(subject.first).to eq 301 }
+    it { expect(subject[1]['Location']).to eq '/locomotive/sign_up' }
 
   end
 

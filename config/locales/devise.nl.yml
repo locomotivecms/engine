@@ -1,0 +1,61 @@
+nl:
+  errors:
+    messages:
+      not_found: "Niet gevonden"
+      already_confirmed: "werd al bevestigd"
+      not_locked: "werd niet vergrendeld"
+  devise:
+    failure:
+      locomotive_account:
+        unauthenticated: 'U moet inloggen of registreren vooraleer u kan verder gaan.'
+        unconfirmed: 'Graag eerst uw account bevestigen vooraleer u kan verder gaan.'
+        locked: 'Uw account is vergrendeld.'
+        invalid: 'Ongeldig email of wachtwoord.'
+        not_found_in_database: 'Ongeldig email of wachtwoord.'
+        no_membership: 'Uw account is geen lid van deze site, gelieve de administrator van deze site te contacteren om toegang te verkrijgen.'
+        invalid_token: 'Ongeldige authenticatie token.'
+        timeout: 'Uw sessie is verlopen, gelieve terug aan te melden.'
+        inactive: 'Uw account werd nog niet geactiveerd.'
+    sessions:
+      locomotive_account:
+        signed_in: 'Succesvol aangemeld.'
+        signed_out: 'Succesvol uitgelogd.'
+    passwords:
+      locomotive_account:
+        send_instructions: 'U zal binnen enkele minuten een email ontvangen met instructies over hoe u uw wachtwoord kunt wijzigen.'
+        updated: 'Uw wachtwoord is succesvol gewijzigd. U bent nu ingelogd.'
+        invalid: 'Gelieve uw wachtwoord opnieuw aan te vragen.'
+    confirmations:
+      locomotive_account:
+        send_instructions: 'U zal binnen enkele minuten een email ontvangen met instructies over hoe u uw account kan bevestigen.'
+        confirmed: 'Uw account is succesvol bevestigd. U bent nu ingelogd.'
+    registrations:
+      locomotive_account:
+        signed_up: 'U bent succesvol geregistreerd.'
+        updated: 'Uw account is succesvol gewijzigd.'
+        destroyed: 'Bye! Uw account is succesvol geannuleerd. We hopen om u snel terug te zien.'
+    unlocks:
+      locomotive_account:
+        send_instructions: 'U zal binnen enkele minuten een email ontvangen met instructies over hoe u uw account kan de-blokkeren.'
+        unlocked: 'Uw account is succesvol gedeblokkeerd. U bent nu ingelogd.'
+    mailer:
+      locomotive_account:
+        confirmation_instructions: 'Bevestiging instructies'
+        reset_password_instructions: 'Wachtwoord reset instructies'
+        unlock_instructions: 'Deblokkeer instructies'
+  locomotive:
+    devise_mailer:
+      common:
+        hello: Hallo
+      confirmation_instructions:
+        you_can_confirm_your_account_through_the_link_below: "U kan uw account bevestigen via de link hieronder:"
+        confirm_my_account: "Bevestig mijn account"
+      reset_password_instructions:
+        reset_password_instruction: "Iemand heeft een link aangevraagd om uw wachtwoord aan te passen, u kunt dit doen via de link hieronder:"
+        change_my_password: "Wachtwoord wijzigen"
+        wrong_request_instruction: "Als u dit niet hebt aangevraagd, gelieve deze mail te negeren."
+        unchange_password_message: "Uw wachtwoord zal niet worden aangepast tot u de bovenstaande link bezoekt en een nieuwe creëert."
+      unlock_instructions:
+        locked_account_message: "Uw account is geblokkeerd door te veel foutieve aanmelding pogingen."
+        unlock_account_instruction: "Klik op de link hieronder om uw account te deblokkeren:"
+        unlock_my_account: "Deblokkeer mijn account"

@@ -1,0 +1,18 @@
+lt:
+  locomotive:
+    inputs:
+      file:
+        none: nėra failo
+        choose: Pasirinkti
+        change: Pakeisti
+        delete: Ištrinti
+        cancel: Atšaukti
+        select_local_file: Įkelti vietinį failą
+        select_content_asset: Pasirinkti iš išteklių
+      array:
+        new: Naujas
+        add: Pridėti
+        edit: Redaguoti
+      toggle:
+        on_text: "Taip"
+        off_text: "Ne"

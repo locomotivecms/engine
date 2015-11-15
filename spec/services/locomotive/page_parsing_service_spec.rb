@@ -51,6 +51,19 @@ describe Locomotive::PageParsingService do
 
     end
 
+    describe "don't deal with untyped editable element" do
+
+      before do
+        page.editable_elements.create(slug: 'top', block: 'body', content: 'Overridden')
+        service.find_or_create_editable_elements(page)
+      end
+
+      subject { page.reload.editable_elements.first.class }
+
+      it { expect(subject).to eq(Locomotive::EditableText) }
+
+    end
+
   end
 
   describe '#group_and_sort_editable_elements' do
@@ -86,17 +99,18 @@ describe Locomotive::PageParsingService do
 
     context 'with some elements' do
 
-      let(:element_1) { instance_double('FakeEditableElementOne', block: nil, block_label: nil, block_priority: 0) }
+      let(:element_1) { instance_double('FakeEditableElementOne', block: nil, block_label: nil, block_priority: nil) }
       let(:element_2) { instance_double('FakeEditableElementTwo', block: 'main', block_label: 'Main', block_priority: 1) }
       let(:element_3) { instance_double('FakeEditableElementThree', block: 'main', block_label: 'Main', block_priority: 1) }
 
       let(:groups) {
         {
-          nil     => [[instance_double('FakePage'), element_1]],
-          'main'  => [
+          nil       => [[instance_double('FakePage'), element_1]],
+          'main'    => [
             [instance_double('FakePage'), element_3],
             [instance_double('FakePage'), element_2]
-          ]
+          ],
+          'footer'  => []
         }
       }
 

@@ -3,11 +3,24 @@ Locomotive.Views.Inputs ||= {}
 class Locomotive.Views.Inputs.RteView extends Backbone.View
 
   events:
-    'click a.style': 'open_styles_dialog'
+    'click a.style':        'open_styles_dialog'
+    'click a.table':        'open_table_dialog'
+    'click a.expand':       'expand'
+    'highlight textarea':   'highlight'
 
   initialize: ->
-    _.bindAll(@, 'register_keydown_event', 'on_content_change')
+    _.bindAll(@, 'register_keydown_event', 'on_content_change', 'resize')
 
+    @tokens = [
+      PubSub.subscribe 'application_view.resize', @resize
+    ]
+
+    @build_editor()
+
+  render: ->
+    @render_views()
+
+  build_editor: ->
     $textarea = @$('textarea')
 
     @editor = new wysihtml5.Editor $textarea.attr('id'),
@@ -20,37 +33,46 @@ class Locomotive.Views.Inputs.RteView extends Backbone.View
     @editor.on 'change', @on_content_change
     @editor.on 'aftercommand:composer', @on_content_change
 
+  render_views: ->
     that = @
     setTimeout(
       ->
-        that.create_link_view()
-        that.create_file_view()
+        that.views = [
+          that.build_and_render_view(Locomotive.Views.Inputs.Rte.LinkView),
+          that.build_and_render_view(Locomotive.Views.Inputs.Rte.FileView),
+          that.build_and_render_view(Locomotive.Views.Inputs.Rte.TableView),
+          that.build_and_render_view(Locomotive.Views.Inputs.Rte.EditTableView)
+        ]
     , 200)
 
-  render: ->
-    # do nothing
+  expand: (event) ->
+    event.stopPropagation() & event.preventDefault()
+
+    $(@el).parents('.simple_form').toggleClass('rte-expanded')
+    $(@el).parents('.inputs').toggleClass('expanded')
+    $(@el).toggleClass('expanded')
+
+    @$style_popover.popover('hide') if @$style_popover?
+
+    @resize()
 
   open_styles_dialog: (event) ->
     $button = $(event.target).closest('a')
+    html    = $button.next('.style-dialog-content').html()
+
     @$style_popover = @$style_popover || ($button.popover
       placement:  'top'
-      content:    $button.next('.style-dialog-content').html()
+      content:    html
       html:       true
-      title:      undefined).popover('show')
+      title:      undefined)
 
-  create_link_view: ->
-    @link_view = new Locomotive.Views.Inputs.Rte.LinkView
-      el:     @$('a[data-wysihtml5-command=createLink]')
-      editor: @editor
+    @$style_popover.data('bs.popover').options.content = html
+    @$style_popover.popover('show')
 
-    @link_view.render()
-
-  create_file_view: ->
-    @file_view = new Locomotive.Views.Inputs.Rte.FileView
-      el:     @$('a[data-wysihtml5-command=insertFile]')
-      editor: @editor
-
-    @file_view.render()
+  build_and_render_view: (klass, command) ->
+    view  = new klass(el: @el, editor: @editor)
+    view.render()
+    view
 
   register_keydown_event: ->
     @$('.wysihtml5-sandbox').contents().find('body').on 'keyup', =>
@@ -61,12 +83,31 @@ class Locomotive.Views.Inputs.RteView extends Backbone.View
       view:     @
       content:  @editor.getValue()
 
+  highlight: (event) ->
+    @editor.focus()
+
+  resize: ->
+    $iframe   = @$('.form-wrapper .wysihtml5-sandbox')
+    $inputs   = $(@el).parents('.inputs')
+    $wrapper  = @$('.form-wrapper')
+
+    if $inputs.hasClass('expanded')
+      delta_height        = $wrapper.outerHeight() - $iframe.outerHeight()
+      wrapper_max_height  = $(@el).height() - ($wrapper.outerHeight() - $wrapper.height() + parseInt($wrapper.css('margin-top')) + parseInt($(@el).css('padding-bottom')))
+      height              = wrapper_max_height - delta_height
+
+      $iframe.data('height', $iframe.css('height')) unless $iframe.data('height')?
+      $iframe.css('min-height', height)
+    else
+      $iframe.css('min-height', $iframe.data('height'))
+
   remove: ->
-    @link_view.remove()
-    @file_view.remove()
+    _.invoke @views, 'remove'
 
     @editor.stopObserving('onLoad', @register_keydown_event)
     @editor.stopObserving('onChange', @on_content_change)
 
-    super
+    _.each @tokens, (token) -> PubSub.unsubscribe(token)
+
+    super()
 

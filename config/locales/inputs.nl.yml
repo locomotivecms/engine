@@ -1,0 +1,18 @@
+nl:
+  locomotive:
+    inputs:
+      file:
+        none: geen bestand
+        choose: Kies uit
+        change: Verander
+        delete: Verwijder
+        cancel: Annuleer
+        select_local_file: Upload een lokaal bestand
+        select_content_asset: Kies een bestand
+      array:
+        new: Nieuw
+        add: Voeg toe
+        edit: Bewerk
+      toggle:
+        on_text: "Ja"
+        off_text: "Nee"

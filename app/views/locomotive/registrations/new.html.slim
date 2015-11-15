@@ -1,17 +1,18 @@
-- title t('locomotive.not_logged_in.title')
+- title t('locomotive.registrations.new.title')
 
-= locomotive_form_for resource, as: resource_name, url: sign_up_path do |f|
+.public-form
+  .public-form-text
+    h3= t('locomotive.registrations.new.title')
+    p= t('locomotive.registrations.new.description')
 
-  = f.inputs do
-    = f.input :name, required: true, autofocus: true
-    = f.input :email, required: true
-    = f.input :password, required: true, hint: !@minimum_password_length.nil?
-    = f.input :password_confirmation, required: true
+  = locomotive_form_for resource, as: resource_name, url: sign_up_path do |f|
+    = f.inputs do
+      = f.input :name, required: true, autofocus: true
+      = f.input :email, required: true
+      = f.input :password, required: true, hint: !@minimum_password_length.nil?
+      = f.input :password_confirmation, required: true, label: false, placeholder: t('locomotive.registrations.new.confirm_password')
 
-  = f.actions do
-    = f.button :submit, t('.submit'), class: 'btn'
+    = f.actions do
+      = f.button :submit, t('.submit'), class: 'btn btn-primary'
 
-    br
-
-    p
-      = link_to t('.sign_in'), new_locomotive_account_session_path
+= link_to t('.sign_in'), new_locomotive_account_session_path, class: 'public-link'

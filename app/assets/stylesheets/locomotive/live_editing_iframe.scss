@@ -1,0 +1,84 @@
+@import "compass/css3/border-radius";
+@import "font-awesome/mixins";
+
+$button-background:     #54b9cd;
+$button-border-color:   darken($button-background, 10%) !default;
+$button-color:          #fff;
+
+$fa-font-path:          'font-awesome';
+$fa-version:            '4_4_0';
+
+
+@font-face {
+  font-family: 'LocomotiveFontAwesome';
+  src: url(font-path('#{$fa-font-path}/fontawesome-webfont.eot?v=#{$fa-version}'));
+  src: url(font-path('#{$fa-font-path}/fontawesome-webfont.eot?#iefix&v=#{$fa-version}')) format('embedded-opentype'),
+    url(font-path('#{$fa-font-path}/fontawesome-webfont.woff2?v=#{$fa-version}')) format('woff2'),
+    url(font-path('#{$fa-font-path}/fontawesome-webfont.woff?v=#{$fa-version}')) format('woff'),
+    url(font-path('#{$fa-font-path}/fontawesome-webfont.ttf?v=#{$fa-version}')) format('truetype'),
+    url(font-path('#{$fa-font-path}/fontawesome-webfont.svg?v=#{$fa-version}#fontawesomeregular')) format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+#locomotive-highlighter-bar, #locomotive-highlighter-actions {
+  display: block;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: 10000;
+}
+
+#locomotive-highlighter-bar {
+  background-color: yellow;
+  width: 5px;
+  min-height: 10px;
+}
+
+#locomotive-highlighter-actions {
+
+  > a {
+    background: $button-background;
+    background-image: none;
+    border: none;
+    border-bottom: 2px solid $button-border-color;
+    @include border-radius(3px);
+    color: $button-color;
+    cursor: pointer;
+    display: inline-block;
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 12px;
+    font-weight: normal;
+    height: 30px;
+    line-height: 18px;
+    margin: 0 10px 0 0px;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    text-transform: capitalize;
+    vertical-align: middle;
+    white-space: nowrap;
+
+    &:hover {
+      background-color: darken($button-background, 10%);
+      border-color: darken($button-border-color, 12%);
+    }
+
+    i.locomotive-fa {
+      display: inline-block;
+      font: normal normal normal 14px/1 LocomotiveFontAwesome;
+      font-size: inherit;
+      text-rendering: auto;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+
+      margin-right: 5px;
+
+      &.locomotive-fa-pencil:before {
+        content: "\f040";
+      }
+    }
+
+  }
+
+}

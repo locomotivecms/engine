@@ -8,7 +8,7 @@ module Locomotive
       included do
 
         rescue_from :all do |e|
-          Rails.logger.error "[API]" + e.message + "\"" + e.backtrace.join("\n")
+          Rails.logger.error "[API] " + e.message + "\n\t" + e.backtrace.join("\n\t")
 
           error_response(message: { error: e.message }, status: 500)
         end

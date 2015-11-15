@@ -11,10 +11,9 @@
 @import "font-awesome";
 
 @import "bootstrap-sprockets";
-@import "./globals/bootstrap";
+@import "./globals/variables";
 @import "bootstrap";
 
-@import "./globals/nprogress";
 @import "nprogress";
 @import "nprogress-bootstrap";
 
@@ -37,5 +36,4 @@
 @import "components/dashboard";
 @import "components/activity_feed";
 @import "components/developers";
-
 @import "components/sites";

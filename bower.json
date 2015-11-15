@@ -1,0 +1,27 @@
+{
+  "name": "Locomotive Engine",
+  "homepage": "https://github.com/locomotivecms/engine",
+  "authors": [
+    "did <didier.lafforgue@gmail.com>"
+  ],
+  "description": "Back-office for the Locomotive CMS",
+  "main": "",
+  "moduleType": [
+    "globals"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "vendor/assets/components/locomotive",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "backbone": "~1.2.3"
+  },
+  "install" : {
+    "path" : "vendor/assets/components/locomotive"
+  }
+}

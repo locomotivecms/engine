@@ -1,0 +1,47 @@
+nl:
+  mongoid:
+    errors:
+      messages:
+        blank_in_locale: "Kan niet leeg zijn"
+      models:
+        locomotive/page:
+          attributes:
+            layout_id:
+              index_can_not_extend_parent: "De index pagina kan niet zijn bovenliggende pagina hebben als layout."
+        locomotive/membership:
+          attributes:
+            account:
+              unique_account: "is al in gebruik"
+            email:
+              unique_account: "is al in gebruik"
+    attributes:
+      locomotive/content_entry:
+        created_at: Gecreëerd op
+  errors:
+    messages:
+      domain_taken: "%{value} is al ingenomen"
+      invalid_domain: "%{value} is ongeldig"
+      needs_admin_account: "Minstens één admin account is vereist."
+      protected_page: "U kan niet de index of 404 pagina verwijderen."
+      extname_changed: "Nieuw bestand heeft niet de originele extensie."
+      array_too_short: "is te klein (minimum element nummer is %{count})"
+      site:
+        default_locale_removed: De voorgaande standaard landinstelling kan niet direct verwijderd worden.
+        wrong_timezone_name: "Verkeerde tijdzone naam."
+      page:
+        liquid_syntax: "Liquid Syntax fout ('%{error}' on '%{fullpath}')"
+        liquid_extend: "De pagina '%{fullpath}' extends een template die niet bestaat."
+        liquid_translation: "De pagina '%{fullpath}' extends een template die niet is vertaald."
+      too_few_custom_fields: "Minstens 1 eigen veld is vereist."
+      security: "presenteert een beveiligingsprobleem"
+  attributes:
+    defaults:
+      pages:
+        index:
+          title: "Hoofdpagina"
+          body: "Inhoud van de hoofdpagina"
+        '404':
+          title: "Pagina niet gevonden"
+          body: "Inhoud van de 404 pagina"
+        other:
+          body: "{% extends 'parent' %}"

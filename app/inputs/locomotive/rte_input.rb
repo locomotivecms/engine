@@ -15,6 +15,7 @@ module Locomotive
           wysihtml5_prefix: wysihtml5_prefix,
           link_popover:     link_popover,
           image_popover:    image_popover,
+          table_popover:    table_popover
         })
     end
 
@@ -37,6 +38,13 @@ module Locomotive
       )).html_safe
     end
 
+    def table_popover
+      remove_form(template.render(
+        partial:  'locomotive/shared/rte/table_popover',
+        locals:   { table_form: TableForm.new }
+      )).html_safe
+    end
+
     def remove_form(template)
       template.gsub(/<form([^<]*)>/, '')
         .gsub(/<input name="(utf8|authenticity_token)"([^<]*)>/, '')
@@ -48,6 +56,10 @@ module Locomotive
     end
 
     class ImageForm < Struct.new(:src, :title, :alignment)
+      include ActiveModel::Model
+    end
+
+    class TableForm < Struct.new(:cols, :rows, :class_name, :head)
       include ActiveModel::Model
     end
   end

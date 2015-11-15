@@ -29,6 +29,10 @@ module Locomotive
       ::DeviseController.respond_to :html, :json
     end
 
+    initializer 'locomotive.assets' do |app|
+      app.config.assets.paths << root.join('vendor', 'assets', 'components', 'locomotive')
+    end
+
     initializer 'locomotive.precompile.hook', group: :all do |app|
       app.config.assets.precompile += %w(
         locomotive/bootstrap-colorpicker/saturation.png
@@ -41,7 +45,9 @@ module Locomotive
         locomotive.js
         locomotive.css
         locomotive/not_logged_in.js
-        locomotive/not_logged_in.css
+        locomotive/unauthorized.css
+        locomotive/live_editing_iframe.css
+        locomotive/live_editing_error.css
         locomotive/error.css)
 
       # Uncomment the lines below to view the names of assets as they are
