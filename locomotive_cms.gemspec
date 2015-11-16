@@ -16,6 +16,9 @@ Gem::Specification.new do |s|
   s.summary     = 'A platform to create, publish and edit sites'
   s.description = 'Locomotive is designed to save your time and help you focus on what matters: front-end technology, standard development process and no learning time for your client.'
 
+  # Temporary message: 3.0.0.rc3 to an higher version
+  s.post_install_message = "We upgraded to Mongoid 5. That means that you need to re-generate your config/mongoid.yml file by running rails g mongoid:config."
+
   s.add_dependency 'rake',                            '~> 10.4.2'
 
   s.add_dependency 'rails',                           '~> 4.2.5'
@@ -34,9 +37,9 @@ Gem::Specification.new do |s|
   s.add_dependency 'mongo_session_store-rails4',      '~> 6.0.0'
 
   s.add_dependency 'mime-types',                      '~> 2.5'
-  # s.add_dependency 'custom_fields',                   '~> 2.4.0.rc8'
+  s.add_dependency 'custom_fields',                   '~> 2.5.0.rc1'
 
-  s.add_dependency 'locomotivecms_steam',             '~> 1.0.0.rc3'
+  s.add_dependency 'locomotivecms_steam',             '~> 1.0.0.rc4'
 
   s.add_dependency 'slim',                            '~> 3.0.6'
   s.add_dependency 'simple_form',                     '~> 3.2.0'

@@ -29,9 +29,9 @@ module Locomotive
           after_destroy     :emit_domain_deletion_event
 
           ## named scopes ##
-          scope :match_domain, lambda { |domain| { any_in: { domains: [*domain] } } }
-          scope :match_domain_with_exclusion_of, lambda { |domain, site|
-            { any_in: { domains: [*domain] }, where: { :_id.ne => site.id } }
+          scope :match_domain, ->(domain) { any_in(domains: [*domain]) }
+          scope :match_domain_with_exclusion_of, ->(domain, site) {
+            any_in(domains: [*domain]).where(:_id.ne => site.id)
           }
         end
 

@@ -10,9 +10,6 @@ require "sprockets/railtie"
 
 Bundler.require(*Rails.groups)
 
-# require 'bson'
-# require 'moped'
-
 require 'locomotive/engine'
 
 module Dummy

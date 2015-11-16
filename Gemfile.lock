@@ -1,15 +1,4 @@
 GIT
-  remote: git://github.com/locomotivecms/custom_fields.git
-  revision: 05478c095be3d2899a7caac2f02933ee37d13219
-  ref: 05478c0
-  specs:
-    custom_fields (2.5.0.rc1)
-      activesupport (~> 4.2.4)
-      carrierwave-mongoid (~> 0.8.1)
-      monetize (~> 1.1.0)
-      mongoid (~> 5.0.0)
-
-GIT
   remote: https://github.com/DatabaseCleaner/database_cleaner.git
   revision: b87f00320f8aa0f7e499d183128f05ce29cedc33
   specs:
@@ -27,6 +16,7 @@ PATH
       carrierwave-mongoid (~> 0.8.1)
       codemirror-rails (~> 5.6)
       compass-rails (= 2.0.4)
+      custom_fields (~> 2.5.0.rc1)
       devise (~> 3.5.1)
       devise-encryptable (~> 0.2.0)
       dragonfly (~> 1.0.7)
@@ -38,7 +28,7 @@ PATH
       jquery-rails (~> 4.0.3)
       jquery-ui-rails (~> 5.0.3)
       kaminari (~> 0.16.3)
-      locomotivecms_steam (~> 1.0.0.rc3)
+      locomotivecms_steam (~> 1.0.0.rc4)
       mime-types (~> 2.5)
       mimetype-fu (~> 0.1.2)
       mongo_session_store-rails4 (~> 6.0.0)
@@ -191,6 +181,11 @@ GEM
       multi_test (>= 0.1.2)
     cucumber-core (1.3.0)
       gherkin3 (~> 3.1.0)
+    custom_fields (2.5.0.rc1)
+      activesupport (~> 4.2.5)
+      carrierwave-mongoid (~> 0.8.1)
+      monetize (~> 1.1.0)
+      mongoid (~> 5.0.1)
     debug_inspector (0.0.2)
     descendants_tracker (0.0.4)
       thread_safe (~> 0.3, >= 0.3.1)
@@ -300,7 +295,7 @@ GEM
       attr_extras (~> 4.4.0)
       colorize
       stringex (~> 2.5.2)
-    locomotivecms_steam (1.0.0.rc3)
+    locomotivecms_steam (1.0.0.rc4)
       RedCloth (~> 4.2.9)
       chronic (~> 0.10.2)
       coffee-script (~> 2.4.1)
@@ -314,7 +309,9 @@ GEM
       mime-types (~> 2.6.1)
       mimetype-fu (~> 0.1.2)
       moneta (~> 0.8.0)
+      mongo (~> 2.1.2)
       morphine (~> 0.1.1)
+      origin (~> 2.1.1)
       rack-cache (~> 1.2)
       rack-rewrite (~> 1.5.1)
       rack_csrf (~> 2.5.0)
@@ -541,7 +538,6 @@ DEPENDENCIES
   capybara (~> 2.4.4)
   coffee-rails (~> 4.1.0)
   coveralls (~> 0.7.2)
-  custom_fields!
   database_cleaner!
   email_spec
   factory_girl_rails
