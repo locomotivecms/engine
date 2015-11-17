@@ -69,9 +69,10 @@ module Locomotive
     def options_for_page_response_type
       [
         ['HTML', 'text/html'],
+        ['JSON', 'application/json'],
         ['RSS', 'application/rss+xml'],
         ['XML', 'text/xml'],
-        ['JSON', 'application/json']
+        ['Application XML', 'application/xml']
       ]
     end
 
