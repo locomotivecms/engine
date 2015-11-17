@@ -16,24 +16,26 @@
 }
 
 // Centers the content of a public page.
+
 .public-container {
-  height: 100%;
   width: 100%;
+  height: 100%;
   text-align: center;
   animation: fade-down 1s ease-out;
   &:before {
-    content: ' ';
     display: inline-block;
-    vertical-align: middle;
     height: 100%;
+    vertical-align: middle;
+    content: " ";
   }
 }
 
 // Wraps and centers all content of the public forms.
 
 .public-form-wrapper {
-  width: 480px;
   display: inline-block;
+  width: 480px;
+  margin: 25px 0;
   vertical-align: middle;
 }
 
@@ -119,6 +121,7 @@
 @media (max-width: $screen-xs-min) {
   .public-form-wrapper {
     left: 0;
+    width: 99%;
     padding: 20px 10px;
     margin-left: 0;
   }
