@@ -8,7 +8,7 @@ describe ActionDispatch::Http::UploadedFile do
     liquid_object = uploaded_file.to_liquid
     liquid_object['original_filename'].should == File.basename(file)
     liquid_object['content_type'].should == 'application/pdf'
-    liquid_object['tempfile'].should == file.path
+    liquid_object['tempfile'].should == file
   end
 
 end
