@@ -25,7 +25,7 @@ module Locomotive
           begin
             @app.call(env)
           rescue ::Locomotive::Steam::NoSiteException => exception
-            handle_no_account_or_site(env)
+            handle_no_account_or_site(env, request)
           end
         end
       end
@@ -50,10 +50,12 @@ module Locomotive
 
       # if no account in the database, must be a fresh install,
       # then ask the user to create the first account.
-      # if accounts but not no site, render a specific error page.
-      def handle_no_account_or_site(env)
+      # if accounts but no site, redirect to the sign in page
+      def handle_no_account_or_site(env, request)
         if Locomotive::Account.count == 0
-          [301, { 'Location' => sign_up_path, 'Content-Type' => 'text/html' }, []]
+          redirect_to(sign_up_path)
+        elsif default_host?(request)
+          redirect_to(sign_in_path)
         else
           Locomotive::ErrorsController.action(:no_site).call(env)
         end
@@ -91,6 +93,10 @@ module Locomotive
         end
 
         nil
+      end
+
+      def redirect_to(destination)
+        [301, { 'Location' => destination, 'Content-Type' => 'text/html' }, []]
       end
 
       def site_handle_regexp

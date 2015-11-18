@@ -8,12 +8,10 @@ module Locomotive
     def no_site_message_and_link
       options = Locomotive.config.host ? { host: Locomotive.config.host } : { only_path: true }
 
-      if Locomotive::Account.count == 0
-        [no_site_message(:create_account), sign_up_url(options)]
-      elsif current_locomotive_account
+      if current_locomotive_account
         [no_site_message(:add_domain), sites_url(options)]
       else
-        [no_site_message(:sign_in), new_locomotive_account_session_url(options)]
+        [no_site_message(:sign_in), sign_in_url(options)]
       end
     end
 

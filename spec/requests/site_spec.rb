@@ -11,7 +11,32 @@ describe Locomotive::Middlewares::Site do
 
   describe 'no site' do
 
+    let(:app) { ->(env) { raise ::Locomotive::Steam::NoSiteException.new } }
+
     it { is_expected.to eq(nil) }
+
+    describe 'not the default host' do
+
+      before { allow(Locomotive::Account).to receive(:count).and_return(1) }
+
+      let(:warden)    { instance_double('WargenStrategy', authenticate: nil) }
+      let(:rack_env)  { env_for(url).tap { |e| e['warden'] = warden } }
+
+      subject { middleware.call(rack_env) }
+
+      it { expect(subject.first).to eq 200 }
+      it { expect(subject.last.body).to match(/Sign In/) }
+
+      context 'default host' do
+
+        before { allow(Locomotive.config).to receive(:host).and_return('example.com') }
+
+        it { expect(subject.first).to eq 301 }
+        it { expect(subject[1]['Location']).to eq '/locomotive/sign_in' }
+
+      end
+
+    end
 
   end
 
