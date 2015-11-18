@@ -31,7 +31,7 @@ h3 Run your site locally
 
 pre
   code.bash
-    | cd #{current_site_name_with_underscores}</br>wagon serve
+    | cd #{current_site_name_with_underscores}</br>bundle exec wagon serve
 
 p Now, update any files of your site and see the results locally.
 
@@ -39,4 +39,4 @@ h3 Deploy your modifications
 
 pre
   code.bash
-    | wagon push production
+    | bundle exec wagon push production
