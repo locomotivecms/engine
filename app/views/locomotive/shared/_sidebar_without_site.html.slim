@@ -2,4 +2,4 @@
 
 = render 'locomotive/shared/sidebar/link', icon: 'fa-suitcase', label: t(:sites, scope: 'locomotive.shared.header'), url: sites_path
 
-= render 'locomotive/shared/sidebar/link', icon: 'fa-sign-out', label: t(:logout, scope: 'locomotive.shared.header'), url: sign_out_path, data: { confirm: t('locomotive.messages.confirm'), method: 'delete' }
+= render 'locomotive/shared/sidebar/link', icon: 'fa-sign-out', label: t(:logout, scope: 'locomotive.shared.header'), url: sign_out_path, data: { method: 'delete' }
