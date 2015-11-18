@@ -10,8 +10,9 @@ Locomotive::Engine.routes.draw do
     failure_app:  'Locomotive::Devise::FailureApp'
 
   devise_scope :locomotive_account do
-    get   'sign_up'  => 'registrations#new', as: :sign_up
-    post  'sign_up'  => 'registrations#create'
+    get     'sign_up'  => 'registrations#new', as: :sign_up
+    post    'sign_up'  => 'registrations#create'
+    delete  'sign_out' => 'sessions#destroy', as: :sign_out
   end
 
   root to: 'sites#index'

@@ -22,5 +22,5 @@
 
   = render 'locomotive/shared/sidebar/link', icon: 'fa-suitcase', label: t(:sites, scope: 'locomotive.shared.header'), url: sites_path, section_class: 'visible-xs-block'
 
-  = render 'locomotive/shared/sidebar/link', icon: 'fa-sign-out', label: t(:logout, scope: 'locomotive.shared.header'), url: destroy_locomotive_account_session_path, data: { confirm: t('locomotive.messages.confirm') }, section_class: 'visible-xs-block'
+  = render 'locomotive/shared/sidebar/link', icon: 'fa-sign-out', label: t(:logout, scope: 'locomotive.shared.header'), url: sign_out_path, data: { confirm: t('locomotive.messages.confirm'), method: 'delete' }, section_class: 'visible-xs-block'
 
