@@ -60,13 +60,16 @@ end
         RUBY
         end
 
-        inject_into_file 'config/initializers/carrierwave.rb', after: "    config.fog_directory    = ENV['S3_BUCKET']\n" do <<-'RUBY'
+        inject_into_file 'config/initializers/carrierwave.rb', after: "    config.aws_acl          = 'public-read'\n" do <<-'RUBY'
 
     # Put your CDN host below instead
-    config.asset_host       = ENV['S3_BUCKET_REGION'].present? ? "s3-#{ENV['S3_BUCKET_REGION']}.amazonaws.com" : 's3.amazonaws.com'
+    if ENV['S3_ASSET_HOST_URL'].present?
+      config.asset_host = ENV['S3_ASSET_HOST_URL']
+    end
         RUBY
         end
 
+        gem 'carrierwave-aws'
         gem 'platform-api', '~> 0.3.0'
       end
     end
