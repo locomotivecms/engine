@@ -12,13 +12,20 @@ module Locomotive
 
       template 'locomotive.rb', 'config/initializers/locomotive.rb'
 
-      template 'carrierwave.rb', 'config/initializers/carrierwave.rb'
-
       template 'devise.rb', 'config/initializers/devise.rb'
 
       template 'dragonfly.rb', 'config/initializers/dragonfly.rb'
 
       template 'mongoid.yml', 'config/mongoid.yml'
+    end
+
+    def install_aws
+      if options.heroku? || yes?('Do you want to store your assets on Amazon S3?')
+        template 'carrierwave_aws.rb', 'config/initializers/carrierwave.rb'
+        gem 'carrierwave-aws'
+      else
+        template 'carrierwave.rb', 'config/initializers/carrierwave.rb'
+      end
     end
 
     def insert_engine_routes
@@ -60,16 +67,6 @@ end
         RUBY
         end
 
-        inject_into_file 'config/initializers/carrierwave.rb', after: "    config.aws_acl          = 'public-read'\n" do <<-'RUBY'
-
-    # Put your CDN host below instead
-    if ENV['S3_ASSET_HOST_URL'].present?
-      config.asset_host = ENV['S3_ASSET_HOST_URL']
-    end
-        RUBY
-        end
-
-        gem 'carrierwave-aws'
         gem 'platform-api', '~> 0.3.0'
       end
     end
