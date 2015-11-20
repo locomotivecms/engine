@@ -9,10 +9,12 @@ Locomotive::Steam.configure do |config|
   # Dragonfly instance embedded in Steam needs a secret key
   config.image_resizer_secret = Locomotive.config.steam_image_resizer_secret
 
-  if asset_host = CarrierWave::Uploader::Base.asset_host
+  if asset_host = CarrierWave::Uploader::Base.asset_host # CDN?
     config.asset_host = asset_host
-  else
-    config.asset_host = CarrierWave.base_host
+  elsif asset_host = CarrierWave.base_host # Example: AWS storage
+    config.asset_host = asset_host
+  else # Example: File storage
+    config.asset_path = Rails.root.join('public').to_s
   end
 
   # rely on Mongoid for the connection information
