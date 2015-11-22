@@ -28,7 +28,7 @@ PATH
       jquery-rails (~> 4.0.3)
       jquery-ui-rails (~> 5.0.3)
       kaminari (~> 0.16.3)
-      locomotivecms_steam (~> 1.0.0.rc4)
+      locomotivecms_steam (~> 1.0.0.rc6)
       mime-types (~> 2.5)
       mimetype-fu (~> 0.1.2)
       mongo_session_store-rails4 (~> 6.0.0)
@@ -295,7 +295,7 @@ GEM
       attr_extras (~> 4.4.0)
       colorize
       stringex (~> 2.5.2)
-    locomotivecms_steam (1.0.0.rc4)
+    locomotivecms_steam (1.0.0.rc6)
       RedCloth (~> 4.2.9)
       chronic (~> 0.10.2)
       coffee-script (~> 2.4.1)

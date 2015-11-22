@@ -11,5 +11,9 @@ module Locomotive
       render '500', status: :internal_server_error
     end
 
+    def no_site
+      render 'no_site', status: :not_found
+    end
+
   end
 end
