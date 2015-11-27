@@ -10,6 +10,7 @@
 //= require bootstrap-sprockets
 //= require underscore/underscore
 //= require backbone/backbone
+//= require bootstrap-tagsinput/bootstrap-tagsinput
 //= require codemirror
 //= require codemirror/modes/markdown
 //= require select2

@@ -172,7 +172,12 @@ module Locomotive
     end
 
     def tags_custom_field_options(field, entry)
-      { wrapper_html: { class: 'tags' } }
+      {
+        wrapper_html: { class: 'tags' },
+        input_html: {
+          value: entry.send(field.name).join(',')
+        }
+      }
     end
 
     def text_custom_field_options(field, entry)

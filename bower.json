@@ -19,7 +19,8 @@
     "tests"
   ],
   "dependencies": {
-    "backbone": "~1.2.3"
+    "backbone": "~1.2.3",
+    "bootstrap-tagsinput": "~0.7.1"
   },
   "install" : {
     "path" : "vendor/assets/components/locomotive"
