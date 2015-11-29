@@ -33,6 +33,25 @@ label {
   }
 }
 
+// Link next to a button in forms.
+
+.form-link {
+  display: inline-block;
+  margin-top: 17px;
+  margin-right: 20px;
+  color: $gray;
+  vertical-align: middle;
+  &:hover {
+    color: $gray-dark;
+    text-decoration: none;
+  }
+  &:focus,
+  &:active {
+    color: $gray-darker;
+    text-decoration: none;
+  }
+}
+
 // Inline validations
 // =============================================================================
 

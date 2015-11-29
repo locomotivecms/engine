@@ -1,12 +1,15 @@
-- content_for :site_title do
-  = t('.title')
+- title t('.title')
 
-= help t('.help', default: '')
+.public-box
+  .public-intro
+    h3= t('.title')
+    p= t('.description')
 
-= locomotive_form_for @site, url: sites_path, html: { multipart: true } do |f|
+  = locomotive_form_for @site, url: sites_path, html: { multipart: true } do |f|
+    = f.inputs :information do
+      = f.input :name
+      = f.input :handle
 
-  = f.inputs :information do
-    = f.input :name, input_html: { class: 'input-lg' }
-    = f.input :handle
-
-  = f.actions back_url: sites_path
+    = f.actions do
+      = link_to t('.go_back').html_safe, sites_path, class: 'form-link'
+      = f.button :submit, t('.submit').html_safe, class: 'btn btn-primary'

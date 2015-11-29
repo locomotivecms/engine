@@ -225,13 +225,17 @@ en:
 
     sites:
       index:
-        title: My sites
+        description: "All sites you have access to can be found below. Click one to be redirected to the content management section of that site."
         new: Add a new site
+        title: My sites
       new:
-        title: New site
-        help: "Fill in the form below to create your new site."
+        description: "Fill in the form below and click submit. Once successfull it will create a new site."
+        go_back: Go back
+        submit: Create site
+        title: Create new site
+
       site:
-        no_domain: No domain
+        no_domain: No domain yet
 
     current_site:
       edit:

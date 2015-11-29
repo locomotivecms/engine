@@ -23,7 +23,7 @@ html xmlns='http://www.w3.org/1999/xhtml' lang=I18n.locale
   body class=[controller.controller_name, flash.empty? ? '' : 'with-flash'].join(' ')
     .public-background
       .public-container
-        .public-form-wrapper
+        .public-wrapper
           = link_to root_path, class: 'public-logo' do
             = image_tag 'locomotive/logo.png'
             span Locomotive

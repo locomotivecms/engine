@@ -1,16 +1,6 @@
-.site
-  = link_to dashboard_url(site), class: 'media' do
-
-    .pull-right.arrow
-      span
-        i.fa.fa-angle-right
-
-    .pull-left
-      = image_tag site_picture_url(site), class: 'img-circle', alt: site.name
-
-    .media-body
-      h2= site.name.truncate(22)
-
-      .domain
-        = site.main_domain.try(:truncate, 28) || t('.no_domain')
-
+= link_to dashboard_url(site), class: 'public-entry' do
+  = image_tag site_picture_url(site), alt: site.name
+  .public-entry-info
+    h5= site.name.truncate(35)
+    p= site.main_domain.try(:truncate, 50) || t('.no_domain')
+    i.fa.fa-arrow-right

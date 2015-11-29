@@ -1,12 +1,11 @@
 - title t('locomotive.passwords.new.title')
 
-.public-form
-  .public-form-text
+.public-box
+  .public-intro
     h3= t('locomotive.passwords.new.title')
     p= t('locomotive.passwords.new.description')
 
   = locomotive_form_for(resource, as: resource_name, url: locomotive_account_password_path) do |f|
-
     = f.hidden_field :reset_password_token
 
     = f.inputs do
@@ -15,6 +14,5 @@
 
     = f.actions do
       = f.button :submit, t('.submit'), class: 'btn btn-primary'
-
 
 = link_to t('.link').html_safe, new_locomotive_account_session_path, class: "public-link"
