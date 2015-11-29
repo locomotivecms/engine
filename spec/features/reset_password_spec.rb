@@ -3,7 +3,7 @@ require 'spec_helper'
 describe 'User resets her/his password' do
 
   it 'with valid email and password', js: true  do
-    forgot_password(true) do |email, url|
+    forgot_password do |email, url|
       expect(email.to).to include 'john@doe.net'
       expect(email.subject).to include 'Reset password instructions'
 

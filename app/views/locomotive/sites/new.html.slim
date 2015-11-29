@@ -13,3 +13,5 @@
     = f.actions do
       = link_to t('.go_back').html_safe, sites_path, class: 'form-link'
       = f.button :submit, t('.submit').html_safe, class: 'btn btn-primary'
+
+= render 'locomotive/sites/navigation'

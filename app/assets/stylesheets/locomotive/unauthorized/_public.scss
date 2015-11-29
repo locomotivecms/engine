@@ -108,9 +108,11 @@
 
 .public-link {
   display: inline-block;
+  margin: 0 10px;
   font-size: 14px;
   font-weight: 400;
   color: rgba($white, .7);
+  vertical-align: middle;
   transition: color $base-transition-speed linear;
   &:hover,
   &:active,
@@ -119,6 +121,12 @@
     text-decoration: none;
     outline: none;
   }
+}
+
+.public-link-divider {
+  display: inline-block;
+  color: rgba($white, .7);
+  vertical-align: middle;
 }
 
 // Public entries collection for applying scrollbar when height is to high.

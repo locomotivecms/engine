@@ -15,6 +15,8 @@ html xmlns='http://www.w3.org/1999/xhtml' lang=I18n.locale
     = javascript_include_tag  'locomotive/unauthorized'
     = stylesheet_link_tag     'locomotive/unauthorized', media: 'screen'
 
+    = csrf_meta_tag
+
     javascript:
       window.flash_messages = #{{flash_messages_to_json}};
 
@@ -22,9 +24,12 @@ html xmlns='http://www.w3.org/1999/xhtml' lang=I18n.locale
 
   body class=[controller.controller_name, flash.empty? ? '' : 'with-flash'].join(' ')
     .public-background
+      = yield :header
       .public-container
         .public-wrapper
           = link_to root_path, class: 'public-logo' do
             = image_tag 'locomotive/logo.png'
             span Locomotive
           = yield
+
+    = yield :footer

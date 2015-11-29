@@ -18,10 +18,9 @@ module Features
       click_button 'Sign in'
     end
 
-    def forgot_password(js = false, &block)
+    def forgot_password(&block)
       sign_up_with 'John Doe', 'john@doe.net', 'password'
-      click_link 'Welcome, John Doe' if js
-      within('.header') { click_link 'Log out' }
+      click_link 'Log out'
       click_link 'Forgot my password'
       fill_in 'Your email', with: 'john@doe.net'
       click_button 'Submit'
