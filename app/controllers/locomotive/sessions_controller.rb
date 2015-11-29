@@ -5,7 +5,7 @@ module Locomotive
 
     within_site_only_if_existing true # Note: do not validate the membership
 
-    layout '/locomotive/layouts/not_logged_in'
+    layout '/locomotive/layouts/unauthorized'
 
     before_filter :set_locale
 

@@ -44,7 +44,7 @@ module Locomotive
         locomotive/wysihtml5_editor.css
         locomotive.js
         locomotive.css
-        locomotive/not_logged_in.js
+        locomotive/unauthorized.js
         locomotive/unauthorized.css
         locomotive/live_editing_iframe.css
         locomotive/live_editing_error.css

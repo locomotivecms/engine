@@ -1,7 +1,7 @@
 module Locomotive
   class RegistrationsController < ::Devise::RegistrationsController
 
-    layout '/locomotive/layouts/not_logged_in'
+    layout '/locomotive/layouts/unauthorized'
 
     before_action :configure_permitted_parameters
 
