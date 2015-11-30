@@ -52,6 +52,16 @@ describe 'Locomotive::Middlewares::Locale' do
       let(:url) { 'http://models.example.com/de/guten_morgen' }
       it { should eq 'de' }
 
+      describe 'the locale is also elsewhere in the path' do
+
+        subject { code, env = middleware.call(env_for(url, 'locomotive.site' => site)); env['locomotive.path'] }
+
+        let(:url) { 'http://models.example.com/en/themen/graphikkarten' }
+
+        it { should eq '/themen/graphikkarten' }
+
+      end
+
     end
 
     describe 'extracting path with localization' do

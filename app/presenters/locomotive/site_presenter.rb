@@ -18,7 +18,7 @@ module Locomotive
       presenter.property :memberships, type: Array
     end
 
-    properties  :seo_title, :meta_keywords, :meta_description, :robots_txt, required: false
+    properties  :seo_title, :meta_keywords, :meta_description, :robots_txt, :prefix_default_locale, required: false
 
     ## other getters / setters ##
 

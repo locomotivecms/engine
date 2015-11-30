@@ -17,7 +17,7 @@ module Locomotive
         if site.try(:localized?)
           if env['PATH_INFO'] =~ %r{^/(#{site.locales.join('|')})+(\/|$)}
             locale  = $1
-            path    = env['PATH_INFO'].gsub($1 + $2, '').gsub(/(\/_edit|\/_admin)$/, '')
+            path    = env['PATH_INFO'].gsub(%r{^/#{$1 + $2}}, '/').gsub(/(\/_edit|\/_admin)$/, '')
 
             Locomotive.log "[extract locale] locale = #{locale} / #{path}"
 
