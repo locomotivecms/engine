@@ -27,12 +27,12 @@ module Locomotive
     scope :by_block_and_slug,   ->(block, slug) { where(block: block, slug: slug) }
 
     ## non-persisted attributes ##
-    attr_accessor :block_name, :block_priority
+    attr_accessor :label, :block_name, :block_priority
 
     ## methods ##
 
     def label
-      self.slug
+      @label || self.slug.humanize
     end
 
     def block_label
