@@ -44,10 +44,10 @@ class Locomotive.Views.Shared.FormView extends Backbone.View
       @$('#active_tab').val(tab_name)
 
   change_state: ->
-    @$('form button[type=submit]').button('loading')
+    @$('form button[type=submit], form input[type=submit]').button('loading')
 
   reset_state: ->
-    @$('form button[type=submit]').button('reset')
+    @$('form button[type=submit], form input[type=submit]').button('reset')
 
   save: (event) ->
     @change_state()

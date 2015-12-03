@@ -12,6 +12,6 @@
 
     = f.actions do
       = link_to t('.go_back').html_safe, sites_path, class: 'form-link'
-      = f.button :submit, t('.submit').html_safe, class: 'btn btn-primary'
+      = f.button :submit, t('.submit').html_safe, class: 'btn btn-primary', data: { loading_text: t('simple_form.buttons.defaults.locomotive.loading_text') }
 
 = render 'locomotive/sites/navigation'
