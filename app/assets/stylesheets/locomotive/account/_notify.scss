@@ -30,8 +30,10 @@
 
 [data-notify="container"] {
   position: relative;
+  width: 100%;
+  max-width: 350px;
   font-size: 0;
-  border: none;
+  border: 0;
   box-shadow: 0 1px 10px rgba($black, .2);
   animation: fade-left .5s ease-out;
   .close {

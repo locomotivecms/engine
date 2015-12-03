@@ -15,7 +15,7 @@
   background: linear-gradient(to bottom, $brand-primary 60px, $brand-primary 20%, $brand-primary-alt);
 }
 
-// Centers the content of a public page.
+// Centers the content vertically of a public page.
 
 .public-container {
   width: 100%;
@@ -30,16 +30,16 @@
   }
 }
 
-// Wraps and centers all content of the public forms.
+// Wraps and horizontally centers all content of the public boxes.
 
-.public-form-wrapper {
+.public-wrapper {
   display: inline-block;
   width: 480px;
   margin: 25px 0;
   vertical-align: middle;
 }
 
-// Adds a logo above the public form.
+// Adds a logo above the public box.
 
 .public-logo {
   display: inline-block;
@@ -63,10 +63,9 @@
   }
 }
 
-// Contains the form styling. Note that each form should have a different
-// height calculated.
+// Contains the box styling.
 
-.public-form {
+.public-box {
   display: block;
   padding: 50px;
   margin: 25px 0 20px;
@@ -81,11 +80,14 @@
   .btn {
     margin-top: 22px;
   }
+  &.without-padding {
+    padding: 0;
+  }
 }
 
 // Styles intro title and text above the public form.
 
-.public-form-text {
+.public-intro {
   display: block;
   margin-bottom: 20px;
   text-align: center;
@@ -96,15 +98,21 @@
     margin-bottom: 30px;
     color: $gray-light;
   }
+  &.with-padding {
+    padding: 50px 50px 0;
+    margin-bottom: 0;
+  }
 }
 
 // Creates a link below the public form.
 
 .public-link {
   display: inline-block;
+  margin: 0 10px;
   font-size: 14px;
   font-weight: 400;
   color: rgba($white, .7);
+  vertical-align: middle;
   transition: color $base-transition-speed linear;
   &:hover,
   &:active,
@@ -115,18 +123,98 @@
   }
 }
 
+.public-link-divider {
+  display: inline-block;
+  color: rgba($white, .7);
+  vertical-align: middle;
+}
+
+// Public entries collection for applying scrollbar when height is to high.
+
+.public-entries {
+  display: block;
+  max-height: 500px;
+  overflow: auto;
+}
+
+//  Public entries, used in the sites overview.
+
+.public-entry {
+  position: relative;
+  display: block;
+  padding: 15px 25px;
+  text-align: left;
+  background: transparent;
+  border-top: 1px solid $border-color-base;
+  transition: background $base-transition-speed linear;
+  img {
+    display: inline-block;
+    width: 60px;
+    margin-right: 25px;
+    vertical-align: middle;
+    border-radius: 50%;
+  }
+  .fa-arrow-right {
+    position: absolute;
+    top: 50%;
+    right: 25px;
+    margin-top: -8px;
+    font-size: 16px;
+    line-height: 1;
+    color: $gray-lighter;
+  }
+  &.is-add {
+    padding: 25px;
+    text-align: center;
+    border-radius: 0 0 $border-radius-base $border-radius-base;
+    .fa {
+      margin-right: 10px;
+    }
+  }
+  &:hover {
+    text-decoration: none;
+    background: $gray-lightest;
+  }
+  &:active,
+  &:focus {
+    text-decoration: none;
+    background: $gray-lighter;
+    outline: none;
+  }
+}
+
+// Public entry information next to the image.
+
+.public-entry-info {
+  display: inline-block;
+  vertical-align: middle;
+  h5 {
+    color: $gray-darker;
+  }
+  p {
+    margin: 5px 0 0;
+    color: $gray-light;
+  }
+}
+
 // Responsive
 // =============================================================================
 
 @media (max-width: $screen-xs-min) {
-  .public-form-wrapper {
+  .public-wrapper {
     left: 0;
     width: 99%;
     padding: 20px 10px;
     margin-left: 0;
   }
-  .public-form {
+  .public-box {
     display: inline-block;
     padding: 50px 20px;
+  }
+  .public-intro.with-padding {
+    padding: 50px 20px 0;
+  }
+  .public-entry {
+    padding: 15px 20px;
   }
 }

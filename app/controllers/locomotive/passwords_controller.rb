@@ -5,7 +5,7 @@ module Locomotive
 
     within_site_only_if_existing true
 
-    layout '/locomotive/layouts/not_logged_in'
+    layout '/locomotive/layouts/account'
 
     helper Locomotive::BaseHelper
 

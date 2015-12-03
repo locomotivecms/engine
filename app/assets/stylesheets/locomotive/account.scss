@@ -1,14 +1,14 @@
 // =============================================================================
-// Unauthorized
+// Account
 // =============================================================================
 
 // Stylesheet for all un-authorized pages like register, sign in, ...
 
 // Core variables and mixins
 
-@import "unauthorized/variables";
+@import "account/variables";
 @import "bootstrap/mixins";
-@import "unauthorized/keyframes";
+@import "account/keyframes";
 
 // Reset and dependencies
 
@@ -19,9 +19,8 @@
 // Core CSS
 
 @import "bootstrap/scaffolding";
-@import "unauthorized/type";
-@import "bootstrap/grid";
-@import "unauthorized/forms";
+@import "account/type";
+@import "account/forms";
 @import "bootstrap/buttons";
 
 // Components
@@ -30,5 +29,5 @@
 
 // Custom components
 
-@import "unauthorized/notify";
-@import "unauthorized/public";
+@import "account/notify";
+@import "account/public";
