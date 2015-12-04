@@ -59,6 +59,10 @@ module Locomotive
       false
     end
 
+    def destroy_all?
+      false
+    end
+
     def site_staff?
       membership.site.present?
     end

@@ -34,7 +34,7 @@ module Locomotive
     end
 
     def point?
-      super_admin? || site_admin?
+      !resource.try(:persisted?) || super_admin? || site_admin?
     end
 
     def update_advanced?

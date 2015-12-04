@@ -74,14 +74,29 @@ module Locomotive
 
           desc "Delete a snippet"
           params do
-            requires :id, type: String, desc: 'Snippet ID'
+            requires :id, type: String, desc: 'Snippet ID or SLUG'
           end
           delete ':id' do
-            authorize snippet, :destroy?
+            @snippet = current_site.snippets.by_id_or_slug(params[:id]).first
+
+            raise ::Mongoid::Errors::DocumentNotFound.new(current_site.snippets, params) if snippet.nil?
+
+            object_auth :destroy?
 
             snippet.destroy
 
             present snippet, with: entity_klass
+          end
+
+          desc 'Delete all snippets'
+          delete '/' do
+            auth :destroy_all?
+
+            number = current_site.snippets.count
+
+            current_site.snippets.destroy_all
+
+            present({ deletions: number })
           end
 
         end

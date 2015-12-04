@@ -107,12 +107,17 @@ module Locomotive
             present page, with: entity_klass, site: current_site
           end
 
-          desc "Delete a page"
+          desc 'Delete a page'
           params do
-            requires :id, type: String, desc: 'Page ID'
+            requires :id, type: String, desc: 'Page ID or PATH'
           end
-          delete ':id' do
-            authorize page, :destroy?
+          delete '*id' do
+            page_id_or_fullpath = params[:id].split('.json').first
+            @page = current_site.pages.by_id_or_fullpath(page_id_or_fullpath).first
+
+            raise ::Mongoid::Errors::DocumentNotFound.new(current_site.pages, { id: page_id_or_fullpath }) if page.nil?
+
+            object_auth :destroy?
 
             page.destroy
 

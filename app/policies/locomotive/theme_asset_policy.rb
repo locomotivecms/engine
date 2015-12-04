@@ -17,5 +17,9 @@ module Locomotive
       site_admin_or_designer?
     end
 
+    def destroy_all?
+      site_admin_or_designer?
+    end
+
   end
 end

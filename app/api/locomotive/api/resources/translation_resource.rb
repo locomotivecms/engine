@@ -76,14 +76,29 @@ module Locomotive
 
           desc "Delete a translation"
           params do
-            requires :id, type: String, desc: 'Translation ID'
+            requires :id, type: String, desc: 'Translation ID or KEY'
           end
           delete ':id' do
+            @translation = current_site.translations.by_id_or_key(params[:id]).first
+
+            raise ::Mongoid::Errors::DocumentNotFound.new(current_site.translations, params) if translation.nil?
+
             object_auth :destroy?
 
             translation.destroy
 
             present translation, with: entity_klass
+          end
+
+          desc 'Delete all translations'
+          delete '/' do
+            auth :destroy_all?
+
+            number = current_site.translations.count
+
+            current_site.translations.destroy_all
+
+            present({ deletions: number })
           end
 
         end

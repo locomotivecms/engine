@@ -87,6 +87,17 @@ module Locomotive
             present theme_asset, with: entity_klass
           end
 
+          desc 'Delete all theme assets'
+          delete '/' do
+            auth :destroy_all?
+
+            number = current_site.theme_assets.count
+
+            current_site.theme_assets.destroy_all
+
+            present({ deletions: number })
+          end
+
         end
 
       end

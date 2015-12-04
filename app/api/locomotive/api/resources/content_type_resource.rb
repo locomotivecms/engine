@@ -127,14 +127,29 @@ module Locomotive
 
           desc "Delete a content_type"
           params do
-            requires :id, type: String, desc: 'ContentType ID'
+            requires :id, type: String, desc: 'ContentType ID or SLUG'
           end
           delete ':id' do
+            content_type = current_site.content_types.by_id_or_slug(params[:id]).first
+
+            raise ::Mongoid::Errors::DocumentNotFound.new(current_site.content_types, params) if content_type.nil?
+
             authorize content_type, :destroy?
 
             content_type.destroy
 
             present content_type, with: entity_klass
+          end
+
+          desc 'Delete all content types'
+          delete '/' do
+            auth :destroy_all?
+
+            number = current_site.content_types.count
+
+            current_site.content_types.destroy_all
+
+            present({ deletions: number })
           end
 
         end
