@@ -40,7 +40,8 @@ module Locomotive
 
       begin
         send(method, field, form.object)
-      rescue NoMethodError
+      rescue NoMethodError => e
+        Rails.logger.error e.message
         nil
       end
     end
@@ -175,7 +176,7 @@ module Locomotive
       {
         wrapper_html: { class: 'tags' },
         input_html: {
-          value: entry.send(field.name).join(',')
+          value: entry.send(field.name).try(:join, ',')
         }
       }
     end
