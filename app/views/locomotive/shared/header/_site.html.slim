@@ -3,6 +3,6 @@
     = _title
 - else
   = link_to current_site.name_was, dashboard_path(current_site)
-  = link_to preview_path(current_site) do
+  = link_to preview_path(current_site), target: 'blank' do
     span.arrow
       i.fa.fa-external-link

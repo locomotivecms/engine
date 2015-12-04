@@ -52,14 +52,9 @@ describe Locomotive::Concerns::SiteDispatcherController do
       @routes.draw { get '/anonymous/test_render_no_site' }
     end
 
-    it 'has a no site error message' do
+    it 'redirects to the list of sites page' do
       get :test_render_no_site
-      expect(response.body).to include 'Site not found'
-    end
-
-    it 'has a 404 not found status' do
-      get :test_render_no_site
-      expect(response.status).to eq(404)
+      expect(response).to redirect_to '/locomotive/sites'
     end
 
   end
