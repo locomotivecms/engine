@@ -19,7 +19,7 @@ describe Locomotive::Steam::LiquidParserWithCacheService do
 
   describe '#parse' do
 
-    let(:parent)  { instance_double('ParsedPage', liquid_source: 'Hello {% block content %}!{% endblock %}') }
+    let(:parent)  { instance_double('ParsedParentPage', liquid_source: 'Hello {% block content %}!{% endblock %}', handle: nil, slug: nil) }
     let(:page)    { instance_double('ParsedPage', _id: '0001', liquid_source: '{% extends parent %}{% block content %}world{{ block.super}}{% endblock %}') }
     let(:parent_finder) { instance_double('ParentFinder', find: parent) }
 
