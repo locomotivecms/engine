@@ -1,6 +1,9 @@
 module Locomotive
   class RegistrationsController < ::Devise::RegistrationsController
 
+    include Locomotive::Concerns::SslController
+    include Locomotive::Concerns::RedirectToMainHostController
+
     layout '/locomotive/layouts/account'
 
     before_action :configure_permitted_parameters

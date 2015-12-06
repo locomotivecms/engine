@@ -13,7 +13,7 @@ describe Locomotive::Concerns::SiteDispatcherController do
 
   let(:my_controller) { MyController.new }
 
-  context 'inheriting from athe site dispatcher' do
+  context 'inheriting from the site dispatcher' do
 
     it 'adds a helper method for current site' do
       expect(my_controller.respond_to?(:current_site, true)).to eq(true)

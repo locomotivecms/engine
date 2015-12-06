@@ -1,6 +1,8 @@
 module Locomotive
   class SessionsController < ::Devise::SessionsController
 
+    include Locomotive::Concerns::SslController
+    include Locomotive::Concerns::RedirectToMainHostController
     include Locomotive::Concerns::WithinSiteController
 
     within_site_only_if_existing true # Note: do not validate the membership

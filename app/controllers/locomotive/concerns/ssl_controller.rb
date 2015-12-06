@@ -1,6 +1,16 @@
 module Locomotive
-  module ActionController
-    module Ssl
+  module Concerns
+    module SslController
+
+      extend ActiveSupport::Concern
+
+      included do
+
+        before_filter :require_ssl
+
+      end
+
+      private
 
       def require_ssl
         # already a ssl request or ssl disabled ?
@@ -12,4 +22,3 @@ module Locomotive
     end
   end
 end
-
