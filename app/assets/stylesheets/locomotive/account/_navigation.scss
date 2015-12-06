@@ -1,0 +1,80 @@
+// =============================================================================
+// Navigation
+// =============================================================================
+
+.navigation {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  padding: 25px 40px;
+  text-align: left;
+}
+
+.navigation-links {
+  float: right;
+  padding: 0;
+  margin: 0;
+  text-align: right;
+  list-style: none;
+  li {
+    display: inline-block;
+    vertical-align: middle;
+  }
+  .dropdown-toggle {
+    display: inline-block;
+    margin-top: 5px;
+    color: $white;
+    img {
+      display: inline-block;
+      width: 30px;
+      margin-right: 8px;
+      vertical-align: middle;
+    }
+    span {
+      margin-left: 5px;
+    }
+    &:hover,
+    &:focus,
+    &:active {
+      text-decoration: none;
+    }
+  }
+  .dropdown-menu {
+    margin-top: 10px;
+    box-shadow: 0 1px 10px rgba($black, .2);
+    li {
+      display: block;
+      a {
+        display: block;
+        padding: 5px 15px;
+        font-size: 13px;
+        transition: all $base-transition-speed linear;
+        &:hover {
+          background: $gray-lighter;
+        }
+        &:focus,
+        &:active {
+          background: $gray-light;
+        }
+      }
+      &.divider {
+        margin: 5px 0;
+      }
+    }
+    &:after {
+      position: absolute;
+      bottom: 100%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      margin-left: -6px;
+      pointer-events: none;
+      border: solid transparent;
+      border-color: rgba($white, 0);
+      border-bottom-color: $white;
+      border-width: 6px;
+      content: " ";
+    }
+  }
+}

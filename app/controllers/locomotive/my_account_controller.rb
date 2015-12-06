@@ -7,7 +7,7 @@ module Locomotive
 
     before_filter :load_account
 
-    layout '/locomotive/layouts/without_site'
+    layout '/locomotive/layouts/account'
 
     def edit
       authorize @account

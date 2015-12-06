@@ -1,16 +1,17 @@
 - title t('.title')
 
+= content_for :header do
+  = render 'locomotive/sites/navigation'
+
 .public-box.without-padding
   .public-intro.with-padding
     h3= t('.title')
     p= t('.description')
 
   .public-entries
-    // Sort these on last modified.
+    // TODO: Sort these on last modified.
     = render @sites
 
   = link_to new_site_url, class: 'public-entry is-add' do
     i.fa.fa-plus
     = t('.new')
-
-= render 'locomotive/sites/navigation'

@@ -3,4 +3,5 @@
   = f.input :avatar, as: :file
   = f.input :locale, as: :select, collection: options_for_locale, include_blank: false, input_html: { class: 'disable-select2' }
 
-= render 'locomotive/my_account/form/actions', f: f
+= f.actions do
+  = f.button :submit, 'Save', class: 'btn btn-primary'

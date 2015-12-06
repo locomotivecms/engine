@@ -4,6 +4,8 @@
 #= require underscore/underscore
 #= require locomotive/bootstrap-notify
 #= require ./utils/notify
+#= require bootstrap/dropdown
+#= require bootstrap/tab
 
 window.Locomotive = {}
 
