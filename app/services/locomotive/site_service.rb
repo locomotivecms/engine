@@ -45,17 +45,21 @@ module Locomotive
       create(attributes, true)
     end
 
-    def update(site, attributes)
+    def update(site, attributes, raise_if_not_valid = false)
       site.attributes = attributes
 
       new_locales = site.locales_changed? ? site.locales - site.locales_was : nil
       previous_default_locale = site.default_locale_was
 
-      site.save.tap do |success|
+      (raise_if_not_valid ? site.save! : site.save).tap do |success|
         if success
           localize_pages_and_content_entries(site, new_locales, previous_default_locale)
         end
       end
+    end
+
+    def update!(site, attributes)
+      update(site, attributes, true)
     end
 
     private

@@ -78,6 +78,16 @@ describe Locomotive::API::Resources::ContentEntryResource do
           expect(parsed_response[:title]).to eq 'Article #1'
         end
 
+        context 'the content entry is invalid' do
+
+          let(:content_entry_params) { { body: 'Lorem ipsum' } }
+
+          it 'returns 422' do
+            expect(subject.status).to eq 422
+          end
+
+        end
+
       end
     end
 
@@ -137,6 +147,16 @@ describe Locomotive::API::Resources::ContentEntryResource do
 
           it 'creates a new content entry' do
             expect { put_request }.to change { Locomotive::ContentEntry.where(_slug: 'another-content-entry').count }.by(1)
+          end
+
+          context 'the content entry is invalid' do
+
+            let(:content_entry_params) { { body: 'Lorem ipsum' } }
+
+            it 'returns 422' do
+              expect(put_request.status).to eq 422
+            end
+
           end
 
         end

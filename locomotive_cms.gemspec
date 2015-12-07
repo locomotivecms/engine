@@ -36,9 +36,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'mongoid-tree',                    '~> 2.0.1'
   s.add_dependency 'mongo_session_store-rails4',      '~> 6.0.0'
 
-  s.add_dependency 'mime-types',                      '~> 2.5'
   s.add_dependency 'custom_fields',                   '~> 2.5.0.rc1'
-
   s.add_dependency 'locomotivecms_steam',             '~> 1.0.0.rc8'
 
   s.add_dependency 'slim',                            '~> 3.0.6'
@@ -67,6 +65,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'carrierwave-mongoid',             '~> 0.8.1'
   s.add_dependency 'dragonfly',                       '~> 1.0.7'
   s.add_dependency 'rack-cache',                      '~> 1.1'
+  s.add_dependency 'mime-types',                      '~> 2.5'
   s.add_dependency 'mimetype-fu',                     '~> 0.1.2'
 
   s.add_dependency 'multi_json',                      '~> 1.11.0'

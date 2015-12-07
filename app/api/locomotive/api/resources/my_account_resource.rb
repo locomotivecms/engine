@@ -39,7 +39,7 @@ module Locomotive
 
             my_account_form = Forms::MyAccountForm.new(permitted_params[:account])
             my_account.assign_attributes(my_account_form.serializable_hash)
-            my_account.save
+            my_account.save!
 
             present my_account, with: entity_klass
           end

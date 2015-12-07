@@ -55,6 +55,14 @@ module Locomotive
       end
     end
 
+    def create!(attributes)
+      if (entry = create(attributes)).errors.empty?
+        entry
+      else
+        entry.fail_due_to_validation!
+      end
+    end
+
     # Create a content entry from the attributes passed in parameter.
     # It does not set the created_by column since it's called
     # from the public side of the site with no logged in account.
@@ -96,6 +104,16 @@ module Locomotive
         if entry.save
           track_activity 'content_entry.updated', parameters: activity_parameters(entry)
         end
+      end
+    end
+
+    def update!(entry, attributes)
+      update(entry, attributes)
+
+      if entry.errors.empty?
+        entry
+      else
+        entry.fail_due_to_validation!
       end
     end
 

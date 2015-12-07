@@ -31,8 +31,7 @@ module Locomotive
     field :display_settings,            type: Hash
 
     ## associations ##
-    # belongs_to  :site,      class_name: 'Locomotive::Site', validate: false
-    has_many    :entries,   class_name: 'Locomotive::ContentEntry', dependent: :destroy
+    has_many :entries,   class_name: 'Locomotive::ContentEntry', dependent: :destroy
 
     ## named scopes ##
     scope :ordered, -> { order_by(updated_at: :desc) }

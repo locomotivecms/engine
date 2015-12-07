@@ -47,6 +47,16 @@ describe Locomotive::API::Resources::CurrentSiteResource do
           expect{ put_request }.to change{ site.reload.name }.to('emca, Inc.')
         end
 
+        context 'the site is invalid' do
+
+            let(:site_params) { { name: '' } }
+
+            it 'returns 422' do
+              expect(put_request.status).to eq 422
+            end
+
+          end
+
       end
     end
 
