@@ -73,7 +73,6 @@ module Locomotive
             present translation, with: entity_klass
           end
 
-
           desc "Delete a translation"
           params do
             requires :id, type: String, desc: 'Translation ID or KEY'
