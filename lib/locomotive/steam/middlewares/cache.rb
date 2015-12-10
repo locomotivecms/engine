@@ -46,7 +46,8 @@ module Locomotive
           CACHEABLE_REQUEST_METHODS.include?(env['REQUEST_METHOD']) &&
           !env['steam.live_editing'] &&
           env['steam.site'].try(:cache_enabled) &&
-          env['steam.page'].try(:cache_enabled)
+          env['steam.page'].try(:cache_enabled) &&
+          env['steam.page'].try(:redirect_url).blank?
         end
 
         def cache_key(env)
