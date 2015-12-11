@@ -214,6 +214,7 @@ en:
       edit:
         settings_link: 'Settings'
         no_editable_elements: 'No editable elements found'
+        parsing_error: "<b>We are sorry but we couldn't parse the template of your page.</b><br/>Please make sure your template first works with Wagon."
         blocks:
           all: All
           unknown: Unknown

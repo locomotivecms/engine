@@ -45,8 +45,10 @@ module Locomotive
     end
 
     def render_index
-      @editable_elements_by_block = parsing_service.group_and_sort_editable_elements(@editable_elements)
-      @blocks = parsing_service.blocks_from_grouped_editable_elements(@editable_elements_by_block)
+      if @editable_elements
+        @editable_elements_by_block = parsing_service.group_and_sort_editable_elements(@editable_elements)
+        @blocks = parsing_service.blocks_from_grouped_editable_elements(@editable_elements_by_block)
+      end
 
       @content_entry = @page.content_type.entries.find(params[:content_entry_id]) if params[:content_entry_id]
 
