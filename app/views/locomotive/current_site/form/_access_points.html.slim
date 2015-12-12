@@ -6,5 +6,9 @@
 
     = f.input :redirect_to_first_domain, as: :toggle
 
+  = f.inputs :private_access do
+    = f.input :private_access, as: :toggle
+    = f.input :password, as: :string, wrapper_html: { class: "#{'hide' unless f.object.private_access?}" }
+
   = f.actions do
     = f.action

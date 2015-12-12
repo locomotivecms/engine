@@ -66,6 +66,8 @@ module Locomotive
               optional :timezone
               optional :picture
               optional :cache_enabled
+              optional :private_access
+              optional :password
             end
           end
           post do
@@ -92,6 +94,8 @@ module Locomotive
               optional :timezone
               optional :picture
               optional :cache_enabled
+              optional :private_access
+              optional :password
             end
           end
           put ':id' do

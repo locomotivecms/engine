@@ -75,6 +75,8 @@ module Locomotive
 
         request.env['steam.live_editing']     = true
 
+        request.env['steam.private_access_disabled'] = true
+
         Locomotive::Site.where(handle: handle).first
       end
 

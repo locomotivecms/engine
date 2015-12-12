@@ -48,6 +48,8 @@ en:
           locales: Languages
           timezone_name: Timezone
           cache_enabled: Cache
+          private_access: "Enable password-protection"
+          password: "Site-Wide Password"
           new:
             locales: First language
         membership:
@@ -69,7 +71,6 @@ en:
           rows: "Rows"
           head: "Head row?"
           class_name: "CSS class"
-
 
     hints:
       locomotive:
@@ -99,6 +100,8 @@ en:
           cache_enabled: "When enabled, your pages will be cached as long as the content doesn't change. Disabling cache per page is allowed."
           redirect_to_first_domain: "When enabled, requests made to any domains listed above will be redirected to the first domain."
           url_redirections: "Redirect (301) legacy urls to pages you created in the back-office. The origin and the destination URLs are separated by a <u>space</u>."
+          private_access: You can hide your site behind a password.
+          password: The password public visitors will have to enter to see the content of your site.
           new:
             locales: "You can add other languages once your site will be created."
         translation:

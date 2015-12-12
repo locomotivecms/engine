@@ -10,6 +10,7 @@ module Locomotive
     include Concerns::Site::Timezone
     include Concerns::Site::Cache
     include Concerns::Site::UrlRedirections
+    include Concerns::Site::PrivateAccess
 
     ## fields ##
     field :name
