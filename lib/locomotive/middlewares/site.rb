@@ -75,7 +75,7 @@ module Locomotive
 
         request.env['steam.live_editing']     = true
 
-        request.env['steam.private_access_disabled'] = true
+        request.env['steam.private_access_disabled'] = request.env['warden'].try(:user).present?
 
         Locomotive::Site.where(handle: handle).first
       end
