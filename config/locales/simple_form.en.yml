@@ -158,5 +158,7 @@ en:
           loading_text: Resizing...
           submit: Resize
         site:
-          delete: Destroy this site
+          delete: Delete this site
+        page:
+          delete: Delete
 
