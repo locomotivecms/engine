@@ -16,12 +16,8 @@ module Locomotive
         end
 
         def alternative_vignette_url
-          format = if self.image?
-            if self.width > self.height
-              '190x120>'
-            else
-              '190x120>'
-            end
+          format = if self.image? && self.width && self.height
+            '190x120>'
           elsif self.pdf?
             '190x120#'
           end
