@@ -64,7 +64,7 @@ group :test do
   gem 'factory_girl_rails'
   gem 'pickle'
   gem 'json_spec',            '~> 1.1.4'
-  gem 'database_cleaner',     git: 'https://github.com/DatabaseCleaner/database_cleaner.git'
+  gem 'database_cleaner',     github: 'DatabaseCleaner/database_cleaner'
   gem 'timecop',              '~> 0.7.1'
 
   gem 'email_spec'
