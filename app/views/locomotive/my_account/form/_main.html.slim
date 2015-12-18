@@ -1,6 +1,16 @@
 = f.inputs :information do
-  = f.input :name, input_html: { class: 'input-lg' }
-  = f.input :avatar, as: :file
+  = f.input :name
+
+  .form-group
+    label Avatar
+    .file-wrapper
+      .file-image
+        = image_tag 'locomotive/user.png'
+        i.fa.fa-trash
+      label.file
+        input type="file" id="file" aria-label="File browser example"
+        span.file-custom
+
   = f.input :locale, as: :select, collection: options_for_locale, include_blank: false, input_html: { class: 'disable-select2' }
 
 = f.actions do

@@ -1,0 +1,104 @@
+// =============================================================================
+// Files
+// =============================================================================
+
+.file-wrapper {
+  position: relative;
+  display: block;
+}
+
+.file-image {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  display: inline-block;
+  height: 46px;
+  vertical-align: middle;
+  cursor: pointer;
+  border-bottom-left-radius: $border-radius-base;
+  border-top-left-radius: $border-radius-base;
+  img {
+    position: relative;
+    z-index: 10;
+    width: 46px;
+    max-height: 46px;
+    border-bottom-left-radius: $border-radius-base;
+    border-top-left-radius: $border-radius-base;
+  }
+  i {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 15;
+    padding: 13px 0 0;
+    font-size: 20px;
+    color: $white;
+    text-align: center;
+    background: rgba($brand-danger, .8);
+    opacity: 0;
+    transition: opacity $base-transition-speed linear;
+  }
+  &:hover i {
+    opacity: 1;
+  }
+}
+
+.file {
+  position: relative;
+  display: block;
+  height: 46px;
+  margin-bottom: 0;
+  vertical-align: middle;
+  cursor: pointer;
+  input {
+    min-width: 14rem;
+    margin: 0;
+    opacity: 0;
+  }
+}
+
+.file-custom {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 5;
+  width: 100%;
+  height: 46px;
+  padding: 12px 15px 12px 61px;
+  font-size: $font-size-base;
+  line-height: $line-height-base;
+  letter-spacing: 0;
+  color: $gray;
+  text-transform: none;
+  background-color: $white;
+  border: 1px solid $border-color-base;
+  border-radius: $border-radius-base;
+  user-select: none;
+  &::after {
+    content: "Choose file...";
+  }
+  &::before {
+    position: absolute;
+    top: -1px;
+    right: -1px;
+    bottom: -1px;
+    z-index: 6;
+    display: block;
+    height: 46px;
+    padding: 12px 15px;
+    line-height: $line-height-base;
+    color: $gray;
+    background-color: $gray-lightest;
+    border: 1px solid $border-color-base;
+    border-radius: 0  $border-radius-base  $border-radius-base 0;
+    content: "Browse";
+    transition: background $base-transition-speed linear;
+    &:hover {
+      background-color: $gray-light;
+    }
+  }
+}
