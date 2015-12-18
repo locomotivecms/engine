@@ -1,3 +1,9 @@
+body.live-editing .drawer {
+  .content-assets, .content-assets-list {
+    margin-left: $live_editing_expand_bar_width;
+  }
+}
+
 .content-assets {
 
   .updatable {
