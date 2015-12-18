@@ -1,67 +1,56 @@
-$activity_feed_icon_bg_color:     #59b9cc;
-$activity_feed_title_color:       #595959;
-$activity_feed_time_color:        #949999;
+$activity_feed_icon_bg_color: #2558b1;
+$activity_feed_title_color: #595959;
+$activity_feed_time_color: #949999;
 
 .activity-feed {
-  list-style: none;
-  border-left: 1px solid #ddd;
   padding-top: 1px;
   padding-left: 50px;
-
   margin-left: 40px;
-
+  list-style: none;
+  border-left: 1px solid #ddd;
   > li {
     position: relative;
     margin-bottom: 30px;
-
     .icon {
       position: absolute;
-      font-size: 14px;
       top: -4px;
       left: -65px;
-
+      font-size: 14px;
       .fa-circle {
         color: $activity_feed_icon_bg_color;
       }
     }
-
     > p {
-      color: $activity_feed_title_color;
+      margin-bottom: 2px;
       font-size: 13px;
       font-weight: 600;
-      margin-bottom: 2px;
-
+      color: $activity_feed_title_color;
       img {
         margin-right: 10px;
         border: 1px solid $activity_feed_time_color;
       }
-
       span.time {
-        color: $activity_feed_time_color;
         font-weight: normal;
+        color: $activity_feed_time_color;
       }
-
       span.sentence {
         font-weight: normal;
       }
     }
-
     .additional-information {
       padding-left: 30px;
-
       ul.assets {
+        padding: 0;
+        margin: 0;
         list-style: none;
-        margin: 0px;
-        padding: 0px;
         li {
-          margin: 6px 10px 6px 0px;
           float: left;
+          margin: 6px 10px 6px 0;
           img {
             width: 30px;
           }
         }
       }
     }
-
   }
 }
