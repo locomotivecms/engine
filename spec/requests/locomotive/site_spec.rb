@@ -120,5 +120,4 @@ describe Locomotive::Middlewares::Site do
 
   end
 
-
 end

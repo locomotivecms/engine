@@ -17,4 +17,23 @@
     xhr.onerror = (event) -> callback(null)
 
     xhr.send()
+
+  window.resize_image = (image, format, callback) ->
+    data = new FormData()
+    data.append('image', image)
+    data.append('format', format)
+
+    xhr = new XMLHttpRequest()
+    xhr.open('POST', '<%= Locomotive::Middlewares::ImageThumbnail.route %>', true)
+
+    xhr.onload = (event) ->
+      if this.status == 200
+        callback(this.response)
+      else
+        callback(image)
+
+    xhr.onerror = (event) -> callback(image)
+
+    xhr.send(data)
+
 )()

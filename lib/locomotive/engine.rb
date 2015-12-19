@@ -63,6 +63,7 @@ module Locomotive
     initializer 'locomotive.middlewares' do |app|
       require 'locomotive/middlewares'
 
+      app.middleware.insert_before ActionDispatch::Static, '::Locomotive::Middlewares::ImageThumbnail'
       app.middleware.use '::Locomotive::Middlewares::Site'
     end
 

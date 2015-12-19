@@ -8,7 +8,7 @@ module Locomotive
     include Locomotive::SimpleForm::BootstrapHelpers
 
     def input(wrapper_options = nil)
-      row_wrapping(data: { persisted: persisted_file?, persisted_file: persisted_file? }) do
+      row_wrapping(data: { persisted: persisted_file?, persisted_file: persisted_file?, resize_format: options[:resize_format] }) do
         file_html + buttons_html
       end
     end

@@ -14,7 +14,6 @@ require 'locomotive/custom_fields'
 require 'locomotive/action_controller'
 require 'locomotive/rails'
 require 'locomotive/regexps'
-# require 'locomotive/middlewares'
 
 module Locomotive
   extend ActiveSupport::Autoload

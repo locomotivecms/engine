@@ -45,19 +45,21 @@ class Locomotive.Views.EditableElements.PageView extends Backbone.View
 
   refresh_image: (msg, data) ->
     @refresh_elements 'image', data.view, ($elements, element_id) =>
+      resize_format     = data.view.$('.row').data('resize-format')
       current_image_url = data.view.$('input[name*="[content]"]').val()
       image_url         = data.url || current_image_url
 
-      if $elements.size() > 0
-        @replace_images($elements, image_url)
-      else
-        @replace_images_identified_by_url(current_image_url, image_url, element_id)
+      window.resize_image image_url, resize_format, (resized_image) =>
+        if $elements.size() > 0
+          @replace_images($elements, resized_image)
+        else
+          @replace_images_identified_by_url(resized_image, data.view.path, element_id)
 
   refresh_elements: (type, view, callback) ->
     $form_view  = $(view.el).parent()
     element_id  = $form_view.find('input[name*="[id]"]').val()
 
-    callback($(@el).find("*[data-element-id=#{element_id}]"), element_id)
+    callback(@$("*[data-element-id=#{element_id}]"), element_id)
 
   replace_images: (images, new_image_url) ->
     images.each ->
@@ -66,13 +68,16 @@ class Locomotive.Views.EditableElements.PageView extends Backbone.View
       else
         $(this).css("background-image", "url('" + new_image_url + "')")
 
-  replace_images_identified_by_url: (current_image_url, new_image_url, element_id) ->
+  # retrieve all the images and background images by their editable path:
+  # - attach the element id
+  # - replace the image url
+  replace_images_identified_by_url: (new_image_url, path, element_id) ->
     # looking for DIVs with background-url property matching the previous image url
-    $el = $(@el).find("*[style*='#{current_image_url}']").attr('data-element-id', element_id)
-    $el.css("background-image", "url('" + new_image_url + "')")
+    $el = @$("*[style*='#{path}']").attr('data-element-id', element_id)
+    $el.css("background-image", "url('#{new_image_url}')")
 
     # looking for IMGs with src attribute matching the previous image url
-    $el = $(@el).find("img[src*='#{current_image_url}']").attr('data-element-id', element_id)
+    $el = @$("img[src*='#{path}']").attr('data-element-id', element_id)
     $el.attr('src', new_image_url)
 
   remove: ->
