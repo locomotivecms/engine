@@ -14,14 +14,10 @@ module Locomotive
 
           image, format = request.params['image'], request.params['format']
 
-          file = Locomotive::Dragonfly.app.fetch_url(image)
-
-          if image.blank? || format.blank?
-            respond('', 422)
-          elsif image.starts_with?('data') # base64
-            respond(file.apply.content.process!(:thumb, format).b64_data)
+          if thumb = make_thumb(image, format)
+            respond(thumb)
           else
-            respond(file.thumb(format).url) # url
+            respond('', 422)
           end
         else
           @app.call(env)
@@ -34,6 +30,23 @@ module Locomotive
       end
 
       private
+
+      def make_thumb(image, format)
+        return nil if image.blank? || format.blank?
+
+        file = Locomotive::Dragonfly.app.fetch_url(image)
+
+        begin
+          if image.starts_with?('data') # base64
+            file.apply.content.process!(:thumb, format).b64_data
+          else
+            file.thumb(format).url # url
+          end
+        rescue ArgumentError => e
+          Locomotive.log "[image thumbnail] error = #{e.message}"
+          nil
+        end
+      end
 
       def respond(response = '', status = 200)
         [status, { 'Content-Type' => 'text/plain' }, [response]]

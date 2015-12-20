@@ -32,11 +32,17 @@ class Locomotive.Views.EditableElements.PageView extends Backbone.View
     return false if element.size() == 0
     $(@el).animate({ scrollTop: element.offset().top }, 500)
 
+  each_elements: (view, callback) ->
+    $form_view  = $(view.el).parent()
+    element_id  = $form_view.find('input[name*="[id]"]').val()
+
+    callback(@$("*[data-element-id=#{element_id}]"), element_id)
+
   refresh_all: (msg, data) ->
     @options.parent_view.reload()
 
   refresh_text: (msg, data) ->
-    @refresh_elements 'text', data.view, ($elements) ->
+    @each_elements data.view, ($elements) ->
       $elements.each -> $(this).html(data.content)
 
   refresh_image_on_remove: (msg, data) ->
@@ -44,22 +50,19 @@ class Locomotive.Views.EditableElements.PageView extends Backbone.View
     @refresh_image(msg, data)
 
   refresh_image: (msg, data) ->
-    @refresh_elements 'image', data.view, ($elements, element_id) =>
+    @each_elements data.view, ($elements, element_id) =>
+      if $elements.size() == 0
+        $elements = @find_and_reference_images_identified_by_url(data.view.path, element_id)
+
+      return if $elements.size() == 0
+
       resize_format     = data.view.$('.row').data('resize-format')
       current_image_url = data.view.$('input[name*="[content]"]').val()
       image_url         = data.url || current_image_url
 
+      # ask for a cropped/resized version of the image
       window.resize_image image_url, resize_format, (resized_image) =>
-        if $elements.size() > 0
-          @replace_images($elements, resized_image)
-        else
-          @replace_images_identified_by_url(resized_image, data.view.path, element_id)
-
-  refresh_elements: (type, view, callback) ->
-    $form_view  = $(view.el).parent()
-    element_id  = $form_view.find('input[name*="[id]"]').val()
-
-    callback(@$("*[data-element-id=#{element_id}]"), element_id)
+        @replace_images($elements, resized_image)
 
   replace_images: (images, new_image_url) ->
     images.each ->
@@ -68,17 +71,10 @@ class Locomotive.Views.EditableElements.PageView extends Backbone.View
       else
         $(this).css("background-image", "url('" + new_image_url + "')")
 
-  # retrieve all the images and background images by their editable path:
-  # - attach the element id
-  # - replace the image url
-  replace_images_identified_by_url: (new_image_url, path, element_id) ->
-    # looking for DIVs with background-url property matching the previous image url
-    $el = @$("*[style*='#{path}']").attr('data-element-id', element_id)
-    $el.css("background-image", "url('#{new_image_url}')")
-
-    # looking for IMGs with src attribute matching the previous image url
-    $el = @$("img[src*='#{path}']").attr('data-element-id', element_id)
-    $el.attr('src', new_image_url)
+  # retrieve all the images and background images by their editable path
+  # and associate the element_id to them
+  find_and_reference_images_identified_by_url: (path, element_id) ->
+    @$("*[style*='#{path}'],img[src*='#{path}']").attr('data-element-id', element_id)
 
   remove: ->
     super()

@@ -17,7 +17,8 @@ describe Locomotive::Middlewares::ImageThumbnail do
 
     let(:url)     { 'http://locomotive.dev/locomotive/_image_thumbnail' }
     let(:image)   { 'http://locomotive.dev/assets/banner.png' }
-    let(:params)  { { 'image' => image, 'format' => '300x300' } }
+    let(:format)  { '300x300' }
+    let(:params)  { { 'image' => image, 'format' => format } }
     let(:request) { Rack::MockRequest.new(middleware) }
 
     subject { request.post(url, params: params) }
@@ -49,6 +50,14 @@ describe Locomotive::Middlewares::ImageThumbnail do
 
       it { expect(subject.status).to eq 200 }
       it { expect(subject.body).to include("data:image/png;base64") }
+
+      describe 'wrong format' do
+
+        let(:format) { 'wrongsyntax' }
+
+        it { expect(subject.status).to eq 422 }
+
+      end
 
     end
 

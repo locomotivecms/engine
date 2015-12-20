@@ -19,6 +19,10 @@
     xhr.send()
 
   window.resize_image = (image, format, callback) ->
+    unless format?
+      callback(image)
+      return
+
     data = new FormData()
     data.append('image', image)
     data.append('format', format)
