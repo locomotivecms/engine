@@ -2,10 +2,17 @@
 // Files
 // =============================================================================
 
+// Custom file selector
+
+// Wrapper for the file upload. Should only be used when adding the uploaded
+// image left of the file upload.
+
 .file-wrapper {
   position: relative;
   display: block;
 }
+
+// Adds an image next to the upload.
 
 .file-image {
   position: absolute;
@@ -46,6 +53,8 @@
   }
 }
 
+// File upload container.
+
 .file {
   position: relative;
   display: block;
@@ -54,11 +63,13 @@
   vertical-align: middle;
   cursor: pointer;
   input {
-    min-width: 14rem;
+    min-width: 100%;
     margin: 0;
     opacity: 0;
   }
 }
+
+// Adds custom file inputs.
 
 .file-custom {
   position: absolute;
