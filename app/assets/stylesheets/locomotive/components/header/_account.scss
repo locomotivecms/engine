@@ -33,7 +33,7 @@ $header_dropdown_hovered_link_color:        #fff;
     ul.dropdown-menu {
       right: 15px;
 
-      @include border-radius(3px);
+      border-radius: 3px;
       @include box-shadow(none);
       background: $header_dropdown_background_color;
 

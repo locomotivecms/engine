@@ -1,4 +1,3 @@
-@import "compass/css3/border-radius";
 @import "font-awesome/mixins";
 
 $button-background:     #54b9cd;
@@ -42,7 +41,7 @@ $fa-version:            '4_4_0';
     background-image: none;
     border: none;
     border-bottom: 2px solid $button-border-color;
-    @include border-radius(3px);
+    border-radius: 3px;
     color: $button-color;
     cursor: pointer;
     display: inline-block;

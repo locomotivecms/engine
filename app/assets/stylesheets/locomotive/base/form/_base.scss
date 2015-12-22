@@ -12,7 +12,7 @@
     .input {
       background: $form_input_background_color;
       padding: $form_input_padding;
-      @include border-radius($form_input_radius);
+      border-radius: $form_input_radius;
       @include transition(background-color 0.2s ease-in-out);
 
       header {
@@ -65,11 +65,11 @@
         display: block;
         background: $form_input_wrapper_background_color;
         border: $form_input_control_border_size solid $form_input_control_border_color;
-        @include border-radius($form_input_control_border_size);
+        border-radius: $form_input_control_border_size;
 
         > input, > select, .input-group > input {
           border: none;
-          @include border-radius(0px);
+          border-radius: 0px;
         }
 
         .input-group {

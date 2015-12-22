@@ -5,7 +5,7 @@ source "https://rubygems.org"
 
 gemspec # Include gemspec dependencies
 
-gem 'sass-rails',   '~> 5.0.1'
+gem 'sass-rails', '~> 5.0.4'
 gem 'coffee-rails', '~> 4.1.0'
 gem 'uglifier',     '>= 2.5.3'
 
@@ -22,7 +22,7 @@ group :development do
   # gem 'custom_fields', github: 'locomotivecms/custom_fields', ref: '279c6744eb6b7dd'
 
   # gem 'locomotivecms_steam', path: '../gems/steam', require: false
-  # gem 'locomotivecms_steam', github: 'locomotivecms/steam', ref: '2e147df', require: false
+  gem 'locomotivecms_steam', github: 'locomotivecms/steam', ref: '552c1b5', require: false
 
   # gem 'locomotive_liquid', path: '../gems/liquid' # for Developers
   # gem 'locomotivecms_solid', path: '../gems/solid' # for Developers

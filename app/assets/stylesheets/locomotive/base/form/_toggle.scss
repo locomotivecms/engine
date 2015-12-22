@@ -1,8 +1,8 @@
 .simple_form {
 
   fieldset .input.toggle {
-    @include display-flex;
-    @include justify-content(space-between);
+    display: flex;
+    justify-content: space-between;
 
     & > .form-wrapper {
       background: transparent;

@@ -70,7 +70,7 @@ body.live-editing .drawer {
 
       background: $assets_dropzone_progress_background;
       height: $assets_dropzone_progress_size;
-      @include border-radius($assets_dropzone_progress_size / 2);
+      border-radius: $assets_dropzone_progress_size / 2;
       @include box-shadow(none);
 
       .progress-bar {
@@ -84,14 +84,13 @@ body.live-editing .drawer {
 
   margin-top: 10px;
 
-  @include display-flex;
-  @include flex-direction(row);
-  @include flex-wrap;
-  @include flex-align(left);
-  // @include flex-justify-content(center);
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: left;
 
   .asset {
-    @include border-radius($asset_border_radius);
+    border-radius: $asset_border_radius;
     background: $asset_background;
     padding: 10px 15px;
     margin: 0px 20px 20px 0px;
@@ -117,15 +116,15 @@ body.live-editing .drawer {
     .body {
       width: 100%;
       height: $asset_height - 106;
-      @include display-flex;
-      @include flex-align(center);
-      @include flex-justify-content(center);
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .small-thumbnail {
       display: inline-block;
       background: $asset_thumbnail_background;
-      @include border-radius($asset_thumbnail_border_radius);
+      border-radius: $asset_thumbnail_border_radius;
       padding: $asset_thumbnail_border_radius;
 
       img {

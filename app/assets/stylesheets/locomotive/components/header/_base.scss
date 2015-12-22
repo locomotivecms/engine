@@ -62,9 +62,9 @@ $header_site_arrow_color:     #349cb0;
 }
 
 .navbar-site {
+  display: flex;
+  justify-content: center;
   width: 40%;
-  @include display-flex;
-  @include flex-justify-content(center);
 
   li {
     a {

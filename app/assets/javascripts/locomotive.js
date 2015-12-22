@@ -11,9 +11,9 @@
 //= require underscore/underscore
 //= require backbone/backbone
 //= require bootstrap-tagsinput/bootstrap-tagsinput
+//= require select2/select2
 //= require codemirror
 //= require codemirror/modes/markdown
-//= require select2
 //= require nprogress
 //= require nprogress-ajax
 //= require locomotive/vendor

@@ -97,7 +97,7 @@ $pt_warning_color:      #f89406;
       .sortable-placeholder {
         background-color: $pt_placeholder_color;
         height: 20px;
-        @include border-radius(10px);
+        border-radius: 10px;
         border: none;
       }
 

@@ -1,4 +1,4 @@
-Select2.helpers = (->
+window.Select2Helpers = (->
 
   default_build_options = (input) ->
     minimumInputLength:   1
@@ -7,13 +7,15 @@ Select2.helpers = (->
     formatSearching:      input.data('searching')
     formatInputTooShort:  input.data('too-short')
     ajax:
-      url: input.data('list-url')
-      data: (term, page) ->
-        q:    term
-        page: page
-      results: (data, page) ->
-        results:  build_results data, input.data('label-method'), input.data('group-by')
-        more:     data.length == input.data('per-page')
+      url:      input.data('list-url')
+      dataType: 'json'
+      data: (params) ->
+        q:    params.term
+        page: params.page
+      processResults: (data, params) ->
+        results: build_results data, input.data('label-method'), input.data('group-by')
+        pagination:
+          more: data.length == input.data('per-page')
 
   build_results = (raw_data, label_method, group_by) ->
     _.tap [], (list) =>

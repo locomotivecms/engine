@@ -25,7 +25,7 @@ body.developers-documentation {
     pre {
       background: #fff;
       border: 3px solid $developers_documentation_code_border;
-      @include border-radius($developers_documentation_code_radius);
+      border-radius: $developers_documentation_code_radius;
       padding: 0px;
     }
 

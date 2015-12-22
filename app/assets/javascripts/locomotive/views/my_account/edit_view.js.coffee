@@ -32,13 +32,12 @@ class Locomotive.Views.MyAccount.EditView extends Locomotive.Views.Shared.FormVi
 
   render_locale_select: ->
     @$('.locomotive_account_locale.input select').select2
-      formatResult:     @format_locale
-      formatSelection:  @format_locale
-      escapeMarkup:     (m) -> { m }
+      templateResult:     @format_locale
+      templateSelection:  @format_locale
 
   format_locale: (state) ->
     return state.text unless state.id?
 
     flag_url = $(state.element).data('flag')
 
-    "<img class='flag' src='#{flag_url}' width='24px' />" + state.text
+    $("<span><img class='flag' src='#{flag_url}' width='24px' />#{state.text}</span>")

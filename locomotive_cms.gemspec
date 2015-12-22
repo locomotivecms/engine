@@ -23,12 +23,11 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'rails',                           '~> 4.2.5'
 
-  # https://github.com/net-ssh/net-ssh/issues/260
-  s.add_dependency 'net-ssh',                         '~> 2.10.1.rc1'
+  s.add_dependency 'net-ssh',                         '~> 3.0.1'
 
   s.add_dependency 'devise',                          '~> 3.5.1'
   s.add_dependency 'devise-encryptable',              '~> 0.2.0'
-  s.add_dependency 'simple_token_authentication',     '~> 1.10.0'
+  s.add_dependency 'simple_token_authentication',     '~> 1.11.0'
 
   s.add_dependency 'pundit',                          '~> 1.0.0'
 
@@ -50,12 +49,13 @@ Gem::Specification.new do |s|
   s.add_dependency 'jquery-ui-rails',                 '~> 5.0.3'
   s.add_dependency 'codemirror-rails',                '~> 5.6'
   s.add_dependency 'flash_cookie_session',            '~> 1.1.1'
-  s.add_dependency 'select2-rails',                   '~> 3.5.9'
-  s.add_dependency 'compass-rails',                   '2.0.4'
-  s.add_dependency 'bootstrap-sass',                  '~> 3.3.5.1'
-  s.add_dependency 'autoprefixer-rails',              '~> 6.0.3'
+  # s.add_dependency 'select2-rails',                   '~> 4.0.0'
+  # s.add_dependency 'compass-rails',                   '2.0.5'
+  # s.add_dependency 'compass',                         '~> 1.0.3'
+  s.add_dependency 'bootstrap-sass',                  '~> 3.3.6'
+  s.add_dependency 'autoprefixer-rails',              '~> 6.2.0'
 
-  s.add_dependency 'font-awesome-sass',               '~> 4.4.0'
+  s.add_dependency 'font-awesome-sass',               '~> 4.5.0'
   s.add_dependency 'nprogress-rails',                 '~> 0.1.6.7'
 
   s.add_dependency 'highline',                        '~> 1.7.1'
@@ -65,7 +65,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'carrierwave-mongoid',             '~> 0.8.1'
   s.add_dependency 'dragonfly',                       '~> 1.0.7'
   s.add_dependency 'rack-cache',                      '~> 1.1'
-  s.add_dependency 'mime-types',                      '~> 2.5'
+  s.add_dependency 'mime-types',                      '~> 2.6.2'
   s.add_dependency 'mimetype-fu',                     '~> 0.1.2'
 
   s.add_dependency 'multi_json',                      '~> 1.11.0'

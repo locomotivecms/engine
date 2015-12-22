@@ -12,8 +12,8 @@
 
       min-height: $content_list_item_min_height;
 
-      @include display-flex;
-      @include flex-align(center);
+      display: flex;
+      align-items: center;
       position: relative;
 
       &:not(.hide):last-child {
@@ -99,7 +99,7 @@
         margin: $padding-base-horizontal 0px;
         background-color: $content_list_item_placeholder;
         height: $content_list_item_min_height - (2 * $padding-base-horizontal);
-        @include border-radius(($content_list_item_min_height - (2 * $padding-base-horizontal)) / 2);
+        border-radius: ($content_list_item_min_height - (2 * $padding-base-horizontal)) / 2;
       }
 
     }
