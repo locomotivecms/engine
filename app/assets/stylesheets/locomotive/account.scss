@@ -26,8 +26,14 @@
 // Components
 
 @import "bootstrap/alerts";
+@import "bootstrap/dropdowns";
+@import "account/navs";
+@import "bootstrap/utilities";
 
 // Custom components
 
+@import "account/brand";
+@import "account/files";
+@import "account/navigation";
 @import "account/notify";
 @import "account/public";

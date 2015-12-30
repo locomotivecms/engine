@@ -269,6 +269,9 @@ en:
     my_account:
       edit:
         title: Editing my account
+      form:
+        api:
+          api_key: "Used by Wagon to deploy your site (check your config/deploy.yml file of your Wagon site)."
 
     translations:
       untranslated: "Untranslated locales: %{list}"

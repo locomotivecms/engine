@@ -1,6 +1,18 @@
 = f.inputs :information do
-  = f.input :name, input_html: { class: 'input-lg' }
-  = f.input :avatar, as: :file
-  = f.input :locale, as: :select, collection: options_for_locale, include_blank: false, input_html: { class: 'disable-select2' }
+  = f.input :name
 
-= render 'locomotive/my_account/form/actions', f: f
+  / Needs wiring
+  .form-group
+    label Avatar
+    .file-wrapper
+      .file-image
+        = image_tag 'locomotive/user.png'
+        i.fa.fa-trash
+      label.file
+        input type="file" id="file" aria-label="Avatar file picker"
+        span.file-custom
+
+  = f.input :locale, as: :select, collection: options_for_locale, include_blank: false
+
+= f.actions do
+  = f.button :submit, 'Save', class: 'btn btn-primary'

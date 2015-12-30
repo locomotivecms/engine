@@ -12,13 +12,27 @@ html xmlns='http://www.w3.org/1999/xhtml' lang=I18n.locale
 
     link href="https://fonts.googleapis.com/css?family=Muli:400,300|Noto+Sans:400,700" rel="stylesheet" type="text/css"
 
-    = javascript_include_tag  'locomotive/account'
+    javascript:
+      window.Locomotive = { mounted_on: '#{Locomotive.mounted_on}' }
+
+    = javascript_include_tag  'locomotive'
     = stylesheet_link_tag     'locomotive/account', media: 'screen'
 
-    = csrf_meta_tag
-
     javascript:
-      window.flash_messages = #{{flash_messages_to_json}};
+      window.locale                     = '#{I18n.locale}';
+      window.content_locale             = '#{::Mongoid::Fields::I18n.locale}';
+
+      $(document).ready(function() {
+
+        window.application_view = new Locomotive.Views.SimpleView({
+          flash:      #{{flash_messages_to_json}},
+          view:       #{backbone_view_class_name}
+        });
+        window.application_view.render();
+
+      });
+
+    = csrf_meta_tag
 
     = yield :head
 
@@ -27,9 +41,6 @@ html xmlns='http://www.w3.org/1999/xhtml' lang=I18n.locale
       = yield :header
       .public-container
         .public-wrapper
-          = link_to root_path, class: 'public-logo' do
-            = image_tag 'locomotive/logo.png'
-            span Locomotive
           = yield
 
     = yield :footer
