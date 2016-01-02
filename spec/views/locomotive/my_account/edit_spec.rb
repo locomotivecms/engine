@@ -2,11 +2,14 @@ require 'spec_helper'
 
 describe 'locomotive/my_account/edit', type: :view do
 
-  helper(Locomotive::BaseHelper, Locomotive::MyAccountHelper, Locomotive::Engine.routes.url_helpers)
+  helper(Locomotive::BaseHelper, Locomotive::Shared::AccountsHelper, Locomotive::MyAccountHelper, Locomotive::Engine.routes.url_helpers)
 
   let(:account) { build(:account, api_key: 42) }
 
-  before { allow(view).to receive(:last_saved_location).and_return(nil) }
+  before {
+    allow(view).to receive(:last_saved_location).and_return(nil)
+    allow(view).to receive(:current_locomotive_account).and_return(account)
+  }
 
   before do
     assign(:account, account)
@@ -26,7 +29,7 @@ describe 'locomotive/my_account/edit', type: :view do
   describe 'file input' do
 
     it 'renders a label for a new file' do
-      expect(subject).to include('<span class="new-file hide">New file here</span>')
+      expect(subject).to include('<span class="file-name">no file</span>')
     end
 
   end

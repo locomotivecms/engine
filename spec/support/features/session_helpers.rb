@@ -20,7 +20,9 @@ module Features
 
     def forgot_password(&block)
       sign_up_with 'John Doe', 'john@doe.net', 'password'
-      click_link 'Log out'
+      click_link 'John Doe'
+      within('.navigation') { click_link 'Log out' }
+      # click_link 'Log out'
       click_link 'Forgot my password'
       fill_in 'Your email', with: 'john@doe.net'
       click_button 'Submit'
