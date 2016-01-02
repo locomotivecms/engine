@@ -89,10 +89,8 @@
   border: 1px solid $border-color-base;
   border-radius: $border-radius-base;
   user-select: none;
-  &::after {
-    content: "Choose file...";
-  }
-  &::before {
+
+  .file-browse {
     position: absolute;
     top: -1px;
     right: -1px;
@@ -106,7 +104,6 @@
     background-color: $gray-lightest;
     border: 1px solid $border-color-base;
     border-radius: 0  $border-radius-base  $border-radius-base 0;
-    content: "Browse";
     transition: background $base-transition-speed linear;
     &:hover {
       background-color: $gray-light;

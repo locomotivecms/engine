@@ -4,38 +4,6 @@ GIT
   specs:
     database_cleaner (1.5.1)
 
-GIT
-  remote: git://github.com/locomotivecms/steam.git
-  revision: 552c1b515889c03351280c787f288c8f4dc76075
-  ref: 552c1b5
-  specs:
-    locomotivecms_steam (1.0.0.rc9)
-      RedCloth (~> 4.2.9)
-      chronic (~> 0.10.2)
-      coffee-script (~> 2.4.1)
-      compass (~> 1.0.3)
-      dragonfly (~> 1.0.12)
-      haml (~> 4.0.6)
-      httparty (~> 0.13.6)
-      kramdown (~> 1.9.0)
-      less (~> 2.6.0)
-      locomotivecms-solid (~> 4.0.1)
-      locomotivecms_common (~> 0.0.5)
-      mime-types (~> 2.6.1)
-      mimetype-fu (~> 0.1.2)
-      moneta (~> 0.8.0)
-      mongo (~> 2.2.1)
-      morphine (~> 0.1.1)
-      nokogiri (~> 1.6.7.1)
-      origin (~> 2.1.1)
-      rack-cache (~> 1.2)
-      rack-rewrite (~> 1.5.1)
-      rack_csrf (~> 2.5.0)
-      sanitize (~> 4.0.1)
-      sass (~> 3.4.20)
-      sprockets (~> 3.5.2)
-      therubyracer (~> 0.12.2)
-
 PATH
   remote: .
   specs:
@@ -78,6 +46,36 @@ PATH
       simple_token_authentication (~> 1.11.0)
       slim (~> 3.0.6)
       stringex (~> 2.5.2)
+
+PATH
+  remote: ../gems/steam
+  specs:
+    locomotivecms_steam (1.0.0.rc9)
+      RedCloth (~> 4.2.9)
+      chronic (~> 0.10.2)
+      coffee-script (~> 2.4.1)
+      compass (~> 1.0.3)
+      dragonfly (~> 1.0.12)
+      haml (~> 4.0.6)
+      httparty (~> 0.13.6)
+      kramdown (~> 1.9.0)
+      less (~> 2.6.0)
+      locomotivecms-solid (~> 4.0.1)
+      locomotivecms_common (~> 0.0.5)
+      mime-types (~> 2.6.1)
+      mimetype-fu (~> 0.1.2)
+      moneta (~> 0.8.0)
+      mongo (~> 2.2.1)
+      morphine (~> 0.1.1)
+      nokogiri (~> 1.6.7.1)
+      origin (~> 2.1.1)
+      rack-cache (~> 1.2)
+      rack-rewrite (~> 1.5.1)
+      rack_csrf (~> 2.5.0)
+      sanitize (~> 4.0.1)
+      sass (~> 3.4.20)
+      sprockets (~> 3.5.2)
+      therubyracer (~> 0.12.2)
 
 GEM
   remote: https://rubygems.org/

@@ -17,6 +17,7 @@ class Locomotive.Views.Shared.FormView extends Backbone.View
 
     @enable_hover()
 
+    @enable_simple_image_inputs()
     @enable_file_inputs()
     @enable_array_inputs()
     @enable_toggle_inputs()
@@ -65,6 +66,13 @@ class Locomotive.Views.Shared.FormView extends Backbone.View
       $(this).addClass('hovered')
     , ->
       $(this).removeClass('hovered')
+
+  enable_simple_image_inputs: ->
+    self = @
+    @$('.input.simple_image').each ->
+      view = new Locomotive.Views.Inputs.SimpleImageView(el: $(@))
+      view.render()
+      self.inputs.push(view)
 
   enable_file_inputs: ->
     self = @
