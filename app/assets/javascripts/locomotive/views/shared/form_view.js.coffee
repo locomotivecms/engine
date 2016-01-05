@@ -153,8 +153,9 @@ class Locomotive.Views.Shared.FormView extends Backbone.View
 
   remove: ->
     _.each @inputs, (view) -> view.remove()
+
+    @$('.input.select select:not(.disable-select2)').select2('destroy')
     @$('.input.tags input[type=text]').tagsinput('destroy')
-    @$('.input.select select').select2('destroy')
     @$('.input.color .input-group').colorpicker('destroy')
 
   _stop_event: (event) ->

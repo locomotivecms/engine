@@ -32,12 +32,10 @@ class Locomotive.Views.Inputs.Rte.LinkView extends Backbone.View
     @$link.data('bs.popover').setContent()
 
   attach_events: ->
-    # @$content.parents('form').on 'click', '.apply', @apply
     @$content.on 'click', '.apply', @apply
     @$content.on 'click', '.cancel', @hide
 
   detach_events: ->
-    # @$content.parents('form').off 'click', '.apply', @apply
     @$content.off 'click', '.apply', @apply
     @$content.off 'click', '.cancel', @hide
 
