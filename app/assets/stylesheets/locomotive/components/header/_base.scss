@@ -17,23 +17,11 @@ $header_site_arrow_color: lighten($brand-primary, 20);
     text-align: center;
   }
   .navbar-brand {
-    padding-top: 15px;
-    padding-bottom: 15px;
+    padding-top: 13px;
     font-size: $font-size-base + 2;
     color: $header_brand_color;
     img {
-      width: 16px;
-      margin-right: 3px;
-      vertical-align: baseline;
-    }
-    span.default,
-    span.default a {
-      font-family: $alt-font-family-sans-serif;
-      font-size: $font-size-base + 2;
-      color: rgba($header_brand_color, 1);
-      &:hover {
-        text-decoration: none;
-      }
+      height: 13px;
     }
   }
 }
