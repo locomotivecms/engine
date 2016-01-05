@@ -90,6 +90,14 @@
   border-radius: $border-radius-base;
   user-select: none;
 
+  .file-name {
+    display: inline-block;
+    width: 210px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
   .file-browse {
     position: absolute;
     top: -1px;

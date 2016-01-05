@@ -36,7 +36,7 @@ html xmlns='http://www.w3.org/1999/xhtml' lang=I18n.locale
 
     = yield :head
 
-  body class=[controller.controller_name, flash.empty? ? '' : 'with-flash'].join(' ')
+  body class=[controller.controller_name, controller.action_name, flash.empty? ? '' : 'with-flash'].join(' ')
     .public-background
       = yield :header
       .public-container
