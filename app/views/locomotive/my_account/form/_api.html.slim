@@ -1,2 +1,8 @@
+.alert.alert-info
+  = t('.api_key')
+
 = f.inputs :api do
   = f.input :api_key, as: :api_key, url: regenerate_api_key_my_account_path
+
+= f.actions do
+  = f.button :submit, 'Save', class: 'btn btn-primary'

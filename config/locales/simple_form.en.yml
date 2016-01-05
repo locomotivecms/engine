@@ -75,7 +75,6 @@ en:
     hints:
       locomotive:
         account:
-          api_key: "Used by Wagon to deploy your site (check your config/deploy.yml file of your Wagon site)."
           password: 6 characters minimum
         page:
           handle: "Unique identifier to retrieve this page within an external controller instance"

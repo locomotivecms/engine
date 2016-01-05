@@ -1,4 +1,6 @@
-class Locomotive.Views.ApplicationView extends Backbone.View
+#= require ./simple_view
+
+class Locomotive.Views.ApplicationView extends Locomotive.Views.SimpleView
 
   el: 'body'
 
@@ -11,7 +13,7 @@ class Locomotive.Views.ApplicationView extends Backbone.View
     @drawer_view  = new Locomotive.Views.Shared.DrawerView()
 
   render: ->
-    @render_flash_messages(@options.flash)
+    super
 
     @sidebar_view.render()
     @drawer_view.render()
@@ -20,19 +22,8 @@ class Locomotive.Views.ApplicationView extends Backbone.View
 
     @automatic_max_height()
 
-    # render page view
-    if @options.view?
-      @view = new @options.view(@options.view_data || {})
-      @view.render()
-
-    return @
-
   slide_sidebar: (event) ->
     $('body').toggleClass('slide-right-sidebar')
-
-  render_flash_messages: (messages) ->
-    _.each messages, (couple) ->
-      Locomotive.notify couple[1], couple[0]
 
   automatic_max_height: ->
     $(window).on 'resize', =>

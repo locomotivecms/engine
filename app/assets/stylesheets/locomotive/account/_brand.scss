@@ -1,0 +1,27 @@
+// =============================================================================
+// Brand
+// =============================================================================
+
+// The Locomotive CMS logo
+
+.brand-logo {
+  display: inline-block;
+  img,
+  span {
+    display: inline-block;
+    vertical-align: middle;
+  }
+  img {
+    display: inline-block;
+    height: 22px;
+    margin-right: 10px;
+    vertical-align: middle;
+  }
+  span {
+    margin-top: 2px;
+    font-family: $font-family-sans-serif-brand;
+    font-size: 17px;
+    line-height: 1.6;
+    color: $white;
+  }
+}

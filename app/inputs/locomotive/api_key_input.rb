@@ -15,7 +15,7 @@ module Locomotive
     def regenerate_button
       url = options[:url]
       template.content_tag :button, I18n.t('simple_form.buttons.locomotive.account.new_api_key'),
-        class:  'btn btn-default btn-primary btn-sm',
+        class:  'btn btn-default btn-sm form-control-button',
         data:   {
           url:      url,
           confirm:  I18n.t('locomotive.messages.confirm')
