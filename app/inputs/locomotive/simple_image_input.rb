@@ -38,6 +38,9 @@ module Locomotive
       <<-EOF
       <i class="fa fa-trash" data-action="delete"></i>
       <i class="fa fa-undo" data-action="undo" style="display: none;"></i>
+      <span class="spinner" style="display: none;">
+        <i class="fa fa-circle-o-notch fa-spin" ></i>
+      </span>
       EOF
     end
 

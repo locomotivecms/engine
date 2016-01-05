@@ -33,7 +33,7 @@
     border-bottom-left-radius: $border-radius-base;
     border-top-left-radius: $border-radius-base;
   }
-  i {
+  > i, .spinner {
     position: absolute;
     top: 0;
     right: 0;
@@ -48,8 +48,16 @@
     opacity: 0;
     transition: opacity $base-transition-speed linear;
   }
-  &:hover i {
+  &:hover > i {
     opacity: 1;
+  }
+
+  .spinner {
+    opacity: 1;
+    padding: 9px 0 0;
+    i {
+      color: $white;
+    }
   }
 }
 

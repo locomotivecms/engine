@@ -115,7 +115,7 @@ module Locomotive
 
       template.content_tag :button, label,
         type:   'submit',
-        class:  "btn btn-success btn-sm #{options[:class]}",
+        class:  options[:change_class] || "btn btn-primary btn-sm #{options[:class]}",
         data:   { loading_text: loading_text }
     end
 

@@ -8,7 +8,8 @@ class Locomotive.Views.Inputs.SimpleImageView extends Backbone.View
     'change input[type=file]':      'change_file'
 
   render: ->
-    @$fields =
+    @$spinner = @$('.file-wrapper .spinner')
+    @$fields  =
       file:     @$('input[type=file]')
       remove:   @$('input[type=hidden].remove')
 
@@ -18,9 +19,9 @@ class Locomotive.Views.Inputs.SimpleImageView extends Backbone.View
 
     @urls.current = @urls.default if _.isEmpty(@urls.current)
 
-    @resize_format = @$('.file-wrapper').data('resize')
-    @no_file_label = @$('.file-wrapper').data('no-file-label')
-    @initial_state = if @urls.current? then 'existing_file' else 'no_file'
+    @resize_format  = @$('.file-wrapper').data('resize')
+    @no_file_label  = @$('.file-wrapper').data('no-file-label')
+    @initial_state  = if @urls.current? then 'existing_file' else 'no_file'
 
   mark_file_as_deleted: (event) ->
     if @initial_state == 'existing_file'
@@ -37,10 +38,13 @@ class Locomotive.Views.Inputs.SimpleImageView extends Backbone.View
 
     @current_filename ||= @$('.file-name').html()
 
+    @$spinner.show() & @update_filename(file.name)
+
     # ask for a cropped/resized version of the image
     @image_to_base_64 file, (base64) =>
       window.resize_image base64, @resize_format, (resized_image) =>
         @update_ui true, true, resized_image, file.name
+        @$spinner.hide()
 
   image_to_base_64: (file, callback) ->
     reader = new FileReader()
@@ -60,4 +64,8 @@ class Locomotive.Views.Inputs.SimpleImageView extends Backbone.View
 
     @$('.file-image img').attr('src', url)
 
-    @$('.file-name').html(filename) unless _.isEmpty(filename)
+    @update_filename(filename)
+
+  update_filename: (name) ->
+    @$('.file-name').html(name) unless _.isEmpty(name)
+
