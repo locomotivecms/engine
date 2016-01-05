@@ -33,6 +33,12 @@ label {
   }
 }
 
+// Hack to reduce margin on buttons.
+
+.form-control-button {
+  margin-top: 10px !important;
+}
+
 // Link next to a button in forms.
 
 .form-link {
