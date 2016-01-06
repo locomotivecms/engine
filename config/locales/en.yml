@@ -60,7 +60,7 @@ en:
     errors:
       "500":
         title: Application Error
-        message: "We're sorry, but something went wrong"
+        message: "We're sorry, but something went wrong. Please contact your administrator."
       "404":
         title: Page not found
         message: "The page you requested does not exist."
@@ -166,7 +166,7 @@ en:
     registrations:
       new:
         confirm_password: Confirm password
-        description: "Looks like you are the first one here, create an account below to start using Locomotive."
+        description: "Create an account below to start using Locomotive."
         sign_in: Already have an account?
         submit: Register
         title: Register

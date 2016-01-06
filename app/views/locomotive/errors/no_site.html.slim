@@ -1,7 +1,16 @@
 - message, link = no_site_message_and_link
 
-h2.text-center
-  == message
+.public-box
+  .public-intro
+    h3.text-center
+      == error_title
 
-p.text-center.next
-  = link_to t('.next').html_safe, link
+  br
+
+  p.text-justify
+    == message
+
+  br
+
+  p.text-center.next
+    = link_to t('.next').html_safe, link

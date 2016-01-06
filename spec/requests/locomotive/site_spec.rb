@@ -25,7 +25,7 @@ describe Locomotive::Middlewares::Site do
       subject { middleware.call(rack_env) }
 
       it { expect(subject.first).to eq 404 }
-      it { expect(subject.last.body).to match(/Sign In/) }
+      it { expect(subject.last.body).to match(/Site not found \| Locomotive/) }
 
       context 'default host' do
 
