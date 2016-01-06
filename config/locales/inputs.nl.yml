@@ -3,6 +3,7 @@ nl:
     inputs:
       file:
         none: geen bestand
+        browse: Blader
         choose: Kies uit
         change: Verander
         delete: Verwijder
