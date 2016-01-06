@@ -503,7 +503,7 @@ GEM
     thor (0.19.1)
     thread (0.2.2)
     thread_safe (0.3.5)
-    tilt (2.0.1)
+    tilt (2.0.2)
     timecop (0.7.4)
     tins (1.8.1)
     tzinfo (1.2.2)

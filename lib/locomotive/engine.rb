@@ -65,7 +65,9 @@ module Locomotive
     initializer 'locomotive.middlewares' do |app|
       require 'locomotive/middlewares'
 
-      app.middleware.insert_after Rack::Lock, '::Locomotive::Middlewares::ImageThumbnail'
+      # Note: "insert 4" means inserting after Rack::Lock
+      # specifying Rack::Lock caused an error in production.
+      app.middleware.insert 4, '::Locomotive::Middlewares::ImageThumbnail'
       app.middleware.use '::Locomotive::Middlewares::Site'
     end
 
