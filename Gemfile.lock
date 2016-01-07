@@ -4,39 +4,6 @@ GIT
   specs:
     database_cleaner (1.5.1)
 
-GIT
-  remote: git://github.com/locomotivecms/steam.git
-  revision: 526d8397f1afa2fdadf534c18c20972e914eb262
-  ref: 526d839
-  specs:
-    locomotivecms_steam (1.0.0.rc9)
-      RedCloth (~> 4.2.9)
-      autoprefixer-rails (~> 6.2.3)
-      chronic (~> 0.10.2)
-      coffee-script (~> 2.4.1)
-      compass (~> 1.0.3)
-      dragonfly (~> 1.0.12)
-      haml (~> 4.0.6)
-      httparty (~> 0.13.6)
-      kramdown (~> 1.9.0)
-      less (~> 2.6.0)
-      locomotivecms-solid (~> 4.0.1)
-      locomotivecms_common (~> 0.0.5)
-      mime-types (~> 2.6.1)
-      mimetype-fu (~> 0.1.2)
-      moneta (~> 0.8.0)
-      mongo (~> 2.2.1)
-      morphine (~> 0.1.1)
-      nokogiri (~> 1.6.7.1)
-      origin (~> 2.1.1)
-      rack-cache (~> 1.2)
-      rack-rewrite (~> 1.5.1)
-      rack_csrf (~> 2.5.0)
-      sanitize (~> 4.0.1)
-      sass (~> 3.4.20)
-      sprockets (~> 3.5.2)
-      therubyracer (~> 0.12.2)
-
 PATH
   remote: .
   specs:
@@ -60,7 +27,7 @@ PATH
       jquery-rails (~> 4.0.3)
       jquery-ui-rails (~> 5.0.3)
       kaminari (~> 0.16.3)
-      locomotivecms_steam (~> 1.0.0.rc9)
+      locomotivecms_steam (~> 1.0.0.rc10)
       mime-types (~> 2.6.2)
       mimetype-fu (~> 0.1.2)
       mongo_session_store-rails4 (~> 6.0.0)
@@ -323,6 +290,33 @@ GEM
       attr_extras (~> 4.4.0)
       colorize
       stringex (~> 2.5.2)
+    locomotivecms_steam (1.0.0.rc10)
+      RedCloth (~> 4.2.9)
+      autoprefixer-rails (~> 6.2.3)
+      chronic (~> 0.10.2)
+      coffee-script (~> 2.4.1)
+      compass (~> 1.0.3)
+      dragonfly (~> 1.0.12)
+      haml (~> 4.0.6)
+      httparty (~> 0.13.6)
+      kramdown (~> 1.9.0)
+      less (~> 2.6.0)
+      locomotivecms-solid (~> 4.0.1)
+      locomotivecms_common (~> 0.0.5)
+      mime-types (~> 2.6.1)
+      mimetype-fu (~> 0.1.2)
+      moneta (~> 0.8.0)
+      mongo (~> 2.2.1)
+      morphine (~> 0.1.1)
+      nokogiri (~> 1.6.7.1)
+      origin (~> 2.1.1)
+      rack-cache (~> 1.2)
+      rack-rewrite (~> 1.5.1)
+      rack_csrf (~> 2.5.0)
+      sanitize (~> 4.0.1)
+      sass (~> 3.4.20)
+      sprockets (~> 3.5.2)
+      therubyracer (~> 0.12.2)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
     mail (2.6.3)
@@ -544,7 +538,6 @@ DEPENDENCIES
   i18n-tasks (~> 0.8.7)
   json_spec (~> 1.1.4)
   locomotivecms!
-  locomotivecms_steam!
   pickle
   poltergeist (~> 1.8.1)
   pry
@@ -561,4 +554,4 @@ DEPENDENCIES
   uglifier (>= 2.5.3)
 
 BUNDLED WITH
-   1.10.6
+   1.11.2

@@ -57,3 +57,8 @@ dragonfly.log
 spec/dummy/dragonfly.log
 config/old-locales/
 vendor/assets/components/locomotive_sources
+.vagrant/
+Cheffile
+Cheffile.lock
+Vagrantfile
+cookbooks/
