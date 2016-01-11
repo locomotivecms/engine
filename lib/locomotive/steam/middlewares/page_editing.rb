@@ -12,6 +12,7 @@ module Locomotive
 
         def call(env)
           status, headers, response = @app.call(env)
+
           site, page, locale, live_editing = env['steam.site'], env['steam.page'], env['steam.locale'].to_s, env['steam.live_editing']
 
           if editable?(page, response, live_editing)

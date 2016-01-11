@@ -16,9 +16,6 @@ Gem::Specification.new do |s|
   s.summary     = 'A platform to create, publish and edit sites'
   s.description = 'Locomotive is designed to save your time and help you focus on what matters: front-end technology, standard development process and no learning time for your client.'
 
-  # Temporary message: 3.0.0.rc3 to an higher version
-  s.post_install_message = "We upgraded to Mongoid 5. That means that you need to re-generate your config/mongoid.yml file by running rails g mongoid:config."
-
   s.add_dependency 'rake',                            '~> 10.4.2'
 
   s.add_dependency 'rails',                           '~> 4.2.5'

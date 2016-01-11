@@ -74,7 +74,7 @@ Locomotive::Engine.routes.draw do
     end
 
     # Preview mode handled by Steam
-    mount Locomotive::Steam::Server.to_app => '/preview', as: 'preview', anchor: false
+    mount Locomotive::Steam.to_app => '/preview', as: 'preview', anchor: false
 
   end
 end
