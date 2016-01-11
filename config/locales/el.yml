@@ -1,0 +1,320 @@
+el:
+  locomotive:
+    locales:
+      en: Αγγλικά
+      de: Γερμανικά
+      fr: Γαλικά
+      pl: Πολωνικά
+      pt: Πορτογαλικά
+      pt-BR: "Πορτογαλικά Βραζιλίας"
+      it: Ιταλικά
+      nl: Δανέζικα
+      nb: Νορβηγικά
+      es: Ισπανικά
+      ru: Ρωσικά
+      et: Εσθονικά
+      ja: Ιαπωνικά
+      zh-CN: Κινέζικα
+      cs: Τσέχικα
+      bg: Βουλγαρικά
+      sk: Σλοβάκικα
+      sr: Σερβικά
+    messages:
+      confirm: Είστε σίγουρος
+    shared:
+      header:
+        welcome: Καλωσήρθατε, %{name}
+        sites: Οι ιστότοποί μου
+        account: Ρυθμίσεις λογαριασμού
+        see: Δείτε την ιστοσελίδα
+        help: Βοήθεια
+        logout: Αποσύνδεση
+      sidebar:
+        dashboard: Ταμπλό
+        assets: Assets
+        settings: Γενικές Ρυθμίσεις
+        developers: Προγραμματιστές
+        content_types:
+          title: Μοντέλα
+        translations: Μεταφράσεις
+      list:
+        untranslated: μη-μεταφρασμένο
+        created_at: "Δημιουργήθηκε πριν %{distance}"
+        created_by: "Δημιουργήθηκε πριν %{distance} από %{who}"
+        updated_at: "Τελευταία τροποποίηση πριν %{distance}"
+        updated_by: "Τελευταία τροποποίηση πριν %{distance} από %{who}"
+      rte:
+        toolbar:
+          table:
+            merge: Συγχώνευση
+            insert_row_before: Εισαγωγή γραμμής πριν
+            insert_row_after: Εισαγωγή γραμμής μετά
+            insert_col_before: Εισαγωγή στήλης πριν
+            insert_col_after: Εισαγωγή στήλης μετά
+            delete_row: Διαγραφή γραμμής
+            delete_col: Διαγραφή στήλης
+    errors:
+      '500':
+        title: Σφάλμα εφαρμογής
+        message: "Λυπούμαστε, αλλά κάτι πήγε στραβά"
+      '404':
+        title: H σελίδα δεν βρέθηκε
+        message: "Η σελίδα που ζητάτε δεν υπάρχει."
+      no_site:
+        title: Η τοποθεσία δεν βρέθηκε
+        next: "Επόμενο &rarr;"
+        message:
+          create_account: "Παρακαλούμε δημιουργήστε έναν λογαριασμό πρώτα και στη συνέχεια δημιουργήστε έναν ιστότοπο."
+          add_domain: "Προσθέστε τον διακομιστή <strong>%{host}</strong> στην λίστα με τους διακομιστές σε μία από τις τοποθεσίες σας."
+          sign_in: "Παρακαλούμε συνδεθείτε πρώτα. Στη συνέχεια, προσθέστε τον διακομιστή <strong>%{host}</strong> στην λίστα με τους διακομιστές σε μία από τις τοποθεσίες σας."
+    notifications:
+      new_content_entry:
+        subject: "[%{domain}][%{type}] νέα καταχώρηση"
+        title: "Γεια σας %{name}, θέλουμε να σας ενημερώσουμε ότι ένα νέο instance δημιουργήθηκε στις %{date} για τον ιστότοπο <b>%{domain}</b>"
+        type: "Μοντέλο: %{type}"
+    activity:
+      site:
+        created: 'δημιούργησε τον ιστότοπο'
+      page:
+        created: 'δημιούργησε την σελίδα %{page}'
+        updated: 'ενημέρωσε την σελίδα %{page}'
+        destroyed: 'διέγραψε την σελίδα %{page}'
+        sorted: 'ταξινομιμένες σελίδες'
+      editable_element:
+        updated_bulk: 'ενημέρωσε το περιεχόμενο των %{pages}'
+      content_entry:
+        created: 'πρόσθεσε το %{entry} στο %{content_type}'
+        created_public: 'πρόσθεσε το %{entry} στο %{content_type} από δημόσια φόρμα'
+        updated: 'ενημέρωσε το %{entry} από το %{content_type}'
+        destroyed: 'διέγραψε το %{entry} από το %{content_type}'
+        sorted: 'ταξινομημένο %{content_type}'
+      content_asset:
+        created_bulk: 'ανέβασε %{count} στοιχείο(α)'
+        destroyed: 'διέγραψε το στοιχείο %{name}'
+      membership:
+        created: 'πρόσθεσε το %{name} στην τοποθεσία'
+    pagination:
+      first: "&laquo;"
+      last: "&raquo;"
+      previous: "&lsaquo;"
+      next: "&rsaquo;"
+      truncate: "&hellip;"
+    custom_fields:
+      select_options:
+        edit:
+          title: "%{type} &mdash; επιλογές επεξεργασίας"
+          back: "Πίσω στο στοιχείο"
+        option:
+          edit: Επεξεργασία
+          apply: Εφαρμογή
+          cancel: Ακύρωση
+      types:
+        belongs_to:
+          edit: Επεξεργασία
+          placeholder: "Επιλέξτε ένα %{name}"
+          searching: Αναζήτηση...
+          no_matches: Δεν βρέθηκαν αποτελέσματα
+          too_short: Παρακαλούμε πληκτρολογήστε 1 επιπλέον χαρακτήρα
+        many_to_many:
+          placeholder: "Επιλέξτε ένα από %{name}"
+          searching: Αναζήτηση...
+          no_matches: Δεν βρέθηκαν αποτελέσματα
+          too_short: Παρακαλούμε πληκτρολογήστε 1 επιπλέον χαρακτήρα
+        select:
+          edit: Επεξεργασία επιλογών
+        file:
+          delete_file: Διαγραφή αρχείου
+        has_many:
+          new_label: Προσθέστε ένα νέο
+      form:
+        required: Απαιτείται
+        default_label: Όνομα πεδίου
+        select_options:
+          ask_name: "Πληκτρολογήστε την ετικέτα της επιλογής"
+    dashboard:
+      show:
+        title: 'Ταμπλό'
+      url:
+        title: "URL της ιστοσελίδας σας:"
+        visit: 'Επισκευθείτε'
+        change_domain: 'Χρησιμοποιείστε το δικό σας όνομα διακομιστή'
+      activity:
+        title: Δραστηριότητα
+        unknown_account: Κάποιος
+        load_more: Φόρτωση περισσότερων
+        loading_activity_feed: Φώρτωση...
+    sessions:
+      new:
+        email: "Email"
+        link: "Ξέχασα τον κωδικό μου"
+        password: "Κωδικός"
+        sign_up: Δεν έχετε λογαριασμό;
+        submit: Σύνδεση
+        title: Σύνδεση
+    registrations:
+      new:
+        confirm_password: Επιβεβαίωση κωδικού
+        description: "Φαίνεται ότι είστε ο πρώτος εδώ, δημιουργήστε έναν λογαριασμό παρακάτω για να ξεκινήσετε να χρησιμοποιείτε το Locomotive."
+        sign_in: Έχετε ήδη λογαριασμό;
+        submit: Εγγραφή
+        title: Εγγραφή
+    passwords:
+      new:
+        description: "Συμπληρώστε το email σας παρακάτω και θα λάβετε ένα email με οδηγίες για το πως θα επαναφέρετε τον κωδικό σας."
+        link: "Πηγαίνετε πίσω στην σελίδα σύνδεσης"
+        email: "Το email σας"
+        submit: "Υποβολή"
+        title: "Ξεχάσατε τον κωδικό σας"
+      edit:
+        description: "Συμπηρώστε τον κωδικό σας παρακάτω."
+        link: "Πηγαίνετε πίσω στην σελίδα σύνδεσης"
+        password: "O νέος σας κωδικός"
+        password_confirmation: "Επιβεβαίωση κωδικού"
+        submit: "Ενημέρωση του κωδικού μου"
+        title: "Επαναφορά κωδικού"
+    pages:
+      index:
+        title: 'Σελίδες'
+        new: 'Νέα σελίδα'
+        list_content_entries: "Εμφάνιση λίστας %{name}"
+        new_content_entry: "Νέο %{name}"
+      new:
+        title: Νέα σελίδα
+        help: "Παρακαλούμε συμπληρώστε την παρακάτω φόρμα για να δημιουργήσετε την σελίδα σας. Προσοχή, από προεπιλογή, η σελίδα δεν είναι δήμοσιευμένη."
+      edit:
+        title: "%{title} &mdash; <small>%{fullpath}</small>"
+      form:
+        no_layout: Χρησιμοποιείστε την διάταξη της τρέχουσας σελίδας
+        redirect_type:
+          permanent: "Μόνιμο (301)"
+          temporary: "Προσωρινό (302)"
+    editable_elements:
+      index:
+        redirection_error: "Η επεξεργασία μιας όχι Locomotive σελίδας δεν επιτρέπεται."
+        iframe:
+          buttons:
+            edit: επεξεργασία
+      index_without_preview:
+        title: "%{title} &mdash; <small>%{fullpath}</small>"
+      edit:
+        settings_link: 'Ρυθμίσεις'
+        no_editable_elements: 'Δεν βρέθηκαν στοιχεία που μπορούν να επεξεργαστούν'
+        parsing_error: "Ζητούμε συγνώμη αλλά δεν μπορέσαμε να επεξεργαστούμε το το template της σελίδας σας. Παρακαλούμε σιγουρευτείτε ότι το template σας δουλεύει με το Wagon."
+        blocks:
+          all: Όλα
+          unknown: Άγνωστο
+      form:
+        model:
+          buttons:
+            list: Διαχείριση
+            edit: Επεξεργασία
+    sites:
+      index:
+        description: "Όλες οι τοποθεσίες στις οποίες έχετε πρόσβαση μπορούν να βρεθούν παρακάτω. Κάντε κλικ σε μία από αυτές για να μεταφερθείτε στην στον τομέα επεξεργασίας περιεχομένου για αυτήν την τοποθεσία."
+        new: Προσθέστε μία νέα τοποθεσία
+        title: Οι ιστότοποί μου
+      new:
+        description: "Συμπληρώστε την φόρμα παρακάτω και επιλέξτε υποβολή. Αν είναι επιτυχής τότε θα δημιουργηθεί μία νέα τοποθεσία."
+        go_back: Πηγαίνετε πίσω
+        submit: Δημιουργία τοποθεσίας
+        title: Δημιουργία νέας τοποθεσίας
+      site:
+        no_domain: Δεν υπάρχει domain ακόμα
+    current_site:
+      edit:
+        title: Επεξεργασία της τρέχουσας τοποθεσίας
+      form:
+        main:
+          new_membership: "Προσθήκη λογαριασμού"
+        advanced:
+          destroy: "Διαγραφή αυτής της τοποθεσίας"
+          confirm_destroy: "Παρακαλούμε επιβεβαιώστε πληκτρολογώντας το όνομα της τοποθεσίας στο επόμενο πεδίο."
+    memberships:
+      roles:
+        admin: Διαχειριστής
+        designer: Σχεδιαστής
+        author: Συγγραφέας
+      new:
+        title: Νέα συνδρομή
+        help: "Παρακαλούμε πληκτρολογήστε το email του λογαριασμού που πρόκειται να προστεθεί. Αν δεν υπάρχει, θα μεταφερθείτε στην φόρμα δημιουργίας λογαριασμού."
+        back: "Πίσω στις ρυθμίσης της τοποθεσίας"
+      edit:
+        title: "Επεξεργασία συνδρομής για <b>%{name}</b>"
+        back: "Πίσω στις ρυθμίσεις της τοποθεσίας"
+    accounts:
+      new:
+        title: Νέος λογαριασμός
+        help: "Συμπληρώστε την παρακάτω φόρμα για να προσθέσετε έναν νέο λογαριασμό"
+    my_account:
+      edit:
+        title: Επεξεργασία του λογαριασμού μου
+      form:
+        api:
+          api_key: "Χρησιμοποιείστε το Wagon για να δημοσιεύσετε το site (ελέγξτε το το αρχείο config/deploy.yml του Wagon site σας)"
+    translations:
+      untranslated: "Μη-μεταφρασμένες γλώσσες: %{list}"
+      index:
+        title: Μεταφράσεις
+        no_items: "Δεν βρέθηκαν μεταφράσεις."
+        search_placeholder: "Πληκτρολογήστε το key της μετάφρασης"
+        help: "Μεταφράστε όλα τα στοιχεία με πορτοκαλί (μερικώς μεταφρασμένο) ή με κόκκινες (μη-μεταφρασμένο) τελείες."
+        filter_by:
+          all: Όλα
+          done: Μεταφρασμένα
+          partially: Μερικώς μεταφρασμένo
+          none: Μή-μεταφρασμένo
+      edit:
+        title: "Μεταφράσεις &mdash; επεξεργασία %{key}"
+      form:
+        not_translated: "Μή-μεταφρασμένα"
+    content_assets:
+      index:
+        title: "Στοιχεία"
+        upload: Φόρτωση αρχείων
+      edit_in_drawer:
+        buttons:
+          resize: "Αλλαγή μεγέθους"
+          crop: "Κροπάρισμα"
+          apply: "Εφαρμογή"
+      dropzone:
+        instructions: "<strong>Σύρετε αρχεία από τον υπολογιστή σας.</strong><br/>Μπορείτε επίσης"
+        browse: "περιηγηθείτε για ένα αρχείο"
+      list:
+        no_items: "Δεν υπάρχουν media μέχρι στιγμής."
+        buttons:
+          select: "Επιλογή"
+          edit: "Επεξεργασία"
+      nav:
+        types:
+          all: Όλα
+          pdf: PDFs
+          image: εικόνες
+          media: rich media
+          others: άλλα
+      search_form:
+        placeholder: Αναζήτηση με όνομα αρχείου
+    public_submission_accounts:
+      edit:
+        title: "%{name} &mdash; Ρυθμίσεις ειδοποιήσεων"
+    content_entries:
+      index:
+        title: '%{type}'
+        download: Λήψη στοιχείων
+        new: νέα εγγραφή
+        edit_notification_settings: Επεξεργασία ρυθμίσεων ειδοποιήσεων
+        search_placeholder: "Πληκτρολογήστε εδώ τις λέξεις αναζήτησης σας"
+        group_by:
+          all: Όλα
+      list:
+        no_items: "Δεν υπάρχουν στοιχεία για τώρα. Απλά πατήστε <a href=\\\"%{url}\\\">εδώ</a> για να δημιουργήσετε το πρώτο."
+      new:
+        title: '%{type} &mdash; νέο στοιχείο'
+      edit:
+        title: '%{type} &mdash; επεξεργασία στοιχείου'
+      shared:
+        back: '&larr; Πίσω στη λίστα'
+    developers_documentation:
+      show:
+        title: Προγραμματιστές
+        wagon: Wagon
+        api: API

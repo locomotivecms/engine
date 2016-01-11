@@ -1,0 +1,47 @@
+el:
+  mongoid:
+    errors:
+      messages:
+        blank_in_locale: "δεν μπορεί να είναι κενό"
+      models:
+        locomotive/page:
+          attributes:
+            layout_id:
+              index_can_not_extend_parent: "Η αρχική σελίδα δεν μπορεί να έχει τον parent της ως layout."
+        locomotive/membership:
+          attributes:
+            account:
+              unique_account: "χρησιμοποιείται ήδη"
+            email:
+              unique_account: "χρησιμοποιείται ήδη"
+    attributes:
+      locomotive/content_entry:
+        created_at: Δημιουργήθηκε στις
+  errors:
+    messages:
+      domain_taken: "%{value} χρησιμοποιείται ήδη"
+      invalid_domain: "%{value} είναι μή έγκυρο"
+      needs_admin_account: "Τουλάχιστον ένας λογαριασμός διαχειριστή απαιτείται."
+      protected_page: "Δεν μπορείτε να διαγράψετε δείκτες ή 404 σελίδες"
+      extname_changed: "Το νέο αρχείο δεν έχει το αρχικό extension"
+      array_too_short: "είναι πολύ μικρό (το μικρότερο πλήθος στοιχείων είναι %{count})"
+      site:
+        default_locale_removed: Η προηγούμενη προεπιλεγμένη γλώσσα δεν μπορεί να διαγραφεί αυτή τη στιγμή.
+        wrong_timezone_name: "Λάθος όνομα ζώνης ώρας"
+      page:
+        liquid_syntax: "Σφάλμα σύνταξης Liquid ('%{error}' στο '%{fullpath}')"
+        liquid_extend: "Η σελίδα '%{fullpath}' επεκτείνει ένα template το οποίο δεν υπάρχει"
+        liquid_translation: "Η σελίδα '%{fullpath}' επεκτείνει το πρότυπο το οποίο δεν έχει μεταφραστεί"
+      too_few_custom_fields: "Τουλάχιστον ένα custom πεδίο απαιτείται"
+      security: "παρουσίασε πρόβλημα ασφαλειας"
+  attributes:
+    defaults:
+      pages:
+        index:
+          title: "Αρχική σελίδα"
+          body: "Περιεχόμενο της αρχικής σελίδας"
+        '404':
+          title: "H σελίδα δεν βρέθηκε"
+          body: "Το περιεχόμενο της σελίδας 404"
+        other:
+          body: "{% extends 'parent' %}"
