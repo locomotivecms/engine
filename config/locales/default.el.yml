@@ -1,0 +1,13 @@
+el:
+  date:
+    formats:
+      default: "%d/%m/%Y"
+    today_at: "σήμερα στις"
+    yesterday_at: "χθες στις"
+  time:
+    formats:
+      default: "%d/%m/%Y %H:%M"
+      time: "%H:%M"
+  pagination:
+    previous: "&laquo; Προηγούμενο"
+    next: "Επόμενο &raquo;"

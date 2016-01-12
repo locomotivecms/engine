@@ -9,6 +9,6 @@ Rails.application.routes.draw do
   mount Locomotive::API.to_app => '/locomotive(/:site_handle)/api'
 
   # Render site
-  mount Locomotive::Steam::Server.to_app => '/', anchor: false
+  mount Locomotive::Steam.to_app => '/', anchor: false
 
 end

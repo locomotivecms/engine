@@ -1,0 +1,153 @@
+el:
+  simple_form:
+    blank_required_fields: "Δεν έχετε συμπληρώσει όλα τα απαραίτητα πεδία."
+    titles:
+      locomotive:
+        account:
+          information: Κύριο
+          api: API
+          credentials: Στοιχεία
+        site:
+          information: Κύριο
+          access_points: Σημεία πρόσβασης
+          seo: SEO
+          advanced: Προχωρημένα
+          url_redirections: URL ανακατευθύνσεις
+        page:
+          content: Περιεχόμενο
+          settings: Ρυθμίσεις
+          seo: SEO
+        content_entry:
+          content: Περιεχόμενο
+          advanced: Προχωρημένα
+          seo: SEO
+    labels:
+      locomotive:
+        content_entry:
+          _slug: Permalink
+          _visible: Ορατό
+        content_type:
+          public_submission_accounts: "Ενημερωμένοι Λογαριασμοί"
+        account:
+          api_key: κλειδί API
+          no_api_key: Κανένα
+          edit:
+            locale: Γλώσσα UI
+            password: Νέος κωδικός
+            password_confirmation: Επανάληψη νέου κωδικού
+        page:
+          seo_title: Τίτλος
+          target_klass_name: Μοντέλο
+        editable_element:
+          region: Ενότητες
+        site:
+          locales: Γλώσσες
+          timezone_name: Ζώνη ώρας
+          cache_enabled: Cache
+          private_access: "Ενεργοποίηση προστασίας κωδικού"
+          password: "Κωδικός ολόκληρης τοποθεσίας"
+          new:
+            locales: Πρώτη Γλώσσα
+        membership:
+          edit:
+            role: Νέος Ρόλος
+        rte_input_link_form:
+          url: Σύνδεσμος URL
+          target: Στόχος
+          title: Τίτλος
+        rte_input_image_form:
+          src: Πηγή
+          title: Τίτλος
+          alignment: 'Στοίχιση '
+        image_resize_form:
+          width: Πλάτος
+          height: Ύψος
+        rte_input_table_form:
+          cols: "Στήλες"
+          rows: "Γραμμές"
+          head: "Γραμμή επικεφαλίδας;"
+          class_name: "κλάση CSS"
+    hints:
+      locomotive:
+        account:
+          password: 6 χαρακτήρες το ελάχιστο
+        page:
+          handle: "Μοναδικό αναγνωριστικό για να ανακτήσετε αυτήν τη σελίδα μέσα σε ένα external controller instance"
+          published: "Μόνο συνδεδεμένοι χρήστες μπορούν να δούν μη-δημοσιευμένες σελίδες."
+          templatized: "Χρησιμοποιείστε την σελίδα ως template για το μοντέλο που ορίσατε."
+          cache_enabled: "Όταν είναι ενεργό, η σελίδα σας αποθηκεύεται προσωρινά όσο το περιεχόμενο της δεν αλλάζει."
+          listed: "Επιλέξτε πότε θα εμφανίζεται η σελίδα από τα παραγόμενα μενού."
+          target_klass_name: "Ο τύπος του περιεχομένου αυτής της σελίδας η οποία θα είναι πρότυπο."
+          seo_title: "Ορίστε έναν τίτλο σελίδας που θα πρέπει να χρησιμοποιείται ως τιμή για την ετικέτα title του head. Αφήστε το κενό αν θέλετε να χρησιμοποιηθεί η προεπιλογή από τις ρυθμίσεις της τοποθεσίας."
+          meta_keywords: "Υπερβαίνει τα meta keywords της τοποθεσίας που χρισιμοποιεούνται στην ετικέτα head της σελίδας. Διαχωρίζονται με κώμα."
+          meta_description: "Υπερβαίνει το meta description της τοποθεσίας που χρησιμοποιείται στην ετικέτα head της σελίδας."
+          is_layout: "Αν είναι true, αυτη η σελίδα μπορεί να χρησιμοποιειθεί ως πρότυπο για άλλες σελίδες."
+          allow_layout: "Επιτρέψτε τους authors να αλλάξουν ή όχι την διάταξη αυτής της σελίδας."
+        site:
+          locales: "Σύρετε & αφήστε μία σημαία στην πρώτη θέση για να την ορίσετε ως προεπιλογή."
+          seo_title: "Ορίστε μία καθολική τιμή εδώ η οποία θα πρέπει να χρησιμοποιηθεί ως τιμή στην ετικέτα τίτλου του head section."
+          meta_keywords: "Τα Meta keywords χρησιμοποιούνται μέσα στην ετικέτα head της σελίδας. Διαχωρίζονται με κόμμα. Απαιτείται για το SEO."
+          meta_description: "Το Meta description χρησιμοποιείται μέσα στην ετικέτα head της σελίδας. Απαιτείται για το SEO."
+          robots_txt: "Το περιεχόμενο του αρχείου <span class='code'>/robots.txt</span>. Για περισσότερες πληροφορίες επισκευθείτε τον ακόλουθο <a href='http://www.w3.org/TR/html4/appendix/notes.html#h-B.4.1.1'>σύνδεσμο</a>."
+          domains: "Προσθέστε τα ονόματα χώρου σας παρακάτω. Μετά, προσθέστε μία εγγραφή DNS CNAME η οποία να δείχνει στο <b>%{domain}</b>."
+          memberships: "Μπορείτε να προσκαλέσετε άλλους χρήστες να επεξεργαστούν αυτόν τον ιστότοπο."
+          cache_enabled: "Όταν είναι ενεργοποιημένο, οι σελίδες σας θα αποθηκεύονται προσωρινά όσο το περιεχόμενο δεν αλλάζει. Επιτρέπεται η απενεργοποίηση του caching ανά σελίδα.."
+          redirect_to_first_domain: "Όταν είναι ενεργοποιημένο, τα αιτήματα που γίνονται σε οποιοδήποτε domain βρίσκεται στη λίστα παραπάνω θα ανακατευθύνονται στον πρώτο ιστότοπο."
+          url_redirections: "Ανακατεύθυνση (301) legacy urls στις σελίδες που δημιουργήσατε στο back-office. Η προέλευση και τα URL προορισμού διαχωρίζονται με <u>κενό</u>."
+          private_access: Μπορείτε να αποκρύψετε τον ιστότοπό σας με έναν κωδικό.
+          password: Ο κωδικός τον οποίο δημόσιοι χρήστες πρέπει να πληκτρολογήσουν για να δουν το περιεχόμενο του ιστοτόπου.
+          new:
+            locales: "\"Μπορείτε να προσθέσετε άλλες γλώσσες αφού πρώτα ο ιστότοπός σας δημιουργηθεί."
+        translation:
+          key: "Μην χρησιμποιείτε παύλες αλλά κάτω παύλες. Παράδειγμα: welcome_message."
+        content_entry:
+          _slug: "Ιδιότητα που χρησιμοποιείται για να παραχθεί το URL της σελίδας η οποία λειτουργεί ως template για τον συγκεκριμένο τύπο περιεχομένου (ex: \"template_page/{{ your_object._permalink }})\"."
+          _visible: "Ως προεπιλογή, το στοιχείο θα εμφανίζεται στον ιστότοπο. Άρα μπορεί να χρησιμοποιηθεί ως δημοσιευμένο στοιχείο."
+          seo_title: "Η τιμή που θα εισάγετε θα αντικαταστήσει τον τίτλο του SEO της templatized σελίδας σχετικής με το μοντέλο σας."
+          meta_keywords: "Υπερβαίνει τα meta keywords της τοποθεσίας που χρισιμοποιεούνται στην ετικέτα head της σελίδας. Διαχωρίζονται με κώμα."
+          meta_description: "Υπερβαίνει το meta description της τοποθεσίας που χρησιμοποιείται στην ετικέτα head της σελίδας."
+        content_type:
+          public_submission_accounts: "Όταν δημιουργηθεί ένα στοιχείο, να σταλεί ειδοποίηση στα email των λογαριασμών που εμφανίζονται παρακάτω."
+        image_resize_form:
+          width: "σε px"
+          height: "σε px"
+    placeholders:
+      locomotive:
+        site:
+          domains: "Π.χ.: mysite.com"
+          url_redirections: "Π.χ.: my-legacy-url new-url-in-locomotive"
+        content_type_entry_field:
+          select_options: "Πληκτρολογήστε την ετικέτα της νέας επιλογής εδώ"
+    options:
+      locomotive:
+        rte_input_link_form:
+          target:
+            not_set: "Δεν έχει ρυθμιστεί"
+            self: "Άνοιγμα συνδέσμου στο ίδιο παράθυρο"
+            blank: "Άνοιγμα συνδέσμου σε νέο παράθυρο"
+        rte_input_image_form:
+          alignment:
+            default: Προεπιλογή
+            left: Αριστερά
+            right: Δεξιά
+    buttons:
+      defaults:
+        locomotive:
+          create: Δημιουργία
+          update: Αποθήκευση
+          submit: Εντάξει
+          cancel: Ακύρωση
+          delete: Διαγραφή
+          close: Κλείσιμο
+          loading_text: "Αποθηκεύεται..."
+          or: ή
+      locomotive:
+        account:
+          new_api_key: Επαναδημιουργία
+        image_resize_form:
+          loading_text: Αλλαγή μεγέθους...
+          submit: Αλλαγή μεγέθους
+        site:
+          delete: Διαγραφή αυτής της τοποθεσίας
+        page:
+          delete: Διαγραφή

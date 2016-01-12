@@ -1,6 +1,8 @@
 = f.inputs :advanced do
   = f.input :locales, as: :array, template: :locale, template_url: new_locale_current_site_path(current_site), select_options: options_for_site_locales
 
+  = f.input :prefix_default_locale, as: :toggle
+
   = f.input :timezone_name, as: :select, include_blank: false, collection: options_for_site_timezones
 
   = f.input :robots_txt, as: :code, wrapper_html: { class: 'small' }
