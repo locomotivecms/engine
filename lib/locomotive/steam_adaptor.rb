@@ -19,7 +19,8 @@ Locomotive::Steam.configure do |config|
 
   # rely on Mongoid for the connection information
   if mongoid = Mongoid.configure.clients[:default]
-    options = mongoid[:uri] ? mongoid.slice(:uri) : mongoid.slice(:database, :hosts, :username, :password)
+    options = mongoid[:uri] ? mongoid.slice(:uri) : mongoid.slice(:hosts, :database)
+    options.merge!(mongoid[:options].symbolize_keys) if mongoid[:options]
     config.adapter = { name: :'mongoDB' }.merge(options.symbolize_keys)
   end
 
