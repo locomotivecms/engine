@@ -6,13 +6,14 @@ Locomotive is an open source platform to create, publish and edit sites (CMS). I
 
 Locomotive relies on a **very original workflow**:
 
-- Sites are coded locally using our open source tool: [Wagon](https://github.com/locomotivecms/wagon). A desktop version (not open source) is also available [here](http://www.wagonapp.com).
+- Sites are coded locally using our open source tool: [Wagon](https://github.com/locomotivecms/wagon). A desktop version (not open source and not tested in v3) is also available [here](http://www.wagonapp.com).
 - Sites are deployed to the platform (engine) thanks to our internal API.
 - A back-office for the end-users is automatically generated based on the custom models and editable regions described by the developers.
 
 ![Locomotive](https://dl.dropboxusercontent.com/u/20823269/locomotive-engine.png)
 
-Visit the LocomotiveCMS official website [here](http://www.locomotivecms.com) for more information.
+Visit the Locomotive official website [here](http://
+locomotive.works) for more information.
 
 ## Features
 
@@ -48,7 +49,9 @@ Here is a list of the main gems used to power the Locomotive platform:
 
 ### Translating the back-office
 
-By default, the Locomotive back-office is fully translated in English. But adding a new language is pretty straightforward since we now manage all our I18n translation keys in [Transifex](https://www.transifex.com), a platform dedicated to this kind of task.
+By default, the Locomotive back-office is fully translated in English, Dutch and Greek.
+
+Adding a new language is pretty straightforward since we now manage all our I18n translation keys in [Transifex](https://www.transifex.com), a platform dedicated to this kind of task.
 
 Here is our Transifex portal page: [https://www.transifex.com/locomotive/locomotive-engine](https://www.transifex.com/locomotive/locomotive-engine). Feel free to sign up and translate!
 
