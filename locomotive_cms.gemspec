@@ -32,8 +32,8 @@ Gem::Specification.new do |s|
   s.add_dependency 'mongoid-tree',                    '~> 2.0.1'
   s.add_dependency 'mongo_session_store-rails4',      '~> 6.0.0'
 
-  s.add_dependency 'custom_fields',                   '~> 2.5.0.rc1'
-  s.add_dependency 'locomotivecms_steam',             '~> 1.0.0.rc10'
+  s.add_dependency 'custom_fields',                   '~> 2.5.0'
+  s.add_dependency 'locomotivecms_steam',             '~> 1.0.0'
 
   s.add_dependency 'slim',                            '~> 3.0.6'
   s.add_dependency 'simple_form',                     '~> 3.2.0'
