@@ -10,7 +10,7 @@ module Locomotive
     end
 
     def extension_white_list
-      %w(jpg jpeg gif png css js swf flv eot svg svgz ttf woff woff2 otf ico htc map html)
+      %w(jpg jpeg gif png css js swf flv eot svg svgz ttf woff woff2 otf ico htc map html cur)
     end
 
     def apply_content_type_exception(value)
