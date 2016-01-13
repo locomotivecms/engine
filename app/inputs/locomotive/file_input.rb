@@ -57,7 +57,7 @@ module Locomotive
     def filename_or_image
       if persisted_file?
         css = "current-file #{persisted_file.image? ? 'image' : ''}"
-        template.content_tag :span, image_html + filename_html, class: css
+        template.content_tag :span, (image_html + filename_html).html_safe, class: css
       else
         ''
       end
