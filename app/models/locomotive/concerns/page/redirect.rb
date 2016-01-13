@@ -15,7 +15,7 @@ module Locomotive
           ## validations ##
           validates_presence_of :redirect_type, if: :redirect?
           validates_presence_of :redirect_url,  if: :redirect?
-          validates_format_of   :redirect_url,  with: Locomotive::Regexps::URL, allow_blank: true
+          validates_format_of   :redirect_url,  with: Locomotive::Regexps::URL_AND_MAILTO, allow_blank: true
 
         end
 

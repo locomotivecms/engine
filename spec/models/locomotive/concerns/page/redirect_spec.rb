@@ -23,6 +23,22 @@ describe Locomotive::Concerns::Page::Redirect do
       expect(page.errors[:redirect_type]).to eq(["can't be blank"])
     end
 
+    it 'requires valid URLs' do
+      page.redirect_url = 'http:/foo.fr'
+      page.valid?
+      expect(page.errors[:redirect_url]).to eq(['is invalid'])
+
+      page.redirect_url = 'httpss://foo.fr'
+      page.valid?
+      expect(page.errors[:redirect_url]).to eq(['is invalid'])
+    end
+
+    it 'also allows mailto as a valid URL' do
+      page.redirect_url = 'mailto:foo@foo.fr'
+      page.valid?
+      expect(page.errors[:redirect_url]).to be_blank
+    end
+
   end
 
 end
