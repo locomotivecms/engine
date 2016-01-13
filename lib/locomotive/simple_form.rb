@@ -40,6 +40,7 @@ module Locomotive
             model_name = model_names.join('.')
 
             _key = [
+              Locomotive::VERSION,
               I18n.locale,
               template.instance_variable_get(:"@virtual_path"),
               namespace,
