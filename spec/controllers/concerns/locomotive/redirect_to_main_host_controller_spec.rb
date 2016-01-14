@@ -62,7 +62,8 @@ describe Locomotive::Concerns::RedirectToMainHostController do
         let(:host) { 'locomotive.dev' }
 
         it 'redirects to the main host' do
-          expect(my_controller).to receive(:redirect_to).with(host: 'station.locomotive.dev')
+          expect(my_controller).to receive(:root_url).with(host: 'station.locomotive.dev').and_return('http://station.locomotive.dev')
+          expect(my_controller).to receive(:redirect_to).with('http://station.locomotive.dev')
           subject
         end
 
@@ -71,7 +72,8 @@ describe Locomotive::Concerns::RedirectToMainHostController do
           before { allow(request).to receive(:port).and_return(8080) }
 
           it 'preserves the port' do
-            expect(my_controller).to receive(:redirect_to).with(host: 'station.locomotive.dev', port: 8080)
+            expect(my_controller).to receive(:root_url).with(host: 'station.locomotive.dev', port: 8080).and_return('http://station.locomotive.dev:8080')
+            expect(my_controller).to receive(:redirect_to).with('http://station.locomotive.dev:8080')
             subject
           end
 
