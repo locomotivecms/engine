@@ -22,11 +22,12 @@
           = g.input :content, editable_element_input_options(editable_element, index, as: :select, collection: editable_element.options.map { |attributes| [attributes['text'], attributes['value']] })
 
         - when :editable_model
-          fieldset.inputs
-            .form-group.input.link.optional data-block=editable_element.block
-              label.link.control-label.optional= editable_element_label(editable_element)
-              - if editable_element.hint.present?
-                span class="help-inline"= editable_element.hint
-              span.form_wrapper
-                = link_to t('.model.buttons.list'), content_entries_path(current_site, editable_element.content_type.slug), class: 'btn btn-primary btn-sm'
+          - if editable_element.content_type?
+            fieldset.inputs
+              .form-group.input.link.optional data-block=editable_element.block
+                label.link.control-label.optional= editable_element_label(editable_element)
+                - if editable_element.hint.present?
+                  span class="help-inline"= editable_element.hint
+                span.form_wrapper
+                  = link_to t('.model.buttons.list'), content_entries_path(current_site, editable_element.content_type.slug), class: 'btn btn-primary btn-sm'
 
