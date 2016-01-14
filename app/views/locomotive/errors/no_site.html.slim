@@ -2,15 +2,10 @@
 
 .public-box
   .public-intro
-    h3.text-center
-      == error_title
-
-  br
-
-  p.text-justify
+    h3
+      i.fa.fa-exclamation-triangle
+      = error_title
+  p
     == message
-
-  br
-
-  p.text-center.next
-    = link_to t('.next').html_safe, link
+    br
+    = link_to t('.next').html_safe, link, class: 'btn btn-primary'
