@@ -14,6 +14,35 @@ describe Locomotive::Concerns::Site::AccessPoints do
     end
   end
 
+  describe '#valid?' do
+
+    subject { site.valid? }
+
+    it { is_expected.to eq true }
+
+    describe 'forbidden domains defined' do
+
+      before { allow(Locomotive.config).to receive(:reserved_domains).and_return(['www.locomotiveapp.com', /.+\.acme\.org/]) }
+
+      let(:domains) { ['example.fr', 'acme.org'] }
+
+      it { is_expected.to eq true }
+
+      context 'setting a forbidden domain name' do
+
+        let(:domains) { ['example.fr', 'www.locomotiveapp.com', 'staging.acme.org'] }
+
+        it 'adds errors for each invalid domain' do
+          is_expected.to eq false
+          expect(site.errors['domains']).to eq(["www.locomotiveapp.com is already taken", "staging.acme.org is already taken"])
+        end
+
+      end
+
+    end
+
+  end
+
   describe 'domain sync' do
 
     let!(:listener) { DomainEventListener.new }

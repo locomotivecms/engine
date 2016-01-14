@@ -6,6 +6,9 @@ Locomotive.configure do |config|
   # list of forbidden handles for a site because there are in conflicts with internal resources.
   # config.reserved_site_handles = %w(sites my_account password sign_in sign_out)
 
+  # list of domains which can't be used by any Locomotive sites
+  # config.reserved_domains = []
+
   # configure how many items we display in sub menu in the "Models" section.
   config.ui = {
     per_page: 10

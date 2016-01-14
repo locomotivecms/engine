@@ -22,6 +22,7 @@ module Locomotive
           validates_format_of       :handle, with: Locomotive::Regexps::HANDLE, allow_blank: true,
             multiline: true
           validate                  :domains_must_be_valid_and_unique
+          validate                  :domains_must_not_be_reserved
 
           ## callbacks ##
           before_validation :prepare_domain_sync
@@ -71,6 +72,18 @@ module Locomotive
             if not domain =~ Locomotive::Regexps::DOMAIN
               self.errors.add(:domains, :invalid_domain, value: domain)
             end
+          end
+        end
+
+        def domains_must_not_be_reserved
+          return if self.domains.empty? || Locomotive.config.reserved_domains.blank?
+
+          self.domains.each do |domain|
+            any = Locomotive.config.reserved_domains.any? do |matcher|
+              matcher.is_a?(Regexp) ? domain =~ matcher : matcher == domain
+            end
+
+            self.errors.add(:domains, :domain_taken, value: domain) if any
           end
         end
 

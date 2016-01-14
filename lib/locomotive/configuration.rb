@@ -9,6 +9,7 @@ module Locomotive
       # forbidden_paths:            %w{layouts snippets stylesheets javascripts assets admin system api},
       reserved_site_handles:        %w(sites my_account password sign_in sign_out),
       reserved_slugs:               %w{stylesheets javascripts assets admin locomotive images api pages edit},
+      reserved_domains:             [],
       locales:                      @@default_locales,
       site_locales:                 @@default_locales,
       cookie_key:                   '_locomotive_session',
