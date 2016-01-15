@@ -33,6 +33,11 @@ describe Locomotive::Concerns::Page::Redirect do
       expect(page.errors[:redirect_url]).to eq(['is invalid'])
     end
 
+    it 'allows absolute urls' do
+      page.redirect_url = '/foo/bar'
+      expect(page.errors[:redirect_url]).to be_blank
+    end
+
     it 'also allows mailto as a valid URL' do
       page.redirect_url = 'mailto:foo@foo.fr'
       page.valid?
