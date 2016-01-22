@@ -20,6 +20,7 @@ module Locomotive
               <meta name="locomotive-locale" content="#{locale}" />
               <meta name="locomotive-editable-elements-path" content="#{editable_elements_path(site, page, locale, env)}" />
               <meta name="locomotive-page-id" content="#{page._id}" />
+              <link href='https://fonts.googleapis.com/css?family=Noto+Sans' rel='stylesheet' type='text/css'>
             )
             response.first.gsub!('</head>', %(#{html}</head>))
           end
