@@ -13,14 +13,35 @@ module Locomotive
         def call(env)
           status, headers, response = @app.call(env)
 
-          site, page, locale, live_editing = env['steam.site'], env['steam.page'], env['steam.locale'].to_s, env['steam.live_editing']
+          site, mounted_on, page, locale, live_editing = env['steam.site'], env['steam.mounted_on'], env['steam.page'], env['steam.locale'].to_s, env['steam.live_editing']
 
           if editable?(page, response, live_editing)
             html = %(
               <meta name="locomotive-locale" content="#{locale}" />
               <meta name="locomotive-editable-elements-path" content="#{editable_elements_path(site, page, locale, env)}" />
               <meta name="locomotive-page-id" content="#{page._id}" />
+              <meta name="locomotive-mounted-on" content="#{mounted_on}" />
+
               <link href='https://fonts.googleapis.com/css?family=Noto+Sans' rel='stylesheet' type='text/css'>
+
+              <!-- [Locomotive] fix absolute links to inner pages in preview mode-->
+              <script>
+                window.document.addEventListener('click', function (event) {
+                  var qs = document.querySelectorAll('a');
+                  if (qs) {
+                    var el = event.target, index = -1;
+                    while (el && ((index = Array.prototype.indexOf.call(qs, el)) === -1)) {
+                      el = el.parentElement;
+                    }
+                    if (index > -1) {
+                      var url = el.getAttribute('href');
+                      if (url[0] == '/' && url.indexOf('#{mounted_on}') == -1 ) {
+                        el.setAttribute('href', '#{mounted_on}' + url);
+                      }
+                    }
+                  }
+                });
+              </script>
             )
             response.first.gsub!('</head>', %(#{html}</head>))
           end

@@ -15,6 +15,9 @@ class Locomotive.Views.EditableElements.PageView extends Backbone.View
       PubSub.subscribe 'pages.sorted',                          @refresh_all
     ]
 
+    # used to prefix links to inner pages with mounted_on
+    @mounted_on = @$('meta[name=locomotive-mounted-on]').attr('content')
+
     # create the highlighter view
     @views = [new Locomotive.Views.EditableElements.TextHighLighterView(el: @el, button_labels: @options.button_labels)]
 
