@@ -52,6 +52,6 @@ end
 
 Locomotive::Common.reset
 Locomotive::Common.configure do |config|
-  config_file = Rails.root.join('log', 'steam.log')
+  config_file = ENV['LOCOMOTIVE_STEAM_LOG'] || Rails.root.join('log', 'steam.log')
   config.notifier = Locomotive::Common::Logger.setup(config_file.to_s)
 end
