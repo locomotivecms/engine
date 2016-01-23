@@ -46,8 +46,8 @@ class Locomotive.Views.Inputs.ArrayView extends Backbone.View
 
   make_simple_selectable: ->
     @$new_input.select2
-      templateResult:     @format_select_result
-      templateSelection:   @format_select_result
+      templateResult:       @format_select_result
+      templateSelection:    @format_select_result
 
   format_select_result: (state) ->
     return state.text unless state.id?

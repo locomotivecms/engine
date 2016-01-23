@@ -74,7 +74,8 @@ describe Locomotive::Steam::Middlewares::Cache do
 
           context 'page is a redirection' do
 
-            let(:page) { instance_double('CachedPage', _id: '0042', cache_enabled: page_cache, redirect_url: 'http://locomotive.works') }
+            let(:i18n_field) { instance_double('I18nField', :[] => { 'en' => 'http://locomotive.works' }) }
+            let(:page) { instance_double('CachedPage', _id: '0042', cache_enabled: page_cache, redirect_url: i18n_field) }
             it { expect(subject).to eq false }
 
           end
