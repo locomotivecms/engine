@@ -15,6 +15,35 @@ GIT
       monetize (~> 1.4.0)
       mongoid (~> 5.0.2)
 
+GIT
+  remote: git://github.com/locomotivecms/steam.git
+  revision: 0cdb255dafd131c8251fb547fbf7e0f0664fc523
+  ref: 0cdb255dafd13
+  specs:
+    locomotivecms_steam (1.0.0)
+      RedCloth (~> 4.2.9)
+      autoprefixer-rails (~> 6.2.3)
+      chronic (~> 0.10.2)
+      coffee-script (~> 2.4.1)
+      compass (~> 1.0.3)
+      dragonfly (~> 1.0.12)
+      haml (~> 4.0.6)
+      httparty (~> 0.13.6)
+      kramdown (~> 1.9.0)
+      locomotivecms-solid (~> 4.0.1)
+      locomotivecms_common (~> 0.0.5)
+      mime-types (~> 2.6.1)
+      mimetype-fu (~> 0.1.2)
+      moneta (~> 0.8.0)
+      morphine (~> 0.1.1)
+      nokogiri (~> 1.6.7.1)
+      rack-cache (~> 1.2)
+      rack-rewrite (~> 1.5.1)
+      rack_csrf (~> 2.5.0)
+      sanitize (~> 4.0.1)
+      sass (~> 3.4.21)
+      sprockets (~> 3.5.2)
+
 PATH
   remote: .
   specs:
@@ -296,29 +325,6 @@ GEM
       attr_extras (~> 4.4.0)
       colorize
       stringex (~> 2.5.2)
-    locomotivecms_steam (1.0.0)
-      RedCloth (~> 4.2.9)
-      autoprefixer-rails (~> 6.2.3)
-      chronic (~> 0.10.2)
-      coffee-script (~> 2.4.1)
-      compass (~> 1.0.3)
-      dragonfly (~> 1.0.12)
-      haml (~> 4.0.6)
-      httparty (~> 0.13.6)
-      kramdown (~> 1.9.0)
-      locomotivecms-solid (~> 4.0.1)
-      locomotivecms_common (~> 0.0.5)
-      mime-types (~> 2.6.1)
-      mimetype-fu (~> 0.1.2)
-      moneta (~> 0.8.0)
-      morphine (~> 0.1.1)
-      nokogiri (~> 1.6.7.1)
-      rack-cache (~> 1.2)
-      rack-rewrite (~> 1.5.1)
-      rack_csrf (~> 2.5.0)
-      sanitize (~> 4.0.1)
-      sass (~> 3.4.21)
-      sprockets (~> 3.5.2)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
     mail (2.6.3)
@@ -539,6 +545,7 @@ DEPENDENCIES
   i18n-tasks (~> 0.8.7)
   json_spec (~> 1.1.4)
   locomotivecms!
+  locomotivecms_steam!
   pickle
   poltergeist (~> 1.8.1)
   pry
