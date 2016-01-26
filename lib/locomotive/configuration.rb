@@ -19,6 +19,7 @@ module Locomotive
       default_locale:               :en,
       mailer_sender:                'support@example.com',
       unsafe_token_authentication:  false,
+      enable_registration:          true,
       ui:                     {
         per_page:     10
       },

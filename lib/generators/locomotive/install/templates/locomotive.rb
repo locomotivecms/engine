@@ -62,4 +62,9 @@ Locomotive.configure do |config|
 
   # Dragonfly within Steam uses it to generate the protective SHA
   # config.steam_image_resizer_secret = 'please change it'
+
+  # Indicate whether you want to allow users to register with the site. If set
+  # to false the registration page will not be shown. (Default: true)
+  # config.enable_registration = true
+
 end
