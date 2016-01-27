@@ -59,6 +59,12 @@ describe Locomotive::Middlewares::Site do
         end
       end
 
+      after do
+        Locomotive.configure do |config|
+          config.enable_registration = true
+        end
+      end
+
       it { expect(subject[1]['Location']).to eq '/locomotive/sign_in' }
     end
 
