@@ -19,7 +19,7 @@ class Locomotive.Views.EditableElements.PageView extends Backbone.View
     @mounted_on = @$('meta[name=locomotive-mounted-on]').attr('content')
 
     # create the highlighter view
-    @views = [new Locomotive.Views.EditableElements.TextHighLighterView(el: @el, button_labels: @options.button_labels)]
+    @views = [new Locomotive.Views.EditableElements.TextHighLighterView(el: @$('body'), button_labels: @options.button_labels)]
 
   render: ->
     # render the highlighter view

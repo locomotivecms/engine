@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/DatabaseCleaner/database_cleaner.git
-  revision: 49b314f688a5501429f50365086d8275489956b5
+  revision: 1cab518efb4cd4d24b751252ab88fe562e302d33
   specs:
     database_cleaner (1.5.1)
 
@@ -15,10 +15,8 @@ GIT
       monetize (~> 1.4.0)
       mongoid (~> 5.0.2)
 
-GIT
-  remote: git://github.com/locomotivecms/steam.git
-  revision: 0cdb255dafd131c8251fb547fbf7e0f0664fc523
-  ref: 0cdb255dafd13
+PATH
+  remote: ../gems/steam
   specs:
     locomotivecms_steam (1.0.0)
       RedCloth (~> 4.2.9)
@@ -66,6 +64,7 @@ PATH
       highline (~> 1.7.1)
       jquery-rails (~> 4.0.3)
       jquery-ui-rails (~> 5.0.3)
+      json-schema (~> 2.5.2)
       kaminari (~> 0.16.3)
       locomotivecms_steam (~> 1.0.0)
       mime-types (~> 2.6.2)
@@ -128,7 +127,7 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
-    addressable (2.4.0)
+    addressable (2.3.8)
     arel (6.0.3)
     attr_extras (4.4.0)
     autoprefixer-rails (6.2.3)
@@ -152,7 +151,7 @@ GEM
     bootstrap-sass (3.3.6)
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
-    bson (4.0.0)
+    bson (4.0.1)
     builder (3.2.2)
     byebug (8.2.1)
     capybara (2.5.0)
@@ -206,22 +205,21 @@ GEM
       term-ansicolor (~> 1.3)
       thor (~> 0.19.1)
     crass (1.0.2)
-    cucumber (2.2.0)
+    cucumber (2.3.2)
       builder (>= 2.1.2)
-      cucumber-core (~> 1.3.0)
+      cucumber-core (~> 1.4.0)
       cucumber-wire (~> 0.0.1)
       diff-lcs (>= 1.1.3)
-      event-bus (~> 0.1.0)
-      gherkin3 (~> 3.1.0)
+      gherkin (~> 3.2.0)
       multi_json (>= 1.7.5, < 2.0)
       multi_test (>= 0.1.2)
-    cucumber-core (1.3.1)
-      gherkin3 (~> 3.1.0)
+    cucumber-core (1.4.0)
+      gherkin (~> 3.2.0)
     cucumber-wire (0.0.1)
     debug_inspector (0.0.2)
     descendants_tracker (0.0.4)
       thread_safe (~> 0.3, >= 0.3.1)
-    devise (3.5.3)
+    devise (3.5.5)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 3.2.6, < 5)
@@ -242,13 +240,13 @@ GEM
       json
       thread
       thread_safe
-    email_spec (1.6.0)
+    email_spec (2.0.0)
+      htmlentities (~> 4.3.3)
       launchy (~> 2.1)
-      mail (~> 2.2)
+      mail (~> 2.6.3)
     equalizer (0.0.11)
     erubis (2.7.0)
-    event-bus (0.1.0)
-    eventmachine (1.0.8)
+    eventmachine (1.0.9.1)
     execjs (2.6.0)
     factory_girl (4.5.0)
       activesupport (>= 3.0.0)
@@ -263,7 +261,7 @@ GEM
       rails (>= 3.0)
     font-awesome-sass (4.5.0)
       sass (>= 3.2)
-    gherkin3 (3.1.2)
+    gherkin (3.2.0)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     grape (0.12.0)
@@ -286,6 +284,7 @@ GEM
       tilt
     hashie (3.4.3)
     highline (1.7.8)
+    htmlentities (4.3.4)
     http-cookie (1.0.2)
       domain_name (~> 0.5)
     httparty (0.13.7)
@@ -308,6 +307,8 @@ GEM
     jquery-ui-rails (5.0.5)
       railties (>= 3.2.16)
     json (1.8.3)
+    json-schema (2.5.2)
+      addressable (~> 2.3.8)
     json_spec (1.1.4)
       multi_json (~> 1.0)
       rspec (>= 2.0, < 4.0)
@@ -333,14 +334,14 @@ GEM
     mime-types (2.6.2)
     mimetype-fu (0.1.2)
     mini_portile2 (2.0.0)
-    minitest (5.8.3)
+    minitest (5.8.4)
     moneta (0.8.0)
     monetize (1.4.0)
       money (~> 6.7)
     money (6.7.0)
       i18n (>= 0.6.4, <= 0.7.0)
       sixarm_ruby_unaccent (>= 1.1.1, < 2)
-    mongo (2.2.1)
+    mongo (2.2.2)
       bson (~> 4.0)
     mongo_session_store-rails4 (6.0.0)
       actionpack (>= 3.1)
@@ -360,7 +361,7 @@ GEM
     multi_xml (0.5.5)
     net-ssh (3.0.2)
     netrc (0.11.0)
-    nokogiri (1.6.7.1)
+    nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
     nokogumbo (1.4.7)
       nokogiri
@@ -505,7 +506,7 @@ GEM
     thread_safe (0.3.5)
     tilt (2.0.2)
     timecop (0.7.4)
-    tins (1.8.1)
+    tins (1.8.2)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
     uglifier (2.7.2)
