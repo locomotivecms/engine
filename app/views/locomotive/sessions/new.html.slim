@@ -20,5 +20,5 @@
     = f.actions do
       = f.button :submit, t('.submit'), class: 'btn btn-primary'
 
-- if current_site.nil?
+- if current_site.nil? && Locomotive.config.enable_registration
   = link_to t('.sign_up').html_safe, sign_up_path, class: 'public-link'

@@ -1,0 +1,29 @@
+require 'spec_helper'
+
+describe 'User registration' do
+  context 'registration enabled' do
+    it 'login screen shows link to create account' do
+      visit locomotive.sign_in_path
+      expect(page).to have_content('Do not have an account?')
+    end
+  end
+
+  context 'registration disabled' do
+    before do
+      Locomotive.configure do |config|
+        config.enable_registration = false
+      end
+    end
+
+    after do
+      Locomotive.configure do |config|
+        config.enable_registration = true
+      end
+    end
+
+    it 'login screen does not show link to create account' do
+      visit locomotive.sign_in_path
+      expect(page).to_not have_content('Do not have an account?')
+    end
+  end
+end
