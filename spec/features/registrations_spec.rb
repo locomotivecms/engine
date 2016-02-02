@@ -9,17 +9,8 @@ describe 'User registration' do
   end
 
   context 'registration disabled' do
-    before do
-      Locomotive.configure do |config|
-        config.enable_registration = false
-      end
-    end
 
-    after do
-      Locomotive.configure do |config|
-        config.enable_registration = true
-      end
-    end
+    before { allow(Locomotive.config).to receive(:enable_registration).and_return(false) }
 
     it 'login screen does not show link to create account' do
       visit locomotive.sign_in_path

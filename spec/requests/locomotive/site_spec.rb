@@ -53,17 +53,8 @@ describe Locomotive::Middlewares::Site do
     end
 
     context 'config enable_registration set to false' do
-      before do
-        Locomotive.configure do |config|
-          config.enable_registration = false
-        end
-      end
 
-      after do
-        Locomotive.configure do |config|
-          config.enable_registration = true
-        end
-      end
+      before { allow(Locomotive.config).to receive(:enable_registration).and_return(false) }
 
       it { expect(subject[1]['Location']).to eq '/locomotive/sign_in' }
     end
