@@ -34,7 +34,11 @@ describe Locomotive::Concerns::Page::Redirect do
     end
 
     it 'allows absolute urls' do
+      page.redirect_url = '/'
+      page.valid?
+      expect(page.errors[:redirect_url]).to be_blank
       page.redirect_url = '/foo/bar'
+      page.valid?
       expect(page.errors[:redirect_url]).to be_blank
     end
 

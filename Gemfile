@@ -56,7 +56,7 @@ group :test do
   gem 'simplecov'
 
   gem 'capybara',             '~> 2.5.0'
-  gem 'poltergeist',          '~> 1.8.1'
+  gem 'capybara-webkit',      '~> 1.8.0'
 
   gem 'grape-entity-matchers'
   gem 'shoulda-matchers',     '2.7.0'

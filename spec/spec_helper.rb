@@ -10,9 +10,6 @@ require 'rspec/rails'
 require 'rails/mongoid'
 require 'factory_girl'
 require 'pundit/rspec'
-require 'capybara/rails'
-require 'capybara/rspec'
-require 'capybara/poltergeist'
 require 'email_spec'
 
 # Requires supporting ruby files with custom matchers and macros, etc,

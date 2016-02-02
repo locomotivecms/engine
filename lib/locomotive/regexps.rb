@@ -7,7 +7,7 @@ module Locomotive
 
     URL                 = /\A((https?:\/\/)|(ftp:\/))\S+\Z/
 
-    URL_AND_MAILTO      = /\A((https?:\/\/)|(ftp:\/)|(mailto:)|(\/))\S+\Z/
+    URL_AND_MAILTO      = /\A((https?:\/\/\S+)|(ftp:\/\S+)|(mailto:\S+)|\/\S*)\Z/
 
   end
 end
