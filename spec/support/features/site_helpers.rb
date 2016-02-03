@@ -7,6 +7,9 @@ module Features
       click_link 'Add a new site'
       fill_in 'Name', with: 'Acme'
       click_button 'Create'
+
+      sleep(1)
+
       @site = Locomotive::Site.where(name: 'Acme').first
 
       # 2. add content types

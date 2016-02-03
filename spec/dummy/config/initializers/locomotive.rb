@@ -57,4 +57,8 @@ Locomotive.configure do |config|
   #
   # Note: by default, rack/cache is disabled in the Heroku platform
 
+  # Indicate whether you want to allow users to register with the site. If set
+  # to false the registration page will not be shown. (Default: true)
+  # config.enable_registration = true
+
 end

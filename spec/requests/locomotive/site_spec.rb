@@ -47,7 +47,17 @@ describe Locomotive::Middlewares::Site do
     subject { middleware.call(env_for(url)) }
 
     it { expect(subject.first).to eq 301 }
-    it { expect(subject[1]['Location']).to eq '/locomotive/sign_up' }
+
+    context 'default config' do
+      it { expect(subject[1]['Location']).to eq '/locomotive/sign_up' }
+    end
+
+    context 'config enable_registration set to false' do
+
+      before { allow(Locomotive.config).to receive(:enable_registration).and_return(false) }
+
+      it { expect(subject[1]['Location']).to eq '/locomotive/sign_in' }
+    end
 
   end
 
