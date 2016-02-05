@@ -7,10 +7,11 @@
 // Navigation wrapper.
 
 .navigation {
-  position: fixed;
+  position: absolute;
   top: 0;
   right: 0;
   left: 0;
+  display: block;
   padding: 25px 40px;
   text-align: left;
   .brand-logo {

@@ -97,7 +97,8 @@
   user-select: none;
   .file-name {
     display: inline-block;
-    width: 210px;
+    width: 100%;
+    max-width: 210px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
