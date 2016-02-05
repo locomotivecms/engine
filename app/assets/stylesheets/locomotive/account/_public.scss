@@ -115,6 +115,7 @@
   display: block;
   max-height: 500px;
   overflow: auto;
+  border-top: 1px solid $border-color-base;
 }
 
 //  Public entries, used in the sites overview.
@@ -125,13 +126,14 @@
   padding: 15px 25px;
   text-align: left;
   background: transparent;
-  border-top: 1px solid $border-color-base;
+  border-bottom: 1px solid $border-color-base;
   transition: background $base-transition-speed linear;
   img {
     display: inline-block;
     width: 60px;
     margin-right: 25px;
     vertical-align: middle;
+    background: $gray-lightest;
     border-radius: 50%;
   }
   .fa-arrow-right {
@@ -143,9 +145,13 @@
     line-height: 1;
     color: $gray-lighter;
   }
+  &:last-child {
+    border-bottom: 0;
+  }
   &.is-add {
     padding: 25px;
     text-align: center;
+    border-top: 1px solid $border-color-base;
     border-radius: 0 0 $border-radius-base $border-radius-base;
     .fa {
       margin-right: 10px;
@@ -169,10 +175,12 @@
   display: inline-block;
   vertical-align: middle;
   h5 {
+    font-family: $font-family-sans-serif;
     color: $gray-darker;
   }
   p {
     margin: 5px 0 0;
+    font-weight: 300;
     color: $gray-light;
   }
 }
