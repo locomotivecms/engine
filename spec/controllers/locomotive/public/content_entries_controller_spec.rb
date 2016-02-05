@@ -12,10 +12,11 @@ describe Locomotive::Public::ContentEntriesController do
 
   describe 'POST create' do
 
-    let(:format) { 'html' }
-    let(:entry_params) { {} }
+    let(:format)          { 'html' }
+    let(:entry_params)    { {} }
+    let(:notified_emails) { nil }
 
-    before { post :create, { format: format, slug: content_type.slug, entry: entry_params } }
+    before { post :create, { format: format, slug: content_type.slug, entry: entry_params, notified_accounts: notified_emails } }
 
     describe 'in HTML' do
 
@@ -31,9 +32,20 @@ describe Locomotive::Public::ContentEntriesController do
 
         let(:entry_params) { { email: 'john@doe.net', message: 'hello world' } }
 
-        it 'returns a 200 code' do
+        it 'returns a 302 code (redirection)' do
           response.status.should eq(302)
           controller.flash['submitted_entry_id'].should_not eq(nil)
+        end
+
+        describe 'notified accounts' do
+
+          let(:account) { FactoryGirl.create('frenchy user') }
+          let(:notified_emails) { account.email + ',j@doe.net' }
+
+          it 'sends email to the notified accounts' do
+            ActionMailer::Base.deliveries.last.to.should eq(['jean@frenchy.fr'])
+          end
+
         end
 
       end

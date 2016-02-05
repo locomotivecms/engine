@@ -16,6 +16,7 @@ module Locomotive
 
       def create
         @entry = @content_type.entries.safe_create(params[:entry] || params[:content])
+        send_notifications_to_other_accounts(@entry)
         respond_with @entry
       end
 
@@ -54,6 +55,18 @@ module Locomotive
         if Locomotive.config.csrf_protection
           reset_session
           redirect_to '/', status: 302
+        end
+      end
+
+      def send_notifications_to_other_accounts(entry)
+        return if params[:notified_accounts].blank? || !entry.errors.empty?
+
+        params[:notified_accounts].split(',').each do |email|
+          account = Locomotive::Account.where(email: email.strip).first
+
+          if account
+            Locomotive::Notifications.new_content_entry(account, entry).deliver
+          end
         end
       end
 
