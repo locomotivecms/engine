@@ -1,0 +1,19 @@
+.tab-content
+  = f.simple_fields_for :metafields do |g|
+
+    - current_site_metafields_schema.each_with_index do |group, index|
+
+      = form_tab_pane group.dom_id, index == 0 do
+
+        = g.inputs group.dom_id do
+
+          - group.fields.each do |field|
+
+            = g.simple_fields_for group.name do |h|
+
+              = h.input field.name, label: field.label, hint: field.hint, as: field.type, input_html: { value: field.value }
+
+  = f.actions do
+    = f.action
+
+

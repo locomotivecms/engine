@@ -1,0 +1,18 @@
+- title t('.title')
+
+= help t('.help', default: '')
+
+- content_for :actions do
+  - if @site.any_localized_metafield?
+    = locale_picker_link
+
+= locomotive_form_for @site, url: update_all_current_site_metafields_path(current_site), html: { multipart: true }, defaults: { placeholder: false } do |f|
+
+  = hidden_field_tag :active_tab, ''
+
+  = f.action class: 'hide'
+
+  = render 'locomotive/current_site_metafields/form/tabs', f: f
+
+  = render 'locomotive/current_site_metafields/form/panes', f: f
+

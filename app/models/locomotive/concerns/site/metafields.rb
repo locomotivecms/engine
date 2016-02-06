@@ -14,6 +14,26 @@ module Locomotive
           ## validations ##
           validate :validate_metafields_schema
 
+          ## virtual accessors ##
+          attr_accessor :metafields_errors
+
+        end
+
+        def has_metafields?
+          !self.metafields.blank?
+        end
+
+        def any_localized_metafield?
+          self.metafields_schema.any? { |g| g['fields'].any? { |f| f['localized'] } }
+        end
+
+        def metafield_info(name)
+          fields = self.metafields_schema.map { |g| g['fields'] }.flatten
+
+          fields.find do |f|
+            _name = f['name'].downcase.underscore.gsub(' ', '_')
+            _name == name
+          end
         end
 
         def metafields_schema=(schema)
@@ -45,9 +65,11 @@ module Locomotive
                 'properties' => {
                   'name' => { 'type' => 'string' },
                   'label' => { 'type' => ['string', 'object'] },
+                  'hint' => { 'type' => ['string', 'object'] },
                   'type' => { 'enum': ['string', 'text', 'integer', 'file', 'image', 'boolean', 'select'] },
                   'position' => { 'type' => 'integer' },
-                  'select_options' => { 'type' => 'object' }
+                  'select_options' => { 'type' => 'object' },
+                  'localized' => { 'type' => 'boolean' }
                 },
                 'required' => ['name']
               }
@@ -56,11 +78,12 @@ module Locomotive
             'items' => {
               'type' => 'object',
               'properties' => {
+                  'name'      => { 'type' => 'string' },
                   'label'     => { 'type' => ['string', 'object'] },
                   'fields'    => { 'type' => 'array', 'items': {'$ref': '#/definitions/field' } },
                   'position'  => { 'type' => 'integer', 'minimum' => 0 }
                 },
-              'required' => ['label', 'fields']
+              'required' => ['name', 'fields']
             }
           }
         end

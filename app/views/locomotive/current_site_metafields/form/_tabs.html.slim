@@ -1,0 +1,4 @@
+ul.nav.nav-tabs role='tablist'
+  - current_site_metafields_schema.each_with_index do |group, index|
+    = form_nav_tab group.label, index == 0 do
+      = link_to group.label, "##{group.dom_id}", role: 'tab', data: { toggle: 'tab' }

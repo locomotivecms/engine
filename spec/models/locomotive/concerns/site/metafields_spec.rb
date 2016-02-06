@@ -25,11 +25,11 @@ describe Locomotive::Concerns::Site::Metafields do
     describe 'invalid schema' do
 
       let(:schema) { [{ :foo => {} }].as_json }
-      it { is_expected.to eq(["The property '#/0' did not contain a required property of 'label'"]) }
+      it { is_expected.to eq(["The property '#/0' did not contain a required property of 'name'"]) }
 
       context 'no fields in a namespace' do
 
-        let(:schema) { [{ 'label' => 'Social settings' }] }
+        let(:schema) { [{ 'name' => 'social_settings' }] }
         it { is_expected.to eq(["The property '#/0' did not contain a required property of 'fields'"]) }
 
       end
@@ -52,7 +52,7 @@ describe Locomotive::Concerns::Site::Metafields do
 
     describe 'valid schema' do
 
-      let(:schema) { [{ 'label' => 'Social', 'fields' => [{ 'name' => 'facebook_id' }, { 'name' => 'google_id' }] }] }
+      let(:schema) { [{ 'name' => 'social', 'label' => 'Social', 'fields' => [{ 'name' => 'facebook_id' }, { 'name' => 'google_id' }] }] }
       it { is_expected.to eq([]) }
 
     end

@@ -34,7 +34,7 @@ PATH
       mimetype-fu (~> 0.1.2)
       moneta (~> 0.8.0)
       morphine (~> 0.1.1)
-      nokogiri (~> 1.6.7.1)
+      nokogiri (~> 1.6.7.2)
       rack-cache (~> 1.2)
       rack-rewrite (~> 1.5.1)
       rack_csrf (~> 2.5.0)
