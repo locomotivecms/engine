@@ -75,13 +75,11 @@ module Locomotive
       end
 
       def type
-        type = (@attributes['type'] || 'string').to_sym
-
-        # case type
-        # when :image then :simple_image
-        # else
-        #   type
-        # end
+        case (type = @attributes['type'].try(:to_sym))
+        when :boolean then :toggle
+        else
+          type || :string
+        end
       end
 
       def position
