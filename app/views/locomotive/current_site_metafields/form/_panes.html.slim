@@ -5,13 +5,15 @@
 
       = form_tab_pane group.dom_id, index == 0 do
 
+        / = g.inputs group.dom_id do
         = g.inputs group.dom_id do
 
           - group.fields.each do |field|
 
-            = g.simple_fields_for group.name do |h|
+            / = g.simple_fields_for group.name do |h|
+            = g.simple_fields_for group do |h|
 
-              = h.input field.name, label: field.label, hint: field.hint, as: field.type, input_html: { value: field.value }
+              = h.input field.name, label: field.label, hint: field.hint, as: field.type, required: false, input_html: { value: field.value }
 
   = f.actions do
     = f.action

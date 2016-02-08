@@ -48,7 +48,7 @@ class Locomotive.Views.Inputs.FileView extends Backbone.View
 
     window.application_view.drawer_view.close()
 
-    url = @absolute_url(data.url)
+    url = window.absolute_url(data.url)
 
     window.remote_file_to_base64 url, (base64) =>
       if base64
@@ -137,13 +137,6 @@ class Locomotive.Views.Inputs.FileView extends Backbone.View
     reader = new FileReader()
     reader.onload = (e) -> callback(e.target.result)
     reader.readAsDataURL(file)
-
-  absolute_url: (url) ->
-    return url if url.indexOf('http') == 0
-
-    http = location.protocol
-    slashes = http.concat("//")
-    slashes.concat(window.location.host).concat(url)
 
   showEl: (el) -> el.removeClass('hide')
   hideEl: (el) -> el.addClass('hide')

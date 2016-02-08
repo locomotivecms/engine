@@ -1,0 +1,61 @@
+$border-radius-base: 0px;
+
+$black: #000;
+$gray-darkest: #232528;
+$gray-darker: lighten($gray-darkest, 15);
+$gray-dark: lighten($gray-darkest, 30);
+$gray: lighten($gray-darkest, 45);
+$gray-light: lighten($gray-darkest, 65);
+$gray-lighter: lighten($gray-darkest, 75);
+$gray-lightest: lighten($gray-darkest, 83);
+$white: #fff;
+
+$font-size-base: 14px;
+
+$base-transition-speed: .3s;
+
+$border-color-base: $gray-lighter;
+
+$width-and-height-file-input: 44px;
+
+@import "../../account/files";
+
+.simple_form {
+
+  .file-wrapper {
+
+    .file-image {
+      background-color: $gray-lightest;
+      cursor: pointer;
+      height: $width-and-height-file-input;
+      width: $width-and-height-file-input;
+
+      img {
+        height: $width-and-height-file-input;
+        width: $width-and-height-file-input;
+      }
+    }
+
+    .file {
+      cursor: default;
+      height: $width-and-height-file-input;
+
+      input[type=text] {
+        display: none;
+      }
+    }
+
+    .file-custom {
+      font-weight: normal;
+      height: $width-and-height-file-input;
+      left: $width-and-height-file-input;
+    }
+
+    .file-browse {
+      cursor: pointer;
+      text-decoration: none;
+      height: $width-and-height-file-input;
+    }
+  }
+
+}

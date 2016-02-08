@@ -4,7 +4,7 @@ module Locomotive
     def current_site_metafields_schema
       @current_site_metafields_schema ||= @current_site.metafields_schema.map do |g|
         SchemaGroup.new(@current_site, g)
-      end.sort { |g| g.position }
+      end.sort_by(&:position)
     end
 
     class SchemaGroup
@@ -15,6 +15,10 @@ module Locomotive
 
       def name
         @attributes['name']
+      end
+
+      def model_name
+        ActiveModel::Name.new(self, nil, name)
       end
 
       def label
@@ -32,8 +36,17 @@ module Locomotive
       def fields
         @fields ||= @attributes['fields'].map do |f|
           SchemaField.new(@site, name, f)
-        end.sort { |f| f.position }
+        end.sort_by(&:position)
       end
+
+      def method_missing(name, *args, &block)
+        if field = fields.find { |f| f.name == name.to_s }
+          field.value
+        else
+          super
+        end
+      end
+
 
       protected
 
@@ -62,7 +75,13 @@ module Locomotive
       end
 
       def type
-        :string # TODO
+        type = (@attributes['type'] || 'string').to_sym
+
+        # case type
+        # when :image then :simple_image
+        # else
+        #   type
+        # end
       end
 
       def position

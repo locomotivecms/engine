@@ -21,6 +21,7 @@
   left: 0;
   display: inline-block;
   height: 46px;
+  width: 46px;
   vertical-align: middle;
   cursor: pointer;
   border-bottom-left-radius: $border-radius-base;
@@ -81,11 +82,10 @@
   position: absolute;
   top: 0;
   right: 0;
-  left: 0;
+  left: 46px;
   z-index: 5;
-  width: 100%;
   height: 46px;
-  padding: 12px 15px 12px 61px;
+  padding: 12px 15px 12px 15px;
   font-size: $font-size-base;
   line-height: $line-height-base;
   letter-spacing: 0;
