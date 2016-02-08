@@ -49,12 +49,17 @@ $width-and-height-file-input: 44px;
       font-weight: normal;
       height: $width-and-height-file-input;
       left: $width-and-height-file-input;
+      border: 0px;
     }
 
     .file-browse {
       cursor: pointer;
       text-decoration: none;
       height: $width-and-height-file-input;
+      border: 0px;
+      top: 0px;
+      bottom: 0px;
+      right: 0px;
     }
   }
 
