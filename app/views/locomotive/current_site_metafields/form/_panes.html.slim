@@ -1,19 +1,17 @@
 .tab-content
-  = f.simple_fields_for :metafields do |g|
+  = f.simple_fields_for :metafields do |namespace_form|
 
     - current_site_metafields_schema.each_with_index do |group, index|
 
       = form_tab_pane group.dom_id, index == 0 do
 
-        / = g.inputs group.dom_id do
-        = g.inputs group.dom_id do
+        = namespace_form.inputs group.dom_id do
 
           - group.fields.each do |field|
 
-            / = g.simple_fields_for group.name do |h|
-            = g.simple_fields_for group do |h|
+            = namespace_form.simple_fields_for group do |metafield_form|
 
-              = h.input field.name, label: field.label, hint: field.hint, as: field.type, required: false, input_html: { value: field.value }
+              = metafield_form.input field.name, field.input_options
 
   = f.actions do
     = f.action

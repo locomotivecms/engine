@@ -75,11 +75,26 @@ module Locomotive
       end
 
       def type
-        case (type = @attributes['type'].try(:to_sym))
+        @type ||= case (type = @attributes['type'].try(:to_sym))
         when :boolean then :toggle
         when :text    then :rte
         else
           type || :string
+        end
+      end
+
+      def input_options
+        case type
+        when :select then { collection: select_collection }
+        else
+          {}
+        end.merge(default_input_options)
+      end
+
+      def select_collection
+        @attributes['select_options'].map do |name, label|
+          label = { 'default' => name.humanize } if label.blank?
+          [t(label).html_safe, name]
         end
       end
 
@@ -89,6 +104,15 @@ module Locomotive
 
       def value
         t((@site.metafields[@namespace] || {})[name], ::Mongoid::Fields::I18n.locale.to_s)
+      end
+
+      def default_input_options
+        {
+          label:      self.label,
+          hint:       self.hint,
+          as:         self.type,
+          required:   false
+        }
       end
 
       protected
