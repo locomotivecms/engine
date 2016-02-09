@@ -66,7 +66,7 @@ module Locomotive
                   'name' => { 'type' => 'string' },
                   'label' => { 'type' => ['string', 'object'] },
                   'hint' => { 'type' => ['string', 'object'] },
-                  'type' => { 'enum': ['string', 'text', 'integer', 'file', 'image', 'boolean', 'select'] },
+                  'type' => { 'enum': ['string', 'text', 'integer', 'float', 'file', 'image', 'boolean', 'select', 'color'] },
                   'position' => { 'type' => 'integer' },
                   'select_options' => { 'type' => ['object', 'array'] },
                   'localized' => { 'type' => 'boolean' }
