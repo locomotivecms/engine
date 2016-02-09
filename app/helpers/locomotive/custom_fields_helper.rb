@@ -10,7 +10,11 @@ module Locomotive
     #
     def render_custom_fields(content_type, form)
       html = content_type.ordered_entries_custom_fields.map do |field|
-        render_custom_field(field, form)
+        if field.ui_enabled? || field.name == content_type.label_field_name
+          render_custom_field(field, form)
+        else
+          ''
+        end
       end
 
       html.join("\n").html_safe

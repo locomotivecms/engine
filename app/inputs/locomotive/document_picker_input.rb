@@ -9,18 +9,19 @@ module Locomotive
 
       row_wrapping do
         (col_wrapping('field col-xs-9', 11) do
-          hidden_field(data)
+          select_field(data)
         end) + (col_wrapping('button col-xs-3 text-right', 1) do
           link_to_edit
         end)
       end
     end
 
-    def hidden_field(data)
-      @builder.hidden_field(:"#{attribute_name}_id", {
-        class:  'form-control',
-        data:   data
-      })
+    def select_field(data)
+      @builder.collection_select(
+        :"#{attribute_name}_id", [selected_document].compact,
+        :_id, data[:label_method],
+        { include_blank: true }, { class: 'form-control', data: data }
+      )
     end
 
     def link_to_edit
@@ -42,11 +43,14 @@ module Locomotive
     end
 
     def document_label(label_method)
-      if document = self.object.send(attribute_name.to_sym)
-        document.send(label_method.to_sym)
-      else
-        nil
-      end
+      selected_document.try(label_method.to_sym)
+    end
+
+    def selected_document
+      return @selected_document if @selected_document_done
+
+      @selected_document_done = true
+      @selected_document      = self.object.send(attribute_name.to_sym)
     end
 
   end

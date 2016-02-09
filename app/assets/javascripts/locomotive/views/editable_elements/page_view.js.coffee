@@ -15,8 +15,11 @@ class Locomotive.Views.EditableElements.PageView extends Backbone.View
       PubSub.subscribe 'pages.sorted',                          @refresh_all
     ]
 
+    # used to prefix links to inner pages with mounted_on
+    @mounted_on = @$('meta[name=locomotive-mounted-on]').attr('content')
+
     # create the highlighter view
-    @views = [new Locomotive.Views.EditableElements.TextHighLighterView(el: @el, button_labels: @options.button_labels)]
+    @views = [new Locomotive.Views.EditableElements.TextHighLighterView(el: @$('body'), button_labels: @options.button_labels)]
 
   render: ->
     # render the highlighter view
@@ -32,11 +35,17 @@ class Locomotive.Views.EditableElements.PageView extends Backbone.View
     return false if element.size() == 0
     $(@el).animate({ scrollTop: element.offset().top }, 500)
 
+  each_elements: (view, callback) ->
+    $form_view  = $(view.el).parent()
+    element_id  = $form_view.find('input[name*="[id]"]').val()
+
+    callback(@$("*[data-element-id=#{element_id}]"), element_id)
+
   refresh_all: (msg, data) ->
     @options.parent_view.reload()
 
   refresh_text: (msg, data) ->
-    @refresh_elements 'text', data.view, ($elements) ->
+    @each_elements data.view, ($elements) ->
       $elements.each -> $(this).html(data.content)
 
   refresh_image_on_remove: (msg, data) ->
@@ -44,20 +53,19 @@ class Locomotive.Views.EditableElements.PageView extends Backbone.View
     @refresh_image(msg, data)
 
   refresh_image: (msg, data) ->
-    @refresh_elements 'image', data.view, ($elements, element_id) =>
+    @each_elements data.view, ($elements, element_id) =>
+      if $elements.size() == 0
+        $elements = @find_and_reference_images_identified_by_url(data.view.path, element_id)
+
+      return if $elements.size() == 0
+
+      resize_format     = data.view.$('.row').data('resize-format')
       current_image_url = data.view.$('input[name*="[content]"]').val()
       image_url         = data.url || current_image_url
 
-      if $elements.size() > 0
-        @replace_images($elements, image_url)
-      else
-        @replace_images_identified_by_url(current_image_url, image_url, element_id)
-
-  refresh_elements: (type, view, callback) ->
-    $form_view  = $(view.el).parent()
-    element_id  = $form_view.find('input[name*="[id]"]').val()
-
-    callback($(@el).find("*[data-element-id=#{element_id}]"), element_id)
+      # ask for a cropped/resized version of the image
+      window.resize_image image_url, resize_format, (resized_image) =>
+        @replace_images($elements, resized_image)
 
   replace_images: (images, new_image_url) ->
     images.each ->
@@ -66,14 +74,10 @@ class Locomotive.Views.EditableElements.PageView extends Backbone.View
       else
         $(this).css("background-image", "url('" + new_image_url + "')")
 
-  replace_images_identified_by_url: (current_image_url, new_image_url, element_id) ->
-    # looking for DIVs with background-url property matching the previous image url
-    $el = $(@el).find("*[style*='#{current_image_url}']").attr('data-element-id', element_id)
-    $el.css("background-image", "url('" + new_image_url + "')")
-
-    # looking for IMGs with src attribute matching the previous image url
-    $el = $(@el).find("img[src*='#{current_image_url}']").attr('data-element-id', element_id)
-    $el.attr('src', new_image_url)
+  # retrieve all the images and background images by their editable path
+  # and associate the element_id to them
+  find_and_reference_images_identified_by_url: (path, element_id) ->
+    @$("*[style*='#{path}'],img[src*='#{path}']").attr('data-element-id', element_id)
 
   remove: ->
     super()

@@ -32,8 +32,8 @@ class Locomotive.Views.EditableElements.IndexView extends Backbone.View
     $('body').removeClass('full-width-preview')
 
   replace_edit_view: (url) ->
+    @views[0].remove()
     $(@views[0].el).load url, =>
-      @views[0].remove()
       (@views[0] = new Locomotive.Views.EditableElements.EditView()).render()
 
   remove: ->

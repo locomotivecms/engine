@@ -1,0 +1,43 @@
+(->
+  window.remote_file_to_base64 = (url, callback) ->
+    xhr = new XMLHttpRequest()
+    xhr.open('GET', url, true)
+    xhr.responseType = 'blob'
+
+    xhr.onload = (event) ->
+      if this.status == 200
+        blob = this.response
+
+        reader = new window.FileReader()
+        reader.readAsDataURL(blob)
+        reader.onloadend = -> callback(reader.result)
+      else
+        callback(null)
+
+    xhr.onerror = (event) -> callback(null)
+
+    xhr.send()
+
+  window.resize_image = (image, format, callback) ->
+    unless format?
+      callback(image)
+      return
+
+    data = new FormData()
+    data.append('image', image)
+    data.append('format', format)
+
+    xhr = new XMLHttpRequest()
+    xhr.open('POST', '<%= Locomotive::Middlewares::ImageThumbnail.route %>', true)
+
+    xhr.onload = (event) ->
+      if this.status == 200
+        callback(this.response)
+      else
+        callback(image)
+
+    xhr.onerror = (event) -> callback(image)
+
+    xhr.send(data)
+
+)()

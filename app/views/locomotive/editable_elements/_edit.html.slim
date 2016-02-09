@@ -22,11 +22,17 @@
         .text-right
           - if current_site.localized?
             = locale_picker_link
-          - unless @editable_elements.empty?
+          - unless @editable_elements.blank?
             | &nbsp;
             = f.action
 
-      - if @editable_elements.empty?
+      - if @editable_elements.nil?
+        .col-sm-12.col-xs-12
+            br
+            .alert.alert-warning.text-center role="alert"
+              == t('.parsing_error')
+
+      - elsif @editable_elements.empty?
         - if @content_entry.nil?
           .col-sm-12.col-xs-12
             br
@@ -42,7 +48,7 @@
               span.form-wrapper
                 = select_tag 'block', options_for_page_blocks(@blocks)
 
-  .scrollable class="#{'no-editable-elements' if @editable_elements.empty?}"
+  .scrollable class="#{'no-editable-elements' if @editable_elements.blank?}"
     .container-fluid
       .row
         .col-md-12
@@ -56,4 +62,4 @@
                 span.form_wrapper
                   = link_to t(:edit, scope: 'locomotive.editable_elements.form.model.buttons'), edit_content_entry_path(current_site, @content_entry.content_type.slug, @content_entry, _location: request.fullpath), class: 'btn btn-primary btn-sm'
 
-          = render 'form', f: f
+          = render 'form', f: f unless @editable_elements.blank?

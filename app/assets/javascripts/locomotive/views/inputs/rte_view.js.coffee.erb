@@ -103,11 +103,12 @@ class Locomotive.Views.Inputs.RteView extends Backbone.View
 
   remove: ->
     _.invoke @views, 'remove'
+    _.each @tokens, (token) -> PubSub.unsubscribe(token)
 
-    @editor.stopObserving('onLoad', @register_keydown_event)
+    @editor.stopObserving('onLoad',   @register_keydown_event)
     @editor.stopObserving('onChange', @on_content_change)
 
-    _.each @tokens, (token) -> PubSub.unsubscribe(token)
+    @editor.destroy()
 
     super()
 

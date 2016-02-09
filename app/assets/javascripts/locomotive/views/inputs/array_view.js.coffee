@@ -33,28 +33,28 @@ class Locomotive.Views.Inputs.ArrayView extends Backbone.View
           $(this).find('.position-in-list').val(index)
 
   make_selectable: ->
-    if @$new_input.prop('tagName') == 'SELECT'
-      @make_simple_selectable()
-    else if @$new_input.attr('type') == 'hidden'
+    return if @$new_input.prop('tagName') != 'SELECT'
+
+    if @$new_input.data('list-url')?
       @make_remote_selectable()
+    else
+      @make_simple_selectable()
 
   make_remote_selectable: ->
-    Select2.helpers.build @$new_input
+    Select2Helpers.build @$new_input
     @$new_input.on 'change', (e) => @begin_add_item(e)
 
   make_simple_selectable: ->
     @$new_input.select2
-      containerCssClass:  'form-control'
-      formatResult:       @format_select_result
-      formatSelection:    @format_select_result
-      escapeMarkup:       (m) -> { m }
+      templateResult:       @format_select_result
+      templateSelection:    @format_select_result
 
   format_select_result: (state) ->
     return state.text unless state.id?
 
     display = $(state.element).data('display')
 
-    if display? then display else state.text
+    $("<span>#{if display? then display else state.text}</span>")
 
   begin_add_item_from_enter: (event) ->
     return if event.keyCode != 13
@@ -118,8 +118,7 @@ class Locomotive.Views.Inputs.ArrayView extends Backbone.View
     _.map @$list.find('> .item'), (item, i) -> $(item).data('id')
 
   reset_input_field: ->
-    @$new_input.val('')
-    @$new_input.select2('val', '')
+    @$new_input.val(null).trigger('change')
 
   showEl: (el) -> el.removeClass('hide')
   hideEl: (el) -> el.addClass('hide')

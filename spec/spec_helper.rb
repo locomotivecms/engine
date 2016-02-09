@@ -9,11 +9,7 @@ require File.join(File.dirname(__FILE__), 'dummy', 'config', 'environment.rb')
 require 'rspec/rails'
 require 'rails/mongoid'
 require 'factory_girl'
-require 'database_cleaner'
 require 'pundit/rspec'
-require 'capybara/rails'
-require 'capybara/rspec'
-require 'capybara/poltergeist'
 require 'email_spec'
 
 # Requires supporting ruby files with custom matchers and macros, etc,
@@ -49,8 +45,7 @@ RSpec.configure do |config|
   end
 
   config.before(:suite) do
-    DatabaseCleaner.strategy = :truncation
-    DatabaseCleaner.orm = 'mongoid'
+    DatabaseCleaner.clean
   end
 
   config.before(:each) do

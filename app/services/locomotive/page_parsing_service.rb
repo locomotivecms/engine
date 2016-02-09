@@ -18,6 +18,9 @@ module Locomotive
           end
         end
       end
+    rescue Exception => e
+      Rails.logger.error "[PageParsing] " + e.message + "\n\t" + e.backtrace.join("\n\t")
+      nil
     end
 
     # Each element of the elements parameter is a couple: Page, EditableElement

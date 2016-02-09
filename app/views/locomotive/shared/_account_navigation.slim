@@ -1,0 +1,10 @@
+nav.navigation class="#{class_name rescue ''}"
+  = link_to root_path, class: 'brand-logo' do
+    = image_tag 'locomotive/logo-white.png'
+
+  ul.navigation-links
+    li.dropdown
+      = render 'locomotive/shared/header/account'
+
+      ul.dropdown-menu role='menu' aria-labelledby="navigation-dropdown"
+        = render 'locomotive/shared/header/account_menu'

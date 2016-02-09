@@ -18,9 +18,7 @@ module Locomotive
 
         def calculate_checksum
           begin
-            if self.checksum.blank?
-              self.checksum = Digest::MD5.hexdigest(self.source.read)
-            end
+            self.checksum = Digest::MD5.hexdigest(self.source.read)
           rescue Errno::ENOENT => e
             # no file
           end
@@ -31,3 +29,4 @@ module Locomotive
     end
   end
 end
+

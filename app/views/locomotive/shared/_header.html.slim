@@ -1,10 +1,7 @@
 .header
   nav.navbar.navbar-default role='navigation'
-
     .container-fluid
-
       .navbar-header
-
         button type='button' class='navbar-toggle'
           span.sr-only Toggle navigation
           .icon-bar
@@ -27,7 +24,7 @@
           li.dropdown
             = render 'locomotive/shared/header/account'
 
-            ul.dropdown-menu role='menu'
+            ul.dropdown-menu.dropdown-menu-right role='menu'
               = render 'locomotive/shared/header/account_menu'
 
   = render 'locomotive/shared/main_app_header'

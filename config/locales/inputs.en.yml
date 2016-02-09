@@ -3,6 +3,7 @@ en:
     inputs:
       file:
         none: no file
+        browse: Browse
         choose: Choose
         change: Change
         delete: Delete

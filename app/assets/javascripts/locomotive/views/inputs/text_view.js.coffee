@@ -17,6 +17,8 @@ class Locomotive.Views.Inputs.TextView extends Backbone.View
       view:     @
       content:  @text_value($(event.target))
 
+    return true
+
   text_value: (textarea) ->
     textarea.val()
 

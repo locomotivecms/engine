@@ -10,7 +10,7 @@ module Locomotive
     end
 
     def image?
-      self.file ? self.file.content_type : false
+      self.file.try(:exists?)
     end
 
     def store_dir

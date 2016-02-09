@@ -25,7 +25,7 @@ module Locomotive
         hint:         editable_element.hint,
         wrapper_html: {
           id:   "#{editable_element.type.to_s.dasherize}-#{editable_element._id}",
-          data: { block: editable_element.block || '' }
+          data: { block: editable_element.block || '', path: editable_element.path }
         }
       }.merge(options)
     end

@@ -7,7 +7,7 @@ nl:
   devise:
     failure:
       locomotive_account:
-        unauthenticated: 'U moet inloggen of registreren vooraleer u kan verder gaan.'
+        unauthenticated: 'U moet zich aanmelden vooraleer u kan verder gaan.'
         unconfirmed: 'Graag eerst uw account bevestigen vooraleer u kan verder gaan.'
         locked: 'Uw account is vergrendeld.'
         invalid: 'Ongeldig email of wachtwoord.'

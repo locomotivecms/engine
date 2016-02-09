@@ -5,7 +5,7 @@ source "https://rubygems.org"
 
 gemspec # Include gemspec dependencies
 
-gem 'sass-rails',   '~> 5.0.1'
+gem 'sass-rails', '~> 5.0.4'
 gem 'coffee-rails', '~> 4.1.0'
 gem 'uglifier',     '>= 2.5.3'
 
@@ -19,10 +19,10 @@ end
 group :development do
   # gem 'custom_fields', path: '../custom_fields'
   # gem 'custom_fields', path: '../gems/custom_fields' # for Developers
-  # gem 'custom_fields', github: 'locomotivecms/custom_fields', ref: '279c6744eb6b7dd'
+  gem 'custom_fields', github: 'locomotivecms/custom_fields', ref: '131b6a6'
 
   # gem 'locomotivecms_steam', path: '../gems/steam', require: false
-  # gem 'locomotivecms_steam', github: 'locomotivecms/steam', ref: 'b4aa09a', require: false
+  gem 'locomotivecms_steam', github: 'locomotivecms/steam', ref: '0cdb255dafd13', require: false
 
   # gem 'locomotive_liquid', path: '../gems/liquid' # for Developers
   # gem 'locomotivecms_solid', path: '../gems/solid' # for Developers
@@ -56,7 +56,7 @@ group :test do
   gem 'simplecov'
 
   gem 'capybara',             '~> 2.5.0'
-  gem 'poltergeist',          '~> 1.8.1'
+  gem 'capybara-webkit',      '~> 1.8.0'
 
   gem 'grape-entity-matchers'
   gem 'shoulda-matchers',     '2.7.0'
@@ -64,7 +64,7 @@ group :test do
   gem 'factory_girl_rails'
   gem 'pickle'
   gem 'json_spec',            '~> 1.1.4'
-  gem 'database_cleaner',     git: 'https://github.com/DatabaseCleaner/database_cleaner.git'
+  gem 'database_cleaner',     github: 'DatabaseCleaner/database_cleaner'
   gem 'timecop',              '~> 0.7.1'
 
   gem 'email_spec'

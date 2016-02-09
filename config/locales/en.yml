@@ -19,6 +19,7 @@ en:
       bg: Bulgarian
       sk: Slovak
       sr: Serbian
+      el: Greek
 
     messages:
       confirm: Are you sure?
@@ -60,7 +61,7 @@ en:
     errors:
       "500":
         title: Application Error
-        message: "We're sorry, but something went wrong"
+        message: "We're sorry, but something went wrong. Please contact your administrator."
       "404":
         title: Page not found
         message: "The page you requested does not exist."
@@ -166,7 +167,7 @@ en:
     registrations:
       new:
         confirm_password: Confirm password
-        description: "Looks like you are the first one here, create an account below to start using Locomotive."
+        description: "Create an account below to start using Locomotive."
         sign_in: Already have an account?
         submit: Register
         title: Register
@@ -214,6 +215,7 @@ en:
       edit:
         settings_link: 'Settings'
         no_editable_elements: 'No editable elements found'
+        parsing_error: "<b>We are sorry but we couldn't parse the template of your page.</b><br/>Please make sure your template first works with Wagon."
         blocks:
           all: All
           unknown: Unknown
@@ -268,6 +270,9 @@ en:
     my_account:
       edit:
         title: Editing my account
+      form:
+        api:
+          api_key: "Used by Wagon to deploy your site (check your config/deploy.yml file of your Wagon site)."
 
     translations:
       untranslated: "Untranslated locales: %{list}"

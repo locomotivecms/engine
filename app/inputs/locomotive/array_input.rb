@@ -66,7 +66,7 @@ module Locomotive
       if options[:select_options]
         template.select_tag(singularized_name, template.options_for_select(options[:select_options]), class: css)
       elsif data = options[:picker]
-        template.hidden_field_tag('id', '', class: css, data: data)
+        template.select_tag('id', '', class: css, data: data)
       else
         text_options = input_html_options.dup
         text_options[:class] << css

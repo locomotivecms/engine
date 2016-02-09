@@ -4,5 +4,5 @@
 
 window.Locomotive =
   mounted_on:   window.Locomotive.mounted_on
-  Views:        { CustomFields: {} }
+  Views:        { Sessions: {}, Registrations: {}, Passwords: {}, CustomFields: {}  }
   Flags:        {}

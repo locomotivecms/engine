@@ -26,6 +26,7 @@ class Locomotive.Views.Inputs.FileView extends Backbone.View
     @$delete_btn    = @$('.buttons .delete')
 
     @persisted_file = @$('.row').data('persisted-file')
+    @path           = $(@el).data('path')
 
     @pubsub_token   = PubSub.subscribe 'file_picker.select', @use_content_asset
 

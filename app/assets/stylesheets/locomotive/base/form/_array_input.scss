@@ -12,8 +12,8 @@
           border-bottom: $form_input_array_border_size solid $form_input_array_border_color;
 
           .inner-row {
-            @include display-flex;
-            @include flex-align(center);
+            display: flex;
+            align-items: center;
 
             min-height: $form_input_array_item_height;
 
@@ -58,7 +58,7 @@
 
           .inner {
             background-color: $form_input_array_placeholder;
-            @include border-radius($form_input_array_placeholder_height / 2);
+            border-radius: $form_input_array_placeholder_height / 2;
             border: none;
             margin-top: $form_input_array_placeholder_margin - ($form_input_array_border_size / 2);
             margin-bottom: $form_input_array_placeholder_margin;
@@ -89,22 +89,14 @@
           }
         }
 
-        .form-control.select2-container {
+        .select2-container {
           background: transparent;
           border: none;
-          @include border-radius(0px);
+          border-radius: 0px;
           left: -$form_input_control_border_size - 1px;
-          padding: $select2-vertical-padding $form_input_control_border_size * 2;
-
-          &.select2-dropdown-open {
-            padding-top: $select2-vertical-padding;
-            padding-bottom: $select2-vertical-padding + 1px;
-          }
-
-          &.select2-dropdown-open.select2-drop-above {
-            padding-top: $select2-vertical-padding;
-            padding-bottom: $select2-vertical-padding;
-          }
+          padding-right: $form_input_control_border_size * 2;
+          padding-left: $form_input_control_border_size * 2;
+          padding-bottom: $select2-vertical-padding + 4px;
         }
 
       }
@@ -120,7 +112,7 @@
         .list {
           & > .item {
             .inner-row {
-              @include flex-wrap;
+              flex-wrap: wrap;
 
               > .text {
                 margin-right: $padding-base-horizontal;

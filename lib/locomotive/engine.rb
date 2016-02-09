@@ -35,6 +35,8 @@ module Locomotive
 
     initializer 'locomotive.precompile.hook', group: :all do |app|
       app.config.assets.precompile += %w(
+        locomotive/icons/flags/*.png
+        locomotive/*.png
         locomotive/bootstrap-colorpicker/saturation.png
         locomotive/bootstrap-colorpicker/alpha-horizontal.png
         locomotive/bootstrap-colorpicker/alpha.png
@@ -63,6 +65,9 @@ module Locomotive
     initializer 'locomotive.middlewares' do |app|
       require 'locomotive/middlewares'
 
+      # Note: "insert 4" means inserting after Rack::Lock
+      # specifying Rack::Lock caused an error in production.
+      app.middleware.insert 4, '::Locomotive::Middlewares::ImageThumbnail'
       app.middleware.use '::Locomotive::Middlewares::Site'
     end
 

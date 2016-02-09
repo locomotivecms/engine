@@ -1,16 +1,14 @@
-- content_for :site_title do
-  = t('.title')
+- title t('.title')
 
-= help t('.help', default: '')
+= content_for :header do
+  = render 'locomotive/shared/account_navigation'
 
-.row
-  .col-sm-offset-2.col-sm-8
-    = locomotive_form_for @account, url: my_account_path, html: { multipart: true }, defaults: { placeholder: false } do |f|
+.public-box
+  .public-intro
+    h3= t('.title')
 
-      = hidden_field_tag :active_tab, ''
-
-      = f.action class: 'hide'
-
-      = render 'locomotive/my_account/form/tabs', f: f
-
-      = render 'locomotive/my_account/form/panes', f: f
+  = locomotive_form_for @account, url: my_account_path, html: { multipart: true }, defaults: { placeholder: false } do |f|
+    = hidden_field_tag :active_tab, ''
+    = f.action class: 'hide'
+    = render 'locomotive/my_account/form/tabs', f: f
+    = render 'locomotive/my_account/form/panes', f: f

@@ -23,4 +23,26 @@ describe Locomotive::EditableElement do
 
   end
 
+  describe '#path' do
+
+    subject { element.path }
+
+    it { is_expected.to eq '' }
+
+    context 'no block and a slug' do
+
+      let(:attributes) { { slug: 'banner' } }
+      it { is_expected.to eq 'banner' }
+
+    end
+
+    context 'a block and a slug' do
+
+      let(:attributes) { { block: 'content/header', slug: 'banner' } }
+      it { is_expected.to eq 'content--header--banner' }
+
+    end
+
+  end
+
 end

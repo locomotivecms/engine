@@ -20,22 +20,15 @@
           }
         }
 
-        .form-control.select2-container {
+        .select2-container {
           background: transparent;
           border: none;
-          @include border-radius(0px);
+          border-radius: 0px;
+
           left: -$form_input_control_border_size - 1px;
-          padding: $select2-vertical-padding $form_input_control_border_size * 2;
-
-          &.select2-dropdown-open {
-            padding-top: $select2-vertical-padding;
-            padding-bottom: $select2-vertical-padding + 1px;
-          }
-
-          &.select2-dropdown-open.select2-drop-above {
-            padding-top: $select2-vertical-padding;
-            padding-bottom: $select2-vertical-padding;
-          }
+          padding-right: $form_input_control_border_size * 2;
+          padding-left: $form_input_control_border_size * 2;
+          padding-bottom: $select2-vertical-padding + 4px;
         }
 
       }
@@ -43,45 +36,3 @@
     }
   }
 }
-
-
-// .simple_form fieldset > .input.document_picker .form-wrapper {
-//   border: none;
-//   background: transparent;
-
-//   .select2-container {
-//     width: 100%;
-//     background: #fff;
-
-//     .select2-choice {
-//       border: none;
-//     }
-//   }
-// }
-
-// .simple_form .document_picker .select2-container {
-//   width: 70%;
-//   border: none;
-//   padding: 0px;
-
-//   // @include box-shadow(none);
-//   // border: none;
-
-//   // border: $form_input_control_border_size solid $form_input_control_border_color;
-//   // @include border-radius($form_input_control_border_size);
-
-//   // padding: $select2-vertical-padding $select2-horizontal-padding;
-
-//   // @include transition(none);
-
-//   .select2-choice {
-//     background: transparent;
-//     @include box-shadow(none);
-//     border: none;
-
-//     .select2-arrow {
-//       background: transparent;
-//       border: none;
-//     }
-//   }
-// }

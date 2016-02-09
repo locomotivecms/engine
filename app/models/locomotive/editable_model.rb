@@ -9,5 +9,9 @@ module Locomotive
       self.content_type.name
     end
 
+    def content_type?
+      !content_type.nil?
+    end
+
   end
 end

@@ -24,7 +24,7 @@ describe Locomotive::BaseHelper do
 
       subject { helper.cache_key_for_sidebar_pages }
 
-      it { expect(subject).to eq "#{Locomotive::VERSION}/site/42/sidebar/pages-0-0/locale/en" }
+      it { expect(subject).to eq "#{Locomotive::VERSION}/site/42/acme/sidebar/pages-0-0/locale/en" }
 
     end
 
@@ -32,7 +32,7 @@ describe Locomotive::BaseHelper do
 
       subject { helper.cache_key_for_sidebar_content_types }
 
-      it { expect(subject).to eq "#{Locomotive::VERSION}/site/42/sidebar/content_types-0-0" }
+      it { expect(subject).to eq "#{Locomotive::VERSION}/site/42/acme/sidebar/content_types-0-0" }
 
     end
 

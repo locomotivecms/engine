@@ -1,24 +1,24 @@
-doctype XML
 doctype html
-html xmlns='http://www.w3.org/1999/xhtml'
+html xmlns='http://www.w3.org/1999/xhtml' lang=I18n.locale
   head
-    title== error_title
+    meta charset="utf-8"
+    meta http-equiv="x-ua-compatible" content="ie=edge"
+
+    title= escape_once(strip_tags(error_title) + " | Locomotive")
+
     meta name="viewport" content="width=device-width, initial-scale=1"
 
     link rel="icon" type="image/png" href="#{asset_url('locomotive/favicon.png')}" sizes="32x32"
 
-    = stylesheet_link_tag 'locomotive/error', media: 'screen'
+    link href="https://fonts.googleapis.com/css?family=Muli:400,300|Noto+Sans:400,700" rel="stylesheet" type="text/css"
 
-  body
-    .wrapper.container-fluid
-      .main
-        .content
-          h1.text-center
-            = image_tag 'locomotive/logo.png'
-            | &nbsp;
-            == 'Locomotive'
-            small== error_title
+    = stylesheet_link_tag 'locomotive/account', media: 'screen'
+
+  body class=[controller.controller_name, controller.action_name, flash.empty? ? '' : 'with-flash'].join(' ')
+    .public-background
+      .public-container
+        .public-wrapper
+          = link_to root_path, class: 'brand-logo' do
+            = image_tag 'locomotive/logo-white.png'
 
           = yield
-
-

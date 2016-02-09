@@ -20,9 +20,23 @@
   ],
   "dependencies": {
     "backbone": "~1.2.3",
-    "bootstrap-tagsinput": "~0.7.1"
+    "bootstrap-tagsinput": "~0.7.1",
+    "select2":"~4.0.1",
+    "select2-bootstrap-css":"~1.4.6"
   },
   "install" : {
-    "path" : "vendor/assets/components/locomotive"
+    "path" : "vendor/assets/components/locomotive",
+    "sources": {
+      "select2": {
+        "mapping": [
+          {
+            "vendor/assets/components/locomotive_sources/select2/dist/js/select2.full.js":"select2.js"
+          },
+          {
+            "vendor/assets/components/locomotive_sources/select2/dist/css/select2.css":"select2.css"
+          }
+        ]
+      }
+    }
   }
 }

@@ -1,0 +1,61 @@
+el:
+  errors:
+    messages:
+      not_found: "δεν βρέθηκε"
+      already_confirmed: "έχει ήδη επιβεβαιωθεί"
+      not_locked: "δεν είναι κλειδωμένο"
+  devise:
+    failure:
+      locomotive_account:
+        unauthenticated: 'Θα πρέπει να συνδεθείτε ή να εγγραφείτε πριν συνεχίσετε.'
+        unconfirmed: 'Θα πρέπει να επιβεβαιώσετε τον λογαριασμό σας πριν συνεχίσετε.'
+        locked: 'Ο λογαριασμός σας έχει κλειδωθεί.'
+        invalid: 'Λάθος email ή κωδικός.'
+        not_found_in_database: 'Λάθος email ή κωδικός.'
+        no_membership: 'Ο λογαριασμός σας δεν είναι μέλος αυτής της τοποθεσίας, παρακαλούμε επικοινωνήστε με τον διαχειριστή της τοποθεσίας ώστε να αποκτήσετε πρόσβαση.'
+        invalid_token: 'Λάθος authentication token.'
+        timeout: 'Η συνεδρία σας έληξε, παρακαλούμε συνδεθείτε ξανά για να συνεχίσετε.'
+        inactive: 'Ο λογαριασμός σας δεν έχει ενεργοποιηθεί ακόμα.'
+    sessions:
+      locomotive_account:
+        signed_in: 'Συνδεθήκατε με επιτυχία.'
+        signed_out: 'Αποσυνδεθήκατε με επιτυχία.'
+    passwords:
+      locomotive_account:
+        send_instructions: 'Θα λάβετε ένα email με οδηγίες για το πως να επαναφέρετε τον κωδικό σας σε μερικά λεπτά.'
+        updated: 'Ο κωδικός σας άλλαξε με επιτυχία. Έχετε τώρα συνδεθεί.'
+        invalid: 'Θα πρέπει να ζητήσετε ξανά νέο κωδικό.'
+    confirmations:
+      locomotive_account:
+        send_instructions: 'Θα λάβετε ένα email με οδηγίες για το πως να επιβεβαιώσετε τον λογαριασμό σας σε μερικά λεπτά.'
+        confirmed: 'Ο λογαριασμός σας έχει επιβεβαιωθεί με επιτυχία. Είστε τώρα συνδεδεμένος.'
+    registrations:
+      locomotive_account:
+        signed_up: 'Έχετε εγγραφεί με επιτυχία.'
+        updated: 'Έχετε ενημερώσει τον λογαριασμό σας με επιτυχία.'
+        destroyed: 'Αντίο! Ο λογαριασμός σας έχει απενεργοποιηθεί με επιτυχία. Ελπίζουμε να σας ξαναδούμε σύντομα.'
+    unlocks:
+      locomotive_account:
+        send_instructions: 'Θα λάβετε ένα email με οδηγίες για το πως να ξεκλειδώσετε τον λογαριασμό σας σε μερικά λεπτά.'
+        unlocked: 'Ο λογαριασμός σας έχει ξεκλειδωθεί με επιτυχία. Έχετε τώρα συνδεθεί.'
+    mailer:
+      locomotive_account:
+        confirmation_instructions: 'Οδηγίες επιβεβαίωσης'
+        reset_password_instructions: 'Οδηγίες επαναφοράς κωδικού'
+        unlock_instructions: 'Οδηγίες ξεκλειδώματος'
+  locomotive:
+    devise_mailer:
+      common:
+        hello: Γεία σας
+      confirmation_instructions:
+        you_can_confirm_your_account_through_the_link_below: "Μπορείτε να επιβεβαιώσετε τον λογαριασμό σας χρησιμοποιώντας τον σύνδεσμο παρακάτω:"
+        confirm_my_account: "Επιβεβαίωση του λογαριασμού μου"
+      reset_password_instructions:
+        reset_password_instruction: "Κάποιος έχει ζητήσει τον σύνδεσμο για την αλλαγή του κωδικού σας, και μπορείτε να το κάνετε πατώντας τον σύνδεσμο παρακάτω:"
+        change_my_password: "Αλλαγή του κωδικού μου"
+        wrong_request_instruction: "Αν δεν το ζητήσατε αυτό, παρακαλούμε αγνοήστε αυτό το email."
+        unchange_password_message: "Ο κωδικός σας δεν θα αλλάξει έως ότου πλοηγηθείτε στον σύνδεσμο παρακάτω και δημιουργήσετε έναν νέο."
+      unlock_instructions:
+        locked_account_message: "Ο λογαριασμός σας έχει κλειδωθεί επειδή υπερβήκατε έναν μεγάλο αριθμό προσπαθειών σύνδεσης."
+        unlock_account_instruction: "Πατήστε τον σύνδεσμο παρακάτω για να ξεκλειδώσετε τον λογαριασμό σας:"
+        unlock_my_account: "Ξεκλήδωσε τον λογαριασμό μου"

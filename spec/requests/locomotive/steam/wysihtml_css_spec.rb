@@ -33,7 +33,7 @@ describe Locomotive::Steam::Middlewares::WysihtmlCss do
 
       let(:html) { '<html><head></head><body></body></html>' }
 
-      it { is_expected.to eq('<html><head><link rel="stylesheet" type="text/css" href="/assets/locomotive/wysihtml5_editor.css"></head><body></body></html>') }
+      it { is_expected.to match(%r(<html><head><link rel="stylesheet" type="text/css" href="/assets/locomotive/wysihtml5_editor-[^.]+.css"></head><body></body></html>)) }
 
     end
 

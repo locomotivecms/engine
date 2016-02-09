@@ -6,6 +6,9 @@ Locomotive.configure do |config|
   # list of forbidden handles for a site because there are in conflicts with internal resources.
   # config.reserved_site_handles = %w(sites my_account password sign_in sign_out)
 
+  # list of domains which can't be used by any Locomotive sites
+  # config.reserved_domains = []
+
   # configure how many items we display in sub menu in the "Models" section.
   config.ui = {
     per_page: 10
@@ -13,6 +16,9 @@ Locomotive.configure do |config|
 
   # default locale (for now, only en, de, fr, pl, pt, pt-BR, it, nl, nb, ja, cs, bg and sk are supported)
   config.default_locale = :en
+
+  # locales allowed for the back-office UI
+  # config.locales = [:en, :fr, :de]
 
   # available locales suggested to "localize" a site. You will have to pick up at least one among that list.
   # config.site_locales = %w{en de fr pl pt pt-BR it nl nb es ru ja cs bg sk}
@@ -56,4 +62,9 @@ Locomotive.configure do |config|
 
   # Dragonfly within Steam uses it to generate the protective SHA
   # config.steam_image_resizer_secret = 'please change it'
+
+  # Indicate whether you want to allow users to register with the site. If set
+  # to false the registration page will not be shown. (Default: true)
+  # config.enable_registration = true
+
 end

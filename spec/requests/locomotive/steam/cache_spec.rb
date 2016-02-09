@@ -5,7 +5,7 @@ describe Locomotive::Steam::Middlewares::Cache do
   let(:site_cache)  { false }
   let(:page_cache)  { false }
   let(:site)        { instance_double('CacheSite', _id: '0001', cache_enabled: site_cache, last_modified_at: DateTime.parse('2007/06/29 00:00:00')) }
-  let(:page)        { instance_double('CachedPage', _id: '0042', cache_enabled: page_cache) }
+  let(:page)        { instance_double('CachedPage', _id: '0042', cache_enabled: page_cache, redirect_url: nil) }
   let(:app)         { ->(env) { [200, env, 'app'] } }
   let(:middleware)  { described_class.new(app) }
   let(:steam_env)   { { 'REQUEST_METHOD' => 'GET', 'steam.site' => site, 'steam.page' => page, 'steam.live_editing' => false, 'PATH_INFO' => 'foo', 'QUERY_STRING' => 'a=1&c=3' } }
@@ -39,7 +39,7 @@ describe Locomotive::Steam::Middlewares::Cache do
 
     subject { middleware.send(:cache_key, steam_env) }
 
-    it { expect(subject).to eq '2dbc65c2496339c339fe4977f8301d57' }
+    it { expect(subject).to eq 'af996b364aaafa8c8f5bd89d7af70a07' }
 
   end
 
@@ -68,6 +68,14 @@ describe Locomotive::Steam::Middlewares::Cache do
           context 'POST method' do
 
             let(:steam_env) { { 'REQUEST_METHOD' => 'POST', 'steam.site' => site, 'steam.page' => page, 'steam.live_editing' => false, 'PATH_INFO' => 'foo' } }
+            it { expect(subject).to eq false }
+
+          end
+
+          context 'page is a redirection' do
+
+            let(:i18n_field) { instance_double('I18nField', :[] => { 'en' => 'http://locomotive.works' }) }
+            let(:page) { instance_double('CachedPage', _id: '0042', cache_enabled: page_cache, redirect_url: i18n_field) }
             it { expect(subject).to eq false }
 
           end

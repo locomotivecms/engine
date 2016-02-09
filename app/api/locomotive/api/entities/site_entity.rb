@@ -5,7 +5,7 @@ module Locomotive
       class SiteEntity < BaseEntity
 
         expose    :name, :handle, :seo_title, :meta_keywords, :meta_description,
-                  :robots_txt, :cache_enabled
+                  :robots_txt, :cache_enabled, :private_access
 
         expose :locales, :domains
 

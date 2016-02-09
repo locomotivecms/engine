@@ -44,6 +44,8 @@ nl:
           locales: Talen
           timezone_name: Tijdzone
           cache_enabled: Cache
+          private_access: "Wachtwoord-bescherming inschakelen"
+          password: "Site-wijde wachtwoord"
           new:
             locales: Eerste taal
         membership:
@@ -68,7 +70,6 @@ nl:
     hints:
       locomotive:
         account:
-          api_key: "Gebruik Wagon om uw site te implementeren (controleer config/deploy.yml van uw Wagon site)."
           password: Minimum 6 karakters
         page:
           handle: "Unieke identificatie nodig om deze pagina te ontvangen binnenin een externe controller instance."
@@ -93,6 +94,8 @@ nl:
           cache_enabled: "Wanneer ingeschakeld, uw pagina's zullen worden gecached zolang de inhoud niet veranderd. Het uitschakelen van de cache per pagina is toegestaan."
           redirect_to_first_domain: "Wanneer ingeschakeld, requests gemaakt naar gelijk welke domeinnaam zal worden doorgestuurd naar het eerste domein."
           url_redirections: "Redirect (301) verouderde urls naar pagina's die u gecreëerd hebt in de back-office. De oorsprong en de bestemming URLs zijn gescheiden door een <u>spatie</u>."
+          private_access: U kunt uw site verbergen achter een wachtwoord.
+          password: Het wachtwoord dat publieke bezoekers zullen moeten ingeven om de inhoud te bekijken van uw website.
           new:
             locales: "U kan andere talen toevoegen eenmaal de site gecreëerd is."
         translation:
@@ -146,3 +149,5 @@ nl:
           submit: Formaat wijzigen
         site:
           delete: Verwijder deze site
+        page:
+          delete: Verwijder

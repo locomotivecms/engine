@@ -19,8 +19,9 @@ nl:
       bg: Bulgaars
       sk: Slowaaks
       sr: Servisch
+      el: Grieks
     messages:
-      confirm: Weet u het zeker?
+      confirm: Bent u zeker?
     shared:
       header:
         welcome: Welkom, %{name}
@@ -151,30 +152,27 @@ nl:
         sign_up: Heeft u geen account?
         submit: Aanmelden
         title: Aanmelden
-
     registrations:
       new:
-        confirm_password: "Herhaal uw nieuwe wachtwoord"
-        description: "Het ziet er naar uit dat u de eerste hier bent, creëer een account hieronder om Locomotive te gebruiken."
+        confirm_password: Wachtwoord bevestigen
+        description: "Het ziet er naar uit dat u de eerste bent hier, maak een account aan om Locomotive te gebruiken."
         sign_in: Heeft u al een account?
-        submit: Registeren
-        title: "Registreer"
-
+        submit: Registrere
+        title: Registreren
     passwords:
       new:
-        description: "Vul uw email in hieronder en ontvang een email met instructies over hoe u uw wachtwoord kunt wijzigen."
+        description: "Vul uw email in hieronder and u zult een email ontvangen met instructies over hoe u uw wachtwoord kan aanpassen."
         link: "Ga terug naar de login pagina"
         email: "Uw email"
-        submit: "Verzenden"
+        submit: "Bevestigen"
         title: "Wachtwoord vergeten"
       edit:
         description: "Vul uw nieuw wachtwoord in hieronder."
         link: "Ga terug naar de login pagina"
         password: "Uw nieuwe wachtwoord"
-        password_confirmation: "Herhaal uw nieuwe wachtwoord"
-        submit: "Wachtwoord veranderen"
-        title: Wachtwoord veranderen
-
+        password_confirmation: "Wachtwoord bevestigen"
+        submit: "Verander mijn wachtwoord"
+        title: "Wachtwoord veranderen"
     pages:
       index:
         title: 'Pagina''s'
@@ -202,6 +200,7 @@ nl:
       edit:
         settings_link: 'Instellingen'
         no_editable_elements: 'Geen bewerkbare elementen gevonden'
+        parsing_error: "<b>Onze excuses maar we konden uw template niet gebruiken van uw pagina.</b><br/>Controleer eerst of uw template werkt met Wagon."
         blocks:
           all: Alles
           unknown: Onbekend
@@ -212,13 +211,16 @@ nl:
             edit: Bewerk
     sites:
       index:
-        title: Mijn sites
+        description: "Alle websites waar jij toegang tot hebt kunnen hieronder gevonden worden. Klik op een website naar keuze om het content management deel ervan te openen."
         new: Voeg een nieuwe site toe
+        title: Mijn sites
       new:
-        title: Nieuwe site
-        help: "Vul onderstaand formulier in om een nieuwe site aan te maken."
+        description: "Vul het formulier hieronder in en klik op bevestigen. Wanneer het succesvol is zal het een nieuwe site aanmaken."
+        go_back: Ga terug
+        submit: Site aanmaken
+        title: Maak een nieuwe site
       site:
-        no_domain: Geen domein
+        no_domain: Nog geen domein
     current_site:
       edit:
         title: De huidige site bewerken
@@ -247,6 +249,9 @@ nl:
     my_account:
       edit:
         title: Account bewerken
+      form:
+        api:
+          api_key: "Gebruikt door Wagon om uw website te implementeren (controleer uw config/deploy.yml bestand van uw Wagon site)."
     translations:
       untranslated: "Onvertaalde landinstellingen: %{list}"
       index:

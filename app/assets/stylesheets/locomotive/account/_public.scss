@@ -22,7 +22,7 @@
   height: 100%;
   text-align: center;
   animation: fade-down 1s ease-out;
-  &:before {
+  &::before {
     display: inline-block;
     height: 100%;
     vertical-align: middle;
@@ -34,33 +34,9 @@
 
 .public-wrapper {
   display: inline-block;
-  width: 480px;
+  width: 460px;
   margin: 25px 0;
   vertical-align: middle;
-}
-
-// Adds a logo above the public box.
-
-.public-logo {
-  display: inline-block;
-  img,
-  span {
-    display: inline-block;
-    vertical-align: middle;
-  }
-  img {
-    display: inline-block;
-    height: 26px;
-    margin-right: 10px;
-    vertical-align: middle;
-  }
-  span {
-    margin-top: 2px;
-    font-family: $font-family-sans-serif-brand;
-    font-size: 20px;
-    line-height: 1.6;
-    color: $white;
-  }
 }
 
 // Contains the box styling.
@@ -83,6 +59,9 @@
   &.without-padding {
     padding: 0;
   }
+  > p {
+    margin: 0;
+  }
 }
 
 // Styles intro title and text above the public form.
@@ -93,10 +72,17 @@
   text-align: center;
   h3 {
     margin-bottom: 15px;
+    i {
+      display: block;
+      margin-bottom: 15px;
+      font-size: 30px;
+      color: $gray-lighter;
+      text-align: center;
+    }
   }
   p {
     margin-bottom: 30px;
-    color: $gray-light;
+    color: $gray;
   }
   &.with-padding {
     padding: 50px 50px 0;
@@ -121,12 +107,6 @@
     text-decoration: none;
     outline: none;
   }
-}
-
-.public-link-divider {
-  display: inline-block;
-  color: rgba($white, .7);
-  vertical-align: middle;
 }
 
 // Public entries collection for applying scrollbar when height is to high.
@@ -208,7 +188,6 @@
     margin-left: 0;
   }
   .public-box {
-    display: inline-block;
     padding: 50px 20px;
   }
   .public-intro.with-padding {

@@ -181,7 +181,8 @@ var wysihtml5ParserRules = {
                 "target": "any",
                 "href": "any", // if you compiled master manually then change this from 'url' to 'href'
                 "title": "any",
-                "class": "any"
+                "class": "any",
+                "data-*": "any"
             },
             "set_attributes": {
                 "rel": "nofollow"
@@ -258,13 +259,21 @@ var wysihtml5ParserRules = {
             "remove": 1
         },
         "div": {
+            "check_attributes": {
+                "class": "any",
+                "data-*": "any"
+            },
             "add_class": {
                 "align": "align_text"
             }
         },
         "option": {},
         "select": {},
-        "i": {},
+        "i": {
+            "check_attributes": {
+                "class": "any"
+            }
+        },
         "track": {
             "remove": 1
         },

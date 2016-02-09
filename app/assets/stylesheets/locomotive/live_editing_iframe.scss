@@ -1,7 +1,6 @@
-@import "compass/css3/border-radius";
 @import "font-awesome/mixins";
 
-$button-background:     #54b9cd;
+$button-background:     #1c77c3;
 $button-border-color:   darken($button-background, 10%) !default;
 $button-color:          #fff;
 
@@ -42,14 +41,14 @@ $fa-version:            '4_4_0';
     background-image: none;
     border: none;
     border-bottom: 2px solid $button-border-color;
-    @include border-radius(3px);
+    border-radius: 3px;
     color: $button-color;
     cursor: pointer;
     display: inline-block;
     font-family: 'Noto Sans', sans-serif;
     font-size: 12px;
     font-weight: normal;
-    height: 30px;
+    max-height: 30px;
     line-height: 18px;
     margin: 0 10px 0 0px;
     padding: 5px 10px;

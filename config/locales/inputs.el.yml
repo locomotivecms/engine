@@ -1,0 +1,19 @@
+el:
+  locomotive:
+    inputs:
+      file:
+        none: δεν υπάρχει αρχείο
+        browse: Περιήγηση
+        choose: Επιλογή
+        change: Αλλαγή
+        delete: Διαγραφή
+        cancel: Ακύρωση
+        select_local_file: Ανεβάστε τοπικό αρχείο
+        select_content_asset: Επιλέξτε από τα υπάρχοντα στοιχεία
+      array:
+        new: Νέο
+        add: Προσθήκη
+        edit: Επεξεργασία
+      toggle:
+        on_text: "Ναι"
+        off_text: "Όχι"

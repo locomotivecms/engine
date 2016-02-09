@@ -46,6 +46,7 @@ module Locomotive
                 optional :required
                 optional :localized
                 optional :unique
+                optional :default
                 optional :position
                 optional :text_formatting
                 optional :select_options
@@ -90,6 +91,7 @@ module Locomotive
                 optional :required
                 optional :localized
                 optional :unique
+                optional :default
                 optional :position
                 optional :text_formatting
                 optional :select_options

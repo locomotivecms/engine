@@ -8,6 +8,7 @@ module Locomotive
 
     ## fields ##
     field :default_source_url, localize: true
+    field :resize_format
 
     ## callbacks ##
     after_initialize :init_localized_source

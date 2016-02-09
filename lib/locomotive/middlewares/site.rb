@@ -53,7 +53,7 @@ module Locomotive
       # if accounts but no site, redirect to the sign in page
       def handle_no_account_or_site(env, request)
         if Locomotive::Account.count == 0
-          redirect_to(sign_up_path)
+          redirect_to((Locomotive.config.enable_registration ? sign_up_path : sign_in_path))
         elsif default_host?(request)
           redirect_to(sign_in_path)
         else
@@ -74,6 +74,8 @@ module Locomotive
         request.env['locomotive.path']        = request.path_info.gsub(mounted_on, '')
 
         request.env['steam.live_editing']     = true
+
+        request.env['steam.private_access_disabled'] = request.env['warden'].try(:user).present?
 
         Locomotive::Site.where(handle: handle).first
       end

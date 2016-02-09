@@ -1,0 +1,42 @@
+// =============================================================================
+// Navs
+// =============================================================================
+
+@import "bootstrap/navs";
+
+// Used as tabs in setting screens.
+
+.nav-tabs {
+  margin: 50px 0 25px;
+  border-bottom: 1px solid $border-color-base;
+  > li {
+    display: inline-block;
+    margin-right: 25px;
+    margin-bottom: -1px;
+    vertical-align: middle;
+    border: 0;
+    > a {
+      display: inline-block;
+      padding: 0 0 10px;
+      color: $gray;
+      border: 0;
+      border-bottom: 1px solid transparent;
+      transition: all $base-transition-speed linear;
+      &:hover {
+        color: $brand-primary;
+        background: transparent;
+        border: 0;
+      }
+    }
+    &.active > a {
+      &,
+      &:hover,
+      &:focus {
+        color: $brand-primary;
+        background: transparent;
+        border: 0;
+        border-bottom: 1px solid $brand-primary;
+      }
+    }
+  }
+}

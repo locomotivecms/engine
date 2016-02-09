@@ -39,6 +39,10 @@ module Locomotive
       (@block_name || self.block).try(:humanize)
     end
 
+    def path
+      [block, slug].compact.join('--').gsub('/', '--')
+    end
+
     def disabled?
       !!self.disabled # the original method does not work quite well with the localization
     end

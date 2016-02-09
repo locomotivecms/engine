@@ -20,12 +20,15 @@ module Features
 
     def forgot_password(&block)
       sign_up_with 'John Doe', 'john@doe.net', 'password'
-      click_link 'Log out'
+      click_link 'John Doe'
+      within('.navigation') { click_link 'Log out' }
+      # click_link 'Log out'
       click_link 'Forgot my password'
       fill_in 'Your email', with: 'john@doe.net'
       click_button 'Submit'
 
       if block_given?
+        sleep(1)
         last_email = ActionMailer::Base.deliveries.last
         last_email.body.to_s =~ /<a href="http:\/\/localhost:9886(\S+)">/
         yield last_email, $1

@@ -10,6 +10,7 @@ describe Locomotive::API::Entities::ContentTypeFieldEntity do
       type
       label
       hint
+      default
       required
       localized
       unique

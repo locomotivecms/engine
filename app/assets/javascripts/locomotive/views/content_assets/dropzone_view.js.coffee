@@ -11,7 +11,7 @@ class Locomotive.Views.ContentAssets.DropzoneView extends Backbone.View
     'change input[type=file]':  'drop_files'
 
   render: ->
-    console.log '[DropzoneView] rendering'
+    # console.log '[DropzoneView] rendering'
     super
 
   hover: (event) -> @_stop_event(event); $(@el).addClass('hovered')
@@ -26,13 +26,13 @@ class Locomotive.Views.ContentAssets.DropzoneView extends Backbone.View
     , 400
 
   open_file_browser: (event) ->
-    console.log '[DropzoneView] open_file_browser'
+    # console.log '[DropzoneView] open_file_browser'
     @_stop_event(event)
 
     @$('form input[type=file]').trigger('click')
 
   drop_files: (event) ->
-    console.log '[DropzoneView] drop_files'
+    # console.log '[DropzoneView] drop_files'
     @_stop_event(event) & @unhover(event)
 
     form_data = new FormData()

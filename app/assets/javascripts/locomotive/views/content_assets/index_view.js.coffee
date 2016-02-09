@@ -23,7 +23,7 @@ class Locomotive.Views.ContentAssets.IndexView extends Backbone.View
     super
 
   open_edit_drawer: (event) ->
-    console.log '[IndexView] open_edit_drawer'
+    # console.log '[IndexView] open_edit_drawer'
     event.stopPropagation() & event.preventDefault()
 
     $link = $(event.target)
@@ -37,7 +37,7 @@ class Locomotive.Views.ContentAssets.IndexView extends Backbone.View
       })
 
   hide_from_drawer: (stack_size) ->
-    console.log '[IndexView] hide_from_drawer'
+    # console.log '[IndexView] hide_from_drawer'
     # we might need to re-open this view further
     if @options.parent_view && stack_size == 0
       @options.parent_view.opened.picker = false
@@ -49,10 +49,16 @@ class Locomotive.Views.ContentAssets.IndexView extends Backbone.View
     $(window).on 'resize', @set_sidebar_max_height
 
   set_sidebar_max_height: ->
-    main_height = $(@el).height()
-    max_height  = @$('.content-assets').height()
-    max_height  = main_height if main_height > max_height
-    $(@dropzone.el).height(max_height)
+    setTimeout ( =>
+      main_height = $(@el).height()
+      max_height  = @$('.content-assets').height()
+      # max_height  = @$('.main-assets').height()
+      max_height  = main_height if main_height > max_height
+
+      console.log main_height
+
+      $(@dropzone.el).height(max_height)
+    ), 20
 
   remove: ->
     $(window).off 'resize', @set_sidebar_max_height
