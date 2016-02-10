@@ -36,7 +36,7 @@ en:
         dashboard: Dashboard
         assets: Assets
         settings: General Settings
-        metafields: Metafields
+        metafields: Properties
         developers: Developers
         content_types:
           title: Models
@@ -252,7 +252,7 @@ en:
 
     current_site_metafields:
       index:
-        title: Editing metafields
+        title: Editing properties
 
     memberships:
       roles:

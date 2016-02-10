@@ -39,6 +39,14 @@ module Locomotive
           Locomotive::Engine.routes.url_helpers.new_locomotive_account_session_url(host: opts[:env]['HTTP_HOST'])
         end
 
+        expose :metafields do |site, opts|
+          site.metafields.to_json
+        end
+
+        expose :metafields_schema do |site, opts|
+          site.metafields_schema.to_json
+        end
+
       end
 
     end

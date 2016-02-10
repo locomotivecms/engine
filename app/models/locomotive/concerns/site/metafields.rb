@@ -14,9 +14,6 @@ module Locomotive
           ## validations ##
           validate :validate_metafields_schema
 
-          ## virtual accessors ##
-          attr_accessor :metafields_errors
-
         end
 
         def has_metafields?

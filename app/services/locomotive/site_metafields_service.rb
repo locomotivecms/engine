@@ -20,7 +20,8 @@ module Locomotive
 
     def each_metafield(attributes, &block)
       attributes.each do |_name, _attributes|
-        namespace = (site.metafields[_name] ||= {})
+        site.metafields[_name] ||= {}
+        namespace = site.metafields[_name]
 
         _attributes.each do |name, value|
           yield(namespace, name, value)
