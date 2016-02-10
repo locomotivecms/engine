@@ -25,8 +25,8 @@
 
 @import "components/misc";
 @import "components/transitions";
-@import "components/header";
-@import "components/sidebar";
+// @import "components/header";
+// @import "components/sidebar";
 @import "components/drawer";
 @import "components/main";
 @import "components/list";
@@ -36,4 +36,7 @@
 @import "components/dashboard";
 @import "components/activity_feed";
 @import "components/developers";
-@import "components/sites";
+
+@import "account/brand";
+@import "account/navigation";
+@import "account/sidebar";

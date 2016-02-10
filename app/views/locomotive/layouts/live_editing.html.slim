@@ -6,35 +6,25 @@ html xmlns='http://www.w3.org/1999/xhtml'
 
   body class="live-editing sidebar-closed"
 
-    - # HEADER: brand + current site + account
-    = render 'locomotive/shared/header'
+    = render 'locomotive/shared/navigation'
+    = render 'locomotive/shared/sidebar'
 
-    - # WRAPPER
-    .wrapper
-      .slide-sidebar
-        .bar
-          .expand-button
-            i.fa.fa-chevron-right
-        nav.sidebar
-          .scrollable
-            = render 'locomotive/shared/sidebar'
+    section.preview
+      .scrollable
+        = yield :preview
 
-      section.preview
-        .scrollable
-          = yield :preview
+    .content
+      .close-button
+        i.fa.fa-chevron-left
+      .expand-button
+        i.fa.fa-chevron-right
+      .inner
+        = yield
 
-      .content
-        .close-button
-          i.fa.fa-chevron-left
-        .expand-button
-          i.fa.fa-chevron-right
-        .inner
-          = yield
+    section.drawer
+      .close-button
+        i.fa.fa-times
+      .inner
+        = yield :drawer
 
-      section.drawer
-        .close-button
-          i.fa.fa-times
-        .inner
-          = yield :drawer
-
-    = yield :foot
+        = yield :foot
