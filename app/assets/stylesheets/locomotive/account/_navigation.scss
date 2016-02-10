@@ -91,6 +91,37 @@
   }
 }
 
+.navigation-app {
+  z-index: 100;
+  padding: 10px 20px;
+  background: $brand-primary;
+}
+
+.navigation-middle {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  padding-top: 15px;
+  text-align: center;
+  .fa {
+    margin-left: 10px;
+  }
+  a {
+    display: inline-block;
+    color: rgba($white, .6);
+    vertical-align: middle;
+    transition: color $base-transition-speed linear;
+    &:hover {
+      color: $white;
+      text-decoration: none;
+      .fa {
+        color: $white;
+      }
+    }
+  }
+}
+
 @media (max-width: $screen-sm-min) {
   .navigation {
     padding: 25px 20px;

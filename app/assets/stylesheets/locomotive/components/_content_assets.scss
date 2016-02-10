@@ -1,17 +1,17 @@
 body.live-editing .drawer {
-  .content-assets, .content-assets-list {
+  .content-assets,
+  .content-assets-list {
     margin-left: $live_editing_expand_bar_width;
   }
 }
 
 .content-assets {
-
   .updatable {
     margin-top: 140px;
 
     > .nav-container {
       height: 39px;
-      padding: 3px 0px 10px 0px;
+      padding: 3px 0 10px 0;
     }
 
     > .list-container {
@@ -28,11 +28,11 @@ body.live-editing .drawer {
   }
 
   .top-dropzone {
-    z-index: 10;
     position: absolute;
-    top: 0px;
-    height: 140px;
+    top: 0;
+    z-index: 10;
     width: 100%;
+    height: 140px;
   }
 
   .dropzone {
@@ -49,29 +49,27 @@ body.live-editing .drawer {
 
     .instructions {
       margin-top: 10px;
+      font-size: 12px;
+      color: $assets_dropzone_instructions_color;
       text-align: center;
 
-      color: $assets_dropzone_instructions_color;
-      font-size: 12px;
-
       strong {
-        color: #555;
         font-size: 14px;
+        color: #555;
       }
 
       i {
-        color: #bec1c2;
         font-size: 65px;
+        color: #bec1c2;
       }
     }
 
     .progress {
-      margin-top: 10px;
-
-      background: $assets_dropzone_progress_background;
-      height: $assets_dropzone_progress_size;
-      border-radius: $assets_dropzone_progress_size / 2;
       @include box-shadow(none);
+      height: $assets_dropzone_progress_size;
+      margin-top: 10px;
+      background: $assets_dropzone_progress_background;
+      border-radius: $assets_dropzone_progress_size / 2;
 
       .progress-bar {
         background: $assets_dropzone_progress_bar_color;
@@ -81,51 +79,48 @@ body.live-editing .drawer {
 }
 
 .content-assets-list {
-
-  margin-top: 10px;
-
   display: flex;
+  align-items: left;
   flex-direction: row;
   flex-wrap: wrap;
-  align-items: left;
+  margin-top: 10px;
 
   .asset {
-    border-radius: $asset_border_radius;
-    background: $asset_background;
-    padding: 10px 15px;
-    margin: 0px 20px 20px 0px;
     position: relative;
-
     width: $asset_width;
     height: $asset_height;
+    padding: 10px 15px;
+    margin: 0 20px 20px 0;
+    background: $asset_background;
+    border-radius: $asset_border_radius;
 
     h2 {
-      color: $asset_title_color;
+      margin: 0 0 4px 0;
       font-size: 14px;
-      margin: 0px 0px 4px 0px;
+      color: $asset_title_color;
       text-align: right;
     }
 
     .size {
-      font-size: 11px;
-      text-align: right;
-      color: $asset_size_color;
       margin-bottom: 10px;
+      font-size: 11px;
+      color: $asset_size_color;
+      text-align: right;
     }
 
     .body {
-      width: 100%;
-      height: $asset_height - 106;
       display: flex;
       align-items: center;
       justify-content: center;
+      width: 100%;
+      height: $asset_height - 106;
     }
 
     .small-thumbnail {
       display: inline-block;
+      padding: $asset_thumbnail_border_radius;
       background: $asset_thumbnail_background;
       border-radius: $asset_thumbnail_border_radius;
-      padding: $asset_thumbnail_border_radius;
 
       img {
         border: $asset_thumbnail_img_border;
@@ -137,18 +132,23 @@ body.live-editing .drawer {
         height: 120px;
         border: 2px solid $asset_not_image_border_color;
 
-        &.pdf { background: $asset_pdf_background; }
-        &.media { background: $asset_media_background; }
-        &.other { background: $asset_other_background; }
+        &.pdf {
+          background: $asset_pdf_background;
+        }
+        &.media {
+          background: $asset_media_background;
+        }
+        &.other {
+          background: $asset_other_background;
+        }
 
         span {
-          display: block;
           position: relative;
           top: 40px;
-
-          color: $asset_not_image_text_color;
+          display: block;
           font-size: 22px;
           font-weight: bold;
+          color: $asset_not_image_text_color;
           text-align: center;
           text-transform: uppercase;
 
@@ -160,20 +160,22 @@ body.live-editing .drawer {
 
     .actions {
       position: absolute;
-      bottom: 10px;
       right: 15px;
+      bottom: 10px;
 
       a.remove {
         color: $asset_remove_icon_color;
       }
     }
-
   }
-
 }
 
 .edit-assets-container {
-  @include full-space();
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
 
   .actions {
     position: absolute;
@@ -182,10 +184,10 @@ body.live-editing .drawer {
   }
 
   .image-container {
-    background-color: $cropping_asset_background;
-    overflow: hidden;
     width: 100%;
+    overflow: hidden;
     text-align: center;
+    background-color: $cropping_asset_background;
   }
 
   .image-container {
@@ -199,12 +201,11 @@ body.live-editing .drawer {
 
   .cropper-label {
     position: absolute;
-    top: 0px;
-    left: 0px;
-    background: $cropping_asset_label_background;
-    color: $cropping_asset_label_color;
-    font-size: 11px;
+    top: 0;
+    left: 0;
     padding: 3px 6px;
+    font-size: 11px;
+    color: $cropping_asset_label_color;
+    background: $cropping_asset_label_background;
   }
-
 }

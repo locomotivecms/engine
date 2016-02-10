@@ -5,40 +5,33 @@ html xmlns='http://www.w3.org/1999/xhtml'
     = render 'locomotive/shared/head'
 
   body class=body_class
+    = render 'locomotive/shared/navigation'
+    = render 'locomotive/shared/sidebar'
 
-    - # HEADER: brand + current site + account
-    = render 'locomotive/shared/header'
+    .content
+      .scrollable
+        .container-fluid.main role='main'
+          .row
+            = yield :local_warning_message
 
-    - # WRAPPER
-    .wrapper
-      nav.sidebar
+          - if title
+            .row.header-row
+              .col-md-8.col-xs-9
+                h1== title
+
+              .col-md-4.col-xs-3.actions
+                = yield :actions
+
+          = yield
+
+    section.drawer
+      .close-button
+        i.fa.fa-times
+      .inner
         .scrollable
-          = render 'locomotive/shared/sidebar'
-
-      .content
-        .scrollable
-          .container-fluid.main role='main'
+          .container-fluid
             .row
-              = yield :local_warning_message
-
-            - if title
-              .row.header-row
-                .col-md-8.col-xs-9
-                  h1== title
-
-                .col-md-4.col-xs-3.actions
-                  = yield :actions
-
-            = yield
-
-      section.drawer
-        .close-button
-          i.fa.fa-times
-        .inner
-          .scrollable
-            .container-fluid
-              .row
-                .col-md-12
-                  h1 Right sidebar
+              .col-md-12
+                h1 Right sidebar
 
     = yield :foot

@@ -1,20 +1,22 @@
 .content {
-
+  position: fixed;
+  top: 52px;
+  right: 0;
+  bottom: 0;
+  left: 300px;
+  z-index: 90;
   p.text {
     color: $paragraph_color;
   }
 
   .big-list {
-
     .item {
-      background: $content_list_item_background_color;
-      border-top: $content_list_item_border_size solid $content_list_item_border_color;
-
-      min-height: $content_list_item_min_height;
-
+      position: relative;
       display: flex;
       align-items: center;
-      position: relative;
+      min-height: $content_list_item_min_height;
+      background: $content_list_item_background_color;
+      border-top: $content_list_item_border_size solid $content_list_item_border_color;
 
       &:not(.hide):last-child {
         border-bottom: $content_list_item_border_size solid $content_list_item_border_color;
@@ -23,8 +25,9 @@
       .draggable {
         margin-right: $padding-base-horizontal;
         i {
+          @include user-select(none);
           font-size: 20px;
-          @include draggable;
+          cursor: move;
         }
       }
 
@@ -36,14 +39,14 @@
 
       .text {
         &:before {
+          @include transition(all .2s ease-in-out);
           position: absolute;
-          top: 0px;
-          left: 0px;
-          height: 100%;
+          top: 0;
+          left: 0;
           width: $content_list_item_border_hover_size;
+          height: 100%;
           background-color: transparent;
           content: " ";
-          @include transition(all 0.2s ease-in-out);
         }
 
         a {
@@ -58,12 +61,12 @@
 
         .stamp {
           margin-top: 5px;
-          color: $content_list_item_stamp_color;
           font-size: $content_list_item_stamp_size;
+          color: $content_list_item_stamp_color;
 
           img {
+            margin: 0 6px;
             border: 1px solid $content_list_item_stamp_color;
-            margin: 0px 6px;
           }
         }
       }
@@ -90,19 +93,16 @@
     }
 
     .sortable-placeholder {
-      height: $content_list_item_min_height;
       @include make-sm-column(12);
-
+      height: $content_list_item_min_height;
       background-color: $content_list_item_placeholder_background;
 
       .inner {
-        margin: $padding-base-horizontal 0px;
-        background-color: $content_list_item_placeholder;
         height: $content_list_item_min_height - (2 * $padding-base-horizontal);
+        margin: $padding-base-horizontal 0;
+        background-color: $content_list_item_placeholder;
         border-radius: ($content_list_item_min_height - (2 * $padding-base-horizontal)) / 2;
       }
-
     }
-
   }
 }
