@@ -4,7 +4,7 @@ module Locomotive
 
     def update_all(attributes)
       each_metafield(attributes) do |namespace, name, value|
-        next unless field = site.metafield_info(name)
+        next unless field = site.find_metafield(name)
 
         if field['localized']
           (namespace[name] ||= {})[locale] = value
@@ -19,6 +19,8 @@ module Locomotive
     protected
 
     def each_metafield(attributes, &block)
+      return if attributes.blank?
+
       attributes.each do |_name, _attributes|
         site.metafields[_name] ||= {}
         namespace = site.metafields[_name]

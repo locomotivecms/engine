@@ -33,7 +33,7 @@ module Locomotive
     end
 
     def browse_button_html
-      label, url = text(:browse), template.content_assets_path
+      label, url = text(:browse), template.content_assets_path(template.current_site)
       <<-EOF
       <a class="file-browse" href="#{url}">#{label}</a>
       EOF

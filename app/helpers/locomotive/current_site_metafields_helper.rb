@@ -2,8 +2,8 @@ module Locomotive
   module CurrentSiteMetafieldsHelper
 
     def current_site_metafields_schema
-      @current_site_metafields_schema ||= @current_site.metafields_schema.map do |g|
-        SchemaGroup.new(@current_site, g)
+      @site_metafields_schema ||= @site.metafields_schema.map do |g|
+        SchemaGroup.new(@site, g)
       end.sort_by(&:position)
     end
 
@@ -14,20 +14,19 @@ module Locomotive
       end
 
       def name
-        @attributes['name']
+        @attributes['name'].downcase.underscore.gsub(' ', '_')
       end
+
+      alias :dom_id :name
 
       def model_name
         ActiveModel::Name.new(self, nil, name)
       end
 
       def label
-        t(@attributes['label'])
+        t(@attributes['label'] || @attributes['name'].humanize)
       end
 
-      def dom_id
-        t(@attributes['label']).downcase.dasherize
-      end
 
       def position
         @attributes['position']
@@ -67,7 +66,7 @@ module Locomotive
       end
 
       def label
-        t(@attributes['label'] || @attributes['name'])
+        t(@attributes['label'] || @attributes['name'].humanize)
       end
 
       def hint

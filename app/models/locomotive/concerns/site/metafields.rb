@@ -8,7 +8,7 @@ module Locomotive
         included do
 
           ## fields ##
-          field :metafields,        type: Hash
+          field :metafields,        type: Hash, default: {}
           field :metafields_schema, type: Array
 
           ## validations ##
@@ -17,14 +17,18 @@ module Locomotive
         end
 
         def has_metafields?
-          !self.metafields.blank?
+          !self.metafields_schema.blank?
         end
 
         def any_localized_metafield?
-          self.metafields_schema.any? { |g| g['fields'].any? { |f| f['localized'] } }
+          return false unless self.has_metafields?
+
+          self.metafields_schema.any? { |g| g['fields'].any? { |f| f['localized'] ==  true } }
         end
 
-        def metafield_info(name)
+        def find_metafield(name)
+          return nil if name.blank? || !has_metafields?
+
           fields = self.metafields_schema.map { |g| g['fields'] }.flatten
 
           fields.find do |f|

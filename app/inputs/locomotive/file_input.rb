@@ -42,7 +42,7 @@ module Locomotive
             class: 'btn btn-primary btn-sm dropdown-toggle', data: { toggle: 'dropdown', aria_expanded: false }) +
           content_tag(:ul,
             content_tag(:li, content_tag(:a, text(:select_local_file), href: '#', class: "local-file #{name}")) +
-            content_tag(:li, content_tag(:a, text(:select_content_asset), href: template.content_assets_path, class: 'content-assets')),
+            content_tag(:li, content_tag(:a, text(:select_content_asset), href: template.content_assets_path(template.current_site), class: 'content-assets')),
             class: 'dropdown-menu dropdown-menu-right', role: 'menu'),
           class: "btn-group #{name} #{hidden_css(name)}")
       else

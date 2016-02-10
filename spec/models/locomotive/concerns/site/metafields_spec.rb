@@ -44,7 +44,7 @@ describe Locomotive::Concerns::Site::Metafields do
       context 'wrong fields types' do
 
         let(:schema) { [{ 'label' => 'Social', 'fields' => [{ 'name' => 'facebook_id', 'type' => 'dummy' }] }] }
-        it { is_expected.to eq(["The property '#/0/fields/0/type' value \"dummy\" did not match one of the following values: string, text, integer, file, image, boolean, select"]) }
+        it { is_expected.to eq(["The property '#/0/fields/0/type' value \"dummy\" did not match one of the following values: string, text, integer, float, file, image, boolean, select, color"]) }
 
       end
 
@@ -54,6 +54,65 @@ describe Locomotive::Concerns::Site::Metafields do
 
       let(:schema) { [{ 'name' => 'social', 'label' => 'Social', 'fields' => [{ 'name' => 'facebook_id' }, { 'name' => 'google_id' }] }] }
       it { is_expected.to eq([]) }
+
+    end
+
+  end
+
+  describe '#has_metafields?' do
+
+    subject { site.has_metafields? }
+
+    it { is_expected.to eq false }
+
+    context 'with metafields' do
+
+      let(:schema) { [{ 'name' => 'social', 'fields' => [{ 'name' => 'title' }] }] }
+
+      it { is_expected.to eq true }
+
+    end
+
+  end
+
+  describe '#any_localized_metafield?' do
+
+    subject { site.any_localized_metafield? }
+
+    it { is_expected.to eq false }
+
+    context 'with non localized metafields' do
+
+      let(:schema) { [{ 'name' => 'social', 'fields' => [{ 'name' => 'title' }] }] }
+
+      it { is_expected.to eq false }
+
+    end
+
+    context 'with a localized metafield' do
+
+      let(:schema) { [{ 'name' => 'social', 'fields' => [{ 'name' => 'title' }, { 'name' => 'body', 'localized' => true }] }] }
+
+      it { is_expected.to eq true }
+
+    end
+
+  end
+
+  describe '#find_metafield' do
+
+    let(:name) { nil }
+
+    subject { site.find_metafield(name) }
+
+    it { is_expected.to eq nil }
+
+    context 'with metafields' do
+
+      let(:schema)  { [{ 'name' => 'social', 'fields' => [{ 'name' => 'title' }, { 'name' => 'body', 'localized' => true }] }, { 'name' => 'theme', 'fields' => [{ 'name' => 'Link Color', 'hint' => 'found it' }, { 'name' => 'background_color' }] }] }
+      let(:name)    { 'link_color' }
+
+      it { expect(subject['hint']).to eq('found it') }
 
     end
 

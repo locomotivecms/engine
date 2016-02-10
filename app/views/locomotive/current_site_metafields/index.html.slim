@@ -2,17 +2,25 @@
 
 = help t('.help', default: '')
 
-- content_for :actions do
-  - if @site.any_localized_metafield?
-    = locale_picker_link
+- if @site.has_metafields?
 
-= locomotive_form_for @site, url: update_all_current_site_metafields_path(current_site), html: { multipart: true }, defaults: { placeholder: false } do |f|
+  - content_for :actions do
+    - if @site.any_localized_metafield?
+      = locale_picker_link
 
-  = hidden_field_tag :active_tab, ''
+  = locomotive_form_for @site, url: update_all_current_site_metafields_path(current_site), html: { multipart: true }, defaults: { placeholder: false } do |f|
 
-  = f.action class: 'hide'
+    = hidden_field_tag :active_tab, ''
 
-  = render 'locomotive/current_site_metafields/form/tabs', f: f
+    = f.action class: 'hide'
 
-  = render 'locomotive/current_site_metafields/form/panes', f: f
+    = render 'locomotive/current_site_metafields/form/tabs', f: f
 
+    = render 'locomotive/current_site_metafields/form/panes', f: f
+
+- else
+
+  br
+
+  .alert.alert-warning
+    == t('.no_metafields')

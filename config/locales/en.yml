@@ -253,6 +253,7 @@ en:
     current_site_metafields:
       index:
         title: Editing properties
+        no_metafields: There are no metafields defined for your site.
 
     memberships:
       roles:
