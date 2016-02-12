@@ -1,25 +1,41 @@
-- cache(cache_key_for_sidebar) do
-  = render 'locomotive/shared/sidebar/link', icon: 'fa-dashboard', label: t('.dashboard'), url: dashboard_path(current_site)
+.sidebar role="tablist" aria-multiselectable="false"
+  = link_to root_path, class: 'sidebar-logo' do
+    = image_tag 'locomotive/logo.png'
+  - cache(cache_key_for_sidebar) do
+    = link_to dashboard_path(current_site), data: defined?(data) ? data : {}, class: 'sidebar-link is-active' do
+      i.fa.fa-bar-chart
+      span= t('.dashboard')
+    
+    - cache(cache_key_for_sidebar_pages) do
+      = link_to '#collapsePages', data: { toggle: 'collapse' }, aria: { expanded: 'false', controls: 'collapsePages' }, class: 'sidebar-link' do
+        i.fa.fa-file-text-o
+        span= t('.pages')
+        i.fa.fa-caret-down
+        
+      = render_pages
+      
+    - cache(cache_key_for_sidebar_content_types) do
+      = render 'locomotive/shared/sidebar/content_types'
+      
+    = link_to content_assets_path(current_site), data: defined?(data) ? data : {}, class: 'sidebar-link' do
+      i.fa.fa-picture-o
+      span= t('.assets')
 
-  - cache(cache_key_for_sidebar_pages) do
-    = render_pages
+    - if current_site.localized?
+      = link_to translations_path(current_site), data: defined?(data) ? data : {}, class: 'sidebar-link' do
+        i.fa.fa-globe
+        span= t('.translations')
+        
+    - if current_site.has_metafields?
+      = link_to current_site_metafields_path(current_site), data: defined?(data) ? data : {}, class: 'sidebar-link' do
+        i.fa.fa-newspaper-o
+        span= t('.metafields')
 
-  - cache(cache_key_for_sidebar_content_types) do
-    = render 'locomotive/shared/sidebar/content_types'
+    = link_to edit_current_site_path(current_site), data: defined?(data) ? data : {}, class: 'sidebar-link' do
+      i.fa.fa-cogs
+      span= t('.settings')
 
-  = render 'locomotive/shared/sidebar/link', icon: 'fa-picture-o', label: t('.assets'), url: content_assets_path(current_site)
-
-  - if current_site.localized?
-    = render 'locomotive/shared/sidebar/link', icon: 'fa-globe', label: t('.translations'), url: translations_path(current_site)
-
-  - if current_site.has_metafields?
-    = render 'locomotive/shared/sidebar/link', icon: 'fa-newspaper-o', label: t('.metafields'), url: current_site_metafields_path(current_site)
-
-  = render 'locomotive/shared/sidebar/link', icon: 'fa-gear', label: t('.settings'), url: edit_current_site_path(current_site)
-
-  - if policy(current_site).show_developers_documentation?
-    = render 'locomotive/shared/sidebar/link', icon: 'fa-book', label: t('.developers'), url: developers_documentation_path(current_site)
-
-  = render 'locomotive/shared/sidebar/link', icon: 'fa-suitcase', label: t(:sites, scope: 'locomotive.shared.header'), url: sites_path, section_class: 'visible-xs-block'
-
-  = render 'locomotive/shared/sidebar/link', icon: 'fa-sign-out', label: t(:logout, scope: 'locomotive.shared.header'), url: sign_out_path, data: { method: 'delete' }, section_class: 'visible-xs-block'
+    - if policy(current_site).show_developers_documentation?
+      = link_to developers_documentation_path(current_site), data: defined?(data) ? data : {}, class: 'sidebar-link' do
+        i.fa.fa-file-code-o
+        span= t('.developers')

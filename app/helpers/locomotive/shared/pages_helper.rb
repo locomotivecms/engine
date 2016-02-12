@@ -79,6 +79,10 @@ module Locomotive
           !index_or_not_found? && !templatized? ? 'draggable' : ''
         end
 
+        def draggable?
+          !index_or_not_found? && !templatized?
+        end
+
         def templatized_page
           return @templatized_page unless @templatized_page.nil?
 

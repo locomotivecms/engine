@@ -92,9 +92,30 @@
 }
 
 .navigation-app {
+  left: 300px;
   z-index: 100;
   padding: 10px 20px;
   background: $brand-primary;
+}
+
+.navigation-trigger {
+  display: inline-block;
+  margin-top: 5px;
+  color: rgba($white, .5);
+  vertical-align: middle;
+  cursor: pointer;
+  transition: color $base-transition-speed linear;
+  .fa {
+    display: inline-block;
+    font-size: 20px;
+    vertical-align: middle;
+  }
+  .fa-bars {
+    margin-left: 5px;
+  }
+  &:hover {
+    color: $white;
+  }
 }
 
 .navigation-middle {
@@ -126,11 +147,17 @@
   .navigation {
     padding: 25px 20px;
   }
+  .navigation-app {
+    padding: 10px 20px;
+  }
 }
 
 @media (max-width: $screen-xs-min) {
   .navigation {
     padding: 25px 10px;
+  }
+  .navigation-app {
+    padding: 10px 20px;
   }
   .navigation-links {
     .dropdown-toggle {

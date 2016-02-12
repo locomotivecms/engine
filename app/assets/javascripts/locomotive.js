@@ -22,4 +22,3 @@
 $(document).ready(function() {
   $.datepicker.setDefaults($.datepicker.regional[window.locale]);
 });
-

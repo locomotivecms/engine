@@ -1,43 +1,18 @@
-body {
-  overflow: hidden;
-}
-
-.wrapper {
-  position: relative;
-}
-
-body.without-site {
-
-  .sidebar {
-    left: -$sidebar_width;
-  }
-
-}
-
-.sidebar {
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  right: 0px;
-  bottom: 0px;
-  width: $sidebar_width;
-}
-
 .content {
-  position: absolute;
-  top: 0px;
-  left: $sidebar_width;
-  right: 0px;
-  bottom: 0px;
+  position: fixed;
+  top: 52px;
+  right: 0;
+  bottom: 0;
+  left: 300px;
 }
 
 .drawer {
   position: absolute;
-  top: 0px;
-  right: 0px;
-  bottom: 0px;
-  width: 100%;
+  top: 0;
+  right: 0;
+  bottom: 0;
   z-index: 990;
+  width: 100%;
 
   &.small-width-drawer {
     width: $drawer_width;
@@ -50,10 +25,10 @@ body.without-site {
 
 .scrollable {
   position: absolute;
-  top: 0px;
-  right: 0px;
-  bottom: 0px;
-  left: 0px;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   overflow: auto;
 
   > .main {
