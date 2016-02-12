@@ -6,9 +6,9 @@
 
 // Core variables and mixins
 
-@import "account/variables";
+@import "modules/variables";
 @import "bootstrap/mixins";
-@import "account/keyframes";
+@import "modules/keyframes";
 
 // Reset and dependencies
 
@@ -19,21 +19,21 @@
 // Core CSS
 
 @import "bootstrap/scaffolding";
-@import "account/type";
-@import "account/forms";
+@import "modules/type";
+@import "modules/forms";
 @import "bootstrap/buttons";
 
 // Components
 
 @import "bootstrap/alerts";
 @import "bootstrap/dropdowns";
-@import "account/navs";
+@import "modules/navs";
 @import "bootstrap/utilities";
 
 // Custom components
 
-@import "account/brand";
-@import "account/files";
-@import "account/navigation";
-@import "account/notify";
-@import "account/public";
+@import "modules/brand";
+@import "modules/files";
+@import "modules/navigation";
+@import "modules/notify";
+@import "modules/public";

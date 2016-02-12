@@ -1,29 +1,24 @@
 li id="node-#{page._id}" class=page.class_names
-
-  i class="fa #{page.icon} icon #{page.draggable}"
-
   - url = page.redirect? ? edit_page_path(current_site, page) : editable_elements_path(current_site, page)
-
+  
   = link_to url do
+    - if page.draggable?
+      i class="fa fa-bars icon #{page.draggable}"
+    - else
+      i class="fa fa-file-text-o"
     span.text= page.title
 
   - unless page.translated?
     i.fa.fa-globe.untranslated
 
   - if page.children?
-
-    span.fold-unfold class=page.fold_state
-      i.fa.fa-sort-desc.unfolded
-      i.fa.fa-sort-asc.folded
-
-    ul.leaves data-url=sort_page_path(current_site, page)
-
+    ul.sidebar-sublist.leaves data-url=sort_page_path(current_site, page)
       - unless page.content_type && page.nodes.count == 1
         = render partial: 'locomotive/shared/sidebar/page', collection: page.nodes
 
       - if page.content_type
         li.list-entries
-          i.fa.fa-list-ul.icon
+          i.fa.fa-bars.icon
           = link_to content_entries_path(current_site, page.templatized_page.content_type.slug) do
             span.text= t(:list_content_entries, name: page.content_type.name.pluralize, scope: 'locomotive.pages.index')
 

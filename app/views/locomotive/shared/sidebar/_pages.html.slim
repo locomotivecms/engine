@@ -1,11 +1,8 @@
-section.pages-tree
-  h1= t(:title, scope: 'locomotive.pages.index')
-
-  ul.root data-url=sort_page_path(current_site, root)
-
+.pages-tree
+  ul.root.sidebar-list.collapse#collapsePages data-url=sort_page_path(current_site, root)
     = render partial: 'locomotive/shared/sidebar/page', collection: nodes
 
-    li.new-page
-      i.fa.fa-plus.icon
+    li.sidebar-list-add
       = link_to new_page_path(current_site) do
+        i.fa.fa-plus.icon
         span.text= t(:new, scope: 'locomotive.pages.index')
