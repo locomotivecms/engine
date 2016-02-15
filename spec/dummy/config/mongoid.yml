@@ -131,4 +131,5 @@ test:
       hosts:
         - localhost:27017
       options:
+        truncate_logs: false
         max_pool_size: 1

@@ -37,7 +37,7 @@ module Locomotive
 
     def init_localized_source
       # FIXME: the source of the element is not correctly set for the first time (certainly because the source is localized)
-      attributes[:source] = {} unless self.persisted?
+      attributes['source'] = {} unless self.persisted?
     end
 
   end
