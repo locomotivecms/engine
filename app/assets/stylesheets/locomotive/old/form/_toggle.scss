@@ -1,13 +1,12 @@
 .simple_form {
-
   fieldset .input.toggle {
     display: flex;
     justify-content: space-between;
 
     & > .form-wrapper {
+      margin-top: 0;
       background: transparent;
       border: none;
-      margin-top: 0px;
 
       input[type=checkbox] {
         float: none;
@@ -27,9 +26,9 @@
       }
 
       .bootstrap-switch .bootstrap-switch-label {
-        background: #ccc;
-        color: #fff;
         font-weight: normal;
+        color: #fff;
+        background: #ccc;
       }
 
       .bootstrap-switch.bootstrap-switch-focused {
@@ -38,17 +37,13 @@
 
       .bootstrap-switch.bootstrap-switch-on .bootstrap-switch-handle-on,
       .bootstrap-switch.bootstrap-switch-off .bootstrap-switch-handle-off {
-        @include box-shadow(0px -1px 0px 0px rgba(0, 0, 0, 0.15) inset);
+        @include box-shadow(0px -1px 0px 0px rgba(0, 0, 0, .15) inset);
       }
-
     }
-
   }
-
 }
 
 @media (max-width: $screen-sm-min) {
-
   .simple_form {
     fieldset .input.toggle {
       display: block;
@@ -58,5 +53,4 @@
       }
     }
   }
-
 }

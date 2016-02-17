@@ -7,18 +7,24 @@
 //= require locomotive/bootstrap-datetimepicker
 //= require locomotive/highlightjs/github
 
+// Bootstrap overrides
+// =============================================================================
+
 // Core variables and mixins
-@import "globals/variables";
-@import "globals/mixins";
+
+@import "old/variables";
+@import "new/mixins";
 
 // Reset and dependencies
+
 @import "bootstrap/normalize";
 @import "font-awesome-sprockets";
 @import "font-awesome";
 
 // Core CSS
+
 @import "bootstrap/scaffolding";
-@import "modules/type";
+@import "new/type";
 @import "bootstrap/code";
 @import "bootstrap/grid";
 @import "bootstrap/tables";
@@ -26,6 +32,7 @@
 @import "bootstrap/buttons";
 
 // Components
+
 @import "bootstrap/component-animations";
 @import "bootstrap/dropdowns";
 @import "bootstrap/button-groups";
@@ -49,38 +56,59 @@
 @import "bootstrap/close";
 
 // Components w/ JavaScript
+
 @import "bootstrap/modals";
 @import "bootstrap/tooltip";
 @import "bootstrap/popovers";
 @import "bootstrap/carousel";
 
 // Utility classes
+
 @import "bootstrap/utilities";
 @import "bootstrap/responsive-utilities";
 
-// Custom
+// Custom components
+// =============================================================================
+
+// Vendor
+
 @import "nprogress";
 @import "nprogress-bootstrap";
 
-@import "./base/all";
+// Layout
 
-@import "layouts/main";
-@import "layouts/responsive";
-@import "layouts/live_editing";
+@import "new/brand";
+@import "new/navigation";
+@import "new/sidebar";
+@import "old/drawer";
+@import "new/actionbar";
+@import "old/main";
+@import "new/containers";
 
-@import "components/misc";
-@import "modules/notify";
-@import "components/transitions";
-@import "components/drawer";
-@import "components/main";
-@import "components/list";
-@import "components/content_assets";
-@import "components/translations";
-@import "components/live_editing";
-@import "components/dashboard";
-@import "components/activity_feed";
-@import "components/developers";
+@import "old/nav";
+@import "old/buttons";
 
-@import "modules/brand";
-@import "modules/navigation";
-@import "modules/sidebar";
+@import "old/form/base";
+@import "old/form/code";
+@import "old/form/toggle";
+@import "old/form/rte";
+@import "old/form/markdown";
+@import "old/form/select2";
+@import "old/form/file_input";
+@import "old/form/array_input";
+@import "old/form/color_input";
+@import "old/form/popover";
+@import "old/form/document_picker";
+@import "old/form/link";
+@import "old/form/tags";
+
+@import "old/search_bars";
+@import "new/notify";
+@import "old/transitions";
+@import "old/list";
+@import "old/content_assets";
+@import "old/translations";
+@import "old/live_editing";
+@import "old/dashboard";
+@import "old/activity_feed";
+@import "old/developers";

@@ -2,7 +2,7 @@
   = link_to root_path, class: 'sidebar-logo' do
     = image_tag 'locomotive/logo.png'
   - cache(cache_key_for_sidebar) do
-    = link_to dashboard_path(current_site), data: defined?(data) ? data : {}, class: 'sidebar-link is-active' do
+    = link_to dashboard_path(current_site), data: defined?(data) ? data : {}, class: 'sidebar-link' do
       i.fa.fa-bar-chart
       span= t('.dashboard')
     

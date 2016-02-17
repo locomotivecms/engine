@@ -1,0 +1,22 @@
+// =============================================================================
+// Drawer
+// =============================================================================
+
+.drawer {
+  background: $drawer_background_color;
+  .inner > .row:first-child {
+    padding: 20px 0 10px 0;
+  }
+  .header-row {
+    padding: 15px 0;
+  }
+  h1 {
+    margin: 0;
+    font-family: $font-family-sans-serif;
+    font-size: 22px;
+    color: $drawer_title_color;
+  }
+  > .close-button {
+    @include control-window-button;
+  }
+}

@@ -5,22 +5,20 @@
     display: inline-block;
 
     .form-group {
-      border: 1px solid #dadada;
       position: relative;
       top: -6px;
-
       padding: 4px 6px;
-
-      margin-bottom: 0px;
+      margin-bottom: 0;
+      border: 1px solid #dadada;
 
       input[type=text] {
-        width: 200px;
-        display: inline-block;
-        border: none;
         @include box-shadow(none);
-        padding: 0px;
+        display: inline-block;
+        width: 200px;
         height: 19px;
+        padding: 0;
         font-size: 12px;
+        border: none;
       }
 
       .icon {
@@ -28,7 +26,6 @@
         color: $nav-tabs-link-color;
       }
     }
-
   }
 
   &.search-bar-in-nav {
@@ -38,18 +35,16 @@
       top: 2px;
     }
   }
-
 }
 
 @media (max-width: $screen-md-min) {
-
   .search-bar {
-    text-align: left;
     margin-bottom: 16px;
+    text-align: left;
 
     form {
       .form-group {
-        top: 0px;
+        top: 0;
       }
     }
 
@@ -58,5 +53,4 @@
       margin-top: 16px;
     }
   }
-
 }

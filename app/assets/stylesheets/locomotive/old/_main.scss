@@ -1,35 +1,25 @@
 .main {
-
   background: $main_background_color;
 
   .header-row {
-
-    padding: 20px 0px;
+    padding: 20px 0;
 
     h1 {
-      font-size: 22px;
+      margin: 0;
       font-family: $font-family-sans-serif;
+      font-size: 22px;
       color: $main_title_color;
-      margin: 0px;
     }
 
     .actions {
       text-align: right;
       p {
-        margin: 0px;
+        margin: 0;
       }
 
       a {
         margin-left: 5px;
       }
     }
-
-  }
-
-}
-
-body.without-site {
-  .main {
-    margin-top: 20px;
   }
 }

@@ -1,15 +1,18 @@
 // Core variables and mixins
-@import "globals/variables";
-@import "globals/mixins";
+
+@import "old/variables";
+@import "new/mixins";
 
 // Reset and dependencies
+
 @import "bootstrap/normalize";
 @import "font-awesome-sprockets";
 @import "font-awesome";
 
 // Core CSS
+
 @import "bootstrap/scaffolding";
-@import "modules/type";
+@import "new/type";
 @import "bootstrap/code";
 @import "bootstrap/grid";
 @import "bootstrap/tables";
@@ -48,8 +51,6 @@
 // Utility classes
 @import "bootstrap/utilities";
 @import "bootstrap/responsive-utilities";
-
-@import "./base/fonts";
 
 .container {
   padding-top: 100px;

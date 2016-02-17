@@ -1,0 +1,68 @@
+// =============================================================================
+// Containers
+// =============================================================================
+
+.content {
+  position: fixed;
+  top: 52px;
+  right: 0;
+  bottom: 0;
+  left: 300px;
+  transition: left $base-transition-speed linear;
+}
+
+.preview {
+  position: fixed;
+  top: 52px;
+  right: 560px;
+  bottom: 0;
+  left: 0;
+}
+
+.drawer {
+  position: fixed;
+  top: 52px;
+  right: 0;
+  bottom: 0;
+  z-index: 100;
+  width: 100%;
+  &.small-width-drawer {
+    width: 560px;
+  }
+  > .inner {
+    height: 100%;
+  }
+}
+
+.scrollable {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: auto;
+  > .main {
+    height: 100%;
+  }
+}
+
+.sidebar-closed {
+  .sidebar {
+    left: -300px;
+  }
+  .navigation-app {
+    left: 0;
+    .navigation-trigger {
+      .fa-bars {
+        margin-right: 5px;
+        margin-left: 0;
+      }
+      .fa-caret-right {
+        display: inline-block;
+      }
+      .fa-caret-left {
+        display: none;
+      }
+    }
+  }
+}

@@ -7,9 +7,10 @@
   top: 0;
   bottom: 0;
   left: 0;
-  z-index: 90;
+  z-index: 100;
   width: 300px;
   background: $gray-darkest;
+  transition: left $base-transition-speed linear;
 }
 
 .sidebar-logo {
