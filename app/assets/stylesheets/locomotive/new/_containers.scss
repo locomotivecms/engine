@@ -3,20 +3,44 @@
 // =============================================================================
 
 .content {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transition: left $base-transition-speed linear;
+}
+
+.content-main {
   position: fixed;
   top: 52px;
   right: 0;
   bottom: 0;
   left: 300px;
-  transition: left $base-transition-speed linear;
+  transition: left $base-transition-speed linear, right $base-transition-speed linear;
+}
+
+.content-overlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 110;
+  max-width: 0;
+  overflow: hidden;
+  background: rgba($black, .4);
+  opacity: 0;
+  transition: opacity $base-transition-speed linear;
 }
 
 .preview {
-  position: fixed;
-  top: 52px;
+  position: absolute;
+  top: 0;
   right: 560px;
   bottom: 0;
   left: 0;
+  z-index: 90;
 }
 
 .drawer {
@@ -64,5 +88,33 @@
         display: none;
       }
     }
+  }
+  .content-main {
+    left: 0;
+  }
+}
+
+.sidebar-open {
+  .sidebar {
+    left: 0;
+  }
+  .content-main {
+    left: 300px;
+  }
+  .content-overlay {
+    max-width: 100%;
+    opacity: 1;
+  }
+  &.live-editing {
+    .content-main {
+      right: -300px;
+      overflow: hidden;
+    }
+  }
+}
+
+@media (max-width: $screen-md-min) {
+  .content {
+    left: 0;
   }
 }

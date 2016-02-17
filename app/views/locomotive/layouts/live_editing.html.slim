@@ -7,21 +7,24 @@ html xmlns='http://www.w3.org/1999/xhtml'
   body class="live-editing sidebar-closed"
     = render 'locomotive/shared/navigation'
     = render 'locomotive/shared/sidebar'
+    
+    .content-main
+      .content-overlay
+      
+      .preview
+        .scrollable
+          = yield :preview
 
-    section.preview
-      .scrollable
-        = yield :preview
+      .actionbar
+        .close-button
+          i.fa.fa-chevron-left
+        .expand-button
+          i.fa.fa-chevron-right
+        = yield
 
-    .actionbar
-      .close-button
-        i.fa.fa-chevron-left
-      .expand-button
-        i.fa.fa-chevron-right
-      = yield
-
-    .drawer
-      .close-button
-        i.fa.fa-times
-      .content-inner
-        = yield :drawer
-        = yield :foot
+      .drawer
+        .close-button
+          i.fa.fa-times
+        .content-inner
+          = yield :drawer
+          = yield :foot

@@ -147,6 +147,24 @@
   }
 }
 
+@media (max-width: $screen-md-min) {
+  .navigation-app {
+    left: 0;
+    .navigation-trigger {
+      .fa-bars {
+        margin-right: 5px;
+        margin-left: 0;
+      }
+      .fa-caret-right {
+        display: inline-block;
+      }
+      .fa-caret-left {
+        display: none;
+      }
+    }
+  }
+}
+
 @media (max-width: $screen-sm-min) {
   .navigation {
     padding: 25px 20px;
