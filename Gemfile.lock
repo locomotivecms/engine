@@ -15,8 +15,10 @@ GIT
       monetize (~> 1.4.0)
       mongoid (~> 5.1.0)
 
-PATH
-  remote: ../gems/steam
+GIT
+  remote: git://github.com/locomotivecms/steam.git
+  revision: 55517b81b591666f8615b269253d50026c0439bd
+  ref: 55517b81b59166
   specs:
     locomotivecms_steam (1.0.1)
       RedCloth (~> 4.2.9)
