@@ -1,8 +1,19 @@
 GIT
   remote: git://github.com/DatabaseCleaner/database_cleaner.git
-  revision: 1cab518efb4cd4d24b751252ab88fe562e302d33
+  revision: 284019742c038ed66bc6fb9c291c64e7e639eeee
   specs:
     database_cleaner (1.5.1)
+
+GIT
+  remote: git://github.com/locomotivecms/custom_fields.git
+  revision: 18c02d6595574299fbd7d116c05086ab420ce14b
+  ref: 18c02d6
+  specs:
+    custom_fields (2.6.0)
+      activesupport (~> 4.2.5)
+      carrierwave-mongoid (~> 0.8.1)
+      monetize (~> 1.4.0)
+      mongoid (~> 5.1.0)
 
 PATH
   remote: ../gems/steam
@@ -59,7 +70,7 @@ PATH
       mime-types (~> 2.6.2)
       mimetype-fu (~> 0.1.2)
       mongo_session_store-rails4 (~> 6.0.0)
-      mongoid (~> 5.0.2)
+      mongoid (~> 5.1.0)
       mongoid-tree (~> 2.0.1)
       multi_json (~> 1.11.0)
       net-ssh (~> 3.0.2)
@@ -207,11 +218,6 @@ GEM
     cucumber-core (1.4.0)
       gherkin (~> 3.2.0)
     cucumber-wire (0.0.1)
-    custom_fields (2.6.0)
-      activesupport (~> 4.2.5)
-      carrierwave-mongoid (~> 0.8.1)
-      monetize (~> 1.4.0)
-      mongoid (~> 5.0.2)
     debug_inspector (0.0.2)
     descendants_tracker (0.0.4)
       thread_safe (~> 0.3, >= 0.3.1)
@@ -341,10 +347,10 @@ GEM
       bson (~> 4.0)
     mongo_session_store-rails4 (6.0.0)
       actionpack (>= 3.1)
-    mongoid (5.0.2)
+    mongoid (5.1.0)
       activemodel (~> 4.0)
       mongo (~> 2.1)
-      origin (~> 2.1)
+      origin (~> 2.2)
       tzinfo (>= 0.3.37)
     mongoid-grid_fs (2.2.1)
       mime-types (>= 1.0, < 3.0)
@@ -529,6 +535,7 @@ DEPENDENCIES
   capybara-webkit (~> 1.8.0)
   coffee-rails (~> 4.1.0)
   coveralls (~> 0.7.2)
+  custom_fields!
   database_cleaner!
   email_spec
   factory_girl_rails

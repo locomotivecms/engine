@@ -28,7 +28,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'pundit',                          '~> 1.0.0'
 
-  s.add_dependency 'mongoid',                         '~> 5.0.2'
+  s.add_dependency 'mongoid',                         '~> 5.1.0'
   s.add_dependency 'mongoid-tree',                    '~> 2.0.1'
   s.add_dependency 'mongo_session_store-rails4',      '~> 6.0.0'
 
