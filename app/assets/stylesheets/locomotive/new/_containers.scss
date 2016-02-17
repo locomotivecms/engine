@@ -101,6 +101,9 @@
   .content-main {
     left: 300px;
   }
+  .navigation-app {
+    left: 300px;
+  }
   .content-overlay {
     max-width: 100%;
     opacity: 1;
@@ -114,7 +117,23 @@
 }
 
 @media (max-width: $screen-md-min) {
-  .content {
+  .content-main {
     left: 0;
+  }
+  .sidebar-open {
+    .content-main {
+      right: -300px;
+      left: 300px;
+      overflow: hidden;
+    }
+    .navigation-app {
+      right: -300px;
+      left: 300px;
+      overflow: hidden;
+    }
+    .content-overlay {
+      max-width: 100%;
+      opacity: 1;
+    }
   }
 }
