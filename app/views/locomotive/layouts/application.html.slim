@@ -8,30 +8,31 @@ html xmlns='http://www.w3.org/1999/xhtml'
     = render 'locomotive/shared/navigation'
     = render 'locomotive/shared/sidebar'
 
-    .content
-      .scrollable
-        .container-fluid.main role='main'
-          .row
-            = yield :local_warning_message
-
-          - if title
-            .row.header-row
-              .col-md-8.col-xs-9
-                h1== title
-
-              .col-md-4.col-xs-3.actions
-                = yield :actions
-
-          = yield
-
-    section.drawer
-      .close-button
-        i.fa.fa-times
-      .inner
+    .content-main
+      .content
         .scrollable
-          .container-fluid
+          .container-fluid.main role='main'
             .row
-              .col-md-12
-                h1 Right sidebar
+              = yield :local_warning_message
 
-    = yield :foot
+            - if title
+              .row.header-row
+                .col-md-8.col-xs-9
+                  h1== title
+
+                .col-md-4.col-xs-3.actions
+                  = yield :actions
+
+            = yield
+
+      section.drawer
+        .close-button
+          i.fa.fa-times
+        .inner
+          .scrollable
+            .container-fluid
+              .row
+                .col-md-12
+                  h1 Right sidebar
+
+      = yield :foot
