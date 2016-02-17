@@ -43,6 +43,10 @@ Locomotive::Engine.routes.draw do
       patch :update_all, on: :collection
     end
 
+    resources :current_site_metafields, only: [:index, :update_all] do
+      patch :update_all, on: :collection
+    end
+
     resources :accounts
 
     resources :memberships

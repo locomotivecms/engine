@@ -1,0 +1,6 @@
+ul.nav.nav-tabs role='tablist'
+  - current_site_metafields_schema.each_with_index do |namespace, index|
+
+    = form_nav_tab namespace.label, index == 0 do
+
+      = link_to namespace.label, "##{namespace.dom_id}", role: 'tab', data: { toggle: 'tab' }

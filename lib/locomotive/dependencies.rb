@@ -27,6 +27,7 @@ require 'stringex'
 require 'bazaar'
 require 'csv'
 require 'rails-i18n'
+require 'json-schema'
 
 require 'codemirror/rails'
 require 'jquery/rails'

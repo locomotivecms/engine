@@ -71,5 +71,15 @@
 
   $.ui.dialog.prototype.overlayEl = function() { return this.overlay.$el; }
 
+  window.absolute_url = function(url) {
+    if (url.indexOf('http') == 0)
+      return url;
+
+    http    = location.protocol;
+    slashes = http.concat("//");
+
+    return slashes.concat(window.location.host).concat(url);
+  }
+
 })();
 

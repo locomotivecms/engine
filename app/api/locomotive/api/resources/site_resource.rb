@@ -68,6 +68,8 @@ module Locomotive
               optional :cache_enabled
               optional :private_access
               optional :password
+              optional :metafields_schema
+              optional :metafields
             end
           end
           post do
@@ -96,6 +98,8 @@ module Locomotive
               optional :cache_enabled
               optional :private_access
               optional :password
+              optional :metafields_schema
+              optional :metafields
             end
           end
           put ':id' do

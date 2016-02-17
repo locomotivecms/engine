@@ -1,0 +1,19 @@
+.tab-content
+  = f.simple_fields_for :metafields do |namespace_form|
+
+    - current_site_metafields_schema.each_with_index do |namespace, index|
+
+      = form_tab_pane namespace.dom_id, index == 0 do
+
+        = namespace_form.inputs namespace.dom_id do
+
+          - namespace.fields.each do |field|
+
+            = namespace_form.simple_fields_for namespace do |metafield_form|
+
+              = metafield_form.input field.name, field.input_options
+
+  = f.actions do
+    = f.action
+
+

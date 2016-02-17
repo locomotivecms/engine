@@ -15,6 +15,9 @@
   - if current_site.localized?
     = render 'locomotive/shared/sidebar/link', icon: 'fa-globe', label: t('.translations'), url: translations_path(current_site)
 
+  - if current_site.has_metafields?
+    = render 'locomotive/shared/sidebar/link', icon: 'fa-newspaper-o', label: t('.metafields'), url: current_site_metafields_path(current_site)
+
   = render 'locomotive/shared/sidebar/link', icon: 'fa-gear', label: t('.settings'), url: edit_current_site_path(current_site)
 
   - if policy(current_site).show_developers_documentation?

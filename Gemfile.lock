@@ -5,6 +5,33 @@ GIT
     database_cleaner (1.5.1)
 
 PATH
+  remote: ../gems/steam
+  specs:
+    locomotivecms_steam (1.0.1)
+      RedCloth (~> 4.2.9)
+      autoprefixer-rails (~> 6.2.3)
+      chronic (~> 0.10.2)
+      coffee-script (~> 2.4.1)
+      compass (~> 1.0.3)
+      dragonfly (~> 1.0.12)
+      haml (~> 4.0.6)
+      httparty (~> 0.13.6)
+      kramdown (~> 1.9.0)
+      locomotivecms-solid (~> 4.0.1)
+      locomotivecms_common (~> 0.0.5)
+      mime-types (~> 2.6.1)
+      mimetype-fu (~> 0.1.2)
+      moneta (~> 0.8.0)
+      morphine (~> 0.1.1)
+      nokogiri (~> 1.6.7.2)
+      rack-cache (~> 1.2)
+      rack-rewrite (~> 1.5.1)
+      rack_csrf (~> 2.5.0)
+      sanitize (~> 4.0.1)
+      sass (~> 3.4.21)
+      sprockets (~> 3.5.2)
+
+PATH
   remote: .
   specs:
     locomotivecms (3.0.1)
@@ -26,6 +53,7 @@ PATH
       highline (~> 1.7.1)
       jquery-rails (~> 4.0.3)
       jquery-ui-rails (~> 5.0.3)
+      json-schema (~> 2.5.2)
       kaminari (~> 0.16.3)
       locomotivecms_steam (~> 1.0.1)
       mime-types (~> 2.6.2)
@@ -88,7 +116,7 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
-    addressable (2.4.0)
+    addressable (2.3.8)
     arel (6.0.3)
     attr_extras (4.4.0)
     autoprefixer-rails (6.2.3)
@@ -275,6 +303,8 @@ GEM
     jquery-ui-rails (5.0.5)
       railties (>= 3.2.16)
     json (1.8.3)
+    json-schema (2.5.2)
+      addressable (~> 2.3.8)
     json_spec (1.1.4)
       multi_json (~> 1.0)
       rspec (>= 2.0, < 4.0)
@@ -292,29 +322,6 @@ GEM
       attr_extras (~> 4.4.0)
       colorize
       stringex (~> 2.5.2)
-    locomotivecms_steam (1.0.1)
-      RedCloth (~> 4.2.9)
-      autoprefixer-rails (~> 6.2.3)
-      chronic (~> 0.10.2)
-      coffee-script (~> 2.4.1)
-      compass (~> 1.0.3)
-      dragonfly (~> 1.0.12)
-      haml (~> 4.0.6)
-      httparty (~> 0.13.6)
-      kramdown (~> 1.9.0)
-      locomotivecms-solid (~> 4.0.1)
-      locomotivecms_common (~> 0.0.5)
-      mime-types (~> 2.6.1)
-      mimetype-fu (~> 0.1.2)
-      moneta (~> 0.8.0)
-      morphine (~> 0.1.1)
-      nokogiri (~> 1.6.7.2)
-      rack-cache (~> 1.2)
-      rack-rewrite (~> 1.5.1)
-      rack_csrf (~> 2.5.0)
-      sanitize (~> 4.0.1)
-      sass (~> 3.4.21)
-      sprockets (~> 3.5.2)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
     mail (2.6.3)
@@ -530,6 +537,7 @@ DEPENDENCIES
   i18n-tasks (~> 0.8.7)
   json_spec (~> 1.1.4)
   locomotivecms!
+  locomotivecms_steam!
   pickle
   pry
   pry-byebug

@@ -36,6 +36,7 @@ en:
         dashboard: Dashboard
         assets: Assets
         settings: General Settings
+        metafields: Properties
         developers: Developers
         content_types:
           title: Models
@@ -248,6 +249,11 @@ en:
         advanced:
           destroy: "Destroy this site"
           confirm_destroy: "Please confirm by typing the site name in the following input"
+
+    current_site_metafields:
+      index:
+        title: Editing properties
+        no_metafields: There are no metafields defined for your site.
 
     memberships:
       roles:
