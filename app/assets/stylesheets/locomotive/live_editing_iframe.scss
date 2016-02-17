@@ -7,7 +7,6 @@ $button-color:          #fff;
 $fa-font-path:          'font-awesome';
 $fa-version:            '4_4_0';
 
-
 @font-face {
   font-family: 'LocomotiveFontAwesome';
   src: url(font-path('#{$fa-font-path}/fontawesome-webfont.eot?v=#{$fa-version}'));
@@ -35,7 +34,6 @@ $fa-version:            '4_4_0';
 }
 
 #locomotive-highlighter-actions {
-
   > a {
     background: $button-background;
     background-image: none;

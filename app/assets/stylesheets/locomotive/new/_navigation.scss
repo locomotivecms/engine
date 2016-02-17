@@ -96,6 +96,7 @@
   z-index: 100;
   padding: 10px 20px;
   background: $brand-primary;
+  transition: left $base-transition-speed linear;
 }
 
 .navigation-trigger {
@@ -112,6 +113,9 @@
   }
   .fa-bars {
     margin-left: 5px;
+  }
+  .fa-caret-right {
+    display: none;
   }
   &:hover {
     color: $white;

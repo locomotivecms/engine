@@ -1,0 +1,25 @@
+body.live-editing {
+  .content .close-button {
+    @include opacity(0);
+    left: 0;
+  }
+  &.full-width-preview {
+    .content .close-button {
+      @include opacity(1);
+    }
+    .content.expand-button {
+      display: none;
+    }
+    .content {
+      background-color: $live_editing_content_alt_background_color;
+      > .inner {
+        @include opacity(0);
+      }
+    }
+  }
+}
+
+.embed-page {
+  height: 100%;
+  padding-bottom: 0;
+}

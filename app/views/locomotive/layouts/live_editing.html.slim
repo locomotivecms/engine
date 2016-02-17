@@ -5,7 +5,6 @@ html xmlns='http://www.w3.org/1999/xhtml'
     = render 'locomotive/shared/head'
 
   body class="live-editing sidebar-closed"
-
     = render 'locomotive/shared/navigation'
     = render 'locomotive/shared/sidebar'
 
@@ -13,18 +12,16 @@ html xmlns='http://www.w3.org/1999/xhtml'
       .scrollable
         = yield :preview
 
-    .content
+    .actionbar
       .close-button
         i.fa.fa-chevron-left
       .expand-button
         i.fa.fa-chevron-right
-      .inner
-        = yield
+      = yield
 
-    section.drawer
+    .drawer
       .close-button
         i.fa.fa-times
-      .inner
+      .content-inner
         = yield :drawer
-
         = yield :foot

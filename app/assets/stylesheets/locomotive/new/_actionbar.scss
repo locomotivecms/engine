@@ -1,0 +1,52 @@
+// =============================================================================
+// Actionbar
+// =============================================================================
+
+.actionbar {
+  position: fixed;
+  top: 52px;
+  right: 0;
+  bottom: 0;
+  width: 560px;
+  background: $white;
+  border-left: 1px solid $border-color-base;
+  transition: right $base-transition-speed linear;
+  .close-button,
+  .expand-button {
+    @include control-window-button;
+    z-index: 995;
+  }
+  .scrollable {
+    margin-top: 173px;
+    &.no-editable-elements {
+      margin-top: 105px;
+    }
+    fieldset.inputs {
+      padding-top: 0;
+    }
+  }
+  .main .header-row {
+    padding: 15px 0;
+  }
+  .info-row {
+    p {
+      margin-bottom: 0;
+      line-height: 30px;
+      color: $main_title_color;
+      a {
+        color: $main_title_color;
+      }
+      button {
+        margin-left: 20px;
+      }
+    }
+    fieldset.inputs {
+      .form-group.input {
+        margin-bottom: 0;
+      }
+    }
+  }
+  .editable-elements fieldset:first-child {
+    padding-top: 0;
+  }
+}
