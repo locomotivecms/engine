@@ -9,7 +9,7 @@ module Locomotive
 
           ## fields ##
           field :metafields,        type: Hash, default: {}
-          field :metafields_schema, type: Array
+          field :metafields_schema, type: Array, default: []
 
           ## validations ##
           validate :validate_metafields_schema
