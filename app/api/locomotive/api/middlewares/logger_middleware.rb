@@ -17,8 +17,6 @@ module Locomotive
         private
 
         def log_message(response, env)
-          return unless Rails.env.development? || Rails.env.test?
-
           message = payload(response, env).map { |p| "#{p.first}=\"#{p.last}\"" }.join(' ')
 
           Rails.logger.info(message)
