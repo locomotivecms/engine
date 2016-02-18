@@ -2,6 +2,10 @@ module Locomotive
   module CustomFields
     class SelectOptionsController < BaseController
 
+      account_required & within_site
+
+      localized
+
       before_filter :load_content_type
       before_filter :load_custom_field
 

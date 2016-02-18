@@ -21,7 +21,7 @@ module Locomotive
 
           message = payload(response, env).map { |p| "#{p.first}=\"#{p.last}\"" }.join(' ')
 
-          Rails.logger.debug(message)
+          Rails.logger.info(message)
         end
 
         def payload(response, env)

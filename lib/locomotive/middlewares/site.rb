@@ -37,7 +37,7 @@ module Locomotive
 
         return nil if handle == 'api'
 
-        Locomotive.log "[fetch site] host = #{request.host} / site_handle = #{handle.inspect}"
+        Locomotive.log "[fetch site] host = #{request.host} / site_handle = #{handle.inspect} / locale = #{::Mongoid::Fields::I18n.locale.inspect}"
 
         if handle
           fetch_from_handle(handle, request)
