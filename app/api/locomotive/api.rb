@@ -4,6 +4,10 @@ require 'pundit'
 module Locomotive
   module API
 
+    # FIX: reload! will work as expected in production
+    module Middlewares; end
+    module Entities; end
+
     def self.to_app
       Rack::Builder.new do
         use Locomotive::API::Middlewares::LocaleMiddleware

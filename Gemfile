@@ -19,7 +19,7 @@ end
 group :development do
   # gem 'custom_fields', path: '../custom_fields'
   # gem 'custom_fields', path: '../gems/custom_fields' # for Developers
-  gem 'custom_fields', github: 'locomotivecms/custom_fields', ref: '18c02d6'
+  gem 'custom_fields', github: 'locomotivecms/custom_fields', ref: 'b5dcac5'
 
   # gem 'locomotivecms_steam', path: '../gems/steam', require: false
   gem 'locomotivecms_steam', github: 'locomotivecms/steam', ref: '55517b81b59166', require: false

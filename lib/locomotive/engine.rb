@@ -75,7 +75,6 @@ module Locomotive
       app.config.i18n.available_locales = Locomotive.config.locales
     end
 
-
     initializer 'steam' do |app|
       require 'locomotive/steam_adaptor'
     end
