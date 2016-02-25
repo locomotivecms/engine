@@ -1,22 +1,23 @@
 .sidebar role="tablist" aria-multiselectable="false"
   = link_to root_path, class: 'sidebar-logo' do
     = image_tag 'locomotive/logo.png'
+
   - cache(cache_key_for_sidebar) do
     = link_to dashboard_path(current_site), data: defined?(data) ? data : {}, class: 'sidebar-link' do
       i.fa.fa-bar-chart
       span= t('.dashboard')
-    
+
     - cache(cache_key_for_sidebar_pages) do
       = link_to '#collapsePages', data: { toggle: 'collapse' }, aria: { expanded: 'false', controls: 'collapsePages' }, class: 'sidebar-link' do
         i.fa.fa-file-text-o
         span= t('.pages')
         i.fa.fa-caret-down
-        
+
       = render_pages
-      
+
     - cache(cache_key_for_sidebar_content_types) do
       = render 'locomotive/shared/sidebar/content_types'
-      
+
     = link_to content_assets_path(current_site), data: defined?(data) ? data : {}, class: 'sidebar-link' do
       i.fa.fa-picture-o
       span= t('.assets')
@@ -25,7 +26,7 @@
       = link_to translations_path(current_site), data: defined?(data) ? data : {}, class: 'sidebar-link' do
         i.fa.fa-globe
         span= t('.translations')
-        
+
     - if current_site.has_metafields?
       = link_to current_site_metafields_path(current_site), data: defined?(data) ? data : {}, class: 'sidebar-link' do
         i.fa.fa-newspaper-o

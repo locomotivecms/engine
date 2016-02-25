@@ -5,7 +5,7 @@ class Locomotive.Views.ApplicationView extends Locomotive.Views.SimpleView
   el: 'body'
 
   events:
-    'click .navbar .navbar-toggle': 'slide_sidebar'
+    'click .navigation-app .navigation-trigger': 'toggle_sidebar'
 
   initialize: ->
     @header_view  = new Locomotive.Views.Shared.HeaderView()
@@ -26,8 +26,11 @@ class Locomotive.Views.ApplicationView extends Locomotive.Views.SimpleView
 
     @register_warning_if_unsaved_content()
 
-  slide_sidebar: (event) ->
-    $('body').toggleClass('slide-right-sidebar')
+  toggle_sidebar: (event) ->
+    if $('body').hasClass('sidebar-open')
+      $('body').removeClass('sidebar-open').addClass('sidebar-closed')
+    else
+      $('body').removeClass('sidebar-closed').addClass('sidebar-open')
 
   automatic_max_height: ->
     $(window).on 'resize', =>
