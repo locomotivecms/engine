@@ -145,18 +145,18 @@ describe Locomotive::ContentEntryService do
 
   describe '#sort' do
 
-    let(:sometime)    { Time.parse('2015/01/06 00:00:00') }
-    let(:entry)       { create_content_entry(title: 'Goodbye', body: 'Lorem ipsum', published: true, _position: 0, updated_at: sometime) }
-    let(:last_entry)  { create_content_entry(title: 'Hello world', body: 'Lorem ipsum', published: true, _position: 1, updated_at: sometime) }
+    let(:content_type)  { create_content_type(order_by: '_position') }
+    let(:sometime)      { Time.parse('2015/01/06 00:00:00') }
+    let!(:entry)        { create_content_entry(title: 'Goodbye', body: 'Lorem ipsum', published: true, _position: 0, updated_at: sometime) }
+    let!(:last_entry)   { create_content_entry(title: 'Hello world', body: 'Lorem ipsum', published: true, _position: 1, updated_at: sometime) }
 
     let(:attributes)  { [last_entry._id.to_s, entry._id.to_s] }
 
-    before { service.sort(attributes) }
-
-    subject { content_type.ordered_entries }
+    subject { service.sort(attributes); content_type.ordered_entries }
 
     it { expect(subject.pluck(:title)).to eq [{ "en" => "Hello world" }, { "en" => "Goodbye" }] }
     it { expect(subject.pluck(:updated_at)).to eq [sometime, sometime] }
+    it { expect { subject }.to change { site.reload.content_version } }
 
   end
 
