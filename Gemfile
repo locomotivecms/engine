@@ -22,7 +22,7 @@ group :development do
   gem 'custom_fields', github: 'locomotivecms/custom_fields', ref: 'b5dcac5'
 
   # gem 'locomotivecms_steam', path: '../gems/steam', require: false
-  gem 'locomotivecms_steam', github: 'locomotivecms/steam', ref: '55517b81b59166', require: false
+  gem 'locomotivecms_steam', github: 'locomotivecms/steam', ref: '9c95e13', require: false
 
   # gem 'locomotive_liquid', path: '../gems/liquid' # for Developers
   # gem 'locomotivecms_solid', path: '../gems/solid' # for Developers
