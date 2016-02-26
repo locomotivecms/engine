@@ -28,6 +28,7 @@ class Locomotive.Views.Inputs.RteView extends Backbone.View
       useLineBreaks:  false
       parserRules:    wysihtml5ParserRules
       stylesheets:    ['<%= stylesheet_path("locomotive/wysihtml5_editor") %>']
+      showToolbarDialogsOnSelection: false
 
     @editor.on 'load', @register_keydown_event
     @editor.on 'change', @on_content_change
@@ -77,6 +78,13 @@ class Locomotive.Views.Inputs.RteView extends Backbone.View
   register_keydown_event: ->
     @$('.wysihtml5-sandbox').contents().find('body').on 'keyup', =>
       @on_content_change()
+
+    @$('.wysihtml5-sandbox').contents().find('body').on 'dblclick', =>
+      selectedNode = @editor.composer.selection.getSelectedNode()
+      link         = wysihtml5.dom.getParentElement(selectedNode, { query: 'a' }, 4)
+
+      if link
+        @editor.toolbar.commandMapping['createLink:null'].link.click()
 
   on_content_change: ->
     PubSub.publish 'inputs.text_changed',

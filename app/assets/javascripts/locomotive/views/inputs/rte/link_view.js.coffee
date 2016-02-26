@@ -6,7 +6,7 @@ class Locomotive.Views.Inputs.Rte.LinkView extends Backbone.View
 
   container:
     dataset:
-      showdialogonselection: true
+      showdialogonselection: false
 
   initialize: ->
     _.bindAll(@, 'apply', 'show', 'hide')
@@ -14,6 +14,8 @@ class Locomotive.Views.Inputs.Rte.LinkView extends Backbone.View
     @$link      = @$('a[data-wysihtml5-command=createLink]')
     @editor     = @options.editor
     @$content   = @$link.next('.link-dialog-content')
+
+    @$content.find('.input.select select:not(.disable-select2)').data('select2').$dropdown.addClass('rte-select2-dropdown')
 
   render: ->
     @attach_editor()
@@ -75,7 +77,11 @@ class Locomotive.Views.Inputs.Rte.LinkView extends Backbone.View
 
     @isOpen = true
 
+  update: (state) ->
+    # do nothing
+
   hide: ->
+    @_input_el('target', 'select').select2('close')
     @$link.popover('hide')
     @isOpen = false
 
