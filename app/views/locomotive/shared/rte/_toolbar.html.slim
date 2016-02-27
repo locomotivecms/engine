@@ -58,8 +58,13 @@
     a data-wysihtml5-command='removeLink'
       i.fa.fa-chain-broken
 
+  span.wysihtml5-toolbar-group
+    a data-url=content_assets_path(types: 'image') data-wysihtml5-command='insertImage'
+      i.fa.fa-picture-o
+    = image_popover
+
     a data-url=content_assets_path data-wysihtml5-command='insertFile'
-      i.fa.fa-file-o
+      i.fa.fa-paperclip
     = image_popover
 
     a data-wysihtml5-command='createTable'
