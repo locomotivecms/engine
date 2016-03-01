@@ -6,7 +6,8 @@ module Locomotive
     field :default_content, type: Boolean, localize: true, default: true
     field :format,          default: 'html'
     field :rows,            type: Integer, default: 15
-    field :line_break,      type: Boolean, default: true
+    field :inline,          type: Boolean, default: false
+    field :line_break,      type: Boolean, default: true # deprecated
 
     ## callbacks ##
     before_save :strip_content

@@ -15,7 +15,8 @@ module Locomotive
           wysihtml5_prefix: wysihtml5_prefix,
           link_popover:     link_popover,
           image_popover:    image_popover,
-          table_popover:    table_popover
+          table_popover:    table_popover,
+          inline:           input_html_options[:data].try(:[], :inline)
         })
     end
 
