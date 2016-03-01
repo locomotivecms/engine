@@ -7,13 +7,16 @@ class Locomotive.Views.Shared.FormView extends Backbone.View
   namespace: null
 
   events:
-    'submit form':            'save'
-    'ajax:aborted:required':  'show_empty_form_message'
+    'submit form':              'save'
+    'ajax:aborted:required':    'show_empty_form_message'
+    'keyup input, textarea':    'modifying'
 
   render: ->
     @inputs = []
 
     @display_active_nav()
+
+    @register_unsaved_content()
 
     @enable_hover()
 
@@ -34,6 +37,14 @@ class Locomotive.Views.Shared.FormView extends Backbone.View
 
     return @
 
+  register_unsaved_content: ->
+    # reset the unsaved content since this is a new form
+    window.unsaved_content = false
+
+    @tokens = [
+      PubSub.subscribe 'inputs.text_changed', => @modifying()
+    ]
+
   display_active_nav: ->
     url = document.location.toString()
     if url.match('#')
@@ -52,6 +63,7 @@ class Locomotive.Views.Shared.FormView extends Backbone.View
     @$('form button[type=submit], form input[type=submit]').button('reset')
 
   save: (event) ->
+    window.unsaved_content = false
     @change_state()
     @record_active_tab()
 
@@ -159,8 +171,12 @@ class Locomotive.Views.Shared.FormView extends Backbone.View
       view.render()
       self.inputs.push(view)
 
+  modifying: (event) ->
+    window.unsaved_content = true
+
   remove: ->
     _.each @inputs, (view) -> view.remove()
+    _.each @tokens, (token) -> PubSub.unsubscribe(token)
 
     @$('.input.select select:not(.disable-select2)').select2('destroy')
     @$('.input.tags input[type=text]').tagsinput('destroy')

@@ -9,7 +9,7 @@ class Locomotive.Views.Inputs.RteView extends Backbone.View
     'highlight textarea':   'highlight'
 
   initialize: ->
-    _.bindAll(@, 'register_keydown_event', 'on_content_change', 'resize')
+    _.bindAll(@, 'register_editor_events', 'on_content_change', 'resize')
 
     @tokens = [
       PubSub.subscribe 'application_view.resize', @resize
@@ -30,9 +30,7 @@ class Locomotive.Views.Inputs.RteView extends Backbone.View
       stylesheets:    ['<%= stylesheet_path("locomotive/wysihtml5_editor") %>']
       showToolbarDialogsOnSelection: false
 
-    @editor.on 'load', @register_keydown_event
-    @editor.on 'change', @on_content_change
-    @editor.on 'aftercommand:composer', @on_content_change
+    @editor.on 'load', @register_editor_events
 
   render_views: ->
     that = @
@@ -76,10 +74,12 @@ class Locomotive.Views.Inputs.RteView extends Backbone.View
     view.render()
     view
 
-  register_keydown_event: ->
+  register_editor_events: ->
+    # keyup events
     @$('.wysihtml5-sandbox').contents().find('body').on 'keyup', =>
       @on_content_change()
 
+    # double click (links)
     @$('.wysihtml5-sandbox').contents().find('body').on 'dblclick', =>
       selectedNode = @editor.composer.selection.getSelectedNode()
       link         = wysihtml5.dom.getParentElement(selectedNode, { query: 'a' }, 4)
@@ -87,7 +87,11 @@ class Locomotive.Views.Inputs.RteView extends Backbone.View
       if link
         @editor.toolbar.commandMapping['createLink:null'].link.click()
 
+    @editor.on 'change', @on_content_change
+    @editor.on 'aftercommand:composer', @on_content_change
+
   on_content_change: ->
+    console.log 'modified'
     PubSub.publish 'inputs.text_changed',
       view:     @
       content:  @editor.getValue()

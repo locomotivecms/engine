@@ -17,6 +17,8 @@ class Locomotive.Views.EditableElements.IframeView extends Backbone.View
     $(@el).attr('src', @preview_url)
 
   on_load: (event) ->
+    @register_beforeunload()
+
     # Able to get the path to the edit form?
     if (path = @edit_view_path())?
       @preview_url = @window.document.location.href
@@ -52,6 +54,14 @@ class Locomotive.Views.EditableElements.IframeView extends Backbone.View
 
     # insert the highlighter CSS (path to the CSS in the iframe data)
     window.addStylesheet(@window.document, $(@el).data('style-path'))
+
+  register_beforeunload: ->
+    $(@window).off  'beforeunload', @warn_if_unsaved_content
+    $(@window).on   'beforeunload', @warn_if_unsaved_content
+
+  warn_if_unsaved_content: ->
+    if window.unsaved_content
+      return $('meta[name=unsaved-content-warning]').attr('content')
 
   remove: ->
     super()
