@@ -127,8 +127,8 @@
 .navigation-middle {
   position: absolute;
   top: 0;
-  right: 0px;
-  left: 0px;
+  right: 0;
+  left: 0;
   z-index: 90;
   padding-top: 15px;
   text-align: center;
@@ -153,18 +153,6 @@
 @media (max-width: $screen-md-min) {
   .navigation-app {
     left: 0;
-    .navigation-trigger {
-      .fa-bars {
-        margin-right: 5px;
-        margin-left: 0;
-      }
-      .fa-caret-right {
-        display: inline-block;
-      }
-      .fa-caret-left {
-        display: none;
-      }
-    }
   }
 }
 
