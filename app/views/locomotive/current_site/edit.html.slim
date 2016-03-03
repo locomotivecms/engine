@@ -2,6 +2,9 @@
 
 = help t('.help', default: '')
 
+- content_for :actions do
+  = locale_picker_link
+
 = locomotive_form_for @site, url: current_site_path(current_site), html: { multipart: true }, defaults: { placeholder: false } do |f|
 
   = hidden_field_tag :active_tab, ''
