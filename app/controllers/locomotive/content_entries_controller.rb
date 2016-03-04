@@ -81,7 +81,7 @@ module Locomotive
     private
 
     def load_content_type
-      @content_type ||= current_site.content_types.where(slug: params[:slug]).first
+      @content_type ||= current_site.content_types.where(slug: params[:slug]).first!
     end
 
     def load_content_entry
