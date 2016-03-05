@@ -1,8 +1,8 @@
 - list = Locomotive::ContentTypeService.new(current_site).list
 
 - unless list.empty?
-  = link_to '#collapseContentTypes', data: { toggle: 'collapse' }, aria: { expanded: 'false', controls: 'collapseContentTypes' }, class: 'sidebar-link content-types' do
-    i.fa.fa-list 
+  = link_to '#collapseContentTypes', data: { toggle: 'collapse' }, aria: { expanded: 'false', controls: 'collapseContentTypes' }, class: sidebar_link_class(:content_types) do
+    i.fa.fa-list
     span= t('.title')
     i.fa.fa-caret-down
 

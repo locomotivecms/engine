@@ -32,6 +32,19 @@ module Locomotive
       end
     end
 
+    #= Sidebar
+
+    def sidebar_link_class(section)
+      highlighted = case section
+      when :pages         then ['pages', 'editable_elements'].include?(self.controller.controller_name)
+      when :content_types then ['content_types', 'content_entries', 'public_submission_accounts', 'select_options'].include?(self.controller.controller_name)
+      else
+        self.controller.controller_name == section.to_s
+      end
+
+      ['sidebar-link', highlighted ? 'is-active' : ''].join(' ')
+    end
+
     #= Form helpers
 
     def locomotive_form_for(object, *args, &block)

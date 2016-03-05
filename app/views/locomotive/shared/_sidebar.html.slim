@@ -3,12 +3,12 @@
     = image_tag 'locomotive/logo.png'
 
   - cache(cache_key_for_sidebar) do
-    = link_to dashboard_path(current_site), data: defined?(data) ? data : {}, class: 'sidebar-link' do
+    = link_to dashboard_path(current_site), class: sidebar_link_class(:dashboard) do
       i.fa.fa-bar-chart
       span= t('.dashboard')
 
     - cache(cache_key_for_sidebar_pages) do
-      = link_to '#collapsePages', data: { toggle: 'collapse' }, aria: { expanded: 'false', controls: 'collapsePages' }, class: 'sidebar-link' do
+      = link_to '#collapsePages', data: { toggle: 'collapse' }, aria: { expanded: 'false', controls: 'collapsePages' }, class: sidebar_link_class(:pages) do
         i.fa.fa-file-text-o
         span= t('.pages')
         i.fa.fa-caret-down
@@ -18,25 +18,25 @@
     - cache(cache_key_for_sidebar_content_types) do
       = render 'locomotive/shared/sidebar/content_types'
 
-    = link_to content_assets_path(current_site), data: defined?(data) ? data : {}, class: 'sidebar-link' do
+    = link_to content_assets_path(current_site), class: sidebar_link_class(:content_assets) do
       i.fa.fa-picture-o
       span= t('.assets')
 
     - if current_site.localized?
-      = link_to translations_path(current_site), data: defined?(data) ? data : {}, class: 'sidebar-link' do
+      = link_to translations_path(current_site), class: sidebar_link_class(:translations) do
         i.fa.fa-globe
         span= t('.translations')
 
     - if current_site.has_metafields?
-      = link_to current_site_metafields_path(current_site), data: defined?(data) ? data : {}, class: 'sidebar-link' do
+      = link_to current_site_metafields_path(current_site), class: sidebar_link_class(:current_site_metafields) do
         i.fa.fa-newspaper-o
         span= t('.metafields')
 
-    = link_to edit_current_site_path(current_site), data: defined?(data) ? data : {}, class: 'sidebar-link' do
+    = link_to edit_current_site_path(current_site), class: sidebar_link_class(:current_site) do
       i.fa.fa-cogs
       span= t('.settings')
 
     - if policy(current_site).show_developers_documentation?
-      = link_to developers_documentation_path(current_site), data: defined?(data) ? data : {}, class: 'sidebar-link' do
+      = link_to developers_documentation_path(current_site), class: sidebar_link_class(:developers_documentation) do
         i.fa.fa-file-code-o
         span= t('.developers')
