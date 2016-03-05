@@ -9,6 +9,10 @@
 
         > .wysihtml5-toolbar-group {
           margin-right: 20px;
+
+          &:last-child {
+            margin-right: 0px;
+          }
         }
 
         a {

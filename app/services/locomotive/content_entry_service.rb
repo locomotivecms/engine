@@ -33,6 +33,9 @@ module Locomotive
       klass = self.content_type.klass_with_custom_fields(:entries)
       klass.sort_entries!(ids, self.content_type.sortable_column)
 
+      # we need to clear out the cache
+      content_type.site.touch(:content_version)
+
       track_activity 'content_entry.sorted', parameters: activity_parameters
     end
 

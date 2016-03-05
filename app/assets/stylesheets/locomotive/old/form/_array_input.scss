@@ -78,6 +78,7 @@
 
           input[type=text] {
             @include box-shadow(none);
+            height: 44px;
             padding-left: $padding-base-horizontal - $form_input_control_border_size;
             background: white;
             border: none;

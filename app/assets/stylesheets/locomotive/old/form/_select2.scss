@@ -108,3 +108,38 @@ $select2-height:                  32px;
     }
   }
 }
+
+// popover (ex.: link form in the RTE)
+.simple_form .popover-content .select2-container {
+
+  border-width: 3px;
+  padding: 3px;
+
+  .select2-selection {
+    height: 18px;
+    line-height: 18px;
+
+    .select2-selection__rendered {
+      line-height: 18px;
+      font-size: 12px;
+    }
+
+    .select2-selection__arrow {
+      top: -1px;
+    }
+  }
+
+}
+
+// popover: dropdown
+.select2-container.rte-select2-dropdown {
+  z-index: 1070;
+
+  .select2-dropdown {
+    border-width: 3px;
+
+    .select2-results__option {
+      font-size: 12px;
+    }
+  }
+}

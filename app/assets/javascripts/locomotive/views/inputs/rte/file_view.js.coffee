@@ -9,7 +9,8 @@ class Locomotive.Views.Inputs.Rte.FileView extends Backbone.View
     picker:   false
 
   container:
-    dataset: []
+    dataset:
+      showdialogonselection: true
 
   initialize: ->
     _.bindAll(@, 'change_image', 'insert_file', 'hide')
@@ -27,8 +28,6 @@ class Locomotive.Views.Inputs.Rte.FileView extends Backbone.View
   attach_editor: ->
     command = @editor.toolbar.commandMapping['insertFile:null']
     command.dialog = @
-
-    # console.log "[insertFileView] attach_editor"
 
   create_popover: ->
     @$popover.show()
@@ -105,6 +104,9 @@ class Locomotive.Views.Inputs.Rte.FileView extends Backbone.View
     if @opened.popover == false
       @$link.popover('show')
       @opened.popover = true
+
+  update: (state) ->
+    # do nothing
 
   hide: ->
     # console.log "[insertFileView] hide, opened =#{@opened}"

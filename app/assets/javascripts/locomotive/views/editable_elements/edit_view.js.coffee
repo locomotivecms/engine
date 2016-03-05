@@ -4,7 +4,7 @@ class Locomotive.Views.EditableElements.EditView extends Locomotive.Views.Shared
 
   el: '.content > .inner'
 
-  events:
+  events: _.extend {}, Locomotive.Views.Shared.FormView.prototype.events,
     'click .form-group.rte label':  'select_editable_text'
     'click .form-group.text label': 'select_editable_text'
 

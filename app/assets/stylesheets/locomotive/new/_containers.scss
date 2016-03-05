@@ -105,9 +105,9 @@
     left: 300px;
   }
   .content-overlay {
+    display: none;
     max-width: 100%;
     opacity: 1;
-    display: none;
   }
   &.live-editing {
     .content-main {
@@ -136,9 +136,9 @@
       overflow: hidden;
     }
     .content-overlay {
+      display: block;
       max-width: 100%;
       opacity: 1;
-      display: block;
     }
   }
 }

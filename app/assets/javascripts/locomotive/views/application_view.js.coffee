@@ -12,6 +12,8 @@ class Locomotive.Views.ApplicationView extends Locomotive.Views.SimpleView
     @sidebar_view = new Locomotive.Views.Shared.SidebarView()
     @drawer_view  = new Locomotive.Views.Shared.DrawerView()
 
+    window.unsaved_content = false
+
   render: ->
     super
 
@@ -21,6 +23,8 @@ class Locomotive.Views.ApplicationView extends Locomotive.Views.SimpleView
     @set_max_height()
 
     @automatic_max_height()
+
+    @register_warning_if_unsaved_content()
 
   toggle_sidebar: (event) ->
     if $('body').hasClass('sidebar-open')
@@ -40,3 +44,8 @@ class Locomotive.Views.ApplicationView extends Locomotive.Views.SimpleView
     @$('> .wrapper').height(height)
 
     height
+
+  register_warning_if_unsaved_content: ->
+    $(window).bind 'beforeunload', ->
+      if window.unsaved_content
+        return $('meta[name=unsaved-content-warning]').attr('content')

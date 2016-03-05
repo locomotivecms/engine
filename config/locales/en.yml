@@ -23,6 +23,7 @@ en:
 
     messages:
       confirm: Are you sure?
+      unsaved_content_warning: "This page is asking you to confirm that you want to leave - data you have entered may not be saved."
 
     shared:
       header:

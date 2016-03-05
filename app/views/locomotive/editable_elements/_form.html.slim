@@ -13,7 +13,7 @@
         - case editable_element.type.to_sym
 
         - when :editable_text
-          = g.input :content, editable_element_input_options(editable_element, index, as: editable_text_format_to_input_type(editable_element), input_html: { rows: editable_element.rows })
+          = g.input :content, editable_element_input_options(editable_element, index, as: editable_text_format_to_input_type(editable_element), input_html: { rows: editable_element.rows, data: { inline: editable_element.inline? } })
 
         - when :editable_file
           = g.input :source, editable_element_input_options(editable_element, index, as: :file, select_content_asset: true, resize_format: editable_element.resize_format, hidden_fields: [:content, :default_source_url])
