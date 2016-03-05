@@ -11,16 +11,12 @@ html xmlns='http://www.w3.org/1999/xhtml'
     .content-main
       .content-overlay
       
-      .preview
+      .actionbar
+        = yield
+      
+      .content-preview.preview
         .scrollable
           = yield :preview
-
-      .actionbar
-        .close-button
-          i.fa.fa-chevron-left
-        .expand-button
-          i.fa.fa-chevron-right
-        = yield
 
       .drawer
         .close-button

@@ -22,6 +22,8 @@
 // Right side links in the navigation containing the dropdown.
 
 .navigation-links {
+  position: relative;
+  z-index: 100;
   float: right;
   padding: 0;
   margin: 0;
@@ -96,7 +98,7 @@
   z-index: 100;
   padding: 10px 20px;
   background: $brand-primary;
-  transition: left $base-transition-speed linear;
+  transition: all $base-transition-speed linear;
 }
 
 .navigation-trigger {

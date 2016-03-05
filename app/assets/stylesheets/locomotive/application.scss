@@ -13,7 +13,7 @@
 // Core variables and mixins
 
 @import "old/variables";
-@import "new/mixins";
+@import "bootstrap/mixins";
 
 // Reset and dependencies
 
@@ -78,12 +78,14 @@
 // Layout
 
 @import "new/brand";
-@import "new/navigation";
-@import "new/sidebar";
-@import "old/drawer";
 @import "new/actionbar";
+@import "new/content";
+@import "old/drawer";
 @import "old/main";
-@import "new/containers";
+@import "new/navigation";
+@import "old/scrollable";
+@import "new/sidebar";
+@import "new/transitions";
 
 @import "old/nav";
 @import "old/buttons";
