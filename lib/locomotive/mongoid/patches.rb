@@ -99,6 +99,14 @@ module Mongoid #:nodoc:
   end
 
   class Criteria
+    def first!
+      self.first.tap do |model|
+        if model.nil?
+          raise Mongoid::Errors::DocumentNotFound.new(self.klass, self.selector)
+        end
+      end
+    end
+
     def without_sorting
       clone.tap { |crit| crit.options.delete(:sort) }
     end
