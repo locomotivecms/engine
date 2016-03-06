@@ -17,6 +17,11 @@ body.live-editing {
       }
     }
   }
+  .simple_form.rte-expanded {
+    fieldset.inputs.expanded {
+      position: absolute !important;
+    }
+  }
 }
 
 .embed-page {
