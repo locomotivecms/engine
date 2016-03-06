@@ -3,13 +3,15 @@
 // =============================================================================
 
 .drawer {
-  position: fixed;
-  top: 52px;
-  right: 0;
+  position: absolute;
+  top: 0;
+  right: -100%;
   bottom: 0;
+  left: 100%;
   z-index: 105;
   width: 100%;
-  background: $drawer_background_color;
+  background: $white;
+  transition: all $base-transition-speed ease-in-out;
   .header-row {
     padding: 15px 0;
   }
@@ -17,24 +19,21 @@
     margin: 0;
     font-family: $font-family-sans-serif;
     font-size: 22px;
-    color: $drawer_title_color;
+    color: $gray-darkest;
   }
   > .close-button {
     position: absolute;
     top: 0;
     right: 0;
     z-index: 991;
-    width: $control_window_button_size;
-    height: $control_window_button_size;
+    width: 30px;
+    height: 30px;
     font-size: 15px;
-    line-height: $control_window_button_size;
-    color: $control_window_button_color;
+    line-height: 30px;
+    color: $white;
     text-align: center;
     cursor: pointer;
-    background: $control_window_background_color;
-  }
-  &.small-width-drawer {
-    width: 560px;
+    background: $gray-darker;
   }
   .inner {
     height: 100%;
@@ -42,4 +41,9 @@
       padding: 20px 0 10px 0;
     }
   }
+}
+
+.drawer-open {
+  right: 0;
+  left: 0;
 }
