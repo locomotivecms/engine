@@ -2,7 +2,7 @@ Locomotive.Views.EditableElements ||= {}
 
 class Locomotive.Views.EditableElements.IndexView extends Backbone.View
 
-  el: '.wrapper'
+  el: '.content-main'
 
   events:
     'click .content .expand-button': 'expand_preview'
