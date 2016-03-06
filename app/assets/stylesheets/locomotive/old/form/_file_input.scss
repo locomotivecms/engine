@@ -1,5 +1,4 @@
 .simple_form {
-
   fieldset .input.file {
     .form-wrapper {
       padding: 6px $padding-base-horizontal 7px $padding-base-horizontal;
@@ -9,30 +8,33 @@
         overflow: hidden;
 
         input[type=file] {
-          cursor: inherit;
-          display: block;
-          filter: alpha(opacity=0);
-          opacity: 0;
           position: absolute;
-          right: 0;
           top: 0;
-          height: 1px;
+          right: 0;
+          display: block;
           width: 1px;
+          height: 1px;
           text-indent: -99999;
+          cursor: inherit;
+          opacity: 0;
+          filter: alpha(opacity=0);
         }
 
-        .current-file, .new-file {
+        .current-file,
+        .new-file {
           img {
-            border: 2px solid $form_input_control_border_color;
             width: 29px;
             height: 29px;
             margin-right: 5px;
+            border: 2px solid $form_input_control_border_color;
           }
         }
 
-        .current-file, .new-file, .no-file {
-          line-height: 30px;
+        .current-file,
+        .new-file,
+        .no-file {
           height: 30px;
+          line-height: 30px;
         }
       }
 
@@ -46,22 +48,15 @@
     }
 
     &.mark-as-removed {
-
       .current-file {
-        @include opacity(0.3);
-        img {
-
-        }
-
+        @include opacity(.3);
         text-decoration: line-through;
       }
-
     }
   }
 }
 
 @media (max-width: $screen-sm-min) {
-
   .simple_form {
     fieldset .input.file {
       .form-wrapper {
@@ -76,5 +71,4 @@
       }
     }
   }
-
 }

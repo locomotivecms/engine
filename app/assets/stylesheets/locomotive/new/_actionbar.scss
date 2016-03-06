@@ -11,6 +11,7 @@
   width: 450px;
   background: $white;
   border-right: 1px solid $border-color-base;
+  transition: left $base-transition-speed linear;
   .scrollable {
     margin-top: 173px;
     &.no-editable-elements {
@@ -43,5 +44,31 @@
   }
   .editable-elements fieldset:first-child {
     padding-top: 0;
+  }
+}
+
+.actionbar-trigger {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 105;
+  width: 30px;
+  height: 30px;
+  padding-top: 5px;
+  text-align: center;
+  cursor: pointer;
+  background: $gray-darker;
+  transition: all $base-transition-speed linear;
+  .fa {
+    color: $white;
+  }
+  &:hover {
+    background: $gray-darkest;
+  }
+}
+
+@media (max-width: $screen-sm-min) {
+  .actionbar {
+    box-shadow: 1px 0 10px rgba($black, .2);
   }
 }

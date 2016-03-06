@@ -19,7 +19,10 @@ html xmlns='http://www.w3.org/1999/xhtml'
           = yield :foot
           
       .actionbar
-        = yield
+        .actionbar-trigger
+          i.fa.fa-chevron-left
+        .content
+          = yield
       
       .content-preview.preview
         .scrollable
