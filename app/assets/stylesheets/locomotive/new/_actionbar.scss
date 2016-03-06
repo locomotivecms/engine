@@ -5,18 +5,12 @@
 .actionbar {
   position: absolute;
   top: 0;
-  right: 0;
   bottom: 0;
+  left: 0;
   z-index: 100;
-  width: 560px;
+  width: 450px;
   background: $white;
-  border-left: 1px solid $border-color-base;
-  transition: right $base-transition-speed linear;
-  .close-button,
-  .expand-button {
-    @include control-window-button;
-    z-index: 995;
-  }
+  border-right: 1px solid $border-color-base;
   .scrollable {
     margin-top: 173px;
     &.no-editable-elements {
@@ -33,9 +27,9 @@
     p {
       margin-bottom: 0;
       line-height: 30px;
-      color: $main_title_color;
+      color: $gray-darkest;
       a {
-        color: $main_title_color;
+        color: $gray-darkest;
       }
       button {
         margin-left: 20px;

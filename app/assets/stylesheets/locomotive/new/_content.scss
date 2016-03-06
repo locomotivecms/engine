@@ -1,0 +1,50 @@
+// =============================================================================
+// Content
+// =============================================================================
+
+.content-main {
+  position: fixed;
+  top: 52px;
+  right: 0;
+  bottom: 0;
+  left: 300px;
+  transition: left $base-transition-speed linear, right $base-transition-speed linear;
+}
+
+.content {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transition: left $base-transition-speed linear;
+}
+
+.content-overlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 110;
+  max-width: 0;
+  overflow: hidden;
+  background: rgba($black, .4);
+  opacity: 0;
+  transition: opacity $base-transition-speed linear;
+}
+
+.content-preview {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 450px;
+  z-index: 90;
+}
+
+@media (max-width: $screen-md-min) {
+  .content-main {
+    left: 0;
+  }
+}

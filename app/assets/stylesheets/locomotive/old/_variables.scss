@@ -73,6 +73,7 @@ $btn-success-border: darken($btn-success-bg, 10%) !default;
 
 $input-border: #fff !default;
 $input-height-base: ($line-height-computed + ($padding-base-vertical * 2) + 4) !default;
+$input-color: $gray-dark;
 
 // Media queries breakpoints
 

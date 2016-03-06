@@ -3,10 +3,13 @@
 // =============================================================================
 
 .drawer {
+  position: fixed;
+  top: 52px;
+  right: 0;
+  bottom: 0;
+  z-index: 105;
+  width: 100%;
   background: $drawer_background_color;
-  .inner > .row:first-child {
-    padding: 20px 0 10px 0;
-  }
   .header-row {
     padding: 15px 0;
   }
@@ -17,6 +20,26 @@
     color: $drawer_title_color;
   }
   > .close-button {
-    @include control-window-button;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 991;
+    width: $control_window_button_size;
+    height: $control_window_button_size;
+    font-size: 15px;
+    line-height: $control_window_button_size;
+    color: $control_window_button_color;
+    text-align: center;
+    cursor: pointer;
+    background: $control_window_background_color;
+  }
+  &.small-width-drawer {
+    width: 560px;
+  }
+  .inner {
+    height: 100%;
+    > .row:first-child {
+      padding: 20px 0 10px 0;
+    }
   }
 }
