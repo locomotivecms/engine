@@ -52,6 +52,22 @@
   }
 }
 
+.actionbar-closed {
+  .actionbar {
+    left: -450px;
+    box-shadow: 0;
+  }
+  .actionbar-trigger {
+    right: -30px;
+    i {
+      transform: rotate(180deg);
+    }
+  }
+  .content-preview {
+    left: 0;
+  }
+}
+
 @media (max-width: $screen-md-min) {
   .sidebar-open {
     .content-main,
