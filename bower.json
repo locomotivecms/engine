@@ -22,7 +22,8 @@
     "backbone": "~1.2.3",
     "bootstrap-tagsinput": "~0.7.1",
     "select2":"~4.0.1",
-    "select2-bootstrap-css":"~1.4.6"
+    "select2-bootstrap-css":"~1.4.6",
+    "eonasdan-bootstrap-datetimepicker":"~4.17.37"
   },
   "install" : {
     "path" : "vendor/assets/components/locomotive",
@@ -34,6 +35,23 @@
           },
           {
             "vendor/assets/components/locomotive_sources/select2/dist/css/select2.css":"select2.css"
+          }
+        ]
+      },
+      "eonasdan-bootstrap-datetimepicker": {
+        "mapping": [
+          {
+            "vendor/assets/components/locomotive_sources/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js":"bootstrap-datetimepicker.js"
+          },
+          {
+            "vendor/assets/components/locomotive_sources/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css":"bootstrap-datetimepicker.css"
+          }
+        ]
+      },
+      "moment-timezone": {
+        "mapping": [
+          {
+            "vendor/assets/components/locomotive_sources/moment-timezone/builds/moment-timezone-with-data-2010-2020.min.js": "moment-timezone.js"
           }
         ]
       }

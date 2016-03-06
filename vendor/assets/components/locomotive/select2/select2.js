@@ -1737,9 +1737,6 @@ S2.define('select2/selection/allowClear',[
 
     var $clear = this.$selection.find('.select2-selection__clear');
 
-    console.log($clear);
-    console.log($clear.length);
-
     // Ignore the event if nothing has been selected
     if ($clear.length === 0) {
       return;

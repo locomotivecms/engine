@@ -12,6 +12,9 @@
 //= require backbone/backbone
 //= require bootstrap-tagsinput/bootstrap-tagsinput
 //= require select2/select2
+//= require moment/moment
+//= require moment-timezone/moment-timezone
+//= require eonasdan-bootstrap-datetimepicker/bootstrap-datetimepicker
 //= require codemirror
 //= require codemirror/modes/markdown
 //= require nprogress

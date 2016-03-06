@@ -25,8 +25,8 @@ class Locomotive.Views.Inputs.Rte.LinkView extends Backbone.View
   create_popover: ->
     @$content.show()
     @$link.popover
-      container:  '.content'
-      placement:  'left'
+      container:  '.editable-elements'
+      placement:  'right'
       content:    @$content
       html:       true
       trigger:    'manual'
