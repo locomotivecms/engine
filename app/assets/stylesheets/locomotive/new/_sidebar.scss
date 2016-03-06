@@ -9,6 +9,7 @@
   left: 0;
   z-index: 100;
   width: 300px;
+  overflow: auto;
   background: $gray-darkest;
   transition: left $base-transition-speed linear;
 }
