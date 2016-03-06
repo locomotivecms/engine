@@ -2,7 +2,7 @@ Locomotive.Views.Shared ||= {}
 
 class Locomotive.Views.Shared.DrawerView extends Backbone.View
 
-  el: 'section.drawer'
+  el: '.content-main > .drawer'
 
   delays:
     fade:   50 # see the _transitions.css.scss file
@@ -16,7 +16,7 @@ class Locomotive.Views.Shared.DrawerView extends Backbone.View
     super
 
   open: (url, view_klass, options = {}) ->
-    console.log "[DrawerView] open, stack(#{@stack.length}) opened = #{$('body').hasClass('drawer-opened')}, #{url}"
+    console.log "[DrawerView] open, stack(#{@stack.length}) opened = #{$(@el).hasClass('drawer-open')}, #{url}"
     entry = { url: url, view_klass: view_klass, options: options }
     @push(entry)
 
@@ -64,7 +64,8 @@ class Locomotive.Views.Shared.DrawerView extends Backbone.View
 
   hide: (entry, callback) ->
     if @stack.length == 0
-      $('body').removeClass('drawer-opened')
+      # $('body').removeClass('drawer-opened')
+      $(@el).removeClass('drawer-open')
     else
       entry.view.$el.addClass('fadeout') if entry?
 
@@ -84,9 +85,9 @@ class Locomotive.Views.Shared.DrawerView extends Backbone.View
 
   container: (preserve) ->
     if preserve? && preserve
-      @$('> .inner').find('> div')
+      @$('> .content-inner').find('> div')
     else
-      @$('> .inner').html('<div></div>').find('> div')
+      @$('> .content-inner').html('<div></div>').find('> div')
 
   _show: (entry, container) ->
     _klass      = entry.view_klass
@@ -95,4 +96,5 @@ class Locomotive.Views.Shared.DrawerView extends Backbone.View
     entry.view = new _klass(attributes)
     entry.view.render()
 
-    $('body').addClass('drawer-opened')
+    # $('body').addClass('drawer-opened')
+    $(@el).addClass('drawer-open')

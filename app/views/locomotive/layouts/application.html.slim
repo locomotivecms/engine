@@ -10,6 +10,14 @@ html xmlns='http://www.w3.org/1999/xhtml'
 
     .content-main
       .content-overlay
+
+      .drawer
+        .close-button
+          i.fa.fa-times
+        .content-inner
+          = yield :drawer
+          = yield :foot
+
       .content
         .scrollable
           .container-fluid.main role='main'
@@ -26,14 +34,14 @@ html xmlns='http://www.w3.org/1999/xhtml'
 
             = yield
 
-      .drawer
-        .close-button
-          i.fa.fa-times
-        .inner
-          .scrollable
-            .container-fluid
-              .row
-                .col-md-12
-                  h1 Right sidebar
+      / .drawer
+      /   .close-button
+      /     i.fa.fa-times
+      /   .content-inner
+      /     .scrollable
+      /       .container-fluid
+      /         .row
+      /           .col-md-12
+      /             h1 Right sidebar
 
       = yield :foot
