@@ -14,7 +14,7 @@ Locomotive.configure do |config|
     per_page: 10
   }
 
-  # default locale (for now, only en, de, fr, pl, pt, pt-BR, it, nl, nb, ja, cs, bg and sk are supported)
+  # default locale (for now, only en, de, fr, pl, pt, pt-BR, it, nl, nb, ja, cs, bg, sk and sv are supported)
   config.default_locale = :en
 
   # locales allowed for the back-office UI
