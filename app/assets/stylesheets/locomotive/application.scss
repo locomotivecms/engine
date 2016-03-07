@@ -77,8 +77,8 @@
 
 // Layout
 
-@import "new/brand";
 @import "new/actionbar";
+@import "new/brand";
 @import "new/content";
 @import "new/drawer";
 @import "old/main";
@@ -103,6 +103,7 @@
 @import "old/form/document_picker";
 @import "old/form/link";
 @import "old/form/tags";
+@import "new/files";
 
 @import "old/search_bars";
 @import "new/notify";

@@ -2,6 +2,8 @@
 // Drawer
 // =============================================================================
 
+// Wrapper class for the asset drawer.
+
 .drawer {
   position: absolute;
   top: 0;
@@ -38,10 +40,12 @@
   .inner {
     height: 100%;
     > .row:first-child {
-      padding: 20px 0 10px 0;
+      padding: 20px 0 10px;
     }
   }
 }
+
+// Class that opens the asset drawer.
 
 .drawer-open {
   right: 0;

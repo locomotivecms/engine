@@ -93,6 +93,11 @@
   }
 }
 
+// Backend navigation
+// =============================================================================
+
+// Specific navigation wrapper for the backend.
+
 .navigation-app {
   left: 300px;
   z-index: 100;
@@ -100,6 +105,8 @@
   background: $brand-primary;
   transition: all $base-transition-speed linear;
 }
+
+// Navigation sidebar trigger.
 
 .navigation-trigger {
   position: relative;
@@ -126,6 +133,8 @@
   }
 }
 
+// Middle link in the navigation.
+
 .navigation-middle {
   position: absolute;
   top: 0;
@@ -151,6 +160,9 @@
     }
   }
 }
+
+// Responsive
+// =============================================================================
 
 @media (max-width: $screen-md-min) {
   .navigation-app {

@@ -38,5 +38,3 @@ class Locomotive.Views.Shared.SidebarView extends Backbone.View
     @$('a[data-toggle="collapse"].is-active').each ->
       target_id = $(this).attr('href')
       $(target_id).collapse('show')
-
-

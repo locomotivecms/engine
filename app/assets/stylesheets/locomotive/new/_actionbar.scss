@@ -2,13 +2,17 @@
 // Actionbar
 // =============================================================================
 
+// The actionbar wrapper class. Is also used in _transitions.scss for closing
+// and opening animations.
+
 .actionbar {
   position: absolute;
   top: 0;
   bottom: 0;
   left: 0;
   z-index: 100;
-  width: 450px;
+  width: 100%;
+  max-width: 500px;
   background: $white;
   border-right: 1px solid $border-color-base;
   transition: left $base-transition-speed linear;
@@ -47,6 +51,8 @@
   }
 }
 
+// The trigger button on the top right side in the actionbar.
+
 .actionbar-trigger {
   position: absolute;
   top: 0;
@@ -66,6 +72,9 @@
     background: $gray-darkest;
   }
 }
+
+// Responsive
+// =============================================================================
 
 @media (max-width: $screen-sm-min) {
   .actionbar {

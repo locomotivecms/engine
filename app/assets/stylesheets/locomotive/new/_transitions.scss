@@ -2,6 +2,8 @@
 // Transitions
 // =============================================================================
 
+// Close sidebar.
+
 .sidebar-closed {
   .sidebar {
     left: -300px;
@@ -25,6 +27,8 @@
     left: 0;
   }
 }
+
+// Open sidebar.
 
 .sidebar-open {
   .sidebar {
@@ -52,9 +56,11 @@
   }
 }
 
+// Close actionbar by adding this class. Removing it will open it back.
+
 .actionbar-closed {
   .actionbar {
-    left: -450px;
+    left: -500px;
     box-shadow: 0;
   }
   .actionbar-trigger {
@@ -67,6 +73,9 @@
     left: 0;
   }
 }
+
+// Responsive
+// =============================================================================
 
 @media (max-width: $screen-md-min) {
   .sidebar-open {

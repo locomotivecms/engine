@@ -7,6 +7,7 @@ describe 'A site with content entries' do
   describe 'content types with relationships' do
 
     it 'creates an article and attach a photo to it', js: true do
+      click_link 'Models'
       click_link 'Article'
       click_link 'new entry'
       fill_in 'Title', with: 'Hello world'
@@ -24,6 +25,7 @@ describe 'A site with content entries' do
   describe 'content type with public_submission enabled' do
 
     it 'adds accounts', js: true do
+      click_link 'Models'
       click_link 'Messages'
       click_link 'Edit notification settings'
       expect(page).to have_content('NOTIFIED ACCOUNTS')

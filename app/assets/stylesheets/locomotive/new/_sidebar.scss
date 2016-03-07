@@ -2,6 +2,8 @@
 // Sidebar
 // =============================================================================
 
+// Sidebar wrapper class.
+
 .sidebar {
   position: fixed;
   top: 0;
@@ -14,6 +16,8 @@
   transition: left $base-transition-speed linear;
 }
 
+// Sidebar top logo in the sidebar.
+
 .sidebar-logo {
   display: block;
   padding: 16px 20px;
@@ -23,6 +27,8 @@
     height: 18px;
   }
 }
+
+// Sidebar link wrapper class.
 
 .sidebar-link {
   display: block;
@@ -66,11 +72,15 @@
   }
 }
 
+// Draggable placeholder background when dragging over potential positions.
+
 .sortable-placeholder {
   display: block;
   height: 20px;
   background: $gray-darkest;
 }
+
+// Sidebar main link list.
 
 .sidebar-list {
   padding: 0;
@@ -141,6 +151,8 @@
   }
 }
 
+// Sidebar sublist for links under each sidebar link.
+
 .sidebar-sublist {
   display: block;
   padding: 5px 0 0 15px;
@@ -154,6 +166,9 @@
     }
   }
 }
+
+// Responsive
+// =============================================================================
 
 @media (max-width: $screen-md-min) {
   .sidebar {
