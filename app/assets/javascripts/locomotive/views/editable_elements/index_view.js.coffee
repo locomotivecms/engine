@@ -6,9 +6,10 @@ class Locomotive.Views.EditableElements.IndexView extends Backbone.View
 
   events:
     'click .actionbar .actionbar-trigger': 'toggle_preview'
+    'click .content-overlay': 'close_sidebar'
 
   initialize: ->
-    _.bindAll(@, 'shrink_preview')
+    _.bindAll(@, 'shrink_preview', 'close_sidebar')
 
     view_options = if $('body').hasClass('live-editing') then {} else { el: '.main' }
 
@@ -31,6 +32,9 @@ class Locomotive.Views.EditableElements.IndexView extends Backbone.View
 
   shrink_preview: (event) ->
     $(@el).removeClass('actionbar-closed')
+
+  close_sidebar: (event) ->
+    PubSub.publish 'sidebar.close'
 
   replace_edit_view: (url) ->
     @views[0].remove()

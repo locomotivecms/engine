@@ -8,9 +8,13 @@ class Locomotive.Views.ApplicationView extends Locomotive.Views.SimpleView
     'click .navigation-app .navigation-trigger': 'toggle_sidebar'
 
   initialize: ->
+    _.bindAll(@, 'toggle_sidebar')
+
     @header_view  = new Locomotive.Views.Shared.HeaderView()
     @sidebar_view = new Locomotive.Views.Shared.SidebarView()
     @drawer_view  = new Locomotive.Views.Shared.DrawerView()
+
+    @tokens = [PubSub.subscribe 'sidebar.close', @toggle_sidebar]
 
     window.unsaved_content = false
 
@@ -49,3 +53,7 @@ class Locomotive.Views.ApplicationView extends Locomotive.Views.SimpleView
     $(window).bind 'beforeunload', ->
       if window.unsaved_content
         return $('meta[name=unsaved-content-warning]').attr('content')
+
+  remove: ->
+    super()
+    _.each @tokens, (token) -> PubSub.unsubscribe(token)
