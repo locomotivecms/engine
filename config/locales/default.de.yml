@@ -1,0 +1,13 @@
+de:
+  date:
+    formats:
+      default: "%d.%m.%Y"
+    today_at: "heute um"
+    yesterday_at: "gestern um"
+  time:
+    formats:
+      default: "%d.%m.%Y"
+      time: "%H:%M"
+  pagination:
+    previous: "&laquo; Zurück"
+    next: "Weiter &raquo;"

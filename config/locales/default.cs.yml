@@ -1,0 +1,13 @@
+cs:
+  date:
+    formats:
+      default: "%m/%d/%Y"
+    today_at: "dnes v"
+    yesterday_at: "včera v"
+  time:
+    formats:
+      default: "%m/%d/%Y %H:%M"
+      time: "%H:%M"
+  pagination:
+    previous: "&laquo; Předchozí"
+    next: "Další &raquo;"

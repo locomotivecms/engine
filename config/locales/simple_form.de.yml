@@ -1,0 +1,36 @@
+de:
+  simple_form:
+    titles:
+      locomotive:
+        account:
+          information: Hauptkonto
+          api: API
+        site:
+          information: Hauptseite
+          seo: SEO
+          advanced: Erweitert
+        page:
+          content: Inhalt
+          settings: Einstelllungen
+          seo: SEO
+        content_entry:
+          content: Inhalt
+          advanced: Erweitert
+          seo: SEO
+    labels:
+      locomotive:
+        content_entry:
+          _slug: Permalink
+          _visible: Sichtbar
+        account:
+          api_key: 'API Schlüssel '
+    buttons:
+      defaults:
+        locomotive:
+          cancel: Abbrechen
+          delete: Löschen
+      locomotive:
+        image_resize_form:
+          submit: Größe ändern
+        page:
+          delete: Löschen

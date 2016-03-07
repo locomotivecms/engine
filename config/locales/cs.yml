@@ -1,0 +1,318 @@
+cs:
+  locomotive:
+    locales:
+      en: Angličtina
+      de: Němčina
+      fr: Francouzština
+      pl: Polština
+      pt: Portugalština
+      pt-BR: "Brazilská Portugalština"
+      it: Italština
+      nl: Holandština
+      nb: Norština
+      es: Španělština
+      ru: Ruština
+      et: Estonština
+      ja: Japonština
+      zh-CN: Čínština
+      cs: Čeština
+      bg: Bulharština
+      sk: Slovenština
+      sr: Srbština
+    messages:
+      confirm: Jsi si jistý?
+    shared:
+      header:
+        welcome: Vítejte, %{name}
+        sites: Mé stránky
+        account: Nastavení účtu
+        see: Viz webová stránka
+        help: Pomoc
+        logout: Odhlásit se
+      sidebar:
+        dashboard: Palubní deska
+        assets: Položky
+        settings: Obecné nastavení
+        developers: Vývojáři
+        content_types:
+          title: Modely
+        translations: Překlady
+      list:
+        untranslated: nepřeloženo
+        created_at: "Vytvořeno před %{distance}"
+        created_by: "Vytvořeno před %{distance} vložil %{who}"
+        updated_at: "Poslední změna před %{distance}"
+        updated_by: "Poslední změna před %{distance} vložil %{who}"
+      rte:
+        toolbar:
+          table:
+            merge: Spojit
+            insert_row_before: Vložit řádek před
+            insert_row_after: Vložit řádek po
+            insert_col_before: Vložit sloupec před
+            insert_col_after: Vložit sloupec po
+            delete_row: Smazat řádek
+            delete_col: Smazat sloupec
+    errors:
+      '500':
+        title: Chyba aplikace
+      '404':
+        title: Stránka nenalezena
+        message: "Požadovaná stránka neexistuje."
+      no_site:
+        title: Webová stránka nebyla nalezena
+        next: "Další &rarr;"
+        message:
+          create_account: "Prosím, vytvořte si účet a potom vytvořte webové stránky."
+          add_domain: "Přidat <strong>%{host}</ strong> doménu do seznamu domén z jedné z vašich webových stránek."
+          sign_in: "Prosím, přihlaste se jako první. Potom přidejte <strong>%{host}</ strong> doménu do seznamu domén z jedné z vašich webových stránek."
+    notifications:
+      new_content_entry:
+        subject: "[%{domain}][%{type}] nový příspěvek"
+        title: "Ahoj %{name}, jen aby jste věděli, nová instance byla vytvořena %{date} pro webovou stránku <b>% {domain}</ b>"
+        type: "Model: %{type}"
+    activity:
+      site:
+        created: 'webová stránka vytvořena '
+      page:
+        created: 'stránka %{page} vytvořena '
+        updated: 'stránka %{page} aktualizována  '
+        destroyed: 'stránka %{page} vymazána'
+        sorted: 'tříděné stránky'
+      editable_element:
+        updated_bulk: 'změněn obsah z %{pages}'
+      content_entry:
+        created: 'přidán %{entry} do %{content_type}'
+        created_public: 'přidán %{entry} do %{content_type} z veřejného formuláře'
+        updated: 'aktualizováno %{entry} z %{content_type}'
+        destroyed: 'vymazáno %{entry} z %{content_type}'
+        sorted: 'řazeno %{content_type}'
+      content_asset:
+        created_bulk: 'nahráno %{count} položka(y)'
+        destroyed: 'vymazána %{name} položka'
+      membership:
+        created: 'přidán %{name} do webových stránek'
+    pagination:
+      first: "&laquo;"
+      last: "&raquo;"
+      previous: "&lsaquo;"
+      next: "&rsaquo;"
+      truncate: "&hellip;"
+    custom_fields:
+      select_options:
+        edit:
+          title: "%{type} &mdash; nastavení možností "
+          back: "Zpět na příspěvek"
+        option:
+          edit: Editovat
+          apply: Aplikovat
+          cancel: Zrušit
+      types:
+        belongs_to:
+          edit: Editovat
+          placeholder: "Vyberte %{name}"
+          searching: Vyhledávání...
+          no_matches: Nenalezena žádná shoda
+          too_short: Zadejte 1 nebo více znaků
+        many_to_many:
+          placeholder: "Vyberte jeden z %{name}"
+          searching: Vyhledávání...
+          no_matches: Nenalezena žádná shoda
+          too_short: Zadejte 1 nebo více znaků
+        select:
+          edit: Možnosti editace
+        file:
+          delete_file: Smazat soubor
+        has_many:
+          new_label: Přidat nový
+      form:
+        required: Vyžadováno
+        default_label: Název pole
+        select_options:
+          ask_name: "Zadejte štítek volby"
+    dashboard:
+      show:
+        title: 'Palubní deska'
+      url:
+        title: "URL Vašich webových stránek:"
+        visit: 'Navštívit'
+        change_domain: 'Použijte svůj vlastní název domény'
+      activity:
+        title: Aktivita
+        unknown_account: Někdo
+        load_more: Načítám více
+        loading_activity_feed: Načítám...
+    sessions:
+      new:
+        email: "E-mail"
+        link: "Zapomněl jsem heslo"
+        password: "Heslo"
+        sign_up: Nemáte účet?
+        submit: Přihlásit
+        title: Přihlásit
+    registrations:
+      new:
+        confirm_password: Potvrďte heslo
+        sign_in: Máte již účet?
+        submit: Registrovat
+        title: Registrovat
+    passwords:
+      new:
+        description: "Zadejte Váš e-mail níže a obdržíte e-mail, instrukce o tom, jak obnovit heslo."
+        link: "Vraťte se zpět na přihlašovací stránku"
+        email: "Váš e-mail"
+        submit: "Odeslat"
+        title: "Zapomněli jste heslo"
+      edit:
+        description: "Zadejte Vaše nové heslo níže."
+        link: "Vraťte se zpět na přihlašovací stránku"
+        password: "Vaše nové heslo"
+        password_confirmation: "Potvrďte heslo"
+        submit: "Aktualizovat heslo"
+        title: "Obnovit heslo"
+    pages:
+      index:
+        title: 'Stránky'
+        new: 'Nová stránka'
+        list_content_entries: "Seznam %{name}"
+        new_content_entry: "Nový %{name}"
+      new:
+        title: Nová stránka
+        help: "Vyplňte prosím níže uvedený formulář k vytvoření své stránky. Buďte opatrní, ve výchozím nastavení stránka není publikována."
+      edit:
+        title: "%{title} &mdash; <small>%{fullpath}</small>"
+      form:
+        no_layout: Použijte rozvržení z mateřské stránky
+        redirect_type:
+          permanent: "Trvalé (301)"
+          temporary: "Dočasné (302)"
+    editable_elements:
+      index:
+        redirection_error: "Úprava Ne-Locomotive stránky není povoleno."
+        iframe:
+          buttons:
+            edit: editovat
+      index_without_preview:
+        title: "%{title} &mdash; <small>%{fullpath}</small>"
+      edit:
+        settings_link: 'Nastavení'
+        no_editable_elements: 'Nebyly nalezeny žádné editovatelné prvky'
+        parsing_error: "<b>Je nám líto, ale nemohli jsme analyzovat šablonu stránky.</b><br/>Ujistěte se, že Vaše šablona nejprve pracuje s Wagon."
+        blocks:
+          all: Vše
+          unknown: Neznámý
+      form:
+        model:
+          buttons:
+            list: Spravovat
+            edit: Editovat
+    sites:
+      index:
+        description: "Všechny webové stránky, ke kterým máte přístup naleznete níže. Klikněte na jednu a budete přesměrováni do sekce správy obsahu tohoto webu."
+        new: Přidat nový web
+        title: Mé stránky
+      new:
+        description: "Vyplňte formulář níže a klepněte na tlačítko odeslat. Po úspěšném nastavení se vytvoří nový web."
+        go_back: Vrátit se
+        submit: Vytvořit web
+        title: Vytvořit nový web
+      site:
+        no_domain: Zatím žádná doména
+    current_site:
+      edit:
+        title: Úprava aktuální  webové stránky
+      form:
+        main:
+          new_membership: "Přidat účet"
+        advanced:
+          destroy: "Smazat tuto stránku"
+          confirm_destroy: "Potvrďte prosím napsáním název webové stránky v následujícím vstupu"
+    memberships:
+      roles:
+        admin: Správce
+        designer: Návrhář
+        author: Autor
+      new:
+        title: Nové členství
+        help: "Uveďte prosím e-mailový účet pro přidání. Pokud neexistuje, budete přesměrováni na formulář vytvoření účtu."
+        back: "Zpět k nastavení webu"
+      edit:
+        title: "Upravit členství pro <b>%{name}</b>"
+        back: "Zpět k nastavení webu"
+    accounts:
+      new:
+        title: Nový účet
+        help: "Vyplňte formulář níže přidat nový účet."
+    my_account:
+      edit:
+        title: Upravit můj účet
+      form:
+        api:
+          api_key: "Používá Wagon pro nasazení webové stránky (zkontrolujte soubor config/deploy.yml Vašich Wagon stránek)."
+    translations:
+      untranslated: " Nepřeložené lokalizace: %{list}"
+      index:
+        title: Překlady
+        no_items: "Nenalezli jsme žádné překlady."
+        search_placeholder: "Zadejte klíč, nebo překlad"
+        help: "Přeložit všechny příspěvky s oranžovou (částečně lokalizované) nebo červenou (není lokalizován) tečkou."
+        filter_by:
+          all: Vše
+          done: Přeloženo
+          partially: Částečně přeloženo
+          none: Není přeloženo
+      edit:
+        title: "Překlady &mdash; editovat %{key}"
+      form:
+        not_translated: "Není přeloženo"
+    content_assets:
+      index:
+        title: "Položky"
+        upload: Nahrát soubory
+      edit_in_drawer:
+        buttons:
+          resize: "Změna velikosti"
+          crop: "Oříznutí"
+          apply: "Aplikovat"
+      dropzone:
+        instructions: "<strong>Přetáhněte soubory z počítače sem.</strong><br/>Můžete také"
+        browse: "vyhledat soubor"
+      list:
+        no_items: "Nejsou žádná média v tuto chvíli."
+        buttons:
+          select: "Vybrat"
+          edit: "Editovat"
+      nav:
+        types:
+          all: Vše
+          pdf: PDF
+          image: obrázky
+          media: multimédia
+          others: ostatní
+      search_form:
+        placeholder: Vyhledávání podle názvu souboru
+    public_submission_accounts:
+      edit:
+        title: "%{name} &mdash; Nastavení oznámení"
+    content_entries:
+      index:
+        title: '%{type}'
+        download: stáhnout příspěvky
+        new: nový příspěvek
+        edit_notification_settings: Upravit nastavení oznámení
+        search_placeholder: "Zadejte hledané klíčové slovo zde"
+        group_by:
+          all: Vše
+      list:
+        no_items: "Nejsou zde žádné příspěvky v tuto chvíli. Stačí kliknout <a href=\"%{url}\">zde</a> a vytvořit první."
+      new:
+        title: '%{type} &mdash; nový příspěvek'
+      edit:
+        title: '%{type} &mdash; editování příspěvku'
+      shared:
+        back: '&larr; Zpět na seznam'
+    developers_documentation:
+      show:
+        title: Vývojáři
+        wagon: Wagon
+        api: API
