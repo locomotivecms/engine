@@ -17,8 +17,8 @@ GIT
 
 GIT
   remote: git://github.com/locomotivecms/steam.git
-  revision: 9c95e13676445fd51947ca2db4598d01e6620f78
-  ref: 9c95e13
+  revision: 64fffd58f1440e981b7bb89773d068aafe66897e
+  ref: 64fffd5
   specs:
     locomotivecms_steam (1.0.1)
       RedCloth (~> 4.2.9)
