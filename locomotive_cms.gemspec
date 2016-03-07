@@ -16,7 +16,7 @@ Gem::Specification.new do |s|
   s.summary     = 'A platform to create, publish and edit sites'
   s.description = 'Locomotive is designed to save your time and help you focus on what matters: front-end technology, standard development process and no learning time for your client.'
 
-  s.add_dependency 'rake',                            '~> 10.4.2'
+  s.add_dependency 'rake',                            '~> 10.5.0'
 
   s.add_dependency 'rails',                           '~> 4.2.5.1'
 
@@ -24,9 +24,9 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'devise',                          '~> 3.5.1'
   s.add_dependency 'devise-encryptable',              '~> 0.2.0'
-  s.add_dependency 'simple_token_authentication',     '~> 1.11.0'
+  s.add_dependency 'simple_token_authentication',     '~> 1.12.0'
 
-  s.add_dependency 'pundit',                          '~> 1.0.0'
+  s.add_dependency 'pundit',                          '~> 1.1.0'
 
   s.add_dependency 'mongoid',                         '~> 5.1.1'
   s.add_dependency 'mongoid-tree',                    '~> 2.0.1'
@@ -42,20 +42,19 @@ Gem::Specification.new do |s|
   s.add_dependency 'responders',                      '~> 2.1.0'
   s.add_dependency 'rails-i18n',                      '~> 4.0.6'
 
-  s.add_dependency 'jquery-rails',                    '~> 4.0.3'
+  s.add_dependency 'jquery-rails',                    '~> 4.1.0'
   s.add_dependency 'jquery-ui-rails',                 '~> 5.0.3'
   s.add_dependency 'codemirror-rails',                '~> 5.6'
   s.add_dependency 'flash_cookie_session',            '~> 1.1.1'
   s.add_dependency 'bootstrap-sass',                  '~> 3.3.6'
-  s.add_dependency 'autoprefixer-rails',              '~> 6.2.3'
+  s.add_dependency 'autoprefixer-rails',              '~> 6.3.3.1'
 
   s.add_dependency 'font-awesome-sass',               '~> 4.5.0'
   s.add_dependency 'nprogress-rails',                 '~> 0.1.6.7'
 
   s.add_dependency 'highline',                        '~> 1.7.1'
-  s.add_dependency 'stringex',                        '~> 2.5.2'
   s.add_dependency 'bazaar',                          '~> 0.0.2'
-  s.add_dependency 'json-schema',                     '~> 2.5.2'
+  s.add_dependency 'json-schema',                     '~> 2.6.1'
 
   s.add_dependency 'carrierwave-mongoid',             '~> 0.8.1'
   s.add_dependency 'dragonfly',                       '~> 1.0.7'
