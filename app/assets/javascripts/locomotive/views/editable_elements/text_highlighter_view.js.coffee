@@ -18,6 +18,8 @@ class Locomotive.Views.EditableElements.TextHighLighterView extends Backbone.Vie
   edit: (event) ->
     event.stopPropagation() & event.preventDefault()
 
+    @hide()
+
     PubSub.publish 'editable_elements.highlighted_text', element_id: @highlighted_element_id
 
   build: ->
@@ -47,8 +49,11 @@ class Locomotive.Views.EditableElements.TextHighLighterView extends Backbone.Vie
 
   hide: (event) ->
     @hiding_timeout = setTimeout ( =>
-      @$('.locomotive-highlighter-text').hide()
+      @_hide()
     ), 600
+
+  _hide: ->
+    @$('.locomotive-highlighter-text').hide()
 
   clear_hiding_timeout: ->
     # stop the process of hiding the selectors
