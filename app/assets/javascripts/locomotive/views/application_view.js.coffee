@@ -31,10 +31,7 @@ class Locomotive.Views.ApplicationView extends Locomotive.Views.SimpleView
     @register_warning_if_unsaved_content()
 
   toggle_sidebar: (event) ->
-    if $('body').hasClass('sidebar-open')
-      $('body').removeClass('sidebar-open').addClass('sidebar-closed')
-    else
-      $('body').removeClass('sidebar-closed').addClass('sidebar-open')
+    @sidebar_view.toggle_sidebar()
 
   automatic_max_height: ->
     $(window).on 'resize', =>
