@@ -1,0 +1,152 @@
+cs:
+  simple_form:
+    blank_required_fields: "Nemáte vyplněny všechny požadované vstupy."
+    titles:
+      locomotive:
+        account:
+          information: Hlavní
+          api: API
+          credentials: Autorizace
+        site:
+          information: Hlavní
+          access_points: Přístupové body
+          seo: SEO
+          advanced: Pokročilé
+          url_redirections: URL přesměrování
+        page:
+          content: Obsah
+          settings: Nastavení
+          seo: SEO
+        content_entry:
+          content: Obsah
+          advanced: Pokročilé
+          seo: SEO
+    labels:
+      locomotive:
+        content_entry:
+          _slug: Trvalý
+          _visible: Viditelný
+        content_type:
+          public_submission_accounts: "Upozornit účty"
+        account:
+          api_key: API klíč
+          no_api_key: Žádný
+          edit:
+            locale: UI Jazyk
+            password: Nové heslo
+            password_confirmation: Potvrzení nového hesla
+        page:
+          seo_title: Titul
+          target_klass_name: Model
+        editable_element:
+          region: Sekce
+        site:
+          locales: Jazyky
+          timezone_name: Časová zóna
+          cache_enabled: Mezipaměť
+          private_access: "Povolit ochranu hesla"
+          password: "Zaheslování webových stránek"
+          new:
+            locales: První jazyk
+        membership:
+          edit:
+            role: Nová role
+        rte_input_link_form:
+          url: Internetový odkaz URL
+          target: Cíl
+          title: Titul
+        rte_input_image_form:
+          src: Zdroj
+          title: Titul
+          alignment: Zarovnání
+        image_resize_form:
+          width: Šířka
+          height: Výška
+        rte_input_table_form:
+          cols: "Sloupce"
+          rows: "Řádky"
+          head: "Řádek hlavičky?"
+          class_name: "CSS třída"
+    hints:
+      locomotive:
+        account:
+          password: Minimálně 6 znaků
+        page:
+          handle: "Unikátní identifikátor načte tuto stránku v externí instanci kontroleru."
+          published: "Pouze ověřené účty mohou prohlížet nepublikované stránky."
+          templatized: "Použijte stránku jako šablonu pro model, který jste definovali."
+          cache_enabled: "Pokud je povoleno, bude Vaše stránka v mezipaměti tak dlouho, dokud se nezmění její obsah."
+          listed: "Kontrola, zda chcete zobrazit stránku z generovaných menu."
+          target_klass_name: "Obsahu této stránky bude šablona."
+          seo_title: "Definujte název stránky, který můžete použít jako titulek. Nechte prázdné, pokud chcete použít výchozí hodnotu v nastavení webové stránky."
+          meta_keywords: "Přepíše meta klíčová slova používaná v rámci webových stránek. Jsou oddělena čárkou."
+          meta_description: "Přepíše meta popis používaný v rámci webových stránek."
+          is_layout: "Pokud je to pravda, můžete použít rozvržení této stránky, pro jiné stránky."
+          allow_layout: "Autoři, pojďme změnit, nebo nechme původní rozložení této stránky."
+        site:
+          locales: "Přetáhni a pusť vlajku na první pozici, aby byla výchozí."
+          seo_title: "Definovat globální hodnotu zde, která může být použita jako hodnota pro titulek v hlavičce stránky."
+          meta_keywords: "Meta klíčová slova v rámci tagu v hlavičce stránky. Jsou oddělena čárkou. Povinné pro SEO."
+          meta_description: "Meta popis používaný v tagu hlavičce stránky. Povinné pro SEO."
+          robots_txt: "Obsah souboru <span class='code'>/robots.txt</span>. Zkontrolujte následující <a href='http://www.w3.org/TR/html4/appendix/notes.html#h-B.4.1.1'>url</a> pro více informací."
+          memberships: "Můžete pozvat další účty editace/správa webové stránky."
+          cache_enabled: "Pokud je povoleno, budou Vaše stránky ukládány do mezipaměti, dokud se nezmění obsah. Zakázání mezipaměti pro jednotlivé stránky je povoleno."
+          redirect_to_first_domain: "Pokud je povoleno, budou všechny domény výše uvedené, přesměrovány na první doménu."
+          url_redirections: "Přesměrování (301) která jste vytvořili. Původní a cílové adresy URL jsou odděleny <u>mezerou</u>."
+          private_access: Můžete skrýt Vaše stránky za heslo.
+          password: Toto heslo bude muset zadat neautorizovaný návštěvník Vašich stránek, aby mohl vidět obsah .
+          new:
+            locales: "Můžete přidat další jazyky, jakmile budou Vaše webové stránky vytvořeny."
+        translation:
+          key: "Nepoužívejte pomlčku a místo toho použivejte podtržítko. Příklad: vitejte_zprava."
+        content_entry:
+          _slug: "Atribut slouží ke generování URL stránky, pracuje jako šablona pro tento typ obsahu (příklad: \"sablona_stranka/{{ vas_trvaly_objekt }})\"."
+          _visible: "Ve výchozím nastavení se příspěvek zobrazí na webu a může být použit jako publikovaný atribut."
+          seo_title: "Hodnota, kterou zadáte nahradí název SEO titulek stránky šablony, vztahující se k modelu."
+          meta_keywords: "Přepíše meta klíčová slova používaná v rámci webových stránek. Jsou oddělena čárkou."
+          meta_description: "Přepíše meta tag popis používaný v rámci webových stránek."
+        content_type:
+          public_submission_accounts: "Když je vytvořen záznam, poslat oznámení e-mailem na účty, které jsou uvedeny níže."
+        image_resize_form:
+          width: "v px"
+          height: "v px"
+    placeholders:
+      locomotive:
+        site:
+          domains: "Příklad: mestranky.cz"
+          url_redirections: "Příklad: muj-odkaz-url nove-url-v-locomotive"
+        content_type_entry_field:
+          select_options: "Zadejte označení Vaší nové volby zde"
+    options:
+      locomotive:
+        rte_input_link_form:
+          target:
+            not_set: "Nenastaveno"
+            self: "Otevřít odkaz ve stejném okně"
+            blank: "Otevřít odkaz v novém okně"
+        rte_input_image_form:
+          alignment:
+            default: Výchozí
+            left: Vlevo
+            right: Vpravo
+    buttons:
+      defaults:
+        locomotive:
+          create: Vytvořit
+          update: Uložit
+          submit: Ok
+          cancel: Zrušit
+          delete: Vymazat
+          close: Zavřít
+          loading_text: "Ukládání..."
+          or: nebo
+      locomotive:
+        account:
+          new_api_key: Regenerovat
+        image_resize_form:
+          loading_text: Změna velikosti...
+          submit: Změna velikosti
+        site:
+          delete: Smazat tuto stránku
+        page:
+          delete: Vymazat

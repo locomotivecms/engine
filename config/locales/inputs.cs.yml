@@ -1,0 +1,19 @@
+cs:
+  locomotive:
+    inputs:
+      file:
+        none: žádný soubor
+        browse: Procházet
+        choose: Vybrat
+        change: Změna
+        delete: Vymazat
+        cancel: Zrušit
+        select_local_file: Nahrát místní soubor
+        select_content_asset: Vyberte mezi položkami
+      array:
+        new: Nový
+        add: Přidat
+        edit: Editovat
+      toggle:
+        on_text: "Ano"
+        off_text: "Ne"

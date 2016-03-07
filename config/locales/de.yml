@@ -1,0 +1,318 @@
+de:
+  locomotive:
+    locales:
+      en: Englisch
+      de: Deutsch
+      fr: Französisch
+      pl: Polnisch
+      pt: Portugiesisch
+      pt-BR: "Brasilianisch-Portugiesisch"
+      it: Italienisch
+      nl: Niederländisch
+      nb: Norwegisch
+      es: Spanisch
+      ru: Russisch
+      et: Estländisch
+      ja: Japanisch
+      zh-CN: Chinesisch
+      cs: Tschechisch
+      bg: Bulgarisch
+      sk: Slowakisch
+      sr: Serbisch
+    messages:
+      confirm: Sind Sie sicher?
+    shared:
+      header:
+        welcome: Willkommen, %{name}
+        sites: Meine Seiten
+        account: Account Einstellungen
+        see: Zur Website
+        help: Hilfe
+        logout: Abmelden
+      sidebar:
+        dashboard: Dashboard
+        assets: Medien
+        settings: Allgemeine Einstellungen
+        developers: Entwickler
+        content_types:
+          title: Inhalte
+        translations: Übersetzungen
+      list:
+        untranslated: nicht übersetzt
+        created_at: "Erstellt vor %{distance}"
+        created_by: "Erstellt vor %{distance} von %{who}"
+        updated_at: "Zuletzt bearbeitet vor %{distance}"
+        updated_by: "Zuletzt bearbeitet vor %{distance} von %{who}"
+      rte:
+        toolbar:
+          table:
+            merge: Zusammenfügen
+            insert_row_before: Reihe davor einfügen
+            insert_row_after: Reihe danach einfügen
+            insert_col_before: Spalte davor einfügen
+            insert_col_after: Spalte danach einfügen
+            delete_row: Reihe löschen
+            delete_col: Spalte löschen
+    errors:
+      '500':
+        title: Anwendungsfehler
+      '404':
+        title: Webseite nicht gefunden
+        message: "Die angeforderte Seite existiert nicht."
+      no_site:
+        title: Seite nicht gefunden
+        next: "Weiter &rarr;"
+        message:
+          create_account: "Bitte erstellen Sie zuerst einen Account und dann eine Seite."
+          add_domain: "Fügen Sie die Domain <strong>%{host}</strong> zu der Liste von Domains bei einer Ihrer Seiten hinzu."
+          sign_in: "Loggen Sie sich bitte erst ein. Fügen Sie dann die Domain <strong>%{host}</strong> zu der Liste von Domains bei einer Ihrer Seiten hinzu."
+    notifications:
+      new_content_entry:
+        subject: "[%{domain}][%{type}] Neuer Eintrag"
+        title: "Hallo %{name}, ein neuer Eintrag wurde am %{date} auf Ihrer Webseite <b>%{domain}</b> erstellt"
+        type: "Model: %{type}"
+    activity:
+      site:
+        created: 'hat die Webseite erstellt'
+      page:
+        created: 'Hat die Seite %{page} erstellt'
+        updated: 'Hat die Seite %{page} aktualisiert'
+        destroyed: 'Hat die Seite %{page} gelöscht'
+        sorted: 'Sortierte Seiten'
+      editable_element:
+        updated_bulk: 'Inhalt von %{pages} wurde modifiziert'
+      content_entry:
+        created: '%{entry} wurde zu %{content_type} hinzugefügt'
+        created_public: '%{entry} wurde zu %{content_type} von einem Öffentlichen Formular hinzugefügt'
+        updated: '%{entry} von %{content_type} wurde aktualisiert'
+        destroyed: '%{entry} von %{content_type} wurde entfernt'
+        sorted: 'sortiert %{content_type}'
+      content_asset:
+        created_bulk: '%{count} asset(s) wurden hochgeladen'
+        destroyed: 'Asset %{name} wurde entfernt'
+      membership:
+        created: '%{name} wurde zur Seite hinzugefügt'
+    pagination:
+      first: "&laquo;"
+      last: "&raquo;"
+      previous: "&lsaquo;"
+      next: "&rsaquo;"
+      truncate: "&hellip;"
+    custom_fields:
+      select_options:
+        edit:
+          title: "%{type} &mdash; Bearbeitungsoptionen"
+          back: "Zurück zum Eintrag"
+        option:
+          edit: Bearbeiten
+          apply: Anfragen
+          cancel: Abbrechen
+      types:
+        belongs_to:
+          edit: Bearbeiten
+          placeholder: "%{name} wählen"
+          searching: Suche...
+          no_matches: Keine Übereinstimmung gefunden
+          too_short: Bitte mind. 1 Zeichen eingeben
+        many_to_many:
+          placeholder: "Einen %{name} wählen"
+          searching: Suche...
+          no_matches: Keine Übereinstimmung gefunden
+          too_short: Bitte mind. 1 Zeichen eingeben
+        select:
+          edit: Optionen bearbeiten
+        file:
+          delete_file: Datei löschen
+        has_many:
+          new_label: Weiter hinzufügen
+      form:
+        required: Erforderlich
+        default_label: Feldname
+        select_options:
+          ask_name: "Bezeichnung der Option eingeben"
+    dashboard:
+      show:
+        title: 'Dashboard'
+      url:
+        title: "URL der Webseite:"
+        visit: 'Besuchen'
+        change_domain: 'Eigenen Domainnamen verwenden'
+      activity:
+        title: Aktivität
+        unknown_account: Jemand
+        load_more: Lade mehr
+        loading_activity_feed: Lade...
+    sessions:
+      new:
+        email: "Email"
+        link: "Kennwort vergessen"
+        password: "Kennwort"
+        sign_up: Haben Sie kein Konto?
+        submit: Anmelden
+        title: Anmelden
+    registrations:
+      new:
+        confirm_password: Kennwort bestätigen
+        sign_in: Sie haben bereits ein Konto?
+        submit: Registrieren
+        title: Registrieren
+    passwords:
+      new:
+        description: "Geben Sie Ihre Email unten ein und Sie erhalten eine Email mit Anleitung zum zurücksetzen des Kennworts."
+        link: "Zurück zur Anmeldeseite"
+        email: "Ihre Email"
+        submit: "Absenden"
+        title: "Kennwort vergessen"
+      edit:
+        description: "Geben Sie Ihr Kennwort unten ein."
+        link: "Zurück zur Anmeldeseite"
+        password: "Ihr neues Kennwort"
+        password_confirmation: "Kennwort bestätigen"
+        submit: "Kennwort aktualisieren"
+        title: "Kennwort zurücksetzen"
+    pages:
+      index:
+        title: 'Seiten'
+        new: 'Neue Seite'
+        list_content_entries: "%{name} anzeigen"
+        new_content_entry: "Neuen Eintrag für %{name}"
+      new:
+        title: Neue Seite
+        help: "Füllen Sie unten stehendes Formular aus um Ihre Seite zu erstellen. Bitte beachten Sie daß die Seite Standardmäßig nicht veröffentlicht ist. "
+      edit:
+        title: "%{title} &mdash; <small>%{fullpath}</small>"
+      form:
+        no_layout: 'Layout der Elternseite verwenden. '
+        redirect_type:
+          permanent: "Permanent (301)"
+          temporary: "Temporär (302)"
+    editable_elements:
+      index:
+        redirection_error: "Das bearbeiten einer nicht Locomitve Seite ist nicht erlaubt"
+        iframe:
+          buttons:
+            edit: Bearbeiten
+      index_without_preview:
+        title: "%{title} &mdash; <small>%{fullpath}</small>"
+      edit:
+        settings_link: 'Einstelllungen'
+        no_editable_elements: 'Keine Bearbeitbaren Elemente gefunden'
+        parsing_error: "<b>Es tut uns Leid aber wir konnten das Template Ihrer Webseite nicht verarbeiten.</b><br/>Prüfen Sie zuerst ob Ihr Template mit Wagon funktioniert."
+        blocks:
+          all: Alle
+          unknown: Unbekannt
+      form:
+        model:
+          buttons:
+            list: Verwalten
+            edit: Bearbeiten
+    sites:
+      index:
+        description: "Alle Seiten auf dem Sie zugriff haben werden unten aufgelistet. Klicken Sie auf eines um zur Content Management Sektion der jeweiligen Seite umgeleitet zu werden. "
+        new: Neue Webseite hinzufügen
+        title: Meine Seiten
+      new:
+        description: "Füllen Sie unten stehendes Formular aus und klicken auf Absenden. Bei Erfolg wird eine neue Webseite erstellt."
+        go_back: Zurück
+        submit: Webseite erstellen
+        title: Neue Webseite erstellen
+      site:
+        no_domain: Noch keine Domain
+    current_site:
+      edit:
+        title: Aktuelle Seite bearbeiten
+      form:
+        main:
+          new_membership: "Konto hinzufügen"
+        advanced:
+          destroy: "Diese Seite löschen"
+          confirm_destroy: "Bestätigen Sie durch Eingabe des Seitennamens."
+    memberships:
+      roles:
+        admin: Administrator
+        designer: Designer
+        author: Autor
+      new:
+        title: Neue Mitgliedschaft
+        help: "Geben Sie die Mailadresse des hinzuzufügenden Kontos ein. Sollte das Konto noch nicht existieren werden Sie zum Konto Erstellungsformular weitergeleitet."
+        back: "Zurück zu Seiteneinstellungen"
+      edit:
+        title: "Mitgliedschaft für <b>%{name}</b> eingeben"
+        back: "Zurück zu Seiteneinstellungen"
+    accounts:
+      new:
+        title: Neues Konto
+        help: "Füllen Sie das unten stehende Formular aus um ein neues Konto hinzuzufügen"
+    my_account:
+      edit:
+        title: Mein Konto bearbeiten
+      form:
+        api:
+          api_key: "Wird von Wagon verwendet um Ihre Seite zu deployen. (prüfen Sie die Datei config/deploy.yml Ihrer Wagon Seite)"
+    translations:
+      untranslated: "Fehlende Übersetzungen: %{list}"
+      index:
+        title: Übersetzungen
+        no_items: "Es wurden keine Übersetzungen gefunden. "
+        search_placeholder: "Geben Sie einen Schlüssel oder eine Übersetzung ein"
+        help: "Übersetzen Sie alle Einträge mit einem orangen (Teilweise übersetzt) oder rotem (nicht übersetzt) Punkt."
+        filter_by:
+          all: Alle
+          done: Übersetzt
+          partially: Teilweise übersetzt
+          none: Nicht übersetzt
+      edit:
+        title: "Übersetzung &mdash; Bearbeitung von %{key}"
+      form:
+        not_translated: "Nicht übersetzt"
+    content_assets:
+      index:
+        title: "Medien"
+        upload: Dateien hochladen
+      edit_in_drawer:
+        buttons:
+          resize: "Größe ändern"
+          crop: "Beschneiden"
+          apply: "Anfragen"
+      dropzone:
+        instructions: "<strong>Ziehe eine Datei von deinem Computer hier hin.</strong><br/>Du kannst auch"
+        browse: "eine Datei auswählen"
+      list:
+        no_items: "Noch keine Medien vorhanden"
+        buttons:
+          select: "Auswählen"
+          edit: "Bearbeiten"
+      nav:
+        types:
+          all: Alle
+          pdf: PDFs
+          image: Bilder
+          media: Medien
+          others: 'andere '
+      search_form:
+        placeholder: Suche nach Dateinamen
+    public_submission_accounts:
+      edit:
+        title: "%{name} &mdash; Benachrichtigungs-Einstellungen"
+    content_entries:
+      index:
+        title: '%{type}'
+        download: Einträge herunterladen
+        new: Neuer Eintrag
+        edit_notification_settings: Benachrichtigungs-Einstellungen bearbeiten
+        search_placeholder: "Suchworte hier eingeben"
+        group_by:
+          all: Alle
+      list:
+        no_items: "Noch keinen Einträge vorhanden. Klicke <a href=\"%{url}\">hier</a> um den ersten zu erstellen."
+      new:
+        title: '%{type} &mdash; Neuer Eintrag'
+      edit:
+        title: '%{type} &mdash; Eintrag editieren'
+      shared:
+        back: '&larr; Zurück zur Liste'
+    developers_documentation:
+      show:
+        title: Entwickler
+        wagon: Wagon
+        api: API

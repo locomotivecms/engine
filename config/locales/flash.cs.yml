@@ -1,0 +1,79 @@
+cs:
+  flash:
+    locomotive:
+      pages:
+        create:
+          notice: "Stránka byla úspěšně vytvořena."
+          alert: "Stránka nebyla vytvořena."
+        update:
+          notice: "Stránka byla úspěšně aktualizována."
+          alert: "Stránka nebyla aktualizována."
+        sort:
+          notice: "Stránky byly úspěšně seřazeny."
+        destroy:
+          notice: "Stránka byla úspěšně smazána."
+      content_entries:
+        create:
+          notice: "Příspěvek byl úspěšně vytvořen."
+          alert: "Příspěvek nebyl vytvořen."
+        update:
+          notice: "Příspěvek byl úspěšně aktualizován."
+          alert: "Příspěvek nebyl aktualizován."
+        sort:
+          notice: "Příspěvky byly úspěšně seřazeny."
+        destroy:
+          notice: "Příspěvek byl úspěšně smazán."
+      content_types:
+        update:
+          notice: "Model byl úspěšně aktualizován."
+          alert: "Model nebyl aktualizován."
+      current_site:
+        update:
+          notice: " Má stránka byla úspěšně aktualizována."
+          alert: "Moje stránka nebyla aktualizována."
+      accounts:
+        create:
+          notice: "Účet byl úspěšně vytvořen."
+          alert: "Účet nebyl vytvořen."
+      my_account:
+        update:
+          notice: "Můj účet byl úspěšně aktualizován."
+          alert: "Můj účet nebyl aktualizován."
+      sites:
+        create:
+          notice: "Stránka byla úspěšně vytvořena."
+          alert: "Stránka nebyla vytvořena."
+        destroy:
+          notice: "Stránka byla úspěšně smazána."
+      memberships:
+        create:
+          notice: "Členství bylo úspěšně vytvořeno."
+          alert: "Členství nebylo vytvořeno."
+          already_created: "Účet byl již přidán pro aktuální stránku."
+      content_assets:
+        create:
+          notice: "Položka byla úspěšně nahrána."
+          alert: "Položka se nenahrála."
+        bulk_create:
+          notice: "Položka byla úspěšně nahrána."
+          alert: "Položka se nenahrála."
+        update:
+          notice: "Položka byla úspěšně aktualizována."
+          alert: "Položka nebyla aktualizována."
+        destroy:
+          notice: "Položka byla úspěšně smazána."
+          alert: "Položka nebyla smazána."
+      translations:
+        create:
+          notice: "Překlad byl úspěšně vytvořen."
+          alert: "Překlad nebyl vytvořen."
+        update:
+          notice: "Překlad byl úspěšně aktualizován."
+          alert: "Překlad nebyl aktualizován."
+        destroy:
+          notice: "Překlad byl úspěšně smazán."
+      custom_fields:
+        select_options:
+          update:
+            notice: "Pole bylo úspěšně aktualizováno."
+            alert: "Pole nebylo aktualizováno."

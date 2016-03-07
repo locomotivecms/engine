@@ -30,7 +30,6 @@ module Locomotive
 
           ::ActionController::Parameters.new(_params).permit(*_attributes).tap do |strong_params|
             (json_keys || []).each { |k| strong_params[k] = json_params[k] }
-            puts strong_params.inspect
           end
         end
 

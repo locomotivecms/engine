@@ -1,0 +1,79 @@
+de:
+  flash:
+    locomotive:
+      pages:
+        create:
+          notice: "Seite wurde erfolgreich erstellt."
+          alert: "Seite wurde nicht erstellt."
+        update:
+          notice: "Seite wurde erfolgreich aktualisiert."
+          alert: "Seite wurde nicht aktualisiert."
+        sort:
+          notice: "Seiten wurden erfolgreich sortiert."
+        destroy:
+          notice: "Seite wurde erfolgreich gelöscht."
+      content_entries:
+        create:
+          notice: "Eintrag wurde erfolgreich erstellt."
+          alert: "Eintrag wurde nicht erstellt."
+        update:
+          notice: "Eintrag wurde erfolgreich aktualisiert."
+          alert: "Eintrag wurde nicht aktualisiert."
+        sort:
+          notice: "Einträge wurden erfolgreich sortiert."
+        destroy:
+          notice: "Eintrag wurde erfolgreich entfernt."
+      content_types:
+        update:
+          notice: "Model wurde erfolgreich aktualisiert."
+          alert: "Model wurde nicht aktualisiert."
+      current_site:
+        update:
+          notice: "Meine Seite wurde erfolgreich aktualisiert."
+          alert: "Meine Seite wurde nicht aktualisiert."
+      accounts:
+        create:
+          notice: "Konto wurde erfolgreich erstellt."
+          alert: "Konto wurde nicht erstellt."
+      my_account:
+        update:
+          notice: "Mein Konto wurde erfolgreich aktualisiert."
+          alert: "Mein Konto wurde nicht aktualisiert."
+      sites:
+        create:
+          notice: "Seite wurde erfolgreich erstellt."
+          alert: "Seite wurde nicht erstellt."
+        destroy:
+          notice: "Seite wurde erfolgreich entfernt."
+      memberships:
+        create:
+          notice: "Mitgliedschaft wurde erfolgreich erstellt."
+          alert: "Mitgliedschaft wurde nicht erstellt."
+          already_created: "Konto wurde bereits zur Aktuellen Seite hinzugefügt."
+      content_assets:
+        create:
+          notice: "Asset wurde erfolgreich hochgeladen."
+          alert: "Asset wurde nicht hochgeladen."
+        bulk_create:
+          notice: "Assets wurden erfolgreich hochgeladen."
+          alert: "Assets wurden nicht hochgeladen."
+        update:
+          notice: "Asset wurde erfolgreich aktualisiert."
+          alert: "Asset wurde nicht aktualisiert."
+        destroy:
+          notice: "Asset wurde erfolgreich entfernt."
+          alert: "Asset wurde nicht entfernt."
+      translations:
+        create:
+          notice: "Übersetzung wurde erfolgreich erstellt."
+          alert: "Übersetzung wurde nicht erstellt."
+        update:
+          notice: "Übersetzung wurde erfolgreich aktualisiert."
+          alert: "Übersetzung wurde nicht aktualisiert."
+        destroy:
+          notice: "Übersetzung wurde erfolgreich entfernt."
+      custom_fields:
+        select_options:
+          update:
+            notice: "Feld wurde erfolgreich aktualisiert."
+            alert: "Feld wurde nicht aktualisiert."

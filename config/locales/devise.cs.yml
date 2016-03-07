@@ -1,0 +1,61 @@
+cs:
+  errors:
+    messages:
+      not_found: "nenalezeno"
+      already_confirmed: "byl již potvrzen"
+      not_locked: "nebyly zamčené"
+  devise:
+    failure:
+      locomotive_account:
+        unauthenticated: 'Musíte se přihlásit před pokračováním.'
+        unconfirmed: 'Musíte potvrdit svůj účet před pokračováním.'
+        locked: 'Váš účet je uzamčen.'
+        invalid: 'Chybný email nebo heslo.'
+        not_found_in_database: 'Chybný email nebo heslo.'
+        no_membership: 'Váš účet není členem tohoto webu, obraťte se na správce webu a získejte přístup.'
+        invalid_token: 'Neplatný autentizační token.'
+        timeout: 'Relace vypršela, přihlaste se prosím znovu a pokračujte.'
+        inactive: 'Váš účet nebyl ještě aktivován.'
+    sessions:
+      locomotive_account:
+        signed_in: 'Přihlášení proběhlo úspěšně.'
+        signed_out: 'Odhlášení proběhlo úspěšně.'
+    passwords:
+      locomotive_account:
+        send_instructions: 'Obdržíte e-mail s pokyny, jak obnovit své heslo během několika minut.'
+        updated: 'Vaše heslo bylo úspěšně změněno. Nyní jste přihlášeni.'
+        invalid: 'Musíte znovu zažádat o nové heslo.'
+    confirmations:
+      locomotive_account:
+        send_instructions: 'Obdržíte e-mail s pokyny, jak potvrdit svůj účet během několika minut.'
+        confirmed: 'Váš účet byl úspěšně potvrzen. Nyní jste přihlášeni.'
+    registrations:
+      locomotive_account:
+        signed_up: 'Zaregistrovali jste se úspěšně.'
+        updated: 'Váš účet byl úspěšně aktualizován.'
+        destroyed: 'Mějte se! Váš účet byl úspěšně zrušen. Doufáme, že vás zase brzy uvidíme.'
+    unlocks:
+      locomotive_account:
+        send_instructions: 'Obdržíte e-mail s pokyny, jak odemknout svůj účet během několika minut.'
+        unlocked: 'Váš účet byl úspěšně odemknut. Nyní jste přihlášeni.'
+    mailer:
+      locomotive_account:
+        confirmation_instructions: 'Instrukce k potvrzení'
+        reset_password_instructions: 'Pokyny pro obnovení hesla'
+        unlock_instructions: 'Pokyny jak odemknout'
+  locomotive:
+    devise_mailer:
+      common:
+        hello: Ahoj
+      confirmation_instructions:
+        you_can_confirm_your_account_through_the_link_below: "Můžete potvrdit svůj účet prostřednictvím odkazu níže:"
+        confirm_my_account: "Potvrdit můj účet"
+      reset_password_instructions:
+        reset_password_instruction: "Někdo požádal o změnu hesla a můžete to udělat prostřednictvím odkazu níže:"
+        change_my_password: "Změnit heslo"
+        wrong_request_instruction: "Pokud jste o to nežádali, prosím ignorujte tento e-mail. "
+        unchange_password_message: "Vaše heslo se nezmění, dokud máte přístup na výše uvedený odkaz, než vytvoříte nové."
+      unlock_instructions:
+        locked_account_message: "Váš účet byl uzamčen kvůli nadměrnému množství neúspěšných pokusů o přihlášení."
+        unlock_account_instruction: "Klikněte na odkaz níže k odemknutí Vašeho účtu:"
+        unlock_my_account: "Odemknout můj účet"

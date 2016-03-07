@@ -1,0 +1,38 @@
+de:
+  mongoid:
+    errors:
+      messages:
+        blank_in_locale: "darf nicht leer sein"
+      models:
+        locomotive/membership:
+          attributes:
+            account:
+              unique_account: "wurde bereits verwendet"
+            email:
+              unique_account: "wurde bereits verwendet"
+    attributes:
+      locomotive/content_entry:
+        created_at: Erstellt am
+  errors:
+    messages:
+      domain_taken: "%{value} ist bereits vergeben"
+      invalid_domain: "%{value} ist ungültig"
+      needs_admin_account: "Zumindest ein Administrator Konto wird benötigt"
+      protected_page: "Index und 404 Seite können nicht entfernt werden"
+      site:
+        wrong_timezone_name: "Falsche Zeitzonenbezeichnung"
+      page:
+        liquid_syntax: "Liquid Syntax error ('%{error}' in '%{fullpath}')"
+      too_few_custom_fields: "Zumindest ein custom Feld wird benötigt"
+      security: "stellt ein Sicherheitsproblem dar"
+  attributes:
+    defaults:
+      pages:
+        index:
+          title: "Startseite"
+          body: "Inhalt der Startseite"
+        '404':
+          title: "Seite nicht gefunden"
+          body: "Inhalt der 404 Seite"
+        other:
+          body: "{% extends 'parent' %}"

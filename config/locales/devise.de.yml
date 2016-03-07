@@ -1,0 +1,61 @@
+de:
+  errors:
+    messages:
+      not_found: "nicht gefunden"
+      already_confirmed: "wurde schon bestätigt"
+      not_locked: "wurde nicht gesperrt"
+  devise:
+    failure:
+      locomotive_account:
+        unauthenticated: 'Sie müssen sich anmelden um fortzufahren.'
+        unconfirmed: 'Sie müssen ihren Account bestätigen um fortzufahren.'
+        locked: 'Ihr Account ist gesperrt.'
+        invalid: 'Inkorrekte E-Mail oder Passwort.'
+        not_found_in_database: 'Inkorrekte E-Mail oder Passwort.'
+        no_membership: 'Ihr Account ist nicht Mitglied dieser Seite, bitte kontaktieren Sie einen Administrator um Zugang zu erhalten.'
+        invalid_token: 'Invalide Zugriffsinformation.'
+        timeout: 'Ihre Session ist abgelaufen, bitte melden Sie sich erneut an. '
+        inactive: 'Ihr Account wurde noch nicht aktiviert.'
+    sessions:
+      locomotive_account:
+        signed_in: 'Erfolgreich angemeldet.'
+        signed_out: 'Erfolgreich abgemeldet.'
+    passwords:
+      locomotive_account:
+        send_instructions: 'Sie bekommen in kürze eine E-Mail mit Anweisungen wie Ihr Passwort zurückgesetzt werden kann.'
+        updated: 'Ihr Passwort wurde erfolgreich geändert. Sie sind nun automatisch angemeldet.'
+        invalid: 'Sie müssen nochmals ein neues Passwort anfragen.'
+    confirmations:
+      locomotive_account:
+        send_instructions: 'Sie bekommen in kürze eine E-Mail mit Anweisungen wie Sie Ihren Account bestätigen.'
+        confirmed: 'Ihr Account wurde bestätigt. Sie sind nun automatisch angemeldet.'
+    registrations:
+      locomotive_account:
+        signed_up: 'Sie haben sich erfolgreich Registriert.'
+        updated: 'Sie haben Ihren Account erfolgreich geändert.'
+        destroyed: 'Bye! Ihr Account wurde erfolgreich geschlossen. We hoffen Sie bald wieder zu sehen.'
+    unlocks:
+      locomotive_account:
+        send_instructions: 'Sie bekommen in kürze eine E-Mail mit Anweisungen wie Sie Ihren Account entsperren können.'
+        unlocked: 'Ihr Account wurde erfolgreich entsperrt. Sie sind nun automatisch angemeldet.'
+    mailer:
+      locomotive_account:
+        confirmation_instructions: 'Bestätigungsanweisungen'
+        reset_password_instructions: 'Anweisung zum Password zurücksetzen'
+        unlock_instructions: 'Entsperranweisungen'
+  locomotive:
+    devise_mailer:
+      common:
+        hello: Hallo
+      confirmation_instructions:
+        you_can_confirm_your_account_through_the_link_below: "Sie können Ihren Account über den unten stehenden Link bestätigen:"
+        confirm_my_account: "Meinen Account bestätigen"
+      reset_password_instructions:
+        reset_password_instruction: "Jemand hat einen Link zum ändern des Passwortes angefragt, Sie können es über den unten stehenden Link ändern:"
+        change_my_password: "Ändere mein Passwort"
+        wrong_request_instruction: "Wenn Sie keine Anfrage gestellt haben, ignorieren Sie diese E-Mail."
+        unchange_password_message: "Ihr Passwort wird nicht geändert bis Sie auf dem oben stehenden Link klicken und ein neues hinterlegt."
+      unlock_instructions:
+        locked_account_message: "Ihr Account wurde aufgrund zu vieler falscher Login-Versuchen gesperrt."
+        unlock_account_instruction: "Klicken Sie auf den unten stehenden Link um Ihren Account zu entsperren:"
+        unlock_my_account: "Mein Account entsperren"

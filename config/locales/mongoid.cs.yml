@@ -1,0 +1,47 @@
+cs:
+  mongoid:
+    errors:
+      messages:
+        blank_in_locale: "nemůže být prázdný"
+      models:
+        locomotive/page:
+          attributes:
+            layout_id:
+              index_can_not_extend_parent: "Stránka index nemůže mít svoji mateřskou stránku jako rozvržení"
+        locomotive/membership:
+          attributes:
+            account:
+              unique_account: "se již používá"
+            email:
+              unique_account: "se již používá"
+    attributes:
+      locomotive/content_entry:
+        created_at: Vytvořen v
+  errors:
+    messages:
+      domain_taken: "% {value} je již obsazena"
+      invalid_domain: "% {value} je neplatná"
+      needs_admin_account: "Alespoň jeden admin účtet je požadován"
+      protected_page: "Nelze odebrat index nebo 404 stránku"
+      extname_changed: "Nový soubor nemá původní příponu"
+      array_too_short: "je příliš malé (minimální počet elementu je %{count})"
+      site:
+        default_locale_removed: Předchozí výchozí jazyk nemůže být odstraněn ihned.
+        wrong_timezone_name: "Nesprávný název časového pásma"
+      page:
+        liquid_syntax: "Liquid chyba syntaxe ('%{error}' on '%{fullpath}')"
+        liquid_extend: "Stránka '%{fullpath}' rozšiřuje šablonu, která neexistuje"
+        liquid_translation: "Stránka '%{fullpath}' rozšiřuje šablonu, která není přeložena"
+      too_few_custom_fields: "Alespoň jedno vlastní pole je požadováno"
+      security: "představuje bezpečnostní problém"
+  attributes:
+    defaults:
+      pages:
+        index:
+          title: "Domovská stránka"
+          body: "Obsah domovské stránky"
+        '404':
+          title: "Stránka nenalezena"
+          body: "Obsah stránky 404"
+        other:
+          body: "{% extends 'parent' %}"

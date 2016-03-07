@@ -1,0 +1,19 @@
+de:
+  locomotive:
+    inputs:
+      file:
+        none: keine Datei
+        browse: Durchsuchen
+        choose: Wählen
+        change: Ändern
+        delete: Löschen
+        cancel: Abbrechen
+        select_local_file: Lokale Datei hochladen
+        select_content_asset: Aus Assets wählen
+      array:
+        new: Neu
+        add: Hinzufügen
+        edit: Bearbeiten
+      toggle:
+        on_text: "Ja"
+        off_text: "Nein"

@@ -13,12 +13,14 @@ en:
       es: Spanish
       ru: Russian
       et: Estonian
+      lt: Lithuanian
       ja: Japanese
       zh-CN: Chinese
       cs: Czech
       bg: Bulgarian
       sk: Slovak
       sr: Serbian
+      sv: Swedish
       el: Greek
 
     messages:
