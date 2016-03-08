@@ -1,5 +1,328 @@
 fr:
   locomotive:
+    locales:
+      en: Anglais
+      de: Allemand
+      fr: Français
+      pl: Polonais
+      pt: Brésilien
+      pt-BR: "Portugais du Brésil"
+      it: Italien
+      nl: Néerlandais
+      nb: Norvégien
+      es: Espagnol
+      ru: Russe
+      et: Estonien
+      ja: Japonais
+      zh-CN: Chinois
+      cs: Tchèque
+      bg: Bulgare
+      sk: Slovaque
+      sr: Serbe
+      sv: Suédois
+      el: Grec
+    messages:
+      confirm: Êtes-vous sûr ?
+      unsaved_content_warning: "Vous avez des modifications non sauvegardées dans cette page. Si vous la quittez, ces modifications seront perdues."
+    shared:
+      header:
+        welcome: Bienvenue, %{name}
+        sites: Mes sites
+        account: Paramètres du compte
+        see: Voir le site web
+        help: Aide
+        logout: Déconnexion
+      sidebar:
+        dashboard: Tableau de bord
+        assets: Médias
+        settings: Paramètres généraux
+        metafields: Propriétés
+        developers: Développeurs
+        content_types:
+          title: Modèles
+        translations: Traductions
+      list:
+        untranslated: Non traduit
+        created_at: "Créé il y a %{distance}"
+        created_by: "Créé il y a %{distance} par %{who}"
+        updated_at: "Dernière modification il y a %{distance}"
+        updated_by: "Dernière modification il y a %{distance} par %{who}"
+      rte:
+        toolbar:
+          table:
+            merge: Fusionner
+            insert_row_before: Insérer la ligne avant
+            insert_row_after: Insérer la ligne après
+            insert_col_before: Insérer la colonne avant
+            insert_col_after: Insérer la colonne après
+            delete_row: Supprimer la ligne
+            delete_col: Supprimer la colonne
     errors:
+      '500':
+        title: Erreur de l'application
+        message: "Nous sommes désolés mais nous rencontrons actuellement un problème. Veuillez s'il vous plaît contacter votre administrateur."
       '404':
         title: Page non trouvée
+        message: "La page demandée n'existe pas"
+      no_site:
+        title: Site non trouvé
+        next: "Suivant &rarr;"
+        message:
+          create_account: "Veuillez créer un compte avant de créer un site"
+          add_domain: "Ajoutez le domaine <strong>%{host}</strong>  à la liste de domaines de l'un de vos sites."
+          sign_in: "Veuillez d'abord vous identifier. Puis, ajoutez le domaine <strong>%{host}</strong> à la liste de domaines de l'un de vos sites."
+    notifications:
+      new_content_entry:
+        subject: "[%{domain}][%{type}] nouvelle entité"
+        title: "Bonjour %{name}, nous vous notifions qu'une nouvelle instance a été créée le %{date} pour le site <b>%{domain}</b>"
+        type: "Modèle : %{type}"
+    activity:
+      site:
+        created: 'a créé le site'
+      page:
+        created: 'a créé la page %{page} '
+        updated: 'a mis à jour la page %{page} '
+        destroyed: 'a supprimé la page %{page} '
+        sorted: 'a trié les pages'
+      editable_element:
+        updated_bulk: 'a modifié le contenu de %{pages} '
+      content_entry:
+        created: 'a ajouté %{entry} à %{content_type}'
+        created_public: 'a ajouté %{entry} à %{content_type} depuis un formulaire public'
+        updated: 'a mis à jour %{entry} de %{content_type}'
+        destroyed: 'a supprimé %{entry} de %{content_type}'
+        sorted: 'a trié  %{content_type}'
+      content_asset:
+        created_bulk: 'a mis à jour %{count} média(s)'
+        destroyed: 'a supprimé le média %{name}'
+      membership:
+        created: 'a ajouté %{name} au site'
+    pagination:
+      first: "&laquo;"
+      last: "&raquo;"
+      previous: "&lsaquo;"
+      next: "&rsaquo;"
+      truncate: "&hellip;"
+    custom_fields:
+      select_options:
+        edit:
+          title: "%{type} &mdash; options d'édition"
+          back: "Retour à l'élément"
+        option:
+          edit: Modifier
+          apply: Appliquer
+          cancel: Annuler
+      types:
+        belongs_to:
+          edit: Modifier
+          placeholder: "Choisir un  %{name}"
+          searching: Recherche en cours...
+          no_matches: Aucune correspondance trouvée
+          too_short: Veuillez entrer 1 caractère ou plus
+        many_to_many:
+          placeholder: "Choisir un des  %{name}"
+          searching: Recherche...
+          no_matches: Aucune correspondance trouvée
+          too_short: Veuillez entrer 1 caractère ou plus
+        select:
+          edit: Options de modification
+        file:
+          delete_file: Supprimer le fichier
+        has_many:
+          new_label: Ajouter un nouveau
+      form:
+        required: Requis
+        default_label: Nom du champ
+        select_options:
+          ask_name: "Saisir l'étiquette de l'option"
+    dashboard:
+      show:
+        title: 'Tableau de bord'
+      url:
+        title: "URL de votre site :"
+        visit: 'Visiter'
+        change_domain: 'Utiliser votre propre nom de domaine'
+      activity:
+        title: Activité
+        unknown_account: Quelqu'un
+        load_more: Chargement en cours
+        loading_activity_feed: Chargement...
+    sessions:
+      new:
+        email: "Email"
+        link: "Mot de passe oublié"
+        password: "Mot de passe"
+        sign_up: Avez-vous un compte ?
+        submit: Se connecter
+        title: S'inscrire
+    registrations:
+      new:
+        confirm_password: Confirmer le mot de passe
+        description: "Créer un compte depuis le formulaire ci-dessous pour commencer à utiliser Locomotive."
+        sign_in: Avez-vous déjà un compte ?
+        submit: S'enregistrer
+        title: S'enregistrer
+    passwords:
+      new:
+        description: "Entrez votre email ci-dessous pour recevoir un message avec les instructions pour réinitialiser votre mot de passe"
+        link: "Retour à la page de connexion"
+        email: "Votre email"
+        submit: "Envoyer"
+        title: "Mot de passe oublié"
+      edit:
+        description: "Veuillez renseigner votre mot de passe ci-dessous."
+        link: "Retour à la page de connexion"
+        password: "Votre nouveau mot de passe"
+        password_confirmation: "Confirmer le mot de passe"
+        submit: "Mettre à jour mon mot de passe"
+        title: "Réinitialiser le mot de passe"
+    pages:
+      index:
+        title: 'Pages'
+        new: 'Nouvelle page'
+        list_content_entries: "List %{name}"
+        new_content_entry: "Nouveau/Nouvelle %{name}"
+      new:
+        title: Nouvelle page
+        help: "Veuillez remplir le formulaire ci-dessous pour créer votre page. Notez bien que la page n'est pas publiée par défaut."
+      edit:
+        title: "%{title} &mdash; <small>%{fullpath}</small>"
+      form:
+        no_layout: Utiliser le gabarit de la page parente
+        redirect_type:
+          permanent: "Permanent (301)"
+          temporary: "Temporaire (302)"
+    editable_elements:
+      index:
+        redirection_error: "Mettre à jour une page qui n'est pas Locomotive n'est pas autorisé."
+        iframe:
+          buttons:
+            edit: mettre à jour
+      index_without_preview:
+        title: "%{title} &mdash; <small>%{fullpath}</small>"
+      edit:
+        settings_link: 'Paramètres'
+        no_editable_elements: 'Aucun élément à éditer trouvé'
+        parsing_error: "<b>Nous sommes désolés mais nous n'avons pas pu parser le template de votre page.</b><br/>Assurez vous que celui-ci marche préalablement avec Wagon."
+        blocks:
+          all: Tous
+          unknown: Inconnu
+      form:
+        model:
+          buttons:
+            list: Gérer
+            edit: Modifier
+    sites:
+      index:
+        description: "Tous les sites auxquels vous avez accès se trouvent ci-dessous. Cliquez sur un site de la liste pour pouvoir éditer son contenu."
+        new: Ajouter un nouveau site.
+        title: Mes sites
+      new:
+        description: "Remplissez le formulaire ci-dessous et cliquez sur \"Créer site\"."
+        go_back: Revenir à l'écran précédent
+        submit: Créer site
+        title: Création d'un nouveau site
+      site:
+        no_domain: Aucun domaine pour le moment
+    current_site:
+      edit:
+        title: Edition du site
+      form:
+        main:
+          new_membership: "Ajouter un compte"
+        advanced:
+          destroy: "Supprimer ce site"
+          confirm_destroy: "Veuillez s'il vous plaît confirmer en tapant le nom complet du site dans le champ suivant"
+    current_site_metafields:
+      index:
+        title: Edition des propriétés
+        no_metafields: Il n'y a aucune propriété définie pour ce site.
+    memberships:
+      roles:
+        admin: Administrateur
+        designer: Désigner
+        author: Auteur
+      new:
+        title: Nouveau membre
+        help: "Veuillez s'il vous plaît donner l'email du compte à ajouter. S'il n'existe pas, alors nous vous redirigerons vers la création d'un nouveau compte."
+        back: "Retour aux paramètres de votre site"
+      edit:
+        title: "Edition du membre <b>%{name}</b>"
+        back: "Retour aux paramètres de votre site"
+    accounts:
+      new:
+        title: Nouveau compte
+        help: "Veuillez remplir le formulaire ci-dessous pour ajouter un nouveau compte."
+    my_account:
+      edit:
+        title: Edition de mon compte
+      form:
+        api:
+          api_key: "Utilisé par Wagon pour déployer votre site (paramètre à utiliser dans le fichier config/deploy.yml de votre site Wagon)."
+    translations:
+      untranslated: "Locales non traduites: %{list}"
+      index:
+        title: Traductions
+        no_items: "Nous n'avons pas trouvé d'autres traductions."
+        search_placeholder: "Entrez une clef ou une traduction"
+        help: "Traduisez toutes les lignes avec un point orange (partiellement traduite) ou rouge (non traduite)."
+        filter_by:
+          all: Toutes
+          done: Traduites
+          partially: Partiellement traduites
+          none: Non traduites
+      edit:
+        title: "Traductions &mdash; édition de %{key}"
+      form:
+        not_translated: "Non traduite"
+    content_assets:
+      index:
+        title: "Médias"
+        upload: Upload de fichiers
+      edit_in_drawer:
+        buttons:
+          resize: "Redimmensionner "
+          crop: "Recadrer"
+          apply: "Appliquer"
+      dropzone:
+        instructions: "<strong>Déplacer les fichiers depuis votre ordinateur ici.</strong><br/> Vous pouvez aussi"
+        browse: "naviguer pour trouver un fichier"
+      list:
+        no_items: "Il n'y aucun média pour le moment."
+        buttons:
+          select: "Sélectionner"
+          edit: "Modifier"
+      nav:
+        types:
+          all: Tous
+          pdf: PDFs
+          image: images
+          media: autres médias
+          others: autres
+      search_form:
+        placeholder: Recherchez par nom de fichier
+    public_submission_accounts:
+      edit:
+        title: "%{name} &mdash; Paramètres de notifications"
+    content_entries:
+      index:
+        title: '%{type}'
+        download: télécharger les élements
+        new: nouvel élément
+        edit_notification_settings: Modifier les paramètres de notifications
+        search_placeholder: "Entrez vos critères de recherche ici"
+        group_by:
+          all: Tous
+      list:
+        no_items: "Il n'y a aucun élément pour le moment. Clickez simplement <a href=\"%{url}\">ici</a> pour créer le premier."
+      new:
+        title: '%{type} &mdash; nouvel élément'
+      edit:
+        title: '%{type} &mdash; édition élément'
+      shared:
+        back: '&larr; Retour à la liste'
+    developers_documentation:
+      show:
+        title: Développeurs
+        wagon: Wagon
+        api: API

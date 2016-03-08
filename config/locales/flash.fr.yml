@@ -1,1 +1,82 @@
-fr: {}
+fr:
+  flash:
+    locomotive:
+      pages:
+        create:
+          notice: "La page a été créée avec succès."
+          alert: "La page n'a pas été créée."
+        update:
+          notice: "La page a été mise à jour avec succès."
+          alert: "La page n'a pas été mise à jour."
+        sort:
+          notice: "Les pages ont été ordonnées avec succès."
+        destroy:
+          notice: "La page a été supprimée avec succès."
+      content_entries:
+        create:
+          notice: "L'élément a été crée avec succès."
+          alert: "L'élément n'a pas été crée."
+        update:
+          notice: "L'élément a été mis à jour avec succès."
+          alert: "L'élément n'a pas été mis à jour."
+        sort:
+          notice: "Les éléments ont été ordonnés avec succès."
+        destroy:
+          notice: "L'élément a été supprimé avec succès."
+      content_types:
+        update:
+          notice: "Le modèle a été mis à jour avec succès."
+          alert: "Le modèle n'a pas été mis à jour."
+      current_site:
+        update:
+          notice: "Le site a été mis à jour avec succès."
+          alert: "Le site n'a pas été mis à jour."
+      accounts:
+        create:
+          notice: "Votre compte a été crée avec succès."
+          alert: "Votre compte n'a pas été crée."
+      my_account:
+        update:
+          notice: "Votre compte a été mis à jour avec succès."
+          alert: "Votre compte n'a pas été mis à jour."
+      sites:
+        create:
+          notice: "Votre site a été crée avec succès."
+          alert: "Votre site n'a pas été crée."
+        destroy:
+          notice: "Votre site a été supprimé avec succès."
+      current_site_metafields:
+        update_all:
+          notice: "Les propriétés ont été mises à jour avec succès."
+      memberships:
+        create:
+          notice: "Un nouveau membre a été ajouté avec succès."
+          alert: "Le nouveau membre n'a pas été ajouté."
+          already_created: "Le membre a déjà été ajouté à votre site."
+      content_assets:
+        create:
+          notice: "Le média a été uploadé avec succès."
+          alert: "Le média n'a pas été uploadé."
+        bulk_create:
+          notice: "Les médias ont été uploadés avec succès."
+          alert: "Les médias n'ont pas été uploadés."
+        update:
+          notice: "Le média a été mis à jour avec succès."
+          alert: "Le média n'a pas été mis à jour."
+        destroy:
+          notice: "Le média a été supprimé avec succès."
+          alert: "Le média n'a pas été supprimé."
+      translations:
+        create:
+          notice: "La traduction a été créée avec succès."
+          alert: "La traduction n'a pas été créée."
+        update:
+          notice: "La traduction a été mise à jour avec succès."
+          alert: "La traduction n'a pas été mise à jour."
+        destroy:
+          notice: "La traduction a été supprimée avec succès."
+      custom_fields:
+        select_options:
+          update:
+            notice: "Les options ont été mises à jour avec succès."
+            alert: "Les options n'ont pas été mises à jour."

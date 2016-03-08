@@ -1,4 +1,39 @@
 fr:
+  mongoid:
+    errors:
+      messages:
+        blank_in_locale: "doit être rempli(e)"
+      models:
+        locomotive/page:
+          attributes:
+            layout_id:
+              index_can_not_extend_parent: "La page index ne peut pas avoir son parent comme layout"
+        locomotive/membership:
+          attributes:
+            account:
+              unique_account: "est déjà pris"
+            email:
+              unique_account: "est déjà pris"
+    attributes:
+      locomotive/content_entry:
+        created_at: Date de création
+  errors:
+    messages:
+      domain_taken: "%{value} a été déjà pris"
+      invalid_domain: "%{value} n'est pas valide"
+      needs_admin_account: "Au moin un compte admin est requis"
+      protected_page: "Vous ne pouvez pas supprimer les pages index et 404"
+      extname_changed: "Le nouveau fichier n'a pas l'extension originale"
+      array_too_short: "est trop petit (le nombre minimum d'éléments est %{count})"
+      site:
+        default_locale_removed: La langue précédente ne peut être supprimée immédiatement.
+        wrong_timezone_name: "Mauvais nom de timezone"
+      page:
+        liquid_syntax: "Erreur de syntaxe liquid  ('%{error}' dans '%{fullpath}')"
+        liquid_extend: "La page '%{fullpath}' appelle un template qui n'existe pas"
+        liquid_translation: "La page '%{fullpath}' appelle un template qui n'est pas traduit"
+      too_few_custom_fields: "Au moins un custom field est requis"
+      security: "expose un problème de sécurité"
   attributes:
     defaults:
       pages:

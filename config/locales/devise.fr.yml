@@ -1,1 +1,61 @@
-fr: {}
+fr:
+  errors:
+    messages:
+      not_found: "non trouvé"
+      already_confirmed: "à déjà été confirmé"
+      not_locked: "n'était pas vérouillé"
+  devise:
+    failure:
+      locomotive_account:
+        unauthenticated: 'Vous devez vous authentifier.'
+        unconfirmed: 'Vous devez valider votre compte avant de continuer'
+        locked: 'Votre compte est vérouillé'
+        invalid: 'email ou mot de passe invalide'
+        not_found_in_database: 'email ou mot de passe invalide'
+        no_membership: 'Votre compte n''est pas membre de ce site, merci de contacter un administrateur pour obtenir l''accès'
+        invalid_token: 'token d''authentification invalide.'
+        timeout: 'Votre session a expiré, merci de vous connecter à nouveau pour continuer.'
+        inactive: 'Votre compte n''est pas encore vérifié.'
+    sessions:
+      locomotive_account:
+        signed_in: 'Connexion établie.'
+        signed_out: 'Vous n''êtes plus connecté'
+    passwords:
+      locomotive_account:
+        send_instructions: 'Vous allez recevoir un email avec les instructions nécessaires dans quelques minutes'
+        updated: 'Votre mot de passe à été modifié. Vous êtes à nouveau connecté.'
+        invalid: 'Vous devez re-demander un nouveau mot de passe.'
+    confirmations:
+      locomotive_account:
+        send_instructions: 'Vous allez recevoir un email avec les instructions de validation de votre compte dans quelques minutes'
+        confirmed: 'Votre compte à été validé. Vous êtes à présent connecté.'
+    registrations:
+      locomotive_account:
+        signed_up: 'Connexion établie.'
+        updated: 'Compte mis à jour.'
+        destroyed: 'Au revoir! Votre compte à été annulé. Nous espérons vous revoir prochainement.'
+    unlocks:
+      locomotive_account:
+        send_instructions: 'Vous allez recevoir un email avec les instructions nécessaires pour dé-vérouiller votre compte dans quelques minutes'
+        unlocked: 'Votre compte à été dé-verouillé. Vous êtes connecté!'
+    mailer:
+      locomotive_account:
+        confirmation_instructions: 'Instructions de validation'
+        reset_password_instructions: 'Instructions de rétablissement du mot de passe'
+        unlock_instructions: 'Instructions de déverrouillage.'
+  locomotive:
+    devise_mailer:
+      common:
+        hello: Bonjour
+      confirmation_instructions:
+        you_can_confirm_your_account_through_the_link_below: "Validez votre compte en cliquant sur le lien suivant:"
+        confirm_my_account: "Validez votre compte"
+      reset_password_instructions:
+        reset_password_instruction: "Une demande de changement de votre mot de passe a été faite. Vous pouvez effectuer ce changement en cliquant sur le lien ci-dessous."
+        change_my_password: "Modifier mon mot de passe"
+        wrong_request_instruction: "Si vous n'êtes pas à l'origine de cette demande, veuillez ignorer ce message."
+        unchange_password_message: "Votre mot de passe restera inchangé si vous n'utilisez pas ce lien."
+      unlock_instructions:
+        locked_account_message: "Votre mot de passe sera modifié seulement si vous accédez au lien ci-dessus et en créez un nouveau."
+        unlock_account_instruction: "Cliquer sur le lien ci-dessous pour débloquer votre compte:"
+        unlock_my_account: "Débloquer mon compte."

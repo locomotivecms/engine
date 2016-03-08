@@ -1,1 +1,19 @@
-fr: {}
+fr:
+  locomotive:
+    inputs:
+      file:
+        none: aucun fichier
+        browse: Naviguer
+        choose: Choisir
+        change: Changer
+        delete: Supprimer
+        cancel: Annuler
+        select_local_file: Uploader un fichier
+        select_content_asset: Choisir média
+      array:
+        new: Nouveau
+        add: Ajouter
+        edit: Modifier
+      toggle:
+        on_text: "Oui"
+        off_text: "Non"

@@ -1,1 +1,13 @@
-fr: {}
+fr:
+  date:
+    formats:
+      default: "%d/%m/%Y"
+    today_at: "aujourd'hui à"
+    yesterday_at: "hier à"
+  time:
+    formats:
+      default: "%d/%m%Y %H:%M"
+      time: "%H:%M"
+  pagination:
+    previous: "&laquo; Précédent"
+    next: "Suivant &raquo;"
