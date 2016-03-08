@@ -25,7 +25,7 @@ class Locomotive.Views.Inputs.RteView extends Backbone.View
 
     @editor = new wysihtml5.Editor $textarea.attr('id'),
       toolbar:        "wysihtml5-toolbar-#{$textarea.attr('id')}"
-      useLineBreaks:  true
+      useLineBreaks:  $textarea.data('inline')
       parserRules:    wysihtml5ParserRules
       stylesheets:    ['<%= stylesheet_path("locomotive/wysihtml5_editor") %>']
       showToolbarDialogsOnSelection: false
