@@ -33,17 +33,15 @@ class Locomotive.Views.Inputs.RteView extends Backbone.View
     @editor.on 'load', @register_editor_events
 
   render_views: ->
-    that = @
-    setTimeout(
-      ->
-        that.views = [
-          that.build_and_render_view(Locomotive.Views.Inputs.Rte.LinkView),
-          that.build_and_render_view(Locomotive.Views.Inputs.Rte.FileView),
-          that.build_and_render_view(Locomotive.Views.Inputs.Rte.ImageView),
-          that.build_and_render_view(Locomotive.Views.Inputs.Rte.TableView),
-          that.build_and_render_view(Locomotive.Views.Inputs.Rte.EditTableView)
-        ]
-    , 200)
+    @editor.on 'load', =>
+      @views = [
+        @build_and_render_view(Locomotive.Views.Inputs.Rte.LinkView),
+        @build_and_render_view(Locomotive.Views.Inputs.Rte.FileView),
+        @build_and_render_view(Locomotive.Views.Inputs.Rte.ImageView),
+        @build_and_render_view(Locomotive.Views.Inputs.Rte.TableView),
+        @build_and_render_view(Locomotive.Views.Inputs.Rte.EditTableView)
+      ]
+      console.log '[RTE] all views created and rendered'
 
   expand: (event) ->
     event.stopPropagation() & event.preventDefault()
@@ -91,7 +89,6 @@ class Locomotive.Views.Inputs.RteView extends Backbone.View
     @editor.on 'aftercommand:composer', @on_content_change
 
   on_content_change: ->
-    console.log 'modified'
     PubSub.publish 'inputs.text_changed',
       view:     @
       content:  @editor.getValue()

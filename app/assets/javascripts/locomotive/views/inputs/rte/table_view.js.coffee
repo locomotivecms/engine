@@ -23,7 +23,7 @@ class Locomotive.Views.Inputs.Rte.TableView extends Backbone.View
   create_popover: ->
     @$content.show()
     @$link.popover
-      container:  '.editable-elements'
+      container:  @$link.parents('fieldset')
       placement:  'right'
       content:    @$content
       html:       true
