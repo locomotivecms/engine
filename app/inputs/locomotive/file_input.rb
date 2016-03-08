@@ -14,7 +14,7 @@ module Locomotive
     end
 
     def file_html
-      col_wrapping :file, 9 do
+      col_wrapping :file, 8 do
         no_file_html +
         new_file_html +
         filename_or_image +
@@ -26,7 +26,7 @@ module Locomotive
     end
 
     def buttons_html
-      col_wrapping :buttons, 3 do
+      col_wrapping :buttons, 4 do
         button_html(:choose, options[:select_content_asset]) +
         button_html(:change, options[:select_content_asset]) +
         button_html(:cancel, false) +
