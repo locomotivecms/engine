@@ -1,7 +1,7 @@
 module Locomotive
   module Steam
 
-    class APIEntrySubmissionService < Struct.new(:site, :locale)
+    class APIEntrySubmissionService < Struct.new(:site, :locale, :ip_address)
 
       def submit(slug, attributes = {})
         if load_content_type(slug)
@@ -29,7 +29,7 @@ module Locomotive
 
       def create_entry(attributes)
         ::Mongoid::Fields::I18n.with_locale(locale) do
-          service.public_create(attributes)
+          service.public_create(attributes, { ip_address: ip_address })
         end
       end
 

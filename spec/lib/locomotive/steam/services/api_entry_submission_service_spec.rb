@@ -5,8 +5,9 @@ describe Locomotive::Steam::APIEntrySubmissionService do
   let(:site)          { create(:site) }
   let(:locale)        { :en }
   let(:enabled)       { true }
+  let(:ip_address)    { '127.0.0.1' }
   let!(:content_type) { create('message content type', site: site, public_submission_enabled: enabled).reload }
-  let(:service)       { described_class.new(site, locale) }
+  let(:service)       { described_class.new(site, locale, ip_address) }
 
   describe '#submit' do
 

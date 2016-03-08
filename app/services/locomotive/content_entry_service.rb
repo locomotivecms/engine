@@ -73,10 +73,11 @@ module Locomotive
     # A notification email is sent to the selected members of the site.
     #
     # @param [ Hash ] attributes The attributes of new content entry.
+    # @param [ Hash ] options For now, only store the ip address of the person who submitted the content entry.
     #
     # @return [ Object ] An instance of the content entry.
     #
-    def public_create(attributes)
+    def public_create(attributes, options = {})
       form = Locomotive::API::Forms::ContentEntryForm.new(self.content_type, attributes)
 
       without_tracking_activity { create(form.serializable_hash) }.tap do |entry|
