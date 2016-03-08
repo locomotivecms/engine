@@ -11,6 +11,9 @@
 
     = f.input :parent_id, as: :select, collection: parent_pages_options, include_blank: false
 
+    - if policy(current_site).site_admin_or_designer?
+      = f.input :handle
+
     = f.input :redirect, as: :toggle
 
     = f.input :redirect_url, as: :string, wrapper_html: { class: "#{'hide' unless @page.redirect?}" }

@@ -54,7 +54,7 @@ module Locomotive
     end
 
     def page_params
-      params.require(:page).permit(:title, :layout_id, :slug, :parent_id, :listed, :published, :redirect, :redirect_url, :redirect_type, :seo_title, :meta_description, :meta_keywords, :cache_enabled)
+      params.require(:page).permit(*policy(@page || Page).permitted_attributes)
     end
 
     def service
