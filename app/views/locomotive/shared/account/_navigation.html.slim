@@ -1,0 +1,13 @@
+ul.navigation-links
+  li.dropdown
+    = link_to '#', id: 'navigation-dropdown', class: 'dropdown-toggle', data: { toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' } do
+      = image_tag account_avatar_url(current_locomotive_account), class: 'img-circle', alt: current_locomotive_account.name_was
+      span= current_locomotive_account.name_was
+      span.caret
+
+    ul.dropdown-menu role='menu' aria-labelledby="navigation-dropdown"
+      li= link_to t(:sites, scope: 'locomotive.shared.header'), sites_path
+      li= link_to t(:account, scope: 'locomotive.shared.header'), edit_my_account_path(_location: request.fullpath)
+      li= link_to t(:help, scope: 'locomotive.shared.header'), 'http://locomotive-v3.readme.io', target: '_blank'
+      li class="divider"
+      li= link_to t(:logout, scope: 'locomotive.shared.header'), sign_out_path, data: { method: 'delete' }
