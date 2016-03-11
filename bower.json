@@ -4,7 +4,7 @@
   "authors": [
     "did <didier.lafforgue@gmail.com>"
   ],
-  "description": "Back-office for the Locomotive CMS",
+  "description": "Back-office for the Locomotive CMS (run bower-installer)",
   "main": "",
   "moduleType": [
     "globals"
@@ -45,6 +45,13 @@
           },
           {
             "vendor/assets/components/locomotive_sources/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css":"bootstrap-datetimepicker.css"
+          }
+        ]
+      },
+      "moment": {
+        "mapping": [
+          {
+            "vendor/assets/components/locomotive_sources/moment/min/moment-with-locales.min.js": "moment.js"
           }
         ]
       },

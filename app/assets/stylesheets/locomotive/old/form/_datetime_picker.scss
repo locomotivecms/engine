@@ -1,0 +1,36 @@
+.simple_form {
+  fieldset .input.date, fieldset .input.date-time {
+
+    .bootstrap-datetimepicker-widget {
+
+      span.glyphicon {
+        font-family: FontAwesome;
+      }
+
+      span.glyphicon.glyphicon-chevron-up:before {
+        content: "\f077";
+      }
+
+      span.glyphicon.glyphicon-chevron-down:before {
+        content: "\f078";
+      }
+
+      span.glyphicon.glyphicon-chevron-left:before {
+        content: "\f053";
+      }
+
+      span.glyphicon.glyphicon-chevron-right:before {
+        content: "\f054";
+      }
+
+      span.glyphicon.glyphicon-calendar:before {
+        content: "\f073";
+      }
+
+      span.glyphicon.glyphicon-time:before {
+        content: "\f017";
+      }
+    }
+
+  }
+}

@@ -196,8 +196,8 @@ module Locomotive
         .gsub('%d', 'DD')
         .gsub('%m', 'MM')
         .gsub('%Y', 'YYYY')
-        .gsub('%H', 'H')
-        .gsub('%M', 'm')
+        .gsub('%H', 'HH')
+        .gsub('%M', 'mm')
     end
 
     # Other helpers
