@@ -17,6 +17,11 @@ class Locomotive.Views.Shared.SidebarView extends Backbone.View
     @pages_view.render()
     @collapse_in_sections()
     @close_sidebar_on_mobile()
+    @highlight_active_section()
+
+  highlight_active_section: ->
+    if section = $(@el).data('current-section')
+      @$(".sidebar-link.#{section}").addClass('is-active')
 
   toggle_sidebar: (event) ->
     if @is_sidebar_open() then @close_sidebar() else @show_sidebar()
