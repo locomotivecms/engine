@@ -33,7 +33,7 @@ class Locomotive.Views.EditableElements.PageView extends Backbone.View
 
   _scroll_to: (element) ->
     return false if element.size() == 0
-    $(@el).animate({ scrollTop: element.offset().top }, 500)
+    @$('body').animate({ scrollTop: element.offset().top }, 500)
 
   each_elements: (view, callback) ->
     $form_view  = $(view.el).parent()
