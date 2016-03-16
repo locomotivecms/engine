@@ -4,7 +4,7 @@ module Locomotive
     def current_site_metafields_schema
       @site_metafields_schema ||= @site.metafields_schema.map do |g|
         SchemaGroup.new(@site, g)
-      end.sort_by(&:position)
+      end.sort_by(&:_position)
     end
 
     class SchemaGroup
@@ -13,43 +13,41 @@ module Locomotive
         @site, @attributes = site, attributes
       end
 
-      def name
+      def _name
         @attributes['name'].downcase.underscore.gsub(' ', '_')
       end
 
-      alias :dom_id :name
+      alias :dom_id :_name
 
       def model_name
-        ActiveModel::Name.new(self, nil, name)
+        ActiveModel::Name.new(self, nil, _name)
       end
 
-      def label
-        t(@attributes['label'] || @attributes['name'].humanize)
+      def _label
+        _t(@attributes['label'] || @attributes['name'].humanize)
       end
 
-
-      def position
+      def _position
         @attributes['position']
       end
 
-      def fields
+      def _fields
         @fields ||= @attributes['fields'].map do |f|
-          SchemaField.new(@site, name, f)
+          SchemaField.new(@site, _name, f)
         end.sort_by(&:position)
       end
 
       def method_missing(name, *args, &block)
-        if field = fields.find { |f| f.name == name.to_s }
+        if field = _fields.find { |f| f.name == name.to_s }
           field.value
         else
           super
         end
       end
 
-
       protected
 
-      def t(value)
+      def _t(value)
         value.is_a?(Hash) ?  value[I18n.locale.to_s] || value['default'] : value
       end
 

@@ -1,0 +1,4 @@
+- %w(wagon api).each_with_index do |name, index|
+  .tab-pane id=name class=(index == 0 ? 'active' : '')
+    .documentation
+      = render "locomotive/developers_documentation/#{name}"

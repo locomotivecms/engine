@@ -64,13 +64,13 @@ module Locomotive
               'field' => {
                 'type' => 'object',
                 'properties' => {
-                  'name' => { 'type' => 'string' },
+                  'name' => { 'type' => 'string', 'not': { 'enum': ['dom_id', 'model_name', 'method_missing', '_name', '_label', '_position', '_fields', '_t'] } },
                   'label' => { 'type' => ['string', 'object'] },
                   'hint' => { 'type' => ['string', 'object'] },
                   'type' => { 'enum': ['string', 'text', 'integer', 'float', 'file', 'image', 'boolean', 'select', 'color'] },
                   'position' => { 'type' => 'integer' },
                   'select_options' => { 'type' => ['object', 'array'] },
-                  'localized' => { 'type' => 'boolean' }
+                  'localized' => { 'type' => 'boolean' },
                 },
                 'required' => ['name']
               }

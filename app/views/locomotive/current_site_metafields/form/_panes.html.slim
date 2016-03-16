@@ -7,9 +7,9 @@
 
         = namespace_form.inputs namespace.dom_id do
 
-          - namespace.fields.each do |field|
+          = namespace_form.simple_fields_for namespace do |metafield_form|
 
-            = namespace_form.simple_fields_for namespace do |metafield_form|
+            - namespace._fields.each do |field|
 
               = metafield_form.input field.name, field.input_options
 
