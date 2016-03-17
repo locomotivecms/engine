@@ -19,7 +19,7 @@
           = g.input :source, editable_element_input_options(editable_element, index, as: :file, select_content_asset: true, resize_format: editable_element.resize_format, hidden_fields: [:content, :default_source_url])
 
         - when :editable_control
-          = g.input :content, editable_element_input_options(editable_element, index, as: :select, collection: editable_element.options.map { |attributes| [attributes['text'], attributes['value']] })
+          = g.input :content, editable_element_input_options(editable_element, index, as: :select, collection: (editable_element.options || []).map { |attributes| [attributes['text'], attributes['value']] })
 
         - when :editable_model
           - if editable_element.content_type?

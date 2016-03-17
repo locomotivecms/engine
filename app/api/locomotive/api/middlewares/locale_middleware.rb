@@ -17,6 +17,7 @@ module Locomotive
         #
         def call(env)
           locale = find_locale(env)
+          setup_i18n_fallback(env['locomotive.site'])
           ::Mongoid::Fields::I18n.with_locale(locale) do
             @app.call(env)
           end
@@ -30,6 +31,13 @@ module Locomotive
           params(env)['locale'].presence ||
           env['locomotive.site'].try(:default_locale).presence ||
           Locomotive.config.site_locales.first
+        end
+
+        def setup_i18n_fallback(site)
+          ::Mongoid::Fields::I18n.clear_fallbacks
+          (site.try(:locales) || []).each do |locale|
+            ::Mongoid::Fields::I18n.fallbacks_for(locale, site.locale_fallbacks(locale))
+          end
         end
 
         def params(env)
