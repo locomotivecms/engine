@@ -49,6 +49,7 @@ RSpec.configure do |config|
   end
 
   config.before(:each) do
+    ::Mongoid::Fields::I18n.clear_fallbacks
     I18n.locale = Mongoid::Fields::I18n.locale = 'en'
     DatabaseCleaner.clean
   end
@@ -63,5 +64,5 @@ RSpec.configure do |config|
   #     --seed 1234
   config.order = 'random'
   # config.seed = '5581' # example
-  # config.seed = '2606'
+  # config.seed = '50337'
 end
