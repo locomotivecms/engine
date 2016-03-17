@@ -29,8 +29,8 @@
 
     - if current_site.has_metafields?
       = link_to current_site_metafields_path(current_site), class: sidebar_link_class(:current_site_metafields) do
-        i.fa.fa-newspaper-o
-        span= t('.metafields')
+        i.fa class=current_site_metafields_ui[:icon]
+        span= current_site_metafields_ui[:label]
 
     = link_to edit_current_site_path(current_site), class: sidebar_link_class(:current_site) do
       i.fa.fa-cogs

@@ -106,7 +106,7 @@ module Locomotive
       def default_input_options
         {
           label:      self.label,
-          hint:       self.hint,
+          hint:       self.hint.try(:html_safe),
           as:         self.type,
           required:   false
         }

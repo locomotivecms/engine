@@ -26,6 +26,7 @@ module Locomotive
         helper  Locomotive::Shared::SitesHelper,
                 Locomotive::Shared::AccountsHelper,
                 Locomotive::Shared::PagesHelper,
+                Locomotive::Shared::SiteMetafieldsHelper,
                 Locomotive::ContentTypesHelper
 
       end

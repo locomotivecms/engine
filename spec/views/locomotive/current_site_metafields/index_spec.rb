@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe 'locomotive/current_site_metafields/index', type: :view do
 
-  helper(Locomotive::BaseHelper, Locomotive::Shared::AccountsHelper, Locomotive::Shared::SitesHelper, Locomotive::CurrentSiteMetafieldsHelper, Locomotive::Engine.routes.url_helpers)
+  helper(Locomotive::BaseHelper, Locomotive::Shared::AccountsHelper, Locomotive::Shared::SitesHelper, Locomotive::Shared::SiteMetafieldsHelper, Locomotive::CurrentSiteMetafieldsHelper, Locomotive::Engine.routes.url_helpers)
 
   let(:schema)  { [] }
   let(:site)    { create('test site', metafields_schema: schema) }
@@ -19,6 +19,17 @@ describe 'locomotive/current_site_metafields/index', type: :view do
 
     it 'does not render the tab about the locales' do
       expect(subject).to include('There are no metafields defined for your site.')
+    end
+
+  end
+
+  describe 'UI' do
+
+    let(:ui) { { 'label' => 'Store settings', 'icon' => 'shopping-cart', 'hint' => 'Metafields are awesome' } }
+    let(:site) { create('test site', metafields_schema: schema, metafields_ui: ui) }
+
+    it 'renders the hint' do
+      expect(subject).to include('Metafields are awesome</p>')
     end
 
   end

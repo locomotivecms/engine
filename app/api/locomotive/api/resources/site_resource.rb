@@ -70,6 +70,7 @@ module Locomotive
               optional :password
               optional :metafields_schema
               optional :metafields
+              optional :metafields_ui
             end
           end
           post do

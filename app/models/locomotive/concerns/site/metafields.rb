@@ -8,8 +8,9 @@ module Locomotive
         included do
 
           ## fields ##
-          field :metafields,        type: Hash, default: {}
-          field :metafields_schema, type: Array, default: []
+          field :metafields,        type: Hash,   default: {}
+          field :metafields_schema, type: Array,  default: []
+          field :metafields_ui,     type: Hash,   default: {}
 
           ## validations ##
           validate :validate_metafields_schema
@@ -38,11 +39,15 @@ module Locomotive
         end
 
         def metafields_schema=(schema)
-          super(schema.is_a?(String) ? ActiveSupport::JSON.decode(schema) : schema)
+          super(decode_json(schema))
         end
 
         def metafields=(values)
-          super(values.is_a?(String) ? ActiveSupport::JSON.decode(values) : values)
+          super(decode_json(values))
+        end
+
+        def metafields_ui=(ui)
+          super(decode_json(ui))
         end
 
         protected
@@ -87,6 +92,10 @@ module Locomotive
               'required' => ['name', 'fields']
             }
           }
+        end
+
+        def decode_json(input)
+          input.is_a?(String) ? ActiveSupport::JSON.decode(input) : input
         end
 
       end

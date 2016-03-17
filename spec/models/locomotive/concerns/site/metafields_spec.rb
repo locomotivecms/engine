@@ -4,7 +4,18 @@ describe Locomotive::Concerns::Site::Metafields do
 
   let(:schema)  { nil }
   let(:fields)  { {} }
-  let(:site)    { build(:site, metafields_schema: schema, metafields: fields) }
+  let(:ui)      { {} }
+  let(:site)    { build(:site, metafields_schema: schema, metafields: fields, metafields_ui: ui) }
+
+  describe 'metafields_ui=' do
+
+    let(:ui) { '{"label":"Store settings","icon":"shopping-cart","hint":"Lorem ipsum"}' }
+
+    subject { site.metafields_ui = ui; site.metafields_ui }
+
+    it { is_expected.to eq('label' => 'Store settings', 'icon' => 'shopping-cart', 'hint' => 'Lorem ipsum') }
+
+  end
 
   describe 'metafields_schema=' do
 

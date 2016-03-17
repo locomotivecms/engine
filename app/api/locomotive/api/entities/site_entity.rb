@@ -47,6 +47,10 @@ module Locomotive
           site.metafields_schema.to_json
         end
 
+        expose :metafields_ui do |site, opts|
+          site.metafields_ui.to_json
+        end
+
       end
 
     end

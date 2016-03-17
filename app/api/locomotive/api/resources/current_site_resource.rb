@@ -43,12 +43,13 @@ module Locomotive
               optional :picture
               optional :metafields_schema
               optional :metafields
+              optional :metafields_ui
             end
           end
           put do
             authorize current_site, :update?
 
-            current_site_form = Forms::SiteForm.new(permitted_params_from_policy(current_site, :site, [:picture], [:metafields_schema, :metafields]))
+            current_site_form = Forms::SiteForm.new(permitted_params_from_policy(current_site, :site, [:picture], [:metafields_ui, :metafields_schema, :metafields]))
             service.update!(current_site, current_site_form.serializable_hash)
 
             present current_site, with: entity_klass

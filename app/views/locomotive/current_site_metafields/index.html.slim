@@ -1,6 +1,6 @@
-- title t('.title')
+- title current_site_metafields_ui[:title]
 
-= help t('.help', default: '')
+= help current_site_metafields_ui[:hint]
 
 - if @site.has_metafields?
 
