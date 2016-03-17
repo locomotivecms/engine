@@ -39,7 +39,7 @@ describe Locomotive::Steam::Middlewares::Cache do
 
     subject { middleware.send(:cache_key, steam_env) }
 
-    it { expect(subject).to eq 'eb42eeef070745f5603e339a3486edb0' }
+    it { expect(subject).to eq '2bf770af7c75d80bb8e87d21bde9ac4f' }
 
   end
 
