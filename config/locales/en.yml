@@ -104,6 +104,8 @@ en:
         destroyed: 'deleted the %{name} asset'
       membership:
         created: 'added %{name} to the site'
+      site_metafields:
+        updated: 'updated %{label}'
 
     pagination:
       first: "&laquo;"

@@ -21,6 +21,7 @@ module Locomotive
       when 'content_entry'    then activity.action == 'created_public' ? 'fa-comment' : 'fa-archive'
       when 'content_asset'    then 'fa-file-picture-o'
       when 'membership'       then 'fa-user'
+      when 'site_metafields'  then current_site_metafields_ui[:icon]
       end
     end
 
@@ -34,6 +35,7 @@ module Locomotive
       when 'content_asset.created_bulk'     then { count: activity_emphasize(params[:assets].size) }
       when 'content_asset.destroyed'        then { name:  activity_emphasize(params[:name]) }
       when 'membership.created'             then { name: activity_emphasize(params[:name]) }
+      when 'site_metafields.updated'        then { label: current_site_metafields_ui[:label].downcase }
       end
 
       activity_key_to_sentence(activity.key, options)

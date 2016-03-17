@@ -2,6 +2,8 @@ module Locomotive
 
   class SiteMetafieldsService < Struct.new(:site, :account)
 
+    include Locomotive::Concerns::ActivityService
+
     def update_all(attributes)
       each_metafield(attributes) do |namespace, name, value|
         next unless field = site.find_metafield(name)
@@ -13,7 +15,9 @@ module Locomotive
         end
       end
 
-      site.save
+      if site.save
+        track_activity 'site_metafields.updated'
+      end
     end
 
     protected

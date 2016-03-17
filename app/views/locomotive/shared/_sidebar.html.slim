@@ -22,7 +22,7 @@
       i.fa.fa-picture-o
       span= t('.assets')
 
-    - if current_site.localized?
+    - if current_site.translations.count > 0
       = link_to translations_path(current_site), class: sidebar_link_class(:translations) do
         i.fa.fa-globe
         span= t('.translations')
