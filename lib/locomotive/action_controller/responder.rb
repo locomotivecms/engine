@@ -17,6 +17,8 @@ module Locomotive
       end
 
       def to_html
+        add_authenticated_header
+
         if controller.request.headers['X-Flash'] == 'true'
           with_flash_message(:notice, true) { super }
         else
@@ -25,6 +27,8 @@ module Locomotive
       end
 
       def to_js
+        add_authenticated_header
+
         if controller.request.headers['X-Flash'] == 'true'
           with_flash_message(:notice, true) { super }
         else
@@ -33,6 +37,8 @@ module Locomotive
       end
 
       def to_json
+        add_authenticated_header
+
         if get?
           add_pagination_header if resource.respond_to?(:num_pages)
           display(resource)
@@ -87,6 +93,10 @@ module Locomotive
 
           yield if block_given?
         end
+      end
+
+      def add_authenticated_header
+        controller.headers['X-Authenticated']   = controller.current_locomotive_account.present?.to_s
       end
 
       def add_pagination_header

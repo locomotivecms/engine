@@ -20,6 +20,8 @@ module Locomotive
           500
         end)
 
+        puts "Backtrace:\n\t#{exception.backtrace.join("\n\t")}" if Rails.env.development? || Rails.env.test?
+
         if request.xhr?
           render json: { error: exception.message }, status: status, layout: false
         else

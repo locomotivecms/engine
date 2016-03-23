@@ -16,6 +16,7 @@ module Locomotive
         @content_for_title
       else
         if request.xhr?
+          @content_for_title = '' # won't raise an exception if a layout is applied.
           concat content_tag(:h1, title)
         else
           @content_for_title = title
