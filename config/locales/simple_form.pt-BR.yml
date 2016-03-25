@@ -1,0 +1,153 @@
+pt-BR:
+  simple_form:
+    blank_required_fields: "Você não preencheu todos os campos obrigatórios."
+    titles:
+      locomotive:
+        account:
+          information: Principal
+          api: API
+          credentials: Credenciais
+        site:
+          information: Principal
+          access_points: Pontos de acesso
+          seo: SEO
+          advanced: Avançado
+          url_redirections: Redirecionamentos de URL
+        page:
+          content: Conteúdo
+          settings: Ajustes
+          seo: SEO
+        content_entry:
+          content: Conteúdo
+          advanced: Avançado
+          seo: SEO
+    labels:
+      locomotive:
+        content_entry:
+          _slug: Permalink
+          _visible: Visível
+        content_type:
+          public_submission_accounts: "Contas Notificadas"
+        account:
+          api_key: Chave de API
+          no_api_key: Nenhum
+          edit:
+            locale: Idioma da UI
+            password: Nova senha
+            password_confirmation: Nova confirmação de senha
+        page:
+          seo_title: Título
+          target_klass_name: Modelo
+        editable_element:
+          region: Sessões
+        site:
+          locales: Idiomas
+          timezone_name: Fuso horários
+          cache_enabled: Cache
+          private_access: "Habilitar proteção por senha"
+          password: "Senha do site"
+          new:
+            locales: Primeiro idioma
+        membership:
+          edit:
+            role: Nova regra
+        rte_input_link_form:
+          url: URL do Link
+          target: Alvo
+          title: Título
+        rte_input_image_form:
+          src: Fonte
+          title: Título
+          alignment: Alinhamento
+        image_resize_form:
+          width: Largura
+          height: Altura
+        rte_input_table_form:
+          cols: "Colunas"
+          rows: "Linhas"
+          head: "Linha do cabeçalho?"
+          class_name: "Classe do CSS"
+    hints:
+      locomotive:
+        account:
+          password: Mínimo de 6 caracteres
+        page:
+          handle: "Identificador único para resgatar essa página com uma instância de um controlador externo"
+          published: "Apenas contas autenticadas podem visualizar páginas não publicadas."
+          templatized: "Use a página como um template para um modelo que você definiu."
+          cache_enabled: "Quando habilitado, sua página será armazenada em cache desde que o conteúdo não mude. "
+          listed: "Controlar se mostrar a página dos menus gerados."
+          target_klass_name: "O tipo de conteúdo desta página será um template."
+          seo_title: "Defina um título para a página que deve ser utilizado como valor para a tag de título dentro seção de cabeçalho. Deixe em branco caso você queira usar o valor padrão das configurações do site."
+          meta_keywords: "Sobrescreve as palavras-chave do site utilizadas dentro da tag de cabeçalho da página. Estes são separados por uma vírgula."
+          meta_description: "Sobrescreve as palavras-chave do site utilizadas dentro da tag de cabeçalho da página."
+          is_layout: "Se verdadeiro, essa página pode ser utilizado como um layout para outras páginas."
+          allow_layout: "Deixe os autores alterarem ou não o layout dessa página."
+        site:
+          locales: "Arraste e solte o marcador para a primeira posição para torná-lo o principal."
+          seo_title: "Defina um valor global aqui o qual deverá ser utilizado como valor para a tag de título dentro da seção de cabeçalho."
+          meta_keywords: "Palavras-chave utilizadas dentro da tag de cabeçalho da página. Estes são separados por vírgula. Necessário para o SEO."
+          meta_description: "Palavras-chave utilizadas dentro da tag de cabeçalho da página. Necessário para o SEO."
+          robots_txt: "Conteúdo do arquivo <span class='code'>/robots.txt</span>. Verifique a seguinte <a href='http://www.w3.org/TR/html4/appendix/notes.html#h-B.4.1.1'>URL</a> para mais informações."
+          domains: "Adicione os seus domínios abaixo. <a href=\"https://locomotive-v3.readme.io/docs/domains\">Acesse a documentação</a> para mais informações."
+          memberships: "Você pode convidar outras contas para editar e gerenciar o site."
+          cache_enabled: "Quando habilitado, sua página será armazenada em cache desde que o conteúdo não mude. Desabilitar o cache por página é permitido."
+          redirect_to_first_domain: "Quando habilitado, requisições feitas para quaisquer domínios listados acima serão redirecionadas para o primeiro domínio."
+          url_redirections: "Redirecionar URLs (301) legadas às páginas que você criou no back-office. A origem e o destino das URLs são separados por um <u>espaço</u>."
+          private_access: Você pode ocultar o seu site com uma senha.
+          password: Os visitantes públicos deverão digitar a senha para poder visualizar o conteúdo do seu site.
+          new:
+            locales: "Você poderá adicionar outros idiomas uma vez que o seu site esteja criado."
+        translation:
+          key: "Utilize underscore ao invés de traço. Exemplo: welcome_message."
+        content_entry:
+          _slug: "Propriedade utilizada para gerar a URL da página trabalhando como um template para este tipo de conteúdo (ex: \"template_page/{{ your_object._permalink }})\"."
+          _visible: "Por padrão, a entrada irá aparecer no site. Por isso, poderá ser utilizada como um atributo publicado."
+          seo_title: "O valor que você preencher irá substituir o título de SEO da página de template relacionada com o seu modelo."
+          meta_keywords: "Sobrescreve as palavras-chave utilizadas dentro da tag de cabeçalho da página. Estes são separados por uma vírgula."
+          meta_description: "Sobrescreve as palavras-chave do site utilizadas dentro da tag de cabeçalho da página."
+        content_type:
+          public_submission_accounts: "Quando uma entrada é criada, envie um e-mail de notificação para as contas listadas abaixo."
+        image_resize_form:
+          width: "em px"
+          height: "em px"
+    placeholders:
+      locomotive:
+        site:
+          domains: "Ex.: meusite.com"
+          url_redirections: "Ex.: minha-url-antiga nova-url-no-locomotive"
+        content_type_entry_field:
+          select_options: "Digite o título da sua nova opção aqui"
+    options:
+      locomotive:
+        rte_input_link_form:
+          target:
+            not_set: "Não configurado"
+            self: "Abrir o link na mesma janela"
+            blank: "Abrir o link em nova janela"
+        rte_input_image_form:
+          alignment:
+            default: Padrão
+            left: Esquerda
+            right: Direita
+    buttons:
+      defaults:
+        locomotive:
+          create: Criar
+          update: Salvar
+          submit: Ok
+          cancel: Cancelar
+          delete: Deletar
+          close: Fechar
+          loading_text: "Salvando..."
+          or: ou
+      locomotive:
+        account:
+          new_api_key: Regenerado
+        image_resize_form:
+          loading_text: Redimensionando...
+          submit: Redimensionar
+        site:
+          delete: Deletar esse site
+        page:
+          delete: Deletar

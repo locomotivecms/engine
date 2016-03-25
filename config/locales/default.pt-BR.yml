@@ -1,0 +1,13 @@
+pt-BR:
+  date:
+    formats:
+      default: "%d/%m/%Y"
+    today_at: "hoje às"
+    yesterday_at: "ontem às"
+  time:
+    formats:
+      default: "%d/%m/%Y %H:%M"
+      time: "%H:%M"
+  pagination:
+    previous: "&laquo; Anterior"
+    next: "Próximo &raquo;"

@@ -1,0 +1,82 @@
+pt-BR:
+  flash:
+    locomotive:
+      pages:
+        create:
+          notice: "A página foi criada com sucesso."
+          alert: "A página não foi criada."
+        update:
+          notice: "A página foi atualizada com sucesso."
+          alert: "A página não foi atualizada."
+        sort:
+          notice: "As páginas foram filtradas com sucesso."
+        destroy:
+          notice: "As páginas foram deletadas com sucesso."
+      content_entries:
+        create:
+          notice: "A entrada foi criada com sucesso."
+          alert: "A entrada não foi criada."
+        update:
+          notice: "A entrada foi atualizada com sucesso."
+          alert: "A entrada não foi atualizada."
+        sort:
+          notice: "As entradas foram filtradas com sucesso."
+        destroy:
+          notice: "As entradas foram deletadas com sucesso."
+      content_types:
+        update:
+          notice: "O modelo foi atualizado com sucesso."
+          alert: "O modelo não foi atualizado."
+      current_site:
+        update:
+          notice: "Meu site foi atualizado com sucesso."
+          alert: "Meu site não foi atualizado."
+      accounts:
+        create:
+          notice: "A conta foi criada com sucesso."
+          alert: "A conta não foi criada."
+      my_account:
+        update:
+          notice: "Minha conta foi atualizada com sucesso."
+          alert: "Minha conta não foi atualizada."
+      sites:
+        create:
+          notice: "O site foi criado com sucesso."
+          alert: "O site não foi criado."
+        destroy:
+          notice: "O site foi deletado com sucesso."
+      current_site_metafields:
+        update_all:
+          notice: "Os campos meta foram atualizados com sucesso."
+      memberships:
+        create:
+          notice: "O membro foi criado com sucesso."
+          alert: "O membro não foi criado."
+          already_created: "A conta já foi adicionada ao site atual."
+      content_assets:
+        create:
+          notice: "A mídia foi enviada com sucesso."
+          alert: "A mídia não foi enviada."
+        bulk_create:
+          notice: "As mídias foram enviadas com sucesso."
+          alert: "As mídias não foram enviadas."
+        update:
+          notice: "A mídia foi atualizada com sucesso."
+          alert: "A mídia não foi atualizada."
+        destroy:
+          notice: "A mídia foi deletada com sucesso."
+          alert: "A mídia não foi deletada."
+      translations:
+        create:
+          notice: "A tradução foi criada com sucesso."
+          alert: "A tradução não foi criada."
+        update:
+          notice: "A tradução foi atualizada com sucesso."
+          alert: "A tradução não foi atualizada."
+        destroy:
+          notice: "A tradução foi deletada com sucesso."
+      custom_fields:
+        select_options:
+          update:
+            notice: "O campo foi criado com sucesso."
+            alert: "O campo não foi atualizado."

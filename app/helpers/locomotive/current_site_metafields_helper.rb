@@ -91,7 +91,7 @@ module Locomotive
       def select_collection
         @attributes['select_options'].map do |name, label|
           label = { 'default' => name.humanize } if label.blank?
-          [t(label).html_safe, name]
+          [(t(label) || name).html_safe, name]
         end
       end
 
