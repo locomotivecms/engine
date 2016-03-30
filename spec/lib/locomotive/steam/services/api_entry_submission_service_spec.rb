@@ -3,13 +3,16 @@ require 'spec_helper'
 describe Locomotive::Steam::APIEntrySubmissionService do
 
   let(:site)          { create(:site) }
-  let(:locale)        { :en }
+  let(:steam_service) { instance_double('SteamContentEntryService', locale: 'en') }
+  let(:request_env)   { instance_double('RequestEnv') }
+  let(:request)       { instance_double('Request', ip: '127.0.0.1', env: request_env) }
   let(:enabled)       { true }
-  let(:ip_address)    { '127.0.0.1' }
   let!(:content_type) { create('message content type', site: site, public_submission_enabled: enabled).reload }
-  let(:service)       { described_class.new(site, locale, ip_address) }
+  let(:service)       { described_class.new(steam_service, request) }
 
   describe '#submit' do
+
+    before { expect(request_env).to receive(:[]).with('locomotive.site').and_return(site) }
 
     let(:attributes) { { 'name' => 'John Doe', 'message' => 'Hello' } }
 

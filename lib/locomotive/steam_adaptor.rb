@@ -34,6 +34,7 @@ Locomotive::Steam.configure do |config|
     config.middleware.insert_after Locomotive::Steam::Middlewares::Page, Locomotive::Steam::Middlewares.const_get(name.camelize)
   end
 
+  require_relative 'steam/services/api_content_entry_service'
   require_relative 'steam/services/api_entry_submission_service'
   require_relative 'steam/services/liquid_parser_with_cache_service'
 
@@ -41,10 +42,12 @@ Locomotive::Steam.configure do |config|
   config.render_404_if_no_site = false
 
   config.services_hook = -> (services) {
-    services.cache = Rails.cache
+    services.cache  = Rails.cache
+    repositories    = services.repositories
 
     if services.request
-      services.entry_submission = Locomotive::Steam::APIEntrySubmissionService.new(services.request.env['locomotive.site'], services.locale, services.request.ip)
+      services.content_entry    = Locomotive::Steam::APIContentEntryService.new(repositories.content_type, repositories.content_entry, services.locale, services.request)
+      services.entry_submission = Locomotive::Steam::APIEntrySubmissionService.new(services.content_entry, services.request)
       services.defer(:liquid_parser) { Locomotive::Steam::LiquidParserWithCacheService.new(services.current_site, services.parent_finder, services.snippet_finder, services.locale) }
     end
   }
