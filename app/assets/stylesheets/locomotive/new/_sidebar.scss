@@ -135,7 +135,9 @@
         transition: color $base-transition-speed linear;
       }
       span {
+        @include truncate();
         display: inline-block;
+        width: 210px;
         vertical-align: middle;
       }
       &:hover,
@@ -158,6 +160,10 @@
   padding: 5px 0 0 15px;
   li {
     padding: 5px 10px;
+    a span {
+      @include truncate();
+      width: 180px;
+    }
     &:first-child {
       padding-top: 5px;
     }

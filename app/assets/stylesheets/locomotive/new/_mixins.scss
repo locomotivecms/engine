@@ -1,0 +1,13 @@
+// =============================================================================
+// Forms
+// =============================================================================
+
+@import "bootstrap/mixins";
+
+// Truncate words based on their width.
+
+@mixin truncate() {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
