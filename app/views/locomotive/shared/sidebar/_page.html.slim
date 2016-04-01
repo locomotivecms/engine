@@ -6,7 +6,8 @@ li id="node-#{page._id}" class=page.class_names
       i class="fa fa-bars icon #{page.draggable}"
     - else
       i class="fa fa-file-text-o"
-    span.text= page.title
+    span.text style="#{page.text_inline_style}"
+      = page.title
 
   - unless page.translated?
     i.fa.fa-globe.untranslated
