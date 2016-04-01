@@ -94,12 +94,17 @@
     color: $gray-lightest;
     .fa-globe.untranslated {
       float: right;
-      margin-top: 3px;
+      margin-top: 6px;
       color: $brand-warning;
     }
     .badge {
       float: right;
       margin-top: 2px;
+    }
+    &.node {
+      li {
+        padding-right: 0px;
+      }
     }
     &:first-child {
       padding-top: 15px;

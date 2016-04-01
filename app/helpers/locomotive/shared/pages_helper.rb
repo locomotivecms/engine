@@ -32,9 +32,11 @@ module Locomotive
 
       class Node < Struct.new(:page, :children, :controller)
 
+        MAX_WIDTH = [180, 157, 134].freeze # starts at depth 2
+
         extend Forwardable
 
-        def_delegators :page, :_id, :title, :index_or_not_found?, :published?, :templatized?, :translated?, :redirect?, :response_type
+        def_delegators :page, :_id, :title, :index_or_not_found?, :published?, :templatized?, :translated?, :redirect?, :response_type, :depth
 
         def fold_state
           controller.send(:cookies)["node-#{_id}"] != 'unfolded' ? 'folded' : 'unfolded'
@@ -75,6 +77,14 @@ module Locomotive
           base.join(' ')
         end
 
+        def text_inline_style
+          if width = max_width
+            "max-width: #{width}px;"
+          else
+            ''
+          end
+        end
+
         def draggable
           !index_or_not_found? && !templatized? ? 'draggable' : ''
         end
@@ -97,6 +107,10 @@ module Locomotive
           @content_type = (if templatized_page
             templatized_page.try(:content_type_with_main_attributes)
           end)
+        end
+
+        def max_width
+          depth >= 2 ? MAX_WIDTH[depth - 2] : nil
         end
 
         alias :to_param :_id
