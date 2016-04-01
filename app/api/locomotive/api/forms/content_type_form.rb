@@ -13,7 +13,8 @@ module Locomotive
               :public_submission_title_template,
               :entry_template,
               :entries_custom_fields_attributes,
-              :display_settings
+              :display_settings,
+              :filter_fields
 
         # @param [ Site ] the current site, or site to scope to
         def initialize(site, attributes = {})

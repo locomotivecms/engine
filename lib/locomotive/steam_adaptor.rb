@@ -46,8 +46,8 @@ Locomotive::Steam.configure do |config|
     repositories    = services.repositories
 
     if services.request
-      services.content_entry    = Locomotive::Steam::APIContentEntryService.new(repositories.content_type, repositories.content_entry, services.locale, services.request)
-      services.entry_submission = Locomotive::Steam::APIEntrySubmissionService.new(services.content_entry, services.request)
+      services.defer(:content_entry) { Locomotive::Steam::APIContentEntryService.new(repositories.content_type, repositories.content_entry, services.locale, services.request) }
+      services.defer(:entry_submission) { Locomotive::Steam::APIEntrySubmissionService.new(services.content_entry, services.request) }
       services.defer(:liquid_parser) { Locomotive::Steam::LiquidParserWithCacheService.new(services.current_site, services.parent_finder, services.snippet_finder, services.locale) }
     end
   }
