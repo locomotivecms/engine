@@ -6,7 +6,7 @@ fr:
     yesterday_at: "hier à"
   time:
     formats:
-      default: "%d/%m%Y %H:%M"
+      default: "%d/%m/%Y %H:%M"
       time: "%H:%M"
   pagination:
     previous: "&laquo; Précédent"
