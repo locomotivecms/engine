@@ -101,11 +101,7 @@
       float: right;
       margin-top: 2px;
     }
-    &.node {
-      li {
-        padding-right: 0px;
-      }
-    }
+    &.node li { padding-right: 0px; }
     &:first-child {
       padding-top: 15px;
     }
