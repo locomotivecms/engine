@@ -4,8 +4,10 @@ GIT
   specs:
     database_cleaner (1.5.1)
 
-PATH
-  remote: ../gems/steam
+GIT
+  remote: git://github.com/locomotivecms/steam.git
+  revision: fe7403ce999a62700bc512b1c0be52ca3658bc53
+  ref: fe7403ce999a62
   specs:
     locomotivecms_steam (1.1.0.rc3)
       RedCloth (~> 4.2.9)
