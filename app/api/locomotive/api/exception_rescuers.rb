@@ -18,7 +18,7 @@ module Locomotive
         end
 
         rescue_from ::Mongoid::Errors::Validations do |e|
-          error_response(message: { error: 'Resource invalid', attributes: e.document.errors.messages }, status: 422)
+          error_response(message: { error: 'Resource invalid', attributes: e.document.errors.full_messages }, status: 422)
         end
 
         rescue_from Grape::Exceptions::ValidationErrors do |e|

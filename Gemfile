@@ -24,7 +24,7 @@ group :development do
   # gem 'locomotivecms_common', path: '../gems/common', require: false
   # gem 'locomotivecms_common', github: 'locomotivecms/common', ref: '257047b', require: false
 
-  # gem 'locomotivecms_steam', path: '../gems/steam', require: false
+  gem 'locomotivecms_steam', path: '../gems/steam', require: false
   # gem 'locomotivecms_steam', github: 'locomotivecms/steam', ref: 'a3054f1', require: false
 
   # gem 'locomotive_liquid', path: '../gems/liquid' # for Developers
@@ -53,13 +53,9 @@ group :profile, :development do
 end
 
 group :test do
-  # gem 'launchy'
-  # gem 'capybara',           '~> 2.0.2'
-  # gem 'cucumber-rails', require: false
   gem 'simplecov'
 
-  gem 'capybara',             '~> 2.5.0'
-  gem 'capybara-webkit',      '~> 1.8.0'
+  gem 'capybara-webkit',      '~> 1.10.1'
 
   gem 'grape-entity-matchers'
   gem 'shoulda-matchers',     '2.7.0'

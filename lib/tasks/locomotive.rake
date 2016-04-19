@@ -45,6 +45,36 @@ namespace :locomotive do
       end
       puts '[x] set the number of entries by content type'
 
+      # content_entries: many_to_many relationships, make sure both sides are consistent
+      Locomotive::ContentType.where('entries_custom_fields.type' => 'many_to_many').all.each_by(10) do |content_type|
+        # puts "[#{content_type.site.name}] #{content_type.name}"
+        content_type.entries_custom_fields.where('type' => 'many_to_many').all.each do |field|
+          # puts "\t[#{content_type.name}][#{field.name}] #{field.label}"
+
+          content_type.entries.each_by(10) do |entry|
+            ids_name = "#{field.name.singularize}_ids"
+            # puts "\t\t[#{content_type.name}][#{entry._id}][#{entry._slug}] #{entry.attributes[ids_name].inspect}"
+            entry.send(field.name).each do |target_entry|
+              target_ids_name = "#{field.inverse_of.singularize}_ids"
+              target_ids      = target_entry.attributes[target_ids_name]
+
+              valid = target_ids.include?(entry._id)
+
+              unless valid
+                target_entry.send(target_ids_name.to_sym) << entry._id
+                target_entry.save
+                target_entry.reload
+
+                valid = target_ids.include?(entry._id)
+              end
+
+              # puts "\t\t\t[#{content_type.name}][#{target_entry._id}][#{target_entry._slug}] inverse target ids: #{target_ids.inspect} | valid? #{valid.inspect}"
+            end
+          end
+        end
+      end
+      puts '[x] make many_to_many relationships exist both sides'
+
       # content asset checksums
       Locomotive::ContentAsset.all.each do |asset|
         asset.send(:calculate_checksum)

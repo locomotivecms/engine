@@ -14,11 +14,11 @@
     - if policy(current_site).site_admin_or_designer?
       = f.input :handle
 
-    = f.input :redirect, as: :toggle
+  = f.input :redirect, as: :toggle
 
-    = f.input :redirect_url, as: :string, wrapper_html: { class: "#{'hide' unless @page.redirect?}" }
+  = f.input :redirect_url, as: :string, wrapper_html: { class: "#{'hide' unless @page.redirect?}" }
 
-    = f.input :redirect_type, as: :select, collection: options_for_page_redirect_type, include_blank: false, wrapper_html: {class: "#{'hide' unless @page.redirect?}" }
+  = f.input :redirect_type, as: :select, collection: options_for_page_redirect_type, include_blank: false, wrapper_html: {class: "#{'hide' unless @page.redirect?}" }
 
   = f.input :published, as: :toggle
 

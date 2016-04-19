@@ -5,6 +5,33 @@ GIT
     database_cleaner (1.5.1)
 
 PATH
+  remote: ../gems/steam
+  specs:
+    locomotivecms_steam (1.1.0.rc3)
+      RedCloth (~> 4.2.9)
+      autoprefixer-rails (~> 6.3.3.1)
+      chronic (~> 0.10.2)
+      coffee-script (~> 2.4.1)
+      compass (~> 1.0.3)
+      dragonfly (~> 1.0.12)
+      haml (~> 4.0.6)
+      httparty (~> 0.13.6)
+      kramdown (~> 1.10.0)
+      locomotivecms-solid (~> 4.0.1)
+      locomotivecms_common (~> 0.1.0)
+      mime-types (~> 2.6.1)
+      mimetype-fu (~> 0.1.2)
+      moneta (~> 0.8.0)
+      morphine (~> 0.1.1)
+      nokogiri (~> 1.6.7.2)
+      rack-cache (~> 1.6.1)
+      rack-rewrite (~> 1.5.1)
+      rack_csrf (~> 2.5.0)
+      sanitize (~> 4.0.1)
+      sass (~> 3.4.21)
+      sprockets (~> 3.5.2)
+
+PATH
   remote: .
   specs:
     locomotivecms (3.1.0.rc3)
@@ -114,14 +141,15 @@ GEM
     bson (4.0.4)
     builder (3.2.2)
     byebug (8.2.2)
-    capybara (2.5.0)
+    capybara (2.7.0)
+      addressable
       mime-types (>= 1.16)
       nokogiri (>= 1.3.3)
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
-    capybara-webkit (1.8.0)
-      capybara (>= 2.3.0, < 2.7.0)
+    capybara-webkit (1.10.1)
+      capybara (>= 2.3.0, < 2.8.0)
       json
     carrierwave (0.10.0)
       activemodel (>= 3.2.0)
@@ -293,29 +321,6 @@ GEM
       attr_extras (~> 4.4.0)
       colorize
       stringex (~> 2.6.0)
-    locomotivecms_steam (1.1.0.rc3)
-      RedCloth (~> 4.2.9)
-      autoprefixer-rails (~> 6.3.3.1)
-      chronic (~> 0.10.2)
-      coffee-script (~> 2.4.1)
-      compass (~> 1.0.3)
-      dragonfly (~> 1.0.12)
-      haml (~> 4.0.6)
-      httparty (~> 0.13.6)
-      kramdown (~> 1.10.0)
-      locomotivecms-solid (~> 4.0.1)
-      locomotivecms_common (~> 0.1.0)
-      mime-types (~> 2.6.1)
-      mimetype-fu (~> 0.1.2)
-      moneta (~> 0.8.0)
-      morphine (~> 0.1.1)
-      nokogiri (~> 1.6.7.2)
-      rack-cache (~> 1.6.1)
-      rack-rewrite (~> 1.5.1)
-      rack_csrf (~> 2.5.0)
-      sanitize (~> 4.0.1)
-      sass (~> 3.4.21)
-      sprockets (~> 3.5.2)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
     mail (2.6.3)
@@ -518,8 +523,7 @@ PLATFORMS
 DEPENDENCIES
   better_errors
   binding_of_caller
-  capybara (~> 2.5.0)
-  capybara-webkit (~> 1.8.0)
+  capybara-webkit (~> 1.10.1)
   coffee-rails (~> 4.1.0)
   coveralls (~> 0.7.2)
   database_cleaner!
@@ -530,6 +534,7 @@ DEPENDENCIES
   i18n-tasks (~> 0.8.7)
   json_spec (~> 1.1.4)
   locomotivecms!
+  locomotivecms_steam!
   pickle
   pry
   pry-byebug
