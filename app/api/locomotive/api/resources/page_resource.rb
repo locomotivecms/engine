@@ -102,6 +102,7 @@ module Locomotive
           put ':id' do
             object_auth :update?
             form = form_klass.new(current_site, page_params, page)
+
             persist_from_form(form)
 
             present page, with: entity_klass, site: current_site
