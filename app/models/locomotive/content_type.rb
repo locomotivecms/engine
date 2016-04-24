@@ -14,6 +14,7 @@ module Locomotive
     include Concerns::ContentType::OrderBy
     include Concerns::ContentType::ClassHelpers
     include Concerns::ContentType::PublicSubmissionTitleTemplate
+    include Concerns::ContentType::FilterFields
 
     ## fields ##
     field :name
@@ -26,7 +27,6 @@ module Locomotive
     field :order_direction,             default: 'asc'
     field :public_submission_enabled,   type: Boolean,  default: false
     field :public_submission_accounts,  type: Array,    default: []
-    field :filter_fields,               type: Array
     field :number_of_entries
     field :display_settings,            type: Hash
 
@@ -46,11 +46,9 @@ module Locomotive
     ## callbacks ##
     before_validation   :normalize_slug
     before_validation   :sanitize_public_submission_accounts
-    before_validation   :sanitize_filter_fields
     after_validation    :bubble_fields_errors_up
 
     ## validations ##
-    # validates_presence_of   :site, :name, :slug
     validates_presence_of   :name, :slug
     validates_uniqueness_of :slug, scope: :site_id
     validates_size_of       :entries_custom_fields, minimum: 1, message: :too_few_custom_fields
@@ -121,13 +119,6 @@ module Locomotive
     def sanitize_public_submission_accounts
       if self.public_submission_accounts
         self.public_submission_accounts.reject! { |id| id.blank? }
-      end
-    end
-
-    # We do not want to have a blank value in the list of fields used to filter the entries.
-    def sanitize_filter_fields
-      if self.filter_fields
-        self.filter_fields.reject! { |id| id.blank? }
       end
     end
 

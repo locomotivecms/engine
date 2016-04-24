@@ -49,7 +49,7 @@ describe Locomotive::ContentEntryService do
       it { is_expected.to eq({ "title" => /.*Lorem.*ipsum.*/i }) }
 
       context 'the content type has some filter fields' do
-        before { add_filter_fields('Title', 'Body') }
+        before { content_type.filter_fields = ['title', 'body'] }
         it { is_expected.to eq({ "$or" => [{ "title" => /.*Lorem.*ipsum.*/i }, { "body" => /.*Lorem.*ipsum.*/i }] }) }
       end
     end
@@ -244,14 +244,6 @@ describe Locomotive::ContentEntryService do
 
       content_type.save!
     end.reload
-  end
-
-  def add_filter_fields(*labels)
-    content_type.filter_fields = []
-    labels.each do |label|
-      field = content_type.entries_custom_fields.where(label: label).first
-      content_type.filter_fields << field._id
-    end
   end
 
   def create_content_entry(attributes)

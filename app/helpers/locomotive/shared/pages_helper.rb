@@ -36,14 +36,16 @@ module Locomotive
 
         extend Forwardable
 
-        def_delegators :page, :_id, :title, :index_or_not_found?, :published?, :templatized?, :translated?, :redirect?, :response_type, :depth
+        def_delegators :page, :_id, :parent, :title, :index_or_not_found?, :published?, :templatized?, :translated?, :redirect?, :response_type, :depth
 
         def fold_state
           controller.send(:cookies)["node-#{_id}"] != 'unfolded' ? 'folded' : 'unfolded'
         end
 
         def nodes
-          children.map { |(child, children)| self.class.new(child, children, controller) }
+          children.map do |(child, children)|
+            self.class.new(child, children, controller)
+          end
         end
 
         def icon
@@ -86,11 +88,19 @@ module Locomotive
         end
 
         def draggable
-          !index_or_not_found? && !templatized? ? 'draggable' : ''
+          draggable? ? 'draggable' : ''
         end
 
         def draggable?
-          !index_or_not_found? && !templatized?
+          !index_or_not_found? && (templatized? || !templatized_parent?)
+        end
+
+        def templatized_parent?
+          parent.templatized?
+        end
+
+        def templatized_children?
+          !templatized_page.nil?
         end
 
         def templatized_page

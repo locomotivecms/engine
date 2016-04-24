@@ -8,7 +8,7 @@ module Locomotive
                 :public_submission_enabled,
                 :public_submission_accounts,
                 :public_submission_title_template,
-                :entry_template, :display_settings
+                :entry_template, :display_settings, :filter_fields
 
         expose :fields, using: ContentTypeFieldEntity do |content_type, _|
           content_type.ordered_entries_custom_fields || []

@@ -247,9 +247,8 @@ module Locomotive
           where[content_type.label_field_name.to_sym] = regexp
         else
           where['$or'] = []
-          self.content_type.filter_fields.each do |field_id|
-            field = self.content_type.entries_custom_fields.find(field_id)
-            where['$or'] << { field.name => regexp }
+          self.content_type.filter_fields.each do |field_name|
+            where['$or'] << { field_name => regexp }
           end
         end
       end

@@ -1,24 +1,16 @@
 module Locomotive
   module Steam
 
-    class APIEntrySubmissionService < Struct.new(:site, :locale, :ip_address)
+    class APIEntrySubmissionService < EntrySubmissionService
 
-      def submit(slug, attributes = {})
-        if load_content_type(slug)
+      attr_accessor_initialize :service, :request
+
+      def submit(type_slug, attributes = {})
+        if load_content_type(type_slug)
           create_entry(attributes)
         else
           nil
         end
-      end
-
-      def find(type_slug, slug)
-        if entry = load_content_type(type_slug).entries.where(_slug: slug).first
-          make_entity(entry)
-        end
-      end
-
-      def to_json(entry)
-        make_entity(entry).to_json
       end
 
       private
@@ -29,16 +21,26 @@ module Locomotive
 
       def create_entry(attributes)
         ::Mongoid::Fields::I18n.with_locale(locale) do
-          service.public_create(attributes, { ip_address: ip_address })
+          entry = engine_service.public_create(attributes, { ip_address: ip_address })
+
+          entity = entry.to_steam(@content_type)
+          Locomotive::Steam::Decorators::I18nDecorator.new(entity, locale)
         end
       end
 
-      def make_entity(entry)
-        entity = entry.to_steam(@content_type)
-        Locomotive::Steam::Decorators::I18nDecorator.new(entity, locale)
+      def site
+        self.request.env['locomotive.site']
       end
 
-      def service
+      def ip_address
+        self.request.ip
+      end
+
+      def locale
+        self.service.locale
+      end
+
+      def engine_service
         Locomotive::ContentEntryService.new(@content_type, nil)
       end
 

@@ -14,14 +14,14 @@ li id="node-#{page._id}" class=page.class_names
 
   - if page.children?
     ul.sidebar-sublist.leaves data-url=sort_page_path(current_site, page)
-      - unless page.content_type && page.nodes.count == 1
-        = render partial: 'locomotive/shared/sidebar/page', collection: page.nodes
 
-      - if page.content_type
+      = render partial: 'locomotive/shared/sidebar/page', collection: page.nodes
+
+      - if page.templatized_children? && !page.templatized?
         li.list-entries
           = link_to content_entries_path(current_site, page.templatized_page.content_type.slug) do
-            i.fa.fa-bars.icon
-            span.text= t(:list_content_entries, name: page.content_type.name.pluralize, scope: 'locomotive.pages.index')
+              i.fa.fa-list-ul.icon
+              span.text= t(:list_content_entries, name: page.content_type.name.pluralize, scope: 'locomotive.pages.index')
 
         li.new-entry.sidebar-list-add
           = link_to new_content_entry_path(current_site, page.templatized_page.content_type.slug) do

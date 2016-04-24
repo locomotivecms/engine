@@ -34,18 +34,22 @@ Locomotive::Steam.configure do |config|
     config.middleware.insert_after Locomotive::Steam::Middlewares::Page, Locomotive::Steam::Middlewares.const_get(name.camelize)
   end
 
-  require_relative 'steam/services/api_entry_submission_service'
-  require_relative 'steam/services/liquid_parser_with_cache_service'
+  %w(api_content_entry api_entry_submission liquid_parser_with_cache async_email).each do |name|
+    require_relative "steam/services/#{name}_service"
+  end
 
   # let the Rails engine handle the "no site" error
   config.render_404_if_no_site = false
 
   config.services_hook = -> (services) {
-    services.cache = Rails.cache
+    services.cache  = Rails.cache
+    repositories    = services.repositories
 
     if services.request
-      services.entry_submission = Locomotive::Steam::APIEntrySubmissionService.new(services.request.env['locomotive.site'], services.locale, services.request.ip)
+      services.defer(:content_entry) { Locomotive::Steam::APIContentEntryService.new(repositories.content_type, repositories.content_entry, services.locale, services.request) }
+      services.defer(:entry_submission) { Locomotive::Steam::APIEntrySubmissionService.new(services.content_entry, services.request) }
       services.defer(:liquid_parser) { Locomotive::Steam::LiquidParserWithCacheService.new(services.current_site, services.parent_finder, services.snippet_finder, services.locale) }
+      services.defer(:email) { Locomotive::Steam::AsyncEmailService.new(services.page_finder, services.liquid_parser, services.asset_host, services.configuration.mode == :test) }
     end
   }
 end

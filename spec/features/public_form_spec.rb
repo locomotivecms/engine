@@ -33,8 +33,6 @@ describe 'A site with a form content type' do
 
   describe 'it submits the form in JSON' do
 
-
-
   end
 
 end
