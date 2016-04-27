@@ -1,14 +1,18 @@
 de:
   simple_form:
+    blank_required_fields: "Es wurden nicht alle Pflichtfelder ausgefüllt"
     titles:
       locomotive:
         account:
           information: Hauptkonto
           api: API
+          credentials: Zugangsdaten
         site:
           information: Hauptseite
+          access_points: Zugriffspunkte
           seo: SEO
           advanced: Erweitert
+          url_redirections: URL Weiterleitungen
         page:
           content: Inhalt
           settings: Einstelllungen
@@ -22,15 +26,116 @@ de:
         content_entry:
           _slug: Permalink
           _visible: Sichtbar
+        content_type:
+          public_submission_accounts: "Benachrichtigte Konten"
         account:
           api_key: 'API Schlüssel '
+          no_api_key: Keine
+          edit:
+            locale: Sprache der Benutzeroberfläche
+            password: Neues Kennwort
+            password_confirmation: Neues Kennwort bestätigen
+        page:
+          seo_title: Titel
+          target_klass_name: Model
+        editable_element:
+          region: Abschnitt
+        site:
+          locales: Sprachen
+          timezone_name: Zeitzone
+          cache_enabled: Cache
+          private_access: "Kennwortschutz Aktivieren"
+          password: "Seiten Kennwort"
+          new:
+            locales: Hauptstprache
+        membership:
+          edit:
+            role: Neue Rolle
+        rte_input_link_form:
+          url: Link Adresse
+          target: Ziel
+          title: Titel
+        rte_input_image_form:
+          src: Quelle
+          title: Titel
+          alignment: Ausrichtung
+        image_resize_form:
+          width: Breite
+          height: Höe
+        rte_input_table_form:
+          cols: "Spalten"
+          rows: "Zeilen"
+          head: "Kopfzeile?"
+          class_name: "CSS Klasse"
+    hints:
+      locomotive:
+        account:
+          password: Mindestens 6 Zeichen
+        page:
+          published: "Nur angemeldete Benutzer können nicht veröffentlichte Seiten sehen"
+          templatized: "Seite als Vorlage für ein Model verwenden"
+          cache_enabled: "Wenn aktiviert, wird Ihre Seite zwischengespeichert so lange sich der Inhalt nicht ändert."
+          listed: "Gibt an ob die Seite im generierten Menü angezeigt wird."
+          meta_keywords: "Überschreiben der Seiten Schlüsselwörter (meta keywords) in den head tags der Seite (durch Beistrich getrennt)"
+          meta_description: "Überschreiben der Seiten Metadatenbeschreibung in den head tags der Seite"
+          is_layout: "Wenn aktiv kann diese Seite als Vorlage für andere Seiten dienen."
+          allow_layout: "Erlaube Autoren das Layout der Seite zu verändern"
+        site:
+          locales: "Ziehen sie eine Flagge an erster Stelle um es als Standard einzustellen."
+          memberships: "Sie können weitere Konten einladen um die Webseite zu verwalten."
+          cache_enabled: "Wenn aktiviert, wird Ihre Seite zwischengespeichert so lange sich der Inhalt nicht ändert. Deaktivieren des Zwischenspeichers pro Seite ist erlaubt."
+          redirect_to_first_domain: "Wenn aktiv, werden anfragen zu obigen Domains an die erste Domain umgeleitet."
+          private_access: Sie können Ihre Webseite hinter einem Kennwort verbergen.
+          password: 'Das Kennwort welches öffentliche Besucher eingeben müssen um den Inhalt der Webseite zu sehen. '
+          new:
+            locales: "Sie können weitere Sprachen hinzufügen sobald ihre Seite erstellt wurde."
+        translation:
+          key: "Unterstrich statt Bindestrich verwenden: z.B. willkommens_nachricht"
+        content_entry:
+          meta_keywords: "Überschreiben der Seiten Schlüsselwörter (meta keywords) in den head tags der Seite, durch Beistrich getrennt."
+          meta_description: "Überschreiben der Seiten Metadatenbeschreibung in den head tags der Seite"
+        content_type:
+          public_submission_accounts: "Wenn ein Eintrag erstellt wird, sende eine Benachrichtigung an unten angeführte Konten."
+        image_resize_form:
+          width: "in px"
+          height: "in px"
+    placeholders:
+      locomotive:
+        site:
+          domains: "Beispiel: meineseite.com"
+          url_redirections: "Z.b.: meine-alte-url neue-url-in-locomotive"
+        content_type_entry_field:
+          select_options: "Label Ihrer neuen option"
+    options:
+      locomotive:
+        rte_input_link_form:
+          target:
+            not_set: "Nicht angegeben"
+            self: "Link im selben Fenster öffnen"
+            blank: "Link in neuem Fenster öfnen"
+        rte_input_image_form:
+          alignment:
+            default: Voreinstellung
+            left: Links
+            right: Rechts
     buttons:
       defaults:
         locomotive:
+          create: Erstellen
+          update: Speichern
+          submit: OK
           cancel: Abbrechen
           delete: Löschen
+          close: Schliessen
+          loading_text: "Speichere..."
+          or: oder
       locomotive:
+        account:
+          new_api_key: Neu generieren
         image_resize_form:
+          loading_text: 'Größe wird angepasst '
           submit: Größe ändern
+        site:
+          delete: Diese Webseite löschen
         page:
           delete: Löschen

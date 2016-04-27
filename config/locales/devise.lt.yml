@@ -1,0 +1,61 @@
+lt:
+  errors:
+    messages:
+      not_found: "nerastas"
+      already_confirmed: "jau buvo patvirtinta"
+      not_locked: "nebuvo užrakinta"
+  devise:
+    failure:
+      locomotive_account:
+        unauthenticated: 'Jei norite tęsti, prisijunkite.'
+        unconfirmed: 'Jei norite tęsti, patvirtinkite savo paskyrą.'
+        locked: 'Jūsų paskyra yra užrakinta.'
+        invalid: 'Neteisingas el. paštas arba slaptažodis.'
+        not_found_in_database: 'Neteisingas el. paštas arba slaptažodis.'
+        no_membership: 'Jūsų paskyra neturi prieigos prie šio tinklalapio, susisiekite su tinklalapio administratoriumi dėl prieigos suteikimo.'
+        invalid_token: 'Neteisingas autentikacijos raktas.'
+        timeout: 'Sesija pasibaigė, prisijunkite iš naujo.'
+        inactive: 'Jūsų paskyra dar nėra aktyvuota.'
+    sessions:
+      locomotive_account:
+        signed_in: 'Sėkmingas prisijungimas.'
+        signed_out: 'Sėkmingas atsijungimas.'
+    passwords:
+      locomotive_account:
+        send_instructions: 'Jūs gausite laišką su instrukcijomis kaip atkurti slaptažodį.'
+        updated: 'Jūsų slaptažodis buvo sėkmingai pakeistas. Jau esate prisijungęs.'
+        invalid: 'Iš naujo prašykite naujo slaptažodžio.'
+    confirmations:
+      locomotive_account:
+        send_instructions: 'Jūs gausite laišką su instrukcijomis kaip patvirtinti savo paskyrą.'
+        confirmed: 'Jūsų paskyra buvo sėkmingai patvirtinta. Jau esate prisijungęs.'
+    registrations:
+      locomotive_account:
+        signed_up: 'Jūs sėkmingai užsiregistravote.'
+        updated: 'Sėkmingai atnaujinote savo paskyrą.'
+        destroyed: 'Iki! Jūsų paskyra buvo sėkmingai atšaukta. Tikimės greitu metu jus pamatyti.'
+    unlocks:
+      locomotive_account:
+        send_instructions: 'Jūs gausite laišką su instrukcijomis kaip atrakinti savo paskyrą.'
+        unlocked: 'Jūsų paskyra buvo sėkmingai atrakinta. Jau esate prisijungęs.'
+    mailer:
+      locomotive_account:
+        confirmation_instructions: 'Patvirtinimo instrukcijos'
+        reset_password_instructions: 'Slaptažodžio atstatymo instrukcijos'
+        unlock_instructions: 'Atrakinimo instrukcijos'
+  locomotive:
+    devise_mailer:
+      common:
+        hello: Sveiki
+      confirmation_instructions:
+        you_can_confirm_your_account_through_the_link_below: "Jūs galite patvirtinti savo paskyra per nuorodą:"
+        confirm_my_account: "Prieigos patvirtinimas"
+      reset_password_instructions:
+        reset_password_instruction: "Užsakytas slaptažodžio pakeitimas, tai galite atlikti per nuorodą:"
+        change_my_password: "Slaptažodžio pakeitimas"
+        wrong_request_instruction: "Jeigu neužsakėte, prašome ignoruoti šį laišką."
+        unchange_password_message: "Jūsų slaptažodis nepasikeis kol nepaspausite ant aukščiau esančios nuorodos ir patys neįvesite naujo."
+      unlock_instructions:
+        locked_account_message: "Jūsų paskyra buvo užblokuota dėl didelio kiekio neteisingai įvestų slaptažodžių."
+        unlock_account_instruction: "Atrakinkite savo paskyrą paspaudę ant nuorodos:"
+        unlock_my_account: "Paskyros atrakinimas"

@@ -38,6 +38,7 @@ en:
       sidebar:
         dashboard: Dashboard
         assets: Assets
+        pages: Pages
         settings: General Settings
         metafields: Properties
         developers: Developers

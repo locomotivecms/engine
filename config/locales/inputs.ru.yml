@@ -1,0 +1,19 @@
+ru:
+  locomotive:
+    inputs:
+      file:
+        none: нет файла
+        browse: Обзор
+        choose: Выбрать
+        change: Поменять
+        delete: Удалить
+        cancel: Отмена
+        select_local_file: Загрузить файл
+        select_content_asset: Выбрать из ресурсов
+      array:
+        new: Создать
+        add: Добавить
+        edit: Править
+      toggle:
+        on_text: "Да"
+        off_text: "Нет"

@@ -1,0 +1,153 @@
+lt:
+  simple_form:
+    blank_required_fields: "Jūs neužpildėte visų privalomų laukų."
+    titles:
+      locomotive:
+        account:
+          information: Pagrindinis
+          api: API
+          credentials: Įgaliojimai
+        site:
+          information: Pagrindinis
+          access_points: Prieigos taškai.
+          seo: SEO
+          advanced: Išplėsti
+          url_redirections: URL nukreipimai
+        page:
+          content: Turinys
+          settings: Nustatymai
+          seo: SEO
+        content_entry:
+          content: Turinys
+          advanced: Išplėsti
+          seo: SEO
+    labels:
+      locomotive:
+        content_entry:
+          _slug: Pastovioji nuoroda
+          _visible: Matomas
+        content_type:
+          public_submission_accounts: "Paskyros, kurioms bus pranešta"
+        account:
+          api_key: API raktas
+          no_api_key: Nė vienas
+          edit:
+            locale: UI Kalba
+            password: Naujas slaptažodis
+            password_confirmation: Naujo slaptažodžio patvirtinimas
+        page:
+          seo_title: Antraštė
+          target_klass_name: Modelis
+        editable_element:
+          region: Skyriai
+        site:
+          locales: Kalbos
+          timezone_name: Laiko zona
+          cache_enabled: Kešas
+          private_access: "Įjungti apsaugą slaptažodžiu"
+          password: "Tinklalapio masto apsauga"
+          new:
+            locales: Pirma kalba
+        membership:
+          edit:
+            role: Nauja rolė
+        rte_input_link_form:
+          url: Nuoroda URL
+          target: Taikinys
+          title: Antraštė
+        rte_input_image_form:
+          src: Šaltinis
+          title: Antraštė
+          alignment: Lygiavimas
+        image_resize_form:
+          width: Plotis
+          height: Aukštis
+        rte_input_table_form:
+          cols: "Stulpeliai"
+          rows: "Eilutės"
+          head: "Head row?"
+          class_name: "CSS klasė"
+    hints:
+      locomotive:
+        account:
+          password: mažiausia 6 raidės
+        page:
+          handle: "Unikalus identifikatorius šio puslapio gavimui per išorinio valdiklio instance"
+          published: "Tik prisijungę vartotojai gali peržiūrėti nepublikuotus puslapius."
+          templatized: "Naudokite puslapį kaip šabloną savo apibrėžtam modeliui."
+          cache_enabled: "Kada įjungta, jūsų puslapis bus užkešuotas taip ilgai iki kol turinys nebus pakeistas."
+          listed: "Puslapio rodymo kontrolė iš sugeneruoto menu."
+          target_klass_name: "Tipas šio puslapio turinio, kuriam bus šablonas."
+          seo_title: "Apibrėžkite puslapio pavadinimą, kurio reikšmė bus naudojama title tag puslapio head skiltyje. Nepildykite, jeigu norite, kad būtų naudojama reikšmė apibrėžta tinklalapio nustatymuose."
+          meta_keywords: "Perrašo tinklalapio meta raktažodžius naudojamus head tag paslapyje. Jie turi būti atskirti kableliu."
+          meta_description: "Perrašo tinklalapio meta aprašą naudojamą head tag paslapyje."
+          is_layout: "Jei tiesa, šis puslapis gali būti naudojamas kaip maketas kitiems puslapiams."
+          allow_layout: "Leisti autoriams keisti to puslapio maketą."
+        site:
+          locales: "Drag&drop a flag padaryti pirmą poziciją pagal nutylėjimą."
+          seo_title: "Apibrėžkite globalią reikšmę, kuri bus naudojama title tag head skiltyje."
+          meta_keywords: "Meta raktažodžiai naudojami head tag puslapyje. Jie turi būti atskirti kableliu. Reikalinga dėl SEO."
+          meta_description: "Meta aprašymas naudojamas puslapio head tag. Reikalinga SEO."
+          robots_txt: "Turinys <span class='code'>/robots.txt</span> failo. Daugiau informacijos apie tai rasite <a href='http://www.w3.org/TR/html4/appendix/notes.html#h-B.4.1.1'>čia</a>."
+          domains: "Pridėkite domenus. Daugiau informacijos apie tai rasite <a href=\"https://locomotive-v3.readme.io/docs/domains\">dokumentacijoje</a>."
+          memberships: "Galite pakviesti kitus vartotojus redaguoti/valdyti tinklalapį."
+          cache_enabled: "Kada įjungta, puslapiai bus užkešuoti iki kol turinys nebus pakeistas. Kešavimą galima išjungti kiekvienam puslapiui atskirai."
+          redirect_to_first_domain: "Kada įjungta, užklausos padarytos į bet kokius domenus sąraše esančius domenus, bus nukreiptos į pirmą domeną."
+          url_redirections: "Redirect (301) palikimo urls į puslapius, kuriuos sukūrei back-ofise. Šaltinio ir taikinio URLs turi būti atskirti <u>tarpu</u>."
+          private_access: Tinklalapį gali paslėpti už slaptažodžio.
+          password: Slaptažodį vieši lankytojai turės įvesti norėdami pamatyti tinklalapio turinį.
+          new:
+            locales: "Kitas kalbas galėsite pridėti kada tinklalapis bus sukurtas."
+        translation:
+          key: "Vietoj brūkšnio reikia naudoti apatinį brūkšnelį. Pavyzdys: welcome_message."
+        content_entry:
+          _slug: "Ši savybė naudojama generuojant puslapio url darbui su šablonu šiam turinio tipui (pavyzdys: \"template_page/{{ your_object._permalink }})\"."
+          _visible: "Pagal nutylėjimą, įrašas pasirodys tinklalapyje. Tai gali būti naudojama kaip publikuojamas atributas."
+          seo_title: "Reikšmė pakeis siejamo su modeliu šablono puslapio SEO pavadinimą."
+          meta_keywords: "Perrašo tinklalapio meta raktažodžius naudojamus head tag puslapyje. Jie turi būti atskirti kableliu."
+          meta_description: "Perrašo tinklalapio meta aprašą naudojamą head tag puslapyje."
+        content_type:
+          public_submission_accounts: "Kada įrašas yra sukuriamas, išsiunčiamas pranešimas el. paštu vartotojams, išvardintiems žemiau."
+        image_resize_form:
+          width: "px"
+          height: "px"
+    placeholders:
+      locomotive:
+        site:
+          domains: "Ex: mysite.com"
+          url_redirections: "Ex: my-legacy-url new-url-in-locomotive"
+        content_type_entry_field:
+          select_options: "Įveskite naują parinkties pavadinimą čia"
+    options:
+      locomotive:
+        rte_input_link_form:
+          target:
+            not_set: "Nenustatyta"
+            self: "Atidaryti nuorodą tame pačiame lange"
+            blank: "Atidaryti nuorodą naujame lange"
+        rte_input_image_form:
+          alignment:
+            default: Numatytasis
+            left: Kairė
+            right: Dešinė
+    buttons:
+      defaults:
+        locomotive:
+          create: Sukurti
+          update: Išsaugoti
+          submit: Gerai
+          cancel: Atšaukti
+          delete: Ištrinti
+          close: Uždaryti
+          loading_text: "Išsaugoma..."
+          or: arba
+      locomotive:
+        account:
+          new_api_key: Regeneruoti
+        image_resize_form:
+          loading_text: Keičiamas dydis...
+          submit: Keisti dydį
+        site:
+          delete: Ištrinti šį tinklalapį
+        page:
+          delete: Ištrinti

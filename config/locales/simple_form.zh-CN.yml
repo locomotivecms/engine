@@ -1,0 +1,153 @@
+zh-CN:
+  simple_form:
+    blank_required_fields: "有部分必填字段未填。"
+    titles:
+      locomotive:
+        account:
+          information: Main
+          api: API
+          credentials: 凭据
+        site:
+          information: Main
+          access_points: Access points
+          seo: 搜索引擎优化
+          advanced: 高级
+          url_redirections: URL重定向
+        page:
+          content: 内容
+          settings: 设置
+          seo: 搜索引擎优化
+        content_entry:
+          content: 内容
+          advanced: 高级
+          seo: 搜索引擎优化
+    labels:
+      locomotive:
+        content_entry:
+          _slug: 永久链接
+          _visible: 可见
+        content_type:
+          public_submission_accounts: "通知数量"
+        account:
+          api_key: API key
+          no_api_key: 无
+          edit:
+            locale: UI语言
+            password: 新密码
+            password_confirmation: 新密码确认
+        page:
+          seo_title: 标题
+          target_klass_name: 模型
+        editable_element:
+          region: 局部内容
+        site:
+          locales: 语言
+          timezone_name: 时区
+          cache_enabled: 缓存
+          private_access: "激活密码保护"
+          password: "站内密码"
+          new:
+            locales: 首选语言
+        membership:
+          edit:
+            role: 新的角色
+        rte_input_link_form:
+          url: 链接URL
+          target: 目标
+          title: 标题
+        rte_input_image_form:
+          src: 源
+          title: 标题
+          alignment: 对齐
+        image_resize_form:
+          width: 宽度
+          height: 高度
+        rte_input_table_form:
+          cols: "栏"
+          rows: "行"
+          head: "Head行？"
+          class_name: "CSS class"
+    hints:
+      locomotive:
+        account:
+          password: 至少6个字符
+        page:
+          handle: "用于外部控制器实例访问的唯一标识符"
+          published: "只有认证的账户才能查看未发布页面。"
+          templatized: "将页面作为你所创建模型的模板"
+          cache_enabled: "当此项激活，页面将会被一直缓存，只是内容被修改。"
+          listed: "控制是否在生成的菜单中显示该页面"
+          target_klass_name: "该页面中内容的类型将做为模板"
+          seo_title: "定义页面标题，该标题讲座在head section中的title tag的值。如果想使用默认值则留空。"
+          meta_keywords: "复写站点页面中head tag的meta keywords，使用分号来区隔。"
+          meta_description: "复写站点中页面head tag中的meta描述。"
+          is_layout: "选中则该页面将会作为其他页面的layout。"
+          allow_layout: "请让作者修改，或者并非该页面的layout。"
+        site:
+          locales: "随意拖放一个flag到顶部，使它成为默认值。"
+          seo_title: "为head section的title tag定义一个全局默认值"
+          meta_keywords: "Meta keywords被使用在页面的head tag。用分号区隔。是SEO必备的设置。"
+          meta_description: "Meta keywords被使用在页面的head tag。用分号区隔。是SEO必备的设置。"
+          robots_txt: " <span class='code'>/robots.txt</span> 文件的内容。检查此 <a href='http://www.w3.org/TR/html4/appendix/notes.html#h-B.4.1.1'>url</a> 以获得更多信息。"
+          domains: "在下方添加你的域名。 文档在 <a href=\"https://locomotive-v3.readme.io/docs/domains\">这里</a> 。"
+          memberships: "你可以邀请其他账号来编辑/管理该站点。"
+          cache_enabled: "当此项激活，页面将会被一直缓存，直至内容被修改。也可以禁用每个页面的缓存。"
+          redirect_to_first_domain: "激活时，发送到上述域名的请求将会被重定向到第一个域名。"
+          url_redirections: "重定向 (301) legacy urls 到你在backoffice创建的页面。源地址和目标地址使用 <u>space</u> 区隔。"
+          private_access: 你可以使用密码隐藏你的站点。
+          password: 访客需要输入密码才能看到你的站点。
+          new:
+            locales: "你可以在站点创建后添加其他语言。"
+        translation:
+          key: "使用下划线替代横杠。如： welcome_message。"
+        content_entry:
+          _slug: "属性用于生成页面url，以作为内容类型的模板（如：\"template_page/{{ your_object._permalink }})\". ）。"
+          _visible: "默认情况下，该记录将显示在站点中。所以能够被用作发布属性。"
+          seo_title: "你填入的值将会替换与你的模型相关的模板化页面的SEO标题。"
+          meta_keywords: "复写站点页面中head tag的meta keywords，使用分号来区隔。"
+          meta_description: "复写站点中页面head tag中的meta描述。"
+        content_type:
+          public_submission_accounts: "当每条记录创建时，发送一封通知邮件到下列账号。"
+        image_resize_form:
+          width: "in px"
+          height: "in px"
+    placeholders:
+      locomotive:
+        site:
+          domains: "Ex: mysite.com"
+          url_redirections: "Ex: my-legacy-url new-url-in-locomotive"
+        content_type_entry_field:
+          select_options: "在此输入你的新选项的label"
+    options:
+      locomotive:
+        rte_input_link_form:
+          target:
+            not_set: "未设置"
+            self: "在同一窗口打开链接"
+            blank: "新窗口打开链接"
+        rte_input_image_form:
+          alignment:
+            default: 默认
+            left: 左
+            right: 右
+    buttons:
+      defaults:
+        locomotive:
+          create: 创建
+          update: 保存
+          submit: OK
+          cancel: 取消
+          delete: 删除
+          close: 关闭
+          loading_text: "保存中..."
+          or: 或者
+      locomotive:
+        account:
+          new_api_key: 重新生成
+        image_resize_form:
+          loading_text: 调整尺寸...
+          submit: 调整尺寸
+        site:
+          delete: 删除该站点
+        page:
+          delete: 删除
