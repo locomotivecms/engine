@@ -1,0 +1,82 @@
+ru:
+  flash:
+    locomotive:
+      pages:
+        create:
+          notice: "Страница была успешно создана."
+          alert: "Страница не создана."
+        update:
+          notice: "Страница успешно обновлена."
+          alert: "Страница не обновлена."
+        sort:
+          notice: "Страницы успешно отсортированы."
+        destroy:
+          notice: "Страница успешно удалена."
+      content_entries:
+        create:
+          notice: "Запись успешно создана."
+          alert: "Запись не создана."
+        update:
+          notice: "Запись успешно обновлена."
+          alert: "Запись не обновлена."
+        sort:
+          notice: "Записи успешно отсортированы."
+        destroy:
+          notice: "Запись успешно удалена."
+      content_types:
+        update:
+          notice: "Модель успешно обновлена."
+          alert: "Модель не обновлена."
+      current_site:
+        update:
+          notice: "Сайт успешно обновлён."
+          alert: "Сайт не обновлён."
+      accounts:
+        create:
+          notice: "Учётная запись успешно создана."
+          alert: "Учётная запись не создана."
+      my_account:
+        update:
+          notice: "Учётная запись успешно обновлена."
+          alert: "Учётная запись не обновлена."
+      sites:
+        create:
+          notice: "Сайт успешно создан."
+          alert: "Сайт не создан."
+        destroy:
+          notice: "Сайт успешно удалён."
+      current_site_metafields:
+        update_all:
+          notice: "Послеполя сайта успешно обновлены."
+      memberships:
+        create:
+          notice: "Членство успешно создано."
+          alert: "Членство не создано."
+          already_created: "Текущий сайт уже добавлен в учётную запись."
+      content_assets:
+        create:
+          notice: "Ресурс успешно загружен."
+          alert: "Ресурс не загружен."
+        bulk_create:
+          notice: "Ресурсы успешно загружены."
+          alert: "Ресурсы не загружены."
+        update:
+          notice: "Ресурс успешно обновлён."
+          alert: "Ресурс не обновлён."
+        destroy:
+          notice: "Ресурс успешно удалён."
+          alert: "Ресурс не удалён."
+      translations:
+        create:
+          notice: "Перевод успешно создан."
+          alert: "Перевод не создан."
+        update:
+          notice: "Перевод успешно обновлён."
+          alert: "Перевод не обновлён."
+        destroy:
+          notice: "Перевод успешно удалён."
+      custom_fields:
+        select_options:
+          update:
+            notice: "Поле успешно обновлено."
+            alert: "Поле не обновлено."

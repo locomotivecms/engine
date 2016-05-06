@@ -1,0 +1,4 @@
+zh-CN:
+  carrierwave:
+    errors:
+      integrity: '该格式未受支持。'

@@ -26,6 +26,7 @@ doc/performance.txt
 doc/production.sh
 doc/DONE
 doc/dev.txt
+doc/import_translations.rb
 *.gem
 tmp/*
 .rvmrc

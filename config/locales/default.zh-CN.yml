@@ -1,0 +1,13 @@
+zh-CN:
+  date:
+    formats:
+      default: "%月/%日/%年"
+    today_at: "today at"
+    yesterday_at: "yesterday at"
+  time:
+    formats:
+      default: "%m/%d/%Y %H:%M"
+      time: "%H:%M"
+  pagination:
+    previous: "&laquo; 上一页"
+    next: "下一页 &raquo;"

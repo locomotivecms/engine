@@ -1,6 +1,6 @@
 development:
   # Configure available database sessions. (required)
-  sessions:
+  clients:
     # Defines the default session. (required)
     default:
       # Defines the name of the default database that Mongoid can connect to.
@@ -60,7 +60,7 @@ development:
     # use_utc: false
 
 test:
-  sessions:
+  clients:
     default:
       database: <%= Rails.application.class.parent.to_s.underscore.downcase %>_test
       hosts:
@@ -70,7 +70,7 @@ test:
         # identity_map_enabled: true
 
 production:
-  sessions:
+  clients:
     default:
       uri: <%%= ENV['MONGOLAB_URI'] || ENV['MONGOHQ_URL'] %>
       options:

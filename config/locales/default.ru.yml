@@ -1,0 +1,13 @@
+ru:
+  date:
+    formats:
+      default: "%d/%m/%Y"
+    today_at: "сегодня в"
+    yesterday_at: "вчера в"
+  time:
+    formats:
+      default: "%d/%m/%Y %H:%M"
+      time: "%H:%M"
+  pagination:
+    previous: "&laquo; Предыдушая"
+    next: "Следующая &raquo;"

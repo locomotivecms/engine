@@ -1,0 +1,13 @@
+lt:
+  date:
+    formats:
+      default: "%Y/%m/%d"
+    today_at: "šiandien"
+    yesterday_at: "vakar"
+  time:
+    formats:
+      default: "%Y/%m/%d %H:%M"
+      time: "%H:%M"
+  pagination:
+    previous: "&laquo; Ankstesnis"
+    next: "Sekantis &raquo;"

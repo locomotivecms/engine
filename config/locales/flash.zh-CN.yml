@@ -1,0 +1,82 @@
+zh-CN:
+  flash:
+    locomotive:
+      pages:
+        create:
+          notice: "页面创建成功。"
+          alert: "页面未创建。"
+        update:
+          notice: "页面更新成功。"
+          alert: "页面未更新。"
+        sort:
+          notice: "页面排序成功。"
+        destroy:
+          notice: "页面删除成功。"
+      content_entries:
+        create:
+          notice: "记录创建成功。"
+          alert: "记录未被创建。"
+        update:
+          notice: "记录成功更新。"
+          alert: "记录未被更新。"
+        sort:
+          notice: "记录排序成功。"
+        destroy:
+          notice: "记录删除成功。"
+      content_types:
+        update:
+          notice: "模型更新成功。"
+          alert: "模型未更新。"
+      current_site:
+        update:
+          notice: "我的站点更新成功。"
+          alert: "我的站点未更新。"
+      accounts:
+        create:
+          notice: "账号创建成功。"
+          alert: "账号未创建。"
+      my_account:
+        update:
+          notice: "我的账号更新成功。"
+          alert: "我的账号未更新。"
+      sites:
+        create:
+          notice: "站点创建成功。"
+          alert: "站点未创建。"
+        destroy:
+          notice: "站点删除成功。"
+      current_site_metafields:
+        update_all:
+          notice: "站点metafields更新成功。"
+      memberships:
+        create:
+          notice: "成员创建成功。"
+          alert: "成员未创建。"
+          already_created: "账户已经加到当前站点。"
+      content_assets:
+        create:
+          notice: "资源上传成功。"
+          alert: "资源未上传。"
+        bulk_create:
+          notice: "资源上传成功。"
+          alert: "资源未上传。"
+        update:
+          notice: "资源更新成功。"
+          alert: "资源未更新。"
+        destroy:
+          notice: "资源删除成功。"
+          alert: "资源未删除。"
+      translations:
+        create:
+          notice: "翻译创建成功。"
+          alert: "翻译未创建。"
+        update:
+          notice: "翻译更新成功。"
+          alert: "翻译未更新。"
+        destroy:
+          notice: "翻译删除成功。"
+      custom_fields:
+        select_options:
+          update:
+            notice: "字段更新成功。"
+            alert: "字段未更新。"

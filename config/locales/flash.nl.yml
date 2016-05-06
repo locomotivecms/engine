@@ -45,6 +45,9 @@ nl:
           alert: "Site kon niet worden aangemaakt."
         destroy:
           notice: "Site werd succesvol verwijderd."
+      current_site_metafields:
+        update_all:
+          notice: "Site parameters zijn succesvol aangepast."
       memberships:
         create:
           notice: "Lidmaatschap is succesvol aangemaakt."

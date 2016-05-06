@@ -1,0 +1,328 @@
+ru:
+  locomotive:
+    locales:
+      en: Английский
+      de: Немецкий
+      fr: Французский
+      pl: Польский
+      pt: Португальский
+      pt-BR: "Бразильский Португальский"
+      it: Итальянский
+      nl: Голландский
+      nb: Норвежский
+      es: Испанский
+      ru: Русский
+      et: Эстонский
+      ja: Японский
+      zh-CN: Китайский
+      cs: Чешский
+      bg: Болгарский
+      sk: Словацкий
+      sr: Сербский
+      sv: Шведский
+      el: Греческий
+    messages:
+      confirm: Вы уверены ?
+      unsaved_content_warning: "Эта страница просит Вас подтвердить, что Вы хотите выйти — введённые Вами данные могут быть не сохранёнными."
+    shared:
+      header:
+        welcome: Здравствуйте, %{name}
+        sites: Мои сайты
+        account: Настройки учётной записи
+        see: Посмотреть сайт
+        help: Справка
+        logout: Выйти
+      sidebar:
+        dashboard: Приборная доска
+        assets: Ресурсы
+        settings: Основные настройки
+        metafields: Свойства
+        developers: Разработчикам
+        content_types:
+          title: Модели
+        translations: Переводы
+      list:
+        untranslated: не переведено
+        created_at: "Создано %{distance} назад"
+        created_by: "Создано %{distance} назад пользователем %{who}"
+        updated_at: "Последнее изменение %{distance} назад"
+        updated_by: "Последнее изменение %{distance} назад пользователем %{who}"
+      rte:
+        toolbar:
+          table:
+            merge: Объединить
+            insert_row_before: Вставить строку перед
+            insert_row_after: Вставить строку после
+            insert_col_before: Вставить столбец перед
+            insert_col_after: Вставить столбец после
+            delete_row: Удалить строку
+            delete_col: Удалить столбец
+    errors:
+      '500':
+        title: Ошибка в приложении
+        message: "Мы сожалеем, но что-то пошло не так. Пожалуйста, свяжитесь с Вашим администратором."
+      '404':
+        title: Страница не найдена
+        message: "Запрашиваемая страница не существует."
+      no_site:
+        title: Сайт не найден
+        next: "Вперёд &rarr;"
+        message:
+          create_account: "Пожулайста, создайте сначала учетную запись а затем создайте сайт."
+          add_domain: "Добавить домен <strong>%{host}</strong> в список доменов одного из Ваших сайтов."
+          sign_in: "Пожалуйста, сначала войдите. Затем, добавьте домен <strong>%{host}</strong> в список доменов одного из Ваших сайтов."
+    notifications:
+      new_content_entry:
+        subject: "[%{domain}][%{type}] новая запись"
+        title: "Привет %{name}, уведомляем о создании %{date} нового экземпляра сайта <b>%{domain}</b>"
+        type: "Модель: %{type}"
+    activity:
+      site:
+        created: 'создал(а) сайт'
+      page:
+        created: 'создал(а) страницу %{page}'
+        updated: 'обновил(а) страницу %{page}'
+        destroyed: 'удалил(а) страницу %{page}'
+        sorted: 'отсортировал(а) страницы'
+      editable_element:
+        updated_bulk: 'изменено содержание %{pages} страниц'
+      content_entry:
+        created: 'добавлена %{entry} в %{content_type}'
+        created_public: 'добавлена %{entry} в %{content_type} из публичной формы'
+        updated: 'обновлена %{entry} из %{content_type}'
+        destroyed: 'удалена %{entry} из %{content_type}'
+        sorted: '%{content_type} отсортировано'
+      content_asset:
+        created_bulk: 'загружено %{count} ресурс(ов)'
+        destroyed: 'удалён ресурс %{name}'
+      membership:
+        created: 'на сайт добавлено %{name}'
+    pagination:
+      first: "&laquo;"
+      last: "&raquo;"
+      previous: "&lsaquo;"
+      next: "&rsaquo;"
+      truncate: "&hellip;"
+    custom_fields:
+      select_options:
+        edit:
+          title: "%{type} &mdash; настройки редактирования"
+          back: "Вернуться к записи"
+        option:
+          edit: Править
+          apply: Применить
+          cancel: Отмена
+      types:
+        belongs_to:
+          edit: Править
+          placeholder: "Выберите %{name}"
+          searching: Идёт поиск...
+          no_matches: Совпадений не найдено
+          too_short: Пожалуйста, введите хотя бы 1 букву
+        many_to_many:
+          placeholder: "Выберите одну из %{name}"
+          searching: Идёт поиск...
+          no_matches: Совпадений не найдено
+          too_short: Пожалуйста, введите хотя бы 1 букву
+        select:
+          edit: Возможности правки
+        file:
+          delete_file: Удалить файл
+        has_many:
+          new_label: Добавить новую
+      form:
+        required: Обязательно
+        default_label: Имя поля
+        select_options:
+          ask_name: "Введите метку настройки"
+    dashboard:
+      show:
+        title: 'Приборная доска'
+      url:
+        title: "URL вашего сайта:"
+        visit: 'Посетить'
+        change_domain: 'Использовать своё доменное имя'
+      activity:
+        title: Деятельность
+        unknown_account: Кто-то
+        load_more: Загружается ещё
+        loading_activity_feed: Идёт загрузка...
+    sessions:
+      new:
+        email: "Электронная почта"
+        link: "Забыл пароль"
+        password: "Пароль"
+        sign_up: Нет учётной записи?
+        submit: Войти
+        title: Войти
+    registrations:
+      new:
+        confirm_password: Подтвердить пароль
+        description: "Создать ниже учётную запись, чтобы начать пользоваться Locomotive."
+        sign_in: Уже есть учётная запись?
+        submit: Зарегистрироваться
+        title: Регистрация
+    passwords:
+      new:
+        description: "Заполните ниже адрес электронной почты и получите письмо с наставлениями по переустановке пароля."
+        link: "Вернуться на страницу входа"
+        email: "Ваш email"
+        submit: "Отправить"
+        title: "Забыл пароль"
+      edit:
+        description: "Заполни новый пароль ниже."
+        link: "Вернуться на страницу входа"
+        password: "Ваш новый пароль"
+        password_confirmation: "Подтвердить пароль"
+        submit: "Обновить пароль"
+        title: "Переустановить пароль"
+    pages:
+      index:
+        title: 'Страницы'
+        new: 'Новая страница'
+        list_content_entries: "Список %{name}"
+        new_content_entry: "Новая %{name}"
+      new:
+        title: Новая страница
+        help: "Пожалуйста, заполните форму ниже для создания страницы. Будьте внимательны, по-умолчанию страница не публикуется."
+      edit:
+        title: "%{title} &mdash; <small>%{fullpath}</small>"
+      form:
+        no_layout: Использовать размещение родительской страницы
+        redirect_type:
+          permanent: "Постоянно (301)"
+          temporary: "Временно (302)"
+    editable_elements:
+      index:
+        redirection_error: "Правка не Locomotive страницы не разрешена."
+        iframe:
+          buttons:
+            edit: править
+      index_without_preview:
+        title: "%{title} &mdash; <small>%{fullpath}</small>"
+      edit:
+        settings_link: 'Настройки'
+        no_editable_elements: 'Не найдены изменяемые части'
+        parsing_error: "<b>Сожалеем, но мы не можем разобрать шаблон Вашей страницы.</b>\n<br/>Пожалуйста, убедитесь что Ваш шаблон работает с Wagon."
+        blocks:
+          all: Все
+          unknown: Неизвестные
+      form:
+        model:
+          buttons:
+            list: Руководить
+            edit: Править
+    sites:
+      index:
+        description: "Все сайты, к которым у Вас есть доступ, могут быть найдены ниже. Кликните по тому сайту, куда хотите направиться для управления его содержимым."
+        new: Добавить новый сайт
+        title: Мои сайты
+      new:
+        description: "Заполните форму ниже и кликните “Создать сайт”. В случае успеха, будет создан новый сайт."
+        go_back: Вернуться
+        submit: Создать сайт
+        title: Создать новый сайт
+      site:
+        no_domain: Ещё нет домена
+    current_site:
+      edit:
+        title: Настройки текущего сайта
+      form:
+        main:
+          new_membership: "Добавить учётную запись"
+        advanced:
+          destroy: "Разрушить этот сайт"
+          confirm_destroy: "Пожалуйста, подтвердите, напечатав имя сайта в следующем поле ввода"
+    current_site_metafields:
+      index:
+        title: Правятся свойства
+        no_metafields: Нет объявленных послеполей для Вашего сайта.
+    memberships:
+      roles:
+        admin: Администратор
+        designer: Дизайнер
+        author: Автор
+      new:
+        title: Новое членство
+        help: "Пожалуйста, укажите электронную почту учётной записи для добавления. Если её не существует, Вы будете перенаправлены к форме создания учётной записи."
+        back: "Вернуться к настройкам Вашего сайта"
+      edit:
+        title: "Править членство <b>%{name}</b>"
+        back: "Вернуться к настройкам Вашего сайта"
+    accounts:
+      new:
+        title: Новая учётная запись
+        help: "Заполните форму ниже для добавления новой учётной записи."
+    my_account:
+      edit:
+        title: Исправление учётной записи
+      form:
+        api:
+          api_key: "Используется Wagon'ом для размещения сайта (проверьте файл config/deploy.yml Вашего Wagon сайта)."
+    translations:
+      untranslated: "Непереведённые языки: %{list}"
+      index:
+        title: Переводы
+        no_items: "Мы не нашли никаких переводов."
+        search_placeholder: "Введите ключ или перевод"
+        help: "Перевести все вхождения с оранжевыми (частично переведены) или красными (не переведены) точками."
+        filter_by:
+          all: Все
+          done: Переведённые
+          partially: Частично переведённые
+          none: Не переведённые
+      edit:
+        title: "Переводы  &mdash; правится %{key}"
+      form:
+        not_translated: "Не переведённые"
+    content_assets:
+      index:
+        title: "Ресурсы"
+        upload: Загрузить файлы
+      edit_in_drawer:
+        buttons:
+          resize: "Изменить размер"
+          crop: "Обрезать"
+          apply: "Применить"
+      dropzone:
+        instructions: "<strong>Переместите файлы с Вашего компьютера сюда.</strong><br/>Вы также можете"
+        browse: "просмотреть файлы"
+      list:
+        no_items: "Сейчас нет медиа."
+        buttons:
+          select: "Выбрать"
+          edit: "Править"
+      nav:
+        types:
+          all: Все
+          pdf: PDFы
+          image: изображения
+          media: насыщеные медиа
+          others: другие
+      search_form:
+        placeholder: Искать по имени файла
+    public_submission_accounts:
+      edit:
+        title: "%{name} &mdash; Настройки уведомлений"
+    content_entries:
+      index:
+        title: '%{type}'
+        download: скачать записи
+        new: новая запись
+        edit_notification_settings: Править настройки уведомлений
+        search_placeholder: "Введите ключевые слова для поиска"
+        group_by:
+          all: Все
+      list:
+        no_items: "Сейчас нет записей. Кликните <a href=\"%{url}\">здесь</a> для создания первой."
+      new:
+        title: '%{type} &mdash; новая запись'
+      edit:
+        title: '%{type} &mdash; правится запись'
+      shared:
+        back: '&larr; Вернуться к списку'
+    developers_documentation:
+      show:
+        title: Разработчики
+        wagon: Wagon
+        api: API

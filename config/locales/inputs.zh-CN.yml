@@ -1,0 +1,19 @@
+zh-CN:
+  locomotive:
+    inputs:
+      file:
+        none: 无文件
+        browse: 浏览
+        choose: 选择
+        change: 修改
+        delete: 删除
+        cancel: 取消
+        select_local_file: 上传本地文件
+        select_content_asset: 在资源中选择
+      array:
+        new: 新建
+        add: 添加
+        edit: 编辑
+      toggle:
+        on_text: "是"
+        off_text: "否"

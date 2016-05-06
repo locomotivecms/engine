@@ -1,0 +1,320 @@
+lt:
+  locomotive:
+    locales:
+      en: Anglų
+      de: Vokiečių
+      fr: Prancūzų
+      pl: Lenkų
+      pt: Portugalų
+      pt-BR: "Brazilijos portugalų"
+      it: Italų
+      nl: Olandų
+      nb: Norvegų
+      es: Ispanų
+      ru: Rusų
+      et: Estų
+      ja: Japonų
+      zh-CN: Kinų
+      cs: Čekų
+      bg: Bulgarų
+      sk: Slovakų
+      sr: Serbų
+      sv: Švedų
+      el: Graikų
+    messages:
+      confirm: Ar esi tikras?
+    shared:
+      header:
+        welcome: Sveiki, %{name}
+        sites: Mano tinklalapiai
+        account: Paskyros nustatymai
+        see: Žiūrėti tinklalapį
+        help: Pagalba
+        logout: Atsijungti
+      sidebar:
+        dashboard: Prietaisų skydas
+        assets: Ištekliai
+        settings: Bendri nustatymai
+        developers: Programuotojai
+        content_types:
+          title: Modeliai
+        translations: Vertimai
+      list:
+        untranslated: neišversta
+        created_at: "Sukurta prieš %{distance}"
+        created_by: "%{who} sukurė prieš %{distance}"
+        updated_at: "Paskutinė modifikacija prieš %{distance}"
+        updated_by: "%{who} modifikavo prieš %{distance}"
+      rte:
+        toolbar:
+          table:
+            merge: Sujungti
+            insert_row_before: Įterpti eilutę prieš
+            insert_row_after: Įterpti eilutę po
+            insert_col_before: Įterpti stulpelį prieš
+            insert_col_after: Įterpti stulpelį po
+            delete_row: Ištrinti eilutę
+            delete_col: Ištrinti stulpelį
+    errors:
+      '500':
+        title: Aplikacijos klaida
+      '404':
+        title: Puslapis nerastas
+        message: "Toks puslapis neegzistuoja."
+      no_site:
+        title: Tinklalapis nerastas
+        next: "Sekantis &rarr;"
+        message:
+          create_account: "Pirma sukurkite vartotojo paskyrą ir tik tada tinklalapį."
+          add_domain: "Pridėkite <strong>%{host}</strong> domeną į domenų sąrašą bent viename iš jūsų tinklalapių."
+          sign_in: "Reikia prisijungti. Tada pridėkite <strong>%{host}</strong> domeną į domenų sąrašą bent viename iš jūsų tinklalapių."
+    notifications:
+      new_content_entry:
+        subject: "[%{domain}][%{type}] naujas įrašas"
+        title: "Sveiki, %{name}, nauja instance buvo sukurta %{date} tinklalapiui <b>% {domain}</b>"
+        type: "Modelis: %{type}"
+    activity:
+      site:
+        created: 'sukurtas tinklalapis'
+      page:
+        created: 'sukurtas %{page} puslapis'
+        updated: 'atnaujintas %{page} puslapis'
+        destroyed: 'ištrintas %{page} puslapis'
+        sorted: 'išrūšiuoti puslapiai'
+      editable_element:
+        updated_bulk: 'modifikuotas turinys %{pages}'
+      content_entry:
+        created: 'pridėtas %{entry} į %{content_type}'
+        created_public: 'pridėtas %{entry} į %{content_type} iš viešos formos'
+        updated: 'atnaujintas %{entry} iš %{content_type}'
+        destroyed: 'ištrintas %{entry} iš %{content_type}'
+        sorted: 'išrūšiuoti %{content_type}'
+      content_asset:
+        created_bulk: 'įkelta %{count} išteklis(-ių)'
+        destroyed: 'ištrintas %{name} išteklis'
+      membership:
+        created: 'pridėtas %{name} į tinklalapį'
+    pagination:
+      first: "&laquo;"
+      last: "&raquo;"
+      previous: "&lsaquo;"
+      next: "&rsaquo;"
+      truncate: "&hellip;"
+    custom_fields:
+      select_options:
+        edit:
+          title: "%{type} &mdash; redagavimo pasirinkimai"
+          back: "Grįžti į įrašą"
+        option:
+          edit: Redaguoti
+          apply: Taikyti
+          cancel: Atšaukti
+      types:
+        belongs_to:
+          edit: Redaguoti
+          placeholder: "Pasirinkti %{name}"
+          searching: Ieškoma...
+          no_matches: Nerasta atitikmenų
+          too_short: Įveskite 1 arba daugiau raidžių
+        many_to_many:
+          placeholder: "Pasirinkti vieną iš %{name}"
+          searching: Ieškoma...
+          no_matches: Nerasta atitikmenų
+          too_short: Įveskite 1 arba daugiau raidžių
+        select:
+          edit: Redaguoti pasirinkimus
+        file:
+          delete_file: Ištrinti failą
+        has_many:
+          new_label: Pridėti naują
+      form:
+        required: Būtinas
+        default_label: Lauko pavadinimas
+        select_options:
+          ask_name: "Įveskite pasirinkimo pavadinimą"
+    dashboard:
+      show:
+        title: 'Prietaisų skydas'
+      url:
+        title: "Tinklalapio URL:"
+        visit: 'Apsilankyti'
+        change_domain: 'Naudoti savo domeno pavadinimą'
+      activity:
+        title: Aktyvumas
+        unknown_account: Kažkas
+        load_more: Kraunama daugiau
+        loading_activity_feed: Kraunama...
+    sessions:
+      new:
+        email: "E-paštas"
+        link: "Pamiršote slaptažodį"
+        password: "Slaptažodis"
+        sign_up: Neturite paskyros?
+        submit: Prisijungti
+        title: Prisijungti
+    registrations:
+      new:
+        confirm_password: Patvirtinkite slaptažodį
+        sign_in: Turite paskyrą?
+        submit: Užsiregistruoti
+        title: Užsiregistruoti
+    passwords:
+      new:
+        description: "Įrašykite savo el.paštą ir jūs gausite el. laišką su instrukcija kaip atkurti slaptažodį."
+        link: "Grįžti į prisijungimo puslapį."
+        email: "Jūsų el. paštas"
+        submit: "Pateikti"
+        title: "Pamiršote slaptažodį"
+      edit:
+        description: "Įveskite naują slaptažodį."
+        link: "Grįžti į prisijungimo puslapį"
+        password: "Naujas slaptažodis"
+        password_confirmation: "Patvirtinti slaptažodį"
+        submit: "Atnaujinti slaptažodį"
+        title: "Atstatyti slaptažodį"
+    pages:
+      index:
+        title: 'Puslapiai'
+        new: 'Naujas puslapis'
+        list_content_entries: "Sąrašas %{name}"
+        new_content_entry: "Naujas %{name}"
+      new:
+        title: Naujas puslapis
+        help: "Užpildykite formą naujo puslapio sukūrimui. Atsargiai, pagal nutylėjimą, puslapis nebus publikuojamas."
+      edit:
+        title: "%{title} &mdash; <small>%{fullpath}</small>"
+      form:
+        no_layout: Naudoti tėvinio puslapio šabloną
+        redirect_type:
+          permanent: "Permamentinis (301)"
+          temporary: "Laikinas (302)"
+    editable_elements:
+      index:
+        redirection_error: "Ne Locomotive puslapių redagavimas nėra leidžiamas."
+        iframe:
+          buttons:
+            edit: redaguoti
+      index_without_preview:
+        title: "%{title} &mdash; <small>%{fullpath}</small>"
+      edit:
+        settings_link: 'Nustatymai'
+        no_editable_elements: 'Nerasta redaguojamų elementų'
+        parsing_error: "<b>Atsiprašome, mes negalime apdoroti jūsų puslapio šablono.</b><br/>Pirma įsitikinkite, kad jūsų šablonas veikia su Wagon."
+        blocks:
+          all: Visi
+          unknown: Nežinomas
+      form:
+        model:
+          buttons:
+            list: Valdymas
+            edit: Redaguoti
+    sites:
+      index:
+        description: "Turite prieigą prie visų žemiau išvardintų tinklalapių. Paspauskite bent ant vieno iš jų ir būsite nukreipti į to tinklalapio turinio valdymo sistemą."
+        new: Pridėti naują tinklalapį
+        title: Mano svetainės
+      new:
+        description: "Užpildykite formą ir spauskite pateikti."
+        go_back: Grįžti
+        submit: Sukurti tinklalapį
+        title: Sukurti naują tinklalapį
+      site:
+        no_domain: Dar nėra domeno
+    current_site:
+      edit:
+        title: Šio tinklalapio redagavimas
+      form:
+        main:
+          new_membership: "Pridėti vartotojo paskyrą"
+        advanced:
+          destroy: "Ištrinti šį tinklalapį"
+          confirm_destroy: "Patvirtinkite įvesdami tinklalapio pavadinimą"
+    memberships:
+      roles:
+        admin: Administratorius
+        designer: Projektuotojas
+        author: Autorius
+      new:
+        title: Nauja narystė
+        help: "Prašau pridėti vartotojo el. pašto adresą. Jeigu toks neegzistuos, būsite nukreipti į vartotojo paskyros sukūrimo formą."
+        back: "Grįžti į tinklalapio nustatymus"
+      edit:
+        title: "Redaguoti narystę <b>%{name}</b>"
+        back: "Grįžti į tinklalapio nustatymus"
+    accounts:
+      new:
+        title: Nauja paskyra
+        help: "Užpildykite formą naujai paskyrai sukurti."
+    my_account:
+      edit:
+        title: Redaguojama paskyra
+      form:
+        api:
+          api_key: "Yra naudojama Wagon jūsų tinklalapio įdiegimui (patikrinkite config/deploy.yml failą Wagon pusėje)."
+    translations:
+      untranslated: "Neišverstos lokalės: %{list}"
+      index:
+        title: Vertimai
+        no_items: "Nerasta jokių vertimų."
+        search_placeholder: "Įveskite raktą arba vertimą"
+        help: "Išversti visus įrašus su oranžiniu (dalinai lokalizuota) arba raudonu (ne lokalizuota) žymėjimu."
+        filter_by:
+          all: Visi
+          done: Išversta
+          partially: Dalinai išversta
+          none: Neišversta
+      edit:
+        title: "Vertimai &mdash; redaguojamas %{key}"
+      form:
+        not_translated: "Neišversta"
+    content_assets:
+      index:
+        title: "Ištekliai"
+        upload: Įkelti failus
+      edit_in_drawer:
+        buttons:
+          resize: "Keisti dydį"
+          crop: "Iškirpti"
+          apply: "Taikyti"
+      dropzone:
+        instructions: "<strong>Meskite failus iš kompiuterio čia</strong><br/>Taip pat galite"
+        browse: "naršyti failo"
+      list:
+        no_items: "Kol kas nėra jokios medijos."
+        buttons:
+          select: "Pasirinkti"
+          edit: "Redaguoti"
+      nav:
+        types:
+          all: Visi
+          pdf: PDF
+          image: paveiksliukai
+          media: raiškiosios medijos
+          others: kiti
+      search_form:
+        placeholder: Ieškoti pagal failo pavadinimą
+    public_submission_accounts:
+      edit:
+        title: "%{name} &mdash; Pranešimų nustatymai"
+    content_entries:
+      index:
+        title: '%{type}'
+        download: atsiųsti įrašus
+        new: naujas įrašas
+        edit_notification_settings: Redaguoti pranešimų nustatymus
+        search_placeholder: "Įveskite paieškos raktažodžius"
+        group_by:
+          all: Visi
+      list:
+        no_items: "Nėra įrašų. Sukurkite pirmą paspaudę <a href=\"%{url}\">čia</a>."
+      new:
+        title: '%{type} &mdash; naujas įrašas'
+      edit:
+        title: '%{type} &mdash; įrašo redagavimas'
+      shared:
+        back: '&larr; Grįžti į sąrašą'
+    developers_documentation:
+      show:
+        title: Programuotojai
+        wagon: Wagon
+        api: API

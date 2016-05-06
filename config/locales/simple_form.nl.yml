@@ -89,7 +89,7 @@ nl:
           meta_keywords: "Keywords gebruikt in de head tag van de pagina. Ze zijn gescheiden door een komma en worden gebruikt voor SEO doeleinden."
           meta_description: "Meta omschrijving gebruikt in de head tag van de pagina. Gebruikt voor SEO doeleinden."
           robots_txt: "Inhoud van het <span class='code'>/robots.txt</span> bestand. Controleer de volgende <a href='http://www.w3.org/TR/html4/appendix/notes.html#h-B.4.1.1'>link</a> voor meer info."
-          domains: "Voeg domeinnamen toe hieronder. Daarna registreer een CNAME DNS record die wijst naar <b>%{domain}</b>."
+          domains: "Voeg uw domeinnamen toe. Documentatie kan <a href=\"https://locomotive-v3.readme.io/docs/domains\">hier</a> gevonden worden."
           memberships: "U kan andere account uitnodigen om de site te beheren."
           cache_enabled: "Wanneer ingeschakeld, uw pagina's zullen worden gecached zolang de inhoud niet veranderd. Het uitschakelen van de cache per pagina is toegestaan."
           redirect_to_first_domain: "Wanneer ingeschakeld, requests gemaakt naar gelijk welke domeinnaam zal worden doorgestuurd naar het eerste domein."

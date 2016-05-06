@@ -3,6 +3,7 @@ lt:
     inputs:
       file:
         none: nėra failo
+        browse: Naršyti
         choose: Pasirinkti
         change: Pakeisti
         delete: Ištrinti

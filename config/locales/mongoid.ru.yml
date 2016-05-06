@@ -1,0 +1,47 @@
+ru:
+  mongoid:
+    errors:
+      messages:
+        blank_in_locale: "не может быть пустым"
+      models:
+        locomotive/page:
+          attributes:
+            layout_id:
+              index_can_not_extend_parent: "Страница указатель не может иметь размещение от своей родительской страницы."
+        locomotive/membership:
+          attributes:
+            account:
+              unique_account: "уже используется"
+            email:
+              unique_account: "уже используется"
+    attributes:
+      locomotive/content_entry:
+        created_at: Создано
+  errors:
+    messages:
+      domain_taken: "%{value} уже нанят"
+      invalid_domain: "%{value} не подходит"
+      needs_admin_account: "Обязательна хотя бы одна учётная запись администратора"
+      protected_page: "Вы не можете удалить указательную или 404 страницы"
+      extname_changed: "Расширение нового файла не оригинально"
+      array_too_short: "слишком мало (наименьшее число частей %{count})"
+      site:
+        default_locale_removed: Предыдущий язык по умолчанию не может быть удалён прямо сейчас.
+        wrong_timezone_name: "Неправильное название временной зоны"
+      page:
+        liquid_syntax: "Ошибка синтаксиса Liquid ('%{error}' в '%{fullpath}')"
+        liquid_extend: "Страница '%{fullpath}' расширяет несуществующий шаблон"
+        liquid_translation: "Страница '%{fullpath}' расширяет непереведённый шаблон"
+      too_few_custom_fields: "Обязательно хотя бы одно заказное поле"
+      security: "присутствует затруднение безопасности"
+  attributes:
+    defaults:
+      pages:
+        index:
+          title: "Домашняя страница"
+          body: "Содержание домашней страницы"
+        '404':
+          title: "Страница не найдена"
+          body: "Содержание 404 страницы"
+        other:
+          body: "{% extends 'parent' %}"

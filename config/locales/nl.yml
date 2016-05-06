@@ -19,9 +19,11 @@ nl:
       bg: Bulgaars
       sk: Slowaaks
       sr: Servisch
+      sv: Zweeds
       el: Grieks
     messages:
       confirm: Bent u zeker?
+      unsaved_content_warning: "Wenst u deze pagina te verlaten? Data dat u hebt ingegeven kan verloren gaan."
     shared:
       header:
         welcome: Welkom, %{name}
@@ -34,6 +36,7 @@ nl:
         dashboard: Dashboard
         assets: Assets
         settings: Algemene instellingen
+        metafields: Parameters
         developers: 'Ontwikkelaars '
         content_types:
           title: Models
@@ -43,7 +46,7 @@ nl:
         created_at: "%{distance} geleden aangemaakt"
         created_by: "%{distance} geleden aangemaakt door %{who}"
         updated_at: "Laatst gewijzigd  %{distance} geleden"
-        updated_by: "Laatst gewijzigd %{distance} geleden door {%who}"
+        updated_by: "Laatst gewijzigd %{distance} geleden door %{who}"
       rte:
         toolbar:
           table:
@@ -57,7 +60,7 @@ nl:
     errors:
       '500':
         title: Applicatie fout
-        message: "Oeps, er is iets fout gegaan"
+        message: "Onze excuses, er is iets verkeerd gelopen. Gelieve uw website administrator te contacteren."
       '404':
         title: Pagina niet gevonden
         message: "De pagina die u probeert te bereiken, bestaat niet."
@@ -155,7 +158,7 @@ nl:
     registrations:
       new:
         confirm_password: Wachtwoord bevestigen
-        description: "Het ziet er naar uit dat u de eerste bent hier, maak een account aan om Locomotive te gebruiken."
+        description: "Maak een account aan om LocomotiveCMS te gebruiken."
         sign_in: Heeft u al een account?
         submit: Registrere
         title: Registreren
@@ -230,6 +233,10 @@ nl:
         advanced:
           destroy: "Verwijder deze site"
           confirm_destroy: "Bevestig uw actie door de naam van de site in te vullen"
+    current_site_metafields:
+      index:
+        title: Parameters aanpassen
+        no_metafields: Er zijn geen parameters gedefinieerd voor uw website.
     memberships:
       roles:
         admin: Beheerder

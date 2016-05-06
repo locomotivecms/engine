@@ -1,0 +1,47 @@
+zh-CN:
+  mongoid:
+    errors:
+      messages:
+        blank_in_locale: "不能为空"
+      models:
+        locomotive/page:
+          attributes:
+            layout_id:
+              index_can_not_extend_parent: "index页面不能将其父页面作为layout"
+        locomotive/membership:
+          attributes:
+            account:
+              unique_account: "已被使用"
+            email:
+              unique_account: "已确认"
+    attributes:
+      locomotive/content_entry:
+        created_at: 创建在
+  errors:
+    messages:
+      domain_taken: "%{value} 已被获取"
+      invalid_domain: "%{value} 无效"
+      needs_admin_account: "至少需要一个管理员账号"
+      protected_page: "不能删除index及404页面"
+      extname_changed: "新文件没有扩展名"
+      array_too_short: "太短(最短长度为 %{count})"
+      site:
+        default_locale_removed: 目前无法删除上一个默认locale
+        wrong_timezone_name: "错误的时区名"
+      page:
+        liquid_syntax: "Liquid 语法错误 ('%{error}' 在 '%{fullpath}')"
+        liquid_extend: "该页面 '%{fullpath}' 扩展了不存在的模板"
+        liquid_translation: "该页面 '%{fullpath}' 扩展了未翻译的模板"
+      too_few_custom_fields: "至少需要1个自定义字段"
+      security: "出现一个安全问题"
+  attributes:
+    defaults:
+      pages:
+        index:
+          title: "首页"
+          body: "首页内容"
+        '404':
+          title: "页面未找到"
+          body: "404页面的内容"
+        other:
+          body: "{% extends 'parent' %}"

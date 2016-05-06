@@ -93,6 +93,7 @@ fr:
           memberships: "Vous pouvez inviter d'autres comptes à venir éditer votre site."
           cache_enabled: "Si cette option est activée. vos pages seront cachés tant que le contenu ne sera pas modifié. Le cache peut être désactivé par page."
           redirect_to_first_domain: "Si cette option est activée, les requêtes destinées à n'importe quels domains listés ci-dessus seront redirigées vers le premier domaine."
+          redirect_to_https: "Si cette option est activée, les requêtes non sécurisées seront redirigées vers le protocole https. Un certificat SSL doit être installé en amont."
           url_redirections: "Redirige (301) des anciennes URLs vers des pages que vous avez créés ici. L'origine et la destination des URLs sont séparées par un <u>espace</u>."
           private_access: Vous pouvez rendre votre site accessible uniquement par un mot de passe.
           password: Le mot de passe que les visiteurs devront entrer afin de voir le contenu de votre site.

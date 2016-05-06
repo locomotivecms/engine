@@ -11,6 +11,7 @@ module Locomotive
           field :handle
           field :domains, type: Array, default: []
           field :redirect_to_first_domain, type: Boolean, default: false
+          field :redirect_to_https, type: Boolean, default: false
 
           ## indexes ##
           index domains: 1

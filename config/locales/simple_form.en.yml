@@ -98,6 +98,7 @@ en:
           memberships: "You can invite other accounts to edit/manage the site."
           cache_enabled: "When enabled, your pages will be cached as long as the content doesn't change. Disabling cache per page is allowed."
           redirect_to_first_domain: "When enabled, requests made to any domains listed above will be redirected to the first domain."
+          redirect_to_https: "When enabled, non secure requests will be redirected to https. This requires the installation of a SSL certificate on the web server."
           url_redirections: "Redirect (301) legacy urls to pages you created in the back-office. The origin and the destination URLs are separated by a <u>space</u>."
           private_access: You can hide your site behind a password.
           password: The password public visitors will have to enter to see the content of your site.

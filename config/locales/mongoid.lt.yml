@@ -1,0 +1,47 @@
+lt:
+  mongoid:
+    errors:
+      messages:
+        blank_in_locale: "negali būti tuščias"
+      models:
+        locomotive/page:
+          attributes:
+            layout_id:
+              index_can_not_extend_parent: "Index puslapis negali turėti tėvinio puslapio kaip maketo"
+        locomotive/membership:
+          attributes:
+            account:
+              unique_account: "jau yra naudojamas"
+            email:
+              unique_account: "jau yra naudojamas"
+    attributes:
+      locomotive/content_entry:
+        created_at: Sukurta
+  errors:
+    messages:
+      domain_taken: "%{value} jau yra užimta"
+      invalid_domain: "%{value} yra neteisinga"
+      needs_admin_account: "Būtina mažiausiai viena administratoriaus paskyra"
+      protected_page: "Negalima pašalinti index ar 404 puslapių"
+      extname_changed: "Naujas failas neturi originalaus plėtinio"
+      array_too_short: "yra per mažas (minimalus elementų skaičius yra %{count})"
+      site:
+        default_locale_removed: Pastaroji numatytoji lokalė negali būti pašalinta.
+        wrong_timezone_name: "Blogas laiko zonos pavadinimas"
+      page:
+        liquid_syntax: "Liquid sintaksės klaida ('%{error}' on '%{fullpath}')"
+        liquid_extend: "Puslapis '%{fullpath}' išplečia šabloną, kurio nėra. "
+        liquid_translation: "Puslapis '%{fullpath}' išplečia šabloną, kuris yra neišverstas"
+      too_few_custom_fields: "Bent vienas nestandartinis laukas yra būtinas"
+      security: "kelia saugumo problemą"
+  attributes:
+    defaults:
+      pages:
+        index:
+          title: "Titulinis puslapis"
+          body: "Titulinio puslapio turinys"
+        '404':
+          title: "Puslapis nerastas"
+          body: "404 puslapio turinys"
+        other:
+          body: "{% extends 'parent' %}"

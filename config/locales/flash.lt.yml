@@ -1,0 +1,79 @@
+lt:
+  flash:
+    locomotive:
+      pages:
+        create:
+          notice: "Puslapis sėkmingai buvo sukurtas."
+          alert: "Puslapis nebuvo sukurtas."
+        update:
+          notice: "Puslapis sėkmingai buvo atnaujintas."
+          alert: "Puslapis nebuvo atnaujintas."
+        sort:
+          notice: "Puslapiai sėkmingai buvo išrūšiuoti."
+        destroy:
+          notice: "Puslapis sėkmingai buvo ištrintas."
+      content_entries:
+        create:
+          notice: "Įrašas sėkmingai buvo sukurtas."
+          alert: "Įrašas nebuvo sukurtas."
+        update:
+          notice: "Įrašas sėkmingai buvo atnaujintas."
+          alert: "Įrašas nebuvo atnaujintas."
+        sort:
+          notice: "Įrašai sėkmingai buvo išrūšiuoti."
+        destroy:
+          notice: "Įrašas sėkmingai buvo ištrintas."
+      content_types:
+        update:
+          notice: "Modelis sėkmingai buvo atnaujintas."
+          alert: "Modelis nebuvo atnaujintas."
+      current_site:
+        update:
+          notice: "Mano tinklalapis sėkmingai buvo atnaujintas."
+          alert: "Mano tinklalapis nebuvo atnaujintas."
+      accounts:
+        create:
+          notice: "Paskyra sėkmingai buvo sukurta."
+          alert: "Paskyra nebuvo sukurta."
+      my_account:
+        update:
+          notice: "Mano paskyra sėkmingai buvo atnaujinta."
+          alert: "Mano paskyra nebuvo atnaujinta."
+      sites:
+        create:
+          notice: "Tinklalapis sėkmingai buvo sukurtas."
+          alert: "Tinklalapis nebuvo sukurtas."
+        destroy:
+          notice: "Tinklalapis sėkmingai buvo ištrintas."
+      memberships:
+        create:
+          notice: "Narystė sėkmingai buvo sukurta."
+          alert: "Narystė nebuvo sukurta."
+          already_created: "Paskyra jau buvo pridėta į šį tinklalapį."
+      content_assets:
+        create:
+          notice: "Išteklis sėkmingai buvo įkeltas."
+          alert: "Išteklis nebuvo įkeltas."
+        bulk_create:
+          notice: "Ištekliai sėkmingai buvo įkelti."
+          alert: "Ištekliai nebuvo įkelti."
+        update:
+          notice: "Išteklis sėkmingai buvo atnaujintas."
+          alert: "Išteklis nebuvo atnaujintas."
+        destroy:
+          notice: "Išteklis sėkmingai buvo ištrintas."
+          alert: "Išteklis nebuvo ištrintas."
+      translations:
+        create:
+          notice: "Vertimas sėkmingai buvo sukurtas."
+          alert: "Vertimas nebuvo sukurtas."
+        update:
+          notice: "Vertimas sėkmingai buvo atnaujintas."
+          alert: "Vertimas nebuvo atnaujintas."
+        destroy:
+          notice: "Vertimas sėkmingas buvo ištrintas."
+      custom_fields:
+        select_options:
+          update:
+            notice: "Laukas sėkmingai buvo atnaujintas."
+            alert: "Laukas nebuvo atnaujintas."

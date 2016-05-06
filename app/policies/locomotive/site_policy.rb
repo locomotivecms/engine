@@ -46,7 +46,7 @@ module Locomotive
     end
 
     def permitted_attributes
-      plain = [:name, :handle, :picture, :remove_picture, :seo_title, :meta_keywords, :meta_description, :timezone_name, :robots_txt, :cache_enabled, :redirect_to_first_domain, :private_access, :password, :prefix_default_locale]
+      plain = [:name, :handle, :picture, :remove_picture, :seo_title, :meta_keywords, :meta_description, :timezone_name, :robots_txt, :cache_enabled, :redirect_to_first_domain, :redirect_to_https, :private_access, :password, :prefix_default_locale]
       hash  = { domains: [], locales: [], url_redirections: [] }
 
       unless update_advanced?
@@ -56,7 +56,7 @@ module Locomotive
       end
 
       unless point?
-        plain -= [:handle, :redirect_to_first_domain, :private_access, :password]
+        plain -= [:handle, :redirect_to_first_domain, :redirect_to_https, :private_access, :password]
         hash.delete(:domains)
       end
 

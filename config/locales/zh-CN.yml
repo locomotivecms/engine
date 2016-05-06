@@ -1,0 +1,328 @@
+zh-CN:
+  locomotive:
+    locales:
+      en: 中文
+      de: 德文
+      fr: 法文
+      pl: 波兰
+      pt: 葡萄牙
+      pt-BR: "巴西葡萄牙语"
+      it: 意大利
+      nl: 荷兰
+      nb: 挪威
+      es: 西班牙
+      ru: 俄语
+      et: 爱沙尼亚
+      ja: 日语
+      zh-CN: 中文
+      cs: 捷克
+      bg: 保加利亚
+      sk: 斯洛伐克
+      sr: 塞尔维亚
+      sv: 瑞典
+      el: 希腊
+    messages:
+      confirm: 确定？
+      unsaved_content_warning: "是否确定离开本页？你输入的数据将不会保存。"
+    shared:
+      header:
+        welcome: 欢迎, %{name}
+        sites: 我的站点
+        account: 账户设置
+        see: 浏览网站
+        help: 帮助
+        logout: 注销
+      sidebar:
+        dashboard: 控制台
+        assets: 资源
+        settings: 通用设置
+        metafields: 属性
+        developers: 开发者
+        content_types:
+          title: 模型
+        translations: 翻译
+      list:
+        untranslated: 未翻译
+        created_at: "%{distance} 前创建"
+        created_by: "由 %{who} %{distance} 前创建"
+        updated_at: "%{distance} 前最后修改"
+        updated_by: "%{who} %{distance} 前最后修改"
+      rte:
+        toolbar:
+          table:
+            merge: 合并
+            insert_row_before: 前面插入行
+            insert_row_after: 后面插入行
+            insert_col_before: 前面插入列
+            insert_col_after: 后面插入列
+            delete_row: 删除行
+            delete_col: 删除列
+    errors:
+      '500':
+        title: 程序错误
+        message: "抱歉，出错了。请联系管理员。"
+      '404':
+        title: 页面未找到
+        message: "请求的页面不存在。"
+      no_site:
+        title: 站点未找到
+        next: "下一个 &rarr;"
+        message:
+          create_account: "创建站点前请先创建账户"
+          add_domain: "将  <strong>%{host}</strong>  添加为你站点的一个域名"
+          sign_in: "请先登录，在将  <strong>%{host}</strong>  添加为你站点的一个域名"
+    notifications:
+      new_content_entry:
+        subject: "[%{domain}][%{type}] 新记录"
+        title: "你好 %{name}，站点 <b>%{domain}</b> 的一个新实例在 %{date} 被创建"
+        type: "模型： %{type}"
+    activity:
+      site:
+        created: '创建站点'
+      page:
+        created: '创建 %{page} 页面'
+        updated: '更新 %{page} 页面'
+        destroyed: '删除 %{page} 页面'
+        sorted: '页面排序'
+      editable_element:
+        updated_bulk: '修改 %{pages} 的内容'
+      content_entry:
+        created: '添加 %{entry} 到 %{content_type}'
+        created_public: '从Public form添加 %{entry} 到 %{content_type} '
+        updated: '从 %{content_type} 更新 %{entry} '
+        destroyed: '从 %{content_type} 删除 %{entry} '
+        sorted: '%{content_type} 排序'
+      content_asset:
+        created_bulk: '更新 %{count} 个资源'
+        destroyed: '删除 %{name} 个资源'
+      membership:
+        created: '添加 %{name} 到站点'
+    pagination:
+      first: "&laquo;"
+      last: "&raquo;"
+      previous: "&lsaquo;"
+      next: "&rsaquo;"
+      truncate: "&hellip;"
+    custom_fields:
+      select_options:
+        edit:
+          title: "%{type} &mdash;  编辑选项"
+          back: "回到记录"
+        option:
+          edit: 编辑
+          apply: 应用
+          cancel: 取消
+      types:
+        belongs_to:
+          edit: 编辑
+          placeholder: "选择一个 %{name}"
+          searching: 搜索...
+          no_matches: 未找到匹配
+          too_short: 请输入至少1个字符
+        many_to_many:
+          placeholder: "选个一个 %{name}"
+          searching: 搜索...
+          no_matches: 未找到匹配
+          too_short: 请输入至少1个字符
+        select:
+          edit: 编辑选项
+        file:
+          delete_file: 删除文件
+        has_many:
+          new_label: 新增一个
+      form:
+        required: 必填
+        default_label: 字段名
+        select_options:
+          ask_name: "输入选项名称"
+    dashboard:
+      show:
+        title: '控制台'
+      url:
+        title: "站点URL："
+        visit: '访问'
+        change_domain: '使用你自己的域名'
+      activity:
+        title: 活动
+        unknown_account: 某人
+        load_more: 载入更多
+        loading_activity_feed: 载入中...
+    sessions:
+      new:
+        email: "Email"
+        link: "忘记密码"
+        password: "密码"
+        sign_up: 还没有账号？
+        submit: 登录
+        title: 登录
+    registrations:
+      new:
+        confirm_password: 确认密码
+        description: "创建账户然后开始使用Locomotive"
+        sign_in: 已有账户？
+        submit: 注册
+        title: 注册
+    passwords:
+      new:
+        description: "在下方填写Email，你将收到一封重置密码的说明邮件。"
+        link: "返回登录页面"
+        email: "你的Email"
+        submit: "提交"
+        title: "忘记密码"
+      edit:
+        description: "在下填写新密码。"
+        link: "返回登录页面"
+        password: "你的新密码"
+        password_confirmation: "确认密码"
+        submit: "更新我的密码"
+        title: "重置密码"
+    pages:
+      index:
+        title: '页面'
+        new: '新页面'
+        list_content_entries: "列出 %{name}"
+        new_content_entry: "新的  %{name}"
+      new:
+        title: 新页面
+        help: "填写下方的表单以新建页面。请注意，默认情况下页面不会发布。"
+      edit:
+        title: "%{title} &mdash; <small>%{fullpath}</small>"
+      form:
+        no_layout: 使用父级页面的layout
+        redirect_type:
+          permanent: "Permanent (301)"
+          temporary: "Temporary (302)"
+    editable_elements:
+      index:
+        redirection_error: "非Locomotive页面不允许编辑。"
+        iframe:
+          buttons:
+            edit: 编辑
+      index_without_preview:
+        title: "%{title} &mdash; <small>%{fullpath}</small>"
+      edit:
+        settings_link: '设置'
+        no_editable_elements: '未找到可编辑元素'
+        parsing_error: "<b>抱歉，无法解析你页面的模板</b><br/>请确认你的模板在Wagon是可用的"
+        blocks:
+          all: 全部
+          unknown: 未知
+      form:
+        model:
+          buttons:
+            list: 管理
+            edit: 编辑
+    sites:
+      index:
+        description: "下方列出所有你可访问的站点。点击任意一个将会重定向到该站点的内容管理模块。"
+        new: 新增站点
+        title: 我的站点
+      new:
+        description: "填写如下表单并点击提交。成功之后将会创建一个新站点。"
+        go_back: 返回
+        submit: 创建站点
+        title: 创建新站点
+      site:
+        no_domain: 没有域名
+    current_site:
+      edit:
+        title: 编辑当前站点
+      form:
+        main:
+          new_membership: "添加账号"
+        advanced:
+          destroy: "删除站点"
+          confirm_destroy: "请在下方输入站点名称以确认"
+    current_site_metafields:
+      index:
+        title: 正在编辑属性
+        no_metafields: 你的站点未定义metafields。
+    memberships:
+      roles:
+        admin: 管理员
+        designer: 设计师
+        author: 作者
+      new:
+        title: 新成员
+        help: "请提供账号email。如果没有则会跳转到账户创建表单页面。"
+        back: "返回站点设置"
+      edit:
+        title: "编辑 <b>%{name}</b> 的成员"
+        back: "返回站点设置"
+    accounts:
+      new:
+        title: 新账号
+        help: "填写如下表单以创建新账号"
+    my_account:
+      edit:
+        title: 编辑我的账号
+      form:
+        api:
+          api_key: "使用Wagon来部署你的站点（请检查你的Wagon站点中的config/deploy.yml）"
+    translations:
+      untranslated: "未翻译：%{list}"
+      index:
+        title: 翻译
+        no_items: "未找到任何翻译"
+        search_placeholder: "输入key或者翻译"
+        help: "Translate all the entries with a orange (partially localized) or red (not localized) dots."
+        filter_by:
+          all: 全部
+          done: 已翻译
+          partially: 部分翻译
+          none: 未翻译
+      edit:
+        title: "翻译 &mdash; 编辑 %{key}"
+      form:
+        not_translated: "未翻译"
+    content_assets:
+      index:
+        title: "资源"
+        upload: 上传文件
+      edit_in_drawer:
+        buttons:
+          resize: "修改尺寸"
+          crop: "裁剪"
+          apply: "应用"
+      dropzone:
+        instructions: "<strong> 从你的电脑中拖动文件到这里。 </strong><br/> 你还可以"
+        browse: "浏览文件"
+      list:
+        no_items: "现在没有media"
+        buttons:
+          select: "选择"
+          edit: "编辑"
+      nav:
+        types:
+          all: 全部
+          pdf: PDFs
+          image: 图片
+          media: 富媒体
+          others: 其他
+      search_form:
+        placeholder: 通过文件名搜索
+    public_submission_accounts:
+      edit:
+        title: "%{name} &mdash; 通知设置"
+    content_entries:
+      index:
+        title: '%{type}'
+        download: 下载记录
+        new: 新记录
+        edit_notification_settings: 编辑通知设置
+        search_placeholder: "在此输入搜索关键字"
+        group_by:
+          all: 全部
+      list:
+        no_items: "现在没有任何记录。 点击 <a href=\"%{url}\">这里</a> 创建第一条。"
+      new:
+        title: '%{type} &mdash; 新记录'
+      edit:
+        title: '%{type} &mdash; 编辑记录'
+      shared:
+        back: '&larr; 返回记录列表'
+    developers_documentation:
+      show:
+        title: 开发者
+        wagon: Wagon
+        api: API

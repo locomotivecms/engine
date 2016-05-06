@@ -1,0 +1,61 @@
+zh-CN:
+  errors:
+    messages:
+      not_found: "未找到"
+      already_confirmed: "已确认"
+      not_locked: "未锁定"
+  devise:
+    failure:
+      locomotive_account:
+        unauthenticated: '在继续操作前请先登录'
+        unconfirmed: '在继续操作前请先确认你的账户'
+        locked: '你的账户被锁定。'
+        invalid: '无效的邮箱或密码'
+        not_found_in_database: '无效的邮箱或密码'
+        no_membership: '你的账户不是本站点的成员，请联系站点管理员已获得访问权限。'
+        invalid_token: '无效的认证令牌'
+        timeout: '你的登录进程已超期，请重新登录。'
+        inactive: '你的账号未激活。'
+    sessions:
+      locomotive_account:
+        signed_in: '登录成功。'
+        signed_out: '注销成功。'
+    passwords:
+      locomotive_account:
+        send_instructions: '你将很快收到一封如何重置密码的邮件。'
+        updated: '密码修改成功。你已登录。'
+        invalid: '需再次询问新的密码。'
+    confirmations:
+      locomotive_account:
+        send_instructions: '你将很快收到一封如何确定账户的邮件。'
+        confirmed: '账号成功确认。你已登录。'
+    registrations:
+      locomotive_account:
+        signed_up: '注册成功。'
+        updated: '更新账户信息成功。'
+        destroyed: '再见，你的账号已成功删除。'
+    unlocks:
+      locomotive_account:
+        send_instructions: '你将很快收到一封如何解锁账户的邮件。'
+        unlocked: '账户成功解锁。你已登录。'
+    mailer:
+      locomotive_account:
+        confirmation_instructions: '确认说明'
+        reset_password_instructions: '重置密码说明'
+        unlock_instructions: '解锁说明'
+  locomotive:
+    devise_mailer:
+      common:
+        hello: 你好
+      confirmation_instructions:
+        you_can_confirm_your_account_through_the_link_below: "你可以通过以下链接确认账户："
+        confirm_my_account: "确认我的账户"
+      reset_password_instructions:
+        reset_password_instruction: "有人申请了修改密码的链接，请点击如下链接进行操作："
+        change_my_password: "修改密码"
+        wrong_request_instruction: "如果非你本身提出的申请，请无视本邮件。"
+        unchange_password_message: "你的密码不会被修改，知道你访问上述链接并创建新密码。"
+      unlock_instructions:
+        locked_account_message: "由于多次失败的登录尝试，你的账户已被锁定。"
+        unlock_account_instruction: "点击如下链接解锁账号："
+        unlock_my_account: "解锁账号"
