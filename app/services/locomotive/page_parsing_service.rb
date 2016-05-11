@@ -14,7 +14,10 @@ module Locomotive
           parse(page)
 
           persist_editable_elements(page, parsed).tap do |elements|
-            remove_useless_editable_elements(page, elements)
+            # FIXME (Did): do not remove "useless" editable elements since
+            # they might have become orphaned because of a typo for instance.
+            # Instead, we should warn the Wagon developer (TODO).
+            # remove_useless_editable_elements(page, elements)
           end
         end
       end
@@ -160,11 +163,12 @@ module Locomotive
       end
     end
 
-    def remove_useless_editable_elements(page, elements)
-      if _elements = (elements.map { |p, _elements| p._id == page._id ? _elements : nil }.flatten.compact)
-        page.editable_elements.where(:_id.nin => _elements.map(&:_id)).destroy_all
-      end
-    end
+    # FIXME (Did): see comment on line 17.
+    # def remove_useless_editable_elements(page, elements)
+    #   if _elements = (elements.map { |p, _elements| p._id == page._id ? _elements : nil }.flatten.compact)
+    #     page.editable_elements.where(:_id.nin => _elements.map(&:_id)).destroy_all
+    #   end
+    # end
 
     def assign_block_information(element, blocks)
       if element.block && (options = blocks[element.block])

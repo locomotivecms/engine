@@ -58,6 +58,11 @@ namespace :locomotive do
               target_ids_name = "#{field.inverse_of.singularize}_ids"
               target_ids      = target_entry.attributes[target_ids_name]
 
+              if target_ids.nil?
+                puts "[ERROR][#{content_type.site.name}] wrong many-to-many inverse_of key for #{content_type.name}"
+                next
+              end
+
               valid = target_ids.include?(entry._id)
 
               unless valid
