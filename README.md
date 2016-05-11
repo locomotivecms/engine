@@ -12,8 +12,7 @@ Locomotive relies on a **very original workflow**:
 
 ![Locomotive](https://dl.dropboxusercontent.com/u/20823269/locomotive-engine.png)
 
-Visit the Locomotive official website [here](http://
-locomotive.works) for more information.
+Visit the Locomotive official website [here](http://locomotive.works) for more information.
 
 ## Features
 
