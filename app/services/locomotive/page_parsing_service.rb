@@ -22,7 +22,7 @@ module Locomotive
         end
       end
     rescue Exception => e
-      Rails.logger.error "[PageParsing] " + e.message + "\n\t" + e.backtrace.join("\n\t")
+      logger.error "[PageParsing] " + e.message + "\n\t" + e.backtrace.join("\n\t")
       nil
     end
 

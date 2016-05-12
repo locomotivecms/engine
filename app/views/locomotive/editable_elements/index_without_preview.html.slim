@@ -31,7 +31,7 @@
                 label.select.optional.control-label for='page_block'
                   = t(:region, scope: 'simple_form.labels.locomotive.editable_element')
                 span.form-wrapper
-                  = select_tag 'block', options_for_page_blocks(@editable_elements_by_block)
+                  = select_tag 'block', options_for_page_blocks(@blocks)
 
           .col-md-12
             = render 'form', f: f
