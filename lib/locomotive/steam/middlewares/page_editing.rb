@@ -11,6 +11,8 @@ module Locomotive
         end
 
         def call(env)
+          disable_live_editing_if_not_html(env)
+
           status, headers, response = @app.call(env)
 
           site, mounted_on, page, locale, live_editing = env['steam.site'], env['steam.mounted_on'], env['steam.page'], env['steam.locale'].to_s, env['steam.live_editing']
@@ -50,6 +52,14 @@ module Locomotive
         end
 
         protected
+
+        def disable_live_editing_if_not_html(env)
+          page = env['steam.page']
+
+          if page && page.response_type != 'text/html'
+            env['steam.live_editing'] = false
+          end
+        end
 
         def editable?(page, response, live_editing)
           live_editing && page && !page.redirect && page.response_type == 'text/html' && response.first
