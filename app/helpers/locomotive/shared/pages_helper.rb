@@ -48,25 +48,6 @@ module Locomotive
           end
         end
 
-        def icon
-          if templatized?
-            'fa-gear'
-          elsif redirect?
-            'fa-link'
-          else
-            response_type_icon
-          end
-        end
-
-        def response_type_icon
-          case response_type
-          when 'application/rss+xml'          then 'fa-rss'
-          when 'application/json', 'text/xml' then 'fa-file-code-o'
-          else
-            'fa-file-text-o fa-flip-horizontal'
-          end
-        end
-
         def children?
           !children.blank?
         end
@@ -79,12 +60,16 @@ module Locomotive
           base.join(' ')
         end
 
-        def text_inline_style
-          if width = max_width
+        def text_inline_style(inc = 0)
+          if width = max_width(inc)
             "max-width: #{width}px;"
           else
             ''
           end
+        end
+
+        def deeper_text_inline_style
+          text_inline_style(1)
         end
 
         def draggable
@@ -119,8 +104,8 @@ module Locomotive
           end)
         end
 
-        def max_width
-          depth >= 2 ? MAX_WIDTH[depth - 2] : nil
+        def max_width(inc = 0)
+          depth >= 2 ? MAX_WIDTH[depth - 2 + inc] : nil
         end
 
         alias :to_param :_id
