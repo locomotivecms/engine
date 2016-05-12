@@ -2,5 +2,5 @@
   = image_tag site_picture_url(site), alt: site.name
   .public-entry-info
     h5= site.name.truncate(35)
-    p= site.main_domain.try(:truncate, 50) || t('.no_domain')
+    p= site.main_domain.try(:truncate, 45) || t('.no_domain')
     i.fa.fa-arrow-right
