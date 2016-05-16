@@ -1,9 +1,14 @@
 module Locomotive
   module Dragonfly
 
-    def self.resize_url(source, resize_string)
+    def self.resize_url(source, resize_string, url_host = nil)
       if file = self.fetch_file(source)
-        file.thumb(resize_string).url
+        # FIXME: dragonfly allows to override the asset_host set in its initializer file.
+        # https://github.com/markevans/dragonfly/blob/b681ce2e44139aa7632c5331dc5601530b23d82f/lib/dragonfly/server.rb#L82
+        # https://github.com/markevans/dragonfly/blob/master/lib/dragonfly/job.rb#L175
+        options = url_host.blank? ? {} : { host: url_host }
+
+        file.thumb(resize_string).url(options)
       else
         Locomotive.log :error, "Unable to resize on the fly: #{source.inspect}"
         return
