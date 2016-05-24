@@ -14,7 +14,7 @@ module Locomotive
       end
 
       def compute(source, timestamp = nil)
-        return source if source.nil?
+        return source if source.blank?
 
         return add_timestamp_suffix(source, timestamp) if source =~ IsHTTP
 
