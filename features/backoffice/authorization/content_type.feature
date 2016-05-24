@@ -1,6 +1,6 @@
 Feature: Editing a content type
   In order to edit a content type
-  As an admin, designer, or author
+  As an admin, designer, author or consumer
   I will be restricted based on my role
 
 Background:
@@ -30,6 +30,12 @@ Background:
 
   Scenario: Accessing edition functionality as an Author
     Given I am an authenticated "author"
+    When I go to the "Projects" model edition page
+    Then I should be on the pages list
+    And I should see the access denied message
+
+  Scenario: Accessing edition functionality as a Consumer
+    Given I am an authenticated "consumer"
     When I go to the "Projects" model edition page
     Then I should be on the pages list
     And I should see the access denied message

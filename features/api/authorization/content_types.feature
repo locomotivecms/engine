@@ -1,6 +1,6 @@
 Feature: Content Types
   In order to ensure content types are not tampered with
-  As an admin, designer or author
+  As an admin, designer, author or consumer
   I will be restricted based on my role
 
   Background:
@@ -36,6 +36,12 @@ Feature: Content Types
     Then the JSON response should be an array
     And the JSON response should have 1 entry
 
+  Scenario: Accessing content types as a Consumer
+    Given I have a "consumer" API token
+    When I do an API GET request to content_types.json
+    Then the JSON response should be an array
+    And the JSON response should have 1 entry
+
   # showing content type
 
   Scenario: Accessing content type as an Admin
@@ -52,6 +58,12 @@ Feature: Content Types
 
   Scenario: Accessing content type as an Author
     Given I have an "author" API token
+    When I do an API GET request to content_types/4f832c2cb0d86d3f42fffffe.json
+    Then the JSON response at "id" should be "4f832c2cb0d86d3f42fffffe"
+    And the JSON response at "name" should be "Projects"
+
+  Scenario: Accessing content type as a Consumer
+    Given I have a "consumer" API token
     When I do an API GET request to content_types/4f832c2cb0d86d3f42fffffe.json
     Then the JSON response at "id" should be "4f832c2cb0d86d3f42fffffe"
     And the JSON response at "name" should be "Projects"
@@ -164,6 +176,34 @@ Feature: Content Types
     """
     Then an access denied error should occur
 
+  Scenario: Creating new content type as a Consumer
+    Given I have a "consumer" API token
+    When I do an API GET request to content_types.json
+    Then the JSON response should be an array
+    And the JSON response should have 1 entry
+    When I do an API POST to content_types.json with:
+    """
+    {
+      "content_type": {
+        "name": "Employees",
+        "slug": "employees",
+        "entries_custom_fields": [
+          {
+            "label": "Name",
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "label": "Position",
+            "name": "position",
+            "type": "string"
+          }
+        ]
+      }
+    }
+    """
+    Then an access denied error should occur
+
   # update content type
 
   Scenario: Updating content type as an Admin
@@ -206,6 +246,18 @@ Feature: Content Types
     """
     Then an access denied error should occur
 
+  Scenario: Updating content type as a Consumer
+    Given I have a "consumer" API token
+    When I do an API PUT to content_types/4f832c2cb0d86d3f42fffffe.json with:
+    """
+    {
+      "content_type": {
+        "name": "Brand new updated name"
+      }
+    }
+    """
+    Then an access denied error should occur
+
   # destroy content type
 
   Scenario: Destroying content type as an Admin
@@ -230,6 +282,14 @@ Feature: Content Types
 
   Scenario: Deleting content type as an Author
     Given I have a "author" API token
+    When I do an API GET request to content_types.json
+    Then the JSON response should be an array
+    And the JSON response should have 1 entries
+    When I do an API DELETE to content_types/4f832c2cb0d86d3f42fffffe.json
+    Then an access denied error should occur
+
+  Scenario: Deleting content type as a Consumer
+    Given I have a "consumer" API token
     When I do an API GET request to content_types.json
     Then the JSON response should be an array
     And the JSON response should have 1 entries

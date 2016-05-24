@@ -1,6 +1,6 @@
 Feature: Memberships
   In order to ensure memberships are not tampered with
-  As an admin, designer or author
+  As an admin, designer, author or consumer
   I will be restricted based on my role
 
   Background:
@@ -38,6 +38,11 @@ Feature: Memberships
     When I do an API GET request to memberships.json
     Then an access denied error should occur
 
+  Scenario: Accessing memberships as a Consumer
+    Given I have a "consumer" API token
+    When I do an API GET request to memberships.json
+    Then an access denied error should occur
+
   # showing membership
 
   Scenario: Accessing membership as an Admin
@@ -60,6 +65,11 @@ Feature: Memberships
 
   Scenario: Accessing membership as an Author
     Given I have an "author" API token
+    When I do an API GET request to memberships/4f832c2cb0d86d3f42fffffe.json
+    Then an access denied error should occur
+
+  Scenario: Accessing membership as a Consumer
+    Given I have a "consumer" API token
     When I do an API GET request to memberships/4f832c2cb0d86d3f42fffffe.json
     Then an access denied error should occur
 
@@ -97,6 +107,19 @@ Feature: Memberships
 
   Scenario: Creating new membership as an Author
     Given I have an "author" API token
+    When I do an API POST to memberships.json with:
+    """
+    {
+      "membership": {
+        "site_id": "4f832c2cb0d86d3f42fffffb",
+        "account_id": "4f832c2cb0d86d3f42fffffc"
+      }
+    }
+    """
+    Then an access denied error should occur
+
+  Scenario: Creating new membership as a Consumer
+    Given I have a "consumer" API token
     When I do an API POST to memberships.json with:
     """
     {
@@ -193,6 +216,36 @@ Feature: Memberships
     """
     Then an access denied error should occur
 
+  Scenario: Updating membership as a Consumer
+    Given I have a "consumer" API token
+    When I do an API PUT to memberships/4f832c2cb0d86d3f42ffffff.json with:
+    """
+    {
+      "membership": {
+        "role": "admin"
+      }
+    }
+    """
+    Then an access denied error should occur
+    When I do an API PUT to memberships/4f832c2cb0d86d3f42ffffff.json with:
+    """
+    {
+      "membership": {
+        "role": "designer"
+      }
+    }
+    """
+    Then an access denied error should occur
+    When I do an API PUT to memberships/4f832c2cb0d86d3f42ffffff.json with:
+    """
+    {
+      "membership": {
+        "role": "author"
+      }
+    }
+    """
+    Then an access denied error should occur
+
   # destroy membership
 
   Scenario: Destroying membership as an Admin
@@ -221,5 +274,10 @@ Feature: Memberships
 
   Scenario: Deleting membership as an Author
     Given I have a "author" API token
+    When I do an API DELETE to memberships/4f832c2cb0d86d3f42fffffe.json
+    Then an access denied error should occur
+
+  Scenario: Deleting membership as a Consumer
+    Given I have a "consumer" API token
     When I do an API DELETE to memberships/4f832c2cb0d86d3f42fffffe.json
     Then an access denied error should occur

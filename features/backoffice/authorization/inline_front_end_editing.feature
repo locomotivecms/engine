@@ -1,7 +1,7 @@
 @javascript
 Feature: Inline frontend editing
   In order to ensure site content is not tampered with
-  As an admin, designer or author
+  As an admin, designer, author or consumer
   I will be restricted based on my role
 
   Background:
@@ -44,3 +44,10 @@ Feature: Inline frontend editing
     Then I should see "Admin"
     When I view the rendered page at "/about/_admin"
     Then I should see "Editing mode"
+
+  Scenario: Inline editing as an Consumer
+    Given I am an authenticated "consumer"
+    When I view the rendered page at "/about"
+    Then I should not see "Admin"
+    When I view the rendered page at "/about/_admin"
+    Then I should not see "Editing mode"

@@ -1,6 +1,6 @@
 Feature: Theme Assets
   In order to ensure theme assets are not tampered with
-  As an admin, designer or author
+  As an admin, designer, author or consumer
   I will be restricted based on my role
 
   Background:
@@ -33,6 +33,11 @@ Feature: Theme Assets
     Then the JSON response should be an array
     And the JSON response should have 2 entries
 
+  Scenario: Accessing theme assets as a Consumer
+    Given I have a "consumer" API token
+    When I do an API GET request to theme_assets.json
+    Then an access denied error should occur
+
   # showing theme asset
 
   Scenario: Accessing theme asset as an Admin
@@ -49,6 +54,11 @@ Feature: Theme Assets
     Given I have an "author" API token
     When I do an API GET request to theme_assets/4f832c2cb0d86d3f42fffffe.json
     Then the JSON response at "local_path" should be "my_javascript.js"
+
+  Scenario: Accessing theme asset as a Consumer
+    Given I have a "consumer" API token
+    When I do an API GET request to theme_assets/4f832c2cb0d86d3f42fffffe.json
+    Then an access denied error should occur
 
   # create theme asset
 
@@ -113,6 +123,21 @@ Feature: Theme Assets
     """
     Then an access denied error should occur
 
+  Scenario: Creating new theme asset as a Consumer
+    Given I have a "consumer" API token
+    When I do an API POST to theme_assets.json with:
+    """
+    {
+      "theme_asset": {
+        "plain_text_name": "new-javascript.js",
+        "plain_text": "function doNothing() {}",
+        "plain_text_type": "javascript",
+        "performing_plain_text": "true"
+      }
+    }
+    """
+    Then an access denied error should occur
+
   # update theme asset
 
   Scenario: Updating theme asset as an Admin
@@ -157,6 +182,18 @@ Feature: Theme Assets
     Then the JSON response should have the following:
       | local_path  | "changed/my_javascript.js"     |
 
+  Scenario: Updating theme asset as a Consumer
+    Given I have a "consumer" API token
+    When I do an API PUT to theme_assets/4f832c2cb0d86d3f42fffffe.json with:
+    """
+    {
+      "theme_asset": {
+        "folder": "changed"
+      }
+    }
+    """
+    Then an access denied error should occur
+
   # destroy theme asset
 
   Scenario: Destroying theme asset as an Admin
@@ -181,5 +218,10 @@ Feature: Theme Assets
 
   Scenario: Deleting theme asset as an Author
     Given I have a "author" API token
+    When I do an API DELETE to theme_assets/4f832c2cb0d86d3f42fffffe.json
+    Then an access denied error should occur
+
+  Scenario: Deleting theme asset as a Consumer
+    Given I have a "consumer" API token
     When I do an API DELETE to theme_assets/4f832c2cb0d86d3f42fffffe.json
     Then an access denied error should occur

@@ -174,6 +174,7 @@ es:
         admin: Administrador
         designer: Diseñador
         author: Autor
+        consumer: Consumidor
       new:
         title: Nueva cuenta
         help: "Por favor escriba el email de la cuenta que a añadir. Si no está en el sistema, se le redirigirá al formulario de creación de cuentas."

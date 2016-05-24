@@ -200,6 +200,7 @@ cs:
         admin: Administrátor
         designer: Designer
         author: Autor
+        consumer: Spotřebitel
       new:
         title: Nový účet
         help: "Vyplňte prosím email nového účtu. Pokud neexistuje, přesměrujeme vás na stránku k vytvoření účtu."

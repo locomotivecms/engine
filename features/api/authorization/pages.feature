@@ -1,6 +1,6 @@
 Feature: Pages
   In order to ensure pages are not tampered with
-  As an admin, designer or author
+  As an admin, designer, author or consumer
   I will be restricted based on my role
 
   Background:
@@ -38,6 +38,12 @@ Feature: Pages
     Then the JSON response should be an array
     And the JSON response should have 4 entries
 
+  Scenario: Accessing pages as a Consumer
+    Given I have an "consumer" API token
+    When I do an API GET request to pages.json
+    Then the JSON response should be an array
+    And the JSON response should have 4 entries
+
   # showing page
 
   Scenario: Accessing page as an Admin
@@ -54,6 +60,12 @@ Feature: Pages
 
   Scenario: Accessing page as an Author
     Given I have an "author" API token
+    When I do an API GET request to pages/4f832c2cb0d86d3f42fffffe.json
+    Then the JSON response at "id" should be "4f832c2cb0d86d3f42fffffe"
+    And the JSON response at "slug" should be "hello-world"
+
+  Scenario: Accessing page as a Consumer
+    Given I have a "consumer" API token
     When I do an API GET request to pages/4f832c2cb0d86d3f42fffffe.json
     Then the JSON response at "id" should be "4f832c2cb0d86d3f42fffffe"
     And the JSON response at "slug" should be "hello-world"
@@ -114,6 +126,20 @@ Feature: Pages
     Then the JSON response should be an array
     And the JSON response should have 5 entries
 
+  Scenario: Creating new page as a Consumer
+    Given I have a "consumer" API token
+    When I do an API POST to pages.json with:
+    """
+    {
+      "page": {
+        "title": "New Page",
+        "slug": "new-page",
+        "parent_fullpath": "index"
+      }
+    }
+    """
+    Then an access denied error should occur
+
   # update page
 
   Scenario: Updating page as an Admin
@@ -158,6 +184,18 @@ Feature: Pages
     Then the JSON response at "id" should be "4f832c2cb0d86d3f42fffffe"
     And the JSON response at "title" should be "Brand new updated title"
 
+  Scenario: Updating page as a Consumer
+    Given I have a "consumer" API token
+    When I do an API PUT to pages/4f832c2cb0d86d3f42fffffe.json with:
+    """
+    {
+      "page": {
+        "title": "Brand new updated title"
+      }
+    }
+    """
+    Then an access denied error should occur
+
   # destroy page
 
   Scenario: Destroying page as an Admin
@@ -182,6 +220,14 @@ Feature: Pages
 
   Scenario: Deleting page as an Author
     Given I have a "author" API token
+    When I do an API GET request to pages.json
+    Then the JSON response should be an array
+    And the JSON response should have 4 entries
+    When I do an API DELETE to pages/4f832c2cb0d86d3f42fffffe.json
+    Then an access denied error should occur
+
+  Scenario: Deleting page as a Consumer
+    Given I have a "consumer" API token
     When I do an API GET request to pages.json
     Then the JSON response should be an array
     And the JSON response should have 4 entries

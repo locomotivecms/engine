@@ -200,6 +200,7 @@ en:
         admin: Administrator
         designer: Designer
         author: Author
+        consumer: Consumer
       new:
         title: New membership
         help: "Please give the account email to add. If it does not exist, you will be redirected to the account creation form."

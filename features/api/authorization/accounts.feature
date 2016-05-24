@@ -1,6 +1,6 @@
 Feature: Accounts
   In order to ensure accounts are not tampered with
-  As an admin, designer or author
+  As an admin, designer, author or consumer
   I will be restricted based on my role
 
   Background:
@@ -35,6 +35,11 @@ Feature: Accounts
     When I do an API GET request to accounts.json
     Then an access denied error should occur
 
+  Scenario: Accessing accounts as a Consumer
+    Given I have a "consumer" API token
+    When I do an API GET request to accounts.json
+    Then an access denied error should occur
+
   # showing account
 
   Scenario: Accessing account as an Admin
@@ -53,6 +58,11 @@ Feature: Accounts
 
   Scenario: Accessing account as an Author
     Given I have an "author" API token
+    When I do an API GET request to accounts/4f832c2cb0d86d3f42fffffc.json
+    Then an access denied error should occur
+    
+  Scenario: Accessing account as a Consumer
+    Given I have a "consumer" API token
     When I do an API GET request to accounts/4f832c2cb0d86d3f42fffffc.json
     Then an access denied error should occur
 
@@ -90,6 +100,20 @@ Feature: Accounts
 
   Scenario: Creating new account as an Author
     Given I have an "author" API token
+    When I do an API POST to accounts.json with:
+    """
+    {
+      "account": {
+        "name": "New User",
+        "email": "new-user4@a.com",
+        "password": "changeme"
+      }
+    }
+    """
+    Then an access denied error should occur
+    
+  Scenario: Creating new account as a Consumer
+    Given I have a "consumer" API token
     When I do an API POST to accounts.json with:
     """
     {
@@ -141,6 +165,18 @@ Feature: Accounts
     }
     """
     Then an access denied error should occur
+    
+  Scenario: Creating new account as a Consumer
+    Given I have a "consumer" API token
+    When I do an API PUT to accounts/4f832c2cb0d86d3f42fffffc.json with:
+    """
+    {
+      "account": {
+        "name": "Modified User"
+      }
+    }
+    """
+    Then an access denied error should occur
 
   # destroy account
 
@@ -161,5 +197,10 @@ Feature: Accounts
 
   Scenario: Deleting account as an Author
     Given I have a "author" API token
+    When I do an API DELETE to accounts/4f832c2cb0d86d3f42fffffe.json
+    Then an access denied error should occur
+    
+  Scenario: Deleting account as a Consumer
+    Given I have a "consumer" API token
     When I do an API DELETE to accounts/4f832c2cb0d86d3f42fffffe.json
     Then an access denied error should occur

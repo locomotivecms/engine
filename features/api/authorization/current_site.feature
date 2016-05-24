@@ -1,6 +1,6 @@
 Feature: Current Site
   In order to ensure the current site can be viewed by all authenticated users
-  As an admin, designer or author
+  As an admin, designer, author or consumer
   I should be able to show the current site
 
   Background:
@@ -26,5 +26,10 @@ Feature: Current Site
 
   Scenario: Accessing current site as an Author
     Given I have an "author" API token
+    When I do an API GET to current_site.json
+    Then the JSON response at "name" should be "Locomotive test website"
+
+  Scenario: Accessing current site as a Consumer
+    Given I have a "consumer" API token
     When I do an API GET to current_site.json
     Then the JSON response at "name" should be "Locomotive test website"

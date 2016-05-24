@@ -1,6 +1,6 @@
 Feature: Theme Assets
   In order to ensure theme assets are not tampered with
-  As an admin, designer or author
+  As an admin, designer, author or consumer
   I will be restricted based on my role
 
 Background:
@@ -47,4 +47,16 @@ Background:
     And I should not see "Style and javascript"
     And I should see "Images"
     And I should see "dog.png"
+    And I should not see a delete link
+
+  @javascript
+  Scenario: Accessing theme assets as a Consumer
+    Given I am an authenticated "consumer"
+    When I go to theme assets
+    Then I should not see "new snippet"
+    And I should not see "new file"
+    And I should not see "Snippets"
+    And I should not see "Style and javascript"
+    And I should not see "Images"
+    And I should not see "dog.png"
     And I should not see a delete link

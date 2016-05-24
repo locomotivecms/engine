@@ -1,6 +1,6 @@
 Feature: Sites
   In order to ensure sites are not tampered with
-  As an admin, designer or author
+  As an admin, designer, author or consumer
   I will be restricted based on my role
 
   Background:
@@ -33,6 +33,11 @@ Feature: Sites
     Then the JSON response should be an array
     And the JSON response should have 1 entry
 
+  Scenario: Accessing sites as a Consumer
+    Given I have a "consumer" API token
+    When I do an API GET request to sites.json
+    Then an access denied error should occur
+
   # showing site
 
   Scenario: Accessing site as an Admin
@@ -58,6 +63,16 @@ Feature: Sites
 
   Scenario: Accessing other site as an Author
     Given I have an "author" API token
+    When I do an API GET request to sites/4f832c2cb0d86d3f42ffffff.json
+    Then an access denied error should occur
+
+  Scenario: Accessing my site as a Consumer
+    Given I have a "consumer" API token
+    When I do an API GET request to sites/4f832c2cb0d86d3f42fffffe.json
+    Then an access denied error should occur
+
+  Scenario: Accessing other site as a Consumer
+    Given I have a "consumer" API token
     When I do an API GET request to sites/4f832c2cb0d86d3f42ffffff.json
     Then an access denied error should occur
 
@@ -99,6 +114,19 @@ Feature: Sites
 
   Scenario: Creating new site as an Author
     Given I have an "author" API token
+    When I do an API POST to sites.json with:
+    """
+    {
+      "site": {
+        "name": "New site",
+        "subdomain": "new-site"
+      }
+    }
+    """
+    Then an access denied error should occur
+
+  Scenario: Creating new site as a Consumer
+    Given I have a "consumer" API token
     When I do an API POST to sites.json with:
     """
     {
@@ -178,6 +206,31 @@ Feature: Sites
     """
     Then an access denied error should occur
 
+  Scenario: Updating my site as a Consumer
+    Given I have a "consumer" API token
+    When I do an API PUT to sites/4f832c2cb0d86d3f42fffffe.json with:
+    """
+    {
+      "site": {
+        "name": "Brand new updated name"
+      }
+    }
+    """
+    When I do an API GET request to sites/4f832c2cb0d86d3f42fffffe.json
+    Then an access denied error should occur
+
+  Scenario: Updating other site as a Consumer
+    Given I have a "consumer" API token
+    When I do an API PUT to sites/4f832c2cb0d86d3f42ffffff.json with:
+    """
+    {
+      "site": {
+        "name": "Brand new updated name"
+      }
+    }
+    """
+    Then an access denied error should occur
+
   # destroy site
 
   Scenario: Destroying site as an Admin
@@ -208,5 +261,15 @@ Feature: Sites
 
   Scenario: Deleting other site as an Author
     Given I have a "author" API token
+    When I do an API DELETE to sites/4f832c2cb0d86d3f42ffffff.json
+    Then an access denied error should occur
+
+  Scenario: Deleting my site as a Consumer
+    Given I have a "consumer" API token
+    When I do an API DELETE to sites/4f832c2cb0d86d3f42fffffe.json
+    Then an access denied error should occur
+
+  Scenario: Deleting other site as a Consumer
+    Given I have a "consumer" API token
     When I do an API DELETE to sites/4f832c2cb0d86d3f42ffffff.json
     Then an access denied error should occur

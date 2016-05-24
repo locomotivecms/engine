@@ -199,6 +199,7 @@ zh-CN:
         admin: 管理员
         designer: 设计师
         author: 作者
+        consumer: 消费者
       new:
         title: 新建成员
         help: "请给一个账户的邮箱进行添加。如果该邮箱不存在，你将被跳转到创建账户的表单页面。"
