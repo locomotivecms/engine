@@ -4,12 +4,10 @@ GIT
   specs:
     database_cleaner (1.5.3)
 
-GIT
-  remote: git://github.com/locomotivecms/steam.git
-  revision: bbc62a3671d19687ae7546f4247fdc1780b67ca0
-  ref: bbc62a367
+PATH
+  remote: ../gems/steam
   specs:
-    locomotivecms_steam (1.1.0)
+    locomotivecms_steam (1.2.0.beta1)
       RedCloth (~> 4.2.9)
       autoprefixer-rails (~> 6.3.3.1)
       chronic (~> 0.10.2)
@@ -59,7 +57,7 @@ PATH
       jquery-ui-rails (~> 5.0.3)
       json-schema (~> 2.6.1)
       kaminari (~> 0.16.3)
-      locomotivecms_steam (~> 1.1.0)
+      locomotivecms_steam (~> 1.2.0.beta)
       mime-types (~> 2.6.2)
       mimetype-fu (~> 0.1.2)
       mongo_session_store-rails4 (~> 6.0.0)
@@ -218,7 +216,7 @@ GEM
     debug_inspector (0.0.2)
     descendants_tracker (0.0.4)
       thread_safe (~> 0.3, >= 0.3.1)
-    devise (3.5.9)
+    devise (3.5.10)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 3.2.6, < 5)
@@ -338,7 +336,7 @@ GEM
     moneta (0.8.0)
     monetize (1.4.0)
       money (~> 6.7)
-    money (6.7.0)
+    money (6.7.1)
       i18n (>= 0.6.4, <= 0.7.0)
       sixarm_ruby_unaccent (>= 1.1.1, < 2)
     mongo (2.2.5)

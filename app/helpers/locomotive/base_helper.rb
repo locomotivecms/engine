@@ -90,9 +90,9 @@ module Locomotive
       end
     end
 
-    def locale_picker_link
+    def locale_picker_link(&block)
       return '' if current_site.locales.size == 1
-      render 'locomotive/shared/locale_picker_link'
+      render partial: 'locomotive/shared/locale_picker_link', locals: { url_block: block_given? ? block : nil }
     end
 
     def flash_message

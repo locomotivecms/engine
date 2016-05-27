@@ -6,8 +6,9 @@
     span.caret
   ul.dropdown-menu.dropdown-menu-right
     - current_site.locales.each do |locale|
+      - url = url_block ? url_block.call(locale) : "?content_locale=#{locale}"
       li
-        a href="?content_locale=#{locale}"
+        a href=url
           = flag_tag locale, '17x17'
           | &nbsp;
           | &nbsp;

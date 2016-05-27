@@ -21,7 +21,7 @@
       .col-sm-4.col-xs-4
         .text-right
           - if current_site.localized?
-            = locale_picker_link
+            = page_locale_picker_link(@page, @content_entry)
           - unless @editable_elements.blank?
             | &nbsp;
             = f.action
