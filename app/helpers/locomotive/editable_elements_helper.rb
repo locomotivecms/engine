@@ -54,7 +54,7 @@ module Locomotive
 
     def page_locale_picker_link(page, content_entry)
       service = Locomotive::Steam::Services.build_instance
-      _page   = Locomotive::Steam::Decorators::PageDecorator.new(page.to_steam, ::Mongoid::Fields::I18n.locale, current_site.default_locale)
+      _page   = Locomotive::Steam::Decorators::PageDecorator.new(page.to_steam, current_content_locale, current_site.default_locale)
 
       _page.content_entry   = content_entry
       service.current_site  = current_site

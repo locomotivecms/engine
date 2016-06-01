@@ -18,7 +18,7 @@ module Locomotive
         link_to label, link  # default one
       else
         assigns   = { 'site' => current_site, 'entry' => entry.to_liquid(content_type), 'link' => link, 'today' => Date.today, 'now' => Time.zone.now }
-        registers = { site: current_site, locale: ::Mongoid::Fields::I18n.locale.to_s, services: Locomotive::Steam::Services.build_instance }
+        registers = { site: current_site, locale: current_content_locale.to_s, services: Locomotive::Steam::Services.build_instance }
         context   = ::Liquid::Context.new({}, assigns, registers)
 
         content_type.render_entry_template(context).html_safe

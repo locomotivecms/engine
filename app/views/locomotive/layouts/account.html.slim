@@ -19,8 +19,7 @@ html xmlns='http://www.w3.org/1999/xhtml' lang=I18n.locale
     = stylesheet_link_tag     'locomotive/account', media: 'screen'
 
     javascript:
-      window.locale                     = '#{I18n.locale}';
-      window.content_locale             = '#{::Mongoid::Fields::I18n.locale}';
+      window.locale                     = '#{locale}';
 
       $(document).ready(function() {
 

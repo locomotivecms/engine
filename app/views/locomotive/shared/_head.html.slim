@@ -25,8 +25,8 @@ link href="https://fonts.googleapis.com/css?family=Muli:400,300|Noto+Sans:400,70
 = render 'locomotive/shared/main_app_head_before_backbone'
 
 javascript:
-  window.locale                     = '#{I18n.locale}';
-  window.content_locale             = '#{::Mongoid::Fields::I18n.locale}';
+  window.locale                     = '#{locale}';
+  window.content_locale             = '#{current_content_locale}';
 
   $(document).ready(function() {
 
