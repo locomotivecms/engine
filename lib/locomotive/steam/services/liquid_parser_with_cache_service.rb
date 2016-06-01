@@ -30,6 +30,7 @@ module Locomotive
           Rails.cache.write(cache_key(page), marshal(template))
         rescue Exception => e
           Rails.logger.warn "Could not marshal #{cache_key(page)}, error: #{e.message}"
+          Rails.logger.debug e.backtrace.join("\n")
         end
 
         template
@@ -58,6 +59,8 @@ module Locomotive
             clean_template!(_node)
           end
         end
+
+        # [Debug](used to find the node element whic can't be marshaled): Marshal.dump(node)
       end
 
       def remove_unmarshalable_options(node)
@@ -65,7 +68,20 @@ module Locomotive
 
         return if options.blank?
 
+        unless options[:inherited_blocks].blank?
+          remove_unmarshalable_options_from_inherited_blocks(options)
+        end
+
         options.delete_if { |name, _| UNMARSHALABLE_OPTIONS.include?(name) }
+      end
+
+      def remove_unmarshalable_options_from_inherited_blocks(options)
+        options[:inherited_blocks].values.each do |blocks|
+          (blocks.respond_to?(:has_key?) ? blocks.values : blocks).each do |block|
+            _options = block.instance_variable_get(:@options)
+            _options.delete_if { |name, _| UNMARSHALABLE_OPTIONS.include?(name) }
+          end
+        end
       end
 
     end
