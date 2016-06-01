@@ -172,7 +172,16 @@ var wysihtml5ParserRules = {
         "dfn": {
             "rename_tag": "span"
         },
-        "iframe": { "check_attributes": { "class": "any" } },
+        "iframe": {
+            "check_attributes": {
+                "class": "any",
+                "width": "any",
+                "height": "any",
+                "src": "any",
+                "frameborder": "any",
+                "allowfullscreen": "allowfullscreen"
+            }
+        },
         "figcaption": {
             "rename_tag": "div"
         },

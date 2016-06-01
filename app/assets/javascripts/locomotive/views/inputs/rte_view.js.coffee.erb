@@ -87,6 +87,7 @@ class Locomotive.Views.Inputs.RteView extends Backbone.View
 
     @editor.on 'change', @on_content_change
     @editor.on 'aftercommand:composer', @on_content_change
+    @editor.on 'change_view', @resize
 
   on_content_change: ->
     PubSub.publish 'inputs.text_changed',
@@ -98,18 +99,22 @@ class Locomotive.Views.Inputs.RteView extends Backbone.View
 
   resize: ->
     $iframe   = @$('.form-wrapper .wysihtml5-sandbox')
+    $textarea = @$('.form-wrapper textarea')
     $inputs   = $(@el).parents('.inputs')
     $wrapper  = @$('.form-wrapper')
 
     if $inputs.hasClass('expanded')
-      delta_height        = $wrapper.outerHeight() - $iframe.outerHeight()
-      wrapper_max_height  = $(@el).height() - ($wrapper.outerHeight() - $wrapper.height() + parseInt($wrapper.css('margin-top')) + parseInt($(@el).css('padding-bottom')))
-      height              = wrapper_max_height - delta_height
+      for $target in [$iframe, $textarea]
+        delta_height        = $wrapper.outerHeight() - $target.outerHeight()
+        wrapper_max_height  = $(@el).height() - ($wrapper.outerHeight() - $wrapper.height() + parseInt($wrapper.css('margin-top')) + parseInt($(@el).css('padding-bottom')))
+        height              = wrapper_max_height - delta_height
 
-      $iframe.data('height', $iframe.css('height')) unless $iframe.data('height')?
-      $iframe.css('min-height', height)
+        $target.data('height', $target.css('height')) unless $target.data('height')?
+        $target.css('min-height', height)
     else
-      $iframe.css('min-height', $iframe.data('height'))
+      for $el in [$iframe, $textarea]
+        $el.css('min-height', $el.data('height'))
+
 
   remove: ->
     _.invoke @views, 'remove'
