@@ -243,20 +243,28 @@ module Locomotive
       [Locomotive::VERSION, locale]
     end
 
+    def base_cache_key
+      base_cache_key_without_site + [ current_site._id, current_site.handle]
+    end
+
+    def base_cache_key_for_sidebar
+      base_cache_key + [current_membership.role]
+    end
+
     def cache_key_for_sidebar
-      "#{Locomotive::VERSION}/site/#{current_site._id}/sidebar/#{current_site.last_modified_at.to_i}/role/#{current_membership.role}/locale/#{::Mongoid::Fields::I18n.locale}"
+      base_cache_key_for_sidebar + ['sidebar', current_site.last_modified_at.to_i, current_content_locale]
     end
 
     def cache_key_for_sidebar_pages
       count          = current_site.pages.count
       max_updated_at = current_site.pages.max(:updated_at).try(:utc).try(:to_s, :number).to_i
-      "#{Locomotive::VERSION}/site/#{current_site._id}/#{current_site.handle}/sidebar/pages-#{count}-#{max_updated_at}/locale/#{::Mongoid::Fields::I18n.locale}"
+      base_cache_key_for_sidebar + ['pages', count, max_updated_at, current_content_locale]
     end
 
     def cache_key_for_sidebar_content_types
       count          = current_site.content_types.count
-      max_updated_at = current_site.content_entries.max(:updated_at).try(:utc).try(:to_s, :number).to_i
-      "#{Locomotive::VERSION}/site/#{current_site._id}/#{current_site.handle}/sidebar/content_types-#{count}-#{max_updated_at}"
+      max_updated_at = current_site.content_types.max(:updated_at).try(:utc).try(:to_s, :number).to_i
+      base_cache_key_for_sidebar + ['content_types', count, max_updated_at]
     end
 
   end
