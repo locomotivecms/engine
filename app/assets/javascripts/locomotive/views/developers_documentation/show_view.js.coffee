@@ -6,4 +6,4 @@ class Locomotive.Views.DevelopersDocumentation.ShowView extends Backbone.View
 
   render: ->
     super()
-    hljs.initHighlightingOnLoad()
+    @$('pre code').each -> hljs.highlightBlock(this)

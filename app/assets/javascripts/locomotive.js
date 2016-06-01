@@ -4,6 +4,7 @@
 // It's not advisable to add code directly here, but if you do, it'll appear at the bottom of the
 // the compiled file.
 //
+//= require turbolinks
 //= require jquery
 //= require jquery-ui
 //= require jquery_ujs
@@ -24,4 +25,23 @@
 
 $(document).ready(function() {
   $.datepicker.setDefaults($.datepicker.regional[window.locale]);
+
+  window.application_view = new Locomotive.Views.ApplicationView();
 });
+
+document.addEventListener("turbolinks:load", function() {
+  console.log('[turbolinks:load] fired ' + $('meta[name=backbone-view]').attr('content'));
+
+  window.application_view.options = {
+    flash:  window.flash_messages,
+    view:   stringToFunction($('meta[name=backbone-view]').attr('content'))
+  };
+
+  window.application_view.render();
+});
+
+document.addEventListener("turbolinks:before-visit", function() {
+  console.log('[turbolinks:before-visit] fired (cleaning)')
+  window.application_view.view.remove();
+});
+

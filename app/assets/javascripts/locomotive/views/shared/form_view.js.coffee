@@ -169,12 +169,12 @@ class Locomotive.Views.Shared.FormView extends Backbone.View
     window.unsaved_content = true
 
   remove: ->
-    _.each @inputs, (view) -> view.remove()
-    _.each @tokens, (token) -> PubSub.unsubscribe(token)
-
     @$('.input.select select:not(.disable-select2)').select2('destroy')
     @$('.input.tags input[type=text]').tagsinput('destroy')
     @$('.input.color .input-group').colorpicker('destroy')
+
+    _.each @inputs, (view) -> view.remove()
+    _.each @tokens, (token) -> PubSub.unsubscribe(token)
 
   _stop_event: (event) ->
     event.stopPropagation() & event.preventDefault()
