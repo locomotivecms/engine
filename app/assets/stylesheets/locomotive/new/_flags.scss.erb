@@ -1,0 +1,21 @@
+.flag {
+  display: inline-block;
+  vertical-align: middle;
+  width: 24px;
+  height: 24px;
+  background-repeat: no-repeat;
+  background-size: 24px;
+  background-position: 0 0;
+
+  <% %w(bf bg cs de en es et fr it ja lt mg nb nl pl pt-BR pt ru sk sr sv zh-CN).each do |locale| %>
+  &.flag-<%= locale %> {
+    background-image: url(asset-path('locomotive/icons/flags/<%= locale %>.png'));
+  }
+  <% end %>
+
+  &.flag-17-17 {
+    width: 17px;
+    height: 17px;
+    background-size: 17px;
+  }
+}

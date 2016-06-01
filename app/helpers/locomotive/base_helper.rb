@@ -152,7 +152,7 @@ module Locomotive
     # @return [ String ] The HTML image tag with the path to the matching flag.
     #
     def flag_tag(locale, size = '24x24')
-      image_tag("locomotive/icons/flags/#{locale}.png", class: "flag flag-#{locale}", size: size)
+      %(<i class="flag flag-#{locale} flag-#{size.gsub('x', '-')}"></i>).html_safe
     end
 
     def nocoffee_tag
@@ -238,6 +238,10 @@ module Locomotive
     end
 
     # cache keys
+
+    def base_cache_key_without_site
+      [Locomotive::VERSION, locale]
+    end
 
     def cache_key_for_sidebar
       "#{Locomotive::VERSION}/site/#{current_site._id}/sidebar/#{current_site.last_modified_at.to_i}/role/#{current_membership.role}/locale/#{::Mongoid::Fields::I18n.locale}"

@@ -8,21 +8,22 @@ module Locomotive
     end
 
     def options_for_site_locales
-      Locomotive.config.site_locales.map do |locale|
-        text          = I18n.t("locomotive.locales.#{locale}")
-        flag_url      = path_to_image "locomotive/icons/flags/#{locale}.png"
-        nice_display  = h("<img class='flag' src='#{flag_url}' width='24px' />" + text)
+      Rails.cache.fetch(base_cache_key_without_site + ['locales']) do
+        Locomotive.config.site_locales.map do |locale|
+          text          = I18n.t("locomotive.locales.#{locale}")
+          nice_display  = h("#{flag_tag(locale)} #{text}")
 
-        [
-          text,
-          locale,
-          { :"data-display" => nice_display }
-        ]
+          [
+            text,
+            locale,
+            { :"data-display" => nice_display }
+          ]
+        end
       end
     end
 
     def options_for_site_timezones
-      Rails.cache.fetch('views/helpers/timezones') do
+      Rails.cache.fetch([Locomotive::VERSION, 'timezones']) do
         ActiveSupport::TimeZone.all.map do |tz|
           [tz.to_s, tz.name]
         end

@@ -8,8 +8,8 @@
       i.fa.fa-bars
 
     .text
-      = image_tag "locomotive/icons/flags/#{locale}.png", alt: locale, size: '24x24'
-      | &nbsp;
+      = flag_tag locale
+      | &nbsp;&nbsp;
       = I18n.t("locomotive.locales.#{locale}")
 
     .buttons
