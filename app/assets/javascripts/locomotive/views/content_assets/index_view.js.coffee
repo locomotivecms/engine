@@ -52,10 +52,7 @@ class Locomotive.Views.ContentAssets.IndexView extends Backbone.View
     setTimeout ( =>
       main_height = $(@el).height()
       max_height  = @$('.content-assets').height()
-      # max_height  = @$('.main-assets').height()
       max_height  = main_height if main_height > max_height
-
-      console.log main_height
 
       $(@dropzone.el).height(max_height)
     ), 20

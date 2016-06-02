@@ -25,17 +25,18 @@
 
 $(document).ready(function() {
   $.datepicker.setDefaults($.datepicker.regional[window.locale]);
-
-  window.application_view = new Locomotive.Views.ApplicationView();
 });
 
 document.addEventListener("turbolinks:load", function() {
-  console.log('[turbolinks:load] fired ' + $('meta[name=backbone-view]').attr('content'));
+  var view_class_name = $('meta[name=backbone-view]').attr('content');
+  var flash_present   = parseInt($('meta[name=flash-messages-count]').attr('content')) > 0;
 
-  window.application_view.options = {
-    flash:  window.flash_messages,
-    view:   stringToFunction($('meta[name=backbone-view]').attr('content'))
-  };
+  console.log('[turbolinks:load] fired ' + view_class_name + ', ' + flash_present);
+
+  window.application_view = new Locomotive.Views.ApplicationView({
+    flash:  flash_present ? window.flash_messages : {},
+    view:   stringToFunction(view_class_name)
+  });
 
   window.application_view.render();
 });
