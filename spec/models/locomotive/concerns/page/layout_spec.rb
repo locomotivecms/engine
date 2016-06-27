@@ -8,6 +8,32 @@ describe Locomotive::Concerns::Page::Layout do
   let(:layout)        { Locomotive::Page.new(_id: 42, is_layout: true, fullpath: 'awesome-layout') }
   let(:page)          { Locomotive::Page.new(layout: layout, allow_layout: allow_layout, site: site, raw_template: template) }
 
+  describe '#use_layout?' do
+
+    let(:template) { 'Hello world!' }
+
+    subject { page.use_layout? }
+
+    it { is_expected.to eq false }
+
+    context 'page inheriting from its parent page' do
+
+      let(:template) { '{% extends parent %}' }
+
+      it { is_expected.to eq true }
+
+    end
+
+    context 'page inheriting from another page' do
+
+      let(:template) { '{% extends layouts/default %}' }
+
+      it { is_expected.to eq true }
+
+    end
+
+  end
+
   describe '#find_layout' do
 
     subject { page.find_layout; page.layout_id }

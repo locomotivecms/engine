@@ -26,7 +26,7 @@ module Locomotive
     end
 
     def display_page_layouts?
-      ((@page.persisted? && @page.allow_layout?) || !@page.persisted?) &&
+      ((@page.persisted? && @page.allow_layout? && @page.use_layout?) || !@page.persisted?) &&
       !current_site.pages.layouts.empty?
     end
 
@@ -34,6 +34,7 @@ module Locomotive
       layouts = current_site.pages.layouts.map do |_layout|
         [_layout.title, _layout._id]
       end
+
       @page.index? ? layouts : [[t(:no_layout, scope: 'locomotive.pages.form'), 'parent']] + layouts
     end
 

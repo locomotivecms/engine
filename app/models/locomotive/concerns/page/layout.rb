@@ -39,6 +39,10 @@ module Locomotive
           !(self.fullpath =~ IS_LAYOUT_REGEX).nil?
         end
 
+        def use_layout?
+          !(self.raw_template =~ EXTENDS_REGEX).nil?
+        end
+
         # The layout is also defined in the raw_template. The UI
         # needs it in order to select the layout in the layouts dropdown menu
         def find_layout
