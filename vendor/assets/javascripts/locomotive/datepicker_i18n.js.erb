@@ -16,7 +16,7 @@ jQuery(function($){
       currentText:      '<%= I18n.t('date_picker.current_text', :default => 'Current') %>',
       monthNames:       [<%= I18n.t('date.month_names').dup.delete_if { |m| m.blank? }.map { |m| "'#{m.capitalize}'" }.join(', ') %>],
       monthNamesShort:  [<%= I18n.t('date.abbr_month_names').dup.delete_if { |m| m.blank? }.map { |m| "'#{m.capitalize.gsub(/\.$/, '')}'" }.join(', ') %>],
-      dayNames:         [<%= I18n.t('date.day_names').dup.delete_if { |d| d.blank? }.map { |d| "'#{d.capitalize}'" }.join(', ') %>],
+      dayNames:         [<%= I18n.t('date.day_names').dup.delete_if { |d| d.blank? }.map { |d| "'#{d.capitalize.gsub("'", %q(\\\'))}'" }.join(', ') %>],
       dayNamesShort:    [<%= I18n.t('date.abbr_day_names').dup.delete_if { |d| d.blank? }.map { |d| "'#{d.capitalize}'" }.join(', ') %>],
       dayNamesMin:      [<%= I18n.t('date.abbr_day_names').dup.delete_if { |d| d.blank? }.map { |d| "'#{d[0..1].capitalize}'" }.join(', ') %>],
       dateFormat:       '<%= I18n.t('date.formats.default').gsub('%d', 'dd').gsub('%m', 'mm').gsub('%Y', 'yy') %>',
