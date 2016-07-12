@@ -68,14 +68,15 @@ module Locomotive
       #
       # FIXME: move that in a different middleware
       def fetch_from_handle(handle, request)
-        mounted_on = "#{Locomotive.mounted_on}/#{handle}/preview"
+        mounted_on  = "#{Locomotive.mounted_on}/#{handle}/preview"
+        logged_in   = request.env['warden'].try(:user).present?
 
         request.env['locomotive.mounted_on']  = request.env['steam.mounted_on'] = mounted_on
         request.env['locomotive.path']        = request.path_info.gsub(mounted_on, '')
 
-        request.env['steam.live_editing']     = true
+        request.env['steam.live_editing']     = logged_in
 
-        request.env['steam.private_access_disabled'] = request.env['warden'].try(:user).present?
+        request.env['steam.private_access_disabled'] = logged_in
 
         Locomotive::Site.where(handle: handle).first
       end
