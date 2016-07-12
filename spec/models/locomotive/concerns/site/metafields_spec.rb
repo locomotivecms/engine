@@ -55,7 +55,7 @@ describe Locomotive::Concerns::Site::Metafields do
       context 'wrong fields types' do
 
         let(:schema) { [{ 'label' => 'Social', 'fields' => [{ 'name' => 'facebook_id', 'type' => 'dummy' }] }] }
-        it { is_expected.to eq(["The property '#/0/fields/0/type' value \"dummy\" did not match one of the following values: string, text, integer, float, file, image, boolean, select, color"]) }
+        it { is_expected.to eq(["The property '#/0/fields/0/type' value \"dummy\" did not match one of the following values: string, text, integer, float, image, boolean, select, color"]) }
 
       end
 
