@@ -53,10 +53,6 @@ module Locomotive
       self.pages.unscoped.where(conditions || {}).order_by_depth_and_position
     end
 
-    def fetch_page(path, logged_in)
-      Locomotive::Page.fetch_page_from_path self, path, logged_in
-    end
-
     def localized_content_types
       self.content_types.localized
     end
