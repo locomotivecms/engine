@@ -12,6 +12,7 @@ module Locomotive
     include Concerns::Site::UrlRedirections
     include Concerns::Site::PrivateAccess
     include Concerns::Site::Metafields
+    include Concerns::Site::ThemeSource
 
     ## fields ##
     field :name

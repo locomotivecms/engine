@@ -71,6 +71,8 @@ module Locomotive
               optional :metafields_schema
               optional :metafields
               optional :metafields_ui
+              optional :is_theme
+              optional :theme_name
             end
           end
           post do
@@ -101,6 +103,8 @@ module Locomotive
               optional :password
               optional :metafields_schema
               optional :metafields
+              optional :is_theme
+              optional :theme_name
             end
           end
           put ':id' do

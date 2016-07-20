@@ -44,6 +44,8 @@ module Locomotive
               optional :metafields_schema
               optional :metafields
               optional :metafields_ui
+              optional :is_theme
+              optional :theme_name
             end
           end
           put do
