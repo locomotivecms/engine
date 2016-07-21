@@ -34,6 +34,9 @@ Locomotive::Engine.routes.draw do
 
     get 'developers', to: 'developers_documentation#show', as: :developers_documentation
 
+    get 'themes', to: 'themes#show', as: :theme
+    get 'activate_theme/:site_id', to: 'themes#activate', as: :activate
+
     resources :pages do
       put :sort, on: :member
       get :get_path, on: :collection

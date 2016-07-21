@@ -63,3 +63,5 @@ Cheffile
 Cheffile.lock
 Vagrantfile
 cookbooks/
+.idea
+.byebug_history
