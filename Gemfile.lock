@@ -376,6 +376,7 @@ GEM
       rack (>= 1.0)
     rack_csrf (2.5.0)
       rack (>= 1.1.0)
+    railroady (1.4.2)
     rails (4.2.6)
       actionmailer (= 4.2.6)
       actionpack (= 4.2.6)
@@ -517,11 +518,13 @@ DEPENDENCIES
   i18n-tasks (~> 0.8.7)
   json_spec (~> 1.1.4)
   locomotivecms!
+  mongoid
   pickle
   pry
   pry-byebug
   puma
   quiet_assets
+  railroady
   rspec-rails (~> 3.2.1)
   ruby-prof
   sass-rails (~> 5.0.4)

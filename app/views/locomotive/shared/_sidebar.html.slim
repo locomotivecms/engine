@@ -40,3 +40,7 @@
       = link_to developers_documentation_path(current_site), class: sidebar_link_class(:developers_documentation) do
         i.fa.fa-file-code-o
         span= t('.developers')
+
+    = link_to theme_path(current_site), class: sidebar_link_class(:themes) do
+      i.fa.fa-external-link-square
+      span= t('.themes')

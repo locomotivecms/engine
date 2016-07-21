@@ -1,0 +1,16 @@
+= title t('.themes')
+
+hr
+div class="container padding_rgt_35 padding_lft_10"
+  div class="row"
+    - Locomotive::Site.themes.each do |site|
+      div class="col-lg-6 col-md-12 col-sm-12 col-xs-12"
+        div class="well panel panel-body"
+          = image_tag "locomotive/#{site.metafields_ui["theme_name"]}_theme.png", class: 'img_responsive',
+                       width: '300px', height: '250px'
+          div class="row mrgn_top_2"
+            div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"
+              = link_to 'Live Demo' , preview_path(site), class: 'mrgn_lft_15'
+            div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"
+              = link_to 'Activate', activate_path(site_id: site.id), class: 'btn btn-info'
+
