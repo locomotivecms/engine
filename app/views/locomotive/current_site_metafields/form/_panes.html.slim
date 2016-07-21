@@ -15,5 +15,7 @@
 
   = f.actions do
     = f.action
-
+  br
+  = form_tab_pane "restore" do
+    = link_to 'restore default', {controller: "current_site_metafields", action: "restore_default"}, :class => "btn btn-primary"
 

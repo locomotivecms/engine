@@ -45,6 +45,7 @@ Locomotive::Engine.routes.draw do
 
     resources :current_site_metafields, only: [:index, :update_all] do
       patch :update_all, on: :collection
+      get :restore_default, on: :collection
     end
 
     resources :accounts

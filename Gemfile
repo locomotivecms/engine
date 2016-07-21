@@ -55,7 +55,7 @@ end
 group :test do
   gem 'simplecov'
 
-  gem 'capybara-webkit',      '~> 1.10.1'
+  # gem 'capybara-webkit',      '~> 1.10.1'
 
   gem 'grape-entity-matchers'
   gem 'shoulda-matchers',     '2.7.0'

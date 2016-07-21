@@ -20,6 +20,11 @@ module Locomotive
       end
     end
 
+    def restore
+      site.metafields["color"]['body_text'] = "#000000"
+      site.save
+    end
+
     protected
 
     def each_metafield(attributes, &block)

@@ -4,3 +4,7 @@ ul.nav.nav-tabs role='tablist'
     = form_nav_tab namespace._label, index == 0 do
 
       = link_to namespace._label, "##{namespace.dom_id}", role: 'tab', data: { toggle: 'tab' }
+
+  = form_nav_tab "Restore" do
+
+    = link_to "Restore", "#restore", role: 'tab', data: { toggle: 'tab' }

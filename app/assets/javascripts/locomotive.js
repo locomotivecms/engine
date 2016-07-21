@@ -24,4 +24,18 @@
 
 $(document).ready(function() {
   $.datepicker.setDefaults($.datepicker.regional[window.locale]);
+
+    $('ul li').on("click",function(e)
+    {
+      if ($(this).text() == 'Restore') {
+        $('.text-right').hide();
+      }
+      else{
+        $('.text-right').show();
+      }
+    
+    });
+
 });
+
+
