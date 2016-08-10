@@ -12,7 +12,7 @@ Locomotive.configure do |config|
   config.default_locale = :en
 
   # locales allowed for the back-office UI
-  config.locales = [:en, :nl, :el, :'pt-BR']
+  config.locales = [:en, :de, :es, :nl, :el, :'pt-BR', :'zh-CN', :sv, :uk, :cs, :lt]
 
   # available locales suggested to "localize" a site. You will have to pick up at least one among that list.
   # config.site_locales = %w{en de fr pl pt pt-BR it nl nb es ru ja cs bg sk sv}

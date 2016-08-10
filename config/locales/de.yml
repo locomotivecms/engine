@@ -19,8 +19,11 @@ de:
       bg: Bulgarisch
       sk: Slowakisch
       sr: Serbisch
+      sv: Schwedisch
+      el: Griechisch
     messages:
       confirm: Sind Sie sicher?
+      unsaved_content_warning: "Bitte bestätigen sie dass sie die Seite verlassen wollen - eingegebene Daten gehen "
     shared:
       header:
         welcome: Willkommen, %{name}
@@ -33,6 +36,7 @@ de:
         dashboard: Dashboard
         assets: Medien
         settings: Allgemeine Einstellungen
+        metafields: Eigenschaften
         developers: Entwickler
         content_types:
           title: Inhalte
@@ -56,6 +60,7 @@ de:
     errors:
       '500':
         title: Anwendungsfehler
+        message: "Es tut uns leid, etwas ist schief gegangen. Bitte benachrichtigen Sie den/die Administrator/in"
       '404':
         title: Webseite nicht gefunden
         message: "Die angeforderte Seite existiert nicht."
@@ -153,6 +158,7 @@ de:
     registrations:
       new:
         confirm_password: Kennwort bestätigen
+        description: "Erstellen Sie ein Konto um mit Locomotive zu beginnen."
         sign_in: Sie haben bereits ein Konto?
         submit: Registrieren
         title: Registrieren
@@ -227,6 +233,10 @@ de:
         advanced:
           destroy: "Diese Seite löschen"
           confirm_destroy: "Bestätigen Sie durch Eingabe des Seitennamens."
+    current_site_metafields:
+      index:
+        title: Eigenschaften bearbeiten
+        no_metafields: Es gibt keine definierten Mettafelder auf Ihrer Webseite
     memberships:
       roles:
         admin: Administrator

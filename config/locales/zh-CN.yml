@@ -13,6 +13,7 @@ zh-CN:
       es: 西班牙
       ru: 俄语
       et: 爱沙尼亚
+      lt: 立陶宛人
       ja: 日语
       zh-CN: 中文
       cs: 捷克
@@ -35,6 +36,7 @@ zh-CN:
       sidebar:
         dashboard: 控制台
         assets: 资源
+        pages: 页面
         settings: 通用设置
         metafields: 属性
         developers: 开发者
@@ -94,9 +96,11 @@ zh-CN:
         sorted: '%{content_type} 排序'
       content_asset:
         created_bulk: '更新 %{count} 个资源'
-        destroyed: '删除 %{name} 个资源'
+        destroyed: '删除 %{count} 个资源'
       membership:
         created: '添加 %{name} 到站点'
+      site_metafields:
+        updated: '已更新 %{label}'
     pagination:
       first: "&laquo;"
       last: "&raquo;"

@@ -13,6 +13,7 @@ ru:
       es: Испанский
       ru: Русский
       et: Эстонский
+      lt: Литовский
       ja: Японский
       zh-CN: Китайский
       cs: Чешский
@@ -35,6 +36,7 @@ ru:
       sidebar:
         dashboard: Приборная доска
         assets: Ресурсы
+        pages: Страницы
         settings: Основные настройки
         metafields: Свойства
         developers: Разработчикам
@@ -97,6 +99,8 @@ ru:
         destroyed: 'удалён ресурс %{name}'
       membership:
         created: 'на сайт добавлено %{name}'
+      site_metafields:
+        updated: 'обновлено %{label}'
     pagination:
       first: "&laquo;"
       last: "&raquo;"

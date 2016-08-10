@@ -13,6 +13,7 @@ pt-BR:
       es: Espanhol
       ru: Russo
       et: Estoniano
+      lt: Lituano
       ja: Japonês
       zh-CN: Chinês
       cs: Tcheco
@@ -35,6 +36,7 @@ pt-BR:
       sidebar:
         dashboard: Dashboard
         assets: Mídias
+        pages: Páginas
         settings: Ajustes Gerais
         metafields: Propriedades
         developers: Desenvolvedores
@@ -97,6 +99,8 @@ pt-BR:
         destroyed: 'deletou a mídia %{name}'
       membership:
         created: 'adicionou %{name} ao site'
+      site_metafields:
+        updated: '%{label} atualizado'
     pagination:
       first: "&laquo;"
       last: "&raquo;"
