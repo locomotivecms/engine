@@ -1,0 +1,19 @@
+uk:
+  locomotive:
+    inputs:
+      file:
+        none: немає жодного файлу
+        browse: Переглянути
+        choose: Вибрати
+        change: Змінити
+        delete: Видалити
+        cancel: Відмінити
+        select_local_file: Завантажити локальний файл
+        select_content_asset: Вибрати з поміж інших файлів
+      array:
+        new: Новий
+        add: Додати
+        edit: Редагувати
+      toggle:
+        on_text: "Так"
+        off_text: "Ні"

@@ -1,0 +1,13 @@
+uk:
+  date:
+    formats:
+      default: "%d.%m.%Y"
+    today_at: "сьогодні о"
+    yesterday_at: "вчора о"
+  time:
+    formats:
+      default: "%d.%m.%Y %H:%M"
+      time: "%H:%M"
+  pagination:
+    previous: "&laquo; Попередня"
+    next: "Наступна &raquo;"

@@ -1,0 +1,82 @@
+sv:
+  flash:
+    locomotive:
+      pages:
+        create:
+          notice: "Sidan har skapats."
+          alert: "Sidan skapades inte."
+        update:
+          notice: "Sidan uppdaterades."
+          alert: "Sidan blev inte uppdaterad."
+        sort:
+          notice: "Sidorna sorterade."
+        destroy:
+          notice: "Sidan borttagen."
+      content_entries:
+        create:
+          notice: "Inlägg har skapats."
+          alert: "Inlägg skapades inte."
+        update:
+          notice: "Inlägg uppdaterades."
+          alert: "Inlägg uppdaterades inte."
+        sort:
+          notice: "Inläggen sorterade."
+        destroy:
+          notice: "Inlägg borttaget."
+      content_types:
+        update:
+          notice: "Innehållstyp uppdaterades."
+          alert: "Innehållstyp uppdaterades inte."
+      current_site:
+        update:
+          notice: "Webbplats uppdaterad."
+          alert: "Webbplats uppdaterades inte."
+      accounts:
+        create:
+          notice: "Konto skapades."
+          alert: "Konto skapades inte."
+      my_account:
+        update:
+          notice: "Mitt konto uppdaterat."
+          alert: "Mitt konto uppdateras inte."
+      sites:
+        create:
+          notice: "Webbplats skapad."
+          alert: "Webbplats skapades inte."
+        destroy:
+          notice: "Webbplats borttagen."
+      current_site_metafields:
+        update_all:
+          notice: "Webbplatsens egenskaper uppdaterade."
+      memberships:
+        create:
+          notice: "Medlemskap skapad."
+          alert: "Medlemskap skapades inte."
+          already_created: "Konto redan tillagt till nuvarnade webbplats."
+      content_assets:
+        create:
+          notice: "Fil uppladdad."
+          alert: "Fil laddades inte upp."
+        bulk_create:
+          notice: "Fil har laddats upp."
+          alert: "Fil har inte laddats upp."
+        update:
+          notice: "Fil har uppdaterats."
+          alert: "Fil blev inte uppdaterad."
+        destroy:
+          notice: "Fil borttagen."
+          alert: "Fil blev inte borttagen."
+      translations:
+        create:
+          notice: "Översättning skapad."
+          alert: "Översättning skapades inte."
+        update:
+          notice: "Översättning har uppdaterats."
+          alert: "Översättning uppdaterades inte."
+        destroy:
+          notice: "Översättning borttagen."
+      custom_fields:
+        select_options:
+          update:
+            notice: "Fält uppdaterat."
+            alert: "Fält blev inte uppdaterat."

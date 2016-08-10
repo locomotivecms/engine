@@ -1,0 +1,47 @@
+uk:
+  mongoid:
+    errors:
+      messages:
+        blank_in_locale: "не может бути пустим"
+      models:
+        locomotive/page:
+          attributes:
+            layout_id:
+              index_can_not_extend_parent: "Головна сторінка не може мати батьківську сторінку визначену як шаблон"
+        locomotive/membership:
+          attributes:
+            account:
+              unique_account: "зайнятий"
+            email:
+              unique_account: "зайнятий"
+    attributes:
+      locomotive/content_entry:
+        created_at: Створено
+  errors:
+    messages:
+      domain_taken: "%{value} вже зайнято"
+      invalid_domain: "%{value} має невірне значення"
+      needs_admin_account: "Необхідний хоча б один акаунт администратора"
+      protected_page: "Ви не можете видаляти стартову сторінку чи сторінку 404"
+      extname_changed: "Новий файл не містить оригінального розширення"
+      array_too_short: "надто малий (мінімальне число елементів is %{count})"
+      site:
+        default_locale_removed: Попередня поточна локаль не може бути видалена.
+        wrong_timezone_name: "Невірне ім’я часового поясу"
+      page:
+        liquid_syntax: "Помилка синтаксису Liquid ('%{error}' в '%{fullpath}')"
+        liquid_extend: "Сторінка '%{fullpath}' наслідує неіснуючий шаблон"
+        liquid_translation: "Сторінка '%{fullpath}' наслідує неперекладений шаблон"
+      too_few_custom_fields: "Принаймі одне поле є обов’язковим"
+      security: "призводить до проблем з безпекою"
+  attributes:
+    defaults:
+      pages:
+        index:
+          title: "Стартова сторінка"
+          body: "Вмістиме стартової сторінки"
+        '404':
+          title: "Сторінка 404"
+          body: "Вмістиме сторінки 404"
+        other:
+          body: "{% extends 'parent' %}"

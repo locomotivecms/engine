@@ -1,0 +1,61 @@
+sv:
+  errors:
+    messages:
+      not_found: "Hittades ej"
+      already_confirmed: "var redan bekräftad"
+      not_locked: "var inte låst"
+  devise:
+    failure:
+      locomotive_account:
+        unauthenticated: 'Du måste logga in innan du fortsätter.'
+        unconfirmed: 'Du måste bekräfta ditt konto innan du fortsätter.'
+        locked: 'Ditt konto är låst.'
+        invalid: 'Ogiltig e-post eller lösenord'
+        not_found_in_database: 'Ogiltig e-post eller lösenord'
+        no_membership: 'Ditt konto är inte medlem på denna sida, kontakta administratör för att få tillgång till sidan.'
+        invalid_token: 'Ogiltig autentiserings-token'
+        timeout: 'Din session har utgått, logga in igen för att fortsätta.'
+        inactive: 'Ditt konto är inte aktiverat ännu.'
+    sessions:
+      locomotive_account:
+        signed_in: 'Du är nu inloggad.'
+        signed_out: 'Du är nu utloggad.'
+    passwords:
+      locomotive_account:
+        send_instructions: 'Utloggning lyckades.'
+        updated: 'Ditt lösenord har ändrats. Du är nu inloggad.'
+        invalid: 'Du måste fråga igen efter ett nytt lösenord.'
+    confirmations:
+      locomotive_account:
+        send_instructions: 'Du kommer att få e-post inom några minuter med instruktioner om hur du bekräftar ditt konto.'
+        confirmed: 'Ditt konto är bekräftat. Du är nu inloggad.'
+    registrations:
+      locomotive_account:
+        signed_up: 'Din registrering lyckades.'
+        updated: 'Du har nu uppdaterat ditt konto.'
+        destroyed: 'Ditt konto har avslutats. Hoppas vi ses igen!'
+    unlocks:
+      locomotive_account:
+        send_instructions: 'Du kommer att få e-post inom några minuter med instruktioner om hur du låser upp ditt konto.'
+        unlocked: 'Ditt konto är nu upplåst. Du är nu inloggad.'
+    mailer:
+      locomotive_account:
+        confirmation_instructions: 'Instruktioner för bekräftelse av konto'
+        reset_password_instructions: 'Instruktioner för återställa lösenord'
+        unlock_instructions: 'Lås upp instruktioner'
+  locomotive:
+    devise_mailer:
+      common:
+        hello: Hej
+      confirmation_instructions:
+        you_can_confirm_your_account_through_the_link_below: "Du kan bekräfta ditt konto genom länken nedan:"
+        confirm_my_account: "Bekräfta mitt konto"
+      reset_password_instructions:
+        reset_password_instruction: "Någon har begärt en länk för att byta ditt lösenord, du kan göra detta genom länken nedan:"
+        change_my_password: "Ändra mitt lösenord"
+        wrong_request_instruction: "Om du inte har begärt detta ignorera detta mail."
+        unchange_password_message: "Ditt lösenord kommer inte att ändras förrän du klickar länken ovan och skapar ett nytt."
+      unlock_instructions:
+        locked_account_message: "Ditt konto har låsts p.g.a ett antal ogiltiga inloggningsförsök."
+        unlock_account_instruction: "Klicka på länken nedan för att låsa upp ditt konto:"
+        unlock_my_account: "Lås upp mitt konto"

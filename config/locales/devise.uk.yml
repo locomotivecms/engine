@@ -1,0 +1,61 @@
+uk:
+  errors:
+    messages:
+      not_found: "не знайдено"
+      already_confirmed: "вже підтверджено"
+      not_locked: "не заблоковано"
+  devise:
+    failure:
+      locomotive_account:
+        unauthenticated: 'Вам необхідно увійти в систему чи зареєструватися.'
+        unconfirmed: 'Ви маєте підтвердити Ваш обліковий запис.'
+        locked: 'Ваш обліковий запис заблоковано.'
+        invalid: 'Невірна електронна адреса чи пароль.'
+        not_found_in_database: 'Невірна електронна адреса чи пароль.'
+        no_membership: 'Ваш обліковий запис не входить до жодного сайту. Сконтактуйте, будь ласка, з адміністратором.'
+        invalid_token: 'Невірний токен автентифікації.'
+        timeout: 'Час вашої сесії вичерпано. Будь ласка, увійдіть в систему знову.'
+        inactive: 'Ваш обліковий запис ще не активовано.'
+    sessions:
+      locomotive_account:
+        signed_in: 'Ви увійшли в систему.'
+        signed_out: 'Успішний вихід з системи.'
+    passwords:
+      locomotive_account:
+        send_instructions: 'Протягом декількох хвилин Ви отримаєте лист з інструкціями щодо скидання Вашого пароля.'
+        updated: 'Ваш пароль змінено. Ви увійшли в систему.'
+        invalid: 'Надішліть новий запит на відновлення паролю.'
+    confirmations:
+      locomotive_account:
+        send_instructions: 'Протягом декількох хвилин Ви отримаєте лист з інструкціями щодо підтвердження облікового запису.'
+        confirmed: 'Ваш обліковий запис підтверджено. Ви увійшли в систему.'
+    registrations:
+      locomotive_account:
+        signed_up: 'Ви успішно зареєструвалися.'
+        updated: 'Ваш обліковий запис змінено.'
+        destroyed: 'Бувайте! Ваш обліковий запис був успішно видалений. Сподіваємось незабаром побачитись з Вами знову.'
+    unlocks:
+      locomotive_account:
+        send_instructions: 'Протягом декількох хвилин Ви отримаєте лист з інструкціями щодо розблокування облікового запису.'
+        unlocked: 'Обліковий запис розблоковано. Ви увійшли в систему.'
+    mailer:
+      locomotive_account:
+        confirmation_instructions: 'Інструкції щодо підтвердження облікового запису'
+        reset_password_instructions: 'Інструкції щодо відновлення пароля'
+        unlock_instructions: 'Інструкції щодо розблокування облікового запису'
+  locomotive:
+    devise_mailer:
+      common:
+        hello: Привіт
+      confirmation_instructions:
+        you_can_confirm_your_account_through_the_link_below: "Ви можете підтвердити свою електронну пошту через посилання нижче:"
+        confirm_my_account: "Підтвердити мій аккаунт"
+      reset_password_instructions:
+        reset_password_instruction: "Хтось подав запит на зміну вашого паролю, ви можете підтвердити зміну через посилання нижче:"
+        change_my_password: "Зміна паролю"
+        wrong_request_instruction: "Якщо вам цього не потрібно, не звертайте увагу на це повідомлення."
+        unchange_password_message: "Ваш пароль не мінятиметься доки ви не перейдете за посиланням вище і створите новий."
+      unlock_instructions:
+        locked_account_message: "Ваш обліковий запис був заблокований через велику кількості невдалих спроб входу."
+        unlock_account_instruction: "Натисніть на посилання нижче, щоб розблокувати обліковий запис:"
+        unlock_my_account: "Розблокувати мій обліковий запис"

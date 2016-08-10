@@ -1,0 +1,19 @@
+sv:
+  locomotive:
+    inputs:
+      file:
+        none: Ingen fil
+        browse: Bläddra
+        choose: Välj
+        change: Ändra
+        delete: Ta bort
+        cancel: Avbryt
+        select_local_file: Fil från dator
+        select_content_asset: Välj bland filer
+      array:
+        new: Ny
+        add: Lägg till
+        edit: Redigera
+      toggle:
+        on_text: "Ja"
+        off_text: "Nej"

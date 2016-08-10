@@ -1,0 +1,13 @@
+sv:
+  date:
+    formats:
+      default: "%m/%d/%Y"
+    today_at: "idag"
+    yesterday_at: "igår"
+  time:
+    formats:
+      default: "%m/%d/%Y %H:%M"
+      time: "%H:%M"
+  pagination:
+    previous: "&laquo; Föreg."
+    next: "Nästa &raquo;"

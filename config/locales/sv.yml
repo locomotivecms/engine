@@ -1,0 +1,332 @@
+sv:
+  locomotive:
+    locales:
+      en: Engelska
+      de: Tyska
+      fr: Franska
+      pl: Polska
+      pt: Portugisiska
+      pt-BR: "Brasiliansk portugisiska"
+      it: Italienska
+      nl: Holländska
+      nb: Norska
+      es: Spanska
+      ru: Ryska
+      et: Estländska
+      lt: Lettländska
+      ja: Japanska
+      zh-CN: Kinesiska
+      cs: Tjeckiska
+      bg: Bulgariska
+      sk: Slovakiska
+      sr: Serbiska
+      sv: Svenska
+      el: Grekiska
+    messages:
+      confirm: Är du säker?
+      unsaved_content_warning: "Denna sida vill att du bekräftar att du vill lämna - data som du har fyllt i kanske inte sparas."
+    shared:
+      header:
+        welcome: Välkommen, %{name}
+        sites: Mina sidor
+        account: Kontoinställningar
+        see: Se webbplats
+        help: Hjälp
+        logout: Logga ut
+      sidebar:
+        dashboard: Översikt
+        assets: Filer
+        pages: Sidor
+        settings: Generella inställningar
+        metafields: Egenskaper
+        developers: Utvecklare
+        content_types:
+          title: Innehållstyper
+        translations: Översättningar
+      list:
+        untranslated: inte översatt
+        created_at: "Skapad %{distance} sedan"
+        created_by: "Skapad %{distance} sedan av %{who}"
+        updated_at: "Senast ändrad %{distance} sedan"
+        updated_by: "Senast ändrad %{distance} sedan av %{who}"
+      rte:
+        toolbar:
+          table:
+            merge: Slå ihop
+            insert_row_before: Infoga rad innan
+            insert_row_after: Infoga rad efter
+            insert_col_before: Infoga kolumn innan
+            insert_col_after: Infoga kolumn efter
+            delete_row: Ta bort rad
+            delete_col: Ta bort kolumn
+    errors:
+      '500':
+        title: Programfel
+        message: "Ledsen men något blev galet. Kontakta din administratör."
+      '404':
+        title: Sidan hittades inte
+        message: "Sidan du letar efter finns inte."
+      no_site:
+        title: Webbplats kunde inte hittas
+        next: "Nästa &rarr;"
+        message:
+          create_account: "Vänligen skapa ett konto först och skapa sedan en sida."
+          add_domain: "Lägg till <strong>%{host}</strong> till listan över domäner för din webbplats."
+          sign_in: "Vänligen logga in först. Lägg sedan till <strong>%{host}</strong> till listan över domäner för din webbplats."
+    notifications:
+      new_content_entry:
+        subject: "[%{domain}][%{type}] nytt inlägg"
+        title: "Hej %{name}, det har skapats en ny instans den %{date} för webbplatsen <b>%{domain}</b>"
+        type: "Innehållstyp: %{type}"
+    activity:
+      site:
+        created: 'skapade webbplats'
+      page:
+        created: 'skapade sidan %{page}'
+        updated: 'uppdaterade sidan %{page}'
+        destroyed: 'tog bort sidan %{page}'
+        sorted: 'sorterade sidor'
+      editable_element:
+        updated_bulk: 'ändrade innehållet på %{pages}'
+      content_entry:
+        created: 'lade till %{entry} till %{content_type}'
+        created_public: 'lade till %{entry} till %{content_type} från ett publikt formulär'
+        updated: 'uppdaterade %{entry} i %{content_type}'
+        destroyed: 'tog bort %{entry} i %{content_type}'
+        sorted: 'sorterade %{content_type}'
+      content_asset:
+        created_bulk: 'laddade upp %{count} fil(er)'
+        destroyed: 'tog bort filen {%name}'
+      membership:
+        created: 'lade till %{name} till webbplatsen'
+      site_metafields:
+        updated: 'uppdaterade %{label}'
+    pagination:
+      first: "&laquo;"
+      last: "&raquo;"
+      previous: "&lsaquo;"
+      next: "&rsaquo;"
+      truncate: "&hellip;"
+    custom_fields:
+      select_options:
+        edit:
+          title: "%{type} &mdash; redigeringsalternativ"
+          back: "Tillbaka till inlägg"
+        option:
+          edit: Redigera
+          apply: Tillämpa
+          cancel: Avbryt
+      types:
+        belongs_to:
+          edit: Redigera
+          placeholder: "Välj ett %{name}"
+          searching: Söker...
+          no_matches: Inga sökresultat hittades
+          too_short: Vänligen fyll i minst 1 eller fler bokstäver
+        many_to_many:
+          placeholder: "Välj en av %{name}"
+          searching: Söker...
+          no_matches: Inga sökresultat hittades
+          too_short: Vänligen fyll i minst 1 eller fler bokstäver
+        select:
+          edit: Redigeringsalternativ
+        file:
+          delete_file: Ta bort fil
+        has_many:
+          new_label: Lägg till fil
+      form:
+        required: Krävs
+        default_label: Fältnamn
+        select_options:
+          ask_name: "Skriv titel för valet"
+    dashboard:
+      show:
+        title: 'Översikt'
+      url:
+        title: "URL till din webbplats:"
+        visit: 'Besök'
+        change_domain: 'Använd ditt egna domännamn'
+      activity:
+        title: Aktivitet
+        unknown_account: Någon
+        load_more: Laddar fler
+        loading_activity_feed: Laddar...
+    sessions:
+      new:
+        email: "E-post"
+        link: "Glömt lösenord"
+        password: "Lösenord"
+        sign_up: Har du inget konto?
+        submit: Logga in
+        title: Logga in
+    registrations:
+      new:
+        confirm_password: Bekräfta lösenord
+        description: "Skapa ett konto nedan för att börja använda Locomotive"
+        sign_in: Har du redan ett konto?
+        submit: Skapa konto
+        title: Skapa konto
+    passwords:
+      new:
+        description: "Fyll i din e-post nedan så får du ett utskick med instruktioner om hur du återställer ditt lösenord."
+        link: "Gå tillbaka till logga in"
+        email: "Din e-post"
+        submit: "Skicka"
+        title: "Glömt ditt lösenord"
+      edit:
+        description: "Fyll i ditt nya lösenord nedan."
+        link: "Gå tillbaka till logga in"
+        password: "Ditt nya lösenord"
+        password_confirmation: "Bekräfta lösenord"
+        submit: "Uppdatera lösenord"
+        title: "Återställ lösenord"
+    pages:
+      index:
+        title: 'Sidor'
+        new: 'Ny sida'
+        list_content_entries: "Lista %{name}"
+        new_content_entry: "Ny %{name}"
+      new:
+        title: Ny sida
+        help: "Vänligen fyll i formuläret nedan för att skapa din första sida. Tänk på att denna sida inte är publicerad som standard."
+      edit:
+        title: "%{title} &mdash; <small>%{fullpath}</small>"
+      form:
+        no_layout: Använd mallen för sidan över denna
+        redirect_type:
+          permanent: "Permanent (301)"
+          temporary: "Temporär (302)"
+    editable_elements:
+      index:
+        redirection_error: "Redigera en sidan som inte är Locomotive är ej tillåtet."
+        iframe:
+          buttons:
+            edit: redigera
+      index_without_preview:
+        title: "%{title} &mdash; <small>%{fullpath}</small>"
+      edit:
+        settings_link: 'Inställningar'
+        no_editable_elements: 'Inga redigerbara element hittades'
+        parsing_error: "<b>Ledsen men vi kunde inte rendera mallen för din sida.</b><br/> Kolla så att din mall fungerar i Wagon."
+        blocks:
+          all: Alla
+          unknown: Ej namngiven
+      form:
+        model:
+          buttons:
+            list: Hantera
+            edit: Redigera
+    sites:
+      index:
+        description: "Alla webbplatser du har tillgång till kan du se nedan. Klicka på en webbplats för att redigera innehållet för den webbplatsen."
+        new: Lägg till ny webbplats
+        title: Mina webbplatser
+      new:
+        description: "Fyll i formuläret nedan och klicka på skicka. När formuläret har skickats kommer en ny webbplats att skapas."
+        go_back: Gå tillbaka
+        submit: Skapa webbplats
+        title: Skapa ny webbplats
+      site:
+        no_domain: Ingen domän ännu
+    current_site:
+      edit:
+        title: Redigera nuvarande webbplats
+      form:
+        main:
+          new_membership: "Lägg till konto"
+        advanced:
+          destroy: "Ta bort webbplats"
+          confirm_destroy: "Vänligen bekräfta genom att skriva webbplatsens namn"
+    current_site_metafields:
+      index:
+        title: Redigerar egenskaper
+        no_metafields: Det finns inga metafält för din webbplats.
+    memberships:
+      roles:
+        admin: Administratör
+        designer: Designer
+        author: Författare
+      new:
+        title: Nytt medlemskap
+        help: "Ange e-posten för kontot. Om det inte finns kommer du att omdirigeras till skapa konto-formuläret."
+        back: "Tillbaka till webbplatsens egenskaper"
+      edit:
+        title: "Redigera medlemskap för <b>%{name}</b>"
+        back: "Tillbaka till inställningar"
+    accounts:
+      new:
+        title: Nytt konto
+        help: "Fyll i formuläret nedan för att skapa nytt konto."
+    my_account:
+      edit:
+        title: Redigerar mitt konto
+      form:
+        api:
+          api_key: "Används av Wagon för att distribuera din webbplats (titta i din config/deploy.yml) i din Wagon-site."
+    translations:
+      untranslated: "Oöversatta strängar: %{list}"
+      index:
+        title: Översättningar
+        no_items: "Vi har inte hittat några översättningar."
+        search_placeholder: "Fyll i en översättning"
+        help: "Översätt alla inlägg med orange (delvis översatt) eller röd (ej översatt) prick."
+        filter_by:
+          all: Alla
+          done: Översatt
+          partially: Delvis översatt
+          none: Ej översatt
+      edit:
+        title: "Översättningar &mdash; redigerar %{key}"
+      form:
+        not_translated: "Ej översatt"
+    content_assets:
+      index:
+        title: "Filer"
+        upload: Ladda upp filer
+      edit_in_drawer:
+        buttons:
+          resize: "Ändra storlek"
+          crop: "Beskär"
+          apply: "Tillämpa"
+      dropzone:
+        instructions: "<strong>Dra och släpp filer från din dator här</strong></br> Du kan också"
+        browse: "leta efter en fil"
+      list:
+        no_items: "Det finns inga filer."
+        buttons:
+          select: "Välj"
+          edit: "Redigera"
+      nav:
+        types:
+          all: Alla
+          pdf: PDF:er
+          image: Bilder
+          media: Media
+          others: Övrigt
+      search_form:
+        placeholder: Sök på filnamn
+    public_submission_accounts:
+      edit:
+        title: "%{name} &mdash; Notisinställningar"
+    content_entries:
+      index:
+        title: '%{type}'
+        download: ladda ner inlägg
+        new: Nytt inlägg
+        edit_notification_settings: Redigera notisinställningar
+        search_placeholder: "Ange dina sökord här"
+        group_by:
+          all: Alla
+      list:
+        no_items: "Det finns inga inlägg just nu. Klicka <a href=\"%{url}\">här</a> för att skapa din första."
+      new:
+        title: '%{type} &mdash; nytt inlägg'
+      edit:
+        title: '%{type} &mdash; redigerar inlägg'
+      shared:
+        back: '&larr; Tillbaka till lista'
+    developers_documentation:
+      show:
+        title: Utvecklare
+        wagon: Wagon
+        api: API

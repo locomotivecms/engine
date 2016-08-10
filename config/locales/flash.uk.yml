@@ -1,0 +1,82 @@
+uk:
+  flash:
+    locomotive:
+      pages:
+        create:
+          notice: "Сторінка успішно створена."
+          alert: "Сторінка не створена."
+        update:
+          notice: "Сторінка успішно оновлена."
+          alert: "Сторінка не оновлена."
+        sort:
+          notice: "Сторінки успішно відсортовані."
+        destroy:
+          notice: "Сторінки успішно видалені."
+      content_entries:
+        create:
+          notice: "Запис успішно створений."
+          alert: "Запис не створений."
+        update:
+          notice: "Запис успішно оновлений."
+          alert: "Запис не оновлений."
+        sort:
+          notice: "Запис успішно відсортований."
+        destroy:
+          notice: "Запис успішно видалений."
+      content_types:
+        update:
+          notice: "Модель успішно створена."
+          alert: "Модель не створена."
+      current_site:
+        update:
+          notice: "Сайт успішно оновлений."
+          alert: "Сайт не оновлений."
+      accounts:
+        create:
+          notice: "Обліковий запис успішно створений."
+          alert: "Обліковий запис не створений."
+      my_account:
+        update:
+          notice: "Мiй обліковий запис успішно оновлений."
+          alert: "Мiй обліковий запис не оновлений."
+      sites:
+        create:
+          notice: "Сайт успішно створений."
+          alert: "Сайт не створений."
+        destroy:
+          notice: "Сайт успішно видалений."
+      current_site_metafields:
+        update_all:
+          notice: "Метаполя сайту успішно оновлені."
+      memberships:
+        create:
+          notice: "Обліковий запис успішно створений."
+          alert: "Обліковий запис не створений."
+          already_created: "Обліковий запис вже додано до поточного сайту."
+      content_assets:
+        create:
+          notice: "Файл успішно створений."
+          alert: "Файл не створений."
+        bulk_create:
+          notice: "Файли успішно створені."
+          alert: "Файли не створені."
+        update:
+          notice: "Файл успішно оновлений."
+          alert: "Файл не оновлений."
+        destroy:
+          notice: "Файл успішно видалений."
+          alert: "Файл не видалений."
+      translations:
+        create:
+          notice: "Переклад успішно створений."
+          alert: "Переклад не створений."
+        update:
+          notice: "Переклад успішно оновлений."
+          alert: "Переклад не оновлений."
+        destroy:
+          notice: "Переклад успішно видалений."
+      custom_fields:
+        select_options:
+          update:
+            notice: "Поле успішно оновлене."
+            alert: "Поле не оновлено."

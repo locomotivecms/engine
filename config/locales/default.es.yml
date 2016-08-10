@@ -1,0 +1,13 @@
+es:
+  date:
+    formats:
+      default: "%d/%m/%Y"
+    today_at: "hoy a las"
+    yesterday_at: "ayer a las"
+  time:
+    formats:
+      default: " %H:%M %d/%m/%Y"
+      time: "%H:%M"
+  pagination:
+    previous: "&laquo; Anterior"
+    next: "Siguiente &raquo;"

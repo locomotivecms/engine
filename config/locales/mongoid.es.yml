@@ -1,0 +1,47 @@
+es:
+  mongoid:
+    errors:
+      messages:
+        blank_in_locale: "No puede ser vacio"
+      models:
+        locomotive/page:
+          attributes:
+            layout_id:
+              index_can_not_extend_parent: "La pagina de inicio no puede tener su pagina padre como una layout."
+        locomotive/membership:
+          attributes:
+            account:
+              unique_account: "ya estaba en uso"
+            email:
+              unique_account: "ya esta en uso"
+    attributes:
+      locomotive/content_entry:
+        created_at: Creado el
+  errors:
+    messages:
+      domain_taken: "%{value} ya ha sido tomado"
+      invalid_domain: "%{value} es invalido"
+      needs_admin_account: "Se requiere por lo menos un administrador"
+      protected_page: "No puede eliminar la pagina de inicio o 404."
+      extname_changed: "El nuevo archivo no tiene la extension original"
+      array_too_short: "es muy pequeño (el minimo numero de elementos es %{count})"
+      site:
+        default_locale_removed: La locale anterior no puede ser eliminada inmediatamente.
+        wrong_timezone_name: "Nombre de timezone equivocado"
+      page:
+        liquid_syntax: "Error de sintaxis de Liquid ('%{error}' en '%{fullpath}')"
+        liquid_extend: "La pagina '%{fullpath}' extiende una plantilla que no existe"
+        liquid_translation: "La pagina '%{fullpath}' extiende una plantilla que no esta traducida"
+      too_few_custom_fields: "Almenos, un campo personalizado es requerido"
+      security: "presenta un problema de seguridad"
+  attributes:
+    defaults:
+      pages:
+        index:
+          title: "Pagina de inicio"
+          body: "Contenido de la pagina principal"
+        '404':
+          title: "Página no encontrada"
+          body: "Contendio de la pagina 404"
+        other:
+          body: "{% extends 'parent' %}"

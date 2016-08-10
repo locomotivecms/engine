@@ -1,0 +1,153 @@
+sv:
+  simple_form:
+    blank_required_fields: "Du har inte fyllt i alla fält."
+    titles:
+      locomotive:
+        account:
+          information: Profil
+          api: API
+          credentials: Konto
+        site:
+          information: Huvudinnehåll
+          access_points: Accesspunkter
+          seo: SEO
+          advanced: Avancerat
+          url_redirections: URL-omdirigeringar
+        page:
+          content: Innehåll
+          settings: Inställningar
+          seo: SEO
+        content_entry:
+          content: Innehåll
+          advanced: Avancerat
+          seo: SEO
+    labels:
+      locomotive:
+        content_entry:
+          _slug: Permalänk
+          _visible: Synlig
+        content_type:
+          public_submission_accounts: "Aviserade konton"
+        account:
+          api_key: API-nyckel
+          no_api_key: Ingen
+          edit:
+            locale: Språk för gränsnitt
+            password: Nytt lösenord
+            password_confirmation: Bekräfta nytt lösenord
+        page:
+          seo_title: Titel
+          target_klass_name: Innehållstyp
+        editable_element:
+          region: Sektion
+        site:
+          locales: Språk
+          timezone_name: Tidszon
+          cache_enabled: Cache
+          private_access: "Aktivera lösenordskydd"
+          password: "Webbplatslösenord"
+          new:
+            locales: Primärt språk
+        membership:
+          edit:
+            role: Ny roll
+        rte_input_link_form:
+          url: Länkaddress
+          target: Mål
+          title: Titel
+        rte_input_image_form:
+          src: Källa
+          title: Titel
+          alignment: Justering
+        image_resize_form:
+          width: Bredd
+          height: Höjd
+        rte_input_table_form:
+          cols: "Kolumner"
+          rows: "Rader"
+          head: "Huvudrad?"
+          class_name: "CSS-klass"
+    hints:
+      locomotive:
+        account:
+          password: minst 6 bokstäver eller siffror
+        page:
+          handle: "Unik identifierare för att hämta denna sida från en extern controllers instans"
+          published: "Endast autentiserade konton kan se opublicerade sidor."
+          templatized: "Använd sidan som mall för en innehållstyp du har satt upp."
+          cache_enabled: "Om aktiverad så kommer din sida att cachas såvida inte innehållet ändras."
+          listed: "Styr om sidan visas i menyn."
+          target_klass_name: "Typ av innehåll denna sida ska vara mall för."
+          seo_title: "Definiera en sidtitel som kan användas som värde för titel-tag i sidans <head>-sektion. Lämna tom om du vill använda standardvärden för din webbplats."
+          meta_keywords: "Skriver över din webbplats metanyckelord i sidans <head>-sektion. Separera med kommatecken."
+          meta_description: "Skriver över din webbplats metabeskrivning i sidans <head>-sektion."
+          is_layout: "Om sant så kan denna sida användas som mall för andra sidor."
+          allow_layout: "Låt författare ändra mall för sida."
+        site:
+          locales: "Dra & släpp en flagga till första positionen för att göra språket till standard."
+          seo_title: "Definiera ett globalt värde här som används som värde för sidornas titel-tag i <head>-sektionen."
+          meta_keywords: "Metanyckelord som används i sidans <head>-sektion. Separera med kommatecken. Krävs för SEO."
+          meta_description: "Metabeskrivning som användes i sidans <head>-sektion. Krävs för SEO."
+          robots_txt: "Innehåll i <span class='code'>/robots.txt</span>. Kolla denna <a href='http://www.w3.org/TR/html4/appendix/notes.html#h-B.4.1.1'>länk</a> för mer information."
+          domains: "Lägg till dina domän nedan. Dokumentation (engelska) <a href=\"https://locomotive-v3.readme.io/docs/domains\">finns här</a>."
+          memberships: "Du kan bjuda in andra konton för att redigera/hantera webbplatsen."
+          cache_enabled: "Om aktiverad så kommer dina sidor att cachas såvida inte innehållet ändras. Avaktivera cache per sida är tillåtet."
+          redirect_to_first_domain: "Om aktiverad. Begäran som görs till domäner listade nedan kommer att omdirigeras till första domänet i listan."
+          url_redirections: "Omdirigering (301) av gamla länkar till sidor skapade i admingränsnittet. Usprunget och destinationen av länkarna separerade med ett <u>mellanslag</u>."
+          private_access: Du kan dölja din webbplats bakom ett lösenord.
+          password: Lösenordet som besökare måste fylla i för att se innehållet på din sida.
+          new:
+            locales: "Du kan lägga till fler språk när din webbplats är skapad."
+        translation:
+          key: "Använd inte bindestreck utan understreck istället. Exempel: welcome_message."
+        content_entry:
+          _slug: "Egenskaper som används att generera en länk till en sida som används som mall för denna innehållstyp (exempel: \"template_page/{{ your_object._permalink }})\"."
+          _visible: "Som standard kommer ditt inlägg att visas på din webbplats."
+          seo_title: "Värdet du fyller i kommer att ersätta SEO-titel i mallen relaterad till din innehållstyp."
+          meta_keywords: "Skriver över webbplatsen metabeskrivning som används i sidans <head>-sektion. Separera med kommatecken."
+          meta_description: "Skriver över webbplatsens metabeskrivning som används i sidans <head>-sektion."
+        content_type:
+          public_submission_accounts: "När ett inlägg skapas, skicka en avisering över e-post till konton listade nedan."
+        image_resize_form:
+          width: "i px"
+          height: "i px"
+    placeholders:
+      locomotive:
+        site:
+          domains: "Ex: minwebbplats.com"
+          url_redirections: "Ex: min-gamla-url ny-url-i-locomotive"
+        content_type_entry_field:
+          select_options: "Skriv titel för ditt nya val här"
+    options:
+      locomotive:
+        rte_input_link_form:
+          target:
+            not_set: "Inte angett"
+            self: "Öppna länk i samma fönster"
+            blank: "Öppna länk i nytt fönster"
+        rte_input_image_form:
+          alignment:
+            default: Standard
+            left: Vänster
+            right: Höger
+    buttons:
+      defaults:
+        locomotive:
+          create: Skapa
+          update: Spara
+          submit: Ok
+          cancel: Avbryt
+          delete: Ta bort
+          close: Stäng
+          loading_text: "Sparar..."
+          or: eller
+      locomotive:
+        account:
+          new_api_key: regenerera
+        image_resize_form:
+          loading_text: Ändrar storlek...
+          submit: Ändra storlek
+        site:
+          delete: Ta bort webbplats
+        page:
+          delete: Ta bort

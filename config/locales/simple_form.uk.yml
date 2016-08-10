@@ -1,0 +1,153 @@
+uk:
+  simple_form:
+    blank_required_fields: "Ви не заповнили всіх обов’язкових полів."
+    titles:
+      locomotive:
+        account:
+          information: Основна
+          api: API
+          credentials: Обліковий запис
+        site:
+          information: Основна
+          access_points: Точки доступу
+          seo: SEO
+          advanced: Додаткові
+          url_redirections: Перенаправлення
+        page:
+          content: Вмістиме
+          settings: Налаштування
+          seo: SEO
+        content_entry:
+          content: Вмістиме
+          advanced: Додаткові
+          seo: SEO
+    labels:
+      locomotive:
+        content_entry:
+          _slug: Permalink
+          _visible: Видимий
+        content_type:
+          public_submission_accounts: "Облікові записи, яким прийде звістка"
+        account:
+          api_key: Ключ API
+          no_api_key: Немає
+          edit:
+            locale: Мова
+            password: Новий пароль
+            password_confirmation: Нове підтвердження пароля
+        page:
+          seo_title: Заголовок
+          target_klass_name: Модель
+        editable_element:
+          region: Секції
+        site:
+          locales: Мови
+          timezone_name: Часовий пояс
+          cache_enabled: Кеш
+          private_access: "Увімкнути захист"
+          password: "Пароль(для усіх сайтів)"
+          new:
+            locales: Перша мова
+        membership:
+          edit:
+            role: Нова роль
+        rte_input_link_form:
+          url: URL Посилання
+          target: Ціль
+          title: Заголовок
+        rte_input_image_form:
+          src: Вихідні дані
+          title: Заголовок
+          alignment: Вирівнювання
+        image_resize_form:
+          width: Ширина
+          height: Висота
+        rte_input_table_form:
+          cols: "Стовпці"
+          rows: "Рядки"
+          head: "Рядок з заголовком?"
+          class_name: "CSS клас"
+    hints:
+      locomotive:
+        account:
+          password: мінімум 6 символів
+        page:
+          handle: "Унікальний ідентифікатор для пошуку цієї сторінки з екземпляру зовнішнього контролера"
+          published: "Тільки аутентифікованим користувачам дозволяється переглядати неопубліковані сторінки."
+          templatized: "Використовуйте сторінку як шаблон для моделі яку ви створили."
+          cache_enabled: "Після увімкнення, ваша сторінка буде закешована аж до зміни вмістимого."
+          listed: "Контролюйте можливість показу сторінки із згенерованих меню."
+          target_klass_name: "Тип контенту, для якого ця сторінка буде виступатт в якості шаблону."
+          seo_title: "Визначте заголовок сторінки, що буде використовуватися як значення тега title в секції head. Залиште пустимо, якщо ви хочете використовувати значення за замовчуванням з налаштувань сайту."
+          meta_keywords: "Перевизначає meta keywords сайту, які використовуються всередині тега head сторінки. Вони розділені комами."
+          meta_description: "Перевизначає meta keywords сайту, які використовуються всередині тега head сторінки. Вони розділені комами."
+          is_layout: "Якщо 'Так', тоді ця сторінка можу слугувати шаблоном для інших сторінок."
+          allow_layout: "Дозволити автору чи ні зміну шаблону сторінки."
+        site:
+          locales: "Перетягніть і відпустіть прапор на першу позицію, щоб зробити її локаллю за замовчуванням."
+          seo_title: "Задайте глобальне значення тут, яке буде використано як значення для тега title в секції head."
+          meta_keywords: "Meta keywords використовуються всередині тега head сторінки. Вони розділяються комою. Потрібно для SEO."
+          meta_description: "Meta description використовуються для тега head сторінки. Необхідно для SEO."
+          robots_txt: "Вмістиме файлу <span class='code'>/robots.txt</span>. Щоб отримати більше інформації дивіться <a href='http://www.w3.org/TR/html4/appendix/notes.html#h-B.4.1.1'>тут</a>."
+          domains: "Додайте ваші домени нижче. Потім, зареєструйте CNAME DNS запис для <b>%{domain}</b>."
+          memberships: "Ви можете запросити інші облікові записи для редагування/управлінням сайту."
+          cache_enabled: "Після увімкнення, ваша сторінка буде закешована аж до зміни вмістимого. Дозволене вимкнення кешування для вибраної сторінки."
+          redirect_to_first_domain: "Після увімкнення, запит до будь-якого домену зі списку нижче буде переадресовано до першого."
+          url_redirections: "Перенаправлення (301) застарілих посилань на сторінки, які ви створили в адмін частмні. Походження і призначення розділено <u>пробілом</u>."
+          private_access: Ви можете додати паролевий захист для Вашого сайту.
+          password: Користувачі сайту будуть зобов'язані вводити пароль для перегляу вмістую.
+          new:
+            locales: "Ви зможете додати інші мови після створення сайту."
+        translation:
+          key: "Використовуйте нижнє підкреслення замість тире. Наприклад: welcome_message."
+        content_entry:
+          _slug: "Властивість, що використовується для генерації посилання (url) на сторінку, що працює як шаблон для цього типу вмісту (напр: \"template_page/{{ your_object._permalink }})\"."
+          _visible: "Вміс буде видимий за замовчуванням. Тож він може бути використаний як атрибув видимості."
+          seo_title: "Значення, що вводиться вами, буде замінювати SEO заголовок шаблонізованої сторінки, пов'язаної з вашою моделлю."
+          meta_keywords: "Перевизначає meta keywords сайту, використовувані усередині тега head сторінки. Розділяються комою."
+          meta_description: "Перевизначає meta description сайту, використовувані усередині тега head сторінки."
+        content_type:
+          public_submission_accounts: "При створенні, надіслати сповіження на адреси наведенні нижче."
+        image_resize_form:
+          width: "в px"
+          height: "в px"
+    placeholders:
+      locomotive:
+        site:
+          domains: "Наприклад: mysite.com"
+          url_redirections: "наприклад: my-legacy-url new-url-in-locomotive"
+        content_type_entry_field:
+          select_options: "Введеть позначки нових опцій"
+    options:
+      locomotive:
+        rte_input_link_form:
+          target:
+            not_set: "Не встановлено"
+            self: "Відкрити посилання в цьому ж вікні"
+            blank: "Відкрити посилання в новому вікні"
+        rte_input_image_form:
+          alignment:
+            default: За замовчуванням
+            left: Зліва
+            right: Справа
+    buttons:
+      defaults:
+        locomotive:
+          create: Створити
+          update: Зберегти
+          submit: Ok
+          cancel: Відмінити
+          delete: Видалити
+          close: Закрити
+          loading_text: "Збереження..."
+          or: чи
+      locomotive:
+        account:
+          new_api_key: Перестворити
+        image_resize_form:
+          loading_text: Зміна розмірів...
+          submit: Зміити розміри
+        site:
+          delete: Видалити цей сайт
+        page:
+          delete: Видалити

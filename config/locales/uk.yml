@@ -1,0 +1,332 @@
+uk:
+  locomotive:
+    locales:
+      en: English
+      de: German
+      fr: French
+      pl: Polish
+      pt: Portuguese
+      pt-BR: "Brazilian Portuguese"
+      it: Italian
+      nl: Dutch
+      nb: Norwegian
+      es: Spanish
+      ru: Russian
+      et: Estonian
+      lt: Литовська
+      ja: Japanese
+      zh-CN: Chinese
+      cs: Czech
+      bg: Bulgarian
+      sk: Slovak
+      sr: Serbian
+      sv: Швецька
+      el: Greek
+    messages:
+      confirm: Ви впевнені?
+      unsaved_content_warning: "Ви впевнені, що хочете покинути цю сторінку(введені дані можуть бути незбережені)?"
+    shared:
+      header:
+        welcome: Ласкаво просимо, %{name}
+        sites: Мої сайти
+        account: Налаштування облікового запису
+        see: Перегляд сайту
+        help: Допомога
+        logout: Вихід
+      sidebar:
+        dashboard: Панель
+        assets: Файли
+        pages: Сторінки
+        settings: Загальні налаштування
+        metafields: Додаткові налаштування
+        developers: Для розробників
+        content_types:
+          title: Моделі
+        translations: Переклади
+      list:
+        untranslated: не перекладено
+        created_at: "Створено %{distance} тому"
+        created_by: "Створено %{distance} тому. Автор: %{who}"
+        updated_at: "В останнє оновлено %{distance} тому"
+        updated_by: "В останнє оновлено %{distance} тому. Автор: %{who}"
+      rte:
+        toolbar:
+          table:
+            merge: Злиття
+            insert_row_before: Вставити рядок перед
+            insert_row_after: Вставити рядок за
+            insert_col_before: Вставити стовпець перед
+            insert_col_after: Вставити стовпець за
+            delete_row: Видалити рядок
+            delete_col: Видалити стовпець
+    errors:
+      '500':
+        title: Помилка застосунку
+        message: "Приносемо вибачення, але щось пішло не так. Зконтактуйте, будь ласка, з адміністратором сайту."
+      '404':
+        title: Сторінка не знайдена
+        message: "Сторінки, яку Ви шукаєте, не існує."
+      no_site:
+        title: Сайт не знайдений
+        next: "Наступний &rarr;"
+        message:
+          create_account: "Спершу створіть обліковий запис, а потім сайт."
+          add_domain: "Додайте <strong>%{host}</strong> домен до списку доменів на одному з Ваших сайтів."
+          sign_in: "Спершу увійдіть. Потім, додайте <strong>%{host}</strong> домен до списку доменів на одному з Ваших сайтів."
+    notifications:
+      new_content_entry:
+        subject: "[%{domain}][%{type}] новий запис"
+        title: "Привіт %{name}, хочемо сповістити, що новий запис було створено %{date} на сайті <b>%{domain}</b>"
+        type: "Модель: %{type}"
+    activity:
+      site:
+        created: 'створив сайт'
+      page:
+        created: 'створив сторінку "%{page}"'
+        updated: 'обновив сторінку "%{page}"'
+        destroyed: 'видалив сторінку "%{page}"'
+        sorted: 'відсортував сторінки'
+      editable_element:
+        updated_bulk: 'змінено вміст сторінок: %{pages}'
+      content_entry:
+        created: 'додав %{entry} до %{content_type}'
+        created_public: 'додав %{entry} до %{content_type} з загальнодоступної форми'
+        updated: 'оновив %{entry} з %{content_type}'
+        destroyed: 'видалив %{entry} з %{content_type}'
+        sorted: 'відсортував %{content_type}'
+      content_asset:
+        created_bulk: 'оновив %{count} файл(ів)'
+        destroyed: 'видалив файл "%{name}"'
+      membership:
+        created: 'додав %{name} до сайту'
+      site_metafields:
+        updated: 'оновлено %{label}'
+    pagination:
+      first: "&laquo;"
+      last: "&raquo;"
+      previous: "&lsaquo;"
+      next: "&rsaquo;"
+      truncate: "&hellip;"
+    custom_fields:
+      select_options:
+        edit:
+          title: "%{type} &mdash; опції редагування"
+          back: "Назад до записів"
+        option:
+          edit: Редагування
+          apply: Застосувати
+          cancel: Відмінити
+      types:
+        belongs_to:
+          edit: Редагувати
+          placeholder: "Виберіть %{name}"
+          searching: Пошук...
+          no_matches: Нічого не знайдено
+          too_short: Введіть, будь ласка, 1 або більше символів
+        many_to_many:
+          placeholder: "Виберіть один з %{name}"
+          searching: Пошук...
+          no_matches: Нічого не знайдено
+          too_short: Введіть, будь ласка, 1 або більше символів
+        select:
+          edit: Редагувати опції
+        file:
+          delete_file: Видалити файт
+        has_many:
+          new_label: Додайте
+      form:
+        required: Обов’язковий
+        default_label: Ім’я поля
+        select_options:
+          ask_name: "Введіть заголовок для опції"
+    dashboard:
+      show:
+        title: 'Панель'
+      url:
+        title: "URL вашого сайту:"
+        visit: 'Відвідати'
+        change_domain: 'Використайте Ваш домен'
+      activity:
+        title: Активніть
+        unknown_account: Хтось
+        load_more: Завантажти більше
+        loading_activity_feed: Завантаження...
+    sessions:
+      new:
+        email: "Електронна пошта"
+        link: "Забули пароль?"
+        password: "Пароль"
+        sign_up: Не маєте облікового запису?
+        submit: Вхід
+        title: Вхід
+    registrations:
+      new:
+        confirm_password: Підтвердіть пароль
+        description: "Створіть обліковий запис, щоб почати використовувати Locomotive."
+        sign_in: Маєте обліковий запис?
+        submit: Зареєструватися
+        title: Зареєструватися
+    passwords:
+      new:
+        description: "Введіть Вашу електронну пошту нижче і Ви отримаєте листа з інструкціями по скиданню пароля."
+        link: "Назад до сторінки входу"
+        email: "Ваш електронна пошта"
+        submit: "Відправити"
+        title: "Забули пароль?"
+      edit:
+        description: "Введіть новий пароль нижче."
+        link: "Назад до сторінки входу"
+        password: "Ваш новий пароль"
+        password_confirmation: "Підтвердіть пароль"
+        submit: "Оновити мій пароль"
+        title: "Скидання паролю"
+    pages:
+      index:
+        title: 'Сторінки'
+        new: 'Нова сторінка'
+        list_content_entries: "Список %{name}"
+        new_content_entry: "Новий %{name}"
+      new:
+        title: Нова сторінка
+        help: "Для створення сторінки, заповніть, будь ласка, форму наведену нижче. Будьте обачні, за замовчування сторінка не є опублікованою."
+      edit:
+        title: "%{title} &mdash; <small>%{fullpath}</small>"
+      form:
+        no_layout: Використати шаблон батьківської сторінки
+        redirect_type:
+          permanent: "Постійний (301)"
+          temporary: "Тимчасовий (302)"
+    editable_elements:
+      index:
+        redirection_error: "Редагування не Locomotive-сторінок не дозволено."
+        iframe:
+          buttons:
+            edit: редагування
+      index_without_preview:
+        title: "%{title} &mdash; <small>%{fullpath}</small>"
+      edit:
+        settings_link: 'Налаштування'
+        no_editable_elements: 'Немає елементів для редагування'
+        parsing_error: "<b>Нажаль ми не можемо 'зрозуміти' шаблон Вашої сторінки.</b><br/>Спершу переконайтесь, що ваш шаблон працює з Wagon."
+        blocks:
+          all: Всі
+          unknown: Невідомі
+      form:
+        model:
+          buttons:
+            list: Управляти
+            edit: Редагувати
+    sites:
+      index:
+        description: "Нажче наведені сайти, до яких Ви маєте доступ. Натисніть для переходу до систему упрвління контентом вибраного сайту."
+        new: Додати новий сайт
+        title: Мої сайти
+      new:
+        description: "Заповніть форму наведену нижче і натисні 'Створити сайт'. Якщо все пройте успішно - новий сайт буде створено."
+        go_back: Назад
+        submit: Створити сайт
+        title: Створити новий сайт
+      site:
+        no_domain: No domain yet
+    current_site:
+      edit:
+        title: Редагування поточного сайту
+      form:
+        main:
+          new_membership: "Додати обліковий запис"
+        advanced:
+          destroy: "Знищити сайт"
+          confirm_destroy: "Підвтердіть Вашу дію введеням назви сайту у полі наведеному нижче"
+    current_site_metafields:
+      index:
+        title: Додаткові налаштування
+        no_metafields: Метаполя відсутні для Вашого сайту
+    memberships:
+      roles:
+        admin: Адміністратор
+        designer: Дизайнер
+        author: Автор
+      new:
+        title: Новий обліковий запис
+        help: "Введіть, будь ласка, електронну пошту. Якщо такого запису не має в системі, Вас буде перенаправлено на сторінку додавання обліковго запису."
+        back: "Назад до налаштувань Вашого сайту"
+      edit:
+        title: "Редагування облікового запису <b>%{name}</b>"
+        back: "Назад до налаштувань Вашого сайту"
+    accounts:
+      new:
+        title: Новий обліковий запис
+        help: "Для додавання нового облікового запису заповніть форму подану нижче."
+    my_account:
+      edit:
+        title: Редагування мого облікового запису
+      form:
+        api:
+          api_key: "Використовується Wagon'ом для публікації сайту (гляньте в config/deploy.yml Вашого Wagon сайту)."
+    translations:
+      untranslated: "Неперекладені локалі: %{list}"
+      index:
+        title: Переклади
+        no_items: "Немає жодного перекладу."
+        search_placeholder: "Введіть ключ для перекладу"
+        help: "Перекладіть всі записи з оранжевими (частково перекладені) чи червоними (не перекладені) крапочками."
+        filter_by:
+          all: Всі
+          done: Перекладені
+          partially: Частково перекладені
+          none: Не перекладені
+      edit:
+        title: "Translations &mdash; editing %{key}"
+      form:
+        not_translated: "Not translated"
+    content_assets:
+      index:
+        title: "Файли"
+        upload: Завантажити файли
+      edit_in_drawer:
+        buttons:
+          resize: "Зміна розміру"
+          crop: "Обрізання"
+          apply: "Застосувати"
+      dropzone:
+        instructions: "<strong>Перенесіть сюди файли з Вашого комп’ютеру.</strong><br/>Ви також можете"
+        browse: "вибрати файл"
+      list:
+        no_items: "Наразі немає файлів медіа."
+        buttons:
+          select: "Вибір"
+          edit: "Редагування"
+      nav:
+        types:
+          all: Всі
+          pdf: PDFs
+          image: зображення
+          media: медіа
+          others: інші
+      search_form:
+        placeholder: Пошук за назвою файлу
+    public_submission_accounts:
+      edit:
+        title: "%{name} &mdash; Налаштування сповіщення"
+    content_entries:
+      index:
+        title: '%{type}'
+        download: завантажити записи
+        new: новий запис
+        edit_notification_settings: Редагувати налаштування сповіщення
+        search_placeholder: "Введіть тут фразу для пошуту"
+        group_by:
+          all: Всі
+      list:
+        no_items: "Наразі немає записів. Натисніть <a href=\"%{url}\">тут</a>, щоб створити перший."
+      new:
+        title: '%{type} &mdash; новий запис'
+      edit:
+        title: '%{type} &mdash; редагування'
+      shared:
+        back: '&larr; Назад до списку'
+    developers_documentation:
+      show:
+        title: Розробники
+        wagon: Wagon
+        api: API

@@ -1,0 +1,47 @@
+sv:
+  mongoid:
+    errors:
+      messages:
+        blank_in_locale: "kan inte vara tom"
+      models:
+        locomotive/page:
+          attributes:
+            layout_id:
+              index_can_not_extend_parent: "Index-sidan kan inte ha sin föräldrasida som mall"
+        locomotive/membership:
+          attributes:
+            account:
+              unique_account: "används redan"
+            email:
+              unique_account: "används redan"
+    attributes:
+      locomotive/content_entry:
+        created_at: Skapad den
+  errors:
+    messages:
+      domain_taken: "%{value} används redan"
+      invalid_domain: "%{value} inte godkänt"
+      needs_admin_account: "Minst ett ett admin-konto krävs"
+      protected_page: "Du kan inte ta bort index-sidan eller felsidan"
+      extname_changed: "Nya filen har inte original-filändelsen"
+      array_too_short: "är för liten (minsta möjliga är %{count})"
+      site:
+        default_locale_removed: Föregående sträng kan inte tas bort direkt.
+        wrong_timezone_name: "Fel namn på tidszon"
+      page:
+        liquid_syntax: "Liquid Syntax error ('%{error}' on '%{fullpath}')"
+        liquid_extend: "Sidan '%{fullpath}' baseras på en mall som inte finns"
+        liquid_translation: "Sidan '%{fullpath}' baseras på en mall som inte är översatt"
+      too_few_custom_fields: "Minst ett fält krävs"
+      security: "visar ett säkerhetsproblem"
+  attributes:
+    defaults:
+      pages:
+        index:
+          title: "Startsida"
+          body: "Innehåll för startsidan"
+        '404':
+          title: "Sidan kunde inte hittas"
+          body: "Innehåll för felsida"
+        other:
+          body: "{% extends 'parent' %}"

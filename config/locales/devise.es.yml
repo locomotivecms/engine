@@ -1,0 +1,61 @@
+es:
+  errors:
+    messages:
+      not_found: "No encontrado"
+      already_confirmed: "ya habia sido confirmado"
+      not_locked: "no fue bloqueado"
+  devise:
+    failure:
+      locomotive_account:
+        unauthenticated: 'Necesitas identificarte antes de continuar,'
+        unconfirmed: 'Tienes que confirmar tu cuenta antes de continuar.'
+        locked: 'Su cuenta esta bloqueada.'
+        invalid: 'Correo o contraseña invalida.'
+        not_found_in_database: 'Correo o contraseña invalida.'
+        no_membership: 'Su cuenta no es un miembro de este sitio, por favor contacte al administrador del sitio para obtener acceso.'
+        invalid_token: 'Token de autenticacion invalido'
+        timeout: 'Su sesion ha expirado, por favor identifiquese para continuar.'
+        inactive: 'Su cuenta no ha sido activada todavia.'
+    sessions:
+      locomotive_account:
+        signed_in: 'Inicio de sesion exitoso.'
+        signed_out: 'Cierre de sesion exitoso.'
+    passwords:
+      locomotive_account:
+        send_instructions: 'Recibiras un correo con intrucciones acerca de como reestablecer tu password en unos minutos.'
+        updated: 'Tu password fue cambiado exitosamente. Ahora has iniciado sesion.'
+        invalid: 'Necesitas preguntar de nuevo por un nuevo password.'
+    confirmations:
+      locomotive_account:
+        send_instructions: 'Recibiras un email con instrucciones acerca de como confirmar tu cuenta en unos minutos.'
+        confirmed: 'Tu cuenta fue exitosamente confirmada. Ahora has iniciado sesion.'
+    registrations:
+      locomotive_account:
+        signed_up: 'Te has registrado exitosamente.'
+        updated: 'Actualizaste tu cuenta exitosamente.'
+        destroyed: 'Adios! Tu cuenta fue exitosamente cancelada. Esperamos verte pronto.'
+    unlocks:
+      locomotive_account:
+        send_instructions: 'Recibiras un email con intrucciones acerca de como desbloquear tu cuenta en unos minutos.'
+        unlocked: 'Tu cuenta fue exitosamente desbloqueada. Ahora estas registrado.'
+    mailer:
+      locomotive_account:
+        confirmation_instructions: 'Instrucciones de confirmacion'
+        reset_password_instructions: 'Instrucciones para reestablecer password'
+        unlock_instructions: 'Instrucciones de Desbloqueo'
+  locomotive:
+    devise_mailer:
+      common:
+        hello: Hola
+      confirmation_instructions:
+        you_can_confirm_your_account_through_the_link_below: "Puedes confirmar tu cuenta a traves de este link:"
+        confirm_my_account: "Confirmar mi cuenta"
+      reset_password_instructions:
+        reset_password_instruction: "Alguien ha requerido un link para cambiar tu password, y tu puedes hacerlo a traves de este link:"
+        change_my_password: "Cambiar mi password"
+        wrong_request_instruction: "Si no requeriste esto, por favor ignora este email."
+        unchange_password_message: "Tu password no cambiara hasta que acceses al link de arriba y crees uno nuevo."
+      unlock_instructions:
+        locked_account_message: "Tu cuenta ha sido bloqueada debido a un exceso de intentos fallidos para iniciar sesion."
+        unlock_account_instruction: "Clickea el link de abajo para desbloquear tu cuenta:"
+        unlock_my_account: "Desbloquear mi cuenta"

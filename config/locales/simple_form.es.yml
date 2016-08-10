@@ -1,0 +1,153 @@
+es:
+  simple_form:
+    blank_required_fields: "No ha llenado todos los campos requeridos."
+    titles:
+      locomotive:
+        account:
+          information: Principal
+          api: API
+          credentials: Credenciales
+        site:
+          information: Principal
+          access_points: Puntos de acceso
+          seo: SEO
+          advanced: Avanzado
+          url_redirections: Redirecciones de URL
+        page:
+          content: Contenido
+          settings: Configuración
+          seo: SEO
+        content_entry:
+          content: Contenido
+          advanced: Avanzado
+          seo: SEO
+    labels:
+      locomotive:
+        content_entry:
+          _slug: Permalink
+          _visible: Visible
+        content_type:
+          public_submission_accounts: "Cuentas Notificadas"
+        account:
+          api_key: API key
+          no_api_key: Ninguno
+          edit:
+            locale: Lenguaje de IU
+            password: Nueva contraseña
+            password_confirmation: Confirmacion de password nuevo
+        page:
+          seo_title: Titulo
+          target_klass_name: Modelo
+        editable_element:
+          region: Secciones
+        site:
+          locales: Lenguajes
+          timezone_name: Timezone
+          cache_enabled: Cache
+          private_access: "Habilitar proteccion de password"
+          password: "Password global de sitio"
+          new:
+            locales: Primer lenguaje
+        membership:
+          edit:
+            role: Nuevo rol
+        rte_input_link_form:
+          url: Link URL
+          target: Objetivo
+          title: Titulo
+        rte_input_image_form:
+          src: Fuente
+          title: Titulo
+          alignment: Alineacion
+        image_resize_form:
+          width: Ancho
+          height: Alto
+        rte_input_table_form:
+          cols: "Columnas"
+          rows: "Filas"
+          head: "Fila principal?"
+          class_name: "Clase CSS"
+    hints:
+      locomotive:
+        account:
+          password: 6 caracteres como minimo
+        page:
+          handle: "Identificador unico para obtener esta pagina a traves de una instancia de controlador externo."
+          published: "Solo usuarios autenticados pueden ver paginas no publicadas."
+          templatized: "Usa la pagina como plantilla para un modelo que hayas definido."
+          cache_enabled: "Cuando esta habilitado, tu pagina sera 'cacheada' siempre y cuando el contenido no cambie."
+          listed: "Controla si se mostrara la pagina desde los menus generados."
+          target_klass_name: "El tipo de contenido de esta pagina sera una plantilla para."
+          seo_title: "Define un titulo de pagina que debe ser usado como valor para una etiqueta de titulo en la seccion principal. Dejalo vacio si quieres usar el valor predetermiado de la configuracion del sitio."
+          meta_keywords: "Sobreescribe las meta keywords del sitio usadas como la etiqueta principal de la pagina. Estan separadas por una coma."
+          meta_description: "Sobreescribe la descripcion meta del sitio usada dentro de la etiqueta principal de la pagina."
+          is_layout: "Si es true, esta pagina puede ser usada como layout para otras paginas."
+          allow_layout: "Permitir a los autores cambiar o no la plantilla de la pagina."
+        site:
+          locales: "Arrastrar y soltar la bandera a la primera posicion para hacerla la predeterminada."
+          seo_title: "Define un valor global aqui que debe ser usado como el valor de la etiqueta de titulo en la seccion principal."
+          meta_keywords: "Keywords meta usadas dentro de la etiqueta principal de la pagina. Son separadas por una coma. Requeridas para SEO."
+          meta_description: "Meta descripcion usada dentro de la etiqueta principal de la pagina. Requerida para SEO."
+          robots_txt: "Contenido del archivo <span class='code'>/robots.txt</span>. Chequea el siguiente <a href='http://www.w3.org/TR/html4/appendix/notes.html#h-B.4.1.1'>url</a> para mas informacion."
+          domains: "Agrega tus dominios debajo.  Encontraras documentacion <a href=\"https://locomotive-v3.readme.io/docs/domains\">aqui</a> para mas informacion."
+          memberships: "Puedes invitar a otras cuentas a editar/manejar el sitio."
+          cache_enabled: "Cuendo este habilitado, tus paginas seran 'cacheadas' siempre y cuando el contenido no cambie. Desahbilitar el cache por pagina es permitido."
+          redirect_to_first_domain: "Cuando es habilitado, requerimientos hechos a cualquiera d elos dominios listados arriba seran redirijidos al primer dominio."
+          url_redirections: "Reirigir (301) urls viejos a paginas que tu creaste en el back-office. El origin y destino de los URLs estaran separados por un <u>espacio</u>."
+          private_access: Puedes esconder tu sitio detras de un password.
+          password: El password publico que los visitantes deberan escribir para ver el contenido del sitio.
+          new:
+            locales: "Puedes agregar otros lenguajes una vez tu sitio sea creado."
+        translation:
+          key: "Usa el caracter guion bajo en vez de guion. Ejemplo: mensaje_de_bienvenida"
+        content_entry:
+          _slug: "Propiedad usada para generar el url de una pagina trabajando como una plantilla para este tipo de contenido (ej: \"pagina_plantilla/{{ tu_objecto._permalink }})\"."
+          _visible: "Predeterminadamente, la entrada sera mostrada en el sitio. Para que pueda ser usada como un atributo publicado."
+          seo_title: "El valor que escribas reemplazara el titulo SEO de la pagina con plantilla relacionada con tu modelo."
+          meta_keywords: "Sobreescribe las meta keywords del sitio usadas como la etiqueta principal de la pagina. Estan separadas por una coma."
+          meta_description: "Sobreescribe la descripcion meta del sitio usada dentro de la etiqueta principal de la pagina."
+        content_type:
+          public_submission_accounts: "Cuando una entrada sea creada, enviar una notificacion por email a las cuentas listadas debajo."
+        image_resize_form:
+          width: "en px"
+          height: "en px"
+    placeholders:
+      locomotive:
+        site:
+          domains: "Ej: misitio.com"
+          url_redirections: "Ej: mi-viejo-url nuevo-url-en-locomotive"
+        content_type_entry_field:
+          select_options: "Escribe la etiqueta de tu nueva opcion aqui"
+    options:
+      locomotive:
+        rte_input_link_form:
+          target:
+            not_set: "Sin asignar"
+            self: "Abrir el link en la misma ventana"
+            blank: "Abrir el link en una nueva ventana"
+        rte_input_image_form:
+          alignment:
+            default: Predeterminado
+            left: Izquierda
+            right: Derecha
+    buttons:
+      defaults:
+        locomotive:
+          create: Crear
+          update: Guardar
+          submit: Ok
+          cancel: Cancelar
+          delete: Borrar
+          close: Cerrar
+          loading_text: "Guardando..."
+          or: o
+      locomotive:
+        account:
+          new_api_key: Regenerar
+        image_resize_form:
+          loading_text: Cambiado el tamaño...
+          submit: Redimensionar
+        site:
+          delete: Borrar este sitio
+        page:
+          delete: Borrar
