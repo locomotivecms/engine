@@ -199,7 +199,8 @@ var wysihtml5ParserRules = {
         "img": {
             "check_attributes": {
                 "width": "numbers",
-                "alt": "alt",
+                "title": "any",
+                "alt": "any",
                 "src": "any", // if you compiled master manually then change this from 'url' to 'src'
                 "height": "numbers",
                 "class": "any"

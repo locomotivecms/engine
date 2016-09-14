@@ -56,7 +56,7 @@ module Locomotive
       include ActiveModel::Model
     end
 
-    class ImageForm < Struct.new(:src, :title, :alignment)
+    class ImageForm < Struct.new(:src, :title, :alt, :alignment)
       include ActiveModel::Model
     end
 

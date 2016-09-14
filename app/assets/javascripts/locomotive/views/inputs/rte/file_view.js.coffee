@@ -56,6 +56,7 @@ class Locomotive.Views.Inputs.Rte.FileView extends Backbone.View
       src:    @_input_el('src').val()
       class:  @_input_el('alignment', 'select').val()
       title:  @_input_el('title').val()
+      alt:    @_input_el('alt').val()
 
     @hide()
 
@@ -66,6 +67,7 @@ class Locomotive.Views.Inputs.Rte.FileView extends Backbone.View
       @editor.composer.commands.exec 'insertImage',
         src:    data.url
         title:  data.title
+        alt:    data.alt
     else
       html = "<a href='#{data.url}' title='#{data.title}'>#{data.title}</a>"
       @editor.composer.commands.exec 'insertHTML', html
@@ -89,6 +91,7 @@ class Locomotive.Views.Inputs.Rte.FileView extends Backbone.View
       @_input_el('src').val($image.attr('src'))
       @_input_el('alignment', 'select').val($image.attr('class'))
       @_input_el('title').val($image.attr('title'))
+      @_input_el('alt').val($image.attr('alt'))
 
       @show_popover()
 

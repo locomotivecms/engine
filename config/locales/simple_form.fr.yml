@@ -58,6 +58,7 @@ fr:
         rte_input_image_form:
           src: Source
           title: Titre
+          alt: Alt
           alignment: Alignement
         image_resize_form:
           width: Largeur
