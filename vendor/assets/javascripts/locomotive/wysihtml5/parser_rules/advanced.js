@@ -356,7 +356,12 @@ var wysihtml5ParserRules = {
         "applet": {
             "remove": 1
         },
-        "span": {},
+        "span": {
+            "check_attributes": {
+                "class": "any",
+                "data-*": "any"
+            }
+        },
         "rp": {
             "rename_tag": "span"
         },
