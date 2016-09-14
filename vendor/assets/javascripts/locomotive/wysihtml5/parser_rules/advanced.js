@@ -194,7 +194,6 @@ var wysihtml5ParserRules = {
                 "data-*": "any"
             },
             "set_attributes": {
-                "rel": "nofollow"
             }
         },
         "img": {

@@ -50,6 +50,12 @@
           display: block;
         }
       }
+
+      .popover-content {
+        .form-group.input {
+          display: block;
+        }
+      }
     }
 
     fieldset.inputs.expanded {

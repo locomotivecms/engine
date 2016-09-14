@@ -53,7 +53,6 @@ class Locomotive.Views.Inputs.Rte.LinkView extends Backbone.View
         href:   url
         target: @_input_el('target', 'select').val()
         title:  @_input_el('title').val()
-        rel:    "nofollow"
 
       # prevents the popover to be opened right after inserting the link.
       @editor.toolbar._preventInstantFocus()

@@ -4,8 +4,7 @@
     = locomotive_form_for link_form, url: '#', defaults: { placeholder: false, hint: false } do |f|
       = f.inputs do
         = f.input :url
-        = f.input :target, include_blank: false, collection: [[:not_set, ''],
-          [:self, '_self'],
+        = f.input :target, include_blank: false, collection: [[:self, ''],
           [:blank, '_blank']],
           label_method: ->(el) { t("simple_form.options.locomotive.rte_input_link_form.target.#{el.first}") }
         = f.input :title
