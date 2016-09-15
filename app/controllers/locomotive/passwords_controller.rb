@@ -28,9 +28,7 @@ module Locomotive
     end
 
     def set_locale
-      if current_site?
-        I18n.locale = current_site.accounts.first.locale
-      end
+      I18n.locale = current_site? ? current_site.accounts.first.locale : Locomotive.config.default_locale
     end
 
   end
