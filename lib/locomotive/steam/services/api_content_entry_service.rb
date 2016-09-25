@@ -28,12 +28,23 @@ module Locomotive
       def with_form(type_slug, attributes, as_json, &block)
         load_content_type(type_slug)
 
+        useTempfiles(attributes)
+
         ::Mongoid::Fields::I18n.with_locale(self.locale) do
           form  = Locomotive::API::Forms::ContentEntryForm.new(@content_type, attributes)
 
           entry = yield(form.serializable_hash)
 
           make_entity(entry, as_json)
+        end
+      end
+
+      def useTempfiles(attributes)
+        # kind of marshal/unmarshal mechanism :-)
+        attributes.each do |key, value|
+          if value.is_a?(Hash) && value['tempfile'].present? && value['tempfile'].is_a?(String) && value['filename'].present?
+            attributes[key]['tempfile'] = File.open(attributes[key]['tempfile'])
+          end
         end
       end
 
