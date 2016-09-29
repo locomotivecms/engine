@@ -2,7 +2,7 @@ module Locomotive
   class EditableControl < EditableElement
 
     ## fields ##
-    field :content
+    field :content, localize: true
     field :default_content, type: Boolean, default: true
     field :options, type: Array, default: []
 
