@@ -10,6 +10,7 @@ hr
 ul
   - @type.ordered_entries_custom_fields.each do |field|
     - value = @entry.send(field.name)
+    - next if value.nil?
     li
       strong= field.label
       | &nbsp;-&nbsp;
