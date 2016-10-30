@@ -10,6 +10,7 @@ module Locomotive
     helper Locomotive::SitesHelper
 
     before_filter :ensure_domains_list, only: :update
+    before_filter :ensure_url_redirections, only: :update
 
     def edit
       authorize @site
@@ -68,6 +69,10 @@ module Locomotive
 
     def ensure_domains_list
       params[:site][:domains] = [] unless params[:site][:domains]
+    end
+
+    def ensure_url_redirections
+      params[:site][:url_redirections] = [] unless params[:site][:url_redirections]
     end
 
   end
