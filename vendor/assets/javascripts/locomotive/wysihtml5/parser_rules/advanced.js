@@ -113,6 +113,10 @@ var wysihtml5ParserRules = {
         "tr": {
             "add_class": {
                 "align": "align_text"
+            },
+            "check_attributes": {
+                "id": "any",
+                "class": "any"
             }
         },
         "strike": {},
@@ -131,6 +135,10 @@ var wysihtml5ParserRules = {
             "rename_tag": "div"
         },
         "h4": {
+            "check_attributes": {
+                "id": "any",
+                "class": "any"
+            },
             "add_class": {
                 "align": "align_text"
             }
@@ -165,7 +173,12 @@ var wysihtml5ParserRules = {
         "command": {
             "remove": 1
         },
-        "ul": {},
+        "ul": {
+            "check_attributes": {
+                "id": "any",
+                "class": "any"
+            }
+        },
         "progress": {
             "rename_tag": "span"
         },
@@ -174,6 +187,7 @@ var wysihtml5ParserRules = {
         },
         "iframe": {
             "check_attributes": {
+                "id": "any",
                 "class": "any",
                 "width": "any",
                 "height": "any",
@@ -187,17 +201,19 @@ var wysihtml5ParserRules = {
         },
         "a": {
             "check_attributes": {
+                "id": "any",
                 "target": "any",
                 "href": "any", // if you compiled master manually then change this from 'url' to 'href'
                 "title": "any",
                 "class": "any",
-                "data-*": "any"
-            },
-            "set_attributes": {
+                "data-*": "any",
+                "rel": "any"
             }
         },
         "img": {
             "check_attributes": {
+                "id": "any",
+                "class": "any",
                 "width": "numbers",
                 "title": "any",
                 "alt": "any",
@@ -236,6 +252,10 @@ var wysihtml5ParserRules = {
             "rename_tag": "div"
         },
         "h1": {
+            "check_attributes": {
+                "id": "any",
+                "class": "any"
+            },
             "add_class": {
                 "align": "align_text"
             }
@@ -244,6 +264,10 @@ var wysihtml5ParserRules = {
             "remove": 1
         },
         "tbody": {
+            "check_attributes": {
+                "id": "any",
+                "class": "any"
+            },
             "add_class": {
                 "align": "align_text"
             }
@@ -254,9 +278,16 @@ var wysihtml5ParserRules = {
         "s": {
             "rename_tag": "span"
         },
-        "li": {},
+        "li": {
+            "check_attributes": {
+                "id": "any",
+                "class": "any"
+            },
+        },
         "td": {
             "check_attributes": {
+                "id": "any",
+                "class": "any",
                 "rowspan": "numbers",
                 "colspan": "numbers"
             },
@@ -269,6 +300,7 @@ var wysihtml5ParserRules = {
         },
         "div": {
             "check_attributes": {
+                "id": "any",
                 "class": "any",
                 "data-*": "any"
             },
@@ -309,6 +341,10 @@ var wysihtml5ParserRules = {
             "remove": 1
         },
         "h5": {
+            "check_attributes": {
+                "id": "any",
+                "class": "any"
+            },
             "add_class": {
                 "align": "align_text"
             }
@@ -331,6 +367,10 @@ var wysihtml5ParserRules = {
             }
         },
         "tfoot": {
+            "check_attributes": {
+                "id": "any",
+                "class": "any"
+            },
             "add_class": {
                 "align": "align_text"
             }
@@ -358,6 +398,7 @@ var wysihtml5ParserRules = {
         },
         "span": {
             "check_attributes": {
+                "id": "any",
                 "class": "any",
                 "data-*": "any"
             }
@@ -383,7 +424,12 @@ var wysihtml5ParserRules = {
         "body": {
             "rename_tag": "div"
         },
-        "ol": {},
+        "ol": {
+            "check_attributes": {
+                "id": "any",
+                "class": "any"
+            }
+        },
         "nobr": {
             "rename_tag": "span"
         },
@@ -401,6 +447,8 @@ var wysihtml5ParserRules = {
         // },
         "blockquote": {
             "check_attributes": {
+                "id": "any",
+                "class": "any",
                 "cite": "url"
             }
         },
@@ -414,6 +462,10 @@ var wysihtml5ParserRules = {
             "rename_tag": "span"
         },
         "h3": {
+            "check_attributes": {
+                "id": "any",
+                "class": "any"
+            },
             "add_class": {
                 "align": "align_text"
             }
@@ -438,6 +490,10 @@ var wysihtml5ParserRules = {
             "remove": 1
         },
         "thead": {
+            "check_attributes": {
+                "id": "any",
+                "class": "any"
+            },
             "add_class": {
                 "align": "align_text"
             }
@@ -452,6 +508,10 @@ var wysihtml5ParserRules = {
             "remove": 1
         },
         "h6": {
+            "check_attributes": {
+                "id": "any",
+                "class": "any"
+            },
             "add_class": {
                 "align": "align_text"
             }
@@ -461,6 +521,8 @@ var wysihtml5ParserRules = {
         },
         "th": {
             "check_attributes": {
+                "id": "any",
+                "class": "any",
                 "rowspan": "numbers",
                 "colspan": "numbers"
             },
@@ -510,7 +572,12 @@ var wysihtml5ParserRules = {
         "article": {
             "rename_tag": "div"
         },
-        "cite": {},
+        "cite": {
+            "check_attributes": {
+                "id": "any",
+                "class": "any"
+            }
+        },
         "link": {
             "remove": 1
         },
@@ -530,6 +597,10 @@ var wysihtml5ParserRules = {
             "rename_tag": "span"
         },
         "h2": {
+            "check_attributes": {
+                "id": "any",
+                "class": "any"
+            },
             "add_class": {
                 "align": "align_text"
             }
@@ -538,6 +609,10 @@ var wysihtml5ParserRules = {
             "rename_tag": "span"
         },
         "p": {
+            "check_attributes": {
+                "id": "any",
+                "class": "any"
+            },
             "add_class": {
                 "align": "align_text"
             }
