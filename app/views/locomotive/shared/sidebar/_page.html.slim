@@ -18,12 +18,13 @@ li id="node-#{page._id}" class=page.class_names
       = render partial: 'locomotive/shared/sidebar/page', collection: page.nodes
 
       - if page.templatized_children? && !page.templatized?
-        li.list-entries
-          = link_to content_entries_path(current_site, page.templatized_page.content_type.slug) do
-              i.fa.fa-list-ul.icon
-              span.text style="#{page.deeper_text_inline_style}"= t(:list_content_entries, name: page.content_type.name.pluralize, scope: 'locomotive.pages.index')
+        - if content_type = page.templatized_page.content_type
+          li.list-entries
+            = link_to content_entries_path(current_site, content_type.slug) do
+                i.fa.fa-list-ul.icon
+                span.text style="#{page.deeper_text_inline_style}"= t(:list_content_entries, name: content_type.name.pluralize, scope: 'locomotive.pages.index')
 
-        li.new-entry.sidebar-list-add
-          = link_to new_content_entry_path(current_site, page.templatized_page.content_type.slug) do
-            i.fa.fa-plus.icon
-            span.text style="#{page.deeper_text_inline_style}"= t(:new_content_entry, name: page.content_type.name.singularize, scope: 'locomotive.pages.index')
+          li.new-entry.sidebar-list-add
+            = link_to new_content_entry_path(current_site, content_type.slug) do
+              i.fa.fa-plus.icon
+              span.text style="#{page.deeper_text_inline_style}"= t(:new_content_entry, name: content_type.name.singularize, scope: 'locomotive.pages.index')
