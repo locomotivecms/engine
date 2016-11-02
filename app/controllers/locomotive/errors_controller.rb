@@ -12,7 +12,9 @@ module Locomotive
     end
 
     def no_site
-      render 'no_site', status: :not_found
+      respond_to do |format|
+        format.html { render 'no_site', status: :not_found }
+      end
     end
 
   end
