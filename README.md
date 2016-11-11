@@ -43,7 +43,7 @@ Install the dependencies:
 
 :~$ Sudo vi Gemfile   
 
-) (If you are unfamiliar with unix text editors, you may edit the Gemfile within your repo on github, but you will have to follow the steps below for recloning, seen after the line, then re-run this command)
+) (If you are unfamiliar with unix text editors, you may edit the Gemfile within your repo on github, but you will have to follow the steps below for recloning, seen after the line, then re-run the bundle install command)
 
 Start the application!:
 
