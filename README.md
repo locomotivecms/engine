@@ -78,4 +78,10 @@ ________
 
 If you have any problems, contact Brandon Pruett!
 
+Pro tip: A good place to start looking for files to change are:
 
+engine/app/assets/images/locomotive/  (Delete and reupload imaages but keep the names the same!)
+
+and
+
+engine/app/assets/stylesheets/locomotive/new/
