@@ -19,19 +19,25 @@ ________
 To initalize...
 
 start mongodb (Do this every time you start the enviorment back up!):
+
 :~$ sudo service mongod start 
 
 clone the repo:
+
 :~$ git clone git@github.com:GP4-Team3/engine.git
 
 Move into the directory containing the repo:
+
 :~$ cd engine/
 
 Install the dependencies:
+
 :~$ bundle install 
+
 (Should run perfectly, if it stops at capybara-webkit then comment out the line:~$ Sudo vi Gemfile)
 
 Start the application!:
+
 :~$ bundle exec rails server
 
 Then go to http://localhost:3000/locomotive To see the application running! :)
@@ -39,15 +45,19 @@ Then go to http://localhost:3000/locomotive To see the application running! :)
 ________
 
 For each commit that you want to see the change, remove the current repo's directory:
+
 :~$ cd
+
 :~$ rm -rf /engine
 
 then
 
 reclone the repo:
+
 :~$ git clone git@github.com:GP4-Team3/engine.git
 
 Move into the directory containing the repo:
+
 :~$ cd engine/
 
 :~$ bundle exec rails server
