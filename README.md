@@ -8,7 +8,8 @@ Start Orcal Vitual Box. Make a 64 bit Ubuntu VM and then when it starts up give 
 
 Use search and find the Terminal. Get ready :/
 
-Install Ruby on Rails: https://gorails.com/setup/ubuntu/16.04
+Install Ruby on Rails: https://gorails.com/setup/ubuntu/16.04 
+(I found PostgreSQL to be easier the mySQL when you get to that step)
 
 Install mongodb: https://www.digitalocean.com/community/tutorials/how-to-install-mongodb-on-ubuntu-16-04
 
