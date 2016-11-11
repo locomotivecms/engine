@@ -29,7 +29,7 @@ clone the repo:
 
 *Note* using [git clone git@github.com:GP4-Team3/engine.git] will sometimes deny you permission from cloning the repo due to public key issues. Using [git clone https://github.com/GP4-Team3/engine.git] is more reliable. 
 
-(OR if you forked it and want to make changes on your own git, replace GP4-Team3 with your username (IF you are an outside organization, put your organizations name there, wherever your repo is.)
+(OR if you forked it and want to make changes on your own git, replace GP4-Team3 with your username (If you are an outside organization, put your organizations name there, wherever your repo is.)
 
 Move into the directory containing the repo:
 
@@ -49,7 +49,7 @@ Start the application!:
 
 :~$ bundle exec rails server
 
-Then go to http://localhost:3000/locomotive To see the application running! :) Note the webpage taks a few minutes to load when you first run the server.
+Then go to http://localhost:3000/locomotive To see the application running! :) Note the webpage takes a few minutes to load when you first run the server.
 
 ________
 
@@ -71,7 +71,7 @@ Move into the directory containing the repo:
 
 :~$ bundle exec rails server
 
-Then go to http://localhost:3000/locomotive To see the you changes! :) Once again npte the webpage taks a few minutes to load when you first run the server.
+Then go to http://localhost:3000/locomotive To see the you changes! :) Once again note the webpage takes a few minutes to load when you first run the server.
 
 
 ________
