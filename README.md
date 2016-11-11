@@ -25,29 +25,29 @@ ________
 
 start mongodb (Do this every time you start the enviorment back up!):
 
-`:~$ sudo service mongod start`
+`~$ sudo service mongod start`
 
 clone the repo:
 
-`:~$ git clone https://github.com/GP4-Team3/engine.git`
+`~$ git clone https://github.com/GP4-Team3/engine.git`
 
 `
-__Note__ using `git clone git@github.com:GP4-Team3/engine.git` will sometimes deny you permission from cloning the repo due to public key issues. Using `git clone https://github.com/GP4-Team3/engine.git` is more reliable.
+_Note_ using `git clone git@github.com:GP4-Team3/engine.git` will sometimes deny you permission from cloning the repo due to public key issues. Using `git clone https://github.com/GP4-Team3/engine.git` is more reliable.
 OR
 if you forked it and want to make changes on your own git, replace GP4-Team3 with your username (If you are an outside organization, put your organizations name there, wherever your repo is.)
 `
 
 Move into the directory containing the repo:
 
-`:~$ cd engine/`
+`~$ cd engine/`
 
 Install the dependencies:
 
-`:~$ bundle install`
+`~$ bundle install`
 
 (Should run perfectly, unless you are an outside group who has forked it from the locomotive repo. If it stops at capybara-webkit then comment out the line containing the capybara-webkit in the Gemfile. Do so with..
 
-`:~$ sudo vi Gemfile`
+`~$ sudo vi Gemfile`
 
 )
 
@@ -55,7 +55,7 @@ Install the dependencies:
 
 Start the application!:
 
-`:~$ bundle exec rails server`
+`~$ bundle exec rails server`
 
 Then go to http://localhost:3000/locomotive To see the application running! :) Note the webpage takes a few minutes to load when you first run the server.
 
@@ -63,11 +63,11 @@ ________
 
 Pull your teammates changes:
 
-`:~$ git pull origin master`
+`~$ git pull origin master`
 
 Restart the server
 
-`:~$ bundle exec rails server`
+`~$ bundle exec rails server`
 
 Then go to http://localhost:3000/locomotive To see the you changes! :) Once again note the webpage takes a few minutes to load when you first run the server.
 
