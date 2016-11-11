@@ -41,7 +41,9 @@ Install the dependencies:
 
 ( Should run perfectly, unless you are an outside group who has forked it from the locomotive repo. If it stops at capybara-webkit then comment out the line containing the capybara-webkit in the Gemfile. Do so with..
 
-:~$ Sudo vi Gemfile   ) (If you are unfamiliar with unix text editors, you may edit the Gemfile within your repo on github, but you will have to follow the steps below for recloning, seen after the line, then re-run this command)
+:~$ Sudo vi Gemfile   
+
+) (If you are unfamiliar with unix text editors, you may edit the Gemfile within your repo on github, but you will have to follow the steps below for recloning, seen after the line, then re-run this command)
 
 Start the application!:
 
