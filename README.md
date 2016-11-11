@@ -8,10 +8,10 @@ Start Orcal Vitual Box. Make a 64 bit Ubuntu VM and then when it starts up give 
 
 Find the Terminal. Get ready :/
 
-Install Ruby on Rails 
+Install Ruby on Rails: https://gorails.com/setup/ubuntu/16.04
 
 
-Install mongodb: 
+Install mongodb: https://www.digitalocean.com/community/tutorials/how-to-install-mongodb-on-ubuntu-16-04
 Intall PhantomJS: https://gist.github.com/julionc/7476620
 ________
 
@@ -28,13 +28,13 @@ reclone the repo:
 :~$ cd engine/
 
 :~$ bundle install 
-#(Should run perfectly, if it stops at capybara-webkit then comment out the line:~$ Sudo vi Gemfile)
+(Should run perfectly, if it stops at capybara-webkit then comment out the line:~$ Sudo vi Gemfile)
 
 :~$ bundle exec rails server
 
 Then go to http://localhost:3000/locomotive To see the application running! :)
 
 
-
+If you have any problems, contact Brandon Pruett!
 
 
