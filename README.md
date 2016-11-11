@@ -1,6 +1,6 @@
-Following are instruction on how to set up a development enviroment on an Ubunutu Operating System using Orcal Virtual Box:
+Following are instruction on how to set up a development enviroment on an Ubunutu Operating System using Oracle Virtual Box:
 
-Download Orcal VirtualBox on your actual machine: https://www.virtualbox.org/wiki/Downloads
+Download Oracle VirtualBox on your actual machine: https://www.virtualbox.org/wiki/Downloads
 
 Download the Ubuntu ISO file: https://www.ubuntu.com/download/desktop
 
