@@ -8,15 +8,14 @@
 #PhantomJS
 
 echo "Starting Installer..."
-cd ~
 
 #Ruby
-echo \n "Installing Ruby version 2.3.1"
-apt-get -q -y update
-apt-get -q -y install git-core curl zlib1g-dev build-essential libssl-dev libreadline-dev libyaml-dev libsqlite3-dev sqlite3 libxml2-dev libxslt1-dev libcurl4-openssl-dev python-software-properties libffi-dev
+echo "Installing Ruby version 2.3.1"
+apt-get -y update
+apt-get -y install git-core curl zlib1g-dev build-essential libssl-dev libreadline-dev libyaml-dev libsqlite3-dev sqlite3 libxml2-dev libxslt1-dev libcurl4-openssl-dev python-software-properties libffi-dev
 
 #Install RVM
-apt-get -q -y install libgdbm-dev libncurses5-dev automake libtool bison libffi-dev
+apt-get -y install libgdbm-dev libncurses5-dev automake libtool bison libffi-dev
 gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
 curl -sSL https://get.rvm.io | bash -s stable
 source ~/.rvm/scripts/rvm
@@ -24,7 +23,7 @@ rvm install 2.3.1
 rvm use 2.3.1 --default
 
 #Install Bundler
-gem install bundler --silent
+gem install bundler
 
 
 #Configure Git
@@ -39,19 +38,19 @@ ssh-keygen -t rsa -b 4096 -C "$user_email"
 #Install NodeJS
 echo "Installing Node.JS"
 curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
-apt-get -q -y install nodejs
+apt-get -y install nodejs
 
 #Install Rails version 4.2.6
 echo "Installing Rails v. 4.2.6"
-gem install rails -v 4.2.6 --silent
+gem install rails -v 4.2.6
 
 #Install PhantomJS
 echo "Installing PhantomJS"
-apt-get -q -y update
-apt-get -q -y install build-essential chrpath libssl-dev libxft-dev
+apt-get -y update
+apt-get -y install build-essential chrpath libssl-dev libxft-dev
 
-apt-get -q -y install libfreetype6 libfreetype6-dev
-apt-get -q -y install libfontconfig1 libfontconfig1-dev
+apt-get -y install libfreetype6 libfreetype6-dev
+apt-get -y install libfontconfig1 libfontconfig1-dev
 
 cd ~
 export PHANTOM_JS="phantomjs-1.9.8-linux-x86_64"
@@ -66,15 +65,12 @@ echo "Installing MongoDB"
 apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
 
 echo "deb http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.2 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.2.list
-apt-get -q -y update
+apt-get -y update
 
-apt-get -q -y install mongodb-org
+apt-get -y install mongodb-org
 echo -e "[Unit]\nDescription=High-performance, schema-free document-oriented database\nAfter=network.target\n\n[Service]\nUser=mongodb\nExecStart=/usr/bin/mongod --quiet --config /etc/mongod.conf\n\n[Install]\nWantedBy=multi-user.target" > /etc/systemd/system/mongodb.service
 
 systemctl start mongodb
-systemctl enable mongodb
 
 echo "Copy and paste the following into you GitHub's SSH keys and you'll be ready to go!"
-cat ~/.ssh/id_rsa.pub
-
-
+cat /root/.ssh/id_rsa.pub
