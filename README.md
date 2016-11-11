@@ -9,8 +9,11 @@ Start Orcal Vitual Box. Make a 64 bit Ubuntu VM and then when it starts up give 
 Use search and find the Terminal. Get ready :/
 
 Install Ruby on Rails: https://gorails.com/setup/ubuntu/16.04
+
 Install mongodb: https://www.digitalocean.com/community/tutorials/how-to-install-mongodb-on-ubuntu-16-04
+
 Intall PhantomJS: https://gist.github.com/julionc/7476620
+
 ________
 
 To initalize...
@@ -32,6 +35,7 @@ Start the application!:
 :~$ bundle exec rails server
 
 Then go to http://localhost:3000/locomotive To see the application running! :)
+
 ________
 
 For each commit that you want to see the change, remove the current repo's directory:
@@ -49,6 +53,7 @@ Move into the directory containing the repo:
 :~$ bundle exec rails server
 
 Then go to http://localhost:3000/locomotive To see the you changes! :)
+
 ________
 
 If you have any problems, contact Brandon Pruett!
