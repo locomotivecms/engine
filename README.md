@@ -1,4 +1,4 @@
-Successful enviroment on Ubunutu using Orcal Virtual Box:
+Following are instruction on how to set up a development enviroment on an Ubunutu Operating System using Orcal Virtual Box:
 
 Download Orcal VirtualBox on your actual machine: https://www.virtualbox.org/wiki/Downloads
 
@@ -6,10 +6,9 @@ Download the Ubuntu ISO file: https://www.ubuntu.com/download/desktop
 
 Start Orcal Vitual Box. Make a 64 bit Ubuntu VM and then when it starts up give it the iso file.
 
-Find the Terminal. Get ready :/
+Use search and find the Terminal. Get ready :/
 
 Install Ruby on Rails: https://gorails.com/setup/ubuntu/16.04
-
 Install mongodb: https://www.digitalocean.com/community/tutorials/how-to-install-mongodb-on-ubuntu-16-04
 Intall PhantomJS: https://gist.github.com/julionc/7476620
 ________
