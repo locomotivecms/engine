@@ -8,6 +8,8 @@ Start Orcal Vitual Box. Make a 64 bit Ubuntu VM and then when it starts up give 
 
 Find the Terminal. Get ready :/
 
+Install Ruby on Rails 
+
 
 Install mongodb: 
 Intall PhantomJS: https://gist.github.com/julionc/7476620
@@ -26,7 +28,7 @@ reclone the repo:
 :~$ cd engine/
 
 :~$ bundle install 
-#Should run perfectly, if it stops at capybara-webkit then comment out the line:~$ Sudo vi Gemfile
+#(Should run perfectly, if it stops at capybara-webkit then comment out the line:~$ Sudo vi Gemfile)
 
 :~$ bundle exec rails server
 
