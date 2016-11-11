@@ -59,7 +59,7 @@ then
 
 reclone the repo:
 
-:~$ git https://github.com/GP4-Team3/engine.git
+:~$ git clone https://github.com/GP4-Team3/engine.git
 
 Move into the directory containing the repo:
 
