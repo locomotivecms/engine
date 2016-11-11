@@ -25,7 +25,9 @@ start mongodb (Do this every time you start the enviorment back up!):
 
 clone the repo:
 
-:~$ git clone git@github.com:GP4-Team3/engine.git
+:~$ git clone git@github.com:GP4-Team3/engine.git 
+
+(OR if you forked it and want to make changes on your own git, replace GP4-Team3 with your username)
 
 Move into the directory containing the repo:
 
