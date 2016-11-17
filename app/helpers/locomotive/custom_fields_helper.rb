@@ -103,6 +103,10 @@ module Locomotive
       { as: :email }
     end
 
+    def password_custom_field_options(field, entry)
+      { as: :password }
+    end
+
     def file_custom_field_options(field, entry)
       { as: :file, select_content_asset: true }
     end
