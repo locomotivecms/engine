@@ -26,7 +26,7 @@ class Locomotive.Views.Inputs.Rte.LinkView extends Backbone.View
     @$content.show()
     @$link.popover
       container:  @$link.parents('fieldset')
-      placement:  'right'
+      placement:  'bottom'
       content:    @$content
       html:       true
       trigger:    'manual'
