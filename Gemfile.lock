@@ -4,8 +4,10 @@ GIT
   specs:
     database_cleaner (1.5.3)
 
-PATH
-  remote: ../gems/custom_fields
+GIT
+  remote: git://github.com/locomotivecms/custom_fields.git
+  revision: d8a3e8a1ddd50023007602e9db14158d98a3d041
+  ref: d8a3e8a
   specs:
     custom_fields (2.8.0)
       activesupport (~> 4.2.5)
@@ -14,8 +16,10 @@ PATH
       monetize (~> 1.4.0)
       mongoid (~> 5.1.0)
 
-PATH
-  remote: ../gems/steam
+GIT
+  remote: git://github.com/locomotivecms/steam.git
+  revision: d75b64664a00d7552d90410ffe0a27178ea33a35
+  ref: d75b646
   specs:
     locomotivecms_steam (1.3.0)
       RedCloth (~> 4.3.2)

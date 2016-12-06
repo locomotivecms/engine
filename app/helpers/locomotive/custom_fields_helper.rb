@@ -199,6 +199,10 @@ module Locomotive
       { as: type }
     end
 
+    def json_custom_field_options(field, entry)
+      { as: :text, input_html: { rows: 10 } }
+    end
+
     def custom_field_picker_options(field, slug)
       {
         label_method: :_label,
