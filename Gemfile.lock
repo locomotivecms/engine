@@ -5,6 +5,45 @@ GIT
     database_cleaner (1.5.3)
 
 PATH
+  remote: ../gems/custom_fields
+  specs:
+    custom_fields (2.8.0)
+      activesupport (~> 4.2.5)
+      bcrypt (~> 3.1.11)
+      carrierwave-mongoid (~> 0.8.1)
+      monetize (~> 1.4.0)
+      mongoid (~> 5.1.0)
+
+PATH
+  remote: ../gems/steam
+  specs:
+    locomotivecms_steam (1.3.0)
+      RedCloth (~> 4.3.2)
+      autoprefixer-rails (~> 6.3.3.1)
+      bcrypt (~> 3.1.11)
+      chronic (~> 0.10.2)
+      coffee-script (~> 2.4.1)
+      compass (~> 1.0.3)
+      dragonfly (~> 1.0.12)
+      duktape (~> 1.3.0.6)
+      httparty (~> 0.13.6)
+      kramdown (~> 1.10.0)
+      locomotivecms-solid (~> 4.0.1)
+      locomotivecms_common (~> 0.2.0)
+      mime-types (~> 2.6.1)
+      mimetype-fu (~> 0.1.2)
+      moneta (~> 0.8.0)
+      morphine (~> 0.1.1)
+      nokogiri (~> 1.6.8)
+      pony (~> 1.11)
+      rack-cache (~> 1.6.1)
+      rack-rewrite (~> 1.5.1)
+      rack_csrf (~> 2.5.0)
+      sanitize (~> 4.0.1)
+      sass (~> 3.4.21)
+      sprockets (~> 3.5.2)
+
+PATH
   remote: .
   specs:
     locomotivecms (3.2.0)
@@ -15,7 +54,7 @@ PATH
       bootstrap-sass (~> 3.3.6)
       carrierwave-mongoid (~> 0.8.1)
       codemirror-rails (~> 5.6)
-      custom_fields (~> 2.7.0)
+      custom_fields (~> 2.8.0)
       devise (~> 3.5.1)
       devise-encryptable (~> 0.2.0)
       dragonfly (~> 1.0.7)
@@ -28,7 +67,7 @@ PATH
       jquery-ui-rails (~> 5.0.3)
       json-schema (~> 2.6.1)
       kaminari (~> 0.16.3)
-      locomotivecms_steam (~> 1.2.0)
+      locomotivecms_steam (~> 1.3.0)
       mime-types (~> 2.6.2)
       mimetype-fu (~> 0.1.2)
       mongo_session_store-rails4 (~> 6.0.0)
@@ -179,11 +218,6 @@ GEM
     cucumber-core (1.5.0)
       gherkin (~> 4.0)
     cucumber-wire (0.0.1)
-    custom_fields (2.7.0)
-      activesupport (~> 4.2.5)
-      carrierwave-mongoid (~> 0.8.1)
-      monetize (~> 1.4.0)
-      mongoid (~> 5.1.0)
     debug_inspector (0.0.2)
     descendants_tracker (0.0.4)
       thread_safe (~> 0.3, >= 0.3.1)
@@ -293,30 +327,6 @@ GEM
       attr_extras (~> 4.4.0)
       colorize
       stringex (~> 2.6.0)
-    locomotivecms_steam (1.2.0)
-      RedCloth (~> 4.3.2)
-      autoprefixer-rails (~> 6.3.3.1)
-      chronic (~> 0.10.2)
-      coffee-script (~> 2.4.1)
-      compass (~> 1.0.3)
-      dragonfly (~> 1.0.12)
-      duktape (~> 1.3.0.6)
-      httparty (~> 0.13.6)
-      kramdown (~> 1.10.0)
-      locomotivecms-solid (~> 4.0.1)
-      locomotivecms_common (~> 0.2.0)
-      mime-types (~> 2.6.1)
-      mimetype-fu (~> 0.1.2)
-      moneta (~> 0.8.0)
-      morphine (~> 0.1.1)
-      nokogiri (~> 1.6.8)
-      pony (~> 1.11)
-      rack-cache (~> 1.6.1)
-      rack-rewrite (~> 1.5.1)
-      rack_csrf (~> 2.5.0)
-      sanitize (~> 4.0.1)
-      sass (~> 3.4.21)
-      sprockets (~> 3.5.2)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
     mail (2.6.4)
@@ -526,6 +536,7 @@ DEPENDENCIES
   capybara-webkit (~> 1.10.1)
   coffee-rails (~> 4.1.0)
   coveralls (~> 0.7.2)
+  custom_fields!
   database_cleaner!
   email_spec
   factory_girl_rails
@@ -534,6 +545,7 @@ DEPENDENCIES
   i18n-tasks (~> 0.8.7)
   json_spec (~> 1.1.4)
   locomotivecms!
+  locomotivecms_steam!
   pickle
   pry
   pry-byebug
