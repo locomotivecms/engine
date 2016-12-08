@@ -200,7 +200,13 @@ module Locomotive
     end
 
     def json_custom_field_options(field, entry)
-      { as: :text, input_html: { rows: 10 } }
+      {
+        as: :text,
+        input_html: {
+          rows:   10,
+          value:  entry.send(field.name).try(:to_json)
+        }
+      }
     end
 
     def custom_field_picker_options(field, slug)
