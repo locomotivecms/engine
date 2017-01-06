@@ -17,8 +17,8 @@ group :test, :development do
 end
 
 group :development do
-  gem 'custom_fields', path: '../gems/custom_fields' # for Developers
-  # gem 'custom_fields', github: 'locomotivecms/custom_fields', ref: '4a612e5'
+  # gem 'custom_fields', path: '../gems/custom_fields' # for Developers
+  gem 'custom_fields', github: 'locomotivecms/custom_fields', ref: '4a612e5'
 
   # gem 'locomotivecms_common', path: '../gems/common', require: false
   # gem 'locomotivecms_common', github: 'locomotivecms/common', ref: '257047b', require: false

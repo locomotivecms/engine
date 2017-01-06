@@ -4,8 +4,10 @@ GIT
   specs:
     database_cleaner (1.5.3)
 
-PATH
-  remote: ../gems/custom_fields
+GIT
+  remote: git://github.com/locomotivecms/custom_fields.git
+  revision: 4a612e520a07b471413319d1a86c8d79a3384b7b
+  ref: 4a612e5
   specs:
     custom_fields (2.8.0)
       activesupport (~> 4.2.5)
@@ -339,7 +341,7 @@ GEM
     moneta (0.8.0)
     monetize (1.4.0)
       money (~> 6.7)
-    money (6.7.1)
+    money (6.8.0)
       i18n (>= 0.6.4, <= 0.7.0)
       sixarm_ruby_unaccent (>= 1.1.1, < 2)
     mongo (2.3.1)
