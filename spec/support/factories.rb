@@ -213,6 +213,7 @@ FactoryGirl.define do
         content_type.entries_custom_fields.build label: 'Duration', name: 'duration', type: 'integer'
         content_type.entries_custom_fields.build label: 'Tags', name: 'tags', type: 'tags'
         content_type.entries_custom_fields.build label: 'Price', name: 'price', type: 'money'
+        content_type.entries_custom_fields.build label: 'Metadata', name: 'metadata', type: 'json'
         content_type.entries_custom_fields.build label: 'Archived at', name: 'archived_at', type: 'date'
       end
     end

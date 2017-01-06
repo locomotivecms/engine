@@ -33,6 +33,7 @@ describe Locomotive::API::Entities::ContentEntryEntity do
       duration:       420,
       tags:           ['foo', 'bar'],
       price:          42.0,
+      metadata:       { var1: 'Hello', var2: 'world' },
       category_id:    content_type.entries_custom_fields.where(name: 'category').first.select_options.first._id,
       archived_at:    Date.parse('2009/09/12')
     }) }
@@ -92,6 +93,10 @@ describe Locomotive::API::Entities::ContentEntryEntity do
 
       it 'returns the select fields' do
         expect(subject[:category]).to eq 'Development'
+      end
+
+      it 'returns the json fields' do
+        expect(subject[:metadata]).to eq '{"var1":"Hello","var2":"world"}'
       end
 
     end

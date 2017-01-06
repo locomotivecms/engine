@@ -71,6 +71,10 @@ module Locomotive
           dynamic_value_of(name).pluck_with_natural_order(:_slug)
         end
 
+        def expose_json_field(name)
+          expose_default_field(name).try(:to_json)
+        end
+
         def dynamic_value_of(name)
           self.object.send(name)
         end
