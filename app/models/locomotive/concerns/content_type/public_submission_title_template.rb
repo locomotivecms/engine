@@ -13,7 +13,7 @@ module Locomotive
           template = ::Liquid::Template.parse(self.public_submission_title_template, {})
 
           assigns   = { 'site' => self.site, 'entry' => entry }.merge(options)
-          registers = { site: self.site }
+          registers = { site: self.site, services: Locomotive::Steam::Services.build_instance }
 
           template.render(::Liquid::Context.new({}, assigns, registers))
         end
