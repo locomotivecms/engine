@@ -47,7 +47,10 @@ module Locomotive
 
     def new_url_redirection
       if params[:url_redirection].present? && params[:url_redirection].include?(' ')
-        render partial: 'url_redirection', locals: { url_redirection: params[:url_redirection].split(' ') }
+        source, target = params[:url_redirection].split(' ')
+        render partial: 'url_redirection', locals: {
+          url_redirection: { 'source' => source, 'target' => target }
+        }
       else
         head :unprocessable_entity
       end

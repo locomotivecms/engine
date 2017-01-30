@@ -75,6 +75,12 @@ module Locomotive
       app.config.i18n.available_locales = Locomotive.config.locales
     end
 
+    initializer 'locomotive.notifications' do
+      ActiveSupport::Notifications.subscribe('steam.serve.url_redirection') do |name, start, finish, id, payload|
+        Locomotive::Site.inc_url_redirection_counter(payload[:site_id], payload[:url])
+      end
+    end
+
     initializer 'steam' do |app|
       require 'locomotive/steam_adaptor'
     end

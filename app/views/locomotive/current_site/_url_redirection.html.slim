@@ -1,16 +1,20 @@
-.item.row data-id=url_redirection.first
+.item.row data-id=url_redirection['source']
 
-  = hidden_field_tag "site[url_redirections][]", url_redirection.first
-  = hidden_field_tag "site[url_redirections][]", url_redirection.last
+  = hidden_field_tag "site[url_redirections][]", url_redirection['source']
+  = hidden_field_tag "site[url_redirections][]", url_redirection['target']
 
   .inner-row.col-md-12
 
     .text
-      = url_redirection.first
+      = url_redirection['source']
       | &nbsp;&nbsp;&nbsp;
       i class="fa fa-arrow-right"
       | &nbsp;&nbsp;&nbsp;
-      = url_redirection.last
+      = url_redirection['target']
+      - if url_redirection['counter']
+        | &nbsp;&nbsp;
+        small
+          = "(#{url_redirection['counter']})"
 
     .buttons
       = link_to '#', class: 'delete' do
