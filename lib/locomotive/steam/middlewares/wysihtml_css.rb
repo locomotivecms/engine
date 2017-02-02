@@ -12,7 +12,7 @@ module Locomotive
           status, headers, response = @app.call(env)
 
           if content?(env['steam.page'], response)
-            url   = ::ActionController::Base.helpers.stylesheet_url('locomotive/wysihtml5_editor')
+            url   = ::ActionController::Base.helpers.stylesheet_path('locomotive/wysihtml5_editor')
             html  = %(<link rel="stylesheet" type="text/css" href="#{url}">)
             response.first.gsub!('</head>', %(#{html}</head>))
           end
