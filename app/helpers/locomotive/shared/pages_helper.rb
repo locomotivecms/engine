@@ -108,6 +108,10 @@ module Locomotive
           depth >= 2 ? MAX_WIDTH[depth - 2 + inc] : nil
         end
 
+        def show?
+          controller.send(:policy, page).show?
+        end
+
         alias :to_param :_id
 
       end

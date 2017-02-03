@@ -61,6 +61,7 @@ module Locomotive
               optional :seo_title
               optional :meta_keywords
               optional :meta_description
+              optional :display_settings
             end
           end
           post do
@@ -97,6 +98,7 @@ module Locomotive
               optional :seo_title
               optional :meta_keywords
               optional :meta_description
+              optional :display_settings
             end
           end
           put ':id' do

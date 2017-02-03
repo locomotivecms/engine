@@ -24,6 +24,9 @@ module Locomotive
         # Editable elements
         attrs :editable_elements_attributes
 
+        # Display settings
+        attrs :display_settings
+
         def initialize(site, attributes = {}, existing_page = nil)
           @site = site
           @existing_page = existing_page
@@ -60,6 +63,13 @@ module Locomotive
           self.redirect = true if value.present?
 
           set_attribute :redirect_url, value
+        end
+
+        def display_settings=(settings)
+          (settings || {}).each do |k, v|
+            settings[k] = v == 'true'
+          end
+          set_attribute(:display_settings, settings)
         end
 
       end

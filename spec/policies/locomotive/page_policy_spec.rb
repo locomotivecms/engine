@@ -26,4 +26,29 @@ describe Locomotive::PagePolicy do
 
   end
 
+  describe '#show?' do
+
+    subject { policy.show? }
+
+    let(:membership) { build(:admin) }
+    it { is_expected.to eq true }
+
+    context 'hidden page' do
+
+      let(:page) { build(:page, display_settings: { 'hidden' => true })}
+
+      context 'admin' do
+        it { is_expected.to eq true }
+      end
+
+      context 'author' do
+        let(:membership) { build(:author) }
+        it { is_expected.to eq false }
+      end
+
+
+    end
+
+  end
+
 end

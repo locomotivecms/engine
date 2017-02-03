@@ -1,30 +1,31 @@
-li id="node-#{page._id}" class=page.class_names
-  - url = page.redirect? ? edit_page_path(current_site, page) : editable_elements_path(current_site, page)
+- if  page.show?
+  li id="node-#{page._id}" class=page.class_names
+    - url = page.redirect? ? edit_page_path(current_site, page) : editable_elements_path(current_site, page)
 
-  = link_to url do
-    - if page.draggable?
-      i class="fa fa-bars icon #{page.draggable}"
-    - else
-      i class="fa fa-file-text-o"
-    span.text style="#{page.text_inline_style}"
-      = page.title
+    = link_to url do
+      - if page.draggable?
+        i class="fa fa-bars icon #{page.draggable}"
+      - else
+        i class="fa fa-file-text-o"
+      span.text style="#{page.text_inline_style}"
+        = page.title
 
-  - unless page.translated?
-    i.fa.fa-globe.untranslated
+    - unless page.translated?
+      i.fa.fa-globe.untranslated
 
-  - if page.children?
-    ul.sidebar-sublist.leaves data-url=sort_page_path(current_site, page)
+    - if page.children?
+      ul.sidebar-sublist.leaves data-url=sort_page_path(current_site, page)
 
-      = render partial: 'locomotive/shared/sidebar/page', collection: page.nodes
+        = render partial: 'locomotive/shared/sidebar/page', collection: page.nodes
 
-      - if page.templatized_children? && !page.templatized?
-        - if content_type = page.templatized_page.content_type
-          li.list-entries
-            = link_to content_entries_path(current_site, content_type.slug) do
-                i.fa.fa-list-ul.icon
-                span.text style="#{page.deeper_text_inline_style}"= t(:list_content_entries, name: content_type.name.pluralize, scope: 'locomotive.pages.index')
+        - if page.templatized_children? && !page.templatized?
+          - if content_type = page.templatized_page.content_type
+            li.list-entries
+              = link_to content_entries_path(current_site, content_type.slug) do
+                  i.fa.fa-list-ul.icon
+                  span.text style="#{page.deeper_text_inline_style}"= t(:list_content_entries, name: content_type.name.pluralize, scope: 'locomotive.pages.index')
 
-          li.new-entry.sidebar-list-add
-            = link_to new_content_entry_path(current_site, content_type.slug) do
-              i.fa.fa-plus.icon
-              span.text style="#{page.deeper_text_inline_style}"= t(:new_content_entry, name: content_type.name.singularize, scope: 'locomotive.pages.index')
+            li.new-entry.sidebar-list-add
+              = link_to new_content_entry_path(current_site, content_type.slug) do
+                i.fa.fa-plus.icon
+                span.text style="#{page.deeper_text_inline_style}"= t(:new_content_entry, name: content_type.name.singularize, scope: 'locomotive.pages.index')

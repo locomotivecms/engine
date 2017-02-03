@@ -28,6 +28,7 @@ module Locomotive
     field :published,           type: Boolean, default: false
     field :cache_enabled,       type: Boolean, default: true
     field :response_type,       default: 'text/html'
+    field :display_settings,    type: Hash
 
     ## indexes ##
     index parent_id: 1
@@ -95,6 +96,10 @@ module Locomotive
 
     def translated_in
       self.title_translations.try(:keys)
+    end
+
+    def hidden?
+      (self.display_settings || {})['hidden'] || false
     end
 
     def update_without_validation_and_callback!
