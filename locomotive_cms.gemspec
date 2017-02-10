@@ -28,41 +28,41 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'pundit',                          '~> 1.1.0'
 
-  s.add_dependency 'mongoid',                         '~> 5.1.3'
-  s.add_dependency 'mongoid-tree',                    '~> 2.0.1'
+  s.add_dependency 'mongoid',                         '~> 5.1.6'
+  s.add_dependency 'mongoid-tree',                    '~> 2.1.0'
   s.add_dependency 'mongo_session_store-rails4',      '~> 6.0.0'
 
   s.add_dependency 'custom_fields',                   '~> 2.8.0'
   s.add_dependency 'locomotivecms_steam',             '~> 1.3.0'
 
-  s.add_dependency 'slim',                            '~> 3.0.6'
-  s.add_dependency 'simple_form',                     '~> 3.2.0'
+  s.add_dependency 'slim',                            '~> 3.0.7'
+  s.add_dependency 'simple_form',                     '~> 3.4.0'
   s.add_dependency 'kaminari',                        '~> 0.16.3'
   s.add_dependency 'bootstrap-kaminari-views',        '~> 0.0.5'
-  s.add_dependency 'responders',                      '~> 2.1.0'
-  s.add_dependency 'rails-i18n',                      '~> 4.0.6'
+  s.add_dependency 'responders',                      '~> 2.3.0'
+  s.add_dependency 'rails-i18n',                      '~> 4.0.9'
 
   s.add_dependency 'jquery-rails',                    '~> 4.1.0'
   s.add_dependency 'jquery-ui-rails',                 '~> 5.0.3'
   s.add_dependency 'codemirror-rails',                '~> 5.6'
   s.add_dependency 'flash_cookie_session',            '~> 1.1.1'
   s.add_dependency 'bootstrap-sass',                  '~> 3.3.6'
-  s.add_dependency 'autoprefixer-rails',              '~> 6.3.3.1'
+  s.add_dependency 'autoprefixer-rails',              '~> 6.7.2'
 
-  s.add_dependency 'font-awesome-sass',               '~> 4.5.0'
+  s.add_dependency 'font-awesome-sass',               '~> 4.7.0'
   s.add_dependency 'nprogress-rails',                 '~> 0.1.6.7'
 
-  s.add_dependency 'highline',                        '~> 1.7.1'
+  s.add_dependency 'highline',                        '~> 1.7.8'
   s.add_dependency 'bazaar',                          '~> 0.0.2'
-  s.add_dependency 'json-schema',                     '~> 2.6.1'
+  s.add_dependency 'json-schema',                     '~> 2.8.0'
 
   s.add_dependency 'carrierwave-mongoid',             '~> 0.8.1'
-  s.add_dependency 'dragonfly',                       '~> 1.0.7'
-  s.add_dependency 'rack-cache',                      '~> 1.1'
+  s.add_dependency 'dragonfly',                       '~> 1.1.1'
+  s.add_dependency 'rack-cache',                      '~> 1.7.0'
   s.add_dependency 'mime-types',                      '~> 2.6.2'
   s.add_dependency 'mimetype-fu',                     '~> 0.1.2'
 
-  s.add_dependency 'multi_json',                      '~> 1.11.0'
+  s.add_dependency 'multi_json',                      '~> 1.12.1'
   s.add_dependency 'actionmailer-with-request',       '~> 0.4.0'
 
   s.add_dependency 'grape',                           '~> 0.12.0'

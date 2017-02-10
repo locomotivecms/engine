@@ -37,7 +37,7 @@ describe 'locomotive/my_account/edit', type: :view do
   describe 'i18n' do
 
     it 'renders a localized label' do
-      expect(subject).to include('<label class="api_key optional control-label" for="account_api_key">API key</label>')
+      expect(subject).to include('<label class="control-label api_key optional" for="account_api_key">API key</label>')
     end
 
     it 'renders a localized hint' do

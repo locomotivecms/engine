@@ -62,7 +62,7 @@ describe Locomotive::Concerns::Site::Metafields do
       context 'protected field names' do
 
         let(:schema) { [{ 'label' => 'Social', 'fields' => [{ 'name' => 'method_missing', 'type' => 'string' }] }] }
-        it { is_expected.to eq(["The property '#/0/fields/0/name' of type String matched the disallowed schema"]) }
+        it { is_expected.to eq(["The property '#/0/fields/0/name' of type string matched the disallowed schema"]) }
 
       end
 
