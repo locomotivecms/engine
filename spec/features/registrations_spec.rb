@@ -4,7 +4,7 @@ describe 'User registration' do
   context 'registration enabled' do
     it 'login screen shows link to create account' do
       visit locomotive.sign_in_path
-      expect(page).to have_content('Do not have an account?')
+      expect(page).to have_content('Do not have a Fightin Texas Aggie account!?')
     end
   end
 
@@ -14,7 +14,7 @@ describe 'User registration' do
 
     it 'login screen does not show link to create account' do
       visit locomotive.sign_in_path
-      expect(page).to_not have_content('Do not have an account?')
+      expect(page).to_not have_content('Do not have a Fightin Texas Aggie account!?')
     end
   end
 end

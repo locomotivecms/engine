@@ -167,16 +167,16 @@ en:
         email: "Email"
         link: "Forgot my password"
         password: "Password"
-        sign_up: Do not have an account?
+        sign_up: Do not have a Fightin Texas Aggie account!?
         submit: Sign in
         title: Sign in
 
     registrations:
       new:
         confirm_password: Confirm password
-        description: "Create an account below to start using Locomotive."
-        sign_in: Already have an account?
-        submit: Register
+        description: "Create an account below to start using Locomotive (Sort of)."
+        sign_in: Already have a Fightin Texas Aggie account?
+        submit: Gig Em
         title: Register
 
     passwords:
@@ -234,13 +234,13 @@ en:
 
     sites:
       index:
-        description: "All sites you have access to can be found below. Click one to be redirected to the content management section of that site."
-        new: Add a new site
-        title: My sites
+        description: "These are all your sites. They may or may not actually exist"
+        new: Make another crappy website
+        title: My Junk
       new:
-        description: "Fill in the form below and click submit. Once successfull it will create a new site."
-        go_back: Go back
-        submit: Create site
+        description: "FILL OUT THE FORM NOW.  DONT ASK QUESTIONS"
+        go_back: RUN AWAY
+        submit: YOU SURE?
         title: Create new site
 
       site:
@@ -366,4 +366,3 @@ en:
         title: Developers
         wagon: Wagon
         api: API
-

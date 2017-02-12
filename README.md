@@ -1,77 +1,85 @@
-# Locomotive
+Following are instruction on how to set up a development enviroment on an Ubunutu Operating System using Oracle Virtual Box:
 
-[![Build Status](https://travis-ci.org/locomotivecms/engine.svg?branch=master)](https://travis-ci.org/locomotivecms/engine) [![Code Climate](https://codeclimate.com/github/locomotivecms/engine/badges/gpa.svg)](https://codeclimate.com/github/locomotivecms/engine) [![Dependency Status](https://gemnasium.com/locomotivecms/engine.svg)](https://gemnasium.com/locomotivecms/engine) [![Coverage Status](https://img.shields.io/coveralls/locomotivecms/engine.svg)](https://coveralls.io/r/locomotivecms/engine?branch=master) [![Join the chat at https://gitter.im/locomotivecms/engine](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/locomotivecms/engine?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+## VM Setup
 
-Locomotive is an open source platform to create, publish and edit sites (CMS). It is designed to save time and help you focus on what matters: front-end technology, standard development process and a very low learning curve for your clients.
+* Download [Oracle VirtualBox](https://www.virtualbox.org/wiki/Downloads) on your host machine
 
-Locomotive relies on a **very original workflow**:
+* Download the [Ubuntu ISO file](https://www.ubuntu.com/download/desktop)
 
-- Sites are coded locally using our open source tool: [Wagon](https://github.com/locomotivecms/wagon). A desktop version (not open source and not tested in v3) is also available [here](http://www.wagonapp.com).
-- Sites are deployed to the platform (engine) thanks to our internal API.
-- A back-office for the end-users is automatically generated based on the custom models and editable regions described by the developers.
+* Start Oracle Virtual Box. Make a 64 bit Ubuntu VM and then when it starts up give it the iso file.
 
-![Locomotive](https://dl.dropboxusercontent.com/u/20823269/locomotive-engine.png)
+## Project setup
 
-Visit the Locomotive official website [here](http://
-locomotive.works) for more information.
+* Use search and find the Terminal. Get ready :/
 
-## Features
+* Install Ruby on Rails: https://gorails.com/setup/ubuntu/16.04
+(I found PostgreSQL to be easier than mySQL when you get to that step)
 
-- Multi-sites natively supported
-- Uses Liquid, a simple and clean templating language
-- Easy to add custom content types, no SQL needed
-- Beautiful and intuitive editing interface
-- Can fully localize all the content and pages
-- Embed a Restful API to manage every site
-- Develop and preview sites locally with your favorite tools **(Wagon)**
-- Support for SASS, HAML and Coffee Script **(Wagon)**
+* Install [mongodb](https://www.digitalocean.com/community/tutorials/how-to-install-mongodb-on-ubuntu-16-04)
 
-## Instructions and help
+* Install [PhantomJS](https://gist.github.com/julionc/7476620)
 
-- [Documentation](https://locomotive-v3.readme.io/)
-- Get help with Locomotive or discuss technical issues on [Gitter](https://gitter.im/locomotivecms/engine?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) or [here](https://locomotive-v3.readme.io/discuss).
-- [Follow us on twitter](http://twitter.com/locomotivecms)
+________
 
-## Contribute
+## To initalize...
 
-V3 has launched! Which means a lot of stuff changed and we got bunch of new features shipped in. However, Locomotive will be updated frequently with more awesome features. Have a look at our [Trello](https://trello.com/b/kRiy1dZu/locomotive-v3) board to see what's next or see where you can help out.
+start mongodb (Do this every time you start the enviorment back up!):
 
-### Technologies
+`~$ sudo service mongod start`
 
-Here is a list of the main gems used to power the Locomotive platform:
+clone the repo:
 
-- Rails 4.2   - *web framework*
-- Bootstrap   - *UI framework*
-- Mongoid 5   - *Object-Document-Mapper for MongoDB 2/3*
-- Devise 3.4  - *Authentication*
-- Carrierwave - *Upload*
-- Pundit      - *Permissions*
+`~$ git clone https://github.com/GP4-Team3/engine.git`
 
-### Translating the back-office
+`
+_Note_ using `git clone git@github.com:GP4-Team3/engine.git` will sometimes deny you permission from cloning the repo due to public key issues. Using `git clone https://github.com/GP4-Team3/engine.git` is more reliable.
+OR
+if you forked it and want to make changes on your own git, replace GP4-Team3 with your username (If you are an outside organization, put your organizations name there, wherever your repo is.)
+`
 
-By default, the Locomotive back-office is fully translated in English, Dutch and Greek.
+Move into the directory containing the repo:
 
-Adding a new language is pretty straightforward since we now manage all our I18n translation keys in [Transifex](https://www.transifex.com), a platform dedicated to this kind of task.
+`~$ cd engine/`
 
-Here is our Transifex portal page: [https://www.transifex.com/locomotive/locomotive-engine](https://www.transifex.com/locomotive/locomotive-engine). Feel free to sign up and translate!
+Install the dependencies:
 
-### How to contribute
+`~$ bundle install`
 
-Locomotive is an open source project, we encourage contributions. If you have found a bug and want to contribute a fix, or have a new feature you would like to add, follow the steps below to get your patch into the project:
+(Should run perfectly, unless you are an outside group who has forked it from the locomotive repo. If it stops at capybara-webkit then comment out the line containing the capybara-webkit in the Gemfile. Do so with..
 
-- Install ruby, mongoDB and phantomjs
-- Clone the project <code>git clone git@github.com:locomotivecms/engine.git</code>
-- Setup a virtual host entry for <code>test.example.com</code> to point to localhost
-- Start mongodb if it is not already running
-- Run the tests <code>bundle exec rake</code>
-- Write your failing tests
-- Make the tests pass
-- [Create a GitHub pull request](http://help.github.com/send-pull-requests)
+`~$ sudo vi Gemfile`
 
-For new features (especially large ones) it is best to create a topic on the [Google group](https://groups.google.com/forum/?fromgroups#!forum/locomotivecms) first to make sure it fits into the goals of the project.
+)
 
-### Contact
+(If you are unfamiliar with unix text editors, you may edit the Gemfile within your repo on github, but you will have to follow the steps below for re-cloning, seen after the line, then re-run the bundle install command)
 
-Feel free to contact me at did at locomotivecms dot com.
+Start the application!:
 
-Copyright (c) 2016 NoCoffee, released under the MIT license
+`~$ bundle exec rails server`
+
+Then go to http://localhost:3000/locomotive To see the application running! :) Note the webpage takes a few minutes to load when you first run the server.
+
+________
+
+Pull your teammates changes:
+
+`~$ git pull origin master`
+
+Restart the server
+
+`~$ bundle exec rails server`
+
+Then go to http://localhost:3000/locomotive To see the you changes! :) Once again note the webpage takes a few minutes to load when you first run the server.
+
+
+________
+
+If you have any problems, contact Brandon Pruett!
+
+Pro tip: A good place to start looking for files to change are:
+
+`engine/app/assets/images/locomotive/`  (Delete and reupload images but keep the names the same!)
+
+and
+
+`engine/app/assets/stylesheets/locomotive/new/`
