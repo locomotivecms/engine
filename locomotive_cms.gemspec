@@ -18,7 +18,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'rake',                            '~> 10.5.0'
 
-  s.add_dependency 'rails',                           '~> 4.2.6'
+  s.add_dependency 'rails',                           '~> 4.2.8'
 
   s.add_dependency 'net-ssh',                         '~> 3.0.2'
 
