@@ -12,8 +12,12 @@ class Locomotive.Views.Inputs.MarkdownView extends Locomotive.Views.Inputs.TextV
 
     _.bindAll(@, 'insert_file')
 
-    @$textarea  = @$('textarea.markdown')
-    @editor     = CodeMirror.fromTextArea @$textarea[0],
+    @$textarea = @$('textarea.markdown')
+
+    # if the input is required then Chrome won't be able to submit the form
+    @$textarea.removeAttr('required')
+
+    @editor = CodeMirror.fromTextArea @$textarea[0],
       mode:         'markdown'
       tabMode:      'indent'
       lineWrapping: true
