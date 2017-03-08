@@ -86,7 +86,7 @@ describe Locomotive::EditableElementService do
       subject { service.update_all(elements_params) }
 
       it 'can update an editable file, initially created by the API' do
-        attributes = { editable_elements: [{ content: FixturedAsset.open('wrong.txt'), block: 'top', slug: 'banner', _type: 'file'}] }
+        attributes = { title: 'subpage', editable_elements: [{ content: FixturedAsset.open('wrong.txt'), block: 'top', slug: 'banner', _type: 'file'}] }
 
         # create the editable file in each locale
         %w(nl fr en).each do |locale|

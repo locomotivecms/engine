@@ -392,25 +392,40 @@ describe Locomotive::Page do
 
   describe 'redirect extension' do
 
-    before(:each) do
-      @page = build(:page, site: nil, redirect: true, redirect_url: 'http://www.google.com/')
-    end
+    let(:site) { nil }
+    let(:page) { build(:page, site: site, redirect: true, redirect_url: 'http://www.google.com/') }
 
     it 'is considered as a redirect page' do
-      expect(@page.redirect?).to eq(true)
+      expect(page.redirect?).to eq(true)
     end
 
     it 'validates the redirect_url if redirect is set' do
-      @page.redirect_url = nil
-      expect(@page).to_not be_valid
-      expect(@page.errors[:redirect_url]).to eq(["can't be blank"])
+      page.redirect_url = nil
+      expect(page).to_not be_valid
+      expect(page.errors[:redirect_url]).to eq(["can't be blank"])
     end
 
     it 'should validate format of redirect_url' do
-      @page.redirect_url = "invalid url with spaces"
-      expect(@page).to_not be_valid
-      expect(@page.errors[:redirect_url]).to eq(["is invalid"])
+      page.redirect_url = "invalid url with spaces"
+      expect(page).to_not be_valid
+      expect(page.errors[:redirect_url]).to eq(["is invalid"])
     end
+
+    context 'localized site' do
+
+      let(:site) { create(:site, locales: %w(en fr)) }
+
+      it 'validates the presence of redirect_url' do
+        ::Mongoid::Fields::I18n.locale = :en
+        page
+        ::Mongoid::Fields::I18n.locale = :fr
+        page.redirect_url = nil
+        ::Mongoid::Fields::I18n.locale = :en
+        expect(page).to be_valid
+      end
+
+    end
+
   end
 
   describe 'response type' do
