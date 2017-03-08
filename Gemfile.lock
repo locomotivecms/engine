@@ -159,15 +159,15 @@ GEM
     bson (4.2.1)
     builder (3.2.3)
     byebug (9.0.6)
-    capybara (2.7.1)
+    capybara (2.12.1)
       addressable
       mime-types (>= 1.16)
       nokogiri (>= 1.3.3)
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
-    capybara-webkit (1.10.1)
-      capybara (>= 2.3.0, < 2.8.0)
+    capybara-webkit (1.12.0)
+      capybara (>= 2.3.0, < 2.13.0)
       json
     carrierwave (0.10.0)
       activemodel (>= 3.2.0)
@@ -539,7 +539,7 @@ PLATFORMS
 DEPENDENCIES
   better_errors
   binding_of_caller
-  capybara-webkit (~> 1.10.1)
+  capybara-webkit (~> 1.12.0)
   coffee-rails (~> 4.1.0)
   coveralls (~> 0.7.2)
   custom_fields!
@@ -567,4 +567,4 @@ DEPENDENCIES
   uglifier (>= 2.5.3)
 
 BUNDLED WITH
-   1.11.2
+   1.14.6
