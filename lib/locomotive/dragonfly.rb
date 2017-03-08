@@ -25,7 +25,7 @@ module Locomotive
       if source.is_a?(String) || source.is_a?(Hash) # simple string or drop
         source = source['url'] if source.is_a?(Hash)
 
-        clean_source!(source)
+        source = clean_source(source)
 
         if source =~ /^http/
           file = self.app.fetch_url(source)
@@ -50,12 +50,14 @@ module Locomotive
 
     protected
 
-    def self.clean_source!(source)
+    def self.clean_source(source)
       # remove the leading / trailing whitespaces
-      source.strip!
+      _source = source.strip
 
       # remove the query part (usually, timestamp) if local file
-      source.sub!(/(\?.*)$/, '') unless source =~ /^http/
+      _source = _source.sub(/(\?.*)$/, '') unless _source =~ /^http/
+
+      _source
     end
 
   end
