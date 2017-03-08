@@ -11,6 +11,10 @@ module Locomotive
       [self.controller.controller_name, action].map(&:dasherize).join(' ')
     end
 
+    def application_name
+      Locomotive.config.name
+    end
+
     def title(title = nil)
       if title.nil?
         @content_for_title
@@ -31,6 +35,12 @@ module Locomotive
       else
         ''
       end
+    end
+
+    #= Sessions
+
+    def enable_registration?
+      current_site.nil? && Locomotive.config.enable_registration
     end
 
     #= Sidebar
@@ -71,6 +81,14 @@ module Locomotive
     end
 
     ## Tag helpers ##
+
+    def account_logo_tag
+      image_tag 'locomotive/logo-white.png'
+    end
+
+    def sidebar_logo_tag
+      image_tag 'locomotive/logo.png'
+    end
 
     def icon_tag(name)
       content_tag :i, '', class: ['fa', name].join(' ')

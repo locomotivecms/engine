@@ -39,10 +39,12 @@ fr:
         send_instructions: 'Vous allez recevoir un email avec les instructions nécessaires pour dé-vérouiller votre compte dans quelques minutes'
         unlocked: 'Votre compte à été dé-verouillé. Vous êtes connecté!'
     mailer:
-      locomotive_account:
-        confirmation_instructions: 'Instructions de validation'
-        reset_password_instructions: 'Instructions de rétablissement du mot de passe'
-        unlock_instructions: 'Instructions de déverrouillage.'
+      confirmation_instructions:
+        locomotive_account_subject: 'Instructions de validation'
+      reset_password_instructions:
+        locomotive_account_subject:  'Instructions de rétablissement du mot de passe'
+      unlock_instructions:
+        locomotive_account_subject: 'Instructions de déverrouillage.'
   locomotive:
     devise_mailer:
       common:

@@ -4,7 +4,7 @@ html xmlns='http://www.w3.org/1999/xhtml' lang=I18n.locale
     meta charset="utf-8"
     meta http-equiv="x-ua-compatible" content="ie=edge"
 
-    title= escape_once(strip_tags(error_title) + " | Locomotive")
+    title= escape_once(strip_tags(error_title) + " | #{application_name}")
 
     meta name="viewport" content="width=device-width, initial-scale=1"
 
@@ -19,6 +19,6 @@ html xmlns='http://www.w3.org/1999/xhtml' lang=I18n.locale
       .public-container
         .public-wrapper
           = link_to root_path, class: 'brand-logo' do
-            = image_tag 'locomotive/logo-white.png'
+            = account_logo_tag
 
           = yield

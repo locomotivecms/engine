@@ -117,7 +117,9 @@ module Locomotive
       end
 
       def default_host?(request)
-        (default_host && request.host == default_host) || localhost?(request)
+        request.env['locomotive.default_host'].present? ||
+        (default_host && request.host == default_host) ||
+        localhost?(request)
       end
 
       def localhost?(request)

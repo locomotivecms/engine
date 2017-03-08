@@ -1,6 +1,6 @@
 .sidebar role="tablist" aria-multiselectable="false" data-current-section=sidebar_current_section_class
   = link_to root_path, class: 'sidebar-logo' do
-    = image_tag 'locomotive/logo.png'
+    = sidebar_logo_tag
 
   - cache(cache_key_for_sidebar) do
     = link_to dashboard_path(current_site), class: sidebar_link_class(:dashboard) do

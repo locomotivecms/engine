@@ -13,7 +13,7 @@ module Locomotive
       private
 
       def redirect_to_main_host
-        return if Locomotive.config.host.blank?
+        return if Locomotive.config.host.blank? || request.env['locomotive.default_host'].present?
 
         if request.host != Locomotive.config.host
           options = { host: Locomotive.config.host }

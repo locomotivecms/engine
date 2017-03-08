@@ -1,7 +1,7 @@
 - title t('locomotive.sessions.new.title')
 
 = link_to root_path, class: 'brand-logo' do
-  = image_tag 'locomotive/logo-white.png'
+  = account_logo_tag
 
 .public-box
   .public-intro
@@ -20,5 +20,5 @@
     = f.actions do
       = f.button :submit, t('.submit'), class: 'btn btn-primary'
 
-- if current_site.nil? && Locomotive.config.enable_registration
+- if enable_registration?
   = link_to t('.sign_up').html_safe, sign_up_path, class: 'public-link'

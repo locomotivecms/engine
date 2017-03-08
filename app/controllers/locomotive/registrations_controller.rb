@@ -10,6 +10,8 @@ module Locomotive
 
     helper Locomotive::BaseHelper
 
+    before_filter :set_locale
+
     private
 
     def after_sign_up_path_for(resource)
@@ -18,6 +20,10 @@ module Locomotive
 
     def configure_permitted_parameters
       devise_parameter_sanitizer.for(:sign_up) << :name
+    end
+
+    def set_locale
+      I18n.locale = Locomotive.config.default_locale
     end
 
   end
