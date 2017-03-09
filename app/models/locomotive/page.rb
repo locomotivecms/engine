@@ -40,7 +40,7 @@ module Locomotive
     slugify_from        :title
 
     ## callbacks ##
-    before_create       :localize_slug
+    before_create       :localize_default_attributes
     before_create       :build_fullpath
     before_update       :build_fullpath, unless: :skip_callbacks_on_update
     before_save         :record_current_locale, unless: :skip_callbacks_on_update
@@ -124,13 +124,13 @@ module Locomotive
       self.errors.empty?
     end
 
-    # The slug of a new page should be the same in all
+    # The title and slug of a new page should be the same in all
     # the locales of a site.
-    def localize_slug
-      _slug = self.slug
+    def localize_default_attributes
+      _title, _slug = self.title, self.slug
 
       self.site.each_locale(false) do |locale, _|
-        self.slug = _slug
+        self.title, self.slug = _title, _slug
       end
     end
 
