@@ -109,7 +109,7 @@ module Locomotive
         end
 
         def can_not_remove_default_locale
-          if self.persisted? && !self.locales.include?(self.default_locale_was)
+          if self.persisted? && !self.locales.map(&:to_s).include?(self.default_locale_was.to_s)
             self.errors.add :locales, I18n.t(:default_locale_removed, scope: [:errors, :messages, :site])
           end
         end
