@@ -1,0 +1,332 @@
+ja-JP:
+  locomotive:
+    locales:
+      en: 英語
+      de: ドイツ語
+      fr: フランス語
+      pl: ポーランド語
+      pt: ポルトガル語
+      pt-BR: "ブラジルポルトガル語"
+      it: イタリア語
+      nl: オランダ語
+      nb: ノルウェー語
+      es: スペイン語
+      ru: ロシア語
+      et: エストニア語
+      lt: リトアニア語
+      ja: 日本語
+      zh-CN: 中国語
+      cs: チェコ語
+      bg: ブルガリア語
+      sk: スロヴァキア語
+      sr: セルビア語
+      sv: スウェーデン語
+      el: ギリシャ語
+    messages:
+      confirm: よろしいですか?
+      unsaved_content_warning: "入力したデータが保存されていません。"
+    shared:
+      header:
+        welcome: '%{name}さん、ようこそ！'
+        sites: マイサイト
+        account: アカウント設定
+        see: Webで見る
+        help: ヘルプ
+        logout: ログアウト
+      sidebar:
+        dashboard: ダッシュボード
+        assets: アセット
+        pages: ページ
+        settings: 設定
+        metafields: プロパティ
+        developers: 開発者情報
+        content_types:
+          title: モデル
+        translations: 翻訳
+      list:
+        untranslated: 未翻訳
+        created_at: "%{distance} 前に作成"
+        created_by: "%{distance} 前に %{who} が作成"
+        updated_at: "%{distance} 前に更新"
+        updated_by: "%{distance} 前に %{who} が更新"
+      rte:
+        toolbar:
+          table:
+            merge: マージ
+            insert_row_before: 前へ行を追加
+            insert_row_after: 後ろへ行を追加
+            insert_col_before: 前へカラムを追加
+            insert_col_after: 後ろへカラムを追加
+            delete_row: 行を削除
+            delete_col: カラムを削除
+    errors:
+      '500':
+        title: アプリケーションエラー
+        message: "異常が発生しました。管理者へ連絡してください。"
+      '404':
+        title: ページなし
+        message: "要求されたページは存在しません。"
+      no_site:
+        title: サイトなし
+        next: "次 &rarr;"
+        message:
+          create_account: "アカウントを作成してからサイトを作成してください。"
+          add_domain: "<strong>%{host}</strong>をドメインリストに追加してください。"
+          sign_in: "サインインしてから、<strong>%{host}</strong>をドメインリストに追加してください。"
+    notifications:
+      new_content_entry:
+        subject: "[%{domain}][%{type}] 新しいエントリー"
+        title: "%{name} さん、 <b>%{domain}</b> サイトの新しいインスタンスが %{date} に作成されました。"
+        type: "モデル: %{type}"
+    activity:
+      site:
+        created: 'サイトを作成'
+      page:
+        created: ' %{page} ページを作成'
+        updated: '%{page} ページを更新'
+        destroyed: '%{page} ページを削除'
+        sorted: 'ページをソート'
+      editable_element:
+        updated_bulk: '%{pages} のコンテンツを更新'
+      content_entry:
+        created: '%{entry} を %{content_type} へ追加'
+        created_public: '%{entry} を公開フォームの  %{content_type} へ追加'
+        updated: '%{content_type} から %{entry} を更新'
+        destroyed: '%{content_type} から %{entry} を削除'
+        sorted: '%{content_type} をソート'
+      content_asset:
+        created_bulk: '%{count} アセットをアップロード'
+        destroyed: '%{name} アセットを削除'
+      membership:
+        created: '%{name} をサイトに追加'
+      site_metafields:
+        updated: '%{label} を更新'
+    pagination:
+      first: "&laquo;"
+      last: "&raquo;"
+      previous: "&lsaquo;"
+      next: "&rsaquo;"
+      truncate: "&hellip;"
+    custom_fields:
+      select_options:
+        edit:
+          title: "%{type} &mdash; 編集オプション"
+          back: "エントリーへ戻る"
+        option:
+          edit: 編集
+          apply: 適用
+          cancel: キャンセル
+      types:
+        belongs_to:
+          edit: 編集
+          placeholder: "%{name} を選択"
+          searching: 検索中...
+          no_matches: 該当なし
+          too_short: 1文字以上入力してください
+        many_to_many:
+          placeholder: "%{name} から選択"
+          searching: 検索中...
+          no_matches: 該当なし
+          too_short: 1文字以上入力してください
+        select:
+          edit: オプション編集
+        file:
+          delete_file: ファイル削除
+        has_many:
+          new_label: 追加
+      form:
+        required: 必須
+        default_label: フィールド名
+        select_options:
+          ask_name: "オプションのラベルをタイプ"
+    dashboard:
+      show:
+        title: 'ダッシュボード'
+      url:
+        title: "サイトURL:"
+        visit: '表示'
+        change_domain: 'ドメイン名を指定'
+      activity:
+        title: アクティビティ
+        unknown_account: だれか
+        load_more: もっとロードする
+        loading_activity_feed: ロード中...
+    sessions:
+      new:
+        email: "Eメール"
+        link: "パスワードを忘れた場合はこちら"
+        password: "パスワード"
+        sign_up: アカウントを作成しますか?
+        submit: サインイン
+        title: サインイン
+    registrations:
+      new:
+        confirm_password: パスワードを再度入力
+        description: "Locomotiveを使用するにはアカウントが必要です。"
+        sign_in: 既にアカウントをお持ちですか?
+        submit: アカウント登録
+        title: アカウント登録
+    passwords:
+      new:
+        description: "メールアドレスを送信してください。パスワードのリセット手順をメールでお知らせ致します。"
+        link: "ログインページへ戻る"
+        email: "メールアドレス"
+        submit: "送信"
+        title: "パスワードをお忘れですか?"
+      edit:
+        description: "新しいパスワードを入力してください。"
+        link: "ログインページへ戻る"
+        password: "新しいパスワード"
+        password_confirmation: "パスワード確認"
+        submit: "パスワードを更新"
+        title: "パスワードをリセット"
+    pages:
+      index:
+        title: 'ページ'
+        new: '新規ページ'
+        list_content_entries: "リスト %{name}"
+        new_content_entry: "新規 %{name}"
+      new:
+        title: 新規ページ
+        help: "以下を入力してください。デフォルトは非公開に設定されています。"
+      edit:
+        title: "%{title} &mdash; <small>%{fullpath}</small>"
+      form:
+        no_layout: 親ページのレイアウトを使用
+        redirect_type:
+          permanent: "永続 (301)"
+          temporary: "一時 (302)"
+    editable_elements:
+      index:
+        redirection_error: "Locomotiveページ以外は編集できません。"
+        iframe:
+          buttons:
+            edit: 編集
+      index_without_preview:
+        title: "%{title} &mdash; <small>%{fullpath}</small>"
+      edit:
+        settings_link: '設定'
+        no_editable_elements: '編集エレメントなし'
+        parsing_error: "<b>テンプレートをパースできません。</b><br/>Wagonで動作するか確認してください。"
+        blocks:
+          all: すべて
+          unknown: 不明
+      form:
+        model:
+          buttons:
+            list: 管理
+            edit: 編集
+    sites:
+      index:
+        description: "クリックすると、コンテンツマネージメントセクションに移動します。"
+        new: 新しいサイトを追加
+        title: マイサイト
+      new:
+        description: "入力してサイト作成ボタンをクリックしてください。新しいサイトが作成されます。"
+        go_back: 戻る
+        submit: サイト作成
+        title: 新規サイト
+      site:
+        no_domain: ドメインなし
+    current_site:
+      edit:
+        title: 編集中のサイト
+      form:
+        main:
+          new_membership: "アカウント追加"
+        advanced:
+          destroy: "このサイトを削除"
+          confirm_destroy: "確認のためサイト名を入力してください。"
+    current_site_metafields:
+      index:
+        title: プロパティを編集
+        no_metafields: サイトに定義されたメタフィールドがありません。
+    memberships:
+      roles:
+        admin: 管理者
+        designer: デザイナー
+        author: 著者
+      new:
+        title: 新しいメンバー
+        help: "追加アカウントのメールアドレスを入力してください。入力されていないときは、アカウント作成フォームに移ります。"
+        back: "サイト設定へ戻る"
+      edit:
+        title: "<b>%{name}</b> のメンバーシップを編集"
+        back: "サイト設定へ戻る"
+    accounts:
+      new:
+        title: 新しいアカウント
+        help: "入力してください。"
+    my_account:
+      edit:
+        title: アカウント編集
+      form:
+        api:
+          api_key: "Wagonがサイトをディプロイするために使用しています。（Wagonサイトの config/deploy.yml ファイルを確認してください。）"
+    translations:
+      untranslated: "未翻訳のロケール"
+      index:
+        title: 翻訳
+        no_items: "翻訳はありません。"
+        search_placeholder: "キーまたは翻訳を入力"
+        help: "オレンジ（一部ローカライズ）と赤（ローカライズなし）のドットのエントリを全て翻訳してください。"
+        filter_by:
+          all: 全て
+          done: 翻訳済み
+          partially: 一部翻訳済み
+          none: 未翻訳
+      edit:
+        title: "翻訳 &mdash; %{key} を編集中"
+      form:
+        not_translated: "未翻訳"
+    content_assets:
+      index:
+        title: "アセット"
+        upload: ファイルアップロード
+      edit_in_drawer:
+        buttons:
+          resize: "リサイズ"
+          crop: "クロップ"
+          apply: "適用"
+      dropzone:
+        instructions: "<strong>ここにファイルをドロップ</strong><br/>You can also"
+        browse: "ファイルを選択"
+      list:
+        no_items: "アセットはありません。"
+        buttons:
+          select: "選択"
+          edit: "編集"
+      nav:
+        types:
+          all: 全て
+          pdf: PDF
+          image: イメージ
+          media: リッチメディア
+          others: その他
+      search_form:
+        placeholder: ファイル名で検索
+    public_submission_accounts:
+      edit:
+        title: "%{name} &mdash; 通知設定"
+    content_entries:
+      index:
+        title: '%{type}'
+        download: ダウンロードしたエントリー
+        new: 新しいエントリー
+        edit_notification_settings: 通知設定を編集
+        search_placeholder: "検索キーワードを入力"
+        group_by:
+          all: 全体
+      list:
+        no_items: "エントリーがありません。作成するには <a href=\"%{url}\">ここ</a>をクリックしてください。"
+      new:
+        title: '%{type} &mdash; 新規'
+      edit:
+        title: '%{type} &mdash; 編集'
+      shared:
+        back: '&larr; リストへ戻る'
+    developers_documentation:
+      show:
+        title: 開発者情報
+        wagon: Wagon
+        api: API

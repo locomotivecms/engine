@@ -13,6 +13,7 @@ de:
       es: Spanisch
       ru: Russisch
       et: Estländisch
+      lt: Litauisch
       ja: Japanisch
       zh-CN: Chinesisch
       cs: Tschechisch
@@ -23,23 +24,24 @@ de:
       el: Griechisch
     messages:
       confirm: Sind Sie sicher?
-      unsaved_content_warning: "Bitte bestätigen sie dass sie die Seite verlassen wollen - eingegebene Daten gehen "
+      unsaved_content_warning: "Bitte bestätigen Sie, dass sie die Seite verlassen wollen - eingegebene Daten werden möglicherweise nicht gespeichert."
     shared:
       header:
         welcome: Willkommen, %{name}
-        sites: Meine Seiten
-        account: Account Einstellungen
+        sites: Meine Webseiten
+        account: Mein Konto
         see: Zur Website
         help: Hilfe
         logout: Abmelden
       sidebar:
-        dashboard: Dashboard
+        dashboard: Übersicht
         assets: Medien
-        settings: Allgemeine Einstellungen
+        pages: Seiten
+        settings: Einstellungen
         metafields: Eigenschaften
         developers: Entwickler
         content_types:
-          title: Inhalte
+          title: Modelle
         translations: Übersetzungen
       list:
         untranslated: nicht übersetzt
@@ -51,52 +53,54 @@ de:
         toolbar:
           table:
             merge: Zusammenfügen
-            insert_row_before: Reihe davor einfügen
-            insert_row_after: Reihe danach einfügen
+            insert_row_before: Zeile davor einfügen
+            insert_row_after: Zeile danach einfügen
             insert_col_before: Spalte davor einfügen
             insert_col_after: Spalte danach einfügen
-            delete_row: Reihe löschen
+            delete_row: Zeile löschen
             delete_col: Spalte löschen
     errors:
       '500':
         title: Anwendungsfehler
-        message: "Es tut uns leid, etwas ist schief gegangen. Bitte benachrichtigen Sie den/die Administrator/in"
+        message: "Es tut uns leid, etwas ist schief gegangen. Bitte benachrichtigen Sie den Administrator."
       '404':
-        title: Webseite nicht gefunden
+        title: Seite nicht gefunden
         message: "Die angeforderte Seite existiert nicht."
       no_site:
-        title: Seite nicht gefunden
+        title: Webseite nicht gefunden
         next: "Weiter &rarr;"
         message:
-          create_account: "Bitte erstellen Sie zuerst einen Account und dann eine Seite."
-          add_domain: "Fügen Sie die Domain <strong>%{host}</strong> zu der Liste von Domains bei einer Ihrer Seiten hinzu."
-          sign_in: "Loggen Sie sich bitte erst ein. Fügen Sie dann die Domain <strong>%{host}</strong> zu der Liste von Domains bei einer Ihrer Seiten hinzu."
+          create_account: "Bitte erstellen Sie zuerst einen Konto und dann eine Webseite."
+          add_domain: "Fügen Sie die Domain <strong>%{host}</strong> zur Domainliste einer Ihrer Webseiten hinzu."
+          sign_in: "Melden Sie sich bitte erst an. Fügen Sie dann die Domain <strong>%{host}</strong> zur Domainliste einer Ihrer Webseiten hinzu."
     notifications:
       new_content_entry:
         subject: "[%{domain}][%{type}] Neuer Eintrag"
         title: "Hallo %{name}, ein neuer Eintrag wurde am %{date} auf Ihrer Webseite <b>%{domain}</b> erstellt"
-        type: "Model: %{type}"
+        type: "Modell: %{type}"
     activity:
       site:
         created: 'hat die Webseite erstellt'
       page:
-        created: 'Hat die Seite %{page} erstellt'
-        updated: 'Hat die Seite %{page} aktualisiert'
-        destroyed: 'Hat die Seite %{page} gelöscht'
+        created: 'hat die Seite %{page} erstellt'
+        updated: 'hat die Seite %{page} aktualisiert'
+        destroyed: 'hat die Seite %{page} gelöscht'
         sorted: 'Sortierte Seiten'
       editable_element:
-        updated_bulk: 'Inhalt von %{pages} wurde modifiziert'
+        updated_bulk: 'hat den Inhalt von %{pages} geändert'
       content_entry:
         created: '%{entry} wurde zu %{content_type} hinzugefügt'
-        created_public: '%{entry} wurde zu %{content_type} von einem Öffentlichen Formular hinzugefügt'
+        created_public: '%{entry} wurde zu %{content_type} von einem öffentlichen Formular hinzugefügt'
         updated: '%{entry} von %{content_type} wurde aktualisiert'
         destroyed: '%{entry} von %{content_type} wurde entfernt'
         sorted: 'sortiert %{content_type}'
       content_asset:
-        created_bulk: '%{count} asset(s) wurden hochgeladen'
-        destroyed: 'Asset %{name} wurde entfernt'
+        created_bulk: '%{count} Mediendatei(n) wurde(n) hochgeladen'
+        destroyed: 'Mediendatei %{name} wurde entfernt'
       membership:
-        created: '%{name} wurde zur Seite hinzugefügt'
+        created: '%{name} wurde zur Webseite hinzugefügt'
+      site_metafields:
+        updated: '%{label} aktualisiert'
     pagination:
       first: "&laquo;"
       last: "&raquo;"
@@ -110,7 +114,7 @@ de:
           back: "Zurück zum Eintrag"
         option:
           edit: Bearbeiten
-          apply: Anfragen
+          apply: Anwenden
           cancel: Abbrechen
       types:
         belongs_to:
@@ -129,7 +133,7 @@ de:
         file:
           delete_file: Datei löschen
         has_many:
-          new_label: Weiter hinzufügen
+          new_label: Neues Element hinzufügen
       form:
         required: Erforderlich
         default_label: Feldname
@@ -137,7 +141,7 @@ de:
           ask_name: "Bezeichnung der Option eingeben"
     dashboard:
       show:
-        title: 'Dashboard'
+        title: 'Übersicht'
       url:
         title: "URL der Webseite:"
         visit: 'Besuchen'
@@ -149,42 +153,42 @@ de:
         loading_activity_feed: Lade...
     sessions:
       new:
-        email: "Email"
-        link: "Kennwort vergessen"
-        password: "Kennwort"
+        email: "E-Mail"
+        link: "Passwort vergessen"
+        password: "Passwort"
         sign_up: Haben Sie kein Konto?
         submit: Anmelden
         title: Anmelden
     registrations:
       new:
-        confirm_password: Kennwort bestätigen
-        description: "Erstellen Sie ein Konto um mit Locomotive zu beginnen."
+        confirm_password: Passwort bestätigen
+        description: "Erstellen Sie ein Konto um mit der Nutzung von Locomotive zu beginnen."
         sign_in: Sie haben bereits ein Konto?
         submit: Registrieren
         title: Registrieren
     passwords:
       new:
-        description: "Geben Sie Ihre Email unten ein und Sie erhalten eine Email mit Anleitung zum zurücksetzen des Kennworts."
+        description: "Geben Sie Ihre E-Mail-Adresse unten ein und Sie erhalten eine E-Mail mit Anleitung zum Zurücksetzen Ihres Passworts."
         link: "Zurück zur Anmeldeseite"
-        email: "Ihre Email"
+        email: "Ihre E-Mail-Adresse"
         submit: "Absenden"
-        title: "Kennwort vergessen"
+        title: "Passwort vergessen"
       edit:
-        description: "Geben Sie Ihr Kennwort unten ein."
+        description: "Geben Sie Ihr neues Passwort unten ein."
         link: "Zurück zur Anmeldeseite"
-        password: "Ihr neues Kennwort"
-        password_confirmation: "Kennwort bestätigen"
-        submit: "Kennwort aktualisieren"
-        title: "Kennwort zurücksetzen"
+        password: "Ihr neues Passwort"
+        password_confirmation: "Passwort bestätigen"
+        submit: "Passwort aktualisieren"
+        title: "Passwort zurücksetzen"
     pages:
       index:
         title: 'Seiten'
         new: 'Neue Seite'
-        list_content_entries: "%{name} anzeigen"
+        list_content_entries: "%{name} auflisten"
         new_content_entry: "Neuen Eintrag für %{name}"
       new:
         title: Neue Seite
-        help: "Füllen Sie unten stehendes Formular aus um Ihre Seite zu erstellen. Bitte beachten Sie daß die Seite Standardmäßig nicht veröffentlicht ist. "
+        help: "Füllen Sie unten stehendes Formular aus um Ihre Seite zu erstellen. Bitte beachten Sie, dass die Seite standardmäßig nicht veröffentlicht ist. "
       edit:
         title: "%{title} &mdash; <small>%{fullpath}</small>"
       form:
@@ -194,16 +198,16 @@ de:
           temporary: "Temporär (302)"
     editable_elements:
       index:
-        redirection_error: "Das bearbeiten einer nicht Locomitve Seite ist nicht erlaubt"
+        redirection_error: "Das Bearbeiten einer Nicht-Locomotive-Seite ist nicht erlaubt."
         iframe:
           buttons:
             edit: Bearbeiten
       index_without_preview:
         title: "%{title} &mdash; <small>%{fullpath}</small>"
       edit:
-        settings_link: 'Einstelllungen'
-        no_editable_elements: 'Keine Bearbeitbaren Elemente gefunden'
-        parsing_error: "<b>Es tut uns Leid aber wir konnten das Template Ihrer Webseite nicht verarbeiten.</b><br/>Prüfen Sie zuerst ob Ihr Template mit Wagon funktioniert."
+        settings_link: 'Einstellungen'
+        no_editable_elements: 'Keine bearbeitbaren Elemente gefunden'
+        parsing_error: "<b>Es tut uns Leid, aber wir konnten die Vorlage Ihrer Webseite nicht verarbeiten.</b><br/>Prüfen Sie zuerst, ob Ihre Vorlage mit Wagon funktioniert."
         blocks:
           all: Alle
           unknown: Unbekannt
@@ -214,11 +218,11 @@ de:
             edit: Bearbeiten
     sites:
       index:
-        description: "Alle Seiten auf dem Sie zugriff haben werden unten aufgelistet. Klicken Sie auf eines um zur Content Management Sektion der jeweiligen Seite umgeleitet zu werden. "
+        description: "Hier finden Sie alle Webseiten auf die Sie Zugriff haben. Klicken Sie auf einen Titel um zur Inhaltsverwaltung der jeweiligen Seite zu gelangen. "
         new: Neue Webseite hinzufügen
-        title: Meine Seiten
+        title: Meine Webseiten
       new:
-        description: "Füllen Sie unten stehendes Formular aus und klicken auf Absenden. Bei Erfolg wird eine neue Webseite erstellt."
+        description: "Füllen Sie unten stehendes Formular aus und klicken Sie auf Absenden. Bei Erfolg wird eine neue Webseite erstellt."
         go_back: Zurück
         submit: Webseite erstellen
         title: Neue Webseite erstellen
@@ -226,17 +230,17 @@ de:
         no_domain: Noch keine Domain
     current_site:
       edit:
-        title: Aktuelle Seite bearbeiten
+        title: Aktuelle Webseite bearbeiten
       form:
         main:
-          new_membership: "Konto hinzufügen"
+          new_membership: "Nutzer hinzufügen"
         advanced:
-          destroy: "Diese Seite löschen"
-          confirm_destroy: "Bestätigen Sie durch Eingabe des Seitennamens."
+          destroy: "Diese Webseite löschen"
+          confirm_destroy: "Bestätigen Sie durch Eingabe des Webseitennamens."
     current_site_metafields:
       index:
         title: Eigenschaften bearbeiten
-        no_metafields: Es gibt keine definierten Mettafelder auf Ihrer Webseite
+        no_metafields: Es wurden keine Metafelder für ihre Webseite festgelegt.
     memberships:
       roles:
         admin: Administrator
@@ -244,7 +248,7 @@ de:
         author: Autor
       new:
         title: Neue Mitgliedschaft
-        help: "Geben Sie die Mailadresse des hinzuzufügenden Kontos ein. Sollte das Konto noch nicht existieren werden Sie zum Konto Erstellungsformular weitergeleitet."
+        help: "Geben Sie die E-Mail-Adresse des hinzuzufügenden Kontos ein. Sollte das Konto noch nicht existieren, werden Sie zum Kontoerstellungsformular weitergeleitet."
         back: "Zurück zu Seiteneinstellungen"
       edit:
         title: "Mitgliedschaft für <b>%{name}</b> eingeben"
@@ -252,13 +256,13 @@ de:
     accounts:
       new:
         title: Neues Konto
-        help: "Füllen Sie das unten stehende Formular aus um ein neues Konto hinzuzufügen"
+        help: "Formular ausfüllen um ein neues Konto hinzuzufügen."
     my_account:
       edit:
         title: Mein Konto bearbeiten
       form:
         api:
-          api_key: "Wird von Wagon verwendet um Ihre Seite zu deployen. (prüfen Sie die Datei config/deploy.yml Ihrer Wagon Seite)"
+          api_key: "Wird von Wagon verwendet um Ihre Webseite hochzuladen (prüfen Sie die Datei config/deploy.yml Ihrer Wagon Seite)."
     translations:
       untranslated: "Fehlende Übersetzungen: %{list}"
       index:
@@ -282,13 +286,13 @@ de:
       edit_in_drawer:
         buttons:
           resize: "Größe ändern"
-          crop: "Beschneiden"
+          crop: "Zurechtschneiden"
           apply: "Anfragen"
       dropzone:
         instructions: "<strong>Ziehe eine Datei von deinem Computer hier hin.</strong><br/>Du kannst auch"
         browse: "eine Datei auswählen"
       list:
-        no_items: "Noch keine Medien vorhanden"
+        no_items: "Noch keine Medien vorhanden."
         buttons:
           select: "Auswählen"
           edit: "Bearbeiten"
@@ -310,7 +314,7 @@ de:
         download: Einträge herunterladen
         new: Neuer Eintrag
         edit_notification_settings: Benachrichtigungs-Einstellungen bearbeiten
-        search_placeholder: "Suchworte hier eingeben"
+        search_placeholder: "Suchbegriffe hier eingeben"
         group_by:
           all: Alle
       list:

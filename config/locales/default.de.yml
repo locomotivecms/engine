@@ -6,7 +6,7 @@ de:
     yesterday_at: "gestern um"
   time:
     formats:
-      default: "%d.%m.%Y"
+      default: "%d.%m.%Y %H:%M"
       time: "%H:%M"
   pagination:
     previous: "&laquo; Zurück"

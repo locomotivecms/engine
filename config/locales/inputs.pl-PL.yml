@@ -1,0 +1,19 @@
+pl-PL:
+  locomotive:
+    inputs:
+      file:
+        none: brak pliku
+        browse: Przeglądaj
+        choose: Wybierz
+        change: Zmień
+        delete: Usuń
+        cancel: Anuluj
+        select_local_file: Wgraj plik z dysku
+        select_content_asset: Wybierz z zasobów
+      array:
+        new: Nowy
+        add: Dodaj
+        edit: Edytuj
+      toggle:
+        on_text: "Tak"
+        off_text: "Nie"

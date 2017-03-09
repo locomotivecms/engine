@@ -1,14 +1,14 @@
 de:
   simple_form:
-    blank_required_fields: "Es wurden nicht alle Pflichtfelder ausgefüllt"
+    blank_required_fields: "Es wurden nicht alle Pflichtfelder ausgefüllt."
     titles:
       locomotive:
         account:
-          information: Hauptkonto
+          information: Allgemein
           api: API
           credentials: Zugangsdaten
         site:
-          information: Hauptseite
+          information: Allgemein
           access_points: Zugriffspunkte
           seo: SEO
           advanced: Erweitert
@@ -33,19 +33,19 @@ de:
           no_api_key: Keine
           edit:
             locale: Sprache der Benutzeroberfläche
-            password: Neues Kennwort
-            password_confirmation: Neues Kennwort bestätigen
+            password: Neues Passwort
+            password_confirmation: Neues Passwort bestätigen
         page:
           seo_title: Titel
-          target_klass_name: Model
+          target_klass_name: Modell
         editable_element:
-          region: Abschnitt
+          region: Abschnitte
         site:
           locales: Sprachen
           timezone_name: Zeitzone
-          cache_enabled: Cache
-          private_access: "Kennwortschutz Aktivieren"
-          password: "Seiten Kennwort"
+          cache_enabled: Zwischenspeicher
+          private_access: "Passwortschutz einschalten"
+          password: "Webseitenweites Passwort"
           new:
             locales: Hauptstprache
         membership:
@@ -61,7 +61,7 @@ de:
           alignment: Ausrichtung
         image_resize_form:
           width: Breite
-          height: Höe
+          height: Höhe
         rte_input_table_form:
           cols: "Spalten"
           rows: "Zeilen"
@@ -72,30 +72,42 @@ de:
         account:
           password: Mindestens 6 Zeichen
         page:
-          published: "Nur angemeldete Benutzer können nicht veröffentlichte Seiten sehen"
-          templatized: "Seite als Vorlage für ein Model verwenden"
-          cache_enabled: "Wenn aktiviert, wird Ihre Seite zwischengespeichert so lange sich der Inhalt nicht ändert."
-          listed: "Gibt an ob die Seite im generierten Menü angezeigt wird."
-          meta_keywords: "Überschreiben der Seiten Schlüsselwörter (meta keywords) in den head tags der Seite (durch Beistrich getrennt)"
-          meta_description: "Überschreiben der Seiten Metadatenbeschreibung in den head tags der Seite"
-          is_layout: "Wenn aktiv kann diese Seite als Vorlage für andere Seiten dienen."
-          allow_layout: "Erlaube Autoren das Layout der Seite zu verändern"
+          handle: "Einzigartiger Identifikator zum Abrufen dieser Seite innerhalb einer externen Controller-Instanz"
+          published: "Nur angemeldete Benutzer können nicht veröffentlichte Seiten sehen."
+          templatized: "Seite als Vorlage für ein Modell verwenden."
+          cache_enabled: "Wenn eingeschaltet, wird Ihre Seite zwischengespeichert so lange sich der Inhalt nicht ändert."
+          listed: "Gibt an ob die Seite in generierten Menüs angezeigt wird."
+          target_klass_name: "Der Inhaltstyp für den diese Seite als Vorlage genutzt wird."
+          seo_title: "Einen Seitentitel festlegen der als Wert für den Title-Tag im Head-Bereich dient. Leer lassen um den Standardwert aus den Einstellungen zu verwenden."
+          meta_keywords: "Überschreibt die Standard Meta-Schlüsselwörter im Head-Tag der Seite. Durch Kommas getrennt."
+          meta_description: "Überschreibt die Standard Meta-Beschreibung im Head-Tag der Seite."
+          is_layout: "Wenn eingeschaltet, kann diese Seite als Layout für andere Seiten dienen."
+          allow_layout: "Autoren erlauben das Layout der Seite zu verändern."
         site:
-          locales: "Ziehen sie eine Flagge an erster Stelle um es als Standard einzustellen."
-          memberships: "Sie können weitere Konten einladen um die Webseite zu verwalten."
-          cache_enabled: "Wenn aktiviert, wird Ihre Seite zwischengespeichert so lange sich der Inhalt nicht ändert. Deaktivieren des Zwischenspeichers pro Seite ist erlaubt."
-          redirect_to_first_domain: "Wenn aktiv, werden anfragen zu obigen Domains an die erste Domain umgeleitet."
-          private_access: Sie können Ihre Webseite hinter einem Kennwort verbergen.
-          password: 'Das Kennwort welches öffentliche Besucher eingeben müssen um den Inhalt der Webseite zu sehen. '
+          locales: "Ziehen sie eine Flagge an die erste Stelle um die Sprache als Standard einzustellen."
+          seo_title: "Einen globalen Wert für den Title-Tag im Head-Bereich festlegen."
+          meta_keywords: "Meta-Schlüsselwörter die im Head-Bereich der Seite genutzt werden. Durch Kommas trennen. Notwendig für SEO."
+          meta_description: "Meta-Beschreibung die im Head-Bereich der Seite genutzt wird. Notwendig für SEO."
+          robots_txt: "Inhalt der <span class='code'>/robots.txt</span> Datei. Siehe <a href='http://www.w3.org/TR/html4/appendix/notes.html#h-B.4.1.1'>hier</a> für weitere Informationen."
+          domains: "Hier Domains hinzufügen. Siehe <a href=\"https://locomotive-v3.readme.io/docs/domains\">Dokumentation</a> für weitere Informationen."
+          memberships: "Sie können weitere Nutzer einladen die Webseite zu bearbeiten/verwalten."
+          cache_enabled: "Wenn eingeschaltet, werden Ihre Seiten zwischengespeichert so lange sich der Inhalt nicht ändert. Ausschalten des Zwischenspeichers pro Seite ist erlaubt."
+          redirect_to_first_domain: "Wenn eingeschaltet, werden Anfragen zu obigen Domains an die erste Domain weitergeleitet."
+          url_redirections: "Weiterleitungen (HTTP Status 301 ) von alten URLs zu aktuell verfügbaren Seiten. Die Urspungs- und Zieladresse werden durch ein <u>Leerzeichen</u> getrennt."
+          private_access: Sie können Ihre Webseite hinter einem Passwort verbergen.
+          password: 'Das Passwort welches öffentliche Besucher eingeben müssen um den Inhalt der Webseite zu sehen. '
           new:
-            locales: "Sie können weitere Sprachen hinzufügen sobald ihre Seite erstellt wurde."
+            locales: "Sie können weitere Sprachen hinzufügen sobald ihre Webseite erstellt wurde."
         translation:
           key: "Unterstrich statt Bindestrich verwenden: z.B. willkommens_nachricht"
         content_entry:
-          meta_keywords: "Überschreiben der Seiten Schlüsselwörter (meta keywords) in den head tags der Seite, durch Beistrich getrennt."
-          meta_description: "Überschreiben der Seiten Metadatenbeschreibung in den head tags der Seite"
+          _slug: "Eigenschaft zur Erzeugung von URLs der Vorlageseiten dieses Inhaltstyps (z.B.: \"meine_vorlage/{{ mein_objekt._permalink }}\")."
+          _visible: "Der Eintrag wird standardmäßig angezeigt. Diese Eigenschaft kann als \"Veröffentlicht\"-Attribut verwendet werden."
+          seo_title: "Dieser Wert ersetzt den SEO-Titel der Vorlagenseite, die diesem Modell zugewiesen ist."
+          meta_keywords: "Überschreibt die Standard Meta-Schlüsselwörter die im Head-Bereich der Seite genutzt werden. Durch Kommas getrennt."
+          meta_description: "Überschreibt die Standard Meta-Beschreibung die im Head-Bereich der Seite genutzt wird."
         content_type:
-          public_submission_accounts: "Wenn ein Eintrag erstellt wird, sende eine Benachrichtigung an unten angeführte Konten."
+          public_submission_accounts: "Sende eine Benachrichtigung an unten angeführte Konten, wenn ein Eintrag erstellt wird."
         image_resize_form:
           width: "in px"
           height: "in px"
@@ -103,9 +115,9 @@ de:
       locomotive:
         site:
           domains: "Beispiel: meineseite.com"
-          url_redirections: "Z.b.: meine-alte-url neue-url-in-locomotive"
+          url_redirections: "Beispiel: meine-alte-url neue-url-in-locomotive"
         content_type_entry_field:
-          select_options: "Label Ihrer neuen option"
+          select_options: "Label Ihrer neuen Option"
     options:
       locomotive:
         rte_input_link_form:
@@ -123,7 +135,7 @@ de:
         locomotive:
           create: Erstellen
           update: Speichern
-          submit: OK
+          submit: Ok
           cancel: Abbrechen
           delete: Löschen
           close: Schliessen
@@ -131,7 +143,7 @@ de:
           or: oder
       locomotive:
         account:
-          new_api_key: Neu generieren
+          new_api_key: Erneut erstellen
         image_resize_form:
           loading_text: 'Größe wird angepasst '
           submit: Größe ändern

@@ -1,0 +1,61 @@
+fi-FI:
+  errors:
+    messages:
+      not_found: "ei löytynyt"
+      already_confirmed: "on jo vahvistettu, yritä kirjautua sisään uudelleen"
+      not_locked: "ei ollut lukittu"
+  devise:
+    failure:
+      locomotive_account:
+        unauthenticated: 'Sinun pitää kirjautua sisään tai rekisteröityä ennen kuin voit jatkaa.'
+        unconfirmed: 'Sinun täytyy vahvistaa tunnuksesi ennen kuin voit jatkaa.'
+        locked: 'Tunnuksesi on lukittu.'
+        invalid: 'Epäkelpo sähköpostiosoite tai salasana.'
+        not_found_in_database: 'Epäkelpo sähköpostiosoite tai salasana.'
+        no_membership: 'Tilisi ei ole tämän järjestelmän jäsen. Pyydä pääsyä järjestelmävalvojalta.'
+        invalid_token: 'Virheellinen todennustunnus'
+        timeout: 'Istuntosi on vanhentunut, ole hyvä ja kirjaudu sisään jatkaaksesi.'
+        inactive: 'Tiliäsi ei ole vielä aktivoitu.'
+    sessions:
+      locomotive_account:
+        signed_in: 'Sisäänkirjautuminen onnistui.'
+        signed_out: 'Uloskirjautuminen onnistui.'
+    passwords:
+      locomotive_account:
+        send_instructions: 'Saat hetken kuluttua sähköpostiisi ohjeet salasanan vaihtoon.'
+        updated: 'Salasanasi on nyt vaihdettu. Olet kirjautuneena sisälle.'
+        invalid: 'Sinun täytyy pyytää uutta salasanaa toistamiseen.'
+    confirmations:
+      locomotive_account:
+        send_instructions: 'Saat hetken kuluttua sähköpostiisi ohjeet tunnuksen vahvistamiseen.'
+        confirmed: 'Tunnuksesi on nyt vahvistettu.'
+    registrations:
+      locomotive_account:
+        signed_up: 'Tervetuloa! Rekisteröintisi onnistui.'
+        updated: 'Tunnuksesi on päivitetty.'
+        destroyed: 'Näkemiin! Tunnuksesi on nyt poistettu. Toivottavasti näemme sinut vielä uudelleen.'
+    unlocks:
+      locomotive_account:
+        send_instructions: 'Saat hetken kuluttua sähköpostiisi ohjeet tunnuksesi lukituksen poistoon.'
+        unlocked: 'Tunnuksesi on nyt avattu. Olet kirjautuneena sisälle.'
+    mailer:
+      locomotive_account:
+        confirmation_instructions: 'Vahvistusohjeet'
+        reset_password_instructions: 'Ohjeet salasanan vaihtoon'
+        unlock_instructions: 'Ohjeet tunnuksen lukituksen poistoon'
+  locomotive:
+    devise_mailer:
+      common:
+        hello: Terve
+      confirmation_instructions:
+        you_can_confirm_your_account_through_the_link_below: "Vahvista sähköpostisi painamalla alla olevaa linkkiä:"
+        confirm_my_account: "Vahvista tilini"
+      reset_password_instructions:
+        reset_password_instruction: "Joku on pyytänyt tilisi salasanan vaihtoa. Tämä voidaan suorittaa painamalla linkkiä alla."
+        change_my_password: "Vaihda salasanani"
+        wrong_request_instruction: "Jos et pyytänyt tätä, älä huomioi tätä sähköpostia."
+        unchange_password_message: "Salasanaasi ei vaihdeta ennen kuin painat yllä olevaa linkkiä ja syötät uuden salasanan."
+      unlock_instructions:
+        locked_account_message: "Tilisi on lukittu johtuen liian useasta epäonnistuneesta kirjautumisyrityksestä."
+        unlock_account_instruction: "Paina alla olevaa linkkiä poistaaksesi lukituksen:"
+        unlock_my_account: "Poista tilini lukitus"

@@ -13,14 +13,18 @@ el:
       es: Ισπανικά
       ru: Ρωσικά
       et: Εσθονικά
+      lt: Λιθουανικά
       ja: Ιαπωνικά
       zh-CN: Κινέζικα
       cs: Τσέχικα
       bg: Βουλγαρικά
       sk: Σλοβάκικα
       sr: Σερβικά
+      sv: Σουηδικά
+      el: Ελληνικά
     messages:
       confirm: Είστε σίγουρος
+      unsaved_content_warning: "Αυτή η σελίδα σας ζητάει να επιβεβαιώσετε ότι θέλετε να την εγκαταλήψετε - τα δεδομένα που έχετε εισάγει μπορεί να μην αποθηκευτούν."
     shared:
       header:
         welcome: Καλωσήρθατε, %{name}
@@ -32,7 +36,9 @@ el:
       sidebar:
         dashboard: Ταμπλό
         assets: Assets
+        pages: Σελίδες
         settings: Γενικές Ρυθμίσεις
+        metafields: Ιδιότητες
         developers: Προγραμματιστές
         content_types:
           title: Μοντέλα
@@ -56,6 +62,7 @@ el:
     errors:
       '500':
         title: Σφάλμα εφαρμογής
+        message: "Λυπούμαστε, αλλά κάτι πήγε στραβά. Παρακαλούμε επικοινωνήστε με τον διαχειριστή σας."
       '404':
         title: H σελίδα δεν βρέθηκε
         message: "Η σελίδα που ζητάτε δεν υπάρχει."
@@ -92,6 +99,8 @@ el:
         destroyed: 'διέγραψε το στοιχείο %{name}'
       membership:
         created: 'πρόσθεσε το %{name} στην τοποθεσία'
+      site_metafields:
+        updated: 'ενημερώθηκε %{label}'
     pagination:
       first: "&laquo;"
       last: "&raquo;"
@@ -153,6 +162,7 @@ el:
     registrations:
       new:
         confirm_password: Επιβεβαίωση κωδικού
+        description: "Δημιουργήστε έναν λογαριασμό παρακάτω για να ξεκινήσετε να χρησιμοποιείτε το Locomotive"
         sign_in: Έχετε ήδη λογαριασμό;
         submit: Εγγραφή
         title: Εγγραφή
@@ -227,6 +237,10 @@ el:
         advanced:
           destroy: "Διαγραφή αυτής της τοποθεσίας"
           confirm_destroy: "Παρακαλούμε επιβεβαιώστε πληκτρολογώντας το όνομα της τοποθεσίας στο επόμενο πεδίο."
+    current_site_metafields:
+      index:
+        title: Επεξεργασία ιδιοτήτων
+        no_metafields: Δεν υπάρχουν μετα-πεδία για την σελίδα σας
     memberships:
       roles:
         admin: Διαχειριστής

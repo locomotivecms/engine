@@ -1,0 +1,47 @@
+ca:
+  mongoid:
+    errors:
+      messages:
+        blank_in_locale: "no pot estar en blanc"
+      models:
+        locomotive/page:
+          attributes:
+            layout_id:
+              index_can_not_extend_parent: "La pàgina d'índex no pot tenir la seva pàgina pare com un disseny"
+        locomotive/membership:
+          attributes:
+            account:
+              unique_account: "ja s'esta fent servir"
+            email:
+              unique_account: "ja s'esta fent servir"
+    attributes:
+      locomotive/content_entry:
+        created_at: Creat el
+  errors:
+    messages:
+      domain_taken: "%{value} ja esta agafat"
+      invalid_domain: "%{value} no es vàlid"
+      needs_admin_account: "Es requereix com a mínim un compte d'administrador."
+      protected_page: "No pots esborrar indexes o pàgines 404."
+      extname_changed: "El arxiu nou no te la extensió original."
+      array_too_short: "es massa petit (el nombre mínim es %{count})"
+      site:
+        default_locale_removed: La configuració regional per defecte anterior no es pot retirar de forma immediata.
+        wrong_timezone_name: "Nom de zona horària incorrecte"
+      page:
+        liquid_syntax: "Error de sintaxi Liquid ('%{error}' a '%{fullpath}')"
+        liquid_extend: "La pagina '%{fullpath}' estén d'una plantilla que no existeix"
+        liquid_translation: "La pagina '%{fullpath}' estén d'una plantilla que no ha sigut traduïda"
+      too_few_custom_fields: "Com a mínim un camp personalitzat"
+      security: "presenta un problema de seguretat"
+  attributes:
+    defaults:
+      pages:
+        index:
+          title: "Pàgina inicial"
+          body: "Contingut de la pàgina inicial"
+        '404':
+          title: "Pàgina no trobada"
+          body: "Contingut de la pàgina 404"
+        other:
+          body: "{% extends 'parent' %}"

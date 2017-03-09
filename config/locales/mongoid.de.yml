@@ -4,12 +4,16 @@ de:
       messages:
         blank_in_locale: "darf nicht leer sein"
       models:
+        locomotive/page:
+          attributes:
+            layout_id:
+              index_can_not_extend_parent: "Die Indexseite kann keine Elternseite als Layout verwenden"
         locomotive/membership:
           attributes:
             account:
-              unique_account: "wurde bereits verwendet"
+              unique_account: "wird bereits verwendet"
             email:
-              unique_account: "wurde bereits verwendet"
+              unique_account: "wird bereits verwendet"
     attributes:
       locomotive/content_entry:
         created_at: Erstellt am
@@ -17,13 +21,18 @@ de:
     messages:
       domain_taken: "%{value} ist bereits vergeben"
       invalid_domain: "%{value} ist ungültig"
-      needs_admin_account: "Zumindest ein Administrator Konto wird benötigt"
-      protected_page: "Index und 404 Seite können nicht entfernt werden"
+      needs_admin_account: "Es wird mindestens ein Administratorkonto benötigt"
+      protected_page: "Index und 404 Seiten können nicht entfernt werden"
+      extname_changed: "Neue Datei hat nicht die ursprüngliche Dateiendung"
+      array_too_short: "ist zu klein (minimale Elementanzahl beträgt %{count})"
       site:
+        default_locale_removed: Die vorherige Standardsprache kann nicht sofort entfernt werden.
         wrong_timezone_name: "Falsche Zeitzonenbezeichnung"
       page:
-        liquid_syntax: "Liquid Syntax error ('%{error}' in '%{fullpath}')"
-      too_few_custom_fields: "Zumindest ein custom Feld wird benötigt"
+        liquid_syntax: "Liquid Syntaxfehler ('%{error}' in '%{fullpath}')"
+        liquid_extend: "Die Seite '%{fullpath}' benutzt eine nicht vorhandene Vorlage"
+        liquid_translation: "Die Seite '%{fullpath}' benutzt eine nicht übersetzte Vorlage"
+      too_few_custom_fields: "Es wird mindestens ein benutzerdefiniertes Feld benötigt."
       security: "stellt ein Sicherheitsproblem dar"
   attributes:
     defaults:

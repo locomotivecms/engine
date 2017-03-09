@@ -1,0 +1,19 @@
+fi-FI:
+  locomotive:
+    inputs:
+      file:
+        none: ei tiedostoa
+        browse: Selaa
+        choose: Valitse
+        change: Vaihda
+        delete: Poista
+        cancel: Peruuta
+        select_local_file: Lataa paikallinen tiedosto
+        select_content_asset: Valitse hyödykkeistä
+      array:
+        new: Uusi
+        add: Lisää
+        edit: Muokkaa
+      toggle:
+        on_text: "Kyllä"
+        off_text: "Ei"

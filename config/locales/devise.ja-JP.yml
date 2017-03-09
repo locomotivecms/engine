@@ -1,0 +1,61 @@
+ja-JP:
+  errors:
+    messages:
+      not_found: "は見つかりません"
+      already_confirmed: "は既に登録済みです"
+      not_locked: "はロックされていません"
+  devise:
+    failure:
+      locomotive_account:
+        unauthenticated: 'サインインしてください。'
+        unconfirmed: 'アカウントの本登録を行ってください。'
+        locked: 'アカウントがロックされています。'
+        invalid: 'メールアドレスまたはパスワードが違います。'
+        not_found_in_database: 'メールアドレスまたはパスワードが違います。'
+        no_membership: 'このサイトへのアクセスが認められていません。サイトの管理者にアクセス権を申請してください。'
+        invalid_token: '無効な認証トークンです。'
+        timeout: 'セッションがタイムアウトしました。もう一度サインインしてください。'
+        inactive: 'アカウントがアクティベートされていません。'
+    sessions:
+      locomotive_account:
+        signed_in: 'サインインしました。'
+        signed_out: 'サインアウトしました。'
+    passwords:
+      locomotive_account:
+        send_instructions: 'パスワードのリセット方法を数分以内にメールでご連絡します。'
+        updated: 'パスワードを変更しました。サインインしています。'
+        invalid: 'もう一度新しいパスワードを請求してください。'
+    confirmations:
+      locomotive_account:
+        send_instructions: 'アカウントを本登録する方法を数分以内にメールでご連絡します。'
+        confirmed: 'アカウントが本登録されました。サインインしています。'
+    registrations:
+      locomotive_account:
+        signed_up: 'アカウントの登録を受け付けました。'
+        updated: 'アカウントが更新されました。'
+        destroyed: 'アカウントを閉鎖しました。またのご利用をお待ちしております。'
+    unlocks:
+      locomotive_account:
+        send_instructions: 'アカウントのロックを解除する方法を数分以内にメールでご連絡します。'
+        unlocked: 'アカウントのロックを解除しました。サインインしています。'
+    mailer:
+      locomotive_account:
+        confirmation_instructions: 'アカウントの登録方法'
+        reset_password_instructions: 'パスワードのリセット方法'
+        unlock_instructions: 'アカウントのロック解除方法'
+  locomotive:
+    devise_mailer:
+      common:
+        hello: こんにちは
+      confirmation_instructions:
+        you_can_confirm_your_account_through_the_link_below: "以下のリンクを開いてアカウントを本登録してください:"
+        confirm_my_account: "アカウントの本登録"
+      reset_password_instructions:
+        reset_password_instruction: "パスワードのリセット要求がありました。以下のリンクを開いてパスワードを変更できます:"
+        change_my_password: "パスワードの変更"
+        wrong_request_instruction: "あなたに心当たりがない場合は、このメールを無視してください。"
+        unchange_password_message: "あなたがリンクを開いて実行しない限り、パスワードが変更されることはありません。"
+      unlock_instructions:
+        locked_account_message: "疑わしいサインインの失敗が続いたため、あなたのアカウントはロックされました。"
+        unlock_account_instruction: "以下のリンクを開いてアカウントのロックを解除してください:"
+        unlock_my_account: "アカウントのロック解除"

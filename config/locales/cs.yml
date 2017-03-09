@@ -13,14 +13,18 @@ cs:
       es: Španělština
       ru: Ruština
       et: Estonština
+      lt: Litevský
       ja: Japonština
       zh-CN: Čínština
       cs: Čeština
       bg: Bulharština
       sk: Slovenština
       sr: Srbština
+      sv: Švédský
+      el: Řecký
     messages:
       confirm: Jsi si jistý?
+      unsaved_content_warning: "Tato stránka Vás žádá o potvrzení toho, že ji chcete opustit - údaje, které jste zadali nemusí být uloženy."
     shared:
       header:
         welcome: Vítejte, %{name}
@@ -32,7 +36,9 @@ cs:
       sidebar:
         dashboard: Palubní deska
         assets: Položky
+        pages: Stránky
         settings: Obecné nastavení
+        metafields: Vlastnosti
         developers: Vývojáři
         content_types:
           title: Modely
@@ -56,6 +62,7 @@ cs:
     errors:
       '500':
         title: Chyba aplikace
+        message: "Omlouváme se, ale něco je špatně. Obraťte se na správce."
       '404':
         title: Stránka nenalezena
         message: "Požadovaná stránka neexistuje."
@@ -92,6 +99,8 @@ cs:
         destroyed: 'vymazána %{name} položka'
       membership:
         created: 'přidán %{name} do webových stránek'
+      site_metafields:
+        updated: 'aktualizováno %{label}'
     pagination:
       first: "&laquo;"
       last: "&raquo;"
@@ -153,6 +162,7 @@ cs:
     registrations:
       new:
         confirm_password: Potvrďte heslo
+        description: "Vytvořte účet níže a začněte používat Lokomotivu."
         sign_in: Máte již účet?
         submit: Registrovat
         title: Registrovat
@@ -227,6 +237,10 @@ cs:
         advanced:
           destroy: "Smazat tuto stránku"
           confirm_destroy: "Potvrďte prosím napsáním název webové stránky v následujícím vstupu"
+    current_site_metafields:
+      index:
+        title: Úprava vlastností
+        no_metafields: Nejsou zde žádná meta pole definovaná pro váš web.
     memberships:
       roles:
         admin: Správce

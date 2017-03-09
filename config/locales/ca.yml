@@ -1,0 +1,332 @@
+ca:
+  locomotive:
+    locales:
+      en: Anglès
+      de: Alemany
+      fr: Francés
+      pl: Polonés
+      pt: Portugués
+      pt-BR: "Portugués de Brasil"
+      it: Italià
+      nl: Holandés
+      nb: Norueg
+      es: Espanyol
+      ru: Rus
+      et: Estonià
+      lt: Lituà
+      ja-JP: Japonés
+      zh-CN: Chinés
+      cs: Txec
+      bg: Búlgar
+      sk: Slovac
+      sr: Serbi
+      sv: Suec
+      el: Grec
+    messages:
+      confirm: Esta segur?
+      unsaved_content_warning: "Aquesta pàgina us demana que confirmeu que voleu deixar - posiblement les dades que ha introduït no es poden desar."
+    shared:
+      header:
+        welcome: Benvingut/da, %{name}
+        sites: Meus llocs web
+        account: Configuració de compte
+        see: Veure lloc web
+        help: Ajuda
+        logout: Tancar sessió
+      sidebar:
+        dashboard: Panell
+        assets: Recursos
+        pages: Pàgines
+        settings: Configuració general
+        metafields: Propietats
+        developers: Desenvolupadors
+        content_types:
+          title: Models
+        translations: Traduccions
+      list:
+        untranslated: sense traducció
+        created_at: "Creat fa %{distance}"
+        created_by: "Creat fa %{distance} per %{who}"
+        updated_at: "Modificat fa %{distance}"
+        updated_by: "Modificat fa %{distance} per %{who}"
+      rte:
+        toolbar:
+          table:
+            merge: Fusionar
+            insert_row_before: Inserir una fila abans
+            insert_row_after: Inserir una fila després
+            insert_col_before: Inserir una columna abans
+            insert_col_after: Inserir una columna després
+            delete_row: Esborrar fila
+            delete_col: Esborrar columna
+    errors:
+      '500':
+        title: Error d'aplicació
+        message: "Perdoneu, alguna cosa ha anat malament. Siusplau contacteu el vostre administrador."
+      '404':
+        title: Pàgina no trobada
+        message: "La pàgina demanada no existeix"
+      no_site:
+        title: Lloc no trobat
+        next: "Pròxim &rarr;"
+        message:
+          create_account: "Si us plau, creu un compte primer i després un lloc web."
+          add_domain: "Afegir el <strong>%{host}</strong> domini a la llista de dominis d'un dels seus llocs web."
+          sign_in: "Si us plau entreu primer. A continuació, afegiu el <strong>%{host}</strong> de domini a la llista de dominis d'un dels seus llocs."
+    notifications:
+      new_content_entry:
+        subject: "[%{domain}][%{type}] entrada nova"
+        title: "Hola %{name}, una nova instància s'ha creat a %{date} pel lloc <b>%{domain}</b>"
+        type: "Model: %{type}"
+    activity:
+      site:
+        created: 'creat el lloc'
+      page:
+        created: 'creat la %{page} pàgina'
+        updated: 'actualitzat la pàgina %{page}'
+        destroyed: 'esborrat la pàgina %{page}'
+        sorted: 'pàgines ordenades'
+      editable_element:
+        updated_bulk: 'modificat el contingut de %{page}'
+      content_entry:
+        created: 'afegit %{entry} a %{content_type}'
+        created_public: 'afegit/da %{entry} a %{content_type} desde un formulari públic'
+        updated: 'actualitzada %{entry} desde %{content_type}'
+        destroyed: 'esborrat/da %{entry} desde %{content_type}'
+        sorted: '%{content_type} ordenat'
+      content_asset:
+        created_bulk: 'pujat %{count} recurs(os)'
+        destroyed: 'esborrat el recurs %{name}'
+      membership:
+        created: 'afegit %{name} al lloc'
+      site_metafields:
+        updated: '%{label} actualitzat'
+    pagination:
+      first: "&laquo;"
+      last: "&raquo;"
+      previous: "&lsaquo;"
+      next: "&rsaquo;"
+      truncate: "&hellip;"
+    custom_fields:
+      select_options:
+        edit:
+          title: "%{type} &mdash; opcions d'edició"
+          back: "Tornar a la entrada"
+        option:
+          edit: Editar
+          apply: Aplicar
+          cancel: Cancel · lar
+      types:
+        belongs_to:
+          edit: Editar
+          placeholder: "Escogir %{name}"
+          searching: Buscant...
+          no_matches: No s'han trobat coincidències
+          too_short: Si us plau, introdueixi 1 o més caràcters
+        many_to_many:
+          placeholder: "Trieu una de %{name}"
+          searching: Buscant...
+          no_matches: No s'han trobat coincidències
+          too_short: Si us plau, introdueixi 1 o més caràcters
+        select:
+          edit: Editar opcions
+        file:
+          delete_file: Esborrar arxiu
+        has_many:
+          new_label: Afegir un nou
+      form:
+        required: Necessari
+        default_label: Nom del camp
+        select_options:
+          ask_name: "Escriu l'etiqueta de l'opció"
+    dashboard:
+      show:
+        title: 'Panell'
+      url:
+        title: "URL del seu lloc web"
+        visit: 'Visitar'
+        change_domain: 'Feu servir el vostre nom de domini'
+      activity:
+        title: Activitats
+        unknown_account: Algu
+        load_more: Carregant mes
+        loading_activity_feed: Carregant...
+    sessions:
+      new:
+        email: "Email"
+        link: "Ha oblidat la seva contrasenya?"
+        password: "Contrasenya"
+        sign_up: No te un compte?
+        submit: Entrar
+        title: Entrar
+    registrations:
+      new:
+        confirm_password: Confirmar contrasenya
+        description: "Crear un compte per començar a utilitzar Locomotive."
+        sign_in: Ja te vosté un compte?
+        submit: Registrar
+        title: Registrar
+    passwords:
+      new:
+        description: "Completi el seu correu electrònic i rebrà un correu electrònic amb instruccions sobre com restablir la contrasenya."
+        link: "Tornar a la pàgina d'accés"
+        email: "El seu email"
+        submit: "Continuar"
+        title: "Contrasenya oblidada"
+      edit:
+        description: "Escriu la nova contrasenya a sota"
+        link: "Tornar a la pàgina d'accés"
+        password: "La seva nova contrasenya"
+        password_confirmation: "Confirmar contrasenya"
+        submit: "Actualitzar la meva contrasenya"
+        title: "Restableir la contrasenya"
+    pages:
+      index:
+        title: 'Pàgines'
+        new: 'Nova pàgina'
+        list_content_entries: "Listar %{name}"
+        new_content_entry: "Nou/va %{name}"
+      new:
+        title: Nova pàgina
+        help: "Si us plau, ompli el següent formulari per crear la seva pàgina. Aneu amb compte, per defecte, la pàgina no es publica."
+      edit:
+        title: "%{title} &mdash; <small>%{fullpath}</small>"
+      form:
+        no_layout: Utilitzeu el disseny de la pàgina principal
+        redirect_type:
+          permanent: "Permanent (301)"
+          temporary: "Temporal (302)"
+    editable_elements:
+      index:
+        redirection_error: "No es permet l'edició d'una pàgina que no és de Locomotive."
+        iframe:
+          buttons:
+            edit: editar
+      index_without_preview:
+        title: "%{title} &mdash; <small>%{fullpath}</small>"
+      edit:
+        settings_link: 'Configuració'
+        no_editable_elements: 'No s''han trobat elements editables'
+        parsing_error: "<b>Ho sentim però no hem pogut analitzar la plantilla de la seva pàgina.</b><br/>Si us plau assegureu-vos que la seva plantilla funciona primer amb Wagon."
+        blocks:
+          all: Tot
+          unknown: Desconegut
+      form:
+        model:
+          buttons:
+            list: Administrar
+            edit: Editar
+    sites:
+      index:
+        description: "Tots els llocs dels que té accés es poden trobar a continuació. Feu clic a un per a ser redirigit a la secció de gestió de continguts de dit lloc."
+        new: Afegir un lloc nou
+        title: Meus llocs
+      new:
+        description: "Ompli el següent formulari i faci clic a enviar. Un cop aconseguit això es crearà un nou lloc."
+        go_back: Tornar
+        submit: Crear lloc
+        title: Crear nou lloc
+      site:
+        no_domain: Sense domini encara
+    current_site:
+      edit:
+        title: Editant el lloc actual
+      form:
+        main:
+          new_membership: "Afegir compte"
+        advanced:
+          destroy: "Destruir aquest lloc"
+          confirm_destroy: "Si us plau confirmar escrivint el nom del lloc en la següent entrada"
+    current_site_metafields:
+      index:
+        title: Propietats d'edició
+        no_metafields: No hi ha camps de metadades definides per al seu lloc web.
+    memberships:
+      roles:
+        admin: Administrador
+        designer: Dissenyador
+        author: Autor
+      new:
+        title: Nou membre
+        help: "Si us plau, doni el compte de correu electrònic per afegir. Si no existeix, se li redirigeix al formulari de creació del compte."
+        back: "Tornar a la configuració del lloc"
+      edit:
+        title: "Editar afiliació a <b>%{name}</b>"
+        back: "Tornar a la configuració del lloc"
+    accounts:
+      new:
+        title: Nou compte
+        help: "Ompli el següent formulari per afegir un nou compte."
+    my_account:
+      edit:
+        title: Editant el meu compte
+      form:
+        api:
+          api_key: "Utilitzat per Wagon per desplegar el seu lloc (revisi el seu arxiu config/deploy.yml del seu lloc Wagon)."
+    translations:
+      untranslated: "Localitzacions sense traducció: %{list}"
+      index:
+        title: Traduccions
+        no_items: "No hem trobat cap traducció"
+        search_placeholder: "Introduir una clau o una traducció"
+        help: "Traduir totes les entrades amb un punt taronja (traducció parcial) o vermell (no localitzat)."
+        filter_by:
+          all: Tot
+          done: Traduït
+          partially: Parcialment traduït
+          none: Sense traduir
+      edit:
+        title: "Traduccions &mdash; editant %{key}"
+      form:
+        not_translated: "Sense traducció"
+    content_assets:
+      index:
+        title: "Recursos"
+        upload: Pujar arxius
+      edit_in_drawer:
+        buttons:
+          resize: "Canviar la mida"
+          crop: "Retallar"
+          apply: "Aplicar"
+      dropzone:
+        instructions: "<strong>Excloure arxius des de l'ordinador aquí.</strong><br/>També pot"
+        browse: "buscar un arxiu"
+      list:
+        no_items: "No hi han imatges per ara."
+        buttons:
+          select: "Seleccionar"
+          edit: "Editar"
+      nav:
+        types:
+          all: Tot
+          pdf: PDFs
+          image: imatges
+          media: rich media
+          others: altres
+      search_form:
+        placeholder: Buscar per nom d'arxiu
+    public_submission_accounts:
+      edit:
+        title: "%{name} &mdash; Configuració de notificacions"
+    content_entries:
+      index:
+        title: '%{type}'
+        download: descarregar entrades
+        new: nova entrada
+        edit_notification_settings: Editar configuració de notificacions
+        search_placeholder: "Introdueixi les paraules clau de cerca aquí"
+        group_by:
+          all: Tot
+      list:
+        no_items: "No hi han entrades per ara. Només cal que faci click <a href=\"%{url}\">aquí</a> per crear la primera"
+      new:
+        title: '%{type} &mdash; nova entrada'
+      edit:
+        title: '%{type} &mdash; editant entrada'
+      shared:
+        back: '&larr; Tornar a la lista'
+    developers_documentation:
+      show:
+        title: Desenvolupadors
+        wagon: Wagon
+        api: API

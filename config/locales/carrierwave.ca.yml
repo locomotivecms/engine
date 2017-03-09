@@ -1,0 +1,4 @@
+ca:
+  carrierwave:
+    errors:
+      integrity: 'no és un tipus de fitxer permès.'

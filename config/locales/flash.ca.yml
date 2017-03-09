@@ -1,0 +1,82 @@
+ca:
+  flash:
+    locomotive:
+      pages:
+        create:
+          notice: "Pàgina creada correctament."
+          alert: "Pàgina no creada."
+        update:
+          notice: "Pàgina actualitzada correctament."
+          alert: "Pàgina no actualitzada."
+        sort:
+          notice: "Pàgines ordenades correctament."
+        destroy:
+          notice: "Pàgina eliminada."
+      content_entries:
+        create:
+          notice: "Entrada creada."
+          alert: "Entrada no creada."
+        update:
+          notice: "Entrada actualitzada."
+          alert: "Entrada no actualitzada,"
+        sort:
+          notice: "Entrades ordenades correctament."
+        destroy:
+          notice: "Entrada eliminada correctament."
+      content_types:
+        update:
+          notice: "Model actualitzat correctament."
+          alert: "Model no actualitzat."
+      current_site:
+        update:
+          notice: "La web s'ha actualitzat correctament."
+          alert: "La web no ha sigut actualitzada."
+      accounts:
+        create:
+          notice: "Compte d'usuari creat."
+          alert: "Compte d'usuari no creat."
+      my_account:
+        update:
+          notice: "El meu compte ha sigut actualitzat."
+          alert: "El meu compte no ha sigut actualitzat."
+      sites:
+        create:
+          notice: "Web creat correctament."
+          alert: "Web no creat."
+        destroy:
+          notice: "Web esborrat correctament."
+      current_site_metafields:
+        update_all:
+          notice: "Les metadades de la web han sigut actualitzades correctament."
+      memberships:
+        create:
+          notice: "L'afiliació ha sigut creada correctament."
+          alert: "L'afiliació no ha sigut creada."
+          already_created: "El compte ja estava afegit a la web actual."
+      content_assets:
+        create:
+          notice: "Recurs de la web pujat correctament."
+          alert: "Recurs de la web no pujat."
+        bulk_create:
+          notice: "Recursos pujats correctament."
+          alert: "Recursos no pujats."
+        update:
+          notice: "Recurs actualitzat correctament."
+          alert: "Recurs no actualitzat."
+        destroy:
+          notice: "Recurs esborrat correctament."
+          alert: "Recurs no esborrat."
+      translations:
+        create:
+          notice: "Traducció creada correctament."
+          alert: "Traducció no creada."
+        update:
+          notice: "Traducció actualitzada correctament."
+          alert: "Traducció no actualitzada."
+        destroy:
+          notice: "Traducció esborrada correctament."
+      custom_fields:
+        select_options:
+          update:
+            notice: "El camp s'ha actualitzat correctament."
+            alert: "El camp no s'ha actualitzat."

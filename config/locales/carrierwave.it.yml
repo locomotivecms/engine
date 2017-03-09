@@ -1,0 +1,4 @@
+it:
+  carrierwave:
+    errors:
+      integrity: 'è un tipo vietato.'

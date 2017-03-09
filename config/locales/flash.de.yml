@@ -25,12 +25,12 @@ de:
           notice: "Eintrag wurde erfolgreich entfernt."
       content_types:
         update:
-          notice: "Model wurde erfolgreich aktualisiert."
-          alert: "Model wurde nicht aktualisiert."
+          notice: "Modell wurde erfolgreich aktualisiert."
+          alert: "Modell wurde nicht aktualisiert."
       current_site:
         update:
-          notice: "Meine Seite wurde erfolgreich aktualisiert."
-          alert: "Meine Seite wurde nicht aktualisiert."
+          notice: "Webseite wurde erfolgreich aktualisiert."
+          alert: "Webseite wurde nicht aktualisiert."
       accounts:
         create:
           notice: "Konto wurde erfolgreich erstellt."
@@ -41,28 +41,31 @@ de:
           alert: "Mein Konto wurde nicht aktualisiert."
       sites:
         create:
-          notice: "Seite wurde erfolgreich erstellt."
-          alert: "Seite wurde nicht erstellt."
+          notice: "Webseite wurde erfolgreich erstellt."
+          alert: "Webseite wurde nicht erstellt."
         destroy:
-          notice: "Seite wurde erfolgreich entfernt."
+          notice: "Webseite wurde erfolgreich entfernt."
+      current_site_metafields:
+        update_all:
+          notice: "Metainformationsfelder der Seite wurden erfolgreich aktualisiert."
       memberships:
         create:
           notice: "Mitgliedschaft wurde erfolgreich erstellt."
           alert: "Mitgliedschaft wurde nicht erstellt."
-          already_created: "Konto wurde bereits zur Aktuellen Seite hinzugefügt."
+          already_created: "Konto wurde bereits zur aktuellen Webseite hinzugefügt."
       content_assets:
         create:
-          notice: "Asset wurde erfolgreich hochgeladen."
-          alert: "Asset wurde nicht hochgeladen."
+          notice: "Mediendatei wurde erfolgreich hochgeladen."
+          alert: "Mediendatei wurde nicht hochgeladen."
         bulk_create:
-          notice: "Assets wurden erfolgreich hochgeladen."
-          alert: "Assets wurden nicht hochgeladen."
+          notice: "Mediendateien wurden erfolgreich hochgeladen."
+          alert: "Mediendateien wurden nicht hochgeladen."
         update:
-          notice: "Asset wurde erfolgreich aktualisiert."
-          alert: "Asset wurde nicht aktualisiert."
+          notice: "Mediendatei wurde erfolgreich aktualisiert."
+          alert: "Mediendatei wurde nicht aktualisiert."
         destroy:
-          notice: "Asset wurde erfolgreich entfernt."
-          alert: "Asset wurde nicht entfernt."
+          notice: "Mediendatei wurde erfolgreich entfernt."
+          alert: "Mediendatei wurde nicht entfernt."
       translations:
         create:
           notice: "Übersetzung wurde erfolgreich erstellt."

@@ -1,0 +1,13 @@
+ja-JP:
+  date:
+    formats:
+      default: "%Y年%m月%d日"
+    today_at: "今日の"
+    yesterday_at: "昨日の"
+  time:
+    formats:
+      default: "%Y年%m月%d日 %H:%M"
+      time: "%H:%M"
+  pagination:
+    previous: "&laquo; 前へ"
+    next: "次へ &raquo;"

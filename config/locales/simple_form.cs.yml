@@ -89,6 +89,7 @@ cs:
           meta_keywords: "Meta klíčová slova v rámci tagu v hlavičce stránky. Jsou oddělena čárkou. Povinné pro SEO."
           meta_description: "Meta popis používaný v tagu hlavičce stránky. Povinné pro SEO."
           robots_txt: "Obsah souboru <span class='code'>/robots.txt</span>. Zkontrolujte následující <a href='http://www.w3.org/TR/html4/appendix/notes.html#h-B.4.1.1'>url</a> pro více informací."
+          domains: "Přidejte své domény těsně pod. Dokumentace  <a href=\"https://locomotive-v3.readme.io/docs/domains\">zde</a> pro více informací."
           memberships: "Můžete pozvat další účty editace/správa webové stránky."
           cache_enabled: "Pokud je povoleno, budou Vaše stránky ukládány do mezipaměti, dokud se nezmění obsah. Zakázání mezipaměti pro jednotlivé stránky je povoleno."
           redirect_to_first_domain: "Pokud je povoleno, budou všechny domény výše uvedené, přesměrovány na první doménu."

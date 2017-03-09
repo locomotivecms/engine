@@ -1,0 +1,153 @@
+pl-PL:
+  simple_form:
+    blank_required_fields: "Nie wypełniono wszystkich wymaganych pól"
+    titles:
+      locomotive:
+        account:
+          information: Ogólne
+          api: API
+          credentials: Informacje uwierzytelniające
+        site:
+          information: Ogólne
+          access_points: Punkty dostępowe
+          seo: SEO
+          advanced: Zaawansowane
+          url_redirections: Przekierowania
+        page:
+          content: Treść
+          settings: Ustawienia
+          seo: SEO
+        content_entry:
+          content: Treść
+          advanced: Zaawansowane
+          seo: SEO
+    labels:
+      locomotive:
+        content_entry:
+          _slug: Odnośnik bezpośredni
+          _visible: Widoczny
+        content_type:
+          public_submission_accounts: "Powiadamiane konta"
+        account:
+          api_key: Klucz API
+          no_api_key: Brak
+          edit:
+            locale: Język UI
+            password: Nowe hasło
+            password_confirmation: Potwierdzenie nowego hasła
+        page:
+          seo_title: Tytuł
+          target_klass_name: Model
+        editable_element:
+          region: Sekcje
+        site:
+          locales: Języki
+          timezone_name: Strefa czasowa
+          cache_enabled: Cache
+          private_access: "Włącz zabezpieczenie hasłem"
+          password: "Hasło dla całej witryny"
+          new:
+            locales: Podstawowy język
+        membership:
+          edit:
+            role: Nowa rola
+        rte_input_link_form:
+          url: Adres
+          target: Target
+          title: Tytuł
+        rte_input_image_form:
+          src: Źródło
+          title: Tytuł
+          alignment: Wyrównanie
+        image_resize_form:
+          width: Szerokość
+          height: Wysokość
+        rte_input_table_form:
+          cols: "Kolumny"
+          rows: "Wiersze"
+          head: "Wiersz nagłówkowy"
+          class_name: "Klasa CSS"
+    hints:
+      locomotive:
+        account:
+          password: minimum 6 znaków
+        page:
+          handle: "Unikatowy identyfikator służący do pobierania tej strony z użyciem zewnętrznej instancji kontrolera."
+          published: "Tylko uwierzytelnieni użytkownicy mogą oglądać nieopublikowane strony."
+          templatized: "Użyj tej strony jako szablonu dla stworzonego modelu."
+          cache_enabled: "Kiedy włączone, strona będzie cache'owana tak długo aż jej treść się nie zmieni."
+          listed: "Decyduj czy strona powinna ukazywać się w generowanych menu."
+          target_klass_name: "Typ zawartości, dla której ta strona będzie szablonem."
+          seo_title: "Określ tytuł strony, który będzie użyty jako wartość dla znacznika title umieszczanego w sekcji head kodu HTML. Pozostaw to pole puste, jeśli chcesz, aby wykorzystana została domyślna wartość określona ustawieniami witryny."
+          meta_keywords: "Nadpisz słowa kluczowe (meta keywords) umieszczane w sekcji head kodu HTML. Słowa powinny być oddzielone przecinkami."
+          meta_description: "Nadpisz znacznik opisu (meta description) umieszczanego w sekcji head kodu HTML."
+          is_layout: "Jeśli włączone, ta strona będzie mogła zostać użyta jako layout innych stron."
+          allow_layout: "Zezwól autorom na zmianę layoutu tej strony."
+        site:
+          locales: "Przeciągnij i upuść flagę na pierwszym miejscu aby ustawić język jako domyślny."
+          seo_title: "Zdefiniuj globalną wartość, która będzie używana jako tytuł (znacznik title w sekcji head kodu HTML)."
+          meta_keywords: "Oddzielone przecinkami słowa kluczowe (znacznik meta keywords sekcji head kodu HTML). Wymagane dla SEO."
+          meta_description: "Opis (znacznik meta description sekcji head kodu HTML). Wymagany dla SEO."
+          robots_txt: "Zawartość pliku <span class='code'>/robots.txt</span>. Pod umieszczonym <a href='http://www.w3.org/TR/html4/appendix/notes.html#h-B.4.1.1'>tutaj</a> odnośnikiem znajdziesz więcej informacji."
+          domains: "Dodaj swoje domeny poniżej. Więcej informacji w <a href=\"https://locomotive-v3.readme.io/docs/domains\">dokumentacji</a>"
+          memberships: "Możesz zaprosić innych użytkowników do edycji/zarządzania tą witryną."
+          cache_enabled: "Kiedy włączone, strona będzie cache'owana tak długo aż jej treść się nie zmieni. Możliwe jest wyłączenie cache'owania dla wybranych stron."
+          redirect_to_first_domain: "Kiedy włączone, zapytanie do dowolnej z powyższych domen zostanie przekierowane do pierwszej z nich."
+          url_redirections: "Przekieruj (301) stare adresy do stron utworzonych w CMS-ie. Stary i nowy adres powinny zostać oddzielone <u>spacją</u>."
+          private_access: Możesz zabezpieczyć swoją stronę hasłem.
+          password: Hasło, które gość będzie musiał wprowadzić aby zobaczyć treść witryny.
+          new:
+            locales: "Możesz dodać więcej języków po utworzeniu witryny."
+        translation:
+          key: "Użyj podkreślenia zamiast myślnika. Przykład: wiadomosc_powitalna"
+        content_entry:
+          _slug: "Właściwość używana do generowania łańcucha URL strony pełniącej funkcję szablonu dla tego typu zawartości (np. \"strona_szablonu/{{ twój_obiekt._permalink }})\"."
+          _visible: "Domyślnie, pozycja zostanie pokazana na witrynie. Może być użyte jak atrybut \"opublikowano\"."
+          seo_title: "Wartość, którą tu podasz, zastąpi tytuł SEO strony szablonowej odnoszącej się do stworzonego modelu."
+          meta_keywords: "Nadpisz słowa kluczowe (meta keywords) witryny, umieszczane w sekcji head kodu HTML strony. Powinny być oddzielone przecinkami."
+          meta_description: "Nadpisz opis (meta description) witryny, umieszczany w sekcji head kodu HTML strony."
+        content_type:
+          public_submission_accounts: "Kiedy pozycja jest tworzona wyślij e-mail z powiadomieniem do użytkowników podanych poniżej."
+        image_resize_form:
+          width: "w px"
+          height: "w px"
+    placeholders:
+      locomotive:
+        site:
+          domains: "Np. example.com"
+          url_redirections: "Np. stary-adres nowy-adres-w-locomotive"
+        content_type_entry_field:
+          select_options: "Podaj etykietę dla nowych opcji"
+    options:
+      locomotive:
+        rte_input_link_form:
+          target:
+            not_set: "Standardowo"
+            self: "Otwórz w tym samym oknie"
+            blank: "Otwórz w nowym oknie"
+        rte_input_image_form:
+          alignment:
+            default: Domyślne
+            left: Do lewej
+            right: Do prawej
+    buttons:
+      defaults:
+        locomotive:
+          create: Utwórz
+          update: Zapisz
+          submit: Ok
+          cancel: Anuluj
+          delete: Usuń
+          close: Zamknij
+          loading_text: "Zapisuję…"
+          or: lub
+      locomotive:
+        account:
+          new_api_key: Zmień
+        image_resize_form:
+          loading_text: Zmieniam wielkość…
+          submit: Zmień wielkość
+        site:
+          delete: Usuń tę witrynę
+        page:
+          delete: Usuń

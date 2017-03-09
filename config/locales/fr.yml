@@ -13,6 +13,7 @@ fr:
       es: Espagnol
       ru: Russe
       et: Estonien
+      lt: Lituanien
       ja: Japonais
       zh-CN: Chinois
       cs: Tchèque
@@ -35,6 +36,7 @@ fr:
       sidebar:
         dashboard: Tableau de bord
         assets: Médias
+        pages: Pages
         settings: Paramètres généraux
         metafields: Propriétés
         developers: Développeurs
@@ -97,6 +99,8 @@ fr:
         destroyed: 'a supprimé le média %{name}'
       membership:
         created: 'a ajouté %{name} au site'
+      site_metafields:
+        updated: 'a mis à jour %{label}'
     pagination:
       first: "&laquo;"
       last: "&raquo;"
@@ -154,7 +158,7 @@ fr:
         password: "Mot de passe"
         sign_up: Avez-vous un compte ?
         submit: Se connecter
-        title: S'inscrire
+        title: S'identifier
     registrations:
       new:
         confirm_password: Confirmer le mot de passe

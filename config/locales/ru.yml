@@ -24,20 +24,20 @@ ru:
       el: Греческий
     messages:
       confirm: Вы уверены ?
-      unsaved_content_warning: "Эта страница просит Вас подтвердить, что Вы хотите выйти — введённые Вами данные могут быть не сохранёнными."
+      unsaved_content_warning: "Эта страница просит Вас подтвердить, что Вы хотите выйти — введенные Вами данные могут быть не сохранены."
     shared:
       header:
-        welcome: Здравствуйте, %{name}
+        welcome: Добро пожаловать, %{name}
         sites: Мои сайты
-        account: Настройки учётной записи
+        account: Настройки учетной записи
         see: Посмотреть сайт
         help: Справка
         logout: Выйти
       sidebar:
-        dashboard: Приборная доска
+        dashboard: Панель управления
         assets: Ресурсы
         pages: Страницы
-        settings: Основные настройки
+        settings: Настройки
         metafields: Свойства
         developers: Разработчикам
         content_types:
@@ -65,42 +65,42 @@ ru:
         message: "Мы сожалеем, но что-то пошло не так. Пожалуйста, свяжитесь с Вашим администратором."
       '404':
         title: Страница не найдена
-        message: "Запрашиваемая страница не существует."
+        message: "Запрашиваемая Вами страница не существует."
       no_site:
         title: Сайт не найден
         next: "Вперёд &rarr;"
         message:
-          create_account: "Пожулайста, создайте сначала учетную запись а затем создайте сайт."
-          add_domain: "Добавить домен <strong>%{host}</strong> в список доменов одного из Ваших сайтов."
-          sign_in: "Пожалуйста, сначала войдите. Затем, добавьте домен <strong>%{host}</strong> в список доменов одного из Ваших сайтов."
+          create_account: "Пожалуйста, сперва создайте учетную запись а затем создайте сайт."
+          add_domain: "Добавьте домен <strong>%{host}</strong> в список доменов одного из Ваших сайтов."
+          sign_in: "Пожалуйста, сначала войдите на сайт. Затем, добавьте домен <strong>%{host}</strong> в список доменов одного из Ваших сайтов."
     notifications:
       new_content_entry:
         subject: "[%{domain}][%{type}] новая запись"
-        title: "Привет %{name}, уведомляем о создании %{date} нового экземпляра сайта <b>%{domain}</b>"
+        title: "Привет %{name}, просто уведомляем о создании %{date} новой записи на сайте <b>%{domain}</b>"
         type: "Модель: %{type}"
     activity:
       site:
-        created: 'создал(а) сайт'
+        created: 'создал сайт'
       page:
-        created: 'создал(а) страницу %{page}'
-        updated: 'обновил(а) страницу %{page}'
-        destroyed: 'удалил(а) страницу %{page}'
-        sorted: 'отсортировал(а) страницы'
+        created: 'создал страницу %{page}'
+        updated: 'обновил страницу %{page}'
+        destroyed: 'удалил страницу %{page}'
+        sorted: 'изменил порядок страницы'
       editable_element:
-        updated_bulk: 'изменено содержание %{pages} страниц'
+        updated_bulk: 'изменил содержимое %{pages}'
       content_entry:
-        created: 'добавлена %{entry} в %{content_type}'
-        created_public: 'добавлена %{entry} в %{content_type} из публичной формы'
-        updated: 'обновлена %{entry} из %{content_type}'
-        destroyed: 'удалена %{entry} из %{content_type}'
-        sorted: '%{content_type} отсортировано'
+        created: 'добавил %{entry} в %{content_type}'
+        created_public: 'добавил %{entry} в %{content_type} из публичной формы'
+        updated: 'обновил %{entry} в %{content_type}'
+        destroyed: 'удалил %{entry} из %{content_type}'
+        sorted: 'изменил порядок %{content_type}'
       content_asset:
-        created_bulk: 'загружено %{count} ресурс(ов)'
-        destroyed: 'удалён ресурс %{name}'
+        created_bulk: 'загрузил %{count} ресурс(ов)'
+        destroyed: 'удалил ресурс %{name}'
       membership:
-        created: 'на сайт добавлено %{name}'
+        created: 'пригласил %{name} на сайт'
       site_metafields:
-        updated: 'обновлено %{label}'
+        updated: 'обновил %{label}'
     pagination:
       first: "&laquo;"
       last: "&raquo;"
@@ -120,66 +120,66 @@ ru:
         belongs_to:
           edit: Править
           placeholder: "Выберите %{name}"
-          searching: Идёт поиск...
+          searching: Идет поиск...
           no_matches: Совпадений не найдено
           too_short: Пожалуйста, введите хотя бы 1 букву
         many_to_many:
-          placeholder: "Выберите одну из %{name}"
+          placeholder: "Выберите одну запись из %{name}"
           searching: Идёт поиск...
           no_matches: Совпадений не найдено
           too_short: Пожалуйста, введите хотя бы 1 букву
         select:
-          edit: Возможности правки
+          edit: Редактировать варианты
         file:
           delete_file: Удалить файл
         has_many:
-          new_label: Добавить новую
+          new_label: Добавить новую запись
       form:
         required: Обязательно
         default_label: Имя поля
         select_options:
-          ask_name: "Введите метку настройки"
+          ask_name: "Введите метку варианта"
     dashboard:
       show:
-        title: 'Приборная доска'
+        title: 'Панель управления'
       url:
         title: "URL вашего сайта:"
-        visit: 'Посетить'
-        change_domain: 'Использовать своё доменное имя'
+        visit: 'Перейти'
+        change_domain: 'Использовать свое доменное имя'
       activity:
-        title: Деятельность
+        title: Активность
         unknown_account: Кто-то
-        load_more: Загружается ещё
+        load_more: Загрузить еще
         loading_activity_feed: Идёт загрузка...
     sessions:
       new:
-        email: "Электронная почта"
+        email: "Email"
         link: "Забыл пароль"
         password: "Пароль"
-        sign_up: Нет учётной записи?
+        sign_up: Нет учетной записи?
         submit: Войти
         title: Войти
     registrations:
       new:
         confirm_password: Подтвердить пароль
-        description: "Создать ниже учётную запись, чтобы начать пользоваться Locomotive."
-        sign_in: Уже есть учётная запись?
+        description: "Чтобы начать пользоваться Locomotive, создайте учетную запись."
+        sign_in: Уже есть учетная запись?
         submit: Зарегистрироваться
         title: Регистрация
     passwords:
       new:
-        description: "Заполните ниже адрес электронной почты и получите письмо с наставлениями по переустановке пароля."
+        description: "Укажите свой email и вы получите письмо с инструкциями по сбросу пароля."
         link: "Вернуться на страницу входа"
         email: "Ваш email"
         submit: "Отправить"
         title: "Забыл пароль"
       edit:
-        description: "Заполни новый пароль ниже."
+        description: "Укажите Ваш новый пароль."
         link: "Вернуться на страницу входа"
         password: "Ваш новый пароль"
         password_confirmation: "Подтвердить пароль"
-        submit: "Обновить пароль"
-        title: "Переустановить пароль"
+        submit: "Изменить пароль"
+        title: "Сбросить пароль"
     pages:
       index:
         title: 'Страницы'
@@ -188,11 +188,11 @@ ru:
         new_content_entry: "Новая %{name}"
       new:
         title: Новая страница
-        help: "Пожалуйста, заполните форму ниже для создания страницы. Будьте внимательны, по-умолчанию страница не публикуется."
+        help: "Пожалуйста, для создания новой страницы, заполните форму ниже. Будьте внимательны, по умолчанию страница не публикуется."
       edit:
         title: "%{title} &mdash; <small>%{fullpath}</small>"
       form:
-        no_layout: Использовать размещение родительской страницы
+        no_layout: Использовать шаблон родительской страницы
         redirect_type:
           permanent: "Постоянно (301)"
           temporary: "Временно (302)"
@@ -206,7 +206,7 @@ ru:
         title: "%{title} &mdash; <small>%{fullpath}</small>"
       edit:
         settings_link: 'Настройки'
-        no_editable_elements: 'Не найдены изменяемые части'
+        no_editable_elements: 'Не найдены изменяемые элементы'
         parsing_error: "<b>Сожалеем, но мы не можем разобрать шаблон Вашей страницы.</b>\n<br/>Пожалуйста, убедитесь что Ваш шаблон работает с Wagon."
         blocks:
           all: Все
@@ -214,7 +214,7 @@ ru:
       form:
         model:
           buttons:
-            list: Руководить
+            list: Изменить
             edit: Править
     sites:
       index:
@@ -222,63 +222,63 @@ ru:
         new: Добавить новый сайт
         title: Мои сайты
       new:
-        description: "Заполните форму ниже и кликните “Создать сайт”. В случае успеха, будет создан новый сайт."
+        description: "Заполните форму ниже и нажмите “Создать сайт”. В случае успеха, будет создан новый сайт."
         go_back: Вернуться
         submit: Создать сайт
         title: Создать новый сайт
       site:
-        no_domain: Ещё нет домена
+        no_domain: Домен еще не назначен
     current_site:
       edit:
         title: Настройки текущего сайта
       form:
         main:
-          new_membership: "Добавить учётную запись"
+          new_membership: "Добавить учетную запись"
         advanced:
-          destroy: "Разрушить этот сайт"
-          confirm_destroy: "Пожалуйста, подтвердите, напечатав имя сайта в следующем поле ввода"
+          destroy: "Удалить этот сайт"
+          confirm_destroy: "Пожалуйста, подтвердите действие, напечатав имя сайта в следующем поле ввода"
     current_site_metafields:
       index:
-        title: Правятся свойства
-        no_metafields: Нет объявленных послеполей для Вашего сайта.
+        title: Редактирование свойства
+        no_metafields: Для Вашего сайта, нет объявленных метаполей.
     memberships:
       roles:
         admin: Администратор
         designer: Дизайнер
         author: Автор
       new:
-        title: Новое членство
-        help: "Пожалуйста, укажите электронную почту учётной записи для добавления. Если её не существует, Вы будете перенаправлены к форме создания учётной записи."
+        title: Новая учетная запись
+        help: "Пожалуйста, укажите email для новой учетной записи. Если он еще не зарегистрирован, Вы будете перенаправлены к форме создания учетной записи."
         back: "Вернуться к настройкам Вашего сайта"
       edit:
-        title: "Править членство <b>%{name}</b>"
+        title: "Редактирование учетной записи <b>%{name}</b>"
         back: "Вернуться к настройкам Вашего сайта"
     accounts:
       new:
-        title: Новая учётная запись
-        help: "Заполните форму ниже для добавления новой учётной записи."
+        title: Новая учетная запись
+        help: "Заполните форму ниже для добавления новой учетной записи."
     my_account:
       edit:
-        title: Исправление учётной записи
+        title: Моя учетная запись
       form:
         api:
-          api_key: "Используется Wagon'ом для размещения сайта (проверьте файл config/deploy.yml Вашего Wagon сайта)."
+          api_key: "Используется в Wagon для развертывания сайта (проверьте файл config/deploy.yml Вашего Wagon сайта)."
     translations:
-      untranslated: "Непереведённые языки: %{list}"
+      untranslated: "Непереведенные языки: %{list}"
       index:
         title: Переводы
         no_items: "Мы не нашли никаких переводов."
         search_placeholder: "Введите ключ или перевод"
-        help: "Перевести все вхождения с оранжевыми (частично переведены) или красными (не переведены) точками."
+        help: "Переведите все вхождения с оранжевыми (частично переведены) или красными (не переведены) точками."
         filter_by:
           all: Все
-          done: Переведённые
-          partially: Частично переведённые
-          none: Не переведённые
+          done: Переведенные
+          partially: Частично переведенные
+          none: Не переведенные
       edit:
-        title: "Переводы  &mdash; правится %{key}"
+        title: "Переводы &mdash; редактирование %{key}"
       form:
-        not_translated: "Не переведённые"
+        not_translated: "Не переведенные"
     content_assets:
       index:
         title: "Ресурсы"
@@ -292,14 +292,14 @@ ru:
         instructions: "<strong>Переместите файлы с Вашего компьютера сюда.</strong><br/>Вы также можете"
         browse: "просмотреть файлы"
       list:
-        no_items: "Сейчас нет медиа."
+        no_items: "Пока здесь нет медиа ресурсов."
         buttons:
           select: "Выбрать"
           edit: "Править"
       nav:
         types:
           all: Все
-          pdf: PDFы
+          pdf: PDF
           image: изображения
           media: насыщеные медиа
           others: другие
@@ -313,20 +313,20 @@ ru:
         title: '%{type}'
         download: скачать записи
         new: новая запись
-        edit_notification_settings: Править настройки уведомлений
+        edit_notification_settings: Редактировать настройки уведомлений
         search_placeholder: "Введите ключевые слова для поиска"
         group_by:
           all: Все
       list:
-        no_items: "Сейчас нет записей. Кликните <a href=\"%{url}\">здесь</a> для создания первой."
+        no_items: "Пока тут нет записей. Нажмите <a href=\"%{url}\">сюда</a>, для создания первой."
       new:
         title: '%{type} &mdash; новая запись'
       edit:
-        title: '%{type} &mdash; правится запись'
+        title: '%{type} &mdash; редактировать запись'
       shared:
         back: '&larr; Вернуться к списку'
     developers_documentation:
       show:
-        title: Разработчики
+        title: Разработчикам
         wagon: Wagon
         api: API

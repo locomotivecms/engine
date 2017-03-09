@@ -1,0 +1,61 @@
+pl-PL:
+  errors:
+    messages:
+      not_found: "nie zostało znalezione"
+      already_confirmed: "zostało już potwierdzone"
+      not_locked: "nie zostało zablokowane"
+  devise:
+    failure:
+      locomotive_account:
+        unauthenticated: 'Musisz najpierw się zalogować.'
+        unconfirmed: 'Musisz najpierw potwierdzić (aktywować) swoje konto.'
+        locked: 'Twoje konto jest zablokowane.'
+        invalid: 'Nieprawidłowy e-mail lub hasło.'
+        not_found_in_database: 'Nieprawidłowy e-mail lub hasło.'
+        no_membership: 'Twoje konto nie należy do tej witryny. Skontaktuj się z jej administratorem, aby uzyskać dostęp.'
+        invalid_token: 'Błędny token uwierzytelniający'
+        timeout: 'Twoja sesja wygasła, proszę zaloguj się ponownie, aby kontynuować.'
+        inactive: 'Twoje konto nie zostało jeszcze aktywowane.'
+    sessions:
+      locomotive_account:
+        signed_in: 'Zalogowano Cię pomyślnie.'
+        signed_out: 'Wylogowano Cię pomyślnie.'
+    passwords:
+      locomotive_account:
+        send_instructions: 'W ciągu kilku minut otrzymasz e-mail z instrukcjami dotyczącymi sposobu przywracania hasła.'
+        updated: 'Twoje hasło zostało pomyślnie zmienione. Zalogowano Cię automatycznie.'
+        invalid: 'Musisz ponownie poprosić o nowe hasło.'
+    confirmations:
+      locomotive_account:
+        send_instructions: 'W ciągu kilku minut otrzymasz e-maila z instrukcjami dotyczącymi sposobu aktywowania konta.'
+        confirmed: 'Twoje konto zostało aktywowane. Zalogowano Cię automatycznie.'
+    registrations:
+      locomotive_account:
+        signed_up: 'Zarejestrowano Cię pomyślnie.'
+        updated: 'Pomyślnie zaktualizowano informacje o koncie.'
+        destroyed: 'Pa! Pomyślnie unieważniono Twoje konto. Mamy nadzieję, że jeszcze kiedyś tu wrócisz.'
+    unlocks:
+      locomotive_account:
+        send_instructions: 'W ciągu kilku minut otrzymasz e-maila z instrukcjami dotyczącymi procesu odblokowywania konta.'
+        unlocked: 'Twoje konto zostało pomyślnie odblokowane. Zalogowano Cię automatycznie.'
+    mailer:
+      locomotive_account:
+        confirmation_instructions: 'Instrukcje aktywowania konta'
+        reset_password_instructions: 'Instrukcje przywracania hasła'
+        unlock_instructions: 'Instrukcje odblokowywania'
+  locomotive:
+    devise_mailer:
+      common:
+        hello: Witaj
+      confirmation_instructions:
+        you_can_confirm_your_account_through_the_link_below: "Możesz potwierdzić swoje konto używając poniższego odnośnika:"
+        confirm_my_account: "Potwierdź moje konto"
+      reset_password_instructions:
+        reset_password_instruction: "Ktoś poprosił o odnośnik do zmiany twojego hasła. Możesz to zrobić używając poniższego odnośnika:"
+        change_my_password: "Zmień moje hasło"
+        wrong_request_instruction: "Jeśli zlecenie nie pochodziło od Ciebie, zignoruj proszę tę wiadomość."
+        unchange_password_message: "Twoje hasło nie ulegnie zmianie dopóki nie użyjesz poniższego adresu i nie wprowadzisz nowego hasła."
+      unlock_instructions:
+        locked_account_message: "Twoje konto zostało zablokowane z powodu dużej liczby nieudanych prób zalogowania."
+        unlock_account_instruction: "Kliknij poniższy odnośnik, aby odblokować swoje konto:"
+        unlock_my_account: "Odblokuj moje konto"

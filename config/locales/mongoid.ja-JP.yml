@@ -1,0 +1,47 @@
+ja-JP:
+  mongoid:
+    errors:
+      messages:
+        blank_in_locale: "は空白のままにできません"
+      models:
+        locomotive/page:
+          attributes:
+            layout_id:
+              index_can_not_extend_parent: "indexページは親ページをレイアウトとして指定できません"
+        locomotive/membership:
+          attributes:
+            account:
+              unique_account: "は既に使用されています"
+            email:
+              unique_account: "は既に使用されています"
+    attributes:
+      locomotive/content_entry:
+        created_at: 作成
+  errors:
+    messages:
+      domain_taken: "%{value}は既に使用されています"
+      invalid_domain: "%{value}は無効です"
+      needs_admin_account: "少なくとも１つの管理者アカウントが必要です"
+      protected_page: "indexおよび404ページは削除できません"
+      extname_changed: "オリジナル拡張子は使用できません"
+      array_too_short: "が少なすぎます(最小項目数は%{count})"
+      site:
+        default_locale_removed: 現時点で直前に使用していたデフォルトロケールは削除できません
+        wrong_timezone_name: "誤ったタイムゾーン名"
+      page:
+        liquid_syntax: "構文エラー ('%{error}' on '%{fullpath}')"
+        liquid_extend: "ページは存在しないテンプレートを拡張しています"
+        liquid_translation: "ページは翻訳されていないテンプレートを拡張しています"
+      too_few_custom_fields: "少なくともカスタムフィールドが１つ必要です"
+      security: "はセキュリティに問題があります"
+  attributes:
+    defaults:
+      pages:
+        index:
+          title: "ホームページ"
+          body: "ホームページのコンテンツ"
+        '404':
+          title: "ページなし"
+          body: "404ページのコンテンツ"
+        other:
+          body: "{% extends 'parent' %}"

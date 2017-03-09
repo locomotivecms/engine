@@ -1,0 +1,61 @@
+ca:
+  errors:
+    messages:
+      not_found: "no trobat"
+      already_confirmed: "ja estaba confirmat"
+      not_locked: "no estaba tancat"
+  devise:
+    failure:
+      locomotive_account:
+        unauthenticated: 'Cal registrar-se a continuar.'
+        unconfirmed: 'Cal confirmar el teu compte abans de continuar'
+        locked: 'El teu compte esta bloquejat'
+        invalid: 'Email o contrasenya no valides'
+        not_found_in_database: 'Email o contrasenya no valides'
+        no_membership: 'El seu compte no és un membre d''aquesta web si us plau, poseu-vos en contacte amb l''administrador del lloc per obtenir accés.'
+        invalid_token: 'fitxa d''autenticació vàlida.'
+        timeout: 'La seva sessió ha finalitzat, inicia la sessió de nou per continuar.'
+        inactive: 'El teu compte no ha sigut activat encara.'
+    sessions:
+      locomotive_account:
+        signed_in: 'Signat entrada correctament.'
+        signed_out: 'Signat sortida correctament.'
+    passwords:
+      locomotive_account:
+        send_instructions: 'Vostè rebrà un correu electrònic amb instruccions per restablir la contrasenya en uns pocs minuts.'
+        updated: 'La seva contrasenya s''ha canviat correctament. Ara ha iniciat sessió.'
+        invalid: 'Has de demanar una altra vegada per una contrasenya nova.'
+    confirmations:
+      locomotive_account:
+        send_instructions: 'Vostè rebrà un correu electrònic amb instruccions per confirmar el seu compte en uns pocs minuts.'
+        confirmed: 'El seu compte a sigut confirmat. Ara has iniciat sessió.'
+    registrations:
+      locomotive_account:
+        signed_up: 'Vosté s''ha registrat correctament.'
+        updated: 'Vosté ha actualitzat el seu compte correctement.'
+        destroyed: 'Adeu! El seu compte s''ha cancel·lat correctament. Esperem veure-li de nou aviat.'
+    unlocks:
+      locomotive_account:
+        send_instructions: 'Vostè rebrà un correu electrònic amb instruccions sobre com desbloquejar el seu compte en pocs minuts.'
+        unlocked: 'El teu compte ha estat desbloquejat amb èxit. Ara ha iniciat sessió.'
+    mailer:
+      locomotive_account:
+        confirmation_instructions: 'Instruccions de confirmació'
+        reset_password_instructions: 'Instruccions del restabliment de contrasenya'
+        unlock_instructions: 'Instruccions de desbloqueig'
+  locomotive:
+    devise_mailer:
+      common:
+        hello: Hola
+      confirmation_instructions:
+        you_can_confirm_your_account_through_the_link_below: "Vosté pot confirmar el seu compte amb el enllaç següent:"
+        confirm_my_account: "Confirmar el meu compte"
+      reset_password_instructions:
+        reset_password_instruction: "Algú a demanat un enllaç per canviar la seva contrasenya, voste ho pot fer a traves del enllaç següent:"
+        change_my_password: "Canviar contrasenya"
+        wrong_request_instruction: "Si vosté no ha demanat això, siusplau ignora aquest missatge."
+        unchange_password_message: "La seva contrasenya no canviarà fins que accedeixi a l'enllaç anterior i creu una nova."
+      unlock_instructions:
+        locked_account_message: "El seu compte ha estat bloquejat a causa d'una quantitat excessiva d'intents."
+        unlock_account_instruction: "Presioni el següent enllaç per desbloquejar el seu compte:"
+        unlock_my_account: "Desbloquejar el meu compte"

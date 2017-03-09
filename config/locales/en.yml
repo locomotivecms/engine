@@ -22,6 +22,13 @@ en:
       sr: Serbian
       sv: Swedish
       el: Greek
+      ca: Catalan
+      uk: Ukrainian
+      ja-JP: Japanese
+      pl-PL: Polish
+      sv-FI: Swedish/Finnish
+      fi-FI: Finnish
+      da: Danish
 
     messages:
       confirm: Are you sure?

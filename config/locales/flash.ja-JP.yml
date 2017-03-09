@@ -1,0 +1,82 @@
+ja-JP:
+  flash:
+    locomotive:
+      pages:
+        create:
+          notice: "ページを作成しました。"
+          alert: "ページの作成に失敗しました。"
+        update:
+          notice: "ページを更新しました。"
+          alert: "ページの更新に失敗しました。"
+        sort:
+          notice: "ページをソートしました。"
+        destroy:
+          notice: "ページを削除しました。"
+      content_entries:
+        create:
+          notice: "エントリーを作成しました。"
+          alert: "エントリーの作成に失敗しました。"
+        update:
+          notice: "エントリーを更新しました。"
+          alert: "エントリーの更新に失敗しました。"
+        sort:
+          notice: "エントリーをソートしました。"
+        destroy:
+          notice: "エントリーを削除しました。"
+      content_types:
+        update:
+          notice: "コンテンツタイプを更新しました。"
+          alert: "コンテンツタイプの更新に失敗しました。"
+      current_site:
+        update:
+          notice: "サイトを更新しました。"
+          alert: "サイトの更新に失敗しました。"
+      accounts:
+        create:
+          notice: "アカウントを作成しました。"
+          alert: "アカウントの作成に失敗しました。"
+      my_account:
+        update:
+          notice: "アカウントを更新しました。"
+          alert: "アカウントの更新に失敗しました。"
+      sites:
+        create:
+          notice: "サイトを作成しました。"
+          alert: "サイトの作成に失敗しました。"
+        destroy:
+          notice: "サイトを削除しました。"
+      current_site_metafields:
+        update_all:
+          notice: "全て更新しました。"
+      memberships:
+        create:
+          notice: "メンバーを登録しました。"
+          alert: "メンバーの登録に失敗しました。"
+          already_created: "メンバーは既に登録されています。"
+      content_assets:
+        create:
+          notice: "アセットを作成しました。"
+          alert: "アセットの作成に失敗しました。"
+        bulk_create:
+          notice: "アセットを作成しました。"
+          alert: "アセットの作成に失敗しました。"
+        update:
+          notice: "アセットを更新しました。"
+          alert: "アセットの更新に失敗しました。"
+        destroy:
+          notice: "アセットを削除しました。"
+          alert: "アセットの削除に失敗しました。"
+      translations:
+        create:
+          notice: "翻訳を作成しました。"
+          alert: "翻訳の作成に失敗しました。"
+        update:
+          notice: "翻訳を更新しました。"
+          alert: "翻訳の更新に失敗しました。"
+        destroy:
+          notice: "翻訳を削除しました。"
+      custom_fields:
+        select_options:
+          update:
+            notice: "フィールドを更新しました。"
+            alert: "フィールドの更新に失敗しました。"

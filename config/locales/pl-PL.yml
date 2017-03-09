@@ -1,0 +1,332 @@
+pl-PL:
+  locomotive:
+    locales:
+      en: Angielski
+      de: Niemiecki
+      fr: Francuski
+      pl: Polski
+      pt: Portugalski
+      pt-BR: "Portugalski brazylijski"
+      it: Włoski
+      nl: Holenderski
+      nb: Norweski
+      es: Hiszpański
+      ru: Rosyjski
+      et: Estoński
+      lt: Litewski
+      ja: Japoński
+      zh-CN: Chiński
+      cs: Czeski
+      bg: Bułgarski
+      sk: Słowacki
+      sr: Serbski
+      sv: Szwedzki
+      el: Grecki
+    messages:
+      confirm: Na pewno?
+      unsaved_content_warning: "Strona pyta czy na pewno chcesz ją opuścić - wprowadzone dane mogą zostać utracone."
+    shared:
+      header:
+        welcome: Witaj, %{name}
+        sites: Moje witryny
+        account: Ustawienia konta
+        see: Zobacz witryny
+        help: Pomoc
+        logout: Wyloguj
+      sidebar:
+        dashboard: Dashboard
+        assets: Zasoby
+        pages: Strony
+        settings: Ustawienia ogólne
+        metafields: Właściwości
+        developers: Developerzy
+        content_types:
+          title: Modele
+        translations: Tłumaczenia
+      list:
+        untranslated: nieprzetłumaczone
+        created_at: "Utworzone %{distance} temu"
+        created_by: "Utworzone %{distance} temu przez %{who}"
+        updated_at: "Last modified %{distance} ago"
+        updated_by: "Last modified %{distance} ago by %{who}"
+      rte:
+        toolbar:
+          table:
+            merge: Scal
+            insert_row_before: Wstaw wiersz przed
+            insert_row_after: Wstaw wiersz po
+            insert_col_before: Wstaw kolumnę przed
+            insert_col_after: Wstaw kolumnępo
+            delete_row: Usuń wiersz
+            delete_col: Usuń kolumnę
+    errors:
+      '500':
+        title: Błąd ogólny
+        message: "Przepraszamy, ale coś poszło nie tak. Prosimy o kontakt z administratorem."
+      '404':
+        title: Strona nie znaleziona
+        message: "Żądana strona nie została znaleziona."
+      no_site:
+        title: Strona nie znaleziona
+        next: "Dalej &rarr;"
+        message:
+          create_account: "Proszę najpierw stworzyć konto a dopiero później utworzyć stronę."
+          add_domain: "Dodaj domenę <strong>%{host}</strong> do listy domen jednej ze swoich witryn."
+          sign_in: "Proszę się najpierw zalogować. Następnie, można dodać domenę <strong>%{host}</strong> do listy domen jednej z witryn."
+    notifications:
+      new_content_entry:
+        subject: "[%{domain}][%{type}] nowy wpis"
+        title: "Witaj %{name}, chcieliśmy tylko napomknąć, że nowa instancja witryny <b>%{domain}</b> została utworzona dnia %{date}"
+        type: "Model: %{type}"
+    activity:
+      site:
+        created: 'utworzył(a) witrynę'
+      page:
+        created: 'utworzył(a) %{page} stronę'
+        updated: 'zaktualizował(a) %{page} stronę'
+        destroyed: 'usunął(ęłą) %{page} stronę'
+        sorted: 'zmienił(a) koleność stron'
+      editable_element:
+        updated_bulk: 'zmienił(a) treść strony %{pages}'
+      content_entry:
+        created: 'dodał(a) %{entry} do %{content_type}'
+        created_public: 'dodał(a) %{entry} do %{content_type} używając publicznie dostępnego formularza'
+        updated: 'zaktualizował(a) %{entry} z %{content_type}'
+        destroyed: 'usunął(ęłą) %{entry} z %{content_type}'
+        sorted: 'zmienił(a) kolejność %{content_type}'
+      content_asset:
+        created_bulk: 'wgrał(a) %{count} zasobów'
+        destroyed: 'usunął(ęłą) zasób %{name}'
+      membership:
+        created: 'dodał(a) %{name} do witryny'
+      site_metafields:
+        updated: 'zaktualizował(a) %{label}'
+    pagination:
+      first: "&laquo;"
+      last: "&raquo;"
+      previous: "&lsaquo;"
+      next: "&rsaquo;"
+      truncate: "&hellip;"
+    custom_fields:
+      select_options:
+        edit:
+          title: "%{type} &mdash; opcje edycji"
+          back: "Wróc do wpisu"
+        option:
+          edit: Edytuj
+          apply: Zastosuj
+          cancel: Anuluj
+      types:
+        belongs_to:
+          edit: Edytuj
+          placeholder: "Wybierz %{name}"
+          searching: Szukam…
+          no_matches: Nic nie znaleziono
+          too_short: Proszę wpisać przynajmniej 1 znak
+        many_to_many:
+          placeholder: "Wybierz jeden z %{name}"
+          searching: Szukam…
+          no_matches: Nic nie znaleziono
+          too_short: Proszę wpisać przynajmniej 1 znak
+        select:
+          edit: Opcje edycji
+        file:
+          delete_file: Usuń plik
+        has_many:
+          new_label: Dodaj nowy
+      form:
+        required: Wymagane
+        default_label: Nazwa pola
+        select_options:
+          ask_name: "Wpisz etykietę opcji"
+    dashboard:
+      show:
+        title: 'Dashboard'
+      url:
+        title: "URL twojej witryny:"
+        visit: 'Zobacz'
+        change_domain: 'Użyj własnej domeny'
+      activity:
+        title: Aktywność
+        unknown_account: Ktoś
+        load_more: Wczytaj więcej
+        loading_activity_feed: Wczytuję…
+    sessions:
+      new:
+        email: "E-mail"
+        link: "Nie pamiętam hasła"
+        password: "Hasło"
+        sign_up: Nie masz konta?
+        submit: Zaloguj
+        title: Logowanie
+    registrations:
+      new:
+        confirm_password: Potwierdź hasło
+        description: "Utwórz konto aby móc korzystać z Locomotive"
+        sign_in: Masz już konto?
+        submit: Zarejestruj
+        title: Rejestracja
+    passwords:
+      new:
+        description: "Wpisz swój e-mail poniżej a otrzymasz wiadomość e-mail z instrukcją jak ustawić nowe hasło."
+        link: "Wróc do strony logowania"
+        email: "Twój e-mail"
+        submit: "Wyślij"
+        title: "Nie pamiętasz hasła?"
+      edit:
+        description: "Wpisz swoje nowe hasło poniżej."
+        link: "Wróc do strony logowania"
+        password: "Twoje nowe hasło"
+        password_confirmation: "Potwierdź nowe hasło"
+        submit: "Zapisz nowe hasło"
+        title: "Ustaw nowe hasło"
+    pages:
+      index:
+        title: 'Strony'
+        new: 'Nowa strona'
+        list_content_entries: "Wszystkie %{name}"
+        new_content_entry: "Nowe %{name}"
+      new:
+        title: Nowa strona
+        help: "Uzupełnij poniższy formularz aby utworzyć nową stronę. Domyślnie strona nie będzie opublikowana."
+      edit:
+        title: "%{title} &mdash; <small>%{fullpath}</small>"
+      form:
+        no_layout: Użyj layoutu strony rodzica
+        redirect_type:
+          permanent: "Stałe (301)"
+          temporary: "Czasowe (302)"
+    editable_elements:
+      index:
+        redirection_error: "Edycja strony spoza Locomotive nie jest dozwolona."
+        iframe:
+          buttons:
+            edit: edytuj
+      index_without_preview:
+        title: "%{title} &mdash; <small>%{fullpath}</small>"
+      edit:
+        settings_link: 'Ustawienia'
+        no_editable_elements: 'Brak elementów do edycji'
+        parsing_error: "<b>Przepraszamy ale nie udało nam się wczytać szablonu Twojej strony.</b><br/>Upewnij się, że szablon działa w Wagon."
+        blocks:
+          all: Wszystkie
+          unknown: Nieznany
+      form:
+        model:
+          buttons:
+            list: Zarządzaj
+            edit: Edytuj
+    sites:
+      index:
+        description: "Poniżej znajdziesz wszystkie witryny do których masz dostęp. Kliknij wybraną z nich aby przejść do zarządzania jej treścią."
+        new: Dodaj nową witrynę
+        title: Moje witryny
+      new:
+        description: "Wypełnij poniższy formularz. Utworzysz w ten sposób nową witrynę."
+        go_back: Wróć
+        submit: Utwórz witrynę
+        title: Utwórz nową witrynę
+      site:
+        no_domain: Brak domeny
+    current_site:
+      edit:
+        title: Ustawienia witryny
+      form:
+        main:
+          new_membership: "Dodaj konto"
+        advanced:
+          destroy: "Usuń witrynę"
+          confirm_destroy: "Prosimy o potwierdzenie poprzez wpisanie nazwy witryny w poniższym polu."
+    current_site_metafields:
+      index:
+        title: Edycja właściwości
+        no_metafields: Nie zdefiniowano pól meta dla twojej witryny.
+    memberships:
+      roles:
+        admin: Administrator
+        designer: Grafik
+        author: Autor
+      new:
+        title: Nowe członkostwo
+        help: "Proszę podać e-mail nowego członka. Jeśli konto nie zostało dodane wcześniej nastąpi przekierowanie do formularza dodawania konta."
+        back: "Powrót do ustawień witryny"
+      edit:
+        title: "Edytuj członkostwo dla <b>%{name}</b>"
+        back: "Powrót do ustawień witryny"
+    accounts:
+      new:
+        title: Nowe konto
+        help: "Wypełnij poniższy formularz aby dodać konto."
+    my_account:
+      edit:
+        title: Edycja mojego konta
+      form:
+        api:
+          api_key: "Używane przez Wagon do deploymentu witryn (sprawdź plik config/deploy.yml swojej witryny)."
+    translations:
+      untranslated: "Nieprzetłumaczone locale: %{list}"
+      index:
+        title: Tłumaczenia
+        no_items: "Nie znaleziono żadnych tłumaczeń"
+        search_placeholder: "Wpisz klucz lub tłumaczenie"
+        help: "Przetłumacz wszystkie wpisy z pomarańczową (częściowo przetłumaczone) lub czerwoną (nie przetłumaczone) kropką."
+        filter_by:
+          all: Wszystkie
+          done: Przetłumaczone
+          partially: Częściowo przetłumaczone
+          none: Nie przetłumaczone
+      edit:
+        title: "Tłumaczenia &mdash; edycja %{key}"
+      form:
+        not_translated: "Nie przetłumaczone"
+    content_assets:
+      index:
+        title: "Zasoby"
+        upload: Wgraj plik
+      edit_in_drawer:
+        buttons:
+          resize: "Zmień wielkość"
+          crop: "Kadruj"
+          apply: "Zastosuj"
+      dropzone:
+        instructions: "<strong>Przeciągnij pliki ze swojego komputera tu.</strong><br/>Możesz także"
+        browse: "przeglądać dysk"
+      list:
+        no_items: "Brak plików"
+        buttons:
+          select: "Wybierz"
+          edit: "Edytuj"
+      nav:
+        types:
+          all: Wszystkie
+          pdf: PDFy
+          image: obrazy
+          media: media
+          others: inne
+      search_form:
+        placeholder: Szukaj po nazwie pliku
+    public_submission_accounts:
+      edit:
+        title: "%{name} &mdash; Ustawienia powiadomień"
+    content_entries:
+      index:
+        title: '%{type}'
+        download: pobierz pozycje
+        new: nowa pozycja
+        edit_notification_settings: Edytuj ustawienia powiadomień
+        search_placeholder: "Wpisz frazę"
+        group_by:
+          all: Wszystkie
+      list:
+        no_items: "Brak pozycji. Kliknij aby <a href=\\\"%{url}\\\">utworzyć pierwszą</a>."
+      new:
+        title: '%{type} &mdash; nowa pozycja'
+      edit:
+        title: '%{type} &mdash; edycja pozycji'
+      shared:
+        back: '&larr; Powrót do listy'
+    developers_documentation:
+      show:
+        title: Deweloperzy
+        wagon: Wagon
+        api: API

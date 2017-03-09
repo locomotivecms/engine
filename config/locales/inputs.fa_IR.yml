@@ -1,0 +1,18 @@
+fa_IR:
+  locomotive:
+    inputs:
+      file:
+        none: فایل موجود نیست
+        browse: انتخاب فایل
+        choose: انتخاب
+        change: تغییر
+        delete: حذف
+        cancel: لغو
+        select_local_file: آپلود فایل از سیستم
+      array:
+        new: جدید
+        add: اضافه
+        edit: ویرایش
+      toggle:
+        on_text: "بله"
+        off_text: "خیر"

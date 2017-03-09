@@ -1,0 +1,79 @@
+da:
+  flash:
+    locomotive:
+      pages:
+        create:
+          notice: "Siden blev oprettet."
+          alert: "Siden blev ikke oprettet."
+        update:
+          notice: "Siden blev opdateret."
+          alert: "Siden blev ikke opdateret."
+        sort:
+          notice: "Siderne blev sorteret."
+        destroy:
+          notice: "Siden blev slettet."
+      content_entries:
+        create:
+          notice: "Instansen blev oprettet."
+          alert: "Instansen blev ikke oprettet."
+        update:
+          notice: "Instansen blev opdateret."
+          alert: "Instansen blev ikke opdateret."
+        sort:
+          notice: "Instanserne blev sorteret."
+        destroy:
+          notice: "Instansen blev slettet."
+      content_types:
+        update:
+          notice: "Modellen blev opdateret."
+          alert: "Modellen blev ikke opdateret."
+      current_site:
+        update:
+          notice: "Mit websted blev opdateret."
+          alert: "Mit websted blev ikke opdateret."
+      accounts:
+        create:
+          notice: "Kontoen blev oprettet."
+          alert: "Kontoen blev ikke oprettet."
+      my_account:
+        update:
+          notice: "Min konto blev opdateret."
+          alert: "Min konto blev ikke opdateret."
+      sites:
+        create:
+          notice: "Webstedet blev oprettet."
+          alert: "Webstedet blev ikke oprettet."
+        destroy:
+          notice: "Webstedet blev slettet."
+      memberships:
+        create:
+          notice: "Medlemskab blev oprettet."
+          alert: "Medlemskab blev ikke oprettet."
+          already_created: "Kontoen var allerede tilføjet til dette websted."
+      content_assets:
+        create:
+          notice: "Aktivet blev uploadet."
+          alert: "Aktivet blev ikke uploadet."
+        bulk_create:
+          notice: "Aktiverne blev uploadet."
+          alert: "Aktiverne blev ikke uploadet."
+        update:
+          notice: "Aktivet blev opdateret."
+          alert: "Aktivet blev ikke opdateret."
+        destroy:
+          notice: "Aktivet blev slettet."
+          alert: "Aktivet blev ikke slettet."
+      translations:
+        create:
+          notice: "Oversættelsen blev oprettet."
+          alert: "Oversættelsen blev ikke oprettet."
+        update:
+          notice: "Oversættelsen blev opdateret."
+          alert: "Oversættelsen blev ikke opdateret."
+        destroy:
+          notice: "Oversættelsen blev slettet."
+      custom_fields:
+        select_options:
+          update:
+            notice: "Feltet blev opdateret."
+            alert: "Feltet blev ikke opdateret."

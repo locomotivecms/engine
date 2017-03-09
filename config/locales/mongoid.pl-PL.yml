@@ -1,0 +1,47 @@
+pl-PL:
+  mongoid:
+    errors:
+      messages:
+        blank_in_locale: "nie może być pusty"
+      models:
+        locomotive/page:
+          attributes:
+            layout_id:
+              index_can_not_extend_parent: "Strona index nie może posiadać rodzica jako layoutu"
+        locomotive/membership:
+          attributes:
+            account:
+              unique_account: "jest już używane"
+            email:
+              unique_account: "jest już używane"
+    attributes:
+      locomotive/content_entry:
+        created_at: Data utworzenia
+  errors:
+    messages:
+      domain_taken: "%{value} jest już zajęta"
+      invalid_domain: "%{value} jest nieprawidłowa"
+      needs_admin_account: "Wymagane jest przynajmniej jedno konto o uprawnieniach administracyjnych."
+      protected_page: "Nie możesz usunać indexu ani stron 404"
+      extname_changed: "Nowy plik nie posiada oryginalnego rozszerzenia"
+      array_too_short: "jest zbyt małe (minimalna liczba elementów to %{count})"
+      site:
+        default_locale_removed: Poprzednie ustawienia regionalne nie mogą być od razu wycofane.
+        wrong_timezone_name: "Nieprawidłowa nazwa strefy czasowej"
+      page:
+        liquid_syntax: "Błąd składniowy silnika Liquid ('%{error}' w '%{fullpath}')"
+        liquid_extend: "Strona '%{fullpath}' rozszerza szablon, który nie istnieje"
+        liquid_translation: "Strona '%{fullpath}' rozszerza szablon, który nie jest przetłumaczony"
+      too_few_custom_fields: "Wymagane jest przynajmniej jedno własne pole"
+      security: "stanowi problem bezpieczeństwa"
+  attributes:
+    defaults:
+      pages:
+        index:
+          title: "Strona główna"
+          body: "Tresć strony głównej"
+        '404':
+          title: "Strona nie znaleziona"
+          body: "Treść strony nie znalezionej"
+        other:
+          body: "{% extends 'parent' %}"

@@ -1,0 +1,4 @@
+ar:
+  carrierwave:
+    errors:
+      integrity: 'نوع ملف غير مسموح به.'

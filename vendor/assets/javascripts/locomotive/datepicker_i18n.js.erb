@@ -6,6 +6,12 @@
   <% I18n.reload! %>
 <% end %>
 
+<% default_month_names      = [I18n.t('date.month_names', locale: :en)] %>
+<% default_abbr_month_names = [I18n.t('date.abbr_month_names', locale: :en)] %>
+<% default_day_names        = [I18n.t('date.day_names', locale: :en)] %>
+<% default_abbr_day_names   = [I18n.t('date.abbr_day_names', locale: :en)] %>
+<% default_date_format      = [I18n.t('date.formats.default', locale: :en)] %>
+
 jQuery(function($){
 <% Locomotive.config.locales.each do |locale| %>
   <% I18n.with_locale(locale) do %>
@@ -14,12 +20,12 @@ jQuery(function($){
       prevText:         '<%= I18n.t('date_picker.prev_text', :default => '&#x3c;Prev') %>',
       nextText:         '<%= I18n.t('date_picker.next_text', :default => 'Next&#x3e;') %>',
       currentText:      '<%= I18n.t('date_picker.current_text', :default => 'Current') %>',
-      monthNames:       [<%= I18n.t('date.month_names').dup.delete_if { |m| m.blank? }.map { |m| "'#{m.capitalize}'" }.join(', ') %>],
-      monthNamesShort:  [<%= I18n.t('date.abbr_month_names').dup.delete_if { |m| m.blank? }.map { |m| "'#{m.capitalize.gsub(/\.$/, '')}'" }.join(', ') %>],
-      dayNames:         [<%= I18n.t('date.day_names').dup.delete_if { |d| d.blank? }.map { |d| "'#{d.capitalize.gsub("'", %q(\\\'))}'" }.join(', ') %>],
-      dayNamesShort:    [<%= I18n.t('date.abbr_day_names').dup.delete_if { |d| d.blank? }.map { |d| "'#{d.capitalize}'" }.join(', ') %>],
-      dayNamesMin:      [<%= I18n.t('date.abbr_day_names').dup.delete_if { |d| d.blank? }.map { |d| "'#{d[0..1].capitalize}'" }.join(', ') %>],
-      dateFormat:       '<%= I18n.t('date.formats.default').gsub('%d', 'dd').gsub('%m', 'mm').gsub('%Y', 'yy') %>',
+      monthNames:       [<%= I18n.t('date.month_names', default: default_month_names).dup.delete_if { |m| m.blank? }.map { |m| "'#{m.capitalize}'" }.join(', ') %>],
+      monthNamesShort:  [<%= I18n.t('date.abbr_month_names', default: default_abbr_month_names).dup.delete_if { |m| m.blank? }.map { |m| "'#{m.capitalize.gsub(/\.$/, '')}'" }.join(', ') %>],
+      dayNames:         [<%= I18n.t('date.day_names', default: default_day_names).dup.delete_if { |d| d.blank? }.map { |d| "'#{d.capitalize.gsub("'", %q(\\\'))}'" }.join(', ') %>],
+      dayNamesShort:    [<%= I18n.t('date.abbr_day_names', default: default_abbr_day_names).dup.delete_if { |d| d.blank? }.map { |d| "'#{d.capitalize}'" }.join(', ') %>],
+      dayNamesMin:      [<%= I18n.t('date.abbr_day_names', default: default_abbr_day_names).dup.delete_if { |d| d.blank? }.map { |d| "'#{d[0..1].capitalize}'" }.join(', ') %>],
+      dateFormat:       '<%= I18n.t('date.formats.default', default: default_date_format).gsub('%d', 'dd').gsub('%m', 'mm').gsub('%Y', 'yy') %>',
       firstDay:         1,
       isRTL:            false
     };

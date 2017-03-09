@@ -13,6 +13,7 @@ nl:
       es: Spaans
       ru: Russisch
       et: Ests
+      lt: Litouws
       ja: Japans
       zh-CN: Chinees
       cs: Tsjechisch
@@ -35,6 +36,7 @@ nl:
       sidebar:
         dashboard: Dashboard
         assets: Assets
+        pages: Pagina's
         settings: Algemene instellingen
         metafields: Parameters
         developers: 'Ontwikkelaars '
@@ -97,6 +99,8 @@ nl:
         destroyed: '%{name} bestand verwijderd.'
       membership:
         created: '%{name} toegevoegd aan de site'
+      site_metafields:
+        updated: 'Label %{label} bijgewerkt'
     pagination:
       first: "&laquo;"
       last: "&raquo;"

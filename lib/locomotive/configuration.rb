@@ -1,7 +1,7 @@
 module Locomotive
   class Configuration
 
-    @@default_locales = %w{en de fr pl pt pt-BR it nl nb es ru et lt ja zh-CN cs bg sk sr sv}
+    @@default_locales = %w{en de fr bg ca cs da el es et fa-IR fi-FI it ja-JP lt nb nl pl-PL pt pt-BR ru sk sr sv sv-FI uk zh-CN}
 
     @@defaults = {
       name:                         'Locomotive',

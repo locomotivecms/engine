@@ -1,0 +1,19 @@
+ja-JP:
+  locomotive:
+    inputs:
+      file:
+        none: ファイルなし
+        browse: 閲覧
+        choose: 選択
+        change: 変更
+        delete: 削除
+        cancel: キャンセル
+        select_local_file: ファイルをアップロード
+        select_content_asset: アセットを選択
+      array:
+        new: 新規
+        add: 追加
+        edit: 編集
+      toggle:
+        on_text: "はい"
+        off_text: "いいえ"

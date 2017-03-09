@@ -1,0 +1,19 @@
+ca:
+  locomotive:
+    inputs:
+      file:
+        none: no hi ha fitxer
+        browse: Explorar
+        choose: Seleccionar
+        change: Canviar
+        delete: Eliminar
+        cancel: Cancelar
+        select_local_file: Pujar fitxer local
+        select_content_asset: Seleccionar entre els actius
+      array:
+        new: Nou
+        add: Afegir
+        edit: Editar
+      toggle:
+        on_text: "Si"
+        off_text: "No"

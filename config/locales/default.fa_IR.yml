@@ -1,0 +1,13 @@
+fa_IR:
+  date:
+    formats:
+      default: "%m/%d/%Y"
+    today_at: "امروز ساعت"
+    yesterday_at: "دیروز ساعت"
+  time:
+    formats:
+      default: "%m/%d/%Y %H:%M"
+      time: "%H:%M"
+  pagination:
+    previous: "&laquo; قبل"
+    next: "بعد &raquo;"

@@ -1,0 +1,153 @@
+ca:
+  simple_form:
+    blank_required_fields: "No ha omplert totes les entrades necessaries."
+    titles:
+      locomotive:
+        account:
+          information: Principal
+          api: API
+          credentials: Credencials
+        site:
+          information: Principal
+          access_points: Punts d'acces
+          seo: SEO
+          advanced: Avançades
+          url_redirections: Redireccions
+        page:
+          content: Contingut
+          settings: Opcions
+          seo: SEO
+        content_entry:
+          content: Contingut
+          advanced: Avançades
+          seo: SEO
+    labels:
+      locomotive:
+        content_entry:
+          _slug: Enllaç permanent
+          _visible: Visible
+        content_type:
+          public_submission_accounts: "Comptes Notificats"
+        account:
+          api_key: Clau API
+          no_api_key: Cap
+          edit:
+            locale: Llenguatge IU
+            password: Nova contrasenya
+            password_confirmation: Confirmació nova contrasenya
+        page:
+          seo_title: Títol
+          target_klass_name: Model
+        editable_element:
+          region: Secció
+        site:
+          locales: Llenguatges
+          timezone_name: Zona horaria
+          cache_enabled: Cache
+          private_access: "Activar la protecció amb contrasenya"
+          password: "Contrasenya pel lloc web complert"
+          new:
+            locales: Primer llenguatge
+        membership:
+          edit:
+            role: Nou rol
+        rte_input_link_form:
+          url: URL de l'enllaç
+          target: Destí
+          title: Títol
+        rte_input_image_form:
+          src: Origen
+          title: Títol
+          alignment: Alineació
+        image_resize_form:
+          width: Amplada
+          height: Alçada
+        rte_input_table_form:
+          cols: "Columnes"
+          rows: "Files"
+          head: "Capçalera?"
+          class_name: "clase CSS"
+    hints:
+      locomotive:
+        account:
+          password: 6 caràcters com a mínim
+        page:
+          handle: "Identificador únic per recuperar aquesta pàgina dins d'una instància externa de controlador"
+          published: "Només els comptes autenticats poden veure les pàgines inèdites."
+          templatized: "Utilitzeu la pàgina com una plantilla per a un model que ha definit."
+          cache_enabled: "Quan esta activada, la pàgina s'emmagatzema a la memòria cau, sempre que el contingut no canvia."
+          listed: "Controlar si voleu mostrar la pàgina de menús generats."
+          target_klass_name: "Tipus de contingut que aquesta pàgina sera feta servir com plantilla."
+          seo_title: "Definir un títol de la pàgina que ha de ser utilitzat com el valor de l'etiqueta del títol a la secció de capçalera. Deixiu-ho buit si vol utilitzar el valor per defecte de la configuració del lloc."
+          meta_keywords: "Anul·la les paraules clau del lloc usades dins de l'etiqueta de capçalera de la pàgina. Estan separades per una coma."
+          meta_description: "Anul·la la descripció de la web feta servir a l'etiqueta de capçalera."
+          is_layout: "Si és veritat, aquesta pàgina es pot utilitzar com un disseny per a altres pàgines."
+          allow_layout: "Permetre als autors canviar o no el disseny de la pàgina."
+        site:
+          locales: "Arrossegar i deixar anar una bandera a la primera posició perquè sigui el predeterminat."
+          seo_title: "Definir un valor global d'aquí que ha de ser utilitzat com el valor de l'etiqueta del títol a la secció de capçalera"
+          meta_keywords: "Meta paraules clau utilitzades dins de l'etiqueta del cap de la pàgina. Estan separats per una coma. Requerit per al SEO."
+          meta_description: "Meta descripció utilitzada dins l'etiqueta del cap de la pàgina. Requerit per al SEO."
+          robots_txt: "Contingut del arxiu <span class='code'>/robots.txt</span>. Comprovi el següent <a href='http://www.w3.org/TR/html4/appendix/notes.html#h-B.4.1.1'>url</a> per mes informació."
+          domains: "Afegeixi els seus dominis a sota. Documentació <a href=\"https://locomotive-v3.readme.io/docs/domains\">aquí</a> per mes informació."
+          memberships: "Pots invitar a altres comptes a editar/adminstrar el lloc web."
+          cache_enabled: "Quan està activat, les pàgines s'emmagatzemen en memòria cau, sempre que el contingut no canvia. Es deixa cau per pàgina incapacitant."
+          redirect_to_first_domain: "Quan està activat, les sol·licituds realitzades als dominis esmentats anteriorment seran redirigits al primer domini."
+          url_redirections: "Redirecció (301) antigues urls a pàgines creades anteriorment. Les URLs d'origen i destí estan separades per un <u>espai</u>."
+          private_access: Pots amagar el teu lloc web amb una contrasenya.
+          password: La contrasenya que els visitants publics han d'entrar per veure el contingut del teu lloc web.
+          new:
+            locales: "Pots afegir altres idiomes una vegada que hagis creat el teu lloc web."
+        translation:
+          key: "No usis un guió però un guió baix. Per exemple: ben_vingut"
+        content_entry:
+          _slug: "Propietat usada per generar la URL d'una pàgina feta servir de plantilla per aquest contingut tipus. (ex: \"template_page/{{ your_object._permalink }})\"."
+          _visible: "Per defecte, la entrada serà mostrada en el lloc web. Per tant es pot fer servir com un atribut publicat."
+          seo_title: "El valor que entris reemplaçarà el títol SEO de la pàgina plantilla relativa al teu model."
+          meta_keywords: "Anul•la les paraules clau del lloc web fetes servir dintre d'una etiqueta head de la pàgina. Són separades per comes."
+          meta_description: "Anul•la la meta descripció feta servir dins l'etiqueta head de la pàgina."
+        content_type:
+          public_submission_accounts: "Quan es crea una entrada, envia un correu de notificació  a la llista dels comptes d'acontinuació."
+        image_resize_form:
+          width: "en px"
+          height: "en px"
+    placeholders:
+      locomotive:
+        site:
+          domains: "Example: mysite.com"
+          url_redirections: "Example: vella-url nova-url-en-locomotive"
+        content_type_entry_field:
+          select_options: "Escriu l'etiqueta de la teva nova opció aquí"
+    options:
+      locomotive:
+        rte_input_link_form:
+          target:
+            not_set: "Sense establir"
+            self: "Obre l'enllaç a la mateixa finestra"
+            blank: "Obre l'enllaç a una nova finestra"
+        rte_input_image_form:
+          alignment:
+            default: Per defecte
+            left: Esquerra
+            right: Dreta
+    buttons:
+      defaults:
+        locomotive:
+          create: Crear
+          update: Guardar
+          submit: OK
+          cancel: Cancel•lar
+          delete: Esborrar
+          close: Tancar
+          loading_text: "Guardant..."
+          or: o
+      locomotive:
+        account:
+          new_api_key: Regenerar
+        image_resize_form:
+          loading_text: Redimensionant...
+          submit: Redimensionar
+        site:
+          delete: Esborrar aquest lloc web
+        page:
+          delete: Esborrar

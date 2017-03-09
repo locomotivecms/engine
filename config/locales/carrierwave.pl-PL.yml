@@ -1,0 +1,4 @@
+pl-PL:
+  carrierwave:
+    errors:
+      integrity: 'nie jest dozwolonym typem pliku.'

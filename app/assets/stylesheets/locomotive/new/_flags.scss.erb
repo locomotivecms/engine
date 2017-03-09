@@ -7,7 +7,8 @@
   background-size: 24px;
   background-position: 0 0;
 
-  <% %w(bf bg cs de en es et fr it ja lt mg nb nl pl pt-BR pt ru sk sr sv zh-CN).each do |locale| %>
+  // https://www.iconfinder.com/iconsets/flags_gosquared
+  <% %w(bf bg cs da de el en es et fa-IR fi-FI fr it ja-JP lt mg nb nl pl-PL pt-BR pt ru sk sr sv uk zh-CN).each do |locale| %>
   &.flag-<%= locale %> {
     background-image: url(asset-path('locomotive/icons/flags/<%= locale %>.png'));
   }

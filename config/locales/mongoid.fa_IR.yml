@@ -1,0 +1,41 @@
+fa_IR:
+  mongoid:
+    errors:
+      messages:
+        blank_in_locale: "نمی تواند خالی باشد"
+      models:
+        locomotive/page:
+          attributes:
+            layout_id:
+              index_can_not_extend_parent: "صفحه نخست نمی تواند از فرزند قالب باشد"
+        locomotive/membership:
+          attributes:
+            account:
+              unique_account: "قبلا استفاده شده است"
+            email:
+              unique_account: "قبلا استفاده شده است"
+    attributes:
+      locomotive/content_entry:
+        created_at: 'ایجاد شده در '
+  errors:
+    messages:
+      domain_taken: "%{value} قبلا گرفته شده است"
+      invalid_domain: "%{value}   نامعتبر است"
+      needs_admin_account: "حداقل یک حساب ادمین مورد نیاز است"
+      protected_page: "شما نمیتوانید صفحه نخست یا صفحه ۴۰۴ را حذف کنید"
+      extname_changed: "فایل بعدی دارای پسوند فایل اصلی نیست"
+      array_too_short: "کوچکتر از حد مجاز است (حداقل شماره المان %{count} است)"
+      site:
+        default_locale_removed: زبان پیش فرض قبلی نمی تواند حذف شود
+        wrong_timezone_name: "منتطقه زمانی اشتباه است"
+      too_few_custom_fields: "حداقل یک فیلد سفارشی مورد نیاز است"
+      security: "مشکل امنیتی وجود دارد"
+  attributes:
+    defaults:
+      pages:
+        index:
+          title: "صفحه نخست"
+          body: "محتوای صفحه نخست"
+        '404':
+          title: "صفحه یافت نشد"
+          body: "محتوای صفحه ۴۰۴"

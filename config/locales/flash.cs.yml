@@ -45,6 +45,9 @@ cs:
           alert: "Stránka nebyla vytvořena."
         destroy:
           notice: "Stránka byla úspěšně smazána."
+      current_site_metafields:
+        update_all:
+          notice: "Meta popis stránek byl úspěšně aktualizován."
       memberships:
         create:
           notice: "Členství bylo úspěšně vytvořeno."

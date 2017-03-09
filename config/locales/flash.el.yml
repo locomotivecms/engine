@@ -45,6 +45,9 @@ el:
           alert: "Η τοποθεσία δεν δημιουργήθηκε."
         destroy:
           notice: "Η τοποθεσία διαγράφηκε με επιτυχία."
+      current_site_metafields:
+        update_all:
+          notice: "Τα μετα-πεδία της σελίδας έχουν ενημερωθεί με επιτυχία."
       memberships:
         create:
           notice: "Η συνδρομή δημιουργήθηκε με επιτυχία."

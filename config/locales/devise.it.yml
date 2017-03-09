@@ -1,0 +1,61 @@
+it:
+  errors:
+    messages:
+      not_found: "non trovato"
+      already_confirmed: "è già stato confermato"
+      not_locked: "non era bloccato"
+  devise:
+    failure:
+      locomotive_account:
+        unauthenticated: 'E'' necessario effettuare il login per continuare.'
+        unconfirmed: 'Devi confermare il tuo account per poter continuare.'
+        locked: 'Il tuo account è bloccato.'
+        invalid: 'Email o password non valide.'
+        not_found_in_database: 'Email o password non valide.'
+        no_membership: 'Il tuo account non è presente, per favore contatta l''amministratore del sito per ottenere l''accesso.'
+        invalid_token: 'Token di autenticazione non valido.'
+        timeout: 'La tua sessuine è scaduta, per favore effettua il login per continuare.'
+        inactive: 'Il tuo account non è ancora stato attivato.'
+    sessions:
+      locomotive_account:
+        signed_in: 'Login effettuato correttamente.'
+        signed_out: 'Logout effettuato correttamente.'
+    passwords:
+      locomotive_account:
+        send_instructions: 'Riceverai una email con le istruzioni su come resettare la password in pochi minuti.'
+        updated: 'La tua password è stata cambiata con successo. Sei ora loggato.'
+        invalid: 'Devi richiedere una nuova password.'
+    confirmations:
+      locomotive_account:
+        send_instructions: 'Riceverai un email su come confermare il tuo account in pochi minuti.'
+        confirmed: 'Il tuo account è stato confermato con successo. Sei ora loggato.'
+    registrations:
+      locomotive_account:
+        signed_up: 'Ti sei registrato correttamente.'
+        updated: 'Hai aggiornato il tuo account con successo.'
+        destroyed: 'Arrivederci! Il tuo account è stato eliminato con successo. Speriamo di rivederti presto.'
+    unlocks:
+      locomotive_account:
+        send_instructions: 'Riceverai un email con le istruzioni su come sbloccare il tuo account in pochi minuti.'
+        unlocked: 'Il tuo account è stato sbloccato con successo. Sei ora loggato.'
+    mailer:
+      locomotive_account:
+        confirmation_instructions: 'Istruzioni di conferma'
+        reset_password_instructions: 'Istruzioni di reset password'
+        unlock_instructions: 'Istruzioni di sblocco'
+  locomotive:
+    devise_mailer:
+      common:
+        hello: Ciao
+      confirmation_instructions:
+        you_can_confirm_your_account_through_the_link_below: "Puoi confermare il tuo account attraverso il link sottostante:"
+        confirm_my_account: "Conferma il tuo account"
+      reset_password_instructions:
+        reset_password_instruction: "Qualcuno ha richiesto di cambiare la password, puoi effettuarlo tramite il link sottostante:"
+        change_my_password: "Cambia la mia password"
+        wrong_request_instruction: "Se non lo hai richiesto, per favore ignora questa email."
+        unchange_password_message: "La tua password non verrà modificata fintantoché non accedi al link sottostante e ne creai una nuova."
+      unlock_instructions:
+        locked_account_message: "Il tuo account è stato bloccato a causa di un eccessivo numero di tentativi di login errati."
+        unlock_account_instruction: "Clicca il link sottostante per sbloccare il tuo account:"
+        unlock_my_account: "Sblocca il mio account"

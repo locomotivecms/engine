@@ -1,0 +1,13 @@
+pl-PL:
+  date:
+    formats:
+      default: "%d.%m.%Y"
+    today_at: "dzisiaj o"
+    yesterday_at: "wczoraj o"
+  time:
+    formats:
+      default: "%d.%m.%Y %H:%M"
+      time: "%H:%M"
+  pagination:
+    previous: "&laquo; Poprzedni"
+    next: "Następny &raquo;"

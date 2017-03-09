@@ -1,0 +1,18 @@
+da:
+  locomotive:
+    inputs:
+      file:
+        none: ingen fil
+        choose: Vælg
+        change: Opdater
+        delete: Slet
+        cancel: Annuller
+        select_local_file: Upload en lokal fil
+        select_content_asset: Vælg blandt aktiver
+      array:
+        new: Ny
+        add: Tilføj
+        edit: Rediger
+      toggle:
+        on_text: "Ja"
+        off_text: "Nej"

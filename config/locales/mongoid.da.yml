@@ -1,0 +1,47 @@
+da:
+  mongoid:
+    errors:
+      messages:
+        blank_in_locale: "kan ikke være blank"
+      models:
+        locomotive/page:
+          attributes:
+            layout_id:
+              index_can_not_extend_parent: "Indekssiden kan ikke have sin forælderside som layout"
+        locomotive/membership:
+          attributes:
+            account:
+              unique_account: "er allerede brugt"
+            email:
+              unique_account: "er allerede brugt"
+    attributes:
+      locomotive/content_entry:
+        created_at: Oprettet den
+  errors:
+    messages:
+      domain_taken: "%{value} er allerede taget"
+      invalid_domain: "%{value} er ugyldig"
+      needs_admin_account: "Minimum en administrator konto er krævet"
+      protected_page: "Du kan ikke slette indeks og 404 siderne"
+      extname_changed: "Den nye fil har ikke det originale filtypenavn"
+      array_too_short: "er for lille (minimum element nummer er %{count})"
+      site:
+        default_locale_removed: Det forrige standard sprog kan ikke fjernes med det samme.
+        wrong_timezone_name: "Ugyldigt tidzonenavn"
+      page:
+        liquid_syntax: "Liquid syntaks fejl ('%{error}' på '%{fullpath}')"
+        liquid_extend: "Siden '%{fullpath}' udvider en skabelon som ikke findes"
+        liquid_translation: "Siden '%{fullpath}' udvider en skabelon som ikke er oversat"
+      too_few_custom_fields: "Minimum et brugerdefineret felt er krævet"
+      security: "udgør et sikkerhedsproblem"
+  attributes:
+    defaults:
+      pages:
+        index:
+          title: "Hjemmeside"
+          body: "Indhold på hjemmesiden"
+        '404':
+          title: "Siden blev ikke fundet"
+          body: "Indhold for 404 siden"
+        other:
+          body: "{% extends 'parent' %}"

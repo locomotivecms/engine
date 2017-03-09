@@ -1,0 +1,13 @@
+fi-FI:
+  date:
+    formats:
+      default: "%d.%m.%Y"
+    today_at: "tänään"
+    yesterday_at: "eilen"
+  time:
+    formats:
+      default: "%d.%m.%Y %H:%M"
+      time: "%H:%M"
+  pagination:
+    previous: "&laquo; Edellinen"
+    next: "Seuraava &raquo;"

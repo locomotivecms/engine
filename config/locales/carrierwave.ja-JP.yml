@@ -1,0 +1,4 @@
+ja-JP:
+  carrierwave:
+    errors:
+      integrity: 'は許可されていないファイルタイプです。'

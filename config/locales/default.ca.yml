@@ -1,0 +1,13 @@
+ca:
+  date:
+    formats:
+      default: "%d/%m/%Y"
+    today_at: "avui a"
+    yesterday_at: "ahir a"
+  time:
+    formats:
+      default: "%d/%m/%Y %H:%M"
+      time: "%H:%M"
+  pagination:
+    previous: "&laquo; Anterior"
+    next: "Pròxim &raquo;"

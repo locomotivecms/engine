@@ -1,0 +1,13 @@
+da:
+  date:
+    formats:
+      default: "%d-%m-%Y"
+    today_at: "i dag kl."
+    yesterday_at: "i går kl."
+  time:
+    formats:
+      default: "%d-%m-%Y %H:%M"
+      time: "%H:%M"
+  pagination:
+    previous: "&laquo; Forrige"
+    next: "Næste &raquo;"

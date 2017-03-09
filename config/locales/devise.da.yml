@@ -1,0 +1,60 @@
+da:
+  errors:
+    messages:
+      not_found: "ikke fundet"
+      already_confirmed: "var allerede bekræftet"
+      not_locked: "var ikke låst"
+  devise:
+    failure:
+      locomotive_account:
+        unconfirmed: 'Du skal bekræfte din konto for at fortsætte.'
+        locked: 'Din konto er låst.'
+        invalid: 'Ugyldig e-mail eller adgangskode.'
+        not_found_in_database: 'Ugyldig e-mail eller adgangskode.'
+        no_membership: 'Din konto er ikke medlem af dette websted, kontakt venligst webstedets administrator for at få adgang.'
+        invalid_token: 'Ugyldigt autentificeringstoken.'
+        timeout: 'Din session er udløbet, log venligst ind igen for at fortsætte.'
+        inactive: 'Din konto er endnu ikke aktiveret.'
+    sessions:
+      locomotive_account:
+        signed_in: 'Log ind lykkedes.'
+        signed_out: 'Log af lykkedes.'
+    passwords:
+      locomotive_account:
+        send_instructions: 'Du vil om få minutter modtage en e-mail med instrukser om nulstilling af adgangskode.'
+        updated: 'Din adgangskode blev ændret. Du er nu logget ind.'
+        invalid: 'Du skal bede om en ny adgangskode igen.'
+    confirmations:
+      locomotive_account:
+        send_instructions: 'Du vil om få minutter modtage en e-mail med instrukser om hvordan du bekræfter din konto.'
+        confirmed: 'Din konto blev bekræftet. Du er nu logget ind.'
+    registrations:
+      locomotive_account:
+        signed_up: 'Du er nu registreret.'
+        updated: 'Dine kontoændringer blev gennemført.'
+        destroyed: 'Farvel! Din konto er nu annulleret. Vi håber at se dig igen snart.'
+    unlocks:
+      locomotive_account:
+        send_instructions: 'Du vil om få minutter modtage en e-mail med instrukser om hvordan du låser din konto op.'
+        unlocked: 'Din konto blev låst op. Du er nu logget ind.'
+    mailer:
+      locomotive_account:
+        confirmation_instructions: 'Instrukser til bekræftigelse'
+        reset_password_instructions: 'Instrukser til nulstilling af adgangskode'
+        unlock_instructions: 'Instrukser til at låse op'
+  locomotive:
+    devise_mailer:
+      common:
+        hello: Hej
+      confirmation_instructions:
+        you_can_confirm_your_account_through_the_link_below: "Du kan bekræfte din konto via linket nedenfor:"
+        confirm_my_account: "Bekræft min konto"
+      reset_password_instructions:
+        reset_password_instruction: "Nogen har bedt om et link til at ændre din adgangskode, du kan gennemføre denne handling via linket nedenfor:"
+        change_my_password: "Skift min adgangskode"
+        wrong_request_instruction: "Hvis du ikke anmodede om dette, så se venligst bort fra denne e-mail."
+        unchange_password_message: "Din adgangskode vil ikke blive ændret før du anvender linket ovenfor eller opretter et nyt link."
+      unlock_instructions:
+        locked_account_message: "Din konto er blevet låst på grund af overordentligt mange fejlede log ind forsøg."
+        unlock_account_instruction: "Klik på linket nedenfor for at låse din konto op:"
+        unlock_my_account: "Lås min konto op"

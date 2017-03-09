@@ -1,0 +1,4 @@
+da:
+  carrierwave:
+    errors:
+      integrity: 'er ikke en tilladt filtype.'

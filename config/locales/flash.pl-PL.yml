@@ -1,0 +1,82 @@
+pl-PL:
+  flash:
+    locomotive:
+      pages:
+        create:
+          notice: "Strona została pomyślnie utworzona."
+          alert: "Strona nie została utworzona."
+        update:
+          notice: "Strona została pomyślnie zaktualizowana."
+          alert: "Strona nie została zaktualizowana."
+        sort:
+          notice: "Strony zostały pomyślnie posortowane."
+        destroy:
+          notice: "Strona została pomyślnie usunięta."
+      content_entries:
+        create:
+          notice: "Pozycja została pomyślnie utworzona."
+          alert: "Pozycja nie została utworzona."
+        update:
+          notice: "Pozycja została pomyślnie zaktualizowana."
+          alert: "Pozycja nie została zaktualizowana."
+        sort:
+          notice: "Pozycje zostały pomyślnie posortowane."
+        destroy:
+          notice: "Treść została pomyślnie usunięta."
+      content_types:
+        update:
+          notice: "Model został pomyślnie utworzony."
+          alert: "Model nie został utworzony."
+      current_site:
+        update:
+          notice: "Bieżąca witryna została pomyślnie zaktualizowana."
+          alert: "Bieżąca witryna nie została zaktualizowana."
+      accounts:
+        create:
+          notice: "Konto zostało pomyślnie utworzone."
+          alert: "Konto nie zostało utworzone."
+      my_account:
+        update:
+          notice: "Konto zostało pomyślnie zaktualizowane."
+          alert: "Konto nie zostało zaktualizowane."
+      sites:
+        create:
+          notice: "Witryna została pomyślnie utworzona."
+          alert: "Witryna nie została utworzona."
+        destroy:
+          notice: "Witryna została pomyślnie usunięta."
+      current_site_metafields:
+        update_all:
+          notice: "Pola meta witryny zostały pomyślnie zaktualizowane."
+      memberships:
+        create:
+          notice: "Członkostwo zostało pomyślnie utworzone."
+          alert: "Członkostwo nie zostało utworzone."
+          already_created: "Konto już jest przypisane do bieżącej strony."
+      content_assets:
+        create:
+          notice: "Zasób został pomyślnie utworzony."
+          alert: "Zasób nie został utworzony."
+        bulk_create:
+          notice: "Assets were successfully uploaded."
+          alert: "Assets were not uploaded."
+        update:
+          notice: "Zasób został pomyślnie zaktualizowany."
+          alert: "Zasób nie został zaktualizowany."
+        destroy:
+          notice: "Zasób został pomyślnie usunięty."
+          alert: "Zasób nie został usunięty."
+      translations:
+        create:
+          notice: "Tłumaczenie zostało pomyślnie utworzone."
+          alert: "Tłumaczenie nie zostało utworzone."
+        update:
+          notice: "Tłumaczenie zostało pomyślnie zaktualizowane."
+          alert: "Tłumaczenie nie zostało zaktualizowane."
+        destroy:
+          notice: "Tłumaczenie zostało usunięte."
+      custom_fields:
+        select_options:
+          update:
+            notice: "Pole zostało pomyślnie zaktualizowane."
+            alert: "Pole nie zostało zaktualizowane."

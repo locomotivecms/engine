@@ -1,0 +1,153 @@
+ja-JP:
+  simple_form:
+    blank_required_fields: "必要な項目が全て入力されていません。"
+    titles:
+      locomotive:
+        account:
+          information: メイン
+          api: API
+          credentials: 認証
+        site:
+          information: メイン
+          access_points: アクセスポイント
+          seo: SEO
+          advanced: 詳細設定
+          url_redirections: リダイレクトURL
+        page:
+          content: コンテンツ
+          settings: 設定
+          seo: SEO
+        content_entry:
+          content: コンテンツ
+          advanced: 詳細設定
+          seo: SEO
+    labels:
+      locomotive:
+        content_entry:
+          _slug: パーマリンク
+          _visible: ビジブル
+        content_type:
+          public_submission_accounts: "通知済みのアカウント"
+        account:
+          api_key: APIキー
+          no_api_key: なし
+          edit:
+            locale: 言語
+            password: 新しいパスワード
+            password_confirmation: 新しいパスワードを再入力
+        page:
+          seo_title: タイトル
+          target_klass_name: モデル
+        editable_element:
+          region: セクション
+        site:
+          locales: 言語
+          timezone_name: タイムゾーン
+          cache_enabled: キャッシュ
+          private_access: "パスワード保護"
+          password: "サイト全体のパスワード"
+          new:
+            locales: 第一言語
+        membership:
+          edit:
+            role: 新しいロール
+        rte_input_link_form:
+          url: リンクURL
+          target: ターゲット
+          title: タイトル
+        rte_input_image_form:
+          src: ソース
+          title: タイトル
+          alignment: アラインメント
+        image_resize_form:
+          width: 幅
+          height: 高さ
+        rte_input_table_form:
+          cols: "カラム"
+          rows: "行"
+          head: "行頭?"
+          class_name: "CSSクラス"
+    hints:
+      locomotive:
+        account:
+          password: 6文字以上
+        page:
+          handle: "外部コントローラインスタンスから、このページを特定するためにユニークなIDを入力してください。"
+          published: "承認されたアカウントだけが、このページを閲覧できるようにしますか？"
+          templatized: "このページをあなたが定義したモデルのテンプレートとして使用してください。"
+          cache_enabled: "有効にすると、ページはコンテンツが変更されるまでキャッシュされます。"
+          listed: "メニューからページが見えるようにしますか？"
+          target_klass_name: "このページをテンプレートとするコンテンツタイプです。"
+          seo_title: "ヘッダセクションのタイトルタグを入力してください。サイト設定のデフォルト値を使用する場合は、空欄のままでかまいません。"
+          meta_keywords: "ページヘッダで使用するサイトのメタキーワードを入力してください。コンマで区切ります。"
+          meta_description: "ページヘッダで使用するサイトのメタ記述を入力してください。"
+          is_layout: "true なら、このページは他のページのレイアウトとして使用することができます "
+          allow_layout: "作成者はページのレイアウトを自由に変更することができます。"
+        site:
+          locales: "デフォルト言語を、先頭へドラッグ＆ドロップしてください。"
+          seo_title: "ヘッダセクションのタイトルタグの値を入力してください。"
+          meta_keywords: "ページヘッダで使用するメタキーワードを入力してください。コンマで区切ります。SEOのために必要です。"
+          meta_description: "ページヘッダで使用するメタ記述を入力してください。SEOのために必要です。"
+          robots_txt: " <span class='code'>/robots.txt</span> ファイルの内容を入力してください。詳細は <a href='http://www.w3.org/TR/html4/appendix/notes.html#h-B.4.1.1'>こちら</a>"
+          domains: "追加するドメイン名を入力してください。詳細は <a href=\"https://locomotive-v3.readme.io/docs/domains\">こちら</a>"
+          memberships: "サイトの編集者・管理者として、他のアカウントユーザを招待することができます。"
+          cache_enabled: "キャッシュを有効にしますか？"
+          redirect_to_first_domain: "最初のドメインにリダイレクトしますか？"
+          url_redirections: "リダイレクト先のURLを入力してください。"
+          private_access: パスワード入力によりサイトを表示させるようにしますか？
+          password: 訪問者がサイトを見るために入力するパスワードです。
+          new:
+            locales: "サイトが作成すると、他の言語を追加することができます。"
+        translation:
+          key: "ダッシュ(-)ではなく下線(_)を使用してください。例）welcome_message"
+        content_entry:
+          _slug: "このコンテンツタイプのテンプレートとして使用するページURLの生成に使用するプロパティです。(例: \"template_page/{{ your_object._permalink }}\")"
+          _visible: "デフォルトではエントリは公開設定となっており、サイトから閲覧可能な状態です。"
+          seo_title: "モデルに関連づけされた、テンプレート化されたページのSEOタイトルに置き換わる値です。"
+          meta_keywords: "ページヘッダで使用するサイトのメタキーワードを上書きしてください。コンマで区切ります。"
+          meta_description: "ページヘッダで使用するサイトのメタ記述を上書きしてください。"
+        content_type:
+          public_submission_accounts: "エントリが作成されると、以下のアカウントに通知メールが送信されます。"
+        image_resize_form:
+          width: " (px)"
+          height: " (px)"
+    placeholders:
+      locomotive:
+        site:
+          domains: "例）mysite.com"
+          url_redirections: "例）my-legacy-url new-url-in-locomotive"
+        content_type_entry_field:
+          select_options: "新しいオプションのラベルをタイプ"
+    options:
+      locomotive:
+        rte_input_link_form:
+          target:
+            not_set: "未設定"
+            self: "同じウィンドウで開く"
+            blank: "新しいウィンドウで開く"
+        rte_input_image_form:
+          alignment:
+            default: デフォルド
+            left: 左
+            right: 右
+    buttons:
+      defaults:
+        locomotive:
+          create: 作成
+          update: 保存
+          submit: OK
+          cancel: キャンセル
+          delete: 削除
+          close: 閉じる
+          loading_text: "保存中..."
+          or: または
+      locomotive:
+        account:
+          new_api_key: 再生成
+        image_resize_form:
+          loading_text: リサイズ中...
+          submit: リサイズ
+        site:
+          delete: このサイトを削除
+        page:
+          delete: 削除
