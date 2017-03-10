@@ -7,7 +7,7 @@ GIT
 PATH
   remote: .
   specs:
-    locomotivecms (3.2.0)
+    locomotivecms (3.3.0.rc1)
       actionmailer-with-request (~> 0.4.0)
       autoprefixer-rails (~> 6.7.2)
       bazaar (~> 0.0.2)
