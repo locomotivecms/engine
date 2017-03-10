@@ -74,7 +74,7 @@ describe Locomotive::API::Entities::PageEntity do
         subject { described_class.new(page, site: page.site) }
 
         it 'returns the localized_fullpaths' do
-          expect(exposure[:localized_fullpaths]).to eq({ en: 'with_editable_element', fr: 'fr/with_editable_element' })
+          expect(exposure[:localized_fullpaths]).to eq({ 'en' => 'with_editable_element', 'fr' => 'fr/with_editable_element' })
         end
       end
 

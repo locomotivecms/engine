@@ -16,28 +16,26 @@ Gem::Specification.new do |s|
   s.summary     = 'A platform to create, publish and edit sites'
   s.description = 'Locomotive is designed to save your time and help you focus on what matters: front-end technology, standard development process and no learning time for your client.'
 
-  s.add_dependency 'rake',                            '~> 10.5.0'
+  s.add_dependency 'rake',                            '~> 12.0.0'
 
   s.add_dependency 'rails',                           '~> 4.2.8'
 
-  s.add_dependency 'net-ssh',                         '~> 3.0.2'
-
-  s.add_dependency 'devise',                          '~> 3.5.1'
+  s.add_dependency 'devise',                          '~> 3.5.10'
   s.add_dependency 'devise-encryptable',              '~> 0.2.0'
-  s.add_dependency 'simple_token_authentication',     '~> 1.12.0'
+  s.add_dependency 'simple_token_authentication',     '~> 1.15.1'
 
   s.add_dependency 'pundit',                          '~> 1.1.0'
 
-  s.add_dependency 'mongoid',                         '~> 5.1.6'
+  s.add_dependency 'mongoid',                         '~> 5.2.0'
   s.add_dependency 'mongoid-tree',                    '~> 2.1.0'
   s.add_dependency 'mongo_session_store-rails4',      '~> 6.0.0'
 
   s.add_dependency 'custom_fields',                   '~> 2.8.0'
-  s.add_dependency 'locomotivecms_steam',             '~> 1.3.0'
+  s.add_dependency 'locomotivecms_steam',             '~> 1.3.0.rc1'
 
   s.add_dependency 'slim',                            '~> 3.0.7'
   s.add_dependency 'simple_form',                     '~> 3.4.0'
-  s.add_dependency 'kaminari',                        '~> 0.16.3'
+  s.add_dependency 'kaminari',                        '~> 0.17.0'
   s.add_dependency 'bootstrap-kaminari-views',        '~> 0.0.5'
   s.add_dependency 'responders',                      '~> 2.3.0'
   s.add_dependency 'rails-i18n',                      '~> 4.0.9'
@@ -56,11 +54,9 @@ Gem::Specification.new do |s|
   s.add_dependency 'bazaar',                          '~> 0.0.2'
   s.add_dependency 'json-schema',                     '~> 2.8.0'
 
-  s.add_dependency 'carrierwave-mongoid',             '~> 0.8.1'
+  s.add_dependency 'carrierwave-mongoid',             '~> 0.10.0'
   s.add_dependency 'dragonfly',                       '~> 1.1.1'
   s.add_dependency 'rack-cache',                      '~> 1.7.0'
-  s.add_dependency 'mime-types',                      '~> 2.6.2'
-  s.add_dependency 'mimetype-fu',                     '~> 0.1.2'
 
   s.add_dependency 'multi_json',                      '~> 1.12.1'
   s.add_dependency 'actionmailer-with-request',       '~> 0.4.0'

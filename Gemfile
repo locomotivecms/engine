@@ -9,22 +9,22 @@ gem 'sass-rails', '~> 5.0.4'
 gem 'coffee-rails', '~> 4.1.0'
 gem 'uglifier',     '>= 2.5.3'
 
-gem 'coveralls',    '~> 0.7.2', require: false
+gem 'coveralls',    '~> 0.8.19', require: false
 
 group :test, :development do
-  gem 'rspec-rails', '~> 3.2.1' #~> 2.14.2' # In order to have rspec tasks and generators
+  gem 'rspec-rails', '~> 3.5.2' #~> 2.14.2' # In order to have rspec tasks and generators
   gem 'pry'
 end
 
 group :development do
   # gem 'custom_fields', path: '../gems/custom_fields' # for Developers
-  gem 'custom_fields', github: 'locomotivecms/custom_fields', ref: '4a612e5'
+  # gem 'custom_fields', github: 'locomotivecms/custom_fields', ref: '4a612e5'
 
   # gem 'locomotivecms_common', path: '../gems/common', require: false
   # gem 'locomotivecms_common', github: 'locomotivecms/common', ref: '257047b', require: false
 
   # gem 'locomotivecms_steam', path: '../gems/steam', require: false
-  gem 'locomotivecms_steam', github: 'locomotivecms/steam', ref: 'e624ab686', require: false
+  # gem 'locomotivecms_steam', github: 'locomotivecms/steam', ref: 'e624ab686', require: false
 
   # gem 'locomotive_liquid', path: '../gems/liquid' # for Developers
   # gem 'locomotivecms_solid', path: '../gems/solid' # for Developers
