@@ -8,7 +8,7 @@ describe Locomotive::Steam::Middlewares::Cache do
   let(:page)        { instance_double('CachedPage', _id: '0042', cache_enabled: page_cache, redirect_url: nil) }
   let(:app)         { ->(env) { [200, env, 'app'] } }
   let(:middleware)  { described_class.new(app) }
-  let(:steam_env)   { { 'REQUEST_METHOD' => 'GET', 'steam.site' => site, 'steam.page' => page, 'steam.live_editing' => false, 'PATH_INFO' => 'foo', 'QUERY_STRING' => 'a=1&c=3' } }
+  let(:steam_env)   { { 'Content-Type' => 'text/html', 'REQUEST_METHOD' => 'GET', 'steam.site' => site, 'steam.page' => page, 'steam.live_editing' => false, 'PATH_INFO' => 'foo', 'QUERY_STRING' => 'a=1&c=3' } }
 
   describe '#call' do
 
@@ -29,6 +29,7 @@ describe Locomotive::Steam::Middlewares::Cache do
         middleware.call(env_for('foo', steam_env)) # warm up the cache
         expect(middleware.app).not_to receive(:call)
         expect(subject.first).to eq 200
+        expect(subject[1]['Content-Type']).to eq 'text/html'
       end
 
     end

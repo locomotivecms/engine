@@ -37,7 +37,8 @@ module Locomotive
         def marshal(response)
           code, headers, body = response
 
-          _headers = headers.dup.reject! { |key, val| key =~ /[^0-9A-Z_]/ || !val.respond_to?(:to_str) }
+          # only keep string value headers
+          _headers = headers.reject { |key, val| !val.respond_to?(:to_str) }
 
           Marshal.dump([code, _headers, body])
         end
