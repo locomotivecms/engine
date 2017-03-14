@@ -14,10 +14,18 @@ module Locomotive
 
     ## methods ##
 
+    # Change the content of the editable element if the value is a new version.
+    # This method has been overridden for 2 reasons:
+    # - we have to register the current locale (localized site)
+    # - the default_content attribute has to be turned off
+    #
+    # Called by:
+    # - the API: page with a YAML header defining the initial content for this editable element
+    # - the UI: if the content is the same as the default one or the previous one, don't do anything.
     def content=(value)
       return if value == self.content
       self.add_current_locale
-      self.default_content = false unless self.new_record?
+      self.default_content = false
       super
     end
 
