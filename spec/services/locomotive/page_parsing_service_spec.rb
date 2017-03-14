@@ -58,9 +58,10 @@ describe Locomotive::PageParsingService do
         service.find_or_create_editable_elements(page)
       end
 
-      subject { page.reload.editable_elements.first.class }
+      subject { page.reload.editable_elements.first }
 
-      it { expect(subject).to eq(Locomotive::EditableText) }
+      it { expect(subject.class).to eq(Locomotive::EditableText) }
+      it { expect(subject.default_content?).to eq(false) }
 
     end
 

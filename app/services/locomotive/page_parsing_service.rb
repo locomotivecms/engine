@@ -153,9 +153,19 @@ module Locomotive
 
     def add_or_modify_editable_element(page, attributes)
       if element = page.editable_elements.by_block_and_slug(attributes[:block], attributes[:slug]).first
+        # context: the editable element has been created from the page YAML header
+        existing_content = element._type.nil? && !element.content.blank?
+
         # FIXME: we don't want to deal here with the generic Locomotive::EditableElement class
         element = page.editable_elements.with_same_class!(element, "Locomotive::#{attributes[:type].to_s.classify}".constantize)
         element.attributes = attributes
+
+        # we know now this was an editable_text element. If it already had
+        # a content, then it shouldn't be flagged as default_content.
+        if element.respond_to?(:default_content?) && existing_content
+          element.default_content = false
+        end
+
         element
       else
         klass = "Locomotive::#{attributes[:type].to_s.classify}".constantize
