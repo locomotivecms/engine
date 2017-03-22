@@ -7,7 +7,7 @@ GIT
 PATH
   remote: .
   specs:
-    locomotivecms (3.3.0.rc1)
+    locomotivecms (3.3.0.rc2)
       actionmailer-with-request (~> 0.4.0)
       autoprefixer-rails (~> 6.7.2)
       bazaar (~> 0.0.2)
@@ -88,7 +88,7 @@ GEM
       public_suffix (~> 2.0, >= 2.0.2)
     arel (6.0.4)
     attr_extras (4.4.0)
-    autoprefixer-rails (6.7.6)
+    autoprefixer-rails (6.7.7.1)
       execjs
     axiom-types (0.1.1)
       descendants_tracker (~> 0.0.4)
