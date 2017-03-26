@@ -1,7 +1,7 @@
 # encoding: utf-8
 
 module Locomotive
-  class EditableFileUploader < ::CarrierWave::Uploader::Base
+  class EditableFileUploader < BaseUploader
 
     include ::CarrierWave::MimeTypes
 
