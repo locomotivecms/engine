@@ -12,8 +12,7 @@ Locomotive relies on a **very original workflow**:
 
 ![Locomotive](http://i.imgur.com/iRG1gWA.jpg)
 
-Visit the Locomotive official website [here](http://
-locomotive.works) for more information.
+Visit the Locomotive official website [here](http://locomotive.works) for more information.
 
 ## Features
 
