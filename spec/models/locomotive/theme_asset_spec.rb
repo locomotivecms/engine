@@ -83,6 +83,7 @@ describe Locomotive::ThemeAsset do
 
     end
 
+
     it 'processes stylesheet' do
       asset.source = FixturedAsset.open('main.css')
       expect(asset.source.file.content_type).to_not eq(nil)
@@ -190,6 +191,18 @@ describe Locomotive::ThemeAsset do
       let(:text) { "background: url(\"/images/banner.png?123456\") no-repeat 0 0" }
       it { is_expected.to eq "background: url(\"http://engine.dev/images/banner.png?1183151400\") no-repeat 0 0" }
 
+    end
+
+  end
+
+  describe '#content type' do
+
+    let(:source) { FixturedAsset.open('magic_mime_type.js') }
+
+    subject { asset.valid?; asset.content_type }
+
+    it "don't rely on the mime_magic_content_type method" do
+      is_expected.to eq(:javascript)
     end
 
   end

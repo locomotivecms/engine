@@ -20,12 +20,15 @@ module CarrierWave
 
   class SanitizedFile
 
-    # FIXME (Did) CarrierWave speaks mime type now
-    def content_type_with_file_mime_type
-      content_type_without_file_mime_type || File.mime_type?(original_filename)
+    # do not rely on Carrierwave to get the mime type of an asset.
+    # The Carrierwave mime_magic_content_type method is too unpredictable.
+    # https://github.com/locomotivecms/engine/issues/1200
+    def content_type
+      @content_type ||=
+        existing_content_type ||
+        mime_types_content_type ||
+        mime_magic_content_type
     end
-
-    alias_method_chain :content_type, :file_mime_type
 
   end
 

@@ -32,9 +32,9 @@ module Locomotive
         end
 
         def set_content_type_of_model(*args)
-          content_type  = file.content_type
+          content_type = file.content_type
 
-          if content_type.blank? || ['application/octet-stream', 'text/x-csrc'].include?(content_type)
+          if content_type.blank? || ['application/octet-stream'].include?(content_type)
             content_type = File.mime_type?(original_filename)
           end
 
