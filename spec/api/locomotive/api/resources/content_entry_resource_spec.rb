@@ -164,6 +164,17 @@ describe Locomotive::API::Resources::ContentEntryResource do
       end
     end
 
+    describe "POST :id/clone" do
+      context 'JSON' do
+        let(:post_request) { post("#{url_prefix}/#{content_entry._slug}/clone.json") }
+
+        it 'clone the content entry' do
+          expect { post_request }.to change { Locomotive::ContentEntry.count }.by(+1)
+        end
+
+      end
+    end
+
     describe "DELETE destroy" do
       context 'JSON' do
         let(:delete_request) { delete("#{url_prefix}/#{content_entry.id}.json") }

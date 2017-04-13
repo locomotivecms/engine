@@ -20,3 +20,9 @@ class Locomotive.Views.Shared.ListItemView extends Backbone.View
 
     if confirm $(event.target).closest('a').data('confirm')
       @model.destroy()
+
+  clone_item: (event) ->
+    event.stopPropagation() & event.preventDefault()
+
+    if confirm $(event.target).closest('a').data('confirm')
+      @model.clone()

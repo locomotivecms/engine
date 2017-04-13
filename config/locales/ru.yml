@@ -324,6 +324,7 @@ ru:
       edit:
         title: '%{type} &mdash; редактировать запись'
       shared:
+        clone: Клонировать
         back: '&larr; Вернуться к списку'
     developers_documentation:
       show:

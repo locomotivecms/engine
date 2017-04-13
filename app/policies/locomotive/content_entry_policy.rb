@@ -17,5 +17,9 @@ module Locomotive
       site_staff?
     end
 
+    def clone?
+      site_staff?
+    end
+
   end
 end

@@ -7,6 +7,10 @@
     = locale_picker_link
     | &nbsp;
 
+  = link_to t(:clone, scope: 'locomotive.content_entries.shared').html_safe, clone_content_entry_path(current_site, @content_type.slug, params[:id]), data: { confirm: t('locomotive.messages.confirm') }, method: :post, class: 'btn btn-sm btn-default'
+
+  | &nbsp;
+
   = link_to t(:back, scope: 'locomotive.content_entries.shared').html_safe, content_entries_path(current_site, @content_type.slug), class: 'btn btn-sm btn-default'
 
 = locomotive_form_for @content_entry, as: :content_entry, url: content_entry_path(current_site, @content_type.slug, @content_entry), html: { multipart: true } do |f|

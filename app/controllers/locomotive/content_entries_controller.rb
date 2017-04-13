@@ -8,7 +8,7 @@ module Locomotive
     before_filter :back_to_default_site_locale, only: [:new, :create]
 
     before_filter :load_content_type
-    before_filter :load_content_entry, only: [:show, :show_in_form, :edit, :update, :destroy]
+    before_filter :load_content_entry, only: [:show, :show_in_form, :clone, :edit, :update, :destroy]
     before_filter :store_location, only: [:edit, :update]
 
     respond_to :json, only: [:index, :sort]
@@ -20,6 +20,13 @@ module Locomotive
       authorize ContentEntry
       @content_entries = service.all(list_params)
       respond_with @content_entries
+    end
+
+    def clone
+      authorize @content_entry
+      @clone_content_entry = @content_entry.clone
+      @clone_content_entry.save
+      respond_with @clone_content_entry, location: -> { location_after_persisting }
     end
 
     def export

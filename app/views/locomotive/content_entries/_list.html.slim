@@ -23,6 +23,8 @@
         .actions
           = link_to content_entry_path(current_site, content_type.slug, entry), title: t(:delete, scope: 'simple_form.buttons.defaults.locomotive'), class: 'remove', data: { confirm: t('locomotive.messages.confirm') }, method: :delete do
             i.fa.fa-trash-o
+          = link_to clone_content_entry_path(current_site, content_type.slug, entry), title: t(:clone, scope: 'simple_form.buttons.defaults.locomotive'), class: 'clone', data: { confirm: t('locomotive.messages.confirm') }, method: :post do
+            i.fa.fa-clone-o
 
 
 - if entries.respond_to?(:current_page)

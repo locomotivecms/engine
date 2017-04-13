@@ -50,7 +50,7 @@ module Locomotive
 
     describe "#POST clone" do
       subject do
-        put :update, site_handle: site, slug: content_type.slug, id: content_entry.id, locale: :en
+        put :clone, site_handle: site, slug: content_type.slug, id: content_entry.id, locale: :en
       end
       it { is_expected.to be_redirect }
       specify do
