@@ -48,7 +48,7 @@ module Locomotive
       end
     end
 
-    describe "#POST clone" do
+    describe "#POST :id/clone" do
       subject do
         put :clone, site_handle: site, slug: content_type.slug, id: content_entry.id, locale: :en
       end

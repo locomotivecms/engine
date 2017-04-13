@@ -26,7 +26,7 @@ module Locomotive
       authorize @content_entry
       @clone_content_entry = @content_entry.clone
       @clone_content_entry.save
-      respond_with @clone_content_entry, location: -> { location_after_persisting }
+      redirect_to edit_content_entry_path(current_site, @content_type.slug, @clone_content_entry)
     end
 
     def export
