@@ -94,8 +94,7 @@ module Locomotive
             @content_entry = content_type.entries.by_id_or_slug(params[:id]).first
 
             authorize @content_entry, :clone?
-            @clone_content_entry = @content_entry.clone
-            @clone_content_entry.save
+            @clone_content_entry = service.entry_clone(@content_entry)
 
             present @clone_content_entry, with: entity_klass
           end

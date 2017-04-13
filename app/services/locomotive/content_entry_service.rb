@@ -90,6 +90,25 @@ module Locomotive
       end
     end
 
+    # Clone a content entry.
+    # It sets the updated_by column with the current account.
+    #
+    # @param [ Object ] entry The content entry to update.
+    #
+    # @return [ Object ] The instance of the content entry.
+    #
+    def entry_clone(entry)
+      new_entry = entry.clone
+
+      new_entry.tap do |entry|
+        entry.created_by = account if account
+
+        if entry.save
+          track_activity 'content_entry.cloned', parameters: activity_parameters(entry)
+        end
+      end
+    end
+
     # Update a content entry from the attributes passed in parameter.
     # It sets the updated_by column with the current account.
     #
