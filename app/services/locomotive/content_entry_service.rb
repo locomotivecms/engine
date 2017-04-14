@@ -249,8 +249,8 @@ module Locomotive
 
     def clone_files!(entry, source_entry)
       source_entry.file_custom_fields.each do |field|
-        entry.send(:"remote_#{field}_url=", source_entry.image.url)
-        entry.send(:"#{field}=", source_entry.image)
+        entry.send(:"remote_#{field}_url=", source_entry.send(:"remote_#{field}_url"))
+        entry.send(:"#{field}=", source_entry.send(:"#{field}"))
       end
     end
 
