@@ -16,7 +16,7 @@ module Locomotive
     end
 
     def no_site_message(error_type)
-      t(error_type, host: request.host, scope: 'locomotive.errors.no_site.message')
+      t(error_type, host: h(request.host), scope: 'locomotive.errors.no_site.message')
     end
 
   end

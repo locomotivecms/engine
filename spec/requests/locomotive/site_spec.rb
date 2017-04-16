@@ -27,6 +27,11 @@ describe Locomotive::Middlewares::Site do
       it { expect(subject.first).to eq 404 }
       it { expect(subject.last.body).to match(/Site not found \| Locomotive/) }
 
+      it 'has to escape the host to prevent XSS attacks (by setting the X-Forwarded-Host header)' do
+        allow_any_instance_of(ActionDispatch::Request).to receive(:host).and_return('<script>alert(1)</script>')
+        expect(subject.last.body).not_to include('<script>alert(1)</script>')
+      end
+
       context 'default host' do
 
         before { allow(Locomotive.config).to receive(:host).and_return('example.com') }
