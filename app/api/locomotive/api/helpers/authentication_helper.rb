@@ -9,7 +9,7 @@ module Locomotive
           @current_user ||= begin
             token = headers['X-Locomotive-Account-Token']
             email = headers['X-Locomotive-Account-Email']
-            Account.where(email: email, authentication_token: token).first
+            Account.where(email: email, api_token: token).first
           end
         end
 
