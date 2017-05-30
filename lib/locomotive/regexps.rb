@@ -9,5 +9,8 @@ module Locomotive
 
     URL_AND_MAILTO      = /\A((https?:\/\/\S+)|(ftp:\/\S+)|(mailto:\S+)|\/\S*)\Z/
 
+    # e.g. hostname, hostname.com, http(s)://hostname, http(s)://hostname.com/
+    ASSET_HOST			= /\A((https?:\/\/)?)(([a-z\d])([a-z\d-]){0,61}([a-z\d]))(\.([a-z\d])([a-z\d-]){0,61}([a-z\d]))*\/?$/i
+
   end
 end
