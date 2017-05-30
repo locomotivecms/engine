@@ -37,6 +37,42 @@ describe Locomotive::Site do
 
   end
 
+  describe 'asset_host' do
+
+    let(:asset_host) { nil }
+    subject { FactoryGirl.build(:site, asset_host: asset_host) }
+
+    it { is_expected.to be_valid }
+
+    context 'good format without protocol' do
+
+      let(:asset_host) { 'asset.dev' }
+
+      it { is_expected.to be_valid}
+
+    end
+
+    context 'good format with protocol' do
+
+      let(:asset_host) { 'https://asset.dev' }
+
+      it { is_expected.to be_valid}
+
+    end
+
+    context 'bad format' do
+
+      let(:asset_host) { 'http://asset.d' }
+
+      it { is_expected.to_not be_valid }
+
+      it 'tells if asset_host is invalid' do
+        subject.valid?
+        expect(subject.errors[:asset_host]).to eq(['http://asset.d is invalid'])
+      end
+    end
+  end
+
   describe 'handle' do
 
     it 'validates presence of handle' do
