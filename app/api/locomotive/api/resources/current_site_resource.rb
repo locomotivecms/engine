@@ -27,7 +27,6 @@ module Locomotive
             present current_site, with: entity_klass
           end
 
-
           desc 'Update current site'
           params do
             requires :site, type: Hash do
