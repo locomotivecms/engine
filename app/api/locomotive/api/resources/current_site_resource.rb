@@ -38,6 +38,7 @@ module Locomotive
               optional :robots_txt
               optional :locales, type: Array
               optional :domains, type: Array
+              optional :url_redirections, type: Array
               optional :timezone
               optional :picture
               optional :metafields_schema

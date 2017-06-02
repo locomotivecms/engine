@@ -7,7 +7,7 @@ module Locomotive
         expose    :name, :handle, :seo_title, :meta_keywords, :meta_description,
                   :robots_txt, :cache_enabled, :private_access
 
-        expose :locales, :domains
+        expose :locales, :domains, :url_redirections
 
         expose :memberships, using: MembershipEntity
 
