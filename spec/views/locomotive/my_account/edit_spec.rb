@@ -46,4 +46,20 @@ describe 'locomotive/my_account/edit', type: :view do
 
   end
 
+  describe 'new password' do
+
+    it 'renders an input for the current password' do
+      expect(subject).to include('name="account[current_password]" id="account_current_password"')
+    end
+
+    it 'renders an input for a new password' do
+      expect(subject).to include('name="account[password]" id="account_password"')
+    end
+
+    it 'renders an input for a new password confirmation' do
+      expect(subject).to include('name="account[password_confirmation]" id="account_password_confirmation"')
+    end
+
+  end
+
 end

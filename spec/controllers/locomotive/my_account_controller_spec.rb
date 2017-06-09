@@ -25,14 +25,50 @@ describe Locomotive::MyAccountController do
   end
 
   describe "#PUT update" do
-    let(:name) { generate(:name) }
-    subject do
-      put :update, site_handle: site, id: account.id, locale: :en, account: { name: name }
+    describe 'change name' do
+      let(:name) { generate(:name) }
+      subject do
+        put :update, site_handle: site, id: account.id, locale: :en, account: { name: name }
+      end
+      it { is_expected.to be_redirect }
+      specify do
+        subject
+        expect(assigns(:account).name).to eq(name)
+      end
     end
-    it { is_expected.to be_redirect }
-    specify do
-      subject
-      expect(assigns(:account).name).to eq(name)
+
+    describe 'change password and include current password' do
+      subject do
+        put :update, site_handle: site, id: account.id, locale: :en, account: { current_password: 'easyone', password: 'newpassword', password_confirmation: 'newpassword' }
+      end
+      it { is_expected.to be_redirect }
+      it { is_expected.to redirect_to edit_my_account_path }
+    end
+
+    describe 'change password without current password' do
+      subject do
+        put :update, site_handle: site, id: account.id, locale: :en, account: { password: 'newpassword', password_confirmation: 'newpassword' }
+      end
+      it { is_expected.to render_template :edit }
+    end
+
+    describe 'change email and include current password' do
+      subject do
+        put :update, site_handle: site, id: account.id, locale: :en, account: { email: 'new@password.com', current_password: 'easyone' }
+      end
+      it { is_expected.to be_redirect }
+      it { is_expected.to redirect_to edit_my_account_path }
+      specify do
+        subject
+        expect(assigns(:account).email).to eq('new@password.com')
+      end
+    end
+
+    describe 'change email without current password' do
+      subject do
+        put :update, site_handle: site, id: account.id, locale: :en, account: { email: 'new@password.com' }
+      end
+      it { is_expected.to render_template :edit }
     end
   end
 
