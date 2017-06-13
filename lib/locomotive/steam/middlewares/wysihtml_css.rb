@@ -4,6 +4,8 @@ module Locomotive
 
       class WysihtmlCss
 
+        GOOGLE_AMP_PATH = '_amp'
+
         def initialize(app, opts = {})
           @app = app
         end
@@ -11,7 +13,7 @@ module Locomotive
         def call(env)
           status, headers, response = @app.call(env)
 
-          if content?(env['steam.page'], response)
+          if content?(env['steam.page'], env['steam.path'], response)
             url   = ::ActionController::Base.helpers.stylesheet_path('locomotive/wysihtml5_editor')
             html  = %(<link rel="stylesheet" type="text/css" href="#{url}">)
             response.first.gsub!('</head>', %(#{html}</head>))
@@ -22,8 +24,11 @@ module Locomotive
 
         protected
 
-        def content?(page, response)
-          page && !page.redirect && page.response_type == 'text/html' && response.first
+        def content?(page, path, response)
+          !path.starts_with?(GOOGLE_AMP_PATH + '/') &&
+          !page.redirect &&
+          page.response_type == 'text/html' &&
+          response.first
         end
 
       end
