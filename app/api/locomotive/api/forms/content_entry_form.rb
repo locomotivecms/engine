@@ -41,7 +41,7 @@ module Locomotive
             if respond_to?(:"set_#{field.type}")
               public_send(:"set_#{field.type}", field, args.first)
             else
-              dynamic_attributes[field.name.to_sym] = args.first
+              dynamic_attributes[getter_name(name).to_sym] = args.first
             end
           else
             super
@@ -54,14 +54,19 @@ module Locomotive
 
         private
 
+        def getter_name(name)
+          name.to_s.gsub(/=\z/, '')
+        end
+
         def find_field(name)
-          _name = name.to_s.gsub(/=$/, '')
-          dynamic_setters[_name]
+          dynamic_setters[getter_name(name)]
         end
 
         def dynamic_setters
           @dynamic_setters ||= self.content_type.entries_custom_fields.inject({}) do |hash, field|
             case field.type.to_sym
+            when :password
+              hash[field.name] = hash["#{field.name}_confirmation"] = field
             when :file
               hash[field.name] = hash["remote_#{field.name}_url"] = hash["remove_#{field.name}"] = field
             when :belongs_to
