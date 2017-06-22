@@ -139,7 +139,7 @@
   }
 
   function resolveLanczos (self) {
-    var result = new Image()
+    var result = new Image();
 
     result.onload = function () {
       self.resultD.resolve(result)
@@ -149,15 +149,30 @@
       self.resultD.reject(err)
     }
 
+    result.crossOrigin = 'Anonymous';
     result.src = self.canvas.toDataURL(self.type, self.quality)
   }
 
   // resize by stepping down
-  window.resizeImageStep = function (img, width, height, quality) {
+  window.resizeImageStep = function(img, width, height, quality) {
+    var resultD = $.Deferred();
+    var _img = document.createElement('img');
+
+    _img.onload = function() {
+      window._resizeImageStep(_img, width, height, quality, resultD);
+    }
+
+    // prevent the browser to raise a security exception about
+    // a tainted canvas.
+    _img.setAttribute('crossOrigin','anonymous');
+    _img.src = img.getAttribute('src');
+
+    return resultD.promise();
+  }
+
+  window._resizeImageStep = function (img, width, height, quality, resultD) {
     quality = quality || 1.0
 
-    // var resultD = $q.defer()
-    var resultD = $.Deferred()
     var canvas  = document.createElement( 'canvas' )
     var context = getContext(canvas)
     var type = "image/png"
@@ -166,12 +181,10 @@
     var cH = img.naturalHeight
 
     var dst = new Image()
+    dst.crossOrigin = 'Anonymous';
     var tmp = null
 
-    //resultD.resolve(img)
-    //return resultD.promise
-
-    function stepDown () {
+    function stepDown() {
       cW = Math.max(cW / 2, width) | 0
       cH = Math.max(cH / 2, height) | 0
 
@@ -188,6 +201,7 @@
 
       if (!tmp) {
         tmp = new Image()
+        tmp.crossOrigin = 'Anonymous';
         tmp.onload = stepDown
       }
 
@@ -204,8 +218,6 @@
     } else {
       stepDown()
     }
-
-    return resultD.promise()
   }
 
   function getContext (canvas) {
