@@ -67,7 +67,7 @@ end
         RUBY
         end
 
-        gem 'platform-api', '~> 0.3.0'
+        gem 'platform-api', '~> 2'
       end
     end
 
