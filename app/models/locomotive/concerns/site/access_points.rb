@@ -12,6 +12,7 @@ module Locomotive
           field :domains, type: Array, default: []
           field :redirect_to_first_domain, type: Boolean, default: false
           field :redirect_to_https, type: Boolean, default: false
+          field :asset_host
 
           ## indexes ##
           index domains: 1
@@ -24,6 +25,7 @@ module Locomotive
             multiline: true
           validate                  :domains_must_be_valid_and_unique
           validate                  :domains_must_not_be_reserved
+          validate                  :asset_host_must_be_valid
 
           ## callbacks ##
           before_validation :prepare_domain_sync
@@ -54,6 +56,10 @@ module Locomotive
           array = [] if array.blank?; super(array.map(&:downcase))
         end
 
+        def asset_host=(asset_host)
+          super(asset_host.try(:downcase))
+        end
+
         protected
 
         def prepare_domain_sync
@@ -73,6 +79,14 @@ module Locomotive
             if not domain =~ Locomotive::Regexps::DOMAIN
               self.errors.add(:domains, :invalid_domain, value: domain)
             end
+          end
+        end
+
+        def asset_host_must_be_valid
+          return if self.asset_host.blank?
+
+          if not asset_host =~ Locomotive::Regexps::ASSET_HOST
+            self.errors.add(:asset_host, :invalid_domain, value: asset_host)
           end
         end
 

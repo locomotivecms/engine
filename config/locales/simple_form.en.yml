@@ -96,6 +96,7 @@ en:
           meta_description: "Meta description used within the head tag of the page. Required for SEO."
           robots_txt: "Content of the <span class='code'>/robots.txt</span> file. Check the following <a href='http://www.w3.org/TR/html4/appendix/notes.html#h-B.4.1.1'>url</a> for more information."
           domains: "Add your domains just below. Documentation <a href=\"https://locomotive-v3.readme.io/docs/domains\">here</a> for more information."
+          asset_host: "Site-specific asset host that overrides engine asset host (ex. \"localhost\", \"asset.dev\", \"https://asset-host.com/\")."
           memberships: "You can invite other accounts to edit/manage the site."
           cache_enabled: "When enabled, your pages will be cached as long as the content doesn't change. Disabling cache per page is allowed."
           redirect_to_first_domain: "When enabled, requests made to any domains listed above will be redirected to the first domain."

@@ -4,6 +4,8 @@
 
     = f.input :domains, as: :array, hint: t(:domains, scope: 'simple_form.hints.locomotive.site', domain: Locomotive.config.host || request.host).html_safe, placeholder: true, collection: f.object.domains, template: :domain, template_url: new_domain_current_site_path(current_site)
 
+    = f.input :asset_host, hint: t(:asset_host, scope: 'simple_form.hints.locomotive.site').html_safe
+
     = f.input :redirect_to_first_domain, as: :toggle
     = f.input :redirect_to_https, as: :toggle
 
