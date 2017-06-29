@@ -5,7 +5,7 @@ describe Locomotive::API::Entities::SiteEntity do
   subject { described_class }
 
   %i(name locales handle domains seo_title meta_keywords
-    meta_description robots_txt cache_enabled).each do |exposure|
+    meta_description robots_txt cache_enabled asset_host).each do |exposure|
       it { is_expected.to represent(exposure) }
     end
 

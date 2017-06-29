@@ -71,6 +71,7 @@ module Locomotive
               optional :metafields_schema
               optional :metafields
               optional :metafields_ui
+              optional :asset_host
             end
           end
           post do
@@ -101,6 +102,7 @@ module Locomotive
               optional :password
               optional :metafields_schema
               optional :metafields
+              optional :asset_host
             end
           end
           put ':id' do

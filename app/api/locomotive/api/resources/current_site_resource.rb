@@ -44,6 +44,7 @@ module Locomotive
               optional :metafields_schema
               optional :metafields
               optional :metafields_ui
+              optional :asset_host
             end
           end
           put do
