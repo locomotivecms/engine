@@ -7,7 +7,7 @@ describe Locomotive::TranslationsController do
   let(:site)     { create(:site, domains: %w{www.acme.com}) }
   let(:account)  { create(:account) }
   let!(:membership) do
-    create(:membership, account: account, site: site, role: 'admin')
+    create(:membership, account: account, site: site, role: 'author')
   end
   let!(:translation) { create(:translation, site: site) }
 

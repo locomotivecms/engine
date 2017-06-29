@@ -6,7 +6,7 @@ module Locomotive
     before_filter :load_translation, only: [:edit, :update]
 
     def index
-      authorize ThemeAsset
+      authorize Translation
       @translations = service.all(params.slice(:page, :per_page, :q, :filter_by))
       respond_with @translations
     end
