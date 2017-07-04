@@ -20,6 +20,9 @@ module Locomotive
     ## behaviours ##
     slugify_from :name
 
+    ## indexes ##
+    index site_id: 1, slug: 1
+
     ## methods ##
 
     def touch_site_attribute
