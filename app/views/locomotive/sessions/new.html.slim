@@ -9,7 +9,7 @@
 
   - set_error_from_flash(resource, :email)
 
-  = locomotive_form_for(resource, as: resource_name, url: locomotive_account_session_path) do |f|
+  = locomotive_form_for(resource, as: resource_name, url: locomotive_account_session_path, html: { autocomplete: 'off' }) do |f|
 
     = f.hidden_field :remember_me, value: 'true'
 
