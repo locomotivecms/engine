@@ -4,6 +4,8 @@ module Locomotive
 
       class ContentEntryForm < BaseForm
 
+        NON_CUSTOM_FIELD_ATTRIBUTES = %w{_auth_reset_token _auth_reset_sent_at}
+
         attr_accessor :content_type, :dynamic_attributes
 
         attrs :_slug, :_position, :_visible, :seo_title, :meta_keywords, :meta_description
@@ -43,6 +45,8 @@ module Locomotive
             else
               dynamic_attributes[getter_name(name).to_sym] = args.first
             end
+          elsif NON_CUSTOM_FIELD_ATTRIBUTES.include?(getter_name(name))
+            dynamic_attributes[getter_name(name).to_sym] = args.first
           else
             super
           end

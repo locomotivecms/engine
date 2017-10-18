@@ -161,6 +161,20 @@ describe Locomotive::API::Resources::ContentEntryResource do
 
         end
 
+        context 'resetting the auth attributes (set by Steam)' do
+
+          let!(:content_entry) { content_type.entries.create(title: 'Hello world', body: 'Lorem ipsum', site: site, _auth_reset_token: '42', _auth_reset_sent_at: 'tomorrow') }
+          let(:content_entry_params) { { title: 'Hello world [UPDATED]', _auth_reset_token: '', _auth_reset_sent_at: '' } }
+
+          it 'updates the _auth_reset_token and _auth_reset_sent_at columns' do
+            expect(put_request.status).to eq 200
+            entry = Locomotive::ContentEntry.find(content_entry.id)
+            expect(entry['_auth_reset_token']).to eq('')
+            expect(entry['_auth_reset_sent_at']).to eq('')
+          end
+
+        end
+
       end
     end
 
