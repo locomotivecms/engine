@@ -14,7 +14,8 @@ module Locomotive
       end
 
       def cache_key(page)
-        "#{Locomotive::VERSION}/site/#{current_site._id}/template/#{current_site.template_version.to_i}/page/#{page._id}/#{locale}"
+        key = "#{Locomotive::VERSION}/site/#{current_site._id}/template/#{current_site.template_version.to_i}/page/#{page._id}/#{locale}"
+        Digest::MD5.hexdigest(key)
       end
 
       private
