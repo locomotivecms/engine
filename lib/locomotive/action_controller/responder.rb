@@ -40,7 +40,7 @@ module Locomotive
         add_authenticated_header
 
         if get?
-          add_pagination_header if resource.respond_to?(:num_pages)
+          add_pagination_header if resource.respond_to?(:total_pages)
           display(resource)
         elsif has_errors?
           with_flash_message(:alert) do
@@ -100,7 +100,7 @@ module Locomotive
       end
 
       def add_pagination_header
-        controller.headers['X-Total-Pages']   = resource.num_pages.to_s
+        controller.headers['X-Total-Pages']   = resource.total_pages.to_s
         controller.headers['X-Per-Page']      = resource.limit_value.to_s
         controller.headers['X-Total-Entries'] = resource.total_count.to_s
       end
