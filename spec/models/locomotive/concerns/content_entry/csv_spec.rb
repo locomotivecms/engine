@@ -1,4 +1,4 @@
-require 'spec_helper'
+# encoding: utf-8
 
 module Locomotive
   module Concerns
@@ -6,7 +6,7 @@ module Locomotive
       describe Csv do
         before(:each) do
           allow_any_instance_of(Locomotive::Site).to receive(:create_default_pages!).and_return(true)
-          @content_type = FactoryGirl.build(:content_type)
+          @content_type = build(:content_type)
           @content_type.entries_custom_fields.build label: 'Title', type: 'string'
           @content_type.entries_custom_fields.build label: 'Description', type: 'text'
           @content_type.entries_custom_fields.build label: 'Visible ?', type: 'boolean', name: 'visible'

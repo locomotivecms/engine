@@ -1,8 +1,14 @@
 #!/usr/bin/env ruby
-begin
-  load File.expand_path("../spring", __FILE__)
-rescue LoadError
-end
-APP_PATH = File.expand_path('../../spec/dummy/config/application',  __FILE__)
-require_relative '../spec/dummy/config/boot'
-require 'rails/commands'
+# This command will automatically be run when you run "rails" with Rails gems
+# installed from the root of your application.
+
+ENGINE_ROOT = File.expand_path('../..', __FILE__)
+ENGINE_PATH = File.expand_path('../../lib/locomotive/engine', __FILE__)
+APP_PATH = File.expand_path('../../spec/dummy/config/application', __FILE__)
+
+# Set up gems listed in the Gemfile.
+ENV['BUNDLE_GEMFILE'] ||= File.expand_path('../../Gemfile', __FILE__)
+require 'bundler/setup' if File.exist?(ENV['BUNDLE_GEMFILE'])
+
+require 'rails'
+require 'rails/engine/commands'

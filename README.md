@@ -72,6 +72,6 @@ For new features (especially large ones) it is best to create a topic on the [Go
 
 ### Contact
 
-Feel free to contact me at did at locomotivecms dot com.
+Feel free to contact me at didier at nocoffee dot fr.
 
-Copyright (c) 2017 NoCoffee, released under the MIT license
+Copyright (c) 2018 NoCoffee, released under the MIT license

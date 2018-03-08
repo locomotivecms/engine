@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe Locomotive::MembershipsController do
 
   routes { Locomotive::Engine.routes }
@@ -19,7 +17,7 @@ describe Locomotive::MembershipsController do
     let(:email) { generate(:email) }
     let(:membership_attributes) { { email: email } }
     subject do
-      post :create, site_handle: site, locale: :en, membership: membership_attributes
+      post :create, params: { site_handle: site, locale: :en, membership: membership_attributes }
     end
     it { is_expected.to redirect_to new_account_path(site, email: email) }
 
@@ -38,7 +36,7 @@ describe Locomotive::MembershipsController do
 
   describe "#DELETE destroy" do
     subject do
-      delete :destroy, site_handle: site, id: membership.id, locale: :en
+      delete :destroy, params: { site_handle: site, id: membership.id, locale: :en }
     end
     it { is_expected.to redirect_to edit_current_site_path(site) }
   end

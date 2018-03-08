@@ -1,14 +1,14 @@
-require 'spec_helper'
+# encoding: utf-8
 
 describe Locomotive::Notifications do
 
   describe 'new_content_entry' do
 
     let(:now)           { Time.use_zone('America/Chicago') { Time.zone.local(1982, 'sep', 16, 14, 0) } }
-    let(:site)          { FactoryGirl.build(:site, name: 'Acme', domains: %w{www.acme.com}, timezone_name: 'Paris') }
-    let(:account)       { FactoryGirl.build(:account, email: 'bart@simpson.net') }
-    let(:content_type)  { FactoryGirl.build(:content_type, site: site) }
-    let(:content_entry) { FactoryGirl.build(:content_entry, content_type: content_type, site: site) }
+    let(:site)          { build(:site, name: 'Acme', domains: %w{www.acme.com}, timezone_name: 'Paris') }
+    let(:account)       { build(:account, email: 'bart@simpson.net') }
+    let(:content_type)  { build(:content_type, site: site) }
+    let(:content_entry) { build(:content_entry, content_type: content_type, site: site) }
 
     let(:mail) { Locomotive::Notifications.new_content_entry(account, content_entry) }
 
@@ -42,7 +42,7 @@ describe Locomotive::Notifications do
 
       describe 'text type' do
 
-        let(:content_type)  { FactoryGirl.build(:content_type, :with_text_field, site: site) }
+        let(:content_type)  { build(:content_type, :with_text_field, site: site) }
         let(:content_entry) { content_type.entries.build(description: "hello\nworld", site: site) }
 
         it 'outputs the formatted value of the text field' do
@@ -53,7 +53,7 @@ describe Locomotive::Notifications do
 
       describe 'date time type' do
 
-        let(:content_type)  { FactoryGirl.build(:content_type, :with_date_time_field, site: site) }
+        let(:content_type)  { build(:content_type, :with_date_time_field, site: site) }
         let(:content_entry) { content_type.entries.build(time: DateTime.parse('2015/09/26 10:45pm CDT'), site: site) }
 
         it 'outputs the formatted value of the date time field' do

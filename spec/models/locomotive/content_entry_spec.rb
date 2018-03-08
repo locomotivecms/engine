@@ -1,20 +1,9 @@
 # encoding: utf-8
 
-require 'spec_helper'
-
 describe Locomotive::ContentEntry do
 
-  before(:each) do
-    allow_any_instance_of(Locomotive::Site).to receive(:create_default_pages!).and_return(true)
-    @content_type = FactoryGirl.build(:content_type)
-    @content_type.entries_custom_fields.build label: 'Title', type: 'string'
-    @content_type.entries_custom_fields.build label: 'Description', type: 'text'
-    @content_type.entries_custom_fields.build label: 'Visible ?', type: 'boolean', name: 'visible'
-    @content_type.entries_custom_fields.build label: 'File', type: 'file'
-    @content_type.entries_custom_fields.build label: 'Published at', type: 'date'
-    @content_type.valid?
-    @content_type.send(:set_label_field)
-  end
+  let(:site)          { create(:site) }
+  let(:content_type)  { create(:content_type, :article, site: site) }
 
   describe '#validation' do
 
@@ -40,13 +29,6 @@ describe Locomotive::ContentEntry do
 
   describe '.slug' do
 
-    before :each do
-      build_content_entry(_slug: 'dogs').tap do |entry|
-        entry.save!
-        expect(entry._slug).to eq('dogs')
-      end
-    end
-
     it 'accepts underscore instead of dashes' do
       expect(build_content_entry(_slug: 'monkey_wrench').tap(&:save!)._slug).to eq('monkey_wrench')
     end
@@ -57,15 +39,15 @@ describe Locomotive::ContentEntry do
     end
 
     it 'appends a number to the end of the slug if it is not unique' do
+      expect(build_content_entry(_slug: 'dogs').tap(&:save!)._slug).to eq('dogs')
       expect(build_content_entry(_slug: 'dogs').tap(&:save!)._slug).to eq('dogs-1')
-      expect(build_content_entry(_slug: 'dogs').tap(&:save!)._slug).to eq('dogs-2')
+      expect(build_content_entry(_slug: 'dogs-2').tap(&:save!)._slug).to eq('dogs-2')
       expect(build_content_entry(_slug: 'dogs-2').tap(&:save!)._slug).to eq('dogs-3')
-      expect(build_content_entry(_slug: 'dogs-2').tap(&:save!)._slug).to eq('dogs-4')
     end
 
     it 'ignores the case of a slug' do
-      expect(build_content_entry(_slug: 'dogs').tap(&:save!)._slug).to eq('dogs-1')
-      expect(build_content_entry(_slug: 'DOGS').tap(&:save!)._slug).to eq('dogs-2')
+      expect(build_content_entry(_slug: 'dogs').tap(&:save!)._slug).to eq('dogs')
+      expect(build_content_entry(_slug: 'DOGS').tap(&:save!)._slug).to eq('dogs-1')
     end
 
     it 'correctly handles slugs with multiple numbers' do
@@ -77,55 +59,57 @@ describe Locomotive::ContentEntry do
     end
 
     it 'correctly handles more than 13 slugs with the same name' do
-      (1..15).each do |i|
+      expect(build_content_entry(_slug: 'dogs').tap(&:save!)._slug).to eq('dogs')
+      (1..14).each do |i|
         expect(build_content_entry(_slug: 'dogs').tap(&:save!)._slug).to eq("dogs-#{i}")
       end
     end
 
     it 'copies the slug in ALL the locales of the site' do
-      allow_any_instance_of(Locomotive::Site).to receive(:locales).and_return(%w(en fr ru))
-      entry = build_content_entry(_slug: 'monkeys').tap(&:save!)
+      allow(site).to receive(:locales).and_return(%w(en fr ru))
+      allow(site).to receive(:localized?).and_return(true)
+      entry = build_content_entry(_slug: 'monkeys')
+      allow(entry).to receive(:set_site).and_return(site)
+      entry.save!
       expect(entry._slug_translations).to eq({ 'en' => 'monkeys', 'fr' => 'monkeys', 'ru' => 'monkeys' })
     end
+
   end
 
   describe '#I18n' do
 
-    before(:each) do
-      localize_content_type @content_type
-      ::Mongoid::Fields::I18n.locale = 'en'
-      @content_entry = build_content_entry(title: 'Hello world')
-      @content_entry.send(:set_slug)
-      ::Mongoid::Fields::I18n.locale = 'fr'
-    end
+    before(:each) { localize_content_type }
+    after(:all)   { ::Mongoid::Fields::I18n.locale = 'en' }
 
-    after(:all) do
-      ::Mongoid::Fields::I18n.locale = 'en'
+    let(:content_entry) do
+      ::Mongoid::Fields::I18n.with_locale(:en) { build_content_entry(title: 'Hello world') }
     end
 
     it 'tells if an entry has been translated or not' do
-      expect(@content_entry.translated?).to eq(false)
-      @content_entry.title = 'Bonjour'
-      expect(@content_entry.translated?).to eq(true)
+      ::Mongoid::Fields::I18n.locale = 'fr'
+      expect(content_entry.translated?).to eq(false)
+      content_entry.title = 'Bonjour'
+      expect(content_entry.translated?).to eq(true)
     end
 
     describe '#slug' do
 
       it 'is not nil in the default locale' do
         ::Mongoid::Fields::I18n.locale = 'en'
-        expect(@content_entry._slug).to eq('hello-world')
+        expect(content_entry._slug).to eq('hello-world')
       end
 
       it 'is not translated by default in the other locale' do
-        expect(@content_entry._slug).to eq(nil) # French
+        ::Mongoid::Fields::I18n.locale = 'fr'
+        expect(content_entry._slug).to eq(nil) # French
       end
 
       it 'is translated in all the locales when being created' do
-        @content_entry.site.locales = %w(en fr)
+        content_entry.site.locales = %w(en fr)
         ::Mongoid::Fields::I18n.locale = 'en'
-        @content_entry.send(:localize_slug)
+        content_entry.send(:localize_slug)
         ::Mongoid::Fields::I18n.locale = 'fr'
-        expect(@content_entry._slug).to eq('hello-world') # French
+        expect(content_entry._slug).to eq('hello-world') # French
       end
 
     end
@@ -163,11 +147,11 @@ describe Locomotive::ContentEntry do
     context 'set of entries' do
 
       before(:each) do
-        @content_type.save!
+        content_type.save!
         3.times { build_content_entry(file: FixturedAsset.open('5k.png')).save! }
       end
 
-      subject { @content_type.ordered_entries.to_csv(host: 'example.com').split("\n") }
+      subject { content_type.ordered_entries.to_csv(host: 'example.com').split("\n") }
 
       it { expect(subject.size).to eq(4) }
       it { expect(subject.first).to eq("Title,Description,Visible ?,File,Published at,Created at") }
@@ -179,151 +163,145 @@ describe Locomotive::ContentEntry do
 
   describe "#navigation" do
 
-    before(:each) do
-      @content_type.update_attribute :order_by, '_position'
+    before(:each) { content_type.update_attribute :order_by, '_position' }
 
-      %w(first second third).each_with_index do |item, index|
-        content = build_content_entry(title: item.to_s, _position: index, published_at: (index + 2).days.ago, visible: true)
-        content.save!
-        instance_variable_set "@#{item}", content
-      end
-    end
+    let!(:first)   { create_content_entry(title: 'first', _position: 0, published_at: 2.days.ago, visible: true) }
+    let!(:second)  { create_content_entry(title: 'second', _position: 1, published_at: 3.days.ago, visible: true) }
+    let!(:third)   { create_content_entry(title: 'third', _position: 2, published_at: 4.days.ago, visible: true) }
 
     it 'finds previous item when available' do
-      expect(@second.previous.title).to eq('first')
-      expect(@second.previous._position).to eq(0)
+      expect(second.previous.title).to eq('first')
+      expect(second.previous._position).to eq(0)
     end
 
     it 'finds next item when available' do
-      expect(@second.next.title).to eq('third')
-      expect(@second.next._position).to eq(2)
+      expect(second.next.title).to eq('third')
+      expect(second.next._position).to eq(2)
     end
 
     it 'returns nil when fetching previous item on first in list' do
-      expect(@first.previous).to eq(nil)
+      expect(first.previous).to eq(nil)
     end
 
     it 'returns nil when fetching next item on last in list' do
-      expect(@third.next).to eq(nil)
+      expect(third.next).to eq(nil)
     end
 
     context "ordered by published at" do
 
-      before do
-        @content_type.update_attributes order_by: 'published_at', order_direction: 'asc'
+      before(:each) { content_type.update_attributes order_by: 'published_at', order_direction: 'asc' }
 
-        @very_first = build_content_entry(title: 'very first', _position: 4, published_at: Time.now, visible: true)
-        @very_first.save!
+      let!(:very_first) { create_content_entry(title: 'very first', _position: 4, published_at: Time.now, visible: true) }
+
+      it "finds the previous item" do
+        expect(second.previous.title).to eq('third')
       end
 
-      it "finds previous item" do
-        expect(@second.previous.title).to eq('third')
-      end
-
-      it "finds next item" do
-        expect(@first.next.title).to eq('very first')
+      it "finds the next item" do
+        expect(first.next.title).to eq('very first')
       end
 
       it 'returns nil when fetching previous item on first in list' do
-        expect(@third.previous).to eq(nil)
+        expect(third.previous).to eq(nil)
       end
 
       it 'returns nil when fetching next item on last in list' do
-        expect(@very_first.next).to eq(nil)
+        expect(very_first.next).to eq(nil)
       end
 
       context 'with desc direction' do
 
-        before do
-          @content_type.update_attribute :order_direction, 'desc'
-        end
+        before(:each) { content_type.update_attribute :order_direction, 'desc' }
 
         it "finds previous item" do
-          expect(@second.previous.title).to eq('first')
+          expect(second.previous.title).to eq('first')
         end
 
         it "finds next item" do
-          expect(@first.next.title).to eq('second')
+          expect(first.next.title).to eq('second')
         end
 
         it 'returns nil when fetching previous item on first in list' do
-          expect(@very_first.previous).to eq(nil)
+          expect(very_first.previous).to eq(nil)
         end
 
         it 'returns nil when fetching next item on last in list' do
-          expect(@third.next).to eq(nil)
+          expect(third.next).to eq(nil)
         end
 
       end
 
     end
+
   end
 
   describe '#permalink' do
 
-    before(:each) do
-      @content_entry = build_content_entry
-    end
+    let(:content_entry) { build_content_entry({}, false) }
 
     it 'has a default value based on the highlighted field' do
-      @content_entry.send(:set_slug)
-      expect(@content_entry._permalink).to eq('locomotive')
+      content_entry.send(:set_slug)
+      expect(content_entry._permalink).to eq('locomotive')
     end
 
     it 'is empty if no value for the highlighted field is provided' do
-      @content_entry.title = nil; @content_entry.send(:set_slug)
-      expect(@content_entry._permalink).to eq(nil)
+      content_entry.title = nil
+      content_entry.send(:set_slug)
+      expect(content_entry._permalink).to eq(nil)
     end
 
     it 'includes dashes instead of white spaces' do
-      @content_entry.title = 'my content instance'; @content_entry.send(:set_slug)
-      expect(@content_entry._permalink).to eq('my-content-instance')
+      content_entry.title = 'my content instance'
+      content_entry.send(:set_slug)
+      expect(content_entry._permalink).to eq('my-content-instance')
     end
 
     it 'removes accentued characters' do
-      @content_entry.title = "une chèvre dans le pré"; @content_entry.send(:set_slug)
-      expect(@content_entry._permalink).to eq('une-chevre-dans-le-pre')
+      content_entry.title = "une chèvre dans le pré"
+      content_entry.send(:set_slug)
+      expect(content_entry._permalink).to eq('une-chevre-dans-le-pre')
     end
 
     it 'removes dots' do
-      @content_entry.title = "my.test"; @content_entry.send(:set_slug)
-      expect(@content_entry._permalink).to eq('my-dot-test')
+      content_entry.title = "my.test"
+      content_entry.send(:set_slug)
+      expect(content_entry._permalink).to eq('my-dot-test')
     end
 
     it 'accepts non-latin chars' do
-      @content_entry.title = "абракадабра"; @content_entry.send(:set_slug)
-      expect(@content_entry._permalink).to eq('abrakadabra')
+      content_entry.title = "абракадабра"
+      content_entry.send(:set_slug)
+      expect(content_entry._permalink).to eq('abrakadabra')
     end
 
     it 'also accepts a file field as the highlighted field' do
-      allow(@content_entry).to receive(:_label_field_name).and_return('file')
-      @content_entry.file = FixturedAsset.open('5k.png'); @content_entry.send(:set_slug)
-      expect(@content_entry._permalink).to eq('5k')
+      allow(content_entry).to receive(:_label_field_name).and_return('file')
+      content_entry.file = FixturedAsset.open('5k.png')
+      content_entry.send(:set_slug)
+      expect(content_entry._permalink).to eq('5k')
     end
 
   end
 
   describe '#visibility' do
 
-    before(:each) do
-      @content_entry = build_content_entry
-    end
+    let(:content_entry) { build_content_entry }
 
     it 'is not visible by default' do
-      @content_entry.send(:set_visibility)
-      expect(@content_entry.visible?).to eq(false)
+      content_entry.send(:set_visibility)
+      expect(content_entry.visible?).to eq(false)
     end
 
     it 'can be visible even if it is nil' do
-      @content_entry.visible = nil
-      @content_entry.send(:set_visibility)
-      expect(@content_entry.visible?).to eq(true)
+      content_entry.visible = nil
+      content_entry.send(:set_visibility)
+      expect(content_entry.visible?).to eq(true)
     end
 
     it 'can not be visible' do
-      @content_entry.visible = false
-      @content_entry.send(:set_visibility)
-      expect(@content_entry.visible?).to eq(false)
+      content_entry.visible = false
+      content_entry.send(:set_visibility)
+      expect(content_entry.visible?).to eq(false)
     end
 
   end
@@ -337,14 +315,16 @@ describe Locomotive::ContentEntry do
     end
 
     it 'uses the to_label method if the value of the label field defined it' do
-      allow(entry).to receive(:_label_field_name).and_return(:with_to_label)
-      allow(entry).to receive(:with_to_label).and_return(instance_double('with_to_label', to_label: 'acme'))
+      allow(entry).to receive(:_label_field_name).and_return(:object_with_to_label)
+      object_with_to_label = instance_double('with_to_label', to_label: 'acme')
+      entry.define_singleton_method(:object_with_to_label) { object_with_to_label }
       expect(entry._label).to eq('acme')
     end
 
     it 'uses the to_s method at last if the label field did not define the to_label method' do
       allow(entry).to receive(:_label_field_name).and_return(:not_a_string)
-      allow(entry).to receive(:not_a_string).and_return(instance_double('not_a_string', to_s: 'not_a_string'))
+      not_a_string = instance_double('not_a_string', to_s: 'not_a_string')
+      entry.define_singleton_method(:not_a_string) { not_a_string }
       expect(entry._label).to eq('not_a_string')
     end
 
@@ -370,9 +350,9 @@ describe Locomotive::ContentEntry do
 
   describe '#site' do
 
+    let(:content_entry) { create_content_entry }
+
     it 'assigns a site when saving the content entry' do
-      content_entry = build_content_entry
-      content_entry.save
       expect(content_entry.site).to_not eq(nil)
     end
 
@@ -388,6 +368,7 @@ describe Locomotive::ContentEntry do
 
   end
 
+
   it_should_behave_like 'model scoped by a site' do
 
     let(:model)         { build_content_entry }
@@ -395,15 +376,20 @@ describe Locomotive::ContentEntry do
 
   end
 
-  def localize_content_type(content_type)
+  def localize_content_type
     content_type.entries_custom_fields.first.localized = true
     content_type.save
   end
 
-  def build_content_entry(options = {})
-    @content_type.entries.build({ title: 'Locomotive', description: 'Lorem ipsum....', _label_field_name: 'title', created_at: Time.zone.parse('2013-07-05 00:00:00') }.merge(options)).tap do |entry|
+  def build_content_entry(options = {}, set_slug = true)
+    content_type.entries.build({ title: 'Locomotive', description: 'Lorem ipsum....', _label_field_name: 'title', created_at: Time.zone.parse('2013-07-05 00:00:00') }.merge(options)).tap do |entry|
       entry.send(:set_site)
+      entry.send(:set_slug) if set_slug
     end
+  end
+
+  def create_content_entry(options = {})
+    build_content_entry(options).tap(&:save)
   end
 
   def fake_bson_id(id)

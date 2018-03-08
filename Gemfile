@@ -1,71 +1,49 @@
-#!/usr/bin/env bundle
-# encoding: utf-8
+source 'https://rubygems.org'
 
-source "https://rubygems.org"
+# Declare your gem's dependencies in locomotive.gemspec.
+# Bundler will treat runtime dependencies like base dependencies, and
+# development dependencies will be added by default to the :development group.
+gemspec
 
-gemspec # Include gemspec dependencies
+# Declare any dependencies that are still in development here instead of in
+# your gemspec. These might include edge Rails or gems from your path or
+# Git. Remember to move these dependencies to your gemspec before releasing
+# your gem to rubygems.org.
 
-gem 'sass-rails', '~> 5.0.4'
-gem 'coffee-rails', '~> 4.1.0'
-gem 'uglifier',     '>= 2.5.3'
-
-gem 'coveralls',    '~> 0.8.19', require: false
+# To use a debugger
+gem 'byebug', group: [:development, :test]
 
 group :test, :development do
-  gem 'rspec-rails', '~> 3.5.2' #~> 2.14.2' # In order to have rspec tasks and generators
-  gem 'pry'
+  gem 'rspec-rails', '~> 3.7.2'
 end
 
 group :development do
-  # gem 'custom_fields', path: '../gems/custom_fields' # for Developers
+  gem 'custom_fields', path: '../custom_fields' # for Developers
   # gem 'custom_fields', github: 'locomotivecms/custom_fields', ref: '27f1d62'
 
-  # gem 'locomotivecms_common', path: '../gems/common', require: false
+  gem 'locomotivecms_common', path: '../common', require: false
   # gem 'locomotivecms_common', github: 'locomotivecms/common', ref: '257047b', require: false
 
-  # gem 'locomotivecms_steam', path: '../gems/steam', require: false
+  gem 'locomotivecms_steam', path: '../steam', require: false
   # gem 'locomotivecms_steam', github: 'locomotivecms/steam', ref: '0cf606c', require: false
 
   # gem 'locomotive_liquid', path: '../gems/liquid' # for Developers
   # gem 'locomotivecms_solid', path: '../gems/solid' # for Developers
 
   # gem 'carrierwave-mongoid', git: 'git://github.com/locomotivecms/carrierwave-mongoid.git'
-
-  gem 'thor'
-
-  gem 'quiet_assets'
-
-  gem 'better_errors'
-  gem 'binding_of_caller'
-  gem 'pry-byebug'
-
-  # gem 'unicorn-rails' # Using unicorn_rails instead of webrick (default server)
-  # gem 'thin'
-  gem 'puma'
-
-  # i18n-tasks helps you find and manage missing and unused translations.
-  gem 'i18n-tasks', '~> 0.8.7'
-end
-
-group :profile, :development do
-  gem 'ruby-prof'
 end
 
 group :test do
-  gem 'simplecov'
+  gem 'simplecov',                '~> 0.14.1'
 
-  gem 'capybara-webkit',      '~> 1.12.0'
+  gem 'capybara-webkit',          '~> 1.15.0'
 
-  gem 'grape-entity-matchers'
-  gem 'shoulda-matchers',     '2.7.0'
-
-  gem 'factory_girl_rails'
-  gem 'pickle'
-  gem 'json_spec',            '~> 1.1.4'
-  gem 'database_cleaner',     github: 'DatabaseCleaner/database_cleaner'
-  gem 'timecop',              '~> 0.7.1'
-
-  gem 'email_spec'
-
-  # gem 'debugger', git: 'git://github.com/cldwalker/debugger.git'
+  gem 'grape-entity-matchers',    github: 'salsify/grape-entity-matchers', branch: 'grape-entity-exposures'
+  gem 'shoulda-matchers',         '~> 3.1.2'
+  gem 'rails-controller-testing', '~> 1.0.2'
+  gem 'factory_bot_rails',        '~> 4.8.2'
+  gem 'json_spec',                '~> 1.1.4'
+  gem 'database_cleaner',         '~> 1.6.2'
+  gem 'timecop',                  '~> 0.9.1'
+  gem 'email_spec',               '~> 2.1.1'
 end

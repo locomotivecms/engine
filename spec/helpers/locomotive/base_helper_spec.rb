@@ -7,6 +7,10 @@ describe Locomotive::BaseHelper do
     let(:site) { build(:site, _id: '42', updated_at: DateTime.parse('2007/06/29 00:00:00')) }
     let(:membership) { build(:membership, role: 'admin') }
 
+    around do |ex|
+      without_partial_double_verification { ex.run }
+    end
+
     before {
       allow(helper).to receive(:current_site).and_return(site)
       allow(helper).to receive(:current_membership).and_return(membership)

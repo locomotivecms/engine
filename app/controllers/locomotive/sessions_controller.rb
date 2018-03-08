@@ -9,7 +9,7 @@ module Locomotive
 
     layout '/locomotive/layouts/account'
 
-    before_filter :set_locale
+    before_action :set_locale
 
     helper Locomotive::BaseHelper
 

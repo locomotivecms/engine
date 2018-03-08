@@ -3,7 +3,7 @@ module Locomotive
 
     account_required & within_site
 
-    before_filter :load_membership, only: [:edit, :update, :destroy]
+    before_action :load_membership, only: [:edit, :update, :destroy]
 
     def new
       authorize Membership

@@ -35,7 +35,7 @@ module Locomotive
           ## named scopes ##
           scope :match_domain, ->(domain) { any_in(domains: [*domain]) }
           scope :match_domain_with_exclusion_of, ->(domain, site) {
-            any_in(domains: [*domain]).where(:_id.ne => site.id)
+            any_in(domains: [*domain]).excludes(_id: site.id)
           }
         end
 

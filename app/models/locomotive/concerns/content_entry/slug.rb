@@ -62,7 +62,8 @@ module Locomotive
         end
 
         def similar_slug(slug)
-          _last = self.class.where(:_id.ne => self._id, _slug: /^#{slug}-?\d*$/i)
+          _last = self.class.where(_slug: /^#{slug}-?\d*$/i)
+                    .excludes(_id: self._id)
                     .only(:_slug)
                     .order_by(:_id.desc)
                     .first
@@ -75,7 +76,7 @@ module Locomotive
         end
 
         def slug_already_taken?
-          self.class.where(:_id.ne => self._id, _slug: self._slug).any?
+          self.class.where(_slug: self._slug).excludes(_id: self._id).any?
         end
 
       end

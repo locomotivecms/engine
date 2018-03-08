@@ -52,6 +52,10 @@ module Locomotive
           end
         end
 
+        def respond_to?(name, include_all = false)
+          find_field(name) || NON_CUSTOM_FIELD_ATTRIBUTES.include?(getter_name(name)) || super
+        end
+
         def serializable_hash
           super.merge(self.dynamic_attributes)
         end

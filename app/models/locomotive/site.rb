@@ -20,7 +20,7 @@ module Locomotive
     mount_uploader :picture, PictureUploader, validate_integrity: true
 
     ## associations ##
-    belongs_to  :created_by,      class_name: 'Locomotive::Account'
+    belongs_to  :created_by,      class_name: 'Locomotive::Account', optional: true
     embeds_many :memberships,     class_name: 'Locomotive::Membership'
     has_many    :pages,           class_name: 'Locomotive::Page',           validate: false, autosave: false
     has_many    :snippets,        class_name: 'Locomotive::Snippet',        dependent: :destroy, validate: false, autosave: false

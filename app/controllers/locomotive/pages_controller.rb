@@ -5,9 +5,9 @@ module Locomotive
 
     localized
 
-    before_filter :back_to_default_site_locale, only: %w(new create)
+    before_action :back_to_default_site_locale, only: %w(new create)
 
-    before_filter :load_page, only: [:edit, :update, :sort, :destroy]
+    before_action :load_page, only: [:edit, :update, :sort, :destroy]
 
     respond_to :json, only: [:sort]
 

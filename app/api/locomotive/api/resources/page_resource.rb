@@ -23,7 +23,7 @@ module Locomotive
           get '/fullpaths' do
             authorize Page, :index?
 
-            present pages.only(:_id, :fullpath, :handle), with: Locomotive::API::Entities::FullpathPageEntity
+            present pages.only(:id, :fullpath, :handle), with: Locomotive::API::Entities::FullpathPageEntity
           end
 
           desc "Show a page"

@@ -49,6 +49,7 @@ describe Locomotive::API::Resources::ContentEntryResource do
     end
 
     describe "POST create" do
+
       context 'JSON' do
         let(:content_entry_params) do
           {

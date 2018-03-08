@@ -22,7 +22,7 @@
 
         .actions
           = link_to content_entry_path(current_site, content_type.slug, entry), title: t(:delete, scope: 'simple_form.buttons.defaults.locomotive'), class: 'remove', data: { confirm: t('locomotive.messages.confirm') }, method: :delete do
-            i.fa.fa-trash-o
+            i.far.fa-trash-alt
 
 
 - if entries.respond_to?(:current_page)

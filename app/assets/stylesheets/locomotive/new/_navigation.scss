@@ -117,7 +117,7 @@
   vertical-align: middle;
   cursor: pointer;
   transition: color $base-transition-speed linear;
-  .fa {
+  .fa, .fal, .far, .fas {
     display: inline-block;
     font-size: 20px;
     vertical-align: middle;
@@ -143,7 +143,7 @@
   z-index: 90;
   padding-top: 15px;
   text-align: center;
-  .fa {
+  .fa, .far, .fal, .fas {
     margin-left: 10px;
   }
   a {
@@ -154,7 +154,7 @@
     &:hover {
       color: $white;
       text-decoration: none;
-      .fa {
+      .fa, .far, .fal, .fas {
         color: $white;
       }
     }

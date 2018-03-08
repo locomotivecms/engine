@@ -5,11 +5,11 @@ module Locomotive
 
     localized
 
-    before_filter :back_to_default_site_locale, only: [:new, :create]
+    before_action :back_to_default_site_locale, only: [:new, :create]
 
-    before_filter :load_content_type
-    before_filter :load_content_entry, only: [:show, :show_in_form, :edit, :update, :destroy]
-    before_filter :store_location, only: [:edit, :update]
+    before_action :load_content_type
+    before_action :load_content_entry, only: [:show, :show_in_form, :edit, :update, :destroy]
+    before_action :store_location, only: [:edit, :update]
 
     respond_to :json, only: [:index, :sort]
     respond_to :csv,  only: [:export]

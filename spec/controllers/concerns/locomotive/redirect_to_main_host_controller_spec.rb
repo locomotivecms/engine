@@ -1,10 +1,9 @@
-require 'spec_helper'
-
 describe Locomotive::Concerns::RedirectToMainHostController do
 
   before(:all) do
     class MyController < ActionController::Base
       include Locomotive::Concerns::RedirectToMainHostController
+      def root_url(options); end
     end
     Locomotive.config.host = 'station.locomotive.dev'
   end

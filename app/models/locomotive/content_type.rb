@@ -133,7 +133,7 @@ module Locomotive
         hash[key] = field.errors.to_a
       end
 
-      self.errors.set(:entries_custom_fields, hash)
+      self.errors.add(:entries_custom_fields, hash)
     end
 
     # Makes sure the class_name filled in a belongs_to or has_many field

@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe Locomotive::CustomFields::SelectOptionsController do
 
   routes { Locomotive::Engine.routes }
@@ -23,7 +21,7 @@ describe Locomotive::CustomFields::SelectOptionsController do
     let(:session) { {} }
 
     subject do
-      put :update, attributes, session
+      put :update, params: attributes, session: session
     end
 
     it { is_expected.to redirect_to content_entries_path(site, content_type.slug) }

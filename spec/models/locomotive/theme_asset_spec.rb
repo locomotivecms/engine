@@ -1,4 +1,4 @@
-# coding: utf-8
+# encoding: utf-8
 
 require 'spec_helper'
 
@@ -67,6 +67,7 @@ describe Locomotive::ThemeAsset do
 
       it 'does not accept text file' do
         asset.source = FixturedAsset.open('wrong.txt')
+        asset.valid?
         expect(asset.valid?).to eq(false)
         expect(asset.errors[:source]).to_not be_blank
       end
@@ -75,7 +76,7 @@ describe Locomotive::ThemeAsset do
         asset.source = FixturedAsset.open('5k.png')
         asset.save!
 
-        another_asset = FactoryGirl.build(:theme_asset, site: asset.site)
+        another_asset = build(:theme_asset, site: asset.site)
         another_asset.source = FixturedAsset.open('5k.png')
         expect(another_asset.valid?).to eq(false)
         expect(another_asset.errors[:local_path]).to_not be_blank
@@ -111,7 +112,7 @@ describe Locomotive::ThemeAsset do
 
   describe 'SVG assets' do
 
-    let(:asset) { build(:theme_asset, site: site, folder: folder, source: FixturedAsset.open('ruby_logo.svg'), updated_at: DateTime.parse('2007/06/29 21:10:00')) }
+    let(:asset) { described_class.new(site: site, folder: folder, source: FixturedAsset.open('ruby_logo.svg'), updated_at: DateTime.parse('2007/06/29 21:10:00')) }
 
     before { asset.save }
 
@@ -133,63 +134,6 @@ describe Locomotive::ThemeAsset do
       it 'is considered as an image' do
         expect(asset.content_type).to eq :image
       end
-
-    end
-
-  end
-
-  describe 'creating from plain text' do
-
-    let(:asset) { FactoryGirl.build(:theme_asset,
-        site: site,
-        plain_text_name: 'test',
-        plain_text: 'Lorem ipsum',
-        performing_plain_text: true) }
-
-    it 'handles stylesheet' do
-      asset.plain_text_type = 'stylesheet'
-      expect(asset.valid?).to eq(true)
-      expect(asset.stylesheet?).to eq(true)
-      expect(asset.source).to_not eq(nil)
-    end
-
-    it 'handles javascript' do
-      asset.plain_text_type = 'javascript'
-      expect(asset.valid?).to eq(true)
-      expect(asset.javascript?).to eq(true)
-      expect(asset.source).to_not eq(nil)
-    end
-
-  end
-
-  describe '.escape_shortcut_urls' do
-
-    before(:each) do
-      expect(site.theme_assets).to receive(:where).with(local_path: 'images/banner.png').and_return([image])
-    end
-
-    let(:image) { instance_double('ThemeAsset', source: OpenStruct.new(url: 'http://engine.dev/images/banner.png')) }
-
-    subject { asset.send(:escape_shortcut_urls, text) }
-
-    context 'simple url' do
-
-      let(:text) { "background: url(/images/banner.png) no-repeat 0 0" }
-      it { is_expected.to eq "background: url(http://engine.dev/images/banner.png?1183151400) no-repeat 0 0" }
-
-    end
-
-    context 'url with quotes' do
-
-      let(:text) { "background: url(\"/images/banner.png\") no-repeat 0 0" }
-      it { is_expected.to eq "background: url(\"http://engine.dev/images/banner.png?1183151400\") no-repeat 0 0" }
-
-    end
-
-    context 'url with quotes and timestamps' do
-
-      let(:text) { "background: url(\"/images/banner.png?123456\") no-repeat 0 0" }
-      it { is_expected.to eq "background: url(\"http://engine.dev/images/banner.png?1183151400\") no-repeat 0 0" }
 
     end
 

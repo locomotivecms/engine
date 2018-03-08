@@ -5,7 +5,7 @@ module Locomotive
       extend ActiveSupport::Concern
 
       included do
-        if self.respond_to?(:before_filter)
+        if self.respond_to?(:before_action)
           helper_method :current_site
         end
       end

@@ -11,7 +11,7 @@ module Locomotive
 
     helper Locomotive::BaseHelper
 
-    before_filter :set_locale
+    before_action :set_locale
 
     def update
       super do |resource|

@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe Locomotive::Concerns::SslController do
 
   before(:all) do

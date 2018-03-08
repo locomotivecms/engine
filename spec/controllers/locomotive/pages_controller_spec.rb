@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe Locomotive::PagesController do
 
   routes { Locomotive::Engine.routes }
@@ -23,7 +21,7 @@ describe Locomotive::PagesController do
   # end
 
   describe "#GET new" do
-    subject { get :new, site_handle: site, locale: :en }
+    subject { get :new, params: { site_handle: site, locale: :en } }
     it { is_expected.to be_success }
   end
 
@@ -32,7 +30,7 @@ describe Locomotive::PagesController do
       attributes_for(:sub_page, parent_id: site.pages.root.first._id, raw_template: 'Hello world')
     end
     subject do
-      post :create, site_handle: site, locale: :en, page: page_attributes
+      post :create, params: { site_handle: site, locale: :en, page: page_attributes }
     end
     it { is_expected.to be_redirect }
     specify do
@@ -41,7 +39,7 @@ describe Locomotive::PagesController do
   end
 
   describe "#GET edit" do
-    subject { get :edit, site_handle: site, id: page.id, locale: :en }
+    subject { get :edit, params: { site_handle: site, id: page.id, locale: :en } }
     it { is_expected.to be_success }
     specify do
       subject
@@ -52,7 +50,7 @@ describe Locomotive::PagesController do
   describe "#PUT update" do
     let(:title) { generate(:name) }
     subject do
-      put :update, site_handle: site, id: page.id, locale: :en, page: { title: title }
+      put :update, params: { site_handle: site, id: page.id, locale: :en, page: { title: title } }
     end
     it { is_expected.to be_redirect }
     specify do
@@ -72,7 +70,7 @@ describe Locomotive::PagesController do
 
     describe "#DELETE destroy" do
       subject do
-        delete :destroy, site_handle: site, id: child_page.id, locale: :en
+        delete :destroy, params: { site_handle: site, id: child_page.id, locale: :en }
       end
       specify do
         expect { subject }.to change(Locomotive::Page, :count).by(-1)
@@ -81,7 +79,7 @@ describe Locomotive::PagesController do
 
     describe "#PUT sort" do
       subject do
-        put :sort, site_handle: site, id: page.id, children: [child_page.id], locale: :en, format: :json
+        put :sort, params: { site_handle: site, id: page.id, children: [child_page.id], locale: :en, format: :json }
       end
       it { is_expected.to be_success }
     end

@@ -3,7 +3,7 @@ module Locomotive
 
     account_required & within_site
 
-    before_filter :load_content_type
+    before_action :load_content_type
 
     def edit
       authorize @content_type

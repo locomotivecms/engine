@@ -14,7 +14,9 @@ if Rails.env.test? # && RUBY_PLATFORM =~ /darwin/
       @env = env
       call_without_env_instance_var(env)
     end
-    alias_method_chain :call, :env_instance_var
+
+    alias_method :call_without_env_instance_var, :call
+    alias_method :call, :call_with_env_instance_var
 
     def forbidden_request?(path)
       if @env['HTTP_USER_AGENT'] =~ /Intel Mac OS X.*PhantomJS/ && path =~ /ttf$/

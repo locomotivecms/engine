@@ -5,7 +5,7 @@ module Locomotive
 
     localized
 
-    before_filter :load_site
+    before_action :load_site
 
     helper Locomotive::SitesHelper
 

@@ -12,11 +12,7 @@ module Locomotive
 
       template 'locomotive.rb', 'config/initializers/locomotive.rb'
 
-      template 'devise.rb', 'config/initializers/devise.rb'
-
       template 'dragonfly.rb', 'config/initializers/dragonfly.rb'
-
-      template 'mongoid.yml', 'config/mongoid.yml'
     end
 
     def install_aws
@@ -45,7 +41,7 @@ module Locomotive
         inject_into_file 'Gemfile', after: "source 'https://rubygems.org'\n" do <<-'RUBY'
 
 if ENV['HEROKU_APP_NAME']
-  ruby '2.2.2'
+  ruby '2.4.3'
 end
         RUBY
         end
@@ -73,6 +69,10 @@ end
 
     def remove_index_html
       remove_file 'public/index.html'
+    end
+
+    def remove_robots_txt
+      remove_file 'public/robots.txt'
     end
 
     def use_puma_as_app_server

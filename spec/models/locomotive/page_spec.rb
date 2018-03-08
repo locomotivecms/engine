@@ -1,13 +1,6 @@
-# coding: utf-8
-
-require 'spec_helper'
+# encoding: utf-8
 
 describe Locomotive::Page do
-
-  before(:each) do
-    allow_any_instance_of(Locomotive::Site).to receive(:create_default_pages!).and_return(true)
-    allow_any_instance_of(Locomotive::Page).to receive(:set_default_raw_template!).and_return(true)
-  end
 
   it 'has a valid factory' do
     expect(build(:page)).to be_valid
@@ -49,7 +42,7 @@ describe Locomotive::Page do
 
     it 'requires the uniqueness of the slug within a "folder"' do
       site = create(:site)
-      root = create(:page, slug: 'index', site: site)
+      root = site.pages.root.first
       child_1 = create(:page, slug: 'first_child', parent: root, site: site)
       page = build(:page, slug: 'first_child', parent: root, site: site)
       expect(page).to_not be_valid
@@ -70,26 +63,24 @@ describe Locomotive::Page do
 
     context '#i18n' do
 
-      before(:each) do
-        ::Mongoid::Fields::I18n.locale = 'en'
-        @page = build(:page, title: 'Hello world')
-        ::Mongoid::Fields::I18n.locale = 'fr'
+      let(:page) do
+        ::Mongoid::Fields::I18n.with_locale(:en) { build(:page, title: 'Hello world') }
       end
 
-      after(:all) do
-        ::Mongoid::Fields::I18n.locale = 'en'
-      end
+      after(:all) { ::Mongoid::Fields::I18n.locale = 'en' }
 
       it 'requires the presence of the title' do
-        @page.title = ''
-        expect(@page.valid?).to eq(false)
-        expect(@page.errors[:title]).to eq(["can't be blank"])
+        ::Mongoid::Fields::I18n.locale = 'fr'
+        page.title = ''
+        expect(page.valid?).to eq(false)
+        expect(page.errors[:title]).to eq(["can't be blank"])
       end
 
       it 'tells if a page has been translated or not' do
-        expect(@page.translated?).to eq(false)
-        @page.title = 'Hello world'
-        expect(@page.translated?).to eq(true)
+        ::Mongoid::Fields::I18n.locale = 'fr'
+        expect(page.translated?).to eq(false)
+        page.title = 'Hello world'
+        expect(page.translated?).to eq(true)
       end
 
     end
@@ -145,23 +136,21 @@ describe Locomotive::Page do
 
   describe '#deleting' do
 
-    before(:each) do
-      @page = build(:page)
-    end
+    let(:page) { build(:page) }
 
     it 'does not delete the index page' do
-      allow(@page).to receive(:index?).and_return(true)
+      allow(page).to receive(:index?).and_return(true)
       expect {
-        expect(@page.destroy).to eq(false)
-        @page.errors.first == 'You can not remove index or 404 pages'
+        expect(page.destroy).to eq(false)
+        page.errors.first == 'You can not remove index or 404 pages'
       }.to_not change(Locomotive::Page, :count)
     end
 
     it 'does not delete the 404 page' do
-      allow(@page).to receive(:not_found?).and_return(true)
+      allow(page).to receive(:not_found?).and_return(true)
       expect {
-        expect(@page.destroy).to eq(false)
-        @page.errors.first == 'You can not remove index or 404 pages'
+        expect(page.destroy).to eq(false)
+        page.errors.first == 'You can not remove index or 404 pages'
       }.to_not change(Locomotive::Page, :count)
     end
 
@@ -169,57 +158,49 @@ describe Locomotive::Page do
 
   describe 'tree organization' do
 
-    before(:each) do
-      @home     = create(:page)
-      @child_1  = create(:page, title: 'Subpage 1', slug: 'foo', parent_id: @home._id, site: @home.site)
-    end
+    let!(:site)   { create(:site) }
+    let(:home)    { site.pages.root.first }
+    let(:child_1) { create(:page, title: 'Subpage 1', slug: 'foo', parent: home) }
 
     it 'adds root elements' do
-      page_404 = create(:page, title: 'Page not found', slug: '404', site: @home.site)
-      expect(Locomotive::Page.roots.count).to eq(2)
-      expect(Locomotive::Page.roots).to eq([@home, page_404])
+      other_page = create(:page, title: 'Other page', slug: 'bar')
+      expect(Locomotive::Page.roots.count).to eq(3)
+      expect(Locomotive::Page.roots.all.map(&:title).sort).to eq(['Home page', 'Other page', 'Page not found'])
     end
 
     it 'adds sub pages' do
-      child_2 = create(:page, title: 'Subpage 2', slug: 'bar', parent: @home, site: @home.site)
-      @home = Locomotive::Page.find(@home.id)
-      expect(@home.children.count).to eq(2)
-      expect(@home.children).to eq([@child_1, child_2])
+      child_2 = create(:page, title: 'Subpage 2', slug: 'bar', parent: child_1.parent)
+      expect(home.reload.children.count).to eq(2)
+      expect(home.children).to eq([child_1, child_2])
     end
 
     it 'moves its children accordingly' do
-      sub_child_1 = create(:page, title: 'Sub Subpage 1', slug: 'bar', parent: @child_1, site: @home.site)
-      archives    = create(:page, title: 'archives', slug: 'archives', parent: @home, site: @home.site)
-      posts       = create(:page, title: 'posts', slug: 'posts', parent: archives, site: @home.site)
+      sub_child_1 = create(:page, title: 'Sub Subpage 1', slug: 'bar', parent: child_1)
+      archives    = create(:page, title: 'archives', slug: 'archives', parent: home)
+      posts       = create(:page, title: 'posts', slug: 'posts', parent: archives)
 
-      @child_1.parent = archives
-      @child_1.save
+      child_1.parent    = archives
+      child_1.save
 
-      expect(@home.reload.children.count).to eq(1)
+      expect(home.reload.children.count).to eq(1)
 
       expect(archives.reload.children.count).to eq(2)
       expect(archives.children.last.depth).to eq(2)
       expect(archives.children.last.children.first.depth).to eq(3)
-
     end
 
     it 'builds children fullpaths' do
-      sub_child_1 = create(:page, title: 'Sub Subpage 1', slug: 'bar', parent: @child_1, site: @home.site)
+      sub_child_1 = create(:page, title: 'Sub Subpage 1', slug: 'bar', parent: child_1)
       expect(sub_child_1.fullpath).to eq("foo/bar")
-      @child_1.slug = "milky"
-      @child_1.save
+      child_1.slug = "milky"
+      child_1.save
       expect(sub_child_1.reload.fullpath).to eq("milky/bar")
     end
 
     it 'destroys descendants as well' do
-      create(:page, title: 'Sub Subpage 1', slug: 'bar', parent_id: @child_1._id, site: @home.site)
-      @child_1.destroy
+      create(:page, title: 'Sub Subpage 1', slug: 'bar', parent: child_1)
+      child_1.destroy
       expect(Locomotive::Page.where(slug: 'bar').first).to eq(nil)
-    end
-
-    it 'is scoped by the site' do
-      another_home = create(:page, site: create('another site'))
-      expect(another_home.position).to eq(0)
     end
 
   end
@@ -228,6 +209,7 @@ describe Locomotive::Page do
 
     before(:each) do
       @home = create(:page)
+
       @child_1 = create(:page, title: 'Subpage 1', slug: 'foo', parent: @home, site: @home.site)
       @child_2 = create(:page, title: 'Subpage 2', slug: 'bar', parent: @home, site: @home.site)
       @child_3 = create(:page, title: 'Subpage 3', slug: 'acme', parent: @home, site: @home.site)
@@ -458,7 +440,7 @@ describe Locomotive::Page do
       it 'updates the template_version attribute of the site' do
         model.raw_template = 'new one'
         Timecop.freeze(date) do
-          expect { model.save! }.to change { site.template_version }.to date
+          expect { model.save! }.to change { model_site.template_version }.to date
         end
       end
 
@@ -467,6 +449,13 @@ describe Locomotive::Page do
   end
 
   class Foo
+    def self.find_by_permalink(permalink)
+      true
+    end
+
+    def self.klass_with_custom_fields(name)
+      nil
+    end
   end
 
   class Locomotive::ContentEntry5151e25587f643c2cf000001

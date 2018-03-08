@@ -1,1 +1,1 @@
-require 'locomotive/engine'
+require 'locomotive'

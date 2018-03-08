@@ -6,7 +6,7 @@ module Locomotive
 
       included do
 
-        before_filter :require_ssl
+        before_action :require_ssl
 
       end
 

@@ -3,7 +3,7 @@ module Locomotive
 
     account_required & within_site
 
-    before_filter :load_translation, only: [:edit, :update]
+    before_action :load_translation, only: [:edit, :update]
 
     def index
       authorize Translation
@@ -18,7 +18,7 @@ module Locomotive
 
     def update
       authorize @translation
-      service.update(@translation, translation_params[:values])
+      service.update(@translation, translation_params[:values].to_h)
       respond_with @translation, location: translations_path(current_site, params[:_location])
     end
 

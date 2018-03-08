@@ -1,6 +1,4 @@
-# coding: utf-8
-
-require 'spec_helper'
+# encoding: utf-8
 
 describe Locomotive::ContentEntryService do
 
@@ -235,7 +233,7 @@ describe Locomotive::ContentEntryService do
   end
 
   def create_content_type(attributes = {})
-    FactoryGirl.build(:content_type, site: site, name: 'Articles').tap do |content_type|
+    build(:content_type, site: site, name: 'Articles').tap do |content_type|
       content_type.entries_custom_fields.build(name: 'title', type: 'string', label: 'Title', localized: true)
       content_type.entries_custom_fields.build(name: 'body', type: 'text', label: 'Body', localized: true)
       content_type.entries_custom_fields.build(name: 'published', type: 'boolean', label: 'Published')

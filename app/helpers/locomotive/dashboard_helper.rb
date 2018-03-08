@@ -16,10 +16,10 @@ module Locomotive
     def activity_to_icon(activity)
       case activity.domain
       when 'site'             then 'fa-cog'
-      when 'page'             then 'fa-file-text'
-      when 'editable_element' then 'fa-file-text'
+      when 'page'             then 'fa-file-alt'
+      when 'editable_element' then 'fa-file-alt'
       when 'content_entry'    then activity.action == 'created_public' ? 'fa-comment' : 'fa-archive'
-      when 'content_asset'    then 'fa-file-picture-o'
+      when 'content_asset'    then 'fa-image'
       when 'membership'       then 'fa-user'
       when 'site_metafields'  then current_site_metafields_ui[:icon]
       end

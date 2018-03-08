@@ -6,7 +6,7 @@ module Locomotive
 
       included do
 
-        before_filter :redirect_to_main_host
+        before_action :redirect_to_main_host
 
       end
 

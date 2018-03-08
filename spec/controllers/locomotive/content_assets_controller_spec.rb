@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe Locomotive::ContentAssetsController do
 
   routes { Locomotive::Engine.routes }
@@ -17,7 +15,7 @@ describe Locomotive::ContentAssetsController do
   end
 
   describe '#GET index' do
-    subject { get :index, site_handle: site, locale: :en }
+    subject { get :index, params: { site_handle: site, locale: :en } }
     it { is_expected.to be_success }
     specify do
       subject
@@ -30,7 +28,7 @@ describe Locomotive::ContentAssetsController do
       attributes_for(:asset, site: site)
     end
     subject do
-      post :create, site_handle: site, locale: :en, content_asset: content_asset_attributes
+      post :create, params: { site_handle: site, locale: :en, content_asset: content_asset_attributes }
     end
     it { is_expected.to be_redirect }
     specify do
@@ -41,12 +39,12 @@ describe Locomotive::ContentAssetsController do
   describe '#POST bulk_create' do
     let(:content_assets_attributes) do
       [
-        { source: FixturedAsset.open('5k.png') },
-        { source: FixturedAsset.open('5k_2.png') }
+        { source: rack_asset('5k.png') },
+        { source: rack_asset('5k_2.png') }
       ]
     end
     subject do
-      post :bulk_create, site_handle: site, locale: :en, content_assets: content_assets_attributes, format: :json
+      post :bulk_create, params: { site_handle: site, locale: :en, content_assets: content_assets_attributes, format: :json }
     end
     it { is_expected.to be_success }
     specify do
@@ -57,7 +55,7 @@ describe Locomotive::ContentAssetsController do
   describe '#DELETE destroy' do
     let!(:content_asset) { create(:asset) }
     subject do
-      delete :destroy, site_handle: site, id: content_asset.id, locale: :en
+      delete :destroy, params: { site_handle: site, id: content_asset.id, locale: :en }
     end
     it { is_expected.to be_redirect }
     specify do

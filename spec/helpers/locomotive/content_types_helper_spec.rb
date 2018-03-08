@@ -2,6 +2,10 @@ require 'spec_helper'
 
 describe Locomotive::ContentTypesHelper do
 
+  around do |ex|
+    without_partial_double_verification { ex.run }
+  end
+
   before do
     ::Mongoid::Fields::I18n.locale = 'de'
     ::Mongoid::Fields::I18n.fallbacks_for('en', ['en', 'de'])
@@ -28,7 +32,7 @@ describe Locomotive::ContentTypesHelper do
 
     context 'not localized' do
 
-      it { expect(subject).to match /<a href="\/acme\/content_types\/[^\/]+\/entries\/[^\/]+\/edit">Hallo Welt<\/a>/ }
+      it { expect(subject).to match /<a href="\/locomotive\/acme\/content_types\/[^\/]+\/entries\/[^\/]+\/edit">Hallo Welt<\/a>/ }
 
     end
 
@@ -36,14 +40,14 @@ describe Locomotive::ContentTypesHelper do
 
       let(:localized) { true }
 
-      it { expect(subject).to match /<a href="\/acme\/content_types\/[^\/]+\/entries\/[^\/]+\/edit">Hallo Welt<\/a>/ }
+      it { expect(subject).to match /<a href="\/locomotive\/acme\/content_types\/[^\/]+\/entries\/[^\/]+\/edit">Hallo Welt<\/a>/ }
 
       context 'viewed in another locale' do
 
         it 'returns a default label' do
           ::Mongoid::Fields::I18n.with_locale('en') do
             expect(entry.reload.title_translations['en']).to eq nil
-            expect(subject).to match /<a href="\/acme\/content_types\/[^\/]+\/entries\/[^\/]+\/edit">Hallo Welt<\/a>/
+            expect(subject).to match /<a href="\/locomotive\/acme\/content_types\/[^\/]+\/entries\/[^\/]+\/edit">Hallo Welt<\/a>/
           end
         end
 

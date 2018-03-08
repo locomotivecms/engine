@@ -1,20 +1,8 @@
-require 'locomotive/dependencies'
-require 'locomotive'
-
-$:.unshift File.dirname(__FILE__) # TODO: not sure about that, looks pretty useless
-
 module Locomotive
-  class Engine < Rails::Engine
-
+  class Engine < ::Rails::Engine
     isolate_namespace Locomotive
 
     paths['mongodb/migrate'] = 'mongodb/migrate'
-
-    config.to_prepare do
-      Dir.glob(Rails.root + 'app/decorators/**/*_decorator*.rb').each do |c|
-        require_dependency(c)
-      end
-    end
 
     initializer 'locomotive.params.filter' do |app|
       # Do not log remote_<field>_url params because they can contain huge base64 string
@@ -30,6 +18,7 @@ module Locomotive
     end
 
     initializer 'locomotive.assets' do |app|
+      app.config.assets.paths << root.join('node_modules')
       app.config.assets.paths << root.join('vendor', 'assets', 'components', 'locomotive')
     end
 
@@ -67,8 +56,8 @@ module Locomotive
 
       # Note: "insert 4" means inserting after Rack::Lock
       # specifying Rack::Lock caused an error in production.
-      app.middleware.insert 4, '::Locomotive::Middlewares::ImageThumbnail'
-      app.middleware.use '::Locomotive::Middlewares::Site'
+      app.middleware.insert 4, ::Locomotive::Middlewares::ImageThumbnail
+      app.middleware.use ::Locomotive::Middlewares::Site
     end
 
     initializer 'locomotive.i18n' do |app|
@@ -84,6 +73,5 @@ module Locomotive
     initializer 'steam' do |app|
       require 'locomotive/steam_adaptor'
     end
-
   end
 end

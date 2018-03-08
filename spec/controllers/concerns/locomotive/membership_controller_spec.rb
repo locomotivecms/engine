@@ -1,11 +1,11 @@
-require 'spec_helper'
-
 describe Locomotive::Concerns::MembershipController do
 
    before(:all) do
     class MyController < ActionController::Base
       include Locomotive::Concerns::MembershipController
       include Locomotive::Engine.routes.url_helpers # Required for loading engine routes
+
+      def current_site; end
     end
   end
 
