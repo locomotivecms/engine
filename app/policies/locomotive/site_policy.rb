@@ -1,7 +1,7 @@
 module Locomotive
   class SitePolicy < ApplicationPolicy
 
-    class Scope < Scope
+    class Scope < ApplicationPolicy::Scope
 
       def resolve
         if membership.account.super_admin?
