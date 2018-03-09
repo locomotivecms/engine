@@ -34,7 +34,7 @@ group :development do
 end
 
 group :test do
-  gem 'simplecov',                '~> 0.14.1'
+  # gem 'simplecov',                '~> 0.14.1'
 
   gem 'capybara-webkit',          '~> 1.15.0'
 
@@ -46,4 +46,7 @@ group :test do
   gem 'database_cleaner',         '~> 1.6.2'
   gem 'timecop',                  '~> 0.9.1'
   gem 'email_spec',               '~> 2.1.1'
+
+  gem 'codeclimate-test-reporter',  '~> 1.0.7',  require: false
+  gem 'coveralls',                  '~> 0.8.19', require: false
 end
