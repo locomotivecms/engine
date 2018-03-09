@@ -79,5 +79,9 @@ module Locomotive
       membership.admin?
     end
 
+    def persisted?
+      resource.try(:persisted?)
+    end
+
   end
 end

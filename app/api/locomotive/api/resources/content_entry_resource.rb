@@ -17,7 +17,7 @@ module Locomotive
 
             # FIXME: content_type is a reserved word
             def parent_content_type
-              @content_type ||= current_site.content_types.by_id_or_slug(params[:slug]).first
+              @parent_content_type ||= current_site.content_types.by_id_or_slug(params[:slug]).first
             end
 
             def service

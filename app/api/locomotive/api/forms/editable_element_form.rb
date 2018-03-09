@@ -14,7 +14,7 @@ module Locomotive
         attrs :_id, :_type, :block, :slug, :priority, :hint, :content
 
         def content=(value)
-          if value.respond_to?(:original_filename) || value.respond_to?(:tempfile)
+          if is_file?(value)
             self._type = :file
           end
 
@@ -24,6 +24,15 @@ module Locomotive
         def _type=(type)
           return unless TYPES.include?(type.to_s)
           set_attribute :_type, "Locomotive::Editable#{type.to_s.classify}"
+        end
+
+        private
+
+        def is_file?(value)
+          value.respond_to?(:original_filename) ||
+          (value.respond_to?(:key?) &&
+            (value.key?(:original_filename) || value.key?(:tempfile))
+          )
         end
 
       end

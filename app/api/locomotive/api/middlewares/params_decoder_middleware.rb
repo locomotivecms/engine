@@ -78,7 +78,7 @@ module Locomotive
         # @return [Arraya/Hash]
         def convert(hash)
           if encoded?(hash)
-            hash.sort{ |a, b| a[0].to_i <=> b[0].to_i }.map{ |key, value| value }
+            hash.sort{ |a, b| a[0].to_i <=> b[0].to_i }.map { |key, value| value }
           else
             hash
           end

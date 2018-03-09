@@ -27,7 +27,7 @@ namespace :development do
     unassociated_account.api_key = 'd49cd50f6f0d2b163f48fc73cb249f0244c37074'
     unassociated_account.save!
 
-    site = Locomotive::Site.create! name: "LocomotiveCMS", handle: "www", domains: ["www.example.com"]
+    site = Locomotive::Site.create! name: "LocomotiveCMS", handle: "www", domains: ["www.example.com"], locales: [:en, :fr, :nb]
     site.memberships.build account: account, role: 'admin'
     site.save!
 

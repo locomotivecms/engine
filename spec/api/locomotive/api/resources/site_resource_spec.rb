@@ -36,15 +36,14 @@ describe Locomotive::API::Resources::SiteResource do
       context 'JSON' do
         let(:new_site) do
           attributes_for('test site').tap do |test_site|
-            test_site[:locales] = [:en]
+            test_site[:locales] = [:en, :fr, :nb]
             test_site[:domains] = ['another.example.com']
           end
 
         end
 
         it 'creates a site' do
-          expect{ post "#{url_prefix}/", site: new_site }
-            .to change{ Locomotive::Site.count }.by(1)
+          expect { post "#{url_prefix}/", site: new_site }.to change { Locomotive::Site.count }.by(1)
         end
       end
     end

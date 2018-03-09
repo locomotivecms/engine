@@ -70,6 +70,7 @@ module Locomotive
             back_to_default_site_locale
 
             form = form_klass.new(current_site, page_params)
+
             persist_from_form(form)
 
             present page, with: entity_klass, site: current_site

@@ -66,7 +66,14 @@ describe Locomotive::API::Resources::PageResource do
           title:    'title',
           slug:     'slug',
           parent:   site.pages.first.id,
-          template: 'Hello world'
+          template: 'Hello world',
+          editable_elements: [
+            {
+              "block"   => "banner",
+              "slug"    => "page_image",
+              "content" => rack_asset('5k.png')
+            }
+          ]
         })
       end
 
