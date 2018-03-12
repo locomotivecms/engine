@@ -1,7 +1,7 @@
-//= require select2/dist/css/select2
-//= require eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker
-//= require select2-bootstrap-css/select2-bootstrap
-//= require bootstrap-tagsinput/dist/bootstrap-tagsinput
+//= require locomotive/select2
+//= require locomotive/bootstrap-datetimepicker
+//= require locomotive/select2-bootstrap
+//= require locomotive/bootstrap-tagsinput
 //= require locomotive/cropper
 //= require locomotive/bootstrap-switch
 //= require locomotive/bootstrap-colorpicker
@@ -72,7 +72,7 @@
 
 // Vendor
 
-@import "nprogress/nprogress.css";
+@import "locomotive/nprogress.css";
 @import "locomotive/nprogress-bootstrap.css";
 
 // Layout

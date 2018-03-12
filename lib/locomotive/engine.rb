@@ -18,7 +18,6 @@ module Locomotive
     end
 
     initializer 'locomotive.assets' do |app|
-      app.config.assets.paths << root.join('node_modules')
       app.config.assets.paths << root.join('vendor', 'assets', 'components', 'locomotive')
     end
 

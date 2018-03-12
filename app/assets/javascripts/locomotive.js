@@ -8,16 +8,8 @@
 //= require jquery-ui
 //= require jquery_ujs
 //= require bootstrap-sprockets
-//= require underscore/underscore
-//= require backbone/backbone
-//= require bootstrap-tagsinput/dist/bootstrap-tagsinput
-//= require select2/dist/js/select2
-//= require moment/moment
-//= require moment-timezone/moment-timezone
-//= require eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min
 //= require codemirror
 //= require codemirror/modes/markdown
-//= require nprogress/nprogress
 //= require locomotive/vendor
 //= require ./locomotive/application
 
