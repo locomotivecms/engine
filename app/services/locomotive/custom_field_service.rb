@@ -17,7 +17,9 @@ module Locomotive
 
       self.field.select_options_attributes = options
 
-      self.field.save
+      # save the content type so that all the content entries get a fresh version
+      # of the custom fields rules
+      self.field._parent.save
 
       self.field.select_options
     end
