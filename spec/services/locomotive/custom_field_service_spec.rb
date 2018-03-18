@@ -24,7 +24,7 @@ describe Locomotive::CustomFieldService do
 
     end
 
-    context 'eixsting options' do
+    context 'existing options' do
 
       let(:content_type)  { build(:content_type, :with_select_field_and_options) }
       let(:first_option)  { field.select_options.first }
@@ -42,6 +42,29 @@ describe Locomotive::CustomFieldService do
         let(:options) { [{ _destroy: '1', _id: first_option._id }] }
 
         it { expect(subject.map(&:name)).to eq ['Design'] }
+
+      end
+
+    end
+
+    context 'a content entry exists' do
+
+      let(:content_type)  { create(:content_type, :with_select_field_and_options) }
+      let(:first_option)  { field.select_options.first }
+      let!(:content_entry) { content_type.entries.create!(title: 'Hello world', category_id: first_option._id) }
+
+      describe 'add a new option and assign it to the content entry' do
+
+        let(:options) { [{ name: 'Marketing' }, { name: 'Development in Ror', _id: first_option._id }] }
+
+        it 'sucessfully saves the modified content entry' do
+          content_entry_id  = content_entry._id
+          new_category_id   = subject.last._id
+          content_entry     = content_type.entries.find(content_entry_id)
+          content_entry.category_id = new_category_id
+          expect(content_entry.save).to eq true
+          expect(content_entry.category).to eq 'Marketing'
+        end
 
       end
 
