@@ -48,6 +48,16 @@ module Locomotive
       end
     end
 
+    describe "#POST :id/clone" do
+      subject do
+        put :clone, site_handle: site, slug: content_type.slug, id: content_entry.id, locale: :en
+      end
+      it { is_expected.to be_redirect }
+      specify do
+        expect { subject }.to change(Locomotive::ContentEntry, :count).by(+1)
+      end
+    end
+
     describe "#PUT update" do
       subject do
         put :update, site_handle: site, slug: content_type.slug, id: content_entry.id, locale: :en,

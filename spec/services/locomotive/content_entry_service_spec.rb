@@ -143,6 +143,17 @@ describe Locomotive::ContentEntryService do
 
   end
 
+  describe '#entry_clone' do
+
+    let!(:entry) { create_content_entry(title: 'Hello world', body: 'Lorem ipsum', published: true) }
+
+    subject { service.entry_clone(entry) }
+
+    it { expect(subject.created_by).to eq account }
+    it { expect { subject }.to change { Locomotive::ContentEntry.count }.by(1) }
+
+  end
+
   describe '#sort' do
 
     let(:content_type)  { create_content_type(order_by: '_position') }

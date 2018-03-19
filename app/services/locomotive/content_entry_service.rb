@@ -90,6 +90,28 @@ module Locomotive
       end
     end
 
+    # Clone a content entry.
+    # It sets the updated_by column with the current account.
+    #
+    # @param [ Object ] entry The content entry to update.
+    #
+    # @return [ Object ] The instance of the content entry.
+    #
+    def entry_clone(source_entry)
+      attributes = source_entry.as_json.delete_if {|k, v| %w(id _id).include?(k)}
+
+      sanitize_attributes!(attributes)
+
+      content_type.entries.build(attributes).tap do |entry|
+        entry.created_by = account if account
+        clone_files!(entry, source_entry)
+
+        if entry.save
+          track_activity 'content_entry.cloned', parameters: activity_parameters(entry)
+        end
+      end
+    end
+
     # Update a content entry from the attributes passed in parameter.
     # It sets the updated_by column with the current account.
     #
@@ -222,6 +244,13 @@ module Locomotive
         end
 
         _options[:order_by] = options[:order_by] if options[:order_by]
+      end
+    end
+
+    def clone_files!(entry, source_entry)
+      source_entry.file_custom_fields.each do |field|
+        entry.send(:"remote_#{field}_url=", source_entry.send(:"remote_#{field}_url"))
+        entry.send(:"#{field}=", source_entry.send(:"#{field}"))
       end
     end
 

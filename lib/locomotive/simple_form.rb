@@ -80,12 +80,41 @@ module Locomotive
     end
 
     def actions(options = {}, &block)
-      if options[:back_url]
+      if options[:clone_url] && options[:back_url]
+        actions_with_back_clone_button(options)
+      elsif options[:clone_url]
+        actions_with_clone_button(options)
+      elsif options[:back_url]
         actions_with_back_button(options)
       else
         options[:class] ||= 'text-right form-actions'
         template.content_tag(:div, options, &block)
       end
+    end
+
+    def actions_with_back_clone_button(options = {})
+      clone_button = clone_button_action(options)
+      back_button = back_button_action(options)
+
+      template.content_tag(:div, action +
+        '&nbsp;'.html_safe +
+        translate_button(:or) +
+        '&nbsp;'.html_safe +
+        back_button +
+        '&nbsp;'.html_safe +
+        translate_button(:or) +
+        '&nbsp;'.html_safe +
+        clone_button, class: 'text-right form-actions')
+    end
+
+    def actions_with_clone_button(options = {})
+      clone_button = clone_button_action(options)
+
+      template.content_tag(:div, action +
+        '&nbsp;'.html_safe +
+        translate_button(:or) +
+        '&nbsp;'.html_safe +
+        clone_button, class: 'text-right form-actions')
     end
 
     def actions_with_back_button(options = {})
@@ -107,6 +136,17 @@ module Locomotive
       end
 
       template.link_to(label, url)
+    end
+
+    def clone_button_action(options = {})
+      label  = translate_button(:clone)
+      url    = options[:clone_url]
+      loading_text = translate_button(:loading_text)
+
+      template.link_to label, url,
+                       class:  options[:change_class] || "btn btn-primary btn-sm #{options[:class]}",
+                       data:   { loading_text: loading_text },
+                       method: :post
     end
 
     def action(options = {})

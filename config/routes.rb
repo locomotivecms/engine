@@ -65,6 +65,7 @@ Locomotive::Engine.routes.draw do
       get :show_in_form,  on: :collection
       put :sort,          on: :collection
       get :export,        on: :collection
+      post :clone,        on: :member
     end
 
     namespace :custom_fields, path: 'content_types/:slug/fields/:name' do

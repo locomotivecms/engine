@@ -366,6 +366,7 @@ en:
       edit:
         title: '%{type} &mdash; editing entry'
       shared:
+        clone: Clone
         back: '&larr; Back to list'
 
     developers_documentation:

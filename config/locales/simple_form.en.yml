@@ -148,6 +148,7 @@ en:
           update: Save
           submit: Ok
           cancel: Cancel
+          clone: Clone
           delete: Delete
           close: Close
           loading_text: "Saving..."

@@ -86,6 +86,19 @@ module Locomotive
             present @content_entry, with: entity_klass
           end
 
+          desc 'Clone a content entry'
+          params do
+            requires :id, type: String, desc: 'Content entry ID or SLUG'
+          end
+          post ':id/clone' do
+            @content_entry = content_type.entries.by_id_or_slug(params[:id]).first
+
+            authorize @content_entry, :clone?
+            @clone_content_entry = service.entry_clone(@content_entry)
+
+            present @clone_content_entry, with: entity_klass
+          end
+
           desc "Delete a content entry"
           params do
             requires :id, type: String, desc: 'Content entry ID or SLUG'

@@ -138,6 +138,7 @@ ru:
           submit: Лады
           cancel: Отмена
           delete: Удалить
+          clone: Клонировать
           close: Закрыть
           loading_text: "Сохранение..."
           or: или

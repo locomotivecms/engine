@@ -13,3 +13,7 @@ class Locomotive.Views.ContentEntries.IndexView extends Backbone.View
   remove: ->
     @list_view.remove()
     super()
+
+  clone: ->
+    @list_view.clone()
+    super()
