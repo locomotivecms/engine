@@ -6,7 +6,7 @@ Locomotive is an open source platform to create, publish and edit sites (CMS). I
 
 Locomotive relies on a **very original workflow**:
 
-- Sites are coded locally using our open source tool: [Wagon](https://github.com/locomotivecms/wagon). A desktop version (not open source and not tested in v3) is also available [here](http://www.wagonapp.com).
+- Sites are coded locally using our open source tool: [Wagon](https://github.com/locomotivecms/wagon).
 - Sites are deployed to the platform (engine) thanks to our internal API.
 - A back-office for the end-users is automatically generated based on the custom models and editable regions described by the developers.
 
@@ -40,10 +40,10 @@ V3 has launched! Which means a lot of stuff changed and we got bunch of new feat
 
 Here is a list of the main gems used to power the Locomotive platform:
 
-- Rails 4.2   - *web framework*
+- Rails 5     - *web framework*
 - Bootstrap   - *UI framework*
-- Mongoid 5   - *Object-Document-Mapper for MongoDB 2/3*
-- Devise 3.4  - *Authentication*
+- Mongoid 6   - *Object-Document-Mapper for MongoDB 2/3*
+- Devise 4    - *Authentication*
 - Carrierwave - *Upload*
 - Pundit      - *Permissions*
 
