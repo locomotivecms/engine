@@ -23,9 +23,7 @@ def Locomotive.configure_for_test(force = false)
     if force
       Locomotive.send(:remove_const, 'Site') if Locomotive.const_defined?('Site')
       load 'locomotive/site.rb'
-
-      FactoryGirl.factories.clear
-      load File.join(File.dirname(__FILE__), 'factories.rb')
     end
   end
 end
+

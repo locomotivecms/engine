@@ -1,37 +1,28 @@
-#!/usr/bin/env rake
 begin
   require 'bundler/setup'
 rescue LoadError
   puts 'You must `gem install bundler` and `bundle install` to run rake tasks'
 end
 
-APP_RAKEFILE = File.expand_path("../spec/dummy/Rakefile", __FILE__)
-load APP_RAKEFILE
+require 'rdoc/task'
 
-# === LocomotiveCMS tasks ===
-load 'lib/tasks/locomotive.rake'
-
-# === Gems install tasks ===
-Bundler::GemHelper.install_tasks
-
-# === Travis ===
-task :travis do
-  puts "Precompile assets first to avoid potential time outs"
-  system("bundle exec rake assets:precompile")
-  ["rspec spec"].each do |cmd|
-    puts "Starting to run #{cmd}..."
-    system("export DISPLAY=:99.0 && bundle exec #{cmd}")
-    raise "#{cmd} failed!" unless $?.exitstatus == 0
-  end
+RDoc::Task.new(:rdoc) do |rdoc|
+  rdoc.rdoc_dir = 'rdoc'
+  rdoc.title    = 'Locomotive'
+  rdoc.options << '--line-numbers'
+  rdoc.rdoc_files.include('README.md')
+  rdoc.rdoc_files.include('lib/**/*.rb')
 end
 
-Rake::Task[:default].clear
-Rake::Task[:spec].clear
+load 'rails/tasks/statistics.rake'
 
-desc "Run all Locomotive specs in spec directory"
-RSpec::Core::RakeTask.new(:spec) do |spec|
-  spec.exclude_pattern = 'spec/controllers/api/locomotive/**/*_spec.rb,spec/lib/locomotive/presentable_spec.rb'
+require 'bundler/gem_tasks'
+
+begin
+  require 'rspec/core/rake_task'
+  RSpec::Core::RakeTask.new(:spec)
+rescue LoadError
 end
 
-# === Default task ===
-task :default => [:spec]
+task default: :spec
+

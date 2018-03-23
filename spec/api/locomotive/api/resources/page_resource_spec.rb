@@ -32,7 +32,7 @@ describe Locomotive::API::Resources::PageResource do
         it 'returns a successful response' do
           expect(parsed_response.size).to eq 2
           expect(parsed_response.first.keys).to eq %w(_id fullpath handle)
-          expect(parsed_response.map { |h| h['fullpath'] }).to eq %w(index 404)
+          expect(parsed_response.map { |h| h['fullpath'] }.sort.reverse).to eq %w(index 404)
         end
 
         context 'in a different locale' do
@@ -42,7 +42,7 @@ describe Locomotive::API::Resources::PageResource do
           it 'returns a successful response' do
             expect(parsed_response.size).to eq 2
             expect(parsed_response.first.keys).to eq %w(_id fullpath handle)
-            expect(parsed_response.map { |h| h['fullpath'] }).to eq %w(index 404)
+            expect(parsed_response.map { |h| h['fullpath'] }.sort.reverse).to eq %w(index 404)
           end
 
         end
@@ -66,7 +66,14 @@ describe Locomotive::API::Resources::PageResource do
           title:    'title',
           slug:     'slug',
           parent:   site.pages.first.id,
-          template: 'Hello world'
+          template: 'Hello world',
+          editable_elements: [
+            {
+              "block"   => "banner",
+              "slug"    => "page_image",
+              "content" => rack_asset('5k.png')
+            }
+          ]
         })
       end
 

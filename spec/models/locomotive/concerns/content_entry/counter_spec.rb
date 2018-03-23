@@ -1,4 +1,4 @@
-require 'spec_helper'
+# encoding: utf-8
 
 module Locomotive
   module Concerns
@@ -34,7 +34,7 @@ module Locomotive
 
         def create_content_type
           allow_any_instance_of(Locomotive::Site).to receive(:create_default_pages!).and_return(true)
-          FactoryGirl.build(:content_type).tap do |content_type|
+          build(:content_type).tap do |content_type|
             content_type.entries_custom_fields.build label: 'Title', type: 'string'
             content_type.valid?
             content_type.send(:set_label_field)

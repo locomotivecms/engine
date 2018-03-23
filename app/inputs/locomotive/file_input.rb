@@ -51,7 +51,7 @@ module Locomotive
     end
 
     def trash_icon
-      template.content_tag(:i, '', class: 'fa fa-trash-o')
+      template.content_tag(:i, '', class: 'far fa-trash-alt')
     end
 
     def filename_or_image

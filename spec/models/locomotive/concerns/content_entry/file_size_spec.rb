@@ -1,4 +1,4 @@
-require 'spec_helper'
+# encoding: utf-8
 
 describe Locomotive::Concerns::ContentEntry::FileSize do
 
@@ -23,7 +23,7 @@ describe Locomotive::Concerns::ContentEntry::FileSize do
 
   def create_content_type
     allow_any_instance_of(Locomotive::Site).to receive(:create_default_pages!).and_return(true)
-    FactoryGirl.build(:content_type).tap do |content_type|
+    build(:content_type).tap do |content_type|
       content_type.entries_custom_fields.build label: 'Title', type: 'string'
       content_type.entries_custom_fields.build label: 'File 1', type: 'file'
       content_type.entries_custom_fields.build label: 'File 2', type: 'file'

@@ -1,7 +1,5 @@
 # encoding: utf-8
 
-require 'spec_helper'
-
 describe Locomotive::Concerns::ContentType::EntryTemplate do
 
   before { allow_any_instance_of(Locomotive::Site).to receive(:create_default_pages!).and_return(true) }

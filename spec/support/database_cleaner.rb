@@ -1,23 +1,29 @@
 require 'database_cleaner'
 
-# https://github.com/DatabaseCleaner/database_cleaner/issues/409
-# https://docs.mongodb.org/v3.0/reference/command/listCollections/#dbcmd.listCollections
-module DatabaseCleaner
-  module Mongoid
-    class Truncation
+DatabaseCleaner.strategy = :truncation
 
-      private
+# then, whenever you need to clean the DB
+# DatabaseCleaner.clean
 
-      def collections
-        if db != :default
-          database.use(db)
-        end
 
-        database.collections.collect { |c| c.namespace.split('.', 2)[1] }
-      end
+# # https://github.com/DatabaseCleaner/database_cleaner/issues/409
+# # https://docs.mongodb.org/v3.0/reference/command/listCollections/#dbcmd.listCollections
+# module DatabaseCleaner
+#   module Mongoid
+#     class Truncation
 
-    end
-  end
-end
+#       private
+
+#       def collections
+#         if db != :default
+#           database.use(db)
+#         end
+
+#         database.collections.collect { |c| c.namespace.split('.', 2)[1] }
+#       end
+
+#     end
+#   end
+# end
 
 

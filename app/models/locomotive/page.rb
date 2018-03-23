@@ -119,9 +119,8 @@ module Locomotive
 
       if self.index_or_not_found?
         self.errors[:base] << ::I18n.t('errors.messages.protected_page')
+        throw :abort
       end
-
-      self.errors.empty?
     end
 
     # The title and slug of a new page should be the same in all

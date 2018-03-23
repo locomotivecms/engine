@@ -49,7 +49,7 @@ module Locomotive
       module ClassMethods
 
         def localized(enable_it = true)
-          before_filter do |c|
+          before_action do |c|
             c.instance_variable_set(:@locomotive_localized, enable_it)
           end
         end

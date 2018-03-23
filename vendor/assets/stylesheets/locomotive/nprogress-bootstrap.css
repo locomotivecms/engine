@@ -1,0 +1,4 @@
+#nprogress .bar,
+#nprogress .spinner {
+  z-index: 999999;
+}

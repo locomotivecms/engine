@@ -1,4 +1,4 @@
-require 'spec_helper'
+# encoding: utf-8
 
 describe Locomotive::Steam::Middlewares::Cache do
 
@@ -40,7 +40,7 @@ describe Locomotive::Steam::Middlewares::Cache do
 
     subject { middleware.send(:cache_key, steam_env) }
 
-    it { expect(subject).to eq '391a69da7791de5c9d1d48087e0677c4' }
+    it { expect(subject).to eq '09116b689697659d33bf61f39839ee06' }
 
   end
 

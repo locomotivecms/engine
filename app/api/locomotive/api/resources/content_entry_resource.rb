@@ -15,12 +15,13 @@ module Locomotive
 
           helpers do
 
-            def content_type
-              @content_type ||= current_site.content_types.by_id_or_slug(params[:slug]).first
+            # FIXME: content_type is a reserved word
+            def parent_content_type
+              @parent_content_type ||= current_site.content_types.by_id_or_slug(params[:slug]).first
             end
 
             def service
-              @service ||= Locomotive::ContentEntryService.new(content_type, current_account)
+              @service ||= Locomotive::ContentEntryService.new(parent_content_type, current_account)
             end
 
           end
@@ -42,9 +43,9 @@ module Locomotive
           end
           route_param :id do
             get do
-              @content_entry = content_type.entries.by_id_or_slug(params[:id]).first
+              @content_entry = parent_content_type.entries.by_id_or_slug(params[:id]).first
 
-              raise ::Mongoid::Errors::DocumentNotFound.new(content_type.entries, { id: params[:id] }) if @content_entry.nil?
+              raise ::Mongoid::Errors::DocumentNotFound.new(parent_content_type.entries, { id: params[:id] }) if @content_entry.nil?
 
               authorize content_entry, :show?
 
@@ -61,7 +62,7 @@ module Locomotive
 
             back_to_default_site_locale
 
-            form = form_klass.new(content_type, content_entry_params)
+            form = form_klass.new(parent_content_type, content_entry_params)
             @content_entry = service.create!(form.serializable_hash)
 
             present content_entry, with: entity_klass
@@ -73,9 +74,9 @@ module Locomotive
             requires :content_entry, type: Hash
           end
           put ':id' do
-            form = form_klass.new(content_type, content_entry_params)
+            form = form_klass.new(parent_content_type, content_entry_params)
 
-            if @content_entry = content_type.entries.by_id_or_slug(params[:id]).first
+            if @content_entry = parent_content_type.entries.by_id_or_slug(params[:id]).first
               authorize @content_entry, :update?
               @content_entry = service.update!(@content_entry, form.serializable_hash)
             else
@@ -91,9 +92,9 @@ module Locomotive
             requires :id, type: String, desc: 'Content entry ID or SLUG'
           end
           delete ':id' do
-            @content_entry = content_type.entries.by_id_or_slug(params[:id]).first
+            @content_entry = parent_content_type.entries.by_id_or_slug(params[:id]).first
 
-            raise ::Mongoid::Errors::DocumentNotFound.new(content_type.entries, { id: params[:id] }) if @content_entry.nil?
+            raise ::Mongoid::Errors::DocumentNotFound.new(parent_content_type.entries, { id: params[:id] }) if @content_entry.nil?
 
             authorize content_entry, :destroy?
 

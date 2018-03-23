@@ -8,7 +8,7 @@ module Locomotive
         included do
           include ::Mongoid::Tree
           include ::Mongoid::Tree::Ordering
-          include PatchedTreeMethods
+          prepend PatchedTreeMethods
 
           ## fields ##
           field :depth, type: Integer, default: 0
@@ -25,10 +25,6 @@ module Locomotive
           index site_id:  1, depth:    1, position: 1
           index depth:    1, position: 1
           index position: 1
-
-          alias_method_chain :rearrange, :identity_map
-          alias_method_chain :rearrange_children, :identity_map
-          alias_method_chain :siblings_and_self, :scoping
         end
 
         module PatchedTreeMethods
@@ -38,10 +34,25 @@ module Locomotive
             super.order_by(:depth.asc)
           end
 
+          ##
+          # Returns this document's siblings and itself, all scoped by the site
+          #
+          # @return [Mongoid::Criteria] Mongoid criteria to retrieve the document's siblings and itself
+          def siblings_and_self
+            base_class.where(parent_id: self.parent_id, site_id: self.site_id)
+          end
+
           private
 
           def assign_default_position
             return if self.position.present? && !self.persisted?
+            super
+          end
+
+          protected
+
+          def rearrange_children
+            self.children.reset
             super
           end
 
@@ -70,29 +81,11 @@ module Locomotive
           end
         end
 
-        ##
-        # Returns this document's siblings and itself, all scoped by the site
-        #
-        # @return [Mongoid::Criteria] Mongoid criteria to retrieve the document's siblings and itself
-        def siblings_and_self_with_scoping
-          base_class.where(parent_id: self.parent_id, site_id: self.site_id)
-        end
-
         def depth
           self.parent_ids.count
         end
 
         protected
-
-        def rearrange_with_identity_map
-          # ::Mongoid::IdentityMap.clear
-          rearrange_without_identity_map
-        end
-
-        def rearrange_children_with_identity_map
-          self.children.reset
-          rearrange_children_without_identity_map
-        end
 
         def persist_depth
           self.depth = self.parent_ids.count

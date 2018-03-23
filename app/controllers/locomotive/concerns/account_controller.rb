@@ -26,9 +26,9 @@ module Locomotive
 
         def account_required
           class_eval do
-            before_filter :require_account
+            before_action :require_account
 
-            before_filter :set_back_office_locale
+            before_action :set_back_office_locale
           end
         end
 

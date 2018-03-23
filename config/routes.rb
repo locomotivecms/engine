@@ -1,5 +1,3 @@
-# Back-office: sign in/out + list of sites + my account
-
 Locomotive::Engine.routes.draw do
 
   # Authentication

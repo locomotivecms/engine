@@ -1,18 +1,17 @@
-require 'spec_helper'
+# encoding: utf-8
 
 describe Locomotive::Account do
 
-  let!(:existing_account) { FactoryGirl.create(:account, email: 'another@email.com') }
+  let!(:existing_account) { create(:account, email: 'another@email.com') }
 
   it 'has a valid factory' do
-    expect(FactoryGirl.build(:account)).to be_valid
+    expect(build(:account)).to be_valid
   end
 
   ## Validations ##
   it { is_expected.to validate_presence_of :name }
   it { is_expected.to validate_presence_of :email }
   it { is_expected.to validate_presence_of :password }
-  it { is_expected.to validate_uniqueness_of(:email).with_message(/is already taken/) }
   it { is_expected.to allow_value('valid@email.com').for(:email) }
   it { is_expected.to allow_value('prefix+suffix@email.com').for(:email) }
   it { is_expected.to_not allow_value('not-an-email').for(:email) }
@@ -23,7 +22,7 @@ describe Locomotive::Account do
   end
 
   it "validates the uniqueness of email" do
-    account = FactoryGirl.build(:account, email: existing_account.email)
+    account = build(:account, email: existing_account.email)
     expect(account).not_to be_valid
     expect(account.errors[:email]).to eq(["is already taken"])
   end
@@ -31,9 +30,9 @@ describe Locomotive::Account do
   ## Associations ##
 
   it 'owns many sites' do
-    account = FactoryGirl.create(:account)
-    site_1  = FactoryGirl.create(:site, memberships: [Locomotive::Membership.new(account: account)])
-    site_2  = FactoryGirl.create(:site, handle: 'another_one', memberships: [Locomotive::Membership.new(account: account)])
+    account = create(:account)
+    site_1  = create(:site, memberships: [Locomotive::Membership.new(account: account)])
+    site_2  = create(:site, handle: 'another_one', memberships: [Locomotive::Membership.new(account: account)])
     sites   = [site_1, site_2].map(&:_id)
     expect(account.reload.sites.all? { |s| sites.include?(s._id) }).to eq(true)
   end
@@ -41,15 +40,16 @@ describe Locomotive::Account do
   describe 'deleting' do
 
     before(:each) do
-      @account = FactoryGirl.build(:account)
-      @site_1 = FactoryGirl.build(:site,memberships: [FactoryGirl.build(:membership, account: @account)])
-      @site_2 = FactoryGirl.build(:site,memberships: [FactoryGirl.build(:membership, account: @account)])
-      allow(@account).to receive(:sites).and_return([@site_1, @site_2])
       allow_any_instance_of(Locomotive::Site).to receive(:save).and_return(true)
+      @account = build(:account)
+      @site_1 = build(:site, memberships: [build(:membership, account: @account)])
+      @site_2 = build(:site, memberships: [build(:membership, account: @account)])
+      allow(@account).to receive(:sites).and_return([@site_1, @site_2])
     end
 
     it 'also deletes memberships' do
-      allow_any_instance_of(Locomotive::Site).to receive(:admin_memberships).and_return(['junk', 'dirt'])
+      allow(@site_1).to receive(:admin_memberships).and_return(['junk', 'dirt'])
+      allow(@site_2).to receive(:admin_memberships).and_return(['junk', 'dirt'])
       expect(@site_1.memberships.first).to receive(:destroy)
       expect(@site_2.memberships.first).to receive(:destroy)
       @account.destroy
@@ -67,14 +67,14 @@ describe Locomotive::Account do
 
   describe '#super_admin?' do
 
-    let(:account) { FactoryGirl.build(:account, super_admin: true) }
+    let(:account) { build(:account, super_admin: true) }
     subject { account.super_admin? }
 
     it { is_expected.to eq(true) }
 
     context 'by default' do
 
-      let(:account) { FactoryGirl.build(:account) }
+      let(:account) { build(:account) }
       it { is_expected.to eq(false) }
 
     end
@@ -84,9 +84,9 @@ describe Locomotive::Account do
   describe '#local_admin?' do
 
     let(:role)        { 'admin' }
-    let(:account)     { FactoryGirl.create(:account) }
+    let(:account)     { create(:account) }
     let(:membership)  { Locomotive::Membership.new(account: account, role: role) }
-    let!(:site)       { FactoryGirl.create(:site, memberships: [membership]) }
+    let!(:site)       { create(:site, memberships: [membership]) }
 
     subject { account.local_admin? }
 
@@ -107,7 +107,7 @@ describe Locomotive::Account do
 
   describe 'api_key' do
 
-    let(:account) { FactoryGirl.build(:account) }
+    let(:account) { build(:account) }
 
     it 'is not nil for a new account (after validation)' do
       account.valid?

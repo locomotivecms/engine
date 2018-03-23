@@ -5,12 +5,12 @@ module Locomotive
 
     localized
 
-    before_filter :load_site
+    before_action :load_site
 
     helper Locomotive::SitesHelper
 
-    before_filter :ensure_domains_list, only: :update
-    before_filter :ensure_url_redirections, only: :update
+    before_action :ensure_domains_list, only: :update
+    before_action :ensure_url_redirections, only: :update
 
     def edit
       authorize @site

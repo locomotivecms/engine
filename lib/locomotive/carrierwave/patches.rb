@@ -18,20 +18,6 @@ module CarrierWave
     uploader.url.gsub('/' + uploader.path, '')
   end
 
-  class SanitizedFile
-
-    # do not rely on Carrierwave to get the mime type of an asset.
-    # The Carrierwave mime_magic_content_type method is too unpredictable.
-    # https://github.com/locomotivecms/engine/issues/1200
-    def content_type
-      @content_type ||=
-        existing_content_type ||
-        mime_types_content_type ||
-        mime_magic_content_type
-    end
-
-  end
-
   module Uploader
 
     module Base64Download
@@ -74,12 +60,12 @@ module CarrierWave
 
       end
 
-      def download!(uri_or_base64)
+      def download!(uri_or_base64, remote_headers = {})
         if uri_or_base64 =~ /\Adata:/
           file = Base64StringIO.new(uri_or_base64)
           cache!(file)
         else
-          download_without_base64!(uri_or_base64)
+          download_without_base64!(uri_or_base64, remote_headers)
         end
       end
 

@@ -26,9 +26,9 @@ module CustomFields
 
       class FileUploader < ::CarrierWave::Uploader::Base
 
-        include ::CarrierWave::MimeTypes
+        # include ::CarrierWave::MimeTypes
 
-        process :set_content_type
+        # process :set_content_type
 
         # Set correct paths
         def store_dir

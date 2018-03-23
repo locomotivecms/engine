@@ -6,15 +6,15 @@ module Locomotive
 
       localized
 
-      before_filter :load_content_type
-      before_filter :load_custom_field
+      before_action :load_content_type
+      before_action :load_custom_field
 
       def edit
         respond_with @custom_field
       end
 
       def update
-        @options = service.update_select_options(options_params)
+        @options = service.update_select_options(options_params.map(&:to_h))
         respond_with @custom_field, location: -> { last_saved_location!(default_back_location) }
       end
 

@@ -5,7 +5,7 @@ module Locomotive
 
     respond_to :json, only: [:regenerate_api_key]
 
-    before_filter :load_account
+    before_action :load_account
 
     layout '/locomotive/layouts/account'
 

@@ -9,7 +9,7 @@ module Locomotive
       self.build_store_dir('sites', model.site_id, 'theme', model.folder)
     end
 
-    def extension_white_list
+    def extension_whitelist
       %w(jpg jpeg gif png css js swf flv mp4 eot svg svgz ttf ttc woff woff2 otf ico htc map html cur)
     end
 

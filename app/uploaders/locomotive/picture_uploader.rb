@@ -3,9 +3,7 @@
 module Locomotive
   class PictureUploader < ::CarrierWave::Uploader::Base
 
-    include ::CarrierWave::MimeTypes
-
-    def extension_white_list
+    def extension_whitelist
       %w(jpg jpeg gif png)
     end
 

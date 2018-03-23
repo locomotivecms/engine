@@ -5,8 +5,8 @@ module Locomotive
 
     respond_to :json, only: [:create, :bulk_create]
 
-    before_filter :load_content_assets, only: :index
-    before_filter :load_content_asset,  only: [:edit, :update, :destroy]
+    before_action :load_content_assets, only: :index
+    before_action :load_content_asset,  only: [:edit, :update, :destroy]
 
     def index
       authorize Locomotive::ContentAsset

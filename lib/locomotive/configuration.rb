@@ -46,6 +46,10 @@ module Locomotive
       self.settings.send(name, *args, &block)
     end
 
+    def respond_to?(name, include_all = false)
+      self.settings.keys.include?(name.to_sym) || super
+    end
+
     protected
 
     # converts a hash map into a ConfigurationHash

@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe Locomotive::Concerns::SiteDispatcherController do
 
   before(:all) do
@@ -39,7 +37,7 @@ describe Locomotive::Concerns::SiteDispatcherController do
 
     render_views
 
-    controller do
+    controller(Locomotive::BaseController) do
       include Locomotive::Concerns::SiteDispatcherController
       include Locomotive::Engine.routes.url_helpers
       helper Locomotive::ErrorsHelper
@@ -49,7 +47,7 @@ describe Locomotive::Concerns::SiteDispatcherController do
     end
 
     before do
-      @routes.draw { get '/anonymous/test_render_no_site' }
+      routes.draw { get 'test_render_no_site' => 'locomotive/base#test_render_no_site' }
     end
 
     it 'redirects to the list of sites page' do

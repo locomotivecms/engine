@@ -5,8 +5,8 @@ module Locomotive
 
     localized
 
-    before_filter :load_page
-    after_filter  :store_location_if_content_entry
+    before_action :load_page
+    after_action  :store_location_if_content_entry
 
     layout :editable_elements_layout
 

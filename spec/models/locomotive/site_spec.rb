@@ -1,17 +1,15 @@
-# coding: utf-8
-
-require 'spec_helper'
+# encoding: utf-8
 
 describe Locomotive::Site do
 
   it 'has a valid factory' do
-    expect(FactoryGirl.build(:site)).to be_valid
+    expect(build(:site)).to be_valid
   end
 
   ## Validations ##
 
   it 'validates presence of name' do
-    site = FactoryGirl.build(:site, name: nil)
+    site = build(:site, name: nil)
     expect(site).to_not be_valid
     expect(site.errors[:name]).to eq(["can't be blank"])
   end
@@ -19,7 +17,7 @@ describe Locomotive::Site do
   describe 'domains' do
 
     let(:domains) { ['goodformat.superlong', 'local.lb-service', 'www.9troisquarts.com', 'nocoffee.photography'] }
-    subject { FactoryGirl.build(:site, domains: domains) }
+    subject { build(:site, domains: domains) }
 
     it { is_expected.to be_valid }
 
@@ -40,7 +38,7 @@ describe Locomotive::Site do
   describe 'asset_host' do
 
     let(:asset_host) { nil }
-    subject { FactoryGirl.build(:site, asset_host: asset_host) }
+    subject { build(:site, asset_host: asset_host) }
 
     it { is_expected.to be_valid }
 
@@ -76,20 +74,20 @@ describe Locomotive::Site do
   describe 'handle' do
 
     it 'validates presence of handle' do
-      site = FactoryGirl.build(:site, handle: nil)
+      site = build(:site, handle: nil)
       expect(site).to_not be_valid
       expect(site.errors[:handle]).to eq(["can't be blank"])
     end
 
     %w{test test42 foo_bar}.each do |handle|
       it "accepts handle like '#{handle}'" do
-        expect(FactoryGirl.build(:site, handle: handle)).to be_valid
+        expect(build(:site, handle: handle)).to be_valid
       end
     end
 
     ['-', '_test', 'test_', 't est', '42', '42test'].each do |handle|
       it "does not accept handle like '#{handle}'" do
-        site = FactoryGirl.build(:site, handle: handle)
+        site = build(:site, handle: handle)
         expect(site).to_not be_valid
         expect(site.errors[:handle]).to eq(['is invalid'])
       end
@@ -97,23 +95,23 @@ describe Locomotive::Site do
 
     it "does not use reserved keywords as handle" do
       %w{sign_in sign_out sites my_account}.each do |handle|
-        site = FactoryGirl.build(:site, handle: handle)
+        site = build(:site, handle: handle)
         expect(site).to_not be_valid
         expect(site.errors[:handle]).to eq(['is reserved'])
       end
     end
 
     it 'validates uniqueness of handle' do
-      FactoryGirl.create(:site)
-      site = FactoryGirl.build(:site)
+      create(:site)
+      site = build(:site)
       expect(site).to_not be_valid
       expect(site.errors[:handle]).to eq(["is already taken"])
     end
 
     it 'validates uniqueness of domains' do
-      FactoryGirl.create(:site, domains: %w{www.acme.net www.acme.com})
+      create(:site, domains: %w{www.acme.net www.acme.com})
 
-      site = FactoryGirl.build(:site, domains: %w{www.acme.com})
+      site = build(:site, domains: %w{www.acme.com})
       expect(site).to_not be_valid
       expect(site.errors[:domains]).to eq(["www.acme.com is already taken"])
     end
@@ -123,16 +121,16 @@ describe Locomotive::Site do
   ## Named scopes ##
 
   it 'retrieves sites by domain' do
-    site_1 = FactoryGirl.create(:site, domains: %w{www.acme.net})
-    site_2 = FactoryGirl.create(:site, handle: 'test', domains: %w{www.example.com})
+    site_1 = create(:site, domains: %w{www.acme.net})
+    site_2 = create(:site, handle: 'test', domains: %w{www.example.com})
 
     sites = Locomotive::Site.match_domain('www.acme.net')
     expect(sites.size).to eq(1)
-    expect(sites.first).to eq(site_1)
+    expect(sites.first._id).to eq(site_1._id)
 
     sites = Locomotive::Site.match_domain('www.example.com')
     expect(sites.size).to eq(1)
-    expect(sites.first).to eq(site_2)
+    expect(sites.first._id).to eq(site_2._id)
 
     sites = Locomotive::Site.match_domain('www.unknown.com')
     expect(sites).to be_empty
@@ -141,8 +139,8 @@ describe Locomotive::Site do
   ## Associations ##
 
   it 'has many accounts' do
-    site = FactoryGirl.build(:site)
-    account_1, account_2 = FactoryGirl.create(:account), FactoryGirl.create(:account, name: 'homer', email: 'homer@simpson.net')
+    site = build(:site)
+    account_1, account_2 = create(:account), create(:account, name: 'homer', email: 'homer@simpson.net')
     site.memberships.build(account: account_1, admin: true)
     site.memberships.build(account: account_2)
     expect(site.memberships.size).to eq(2)
@@ -153,7 +151,7 @@ describe Locomotive::Site do
 
   describe 'once created' do
 
-    let(:site) { FactoryGirl.create(:site, locales: locales) }
+    let(:site) { create(:site, locales: locales) }
 
     context 'the default locale is fr' do
 
@@ -194,7 +192,7 @@ describe Locomotive::Site do
   describe 'deleting in cascade' do
 
     before(:each) do
-      @site = FactoryGirl.create(:site)
+      @site = create(:site)
     end
 
     it 'also destroys pages' do

@@ -9,6 +9,10 @@ module Locomotive
         "wagon clone acme_website http://test.host -h acme -e foo@bar.com -a abc"
       end
 
+      around do |ex|
+        without_partial_double_verification { ex.run }
+      end
+
       before do
         allow(helper).to receive(:current_site).and_return(current_site)
         allow(helper).to receive(:current_locomotive_account).and_return(current_locomotive_account)

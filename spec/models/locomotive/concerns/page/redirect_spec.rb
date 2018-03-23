@@ -1,8 +1,8 @@
-require 'spec_helper'
+# encoding: utf-8
 
 describe Locomotive::Concerns::Page::Redirect do
 
-  let(:page) { FactoryGirl.build(:page, redirect: true, redirect_url: 'http://www.locomotivecms.com') }
+  let(:page) { build(:page, redirect: true, redirect_url: 'http://www.locomotivecms.com') }
 
   describe 'redirect option enabled' do
 

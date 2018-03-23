@@ -19,6 +19,28 @@ end
 
 module Mongoid #:nodoc:
 
+  # FIXME: the Origin (used by Steam) and Mongoid gems both modify the Symbol class
+  # to allow writing queries like .where(:position.lt => 1)
+  # By convention, Origin::Key will be the one. So we need to make sure it doesn't
+  # break the Mongoid queries.
+  class Criteria
+    module Queryable
+      module Selectable
+        def selection(criterion = nil)
+          clone.tap do |query|
+            if criterion
+              criterion.each_pair do |field, value|
+                _field = field.is_a?(Key) || field.is_a?(Origin::Key) ? field : field.to_s
+                yield(query.selector, _field, value)
+              end
+            end
+            query.reset_strategies!
+          end
+        end
+      end
+    end
+  end
+
   # FIXME: https://github.com/benedikt/mongoid-tree/issues/58
   # We replace all the @_#{name} occurences by @_#{name}_ivar.
   module Relations

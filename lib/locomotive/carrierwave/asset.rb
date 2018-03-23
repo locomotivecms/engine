@@ -7,9 +7,6 @@ module Locomotive
 
         included do |base|
 
-          include ::CarrierWave::MimeTypes
-
-          process :set_content_type
           process :set_content_type_of_model
           process :set_size
           process :set_width_and_height

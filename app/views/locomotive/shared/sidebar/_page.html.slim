@@ -4,9 +4,9 @@
 
     = link_to url do
       - if page.draggable?
-        i class="fa fa-bars icon #{page.draggable}"
+        i class="fas fa-bars icon #{page.draggable}"
       - else
-        i class="fa fa-file-text-o"
+        i class="far fa-file-alt"
       span.text style="#{page.text_inline_style}"
         = page.title
 
@@ -22,10 +22,10 @@
           - if content_type = page.templatized_page.content_type
             li.list-entries
               = link_to content_entries_path(current_site, content_type.slug) do
-                  i.fa.fa-list-ul.icon
+                  i.fas.fa-list-ul.icon
                   span.text style="#{page.deeper_text_inline_style}"= t(:list_content_entries, name: content_type.name.pluralize, scope: 'locomotive.pages.index')
 
             li.new-entry.sidebar-list-add
               = link_to new_content_entry_path(current_site, content_type.slug) do
-                i.fa.fa-plus.icon
+                i.fas.fa-plus.icon
                 span.text style="#{page.deeper_text_inline_style}"= t(:new_content_entry, name: content_type.name.singularize, scope: 'locomotive.pages.index')

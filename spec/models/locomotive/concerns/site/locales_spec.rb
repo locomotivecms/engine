@@ -1,8 +1,8 @@
-require 'spec_helper'
+# encoding: utf-8
 
 describe Locomotive::Concerns::Site::Locales do
 
-  let(:site) { FactoryGirl.build(:site, locales: [:en, :fr]) }
+  let(:site) { build(:site, locales: [:en, :fr]) }
 
   describe '#localized_page_fullpath' do
 
@@ -36,8 +36,8 @@ describe Locomotive::Concerns::Site::Locales do
 
   end
 
-  def build_page(slug = nil, translations = {})
-    FactoryGirl.build(:page, site: site).tap do |page|
+  def build_page(slug = 'index', translations = {})
+    build(:page, site: site).tap do |page|
       page.slug = slug if slug
       translations.each do |locale, translation|
         ::Mongoid::Fields::I18n.with_locale(locale) do

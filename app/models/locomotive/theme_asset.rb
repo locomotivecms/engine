@@ -7,7 +7,6 @@ module Locomotive
     include Concerns::Shared::SiteScope
     include Concerns::Asset::Types
     include Concerns::Asset::Checksum
-    include Concerns::ThemeAsset::PlainText
 
     ## fields ##
     field :local_path

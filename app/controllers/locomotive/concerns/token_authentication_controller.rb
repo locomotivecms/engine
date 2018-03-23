@@ -6,7 +6,7 @@ module Locomotive
 
       included do
 
-        before_filter :unsafe_token_authentication_params
+        before_action :unsafe_token_authentication_params
 
         def find_record_from_identifier(entity)
           if Locomotive.config.unsafe_token_authentication
@@ -36,7 +36,7 @@ module Locomotive
             acts_as_token_authentication_handler_for Locomotive::Account
 
             if actions = options[:except]
-              skip_before_filter :authenticate_locomotive_account_from_token!, only: :create
+              skip_before_action :authenticate_locomotive_account_from_token!, only: :create
             end
           end
         end

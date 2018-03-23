@@ -1,4 +1,4 @@
-require 'spec_helper'
+# encoding: utf-8
 
 describe Locomotive::ContentType do
 
@@ -39,10 +39,10 @@ describe Locomotive::ContentType do
       expect(content_type.errors[:slug]).to eq(["is already taken"])
     end
 
-    it 'is not valid if there is not at least one field' do
+    it 'is not valid if there is no field' do
       content_type = build(:content_type)
       expect(content_type).to_not be_valid
-      expect(content_type.errors[:entries_custom_fields]).to eq({ base: ['At least, one custom field is required'] })
+      expect(content_type.errors[:entries_custom_fields].first).to eq('At least, one custom field is required')
     end
 
     %w(created_at updated_at).each do |name|

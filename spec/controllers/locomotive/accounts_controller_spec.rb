@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe Locomotive::AccountsController do
 
   routes { Locomotive::Engine.routes }
@@ -21,7 +19,7 @@ describe Locomotive::AccountsController do
       attributes_for('frenchy user', site: site)
     end
     subject do
-      post :create, site_handle: site, locale: :en, account: account_attributes
+      post :create, params: { site_handle: site, locale: :en, account: account_attributes }
     end
     it { is_expected.to be_redirect }
     specify do

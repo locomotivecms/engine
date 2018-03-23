@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe Locomotive::RegistrationsController do
 
   routes { Locomotive::Engine.routes }
@@ -13,7 +11,7 @@ describe Locomotive::RegistrationsController do
       { name: 'Elon', email: 'elon@spacex.com', password: 'easyone', password_confirmation: 'easyone' }
     end
     subject do
-      post :create, locomotive_account: account_attributes
+      post :create, params: { locomotive_account: account_attributes }
     end
     it { is_expected.to redirect_to sites_path }
     specify do

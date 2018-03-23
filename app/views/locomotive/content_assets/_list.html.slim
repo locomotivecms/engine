@@ -31,8 +31,8 @@
 
           | &nbsp;&nbsp;
 
-          = link_to content_asset_path(current_site, asset, params.slice(:types, :query, :page, :per_page)), class: 'remove', method: :delete, data: { confirm: t('locomotive.messages.confirm'), return_url: request.original_url }, title: t(:delete, scope: 'simple_form.buttons.defaults.locomotive'), remote: remote do
-            i.fa.fa-trash-o
+          = link_to content_asset_path(current_site, asset, params.to_unsafe_h.slice(:types, :query, :page, :per_page)), class: 'remove', method: :delete, data: { confirm: t('locomotive.messages.confirm'), return_url: request.original_url }, title: t(:delete, scope: 'simple_form.buttons.defaults.locomotive'), remote: remote do
+            i.far.fa-trash-alt
 
   .text-center
     = paginate @content_assets, theme: 'twitter-bootstrap-3', pagination_class: 'pagination-sm', remote: remote

@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 module Locomotive
   describe ContentEntriesController do
 
@@ -29,7 +27,7 @@ module Locomotive
       specify do
         expect(content_type.entries.count).to eq(1)
       end
-      subject { get :index, site_handle: site, locale: :en, slug: content_type.slug }
+      subject { get :index, params: { site_handle: site, locale: :en, slug: content_type.slug } }
       it { is_expected.to be_success }
       specify do
         subject
@@ -40,7 +38,7 @@ module Locomotive
     describe "#POST create" do
       let(:content_type_attributes) {{ title: "title-#{4}-#{rand(10000 * 4)}" }}
       subject do
-        post :create, site_handle: site, locale: :en, slug: content_type.slug, content_entry: content_type_attributes
+        post :create, params: { site_handle: site, locale: :en, slug: content_type.slug, content_entry: content_type_attributes }
       end
       it { is_expected.to be_redirect }
       specify do
@@ -50,15 +48,15 @@ module Locomotive
 
     describe "#PUT update" do
       subject do
-        put :update, site_handle: site, slug: content_type.slug, id: content_entry.id, locale: :en,
-          content_entry: { title: "title-#{4}-#{rand(10000 * 4)}" }
+        put :update, params: { site_handle: site, slug: content_type.slug, id: content_entry.id, locale: :en,
+          content_entry: { title: "title-#{4}-#{rand(10000 * 4)}" } }
       end
       it { is_expected.to be_redirect }
     end
 
     describe "#DELETE destroy" do
       subject do
-        delete :destroy, site_handle: site, slug: content_type.slug, id: content_entry.id, locale: :en
+        delete :destroy, params: { site_handle: site, slug: content_type.slug, id: content_entry.id, locale: :en }
       end
       it { is_expected.to be_redirect }
       specify do

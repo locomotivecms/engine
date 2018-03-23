@@ -65,7 +65,7 @@
   cursor: pointer;
   background: $gray-darker;
   transition: all $base-transition-speed linear;
-  .fa {
+  .fa, .far, .fal, .fas {
     color: $white;
   }
   &:hover {

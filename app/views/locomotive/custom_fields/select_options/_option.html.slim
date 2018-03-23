@@ -20,7 +20,7 @@
       = link_to t('.edit'), '#', class: 'btn btn-sm btn-primary edit'
       | &nbsp;
       = link_to '#', class: 'delete' do
-        i.fa.fa-trash-o
+        i.far.fa-trash-alt
 
   - if select_option.persisted?
     = hidden_field_tag 'select_options[][_id]', select_option._id
