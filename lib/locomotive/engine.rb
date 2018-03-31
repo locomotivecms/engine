@@ -4,6 +4,14 @@ module Locomotive
 
     paths['mongodb/migrate'] = 'mongodb/migrate'
 
+    # Allow the root app to change the behavior of Locomotive controllers and
+    # models in a clean way.
+    config.to_prepare do
+      Dir.glob(Rails.root + 'app/decorators/**/*_decorator*.rb').each do |c|
+        require_dependency(c)
+      end
+    end
+
     initializer 'locomotive.params.filter' do |app|
       # Do not log remote_<field>_url params because they can contain huge base64 string
       app.config.filter_parameters += [/\Aremote_.+_url\Z/]
