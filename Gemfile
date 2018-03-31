@@ -25,7 +25,7 @@ group :development do
   # gem 'locomotivecms_common', github: 'locomotivecms/common', ref: '257047b', require: false
 
   # gem 'locomotivecms_steam', path: '../steam', require: false
-  # gem 'locomotivecms_steam', github: 'locomotivecms/steam', ref: '0cf606c', require: false
+  gem 'locomotivecms_steam', github: 'locomotivecms/steam', ref: '60c268a', require: false
 
   # gem 'locomotive_liquid', path: '../gems/liquid' # for Developers
   # gem 'locomotivecms_solid', path: '../gems/solid' # for Developers
