@@ -109,9 +109,8 @@ module Locomotive
             site = load_site
             authorize site, :update?
 
-            site_form = Forms::SiteForm.new(permitted_params_from_policy(site, :site, [:picture]))
-            site.assign_attributes(site_form.serializable_hash)
-            site.save!
+            site_form = Forms::SiteForm.new(permitted_params_from_policy(site, :site, [:picture], [:metafields_ui, :metafields_schema, :metafields]))
+            service.update!(site, site_form.serializable_hash)
 
             present site, with: entity_klass
           end
