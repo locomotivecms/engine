@@ -66,7 +66,7 @@ describe Locomotive::ThemeAsset do
     describe '#validation' do
 
       it 'does not accept text file' do
-        asset.source = FixturedAsset.open('wrong.txt')
+        asset.source = FixturedAsset.open('wrong.docx')
         asset.valid?
         expect(asset.valid?).to eq(false)
         expect(asset.errors[:source]).to_not be_blank
