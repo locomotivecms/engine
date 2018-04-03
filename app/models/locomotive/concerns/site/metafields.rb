@@ -69,7 +69,7 @@ module Locomotive
               'field' => {
                 'type' => 'object',
                 'properties' => {
-                  'name' => { 'type' => 'string', 'not': { 'enum': ['dom_id', 'model_name', 'method_missing', '_name', '_label', '_position', '_fields', '_t'] } },
+                  'name' => { 'type' => 'string', 'pattern' => '^[A-Za-z0-9_]+$', 'not': { 'enum': ['dom_id', 'model_name', 'method_missing', '_name', '_label', '_position', '_fields', '_t'] } },
                   'label' => { 'type' => ['string', 'object'] },
                   'hint' => { 'type' => ['string', 'object'] },
                   'type' => { 'enum' => ['string', 'text', 'integer', 'float', 'image', 'boolean', 'select', 'color'] },
@@ -84,7 +84,7 @@ module Locomotive
             'items' => {
               'type' => 'object',
               'properties' => {
-                  'name'      => { 'type' => 'string' },
+                  'name'      => { 'type' => 'string', 'pattern' => '^[A-Za-z0-9_]+$' },
                   'label'     => { 'type' => ['string', 'object'] },
                   'fields'    => { 'type' => 'array', 'items': {'$ref': '#/definitions/field' } },
                   'position'  => { 'type' => 'integer', 'minimum' => 0 }

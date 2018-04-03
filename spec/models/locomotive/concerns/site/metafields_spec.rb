@@ -66,6 +66,20 @@ describe Locomotive::Concerns::Site::Metafields do
 
       end
 
+      context 'namespace with a hyphen' do
+
+        let(:schema) { [{ 'name' => 'social-links', 'label' => 'Social', 'fields' => [{ 'name' => 'facebook', 'type' => 'string' }] }] }
+        it { is_expected.to eq(["The property '#/0/name' value \"social-links\" did not match the regex '^[A-Za-z0-9_]+$'"]) }
+
+      end
+
+      context 'field name with a hyphen' do
+
+        let(:schema) { [{ 'name' => 'social_links', 'label' => 'Social', 'fields' => [{ 'name' => 'facebook-url', 'type' => 'string' }] }] }
+        it { is_expected.to eq(["The property '#/0/fields/0/name' value \"facebook-url\" did not match the regex '^[A-Za-z0-9_]+$'"]) }
+
+      end
+
     end
 
     describe 'valid schema' do
