@@ -15,8 +15,6 @@ class Locomotive.Views.Inputs.Rte.LinkView extends Backbone.View
     @editor     = @options.editor
     @$content   = @$link.next('.link-dialog-content')
 
-    @$content.find('.input.select select:not(.disable-select2)').data('select2').$dropdown.addClass('rte-select2-dropdown')
-
   render: ->
     @attach_editor()
     @create_popover()
@@ -62,6 +60,10 @@ class Locomotive.Views.Inputs.Rte.LinkView extends Backbone.View
   show: (state) ->
     # Fix a bug when opening an existing link for the first time
     return if @isOpen && state != false
+
+    # Make sure the select2 behavioir is always enabled
+    @_input_el('target', 'select').select2()
+    @_input_el('target', 'select').data('select2').$dropdown.addClass('rte-select2-dropdown')
 
     if state == false
       @$content.parents('form')[0].reset()

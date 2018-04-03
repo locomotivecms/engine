@@ -1,23 +1,9 @@
-@import "font-awesome/mixins";
+@import "font-awesome-sprockets";
+@import "font-awesome";
 
 $button-background:     #1c77c3;
 $button-border-color:   darken($button-background, 10%) !default;
 $button-color:          #fff;
-
-$fa-font-path:          'font-awesome';
-$fa-version:            '4_4_0';
-
-@font-face {
-  font-family: 'LocomotiveFontAwesome';
-  src: url(font-path('#{$fa-font-path}/fontawesome-webfont.eot?v=#{$fa-version}'));
-  src: url(font-path('#{$fa-font-path}/fontawesome-webfont.eot?#iefix&v=#{$fa-version}')) format('embedded-opentype'),
-    url(font-path('#{$fa-font-path}/fontawesome-webfont.woff2?v=#{$fa-version}')) format('woff2'),
-    url(font-path('#{$fa-font-path}/fontawesome-webfont.woff?v=#{$fa-version}')) format('woff'),
-    url(font-path('#{$fa-font-path}/fontawesome-webfont.ttf?v=#{$fa-version}')) format('truetype'),
-    url(font-path('#{$fa-font-path}/fontawesome-webfont.svg?v=#{$fa-version}#fontawesomeregular')) format('svg');
-  font-weight: normal;
-  font-style: normal;
-}
 
 #locomotive-highlighter-bar, #locomotive-highlighter-actions {
   display: block;
@@ -62,9 +48,12 @@ $fa-version:            '4_4_0';
     }
 
     i.locomotive-fa {
-      display: inline-block;
-      font: normal normal normal 14px/1 LocomotiveFontAwesome;
+      @include fa-icon;
+      font-family: 'Font Awesome 5 Free';
       font-size: inherit;
+      font-weight: 900;
+      vertical-align: 0rem;
+      display: inline-block;
       text-rendering: auto;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
@@ -72,7 +61,7 @@ $fa-version:            '4_4_0';
       margin-right: 5px;
 
       &.locomotive-fa-pencil:before {
-        content: "\f040";
+        content: fa-content($fa-var-pencil-alt);
       }
     }
 
