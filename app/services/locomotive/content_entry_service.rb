@@ -209,7 +209,10 @@ module Locomotive
 
       # if the user deletes all the entries of a many_to_many field,
       # make sure the list gets empty instead of nil.
-      _entry.many_to_many_custom_fields.each do |(_, s)|
+      _entry.many_to_many_custom_fields.each do |(n, s)|
+        next unless content_type.is_field_with_ui_enabled?(n)
+
+        # we don't want to clear the relationship with the form doesn't display the field
         attributes[s] = [] unless attributes.has_key?(s)
       end
     end

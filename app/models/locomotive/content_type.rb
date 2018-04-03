@@ -95,6 +95,12 @@ module Locomotive
       _field || self.entries_custom_fields.where(name: id_or_name).first
     end
 
+    # Tell if a field has to be displayed in the UI
+    #
+    def is_field_with_ui_enabled?(id_or_name)
+      self.find_entries_custom_field(id_or_name)&.ui_enabled?
+    end
+
     # A localized content type owns at least one localized field.
     def localized?
       self.entries_custom_fields.where(localized: true).count > 0
