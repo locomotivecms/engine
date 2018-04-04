@@ -55,13 +55,14 @@ RSpec.configure do |config|
     helper.class.include Locomotive::Engine.routes.url_helpers
   end
 
-  config.include Features::SessionHelpers,  type: :feature
-  config.include Features::SiteHelpers,     type: :feature
-  config.include EmailSpec::Helpers,        type: :feature
-  config.include EmailSpec::Matchers,       type: :feature
+  config.include Features::SessionHelpers,  type: :system
+  config.include Features::SiteHelpers,     type: :system
+  config.include EmailSpec::Helpers,        type: :system
+  config.include EmailSpec::Matchers,       type: :system
 
   config.include Locomotive::RSpec::Matchers
   config.include Locomotive::TestHelpers,           type: :controller
+
   config.include RSpec::Rails::RequestExampleGroup, type: :request, file_path: /spec\/api/
 
   config.before(:suite) do
@@ -80,5 +81,14 @@ RSpec.configure do |config|
 
   config.after(:suite) do
     DatabaseCleaner.clean
+  end
+
+  config.before(:each, type: :controller) do
+    request.host = 'locomotive.local' if request.respond_to?(:host=)
+  end
+
+  config.before(:each, type: :system) do
+    host! 'http://locomotive.local'
+    driven_by :locomotive_headless_chrome
   end
 end

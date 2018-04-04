@@ -16,7 +16,7 @@ module Locomotive
     def update
       super do |resource|
         if params[:locomotive_account].try(:[], 'password').blank?
-          resource.errors.add_on_blank(:password)
+          resource.errors.add(:password, :blank)
         end
       end
     end

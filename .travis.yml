@@ -11,3 +11,6 @@ notifications:
 branches:
   only:
     - master
+addons:
+  hosts:
+    - locomotive.local

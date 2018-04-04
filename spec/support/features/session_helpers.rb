@@ -30,7 +30,7 @@ module Features
       if block_given?
         sleep(1)
         last_email = ActionMailer::Base.deliveries.last
-        last_email.body.to_s =~ /<a href="http:\/\/localhost:9886(\S+)">/
+        last_email.body.to_s =~ /<a href="http:\/\/locomotive.local:9886(\S+)">/
         yield last_email, $1
       end
     end

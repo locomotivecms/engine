@@ -16,7 +16,11 @@ module Locomotive
 
     def update
       authorize @account
-      @account.update_attributes(account_params)
+      if needs_password?
+        @account.update_with_password(account_params)
+      else
+        @account.update_attributes(account_params)
+      end
       respond_with @account, location: edit_my_account_path(anchor: params[:active_tab])
     end
 
@@ -33,7 +37,14 @@ module Locomotive
     end
 
     def account_params
-      params.require(:account).permit(:name, :email, :password, :password_confirmation, :avatar, :remove_avatar, :locale)
+      params.require(:account).permit(
+        :name, :email, :current_password, :password, :password_confirmation,
+        :avatar, :remove_avatar, :locale
+      )
+    end
+
+    def needs_password?
+      params[:account][:email].present? || params[:account][:password].present?
     end
 
   end

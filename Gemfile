@@ -34,9 +34,10 @@ group :development do
 end
 
 group :test do
-  # gem 'simplecov',                '~> 0.14.1'
+  gem 'capybara',                 '~> 2.18'
+  gem 'selenium-webdriver',       '~> 3.11.0'
+  gem 'puma',                     '~> 3.11.3'
 
-  gem 'capybara-webkit',          '~> 1.15.0'
 
   gem 'grape-entity-matchers',    github: 'salsify/grape-entity-matchers', branch: 'grape-entity-exposures'
   gem 'shoulda-matchers',         '~> 3.1.2'

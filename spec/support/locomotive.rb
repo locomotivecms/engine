@@ -12,6 +12,22 @@ module Locomotive
     end
 
   end
+
+  module TestViewHelpers
+
+    def current_site
+    end
+
+    def policy(object = nil)
+    end
+
+    def current_locomotive_account
+    end
+
+    def last_saved_location
+    end
+
+  end
 end
 
 def Locomotive.configure_for_test(force = false)
