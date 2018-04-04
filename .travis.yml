@@ -13,11 +13,7 @@ branches:
   only:
     - master
 addons:
-  chrome: stable
-  apt:
-    packages:
-      - google-chrome-stable
-      - chromium-chromedriver
-  hosts:
+  - chrome: stable
+  - hosts:
     - locomotive.local
 
