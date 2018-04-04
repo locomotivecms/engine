@@ -1,3 +1,4 @@
+dist: trusty
 sudo: required
 script: "bundle exec rake travis"
 before_script: ./bin/ci/before_build.sh
@@ -12,10 +13,11 @@ branches:
   only:
     - master
 addons:
-  sources:
-    - google-chrome
+  chrome: stable
   apt:
     packages:
       - google-chrome-stable
+      - chromium-chromedriver
   hosts:
     - locomotive.local
+
