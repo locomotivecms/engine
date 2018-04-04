@@ -6,6 +6,8 @@
 //= require locomotive/bootstrap-switch
 //= require locomotive/bootstrap-colorpicker
 //= require locomotive/highlightjs/github
+//= require locomotive/nprogress
+//= require locomotive/nprogress-bootstrap
 
 // Bootstrap overrides
 // =============================================================================
@@ -66,14 +68,6 @@
 
 @import "bootstrap/utilities";
 @import "bootstrap/responsive-utilities";
-
-// Custom components
-// =============================================================================
-
-// Vendor
-
-@import "locomotive/nprogress.css";
-@import "locomotive/nprogress-bootstrap.css";
 
 // Layout
 
