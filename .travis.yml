@@ -1,5 +1,8 @@
 sudo: false
-script: "bundle exec rake travis"
+script:
+  - whereis google-chrome-stable
+  - whereis chromedriver
+  - bundle exec rake travis
 before_script: ./bin/ci/before_build.sh
 services: mongodb
 rvm:
@@ -12,5 +15,14 @@ branches:
   only:
     - master
 addons:
+  chrome: stable
   hosts:
     - locomotive.local
+install: # Install ChromeDriver (64bits; replace 64 with 32 for 32bits).
+  - wget -N http://chromedriver.storage.googleapis.com/2.30/chromedriver_linux64.zip -P ~/
+  - unzip ~/chromedriver_linux64.zip -d ~/
+  - rm ~/chromedriver_linux64.zip
+  - sudo mv -f ~/chromedriver /usr/local/share/
+  - sudo chmod +x /usr/local/share/chromedriver
+  - sudo ln -s /usr/local/share/chromedriver /usr/local/bin/chromedriver
+
