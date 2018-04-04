@@ -1,4 +1,4 @@
-sudo: false
+sudo: required
 script: "bundle exec rake travis"
 before_script: ./bin/ci/before_build.sh
 services: mongodb

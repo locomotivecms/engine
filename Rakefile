@@ -27,7 +27,7 @@ end
 # === Travis ===
 task :travis do
   puts "Precompile assets first to avoid potential time outs"
-  system("bundle exec rake assets:precompile")
+  system("cd spec/dummy && bundle exec rails assets:precompile")
   ["rspec spec"].each do |cmd|
     puts "Starting to run #{cmd}..."
     system("export DISPLAY=:99.0 && bundle exec #{cmd}")
