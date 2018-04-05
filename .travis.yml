@@ -2,6 +2,7 @@ dist: trusty
 sudo: required
 script: "bundle exec rake travis"
 before_script: ./bin/ci/before_build.sh
+after_failure: ./bin/ci/after_failure.sh
 services: mongodb
 rvm:
   - 2.5.0
