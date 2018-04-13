@@ -8,9 +8,9 @@
   background-position: 0 0;
 
   // https://www.iconfinder.com/iconsets/flags_gosquared
-  $locales: 'bf' 'bg' 'cs' 'da' 'de' 'el' 'en' 'es' 'et' 'fa-IR' 'fi-FI' 'fr'
-    'it' 'ja-JP' 'lt' 'mg' 'nb' 'nl' 'pl-PL' 'pt-BR' 'pt' 'ru' 'sk' 'sr' 'sv'
-    'uk' 'zh-CN';
+  $locales: 'bf' 'bg' 'cs' 'da' 'de' 'el' 'en' 'es' 'et' 'fa-IR' 'fi-FI' 'fr' 
+    'hr' 'it' 'ja-JP' 'lt' 'mg' 'nb' 'nl' 'pl-PL' 'pt-BR' 'pt' 'ru' 'sk' 'sr' 
+    'sv' 'uk' 'zh-CN';
 
   @each $locale in $locales {
     &.flag-#{$locale} {
