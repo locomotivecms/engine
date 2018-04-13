@@ -29,6 +29,7 @@ en:
       sv-FI: Swedish/Finnish
       fi-FI: Finnish
       da: Danish
+      hr: Croatian
 
     messages:
       confirm: Are you sure?
