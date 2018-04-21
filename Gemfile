@@ -38,7 +38,6 @@ group :test do
   gem 'selenium-webdriver',       '~> 3.11.0'
   gem 'puma',                     '~> 3.11.3'
 
-
   gem 'grape-entity-matchers',    github: 'salsify/grape-entity-matchers', branch: 'grape-entity-exposures'
   gem 'shoulda-matchers',         '~> 3.1.2'
   gem 'rails-controller-testing', '~> 1.0.2'

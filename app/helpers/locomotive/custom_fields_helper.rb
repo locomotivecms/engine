@@ -211,6 +211,7 @@ module Locomotive
 
     def custom_field_picker_options(field, slug)
       {
+        id:           slug,
         label_method: :_label,
         list_url:     content_entries_path(current_site, slug, format: :json),
         placeholder:  custom_field_t(:placeholder, field.type, name: field.label.downcase),

@@ -68,7 +68,7 @@ class Locomotive.Views.Inputs.ArrayView extends Backbone.View
     # don't add the new item if it's already in the list or if its id is null
     return if !@is_unique() || item_id == null
 
-    data = {}
+    data = { id: item_id }
     data[@$new_input.attr('name')] = item_id
 
     $.ajax
