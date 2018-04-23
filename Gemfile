@@ -10,11 +10,11 @@ gemspec
 # Git. Remember to move these dependencies to your gemspec before releasing
 # your gem to rubygems.org.
 
-# To use a debugger
-gem 'byebug', group: [:development, :test]
-
 group :test, :development do
   gem 'rspec-rails', '~> 3.7.2'
+
+  # To use a debugger
+  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end
 
 group :development do

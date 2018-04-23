@@ -43,6 +43,7 @@ module Locomotive
               Locomotive::VERSION,
               I18n.locale,
               template.instance_variable_get(:"@virtual_path"),
+              lookup_action,
               namespace,
               model_name,
               reflection_or_attribute_name].join('/')
