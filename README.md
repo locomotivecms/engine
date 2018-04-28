@@ -42,7 +42,7 @@ Here is a list of the main gems used to power the Locomotive platform:
 
 - Rails 5     - *web framework*
 - Bootstrap   - *UI framework*
-- Mongoid 6   - *Object-Document-Mapper for MongoDB 2/3*
+- Mongoid 6   - *Object-Document-Mapper for MongoDB 3*
 - Devise 4    - *Authentication*
 - Carrierwave - *Upload*
 - Pundit      - *Permissions*
