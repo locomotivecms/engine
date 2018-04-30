@@ -22,6 +22,8 @@ uk:
       sr: Serbian
       sv: Швецька
       el: Greek
+      hr: Croatian
+
     messages:
       confirm: Ви впевнені?
       unsaved_content_warning: "Ви впевнені, що хочете покинути цю сторінку(введені дані можуть бути незбережені)?"
