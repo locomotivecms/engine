@@ -191,13 +191,11 @@ describe Locomotive::Site do
 
   describe 'deleting in cascade' do
 
-    before(:each) do
-      @site = create(:site)
-    end
+    let!(:site) { create(:site) }
 
     it 'also destroys pages' do
       expect {
-        @site.destroy
+        site.destroy
       }.to change { Locomotive::Page.count }.by(-2)
     end
 

@@ -23,7 +23,6 @@ en:
       domain_taken: "%{value} is already taken"
       invalid_domain: "%{value} is invalid"
       needs_admin_account: "One admin account is required at least"
-      protected_page: "You can not remove index or 404 pages"
       extname_changed: "New file does not have the original extension"
       array_too_short: "is too small (minimum element number is %{count})"
       site:

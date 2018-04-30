@@ -134,28 +134,6 @@ describe Locomotive::Page do
 
   end
 
-  describe '#deleting' do
-
-    let(:page) { build(:page) }
-
-    it 'does not delete the index page' do
-      allow(page).to receive(:index?).and_return(true)
-      expect {
-        expect(page.destroy).to eq(false)
-        page.errors.first == 'You can not remove index or 404 pages'
-      }.to_not change(Locomotive::Page, :count)
-    end
-
-    it 'does not delete the 404 page' do
-      allow(page).to receive(:not_found?).and_return(true)
-      expect {
-        expect(page.destroy).to eq(false)
-        page.errors.first == 'You can not remove index or 404 pages'
-      }.to_not change(Locomotive::Page, :count)
-    end
-
-  end
-
   describe 'tree organization' do
 
     let!(:site)   { create(:site) }

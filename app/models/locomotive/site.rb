@@ -35,8 +35,8 @@ module Locomotive
     validates_presence_of :name
 
     ## callbacks ##
-    after_create    :create_default_pages!
-    after_destroy   :destroy_pages
+    after_create        :create_default_pages!
+    before_destroy      :destroy_pages
 
     ## behaviours ##
     accepts_nested_attributes_for :memberships, allow_destroy: true

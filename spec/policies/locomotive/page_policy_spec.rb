@@ -51,4 +51,27 @@ describe Locomotive::PagePolicy do
 
   end
 
+  describe "#destroy?" do
+
+    subject { policy.destroy? }
+
+    let(:membership) { build(:admin) }
+    it { is_expected.to eq true }
+
+    context 'index page' do
+
+      let(:page) { build(:page, slug: 'index', depth: 0) }
+      it { is_expected.to eq false }
+
+    end
+
+    context '404 page' do
+
+      let(:page) { build(:page, slug: '404', depth: 0) }
+      it { is_expected.to eq false }
+
+    end
+
+  end
+
 end

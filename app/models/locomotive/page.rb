@@ -44,7 +44,6 @@ module Locomotive
     before_create       :build_fullpath
     before_update       :build_fullpath, unless: :skip_callbacks_on_update
     before_save         :record_current_locale, unless: :skip_callbacks_on_update
-    before_destroy      :do_not_remove_index_and_404_pages
     after_save          :update_children, unless: :skip_callbacks_on_update
 
     ## validations ##
@@ -113,15 +112,6 @@ module Locomotive
     end
 
     protected
-
-    def do_not_remove_index_and_404_pages
-      return if self.site.nil? || self.site.destroyed?
-
-      if self.index_or_not_found?
-        self.errors[:base] << ::I18n.t('errors.messages.protected_page')
-        throw :abort
-      end
-    end
 
     # The title and slug of a new page should be the same in all
     # the locales of a site.
