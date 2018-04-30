@@ -1,0 +1,61 @@
+sl:
+  errors:
+    messages:
+      not_found: "ne obstaja"
+      already_confirmed: "je že bil potrjen"
+      not_locked: "ni bil zaklenjen"
+  devise:
+    failure:
+      locomotive_account:
+        unauthenticated: 'Pred nadaljevanjem je potrebna prijava.'
+        unconfirmed: 'Pred nadaljevanjem morate potrditi vaš račun.'
+        locked: 'Vaš račun je zaklenjen.'
+        invalid: 'Napačen elektronski naslov ali geslo.'
+        not_found_in_database: 'Napačen elektronski naslov ali geslo.'
+        no_membership: 'Vaš račun nima dostopa do urejanja tega mesta. Prosimo, kontaktirajte administratorja, ki vam lahko uredi dopstop.'
+        invalid_token: 'Napačen žeton prijave.'
+        timeout: 'Vaša seja je potekla. Prosimo, prijavite se ponovno.'
+        inactive: 'Vaš račun še ni bil aktiviran.'
+    sessions:
+      locomotive_account:
+        signed_in: 'Prijava uspešna.'
+        signed_out: 'Odjava uspešna.'
+    passwords:
+      locomotive_account:
+        send_instructions: 'V nekaj minutah boste prejeli elektronsko sporočilo z navodili za ponastavitev vašega gesla.'
+        updated: 'Uspešno ste spremenili geslo. Sedaj ste prijavljeni.'
+        invalid: 'Ponovno morate zaprositi za ponastavitev gesla.'
+    confirmations:
+      locomotive_account:
+        send_instructions: 'V nekaj minutah boste prejeli elektronsko sporočilo z navodili za potrjevanje vašega računa.'
+        confirmed: 'Vaš račun je bil uspešno potrjen. Sedaj ste prijavljeni.'
+    registrations:
+      locomotive_account:
+        signed_up: 'Uspešno ste se registrirali.'
+        updated: 'Spremembe na vašem računu so bile uspešne.'
+        destroyed: 'Vaš račun je bil uspešno izbrisan.'
+    unlocks:
+      locomotive_account:
+        send_instructions: 'V nekaj minutah boste prejeli elektronsko sporočilo z navodili za odklepanje vašega računa.'
+        unlocked: 'Vaš račun je bil uspešno odklenjen. Sedaj ste prijavljeni.'
+    mailer:
+      locomotive_account:
+        confirmation_instructions: 'Navodila za potrjevanje računa'
+        reset_password_instructions: 'Navodila za ponastavitev gesla'
+        unlock_instructions: 'Navodila za odklepanje računa'
+  locomotive:
+    devise_mailer:
+      common:
+        hello: Pozdravljeni
+      confirmation_instructions:
+        you_can_confirm_your_account_through_the_link_below: "Vaš račun lahko potrdite s klikom na spodnjo povezavo:"
+        confirm_my_account: "Potrdi račun"
+      reset_password_instructions:
+        reset_password_instruction: "Z vaše strani ali nekoga drugega je bila ahtevana ponastavitev gesla vašega računa. To lahko storite s klikom na spodnjo povezavo:"
+        change_my_password: "Spremeni geslo"
+        wrong_request_instruction: "Če tega niste zahtevali, prosimo, ignorirajte to sporočilo."
+        unchange_password_message: "Vaše geslo ne bo ponastavljeno dokler ne sledite zgornji povezavi in nastavite novega gesla."
+      unlock_instructions:
+        locked_account_message: "Vaš račun je bil zaradi nekajkratnih neuspelih poskusov prijave zaklenjen."
+        unlock_account_instruction: "Vaš račun lahko odklenete s klikom na spodnjo povezavo:"
+        unlock_my_account: "Odkleni račun"

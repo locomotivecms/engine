@@ -1,0 +1,13 @@
+bg_BG:
+  date:
+    formats:
+      default: "%m/%d/%Y"
+    today_at: "днес в"
+    yesterday_at: "вчера в"
+  time:
+    formats:
+      default: "%m/%d/%Y %H:%M"
+      time: "%H:%M"
+  pagination:
+    previous: "&laquo; Назад"
+    next: "Напред &raquo;"

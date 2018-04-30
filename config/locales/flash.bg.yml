@@ -1,0 +1,82 @@
+bg_BG:
+  flash:
+    locomotive:
+      pages:
+        create:
+          notice: "Страницата беше създадена успешно."
+          alert: "Страницата не беше създадена."
+        update:
+          notice: "Страницата беше успешно обновена."
+          alert: "Страницата не беше обновена."
+        sort:
+          notice: "Страниците бяха сортирани по ред."
+        destroy:
+          notice: "Страницата беше изтрита."
+      content_entries:
+        create:
+          notice: "Записът беше създаден успешно."
+          alert: "Записът не беше създаден."
+        update:
+          notice: "Записът беше обновен успешно."
+          alert: "Записът не беше обновен."
+        sort:
+          notice: "Записите бяха сортирани успешно."
+        destroy:
+          notice: "Записът беше изтрит."
+      content_types:
+        update:
+          notice: "Model was successfully updated."
+          alert: "Model was not updated."
+      current_site:
+        update:
+          notice: "Моят сайт беше обновен успешно."
+          alert: "Моят сайт не беше обновен."
+      accounts:
+        create:
+          notice: "Акаунтът е създаден успешно."
+          alert: "Акаунтът не беше създаден."
+      my_account:
+        update:
+          notice: "Моят акаунт беше обновен успешно."
+          alert: "Моят акаунт не беше обновен."
+      sites:
+        create:
+          notice: "Уебсайтът беше създаден успешно."
+          alert: "Уебсайтът не беше създаден."
+        destroy:
+          notice: "Уебсайтът беше успешно изтрит."
+      current_site_metafields:
+        update_all:
+          notice: "Site metafields were successfully updated."
+      memberships:
+        create:
+          notice: "Membership was successfully created."
+          alert: "Membership was not created."
+          already_created: "Account was already added the current site."
+      content_assets:
+        create:
+          notice: "Asset was successfully uploaded."
+          alert: "Asset was not uploaded."
+        bulk_create:
+          notice: "Assets were successfully uploaded."
+          alert: "Assets were not uploaded."
+        update:
+          notice: "Asset was successfully updated."
+          alert: "Asset was not updated."
+        destroy:
+          notice: "Asset was successfully deleted."
+          alert: "Asset was not deleted."
+      translations:
+        create:
+          notice: "Translation was successfully created."
+          alert: "Translation was not created."
+        update:
+          notice: "Translation was successfully updated."
+          alert: "Translation was not updated."
+        destroy:
+          notice: "Translation was successfully deleted."
+      custom_fields:
+        select_options:
+          update:
+            notice: "Field was successfully updated."
+            alert: "Field was not updated."

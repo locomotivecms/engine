@@ -1,0 +1,153 @@
+sl:
+  simple_form:
+    blank_required_fields: "Niste vpisali vseh obveznih polj"
+    titles:
+      locomotive:
+        account:
+          information: Glavni
+          api: API
+          credentials: Pristopni podatki
+        site:
+          information: Glavni
+          access_points: Točke dostopa
+          seo: SEO
+          advanced: Napredno
+          url_redirections: URL preusmeritev
+        page:
+          content: Vsebina
+          settings: Nastavitve
+          seo: SEO
+        content_entry:
+          content: Vsebina
+          advanced: Napredno
+          seo: SEO
+    labels:
+      locomotive:
+        content_entry:
+          _slug: Permalink
+          _visible: Vidno
+        content_type:
+          public_submission_accounts: "Obveščeni računi"
+        account:
+          api_key: API ključ
+          no_api_key: Nič
+          edit:
+            locale: Jezik vmesnika
+            password: Novo geslo
+            password_confirmation: Potrditev novega gesla
+        page:
+          seo_title: Naslov
+          target_klass_name: Model
+        editable_element:
+          region: Sekcije
+        site:
+          locales: Jeziki
+          timezone_name: Časovna zona
+          cache_enabled: Cache
+          private_access: "Vklopi omejitev z geslom"
+          password: "Globalno geslo"
+          new:
+            locales: Prvi jezik
+        membership:
+          edit:
+            role: Nova vloga
+        rte_input_link_form:
+          url: URL povezave
+          target: Cilj
+          title: Naslov
+        rte_input_image_form:
+          src: Vir
+          title: Naslov
+          alignment: Poravnava
+        image_resize_form:
+          width: Širina
+          height: Višina
+        rte_input_table_form:
+          cols: "Stolpci"
+          rows: "Vrstice"
+          head: "Glava?"
+          class_name: "CSS klasa"
+    hints:
+      locomotive:
+        account:
+          password: Najmanj 6 znakov
+        page:
+          handle: "Enoznačna oznaka za pridobitev strani"
+          published: "Samo prijavljeni uporabniki lahko vidijo neobjavljene strani."
+          templatized: "Uporabi stran kot predlogo za definiran model"
+          cache_enabled: "Kadar vklopljeno, se bo stran shranila v cache, dokler ne pride do spremembe v vsebini."
+          listed: "Naj se stran pokaže v navigaciji?"
+          target_klass_name: "Tip vsebine za katero bo ta stran kot predloga."
+          seo_title: "Določite naslov strani, ki bo uporabljen kot vrednost naslova v glavi strani. Pustite prazno, če želite uporabiti privzeto vrednost iz nastavitev spletnega mesta."
+          meta_keywords: "Prepiše meta ključne besede v glavi strani. Ključne besede ločite z vejico."
+          meta_description: "Prepiše meta opis v glavi strani."
+          is_layout: "Če DA, bo stran na voljo kot predloga za druge strani."
+          allow_layout: "Omogoči urejanje postavitve na strani."
+        site:
+          locales: "Primi in spusti zastavico na prvo mesto, da bi postal jezik primarni jezik."
+          seo_title: "Globalna vrednost naslova, ki bo uporabljen v glavi strani."
+          meta_keywords: "Meta ključne besede v glavi strani. Ključne besede ločene z vejico. Potrebno za SEO strani."
+          meta_description: "Meta opis v glavi strani. Potrebno za SEO strani."
+          robots_txt: "Vsebina <span class='code'>/robots.txt</span> datoteke. Več informacij na strani: <a href='http://www.w3.org/TR/html4/appendix/notes.html#h-B.4.1.1'>url</a>"
+          domains: "Dodatne domene. Več informacij <a href=\"https://locomotive-v3.readme.io/docs/domains\">tukaj</a>"
+          memberships: "K urejanju spletnega mesta lahko povabite druge uporabnike."
+          cache_enabled: "Kadar vklopljeno, se bo stran shranila v cache, dokler ne pride do spremembe v vsebini. Onemogočanje je možno na posamezni strani."
+          redirect_to_first_domain: "Kadar vklopljeno, bodo vse strani za zgornje domene preusmerjene na privzeto domeno."
+          url_redirections: "Preusmerite (301) zapise na strani, ki ste jih ustvarili v administraciji. Izvor in ciljni URL-ji so ločeni s <u>presledkom</u>"
+          private_access: Spletno mesto lahko zaklenete z geslom.
+          password: Geslo, ki ga je potrebno vnesti za ogled spletnega mesta.
+          new:
+            locales: "Ko bo spletno mesto ustvarjeno lahko dodate več jezikov."
+        translation:
+          key: "Ne uporabi vezaja, temveč podčrtaj. Npr. pozdravno_sporocilo"
+        content_entry:
+          _slug: "Način na katerega bo ustvarjan URL strani, ki deluje kot predloga za to vrsto vsebine (npr .: \"template_page / {{your_object._permalink}})\"."
+          _visible: "Privzeto se bo zapis pokazal na strani. Lahko se uporabi kot nastavitev objavljanja."
+          seo_title: "Vrednost bo nadomestila SEO naslov strani iz predloge, ki je vezana na model."
+          meta_keywords: "Prepiše meta ključne besede v glavi strani. Ključne besede ločite z vejico."
+          meta_description: "Prepiše meta opis v glavi strani. "
+        content_type:
+          public_submission_accounts: "Ko je dodan nov zapis, pošji obvestilo na spodnje račune."
+        image_resize_form:
+          width: "v px"
+          height: "v px"
+    placeholders:
+      locomotive:
+        site:
+          domains: "Primer: domena.com"
+          url_redirections: "Primer: moj-naslov nov-testni-naslov"
+        content_type_entry_field:
+          select_options: "Naslov opcije"
+    options:
+      locomotive:
+        rte_input_link_form:
+          target:
+            not_set: "ni nastavljeno"
+            self: "Odpri v istem oknu"
+            blank: "Odpri v novem oknu"
+        rte_input_image_form:
+          alignment:
+            default: Privzeto
+            left: Levo
+            right: Desno
+    buttons:
+      defaults:
+        locomotive:
+          create: Ustvari
+          update: Shrani
+          submit: OK
+          cancel: Prekliči
+          delete: Briši
+          close: Zapri
+          loading_text: "Shranjujem..."
+          or: ali
+      locomotive:
+        account:
+          new_api_key: Ponovno ustvari
+        image_resize_form:
+          loading_text: Spreminjanje velikosti...
+          submit: Spremeni velikost
+        site:
+          delete: Briši to mesto
+        page:
+          delete: Briši

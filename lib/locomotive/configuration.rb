@@ -1,7 +1,8 @@
 module Locomotive
   class Configuration
 
-    @@default_locales = %w{en de fr bg ca cs da el es et fa-IR fi-FI it ja-JP lt nb nl pl-PL pt pt-BR ru sk sr sv sv-FI uk zh-CN}
+    @@default_locales = %w{en de fr bg cs da el es ca fa-IR fi-FI it ja-JP lt nl pl-PL pt pt-BR ru sv sv-FI uk zh-CN}
+    @@site_locales    = @@default_locales + %w{hr et nb sk sl sr}
 
     @@defaults = {
       name:                         'Locomotive',
@@ -11,7 +12,7 @@ module Locomotive
       reserved_slugs:               %w{stylesheets javascripts assets admin locomotive images api pages edit},
       reserved_domains:             [],
       locales:                      @@default_locales,
-      site_locales:                 @@default_locales,
+      site_locales:                 @@site_locales,
       cookie_key:                   '_locomotive_session',
       enable_logs:                  false,
       enable_admin_ssl:             false,

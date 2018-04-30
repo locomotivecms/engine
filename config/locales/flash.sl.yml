@@ -1,0 +1,82 @@
+sl:
+  flash:
+    locomotive:
+      pages:
+        create:
+          notice: "Stran je bila uspešno dodana."
+          alert: "Stran ni bila dodana."
+        update:
+          notice: "Stran je bial uspešno spremenjena."
+          alert: "Stran ni bila spremenjena."
+        sort:
+          notice: "Strani so bile uspešno razvrščene."
+        destroy:
+          notice: "Stran je bila uspešno izbrisana."
+      content_entries:
+        create:
+          notice: "Zapis je bil uspešno ustvarjen."
+          alert: "Zapis ni bil ustvarjen."
+        update:
+          notice: "Zapis je bil uspešno spremenjen."
+          alert: "Zapis ni bil spremenjen."
+        sort:
+          notice: "Zapisi so bili uspešno razvrščeni."
+        destroy:
+          notice: "Zapis je bil uspešno izbrisan."
+      content_types:
+        update:
+          notice: "Model je bil uspešno spremenjen."
+          alert: "Model ni bil spremenjen."
+      current_site:
+        update:
+          notice: "Moje mesto je bilo uspešno spremenjeno."
+          alert: "Moje mesto ni bilo spremenjeno."
+      accounts:
+        create:
+          notice: "Račun je bil uspešno ustvarjen."
+          alert: "Račun ni bil ustvarjen."
+      my_account:
+        update:
+          notice: "Moj račun je bil uspešno spremenjen."
+          alert: "Moj račun ni bil spremenjen."
+      sites:
+        create:
+          notice: "Mesto je bilo uspešno ustvarjeno."
+          alert: "Mesto ni bilo ustvarjeno."
+        destroy:
+          notice: "Mesto je bilo izbrisano."
+      current_site_metafields:
+        update_all:
+          notice: "Meta podatki mesta so bili uspešno spremenjeni."
+      memberships:
+        create:
+          notice: "Članstvo je bilo uspešno ustvarjeno."
+          alert: "Članstvo ni bilo ustvarjeno."
+          already_created: "Račun je že bil dodan trenutnemu mestu."
+      content_assets:
+        create:
+          notice: "Datoteka je bila uspešno naložena."
+          alert: "Datoteka ni bila naložena."
+        bulk_create:
+          notice: "Datoteke so bile uspešno naložene."
+          alert: "Datoteke niso bile naložene."
+        update:
+          notice: "Datoteka je bila uspešno spremenjena."
+          alert: "Datoteka ni bila spremenjena."
+        destroy:
+          notice: "Datoteka je bila uspešno izbrisana."
+          alert: "Datoteka ni bila izbrisana."
+      translations:
+        create:
+          notice: "Prevod je bil uspešno dodan."
+          alert: "Prevod ni bil dodan."
+        update:
+          notice: "Prevod je bil uspešno spremenjen."
+          alert: "Prevod ni bil spremenjen."
+        destroy:
+          notice: "Prevod je bil uspešno izbrisan."
+      custom_fields:
+        select_options:
+          update:
+            notice: "Polje je bilo uspešno spremenjeno."
+            alert: "Polje ni bilo spremenjeno."

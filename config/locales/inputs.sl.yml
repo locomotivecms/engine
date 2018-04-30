@@ -1,0 +1,19 @@
+sl:
+  locomotive:
+    inputs:
+      file:
+        none: ni datoteke
+        browse: Brskaj
+        choose: Izberi
+        change: Spremeni
+        delete: Briši
+        cancel: Prekliči
+        select_local_file: Naloži datoteko
+        select_content_asset: Izberi med datotekami
+      array:
+        new: Novo
+        add: Dodaj
+        edit: Urejaj
+      toggle:
+        on_text: "Da"
+        off_text: "Ne"

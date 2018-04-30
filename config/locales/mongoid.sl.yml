@@ -1,0 +1,47 @@
+sl:
+  mongoid:
+    errors:
+      messages:
+        blank_in_locale: "ne sme biti prazno"
+      models:
+        locomotive/page:
+          attributes:
+            layout_id:
+              index_can_not_extend_parent: "Index stran ne sme imeti starša kot predlogo."
+        locomotive/membership:
+          attributes:
+            account:
+              unique_account: "je že v uporabi"
+            email:
+              unique_account: "je že v uporabi"
+    attributes:
+      locomotive/content_entry:
+        created_at: Ustvarjeno ob
+  errors:
+    messages:
+      domain_taken: "%{value}je že zasedeno"
+      invalid_domain: "%{value}je neveljavno"
+      needs_admin_account: "Potreben je vsaj en administratorki račun"
+      protected_page: "Index ali 404 stran morata obstajati"
+      extname_changed: "Nova datoteka nima originalne končnice"
+      array_too_short: "premajhno (minimalno število je %{count})"
+      site:
+        default_locale_removed: Prejšnja privzeta lokalizacija ne mora biti takoj odstranjena
+        wrong_timezone_name: "Napačno ime časovne zone"
+      page:
+        liquid_syntax: "Napaka v Liquid sintaksi (' %{error}' v '%{fullpath}')"
+        liquid_extend: "Stran '%{fullpath}' razširja predlogo, ki ne obstaja"
+        liquid_translation: "Stran '%{fullpath}' razširja predlogo, ki nima prevoda"
+      too_few_custom_fields: "Prisotno mora biti vsaj eno polje po meri"
+      security: "predstavlja varnostni problem"
+  attributes:
+    defaults:
+      pages:
+        index:
+          title: "Domača stran"
+          body: "Vsebian domače strani"
+        '404':
+          title: "Strani ni bilo mogoče najti"
+          body: "Vsebina strani 404"
+        other:
+          body: "{% razširi 'starša' %}"

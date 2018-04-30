@@ -1,0 +1,332 @@
+sl:
+  locomotive:
+    locales:
+      en: Angleško
+      de: Nemško
+      fr: Francosko
+      pl: Poljsko
+      pt: Portugalsko
+      pt-BR: "Brazilsko"
+      it: Italijansko
+      nl: Nizozemsko
+      nb: Norveško
+      es: Špansko
+      ru: Rusko
+      et: Estonsko
+      lt: Litvansko
+      ja: Japonsko
+      zh-CN: Kitajsko
+      cs: Češko
+      bg: Bulgarsko
+      sk: Slovaško
+      sr: Srbsko
+      sv: Švedsko
+      el: Grško
+    messages:
+      confirm: Ste prepričani?
+      unsaved_content_warning: "Zares želite oditi s te strani? Podatki morda ne bodo shranjeni."
+    shared:
+      header:
+        welcome: Pozdravljeni, %{name}
+        sites: Moja mesta
+        account: Nastavitve računa
+        see: Poglej spletno stran
+        help: Pomoč
+        logout: Odjava
+      sidebar:
+        dashboard: Kontrolna plošča
+        assets: Datoteke
+        pages: Strani
+        settings: Splošne nastavitve
+        metafields: Lastnosti
+        developers: Razvijalci
+        content_types:
+          title: Modeli
+        translations: Prevodi
+      list:
+        untranslated: neprevedeno
+        created_at: "Ustvarjeno pred %{distance}"
+        created_by: "Ustvaril %{who}pred %{distance}"
+        updated_at: "Nazadanje spremenjeno pred %{distance}"
+        updated_by: "Nazadnje spremenil %{who}pred %{distance}"
+      rte:
+        toolbar:
+          table:
+            merge: Združi
+            insert_row_before: Vstavi vrstico pred
+            insert_row_after: Vstavi vrstico za
+            insert_col_before: Vstavi stolpec pred
+            insert_col_after: Vstavi stolpec za
+            delete_row: Briši vrstico
+            delete_col: Briši stolpec
+    errors:
+      '500':
+        title: Aplikacijska napaka
+        message: "Nekaj je šlo narobe. Prosimo, kontaktirajte administratorja."
+      '404':
+        title: Stran ne obstaja.
+        message: "Zahtevana stran ne obstaja."
+      no_site:
+        title: Mesto ne obstaja
+        next: "Naprej &rarr;"
+        message:
+          create_account: "Prosimo, najprej ustvarite račun nato mesto"
+          add_domain: "Dodaj <strong>%{host}</strong> na spisek domen enega izmed vaših spletnih mest."
+          sign_in: "Prosimo, najprej se prijavite, nato dodajte <strong>%{host}</strong> na spisek domen enega izmed vaših spletnih mest."
+    notifications:
+      new_content_entry:
+        subject: "[%{domain}][%{type}] nov zapis"
+        title: "Živjo %{name}, %{date}je bila ustvarjena nova instanca za spletno mesto <b>%{domain}</b>"
+        type: "Model: %{type}"
+    activity:
+      site:
+        created: 'ustvaril mesto'
+      page:
+        created: 'ustvaril %{page}stran'
+        updated: 'spremenil %{page}stran'
+        destroyed: 'izbrisal %{page}stran'
+        sorted: 'razvrstil strani'
+      editable_element:
+        updated_bulk: 'spremenil vsebino strani %{pages}'
+      content_entry:
+        created: 'dodal %{entry}za %{content_type}'
+        created_public: 'dodal %{entry}za %{content_type}iz javnega obrazca'
+        updated: 'spremenil %{entry}iz %{content_type}'
+        destroyed: 'izbrisal %{entry}iz %{content_type}'
+        sorted: 'razvrstil %{content_type}'
+      content_asset:
+        created_bulk: 'naložil %{count}datotek'
+        destroyed: 'izbrisal datoteko %{name}'
+      membership:
+        created: 'dodal %{name}'
+      site_metafields:
+        updated: 'spremenil %{label}'
+    pagination:
+      first: "&laquo;"
+      last: "&raquo;"
+      previous: "&lsaquo;"
+      next: "&rsaquo;"
+      truncate: "&hellip;"
+    custom_fields:
+      select_options:
+        edit:
+          title: "%{type} &mdash; možnosti urejenja"
+          back: "Nazaj na zapis"
+        option:
+          edit: Uredi
+          apply: Uveljavi
+          cancel: Prekliči
+      types:
+        belongs_to:
+          edit: Uredi
+          placeholder: "Izberi %{name}"
+          searching: Iskanje v teku ...
+          no_matches: Ni zadetkov
+          too_short: Prosimo, vnesite 1 znak ali več
+        many_to_many:
+          placeholder: "Izberi enega izmed %{name}"
+          searching: Iskanje v teku ...
+          no_matches: Ni zadetkov
+          too_short: Prosimo, vnesite 1 znak ali več
+        select:
+          edit: Možnosti urejanja
+        file:
+          delete_file: Izbriši datoteko
+        has_many:
+          new_label: Dodaj
+      form:
+        required: Obvezno
+        default_label: Ime polja
+        select_options:
+          ask_name: "Vnesite naslov opcije"
+    dashboard:
+      show:
+        title: 'Kontrolna plošča'
+      url:
+        title: "URL mesta:"
+        visit: 'Poglej'
+        change_domain: 'Uporabi lastno domeno'
+      activity:
+        title: Aktivnost
+        unknown_account: Nekdo
+        load_more: Nalagam več
+        loading_activity_feed: Nalagam ...
+    sessions:
+      new:
+        email: "E-pošta"
+        link: "Pozabljeno geslo"
+        password: "Geslo"
+        sign_up: Nimate računa?
+        submit: Prijava
+        title: Prijava
+    registrations:
+      new:
+        confirm_password: Potrdi geslo
+        description: "Za začetek uporabe si ustvarite račun"
+        sign_in: Že imate račun?
+        submit: Registracija
+        title: Registracija
+    passwords:
+      new:
+        description: "Vnesite vaš e-mail naslov na katerega bodo poslana navodila za ponastavitev gesla."
+        link: "Nazaj na prijavno stran"
+        email: "Vaša e-pošta"
+        submit: "Pošlji"
+        title: "Ste pozabili geslo"
+      edit:
+        description: "Vnesite novo geslo"
+        link: "Nazaj na prijavno stran"
+        password: "Vaše novo geslo"
+        password_confirmation: "Potrdi geslo"
+        submit: "Spremeni geslo"
+        title: "Ponastavi geslo"
+    pages:
+      index:
+        title: 'Strani'
+        new: 'Nova stran'
+        list_content_entries: "Spisek %{name}"
+        new_content_entry: "Nov %{name}"
+      new:
+        title: Nova stran
+        help: "Izpolnite obrazec za novo stran. Opozorilo: privzeto stran ni objavljena."
+      edit:
+        title: "%{title} &mdash; <small>%{fullpath}</small>"
+      form:
+        no_layout: Izberite postavitev nadrejene strani
+        redirect_type:
+          permanent: "Stalna (301)"
+          temporary: "Začasna (302)"
+    editable_elements:
+      index:
+        redirection_error: "Urejanje strani ni mogoče"
+        iframe:
+          buttons:
+            edit: uredi
+      index_without_preview:
+        title: "%{title} &mdash; <small>%{fullpath}</small>"
+      edit:
+        settings_link: 'Nastavitve'
+        no_editable_elements: 'Ni elementov z možnostjo urejanja'
+        parsing_error: "<b> Se opravičujemo, vendar vaše predloge ni bilo mogoče razčleniti. </b> <br/> Prepričajte se, da spletna stran deluje v Wagon"
+        blocks:
+          all: Vse
+          unknown: Nepoznano
+      form:
+        model:
+          buttons:
+            list: Upravljaj
+            edit: Urejaj
+    sites:
+      index:
+        description: "Za urejanje spletnega mesta izberite enega od mest do katerih imate dostop"
+        new: Dodaj spletno mesto
+        title: Moja spletna mesta
+      new:
+        description: "Izpolnite obrazec in pritisnite Pošlji. Ustvarjeno bo novo spletno mesto."
+        go_back: Nazaj
+        submit: Ustvari spletno mesto
+        title: Ustvari novo spletno mesto
+      site:
+        no_domain: Ni domene
+    current_site:
+      edit:
+        title: Urejanje trenutnega mesta
+      form:
+        main:
+          new_membership: "Dodaj račun"
+        advanced:
+          destroy: "Izbriši to spletno mesto"
+          confirm_destroy: "Za potrditev vnesite ime spletnega mesta"
+    current_site_metafields:
+      index:
+        title: Lastnosti urejanja
+        no_metafields: Za spletno mesto ni meta polj.
+    memberships:
+      roles:
+        admin: Administrator
+        designer: Dizajner
+        author: Avtor
+      new:
+        title: Novo članstvo
+        help: "Prosimo dodajte e-poštni naslov. Če ne obstaja, boste preusmerjeni na obrazec za dodajanje novega računa."
+        back: "Nazaj na nastavitve mesta"
+      edit:
+        title: "Uredi članstvo za <b>%{name}</b>"
+        back: "Nazaj na nastavitve mesta"
+    accounts:
+      new:
+        title: Nov račun
+        help: "Izpolnite obrazec novega računa"
+    my_account:
+      edit:
+        title: Urejanje računa
+      form:
+        api:
+          api_key: "Uporabljeno v Wagon za uvedbo spletnega mesta (preveri config/deploy.yml)."
+    translations:
+      untranslated: "Brez prevoda: %{list}"
+      index:
+        title: Prevodi
+        no_items: "Prevodi ne obstajajo"
+        search_placeholder: "Vnesi ključ ali prevod"
+        help: "Prevedi vse zapise z oranžno (deloma prevedeno) ali rdečo (brez prevoda) oznako"
+        filter_by:
+          all: Vse
+          done: Prevedeno
+          partially: Delno prevedeno
+          none: Ni prevedeno
+      edit:
+        title: "Prevodi &mdash; urejanje %{key}"
+      form:
+        not_translated: "Ni prevedeno"
+    content_assets:
+      index:
+        title: "Datoteke"
+        upload: Dodaj datoteke
+      edit_in_drawer:
+        buttons:
+          resize: "Spremeni velikost"
+          crop: "Obreži"
+          apply: "Uveljavi"
+      dropzone:
+        instructions: "<strong>Spustite datoteke iz svoje računalnika tu </strong><br/>Lahko tudi"
+        browse: "brskaj za datoteko"
+      list:
+        no_items: "Trenutno ni datotek"
+        buttons:
+          select: "Izberi"
+          edit: "Urejaj"
+      nav:
+        types:
+          all: Vse
+          pdf: PDF
+          image: slike
+          media: bogati mediji
+          others: drugo
+      search_form:
+        placeholder: Išči po imenu datoteke
+    public_submission_accounts:
+      edit:
+        title: "%{name}&mdash; Nastavitve obveščanja "
+    content_entries:
+      index:
+        title: '%{type}'
+        download: prenesi zapise
+        new: nov zapis
+        edit_notification_settings: Spremeni nastavitve obveščanja
+        search_placeholder: "Vnesite ključne besede iskanja"
+        group_by:
+          all: Vse
+      list:
+        no_items: "Trenutno ni zapisov. Pritisnite <a href=\"%{url}\"> tu </a> za nov zapis."
+      new:
+        title: '%{type} &mdash; nov zapis'
+      edit:
+        title: '%{type} &mdash; urejanje zapisa'
+      shared:
+        back: '&larr; Nazaj na spisek'
+    developers_documentation:
+      show:
+        title: Razvijalci
+        wagon: Wagon
+        api: API

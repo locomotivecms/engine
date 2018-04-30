@@ -1,0 +1,61 @@
+bg_BG:
+  errors:
+    messages:
+      not_found: "не съществува"
+      already_confirmed: "е потвърден/а"
+      not_locked: "не беше заключен"
+  devise:
+    failure:
+      locomotive_account:
+        unauthenticated: 'Трябва да влезете във Вашия акаунт, за да продължите.'
+        unconfirmed: 'Трябва да потвърдите Вашия акаунт, преди да продължите.'
+        locked: 'Вашият акаунт е заключен.'
+        invalid: 'Невалиден имейл адрес или парола.'
+        not_found_in_database: 'Невалиден имейл адрес или парола.'
+        no_membership: 'Вашият акаунт не притежава права за достъп до този уебсайт. Моля, свържете се с администратора на сайта, за да получите достъп.'
+        invalid_token: 'Невалиден токен.'
+        timeout: 'Вашата сесия изтече. Влезте във Вашия профил отново, за да продължите.'
+        inactive: 'Вашият акаунт е все още неактивен.'
+    sessions:
+      locomotive_account:
+        signed_in: 'Влязохте успешно.'
+        signed_out: 'Излязохте успешно.'
+    passwords:
+      locomotive_account:
+        send_instructions: 'До няколко минути ще получите имейл с инструкции как да възобновите Вашата парола.'
+        updated: 'Вашата парола беше променена. Вече сте във Вашия акаунт.'
+        invalid: 'Трябва да поискате нова парола.'
+    confirmations:
+      locomotive_account:
+        send_instructions: 'До няколко минути ще получите имейл с инструкции как да активирате Вашия акаунт.'
+        confirmed: 'Акаунтът е активиран. Вече сте във Вашия профил.'
+    registrations:
+      locomotive_account:
+        signed_up: 'Успешна регистрация.'
+        updated: 'Вашият акаунт е обновен.'
+        destroyed: 'Вашият акаунт е терминиран. Надяваме се да се върнете скоро!'
+    unlocks:
+      locomotive_account:
+        send_instructions: 'До няколко минути ще получите имейл с инструкции как да отключите Вашия акаунт.'
+        unlocked: 'Акаунтът е отключен. Вече сте във Вашия профил.'
+    mailer:
+      locomotive_account:
+        confirmation_instructions: 'Инструкции за съгласие с Общите условия'
+        reset_password_instructions: 'Обновете инструкциите за паролата'
+        unlock_instructions: 'Инструкции за отключване'
+  locomotive:
+    devise_mailer:
+      common:
+        hello: Здравейте
+      confirmation_instructions:
+        you_can_confirm_your_account_through_the_link_below: "Можете да потвърдите Вашия акаунт чрез линка по-долу:"
+        confirm_my_account: "Потвърждавам акаунта"
+      reset_password_instructions:
+        reset_password_instruction: "Получена е заявка за промяна на Вашата парола. Можете да го направите, като кликнете на линка по-долу:"
+        change_my_password: "Промяна на паролата"
+        wrong_request_instruction: "Ако е станала грешка, игнорирайте настоящия имейл."
+        unchange_password_message: "Вашата парола не може да бъде променена преди да кликнете на линка по-горе и да създадете нова."
+      unlock_instructions:
+        locked_account_message: "Вашият акаунт е блокиран поради твърде много неуспешни опити за вход."
+        unlock_account_instruction: "Кликнете на линка, за да отключите Вашия акаунт:"
+        unlock_my_account: "Отключване на акаунта"

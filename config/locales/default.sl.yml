@@ -1,0 +1,13 @@
+sl:
+  date:
+    formats:
+      default: "%d.%m.%Y"
+    today_at: "danes ob"
+    yesterday_at: "včeraj ob"
+  time:
+    formats:
+      default: "%d.%m.%Y %H:%M"
+      time: "%H:%M"
+  pagination:
+    previous: "&laquo; Nazaj"
+    next: "Naprej &raquo;"

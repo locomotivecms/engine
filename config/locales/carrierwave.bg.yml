@@ -1,0 +1,4 @@
+bg_BG:
+  carrierwave:
+    errors:
+      integrity: 'е формат, който не се поддържа.'

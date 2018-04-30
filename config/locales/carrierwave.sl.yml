@@ -1,0 +1,4 @@
+sl:
+  carrierwave:
+    errors:
+      integrity: 'ni dovoljen tip datoteke.'

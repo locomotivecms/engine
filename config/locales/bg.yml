@@ -1,0 +1,332 @@
+bg_BG:
+  locomotive:
+    locales:
+      en: English
+      de: German
+      fr: French
+      pl: Polish
+      pt: Portuguese
+      pt-BR: "Brazilian Portuguese"
+      it: Italian
+      nl: Dutch
+      nb: Norwegian
+      es: Spanish
+      ru: Russian
+      et: Estonian
+      lt: Lithuanian
+      ja: Japanese
+      zh-CN: Chinese
+      cs: Czech
+      bg: Български
+      sk: Slovak
+      sr: Serbian
+      sv: Swedish
+      el: Greek
+    messages:
+      confirm: Сигурни ли сте?
+      unsaved_content_warning: "Потвърдете, че желаете да излезете от страницата - въведените данни може да не се съхранят."
+    shared:
+      header:
+        welcome: Здравейте, %{name}
+        sites: Моите сайтове
+        account: Настройки на профила
+        see: Вижте уебсайта
+        help: Помощ
+        logout: Изход
+      sidebar:
+        dashboard: Dashboard
+        assets: Assets
+        pages: Pages
+        settings: General Settings
+        metafields: Properties
+        developers: Developers
+        content_types:
+          title: Models
+        translations: Translations
+      list:
+        untranslated: untranslated
+        created_at: "Създадено преди %{distance} "
+        created_by: "Създадено преди %{distance} от %{who}"
+        updated_at: "Последна промяна преди %{distance}"
+        updated_by: "Последна промяна преди %{distance} от %{who}"
+      rte:
+        toolbar:
+          table:
+            merge: Merge
+            insert_row_before: Insert row before
+            insert_row_after: Insert row after
+            insert_col_before: Insert column before
+            insert_col_after: Insert column after
+            delete_row: Delete row
+            delete_col: Delete column
+    errors:
+      '500':
+        title: Application Error
+        message: "Сажаляваме, но възникна грешка. Свържете се с администратора на сайта."
+      '404':
+        title: Страницата не е открита
+        message: "Страницата, която търсите не съществува."
+      no_site:
+        title: Уебсайтът не съществува
+        next: "Напред &rarr;"
+        message:
+          create_account: "Първо трябва да регистрирате акаунт, и след това да добавите уебсайт."
+          add_domain: "Добавете <strong>%{host}</strong>в списъка с домейни към някой от Вашите уебсайтове."
+          sign_in: "Първо влезте във Вашия акаунт. След това добавете <strong>%{host}</strong> в списъка с домейни към някой от Вашите уебсайтове."
+    notifications:
+      new_content_entry:
+        subject: "[%{domain}][%{type}] new entry"
+        title: "Здравейте %{name}, на %{date} беше създадено резервно копие на сайта <b>%{domain}</b>"
+        type: "Model: %{type}"
+    activity:
+      site:
+        created: 'създаде уебсайта'
+      page:
+        created: 'създаде страница %{page} '
+        updated: 'обнови страница %{page}'
+        destroyed: 'изтри страница %{page}'
+        sorted: 'списък страници'
+      editable_element:
+        updated_bulk: 'редактира съдържанието на %{pages}'
+      content_entry:
+        created: 'добави %{entry} към %{content_type}'
+        created_public: 'добави %{entry} към %{content_type} чрез public form модул'
+        updated: 'обнови %{entry} от %{content_type}'
+        destroyed: 'изтри %{entry} от %{content_type}'
+        sorted: 'списък %{content_type}'
+      content_asset:
+        created_bulk: 'uploaded %{count} asset(s)'
+        destroyed: 'deleted the %{name} asset'
+      membership:
+        created: 'добави %{name} към уебсайта'
+      site_metafields:
+        updated: 'updated %{label}'
+    pagination:
+      first: "&laquo;"
+      last: "&raquo;"
+      previous: "&lsaquo;"
+      next: "&rsaquo;"
+      truncate: "&hellip;"
+    custom_fields:
+      select_options:
+        edit:
+          title: "%{type} &mdash; опции за редакция"
+          back: "Обратно към началото"
+        option:
+          edit: Редакция
+          apply: Обнови
+          cancel: Отказ
+      types:
+        belongs_to:
+          edit: Редакция
+          placeholder: "Изберете %{name}"
+          searching: Търсене..
+          no_matches: Няма открити резултати
+          too_short: Моля въведете 1 или повече знаци
+        many_to_many:
+          placeholder: "Изберете от %{name}"
+          searching: Търсене..
+          no_matches: Няма открити резултати
+          too_short: Моля въведете 1 или повече знаци
+        select:
+          edit: Edit options
+        file:
+          delete_file: Delete file
+        has_many:
+          new_label: Добавяне на нов
+      form:
+        required: Задължително
+        default_label: Име на поле
+        select_options:
+          ask_name: "Type the label of the option"
+    dashboard:
+      show:
+        title: 'Dashboard'
+      url:
+        title: "URL на уебсайта:"
+        visit: 'Вижте'
+        change_domain: 'Използвайте Ваш домейн'
+      activity:
+        title: Хронология
+        unknown_account: Някой
+        load_more: Loading more
+        loading_activity_feed: Loading...
+    sessions:
+      new:
+        email: "Имейл"
+        link: "Забравена парола"
+        password: "Парола"
+        sign_up: Нямате акаунт?
+        submit: Вход
+        title: Вход
+    registrations:
+      new:
+        confirm_password: Потвърдете паролата
+        description: "Създаване на нов акаунт и начало Locomotive."
+        sign_in: Имате регистрация?
+        submit: Регистрация
+        title: Регистрация
+    passwords:
+      new:
+        description: "Въведете Вашия имейл и ще получите инструкции за обновяване на паролата."
+        link: "Обратно към страницата за вход"
+        email: "Вашия имейл"
+        submit: "Потвърждение"
+        title: "Забравена парола"
+      edit:
+        description: "Въведете новата парола"
+        link: "Обратно към страницата за вход"
+        password: "Вашата нова парола"
+        password_confirmation: "Потвърждение на паролата"
+        submit: "Обновяване на паролата"
+        title: "Reset password"
+    pages:
+      index:
+        title: 'Страници'
+        new: 'Нова страница'
+        list_content_entries: "Списък %{name}"
+        new_content_entry: "Създаване на %{name}"
+      new:
+        title: Нова страница
+        help: "Моля попълнете формуляра по-долу, за да създадете страница. По подразбиране, страницата не е публикувана."
+      edit:
+        title: "%{title} &mdash; <small>%{fullpath}</small>"
+      form:
+        no_layout: Използвайте layout от настоящата страница
+        redirect_type:
+          permanent: "Permanent (301)"
+          temporary: "Temporary (302)"
+    editable_elements:
+      index:
+        redirection_error: "Не е позволено редактиране на външни страници."
+        iframe:
+          buttons:
+            edit: редакция
+      index_without_preview:
+        title: "%{title} &mdash; <small>%{fullpath}</small>"
+      edit:
+        settings_link: 'Настройки'
+        no_editable_elements: 'No editable elements found'
+        parsing_error: "<b>We are sorry but we couldn't parse the template of your page.</b><br/>Please make sure your template first works with Wagon."
+        blocks:
+          all: All
+          unknown: Unknown
+      form:
+        model:
+          buttons:
+            list: Manage
+            edit: Edit
+    sites:
+      index:
+        description: "Всички уебсайтове, до които имате достъп са изброени по-долу. Кликнете на някой от тях и ще бъдете пренасочени към страницата за управление на сайта."
+        new: Добавете нов сайт
+        title: Моите сайтове
+      new:
+        description: "Попълнете информацията по-долу и потвърдете. Ще създадете нов уебсайт."
+        go_back: Обратно
+        submit: Добавете сайт
+        title: Добавете нов сайт
+      site:
+        no_domain: Няма домейн
+    current_site:
+      edit:
+        title: Редакция на текущия сайт
+      form:
+        main:
+          new_membership: "Добавете акаунт"
+        advanced:
+          destroy: "Destroy this site"
+          confirm_destroy: "Моля потвърдете като въведете името на уебсайта"
+    current_site_metafields:
+      index:
+        title: Editing properties
+        no_metafields: There are no metafields defined for your site.
+    memberships:
+      roles:
+        admin: Administrator
+        designer: Designer
+        author: Author
+      new:
+        title: New membership
+        help: "Моля въведете имейл към акаунта. Ако няма такъв, ще бъдете пренасочени към страницата за регистрация."
+        back: "Обратно към настройките на сайта"
+      edit:
+        title: "Редактирайте потребителския акаунт на <b>%{name}</b>"
+        back: "Обратно към настройките на сайта"
+    accounts:
+      new:
+        title: Нов акаунт
+        help: "Попълнете данните по-долу, за да създадете нов акаунт."
+    my_account:
+      edit:
+        title: Редакция на моя акаунт
+      form:
+        api:
+          api_key: "Used by Wagon to deploy your site (check your config/deploy.yml file of your Wagon site)."
+    translations:
+      untranslated: "Untranslated locales: %{list}"
+      index:
+        title: Translations
+        no_items: "We have not found any translations."
+        search_placeholder: "Enter a key or a translation"
+        help: "Translate all the entries with a orange (partially localized) or red (not localized) dots."
+        filter_by:
+          all: All
+          done: Translated
+          partially: Partially translated
+          none: Not translated
+      edit:
+        title: "Translations &mdash; editing %{key}"
+      form:
+        not_translated: "Not translated"
+    content_assets:
+      index:
+        title: "Assets"
+        upload: Upload files
+      edit_in_drawer:
+        buttons:
+          resize: "Resize"
+          crop: "Crop"
+          apply: "Apply"
+      dropzone:
+        instructions: "<strong>Drop files from your computer here.</strong><br/>You can also"
+        browse: "browse for a file"
+      list:
+        no_items: "There are no media for now."
+        buttons:
+          select: "Select"
+          edit: "Edit"
+      nav:
+        types:
+          all: All
+          pdf: PDFs
+          image: images
+          media: rich media
+          others: others
+      search_form:
+        placeholder: Търсене по име
+    public_submission_accounts:
+      edit:
+        title: "%{name} &mdash; Notification settings"
+    content_entries:
+      index:
+        title: '%{type}'
+        download: download entries
+        new: new entry
+        edit_notification_settings: Edit notification settings
+        search_placeholder: "Въведете ключова дума за търсене"
+        group_by:
+          all: All
+      list:
+        no_items: "Няма въведени данни. Кликнете <a href=\"%{url}\">тук</a>,  за да създадете нов запис."
+      new:
+        title: '%{type} &mdash; new entry'
+      edit:
+        title: '%{type} &mdash; editing entry'
+      shared:
+        back: '&larr; Обратно'
+    developers_documentation:
+      show:
+        title: Developers
+        wagon: Wagon
+        api: API
