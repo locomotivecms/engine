@@ -23,6 +23,7 @@ module Locomotive
     belongs_to  :created_by,      class_name: 'Locomotive::Account', optional: true
     embeds_many :memberships,     class_name: 'Locomotive::Membership'
     has_many    :pages,           class_name: 'Locomotive::Page',           validate: false, autosave: false
+    has_many    :sections,        class_name: 'Locomotive::Section',        dependent: :destroy, validate: false, autosave: false
     has_many    :snippets,        class_name: 'Locomotive::Snippet',        dependent: :destroy, validate: false, autosave: false
     has_many    :theme_assets,    class_name: 'Locomotive::ThemeAsset',     dependent: :destroy, validate: false, autosave: false
     has_many    :content_assets,  class_name: 'Locomotive::ContentAsset',   dependent: :destroy, validate: false, autosave: false

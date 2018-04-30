@@ -42,7 +42,7 @@ module Locomotive
               id:       { type: 'string' },
               label:    { type: 'string' },
               type:     { enum: ['string', 'text', 'integer', 'float', 'image', 'boolean', 'select'] },
-              default:  { type: 'object' }
+              default:  {}
             },
             required: [:id, :type]
           },
@@ -51,7 +51,6 @@ module Locomotive
             properties: {
               type:       { type: 'string' },
               name:       { type: 'string' },
-              limit:      { type: 'integer' },
               limit:      { type: 'integer' },
               settings:   { type: 'array', items: { '$ref': '#/definitions/settings' } }
             },
