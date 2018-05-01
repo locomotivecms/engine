@@ -24,7 +24,7 @@
 
     - if current_site.translations.count > 0
       = link_to translations_path(current_site), class: sidebar_link_class(:translations) do
-        i.far.fa-globe
+        i.fa.fa-globe
         span= t('.translations')
 
     - if current_site.has_metafields?
