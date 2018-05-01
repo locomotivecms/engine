@@ -30,7 +30,7 @@
     - @translations.each do |translation|
       .item.col-md-12 class=translation_completion_to_class(current_site, translation)
         .text
-          strong= link_to translation.key, edit_translation_path(current_site, translation, _location: params.slice(:filter_by, :q))
+          strong= link_to translation.key, edit_translation_path(current_site, translation, _location: { filter_by: params[:filter_by], q: params[:q] })
           .stamp
             == document_stamp(translation)
 

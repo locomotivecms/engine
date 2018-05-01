@@ -5,7 +5,7 @@ describe 'locomotive/memberships/edit', type: :view do
 
   let(:site)        { create('test site') }
   let(:membership)  { site.memberships.first }
-  let(:_policy)      { instance_double('policy', change_role?: true) }
+  let(:_policy)     { instance_double('policy', change_role?: true) }
 
   before do
     allow(view).to receive(:current_site).and_return(site)
