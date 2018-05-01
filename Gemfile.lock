@@ -1,9 +1,9 @@
 GIT
   remote: git://github.com/locomotivecms/steam.git
-  revision: 60c268a8115c98c836a99809cbf5e3e25aa492a3
-  ref: 60c268a
+  revision: 4e2035c9fd7661623b094d0c866c6021b4d236d8
+  ref: 4e2035c
   specs:
-    locomotivecms_steam (1.4.0.rc1)
+    locomotivecms_steam (1.4.0.rc2)
       RedCloth (~> 4.3.2)
       autoprefixer-rails (~> 8.0.0)
       bcrypt (~> 3.1.11)

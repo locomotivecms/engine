@@ -48,7 +48,7 @@ module Locomotive
           !env['steam.live_editing'] &&
           env['steam.site'].try(:cache_enabled) &&
           env['steam.page'].try(:cache_enabled) &&
-          is_redirect_url?(env['steam.page'], env['steam.locale'])
+          is_redirect_url?(env['steam.page'])
         end
 
         def cache_key(env)
@@ -57,9 +57,9 @@ module Locomotive
           Digest::MD5.hexdigest(key)
         end
 
-        def is_redirect_url?(page, locale)
+        def is_redirect_url?(page)
           return false if page.nil?
-          (page.try(:redirect_url) || {})[locale].blank?
+          page.try(:redirect_url).blank?
         end
 
       end
