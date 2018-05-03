@@ -27,6 +27,9 @@ module Locomotive
     def last_saved_location
     end
 
+    def translation_nav_params
+    end
+
   end
 end
 

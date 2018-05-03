@@ -5,6 +5,8 @@ module Locomotive
 
     before_action :load_translation, only: [:edit, :update]
 
+    helper_method :translation_nav_params
+
     def index
       authorize Translation
       @translations = service.all(params.slice(:page, :per_page, :q, :filter_by))
@@ -19,10 +21,10 @@ module Locomotive
     def update
       authorize @translation
       service.update(@translation, translation_params[:values].to_h)
-      respond_with @translation, location: translations_path(current_site, params[:_location])
+      respond_with @translation, location: translations_path(current_site, translation_nav_params)
     end
 
-    private
+    protected
 
     def load_translation
       @translation = current_site.translations.find(params[:id])
@@ -30,6 +32,10 @@ module Locomotive
 
     def translation_params
       params.require(:translation).permit(values: current_site.locales)
+    end
+
+    def translation_nav_params
+      params[:_location].permit(:filter_by, :q)
     end
 
     def service

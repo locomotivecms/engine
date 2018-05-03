@@ -4,4 +4,4 @@
 
   = render 'form', f: f
 
-  = f.actions back_url: translations_path(current_site, params[:_location] || {}), use_stored_location: false
+  = f.actions back_url: translations_path(current_site, translation_nav_params), use_stored_location: false
