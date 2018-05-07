@@ -8,7 +8,7 @@ module Locomotive
 
     def find_or_create_editable_elements(page)
       benchmark "Parse page #{page._id} find_or_create_editable_elements" do
-        parsed = { extends: {}, blocks: {}, super_blocks: {}, elements: [] }
+        parsed = { extends: {}, blocks: {}, super_blocks: {}, elements: [], sections: {} }
 
         subscribe(parsed) do
           parse(page)
@@ -24,6 +24,14 @@ module Locomotive
     rescue Exception => e
       logger.error "[PageParsing] " + e.message + "\n\t" + e.backtrace.join("\n\t")
       nil
+    end
+
+    def sections(page)
+      parsed = { extends: {}, blocks: {}, super_blocks: {}, elements: [], sections: {} }
+      subscribe(parsed) do
+        parse(page)
+      end
+      parsed[:sections]
     end
 
     # Each element of the elements parameter is a couple: Page, EditableElement
@@ -51,7 +59,8 @@ module Locomotive
       subscribers = [
         subscribe_to_extends(parsed[:extends]),
         subscribe_to_blocks(parsed[:blocks], parsed[:super_blocks]),
-        subscribe_to_editable_elements(parsed[:elements])
+        subscribe_to_editable_elements(parsed[:elements]),
+        subscribe_to_sections(parsed[:sections])
       ]
 
       yield.tap do
@@ -85,6 +94,14 @@ module Locomotive
       end
     end
 
+    def subscribe_to_sections(sections)
+      ActiveSupport::Notifications.subscribe('steam.parse.section') do |name, start, finish, id, payload|
+        definition = site.sections.find_by slug: payload[:name]
+        content = site.sections_content[:en][payload[:name]] #TODO: localize should be pre-mapped here
+        sections.merge!({ payload[:name] => { content: content, definition: definition } })
+      end
+
+    end
     def parse(page)
       entity = repository.build(page.attributes.dup)
       decorated_page = Locomotive::Steam::Decorators::TemplateDecorator.new(entity, self.locale, self.site.default_locale)
