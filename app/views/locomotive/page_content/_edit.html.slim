@@ -1,0 +1,15 @@
+- @sections.each do |section_title, section|
+  .sectionTitleLabel Name:
+  .sectionTitle= section_title
+
+  .sectionDefinitionLabel Definintion:
+  .sectionDefinition= section[:definition][:definition]
+
+  .sectionContentLabel Content
+  form action=page_content_path method='post'
+    input type='hidden' name='_method' value='PUT'
+    = hidden_field_tag :authenticity_token, form_authenticity_token
+    textarea name='content' cols='50' rows='30'
+      = section[:content]
+    br
+    input type='submit' value='Submit'
