@@ -35,6 +35,14 @@ module Locomotive
       end
     end
 
+    describe '#GET export' do
+
+      subject { get :export, params: { site_handle: site, locale: :en, slug: content_type.slug }, format: :csv }
+
+      it { is_expected.to be_success }
+
+    end
+
     describe "#POST create" do
       let(:content_type_attributes) {{ title: "title-#{4}-#{rand(10000 * 4)}" }}
       subject do
