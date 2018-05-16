@@ -25,7 +25,7 @@ group :development do
   # gem 'locomotivecms_common', github: 'locomotivecms/common', ref: '257047b', require: false
 
   # gem 'locomotivecms_steam', path: '../steam', require: false
-  gem 'locomotivecms_steam', github: 'locomotivecms/steam', ref: '4e2035c', require: false
+  gem 'locomotivecms_steam', github: 'locomotivecms/steam', ref: 'f8d9607', require: false
 
   # gem 'locomotive_liquid', path: '../gems/liquid' # for Developers
   # gem 'locomotivecms_solid', path: '../gems/solid' # for Developers
@@ -48,5 +48,5 @@ group :test do
   gem 'email_spec',               '~> 2.1.1'
 
   gem 'codeclimate-test-reporter',  '~> 1.0.7',  require: false
-  gem 'coveralls',                  '~> 0.8.19', require: false
+  gem 'simplecov',                  require: false
 end
