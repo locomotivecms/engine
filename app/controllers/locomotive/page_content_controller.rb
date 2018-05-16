@@ -23,6 +23,9 @@ module Locomotive
       binding.pry
       authorize @page
 
+      page = Page.find  params['page_id']
+
+      #page.site.update sections_content: params['content']
 
     end
 

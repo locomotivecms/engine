@@ -97,7 +97,7 @@ module Locomotive
     def subscribe_to_sections(sections)
       ActiveSupport::Notifications.subscribe('steam.parse.section') do |name, start, finish, id, payload|
         definition = site.sections.find_by slug: payload[:name]
-        content = site.sections_content[:en][payload[:name]] #TODO: localize should be pre-mapped here
+        content = site.sections_content[locale][payload[:name]]
         sections.merge!({ payload[:name] => { content: content, definition: definition } })
       end
 
