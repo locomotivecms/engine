@@ -17,7 +17,7 @@ module Locomotive
     ## fields ##
     field :name
     field :robots_txt
-    field :sections_content, type: Hash, default: {}
+    field :sections_content, type: Array, default: [], localize: true
 
     mount_uploader :picture, PictureUploader, validate_integrity: true
 
@@ -118,61 +118,22 @@ module Locomotive
 
     def sections_content_schema
       {
+        id: 'http://www.locomotive.cms/schemas/site/sections_content.json',
+        type: 'array',
+        items: { '$ref': '#/definitions/sections' },
         definitions: {
-          section: {
+          sections: {
             type: 'object',
             properties: {
-              id:   { type: 'string' },
+              id: { type: 'string' },
               type: { type: 'string' },
-              required: [:id, :type]
-            }
+              settings: { type: 'object' }
+            },
+            required: [:id, :type],
+            additionalProperties: false
           }
-        },
-        id: 'http://www.locomotive.cms/schemas/sections/definition.json',
-        type: 'array',
-        items: { '$ref': '#/definitions/section' }
+        }
       }
     end
-
-
-# def definition_schema
-#       {
-#         id: 'http://www.locomotive.cms/schemas/sections/definition.json',
-#         definitions: {
-#           settings: {
-#             type: 'object',
-#             properties: {
-#               id:       { type: 'string' },
-#               label:    { type: 'string' },
-#               type:     { enum: ['string', 'text', 'integer', 'float', 'image', 'boolean', 'select'] },
-#               default:  {}
-#             },
-#             required: [:id, :type]
-#           },
-#           blocks: {
-#             type: 'object',
-#             properties: {
-#               type:       { type: 'string' },
-#               name:       { type: 'string' },
-#               limit:      { type: 'integer' },
-#               settings:   { type: 'array', items: { '$ref': '#/definitions/settings' } }
-#             },
-#             required: [:type, :name]
-#           }
-#         },
-#         type: 'object',
-#         properties: {
-#           name:             { type: 'string' },
-#           class:            { type: 'string' },
-#           category:         { type: 'string' },
-#           settings:         { type: 'array', items: { '$ref': '#/definitions/settings' } },
-#           blocks:           { type: 'array', items: { '$ref': '#/definitions/blocks' } },
-#           max_blocks:       { type: 'integer' }
-#         },
-#         required: [:name, :settings]
-#       }
-#     end
-
-
   end
 end

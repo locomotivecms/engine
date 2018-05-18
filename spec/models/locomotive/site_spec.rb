@@ -201,4 +201,40 @@ describe Locomotive::Site do
 
   end
 
+
+  describe 'sections_content validation' do
+    describe 'invalid' do
+      it 'require to be an Array' do
+        expect { build(:site, sections_content: {}) }.to raise_error
+
+        site = build(:site, sections_content: [])
+        expect(site).to be_valid
+      end
+
+      it 'require sections to have an id' do
+        site = build(:site, sections_content: [{ "not": "good" }])
+        expect(site).not_to be_valid
+        expect(site.errors[:sections_content]).to eq(["The property '#/0' did not contain a required property of 'id'"])
+      end
+
+      it 'require sections to have a type' do
+        site = build(:site, sections_content: [{ "id": "myId"}])
+        expect(site).not_to be_valid
+        expect(site.errors[:sections_content]).to eq(["The property '#/0' did not contain a required property of 'type'"])
+      end
+
+      it 'should invalid additional properties' do
+        site = build(:site, sections_content: [{ "id": "contact", "type": "footer", "not": "good" }])
+        expect(site).not_to be_valid
+        expect(site.errors[:sections_content]).to eq(["The property '#/0' contains additional properties [\"not\"] outside of the schema when none are allowed"])
+      end
+    end
+
+    describe 'valid' do
+      it 'should be valid' do
+        site = build(:site, sections_content: [{ "id": "theHeaderOfWonder", "type": "header", "settings": { "title": "wonderfull title" }}])
+        expect(site).to be_valid
+      end
+    end
+  end
 end

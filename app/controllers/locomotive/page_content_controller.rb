@@ -11,7 +11,6 @@ module Locomotive
 
     def edit
       authorize @page
-
       @sections = parsing_service.sections(@page)
       @preview_path = preview_path(current_site) + '/' + current_site.localized_page_fullpath(@page,current_content_locale)
       respond_with(@page) do |format|
@@ -20,13 +19,9 @@ module Locomotive
     end
 
     def update
-      binding.pry
       authorize @page
-
-      page = Page.find  params['page_id']
-
-      #page.site.update sections_content: params['content']
-
+      current_site.update sections_content: JSON.parse(sections_content_params)
+      redirect_to edit_page_content_path(current_site.handle, @page)
     end
 
     def load_page
@@ -43,6 +38,10 @@ module Locomotive
 
     def editable_elements_layout
       @page.default_response_type? ? 'locomotive/layouts/live_editing' : '/locomotive/layouts/application'
+    end
+
+    def sections_content_params
+      params.require(:sections_content)
     end
   end
 end
