@@ -44,6 +44,8 @@ module Locomotive
         locomotive.css
         locomotive/account.js
         locomotive/account.css
+        locomotive/content_editing.js
+        locomotive/content_editing.css
         locomotive/live_editing_iframe.css
         locomotive/live_editing_error.css
         locomotive/error.css)

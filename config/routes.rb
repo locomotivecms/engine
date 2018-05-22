@@ -35,7 +35,8 @@ Locomotive::Engine.routes.draw do
     resources :pages do
       put :sort, on: :member
       get :get_path, on: :collection
-      resource :content, controller: 'page_content'
+      resource :content, controller: 'page_content', only: [:edit, :update]
+      get 'content/edit/*nav', to: 'page_content#edit'
     end
 
     resources :editable_elements, only: [:index, :update_all], path: 'pages/:page_id/editable_elements' do

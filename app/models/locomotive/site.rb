@@ -12,12 +12,11 @@ module Locomotive
     include Concerns::Site::UrlRedirections
     include Concerns::Site::PrivateAccess
     include Concerns::Site::Metafields
-    include Concerns::Shared::JsonAttribute
+    include Concerns::Site::Sections
 
     ## fields ##
     field :name
     field :robots_txt
-    field :sections_content, type: Hash, default: {}
 
     mount_uploader :picture, PictureUploader, validate_integrity: true
 
@@ -43,7 +42,6 @@ module Locomotive
 
     ## behaviours ##
     accepts_nested_attributes_for :memberships, allow_destroy: true
-    json_attribute  :sections_content
 
     ## methods ##
 
@@ -115,64 +113,6 @@ module Locomotive
       # pages is a tree so we just need to delete the root (as well as the page not found page)
       self.pages.root.first.try(:destroy) && self.pages.not_found.first.try(:destroy)
     end
-
-    def sections_content_schema
-      {
-        definitions: {
-          section: {
-            type: 'object',
-            properties: {
-              id:   { type: 'string' },
-              type: { type: 'string' },
-              required: [:id, :type]
-            }
-          }
-        },
-        id: 'http://www.locomotive.cms/schemas/sections/definition.json',
-        type: 'array',
-        items: { '$ref': '#/definitions/section' }
-      }
-    end
-
-
-# def definition_schema
-#       {
-#         id: 'http://www.locomotive.cms/schemas/sections/definition.json',
-#         definitions: {
-#           settings: {
-#             type: 'object',
-#             properties: {
-#               id:       { type: 'string' },
-#               label:    { type: 'string' },
-#               type:     { enum: ['string', 'text', 'integer', 'float', 'image', 'boolean', 'select'] },
-#               default:  {}
-#             },
-#             required: [:id, :type]
-#           },
-#           blocks: {
-#             type: 'object',
-#             properties: {
-#               type:       { type: 'string' },
-#               name:       { type: 'string' },
-#               limit:      { type: 'integer' },
-#               settings:   { type: 'array', items: { '$ref': '#/definitions/settings' } }
-#             },
-#             required: [:type, :name]
-#           }
-#         },
-#         type: 'object',
-#         properties: {
-#           name:             { type: 'string' },
-#           class:            { type: 'string' },
-#           category:         { type: 'string' },
-#           settings:         { type: 'array', items: { '$ref': '#/definitions/settings' } },
-#           blocks:           { type: 'array', items: { '$ref': '#/definitions/blocks' } },
-#           max_blocks:       { type: 'integer' }
-#         },
-#         required: [:name, :settings]
-#       }
-#     end
-
 
   end
 end

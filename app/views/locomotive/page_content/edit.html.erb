@@ -1,0 +1,35 @@
+<div id="content-editing-app"></div>
+
+<% content_for :preview do %>
+  <div class="embed-responsive embed-page">
+    <iframe
+      class="embed-responsive-item"
+      src="<%= @preview_path %>"
+      data-redirection-error="<%= t('.redirection_error') %>"
+      data-style-path="<%= stylesheet_path('locomotive/live_editing_iframe') %>"
+      data-edit-label="<%= t('.iframe.buttons.edit') %>"></iframe>
+
+<% end %>
+
+<% content_for :head do %>
+  <script>
+    window.Locomotive.data = {
+      site: {
+        sectionsContent:  <%= h static_sections_content_to_json(current_site, @static_section_names, @section_definitions) %>,
+        staticSections:   <%= h @static_section_names.to_json.html_safe %>
+      },
+      page: {
+        title: "<%= @page.title %>",
+        sectionsContent: [] // TODO
+      },
+      sectionDefinitions: <%= h @section_definitions.to_json.html_safe %>
+    }
+
+    window.Locomotive.urls = {
+      save: "<%= page_content_path(current_site, @page, format: :json) %>"
+    }
+  </script>
+
+  <%= javascript_include_tag  'locomotive/content_editing' %>
+  <%= stylesheet_link_tag     'locomotive/content_editing', media: 'screen' %>
+<% end %>

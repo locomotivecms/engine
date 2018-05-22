@@ -34,7 +34,7 @@ module Locomotive
 
     def definition_schema
       {
-        id: 'http://www.locomotive.cms/schemas/sections/definition.json',
+        id: 'http://www.locomotive.cms/schemas/sections/definition2.json',
         definitions: {
           settings: {
             type: 'object',
@@ -64,7 +64,12 @@ module Locomotive
           category:         { type: 'string' },
           settings:         { type: 'array', items: { '$ref': '#/definitions/settings' } },
           blocks:           { type: 'array', items: { '$ref': '#/definitions/blocks' } },
-          max_blocks:       { type: 'integer' }
+          max_blocks:       { type: 'integer' },
+          default:          {
+            type: 'object',
+            properties: { settings:  { type: 'object' } },
+            required: [:settings]
+          }
         },
         required: [:name, :settings]
       }

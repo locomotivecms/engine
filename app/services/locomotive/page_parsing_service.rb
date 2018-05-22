@@ -6,9 +6,13 @@ module Locomotive
 
     include ActiveSupport::Benchmarkable
 
+    def find_all_elements(page)
+      find_or_create_editable_elements(page)&.slice(:elements, :sections)
+    end
+
     def find_or_create_editable_elements(page)
       benchmark "Parse page #{page._id} find_or_create_editable_elements" do
-        parsed = { extends: {}, blocks: {}, super_blocks: {}, elements: [], sections: {} }
+        parsed = { extends: {}, blocks: {}, super_blocks: {}, elements: [], sections: [] }
 
         subscribe(parsed) do
           parse(page)
@@ -20,18 +24,12 @@ module Locomotive
             # remove_useless_editable_elements(page, elements)
           end
         end
+
+        parsed
       end
     rescue Exception => e
       logger.error "[PageParsing] " + e.message + "\n\t" + e.backtrace.join("\n\t")
       nil
-    end
-
-    def sections(page)
-      parsed = { extends: {}, blocks: {}, super_blocks: {}, elements: [], sections: {} }
-      subscribe(parsed) do
-        parse(page)
-      end
-      parsed[:sections]
     end
 
     # Each element of the elements parameter is a couple: Page, EditableElement
@@ -96,12 +94,10 @@ module Locomotive
 
     def subscribe_to_sections(sections)
       ActiveSupport::Notifications.subscribe('steam.parse.section') do |name, start, finish, id, payload|
-        definition = site.sections.find_by slug: payload[:name]
-        content = site.sections_content[locale][payload[:name]]
-        sections.merge!({ payload[:name] => { content: content, definition: definition } })
+        sections.push(payload[:name])
       end
-
     end
+
     def parse(page)
       entity = repository.build(page.attributes.dup)
       decorated_page = Locomotive::Steam::Decorators::TemplateDecorator.new(entity, self.locale, self.site.default_locale)
