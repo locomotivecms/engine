@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { updateTextValue as previewUpdateTextValue } from '../services/preview_service';
 
 class StringInput extends Component {
 
@@ -8,7 +9,7 @@ class StringInput extends Component {
     console.log('StringInput', props.data.settings, props.settings.id);
 
     var value = props.data.settings[props.settings.id];
-    value = value ||  props.settings.default;
+    value = value || props.settings.default;
 
     this.state = { value };
 
@@ -18,29 +19,25 @@ class StringInput extends Component {
 
   handleChange(event) {
     const { value } = event.target;
-    this.setState({ value });
 
-    switch(this.props.type) {
-      case 'staticSection':
-        // TODO: refactor, add a service
-        const dataValue = `section-${this.props.sectionType}.${this.props.settings.id}`;
-
-        $(this.props.iframe.document)
-          .find(`[data-locomotive-editor-setting='${dataValue}']`)
-          .html(value);
-
-        this.props.editStaticSectionInput(
-          this.props.sectionType,
-          this.props.settings.id,
-          value
-        );
-        break;
-    }
+    this.setState({ value }, () => { this.onChange(value) });
   }
 
   handleSubmit(event) {
     alert('A name was submitted: ' + this.state.value);
     event.preventDefault();
+  }
+
+  onChange(value) {
+    switch(this.props.type) {
+      case 'staticSection':
+        const { editStaticSectionInput, sectionType, settings } = this.props;
+
+        previewUpdateTextValue(this.props.iframe, sectionType, settings.id, value);
+        editStaticSectionInput(sectionType, settings.id, value);
+
+        break;
+    }
   }
 
   render() {
