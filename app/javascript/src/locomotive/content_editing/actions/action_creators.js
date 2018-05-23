@@ -1,7 +1,12 @@
 // GLOBAL
 
 export function persistChanges(result, data) {
-  console.log(result, data);
+  const { i18n } = window.Locomotive;
+  if (result)
+    Locomotive.notify(i18n.success, 'success')
+  else
+    Locomotive.notify(i18n.fail, 'danger')
+
   return {
     type: 'PERSIST_CHANGES',
     success: result

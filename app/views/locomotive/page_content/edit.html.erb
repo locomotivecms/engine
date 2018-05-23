@@ -19,6 +19,12 @@
       save:     "<%= page_content_path(current_site, @page, format: :json) %>",
       preview:  "<%= @preview_path %>"
     }
+
+    window.Locomotive.i18n = {
+      success:  "<%= h t('flash.locomotive.pages.update.notice') %>",
+      fail:     "<%= h t('flash.locomotive.pages.update.alert') %>"
+    }
+
   </script>
 
   <%= javascript_include_tag  'locomotive/content_editing' %>

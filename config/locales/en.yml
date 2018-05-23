@@ -221,13 +221,6 @@ en:
           permanent: "Permanent (301)"
           temporary: "Temporary (302)"
 
-    page_content:
-      edit:
-        redirection_error: "Editing a non Locomotive page is not allowed."
-        iframe:
-          buttons:
-            edit: edit
-
     editable_elements:
       index:
         redirection_error: "Editing a non Locomotive page is not allowed."
