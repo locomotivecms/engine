@@ -3,7 +3,16 @@ import rootReducer from './reducers/index.js';
 
 // create an object for the default data
 const { site, page, sectionDefinitions } = window.Locomotive.data;
-const defaultState = { site, page, sectionDefinitions };
+const defaultState = {
+  site,
+  page,
+  sectionDefinitions,
+  iframe: {
+    loaded:     false,
+    window:     null
+  }
+};
+
 
 const store = createStore(
   rootReducer,

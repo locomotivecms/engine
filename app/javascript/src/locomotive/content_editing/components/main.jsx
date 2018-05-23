@@ -1,0 +1,41 @@
+import React, { Component } from 'react';
+import { BrowserRouter as Router, Route, Link, browserHistory } from 'react-router-dom';
+import withRedux from '../utils/with_redux';
+
+// Views
+import Startup from '../sections/startup.jsx';
+import ListSections from '../sections/list.jsx';
+import EditSection from '../sections/edit.jsx';
+
+// Components
+import Header from './header.jsx';
+
+class Main extends React.Component {
+
+  render() {
+    return (
+      <div className="actionbar">
+        <div className="actionbar-trigger">
+          <i className="fa fa-chevron-left"></i>
+        </div>
+        <div className="content">
+          <Router history={browserHistory} basename={this.props.basepath}>
+            <div className="container-fluid main" role="main">
+              <Header />
+              {!this.props.iframe.loaded && <Startup />}
+              {this.props.iframe.loaded &&
+                <div>
+                  <Route exact path="/" component={ListSections} />
+                  <Route path="/sections/:type/edit" component={EditSection}/>
+                </div>
+              }
+            </div>
+          </Router>
+        </div>
+      </div>
+    )
+  }
+
+}
+
+export default withRedux(Main, state => { return { iframe: state.iframe } })

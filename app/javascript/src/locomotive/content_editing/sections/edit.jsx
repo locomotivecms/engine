@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
-import * as actionCreators from '../actions/action_creators.js';
+import withRedux from '../utils/with_redux';
 import { find } from 'lodash';
 import Input from '../inputs/base.jsx';
 
-class EditSection extends Component {
+class Edit extends Component {
 
   getDefinition() {
     const { definitions, match } = this.props;
@@ -44,15 +42,6 @@ class EditSection extends Component {
 
 }
 
-function mapStateToProps(state) {
-  return {
-    site:         state.site,
-    definitions:  state.sectionDefinitions
-  }
-}
-
-function mapDispachToProps(dispatch) {
-  return bindActionCreators(actionCreators, dispatch);
-}
-
-export default connect(mapStateToProps, mapDispachToProps)(EditSection);
+export default withRedux(Edit, state => { return {
+  site: state.site, definitions: state.sectionDefinitions
+} });

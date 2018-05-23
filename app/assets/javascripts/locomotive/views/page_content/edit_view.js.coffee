@@ -1,26 +1,28 @@
 Locomotive.Views.PageContent ||= {}
 
-class Locomotive.Views.PageContent.EditView extends Locomotive.Views.Shared.FormView
+class Locomotive.Views.PageContent.EditView extends Backbone.View
 
-  el: '.content-main'
+  el: '.main'
 
-  events:
-    'click .actionbar .actionbar-trigger': 'toggle_preview'
-    'click .content-overlay': 'close_sidebar'
+  # el: '.content-main'
 
-  initialize: ->
-    _.bindAll(@, 'shrink_preview', 'close_sidebar')
+  # events:
+  #   'click .actionbar .actionbar-trigger': 'toggle_preview'
+  #   'click .content-overlay': 'close_sidebar'
 
-  render: ->
-    super()
+  # initialize: ->
+  #   _.bindAll(@, 'shrink_preview', 'close_sidebar')
 
-    # FIXME: the real magic happens in the app/javascript/src/locomotive/content_editing.es6 file
+  # render: ->
+  #   super()
 
-  toggle_preview: (event) ->
-    $(@el).toggleClass('actionbar-closed')
+  #   # FIXME: the real magic happens in the app/javascript/src/locomotive/content_editing.es6 file
 
-  shrink_preview: (event) ->
-    $(@el).removeClass('actionbar-closed')
+  # toggle_preview: (event) ->
+  #   $(@el).toggleClass('actionbar-closed')
 
-  close_sidebar: (event) ->
-    PubSub.publish 'sidebar.close'
+  # shrink_preview: (event) ->
+  #   $(@el).removeClass('actionbar-closed')
+
+  # close_sidebar: (event) ->
+  #   PubSub.publish 'sidebar.close'

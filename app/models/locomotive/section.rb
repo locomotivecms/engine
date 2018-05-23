@@ -32,6 +32,42 @@ module Locomotive
       :template_version
     end
 
+    # Example:
+    # {
+    #   "name": "Header",
+    #   "category": "header",
+    #   "settings": [
+    #     {
+    #       "label": "Brand name",
+    #       "id": "brand",
+    #       "type": "string"
+    #     }
+    #   ],
+    #   "blocks": [
+    #     {
+    #       "name": "Menu item",
+    #       "type": "menu_item",
+    #       "settings": [
+    #         {
+    #           "label": "Item item",
+    #           "id": "title",
+    #           "type": "string"
+    #         },
+    #         {
+    #           "label": "Item link",
+    #           "id": "url",
+    #           "type": "string"
+    #         },
+    #         {
+    #           "label": "Open a new tab",
+    #           "id": "new_tab",
+    #           "type": "boolean",
+    #           "default": false
+    #         }
+    #       ]
+    #     }
+    #   ]
+    # }
     def definition_schema
       {
         id: 'http://www.locomotive.cms/schemas/sections/definition2.json',
@@ -49,8 +85,8 @@ module Locomotive
           blocks: {
             type: 'object',
             properties: {
-              type:       { type: 'string' },
               name:       { type: 'string' },
+              type:       { type: 'string' },
               limit:      { type: 'integer' },
               settings:   { type: 'array', items: { '$ref': '#/definitions/settings' } }
             },

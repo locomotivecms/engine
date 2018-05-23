@@ -19,3 +19,12 @@ export function editStaticSectionInput(sectionType, id, newValue) {
     newValue
   }
 }
+
+// PREVIEW / IFRAME
+
+export function onIframeLoaded(contentWindow) {
+  return {
+    type:         'IFRAME::LOADED',
+    window:       contentWindow
+  }
+}

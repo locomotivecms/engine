@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
-import * as actionCreators from '../actions/action_creators.js';
+import withRedux from '../utils/with_redux';
 import { find } from 'lodash';
 
 class Section extends Component {
@@ -39,12 +37,6 @@ class List extends Component {
 
 }
 
-function mapStateToProps(state) {
-  return { list: state.site.staticSections, definitions: state.sectionDefinitions }
-}
-
-function mapDispachToProps(dispatch) {
-  return bindActionCreators(actionCreators, dispatch);
-}
-
-export default connect(mapStateToProps, mapDispachToProps)(List);
+export default withRedux(List, state => { return {
+  list: state.site.staticSections, definitions: state.sectionDefinitions
+} });

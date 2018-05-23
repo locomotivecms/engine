@@ -22,6 +22,13 @@ class StringInput extends Component {
 
     switch(this.props.type) {
       case 'staticSection':
+        // TODO: refactor
+        const dataValue = `section-${this.props.sectionType}.${this.props.settings.id}`;
+
+        $(this.props.iframe.document)
+          .find(`[data-locomotive-editor-setting='${dataValue}']`)
+          .html(value);
+
         this.props.editStaticSectionInput(
           this.props.sectionType,
           this.props.settings.id,

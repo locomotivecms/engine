@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import StringInput from './string.jsx';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
-import * as actionCreators from '../actions/action_creators.js';
+import withRedux from '../utils/with_redux';
 
 class Base extends Component {
 
@@ -23,13 +21,4 @@ class Base extends Component {
 
 }
 
-function mapStateToProps(state) {
-  return { site: state.site, page: state.page }
-}
-
-function mapDispachToProps(dispatch) {
-  return bindActionCreators(actionCreators, dispatch);
-}
-
-export default connect(mapStateToProps, mapDispachToProps)(Base);
-
+export default withRedux(Base, state => { return { site: state.site, page: state.page, iframe: state.iframe.window } });

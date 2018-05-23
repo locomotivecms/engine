@@ -1,32 +1,56 @@
-<div id="content-editing-app"></div>
+<!-- <div class="actionbar">
+  <div class="actionbar-trigger">
+    <i class="fa fa-chevron-left"></i>
+  </div>
+  <div class="content">
+  </div>
+</div>
 
-<% content_for :preview do %>
-  <div class="embed-responsive embed-page">
+
+      .actionbar
+        .actionbar-trigger
+          i.fa.fa-chevron-left
+        .content
+          = yield
+
+      .content-preview.preview
+        .scrollable
+          = yield :preview
+ -->
+
+ <div id="editor-app"></div>
+
+<!-- <div id="content-editing-app"></div> -->
+
+<%# content_for :preview do %>
+  <!-- <div class="embed-responsive embed-page">
     <iframe
       class="embed-responsive-item"
-      src="<%= @preview_path %>"
-      data-redirection-error="<%= t('.redirection_error') %>"
-      data-style-path="<%= stylesheet_path('locomotive/live_editing_iframe') %>"
-      data-edit-label="<%= t('.iframe.buttons.edit') %>"></iframe>
+      src="<%#= @preview_path %>"
+      data-redirection-error="<%#= t('.redirection_error') %>"
+      data-style-path="<%#= stylesheet_path('locomotive/live_editing_iframe') %>"
+      data-edit-label="<%#= t('.iframe.buttons.edit') %>"></iframe> -->
 
-<% end %>
+<% #end %>
 
 <% content_for :head do %>
   <script>
     window.Locomotive.data = {
       site: {
-        sectionsContent:  <%= h static_sections_content_to_json(current_site, @static_section_names, @section_definitions) %>,
-        staticSections:   <%= h @static_section_names.to_json.html_safe %>
+        sectionsContent:  <%= h static_sections_content_to_json(current_site, @static_section_types, @section_definitions) %>,
+        staticSections:   <%= h @static_section_types.to_json.html_safe %>
       },
       page: {
         title: "<%= @page.title %>",
         sectionsContent: [] // TODO
       },
-      sectionDefinitions: <%= h @section_definitions.to_json.html_safe %>
+      sectionDefinitions: <%= h @section_definitions.to_json.html_safe %>,
     }
 
     window.Locomotive.urls = {
-      save: "<%= page_content_path(current_site, @page, format: :json) %>"
+      base:     "<%= edit_page_content_path(current_site, @page) %>",
+      save:     "<%= page_content_path(current_site, @page, format: :json) %>",
+      preview:  "<%= @preview_path %>"
     }
   </script>
 

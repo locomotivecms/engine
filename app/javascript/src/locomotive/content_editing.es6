@@ -4,6 +4,7 @@ import './content_editing.scss';
 import App from './content_editing/app.jsx';
 
 $(document).ready(function() {
-  ReactDOM.render(<App />, document.getElementById('content-editing-app'));
+  const { urls } = window.Locomotive;
+  ReactDOM.render(<App urls={urls} />, document.getElementById('editor-app'));
 });
 

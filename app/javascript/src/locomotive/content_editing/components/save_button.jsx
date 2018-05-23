@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
-import * as actionCreators from '../actions/action_creators.js';
+import withRedux from '../utils/with_redux';
 import { saveContent } from '../api.js';
 
 class SaveButton extends React.Component {
@@ -30,12 +28,4 @@ class SaveButton extends React.Component {
 
 }
 
-function mapStateToProps(state) {
-  return { site: state.site, page: state.page }
-}
-
-function mapDispachToProps(dispatch) {
-  return bindActionCreators(actionCreators, dispatch);
-}
-
-export default connect(mapStateToProps, mapDispachToProps)(SaveButton);
+export default withRedux(SaveButton, state => { return { site: state.site, page: state.page } });
