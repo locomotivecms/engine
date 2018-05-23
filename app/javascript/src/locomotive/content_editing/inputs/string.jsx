@@ -6,48 +6,37 @@ class StringInput extends Component {
   constructor(props) {
     super(props);
 
-    console.log('StringInput', props.data.settings, props.settings.id);
-
-    var value = props.data.settings[props.settings.id];
-    value = value || props.settings.default;
+    var value = props.data.settings[props.setting.id];
+    value = value || props.setting.default;
 
     this.state = { value };
 
     this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(event) {
     const { value } = event.target;
-
     this.setState({ value }, () => { this.onChange(value) });
-  }
-
-  handleSubmit(event) {
-    alert('A name was submitted: ' + this.state.value);
-    event.preventDefault();
   }
 
   onChange(value) {
     switch(this.props.type) {
       case 'staticSection':
-        const { editStaticSectionInput, sectionType, settings } = this.props;
+        const { updateStaticSectionInput, sectionType, setting } = this.props;
 
-        previewUpdateTextValue(this.props.iframe, sectionType, settings.id, value);
-        editStaticSectionInput(sectionType, settings.id, value);
+        previewUpdateTextValue(this.props.iframe, sectionType, setting.id, value);
+        updateStaticSectionInput(sectionType, setting.id, value);
 
         break;
     }
   }
 
   render() {
-    const { settings } = this.props;
-
-    // console.log(settings);
+    const { setting } = this.props;
 
     return (
       <div className="lce-input lce-input-string">
-        <label>{settings.label}</label>
+        <label>{setting.label}</label>
         <br/>
         <input type="text" value={this.state.value} onChange={this.handleChange} />
       </div>

@@ -10,9 +10,9 @@ export function persistChanges(result, data) {
 
 // SECTIONS
 
-export function editStaticSectionInput(sectionType, id, newValue) {
+export function updateStaticSectionInput(sectionType, id, newValue) {
   return {
-    type:         'EDIT_SECTION_INPUT',
+    type:         'SECTION::UPDATE_INPUT',
     static:       true,
     sectionType,
     id,

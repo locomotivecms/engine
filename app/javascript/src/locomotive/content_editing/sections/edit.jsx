@@ -26,10 +26,10 @@ class Edit extends Component {
           <Link to="/">Back</Link>
         </p>
         <div className="lce-field">
-          {definition.settings.map(inputSettings =>
+          {definition.settings.map(setting =>
             <Input
-              key={inputSettings.id}
-              settings={inputSettings}
+              key={`section-input-${setting.id}`}
+              setting={setting}
               data={this.getData(definition.type)}
               type="staticSection"
               sectionType={definition.type}

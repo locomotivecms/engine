@@ -6,9 +6,7 @@ class Base extends Component {
 
   // TODO: text, integer, float, image, boolean, select
   getInput() {
-    const { type } = this.props.settings;
-
-    switch (type) {
+    switch (this.props.setting.type) {
       case 'string': return StringInput;
       default: return null;
     }
