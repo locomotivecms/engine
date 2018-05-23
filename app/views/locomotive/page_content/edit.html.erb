@@ -1,37 +1,4 @@
-<!-- <div class="actionbar">
-  <div class="actionbar-trigger">
-    <i class="fa fa-chevron-left"></i>
-  </div>
-  <div class="content">
-  </div>
-</div>
-
-
-      .actionbar
-        .actionbar-trigger
-          i.fa.fa-chevron-left
-        .content
-          = yield
-
-      .content-preview.preview
-        .scrollable
-          = yield :preview
- -->
-
  <div id="editor-app"></div>
-
-<!-- <div id="content-editing-app"></div> -->
-
-<%# content_for :preview do %>
-  <!-- <div class="embed-responsive embed-page">
-    <iframe
-      class="embed-responsive-item"
-      src="<%#= @preview_path %>"
-      data-redirection-error="<%#= t('.redirection_error') %>"
-      data-style-path="<%#= stylesheet_path('locomotive/live_editing_iframe') %>"
-      data-edit-label="<%#= t('.iframe.buttons.edit') %>"></iframe> -->
-
-<% #end %>
 
 <% content_for :head do %>
   <script>

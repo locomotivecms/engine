@@ -22,7 +22,7 @@ class StringInput extends Component {
 
     switch(this.props.type) {
       case 'staticSection':
-        // TODO: refactor
+        // TODO: refactor, add a service
         const dataValue = `section-${this.props.sectionType}.${this.props.settings.id}`;
 
         $(this.props.iframe.document)

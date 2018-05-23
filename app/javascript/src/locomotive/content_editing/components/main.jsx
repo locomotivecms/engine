@@ -12,10 +12,19 @@ import Header from './header.jsx';
 
 class Main extends React.Component {
 
+  constructor(props) {
+    super(props);
+    this.togglePreview = this.togglePreview.bind(this);
+  }
+
+  togglePreview(event) {
+    $('.content-main').toggleClass('actionbar-closed');
+  }
+
   render() {
     return (
       <div className="actionbar">
-        <div className="actionbar-trigger">
+        <div className="actionbar-trigger" onClick={this.togglePreview}>
           <i className="fa fa-chevron-left"></i>
         </div>
         <div className="content">
