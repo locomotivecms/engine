@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 import store from './store.js';
 
-// Components
-import Main from './components/main.jsx';
+// Views/Components
+import Main from './views/main.jsx';
 import Preview from './components/preview.jsx';
 
 class App extends Component {

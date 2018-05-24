@@ -1,0 +1,16 @@
+@import "~react-awesome-popover/dest/react-awesome-popover.css";
+
+.rap-popover-content {
+  box-shadow: 0 0 0 1px rgba(16, 22, 26, 0.1), 0 2px 4px rgba(16, 22, 26, 0.2),
+    0 8px 24px rgba(16, 22, 26, 0.2);
+}
+
+.rap-popover-pad {
+  padding: 10px;
+  width: 200px;
+}
+
+.rap-popover-button-wrapper button {
+  background: none;
+  border: none;
+}

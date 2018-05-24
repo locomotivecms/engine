@@ -17,11 +17,28 @@ export function persistChanges(result, data) {
 
 export function updateStaticSectionInput(sectionType, id, newValue) {
   return {
-    type:         'SECTION::UPDATE_INPUT',
-    static:       true,
+    type:         'STATIC_SECTION::UPDATE_INPUT',
     sectionType,
     id,
     newValue
+  }
+}
+
+// SECTION BLOCKS
+
+export function addStaticSectionBlock(sectionType, newBlock) {
+  return {
+    type:         'STATIC_SECTION::ADD_BLOCK',
+    sectionType,
+    newBlock
+  }
+}
+
+export function removeStaticSectionBlock(sectionType, blockId) {
+  return {
+    type:         'STATIC_SECTION::REMOVE_BLOCK',
+    sectionType,
+    blockId
   }
 }
 

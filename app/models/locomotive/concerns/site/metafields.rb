@@ -4,6 +4,7 @@ module Locomotive
       module Metafields
 
         extend ActiveSupport::Concern
+        include Concerns::Shared::JsonAttribute
 
         included do
 
@@ -12,8 +13,13 @@ module Locomotive
           field :metafields_schema, type: Array,  default: []
           field :metafields_ui,     type: Hash,   default: {}
 
-          ## validations ##
-          validate :validate_metafields_schema
+          # ## validations ##
+          # validate :validate_metafields_schema
+
+          ## behaviours ##
+          json_attribute  :metafields_schema
+          json_attribute  :metafields
+          json_attribute  :metafields_ui
 
         end
 
@@ -38,29 +44,29 @@ module Locomotive
           end
         end
 
-        def metafields_schema=(schema)
-          super(decode_json(schema))
-        end
+        # def metafields_schema=(schema)
+        #   super(decode_json(schema))
+        # end
 
-        def metafields=(values)
-          super(decode_json(values))
-        end
+        # def metafields=(values)
+        #   super(decode_json(values))
+        # end
 
-        def metafields_ui=(ui)
-          super(decode_json(ui))
-        end
+        # def metafields_ui=(ui)
+        #   super(decode_json(ui))
+        # end
 
         protected
 
-        def validate_metafields_schema
-          return if metafields_schema.blank?
+        # def validate_metafields_schema
+        #   return if metafields_schema.blank?
 
-          begin
-            JSON::Validator.validate!(metafields_schema_schema, metafields_schema)
-          rescue JSON::Schema::ValidationError
-            self.errors.add(:metafields_schema, $!.message)
-          end
-        end
+        #   begin
+        #     JSON::Validator.validate!(metafields_schema_schema, metafields_schema)
+        #   rescue JSON::Schema::ValidationError
+        #     self.errors.add(:metafields_schema, $!.message)
+        #   end
+        # end
 
         def metafields_schema_schema
           {
@@ -94,9 +100,9 @@ module Locomotive
           }
         end
 
-        def decode_json(input)
-          input.is_a?(String) ? ActiveSupport::JSON.decode(input) : input
-        end
+        # def decode_json(input)
+        #   input.is_a?(String) ? ActiveSupport::JSON.decode(input) : input
+        # end
 
       end
 

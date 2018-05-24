@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import withRedux from '../utils/with_redux';
+import withRedux from '../../utils/with_redux';
 import { find } from 'lodash';
 
 class Section extends Component {
 
   render() {
     return (
-      <div className="lce-section">
+      <div className="editor-section">
         <p>
           {this.props.definition.name}
           &nbsp;
@@ -27,7 +27,7 @@ class List extends Component {
 
   render() {
     return (
-      <div className="lce-section-list">
+      <div className="editor-section-list">
         {this.props.list.map(type =>
           <Section key={type} sectionType={type} definition={this.getDefinition(type)} />
         )}

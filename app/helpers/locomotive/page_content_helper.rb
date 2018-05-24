@@ -9,7 +9,16 @@ module Locomotive
         if content[type].blank?
           definition = definitions.find { |definition| definition['type'] == type }
 
-          content[type] = definition['default'] || { settings: {}, blocks: [] }
+          content[type] = definition['default'] || { 'settings' => {}, 'blocks' => [] }
+        else
+          content[type]['settings'] ||= {}
+          content[type]['blocks']   ||= []
+        end
+
+        # assign an id to each block of static sections
+        content[type]['blocks'] = content[type]['blocks'].each_with_index.map do |block, index|
+          block['id'] = index
+          block
         end
       end
 

@@ -1,41 +1,54 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import withRedux from '../utils/with_redux';
+import withRedux from '../../utils/with_redux';
+import { isBlank } from '../../utils/misc';
 import { find } from 'lodash';
-import Input from '../inputs/base.jsx';
+
+// Components
+import Input from '../../inputs/base.jsx';
+import BlockList from './components/block_list.jsx';
 
 class Edit extends Component {
 
+  // Return the definition of the current section
   getDefinition() {
     const { definitions, match } = this.props;
     return definitions.find(definition => definition.type === match.params.type)
   }
 
-  getData(type) {
+  // Return the content of the current section
+  // Since it's a static section, it has to fetch it from the site
+  getContent(type) {
     const { sectionsContent } = this.props.site;
     return sectionsContent[type] || {};
   }
 
   render() {
-    const definition = this.getDefinition();
+    const definition  = this.getDefinition();
+    const content     = this.getContent(definition.type);
 
     return (
-      <div className="lce-edit-section">
-        <p>TODO: EditSection / {definition.name}</p>
+      <div className="editor-edit-section">
         <p>
+          [Section] Edit {definition.name}
+          &nbsp;
           <Link to="/">Back</Link>
         </p>
-        <div className="lce-field">
+        <div className="editor-section-settings">
           {definition.settings.map(setting =>
             <Input
               key={`section-input-${setting.id}`}
               setting={setting}
-              data={this.getData(definition.type)}
+              data={content}
               type="staticSection"
               sectionType={definition.type}
             />
           )}
         </div>
+        <hr/>
+        {!isBlank(definition.blocks) &&
+          <BlockList sectionDefinition={definition} content={content} />
+        }
       </div>
     )
   }

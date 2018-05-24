@@ -1,1 +1,54 @@
+#rap-overlay {
+  position: fixed;
+  display: block;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: transparent;
+  z-index: 2;
+  cursor: pointer;
+}
+.rap-manager,
+.rap-target-container {
+  display: inline-block;
+  height: 100%;
+  position: relative;
+}
+.rap-popover-content {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  height: auto;
+  display: inline-block;
+  background: white;
+}
+.rap-left {
+  left: -20px !important;
+}
+.rap-bottom {
+  top: 15px !important;
+}
+.rap-top {
+  top: -15px !important;
+}
+.rap-right {
+  left: 20px !important;
+}
+
+.rap-popover-content {
+  box-shadow: 0 0 0 1px rgba(16, 22, 26, 0.1), 0 2px 4px rgba(16, 22, 26, 0.2), 0 8px 24px rgba(16, 22, 26, 0.2); }
+
+.rap-popover-pad {
+  padding: 10px;
+  width: 200px; }
+
+.rap-popover-button-wrapper button {
+  background: none;
+  border: none; }
 

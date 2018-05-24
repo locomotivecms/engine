@@ -3,12 +3,12 @@ import { BrowserRouter as Router, Route, Link, browserHistory } from 'react-rout
 import withRedux from '../utils/with_redux';
 
 // Views
-import Startup from '../sections/startup.jsx';
-import ListSections from '../sections/list.jsx';
-import EditSection from '../sections/edit.jsx';
+import Startup from './startup.jsx';
+import ListSections from './sections/list.jsx';
+import EditSection from './sections/edit.jsx';
 
 // Components
-import Header from './header.jsx';
+import Header from '../components/header.jsx';
 
 class Main extends React.Component {
 

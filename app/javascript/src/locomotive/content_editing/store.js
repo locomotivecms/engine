@@ -13,7 +13,6 @@ const defaultState = {
   }
 };
 
-
 const store = createStore(
   rootReducer,
   defaultState,
