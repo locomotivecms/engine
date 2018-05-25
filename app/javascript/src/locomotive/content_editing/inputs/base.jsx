@@ -8,13 +8,15 @@ class Base extends Component {
   getInput() {
     switch (this.props.setting.type) {
       case 'string': return StringInput;
-      default: return null;
+      default:
+        console.log(`[Editor] Warning! Unknown input type: "${this.props.setting.type}"`);
+        return null;
     }
   }
 
   render() {
     const Input = this.getInput();
-    return <Input {...this.props} />;
+    return Input !== null ? <Input {...this.props} /> : null;
   }
 
 }

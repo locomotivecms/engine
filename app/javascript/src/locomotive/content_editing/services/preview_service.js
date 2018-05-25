@@ -5,3 +5,11 @@ export function updateTextValue(window, sectionType, settingId, value) {
     .find(`[data-locomotive-editor-setting='${dataValue}']`)
     .html(value);
 }
+
+export function updateBlockTextValue(window, sectionType, blockId, settingId, value) {
+  const dataValue = `section-${sectionType}-block.${blockId}.${settingId}`;
+
+  $(window.document)
+    .find(`[data-locomotive-editor-setting='${dataValue}']`)
+    .html(value);
+}

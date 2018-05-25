@@ -1,16 +1,42 @@
 import React, { Component } from 'react';
 import withRedux from '../../../utils/with_redux';
 import { build as buildBlock } from '../../../services/blocks_service';
+import { SortableContainer, SortableElement, SortableHandle } from 'react-sortable-hoc';
 
 // Components
 import Popover from 'react-awesome-popover';
 import Block from './block.jsx';
 
+// Sortable components
+const DragHandle = SortableHandle(() => <span>::</span>);
+
+const SortableBlock = SortableElement(Block);
+
+const SortableList = SortableContainer(({ blocks, sectionDefinition, removeStaticSectionBlock }) => {
+  return (
+    <div>
+      {(blocks || []).map((block, index) =>
+        <SortableBlock
+          key={`section-${sectionDefinition.type}-block-${index}`}
+          index={index}
+          sectionDefinition={sectionDefinition}
+          block={block}
+          removeBlock={removeStaticSectionBlock.bind(null, sectionDefinition.type, block.id)}
+          handleComponent={DragHandle}
+        />
+      )}
+    </div>
+  );
+});
+
 class BlockList extends Component {
 
   constructor(props) {
     super(props);
-    this.addBlock = this.addBlock.bind(this);
+
+    // bind methods to this
+    this.addBlock   = this.addBlock.bind(this);
+    this.onSortEnd  = this.onSortEnd.bind(this);
   }
 
   addBlock(blockType) {
@@ -20,6 +46,11 @@ class BlockList extends Component {
     this.props.addStaticSectionBlock(sectionDefinition.type, block);
   }
 
+  onSortEnd({ oldIndex, newIndex }) {
+    const { moveStaticSectionBlock, sectionDefinition } = this.props;
+    moveStaticSectionBlock(sectionDefinition.type, oldIndex, newIndex);
+  }
+
   render() {
     const { blocks } = this.props.content;
     const { sectionDefinition, removeStaticSectionBlock } = this.props;
@@ -27,13 +58,16 @@ class BlockList extends Component {
     return (
       <div className="editor-section-blocks">
         <h3>Blocks</h3>
-        {(blocks || []).map((block, index) =>
-          <Block
-            key={`section-${sectionDefinition.type}-block-${index}`}
-            sectionDefinition={sectionDefinition}
-            block={block}
-            removeBlock={removeStaticSectionBlock}
-          />)}
+
+        <SortableList
+          blocks={blocks}
+          sectionDefinition={sectionDefinition}
+          onSortEnd={this.onSortEnd}
+          removeStaticSectionBlock={removeStaticSectionBlock}
+          useDragHandle={true}
+          lockAxis="y"
+        />
+
         <div className="editor-section-add-block text-center">
           {sectionDefinition.blocks.length === 1 && (
             <button className="btn btn-primary btn-sm" onClick={this.addBlock.bind(null, null)}>

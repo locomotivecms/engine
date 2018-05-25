@@ -20,3 +20,20 @@ export function uuid() {
     return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
   });
 }
+
+// Swap an element of an array to its new position
+export function arrayMove(array, oldIndex, newIndex) {
+  var newArray = [];
+
+  if (oldIndex === newIndex) return array;
+  if (oldIndex < newIndex) [oldIndex, newIndex] = [newIndex, oldIndex];
+
+  for (var index = 0; newArray.length < array.length; index++) {
+    if (index === newIndex)
+      newArray.push(array[oldIndex], array[index]);
+    else if (index !== oldIndex)
+      newArray.push(array[index]);
+  }
+
+  return newArray
+}

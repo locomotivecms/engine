@@ -1,5 +1,10 @@
-import update from 'immutability-helper';
+import update from '../utils/immutable_update';
 import { findIndex } from 'lodash';
+
+function findBlockIndex(state, action) {
+  const blocks = state.sectionsContent[action.sectionType].blocks;
+  return findIndex(blocks, block => block.id === action.blockId);
+}
 
 function site(state = {}, action) {
   switch(action.type) {
@@ -15,7 +20,7 @@ function site(state = {}, action) {
         }
       });
 
-    case 'STATIC_SECTION::ADD_BLOCK':
+    case 'STATIC_SECTION::BLOCK::ADD':
       return update(state, {
         sectionsContent: {
           [action.sectionType]: {
@@ -24,14 +29,41 @@ function site(state = {}, action) {
         }
       });
 
-    case 'STATIC_SECTION::REMOVE_BLOCK':
-      const blocks = state.sectionsContent[action.sectionType].blocks;
-      const index  = findIndex(blocks, block => block.id === action.blockId);
-
+    case 'STATIC_SECTION::BLOCK::MOVE':
       return update(state, {
         sectionsContent: {
           [action.sectionType]: {
-            blocks: { $splice: [[index, 1]] }
+            blocks: {
+              $arrayMove: {
+                oldIndex: action.oldIndex,
+                newIndex: action.newIndex
+              }
+            }
+          }
+        }
+      });
+
+    case 'STATIC_SECTION::BLOCK::REMOVE':
+      console.log(action);
+      return update(state, {
+        sectionsContent: {
+          [action.sectionType]: {
+            blocks: { $splice: [[findBlockIndex(state, action), 1]] }
+          }
+        }
+      });
+
+    case 'STATIC_SECTION::BLOCK::UPDATE_INPUT':
+      return update(state, {
+        sectionsContent: {
+          [action.sectionType]: {
+            blocks: {
+              [findBlockIndex(state, action)]: {
+                settings: {
+                  [action.id]: { $set: action.newValue }
+                }
+              }
+            }
           }
         }
       });

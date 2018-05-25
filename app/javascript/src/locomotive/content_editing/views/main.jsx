@@ -6,6 +6,7 @@ import withRedux from '../utils/with_redux';
 import Startup from './startup.jsx';
 import ListSections from './sections/list.jsx';
 import EditSection from './sections/edit.jsx';
+import EditBlock from './blocks/edit.jsx';
 
 // Components
 import Header from '../components/header.jsx';
@@ -36,6 +37,7 @@ class Main extends React.Component {
                 <div>
                   <Route exact path="/" component={ListSections} />
                   <Route path="/sections/:type/edit" component={EditSection}/>
+                  <Route path="/sections/:type/blocks/:blockId/edit" component={EditBlock}/>
                 </div>
               }
             </div>

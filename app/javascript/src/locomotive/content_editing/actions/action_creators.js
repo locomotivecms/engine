@@ -26,19 +26,39 @@ export function updateStaticSectionInput(sectionType, id, newValue) {
 
 // SECTION BLOCKS
 
+
 export function addStaticSectionBlock(sectionType, newBlock) {
   return {
-    type:         'STATIC_SECTION::ADD_BLOCK',
+    type:         'STATIC_SECTION::BLOCK::ADD',
     sectionType,
     newBlock
   }
 }
 
+export function moveStaticSectionBlock(sectionType, oldIndex, newIndex) {
+  return {
+    type:         'STATIC_SECTION::BLOCK::MOVE',
+    sectionType,
+    oldIndex,
+    newIndex
+  }
+}
+
 export function removeStaticSectionBlock(sectionType, blockId) {
   return {
-    type:         'STATIC_SECTION::REMOVE_BLOCK',
+    type:         'STATIC_SECTION::BLOCK::REMOVE',
     sectionType,
     blockId
+  }
+}
+
+export function updateStaticSectionBlockInput(sectionType, blockId, id, newValue) {
+  return {
+    type:         'STATIC_SECTION::BLOCK::UPDATE_INPUT',
+    sectionType,
+    blockId,
+    id,
+    newValue
   }
 }
 

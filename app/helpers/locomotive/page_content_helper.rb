@@ -17,7 +17,7 @@ module Locomotive
 
         # assign an id to each block of static sections
         content[type]['blocks'] = content[type]['blocks'].each_with_index.map do |block, index|
-          block['id'] = index
+          block['id'] = index.to_s
           block
         end
       end

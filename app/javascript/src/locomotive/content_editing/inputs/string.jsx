@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { updateTextValue as previewUpdateTextValue } from '../services/preview_service';
 
 class StringInput extends Component {
 
@@ -7,7 +6,7 @@ class StringInput extends Component {
     super(props);
 
     var value = props.data.settings[props.setting.id];
-    value = value || props.setting.default;
+    value = value || props.setting.default || '';
 
     this.state = { value };
 
@@ -16,19 +15,9 @@ class StringInput extends Component {
 
   handleChange(event) {
     const { value } = event.target;
-    this.setState({ value }, () => { this.onChange(value) });
-  }
-
-  onChange(value) {
-    switch(this.props.type) {
-      case 'staticSection':
-        const { updateStaticSectionInput, sectionType, setting } = this.props;
-
-        previewUpdateTextValue(this.props.iframe, sectionType, setting.id, value);
-        updateStaticSectionInput(sectionType, setting.id, value);
-
-        break;
-    }
+    this.setState({ value }, () => {
+      this.props.onChange(this.props.setting.id, value, true)
+    });
   }
 
   render() {

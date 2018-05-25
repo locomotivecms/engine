@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { updateTextValue as previewUpdateText } from '../../services/preview_service';
 import withRedux from '../../utils/with_redux';
 import { isBlank } from '../../utils/misc';
 import { find } from 'lodash';
@@ -10,44 +11,56 @@ import BlockList from './components/block_list.jsx';
 
 class Edit extends Component {
 
-  // Return the definition of the current section
-  getDefinition() {
+  constructor(props) {
+    super(props);
+
     const { definitions, match } = this.props;
-    return definitions.find(definition => definition.type === match.params.type)
+
+    // shortcuts
+    this.sectionDefinition  = definitions.find(def => def.type === match.params.type);
+
+    // Bind methods
+    this.onChange = this.onChange.bind(this);
   }
 
-  // Return the content of the current section
-  // Since it's a static section, it has to fetch it from the site
-  getContent(type) {
-    const { sectionsContent } = this.props.site;
-    return sectionsContent[type] || {};
+  onChange(settingId, newValue, updatePreview) {
+    const { updateStaticSectionInput, iframe } = this.props;
+    const sectionType = this.sectionDefinition.type;
+
+    if (updatePreview)
+      previewUpdateText(iframe, sectionType, settingId, newValue);
+
+    updateStaticSectionInput(sectionType, settingId, newValue);
+  }
+
+  getContent() {
+    return this.props.staticContent[this.sectionDefinition.type] || {};
   }
 
   render() {
-    const definition  = this.getDefinition();
-    const content     = this.getContent(definition.type);
-
     return (
       <div className="editor-edit-section">
-        <p>
-          [Section] Edit {definition.name}
+        <h2>
+          [{this.sectionDefinition.name}] Edit
           &nbsp;
           <Link to="/">Back</Link>
-        </p>
+        </h2>
+
         <div className="editor-section-settings">
-          {definition.settings.map(setting =>
+          {this.sectionDefinition.settings.map(setting =>
             <Input
               key={`section-input-${setting.id}`}
               setting={setting}
-              data={content}
-              type="staticSection"
-              sectionType={definition.type}
+              data={this.getContent()}
+              onChange={this.onChange}
             />
           )}
         </div>
+
         <hr/>
-        {!isBlank(definition.blocks) &&
-          <BlockList sectionDefinition={definition} content={content} />
+
+        {!isBlank(this.sectionDefinition.blocks) &&
+          <BlockList sectionDefinition={this.sectionDefinition} content={this.getContent()} />
         }
       </div>
     )
@@ -56,5 +69,7 @@ class Edit extends Component {
 }
 
 export default withRedux(Edit, state => { return {
-  site: state.site, definitions: state.sectionDefinitions
+  staticContent:  state.site.sectionsContent,
+  definitions:    state.sectionDefinitions,
+  iframe:         state.iframe.window
 } });
