@@ -15,7 +15,7 @@ describe Locomotive::PageParsingService do
 
     let(:page) { create(:sub_page, site: site, parent: home, raw_template: page_template) }
 
-    subject { service.find_or_create_editable_elements(page) }
+    subject { service.find_or_create_editable_elements(page)[:elements] }
 
     it { expect(subject.size).to eq 2 }
     it { expect { subject }.to change { page.editable_elements.count }.by(1) }

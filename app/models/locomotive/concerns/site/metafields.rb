@@ -68,7 +68,7 @@ module Locomotive
         #   end
         # end
 
-        def metafields_schema_schema
+        def _metafields_schema_schema
           {
             'id' => 'http://locomotive.works/schemas/metafields.json',
             'definitions' => {

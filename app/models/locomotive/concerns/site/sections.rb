@@ -34,7 +34,7 @@ module Locomotive
         #   }
         # }
         #
-        def sections_content_schema
+        def _sections_content_schema
           {
             id: 'http://www.locomotive.cms/schemas/site/sections_content.json',
             type: 'object',
