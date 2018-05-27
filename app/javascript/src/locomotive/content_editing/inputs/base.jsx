@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import StringInput from './string.jsx';
+import CheckboxInput from './checkbox.jsx';
 import withRedux from '../utils/with_redux';
 
 class Base extends Component {

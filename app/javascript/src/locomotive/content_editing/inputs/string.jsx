@@ -24,7 +24,7 @@ class StringInput extends Component {
     const { setting } = this.props;
 
     return (
-      <div className="lce-input lce-input-string">
+      <div className="locomotive-editor-input locomotive-editor-input-string">
         <label>{setting.label}</label>
         <br/>
         <input type="text" value={this.state.value} onChange={this.handleChange} />
