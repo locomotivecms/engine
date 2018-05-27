@@ -11,7 +11,11 @@ const requestOptions = (verb, data) => {
 }
 
 const put = (url, data) => {
-  return fetch(url, requestOptions('PUT', data))
+  return fetch(url, requestOptions('PUT', data));
+}
+
+const jsonPut = (url, data) => {
+  return put(url, data)
     .then((response) => { return response.json() })
     .then((data) => {
       if (data.errors) throw(data.errors);
@@ -20,8 +24,14 @@ const put = (url, data) => {
 }
 
 export function saveContent(site, page) {
-  return put(window.Locomotive.urls.save, {
+  return jsonPut(window.Locomotive.urls.save, {
     site: { sections_content: JSON.stringify(site.sectionsContent) },
     page: { sections_content: JSON.stringify(page.sectionsContent) }
   });
+}
+
+export function loadSectionHTML(sectionType, content) {
+  const url = `${window.Locomotive.urls.preview}/_sections/${sectionType}`;
+  return put(url, { section_content: content[sectionType] })
+    .then(response => { return response.text(); })
 }

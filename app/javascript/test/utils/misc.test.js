@@ -15,13 +15,15 @@ describe('locomotive/editor/utils/misc', function() {
       expect(arrayMove(['a', 'b', 'c'], 2, 0)).to.eql(['c', 'a', 'b']);
       expect(arrayMove(['a', 'b', 'c'], 2, 1)).to.eql(['a', 'c', 'b']);
       expect(arrayMove(['a', 'b', 'c', 'd'], 2, 0)).to.eql(['c', 'a', 'b', 'd']);
+      expect(arrayMove(['a', 'b', 'c', 'd'], 3, 0)).to.eql(['d', 'a', 'b', 'c']);
     });
 
     it('should return a new array with the updated positions (oldIndex < newIndex)', function() {
       expect(arrayMove(['a', 'b', 'c'], 0, 1)).to.eql(['b', 'a', 'c']);
-      expect(arrayMove(['a', 'b', 'c'], 0, 2)).to.eql(['c', 'a', 'b']);
+      expect(arrayMove(['a', 'b', 'c'], 0, 2)).to.eql(['b', 'c', 'a']);
       expect(arrayMove(['a', 'b', 'c'], 1, 2)).to.eql(['a', 'c', 'b']);
-      expect(arrayMove(['a', 'b', 'c', 'd'], 0, 2)).to.eql(['c', 'a', 'b', 'd']);
+      expect(arrayMove(['a', 'b', 'c', 'd'], 0, 2)).to.eql(['b', 'c', 'a', 'd']);
+      expect(arrayMove(['a', 'b', 'c', 'd'], 0, 3)).to.eql(['b', 'c', 'd', 'a']);
     });
 
   });

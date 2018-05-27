@@ -26,12 +26,14 @@ export function arrayMove(array, oldIndex, newIndex) {
   var newArray = [];
 
   if (oldIndex === newIndex) return array;
-  if (oldIndex < newIndex) [oldIndex, newIndex] = [newIndex, oldIndex];
 
   for (var index = 0; newArray.length < array.length; index++) {
-    if (index === newIndex)
-      newArray.push(array[oldIndex], array[index]);
-    else if (index !== oldIndex)
+    if (index === newIndex) {
+      if (newIndex < oldIndex)
+        newArray.push(array[oldIndex], array[index]);
+      else
+        newArray.push(array[index], array[oldIndex]);
+    } else if (index !== oldIndex)
       newArray.push(array[index]);
   }
 
