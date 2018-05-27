@@ -33,7 +33,7 @@ module Locomotive
 
         def json_attribute_must_be_valid(name)
           json    = self.send(name)
-          schema  = respond_to?(:"#{name}_schema", true) ? self.send(:"#{name}_schema") : {}
+          schema  = respond_to?(:"_#{name}_schema", true) ? self.send(:"_#{name}_schema") : {}
 
           return if json.blank?
 

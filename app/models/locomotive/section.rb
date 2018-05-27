@@ -68,7 +68,7 @@ module Locomotive
     #     }
     #   ]
     # }
-    def definition_schema
+    def _definition_schema
       {
         id: 'http://www.locomotive.cms/schemas/sections/definition2.json',
         definitions: {
