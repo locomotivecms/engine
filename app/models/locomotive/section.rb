@@ -77,7 +77,7 @@ module Locomotive
             properties: {
               id:       { type: 'string' },
               label:    { type: 'string' },
-              type:     { enum: ['string', 'text', 'integer', 'float', 'image', 'boolean', 'select'] },
+              type:     { enum: ['string', 'text', 'integer', 'float', 'image', 'checkbox', 'select'] },
               default:  {}
             },
             required: [:id, :type]

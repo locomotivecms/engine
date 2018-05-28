@@ -8,7 +8,8 @@ class Base extends Component {
   // TODO: text, integer, float, image, boolean, select
   getInput() {
     switch (this.props.setting.type) {
-      case 'string': return StringInput;
+      case 'string':    return StringInput;
+      case 'checkbox':  return CheckboxInput;
       default:
         console.log(`[Editor] Warning! Unknown input type: "${this.props.setting.type}"`);
         return null;
