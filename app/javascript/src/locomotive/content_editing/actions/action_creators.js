@@ -15,10 +15,11 @@ export function persistChanges(result, data) {
 
 // SECTIONS
 
-export function updateStaticSectionInput(sectionType, id, newValue) {
+export function updateStaticSectionInput(sectionType, fieldType, id, newValue) {
   return {
     type:         'STATIC_SECTION::UPDATE_INPUT',
     sectionType,
+    fieldType,
     id,
     newValue
   }
@@ -52,11 +53,12 @@ export function removeStaticSectionBlock(sectionType, blockId) {
   }
 }
 
-export function updateStaticSectionBlockInput(sectionType, blockId, id, newValue) {
+export function updateStaticSectionBlockInput(sectionType, blockId, fieldType, id, newValue) {
   return {
     type:         'STATIC_SECTION::BLOCK::UPDATE_INPUT',
     sectionType,
     blockId,
+    fieldType,
     id,
     newValue
   }
@@ -68,5 +70,11 @@ export function onIframeLoaded(contentWindow) {
   return {
     type:         'IFRAME::LOADED',
     window:       contentWindow
+  }
+}
+
+export function onIframeOperationsDone() {
+  return {
+    type:         'IFRAME::DONE'
   }
 }

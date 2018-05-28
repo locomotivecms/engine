@@ -6,7 +6,7 @@ class CheckboxInput extends Component {
     super(props);
 
     var checked = props.data.settings[props.setting.id];
-    checked = checked || props.setting.default || false;
+    if (checked === undefined) checked = props.setting.default || false;
 
     this.state = { checked };
 
@@ -16,7 +16,7 @@ class CheckboxInput extends Component {
   toggleChange(event) {
     const { checked } = event.target;
     this.setState({ checked }, () => {
-      this.props.onChange(this.props.setting.id, checked, false);
+      this.props.onChange(this.props.setting.type, this.props.setting.id, checked);
     });
   }
 
@@ -25,11 +25,11 @@ class CheckboxInput extends Component {
 
     return (
       <div className="locomotive-editor-input locomotive-editor-input-checkbox">
-        <label>{setting.label}</label>
         <input type="checkbox"
           checked={this.state.checked}
           onChange={this.toggleChange}
         />
+        <label>{setting.label}</label>
       </div>
     )
   }

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { updateTextValue as previewUpdateText } from '../../services/preview_service';
 import withRedux from '../../utils/with_redux';
 import { isBlank } from '../../utils/misc';
 import { find } from 'lodash';
@@ -23,14 +22,13 @@ class Edit extends Component {
     this.onChange = this.onChange.bind(this);
   }
 
-  onChange(settingId, newValue, updatePreview) {
-    const { updateStaticSectionInput, iframe } = this.props;
-    const sectionType = this.sectionDefinition.type;
-
-    if (updatePreview)
-      previewUpdateText(iframe, sectionType, settingId, newValue);
-
-    updateStaticSectionInput(sectionType, settingId, newValue);
+  onChange(settingType, settingId, newValue) {
+    this.props.updateStaticSectionInput(
+      this.sectionDefinition.type,
+      settingType,
+      settingId,
+      newValue
+    );
   }
 
   getContent() {
@@ -70,6 +68,5 @@ class Edit extends Component {
 
 export default withRedux(Edit, state => { return {
   staticContent:  state.site.sectionsContent,
-  definitions:    state.sectionDefinitions,
-  iframe:         state.iframe.window
+  definitions:    state.sectionDefinitions
 } });

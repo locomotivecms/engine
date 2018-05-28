@@ -44,7 +44,6 @@ function site(state = {}, action) {
       });
 
     case 'STATIC_SECTION::BLOCK::REMOVE':
-      console.log(action);
       return update(state, {
         sectionsContent: {
           [action.sectionType]: {

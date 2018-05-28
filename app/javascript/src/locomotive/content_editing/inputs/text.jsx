@@ -6,7 +6,7 @@ class TextInput extends Component {
     super(props);
 
     var value = props.data.settings[props.setting.id];
-    value = value || props.setting.default || '';
+    if (value === undefined) value = props.setting.default || '';
 
     this.state = { value };
 
@@ -16,7 +16,7 @@ class TextInput extends Component {
   handleChange(event) {
     const { value } = event.target;
     this.setState({ value }, () => {
-      this.props.onChange(this.props.setting.id, value, true)
+      this.props.onChange(this.props.setting.type, this.props.setting.id, value)
     });
   }
 
@@ -24,7 +24,7 @@ class TextInput extends Component {
     const { setting } = this.props;
 
     return (
-      <div className="locomotive-editor-input locomotive-editor-input-string">
+      <div className="locomotive-editor-input locomotive-editor-input-text">
         <label>{setting.label}</label>
         <br/>
         <input type="text" value={this.state.value} onChange={this.handleChange} />

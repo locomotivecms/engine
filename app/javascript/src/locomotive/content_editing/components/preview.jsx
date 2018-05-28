@@ -3,11 +3,26 @@ import withRedux from '../utils/with_redux';
 import { waitUntil } from '../utils/misc';
 
 // Services
-import { updateStaticSection as previewUpdateStaticSection } from '../services/preview_service';
+import { updateStaticSection, updateStaticSectionText } from '../services/preview_service';
 import { loadSectionHTML } from '../services/api.js';
 
 // we want to avoid the flickering if the iframe is loaded too quickly
 const STARTUP_MIN_DELAY = 1000;
+
+const refreshStaticSection = (_window, sectionType, sectionsContent) => {
+  return loadSectionHTML(sectionType, sectionsContent)
+  .then(html => {
+    updateStaticSection(_window, sectionType, html);
+    return true;
+  });
+}
+
+const refreshText = (_window, sectionType, blockId, settingId, newValue) => {
+  return new Promise(resolve => {
+    updateStaticSectionText(_window, sectionType, blockId, settingId, newValue);
+    resolve(true);
+  });
+}
 
 class Preview extends React.Component {
 
@@ -27,19 +42,26 @@ class Preview extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
-    const { iframe, site, page } = this.props;
+    this.refreshPreview(this.props.iframeState.refreshAction)
+    .then(done => {
+      if (done) this.props.onIframeOperationsDone
+    });
+  }
 
-    if (iframe.refreshStaticSection) {
-      loadSectionHTML(iframe.sectionType, site.sectionsContent)
-      .then(html => {
-        previewUpdateStaticSection(
-          iframe.window,
-          iframe.sectionType,
-          html
-        );
+  refreshPreview(action) {
+    const _window         = this.iframe.contentWindow;
+    const { sectionType } = this.props.iframeState;
 
-        // TODO: dispatch action to tell the action is done
-      });
+    switch(action) {
+      case 'staticSection':
+        return refreshStaticSection(_window, sectionType, this.props.site.sectionsContent);
+
+      case 'input':
+        const { blockId, fieldId, fieldValue } = this.props.iframeState;
+        return refreshText(_window, sectionType, blockId, fieldId, fieldValue);
+
+      default:
+        return new Promise(resolve => { resolve() });
     }
   }
 
@@ -62,6 +84,6 @@ class Preview extends React.Component {
 }
 
 export default withRedux(Preview, state => { return {
-  site:     state.site,
-  iframe:   state.iframe
+  site:         state.site,
+  iframeState:  state.iframe
 } });
