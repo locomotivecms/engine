@@ -4,7 +4,10 @@ import './content_editing.scss';
 import App from './content_editing/app.jsx';
 
 $(document).ready(function() {
-  const { urls } = window.Locomotive;
-  ReactDOM.render(<App urls={urls} />, document.getElementById('editor-app'));
+  ReactDOM.render(
+    <App
+      urls={window.Locomotive.urls}
+      {...window.Locomotive.data}
+    />, document.getElementById('editor-app'));
 });
 

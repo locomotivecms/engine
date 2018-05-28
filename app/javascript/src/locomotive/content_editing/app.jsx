@@ -12,7 +12,7 @@ class App extends Component {
     return (
       <Provider store={store}>
         <div>
-          <Main basepath={this.props.urls.base} />
+          <Main basepath={this.props.urls.base} {...this.props} />
           <Preview src={this.props.urls.preview} />
         </div>
       </Provider>

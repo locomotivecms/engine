@@ -1,10 +1,32 @@
 module Locomotive
   module PageContentHelper
 
+    def all_static_sections_to_json(section_types)
+      section_types.without('_sections_dropzone_').to_json.html_safe
+    end
+
+    def top_static_sections_to_json(section_types)
+      if (array = section_types.split('_sections_dropzone_')).size == 1
+        []
+      else
+        array.first
+      end.to_json.html_safe
+    end
+
+    def bottom_static_sections_to_json(section_types)
+      if (array = section_types.split('_sections_dropzone_')).size == 1
+        []
+      else
+        array.last
+      end.to_json.html_safe
+    end
+
     def static_sections_content(site, types, definitions)
       content = site.sections_content || {}
 
       types.each do |type|
+        next if type == '_sections_dropzone_'
+
         # no content yet?
         if content[type].blank?
           definition = definitions.find { |definition| definition['type'] == type }

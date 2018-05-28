@@ -4,19 +4,26 @@
   <script>
     window.Locomotive.data = {
       site: {
-        sectionsContent:  <%= h static_sections_content_to_json(current_site, @static_section_types, @section_definitions) %>,
-        staticSections:   <%= h @static_section_types.to_json.html_safe %>
+        sectionsContent:  <%= h static_sections_content_to_json(current_site, @static_section_types, @section_definitions) %>
       },
       page: {
         title: "<%= @page.title %>",
         sectionsContent: [] // TODO
       },
       sectionDefinitions: <%= h @section_definitions.to_json.html_safe %>,
+      editableElements:   <%= h @editable_elements.to_json.html_safe %>,
+      sections: {
+        all:      <%= h all_static_sections_to_json(@static_section_types) %>,
+        top:      <%= h top_static_sections_to_json(@static_section_types) %>,
+        bottom:   <%= h bottom_static_sections_to_json(@static_section_types) %>,
+        dropzone: <%= @static_section_types.include?('_sections_dropzone_') %>
+      }
     }
 
     window.Locomotive.urls = {
       base:         "<%= edit_page_content_path(current_site, @page) %>",
       save:         "<%= page_content_path(current_site, @page, format: :json) %>",
+      settings:     "<%= edit_page_path(current_site, @page) %>",
       preview:      "<%= @preview_path %>"
     }
 

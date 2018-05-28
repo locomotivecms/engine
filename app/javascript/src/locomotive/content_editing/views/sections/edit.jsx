@@ -38,11 +38,17 @@ class Edit extends Component {
   render() {
     return (
       <div className="editor-edit-section">
-        <h2>
-          [{this.sectionDefinition.name}] Edit
-          &nbsp;
-          <Link to="/">Back</Link>
-        </h2>
+        <div className="row header-row">
+          <div className="col-md-12">
+            <h1>
+              {this.sectionDefinition.name}
+              &nbsp;
+              <small>
+                <Link to="/sections">Back</Link>
+              </small>
+            </h1>
+          </div>
+        </div>
 
         <div className="editor-section-settings">
           {this.sectionDefinition.settings.map(setting =>

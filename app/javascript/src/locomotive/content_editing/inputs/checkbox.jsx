@@ -24,7 +24,7 @@ class CheckboxInput extends Component {
     const { setting } = this.props;
 
     return (
-      <div className="locomotive-editor-input locomotive-editor-input-checkbox">
+      <div className="editor-input editor-input-checkbox">
         <input type="checkbox"
           checked={this.state.checked}
           onChange={this.toggleChange}

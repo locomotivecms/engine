@@ -45,11 +45,17 @@ class Edit extends Component {
 
     return content ? (
       <div className="editor-edit-block">
-        <h2>
-          [{this.sectionDefinition.name}] Edit {this.blockDefinition.name}
-          &nbsp;
-          <Link to={`/sections/${this.sectionDefinition.type}/edit`}>Back</Link>
-        </h2>
+        <div className="row header-row">
+          <div className="col-md-12">
+            <h1>
+              {this.sectionDefinition.name} / {this.blockDefinition.name}
+              &nbsp;
+              <small>
+                <Link to={`/sections/${this.sectionDefinition.type}/edit`}>Back</Link>
+              </small>
+            </h1>
+          </div>
+        </div>
 
         <div className="editor-block-settings">
           {this.blockDefinition.settings.map(setting =>

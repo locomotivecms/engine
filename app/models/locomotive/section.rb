@@ -77,7 +77,7 @@ module Locomotive
             properties: {
               id:       { type: 'string' },
               label:    { type: 'string' },
-              type:     { enum: ['text', 'textarea', 'image_picker', 'checkbox', 'select'] },
+              type:     { enum: ['text', 'image_picker', 'checkbox', 'select', 'url'] },
               default:  {}
             },
             required: [:id, :type]

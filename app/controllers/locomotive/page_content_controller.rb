@@ -19,6 +19,7 @@ module Locomotive
       }
       @editable_content       = parsing_service.find_all_elements(@page)
       @static_section_types   = @editable_content[:sections]
+      @editable_elements      = @editable_content[:elements]
 
       # TODO: move to the helper
       @preview_path = [

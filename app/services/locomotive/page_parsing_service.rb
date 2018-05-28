@@ -58,7 +58,8 @@ module Locomotive
         subscribe_to_extends(parsed[:extends]),
         subscribe_to_blocks(parsed[:blocks], parsed[:super_blocks]),
         subscribe_to_editable_elements(parsed[:elements]),
-        subscribe_to_sections(parsed[:sections])
+        subscribe_to_sections(parsed[:sections]),
+        subscribe_to_sections_dropzones(parsed[:sections])
       ]
 
       yield.tap do
@@ -95,6 +96,12 @@ module Locomotive
     def subscribe_to_sections(sections)
       ActiveSupport::Notifications.subscribe('steam.parse.section') do |name, start, finish, id, payload|
         sections.push(payload[:name])
+      end
+    end
+
+    def subscribe_to_sections_dropzones(sections)
+      ActiveSupport::Notifications.subscribe('steam.parse.sections_dropzone') do |name, start, finish, id, payload|
+        sections.push('_sections_dropzone_')
       end
     end
 
