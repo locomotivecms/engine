@@ -51,12 +51,12 @@ module Locomotive
     #         {
     #           "label": "Item item",
     #           "id": "title",
-    #           "type": "string"
+    #           "type": "text"
     #         },
     #         {
     #           "label": "Item link",
     #           "id": "url",
-    #           "type": "string"
+    #           "type": "text"
     #         },
     #         {
     #           "label": "Open a new tab",
@@ -77,7 +77,7 @@ module Locomotive
             properties: {
               id:       { type: 'string' },
               label:    { type: 'string' },
-              type:     { enum: ['string', 'text', 'integer', 'float', 'image', 'checkbox', 'select'] },
+              type:     { enum: ['text', 'textarea', 'image_picker', 'checkbox', 'select'] },
               default:  {}
             },
             required: [:id, :type]

@@ -10,11 +10,11 @@ FactoryBot.define do
     definition { {
       name:     'header',
       settings: [
-        { id: 'title', type: 'string'}
+        { id: 'title', type: 'text'}
       ],
       blocks: [
         { type: 'slide', name: 'Slide', settings: [
-          { id: 'picture', type: 'image' }
+          { id: 'picture', type: 'image_picker' }
         ] }
       ]
     } }

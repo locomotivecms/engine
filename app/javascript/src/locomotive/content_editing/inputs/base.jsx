@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import StringInput from './string.jsx';
+import TextInput from './text.jsx';
 import CheckboxInput from './checkbox.jsx';
 import withRedux from '../utils/with_redux';
 
@@ -8,7 +8,7 @@ class Base extends Component {
   // TODO: text, integer, float, image, boolean, select
   getInput() {
     switch (this.props.setting.type) {
-      case 'string':    return StringInput;
+      case 'text':      return TextInput;
       case 'checkbox':  return CheckboxInput;
       default:
         console.log(`[Editor] Warning! Unknown input type: "${this.props.setting.type}"`);

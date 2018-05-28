@@ -32,8 +32,6 @@ class Edit extends Component {
     if (updatePreview)
       previewUpdateText(iframe, this.sectionType, this.blockId, settingId, newValue);
 
-    console.log(this.sectionType, this.blockId, settingId, newValue);
-
     // Update the global state
     updateStaticSectionBlockInput(this.sectionType, this.blockId, settingId, newValue);
   }

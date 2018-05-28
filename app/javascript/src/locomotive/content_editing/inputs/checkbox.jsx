@@ -16,7 +16,7 @@ class CheckboxInput extends Component {
   toggleChange(event) {
     const { checked } = event.target;
     this.setState({ checked }, () => {
-      this.props.onChange(this.props.setting.id, checked, false)
+      this.props.onChange(this.props.setting.id, checked, false);
     });
   }
 

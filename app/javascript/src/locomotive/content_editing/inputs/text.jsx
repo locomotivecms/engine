@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class StringInput extends Component {
+class TextInput extends Component {
 
   constructor(props) {
     super(props);
@@ -34,4 +34,4 @@ class StringInput extends Component {
 
 }
 
-export default StringInput;
+export default TextInput;
