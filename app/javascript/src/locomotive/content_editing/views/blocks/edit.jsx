@@ -21,6 +21,16 @@ class Edit extends Component {
 
     // Bind methods
     this.onChange = this.onChange.bind(this);
+    this.exit     = this.exit.bind(this);
+  }
+
+  componentDidMount() {
+    this.props.selectSectionBlock(this.sectionId, this.blockId);
+  }
+
+  exit() {
+    this.props.deselectSectionBlock(this.sectionId, this.blockId);
+    this.props.history.push(this.getCurrentSectionPath());
   }
 
   onChange(settingType, settingId, newValue) {
@@ -63,7 +73,7 @@ class Edit extends Component {
               {this.sectionDefinition.name} / {this.blockDefinition.name}
               &nbsp;
               <small>
-                <Link to={this.getCurrentSectionPath()}>Back</Link>
+                <a onClick={this.exit}>Back</a>
               </small>
             </h1>
           </div>

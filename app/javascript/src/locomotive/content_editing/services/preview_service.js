@@ -1,10 +1,59 @@
-export function updateSection(_window, sectionType, html) {
-  return new Promise(resolve => {
-    const domID = `locomotive-section-${sectionType}`;
+const sendEvent = (elem, type, data) => {
+  if (elem === null || elem === undefined) return false;
 
-    $(_window.document)
-      .find(`#${domID}.locomotive-section`)
-      .html(html);
+  var event = new CustomEvent(
+    `locomotive::${type}`,
+    { bubbles:  true, detail:   data || {} }
+  );
+
+  elem.dispatchEvent(event);
+}
+
+const popSection = (_window, action, sectionId) => {
+  return new Promise(resolve => {
+    const $elem = $(_window.document).find(`#locomotive-section-${sectionId}`);
+    sendEvent($elem[0], `section::${action}`, { sectionId });
+    resolve(true);
+  });
+}
+
+const popBlock = (_window, action, sectionId, blockId) => {
+  return new Promise(resolve => {
+    const value = `section-${sectionId}-block-${blockId}`;
+    const $elem = $(_window.document).find(`[data-locomotive-editor-block='${value}']`);
+
+    console.log($elem);
+
+    sendEvent($elem[0], `block::${action}`, { sectionId, blockId });
+    resolve(true);
+  });
+}
+
+// Actions
+
+export function selectSection(_window, sectionId) {
+  return popSection(_window, 'select', sectionId);
+}
+
+export function deselectSection(_window, sectionId) {
+  return popSection(_window, 'deselect', sectionId);
+}
+
+export function selectSectionBlock(_window, sectionId, blockId) {
+  return popBlock(_window, 'select', sectionId, blockId);
+}
+
+export function deselectSectionBlock(_window, sectionId, blockId) {
+  return popBlock(_window, 'select', sectionId, blockId);
+}
+
+export function updateSection(_window, sectionId, html) {
+  return new Promise(resolve => {
+    const $elem = $(_window.document).find(`#locomotive-section-${sectionId}`);
+
+    sendEvent($elem[0], 'section::unload', { sectionId });
+    $elem.html(html);
+    sendEvent($elem[0], 'section::load', { sectionId });
 
     resolve(true);
   });
@@ -30,15 +79,19 @@ export function updateSectionText(_window, sectionType, sectionId, blockId, sett
   });
 }
 
-export function previewSection(_window, html, previousSectionId) {
+// Append a new section to the dropzone container. If another previewed section
+// exists, it will be removed first.
+export function previewSection(_window, html, sectionId, previousSectionId) {
   return new Promise(resolve => {
-    $(_window.document)
-      .find(`#locomotive-section-${previousSectionId}`)
-      .remove();
+    // remove the previous previewed section
+    const $previous = $(_window.document).find(`#locomotive-section-${previousSectionId}`);
+    sendEvent($previous[0], 'section::unload', { sectionId: previousSectionId });
+    $previous.remove();
 
-    $(_window.document)
-      .find('.locomotive-sections')
-      .append(html)
+    // append the new one
+    const $elem = $(html);
+    $(_window.document).find('.locomotive-sections').append($elem)
+    sendEvent($elem[0], 'section::load', { sectionId });
 
     resolve(true);
   });
@@ -46,13 +99,15 @@ export function previewSection(_window, html, previousSectionId) {
 
 export function moveSection(_window, sectionId, targetSectionId, direction) {
   return new Promise(resolve => {
-    const section  = $(_window.document).find(`#locomotive-section-${sectionId}`);
-    const pivot    = $(_window.document).find(`#locomotive-section-${targetSectionId}`);
+    const $elem  = $(_window.document).find(`#locomotive-section-${sectionId}`);
+    const $pivot = $(_window.document).find(`#locomotive-section-${targetSectionId}`);
 
     if (direction === 'before')
-      section.insertBefore(pivot);
+      $elem.insertBefore($pivot);
     else
-      section.insertAfter(pivot);
+      $elem.insertAfter($pivot);
+
+    sendEvent($elem[0], 'section::reorder', { sectionId });
 
     resolve(true);
   });
@@ -60,9 +115,9 @@ export function moveSection(_window, sectionId, targetSectionId, direction) {
 
 export function removeSection(_window, sectionId) {
   return new Promise(resolve => {
-    $(_window.document)
-      .find(`#locomotive-section-${sectionId}`)
-      .remove();
+    const $elem = $(_window.document).find(`#locomotive-section-${sectionId}`);
+    sendEvent($elem[0], 'section::unload', { sectionId });
+    $elem.remove();
 
     resolve(true);
   });

@@ -29,6 +29,18 @@ function iframe(state = {}, action) {
         section:            { $set: null }
       });
 
+    case 'SECTION::SELECT':
+      return update(state, {
+        refreshAction:      { $set: 'selectSection' },
+        sectionId:          { $set: action.sectionId }
+      });
+
+    case 'SECTION::DESELECT':
+      return update(state, {
+        refreshAction:      { $set: 'deselectSection' },
+        sectionId:          { $set: action.sectionId }
+      });
+
     case 'SECTION::CANCEL_PREVIEW':
       if (!state.section) return state;
       return update(state, {
@@ -74,6 +86,20 @@ function iframe(state = {}, action) {
     case 'STATIC_SECTION::BLOCK::REMOVE':
     case 'STATIC_SECTION::BLOCK::MOVE':
       return refreshSection(state, action);
+
+    case 'SECTION::BLOCK::SELECT':
+      return update(state, {
+        refreshAction:      { $set: 'selectSectionBlock' },
+        sectionId:          { $set: action.sectionId },
+        blockId:            { $set: action.blockId }
+      });
+
+    case 'SECTION::BLOCK::DESELECT':
+      return update(state, {
+        refreshAction:      { $set: 'deselectSectionBlock' },
+        sectionId:          { $set: action.sectionId },
+        blockId:            { $set: action.blockId }
+      });
 
     case 'IFRAME::DONE':
       return update(state, {

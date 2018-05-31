@@ -6,7 +6,8 @@ import { waitUntil } from '../utils/misc';
 // Services
 import {
   updateSection, updateSectionText,
-  previewSection, addSection, moveSection, removeSection
+  previewSection, addSection, moveSection, removeSection,
+  selectSection, deselectSection, selectSectionBlock, deselectSectionBlock
 } from '../services/preview_service';
 import { loadSectionHTML } from '../services/api';
 
@@ -39,7 +40,7 @@ class Preview extends React.Component {
 
   refreshPreview(action) {
     const _window = this.iframe.contentWindow;
-    const { sectionType, sectionId } = this.props.iframeState;
+    const { sectionType, sectionId, blockId } = this.props.iframeState;
 
     switch(action) {
       case 'refreshStaticSection':
@@ -47,18 +48,30 @@ class Preview extends React.Component {
           .then(html => updateSection(_window, sectionType, html))
 
       case 'updateInput':
-        const { blockId, fieldId, fieldValue } = this.props.iframeState;
+        const { fieldId, fieldValue } = this.props.iframeState;
         return updateSectionText(_window, sectionType, sectionId, blockId, fieldId, fieldValue);
 
       case 'previewSection':
         const { section, previousSectionId } = this.props.iframeState;
         return loadSectionHTML(section.type, section)
-          .then(html => previewSection(_window, html, previousSectionId))
+          .then(html => previewSection(_window, html, section.id, previousSectionId))
 
       case 'refreshSection':
         const _section = find(this.props.content, _section => _section.id === sectionId);
         return loadSectionHTML(sectionType, _section)
           .then(html => updateSection(_window, sectionId, html))
+
+      case 'selectSection':
+        return selectSection(_window, sectionId);
+
+      case 'deselectSection':
+        return deselectSection(_window, sectionId);
+
+      case 'selectSectionBlock':
+        return selectSectionBlock(_window, sectionId, blockId);
+
+      case 'deselectSectionBlock':
+        return deselectSectionBlock(_window, sectionId, blockId);
 
       case 'moveSection':
         const { targetSectionId, direction } = this.props.iframeState;

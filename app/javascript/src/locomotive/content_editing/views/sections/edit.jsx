@@ -21,6 +21,11 @@ class Edit extends Component {
 
     // Bind methods
     this.onChange = this.onChange.bind(this);
+    this.exit     = this.exit.bind(this);
+  }
+
+  componentDidMount() {
+    this.props.selectSection(this.sectionId);
   }
 
   onChange(settingType, settingId, newValue) {
@@ -40,6 +45,11 @@ class Edit extends Component {
       return this.props.staticContent[this.sectionDefinition.type] || {};
   }
 
+  exit() {
+    this.props.deselectSection(this.sectionId);
+    this.props.history.push('/sections');
+  }
+
   render() {
     const content = this.getContent();
 
@@ -51,7 +61,7 @@ class Edit extends Component {
               {this.sectionDefinition.name}
               &nbsp;
               <small>
-                <Link to="/sections">Back</Link>
+                <a onClick={this.exit}>Back</a>
               </small>
             </h1>
           </div>

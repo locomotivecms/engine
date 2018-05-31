@@ -34,6 +34,20 @@ export function addSection(newSection) {
   }
 }
 
+export function selectSection(sectionId) {
+  return {
+    type:         'SECTION::SELECT',
+    sectionId
+  }
+}
+
+export function deselectSection(sectionId) {
+  return {
+    type:         'SECTION::DESELECT',
+    sectionId
+  }
+}
+
 export function moveSection(oldIndex, newIndex, sectionId, targetSectionId) {
   return {
     type:         'SECTION::MOVE',
@@ -108,6 +122,22 @@ export function updateSectionBlockInput(sectionType, sectionId, blockId, fieldTy
     fieldType,
     id,
     newValue
+  }
+}
+
+export function selectSectionBlock(sectionId, blockId) {
+  return {
+    type:         'SECTION::BLOCK::SELECT',
+    sectionId,
+    blockId
+  }
+}
+
+export function deselectSectionBlock(sectionId, blockId) {
+  return {
+    type:         'SECTION::BLOCK::DESELECT',
+    sectionId,
+    blockId
   }
 }
 
