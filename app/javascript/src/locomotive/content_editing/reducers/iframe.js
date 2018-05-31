@@ -1,9 +1,11 @@
 import update from '../utils/immutable_update';
 
 const refreshSection = (state, action) => {
+  const name = action.sectionId ? 'refreshSection' : 'refreshStaticSection';
   return update(state, {
-    refreshAction:  { $set: 'refreshSection' },
-    sectionType:    { $set: action.sectionType }
+    refreshAction:  { $set: name },
+    sectionType:    { $set: action.sectionType },
+    sectionId:      { $set: action.sectionId }
   });
 }
 

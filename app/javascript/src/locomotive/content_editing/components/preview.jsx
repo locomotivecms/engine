@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { last } from 'lodash';
+import { find, last } from 'lodash';
 import withRedux from '../utils/with_redux';
 import { waitUntil } from '../utils/misc';
 
 // Services
 import {
-  updateStaticSection, updateSectionText,
+  updateSection, updateSectionText,
   previewSection, addSection, moveSection, removeSection
 } from '../services/preview_service';
 import { loadSectionHTML } from '../services/api';
@@ -42,9 +42,9 @@ class Preview extends React.Component {
     const { sectionType, sectionId } = this.props.iframeState;
 
     switch(action) {
-      case 'refreshSection':
+      case 'refreshStaticSection':
         return loadSectionHTML(sectionType, this.props.staticContent[sectionType])
-          .then(html => updateStaticSection(_window, sectionType, html))
+          .then(html => updateSection(_window, sectionType, html))
 
       case 'updateInput':
         const { blockId, fieldId, fieldValue } = this.props.iframeState;
@@ -54,6 +54,11 @@ class Preview extends React.Component {
         const { section, previousSectionId } = this.props.iframeState;
         return loadSectionHTML(section.type, section)
           .then(html => previewSection(_window, html, previousSectionId))
+
+      case 'refreshSection':
+        const _section = find(this.props.content, _section => _section.id === sectionId);
+        return loadSectionHTML(sectionType, _section)
+          .then(html => updateSection(_window, sectionId, html))
 
       case 'moveSection':
         const { targetSectionId, direction } = this.props.iframeState;

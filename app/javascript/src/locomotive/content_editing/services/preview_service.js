@@ -1,6 +1,6 @@
-export function updateStaticSection(_window, sectionType, html) {
+export function updateSection(_window, sectionType, html) {
   return new Promise(resolve => {
-    const domID   = `locomotive-section-${sectionType}`;
+    const domID = `locomotive-section-${sectionType}`;
 
     $(_window.document)
       .find(`#${domID}.locomotive-section`)
