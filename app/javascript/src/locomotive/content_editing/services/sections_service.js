@@ -61,12 +61,12 @@ export function buildCategories(definitions) {
 
       // build a new category if it doesn't exist
       if (category === undefined) {
-        category = { id: currentId++, name: preset.category, sections: [] };
+        category = { id: currentId++, name: preset.category, presets: [] };
         categories.push(category)
       }
 
       // add the section/preset
-      category.sections.push({
+      category.presets.push({
         id:     index,
         name:   preset.name,
         type:   definition.type,
@@ -75,9 +75,9 @@ export function buildCategories(definitions) {
     });
   });
 
-  // Inside a category, sort sections alphanumerically
+  // Inside a category, sort presets alphanumerically
   forEach(categories, category => {
-    category.sections = sortBy(category.sections, ['name'])
+    category.presets = sortBy(category.presets, ['name'])
   });
 
   return sortBy(categories, ['name']);

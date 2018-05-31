@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
+import { last } from 'lodash';
 import withRedux from '../utils/with_redux';
 import { waitUntil } from '../utils/misc';
 
 // Services
-import { updateStaticSection, updateSectionText, moveSection } from '../services/preview_service';
+import {
+  updateStaticSection, updateSectionText,
+  previewSection, addSection, moveSection, removeSection
+} from '../services/preview_service';
 import { loadSectionHTML } from '../services/api';
 
 // we want to avoid the flickering if the iframe is loaded too quickly
@@ -38,17 +42,25 @@ class Preview extends React.Component {
     const { sectionType, sectionId } = this.props.iframeState;
 
     switch(action) {
-      case 'staticSection':
-        return loadSectionHTML(sectionType, this.props.site.sectionsContent)
+      case 'refreshSection':
+        return loadSectionHTML(sectionType, this.props.staticContent[sectionType])
           .then(html => updateStaticSection(_window, sectionType, html))
 
-      case 'input':
+      case 'updateInput':
         const { blockId, fieldId, fieldValue } = this.props.iframeState;
         return updateSectionText(_window, sectionType, sectionId, blockId, fieldId, fieldValue);
+
+      case 'previewSection':
+        const { section, previousSectionId } = this.props.iframeState;
+        return loadSectionHTML(section.type, section)
+          .then(html => previewSection(_window, html, previousSectionId))
 
       case 'moveSection':
         const { targetSectionId, direction } = this.props.iframeState;
         return moveSection(_window, sectionId, targetSectionId, direction);
+
+      case 'removeSection':
+        return removeSection(_window, sectionId);
 
       default:
         return new Promise(resolve => { resolve() });
@@ -74,6 +86,7 @@ class Preview extends React.Component {
 }
 
 export default withRedux(Preview, state => { return {
-  site:         state.site,
-  iframeState:  state.iframe
+  staticContent:  state.site.sectionsContent,
+  content:        state.page.sectionsContent,
+  iframeState:    state.iframe
 } });

@@ -95,7 +95,7 @@ describe('locomotive/editor/services/sections_service', function() {
       expect(buildCategories(definitions)).to.eql([]);
     });
 
-    it('should return a category with 2 sections from one single section with 2 presets', function() {
+    it('should return a category with 2 presets from one single section with 2 presets', function() {
       const definitions = [
         {
           name:     'Carousel',
@@ -110,7 +110,7 @@ describe('locomotive/editor/services/sections_service', function() {
         {
           id: 0,
           name: 'Category A',
-          sections: [
+          presets: [
             { id: 0, name: 'Simple', type: 'carousel', preset: 0 },
             { id: 1, name: 'With video', type: 'carousel', preset: 1 }
           ]
@@ -137,7 +137,7 @@ describe('locomotive/editor/services/sections_service', function() {
         {
           id: 1,
           name: 'Category A',
-          sections: [
+          presets: [
             { id: 0, name: 'Double column', type: 'text', preset: 0 },
             { id: 1, name: 'Simple', type: 'carousel', preset: 1 }
           ]
@@ -145,7 +145,7 @@ describe('locomotive/editor/services/sections_service', function() {
         {
           id: 0,
           name: 'Category B',
-          sections: [
+          presets: [
             { id: 0, name: 'With video', type: 'carousel', preset: 0 }
           ]
         }

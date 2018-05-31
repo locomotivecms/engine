@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import withRedux from '../../utils/with_redux';
 import { isBlank } from '../../utils/misc';
 import { find } from 'lodash';

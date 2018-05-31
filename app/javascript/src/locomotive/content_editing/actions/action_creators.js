@@ -44,9 +44,9 @@ export function moveSection(oldIndex, newIndex, sectionId, targetSectionId) {
   }
 }
 
-export function cancelAddSection() {
+export function cancelPreviewSection() {
   return {
-    type:         'SECTION::CANCEL_ADD'
+    type:         'SECTION::CANCEL_PREVIEW'
   }
 }
 

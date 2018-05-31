@@ -4,54 +4,39 @@ import withRedux from '../../utils/with_redux';
 // Services
 import { buildSection, buildCategories } from '../../services/sections_service';
 
-class Section extends Component {
+class Preset extends Component {
 
   constructor(props) {
     super(props);
-
-    this.previewSection = this.previewSection.bind(this);
-    this.addSection     = this.addSection.bind(this);
+    this.selectPreset  = this.selectPreset.bind(this);
+    this.previewPreset = this.previewPreset.bind(this);
   }
 
   selectedId() {
-    return [this.props.category.id, this.props.section.id].join('-');
+    return [this.props.category.id, this.props.preset.id].join('-');
   }
 
   isSelected() {
-    return this.props.selectedSection === this.selectedId();
+    return this.props.selectedPreset === this.selectedId();
   }
 
-  buildSection() {
-    const { definitions, section } = this.props;
-    return buildSection(definitions, section.type, section.preset);
+  previewPreset() {
+    this.props.previewPreset(this.props.category, this.props.preset);
   }
 
-  previewSection() {
-    this.props.previewSection(this.buildSection());
-
-    // required to display the "Add" button
-    this.props.onSelect(this.props.category, this.props.section);
-  }
-
-  addSection(event) {
+  selectPreset(event) {
     event.stopPropagation(); // don't want to also run previewSection
-
-    const newSection = this.buildSection();
-
-    this.props.addSection(newSection);
-
-    // Go directly to the section edit page
-    this.props.history.push(`/dropzone_sections/${newSection.type}/${newSection.id}/edit`);
+    this.props.selectPreset();
   }
 
   render() {
     return (
-      <div className="editor-section-category-section" onClick={this.previewSection}>
-        {this.props.section.name}
+      <div className="editor-section-category-section" onClick={this.previewPreset}>
+        {this.props.preset.name}
         {this.isSelected() &&
           <span>
             &nbsp;
-            <button className="btn btn-primary btn-sm" onClick={this.addSection}>Add</button>
+            <button className="btn btn-primary btn-sm" onClick={this.selectPreset}>Add</button>
           </span>
         }
       </div>
@@ -66,8 +51,12 @@ const Category = props => (
       <h3>{props.category.name}</h3>
     </div>
     <div className="editor-section-category-section-list">
-      {props.category.sections.map(section =>
-        <Section {...props} key={section.type} section={section} />
+      {props.category.presets.map(preset =>
+        <Preset
+          {...props}
+          key={preset.type}
+          preset={preset}
+        />
       )}
     </div>
   </div>
@@ -77,23 +66,39 @@ class Gallery extends Component {
 
   constructor(props) {
     super(props);
-    this.state      = {};
-    this.categories = buildCategories(props.definitions);
-    this.onSelect   = this.onSelect.bind(this);
-    this.cancel     = this.cancel.bind(this);
+    this.state            = { category: null, preset: null, section: null };
+    this.categories       = buildCategories(props.definitions);
+    this.selectPreset     = this.selectPreset.bind(this);
+    this.previewPreset    = this.previewPreset.bind(this);
+    this.cancel           = this.cancel.bind(this);
   }
 
-  onSelect(category, section) {
-    this.setState({ categoryId: category.id, sectionId: section.id });
-  }
-
-  selectedSection() {
-    return [this.state.categoryId, this.state.sectionId].join('-');
+  selectedPreset() {
+    if (this.state.category === null) return null;
+    return [this.state.category.id, this.state.preset.id].join('-');
   }
 
   cancel() {
-    this.props.cancelAddSection();
+    this.props.cancelPreviewSection();
     this.props.history.push('/sections');
+  }
+
+  selectPreset() {
+    const { section } = this.state;
+
+    this.props.addSection(section);
+
+    // Go directly to the section edit page
+    this.props.history.push(`/dropzone_sections/${section.type}/${section.id}/edit`);
+  }
+
+  previewPreset(category, preset) {
+    const { definitions } = this.props;
+    const section = buildSection(definitions, preset.type, preset.preset);
+
+    this.setState({ category, preset, section }, () => {
+      this.props.previewSection(section);
+    });
   }
 
   render() {
@@ -116,8 +121,9 @@ class Gallery extends Component {
           <Category
             key={category.name}
             category={category}
-            onSelect={this.onSelect}
-            selectedSection={this.selectedSection()}
+            selectPreset={this.selectPreset}
+            previewPreset={this.previewPreset}
+            selectedPreset={this.selectedPreset()}
             {...this.props}
           />
         )}

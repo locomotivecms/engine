@@ -32,7 +32,7 @@ export function saveContent(site, page) {
 
 export function loadSectionHTML(sectionType, content) {
   return put(window.Locomotive.urls.preview,
-    { section_content: content[sectionType] },
+    { section_content: content },
     { 'Locomotive-Section-Type': sectionType }
   ).then(response => { return response.text(); })
 }

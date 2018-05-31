@@ -30,6 +30,20 @@ export function updateSectionText(_window, sectionType, sectionId, blockId, sett
   });
 }
 
+export function previewSection(_window, html, previousSectionId) {
+  return new Promise(resolve => {
+    $(_window.document)
+      .find(`#locomotive-section-${previousSectionId}`)
+      .remove();
+
+    $(_window.document)
+      .find('.locomotive-sections')
+      .append(html)
+
+    resolve(true);
+  });
+}
+
 export function moveSection(_window, sectionId, targetSectionId, direction) {
   return new Promise(resolve => {
     const section  = $(_window.document).find(`#locomotive-section-${sectionId}`);
@@ -42,5 +56,14 @@ export function moveSection(_window, sectionId, targetSectionId, direction) {
 
     resolve(true);
   });
+}
 
+export function removeSection(_window, sectionId) {
+  return new Promise(resolve => {
+    $(_window.document)
+      .find(`#locomotive-section-${sectionId}`)
+      .remove();
+
+    resolve(true);
+  });
 }
