@@ -16,8 +16,9 @@ class Edit extends Component {
     const { definitions, match } = this.props;
 
     // shortcuts
-    this.sectionDefinition  = definitions.find(def => def.type === match.params.type);
+    this.sectionType        = match.params.type;
     this.sectionId          = match.params.id;
+    this.sectionDefinition  = definitions.find(def => def.type === this.sectionType);
 
     // Bind methods
     this.onChange = this.onChange.bind(this);
@@ -25,12 +26,12 @@ class Edit extends Component {
   }
 
   componentDidMount() {
-    this.props.selectSection(this.sectionId);
+    this.props.selectSection(this.sectionId || this.sectionType);
   }
 
   onChange(settingType, settingId, newValue) {
     this.props.updateSectionInput(
-      this.sectionDefinition.type,
+      this.sectionType,
       this.sectionId,
       settingType,
       settingId,
@@ -42,11 +43,11 @@ class Edit extends Component {
     if (this.sectionId)
       return find(this.props.content, section => section.id === this.sectionId);
     else
-      return this.props.staticContent[this.sectionDefinition.type] || {};
+      return this.props.staticContent[this.sectionType] || {};
   }
 
   exit() {
-    this.props.deselectSection(this.sectionId);
+    this.props.deselectSection(this.sectionId || this.sectionType);
     this.props.history.push('/sections');
   }
 

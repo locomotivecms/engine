@@ -25,11 +25,11 @@ class Edit extends Component {
   }
 
   componentDidMount() {
-    this.props.selectSectionBlock(this.sectionId, this.blockId);
+    this.props.selectSectionBlock(this.sectionId || this.sectionType, this.blockId);
   }
 
   exit() {
-    this.props.deselectSectionBlock(this.sectionId, this.blockId);
+    this.props.deselectSectionBlock(this.sectionId || this.sectionType, this.blockId);
     this.props.history.push(this.getCurrentSectionPath());
   }
 

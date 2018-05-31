@@ -9,9 +9,20 @@ const sendEvent = (elem, type, data) => {
   elem.dispatchEvent(event);
 }
 
+const scrollTo = (_window, $elem) => {
+  if ($elem[0] === undefined) return false;
+
+  $(_window.document).find('html, body').animate({
+    scrollTop: $elem.offset().top
+  }, 400);
+}
+
 const popSection = (_window, action, sectionId) => {
   return new Promise(resolve => {
     const $elem = $(_window.document).find(`#locomotive-section-${sectionId}`);
+
+    if (action === 'select') scrollTo(_window, $elem);
+
     sendEvent($elem[0], `section::${action}`, { sectionId });
     resolve(true);
   });
@@ -22,7 +33,7 @@ const popBlock = (_window, action, sectionId, blockId) => {
     const value = `section-${sectionId}-block-${blockId}`;
     const $elem = $(_window.document).find(`[data-locomotive-editor-block='${value}']`);
 
-    console.log($elem);
+    if (action === 'select') scrollTo(_window, $elem);
 
     sendEvent($elem[0], `block::${action}`, { sectionId, blockId });
     resolve(true);
