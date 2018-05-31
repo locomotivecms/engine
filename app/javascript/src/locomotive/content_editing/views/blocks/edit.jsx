@@ -14,8 +14,6 @@ class Edit extends Component {
     const { definitions, match } = this.props;
     const { type, id, blockType, blockId } = match.params;
 
-    console.log(type, id, blockType, blockId);
-
     // Shortcuts
     this.sectionType = type, this.sectionId = id, this.blockId = blockId;
     this.sectionDefinition  = find(definitions, def => def.type === type);
