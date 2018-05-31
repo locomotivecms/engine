@@ -37,7 +37,6 @@ module Locomotive
           content[type]['blocks']   ||= []
         end
 
-        # assign an id to each block of static sections
         content[type]['blocks'] = content[type]['blocks'].each_with_index.map do |block, index|
           block['id'] = index.to_s
           block
@@ -49,6 +48,23 @@ module Locomotive
 
     def static_sections_content_to_json(site, names, definitions)
       static_sections_content(site, names, definitions).to_json.html_safe
+    end
+
+    def sections_content(page)
+      page.sections_content.each_with_index.map do |section, index|
+        section['id'] = index.to_s
+
+        section['blocks'] = section['blocks'].each_with_index.map do |block, _index|
+          block['id'] = _index.to_s
+          block
+        end
+
+        section
+      end
+    end
+
+    def sections_content_to_json(page)
+      sections_content(page).to_json.html_safe
     end
 
   end

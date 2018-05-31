@@ -17,14 +17,16 @@ class Edit extends Component {
 
     // shortcuts
     this.sectionDefinition  = definitions.find(def => def.type === match.params.type);
+    this.sectionId          = match.params.id;
 
     // Bind methods
     this.onChange = this.onChange.bind(this);
   }
 
   onChange(settingType, settingId, newValue) {
-    this.props.updateStaticSectionInput(
+    this.props.updateSectionInput(
       this.sectionDefinition.type,
+      this.sectionId,
       settingType,
       settingId,
       newValue
@@ -32,11 +34,16 @@ class Edit extends Component {
   }
 
   getContent() {
-    return this.props.staticContent[this.sectionDefinition.type] || {};
+    if (this.sectionId)
+      return find(this.props.content, section => section.id === this.sectionId);
+    else
+      return this.props.staticContent[this.sectionDefinition.type] || {};
   }
 
   render() {
-    return (
+    const content = this.getContent();
+
+    return content ? (
       <div className="editor-edit-section">
         <div className="row header-row">
           <div className="col-md-12">
@@ -55,7 +62,7 @@ class Edit extends Component {
             <Input
               key={`section-input-${setting.id}`}
               setting={setting}
-              data={this.getContent()}
+              data={content}
               onChange={this.onChange}
             />
           )}
@@ -64,9 +71,15 @@ class Edit extends Component {
         <hr/>
 
         {!isBlank(this.sectionDefinition.blocks) &&
-          <BlockList sectionDefinition={this.sectionDefinition} content={this.getContent()} />
+          <BlockList
+            sectionDefinition={this.sectionDefinition}
+            sectionId={this.sectionId}
+            content={content}
+          />
         }
       </div>
+    ) : (
+      <Redirect to={{ pathname: `/sections` }} />
     )
   }
 
@@ -74,5 +87,6 @@ class Edit extends Component {
 
 export default withRedux(Edit, state => { return {
   staticContent:  state.site.sectionsContent,
+  content:        state.page.sectionsContent,
   definitions:    state.sectionDefinitions
 } });

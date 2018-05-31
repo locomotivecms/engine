@@ -1,21 +1,21 @@
-const requestOptions = (verb, data) => {
+const requestOptions = (verb, data, headers) => {
   return {
     method:       verb,
     body:         JSON.stringify(data),
     credentials: 'same-origin',
-    headers: {
+    headers: Object.assign({
       'Content-Type':   'application/json',
       'X-CSRF-Token':   document.querySelector('meta[name="csrf-token"]').content
-    }
+    }, headers || {})
   }
 }
 
-const put = (url, data) => {
-  return fetch(url, requestOptions('PUT', data));
+const put = (url, data, headers) => {
+  return fetch(url, requestOptions('PUT', data, headers));
 }
 
-const jsonPut = (url, data) => {
-  return put(url, data)
+const jsonPut = (url, data, headers) => {
+  return put(url, data, headers)
     .then((response) => { return response.json() })
     .then((data) => {
       if (data.errors) throw(data.errors);
@@ -31,7 +31,8 @@ export function saveContent(site, page) {
 }
 
 export function loadSectionHTML(sectionType, content) {
-  const url = `${window.Locomotive.urls.preview}/_sections/${sectionType}`;
-  return put(url, { section_content: content[sectionType] })
-    .then(response => { return response.text(); })
+  return put(window.Locomotive.urls.preview,
+    { section_content: content[sectionType] },
+    { 'Locomotive-Section-Type': sectionType }
+  ).then(response => { return response.text(); })
 }

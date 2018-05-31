@@ -3,26 +3,11 @@ import withRedux from '../utils/with_redux';
 import { waitUntil } from '../utils/misc';
 
 // Services
-import { updateStaticSection, updateStaticSectionText } from '../services/preview_service';
-import { loadSectionHTML } from '../services/api.js';
+import { updateStaticSection, updateSectionText, moveSection } from '../services/preview_service';
+import { loadSectionHTML } from '../services/api';
 
 // we want to avoid the flickering if the iframe is loaded too quickly
 const STARTUP_MIN_DELAY = 1000;
-
-const refreshStaticSection = (_window, sectionType, sectionsContent) => {
-  return loadSectionHTML(sectionType, sectionsContent)
-  .then(html => {
-    updateStaticSection(_window, sectionType, html);
-    return true;
-  });
-}
-
-const refreshText = (_window, sectionType, blockId, settingId, newValue) => {
-  return new Promise(resolve => {
-    updateStaticSectionText(_window, sectionType, blockId, settingId, newValue);
-    resolve(true);
-  });
-}
 
 class Preview extends React.Component {
 
@@ -49,16 +34,21 @@ class Preview extends React.Component {
   }
 
   refreshPreview(action) {
-    const _window         = this.iframe.contentWindow;
-    const { sectionType } = this.props.iframeState;
+    const _window = this.iframe.contentWindow;
+    const { sectionType, sectionId } = this.props.iframeState;
 
     switch(action) {
       case 'staticSection':
-        return refreshStaticSection(_window, sectionType, this.props.site.sectionsContent);
+        return loadSectionHTML(sectionType, this.props.site.sectionsContent)
+          .then(html => updateStaticSection(_window, sectionType, html))
 
       case 'input':
         const { blockId, fieldId, fieldValue } = this.props.iframeState;
-        return refreshText(_window, sectionType, blockId, fieldId, fieldValue);
+        return updateSectionText(_window, sectionType, sectionId, blockId, fieldId, fieldValue);
+
+      case 'moveSection':
+        const { targetSectionId, direction } = this.props.iframeState;
+        return moveSection(_window, sectionId, targetSectionId, direction);
 
       default:
         return new Promise(resolve => { resolve() });

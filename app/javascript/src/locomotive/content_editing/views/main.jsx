@@ -6,6 +6,7 @@ import withRedux from '../utils/with_redux';
 import Startup from './startup.jsx';
 import ListEditableElements from './editable_elements/list.jsx';
 import SectionIndex from './sections/index.jsx';
+import SectionGallery from './sections/gallery.jsx';
 import EditSection from './sections/edit.jsx';
 import EditBlock from './blocks/edit.jsx';
 
@@ -65,8 +66,13 @@ class Main extends React.Component {
                   <Route exact path="/" render={Home} />
 
                   <Route exact path="/sections" render={withHeader(SectionIndex, this.props)} />
-                  <Route path="/sections/:type/edit" component={EditSection}/>
-                  <Route path="/sections/:type/blocks/:blockId/edit" component={EditBlock}/>
+
+                  <Route path="/sections/:type/edit" component={EditSection} />
+                  <Route path="/sections/:type/blocks/:blockType/:blockId/edit" component={EditBlock} />
+
+                  <Route exact path="/dropzone_sections/pick" component={SectionGallery} />
+                  <Route path="/dropzone_sections/:type/:id/edit" component={EditSection} />
+                  <Route path="/dropzone_sections/:type/:id/blocks/:blockType/:blockId/edit" component={EditBlock} />
 
                   <Route exact path="/editable_elements" render={withHeader(ListEditableElements, this.props)} />
                 </div>

@@ -11,22 +11,24 @@ class Edit extends Component {
   constructor(props) {
     super(props);
 
-    const { definitions, staticContent, match } = this.props;
-    const { type, blockId } = match.params;
-    const block = find(staticContent[type].blocks, block => block.id === blockId) || {};
+    const { definitions, match } = this.props;
+    const { type, id, blockType, blockId } = match.params;
+
+    console.log(type, id, blockType, blockId);
 
     // Shortcuts
-    this.sectionType = type, this.blockId = blockId;
+    this.sectionType = type, this.sectionId = id, this.blockId = blockId;
     this.sectionDefinition  = find(definitions, def => def.type === type);
-    this.blockDefinition    = find(this.sectionDefinition.blocks, def => def.type === block.type);
+    this.blockDefinition    = find(this.sectionDefinition.blocks, def => def.type === blockType);
 
     // Bind methods
     this.onChange = this.onChange.bind(this);
   }
 
   onChange(settingType, settingId, newValue) {
-    this.props.updateStaticSectionBlockInput(
+    this.props.updateSectionBlockInput(
       this.sectionType,
+      this.sectionId,
       this.blockId,
       settingType,
       settingId,
@@ -34,10 +36,22 @@ class Edit extends Component {
     );
   }
 
+  getSectionContent() {
+    if (this.sectionId)
+      return find(this.props.content, section => section.id === this.sectionId);
+    else
+      return this.props.staticContent[this.sectionDefinition.type];
+  }
+
   getContent() {
-    return find(this.props.staticContent[this.sectionType].blocks,
-      block => block.id === this.blockId
-    );
+    return find(this.getSectionContent().blocks, block => block.id === this.blockId);
+  }
+
+  getCurrentSectionPath() {
+    if (this.sectionId)
+      return `/dropzone_sections/${this.sectionType}/${this.sectionId}/edit`;
+    else
+      return `/sections/${this.sectionType}/edit`;
   }
 
   render() {
@@ -51,7 +65,7 @@ class Edit extends Component {
               {this.sectionDefinition.name} / {this.blockDefinition.name}
               &nbsp;
               <small>
-                <Link to={`/sections/${this.sectionDefinition.type}/edit`}>Back</Link>
+                <Link to={this.getCurrentSectionPath()}>Back</Link>
               </small>
             </h1>
           </div>
@@ -70,7 +84,7 @@ class Edit extends Component {
       </div>
     ) : (
       <Redirect
-        to={{ pathname: `/sections/${this.sectionType}/edit` }}
+        to={{ pathname: '/' }}
       />
     )
   }
@@ -79,5 +93,6 @@ class Edit extends Component {
 
 export default withRedux(Edit, state => { return {
   staticContent:  state.site.sectionsContent,
+  content:        state.page.sectionsContent,
   definitions:    state.sectionDefinitions
 } });

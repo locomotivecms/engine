@@ -9,8 +9,17 @@ class Block extends Component {
     return sectionDefinition.blocks.find(definition => definition.type === block.type)
   }
 
+  getEditPath() {
+    const { sectionDefinition, sectionId, block } = this.props;
+    const prefix = sectionId ?
+      `/dropzone_sections/${sectionDefinition.type}/${sectionId}` :
+      `/sections/${sectionDefinition.type}`;
+
+    return `${prefix}/blocks/${block.type}/${block.id}/edit`
+  }
+
   render() {
-    const { sectionDefinition, block, removeBlock, handleComponent } = this.props;
+    const { block, removeBlock, handleComponent } = this.props;
     const definition = this.getDefinition();
 
     const Handle = handleComponent;
@@ -21,7 +30,7 @@ class Block extends Component {
         &nbsp;
         {definition.name} ({block.id})
         &nbsp;
-        <Link to={`/sections/${sectionDefinition.type}/blocks/${block.id}/edit`}>Edit</Link>
+        <Link to={this.getEditPath()}>Edit</Link>
         &nbsp;
         <a onClick={removeBlock}>Delete</a>
       </div>

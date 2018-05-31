@@ -8,8 +8,7 @@ module Locomotive
     def save(site_attributes, page_attributes)
       site.update_attributes(site_attributes)
 
-      # TODO:
-      # page.update_attribute(page_attributes)
+      page.update_attributes(page_attributes)
 
       track_activity 'editable_element.updated_bulk', parameters: {
         pages: [page].map { |p| { title: p.title, _id: p._id } }

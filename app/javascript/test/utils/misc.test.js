@@ -1,4 +1,3 @@
-// import assert from 'assert';
 import { expect } from 'chai';
 import { arrayMove } from '../../src/locomotive/content_editing/utils/misc';
 

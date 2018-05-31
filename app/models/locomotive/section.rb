@@ -35,7 +35,6 @@ module Locomotive
     # Example:
     # {
     #   "name": "Header",
-    #   "category": "header",
     #   "settings": [
     #     {
     #       "label": "Brand name",
@@ -91,6 +90,16 @@ module Locomotive
               settings:   { type: 'array', items: { '$ref': '#/definitions/settings' } }
             },
             required: [:type, :name]
+          },
+          preset: {
+            type: 'object',
+            properties: {
+              name:       { type: 'string' },
+              category:   { type: 'string' },
+              settings:   { type: 'object' },
+              blocks:     { type: 'array' }
+            },
+            required: [:name, :category]
           }
         },
         type: 'object',
@@ -99,11 +108,15 @@ module Locomotive
           class:            { type: 'string' },
           category:         { type: 'string' },
           settings:         { type: 'array', items: { '$ref': '#/definitions/settings' } },
+          presets:          { type: 'array', items: { '$ref': '#/definitions/preset' } },
           blocks:           { type: 'array', items: { '$ref': '#/definitions/blocks' } },
           max_blocks:       { type: 'integer' },
           default:          {
             type: 'object',
-            properties: { settings:  { type: 'object' } },
+            properties: {
+              settings:  { type: 'object' },
+              blocks:    { type: 'array' }
+            },
             required: [:settings]
           }
         },

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import withRedux from '../utils/with_redux';
-import { saveContent } from '../services/api.js';
+import { saveContent } from '../services/api';
 
 class SaveButton extends React.Component {
 

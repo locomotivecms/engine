@@ -27,7 +27,7 @@ class StaticList extends Component {
 
   render() {
     return (
-      <div className="editor-section-list">
+      <div className="editor-section-static-list">
         {this.props.list.map(type =>
           <Section key={type} sectionType={type} definition={this.getDefinition(type)} />
         )}

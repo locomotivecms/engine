@@ -1,3 +1,8 @@
+// Helpers
+const actionName = (name, sectionId) => {
+  return `${sectionId ? '' : 'STATIC_'}${name}`;
+}
+
 // GLOBAL
 
 export function persistChanges(result, data) {
@@ -15,10 +20,48 @@ export function persistChanges(result, data) {
 
 // SECTIONS
 
-export function updateStaticSectionInput(sectionType, fieldType, id, newValue) {
+export function previewSection(newSection) {
   return {
-    type:         'STATIC_SECTION::UPDATE_INPUT',
+    type:         'SECTION::PREVIEW',
+    newSection
+  }
+}
+
+export function addSection(newSection) {
+  return {
+    type:         'SECTION::ADD',
+    newSection
+  }
+}
+
+export function moveSection(oldIndex, newIndex, sectionId, targetSectionId) {
+  return {
+    type:         'SECTION::MOVE',
+    oldIndex,
+    newIndex,
+    sectionId,
+    targetSectionId
+  }
+}
+
+export function cancelAddSection() {
+  return {
+    type:         'SECTION::CANCEL_ADD'
+  }
+}
+
+export function removeSection(sectionId) {
+  return {
+    type:         'SECTION::REMOVE',
+    sectionId
+  }
+}
+
+export function updateSectionInput(sectionType, sectionId, fieldType, id, newValue) {
+  return {
+    type:         actionName('SECTION::UPDATE_INPUT', sectionId),
     sectionType,
+    sectionId,
     fieldType,
     id,
     newValue
@@ -28,35 +71,39 @@ export function updateStaticSectionInput(sectionType, fieldType, id, newValue) {
 // SECTION BLOCKS
 
 
-export function addStaticSectionBlock(sectionType, newBlock) {
+export function addSectionBlock(sectionType, sectionId, newBlock) {
   return {
-    type:         'STATIC_SECTION::BLOCK::ADD',
+    type:         actionName('SECTION::BLOCK::ADD', sectionId),
     sectionType,
+    sectionId,
     newBlock
   }
 }
 
-export function moveStaticSectionBlock(sectionType, oldIndex, newIndex) {
+export function moveSectionBlock(sectionType, sectionId, oldIndex, newIndex) {
   return {
-    type:         'STATIC_SECTION::BLOCK::MOVE',
+    type:         actionName('SECTION::BLOCK::MOVE', sectionId),
     sectionType,
+    sectionId,
     oldIndex,
     newIndex
   }
 }
 
-export function removeStaticSectionBlock(sectionType, blockId) {
+export function removeSectionBlock(sectionType, sectionId, blockId) {
   return {
-    type:         'STATIC_SECTION::BLOCK::REMOVE',
+    type:         actionName('SECTION::BLOCK::REMOVE', sectionId),
     sectionType,
+    sectionId,
     blockId
   }
 }
 
-export function updateStaticSectionBlockInput(sectionType, blockId, fieldType, id, newValue) {
+export function updateSectionBlockInput(sectionType, sectionId, blockId, fieldType, id, newValue) {
   return {
-    type:         'STATIC_SECTION::BLOCK::UPDATE_INPUT',
+    type:         actionName('SECTION::BLOCK::UPDATE_INPUT', sectionId),
     sectionType,
+    sectionId,
     blockId,
     fieldType,
     id,

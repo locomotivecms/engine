@@ -12,16 +12,17 @@ const DragHandle = SortableHandle(() => <span>::</span>);
 
 const SortableBlock = SortableElement(Block);
 
-const SortableList = SortableContainer(({ blocks, sectionDefinition, removeStaticSectionBlock }) => {
+const SortableList = SortableContainer(({ blocks, sectionId, sectionDefinition, removeSectionBlock }) => {
   return (
     <div>
       {(blocks || []).map((block, index) =>
         <SortableBlock
           key={`section-${sectionDefinition.type}-block-${index}`}
           index={index}
+          sectionId={sectionId}
           sectionDefinition={sectionDefinition}
           block={block}
-          removeBlock={removeStaticSectionBlock.bind(null, sectionDefinition.type, block.id)}
+          removeBlock={removeSectionBlock.bind(null, sectionDefinition.type, sectionId, block.id)}
           handleComponent={DragHandle}
         />
       )}
@@ -40,20 +41,21 @@ class BlockList extends Component {
   }
 
   addBlock(blockType) {
-    const { sectionDefinition } = this.props;
+    const { sectionDefinition, sectionId, addSectionBlock } = this.props;
     const block = buildBlock(sectionDefinition, blockType || sectionDefinition.blocks[0].type);
 
-    this.props.addStaticSectionBlock(sectionDefinition.type, block);
+    addSectionBlock(sectionDefinition.type, sectionId, block);
   }
 
   onSortEnd({ oldIndex, newIndex }) {
-    const { moveStaticSectionBlock, sectionDefinition } = this.props;
-    moveStaticSectionBlock(sectionDefinition.type, oldIndex, newIndex);
+    const { moveSectionBlock, sectionDefinition, sectionId } = this.props;
+
+    moveSectionBlock(sectionDefinition.type, sectionId, oldIndex, newIndex);
   }
 
   render() {
     const { blocks } = this.props.content;
-    const { sectionDefinition, removeStaticSectionBlock } = this.props;
+    const { sectionId, sectionDefinition, removeSectionBlock } = this.props;
 
     return (
       <div className="editor-section-blocks">
@@ -61,9 +63,10 @@ class BlockList extends Component {
 
         <SortableList
           blocks={blocks}
+          sectionId={sectionId}
           sectionDefinition={sectionDefinition}
           onSortEnd={this.onSortEnd}
-          removeStaticSectionBlock={removeStaticSectionBlock}
+          removeSectionBlock={removeSectionBlock}
           useDragHandle={true}
           lockAxis="y"
         />
