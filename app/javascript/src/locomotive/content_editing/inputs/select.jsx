@@ -14,7 +14,6 @@ class SelectInput extends Component {
   }
 
   handleChange(event) {
-    console.log(event);
     const { value } = event.target;
     this.setState({ value }, () => {
       this.props.onChange(this.props.setting.type, this.props.setting.id, value);

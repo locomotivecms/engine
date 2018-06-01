@@ -15,7 +15,7 @@ class Base extends Component {
       case 'checkbox':  return CheckboxInput;
       case 'select':    return SelectInput;
       default:
-        console.log(`[Editor] WWWWWWWarning! Unknown input type: "${this.props.setting.type}"`);
+        console.log(`[Editor] Warning! Unknown input type: "${this.props.setting.type}"`);
         return null;
     }
   }

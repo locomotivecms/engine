@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link, browserHistory } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Redirect, Link, browserHistory } from 'react-router-dom';
 import withRedux from '../utils/with_redux';
 
 // Views
@@ -23,6 +23,10 @@ const withHeader = (View, _props) => props => (
     />
     <View {..._props} {...props} />
   </div>
+)
+
+const NoMatch = props => (
+  <Redirect to="/" />
 )
 
 class Main extends React.Component {
@@ -63,18 +67,21 @@ class Main extends React.Component {
 
               {this.props.iframe.loaded && (
                 <div>
-                  <Route exact path="/" render={Home} />
+                  <Switch>
+                    <Route exact path="/" render={Home} />
 
-                  <Route exact path="/sections" render={withHeader(SectionIndex, this.props)} />
+                    <Route exact path="/sections" render={withHeader(SectionIndex, this.props)} />
 
-                  <Route path="/sections/:type/edit" component={EditSection} />
-                  <Route path="/sections/:type/blocks/:blockType/:blockId/edit" component={EditBlock} />
+                    <Route path="/sections/:type/edit" component={EditSection} />
+                    <Route path="/sections/:type/blocks/:blockType/:blockId/edit" component={EditBlock} />
 
-                  <Route exact path="/dropzone_sections/pick" component={SectionGallery} />
-                  <Route path="/dropzone_sections/:type/:id/edit" component={EditSection} />
-                  <Route path="/dropzone_sections/:type/:id/blocks/:blockType/:blockId/edit" component={EditBlock} />
+                    <Route exact path="/dropzone_sections/pick" component={SectionGallery} />
+                    <Route path="/dropzone_sections/:type/:id/edit" component={EditSection} />
+                    <Route path="/dropzone_sections/:type/:id/blocks/:blockType/:blockId/edit" component={EditBlock} />
 
-                  <Route exact path="/editable_elements" render={withHeader(ListEditableElements, this.props)} />
+                    <Route exact path="/editable_elements" render={withHeader(ListEditableElements, this.props)} />
+                    <Route render={NoMatch} />
+                  </Switch>
                 </div>
               )}
             </div>
