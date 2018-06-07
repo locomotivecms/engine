@@ -70,7 +70,3 @@ describe('components', () => {
     });
   })
 })
-
-
-
-
