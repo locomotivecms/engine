@@ -8,35 +8,9 @@ import Index from '../../../../javascript/src/locomotive/content_editing/views/s
 import StaticList from '../../../../javascript/src/locomotive/content_editing/views/sections/components/static_list.jsx';
 import List from '../../../../javascript/src/locomotive/content_editing/views/sections/components/list.jsx';
 import Startup from '../../../../javascript/src/locomotive/content_editing/views/startup.jsx'; //should put in tests utils
+import { buildProps } from '../../utils'
 
 Enzyme.configure({ adapter: new Adapter() });
-
-const prettyFormat = require('pretty-format')
-
-function buildProps(specificPropsHash) {
-  let sections = {
-    "all": undefined,
-    "top": undefined,
-    "dropzone": undefined,
-    "bottom": undefined
-  }
-
-  let editableElements = undefined
-
-  const props = {
-    site: undefined,
-    page: undefined,
-    editableElements,
-    sections,
-    sectionDefinitions: undefined,
-    iframe: {
-      loaded:     false,
-      window:     null
-    }
-  };
-
-  return { ...props, ...specificPropsHash };
-}
 
 describe('components', () => {
   describe('Index', () => {
@@ -46,7 +20,7 @@ describe('components', () => {
           const props = buildProps();
           const wrapper = shallow(<Index { ...props } />);
 
-          expect(wrapper.contains(<StaticList />)).toBe(true)
+          expect(wrapper.contains(<StaticList list={[]} />)).toBe(true)
           expect(wrapper.find(StaticList).length).toBe(1)
           expect(wrapper.find(List).length).toBe(0)
           expect(wrapper.find(StaticList).first().prop('all')).toBe(undefined)
@@ -83,14 +57,6 @@ describe('components', () => {
             expect(wrapper.find(StaticList).length).toBe(2)
           });
         });
-
-
-      //   it('should render a List of non static sections', () => {
-      //     const props = buildProps();
-      //     const subject = shallow(<Index { ...props } />);
-      //     expect(subject).to.contains(List)
-
-      //   });
       });
     });
   })
