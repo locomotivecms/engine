@@ -26,7 +26,7 @@ const SortableList = SortableContainer(({ sections, removeSection }) => {
   );
 });
 
-class List extends Component {
+export class List extends Component {
 
   constructor(props) {
     super(props);
