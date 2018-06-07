@@ -29,7 +29,7 @@ const NoMatch = props => (
   <Redirect to="/" />
 )
 
-class Main extends React.Component {
+export class Main extends React.Component {
 
   constructor(props) {
     super(props);

@@ -6,8 +6,8 @@
   "scripts": {
     "dev": "webpack --mode development --watch",
     "build": "webpack --mode production",
-    "test": "mocha-webpack --webpack-config webpack.config-test.js \"test/**/*.test.js\"",
-    "test:watch": "npm run test -- --watch"
+    "test": "jest",
+    "test:watch": "npm test -- --watch"
   },
   "keywords": [
     "locomotiveCMS"
@@ -16,6 +16,7 @@
   "license": "MIT",
   "devDependencies": {
     "babel-core": "^6.26.3",
+    "babel-jest": "^23.0.1",
     "babel-loader": "^7.1.4",
     "babel-plugin-lodash": "^3.3.2",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
@@ -24,12 +25,17 @@
     "babel-preset-react": "^6.24.1",
     "chai": "^4.1.2",
     "css-loader": "^0.28.11",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^23.1.0",
     "mini-css-extract-plugin": "^0.4.0",
     "mocha": "^5.2.0",
     "mocha-webpack": "^2.0.0-beta.0",
     "node-sass": "^4.9.0",
     "postcss-flexbugs-fixes": "^3.3.1",
     "postcss-loader": "^2.1.5",
+    "regenerator-runtime": "^0.11.1",
     "sass-loader": "^7.0.1",
     "style-loader": "^0.21.0",
     "webpack": "^4.8.3",
@@ -46,5 +52,15 @@
     "react-router-dom": "^4.2.2",
     "react-sortable-hoc": "^0.8.0",
     "redux": "^4.0.0"
+  },
+  "jest": {
+    "setupFiles": [
+      "./test/setupTests.js"
+    ],
+    "moduleFileExtensions": ["js", "jsx"],
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
+      "\\.(css|less)$": "<rootDir>/__mocks__/styleMock.js"
+    }
   }
 }
