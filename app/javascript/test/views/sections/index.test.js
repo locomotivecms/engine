@@ -7,7 +7,6 @@ import { connect } from 'react-redux';
 import Index from '../../../../javascript/src/locomotive/content_editing/views/sections/index.jsx'; //should put in tests utils
 import StaticList from '../../../../javascript/src/locomotive/content_editing/views/sections/components/static_list.jsx';
 import List from '../../../../javascript/src/locomotive/content_editing/views/sections/components/list.jsx';
-import Startup from '../../../../javascript/src/locomotive/content_editing/views/startup.jsx'; //should put in tests utils
 import { buildProps } from '../../utils'
 
 Enzyme.configure({ adapter: new Adapter() });
@@ -61,7 +60,3 @@ describe('components', () => {
     });
   })
 })
-
-
-
-

@@ -29,7 +29,6 @@ const NoMatch = props => (
   <Redirect to="/" />
 )
 
-// Use named export for unconnected component (for tests)
 export class Main extends React.Component {
 
   constructor(props) {
@@ -94,5 +93,4 @@ export class Main extends React.Component {
 
 }
 
-// Use default export for the connected component (for app)
 export default withRedux(Main, state => { return { iframe: state.iframe } })
