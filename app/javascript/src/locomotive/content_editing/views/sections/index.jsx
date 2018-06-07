@@ -16,6 +16,7 @@ class Index extends Component {
         {dropzone && (
           <div>
             {top.length > 0 && <StaticList list={top} />}
+            
             <List />
 
             {bottom.length > 0 && <StaticList list={bottom} />}
