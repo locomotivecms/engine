@@ -1,9 +1,11 @@
 const sendEvent = (elem, type, data) => {
   if (elem === null || elem === undefined) return false;
 
+  console.log('firing', `locomotive::${type}`);
+
   var event = new CustomEvent(
     `locomotive::${type}`,
-    { bubbles:  true, detail:   data || {} }
+    { bubbles: true, detail: data || {} }
   );
 
   elem.dispatchEvent(event);
@@ -31,7 +33,7 @@ const popSection = (_window, action, sectionId) => {
 const popBlock = (_window, action, sectionId, blockId) => {
   return new Promise(resolve => {
     const value = `section-${sectionId}-block-${blockId}`;
-    const $elem = $(_window.document).find(`[data-locomotive-editor-block='${value}']`);
+    const $elem = $(_window.document).find(`[data-locomotive-block='${value}']`);
 
     if (action === 'select') scrollTo(_window, $elem);
 
@@ -41,22 +43,6 @@ const popBlock = (_window, action, sectionId, blockId) => {
 }
 
 // Actions
-
-export function selectSection(_window, sectionId) {
-  return popSection(_window, 'select', sectionId);
-}
-
-export function deselectSection(_window, sectionId) {
-  return popSection(_window, 'deselect', sectionId);
-}
-
-export function selectSectionBlock(_window, sectionId, blockId) {
-  return popBlock(_window, 'select', sectionId, blockId);
-}
-
-export function deselectSectionBlock(_window, sectionId, blockId) {
-  return popBlock(_window, 'select', sectionId, blockId);
-}
 
 export function updateSection(_window, sectionId, html) {
   return new Promise(resolve => {
@@ -132,4 +118,20 @@ export function removeSection(_window, sectionId) {
 
     resolve(true);
   });
+}
+
+export function selectSection(_window, sectionId) {
+  return popSection(_window, 'select', sectionId);
+}
+
+export function deselectSection(_window, sectionId) {
+  return popSection(_window, 'deselect', sectionId);
+}
+
+export function selectSectionBlock(_window, sectionId, blockId) {
+  return popBlock(_window, 'select', sectionId, blockId);
+}
+
+export function deselectSectionBlock(_window, sectionId, blockId) {
+  return popBlock(_window, 'select', sectionId, blockId);
 }

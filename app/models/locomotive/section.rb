@@ -106,7 +106,6 @@ module Locomotive
         properties: {
           name:             { type: 'string' },
           class:            { type: 'string' },
-          category:         { type: 'string' },
           settings:         { type: 'array', items: { '$ref': '#/definitions/settings' } },
           presets:          { type: 'array', items: { '$ref': '#/definitions/preset' } },
           blocks:           { type: 'array', items: { '$ref': '#/definitions/blocks' } },
