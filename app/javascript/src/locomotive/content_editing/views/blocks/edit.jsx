@@ -10,7 +10,6 @@ class Edit extends Component {
 
   constructor(props) {
     super(props);
-
     const { definitions, match } = this.props;
     const { type, id, blockType, blockId } = match.params;
 
@@ -65,7 +64,7 @@ class Edit extends Component {
   render() {
     const content = this.getContent();
 
-    return content ? (
+    return this.sectionDefinition && content  ? (
       <div className="editor-edit-block">
         <div className="row header-row">
           <div className="col-md-12">

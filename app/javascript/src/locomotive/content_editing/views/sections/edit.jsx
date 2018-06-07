@@ -12,7 +12,6 @@ class Edit extends Component {
 
   constructor(props) {
     super(props);
-
     const { definitions, match } = this.props;
 
     // shortcuts
@@ -54,7 +53,7 @@ class Edit extends Component {
   render() {
     const content = this.getContent();
 
-    return content ? (
+    return this.sectionDefinition && content ? (
       <div className="editor-edit-section">
         <div className="row header-row">
           <div className="col-md-12">

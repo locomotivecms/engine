@@ -19,7 +19,7 @@ class Section extends Component {
 
 }
 
-class StaticList extends Component {
+export class StaticList extends Component {
 
   getDefinition(type) {
     return find(this.props.definitions, definition => definition.type === type)
