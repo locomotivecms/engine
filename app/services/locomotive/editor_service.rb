@@ -17,9 +17,7 @@ module Locomotive
     end
 
     def self.remove_ids(json)
-      json = remove_sections_id(json)
-      json = remove_blocks_ids(json)
-      return json
+      remove_blocks_ids(remove_sections_id(json))
     end
 
     def self.remove_sections_id(json)
