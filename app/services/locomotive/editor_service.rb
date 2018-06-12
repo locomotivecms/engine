@@ -27,7 +27,7 @@ module Locomotive
     end
 
     def self.remove_blocks_ids(json)
-      JSON.parse(json).each{|j| j["blocks"].map!{|v| v.except("id")}}.to_json
+      JSON.parse(json).each{|section| section["blocks"].map!{|block| block.except("id")}}.to_json
     end
   end
 end
