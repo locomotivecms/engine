@@ -17,12 +17,9 @@ module Locomotive
         subscribe(parsed) do
           parse(page)
 
-          persist_editable_elements(page, parsed).tap do |elements|
-            # FIXME (Did): do not remove "useless" editable elements since
-            # they might have become orphaned because of a typo for instance.
-            # Instead, we should warn the Wagon developer (TODO).
-            # remove_useless_editable_elements(page, elements)
-          end
+          # Warning, this method also modifies the parsed[:elements] array by
+          # removing non visible editable elements.
+          persist_editable_elements!(page, parsed)
         end
 
         parsed
@@ -113,10 +110,10 @@ module Locomotive
       parser.parse(decorated_page)
     end
 
-    def persist_editable_elements(page, parsed)
+    def persist_editable_elements!(page, parsed)
       modified_pages, pages = [], { page._id => page } # group modifications by page
 
-      elements = parsed[:elements].map do |couple|
+      parsed[:elements].map! do |couple|
         _page, attributes = couple
 
         next if !persist_editable_element?(page, parsed, _page, attributes)
@@ -132,11 +129,9 @@ module Locomotive
         modified_pages << _page
 
         couple
-      end.compact
+      end.compact!
 
       modified_pages.uniq.map(&:save!)
-
-      elements
     end
 
     def persist_editable_element?(page, parsed, _page, attributes)

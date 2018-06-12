@@ -47,5 +47,5 @@ group :test do
   gem 'email_spec',               '~> 2.1.1'
 
   gem 'codeclimate-test-reporter',  '~> 1.0.7',  require: false
-  gem 'coveralls',                  '~> 0.8.19', require: false
+  gem 'simplecov',                  require: false
 end
