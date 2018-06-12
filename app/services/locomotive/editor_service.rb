@@ -23,11 +23,11 @@ module Locomotive
     end
 
     def self.remove_sections_id(json)
-      JSON.parse(json).map{|j| j.except('id')}.to_json
+      JSON.parse(json).map{ |section| section.except('id') }.to_json
     end
 
     def self.remove_blocks_ids(json)
-      JSON.parse(json).each{|section| section["blocks"].map!{|block| block.except("id")}}.to_json
+      JSON.parse(json).each{ |section| section["blocks"].map!{ |block| block.except("id") }}.to_json
     end
   end
 end
