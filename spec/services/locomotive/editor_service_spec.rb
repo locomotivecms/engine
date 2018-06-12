@@ -129,7 +129,7 @@ describe Locomotive::EditorService do
         JSON
       }
 
-      it "remove the ids" do
+      it 'remove the ids' do
         is_expected.to eq(JSON.parse(expected).to_json)
       end
     end
