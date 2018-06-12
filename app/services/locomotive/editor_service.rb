@@ -8,6 +8,7 @@ module Locomotive
     def save(site_attributes, page_attributes)
       site.update_attributes(site_attributes)
 
+      page_attributes[:sections_content] = EditorService.remove_ids(page_attributes[:sections_content])
       page.update_attributes(page_attributes)
 
       track_activity 'editable_element.updated_bulk', parameters: {
@@ -15,5 +16,18 @@ module Locomotive
       }
     end
 
+    def self.remove_ids(json)
+      json = remove_sections_id(json)
+      json = remove_blocks_ids(json)
+      return json
+    end
+
+    def self.remove_sections_id(json)
+      JSON.parse(json).map{|j| j.except('id')}.to_json
+    end
+
+    def self.remove_blocks_ids(json)
+      JSON.parse(json).each{|j| j["blocks"].map!{|v| v.except("id")}}.to_json
+    end
   end
 end

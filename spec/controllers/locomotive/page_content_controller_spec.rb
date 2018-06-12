@@ -27,7 +27,7 @@ describe Locomotive::PageContentController  do
         site_handle: site.handle,
         page: {
           sections_content: <<-JSON
-            {}
+            []
           JSON
         },
         site: {

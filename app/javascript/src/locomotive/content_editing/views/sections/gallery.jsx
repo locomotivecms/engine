@@ -13,7 +13,7 @@ class Preset extends Component {
   }
 
   selectedId() {
-    return [this.props.category.id, this.props.preset.id].join('-');
+    return [this.props.preset.type, this.props.category.id, this.props.preset.id].join('-');
   }
 
   isSelected() {
@@ -75,7 +75,7 @@ class Gallery extends Component {
 
   selectedPreset() {
     if (this.state.category === null) return null;
-    return [this.state.category.id, this.state.preset.id].join('-');
+    return [this.state.preset.type, this.state.category.id, this.state.preset.id].join('-');
   }
 
   cancel() {
