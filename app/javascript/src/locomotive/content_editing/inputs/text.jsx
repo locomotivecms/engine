@@ -16,14 +16,14 @@ class TextInput extends Component {
     //create new content with raw html
     const { contentBlocks, entityMap } = htmlToDraft(value);
     const contentState = ContentState.createFromBlockArray(contentBlocks, entityMap);
-    let editorState = EditorState.createWithContent(contentState);
+    var editorState = EditorState.createWithContent(contentState);
 
     var html = props.setting.html || false;
 
     const line_height =  20;
-    let line_break = props.setting.line_break || false;
+    var line_break = props.setting.line_break || false;
 
-    let editorHeight = (props.setting.rows || 5) * line_height;
+    var editorHeight = (props.setting.rows || 5) * line_height;
 
     this.state = {
       editorState,
