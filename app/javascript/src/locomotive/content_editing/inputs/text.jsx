@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { EditorState, convertToRaw, ContentState, SelectionState } from 'draft-js';
-import { Editor } from 'react-draft-wysiwyg';
+import { Editor, defaultToolbar } from 'react-draft-wysiwyg';
 import draftToHtml from 'draftjs-to-html';
 import htmlToDraft from 'html-to-draftjs';
 
@@ -46,9 +46,8 @@ class TextInput extends Component {
 
   inputOnChangeSanitizer(event){
     if(event.target) {
-      return event.target.value;
+      this.updateSectionValue(event.target.value);
     }
-    this.updateSectionValue(value);
   }
 
   editorOnChangeSanitizer(editorState) {
@@ -76,8 +75,10 @@ class TextInput extends Component {
           <div style={{"height": `${this.state.editorHeight}px`, "overflow": "scroll"}} >
             <Editor
               editorState={editorState}
-              wrapperClassName="demo-wrapper"
-              editorClassName="demo-editor"
+              wrapperClassName="draftjs-wrapper"
+              editorClassName="draftjs-editor"
+              toolbarClassName="draftjs-toolbar"
+              toolbar={TextInput.mytoolbar}
               onEditorStateChange={this.editorOnChangeSanitizer}
             />
           </div>
@@ -94,5 +95,37 @@ class TextInput extends Component {
     }
   }
 }
+
+TextInput.mytoolbar = {
+  ...defaultToolbar,
+  ...{
+    options: ['inline', 'textAlign', 'list', 'link', 'image'/*, 'file', 'table', 'expend', 'raw'*/],
+    inline: {
+      options: ['bold', 'italic', 'underline', 'strikethrough']
+    },
+    textAlign: {
+      options: ['left', 'center', 'right', 'justify']
+    },
+    list: {
+      options: ['unordered', 'ordered']
+    },
+    // link: {
+    // },
+    // image: {
+    // },
+    // file: {
+    //   options: ['']
+    // },
+    // table: {
+    //   options: ['']
+    // },
+    // expend: {
+    //   options: ['']
+    // },
+    // raw: {
+    //   options: ['']
+    // },
+  }
+};
 
 export default TextInput;
