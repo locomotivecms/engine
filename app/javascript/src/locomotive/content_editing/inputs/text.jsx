@@ -3,6 +3,7 @@ import { EditorState, convertToRaw, ContentState, SelectionState } from 'draft-j
 import { Editor, defaultToolbar } from 'react-draft-wysiwyg';
 import draftToHtml from 'draftjs-to-html';
 import htmlToDraft from 'html-to-draftjs';
+import { formatLineBreak } from '../utils/misc';
 
 
 class TextInput extends Component {
@@ -13,35 +14,24 @@ class TextInput extends Component {
     var value = props.data.settings[props.setting.id];
     if (value === undefined) value = props.setting.default || '';
 
-    //create new content with raw html
-    const { contentBlocks, entityMap } = htmlToDraft(value);
-    const contentState = ContentState.createFromBlockArray(contentBlocks, entityMap);
-    var editorState = EditorState.createWithContent(contentState);
-
-    var html = props.setting.html || false;
-
-    const line_height =  20;
-    var line_break = props.setting.line_break || false;
-
-    var editorHeight = (props.setting.rows || 5) * line_height;
-
     this.state = {
-      editorState,
-      value,
-      html,
-      editorHeight,
-      line_break
+      editorState: this.createEditorContent(value),
+      value
     };
 
     this.inputOnChangeSanitizer = this.inputOnChangeSanitizer.bind(this);
     this.editorOnChangeSanitizer = this.editorOnChangeSanitizer.bind(this);
   }
 
-  formatLineBreak(text) {
-    return text
-      .replace(/<\/p>\n<p>/g, '<br>')
-      .replace(/<p>/g, '')
-      .replace(/<\/p>/g, '');
+  createEditorContent(html){
+    const { contentBlocks, entityMap } = htmlToDraft(html);
+    const contentState = ContentState.createFromBlockArray(contentBlocks, entityMap);
+    return EditorState.createWithContent(contentState);
+  }
+
+  getHeight(nbRows){
+    const line_height =  20;
+    var editorHeight = (nbRows || 5) * line_height;
   }
 
   inputOnChangeSanitizer(event){
@@ -51,11 +41,10 @@ class TextInput extends Component {
   }
 
   editorOnChangeSanitizer(editorState) {
-    this.setState({editorState: editorState});
-    let value = draftToHtml(convertToRaw(editorState.getCurrentContent()));
+    this.setState({ editorState: editorState });
 
-    if(this.state.line_break) value = this.formatLineBreak(value)
-
+    var value = draftToHtml(convertToRaw(editorState.getCurrentContent()));
+    if (this.props.setting.line_break) value = formatLineBreak(value)
     this.updateSectionValue(value);
   };
 
@@ -68,31 +57,27 @@ class TextInput extends Component {
   render() {
     const { setting } = this.props;
     const { editorState } = this.state;
-    if(this.state.html) {
-      return (
-        <div>
-          <label>{setting.label}</label>
-          <div style={{"height": `${this.state.editorHeight}px`, "overflow": "scroll"}} >
-            <Editor
-              editorState={editorState}
-              wrapperClassName="draftjs-wrapper"
-              editorClassName="draftjs-editor"
-              toolbarClassName="draftjs-toolbar"
-              toolbar={TextInput.mytoolbar}
-              onEditorStateChange={this.editorOnChangeSanitizer}
-            />
-          </div>
+    return setting.html ? (
+      <div className="editor-input editor-input-text">
+        <label>{setting.label}</label>
+        <div style={{"height": `${this.getHeight(setting.rows)}px`, "overflow": "scroll"}} >
+          <Editor
+            editorState={editorState}
+            wrapperClassName="draftjs-wrapper"
+            editorClassName="draftjs-editor"
+            toolbarClassName="draftjs-toolbar"
+            toolbar={TextInput.mytoolbar}
+            onEditorStateChange={this.editorOnChangeSanitizer}
+          />
         </div>
-      )
-    }else{
-      return (
-        <div className="editor-input editor-input-text">
-          <label>{setting.label}</label>
-          <br/>
-          <input type="text" value={this.state.value} onChange={this.inputOnChangeSanitizer} />
-        </div>
-      )
-    }
+      </div>
+    ) : (
+      <div className="editor-input editor-input-text">
+        <label>{setting.label}</label>
+        <br/>
+        <input type="text" value={this.state.value} onChange={this.inputOnChangeSanitizer} />
+      </div>
+    )
   }
 }
 

@@ -39,3 +39,11 @@ export function arrayMove(array, oldIndex, newIndex) {
 
   return newArray
 }
+
+// Replace p tags by br
+export function formatLineBreak(text) {
+  return text
+    .replace(/<\/p>\n<p>/g, '<br>')
+    .replace(/<p>/g, '')
+    .replace(/<\/p>/g, '');
+}
