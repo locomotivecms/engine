@@ -5,6 +5,7 @@ import draftToHtml from 'draftjs-to-html';
 import htmlToDraft from 'html-to-draftjs';
 import { formatLineBreak } from '../utils/misc';
 
+const LINE_HEIGHT = 20;
 
 class TextInput extends Component {
 
@@ -30,8 +31,7 @@ class TextInput extends Component {
   }
 
   getHeight(nbRows){
-    const line_height =  20;
-    var editorHeight = (nbRows || 5) * line_height;
+    var editorHeight = (nbRows || 5) * LINE_HEIGHT;
   }
 
   inputOnChangeSanitizer(event){
@@ -57,27 +57,28 @@ class TextInput extends Component {
   render() {
     const { setting } = this.props;
     const { editorState } = this.state;
-    return setting.html ? (
+    return (
       <div className="editor-input editor-input-text">
         <label>{setting.label}</label>
-        <div style={{"height": `${this.getHeight(setting.rows)}px`, "overflow": "scroll"}} >
-          <Editor
-            editorState={editorState}
-            wrapperClassName="draftjs-wrapper"
-            editorClassName="draftjs-editor"
-            toolbarClassName="draftjs-toolbar"
-            toolbar={TextInput.mytoolbar}
-            onEditorStateChange={this.editorOnChangeSanitizer}
-          />
-        </div>
+          {setting.html ? (
+            <div style={{"height": `${this.getHeight(setting.rows)}px`, "overflow": "scroll"}} >
+              <Editor
+                editorState={editorState}
+                wrapperClassName="draftjs-wrapper"
+                editorClassName="draftjs-editor"
+                toolbarClassName="draftjs-toolbar"
+                toolbar={TextInput.mytoolbar}
+                onEditorStateChange={this.editorOnChangeSanitizer}
+              />
+            </div>
+          ) : (
+            <div>
+              <br/>
+              <input type="text" value={this.state.value} onChange={this.inputOnChangeSanitizer} />
+            </div>
+          )}
       </div>
-    ) : (
-      <div className="editor-input editor-input-text">
-        <label>{setting.label}</label>
-        <br/>
-        <input type="text" value={this.state.value} onChange={this.inputOnChangeSanitizer} />
-      </div>
-    )
+    );
   }
 }
 
