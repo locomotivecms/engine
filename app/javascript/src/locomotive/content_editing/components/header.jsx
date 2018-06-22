@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import withRedux from '../utils/with_redux';
+import withRedux from '../hoc/with_redux';
 
 // Components
 import SaveButton from './save_button.jsx';
@@ -38,4 +38,4 @@ const Header = (props) => (
   </div>
 )
 
-export default withRedux(Header, state => { return { page: state.page } })
+export default withRedux(state => { return { page: state.page } })(Header);

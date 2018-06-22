@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import withRedux from '../../utils/with_redux';
+import withRedux from '../../hoc/with_redux';
 
 // Services
 import { buildSection, buildCategories } from '../../services/sections_service';
@@ -133,6 +133,6 @@ class Gallery extends Component {
 
 }
 
-export default withRedux(Gallery, state => { return {
+export default withRedux(state => { return {
   definitions: state.sectionDefinitions
-} });
+} })(Gallery);

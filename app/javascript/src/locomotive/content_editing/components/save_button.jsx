@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import withRedux from '../utils/with_redux';
+import withRedux from '../hoc/with_redux';
 import { saveContent } from '../services/api';
 
 class SaveButton extends React.Component {
@@ -28,4 +28,4 @@ class SaveButton extends React.Component {
 
 }
 
-export default withRedux(SaveButton, state => { return { site: state.site, page: state.page } });
+export default withRedux(state => { return { site: state.site, page: state.page } })(SaveButton);

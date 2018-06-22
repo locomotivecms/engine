@@ -1,1 +1,7 @@
 @import "./styles/popover";
+@import "./styles/inputs";
+@import "./styles/image_picker";
+
+#editor-app .container-fluid {
+  height: 100%;
+}

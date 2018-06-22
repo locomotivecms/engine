@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
-import store from './store.js';
+import store from './store';
+import { UrlsContext } from './context';
 
 // Views/Components
 import Main from './views/main.jsx';
@@ -10,12 +11,14 @@ class App extends Component {
 
   render() {
     return (
-      <Provider store={store}>
-        <div>
-          <Main basepath={this.props.urls.base} {...this.props} />
-          <Preview src={this.props.urls.preview} />
-        </div>
-      </Provider>
+      <UrlsContext.Provider value={this.props.urls}>
+        <Provider store={store}>
+          <div>
+            <Main basepath={this.props.urls.base} {...this.props} />
+            <Preview src={this.props.urls.preview} />
+          </div>
+        </Provider>
+      </UrlsContext.Provider>
     )
   }
 

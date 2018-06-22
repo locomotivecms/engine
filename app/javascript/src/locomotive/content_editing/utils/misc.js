@@ -39,3 +39,9 @@ export function arrayMove(array, oldIndex, newIndex) {
 
   return newArray
 }
+
+// parse an integer/float and returns null if it's not an integer
+export function toInt(number) {
+  if (number === '0') return 0;
+  return parseInt(number) || null
+}

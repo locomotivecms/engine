@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link, Redirect } from 'react-router-dom';
-import withRedux from '../../utils/with_redux';
+// import withRedux from '../../hoc/with_redux';
+import withNavParams from '../../hoc/with_nav_params';
 import { find } from 'lodash';
 
 // Components
@@ -14,7 +15,7 @@ class Edit extends Component {
     const { type, id, blockType, blockId } = match.params;
 
     // Shortcuts
-    this.sectionType = type, this.sectionId = id, this.blockId = blockId;
+    this.sectionType = type, this.sectionId = id, this.blockId = blockId, this.blockType = blockType;
     this.sectionDefinition  = find(definitions, def => def.type === type);
     this.blockDefinition    = find(this.sectionDefinition.blocks, def => def.type === blockType);
 
@@ -24,11 +25,11 @@ class Edit extends Component {
   }
 
   componentDidMount() {
-    this.props.selectSectionBlock(this.sectionId || this.sectionType, this.blockId);
+    this.props.selectSectionBlock(this.sectionType, this.sectionId, this.blockType, this.blockId);
   }
 
   exit() {
-    this.props.deselectSectionBlock(this.sectionId || this.sectionType, this.blockId);
+    this.props.deselectSectionBlock(this.sectionType, this.sectionId, this.blockId);
     this.props.history.push(this.getCurrentSectionPath());
   }
 
@@ -98,8 +99,10 @@ class Edit extends Component {
 
 }
 
-export default withRedux(Edit, state => { return {
-  staticContent:  state.site.sectionsContent,
-  content:        state.page.sectionsContent,
-  definitions:    state.sectionDefinitions
-} });
+export default withNavParams(Edit);
+
+// export default withRedux(state => { return {
+//   staticContent:  state.site.sectionsContent,
+//   content:        state.page.sectionsContent,
+//   definitions:    state.sectionDefinitions
+// } })(Edit);

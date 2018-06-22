@@ -1,0 +1,78 @@
+.editor-image-picker {
+  height: 100%;
+}
+
+.editor-image-picker-header {
+}
+
+.editor-image-uploader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 6rem;
+
+  input[type=file] {
+    display: none;
+  }
+}
+
+.editor-image-pagination {
+  height: 5rem;
+  display: flex;
+  align-items: center;
+
+  .pagination {
+    margin: 0 auto;
+  }
+}
+
+.editor-image-list {
+  height: calc(100% - 114px - 5rem);
+}
+
+.editor-image-inner-list {
+  overflow-y: scroll;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-content: flex-start;
+}
+
+.editor-image {
+  margin: 1rem;
+
+  .editor-image-inner {
+    position: relative;
+    background: #ccc;
+    width: 136px;
+    height: 136px;
+    transition: all 0.2s ease;
+    cursor: pointer;
+
+    &:before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      transition: all 0.2s ease;
+    }
+  }
+
+  &.active .editor-image-inner {
+    transform: scale(0.9);
+
+    &:before {
+      box-shadow: inset 0 0 0 5px #1D77C3;
+    }
+  }
+
+  img {
+    display: block;
+    height: 100%;
+    width: 100%;
+  }
+
+}

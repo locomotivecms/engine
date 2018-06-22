@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import withRedux from '../../../utils/with_redux';
+import withRedux from '../../../hoc/with_redux';
 import { build as buildBlock } from '../../../services/blocks_service';
 import { SortableContainer, SortableElement, SortableHandle } from 'react-sortable-hoc';
 
@@ -103,4 +103,4 @@ class BlockList extends Component {
 
 }
 
-export default withRedux(BlockList, state => { return { site: state.site } });
+export default withRedux(state => { return { site: state.site } })(BlockList);

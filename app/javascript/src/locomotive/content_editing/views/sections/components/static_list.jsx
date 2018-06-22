@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import withRedux from '../../../utils/with_redux';
+import withRedux from '../../../hoc/with_redux';
 import { find } from 'lodash';
 
 class Section extends Component {
@@ -37,6 +37,6 @@ export class StaticList extends Component {
 
 }
 
-export default withRedux(StaticList, state => { return {
+export default withRedux(state => { return {
   definitions: state.sectionDefinitions
-} });
+} })(StaticList);

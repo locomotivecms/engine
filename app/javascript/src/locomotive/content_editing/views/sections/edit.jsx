@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link, Redirect } from 'react-router-dom';
-import withRedux from '../../utils/with_redux';
+import withRedux from '../../hoc/with_redux';
 import { isBlank } from '../../utils/misc';
 import { find } from 'lodash';
 
@@ -25,7 +25,7 @@ class Edit extends Component {
   }
 
   componentDidMount() {
-    this.props.selectSection(this.sectionId || this.sectionType);
+    this.props.selectSection(this.sectionType, this.sectionId);
   }
 
   onChange(settingType, settingId, newValue) {
@@ -46,7 +46,7 @@ class Edit extends Component {
   }
 
   exit() {
-    this.props.deselectSection(this.sectionId || this.sectionType);
+    this.props.deselectSection(this.sectionType, this.sectionId);
     this.props.history.push('/sections');
   }
 
@@ -95,8 +95,8 @@ class Edit extends Component {
 
 }
 
-export default withRedux(Edit, state => { return {
+export default withRedux(state => { return {
   staticContent:  state.site.sectionsContent,
   content:        state.page.sectionsContent,
   definitions:    state.sectionDefinitions
-} });
+} })(Edit);

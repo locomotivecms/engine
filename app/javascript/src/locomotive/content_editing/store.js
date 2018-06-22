@@ -10,6 +10,14 @@ const defaultState = {
   iframe: {
     loaded:     false,
     window:     null
+  },
+  view: {
+    staticSection:  null,
+    sectionType:    null,
+    sectionId:      null,
+    blockType:      null,
+    blockId:        null,
+    settingId:      null
   }
 };
 
