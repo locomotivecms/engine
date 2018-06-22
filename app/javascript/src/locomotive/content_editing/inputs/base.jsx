@@ -5,6 +5,7 @@ import withRedux from '../utils/with_redux';
 import TextInput from './text.jsx';
 import CheckboxInput from './checkbox.jsx';
 import SelectInput from './select.jsx';
+import RadioInput from './radio.jsx';
 
 class Base extends Component {
 
@@ -14,6 +15,7 @@ class Base extends Component {
       case 'text':      return TextInput;
       case 'checkbox':  return CheckboxInput;
       case 'select':    return SelectInput;
+      case 'radio':     return RadioInput;
       default:
         console.log(`[Editor] Warning! Unknown input type: "${this.props.setting.type}"`);
         return null;
