@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import { Link, Redirect } from 'react-router-dom';
-// import withRedux from '../../hoc/with_redux';
-import withNavParams from '../../hoc/with_nav_params';
+import asView from '../../hoc/as_view';
 import { isBlank } from '../../utils/misc';
 import { find, bindAll } from 'lodash';
 
 // Components
 import Input from '../../inputs/base.jsx';
-import BlockList from './components/block_list.jsx';
+import BlockList from './edit/block_list.jsx';
 
 class Edit extends Component {
 
@@ -32,7 +31,7 @@ class Edit extends Component {
 
   exit() {
     this.props.unselectItem();
-    this.props.history.push('/sections');
+    this.props.history.push(this.props.routes.parentPath());
   }
 
   render() {
@@ -64,18 +63,13 @@ class Edit extends Component {
         <hr/>
 
         {!isBlank(this.props.sectionDefinition.blocks) &&
-          <BlockList
-            sectionDefinition={this.props.sectionDefinition}
-            sectionId={this.props.sectionId}
-            content={this.props.sectionContent}
-          />
+          <BlockList {...this.props} />
         }
       </div>
     ) : (
       <Redirect to={{ pathname: `/sections` }} />
     )
   }
-
 }
 
-export default withNavParams(Edit);
+export default asView(Edit);

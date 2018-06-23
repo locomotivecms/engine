@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { bindAll } from 'lodash';
-import withNavParams from '../../hoc/with_nav_params';
+import asView from '../../hoc/as_view';
 
 // Components
 import Input from '../../inputs/base.jsx';
@@ -19,7 +19,7 @@ class Edit extends Component {
 
   exit() {
     this.props.unselectItem();
-    this.props.history.push(this.getCurrentSectionPath());
+    this.props.history.push(this.props.routes.parentPath());
   }
 
   onChange(settingType, settingId, newValue) {
@@ -31,13 +31,6 @@ class Edit extends Component {
       settingId,
       newValue
     );
-  }
-
-  getCurrentSectionPath() {
-    if (this.props.sectionId)
-      return `/dropzone_sections/${this.props.sectionType}/${this.props.sectionId}/edit`;
-    else
-      return `/sections/${this.props.sectionType}/edit`;
   }
 
   render() {
@@ -75,4 +68,4 @@ class Edit extends Component {
 
 }
 
-export default withNavParams(Edit);
+export default asView(Edit);

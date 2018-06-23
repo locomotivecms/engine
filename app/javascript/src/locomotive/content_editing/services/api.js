@@ -66,7 +66,7 @@ export function saveContent(site, page) {
 
 export function loadSectionHTML(sectionType, content) {
   return put(window.Locomotive.urls.preview,
-    { section_content: content },
+    JSON.stringify({ section_content: content }),
     { 'Locomotive-Section-Type': sectionType }
   ).then(response => { return response.text(); })
 }
@@ -80,10 +80,6 @@ export function uploadAssets(assets) {
   return post(window.Locomotive.urls.bulkAssetUpload, form, {
     'Content-Type': null
   }).then(response => response.json())
-  // .then(response => {
-  //   console.log(response);
-  //   return response;
-  // });
 }
 
 export function loadAssets(options) {

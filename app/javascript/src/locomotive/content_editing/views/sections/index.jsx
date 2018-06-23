@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
 // Components
-import StaticList from './components/static_list.jsx';
-import List from './components/list.jsx';
+import StaticList from './index/static_list.jsx';
+import List from './index/list.jsx';
 
 class Index extends Component {
 

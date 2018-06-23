@@ -1,8 +1,5 @@
 import React from 'react';
 import { find, pick, bindAll } from 'lodash';
-import { compose } from 'redux';
-
-import withRedux from './with_redux';
 
 const withNavParams = Component => {
 
@@ -82,11 +79,4 @@ const withNavParams = Component => {
 
 }
 
-export default compose(
-  withRedux(state => { return {
-    staticContent:  state.site.sectionsContent,
-    content:        state.page.sectionsContent,
-    definitions:    state.sectionDefinitions
-  } }),
-  withNavParams
-);
+export default withNavParams;
