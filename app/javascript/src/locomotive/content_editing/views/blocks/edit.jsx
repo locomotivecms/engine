@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { Link, Redirect } from 'react-router-dom';
-// import withRedux from '../../hoc/with_redux';
+import { bindAll } from 'lodash';
 import withNavParams from '../../hoc/with_nav_params';
-import { find } from 'lodash';
 
 // Components
 import Input from '../../inputs/base.jsx';
@@ -11,66 +10,43 @@ class Edit extends Component {
 
   constructor(props) {
     super(props);
-    const { definitions, match } = this.props;
-    const { type, id, blockType, blockId } = match.params;
-
-    // Shortcuts
-    this.sectionType = type, this.sectionId = id, this.blockId = blockId, this.blockType = blockType;
-    this.sectionDefinition  = find(definitions, def => def.type === type);
-    this.blockDefinition    = find(this.sectionDefinition.blocks, def => def.type === blockType);
-
-    // Bind methods
-    this.onChange = this.onChange.bind(this);
-    this.exit     = this.exit.bind(this);
+    bindAll(this, ['onChange', 'exit']);
   }
 
   componentDidMount() {
-    this.props.selectSectionBlock(this.sectionType, this.sectionId, this.blockType, this.blockId);
+    this.props.selectItem();
   }
 
   exit() {
-    this.props.deselectSectionBlock(this.sectionType, this.sectionId, this.blockId);
+    this.props.unselectItem();
     this.props.history.push(this.getCurrentSectionPath());
   }
 
   onChange(settingType, settingId, newValue) {
     this.props.updateSectionBlockInput(
-      this.sectionType,
-      this.sectionId,
-      this.blockId,
+      this.props.sectionType,
+      this.props.sectionId,
+      this.props.blockId,
       settingType,
       settingId,
       newValue
     );
   }
 
-  getSectionContent() {
-    if (this.sectionId)
-      return find(this.props.content, section => section.id === this.sectionId);
-    else
-      return this.props.staticContent[this.sectionDefinition.type];
-  }
-
-  getContent() {
-    return find(this.getSectionContent().blocks, block => block.id === this.blockId);
-  }
-
   getCurrentSectionPath() {
-    if (this.sectionId)
-      return `/dropzone_sections/${this.sectionType}/${this.sectionId}/edit`;
+    if (this.props.sectionId)
+      return `/dropzone_sections/${this.props.sectionType}/${this.props.sectionId}/edit`;
     else
-      return `/sections/${this.sectionType}/edit`;
+      return `/sections/${this.props.sectionType}/edit`;
   }
 
   render() {
-    const content = this.getContent();
-
-    return this.sectionDefinition && content  ? (
+    return this.props.sectionDefinition && this.props.blockContent  ? (
       <div className="editor-edit-block">
         <div className="row header-row">
           <div className="col-md-12">
             <h1>
-              {this.sectionDefinition.name} / {this.blockDefinition.name}
+              {this.props.sectionDefinition.name} / {this.props.blockDefinition.name}
               &nbsp;
               <small>
                 <a onClick={this.exit}>Back</a>
@@ -80,11 +56,11 @@ class Edit extends Component {
         </div>
 
         <div className="editor-block-settings">
-          {this.blockDefinition.settings.map(setting =>
+          {this.props.blockDefinition.settings.map(setting =>
             <Input
               key={`section-input-${setting.id}`}
               setting={setting}
-              data={content}
+              data={this.props.blockContent}
               onChange={this.onChange}
             />
           )}
@@ -100,9 +76,3 @@ class Edit extends Component {
 }
 
 export default withNavParams(Edit);
-
-// export default withRedux(state => { return {
-//   staticContent:  state.site.sectionsContent,
-//   content:        state.page.sectionsContent,
-//   definitions:    state.sectionDefinitions
-// } })(Edit);

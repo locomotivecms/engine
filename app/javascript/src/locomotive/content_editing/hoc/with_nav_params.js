@@ -1,5 +1,5 @@
 import React from 'react';
-import { find } from 'lodash';
+import { find, pick, bindAll } from 'lodash';
 import { compose } from 'redux';
 
 import withRedux from './with_redux';
@@ -11,69 +11,69 @@ const withNavParams = Component => {
     constructor(props) {
       super(props);
 
-      const { definitions, match } = this.props;
-      const { sectionType, sectionId, blockType, blockId, settingId } = match.params;
+      this.params = pick(this.props.match.params, [
+        'sectionType', 'sectionId', 'blockType', 'blockId', 'settingId'
+      ]);
 
-      this.sectionType = sectionType, this.sectionId = sectionId;
-      this.blockType = blockType, this.blockId = blockId;
-      this.settingId = settingId;
+      this.params.sectionDefinition = this.findSectionDefinition();
+      this.params.blockDefinition   = this.findBlockDefinition();
 
-      this.sectionDefinition = find(definitions, def => def.type === sectionType);
-      this.blockDefinition   = find(this.sectionDefinition.blocks, def => def.type === blockType);
+      bindAll(this, ['selectItem', 'unselectItem']);
+    }
+
+    findSectionDefinition() {
+      return find(this.props.definitions, def => def.type === this.params.sectionType);
+    }
+
+    findBlockDefinition() {
+      const { sectionDefinition, blockType } = this.params;
+      return find(sectionDefinition.blocks, def => def.type === blockType);
     }
 
     // let the preview know about which part (section or block) of the page we're going to edit
-    componentDidMount() {
-      if (this.blockId)
-        this.props.selectSectionBlock(this.sectionType, this.sectionId, this.blockType, this.blockId);
+    selectItem() {
+      const { sectionType, sectionId, blockType, blockId } = this.params;
+
+      if (blockId)
+        this.props.selectSectionBlock(sectionType, sectionId, blockType, blockId);
       else
-        this.props.selectSection(this.sectionType, this.sectionId);
+        this.props.selectSection(sectionType, sectionId);
     }
 
-    // build the nav params passed to the component
-    buildNavParams() {
-      const { definitions, match } = this.props;
-      const { sectionType, sectionId, blockType, blockId, settingId } = match.params;
+    // let the preview know about when the editor leaves for another editing view
+    unselectItem() {
+      const { sectionType, sectionId, blockId } = this.params;
 
-      var params = {
-        sectionType,
-        sectionId,
-        blockType,
-        blockId,
-        settingId
-      }
-
-
-
-      return params;
+      if (blockId)
+        this.props.deselectSectionBlock(sectionType, sectionId, blockId);
+      else
+        this.props.deselectSection(sectionType, sectionId);
     }
 
     // find the related content. It depends if the section is a static one or not (dropsections)
-    fetchContent(params) {
+    fetchContent() {
+      const { sectionType, sectionId, blockType, blockId } = this.params;
       var content = {};
 
       // Section content
-      if (params.sectionId)
-        content.sectionContent = find(this.props.content, section =>
-          section.id === params.sectionId
-        );
-      else
-        content.sectionContent = this.props.staticContent[params.sectionDefinition.type];
+      content.sectionContent = sectionId ? find(this.props.content, section =>
+        section.id === sectionId
+      ) : this.props.staticContent[sectionType];
 
       // Block content
-      if (params.blockId)
-        find(content.sectionContent.blocks, block => block.id === params.blockId);
+      content.blockContent = blockId ? find(content.sectionContent.blocks, block =>
+        block.id === blockId
+      ) : null;
 
       return content;
     }
 
     render() {
-      const params    = this.buildNavParams();
-      const content   = this.fetchContent(params);
-
       return <Component
-        {...params}
-        {...content}
+        selectItem={this.selectItem}
+        unselectItem={this.unselectItem}
+        {...this.fetchContent()}
+        {...this.params}
         {...this.props}
       />
     }

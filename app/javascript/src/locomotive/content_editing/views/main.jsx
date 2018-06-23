@@ -72,13 +72,14 @@ export class Main extends React.Component {
 
                   <Route exact path="/sections" render={withHeader(SectionIndex, this.props)} />
 
-                  <Route path="/sections/:type/edit" component={EditSection} />
-                  <Route path="/sections/:type/blocks/:blockType/:blockId/edit" component={EditBlock} />
-                  <Route path="/sections/:type/blocks/:blockType/:blockId/:settingId/images" component={ImagesIndex} />
+                  <Route path="/sections/:sectionType/edit" component={EditSection} />
+                  <Route path="/sections/:sectionType/blocks/:blockType/:blockId/edit" component={EditBlock} />
+                  <Route path="/sections/:sectionType/blocks/:blockType/:blockId/:settingId/images" component={ImagesIndex} />
 
                   <Route exact path="/dropzone_sections/pick" component={SectionGallery} />
                   <Route path="/dropzone_sections/:sectionType/:sectionId/edit" component={EditSection} />
                   <Route path="/dropzone_sections/:sectionType/:sectionId/blocks/:blockType/:blockId/edit" component={EditBlock} />
+                  <Route path="/dropzone_sections/:sectionType/:sectionId/blocks/:blockType/:blockId/:settingId/images" component={ImagesIndex} />
 
                   <Route exact path="/editable_elements" render={withHeader(ListEditableElements, this.props)} />
                   <Route render={NoMatch} />
