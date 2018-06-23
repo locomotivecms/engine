@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import asView from '../../hoc/as_view';
 import { isBlank } from '../../utils/misc';
-import { find, bindAll } from 'lodash';
+import { bindAll } from 'lodash';
 
 // Components
 import Input from '../../inputs/base.jsx';

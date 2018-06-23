@@ -1,5 +1,11 @@
 import React from 'react';
 
-const state = { urls: {} };
+const state = {
+  sections:             {},
+  sectionDefinitions:   {},
+  hasSections:          false,
+  hasEditableElements:  false,
+  urls:                 {}
+};
 
-export const UrlsContext = React.createContext(state.urls);
+export default React.createContext(state);

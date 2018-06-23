@@ -1,25 +1,21 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
-class Section extends Component {
-
-  render() {
-    const { section, removeSection, handleComponent } = this.props;
-    const Handle = handleComponent;
-
-    return <div>
+const Section = props => {
+  const Handle = props.handleComponent;
+  return (
+    <div>
       <Handle />
       &nbsp;
-      {section.name}
+      {props.section.name}
       &nbsp;
-      <Link to={`/dropzone_sections/${section.type}/${section.id}/edit`}>
-        Edit
-      </Link>
+      <Link to={props.editPath}>Edit</Link>
       &nbsp;
-      <a onClick={removeSection}>Delete</a>
+      <button className="btn btn-primary btn-xs" onClick={props.removeSection}>
+        Delete
+      </button>
     </div>
-  }
-
+  )
 }
 
 export default Section;

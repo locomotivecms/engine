@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import { compose } from 'redux';
 import withRedux from '../../hoc/with_redux';
+import withGlobalVars from '../../hoc/with_global_vars';
 import { bindAll } from 'lodash';
 
 // Components
@@ -13,7 +15,7 @@ class Gallery extends Component {
   constructor(props) {
     super(props);
     this.state      = { category: null, preset: null, section: null };
-    this.categories = buildCategories(props.definitions);
+    this.categories = buildCategories(props.sectionDefinitions);
     bindAll(this, 'selectPreset', 'previewPreset', 'cancel');
   }
 
@@ -77,6 +79,7 @@ class Gallery extends Component {
 
 }
 
-export default withRedux(state => { return {
-  definitions: state.sectionDefinitions
-} })(Gallery);
+export default compose(
+  withRedux(),
+  withGlobalVars
+);

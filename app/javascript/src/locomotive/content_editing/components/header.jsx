@@ -1,5 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { compose } from 'redux';
 import { Link } from 'react-router-dom';
+
+// Hoc
+import withGlobalVars from '../hoc/with_global_vars';
 import withRedux from '../hoc/with_redux';
 
 // Components
@@ -9,7 +13,7 @@ const isActive = (name, props) => {
   if (props.match === undefined) return false;
 
   if (props.match.path === '/')
-    return name === 'sections' && props.withSections;
+    return name === 'sections' && props.hasSections;
   else
     return RegExp(`^/${name}`).test(props.match.path);
 }
@@ -22,10 +26,10 @@ const Header = (props) => (
     <div className="col-md-9">
       <ul className="nav nav-tabs" role="tablist">
         <li className={isActive('sections', props) ? 'active' : ''}>
-          <Link to="/sections">Sections</Link>
+          <Link to={props.sectionsPath()}>Sections</Link>
         </li>
         <li className={isActive('editable_elements', props) ? 'active' : ''}>
-          <Link to="/editable_elements">Content</Link>
+          <Link to={props.editableElementsPath()}>Content</Link>
         </li>
         <li>
           <a role="tab" href={props.urls.settings}>Settings</a>
@@ -38,4 +42,8 @@ const Header = (props) => (
   </div>
 )
 
-export default withRedux(state => { return { page: state.page } })(Header);
+export default compose(
+  withRedux(state => ({ page: state.page })),
+  withGlobalVars
+)(Header)
+

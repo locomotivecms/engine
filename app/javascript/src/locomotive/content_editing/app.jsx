@@ -1,27 +1,24 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
+import { pick } from 'lodash';
 import store from './store';
-import { UrlsContext } from './context';
+import GlobalContext from './context';
 
 // Views/Components
 import Main from './views/main.jsx';
-import Preview from './components/preview.jsx';
+import Preview from './views/preview.jsx';
 
-class App extends Component {
-
-  render() {
-    return (
-      <UrlsContext.Provider value={this.props.urls}>
-        <Provider store={store}>
-          <div>
-            <Main basepath={this.props.urls.base} {...this.props} />
-            <Preview src={this.props.urls.preview} />
-          </div>
-        </Provider>
-      </UrlsContext.Provider>
-    )
-  }
-
-}
+const App = props => (
+  <GlobalContext.Provider value={pick(props,
+    'urls', 'sections', 'sectionDefinitions', 'hasSections', 'hasEditableElements'
+  )}>
+    <Provider store={store}>
+      <div>
+        <Main basepath={props.urls.base} {...props} />
+        <Preview src={props.urls.preview} />
+      </div>
+    </Provider>
+  </GlobalContext.Provider>
+)
 
 export default App;

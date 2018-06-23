@@ -1,23 +1,27 @@
 import React, { Component } from 'react';
+import { compose } from 'redux';
 import { Link } from 'react-router-dom';
-import withRedux from '../../../hoc/with_redux';
 import { SortableContainer, SortableElement, SortableHandle } from 'react-sortable-hoc';
+import { bindAll } from 'lodash';
+
+// HOC
+import withRedux from '../../../hoc/with_redux';
+import withGlobalVars from '../../../hoc/with_global_vars';
 
 // Components
 import Section from './section.jsx';
 
-const DragHandle = SortableHandle(() => <span>::</span>);
-
+const DragHandle      = SortableHandle(() => <span>::</span>);
 const SortableSection = SortableElement(Section);
-
-const SortableList = SortableContainer(({ sections, removeSection }) => {
+const SortableList    = SortableContainer(({ list, removeSection, ...props }) => {
   return (
     <div>
-      {(sections || []).map((section, index) =>
+      {(list || []).map((section, index) =>
         <SortableSection
           key={`section-${section.id}`}
           index={index}
           section={section}
+          editPath={props.editSectionPath(section.type, section.id)}
           removeSection={removeSection.bind(null, section.id)}
           handleComponent={DragHandle}
         />
@@ -30,9 +34,7 @@ export class List extends Component {
 
   constructor(props) {
     super(props);
-
-    // bind methods to this
-    this.onSortEnd  = this.onSortEnd.bind(this);
+    bindAll(this, 'onSortEnd');
   }
 
   onSortEnd({ oldIndex, newIndex }) {
@@ -48,11 +50,11 @@ export class List extends Component {
     return (
       <div className="editor-section-list">
         <SortableList
-          sections={this.props.list}
-          removeSection={this.props.removeSection}
+          list={this.props.list}
           onSortEnd={this.onSortEnd}
           useDragHandle={true}
           lockAxis="y"
+          {...this.props}
         />
 
         {this.props.list.length === 0 && (
@@ -62,7 +64,7 @@ export class List extends Component {
         )}
 
         <div className="editor-section-add-section text-center">
-          <Link to="/dropzone_sections/pick">Add section</Link>
+          <Link to={this.props.newSectionPath()}>Add section</Link>
         </div>
       </div>
     )
@@ -70,7 +72,7 @@ export class List extends Component {
 
 }
 
-export default withRedux(state => { return {
-  definitions:  state.sectionDefinitions,
-  list:         state.page.sectionsContent
-} })(List);
+export default compose(
+  withRedux(state => ({ list: state.page.sectionsContent })),
+  withGlobalVars
+)(List)
