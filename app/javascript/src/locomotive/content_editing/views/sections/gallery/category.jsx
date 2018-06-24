@@ -1,4 +1,6 @@
 import React from 'react';
+
+// Components
 import Preset from './preset.jsx';
 
 const Category = props => (

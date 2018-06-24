@@ -2,8 +2,7 @@ import { compose } from 'redux';
 
 import withRedux from './with_redux';
 import withGlobalVars from './with_global_vars';
-import withNavParams from './with_nav_params';
-import withRoutes from './with_routes';
+import withEditingSection from './with_editing_section';
 
 export default compose(
   withRedux(state => { return {
@@ -11,6 +10,5 @@ export default compose(
     content:        state.page.sectionsContent
   } }),
   withGlobalVars,
-  withNavParams,
-  withRoutes
+  withEditingSection
 );

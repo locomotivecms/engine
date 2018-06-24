@@ -63,6 +63,7 @@ function page(state = [], action) {
       });
 
     case 'SECTION::BLOCK::MOVE':
+      console.log('SECTION::BLOCK::MOVE', 'called!');
       return update(state, {
         sectionsContent: {
           [findSectionIndex(state, action)]: {

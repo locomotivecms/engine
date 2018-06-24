@@ -4,21 +4,26 @@ import asView from '../../hoc/as_view';
 import { isBlank } from '../../utils/misc';
 import { bindAll } from 'lodash';
 
+// Services
+import { build as buildBlock } from '../../services/blocks_service';
+
 // Components
 import Input from '../../inputs/base.jsx';
 import BlockList from './edit/block_list.jsx';
+import NewBlockPicker from './edit/new_block_picker.jsx';
 
 class Edit extends Component {
 
   constructor(props) {
     super(props);
-    bindAll(this, ['onChange', 'exit']);
+    bindAll(this, ['addBlock', 'moveBlock', 'onChange', 'exit']);
   }
 
   componentDidMount() {
-    this.props.selectItem();
+    // this.props.selectItem(); // TODO
   }
 
+  // Called when an input value gets changed
   onChange(settingType, settingId, newValue) {
     this.props.updateSectionInput(
       this.props.sectionType,
@@ -29,9 +34,31 @@ class Edit extends Component {
     );
   }
 
+  // Called when an editor adds a new block
+  addBlock(blockType) {
+    this.props.addSectionBlock(
+      this.props.sectionType,
+      this.props.sectionId,
+      buildBlock(
+        this.props.sectionDefinition,
+        blockType || this.props.sectionDefinition.blocks[0].type
+      )
+    )
+  }
+
+  // Called when an editor changes the block order
+  moveBlock({ oldIndex, newIndex }) {
+    this.props.moveSectionBlock(
+      this.props.sectionType,
+      this.props.sectionId,
+      oldIndex,
+      newIndex
+    )
+  }
+
   exit() {
-    this.props.unselectItem();
-    this.props.history.push(this.props.routes.parentPath());
+    // this.props.unselectItem(); // TODO
+    this.props.history.push(this.props.sectionsPath());
   }
 
   render() {
@@ -62,9 +89,22 @@ class Edit extends Component {
 
         <hr/>
 
-        {!isBlank(this.props.sectionDefinition.blocks) &&
-          <BlockList {...this.props} />
-        }
+        {!isBlank(this.props.sectionDefinition.blocks) && (
+          <div className="editor-section-blocks">
+            <h3>Blocks</h3>
+
+            <BlockList
+              moveBlock={this.moveBlock}
+              {...this.props}
+            />
+
+            <NewBlockPicker
+              addBlock={this.addBlock}
+              {...this.props}
+            />
+
+          </div>
+        )}
       </div>
     ) : (
       <Redirect to={{ pathname: `/sections` }} />

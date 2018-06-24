@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { compose } from 'redux';
+import { bindAll } from 'lodash';
+
+// HOC
 import withRedux from '../../hoc/with_redux';
 import withGlobalVars from '../../hoc/with_global_vars';
-import { bindAll } from 'lodash';
 
 // Components
 import Category from './gallery/category.jsx';
@@ -26,7 +28,7 @@ class Gallery extends Component {
 
   cancel() {
     this.props.cancelPreviewSection();
-    this.props.history.push('/sections');
+    this.props.history.push(this.props.sectionsPath());
   }
 
   selectPreset() {
@@ -35,12 +37,15 @@ class Gallery extends Component {
     this.props.addSection(section);
 
     // Go directly to the section edit page
-    this.props.history.push(`/dropzone_sections/${section.type}/${section.id}/edit`);
+    this.props.history.push(this.props.editSectionPath(section.type, section.id));
   }
 
   previewPreset(category, preset) {
-    const { definitions } = this.props;
-    const section = buildSection(definitions, preset.type, preset.preset);
+    const section = buildSection(
+      this.props.sectionDefinitions,
+      preset.type,
+      preset.preset
+    );
 
     this.setState({ category, preset, section }, () => {
       this.props.previewSection(section);
@@ -82,4 +87,4 @@ class Gallery extends Component {
 export default compose(
   withRedux(),
   withGlobalVars
-);
+)(Gallery);
