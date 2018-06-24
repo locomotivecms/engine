@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { bindAll } from 'lodash';
+
+// HOC
 import asView from '../../hoc/as_view';
 
 // Components
@@ -14,12 +16,17 @@ class Edit extends Component {
   }
 
   componentDidMount() {
-    this.props.selectItem();
+    // this.props.selectItem(); // TODO
   }
 
   exit() {
-    this.props.unselectItem();
-    this.props.history.push(this.props.routes.parentPath());
+    // this.props.unselectItem(); // TODO
+    this.props.history.push(
+      this.props.blockParentPath(
+        this.props.sectionType,
+        this.props.sectionId
+      )
+    );
   }
 
   onChange(settingType, settingId, newValue) {
@@ -60,9 +67,7 @@ class Edit extends Component {
         </div>
       </div>
     ) : (
-      <Redirect
-        to={{ pathname: '/' }}
-      />
+      <Redirect to={{ pathname: '/' }} />
     )
   }
 

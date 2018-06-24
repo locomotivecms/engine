@@ -1,13 +1,5 @@
 import React from 'react';
-import { find, pick, bindAll } from 'lodash';
-
-// TODO:
-// x rely on helpers from with_global_vars....
-// - remove selectItem and unselectItem (reducers)
-// x return a stateless component
-// x rename the HOC?
-// x remove with_routes
-// - make sure the data are consistent and redirect to / if not
+import { find, pick } from 'lodash';
 
 const withEditingSection = Component => {
 
@@ -52,6 +44,10 @@ const withEditingSection = Component => {
       />
     )
   }
+
+}
+
+export default withEditingSection;
 
   // return class WithNavParams extends React.Component {
 
@@ -127,6 +123,4 @@ const withEditingSection = Component => {
 
   // }
 
-}
-
-export default withEditingSection;
+// }

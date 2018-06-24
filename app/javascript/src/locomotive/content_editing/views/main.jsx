@@ -46,12 +46,18 @@ const Main = props => (
 
               <Route path="/sections/:sectionType/edit" component={EditSection} />
               <Route path="/sections/:sectionType/blocks/:blockType/:blockId/edit" component={EditBlock} />
-              <Route path="/sections/:sectionType/blocks/:blockType/:blockId/:settingId/images" component={ImagesIndex} />
+              <Route
+                path="/sections/:sectionType/blocks/:blockType/:blockId/setting/:settingId/images"
+                component={ImagesIndex}
+              />
 
               <Route exact path="/dropzone_sections/pick" component={SectionGallery} />
               <Route path="/dropzone_sections/:sectionType/:sectionId/edit" component={EditSection} />
               <Route path="/dropzone_sections/:sectionType/:sectionId/blocks/:blockType/:blockId/edit" component={EditBlock} />
-              <Route path="/dropzone_sections/:sectionType/:sectionId/blocks/:blockType/:blockId/:settingId/images" component={ImagesIndex} />
+              <Route
+                path="/dropzone_sections/:sectionType/:sectionId/blocks/:blockType/:blockId/setting/:settingId/images"
+                component={ImagesIndex}
+              />
 
               <Route exact path="/editable_elements" component={EditableElementsIndex} />
 

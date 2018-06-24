@@ -14,18 +14,42 @@ export default function withGlobalVars(Component) {
   }
 
   // Routes
+  const editableElementsPath  = () => '/editable_elements';
+  const sectionsPath          = () => '/sections';
+  const newSectionPath        = () => '/dropzone_sections/pick';
+
+  const staticSectionPath = sectionType => `/sections/${sectionType}`;
+  const editStaticSectionPath = sectionType => {
+    return `${staticSectionPath(sectionType)}/edit`;
+  }
+
+  const sectionPath = (sectionType, sectionId) => {
+    return `/dropzone_sections/${sectionType}/${sectionId}`;
+  }
+  const editSectionPath = (sectionType, sectionId) => {
+    return `${sectionPath(sectionType, sectionId)}/edit`;
+  }
+
+  const genericSectionPath = (sectionType, sectionId) => {
+    return sectionId ? sectionPath(sectionType, sectionId) : staticSectionPath(sectionType);
+  }
+
+  const editBlockPath = (sectionType, sectionId, blockType, blockId) => {
+    return `${genericSectionPath(sectionType, sectionId)}/blocks/${blockType}/${blockId}/edit`;
+  }
+
+  const blockParentPath = (sectionType, sectionId) => {
+    return `${genericSectionPath(sectionType, sectionId)}/edit`;
+  }
+
   const routes = {
-    sectionsPath: () => '/sections',
-    editStaticSectionPath: (sectionType) => `/sections/${sectionType}/edit`,
-    editSectionPath: (sectionType, sectionId) => `/dropzone_sections/${sectionType}/${sectionId}/edit`,
-    newSectionPath: () => '/dropzone_sections/pick',
-    editBlockPath: (sectionType, sectionId, blockType, blockId) => {
-      const prefix = sectionId ?
-        `/dropzone_sections/${sectionType}/${sectionId}` :
-        `/sections/${sectionType}`;
-      return `${prefix}/blocks/${blockType}/${blockId}/edit`;
-    },
-    editableElementsPath: () => '/editable_elements'
+    editableElementsPath,
+    sectionsPath,
+    editStaticSectionPath,
+    editSectionPath,
+    newSectionPath,
+    editBlockPath,
+    blockParentPath
   }
 
   return function WrappedComponent(props) {

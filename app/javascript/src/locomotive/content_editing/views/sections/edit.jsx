@@ -107,7 +107,7 @@ class Edit extends Component {
         )}
       </div>
     ) : (
-      <Redirect to={{ pathname: `/sections` }} />
+      <Redirect to={{ pathname: '/' }} />
     )
   }
 }
