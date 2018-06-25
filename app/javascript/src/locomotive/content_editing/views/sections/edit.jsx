@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { Link, Redirect } from 'react-router-dom';
-import asView from '../../hoc/as_view';
 import { isBlank } from '../../utils/misc';
 import { bindAll } from 'lodash';
+
+// HOC
+import asView from '../../hoc/as_view';
 
 // Services
 import { build as buildBlock } from '../../services/blocks_service';

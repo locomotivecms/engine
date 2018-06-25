@@ -3,6 +3,7 @@ import { compose } from 'redux';
 import { bindAll } from 'lodash';
 
 // HOC
+import withRoutes from '../../hoc/with_routes';
 import withRedux from '../../hoc/with_redux';
 import withGlobalVars from '../../hoc/with_global_vars';
 
@@ -85,6 +86,7 @@ class Gallery extends Component {
 }
 
 export default compose(
+  withRoutes,
   withRedux(),
   withGlobalVars
 )(Gallery);

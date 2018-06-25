@@ -1,6 +1,8 @@
 import React from 'react';
+import { compose } from 'redux';
 
 // HOC
+import withRoutes from '../../../hoc/with_routes';
 import withGlobalVars from '../../../hoc/with_global_vars';
 
 // Components
@@ -19,4 +21,7 @@ const StaticList = props => (
   </div>
 )
 
-export default withGlobalVars(StaticList);
+export default compose(
+  withRoutes,
+  withGlobalVars
+)(StaticList);

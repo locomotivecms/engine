@@ -2,7 +2,8 @@ import React from 'react';
 import { compose } from 'redux';
 import { Link } from 'react-router-dom';
 
-// Hoc
+// HOC
+import withRoutes from '../hoc/with_routes';
 import withGlobalVars from '../hoc/with_global_vars';
 import withRedux from '../hoc/with_redux';
 
@@ -44,6 +45,7 @@ const Header = (props) => (
 
 export default compose(
   withRedux(state => ({ page: state.page })),
+  withRoutes,
   withGlobalVars
 )(Header)
 

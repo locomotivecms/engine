@@ -6,6 +6,7 @@ import { bindAll } from 'lodash';
 
 // HOC
 import withRedux from '../../../hoc/with_redux';
+import withRoutes from '../../../hoc/with_routes';
 import withGlobalVars from '../../../hoc/with_global_vars';
 
 // Components
@@ -74,5 +75,6 @@ export class List extends Component {
 
 export default compose(
   withRedux(state => ({ list: state.page.sectionsContent })),
+  withRoutes,
   withGlobalVars
 )(List)
