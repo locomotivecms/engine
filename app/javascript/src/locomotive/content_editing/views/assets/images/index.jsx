@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
-import Pagination from "react-js-pagination";
+import Pagination from 'react-js-pagination';
+import { compose } from 'redux';
+import { bindAll } from 'lodash';
 
+// HOC
+import asView from '../../../hoc/as_view';
 import withApiFetching from '../../../hoc/with_api_fetching';
 
+// Components
 import Uploader from './uploader.jsx';
 import Image from './image.jsx';
 
@@ -10,31 +15,23 @@ class Index extends Component {
 
   constructor(props) {
     super(props);
-
     this.state = { imageId: null };
-
-    this.exit         = this.exit.bind(this);
-    this.onSelect     = this.onSelect.bind(this);
-    this.onPageChange = this.onPageChange.bind(this);
-    this.onUpload     = this.onUpload.bind(this);
+    bindAll(this, 'handleSelect', 'handleUpload', 'handlePageChange' );
   }
 
-  exit() {
-    this.props.history.goBack();
-  }
-
-  onPageChange(page) {
+  handlePageChange(page) {
     this.props.onPageChange(page);
   }
 
-  onSelect(imageId) {
-    this.setState({ imageId }, () => {
-      console.log('TODO: notify someone the we pick an image!');
+  handleSelect(image) {
+    this.setState({ imageId: image.id }, () => {
+      const { handleChange, settingType, settingId } = this.props;
+      handleChange(settingType, settingId, image.source.url);
     });
   }
 
-  onUpload(imageId) {
-    this.setState({ imageId });
+  handleUpload(image) {
+    this.handleSelect(image);
     this.props.onPageChange(1);
   }
 
@@ -48,13 +45,13 @@ class Index extends Component {
                 Images
                 &nbsp;
                 <small>
-                  <a onClick={this.exit}>Back</a>
+                  <a onClick={this.props.leaveView}>Back</a>
                 </small>
               </h1>
             </div>
           </div>
 
-          <Uploader onUpload={this.onUpload} />
+          <Uploader handleUpload={this.handleUpload} />
         </div>
 
         {this.props.isLoading ? (
@@ -66,7 +63,7 @@ class Index extends Component {
                 <Image
                   key={image.id}
                   selected={image.id === this.state.imageId}
-                  onSelect={this.onSelect}
+                  handleSelect={this.handleSelect.bind(null, image)}
                   {...image}
                 />
               )}
@@ -92,4 +89,7 @@ class Index extends Component {
 
 }
 
-export default withApiFetching('loadAssets', { pagination: true, perPage: 18 })(Index);
+export default compose(
+  withApiFetching('loadAssets', { pagination: true, perPage: 18 }),
+  asView
+)(Index);

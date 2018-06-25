@@ -27,6 +27,7 @@ const Edit = props => (
           setting={setting}
           data={props.blockContent}
           onChange={props.handleChange}
+          {...props}
         />
       )}
     </div>

@@ -17,7 +17,7 @@ const withEditingSection = Component => {
 
   const buildNewProps = props => {
     var newProps = pick(props.match.params, [
-      'sectionType', 'sectionId', 'blockType', 'blockId', 'settingId'
+      'sectionType', 'sectionId', 'blockType', 'blockId', 'settingType', 'settingId'
     ]);
 
     // find definitions (section and block)
@@ -31,14 +31,16 @@ const withEditingSection = Component => {
     newProps.sectionContent = fetchSectionContent(newProps, props.content, props.staticContent);
     newProps.blockContent   = fetchBlockContent(newProps);
 
-    return Object.assign(newProps, props);
+    return Object.assign({}, props, newProps);
   }
 
   // Helpers
   const isEditingSection  = props => (props.sectionId || props.sectionType) && props.sectionContent
   const isEditingBlock    = props => props.blockId && props.blockContent
+  const isEditingSetting  = props => props.settingType && props.settingId
   const isEditing         = props => isEditingSection(props) || isEditingBlock(props)
   const editingType = props => {
+    if (isEditingSetting(props))  return 'setting';
     if (isEditingBlock(props))    return 'block';
     if (isEditingSection(props))  return 'section';
     return null;
@@ -83,6 +85,9 @@ const withEditingSection = Component => {
         return props.sectionsPath();
       case 'block':
         return props.editSectionPath(props.sectionType, props.sectionId);
+      case 'setting':
+        return props.editBlockPath(props.sectionType, props.sectionId, props.blockType, props.blockId);
+
     }
   }
 

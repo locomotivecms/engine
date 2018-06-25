@@ -1,29 +1,29 @@
 import React, { Component } from 'react';
+import { bindAll } from 'lodash';
+
+// Services
 import { uploadAssets } from '../../../services/api';
 
 class Uploader extends Component {
 
   constructor(props) {
     super(props);
-
     this.state = { uploading: false };
-
-    this.openDialog = this.openDialog.bind(this);
-    this.upload     = this.upload.bind(this);
+    bindAll(this, 'openDialog', 'handleUpload');
   }
 
   openDialog() {
     this.input.click();
   }
 
-  upload(event) {
+  handleUpload(event) {
     const files = event.target.files;
 
     this.setState({ uploading: true }, () => {
       uploadAssets(files)
       .then((assets) => {
         this.setState({ uploading: false }, () => {
-          this.props.onUpload(assets[0].id);
+          this.props.handleUpload(assets[0]);
         });
       })
       .catch(error => { alert('error!', error) })
@@ -39,7 +39,7 @@ class Uploader extends Component {
           </div>
         ) : (
           <div>
-            <input type="file" ref={el => this.input = el} onChange={this.upload} />
+            <input type="file" ref={el => this.input = el} onChange={this.handleUpload} />
             <button className="btn btn-primary btn-sm" onClick={this.openDialog}>
               Upload file
             </button>

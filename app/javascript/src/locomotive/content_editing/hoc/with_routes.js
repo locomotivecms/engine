@@ -18,12 +18,19 @@ export default function withRoutes(Component) {
     return `${sectionPath(sectionType, sectionId)}/edit`;
   }
 
+  const blockPath = (sectionType, sectionId, blockType, blockId) => {
+    return `${sectionPath(sectionType, sectionId)}/blocks/${blockType}/${blockId}`;
+  }
   const editBlockPath = (sectionType, sectionId, blockType, blockId) => {
-    return `${sectionPath(sectionType, sectionId)}/blocks/${blockType}/${blockId}/edit`;
+    return `${blockPath(sectionType, sectionId, blockType, blockId)}/edit`;
   }
 
   const blockParentPath = (sectionType, sectionId) => {
     return `${sectionPath(sectionType, sectionId)}/edit`;
+  }
+
+  const imagesBlockPath = (sectionType, sectionId, blockType, blockId, settingType, settingId) => {
+    return `${blockPath(sectionType, sectionId, blockType, blockId)}/setting/${settingType}/${settingId}/images`;
   }
 
   const routes = {
@@ -32,7 +39,8 @@ export default function withRoutes(Component) {
     editSectionPath,
     newSectionPath,
     editBlockPath,
-    blockParentPath
+    blockParentPath,
+    imagesBlockPath
   }
 
   return function WrappedComponent(props) {

@@ -59,7 +59,10 @@ class Preview extends React.Component {
       case 'refreshSection':
         const _section = find(this.props.content, _section => _section.id === sectionId);
         return loadSectionHTML(sectionType, _section)
-          .then(html => updateSection(_window, sectionId, html))
+          .then(html => {
+            updateSection(_window, sectionId, html)
+            selectSectionBlock(_window, sectionId, blockId);
+          })
 
       case 'selectSection':
         return selectSection(_window, sectionId);

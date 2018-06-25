@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
+import { compose } from 'redux';
+import { bindAll } from 'lodash';
+
+// HOC
 import { withRouter } from 'react-router-dom';
+import withRoutes from '../hoc/with_routes';
 
 class ImagePickerInput extends Component {
 
@@ -11,12 +16,18 @@ class ImagePickerInput extends Component {
 
     this.state = { value };
 
-    this.openLibrary = this.openLibrary.bind(this);
+    bindAll(this, 'openLibrary');
   }
 
   openLibrary() {
-    console.log(this.props);
-    // this.props.history.push('/images');
+    this.props.history.push(this.props.imagesBlockPath(
+      this.props.sectionType,
+      this.props.sectionId,
+      this.props.blockType,
+      this.props.blockId,
+      this.props.setting.type,
+      this.props.setting.id
+    ));
   }
 
   render() {
@@ -47,4 +58,7 @@ class ImagePickerInput extends Component {
 
 }
 
-export default withRouter(ImagePickerInput);
+export default compose(
+  withRouter,
+  withRoutes
+)(ImagePickerInput);

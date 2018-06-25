@@ -38,6 +38,7 @@ const popBlock = (_window, action, sectionId, blockId) => {
     if (action === 'select') scrollTo(_window, $elem);
 
     sendEvent($elem[0], `block::${action}`, { sectionId, blockId });
+
     resolve(true);
   });
 }

@@ -23,7 +23,7 @@ const nestedRoutes = {
       '/edit': EditSection,
       '/blocks/:blockType/:blockId': {
         '/edit': EditBlock,
-        '/setting/:settingId/images': ImagesIndex
+        '/setting/:settingType/:settingId/images': ImagesIndex
       }
     }
   },
@@ -35,7 +35,7 @@ const nestedRoutes = {
       '/edit': EditSection,
       '/blocks/:blockType/:blockId': {
         '/edit': EditBlock,
-        '/setting/:settingId/images': ImagesIndex
+        '/setting/:settingType/:settingId/images': ImagesIndex
       }
     }
   },

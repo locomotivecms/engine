@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+
+// HOC
 import withRedux from '../hoc/with_redux';
 
 // Components
@@ -7,30 +9,21 @@ import CheckboxInput from './checkbox.jsx';
 import SelectInput from './select.jsx';
 import ImagePickerInput from './image_picker.jsx';
 
-class Base extends Component {
-
-  // TODO: textarea
-  getInput() {
-    switch (this.props.setting.type) {
-      case 'text':          return TextInput;
-      case 'checkbox':      return CheckboxInput;
-      case 'select':        return SelectInput;
-      case 'image_picker':  return ImagePickerInput;
-      default:
-        console.log(`[Editor] Warning! Unknown input type: "${this.props.setting.type}"`);
-        return null;
-    }
+const getInput = type => {
+  switch (type) {
+    case 'text':          return TextInput;
+    case 'checkbox':      return CheckboxInput;
+    case 'select':        return SelectInput;
+    case 'image_picker':  return ImagePickerInput;
+    default:
+      console.log(`[Editor] Warning! Unknown input type: "${type}"`);
+      return null;
   }
-
-  componentDidMount() {
-    this.props.editSetting(this.props.setting.type, this.props.setting.id);
-  }
-
-  render() {
-    const Input = this.getInput();
-    return Input !== null ? <Input {...this.props} /> : null;
-  }
-
 }
 
-export default withRedux(state => { return { site: state.site, page: state.page } })(Base);
+const Base = props => {
+  const Input = getInput(props.setting.type);
+  return Input !== null ? <Input {...props} /> : null;
+}
+
+export default withRedux(state => ({ site: state.site, page: state.page }))(Base);

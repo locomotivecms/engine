@@ -45,3 +45,7 @@ export function toInt(number) {
   if (number === '0') return 0;
   return parseInt(number) || null
 }
+
+export function argNames(func) {
+  return func.toString().replace(/.*\(|\).*/ig, '').split(',')
+}

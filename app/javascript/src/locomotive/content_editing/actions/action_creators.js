@@ -84,16 +84,7 @@ export function updateSectionInput(sectionType, sectionId, fieldType, id, newVal
   }
 }
 
-export function editSetting(settingType, settingId) {
-  return {
-    type:         'SECTION::EDIT_SETTING',
-    settingId,
-    settingType
-  }
-}
-
 // SECTION BLOCKS
-
 
 export function addSectionBlock(sectionType, sectionId, newBlock) {
   return {

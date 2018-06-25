@@ -5,7 +5,9 @@ const refreshSection = (state, action) => {
   return update(state, {
     refreshAction:  { $set: name },
     sectionType:    { $set: action.sectionType },
-    sectionId:      { $set: action.sectionId }
+    sectionId:      { $set: action.sectionId },
+    blockType:      { $set: action.blockType },
+    blockId:        { $set: action.blockId }
   });
 }
 
