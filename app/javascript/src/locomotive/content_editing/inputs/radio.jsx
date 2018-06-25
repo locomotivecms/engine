@@ -23,22 +23,11 @@ class RadioInput extends Component {
   }
 
   handleChange(event) {
-    // var isSelected = event.target.value === 'on';
-    // var selected = this.state.selected;
+    const selected = event.target.id;
 
-    // if (isSelected) {
-    //   selected.push(event.target.id);
-    // } else {
-    //   selected.splice(selected.indexOf(event.target.id));
-    // }
-
-    // this.setState({
-    //   selected
-    // })
-
-    this.setState({
-      selected: event.target.id
-    })
+    this.setState({ selected }, () => {
+      this.props.onChange(this.props.setting.type, this.props.setting.id, selected);
+    });
   }
 
   render() {
@@ -47,7 +36,7 @@ class RadioInput extends Component {
       <div className="editor-input editor-input-radio">
         <form>
           {setting.options.map((option) => (
-            <div>
+            <div key={option.value}>
               <input
                 type="radio"
                 id={option.value}
