@@ -1,64 +1,75 @@
 import React, { Component } from 'react';
 import { Link, Redirect } from 'react-router-dom';
-import withRedux from '../../utils/with_redux';
 import { isBlank } from '../../utils/misc';
-import { find } from 'lodash';
+import { bindAll } from 'lodash';
+
+// HOC
+import asView from '../../hoc/as_view';
+
+// Services
+import { build as buildBlock } from '../../services/blocks_service';
 
 // Components
 import Input from '../../inputs/base.jsx';
-import BlockList from './components/block_list.jsx';
+import BlockList from './edit/block_list.jsx';
+import NewBlockPicker from './edit/new_block_picker.jsx';
 
 class Edit extends Component {
 
   constructor(props) {
     super(props);
-    const { definitions, match } = this.props;
-
-    // shortcuts
-    this.sectionType        = match.params.type;
-    this.sectionId          = match.params.id;
-    this.sectionDefinition  = definitions.find(def => def.type === this.sectionType);
-
-    // Bind methods
-    this.onChange = this.onChange.bind(this);
-    this.exit     = this.exit.bind(this);
+    bindAll(this, ['addBlock', 'moveBlock', 'onChange', 'exit']);
   }
 
   componentDidMount() {
-    this.props.selectSection(this.sectionId || this.sectionType);
+    // this.props.selectItem(); // TODO
   }
 
+  // Called when an input value gets changed
   onChange(settingType, settingId, newValue) {
     this.props.updateSectionInput(
-      this.sectionType,
-      this.sectionId,
+      this.props.sectionType,
+      this.props.sectionId,
       settingType,
       settingId,
       newValue
     );
   }
 
-  getContent() {
-    if (this.sectionId)
-      return find(this.props.content, section => section.id === this.sectionId);
-    else
-      return this.props.staticContent[this.sectionType] || {};
+  // Called when an editor adds a new block
+  addBlock(blockType) {
+    this.props.addSectionBlock(
+      this.props.sectionType,
+      this.props.sectionId,
+      buildBlock(
+        this.props.sectionDefinition,
+        blockType || this.props.sectionDefinition.blocks[0].type
+      )
+    )
+  }
+
+  // Called when an editor changes the block order
+  moveBlock({ oldIndex, newIndex }) {
+    this.props.moveSectionBlock(
+      this.props.sectionType,
+      this.props.sectionId,
+      oldIndex,
+      newIndex
+    )
   }
 
   exit() {
-    this.props.deselectSection(this.sectionId || this.sectionType);
-    this.props.history.push('/sections');
+    // this.props.unselectItem(); // TODO
+    this.props.history.push(this.props.sectionsPath());
   }
 
   render() {
-    const content = this.getContent();
-
-    return this.sectionDefinition && content ? (
+    return this.props.sectionDefinition && this.props.sectionContent ? (
       <div className="editor-edit-section">
         <div className="row header-row">
           <div className="col-md-12">
             <h1>
-              {this.sectionDefinition.name}
+              {this.props.sectionDefinition.name}
               &nbsp;
               <small>
                 <a onClick={this.exit}>Back</a>
@@ -68,11 +79,11 @@ class Edit extends Component {
         </div>
 
         <div className="editor-section-settings">
-          {this.sectionDefinition.settings.map(setting =>
+          {this.props.sectionDefinition.settings.map(setting =>
             <Input
               key={`section-input-${setting.id}`}
               setting={setting}
-              data={content}
+              data={this.props.sectionContent}
               onChange={this.onChange}
             />
           )}
@@ -80,23 +91,27 @@ class Edit extends Component {
 
         <hr/>
 
-        {!isBlank(this.sectionDefinition.blocks) &&
-          <BlockList
-            sectionDefinition={this.sectionDefinition}
-            sectionId={this.sectionId}
-            content={content}
-          />
-        }
+        {!isBlank(this.props.sectionDefinition.blocks) && (
+          <div className="editor-section-blocks">
+            <h3>Blocks</h3>
+
+            <BlockList
+              moveBlock={this.moveBlock}
+              {...this.props}
+            />
+
+            <NewBlockPicker
+              addBlock={this.addBlock}
+              {...this.props}
+            />
+
+          </div>
+        )}
       </div>
     ) : (
-      <Redirect to={{ pathname: `/sections` }} />
+      <Redirect to={{ pathname: '/' }} />
     )
   }
-
 }
 
-export default withRedux(Edit, state => { return {
-  staticContent:  state.site.sectionsContent,
-  content:        state.page.sectionsContent,
-  definitions:    state.sectionDefinitions
-} });
+export default asView(Edit);

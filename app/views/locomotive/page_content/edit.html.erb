@@ -21,10 +21,13 @@
     }
 
     window.Locomotive.urls = {
-      base:         "<%= edit_page_content_path(current_site, @page) %>",
-      save:         "<%= page_content_path(current_site, @page, format: :json) %>",
-      settings:     "<%= edit_page_path(current_site, @page) %>",
-      preview:      "<%= @preview_path %>"
+      base:             "<%= edit_page_content_path(current_site, @page) %>",
+      save:             "<%= page_content_path(current_site, @page, format: :json) %>",
+      settings:         "<%= edit_page_path(current_site, @page) %>",
+      preview:          "<%= @preview_path %>",
+      thumbnail:        "<%= root_path + '_image_thumbnail' %>",
+      assets:           "<%= content_assets_path(current_site, format: :json) %>",
+      bulkAssetUpload:  "<%= bulk_create_content_assets_path(current_site, :json) %>"
     }
 
     window.Locomotive.i18n = {

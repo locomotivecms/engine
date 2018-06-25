@@ -32,13 +32,13 @@ function iframe(state = {}, action) {
     case 'SECTION::SELECT':
       return update(state, {
         refreshAction:      { $set: 'selectSection' },
-        sectionId:          { $set: action.sectionId }
+        sectionId:          { $set: action.sectionId || action.sectionType }
       });
 
     case 'SECTION::DESELECT':
       return update(state, {
         refreshAction:      { $set: 'deselectSection' },
-        sectionId:          { $set: action.sectionId }
+        sectionId:          { $set: action.sectionId || action.sectionType }
       });
 
     case 'SECTION::CANCEL_PREVIEW':
@@ -90,14 +90,14 @@ function iframe(state = {}, action) {
     case 'SECTION::BLOCK::SELECT':
       return update(state, {
         refreshAction:      { $set: 'selectSectionBlock' },
-        sectionId:          { $set: action.sectionId },
+        sectionId:          { $set: action.sectionId || action.sectionType },
         blockId:            { $set: action.blockId }
       });
 
     case 'SECTION::BLOCK::DESELECT':
       return update(state, {
         refreshAction:      { $set: 'deselectSectionBlock' },
-        sectionId:          { $set: action.sectionId },
+        sectionId:          { $set: action.sectionId || action.sectionType },
         blockId:            { $set: action.blockId }
       });
 

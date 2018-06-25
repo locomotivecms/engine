@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
-import withRedux from '../utils/with_redux';
+import { bindAll } from 'lodash';
+
+// HOC
+import withRedux from '../hoc/with_redux';
+
+// Services
 import { saveContent } from '../services/api';
 
 class SaveButton extends React.Component {
 
   constructor(props) {
     super(props);
-    this.save = this.save.bind(this);
+    bindAll(this, 'save');
   }
 
   save() {
@@ -28,4 +33,4 @@ class SaveButton extends React.Component {
 
 }
 
-export default withRedux(SaveButton, state => { return { site: state.site, page: state.page } });
+export default withRedux(state => ({ site: state.site, page: state.page }))(SaveButton);

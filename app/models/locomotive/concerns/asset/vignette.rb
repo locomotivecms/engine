@@ -25,6 +25,14 @@ module Locomotive
           Locomotive::Dragonfly.thumbnail_pdf(self.source, format) if format
         end
 
+        def big_vignette_url
+          format = if self.image? || self.pdf?
+            '200x200#'
+          end
+
+          Locomotive::Dragonfly.thumbnail_pdf(self.source, format) if format
+        end
+
       end
     end
   end

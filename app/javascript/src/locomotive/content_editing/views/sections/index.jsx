@@ -1,31 +1,26 @@
-import React, { Component } from 'react';
+import React from 'react';
+
+// HOC
+import withGlobalVars from '../../hoc/with_global_vars';
 
 // Components
-import StaticList from './components/static_list.jsx';
-import List from './components/list.jsx';
+import StaticList from './index/static_list.jsx';
+import List from './index/list.jsx';
 
-class Index extends Component {
+const Index = ({ sections, ...props }) => (
+  <div className="editor-all-sections">
+    {!sections.dropzone && <StaticList list={sections.all} />}
 
-  render() {
-    const { all, top, dropzone, bottom } = this.props.sections;
+    {sections.dropzone && (
+      <div>
+        {sections.top.length > 0 && <StaticList list={sections.top} />}
 
-    return (
-      <div className="editor-all-sections">
-        {!dropzone && <StaticList list={all} />}
+        <List />
 
-        {dropzone && (
-          <div>
-            {top.length > 0 && <StaticList list={top} />}
-
-            <List />
-
-            {bottom.length > 0 && <StaticList list={bottom} />}
-          </div>
-        )}
+        {sections.bottom.length > 0 && <StaticList list={sections.bottom} />}
       </div>
-    )
-  }
+    )}
+  </div>
+)
 
-}
-
-export default Index;
+export default withGlobalVars(Index);

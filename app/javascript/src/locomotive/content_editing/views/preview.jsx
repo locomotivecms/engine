@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { find, last } from 'lodash';
-import withRedux from '../utils/with_redux';
+import withRedux from '../hoc/with_redux';
 import { waitUntil } from '../utils/misc';
 
 // Services
@@ -103,8 +103,8 @@ class Preview extends React.Component {
 
 }
 
-export default withRedux(Preview, state => { return {
+export default withRedux(state => { return {
   staticContent:  state.site.sectionsContent,
   content:        state.page.sectionsContent,
   iframeState:    state.iframe
-} });
+} })(Preview);
