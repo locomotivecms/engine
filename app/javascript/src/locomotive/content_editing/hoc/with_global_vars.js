@@ -10,7 +10,7 @@ export default function withGlobalVars(Component) {
   }
 
   const findBlockDefinition = (sectionDefinition, blockType) => {
-    return find(sectionDefinition.blocks, def => def.type === blockType);
+    return find((sectionDefinition || {}).blocks, def => def.type === blockType);
   }
 
   return function WrappedComponent(props) {

@@ -41,7 +41,7 @@ class Edit extends Component {
   }
 
   render() {
-    return this.props.sectionDefinition && this.props.blockContent  ? (
+    return (
       <div className="editor-edit-block">
         <div className="row header-row">
           <div className="col-md-12">
@@ -66,8 +66,6 @@ class Edit extends Component {
           )}
         </div>
       </div>
-    ) : (
-      <Redirect to={{ pathname: '/' }} />
     )
   }
 
