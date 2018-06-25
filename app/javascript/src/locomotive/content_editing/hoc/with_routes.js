@@ -7,33 +7,28 @@ export default function withRoutes(Component) {
   const newSectionPath        = () => '/dropzone_sections/pick';
 
   const staticSectionPath = sectionType => `/sections/${sectionType}`;
-  const editStaticSectionPath = sectionType => {
-    return `${staticSectionPath(sectionType)}/edit`;
+  const dropzoneSectionPath = (sectionType, sectionId) => {
+    return `/dropzone_sections/${sectionType}/${sectionId}`;
   }
 
   const sectionPath = (sectionType, sectionId) => {
-    return `/dropzone_sections/${sectionType}/${sectionId}`;
+    return sectionId ? dropzoneSectionPath(sectionType, sectionId) : staticSectionPath(sectionType);
   }
   const editSectionPath = (sectionType, sectionId) => {
     return `${sectionPath(sectionType, sectionId)}/edit`;
   }
 
-  const genericSectionPath = (sectionType, sectionId) => {
-    return sectionId ? sectionPath(sectionType, sectionId) : staticSectionPath(sectionType);
-  }
-
   const editBlockPath = (sectionType, sectionId, blockType, blockId) => {
-    return `${genericSectionPath(sectionType, sectionId)}/blocks/${blockType}/${blockId}/edit`;
+    return `${sectionPath(sectionType, sectionId)}/blocks/${blockType}/${blockId}/edit`;
   }
 
   const blockParentPath = (sectionType, sectionId) => {
-    return `${genericSectionPath(sectionType, sectionId)}/edit`;
+    return `${sectionPath(sectionType, sectionId)}/edit`;
   }
 
   const routes = {
     editableElementsPath,
     sectionsPath,
-    editStaticSectionPath,
     editSectionPath,
     newSectionPath,
     editBlockPath,

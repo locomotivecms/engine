@@ -1,8 +1,19 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
-import { find, pick } from 'lodash';
+import { find, pick, bindAll } from 'lodash';
 
 const withEditingSection = Component => {
+
+  // Enhance the props
+  const fetchSectionContent = (props, content, staticContent) => {
+    const { sectionType, sectionId } = props;
+    return sectionId ? find(content, s => s.id === sectionId) : staticContent[sectionType];
+  }
+
+  const fetchBlockContent = props => {
+    const { sectionContent, blockId } = props;
+    return blockId ? find(sectionContent.blocks, b => b.id === blockId) : null;
+  }
 
   const buildNewProps = props => {
     var newProps = pick(props.match.params, [
@@ -23,25 +34,107 @@ const withEditingSection = Component => {
     return Object.assign(newProps, props);
   }
 
-  const fetchSectionContent = (props, content, staticContent) => {
-    const { sectionType, sectionId } = props;
-    return sectionId ? find(content, s => s.id === sectionId) : staticContent[sectionType];
-  }
-
-  const fetchBlockContent = props => {
-    const { sectionContent, blockId } = props;
-    return blockId ? find(sectionContent.blocks, b => b.id === blockId) : null;
-  }
-
-  const isEditingSection  = props => (props.sectionId && props.sectionContent) === true
-  const isEditingBlock    = props => (props.blockId && props.blockContent) === true
+  // Helpers
+  const isEditingSection  = props => (props.sectionId || props.sectionType) && props.sectionContent
+  const isEditingBlock    = props => props.blockId && props.blockContent
   const isEditing         = props => isEditingSection(props) || isEditingBlock(props)
+  const editingType = props => {
+    if (isEditingBlock(props))    return 'block';
+    if (isEditingSection(props))  return 'section';
+    return null;
+  }
 
-  return function WrappedComponent(props) {
+  // Notifications
+  const notifySectionOnEnter = props => {
+    props.selectSection(props.sectionType, props.sectionId);
+  }
+
+  const notifyBlockOnEnter = props => {
+    props.selectSectionBlock(props.sectionType, props.sectionId, props.blockType, props.blockId);
+  }
+
+  const notifySectionOnLeave = props => {
+    props.deselectSection(props.sectionType, props.sectionId);
+  }
+
+  const notifyBlockOnLeave = props => {
+    props.deselectSectionBlock(props.sectionType, props.sectionId, props.blockType, props.blockId);
+  }
+
+  const notifyOnEnter = props => {
+    switch(editingType(props)) {
+      case 'section': notifySectionOnEnter(props); break;
+      case 'block':   notifyBlockOnEnter(props); break;
+    }
+  }
+
+  const notifyOnLeave = props => {
+    switch(editingType(props)) {
+      case 'section': notifySectionOnLeave(props); break;
+      case 'block':   notifyBlockOnLeave(props); break;
+    }
+  }
+
+  // Path helper
+
+  const parentPath = props => {
+    switch(editingType(props)) {
+      case 'section':
+        return props.sectionsPath();
+      case 'block':
+        return props.editSectionPath(props.sectionType, props.sectionId);
+    }
+  }
+
+  // Callbacks
+
+  const handleChange = (props, settingType, settingId, newValue) => {
+    const { sectionType, sectionId, blockId, updateSectionInput, updateSectionBlockInput } = props;
+
+    const updateInput = isEditingBlock(props) ?
+      updateSectionBlockInput.bind(null, sectionType, sectionId, blockId) :
+      updateSectionInput.bind(null, sectionType, sectionId);
+
+    updateInput(settingType, settingId, newValue);
+  }
+
+  class WrappedComponent extends React.Component {
+
+    constructor(props) {
+      super(props);
+      bindAll(this, 'leaveView', 'handleChange');
+    }
+
+    componentDidMount() {
+      notifyOnEnter(this.props);
+    }
+
+    leaveView() {
+      notifyOnLeave(this.props);
+      this.props.history.push(parentPath(this.props));
+    }
+
+    handleChange(settingType, settingId, newValue) {
+      handleChange(this.props, settingType, settingId, newValue);
+    }
+
+    render() {
+      return (
+        <Component
+          leaveView={this.leaveView}
+          handleChange={this.handleChange}
+          {...this.props}
+        />
+      )
+    }
+
+  }
+
+  return function WithEditingSection(props) {
     const newProps = buildNewProps(props);
 
     return isEditing(newProps) ? (
-      <Component
+      <WrappedComponent
         {...newProps}
       />
     ) : (
@@ -52,79 +145,3 @@ const withEditingSection = Component => {
 }
 
 export default withEditingSection;
-
-  // return class WithNavParams extends React.Component {
-
-  //   constructor(props) {
-  //     super(props);
-
-  //     this.params = pick(this.props.match.params, [
-  //       'sectionType', 'sectionId', 'blockType', 'blockId', 'settingId'
-  //     ]);
-
-  //     this.params.sectionDefinition = this.findSectionDefinition();
-  //     this.params.blockDefinition   = this.findBlockDefinition();
-
-  //     bindAll(this, ['selectItem', 'unselectItem']);
-  //   }
-
-  //   findSectionDefinition() {
-  //     return find(this.props.definitions, def => def.type === this.params.sectionType);
-  //   }
-
-  //   findBlockDefinition() {
-  //     const { sectionDefinition, blockType } = this.params;
-  //     return find(sectionDefinition.blocks, def => def.type === blockType);
-  //   }
-
-  //   // let the preview know about which part (section or block) of the page we're going to edit
-  //   selectItem() {
-  //     const { sectionType, sectionId, blockType, blockId } = this.params;
-
-  //     if (blockId)
-  //       this.props.selectSectionBlock(sectionType, sectionId, blockType, blockId);
-  //     else
-  //       this.props.selectSection(sectionType, sectionId);
-  //   }
-
-  //   // let the preview know about when the editor leaves for another editing view
-  //   unselectItem() {
-  //     const { sectionType, sectionId, blockId } = this.params;
-
-  //     if (blockId)
-  //       this.props.deselectSectionBlock(sectionType, sectionId, blockId);
-  //     else
-  //       this.props.deselectSection(sectionType, sectionId);
-  //   }
-
-  //   // find the related content. It depends if the section is a static one or not (dropsections)
-  //   fetchContent() {
-  //     const { sectionType, sectionId, blockType, blockId } = this.params;
-  //     var content = {};
-
-  //     // Section content
-  //     content.sectionContent = sectionId ? find(this.props.content, section =>
-  //       section.id === sectionId
-  //     ) : this.props.staticContent[sectionType];
-
-  //     // Block content
-  //     content.blockContent = blockId ? find(content.sectionContent.blocks, block =>
-  //       block.id === blockId
-  //     ) : null;
-
-  //     return content;
-  //   }
-
-  //   render() {
-      // return <Component
-      //   selectItem={this.selectItem}
-      //   unselectItem={this.unselectItem}
-      //   {...this.fetchContent()}
-      //   {...this.params}
-      //   {...this.props}
-      // />
-  //   }
-
-  // }
-
-// }

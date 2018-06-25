@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link, Redirect } from 'react-router-dom';
 import { isBlank } from '../../utils/misc';
 import { bindAll } from 'lodash';
 
@@ -18,22 +17,7 @@ class Edit extends Component {
 
   constructor(props) {
     super(props);
-    bindAll(this, ['addBlock', 'moveBlock', 'onChange', 'exit']);
-  }
-
-  componentDidMount() {
-    // this.props.selectItem(); // TODO
-  }
-
-  // Called when an input value gets changed
-  onChange(settingType, settingId, newValue) {
-    this.props.updateSectionInput(
-      this.props.sectionType,
-      this.props.sectionId,
-      settingType,
-      settingId,
-      newValue
-    );
+    bindAll(this, ['addBlock', 'moveBlock']);
   }
 
   // Called when an editor adds a new block
@@ -58,11 +42,6 @@ class Edit extends Component {
     )
   }
 
-  exit() {
-    // this.props.unselectItem(); // TODO
-    this.props.history.push(this.props.sectionsPath());
-  }
-
   render() {
     return (
       <div className="editor-edit-section">
@@ -72,7 +51,7 @@ class Edit extends Component {
               {this.props.sectionDefinition.name}
               &nbsp;
               <small>
-                <a onClick={this.exit}>Back</a>
+                <a onClick={this.props.leaveView}>Back</a>
               </small>
             </h1>
           </div>
@@ -84,7 +63,7 @@ class Edit extends Component {
               key={`section-input-${setting.id}`}
               setting={setting}
               data={this.props.sectionContent}
-              onChange={this.onChange}
+              onChange={this.props.handleChange}
             />
           )}
         </div>

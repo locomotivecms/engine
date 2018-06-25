@@ -15,7 +15,7 @@ const StaticList = props => (
         key={type}
         sectionType={type}
         definition={props.findSectionDefinition(type)}
-        editPath={props.editStaticSectionPath(type)}
+        editPath={props.editSectionPath(type)}
       />
     )}
   </div>
