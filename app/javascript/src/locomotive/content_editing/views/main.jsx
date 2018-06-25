@@ -1,4 +1,5 @@
 import React from 'react';
+import routes from '../routes';
 import { BrowserRouter as Router, Switch, Route, Redirect, browserHistory } from 'react-router-dom';
 
 // HOC
@@ -7,16 +8,8 @@ import withHeader from '../hoc/with_header';
 
 // Views
 import _Startup from './startup.jsx';
-import _EditableElementsIndex from './editable_elements/list.jsx';
-import _SectionsIndex from './sections/index.jsx';
-import SectionGallery from './sections/gallery.jsx';
-import EditSection from './sections/edit.jsx';
-import EditBlock from './blocks/edit.jsx';
-import ImagesIndex from './assets/images/index.jsx';
 
-const Startup               = withHeader(_Startup);
-const SectionsIndex         = withHeader(_SectionsIndex);
-const EditableElementsIndex = withHeader(_EditableElementsIndex)
+const Startup = withHeader(_Startup);
 
 const togglePreview = (event) => {
   $('.content-main').toggleClass('actionbar-closed');
@@ -42,24 +35,14 @@ const Main = props => (
                 )
               )} />
 
-              <Route exact path="/sections" component={SectionsIndex} />
-
-              <Route path="/sections/:sectionType/edit" component={EditSection} />
-              <Route path="/sections/:sectionType/blocks/:blockType/:blockId/edit" component={EditBlock} />
-              <Route
-                path="/sections/:sectionType/blocks/:blockType/:blockId/setting/:settingId/images"
-                component={ImagesIndex}
-              />
-
-              <Route exact path="/dropzone_sections/pick" component={SectionGallery} />
-              <Route path="/dropzone_sections/:sectionType/:sectionId/edit" component={EditSection} />
-              <Route path="/dropzone_sections/:sectionType/:sectionId/blocks/:blockType/:blockId/edit" component={EditBlock} />
-              <Route
-                path="/dropzone_sections/:sectionType/:sectionId/blocks/:blockType/:blockId/setting/:settingId/images"
-                component={ImagesIndex}
-              />
-
-              <Route exact path="/editable_elements" component={EditableElementsIndex} />
+              {routes.map(route => (
+                <Route
+                  key={route.path}
+                  exact={route.exact === true}
+                  path={route.path}
+                  component={route.component}
+                />
+              ))}
 
               <Route render={() => <Redirect to="/" />} />
             </Switch>

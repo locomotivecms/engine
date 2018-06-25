@@ -1,4 +1,4 @@
-import { createStore, compse } from 'redux';
+import { createStore } from 'redux';
 import rootReducer from './reducers/index.js';
 
 // create an object for the default data
