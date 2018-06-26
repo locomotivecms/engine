@@ -10,13 +10,14 @@ class ImagePickerInput extends Component {
 
   constructor(props) {
     super(props);
-
-    var value = props.data.settings[props.setting.id];
-    if (value === undefined) value = props.setting.default || null;
-
-    this.state = { value };
-
     bindAll(this, 'openLibrary');
+  }
+
+  getValue() {
+    const { setting, data } = this.props;
+    var value = data.settings[setting.id];
+
+    return value === undefined ? setting.default || null : value;
   }
 
   openLibrary() {
@@ -32,24 +33,30 @@ class ImagePickerInput extends Component {
 
   render() {
     const { setting } = this.props;
+    const value = this.getValue();
 
     return (
       <div className="editor-input editor-input-image-picker">
         <label>{setting.label}</label>
         <br/>
-        {this.state.value ? (
-          <img src={this.state.value} className="editor-input-image-picker-src" />
+        {value ? (
+          <img src={value} className="editor-input-image-picker-src" />
         ) : (
           <p>No image</p>
         )}
         <br/>
         <div className="editor-input-image-picker-actions">
           <button className="btn btn-primary btn-sm" onClick={this.openLibrary}>
-            {this.state.value === null ? 'Select' : 'Change'}
+            {value === null ? 'Select' : 'Change'}
           </button>
           &nbsp;
-          {this.state.value !== null && (
-            <button className="btn btn-primary btn-sm">Remove</button>
+          {value !== null && (
+            <button
+              className="btn btn-primary btn-sm"
+              onClick={this.props.onChange.bind(this, setting.type, setting.id, '')}
+            >
+              Remove
+            </button>
           )}
         </div>
       </div>

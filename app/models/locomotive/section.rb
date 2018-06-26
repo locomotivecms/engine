@@ -87,7 +87,7 @@ module Locomotive
               name:       { type: 'string' },
               type:       { type: 'string' },
               limit:      { type: 'integer' },
-              settings:   { type: 'array', items: { '$ref': '#/definitions/settings' } }
+              settings:   { type: 'array', items: { '$ref': '#/definitions/settings' }, default: [] }
             },
             required: [:type, :name]
           },

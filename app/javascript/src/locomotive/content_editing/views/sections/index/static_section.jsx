@@ -3,11 +3,12 @@ import { Link } from 'react-router-dom';
 
 const StaticSection = props => (
   <div className="editor-section">
-    <p>
+    <div className="editor-section-label">
       {props.definition.name}
-      &nbsp;
+    </div>
+    <div className="editor-section-actions">
       <Link to={props.editPath}>Edit</Link>
-    </p>
+    </div>
   </div>
 )
 
