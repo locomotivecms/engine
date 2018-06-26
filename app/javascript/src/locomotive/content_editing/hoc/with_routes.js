@@ -1,4 +1,6 @@
 import React from 'react';
+import { Redirect } from 'react-router-dom';
+import { bindAll } from 'lodash';
 
 export default function withRoutes(Component) {
 
@@ -43,12 +45,30 @@ export default function withRoutes(Component) {
     imagesBlockPath
   }
 
-  return function WrappedComponent(props) {
-    return (
-      <Component
-        {...routes}
-        {...props}
-      />
-    );
-  };
+  return class WrappedComponent extends React.Component {
+
+    constructor(props) {
+      super(props);
+      this.state = {};
+      bindAll(this, 'redirectTo');
+    }
+
+    redirectTo(pathname) {
+      this.setState({ redirectTo: pathname })
+    }
+
+    render() {
+      return this.state.redirectTo === undefined ? (
+        <Component
+          redirectTo={this.redirectTo}
+          {...routes}
+          {...this.props}
+        />
+      ) : (
+        <Redirect to={{ pathname: this.state.redirectTo }} />
+      );
+    }
+
+  }
+
 }

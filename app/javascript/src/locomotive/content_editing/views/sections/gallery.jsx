@@ -29,7 +29,7 @@ class Gallery extends Component {
 
   cancel() {
     this.props.cancelPreviewSection();
-    this.props.history.push(this.props.sectionsPath());
+    this.props.redirectTo(this.props.sectionsPath());
   }
 
   selectPreset() {
@@ -38,7 +38,7 @@ class Gallery extends Component {
     this.props.addSection(section);
 
     // Go directly to the section edit page
-    this.props.history.push(this.props.editSectionPath(section.type, section.id));
+    this.props.redirectTo(this.props.editSectionPath(section.type, section.id));
   }
 
   previewPreset(category, preset) {
@@ -63,7 +63,7 @@ class Gallery extends Component {
               &nbsp;
               <small>
                 <button className="btn btn-default btn-sm" onClick={this.cancel}>
-                  Back
+                  Cancel
                 </button>
               </small>
             </h1>

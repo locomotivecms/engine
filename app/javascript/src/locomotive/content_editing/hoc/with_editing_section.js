@@ -116,7 +116,7 @@ const withEditingSection = Component => {
 
     leaveView() {
       notifyOnLeave(this.props);
-      this.props.history.push(parentPath(this.props));
+      this.props.redirectTo(parentPath(this.props));
     }
 
     handleChange(settingType, settingId, newValue) {
