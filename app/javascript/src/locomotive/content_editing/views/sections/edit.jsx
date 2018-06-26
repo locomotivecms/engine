@@ -64,6 +64,7 @@ class Edit extends Component {
               setting={setting}
               data={this.props.sectionContent}
               onChange={this.props.handleChange}
+              {...this.props}
             />
           )}
         </div>

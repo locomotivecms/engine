@@ -16,11 +16,7 @@ class Index extends Component {
   constructor(props) {
     super(props);
     this.state = { imageId: null };
-    bindAll(this, 'handleSelect', 'handleUpload', 'handlePageChange' );
-  }
-
-  handlePageChange(page) {
-    this.props.onPageChange(page);
+    bindAll(this, 'handleSelect', 'handleUpload');
   }
 
   handleSelect(image) {
@@ -32,7 +28,7 @@ class Index extends Component {
 
   handleUpload(image) {
     this.handleSelect(image);
-    this.props.onPageChange(1);
+    this.props.handlePageChange(1);
   }
 
   render() {
@@ -79,7 +75,7 @@ class Index extends Component {
               itemsCountPerPage={this.props.pagination.perPage}
               totalItemsCount={this.props.pagination.totalEntries}
               pageRangeDisplayed={5}
-              onChange={this.onPageChange}
+              onChange={this.props.handlePageChange}
             />
           </div>
         )}

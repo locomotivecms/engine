@@ -31,8 +31,13 @@ export default function withRoutes(Component) {
     return `${sectionPath(sectionType, sectionId)}/edit`;
   }
 
-  const imagesBlockPath = (sectionType, sectionId, blockType, blockId, settingType, settingId) => {
-    return `${blockPath(sectionType, sectionId, blockType, blockId)}/setting/${settingType}/${settingId}/images`;
+  const imagesPath = (sectionType, sectionId, blockType, blockId, settingType, settingId) => {
+    const postfix = `setting/${settingType}/${settingId}/images`;
+
+    if (blockType && blockId)
+      return `${blockPath(sectionType, sectionId, blockType, blockId)}/${postfix}`;
+    else
+      return `${sectionPath(sectionType, sectionId)}/${postfix}`;
   }
 
   const routes = {
@@ -42,7 +47,7 @@ export default function withRoutes(Component) {
     newSectionPath,
     editBlockPath,
     blockParentPath,
-    imagesBlockPath
+    imagesPath
   }
 
   return class WrappedComponent extends React.Component {

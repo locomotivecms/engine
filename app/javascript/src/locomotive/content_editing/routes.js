@@ -21,6 +21,7 @@ const nestedRoutes = {
     component: SectionsIndex,
     '/:sectionType': {
       '/edit': EditSection,
+      '/setting/:settingType/:settingId/images': ImagesIndex,
       '/blocks/:blockType/:blockId': {
         '/edit': EditBlock,
         '/setting/:settingType/:settingId/images': ImagesIndex
@@ -33,6 +34,7 @@ const nestedRoutes = {
     '/pick': SectionGallery,
     '/:sectionType/:sectionId': {
       '/edit': EditSection,
+      '/setting/:settingType/:settingId/images': ImagesIndex,
       '/blocks/:blockType/:blockId': {
         '/edit': EditBlock,
         '/setting/:settingType/:settingId/images': ImagesIndex

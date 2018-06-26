@@ -21,7 +21,7 @@ class ImagePickerInput extends Component {
   }
 
   openLibrary() {
-    this.props.redirectTo(this.props.imagesBlockPath(
+    this.props.redirectTo(this.props.imagesPath(
       this.props.sectionType,
       this.props.sectionId,
       this.props.blockType,

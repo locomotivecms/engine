@@ -40,7 +40,8 @@ const withEditingSection = Component => {
   const isEditingSetting  = props => props.settingType && props.settingId
   const isEditing         = props => isEditingSection(props) || isEditingBlock(props)
   const editingType = props => {
-    if (isEditingSetting(props))  return 'setting';
+    if (isEditingSetting(props) && isEditingBlock(props))   return 'block_setting';
+    if (isEditingSetting(props) && isEditingSection(props)) return 'section_setting';
     if (isEditingBlock(props))    return 'block';
     if (isEditingSection(props))  return 'section';
     return null;
@@ -83,11 +84,11 @@ const withEditingSection = Component => {
     switch(editingType(props)) {
       case 'section':
         return props.sectionsPath();
+      case 'section_setting':
       case 'block':
         return props.editSectionPath(props.sectionType, props.sectionId);
-      case 'setting':
+      case 'block_setting':
         return props.editBlockPath(props.sectionType, props.sectionId, props.blockType, props.blockId);
-
     }
   }
 

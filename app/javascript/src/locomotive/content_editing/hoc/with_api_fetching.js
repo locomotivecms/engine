@@ -1,4 +1,5 @@
 import React from 'react';
+import { bindAll } from 'lodash';
 
 import * as API from '../services/api';
 
@@ -22,10 +23,10 @@ const withApiFetching = (source, options) => (Component) => {
         }
       };
 
-      this.onPageChange = this.onPageChange.bind(this)
+      bindAll(this, 'handlePageChange');
     }
 
-    onPageChange(page) {
+    handlePageChange(page) {
       this.setState({ pagination: Object.assign(this.state.pagination, { page }) }, () => {
         this.fetch();
       });
@@ -49,7 +50,7 @@ const withApiFetching = (source, options) => (Component) => {
 
     render() {
       return <Component
-        onPageChange={this.onPageChange}
+        handlePageChange={this.handlePageChange}
         { ...this.props }
         { ...this.state }
       />
