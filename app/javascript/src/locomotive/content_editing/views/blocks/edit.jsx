@@ -21,9 +21,9 @@ const Edit = props => (
     </div>
 
     <div className="editor-block-settings">
-      {props.blockDefinition.settings.map(setting =>
+      {props.blockDefinition.settings.map((setting, index) =>
         <Input
-          key={`section-input-${setting.id}`}
+          key={`section-section-input-${setting.id}-${index}`}
           setting={setting}
           data={props.blockContent}
           onChange={props.handleChange}

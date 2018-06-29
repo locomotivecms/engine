@@ -81,6 +81,8 @@ export function updateSectionText(_window, sectionType, sectionId, blockId, sett
 // exists, it will be removed first.
 export function previewSection(_window, html, sectionId, previousSectionId) {
   return new Promise(resolve => {
+    console.log(_window, html, sectionId, previousSectionId);
+
     // remove the previous previewed section
     const $previous = $(_window.document).find(`#locomotive-section-${previousSectionId}`);
     sendEvent($previous[0], 'section::unload', { sectionId: previousSectionId });

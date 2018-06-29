@@ -58,9 +58,9 @@ class Edit extends Component {
         </div>
 
         <div className="editor-section-settings">
-          {this.props.sectionDefinition.settings.map(setting =>
+          {this.props.sectionDefinition.settings.map((setting, index) =>
             <Input
-              key={`section-input-${setting.id}`}
+              key={`section-section-input-${setting.id}-${index}`}
               setting={setting}
               data={this.props.sectionContent}
               onChange={this.props.handleChange}

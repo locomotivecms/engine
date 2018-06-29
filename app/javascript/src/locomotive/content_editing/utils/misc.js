@@ -40,6 +40,14 @@ export function arrayMove(array, oldIndex, newIndex) {
   return newArray
 }
 
+// Replace p tags by br
+export function formatLineBreak(text) {
+  return text
+    .replace(/<\/p>\n<p>/g, '<br>')
+    .replace(/<p>/g, '')
+    .replace(/<\/p>/g, '');
+}
+
 // parse an integer/float and returns null if it's not an integer
 export function toInt(number) {
   if (number === '0') return 0;
