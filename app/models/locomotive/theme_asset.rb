@@ -29,7 +29,6 @@ module Locomotive
     ## validations ##
     validates_presence_of   :source, on: :create
     validates_uniqueness_of :local_path, scope: :site_id
-    validate                :content_type_can_not_change
 
     ## named scopes ##
 
@@ -100,15 +99,6 @@ module Locomotive
         file.content_type = File.mime_type?(file.path) if file.content_type.nil?
         self.source       = file
         self.changed_attributes['source_filename'] = nil # delete the old file
-      end
-    end
-
-    def content_type_can_not_change
-      if self.persisted?
-        # FIXME: content type used to be a String
-        if self.content_type_was.to_sym != self.content_type
-          self.errors.add(:source, :extname_changed)
-        end
       end
     end
 

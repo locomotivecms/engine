@@ -11,6 +11,7 @@ import CheckboxInput from './checkbox.jsx';
 import SelectInput from './select.jsx';
 import RadioInput from './radio.jsx';
 import ImagePickerInput from './image_picker.jsx';
+import UrlInput from './url.jsx';
 
 class Base extends Component {
 
@@ -38,6 +39,7 @@ class Base extends Component {
       case 'select':        return SelectInput;
       case 'radio':         return RadioInput;
       case 'image_picker':  return ImagePickerInput;
+      case 'url':           return UrlInput;
       default:
         console.log(`[Editor] Warning! Unknown input type: "${setting.type}"`);
         return null;

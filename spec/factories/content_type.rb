@@ -12,6 +12,9 @@ FactoryBot.define do
     site { Locomotive::Site.where(handle: 'acme').first || create(:site) }
 
     trait :article do
+      name 'Articles'
+      label_field_name 'title'
+      slug 'articles'
       after(:build) do |content_type, _|
         content_type.entries_custom_fields.build label: 'Title', type: 'string'
         content_type.entries_custom_fields.build label: 'Description', type: 'text'

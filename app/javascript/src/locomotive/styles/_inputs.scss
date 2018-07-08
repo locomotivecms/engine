@@ -6,3 +6,13 @@
 .DraftEditor-editorContainer, .DraftEditor-root, .public-DraftEditor-content {
   height: 100%;
 }
+
+.editor-input {
+  margin-bottom: 2rem;
+}
+
+.editor-input input[type=text] {
+  display: block;
+  width: 100%;
+  padding: 0.5rem 0.8rem;
+}

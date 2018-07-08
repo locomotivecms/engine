@@ -951,6 +951,14 @@
 .DraftEditor-editorContainer, .DraftEditor-root, .public-DraftEditor-content {
   height: 100%; }
 
+.editor-input {
+  margin-bottom: 2rem; }
+
+.editor-input input[type=text] {
+  display: block;
+  width: 100%;
+  padding: 0.5rem 0.8rem; }
+
 .editor-image-picker {
   height: 100%; }
 
@@ -1013,6 +1021,22 @@
   .editor-image img {
     display: block;
     height: 100%;
+    width: 100%; }
+
+.url-info, .url-picker {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+      align-items: center; }
+
+.url-info-actions, .url-picker-actions {
+  margin-left: auto;
+  min-width: 30%;
+  text-align: right; }
+
+.url-picker-autocomplete {
+  width: 100%; }
+  .url-picker-autocomplete .rap-manager, .url-picker-autocomplete .rap-target-container {
     width: 100%; }
 
 #editor-app .container-fluid {

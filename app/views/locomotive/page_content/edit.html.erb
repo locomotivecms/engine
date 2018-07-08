@@ -27,6 +27,7 @@
       preview:          "<%= @preview_path %>",
       thumbnail:        "<%= root_path + '_image_thumbnail' %>",
       assets:           "<%= content_assets_path(current_site, format: :json) %>",
+      resources:        "<%= search_for_resources_path(current_site, format: :json) %>",
       bulkAssetUpload:  "<%= bulk_create_content_assets_path(current_site, :json) %>"
     }
 

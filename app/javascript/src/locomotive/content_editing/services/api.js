@@ -99,3 +99,10 @@ export function loadAssets(options) {
     }
   });
 }
+
+// RESOURCES
+
+export function searchForResources(query) {
+  return jsonGet(window.Locomotive.urls.resources, { q: query })
+  .then(response => ({ list: response.json }));
+}
