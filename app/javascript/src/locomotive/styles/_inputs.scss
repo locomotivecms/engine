@@ -16,3 +16,24 @@
   width: 100%;
   padding: 0.5rem 0.8rem;
 }
+
+.editor-input-text {
+
+  .rdw-editor-toolbar {
+    position: relative;
+  }
+
+  .rdw-link-wrapper {
+    position: static;
+  }
+
+  .rdw-link-modal {
+    left: 0;
+    right: 0;
+    width: auto;
+    height: auto;
+    box-shadow: none;
+  }
+
+}
+

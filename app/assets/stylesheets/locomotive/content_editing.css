@@ -959,6 +959,19 @@
   width: 100%;
   padding: 0.5rem 0.8rem; }
 
+.editor-input-text .rdw-editor-toolbar {
+  position: relative; }
+
+.editor-input-text .rdw-link-wrapper {
+  position: static; }
+
+.editor-input-text .rdw-link-modal {
+  left: 0;
+  right: 0;
+  width: auto;
+  height: auto;
+  box-shadow: none; }
+
 .editor-image-picker {
   height: 100%; }
 
@@ -1023,20 +1036,23 @@
     height: 100%;
     width: 100%; }
 
-.url-info, .url-picker {
+.url-picker {
+  width: 100%; }
+
+.url-picker-info, .url-picker-input {
   display: -ms-flexbox;
   display: flex;
   -ms-flex-align: center;
       align-items: center; }
 
-.url-info-actions, .url-picker-actions {
+.url-picker-info-actions, .url-picker-input-actions {
   margin-left: auto;
   min-width: 30%;
   text-align: right; }
 
-.url-picker-autocomplete {
+.url-picker-input-autocomplete {
   width: 100%; }
-  .url-picker-autocomplete .rap-manager, .url-picker-autocomplete .rap-target-container {
+  .url-picker-input-autocomplete .rap-manager, .url-picker-input-autocomplete .rap-target-container {
     width: 100%; }
 
 #editor-app .container-fluid {

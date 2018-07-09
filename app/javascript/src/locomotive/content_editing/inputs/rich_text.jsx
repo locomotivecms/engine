@@ -6,6 +6,9 @@ import draftToHtml from 'draftjs-to-html';
 import htmlToDraft from 'html-to-draftjs';
 import { formatLineBreak } from '../utils/misc';
 
+// Components
+import Link from '../components/draft/link.jsx';
+
 const MIN_ROWS    = 5;
 const LINE_HEIGHT = 20;
 
@@ -88,11 +91,12 @@ class RichTextInput extends Component {
 
 RichTextInput.mytoolbar = extended => {
   const options = extended ?
-    ['inline', 'textAlign', 'list', 'link', 'image'] :
+    ['inline', 'textAlign', 'list', 'link'] :
     ['inline', 'link'];
 
   return Object.assign({
     options,
+    link: { component: Link, showOpenOptionOnHover: false },
     inline: {
       options: ['bold', 'italic', 'underline', 'strikethrough']
     },

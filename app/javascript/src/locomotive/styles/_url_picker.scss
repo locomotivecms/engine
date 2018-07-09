@@ -1,15 +1,19 @@
-.url-info, .url-picker {
+.url-picker {
+  width: 100%;
+}
+
+.url-picker-info, .url-picker-input {
   display: flex;
   align-items: center;
 }
 
-.url-info-actions, .url-picker-actions {
+.url-picker-info-actions, .url-picker-input-actions {
   margin-left: auto;
   min-width: 30%;
   text-align: right;
 }
 
-.url-picker-autocomplete {
+.url-picker-input-autocomplete {
   width: 100%;
 
   .rap-manager, .rap-target-container {
