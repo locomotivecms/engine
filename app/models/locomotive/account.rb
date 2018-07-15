@@ -4,7 +4,6 @@ module Locomotive
     include Locomotive::Mongoid::Document
     devise *Locomotive.config.devise_modules
     acts_as_token_authenticatable
-    include Locomotive::Concerns::Account::DevisePatch
     include Locomotive::Concerns::Account::ApiKey
 
     ## devise fields (need to be declared since 2.x) ##
