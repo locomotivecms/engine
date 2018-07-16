@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { isBlank } from '../../utils/misc';
 
-const UrlInfo = ({ value, handleEditing }) => (
+const UrlInfo = ({ value, handleEditing, handleDone }) => (
   <div className="url-picker-info">
     {isBlank(value) ? (
       <div className="url-picker-info-value">No URL for now</div>
@@ -16,6 +16,11 @@ const UrlInfo = ({ value, handleEditing }) => (
       <button className="btn btn-sm btn-primary" onClick={handleEditing}>
         Change
       </button>
+      {handleDone && (
+        <button className="btn btn-sm btn-primary" onClick={handleDone}>
+          Done
+        </button>
+      )}
     </div>
   </div>
 )

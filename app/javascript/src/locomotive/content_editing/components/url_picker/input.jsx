@@ -18,6 +18,10 @@ class UrlInput extends Component {
     this.searchForResources = debounce(this.searchForResources, 500);
   }
 
+  componentWillUnmount() {
+    this.searchForResources.cancel();
+  }
+
   handleKeyUp(event) {
     this.setState({ input: event.target.value });
     this.searchForResources(event.target.value);
@@ -41,6 +45,10 @@ class UrlInput extends Component {
     });
   }
 
+  getDefaultValue() {
+    return this.props.value.type === '_external' ? this.props.value.value : null;
+  }
+
   render() {
     const { handleCancel } = this.props;
 
@@ -51,6 +59,7 @@ class UrlInput extends Component {
             <input
               type="text"
               onKeyUp={this.handleKeyUp}
+              defaultValue={this.getDefaultValue()}
               placeholder="Please type the label of a resource"
             />
             <div className="rap-popover-pad">

@@ -86,10 +86,10 @@ class Link extends Component {
   }
 
   onUpdate(resource) {
-    const { onChange } = this.props;
-    const { linkTitle, linkTargetOption } = this.state;
-    const linkTarget = this.encodeResource(resource);
-    onChange('link', linkTitle, linkTarget, linkTargetOption);
+    const { onChange }  = this.props;
+    const target        = this.encodeResource(resource);
+    const targetOption  = resource.new_window ? '_blank' : null;
+    onChange('link', this.state.linkTitle, target, targetOption);
   }
 
   removeLink() {
@@ -109,6 +109,7 @@ class Link extends Component {
         <UrlPicker
           value={this.decodeResource(linkTarget) || linkTitle}
           handleChange={this.onUpdate}
+          useDoneButton={true}
         />
       </div>
     )
