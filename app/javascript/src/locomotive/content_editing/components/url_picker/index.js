@@ -27,7 +27,7 @@ class UrlPicker extends Component {
   }
 
   handleChange(value) {
-    this.setState({ editing: false, value });
+    this.setState({ editing: false, value: { new_window: this.state.value.new_window, ...value } });
     if (!this.props.useDoneButton)
       this.handleDone();
   }
@@ -46,8 +46,6 @@ class UrlPicker extends Component {
 
   getValue() {
     const value = this.props.value;
-
-    console.log(value);
 
     if (typeof(value) === 'string') {
       return { type: '_external', value, label: ['external', value], new_window: false };

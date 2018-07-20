@@ -10,7 +10,7 @@ module Locomotive
       (
         site.pages
         .only(:_id, :title)
-        .where(title: /#{query}/i, published: true, is_layout: false, target_klass_name: nil)
+        .where(title: /#{query}/i, published: true, is_layout: false, target_klass_name: nil, :slug.ne => '404')
         .limit(max_results).map do |page|
           { type: 'page', value:  page._id, label: ['Pages', page.title] }
         end
