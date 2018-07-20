@@ -28,11 +28,7 @@ const Main = props => (
           {props.iframe.loaded && (
            <Switch>
               <Route exact path="/" render={() => (
-                props.hasSections ? (
-                  <Redirect to="/sections" />
-                ) : (
-                  <Redirect to="/editable_elements" />
-                )
+                <Redirect to="/sections" />
               )} />
 
               {routes.map(route => (
