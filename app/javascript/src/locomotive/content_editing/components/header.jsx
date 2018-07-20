@@ -29,9 +29,11 @@ const Header = (props) => (
         <li className={isActive('sections', props) ? 'active' : ''}>
           <Link to={props.sectionsPath()}>Sections</Link>
         </li>
-        <li className={isActive('editable_elements', props) ? 'active' : ''}>
-          <Link to={props.editableElementsPath()}>Content</Link>
-        </li>
+        {props.hasEditableElements && (
+          <li>
+            <a href={props.urls.editableElements}>Editable regions</a>
+          </li>
+        )}
         <li>
           <a role="tab" href={props.urls.settings}>Settings</a>
         </li>

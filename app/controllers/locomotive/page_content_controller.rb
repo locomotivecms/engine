@@ -6,6 +6,7 @@ module Locomotive
     localized
 
     before_action :load_page
+    before_action :only_if_sections
 
     layout :editable_elements_layout
 
@@ -67,7 +68,7 @@ module Locomotive
     end
 
     def editable_elements_layout
-      @page.default_response_type? ? 'locomotive/layouts/live_editing' : '/locomotive/layouts/application'
+      @page.default_response_type? ? 'locomotive/layouts/editor' : '/locomotive/layouts/application'
     end
 
     def site_params
@@ -76,6 +77,10 @@ module Locomotive
 
     def page_params
       params.require(:page).permit(:sections_content)
+    end
+
+    def only_if_sections
+      redirect_to editable_elements_path(current_site, @page) if current_site.sections.count == 0
     end
 
   end

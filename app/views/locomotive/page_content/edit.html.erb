@@ -23,6 +23,7 @@
     window.Locomotive.urls = {
       base:             "<%= edit_page_content_path(current_site, @page) %>",
       save:             "<%= page_content_path(current_site, @page, format: :json) %>",
+      editableElements: "<%= editable_elements_path(current_site, @page) %>",
       settings:         "<%= edit_page_path(current_site, @page) %>",
       preview:          "<%= @preview_path %>",
       thumbnail:        "<%= root_path + '_image_thumbnail' %>",

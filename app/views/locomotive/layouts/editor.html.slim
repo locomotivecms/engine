@@ -1,0 +1,14 @@
+doctype XML
+doctype html
+html xmlns='http://www.w3.org/1999/xhtml'
+  head
+    = render 'locomotive/shared/head'
+
+  body class="live-editing sidebar-closed"
+    = render 'locomotive/shared/navigation'
+    = render 'locomotive/shared/sidebar'
+
+    .content-main
+      .content-overlay
+
+      = yield

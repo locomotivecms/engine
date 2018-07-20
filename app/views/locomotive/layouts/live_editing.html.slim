@@ -11,11 +11,19 @@ html xmlns='http://www.w3.org/1999/xhtml'
     .content-main
       .content-overlay
 
-      / .drawer
-      /   .close-button
-      /     i.fa.fa-times
-      /   .content-inner
-      /     = yield :drawer
-      /     = yield :foot
+      .drawer
+        .close-button
+          i.fa.fa-times
+        .content-inner
+          = yield :drawer
+          = yield :foot
 
-      = yield
+      .actionbar
+        .actionbar-trigger
+          i.fa.fa-chevron-left
+        .content
+          = yield
+
+      .content-preview.preview
+        .scrollable
+          = yield :preview

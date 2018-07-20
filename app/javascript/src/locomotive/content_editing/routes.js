@@ -5,15 +5,13 @@ import buildRoutes from './utils/routes_builder';
 import withHeader from './hoc/with_header';
 
 // Views
-import _EditableElementsIndex from './views/editable_elements/list.jsx';
 import _SectionsIndex from './views/sections/index.jsx';
 import SectionGallery from './views/sections/gallery.jsx';
 import EditSection from './views/sections/edit.jsx';
 import EditBlock from './views/blocks/edit.jsx';
 import ImagesIndex from './views/assets/images/index.jsx';
 
-const SectionsIndex         = withHeader(_SectionsIndex);
-const EditableElementsIndex = withHeader(_EditableElementsIndex)
+const SectionsIndex = withHeader(_SectionsIndex);
 
 const nestedRoutes = {
   // Static Sections
@@ -40,10 +38,7 @@ const nestedRoutes = {
         '/setting/:settingType/:settingId/images': ImagesIndex
       }
     }
-  },
-
-  // Editable elements
-  '/editable_elements': EditableElementsIndex
+  }
 }
 
 export default buildRoutes(nestedRoutes);
