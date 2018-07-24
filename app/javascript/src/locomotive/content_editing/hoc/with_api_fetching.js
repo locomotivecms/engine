@@ -1,8 +1,6 @@
 import React from 'react';
 import { bindAll } from 'lodash';
 
-import * as API from '../services/api';
-
 const withApiFetching = (source, options) => (Component) => {
 
   const _options = Object.assign({ pagination: false }, options);
@@ -38,7 +36,7 @@ const withApiFetching = (source, options) => (Component) => {
 
     fetch() {
       // this.setState({ isLoading: true }, () => {
-        API[source](this.fetchOptions())
+        this.props.api[source](this.fetchOptions())
         .then(data => this.setState({ ...data, isLoading: false }))
         .catch(error => this.setState({ error, isLoading: false }));
       // });

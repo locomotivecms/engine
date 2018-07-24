@@ -1,5 +1,5 @@
 import { toInt } from '../utils/misc';
-import { each } from 'lodash';
+import { each, replace } from 'lodash';
 
 const requestOptions = (verb, data, headers) => {
   const _headers = Object.assign({
@@ -55,17 +55,25 @@ const jsonGet = (url, query, headers) => {
 
 // CONTENT
 
-export function saveContent(site, page) {
-  return jsonPut(window.Locomotive.urls.save, {
+export function saveContent(url, site, page) {
+  return jsonPut(url, {
     site: { sections_content: JSON.stringify(site.sectionsContent) },
     page: { sections_content: JSON.stringify(page.sectionsContent) }
   });
 }
 
+export function loadContent(url, pageId, locale) {
+  const _url = replace(url, /\/pages\/[0-9a-z]+\//, `/pages/${pageId}\/`) + '.json';
+
+  console.log(_url);
+
+  return jsonGet(_url, { content_locale: locale });
+}
+
 // SECTION
 
-export function loadSectionHTML(sectionType, content) {
-  return put(window.Locomotive.urls.preview,
+export function loadSectionHTML(url, sectionType, content) {
+  return put(url,
     JSON.stringify({ section_content: content }),
     { 'Locomotive-Section-Type': sectionType }
   ).then(response => { return response.text(); })
@@ -73,17 +81,17 @@ export function loadSectionHTML(sectionType, content) {
 
 // CONTENT ASSETS
 
-export function uploadAssets(assets) {
+export function uploadAssets(url, assets) {
   var form = new FormData();
   each(assets, asset => form.append('content_assets[][source]', asset))
 
-  return post(window.Locomotive.urls.bulkAssetUpload, form, {
+  return post(url, form, {
     'Content-Type': null
   }).then(response => response.json())
 }
 
-export function loadAssets(options) {
-  return jsonGet(window.Locomotive.urls.assets, {
+export function loadAssets(url, options) {
+  return jsonGet(url, {
     page:     options.pagination.page || 1,
     per_page: options.pagination.perPage || 10
   })
@@ -102,7 +110,23 @@ export function loadAssets(options) {
 
 // RESOURCES
 
-export function searchForResources(query) {
-  return jsonGet(window.Locomotive.urls.resources, { q: query })
+export function searchForResources(url, query) {
+  return jsonGet(url, { q: query })
   .then(response => ({ list: response.json }));
+}
+
+export default function ApiFactory(urls) {
+  console.log('API service built with success!');
+
+  return {
+    loadContent:        (pageId, locale) => loadContent(urls.load, pageId, locale),
+    saveContent:        (site, page) => saveContent(urls.save, site, page),
+
+    loadAssets:         (options) => loadAssets(urls.assets, options),
+    uploadAssets:       (assets) => uploadAssets(urls.bulkAssetUpload, assets),
+
+    searchForResources: (query) => searchForResources(urls.resources, query),
+
+    loadSectionHTML:    (sectionType, content) => loadSectionHTML(urls.preview , sectionType, content)
+  };
 }

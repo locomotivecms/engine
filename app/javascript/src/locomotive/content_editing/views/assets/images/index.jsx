@@ -47,7 +47,7 @@ class Index extends Component {
             </div>
           </div>
 
-          <Uploader handleUpload={this.handleUpload} />
+          <Uploader handleUpload={this.handleUpload} uploadAssets={this.props.api.uploadAssets} />
         </div>
 
         {this.props.isLoading ? (

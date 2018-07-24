@@ -16,6 +16,9 @@ function page(state = [], action) {
 
   switch(action.type) {
 
+    case 'EDITOR::LOAD':
+      return action.page;
+
     // SECTIONS
 
     case 'SECTION::UPDATE_INPUT':

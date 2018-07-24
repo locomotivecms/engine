@@ -10,7 +10,7 @@ module Locomotive
 
     layout :editable_elements_layout
 
-    respond_to :json, only: :update
+    respond_to :json, only: [:edit, :update]
 
     def edit
       authorize @page
@@ -27,10 +27,6 @@ module Locomotive
         preview_path(current_site),
         params[:preview_path] || current_site.localized_page_fullpath(@page, current_content_locale)
       ].join('/')
-
-      respond_with(@page) do |format|
-        format.html { render 'edit' }
-      end
     end
 
     def update

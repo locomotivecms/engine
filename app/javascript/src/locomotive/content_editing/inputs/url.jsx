@@ -10,6 +10,7 @@ const UrlInput = props => (
     <UrlPicker
       value={props.getValue(null)}
       handleChange={props.handleChange}
+      searchForResources={props.api.searchForResources}
     />
   </div>
 )

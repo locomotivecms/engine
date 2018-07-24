@@ -61,6 +61,7 @@ class UrlPicker extends Component {
             value={this.state.value}
             handleChange={this.handleChange}
             handleCancel={this.handleCancel}
+            searchForResources={this.props.searchForResources}
           />
         ) : (
           <UrlInfo
@@ -85,7 +86,8 @@ class UrlPicker extends Component {
 UrlPicker.propTypes = {
   editing:            PropTypes.bool,
   value:              PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
-  useDoneButton:      PropTypes.bool
+  useDoneButton:      PropTypes.bool,
+  searchForResources: PropTypes.func
 }
 
 export default UrlPicker;

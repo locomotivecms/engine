@@ -15,7 +15,7 @@ const SectionsIndex = withHeader(_SectionsIndex);
 
 const nestedRoutes = {
   // Static Sections
-  '/sections': {
+  '/:pageId/content/edit/sections': {
     component: SectionsIndex,
     '/:sectionType': {
       '/edit': EditSection,
@@ -28,7 +28,7 @@ const nestedRoutes = {
   },
 
   // Dropzone sections
-  '/dropzone_sections': {
+  '/:pageId/content/edit/dropzone_sections': {
     '/pick': SectionGallery,
     '/:sectionType/:sectionId': {
       '/edit': EditSection,

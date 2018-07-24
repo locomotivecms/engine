@@ -1,9 +1,20 @@
 import { createStore } from 'redux';
-import rootReducer from './reducers/index.js';
+import rootReducer from './reducers/index';
+
+import ApiFactory from './services/api';
 
 // create an object for the default data
-const { site, page } = window.Locomotive.data;
+const { data, urls } = window.Locomotive;
+const { site, page, sectionDefinitions, sections, editableElements } = data;
+
 const defaultState = {
+  editor: {
+    sectionDefinitions,
+    sections,
+    editableElements,
+    urls,
+    api: ApiFactory(urls)
+  },
   site,
   page,
   iframe: {

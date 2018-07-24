@@ -22,6 +22,6 @@ const StaticList = props => (
 )
 
 export default compose(
-  withRoutes,
-  withGlobalVars
+  withGlobalVars,
+  withRoutes
 )(StaticList);

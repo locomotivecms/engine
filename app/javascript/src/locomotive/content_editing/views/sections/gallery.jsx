@@ -86,7 +86,7 @@ class Gallery extends Component {
 }
 
 export default compose(
-  withRoutes,
   withRedux(),
-  withGlobalVars
+  withGlobalVars,
+  withRoutes
 )(Gallery);

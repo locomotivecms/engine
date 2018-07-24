@@ -3,9 +3,6 @@ import { bindAll, debounce } from 'lodash';
 import Popover from 'react-awesome-popover';
 import { isBlank } from '../../utils/misc';
 
-// Services
-import * as Api from '../../services/api';
-
 // Components
 import UrlPickerResource from './resource.jsx';
 
@@ -28,7 +25,7 @@ class UrlInput extends Component {
   }
 
   searchForResources(query) {
-    Api.searchForResources(query).then(response =>
+    this.props.searchForResources(query).then(response =>
       this.setState({ results: response.list })
     );
   }

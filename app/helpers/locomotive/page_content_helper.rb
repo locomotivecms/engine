@@ -1,24 +1,36 @@
 module Locomotive
   module PageContentHelper
 
-    def all_static_sections_to_json(section_types)
-      section_types.without('_sections_dropzone_').to_json.html_safe
+    def all_static_sections(section_types)
+      section_types.without('_sections_dropzone_')
     end
 
-    def top_static_sections_to_json(section_types)
+    def all_static_sections_to_json(section_types)
+      all_static_sections(section_types).to_json.html_safe
+    end
+
+    def top_static_sections(section_types)
       if (array = section_types.split('_sections_dropzone_')).size == 1
         []
       else
         array.first
-      end.to_json.html_safe
+      end
     end
 
-    def bottom_static_sections_to_json(section_types)
+    def top_static_sections_to_json(section_types)
+      top_static_sections(section_types).to_json.html_safe
+    end
+
+    def bottom_static_sections(section_types)
       if (array = section_types.split('_sections_dropzone_')).size == 1
         []
       else
         array.last
-      end.to_json.html_safe
+      end
+    end
+
+    def bottom_static_sections_to_json(section_types)
+      bottom_static_sections(section_types).to_json.html_safe
     end
 
     def static_sections_content(site, types, definitions)

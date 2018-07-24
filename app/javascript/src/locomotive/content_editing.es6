@@ -4,17 +4,9 @@ import './content_editing.scss';
 import App from './content_editing/app.jsx';
 
 $(document).ready(function() {
-  const { urls, data } = window.Locomotive;
-
-  const hasSections = data.sections.all.length > 0 || data.sections.dropzone;
-  const hasEditableElements = data.editableElements.length > 0;
+  const { preview, base } = window.Locomotive.urls;
 
   ReactDOM.render(
-    <App
-      urls={urls}
-      hasSections={hasSections}
-      hasEditableElements={hasEditableElements}
-      {...data}
-    />, document.getElementById('editor-app'));
+    <App previewPath={preview} basePath={base} />, document.getElementById('editor-app'));
 });
 

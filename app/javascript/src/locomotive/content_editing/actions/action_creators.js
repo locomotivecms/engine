@@ -1,3 +1,6 @@
+import ApiFactory from '../services/api';
+
+
 // Helpers
 const actionName = (name, sectionId) => {
   return `${sectionId ? '' : 'STATIC_'}${name}`;
@@ -15,6 +18,21 @@ export function persistChanges(result, data) {
   return {
     type: 'PERSIST_CHANGES',
     success: result
+  }
+}
+
+export function loadEditor(data, urls) {
+  return {
+    type: 'EDITOR::LOAD',
+    site: data.site,
+    page: data.page,
+    editor: {
+      sections:           data.sections,
+      sectionDefinitions: data.sectionDefinitions,
+      editableElements:   data.editableElements,
+      api:                ApiFactory(urls),
+      urls
+    }
   }
 }
 
@@ -146,6 +164,12 @@ export function deselectSectionBlock(sectionType, sectionId, blockId) {
 }
 
 // PREVIEW / IFRAME
+
+export function onIframeNewSrc() {
+  return {
+    type:         'IFRAME::NEW_SOURCE'
+  }
+}
 
 export function onIframeLoaded(contentWindow) {
   return {

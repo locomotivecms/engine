@@ -40,14 +40,14 @@ const Header = (props) => (
       </ul>
     </div>
     <div className="col-md-3">
-      <SaveButton />
+      <SaveButton {...props} />
     </div>
   </div>
 )
 
 export default compose(
-  withRedux(state => ({ page: state.page })),
-  withRoutes,
-  withGlobalVars
+  withRedux(state => ({ site: state.site, page: state.page })),
+  withGlobalVars,
+  withRoutes
 )(Header)
 

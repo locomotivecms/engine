@@ -13,8 +13,14 @@ const refreshSection = (state, action) => {
 
 function iframe(state = {}, action) {
   switch(action.type) {
+    case 'IFRAME::NEW_SOURCE':
+      return { loaded: false };
+
     case 'IFRAME::LOADED':
       return { loaded: true, window: action.window };
+
+    case 'EDITOR::LOAD':
+      return { loaded: true };
 
     case 'SECTION::PREVIEW':
       return update(state, {

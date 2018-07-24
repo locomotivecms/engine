@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import { bindAll } from 'lodash';
 
-// Services
-import { uploadAssets } from '../../../services/api';
-
 class Uploader extends Component {
 
   constructor(props) {
@@ -20,7 +17,7 @@ class Uploader extends Component {
     const files = event.target.files;
 
     this.setState({ uploading: true }, () => {
-      uploadAssets(files)
+      this.props.uploadAssets(files)
       .then((assets) => {
         this.setState({ uploading: false }, () => {
           this.props.handleUpload(assets[0]);

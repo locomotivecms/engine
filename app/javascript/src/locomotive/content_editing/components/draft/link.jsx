@@ -3,6 +3,9 @@ import { bindAll } from 'lodash';
 import classNames from 'classnames';
 import { b64EncodeUnicode, b64DecodeUnicode } from '../../utils/misc';
 
+// HOC
+import withRedux from '../../hoc/with_redux';
+
 // Components
 import Option from './option.jsx';
 import UrlPicker from '../url_picker';
@@ -110,6 +113,7 @@ class Link extends Component {
           value={this.decodeResource(linkTarget) || linkTitle}
           handleChange={this.onUpdate}
           useDoneButton={true}
+          searchForResources={this.props.api.searchForResources}
         />
       </div>
     )
@@ -157,4 +161,4 @@ class Link extends Component {
 
 }
 
-export default Link;
+export default withRedux(state => ({ api: state.editor.api }))(Link);

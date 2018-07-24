@@ -75,4 +75,7 @@ export function b64DecodeUnicode(str) {
   }).join(''));
 }
 
-
+// get the content of a meta tag inside an iframe
+export function getMetaContentFromIframe(iframe, name) {
+  return iframe.contentWindow.document.head.querySelector(`meta[name=${name}]`).content;
+}

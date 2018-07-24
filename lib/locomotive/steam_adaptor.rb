@@ -32,7 +32,7 @@ Locomotive::Steam.configure do |config|
   require_relative 'steam/middlewares/catch_error'
   config.middleware.insert_after Locomotive::Steam::Middlewares::Site, Locomotive::Steam::Middlewares::CatchError
 
-  %w(cache missing_translations wysihtml_css).each do |name|
+  %w(cache page_editing missing_translations wysihtml_css).each do |name|
     require_relative "steam/middlewares/#{name}"
     config.middleware.insert_after Locomotive::Steam::Middlewares::Page, Locomotive::Steam::Middlewares.const_get(name.camelize)
   end

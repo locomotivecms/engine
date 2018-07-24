@@ -9,6 +9,9 @@ function findBlockIndex(state, action) {
 function site(state = {}, action) {
   switch(action.type) {
 
+    case 'CONTENT::LOAD':
+      return action.site;
+
     case 'STATIC_SECTION::UPDATE_INPUT':
       return update(state, {
         sectionsContent: {
