@@ -64,10 +64,8 @@ export function saveContent(url, site, page) {
 
 export function loadContent(url, pageId, locale) {
   const _url = replace(url, /\/pages\/[0-9a-z]+\//, `/pages/${pageId}\/`) + '.json';
-
-  console.log(_url);
-
-  return jsonGet(_url, { content_locale: locale });
+  return jsonGet(_url, { content_locale: locale })
+  .then(response => ({ data: response.json.data, urls: response.json.urls }))
 }
 
 // SECTION
@@ -116,8 +114,6 @@ export function searchForResources(url, query) {
 }
 
 export default function ApiFactory(urls) {
-  console.log('API service built with success!');
-
   return {
     loadContent:        (pageId, locale) => loadContent(urls.load, pageId, locale),
     saveContent:        (site, page) => saveContent(urls.save, site, page),

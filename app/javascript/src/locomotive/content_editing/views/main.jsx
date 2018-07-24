@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { compose } from 'redux';
-import { BrowserRouter as Router, Switch, Route, Redirect, browserHistory } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import routes from '../routes';
 
 // HOC
@@ -11,48 +11,31 @@ import { withRouter } from 'react-router';
 // Views
 import _Startup from './startup.jsx';
 
-console.log(browserHistory);
-
 const Startup = withHeader(_Startup);
-
-const togglePreview = (event) => {
-  $('.content-main').toggleClass('actionbar-closed');
-}
 
 class Main extends Component {
 
-  // constructor(props) {
-  //   super(props);
-  //   this.state = { reset: false };
-  // }
+  componentDidUpdate(prevProps) {
+    if (prevProps.pageId !== this.props.pageId)
+      this.props.history.replace(`/${this.props.pageId}/content/edit/sections`);
+  }
 
-  // componentDidUpdate(prevProps, prevState, snapshot) {
-  //   // if (prevProps.iframe.loaded === true && !this.props.iframe.loaded) {
-  //   //   // TODO
-  //   //   console.log('redirect to the original url', prevProps.urls.base);
-  //   //   console.log(this.switch);
-  //   //   // browserHistory.replace(prevProps.urls.base);
-  //   // }
-  //   if (prevProps.iframe.loaded === true && !this.props.iframe.loaded) {
-  //     console.log('editing a new page!');
-  //     this.setState({ reset: true });
-  //   }
-  // }
+  togglePreview(event) {
+    $('.content-main').toggleClass('actionbar-closed');
+  }
 
   render() {
-    console.log('Main', this.props.pageId);
-    const pageId = this.props.pageId;
-
+    const { pageId, iframe } = this.props;
     return (
       <div className="actionbar">
-        <div className="actionbar-trigger" onClick={togglePreview}>
+        <div className="actionbar-trigger" onClick={this.togglePreview}>
           <i className="fa fa-chevron-left"></i>
         </div>
         <div className="content">
             <div className="container-fluid main" role="main">
-              {!this.props.iframe.loaded && <Startup />}
+              {!iframe.loaded && <Startup />}
 
-              {this.props.iframe.loaded && (
+              {iframe.loaded && (
                <Switch>
                   <Route exact path={`/${pageId}/content/edit/`} render={() => (
                     <Redirect to={`/${pageId}/content/edit/sections`} />
@@ -63,10 +46,7 @@ class Main extends Component {
                       key={route.path}
                       exact={route.exact === true}
                       path={route.path}
-                      render={(_props) => {
-                        const Component = route.component;
-                        return <Component {...this.props} {..._props} />
-                      }}
+                      component={route.component}
                     />
                   ))}
 
@@ -78,23 +58,21 @@ class Main extends Component {
       </div>
     )
   }
-
 }
 
-// const Main = props => (
+// const Main = ({ pageId, iframe, ...props }) => (
 //   <div className="actionbar">
 //     <div className="actionbar-trigger" onClick={togglePreview}>
 //       <i className="fa fa-chevron-left"></i>
 //     </div>
 //     <div className="content">
-//       <Router history={browserHistory} basename={props.urls.base}>
 //         <div className="container-fluid main" role="main">
-//           {!props.iframe.loaded && <Startup />}
+//           {!iframe.loaded && <Startup />}
 
-//           {props.iframe.loaded && (
+//           {iframe.loaded && (
 //            <Switch>
-//               <Route exact path="/" render={() => (
-//                 <Redirect to="/sections" />
+//               <Route exact path={`/${pageId}/content/edit/`} render={() => (
+//                 <Redirect to={`/${pageId}/content/edit/sections`} />
 //               )} />
 
 //               {routes.map(route => (
@@ -109,23 +87,13 @@ class Main extends Component {
 //                 />
 //               ))}
 
-//               <Route render={() => <Redirect to="/" />} />
+//               <Route render={() => <Redirect to={`/${pageId}/content/edit/sections`} />} />
 //             </Switch>
 //           )}
 //         </div>
-//       </Router>
 //     </div>
 //   </div>
 // )
-
-// const _Main = withRedux(state => ({ iframe: state.iframe }))(Main)
-// const __Main = props => <_Main {...props} />
-
-// export default withRedux(state => ({
-//   urls:   state.editor.urls,
-//   api:    state.editor.api,
-//   iframe: state.iframe
-// }))(Main);
 
 export default compose(
   withRouter,
@@ -135,13 +103,3 @@ export default compose(
     iframe: state.iframe
   }))
 )(Main);
-
-
-// FIXME: building the API should happen once
-// const _Main = withRedux(state => ({ iframe: state.iframe }))(Main)
-// const __Main = props => <_Main {...props} />
-
-// export default compose(
-//   withRedux(state => ({ urls: state.editor.urls })),
-//   withApi
-// )(__Main);

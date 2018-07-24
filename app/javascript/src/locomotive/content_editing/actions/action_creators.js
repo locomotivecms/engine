@@ -1,4 +1,5 @@
 import ApiFactory from '../services/api';
+import { waitUntil } from '../utils/misc';
 
 
 // Helpers
@@ -21,7 +22,7 @@ export function persistChanges(result, data) {
   }
 }
 
-export function loadEditor(data, urls) {
+function loadEditor(data, urls) {
   return {
     type: 'EDITOR::LOAD',
     site: data.site,
@@ -34,6 +35,21 @@ export function loadEditor(data, urls) {
       urls
     }
   }
+}
+
+export function reloadEditor(api, pageId, locale) {
+  return dispatch => {
+    const now = new Date().getMilliseconds();
+
+    // Display the startup screen
+    dispatch({ type: 'IFRAME::NEW_SOURCE' });
+
+    // load the new data + wait a little bit to avoid a flickering
+    api.loadContent(pageId, locale)
+    .then(response => waitUntil(now, null, () => {
+      dispatch(loadEditor(response.data, response.urls));
+    }));
+  };
 }
 
 // SECTIONS
@@ -164,12 +180,6 @@ export function deselectSectionBlock(sectionType, sectionId, blockId) {
 }
 
 // PREVIEW / IFRAME
-
-export function onIframeNewSrc() {
-  return {
-    type:         'IFRAME::NEW_SOURCE'
-  }
-}
 
 export function onIframeLoaded(contentWindow) {
   return {

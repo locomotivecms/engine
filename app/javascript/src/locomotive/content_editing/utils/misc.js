@@ -1,4 +1,8 @@
+// we want to avoid the flickering if the iframe is loaded too quickly
+const WAIT_UNTIL_MIN_DELAY = 1000;
+
 export function waitUntil(startedAt, minDelay, callback) {
+  minDelay = minDelay || WAIT_UNTIL_MIN_DELAY;
   var delay = Math.abs(new Date().getMilliseconds() - startedAt);
   delay = delay < minDelay ? minDelay - delay : 0;
   setTimeout(callback, delay);

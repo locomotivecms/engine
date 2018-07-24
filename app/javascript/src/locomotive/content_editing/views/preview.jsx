@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
-import { compose } from 'redux';
-import { find, last } from 'lodash';
+import { find } from 'lodash';
 import { waitUntil, getMetaContentFromIframe } from '../utils/misc';
 
 // HOC
-import { withRouter } from 'react-router';
 import withRedux from '../hoc/with_redux';
 
 // Services
@@ -13,9 +11,6 @@ import {
   previewSection, addSection, moveSection, removeSection,
   selectSection, deselectSection, selectSectionBlock, deselectSectionBlock
 } from '../services/preview_service';
-
-// we want to avoid the flickering if the iframe is loaded too quickly
-const STARTUP_MIN_DELAY = 1000;
 
 class Preview extends React.Component {
 
@@ -28,41 +23,13 @@ class Preview extends React.Component {
     this.iframe.onload = () => {
 
       if (!this.props.iframeState.loaded) {
-        waitUntil(
-          this.createdAt,
-          STARTUP_MIN_DELAY,
-          () => { this.props.onIframeLoaded(this.iframe.contentWindow) }
-        )
+        waitUntil(this.createdAt, null, () => this.props.onIframeLoaded(this.iframe.contentWindow))
       } else {
-        // x get the page id + locale from the iframe
-        // x use a JSON builder to build the data + urls
-        // x pass the urls to the API service!
-        // x go grab the JSON used to build the editor
-        // x refresh the UI
-        // - change the URL (history.push)
-        // - what if there are no sections (and editable elements)?
-        // - changes not saved!
-        // - waitUntil
-
-        this.props.onIframeNewSrc();
-
-        this.props.api.loadContent(
+        this.props.reloadEditor(
+          this.props.api,
           getMetaContentFromIframe(this.iframe, 'locomotive-page-id'),
           getMetaContentFromIframe(this.iframe, 'locomotive-locale')
-        ).then(response => {
-
-          // this.props.history.push('/');
-          this.props.loadEditor(response.json.data, response.json.urls);
-
-          // console.log('TODO: change pageId');
-
-          this.props.history.replace(`/${response.json.data.page.id}/content/edit/sections`);
-
-          // console.log('HISTORY STATE', this.props.history.location.state);
-          // window.history.replaceState(null, null, response.json.urls.base)
-          // window.history.pushState(null, null, response.json.urls.base);
-          // this.props.history.push('/');
-        });
+        )
       }
     }
   }
@@ -143,20 +110,9 @@ class Preview extends React.Component {
 
 }
 
-// export default withRedux(state => ({
-//   staticContent:  state.site.sectionsContent,
-//   content:        state.page.sectionsContent,
-//   iframeState:    state.iframe,
-//   api:            state.editor.api
-// }))(Preview);
-
-export default compose(
-  withRouter,
-  withRedux(state => ({
-    staticContent:  state.site.sectionsContent,
-    content:        state.page.sectionsContent,
-    iframeState:    state.iframe,
-    api:            state.editor.api
-  }))
-)(Preview);
-
+export default withRedux(state => ({
+  staticContent:  state.site.sectionsContent,
+  content:        state.page.sectionsContent,
+  iframeState:    state.iframe,
+  api:            state.editor.api
+}))(Preview);
