@@ -31,7 +31,7 @@ module Locomotive
             [:method,     env['REQUEST_METHOD']],
             [:endpoint,   env['PATH_INFO']],
             [:params,     params.inspect],
-            [:headers,    env.select { |k, v| k.start_with? 'HTTP_X' }],
+            [:headers,    env.select { |k, _| k.is_a?(String) && k.start_with?('HTTP_X') }],
             [:status,     response[0]],
             [:timestamp,  Time.zone.now]
           ]
