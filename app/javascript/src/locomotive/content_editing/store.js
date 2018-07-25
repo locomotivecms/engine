@@ -10,6 +10,7 @@ const { site, page, sectionDefinitions, sections, editableElements } = data;
 
 const defaultState = {
   editor: {
+    changed: false,
     sectionDefinitions,
     sections,
     editableElements,

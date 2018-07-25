@@ -21,10 +21,20 @@ class Preview extends React.Component {
 
   componentDidMount() {
     this.iframe.onload = () => {
+      // don't allow to go to another page if the changes have not been saved
+      this.iframe.contentWindow.onbeforeunload = () => {
+        return this.props.changed ? 'Changes unsaved!' : null;
+      }
 
       if (!this.props.iframeState.loaded) {
+        // alright, we are all good to display the first screen
         waitUntil(this.createdAt, null, () => this.props.onIframeLoaded(this.iframe.contentWindow))
       } else {
+        // the user clicks on a link in the iframe
+
+        // TODO: check if the new page is a locomotive one (and also editable!)
+        // otherwise, redirect to an error page.
+
         this.props.reloadEditor(
           this.props.api,
           getMetaContentFromIframe(this.iframe, 'locomotive-page-id'),
@@ -114,5 +124,6 @@ export default withRedux(state => ({
   staticContent:  state.site.sectionsContent,
   content:        state.page.sectionsContent,
   iframeState:    state.iframe,
-  api:            state.editor.api
+  api:            state.editor.api,
+  changed:        state.editor.changed
 }))(Preview);

@@ -22,7 +22,7 @@ const isActive = (name, props) => {
 const Header = (props) => (
   <div className="row header-row">
     <div className="col-md-12">
-      <h1>{props.page.title}</h1>
+      <h1>{props.page.title} {props.changed && <span>*</span>}</h1>
     </div>
     <div className="col-md-9">
       <ul className="nav nav-tabs" role="tablist">
@@ -46,7 +46,7 @@ const Header = (props) => (
 )
 
 export default compose(
-  withRedux(state => ({ site: state.site, page: state.page })),
+  withRedux(state => ({ site: state.site, page: state.page, changed: state.editor.changed })),
   withGlobalVars,
   withRoutes
 )(Header)
